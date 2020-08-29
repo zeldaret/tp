@@ -1,0 +1,42 @@
+MEMORY {
+    text : origin = 0x80003100
+}
+SECTIONS {
+    GROUP:{
+        .init ALIGN(0x20):{}
+        extab_ ALIGN(0x20):{}
+        extabindex_ ALIGN(0x20):{}
+        .text ALIGN(0x20):{}
+        .ctors ALIGN(0x20):{}
+        .dtors ALIGN(0x20):{}
+        .rodata ALIGN(0x20):{}
+        .data ALIGN(0x20):{}
+        .bss ALIGN(0x20):{}
+        .sdata ALIGN(0x20):{}
+        .sbss ALIGN(0x20):{}
+        .sdata2 ALIGN(0x20):{}
+        .sbss2 ALIGN(0x20):{}
+        .stack ALIGN(0x100):{}
+    } > text
+    _stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;
+    _stack_end = _f_sbss2 + SIZEOF(.sbss2);
+    _db_stack_addr = (_stack_addr + 0x2000);
+    _db_stack_end = _stack_addr;
+    __ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
+    __ArenaHi = 0x81700000 ;
+}
+/*
+.init 80003100 - 80005600
+extab 80005600 - 80005660
+extabindex 80005660 - 800056BC
+.text 800056C0 - 803737C0 
+.ctors 803737C0 - 80373980
+.dtors 80373980 - 803739A0
+.rodata 803739A0 - 803A2EE0
+.data 803A2EE0 - 803D32E0
+.bss 803D32E0 - 80450580
+.sdata 80450580 - 80450B00
+.sbss 80450B00 - 80451A00
+.sdata2 80451A00 - 80456B60
+.sbss2 80456B60 - 80456BC8
+*/

@@ -1,0 +1,19 @@
+# Compiler binaries
+mwcc_compiler/
+
+# Build artifacts
+build/
+*.o
+*.elf
+*.map
+*.dol
+
+# Temporary files
+*.swp
+*.dump
+
+# IDE
+.vscode/
+
+# ASM
+new.asm
