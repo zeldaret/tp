@@ -1,14 +1,4 @@
-ifneq ($(findstring MINGW,$(shell uname)),)
-  WINDOWS := 1
-endif
-ifneq ($(findstring MSYS,$(shell uname)),)
-  WINDOWS := 1
-endif
-
-WSLENV ?= ok
-ifdef WSLENV
-	WINDOWS := 1
-endif
+WINDOWS := $(shell which wine ; echo $$?)
 
 #-------------------------------------------------------------------------------
 # Files
