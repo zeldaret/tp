@@ -1,0 +1,53 @@
+.include "macros.inc"
+
+.section .text, "ax" # 8027d730
+
+
+.global JPAKeyBlock
+JPAKeyBlock:
+/* 8027D730 0027A670  90 83 00 00 */	stw r4, 0(r3)
+/* 8027D734 0027A674  38 04 00 0C */	addi r0, r4, 0xc
+/* 8027D738 0027A678  90 03 00 04 */	stw r0, 4(r3)
+/* 8027D73C 0027A67C  4E 80 00 20 */	blr 
+
+.global JPAKeyBlock_NS_calc
+JPAKeyBlock_NS_calc:
+/* 8027D740 0027A680  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 8027D744 0027A684  7C 08 02 A6 */	mflr r0
+/* 8027D748 0027A688  90 01 00 24 */	stw r0, 0x24(r1)
+/* 8027D74C 0027A68C  7C 66 1B 78 */	mr r6, r3
+/* 8027D750 0027A690  80 A3 00 00 */	lwz r5, 0(r3)
+/* 8027D754 0027A694  88 05 00 0B */	lbz r0, 0xb(r5)
+/* 8027D758 0027A698  2C 00 00 00 */	cmpwi r0, 0
+/* 8027D75C 0027A69C  41 82 00 5C */	beq lbl_8027D7B8
+/* 8027D760 0027A6A0  80 86 00 04 */	lwz r4, 4(r6)
+/* 8027D764 0027A6A4  88 65 00 09 */	lbz r3, 9(r5)
+/* 8027D768 0027A6A8  38 03 FF FF */	addi r0, r3, -1
+/* 8027D76C 0027A6AC  54 00 20 36 */	slwi r0, r0, 4
+/* 8027D770 0027A6B0  7C 04 04 2E */	lfsx f0, r4, r0
+/* 8027D774 0027A6B4  FC 00 00 1E */	fctiwz f0, f0
+/* 8027D778 0027A6B8  D8 01 00 08 */	stfd f0, 8(r1)
+/* 8027D77C 0027A6BC  80 61 00 0C */	lwz r3, 0xc(r1)
+/* 8027D780 0027A6C0  38 63 00 01 */	addi r3, r3, 1
+/* 8027D784 0027A6C4  FC 00 08 1E */	fctiwz f0, f1
+/* 8027D788 0027A6C8  D8 01 00 10 */	stfd f0, 0x10(r1)
+/* 8027D78C 0027A6CC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8027D790 0027A6D0  7C 00 1B D6 */	divw r0, r0, r3
+/* 8027D794 0027A6D4  7C 00 19 D6 */	mullw r0, r0, r3
+/* 8027D798 0027A6D8  C8 42 B9 50 */	lfd f2, lbl_80455350-_SDA2_BASE_(r2)
+/* 8027D79C 0027A6DC  6C 00 80 00 */	xoris r0, r0, 0x8000
+/* 8027D7A0 0027A6E0  90 01 00 1C */	stw r0, 0x1c(r1)
+/* 8027D7A4 0027A6E4  3C 00 43 30 */	lis r0, 0x4330
+/* 8027D7A8 0027A6E8  90 01 00 18 */	stw r0, 0x18(r1)
+/* 8027D7AC 0027A6EC  C8 01 00 18 */	lfd f0, 0x18(r1)
+/* 8027D7B0 0027A6F0  EC 00 10 28 */	fsubs f0, f0, f2
+/* 8027D7B4 0027A6F4  EC 21 00 28 */	fsubs f1, f1, f0
+lbl_8027D7B8:
+/* 8027D7B8 0027A6F8  88 65 00 09 */	lbz r3, 9(r5)
+/* 8027D7BC 0027A6FC  80 86 00 04 */	lwz r4, 4(r6)
+/* 8027D7C0 0027A700  48 00 31 C5 */	bl JPACalcKeyAnmValue
+/* 8027D7C4 0027A704  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 8027D7C8 0027A708  7C 08 03 A6 */	mtlr r0
+/* 8027D7CC 0027A70C  38 21 00 20 */	addi r1, r1, 0x20
+/* 8027D7D0 0027A710  4E 80 00 20 */	blr 
+

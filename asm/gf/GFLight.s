@@ -1,0 +1,24 @@
+.include "macros.inc"
+
+.section .text, "ax" # 802cde54
+
+
+/* 802CDE54 002CAD94  88 E4 00 03 */	lbz r7, 3(r4)
+/* 802CDE58 002CAD98  88 C4 00 02 */	lbz r6, 2(r4)
+/* 802CDE5C 002CAD9C  88 A4 00 00 */	lbz r5, 0(r4)
+/* 802CDE60 002CADA0  88 04 00 01 */	lbz r0, 1(r4)
+/* 802CDE64 002CADA4  54 00 80 1E */	slwi r0, r0, 0x10
+/* 802CDE68 002CADA8  50 A0 C0 0E */	rlwimi r0, r5, 0x18, 0, 7
+/* 802CDE6C 002CADAC  50 C0 44 2E */	rlwimi r0, r6, 8, 0x10, 0x17
+/* 802CDE70 002CADB0  7C E5 03 78 */	or r5, r7, r0
+/* 802CDE74 002CADB4  38 00 00 10 */	li r0, 0x10
+/* 802CDE78 002CADB8  3C 80 CC 01 */	lis r4, 0xCC008000@ha
+/* 802CDE7C 002CADBC  98 04 80 00 */	stb r0, 0xCC008000@l(r4)
+/* 802CDE80 002CADC0  38 00 00 00 */	li r0, 0
+/* 802CDE84 002CADC4  B0 04 80 00 */	sth r0, -0x8000(r4)
+/* 802CDE88 002CADC8  54 63 07 FE */	clrlwi r3, r3, 0x1f
+/* 802CDE8C 002CADCC  38 03 10 0A */	addi r0, r3, 0x100a
+/* 802CDE90 002CADD0  B0 04 80 00 */	sth r0, -0x8000(r4)
+/* 802CDE94 002CADD4  90 A4 80 00 */	stw r5, -0x8000(r4)
+/* 802CDE98 002CADD8  4E 80 00 20 */	blr 
+
