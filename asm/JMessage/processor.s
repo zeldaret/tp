@@ -1,0 +1,1362 @@
+.include "macros.inc"
+
+.section .text, "ax" # 802a7af8
+
+
+.global JMessage_NS_TReference_NS_dtor
+JMessage_NS_TReference_NS_dtor:
+/* 802A7AF8 002A4A38  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7AFC 002A4A3C  7C 08 02 A6 */	mflr r0
+/* 802A7B00 002A4A40  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7B04 002A4A44  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7B08 002A4A48  7C 7F 1B 79 */	or. r31, r3, r3
+/* 802A7B0C 002A4A4C  41 82 00 1C */	beq lbl_802A7B28
+/* 802A7B10 002A4A50  3C A0 80 3D */	lis r5, lbl_803C9C6C@ha
+/* 802A7B14 002A4A54  38 05 9C 6C */	addi r0, r5, lbl_803C9C6C@l
+/* 802A7B18 002A4A58  90 1F 00 00 */	stw r0, 0(r31)
+/* 802A7B1C 002A4A5C  7C 80 07 35 */	extsh. r0, r4
+/* 802A7B20 002A4A60  40 81 00 08 */	ble lbl_802A7B28
+/* 802A7B24 002A4A64  48 02 72 19 */	bl __dl
+lbl_802A7B28:
+/* 802A7B28 002A4A68  7F E3 FB 78 */	mr r3, r31
+/* 802A7B2C 002A4A6C  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7B30 002A4A70  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7B34 002A4A74  7C 08 03 A6 */	mtlr r0
+/* 802A7B38 002A4A78  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7B3C 002A4A7C  4E 80 00 20 */	blr 
+/* 802A7B40 002A4A80  38 60 00 00 */	li r3, 0
+/* 802A7B44 002A4A84  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_dtor
+JMessage_NS_TProcessor_NS_dtor:
+/* 802A7B48 002A4A88  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7B4C 002A4A8C  7C 08 02 A6 */	mflr r0
+/* 802A7B50 002A4A90  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7B54 002A4A94  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7B58 002A4A98  7C 7F 1B 79 */	or. r31, r3, r3
+/* 802A7B5C 002A4A9C  41 82 00 1C */	beq lbl_802A7B78
+/* 802A7B60 002A4AA0  3C A0 80 3D */	lis r5, lbl_803C9C2C@ha
+/* 802A7B64 002A4AA4  38 05 9C 2C */	addi r0, r5, lbl_803C9C2C@l
+/* 802A7B68 002A4AA8  90 1F 00 00 */	stw r0, 0(r31)
+/* 802A7B6C 002A4AAC  7C 80 07 35 */	extsh. r0, r4
+/* 802A7B70 002A4AB0  40 81 00 08 */	ble lbl_802A7B78
+/* 802A7B74 002A4AB4  48 02 71 C9 */	bl __dl
+lbl_802A7B78:
+/* 802A7B78 002A4AB8  7F E3 FB 78 */	mr r3, r31
+/* 802A7B7C 002A4ABC  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7B80 002A4AC0  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7B84 002A4AC4  7C 08 03 A6 */	mtlr r0
+/* 802A7B88 002A4AC8  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7B8C 002A4ACC  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_reset
+JMessage_NS_TProcessor_NS_reset:
+/* 802A7B90 002A4AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7B94 002A4AD4  7C 08 02 A6 */	mflr r0
+/* 802A7B98 002A4AD8  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7B9C 002A4ADC  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7BA0 002A4AE0  7C 7F 1B 78 */	mr r31, r3
+/* 802A7BA4 002A4AE4  38 00 00 00 */	li r0, 0
+/* 802A7BA8 002A4AE8  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A7BAC 002A4AEC  90 03 00 10 */	stw r0, 0x10(r3)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A7BB0 002A4AF0  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A7BB4 002A4AF4  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A7BB8 002A4AF8  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A7BBC 002A4AFC  38 80 00 00 */	li r4, 0
+/* 802A7BC0 002A4B00  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A7BC4 002A4B04  81 8C 00 2C */	lwz r12, 0x2c(r12)
+/* 802A7BC8 002A4B08  7D 89 03 A6 */	mtctr r12
+/* 802A7BCC 002A4B0C  4E 80 04 21 */	bctrl 
+/* 802A7BD0 002A4B10  7F E3 FB 78 */	mr r3, r31
+/* 802A7BD4 002A4B14  81 9F 00 00 */	lwz r12, 0(r31)
+/* 802A7BD8 002A4B18  81 8C 00 0C */	lwz r12, 0xc(r12)
+/* 802A7BDC 002A4B1C  7D 89 03 A6 */	mtctr r12
+/* 802A7BE0 002A4B20  4E 80 04 21 */	bctrl 
+/* 802A7BE4 002A4B24  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7BE8 002A4B28  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7BEC 002A4B2C  7C 08 03 A6 */	mtlr r0
+/* 802A7BF0 002A4B30  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7BF4 002A4B34  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_stack_pushCurrent
+JMessage_NS_TProcessor_NS_stack_pushCurrent:
+/* 802A7BF8 002A4B38  28 04 00 00 */	cmplwi r4, 0
+/* 802A7BFC 002A4B3C  4D 82 00 20 */	beqlr 
+/* 802A7C00 002A4B40  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A7C04 002A4B44  28 00 00 04 */	cmplwi r0, 4
+/* 802A7C08 002A4B48  4C 80 00 20 */	bgelr 
+/* 802A7C0C 002A4B4C  80 C3 00 0C */	lwz r6, 0xc(r3)
+/* 802A7C10 002A4B50  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7C14 002A4B54  7C A3 02 14 */	add r5, r3, r0
+/* 802A7C18 002A4B58  90 C5 00 14 */	stw r6, 0x14(r5)
+/* 802A7C1C 002A4B5C  80 A3 00 10 */	lwz r5, 0x10(r3)
+/* 802A7C20 002A4B60  38 05 00 01 */	addi r0, r5, 1
+/* 802A7C24 002A4B64  90 03 00 10 */	stw r0, 0x10(r3)
+/* 802A7C28 002A4B68  90 83 00 0C */	stw r4, 0xc(r3)
+/* 802A7C2C 002A4B6C  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_stack_popCurrent
+JMessage_NS_TProcessor_NS_stack_popCurrent:
+/* 802A7C30 002A4B70  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A7C34 002A4B74  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7C38 002A4B78  7C 83 02 14 */	add r4, r3, r0
+/* 802A7C3C 002A4B7C  80 04 00 10 */	lwz r0, 0x10(r4)
+/* 802A7C40 002A4B80  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A7C44 002A4B84  80 83 00 10 */	lwz r4, 0x10(r3)
+/* 802A7C48 002A4B88  38 04 FF FF */	addi r0, r4, -1
+/* 802A7C4C 002A4B8C  90 03 00 10 */	stw r0, 0x10(r3)
+/* 802A7C50 002A4B90  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_getResource_groupID
+JMessage_NS_TProcessor_NS_getResource_groupID:
+/* 802A7C54 002A4B94  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7C58 002A4B98  7C 08 02 A6 */	mflr r0
+/* 802A7C5C 002A4B9C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7C60 002A4BA0  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7C64 002A4BA4  7C 7F 1B 78 */	mr r31, r3
+/* 802A7C68 002A4BA8  38 C0 00 00 */	li r6, 0
+/* 802A7C6C 002A4BAC  80 63 00 08 */	lwz r3, 8(r3)
+/* 802A7C70 002A4BB0  28 03 00 00 */	cmplwi r3, 0
+/* 802A7C74 002A4BB4  41 82 00 1C */	beq lbl_802A7C90
+/* 802A7C78 002A4BB8  80 A3 00 0C */	lwz r5, 0xc(r3)
+/* 802A7C7C 002A4BBC  A0 A5 00 0C */	lhz r5, 0xc(r5)
+/* 802A7C80 002A4BC0  54 80 04 3E */	clrlwi r0, r4, 0x10
+/* 802A7C84 002A4BC4  7C 00 28 40 */	cmplw r0, r5
+/* 802A7C88 002A4BC8  40 82 00 08 */	bne lbl_802A7C90
+/* 802A7C8C 002A4BCC  38 C0 00 01 */	li r6, 1
+lbl_802A7C90:
+/* 802A7C90 002A4BD0  54 C0 06 3F */	clrlwi. r0, r6, 0x18
+/* 802A7C94 002A4BD4  41 82 00 08 */	beq lbl_802A7C9C
+/* 802A7C98 002A4BD8  48 00 00 28 */	b lbl_802A7CC0
+lbl_802A7C9C:
+/* 802A7C9C 002A4BDC  80 7F 00 04 */	lwz r3, 4(r31)
+/* 802A7CA0 002A4BE0  80 63 00 04 */	lwz r3, 4(r3)
+/* 802A7CA4 002A4BE4  28 03 00 00 */	cmplwi r3, 0
+/* 802A7CA8 002A4BE8  40 82 00 0C */	bne lbl_802A7CB4
+/* 802A7CAC 002A4BEC  38 60 00 00 */	li r3, 0
+/* 802A7CB0 002A4BF0  48 00 00 0C */	b lbl_802A7CBC
+lbl_802A7CB4:
+/* 802A7CB4 002A4BF4  38 63 00 08 */	addi r3, r3, 8
+/* 802A7CB8 002A4BF8  48 00 12 B5 */	bl JMessage_NS_TResourceContainer_NS_TCResource_NS_Get_groupID
+lbl_802A7CBC:
+/* 802A7CBC 002A4BFC  90 7F 00 08 */	stw r3, 8(r31)
+lbl_802A7CC0:
+/* 802A7CC0 002A4C00  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7CC4 002A4C04  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7CC8 002A4C08  7C 08 03 A6 */	mtlr r0
+/* 802A7CCC 002A4C0C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7CD0 002A4C10  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_toMessageCode_messageID
+JMessage_NS_TProcessor_NS_toMessageCode_messageID:
+/* 802A7CD4 002A4C14  94 21 FF 90 */	stwu r1, -0x70(r1)
+/* 802A7CD8 002A4C18  7C 08 02 A6 */	mflr r0
+/* 802A7CDC 002A4C1C  90 01 00 74 */	stw r0, 0x74(r1)
+/* 802A7CE0 002A4C20  39 61 00 70 */	addi r11, r1, 0x70
+/* 802A7CE4 002A4C24  48 0B A4 ED */	bl func_803621D0
+/* 802A7CE8 002A4C28  7C 7B 1B 78 */	mr r27, r3
+/* 802A7CEC 002A4C2C  7C 9C 23 78 */	mr r28, r4
+/* 802A7CF0 002A4C30  7C BD 2B 78 */	mr r29, r5
+/* 802A7CF4 002A4C34  7C DE 33 78 */	mr r30, r6
+/* 802A7CF8 002A4C38  83 E3 00 08 */	lwz r31, 8(r3)
+/* 802A7CFC 002A4C3C  28 1F 00 00 */	cmplwi r31, 0
+/* 802A7D00 002A4C40  41 82 00 30 */	beq lbl_802A7D30
+/* 802A7D04 002A4C44  7F E3 FB 78 */	mr r3, r31
+/* 802A7D08 002A4C48  48 00 0F D5 */	bl JMessage_NS_TResource_NS_toMessageIndex_messageID
+/* 802A7D0C 002A4C4C  7C 64 1B 78 */	mr r4, r3
+/* 802A7D10 002A4C50  54 60 04 3E */	clrlwi r0, r3, 0x10
+/* 802A7D14 002A4C54  28 00 FF FF */	cmplwi r0, 0xffff
+/* 802A7D18 002A4C58  41 82 00 18 */	beq lbl_802A7D30
+/* 802A7D1C 002A4C5C  80 7F 00 0C */	lwz r3, 0xc(r31)
+/* 802A7D20 002A4C60  A0 03 00 0C */	lhz r0, 0xc(r3)
+/* 802A7D24 002A4C64  54 03 80 1E */	slwi r3, r0, 0x10
+/* 802A7D28 002A4C68  50 83 04 3E */	rlwimi r3, r4, 0, 0x10, 0x1f
+/* 802A7D2C 002A4C6C  48 00 00 F4 */	b lbl_802A7E20
+lbl_802A7D30:
+/* 802A7D30 002A4C70  80 7B 00 04 */	lwz r3, 4(r27)
+/* 802A7D34 002A4C74  28 03 00 00 */	cmplwi r3, 0
+/* 802A7D38 002A4C78  40 82 00 0C */	bne lbl_802A7D44
+/* 802A7D3C 002A4C7C  38 60 00 00 */	li r3, 0
+/* 802A7D40 002A4C80  48 00 00 08 */	b lbl_802A7D48
+lbl_802A7D44:
+/* 802A7D44 002A4C84  80 63 00 04 */	lwz r3, 4(r3)
+lbl_802A7D48:
+/* 802A7D48 002A4C88  28 03 00 00 */	cmplwi r3, 0
+/* 802A7D4C 002A4C8C  40 82 00 0C */	bne lbl_802A7D58
+/* 802A7D50 002A4C90  38 60 FF FF */	li r3, -1
+/* 802A7D54 002A4C94  48 00 00 CC */	b lbl_802A7E20
+lbl_802A7D58:
+/* 802A7D58 002A4C98  38 63 00 0C */	addi r3, r3, 0xc
+/* 802A7D5C 002A4C9C  90 61 00 24 */	stw r3, 0x24(r1)
+/* 802A7D60 002A4CA0  90 61 00 20 */	stw r3, 0x20(r1)
+/* 802A7D64 002A4CA4  90 61 00 3C */	stw r3, 0x3c(r1)
+/* 802A7D68 002A4CA8  90 61 00 38 */	stw r3, 0x38(r1)
+/* 802A7D6C 002A4CAC  90 61 00 1C */	stw r3, 0x1c(r1)
+/* 802A7D70 002A4CB0  90 61 00 4C */	stw r3, 0x4c(r1)
+/* 802A7D74 002A4CB4  90 61 00 48 */	stw r3, 0x48(r1)
+/* 802A7D78 002A4CB8  80 03 00 00 */	lwz r0, 0(r3)
+/* 802A7D7C 002A4CBC  90 01 00 18 */	stw r0, 0x18(r1)
+/* 802A7D80 002A4CC0  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7D84 002A4CC4  90 01 00 34 */	stw r0, 0x34(r1)
+/* 802A7D88 002A4CC8  90 01 00 30 */	stw r0, 0x30(r1)
+/* 802A7D8C 002A4CCC  90 01 00 10 */	stw r0, 0x10(r1)
+/* 802A7D90 002A4CD0  90 01 00 44 */	stw r0, 0x44(r1)
+/* 802A7D94 002A4CD4  90 01 00 40 */	stw r0, 0x40(r1)
+/* 802A7D98 002A4CD8  90 01 00 50 */	stw r0, 0x50(r1)
+/* 802A7D9C 002A4CDC  90 61 00 54 */	stw r3, 0x54(r1)
+/* 802A7DA0 002A4CE0  48 00 00 54 */	b lbl_802A7DF4
+lbl_802A7DA4:
+/* 802A7DA4 002A4CE4  83 41 00 50 */	lwz r26, 0x50(r1)
+/* 802A7DA8 002A4CE8  80 1A 00 00 */	lwz r0, 0(r26)
+/* 802A7DAC 002A4CEC  90 01 00 50 */	stw r0, 0x50(r1)
+/* 802A7DB0 002A4CF0  7C 1A F8 40 */	cmplw r26, r31
+/* 802A7DB4 002A4CF4  41 82 00 40 */	beq lbl_802A7DF4
+/* 802A7DB8 002A4CF8  7F 43 D3 78 */	mr r3, r26
+/* 802A7DBC 002A4CFC  7F 84 E3 78 */	mr r4, r28
+/* 802A7DC0 002A4D00  7F A5 EB 78 */	mr r5, r29
+/* 802A7DC4 002A4D04  7F C6 F3 78 */	mr r6, r30
+/* 802A7DC8 002A4D08  48 00 0F 15 */	bl JMessage_NS_TResource_NS_toMessageIndex_messageID
+/* 802A7DCC 002A4D0C  7C 64 1B 78 */	mr r4, r3
+/* 802A7DD0 002A4D10  54 60 04 3E */	clrlwi r0, r3, 0x10
+/* 802A7DD4 002A4D14  28 00 FF FF */	cmplwi r0, 0xffff
+/* 802A7DD8 002A4D18  41 82 00 1C */	beq lbl_802A7DF4
+/* 802A7DDC 002A4D1C  93 5B 00 08 */	stw r26, 8(r27)
+/* 802A7DE0 002A4D20  80 7A 00 0C */	lwz r3, 0xc(r26)
+/* 802A7DE4 002A4D24  A0 03 00 0C */	lhz r0, 0xc(r3)
+/* 802A7DE8 002A4D28  54 03 80 1E */	slwi r3, r0, 0x10
+/* 802A7DEC 002A4D2C  50 83 04 3E */	rlwimi r3, r4, 0, 0x10, 0x1f
+/* 802A7DF0 002A4D30  48 00 00 30 */	b lbl_802A7E20
+lbl_802A7DF4:
+/* 802A7DF4 002A4D34  80 61 00 54 */	lwz r3, 0x54(r1)
+/* 802A7DF8 002A4D38  90 61 00 2C */	stw r3, 0x2c(r1)
+/* 802A7DFC 002A4D3C  80 01 00 50 */	lwz r0, 0x50(r1)
+/* 802A7E00 002A4D40  90 01 00 28 */	stw r0, 0x28(r1)
+/* 802A7E04 002A4D44  90 61 00 0C */	stw r3, 0xc(r1)
+/* 802A7E08 002A4D48  90 01 00 08 */	stw r0, 8(r1)
+/* 802A7E0C 002A4D4C  7C 00 18 50 */	subf r0, r0, r3
+/* 802A7E10 002A4D50  7C 00 00 34 */	cntlzw r0, r0
+/* 802A7E14 002A4D54  54 00 DE 3F */	rlwinm. r0, r0, 0x1b, 0x18, 0x1f
+/* 802A7E18 002A4D58  41 82 FF 8C */	beq lbl_802A7DA4
+/* 802A7E1C 002A4D5C  38 60 FF FF */	li r3, -1
+lbl_802A7E20:
+/* 802A7E20 002A4D60  39 61 00 70 */	addi r11, r1, 0x70
+/* 802A7E24 002A4D64  48 0B A3 F9 */	bl func_8036221C
+/* 802A7E28 002A4D68  80 01 00 74 */	lwz r0, 0x74(r1)
+/* 802A7E2C 002A4D6C  7C 08 03 A6 */	mtlr r0
+/* 802A7E30 002A4D70  38 21 00 70 */	addi r1, r1, 0x70
+/* 802A7E34 002A4D74  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_on_select_begin
+JMessage_NS_TProcessor_NS_on_select_begin:
+/* 802A7E38 002A4D78  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7E3C 002A4D7C  7C 08 02 A6 */	mflr r0
+/* 802A7E40 002A4D80  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7E44 002A4D84  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7E48 002A4D88  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A7E4C 002A4D8C  7C 7E 1B 78 */	mr r30, r3
+/* 802A7E50 002A4D90  7C FF 3B 78 */	mr r31, r7
+/* 802A7E54 002A4D94  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A7E58 002A4D98  28 00 00 04 */	cmplwi r0, 4
+/* 802A7E5C 002A4D9C  40 80 00 68 */	bge lbl_802A7EC4
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_
+/* 802A7E60 002A4DA0  3C E0 80 2B */	lis r7, JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_
+/* 802A7E64 002A4DA4  38 07 82 F4 */	addi r0, r7, JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_@l
+/* 802A7E68 002A4DA8  90 1E 00 24 */	stw r0, 0x24(r30)
+/* 802A7E6C 002A4DAC  90 9E 00 28 */	stw r4, 0x28(r30)
+/* 802A7E70 002A4DB0  90 DE 00 2C */	stw r6, 0x2c(r30)
+/* 802A7E74 002A4DB4  90 BE 00 30 */	stw r5, 0x30(r30)
+/* 802A7E78 002A4DB8  93 FE 00 34 */	stw r31, 0x34(r30)
+/* 802A7E7C 002A4DBC  7C 8C 23 78 */	mr r12, r4
+/* 802A7E80 002A4DC0  7D 89 03 A6 */	mtctr r12
+/* 802A7E84 002A4DC4  4E 80 04 21 */	bctrl 
+/* 802A7E88 002A4DC8  80 BE 00 0C */	lwz r5, 0xc(r30)
+/* 802A7E8C 002A4DCC  80 1E 00 10 */	lwz r0, 0x10(r30)
+/* 802A7E90 002A4DD0  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7E94 002A4DD4  7C 9E 02 14 */	add r4, r30, r0
+/* 802A7E98 002A4DD8  90 A4 00 14 */	stw r5, 0x14(r4)
+/* 802A7E9C 002A4DDC  80 9E 00 10 */	lwz r4, 0x10(r30)
+/* 802A7EA0 002A4DE0  38 04 00 01 */	addi r0, r4, 1
+/* 802A7EA4 002A4DE4  90 1E 00 10 */	stw r0, 0x10(r30)
+/* 802A7EA8 002A4DE8  90 7E 00 0C */	stw r3, 0xc(r30)
+/* 802A7EAC 002A4DEC  7F C3 F3 78 */	mr r3, r30
+/* 802A7EB0 002A4DF0  7F E4 FB 78 */	mr r4, r31
+/* 802A7EB4 002A4DF4  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802A7EB8 002A4DF8  81 8C 00 20 */	lwz r12, 0x20(r12)
+/* 802A7EBC 002A4DFC  7D 89 03 A6 */	mtctr r12
+/* 802A7EC0 002A4E00  4E 80 04 21 */	bctrl 
+lbl_802A7EC4:
+/* 802A7EC4 002A4E04  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7EC8 002A4E08  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A7ECC 002A4E0C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7ED0 002A4E10  7C 08 03 A6 */	mtlr r0
+/* 802A7ED4 002A4E14  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7ED8 002A4E18  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_on_select_end
+JMessage_NS_TProcessor_NS_on_select_end:
+/* 802A7EDC 002A4E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7EE0 002A4E20  7C 08 02 A6 */	mflr r0
+/* 802A7EE4 002A4E24  90 01 00 14 */	stw r0, 0x14(r1)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A7EE8 002A4E28  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A7EEC 002A4E2C  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A7EF0 002A4E30  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A7EF4 002A4E34  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A7EF8 002A4E38  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7EFC 002A4E3C  7C 83 02 14 */	add r4, r3, r0
+/* 802A7F00 002A4E40  80 04 00 10 */	lwz r0, 0x10(r4)
+/* 802A7F04 002A4E44  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A7F08 002A4E48  80 83 00 10 */	lwz r4, 0x10(r3)
+/* 802A7F0C 002A4E4C  38 04 FF FF */	addi r0, r4, -1
+/* 802A7F10 002A4E50  90 03 00 10 */	stw r0, 0x10(r3)
+/* 802A7F14 002A4E54  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A7F18 002A4E58  81 8C 00 24 */	lwz r12, 0x24(r12)
+/* 802A7F1C 002A4E5C  7D 89 03 A6 */	mtctr r12
+/* 802A7F20 002A4E60  4E 80 04 21 */	bctrl 
+/* 802A7F24 002A4E64  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7F28 002A4E68  7C 08 03 A6 */	mtlr r0
+/* 802A7F2C 002A4E6C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7F30 002A4E70  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_on_select_separate
+JMessage_NS_TProcessor_NS_on_select_separate:
+/* 802A7F34 002A4E74  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A7F38 002A4E78  7C 08 02 A6 */	mflr r0
+/* 802A7F3C 002A4E7C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A7F40 002A4E80  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A7F44 002A4E84  7C 7F 1B 78 */	mr r31, r3
+/* 802A7F48 002A4E88  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A7F4C 002A4E8C  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7F50 002A4E90  7C 9F 02 14 */	add r4, r31, r0
+/* 802A7F54 002A4E94  80 04 00 10 */	lwz r0, 0x10(r4)
+/* 802A7F58 002A4E98  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A7F5C 002A4E9C  80 83 00 10 */	lwz r4, 0x10(r3)
+/* 802A7F60 002A4EA0  38 04 FF FF */	addi r0, r4, -1
+/* 802A7F64 002A4EA4  90 03 00 10 */	stw r0, 0x10(r3)
+/* 802A7F68 002A4EA8  81 83 00 28 */	lwz r12, 0x28(r3)
+/* 802A7F6C 002A4EAC  7D 89 03 A6 */	mtctr r12
+/* 802A7F70 002A4EB0  4E 80 04 21 */	bctrl 
+/* 802A7F74 002A4EB4  80 BF 00 0C */	lwz r5, 0xc(r31)
+/* 802A7F78 002A4EB8  80 1F 00 10 */	lwz r0, 0x10(r31)
+/* 802A7F7C 002A4EBC  54 00 10 3A */	slwi r0, r0, 2
+/* 802A7F80 002A4EC0  7C 9F 02 14 */	add r4, r31, r0
+/* 802A7F84 002A4EC4  90 A4 00 14 */	stw r5, 0x14(r4)
+/* 802A7F88 002A4EC8  80 9F 00 10 */	lwz r4, 0x10(r31)
+/* 802A7F8C 002A4ECC  38 04 00 01 */	addi r0, r4, 1
+/* 802A7F90 002A4ED0  90 1F 00 10 */	stw r0, 0x10(r31)
+/* 802A7F94 002A4ED4  90 7F 00 0C */	stw r3, 0xc(r31)
+/* 802A7F98 002A4ED8  7F E3 FB 78 */	mr r3, r31
+/* 802A7F9C 002A4EDC  81 9F 00 00 */	lwz r12, 0(r31)
+/* 802A7FA0 002A4EE0  81 8C 00 28 */	lwz r12, 0x28(r12)
+/* 802A7FA4 002A4EE4  7D 89 03 A6 */	mtctr r12
+/* 802A7FA8 002A4EE8  4E 80 04 21 */	bctrl 
+/* 802A7FAC 002A4EEC  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A7FB0 002A4EF0  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A7FB4 002A4EF4  7C 08 03 A6 */	mtlr r0
+/* 802A7FB8 002A4EF8  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A7FBC 002A4EFC  4E 80 00 20 */	blr 
+/* 802A7FC0 002A4F00  4E 80 00 20 */	blr 
+/* 802A7FC4 002A4F04  4E 80 00 20 */	blr 
+/* 802A7FC8 002A4F08  4E 80 00 20 */	blr 
+/* 802A7FCC 002A4F0C  4E 80 00 20 */	blr 
+/* 802A7FD0 002A4F10  38 60 00 00 */	li r3, 0
+/* 802A7FD4 002A4F14  4E 80 00 20 */	blr 
+/* 802A7FD8 002A4F18  4E 80 00 20 */	blr 
+/* 802A7FDC 002A4F1C  4E 80 00 20 */	blr 
+/* 802A7FE0 002A4F20  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_on_tag_
+JMessage_NS_TProcessor_NS_on_tag_:
+/* 802A7FE4 002A4F24  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 802A7FE8 002A4F28  7C 08 02 A6 */	mflr r0
+/* 802A7FEC 002A4F2C  90 01 00 24 */	stw r0, 0x24(r1)
+/* 802A7FF0 002A4F30  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A7FF4 002A4F34  48 0B A1 E5 */	bl func_803621D8
+/* 802A7FF8 002A4F38  7C 7C 1B 78 */	mr r28, r3
+/* 802A7FFC 002A4F3C  83 C3 00 0C */	lwz r30, 0xc(r3)
+/* 802A8000 002A4F40  8B FE 00 00 */	lbz r31, 0(r30)
+/* 802A8004 002A4F44  38 1F FF FF */	addi r0, r31, -1
+/* 802A8008 002A4F48  7C 1E 02 14 */	add r0, r30, r0
+/* 802A800C 002A4F4C  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A8010 002A4F50  88 9E 00 01 */	lbz r4, 1(r30)
+/* 802A8014 002A4F54  8B BE 00 02 */	lbz r29, 2(r30)
+/* 802A8018 002A4F58  50 9D 44 2E */	rlwimi r29, r4, 8, 0x10, 0x17
+/* 802A801C 002A4F5C  57 BD 40 2E */	slwi r29, r29, 8
+/* 802A8020 002A4F60  88 1E 00 03 */	lbz r0, 3(r30)
+/* 802A8024 002A4F64  7F BD 03 78 */	or r29, r29, r0
+/* 802A8028 002A4F68  7F A4 EB 78 */	mr r4, r29
+/* 802A802C 002A4F6C  38 BE 00 04 */	addi r5, r30, 4
+/* 802A8030 002A4F70  38 DF FF FB */	addi r6, r31, -5
+/* 802A8034 002A4F74  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A8038 002A4F78  81 8C 00 1C */	lwz r12, 0x1c(r12)
+/* 802A803C 002A4F7C  7D 89 03 A6 */	mtctr r12
+/* 802A8040 002A4F80  4E 80 04 21 */	bctrl 
+/* 802A8044 002A4F84  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8048 002A4F88  40 82 00 24 */	bne lbl_802A806C
+/* 802A804C 002A4F8C  7F 83 E3 78 */	mr r3, r28
+/* 802A8050 002A4F90  7F A4 EB 78 */	mr r4, r29
+/* 802A8054 002A4F94  38 BE 00 04 */	addi r5, r30, 4
+/* 802A8058 002A4F98  38 DF FF FB */	addi r6, r31, -5
+/* 802A805C 002A4F9C  81 9C 00 00 */	lwz r12, 0(r28)
+/* 802A8060 002A4FA0  81 8C 00 3C */	lwz r12, 0x3c(r12)
+/* 802A8064 002A4FA4  7D 89 03 A6 */	mtctr r12
+/* 802A8068 002A4FA8  4E 80 04 21 */	bctrl 
+lbl_802A806C:
+/* 802A806C 002A4FAC  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A8070 002A4FB0  48 0B A1 B5 */	bl func_80362224
+/* 802A8074 002A4FB4  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 802A8078 002A4FB8  7C 08 03 A6 */	mtlr r0
+/* 802A807C 002A4FBC  38 21 00 20 */	addi r1, r1, 0x20
+/* 802A8080 002A4FC0  4E 80 00 20 */	blr 
+/* 802A8084 002A4FC4  4E 80 00 20 */	blr 
+/* 802A8088 002A4FC8  38 60 00 01 */	li r3, 1
+/* 802A808C 002A4FCC  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_do_tag_
+JMessage_NS_TProcessor_NS_do_tag_:
+/* 802A8090 002A4FD0  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8094 002A4FD4  7C 08 02 A6 */	mflr r0
+/* 802A8098 002A4FD8  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A809C 002A4FDC  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A80A0 002A4FE0  7C 7F 1B 78 */	mr r31, r3
+/* 802A80A4 002A4FE4  54 80 86 3E */	rlwinm r0, r4, 0x10, 0x18, 0x1f
+/* 802A80A8 002A4FE8  54 87 04 3E */	clrlwi r7, r4, 0x10
+/* 802A80AC 002A4FEC  2C 00 00 FD */	cmpwi r0, 0xfd
+/* 802A80B0 002A4FF0  41 82 00 B0 */	beq lbl_802A8160
+/* 802A80B4 002A4FF4  40 80 00 1C */	bge lbl_802A80D0
+/* 802A80B8 002A4FF8  2C 00 00 F6 */	cmpwi r0, 0xf6
+/* 802A80BC 002A4FFC  41 82 00 F8 */	beq lbl_802A81B4
+/* 802A80C0 002A5000  40 80 01 18 */	bge lbl_802A81D8
+/* 802A80C4 002A5004  2C 00 00 F5 */	cmpwi r0, 0xf5
+/* 802A80C8 002A5008  40 80 01 00 */	bge lbl_802A81C8
+/* 802A80CC 002A500C  48 00 01 0C */	b lbl_802A81D8
+lbl_802A80D0:
+/* 802A80D0 002A5010  2C 00 00 FF */	cmpwi r0, 0xff
+/* 802A80D4 002A5014  41 82 00 0C */	beq lbl_802A80E0
+/* 802A80D8 002A5018  40 80 01 00 */	bge lbl_802A81D8
+/* 802A80DC 002A501C  48 00 00 5C */	b lbl_802A8138
+lbl_802A80E0:
+/* 802A80E0 002A5020  2C 07 00 05 */	cmpwi r7, 5
+/* 802A80E4 002A5024  41 82 00 3C */	beq lbl_802A8120
+/* 802A80E8 002A5028  40 80 00 F0 */	bge lbl_802A81D8
+/* 802A80EC 002A502C  2C 07 00 04 */	cmpwi r7, 4
+/* 802A80F0 002A5030  40 80 00 08 */	bge lbl_802A80F8
+/* 802A80F4 002A5034  48 00 00 E4 */	b lbl_802A81D8
+lbl_802A80F8:
+/* 802A80F8 002A5038  80 85 00 00 */	lwz r4, 0(r5)
+/* 802A80FC 002A503C  80 7F 00 04 */	lwz r3, 4(r31)
+/* 802A8100 002A5040  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A8104 002A5044  81 8C 00 0C */	lwz r12, 0xc(r12)
+/* 802A8108 002A5048  7D 89 03 A6 */	mtctr r12
+/* 802A810C 002A504C  4E 80 04 21 */	bctrl 
+/* 802A8110 002A5050  7C 64 1B 78 */	mr r4, r3
+/* 802A8114 002A5054  7F E3 FB 78 */	mr r3, r31
+/* 802A8118 002A5058  4B FF FA E1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802A811C 002A505C  48 00 00 BC */	b lbl_802A81D8
+lbl_802A8120:
+/* 802A8120 002A5060  80 85 00 00 */	lwz r4, 0(r5)
+/* 802A8124 002A5064  48 00 0B 01 */	bl JMessage_NS_TProcessor_NS_on_message
+/* 802A8128 002A5068  7C 64 1B 78 */	mr r4, r3
+/* 802A812C 002A506C  7F E3 FB 78 */	mr r3, r31
+/* 802A8130 002A5070  4B FF FA C9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802A8134 002A5074  48 00 00 A4 */	b lbl_802A81D8
+lbl_802A8138:
+/* 802A8138 002A5078  80 7F 00 04 */	lwz r3, 4(r31)
+/* 802A813C 002A507C  7C E4 3B 78 */	mr r4, r7
+/* 802A8140 002A5080  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A8144 002A5084  81 8C 00 0C */	lwz r12, 0xc(r12)
+/* 802A8148 002A5088  7D 89 03 A6 */	mtctr r12
+/* 802A814C 002A508C  4E 80 04 21 */	bctrl 
+/* 802A8150 002A5090  7C 64 1B 78 */	mr r4, r3
+/* 802A8154 002A5094  7F E3 FB 78 */	mr r3, r31
+/* 802A8158 002A5098  4B FF FA A1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802A815C 002A509C  48 00 00 7C */	b lbl_802A81D8
+lbl_802A8160:
+/* 802A8160 002A50A0  80 7F 00 08 */	lwz r3, 8(r31)
+/* 802A8164 002A50A4  80 83 00 0C */	lwz r4, 0xc(r3)
+/* 802A8168 002A50A8  A0 04 00 08 */	lhz r0, 8(r4)
+/* 802A816C 002A50AC  7C 07 00 40 */	cmplw r7, r0
+/* 802A8170 002A50B0  40 80 00 18 */	bge lbl_802A8188
+/* 802A8174 002A50B4  A0 04 00 0A */	lhz r0, 0xa(r4)
+/* 802A8178 002A50B8  7C 07 01 D6 */	mullw r0, r7, r0
+/* 802A817C 002A50BC  7C 84 02 14 */	add r4, r4, r0
+/* 802A8180 002A50C0  38 84 00 10 */	addi r4, r4, 0x10
+/* 802A8184 002A50C4  48 00 00 08 */	b lbl_802A818C
+lbl_802A8188:
+/* 802A8188 002A50C8  38 80 00 00 */	li r4, 0
+lbl_802A818C:
+/* 802A818C 002A50CC  28 04 00 00 */	cmplwi r4, 0
+/* 802A8190 002A50D0  40 82 00 0C */	bne lbl_802A819C
+/* 802A8194 002A50D4  38 80 00 00 */	li r4, 0
+/* 802A8198 002A50D8  48 00 00 10 */	b lbl_802A81A8
+lbl_802A819C:
+/* 802A819C 002A50DC  80 63 00 10 */	lwz r3, 0x10(r3)
+/* 802A81A0 002A50E0  80 04 00 00 */	lwz r0, 0(r4)
+/* 802A81A4 002A50E4  7C 83 02 14 */	add r4, r3, r0
+lbl_802A81A8:
+/* 802A81A8 002A50E8  7F E3 FB 78 */	mr r3, r31
+/* 802A81AC 002A50EC  4B FF FA 4D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802A81B0 002A50F0  48 00 00 28 */	b lbl_802A81D8
+lbl_802A81B4:
+.global JMessage_NS_TProcessor_NS_process_onSelect_limited_
+/* 802A81B4 002A50F4  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onSelect_limited_@ha
+.global JMessage_NS_TProcessor_NS_process_onSelect_limited_
+/* 802A81B8 002A50F8  38 84 83 3C */	addi r4, r4, JMessage_NS_TProcessor_NS_process_onSelect_limited_@l
+/* 802A81BC 002A50FC  7C C5 32 14 */	add r6, r5, r6
+/* 802A81C0 002A5100  4B FF FC 79 */	bl JMessage_NS_TProcessor_NS_on_select_begin
+/* 802A81C4 002A5104  48 00 00 14 */	b lbl_802A81D8
+lbl_802A81C8:
+.global JMessage_NS_TProcessor_NS_process_onSelect_
+/* 802A81C8 002A5108  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onSelect_@ha
+.global JMessage_NS_TProcessor_NS_process_onSelect_
+/* 802A81CC 002A510C  38 84 83 58 */	addi r4, r4, JMessage_NS_TProcessor_NS_process_onSelect_@l
+/* 802A81D0 002A5110  7C C5 32 14 */	add r6, r5, r6
+/* 802A81D4 002A5114  4B FF FC 65 */	bl JMessage_NS_TProcessor_NS_on_select_begin
+lbl_802A81D8:
+/* 802A81D8 002A5118  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A81DC 002A511C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A81E0 002A5120  7C 08 03 A6 */	mtlr r0
+/* 802A81E4 002A5124  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A81E8 002A5128  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_process_character_
+JMessage_NS_TProcessor_NS_process_character_:
+/* 802A81EC 002A512C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A81F0 002A5130  7C 08 02 A6 */	mflr r0
+/* 802A81F4 002A5134  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A81F8 002A5138  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A81FC 002A513C  7C 7F 1B 78 */	mr r31, r3
+/* 802A8200 002A5140  38 7F 00 0C */	addi r3, r31, 0xc
+/* 802A8204 002A5144  80 9F 00 04 */	lwz r4, 4(r31)
+/* 802A8208 002A5148  80 84 00 04 */	lwz r4, 4(r4)
+/* 802A820C 002A514C  81 84 00 04 */	lwz r12, 4(r4)
+/* 802A8210 002A5150  7D 89 03 A6 */	mtctr r12
+/* 802A8214 002A5154  4E 80 04 21 */	bctrl 
+/* 802A8218 002A5158  7C 64 1B 78 */	mr r4, r3
+/* 802A821C 002A515C  2C 04 00 1A */	cmpwi r4, 0x1a
+/* 802A8220 002A5160  41 82 00 34 */	beq lbl_802A8254
+/* 802A8224 002A5164  40 80 00 3C */	bge lbl_802A8260
+/* 802A8228 002A5168  2C 04 00 00 */	cmpwi r4, 0
+/* 802A822C 002A516C  41 82 00 08 */	beq lbl_802A8234
+/* 802A8230 002A5170  48 00 00 30 */	b lbl_802A8260
+lbl_802A8234:
+/* 802A8234 002A5174  7F E3 FB 78 */	mr r3, r31
+/* 802A8238 002A5178  81 9F 00 24 */	lwz r12, 0x24(r31)
+/* 802A823C 002A517C  7D 89 03 A6 */	mtctr r12
+/* 802A8240 002A5180  4E 80 04 21 */	bctrl 
+/* 802A8244 002A5184  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8248 002A5188  40 82 00 2C */	bne lbl_802A8274
+/* 802A824C 002A518C  38 60 00 00 */	li r3, 0
+/* 802A8250 002A5190  48 00 00 28 */	b lbl_802A8278
+lbl_802A8254:
+/* 802A8254 002A5194  7F E3 FB 78 */	mr r3, r31
+/* 802A8258 002A5198  4B FF FD 8D */	bl JMessage_NS_TProcessor_NS_on_tag_
+/* 802A825C 002A519C  48 00 00 18 */	b lbl_802A8274
+lbl_802A8260:
+/* 802A8260 002A51A0  7F E3 FB 78 */	mr r3, r31
+/* 802A8264 002A51A4  81 9F 00 00 */	lwz r12, 0(r31)
+/* 802A8268 002A51A8  81 8C 00 18 */	lwz r12, 0x18(r12)
+/* 802A826C 002A51AC  7D 89 03 A6 */	mtctr r12
+/* 802A8270 002A51B0  4E 80 04 21 */	bctrl 
+lbl_802A8274:
+/* 802A8274 002A51B4  38 60 00 01 */	li r3, 1
+lbl_802A8278:
+/* 802A8278 002A51B8  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A827C 002A51BC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8280 002A51C0  7C 08 03 A6 */	mtlr r0
+/* 802A8284 002A51C4  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8288 002A51C8  4E 80 00 20 */	blr 
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_:
+/* 802A828C 002A51CC  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8290 002A51D0  7C 08 02 A6 */	mflr r0
+/* 802A8294 002A51D4  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8298 002A51D8  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A829C 002A51DC  7C 7F 1B 78 */	mr r31, r3
+/* 802A82A0 002A51E0  80 03 00 10 */	lwz r0, 0x10(r3)
+/* 802A82A4 002A51E4  28 00 00 00 */	cmplwi r0, 0
+/* 802A82A8 002A51E8  41 82 00 10 */	beq lbl_802A82B8
+/* 802A82AC 002A51EC  4B FF F9 85 */	bl JMessage_NS_TProcessor_NS_stack_popCurrent
+/* 802A82B0 002A51F0  38 60 00 01 */	li r3, 1
+/* 802A82B4 002A51F4  48 00 00 2C */	b lbl_802A82E0
+lbl_802A82B8:
+/* 802A82B8 002A51F8  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A82BC 002A51FC  81 8C 00 38 */	lwz r12, 0x38(r12)
+/* 802A82C0 002A5200  7D 89 03 A6 */	mtctr r12
+/* 802A82C4 002A5204  4E 80 04 21 */	bctrl 
+/* 802A82C8 002A5208  7F E3 FB 78 */	mr r3, r31
+/* 802A82CC 002A520C  81 9F 00 00 */	lwz r12, 0(r31)
+/* 802A82D0 002A5210  81 8C 00 14 */	lwz r12, 0x14(r12)
+/* 802A82D4 002A5214  7D 89 03 A6 */	mtctr r12
+/* 802A82D8 002A5218  4E 80 04 21 */	bctrl 
+/* 802A82DC 002A521C  38 60 00 00 */	li r3, 0
+lbl_802A82E0:
+/* 802A82E0 002A5220  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A82E4 002A5224  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A82E8 002A5228  7C 08 03 A6 */	mtlr r0
+/* 802A82EC 002A522C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A82F0 002A5230  4E 80 00 20 */	blr 
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_
+JMessage_NS_TProcessor_NS_process_onCharacterEnd_select_:
+/* 802A82F4 002A5234  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A82F8 002A5238  7C 08 02 A6 */	mflr r0
+/* 802A82FC 002A523C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8300 002A5240  80 83 00 34 */	lwz r4, 0x34(r3)
+/* 802A8304 002A5244  38 04 FF FF */	addi r0, r4, -1
+/* 802A8308 002A5248  90 03 00 34 */	stw r0, 0x34(r3)
+/* 802A830C 002A524C  80 03 00 34 */	lwz r0, 0x34(r3)
+/* 802A8310 002A5250  28 00 00 00 */	cmplwi r0, 0
+/* 802A8314 002A5254  41 82 00 10 */	beq lbl_802A8324
+/* 802A8318 002A5258  4B FF FC 1D */	bl JMessage_NS_TProcessor_NS_on_select_separate
+/* 802A831C 002A525C  38 60 00 01 */	li r3, 1
+/* 802A8320 002A5260  48 00 00 0C */	b lbl_802A832C
+lbl_802A8324:
+/* 802A8324 002A5264  4B FF FB B9 */	bl JMessage_NS_TProcessor_NS_on_select_end
+/* 802A8328 002A5268  38 60 00 01 */	li r3, 1
+lbl_802A832C:
+/* 802A832C 002A526C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8330 002A5270  7C 08 03 A6 */	mtlr r0
+/* 802A8334 002A5274  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8338 002A5278  4E 80 00 20 */	blr 
+.global JMessage_NS_TProcessor_NS_process_onSelect_limited_
+JMessage_NS_TProcessor_NS_process_onSelect_limited_:
+/* 802A833C 002A527C  80 A3 00 30 */	lwz r5, 0x30(r3)
+/* 802A8340 002A5280  A0 85 00 00 */	lhz r4, 0(r5)
+/* 802A8344 002A5284  38 05 00 02 */	addi r0, r5, 2
+/* 802A8348 002A5288  90 03 00 30 */	stw r0, 0x30(r3)
+/* 802A834C 002A528C  80 03 00 2C */	lwz r0, 0x2c(r3)
+/* 802A8350 002A5290  7C 60 22 14 */	add r3, r0, r4
+/* 802A8354 002A5294  4E 80 00 20 */	blr 
+.global JMessage_NS_TProcessor_NS_process_onSelect_
+JMessage_NS_TProcessor_NS_process_onSelect_:
+/* 802A8358 002A5298  80 A3 00 30 */	lwz r5, 0x30(r3)
+/* 802A835C 002A529C  80 85 00 00 */	lwz r4, 0(r5)
+/* 802A8360 002A52A0  38 05 00 04 */	addi r0, r5, 4
+/* 802A8364 002A52A4  90 03 00 30 */	stw r0, 0x30(r3)
+/* 802A8368 002A52A8  80 03 00 2C */	lwz r0, 0x2c(r3)
+/* 802A836C 002A52AC  7C 60 22 14 */	add r3, r0, r4
+/* 802A8370 002A52B0  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor
+JMessage_NS_TSequenceProcessor:
+/* 802A8374 002A52B4  3C C0 80 3D */	lis r6, lbl_803C9C2C@ha
+/* 802A8378 002A52B8  38 06 9C 2C */	addi r0, r6, lbl_803C9C2C@l
+/* 802A837C 002A52BC  90 03 00 00 */	stw r0, 0(r3)
+/* 802A8380 002A52C0  90 83 00 04 */	stw r4, 4(r3)
+/* 802A8384 002A52C4  38 C0 00 00 */	li r6, 0
+/* 802A8388 002A52C8  90 C3 00 08 */	stw r6, 8(r3)
+/* 802A838C 002A52CC  90 C3 00 0C */	stw r6, 0xc(r3)
+/* 802A8390 002A52D0  90 C3 00 10 */	stw r6, 0x10(r3)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8394 002A52D4  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8398 002A52D8  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A839C 002A52DC  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A83A0 002A52E0  3C 80 80 3D */	lis r4, lbl_803C9BD4@ha
+/* 802A83A4 002A52E4  38 04 9B D4 */	addi r0, r4, lbl_803C9BD4@l
+/* 802A83A8 002A52E8  90 03 00 00 */	stw r0, 0(r3)
+/* 802A83AC 002A52EC  90 A3 00 38 */	stw r5, 0x38(r3)
+/* 802A83B0 002A52F0  90 C3 00 3C */	stw r6, 0x3c(r3)
+/* 802A83B4 002A52F4  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_dtor
+JMessage_NS_TSequenceProcessor_NS_dtor:
+/* 802A83B8 002A52F8  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A83BC 002A52FC  7C 08 02 A6 */	mflr r0
+/* 802A83C0 002A5300  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A83C4 002A5304  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A83C8 002A5308  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A83CC 002A530C  7C 7E 1B 79 */	or. r30, r3, r3
+/* 802A83D0 002A5310  7C 9F 23 78 */	mr r31, r4
+/* 802A83D4 002A5314  41 82 00 28 */	beq lbl_802A83FC
+/* 802A83D8 002A5318  3C 80 80 3D */	lis r4, lbl_803C9BD4@ha
+/* 802A83DC 002A531C  38 04 9B D4 */	addi r0, r4, lbl_803C9BD4@l
+/* 802A83E0 002A5320  90 1E 00 00 */	stw r0, 0(r30)
+/* 802A83E4 002A5324  38 80 00 00 */	li r4, 0
+/* 802A83E8 002A5328  4B FF F7 61 */	bl JMessage_NS_TProcessor_NS_dtor
+/* 802A83EC 002A532C  7F E0 07 35 */	extsh. r0, r31
+/* 802A83F0 002A5330  40 81 00 0C */	ble lbl_802A83FC
+/* 802A83F4 002A5334  7F C3 F3 78 */	mr r3, r30
+/* 802A83F8 002A5338  48 02 69 45 */	bl __dl
+lbl_802A83FC:
+/* 802A83FC 002A533C  7F C3 F3 78 */	mr r3, r30
+/* 802A8400 002A5340  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8404 002A5344  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A8408 002A5348  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A840C 002A534C  7C 08 03 A6 */	mtlr r0
+/* 802A8410 002A5350  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8414 002A5354  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_process
+JMessage_NS_TSequenceProcessor_NS_process:
+/* 802A8418 002A5358  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A841C 002A535C  7C 08 02 A6 */	mflr r0
+/* 802A8420 002A5360  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8424 002A5364  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A8428 002A5368  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A842C 002A536C  7C 7E 1B 78 */	mr r30, r3
+/* 802A8430 002A5370  7C 9F 23 78 */	mr r31, r4
+lbl_802A8434:
+/* 802A8434 002A5374  80 1E 00 3C */	lwz r0, 0x3c(r30)
+/* 802A8438 002A5378  2C 00 00 03 */	cmpwi r0, 3
+/* 802A843C 002A537C  41 82 00 18 */	beq lbl_802A8454
+/* 802A8440 002A5380  40 80 00 08 */	bge lbl_802A8448
+/* 802A8444 002A5384  48 00 00 E0 */	b lbl_802A8524
+lbl_802A8448:
+/* 802A8448 002A5388  2C 00 00 05 */	cmpwi r0, 5
+/* 802A844C 002A538C  40 80 00 D8 */	bge lbl_802A8524
+/* 802A8450 002A5390  48 00 00 50 */	b lbl_802A84A0
+lbl_802A8454:
+/* 802A8454 002A5394  7F C3 F3 78 */	mr r3, r30
+/* 802A8458 002A5398  48 00 01 8D */	bl JMessage_NS_TSequenceProcessor_NS_on_jump_isReady
+/* 802A845C 002A539C  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8460 002A53A0  40 82 00 0C */	bne lbl_802A846C
+/* 802A8464 002A53A4  80 7E 00 0C */	lwz r3, 0xc(r30)
+/* 802A8468 002A53A8  48 00 01 24 */	b lbl_802A858C
+lbl_802A846C:
+/* 802A846C 002A53AC  38 00 00 02 */	li r0, 2
+/* 802A8470 002A53B0  90 1E 00 3C */	stw r0, 0x3c(r30)
+/* 802A8474 002A53B4  7F C3 F3 78 */	mr r3, r30
+/* 802A8478 002A53B8  81 9E 00 40 */	lwz r12, 0x40(r30)
+/* 802A847C 002A53BC  7D 89 03 A6 */	mtctr r12
+/* 802A8480 002A53C0  4E 80 04 21 */	bctrl 
+/* 802A8484 002A53C4  7C 64 1B 79 */	or. r4, r3, r3
+/* 802A8488 002A53C8  41 82 00 9C */	beq lbl_802A8524
+/* 802A848C 002A53CC  80 7E 00 38 */	lwz r3, 0x38(r30)
+/* 802A8490 002A53D0  80 A3 00 18 */	lwz r5, 0x18(r3)
+/* 802A8494 002A53D4  7F C3 F3 78 */	mr r3, r30
+/* 802A8498 002A53D8  48 00 01 79 */	bl JMessage_NS_TSequenceProcessor_NS_on_jump
+/* 802A849C 002A53DC  48 00 00 88 */	b lbl_802A8524
+lbl_802A84A0:
+/* 802A84A0 002A53E0  7F C3 F3 78 */	mr r3, r30
+/* 802A84A4 002A53E4  48 00 02 31 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_queryResult
+/* 802A84A8 002A53E8  7C 64 1B 78 */	mr r4, r3
+/* 802A84AC 002A53EC  3C 60 80 00 */	lis r3, 0x7FFFFFFF@ha
+/* 802A84B0 002A53F0  38 03 FF FF */	addi r0, r3, 0x7FFFFFFF@l
+/* 802A84B4 002A53F4  7C 04 00 40 */	cmplw r4, r0
+/* 802A84B8 002A53F8  40 81 00 30 */	ble lbl_802A84E8
+/* 802A84BC 002A53FC  2C 04 FF FF */	cmpwi r4, -1
+/* 802A84C0 002A5400  41 82 00 14 */	beq lbl_802A84D4
+/* 802A84C4 002A5404  40 80 00 60 */	bge lbl_802A8524
+/* 802A84C8 002A5408  2C 04 FF FE */	cmpwi r4, -2
+/* 802A84CC 002A540C  40 80 00 10 */	bge lbl_802A84DC
+/* 802A84D0 002A5410  48 00 00 54 */	b lbl_802A8524
+lbl_802A84D4:
+/* 802A84D4 002A5414  80 7E 00 0C */	lwz r3, 0xc(r30)
+/* 802A84D8 002A5418  48 00 00 B4 */	b lbl_802A858C
+lbl_802A84DC:
+/* 802A84DC 002A541C  38 00 00 02 */	li r0, 2
+/* 802A84E0 002A5420  90 1E 00 3C */	stw r0, 0x3c(r30)
+/* 802A84E4 002A5424  48 00 00 40 */	b lbl_802A8524
+lbl_802A84E8:
+/* 802A84E8 002A5428  38 00 00 02 */	li r0, 2
+/* 802A84EC 002A542C  90 1E 00 3C */	stw r0, 0x3c(r30)
+/* 802A84F0 002A5430  80 1E 00 48 */	lwz r0, 0x48(r30)
+/* 802A84F4 002A5434  7C 04 00 40 */	cmplw r4, r0
+/* 802A84F8 002A5438  40 80 00 2C */	bge lbl_802A8524
+/* 802A84FC 002A543C  7F C3 F3 78 */	mr r3, r30
+/* 802A8500 002A5440  81 9E 00 40 */	lwz r12, 0x40(r30)
+/* 802A8504 002A5444  7D 89 03 A6 */	mtctr r12
+/* 802A8508 002A5448  4E 80 04 21 */	bctrl 
+/* 802A850C 002A544C  7C 64 1B 79 */	or. r4, r3, r3
+/* 802A8510 002A5450  41 82 00 14 */	beq lbl_802A8524
+/* 802A8514 002A5454  80 7E 00 38 */	lwz r3, 0x38(r30)
+/* 802A8518 002A5458  80 A3 00 18 */	lwz r5, 0x18(r3)
+/* 802A851C 002A545C  7F C3 F3 78 */	mr r3, r30
+/* 802A8520 002A5460  48 00 01 E1 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch
+lbl_802A8524:
+/* 802A8524 002A5464  80 1E 00 0C */	lwz r0, 0xc(r30)
+/* 802A8528 002A5468  7C 00 F8 40 */	cmplw r0, r31
+/* 802A852C 002A546C  40 82 00 34 */	bne lbl_802A8560
+/* 802A8530 002A5470  7F C3 F3 78 */	mr r3, r30
+/* 802A8534 002A5474  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802A8538 002A5478  81 8C 00 38 */	lwz r12, 0x38(r12)
+/* 802A853C 002A547C  7D 89 03 A6 */	mtctr r12
+/* 802A8540 002A5480  4E 80 04 21 */	bctrl 
+/* 802A8544 002A5484  7F C3 F3 78 */	mr r3, r30
+/* 802A8548 002A5488  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802A854C 002A548C  81 8C 00 14 */	lwz r12, 0x14(r12)
+/* 802A8550 002A5490  7D 89 03 A6 */	mtctr r12
+/* 802A8554 002A5494  4E 80 04 21 */	bctrl 
+/* 802A8558 002A5498  38 60 00 00 */	li r3, 0
+/* 802A855C 002A549C  48 00 00 30 */	b lbl_802A858C
+lbl_802A8560:
+/* 802A8560 002A54A0  7F C3 F3 78 */	mr r3, r30
+/* 802A8564 002A54A4  48 00 00 41 */	bl JMessage_NS_TSequenceProcessor_NS_on_isReady
+/* 802A8568 002A54A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A856C 002A54AC  40 82 00 0C */	bne lbl_802A8578
+/* 802A8570 002A54B0  80 7E 00 0C */	lwz r3, 0xc(r30)
+/* 802A8574 002A54B4  48 00 00 18 */	b lbl_802A858C
+lbl_802A8578:
+/* 802A8578 002A54B8  7F C3 F3 78 */	mr r3, r30
+/* 802A857C 002A54BC  4B FF FC 71 */	bl JMessage_NS_TProcessor_NS_process_character_
+/* 802A8580 002A54C0  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8584 002A54C4  40 82 FE B0 */	bne lbl_802A8434
+/* 802A8588 002A54C8  38 60 00 00 */	li r3, 0
+lbl_802A858C:
+/* 802A858C 002A54CC  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8590 002A54D0  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A8594 002A54D4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8598 002A54D8  7C 08 03 A6 */	mtlr r0
+/* 802A859C 002A54DC  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A85A0 002A54E0  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_isReady
+JMessage_NS_TSequenceProcessor_NS_on_isReady:
+/* 802A85A4 002A54E4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A85A8 002A54E8  7C 08 02 A6 */	mflr r0
+/* 802A85AC 002A54EC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A85B0 002A54F0  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A85B4 002A54F4  81 8C 00 40 */	lwz r12, 0x40(r12)
+/* 802A85B8 002A54F8  7D 89 03 A6 */	mtctr r12
+/* 802A85BC 002A54FC  4E 80 04 21 */	bctrl 
+/* 802A85C0 002A5500  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A85C4 002A5504  7C 08 03 A6 */	mtlr r0
+/* 802A85C8 002A5508  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A85CC 002A550C  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_jump_register
+JMessage_NS_TSequenceProcessor_NS_on_jump_register:
+/* 802A85D0 002A5510  38 00 00 03 */	li r0, 3
+/* 802A85D4 002A5514  90 03 00 3C */	stw r0, 0x3c(r3)
+/* 802A85D8 002A5518  90 83 00 40 */	stw r4, 0x40(r3)
+/* 802A85DC 002A551C  90 A3 00 44 */	stw r5, 0x44(r3)
+/* 802A85E0 002A5520  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_jump_isReady
+JMessage_NS_TSequenceProcessor_NS_on_jump_isReady:
+/* 802A85E4 002A5524  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A85E8 002A5528  7C 08 02 A6 */	mflr r0
+/* 802A85EC 002A552C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A85F0 002A5530  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A85F4 002A5534  81 8C 00 44 */	lwz r12, 0x44(r12)
+/* 802A85F8 002A5538  7D 89 03 A6 */	mtctr r12
+/* 802A85FC 002A553C  4E 80 04 21 */	bctrl 
+/* 802A8600 002A5540  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8604 002A5544  7C 08 03 A6 */	mtlr r0
+/* 802A8608 002A5548  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A860C 002A554C  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_jump
+JMessage_NS_TSequenceProcessor_NS_on_jump:
+/* 802A8610 002A5550  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 802A8614 002A5554  7C 08 02 A6 */	mflr r0
+/* 802A8618 002A5558  90 01 00 24 */	stw r0, 0x24(r1)
+/* 802A861C 002A555C  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A8620 002A5560  48 0B 9B BD */	bl func_803621DC
+/* 802A8624 002A5564  7C 7D 1B 78 */	mr r29, r3
+/* 802A8628 002A5568  7C 9E 23 78 */	mr r30, r4
+/* 802A862C 002A556C  7C BF 2B 78 */	mr r31, r5
+/* 802A8630 002A5570  93 E3 00 0C */	stw r31, 0xc(r3)
+/* 802A8634 002A5574  38 00 00 00 */	li r0, 0
+/* 802A8638 002A5578  90 03 00 10 */	stw r0, 0x10(r3)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A863C 002A557C  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8640 002A5580  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A8644 002A5584  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A8648 002A5588  7F E4 FB 78 */	mr r4, r31
+/* 802A864C 002A558C  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A8650 002A5590  81 8C 00 2C */	lwz r12, 0x2c(r12)
+/* 802A8654 002A5594  7D 89 03 A6 */	mtctr r12
+/* 802A8658 002A5598  4E 80 04 21 */	bctrl 
+/* 802A865C 002A559C  7F A3 EB 78 */	mr r3, r29
+/* 802A8660 002A55A0  7F C4 F3 78 */	mr r4, r30
+/* 802A8664 002A55A4  7F E5 FB 78 */	mr r5, r31
+/* 802A8668 002A55A8  81 9D 00 00 */	lwz r12, 0(r29)
+/* 802A866C 002A55AC  81 8C 00 48 */	lwz r12, 0x48(r12)
+/* 802A8670 002A55B0  7D 89 03 A6 */	mtctr r12
+/* 802A8674 002A55B4  4E 80 04 21 */	bctrl 
+/* 802A8678 002A55B8  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A867C 002A55BC  48 0B 9B AD */	bl func_80362228
+/* 802A8680 002A55C0  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 802A8684 002A55C4  7C 08 03 A6 */	mtlr r0
+/* 802A8688 002A55C8  38 21 00 20 */	addi r1, r1, 0x20
+/* 802A868C 002A55CC  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_branch_register
+JMessage_NS_TSequenceProcessor_NS_on_branch_register:
+/* 802A8690 002A55D0  90 83 00 40 */	stw r4, 0x40(r3)
+/* 802A8694 002A55D4  90 A3 00 44 */	stw r5, 0x44(r3)
+/* 802A8698 002A55D8  90 C3 00 48 */	stw r6, 0x48(r3)
+/* 802A869C 002A55DC  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_branch_query
+JMessage_NS_TSequenceProcessor_NS_on_branch_query:
+/* 802A86A0 002A55E0  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A86A4 002A55E4  7C 08 02 A6 */	mflr r0
+/* 802A86A8 002A55E8  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A86AC 002A55EC  38 00 00 04 */	li r0, 4
+/* 802A86B0 002A55F0  90 03 00 3C */	stw r0, 0x3c(r3)
+/* 802A86B4 002A55F4  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A86B8 002A55F8  81 8C 00 4C */	lwz r12, 0x4c(r12)
+/* 802A86BC 002A55FC  7D 89 03 A6 */	mtctr r12
+/* 802A86C0 002A5600  4E 80 04 21 */	bctrl 
+/* 802A86C4 002A5604  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A86C8 002A5608  7C 08 03 A6 */	mtlr r0
+/* 802A86CC 002A560C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A86D0 002A5610  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_branch_queryResult
+JMessage_NS_TSequenceProcessor_NS_on_branch_queryResult:
+/* 802A86D4 002A5614  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A86D8 002A5618  7C 08 02 A6 */	mflr r0
+/* 802A86DC 002A561C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A86E0 002A5620  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A86E4 002A5624  81 8C 00 50 */	lwz r12, 0x50(r12)
+/* 802A86E8 002A5628  7D 89 03 A6 */	mtctr r12
+/* 802A86EC 002A562C  4E 80 04 21 */	bctrl 
+/* 802A86F0 002A5630  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A86F4 002A5634  7C 08 03 A6 */	mtlr r0
+/* 802A86F8 002A5638  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A86FC 002A563C  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_on_branch
+JMessage_NS_TSequenceProcessor_NS_on_branch:
+/* 802A8700 002A5640  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 802A8704 002A5644  7C 08 02 A6 */	mflr r0
+/* 802A8708 002A5648  90 01 00 24 */	stw r0, 0x24(r1)
+/* 802A870C 002A564C  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A8710 002A5650  48 0B 9A CD */	bl func_803621DC
+/* 802A8714 002A5654  7C 7D 1B 78 */	mr r29, r3
+/* 802A8718 002A5658  7C 9E 23 78 */	mr r30, r4
+/* 802A871C 002A565C  7C BF 2B 78 */	mr r31, r5
+/* 802A8720 002A5660  93 E3 00 0C */	stw r31, 0xc(r3)
+/* 802A8724 002A5664  38 00 00 00 */	li r0, 0
+/* 802A8728 002A5668  90 03 00 10 */	stw r0, 0x10(r3)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A872C 002A566C  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8730 002A5670  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A8734 002A5674  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A8738 002A5678  7F E4 FB 78 */	mr r4, r31
+/* 802A873C 002A567C  81 83 00 00 */	lwz r12, 0(r3)
+/* 802A8740 002A5680  81 8C 00 2C */	lwz r12, 0x2c(r12)
+/* 802A8744 002A5684  7D 89 03 A6 */	mtctr r12
+/* 802A8748 002A5688  4E 80 04 21 */	bctrl 
+/* 802A874C 002A568C  7F A3 EB 78 */	mr r3, r29
+/* 802A8750 002A5690  7F C4 F3 78 */	mr r4, r30
+/* 802A8754 002A5694  7F E5 FB 78 */	mr r5, r31
+/* 802A8758 002A5698  81 9D 00 00 */	lwz r12, 0(r29)
+/* 802A875C 002A569C  81 8C 00 54 */	lwz r12, 0x54(r12)
+/* 802A8760 002A56A0  7D 89 03 A6 */	mtctr r12
+/* 802A8764 002A56A4  4E 80 04 21 */	bctrl 
+/* 802A8768 002A56A8  39 61 00 20 */	addi r11, r1, 0x20
+/* 802A876C 002A56AC  48 0B 9A BD */	bl func_80362228
+/* 802A8770 002A56B0  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 802A8774 002A56B4  7C 08 03 A6 */	mtlr r0
+/* 802A8778 002A56B8  38 21 00 20 */	addi r1, r1, 0x20
+/* 802A877C 002A56BC  4E 80 00 20 */	blr 
+/* 802A8780 002A56C0  38 60 00 01 */	li r3, 1
+/* 802A8784 002A56C4  4E 80 00 20 */	blr 
+/* 802A8788 002A56C8  38 60 00 01 */	li r3, 1
+/* 802A878C 002A56CC  4E 80 00 20 */	blr 
+/* 802A8790 002A56D0  4E 80 00 20 */	blr 
+/* 802A8794 002A56D4  4E 80 00 20 */	blr 
+/* 802A8798 002A56D8  38 60 FF FE */	li r3, -2
+/* 802A879C 002A56DC  4E 80 00 20 */	blr 
+/* 802A87A0 002A56E0  4E 80 00 20 */	blr 
+/* 802A87A4 002A56E4  38 00 00 00 */	li r0, 0
+/* 802A87A8 002A56E8  90 03 00 3C */	stw r0, 0x3c(r3)
+/* 802A87AC 002A56EC  28 04 00 00 */	cmplwi r4, 0
+/* 802A87B0 002A56F0  4D 82 00 20 */	beqlr 
+/* 802A87B4 002A56F4  38 00 00 02 */	li r0, 2
+/* 802A87B8 002A56F8  90 03 00 3C */	stw r0, 0x3c(r3)
+/* 802A87BC 002A56FC  4E 80 00 20 */	blr 
+/* 802A87C0 002A5700  80 03 00 3C */	lwz r0, 0x3c(r3)
+/* 802A87C4 002A5704  7C 00 00 34 */	cntlzw r0, r0
+/* 802A87C8 002A5708  54 03 D9 7E */	srwi r3, r0, 5
+/* 802A87CC 002A570C  4E 80 00 20 */	blr 
+/* 802A87D0 002A5710  4E 80 00 20 */	blr 
+/* 802A87D4 002A5714  38 00 00 01 */	li r0, 1
+/* 802A87D8 002A5718  90 03 00 3C */	stw r0, 0x3c(r3)
+/* 802A87DC 002A571C  4E 80 00 20 */	blr 
+/* 802A87E0 002A5720  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A87E4 002A5724  7C 08 02 A6 */	mflr r0
+/* 802A87E8 002A5728  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A87EC 002A572C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A87F0 002A5730  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A87F4 002A5734  7C 7E 1B 78 */	mr r30, r3
+/* 802A87F8 002A5738  7C A8 2B 78 */	mr r8, r5
+/* 802A87FC 002A573C  54 87 86 3E */	rlwinm r7, r4, 0x10, 0x18, 0x1f
+/* 802A8800 002A5740  54 9F 04 3E */	clrlwi r31, r4, 0x10
+/* 802A8804 002A5744  38 07 FF 09 */	addi r0, r7, -247
+/* 802A8808 002A5748  28 00 00 08 */	cmplwi r0, 8
+/* 802A880C 002A574C  41 81 00 FC */	bgt lbl_802A8908
+/* 802A8810 002A5750  3C E0 80 3D */	lis r7, lbl_803C9B70@ha
+/* 802A8814 002A5754  38 E7 9B 70 */	addi r7, r7, lbl_803C9B70@l
+/* 802A8818 002A5758  54 00 10 3A */	slwi r0, r0, 2
+/* 802A881C 002A575C  7C 07 00 2E */	lwzx r0, r7, r0
+/* 802A8820 002A5760  7C 09 03 A6 */	mtctr r0
+/* 802A8824 002A5764  4E 80 04 20 */	bctr 
+/* 802A8828 002A5768  2C 1F 00 06 */	cmpwi r31, 6
+/* 802A882C 002A576C  41 82 00 28 */	beq lbl_802A8854
+/* 802A8830 002A5770  40 80 00 18 */	bge lbl_802A8848
+/* 802A8834 002A5774  2C 1F 00 04 */	cmpwi r31, 4
+/* 802A8838 002A5778  40 80 00 30 */	bge lbl_802A8868
+/* 802A883C 002A577C  2C 1F 00 00 */	cmpwi r31, 0
+/* 802A8840 002A5780  40 80 00 D4 */	bge lbl_802A8914
+/* 802A8844 002A5784  48 00 00 24 */	b lbl_802A8868
+lbl_802A8848:
+/* 802A8848 002A5788  2C 1F 00 08 */	cmpwi r31, 8
+/* 802A884C 002A578C  40 80 00 1C */	bge lbl_802A8868
+/* 802A8850 002A5790  48 00 00 C4 */	b lbl_802A8914
+lbl_802A8854:
+/* 802A8854 002A5794  80 A8 00 00 */	lwz r5, 0(r8)
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_
+/* 802A8858 002A5798  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onJump_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_
+/* 802A885C 002A579C  38 84 89 EC */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onJump_@l
+/* 802A8860 002A57A0  4B FF FD 71 */	bl JMessage_NS_TSequenceProcessor_NS_on_jump_register
+/* 802A8864 002A57A4  48 00 00 B0 */	b lbl_802A8914
+lbl_802A8868:
+/* 802A8868 002A57A8  7F C3 F3 78 */	mr r3, r30
+/* 802A886C 002A57AC  7D 05 43 78 */	mr r5, r8
+/* 802A8870 002A57B0  4B FF F8 21 */	bl JMessage_NS_TProcessor_NS_do_tag_
+/* 802A8874 002A57B4  48 00 00 A0 */	b lbl_802A8914
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_
+/* 802A8878 002A57B8  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_
+/* 802A887C 002A57BC  38 84 89 B8 */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_@l
+/* 802A8880 002A57C0  7F E5 FB 78 */	mr r5, r31
+/* 802A8884 002A57C4  4B FF FD 4D */	bl JMessage_NS_TSequenceProcessor_NS_on_jump_register
+/* 802A8888 002A57C8  48 00 00 8C */	b lbl_802A8914
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_
+/* 802A888C 002A57CC  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_
+/* 802A8890 002A57D0  38 84 8A 18 */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_@l
+/* 802A8894 002A57D4  7F E6 FB 78 */	mr r6, r31
+/* 802A8898 002A57D8  4B FF FD F9 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_register
+/* 802A889C 002A57DC  48 00 00 78 */	b lbl_802A8914
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_
+/* 802A88A0 002A57E0  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_
+/* 802A88A4 002A57E4  38 84 8A 50 */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_@l
+/* 802A88A8 002A57E8  7F E6 FB 78 */	mr r6, r31
+/* 802A88AC 002A57EC  4B FF FD E5 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_register
+/* 802A88B0 002A57F0  48 00 00 64 */	b lbl_802A8914
+/* 802A88B4 002A57F4  7F E4 FB 78 */	mr r4, r31
+/* 802A88B8 002A57F8  4B FF FD E9 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_query
+/* 802A88BC 002A57FC  48 00 00 58 */	b lbl_802A8914
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_
+/* 802A88C0 002A5800  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_
+/* 802A88C4 002A5804  38 84 8A 18 */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_@l
+/* 802A88C8 002A5808  38 A8 00 02 */	addi r5, r8, 2
+/* 802A88CC 002A580C  A0 C8 00 00 */	lhz r6, 0(r8)
+/* 802A88D0 002A5810  4B FF FD C1 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_register
+/* 802A88D4 002A5814  7F C3 F3 78 */	mr r3, r30
+/* 802A88D8 002A5818  7F E4 FB 78 */	mr r4, r31
+/* 802A88DC 002A581C  4B FF FD C5 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_query
+/* 802A88E0 002A5820  48 00 00 34 */	b lbl_802A8914
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_
+/* 802A88E4 002A5824  3C 80 80 2B */	lis r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_@ha
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_
+/* 802A88E8 002A5828  38 84 8A 50 */	addi r4, r4, JMessage_NS_TSequenceProcessor_NS_process_onBranch_@l
+/* 802A88EC 002A582C  38 A8 00 02 */	addi r5, r8, 2
+/* 802A88F0 002A5830  A0 C8 00 00 */	lhz r6, 0(r8)
+/* 802A88F4 002A5834  4B FF FD 9D */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_register
+/* 802A88F8 002A5838  7F C3 F3 78 */	mr r3, r30
+/* 802A88FC 002A583C  7F E4 FB 78 */	mr r4, r31
+/* 802A8900 002A5840  4B FF FD A1 */	bl JMessage_NS_TSequenceProcessor_NS_on_branch_query
+/* 802A8904 002A5844  48 00 00 10 */	b lbl_802A8914
+lbl_802A8908:
+/* 802A8908 002A5848  7F C3 F3 78 */	mr r3, r30
+/* 802A890C 002A584C  7D 05 43 78 */	mr r5, r8
+/* 802A8910 002A5850  4B FF F7 81 */	bl JMessage_NS_TProcessor_NS_do_tag_
+lbl_802A8914:
+/* 802A8914 002A5854  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8918 002A5858  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A891C 002A585C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8920 002A5860  7C 08 03 A6 */	mtlr r0
+/* 802A8924 002A5864  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8928 002A5868  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_process_setMessageIndex_reserved_
+JMessage_NS_TSequenceProcessor_NS_process_setMessageIndex_reserved_:
+/* 802A892C 002A586C  54 64 04 3E */	clrlwi r4, r3, 0x10
+/* 802A8930 002A5870  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
+/* 802A8934 002A5874  38 03 FF FF */	addi r0, r3, 0x0000FFFF@l
+/* 802A8938 002A5878  7C 04 00 00 */	cmpw r4, r0
+/* 802A893C 002A587C  4D 82 00 20 */	beqlr 
+/* 802A8940 002A5880  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_
+JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_:
+/* 802A8944 002A5884  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8948 002A5888  7C 08 02 A6 */	mflr r0
+/* 802A894C 002A588C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8950 002A5890  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A8954 002A5894  7C 68 1B 78 */	mr r8, r3
+/* 802A8958 002A5898  7C 87 23 78 */	mr r7, r4
+/* 802A895C 002A589C  7C A6 2B 78 */	mr r6, r5
+/* 802A8960 002A58A0  54 A0 04 3E */	clrlwi r0, r5, 0x10
+/* 802A8964 002A58A4  28 00 FF 00 */	cmplwi r0, 0xff00
+/* 802A8968 002A58A8  41 80 00 14 */	blt lbl_802A897C
+/* 802A896C 002A58AC  7C C3 33 78 */	mr r3, r6
+/* 802A8970 002A58B0  4B FF FF BD */	bl JMessage_NS_TSequenceProcessor_NS_process_setMessageIndex_reserved_
+/* 802A8974 002A58B4  38 60 00 00 */	li r3, 0
+/* 802A8978 002A58B8  48 00 00 2C */	b lbl_802A89A4
+lbl_802A897C:
+/* 802A897C 002A58BC  83 E8 00 38 */	lwz r31, 0x38(r8)
+/* 802A8980 002A58C0  7F E3 FB 78 */	mr r3, r31
+/* 802A8984 002A58C4  7D 04 43 78 */	mr r4, r8
+/* 802A8988 002A58C8  7C E5 3B 78 */	mr r5, r7
+/* 802A898C 002A58CC  4B FF F0 95 */	bl JMessage_NS_TControl_NS_setMessageCode_inSequence_
+/* 802A8990 002A58D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8994 002A58D4  41 82 00 0C */	beq lbl_802A89A0
+/* 802A8998 002A58D8  80 7F 00 14 */	lwz r3, 0x14(r31)
+/* 802A899C 002A58DC  48 00 00 08 */	b lbl_802A89A4
+lbl_802A89A0:
+/* 802A89A0 002A58E0  38 60 00 00 */	li r3, 0
+lbl_802A89A4:
+/* 802A89A4 002A58E4  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A89A8 002A58E8  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A89AC 002A58EC  7C 08 03 A6 */	mtlr r0
+/* 802A89B0 002A58F0  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A89B4 002A58F4  4E 80 00 20 */	blr 
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_
+JMessage_NS_TSequenceProcessor_NS_process_onJump_limited_:
+/* 802A89B8 002A58F8  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A89BC 002A58FC  7C 08 02 A6 */	mflr r0
+/* 802A89C0 002A5900  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A89C4 002A5904  80 83 00 08 */	lwz r4, 8(r3)
+/* 802A89C8 002A5908  80 84 00 0C */	lwz r4, 0xc(r4)
+/* 802A89CC 002A590C  A0 84 00 0C */	lhz r4, 0xc(r4)
+/* 802A89D0 002A5910  80 03 00 44 */	lwz r0, 0x44(r3)
+/* 802A89D4 002A5914  54 05 04 3E */	clrlwi r5, r0, 0x10
+/* 802A89D8 002A5918  4B FF FF 6D */	bl JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_
+/* 802A89DC 002A591C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A89E0 002A5920  7C 08 03 A6 */	mtlr r0
+/* 802A89E4 002A5924  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A89E8 002A5928  4E 80 00 20 */	blr 
+.global JMessage_NS_TSequenceProcessor_NS_process_onJump_
+JMessage_NS_TSequenceProcessor_NS_process_onJump_:
+/* 802A89EC 002A592C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A89F0 002A5930  7C 08 02 A6 */	mflr r0
+/* 802A89F4 002A5934  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A89F8 002A5938  80 03 00 44 */	lwz r0, 0x44(r3)
+/* 802A89FC 002A593C  54 04 84 3E */	srwi r4, r0, 0x10
+/* 802A8A00 002A5940  54 05 04 3E */	clrlwi r5, r0, 0x10
+/* 802A8A04 002A5944  4B FF FF 41 */	bl JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_
+/* 802A8A08 002A5948  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8A0C 002A594C  7C 08 03 A6 */	mtlr r0
+/* 802A8A10 002A5950  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8A14 002A5954  4E 80 00 20 */	blr 
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_
+JMessage_NS_TSequenceProcessor_NS_process_onBranch_limited_:
+/* 802A8A18 002A5958  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8A1C 002A595C  7C 08 02 A6 */	mflr r0
+/* 802A8A20 002A5960  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8A24 002A5964  80 A3 00 44 */	lwz r5, 0x44(r3)
+/* 802A8A28 002A5968  54 80 08 3C */	slwi r0, r4, 1
+/* 802A8A2C 002A596C  7C A5 02 2E */	lhzx r5, r5, r0
+/* 802A8A30 002A5970  80 83 00 08 */	lwz r4, 8(r3)
+/* 802A8A34 002A5974  80 84 00 0C */	lwz r4, 0xc(r4)
+/* 802A8A38 002A5978  A0 84 00 0C */	lhz r4, 0xc(r4)
+/* 802A8A3C 002A597C  4B FF FF 09 */	bl JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_
+/* 802A8A40 002A5980  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8A44 002A5984  7C 08 03 A6 */	mtlr r0
+/* 802A8A48 002A5988  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8A4C 002A598C  4E 80 00 20 */	blr 
+.global JMessage_NS_TSequenceProcessor_NS_process_onBranch_
+JMessage_NS_TSequenceProcessor_NS_process_onBranch_:
+/* 802A8A50 002A5990  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8A54 002A5994  7C 08 02 A6 */	mflr r0
+/* 802A8A58 002A5998  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8A5C 002A599C  80 A3 00 44 */	lwz r5, 0x44(r3)
+/* 802A8A60 002A59A0  54 80 10 3A */	slwi r0, r4, 2
+/* 802A8A64 002A59A4  7C 05 00 2E */	lwzx r0, r5, r0
+/* 802A8A68 002A59A8  54 04 84 3E */	srwi r4, r0, 0x10
+/* 802A8A6C 002A59AC  54 05 04 3E */	clrlwi r5, r0, 0x10
+/* 802A8A70 002A59B0  4B FF FE D5 */	bl JMessage_NS_TSequenceProcessor_NS_process_setMessageCode_
+/* 802A8A74 002A59B4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8A78 002A59B8  7C 08 03 A6 */	mtlr r0
+/* 802A8A7C 002A59BC  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8A80 002A59C0  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TRenderingProcessor
+JMessage_NS_TRenderingProcessor:
+/* 802A8A84 002A59C4  3C A0 80 3D */	lis r5, lbl_803C9C2C@ha
+/* 802A8A88 002A59C8  38 05 9C 2C */	addi r0, r5, lbl_803C9C2C@l
+/* 802A8A8C 002A59CC  90 03 00 00 */	stw r0, 0(r3)
+/* 802A8A90 002A59D0  90 83 00 04 */	stw r4, 4(r3)
+/* 802A8A94 002A59D4  38 00 00 00 */	li r0, 0
+/* 802A8A98 002A59D8  90 03 00 08 */	stw r0, 8(r3)
+/* 802A8A9C 002A59DC  90 03 00 0C */	stw r0, 0xc(r3)
+/* 802A8AA0 002A59E0  90 03 00 10 */	stw r0, 0x10(r3)
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8AA4 002A59E4  3C 80 80 2B */	lis r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
+.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
+/* 802A8AA8 002A59E8  38 04 82 8C */	addi r0, r4, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+/* 802A8AAC 002A59EC  90 03 00 24 */	stw r0, 0x24(r3)
+/* 802A8AB0 002A59F0  3C 80 80 3D */	lis r4, lbl_803C9B94@ha
+/* 802A8AB4 002A59F4  38 04 9B 94 */	addi r0, r4, lbl_803C9B94@l
+/* 802A8AB8 002A59F8  90 03 00 00 */	stw r0, 0(r3)
+/* 802A8ABC 002A59FC  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TRenderingProcessor_NS_dtor
+JMessage_NS_TRenderingProcessor_NS_dtor:
+/* 802A8AC0 002A5A00  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8AC4 002A5A04  7C 08 02 A6 */	mflr r0
+/* 802A8AC8 002A5A08  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8ACC 002A5A0C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A8AD0 002A5A10  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A8AD4 002A5A14  7C 7E 1B 79 */	or. r30, r3, r3
+/* 802A8AD8 002A5A18  7C 9F 23 78 */	mr r31, r4
+/* 802A8ADC 002A5A1C  41 82 00 28 */	beq lbl_802A8B04
+/* 802A8AE0 002A5A20  3C 80 80 3D */	lis r4, lbl_803C9B94@ha
+/* 802A8AE4 002A5A24  38 04 9B 94 */	addi r0, r4, lbl_803C9B94@l
+/* 802A8AE8 002A5A28  90 1E 00 00 */	stw r0, 0(r30)
+/* 802A8AEC 002A5A2C  38 80 00 00 */	li r4, 0
+/* 802A8AF0 002A5A30  4B FF F0 59 */	bl JMessage_NS_TProcessor_NS_dtor
+/* 802A8AF4 002A5A34  7F E0 07 35 */	extsh. r0, r31
+/* 802A8AF8 002A5A38  40 81 00 0C */	ble lbl_802A8B04
+/* 802A8AFC 002A5A3C  7F C3 F3 78 */	mr r3, r30
+/* 802A8B00 002A5A40  48 02 62 3D */	bl __dl
+lbl_802A8B04:
+/* 802A8B04 002A5A44  7F C3 F3 78 */	mr r3, r30
+/* 802A8B08 002A5A48  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8B0C 002A5A4C  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A8B10 002A5A50  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8B14 002A5A54  7C 08 03 A6 */	mtlr r0
+/* 802A8B18 002A5A58  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8B1C 002A5A5C  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TRenderingProcessor_NS_process
+JMessage_NS_TRenderingProcessor_NS_process:
+/* 802A8B20 002A5A60  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8B24 002A5A64  7C 08 02 A6 */	mflr r0
+/* 802A8B28 002A5A68  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8B2C 002A5A6C  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A8B30 002A5A70  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A8B34 002A5A74  7C 7E 1B 78 */	mr r30, r3
+/* 802A8B38 002A5A78  7C 9F 23 78 */	mr r31, r4
+lbl_802A8B3C:
+/* 802A8B3C 002A5A7C  80 1E 00 0C */	lwz r0, 0xc(r30)
+/* 802A8B40 002A5A80  7C 00 F8 40 */	cmplw r0, r31
+/* 802A8B44 002A5A84  40 82 00 34 */	bne lbl_802A8B78
+/* 802A8B48 002A5A88  7F C3 F3 78 */	mr r3, r30
+/* 802A8B4C 002A5A8C  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802A8B50 002A5A90  81 8C 00 38 */	lwz r12, 0x38(r12)
+/* 802A8B54 002A5A94  7D 89 03 A6 */	mtctr r12
+/* 802A8B58 002A5A98  4E 80 04 21 */	bctrl 
+/* 802A8B5C 002A5A9C  7F C3 F3 78 */	mr r3, r30
+/* 802A8B60 002A5AA0  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802A8B64 002A5AA4  81 8C 00 14 */	lwz r12, 0x14(r12)
+/* 802A8B68 002A5AA8  7D 89 03 A6 */	mtctr r12
+/* 802A8B6C 002A5AAC  4E 80 04 21 */	bctrl 
+/* 802A8B70 002A5AB0  38 60 00 00 */	li r3, 0
+/* 802A8B74 002A5AB4  48 00 00 18 */	b lbl_802A8B8C
+lbl_802A8B78:
+/* 802A8B78 002A5AB8  7F C3 F3 78 */	mr r3, r30
+/* 802A8B7C 002A5ABC  4B FF F6 71 */	bl JMessage_NS_TProcessor_NS_process_character_
+/* 802A8B80 002A5AC0  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 802A8B84 002A5AC4  40 82 FF B8 */	bne lbl_802A8B3C
+/* 802A8B88 002A5AC8  38 60 00 00 */	li r3, 0
+lbl_802A8B8C:
+/* 802A8B8C 002A5ACC  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8B90 002A5AD0  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A8B94 002A5AD4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8B98 002A5AD8  7C 08 03 A6 */	mtlr r0
+/* 802A8B9C 002A5ADC  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8BA0 002A5AE0  4E 80 00 20 */	blr 
+/* 802A8BA4 002A5AE4  4E 80 00 20 */	blr 
+/* 802A8BA8 002A5AE8  4E 80 00 20 */	blr 
+/* 802A8BAC 002A5AEC  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8BB0 002A5AF0  7C 08 02 A6 */	mflr r0
+/* 802A8BB4 002A5AF4  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8BB8 002A5AF8  54 80 86 3E */	rlwinm r0, r4, 0x10, 0x18, 0x1f
+/* 802A8BBC 002A5AFC  54 87 04 3E */	clrlwi r7, r4, 0x10
+/* 802A8BC0 002A5B00  2C 00 00 FF */	cmpwi r0, 0xff
+/* 802A8BC4 002A5B04  41 82 00 1C */	beq lbl_802A8BE0
+/* 802A8BC8 002A5B08  40 80 00 48 */	bge lbl_802A8C10
+/* 802A8BCC 002A5B0C  2C 00 00 FD */	cmpwi r0, 0xfd
+/* 802A8BD0 002A5B10  40 80 00 40 */	bge lbl_802A8C10
+/* 802A8BD4 002A5B14  2C 00 00 F7 */	cmpwi r0, 0xf7
+/* 802A8BD8 002A5B18  40 80 00 3C */	bge lbl_802A8C14
+/* 802A8BDC 002A5B1C  48 00 00 34 */	b lbl_802A8C10
+lbl_802A8BE0:
+/* 802A8BE0 002A5B20  2C 07 00 06 */	cmpwi r7, 6
+/* 802A8BE4 002A5B24  40 80 00 18 */	bge lbl_802A8BFC
+/* 802A8BE8 002A5B28  2C 07 00 04 */	cmpwi r7, 4
+/* 802A8BEC 002A5B2C  40 80 00 1C */	bge lbl_802A8C08
+/* 802A8BF0 002A5B30  2C 07 00 00 */	cmpwi r7, 0
+/* 802A8BF4 002A5B34  40 80 00 20 */	bge lbl_802A8C14
+/* 802A8BF8 002A5B38  48 00 00 10 */	b lbl_802A8C08
+lbl_802A8BFC:
+/* 802A8BFC 002A5B3C  2C 07 00 08 */	cmpwi r7, 8
+/* 802A8C00 002A5B40  40 80 00 08 */	bge lbl_802A8C08
+/* 802A8C04 002A5B44  48 00 00 10 */	b lbl_802A8C14
+lbl_802A8C08:
+/* 802A8C08 002A5B48  4B FF F4 89 */	bl JMessage_NS_TProcessor_NS_do_tag_
+/* 802A8C0C 002A5B4C  48 00 00 08 */	b lbl_802A8C14
+lbl_802A8C10:
+/* 802A8C10 002A5B50  4B FF F4 81 */	bl JMessage_NS_TProcessor_NS_do_tag_
+lbl_802A8C14:
+/* 802A8C14 002A5B54  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8C18 002A5B58  7C 08 03 A6 */	mtlr r0
+/* 802A8C1C 002A5B5C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8C20 002A5B60  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_on_message
+JMessage_NS_TProcessor_NS_on_message:
+/* 802A8C24 002A5B64  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8C28 002A5B68  7C 08 02 A6 */	mflr r0
+/* 802A8C2C 002A5B6C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8C30 002A5B70  48 00 00 15 */	bl JMessage_NS_TProcessor_NS_getMessageText_messageCode
+/* 802A8C34 002A5B74  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8C38 002A5B78  7C 08 03 A6 */	mtlr r0
+/* 802A8C3C 002A5B7C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8C40 002A5B80  4E 80 00 20 */	blr 
+
+.global JMessage_NS_TProcessor_NS_getMessageText_messageCode
+JMessage_NS_TProcessor_NS_getMessageText_messageCode:
+/* 802A8C44 002A5B84  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802A8C48 002A5B88  7C 08 02 A6 */	mflr r0
+/* 802A8C4C 002A5B8C  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802A8C50 002A5B90  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802A8C54 002A5B94  93 C1 00 08 */	stw r30, 8(r1)
+/* 802A8C58 002A5B98  7C 7E 1B 78 */	mr r30, r3
+/* 802A8C5C 002A5B9C  7C 9F 23 78 */	mr r31, r4
+/* 802A8C60 002A5BA0  54 84 84 3E */	srwi r4, r4, 0x10
+/* 802A8C64 002A5BA4  4B FF EF F1 */	bl JMessage_NS_TProcessor_NS_getResource_groupID
+/* 802A8C68 002A5BA8  28 03 00 00 */	cmplwi r3, 0
+/* 802A8C6C 002A5BAC  40 82 00 0C */	bne lbl_802A8C78
+/* 802A8C70 002A5BB0  38 80 00 00 */	li r4, 0
+/* 802A8C74 002A5BB4  48 00 00 30 */	b lbl_802A8CA4
+lbl_802A8C78:
+/* 802A8C78 002A5BB8  57 E4 04 3E */	clrlwi r4, r31, 0x10
+/* 802A8C7C 002A5BBC  80 63 00 0C */	lwz r3, 0xc(r3)
+/* 802A8C80 002A5BC0  A0 03 00 08 */	lhz r0, 8(r3)
+/* 802A8C84 002A5BC4  7C 04 00 40 */	cmplw r4, r0
+/* 802A8C88 002A5BC8  40 80 00 18 */	bge lbl_802A8CA0
+/* 802A8C8C 002A5BCC  A0 03 00 0A */	lhz r0, 0xa(r3)
+/* 802A8C90 002A5BD0  7C 04 01 D6 */	mullw r0, r4, r0
+/* 802A8C94 002A5BD4  7C 83 02 14 */	add r4, r3, r0
+/* 802A8C98 002A5BD8  38 84 00 10 */	addi r4, r4, 0x10
+/* 802A8C9C 002A5BDC  48 00 00 08 */	b lbl_802A8CA4
+lbl_802A8CA0:
+/* 802A8CA0 002A5BE0  38 80 00 00 */	li r4, 0
+lbl_802A8CA4:
+/* 802A8CA4 002A5BE4  28 04 00 00 */	cmplwi r4, 0
+/* 802A8CA8 002A5BE8  40 82 00 0C */	bne lbl_802A8CB4
+/* 802A8CAC 002A5BEC  38 60 00 00 */	li r3, 0
+/* 802A8CB0 002A5BF0  48 00 00 14 */	b lbl_802A8CC4
+lbl_802A8CB4:
+/* 802A8CB4 002A5BF4  80 7E 00 08 */	lwz r3, 8(r30)
+/* 802A8CB8 002A5BF8  80 63 00 10 */	lwz r3, 0x10(r3)
+/* 802A8CBC 002A5BFC  80 04 00 00 */	lwz r0, 0(r4)
+/* 802A8CC0 002A5C00  7C 63 02 14 */	add r3, r3, r0
+lbl_802A8CC4:
+/* 802A8CC4 002A5C04  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802A8CC8 002A5C08  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802A8CCC 002A5C0C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802A8CD0 002A5C10  7C 08 03 A6 */	mtlr r0
+/* 802A8CD4 002A5C14  38 21 00 10 */	addi r1, r1, 0x10
+/* 802A8CD8 002A5C18  4E 80 00 20 */	blr 
+

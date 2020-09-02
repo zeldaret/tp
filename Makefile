@@ -1,14 +1,4 @@
-ifneq ($(findstring MINGW,$(shell uname)),)
-  WINDOWS := 1
-endif
-ifneq ($(findstring MSYS,$(shell uname)),)
-  WINDOWS := 1
-endif
-
-WSLENV ?= ok
-ifndef WSLENV
-	WINDOWS := 1
-endif
+WINDOWS := $(shell which wine ; echo $$?)
 
 #-------------------------------------------------------------------------------
 # Files
@@ -21,7 +11,7 @@ TARGET := dolzel2
 BUILD_DIR := build/$(TARGET)
 
 SRC_DIRS := src
-ASM_DIRS := asm
+ASM_DIRS := asm $(wildcard asm/*.s asm/*/*.s asm/*/*/*.s asm/*/*/*/*.s  asm/*/*/*/*/*.s asm/*/*/*/*/*/*.s)
 
 # Inputs
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
@@ -50,6 +40,7 @@ ifeq ($(WINDOWS),1)
 else
   WINE := wine
 endif
+
 AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
 CPP     := cpp -P
@@ -66,7 +57,7 @@ INCLUDES := -i include -i include/dolphin/ -i include/dolphin/mtx/ -i src -i src
 
 ASFLAGS := -mgekko -I include
 LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3,s -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack

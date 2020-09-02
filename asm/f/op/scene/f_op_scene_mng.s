@@ -1,0 +1,128 @@
+.include "macros.inc"
+
+.section .text, "ax" # 8001ecb0
+
+
+.global fopScnM_SearchByID
+fopScnM_SearchByID:
+/* 8001ECB0 0001BBF0  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001ECB4 0001BBF4  7C 08 02 A6 */	mflr r0
+/* 8001ECB8 0001BBF8  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001ECBC 0001BBFC  90 61 00 08 */	stw r3, 8(r1)
+.global fpcSch_JudgeByID
+/* 8001ECC0 0001BC00  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
+.global fpcSch_JudgeByID
+/* 8001ECC4 0001BC04  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+/* 8001ECC8 0001BC08  38 81 00 08 */	addi r4, r1, 8
+/* 8001ECCC 0001BC0C  4B FF FF A9 */	bl fopScnIt_Judge
+/* 8001ECD0 0001BC10  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001ECD4 0001BC14  7C 08 03 A6 */	mtlr r0
+/* 8001ECD8 0001BC18  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001ECDC 0001BC1C  4E 80 00 20 */	blr 
+
+.global fopScnM_ChangeReq
+fopScnM_ChangeReq:
+/* 8001ECE0 0001BC20  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001ECE4 0001BC24  7C 08 02 A6 */	mflr r0
+/* 8001ECE8 0001BC28  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001ECEC 0001BC2C  7C 69 1B 78 */	mr r9, r3
+/* 8001ECF0 0001BC30  7C 80 23 78 */	mr r0, r4
+/* 8001ECF4 0001BC34  7C A7 2B 78 */	mr r7, r5
+/* 8001ECF8 0001BC38  7C C8 33 78 */	mr r8, r6
+/* 8001ECFC 0001BC3C  38 60 00 02 */	li r3, 2
+/* 8001ED00 0001BC40  7D 24 4B 78 */	mr r4, r9
+/* 8001ED04 0001BC44  7C 05 03 78 */	mr r5, r0
+/* 8001ED08 0001BC48  38 C0 00 00 */	li r6, 0
+/* 8001ED0C 0001BC4C  48 00 03 29 */	bl fopScnRq_Request
+/* 8001ED10 0001BC50  3C 03 00 01 */	addis r0, r3, 1
+/* 8001ED14 0001BC54  28 00 FF FF */	cmplwi r0, 0xffff
+/* 8001ED18 0001BC58  40 82 00 0C */	bne lbl_8001ED24
+/* 8001ED1C 0001BC5C  38 60 00 00 */	li r3, 0
+/* 8001ED20 0001BC60  48 00 00 0C */	b lbl_8001ED2C
+lbl_8001ED24:
+/* 8001ED24 0001BC64  90 6D 80 38 */	stw r3, lbl_804505B8-_SDA_BASE_(r13)
+/* 8001ED28 0001BC68  38 60 00 01 */	li r3, 1
+lbl_8001ED2C:
+/* 8001ED2C 0001BC6C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001ED30 0001BC70  7C 08 03 A6 */	mtlr r0
+/* 8001ED34 0001BC74  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001ED38 0001BC78  4E 80 00 20 */	blr 
+
+.global fopScnM_DeleteReq
+fopScnM_DeleteReq:
+/* 8001ED3C 0001BC7C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001ED40 0001BC80  7C 08 02 A6 */	mflr r0
+/* 8001ED44 0001BC84  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001ED48 0001BC88  7C 64 1B 78 */	mr r4, r3
+/* 8001ED4C 0001BC8C  38 60 00 01 */	li r3, 1
+/* 8001ED50 0001BC90  38 A0 7F FF */	li r5, 0x7fff
+/* 8001ED54 0001BC94  38 C0 00 00 */	li r6, 0
+/* 8001ED58 0001BC98  38 E0 7F FF */	li r7, 0x7fff
+/* 8001ED5C 0001BC9C  39 00 00 00 */	li r8, 0
+/* 8001ED60 0001BCA0  48 00 02 D5 */	bl fopScnRq_Request
+/* 8001ED64 0001BCA4  20 63 FF FF */	subfic r3, r3, -1
+/* 8001ED68 0001BCA8  30 03 FF FF */	addic r0, r3, -1
+/* 8001ED6C 0001BCAC  7C 00 19 10 */	subfe r0, r0, r3
+/* 8001ED70 0001BCB0  54 03 06 3E */	clrlwi r3, r0, 0x18
+/* 8001ED74 0001BCB4  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001ED78 0001BCB8  7C 08 03 A6 */	mtlr r0
+/* 8001ED7C 0001BCBC  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001ED80 0001BCC0  4E 80 00 20 */	blr 
+
+.global fopScnM_CreateReq
+fopScnM_CreateReq:
+/* 8001ED84 0001BCC4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001ED88 0001BCC8  7C 08 02 A6 */	mflr r0
+/* 8001ED8C 0001BCCC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001ED90 0001BCD0  7C 60 1B 78 */	mr r0, r3
+/* 8001ED94 0001BCD4  7C 87 23 78 */	mr r7, r4
+/* 8001ED98 0001BCD8  7C A8 2B 78 */	mr r8, r5
+/* 8001ED9C 0001BCDC  38 60 00 00 */	li r3, 0
+/* 8001EDA0 0001BCE0  38 80 00 00 */	li r4, 0
+/* 8001EDA4 0001BCE4  7C 05 03 78 */	mr r5, r0
+/* 8001EDA8 0001BCE8  48 00 02 8D */	bl fopScnRq_Request
+/* 8001EDAC 0001BCEC  20 63 FF FF */	subfic r3, r3, -1
+/* 8001EDB0 0001BCF0  30 03 FF FF */	addic r0, r3, -1
+/* 8001EDB4 0001BCF4  7C 00 19 10 */	subfe r0, r0, r3
+/* 8001EDB8 0001BCF8  54 03 06 3E */	clrlwi r3, r0, 0x18
+/* 8001EDBC 0001BCFC  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001EDC0 0001BD00  7C 08 03 A6 */	mtlr r0
+/* 8001EDC4 0001BD04  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001EDC8 0001BD08  4E 80 00 20 */	blr 
+
+.global fopScnM_ReRequest
+fopScnM_ReRequest:
+/* 8001EDCC 0001BD0C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001EDD0 0001BD10  7C 08 02 A6 */	mflr r0
+/* 8001EDD4 0001BD14  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001EDD8 0001BD18  7C 66 1B 78 */	mr r6, r3
+/* 8001EDDC 0001BD1C  7C 85 23 78 */	mr r5, r4
+/* 8001EDE0 0001BD20  80 6D 80 38 */	lwz r3, lbl_804505B8-_SDA_BASE_(r13)
+/* 8001EDE4 0001BD24  3C 03 00 01 */	addis r0, r3, 1
+/* 8001EDE8 0001BD28  28 00 FF FF */	cmplwi r0, 0xffff
+/* 8001EDEC 0001BD2C  40 82 00 0C */	bne lbl_8001EDF8
+/* 8001EDF0 0001BD30  38 60 00 00 */	li r3, 0
+/* 8001EDF4 0001BD34  48 00 00 0C */	b lbl_8001EE00
+lbl_8001EDF8:
+/* 8001EDF8 0001BD38  7C C4 33 78 */	mr r4, r6
+/* 8001EDFC 0001BD3C  48 00 03 01 */	bl fopScnRq_ReRequest
+lbl_8001EE00:
+/* 8001EE00 0001BD40  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001EE04 0001BD44  7C 08 03 A6 */	mtlr r0
+/* 8001EE08 0001BD48  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001EE0C 0001BD4C  4E 80 00 20 */	blr 
+
+.global fopScnM_Management
+fopScnM_Management:
+/* 8001EE10 0001BD50  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8001EE14 0001BD54  7C 08 02 A6 */	mflr r0
+/* 8001EE18 0001BD58  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8001EE1C 0001BD5C  48 00 03 01 */	bl fopScnRq_Handler
+/* 8001EE20 0001BD60  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8001EE24 0001BD64  7C 08 03 A6 */	mtlr r0
+/* 8001EE28 0001BD68  38 21 00 10 */	addi r1, r1, 0x10
+/* 8001EE2C 0001BD6C  4E 80 00 20 */	blr 
+
+.global fopScnM_Init
+fopScnM_Init:
+/* 8001EE30 0001BD70  4E 80 00 20 */	blr 
