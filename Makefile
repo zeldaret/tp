@@ -10,8 +10,8 @@ TARGET := dolzel2
 
 BUILD_DIR := build/$(TARGET)
 
-SRC_DIRS := src
-ASM_DIRS := asm $(wildcard asm/*.s asm/*/*.s asm/*/*/*.s asm/*/*/*/*.s  asm/*/*/*/*/*.s asm/*/*/*/*/*/*.s)
+SRC_DIRS := $(shell find src/ -type f -name '*.cpp')
+ASM_DIRS := $(shell find asm/ -type f -name '*.s')
 
 # Inputs
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
@@ -32,7 +32,7 @@ O_FILES := $(INIT_O_FILES) $(EXTAB_O_FILES) $(EXTABINDEX_O_FILES) $(TEXT_O_FILES
 # Tools
 #-------------------------------------------------------------------------------
 
-MWCC_VERSION := 3.0
+MWCC_VERSION := 2.7
 
 # Programs
 ifeq ($(WINDOWS),1)
@@ -53,11 +53,16 @@ PYTHON  := python3
 POSTPROC := tools/postprocess.py
 
 # Options
-INCLUDES := -i include -i include/dolphin/ -i include/dolphin/mtx/ -i src -i src/msl -i src/msl/ppc_eabi -i src/runtime/ -i src/sysdolphin/ 
+INCLUDES := -i include -i include/dolphin/ -i src
 
+# Assembler flags
 ASFLAGS := -mgekko -I include
+
+# Linker flags
 LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3,s -nodefaults -msgstyle gcc $(INCLUDES)
+
+# Compiler flags
+CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack
@@ -105,7 +110,7 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 	# TODO: See if this is necessary after actually adding some C code
 	# $(PYTHON) $(POSTPROC) $(PROCFLAGS) $@

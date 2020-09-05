@@ -847,7 +847,7 @@ JMessage_NS_TSequenceProcessor_NS_on_jump:
 /* 802A8614 002A5554  7C 08 02 A6 */	mflr r0
 /* 802A8618 002A5558  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802A861C 002A555C  39 61 00 20 */	addi r11, r1, 0x20
-/* 802A8620 002A5560  48 0B 9B BD */	bl func_803621DC
+/* 802A8620 002A5560  48 0B 9B BD */	bl _savegpr_29
 /* 802A8624 002A5564  7C 7D 1B 78 */	mr r29, r3
 /* 802A8628 002A5568  7C 9E 23 78 */	mr r30, r4
 /* 802A862C 002A556C  7C BF 2B 78 */	mr r31, r5
@@ -872,7 +872,7 @@ JMessage_NS_TSequenceProcessor_NS_on_jump:
 /* 802A8670 002A55B0  7D 89 03 A6 */	mtctr r12
 /* 802A8674 002A55B4  4E 80 04 21 */	bctrl 
 /* 802A8678 002A55B8  39 61 00 20 */	addi r11, r1, 0x20
-/* 802A867C 002A55BC  48 0B 9B AD */	bl func_80362228
+/* 802A867C 002A55BC  48 0B 9B AD */	bl _restgpr_29
 /* 802A8680 002A55C0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802A8684 002A55C4  7C 08 03 A6 */	mtlr r0
 /* 802A8688 002A55C8  38 21 00 20 */	addi r1, r1, 0x20
@@ -921,7 +921,7 @@ JMessage_NS_TSequenceProcessor_NS_on_branch:
 /* 802A8704 002A5644  7C 08 02 A6 */	mflr r0
 /* 802A8708 002A5648  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802A870C 002A564C  39 61 00 20 */	addi r11, r1, 0x20
-/* 802A8710 002A5650  48 0B 9A CD */	bl func_803621DC
+/* 802A8710 002A5650  48 0B 9A CD */	bl _savegpr_29
 /* 802A8714 002A5654  7C 7D 1B 78 */	mr r29, r3
 /* 802A8718 002A5658  7C 9E 23 78 */	mr r30, r4
 /* 802A871C 002A565C  7C BF 2B 78 */	mr r31, r5
@@ -946,7 +946,7 @@ JMessage_NS_TSequenceProcessor_NS_on_branch:
 /* 802A8760 002A56A0  7D 89 03 A6 */	mtctr r12
 /* 802A8764 002A56A4  4E 80 04 21 */	bctrl 
 /* 802A8768 002A56A8  39 61 00 20 */	addi r11, r1, 0x20
-/* 802A876C 002A56AC  48 0B 9A BD */	bl func_80362228
+/* 802A876C 002A56AC  48 0B 9A BD */	bl _restgpr_29
 /* 802A8770 002A56B0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802A8774 002A56B4  7C 08 03 A6 */	mtlr r0
 /* 802A8778 002A56B8  38 21 00 20 */	addi r1, r1, 0x20

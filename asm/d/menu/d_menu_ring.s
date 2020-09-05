@@ -326,7 +326,7 @@ lbl_801E9590:
 /* 801E95B0 001E64F0  7C 74 1B 78 */	mr r20, r3
 /* 801E95B4 001E64F4  7E A3 AB 78 */	mr r3, r21
 /* 801E95B8 001E64F8  38 80 00 00 */	li r4, 0
-/* 801E95BC 001E64FC  4B E4 94 A1 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801E95BC 001E64FC  4B E4 94 A1 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801E95C0 001E6500  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 801E95C4 001E6504  56 80 06 3E */	clrlwi r0, r20, 0x18
 /* 801E95C8 001E6508  7C 03 00 40 */	cmplw r3, r0
@@ -339,7 +339,7 @@ lbl_801E95D4:
 /* 801E95E0 001E6520  7C 74 1B 78 */	mr r20, r3
 /* 801E95E4 001E6524  7E A3 AB 78 */	mr r3, r21
 /* 801E95E8 001E6528  38 80 00 01 */	li r4, 1
-/* 801E95EC 001E652C  4B E4 94 71 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801E95EC 001E652C  4B E4 94 71 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801E95F0 001E6530  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 801E95F4 001E6534  56 80 06 3E */	clrlwi r0, r20, 0x18
 /* 801E95F8 001E6538  7C 03 00 40 */	cmplw r3, r0
@@ -350,7 +350,7 @@ lbl_801E9604:
 /* 801E9608 001E6548  8A 83 5E 95 */	lbz r20, 0x5e95(r3)
 /* 801E960C 001E654C  7E 63 9B 78 */	mr r3, r19
 /* 801E9610 001E6550  38 80 00 02 */	li r4, 2
-/* 801E9614 001E6554  4B E4 94 49 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801E9614 001E6554  4B E4 94 49 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801E9618 001E6558  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801E961C 001E655C  7C 00 A0 40 */	cmplw r0, r20
 /* 801E9620 001E6560  40 82 00 08 */	bne lbl_801E9628
@@ -2386,7 +2386,7 @@ dMenu_Ring_c_NS_isClose:
 /* 801EB3D0 001E8310  7C 08 02 A6 */	mflr r0
 /* 801EB3D4 001E8314  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801EB3D8 001E8318  39 61 00 30 */	addi r11, r1, 0x30
-/* 801EB3DC 001E831C  48 17 6E 01 */	bl func_803621DC
+/* 801EB3DC 001E831C  48 17 6E 01 */	bl _savegpr_29
 /* 801EB3E0 001E8320  7C 7E 1B 78 */	mr r30, r3
 /* 801EB3E4 001E8324  3B E0 00 01 */	li r31, 1
 /* 801EB3E8 001E8328  A8 03 06 74 */	lha r0, 0x674(r3)
@@ -2539,7 +2539,7 @@ lbl_801EB608:
 /* 801EB608 001E8548  7F E3 FB 78 */	mr r3, r31
 lbl_801EB60C:
 /* 801EB60C 001E854C  39 61 00 30 */	addi r11, r1, 0x30
-/* 801EB610 001E8550  48 17 6C 19 */	bl func_80362228
+/* 801EB610 001E8550  48 17 6C 19 */	bl _restgpr_29
 /* 801EB614 001E8554  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 801EB618 001E8558  7C 08 03 A6 */	mtlr r0
 /* 801EB61C 001E855C  38 21 00 30 */	addi r1, r1, 0x30
@@ -2842,7 +2842,7 @@ dMenu_Ring_c_NS_setItemScale:
 /* 801EBA40 001E8980  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801EBA44 001E8984  DB E1 00 18 */	stfd f31, 0x18(r1)
 /* 801EBA48 001E8988  39 61 00 18 */	addi r11, r1, 0x18
-/* 801EBA4C 001E898C  48 17 67 91 */	bl func_803621DC
+/* 801EBA4C 001E898C  48 17 67 91 */	bl _savegpr_29
 /* 801EBA50 001E8990  FF E0 08 90 */	fmr f31, f1
 /* 801EBA54 001E8994  3B A0 00 00 */	li r29, 0
 /* 801EBA58 001E8998  3B E0 00 00 */	li r31, 0
@@ -2866,7 +2866,7 @@ lbl_801EBA8C:
 /* 801EBA98 001E89D8  41 80 FF CC */	blt lbl_801EBA64
 /* 801EBA9C 001E89DC  CB E1 00 18 */	lfd f31, 0x18(r1)
 /* 801EBAA0 001E89E0  39 61 00 18 */	addi r11, r1, 0x18
-/* 801EBAA4 001E89E4  48 17 67 85 */	bl func_80362228
+/* 801EBAA4 001E89E4  48 17 67 85 */	bl _restgpr_29
 /* 801EBAA8 001E89E8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801EBAAC 001E89EC  7C 08 03 A6 */	mtlr r0
 /* 801EBAB0 001E89F0  38 21 00 20 */	addi r1, r1, 0x20
@@ -2964,7 +2964,7 @@ lbl_801EBBB4:
 /* 801EBBE0 001E8B20  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBBE4 001E8B24  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBBE8 001E8B28  38 80 00 01 */	li r4, 1
-/* 801EBBEC 001E8B2C  4B E4 6E 71 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBBEC 001E8B2C  4B E4 6E 71 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBBF0 001E8B30  88 1E 06 A8 */	lbz r0, 0x6a8(r30)
 /* 801EBBF4 001E8B34  7C 9E 02 14 */	add r4, r30, r0
 /* 801EBBF8 001E8B38  88 84 06 90 */	lbz r4, 0x690(r4)
@@ -2974,7 +2974,7 @@ lbl_801EBBB4:
 /* 801EBC08 001E8B48  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBC0C 001E8B4C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBC10 001E8B50  38 80 00 00 */	li r4, 0
-/* 801EBC14 001E8B54  4B E4 6E 49 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBC14 001E8B54  4B E4 6E 49 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBC18 001E8B58  7C 7A 1B 78 */	mr r26, r3
 /* 801EBC1C 001E8B5C  7F 5B D3 78 */	mr r27, r26
 /* 801EBC20 001E8B60  38 60 00 00 */	li r3, 0
@@ -3009,7 +3009,7 @@ lbl_801EBC68:
 /* 801EBC88 001E8BC8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBC8C 001E8BCC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBC90 001E8BD0  38 80 00 00 */	li r4, 0
-/* 801EBC94 001E8BD4  4B E4 6D C9 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBC94 001E8BD4  4B E4 6D C9 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBC98 001E8BD8  7C 7B 1B 78 */	mr r27, r3
 /* 801EBC9C 001E8BDC  3B 20 00 FF */	li r25, 0xff
 /* 801EBCA0 001E8BE0  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -3042,7 +3042,7 @@ lbl_801EBCF4:
 /* 801EBCFC 001E8C3C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBD00 001E8C40  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBD04 001E8C44  38 80 00 00 */	li r4, 0
-/* 801EBD08 001E8C48  4B E4 6D 55 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBD08 001E8C48  4B E4 6D 55 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBD0C 001E8C4C  88 1E 06 A8 */	lbz r0, 0x6a8(r30)
 /* 801EBD10 001E8C50  7C 9E 02 14 */	add r4, r30, r0
 /* 801EBD14 001E8C54  88 84 06 90 */	lbz r4, 0x690(r4)
@@ -3052,7 +3052,7 @@ lbl_801EBCF4:
 /* 801EBD24 001E8C64  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBD28 001E8C68  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBD2C 001E8C6C  38 80 00 01 */	li r4, 1
-/* 801EBD30 001E8C70  4B E4 6D 2D */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBD30 001E8C70  4B E4 6D 2D */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBD34 001E8C74  7C 79 1B 78 */	mr r25, r3
 /* 801EBD38 001E8C78  7F 3C CB 78 */	mr r28, r25
 /* 801EBD3C 001E8C7C  38 60 00 01 */	li r3, 1
@@ -3087,7 +3087,7 @@ lbl_801EBD84:
 /* 801EBDA4 001E8CE4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBDA8 001E8CE8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBDAC 001E8CEC  38 80 00 01 */	li r4, 1
-/* 801EBDB0 001E8CF0  4B E4 6C AD */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBDB0 001E8CF0  4B E4 6C AD */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBDB4 001E8CF4  7C 7C 1B 78 */	mr r28, r3
 /* 801EBDB8 001E8CF8  3B 40 00 FF */	li r26, 0xff
 /* 801EBDBC 001E8CFC  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -3140,7 +3140,7 @@ dMenu_Ring_c_NS_setJumpItem:
 /* 801EBE5C 001E8D9C  7C 08 02 A6 */	mflr r0
 /* 801EBE60 001E8DA0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801EBE64 001E8DA4  39 61 00 30 */	addi r11, r1, 0x30
-/* 801EBE68 001E8DA8  48 17 63 75 */	bl func_803621DC
+/* 801EBE68 001E8DA8  48 17 63 75 */	bl _savegpr_29
 /* 801EBE6C 001E8DAC  7C 7E 1B 78 */	mr r30, r3
 /* 801EBE70 001E8DB0  7C 9F 23 78 */	mr r31, r4
 /* 801EBE74 001E8DB4  3B A0 00 00 */	li r29, 0
@@ -3244,7 +3244,7 @@ lbl_801EBFB8:
 /* 801EBFDC 001E8F1C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EBFE0 001E8F20  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EBFE4 001E8F24  38 80 00 00 */	li r4, 0
-/* 801EBFE8 001E8F28  4B E4 6A 75 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EBFE8 001E8F28  4B E4 6A 75 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EBFEC 001E8F2C  88 9E 06 B4 */	lbz r4, 0x6b4(r30)
 /* 801EBFF0 001E8F30  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801EBFF4 001E8F34  7C 04 00 40 */	cmplw r4, r0
@@ -3271,7 +3271,7 @@ lbl_801EC020:
 /* 801EC040 001E8F80  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC044 001E8F84  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC048 001E8F88  38 80 00 01 */	li r4, 1
-/* 801EC04C 001E8F8C  4B E4 6A 11 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC04C 001E8F8C  4B E4 6A 11 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC050 001E8F90  88 9E 06 B5 */	lbz r4, 0x6b5(r30)
 /* 801EC054 001E8F94  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801EC058 001E8F98  7C 04 00 40 */	cmplw r4, r0
@@ -3389,7 +3389,7 @@ lbl_801EC1C0:
 /* 801EC1F0 001E9130  48 0B F7 95 */	bl Z2SeMgr_NS_seStart
 lbl_801EC1F4:
 /* 801EC1F4 001E9134  39 61 00 30 */	addi r11, r1, 0x30
-/* 801EC1F8 001E9138  48 17 60 31 */	bl func_80362228
+/* 801EC1F8 001E9138  48 17 60 31 */	bl _restgpr_29
 /* 801EC1FC 001E913C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 801EC200 001E9140  7C 08 03 A6 */	mtlr r0
 /* 801EC204 001E9144  38 21 00 30 */	addi r1, r1, 0x30
@@ -3790,12 +3790,12 @@ dMenu_Ring_c_NS_setMixItem:
 /* 801EC794 001E96D4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC798 001E96D8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC79C 001E96DC  38 80 00 00 */	li r4, 0
-/* 801EC7A0 001E96E0  4B E4 62 BD */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC7A0 001E96E0  4B E4 62 BD */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC7A4 001E96E4  7C 7E 1B 78 */	mr r30, r3
 /* 801EC7A8 001E96E8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC7AC 001E96EC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC7B0 001E96F0  38 80 00 01 */	li r4, 1
-/* 801EC7B4 001E96F4  4B E4 62 A9 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC7B4 001E96F4  4B E4 62 A9 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC7B8 001E96F8  7C 7D 1B 78 */	mr r29, r3
 /* 801EC7BC 001E96FC  80 02 A9 DC */	lwz r0, lbl_804543DC-_SDA2_BASE_(r2)
 /* 801EC7C0 001E9700  90 01 00 18 */	stw r0, 0x18(r1)
@@ -3807,7 +3807,7 @@ dMenu_Ring_c_NS_setMixItem:
 /* 801EC7D8 001E9718  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC7DC 001E971C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC7E0 001E9720  38 80 00 00 */	li r4, 0
-/* 801EC7E4 001E9724  4B E4 62 79 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC7E4 001E9724  4B E4 62 79 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC7E8 001E9728  88 1B 06 A8 */	lbz r0, 0x6a8(r27)
 /* 801EC7EC 001E972C  7C 9B 02 14 */	add r4, r27, r0
 /* 801EC7F0 001E9730  88 84 06 90 */	lbz r4, 0x690(r4)
@@ -3849,7 +3849,7 @@ lbl_801EC868:
 /* 801EC87C 001E97BC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC880 001E97C0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC884 001E97C4  38 80 00 01 */	li r4, 1
-/* 801EC888 001E97C8  4B E4 61 D5 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC888 001E97C8  4B E4 61 D5 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC88C 001E97CC  88 1B 06 A8 */	lbz r0, 0x6a8(r27)
 /* 801EC890 001E97D0  7C 9B 02 14 */	add r4, r27, r0
 /* 801EC894 001E97D4  88 84 06 90 */	lbz r4, 0x690(r4)
@@ -3896,7 +3896,7 @@ lbl_801EC92C:
 /* 801EC92C 001E986C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC930 001E9870  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EC934 001E9874  38 80 00 00 */	li r4, 0
-/* 801EC938 001E9878  4B E4 61 25 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EC938 001E9878  4B E4 61 25 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EC93C 001E987C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801EC940 001E9880  28 00 00 04 */	cmplwi r0, 4
 /* 801EC944 001E9884  40 82 00 18 */	bne lbl_801EC95C
@@ -3950,7 +3950,7 @@ lbl_801EC9F8:
 /* 801EC9F8 001E9938  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EC9FC 001E993C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801ECA00 001E9940  38 80 00 01 */	li r4, 1
-/* 801ECA04 001E9944  4B E4 60 59 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801ECA04 001E9944  4B E4 60 59 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801ECA08 001E9948  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801ECA0C 001E994C  28 00 00 04 */	cmplwi r0, 4
 /* 801ECA10 001E9950  40 82 00 18 */	bne lbl_801ECA28
@@ -5121,7 +5121,7 @@ dMenu_Ring_c_NS_setSelectItem:
 /* 801EDB18 001EAA58  7C 08 02 A6 */	mflr r0
 /* 801EDB1C 001EAA5C  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801EDB20 001EAA60  39 61 00 40 */	addi r11, r1, 0x40
-/* 801EDB24 001EAA64  48 17 46 B9 */	bl func_803621DC
+/* 801EDB24 001EAA64  48 17 46 B9 */	bl _savegpr_29
 /* 801EDB28 001EAA68  7C 7D 1B 78 */	mr r29, r3
 /* 801EDB2C 001EAA6C  7C 9E 23 78 */	mr r30, r4
 /* 801EDB30 001EAA70  7C BF 2B 78 */	mr r31, r5
@@ -5212,7 +5212,7 @@ lbl_801EDC04:
 /* 801EDC78 001EABB8  EC 00 00 F2 */	fmuls f0, f0, f3
 /* 801EDC7C 001EABBC  D0 04 05 58 */	stfs f0, 0x558(r4)
 /* 801EDC80 001EABC0  39 61 00 40 */	addi r11, r1, 0x40
-/* 801EDC84 001EABC4  48 17 45 A5 */	bl func_80362228
+/* 801EDC84 001EABC4  48 17 45 A5 */	bl _restgpr_29
 /* 801EDC88 001EABC8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 801EDC8C 001EABCC  7C 08 03 A6 */	mtlr r0
 /* 801EDC90 001EABD0  38 21 00 40 */	addi r1, r1, 0x40
@@ -5632,7 +5632,7 @@ dMenu_Ring_c_NS_checkExplainForce:
 /* 801EE240 001EB180  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE244 001EB184  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EE248 001EB188  38 80 00 00 */	li r4, 0
-/* 801EE24C 001EB18C  4B E4 48 11 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EE24C 001EB18C  4B E4 48 11 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EE250 001EB190  7C 60 1B 78 */	mr r0, r3
 /* 801EE254 001EB194  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE258 001EB198  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
@@ -5645,7 +5645,7 @@ dMenu_Ring_c_NS_checkExplainForce:
 /* 801EE274 001EB1B4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE278 001EB1B8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EE27C 001EB1BC  38 80 00 01 */	li r4, 1
-/* 801EE280 001EB1C0  4B E4 47 DD */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EE280 001EB1C0  4B E4 47 DD */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EE284 001EB1C4  7C 60 1B 78 */	mr r0, r3
 /* 801EE288 001EB1C8  7F 83 E3 78 */	mr r3, r28
 /* 801EE28C 001EB1CC  54 04 06 3E */	clrlwi r4, r0, 0x18
@@ -5655,7 +5655,7 @@ dMenu_Ring_c_NS_checkExplainForce:
 /* 801EE29C 001EB1DC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE2A0 001EB1E0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EE2A4 001EB1E4  38 80 00 02 */	li r4, 2
-/* 801EE2A8 001EB1E8  4B E4 47 B5 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EE2A8 001EB1E8  4B E4 47 B5 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EE2AC 001EB1EC  7C 60 1B 78 */	mr r0, r3
 /* 801EE2B0 001EB1F0  7F 83 E3 78 */	mr r3, r28
 /* 801EE2B4 001EB1F4  54 04 06 3E */	clrlwi r4, r0, 0x18
@@ -5664,7 +5664,7 @@ dMenu_Ring_c_NS_checkExplainForce:
 /* 801EE2C0 001EB200  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE2C4 001EB204  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EE2C8 001EB208  38 80 00 03 */	li r4, 3
-/* 801EE2CC 001EB20C  4B E4 47 91 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EE2CC 001EB20C  4B E4 47 91 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EE2D0 001EB210  7C 60 1B 78 */	mr r0, r3
 /* 801EE2D4 001EB214  7F 83 E3 78 */	mr r3, r28
 /* 801EE2D8 001EB218  54 04 06 3E */	clrlwi r4, r0, 0x18
@@ -6214,7 +6214,7 @@ dMenu_Ring_c_NS_getItem:
 /* 801EEA88 001EB9C8  7C 08 02 A6 */	mflr r0
 /* 801EEA8C 001EB9CC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801EEA90 001EB9D0  39 61 00 20 */	addi r11, r1, 0x20
-/* 801EEA94 001EB9D4  48 17 37 49 */	bl func_803621DC
+/* 801EEA94 001EB9D4  48 17 37 49 */	bl _savegpr_29
 /* 801EEA98 001EB9D8  7C BD 2B 78 */	mr r29, r5
 /* 801EEA9C 001EB9DC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EEAA0 001EB9E0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
@@ -6229,7 +6229,7 @@ dMenu_Ring_c_NS_getItem:
 /* 801EEAC4 001EBA04  4B E4 45 6D */	bl dSv_player_item_c_NS_getItem
 /* 801EEAC8 001EBA08  7F E3 FB 78 */	mr r3, r31
 /* 801EEACC 001EBA0C  39 61 00 20 */	addi r11, r1, 0x20
-/* 801EEAD0 001EBA10  48 17 37 59 */	bl func_80362228
+/* 801EEAD0 001EBA10  48 17 37 59 */	bl _restgpr_29
 /* 801EEAD4 001EBA14  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801EEAD8 001EBA18  7C 08 03 A6 */	mtlr r0
 /* 801EEADC 001EBA1C  38 21 00 20 */	addi r1, r1, 0x20
@@ -6312,7 +6312,7 @@ lbl_801EEBE4:
 /* 801EEBE4 001EBB24  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EEBE8 001EBB28  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EEBEC 001EBB2C  38 80 00 00 */	li r4, 0
-/* 801EEBF0 001EBB30  4B E4 3E 6D */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EEBF0 001EBB30  4B E4 3E 6D */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EEBF4 001EBB34  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801EEBF8 001EBB38  28 00 00 04 */	cmplwi r0, 4
 /* 801EEBFC 001EBB3C  40 82 00 18 */	bne lbl_801EEC14
@@ -6334,7 +6334,7 @@ lbl_801EEC30:
 /* 801EEC30 001EBB70  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EEC34 001EBB74  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EEC38 001EBB78  38 80 00 01 */	li r4, 1
-/* 801EEC3C 001EBB7C  4B E4 3E 21 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EEC3C 001EBB7C  4B E4 3E 21 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EEC40 001EBB80  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801EEC44 001EBB84  28 00 00 04 */	cmplwi r0, 4
 /* 801EEC48 001EBB88  40 82 00 18 */	bne lbl_801EEC60
@@ -6391,7 +6391,7 @@ dMenu_Ring_c_NS_isMixItemOff:
 /* 801EECF8 001EBC38  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EECFC 001EBC3C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EED00 001EBC40  38 80 00 00 */	li r4, 0
-/* 801EED04 001EBC44  4B E4 3D 59 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EED04 001EBC44  4B E4 3D 59 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EED08 001EBC48  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
 /* 801EED0C 001EBC4C  7C 9F 02 14 */	add r4, r31, r0
 /* 801EED10 001EBC50  88 84 06 90 */	lbz r4, 0x690(r4)
@@ -6409,7 +6409,7 @@ lbl_801EED28:
 /* 801EED3C 001EBC7C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EED40 001EBC80  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EED44 001EBC84  38 80 00 01 */	li r4, 1
-/* 801EED48 001EBC88  4B E4 3D 15 */	bl dSv_player_status_a_c_NS_getSelectItemIndex
+/* 801EED48 001EBC88  4B E4 3D 15 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 801EED4C 001EBC8C  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
 /* 801EED50 001EBC90  7C 9F 02 14 */	add r4, r31, r0
 /* 801EED54 001EBC94  88 84 06 90 */	lbz r4, 0x690(r4)

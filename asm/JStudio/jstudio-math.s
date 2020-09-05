@@ -102,7 +102,7 @@ JStudio_NS_math_NS_getTransformation_SRxyzT:
 /* 80285B48 00282A88  7C 08 02 A6 */	mflr r0
 /* 80285B4C 00282A8C  90 01 00 B4 */	stw r0, 0xb4(r1)
 /* 80285B50 00282A90  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80285B54 00282A94  48 0D C6 89 */	bl func_803621DC
+/* 80285B54 00282A94  48 0D C6 89 */	bl _savegpr_29
 /* 80285B58 00282A98  7C 7D 1B 78 */	mr r29, r3
 /* 80285B5C 00282A9C  7C BE 2B 78 */	mr r30, r5
 /* 80285B60 00282AA0  7C DF 33 78 */	mr r31, r6
@@ -127,7 +127,7 @@ JStudio_NS_math_NS_getTransformation_SRxyzT:
 /* 80285BAC 00282AEC  C0 7F 00 08 */	lfs f3, 8(r31)
 /* 80285BB0 00282AF0  48 0C 0D 6D */	bl PSMTXTransApply
 /* 80285BB4 00282AF4  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80285BB8 00282AF8  48 0D C6 71 */	bl func_80362228
+/* 80285BB8 00282AF8  48 0D C6 71 */	bl _restgpr_29
 /* 80285BBC 00282AFC  80 01 00 B4 */	lwz r0, 0xb4(r1)
 /* 80285BC0 00282B00  7C 08 03 A6 */	mtlr r0
 /* 80285BC4 00282B04  38 21 00 B0 */	addi r1, r1, 0xb0

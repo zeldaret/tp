@@ -86,6 +86,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
             $(BUILD_DIR)/asm/d/d_bomb.o    \
             $(BUILD_DIR)/asm/d/d_lib.o    \
+            $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/asm/d/d_save.o    \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
@@ -604,7 +605,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gx/GXPerf.o    \
             $(BUILD_DIR)/asm/gd/GDBase.o    \
             $(BUILD_DIR)/asm/gd/GDGeometry.o    \
-            $(BUILD_DIR)/asm/clib.o
+            $(BUILD_DIR)/asm/clib.o             
 
 CTORS_O_FILES :=                                    \
     $(BUILD_DIR)/asm/ctors.o
