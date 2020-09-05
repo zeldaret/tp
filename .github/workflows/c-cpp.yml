@@ -1,0 +1,20 @@
+name: OK Check
+
+on: pull_request
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/pheenoh/zeldaret-tp:latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        token: ${{secrets.MY_REPO_PAT}}
+    - name: Copy in dol and compilers
+      run: cp /tmp/baserom.dol ./baserom.dol && cp -r /tmp/mwcc_compiler/ tools/mwcc_compiler && chown root /github/home/
+    - name: Run Make (OK)
+      run: make

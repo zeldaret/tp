@@ -19,9 +19,11 @@ And will eventually build all the [RELs](./rels_sha1.md).
 ## Build Instructions
 
 1. Obtain a clean DOL of TP (GCN USA) and place it at the root of the repo and name it `baserom.dol`.
-2. Obtain a copy of the MWCC PowerPC (from GC CW 3.0) and place it in tools/mwcc_compiler/3.0/ folder in tools/. (NOTE: This compiler's executables [mwcceppc.exe mwasmeppc.exe and mwldeppc.exe] can be installed with Codewarrior 3.0 for Gamecube, but no license or crack is provided with this project. If you can't find it on your own just DM me Pheenoh#0001).
-4. Run `make` at the root of the repo
+2. Obtain a copy of the MWCC PowerPC compiler (version 2.7 to be exact). See below for a link to our Discord server which has the CodeWarrior compilers pinned in the #tp-decomp channel.
+3. Run `make` at the root of the repo.
 
 ## Contributions
 
-Contributions and PRs are welcome.
+All contributions are welcome. This is a group effort, and even small contributions can make a difference. Some tasks also don't require much knowledge to get started.
+
+Most discussions happen on our [Discord Server](https://discord.zelda64.dev/), where you are welcome to ask if you need help getting started, or if you have any questions regarding this project and other decompilation projects.

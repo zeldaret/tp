@@ -573,8 +573,8 @@ func_803621D4:
 func_803621D8:
 /* 803621D8 0035F118  93 8B FF F0 */	stw r28, -0x10(r11)
 
-.global func_803621DC
-func_803621DC:
+.global _savegpr_29
+_savegpr_29:
 /* 803621DC 0035F11C  93 AB FF F4 */	stw r29, -0xc(r11)
 /* 803621E0 0035F120  93 CB FF F8 */	stw r30, -8(r11)
 /* 803621E4 0035F124  93 EB FF FC */	stw r31, -4(r11)
@@ -640,8 +640,8 @@ func_80362220:
 func_80362224:
 /* 80362224 0035F164  83 8B FF F0 */	lwz r28, -0x10(r11)
 
-.global func_80362228
-func_80362228:
+.global _restgpr_29
+_restgpr_29:
 /* 80362228 0035F168  83 AB FF F4 */	lwz r29, -0xc(r11)
 /* 8036222C 0035F16C  83 CB FF F8 */	lwz r30, -8(r11)
 /* 80362230 0035F170  83 EB FF FC */	lwz r31, -4(r11)
