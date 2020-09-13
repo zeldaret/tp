@@ -398,7 +398,7 @@ dSvBit_childDarknessHIO_c_NS_init:
 lbl_8025C060:
 /* 8025C060 00258FA0  7F E3 FB 78 */	mr r3, r31
 /* 8025C064 00258FA4  7F C4 F3 78 */	mr r4, r30
-/* 8025C068 00258FA8  4B DD 6B 49 */	bl dSv_player_status_b_c_NS_isDarkClearLV
+/* 8025C068 00258FA8  4B DD 6B 49 */	bl isDarkClearLV__21dSv_player_status_b_cCFi
 /* 8025C06C 00258FAC  7C 9D F2 14 */	add r4, r29, r30
 /* 8025C070 00258FB0  98 64 00 05 */	stb r3, 5(r4)
 /* 8025C074 00258FB4  88 04 00 05 */	lbz r0, 5(r4)
@@ -445,7 +445,7 @@ dSvBit_childTransformHIO_c_NS_init:
 lbl_8025C0FC:
 /* 8025C0FC 0025903C  7F E3 FB 78 */	mr r3, r31
 /* 8025C100 00259040  7F C4 F3 78 */	mr r4, r30
-/* 8025C104 00259044  4B DD 6A E9 */	bl dSv_player_status_b_c_NS_isTransformLV
+/* 8025C104 00259044  4B DD 6A E9 */	bl isTransformLV__21dSv_player_status_b_cCFi
 /* 8025C108 00259048  7C 9D F2 14 */	add r4, r29, r30
 /* 8025C10C 0025904C  98 64 00 05 */	stb r3, 5(r4)
 /* 8025C110 00259050  88 04 00 05 */	lbz r0, 5(r4)

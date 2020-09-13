@@ -25,6 +25,9 @@ SECTIONS {
     __ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
     __ArenaHi = 0x81700000 ;
 }
+FORCEACTIVE {
+ set__17dSv_horse_place_cFPCcRC4cXyzsSc
+}
 /*
 .init 80003100 - 80005600
 extab 80005600 - 80005660

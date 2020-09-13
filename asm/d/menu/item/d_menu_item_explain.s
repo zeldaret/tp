@@ -1172,7 +1172,7 @@ dMenu_ItemExplain_c_NS_open_init:
 /* 801DB824 001D8764  7C 08 02 A6 */	mflr r0
 /* 801DB828 001D8768  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801DB82C 001D876C  39 61 00 30 */	addi r11, r1, 0x30
-/* 801DB830 001D8770  48 18 69 A9 */	bl func_803621D8
+/* 801DB830 001D8770  48 18 69 A9 */	bl _savegpr_28
 /* 801DB834 001D8774  7C 7F 1B 78 */	mr r31, r3
 /* 801DB838 001D8778  80 03 00 C8 */	lwz r0, 0xc8(r3)
 /* 801DB83C 001D877C  90 03 00 C4 */	stw r0, 0xc4(r3)
@@ -1341,7 +1341,7 @@ lbl_801DBA68:
 /* 801DBA94 001D89D4  39 00 00 00 */	li r8, 0
 /* 801DBA98 001D89D8  48 0C FE ED */	bl Z2SeMgr_NS_seStart
 /* 801DBA9C 001D89DC  39 61 00 30 */	addi r11, r1, 0x30
-/* 801DBAA0 001D89E0  48 18 67 85 */	bl func_80362224
+/* 801DBAA0 001D89E0  48 18 67 85 */	bl _restgpr_28
 /* 801DBAA4 001D89E4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 801DBAA8 001D89E8  7C 08 03 A6 */	mtlr r0
 /* 801DBAAC 001D89EC  38 21 00 30 */	addi r1, r1, 0x30
@@ -1938,7 +1938,7 @@ dMenu_ItemExplain_c_NS_openExplain:
 /* 801DC344 001D9284  7C 08 02 A6 */	mflr r0
 /* 801DC348 001D9288  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801DC34C 001D928C  39 61 00 20 */	addi r11, r1, 0x20
-/* 801DC350 001D9290  48 18 5E 85 */	bl func_803621D4
+/* 801DC350 001D9290  48 18 5E 85 */	bl _savegpr_27
 /* 801DC354 001D9294  7C 7B 1B 78 */	mr r27, r3
 /* 801DC358 001D9298  7C 9C 23 78 */	mr r28, r4
 /* 801DC35C 001D929C  7C BD 2B 78 */	mr r29, r5
@@ -1949,7 +1949,7 @@ dMenu_ItemExplain_c_NS_openExplain:
 /* 801DC370 001D92B0  38 63 00 9C */	addi r3, r3, 0x9c
 /* 801DC374 001D92B4  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 801DC378 001D92B8  38 A0 00 00 */	li r5, 0
-/* 801DC37C 001D92BC  4B E5 6C B5 */	bl dSv_player_item_c_NS_getItem
+/* 801DC37C 001D92BC  4B E5 6C B5 */	bl getItem__17dSv_player_item_cCFib
 /* 801DC380 001D92C0  7C 64 1B 78 */	mr r4, r3
 /* 801DC384 001D92C4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801DC388 001D92C8  28 00 00 FF */	cmplwi r0, 0xff
@@ -1965,7 +1965,7 @@ lbl_801DC398:
 /* 801DC3AC 001D92EC  48 00 00 1D */	bl dMenu_ItemExplain_c_NS_openExplainDmap
 lbl_801DC3B0:
 /* 801DC3B0 001D92F0  39 61 00 20 */	addi r11, r1, 0x20
-/* 801DC3B4 001D92F4  48 18 5E 6D */	bl func_80362220
+/* 801DC3B4 001D92F4  48 18 5E 6D */	bl _restgpr_27
 /* 801DC3B8 001D92F8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801DC3BC 001D92FC  7C 08 03 A6 */	mtlr r0
 /* 801DC3C0 001D9300  38 21 00 20 */	addi r1, r1, 0x20
