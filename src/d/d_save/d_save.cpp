@@ -447,3 +447,13 @@ asm void dSv_player_item_c::setBombBagItemIn(u8, u8, u8, bool) {
     nofralloc
     #include "func_80033910.s"
 }
+
+void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,bool param_2) {
+    setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2);
+    return;
+}
+
+void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,u8 param_2, bool param_3) {
+    setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2,param_3);
+    return;
+}
