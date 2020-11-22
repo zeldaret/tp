@@ -31,6 +31,7 @@ extern "C" {
     void dSv_player_get_item_c_NS_isFirstBit(void);
     void dSv_player_item_record_c_NS_setBombNum(void);
     void dSv_player_item_max_c_NS_getBombNum(void);
+    void setItem__17dSv_player_item_cFiUc(void);
 }
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
@@ -306,6 +307,13 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
     last_region = last_region | (u8)(1 << i_region_bit);
 }
 
+// this is close
+// bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
+//   if ((param_1 >= 0) && (param_1 < 8)) {
+//       return (last_region & (1 << (u8)param_1)) ? 1 : 0;
+//   }
+// }
+
 asm bool dSv_player_field_last_stay_info_c::isRegionBit(int unk) const {
 nofralloc
 cmpwi r4, 0
@@ -395,6 +403,69 @@ mtlr r0
 addi r1, r1, 0x20
 blr
 }
+
+// u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
+//     int IVar1;
+//     int IVar2;
+//     u8 current_select_item_index;
+
+//     if (param_1 < 0x18) {
+//         if (param_2 != false) {
+//             for (int select_item_index = 0; select_item_index < 2; select_item_index++) {
+//                 current_select_item_index = getSelectItemIndex(select_item_index);
+//                 if (((param_1 == (current_select_item_index)) ||
+//                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), param_1 == (current_select_item_index))) &&
+//                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), (current_select_item_index) != NO_ITEM)) {
+//                     current_select_item_index = getSelectItemIndex(select_item_index);
+//                     IVar1 = items[current_select_item_index];
+//                     current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
+//                     IVar2 = items[current_select_item_index];
+//                     if (((IVar1 == HEROS_BOW) && (IVar2 == REGULAR_BOMBS)) ||
+//                         ((IVar2 == HEROS_BOW && (IVar1 == REGULAR_BOMBS)))) {
+//                         return 0x59;
+//                     }
+//                     if (((IVar1 == HEROS_BOW) && (IVar2 == WATER_BOMBS)) ||
+//                         ((IVar2 == HEROS_BOW && (IVar1 == WATER_BOMBS)))) {
+//                         return 0x59;
+//                     }
+//                     if (((IVar1 == HEROS_BOW) && (IVar2 == BOMBLINGS)) ||
+//                         ((IVar2 == HEROS_BOW && (IVar1 == BOMBLINGS)))) {
+//                         return 0x59;
+//                     }
+//                     if (((IVar1 == HEROS_BOW) && (IVar2 == HAWKEYE)) ||
+//                         ((IVar2 == HEROS_BOW && (IVar1 == HAWKEYE)))) {
+//                         return 0x5a;
+//                     }
+//                     if (((IVar1 == FISHING_ROD) && (IVar2 == BEE_LARVA)) ||
+//                         ((IVar2 == FISHING_ROD && (IVar1 == BEE_LARVA)))) {
+//                         return 0x5b;
+//                     }
+//                     if (((IVar1 == FISHING_ROD) && (IVar2 == ZORAS_JEWEL)) ||
+//                         ((IVar2 == FISHING_ROD && (IVar1 == ZORAS_JEWEL)))) {
+//                         return 0x5c;
+//                     }
+//                     if (((IVar1 == FISHING_ROD) && (IVar2 == WORM)) ||
+//                         ((IVar2 == FISHING_ROD && (IVar1 == WORM)))) {
+//                         return 0x5d;
+//                     }
+//                     if (((select_item_index == 0x3) &&
+//                          (current_select_item_index = getSelectItemIndex(0x3),
+//                           (current_select_item_index & 0xff) == 0x0)) &&
+//                         (current_select_item_index = dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
+//                         dComIfGs_setSelectItemIndex(0x3, -0x1);
+//                         dComIfGs_setMixItemIndex(0x3, -0x1);
+//                         return 0xff;
+//                     }
+//                     OSReport_Error(lbl_8037923d, (unsigned int)IVar1, (unsigned int)IVar2);
+//                 }
+//             }
+//         }
+//         current_select_item_index = (unsigned int)items[param_1];
+//     } else {
+//         current_select_item_index = NO_ITEM;
+//     }
+//     return current_select_item_index;
+// }
 
 asm u8 dSv_player_item_c::getItem(int, bool) const {
 nofralloc
@@ -606,6 +677,7 @@ lbl_800332E0:
 /* 800332F4 00030234  4E 80 00 20 */	blr
 }
 
+// this is close
 // void dSv_player_item_c::setLineUpItem(void) {
 //     u8* i_item_lst;
 
@@ -625,32 +697,7 @@ lbl_800332E0:
 
 asm void dSv_player_item_c::setLineUpItem(void) {
     nofralloc
-    /* 800332F8 00030238  38 A0 00 00 */	li r5, 0
-/* 800332FC 0003023C  38 C0 00 00 */	li r6, 0
-/* 80033300 00030240  38 80 00 FF */	li r4, 0xff
-/* 80033304 00030244  38 00 00 18 */	li r0, 0x18
-/* 80033308 00030248  7C 09 03 A6 */	mtctr r0
-lbl_8003330C:
-/* 8003330C 0003024C  38 06 00 18 */	addi r0, r6, 0x18
-/* 80033310 00030250  7C 83 01 AE */	stbx r4, r3, r0
-/* 80033314 00030254  38 C6 00 01 */	addi r6, r6, 1
-/* 80033318 00030258  42 00 FF F4 */	bdnz lbl_8003330C
-/* 8003331C 0003025C  3C 80 80 3A */	lis r4, lbl_803A7270@ha
-/* 80033320 00030260  38 84 72 70 */	addi r4, r4, lbl_803A7270@l
-/* 80033324 00030264  38 00 00 17 */	li r0, 0x17
-/* 80033328 00030268  7C 09 03 A6 */	mtctr r0
-lbl_8003332C:
-/* 8003332C 0003026C  88 C4 00 00 */	lbz r6, 0(r4)
-/* 80033330 00030270  7C 03 30 AE */	lbzx r0, r3, r6
-/* 80033334 00030274  28 00 00 FF */	cmplwi r0, 0xff
-/* 80033338 00030278  41 82 00 10 */	beq lbl_80033348
-/* 8003333C 0003027C  38 05 00 18 */	addi r0, r5, 0x18
-/* 80033340 00030280  7C C3 01 AE */	stbx r6, r3, r0
-/* 80033344 00030284  38 A5 00 01 */	addi r5, r5, 1
-lbl_80033348:
-/* 80033348 00030288  38 84 00 01 */	addi r4, r4, 1
-/* 8003334C 0003028C  42 00 FF E0 */	bdnz lbl_8003332C
-/* 80033350 00030290  4E 80 00 20 */	blr 
+    #include "func_800332F8.s"
 }
 
 u8 dSv_player_item_c::getLineUpItem(int slot_number) const {
@@ -761,7 +808,7 @@ lbl_80033438:
 
 asm void dSv_player_item_c::setEmptyBottleItemIn(u8){
     nofralloc
-    /* 80033450 00030390  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80033450 00030390  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80033454 00030394  7C 08 02 A6 */	mflr r0
 /* 80033458 00030398  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003345C 0003039C  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -1026,68 +1073,10 @@ u8 dSv_player_item_c::checkEmptyBottle(void) {
 
 asm void dSv_player_item_c::setBombBagItemIn(u8, u8, bool) {
     nofralloc
-    /* 80033828 00030768  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 8003382C 0003076C  7C 08 02 A6 */	mflr r0
-/* 80033830 00030770  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80033834 00030774  39 61 00 20 */	addi r11, r1, 0x20
-/* 80033838 00030778  48 32 E9 A5 */	bl _savegpr_29
-/* 8003383C 0003077C  7C BE 2B 78 */	mr r30, r5
-/* 80033840 00030780  7C DD 33 78 */	mr r29, r6
-/* 80033844 00030784  3B E0 00 00 */	li r31, 0
-/* 80033848 00030788  54 85 06 3E */	clrlwi r5, r4, 0x18
-/* 8003384C 0003078C  38 00 00 03 */	li r0, 3
-/* 80033850 00030790  7C 09 03 A6 */	mtctr r0
-lbl_80033854:
-/* 80033854 00030794  38 9F 00 0F */	addi r4, r31, 0xf
-/* 80033858 00030798  7C 03 20 AE */	lbzx r0, r3, r4
-/* 8003385C 0003079C  7C 05 00 40 */	cmplw r5, r0
-/* 80033860 000307A0  40 82 00 90 */	bne lbl_800338F0
-/* 80033864 000307A4  7F C5 F3 78 */	mr r5, r30
-/* 80033868 000307A8  4B FF F7 51 */	bl setItem__17dSv_player_item_cFiUc
-/* 8003386C 000307AC  57 A0 06 3E */	clrlwi r0, r29, 0x18
-/* 80033870 000307B0  28 00 00 01 */	cmplwi r0, 1
-/* 80033874 000307B4  40 82 00 3C */	bne lbl_800338B0
-/* 80033878 000307B8  57 C0 06 3E */	clrlwi r0, r30, 0x18
-/* 8003387C 000307BC  28 00 00 50 */	cmplwi r0, 0x50
-/* 80033880 000307C0  41 82 00 30 */	beq lbl_800338B0
-/* 80033884 000307C4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80033888 000307C8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 8003388C 000307CC  38 63 00 F8 */	addi r3, r3, 0xf8
-/* 80033890 000307D0  7F C4 F3 78 */	mr r4, r30
-/* 80033894 000307D4  48 00 08 65 */	bl dSv_player_item_max_c_NS_getBombNum
-/* 80033898 000307D8  7C 65 1B 78 */	mr r5, r3
-/* 8003389C 000307DC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800338A0 000307E0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 800338A4 000307E4  38 63 00 EC */	addi r3, r3, 0xec
-/* 800338A8 000307E8  57 E4 06 3E */	clrlwi r4, r31, 0x18
-/* 800338AC 000307EC  48 00 06 C1 */	bl dSv_player_item_record_c_NS_setBombNum
-lbl_800338B0:
-/* 800338B0 000307F0  3B A0 00 00 */	li r29, 0
-/* 800338B4 000307F4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800338B8 000307F8  3B C3 61 C0 */	addi r30, r3, lbl_804061C0@l
-/* 800338BC 000307FC  3B FF 00 0F */	addi r31, r31, 0xf
-lbl_800338C0:
-/* 800338C0 00030800  7F C3 F3 78 */	mr r3, r30
-/* 800338C4 00030804  7F A4 EB 78 */	mr r4, r29
-/* 800338C8 00030808  4B FF F1 95 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
-/* 800338CC 0003080C  54 60 06 3E */	clrlwi r0, r3, 0x18
-/* 800338D0 00030810  7C 1F 00 00 */	cmpw r31, r0
-/* 800338D4 00030814  40 82 00 0C */	bne lbl_800338E0
-/* 800338D8 00030818  7F A3 EB 78 */	mr r3, r29
-/* 800338DC 0003081C  4B FF A5 19 */	bl dComIfGp_setSelectItem
-lbl_800338E0:
-/* 800338E0 00030820  3B BD 00 01 */	addi r29, r29, 1
-/* 800338E4 00030824  2C 1D 00 03 */	cmpwi r29, 3
-/* 800338E8 00030828  41 80 FF D8 */	blt lbl_800338C0
-/* 800338EC 0003082C  48 00 00 0C */	b lbl_800338F8
-lbl_800338F0:
-/* 800338F0 00030830  3B FF 00 01 */	addi r31, r31, 1
-/* 800338F4 00030834  42 00 FF 60 */	bdnz lbl_80033854
-lbl_800338F8:
-/* 800338F8 00030838  39 61 00 20 */	addi r11, r1, 0x20
-/* 800338FC 0003083C  48 32 E9 2D */	bl _restgpr_29
-/* 80033900 00030840  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 80033904 00030844  7C 08 03 A6 */	mtlr r0
-/* 80033908 00030848  38 21 00 20 */	addi r1, r1, 0x20
-/* 8003390C 0003084C  4E 80 00 20 */	blr 
+    #include "func_80033828.s"
+}
+
+asm void dSv_player_item_c::setBombBagItemIn(u8, u8, u8, bool) {
+    nofralloc
+    #include "func_80033910.s"
 }
