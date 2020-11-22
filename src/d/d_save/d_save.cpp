@@ -374,10 +374,8 @@ asm void dSv_player_item_c::setBottleItemIn(u8, u8){
 
 // this is 1 instruction off
 // void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
-//     u8 item_id;
-    
-//     item_id = dSv_item_rename(i_item_id);
-//     setBottleItemIn(EMPTY_BOTTLE,item_id);
+//     u8 item_id = (dSv_item_rename(i_item_id));
+//     setBottleItemIn(96,item_id);
 // }
 
 asm void dSv_player_item_c::setEmptyBottleItemIn(u8){
@@ -400,13 +398,8 @@ asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
     #include "func_80033598.s"
 }
 
-// void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
-//     setEquipBottleItemIn__17dSv_player_item_cFUcUc(selected_index,(u8)EMPTY_BOTTLE);
-// }
-
-asm void dSv_player_item_c::setEquipBottleItemEmpty(u8){
-    nofralloc
-    #include "func_800336BC.s" 
+void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
+    setEquipBottleItemIn(selected_index,EMPTY_BOTTLE);
 }
 
 u8 dSv_player_item_c::checkBottle(u8 i_item_id){
@@ -450,10 +443,80 @@ asm void dSv_player_item_c::setBombBagItemIn(u8, u8, u8, bool) {
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,bool param_2) {
     setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2);
-    return;
 }
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,u8 param_2, bool param_3) {
     setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2,param_3);
-    return;
+}
+
+// this is a few instructions off
+// void dSv_player_item_c::setEmptyBombBag(void) {
+
+//   int current_item_index;
+//   u8 uVar1;
+  
+//   for (int i = 0; i < 3; i++) {
+//     current_item_index = (u8)(i + 15);
+//     uVar1 = getItem(current_item_index,true);
+
+//     if (uVar1 == 0xff) {
+//       setItem(current_item_index,80);
+//       return;
+//     }
+//   }
+// }
+
+asm void dSv_player_item_c::setEmptyBombBag(void) {
+    nofralloc
+    #include "func_80033A88.s"
+}
+
+asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
+    nofralloc
+    #include "func_80033B08.s"
+}
+
+// this is a few instructions off
+// u8 dSv_player_item_c::checkBombBag(u8 param_1) {
+//     u8 ok = 0;
+
+//     for (int i = 0; i < 3; i++) {
+//         if (param_1 == this->items[i + 15]) {
+//             ok = ok + 0x1;
+//         }
+//     }
+//     return ok;
+// }
+
+asm u8 dSv_player_item_c::checkBombBag(u8 param_1) {
+    nofralloc
+    #include "func_80033BEC.s"
+}
+
+asm void dSv_player_item_c::setWarashibeItem(u8) {
+    nofralloc
+    #include "func_80033C2C.s"
+}
+
+void dSv_player_item_c::setRodTypeLevelUp(void) {
+    int current_fishing_rod_item_id = this->items[0x14];
+    
+    switch (current_fishing_rod_item_id) {
+        case ROD_BEE_LARVA: {
+            this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA;
+            break;
+        }
+        case ROD_WORM: {
+            this->items[0x14] = ROD_CORAL_EARRING_WORM; 
+            break;
+        }
+        case FISHING_ROD: {
+            this->items[0x14] = ROD_CORAL_EARRING;
+            break;
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGp_setSelectItem(i);
+    }
 }

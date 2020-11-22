@@ -510,7 +510,7 @@ lbl_80097F18:
 /* 80098654 00095594  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80098658 00095598  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8009865C 0009559C  38 63 00 9C */	addi r3, r3, 0x9c
-/* 80098660 000955A0  4B F9 B6 5D */	bl dSv_player_item_c_NS_setRodTypeLevelUp
+/* 80098660 000955A0  4B F9 B6 5D */	bl setRodTypeLevelUp__17dSv_player_item_cFv
 /* 80098664 000955A4  48 00 00 1C */	b lbl_80098680
 lbl_80098668:
 /* 80098668 000955A8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -757,7 +757,7 @@ lbl_80098680:
 /* 80098A28 00095968  38 63 00 9C */	addi r3, r3, 0x9c
 /* 80098A2C 0009596C  38 80 00 70 */	li r4, 0x70
 /* 80098A30 00095970  38 A0 00 1E */	li r5, 0x1e
-/* 80098A34 00095974  4B F9 B0 D5 */	bl dSv_player_item_c_NS_setEmptyBombBag_X1_
+/* 80098A34 00095974  4B F9 B0 D5 */	bl setEmptyBombBag__17dSv_player_item_cFUcUc
 /* 80098A38 00095978  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80098A3C 0009597C  7C 08 03 A6 */	mtlr r0
 /* 80098A40 00095980  38 21 00 10 */	addi r1, r1, 0x10
@@ -770,7 +770,7 @@ lbl_80098680:
 /* 80098A5C 0009599C  38 63 00 9C */	addi r3, r3, 0x9c
 /* 80098A60 000959A0  38 80 00 70 */	li r4, 0x70
 /* 80098A64 000959A4  38 A0 00 1E */	li r5, 0x1e
-/* 80098A68 000959A8  4B F9 B0 A1 */	bl dSv_player_item_c_NS_setEmptyBombBag_X1_
+/* 80098A68 000959A8  4B F9 B0 A1 */	bl setEmptyBombBag__17dSv_player_item_cFUcUc
 /* 80098A6C 000959AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80098A70 000959B0  7C 08 03 A6 */	mtlr r0
 /* 80098A74 000959B4  38 21 00 10 */	addi r1, r1, 0x10
@@ -991,7 +991,7 @@ lbl_80098680:
 /* 80098DD0 00095D10  38 63 00 9C */	addi r3, r3, 0x9c
 /* 80098DD4 00095D14  38 80 00 70 */	li r4, 0x70
 /* 80098DD8 00095D18  38 A0 00 3C */	li r5, 0x3c
-/* 80098DDC 00095D1C  4B F9 AD 2D */	bl dSv_player_item_c_NS_setEmptyBombBag_X1_
+/* 80098DDC 00095D1C  4B F9 AD 2D */	bl setEmptyBombBag__17dSv_player_item_cFUcUc
 /* 80098DE0 00095D20  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80098DE4 00095D24  7C 08 03 A6 */	mtlr r0
 /* 80098DE8 00095D28  38 21 00 10 */	addi r1, r1, 0x10
@@ -1004,7 +1004,7 @@ lbl_80098680:
 /* 80098E04 00095D44  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80098E08 00095D48  3B E3 00 9C */	addi r31, r3, 0x9c
 /* 80098E0C 00095D4C  7F E3 FB 78 */	mr r3, r31
-/* 80098E10 00095D50  4B F9 AC 79 */	bl dSv_player_item_c_NS_setEmptyBombBag
+/* 80098E10 00095D50  4B F9 AC 79 */	bl setEmptyBombBag__17dSv_player_item_cFv
 /* 80098E14 00095D54  7F E3 FB 78 */	mr r3, r31
 /* 80098E18 00095D58  38 80 00 71 */	li r4, 0x71
 /* 80098E1C 00095D5C  38 A0 00 01 */	li r5, 1
@@ -1022,7 +1022,7 @@ lbl_80098680:
 /* 80098E4C 00095D8C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80098E50 00095D90  3B E3 00 9C */	addi r31, r3, 0x9c
 /* 80098E54 00095D94  7F E3 FB 78 */	mr r3, r31
-/* 80098E58 00095D98  4B F9 AC 31 */	bl dSv_player_item_c_NS_setEmptyBombBag
+/* 80098E58 00095D98  4B F9 AC 31 */	bl setEmptyBombBag__17dSv_player_item_cFv
 /* 80098E5C 00095D9C  7F E3 FB 78 */	mr r3, r31
 /* 80098E60 00095DA0  38 80 00 72 */	li r4, 0x72
 /* 80098E64 00095DA4  38 A0 00 01 */	li r5, 1
