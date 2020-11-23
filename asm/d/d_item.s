@@ -3922,7 +3922,7 @@ lbl_8009BA64:
 /* 8009BA7C 000989BC  40 81 00 24 */	ble lbl_8009BAA0
 /* 8009BA80 000989C0  7F 63 DB 78 */	mr r3, r27
 /* 8009BA84 000989C4  7C 9D 20 AE */	lbzx r4, r29, r4
-/* 8009BA88 000989C8  4B F9 86 71 */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BA88 000989C8  4B F9 86 71 */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BA8C 000989CC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8009BA90 000989D0  7C 14 00 00 */	cmpw r20, r0
 /* 8009BA94 000989D4  41 82 00 0C */	beq lbl_8009BAA0
@@ -3943,7 +3943,7 @@ lbl_8009BAC0:
 /* 8009BAC4 00098A04  40 82 00 68 */	bne lbl_8009BB2C
 /* 8009BAC8 00098A08  7F 63 DB 78 */	mr r3, r27
 /* 8009BACC 00098A0C  7F C4 F3 78 */	mr r4, r30
-/* 8009BAD0 00098A10  4B F9 86 29 */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BAD0 00098A10  4B F9 86 29 */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BAD4 00098A14  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8009BAD8 00098A18  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8009BADC 00098A1C  7C 03 00 40 */	cmplw r3, r0
@@ -3963,7 +3963,7 @@ lbl_8009BB00:
 /* 8009BB10 00098A50  4B F9 7F 41 */	bl setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb
 /* 8009BB14 00098A54  7F 63 DB 78 */	mr r3, r27
 /* 8009BB18 00098A58  7F C4 F3 78 */	mr r4, r30
-/* 8009BB1C 00098A5C  4B F9 85 DD */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BB1C 00098A5C  4B F9 85 DD */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BB20 00098A60  7C 03 F8 50 */	subf r0, r3, r31
 /* 8009BB24 00098A64  54 1F 06 3E */	clrlwi r31, r0, 0x18
 /* 8009BB28 00098A68  48 00 00 6C */	b lbl_8009BB94
@@ -3972,7 +3972,7 @@ lbl_8009BB2C:
 /* 8009BB30 00098A70  38 81 00 08 */	addi r4, r1, 8
 /* 8009BB34 00098A74  7E 84 B8 AE */	lbzx r20, r4, r23
 /* 8009BB38 00098A78  7E 84 A3 78 */	mr r4, r20
-/* 8009BB3C 00098A7C  4B F9 85 BD */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BB3C 00098A7C  4B F9 85 BD */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BB40 00098A80  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8009BB44 00098A84  57 F5 06 3E */	clrlwi r21, r31, 0x18
 /* 8009BB48 00098A88  7C 16 AA 14 */	add r0, r22, r21
@@ -3991,14 +3991,14 @@ lbl_8009BB6C:
 /* 8009BB78 00098AB8  4B F8 F7 F5 */	bl dComIfG_play_c_NS_setItemBombNumCount
 /* 8009BB7C 00098ABC  7F 63 DB 78 */	mr r3, r27
 /* 8009BB80 00098AC0  7E 84 A3 78 */	mr r4, r20
-/* 8009BB84 00098AC4  4B F9 85 75 */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BB84 00098AC4  4B F9 85 75 */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BB88 00098AC8  7C 16 18 50 */	subf r0, r22, r3
 /* 8009BB8C 00098ACC  7C 00 A8 50 */	subf r0, r0, r21
 /* 8009BB90 00098AD0  54 1F 06 3E */	clrlwi r31, r0, 0x18
 lbl_8009BB94:
 /* 8009BB94 00098AD4  7F 63 DB 78 */	mr r3, r27
 /* 8009BB98 00098AD8  7C 9D B8 AE */	lbzx r4, r29, r23
-/* 8009BB9C 00098ADC  4B F9 85 5D */	bl dSv_player_item_max_c_NS_getBombNum
+/* 8009BB9C 00098ADC  4B F9 85 5D */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 8009BBA0 00098AE0  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8009BBA4 00098AE4  56 E0 10 3A */	slwi r0, r23, 2
 /* 8009BBA8 00098AE8  7C 7C 01 2E */	stwx r3, r28, r0

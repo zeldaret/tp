@@ -607,3 +607,66 @@ asm u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
 u8 dSv_player_item_record_c::getBottleNum(u8 bottle_index) const {
     return bottles[bottle_index];
 }
+
+void dSv_player_item_max_c::init(void) {
+
+    for (int i = 0; i < 7; i++) {
+        this->unk0[i] = 30;
+    }
+    setBombNum(REGULAR_BOMBS,30);
+    setBombNum(WATER_BOMBS,15);
+    setBombNum(BOMBLINGS,10);
+    this->unk0[7] = 0;
+}
+
+void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
+    switch (bomb_id) {
+        case REGULAR_BOMBS: this->unk0[1] = bomb_max; return;
+        case WATER_BOMBS: this->unk0[2] = bomb_max; return;
+        case BOMBLINGS: this->unk0[6] = bomb_max; return;
+    }
+}
+
+// this is close, the isFirstBit keeps screwing everything up :(
+// u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
+//     u8 uVar2;
+//     u8 iVar3;
+    
+//     iVar3 = 0x1;
+//     if (isFirstBit(79)) {
+//         iVar3 = 0x2;
+//     }
+
+//     switch (param_1) {
+//         case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3); break;
+//         case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3); break;
+//         case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3); break;
+//         default: uVar2 = 0;
+//     }
+//     return uVar2;
+// }
+
+asm u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
+    nofralloc
+    #include "func_800340F8.s"
+}
+
+// This is a match but the linker refuses to find it's reference. Thank u metrowerks
+// void dSv_player_collect_c::init(void) {
+
+//     for (int i = 0; i < 8; i++) {
+//         this->unk0[i] = 0;
+//     }
+    
+//     this->unk8 = 0;
+//     this->crystal = 0;
+//     this->mirror = 0;
+//     this->unk11 = 0xFF;
+//     this->poe_count = 0;
+// }
+
+asm void dSv_player_collect_c::init(void) {
+    nofralloc
+    #include "func_800341AC.s"
+}
+

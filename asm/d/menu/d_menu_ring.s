@@ -5603,7 +5603,7 @@ lbl_801EE1E8:
 /* 801EE1E8 001EB128  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801EE1EC 001EB12C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801EE1F0 001EB130  38 63 00 F8 */	addi r3, r3, 0xf8
-/* 801EE1F4 001EB134  4B E4 5F 05 */	bl dSv_player_item_max_c_NS_getBombNum
+/* 801EE1F4 001EB134  4B E4 5F 05 */	bl getBombNum__21dSv_player_item_max_cCFUc
 /* 801EE1F8 001EB138  48 00 00 20 */	b lbl_801EE218
 lbl_801EE1FC:
 /* 801EE1FC 001EB13C  4B E4 03 BD */	bl dComIfGs_getBottleMax

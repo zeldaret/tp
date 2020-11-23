@@ -281,13 +281,11 @@ class dSv_player_item_record_c {
 class dSv_player_item_max_c {
    public:
     void init(void);
-    void setbombNum(u8, u8);
+    void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
    private:
-    u8 bow_ammo_max;
-    u8 bomb_bags_ammo_max[3];
-    u8 unk_ammo_max[4];
+    u8 unk0[8];
 };
 
 class dSv_player_collect_c {
