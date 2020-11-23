@@ -88,7 +88,7 @@ lbl_8021EB20:
 /* 8021EB44 0021BA84  98 7A 01 F6 */	stb r3, 0x1f6(r26)
 /* 8021EB48 0021BA88  7F 83 E3 78 */	mr r3, r28
 /* 8021EB4C 0021BA8C  57 24 06 3E */	clrlwi r4, r25, 0x18
-/* 8021EB50 0021BA90  4B E1 54 2D */	bl dSv_player_item_record_c_NS_getBombNum
+/* 8021EB50 0021BA90  4B E1 54 2D */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 8021EB54 0021BA94  98 7A 01 F3 */	stb r3, 0x1f3(r26)
 /* 8021EB58 0021BA98  3B 39 00 01 */	addi r25, r25, 1
 /* 8021EB5C 0021BA9C  2C 19 00 03 */	cmpwi r25, 3
@@ -109,7 +109,7 @@ lbl_8021EB70:
 lbl_8021EB94:
 /* 8021EB94 0021BAD4  7F 83 E3 78 */	mr r3, r28
 /* 8021EB98 0021BAD8  57 24 06 3E */	clrlwi r4, r25, 0x18
-/* 8021EB9C 0021BADC  4B E1 54 95 */	bl dSv_player_item_record_c_NS_getBottleNum
+/* 8021EB9C 0021BADC  4B E1 54 95 */	bl getBottleNum__24dSv_player_item_record_cCFUc
 /* 8021EBA0 0021BAE0  38 19 01 EF */	addi r0, r25, 0x1ef
 /* 8021EBA4 0021BAE4  7C 7F 01 AE */	stbx r3, r31, r0
 /* 8021EBA8 0021BAE8  3B 39 00 01 */	addi r25, r25, 1
@@ -5944,7 +5944,7 @@ lbl_80223E3C:
 lbl_80223EAC:
 /* 80223EAC 00220DEC  7F 43 D3 78 */	mr r3, r26
 /* 80223EB0 00220DF0  56 E4 06 3E */	clrlwi r4, r23, 0x18
-/* 80223EB4 00220DF4  4B E1 00 C9 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80223EB4 00220DF4  4B E1 00 C9 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80223EB8 00220DF8  7C 73 1B 78 */	mr r19, r3
 /* 80223EBC 00220DFC  7F 23 CB 78 */	mr r3, r25
 /* 80223EC0 00220E00  7F 84 E3 78 */	mr r4, r28
@@ -5978,7 +5978,7 @@ lbl_80223F18:
 /* 80223F28 00220E68  40 82 00 40 */	bne lbl_80223F68
 /* 80223F2C 00220E6C  7F 43 D3 78 */	mr r3, r26
 /* 80223F30 00220E70  56 E4 06 3E */	clrlwi r4, r23, 0x18
-/* 80223F34 00220E74  4B E1 00 49 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80223F34 00220E74  4B E1 00 49 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80223F38 00220E78  7E 75 BA 14 */	add r19, r21, r23
 /* 80223F3C 00220E7C  88 93 01 F3 */	lbz r4, 0x1f3(r19)
 /* 80223F40 00220E80  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -5998,7 +5998,7 @@ lbl_80223F68:
 /* 80223F74 00220EB4  7C 73 1B 78 */	mr r19, r3
 /* 80223F78 00220EB8  7F 43 D3 78 */	mr r3, r26
 /* 80223F7C 00220EBC  56 E4 06 3E */	clrlwi r4, r23, 0x18
-/* 80223F80 00220EC0  4B E0 FF FD */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80223F80 00220EC0  4B E0 FF FD */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80223F84 00220EC4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80223F88 00220EC8  7C 00 9A 14 */	add r0, r0, r19
 /* 80223F8C 00220ECC  7C 16 07 34 */	extsh r22, r0
@@ -6081,7 +6081,7 @@ lbl_8022409C:
 /* 8022409C 00220FDC  7F 43 D3 78 */	mr r3, r26
 /* 802240A0 00220FE0  56 E4 06 3E */	clrlwi r4, r23, 0x18
 /* 802240A4 00220FE4  56 C5 06 3E */	clrlwi r5, r22, 0x18
-/* 802240A8 00220FE8  4B E0 FE C5 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 802240A8 00220FE8  4B E0 FE C5 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 /* 802240AC 00220FEC  7F 23 CB 78 */	mr r3, r25
 /* 802240B0 00220FF0  7F 84 E3 78 */	mr r4, r28
 /* 802240B4 00220FF4  4B E1 00 45 */	bl dSv_player_item_max_c_NS_getBombNum
@@ -6120,7 +6120,7 @@ lbl_80224120:
 /* 8022412C 0022106C  7F 43 D3 78 */	mr r3, r26
 /* 80224130 00221070  56 E4 06 3E */	clrlwi r4, r23, 0x18
 /* 80224134 00221074  38 A0 00 00 */	li r5, 0
-/* 80224138 00221078  4B E0 FE 35 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 80224138 00221078  4B E0 FE 35 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 lbl_8022413C:
 /* 8022413C 0022107C  7F 03 C3 78 */	mr r3, r24
 /* 80224140 00221080  56 E4 06 3E */	clrlwi r4, r23, 0x18
@@ -6133,7 +6133,7 @@ lbl_8022413C:
 lbl_8022415C:
 /* 8022415C 0022109C  7F 43 D3 78 */	mr r3, r26
 /* 80224160 002210A0  56 E4 06 3E */	clrlwi r4, r23, 0x18
-/* 80224164 002210A4  4B E0 FE 19 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80224164 002210A4  4B E0 FE 19 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80224168 002210A8  3A 77 01 F3 */	addi r19, r23, 0x1f3
 /* 8022416C 002210AC  7C 95 98 AE */	lbzx r4, r21, r19
 /* 80224170 002210B0  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -6141,7 +6141,7 @@ lbl_8022415C:
 /* 80224178 002210B8  41 82 00 14 */	beq lbl_8022418C
 /* 8022417C 002210BC  7F 43 D3 78 */	mr r3, r26
 /* 80224180 002210C0  56 E4 06 3E */	clrlwi r4, r23, 0x18
-/* 80224184 002210C4  4B E0 FD F9 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80224184 002210C4  4B E0 FD F9 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80224188 002210C8  7C 75 99 AE */	stbx r3, r21, r19
 lbl_8022418C:
 /* 8022418C 002210CC  3A F7 00 01 */	addi r23, r23, 1
@@ -6224,7 +6224,7 @@ lbl_80224284:
 /* 802242A0 002211E0  40 82 00 90 */	bne lbl_80224330
 /* 802242A4 002211E4  7F 23 CB 78 */	mr r3, r25
 /* 802242A8 002211E8  57 E4 06 3E */	clrlwi r4, r31, 0x18
-/* 802242AC 002211EC  4B E0 FD 85 */	bl dSv_player_item_record_c_NS_getBottleNum
+/* 802242AC 002211EC  4B E0 FD 85 */	bl getBottleNum__24dSv_player_item_record_cCFUc
 /* 802242B0 002211F0  3B 1F 01 EF */	addi r24, r31, 0x1ef
 /* 802242B4 002211F4  7C 9E C0 AE */	lbzx r4, r30, r24
 /* 802242B8 002211F8  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -6253,7 +6253,7 @@ lbl_802242D4:
 /* 80224310 00221250  4B FF 68 75 */	bl dMeter2Draw_c_NS_setItemNum
 /* 80224314 00221254  7F 23 CB 78 */	mr r3, r25
 /* 80224318 00221258  57 E4 06 3E */	clrlwi r4, r31, 0x18
-/* 8022431C 0022125C  4B E0 FD 15 */	bl dSv_player_item_record_c_NS_getBottleNum
+/* 8022431C 0022125C  4B E0 FD 15 */	bl getBottleNum__24dSv_player_item_record_cCFUc
 /* 80224320 00221260  7C 7E C1 AE */	stbx r3, r30, r24
 lbl_80224324:
 /* 80224324 00221264  3A F7 00 01 */	addi r23, r23, 1

@@ -1212,13 +1212,13 @@ lbl_801B0A10:
 /* 801B0F00 001ADE40  3A A3 00 CC */	addi r21, r3, 0xcc
 /* 801B0F04 001ADE44  7E A3 AB 78 */	mr r3, r21
 /* 801B0F08 001ADE48  38 80 00 28 */	li r4, 0x28
-/* 801B0F0C 001ADE4C  4B E8 2F BD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B0F0C 001ADE4C  4B E8 2F BD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B0F10 001ADE50  2C 03 00 00 */	cmpwi r3, 0
 /* 801B0F14 001ADE54  40 82 00 48 */	bne lbl_801B0F5C
 /* 801B0F18 001ADE58  3A C0 00 00 */	li r22, 0
 /* 801B0F1C 001ADE5C  7E A3 AB 78 */	mr r3, r21
 /* 801B0F20 001ADE60  38 80 00 3F */	li r4, 0x3f
-/* 801B0F24 001ADE64  4B E8 2F A5 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B0F24 001ADE64  4B E8 2F A5 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B0F28 001ADE68  2C 03 00 00 */	cmpwi r3, 0
 /* 801B0F2C 001ADE6C  41 82 00 24 */	beq lbl_801B0F50
 /* 801B0F30 001ADE70  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -1243,7 +1243,7 @@ lbl_801B0F5C:
 /* 801B0F74 001ADEB4  41 82 00 EC */	beq lbl_801B1060
 /* 801B0F78 001ADEB8  7E A3 AB 78 */	mr r3, r21
 /* 801B0F7C 001ADEBC  38 80 00 28 */	li r4, 0x28
-/* 801B0F80 001ADEC0  4B E8 2F 49 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B0F80 001ADEC0  4B E8 2F 49 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B0F84 001ADEC4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B0F88 001ADEC8  41 82 00 58 */	beq lbl_801B0FE0
 /* 801B0F8C 001ADECC  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -1270,7 +1270,7 @@ lbl_801B0F5C:
 lbl_801B0FE0:
 /* 801B0FE0 001ADF20  7E A3 AB 78 */	mr r3, r21
 /* 801B0FE4 001ADF24  38 80 00 3F */	li r4, 0x3f
-/* 801B0FE8 001ADF28  4B E8 2E E1 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B0FE8 001ADF28  4B E8 2E E1 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B0FEC 001ADF2C  2C 03 00 00 */	cmpwi r3, 0
 /* 801B0FF0 001ADF30  41 82 00 70 */	beq lbl_801B1060
 /* 801B0FF4 001ADF34  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -1304,12 +1304,12 @@ lbl_801B1060:
 /* 801B1060 001ADFA0  3A 80 00 01 */	li r20, 1
 /* 801B1064 001ADFA4  7E A3 AB 78 */	mr r3, r21
 /* 801B1068 001ADFA8  38 80 00 29 */	li r4, 0x29
-/* 801B106C 001ADFAC  4B E8 2E 5D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B106C 001ADFAC  4B E8 2E 5D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1070 001ADFB0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B1074 001ADFB4  40 82 00 1C */	bne lbl_801B1090
 /* 801B1078 001ADFB8  7E A3 AB 78 */	mr r3, r21
 /* 801B107C 001ADFBC  38 80 00 49 */	li r4, 0x49
-/* 801B1080 001ADFC0  4B E8 2E 49 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B1080 001ADFC0  4B E8 2E 49 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1084 001ADFC4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B1088 001ADFC8  40 82 00 08 */	bne lbl_801B1090
 /* 801B108C 001ADFCC  3A 80 00 00 */	li r20, 0
@@ -1338,12 +1338,12 @@ lbl_801B10C4:
 /* 801B10DC 001AE01C  3A 80 00 01 */	li r20, 1
 /* 801B10E0 001AE020  7E A3 AB 78 */	mr r3, r21
 /* 801B10E4 001AE024  38 80 00 2B */	li r4, 0x2b
-/* 801B10E8 001AE028  4B E8 2D E1 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B10E8 001AE028  4B E8 2D E1 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B10EC 001AE02C  2C 03 00 00 */	cmpwi r3, 0
 /* 801B10F0 001AE030  40 82 00 1C */	bne lbl_801B110C
 /* 801B10F4 001AE034  7E A3 AB 78 */	mr r3, r21
 /* 801B10F8 001AE038  38 80 00 2A */	li r4, 0x2a
-/* 801B10FC 001AE03C  4B E8 2D CD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B10FC 001AE03C  4B E8 2D CD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1100 001AE040  2C 03 00 00 */	cmpwi r3, 0
 /* 801B1104 001AE044  40 82 00 08 */	bne lbl_801B110C
 /* 801B1108 001AE048  3A 80 00 00 */	li r20, 0
@@ -1357,7 +1357,7 @@ lbl_801B110C:
 /* 801B1124 001AE064  41 82 00 E0 */	beq lbl_801B1204
 /* 801B1128 001AE068  7E A3 AB 78 */	mr r3, r21
 /* 801B112C 001AE06C  38 80 00 2B */	li r4, 0x2b
-/* 801B1130 001AE070  4B E8 2D 99 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B1130 001AE070  4B E8 2D 99 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1134 001AE074  2C 03 00 00 */	cmpwi r3, 0
 /* 801B1138 001AE078  41 82 00 60 */	beq lbl_801B1198
 /* 801B113C 001AE07C  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -1386,7 +1386,7 @@ lbl_801B110C:
 lbl_801B1198:
 /* 801B1198 001AE0D8  7E A3 AB 78 */	mr r3, r21
 /* 801B119C 001AE0DC  38 80 00 2A */	li r4, 0x2a
-/* 801B11A0 001AE0E0  4B E8 2D 29 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B11A0 001AE0E0  4B E8 2D 29 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B11A4 001AE0E4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B11A8 001AE0E8  41 82 00 5C */	beq lbl_801B1204
 /* 801B11AC 001AE0EC  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -1414,7 +1414,7 @@ lbl_801B1198:
 lbl_801B1204:
 /* 801B1204 001AE144  7E A3 AB 78 */	mr r3, r21
 /* 801B1208 001AE148  38 80 00 2C */	li r4, 0x2c
-/* 801B120C 001AE14C  4B E8 2C BD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B120C 001AE14C  4B E8 2C BD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1210 001AE150  98 7F 02 46 */	stb r3, 0x246(r31)
 /* 801B1214 001AE154  38 80 00 00 */	li r4, 0
 /* 801B1218 001AE158  98 9F 02 4C */	stb r4, 0x24c(r31)
@@ -1434,15 +1434,15 @@ lbl_801B1204:
 lbl_801B1250:
 /* 801B1250 001AE190  7E A3 AB 78 */	mr r3, r21
 /* 801B1254 001AE194  38 80 00 2F */	li r4, 0x2f
-/* 801B1258 001AE198  4B E8 2C 71 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B1258 001AE198  4B E8 2C 71 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B125C 001AE19C  98 7F 02 41 */	stb r3, 0x241(r31)
 /* 801B1260 001AE1A0  7E A3 AB 78 */	mr r3, r21
 /* 801B1264 001AE1A4  38 80 00 31 */	li r4, 0x31
-/* 801B1268 001AE1A8  4B E8 2C 61 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B1268 001AE1A8  4B E8 2C 61 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B126C 001AE1AC  98 7F 02 47 */	stb r3, 0x247(r31)
 /* 801B1270 001AE1B0  7E A3 AB 78 */	mr r3, r21
 /* 801B1274 001AE1B4  38 80 00 30 */	li r4, 0x30
-/* 801B1278 001AE1B8  4B E8 2C 51 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B1278 001AE1B8  4B E8 2C 51 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B127C 001AE1BC  98 7F 02 4D */	stb r3, 0x24d(r31)
 lbl_801B1280:
 /* 801B1280 001AE1C0  38 00 00 00 */	li r0, 0
@@ -1541,7 +1541,7 @@ lbl_801B1390:
 /* 801B13C8 001AE308  B0 7F 01 9C */	sth r3, 0x19c(r31)
 /* 801B13CC 001AE30C  7E A3 AB 78 */	mr r3, r21
 /* 801B13D0 001AE310  38 80 00 28 */	li r4, 0x28
-/* 801B13D4 001AE314  4B E8 2A F5 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B13D4 001AE314  4B E8 2A F5 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B13D8 001AE318  2C 03 00 00 */	cmpwi r3, 0
 /* 801B13DC 001AE31C  41 82 00 10 */	beq lbl_801B13EC
 /* 801B13E0 001AE320  38 00 01 8D */	li r0, 0x18d
@@ -1553,7 +1553,7 @@ lbl_801B13EC:
 lbl_801B13F4:
 /* 801B13F4 001AE334  7E A3 AB 78 */	mr r3, r21
 /* 801B13F8 001AE338  38 80 00 49 */	li r4, 0x49
-/* 801B13FC 001AE33C  4B E8 2A CD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B13FC 001AE33C  4B E8 2A CD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B1400 001AE340  2C 03 00 00 */	cmpwi r3, 0
 /* 801B1404 001AE344  41 82 00 10 */	beq lbl_801B1414
 /* 801B1408 001AE348  38 00 01 AE */	li r0, 0x1ae
@@ -1605,7 +1605,7 @@ lbl_801B1498:
 /* 801B14A4 001AE3E4  B0 1F 01 9E */	sth r0, 0x19e(r31)
 /* 801B14A8 001AE3E8  7E A3 AB 78 */	mr r3, r21
 /* 801B14AC 001AE3EC  38 80 00 2B */	li r4, 0x2b
-/* 801B14B0 001AE3F0  4B E8 2A 19 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B14B0 001AE3F0  4B E8 2A 19 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B14B4 001AE3F4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B14B8 001AE3F8  41 82 00 10 */	beq lbl_801B14C8
 /* 801B14BC 001AE3FC  38 00 01 90 */	li r0, 0x190
@@ -3137,7 +3137,7 @@ lbl_801B2AB0:
 /* 801B2AB4 001AF9F4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801B2AB8 001AF9F8  38 63 00 CC */	addi r3, r3, 0xcc
 /* 801B2ABC 001AF9FC  38 80 00 28 */	li r4, 0x28
-/* 801B2AC0 001AFA00  4B E8 14 09 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B2AC0 001AFA00  4B E8 14 09 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B2AC4 001AFA04  2C 03 00 00 */	cmpwi r3, 0
 /* 801B2AC8 001AFA08  41 82 00 6C */	beq lbl_801B2B34
 /* 801B2ACC 001AFA0C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -3198,7 +3198,7 @@ lbl_801B2B9C:
 /* 801B2BA0 001AFAE0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801B2BA4 001AFAE4  38 63 00 CC */	addi r3, r3, 0xcc
 /* 801B2BA8 001AFAE8  38 80 00 49 */	li r4, 0x49
-/* 801B2BAC 001AFAEC  4B E8 13 1D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B2BAC 001AFAEC  4B E8 13 1D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B2BB0 001AFAF0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B2BB4 001AFAF4  41 82 00 6C */	beq lbl_801B2C20
 /* 801B2BB8 001AFAF8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -3308,7 +3308,7 @@ lbl_801B2D34:
 /* 801B2D3C 001AFC7C  3B E3 00 CC */	addi r31, r3, 0xcc
 /* 801B2D40 001AFC80  7F E3 FB 78 */	mr r3, r31
 /* 801B2D44 001AFC84  38 80 00 2B */	li r4, 0x2b
-/* 801B2D48 001AFC88  4B E8 11 81 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B2D48 001AFC88  4B E8 11 81 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B2D4C 001AFC8C  2C 03 00 00 */	cmpwi r3, 0
 /* 801B2D50 001AFC90  41 82 00 7C */	beq lbl_801B2DCC
 /* 801B2D54 001AFC94  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -3344,7 +3344,7 @@ lbl_801B2D34:
 lbl_801B2DCC:
 /* 801B2DCC 001AFD0C  7F E3 FB 78 */	mr r3, r31
 /* 801B2DD0 001AFD10  38 80 00 2A */	li r4, 0x2a
-/* 801B2DD4 001AFD14  4B E8 10 F5 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B2DD4 001AFD14  4B E8 10 F5 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B2DD8 001AFD18  2C 03 00 00 */	cmpwi r3, 0
 /* 801B2DDC 001AFD1C  41 82 00 F0 */	beq lbl_801B2ECC
 /* 801B2DE0 001AFD20  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -4214,7 +4214,7 @@ lbl_801B3A58:
 lbl_801B3A60:
 /* 801B3A60 001B09A0  38 65 00 CC */	addi r3, r5, 0xcc
 /* 801B3A64 001B09A4  38 80 00 49 */	li r4, 0x49
-/* 801B3A68 001B09A8  4B E8 04 61 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801B3A68 001B09A8  4B E8 04 61 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801B3A6C 001B09AC  2C 03 00 00 */	cmpwi r3, 0
 /* 801B3A70 001B09B0  41 82 00 08 */	beq lbl_801B3A78
 /* 801B3A74 001B09B4  3B C0 00 01 */	li r30, 1

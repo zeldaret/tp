@@ -5529,7 +5529,7 @@ lbl_801EE0E8:
 /* 801EE0F0 001EB030  38 63 00 EC */	addi r3, r3, 0xec
 /* 801EE0F4 001EB034  38 1F FF F1 */	addi r0, r31, -15
 /* 801EE0F8 001EB038  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 801EE0FC 001EB03C  4B E4 5E 81 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 801EE0FC 001EB03C  4B E4 5E 81 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 801EE100 001EB040  7C 64 1B 78 */	mr r4, r3
 /* 801EE104 001EB044  48 00 00 40 */	b lbl_801EE144
 lbl_801EE108:
@@ -5538,7 +5538,7 @@ lbl_801EE108:
 /* 801EE110 001EB050  38 63 00 EC */	addi r3, r3, 0xec
 /* 801EE114 001EB054  38 1F FF F5 */	addi r0, r31, -11
 /* 801EE118 001EB058  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 801EE11C 001EB05C  4B E4 5F 15 */	bl dSv_player_item_record_c_NS_getBottleNum
+/* 801EE11C 001EB05C  4B E4 5F 15 */	bl getBottleNum__24dSv_player_item_record_cCFUc
 /* 801EE120 001EB060  7C 64 1B 78 */	mr r4, r3
 /* 801EE124 001EB064  48 00 00 20 */	b lbl_801EE144
 lbl_801EE128:

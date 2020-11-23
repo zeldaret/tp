@@ -2379,7 +2379,7 @@ lbl_8021DEC4:
 /* 8021DEF8 0021AE38  3B E3 00 EC */	addi r31, r3, 0xec
 /* 8021DEFC 0021AE3C  7F E3 FB 78 */	mr r3, r31
 /* 8021DF00 0021AE40  88 9C 00 DC */	lbz r4, 0xdc(r28)
-/* 8021DF04 0021AE44  4B E1 60 79 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 8021DF04 0021AE44  4B E1 60 79 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 8021DF08 0021AE48  98 7C 00 CC */	stb r3, 0xcc(r28)
 /* 8021DF0C 0021AE4C  88 1F 00 00 */	lbz r0, 0(r31)
 /* 8021DF10 0021AE50  98 1C 00 CD */	stb r0, 0xcd(r28)
@@ -2435,7 +2435,7 @@ lbl_8021DF5C:
 /* 8021DFD4 0021AF14  98 7B 5E 7E */	stb r3, 0x5e7e(r27)
 /* 8021DFD8 0021AF18  7F E3 FB 78 */	mr r3, r31
 /* 8021DFDC 0021AF1C  88 BC 00 D8 */	lbz r5, 0xd8(r28)
-/* 8021DFE0 0021AF20  4B E1 5F 8D */	bl dSv_player_item_record_c_NS_setBombNum
+/* 8021DFE0 0021AF20  4B E1 5F 8D */	bl setBombNum__24dSv_player_item_record_cFUcUc
 /* 8021DFE4 0021AF24  88 1C 00 D9 */	lbz r0, 0xd9(r28)
 /* 8021DFE8 0021AF28  98 1F 00 00 */	stb r0, 0(r31)
 lbl_8021DFEC:
@@ -2483,7 +2483,7 @@ lbl_8021E084:
 /* 8021E08C 0021AFCC  7F E3 FB 78 */	mr r3, r31
 /* 8021E090 0021AFD0  88 9C 00 DC */	lbz r4, 0xdc(r28)
 /* 8021E094 0021AFD4  38 A0 00 1E */	li r5, 0x1e
-/* 8021E098 0021AFD8  4B E1 5E D5 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 8021E098 0021AFD8  4B E1 5E D5 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 /* 8021E09C 0021AFDC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8021E0A0 0021AFE0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8021E0A4 0021AFE4  88 03 00 F8 */	lbz r0, 0xf8(r3)
@@ -2530,7 +2530,7 @@ lbl_8021E100:
 /* 8021E134 0021B074  3B 83 00 EC */	addi r28, r3, 0xec
 /* 8021E138 0021B078  7F 83 E3 78 */	mr r3, r28
 /* 8021E13C 0021B07C  88 9E 00 DC */	lbz r4, 0xdc(r30)
-/* 8021E140 0021B080  4B E1 5E 3D */	bl dSv_player_item_record_c_NS_getBombNum
+/* 8021E140 0021B080  4B E1 5E 3D */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 8021E144 0021B084  98 7E 00 D8 */	stb r3, 0xd8(r30)
 /* 8021E148 0021B088  88 1C 00 00 */	lbz r0, 0(r28)
 /* 8021E14C 0021B08C  98 1E 00 D9 */	stb r0, 0xd9(r30)
@@ -2591,7 +2591,7 @@ lbl_8021E190:
 /* 8021E220 0021B160  3B 83 00 EC */	addi r28, r3, 0xec
 /* 8021E224 0021B164  7F 83 E3 78 */	mr r3, r28
 /* 8021E228 0021B168  88 BE 00 CC */	lbz r5, 0xcc(r30)
-/* 8021E22C 0021B16C  4B E1 5D 41 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 8021E22C 0021B16C  4B E1 5D 41 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 /* 8021E230 0021B170  88 1E 00 CD */	lbz r0, 0xcd(r30)
 /* 8021E234 0021B174  98 1C 00 00 */	stb r0, 0(r28)
 /* 8021E238 0021B178  57 E0 06 3F */	clrlwi. r0, r31, 0x18
@@ -2795,7 +2795,7 @@ lbl_8021E4E0:
 /* 8021E4F8 0021B438  28 00 00 FF */	cmplwi r0, 0xff
 /* 8021E4FC 0021B43C  41 82 00 0C */	beq lbl_8021E508
 /* 8021E500 0021B440  38 63 00 CC */	addi r3, r3, 0xcc
-/* 8021E504 0021B444  4B E1 59 91 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 8021E504 0021B444  4B E1 59 91 */	bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E508:
 /* 8021E508 0021B448  7F E3 FB 78 */	mr r3, r31
 /* 8021E50C 0021B44C  4B E1 09 A5 */	bl dComIfGs_setSelectEquipClothes
@@ -2843,7 +2843,7 @@ lbl_8021E584:
 /* 8021E59C 0021B4DC  28 00 00 FF */	cmplwi r0, 0xff
 /* 8021E5A0 0021B4E0  41 82 00 0C */	beq lbl_8021E5AC
 /* 8021E5A4 0021B4E4  38 63 00 CC */	addi r3, r3, 0xcc
-/* 8021E5A8 0021B4E8  4B E1 58 ED */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 8021E5A8 0021B4E8  4B E1 58 ED */	bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E5AC:
 /* 8021E5AC 0021B4EC  7F E3 FB 78 */	mr r3, r31
 /* 8021E5B0 0021B4F0  4B E1 09 11 */	bl dComIfGs_setSelectEquipSword
@@ -2884,7 +2884,7 @@ lbl_8021E610:
 /* 8021E628 0021B568  28 00 00 FF */	cmplwi r0, 0xff
 /* 8021E62C 0021B56C  41 82 00 0C */	beq lbl_8021E638
 /* 8021E630 0021B570  38 63 00 CC */	addi r3, r3, 0xcc
-/* 8021E634 0021B574  4B E1 58 61 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 8021E634 0021B574  4B E1 58 61 */	bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E638:
 /* 8021E638 0021B578  7F E3 FB 78 */	mr r3, r31
 /* 8021E63C 0021B57C  4B E1 09 59 */	bl dComIfGs_setSelectEquipShield

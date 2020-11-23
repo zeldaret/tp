@@ -46,7 +46,7 @@ lbl_80033BAC:
 /* 80033BB4 00030AF4  38 63 00 EC */	addi r3, r3, 0xec
 /* 80033BB8 00030AF8  57 E4 06 3E */	clrlwi r4, r31, 0x18
 /* 80033BBC 00030AFC  7F C5 F3 78 */	mr r5, r30
-/* 80033BC0 00030B00  48 00 03 AD */	bl dSv_player_item_record_c_NS_setBombNum
+/* 80033BC0 00030B00  48 00 03 AD */	bl setBombNum__24dSv_player_item_record_cFUcUc
 /* 80033BC4 00030B04  48 00 00 10 */	b lbl_80033BD4
 lbl_80033BC8:
 /* 80033BC8 00030B08  3B FF 00 01 */	addi r31, r31, 1

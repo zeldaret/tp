@@ -681,7 +681,7 @@ lbl_8019B6E4:
 /* 8019B6E8 00198628  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8019B6EC 0019862C  38 63 00 CC */	addi r3, r3, 0xcc
 /* 8019B6F0 00198630  38 80 00 48 */	li r4, 0x48
-/* 8019B6F4 00198634  4B E9 87 D5 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 8019B6F4 00198634  4B E9 87 D5 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 8019B6F8 00198638  2C 03 00 00 */	cmpwi r3, 0
 /* 8019B6FC 0019863C  41 82 00 54 */	beq lbl_8019B750
 /* 8019B700 00198640  3C 60 80 40 */	lis r3, lbl_804061C0@ha

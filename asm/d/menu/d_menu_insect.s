@@ -1945,7 +1945,7 @@ lbl_801D9D80:
 /* 801D9D80 001D6CC0  88 9D 00 00 */	lbz r4, 0(r29)
 /* 801D9D84 001D6CC4  7F E3 FB 78 */	mr r3, r31
 /* 801D9D88 001D6CC8  3B BD 00 01 */	addi r29, r29, 1
-/* 801D9D8C 001D6CCC  4B E5 A1 3D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801D9D8C 001D6CCC  4B E5 A1 3D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801D9D90 001D6CD0  2C 03 00 00 */	cmpwi r3, 0
 /* 801D9D94 001D6CD4  41 82 00 10 */	beq lbl_801D9DA4
 /* 801D9D98 001D6CD8  57 C3 06 3E */	clrlwi r3, r30, 0x18
@@ -1982,7 +1982,7 @@ dMenu_Insect_c_NS_isGetInsect:
 /* 801D9DF8 001D6D38  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801D9DFC 001D6D3C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801D9E00 001D6D40  38 63 00 CC */	addi r3, r3, 0xcc
-/* 801D9E04 001D6D44  4B E5 A0 C5 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801D9E04 001D6D44  4B E5 A0 C5 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801D9E08 001D6D48  30 03 FF FF */	addic r0, r3, -1
 /* 801D9E0C 001D6D4C  7C 60 19 10 */	subfe r3, r0, r3
 /* 801D9E10 001D6D50  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2030,7 +2030,7 @@ dMenu_Insect_c_NS_isCatchInsect:
 /* 801D9EA0 001D6DE0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801D9EA4 001D6DE4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801D9EA8 001D6DE8  38 63 00 CC */	addi r3, r3, 0xcc
-/* 801D9EAC 001D6DEC  4B E5 A0 1D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801D9EAC 001D6DEC  4B E5 A0 1D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801D9EB0 001D6DF0  30 03 FF FF */	addic r0, r3, -1
 /* 801D9EB4 001D6DF4  7C 00 19 10 */	subfe r0, r0, r3
 /* 801D9EB8 001D6DF8  54 03 06 3E */	clrlwi r3, r0, 0x18

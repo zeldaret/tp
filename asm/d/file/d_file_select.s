@@ -2982,7 +2982,7 @@ dFile_select_c_NS_makeRecInfo:
 /* 80186100 00183040  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 80186104 00183044  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186108 00183048  38 80 00 28 */	li r4, 0x28
-/* 8018610C 0018304C  4B EA DD BD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 8018610C 0018304C  4B EA DD BD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186110 00183050  2C 03 00 00 */	cmpwi r3, 0
 /* 80186114 00183054  41 82 00 18 */	beq lbl_8018612C
 /* 80186118 00183058  38 00 00 00 */	li r0, 0
@@ -2993,7 +2993,7 @@ dFile_select_c_NS_makeRecInfo:
 lbl_8018612C:
 /* 8018612C 0018306C  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186130 00183070  38 80 00 3F */	li r4, 0x3f
-/* 80186134 00183074  4B EA DD 95 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 80186134 00183074  4B EA DD 95 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186138 00183078  2C 03 00 00 */	cmpwi r3, 0
 /* 8018613C 0018307C  41 82 00 28 */	beq lbl_80186164
 /* 80186140 00183080  38 7F 07 F0 */	addi r3, r31, 0x7f0
@@ -3017,12 +3017,12 @@ lbl_80186164:
 /* 80186184 001830C4  7C 7C 1B 78 */	mr r28, r3
 /* 80186188 001830C8  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 8018618C 001830CC  38 80 00 29 */	li r4, 0x29
-/* 80186190 001830D0  4B EA DD 39 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 80186190 001830D0  4B EA DD 39 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186194 001830D4  2C 03 00 00 */	cmpwi r3, 0
 /* 80186198 001830D8  40 82 00 18 */	bne lbl_801861B0
 /* 8018619C 001830DC  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 801861A0 001830E0  38 80 00 49 */	li r4, 0x49
-/* 801861A4 001830E4  4B EA DD 25 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801861A4 001830E4  4B EA DD 25 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801861A8 001830E8  2C 03 00 00 */	cmpwi r3, 0
 /* 801861AC 001830EC  41 82 00 10 */	beq lbl_801861BC
 lbl_801861B0:
@@ -3058,7 +3058,7 @@ lbl_801861C4:
 /* 8018621C 0018315C  98 03 00 B0 */	stb r0, 0xb0(r3)
 /* 80186220 00183160  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186224 00183164  38 80 00 2B */	li r4, 0x2b
-/* 80186228 00183168  4B EA DC A1 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 80186228 00183168  4B EA DC A1 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 8018622C 0018316C  2C 03 00 00 */	cmpwi r3, 0
 /* 80186230 00183170  41 82 00 18 */	beq lbl_80186248
 /* 80186234 00183174  38 00 00 01 */	li r0, 1
@@ -3069,7 +3069,7 @@ lbl_801861C4:
 lbl_80186248:
 /* 80186248 00183188  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 8018624C 0018318C  38 80 00 2A */	li r4, 0x2a
-/* 80186250 00183190  4B EA DC 79 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 80186250 00183190  4B EA DC 79 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186254 00183194  2C 03 00 00 */	cmpwi r3, 0
 /* 80186258 00183198  41 82 00 14 */	beq lbl_8018626C
 /* 8018625C 0018319C  38 00 00 00 */	li r0, 0
@@ -3089,7 +3089,7 @@ lbl_8018626C:
 /* 80186290 001831D0  7C 7D 1B 78 */	mr r29, r3
 /* 80186294 001831D4  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186298 001831D8  38 80 00 2C */	li r4, 0x2c
-/* 8018629C 001831DC  4B EA DC 2D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 8018629C 001831DC  4B EA DC 2D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801862A0 001831E0  2C 03 00 00 */	cmpwi r3, 0
 /* 801862A4 001831E4  41 82 00 10 */	beq lbl_801862B4
 /* 801862A8 001831E8  38 00 00 01 */	li r0, 1
@@ -3111,7 +3111,7 @@ lbl_801862BC:
 /* 801862E0 00183220  7C 7D 1B 78 */	mr r29, r3
 /* 801862E4 00183224  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 801862E8 00183228  38 80 00 2F */	li r4, 0x2f
-/* 801862EC 0018322C  4B EA DB DD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801862EC 0018322C  4B EA DB DD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801862F0 00183230  2C 03 00 00 */	cmpwi r3, 0
 /* 801862F4 00183234  41 82 00 10 */	beq lbl_80186304
 /* 801862F8 00183238  38 00 00 01 */	li r0, 1
@@ -3133,7 +3133,7 @@ lbl_8018630C:
 /* 80186330 00183270  7C 7D 1B 78 */	mr r29, r3
 /* 80186334 00183274  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186338 00183278  38 80 00 31 */	li r4, 0x31
-/* 8018633C 0018327C  4B EA DB 8D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 8018633C 0018327C  4B EA DB 8D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186340 00183280  2C 03 00 00 */	cmpwi r3, 0
 /* 80186344 00183284  41 82 00 10 */	beq lbl_80186354
 /* 80186348 00183288  38 00 00 01 */	li r0, 1
@@ -3155,7 +3155,7 @@ lbl_8018635C:
 /* 80186380 001832C0  7C 7D 1B 78 */	mr r29, r3
 /* 80186384 001832C4  38 7F 00 CC */	addi r3, r31, 0xcc
 /* 80186388 001832C8  38 80 00 30 */	li r4, 0x30
-/* 8018638C 001832CC  4B EA DB 3D */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 8018638C 001832CC  4B EA DB 3D */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80186390 001832D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80186394 001832D4  41 82 00 10 */	beq lbl_801863A4
 /* 80186398 001832D8  38 00 00 01 */	li r0, 1

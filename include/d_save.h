@@ -255,10 +255,10 @@ class dSv_player_get_item_c {
     void init(void);
     void onFirstBit(u8);
     void offFirstBit(u8);
-    u8 isFirstBit(u8) const;
+    bool isFirstBit(u8) const;
 
    private:
-    u32 pause_menu_items[4];
+    u32 pause_menu_bit_fields[4];
 };
 
 class dSv_player_item_record_c {
@@ -271,11 +271,11 @@ class dSv_player_item_record_c {
     u8 getBottleNum(u8) const;
 
    private:
-    u8 bow_ammo;
-    u8 bomb_bags_ammo[3];
-    u8 unk4_ammo[4];
-    u8 slingshot_ammo;
-    u8 unk5_ammo[3];
+    u8 bow;
+    u8 bomb_bags[3];
+    u8 bottles[4];
+    u8 slingshot;
+    u8 unk5[3];
 };
 
 class dSv_player_item_max_c {

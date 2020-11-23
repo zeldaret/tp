@@ -818,7 +818,7 @@ lbl_80259F68:
 /* 80259FAC 00256EEC  40 82 00 28 */	bne lbl_80259FD4
 /* 80259FB0 00256EF0  38 63 00 CC */	addi r3, r3, 0xcc
 /* 80259FB4 00256EF4  38 80 00 84 */	li r4, 0x84
-/* 80259FB8 00256EF8  4B DD 9E A9 */	bl dSv_player_get_item_c_NS_onFirstBit
+/* 80259FB8 00256EF8  4B DD 9E A9 */	bl onFirstBit__21dSv_player_get_item_cFUc
 /* 80259FBC 00256EFC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80259FC0 00256F00  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80259FC4 00256F04  38 63 00 9C */	addi r3, r3, 0x9c

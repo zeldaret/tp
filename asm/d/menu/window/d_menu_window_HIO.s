@@ -113,7 +113,7 @@ lbl_801F9C44:
 lbl_801F9C88:
 /* 801F9C88 001F6BC8  7F 83 E3 78 */	mr r3, r28
 /* 801F9C8C 001F6BCC  88 9D 00 00 */	lbz r4, 0(r29)
-/* 801F9C90 001F6BD0  4B E3 A2 39 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801F9C90 001F6BD0  4B E3 A2 39 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801F9C94 001F6BD4  30 03 FF FF */	addic r0, r3, -1
 /* 801F9C98 001F6BD8  7C 00 19 10 */	subfe r0, r0, r3
 /* 801F9C9C 001F6BDC  7C 7F DA 14 */	add r3, r31, r27
@@ -129,7 +129,7 @@ lbl_801F9C88:
 lbl_801F9CC4:
 /* 801F9CC4 001F6C04  7F 83 E3 78 */	mr r3, r28
 /* 801F9CC8 001F6C08  88 9D 00 00 */	lbz r4, 0(r29)
-/* 801F9CCC 001F6C0C  4B E3 A1 FD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801F9CCC 001F6C0C  4B E3 A1 FD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801F9CD0 001F6C10  30 03 FF FF */	addic r0, r3, -1
 /* 801F9CD4 001F6C14  7C 00 19 10 */	subfe r0, r0, r3
 /* 801F9CD8 001F6C18  7F 7F D2 14 */	add r27, r31, r26
@@ -137,7 +137,7 @@ lbl_801F9CC4:
 /* 801F9CE0 001F6C20  98 1B 00 96 */	stb r0, 0x96(r27)
 /* 801F9CE4 001F6C24  7F 83 E3 78 */	mr r3, r28
 /* 801F9CE8 001F6C28  88 9E 00 00 */	lbz r4, 0(r30)
-/* 801F9CEC 001F6C2C  4B E3 A1 DD */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801F9CEC 001F6C2C  4B E3 A1 DD */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801F9CF0 001F6C30  30 03 FF FF */	addic r0, r3, -1
 /* 801F9CF4 001F6C34  7C 00 19 10 */	subfe r0, r0, r3
 /* 801F9CF8 001F6C38  98 1B 00 A3 */	stb r0, 0xa3(r27)

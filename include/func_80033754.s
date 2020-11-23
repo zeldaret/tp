@@ -15,7 +15,7 @@ lbl_80033788:
 /* 80033788 000306C8  7F A3 EB 78 */	mr r3, r29
 /* 8003378C 000306CC  38 1B 00 C0 */	addi r0, r27, 0xc0
 /* 80033790 000306D0  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80033794 000306D4  48 00 07 35 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 80033794 000306D4  48 00 07 35 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 80033798 000306D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8003379C 000306DC  41 82 00 24 */	beq lbl_800337C0
 /* 800337A0 000306E0  7F 83 E3 78 */	mr r3, r28

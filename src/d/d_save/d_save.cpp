@@ -500,7 +500,7 @@ asm void dSv_player_item_c::setWarashibeItem(u8) {
 
 void dSv_player_item_c::setRodTypeLevelUp(void) {
     int current_fishing_rod_item_id = this->items[0x14];
-    
+
     switch (current_fishing_rod_item_id) {
         case ROD_BEE_LARVA: {
             this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA;
@@ -519,4 +519,91 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     for (int i = 0; i < 4; i++) {
         dComIfGp_setSelectItem(i);
     }
+}
+
+// this is a few instructions off
+// void dSv_player_item_c::setBaitItem(u8 param_1) {
+//     switch (param_1) {
+//         case BEE_LARVA: {
+//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA : this->items[0x14] = ROD_BEE_LARVA;
+//             break;
+//         }
+//         case WORM: {
+//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_WORM : this->items[0x14] = ROD_WORM;
+//             break;
+//         }
+//         case NO_ITEM: {
+//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING : this->items[0x14] = FISHING_ROD;
+//             break;
+//         }
+//     }
+
+//     for (int i = 0; i < 4; i++) {
+//         dComIfGp_setSelectItem(i);
+//     }
+// }
+
+asm void dSv_player_item_c::setBaitItem(u8 param_1) {
+    nofralloc
+    #include "func_80033D40.s"
+}
+
+void dSv_player_get_item_c::init(void) {
+    for (int i = 0; i < 8; i++) {
+        pause_menu_bit_fields[i] = 0;
+    }
+}
+
+asm void dSv_player_get_item_c::onFirstBit(u8) {
+    nofralloc
+    #include "func_80033E60.s"
+}
+
+asm void dSv_player_get_item_c::offFirstBit(u8) {
+    nofralloc
+    #include "func_80033E94.s"
+}
+
+asm bool dSv_player_get_item_c::isFirstBit(u8) const {
+    nofralloc
+    #include "func_80033EC8.s"
+}
+
+void dSv_player_item_record_c::init(void) {
+    this->bow = 0;
+    
+    for (int i = 0; i < 3; i++) {
+        this->bomb_bags[i] = 0;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        this->bottles[i] = 0;
+    }
+
+    this->slingshot = 0;
+
+    for (int i = 0; i < 3; i++) {
+        this->unk5[i] = 0;
+    }
+}
+
+void dSv_player_item_record_c::setBombNum(u8 bomb_bag_index, u8 bag_id) {
+    this->bomb_bags[bomb_bag_index] = bag_id;
+}
+
+u8 dSv_player_item_record_c::getBombNum(u8 bomb_bag_index) const {
+    return this->bomb_bags[bomb_bag_index];
+}
+
+void dSv_player_item_record_c::setBottleNum(u8 bottle_index, u8 bottle_num) {
+    this->bottles[bottle_index] = bottle_num;
+}
+
+asm u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
+    nofralloc
+    #include "func_80033F9C.s"
+}
+
+u8 dSv_player_item_record_c::getBottleNum(u8 bottle_index) const {
+    return bottles[bottle_index];
 }

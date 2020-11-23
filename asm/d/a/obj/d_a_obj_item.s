@@ -1532,7 +1532,7 @@ lbl_8015C340:
 /* 8015C374 001592B4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8015C378 001592B8  38 63 00 CC */	addi r3, r3, 0xcc
 /* 8015C37C 001592BC  88 9E 09 2A */	lbz r4, 0x92a(r30)
-/* 8015C380 001592C0  4B ED 7B 15 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 8015C380 001592C0  4B ED 7B 15 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 8015C384 001592C4  48 00 00 20 */	b lbl_8015C3A4
 lbl_8015C388:
 /* 8015C388 001592C8  7F C3 F3 78 */	mr r3, r30
@@ -2410,7 +2410,7 @@ lbl_8015CFD4:
 /* 8015CFF0 00159F30  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8015CFF4 00159F34  38 63 00 CC */	addi r3, r3, 0xcc
 /* 8015CFF8 00159F38  88 9F 09 2A */	lbz r4, 0x92a(r31)
-/* 8015CFFC 00159F3C  4B ED 6E 99 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 8015CFFC 00159F3C  4B ED 6E 99 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 8015D000 00159F40  48 00 00 3C */	b lbl_8015D03C
 lbl_8015D004:
 /* 8015D004 00159F44  88 7F 09 2A */	lbz r3, 0x92a(r31)

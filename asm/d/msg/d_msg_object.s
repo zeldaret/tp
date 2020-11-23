@@ -5531,7 +5531,7 @@ lbl_80237804:
 /* 8023782C 0023476C  48 00 00 10 */	b lbl_8023783C
 lbl_80237830:
 /* 80237830 00234770  7F 03 C3 78 */	mr r3, r24
-/* 80237834 00234774  4B DF C7 49 */	bl dSv_player_item_record_c_NS_getBombNum
+/* 80237834 00234774  4B DF C7 49 */	bl getBombNum__24dSv_player_item_record_cCFUc
 /* 80237838 00234778  98 77 01 8A */	stb r3, 0x18a(r23)
 lbl_8023783C:
 /* 8023783C 0023477C  3B DE 00 01 */	addi r30, r30, 1
@@ -5994,7 +5994,7 @@ dMsgObject_c_NS_setSmellTypeLocal:
 /* 80237E1C 00234D5C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80237E20 00234D60  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80237E24 00234D64  38 63 00 CC */	addi r3, r3, 0xcc
-/* 80237E28 00234D68  4B DF C0 39 */	bl dSv_player_get_item_c_NS_onFirstBit
+/* 80237E28 00234D68  4B DF C0 39 */	bl onFirstBit__21dSv_player_get_item_cFUc
 /* 80237E2C 00234D6C  88 9F 01 A0 */	lbz r4, 0x1a0(r31)
 /* 80237E30 00234D70  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80237E34 00234D74  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l

@@ -631,25 +631,25 @@ lbl_80258FC0:
 /* 8025908C 00255FCC  3B E3 00 CC */	addi r31, r3, 0xcc
 /* 80259090 00255FD0  7F E3 FB 78 */	mr r3, r31
 /* 80259094 00255FD4  38 80 00 01 */	li r4, 1
-/* 80259098 00255FD8  4B DD AD FD */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 80259098 00255FD8  4B DD AD FD */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 8025909C 00255FDC  7F E3 FB 78 */	mr r3, r31
 /* 802590A0 00255FE0  38 80 00 02 */	li r4, 2
-/* 802590A4 00255FE4  4B DD AD F1 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590A4 00255FE4  4B DD AD F1 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 802590A8 00255FE8  7F E3 FB 78 */	mr r3, r31
 /* 802590AC 00255FEC  38 80 00 03 */	li r4, 3
-/* 802590B0 00255FF0  4B DD AD E5 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590B0 00255FF0  4B DD AD E5 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 802590B4 00255FF4  7F E3 FB 78 */	mr r3, r31
 /* 802590B8 00255FF8  38 80 00 04 */	li r4, 4
-/* 802590BC 00255FFC  4B DD AD D9 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590BC 00255FFC  4B DD AD D9 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 802590C0 00256000  7F E3 FB 78 */	mr r3, r31
 /* 802590C4 00256004  38 80 00 05 */	li r4, 5
-/* 802590C8 00256008  4B DD AD CD */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590C8 00256008  4B DD AD CD */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 802590CC 0025600C  7F E3 FB 78 */	mr r3, r31
 /* 802590D0 00256010  38 80 00 06 */	li r4, 6
-/* 802590D4 00256014  4B DD AD C1 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590D4 00256014  4B DD AD C1 */	bl offFirstBit__21dSv_player_get_item_cFUc
 /* 802590D8 00256018  7F E3 FB 78 */	mr r3, r31
 /* 802590DC 0025601C  38 80 00 07 */	li r4, 7
-/* 802590E0 00256020  4B DD AD B5 */	bl dSv_player_get_item_c_NS_offFirstBit
+/* 802590E0 00256020  4B DD AD B5 */	bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_802590E4:
 /* 802590E4 00256024  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802590E8 00256028  80 01 00 14 */	lwz r0, 0x14(r1)

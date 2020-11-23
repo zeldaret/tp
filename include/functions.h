@@ -5,6 +5,7 @@ extern "C" {
     void dComIfGs_setMixItemIndex(void);
     void dComIfGs_setSelectItemIndex(void);
     void dComIfGs_getMixItemIndex(void);
+    void dComIfGs_getBottleMax(void);
     char* strcpy(char*,const char*);
     void func_80362224(void);
     void func_803621D8(void);
@@ -24,8 +25,8 @@ extern "C" {
     void setBottleItemIn__17dSv_player_item_cFUcUc(void);
     void getItem__17dSv_player_item_cCFib(void);
     void setEquipBottleItemIn__17dSv_player_item_cFUcUc(u8,u8);
-    void dSv_player_get_item_c_NS_isFirstBit(void);
-    void dSv_player_item_record_c_NS_setBombNum(void);
+    void isFirstBit__21dSv_player_get_item_cCFUc(void);
+    void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void dSv_player_item_max_c_NS_getBombNum(void);
     void setItem__17dSv_player_item_cFiUc(void);
 }

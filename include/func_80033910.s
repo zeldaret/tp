@@ -43,7 +43,7 @@ lbl_800339A8:
 /* 800339B0 000308F0  38 63 00 EC */	addi r3, r3, 0xec
 /* 800339B4 000308F4  57 E4 06 3E */	clrlwi r4, r31, 0x18
 /* 800339B8 000308F8  7F 85 E3 78 */	mr r5, r28
-/* 800339BC 000308FC  48 00 05 B1 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 800339BC 000308FC  48 00 05 B1 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 lbl_800339C0:
 /* 800339C0 00030900  3B A0 00 00 */	li r29, 0
 /* 800339C4 00030904  3C 60 80 40 */	lis r3, lbl_804061C0@ha

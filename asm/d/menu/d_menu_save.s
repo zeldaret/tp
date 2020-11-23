@@ -4026,7 +4026,7 @@ lbl_801F3118:
 /* 801F311C 001F005C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801F3120 001F0060  38 63 00 CC */	addi r3, r3, 0xcc
 /* 801F3124 001F0064  38 80 00 48 */	li r4, 0x48
-/* 801F3128 001F0068  4B E4 0D A1 */	bl dSv_player_get_item_c_NS_isFirstBit
+/* 801F3128 001F0068  4B E4 0D A1 */	bl isFirstBit__21dSv_player_get_item_cCFUc
 /* 801F312C 001F006C  2C 03 00 00 */	cmpwi r3, 0
 /* 801F3130 001F0070  41 82 00 54 */	beq lbl_801F3184
 /* 801F3134 001F0074  3C 60 80 40 */	lis r3, lbl_804061C0@ha

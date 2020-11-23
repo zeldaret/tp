@@ -32,7 +32,7 @@ lbl_80033854:
 /* 800338A0 000307E0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800338A4 000307E4  38 63 00 EC */	addi r3, r3, 0xec
 /* 800338A8 000307E8  57 E4 06 3E */	clrlwi r4, r31, 0x18
-/* 800338AC 000307EC  48 00 06 C1 */	bl dSv_player_item_record_c_NS_setBombNum
+/* 800338AC 000307EC  48 00 06 C1 */	bl setBombNum__24dSv_player_item_record_cFUcUc
 lbl_800338B0:
 /* 800338B0 000307F0  3B A0 00 00 */	li r29, 0
 /* 800338B4 000307F4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
