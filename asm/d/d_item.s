@@ -386,7 +386,7 @@ lbl_80097F18:
 /* 80098464 000953A4  38 63 01 00 */	addi r3, r3, 0x100
 /* 80098468 000953A8  38 80 00 01 */	li r4, 1
 /* 8009846C 000953AC  38 A0 00 00 */	li r5, 0
-/* 80098470 000953B0  4B F9 BD 79 */	bl dSv_player_collect_c_NS_setCollect
+/* 80098470 000953B0  4B F9 BD 79 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 80098474 000953B4  38 60 00 28 */	li r3, 0x28
 /* 80098478 000953B8  4B F9 6A 49 */	bl dComIfGs_setSelectEquipSword
 /* 8009847C 000953BC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -401,7 +401,7 @@ lbl_80097F18:
 /* 800984A0 000953E0  38 63 01 00 */	addi r3, r3, 0x100
 /* 800984A4 000953E4  38 80 00 01 */	li r4, 1
 /* 800984A8 000953E8  38 A0 00 01 */	li r5, 1
-/* 800984AC 000953EC  4B F9 BD 3D */	bl dSv_player_collect_c_NS_setCollect
+/* 800984AC 000953EC  4B F9 BD 3D */	bl setCollect__20dSv_player_collect_cFiUc
 /* 800984B0 000953F0  38 60 00 29 */	li r3, 0x29
 /* 800984B4 000953F4  4B F9 6A 0D */	bl dComIfGs_setSelectEquipSword
 /* 800984B8 000953F8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -416,7 +416,7 @@ lbl_80097F18:
 /* 800984DC 0009541C  38 63 01 00 */	addi r3, r3, 0x100
 /* 800984E0 00095420  38 80 00 02 */	li r4, 2
 /* 800984E4 00095424  38 A0 00 00 */	li r5, 0
-/* 800984E8 00095428  4B F9 BD 01 */	bl dSv_player_collect_c_NS_setCollect
+/* 800984E8 00095428  4B F9 BD 01 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 800984EC 0009542C  38 60 00 2A */	li r3, 0x2a
 /* 800984F0 00095430  4B F9 6A A5 */	bl dComIfGs_setSelectEquipShield
 /* 800984F4 00095434  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -455,7 +455,7 @@ lbl_80097F18:
 /* 80098578 000954B8  38 63 01 00 */	addi r3, r3, 0x100
 /* 8009857C 000954BC  38 80 00 00 */	li r4, 0
 /* 80098580 000954C0  38 A0 00 00 */	li r5, 0
-/* 80098584 000954C4  4B F9 BC 65 */	bl dSv_player_collect_c_NS_setCollect
+/* 80098584 000954C4  4B F9 BC 65 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 80098588 000954C8  38 60 00 2F */	li r3, 0x2f
 /* 8009858C 000954CC  4B F9 69 25 */	bl dComIfGs_setSelectEquipClothes
 /* 80098590 000954D0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -545,7 +545,7 @@ lbl_80098680:
 /* 800986D8 00095618  38 63 01 00 */	addi r3, r3, 0x100
 /* 800986DC 0009561C  38 80 00 01 */	li r4, 1
 /* 800986E0 00095620  38 A0 00 02 */	li r5, 2
-/* 800986E4 00095624  4B F9 BB 05 */	bl dSv_player_collect_c_NS_setCollect
+/* 800986E4 00095624  4B F9 BB 05 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 800986E8 00095628  38 60 00 3F */	li r3, 0x3f
 /* 800986EC 0009562C  4B F9 67 D5 */	bl dComIfGs_setSelectEquipSword
 /* 800986F0 00095630  88 AD 87 E4 */	lbz r5, lbl_80450D64-_SDA_BASE_(r13)
@@ -698,7 +698,7 @@ lbl_80098680:
 /* 8009893C 0009587C  38 63 01 00 */	addi r3, r3, 0x100
 /* 80098940 00095880  38 80 00 01 */	li r4, 1
 /* 80098944 00095884  38 A0 00 03 */	li r5, 3
-/* 80098948 00095888  4B F9 B8 A1 */	bl dSv_player_collect_c_NS_setCollect
+/* 80098948 00095888  4B F9 B8 A1 */	bl setCollect__20dSv_player_collect_cFiUc
 /* 8009894C 0009588C  38 60 00 49 */	li r3, 0x49
 /* 80098950 00095890  38 80 00 00 */	li r4, 0
 /* 80098954 00095894  48 18 5B DD */	bl dMeter2Info_setSword
@@ -1857,7 +1857,7 @@ lbl_80098F68:
 /* 80099B3C 00096A7C  38 63 01 00 */	addi r3, r3, 0x100
 /* 80099B40 00096A80  38 80 00 01 */	li r4, 1
 /* 80099B44 00096A84  38 A0 00 00 */	li r5, 0
-/* 80099B48 00096A88  4B F9 A6 C1 */	bl dSv_player_collect_c_NS_isCollect
+/* 80099B48 00096A88  4B F9 A6 C1 */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 80099B4C 00096A8C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80099B50 00096A90  7C 08 03 A6 */	mtlr r0
 /* 80099B54 00096A94  38 21 00 10 */	addi r1, r1, 0x10
@@ -1870,7 +1870,7 @@ lbl_80098F68:
 /* 80099B70 00096AB0  38 63 01 00 */	addi r3, r3, 0x100
 /* 80099B74 00096AB4  38 80 00 01 */	li r4, 1
 /* 80099B78 00096AB8  38 A0 00 01 */	li r5, 1
-/* 80099B7C 00096ABC  4B F9 A6 8D */	bl dSv_player_collect_c_NS_isCollect
+/* 80099B7C 00096ABC  4B F9 A6 8D */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 80099B80 00096AC0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80099B84 00096AC4  7C 08 03 A6 */	mtlr r0
 /* 80099B88 00096AC8  38 21 00 10 */	addi r1, r1, 0x10
@@ -1948,7 +1948,7 @@ lbl_80098F68:
 /* 80099CA8 00096BE8  38 63 01 00 */	addi r3, r3, 0x100
 /* 80099CAC 00096BEC  38 80 00 00 */	li r4, 0
 /* 80099CB0 00096BF0  38 A0 00 00 */	li r5, 0
-/* 80099CB4 00096BF4  4B F9 A5 55 */	bl dSv_player_collect_c_NS_isCollect
+/* 80099CB4 00096BF4  4B F9 A5 55 */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 80099CB8 00096BF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80099CBC 00096BFC  7C 08 03 A6 */	mtlr r0
 /* 80099CC0 00096C00  38 21 00 10 */	addi r1, r1, 0x10
@@ -2204,7 +2204,7 @@ lbl_80098F68:
 /* 8009A0A8 00096FE8  38 63 01 00 */	addi r3, r3, 0x100
 /* 8009A0AC 00096FEC  38 80 00 01 */	li r4, 1
 /* 8009A0B0 00096FF0  38 A0 00 03 */	li r5, 3
-/* 8009A0B4 00096FF4  4B F9 A1 55 */	bl dSv_player_collect_c_NS_isCollect
+/* 8009A0B4 00096FF4  4B F9 A1 55 */	bl isCollect__20dSv_player_collect_cCFiUc
 /* 8009A0B8 00096FF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009A0BC 00096FFC  7C 08 03 A6 */	mtlr r0
 /* 8009A0C0 00097000  38 21 00 10 */	addi r1, r1, 0x10

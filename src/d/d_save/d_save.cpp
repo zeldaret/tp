@@ -629,7 +629,6 @@ void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
 
 // this is close, the isFirstBit keeps screwing everything up :(
 // u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
-//     u8 uVar2;
 //     u8 iVar3;
     
 //     iVar3 = 0x1;
@@ -638,12 +637,11 @@ void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
 //     }
 
 //     switch (param_1) {
-//         case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3); break;
-//         case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3); break;
-//         case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3); break;
-//         default: uVar2 = 0;
+//         case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+//         case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+//         case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3);
+//         default: return 0;
 //     }
-//     return uVar2;
 // }
 
 asm u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
@@ -651,22 +649,45 @@ asm u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     #include "func_800340F8.s"
 }
 
-// This is a match but the linker refuses to find it's reference. Thank u metrowerks
-// void dSv_player_collect_c::init(void) {
+void dSv_player_collect_c::init(void) {
 
-//     for (int i = 0; i < 8; i++) {
-//         this->unk0[i] = 0;
-//     }
+    for (int i = 0; i < 8; i++) {
+        this->unk0[i] = 0;
+    }
     
-//     this->unk8 = 0;
-//     this->crystal = 0;
-//     this->mirror = 0;
-//     this->unk11 = 0xFF;
-//     this->poe_count = 0;
-// }
-
-asm void dSv_player_collect_c::init(void) {
-    nofralloc
-    #include "func_800341AC.s"
+    this->unk8 = 0;
+    this->crystal = 0;
+    this->mirror = 0;
+    this->unk11 = 0xFF;
+    this->poe_count = 0;
 }
 
+// very close
+// void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
+//     this->unk0[param_1] = this->unk0[param_1] | (u8)(1 << param_2);
+// }
+
+asm void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
+    nofralloc
+    #include "func_800341E8.s"
+}
+
+bool dSv_player_collect_c::isCollect(int param_1, u8 param_2) const {
+   return this->unk0[param_1] & (u8)(1 << param_2) ? true : false;
+}
+
+void dSv_player_collect_c::onCollectCrystal(u8 param_1) {
+    this->crystal = this->crystal | (u8)(1 << param_1);  
+}
+
+bool dSv_player_collect_c::isCollectCrystal(u8 param_1) const {
+    return this->crystal & (u8)(1 << param_1) ? true : false;
+}
+
+void dSv_player_collect_c::onCollectMirror(u8 param_1) {
+    this->mirror = this->mirror | (u8)(1 << param_1);  
+}
+
+bool dSv_player_collect_c::isCollectMirror(u8 param_1) const {
+    return this->mirror & (u8)(1 << param_1) ? true : false;
+}

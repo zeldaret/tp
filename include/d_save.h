@@ -292,11 +292,11 @@ class dSv_player_collect_c {
    public:
     void init(void);
     void setCollect(int, u8);
-    u8 isCollect(int, u8) const;
+    bool isCollect(int, u8) const;
     void onCollectCrystal(u8);
-    u8 isCollectCrystal(u8) const;
+    bool isCollectCrystal(u8) const;
     void onCollectMirror(u8);
-    u8 isCollectMirror(u8) const;
+    bool isCollectMirror(u8) const;
 
    private:
     u8 unk0[8];

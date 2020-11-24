@@ -8232,7 +8232,7 @@ dMenu_Collect3D_c_NS_getCrystalNum:
 lbl_801B745C:
 /* 801B745C 001B439C  7F E3 FB 78 */	mr r3, r31
 /* 801B7460 001B43A0  57 A4 06 3E */	clrlwi r4, r29, 0x18
-/* 801B7464 001B43A4  4B E7 CD E9 */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 801B7464 001B43A4  4B E7 CD E9 */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 801B7468 001B43A8  2C 03 00 00 */	cmpwi r3, 0
 /* 801B746C 001B43AC  41 82 00 14 */	beq lbl_801B7480
 /* 801B7470 001B43B0  3B BD 00 01 */	addi r29, r29, 1
@@ -8263,7 +8263,7 @@ dMenu_Collect3D_c_NS_getMirrorNum:
 lbl_801B74C4:
 /* 801B74C4 001B4404  7F E3 FB 78 */	mr r3, r31
 /* 801B74C8 001B4408  57 A4 06 3E */	clrlwi r4, r29, 0x18
-/* 801B74CC 001B440C  4B E7 CD C5 */	bl dSv_player_collect_c_NS_isCollectMirror
+/* 801B74CC 001B440C  4B E7 CD C5 */	bl isCollectMirror__20dSv_player_collect_cCFUc
 /* 801B74D0 001B4410  2C 03 00 00 */	cmpwi r3, 0
 /* 801B74D4 001B4414  41 82 00 14 */	beq lbl_801B74E8
 /* 801B74D8 001B4418  3B BD 00 01 */	addi r29, r29, 1
@@ -8304,7 +8304,7 @@ lbl_801B752C:
 /* 801B7550 001B4490  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801B7554 001B4494  38 63 01 00 */	addi r3, r3, 0x100
 /* 801B7558 001B4498  38 80 00 00 */	li r4, 0
-/* 801B755C 001B449C  4B E7 CD 35 */	bl dSv_player_collect_c_NS_isCollectMirror
+/* 801B755C 001B449C  4B E7 CD 35 */	bl isCollectMirror__20dSv_player_collect_cCFUc
 /* 801B7560 001B44A0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B7564 001B44A4  41 82 00 34 */	beq lbl_801B7598
 lbl_801B7568:
@@ -8317,7 +8317,7 @@ lbl_801B7568:
 /* 801B7580 001B44C0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801B7584 001B44C4  38 63 01 00 */	addi r3, r3, 0x100
 /* 801B7588 001B44C8  38 80 00 03 */	li r4, 3
-/* 801B758C 001B44CC  4B E7 CC C1 */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 801B758C 001B44CC  4B E7 CC C1 */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 801B7590 001B44D0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B7594 001B44D4  40 82 00 0C */	bne lbl_801B75A0
 lbl_801B7598:
@@ -8328,7 +8328,7 @@ lbl_801B75A0:
 /* 801B75A4 001B44E4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801B75A8 001B44E8  38 63 01 00 */	addi r3, r3, 0x100
 /* 801B75AC 001B44EC  38 80 00 03 */	li r4, 3
-/* 801B75B0 001B44F0  4B E7 CC 9D */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 801B75B0 001B44F0  4B E7 CC 9D */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 801B75B4 001B44F4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B75B8 001B44F8  40 82 00 10 */	bne lbl_801B75C8
 /* 801B75BC 001B44FC  4B FF FE E1 */	bl dMenu_Collect3D_c_NS_getMirrorNum

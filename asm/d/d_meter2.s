@@ -501,7 +501,7 @@ dMeter2_c_NS__execute:
 /* 8021F154 0021C094  3B C3 01 00 */	addi r30, r3, 0x100
 /* 8021F158 0021C098  7F C3 F3 78 */	mr r3, r30
 /* 8021F15C 0021C09C  38 80 00 00 */	li r4, 0
-/* 8021F160 0021C0A0  4B E1 51 31 */	bl dSv_player_collect_c_NS_isCollectMirror
+/* 8021F160 0021C0A0  4B E1 51 31 */	bl isCollectMirror__20dSv_player_collect_cCFUc
 /* 8021F164 0021C0A4  2C 03 00 00 */	cmpwi r3, 0
 /* 8021F168 0021C0A8  40 82 00 2C */	bne lbl_8021F194
 /* 8021F16C 0021C0AC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -513,11 +513,11 @@ dMeter2_c_NS__execute:
 /* 8021F184 0021C0C4  41 82 00 10 */	beq lbl_8021F194
 /* 8021F188 0021C0C8  7F C3 F3 78 */	mr r3, r30
 /* 8021F18C 0021C0CC  38 80 00 00 */	li r4, 0
-/* 8021F190 0021C0D0  4B E1 50 E1 */	bl dSv_player_collect_c_NS_onCollectMirror
+/* 8021F190 0021C0D0  4B E1 50 E1 */	bl onCollectMirror__20dSv_player_collect_cFUc
 lbl_8021F194:
 /* 8021F194 0021C0D4  7F C3 F3 78 */	mr r3, r30
 /* 8021F198 0021C0D8  38 80 00 03 */	li r4, 3
-/* 8021F19C 0021C0DC  4B E1 50 B1 */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 8021F19C 0021C0DC  4B E1 50 B1 */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 8021F1A0 0021C0E0  2C 03 00 00 */	cmpwi r3, 0
 /* 8021F1A4 0021C0E4  40 82 00 2C */	bne lbl_8021F1D0
 /* 8021F1A8 0021C0E8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -529,7 +529,7 @@ lbl_8021F194:
 /* 8021F1C0 0021C100  41 82 00 10 */	beq lbl_8021F1D0
 /* 8021F1C4 0021C104  7F C3 F3 78 */	mr r3, r30
 /* 8021F1C8 0021C108  38 80 00 03 */	li r4, 3
-/* 8021F1CC 0021C10C  4B E1 50 61 */	bl dSv_player_collect_c_NS_onCollectCrystal
+/* 8021F1CC 0021C10C  4B E1 50 61 */	bl onCollectCrystal__20dSv_player_collect_cFUc
 lbl_8021F1D0:
 /* 8021F1D0 0021C110  7F A3 EB 78 */	mr r3, r29
 /* 8021F1D4 0021C114  48 00 05 DD */	bl dMeter2_c_NS_checkStatus

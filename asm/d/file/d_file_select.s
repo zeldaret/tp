@@ -3171,7 +3171,7 @@ lbl_801863AC:
 lbl_801863B8:
 /* 801863B8 001832F8  7F 83 E3 78 */	mr r3, r28
 /* 801863BC 001832FC  57 64 06 3E */	clrlwi r4, r27, 0x18
-/* 801863C0 00183300  4B EA DE D1 */	bl dSv_player_collect_c_NS_isCollectMirror
+/* 801863C0 00183300  4B EA DE D1 */	bl isCollectMirror__20dSv_player_collect_cCFUc
 /* 801863C4 00183304  2C 03 00 00 */	cmpwi r3, 0
 /* 801863C8 00183308  41 82 00 14 */	beq lbl_801863DC
 /* 801863CC 0018330C  3B 7B 00 01 */	addi r27, r27, 1
@@ -3185,7 +3185,7 @@ lbl_801863DC:
 lbl_801863E8:
 /* 801863E8 00183328  7F 83 E3 78 */	mr r3, r28
 /* 801863EC 0018332C  57 44 06 3E */	clrlwi r4, r26, 0x18
-/* 801863F0 00183330  4B EA DE 5D */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 801863F0 00183330  4B EA DE 5D */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 801863F4 00183334  2C 03 00 00 */	cmpwi r3, 0
 /* 801863F8 00183338  41 82 00 14 */	beq lbl_8018640C
 /* 801863FC 0018333C  3B 5A 00 01 */	addi r26, r26, 1
@@ -3205,7 +3205,7 @@ lbl_8018641C:
 /* 8018642C 0018336C  41 82 00 18 */	beq lbl_80186444
 /* 80186430 00183370  38 7F 01 00 */	addi r3, r31, 0x100
 /* 80186434 00183374  38 80 00 00 */	li r4, 0
-/* 80186438 00183378  4B EA DE 59 */	bl dSv_player_collect_c_NS_isCollectMirror
+/* 80186438 00183378  4B EA DE 59 */	bl isCollectMirror__20dSv_player_collect_cCFUc
 /* 8018643C 0018337C  2C 03 00 00 */	cmpwi r3, 0
 /* 80186440 00183380  41 82 00 2C */	beq lbl_8018646C
 lbl_80186444:
@@ -3216,7 +3216,7 @@ lbl_80186444:
 /* 80186454 00183394  41 82 00 28 */	beq lbl_8018647C
 /* 80186458 00183398  38 7F 01 00 */	addi r3, r31, 0x100
 /* 8018645C 0018339C  38 80 00 03 */	li r4, 3
-/* 80186460 001833A0  4B EA DD ED */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 80186460 001833A0  4B EA DD ED */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 80186464 001833A4  2C 03 00 00 */	cmpwi r3, 0
 /* 80186468 001833A8  40 82 00 14 */	bne lbl_8018647C
 lbl_8018646C:
@@ -3229,7 +3229,7 @@ lbl_8018647C:
 /* 80186480 001833C0  48 00 A0 21 */	bl dFile_select3D_c_NS_freeHeap
 /* 80186484 001833C4  38 7F 01 00 */	addi r3, r31, 0x100
 /* 80186488 001833C8  38 80 00 03 */	li r4, 3
-/* 8018648C 001833CC  4B EA DD C1 */	bl dSv_player_collect_c_NS_isCollectCrystal
+/* 8018648C 001833CC  4B EA DD C1 */	bl isCollectCrystal__20dSv_player_collect_cCFUc
 /* 80186490 001833D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80186494 001833D4  40 82 00 0C */	bne lbl_801864A0
 /* 80186498 001833D8  57 A0 06 3F */	clrlwi. r0, r29, 0x18
