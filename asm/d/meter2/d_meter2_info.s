@@ -191,7 +191,7 @@ lbl_8021BFFC:
 lbl_8021C094:
 /* 8021C094 00218FD4  7F 83 E3 78 */	mr r3, r28
 /* 8021C098 00218FD8  57 64 06 3E */	clrlwi r4, r27, 0x18
-/* 8021C09C 00218FDC  4B E1 83 01 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8021C09C 00218FDC  4B E1 83 01 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8021C0A0 00218FE0  2C 03 00 00 */	cmpwi r3, 0
 /* 8021C0A4 00218FE4  41 82 00 10 */	beq lbl_8021C0B4
 /* 8021C0A8 00218FE8  38 1B 00 E3 */	addi r0, r27, 0xe3

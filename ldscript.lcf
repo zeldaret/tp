@@ -27,6 +27,7 @@ SECTIONS {
 }
 FORCEACTIVE {
  set__17dSv_horse_place_cFPCcRC4cXyzsSc
+ setLightDropNum__16dSv_light_drop_cFUcUc
 }
 /*
 .init 80003100 - 80005600

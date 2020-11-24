@@ -165,7 +165,7 @@ lbl_8021EBD4:
 /* 8021EC6C 0021BBAC  D0 1F 01 30 */	stfs f0, 0x130(r31)
 /* 8021EC70 0021BBB0  38 64 01 14 */	addi r3, r4, 0x114
 /* 8021EC74 0021BBB4  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 8021EC78 0021BBB8  4B E1 56 C9 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8021EC78 0021BBB8  4B E1 56 C9 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 8021EC7C 0021BBBC  98 7F 01 C2 */	stb r3, 0x1c2(r31)
 /* 8021EC80 0021BBC0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8021EC84 0021BBC4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
@@ -2153,7 +2153,7 @@ dMeter2_c_NS_moveLightDrop:
 /* 802208E0 0021D820  38 83 61 C0 */	addi r4, r3, lbl_804061C0@l
 /* 802208E4 0021D824  38 64 01 14 */	addi r3, r4, 0x114
 /* 802208E8 0021D828  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 802208EC 0021D82C  4B E1 3A 55 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 802208EC 0021D82C  4B E1 3A 55 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 802208F0 0021D830  3C 80 80 40 */	lis r4, lbl_804061C0@ha
 /* 802208F4 0021D834  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
 /* 802208F8 0021D838  88 84 5E A1 */	lbz r4, 0x5ea1(r4)
@@ -2167,14 +2167,14 @@ lbl_8022090C:
 /* 80220914 0021D854  3B DF 01 14 */	addi r30, r31, 0x114
 /* 80220918 0021D858  7F C3 F3 78 */	mr r3, r30
 /* 8022091C 0021D85C  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 80220920 0021D860  4B E1 3A 21 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 80220920 0021D860  4B E1 3A 21 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80220924 0021D864  88 9B 01 C2 */	lbz r4, 0x1c2(r27)
 /* 80220928 0021D868  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022092C 0021D86C  7C 04 00 40 */	cmplw r4, r0
 /* 80220930 0021D870  41 82 00 CC */	beq lbl_802209FC
 /* 80220934 0021D874  7F C3 F3 78 */	mr r3, r30
 /* 80220938 0021D878  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 8022093C 0021D87C  4B E1 3A 05 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8022093C 0021D87C  4B E1 3A 05 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80220940 0021D880  3C 80 80 40 */	lis r4, lbl_804061C0@ha
 /* 80220944 0021D884  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
 /* 80220948 0021D888  88 84 5E A1 */	lbz r4, 0x5ea1(r4)
@@ -2199,7 +2199,7 @@ lbl_8022090C:
 lbl_80220994:
 /* 80220994 0021D8D4  7F C3 F3 78 */	mr r3, r30
 /* 80220998 0021D8D8  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 8022099C 0021D8DC  4B E1 39 A5 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8022099C 0021D8DC  4B E1 39 A5 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 802209A0 0021D8E0  88 9B 01 C2 */	lbz r4, 0x1c2(r27)
 /* 802209A4 0021D8E4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802209A8 0021D8E8  7C 04 00 40 */	cmplw r4, r0
@@ -2221,7 +2221,7 @@ lbl_80220994:
 lbl_802209E8:
 /* 802209E8 0021D928  7F C3 F3 78 */	mr r3, r30
 /* 802209EC 0021D92C  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 802209F0 0021D930  4B E1 39 51 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 802209F0 0021D930  4B E1 39 51 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 802209F4 0021D934  98 7B 01 C2 */	stb r3, 0x1c2(r27)
 /* 802209F8 0021D938  3B A0 00 01 */	li r29, 1
 lbl_802209FC:
@@ -7685,7 +7685,7 @@ dMeter2_c_NS_isShowLightDrop:
 /* 80225718 00222658  3B C3 61 C0 */	addi r30, r3, lbl_804061C0@l
 /* 8022571C 0022265C  38 7E 01 14 */	addi r3, r30, 0x114
 /* 80225720 00222660  88 9E 4E 0C */	lbz r4, 0x4e0c(r30)
-/* 80225724 00222664  4B E0 EC 79 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 80225724 00222664  4B E0 EC 79 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 80225728 00222668  2C 03 00 00 */	cmpwi r3, 0
 /* 8022572C 0022266C  41 82 01 50 */	beq lbl_8022587C
 /* 80225730 00222670  3C 60 80 43 */	lis r3, lbl_80430188@ha

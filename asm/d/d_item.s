@@ -1361,7 +1361,7 @@ lbl_80098F68:
 /* 8009937C 000962BC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80099380 000962C0  38 63 01 14 */	addi r3, r3, 0x114
 /* 80099384 000962C4  38 80 00 00 */	li r4, 0
-/* 80099388 000962C8  4B F9 AF E1 */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 80099388 000962C8  4B F9 AF E1 */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8009938C 000962CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80099390 000962D0  7C 08 03 A6 */	mtlr r0
 /* 80099394 000962D4  38 21 00 10 */	addi r1, r1, 0x10
@@ -1373,7 +1373,7 @@ lbl_80098F68:
 /* 800993AC 000962EC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800993B0 000962F0  38 63 01 14 */	addi r3, r3, 0x114
 /* 800993B4 000962F4  38 80 00 01 */	li r4, 1
-/* 800993B8 000962F8  4B F9 AF B1 */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 800993B8 000962F8  4B F9 AF B1 */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 800993BC 000962FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800993C0 00096300  7C 08 03 A6 */	mtlr r0
 /* 800993C4 00096304  38 21 00 10 */	addi r1, r1, 0x10
@@ -1385,7 +1385,7 @@ lbl_80098F68:
 /* 800993DC 0009631C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800993E0 00096320  38 63 01 14 */	addi r3, r3, 0x114
 /* 800993E4 00096324  38 80 00 02 */	li r4, 2
-/* 800993E8 00096328  4B F9 AF 81 */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 800993E8 00096328  4B F9 AF 81 */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 800993EC 0009632C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800993F0 00096330  7C 08 03 A6 */	mtlr r0
 /* 800993F4 00096334  38 21 00 10 */	addi r1, r1, 0x10
@@ -3060,7 +3060,7 @@ lbl_8009A438:
 /* 8009ADDC 00097D1C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8009ADE0 00097D20  38 63 01 14 */	addi r3, r3, 0x114
 /* 8009ADE4 00097D24  38 80 00 00 */	li r4, 0
-/* 8009ADE8 00097D28  4B F9 95 B5 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8009ADE8 00097D28  4B F9 95 B5 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8009ADEC 00097D2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009ADF0 00097D30  7C 08 03 A6 */	mtlr r0
 /* 8009ADF4 00097D34  38 21 00 10 */	addi r1, r1, 0x10
@@ -3072,7 +3072,7 @@ lbl_8009A438:
 /* 8009AE0C 00097D4C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8009AE10 00097D50  38 63 01 14 */	addi r3, r3, 0x114
 /* 8009AE14 00097D54  38 80 00 01 */	li r4, 1
-/* 8009AE18 00097D58  4B F9 95 85 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8009AE18 00097D58  4B F9 95 85 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8009AE1C 00097D5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009AE20 00097D60  7C 08 03 A6 */	mtlr r0
 /* 8009AE24 00097D64  38 21 00 10 */	addi r1, r1, 0x10
@@ -3084,7 +3084,7 @@ lbl_8009A438:
 /* 8009AE3C 00097D7C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8009AE40 00097D80  38 63 01 14 */	addi r3, r3, 0x114
 /* 8009AE44 00097D84  38 80 00 02 */	li r4, 2
-/* 8009AE48 00097D88  4B F9 95 55 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8009AE48 00097D88  4B F9 95 55 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8009AE4C 00097D8C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009AE50 00097D90  7C 08 03 A6 */	mtlr r0
 /* 8009AE54 00097D94  38 21 00 10 */	addi r1, r1, 0x10

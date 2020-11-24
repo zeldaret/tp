@@ -2209,7 +2209,7 @@ lbl_80211A80:
 /* 80211A88 0020E9C8  41 82 00 28 */	beq lbl_80211AB0
 /* 80211A8C 0020E9CC  7F 83 E3 78 */	mr r3, r28
 /* 80211A90 0020E9D0  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 80211A94 0020E9D4  4B E2 28 AD */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 80211A94 0020E9D4  4B E2 28 AD */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80211A98 0020E9D8  88 9F 5E A1 */	lbz r4, 0x5ea1(r31)
 /* 80211A9C 0020E9DC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80211AA0 0020E9E0  7C 04 00 40 */	cmplw r4, r0
@@ -2815,7 +2815,7 @@ lbl_80212318:
 lbl_80212368:
 /* 80212368 0020F2A8  7F 43 D3 78 */	mr r3, r26
 /* 8021236C 0020F2AC  57 24 06 3E */	clrlwi r4, r25, 0x18
-/* 80212370 0020F2B0  4B E2 20 2D */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 80212370 0020F2B0  4B E2 20 2D */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 80212374 0020F2B4  2C 03 00 00 */	cmpwi r3, 0
 /* 80212378 0020F2B8  41 82 00 10 */	beq lbl_80212388
 /* 8021237C 0020F2BC  7C 7C CA 14 */	add r3, r28, r25
@@ -2833,7 +2833,7 @@ lbl_80212390:
 /* 802123A4 0020F2E4  8B 64 5E A1 */	lbz r27, 0x5ea1(r4)
 /* 802123A8 0020F2E8  7F 43 D3 78 */	mr r3, r26
 /* 802123AC 0020F2EC  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 802123B0 0020F2F0  4B E2 1F 91 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 802123B0 0020F2F0  4B E2 1F 91 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 802123B4 0020F2F4  7C 64 1B 78 */	mr r4, r3
 /* 802123B8 0020F2F8  7F C3 F3 78 */	mr r3, r30
 /* 802123BC 0020F2FC  7F 65 DB 78 */	mr r5, r27
@@ -6811,7 +6811,7 @@ dMeter2Draw_c_NS_getNowLightDropRateCalc:
 /* 80215DB8 00212CF8  38 83 61 C0 */	addi r4, r3, lbl_804061C0@l
 /* 80215DBC 00212CFC  38 64 01 14 */	addi r3, r4, 0x114
 /* 80215DC0 00212D00  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 80215DC4 00212D04  4B E1 E5 7D */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 80215DC4 00212D04  4B E1 E5 7D */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80215DC8 00212D08  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80215DCC 00212D0C  C8 22 AE C0 */	lfd f1, lbl_804548C0-_SDA2_BASE_(r2)
 /* 80215DD0 00212D10  90 01 00 0C */	stw r0, 0xc(r1)
@@ -6895,7 +6895,7 @@ lbl_80215EA8:
 lbl_80215EEC:
 /* 80215EEC 00212E2C  7F 83 E3 78 */	mr r3, r28
 /* 80215EF0 00212E30  88 9D 4E 0C */	lbz r4, 0x4e0c(r29)
-/* 80215EF4 00212E34  4B E1 E4 4D */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 80215EF4 00212E34  4B E1 E4 4D */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80215EF8 00212E38  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80215EFC 00212E3C  7C 1A 00 00 */	cmpw r26, r0
 /* 80215F00 00212E40  40 80 00 2C */	bge lbl_80215F2C
@@ -7144,7 +7144,7 @@ lbl_80216274:
 lbl_80216288:
 /* 80216288 002131C8  7F 63 DB 78 */	mr r3, r27
 /* 8021628C 002131CC  88 9F 4E 0C */	lbz r4, 0x4e0c(r31)
-/* 80216290 002131D0  4B E1 E0 B1 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 80216290 002131D0  4B E1 E0 B1 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 80216294 002131D4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80216298 002131D8  7C 19 00 00 */	cmpw r25, r0
 /* 8021629C 002131DC  40 80 00 2C */	bge lbl_802162C8

@@ -4407,12 +4407,12 @@ dComIfGp_isLightDropMapVisible:
 lbl_8002EE04:
 /* 8002EE04 0002BD44  7F E3 FB 78 */	mr r3, r31
 /* 8002EE08 0002BD48  57 C4 06 3E */	clrlwi r4, r30, 0x18
-/* 8002EE0C 0002BD4C  48 00 55 91 */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8002EE0C 0002BD4C  48 00 55 91 */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8002EE10 0002BD50  2C 03 00 00 */	cmpwi r3, 0
 /* 8002EE14 0002BD54  41 82 00 24 */	beq lbl_8002EE38
 /* 8002EE18 0002BD58  7F E3 FB 78 */	mr r3, r31
 /* 8002EE1C 0002BD5C  57 C4 06 3E */	clrlwi r4, r30, 0x18
-/* 8002EE20 0002BD60  48 00 55 21 */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8002EE20 0002BD60  48 00 55 21 */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 8002EE24 0002BD64  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8002EE28 0002BD68  28 00 00 10 */	cmplwi r0, 0x10
 /* 8002EE2C 0002BD6C  40 80 00 0C */	bge lbl_8002EE38

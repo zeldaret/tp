@@ -319,9 +319,10 @@ class dSv_player_wolf_c {
 class dSv_light_drop_c {
    public:
     void init(void);
+    void setLightDropNum(u8,u8);
     u8 getLightDropNum(u8) const;
     void onLightDropGetFlag(u8);
-    u8 isLightDropGetFlag(u8) const;
+    bool isLightDropGetFlag(u8) const;
 
    private:
     u8 unk0[4];
@@ -333,9 +334,9 @@ class dSv_letter_info_c {
    public:
     void init(void);
     void onLetterGetFlag(int);
-    u8 isLetterGetFlag(int) const;
+    bool isLetterGetFlag(int) const;
     void onLetterReadFlag(int);
-    u8 isLetterReadFlag(int) const;
+    bool isLetterReadFlag(int) const;
 
    private:
     u8 letter_read_flags[16];
@@ -426,15 +427,15 @@ class dSv_memBit_c {
     void init(void);
     void onTBox(int);   // merged with init in the assembly
     void offTbox(int);  // merged with init in the assembly
-    u8 isTbox(int) const;
+    bool isTbox(int) const;
     void onSwitch(int);
     void offSwitch(int);
-    u8 isSwitch(int) const;
+    bool isSwitch(int) const;
     u8 revSwitch(int);
     void onItem(int);
-    u8 isItem(int) const;
+    bool isItem(int) const;
     void onDungeonItem(int);
-    u8 isDungeonItem(int) const;
+    bool isDungeonItem(int) const;
 
    private:
     u32 area_flags_bitfields1[2];
@@ -488,7 +489,7 @@ class dSv_memory2_c {
     void init(void);
     void onVisitedRoom(int);
     void offVisitedRoom(int);
-    u8 isVisitedRoom(int);
+    bool isVisitedRoom(int);
 
    private:
     u32 unk0[2];
@@ -499,10 +500,10 @@ class dSv_danBit_c {
     void init(void);
     void onSwitch(int);
     void offSwitch(int);
-    u8 isSwitch(int) const;
+    bool isSwitch(int) const;
     u8 revSwitch(int);
     void onItem(int);
-    u8 isItem(int) const;
+    bool isItem(int) const;
 
    private:
     u8 unk0;
@@ -524,16 +525,16 @@ class dSv_zoneBit_c {
     void clearRoomItem(void);
     void onSwitch(int);
     void offSwitch(int);
-    u8 isSwitch(int) const;
+    bool isSwitch(int) const;
     u8 revSwitch(int);
     void onOneSwitch(int);
     void offOneSwitch(int);
-    void isOneSwitch(int) const;
+    bool isOneSwitch(int) const;
     u8 revOneSwitch(int);
     void onItem(int);
-    void isItem(int) const;
+    bool isItem(int) const;
     void onOneItem(int);
-    u8 isOneItem(int) const;
+    bool isOneItem(int) const;
 
    private:
     u16 unk0[2];

@@ -1930,7 +1930,7 @@ lbl_8024BA14:
 /* 8024BA18 00248958  38 83 61 C0 */	addi r4, r3, lbl_804061C0@l
 /* 8024BA1C 0024895C  38 64 01 14 */	addi r3, r4, 0x114
 /* 8024BA20 00248960  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 8024BA24 00248964  4B DE 89 1D */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8024BA24 00248964  4B DE 89 1D */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 8024BA28 00248968  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8024BA2C 0024896C  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8024BA30 00248970  7C 00 18 50 */	subf r0, r0, r3
@@ -3084,7 +3084,7 @@ lbl_8024CAEC:
 /* 8024CB00 00249A40  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024CB04 00249A44  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB08 00249A48  38 80 00 00 */	li r4, 0
-/* 8024CB0C 00249A4C  4B DE 78 5D */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 8024CB0C 00249A4C  4B DE 78 5D */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8024CB10 00249A50  48 00 00 5C */	b lbl_8024CB6C
 lbl_8024CB14:
 /* 8024CB14 00249A54  38 00 00 01 */	li r0, 1
@@ -3095,7 +3095,7 @@ lbl_8024CB14:
 /* 8024CB28 00249A68  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024CB2C 00249A6C  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB30 00249A70  38 80 00 01 */	li r4, 1
-/* 8024CB34 00249A74  4B DE 78 35 */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 8024CB34 00249A74  4B DE 78 35 */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8024CB38 00249A78  48 00 00 34 */	b lbl_8024CB6C
 lbl_8024CB3C:
 /* 8024CB3C 00249A7C  38 00 00 01 */	li r0, 1
@@ -3106,7 +3106,7 @@ lbl_8024CB3C:
 /* 8024CB50 00249A90  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024CB54 00249A94  38 63 01 14 */	addi r3, r3, 0x114
 /* 8024CB58 00249A98  38 80 00 02 */	li r4, 2
-/* 8024CB5C 00249A9C  4B DE 78 0D */	bl dSv_light_drop_c_NS_onLightDropGetFlag
+/* 8024CB5C 00249A9C  4B DE 78 0D */	bl onLightDropGetFlag__16dSv_light_drop_cFUc
 /* 8024CB60 00249AA0  48 00 00 0C */	b lbl_8024CB6C
 lbl_8024CB64:
 /* 8024CB64 00249AA4  54 03 06 3E */	clrlwi r3, r0, 0x18

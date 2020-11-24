@@ -691,3 +691,51 @@ void dSv_player_collect_c::onCollectMirror(u8 param_1) {
 bool dSv_player_collect_c::isCollectMirror(u8 param_1) const {
     return this->mirror & (u8)(1 << param_1) ? true : false;
 }
+
+void dSv_player_wolf_c::init(void) {
+    for (int i = 0; i < 3; i++) {
+        this->unk0[i] = 0;
+    }
+
+    this->unk3 = 0;
+}
+
+void dSv_light_drop_c::init(void) {
+    for (int i = 0; i < 4; i++) {
+        this->unk0[i] = 0;
+    }
+
+    this->light_drop_get_flag = 0;
+
+    for (int i = 0; i < 3; i++) {
+        this->unk5[i] = 0;
+    }
+}
+
+void dSv_light_drop_c::setLightDropNum(u8 param_1,u8 param_2) {
+    if ((4 <= param_1) && (param_1 <= 6)) {
+        return;
+    }
+    this->unk0[param_1] = param_2;
+}
+
+u8 dSv_light_drop_c::getLightDropNum(u8 param_1) const {
+    if ((4 <= param_1) && (param_1 <= 6)) {
+        return 0;
+    }
+    return this->unk0[param_1];
+}
+
+void dSv_light_drop_c::onLightDropGetFlag(u8 param_1) {
+    if ((4 <= param_1) && (param_1 <= 6)) {
+        return;
+    }
+    this->light_drop_get_flag = this->light_drop_get_flag | (u8)(1 << param_1);
+}
+
+bool dSv_light_drop_c::isLightDropGetFlag(u8 param_1) const {
+    if ((4 <= param_1) && (param_1 <= 6)) {
+        return 0;
+    }
+    return this->light_drop_get_flag & (u8)(1 << param_1) ? true : false;
+}

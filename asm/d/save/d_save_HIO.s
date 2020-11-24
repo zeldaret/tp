@@ -492,7 +492,7 @@ dSvBit_childOtherHIO_c_NS_init:
 /* 8025C198 002590D8  3B E4 01 14 */	addi r31, r4, 0x114
 /* 8025C19C 002590DC  7F E3 FB 78 */	mr r3, r31
 /* 8025C1A0 002590E0  88 84 4E 0C */	lbz r4, 0x4e0c(r4)
-/* 8025C1A4 002590E4  4B DD 81 9D */	bl dSv_light_drop_c_NS_getLightDropNum
+/* 8025C1A4 002590E4  4B DD 81 9D */	bl getLightDropNum__16dSv_light_drop_cCFUc
 /* 8025C1A8 002590E8  98 7D 00 05 */	stb r3, 5(r29)
 /* 8025C1AC 002590EC  88 1D 00 05 */	lbz r0, 5(r29)
 /* 8025C1B0 002590F0  98 1D 00 06 */	stb r0, 6(r29)
@@ -500,7 +500,7 @@ dSvBit_childOtherHIO_c_NS_init:
 lbl_8025C1B8:
 /* 8025C1B8 002590F8  7F E3 FB 78 */	mr r3, r31
 /* 8025C1BC 002590FC  57 C4 06 3E */	clrlwi r4, r30, 0x18
-/* 8025C1C0 00259100  4B DD 81 DD */	bl dSv_light_drop_c_NS_isLightDropGetFlag
+/* 8025C1C0 00259100  4B DD 81 DD */	bl isLightDropGetFlag__16dSv_light_drop_cCFUc
 /* 8025C1C4 00259104  7C 9D F2 14 */	add r4, r29, r30
 /* 8025C1C8 00259108  98 64 00 07 */	stb r3, 7(r4)
 /* 8025C1CC 0025910C  88 04 00 07 */	lbz r0, 7(r4)
