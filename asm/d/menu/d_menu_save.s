@@ -4008,19 +4008,19 @@ dMenu_save_c_NS_restartInit:
 /* 801F30D8 001F0018  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801F30DC 001F001C  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801F30E0 001F0020  A0 84 01 C4 */	lhz r4, 0x1c4(r4)
-/* 801F30E4 001F0024  4B E4 18 D9 */	bl dSv_event_c_NS_isEventBit
+/* 801F30E4 001F0024  4B E4 18 D9 */	bl isEventBit__11dSv_event_cCFUs
 /* 801F30E8 001F0028  2C 03 00 00 */	cmpwi r3, 0
 /* 801F30EC 001F002C  40 82 00 2C */	bne lbl_801F3118
 /* 801F30F0 001F0030  7F E3 FB 78 */	mr r3, r31
 /* 801F30F4 001F0034  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801F30F8 001F0038  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801F30FC 001F003C  A0 84 01 C0 */	lhz r4, 0x1c0(r4)
-/* 801F3100 001F0040  4B E4 18 A5 */	bl dSv_event_c_NS_offEventBit
+/* 801F3100 001F0040  4B E4 18 A5 */	bl offEventBit__11dSv_event_cFUs
 /* 801F3104 001F0044  7F E3 FB 78 */	mr r3, r31
 /* 801F3108 001F0048  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801F310C 001F004C  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801F3110 001F0050  A0 84 01 C2 */	lhz r4, 0x1c2(r4)
-/* 801F3114 001F0054  4B E4 18 91 */	bl dSv_event_c_NS_offEventBit
+/* 801F3114 001F0054  4B E4 18 91 */	bl offEventBit__11dSv_event_cFUs
 lbl_801F3118:
 /* 801F3118 001F0058  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801F311C 001F005C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l

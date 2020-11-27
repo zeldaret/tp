@@ -2370,7 +2370,7 @@ lbl_801F94AC:
 /* 801F94B0 001F63F0  7C 1D F8 2E */	lwzx r0, r29, r31
 /* 801F94B4 001F63F4  54 00 08 3C */	slwi r0, r0, 1
 /* 801F94B8 001F63F8  7C 9E 02 2E */	lhzx r4, r30, r0
-/* 801F94BC 001F63FC  4B E3 B5 01 */	bl dSv_event_c_NS_isEventBit
+/* 801F94BC 001F63FC  4B E3 B5 01 */	bl isEventBit__11dSv_event_cCFUs
 /* 801F94C0 001F6400  2C 03 00 00 */	cmpwi r3, 0
 /* 801F94C4 001F6404  41 82 00 10 */	beq lbl_801F94D4
 /* 801F94C8 001F6408  57 63 06 3E */	clrlwi r3, r27, 0x18

@@ -57,7 +57,7 @@ dMenu_Fmap_room_data_c_NS_isArrival:
 /* 8003D83C 0003A77C  88 84 00 02 */	lbz r4, 2(r4)
 /* 8003D840 0003A780  4B FF 78 69 */	bl dSv_save_c_NS_getSave2
 /* 8003D844 0003A784  88 9F 00 10 */	lbz r4, 0x10(r31)
-/* 8003D848 0003A788  4B FF 72 A5 */	bl dSv_memory2_c_NS_isVisitedRoom
+/* 8003D848 0003A788  4B FF 72 A5 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003D84C 0003A78C  30 03 FF FF */	addic r0, r3, -1
 /* 8003D850 0003A790  7C 60 19 10 */	subfe r3, r0, r3
 /* 8003D854 0003A794  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -162,7 +162,7 @@ lbl_8003D98C:
 /* 8003D990 0003A8D0  7F A4 EB 78 */	mr r4, r29
 /* 8003D994 0003A8D4  4B FF 77 15 */	bl dSv_save_c_NS_getSave2
 /* 8003D998 0003A8D8  88 9E 00 10 */	lbz r4, 0x10(r30)
-/* 8003D99C 0003A8DC  4B FF 71 51 */	bl dSv_memory2_c_NS_isVisitedRoom
+/* 8003D99C 0003A8DC  4B FF 71 51 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003D9A0 0003A8E0  30 03 FF FF */	addic r0, r3, -1
 /* 8003D9A4 0003A8E4  7C 80 19 10 */	subfe r4, r0, r3
 /* 8003D9A8 0003A8E8  83 DE 00 08 */	lwz r30, 8(r30)
@@ -353,7 +353,7 @@ lbl_8003DC24:
 /* 8003DC2C 0003AB6C  80 81 00 38 */	lwz r4, 0x38(r1)
 /* 8003DC30 0003AB70  4B FF 74 79 */	bl dSv_save_c_NS_getSave2
 /* 8003DC34 0003AB74  88 99 00 10 */	lbz r4, 0x10(r25)
-/* 8003DC38 0003AB78  4B FF 6E B5 */	bl dSv_memory2_c_NS_isVisitedRoom
+/* 8003DC38 0003AB78  4B FF 6E B5 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003DC3C 0003AB7C  2C 03 00 00 */	cmpwi r3, 0
 /* 8003DC40 0003AB80  41 82 02 10 */	beq lbl_8003DE50
 /* 8003DC44 0003AB84  C0 2F 00 08 */	lfs f1, 8(r15)
@@ -1258,7 +1258,7 @@ lbl_8003E87C:
 /* 8003E888 0003B7C8  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8003E88C 0003B7CC  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8003E890 0003B7D0  A0 84 00 EE */	lhz r4, 0xee(r4)
-/* 8003E894 0003B7D4  4B FF 61 29 */	bl dSv_event_c_NS_isEventBit
+/* 8003E894 0003B7D4  4B FF 61 29 */	bl isEventBit__11dSv_event_cCFUs
 /* 8003E898 0003B7D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E89C 0003B7DC  41 82 00 18 */	beq lbl_8003E8B4
 /* 8003E8A0 0003B7E0  3B A0 00 01 */	li r29, 1

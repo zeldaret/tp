@@ -140,7 +140,7 @@ lbl_800438DC:
 /* 800438F0 00040830  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 800438F4 00040834  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800438F8 00040838  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 800438FC 0004083C  4B FF 10 C1 */	bl dSv_event_c_NS_isEventBit
+/* 800438FC 0004083C  4B FF 10 C1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80043900 00040840  2C 03 00 00 */	cmpwi r3, 0
 /* 80043904 00040844  40 82 00 10 */	bne lbl_80043914
 /* 80043908 00040848  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
@@ -1764,7 +1764,7 @@ dEvDtStaff_c_NS_specialProcDirector:
 /* 80044F94 00041ED4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80044F98 00041ED8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80044F9C 00041EDC  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80044FA0 00041EE0  4B FE F9 ED */	bl dSv_event_c_NS_onEventBit
+/* 80044FA0 00041EE0  4B FE F9 ED */	bl onEventBit__11dSv_event_cFUs
 lbl_80044FA4:
 /* 80044FA4 00041EE4  7F C3 F3 78 */	mr r3, r30
 /* 80044FA8 00041EE8  7F E4 FB 78 */	mr r4, r31
@@ -1783,7 +1783,7 @@ lbl_80044FA4:
 /* 80044FDC 00041F1C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80044FE0 00041F20  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80044FE4 00041F24  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80044FE8 00041F28  4B FE F9 BD */	bl dSv_event_c_NS_offEventBit
+/* 80044FE8 00041F28  4B FE F9 BD */	bl offEventBit__11dSv_event_cFUs
 lbl_80044FEC:
 /* 80044FEC 00041F2C  7F C3 F3 78 */	mr r3, r30
 /* 80044FF0 00041F30  7F E4 FB 78 */	mr r4, r31
@@ -1849,7 +1849,7 @@ lbl_80045098:
 /* 800450D0 00042010  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 800450D4 00042014  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 800450D8 00042018  7C 84 02 2E */	lhzx r4, r4, r0
-/* 800450DC 0004201C  4B FE F8 B1 */	bl dSv_event_c_NS_onEventBit
+/* 800450DC 0004201C  4B FE F8 B1 */	bl onEventBit__11dSv_event_cFUs
 lbl_800450E0:
 /* 800450E0 00042020  7F C3 F3 78 */	mr r3, r30
 /* 800450E4 00042024  7F E4 FB 78 */	mr r4, r31
@@ -1868,7 +1868,7 @@ lbl_800450E0:
 /* 80045118 00042058  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 8004511C 0004205C  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 80045120 00042060  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80045124 00042064  4B FE F8 81 */	bl dSv_event_c_NS_offEventBit
+/* 80045124 00042064  4B FE F8 81 */	bl offEventBit__11dSv_event_cFUs
 lbl_80045128:
 /* 80045128 00042068  80 9A 00 00 */	lwz r4, 0(r26)
 /* 8004512C 0004206C  3C 60 53 4B */	lis r3, 0x534B4950@ha
@@ -2230,27 +2230,27 @@ lbl_80045638:
 /* 80045648 00042588  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8004564C 0004258C  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80045650 00042590  A0 84 03 F4 */	lhz r4, 0x3f4(r4)
-/* 80045654 00042594  4B FE F3 69 */	bl dSv_event_c_NS_isEventBit
+/* 80045654 00042594  4B FE F3 69 */	bl isEventBit__11dSv_event_cCFUs
 /* 80045658 00042598  2C 03 00 00 */	cmpwi r3, 0
 /* 8004565C 0004259C  41 82 00 18 */	beq lbl_80045674
 /* 80045660 000425A0  7F 23 CB 78 */	mr r3, r25
 /* 80045664 000425A4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80045668 000425A8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8004566C 000425AC  A0 84 04 6C */	lhz r4, 0x46c(r4)
-/* 80045670 000425B0  4B FE F3 1D */	bl dSv_event_c_NS_onEventBit
+/* 80045670 000425B0  4B FE F3 1D */	bl onEventBit__11dSv_event_cFUs
 lbl_80045674:
 /* 80045674 000425B4  7F 23 CB 78 */	mr r3, r25
 /* 80045678 000425B8  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8004567C 000425BC  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80045680 000425C0  A0 84 03 F6 */	lhz r4, 0x3f6(r4)
-/* 80045684 000425C4  4B FE F3 39 */	bl dSv_event_c_NS_isEventBit
+/* 80045684 000425C4  4B FE F3 39 */	bl isEventBit__11dSv_event_cCFUs
 /* 80045688 000425C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8004568C 000425CC  41 82 00 18 */	beq lbl_800456A4
 /* 80045690 000425D0  7F 23 CB 78 */	mr r3, r25
 /* 80045694 000425D4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80045698 000425D8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8004569C 000425DC  A0 84 04 6E */	lhz r4, 0x46e(r4)
-/* 800456A0 000425E0  4B FE F2 ED */	bl dSv_event_c_NS_onEventBit
+/* 800456A0 000425E0  4B FE F2 ED */	bl onEventBit__11dSv_event_cFUs
 lbl_800456A4:
 /* 800456A4 000425E4  80 9A 00 00 */	lwz r4, 0(r26)
 /* 800456A8 000425E8  3C 60 56 49 */	lis r3, 0x56494252@ha
@@ -2493,7 +2493,7 @@ lbl_800459B4:
 /* 80045A0C 0004294C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80045A10 00042950  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80045A14 00042954  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80045A18 00042958  4B FE EF 75 */	bl dSv_event_c_NS_onEventBit
+/* 80045A18 00042958  4B FE EF 75 */	bl onEventBit__11dSv_event_cFUs
 lbl_80045A1C:
 /* 80045A1C 0004295C  80 9F 00 00 */	lwz r4, 0(r31)
 /* 80045A20 00042960  3C 60 57 41 */	lis r3, 0x57414954@ha

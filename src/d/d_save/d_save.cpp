@@ -795,7 +795,7 @@ asm bool dSv_letter_info_c::isLetterGetFlag(int param_1) const {
 
 #ifdef NONMATCHING
 void dSv_letter_info_c::onLetterReadFlag(int param_1) {
-    (this->letter_read_flags + (param_1 >> 0x5))[0x2] = (this->letter_read_flags + (param_1 >> 0x5))[0x2] | 0x1 << (u8)(param_1);
+    (this->letter_read_flags + (param_1 >> 0x5))[0x2] |= 0x1 << (u8)(param_1);
 }
 #else
 asm void dSv_letter_info_c::onLetterReadFlag(int param_1) {
@@ -1009,6 +1009,7 @@ asm void dSv_memBit_c::onItem(int) {
     nofralloc
     #include "func_800348C4.s"
 }
+
 asm bool dSv_memBit_c::isItem(int) const {
     nofralloc
     #include "func_800348EC.s"
@@ -1021,3 +1022,99 @@ void dSv_memBit_c::onDungeonItem(int param_1) {
 bool dSv_memBit_c::isDungeonItem(int param_1) const {
     return this->dungeons_flags & (u8)(1 << param_1) ?  true : false;
 }
+
+void dSv_event_c::init(void) {
+    for (int i = 0; i < 256; i++) {
+        this->events[i] = 0;
+    }
+    setInitEventBit();
+}
+
+void dSv_event_c::onEventBit(u16 param_1) {
+    this->events[(param_1 >> 8)] |= (u8)param_1;
+}
+
+void dSv_event_c::offEventBit(u16 param_1) {
+    this->events[(param_1 >> 8)] &= ~(u8)param_1;
+}
+
+// close
+#ifdef NONMATCHING
+bool dSv_event_c::isEventBit(u16 param_1) const {
+    return this->events[(param_1 >> 8)] & param_1 ? true : false;
+}
+#else
+asm bool dSv_event_c::isEventBit(u16 param_1) const {
+    nofralloc
+    #include "func_800349BC.s"
+}
+#endif
+
+void dSv_event_c::setEventReg(u16 param_1, u8 param_2) {
+    u8 uVar1 = (param_1 >> 8);
+    this->events[uVar1] &= ~(u8)param_1;
+    this->events[uVar1] |= param_2;
+}
+
+u8 dSv_event_c::getEventReg(u16 param_1) const {
+    return (u8)param_1 & this->events[param_1 >> 8];
+}
+
+void dSv_MiniGame_c::init(void) {
+    this->unk0 = 0;
+    for (int i = 0; i < 3; i++) {
+        this->unk1[i] = 0;
+    }
+    this->unk4 = 120000;
+    this->unk8 = 0;
+    this->unk12 = 0;
+    this->unk16 = 0;
+    this->unk20 = 0;
+}
+
+void dSv_memory_c::init(void) {
+    temp_flags.init();
+}
+
+void dSv_memory2_c::init(void) {
+    for (int i = 0; i < 2; i++) {
+        this->unk0[i] = 0;
+    }
+}
+
+// 1 instruction off
+#ifdef NONMATCHING
+void dSv_memory2_c::onVisitedRoom(int param_1) {
+    u8 test = param_1 >> 5
+    this->unk0[test] |= 1 << (u8)param_1; 
+}
+#else
+asm void dSv_memory2_c::onVisitedRoom(int param_1) {
+    nofralloc
+    #include "func_80034AA4.s"
+}
+#endif
+
+// 1 instruction off
+#ifdef NONMATCHING
+void dSv_memory2_c::offVisitedRoom(int param_1) {
+    this->unk0[param_1 >> 5] &= ~(1 << (u8)param_1); 
+}
+#else
+asm void dSv_memory2_c::offVisitedRoom(int param_1) {
+    nofralloc
+    #include "func_80034AC8.s"
+}
+#endif
+
+// 1 instruction off
+#ifdef NONMATCHING
+bool dSv_memory2_c::isVisitedRoom(int param_1) {
+    return (1 << (u8)param_1 & this->unk0[param_1 >> 5]) ? true : false;
+}
+#else
+asm bool dSv_memory2_c::isVisitedRoom(int param_1) {
+    nofralloc
+    #include "func_80034AEC.s"
+}
+#endif

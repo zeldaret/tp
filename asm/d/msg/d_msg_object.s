@@ -3251,7 +3251,7 @@ dMsgObject_c_NS_inputProc:
 /* 80235940 00232880  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 80235944 00232884  3B E4 90 C0 */	addi r31, r4, lbl_803790C0@l
 /* 80235948 00232888  A0 9F 00 A0 */	lhz r4, 0xa0(r31)
-/* 8023594C 0023288C  4B DF F0 71 */	bl dSv_event_c_NS_isEventBit
+/* 8023594C 0023288C  4B DF F0 71 */	bl isEventBit__11dSv_event_cCFUs
 /* 80235950 00232890  7C 7B 1B 78 */	mr r27, r3
 /* 80235954 00232894  A8 1C 01 74 */	lha r0, 0x174(r28)
 /* 80235958 00232898  2C 00 00 00 */	cmpwi r0, 0
@@ -3262,7 +3262,7 @@ dMsgObject_c_NS_inputProc:
 /* 8023596C 002328AC  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80235970 002328B0  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 80235974 002328B4  A0 84 06 44 */	lhz r4, 0x644(r4)
-/* 80235978 002328B8  4B DF F0 45 */	bl dSv_event_c_NS_isEventBit
+/* 80235978 002328B8  4B DF F0 45 */	bl isEventBit__11dSv_event_cCFUs
 /* 8023597C 002328BC  2C 03 00 00 */	cmpwi r3, 0
 /* 80235980 002328C0  40 82 00 0C */	bne lbl_8023598C
 /* 80235984 002328C4  38 00 00 01 */	li r0, 1
@@ -3293,33 +3293,33 @@ lbl_8023598C:
 /* 802359E4 00232924  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 802359E8 00232928  3B E4 72 88 */	addi r31, r4, lbl_803A7288@l
 /* 802359EC 0023292C  A0 9F 00 F8 */	lhz r4, 0xf8(r31)
-/* 802359F0 00232930  4B DF EF CD */	bl dSv_event_c_NS_isEventBit
+/* 802359F0 00232930  4B DF EF CD */	bl isEventBit__11dSv_event_cCFUs
 /* 802359F4 00232934  2C 03 00 00 */	cmpwi r3, 0
 /* 802359F8 00232938  40 82 00 74 */	bne lbl_80235A6C
 /* 802359FC 0023293C  7F 63 DB 78 */	mr r3, r27
 /* 80235A00 00232940  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80235A04 00232944  3B A4 72 88 */	addi r29, r4, lbl_803A7288@l
 /* 80235A08 00232948  A0 9D 02 F0 */	lhz r4, 0x2f0(r29)
-/* 80235A0C 0023294C  4B DF EF B1 */	bl dSv_event_c_NS_isEventBit
+/* 80235A0C 0023294C  4B DF EF B1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80235A10 00232950  2C 03 00 00 */	cmpwi r3, 0
 /* 80235A14 00232954  40 82 00 1C */	bne lbl_80235A30
 /* 80235A18 00232958  7F 63 DB 78 */	mr r3, r27
 /* 80235A1C 0023295C  A0 9D 02 F0 */	lhz r4, 0x2f0(r29)
-/* 80235A20 00232960  4B DF EF 6D */	bl dSv_event_c_NS_onEventBit
+/* 80235A20 00232960  4B DF EF 6D */	bl onEventBit__11dSv_event_cFUs
 /* 80235A24 00232964  38 60 00 00 */	li r3, 0
 /* 80235A28 00232968  48 00 2F 69 */	bl dMsgObject_setFundRaising
 /* 80235A2C 0023296C  48 00 00 40 */	b lbl_80235A6C
 lbl_80235A30:
 /* 80235A30 00232970  7F 63 DB 78 */	mr r3, r27
 /* 80235A34 00232974  A0 9F 00 F8 */	lhz r4, 0xf8(r31)
-/* 80235A38 00232978  4B DF EF 55 */	bl dSv_event_c_NS_onEventBit
+/* 80235A38 00232978  4B DF EF 55 */	bl onEventBit__11dSv_event_cFUs
 /* 80235A3C 0023297C  38 60 00 00 */	li r3, 0
 /* 80235A40 00232980  48 00 2F 51 */	bl dMsgObject_setFundRaising
 /* 80235A44 00232984  48 00 00 28 */	b lbl_80235A6C
 lbl_80235A48:
 /* 80235A48 00232988  7F A3 EB 78 */	mr r3, r29
 /* 80235A4C 0023298C  A0 9F 00 A0 */	lhz r4, 0xa0(r31)
-/* 80235A50 00232990  4B DF EF 55 */	bl dSv_event_c_NS_offEventBit
+/* 80235A50 00232990  4B DF EF 55 */	bl offEventBit__11dSv_event_cFUs
 /* 80235A54 00232994  48 00 00 18 */	b lbl_80235A6C
 lbl_80235A58:
 /* 80235A58 00232998  48 00 2E 3D */	bl dMsgObject_addTotalPayment
@@ -3345,7 +3345,7 @@ lbl_80235A84:
 /* 80235A98 002329D8  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 80235A9C 002329DC  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 80235AA0 002329E0  A0 84 00 A0 */	lhz r4, 0xa0(r4)
-/* 80235AA4 002329E4  4B DF EF 01 */	bl dSv_event_c_NS_offEventBit
+/* 80235AA4 002329E4  4B DF EF 01 */	bl offEventBit__11dSv_event_cFUs
 /* 80235AA8 002329E8  38 00 00 00 */	li r0, 0
 /* 80235AAC 002329EC  98 1E 00 BD */	stb r0, 0xbd(r30)
 /* 80235AB0 002329F0  7F 83 E3 78 */	mr r3, r28
@@ -6663,12 +6663,12 @@ dMsgObject_getTotalPrice:
 /* 80238680 002355C0  7F C3 F3 78 */	mr r3, r30
 /* 80238684 002355C4  3C 80 00 01 */	lis r4, 0x0000FEFF@ha
 /* 80238688 002355C8  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
-/* 8023868C 002355CC  4B DF C3 79 */	bl dSv_event_c_NS_getEventReg
+/* 8023868C 002355CC  4B DF C3 79 */	bl getEventReg__11dSv_event_cCFUs
 /* 80238690 002355D0  7C 7F 1B 78 */	mr r31, r3
 /* 80238694 002355D4  7F C3 F3 78 */	mr r3, r30
 /* 80238698 002355D8  3C 80 00 01 */	lis r4, 0x0000FDFF@ha
 /* 8023869C 002355DC  38 84 FD FF */	addi r4, r4, 0x0000FDFF@l
-/* 802386A0 002355E0  4B DF C3 65 */	bl dSv_event_c_NS_getEventReg
+/* 802386A0 002355E0  4B DF C3 65 */	bl getEventReg__11dSv_event_cCFUs
 /* 802386A4 002355E4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802386A8 002355E8  53 E0 44 2E */	rlwimi r0, r31, 8, 0x10, 0x17
 /* 802386AC 002355EC  54 03 04 3E */	clrlwi r3, r0, 0x10
@@ -6692,12 +6692,12 @@ dMsgObject_getTotalPrice:
 /* 802386F4 00235634  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
 /* 802386F8 00235638  54 1F 04 3E */	clrlwi r31, r0, 0x10
 /* 802386FC 0023563C  54 05 C6 3E */	rlwinm r5, r0, 0x18, 0x18, 0x1f
-/* 80238700 00235640  4B DF C2 E1 */	bl dSv_event_c_NS_setEventReg
+/* 80238700 00235640  4B DF C2 E1 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238704 00235644  7F C3 F3 78 */	mr r3, r30
 /* 80238708 00235648  3C 80 00 01 */	lis r4, 0x0000FDFF@ha
 /* 8023870C 0023564C  38 84 FD FF */	addi r4, r4, 0x0000FDFF@l
 /* 80238710 00235650  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 80238714 00235654  4B DF C2 CD */	bl dSv_event_c_NS_setEventReg
+/* 80238714 00235654  4B DF C2 CD */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238718 00235658  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8023871C 0023565C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80238720 00235660  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -6730,12 +6730,12 @@ lbl_80238774:
 /* 80238788 002356C8  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
 /* 8023878C 002356CC  57 BF 04 3E */	clrlwi r31, r29, 0x10
 /* 80238790 002356D0  57 A5 C6 3E */	rlwinm r5, r29, 0x18, 0x18, 0x1f
-/* 80238794 002356D4  4B DF C2 4D */	bl dSv_event_c_NS_setEventReg
+/* 80238794 002356D4  4B DF C2 4D */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238798 002356D8  7F C3 F3 78 */	mr r3, r30
 /* 8023879C 002356DC  3C 80 00 01 */	lis r4, 0x0000FDFF@ha
 /* 802387A0 002356E0  38 84 FD FF */	addi r4, r4, 0x0000FDFF@l
 /* 802387A4 002356E4  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 802387A8 002356E8  4B DF C2 39 */	bl dSv_event_c_NS_setEventReg
+/* 802387A8 002356E8  4B DF C2 39 */	bl setEventReg__11dSv_event_cFUsUc
 /* 802387AC 002356EC  39 61 00 20 */	addi r11, r1, 0x20
 /* 802387B0 002356F0  48 12 9A 79 */	bl _restgpr_29
 /* 802387B4 002356F4  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -6756,12 +6756,12 @@ dMsgObject_getTotalPayment:
 /* 802387E4 00235724  7F C3 F3 78 */	mr r3, r30
 /* 802387E8 00235728  3C 80 00 01 */	lis r4, 0x0000FCFF@ha
 /* 802387EC 0023572C  38 84 FC FF */	addi r4, r4, 0x0000FCFF@l
-/* 802387F0 00235730  4B DF C2 15 */	bl dSv_event_c_NS_getEventReg
+/* 802387F0 00235730  4B DF C2 15 */	bl getEventReg__11dSv_event_cCFUs
 /* 802387F4 00235734  7C 7F 1B 78 */	mr r31, r3
 /* 802387F8 00235738  7F C3 F3 78 */	mr r3, r30
 /* 802387FC 0023573C  3C 80 00 01 */	lis r4, 0x0000FBFF@ha
 /* 80238800 00235740  38 84 FB FF */	addi r4, r4, 0x0000FBFF@l
-/* 80238804 00235744  4B DF C2 01 */	bl dSv_event_c_NS_getEventReg
+/* 80238804 00235744  4B DF C2 01 */	bl getEventReg__11dSv_event_cCFUs
 /* 80238808 00235748  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8023880C 0023574C  53 E0 44 2E */	rlwimi r0, r31, 8, 0x10, 0x17
 /* 80238810 00235750  54 03 04 3E */	clrlwi r3, r0, 0x10
@@ -6785,12 +6785,12 @@ dMsgObject_getTotalPayment:
 /* 80238858 00235798  38 84 FC FF */	addi r4, r4, 0x0000FCFF@l
 /* 8023885C 0023579C  54 1F 04 3E */	clrlwi r31, r0, 0x10
 /* 80238860 002357A0  54 05 C6 3E */	rlwinm r5, r0, 0x18, 0x18, 0x1f
-/* 80238864 002357A4  4B DF C1 7D */	bl dSv_event_c_NS_setEventReg
+/* 80238864 002357A4  4B DF C1 7D */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238868 002357A8  7F C3 F3 78 */	mr r3, r30
 /* 8023886C 002357AC  3C 80 00 01 */	lis r4, 0x0000FBFF@ha
 /* 80238870 002357B0  38 84 FB FF */	addi r4, r4, 0x0000FBFF@l
 /* 80238874 002357B4  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 80238878 002357B8  4B DF C1 69 */	bl dSv_event_c_NS_setEventReg
+/* 80238878 002357B8  4B DF C1 69 */	bl setEventReg__11dSv_event_cFUsUc
 /* 8023887C 002357BC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80238880 002357C0  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80238884 002357C4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -6826,12 +6826,12 @@ lbl_802388D8:
 /* 802388EC 0023582C  38 84 FC FF */	addi r4, r4, 0x0000FCFF@l
 /* 802388F0 00235830  57 BF 04 3E */	clrlwi r31, r29, 0x10
 /* 802388F4 00235834  57 A5 C6 3E */	rlwinm r5, r29, 0x18, 0x18, 0x1f
-/* 802388F8 00235838  4B DF C0 E9 */	bl dSv_event_c_NS_setEventReg
+/* 802388F8 00235838  4B DF C0 E9 */	bl setEventReg__11dSv_event_cFUsUc
 /* 802388FC 0023583C  7F C3 F3 78 */	mr r3, r30
 /* 80238900 00235840  3C 80 00 01 */	lis r4, 0x0000FBFF@ha
 /* 80238904 00235844  38 84 FB FF */	addi r4, r4, 0x0000FBFF@l
 /* 80238908 00235848  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 8023890C 0023584C  4B DF C0 D5 */	bl dSv_event_c_NS_setEventReg
+/* 8023890C 0023584C  4B DF C0 D5 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238910 00235850  39 61 00 20 */	addi r11, r1, 0x20
 /* 80238914 00235854  48 12 99 15 */	bl _restgpr_29
 /* 80238918 00235858  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -6852,12 +6852,12 @@ dMsgObject_getFundRaising:
 /* 80238948 00235888  7F C3 F3 78 */	mr r3, r30
 /* 8023894C 0023588C  3C 80 00 01 */	lis r4, 0x0000F9FF@ha
 /* 80238950 00235890  38 84 F9 FF */	addi r4, r4, 0x0000F9FF@l
-/* 80238954 00235894  4B DF C0 B1 */	bl dSv_event_c_NS_getEventReg
+/* 80238954 00235894  4B DF C0 B1 */	bl getEventReg__11dSv_event_cCFUs
 /* 80238958 00235898  7C 7F 1B 78 */	mr r31, r3
 /* 8023895C 0023589C  7F C3 F3 78 */	mr r3, r30
 /* 80238960 002358A0  3C 80 00 01 */	lis r4, 0x0000FAFF@ha
 /* 80238964 002358A4  38 84 FA FF */	addi r4, r4, 0x0000FAFF@l
-/* 80238968 002358A8  4B DF C0 9D */	bl dSv_event_c_NS_getEventReg
+/* 80238968 002358A8  4B DF C0 9D */	bl getEventReg__11dSv_event_cCFUs
 /* 8023896C 002358AC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80238970 002358B0  53 E0 44 2E */	rlwimi r0, r31, 8, 0x10, 0x17
 /* 80238974 002358B4  54 03 04 3E */	clrlwi r3, r0, 0x10
@@ -6884,12 +6884,12 @@ dMsgObject_setFundRaising:
 /* 802389BC 002358FC  38 84 F9 FF */	addi r4, r4, 0x0000F9FF@l
 /* 802389C0 00235900  54 1F 04 3E */	clrlwi r31, r0, 0x10
 /* 802389C4 00235904  54 05 C6 3E */	rlwinm r5, r0, 0x18, 0x18, 0x1f
-/* 802389C8 00235908  4B DF C0 19 */	bl dSv_event_c_NS_setEventReg
+/* 802389C8 00235908  4B DF C0 19 */	bl setEventReg__11dSv_event_cFUsUc
 /* 802389CC 0023590C  7F C3 F3 78 */	mr r3, r30
 /* 802389D0 00235910  3C 80 00 01 */	lis r4, 0x0000FAFF@ha
 /* 802389D4 00235914  38 84 FA FF */	addi r4, r4, 0x0000FAFF@l
 /* 802389D8 00235918  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 802389DC 0023591C  4B DF C0 05 */	bl dSv_event_c_NS_setEventReg
+/* 802389DC 0023591C  4B DF C0 05 */	bl setEventReg__11dSv_event_cFUsUc
 /* 802389E0 00235920  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802389E4 00235924  83 C1 00 08 */	lwz r30, 8(r1)
 /* 802389E8 00235928  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -6919,12 +6919,12 @@ lbl_80238A24:
 /* 80238A38 00235978  38 84 F9 FF */	addi r4, r4, 0x0000F9FF@l
 /* 80238A3C 0023597C  57 BF 04 3E */	clrlwi r31, r29, 0x10
 /* 80238A40 00235980  57 A5 C6 3E */	rlwinm r5, r29, 0x18, 0x18, 0x1f
-/* 80238A44 00235984  4B DF BF 9D */	bl dSv_event_c_NS_setEventReg
+/* 80238A44 00235984  4B DF BF 9D */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238A48 00235988  7F C3 F3 78 */	mr r3, r30
 /* 80238A4C 0023598C  3C 80 00 01 */	lis r4, 0x0000FAFF@ha
 /* 80238A50 00235990  38 84 FA FF */	addi r4, r4, 0x0000FAFF@l
 /* 80238A54 00235994  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 80238A58 00235998  4B DF BF 89 */	bl dSv_event_c_NS_setEventReg
+/* 80238A58 00235998  4B DF BF 89 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238A5C 0023599C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80238A60 002359A0  48 12 97 C9 */	bl _restgpr_29
 /* 80238A64 002359A4  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -6945,12 +6945,12 @@ dMsgObject_getOffering:
 /* 80238A94 002359D4  7F C3 F3 78 */	mr r3, r30
 /* 80238A98 002359D8  3C 80 00 01 */	lis r4, 0x0000F7FF@ha
 /* 80238A9C 002359DC  38 84 F7 FF */	addi r4, r4, 0x0000F7FF@l
-/* 80238AA0 002359E0  4B DF BF 65 */	bl dSv_event_c_NS_getEventReg
+/* 80238AA0 002359E0  4B DF BF 65 */	bl getEventReg__11dSv_event_cCFUs
 /* 80238AA4 002359E4  7C 7F 1B 78 */	mr r31, r3
 /* 80238AA8 002359E8  7F C3 F3 78 */	mr r3, r30
 /* 80238AAC 002359EC  3C 80 00 01 */	lis r4, 0x0000F8FF@ha
 /* 80238AB0 002359F0  38 84 F8 FF */	addi r4, r4, 0x0000F8FF@l
-/* 80238AB4 002359F4  4B DF BF 51 */	bl dSv_event_c_NS_getEventReg
+/* 80238AB4 002359F4  4B DF BF 51 */	bl getEventReg__11dSv_event_cCFUs
 /* 80238AB8 002359F8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80238ABC 002359FC  53 E0 44 2E */	rlwimi r0, r31, 8, 0x10, 0x17
 /* 80238AC0 00235A00  54 03 04 3E */	clrlwi r3, r0, 0x10
@@ -6983,12 +6983,12 @@ lbl_80238B08:
 /* 80238B1C 00235A5C  38 84 F7 FF */	addi r4, r4, 0x0000F7FF@l
 /* 80238B20 00235A60  54 1F 04 3E */	clrlwi r31, r0, 0x10
 /* 80238B24 00235A64  54 05 C6 3E */	rlwinm r5, r0, 0x18, 0x18, 0x1f
-/* 80238B28 00235A68  4B DF BE B9 */	bl dSv_event_c_NS_setEventReg
+/* 80238B28 00235A68  4B DF BE B9 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238B2C 00235A6C  7F C3 F3 78 */	mr r3, r30
 /* 80238B30 00235A70  3C 80 00 01 */	lis r4, 0x0000F8FF@ha
 /* 80238B34 00235A74  38 84 F8 FF */	addi r4, r4, 0x0000F8FF@l
 /* 80238B38 00235A78  57 E5 06 3E */	clrlwi r5, r31, 0x18
-/* 80238B3C 00235A7C  4B DF BE A5 */	bl dSv_event_c_NS_setEventReg
+/* 80238B3C 00235A7C  4B DF BE A5 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80238B40 00235A80  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80238B44 00235A84  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80238B48 00235A88  80 01 00 14 */	lwz r0, 0x14(r1)

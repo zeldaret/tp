@@ -18202,7 +18202,7 @@ lbl_801AC6BC:
 /* 801AC6D4 001A9614  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801AC6D8 001A9618  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 801AC6DC 001A961C  38 80 45 10 */	li r4, 0x4510
-/* 801AC6E0 001A9620  4B E8 82 DD */	bl dSv_event_c_NS_isEventBit
+/* 801AC6E0 001A9620  4B E8 82 DD */	bl isEventBit__11dSv_event_cCFUs
 /* 801AC6E4 001A9624  2C 03 00 00 */	cmpwi r3, 0
 /* 801AC6E8 001A9628  40 82 00 08 */	bne lbl_801AC6F0
 /* 801AC6EC 001A962C  3B C0 FF FF */	li r30, -1
@@ -19740,7 +19740,7 @@ dKankyo_DayProc:
 /* 801ADD18 001AAC58  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 801ADD1C 001AAC5C  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 801ADD20 001AAC60  A0 84 00 B6 */	lhz r4, 0xb6(r4)
-/* 801ADD24 001AAC64  4B E8 6C 81 */	bl dSv_event_c_NS_offEventBit
+/* 801ADD24 001AAC64  4B E8 6C 81 */	bl offEventBit__11dSv_event_cFUs
 /* 801ADD28 001AAC68  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801ADD2C 001AAC6C  7C 08 03 A6 */	mtlr r0
 /* 801ADD30 001AAC70  38 21 00 10 */	addi r1, r1, 0x10

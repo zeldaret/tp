@@ -7,7 +7,7 @@
 /* 80032B10 0002FA50  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80032B14 0002FA54  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 80032B18 0002FA58  38 80 23 04 */	li r4, 0x2304
-/* 80032B1C 0002FA5C  48 00 1E A1 */	bl dSv_event_c_NS_isEventBit
+/* 80032B1C 0002FA5C  48 00 1E A1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80032B20 0002FA60  48 00 00 20 */	b lbl_80032B40
 lbl_80032B24:
 /* 80032B24 0002FA64  88 63 00 1C */	lbz r3, 0x1c(r3)

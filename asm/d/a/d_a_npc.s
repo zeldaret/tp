@@ -7954,7 +7954,7 @@ lbl_8014C9F4:
 /* 8014CA4C 0014998C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8014CA50 00149990  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8014CA54 00149994  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CA58 00149998  4B EE 7F 35 */	bl dSv_event_c_NS_onEventBit
+/* 8014CA58 00149998  4B EE 7F 35 */	bl onEventBit__11dSv_event_cFUs
 /* 8014CA5C 0014999C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CA60 001499A0  7C 08 03 A6 */	mtlr r0
 /* 8014CA64 001499A4  38 21 00 10 */	addi r1, r1, 0x10
@@ -7970,7 +7970,7 @@ lbl_8014C9F4:
 /* 8014CA8C 001499CC  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8014CA90 001499D0  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8014CA94 001499D4  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CA98 001499D8  4B EE 7F 0D */	bl dSv_event_c_NS_offEventBit
+/* 8014CA98 001499D8  4B EE 7F 0D */	bl offEventBit__11dSv_event_cFUs
 /* 8014CA9C 001499DC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CAA0 001499E0  7C 08 03 A6 */	mtlr r0
 /* 8014CAA4 001499E4  38 21 00 10 */	addi r1, r1, 0x10
@@ -7986,7 +7986,7 @@ lbl_8014C9F4:
 /* 8014CACC 00149A0C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8014CAD0 00149A10  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8014CAD4 00149A14  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CAD8 00149A18  4B EE 7E E5 */	bl dSv_event_c_NS_isEventBit
+/* 8014CAD8 00149A18  4B EE 7E E5 */	bl isEventBit__11dSv_event_cCFUs
 /* 8014CADC 00149A1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CAE0 00149A20  7C 08 03 A6 */	mtlr r0
 /* 8014CAE4 00149A24  38 21 00 10 */	addi r1, r1, 0x10
@@ -8002,7 +8002,7 @@ lbl_8014C9F4:
 /* 8014CB0C 00149A4C  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 8014CB10 00149A50  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 8014CB14 00149A54  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CB18 00149A58  4B EE 7E 75 */	bl dSv_event_c_NS_onEventBit
+/* 8014CB18 00149A58  4B EE 7E 75 */	bl onEventBit__11dSv_event_cFUs
 /* 8014CB1C 00149A5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CB20 00149A60  7C 08 03 A6 */	mtlr r0
 /* 8014CB24 00149A64  38 21 00 10 */	addi r1, r1, 0x10
@@ -8018,7 +8018,7 @@ lbl_8014C9F4:
 /* 8014CB4C 00149A8C  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 8014CB50 00149A90  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 8014CB54 00149A94  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CB58 00149A98  4B EE 7E 4D */	bl dSv_event_c_NS_offEventBit
+/* 8014CB58 00149A98  4B EE 7E 4D */	bl offEventBit__11dSv_event_cFUs
 /* 8014CB5C 00149A9C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CB60 00149AA0  7C 08 03 A6 */	mtlr r0
 /* 8014CB64 00149AA4  38 21 00 10 */	addi r1, r1, 0x10
@@ -8034,7 +8034,7 @@ lbl_8014C9F4:
 /* 8014CB8C 00149ACC  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 8014CB90 00149AD0  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 8014CB94 00149AD4  7C 84 02 2E */	lhzx r4, r4, r0
-/* 8014CB98 00149AD8  4B EE 7E 25 */	bl dSv_event_c_NS_isEventBit
+/* 8014CB98 00149AD8  4B EE 7E 25 */	bl isEventBit__11dSv_event_cCFUs
 /* 8014CB9C 00149ADC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8014CBA0 00149AE0  7C 08 03 A6 */	mtlr r0
 /* 8014CBA4 00149AE4  38 21 00 10 */	addi r1, r1, 0x10
@@ -17707,7 +17707,7 @@ lbl_8015561C:
 /* 80155654 00152594  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80155658 00152598  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8015565C 0015259C  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80155660 001525A0  4B ED F3 5D */	bl dSv_event_c_NS_isEventBit
+/* 80155660 001525A0  4B ED F3 5D */	bl isEventBit__11dSv_event_cCFUs
 /* 80155664 001525A4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80155668 001525A8  7C 08 03 A6 */	mtlr r0
 /* 8015566C 001525AC  38 21 00 10 */	addi r1, r1, 0x10
@@ -17723,7 +17723,7 @@ lbl_8015561C:
 /* 80155694 001525D4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 80155698 001525D8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8015569C 001525DC  7C 84 02 2E */	lhzx r4, r4, r0
-/* 801556A0 001525E0  4B ED F2 ED */	bl dSv_event_c_NS_onEventBit
+/* 801556A0 001525E0  4B ED F2 ED */	bl onEventBit__11dSv_event_cFUs
 /* 801556A4 001525E4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801556A8 001525E8  7C 08 03 A6 */	mtlr r0
 /* 801556AC 001525EC  38 21 00 10 */	addi r1, r1, 0x10
@@ -17739,7 +17739,7 @@ lbl_8015561C:
 /* 801556D4 00152614  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 801556D8 00152618  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 801556DC 0015261C  7C 84 02 2E */	lhzx r4, r4, r0
-/* 801556E0 00152620  4B ED F2 DD */	bl dSv_event_c_NS_isEventBit
+/* 801556E0 00152620  4B ED F2 DD */	bl isEventBit__11dSv_event_cCFUs
 /* 801556E4 00152624  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801556E8 00152628  7C 08 03 A6 */	mtlr r0
 /* 801556EC 0015262C  38 21 00 10 */	addi r1, r1, 0x10
@@ -17755,7 +17755,7 @@ lbl_8015561C:
 /* 80155714 00152654  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 80155718 00152658  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 8015571C 0015265C  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80155720 00152660  4B ED F2 6D */	bl dSv_event_c_NS_onEventBit
+/* 80155720 00152660  4B ED F2 6D */	bl onEventBit__11dSv_event_cFUs
 /* 80155724 00152664  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80155728 00152668  7C 08 03 A6 */	mtlr r0
 /* 8015572C 0015266C  38 21 00 10 */	addi r1, r1, 0x10
@@ -17774,7 +17774,7 @@ daNpcF_offTmpBit:
 /* 80155754 00152694  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 80155758 00152698  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 8015575C 0015269C  7C 84 02 2E */	lhzx r4, r4, r0
-/* 80155760 001526A0  4B ED F2 45 */	bl dSv_event_c_NS_offEventBit
+/* 80155760 001526A0  4B ED F2 45 */	bl offEventBit__11dSv_event_cFUs
 /* 80155764 001526A4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80155768 001526A8  7C 08 03 A6 */	mtlr r0
 /* 8015576C 001526AC  38 21 00 10 */	addi r1, r1, 0x10

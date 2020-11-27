@@ -6,7 +6,7 @@ extern "C" {
     void init__20dSv_player_collect_cFv(void);
     void dComIfGp_setSelectItem(int);
     void OSReport_Error(void);
-    void dSv_event_c_NS_isEventBit(void);
+    void isEventBit__11dSv_event_cCFUs(void);
     void dComIfGs_setMixItemIndex(void);
     void dComIfGs_setSelectItemIndex(void);
     void dComIfGs_getMixItemIndex(void);
@@ -39,4 +39,5 @@ extern "C" {
     u32 OSGetSoundMode(void);
     void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
     void dComIfG_play_c_NS_getNowVibration(void);
+    void setInitEventBit(void);
 }

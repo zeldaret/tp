@@ -1433,7 +1433,7 @@ lbl_8025A788:
 /* 8025A8C0 00257800  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8025A8C4 00257804  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 8025A8C8 00257808  38 80 06 01 */	li r4, 0x601
-/* 8025A8CC 0025780C  4B DD A0 C1 */	bl dSv_event_c_NS_onEventBit
+/* 8025A8CC 0025780C  4B DD A0 C1 */	bl onEventBit__11dSv_event_cFUs
 lbl_8025A8D0:
 /* 8025A8D0 00257810  4B DE 52 A1 */	bl dMpath_c_NS_create
 /* 8025A8D4 00257814  4B E4 13 45 */	bl dTres_c_NS_create

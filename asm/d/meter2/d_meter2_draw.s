@@ -11127,7 +11127,7 @@ dMeter2Draw_c_NS_setButtonIconMidonaAlpha:
 /* 80219B78 00216AB8  3B 83 07 F0 */	addi r28, r3, 0x7f0
 /* 80219B7C 00216ABC  7F 83 E3 78 */	mr r3, r28
 /* 80219B80 00216AC0  38 80 05 40 */	li r4, 0x540
-/* 80219B84 00216AC4  4B E1 AE 39 */	bl dSv_event_c_NS_isEventBit
+/* 80219B84 00216AC4  4B E1 AE 39 */	bl isEventBit__11dSv_event_cCFUs
 /* 80219B88 00216AC8  2C 03 00 00 */	cmpwi r3, 0
 /* 80219B8C 00216ACC  40 82 00 18 */	bne lbl_80219BA4
 /* 80219B90 00216AD0  3C 60 80 43 */	lis r3, lbl_80430188@ha
@@ -11138,12 +11138,12 @@ dMeter2Draw_c_NS_setButtonIconMidonaAlpha:
 lbl_80219BA4:
 /* 80219BA4 00216AE4  7F 83 E3 78 */	mr r3, r28
 /* 80219BA8 00216AE8  38 80 0C 10 */	li r4, 0xc10
-/* 80219BAC 00216AEC  4B E1 AE 11 */	bl dSv_event_c_NS_isEventBit
+/* 80219BAC 00216AEC  4B E1 AE 11 */	bl isEventBit__11dSv_event_cCFUs
 /* 80219BB0 00216AF0  2C 03 00 00 */	cmpwi r3, 0
 /* 80219BB4 00216AF4  41 82 00 18 */	beq lbl_80219BCC
 /* 80219BB8 00216AF8  7F 83 E3 78 */	mr r3, r28
 /* 80219BBC 00216AFC  38 80 61 40 */	li r4, 0x6140
-/* 80219BC0 00216B00  4B E1 AD FD */	bl dSv_event_c_NS_isEventBit
+/* 80219BC0 00216B00  4B E1 AD FD */	bl isEventBit__11dSv_event_cCFUs
 /* 80219BC4 00216B04  2C 03 00 00 */	cmpwi r3, 0
 /* 80219BC8 00216B08  41 82 00 0C */	beq lbl_80219BD4
 lbl_80219BCC:

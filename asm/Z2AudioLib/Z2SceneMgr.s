@@ -3765,7 +3765,7 @@ Z2SceneMgr_NS__load1stWaveInner_1:
 /* 802B9DCC 002B6D0C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 802B9DD0 002B6D10  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 802B9DD4 002B6D14  A0 84 00 D0 */	lhz r4, 0xd0(r4)
-/* 802B9DD8 002B6D18  4B D7 AB E5 */	bl dSv_event_c_NS_isEventBit
+/* 802B9DD8 002B6D18  4B D7 AB E5 */	bl isEventBit__11dSv_event_cCFUs
 /* 802B9DDC 002B6D1C  30 03 FF FF */	addic r0, r3, -1
 /* 802B9DE0 002B6D20  7C 60 19 10 */	subfe r3, r0, r3
 /* 802B9DE4 002B6D24  38 03 00 58 */	addi r0, r3, 0x58

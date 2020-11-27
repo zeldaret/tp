@@ -550,7 +550,7 @@ dSvBit_HIO_c_NS_init:
 /* 8025C270 002591B0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8025C274 002591B4  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 8025C278 002591B8  38 80 0D 04 */	li r4, 0xd04
-/* 8025C27C 002591BC  4B DD 87 41 */	bl dSv_event_c_NS_isEventBit
+/* 8025C27C 002591BC  4B DD 87 41 */	bl isEventBit__11dSv_event_cCFUs
 /* 8025C280 002591C0  98 7F 04 9D */	stb r3, 0x49d(r31)
 /* 8025C284 002591C4  98 7F 04 9C */	stb r3, 0x49c(r31)
 /* 8025C288 002591C8  83 E1 00 0C */	lwz r31, 0xc(r1)

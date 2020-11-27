@@ -103,7 +103,7 @@ dMeterButton_c_NS__execute:
 /* 80201488 001FE3C8  3C 80 80 38 */	lis r4, lbl_803790C0@ha
 /* 8020148C 001FE3CC  38 84 90 C0 */	addi r4, r4, lbl_803790C0@l
 /* 80201490 001FE3D0  A0 84 00 62 */	lhz r4, 0x62(r4)
-/* 80201494 001FE3D4  4B E3 35 29 */	bl dSv_event_c_NS_isEventBit
+/* 80201494 001FE3D4  4B E3 35 29 */	bl isEventBit__11dSv_event_cCFUs
 /* 80201498 001FE3D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8020149C 001FE3DC  41 82 00 24 */	beq lbl_802014C0
 /* 802014A0 001FE3E0  48 03 6D 8D */	bl dMsgObject_c_NS_getStatus

@@ -1002,14 +1002,14 @@ Z2EnvSeMgr_NS_framework:
 /* 802C6708 002C3648  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 802C670C 002C364C  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 802C6710 002C3650  A0 84 00 D0 */	lhz r4, 0xd0(r4)
-/* 802C6714 002C3654  4B D6 E2 A9 */	bl dSv_event_c_NS_isEventBit
+/* 802C6714 002C3654  4B D6 E2 A9 */	bl isEventBit__11dSv_event_cCFUs
 /* 802C6718 002C3658  2C 03 00 00 */	cmpwi r3, 0
 /* 802C671C 002C365C  41 82 00 48 */	beq lbl_802C6764
 /* 802C6720 002C3660  7F A3 EB 78 */	mr r3, r29
 /* 802C6724 002C3664  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 802C6728 002C3668  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 802C672C 002C366C  A0 84 01 F4 */	lhz r4, 0x1f4(r4)
-/* 802C6730 002C3670  4B D6 E2 8D */	bl dSv_event_c_NS_isEventBit
+/* 802C6730 002C3670  4B D6 E2 8D */	bl isEventBit__11dSv_event_cCFUs
 /* 802C6734 002C3674  2C 03 00 00 */	cmpwi r3, 0
 /* 802C6738 002C3678  40 82 00 2C */	bne lbl_802C6764
 lbl_802C673C:

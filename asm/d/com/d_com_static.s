@@ -528,7 +528,7 @@ lbl_800315E8:
 /* 80031624 0002E564  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 80031628 0002E568  3C 80 00 01 */	lis r4, 0x0000FDFF@ha
 /* 8003162C 0002E56C  38 84 FD FF */	addi r4, r4, 0x0000FDFF@l
-/* 80031630 0002E570  48 00 33 B1 */	bl dSv_event_c_NS_setEventReg
+/* 80031630 0002E570  48 00 33 B1 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80031634 0002E574  38 60 00 01 */	li r3, 1
 /* 80031638 0002E578  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003163C 0002E57C  7C 08 03 A6 */	mtlr r0
@@ -568,7 +568,7 @@ lbl_80031690:
 /* 800316C0 0002E600  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 800316C4 0002E604  3C 80 00 01 */	lis r4, 0x0000FF0F@ha
 /* 800316C8 0002E608  38 84 FF 0F */	addi r4, r4, 0x0000FF0F@l
-/* 800316CC 0002E60C  48 00 33 15 */	bl dSv_event_c_NS_setEventReg
+/* 800316CC 0002E60C  48 00 33 15 */	bl setEventReg__11dSv_event_cFUsUc
 /* 800316D0 0002E610  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800316D4 0002E614  7C 08 03 A6 */	mtlr r0
 /* 800316D8 0002E618  38 21 00 10 */	addi r1, r1, 0x10
@@ -584,7 +584,7 @@ daNpcKakashi_getSwdTutorialStep:
 /* 800316F4 0002E634  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 800316F8 0002E638  3C 80 00 01 */	lis r4, 0x0000FF0F@ha
 /* 800316FC 0002E63C  38 84 FF 0F */	addi r4, r4, 0x0000FF0F@l
-/* 80031700 0002E640  48 00 33 05 */	bl dSv_event_c_NS_getEventReg
+/* 80031700 0002E640  48 00 33 05 */	bl getEventReg__11dSv_event_cCFUs
 /* 80031704 0002E644  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 80031708 0002E648  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003170C 0002E64C  7C 08 03 A6 */	mtlr r0
@@ -600,7 +600,7 @@ daNpcKakashi_getSwdTutorialResult:
 /* 80031728 0002E668  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8003172C 0002E66C  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 80031730 0002E670  38 80 00 40 */	li r4, 0x40
-/* 80031734 0002E674  48 00 32 89 */	bl dSv_event_c_NS_isEventBit
+/* 80031734 0002E674  48 00 32 89 */	bl isEventBit__11dSv_event_cCFUs
 /* 80031738 0002E678  30 03 FF FF */	addic r0, r3, -1
 /* 8003173C 0002E67C  7C 00 19 10 */	subfe r0, r0, r3
 /* 80031740 0002E680  54 03 06 3E */	clrlwi r3, r0, 0x18
@@ -617,14 +617,14 @@ daNpcKakashi_getSwdTutorialResult:
 /* 8003176C 0002E6AC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80031770 0002E6B0  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 80031774 0002E6B4  38 80 00 40 */	li r4, 0x40
-/* 80031778 0002E6B8  48 00 32 15 */	bl dSv_event_c_NS_onEventBit
+/* 80031778 0002E6B8  48 00 32 15 */	bl onEventBit__11dSv_event_cFUs
 /* 8003177C 0002E6BC  48 00 00 18 */	b lbl_80031794
 lbl_80031780:
 /* 80031780 0002E6C0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80031784 0002E6C4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80031788 0002E6C8  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 8003178C 0002E6CC  38 80 00 40 */	li r4, 0x40
-/* 80031790 0002E6D0  48 00 32 15 */	bl dSv_event_c_NS_offEventBit
+/* 80031790 0002E6D0  48 00 32 15 */	bl offEventBit__11dSv_event_cFUs
 lbl_80031794:
 /* 80031794 0002E6D4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80031798 0002E6D8  7C 08 03 A6 */	mtlr r0
@@ -641,7 +641,7 @@ daNpcKakashi_getSuccessCount:
 /* 800317B8 0002E6F8  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 800317BC 0002E6FC  3C 80 00 01 */	lis r4, 0x0000FEFF@ha
 /* 800317C0 0002E700  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
-/* 800317C4 0002E704  48 00 32 41 */	bl dSv_event_c_NS_getEventReg
+/* 800317C4 0002E704  48 00 32 41 */	bl getEventReg__11dSv_event_cCFUs
 /* 800317C8 0002E708  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 800317CC 0002E70C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800317D0 0002E710  7C 08 03 A6 */	mtlr r0
@@ -657,14 +657,14 @@ daNpcKakashi_getSuccessCount:
 /* 800317F8 0002E738  7F E3 FB 78 */	mr r3, r31
 /* 800317FC 0002E73C  3C 80 00 01 */	lis r4, 0x0000FEFF@ha
 /* 80031800 0002E740  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
-/* 80031804 0002E744  48 00 32 01 */	bl dSv_event_c_NS_getEventReg
+/* 80031804 0002E744  48 00 32 01 */	bl getEventReg__11dSv_event_cCFUs
 /* 80031808 0002E748  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 8003180C 0002E74C  7F E3 FB 78 */	mr r3, r31
 /* 80031810 0002E750  3C 80 00 01 */	lis r4, 0x0000FEFF@ha
 /* 80031814 0002E754  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
 /* 80031818 0002E758  38 05 00 01 */	addi r0, r5, 1
 /* 8003181C 0002E75C  54 05 06 3E */	clrlwi r5, r0, 0x18
-/* 80031820 0002E760  48 00 31 C1 */	bl dSv_event_c_NS_setEventReg
+/* 80031820 0002E760  48 00 31 C1 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80031824 0002E764  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80031828 0002E768  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003182C 0002E76C  7C 08 03 A6 */	mtlr r0
@@ -679,7 +679,7 @@ daNpcKakashi_getSuccessCount:
 /* 80031850 0002E790  3C 80 00 01 */	lis r4, 0x0000FEFF@ha
 /* 80031854 0002E794  38 84 FE FF */	addi r4, r4, 0x0000FEFF@l
 /* 80031858 0002E798  38 A0 00 00 */	li r5, 0
-/* 8003185C 0002E79C  48 00 31 85 */	bl dSv_event_c_NS_setEventReg
+/* 8003185C 0002E79C  48 00 31 85 */	bl setEventReg__11dSv_event_cFUsUc
 /* 80031860 0002E7A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80031864 0002E7A4  7C 08 03 A6 */	mtlr r0
 /* 80031868 0002E7A8  38 21 00 10 */	addi r1, r1, 0x10

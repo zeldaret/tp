@@ -38012,7 +38012,7 @@ dComIfGs_isTmpBit:
 /* 801828B4 0017F7F4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801828B8 0017F7F8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801828BC 0017F7FC  38 63 0D D8 */	addi r3, r3, 0xdd8
-/* 801828C0 0017F800  4B EB 20 FD */	bl dSv_event_c_NS_isEventBit
+/* 801828C0 0017F800  4B EB 20 FD */	bl isEventBit__11dSv_event_cCFUs
 /* 801828C4 0017F804  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801828C8 0017F808  7C 08 03 A6 */	mtlr r0
 /* 801828CC 0017F80C  38 21 00 10 */	addi r1, r1, 0x10

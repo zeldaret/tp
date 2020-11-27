@@ -9202,14 +9202,14 @@ lbl_801D7AF4:
 /* 801D7B04 001D4A44  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D7B08 001D4A48  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D7B0C 001D4A4C  A0 84 00 D0 */	lhz r4, 0xd0(r4)
-/* 801D7B10 001D4A50  4B E5 CE AD */	bl dSv_event_c_NS_isEventBit
+/* 801D7B10 001D4A50  4B E5 CE AD */	bl isEventBit__11dSv_event_cCFUs
 /* 801D7B14 001D4A54  2C 03 00 00 */	cmpwi r3, 0
 /* 801D7B18 001D4A58  41 82 00 28 */	beq lbl_801D7B40
 /* 801D7B1C 001D4A5C  7F E3 FB 78 */	mr r3, r31
 /* 801D7B20 001D4A60  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D7B24 001D4A64  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D7B28 001D4A68  A0 84 01 F4 */	lhz r4, 0x1f4(r4)
-/* 801D7B2C 001D4A6C  4B E5 CE 91 */	bl dSv_event_c_NS_isEventBit
+/* 801D7B2C 001D4A6C  4B E5 CE 91 */	bl isEventBit__11dSv_event_cCFUs
 /* 801D7B30 001D4A70  2C 03 00 00 */	cmpwi r3, 0
 /* 801D7B34 001D4A74  40 82 00 0C */	bne lbl_801D7B40
 /* 801D7B38 001D4A78  38 60 00 00 */	li r3, 0
@@ -9236,14 +9236,14 @@ dMenu_Fmap2DTop_c_NS_checkWarpAcceptCannon:
 /* 801D7B78 001D4AB8  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D7B7C 001D4ABC  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D7B80 001D4AC0  A0 84 06 24 */	lhz r4, 0x624(r4)
-/* 801D7B84 001D4AC4  4B E5 CE 39 */	bl dSv_event_c_NS_isEventBit
+/* 801D7B84 001D4AC4  4B E5 CE 39 */	bl isEventBit__11dSv_event_cCFUs
 /* 801D7B88 001D4AC8  2C 03 00 00 */	cmpwi r3, 0
 /* 801D7B8C 001D4ACC  41 82 00 28 */	beq lbl_801D7BB4
 /* 801D7B90 001D4AD0  7F E3 FB 78 */	mr r3, r31
 /* 801D7B94 001D4AD4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D7B98 001D4AD8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D7B9C 001D4ADC  A0 84 06 22 */	lhz r4, 0x622(r4)
-/* 801D7BA0 001D4AE0  4B E5 CE 1D */	bl dSv_event_c_NS_isEventBit
+/* 801D7BA0 001D4AE0  4B E5 CE 1D */	bl isEventBit__11dSv_event_cCFUs
 /* 801D7BA4 001D4AE4  2C 03 00 00 */	cmpwi r3, 0
 /* 801D7BA8 001D4AE8  40 82 00 0C */	bne lbl_801D7BB4
 /* 801D7BAC 001D4AEC  38 60 00 00 */	li r3, 0
@@ -9591,7 +9591,7 @@ dMenu_Fmap2DTop_c_NS_isWarpAccept:
 /* 801D80A0 001D4FE0  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D80A4 001D4FE4  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D80A8 001D4FE8  A0 84 00 6C */	lhz r4, 0x6c(r4)
-/* 801D80AC 001D4FEC  4B E5 C9 11 */	bl dSv_event_c_NS_isEventBit
+/* 801D80AC 001D4FEC  4B E5 C9 11 */	bl isEventBit__11dSv_event_cCFUs
 /* 801D80B0 001D4FF0  2C 03 00 00 */	cmpwi r3, 0
 /* 801D80B4 001D4FF4  41 82 00 28 */	beq lbl_801D80DC
 /* 801D80B8 001D4FF8  3C 60 80 43 */	lis r3, lbl_80430188@ha

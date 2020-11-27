@@ -1246,7 +1246,7 @@ lbl_80098F68:
 /* 800991B0 000960F0  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 800991B4 000960F4  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 800991B8 000960F8  A0 84 02 36 */	lhz r4, 0x236(r4)
-/* 800991BC 000960FC  4B F9 B7 D1 */	bl dSv_event_c_NS_onEventBit
+/* 800991BC 000960FC  4B F9 B7 D1 */	bl onEventBit__11dSv_event_cFUs
 /* 800991C0 00096100  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 800991C4 00096104  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800991C8 00096108  38 63 00 9C */	addi r3, r3, 0x9c

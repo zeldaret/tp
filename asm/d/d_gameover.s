@@ -663,19 +663,19 @@ lbl_8019B68C:
 /* 8019B6A4 001985E4  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8019B6A8 001985E8  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8019B6AC 001985EC  A0 84 01 C4 */	lhz r4, 0x1c4(r4)
-/* 8019B6B0 001985F0  4B E9 93 0D */	bl dSv_event_c_NS_isEventBit
+/* 8019B6B0 001985F0  4B E9 93 0D */	bl isEventBit__11dSv_event_cCFUs
 /* 8019B6B4 001985F4  2C 03 00 00 */	cmpwi r3, 0
 /* 8019B6B8 001985F8  40 82 00 2C */	bne lbl_8019B6E4
 /* 8019B6BC 001985FC  7F C3 F3 78 */	mr r3, r30
 /* 8019B6C0 00198600  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8019B6C4 00198604  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8019B6C8 00198608  A0 84 01 C0 */	lhz r4, 0x1c0(r4)
-/* 8019B6CC 0019860C  4B E9 92 D9 */	bl dSv_event_c_NS_offEventBit
+/* 8019B6CC 0019860C  4B E9 92 D9 */	bl offEventBit__11dSv_event_cFUs
 /* 8019B6D0 00198610  7F C3 F3 78 */	mr r3, r30
 /* 8019B6D4 00198614  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 8019B6D8 00198618  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 8019B6DC 0019861C  A0 84 01 C2 */	lhz r4, 0x1c2(r4)
-/* 8019B6E0 00198620  4B E9 92 C5 */	bl dSv_event_c_NS_offEventBit
+/* 8019B6E0 00198620  4B E9 92 C5 */	bl offEventBit__11dSv_event_cFUs
 lbl_8019B6E4:
 /* 8019B6E4 00198624  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8019B6E8 00198628  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l

@@ -2008,7 +2008,7 @@ dMenu_Insect_c_NS_isGiveInsect:
 /* 801D9E54 001D6D94  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D9E58 001D6D98  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D9E5C 001D6D9C  7C 84 02 2E */	lhzx r4, r4, r0
-/* 801D9E60 001D6DA0  4B E5 AB 5D */	bl dSv_event_c_NS_isEventBit
+/* 801D9E60 001D6DA0  4B E5 AB 5D */	bl isEventBit__11dSv_event_cCFUs
 /* 801D9E64 001D6DA4  30 03 FF FF */	addic r0, r3, -1
 /* 801D9E68 001D6DA8  7C 60 19 10 */	subfe r3, r0, r3
 /* 801D9E6C 001D6DAC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2061,7 +2061,7 @@ dMenu_Insect_c_NS_isGiveInsect_X1_:
 /* 801D9F08 001D6E48  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 801D9F0C 001D6E4C  38 84 72 88 */	addi r4, r4, lbl_803A7288@l
 /* 801D9F10 001D6E50  7C 84 02 2E */	lhzx r4, r4, r0
-/* 801D9F14 001D6E54  4B E5 AA A9 */	bl dSv_event_c_NS_isEventBit
+/* 801D9F14 001D6E54  4B E5 AA A9 */	bl isEventBit__11dSv_event_cCFUs
 /* 801D9F18 001D6E58  30 03 FF FF */	addic r0, r3, -1
 /* 801D9F1C 001D6E5C  7C 00 19 10 */	subfe r0, r0, r3
 /* 801D9F20 001D6E60  54 03 06 3E */	clrlwi r3, r0, 0x18
