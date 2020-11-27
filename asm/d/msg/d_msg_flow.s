@@ -1628,7 +1628,7 @@ lbl_8024B3E8:
 /* 8024B594 002484D4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024B598 002484D8  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024B59C 002484DC  A0 84 00 04 */	lhz r4, 4(r4)
-/* 8024B5A0 002484E0  4B DE 92 C1 */	bl dSv_memBit_c_NS_isSwitch
+/* 8024B5A0 002484E0  4B DE 92 C1 */	bl isSwitch__12dSv_memBit_cCFi
 /* 8024B5A4 002484E4  7C 60 00 34 */	cntlzw r0, r3
 /* 8024B5A8 002484E8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8024B5AC 002484EC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1642,7 +1642,7 @@ lbl_8024B3E8:
 /* 8024B5CC 0024850C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024B5D0 00248510  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024B5D4 00248514  A0 84 00 04 */	lhz r4, 4(r4)
-/* 8024B5D8 00248518  4B DE 93 15 */	bl dSv_memBit_c_NS_isItem
+/* 8024B5D8 00248518  4B DE 93 15 */	bl isItem__12dSv_memBit_cCFi
 /* 8024B5DC 0024851C  7C 60 00 34 */	cntlzw r0, r3
 /* 8024B5E0 00248520  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8024B5E4 00248524  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2958,7 +2958,7 @@ lbl_8024C938:
 /* 8024C93C 0024987C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024C940 00249880  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024C944 00249884  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024C948 00249888  4B DE 7E C9 */	bl dSv_memBit_c_NS_onSwitch
+/* 8024C948 00249888  4B DE 7E C9 */	bl onSwitch__12dSv_memBit_cFi
 /* 8024C94C 0024988C  48 00 00 30 */	b lbl_8024C97C
 lbl_8024C950:
 /* 8024C950 00249890  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -3015,7 +3015,7 @@ lbl_8024CA00:
 /* 8024CA04 00249944  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024CA08 00249948  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024CA0C 0024994C  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024CA10 00249950  4B DE 7E 29 */	bl dSv_memBit_c_NS_offSwitch
+/* 8024CA10 00249950  4B DE 7E 29 */	bl offSwitch__12dSv_memBit_cFi
 /* 8024CA14 00249954  48 00 00 30 */	b lbl_8024CA44
 lbl_8024CA18:
 /* 8024CA18 00249958  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -4006,7 +4006,7 @@ lbl_8024D85C:
 /* 8024D8A0 0024A7E0  7C 60 22 14 */	add r3, r0, r4
 /* 8024D8A4 0024A7E4  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8024D8A8 0024A7E8  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024D8AC 0024A7EC  4B DE 6F 65 */	bl dSv_memBit_c_NS_onSwitch
+/* 8024D8AC 0024A7EC  4B DE 6F 65 */	bl onSwitch__12dSv_memBit_cFi
 /* 8024D8B0 0024A7F0  38 60 00 01 */	li r3, 1
 /* 8024D8B4 0024A7F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8024D8B8 0024A7F8  7C 08 03 A6 */	mtlr r0
@@ -4027,7 +4027,7 @@ lbl_8024D85C:
 /* 8024D8F4 0024A834  7C 60 22 14 */	add r3, r0, r4
 /* 8024D8F8 0024A838  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8024D8FC 0024A83C  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024D900 0024A840  4B DE 6F 39 */	bl dSv_memBit_c_NS_offSwitch
+/* 8024D900 0024A840  4B DE 6F 39 */	bl offSwitch__12dSv_memBit_cFi
 /* 8024D904 0024A844  38 60 00 01 */	li r3, 1
 /* 8024D908 0024A848  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8024D90C 0024A84C  7C 08 03 A6 */	mtlr r0

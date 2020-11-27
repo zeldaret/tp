@@ -3519,7 +3519,7 @@ dComIfGs_isSaveSwitch:
 /* 802B9AA4 002B69E4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 802B9AA8 002B69E8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 802B9AAC 002B69EC  38 63 09 58 */	addi r3, r3, 0x958
-/* 802B9AB0 002B69F0  4B D7 AD B1 */	bl dSv_memBit_c_NS_isSwitch
+/* 802B9AB0 002B69F0  4B D7 AD B1 */	bl isSwitch__12dSv_memBit_cCFi
 /* 802B9AB4 002B69F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802B9AB8 002B69F8  7C 08 03 A6 */	mtlr r0
 /* 802B9ABC 002B69FC  38 21 00 10 */	addi r1, r1, 0x10

@@ -94,12 +94,12 @@ lbl_801B8018:
 /* 801B8070 001B4FB0  3B C3 09 58 */	addi r30, r3, 0x958
 /* 801B8074 001B4FB4  7F C3 F3 78 */	mr r3, r30
 /* 801B8078 001B4FB8  38 80 00 00 */	li r4, 0
-/* 801B807C 001B4FBC  4B E7 C8 B9 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801B807C 001B4FBC  4B E7 C8 B9 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801B8080 001B4FC0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B8084 001B4FC4  40 82 00 18 */	bne lbl_801B809C
 /* 801B8088 001B4FC8  7F C3 F3 78 */	mr r3, r30
 /* 801B808C 001B4FCC  38 80 00 01 */	li r4, 1
-/* 801B8090 001B4FD0  4B E7 C8 A5 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801B8090 001B4FD0  4B E7 C8 A5 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801B8094 001B4FD4  2C 03 00 00 */	cmpwi r3, 0
 /* 801B8098 001B4FD8  41 82 00 20 */	beq lbl_801B80B8
 lbl_801B809C:
@@ -4605,13 +4605,13 @@ lbl_801BC30C:
 /* 801BC314 001B9254  3B 03 09 58 */	addi r24, r3, 0x958
 /* 801BC318 001B9258  7F 03 C3 78 */	mr r3, r24
 /* 801BC31C 001B925C  38 80 00 02 */	li r4, 2
-/* 801BC320 001B9260  4B E7 86 15 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801BC320 001B9260  4B E7 86 15 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801BC324 001B9264  2C 03 00 00 */	cmpwi r3, 0
 /* 801BC328 001B9268  41 82 00 30 */	beq lbl_801BC358
 /* 801BC32C 001B926C  3B 80 00 F6 */	li r28, 0xf6
 /* 801BC330 001B9270  7F 03 C3 78 */	mr r3, r24
 /* 801BC334 001B9274  38 80 00 02 */	li r4, 2
-/* 801BC338 001B9278  4B E7 85 FD */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801BC338 001B9278  4B E7 85 FD */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801BC33C 001B927C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801BC340 001B9280  20 00 00 00 */	subfic r0, r0, 0
 /* 801BC344 001B9284  7C 60 01 10 */	subfe r3, r0, r0
@@ -4727,7 +4727,7 @@ lbl_801BC454:
 /* 801BC4E8 001B9428  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801BC4EC 001B942C  38 63 09 58 */	addi r3, r3, 0x958
 /* 801BC4F0 001B9430  38 80 00 02 */	li r4, 2
-/* 801BC4F4 001B9434  4B E7 84 41 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801BC4F4 001B9434  4B E7 84 41 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801BC4F8 001B9438  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801BC4FC 001B943C  20 00 00 00 */	subfic r0, r0, 0
 /* 801BC500 001B9440  7C 60 01 10 */	subfe r3, r0, r0
@@ -4740,7 +4740,7 @@ lbl_801BC510:
 /* 801BC518 001B9458  3B 03 09 58 */	addi r24, r3, 0x958
 /* 801BC51C 001B945C  7F 03 C3 78 */	mr r3, r24
 /* 801BC520 001B9460  38 80 00 00 */	li r4, 0
-/* 801BC524 001B9464  4B E7 84 11 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801BC524 001B9464  4B E7 84 11 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801BC528 001B9468  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801BC52C 001B946C  20 00 00 00 */	subfic r0, r0, 0
 /* 801BC530 001B9470  7C 60 01 10 */	subfe r3, r0, r0
@@ -4749,7 +4749,7 @@ lbl_801BC510:
 /* 801BC53C 001B947C  98 1F 01 74 */	stb r0, 0x174(r31)
 /* 801BC540 001B9480  7F 03 C3 78 */	mr r3, r24
 /* 801BC544 001B9484  38 80 00 01 */	li r4, 1
-/* 801BC548 001B9488  4B E7 83 ED */	bl dSv_memBit_c_NS_isDungeonItem
+/* 801BC548 001B9488  4B E7 83 ED */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 801BC54C 001B948C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801BC550 001B9490  20 00 00 00 */	subfic r0, r0, 0
 /* 801BC554 001B9494  7C 60 01 10 */	subfe r3, r0, r0
@@ -6225,7 +6225,7 @@ lbl_801BDA30:
 /* 801BDA50 001BA990  3B A3 09 58 */	addi r29, r3, 0x958
 /* 801BDA54 001BA994  7F A3 EB 78 */	mr r3, r29
 /* 801BDA58 001BA998  38 80 00 67 */	li r4, 0x67
-/* 801BDA5C 001BA99C  4B E7 6E 05 */	bl dSv_memBit_c_NS_isSwitch
+/* 801BDA5C 001BA99C  4B E7 6E 05 */	bl isSwitch__12dSv_memBit_cCFi
 /* 801BDA60 001BA9A0  2C 03 00 00 */	cmpwi r3, 0
 /* 801BDA64 001BA9A4  41 82 00 0C */	beq lbl_801BDA70
 /* 801BDA68 001BA9A8  3B 80 00 01 */	li r28, 1
@@ -6233,12 +6233,12 @@ lbl_801BDA30:
 lbl_801BDA70:
 /* 801BDA70 001BA9B0  7F A3 EB 78 */	mr r3, r29
 /* 801BDA74 001BA9B4  38 80 00 66 */	li r4, 0x66
-/* 801BDA78 001BA9B8  4B E7 6D E9 */	bl dSv_memBit_c_NS_isSwitch
+/* 801BDA78 001BA9B8  4B E7 6D E9 */	bl isSwitch__12dSv_memBit_cCFi
 /* 801BDA7C 001BA9BC  2C 03 00 00 */	cmpwi r3, 0
 /* 801BDA80 001BA9C0  40 82 00 10 */	bne lbl_801BDA90
 /* 801BDA84 001BA9C4  7F A3 EB 78 */	mr r3, r29
 /* 801BDA88 001BA9C8  38 80 00 65 */	li r4, 0x65
-/* 801BDA8C 001BA9CC  4B E7 6D D5 */	bl dSv_memBit_c_NS_isSwitch
+/* 801BDA8C 001BA9CC  4B E7 6D D5 */	bl isSwitch__12dSv_memBit_cCFi
 lbl_801BDA90:
 /* 801BDA90 001BA9D0  80 7F 00 08 */	lwz r3, 8(r31)
 /* 801BDA94 001BA9D4  C0 03 0D A4 */	lfs f0, 0xda4(r3)

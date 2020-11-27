@@ -503,11 +503,11 @@ lbl_8020DB2C:
 /* 8020DB38 0020AA78  3B C3 09 58 */	addi r30, r3, 0x958
 /* 8020DB3C 0020AA7C  7F C3 F3 78 */	mr r3, r30
 /* 8020DB40 0020AA80  38 80 00 01 */	li r4, 1
-/* 8020DB44 0020AA84  4B E2 6D F1 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020DB44 0020AA84  4B E2 6D F1 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020DB48 0020AA88  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 8020DB4C 0020AA8C  7F C3 F3 78 */	mr r3, r30
 /* 8020DB50 0020AA90  38 80 00 00 */	li r4, 0
-/* 8020DB54 0020AA94  4B E2 6D E1 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020DB54 0020AA94  4B E2 6D E1 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020DB58 0020AA98  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 8020DB5C 0020AA9C  38 00 00 00 */	li r0, 0
 /* 8020DB60 0020AAA0  90 1F 00 14 */	stw r0, 0x14(r31)
@@ -1081,7 +1081,7 @@ lbl_8020E3A0:
 /* 8020E3A8 0020B2E8  3B C3 09 58 */	addi r30, r3, 0x958
 /* 8020E3AC 0020B2EC  7F C3 F3 78 */	mr r3, r30
 /* 8020E3B0 0020B2F0  38 80 00 01 */	li r4, 1
-/* 8020E3B4 0020B2F4  4B E2 65 81 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020E3B4 0020B2F4  4B E2 65 81 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020E3B8 0020B2F8  80 1D 00 0C */	lwz r0, 0xc(r29)
 /* 8020E3BC 0020B2FC  7C 00 18 00 */	cmpw r0, r3
 /* 8020E3C0 0020B300  41 82 00 38 */	beq lbl_8020E3F8
@@ -1097,12 +1097,12 @@ lbl_8020E3A0:
 lbl_8020E3E8:
 /* 8020E3E8 0020B328  7F C3 F3 78 */	mr r3, r30
 /* 8020E3EC 0020B32C  38 80 00 01 */	li r4, 1
-/* 8020E3F0 0020B330  4B E2 65 45 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020E3F0 0020B330  4B E2 65 45 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020E3F4 0020B334  90 7D 00 0C */	stw r3, 0xc(r29)
 lbl_8020E3F8:
 /* 8020E3F8 0020B338  7F C3 F3 78 */	mr r3, r30
 /* 8020E3FC 0020B33C  38 80 00 00 */	li r4, 0
-/* 8020E400 0020B340  4B E2 65 35 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020E400 0020B340  4B E2 65 35 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020E404 0020B344  80 1D 00 10 */	lwz r0, 0x10(r29)
 /* 8020E408 0020B348  7C 00 18 00 */	cmpw r0, r3
 /* 8020E40C 0020B34C  41 82 00 38 */	beq lbl_8020E444
@@ -1118,7 +1118,7 @@ lbl_8020E3F8:
 lbl_8020E434:
 /* 8020E434 0020B374  7F C3 F3 78 */	mr r3, r30
 /* 8020E438 0020B378  38 80 00 00 */	li r4, 0
-/* 8020E43C 0020B37C  4B E2 64 F9 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8020E43C 0020B37C  4B E2 64 F9 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8020E440 0020B380  90 7D 00 10 */	stw r3, 0x10(r29)
 lbl_8020E444:
 /* 8020E444 0020B384  39 61 00 30 */	addi r11, r1, 0x30

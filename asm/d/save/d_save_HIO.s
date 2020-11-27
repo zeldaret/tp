@@ -35,7 +35,7 @@ dSvBit_childSwPerfectionHIO_c_NS_init:
 lbl_8025BBD4:
 /* 8025BBD4 00258B14  7F E3 FB 78 */	mr r3, r31
 /* 8025BBD8 00258B18  7F C4 F3 78 */	mr r4, r30
-/* 8025BBDC 00258B1C  4B DD 8C 85 */	bl dSv_memBit_c_NS_isSwitch
+/* 8025BBDC 00258B1C  4B DD 8C 85 */	bl isSwitch__12dSv_memBit_cCFi
 /* 8025BBE0 00258B20  7C 9D F2 14 */	add r4, r29, r30
 /* 8025BBE4 00258B24  98 64 00 05 */	stb r3, 5(r4)
 /* 8025BBE8 00258B28  88 04 00 05 */	lbz r0, 5(r4)
@@ -193,7 +193,7 @@ dSvBit_childItPerfectionHIO_c_NS_init:
 lbl_8025BDCC:
 /* 8025BDCC 00258D0C  7F E3 FB 78 */	mr r3, r31
 /* 8025BDD0 00258D10  7F C4 F3 78 */	mr r4, r30
-/* 8025BDD4 00258D14  4B DD 8B 19 */	bl dSv_memBit_c_NS_isItem
+/* 8025BDD4 00258D14  4B DD 8B 19 */	bl isItem__12dSv_memBit_cCFi
 /* 8025BDD8 00258D18  7C 9D F2 14 */	add r4, r29, r30
 /* 8025BDDC 00258D1C  98 64 00 05 */	stb r3, 5(r4)
 /* 8025BDE0 00258D20  88 04 00 05 */	lbz r0, 5(r4)

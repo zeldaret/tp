@@ -984,3 +984,40 @@ asm bool dSv_memBit_c::isTbox(int param_1) const {
     #include "func_800347E8.s"
 }
 #endif
+
+asm void dSv_memBit_c::onSwitch(int) {
+    nofralloc
+    #include "func_80034810.s"
+}
+
+asm void dSv_memBit_c::offSwitch(int) {
+    nofralloc
+    #include "func_80034838.s"
+}
+
+asm bool dSv_memBit_c::isSwitch(int) const {
+    nofralloc
+    #include "func_80034860.s"
+}
+
+asm u8 dSv_memBit_c::revSwitch(int){
+    nofralloc
+    #include "func_8003488C.s"
+}
+
+asm void dSv_memBit_c::onItem(int) {
+    nofralloc
+    #include "func_800348C4.s"
+}
+asm bool dSv_memBit_c::isItem(int) const {
+    nofralloc
+    #include "func_800348EC.s"
+}
+
+void dSv_memBit_c::onDungeonItem(int param_1) {
+    this->dungeons_flags = this->dungeons_flags | (u8)(1 << param_1);
+}
+
+bool dSv_memBit_c::isDungeonItem(int param_1) const {
+    return this->dungeons_flags & (u8)(1 << param_1) ?  true : false;
+}

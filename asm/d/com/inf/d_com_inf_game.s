@@ -2654,7 +2654,7 @@ lbl_8002D680:
 /* 8002D68C 0002A5CC  7C 60 22 14 */	add r3, r0, r4
 /* 8002D690 0002A5D0  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8002D694 0002A5D4  7F E4 FB 78 */	mr r4, r31
-/* 8002D698 0002A5D8  48 00 71 79 */	bl dSv_memBit_c_NS_onSwitch
+/* 8002D698 0002A5D8  48 00 71 79 */	bl onSwitch__12dSv_memBit_cFi
 /* 8002D69C 0002A5DC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D6A0 0002A5E0  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8002D6A4 0002A5E4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2693,7 +2693,7 @@ lbl_8002D70C:
 /* 8002D718 0002A658  7C 60 22 14 */	add r3, r0, r4
 /* 8002D71C 0002A65C  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8002D720 0002A660  7F E4 FB 78 */	mr r4, r31
-/* 8002D724 0002A664  48 00 71 15 */	bl dSv_memBit_c_NS_offSwitch
+/* 8002D724 0002A664  48 00 71 15 */	bl offSwitch__12dSv_memBit_cFi
 /* 8002D728 0002A668  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D72C 0002A66C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8002D730 0002A670  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2733,7 +2733,7 @@ lbl_8002D79C:
 /* 8002D7A8 0002A6E8  7C 60 22 14 */	add r3, r0, r4
 /* 8002D7AC 0002A6EC  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8002D7B0 0002A6F0  7F E4 FB 78 */	mr r4, r31
-/* 8002D7B4 0002A6F4  48 00 70 AD */	bl dSv_memBit_c_NS_isSwitch
+/* 8002D7B4 0002A6F4  48 00 70 AD */	bl isSwitch__12dSv_memBit_cCFi
 lbl_8002D7B8:
 /* 8002D7B8 0002A6F8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D7BC 0002A6FC  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2762,10 +2762,10 @@ lbl_8002D7B8:
 /* 8002D818 0002A758  3B E3 09 58 */	addi r31, r3, 0x958
 /* 8002D81C 0002A75C  7F E3 FB 78 */	mr r3, r31
 /* 8002D820 0002A760  38 80 00 03 */	li r4, 3
-/* 8002D824 0002A764  48 00 70 F5 */	bl dSv_memBit_c_NS_onDungeonItem
+/* 8002D824 0002A764  48 00 70 F5 */	bl onDungeonItem__12dSv_memBit_cFi
 /* 8002D828 0002A768  7F E3 FB 78 */	mr r3, r31
 /* 8002D82C 0002A76C  38 80 00 06 */	li r4, 6
-/* 8002D830 0002A770  48 00 70 E9 */	bl dSv_memBit_c_NS_onDungeonItem
+/* 8002D830 0002A770  48 00 70 E9 */	bl onDungeonItem__12dSv_memBit_cFi
 lbl_8002D834:
 /* 8002D834 0002A774  57 C4 28 34 */	slwi r4, r30, 5
 /* 8002D838 0002A778  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -2774,10 +2774,10 @@ lbl_8002D834:
 /* 8002D844 0002A784  3B E3 01 F0 */	addi r31, r3, 0x1f0
 /* 8002D848 0002A788  7F E3 FB 78 */	mr r3, r31
 /* 8002D84C 0002A78C  38 80 00 03 */	li r4, 3
-/* 8002D850 0002A790  48 00 70 C9 */	bl dSv_memBit_c_NS_onDungeonItem
+/* 8002D850 0002A790  48 00 70 C9 */	bl onDungeonItem__12dSv_memBit_cFi
 /* 8002D854 0002A794  7F E3 FB 78 */	mr r3, r31
 /* 8002D858 0002A798  38 80 00 06 */	li r4, 6
-/* 8002D85C 0002A79C  48 00 70 BD */	bl dSv_memBit_c_NS_onDungeonItem
+/* 8002D85C 0002A79C  48 00 70 BD */	bl onDungeonItem__12dSv_memBit_cFi
 /* 8002D860 0002A7A0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D864 0002A7A4  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8002D868 0002A7A8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2806,7 +2806,7 @@ dComIfGs_isDungeonItemWarp:
 /* 8002D8B8 0002A7F8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002D8BC 0002A7FC  38 63 09 58 */	addi r3, r3, 0x958
 /* 8002D8C0 0002A800  38 80 00 06 */	li r4, 6
-/* 8002D8C4 0002A804  48 00 70 71 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8002D8C4 0002A804  48 00 70 71 */	bl isDungeonItem__12dSv_memBit_cCFi
 /* 8002D8C8 0002A808  48 00 00 20 */	b lbl_8002D8E8
 lbl_8002D8CC:
 /* 8002D8CC 0002A80C  57 E4 28 34 */	slwi r4, r31, 5
@@ -2815,7 +2815,7 @@ lbl_8002D8CC:
 /* 8002D8D8 0002A818  7C 60 22 14 */	add r3, r0, r4
 /* 8002D8DC 0002A81C  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8002D8E0 0002A820  38 80 00 06 */	li r4, 6
-/* 8002D8E4 0002A824  48 00 70 51 */	bl dSv_memBit_c_NS_isDungeonItem
+/* 8002D8E4 0002A824  48 00 70 51 */	bl isDungeonItem__12dSv_memBit_cCFi
 lbl_8002D8E8:
 /* 8002D8E8 0002A828  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D8EC 0002A82C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -5250,7 +5250,7 @@ lbl_8002F91C:
 /* 8002F960 0002C8A0  40 82 00 20 */	bne lbl_8002F980
 /* 8002F964 0002C8A4  38 63 09 58 */	addi r3, r3, 0x958
 /* 8002F968 0002C8A8  38 80 00 0C */	li r4, 0xc
-/* 8002F96C 0002C8AC  48 00 4E F5 */	bl dSv_memBit_c_NS_isSwitch
+/* 8002F96C 0002C8AC  48 00 4E F5 */	bl isSwitch__12dSv_memBit_cCFi
 /* 8002F970 0002C8B0  2C 03 00 00 */	cmpwi r3, 0
 /* 8002F974 0002C8B4  40 82 00 0C */	bne lbl_8002F980
 /* 8002F978 0002C8B8  3B E0 00 00 */	li r31, 0
@@ -5273,7 +5273,7 @@ lbl_8002F980:
 /* 8002F9B8 0002C8F8  40 82 00 1C */	bne lbl_8002F9D4
 /* 8002F9BC 0002C8FC  38 63 09 58 */	addi r3, r3, 0x958
 /* 8002F9C0 0002C900  38 80 00 0D */	li r4, 0xd
-/* 8002F9C4 0002C904  48 00 4E 9D */	bl dSv_memBit_c_NS_isSwitch
+/* 8002F9C4 0002C904  48 00 4E 9D */	bl isSwitch__12dSv_memBit_cCFi
 /* 8002F9C8 0002C908  2C 03 00 00 */	cmpwi r3, 0
 /* 8002F9CC 0002C90C  40 82 00 08 */	bne lbl_8002F9D4
 /* 8002F9D0 0002C910  3B E0 00 00 */	li r31, 0
