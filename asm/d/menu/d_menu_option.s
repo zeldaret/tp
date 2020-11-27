@@ -3395,11 +3395,11 @@ lbl_801E5020:
 /* 801E507C 001E1FBC  41 82 00 10 */	beq lbl_801E508C
 /* 801E5080 001E1FC0  7F C3 F3 78 */	mr r3, r30
 /* 801E5084 001E1FC4  88 9F 03 EA */	lbz r4, 0x3ea(r31)
-/* 801E5088 001E1FC8  4B E4 F6 15 */	bl dSv_player_config_c_NS_setVibration
+/* 801E5088 001E1FC8  4B E4 F6 15 */	bl setVibration__19dSv_player_config_cFUc
 lbl_801E508C:
 /* 801E508C 001E1FCC  7F C3 F3 78 */	mr r3, r30
 /* 801E5090 001E1FD0  88 9F 03 E9 */	lbz r4, 0x3e9(r31)
-/* 801E5094 001E1FD4  4B E4 F5 F9 */	bl dSv_player_config_c_NS_setSound
+/* 801E5094 001E1FD4  4B E4 F5 F9 */	bl setSound__19dSv_player_config_cFUc
 /* 801E5098 001E1FD8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801E509C 001E1FDC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801E50A0 001E1FE0  38 63 0F 38 */	addi r3, r3, 0xf38
@@ -3433,13 +3433,13 @@ lbl_801E50F0:
 /* 801E5108 001E2048  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801E510C 001E204C  3B C3 01 E0 */	addi r30, r3, 0x1e0
 /* 801E5110 001E2050  7F C3 F3 78 */	mr r3, r30
-/* 801E5114 001E2054  4B E4 F5 71 */	bl dSv_player_config_c_NS_getSound
+/* 801E5114 001E2054  4B E4 F5 71 */	bl getSound__19dSv_player_config_cFv
 /* 801E5118 001E2058  88 9F 03 E9 */	lbz r4, 0x3e9(r31)
 /* 801E511C 001E205C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801E5120 001E2060  7C 04 00 40 */	cmplw r4, r0
 /* 801E5124 001E2064  41 82 00 48 */	beq lbl_801E516C
 /* 801E5128 001E2068  7F C3 F3 78 */	mr r3, r30
-/* 801E512C 001E206C  4B E4 F5 59 */	bl dSv_player_config_c_NS_getSound
+/* 801E512C 001E206C  4B E4 F5 59 */	bl getSound__19dSv_player_config_cFv
 /* 801E5130 001E2070  98 7F 03 E9 */	stb r3, 0x3e9(r31)
 /* 801E5134 001E2074  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 801E5138 001E2078  88 1F 03 E9 */	lbz r0, 0x3e9(r31)
@@ -6813,7 +6813,7 @@ dMenu_Option_c_NS_initialize:
 /* 801E8248 001E5188  98 1F 03 EB */	stb r0, 0x3eb(r31)
 /* 801E824C 001E518C  98 1F 03 E6 */	stb r0, 0x3e6(r31)
 /* 801E8250 001E5190  98 1F 03 E7 */	stb r0, 0x3e7(r31)
-/* 801E8254 001E5194  4B E4 C4 31 */	bl dSv_player_config_c_NS_getSound
+/* 801E8254 001E5194  4B E4 C4 31 */	bl getSound__19dSv_player_config_cFv
 /* 801E8258 001E5198  98 7F 03 E9 */	stb r3, 0x3e9(r31)
 /* 801E825C 001E519C  7F E3 FB 78 */	mr r3, r31
 /* 801E8260 001E51A0  4B FF FE 41 */	bl dMenu_Option_c_NS_isRumbleSupported

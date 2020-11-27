@@ -351,7 +351,7 @@ dSvBit_childTbPerfectionHIO_c_NS_init:
 lbl_8025BFC4:
 /* 8025BFC4 00258F04  7F E3 FB 78 */	mr r3, r31
 /* 8025BFC8 00258F08  7F C4 F3 78 */	mr r4, r30
-/* 8025BFCC 00258F0C  4B DD 88 1D */	bl dSv_memBit_c_NS_isTbox
+/* 8025BFCC 00258F0C  4B DD 88 1D */	bl isTbox__12dSv_memBit_cCFi
 /* 8025BFD0 00258F10  7C 9D F2 14 */	add r4, r29, r30
 /* 8025BFD4 00258F14  98 64 00 05 */	stb r3, 5(r4)
 /* 8025BFD8 00258F18  88 04 00 05 */	lbz r0, 5(r4)

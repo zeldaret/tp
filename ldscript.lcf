@@ -29,6 +29,8 @@ FORCEACTIVE {
  set__17dSv_horse_place_cFPCcRC4cXyzsSc
  setLightDropNum__16dSv_light_drop_cFUcUc
  addFishCount__18dSv_fishing_info_cFUc
+ onTbox__12dSv_memBit_cFi
+ offTbox__12dSv_memBit_cFi
 }
 /*
 .init 80003100 - 80005600

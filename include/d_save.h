@@ -259,6 +259,7 @@ class dSv_player_get_item_c {
 
    private:
     u32 pause_menu_bit_fields[4];
+    u8 ok[16];
 };
 
 class dSv_player_item_record_c {
@@ -305,6 +306,7 @@ class dSv_player_collect_c {
     u8 mirror;
     u8 unk11;
     u8 poe_count;
+    u8 padding[3];
 };
 
 class dSv_player_wolf_c {
@@ -425,7 +427,7 @@ class dSv_player_c {
 class dSv_memBit_c {
    public:
     void init(void);
-    void onTBox(int);   // merged with init in the assembly
+    void onTbox(int);   // merged with init in the assembly
     void offTbox(int);  // merged with init in the assembly
     bool isTbox(int) const;
     void onSwitch(int);

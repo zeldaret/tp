@@ -38,4 +38,5 @@ extern "C" {
     void dMeter2Info_c_NS_getString(void);
     u32 OSGetSoundMode(void);
     void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
+    void dComIfG_play_c_NS_getNowVibration(void);
 }

@@ -1614,7 +1614,7 @@ lbl_8024B3E8:
 /* 8024B55C 0024849C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024B560 002484A0  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024B564 002484A4  A0 84 00 04 */	lhz r4, 4(r4)
-/* 8024B568 002484A8  4B DE 92 81 */	bl dSv_memBit_c_NS_isTbox
+/* 8024B568 002484A8  4B DE 92 81 */	bl isTbox__12dSv_memBit_cCFi
 /* 8024B56C 002484AC  7C 60 00 34 */	cntlzw r0, r3
 /* 8024B570 002484B0  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8024B574 002484B4  80 01 00 14 */	lwz r0, 0x14(r1)

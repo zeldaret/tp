@@ -899,3 +899,88 @@ void dSv_player_config_c::init(void) {
     this->unk10 = 0;
     this->unk11 = 1;
 }
+
+// a few instructions off
+#ifdef NONMATCHING
+u32 dSv_player_config_c::checkVibration(void) const {
+   return _sRumbleSupported & 0x80000000 ? getNowVibration() : 0;
+}
+#else
+asm u32 dSv_player_config_c::checkVibration(void) const {
+    nofralloc
+    #include "func_80034644.s"
+}
+#endif
+
+u8 dSv_player_config_c::getSound(void) {
+    return this->sound_mode;
+}
+
+void dSv_player_config_c::setSound(u8 i_sound_mode) {
+    this->sound_mode = i_sound_mode;
+}
+
+u8 dSv_player_config_c::getVibration(void) {
+    return this->vibration_status;
+}
+
+void dSv_player_config_c::setVibration(u8 i_vibration_status) {
+    this->vibration_status = i_vibration_status;
+}
+
+void dSv_player_c::init(void) {
+    player_status_a.init();
+    player_status_b.init();
+    horse_place.init();
+    player_return.init();
+    player_last_field.init();
+    player_last_mark.init();
+    player_item.init();
+    player_get_item.init();
+    player_item_record.init();
+    player_item_max.init();
+    player_collect.init();
+    player_wolf.init();
+    light_drop.init();
+    letter_info.init();
+    fishing_info.init();
+    player_info.init();
+    player_config.init();
+}
+
+void dSv_memBit_c::init(void) {
+    for (int i = 0; i < 2; i++) {
+        this->area_flags_bitfields1[i] = 0;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        this->area_flags_bitfields2[i] = 0;
+    }
+
+    this->rupee_flags_bitfields = 0;
+    this->small_key_flags = 0;
+    this->dungeons_flags = 0;
+}
+
+
+asm void dSv_memBit_c::onTbox(int) {
+    nofralloc
+    #include "func_800347A0.s"
+}
+
+asm void dSv_memBit_c::offTbox(int) {
+    nofralloc
+    #include "func_800347C4.s"
+}
+
+// 1 instruction off
+#ifdef NONMATCHING
+bool dSv_memBit_c::isTbox(int param_1) const {
+     return 1 << (param_1 & 0x1f) & this->area_flags_bitfields1[param_1 >> 0x5];
+}
+#else
+asm bool dSv_memBit_c::isTbox(int param_1) const {
+    nofralloc
+    #include "func_800347E8.s"
+}
+#endif

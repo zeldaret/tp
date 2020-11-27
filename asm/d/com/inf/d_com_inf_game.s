@@ -110,7 +110,7 @@ lbl_8002B338:
 /* 8002B340 00028280  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8002B344 00028284  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002B348 00028288  38 63 01 E0 */	addi r3, r3, 0x1e0
-/* 8002B34C 0002828C  48 00 93 49 */	bl dSv_player_config_c_NS_getVibration
+/* 8002B34C 0002828C  48 00 93 49 */	bl getVibration__19dSv_player_config_cFv
 /* 8002B350 00028290  98 7E 4F 5A */	stb r3, 0x4f5a(r30)
 /* 8002B354 00028294  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002B358 00028298  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2605,7 +2605,7 @@ dComIfGs_isStageTbox:
 /* 8002D5E0 0002A520  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002D5E4 0002A524  38 63 09 58 */	addi r3, r3, 0x958
 /* 8002D5E8 0002A528  7F E4 FB 78 */	mr r4, r31
-/* 8002D5EC 0002A52C  48 00 71 FD */	bl dSv_memBit_c_NS_isTbox
+/* 8002D5EC 0002A52C  48 00 71 FD */	bl isTbox__12dSv_memBit_cCFi
 /* 8002D5F0 0002A530  48 00 00 20 */	b lbl_8002D610
 lbl_8002D5F4:
 /* 8002D5F4 0002A534  57 C4 28 34 */	slwi r4, r30, 5
@@ -2614,7 +2614,7 @@ lbl_8002D5F4:
 /* 8002D600 0002A540  7C 60 22 14 */	add r3, r0, r4
 /* 8002D604 0002A544  38 63 01 F0 */	addi r3, r3, 0x1f0
 /* 8002D608 0002A548  7F E4 FB 78 */	mr r4, r31
-/* 8002D60C 0002A54C  48 00 71 DD */	bl dSv_memBit_c_NS_isTbox
+/* 8002D60C 0002A54C  48 00 71 DD */	bl isTbox__12dSv_memBit_cCFi
 lbl_8002D610:
 /* 8002D610 0002A550  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D614 0002A554  83 C1 00 08 */	lwz r30, 8(r1)

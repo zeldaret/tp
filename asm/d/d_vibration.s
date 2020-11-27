@@ -96,7 +96,7 @@ dVibration_c_NS_Run:
 /* 8006F288 0006C1C8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8006F28C 0006C1CC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8006F290 0006C1D0  38 63 01 E0 */	addi r3, r3, 0x1e0
-/* 8006F294 0006C1D4  4B FC 53 B1 */	bl dSv_player_config_c_NS_checkVibration
+/* 8006F294 0006C1D4  4B FC 53 B1 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006F298 0006C1D8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8006F29C 0006C1DC  28 00 00 01 */	cmplwi r0, 1
 /* 8006F2A0 0006C1E0  41 82 00 50 */	beq lbl_8006F2F0
@@ -665,7 +665,7 @@ lbl_8006FAA0:
 /* 8006FAA8 0006C9E8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8006FAAC 0006C9EC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8006FAB0 0006C9F0  38 63 01 E0 */	addi r3, r3, 0x1e0
-/* 8006FAB4 0006C9F4  4B FC 4B 91 */	bl dSv_player_config_c_NS_checkVibration
+/* 8006FAB4 0006C9F4  4B FC 4B 91 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FAB8 0006C9F8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8006FABC 0006C9FC  28 00 00 01 */	cmplwi r0, 1
 /* 8006FAC0 0006CA00  40 82 00 34 */	bne lbl_8006FAF4
@@ -729,7 +729,7 @@ lbl_8006FB8C:
 /* 8006FB94 0006CAD4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8006FB98 0006CAD8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8006FB9C 0006CADC  38 63 01 E0 */	addi r3, r3, 0x1e0
-/* 8006FBA0 0006CAE0  4B FC 4A A5 */	bl dSv_player_config_c_NS_checkVibration
+/* 8006FBA0 0006CAE0  4B FC 4A A5 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FBA4 0006CAE4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8006FBA8 0006CAE8  28 00 00 01 */	cmplwi r0, 1
 /* 8006FBAC 0006CAEC  40 82 00 44 */	bne lbl_8006FBF0
@@ -836,7 +836,7 @@ lbl_8006FD24:
 /* 8006FD2C 0006CC6C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8006FD30 0006CC70  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8006FD34 0006CC74  38 63 01 E0 */	addi r3, r3, 0x1e0
-/* 8006FD38 0006CC78  4B FC 49 0D */	bl dSv_player_config_c_NS_checkVibration
+/* 8006FD38 0006CC78  4B FC 49 0D */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FD3C 0006CC7C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8006FD40 0006CC80  28 00 00 01 */	cmplwi r0, 1
 /* 8006FD44 0006CC84  40 82 00 34 */	bne lbl_8006FD78
