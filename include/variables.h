@@ -5,4 +5,5 @@ extern float lbl_80451D58;
 extern u8 lbl_803A7270[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_803A7288;
+extern u32 lbl_80451368;
 #define _SDA2_BASE_(dummy) 0

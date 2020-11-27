@@ -105,7 +105,6 @@ void dSv_player_status_b_c::init() {
 }
 
 void dSv_player_status_b_c::onDarkClearLV(int flagOnOff) {
-
   dark_clear_level_flag = dark_clear_level_flag | (u8)(1 << flagOnOff);
 }
 
@@ -193,16 +192,18 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
 }
 
 // this is close
-// bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
-//   if ((param_1 >= 0) && (param_1 < 8)) {
-//       return (last_region & (1 << (u8)param_1)) ? 1 : 0;
-//   }
-// }
-
-asm bool dSv_player_field_last_stay_info_c::isRegionBit(int unk) const {
+#ifdef NONMATCHING
+bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
+  if ((param_1 >= 0) && (param_1 < 8)) {
+      return (last_region & (1 << (u8)param_1)) ? 1 : 0;
+  }
+}
+#else
+asm bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
     nofralloc
     #include "func_80032E78.s"
 }
+#endif
 
 void dSv_player_last_mark_info_c::init(void) {
   float position;
@@ -243,97 +244,101 @@ asm void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index)
     #include "func_80032FB8.s"
 }
 
-// u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
-//     int IVar1;
-//     int IVar2;
-//     u8 current_select_item_index;
+#ifdef NONMATCHING
+u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
+    int IVar1;
+    int IVar2;
+    u8 current_select_item_index;
 
-//     if (param_1 < 0x18) {
-//         if (param_2 != false) {
-//             for (int select_item_index = 0; select_item_index < 2; select_item_index++) {
-//                 current_select_item_index = getSelectItemIndex(select_item_index);
-//                 if (((param_1 == (current_select_item_index)) ||
-//                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), param_1 == (current_select_item_index))) &&
-//                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), (current_select_item_index) != NO_ITEM)) {
-//                     current_select_item_index = getSelectItemIndex(select_item_index);
-//                     IVar1 = items[current_select_item_index];
-//                     current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
-//                     IVar2 = items[current_select_item_index];
-//                     if (((IVar1 == HEROS_BOW) && (IVar2 == REGULAR_BOMBS)) ||
-//                         ((IVar2 == HEROS_BOW && (IVar1 == REGULAR_BOMBS)))) {
-//                         return 0x59;
-//                     }
-//                     if (((IVar1 == HEROS_BOW) && (IVar2 == WATER_BOMBS)) ||
-//                         ((IVar2 == HEROS_BOW && (IVar1 == WATER_BOMBS)))) {
-//                         return 0x59;
-//                     }
-//                     if (((IVar1 == HEROS_BOW) && (IVar2 == BOMBLINGS)) ||
-//                         ((IVar2 == HEROS_BOW && (IVar1 == BOMBLINGS)))) {
-//                         return 0x59;
-//                     }
-//                     if (((IVar1 == HEROS_BOW) && (IVar2 == HAWKEYE)) ||
-//                         ((IVar2 == HEROS_BOW && (IVar1 == HAWKEYE)))) {
-//                         return 0x5a;
-//                     }
-//                     if (((IVar1 == FISHING_ROD) && (IVar2 == BEE_LARVA)) ||
-//                         ((IVar2 == FISHING_ROD && (IVar1 == BEE_LARVA)))) {
-//                         return 0x5b;
-//                     }
-//                     if (((IVar1 == FISHING_ROD) && (IVar2 == ZORAS_JEWEL)) ||
-//                         ((IVar2 == FISHING_ROD && (IVar1 == ZORAS_JEWEL)))) {
-//                         return 0x5c;
-//                     }
-//                     if (((IVar1 == FISHING_ROD) && (IVar2 == WORM)) ||
-//                         ((IVar2 == FISHING_ROD && (IVar1 == WORM)))) {
-//                         return 0x5d;
-//                     }
-//                     if (((select_item_index == 0x3) &&
-//                          (current_select_item_index = getSelectItemIndex(0x3),
-//                           (current_select_item_index & 0xff) == 0x0)) &&
-//                         (current_select_item_index = dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
-//                         dComIfGs_setSelectItemIndex(0x3, -0x1);
-//                         dComIfGs_setMixItemIndex(0x3, -0x1);
-//                         return 0xff;
-//                     }
-//                     OSReport_Error(lbl_8037923d, (unsigned int)IVar1, (unsigned int)IVar2);
-//                 }
-//             }
-//         }
-//         current_select_item_index = (unsigned int)items[param_1];
-//     } else {
-//         current_select_item_index = NO_ITEM;
-//     }
-//     return current_select_item_index;
-// }
-
-asm u8 dSv_player_item_c::getItem(int, bool) const {
+    if (param_1 < 0x18) {
+        if (param_2 != false) {
+            for (int select_item_index = 0; select_item_index < 2; select_item_index++) {
+                current_select_item_index = getSelectItemIndex(select_item_index);
+                if (((param_1 == (current_select_item_index)) ||
+                    (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), param_1 == (current_select_item_index))) &&
+                    (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), (current_select_item_index) != NO_ITEM)) {
+                    current_select_item_index = getSelectItemIndex(select_item_index);
+                    IVar1 = items[current_select_item_index];
+                    current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
+                    IVar2 = items[current_select_item_index];
+                    if (((IVar1 == HEROS_BOW) && (IVar2 == REGULAR_BOMBS)) ||
+                        ((IVar2 == HEROS_BOW && (IVar1 == REGULAR_BOMBS)))) {
+                        return 0x59;
+                    }
+                    if (((IVar1 == HEROS_BOW) && (IVar2 == WATER_BOMBS)) ||
+                        ((IVar2 == HEROS_BOW && (IVar1 == WATER_BOMBS)))) {
+                        return 0x59;
+                    }
+                    if (((IVar1 == HEROS_BOW) && (IVar2 == BOMBLINGS)) ||
+                        ((IVar2 == HEROS_BOW && (IVar1 == BOMBLINGS)))) {
+                        return 0x59;
+                    }
+                    if (((IVar1 == HEROS_BOW) && (IVar2 == HAWKEYE)) ||
+                        ((IVar2 == HEROS_BOW && (IVar1 == HAWKEYE)))) {
+                        return 0x5a;
+                    }
+                    if (((IVar1 == FISHING_ROD) && (IVar2 == BEE_LARVA)) ||
+                        ((IVar2 == FISHING_ROD && (IVar1 == BEE_LARVA)))) {
+                        return 0x5b;
+                    }
+                    if (((IVar1 == FISHING_ROD) && (IVar2 == ZORAS_JEWEL)) ||
+                        ((IVar2 == FISHING_ROD && (IVar1 == ZORAS_JEWEL)))) {
+                        return 0x5c;
+                    }
+                    if (((IVar1 == FISHING_ROD) && (IVar2 == WORM)) ||
+                        ((IVar2 == FISHING_ROD && (IVar1 == WORM)))) {
+                        return 0x5d;
+                    }
+                    if (((select_item_index == 0x3) &&
+                         (current_select_item_index = getSelectItemIndex(0x3),
+                          (current_select_item_index & 0xff) == 0x0)) &&
+                        (current_select_item_index = dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
+                        dComIfGs_setSelectItemIndex(0x3, -0x1);
+                        dComIfGs_setMixItemIndex(0x3, -0x1);
+                        return 0xff;
+                    }
+                    OSReport_Error(lbl_8037923d, (unsigned int)IVar1, (unsigned int)IVar2);
+                }
+            }
+        }
+        current_select_item_index = (unsigned int)items[param_1];
+    } else {
+        current_select_item_index = NO_ITEM;
+    }
+    return current_select_item_index;
+}
+#else
+asm u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
     nofralloc
     #include "func_80033030.s"
 
 }
+#endif
 
 // this is close
-// void dSv_player_item_c::setLineUpItem(void) {
-//     u8* i_item_lst;
+#ifdef NONMATCHING
+void dSv_player_item_c::setLineUpItem(void) {
+    u8* i_item_lst;
 
-//     for (int i = 0; i < 24; i++) {
-//         item_slots[i] = 0xFF;
-//     }
+    for (int i = 0; i < 24; i++) {
+        item_slots[i] = 0xFF;
+    }
 
-//     i_item_lst = lbl_803A7270;
+    i_item_lst = lbl_803A7270;
 
-//     for (int i = 0; i < 23; i++) {
-//         if (items[*i_item_lst] != 0xFF) {
-//             item_slots[i] = *i_item_lst;
-//         }
-//         i_item_lst++;
-//     }
-// }
-
+    for (int i = 0; i < 23; i++) {
+        if (items[*i_item_lst] != 0xFF) {
+            item_slots[i] = *i_item_lst;
+        }
+        i_item_lst++;
+    }
+}
+#else
 asm void dSv_player_item_c::setLineUpItem(void) {
     nofralloc
     #include "func_800332F8.s"
 }
+#endif
 
 u8 dSv_player_item_c::getLineUpItem(int slot_number) const {
     if (slot_number < MAX_ITEM_SLOTS) {
@@ -342,46 +347,50 @@ u8 dSv_player_item_c::getLineUpItem(int slot_number) const {
     return NO_ITEM;
 }
 
-// void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2){
-//     u8 current_item_index;
-//     u8 new_item_index;
+#ifdef NONMATCHING
+void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2){
+    u8 current_item_index;
+    u8 new_item_index;
 
-//     current_item_index = dSv_item_rename(i_item_id_1);
-//     new_item_index = dSv_item_rename(i_item_id_2);
+    current_item_index = dSv_item_rename(i_item_id_1);
+    new_item_index = dSv_item_rename(i_item_id_2);
     
-//     for (int i = 0; i < 4; i++) {
-//         // sanitize input to make sure it's only a bottle
-//         if (current_item_index == items[i+11]) {
-//             setItem(i+11,new_item_index);
-//             // if hotsprings water, turn on the timer
-//             if (new_item_index == 107) {
-//                 setHotSpringTimer(i+11);
-//             }
-//             for (int j = 0; j < 4; j++) {
-//                 j = getSelectItemIndex(i);
-//                 if (i+11 == j) {
-//                     dComIfGp_setSelectItem(j);
-//                 }
-//             }
-//         }
-//     }
-// }
-
-asm void dSv_player_item_c::setBottleItemIn(u8, u8){
+    for (int i = 0; i < 4; i++) {
+        // sanitize input to make sure it's only a bottle
+        if (current_item_index == items[i+11]) {
+            setItem(i+11,new_item_index);
+            // if hotsprings water, turn on the timer
+            if (new_item_index == 107) {
+                setHotSpringTimer(i+11);
+            }
+            for (int j = 0; j < 4; j++) {
+                j = getSelectItemIndex(i);
+                if (i+11 == j) {
+                    dComIfGp_setSelectItem(j);
+                }
+            }
+        }
+    }
+}
+#else
+asm void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2){
     nofralloc 
     #include "func_80033370.s"
 }
+#endif
 
 // this is 1 instruction off
-// void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
-//     u8 item_id = (dSv_item_rename(i_item_id));
-//     setBottleItemIn(96,item_id);
-// }
-
-asm void dSv_player_item_c::setEmptyBottleItemIn(u8){
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
+    u8 item_id = (dSv_item_rename(i_item_id));
+    setBottleItemIn(96,item_id);
+}
+#else
+asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
     nofralloc
     #include "func_80033450.s"
 }
+#endif
 
 asm void dSv_player_item_c::setEmptyBottle(void) {
     nofralloc 
@@ -450,26 +459,28 @@ void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,u8 param_2, bool param_
 }
 
 // this is a few instructions off
-// void dSv_player_item_c::setEmptyBombBag(void) {
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBombBag(void) {
 
-//   int current_item_index;
-//   u8 uVar1;
+  int current_item_index;
+  u8 uVar1;
   
-//   for (int i = 0; i < 3; i++) {
-//     current_item_index = (u8)(i + 15);
-//     uVar1 = getItem(current_item_index,true);
+  for (int i = 0; i < 3; i++) {
+    current_item_index = (u8)(i + 15);
+    uVar1 = getItem(current_item_index,true);
 
-//     if (uVar1 == 0xff) {
-//       setItem(current_item_index,80);
-//       return;
-//     }
-//   }
-// }
-
+    if (uVar1 == 0xff) {
+      setItem(current_item_index,80);
+      return;
+    }
+  }
+}
+#else
 asm void dSv_player_item_c::setEmptyBombBag(void) {
     nofralloc
     #include "func_80033A88.s"
 }
+#endif
 
 asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
     nofralloc
@@ -477,21 +488,23 @@ asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
 }
 
 // this is a few instructions off
-// u8 dSv_player_item_c::checkBombBag(u8 param_1) {
-//     u8 ok = 0;
+#ifdef NONMATCHING
+u8 dSv_player_item_c::checkBombBag(u8 param_1) {
+    u8 ok = 0;
 
-//     for (int i = 0; i < 3; i++) {
-//         if (param_1 == this->items[i + 15]) {
-//             ok = ok + 0x1;
-//         }
-//     }
-//     return ok;
-// }
-
+    for (int i = 0; i < 3; i++) {
+        if (param_1 == this->items[i + 15]) {
+            ok = ok + 0x1;
+        }
+    }
+    return ok;
+}
+#else
 asm u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     nofralloc
     #include "func_80033BEC.s"
 }
+#endif
 
 asm void dSv_player_item_c::setWarashibeItem(u8) {
     nofralloc
@@ -522,31 +535,33 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 }
 
 // this is a few instructions off
-// void dSv_player_item_c::setBaitItem(u8 param_1) {
-//     switch (param_1) {
-//         case BEE_LARVA: {
-//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA : this->items[0x14] = ROD_BEE_LARVA;
-//             break;
-//         }
-//         case WORM: {
-//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_WORM : this->items[0x14] = ROD_WORM;
-//             break;
-//         }
-//         case NO_ITEM: {
-//             isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING : this->items[0x14] = FISHING_ROD;
-//             break;
-//         }
-//     }
+#ifdef NONMATCHING
+void dSv_player_item_c::setBaitItem(u8 param_1) {
+    switch (param_1) {
+        case BEE_LARVA: {
+            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA : this->items[0x14] = ROD_BEE_LARVA;
+            break;
+        }
+        case WORM: {
+            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_WORM : this->items[0x14] = ROD_WORM;
+            break;
+        }
+        case NO_ITEM: {
+            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING : this->items[0x14] = FISHING_ROD;
+            break;
+        }
+    }
 
-//     for (int i = 0; i < 4; i++) {
-//         dComIfGp_setSelectItem(i);
-//     }
-// }
-
+    for (int i = 0; i < 4; i++) {
+        dComIfGp_setSelectItem(i);
+    }
+}
+#else
 asm void dSv_player_item_c::setBaitItem(u8 param_1) {
     nofralloc
     #include "func_80033D40.s"
 }
+#endif
 
 void dSv_player_get_item_c::init(void) {
     for (int i = 0; i < 8; i++) {
@@ -628,26 +643,28 @@ void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
 }
 
 // this is close, the isFirstBit keeps screwing everything up :(
-// u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
-//     u8 iVar3;
+#ifdef NONMATCHING
+u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
+    u8 iVar3;
     
-//     iVar3 = 0x1;
-//     if (isFirstBit(79)) {
-//         iVar3 = 0x2;
-//     }
+    iVar3 = 0x1;
+    if (isFirstBit(79)) {
+        iVar3 = 0x2;
+    }
 
-//     switch (param_1) {
-//         case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
-//         case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
-//         case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3);
-//         default: return 0;
-//     }
-// }
-
+    switch (param_1) {
+        case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+        case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+        case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3);
+        default: return 0;
+    }
+}
+#else
 asm u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     nofralloc
     #include "func_800340F8.s"
 }
+#endif
 
 void dSv_player_collect_c::init(void) {
 
@@ -663,14 +680,16 @@ void dSv_player_collect_c::init(void) {
 }
 
 // very close
-// void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
-//     this->unk0[param_1] = this->unk0[param_1] | (u8)(1 << param_2);
-// }
-
+#ifdef NONMATCHING
+void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
+    this->unk0[param_1] = this->unk0[param_1] | (u8)(1 << param_2);
+}
+#else
 asm void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
     nofralloc
     #include "func_800341E8.s"
 }
+#endif
 
 bool dSv_player_collect_c::isCollect(int param_1, u8 param_2) const {
    return this->unk0[param_1] & (u8)(1 << param_2) ? true : false;
@@ -738,4 +757,145 @@ bool dSv_light_drop_c::isLightDropGetFlag(u8 param_1) const {
         return 0;
     }
     return this->light_drop_get_flag & (u8)(1 << param_1) ? true : false;
+}
+
+void dSv_letter_info_c::init(void) {
+    for (int i = 0; i < 2; i++) {
+        this->letter_read_flags[i] = 0;
+        this->letter_read_flags[i + 2] = 0;
+    }
+
+    for (int i = 0; i < 64; i++) {
+        this->unk16[i] = 0;
+    }
+}
+
+// close
+#ifdef NONMATCHING
+void dSv_letter_info_c::onLetterGetFlag(int param_1) {
+    this->letter_read_flags[param_1 >> 0x5] = this->letter_read_flags[param_1 >> 0x5] | 0x1 << (param_1 & 0x1fU);
+}
+#else
+asm void dSv_letter_info_c::onLetterGetFlag(int param_1) {
+    nofralloc
+    #include "func_80034428.s"
+}
+#endif
+
+#ifdef NONMATCHING
+bool dSv_letter_info_c::isLetterGetFlag(int param_1) const {
+    return this->letter_read_flags[param_1 >> 0x5] & (u8)(1 << param_1) ? true : false;
+}
+#else
+asm bool dSv_letter_info_c::isLetterGetFlag(int param_1) const {
+    nofralloc
+    #include "func_8003444C.s"
+}
+#endif
+
+#ifdef NONMATCHING
+void dSv_letter_info_c::onLetterReadFlag(int param_1) {
+    (this->letter_read_flags + (param_1 >> 0x5))[0x2] = (this->letter_read_flags + (param_1 >> 0x5))[0x2] | 0x1 << (u8)(param_1);
+}
+#else
+asm void dSv_letter_info_c::onLetterReadFlag(int param_1) {
+    nofralloc
+    #include "func_80034474.s"
+}
+#endif
+
+#ifdef NONMATCHING
+asm bool isLetterReadFlag(int) const {
+
+}
+#else
+asm bool dSv_letter_info_c::isLetterReadFlag(int) const {
+    nofralloc
+    #include "func_8003449C.s"
+}
+#endif
+
+void dSv_fishing_info_c::init(void) {
+    for (int i = 0; i < 16; i++) {
+        this->fish_count[i] = 0;
+        this->unk32[i] = 0;
+    }
+}
+
+// instructions are right but registers are wrong
+#ifdef NONMATCHING
+void dSv_fishing_info_c::addFishCount(u8 fish_index) {
+    if (this->fish_count[fish_index] < 999) {
+        this->fish_count[fish_index] = this->fish_count[fish_index] + 1;
+    }
+}
+#else
+asm void dSv_fishing_info_c::addFishCount(u8 fish_index) {
+    nofralloc
+    #include "func_800344FC.s"
+}
+#endif
+
+// a few instructions off
+#ifdef NONMATCHING
+namespace d_meter2_info {
+    class dMeter2Info_c {
+        public:
+        void getString(unsigned long, char*, JMSMesgEntry_c *);
+    };
+}
+
+void dSv_player_info_c::init(void) {
+    unsigned long a = 0x382;
+    unsigned long b = 0x383;
+
+    JMSMesgEntry_c* c = 0;
+    JMSMesgEntry_c* d = 0;
+
+    d_meter2_info::dMeter2Info_c ok;
+
+    ok.getString(a,(char*)this->link_name,c);
+    ok.getString(b,(char*)this->epona_name,d);
+
+    this->unk4 = 0;
+    this->unk0 = 0;
+    this->unk12 = 0;
+    this->unk8 = 0;
+    this->unk16 = 0;
+    this->unk18 = 0;
+    this->unk54 = 0;
+
+    for (int i = 0; i < 5; i++) {
+        this->unk55[i] = 0;
+    }
+}
+#else
+asm void dSv_player_info_c::init(void) {
+    nofralloc
+    #include "func_80034518.s"
+}
+#endif
+
+void dSv_player_config_c::init(void) {
+    u32 os_sound_mode;
+
+    this->unk0 = 1;
+    os_sound_mode = OSGetSoundMode();
+    if (os_sound_mode == 0) {
+        this->sound_mode = 0;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368,0);
+    } else {
+        this->sound_mode = 1;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368,1);
+    }
+
+    this->unk2 = 0;
+    this->vibration_status = 1;
+    this->unk4 = 0;
+    this->unk5 = 0;
+    this->unk9 = 0;
+    this->unk6 = 0x15e;
+    this->unk8 = 0;
+    this->unk10 = 0;
+    this->unk11 = 1;
 }

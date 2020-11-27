@@ -1599,12 +1599,12 @@ lbl_801DE4D0:
 /* 801DE4D8 001DB418  3B 43 01 1C */	addi r26, r3, 0x11c
 /* 801DE4DC 001DB41C  7F 43 D3 78 */	mr r3, r26
 /* 801DE4E0 001DB420  7F C4 F3 78 */	mr r4, r30
-/* 801DE4E4 001DB424  4B E5 5F B9 */	bl dSv_letter_info_c_NS_isLetterReadFlag
+/* 801DE4E4 001DB424  4B E5 5F B9 */	bl isLetterReadFlag__17dSv_letter_info_cCFi
 /* 801DE4E8 001DB428  2C 03 00 00 */	cmpwi r3, 0
 /* 801DE4EC 001DB42C  40 82 00 28 */	bne lbl_801DE514
 /* 801DE4F0 001DB430  7F 43 D3 78 */	mr r3, r26
 /* 801DE4F4 001DB434  7F C4 F3 78 */	mr r4, r30
-/* 801DE4F8 001DB438  4B E5 5F 7D */	bl dSv_letter_info_c_NS_onLetterReadFlag
+/* 801DE4F8 001DB438  4B E5 5F 7D */	bl onLetterReadFlag__17dSv_letter_info_cFi
 /* 801DE4FC 001DB43C  38 80 00 00 */	li r4, 0
 /* 801DE500 001DB440  88 1C 03 6E */	lbz r0, 0x36e(r28)
 /* 801DE504 001DB444  1C 00 00 14 */	mulli r0, r0, 0x14
@@ -4464,7 +4464,7 @@ lbl_801E0FAC:
 /* 801E0FC0 001DDF00  7C 9E 00 AE */	lbzx r4, r30, r0
 /* 801E0FC4 001DDF04  38 04 FF FF */	addi r0, r4, -1
 /* 801E0FC8 001DDF08  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 801E0FCC 001DDF0C  4B E5 34 D1 */	bl dSv_letter_info_c_NS_isLetterReadFlag
+/* 801E0FCC 001DDF0C  4B E5 34 D1 */	bl isLetterReadFlag__17dSv_letter_info_cCFi
 /* 801E0FD0 001DDF10  2C 03 00 00 */	cmpwi r3, 0
 /* 801E0FD4 001DDF14  40 82 00 18 */	bne lbl_801E0FEC
 /* 801E0FD8 001DDF18  38 80 00 01 */	li r4, 1
@@ -4582,7 +4582,7 @@ lbl_801E1160:
 /* 801E1174 001DE0B4  7C 9E 00 AE */	lbzx r4, r30, r0
 /* 801E1178 001DE0B8  38 04 FF FF */	addi r0, r4, -1
 /* 801E117C 001DE0BC  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 801E1180 001DE0C0  4B E5 33 1D */	bl dSv_letter_info_c_NS_isLetterReadFlag
+/* 801E1180 001DE0C0  4B E5 33 1D */	bl isLetterReadFlag__17dSv_letter_info_cCFi
 /* 801E1184 001DE0C4  2C 03 00 00 */	cmpwi r3, 0
 /* 801E1188 001DE0C8  40 82 00 18 */	bne lbl_801E11A0
 /* 801E118C 001DE0CC  38 80 00 01 */	li r4, 1
@@ -4966,7 +4966,7 @@ lbl_801E16C4:
 lbl_801E16EC:
 /* 801E16EC 001DE62C  7F 83 E3 78 */	mr r3, r28
 /* 801E16F0 001DE630  7F 44 D3 78 */	mr r4, r26
-/* 801E16F4 001DE634  4B E5 2D 35 */	bl dSv_letter_info_c_NS_onLetterGetFlag
+/* 801E16F4 001DE634  4B E5 2D 35 */	bl onLetterGetFlag__17dSv_letter_info_cFi
 /* 801E16F8 001DE638  38 9A 00 01 */	addi r4, r26, 1
 /* 801E16FC 001DE63C  57 63 06 3E */	clrlwi r3, r27, 0x18
 /* 801E1700 001DE640  38 03 00 10 */	addi r0, r3, 0x10

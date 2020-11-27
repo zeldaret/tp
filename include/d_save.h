@@ -339,7 +339,7 @@ class dSv_letter_info_c {
     bool isLetterReadFlag(int) const;
 
    private:
-    u8 letter_read_flags[16];
+    u32 letter_read_flags[4];
     u8 unk16[64];
 };
 
@@ -349,7 +349,7 @@ class dSv_fishing_info_c {
     void addFishCount(u8);  // merged with init in the assembly
 
    private:
-    u8 unk0[32];
+    u16 fish_count[16];
     u8 unk32[16];
     u8 padding[4];
 };
@@ -359,12 +359,12 @@ class dSv_player_info_c {
     void init(void);
 
    private:
-    u8 unk0[4];
-    u8 unk4[4];
-    u8 unk8[4];
-    u8 unk12[4];
-    u8 unk16[2];
-    u8 unk18[2];
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unk12;
+    u16 unk16;
+    u16 unk18;
     u8 link_name[16];
     u8 unk36;
     u8 epona_name[16];

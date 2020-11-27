@@ -2957,7 +2957,7 @@ dMeter2Info_getRecieveLetterNum:
 lbl_8021E70C:
 /* 8021E70C 0021B64C  7F E3 FB 78 */	mr r3, r31
 /* 8021E710 0021B650  7F A4 EB 78 */	mr r4, r29
-/* 8021E714 0021B654  4B E1 5D 39 */	bl dSv_letter_info_c_NS_isLetterGetFlag
+/* 8021E714 0021B654  4B E1 5D 39 */	bl isLetterGetFlag__17dSv_letter_info_cCFi
 /* 8021E718 0021B658  2C 03 00 00 */	cmpwi r3, 0
 /* 8021E71C 0021B65C  41 82 00 10 */	beq lbl_8021E72C
 /* 8021E720 0021B660  57 C3 06 3E */	clrlwi r3, r30, 0x18
@@ -2992,7 +2992,7 @@ dMeter2Info_getNewLetterNum:
 lbl_8021E784:
 /* 8021E784 0021B6C4  7F C3 F3 78 */	mr r3, r30
 /* 8021E788 0021B6C8  7F 64 DB 78 */	mr r4, r27
-/* 8021E78C 0021B6CC  4B E1 5C C1 */	bl dSv_letter_info_c_NS_isLetterGetFlag
+/* 8021E78C 0021B6CC  4B E1 5C C1 */	bl isLetterGetFlag__17dSv_letter_info_cCFi
 /* 8021E790 0021B6D0  2C 03 00 00 */	cmpwi r3, 0
 /* 8021E794 0021B6D4  40 82 00 44 */	bne lbl_8021E7D8
 /* 8021E798 0021B6D8  3C 60 80 3C */	lis r3, lbl_803BF81C@ha
@@ -3041,7 +3041,7 @@ dMeter2Info_setNewLetterSender:
 lbl_8021E834:
 /* 8021E834 0021B774  7F 83 E3 78 */	mr r3, r28
 /* 8021E838 0021B778  7F C4 F3 78 */	mr r4, r30
-/* 8021E83C 0021B77C  4B E1 5C 11 */	bl dSv_letter_info_c_NS_isLetterGetFlag
+/* 8021E83C 0021B77C  4B E1 5C 11 */	bl isLetterGetFlag__17dSv_letter_info_cCFi
 /* 8021E840 0021B780  2C 03 00 00 */	cmpwi r3, 0
 /* 8021E844 0021B784  40 82 00 6C */	bne lbl_8021E8B0
 /* 8021E848 0021B788  3C 60 80 3C */	lis r3, lbl_803BF81C@ha
@@ -3105,7 +3105,7 @@ dMeter2Info_recieveLetter:
 lbl_8021E914:
 /* 8021E914 0021B854  7F 83 E3 78 */	mr r3, r28
 /* 8021E918 0021B858  7F C4 F3 78 */	mr r4, r30
-/* 8021E91C 0021B85C  4B E1 5B 31 */	bl dSv_letter_info_c_NS_isLetterGetFlag
+/* 8021E91C 0021B85C  4B E1 5B 31 */	bl isLetterGetFlag__17dSv_letter_info_cCFi
 /* 8021E920 0021B860  2C 03 00 00 */	cmpwi r3, 0
 /* 8021E924 0021B864  40 82 00 80 */	bne lbl_8021E9A4
 /* 8021E928 0021B868  3C 60 80 3C */	lis r3, lbl_803BF81C@ha
@@ -3125,7 +3125,7 @@ lbl_8021E914:
 /* 8021E960 0021B8A0  41 82 00 44 */	beq lbl_8021E9A4
 /* 8021E964 0021B8A4  7F 83 E3 78 */	mr r3, r28
 /* 8021E968 0021B8A8  7F C4 F3 78 */	mr r4, r30
-/* 8021E96C 0021B8AC  4B E1 5A BD */	bl dSv_letter_info_c_NS_onLetterGetFlag
+/* 8021E96C 0021B8AC  4B E1 5A BD */	bl onLetterGetFlag__17dSv_letter_info_cFi
 /* 8021E970 0021B8B0  57 E3 06 3E */	clrlwi r3, r31, 0x18
 /* 8021E974 0021B8B4  38 63 00 10 */	addi r3, r3, 0x10
 /* 8021E978 0021B8B8  7C 1C 18 AE */	lbzx r0, r28, r3

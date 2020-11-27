@@ -1,3 +1,7 @@
+class JMSMesgEntry_c {
+
+};
+
 extern "C" { 
     void init__20dSv_player_collect_cFv(void);
     void dComIfGp_setSelectItem(int);
@@ -31,4 +35,7 @@ extern "C" {
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void getBombNum__21dSv_player_item_max_cCFUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
+    void dMeter2Info_c_NS_getString(void);
+    u32 OSGetSoundMode(void);
+    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
 }
