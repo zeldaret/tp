@@ -498,7 +498,7 @@ lbl_8025B498:
 /* 8025B4D0 00258410  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 8025B4D4 00258414  7C 60 22 14 */	add r3, r0, r4
 /* 8025B4D8 00258418  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 8025B4DC 0025841C  4B DD 98 11 */	bl dSv_zoneBit_c_NS_clearRoomSwitch
+/* 8025B4DC 0025841C  4B DD 98 11 */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 8025B4E0 00258420  7F C3 F3 78 */	mr r3, r30
 /* 8025B4E4 00258424  4B DD 24 CD */	bl dStage_roomControl_c_NS_getZoneNo
 /* 8025B4E8 00258428  54 64 28 34 */	slwi r4, r3, 5
@@ -506,7 +506,7 @@ lbl_8025B498:
 /* 8025B4F0 00258430  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 8025B4F4 00258434  7C 60 22 14 */	add r3, r0, r4
 /* 8025B4F8 00258438  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 8025B4FC 0025843C  4B DD 97 FD */	bl dSv_zoneBit_c_NS_clearRoomItem
+/* 8025B4FC 0025843C  4B DD 97 FD */	bl clearRoomItem__13dSv_zoneBit_cFv
 /* 8025B500 00258440  88 1F 00 00 */	lbz r0, 0(r31)
 /* 8025B504 00258444  54 00 06 F2 */	rlwinm r0, r0, 0, 0x1b, 0x19
 /* 8025B508 00258448  98 1F 00 00 */	stb r0, 0(r31)

@@ -175,7 +175,7 @@ class dSv_horse_place_c {
 class dSv_player_return_place_c {
    public:
     void init(void);
-    void set(const char*, const cXyz&, short, s8);
+    void set(const char*, s8, u8);
 
    private:
     u8 current_stage[8];
@@ -499,25 +499,21 @@ class dSv_memory2_c {
 
 class dSv_danBit_c {
    public:
-    void init(void);
+    bool init(s8);
     void onSwitch(int);
     void offSwitch(int);
     bool isSwitch(int) const;
-    u8 revSwitch(int);
+    bool revSwitch(int);
     void onItem(int);
     bool isItem(int) const;
 
    private:
-    u8 unk0;
+    s8 unk0;
     u8 unk1;
     u8 unk2[2];
-    u32 unk4;
-    u32 unk8;
-    u32 unk12;
-    u32 unk16;
-    u32 unk20;
-    u32 unk24;
-    u16 unk28[16];
+    u32 switch_bitfield[2];
+    u32 item_bitfield[4];
+    s16 unk28[16];
 };
 
 class dSv_zoneBit_c {
@@ -540,9 +536,9 @@ class dSv_zoneBit_c {
 
    private:
     u16 unk0[2];
-    u16 unk4;
+    u16 room_switch;
     u16 unk6[2];
-    u16 unk10;
+    u16 room_item;
     u16 unk12;
 };
 

@@ -40,4 +40,6 @@ extern "C" {
     void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
     void dComIfG_play_c_NS_getNowVibration(void);
     void setInitEventBit(void);
+    void daObjCarry_c_NS_clrSaveFlag(void);
+    void daObjCarry_c_NS_setSaveFlag(void);
 }

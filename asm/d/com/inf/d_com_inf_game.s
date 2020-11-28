@@ -2872,7 +2872,7 @@ lbl_8002D978:
 /* 8002D98C 0002A8CC  7C 60 22 14 */	add r3, r0, r4
 /* 8002D990 0002A8D0  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002D994 0002A8D4  7F E4 FB 78 */	mr r4, r31
-/* 8002D998 0002A8D8  48 00 73 6D */	bl dSv_zoneBit_c_NS_onSwitch
+/* 8002D998 0002A8D8  48 00 73 6D */	bl onSwitch__13dSv_zoneBit_cFi
 lbl_8002D99C:
 /* 8002D99C 0002A8DC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002D9A0 0002A8E0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2913,7 +2913,7 @@ lbl_8002D9F8:
 /* 8002DA0C 0002A94C  7C 60 22 14 */	add r3, r0, r4
 /* 8002DA10 0002A950  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DA14 0002A954  7F E4 FB 78 */	mr r4, r31
-/* 8002DA18 0002A958  48 00 73 15 */	bl dSv_zoneBit_c_NS_offSwitch
+/* 8002DA18 0002A958  48 00 73 15 */	bl offSwitch__13dSv_zoneBit_cFi
 lbl_8002DA1C:
 /* 8002DA1C 0002A95C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DA20 0002A960  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2946,7 +2946,7 @@ lbl_8002DA64:
 /* 8002DA78 0002A9B8  7C 60 22 14 */	add r3, r0, r4
 /* 8002DA7C 0002A9BC  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DA80 0002A9C0  7F E4 FB 78 */	mr r4, r31
-/* 8002DA84 0002A9C4  48 00 72 CD */	bl dSv_zoneBit_c_NS_isSwitch
+/* 8002DA84 0002A9C4  48 00 72 CD */	bl isSwitch__13dSv_zoneBit_cCFi
 lbl_8002DA88:
 /* 8002DA88 0002A9C8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DA8C 0002A9CC  80 01 00 14 */	lwz r0, 0x14(r1)

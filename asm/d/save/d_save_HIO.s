@@ -82,7 +82,7 @@ dSvBit_childSwDungeonHIO_c_NS_init:
 lbl_8025BC70:
 /* 8025BC70 00258BB0  7F E3 FB 78 */	mr r3, r31
 /* 8025BC74 00258BB4  7F C4 F3 78 */	mr r4, r30
-/* 8025BC78 00258BB8  4B DD 8F 71 */	bl dSv_danBit_c_NS_isSwitch
+/* 8025BC78 00258BB8  4B DD 8F 71 */	bl isSwitch__12dSv_danBit_cCFi
 /* 8025BC7C 00258BBC  7C 9D F2 14 */	add r4, r29, r30
 /* 8025BC80 00258BC0  98 64 00 05 */	stb r3, 5(r4)
 /* 8025BC84 00258BC4  88 04 00 05 */	lbz r0, 5(r4)
@@ -240,7 +240,7 @@ dSvBit_childItDungeonHIO_c_NS_init:
 lbl_8025BE68:
 /* 8025BE68 00258DA8  7F E3 FB 78 */	mr r3, r31
 /* 8025BE6C 00258DAC  7F C4 F3 78 */	mr r4, r30
-/* 8025BE70 00258DB0  4B DD 8E 05 */	bl dSv_danBit_c_NS_isItem
+/* 8025BE70 00258DB0  4B DD 8E 05 */	bl isItem__12dSv_danBit_cCFi
 /* 8025BE74 00258DB4  7C 9D F2 14 */	add r4, r29, r30
 /* 8025BE78 00258DB8  98 64 00 05 */	stb r3, 5(r4)
 /* 8025BE7C 00258DBC  88 04 00 05 */	lbz r0, 5(r4)

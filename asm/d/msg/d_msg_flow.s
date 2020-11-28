@@ -1656,7 +1656,7 @@ lbl_8024B3E8:
 /* 8024B604 00248544  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024B608 00248548  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024B60C 0024854C  A0 84 00 04 */	lhz r4, 4(r4)
-/* 8024B610 00248550  4B DE 95 D9 */	bl dSv_danBit_c_NS_isSwitch
+/* 8024B610 00248550  4B DE 95 D9 */	bl isSwitch__12dSv_danBit_cCFi
 /* 8024B614 00248554  7C 60 00 34 */	cntlzw r0, r3
 /* 8024B618 00248558  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8024B61C 0024855C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1670,7 +1670,7 @@ lbl_8024B3E8:
 /* 8024B63C 0024857C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024B640 00248580  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024B644 00248584  A0 84 00 04 */	lhz r4, 4(r4)
-/* 8024B648 00248588  4B DE 96 2D */	bl dSv_danBit_c_NS_isItem
+/* 8024B648 00248588  4B DE 96 2D */	bl isItem__12dSv_danBit_cCFi
 /* 8024B64C 0024858C  7C 60 00 34 */	cntlzw r0, r3
 /* 8024B650 00248590  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8024B654 00248594  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2342,7 +2342,7 @@ lbl_8024BF34:
 /* 8024C030 00248F70  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024C034 00248F74  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024C038 00248F78  38 80 00 3C */	li r4, 0x3c
-/* 8024C03C 00248F7C  4B DE 8B AD */	bl dSv_danBit_c_NS_isSwitch
+/* 8024C03C 00248F7C  4B DE 8B AD */	bl isSwitch__12dSv_danBit_cCFi
 /* 8024C040 00248F80  2C 03 00 00 */	cmpwi r3, 0
 /* 8024C044 00248F84  41 82 00 0C */	beq lbl_8024C050
 /* 8024C048 00248F88  3B C0 00 04 */	li r30, 4
@@ -2965,7 +2965,7 @@ lbl_8024C950:
 /* 8024C954 00249894  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024C958 00249898  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024C95C 0024989C  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024C960 002498A0  4B DE 82 39 */	bl dSv_danBit_c_NS_onSwitch
+/* 8024C960 002498A0  4B DE 82 39 */	bl onSwitch__12dSv_danBit_cFi
 /* 8024C964 002498A4  48 00 00 18 */	b lbl_8024C97C
 lbl_8024C968:
 /* 8024C968 002498A8  A0 61 00 0A */	lhz r3, 0xa(r1)
@@ -3022,7 +3022,7 @@ lbl_8024CA18:
 /* 8024CA1C 0024995C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8024CA20 00249960  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024CA24 00249964  A0 81 00 0A */	lhz r4, 0xa(r1)
-/* 8024CA28 00249968  4B DE 81 99 */	bl dSv_danBit_c_NS_offSwitch
+/* 8024CA28 00249968  4B DE 81 99 */	bl offSwitch__12dSv_danBit_cFi
 /* 8024CA2C 0024996C  48 00 00 18 */	b lbl_8024CA44
 lbl_8024CA30:
 /* 8024CA30 00249970  A0 61 00 0A */	lhz r3, 0xa(r1)

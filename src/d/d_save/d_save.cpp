@@ -11,37 +11,37 @@ u8 dSv_item_rename(u8 item_id) {
 }
 
 void dSv_player_status_a_c::init() {
-    max_health = 15;
-    current_health = 12;
-    current_rupees = 0;
-    max_lantern_oil = 0;
-    current_lantern_oil = 0;
-    unk10 = 0;
+    this->max_health = 15;
+    this->current_health = 12;
+    this->current_rupees = 0;
+    this->max_lantern_oil = 0;
+    this->current_lantern_oil = 0;
+    this->unk10 = 0;
 
     for (int i = 0; i < 4; i++) {
-        select_item[i] = NO_ITEM;
-        mix_item[i + 1] =  NO_ITEM;
+        this->select_item[i] = NO_ITEM;
+        this->mix_item[i + 1] =  NO_ITEM;
         dComIfGp_setSelectItem(i);
     }
 
     for (int i = 0; i < 6; i++) {
-        equipment[i] = 0;
+        this->equipment[i] = 0;
     }
 
-    equipment[0] = ORDON_CLOTHES;
-    equipment[1] = NO_ITEM;
-    equipment[2] = NO_ITEM;
-    equipment[3] = NO_ITEM;
-    equipment[4] = NO_ITEM;
-    current_wallet = WALLET;
-    unk26 = 0;
-    unk27 = 0;
-    magic_flag = 0;
-    unk29 = 0;
-    unk30 = 0;
+    this->equipment[0] = ORDON_CLOTHES;
+    this->equipment[1] = NO_ITEM;
+    this->equipment[2] = NO_ITEM;
+    this->equipment[3] = NO_ITEM;
+    this->equipment[4] = NO_ITEM;
+    this->current_wallet = WALLET;
+    this->unk26 = 0;
+    this->unk27 = 0;
+    this->magic_flag = 0;
+    this->unk29 = 0;
+    this->unk30 = 0;
 
     for (int i = 0; i < 3; i++) {
-        unk31[i] = 0;
+        this->unk31[i] = 0;
     }
 }
 
@@ -49,12 +49,12 @@ void dSv_player_status_a_c::setSelectItemIndex(signed int select_item_index, u8 
     if (select_item_index >= 4) {
         return;
     }
-    select_item[select_item_index] = item_index;
+    this->select_item[select_item_index] = item_index;
 }
 
 u8 dSv_player_status_a_c::getSelectItemIndex(signed int select_item_index) const {
   if (select_item_index < 4) {
-    return select_item[select_item_index];
+    return this->select_item[select_item_index];
   }
   return 0;
 }
@@ -63,12 +63,12 @@ void dSv_player_status_a_c::setMixItemIndex(signed int mix_item_index, u8 item_i
     if (mix_item_index >= 4) {
         return;
     }
-    mix_item[mix_item_index+1] = item_index;
+    this->mix_item[mix_item_index+1] = item_index;
 }
 
 u8 dSv_player_status_a_c::getMixItemIndex(signed int mix_item_index) const {
   if (mix_item_index < 4) {
-    return mix_item[mix_item_index+1];
+    return this->mix_item[mix_item_index+1];
   }
   return 0;
 }
@@ -91,63 +91,70 @@ asm bool dSv_player_status_a_c::isMagicFlag(u8) const {
 
 void dSv_player_status_b_c::init() {
   
-  unk4 = 0;
-  unk0 = 0;
-  transform_level_flag = 0;
-  dark_clear_level_flag = 0;
-  unk10 = 0;
-  unk12 = lbl_80451D58;
-  unk16 = 0;
+  this->unk4 = 0;
+  this->unk0 = 0;
+  this->transform_level_flag = 0;
+  this->dark_clear_level_flag = 0;
+  this->unk10 = 0;
+  this->unk12 = lbl_80451D58;
+  this->unk16 = 0;
 
   for (int i = 0; i < 3; i++) {
-      unk18[i] = 0;
+      this->unk18[i] = 0;
   }
 }
 
 void dSv_player_status_b_c::onDarkClearLV(int flagOnOff) {
-  dark_clear_level_flag = dark_clear_level_flag | (u8)(1 << flagOnOff);
+  this->dark_clear_level_flag |= (u8)(1 << flagOnOff);
 }
 
-asm bool dSv_player_status_b_c::isDarkClearLV(int unk) const {
-    nofralloc
-    #include "func_80032BB0.s" 
+bool dSv_player_status_b_c::isDarkClearLV(int unk) const {
+    return this->dark_clear_level_flag & (u8)(1 << unk) ? true : false;
 }
 
 void dSv_player_status_b_c::onTransformLV(int flagOnOff) {
-    transform_level_flag = transform_level_flag | (u8)(1 << flagOnOff);
+    this->transform_level_flag |= (u8)(1 << flagOnOff);
 }
 
-asm bool dSv_player_status_b_c::isTransformLV(int unk) const {
-    nofralloc
-    #include "func_80032BEC.s"
+bool dSv_player_status_b_c::isTransformLV(int unk) const {
+    return this->transform_level_flag & (u8)(1 << unk) ? true : false;
 }
-
+//extern u8 lbl_80379234[16];
 void dSv_horse_place_c::init(void) {
     float position_val;
     char* default_stage;
 
     default_stage = strcpy((char*)current_stage, (char*)lbl_80379234);
     position_val = lbl_80451D5C;
-    position.x = lbl_80451D5C;
-    position.y = position_val;
-    position.z = position_val;
-    angle = 0;
-    spawn_id = 0;
-    room_id = 0;
+    this->position.x = lbl_80451D5C;
+    this->position.y = position_val;
+    this->position.z = position_val;
+    this->angle = 0;
+    this->spawn_id = 0;
+    this->room_id = 0;
 }
 
 void dSv_horse_place_c::set(const char* i_stage, const cXyz& i_position, short i_angle, signed char i_room_id) {
   strcpy((char*)current_stage,i_stage);
-  position.x = i_position.x;
-  position.y = i_position.y;
-  position.z = i_position.z;
-  angle = i_angle;
-  room_id = i_room_id;
+  this->position.x = i_position.x;
+  this->position.y = i_position.y;
+  this->position.z = i_position.z;
+  this->angle = i_angle;
+  this->room_id = i_room_id;
 }
 
-asm void dSv_player_return_place_c::init(void) {
-    nofralloc
-    #include "func_80032CC8.s"
+void dSv_player_return_place_c::init(void) {
+    strcpy((char*)current_stage,(char*)lbl_80379234+1);
+    this->room_id = 1;
+    this->spawn_id = 0;
+    this->unk10 = 21;
+    this->unk11 = 0;
+}
+
+void dSv_player_return_place_c::set(const char* i_stage, s8 i_room_id, u8 i_spawn_id) {
+    strcpy((char*)current_stage,i_stage);
+    this->room_id = i_room_id;
+    this->spawn_id = i_spawn_id;
 }
 
 void dSv_player_field_last_stay_info_c::init() {
@@ -156,29 +163,29 @@ void dSv_player_field_last_stay_info_c::init() {
     strcpy((char*)last_stage, (char*)lbl_80379234);
     position_val = lbl_80451D5C;
 
-    last_position.x = lbl_80451D5C;
-    last_position.y = position_val;
-    last_position.z = position_val;
-    last_angle = 0;
-    last_spawn_id = 0;
-    last_room_id = 1;
-    unk24 = 0;
-    last_region = 0;
+    this->last_position.x = lbl_80451D5C;
+    this->last_position.y = position_val;
+    this->last_position.z = position_val;
+    this->last_angle = 0;
+    this->last_spawn_id = 0;
+    this->last_room_id = 1;
+    this->unk24 = 0;
+    this->last_region = 0;
 
     for (int i = 0; i < 2; i++) {
-        unk26[i] = 0;
+        this->unk26[i] = 0;
     }
 }
 
 void dSv_player_field_last_stay_info_c::set(const char* i_last_stage_name, const cXyz& i_last_position, short i_last_angle, signed char i_last_spawn_id, u8 i_last_room_id) {
     strcpy((char*)last_stage, i_last_stage_name);
 
-    last_position.x = i_last_position.x;
-    last_position.y = i_last_position.y;
-    last_position.z = i_last_position.z;
-    last_angle = i_last_angle;
-    last_spawn_id = i_last_spawn_id;
-    last_room_id = i_last_room_id;
+    this->last_position.x = i_last_position.x;
+    this->last_position.y = i_last_position.y;
+    this->last_position.z = i_last_position.z;
+    this->last_angle = i_last_angle;
+    this->last_spawn_id = i_last_spawn_id;
+    this->last_room_id = i_last_room_id;
 }
 
 void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
@@ -188,54 +195,47 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
     if (8 <= i_region_bit) {
         return;
     }
-    last_region = last_region | (u8)(1 << i_region_bit);
+    this->last_region |= (u8)(1 << i_region_bit);
 }
 
-// this is close
-#ifdef NONMATCHING
 bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
   if ((param_1 >= 0) && (param_1 < 8)) {
-      return (last_region & (1 << (u8)param_1)) ? 1 : 0;
+      return (last_region & (u8)(1 << param_1)) ? true : false;
   }
+  return false;
 }
-#else
-asm bool dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
-    nofralloc
-    #include "func_80032E78.s"
-}
-#endif
 
 void dSv_player_last_mark_info_c::init(void) {
   float position;
   
   strcpy((char*)ooccoo_stage,(char*)lbl_80379234);
   position = lbl_80451D5C;
-  ooccoo_position.x = lbl_80451D5C;
-  ooccoo_position.y = position;
-  ooccoo_position.z = position;
-  ooccoo_angle = 0;
-  ooccoo_room_id = 0;
-  ooccoo_spawn_id = 0;
-  unk24 = -1;
+  this->ooccoo_position.x = lbl_80451D5C;
+  this->ooccoo_position.y = position;
+  this->ooccoo_position.z = position;
+  this->ooccoo_angle = 0;
+  this->ooccoo_room_id = 0;
+  this->ooccoo_spawn_id = 0;
+  this->unk24 = -1;
  
   for (int i = 0; i < 3; i++) {
-    unk25[i] = 0;
+    this->unk25[i] = 0;
   }
 }
 
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage, const cXyz& i_ooccoo_position, short i_ooccoo_angle, s8 i_ooccoo_room_id, u8 unk1, u8 unk2) {
   strcpy((char*)ooccoo_stage,i_ooccoo_stage);
-  ooccoo_position.x = i_ooccoo_position.x;
-  ooccoo_position.y = i_ooccoo_position.y;
-  ooccoo_position.z = i_ooccoo_position.z;
-  ooccoo_angle = i_ooccoo_angle;
-  ooccoo_room_id = i_ooccoo_room_id;
+  this->ooccoo_position.x = i_ooccoo_position.x;
+  this->ooccoo_position.y = i_ooccoo_position.y;
+  this->ooccoo_position.z = i_ooccoo_position.z;
+  this->ooccoo_angle = i_ooccoo_angle;
+  this->ooccoo_room_id = i_ooccoo_room_id;
 }
 
 void dSv_player_item_c::init(void) {
   for (int i = 0; i < 24; i++) {
-    items[i] = NO_ITEM;
-    item_slots[i] = NO_ITEM;
+    this->items[i] = NO_ITEM;
+    this->item_slots[i] = NO_ITEM;
   }
 }
 
@@ -342,7 +342,7 @@ asm void dSv_player_item_c::setLineUpItem(void) {
 
 u8 dSv_player_item_c::getLineUpItem(int slot_number) const {
     if (slot_number < MAX_ITEM_SLOTS) {
-        return item_slots[slot_number];
+        return this->item_slots[slot_number];
     }
     return NO_ITEM;
 }
@@ -487,24 +487,16 @@ asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
     #include "func_80033B08.s"
 }
 
-// this is a few instructions off
-#ifdef NONMATCHING
 u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     u8 ok = 0;
 
     for (int i = 0; i < 3; i++) {
         if (param_1 == this->items[i + 15]) {
-            ok = ok + 0x1;
+            ok++;
         }
     }
     return ok;
 }
-#else
-asm u8 dSv_player_item_c::checkBombBag(u8 param_1) {
-    nofralloc
-    #include "func_80033BEC.s"
-}
-#endif
 
 asm void dSv_player_item_c::setWarashibeItem(u8) {
     nofralloc
@@ -565,14 +557,22 @@ asm void dSv_player_item_c::setBaitItem(u8 param_1) {
 
 void dSv_player_get_item_c::init(void) {
     for (int i = 0; i < 8; i++) {
-        pause_menu_bit_fields[i] = 0;
+        this->pause_menu_bit_fields[i] = 0;
     }
 }
 
+// this is a few instructions off
+#ifdef NONMATCHING
+void dSv_player_get_item_c::onFirstBit(u8 param_1) {
+    int uVar1 = ((int)param_1 & 0xe0) >> 0x3;
+    this->pause_menu_bit_fields[uVar1] |= (u32)(1 << (param_1 & 0x1F));
+}
+#else
 asm void dSv_player_get_item_c::onFirstBit(u8) {
     nofralloc
     #include "func_80033E60.s"
 }
+#endif
 
 asm void dSv_player_get_item_c::offFirstBit(u8) {
     nofralloc
@@ -614,13 +614,32 @@ void dSv_player_item_record_c::setBottleNum(u8 bottle_index, u8 bottle_num) {
     this->bottles[bottle_index] = bottle_num;
 }
 
+#ifdef NONMATCHING
+u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
+    int iVar3 = this->bottles[param_1] + param_2;
+
+    dSv_player_item_c ok;
+
+    ok.getItem((u8)(param_1 + 0xB),true);
+
+    if (iVar3 < 0) {
+        this->bottles[param_1] = 0;
+    } else if (iVar3 > dComIfGs_getBottleMax()) {
+            this->bottles[param_1] = dComIfGs_getBottleMax();
+    } else {
+            this->bottles[param_1] = iVar3;
+    }
+    return this->bottles[param_1];
+}
+#else
 asm u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
     nofralloc
     #include "func_80033F9C.s"
 }
+#endif
 
 u8 dSv_player_item_record_c::getBottleNum(u8 bottle_index) const {
-    return bottles[bottle_index];
+    return this->bottles[bottle_index];
 }
 
 void dSv_player_item_max_c::init(void) {
@@ -679,24 +698,16 @@ void dSv_player_collect_c::init(void) {
     this->poe_count = 0;
 }
 
-// very close
-#ifdef NONMATCHING
 void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
-    this->unk0[param_1] = this->unk0[param_1] | (u8)(1 << param_2);
+    this->unk0[param_1] |= (u8)(1 << param_2);
 }
-#else
-asm void dSv_player_collect_c::setCollect(int param_1, u8 param_2) {
-    nofralloc
-    #include "func_800341E8.s"
-}
-#endif
 
 bool dSv_player_collect_c::isCollect(int param_1, u8 param_2) const {
    return this->unk0[param_1] & (u8)(1 << param_2) ? true : false;
 }
 
 void dSv_player_collect_c::onCollectCrystal(u8 param_1) {
-    this->crystal = this->crystal | (u8)(1 << param_1);  
+    this->crystal |= (u8)(1 << param_1);  
 }
 
 bool dSv_player_collect_c::isCollectCrystal(u8 param_1) const {
@@ -704,7 +715,7 @@ bool dSv_player_collect_c::isCollectCrystal(u8 param_1) const {
 }
 
 void dSv_player_collect_c::onCollectMirror(u8 param_1) {
-    this->mirror = this->mirror | (u8)(1 << param_1);  
+    this->mirror |= (u8)(1 << param_1);  
 }
 
 bool dSv_player_collect_c::isCollectMirror(u8 param_1) const {
@@ -770,43 +781,23 @@ void dSv_letter_info_c::init(void) {
     }
 }
 
-// close
-#ifdef NONMATCHING
 void dSv_letter_info_c::onLetterGetFlag(int param_1) {
-    this->letter_read_flags[param_1 >> 0x5] = this->letter_read_flags[param_1 >> 0x5] | 0x1 << (param_1 & 0x1fU);
+    this->letter_read_flags[param_1 >> 0x5] |= 0x1 << (param_1 & 0x1F);
 }
-#else
-asm void dSv_letter_info_c::onLetterGetFlag(int param_1) {
-    nofralloc
-    #include "func_80034428.s"
-}
-#endif
 
-#ifdef NONMATCHING
 bool dSv_letter_info_c::isLetterGetFlag(int param_1) const {
-    return this->letter_read_flags[param_1 >> 0x5] & (u8)(1 << param_1) ? true : false;
+    return this->letter_read_flags[param_1 >> 0x5] & (1 << (param_1 & 0x1F)) ? true : false;
 }
-#else
-asm bool dSv_letter_info_c::isLetterGetFlag(int param_1) const {
-    nofralloc
-    #include "func_8003444C.s"
-}
-#endif
 
-#ifdef NONMATCHING
 void dSv_letter_info_c::onLetterReadFlag(int param_1) {
-    (this->letter_read_flags + (param_1 >> 0x5))[0x2] |= 0x1 << (u8)(param_1);
+    (this->letter_read_flags + (param_1 >> 0x5))[0x2] |= 0x1 << (param_1 & 0x1F);
 }
-#else
-asm void dSv_letter_info_c::onLetterReadFlag(int param_1) {
-    nofralloc
-    #include "func_80034474.s"
-}
-#endif
 
 #ifdef NONMATCHING
-asm bool isLetterReadFlag(int) const {
-
+bool dSv_letter_info_c::isLetterReadFlag(int param_1) const {
+    u32 tmp = this->letter_read_flags[(param_1 >> 5) + 2];
+    int tmp2 = (1 << (param_1 & 0x1F));
+    return  tmp2 & tmp ? true : false;
 }
 #else
 asm bool dSv_letter_info_c::isLetterReadFlag(int) const {
@@ -822,19 +813,11 @@ void dSv_fishing_info_c::init(void) {
     }
 }
 
-// instructions are right but registers are wrong
-#ifdef NONMATCHING
 void dSv_fishing_info_c::addFishCount(u8 fish_index) {
     if (this->fish_count[fish_index] < 999) {
-        this->fish_count[fish_index] = this->fish_count[fish_index] + 1;
+        this->fish_count[fish_index] += 1;
     }
 }
-#else
-asm void dSv_fishing_info_c::addFishCount(u8 fish_index) {
-    nofralloc
-    #include "func_800344FC.s"
-}
-#endif
 
 // a few instructions off
 #ifdef NONMATCHING
@@ -962,61 +945,54 @@ void dSv_memBit_c::init(void) {
     this->dungeons_flags = 0;
 }
 
-
-asm void dSv_memBit_c::onTbox(int) {
-    nofralloc
-    #include "func_800347A0.s"
+void dSv_memBit_c::onTbox(int param_1) {
+    this->area_flags_bitfields1[param_1 >> 5] |= 1 << (param_1  & 0x1F);
 }
 
-asm void dSv_memBit_c::offTbox(int) {
-    nofralloc
-    #include "func_800347C4.s"
+void dSv_memBit_c::offTbox(int param_1) {
+    this->area_flags_bitfields1[param_1 >> 5] &= ~(1 << (param_1  & 0x1F));
 }
 
-// 1 instruction off
-#ifdef NONMATCHING
 bool dSv_memBit_c::isTbox(int param_1) const {
-     return 1 << (param_1 & 0x1f) & this->area_flags_bitfields1[param_1 >> 0x5];
+     return 1 << (param_1 & 0x1f) & this->area_flags_bitfields1[param_1 >> 0x5] ?  true : false;
+}
+
+void dSv_memBit_c::onSwitch(int param_1) {
+      (this->area_flags_bitfields1 + (param_1 >> 0x5))[0x2] |= 0x1 << (param_1 & 0x1F);
+}
+void dSv_memBit_c::offSwitch(int param_1) {
+      (this->area_flags_bitfields1 + (param_1 >> 0x5))[0x2] &= ~(0x1 << (param_1 & 0x1F));
+}
+
+bool dSv_memBit_c::isSwitch(int param_1) const {
+    return (this->area_flags_bitfields2[param_1 >> 0x5] & 0x1 << (param_1 & 0x1F)) ? true : false;
+}
+
+// instruction in wrong place
+#ifdef NONMATCHING
+bool dSv_memBit_c::revSwitch(int param_1) {
+    int uVar2 = 0x1 << (param_1 & 0x1F);
+    u32* puVar1 = (param_1 >> 0x5) + this->area_flags_bitfields1;
+    puVar1[0x2] ^= uVar2;
+    return puVar1[0x2] & uVar2 ? true : false;
 }
 #else
-asm bool dSv_memBit_c::isTbox(int param_1) const {
-    nofralloc
-    #include "func_800347E8.s"
-}
-#endif
-
-asm void dSv_memBit_c::onSwitch(int) {
-    nofralloc
-    #include "func_80034810.s"
-}
-
-asm void dSv_memBit_c::offSwitch(int) {
-    nofralloc
-    #include "func_80034838.s"
-}
-
-asm bool dSv_memBit_c::isSwitch(int) const {
-    nofralloc
-    #include "func_80034860.s"
-}
-
 asm u8 dSv_memBit_c::revSwitch(int){
     nofralloc
     #include "func_8003488C.s"
 }
+#endif
 
-asm void dSv_memBit_c::onItem(int) {
-    nofralloc
-    #include "func_800348C4.s"
+void dSv_memBit_c::onItem(int param_1) {
+     (this->area_flags_bitfields1 + (param_1 >> 0x5))[0x6] |= 0x1 << (param_1 & 0x1F);
 }
 
-asm bool dSv_memBit_c::isItem(int) const {
-    nofralloc
-    #include "func_800348EC.s"
+bool dSv_memBit_c::isItem(int param_1) const {
+     return (&this->rupee_flags_bitfields)[param_1 >> 0x5] & 0x1 << (param_1 & 0x1F) ? true : false;
 }
 
 void dSv_memBit_c::onDungeonItem(int param_1) {
-    this->dungeons_flags = this->dungeons_flags | (u8)(1 << param_1);
+    this->dungeons_flags |= (u8)(1 << param_1);
 }
 
 bool dSv_memBit_c::isDungeonItem(int param_1) const {
@@ -1038,17 +1014,10 @@ void dSv_event_c::offEventBit(u16 param_1) {
     this->events[(param_1 >> 8)] &= ~(u8)param_1;
 }
 
-// close
-#ifdef NONMATCHING
+// (u8) cast doesn't work here, thank u metrowerks
 bool dSv_event_c::isEventBit(u16 param_1) const {
-    return this->events[(param_1 >> 8)] & param_1 ? true : false;
+    return this->events[(param_1 >> 8)] & (param_1 & 0xFF) ? true : false;
 }
-#else
-asm bool dSv_event_c::isEventBit(u16 param_1) const {
-    nofralloc
-    #include "func_800349BC.s"
-}
-#endif
 
 void dSv_event_c::setEventReg(u16 param_1, u8 param_2) {
     u8 uVar1 = (param_1 >> 8);
@@ -1082,39 +1051,101 @@ void dSv_memory2_c::init(void) {
     }
 }
 
-// 1 instruction off
-#ifdef NONMATCHING
 void dSv_memory2_c::onVisitedRoom(int param_1) {
-    u8 test = param_1 >> 5
-    this->unk0[test] |= 1 << (u8)param_1; 
+    this->unk0[param_1 >> 5] |= 1 << (param_1 & 0x1F); 
 }
-#else
-asm void dSv_memory2_c::onVisitedRoom(int param_1) {
-    nofralloc
-    #include "func_80034AA4.s"
-}
-#endif
 
-// 1 instruction off
-#ifdef NONMATCHING
 void dSv_memory2_c::offVisitedRoom(int param_1) {
-    this->unk0[param_1 >> 5] &= ~(1 << (u8)param_1); 
+    this->unk0[param_1 >> 5] &= ~(1 << (param_1 & 0x1F)); 
 }
-#else
-asm void dSv_memory2_c::offVisitedRoom(int param_1) {
-    nofralloc
-    #include "func_80034AC8.s"
-}
-#endif
 
-// 1 instruction off
-#ifdef NONMATCHING
 bool dSv_memory2_c::isVisitedRoom(int param_1) {
-    return (1 << (u8)param_1 & this->unk0[param_1 >> 5]) ? true : false;
+    return (1 << (param_1 & 0x1F) & this->unk0[param_1 >> 5]) ? true : false;
 }
-#else
-asm bool dSv_memory2_c::isVisitedRoom(int param_1) {
+
+bool dSv_danBit_c::init(s8 param_1) {
+    if (param_1 != this->unk0) {
+        this->switch_bitfield[0] = 0;
+        this->switch_bitfield[1] = 0;
+        this->item_bitfield[0] = 0;
+        this->item_bitfield[1] = 0;
+        this->item_bitfield[2] = 0;
+        this->item_bitfield[3] = 0;
+        this->unk0 = param_1;
+        this->unk1 = 0;
+
+        for (int i = 0; i < 16; i++) {
+            this->unk28[i] = 0xFFFF;
+        }
+
+        daObjCarry_c_NS_clrSaveFlag();
+        return true;
+
+    } else {
+        daObjCarry_c_NS_setSaveFlag();
+        return false;
+    }
+}
+
+void dSv_danBit_c::onSwitch(int param_1) {
+    this->switch_bitfield[param_1 >> 5] |= 1 << (param_1 & 0x1F);
+}
+
+void dSv_danBit_c::offSwitch(int param_1) {
+    this->switch_bitfield[param_1 >> 5] &= ~(1 << (param_1 & 0x1F));
+}
+
+bool dSv_danBit_c::isSwitch(int param_1) const {
+    return this->switch_bitfield[param_1 >> 0x5] & (0x1 << (param_1 & 0x1F)) ? true : false;
+}
+
+bool dSv_danBit_c::revSwitch(int param_1) {
+    int uVar1 = 1 << (param_1 & 0x1F);
+    this->switch_bitfield[param_1 >> 5] ^= uVar1;
+    return this->switch_bitfield[param_1 >> 5] & uVar1 ? true : false;
+}
+
+void dSv_danBit_c::onItem(int param_1) {
+    this->item_bitfield[param_1 >> 5] |= 1 << (param_1 & 0x1F);
+}
+
+bool dSv_danBit_c::isItem(int param_1) const {
+    return this->item_bitfield[param_1 >> 5] & 1 << (param_1 & 0x1F) ? true : false;
+}
+
+void dSv_zoneBit_c::init(void) {
+    for (int i = 0; i < 2; i++) {
+        this->unk0[i] = 0;
+    }
+    
+
+    for (int i = 0; i < 2; i++) {
+        this->unk6[i] = 0;
+    }
+
+    this->room_switch = 0;
+    this->room_item = 0;
+}
+
+void dSv_zoneBit_c::clearRoomSwitch(void) {
+    this->room_switch = 0;
+}
+
+void dSv_zoneBit_c::clearRoomItem(void) {
+    this->room_item = 0;
+}
+
+void dSv_zoneBit_c::onSwitch(int param_1) {
+    this->unk0[param_1 >> 4] |= (u16)(1 << (param_1 & 0xF));
+}
+
+asm void dSv_zoneBit_c::offSwitch(int param_1) {
     nofralloc
-    #include "func_80034AEC.s"
+    #include "func_80034D2C.s"
 }
-#endif
+
+asm bool dSv_zoneBit_c::isSwitch(int param_1) const {
+    nofralloc
+    #include "func_80034D50.s"
+}
+

@@ -31,6 +31,7 @@ FORCEACTIVE {
  addFishCount__18dSv_fishing_info_cFUc
  onTbox__12dSv_memBit_cFi
  offTbox__12dSv_memBit_cFi
+ set__25dSv_player_return_place_cFPCcScUc
 }
 /*
 .init 80003100 - 80005600

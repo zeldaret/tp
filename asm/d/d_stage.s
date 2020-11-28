@@ -338,7 +338,7 @@ lbl_8002424C:
 /* 80024290 000211D0  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 80024294 000211D4  7C 60 22 14 */	add r3, r0, r4
 /* 80024298 000211D8  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 8002429C 000211DC  48 01 0A 51 */	bl dSv_zoneBit_c_NS_clearRoomSwitch
+/* 8002429C 000211DC  48 01 0A 51 */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 800242A0 000211E0  88 1E 03 F7 */	lbz r0, 0x3f7(r30)
 /* 800242A4 000211E4  7C 00 07 74 */	extsb r0, r0
 /* 800242A8 000211E8  54 04 28 34 */	slwi r4, r0, 5
@@ -346,7 +346,7 @@ lbl_8002424C:
 /* 800242B0 000211F0  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 800242B4 000211F4  7C 60 22 14 */	add r3, r0, r4
 /* 800242B8 000211F8  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 800242BC 000211FC  48 01 0A 3D */	bl dSv_zoneBit_c_NS_clearRoomItem
+/* 800242BC 000211FC  48 01 0A 3D */	bl clearRoomItem__13dSv_zoneBit_cFv
 lbl_800242C0:
 /* 800242C0 00021200  38 00 FF FF */	li r0, -1
 /* 800242C4 00021204  98 1E 03 F8 */	stb r0, 0x3f8(r30)
@@ -705,7 +705,7 @@ lbl_80024750:
 /* 80024774 000216B4  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 80024778 000216B8  7C 60 22 14 */	add r3, r0, r4
 /* 8002477C 000216BC  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 80024780 000216C0  48 01 05 6D */	bl dSv_zoneBit_c_NS_clearRoomSwitch
+/* 80024780 000216C0  48 01 05 6D */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 80024784 000216C4  88 1E 03 F7 */	lbz r0, 0x3f7(r30)
 /* 80024788 000216C8  7C 00 07 74 */	extsb r0, r0
 /* 8002478C 000216CC  54 04 28 34 */	slwi r4, r0, 5
@@ -713,7 +713,7 @@ lbl_80024750:
 /* 80024794 000216D4  38 03 61 C0 */	addi r0, r3, lbl_804061C0@l
 /* 80024798 000216D8  7C 60 22 14 */	add r3, r0, r4
 /* 8002479C 000216DC  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 800247A0 000216E0  48 01 05 59 */	bl dSv_zoneBit_c_NS_clearRoomItem
+/* 800247A0 000216E0  48 01 05 59 */	bl clearRoomItem__13dSv_zoneBit_cFv
 /* 800247A4 000216E4  7F E3 FB 78 */	mr r3, r31
 /* 800247A8 000216E8  81 9F 00 00 */	lwz r12, 0(r31)
 /* 800247AC 000216EC  81 8C 00 BC */	lwz r12, 0xbc(r12)
@@ -1880,7 +1880,7 @@ lbl_800257BC:
 /* 800257F8 00022738  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800257FC 0002273C  38 63 09 78 */	addi r3, r3, 0x978
 /* 80025800 00022740  7F E4 07 74 */	extsb r4, r31
-/* 80025804 00022744  48 00 F3 11 */	bl dSv_danBit_c_NS_init
+/* 80025804 00022744  48 00 F3 11 */	bl init__12dSv_danBit_cFSc
 /* 80025808 00022748  7F C3 F3 78 */	mr r3, r30
 /* 8002580C 0002274C  4B FF E7 45 */	bl dStage_KeepDoorInfoInit
 /* 80025810 00022750  38 60 00 01 */	li r3, 1

@@ -2403,7 +2403,7 @@ dAttention_c_NS_checkButton:
 /* 80072128 0006F068  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8007212C 0006F06C  38 63 09 78 */	addi r3, r3, 0x978
 /* 80072130 0006F070  38 80 00 01 */	li r4, 1
-/* 80072134 0006F074  4B FC 2A B5 */	bl dSv_danBit_c_NS_isSwitch
+/* 80072134 0006F074  4B FC 2A B5 */	bl isSwitch__12dSv_danBit_cCFi
 /* 80072138 0006F078  2C 03 00 00 */	cmpwi r3, 0
 /* 8007213C 0006F07C  40 82 00 38 */	bne lbl_80072174
 /* 80072140 0006F080  88 1F 03 2B */	lbz r0, 0x32b(r31)
