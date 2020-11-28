@@ -856,7 +856,7 @@ lbl_8025B9DC:
 /* 8025B9F0 00258930  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8025B9F4 00258934  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8025B9F8 00258938  7F A4 EB 78 */	mr r4, r29
-/* 8025B9FC 0025893C  4B DD 97 A9 */	bl dSv_info_c_NS_createZone
+/* 8025B9FC 0025893C  4B DD 97 A9 */	bl createZone__10dSv_info_cFi
 /* 8025BA00 00258940  7C 64 1B 78 */	mr r4, r3
 /* 8025BA04 00258944  7F A3 EB 78 */	mr r3, r29
 /* 8025BA08 00258948  48 00 00 A5 */	bl dStage_roomControl_c_NS_setZoneNo

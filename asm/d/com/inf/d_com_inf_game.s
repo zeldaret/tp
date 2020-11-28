@@ -2646,7 +2646,7 @@ dComIfGs_onStageSwitch:
 /* 8002D670 0002A5B0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002D674 0002A5B4  7F E4 FB 78 */	mr r4, r31
 /* 8002D678 0002A5B8  38 A0 FF FF */	li r5, -1
-/* 8002D67C 0002A5BC  48 00 7B 85 */	bl dSv_info_c_NS_onSwitch
+/* 8002D67C 0002A5BC  48 00 7B 85 */	bl onSwitch__10dSv_info_cFii
 lbl_8002D680:
 /* 8002D680 0002A5C0  57 C4 28 34 */	slwi r4, r30, 5
 /* 8002D684 0002A5C4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -5456,7 +5456,7 @@ lbl_8002FBFC:
 /* 8002FC0C 0002CB4C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8002FC10 0002CB50  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002FC14 0002CB54  88 84 00 13 */	lbz r4, 0x13(r4)
-/* 8002FC18 0002CB58  48 00 54 91 */	bl dSv_save_c_NS_getSave2
+/* 8002FC18 0002CB58  48 00 54 91 */	bl getSave2__10dSv_save_cFi
 /* 8002FC1C 0002CB5C  7F 84 E3 78 */	mr r4, r28
 /* 8002FC20 0002CB60  48 00 4E 85 */	bl onVisitedRoom__13dSv_memory2_cFi
 lbl_8002FC24:
@@ -5481,7 +5481,7 @@ lbl_8002FC24:
 /* 8002FC6C 0002CBAC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8002FC70 0002CBB0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002FC74 0002CBB4  88 84 00 13 */	lbz r4, 0x13(r4)
-/* 8002FC78 0002CBB8  48 00 54 31 */	bl dSv_save_c_NS_getSave2
+/* 8002FC78 0002CBB8  48 00 54 31 */	bl getSave2__10dSv_save_cFi
 /* 8002FC7C 0002CBBC  7F E4 FB 78 */	mr r4, r31
 /* 8002FC80 0002CBC0  48 00 4E 49 */	bl offVisitedRoom__13dSv_memory2_cFi
 /* 8002FC84 0002CBC4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -5507,7 +5507,7 @@ dComIfGs_isVisitedRoom:
 /* 8002FCC8 0002CC08  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8002FCCC 0002CC0C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002FCD0 0002CC10  88 84 00 13 */	lbz r4, 0x13(r4)
-/* 8002FCD4 0002CC14  48 00 53 D5 */	bl dSv_save_c_NS_getSave2
+/* 8002FCD4 0002CC14  48 00 53 D5 */	bl getSave2__10dSv_save_cFi
 /* 8002FCD8 0002CC18  7F E4 FB 78 */	mr r4, r31
 /* 8002FCDC 0002CC1C  48 00 4E 11 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8002FCE0 0002CC20  83 E1 00 0C */	lwz r31, 0xc(r1)

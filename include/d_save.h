@@ -547,16 +547,16 @@ class dSv_zoneActor_c {
     void init(void);
     void on(int);
     void off(int);
-    u8 is(int) const;
+    bool is(int) const;
 
    private:
-    u32 unk0[4];
+    u32 actor_bitfield[4];
 };
 
 class dSv_zone_c {
    public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
-    void init(void);
+    void init(int);
 
    private:
     u8 unk0;
@@ -591,11 +591,11 @@ class dSv_turnRestart_c {
 class dSv_save_c {
    public:
     void init(void);
-    dSv_memory2_c getSave2(int);
+    dSv_memory2_c* getSave2(int);
 
    private:
     dSv_player_c player;
-    u8 unk476[20];
+    u8 unk476[4];
     dSv_memory_c area_flags[32];
     dSv_memory2_c unk_flags[64];
     dSv_event_c event_flags;
@@ -609,7 +609,7 @@ class dSv_info_c {
     void getSave(int);
     void putSave(int);
     void initZone(void);
-    int createZone(int);
+    u32 createZone(int);
     void onSwitch(int, int);
     void offSwitch(int, int);
     bool isSwitch(int, int) const;

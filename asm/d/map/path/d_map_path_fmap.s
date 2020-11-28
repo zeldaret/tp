@@ -55,7 +55,7 @@ dMenu_Fmap_room_data_c_NS_isArrival:
 /* 8003D834 0003A774  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8003D838 0003A778  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8003D83C 0003A77C  88 84 00 02 */	lbz r4, 2(r4)
-/* 8003D840 0003A780  4B FF 78 69 */	bl dSv_save_c_NS_getSave2
+/* 8003D840 0003A780  4B FF 78 69 */	bl getSave2__10dSv_save_cFi
 /* 8003D844 0003A784  88 9F 00 10 */	lbz r4, 0x10(r31)
 /* 8003D848 0003A788  4B FF 72 A5 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003D84C 0003A78C  30 03 FF FF */	addic r0, r3, -1
@@ -160,7 +160,7 @@ dMenu_Fmap_stage_data_c_NS_isArrival:
 lbl_8003D98C:
 /* 8003D98C 0003A8CC  7F E3 FB 78 */	mr r3, r31
 /* 8003D990 0003A8D0  7F A4 EB 78 */	mr r4, r29
-/* 8003D994 0003A8D4  4B FF 77 15 */	bl dSv_save_c_NS_getSave2
+/* 8003D994 0003A8D4  4B FF 77 15 */	bl getSave2__10dSv_save_cFi
 /* 8003D998 0003A8D8  88 9E 00 10 */	lbz r4, 0x10(r30)
 /* 8003D99C 0003A8DC  4B FF 71 51 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003D9A0 0003A8E0  30 03 FF FF */	addic r0, r3, -1
@@ -351,7 +351,7 @@ lbl_8003DC24:
 /* 8003DC24 0003AB64  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8003DC28 0003AB68  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8003DC2C 0003AB6C  80 81 00 38 */	lwz r4, 0x38(r1)
-/* 8003DC30 0003AB70  4B FF 74 79 */	bl dSv_save_c_NS_getSave2
+/* 8003DC30 0003AB70  4B FF 74 79 */	bl getSave2__10dSv_save_cFi
 /* 8003DC34 0003AB74  88 99 00 10 */	lbz r4, 0x10(r25)
 /* 8003DC38 0003AB78  4B FF 6E B5 */	bl isVisitedRoom__13dSv_memory2_cFi
 /* 8003DC3C 0003AB7C  2C 03 00 00 */	cmpwi r3, 0

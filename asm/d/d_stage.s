@@ -387,7 +387,7 @@ dStage_roomControl_c_NS_initZone:
 /* 80024340 00021280  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80024344 00021284  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80024348 00021288  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 8002434C 0002128C  48 01 0E 01 */	bl dSv_info_c_NS_initZone
+/* 8002434C 0002128C  48 01 0E 01 */	bl initZone__10dSv_info_cFv
 /* 80024350 00021290  3C 60 80 3F */	lis r3, lbl_803F6094@ha
 /* 80024354 00021294  38 03 60 94 */	addi r0, r3, lbl_803F6094@l
 /* 80024358 00021298  7C 04 03 78 */	mr r4, r0
@@ -1872,7 +1872,7 @@ lbl_800257BC:
 /* 800257D8 00022718  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 800257DC 0002271C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800257E0 00022720  7F E4 FB 78 */	mr r4, r31
-/* 800257E4 00022724  48 00 F8 D9 */	bl dSv_info_c_NS_getSave
+/* 800257E4 00022724  48 00 F8 D9 */	bl getSave__10dSv_info_cFi
 /* 800257E8 00022728  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 800257EC 0002272C  38 63 07 EC */	addi r3, r3, lbl_804307EC@l
 /* 800257F0 00022730  48 23 6A 09 */	bl dSvBit_HIO_c_NS_init
@@ -3438,7 +3438,7 @@ lbl_80026E34:
 /* 80026E58 00023D98  54 04 FE FE */	rlwinm r4, r0, 0x1f, 0x1b, 0x1f
 /* 80026E5C 00023D9C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80026E60 00023DA0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 80026E64 00023DA4  48 00 E2 8D */	bl dSv_info_c_NS_putSave
+/* 80026E64 00023DA4  48 00 E2 8D */	bl putSave__10dSv_info_cFi
 /* 80026E68 00023DA8  38 6D 87 F4 */	addi r3, r13, lbl_80450D74-_SDA_BASE_
 /* 80026E6C 00023DAC  4B FF DC 51 */	bl dStage_roomControl_c_NS_roomDzs_c_NS_remove
 /* 80026E70 00023DB0  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)

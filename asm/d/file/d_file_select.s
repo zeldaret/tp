@@ -1040,7 +1040,7 @@ lbl_8018446C:
 /* 80184484 001813C4  98 1F 02 65 */	stb r0, 0x265(r31)
 /* 80184488 001813C8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8018448C 001813CC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 80184490 001813D0  4B EB 0B 3D */	bl dSv_info_c_NS_init
+/* 80184490 001813D0  4B EB 0B 3D */	bl init__10dSv_info_cFv
 /* 80184494 001813D4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80184498 001813D8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8018449C 001813DC  38 63 0F 38 */	addi r3, r3, 0xf38
@@ -7150,7 +7150,7 @@ lbl_80189E10:
 /* 80189E8C 00186DCC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80189E90 00186DD0  38 9F 03 B8 */	addi r4, r31, 0x3b8
 /* 80189E94 00186DD4  88 BF 02 65 */	lbz r5, 0x265(r31)
-/* 80189E98 00186DD8  4B EA BD 39 */	bl dSv_info_c_NS_initdata_to_card
+/* 80189E98 00186DD8  4B EA BD 39 */	bl init__10dSv_info_cFvdata_to_card
 /* 80189E9C 00186DDC  38 7F 03 B8 */	addi r3, r31, 0x3b8
 /* 80189EA0 00186DE0  88 9F 02 65 */	lbz r4, 0x265(r31)
 /* 80189EA4 00186DE4  4B E8 DE 95 */	bl mDoMemCdRWm_SetCheckSumGameData
@@ -13932,7 +13932,7 @@ lbl_80190278:
 /* 80190278 0018D1B8  7F E3 FB 78 */	mr r3, r31
 /* 8019027C 0018D1BC  38 9D 03 B8 */	addi r4, r29, 0x3b8
 /* 80190280 0018D1C0  7F C5 F3 78 */	mr r5, r30
-/* 80190284 0018D1C4  4B EA 59 4D */	bl dSv_info_c_NS_initdata_to_card
+/* 80190284 0018D1C4  4B EA 59 4D */	bl init__10dSv_info_cFvdata_to_card
 /* 80190288 0018D1C8  38 7D 03 B8 */	addi r3, r29, 0x3b8
 /* 8019028C 0018D1CC  57 C4 06 3E */	clrlwi r4, r30, 0x18
 /* 80190290 0018D1D0  4B E8 7A A9 */	bl mDoMemCdRWm_SetCheckSumGameData

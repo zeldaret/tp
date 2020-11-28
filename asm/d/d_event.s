@@ -317,7 +317,7 @@ lbl_8004188C:
 /* 800418D4 0003E814  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 800418D8 0003E818  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800418DC 0003E81C  7F 85 E3 78 */	mr r5, r28
-/* 800418E0 0003E820  4B FF 39 21 */	bl dSv_info_c_NS_onSwitch
+/* 800418E0 0003E820  4B FF 39 21 */	bl onSwitch__10dSv_info_cFii
 lbl_800418E4:
 /* 800418E4 0003E824  A0 1F 00 02 */	lhz r0, 2(r31)
 /* 800418E8 0003E828  54 00 05 AF */	rlwinm. r0, r0, 0, 0x16, 0x17

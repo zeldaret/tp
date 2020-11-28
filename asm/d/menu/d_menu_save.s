@@ -3437,7 +3437,7 @@ dMenu_save_c_NS_dataWrite:
 /* 801F2874 001EF7B4  54 04 FE FE */	rlwinm r4, r0, 0x1f, 0x1b, 0x1f
 /* 801F2878 001EF7B8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801F287C 001EF7BC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
-/* 801F2880 001EF7C0  4B E4 28 71 */	bl dSv_info_c_NS_putSave
+/* 801F2880 001EF7C0  4B E4 28 71 */	bl putSave__10dSv_info_cFi
 /* 801F2884 001EF7C4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801F2888 001EF7C8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801F288C 001EF7CC  38 9D 01 D0 */	addi r4, r29, 0x1d0
@@ -7927,7 +7927,7 @@ lbl_801F6978:
 /* 801F6978 001F38B8  7F E3 FB 78 */	mr r3, r31
 /* 801F697C 001F38BC  38 9D 01 D0 */	addi r4, r29, 0x1d0
 /* 801F6980 001F38C0  7F C5 F3 78 */	mr r5, r30
-/* 801F6984 001F38C4  4B E3 F2 4D */	bl dSv_info_c_NS_initdata_to_card
+/* 801F6984 001F38C4  4B E3 F2 4D */	bl init__10dSv_info_cFvdata_to_card
 /* 801F6988 001F38C8  38 7D 01 D0 */	addi r3, r29, 0x1d0
 /* 801F698C 001F38CC  57 C4 06 3E */	clrlwi r4, r30, 0x18
 /* 801F6990 001F38D0  4B E2 13 A9 */	bl mDoMemCdRWm_SetCheckSumGameData

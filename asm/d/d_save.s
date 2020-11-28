@@ -2,321 +2,6 @@
 
 .section .text, "ax" # 80032918 
 
-.global dSv_zoneActor_c_NS_init
-dSv_zoneActor_c_NS_init:
-/* 80034EB4 00031DF4  38 80 00 00 */	li r4, 0
-/* 80034EB8 00031DF8  7C 85 23 78 */	mr r5, r4
-/* 80034EBC 00031DFC  38 00 00 04 */	li r0, 4
-/* 80034EC0 00031E00  7C 09 03 A6 */	mtctr r0
-lbl_80034EC4:
-/* 80034EC4 00031E04  7C A3 21 2E */	stwx r5, r3, r4
-/* 80034EC8 00031E08  38 84 00 04 */	addi r4, r4, 4
-/* 80034ECC 00031E0C  42 00 FF F8 */	bdnz lbl_80034EC4
-/* 80034ED0 00031E10  4E 80 00 20 */	blr 
-
-.global dSv_zoneActor_c_NS_on
-dSv_zoneActor_c_NS_on:
-/* 80034ED4 00031E14  7C 80 2E 70 */	srawi r0, r4, 5
-/* 80034ED8 00031E18  54 07 10 3A */	slwi r7, r0, 2
-/* 80034EDC 00031E1C  7C C3 38 2E */	lwzx r6, r3, r7
-/* 80034EE0 00031E20  38 A0 00 01 */	li r5, 1
-/* 80034EE4 00031E24  54 80 06 FE */	clrlwi r0, r4, 0x1b
-/* 80034EE8 00031E28  7C A0 00 30 */	slw r0, r5, r0
-/* 80034EEC 00031E2C  7C C0 03 78 */	or r0, r6, r0
-/* 80034EF0 00031E30  7C 03 39 2E */	stwx r0, r3, r7
-/* 80034EF4 00031E34  4E 80 00 20 */	blr 
-
-.global dSv_zoneActor_c_NS_off
-dSv_zoneActor_c_NS_off:
-/* 80034EF8 00031E38  7C 80 2E 70 */	srawi r0, r4, 5
-/* 80034EFC 00031E3C  54 07 10 3A */	slwi r7, r0, 2
-/* 80034F00 00031E40  7C C3 38 2E */	lwzx r6, r3, r7
-/* 80034F04 00031E44  38 A0 00 01 */	li r5, 1
-/* 80034F08 00031E48  54 80 06 FE */	clrlwi r0, r4, 0x1b
-/* 80034F0C 00031E4C  7C A0 00 30 */	slw r0, r5, r0
-/* 80034F10 00031E50  7C C0 00 78 */	andc r0, r6, r0
-/* 80034F14 00031E54  7C 03 39 2E */	stwx r0, r3, r7
-/* 80034F18 00031E58  4E 80 00 20 */	blr 
-
-.global dSv_zoneActor_c_NS_is
-dSv_zoneActor_c_NS_is:
-/* 80034F1C 00031E5C  38 A0 00 01 */	li r5, 1
-/* 80034F20 00031E60  54 80 06 FE */	clrlwi r0, r4, 0x1b
-/* 80034F24 00031E64  7C A5 00 30 */	slw r5, r5, r0
-/* 80034F28 00031E68  7C 80 2E 70 */	srawi r0, r4, 5
-/* 80034F2C 00031E6C  54 00 10 3A */	slwi r0, r0, 2
-/* 80034F30 00031E70  7C 03 00 2E */	lwzx r0, r3, r0
-/* 80034F34 00031E74  7C A3 00 38 */	and r3, r5, r0
-/* 80034F38 00031E78  30 03 FF FF */	addic r0, r3, -1
-/* 80034F3C 00031E7C  7C 60 19 10 */	subfe r3, r0, r3
-/* 80034F40 00031E80  4E 80 00 20 */	blr 
-
-.global dSv_zone_c_NS_init
-dSv_zone_c_NS_init:
-/* 80034F44 00031E84  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80034F48 00031E88  7C 08 02 A6 */	mflr r0
-/* 80034F4C 00031E8C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80034F50 00031E90  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80034F54 00031E94  7C 7F 1B 78 */	mr r31, r3
-/* 80034F58 00031E98  98 83 00 00 */	stb r4, 0(r3)
-/* 80034F5C 00031E9C  38 7F 00 02 */	addi r3, r31, 2
-/* 80034F60 00031EA0  4B FF FD 41 */	bl init__13dSv_zoneBit_cFv
-/* 80034F64 00031EA4  38 7F 00 10 */	addi r3, r31, 0x10
-/* 80034F68 00031EA8  4B FF FF 4D */	bl dSv_zoneActor_c_NS_init
-/* 80034F6C 00031EAC  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 80034F70 00031EB0  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80034F74 00031EB4  7C 08 03 A6 */	mtlr r0
-/* 80034F78 00031EB8  38 21 00 10 */	addi r1, r1, 0x10
-/* 80034F7C 00031EBC  4E 80 00 20 */	blr 
-
-.global dSv_restart_c_NS_setRoom
-dSv_restart_c_NS_setRoom:
-/* 80034F80 00031EC0  98 C3 00 00 */	stb r6, 0(r3)
-/* 80034F84 00031EC4  C0 04 00 00 */	lfs f0, 0(r4)
-/* 80034F88 00031EC8  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80034F8C 00031ECC  C0 04 00 04 */	lfs f0, 4(r4)
-/* 80034F90 00031ED0  D0 03 00 0C */	stfs f0, 0xc(r3)
-/* 80034F94 00031ED4  C0 04 00 08 */	lfs f0, 8(r4)
-/* 80034F98 00031ED8  D0 03 00 10 */	stfs f0, 0x10(r3)
-/* 80034F9C 00031EDC  B0 A3 00 06 */	sth r5, 6(r3)
-/* 80034FA0 00031EE0  4E 80 00 20 */	blr 
-
-.global dSv_turnRestart_c_NS_set
-dSv_turnRestart_c_NS_set:
-/* 80034FA4 00031EE4  C0 04 00 00 */	lfs f0, 0(r4)
-/* 80034FA8 00031EE8  D0 03 00 00 */	stfs f0, 0(r3)
-/* 80034FAC 00031EEC  C0 04 00 04 */	lfs f0, 4(r4)
-/* 80034FB0 00031EF0  D0 03 00 04 */	stfs f0, 4(r3)
-/* 80034FB4 00031EF4  C0 04 00 08 */	lfs f0, 8(r4)
-/* 80034FB8 00031EF8  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80034FBC 00031EFC  B0 A3 00 10 */	sth r5, 0x10(r3)
-/* 80034FC0 00031F00  98 C3 00 12 */	stb r6, 0x12(r3)
-/* 80034FC4 00031F04  90 E3 00 0C */	stw r7, 0xc(r3)
-/* 80034FC8 00031F08  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_init
-dSv_info_c_NS_init:
-/* 80034FCC 00031F0C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80034FD0 00031F10  7C 08 02 A6 */	mflr r0
-/* 80034FD4 00031F14  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80034FD8 00031F18  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80034FDC 00031F1C  7C 7F 1B 78 */	mr r31, r3
-/* 80034FE0 00031F20  48 00 00 3D */	bl dSv_save_c_NS_init
-/* 80034FE4 00031F24  38 7F 09 58 */	addi r3, r31, 0x958
-/* 80034FE8 00031F28  4B FF FA 7D */	bl init__12dSv_memory_cFv
-/* 80034FEC 00031F2C  38 7F 09 78 */	addi r3, r31, 0x978
-/* 80034FF0 00031F30  38 80 FF FF */	li r4, -1
-/* 80034FF4 00031F34  4B FF FB 21 */	bl init__12dSv_danBit_cFSc
-/* 80034FF8 00031F38  7F E3 FB 78 */	mr r3, r31
-/* 80034FFC 00031F3C  48 00 01 51 */	bl dSv_info_c_NS_initZone
-/* 80035000 00031F40  38 7F 0D D8 */	addi r3, r31, 0xdd8
-/* 80035004 00031F44  4B FF F9 51 */	bl init__11dSv_event_cFv
-/* 80035008 00031F48  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8003500C 00031F4C  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80035010 00031F50  7C 08 03 A6 */	mtlr r0
-/* 80035014 00031F54  38 21 00 10 */	addi r1, r1, 0x10
-/* 80035018 00031F58  4E 80 00 20 */	blr 
-
-.global dSv_save_c_NS_init
-dSv_save_c_NS_init:
-/* 8003501C 00031F5C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80035020 00031F60  7C 08 02 A6 */	mflr r0
-/* 80035024 00031F64  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80035028 00031F68  39 61 00 20 */	addi r11, r1, 0x20
-/* 8003502C 00031F6C  48 32 D1 B1 */	bl _savegpr_29
-/* 80035030 00031F70  7C 7D 1B 78 */	mr r29, r3
-/* 80035034 00031F74  4B FF F6 71 */	bl init__12dSv_player_cFv
-/* 80035038 00031F78  3B C0 00 00 */	li r30, 0
-/* 8003503C 00031F7C  3B E0 00 00 */	li r31, 0
-lbl_80035040:
-/* 80035040 00031F80  38 7F 01 F0 */	addi r3, r31, 0x1f0
-/* 80035044 00031F84  7C 7D 1A 14 */	add r3, r29, r3
-/* 80035048 00031F88  4B FF FA 1D */	bl init__12dSv_memory_cFv
-/* 8003504C 00031F8C  3B DE 00 01 */	addi r30, r30, 1
-/* 80035050 00031F90  2C 1E 00 20 */	cmpwi r30, 0x20
-/* 80035054 00031F94  3B FF 00 20 */	addi r31, r31, 0x20
-/* 80035058 00031F98  41 80 FF E8 */	blt lbl_80035040
-/* 8003505C 00031F9C  3B C0 00 00 */	li r30, 0
-/* 80035060 00031FA0  3B E0 00 00 */	li r31, 0
-lbl_80035064:
-/* 80035064 00031FA4  38 7F 05 F0 */	addi r3, r31, 0x5f0
-/* 80035068 00031FA8  7C 7D 1A 14 */	add r3, r29, r3
-/* 8003506C 00031FAC  4B FF FA 19 */	bl init__13dSv_memory2_cFv
-/* 80035070 00031FB0  3B DE 00 01 */	addi r30, r30, 1
-/* 80035074 00031FB4  2C 1E 00 40 */	cmpwi r30, 0x40
-/* 80035078 00031FB8  3B FF 00 08 */	addi r31, r31, 8
-/* 8003507C 00031FBC  41 80 FF E8 */	blt lbl_80035064
-/* 80035080 00031FC0  38 7D 07 F0 */	addi r3, r29, 0x7f0
-/* 80035084 00031FC4  4B FF F8 D1 */	bl init__11dSv_event_cFv
-/* 80035088 00031FC8  38 7D 09 40 */	addi r3, r29, 0x940
-/* 8003508C 00031FCC  4B FF F9 91 */	bl init__14dSv_MiniGame_cFv
-/* 80035090 00031FD0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80035094 00031FD4  48 32 D1 95 */	bl _restgpr_29
-/* 80035098 00031FD8  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 8003509C 00031FDC  7C 08 03 A6 */	mtlr r0
-/* 800350A0 00031FE0  38 21 00 20 */	addi r1, r1, 0x20
-/* 800350A4 00031FE4  4E 80 00 20 */	blr 
-
-.global dSv_save_c_NS_getSave2
-dSv_save_c_NS_getSave2:
-/* 800350A8 00031FE8  7C 60 1B 78 */	mr r0, r3
-/* 800350AC 00031FEC  54 83 18 38 */	slwi r3, r4, 3
-/* 800350B0 00031FF0  38 63 05 F0 */	addi r3, r3, 0x5f0
-/* 800350B4 00031FF4  7C 60 1A 14 */	add r3, r0, r3
-/* 800350B8 00031FF8  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_getSave
-dSv_info_c_NS_getSave:
-/* 800350BC 00031FFC  54 84 28 34 */	slwi r4, r4, 5
-/* 800350C0 00032000  38 84 01 F0 */	addi r4, r4, 0x1f0
-/* 800350C4 00032004  7C 83 22 14 */	add r4, r3, r4
-/* 800350C8 00032008  38 A3 09 54 */	addi r5, r3, 0x954
-/* 800350CC 0003200C  38 84 FF FC */	addi r4, r4, -4
-/* 800350D0 00032010  38 00 00 04 */	li r0, 4
-/* 800350D4 00032014  7C 09 03 A6 */	mtctr r0
-lbl_800350D8:
-/* 800350D8 00032018  80 64 00 04 */	lwz r3, 4(r4)
-/* 800350DC 0003201C  84 04 00 08 */	lwzu r0, 8(r4)
-/* 800350E0 00032020  90 65 00 04 */	stw r3, 4(r5)
-/* 800350E4 00032024  94 05 00 08 */	stwu r0, 8(r5)
-/* 800350E8 00032028  42 00 FF F0 */	bdnz lbl_800350D8
-/* 800350EC 0003202C  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_putSave
-dSv_info_c_NS_putSave:
-/* 800350F0 00032030  94 21 FF D0 */	stwu r1, -0x30(r1)
-/* 800350F4 00032034  38 E1 00 04 */	addi r7, r1, 4
-/* 800350F8 00032038  38 C3 09 54 */	addi r6, r3, 0x954
-/* 800350FC 0003203C  38 00 00 04 */	li r0, 4
-/* 80035100 00032040  7C 09 03 A6 */	mtctr r0
-lbl_80035104:
-/* 80035104 00032044  80 A6 00 04 */	lwz r5, 4(r6)
-/* 80035108 00032048  84 06 00 08 */	lwzu r0, 8(r6)
-/* 8003510C 0003204C  90 A7 00 04 */	stw r5, 4(r7)
-/* 80035110 00032050  94 07 00 08 */	stwu r0, 8(r7)
-/* 80035114 00032054  42 00 FF F0 */	bdnz lbl_80035104
-/* 80035118 00032058  54 80 28 34 */	slwi r0, r4, 5
-/* 8003511C 0003205C  7C 63 02 14 */	add r3, r3, r0
-/* 80035120 00032060  38 A3 01 EC */	addi r5, r3, 0x1ec
-/* 80035124 00032064  38 81 00 04 */	addi r4, r1, 4
-/* 80035128 00032068  38 00 00 04 */	li r0, 4
-/* 8003512C 0003206C  7C 09 03 A6 */	mtctr r0
-lbl_80035130:
-/* 80035130 00032070  80 64 00 04 */	lwz r3, 4(r4)
-/* 80035134 00032074  84 04 00 08 */	lwzu r0, 8(r4)
-/* 80035138 00032078  90 65 00 04 */	stw r3, 4(r5)
-/* 8003513C 0003207C  94 05 00 08 */	stwu r0, 8(r5)
-/* 80035140 00032080  42 00 FF F0 */	bdnz lbl_80035130
-/* 80035144 00032084  38 21 00 30 */	addi r1, r1, 0x30
-/* 80035148 00032088  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_initZone
-dSv_info_c_NS_initZone:
-/* 8003514C 0003208C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80035150 00032090  7C 08 02 A6 */	mflr r0
-/* 80035154 00032094  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80035158 00032098  39 61 00 20 */	addi r11, r1, 0x20
-/* 8003515C 0003209C  48 32 D0 81 */	bl _savegpr_29
-/* 80035160 000320A0  7C 7D 1B 78 */	mr r29, r3
-/* 80035164 000320A4  3B C0 00 00 */	li r30, 0
-/* 80035168 000320A8  3B E0 00 00 */	li r31, 0
-lbl_8003516C:
-/* 8003516C 000320AC  38 7F 09 B4 */	addi r3, r31, 0x9b4
-/* 80035170 000320B0  7C 7D 1A 14 */	add r3, r29, r3
-/* 80035174 000320B4  38 80 FF FF */	li r4, -1
-/* 80035178 000320B8  4B FF FD CD */	bl dSv_zone_c_NS_init
-/* 8003517C 000320BC  3B DE 00 01 */	addi r30, r30, 1
-/* 80035180 000320C0  2C 1E 00 20 */	cmpwi r30, 0x20
-/* 80035184 000320C4  3B FF 00 20 */	addi r31, r31, 0x20
-/* 80035188 000320C8  41 80 FF E4 */	blt lbl_8003516C
-/* 8003518C 000320CC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80035190 000320D0  48 32 D0 99 */	bl _restgpr_29
-/* 80035194 000320D4  80 01 00 24 */	lwz r0, 0x24(r1)
-/* 80035198 000320D8  7C 08 03 A6 */	mtlr r0
-/* 8003519C 000320DC  38 21 00 20 */	addi r1, r1, 0x20
-/* 800351A0 000320E0  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_createZone
-dSv_info_c_NS_createZone:
-/* 800351A4 000320E4  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 800351A8 000320E8  7C 08 02 A6 */	mflr r0
-/* 800351AC 000320EC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800351B0 000320F0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 800351B4 000320F4  38 63 09 B4 */	addi r3, r3, 0x9b4
-/* 800351B8 000320F8  3B E0 00 00 */	li r31, 0
-/* 800351BC 000320FC  38 00 00 20 */	li r0, 0x20
-/* 800351C0 00032100  7C 09 03 A6 */	mtctr r0
-lbl_800351C4:
-/* 800351C4 00032104  88 03 00 00 */	lbz r0, 0(r3)
-/* 800351C8 00032108  7C 00 07 75 */	extsb. r0, r0
-/* 800351CC 0003210C  40 80 00 10 */	bge lbl_800351DC
-/* 800351D0 00032110  4B FF FD 75 */	bl dSv_zone_c_NS_init
-/* 800351D4 00032114  7F E3 FB 78 */	mr r3, r31
-/* 800351D8 00032118  48 00 00 14 */	b lbl_800351EC
-lbl_800351DC:
-/* 800351DC 0003211C  38 63 00 20 */	addi r3, r3, 0x20
-/* 800351E0 00032120  3B FF 00 01 */	addi r31, r31, 1
-/* 800351E4 00032124  42 00 FF E0 */	bdnz lbl_800351C4
-/* 800351E8 00032128  38 60 FF FF */	li r3, -1
-lbl_800351EC:
-/* 800351EC 0003212C  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 800351F0 00032130  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 800351F4 00032134  7C 08 03 A6 */	mtlr r0
-/* 800351F8 00032138  38 21 00 10 */	addi r1, r1, 0x10
-/* 800351FC 0003213C  4E 80 00 20 */	blr 
-
-.global dSv_info_c_NS_onSwitch
-dSv_info_c_NS_onSwitch:
-/* 80035200 00032140  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80035204 00032144  7C 08 02 A6 */	mflr r0
-/* 80035208 00032148  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8003520C 0003214C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80035210 00032150  93 C1 00 08 */	stw r30, 8(r1)
-/* 80035214 00032154  7C 7E 1B 78 */	mr r30, r3
-/* 80035218 00032158  7C 9F 23 78 */	mr r31, r4
-/* 8003521C 0003215C  2C 1F FF FF */	cmpwi r31, -1
-/* 80035220 00032160  41 82 00 78 */	beq lbl_80035298
-/* 80035224 00032164  2C 1F 00 FF */	cmpwi r31, 0xff
-/* 80035228 00032168  40 82 00 08 */	bne lbl_80035230
-/* 8003522C 0003216C  48 00 00 6C */	b lbl_80035298
-lbl_80035230:
-/* 80035230 00032170  2C 1F 00 80 */	cmpwi r31, 0x80
-/* 80035234 00032174  40 80 00 10 */	bge lbl_80035244
-/* 80035238 00032178  38 7E 09 58 */	addi r3, r30, 0x958
-/* 8003523C 0003217C  4B FF F5 D5 */	bl onSwitch__12dSv_memBit_cFi
-/* 80035240 00032180  48 00 00 58 */	b lbl_80035298
-lbl_80035244:
-/* 80035244 00032184  2C 1F 00 C0 */	cmpwi r31, 0xc0
-/* 80035248 00032188  40 80 00 14 */	bge lbl_8003525C
-/* 8003524C 0003218C  38 7E 09 78 */	addi r3, r30, 0x978
-/* 80035250 00032190  38 9F FF 80 */	addi r4, r31, -128
-/* 80035254 00032194  4B FF F9 45 */	bl onSwitch__12dSv_danBit_cFi
-/* 80035258 00032198  48 00 00 40 */	b lbl_80035298
-lbl_8003525C:
-/* 8003525C 0003219C  7C A3 2B 78 */	mr r3, r5
-/* 80035260 000321A0  4B FF 87 51 */	bl dStage_roomControl_c_NS_getZoneNo
-/* 80035264 000321A4  2C 1F 00 E0 */	cmpwi r31, 0xe0
-/* 80035268 000321A8  40 80 00 1C */	bge lbl_80035284
-/* 8003526C 000321AC  54 63 28 34 */	slwi r3, r3, 5
-/* 80035270 000321B0  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 80035274 000321B4  7C 7E 1A 14 */	add r3, r30, r3
-/* 80035278 000321B8  38 9F FF 40 */	addi r4, r31, -192
-/* 8003527C 000321BC  4B FF FA 89 */	bl onSwitch__13dSv_zoneBit_cFi
-/* 80035280 000321C0  48 00 00 18 */	b lbl_80035298
-lbl_80035284:
-/* 80035284 000321C4  54 63 28 34 */	slwi r3, r3, 5
-/* 80035288 000321C8  38 63 09 B6 */	addi r3, r3, 0x9b6
-/* 8003528C 000321CC  7C 7E 1A 14 */	add r3, r30, r3
-/* 80035290 000321D0  38 9F FF 20 */	addi r4, r31, -224
-/* 80035294 000321D4  4B FF FB 19 */	bl onOneSwitch__13dSv_zoneBit_cFi
-lbl_80035298:
-/* 80035298 000321D8  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 8003529C 000321DC  83 C1 00 08 */	lwz r30, 8(r1)
-/* 800352A0 000321E0  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 800352A4 000321E4  7C 08 03 A6 */	mtlr r0
-/* 800352A8 000321E8  38 21 00 10 */	addi r1, r1, 0x10
-/* 800352AC 000321EC  4E 80 00 20 */	blr 
-
 .global dSv_info_c_NS_offSwitch
 dSv_info_c_NS_offSwitch:
 /* 800352B0 000321F0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -612,7 +297,7 @@ lbl_80035680:
 /* 8003568C 000325CC  38 63 09 C4 */	addi r3, r3, 0x9c4
 /* 80035690 000325D0  7C 7E 1A 14 */	add r3, r30, r3
 /* 80035694 000325D4  7F E4 FB 78 */	mr r4, r31
-/* 80035698 000325D8  4B FF F8 3D */	bl dSv_zoneActor_c_NS_on
+/* 80035698 000325D8  4B FF F8 3D */	bl on__15dSv_zoneActor_cFi
 lbl_8003569C:
 /* 8003569C 000325DC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800356A0 000325E0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -642,7 +327,7 @@ lbl_800356F0:
 /* 800356FC 0003263C  38 63 09 C4 */	addi r3, r3, 0x9c4
 /* 80035700 00032640  7C 7E 1A 14 */	add r3, r30, r3
 /* 80035704 00032644  7F E4 FB 78 */	mr r4, r31
-/* 80035708 00032648  4B FF F7 F1 */	bl dSv_zoneActor_c_NS_off
+/* 80035708 00032648  4B FF F7 F1 */	bl off__15dSv_zoneActor_cFi
 lbl_8003570C:
 /* 8003570C 0003264C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80035710 00032650  83 C1 00 08 */	lwz r30, 8(r1)
@@ -677,7 +362,7 @@ lbl_80035764:
 /* 80035770 000326B0  38 63 09 C4 */	addi r3, r3, 0x9c4
 /* 80035774 000326B4  7C 7E 1A 14 */	add r3, r30, r3
 /* 80035778 000326B8  7F E4 FB 78 */	mr r4, r31
-/* 8003577C 000326BC  4B FF F7 A1 */	bl dSv_zoneActor_c_NS_is
+/* 8003577C 000326BC  4B FF F7 A1 */	bl is__15dSv_zoneActor_cCFi
 lbl_80035780:
 /* 80035780 000326C0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80035784 000326C4  83 C1 00 08 */	lwz r30, 8(r1)
@@ -974,8 +659,8 @@ lbl_80035B60:
 /* 80035BC8 00032B08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80035BCC 00032B0C  4E 80 00 20 */	blr 
 
-.global dSv_info_c_NS_initdata_to_card
-dSv_info_c_NS_initdata_to_card:
+.global init__10dSv_info_cFvdata_to_card
+init__10dSv_info_cFvdata_to_card:
 /* 80035BD0 00032B10  94 21 F6 90 */	stwu r1, -0x970(r1)
 /* 80035BD4 00032B14  7C 08 02 A6 */	mflr r0
 /* 80035BD8 00032B18  90 01 09 74 */	stw r0, 0x974(r1)
@@ -1001,7 +686,7 @@ dSv_info_c_NS_initdata_to_card:
 /* 80035C18 00032B58  38 E0 00 40 */	li r7, 0x40
 /* 80035C1C 00032B5C  48 32 C1 45 */	bl func_80361D60
 /* 80035C20 00032B60  38 61 00 08 */	addi r3, r1, 8
-/* 80035C24 00032B64  4B FF F3 F9 */	bl dSv_save_c_NS_init
+/* 80035C24 00032B64  4B FF F3 F9 */	bl init__10dSv_save_cFv
 /* 80035C28 00032B68  38 61 01 BC */	addi r3, r1, 0x1bc
 /* 80035C2C 00032B6C  3C 80 80 38 */	lis r4, lbl_80379234@ha
 /* 80035C30 00032B70  38 84 92 34 */	addi r4, r4, lbl_80379234@l

@@ -42,4 +42,16 @@ extern "C" {
     void setInitEventBit(void);
     void daObjCarry_c_NS_clrSaveFlag(void);
     void daObjCarry_c_NS_setSaveFlag(void);
+    void init__14dSv_MiniGame_cFv(void);
+    void init__11dSv_event_cFv(void);
+    void init__13dSv_memory2_cFv(void);
+    void init__12dSv_memory_cFv(void);
+    void init__12dSv_player_cFv(void);
+    void init__10dSv_info_cFvZone(void);
+    void init__10dSv_zone_cFi(void);
+    void onOneSwitch__13dSv_zoneBit_cFi(void);
+    void onSwitch__13dSv_zoneBit_cFi(void);
+    void dStage_roomControl_c_NS_getZoneNo(void);
+    void onSwitch__12dSv_danBit_cFi(void);
+    void onSwitch__12dSv_memBit_cFi(void);
 }

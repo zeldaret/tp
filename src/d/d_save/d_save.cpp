@@ -1194,3 +1194,148 @@ void dSv_zoneBit_c::onOneItem(int param_1) {
 bool dSv_zoneBit_c::isOneItem(int param_1) const {
     return this->room_item & 1 << param_1 ? true : false;
 }
+
+void dSv_zoneActor_c::init(void) {
+    for (int i = 0; i < 4; i++) {
+        this->actor_bitfield[i] = 0;
+    }
+}
+
+void dSv_zoneActor_c::on(int param_1) {
+    this->actor_bitfield[param_1 >> 5] |= 1 << (param_1 & 0x1F);
+}
+
+void dSv_zoneActor_c::off(int param_1) {
+    this->actor_bitfield[param_1 >> 5] &= ~(1 << (param_1 & 0x1F));
+}
+
+bool dSv_zoneActor_c::is(int param_1) const {
+    return this->actor_bitfield[param_1 >> 5] & 1 << (param_1 & 0x1F) ?  true : false;
+}
+
+void dSv_zone_c::init(int param_1) {
+    this->unk0 = param_1;
+    zone_bit.init();
+    zone_actor.init();
+}
+
+void dSv_restart_c::setRoom(const cXyz& i_position, short i_angle, s8 param_3) {
+    this->unk0 = param_3;
+    this->position = i_position;
+    this->angle = i_angle;
+}
+
+void dSv_turnRestart_c::set(const cXyz& i_position, short i_angle, s8 param_3, u32 param_4) {
+    this->position = i_position;
+    this->angle = i_angle;
+    this->unk18 = param_3;
+    this->unk12 = param_4;
+}
+
+void dSv_info_c::init(void) {
+    this->save_file.init();
+    this->memory.init();
+    this->dungeon_bit.init(-1);
+    initZone();
+    this->events.init();
+}
+
+
+void dSv_save_c::init(void) {
+    this->player.init();
+    for (int i = 0; i < 0x20; i++) {
+        this->area_flags[i].init();
+    }
+
+    for (int i = 0; i < 0x40; i++) {
+        this->unk_flags[i].init();
+    }
+
+    this->event_flags.init();
+    this->minigame_flags.init();
+}
+
+dSv_memory2_c* dSv_save_c::getSave2(int param_1) {
+    return this->unk_flags + param_1;
+}
+
+#ifdef NONMATCHING
+void dSv_info_c::getSave(int) {
+    for (int i = 0; i < 4; i++) {
+        
+    }
+}
+#else
+asm void dSv_info_c::getSave(int) {
+    nofralloc
+    #include "func_800350BC.s"
+}
+#endif
+
+#ifdef NONMATCHING
+void dSv_info_c::getSave(int) {
+    for (int i = 0; i < 4; i++) {
+        
+    }
+
+    for (int i = 0; i < 4; i++) {
+        
+    }
+}
+#else
+asm void dSv_info_c::putSave(int) {
+    nofralloc
+    #include "func_800350F0.s"
+}
+#endif
+
+void dSv_info_c::initZone(void) {
+    for (int i = 0; i < 0x20; i++) {
+        this->zones[i].init(-1);
+    }
+}
+
+#ifdef NONMATCHING
+u32 dSv_info_c::createZone(int param_1) {
+    for (int i = 0; i < 0x20; i++) {
+        if (this->zones[i].test() < 0) {
+            this->zones[i].init(param_1);
+            return i;
+        }
+    }
+    return -1;
+}
+#else
+asm u32 dSv_info_c::createZone(int param_1) {
+    nofralloc
+    #include "func_800351A4.s"
+}
+#endif
+
+#ifdef NONMATCHING
+void dSv_info_c::onSwitch(int param_1, int param_2) {
+    if ((param_1 != -0x1) && (param_1 != 0xff)) {
+        if (param_1 < 0x80) {
+            this->memory.getTempFlags().onSwitch(param_1);
+        }
+        else {
+            if (param_1 < 0xc0) {
+                this->dungeon_bit.onSwitch(param_1 - 0x80);
+            }
+            else {
+                if (param_1 < 0xe0) {
+                    this->zones[getZoneNo(param_2,param_1)].getZoneBit().onSwitch(param_1 - 0xC0);
+                }
+                else {
+                    this->zones[getZoneNo(param_2,param_1)].getZoneBit().onOneSwitch(param_1 - 0xE0);
+                }
+            }
+        }
+    }
+}
+#else
+asm void dSv_info_c::onSwitch(int param_1, int param_2) {
+    nofralloc
+    #include "func_80035200.s"
+}
+#endif
