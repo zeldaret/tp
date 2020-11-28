@@ -1115,12 +1115,12 @@ bool dSv_danBit_c::isItem(int param_1) const {
 
 void dSv_zoneBit_c::init(void) {
     for (int i = 0; i < 2; i++) {
-        this->unk0[i] = 0;
+        this->switch_bitfield[i] = 0;
     }
     
 
     for (int i = 0; i < 2; i++) {
-        this->unk6[i] = 0;
+        this->item_bitfield[i] = 0;
     }
 
     this->room_switch = 0;
@@ -1136,16 +1136,61 @@ void dSv_zoneBit_c::clearRoomItem(void) {
 }
 
 void dSv_zoneBit_c::onSwitch(int param_1) {
-    this->unk0[param_1 >> 4] |= (u16)(1 << (param_1 & 0xF));
+    this->switch_bitfield[param_1 >> 4] |= (u16)(1 << (param_1 & 0xF));
 }
 
-asm void dSv_zoneBit_c::offSwitch(int param_1) {
+void dSv_zoneBit_c::offSwitch(int param_1) {
+    this->switch_bitfield[param_1 >> 4] &= ~(1 << (param_1 & 0xF));
+}
+
+bool dSv_zoneBit_c::isSwitch(int param_1) const {
+    return this->switch_bitfield[param_1 >> 4] & 1 << (param_1 & 0xF) ?  true : false;
+}
+
+// instruction in wrong place
+#ifdef NONMATCHING
+bool dSv_zoneBit_c::revSwitch(int param_1) {
+    int uVar1 = 1 << (param_1 & 0xF);
+    this->switch_bitfield[param_1 >> 4] ^= uVar1;
+    return this->switch_bitfield[param_1 >> 4] & uVar1 ? true : false;
+}
+#else
+asm bool dSv_zoneBit_c::revSwitch(int param_1) {
     nofralloc
-    #include "func_80034D2C.s"
+    #include "func_80034D78.s"
+}
+#endif
+
+void dSv_zoneBit_c::onOneSwitch(int param_1) {
+    this->room_switch |= (u16)(1 << param_1);
 }
 
-asm bool dSv_zoneBit_c::isSwitch(int param_1) const {
-    nofralloc
-    #include "func_80034D50.s"
+void dSv_zoneBit_c::offOneSwitch(int param_1) {
+    this->room_switch &= ~(1 << param_1);
 }
 
+bool dSv_zoneBit_c::isOneSwitch(int param_1) const {
+    return this->room_switch & 1 << param_1 ? true : false;
+}
+
+bool dSv_zoneBit_c::revOneSwitch(int param_1) {
+    int iVar1 = 1 << param_1;
+    this->room_switch ^= iVar1;
+    return this->room_switch & iVar1 ? true : false;
+}
+
+void dSv_zoneBit_c::onItem(int param_1) {
+    this->item_bitfield[param_1 >> 4] |= (u16)(1 << (param_1 & 0xF));
+}
+
+bool dSv_zoneBit_c::isItem(int param_1) const {
+    return this->item_bitfield[param_1 >> 4] & 1 << (param_1 & 0xF) ?  true : false;
+}
+
+void dSv_zoneBit_c::onOneItem(int param_1) {
+    this->room_item |= (u16)(1 << param_1);
+}
+
+bool dSv_zoneBit_c::isOneItem(int param_1) const {
+    return this->room_item & 1 << param_1 ? true : false;
+}

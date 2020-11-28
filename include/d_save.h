@@ -524,20 +524,20 @@ class dSv_zoneBit_c {
     void onSwitch(int);
     void offSwitch(int);
     bool isSwitch(int) const;
-    u8 revSwitch(int);
+    bool revSwitch(int);
     void onOneSwitch(int);
     void offOneSwitch(int);
     bool isOneSwitch(int) const;
-    u8 revOneSwitch(int);
+    bool revOneSwitch(int);
     void onItem(int);
     bool isItem(int) const;
     void onOneItem(int);
     bool isOneItem(int) const;
 
    private:
-    u16 unk0[2];
+    u16 switch_bitfield[2];
     u16 room_switch;
-    u16 unk6[2];
+    u16 item_bitfield[2];
     u16 room_item;
     u16 unk12;
 };

@@ -2977,7 +2977,7 @@ lbl_8002DAC8:
 /* 8002DADC 0002AA1C  7C 60 22 14 */	add r3, r0, r4
 /* 8002DAE0 0002AA20  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DAE4 0002AA24  7F E4 FB 78 */	mr r4, r31
-/* 8002DAE8 0002AA28  48 00 72 C5 */	bl dSv_zoneBit_c_NS_onOneSwitch
+/* 8002DAE8 0002AA28  48 00 72 C5 */	bl onOneSwitch__13dSv_zoneBit_cFi
 lbl_8002DAEC:
 /* 8002DAEC 0002AA2C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DAF0 0002AA30  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3008,7 +3008,7 @@ lbl_8002DB2C:
 /* 8002DB40 0002AA80  7C 60 22 14 */	add r3, r0, r4
 /* 8002DB44 0002AA84  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DB48 0002AA88  7F E4 FB 78 */	mr r4, r31
-/* 8002DB4C 0002AA8C  48 00 72 7D */	bl dSv_zoneBit_c_NS_offOneSwitch
+/* 8002DB4C 0002AA8C  48 00 72 7D */	bl offOneSwitch__13dSv_zoneBit_cFi
 lbl_8002DB50:
 /* 8002DB50 0002AA90  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DB54 0002AA94  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3041,7 +3041,7 @@ lbl_8002DB98:
 /* 8002DBAC 0002AAEC  7C 60 22 14 */	add r3, r0, r4
 /* 8002DBB0 0002AAF0  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DBB4 0002AAF4  7F E4 FB 78 */	mr r4, r31
-/* 8002DBB8 0002AAF8  48 00 72 29 */	bl dSv_zoneBit_c_NS_isOneSwitch
+/* 8002DBB8 0002AAF8  48 00 72 29 */	bl isOneSwitch__13dSv_zoneBit_cCFi
 lbl_8002DBBC:
 /* 8002DBBC 0002AAFC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DBC0 0002AB00  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3074,7 +3074,7 @@ lbl_8002DC04:
 /* 8002DC18 0002AB58  7C 60 22 14 */	add r3, r0, r4
 /* 8002DC1C 0002AB5C  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DC20 0002AB60  7F E4 FB 78 */	mr r4, r31
-/* 8002DC24 0002AB64  48 00 72 2D */	bl dSv_zoneBit_c_NS_isItem
+/* 8002DC24 0002AB64  48 00 72 2D */	bl isItem__13dSv_zoneBit_cCFi
 lbl_8002DC28:
 /* 8002DC28 0002AB68  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DC2C 0002AB6C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3107,7 +3107,7 @@ lbl_8002DC70:
 /* 8002DC84 0002ABC4  7C 60 22 14 */	add r3, r0, r4
 /* 8002DC88 0002ABC8  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DC8C 0002ABCC  7F E4 FB 78 */	mr r4, r31
-/* 8002DC90 0002ABD0  48 00 72 09 */	bl dSv_zoneBit_c_NS_isOneItem
+/* 8002DC90 0002ABD0  48 00 72 09 */	bl isOneItem__13dSv_zoneBit_cCFi
 lbl_8002DC94:
 /* 8002DC94 0002ABD4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8002DC98 0002ABD8  80 01 00 14 */	lwz r0, 0x14(r1)
