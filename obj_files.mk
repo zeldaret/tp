@@ -246,16 +246,15 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_list.o   \
-            $(BUILD_DIR)/asm/SComponent/c/list/c_list_iter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_list_iter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_node.o   \
-            $(BUILD_DIR)/asm/SComponent/c/node/c_node_iter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_node_iter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tree.o   \
-            $(BUILD_DIR)/asm/SComponent/c/tree/c_tree_iter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tree_iter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_phase.o   \
-            $(BUILD_DIR)/asm/SComponent/c/c_phase.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_request.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
-            $(BUILD_DIR)/asm/SComponent/c/tag/c_tag_iter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_sxyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_math.o    \
