@@ -1,4 +1,4 @@
-#include "m_Do_main.h"
+#include "m_Do/m_Do_main/m_Do_main.h"
 #include "global.h"
 
 void version_check(void) {  
@@ -68,13 +68,13 @@ void CheapHeap(u32 param_1) {
 #else
 asm void CheckHeap(u32 param_1) {
     nofralloc
-    #include "func_8000578C.s"
+    #include "m_Do/m_Do_main/asm/func_8000578C.s"
 }
 #endif
 
 asm int countUsed(JKRExpHeap *heap) {
     nofralloc
-    #include "func_80005848.s"
+    #include "m_Do/m_Do_main/asm/func_80005848.s"
 }
 
 s32 HeapCheck::getUsedCount(void) const {

@@ -1,6 +1,6 @@
 
 #include "dolphin/types.h"
-#include "JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
 class JKRHeap : JKRDisposer {

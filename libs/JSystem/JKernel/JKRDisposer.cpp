@@ -1,8 +1,8 @@
-#include "JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer.h"
 #include "global.h"
-#include "JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
-// #include "JKernel/asm/func_802D147C.s"
+// #include "JSystem/JKernel/asm/func_802D147C.s"
 JKRDisposer::JKRDisposer() : __vt(lbl_803CC0F0), ptr_link(this) {
     this->heap     = JKRHeap::findFromRoot(this);
     if (this->heap != 0) {
@@ -22,6 +22,6 @@ JKRDisposer::~JKRDisposer() {
 #else
 asm JKRDisposer::~JKRDisposer() {
     nofralloc
-#include "JKernel/asm/func_802D14E4.s"
+#include "JSystem/JKernel/asm/func_802D14E4.s"
 }
 #endif
