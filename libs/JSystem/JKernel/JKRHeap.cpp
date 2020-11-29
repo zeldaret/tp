@@ -1,11 +1,50 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
+// Initializing the members seems to be weird because of
+// the way we're using vtables.
 #ifdef NONMATCHING
-JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_handler) {
+JKRHeap::JKRHeap(void *data,u32 size,JKRHeap *parent,bool error_flag) : 
+    __base(), 
+    __vt(lbl_803CBF70), 
+    child_list(true), 
+    heap_link(this), 
+    disposable_list(true)
+{
+  OSInitMutex(this->mutex);
+  this->size = size;
+  this->begin = (u32)data;
+  this->end = (u32)data + size;
+
+  if (parent == NULL) {
+    this->becomeSystemHeap();
+    this->becomeCurrentHeap();
+  } else {
+    JSUPtrLink* ptr = (JSUPtrLink*)&this->child_list;
+    if (ptr != NULL) {
+      ptr = &this->heap_link;
+    }
+
+    parent->child_list.append(ptr);
+    if (lbl_80451370 == lbl_80451378) {
+      this->becomeSystemHeap();
+    }
+    if (lbl_80451374 == lbl_80451378) {
+      this->becomeCurrentHeap();
+    }
+  }
+
+  this->error_flag = error_flag;
+  if ((this->error_flag == true) && (lbl_8045137C == NULL)) {
+    lbl_8045137C = JKRHeap::JKRDefaultMemoryErrorRoutine;
+  }
+
+  this->field_0x3c = lbl_804508B0[0];
+  this->field_0x3d = lbl_80451380[0];
+  this->field_0x69 = 0;
 }
 #else
-asm JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_handler) {
+asm JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
 }
@@ -16,19 +55,46 @@ asm JKRHeap::~JKRHeap() {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE264.s"
 }
 
+// All instruction are correct but the register order is wrong.
+#ifdef NONMATCHING
+bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
+    u32 low = OSGetArenaLo();
+    u32 high = OSGetArenaHi();
+    if (low == high) return false;
+
+    u32 ram = OSInitAlloc(low, high, param_3);
+    u32 ram_start = (ram + 0x1fU & 0xffffffe0);
+    u32 ram_end = (high & 0xffffffe0);
+    lbl_80451384 = OS_GLOBAL_ADDR(void, 0x80000000);
+    lbl_80451388 = (void*)ram_start;
+    lbl_8045138C = (void*)ram_start;
+    lbl_80451390 = (void*)ram_end;
+    lbl_80451394 = OS_GLOBAL(u32, 0x80000028);
+    OSSetArenaLo(ram_end);
+    OSSetArenaHi(ram_end);
+    *memory = (char*)ram_start;
+    *size = ram_end - ram_start;
+    return true;
+}
+#else
 asm bool JKRHeap::initArena(char**, u32*, int) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE378.s"
 }
+#endif
 
-asm void JKRHeap::becomeSystemHeap() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE428.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE428.s"
+JKRHeap * JKRHeap::becomeSystemHeap() {
+    JKRHeap* prev = lbl_80451370;
+    lbl_80451370 = this;
+    return prev;
 }
 
-asm void JKRHeap::becomeCurrentHeap() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE438.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE438.s"
+JKRHeap * JKRHeap::becomeCurrentHeap() {
+    JKRHeap* prev = lbl_80451374;
+    lbl_80451374 = this;
+    return prev;
 }
 
 asm void JKRHeap::destroy() {

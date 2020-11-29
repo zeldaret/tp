@@ -3,14 +3,14 @@
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
-class JKRHeap : JKRDisposer {
+class JKRHeap {
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
     ~JKRHeap();
 
     static bool initArena(char**, u32*, int);
-    void becomeSystemHeap();
-    void becomeCurrentHeap();
+    JKRHeap* becomeSystemHeap();
+    JKRHeap* becomeCurrentHeap();
     void destroy();
 
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
@@ -53,6 +53,11 @@ class JKRHeap : JKRDisposer {
     bool isSubHeap(JKRHeap* heap) const;
 
   public:
+      union {
+        JKRDisposer __base;
+        void** __vt;
+    };
+
     u8 mutex[24];
     u32 begin;
     u32 end;
@@ -64,8 +69,9 @@ class JKRHeap : JKRDisposer {
     JSUPtrList child_list;
     JSUPtrLink heap_link;
     JSUPtrList disposable_list;
-    bool error_handler;
+    bool error_flag;
     u8 field_0x69;
+    //u8 field_0x70[4];
 };
 
 void* operator new(u32 size);

@@ -156,12 +156,7 @@ extern "C" {
 
 // OS
 extern "C" {
-    void OSInitMutex(void);
-    void OSGetArenaLo(void);
-    void OSGetArenaHi(void);
-    void OSInitAlloc(void);
-    void OSSetArenaLo(void);
-    void OSSetArenaHi(void);
+    void OSInitMutex(u8[24]);
     void OSEnableScheduler(void);
     void OSDisableScheduler(void);
     void OSCheckActiveThreads(void);
@@ -178,6 +173,12 @@ extern "C" {
     void OSReportInit(void);
     void OSGetCurrentThread(void);
     void OSTicksToCalendarTime(void);
+
+    u32 OSGetArenaLo();
+    u32 OSGetArenaHi();
+    u32 OSInitAlloc(u32 low, u32 high, int param_3);
+    void OSSetArenaLo(u32 param_1);
+    void OSSetArenaHi(u32 param_1);
 }
 
 // DVD
