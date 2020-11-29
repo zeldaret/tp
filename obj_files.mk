@@ -244,7 +244,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/API/c_API_graphic.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_counter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_list.o   \
             $(BUILD_DIR)/asm/SComponent/c/list/c_list_iter.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_node.o   \
