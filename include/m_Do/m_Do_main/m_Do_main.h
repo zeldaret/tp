@@ -1,15 +1,6 @@
 #include "dolphin/types.h"
-
-class JKRExpHeap {
-    public:
-     s32 getTotalUsedSize() const;
-
-};
-
-class JKRHeap {
-    public:
-     s32 getFreeSize();
-};
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 
 class HeapCheck {
     public:

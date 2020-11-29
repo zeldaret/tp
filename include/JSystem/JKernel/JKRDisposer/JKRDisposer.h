@@ -2,7 +2,7 @@
 #define __JKRDISPOSER_H__
 
 #include "dolphin/types.h"
-#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JSupport/JSUList/JSUList.h"
 
 class JKRHeap;
 class JKRDisposer {

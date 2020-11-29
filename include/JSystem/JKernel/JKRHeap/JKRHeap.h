@@ -1,6 +1,6 @@
 
 #include "dolphin/types.h"
-#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
 class JKRHeap : JKRDisposer {
@@ -29,7 +29,7 @@ class JKRHeap : JKRDisposer {
     static s32 getSize(void* ptr, JKRHeap* heap);
     s32 getSize(void* ptr);
 
-    u32 getFreeSize();
+    s32 getFreeSize();
     u32 getMaxFreeBlock();
     u32 getTotalFreeSize();
     u8 changeGroupID(u8 param_1);

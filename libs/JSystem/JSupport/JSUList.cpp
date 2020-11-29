@@ -1,4 +1,4 @@
-#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JSupport/JSUList/JSUList.h"
 #include "global.h"
 
 // #include "JSupport/asm/func_802DBDFC.s"

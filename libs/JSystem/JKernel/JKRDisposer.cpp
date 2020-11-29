@@ -1,6 +1,6 @@
-#include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "global.h"
-#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
 // #include "JSystem/JKernel/asm/func_802D147C.s"
 JKRDisposer::JKRDisposer() : __vt(lbl_803CC0F0), ptr_link(this) {
@@ -22,6 +22,6 @@ JKRDisposer::~JKRDisposer() {
 #else
 asm JKRDisposer::~JKRDisposer() {
     nofralloc
-#include "JSystem/JKernel/asm/func_802D14E4.s"
+#include "JSystem/JKernel/JKRDisposer/asm/func_802D14E4.s"
 }
 #endif
