@@ -81,7 +81,7 @@ extern u8 lbl_803BB498;
 #define _SDA2_BASE_(dummy) 0
 
 // func_802CE138
-extern void* lbl_803CBF70[24]; // JKRHeap::__vt
+extern _VTABLE_JKRHeap lbl_803CBF70; // JKRHeap::__vt
 
 extern JKRHeap* lbl_80451370; // JKRHeap::sSystemHeap
 extern void* lbl_80451378; // JKRHeap::sRootHeap

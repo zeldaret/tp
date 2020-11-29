@@ -94,8 +94,13 @@ JKRHeap * JKRHeap::becomeCurrentHeap() {
     return prev;
 }
 
+// All virtual calls seems to only use r12
+// but emulating the call with use another 
+// register (r4 in this case).  
 #ifdef NONMATCHING
-
+void JKRHeap::destroy() {
+    (*this->__vt->do_destroy)(this);
+}
 #else
 asm void JKRHeap::destroy() {
     nofralloc
@@ -103,44 +108,90 @@ asm void JKRHeap::destroy() {
 }
 #endif
 
-asm void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE474.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE474.s"
+void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
+    if (heap != NULL) {
+        return heap->alloc(size, alignment);
+    }
+
+    if (lbl_80451374 != NULL) {
+        return lbl_80451374->alloc(size, alignment);
+    }
+
+    return NULL;
 }
 
+// Same problem as with all other virtual calls.
+#ifdef NONMATCHING
+void* JKRHeap::alloc(u32 size, int alignment) {
+    (*this->__vt->do_alloc)(this, size, alignment);
+}
+#else
 asm void* JKRHeap::alloc(u32 size, int alignment) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE4D4.s"
 }
+#endif
 
-asm void JKRHeap::free(void* ptr, JKRHeap* heap) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE500.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE500.s"
+void JKRHeap::free(void* ptr, JKRHeap* heap) {
+    if(!heap) {
+        heap = findFromRoot(ptr);
+        if(!heap) return;
+    }
+    
+    heap->free(ptr);
 }
 
+// Same problem as with all other virtual calls.
+#ifdef NONMATCHING
+void JKRHeap::free(void* ptr) {
+    (*this->__vt->do_free)(this, ptr);
+}
+#else
 asm void JKRHeap::free(void* ptr) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE548.s"
 }
+#endif
 
 asm void JKRHeap::callAllDisposer() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE574.s"
 }
 
+// Same problem as with all other virtual calls.
+#ifdef NONMATCHING
+void JKRHeap::freeAll() {
+    (*this->__vt->do_freeAll)(this);
+}
+#else
 asm void JKRHeap::freeAll() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE5CC.s"
 }
+#endif
 
+// Same problem as with all other virtual calls.
+#ifdef NONMATCHING
+void JKRHeap::freeAll() {
+    (*this->__vt->do_freeTail)(this);
+}
+#else
 asm void JKRHeap::freeTail() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE5F8.s"
 }
+#endif
 
-asm s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE624.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE624.s"
+s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
+    if (!heap) {
+        heap = findFromRoot(ptr);
+        if (!heap) return -1;
+    }
+
+    return heap->resize(ptr, size);
 }
 
 asm s32 JKRHeap::resize(void* ptr, u32 size) {

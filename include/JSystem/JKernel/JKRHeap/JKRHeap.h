@@ -2,6 +2,34 @@
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
+
+struct _VTABLE_JKRHeap {
+    void (*func0)(JKRHeap*);
+    void (*_ct)(JKRHeap*);
+    void (*_dt)(JKRHeap*);
+    void (*callAllDisposer)(JKRHeap*);
+    void (*func4)(JKRHeap*);
+    void (*func5)(JKRHeap*);
+    void (*dump_sort)(JKRHeap*);
+    void (*func7)(JKRHeap*);
+    void (*do_destroy)(JKRHeap*);
+    void (*do_alloc)(JKRHeap*,u32 size, int alignment);
+    void (*do_free)(JKRHeap*,void*ptr);
+    void (*do_freeAll)(JKRHeap*);
+    void (*do_freeTail)(JKRHeap*);
+    void (*func13)(JKRHeap*);
+    void (*func14)(JKRHeap*);
+    void (*func15)(JKRHeap*);
+    void (*func16)(JKRHeap*);
+    void (*func17)(JKRHeap*);
+    void (*func18)(JKRHeap*);
+    void (*do_changeGroup)(JKRHeap*);
+    void (*do_getCurrent)(JKRHeap*);
+    void (*state_register)(JKRHeap*);
+    void (*state_compare)(JKRHeap*);
+    void (*state_dump)(JKRHeap*);
+};
+
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
 class JKRHeap {
   public:
@@ -55,7 +83,7 @@ class JKRHeap {
   public:
       union {
         JKRDisposer __base;
-        void** __vt;
+        _VTABLE_JKRHeap* __vt;
     };
 
     u8 mutex[24];
@@ -71,7 +99,7 @@ class JKRHeap {
     JSUPtrList disposable_list;
     bool error_flag;
     u8 field_0x69;
-    //u8 field_0x70[4];
+    u8 field_0x6a[4];
 };
 
 void* operator new(u32 size);
