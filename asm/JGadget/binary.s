@@ -47,7 +47,7 @@ JGadget_NS_binary_NS_TParse_header_block_NS_dtor:
 /* 802DC8E8 002D9828  90 1F 00 00 */	stw r0, 0(r31)
 /* 802DC8EC 002D982C  7C 80 07 35 */	extsh. r0, r4
 /* 802DC8F0 002D9830  40 81 00 08 */	ble lbl_802DC8F8
-/* 802DC8F4 002D9834  4B FF 24 49 */	bl __dl
+/* 802DC8F4 002D9834  4B FF 24 49 */	bl __dl__FPv
 lbl_802DC8F8:
 /* 802DC8F8 002D9838  7F E3 FB 78 */	mr r3, r31
 /* 802DC8FC 002D983C  83 E1 00 0C */	lwz r31, 0xc(r1)

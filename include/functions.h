@@ -90,4 +90,82 @@ extern "C" {
     void getTotalUsedSize__10JKRExpHeapCFv(void);
     void HeapCheck_NS_getUsedCount(void);
     void CheckHeap1__9HeapCheckFv(void);
+
+    void JUTException_NS_panic_f(void);
+}
+
+// OS
+extern "C" {
+    void OSInitMutex(void);
+    void OSGetArenaLo(void);
+    void OSGetArenaHi(void);
+    void OSInitAlloc(void);
+    void OSSetArenaLo(void);
+    void OSSetArenaHi(void);
+    void OSEnableScheduler(void);
+    void OSDisableScheduler(void);
+}
+
+// JSupport/JSUList.h
+extern "C" {
+    void __ct__10JSUPtrLinkFPv(void);
+    void __dt__10JSUPtrLinkFv(void);
+    void __ct__10JSUPtrListFb(void);
+    void __dt__10JSUPtrListFv(void);
+    void initiate__10JSUPtrListFv(void);
+    void setFirst__10JSUPtrListFP10JSUPtrLink(void);
+    void append__10JSUPtrListFP10JSUPtrLink(void);
+    void prepend__10JSUPtrListFP10JSUPtrLink(void);
+    void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink(void);
+    void remove__10JSUPtrListFP10JSUPtrLink(void);
+    void getNthLink__10JSUPtrListCFUl(void);
+}
+
+// JKernel/JKRDisposer.h
+extern "C" {
+    void __ct__11JKRDisposerFv(void);
+    void __dt__11JKRDisposerFv(void);
+}
+
+// JKernel/JKRHeap.h
+extern "C" {
+    void becomeCurrentHeap__7JKRHeapFv(void);
+    void becomeSystemHeap__7JKRHeapFv(void);
+    void destroy__7JKRHeapFv(void);
+    void alloc__7JKRHeapFUliP7JKRHeap(void);
+    void alloc__7JKRHeapFUli(void);
+    void free__7JKRHeapFPvP7JKRHeap(void);
+    void free__7JKRHeapFPv(void);
+    void callAllDisposer__7JKRHeapFv(void);
+    void freeAll__7JKRHeapFv(void);
+    void freeTail__7JKRHeapFv(void);
+    void resize__7JKRHeapFPvUlP7JKRHeap(void);
+    void resize__7JKRHeapFPvUl(void);
+    void getSize__7JKRHeapFPvP7JKRHeap(void);
+    void getSize__7JKRHeapFPv(void);
+    void getFreeSize__7JKRHeapFv(void);
+    void getMaxFreeBlock__7JKRHeapFv(void);
+    void getTotalFreeSize__7JKRHeapFv(void);
+    void changeGroupID__7JKRHeapFUc(void);
+    void getMaxAllocatableSize__7JKRHeapFi(void);
+    void findFromRoot__7JKRHeapFPv(void);
+    void find__7JKRHeapCFPv(void);
+    void findAllHeap__7JKRHeapCFPv(void);
+    void dispose_subroutine__7JKRHeapFUlUl(void);
+    void dispose__7JKRHeapFPvUl(void);
+    void dispose__7JKRHeapFPvPv(void);
+    void dispose__7JKRHeapFv(void);
+    void copyMemory__7JKRHeapFPvPvUl(void);
+    void JKRDefaultMemoryErrorRoutine__FPvUli(void);
+    void setErrorFlag__7JKRHeapFb(void);
+    void setErrorHandler__7JKRHeapFPFPvUli_v(void);
+    void isSubHeap__7JKRHeapCFP7JKRHeap(void);
+    void __nw__FUl(void);
+    void __nw__FUli(void);
+    void __nw__FUlP7JKRHeapi(void);
+    void __nwa__FUl(void);
+    void __nwa__FUli(void);
+    void __nwa__FUlP7JKRHeapi(void);
+    void __dl__FPv(void);
+    void __dla__FPv(void);
 }

@@ -80,7 +80,7 @@ JASDSPChannel_NS_initAll:
 /* 8029D3DC 0029A31C  38 60 07 10 */	li r3, 0x710
 /* 8029D3E0 0029A320  80 8D 8C 90 */	lwz r4, lbl_80451210-_SDA_BASE_(r13)
 /* 8029D3E4 0029A324  38 A0 00 20 */	li r5, 0x20
-/* 8029D3E8 0029A328  48 03 19 29 */	bl __nwa_X2_
+/* 8029D3E8 0029A328  48 03 19 29 */	bl __nwa__FUlP7JKRHeapi
 .global JASDSPChannel
 /* 8029D3EC 0029A32C  3C 80 80 2A */	lis r4, JASDSPChannel@ha
 .global JASDSPChannel

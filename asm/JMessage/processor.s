@@ -16,7 +16,7 @@ JMessage_NS_TReference_NS_dtor:
 /* 802A7B18 002A4A58  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A7B1C 002A4A5C  7C 80 07 35 */	extsh. r0, r4
 /* 802A7B20 002A4A60  40 81 00 08 */	ble lbl_802A7B28
-/* 802A7B24 002A4A64  48 02 72 19 */	bl __dl
+/* 802A7B24 002A4A64  48 02 72 19 */	bl __dl__FPv
 lbl_802A7B28:
 /* 802A7B28 002A4A68  7F E3 FB 78 */	mr r3, r31
 /* 802A7B2C 002A4A6C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -40,7 +40,7 @@ JMessage_NS_TProcessor_NS_dtor:
 /* 802A7B68 002A4AA8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A7B6C 002A4AAC  7C 80 07 35 */	extsh. r0, r4
 /* 802A7B70 002A4AB0  40 81 00 08 */	ble lbl_802A7B78
-/* 802A7B74 002A4AB4  48 02 71 C9 */	bl __dl
+/* 802A7B74 002A4AB4  48 02 71 C9 */	bl __dl__FPv
 lbl_802A7B78:
 /* 802A7B78 002A4AB8  7F E3 FB 78 */	mr r3, r31
 /* 802A7B7C 002A4ABC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -681,7 +681,7 @@ JMessage_NS_TSequenceProcessor_NS_dtor:
 /* 802A83EC 002A532C  7F E0 07 35 */	extsh. r0, r31
 /* 802A83F0 002A5330  40 81 00 0C */	ble lbl_802A83FC
 /* 802A83F4 002A5334  7F C3 F3 78 */	mr r3, r30
-/* 802A83F8 002A5338  48 02 69 45 */	bl __dl
+/* 802A83F8 002A5338  48 02 69 45 */	bl __dl__FPv
 lbl_802A83FC:
 /* 802A83FC 002A533C  7F C3 F3 78 */	mr r3, r30
 /* 802A8400 002A5340  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1217,7 +1217,7 @@ JMessage_NS_TRenderingProcessor_NS_dtor:
 /* 802A8AF4 002A5A34  7F E0 07 35 */	extsh. r0, r31
 /* 802A8AF8 002A5A38  40 81 00 0C */	ble lbl_802A8B04
 /* 802A8AFC 002A5A3C  7F C3 F3 78 */	mr r3, r30
-/* 802A8B00 002A5A40  48 02 62 3D */	bl __dl
+/* 802A8B00 002A5A40  48 02 62 3D */	bl __dl__FPv
 lbl_802A8B04:
 /* 802A8B04 002A5A44  7F C3 F3 78 */	mr r3, r30
 /* 802A8B08 002A5A48  83 E1 00 0C */	lwz r31, 0xc(r1)
