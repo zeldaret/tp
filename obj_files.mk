@@ -254,7 +254,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_phase.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_phase.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_request.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_tag.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
             $(BUILD_DIR)/asm/SComponent/c/tag/c_tag_iter.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_sxyz.o    \
