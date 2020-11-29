@@ -2,16 +2,6 @@
 
 .section .text, "ax" # 802c321c
 
-
-.global Z2CreatureLink_NS_setLinkGroupInfo
-Z2CreatureLink_NS_setLinkGroupInfo:
-/* 802C321C 002C015C  4E 80 00 20 */	blr 
-
-.global Z2CreatureLink_NS_setLinkHp
-Z2CreatureLink_NS_setLinkHp:
-/* 802C3220 002C0160  98 83 00 C3 */	stb r4, 0xc3(r3)
-/* 802C3224 002C0164  4E 80 00 20 */	blr 
-
 .global Z2CreatureLink_NS_setLinkSwordType
 Z2CreatureLink_NS_setLinkSwordType:
 /* 802C3228 002C0168  98 83 00 C6 */	stb r4, 0xc6(r3)
