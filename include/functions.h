@@ -160,6 +160,8 @@ extern "C" {
 }
 
 // OS
+struct OSThread;
+struct OSMessageQueue;
 extern "C" {
     void OSInitMutex(u8[24]);
     void OSEnableScheduler(void);
@@ -184,6 +186,14 @@ extern "C" {
     u32 OSInitAlloc(u32 low, u32 high, int param_3);
     void OSSetArenaLo(u32 param_1);
     void OSSetArenaHi(u32 param_1);
+
+
+    void OSCreateThread(OSThread* thread);
+    void OSCancelThread(OSThread* thread);
+    void OSDetachThread(OSThread* thread);
+    bool OSIsThreadSuspended(OSThread* thread);
+    bool OSIsThreadTerminated(OSThread* thread);
+    void OSInitMessageQueue(OSMessageQueue *queue, int param_2, int param_3);
 }
 
 // DVD
@@ -194,7 +204,7 @@ extern "C" {
     void DVDGetCurrentDiskID(void);
 }
 
-// JSupport/JSUList.h
+// JSystem/JSupport/JSUList
 extern "C" {
     void __ct__10JSUPtrLinkFPv(void);
     void __dt__10JSUPtrLinkFv(void);
@@ -209,13 +219,13 @@ extern "C" {
     void getNthLink__10JSUPtrListCFUl(void);
 }
 
-// JKernel/JKRDisposer.h
+// JSystem/JKernel/JKRDisposer
 extern "C" {
     void __ct__11JKRDisposerFv(void);
     void __dt__11JKRDisposerFv(void);
 }
 
-// JKernel/JKRHeap.h
+// JSystem/JKernel/JKRHeap
 extern "C" {
     void becomeCurrentHeap__7JKRHeapFv(void);
     void becomeSystemHeap__7JKRHeapFv(void);
@@ -385,4 +395,14 @@ extern "C" {
 extern "C"{
     void Z2CreatureRide_NS_setLinkRiding(void);
     void checkDownDamage__10e_wb_classFv(void);
+// JSystem/JKernel/JKRThread
+extern "C" {
+    void __ct__9JKRThreadFUlii(void);
+    void __ct__9JKRThreadFP7JKRHeapUlii(void);
+    void __ct__9JKRThreadFP8OSThreadi(void);
+    void __dt__9JKRThreadFv(void);
+    void setCommon_mesgQueue__9JKRThreadFP7JKRHeapi(void);
+    void setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli(void);
+    void start__9JKRThreadFPv(void);
+    void searchThread__9JKRThreadFP8OSThread(void);
 }

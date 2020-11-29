@@ -14,10 +14,10 @@ mDoDvdThd_NS_main:
 /* 80015814 00012754  7C 64 1B 78 */	mr r4, r3
 /* 80015818 00012758  38 61 00 08 */	addi r3, r1, 8
 /* 8001581C 0001275C  38 A0 00 00 */	li r5, 0
-/* 80015820 00012760  48 2B BE 99 */	bl JKRThread_X2_
+/* 80015820 00012760  48 2B BE 99 */	bl __ct__9JKRThreadFP8OSThreadi
 /* 80015824 00012764  38 61 00 08 */	addi r3, r1, 8
 /* 80015828 00012768  38 80 FF FF */	li r4, -1
-/* 8001582C 0001276C  48 2B BF 2D */	bl JKRThread_NS_dtor
+/* 8001582C 0001276C  48 2B BF 2D */	bl __dt__9JKRThreadFv
 /* 80015830 00012770  4B FF 94 B5 */	bl mDoExt_getAssertHeap
 /* 80015834 00012774  48 2B 8C 05 */	bl becomeCurrentHeap__7JKRHeapFv
 /* 80015838 00012778  7F E3 FB 78 */	mr r3, r31
