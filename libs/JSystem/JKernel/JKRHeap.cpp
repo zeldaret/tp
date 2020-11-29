@@ -55,16 +55,19 @@ asm JKRHeap::~JKRHeap() {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE264.s"
 }
 
-// All instruction are correct but the register order is wrong.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE378.s"
 bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
+    u32 ram_start;
+    u32 ram_end;
+    u32 ram;
+
     u32 low = OSGetArenaLo();
     u32 high = OSGetArenaHi();
     if (low == high) return false;
 
-    u32 ram = OSInitAlloc(low, high, param_3);
-    u32 ram_start = (ram + 0x1fU & 0xffffffe0);
-    u32 ram_end = (high & 0xffffffe0);
+    ram = OSInitAlloc(low, high, param_3);
+    ram_start = (ram + 0x1fU & 0xffffffe0);
+    ram_end = (high & 0xffffffe0);
     lbl_80451384 = OS_GLOBAL_ADDR(void, 0x80000000);
     lbl_80451388 = (void*)ram_start;
     lbl_8045138C = (void*)ram_start;
@@ -76,12 +79,6 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     *size = ram_end - ram_start;
     return true;
 }
-#else
-asm bool JKRHeap::initArena(char**, u32*, int) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE378.s"
-}
-#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE428.s"
 JKRHeap * JKRHeap::becomeSystemHeap() {
@@ -97,10 +94,14 @@ JKRHeap * JKRHeap::becomeCurrentHeap() {
     return prev;
 }
 
+#ifdef NONMATCHING
+
+#else
 asm void JKRHeap::destroy() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE448.s"
 }
+#endif
 
 asm void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
     nofralloc
