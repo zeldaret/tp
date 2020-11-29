@@ -5,13 +5,17 @@ class JMSMesgEntry_c {
 extern "C" { 
     void init__20dSv_player_collect_cFv(void);
     void dComIfGp_setSelectItem(int);
-    void OSReport_Error(void);
+    void OSReport_Error(char*,...);
+    void OSEnableScheduler(void);
+    void OSDisableScheduler(void);
+    void getUsedCount__9HeapCheckCFv(void);
     void isEventBit__11dSv_event_cCFUs(void);
     void dComIfGs_setMixItemIndex(void);
     void dComIfGs_setSelectItemIndex(void);
     void dComIfGs_getMixItemIndex(void);
     void dComIfGs_getBottleMax(void);
     char* strcpy(char*,const char*);
+    int strcmp(char*,char*);
     void setBombNum__21dSv_player_item_max_cFUcUc(void);
     void func_80362224(void);
     void func_803621D8(void);
@@ -83,4 +87,7 @@ extern "C" {
     void dComIfGs_setKeyNum(void);
     void getSound__19dSv_player_config_cFv(void);
     void setSound__19dSv_player_config_cFUc(void);
+    void getTotalUsedSize__10JKRExpHeapCFv(void);
+    void HeapCheck_NS_getUsedCount(void);
+    void CheckHeap1__9HeapCheckFv(void);
 }

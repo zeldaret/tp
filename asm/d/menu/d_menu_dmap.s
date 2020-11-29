@@ -6058,7 +6058,7 @@ dMenu_Dmap_c_NS__create:
 /* 801BD7DC 001BA71C  48 11 0F A9 */	bl JKRHeap_NS_getTotalFreeSize
 /* 801BD7E0 001BA720  83 BF 00 E8 */	lwz r29, 0xe8(r31)
 /* 801BD7E4 001BA724  7F A3 EB 78 */	mr r3, r29
-/* 801BD7E8 001BA728  48 11 0F 45 */	bl JKRHeap_NS_getFreeSize
+/* 801BD7E8 001BA728  48 11 0F 45 */	bl getFreeSize__7JKRHeapFv
 /* 801BD7EC 001BA72C  38 63 FF F0 */	addi r3, r3, -16
 /* 801BD7F0 001BA730  7F A4 EB 78 */	mr r4, r29
 /* 801BD7F4 001BA734  38 A0 00 00 */	li r5, 0

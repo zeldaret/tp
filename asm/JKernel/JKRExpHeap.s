@@ -1127,8 +1127,8 @@ lbl_802CFD38:
 /* 802CFD5C 002CCC9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802CFD60 002CCCA0  4E 80 00 20 */	blr 
 
-.global JKRExpHeap_NS_getTotalUsedSize
-JKRExpHeap_NS_getTotalUsedSize:
+.global getTotalUsedSize__10JKRExpHeapCFv
+getTotalUsedSize__10JKRExpHeapCFv:
 /* 802CFD64 002CCCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CFD68 002CCCA8  7C 08 02 A6 */	mflr r0
 /* 802CFD6C 002CCCAC  90 01 00 14 */	stw r0, 0x14(r1)

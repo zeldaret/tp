@@ -467,8 +467,8 @@ JKRHeap_NS_getSize_X1_:
 /* 802CE724 002CB664  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE728 002CB668  4E 80 00 20 */	blr 
 
-.global JKRHeap_NS_getFreeSize
-JKRHeap_NS_getFreeSize:
+.global getFreeSize__7JKRHeapFv
+getFreeSize__7JKRHeapFv:
 /* 802CE72C 002CB66C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CE730 002CB670  7C 08 02 A6 */	mflr r0
 /* 802CE734 002CB674  90 01 00 14 */	stw r0, 0x14(r1)
@@ -535,7 +535,7 @@ JKRHeap_NS_getMaxAllocatableSize:
 /* 802CE7F8 002CB738  4B FF FF 61 */	bl JKRHeap_NS_getMaxFreeBlock
 /* 802CE7FC 002CB73C  7C 7F 1B 78 */	mr r31, r3
 /* 802CE800 002CB740  7F A3 EB 78 */	mr r3, r29
-/* 802CE804 002CB744  4B FF FF 29 */	bl JKRHeap_NS_getFreeSize
+/* 802CE804 002CB744  4B FF FF 29 */	bl getFreeSize__7JKRHeapFv
 /* 802CE808 002CB748  38 9E FF FF */	addi r4, r30, -1
 /* 802CE80C 002CB74C  57 E0 07 3E */	clrlwi r0, r31, 0x1c
 /* 802CE810 002CB750  7C 00 F0 50 */	subf r0, r0, r30

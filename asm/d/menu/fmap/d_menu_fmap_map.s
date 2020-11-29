@@ -140,7 +140,7 @@ renderingFmap_c_NS_isSwitchSpecialOff:
 /* 801CE248 001CB188  38 63 4E 00 */	addi r3, r3, 0x4e00
 /* 801CE24C 001CB18C  3C 80 80 39 */	lis r4, lbl_8039623C@ha
 /* 801CE250 001CB190  38 84 62 3C */	addi r4, r4, lbl_8039623C@l
-/* 801CE254 001CB194  48 19 A7 41 */	bl func_80368994
+/* 801CE254 001CB194  48 19 A7 41 */	bl strcmp
 /* 801CE258 001CB198  2C 03 00 00 */	cmpwi r3, 0
 /* 801CE25C 001CB19C  40 82 00 10 */	bne lbl_801CE26C
 /* 801CE260 001CB1A0  2C 1E 00 B2 */	cmpwi r30, 0xb2
