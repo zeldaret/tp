@@ -38532,7 +38532,7 @@ daTagMwait_c_NS_checkEndMessage:
 /* 80182DB4 0017FCF4  88 85 05 69 */	lbz r4, 0x569(r5)
 /* 80182DB8 0017FCF8  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80182DBC 0017FCFC  7C 05 07 74 */	extsb r5, r0
-/* 80182DC0 0017FD00  4B EB 25 A1 */	bl dSv_info_c_NS_isSwitch
+/* 80182DC0 0017FD00  4B EB 25 A1 */	bl isSwitch__10dSv_info_cCFii
 /* 80182DC4 0017FD04  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80182DC8 0017FD08  7C 08 03 A6 */	mtlr r0
 /* 80182DCC 0017FD0C  38 21 00 10 */	addi r1, r1, 0x10

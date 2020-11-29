@@ -3442,7 +3442,7 @@ dMenu_save_c_NS_dataWrite:
 /* 801F2888 001EF7C8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801F288C 001EF7CC  38 9D 01 D0 */	addi r4, r29, 0x1d0
 /* 801F2890 001EF7D0  88 BD 00 54 */	lbz r5, 0x54(r29)
-/* 801F2894 001EF7D4  4B E4 2F 05 */	bl dSv_info_c_NS_memory_to_card
+/* 801F2894 001EF7D4  4B E4 2F 05 */	bl memory_to_card__10dSv_info_cFPci
 /* 801F2898 001EF7D8  38 7D 01 D0 */	addi r3, r29, 0x1d0
 /* 801F289C 001EF7DC  88 9D 00 54 */	lbz r4, 0x54(r29)
 /* 801F28A0 001EF7E0  4B E2 54 99 */	bl mDoMemCdRWm_SetCheckSumGameData

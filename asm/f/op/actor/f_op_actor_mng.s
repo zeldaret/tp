@@ -3700,7 +3700,7 @@ fopAcM_setCarryNow:
 /* 8001CB7C 00019ABC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8001CB80 00019AC0  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8001CB84 00019AC4  7C 05 07 74 */	extsb r5, r0
-/* 8001CB88 00019AC8  48 01 8A BD */	bl dSv_info_c_NS_onActor
+/* 8001CB88 00019AC8  48 01 8A BD */	bl onActor__10dSv_info_cFii
 lbl_8001CB8C:
 /* 8001CB8C 00019ACC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8001CB90 00019AD0  80 01 00 14 */	lwz r0, 0x14(r1)

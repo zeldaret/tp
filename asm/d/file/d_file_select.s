@@ -3547,7 +3547,7 @@ dFile_select_c_NS_menuSelectStart:
 /* 80186944 00183884  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80186948 00183888  38 9F 03 B8 */	addi r4, r31, 0x3b8
 /* 8018694C 0018388C  88 BF 02 65 */	lbz r5, 0x265(r31)
-/* 80186950 00183890  4B EA F0 B5 */	bl dSv_info_c_NS_card_to_memory
+/* 80186950 00183890  4B EA F0 B5 */	bl card_to_memory__10dSv_info_cFPci
 /* 80186954 00183894  38 00 00 01 */	li r0, 1
 /* 80186958 00183898  98 1F 02 70 */	stb r0, 0x270(r31)
 /* 8018695C 0018389C  38 00 00 2E */	li r0, 0x2e
@@ -12483,7 +12483,7 @@ lbl_8018ED68:
 /* 8018EDBC 0018BCFC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8018EDC0 0018BD00  38 9F 03 B8 */	addi r4, r31, 0x3b8
 /* 8018EDC4 0018BD04  38 A0 00 00 */	li r5, 0
-/* 8018EDC8 0018BD08  4B EA 6C 3D */	bl dSv_info_c_NS_card_to_memory
+/* 8018EDC8 0018BD08  4B EA 6C 3D */	bl card_to_memory__10dSv_info_cFPci
 /* 8018EDCC 0018BD0C  38 80 00 01 */	li r4, 1
 /* 8018EDD0 0018BD10  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8018EDD4 0018BD14  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l

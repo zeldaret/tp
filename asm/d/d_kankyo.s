@@ -11066,7 +11066,7 @@ dKy_lightswitch_check:
 /* 801A6224 001A3164  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801A6228 001A3168  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801A622C 001A316C  7C A5 07 74 */	extsb r5, r5
-/* 801A6230 001A3170  4B E8 F1 31 */	bl dSv_info_c_NS_isSwitch
+/* 801A6230 001A3170  4B E8 F1 31 */	bl isSwitch__10dSv_info_cCFii
 /* 801A6234 001A3174  2C 03 00 00 */	cmpwi r3, 0
 /* 801A6238 001A3178  41 82 00 28 */	beq lbl_801A6260
 /* 801A623C 001A317C  3B E0 00 00 */	li r31, 0
@@ -11075,7 +11075,7 @@ lbl_801A6244:
 /* 801A6244 001A3184  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 801A6248 001A3188  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801A624C 001A318C  7C A5 07 74 */	extsb r5, r5
-/* 801A6250 001A3190  4B E8 F1 11 */	bl dSv_info_c_NS_isSwitch
+/* 801A6250 001A3190  4B E8 F1 11 */	bl isSwitch__10dSv_info_cCFii
 /* 801A6254 001A3194  2C 03 00 00 */	cmpwi r3, 0
 /* 801A6258 001A3198  40 82 00 08 */	bne lbl_801A6260
 /* 801A625C 001A319C  3B E0 00 00 */	li r31, 0

@@ -176,7 +176,7 @@ dEvt_control_c_NS_order:
 /* 800416D8 0003E618  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 800416DC 0003E61C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 800416E0 0003E620  7E E5 BB 78 */	mr r5, r23
-/* 800416E4 0003E624  4B FF 3C 7D */	bl dSv_info_c_NS_isSwitch
+/* 800416E4 0003E624  4B FF 3C 7D */	bl isSwitch__10dSv_info_cCFii
 /* 800416E8 0003E628  2C 03 00 00 */	cmpwi r3, 0
 /* 800416EC 0003E62C  41 82 00 0C */	beq lbl_800416F8
 /* 800416F0 0003E630  38 60 00 00 */	li r3, 0

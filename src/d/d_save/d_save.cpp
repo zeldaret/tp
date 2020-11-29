@@ -1295,47 +1295,153 @@ void dSv_info_c::initZone(void) {
     }
 }
 
-#ifdef NONMATCHING
 u32 dSv_info_c::createZone(int param_1) {
-    for (int i = 0; i < 0x20; i++) {
-        if (this->zones[i].test() < 0) {
-            this->zones[i].init(param_1);
+    dSv_zone_c* zone = this->zones;
+    for (int i = 0; i < 0x20; zone++, i++) {
+        if (zone->getUnk0() < 0) {
+            zone->init(param_1);
             return i;
         }
     }
     return -1;
 }
-#else
-asm u32 dSv_info_c::createZone(int param_1) {
-    nofralloc
-    #include "func_800351A4.s"
-}
-#endif
 
-#ifdef NONMATCHING
 void dSv_info_c::onSwitch(int param_1, int param_2) {
-    if ((param_1 != -0x1) && (param_1 != 0xff)) {
-        if (param_1 < 0x80) {
-            this->memory.getTempFlags().onSwitch(param_1);
+    if ((param_1 == -1) || (param_1 == 0xFF)) {
+            return;
+    }
+    
+    if (param_1 < 0x80) {
+        this->memory.getTempFlags().onSwitch(param_1);
+    } 
+    else if (param_1 < 0xc0) {
+        this->dungeon_bit.onSwitch(param_1 - 0x80);
+    } 
+    else {
+        int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+        if (param_1 < 0xE0) {
+            this->zones[zone_no].getZoneBit().onSwitch(param_1 - 0xC0);
         }
         else {
-            if (param_1 < 0xc0) {
-                this->dungeon_bit.onSwitch(param_1 - 0x80);
-            }
-            else {
-                if (param_1 < 0xe0) {
-                    this->zones[getZoneNo(param_2,param_1)].getZoneBit().onSwitch(param_1 - 0xC0);
-                }
-                else {
-                    this->zones[getZoneNo(param_2,param_1)].getZoneBit().onOneSwitch(param_1 - 0xE0);
-                }
-            }
+            this->zones[zone_no].getZoneBit().onOneSwitch(param_1 - 0xE0);
+        }
+    }
+}
+
+void dSv_info_c::offSwitch(int param_1, int param_2) {
+    if ((param_1 == -1) || (param_1 == 0xFF)) {
+            return;
+    }
+    
+    if (param_1 < 0x80) {
+        this->memory.getTempFlags().offSwitch(param_1);
+    } 
+    else if (param_1 < 0xc0) {
+        this->dungeon_bit.offSwitch(param_1 - 0x80);
+    } 
+    else {
+        int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+        if (param_1 < 0xE0) {
+            this->zones[zone_no].getZoneBit().offSwitch(param_1 - 0xC0);
+        }
+        else {
+            this->zones[zone_no].getZoneBit().offOneSwitch(param_1 - 0xE0);
+        }
+    }
+}
+
+// doesn't like getZoneBit() returning a reference
+#ifdef NONMATCHING
+bool dSv_info_c::isSwitch(int param_1, int param_2) const {
+    if ((param_1 == -1) || (param_1 == 0xFF)) {
+        return false;
+    }
+    
+    if (param_1 < 0x80) {
+        return this->memory.getTempFlags().isSwitch(param_1);
+    } 
+    else if (param_1 < 0xc0) {
+        return this->dungeon_bit.isSwitch(param_1 - 0x80);
+    } 
+    else {
+        int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+        if (param_1 < 0xE0) {
+            return this->zones[zone_no].getZoneBit().isSwitch(param_1 - 0xC0);
+        }
+        else {
+            return this->zones[zone_no].getZoneBit().isOneSwitch(param_1 - 0xE0);
         }
     }
 }
 #else
-asm void dSv_info_c::onSwitch(int param_1, int param_2) {
+asm bool dSv_info_c::isSwitch(int param_1, int param_2) const {
     nofralloc
-    #include "func_80035200.s"
+    #include "func_80035360.s"
 }
 #endif
+
+void dSv_info_c::onItem(int param_1, int param_2) {
+    if ((param_1 == -1) || (param_1 == 0xFF)) {
+            return;
+    }
+    
+    if (param_1 < 0x80) {
+        this->dungeon_bit.onItem(param_1);
+    } 
+    else if (param_1 < 0xA0) {
+        this->memory.getTempFlags().onItem(param_1- 0x80);
+    } 
+    else {
+        int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+        if (param_1 < 0xC0) {
+            this->zones[zone_no].getZoneBit().onItem(param_1 - 0xA0);
+        }
+        else {
+            this->zones[zone_no].getZoneBit().onOneItem(param_1 - 0xC0);
+        }
+    }
+}
+
+asm bool dSv_info_c::isItem(int param_1, int param_2) const {
+    nofralloc
+    #include "func_80035590.s"
+}
+
+
+void dSv_info_c::onActor(int param_1, int param_2) {
+    if (param_1 == -1 || param_1 == 0xFFFF || param_2 == -1) {
+        return;
+    }
+
+    int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+    this->zones[zone_no].getZoneActor().on(param_1);
+}
+
+void dSv_info_c::offActor(int param_1, int param_2) {
+    if (param_1 == -1 || param_1 == 0xFFFF || param_2 == -1) {
+        return;
+    }
+
+    int zone_no =  dStage_roomControl_c_NS_getZoneNo(param_2,param_1);
+    this->zones[zone_no].getZoneActor().off(param_1);
+}
+
+asm bool dSv_info_c::isActor(int param_1, int param_2) const {
+    nofralloc
+    #include "func_80035724.s"
+}
+
+asm void dSv_info_c::memory_to_card(char*, int) {
+    nofralloc
+    #include "func_80035798.s"
+}
+
+asm void dSv_info_c::card_to_memory(char*, int) {
+    nofralloc
+    #include "func_80035A04.s"
+}
+
+// asm void dSv_info_c::initdata_to_card(char*, int) {
+//     nofralloc
+//     #include "func_80035BD0.s"
+// }

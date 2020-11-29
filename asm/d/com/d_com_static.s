@@ -69,7 +69,7 @@ daSus_c_NS_data_c_NS_isSwitch:
 /* 80030FF0 0002DF30  88 85 00 02 */	lbz r4, 2(r5)
 /* 80030FF4 0002DF34  88 A5 00 00 */	lbz r5, 0(r5)
 /* 80030FF8 0002DF38  7C A5 07 74 */	extsb r5, r5
-/* 80030FFC 0002DF3C  48 00 43 65 */	bl dSv_info_c_NS_isSwitch
+/* 80030FFC 0002DF3C  48 00 43 65 */	bl isSwitch__10dSv_info_cCFii
 /* 80031000 0002DF40  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 80031004 0002DF44  48 00 00 24 */	b lbl_80031028
 lbl_80031008:
@@ -78,7 +78,7 @@ lbl_80031008:
 /* 80031010 0002DF50  88 85 00 02 */	lbz r4, 2(r5)
 /* 80031014 0002DF54  88 A5 00 00 */	lbz r5, 0(r5)
 /* 80031018 0002DF58  7C A5 07 74 */	extsb r5, r5
-/* 8003101C 0002DF5C  48 00 43 45 */	bl dSv_info_c_NS_isSwitch
+/* 8003101C 0002DF5C  48 00 43 45 */	bl isSwitch__10dSv_info_cCFii
 /* 80031020 0002DF60  7C 60 00 34 */	cntlzw r0, r3
 /* 80031024 0002DF64  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 lbl_80031028:
@@ -951,7 +951,7 @@ daTagMagne_c_NS_checkMagneA:
 /* 80031C14 0002EB54  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80031C18 0002EB58  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80031C1C 0002EB5C  7C 05 07 74 */	extsb r5, r0
-/* 80031C20 0002EB60  48 00 37 41 */	bl dSv_info_c_NS_isSwitch
+/* 80031C20 0002EB60  48 00 37 41 */	bl isSwitch__10dSv_info_cCFii
 /* 80031C24 0002EB64  2C 03 00 00 */	cmpwi r3, 0
 /* 80031C28 0002EB68  41 82 00 0C */	beq lbl_80031C34
 lbl_80031C2C:
@@ -978,7 +978,7 @@ daTagMagne_c_NS_checkMagneB:
 /* 80031C68 0002EBA8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80031C6C 0002EBAC  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80031C70 0002EBB0  7C 05 07 74 */	extsb r5, r0
-/* 80031C74 0002EBB4  48 00 36 ED */	bl dSv_info_c_NS_isSwitch
+/* 80031C74 0002EBB4  48 00 36 ED */	bl isSwitch__10dSv_info_cCFii
 /* 80031C78 0002EBB8  2C 03 00 00 */	cmpwi r3, 0
 /* 80031C7C 0002EBBC  41 82 00 0C */	beq lbl_80031C88
 lbl_80031C80:
@@ -1005,7 +1005,7 @@ daTagMagne_c_NS_checkMagneC:
 /* 80031CBC 0002EBFC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 80031CC0 0002EC00  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80031CC4 0002EC04  7C 05 07 74 */	extsb r5, r0
-/* 80031CC8 0002EC08  48 00 36 99 */	bl dSv_info_c_NS_isSwitch
+/* 80031CC8 0002EC08  48 00 36 99 */	bl isSwitch__10dSv_info_cCFii
 /* 80031CCC 0002EC0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80031CD0 0002EC10  41 82 00 0C */	beq lbl_80031CDC
 lbl_80031CD4:

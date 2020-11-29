@@ -198,7 +198,7 @@ lbl_801CE2EC:
 /* 801CE320 001CB260  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801CE324 001CB264  88 9F 00 00 */	lbz r4, 0(r31)
 /* 801CE328 001CB268  80 BE 00 9C */	lwz r5, 0x9c(r30)
-/* 801CE32C 001CB26C  4B E6 70 35 */	bl dSv_info_c_NS_isSwitch
+/* 801CE32C 001CB26C  4B E6 70 35 */	bl isSwitch__10dSv_info_cCFii
 /* 801CE330 001CB270  7C 60 00 34 */	cntlzw r0, r3
 /* 801CE334 001CB274  54 03 D9 7E */	srwi r3, r0, 5
 /* 801CE338 001CB278  48 00 00 70 */	b lbl_801CE3A8
@@ -207,7 +207,7 @@ lbl_801CE33C:
 /* 801CE340 001CB280  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 801CE344 001CB284  88 9F 00 00 */	lbz r4, 0(r31)
 /* 801CE348 001CB288  80 BE 00 9C */	lwz r5, 0x9c(r30)
-/* 801CE34C 001CB28C  4B E6 70 15 */	bl dSv_info_c_NS_isSwitch
+/* 801CE34C 001CB28C  4B E6 70 15 */	bl isSwitch__10dSv_info_cCFii
 /* 801CE350 001CB290  30 03 FF FF */	addic r0, r3, -1
 /* 801CE354 001CB294  7C 60 19 10 */	subfe r3, r0, r3
 /* 801CE358 001CB298  48 00 00 50 */	b lbl_801CE3A8

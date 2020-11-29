@@ -1,0 +1,1 @@
+: int dSv_info_c::createZone(int param_1) { dSv_zone_c* zone = this->zones; for (int i = 0; i < 0x20; zone++, i++) { if (zone->unk0 < 0) { zone->init(param_1); return i; } } return -1; }

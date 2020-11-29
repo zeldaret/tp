@@ -10,7 +10,7 @@ TARGET := dolzel2
 
 BUILD_DIR := build/$(TARGET)
 
-SRC_DIRS := $(shell find src/ -type f -name '*.cpp')
+SRC_DIRS := $(shell find src/ libs/ -type f -name '*.cpp')
 ASM_DIRS := $(shell find asm/ -type f -name '*.s')
 
 # Inputs

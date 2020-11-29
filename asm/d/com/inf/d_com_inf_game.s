@@ -2685,7 +2685,7 @@ dComIfGs_offStageSwitch:
 /* 8002D6FC 0002A63C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002D700 0002A640  7F E4 FB 78 */	mr r4, r31
 /* 8002D704 0002A644  38 A0 FF FF */	li r5, -1
-/* 8002D708 0002A648  48 00 7B A9 */	bl dSv_info_c_NS_offSwitch
+/* 8002D708 0002A648  48 00 7B A9 */	bl offSwitch__10dSv_info_cFii
 lbl_8002D70C:
 /* 8002D70C 0002A64C  57 C4 28 34 */	slwi r4, r30, 5
 /* 8002D710 0002A650  3C 60 80 40 */	lis r3, lbl_804061C0@ha
@@ -2724,7 +2724,7 @@ dComIfGs_isStageSwitch:
 /* 8002D788 0002A6C8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8002D78C 0002A6CC  7F E4 FB 78 */	mr r4, r31
 /* 8002D790 0002A6D0  38 A0 FF FF */	li r5, -1
-/* 8002D794 0002A6D4  48 00 7B CD */	bl dSv_info_c_NS_isSwitch
+/* 8002D794 0002A6D4  48 00 7B CD */	bl isSwitch__10dSv_info_cCFii
 /* 8002D798 0002A6D8  48 00 00 20 */	b lbl_8002D7B8
 lbl_8002D79C:
 /* 8002D79C 0002A6DC  57 C4 28 34 */	slwi r4, r30, 5

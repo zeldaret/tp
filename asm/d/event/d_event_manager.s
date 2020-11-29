@@ -33,7 +33,7 @@ dEvent_exception_c_NS_setStartDemo:
 /* 80046434 00043374  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 80046438 00043378  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8004643C 0004337C  7F E5 FB 78 */	mr r5, r31
-/* 80046440 00043380  4B FE EF 21 */	bl dSv_info_c_NS_isSwitch
+/* 80046440 00043380  4B FE EF 21 */	bl isSwitch__10dSv_info_cCFii
 /* 80046444 00043384  2C 03 00 00 */	cmpwi r3, 0
 /* 80046448 00043388  41 82 00 0C */	beq lbl_80046454
 /* 8004644C 0004338C  38 60 00 FF */	li r3, 0xff

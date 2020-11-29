@@ -207,7 +207,7 @@ lbl_8009BE88:
 /* 8009BE90 00098DD0  7C 80 D2 14 */	add r4, r0, r26
 /* 8009BE94 00098DD4  88 BD 00 01 */	lbz r5, 1(r29)
 /* 8009BE98 00098DD8  7C A5 07 74 */	extsb r5, r5
-/* 8009BE9C 00098DDC  4B F9 94 C5 */	bl dSv_info_c_NS_isSwitch
+/* 8009BE9C 00098DDC  4B F9 94 C5 */	bl isSwitch__10dSv_info_cCFii
 /* 8009BEA0 00098DE0  20 03 00 00 */	subfic r0, r3, 0
 /* 8009BEA4 00098DE4  7C 60 01 10 */	subfe r3, r0, r0
 /* 8009BEA8 00098DE8  7F C0 D0 30 */	slw r0, r30, r26
@@ -373,7 +373,7 @@ lbl_8009C0F0:
 /* 8009C0F8 00099038  88 9D 00 10 */	lbz r4, 0x10(r29)
 /* 8009C0FC 0009903C  88 BD 00 01 */	lbz r5, 1(r29)
 /* 8009C100 00099040  7C A5 07 74 */	extsb r5, r5
-/* 8009C104 00099044  4B F9 92 5D */	bl dSv_info_c_NS_isSwitch
+/* 8009C104 00099044  4B F9 92 5D */	bl isSwitch__10dSv_info_cCFii
 /* 8009C108 00099048  2C 03 00 00 */	cmpwi r3, 0
 /* 8009C10C 0009904C  41 82 00 1C */	beq lbl_8009C128
 /* 8009C110 00099050  80 9F 00 08 */	lwz r4, 8(r31)
@@ -514,7 +514,7 @@ lbl_8009C2A0:
 /* 8009C2F8 00099238  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
 /* 8009C2FC 0009923C  88 1F 00 01 */	lbz r0, 1(r31)
 /* 8009C300 00099240  7C 05 07 74 */	extsb r5, r0
-/* 8009C304 00099244  4B F9 90 5D */	bl dSv_info_c_NS_isSwitch
+/* 8009C304 00099244  4B F9 90 5D */	bl isSwitch__10dSv_info_cCFii
 /* 8009C308 00099248  2C 03 00 00 */	cmpwi r3, 0
 /* 8009C30C 0009924C  41 82 00 38 */	beq lbl_8009C344
 lbl_8009C310:
