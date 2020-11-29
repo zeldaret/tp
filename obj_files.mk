@@ -245,9 +245,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_counter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_list.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_list.o   \
             $(BUILD_DIR)/asm/SComponent/c/list/c_list_iter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_node.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_node.o   \
             $(BUILD_DIR)/asm/SComponent/c/node/c_node_iter.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_tree.o    \
             $(BUILD_DIR)/asm/SComponent/c/tree/c_tree_iter.o    \
