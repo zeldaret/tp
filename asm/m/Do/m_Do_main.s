@@ -18,7 +18,7 @@ HeapCheck_NS_heapDisplay:
 /* 800058F0 00002830  48 2C A4 75 */	bl getTotalUsedSize__10JKRExpHeapCFv
 /* 800058F4 00002834  7C 7E 1B 78 */	mr r30, r3
 /* 800058F8 00002838  80 7D 00 08 */	lwz r3, 8(r29)
-/* 800058FC 0000283C  48 2C 8E 89 */	bl JKRHeap_NS_getTotalFreeSize
+/* 800058FC 0000283C  48 2C 8E 89 */	bl getTotalFreeSize__7JKRHeapFv
 /* 80005900 00002840  7C 7B 1B 78 */	mr r27, r3
 /* 80005904 00002844  80 7D 00 08 */	lwz r3, 8(r29)
 /* 80005908 00002848  48 2C 8E 25 */	bl getFreeSize__7JKRHeapFv
@@ -247,7 +247,7 @@ lbl_80005C60:
 /* 80005C68 00002BA8  48 00 00 48 */	b lbl_80005CB0
 lbl_80005C6C:
 /* 80005C6C 00002BAC  7F 03 C3 78 */	mr r3, r24
-/* 80005C70 00002BB0  48 2C 8B 15 */	bl JKRHeap_NS_getTotalFreeSize
+/* 80005C70 00002BB0  48 2C 8B 15 */	bl getTotalFreeSize__7JKRHeapFv
 /* 80005C74 00002BB4  7C 7E 1B 78 */	mr r30, r3
 /* 80005C78 00002BB8  7F 03 C3 78 */	mr r3, r24
 /* 80005C7C 00002BBC  48 2C 8A B1 */	bl getFreeSize__7JKRHeapFv

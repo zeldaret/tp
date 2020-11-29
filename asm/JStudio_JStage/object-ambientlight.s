@@ -67,7 +67,7 @@ JStudio_JStage_NS_TAdaptor_ambientLight:
 /* 8028B6F4 00288634  7F E0 07 35 */	extsh. r0, r31
 /* 8028B6F8 00288638  40 81 00 0C */	ble lbl_8028B704
 /* 8028B6FC 0028863C  7F C3 F3 78 */	mr r3, r30
-/* 8028B700 00288640  48 04 36 3D */	bl __dl
+/* 8028B700 00288640  48 04 36 3D */	bl __dl__FPv
 lbl_8028B704:
 /* 8028B704 00288644  7F C3 F3 78 */	mr r3, r30
 /* 8028B708 00288648  83 E1 00 0C */	lwz r31, 0xc(r1)

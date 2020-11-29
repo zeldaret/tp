@@ -26,7 +26,7 @@ JAUAudioArcInterpreter_NS_dtor:
 /* 802A4280 002A11C0  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A4284 002A11C4  7C 80 07 35 */	extsh. r0, r4
 /* 802A4288 002A11C8  40 81 00 08 */	ble lbl_802A4290
-/* 802A428C 002A11CC  48 02 AA B1 */	bl __dl
+/* 802A428C 002A11CC  48 02 AA B1 */	bl __dl__FPv
 lbl_802A4290:
 /* 802A4290 002A11D0  7F E3 FB 78 */	mr r3, r31
 /* 802A4294 002A11D4  83 E1 00 0C */	lwz r31, 0xc(r1)

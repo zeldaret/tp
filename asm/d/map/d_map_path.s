@@ -23,7 +23,7 @@ dMpath_n_NS_dTexObjAggregate_c_NS_create:
 /* 8003C898 000397D8  3B 9C C2 F8 */	addi r28, r28, -15624
 lbl_8003C89C:
 /* 8003C89C 000397DC  38 60 00 20 */	li r3, 0x20
-/* 8003C8A0 000397E0  48 29 23 AD */	bl __nw
+/* 8003C8A0 000397E0  48 29 23 AD */	bl __nw__FUl
 /* 8003C8A4 000397E4  7C 7A F9 2E */	stwx r3, r26, r31
 /* 8003C8A8 000397E8  7F A3 EB 78 */	mr r3, r29
 /* 8003C8AC 000397EC  7C 9E F8 2E */	lwzx r4, r30, r31
@@ -58,7 +58,7 @@ dMpath_n_NS_dTexObjAggregate_c_NS_remove:
 /* 8003C914 00039854  7F FE FB 78 */	mr r30, r31
 lbl_8003C918:
 /* 8003C918 00039858  7C 7C F8 2E */	lwzx r3, r28, r31
-/* 8003C91C 0003985C  48 29 24 21 */	bl __dl
+/* 8003C91C 0003985C  48 29 24 21 */	bl __dl__FPv
 /* 8003C920 00039860  7F DC F9 2E */	stwx r30, r28, r31
 /* 8003C924 00039864  3B BD 00 01 */	addi r29, r29, 1
 /* 8003C928 00039868  2C 1D 00 07 */	cmpwi r29, 7
@@ -1042,7 +1042,7 @@ dMpath_n_NS_dTexObjAggregate_c_NS_dtor:
 /* 8003D764 0003A6A4  7F E0 07 35 */	extsh. r0, r31
 /* 8003D768 0003A6A8  40 81 00 0C */	ble lbl_8003D774
 /* 8003D76C 0003A6AC  7F C3 F3 78 */	mr r3, r30
-/* 8003D770 0003A6B0  48 29 15 CD */	bl __dl
+/* 8003D770 0003A6B0  48 29 15 CD */	bl __dl__FPv
 lbl_8003D774:
 /* 8003D774 0003A6B4  7F C3 F3 78 */	mr r3, r30
 /* 8003D778 0003A6B8  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -61,7 +61,7 @@ lbl_802985B8:
 /* 802985B8 002954F8  7F E0 07 35 */	extsh. r0, r31
 /* 802985BC 002954FC  40 81 00 0C */	ble lbl_802985C8
 /* 802985C0 00295500  7F C3 F3 78 */	mr r3, r30
-/* 802985C4 00295504  48 03 67 79 */	bl __dl
+/* 802985C4 00295504  48 03 67 79 */	bl __dl__FPv
 lbl_802985C8:
 /* 802985C8 00295508  7F C3 F3 78 */	mr r3, r30
 /* 802985CC 0029550C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -89,7 +89,7 @@ lbl_80298618:
 /* 80298618 00295558  7C 80 07 35 */	extsh. r0, r4
 /* 8029861C 0029555C  40 81 00 0C */	ble lbl_80298628
 /* 80298620 00295560  7F E3 FB 78 */	mr r3, r31
-/* 80298624 00295564  48 03 67 19 */	bl __dl
+/* 80298624 00295564  48 03 67 19 */	bl __dl__FPv
 lbl_80298628:
 /* 80298628 00295568  7F E3 FB 78 */	mr r3, r31
 /* 8029862C 0029556C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -132,7 +132,7 @@ JASBasicWaveBank_NS_setGroupCount:
 /* 8029869C 002955DC  38 63 00 10 */	addi r3, r3, 0x10
 /* 802986A0 002955E0  7F E4 FB 78 */	mr r4, r31
 /* 802986A4 002955E4  38 A0 00 00 */	li r5, 0
-/* 802986A8 002955E8  48 03 66 69 */	bl __nwa_X2_
+/* 802986A8 002955E8  48 03 66 69 */	bl __nwa__FUlP7JKRHeapi
 .global JASBasicWaveBank_NS_TWaveGroup
 /* 802986AC 002955EC  3C 80 80 2A */	lis r4, JASBasicWaveBank_NS_TWaveGroup@ha
 .global JASBasicWaveBank_NS_TWaveGroup
@@ -185,7 +185,7 @@ JASBasicWaveBank_NS_setWaveTableSize:
 /* 80298744 00295684  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298748 00295688  7F E4 FB 78 */	mr r4, r31
 /* 8029874C 0029568C  38 A0 00 00 */	li r5, 0
-/* 80298750 00295690  48 03 65 C1 */	bl __nwa_X2_
+/* 80298750 00295690  48 03 65 C1 */	bl __nwa__FUlP7JKRHeapi
 .global JASBasicWaveBank_NS_TWaveHandle
 /* 80298754 00295694  3C 80 80 2A */	lis r4, JASBasicWaveBank_NS_TWaveHandle@ha
 .global JASBasicWaveBank_NS_TWaveHandle
@@ -399,7 +399,7 @@ JASBasicWaveBank_NS_TWaveGroup_NS_dtor:
 /* 80298A3C 0029597C  28 03 00 00 */	cmplwi r3, 0
 /* 80298A40 00295980  41 82 00 0C */	beq lbl_80298A4C
 /* 80298A44 00295984  38 63 FF F0 */	addi r3, r3, -16
-/* 80298A48 00295988  48 03 63 19 */	bl __dla
+/* 80298A48 00295988  48 03 63 19 */	bl __dla__FPv
 lbl_80298A4C:
 /* 80298A4C 0029598C  7F C3 F3 78 */	mr r3, r30
 /* 80298A50 00295990  38 80 00 00 */	li r4, 0
@@ -407,7 +407,7 @@ lbl_80298A4C:
 /* 80298A58 00295998  7F E0 07 35 */	extsh. r0, r31
 /* 80298A5C 0029599C  40 81 00 0C */	ble lbl_80298A68
 /* 80298A60 002959A0  7F C3 F3 78 */	mr r3, r30
-/* 80298A64 002959A4  48 03 62 D9 */	bl __dl
+/* 80298A64 002959A4  48 03 62 D9 */	bl __dl__FPv
 lbl_80298A68:
 /* 80298A68 002959A8  7F C3 F3 78 */	mr r3, r30
 /* 80298A6C 002959AC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -431,14 +431,14 @@ JASBasicWaveBank_NS_TWaveGroup_NS_setWaveCount:
 /* 80298AA8 002959E8  28 03 00 00 */	cmplwi r3, 0
 /* 80298AAC 002959EC  41 82 00 0C */	beq lbl_80298AB8
 /* 80298AB0 002959F0  38 63 FF F0 */	addi r3, r3, -16
-/* 80298AB4 002959F4  48 03 62 AD */	bl __dla
+/* 80298AB4 002959F4  48 03 62 AD */	bl __dla__FPv
 lbl_80298AB8:
 /* 80298AB8 002959F8  B3 DD 00 7C */	sth r30, 0x7c(r29)
 /* 80298ABC 002959FC  57 C3 18 38 */	slwi r3, r30, 3
 /* 80298AC0 00295A00  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298AC4 00295A04  7F E4 FB 78 */	mr r4, r31
 /* 80298AC8 00295A08  38 A0 00 00 */	li r5, 0
-/* 80298ACC 00295A0C  48 03 62 45 */	bl __nwa_X2_
+/* 80298ACC 00295A0C  48 03 62 45 */	bl __nwa__FUlP7JKRHeapi
 .global JASBasicWaveBank_NS_TGroupWaveInfo
 /* 80298AD0 00295A10  3C 80 80 2A */	lis r4, JASBasicWaveBank_NS_TGroupWaveInfo@ha
 .global JASBasicWaveBank_NS_TGroupWaveInfo
@@ -502,7 +502,7 @@ lbl_80298B7C:
 /* 80298BA8 00295AE8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298BAC 00295AEC  7C 80 07 35 */	extsh. r0, r4
 /* 80298BB0 00295AF0  40 81 00 08 */	ble lbl_80298BB8
-/* 80298BB4 00295AF4  48 03 61 89 */	bl __dl
+/* 80298BB4 00295AF4  48 03 61 89 */	bl __dl__FPv
 lbl_80298BB8:
 /* 80298BB8 00295AF8  7F E3 FB 78 */	mr r3, r31
 /* 80298BBC 00295AFC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -521,7 +521,7 @@ lbl_80298BB8:
 /* 80298BF0 00295B30  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298BF4 00295B34  7C 80 07 35 */	extsh. r0, r4
 /* 80298BF8 00295B38  40 81 00 08 */	ble lbl_80298C00
-/* 80298BFC 00295B3C  48 03 61 41 */	bl __dl
+/* 80298BFC 00295B3C  48 03 61 41 */	bl __dl__FPv
 lbl_80298C00:
 /* 80298C00 00295B40  7F E3 FB 78 */	mr r3, r31
 /* 80298C04 00295B44  83 E1 00 0C */	lwz r31, 0xc(r1)
