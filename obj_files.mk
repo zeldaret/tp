@@ -75,7 +75,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_tag.o    \
             $(BUILD_DIR)/asm/f/pc/line/f_pc_line_iter.o    \
             $(BUILD_DIR)/asm/f/pc/method/f_pc_method_iter.o    \
-            $(BUILD_DIR)/asm/f/pc/method/f_pc_method_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_pause.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
             $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
