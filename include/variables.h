@@ -1,3 +1,7 @@
+#include "JSystem/JKernel/JKRDisposer/JKRDisposer_vtable.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap_vtable.h"
+
+
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
 extern int lbl_804061C0;
@@ -84,7 +88,7 @@ extern u8 lbl_803BB498;
 extern _VTABLE_JKRHeap lbl_803CBF70; // JKRHeap::__vt
 
 extern JKRHeap* lbl_80451370; // JKRHeap::sSystemHeap
-extern void* lbl_80451378; // JKRHeap::sRootHeap
+extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
 extern void* lbl_8045137C; // JKRHeap::mErrorHandler
 
@@ -108,4 +112,4 @@ extern u32 lbl_80000028;
 extern char lbl_8039CAD8[12]; // "JKRHeap.cpp"
 
 // func_802D147C
-extern void* lbl_803CC0F0[4]; // JKRDisposer::__vt
+extern _VTABLE_JKRDisposer lbl_803CC0F0; // JKRDisposer::__vt
