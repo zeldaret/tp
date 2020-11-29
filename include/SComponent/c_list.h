@@ -1,5 +1,6 @@
 
-#pragma once
+#ifndef SCOMPONENT_C_LIST_H
+#define SCOMPONENT_C_LIST_H
 
 #include "SComponent/c_node.h"
 
@@ -19,3 +20,5 @@ node_class * cLs_GetFirst(node_list_class *pList);
 void cLs_Create(node_list_class *pList);
 
 };
+
+#endif

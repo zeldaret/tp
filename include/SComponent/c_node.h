@@ -1,5 +1,6 @@
 
-#pragma once
+#ifndef SCOMPONENT_C_NODE_H
+#define SCOMPONENT_C_NODE_H
 
 struct node_class {
     node_class *mpPrevNode;
@@ -24,3 +25,5 @@ void cNd_ForcedClear(node_class *pNode);
 void cNd_Create(node_class *pNode, void *pData);
 
 };
+
+#endif
