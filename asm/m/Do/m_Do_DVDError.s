@@ -96,7 +96,7 @@ mDoDvdErr_Watch:
 /* 800166D0 00013610  38 80 FF FF */	li r4, -1
 /* 800166D4 00013614  48 2B B0 85 */	bl JKRThread_NS_dtor
 /* 800166D8 00013618  4B FF 86 0D */	bl mDoExt_getAssertHeap
-/* 800166DC 0001361C  48 2B 7D 5D */	bl JKRHeap_NS_becomeCurrentHeap
+/* 800166DC 0001361C  48 2B 7D 5D */	bl becomeCurrentHeap__7JKRHeapFv
 /* 800166E0 00013620  3C 60 80 3E */	lis r3, lbl_803DECC0@ha
 /* 800166E4 00013624  3B E3 EC C0 */	addi r31, r3, lbl_803DECC0@l
 lbl_800166E8:

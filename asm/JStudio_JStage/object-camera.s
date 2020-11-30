@@ -76,7 +76,7 @@ JStudio_JStage_NS_TAdaptor_camera:
 /* 8028B9A8 002888E8  7F E0 07 35 */	extsh. r0, r31
 /* 8028B9AC 002888EC  40 81 00 0C */	ble lbl_8028B9B8
 /* 8028B9B0 002888F0  7F C3 F3 78 */	mr r3, r30
-/* 8028B9B4 002888F4  48 04 33 89 */	bl __dl
+/* 8028B9B4 002888F4  48 04 33 89 */	bl __dl__FPv
 lbl_8028B9B8:
 /* 8028B9B8 002888F8  7F C3 F3 78 */	mr r3, r30
 /* 8028B9BC 002888FC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -885,7 +885,7 @@ JStudio_JStage_NS_TVariableValueOutput_object__NS_dtor_X1_:
 /* 8028C518 00289458  7F E0 07 35 */	extsh. r0, r31
 /* 8028C51C 0028945C  40 81 00 0C */	ble lbl_8028C528
 /* 8028C520 00289460  7F C3 F3 78 */	mr r3, r30
-/* 8028C524 00289464  48 04 28 19 */	bl __dl
+/* 8028C524 00289464  48 04 28 19 */	bl __dl__FPv
 lbl_8028C528:
 /* 8028C528 00289468  7F C3 F3 78 */	mr r3, r30
 /* 8028C52C 0028946C  83 E1 00 0C */	lwz r31, 0xc(r1)

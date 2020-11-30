@@ -1,0 +1,3 @@
+class J2DScreen {
+
+};

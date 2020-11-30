@@ -67,7 +67,7 @@ JStudio_JStage_NS_TAdaptor_fog:
 /* 8028C658 00289598  7F E0 07 35 */	extsh. r0, r31
 /* 8028C65C 0028959C  40 81 00 0C */	ble lbl_8028C668
 /* 8028C660 002895A0  7F C3 F3 78 */	mr r3, r30
-/* 8028C664 002895A4  48 04 26 D9 */	bl __dl
+/* 8028C664 002895A4  48 04 26 D9 */	bl __dl__FPv
 lbl_8028C668:
 /* 8028C668 002895A8  7F C3 F3 78 */	mr r3, r30
 /* 8028C66C 002895AC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -379,7 +379,7 @@ JStudio_JStage_NS_TVariableValueOutput_object__NS_dtor_X2_:
 /* 8028CAF4 00289A34  7F E0 07 35 */	extsh. r0, r31
 /* 8028CAF8 00289A38  40 81 00 0C */	ble lbl_8028CB04
 /* 8028CAFC 00289A3C  7F C3 F3 78 */	mr r3, r30
-/* 8028CB00 00289A40  48 04 22 3D */	bl __dl
+/* 8028CB00 00289A40  48 04 22 3D */	bl __dl__FPv
 lbl_8028CB04:
 /* 8028CB04 00289A44  7F C3 F3 78 */	mr r3, r30
 /* 8028CB08 00289A48  83 E1 00 0C */	lwz r31, 0xc(r1)

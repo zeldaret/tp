@@ -62,7 +62,7 @@ lbl_80298D58:
 /* 80298D58 00295C98  7F E0 07 35 */	extsh. r0, r31
 /* 80298D5C 00295C9C  40 81 00 0C */	ble lbl_80298D68
 /* 80298D60 00295CA0  7F C3 F3 78 */	mr r3, r30
-/* 80298D64 00295CA4  48 03 5F D9 */	bl __dl
+/* 80298D64 00295CA4  48 03 5F D9 */	bl __dl__FPv
 lbl_80298D68:
 /* 80298D68 00295CA8  7F C3 F3 78 */	mr r3, r30
 /* 80298D6C 00295CAC  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -90,7 +90,7 @@ lbl_80298DB8:
 /* 80298DB8 00295CF8  7C 80 07 35 */	extsh. r0, r4
 /* 80298DBC 00295CFC  40 81 00 0C */	ble lbl_80298DC8
 /* 80298DC0 00295D00  7F E3 FB 78 */	mr r3, r31
-/* 80298DC4 00295D04  48 03 5F 79 */	bl __dl
+/* 80298DC4 00295D04  48 03 5F 79 */	bl __dl__FPv
 lbl_80298DC8:
 /* 80298DC8 00295D08  7F E3 FB 78 */	mr r3, r31
 /* 80298DCC 00295D0C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -119,7 +119,7 @@ JASSimpleWaveBank_NS_setWaveTableSize:
 /* 80298E14 00295D54  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298E18 00295D58  7F E4 FB 78 */	mr r4, r31
 /* 80298E1C 00295D5C  38 A0 00 00 */	li r5, 0
-/* 80298E20 00295D60  48 03 5E F1 */	bl __nwa_X2_
+/* 80298E20 00295D60  48 03 5E F1 */	bl __nwa__FUlP7JKRHeapi
 .global JASSimpleWaveBank_NS_TWaveHandle
 /* 80298E24 00295D64  3C 80 80 2A */	lis r4, JASSimpleWaveBank_NS_TWaveHandle@ha
 .global JASSimpleWaveBank_NS_TWaveHandle

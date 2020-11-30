@@ -47,7 +47,7 @@ JGadget_NS_binary_NS_TParse_header_block_NS_dtor:
 /* 802DC8E8 002D9828  90 1F 00 00 */	stw r0, 0(r31)
 /* 802DC8EC 002D982C  7C 80 07 35 */	extsh. r0, r4
 /* 802DC8F0 002D9830  40 81 00 08 */	ble lbl_802DC8F8
-/* 802DC8F4 002D9834  4B FF 24 49 */	bl __dl
+/* 802DC8F4 002D9834  4B FF 24 49 */	bl __dl__FPv
 lbl_802DC8F8:
 /* 802DC8F8 002D9838  7F E3 FB 78 */	mr r3, r31
 /* 802DC8FC 002D983C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -62,7 +62,7 @@ JGadget_NS_binary_NS_TParse_header_block_NS_parse_next:
 /* 802DC914 002D9854  7C 08 02 A6 */	mflr r0
 /* 802DC918 002D9858  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802DC91C 002D985C  39 61 00 30 */	addi r11, r1, 0x30
-/* 802DC920 002D9860  48 08 58 B1 */	bl func_803621D0
+/* 802DC920 002D9860  48 08 58 B1 */	bl _savegpr_26
 /* 802DC924 002D9864  7C 7A 1B 78 */	mr r26, r3
 /* 802DC928 002D9868  7C 9B 23 79 */	or. r27, r4, r4
 /* 802DC92C 002D986C  7C BC 2B 78 */	mr r28, r5
@@ -129,7 +129,7 @@ lbl_802DC9F4:
 /* 802DCA00 002D9940  7F A3 EB 78 */	mr r3, r29
 lbl_802DCA04:
 /* 802DCA04 002D9944  39 61 00 30 */	addi r11, r1, 0x30
-/* 802DCA08 002D9948  48 08 58 15 */	bl func_8036221C
+/* 802DCA08 002D9948  48 08 58 15 */	bl _restgpr_26
 /* 802DCA0C 002D994C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 802DCA10 002D9950  7C 08 03 A6 */	mtlr r0
 /* 802DCA14 002D9954  38 21 00 30 */	addi r1, r1, 0x30

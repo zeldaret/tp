@@ -1,4 +1,4 @@
-#include "d_save_HIO.h"
+#include "d/d_save/d_save_HIO/d_save_HIO.h"
 #include "global.h"
 
 #ifdef NONMATCHING
@@ -12,12 +12,12 @@ dSvBit_childSwPerfectionHIO_c::dSvBit_childSwPerfectionHIO_c() {
 #else
 asm dSvBit_childSwPerfectionHIO_c::dSvBit_childSwPerfectionHIO_c() {
     nofralloc
-    #include "func_8025BB78.s"
+    #include "d/d_save/d_save_HIO/asm/func_8025BB78.s"
 }
 #endif
 
 
 asm void dSvBit_childSwPerfectionHIO_c::init(void) {
     nofralloc
-    #include "func_8025BBAC.s"
+    #include "d/d_save/d_save_HIO/asm/func_8025BBAC.s"
 }

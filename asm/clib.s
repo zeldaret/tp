@@ -136,7 +136,7 @@ lbl_80361CC4:
 /* 80361CC8 0035EC08  41 80 FF E0 */	blt lbl_80361CA8
 lbl_80361CCC:
 /* 80361CCC 0035EC0C  38 7A FF F0 */	addi r3, r26, -16
-/* 80361CD0 0035EC10  4B F6 D0 91 */	bl __dla
+/* 80361CD0 0035EC10  4B F6 D0 91 */	bl __dla__FPv
 lbl_80361CD4:
 /* 80361CD4 0035EC14  BB 41 00 08 */	lmw r26, 8(r1)
 /* 80361CD8 0035EC18  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -289,7 +289,7 @@ lbl_80361EE4:
 /* 80361EE4 0035EE24  7F C0 07 35 */	extsh. r0, r30
 /* 80361EE8 0035EE28  40 81 00 0C */	ble lbl_80361EF4
 /* 80361EEC 0035EE2C  7F A3 EB 78 */	mr r3, r29
-/* 80361EF0 0035EE30  4B F6 CE 4D */	bl __dl
+/* 80361EF0 0035EE30  4B F6 CE 4D */	bl __dl__FPv
 lbl_80361EF4:
 /* 80361EF4 0035EE34  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80361EF8 0035EE38  7F A3 EB 78 */	mr r3, r29
@@ -561,8 +561,8 @@ func_803621C8:
 func_803621CC:
 /* 803621CC 0035F10C  93 2B FF E4 */	stw r25, -0x1c(r11)
 
-.global func_803621D0
-func_803621D0:
+.global _savegpr_26
+_savegpr_26:
 /* 803621D0 0035F110  93 4B FF E8 */	stw r26, -0x18(r11)
 
 .global _savegpr_27
@@ -628,8 +628,8 @@ func_80362214:
 func_80362218:
 /* 80362218 0035F158  83 2B FF E4 */	lwz r25, -0x1c(r11)
 
-.global func_8036221C
-func_8036221C:
+.global _restgpr_26
+_restgpr_26:
 /* 8036221C 0035F15C  83 4B FF E8 */	lwz r26, -0x18(r11)
 
 .global _restgpr_27

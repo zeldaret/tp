@@ -1,4 +1,4 @@
-#include "d_save.h"
+#include "d/d_save/d_save/d_save.h"
 #include "global.h"
 
 u8 dSv_item_rename(u8 item_id) {
@@ -86,7 +86,7 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
 
 asm bool dSv_player_status_a_c::isMagicFlag(u8) const {
     nofralloc
-    #include "func_80032AF8.s"
+    #include "d/d_save/d_save/asm/func_80032AF8.s"
 }
 
 void dSv_player_status_b_c::init() {
@@ -241,7 +241,7 @@ void dSv_player_item_c::init(void) {
 
 asm void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
     nofralloc
-    #include "func_80032FB8.s"
+    #include "d/d_save/d_save/asm/func_80032FB8.s"
 }
 
 #ifdef NONMATCHING
@@ -310,7 +310,7 @@ u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
 #else
 asm u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
     nofralloc
-    #include "func_80033030.s"
+    #include "d/d_save/d_save/asm/func_80033030.s"
 
 }
 #endif
@@ -336,7 +336,7 @@ void dSv_player_item_c::setLineUpItem(void) {
 #else
 asm void dSv_player_item_c::setLineUpItem(void) {
     nofralloc
-    #include "func_800332F8.s"
+    #include "d/d_save/d_save/asm/func_800332F8.s"
 }
 #endif
 
@@ -375,7 +375,7 @@ void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2){
 #else
 asm void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2){
     nofralloc 
-    #include "func_80033370.s"
+    #include "d/d_save/d_save/asm/func_80033370.s"
 }
 #endif
 
@@ -388,23 +388,23 @@ void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
 #else
 asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id){
     nofralloc
-    #include "func_80033450.s"
+    #include "d/d_save/d_save/asm/func_80033450.s"
 }
 #endif
 
 asm void dSv_player_item_c::setEmptyBottle(void) {
     nofralloc 
-    #include "func_80033494.s"
+    #include "d/d_save/d_save/asm/func_80033494.s"
 }
 
 asm void dSv_player_item_c::setEmptyBottle(u8){
     nofralloc
-    #include "func_80033514.s" 
+    #include "d/d_save/d_save/asm/func_80033514.s" 
 }
 
 asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
     nofralloc
-    #include "func_80033598.s"
+    #include "d/d_save/d_save/asm/func_80033598.s"
 }
 
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
@@ -426,7 +426,7 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id){
 
 asm u8 dSv_player_item_c::checkInsectBottle(void){
     nofralloc
-    #include "func_80033754.s"
+    #include "d/d_save/d_save/asm/func_80033754.s"
 }
 
 u8 dSv_player_item_c::checkEmptyBottle(void) {
@@ -442,12 +442,12 @@ u8 dSv_player_item_c::checkEmptyBottle(void) {
 
 asm void dSv_player_item_c::setBombBagItemIn(u8, u8, bool) {
     nofralloc
-    #include "func_80033828.s"
+    #include "d/d_save/d_save/asm/func_80033828.s"
 }
 
 asm void dSv_player_item_c::setBombBagItemIn(u8, u8, u8, bool) {
     nofralloc
-    #include "func_80033910.s"
+    #include "d/d_save/d_save/asm/func_80033910.s"
 }
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,bool param_2) {
@@ -478,13 +478,13 @@ void dSv_player_item_c::setEmptyBombBag(void) {
 #else
 asm void dSv_player_item_c::setEmptyBombBag(void) {
     nofralloc
-    #include "func_80033A88.s"
+    #include "d/d_save/d_save/asm/func_80033A88.s"
 }
 #endif
 
 asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
     nofralloc
-    #include "func_80033B08.s"
+    #include "d/d_save/d_save/asm/func_80033B08.s"
 }
 
 u8 dSv_player_item_c::checkBombBag(u8 param_1) {
@@ -500,7 +500,7 @@ u8 dSv_player_item_c::checkBombBag(u8 param_1) {
 
 asm void dSv_player_item_c::setWarashibeItem(u8) {
     nofralloc
-    #include "func_80033C2C.s"
+    #include "d/d_save/d_save/asm/func_80033C2C.s"
 }
 
 void dSv_player_item_c::setRodTypeLevelUp(void) {
@@ -551,7 +551,7 @@ void dSv_player_item_c::setBaitItem(u8 param_1) {
 #else
 asm void dSv_player_item_c::setBaitItem(u8 param_1) {
     nofralloc
-    #include "func_80033D40.s"
+    #include "d/d_save/d_save/asm/func_80033D40.s"
 }
 #endif
 
@@ -570,18 +570,18 @@ void dSv_player_get_item_c::onFirstBit(u8 param_1) {
 #else
 asm void dSv_player_get_item_c::onFirstBit(u8) {
     nofralloc
-    #include "func_80033E60.s"
+    #include "d/d_save/d_save/asm/func_80033E60.s"
 }
 #endif
 
 asm void dSv_player_get_item_c::offFirstBit(u8) {
     nofralloc
-    #include "func_80033E94.s"
+    #include "d/d_save/d_save/asm/func_80033E94.s"
 }
 
 asm bool dSv_player_get_item_c::isFirstBit(u8) const {
     nofralloc
-    #include "func_80033EC8.s"
+    #include "d/d_save/d_save/asm/func_80033EC8.s"
 }
 
 void dSv_player_item_record_c::init(void) {
@@ -634,7 +634,7 @@ u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
 #else
 asm u8 dSv_player_item_record_c::addBottleNum(u8 param_1, short param_2) {
     nofralloc
-    #include "func_80033F9C.s"
+    #include "d/d_save/d_save/asm/func_80033F9C.s"
 }
 #endif
 
@@ -681,7 +681,7 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
 #else
 asm u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     nofralloc
-    #include "func_800340F8.s"
+    #include "d/d_save/d_save/asm/func_800340F8.s"
 }
 #endif
 
@@ -802,7 +802,7 @@ bool dSv_letter_info_c::isLetterReadFlag(int param_1) const {
 #else
 asm bool dSv_letter_info_c::isLetterReadFlag(int) const {
     nofralloc
-    #include "func_8003449C.s"
+    #include "d/d_save/d_save/asm/func_8003449C.s"
 }
 #endif
 
@@ -855,7 +855,7 @@ void dSv_player_info_c::init(void) {
 #else
 asm void dSv_player_info_c::init(void) {
     nofralloc
-    #include "func_80034518.s"
+    #include "d/d_save/d_save/asm/func_80034518.s"
 }
 #endif
 
@@ -891,7 +891,7 @@ u32 dSv_player_config_c::checkVibration(void) const {
 #else
 asm u32 dSv_player_config_c::checkVibration(void) const {
     nofralloc
-    #include "func_80034644.s"
+    #include "d/d_save/d_save/asm/func_80034644.s"
 }
 #endif
 
@@ -979,7 +979,7 @@ bool dSv_memBit_c::revSwitch(int param_1) {
 #else
 asm u8 dSv_memBit_c::revSwitch(int){
     nofralloc
-    #include "func_8003488C.s"
+    #include "d/d_save/d_save/asm/func_8003488C.s"
 }
 #endif
 
@@ -1157,7 +1157,7 @@ bool dSv_zoneBit_c::revSwitch(int param_1) {
 #else
 asm bool dSv_zoneBit_c::revSwitch(int param_1) {
     nofralloc
-    #include "func_80034D78.s"
+    #include "d/d_save/d_save/asm/func_80034D78.s"
 }
 #endif
 
@@ -1268,7 +1268,7 @@ void dSv_info_c::getSave(int) {
 #else
 asm void dSv_info_c::getSave(int) {
     nofralloc
-    #include "func_800350BC.s"
+    #include "d/d_save/d_save/asm/func_800350BC.s"
 }
 #endif
 
@@ -1285,7 +1285,7 @@ void dSv_info_c::getSave(int) {
 #else
 asm void dSv_info_c::putSave(int) {
     nofralloc
-    #include "func_800350F0.s"
+    #include "d/d_save/d_save/asm/func_800350F0.s"
 }
 #endif
 
@@ -1376,7 +1376,7 @@ bool dSv_info_c::isSwitch(int param_1, int param_2) const {
 #else
 asm bool dSv_info_c::isSwitch(int param_1, int param_2) const {
     nofralloc
-    #include "func_80035360.s"
+    #include "d/d_save/d_save/asm/func_80035360.s"
 }
 #endif
 
@@ -1404,7 +1404,7 @@ void dSv_info_c::onItem(int param_1, int param_2) {
 
 asm bool dSv_info_c::isItem(int param_1, int param_2) const {
     nofralloc
-    #include "func_80035590.s"
+    #include "d/d_save/d_save/asm/func_80035590.s"
 }
 
 
@@ -1428,20 +1428,20 @@ void dSv_info_c::offActor(int param_1, int param_2) {
 
 asm bool dSv_info_c::isActor(int param_1, int param_2) const {
     nofralloc
-    #include "func_80035724.s"
+    #include "d/d_save/d_save/asm/func_80035724.s"
 }
 
 asm void dSv_info_c::memory_to_card(char*, int) {
     nofralloc
-    #include "func_80035798.s"
+    #include "d/d_save/d_save/asm/func_80035798.s"
 }
 
 asm void dSv_info_c::card_to_memory(char*, int) {
     nofralloc
-    #include "func_80035A04.s"
+    #include "d/d_save/d_save/asm/func_80035A04.s"
 }
 
-// asm void dSv_info_c::initdata_to_card(char*, int) {
-//     nofralloc
-//     #include "func_80035BD0.s"
-// }
+asm void dSv_info_c::initdata_to_card(char*, int) {
+    nofralloc
+    #include "d/d_save/d_save/asm/func_80035BD0.s"
+}

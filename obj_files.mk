@@ -11,7 +11,6 @@ EXTABINDEX_O_FILES :=                               \
 
 TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_main.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_audio.o    \
             $(BUILD_DIR)/asm/m/Do/controller/m_Do_controller_pad.o    \
@@ -88,7 +87,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_bomb.o    \
             $(BUILD_DIR)/asm/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
-            $(BUILD_DIR)/asm/d/d_save.o    \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
             $(BUILD_DIR)/asm/d/a/d_a_obj.o    \
@@ -422,10 +420,12 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gf/GFLight.o    \
             $(BUILD_DIR)/asm/gf/GFPixel.o    \
             $(BUILD_DIR)/asm/gf/GFTev.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRExpHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRSolidHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAssertHeap.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDisposer.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
@@ -448,6 +448,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDecomp.o    \
             $(BUILD_DIR)/asm/JSupport/JSUList.o    \
+            $(BUILD_DIR)/libs/JSystem/JSupport/JSUList.o    \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUMemoryStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUFileStream.o    \

@@ -69,7 +69,7 @@ JStudio_JStage_NS_TAdaptor_light:
 /* 8028CC3C 00289B7C  7F E0 07 35 */	extsh. r0, r31
 /* 8028CC40 00289B80  40 81 00 0C */	ble lbl_8028CC4C
 /* 8028CC44 00289B84  7F C3 F3 78 */	mr r3, r30
-/* 8028CC48 00289B88  48 04 20 F5 */	bl __dl
+/* 8028CC48 00289B88  48 04 20 F5 */	bl __dl__FPv
 lbl_8028CC4C:
 /* 8028CC4C 00289B8C  7F C3 F3 78 */	mr r3, r30
 /* 8028CC50 00289B90  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -505,7 +505,7 @@ JStudio_JStage_NS_TAdaptor_light_NS_TVVOutput_direction__NS_dtor:
 /* 8028D28C 0028A1CC  7F E0 07 35 */	extsh. r0, r31
 /* 8028D290 0028A1D0  40 81 00 0C */	ble lbl_8028D29C
 /* 8028D294 0028A1D4  7F C3 F3 78 */	mr r3, r30
-/* 8028D298 0028A1D8  48 04 1A A5 */	bl __dl
+/* 8028D298 0028A1D8  48 04 1A A5 */	bl __dl__FPv
 lbl_8028D29C:
 /* 8028D29C 0028A1DC  7F C3 F3 78 */	mr r3, r30
 /* 8028D2A0 0028A1E0  83 E1 00 0C */	lwz r31, 0xc(r1)

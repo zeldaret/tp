@@ -427,8 +427,8 @@ class dSv_player_c {
 class dSv_memBit_c {
    public:
     void init(void);
-    void onTbox(int);   // merged with init in the assembly
-    void offTbox(int);  // merged with init in the assembly
+    void onTbox(int);
+    void offTbox(int);
     bool isTbox(int) const;
     void onSwitch(int);
     void offSwitch(int);
@@ -627,11 +627,11 @@ class dSv_info_c {
     void onSwitch(int, int);
     void offSwitch(int, int);
     bool isSwitch(int, int) const;
-    u8 revSwitch(int, int);  // merged with isSwitch in the assembly
+    u8 revSwitch(int, int);
     void onItem(int, int);
     bool isItem(int, int) const;
     void onActor(int, int);
-    void offActor(int, int);  // merged with onActor in the assembly
+    void offActor(int, int);
     bool isActor(int, int) const;
     void memory_to_card(char*, int);
     void card_to_memory(char*, int);
