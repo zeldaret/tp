@@ -21,9 +21,9 @@ struct _VTABLE_JKRHeap {
     void (*func13)(JKRHeap*);
     s32 (*do_resize)(JKRHeap*, void* ptr, u32 size);
     s32 (*do_getSize)(JKRHeap*, void* ptr);
-    s32 (*go_getFreeSize)(JKRHeap*);
-    s32 (*go_getMaxFreeBlock)(JKRHeap*);
-    s32 (*getTotalFreeSize)(JKRHeap*);
+    s32 (*do_getFreeSize)(JKRHeap*);
+    s32 (*do_getMaxFreeBlock)(JKRHeap*);
+    s32 (*do_getTotalFreeSize)(JKRHeap*);
     u8 (*do_changeGroupID)(JKRHeap*, u8 param_1);
     void (*do_getCurrent)(JKRHeap*);
     void (*state_register)(JKRHeap*);

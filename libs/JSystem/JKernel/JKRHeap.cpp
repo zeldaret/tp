@@ -226,7 +226,7 @@ asm s32 JKRHeap::getSize(void* ptr) {
 // Same problem as with all other virtual calls.
 #ifdef NONMATCHING
 s32 JKRHeap::getFreeSize() {
-    return (*this->__vt->go_getFreeSize)(this);
+    return (*this->__vt->do_getFreeSize)(this);
 }
 #else
 asm s32 JKRHeap::getFreeSize() {
@@ -238,7 +238,7 @@ asm s32 JKRHeap::getFreeSize() {
 // Same problem as with all other virtual calls.
 #ifdef NONMATCHING
 s32 JKRHeap::getMaxFreeBlock() {
-    return (*this->__vt->go_getMaxFreeBlock)(this);
+    return (*this->__vt->do_getMaxFreeBlock)(this);
 }
 #else
 asm s32 JKRHeap::getMaxFreeBlock() {
@@ -250,7 +250,7 @@ asm s32 JKRHeap::getMaxFreeBlock() {
 // Same problem as with all other virtual calls.
 #ifdef NONMATCHING
 s32 JKRHeap::getTotalFreeSize() {
-    return (*this->__vt->go_getTotalFreeSize)(this);
+    return (*this->__vt->do_getTotalFreeSize)(this);
 }
 #else
 asm s32 JKRHeap::getTotalFreeSize() {
