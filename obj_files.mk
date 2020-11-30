@@ -57,6 +57,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_creator.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_delete_tag.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_executor.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_layer.o    \
@@ -65,7 +66,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_iter.o    \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_load.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_load.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_manager.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \

@@ -18,7 +18,7 @@ struct base_process_class {
     s16 mProcName;
     u8 mUnk0;
     u8 mUnk1;
-    u8 mbInit;
+    s8 mInitState;
     u8 mUnk2;
     s16 mBsTypeId;
     void *mpProf;
