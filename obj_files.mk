@@ -160,7 +160,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \
             $(BUILD_DIR)/src/d/d_file/d_file_sel_info.o    \
-            $(BUILD_DIR)/asm/d/file/sel/d_file_sel_info.o    \
             $(BUILD_DIR)/asm/d/bright/d_bright_check.o    \
             $(BUILD_DIR)/asm/d/d_scope.o    \
             $(BUILD_DIR)/asm/d/select/d_select_cursor.o    \
