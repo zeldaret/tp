@@ -24,7 +24,7 @@ struct base_process_class {
     void *mpProf;
     create_request *mpCtRq;
     layer_management_tag_class mLyTg;
-    line_tag mLiTg;
+    line_tag mLnTg;
     delete_tag_class mDtTg;
     process_priority_class mPi;
     profile_method_class *mpPcMtd;

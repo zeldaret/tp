@@ -9,7 +9,7 @@ extern node_lists_tree_class lbl_804505D8;
 
 extern "C" {
 
-int fpcLnIt_MethodCall(create_tag_class *pTag, method_filter *pFilter)
+static int fpcLnIt_MethodCall(create_tag_class *pTag, method_filter *pFilter)
 {
     layer_class *pLayer = ((base_process_class *) pTag->mpTagData)->mLyTg.mpLayer;
     layer_class *pCurLayer = fpcLy_CurrentLayer();
