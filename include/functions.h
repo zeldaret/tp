@@ -28,6 +28,11 @@ extern "C" {
     void func_80362218(void);
     void _restgpr_26(void);
     void _savegpr_26(void);
+    void func_8036221C(void);
+    void func_803621D0(void);
+    void func_803620AC(void);
+    void func_803626BC(void);
+    void func_803664DC(void);
     void _restgpr_29(void);
     void _savegpr_29(void);
     void _restgpr_28(void);
@@ -159,6 +164,12 @@ extern "C" {
     void dStage_roomControl_c_NS_initZone(void);
     void checkItemGet(u8,int);
     void JUTWarningConsole(void);
+    void JUTConsole_NS_print(void);
+    void JUTConsole_NS_check(void);
+    void JUTConsole_NS_print_f(void);
+    void JUTConsole_NS_clear(void);
+
+    void func_803621CC(void);
 }
 
 // OS

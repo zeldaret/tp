@@ -2,8 +2,8 @@
 
 .section .text, "ax" # 802D199C
 
-.global JKRThread_sinit_cpp
-JKRThread_sinit_cpp:
+.global __sinit_JKRThread_cpp
+__sinit_JKRThread_cpp:
 /* 802D1E94 002CEDD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D1E98 002CEDD8  7C 08 02 A6 */	mflr r0
 /* 802D1E9C 002CEDDC  90 01 00 14 */	stw r0, 0x14(r1)

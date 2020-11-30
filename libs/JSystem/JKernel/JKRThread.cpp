@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "global.h"
 
+
 asm JKRThread::JKRThread(unsigned long, int, int) {
     nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D1568.s"
@@ -15,6 +16,7 @@ asm JKRThread::JKRThread(OSThread*, int) {
     nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D16B8.s"
 }
+
 
 asm JKRThread::~JKRThread() {
     nofralloc

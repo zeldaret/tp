@@ -786,6 +786,11 @@ FORCEACTIVE {
  setGX__10JUTResFontF6TColor6TColor
  setGX__10JUTResFontFv
  setBlock__10JUTResFontFv
+ draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole
+ run__9JKRThreadFv
+ draw__15JKRThreadSwitchFP14JKRThreadName_
+ __dt__15JKRThreadSwitchFv
+ __sinit_JKRThread_cpp
 }
 /*
 .init 80003100 - 80005600
