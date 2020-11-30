@@ -90,39 +90,18 @@ asm node_class * cNd_Order(node_class *pNode, int idx)
 }
 #endif
 
-#if NON_MATCHING
 void cNd_SingleCut(node_class *pNode)
 {
-    // regalloc differences
-    node_class *pPrev = pNode->mpPrevNode, *pNext = pNode->mpNextNode;
+    node_class *pPrev = pNode->mpPrevNode;
+    node_class *pNext = pNode->mpNextNode;
+
     if (pPrev)
-        pPrev->mpNextNode = pNext;
+        pPrev->mpNextNode = pNode->mpNextNode;
     if (pNext)
-        pNext->mpPrevNode = pPrev;
+        pNext->mpPrevNode = pNode->mpPrevNode;
     pNode->mpPrevNode = NULL;
     pNode->mpNextNode = NULL;
 }
-#else
-asm void cNd_SingleCut(node_class *pNode)
-{
-    nofralloc
-    /* 802661BC 002630FC  80 A3 00 00 */	lwz r5, 0(r3)
-    /* 802661C0 00263100  80 83 00 08 */	lwz r4, 8(r3)
-    /* 802661C4 00263104  28 05 00 00 */	cmplwi r5, 0
-    /* 802661C8 00263108  41 82 00 08 */	beq lbl_802661D0
-    /* 802661CC 0026310C  90 85 00 08 */	stw r4, 8(r5)
-    lbl_802661D0:
-    /* 802661D0 00263110  28 04 00 00 */	cmplwi r4, 0
-    /* 802661D4 00263114  41 82 00 0C */	beq lbl_802661E0
-    /* 802661D8 00263118  80 03 00 00 */	lwz r0, 0(r3)
-    /* 802661DC 0026311C  90 04 00 00 */	stw r0, 0(r4)
-    lbl_802661E0:
-    /* 802661E0 00263120  38 00 00 00 */	li r0, 0
-    /* 802661E4 00263124  90 03 00 00 */	stw r0, 0(r3)
-    /* 802661E8 00263128  90 03 00 08 */	stw r0, 8(r3)
-    /* 802661EC 0026312C  4E 80 00 20 */	blr 
-}
-#endif
 
 void cNd_Cut(node_class *pNode)
 {
