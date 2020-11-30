@@ -175,6 +175,7 @@ extern "C" {
 // OS
 struct OSThread;
 struct OSMessageQueue;
+typedef void* OSMessage;
 extern "C" {
     void OSInitMutex(u8[24]);
     void OSEnableScheduler(void);
@@ -203,12 +204,13 @@ extern "C" {
     void OSGetTick(void);
 
 
-    void OSCreateThread(OSThread* thread);
+    void OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
+                    void* stack, u32 stackSize, int param_6, int param_7);
     void OSCancelThread(OSThread* thread);
     void OSDetachThread(OSThread* thread);
     bool OSIsThreadSuspended(OSThread* thread);
     bool OSIsThreadTerminated(OSThread* thread);
-    void OSInitMessageQueue(OSMessageQueue *queue, int param_2, int param_3);
+    void OSInitMessageQueue(OSMessageQueue *queue, OSMessage* messages, int message_count);
     void OSSetSwitchThreadCallback(void);
 }
 
