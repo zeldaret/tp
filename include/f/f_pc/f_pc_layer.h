@@ -7,6 +7,7 @@
 #include "SComponent/c_tree.h"
 #include "SComponent/c_tag.h"
 
+struct process_method_tag_class;
 struct process_node_class;
 
 struct layer_class : public node_class {
