@@ -57,7 +57,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/pc/f_pc_creator.o    \
             $(BUILD_DIR)/asm/f/pc/delete/f_pc_delete_tag.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
-            $(BUILD_DIR)/asm/f/pc/draw/f_pc_draw_priority.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_executor.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_layer.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
