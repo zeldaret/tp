@@ -13,10 +13,10 @@ struct dFile_info_c_vtable {
 
 class dFile_info_c {
    public:
-    dFile_info_c();
+    dFile_info_c(JKRArchive*,u8);
     ~dFile_info_c();
     void screenSet(void);
-    int setSaveDate(dSv_save_c*, int, u8);
+    s32 setSaveData(dSv_save_c*, int, u8);
     void setHeartCnt(dSv_save_c*);
     void setSaveDate(dSv_save_c*);
     void setPlayTime(dSv_save_c*);
@@ -30,19 +30,17 @@ class dFile_info_c {
     dDlst_FileInfo_c file_info_draw_list;
     J2DScreen* screen;
     JUTFont* font;
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u8 unk12;
-    u8 unk13;
-    u8 unk14;
-    u8 unk15;
+    u32 unk20;
+    u32 unk24;
+    u32 unk28;
+    u8 unk32;
+    u8 unk33;
+    u8 unk34;
+    u8 unk35;
     CPaneMgrAlpha* w_dat_i1;
     CPaneMgrAlpha* w_nda_i1;
-    char* unk28;
+    char* unk44;
     char* save_date;
     char* play_time;
-    char* unk40;
+    char* unk56;
 };
-
-int i = sizeof(dFile_info_c);

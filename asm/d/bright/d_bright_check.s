@@ -98,7 +98,7 @@ dBrightCheck_c_NS_screenSet:
 /* 8019305C 0018FF9C  48 13 BB F1 */	bl __nw__FUl
 /* 80193060 0018FFA0  7C 60 1B 79 */	or. r0, r3, r3
 /* 80193064 0018FFA4  41 82 00 0C */	beq lbl_80193070
-/* 80193068 0018FFA8  48 16 54 31 */	bl J2DScreen
+/* 80193068 0018FFA8  48 16 54 31 */	bl __ct__9J2DScreenFv
 /* 8019306C 0018FFAC  7C 60 1B 78 */	mr r0, r3
 lbl_80193070:
 /* 80193070 0018FFB0  90 1E 00 0C */	stw r0, 0xc(r30)
