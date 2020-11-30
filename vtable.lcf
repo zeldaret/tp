@@ -1,31 +1,3 @@
-MEMORY {
-    text : origin = 0x80003100
-}
-SECTIONS {
-    GROUP:{
-        .init ALIGN(0x20):{}
-        extab_ ALIGN(0x20):{}
-        extabindex_ ALIGN(0x20):{}
-        .text ALIGN(0x20):{}
-        .ctors ALIGN(0x20):{}
-        .dtors ALIGN(0x20):{}
-        .rodata ALIGN(0x20):{}
-        .data ALIGN(0x20):{}
-        .bss ALIGN(0x20):{}
-        .sdata ALIGN(0x20):{}
-        .sbss ALIGN(0x20):{}
-        .sdata2 ALIGN(0x20):{}
-        .sbss2 ALIGN(0x20):{}
-        .stack ALIGN(0x100):{}
-    } > text
-    _stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;
-    _stack_end = _f_sbss2 + SIZEOF(.sbss2);
-    _db_stack_addr = (_stack_addr + 0x2000);
-    _db_stack_end = _stack_addr;
-    __ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
-    __ArenaHi = 0x81700000 ;
-
-/* vtables locations */
 "__vt__17mDoAud_zelAudio_c" = 0x803a2f40;
 "__vt__12JAUSoundInfo" = 0x803a2f4c;
 "__vt__7JUTFont" = 0x803a31f0;
@@ -754,35 +726,3 @@ SECTIONS {
 "__vt__20J3DAnmFullLoader_v15" = 0x803cf24c;
 "__vt__12J3DAnmLoader" = 0x803cf260;
 "__vt__20J3DAnmVisibilityFull" = 0x803cf274;
-
-}
-FORCEACTIVE {
- set__17dSv_horse_place_cFPCcRC4cXyzsSc
- setLightDropNum__16dSv_light_drop_cFUcUc
- addFishCount__18dSv_fishing_info_cFUc
- onTbox__12dSv_memBit_cFi
- offTbox__12dSv_memBit_cFi
- set__25dSv_player_return_place_cFPCcScUc
- offActor__10dSv_info_cFii
- __dt__12dFile_info_cFv
- modeWait__12dFile_info_cFv
- modeMove__12dFile_info_cFv
- draw__16dDlst_FileInfo_cFv
- _sinit_d_file_sel_info_cpp__Fv /* tmp symbol name since the original won't compile */
- __dt__16dDlst_FileInfo_cFv
-}
-/*
-.init 80003100 - 80005600
-extab 80005600 - 80005660
-extabindex 80005660 - 800056BC
-.text 800056C0 - 803737C0 
-.ctors 803737C0 - 80373980
-.dtors 80373980 - 803739A0
-.rodata 803739A0 - 803A2EE0
-.data 803A2EE0 - 803D32E0
-.bss 803D32E0 - 80450580
-.sdata 80450580 - 80450B00
-.sbss 80450B00 - 80451A00
-.sdata2 80451A00 - 80456B60
-.sbss2 80456B60 - 80456BC8
-*/

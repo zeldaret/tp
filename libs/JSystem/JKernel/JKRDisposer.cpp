@@ -3,8 +3,8 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
 // #include "JSystem/JKernel/asm/func_802D147C.s"
-JKRDisposer::JKRDisposer() : __vt(&lbl_803CC0F0), ptr_link(this) {
-    this->heap     = JKRHeap::findFromRoot(this);
+JKRDisposer::JKRDisposer() : ptr_link(this) {
+    this->heap = JKRHeap::findFromRoot(this);
     if (this->heap != 0) {
         this->heap->disposable_list.append(&this->ptr_link);
     }
@@ -12,13 +12,15 @@ JKRDisposer::JKRDisposer() : __vt(&lbl_803CC0F0), ptr_link(this) {
 
 // Almost. Missing three instructions, something
 // to do with the destruction of JSUPtrLink
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 JKRDisposer::~JKRDisposer() {
-  this->__vt = lbl_803CC0F0;
-  if (this->heap != NULL) {
-    this->heap->disposable_list.remove(&this->ptr_link);
+  JKRHeap* heap = this->heap;
+  if (heap != 0) {
+    heap->disposable_list.remove(&this->ptr_link);
   }
 }
+
+
 #else
 asm JKRDisposer::~JKRDisposer() {
     nofralloc

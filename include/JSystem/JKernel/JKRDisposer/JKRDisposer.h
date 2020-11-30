@@ -9,10 +9,9 @@ class JKRHeap;
 class JKRDisposer {
   public:
     JKRDisposer();
-    ~JKRDisposer();
+    virtual ~JKRDisposer();
 
   public:
-    _VTABLE_JKRDisposer* __vt;
     JKRHeap* heap;
     JSUPtrLink ptr_link;
 };
