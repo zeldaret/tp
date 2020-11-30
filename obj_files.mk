@@ -60,6 +60,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_executor.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_layer.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_leaf.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_iter.o    \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_tag.o    \
