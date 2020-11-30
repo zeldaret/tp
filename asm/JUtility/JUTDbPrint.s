@@ -286,8 +286,8 @@ JUTDbPrint_NS_drawString:
 /* 802E0528 002DD468  38 21 00 50 */	addi r1, r1, 0x50
 /* 802E052C 002DD46C  4E 80 00 20 */	blr 
 
-.global JUTReport
-JUTReport:
+.global JUTReport__FiiPCce
+JUTReport__FiiPCce:
 /* 802E0530 002DD470  94 21 FE 80 */	stwu r1, -0x180(r1)
 /* 802E0534 002DD474  7C 08 02 A6 */	mflr r0
 /* 802E0538 002DD478  90 01 01 84 */	stw r0, 0x184(r1)

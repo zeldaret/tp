@@ -3537,7 +3537,7 @@ dComIfGp_createSubExpHeap2D:
 /* 8002E230 0002B170  7C 08 02 A6 */	mflr r0
 /* 8002E234 0002B174  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8002E238 0002B178  39 61 00 30 */	addi r11, r1, 0x30
-/* 8002E23C 0002B17C  48 33 3F 95 */	bl func_803621D0
+/* 8002E23C 0002B17C  48 33 3F 95 */	bl _savegpr_26
 /* 8002E240 0002B180  3C 60 80 40 */	lis r3, lbl_804061C0@ha
 /* 8002E244 0002B184  3B A3 61 C0 */	addi r29, r3, lbl_804061C0@l
 /* 8002E248 0002B188  80 7D 5E BC */	lwz r3, 0x5ebc(r29)
@@ -3574,7 +3574,7 @@ lbl_8002E2B4:
 /* 8002E2BC 0002B1FC  3B FF 00 04 */	addi r31, r31, 4
 /* 8002E2C0 0002B200  41 80 FF CC */	blt lbl_8002E28C
 /* 8002E2C4 0002B204  39 61 00 30 */	addi r11, r1, 0x30
-/* 8002E2C8 0002B208  48 33 3F 55 */	bl func_8036221C
+/* 8002E2C8 0002B208  48 33 3F 55 */	bl _restgpr_26
 /* 8002E2CC 0002B20C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8002E2D0 0002B210  7C 08 03 A6 */	mtlr r0
 /* 8002E2D4 0002B214  38 21 00 30 */	addi r1, r1, 0x30
@@ -4647,7 +4647,7 @@ dComIfG_play_c_NS_setWarpItemData:
 /* 8002F12C 0002C06C  7C 08 02 A6 */	mflr r0
 /* 8002F130 0002C070  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8002F134 0002C074  39 61 00 20 */	addi r11, r1, 0x20
-/* 8002F138 0002C078  48 33 30 99 */	bl func_803621D0
+/* 8002F138 0002C078  48 33 30 99 */	bl _savegpr_26
 /* 8002F13C 0002C07C  7C 7A 1B 78 */	mr r26, r3
 /* 8002F140 0002C080  7C BB 2B 78 */	mr r27, r5
 /* 8002F144 0002C084  7C DC 33 78 */	mr r28, r6
@@ -4667,7 +4667,7 @@ dComIfG_play_c_NS_setWarpItemData:
 /* 8002F17C 0002C0BC  9B FA 4F AC */	stb r31, 0x4fac(r26)
 /* 8002F180 0002C0C0  9B DA 4F AB */	stb r30, 0x4fab(r26)
 /* 8002F184 0002C0C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 8002F188 0002C0C8  48 33 30 95 */	bl func_8036221C
+/* 8002F188 0002C0C8  48 33 30 95 */	bl _restgpr_26
 /* 8002F18C 0002C0CC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8002F190 0002C0D0  7C 08 03 A6 */	mtlr r0
 /* 8002F194 0002C0D4  38 21 00 20 */	addi r1, r1, 0x20
@@ -4679,7 +4679,7 @@ dComIfGs_setWarpItemData_X1_:
 /* 8002F1A0 0002C0E0  7C 08 02 A6 */	mflr r0
 /* 8002F1A4 0002C0E4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8002F1A8 0002C0E8  39 61 00 40 */	addi r11, r1, 0x40
-/* 8002F1AC 0002C0EC  48 33 30 25 */	bl func_803621D0
+/* 8002F1AC 0002C0EC  48 33 30 25 */	bl _savegpr_26
 /* 8002F1B0 0002C0F0  7C 7A 1B 78 */	mr r26, r3
 /* 8002F1B4 0002C0F4  7C 9B 23 78 */	mr r27, r4
 /* 8002F1B8 0002C0F8  7C BC 2B 78 */	mr r28, r5
@@ -4714,7 +4714,7 @@ dComIfGs_setWarpItemData_X1_:
 /* 8002F22C 0002C16C  7F E8 FB 78 */	mr r8, r31
 /* 8002F230 0002C170  48 00 00 1D */	bl dComIfGs_setLastWarpMarkItemData
 /* 8002F234 0002C174  39 61 00 40 */	addi r11, r1, 0x40
-/* 8002F238 0002C178  48 33 2F E5 */	bl func_8036221C
+/* 8002F238 0002C178  48 33 2F E5 */	bl _restgpr_26
 /* 8002F23C 0002C17C  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8002F240 0002C180  7C 08 03 A6 */	mtlr r0
 /* 8002F244 0002C184  38 21 00 40 */	addi r1, r1, 0x40
@@ -5928,19 +5928,15 @@ dComIfG_inf_c:
 /* 8003025C 0002D19C  7C 7D 1B 78 */	mr r29, r3
 /* 80030260 0002D1A0  7C 7E 1B 78 */	mr r30, r3
 /* 80030264 0002D1A4  38 63 01 F0 */	addi r3, r3, 0x1f0
-.global dSv_memory_c
-/* 80030268 0002D1A8  3C 80 80 03 */	lis r4, dSv_memory_c@ha
-.global dSv_memory_c
-/* 8003026C 0002D1AC  38 84 0D B0 */	addi r4, r4, dSv_memory_c@l
+/* 80030268 0002D1A8  3C 80 80 03 */	lis r4, __ct__12dSv_memory_cFv@ha
+/* 8003026C 0002D1AC  38 84 0D B0 */	addi r4, r4, __ct__12dSv_memory_cFv@l
 /* 80030270 0002D1B0  38 A0 00 00 */	li r5, 0
 /* 80030274 0002D1B4  38 C0 00 20 */	li r6, 0x20
 /* 80030278 0002D1B8  38 E0 00 20 */	li r7, 0x20
 /* 8003027C 0002D1BC  48 33 1A E5 */	bl func_80361D60
 /* 80030280 0002D1C0  38 7E 05 F0 */	addi r3, r30, 0x5f0
-.global dSv_memory2_c
-/* 80030284 0002D1C4  3C 80 80 03 */	lis r4, dSv_memory2_c@ha
-.global dSv_memory2_c
-/* 80030288 0002D1C8  38 84 0D 80 */	addi r4, r4, dSv_memory2_c@l
+/* 80030284 0002D1C4  3C 80 80 03 */	lis r4, __ct__13dSv_memory2_cFv@ha
+/* 80030288 0002D1C8  38 84 0D 80 */	addi r4, r4, __ct__13dSv_memory2_cFv@l
 /* 8003028C 0002D1CC  38 A0 00 00 */	li r5, 0
 /* 80030290 0002D1D0  38 C0 00 08 */	li r6, 8
 /* 80030294 0002D1D4  38 E0 00 40 */	li r7, 0x40
@@ -6775,8 +6771,8 @@ dSv_zone_c:
 /* 80030D74 0002DCB4  38 00 FF FF */	li r0, -1
 /* 80030D78 0002DCB8  98 03 00 00 */	stb r0, 0(r3)
 /* 80030D7C 0002DCBC  4E 80 00 20 */	blr 
-.global dSv_memory2_c
-dSv_memory2_c:
+.global __ct__13dSv_memory2_cFv
+__ct__13dSv_memory2_cFv:
 /* 80030D80 0002DCC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80030D84 0002DCC4  7C 08 02 A6 */	mflr r0
 /* 80030D88 0002DCC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6789,8 +6785,8 @@ dSv_memory2_c:
 /* 80030DA4 0002DCE4  7C 08 03 A6 */	mtlr r0
 /* 80030DA8 0002DCE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80030DAC 0002DCEC  4E 80 00 20 */	blr 
-.global dSv_memory_c
-dSv_memory_c:
+.global __ct__12dSv_memory_cFv
+__ct__12dSv_memory_cFv:
 /* 80030DB0 0002DCF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80030DB4 0002DCF4  7C 08 02 A6 */	mflr r0
 /* 80030DB8 0002DCF8  90 01 00 14 */	stw r0, 0x14(r1)

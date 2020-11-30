@@ -1,9 +1,3 @@
-.include "macros.inc"
-
-.section .text, "ax" # 80032918 
-
-.global init__10dSv_info_cFvdata_to_card
-init__10dSv_info_cFvdata_to_card:
 /* 80035BD0 00032B10  94 21 F6 90 */	stwu r1, -0x970(r1)
 /* 80035BD4 00032B14  7C 08 02 A6 */	mflr r0
 /* 80035BD8 00032B18  90 01 09 74 */	stw r0, 0x974(r1)
@@ -11,15 +5,15 @@ init__10dSv_info_cFvdata_to_card:
 /* 80035BE0 00032B20  1C 05 0A 94 */	mulli r0, r5, 0xa94
 /* 80035BE4 00032B24  7F E4 02 14 */	add r31, r4, r0
 /* 80035BE8 00032B28  38 61 01 F8 */	addi r3, r1, 0x1f8
-/* 80035BEC 00032B2C  3C 80 80 03 */	lis r4, dSv_memory_c@ha
-/* 80035BF0 00032B30  38 84 0D B0 */	addi r4, r4, dSv_memory_c@l
+/* 80035BEC 00032B2C  3C 80 80 03 */	lis r4, __ct__12dSv_memory_cFv@ha
+/* 80035BF0 00032B30  38 84 0D B0 */	addi r4, r4, __ct__12dSv_memory_cFv@l
 /* 80035BF4 00032B34  38 A0 00 00 */	li r5, 0
 /* 80035BF8 00032B38  38 C0 00 20 */	li r6, 0x20
 /* 80035BFC 00032B3C  38 E0 00 20 */	li r7, 0x20
 /* 80035C00 00032B40  48 32 C1 61 */	bl func_80361D60
 /* 80035C04 00032B44  38 61 05 F8 */	addi r3, r1, 0x5f8
-/* 80035C08 00032B48  3C 80 80 03 */	lis r4, dSv_memory2_c@ha
-/* 80035C0C 00032B4C  38 84 0D 80 */	addi r4, r4, dSv_memory2_c@l
+/* 80035C08 00032B48  3C 80 80 03 */	lis r4, __ct__13dSv_memory2_cFv@ha
+/* 80035C0C 00032B4C  38 84 0D 80 */	addi r4, r4, __ct__13dSv_memory2_cFv@l
 /* 80035C10 00032B50  38 A0 00 00 */	li r5, 0
 /* 80035C14 00032B54  38 C0 00 08 */	li r6, 8
 /* 80035C18 00032B58  38 E0 00 40 */	li r7, 0x40
@@ -50,4 +44,3 @@ init__10dSv_info_cFvdata_to_card:
 /* 80035C7C 00032BBC  7C 08 03 A6 */	mtlr r0
 /* 80035C80 00032BC0  38 21 09 70 */	addi r1, r1, 0x970
 /* 80035C84 00032BC4  4E 80 00 20 */	blr 
-

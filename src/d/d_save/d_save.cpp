@@ -1441,7 +1441,7 @@ asm void dSv_info_c::card_to_memory(char*, int) {
     #include "d/d_save/d_save/asm/func_80035A04.s"
 }
 
-// asm void dSv_info_c::initdata_to_card(char*, int) {
-//     nofralloc
-//     #include "d/d_save/d_save/asm/func_80035BD0.s"
-// }
+asm void dSv_info_c::initdata_to_card(char*, int) {
+    nofralloc
+    #include "d/d_save/d_save/asm/func_80035BD0.s"
+}

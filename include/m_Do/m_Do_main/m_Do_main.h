@@ -6,6 +6,7 @@ class HeapCheck {
     public:
      void CheckHeap1(void);
      s32 getUsedCount(void) const;
+     void heapDisplay(void) const;
      
 
     private:
