@@ -6,6 +6,8 @@
 #include "f/f_pc/f_pc_create_iter.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_method.h"
+#include "f/f_pc/f_pc_executor.h"
+#include "f/f_pc/f_pc_deletor.h"
 
 extern "C" {
 
@@ -35,7 +37,6 @@ void fpcCtRq_ToCreateQ(create_request *pReq)
 }
 
 extern void cMl_NS_free(void *pPtr);
-extern int fpcDt_Delete(void *pProc);
 
 #if NON_MATCHING
 bool fpcCtRq_Delete(create_request *pReq)
@@ -119,9 +120,7 @@ int fpcCtRq_IsDoing(create_request *pReq)
         return false;
 }
 
-extern int fpcEx_ToExecuteQ(base_process_class *pProc);
-
-bool fpcCtRq_Do(create_request *pReq)
+static bool fpcCtRq_Do(create_request *pReq)
 {
     int ret = cPhs_COMPLEATE_e;
 
