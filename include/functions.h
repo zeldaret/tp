@@ -186,7 +186,6 @@ extern "C" {
     void OSSuspendThread(void);
     void OSSetThreadPriority(void);
     void OSResumeThread(void);
-    void OSCreateThread(void);
     void OSGetThreadPriority(void);
     void OSGetConsoleType(void);
     void OSGetResetCode(void);
