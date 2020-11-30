@@ -746,7 +746,7 @@ Z2SoundObjSimple:
 /* 802BE97C 002BB8BC  38 63 00 48 */	addi r3, r3, 0x48
 /* 802BE980 002BB8C0  FC 20 F8 90 */	fmr f1, f31
 /* 802BE984 002BB8C4  38 80 00 00 */	li r4, 0
-/* 802BE988 002BB8C8  4B FE 44 2D */	bl JAISoundParamsMove_NS_moveVolume
+/* 802BE988 002BB8C8  4B FE 44 2D */	bl moveVolume__18JAISoundParamsMoveFfUl
 lbl_802BE98C:
 /* 802BE98C 002BB8CC  7F E3 FB 78 */	mr r3, r31
 /* 802BE990 002BB8D0  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
@@ -849,7 +849,7 @@ lbl_802BEAEC:
 /* 802BEB04 002BBA44  38 63 00 48 */	addi r3, r3, 0x48
 /* 802BEB08 002BBA48  FC 20 F8 90 */	fmr f1, f31
 /* 802BEB0C 002BBA4C  38 80 00 00 */	li r4, 0
-/* 802BEB10 002BBA50  4B FE 42 A5 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802BEB10 002BBA50  4B FE 42 A5 */	bl moveVolume__18JAISoundParamsMoveFfUl
 lbl_802BEB14:
 /* 802BEB14 002BBA54  7F E3 FB 78 */	mr r3, r31
 /* 802BEB18 002BBA58  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0

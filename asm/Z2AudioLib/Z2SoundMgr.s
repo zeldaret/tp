@@ -397,7 +397,7 @@ lbl_802AA134:
 /* 802AA14C 002A708C  38 7B 00 08 */	addi r3, r27, 8
 /* 802AA150 002A7090  C0 22 BE 38 */	lfs f1, lbl_80455838-_SDA2_BASE_(r2)
 /* 802AA154 002A7094  38 80 00 2D */	li r4, 0x2d
-/* 802AA158 002A7098  4B FF 8C 5D */	bl JAISoundParamsMove_NS_moveVolume
+/* 802AA158 002A7098  4B FF 8C 5D */	bl moveVolume__18JAISoundParamsMoveFfUl
 lbl_802AA15C:
 /* 802AA15C 002A709C  80 1D 00 00 */	lwz r0, 0(r29)
 /* 802AA160 002A70A0  90 01 00 08 */	stw r0, 8(r1)
@@ -604,8 +604,8 @@ lbl_802AA418:
 /* 802AA428 002A7368  38 21 00 30 */	addi r1, r1, 0x30
 /* 802AA42C 002A736C  4E 80 00 20 */	blr 
 
-.global Z2SoundMgr_NS_resetFilterAll
-Z2SoundMgr_NS_resetFilterAll:
+.global resetFilterAll__10Z2SoundMgrFv
+resetFilterAll__10Z2SoundMgrFv:
 /* 802AA430 002A7370  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802AA434 002A7374  7C 08 02 A6 */	mflr r0
 /* 802AA438 002A7378  90 01 00 24 */	stw r0, 0x24(r1)
@@ -845,29 +845,29 @@ Z2SoundMgr_NS_pauseAllGameSound:
 /* 802AA760 002A76A0  80 6D 86 08 */	lwz r3, lbl_80450B88-_SDA_BASE_(r13)
 /* 802AA764 002A76A4  C0 22 BE 44 */	lfs f1, lbl_80455844-_SDA2_BASE_(r2)
 /* 802AA768 002A76A8  38 80 00 0A */	li r4, 0xa
-/* 802AA76C 002A76AC  48 00 32 89 */	bl Z2SeMgr_NS_seMoveVolumeAll
+/* 802AA76C 002A76AC  48 00 32 89 */	bl seMoveVolumeAll__7Z2SeMgrFfUl
 /* 802AA770 002A76B0  38 7E 07 3C */	addi r3, r30, 0x73c
 /* 802AA774 002A76B4  C0 22 BE 44 */	lfs f1, lbl_80455844-_SDA2_BASE_(r2)
 /* 802AA778 002A76B8  38 80 00 0A */	li r4, 0xa
-/* 802AA77C 002A76BC  4B FF 86 39 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802AA77C 002A76BC  4B FF 86 39 */	bl moveVolume__18JAISoundParamsMoveFfUl
 /* 802AA780 002A76C0  38 7E 07 A0 */	addi r3, r30, 0x7a0
 /* 802AA784 002A76C4  C0 22 BE 44 */	lfs f1, lbl_80455844-_SDA2_BASE_(r2)
 /* 802AA788 002A76C8  38 80 00 0A */	li r4, 0xa
-/* 802AA78C 002A76CC  4B FF 86 29 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802AA78C 002A76CC  4B FF 86 29 */	bl moveVolume__18JAISoundParamsMoveFfUl
 /* 802AA790 002A76D0  48 00 00 34 */	b lbl_802AA7C4
 lbl_802AA794:
 /* 802AA794 002A76D4  80 6D 86 08 */	lwz r3, lbl_80450B88-_SDA_BASE_(r13)
 /* 802AA798 002A76D8  C0 22 BE 38 */	lfs f1, lbl_80455838-_SDA2_BASE_(r2)
 /* 802AA79C 002A76DC  38 80 00 0A */	li r4, 0xa
-/* 802AA7A0 002A76E0  48 00 32 55 */	bl Z2SeMgr_NS_seMoveVolumeAll
+/* 802AA7A0 002A76E0  48 00 32 55 */	bl seMoveVolumeAll__7Z2SeMgrFfUl
 /* 802AA7A4 002A76E4  38 7E 07 3C */	addi r3, r30, 0x73c
 /* 802AA7A8 002A76E8  C0 22 BE 38 */	lfs f1, lbl_80455838-_SDA2_BASE_(r2)
 /* 802AA7AC 002A76EC  38 80 00 0A */	li r4, 0xa
-/* 802AA7B0 002A76F0  4B FF 86 05 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802AA7B0 002A76F0  4B FF 86 05 */	bl moveVolume__18JAISoundParamsMoveFfUl
 /* 802AA7B4 002A76F4  38 7E 07 A0 */	addi r3, r30, 0x7a0
 /* 802AA7B8 002A76F8  C0 22 BE 38 */	lfs f1, lbl_80455838-_SDA2_BASE_(r2)
 /* 802AA7BC 002A76FC  38 80 00 0A */	li r4, 0xa
-/* 802AA7C0 002A7700  4B FF 85 F5 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802AA7C0 002A7700  4B FF 85 F5 */	bl moveVolume__18JAISoundParamsMoveFfUl
 lbl_802AA7C4:
 /* 802AA7C4 002A7704  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802AA7C8 002A7708  83 C1 00 08 */	lwz r30, 8(r1)
