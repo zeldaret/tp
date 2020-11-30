@@ -88,7 +88,7 @@ class JKRHeap;
 extern JKRHeap* lbl_80451370; // JKRHeap::sSystemHeap
 extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
-extern void* lbl_8045137C; // JKRHeap::mErrorHandler
+extern void* lbl_8045137C;    // JKRHeap::mErrorHandler
 
 
 extern u8 lbl_804508B0[8]; // ::*fill*
@@ -196,3 +196,18 @@ class Z2SoundObjMgr;
 extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance
 extern void* lbl_803CC114[5]; // JKRThread::__vt
 extern u8 lbl_8043428C[12]; // JSUPtrList JKRThread::sThreadList
+class JKRThreadSwitch;
+extern void* lbl_803CC100[5];         // JKRThreadSwitch::__vt
+extern u32 lbl_804513B4;              // JKRThreadSwitch::sTotalCount
+extern u32 lbl_804513BC;              // DAT_804513bc
+extern u32 lbl_804513B8;              // JKRThreadSwitch::sTotalStart
+extern JKRThreadSwitch* lbl_804513B0; // JKRThreadSwitch::sManager
+extern void* lbl_804513C0;            // JKRThreadSwitch::mUserPreCallback
+extern void* lbl_804513C4;            //  JKRThreadSwitch::mUserPostCallback
+
+extern char lbl_8039CFA8[1]; // 8039cfdc-0x34 "JKRThreadSwitch: currentHeap destroyed.\n"
+
+extern float lbl_80455FC0; // JKernel::@934 = 100.0
+extern float lbl_80455FC4; // JKernel::@935 = 1000.0
+extern double lbl_80455FC8; // JKernel::@937 = 4.503599627370496E15
+

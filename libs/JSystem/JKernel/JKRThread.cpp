@@ -36,7 +36,59 @@ asm void JKRThread::start(void* param_1) {
 #include "JSystem/JKernel/JKRThread/asm/func_802D1934.s"
 }
 
-asm int JKRThread::searchThread(OSThread* thread) {
+asm JKRThread* JKRThread::searchThread(OSThread* thread) {
     nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D1960.s"
+}
+
+//
+//
+//
+
+asm JKRThreadSwitch::JKRThreadSwitch(JKRHeap* heap) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D199C.s"
+}
+
+asm JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1A14.s"
+}
+
+asm JKRThread* JKRThreadSwitch::enter(JKRThread* param_1, int param_2) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1A70.s"
+}
+
+asm void JKRThreadSwitch::callback(OSThread* param_1, OSThread* param_2) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1AE4.s"
+}
+
+asm void JKRThreadSwitch::draw(JKRThreadName_* param_1, JUTConsole* param_2) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1C74.s"
+}
+
+//
+//
+//
+
+asm u32 JKRThread::run() {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1E14.s"
+}
+
+//
+//
+//
+
+asm void JKRThreadSwitch::draw(JKRThreadName_* param_1) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1E1C.s"
+}
+
+asm JKRThreadSwitch::~JKRThreadSwitch() {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1E4C.s"
 }

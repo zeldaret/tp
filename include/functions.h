@@ -45,6 +45,7 @@ extern "C" {
     void JUTReport_X1_(void);
     void JUTAssertion_NS_setMessageCount(void);
     void DynamicModuleControlBase_NS_dump(void);
+    void _restgpr_25(void);
     unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
     void setLineUpItem__17dSv_player_item_cFv(void);
     void dMeter2Info_c_NS_setHotSpringTimer(void);
@@ -157,6 +158,7 @@ extern "C" {
     void func_80003458(void);
     void dStage_roomControl_c_NS_initZone(void);
     void checkItemGet(u8,int);
+    void JUTWarningConsole(void);
 }
 
 // OS
@@ -187,6 +189,8 @@ extern "C" {
     void OSSetArenaLo(u32 param_1);
     void OSSetArenaHi(u32 param_1);
 
+    void OSGetTick(void);
+
 
     void OSCreateThread(OSThread* thread);
     void OSCancelThread(OSThread* thread);
@@ -194,6 +198,7 @@ extern "C" {
     bool OSIsThreadSuspended(OSThread* thread);
     bool OSIsThreadTerminated(OSThread* thread);
     void OSInitMessageQueue(OSMessageQueue *queue, int param_2, int param_3);
+    void OSSetSwitchThreadCallback(void);
 }
 
 // DVD
@@ -405,4 +410,12 @@ extern "C" {
     void setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli(void);
     void start__9JKRThreadFPv(void);
     void searchThread__9JKRThreadFP8OSThread(void);
+    void __ct__15JKRThreadSwitchFP7JKRHeap(void);
+    void createManager__15JKRThreadSwitchFP7JKRHeap(void);
+    void enter__15JKRThreadSwitchFP9JKRThreadi(void);
+    void callback__15JKRThreadSwitchFP8OSThreadP8OSThread(void);
+    void draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole(void);
+    void run__9JKRThreadFv(void);
+    void draw__15JKRThreadSwitchFP14JKRThreadName_(void);
+    void __dt__15JKRThreadSwitchFv(void);
 }

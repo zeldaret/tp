@@ -1018,7 +1018,7 @@ lbl_8000BED4:
 /* 8000BFEC 00008F2C  80 AD 8D F0 */	lwz r5, lbl_80451370-_SDA_BASE_(r13)
 /* 8000BFF0 00008F30  48 2C 80 45 */	bl JKRAramStream_NS_setTransBuffer
 /* 8000BFF4 00008F34  38 60 00 00 */	li r3, 0
-/* 8000BFF8 00008F38  48 2C 5A 1D */	bl JKRThreadSwitch_NS_createManager
+/* 8000BFF8 00008F38  48 2C 5A 1D */	bl createManager__15JKRThreadSwitchFP7JKRHeap
 /* 8000BFFC 00008F3C  38 60 00 7C */	li r3, 0x7c
 /* 8000C000 00008F40  48 2C 2C 4D */	bl __nw__FUl
 /* 8000C004 00008F44  7C 7F 1B 79 */	or. r31, r3, r3
