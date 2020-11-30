@@ -237,3 +237,38 @@ extern "C" {
 extern "C" {
     void mDoMch_HeapCheckAll(void);
 }
+
+#include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
+extern "C" {
+    void Z2CreatureLink_NS_startLinkSound(u32, u32, s8);
+    void Z2SoundObjSimple(void);
+    void Z2LinkSoundStarter(void);
+    void Z2Creature(void);
+    void JAISoundStarter_NS_dtor(void);
+    void Z2Creature_NS_dtor(void);
+    void Z2SoundObjBase_NS_dtor(void);
+    void Z2Creature_NS_deleteObject(void);
+    void deleteKantera__14Z2CreatureLinkFv(void);
+    void Z2Creature_NS_init_X1_(Vec*, Vec*, Vec*, u8, u8, u8);
+    void Z2SoundObjBase_NS_deleteObject(void);
+    float PSVECSquareDistance(Vec*, Vec*);
+    void JAISoundParamsMove_NS_moveVolume(float, u32);
+    int* Z2CreatureLink_NS_startLinkSoundLevel(JAISoundID, u32, s8);
+    u32 Z2SeMgr_NS_seStartLevel(JAISoundID, Vec*, u32, s8, float, float, float, float, u8);
+    void Z2Creature_NS_framework(u32, s8);
+    void Z2Audience_NS_setTargetVolume(float, int);
+    void Z2SoundObjMgr_NS_setGhostEnemyState(u8);
+    void Z2FxLineMgr_NS_setFxForceOff(bool);
+    u32 Z2SeMgr_NS_seStart(JAISoundID, Vec*, u32, s8, float, float, float, float, u8);
+    void JAISoundParamsMove_NS_movePitch(float, u32);
+    float Z2Calc_NS_linearTransform(float, float, float, float, float, bool);
+    void JAISound_NS_stop(u32);
+    u8 Z2SoundHandles_NS_getHandleSoundID(JAISoundID);
+    void Z2SeqMgr_NS_setBattleSeqState(u8);
+    void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(JAISoundID, u32, s8);
+    float Z2Calc_NS_getParamByExp(float, float, float, float, float, float, CurveSign);
+    void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(JAISoundID, u32, s8);
+    void Z2SoundStarter_NS_setPortData(JAISoundHandle*, u32, u16, s8);
+    void Z2SoundObjBase_NS_startCollisionSE(u32, u32, Z2SoundObjBase*);
+    void Z2SeqMgr_NS_setBattleLastHit(u8);
+}

@@ -33,6 +33,10 @@ FORCEACTIVE {
  offTbox__12dSv_memBit_cFi
  set__25dSv_player_return_place_cFPCcScUc
  offActor__10dSv_info_cFii
+ __dt__18Z2LinkSoundStarterFv
+ deleteObject__14Z2CreatureLinkFv
+ framework__14Z2CreatureLinkFUlSc
+ startCollisionSE__14Z2CreatureLinkFUlUl
 }
 /*
 .init 80003100 - 80005600

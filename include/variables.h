@@ -95,3 +95,70 @@ extern char lbl_8039CAD8[12]; // "JKRHeap.cpp"
 
 // func_802D147C
 extern void* lbl_803CC0F0[4]; // JKRDisposer::__vt
+
+// func_802C32F0
+extern u32 lbl_80450B80; // JASGlobalInstance<Z2SceneMgr>::sInstance
+
+// func_802C333C
+extern u8 lbl_803CB980[0x48];
+extern u8 lbl_80451360[8];
+
+// func_802C3464
+extern u8 lbl_803CB96C[0x14];
+extern u8 lbl_803C9D80[0x18];
+extern u32 lbl_80450B74;
+
+// func_802C3500
+extern u8 lbl_803CAD10[0x20];
+
+// func_802C3638
+extern u32 lbl_80450B44;
+
+// func_80450B88
+extern u32 lbl_80450B88;
+extern u32 lbl_80450B7C;
+extern u32 lbl_80455C98;
+extern u32 lbl_80455C9C;
+extern u8 lbl_80455CA0[8];
+extern u8 lbl_80455CA8[8];
+extern u8 lbl_80455CB0[8];
+extern u8 lbl_80455CB8[8];
+extern u32 lbl_80450AE0;
+
+// func_802C3A6C
+extern u32 lbl_80455CC0;
+
+// func_802C3AFC
+extern u32 lbl_80450B40;
+extern u32 lbl_80450B48;
+
+// func_802C3BD4
+extern u32 lbl_80450B84;
+extern u8 lbl_80455CE0[8];
+extern u32 lbl_80455CC4;
+extern u32 lbl_80455CC8;
+extern u32 lbl_80455CCC;
+extern u32 lbl_80455CD0;
+extern u32 lbl_80455CD4;
+extern u8 lbl_80455CD8[8];
+
+// func_802C3E68
+extern u8 lbl_80455D10[8];
+extern u32 lbl_80455CE8;
+extern u32 lbl_80455CEC;
+extern u32 lbl_80455CF0;
+extern u32 lbl_80455CF4;
+extern u32 lbl_80455CF8;
+extern u32 lbl_80455CFC;
+extern u32 lbl_80455D00;
+extern u32 lbl_80455D04;
+extern u32 lbl_80455D08;
+extern u32 lbl_80455D0C;
+
+// func_802C4784
+extern u32 lbl_80455D18;
+
+
+
+
+
