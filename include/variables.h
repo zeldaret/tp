@@ -211,3 +211,5 @@ extern float lbl_80455FC0; // JKernel::@934 = 100.0
 extern float lbl_80455FC4; // JKernel::@935 = 1000.0
 extern double lbl_80455FC8; // JKernel::@937 = 4.503599627370496E15
 
+extern void* lbl_803CC114[5]; // JKRThread::__vt
+

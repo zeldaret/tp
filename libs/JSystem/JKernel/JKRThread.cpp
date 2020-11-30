@@ -1,22 +1,46 @@
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
+// #include "JSystem/JKernel/JKRThread/asm/func_802D1568.s"
+JKRThread::JKRThread(u32 stack_size, int message_count, int param_3)
+    : __base(), __vt(lbl_803CC114), thread_list_link(this) {
+    this->switch_count  = 0;
+    this->cost          = 0;
+    this->field_0x6c    = 0;
+    this->field_0x60[0] = 0;
+    this->field_0x70    = 0;
 
-asm JKRThread::JKRThread(unsigned long, int, int) {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D1568.s"
+    JKRHeap* heap = JKRHeap::findFromRoot(this);
+    if (heap == NULL) {
+        heap = lbl_80451370;
+    }
+
+    this->setCommon_heapSpecified(heap, stack_size, param_3);
+    this->setCommon_mesgQueue(this->heap, message_count);
 }
 
-asm JKRThread::JKRThread(JKRHeap*, unsigned long, int, int) {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D1610.s"
+// #include "JSystem/JKernel/JKRThread/asm/func_802D1610.s"
+JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4)
+    : __base(), __vt(lbl_803CC114), thread_list_link(this) {
+    this->switch_count  = 0;
+    this->cost          = 0;
+    this->field_0x6c    = 0;
+    this->field_0x60[0] = 0;
+    this->field_0x70    = 0;
+
+    if (heap == NULL) {
+        heap = lbl_80451374;
+    }
+
+    this->setCommon_heapSpecified(heap, stack_size, param_4);
+    this->setCommon_mesgQueue(this->heap, message_count);
 }
 
-asm JKRThread::JKRThread(OSThread*, int) {
+asm JKRThread::JKRThread(OSThread* thread, int message_count) {
     nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D16B8.s"
 }
-
 
 asm JKRThread::~JKRThread() {
     nofralloc
