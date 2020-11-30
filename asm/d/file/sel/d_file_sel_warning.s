@@ -112,7 +112,7 @@ dFile_warning_c_NS_screenSet:
 /* 80191D2C 0018EC6C  48 13 CF 21 */	bl __nw__FUl
 /* 80191D30 0018EC70  7C 60 1B 79 */	or. r0, r3, r3
 /* 80191D34 0018EC74  41 82 00 0C */	beq lbl_80191D40
-/* 80191D38 0018EC78  48 16 67 61 */	bl J2DScreen
+/* 80191D38 0018EC78  48 16 67 61 */	bl __ct__9J2DScreenFv
 /* 80191D3C 0018EC7C  7C 60 1B 78 */	mr r0, r3
 lbl_80191D40:
 /* 80191D40 0018EC80  90 1F 00 0C */	stw r0, 0xc(r31)

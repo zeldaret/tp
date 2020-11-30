@@ -37,6 +37,12 @@ FORCEACTIVE {
  deleteObject__14Z2CreatureLinkFv
  framework__14Z2CreatureLinkFUlSc
  startCollisionSE__14Z2CreatureLinkFUlUl
+ __dt__12dFile_info_cFv
+ modeWait__12dFile_info_cFv
+ modeMove__12dFile_info_cFv
+ draw__16dDlst_FileInfo_cFv
+ _sinit_d_file_sel_info_cpp__Fv /* tmp symbol name since the original won't compile */
+ __dt__16dDlst_FileInfo_cFv
 }
 /*
 .init 80003100 - 80005600

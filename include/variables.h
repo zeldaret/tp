@@ -66,6 +66,15 @@ extern u8 lbl_80450C78;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
+extern u8 lbl_803BB598;
+extern u8 lbl_803A6F88;
+extern u8 lbl_803BB588;
+extern u8 lbl_803948B8;
+extern u8 lbl_803BB548;
+extern u8 lbl_803BB4A8;
+extern u8 lbl_804539F8;
+extern u8 lbl_804539FC;
+extern u8 lbl_803BB498;
 
 
 #define _SDA_BASE_(dummy) 0

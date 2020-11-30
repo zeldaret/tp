@@ -110,6 +110,10 @@ class dSv_player_status_a_c {
     u16 getRupeeMax(void) const;
     bool isMagicFlag(u8) const;
 
+    inline u16& getCurrentHealth() {
+        return current_health;
+    }
+
    private:
     u16 max_health;
     u16 current_health;
@@ -359,6 +363,9 @@ class dSv_fishing_info_c {
 class dSv_player_info_c {
    public:
     void init(void);
+    inline char* getLinkName() {
+        return (char*)link_name;
+    }
 
    private:
     u32 unk0;
@@ -402,6 +409,12 @@ class dSv_player_config_c {
 class dSv_player_c {
    public:
     void init(void);
+    inline dSv_player_info_c& getPlayerInfo() {
+        return player_info;
+    }
+    inline dSv_player_status_a_c getPlayerStatusA() {
+        return player_status_a;
+    }
 
    private:
     dSv_player_status_a_c player_status_a;
@@ -606,10 +619,13 @@ class dSv_save_c {
    public:
     void init(void);
     dSv_memory2_c* getSave2(int);
+    inline dSv_player_c& getPlayer() {
+        return player;
+    }
 
    private:
     dSv_player_c player;
-    u8 unk476[4];
+    u8 unk492[4];
     dSv_memory_c area_flags[32];
     dSv_memory2_c unk_flags[64];
     dSv_event_c event_flags;
