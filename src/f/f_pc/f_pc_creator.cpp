@@ -5,7 +5,7 @@
 
 extern "C" {
 
-int fpcCt_IsCreatingByID(unsigned int id)
+bool fpcCt_IsCreatingByID(unsigned int id)
 {
     return fpcCtRq_IsCreatingByID(id);
 }

@@ -42,6 +42,9 @@ void fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag);
 void fpcLy_Cancel(layer_class *pLayer);
 int fpcLy_CancelMethod(layer_class *pLayer);
 
+void fpcLy_CancelQTo(process_method_tag_class *pMthd);
+void fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd);
+
 void fpcLy_Create(layer_class *pLayer, void *pPcNode, node_list_class *pLists, int listNum);
 void fpcLy_Delete(layer_class *pLayer);
 
