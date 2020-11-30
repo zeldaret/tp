@@ -1,3 +1,7 @@
+#include "JSystem/JKernel/JKRDisposer/JKRDisposer_vtable.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap_vtable.h"
+
+
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
 extern int lbl_804061C0;
@@ -81,11 +85,11 @@ extern u8 lbl_803BB498;
 #define _SDA2_BASE_(dummy) 0
 
 // func_802CE138
-extern u32 lbl_803CBF70[24];
+extern _VTABLE_JKRHeap lbl_803CBF70; // JKRHeap::__vt
 
-extern void* lbl_80451370; // JKRHeap::sSystemHeap
-extern void* lbl_80451378; // JKRHeap::sRootHeap
-extern void* lbl_80451374; // JKRHeap::sCurrentHeap
+extern JKRHeap* lbl_80451370; // JKRHeap::sSystemHeap
+extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
+extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
 extern void* lbl_8045137C; // JKRHeap::mErrorHandler
 
 extern u8 lbl_804508B0[8]; // ::*fill*
@@ -98,9 +102,14 @@ extern void* lbl_8045138C; // JKRHeap::mUserRamStart
 extern void* lbl_80451390; // JKRHeap::mUserRamEnd
 extern u32 lbl_80451394;   // JKRHeap::mMemorySize
 
+extern u8 lbl_80000000;
+extern u32 lbl_80000028;
+
+#define OS_GLOBAL(T, ADDR) *((T*)((void*)ADDR))
+#define OS_GLOBAL_ADDR(T, ADDR) ((T*)((void*)ADDR))
 
 // func_802CEB40
 extern char lbl_8039CAD8[12]; // "JKRHeap.cpp"
 
 // func_802D147C
-extern void* lbl_803CC0F0[4]; // JKRDisposer::__vt
+extern _VTABLE_JKRDisposer lbl_803CC0F0; // JKRDisposer::__vt

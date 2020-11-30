@@ -1,16 +1,20 @@
+#ifndef __JKRHEAP_H__
+#define __JKRHEAP_H__
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
+#include "JSystem/JKernel/JKRHeap/JKRHeap_vtable.h"
+
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
-class JKRHeap : JKRDisposer {
+class JKRHeap {
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
     ~JKRHeap();
 
     static bool initArena(char**, u32*, int);
-    void becomeSystemHeap();
-    void becomeCurrentHeap();
+    JKRHeap* becomeSystemHeap();
+    JKRHeap* becomeCurrentHeap();
     void destroy();
 
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
@@ -30,17 +34,17 @@ class JKRHeap : JKRDisposer {
     s32 getSize(void* ptr);
 
     s32 getFreeSize();
-    u32 getMaxFreeBlock();
-    u32 getTotalFreeSize();
+    s32 getMaxFreeBlock();
+    s32 getTotalFreeSize();
     u8 changeGroupID(u8 param_1);
-    u32 getMaxAllocatableSize(int alignment);
+    s32 getMaxAllocatableSize(int alignment);
 
     static JKRHeap* findFromRoot(void* ptr);
     JKRHeap* find(void* ptr) const;
     JKRHeap* findAllHeap(void* ptr) const;
 
     void dispose_subroutine(u32 begin, u32 end);
-    void dispose(void* ptr, u32 size);
+    bool dispose(void* ptr, u32 size);
     void dispose(void* begin, void* end);
     void dispose();
 
@@ -53,6 +57,11 @@ class JKRHeap : JKRDisposer {
     bool isSubHeap(JKRHeap* heap) const;
 
   public:
+      union {
+        JKRDisposer __base;
+        _VTABLE_JKRHeap* __vt;
+    };
+
     u8 mutex[24];
     u32 begin;
     u32 end;
@@ -64,8 +73,9 @@ class JKRHeap : JKRDisposer {
     JSUPtrList child_list;
     JSUPtrLink heap_link;
     JSUPtrList disposable_list;
-    bool error_handler;
+    bool error_flag;
     u8 field_0x69;
+    u8 field_0x6a[4];
 };
 
 void* operator new(u32 size);
@@ -78,3 +88,5 @@ void* operator new[](u32 size, JKRHeap* heap, int alignment);
 
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
+
+#endif
