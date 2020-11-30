@@ -70,7 +70,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
             $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_priority.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_profile.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_searcher.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_tag.o    \
             $(BUILD_DIR)/asm/f/pc/line/f_pc_line_iter.o    \
