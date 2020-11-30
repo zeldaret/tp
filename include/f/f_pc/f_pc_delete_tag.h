@@ -19,7 +19,7 @@ extern "C" {
 int fpcDtTg_IsEmpty(delete_tag_class *pTag);
 void fpcDtTg_ToDeleteQ(delete_tag_class *pTag);
 void fpcDtTg_DeleteQTo(delete_tag_class *pTag);
-void fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc);
+int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc);
 int fpcDtTg_Init(delete_tag_class *pTag, void *pUserData);
 
 };
