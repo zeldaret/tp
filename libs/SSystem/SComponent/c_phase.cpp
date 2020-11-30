@@ -79,8 +79,12 @@ asm int cPhs_Next(request_of_phase_process_class *pPhase)
 #if NON_MATCHING
 int cPhs_Do(request_of_phase_process_class *pPhase, void *pUserData)
 {
-    if (pPhase->mpHandlerTable != NULL) {
-        int newStep = (*pPhase->mpHandlerTable[pPhase->mPhaseStep])(pUserData);
+    cPhs__Handler *pHandlerTable = pPhase->mpHandlerTable;
+    if (pHandlerTable != NULL) {
+        // the load of pUserData seems to be slightly scrambled..
+        int step = pPhase->mPhaseStep;
+        cPhs__Handler pHandler = pHandlerTable[step];
+        int newStep = pHandler(pUserData);
         switch (newStep) {
         case 1:
             return cPhs_Next(pPhase);
