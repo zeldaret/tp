@@ -10,17 +10,14 @@ JKRDisposer::JKRDisposer() : ptr_link(this) {
     }
 }
 
-// Almost. Missing three instructions, something
-// to do with the destruction of JSUPtrLink
-#ifndef NONMATCHING
+// Bad compiler code generation
+#ifdef NONMATCHING
 JKRDisposer::~JKRDisposer() {
   JKRHeap* heap = this->heap;
   if (heap != 0) {
     heap->disposable_list.remove(&this->ptr_link);
   }
 }
-
-
 #else
 asm JKRDisposer::~JKRDisposer() {
     nofralloc
