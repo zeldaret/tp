@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
 // #include "JSystem/JKernel/asm/func_802D147C.s"
-JKRDisposer::JKRDisposer() : __vt(lbl_803CC0F0), ptr_link(this) {
+JKRDisposer::JKRDisposer() : __vt(&lbl_803CC0F0), ptr_link(this) {
     this->heap     = JKRHeap::findFromRoot(this);
     if (this->heap != 0) {
         this->heap->disposable_list.append(&this->ptr_link);

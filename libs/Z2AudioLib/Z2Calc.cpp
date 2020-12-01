@@ -105,7 +105,7 @@ float Z2Calc::FNoise1f::calcNoise1f(void){
         }
     }
     this->unk0 = this->unk4;
-    this->temp2 = tau(this->unk0);
+    temp2 = tau(this->unk0);
     this->unk4 = temp2;
 
     return this->unk0;

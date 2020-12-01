@@ -2,30 +2,8 @@
 
 .section .text, "ax" # 80021a00
 
-
-.global fpcLf_GetPriority
-fpcLf_GetPriority:
-/* 80021A00 0001E940  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80021A04 0001E944  7C 08 02 A6 */	mflr r0
-/* 80021A08 0001E948  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80021A0C 0001E94C  38 63 00 BE */	addi r3, r3, 0xbe
-/* 80021A10 0001E950  4B FF F8 F9 */	bl fpcDwPi_Get
-/* 80021A14 0001E954  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80021A18 0001E958  7C 08 03 A6 */	mtlr r0
-/* 80021A1C 0001E95C  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021A20 0001E960  4E 80 00 20 */	blr 
-
-.global fpcLf_DrawMethod
-fpcLf_DrawMethod:
-/* 80021A24 0001E964  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80021A28 0001E968  7C 08 02 A6 */	mflr r0
-/* 80021A2C 0001E96C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80021A30 0001E970  80 63 00 10 */	lwz r3, 0x10(r3)
-/* 80021A34 0001E974  48 00 09 F5 */	bl fpcMtd_Method
-/* 80021A38 0001E978  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 80021A3C 0001E97C  7C 08 03 A6 */	mtlr r0
-/* 80021A40 0001E980  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021A44 0001E984  4E 80 00 20 */	blr 
+.global fpcLf_Draw
+fpcLf_Draw:
 /* 80021A48 0001E988  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021A4C 0001E98C  7C 08 02 A6 */	mflr r0
 /* 80021A50 0001E990  90 01 00 14 */	stw r0, 0x14(r1)
@@ -40,7 +18,10 @@ lbl_80021A70:
 /* 80021A70 0001E9B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80021A74 0001E9B4  7C 08 03 A6 */	mtlr r0
 /* 80021A78 0001E9B8  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021A7C 0001E9BC  4E 80 00 20 */	blr 
+/* 80021A7C 0001E9BC  4E 80 00 20 */	blr
+
+.global fpcLf_Execute
+fpcLf_Execute:
 /* 80021A80 0001E9C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021A84 0001E9C4  7C 08 02 A6 */	mflr r0
 /* 80021A88 0001E9C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -50,7 +31,10 @@ lbl_80021A70:
 /* 80021A98 0001E9D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80021A9C 0001E9DC  7C 08 03 A6 */	mtlr r0
 /* 80021AA0 0001E9E0  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021AA4 0001E9E4  4E 80 00 20 */	blr 
+/* 80021AA4 0001E9E4  4E 80 00 20 */	blr
+
+.global fpcLf_IsDelete
+fpcLf_IsDelete:
 /* 80021AA8 0001E9E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021AAC 0001E9EC  7C 08 02 A6 */	mflr r0
 /* 80021AB0 0001E9F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -60,7 +44,10 @@ lbl_80021A70:
 /* 80021AC0 0001EA00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80021AC4 0001EA04  7C 08 03 A6 */	mtlr r0
 /* 80021AC8 0001EA08  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021ACC 0001EA0C  4E 80 00 20 */	blr 
+/* 80021ACC 0001EA0C  4E 80 00 20 */	blr
+
+.global fpcLf_Delete
+fpcLf_Delete:
 /* 80021AD0 0001EA10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021AD4 0001EA14  7C 08 02 A6 */	mflr r0
 /* 80021AD8 0001EA18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -78,7 +65,10 @@ lbl_80021B00:
 /* 80021B04 0001EA44  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80021B08 0001EA48  7C 08 03 A6 */	mtlr r0
 /* 80021B0C 0001EA4C  38 21 00 10 */	addi r1, r1, 0x10
-/* 80021B10 0001EA50  4E 80 00 20 */	blr 
+/* 80021B10 0001EA50  4E 80 00 20 */	blr
+
+.global fpcLf_Create
+fpcLf_Create:
 /* 80021B14 0001EA54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80021B18 0001EA58  7C 08 02 A6 */	mflr r0
 /* 80021B1C 0001EA5C  90 01 00 14 */	stw r0, 0x14(r1)
