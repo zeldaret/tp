@@ -167,7 +167,16 @@ extern u32 lbl_80455D0C;
 // func_802C4784
 extern u32 lbl_80455D18;
 
+// func_802A96F4
+extern u32 lbl_80455828;
+extern u32 lbl_8045582C;
 
+// func_802A9814
+extern u32 lbl_80455830;
+extern u32 lbl_80455834;
 
+// func_802A98D4
+extern u32 lbl_80451330;
 
+extern u32 lbl_80451334;
 

@@ -395,7 +395,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JMessage/processor.o    \
             $(BUILD_DIR)/asm/JMessage/resource.o    \
             $(BUILD_DIR)/asm/JMessage/locale.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2Calc.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2Calc.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2AudioArcLoader.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \

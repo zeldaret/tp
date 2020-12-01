@@ -18,10 +18,6 @@ class Z2SoundObjBase{
 
 };
 
-class CurveSign {
-
-};
-
 class Z2CreatureLink {
     public:
      void setLinkState(u8);

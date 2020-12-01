@@ -39,10 +39,20 @@ asm Z2CreatureLink::~Z2CreatureLink() {
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C3500.s"
 }
 
+// few instructions off
+#ifdef NONMATCHING
+/*void Z2CreatureLink::deleteObject(void) {
+    if(this->unk179 != 0){
+        deleteKantera();
+    }
+    creature.deleteObject();
+}*/
+#else
 asm void Z2CreatureLink::deleteObject(void) {
     nofralloc
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C35F8.s"
 }
+#endif
 
 asm void Z2CreatureLink::init(Vec* param1, Vec* param2, Vec* param3) {
     nofralloc
@@ -54,10 +64,18 @@ asm void Z2CreatureLink::initKantera(Vec* param1) {
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C3710.s"
 }
 
+// 1 instruction off
+#ifdef NONMATCHING
+/*void Z2CreatureLink::deleteKantera(void) {
+    lantern_state = 0;
+    soundObjBase.deleteObject();
+}*/
+#else
 asm void Z2CreatureLink::deleteKantera(void) {
     nofralloc
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C374C.s"
 }
+#endif
 
 void Z2CreatureLink::setKanteraState(u8 param1) {
     this->lantern_state = param1;
@@ -129,7 +147,15 @@ asm int Z2CreatureLink::startHitItemSE(u32, u32, Z2SoundObjBase*, float) {
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C4814.s"
 }
 
+// 1 instruction off
+#ifdef NONMATCHING
+void Z2CreatureLink::setResumeAttack(bool param1){
+    this->unk203 = ((param1 & 0x1) << 5) | (unk203 & 0xdf);
+    return;
+}
+#else
 asm void Z2CreatureLink::setResumeAttack(bool) {
     nofralloc
     #include "Z2AudioLib/Z2LinkMgr/asm/func_802C48D8.s"
 }
+#endif
