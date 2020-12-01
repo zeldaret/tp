@@ -2,7 +2,7 @@
 #include "global.h"
 
 /*
-Very close! When initaliztion child_list(true) it will use less register then the asm code. 
+Very close! When initialzing child_list(true) it will use less register then the asm code. 
 -  2cb0b0:      3b 5f 00 40     addi    r26,r31,64
 -  2cb0b4:      7f 43 d3 78     mr      r3,r26
 -  2cb0b8:      48 00 dd 9d     bl      0x2d8e54

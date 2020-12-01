@@ -10,7 +10,19 @@ JKRDisposer::JKRDisposer() : ptr_link(this) {
     }
 }
 
-// Maybe we are using the wrong compiler?
+/*
+Super close.
+
+This is was we expected:
+  if (this != (JKRDisposer *)&DAT_fffffff8) {
+      JSUPtrLink::~JSUPtrLink(&this->ptr_link,0);
+  }
+
+But the compiler generate code like this instead:
+  JSUPtrLink::~JSUPtrLink(&this->ptr_link,-1);
+  
+Maybe we are using the wrong compiler?
+*/
 #ifdef NONMATCHING
 JKRDisposer::~JKRDisposer() {
   JKRHeap* heap = this->heap;
