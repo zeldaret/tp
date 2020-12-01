@@ -54,7 +54,7 @@ class JKRHeap : JKRDisposer {
     bool isSubHeap(JKRHeap* heap) const;
 
   protected:
-    virtual void callAllDisposer();
+    void callAllDisposer();
     virtual void vt_func4() = 0;
     virtual void vt_func5() = 0;
     virtual void dump_sort();
