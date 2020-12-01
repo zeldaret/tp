@@ -6,11 +6,11 @@
 class JSUPtrList;
 class JSUPtrLink {
   public:
-    JSUPtrLink(void*);
+    JSUPtrLink(void* owner);
     ~JSUPtrLink();
 
   public:
-    void* unk0;
+    void* owner;
     JSUPtrList* list;
     JSUPtrLink* prev;
     JSUPtrLink* next;

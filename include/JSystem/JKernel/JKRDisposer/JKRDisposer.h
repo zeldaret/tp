@@ -3,7 +3,6 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"
-#include "JSystem/JKernel/JKRDisposer/JKRDisposer_vtable.h"
 
 class JKRHeap;
 class JKRDisposer {

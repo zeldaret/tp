@@ -1,11 +1,21 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
-// Initializing the members seems to be weird because of
-// the way we're using vtables.
+/*
+Very close! When initaliztion child_list(true) it will use less register then the asm code. 
+-  2cb0b0:      3b 5f 00 40     addi    r26,r31,64
+-  2cb0b4:      7f 43 d3 78     mr      r3,r26
+-  2cb0b8:      48 00 dd 9d     bl      0x2d8e54
+-  2cb0bc:      38 7a 00 0c     addi    r3,r26,12
+
++  2cb0b0:      38 7f 00 40     addi    r3,r31,64
++  2cb0b4:      38 80 00 01     li      r4,1
++  2cb0b8:      48 00 dd 01     bl      0x2d8db8
++  2cb0bc:      38 7f 00 4c     addi    r3,r31,76
+*/
 #ifdef NONMATCHING
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
-    : __base(), __vt(lbl_803CBF70), child_list(true), heap_link(this), disposable_list(true) {
+    : JKRDisposer(), child_list(true), heap_link(this), disposable_list(true) {
     OSInitMutex(this->mutex);
     this->size  = size;
     this->begin = (u32)data;
@@ -89,19 +99,10 @@ JKRHeap* JKRHeap::becomeCurrentHeap() {
     return prev;
 }
 
-// All virtual calls seems to only use r12
-// but emulating the call with use another
-// register (r4 in this case).
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE448.s"
 void JKRHeap::destroy() {
-    (*this->__vt->do_destroy)(this);
+    this->do_destroy();
 }
-#else
-asm void JKRHeap::destroy() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE448.s"
-}
-#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE474.s"
 void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
@@ -116,17 +117,10 @@ void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
     return NULL;
 }
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE4D4.s"
 void* JKRHeap::alloc(u32 size, int alignment) {
-    return (*this->__vt->do_alloc)(this, size, alignment);
+    return this->do_alloc(size, alignment);
 }
-#else
-asm void* JKRHeap::alloc(u32 size, int alignment) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE4D4.s"
-}
-#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE500.s"
 void JKRHeap::free(void* ptr, JKRHeap* heap) {
@@ -138,46 +132,25 @@ void JKRHeap::free(void* ptr, JKRHeap* heap) {
     heap->free(ptr);
 }
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE548.s"
 void JKRHeap::free(void* ptr) {
-    (*this->__vt->do_free)(this, ptr);
+    this->do_free(ptr);
 }
-#else
-asm void JKRHeap::free(void* ptr) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE548.s"
-}
-#endif
 
 asm void JKRHeap::callAllDisposer() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE574.s"
 }
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE5CC.s"
 void JKRHeap::freeAll() {
-    (*this->__vt->do_freeAll)(this);
+    this->do_freeAll();
 }
-#else
-asm void JKRHeap::freeAll() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE5CC.s"
-}
-#endif
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
-void JKRHeap::freeAll() {
-    (*this->__vt->do_freeTail)(this);
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE5F8.s"
+void JKRHeap::freeTail() {
+    this->do_freeTail();
 }
-#else
-asm void JKRHeap::freeTail() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE5F8.s"
-}
-#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE624.s"
 s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
@@ -189,17 +162,10 @@ s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
     return heap->resize(ptr, size);
 }
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE684.s"
 s32 JKRHeap::resize(void* ptr, u32 size) {
-    return (*this->__vt->do_resize)(this, ptr, size);
+    return this->do_resize(ptr, size);
 }
-#else
-asm s32 JKRHeap::resize(void* ptr, u32 size) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE684.s"
-}
-#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE6B0.s"
 s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
@@ -211,68 +177,34 @@ s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
     return heap->getSize(ptr);
 }
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE700.s"
 s32 JKRHeap::getSize(void* ptr) {
-    return (*this->__vt->do_getSize)(this, ptr);
+    return this->do_getSize(ptr);
 }
-#else
-asm s32 JKRHeap::getSize(void* ptr) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE700.s"
-}
-#endif
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE72C.s"
 s32 JKRHeap::getFreeSize() {
-    return (*this->__vt->do_getFreeSize)(this);
+    return this->do_getFreeSize();
 }
-#else
-asm s32 JKRHeap::getFreeSize() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE72C.s"
-}
-#endif
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE758.s"
 s32 JKRHeap::getMaxFreeBlock() {
-    return (*this->__vt->do_getMaxFreeBlock)(this);
+    return this->do_getMaxFreeBlock();
 }
-#else
-asm s32 JKRHeap::getMaxFreeBlock() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE758.s"
-}
-#endif
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE784.s"
 s32 JKRHeap::getTotalFreeSize() {
-    return (*this->__vt->do_getTotalFreeSize)(this);
+    return this->do_getTotalFreeSize();
 }
-#else
-asm s32 JKRHeap::getTotalFreeSize() {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE784.s"
-}
-#endif
 
-// Same problem as with all other virtual calls.
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE7B0.s"
 u8 JKRHeap::changeGroupID(u8 param_1) {
-    return (*this->__vt->go_changeGroupID)(this, param_1);
+    return this->do_changeGroupID(param_1);
 }
-#else
-asm u8 JKRHeap::changeGroupID(u8 param_1) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE7B0.s"
-}
-#endif
 
-asm s32 JKRHeap::getMaxAllocatableSize(int alignment){nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
+asm s32 JKRHeap::getMaxAllocatableSize(int alignment) {
+    nofralloc
+    #include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE83C.s"
@@ -316,10 +248,21 @@ void JKRHeap::dispose(void* begin, void* end) {
     this->dispose_subroutine((u32)begin, (u32)end);
 }
 
+#ifdef NONMATCHING
+void JKRHeap::dispose() {
+    JSUPtrLink* node;
+    JKRDisposer* disposable;
+    while (node = this->disposable_list.head, node != NULL) {
+        disposable = (JKRDisposer*)node->owner;
+        disposable->~JKRDisposer();
+    }
+}
+#else
 asm void JKRHeap::dispose() {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CEAC0.s"
 }
+#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEB18.s"
 void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
@@ -357,12 +300,12 @@ asm bool JKRHeap::isSubHeap(JKRHeap* heap) const {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEC4C.s"
 void* operator new(u32 size) {
-    return JKRHeap::alloc(size, 4, (JKRHeap*)NULL);
+    return JKRHeap::alloc(size, 4, NULL);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEC74.s"
 void* operator new(u32 size, int alignment) {
-    return JKRHeap::alloc(size, alignment, (JKRHeap*)NULL);
+    return JKRHeap::alloc(size, alignment, NULL);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEC98.s"
@@ -372,12 +315,12 @@ void* operator new(u32 size, JKRHeap* heap, int alignment) {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CECC4.s"
 void* operator new[](u32 size) {
-    return JKRHeap::alloc(size, 4, (JKRHeap*)NULL);
+    return JKRHeap::alloc(size, 4, NULL);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CECEC.s"
 void* operator new[](u32 size, int alignment) {
-    return JKRHeap::alloc(size, alignment, (JKRHeap*)NULL);
+    return JKRHeap::alloc(size, alignment, NULL);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CED10.s"
@@ -387,12 +330,10 @@ void* operator new[](u32 size, JKRHeap* heap, int alignment) {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CED3C.s"
 void operator delete(void* ptr) {
-    JKRHeap::free(ptr, (JKRHeap*)NULL);
+    JKRHeap::free(ptr, NULL);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CED60.s"
 void operator delete[](void* ptr) {
-    JKRHeap::free(ptr, (JKRHeap*)NULL);
+    JKRHeap::free(ptr, NULL);
 }
-
-

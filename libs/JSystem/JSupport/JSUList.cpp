@@ -2,9 +2,9 @@
 #include "global.h"
 
 // #include "JSupport/asm/func_802DBDFC.s"
-JSUPtrLink::JSUPtrLink(void* param_1) {
+JSUPtrLink::JSUPtrLink(void* owner) {
     this->list = (JSUPtrList*)NULL;
-    this->unk0 = param_1;
+    this->owner = owner;
     this->prev = (JSUPtrLink*)NULL;
     this->next = (JSUPtrLink*)NULL;
 }

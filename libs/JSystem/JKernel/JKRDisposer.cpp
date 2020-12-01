@@ -10,7 +10,7 @@ JKRDisposer::JKRDisposer() : ptr_link(this) {
     }
 }
 
-// Bad compiler code generation
+// Maybe we are using the wrong compiler?
 #ifdef NONMATCHING
 JKRDisposer::~JKRDisposer() {
   JKRHeap* heap = this->heap;
