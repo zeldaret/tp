@@ -3,10 +3,10 @@
 
 // #include "JSupport/asm/func_802DBDFC.s"
 JSUPtrLink::JSUPtrLink(void* owner) {
-    this->list = (JSUPtrList*)NULL;
+    this->list = NULL;
     this->owner = owner;
-    this->prev = (JSUPtrLink*)NULL;
-    this->next = (JSUPtrLink*)NULL;
+    this->prev = NULL;
+    this->next = NULL;
 }
 
 // #include "JSupport/asm/func_802DBE14.s"
@@ -32,7 +32,7 @@ JSUPtrList::~JSUPtrList() {
     JSUPtrLink* node = this->head;
     s32 removed      = 0;
     while (this->length > removed) {
-        node->list = (JSUPtrList*)NULL;
+        node->list = NULL;
         node       = node->next;
         removed += 1;
     }
@@ -40,16 +40,16 @@ JSUPtrList::~JSUPtrList() {
 
 // #include "JSupport/asm/func_802DBF14.s"
 void JSUPtrList::initiate() {
-    this->head   = (JSUPtrLink*)NULL;
-    this->tail   = (JSUPtrLink*)NULL;
+    this->head   = NULL;
+    this->tail   = NULL;
     this->length = 0;
 }
 
 // #include "JSupport/asm/func_802DBF28.s"
 void JSUPtrList::setFirst(JSUPtrLink* first) {
     first->list  = this;
-    first->prev  = (JSUPtrLink*)NULL;
-    first->next  = (JSUPtrLink*)NULL;
+    first->prev  = NULL;
+    first->next  = NULL;
     this->tail   = first;
     this->head   = first;
     this->length = 1;
@@ -58,7 +58,7 @@ void JSUPtrList::setFirst(JSUPtrLink* first) {
 // #include "JSupport/asm/func_802DBF4C.s"
 bool JSUPtrList::append(JSUPtrLink* ptr) {
     JSUPtrList* list = ptr->list;
-    bool result = ((JSUPtrList*)NULL == list);
+    bool result = (NULL == list);
     if (!result) {
         result = list->remove(ptr);
     }
@@ -69,7 +69,7 @@ bool JSUPtrList::append(JSUPtrLink* ptr) {
         } else {
             ptr->list        = this;
             ptr->prev        = this->tail;
-            ptr->next        = (JSUPtrLink*)NULL;
+            ptr->next        = NULL;
             this->tail->next = ptr;
             this->tail       = ptr;
             this->length++;
@@ -82,7 +82,7 @@ bool JSUPtrList::append(JSUPtrLink* ptr) {
 // #include "JSupport/asm/func_802DBFF0.s"
 bool JSUPtrList::prepend(JSUPtrLink* ptr) {
     JSUPtrList* list = ptr->list;
-    bool result = ((JSUPtrList*)NULL == list);
+    bool result = (NULL == list);
     if (!result) {
         result = list->remove(ptr);
     }
@@ -107,7 +107,7 @@ bool JSUPtrList::prepend(JSUPtrLink* ptr) {
 bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
     if (before == this->head) {
          return this->prepend(ptr);
-    } else if (before == (JSUPtrLink*)NULL) {
+    } else if (before == NULL) {
         return this->append(ptr);
     }
     
@@ -115,7 +115,7 @@ bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr) {
         return false;
     }
     
-    bool result = ((JSUPtrList*)NULL == ptr->list);
+    bool result = (NULL == ptr->list);
     if (!result) {
         result = ptr->list->remove(ptr);
     }
@@ -138,20 +138,20 @@ bool JSUPtrList::remove(JSUPtrLink* ptr) {
     bool is_parent = (ptr->list == this);
     if (is_parent) {
         if (this->length == 1) {
-            this->head = (JSUPtrLink*)NULL;
-            this->tail = (JSUPtrLink*)NULL;
+            this->head = NULL;
+            this->tail = NULL;
         } else if (ptr == this->head) {
-            ptr->next->prev = (JSUPtrLink*)NULL;
+            ptr->next->prev = NULL;
             this->head      = ptr->next;
         } else if (ptr == this->tail) {
-            ptr->prev->next = (JSUPtrLink*)NULL;
+            ptr->prev->next = NULL;
             this->tail      = ptr->prev;
         } else {
             ptr->prev->next = ptr->next;
             ptr->next->prev = ptr->prev;
         }
 
-        ptr->list = (JSUPtrList*)NULL;
+        ptr->list = NULL;
         this->length--;
     }
 
@@ -161,7 +161,7 @@ bool JSUPtrList::remove(JSUPtrLink* ptr) {
 // #include "JSupport/asm/func_802DC20C.s"
 JSUPtrLink* JSUPtrList::getNthLink(u32 index) const {
     if (index >= this->length) {
-        return (JSUPtrLink*)NULL;
+        return NULL;
     }
 
     JSUPtrLink* node = this->head;
