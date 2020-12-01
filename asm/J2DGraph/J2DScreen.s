@@ -3,8 +3,8 @@
 .section .text, "ax" # 802f8498
 
 
-.global J2DScreen
-J2DScreen:
+.global __ct__9J2DScreenFv
+__ct__9J2DScreenFv:
 /* 802F8498 002F53D8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F849C 002F53DC  7C 08 02 A6 */	mflr r0
 /* 802F84A0 002F53E0  90 01 00 34 */	stw r0, 0x34(r1)

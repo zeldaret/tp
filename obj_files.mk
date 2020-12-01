@@ -52,30 +52,32 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_pause.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_base.o    \
             $(BUILD_DIR)/asm/f/pc/create/f_pc_create_iter.o    \
-            $(BUILD_DIR)/asm/f/pc/create/f_pc_create_req.o    \
-            $(BUILD_DIR)/asm/f/pc/create/f_pc_create_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_creator.o    \
-            $(BUILD_DIR)/asm/f/pc/delete/f_pc_delete_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_create_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_create_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_creator.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_delete_tag.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
-            $(BUILD_DIR)/asm/f/pc/draw/f_pc_draw_priority.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_executor.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_executor.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_layer.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_leaf.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_iter.o    \
             $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_line.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_load.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_line.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_load.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_manager.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_method.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
             $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_priority.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_profile.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_searcher.o    \
-            $(BUILD_DIR)/asm/f/pc/line/f_pc_line_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/line/f_pc_line_iter.o    \
-            $(BUILD_DIR)/asm/f/pc/method/f_pc_method_iter.o    \
-            $(BUILD_DIR)/asm/f/pc/method/f_pc_method_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_searcher.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_line_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_line_iter.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_method_iter.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_pause.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
             $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
@@ -158,7 +160,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_envse.o    \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \
-            $(BUILD_DIR)/asm/d/file/sel/d_file_sel_info.o    \
+            $(BUILD_DIR)/src/d/d_file/d_file_sel_info.o    \
             $(BUILD_DIR)/asm/d/bright/d_bright_check.o    \
             $(BUILD_DIR)/asm/d/d_scope.o    \
             $(BUILD_DIR)/asm/d/select/d_select_cursor.o    \
@@ -243,17 +245,17 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/API/c_API_graphic.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_counter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_list.o    \
-            $(BUILD_DIR)/asm/SComponent/c/list/c_list_iter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_node.o    \
-            $(BUILD_DIR)/asm/SComponent/c/node/c_node_iter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_tree.o    \
-            $(BUILD_DIR)/asm/SComponent/c/tree/c_tree_iter.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_phase.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_list.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_list_iter.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_node.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_node_iter.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tree.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tree_iter.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_phase.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_request.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_tag.o    \
-            $(BUILD_DIR)/asm/SComponent/c/tag/c_tag_iter.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_sxyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_math.o    \

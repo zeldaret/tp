@@ -1,4 +1,11 @@
 extern "C" { 
+    void J2DScreen_NS_draw(void);
+    void PSMTXCopy(void);
+    void PSMTXConcat(void);
+    void PSMTXScale(void);
+    void screenSet__12dFile_info_cFv(void);
+    void dFile_info_c_NS_screenSet(void);
+    void mDoExt_removeMesgFont(void);
     void func_80362210(void);
     void JKRAramHeap_NS_getTotalFreeSize(void);
     void JKRAramHeap_NS_getFreeSize(void);
@@ -129,16 +136,26 @@ extern "C" {
     void func_80361D60(void);
     void dComIfG_inf_c_NS_ct(void);
     void version_check__Fv(void);
+    void J2DTextBox_NS_getStringPtr(void);
+    void J2DTextBox_NS_setString_X1_(void);
+    void CPaneMgrAlpha_X1_(void);
+    void mDoExt_getMesgFont(void);
+    void J2DScreen_NS_setPriority(void);
+    void __ct__9J2DScreenFv(void);
+    void dFile_info_c_NS_setPlayTime(void);
+    void dFile_info_c_NS_setSaveDate(void);
+    void dFile_info_c_NS_setHeartCnt(void);
+    void setHeartCnt__12dFile_info_cFP10dSv_save_c(void);
+    void setSaveDate__12dFile_info_cFP10dSv_save_c(void);
+    void func_803664DC(void);
+    void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
+    void func_80362540(void);
+    void dDlst_list_c_NS_set(void);
 }
 
 // OS
 extern "C" {
-    void OSInitMutex(void);
-    void OSGetArenaLo(void);
-    void OSGetArenaHi(void);
-    void OSInitAlloc(void);
-    void OSSetArenaLo(void);
-    void OSSetArenaHi(void);
+    void OSInitMutex(u8[24]);
     void OSEnableScheduler(void);
     void OSDisableScheduler(void);
     void OSCheckActiveThreads(void);
@@ -154,6 +171,13 @@ extern "C" {
     void OSAllocFromArenaLo(void);
     void OSReportInit(void);
     void OSGetCurrentThread(void);
+    void OSTicksToCalendarTime(void);
+
+    u32 OSGetArenaLo();
+    u32 OSGetArenaHi();
+    u32 OSInitAlloc(u32 low, u32 high, int param_3);
+    void OSSetArenaLo(u32 param_1);
+    void OSSetArenaHi(u32 param_1);
 }
 
 // DVD
