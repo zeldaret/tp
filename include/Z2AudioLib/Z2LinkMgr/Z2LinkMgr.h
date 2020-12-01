@@ -1,20 +1,18 @@
 #include "dolphin/types.h"
 
-class Vec{ // move later
-   public:
+struct Vec{ // move later
     float x, y, z;
 };
 
-class JAISoundID{
-   public:
-    unsigned long value;
-};
-
-class JAISoundHandle{
-
+struct JAISoundID{ // move later
+    u32 value;
 };
 
 class Z2SoundObjBase{
+
+};
+
+class JAISoundHandle{
 
 };
 

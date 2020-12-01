@@ -262,8 +262,8 @@ extern "C" {
     void mDoMch_HeapCheckAll(void);
 }
 
+// Z2LinkMgr
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
-#include "Z2AudioLib/Z2Calc/Z2Calc.h"
 extern "C" {
     void Z2CreatureLink_NS_startLinkSound(u32, u32, s8);
     void Z2SoundObjSimple(void);
@@ -291,15 +291,19 @@ extern "C" {
     u8 Z2SoundHandles_NS_getHandleSoundID(JAISoundID);
     void Z2SeqMgr_NS_setBattleSeqState(u8);
     void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(JAISoundID, u32, s8);
-    float Z2Calc_NS_getParamByExp(float, float, float, float, float, float, Z2Calc::CurveSign);
     void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(JAISoundID, u32, s8);
     void Z2SoundStarter_NS_setPortData(JAISoundHandle*, u32, u16, s8);
     void Z2SoundObjBase_NS_startCollisionSE(u32, u32, Z2SoundObjBase*);
     void Z2SeqMgr_NS_setBattleLastHit(u8);
+}
 
+// Z2Calc
+#include "Z2AudioLib/Z2Calc/Z2Calc.h"
+extern "C" {
     float linearTransform__6Z2CalcFfffffb(float, float, float, float, float, bool);
     double func_8036C740(double);
     double func_8036C780(double,double);
-    float Z2Calc_NS_getRandom_0_1();
+    float getRandom_0_1__6Z2CalcFv();
     float getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(float, float, float, float, float, float, Z2Calc::CurveSign);
+    void JMath_NS_TRandom_fast_(u32);
 }
