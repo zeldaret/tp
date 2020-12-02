@@ -75,7 +75,8 @@ extern u8 lbl_803BB4A8;
 extern u8 lbl_804539F8;
 extern u8 lbl_804539FC;
 extern u8 lbl_803BB498;
-
+extern float lbl_804550E8;
+extern float lbl_804550EC;
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
