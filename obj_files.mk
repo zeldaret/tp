@@ -428,7 +428,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JKernel/JKRSolidHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAssertHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRDisposer.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o    \
