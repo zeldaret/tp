@@ -397,7 +397,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JMessage/processor.o    \
             $(BUILD_DIR)/asm/JMessage/resource.o    \
             $(BUILD_DIR)/asm/JMessage/locale.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2Calc.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2Calc.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2AudioArcLoader.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \
@@ -412,6 +412,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObject.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObjMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2Creature.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2LinkMgr.o \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2LinkMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2EnvSeMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2WolfHowlMgr.o    \
