@@ -3,8 +3,7 @@
 #include "global.h"
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1568.s"
-JKRThread::JKRThread(u32 stack_size, int message_count, int param_3)
-    : __base(), __vt(&lbl_803CC114), thread_list_link(this) {
+JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : thread_list_link(this) {
     this->switch_count = 0;
     this->cost         = 0;
     this->field_0x6c   = 0;
@@ -21,8 +20,7 @@ JKRThread::JKRThread(u32 stack_size, int message_count, int param_3)
 }
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1610.s"
-JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4)
-    : __base(), __vt(&lbl_803CC114), thread_list_link(this) {
+JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4) : thread_list_link(this) {
     this->switch_count = 0;
     this->cost         = 0;
     this->field_0x6c   = 0;
@@ -129,8 +127,7 @@ asm void JKRThreadSwitch::callback(OSThread* param_1, OSThread* param_2) {
 #include "JSystem/JKernel/JKRThread/asm/func_802D1AE4.s"
 }
 
-asm void JKRThreadSwitch::draw(JKRThreadName_* param_1, JUTConsole* param_2) {
-    nofralloc
+asm void JKRThreadSwitch::draw(JKRThreadName_* param_1, JUTConsole* param_2){nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D1C74.s"
 }
 

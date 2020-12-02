@@ -1,3 +1,5 @@
+#include "JSystem/JSupport/JSUList/JSUList.h"
+
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
 extern int lbl_804061C0;
@@ -194,8 +196,9 @@ class Z2SeMgr;
 extern Z2SeMgr* lbl_80450B88; //Z2SeMgr sInstance
 class Z2SoundObjMgr;
 extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance
-extern void* lbl_803CC114[5]; // JKRThread::__vt
-extern u8 lbl_8043428C[12]; // JSUPtrList JKRThread::sThreadList
+extern void* lbl_803CC114; // JKRThread::__vt
+extern JSUPtrList lbl_8043428C;   // JSUPtrList JKRThread::sThreadList
+
 class JKRThreadSwitch;
 extern void* lbl_803CC100[5];         // JKRThreadSwitch::__vt
 extern u32 lbl_804513B4;              // JKRThreadSwitch::sTotalCount

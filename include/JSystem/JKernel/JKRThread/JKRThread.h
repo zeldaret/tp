@@ -2,9 +2,7 @@
 #define __JKRTHREAD_H__
 
 #include "dolphin/types.h"
-
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
-#include "JSystem/JKernel/JKRThread/JKRThread_vtable.h"
 
 struct OSThread {
     u8 unkn[0x318];
@@ -19,12 +17,12 @@ typedef void* OSMessage;
 class JKRThreadName_;
 class JUTConsole;
 class JKRHeap;
-class JKRThread {
+class JKRThread : JKRDisposer {
   public:
     JKRThread(u32 stack_size, int message_count, int param_3);
     JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4);
     JKRThread(OSThread* thread, int message_count);
-    ~JKRThread();
+    virtual ~JKRThread();
 
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
@@ -35,11 +33,6 @@ class JKRThread {
     u32 run();
 
   public:
-    union {
-        JKRDisposer __base;
-        _VTABLE_JKRThread* __vt;
-    };
-
     JSUPtrLink thread_list_link;
     JKRHeap* heap;
     OSThread* os_thread;
@@ -61,7 +54,7 @@ class JKRThread {
 class JKRThreadSwitch {
   public:
     JKRThreadSwitch(JKRHeap*);
-    ~JKRThreadSwitch();
+    virtual ~JKRThreadSwitch();
 
     static JKRThreadSwitch* createManager(JKRHeap* heap);
 
@@ -71,7 +64,6 @@ class JKRThreadSwitch {
     void draw(JKRThreadName_* param_1);
 
   public:
-    void** __vt;
     JKRHeap* heap;
     u8 field_0x8[4];
     u32 field_0xC[2];
