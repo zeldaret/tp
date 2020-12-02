@@ -1,6 +1,9 @@
 #include "dolphin/types.h"
-#define MAX_BOTTLES 4
-#define MAX_ITEM_SLOTS 24
+
+static const int MAX_ITEM_SLOTS = 24;
+static const int ITEM_XY_MAX_DUMMY = 8;
+static const int LIGHT_DROP_STAGE = 4;
+static const int LETTER_INFO_BIT = 64;
 
 enum Wallets {
     WALLET,
@@ -248,6 +251,9 @@ class dSv_player_item_c {
     void setWarashibeItem(u8);
     void setRodTypeLevelUp(void);
     void setBaitItem(u8);
+
+    static const int BOMB_BAG_MAX = 4;
+    static const int BOTTLE_MAX = 4;
 
    private:
     u8 items[24];
@@ -524,7 +530,7 @@ class dSv_danBit_c {
     bool isItem(int) const;
 
    private:
-    s8 unk0;
+    s8 mStageNum;
     u8 unk1;
     u8 unk2[2];
     u32 switch_bitfield[2];
@@ -559,11 +565,13 @@ class dSv_zoneBit_c {
 };
 
 class dSv_zoneActor_c {
-   public:
+   public: 
     void init(void);
     void on(int);
     void off(int);
     bool is(int) const;
+
+    static const int ACTOR_MAX = 0xFFFF;
 
    private:
     u32 actor_bitfield[4];
@@ -619,10 +627,10 @@ class dSv_save_c {
    public:
     void init(void);
     dSv_memory2_c* getSave2(int);
-    inline dSv_player_c& getPlayer() {
-        return player;
-    }
+    inline dSv_player_c& getPlayer() {return player; }
 
+    static const int STAGE_MAX = 4;
+   
    private:
     dSv_player_c player;
     u8 unk492[4];
