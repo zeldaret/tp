@@ -8,10 +8,11 @@ class JKRHeap;
 class JKRDisposer {
   public:
     JKRDisposer();
-    ~JKRDisposer();
+    virtual ~JKRDisposer();
+
+    virtual void callAllDisposer() = 0;
 
   public:
-    void** __vt;
     JKRHeap* heap;
     JSUPtrLink ptr_link;
 };

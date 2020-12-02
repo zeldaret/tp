@@ -6,11 +6,11 @@
 class JSUPtrList;
 class JSUPtrLink {
   public:
-    JSUPtrLink(void*);
+    JSUPtrLink(void* owner);
     ~JSUPtrLink();
 
   public:
-    void* unk0;
+    void* owner;
     JSUPtrList* list;
     JSUPtrLink* prev;
     JSUPtrLink* next;
@@ -35,13 +35,24 @@ class JSUPtrList {
     u32 length;
 };
 
-
 template <typename T>
 class JSUList : JSUPtrList {
   public:
-  JSUList() : JSUPtrList(true) {}
-  ~JSUList() {};
+    JSUList() : JSUPtrList(true) {
+    }
+    ~JSUList(){};
 
+    void append(T* value) {
+        list.append(&value->ptr_link);
+    }
+
+    void prepend(T* value) {
+        list.prepend(&value->ptr_link);
+    }
+
+    void remove(T* value) {
+        list.remove(&value->ptr_link);
+    }
 };
 
 #endif

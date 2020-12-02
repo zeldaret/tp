@@ -1,3 +1,5 @@
+#ifndef __JKRHEAP_H__
+#define __JKRHEAP_H__
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
@@ -6,11 +8,11 @@ typedef void (*JKRErrorHandler)(void*, unsigned long, int);
 class JKRHeap : JKRDisposer {
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
-    ~JKRHeap();
+    virtual ~JKRHeap();
 
     static bool initArena(char**, u32*, int);
-    void becomeSystemHeap();
-    void becomeCurrentHeap();
+    JKRHeap* becomeSystemHeap();
+    JKRHeap* becomeCurrentHeap();
     void destroy();
 
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
@@ -19,7 +21,6 @@ class JKRHeap : JKRDisposer {
     static void free(void* ptr, JKRHeap* heap);
     void free(void* ptr);
 
-    void callAllDisposer();
     void freeAll();
     void freeTail();
 
@@ -30,17 +31,17 @@ class JKRHeap : JKRDisposer {
     s32 getSize(void* ptr);
 
     s32 getFreeSize();
-    u32 getMaxFreeBlock();
-    u32 getTotalFreeSize();
+    s32 getMaxFreeBlock();
+    s32 getTotalFreeSize();
     u8 changeGroupID(u8 param_1);
-    u32 getMaxAllocatableSize(int alignment);
+    s32 getMaxAllocatableSize(int alignment);
 
     static JKRHeap* findFromRoot(void* ptr);
     JKRHeap* find(void* ptr) const;
     JKRHeap* findAllHeap(void* ptr) const;
 
     void dispose_subroutine(u32 begin, u32 end);
-    void dispose(void* ptr, u32 size);
+    bool dispose(void* ptr, u32 size);
     void dispose(void* begin, void* end);
     void dispose();
 
@@ -51,6 +52,29 @@ class JKRHeap : JKRDisposer {
     static JKRErrorHandler setErrorHandler(JKRErrorHandler param_1);
 
     bool isSubHeap(JKRHeap* heap) const;
+
+  protected:
+    void callAllDisposer();
+    virtual void vt_func4() = 0;
+    virtual void vt_func5() = 0;
+    virtual void dump_sort();
+    virtual void vt_func7()                         = 0;
+    virtual void do_destroy()                       = 0;
+    virtual void* do_alloc(u32 size, int alignment) = 0;
+    virtual void do_free(void* ptr)                 = 0;
+    virtual void do_freeAll()                       = 0;
+    virtual void do_freeTail()                      = 0;
+    virtual void vt_func13()                        = 0;
+    virtual s32 do_resize(void* ptr, u32 size)      = 0;
+    virtual s32 do_getSize(void* ptr)               = 0;
+    virtual s32 do_getFreeSize()                    = 0;
+    virtual s32 do_getMaxFreeBlock()                = 0;
+    virtual s32 do_getTotalFreeSize()               = 0;
+    virtual u8 do_changeGroupID(u8 param_1);
+    virtual void do_getCurrent();
+    virtual void state_register();
+    virtual void state_compare();
+    virtual void state_dump();
 
   public:
     u8 mutex[24];
@@ -64,8 +88,9 @@ class JKRHeap : JKRDisposer {
     JSUPtrList child_list;
     JSUPtrLink heap_link;
     JSUPtrList disposable_list;
-    bool error_handler;
+    bool error_flag;
     u8 field_0x69;
+    u8 field_0x6a[2];
 };
 
 void* operator new(u32 size);
@@ -78,3 +103,5 @@ void* operator new[](u32 size, JKRHeap* heap, int alignment);
 
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
+
+#endif
