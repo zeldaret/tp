@@ -1,5 +1,4 @@
-//#include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
-#include "global.h"
+#include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 
 void Z2CreatureLink::setLinkGroupInfo(u8 param1) {
     return;

@@ -68,7 +68,7 @@ lbl_802C382C:
 /* 802C3880 002C07C0  38 63 00 48 */	addi r3, r3, 0x48
 /* 802C3884 002C07C4  FC 20 F8 90 */	fmr f1, f31
 /* 802C3888 002C07C8  38 80 00 00 */	li r4, 0
-/* 802C388C 002C07CC  4B FD F5 29 */	bl JAISoundParamsMove_NS_moveVolume
+/* 802C388C 002C07CC  4B FD F5 29 */	bl moveVolume__18JAISoundParamsMoveFfUl
 lbl_802C3890:
 /* 802C3890 002C07D0  88 1F 00 CB */	lbz r0, 0xcb(r31)
 /* 802C3894 002C07D4  54 00 07 FF */	clrlwi. r0, r0, 0x1f

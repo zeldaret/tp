@@ -1,18 +1,6 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 
-// func_802B6840
-extern Z2SceneMgr* lbl_80450B80; // Z2SceneMgr sInstance
 
-// func_802B68B0
-extern Z2SoundMgr* lbl_80450B60; // Z2SoundMgr sInstance
-
-extern void* lbl_80450B84; //Z2SeqMgr sInstance
-
-extern void* lbl_80450B7C; //Z2StatusMgr sInstance
-
-extern Z2SeMgr* lbl_80450B88; //Z2SeMgr sInstance
-
-extern void* lbl_80450B48; //Z2SoundObjMgr sInstance
 
 //Missing 2 instructions (beginning and end)
 #ifdef NONMATCHING
