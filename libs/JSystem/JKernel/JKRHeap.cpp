@@ -207,9 +207,31 @@ asm JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE93C.s"
 }
 
-asm void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE9E4.s"
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE9E4.s"
+void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
+    JSUListIterator<JKRDisposer> last_iterator;
+    JSUListIterator<JKRDisposer> next_iterator;
+    JSUListIterator<JKRDisposer> iterator;
+    for (iterator = this->mDisposerList.getFirst(); 
+        iterator != this->mDisposerList.getEnd();
+        iterator = next_iterator) 
+    {
+         JKRDisposer* disposer = iterator.getObject();
+
+        if ((void*)begin <= disposer && disposer < (void*)end) {
+            disposer->~JKRDisposer();
+            if(last_iterator == NULL) {
+                next_iterator = this->mDisposerList.getFirst();
+            } else {
+                next_iterator = last_iterator;
+                next_iterator++;
+            }
+        } else {
+            last_iterator = iterator;
+            next_iterator = iterator;
+            next_iterator++;
+        } 
+    }
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEA78.s"
