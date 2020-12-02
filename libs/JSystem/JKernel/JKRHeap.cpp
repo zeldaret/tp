@@ -1,36 +1,20 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
-/*
-Very close! When initialzing child_list(true) it will use less register then the asm code. 
--  2cb0b0:      3b 5f 00 40     addi    r26,r31,64
--  2cb0b4:      7f 43 d3 78     mr      r3,r26
--  2cb0b8:      48 00 dd 9d     bl      0x2d8e54
--  2cb0bc:      38 7a 00 0c     addi    r3,r26,12
-
-+  2cb0b0:      38 7f 00 40     addi    r3,r31,64
-+  2cb0b4:      38 80 00 01     li      r4,1
-+  2cb0b8:      48 00 dd 01     bl      0x2d8db8
-+  2cb0bc:      38 7f 00 4c     addi    r3,r31,76
-*/
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
-    : JKRDisposer(), child_list(true), heap_link(this), disposable_list(true) {
+    : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(this->mutex);
-    this->size  = size;
-    this->begin = (u32)data;
-    this->end   = (u32)data + size;
+    this->mSize  = size;
+    this->mBegin = (u32)data;
+    this->mEnd   = (u32)data + size;
 
     if (parent == NULL) {
         this->becomeSystemHeap();
         this->becomeCurrentHeap();
     } else {
-        JSUPtrLink* ptr = (JSUPtrLink*)&this->child_list;
-        if (ptr != NULL) {
-            ptr = &this->heap_link;
-        }
+        parent->mChildTree.appendChild(&this->mChildTree);
 
-        parent->child_list.append(ptr);
         if (lbl_80451370 == lbl_80451378) {
             this->becomeSystemHeap();
         }
@@ -39,8 +23,8 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
         }
     }
 
-    this->error_flag = error_flag;
-    if ((this->error_flag == true) && (lbl_8045137C == NULL)) {
+    this->mErrorFlag = error_flag;
+    if ((this->mErrorFlag == true) && (lbl_8045137C == NULL)) {
         lbl_8045137C = JKRHeap::JKRDefaultMemoryErrorRoutine;
     }
 
@@ -48,12 +32,6 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
     this->field_0x3d = lbl_80451380[0];
     this->field_0x69 = 0;
 }
-#else
-asm JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag) {
-    nofralloc
-#include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
-}
-#endif
 
 asm JKRHeap::~JKRHeap() {
     nofralloc
@@ -202,9 +180,8 @@ u8 JKRHeap::changeGroupID(u8 param_1) {
     return this->do_changeGroupID(param_1);
 }
 
-asm s32 JKRHeap::getMaxAllocatableSize(int alignment) {
-    nofralloc
-    #include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
+asm s32 JKRHeap::getMaxAllocatableSize(int alignment){nofralloc
+#include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE83C.s"
@@ -213,7 +190,7 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
         return (JKRHeap*)NULL;
     }
 
-    if (((void*)lbl_80451378->begin <= ptr) && (ptr < (void*)lbl_80451378->end)) {
+    if (lbl_80451378->begin() <= ptr && ptr < lbl_80451378->end()) {
         return lbl_80451378->find(ptr);
     }
 

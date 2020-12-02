@@ -3,10 +3,10 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
 // #include "JSystem/JKernel/asm/func_802D147C.s"
-JKRDisposer::JKRDisposer() : ptr_link(this) {
-    this->heap = JKRHeap::findFromRoot(this);
-    if (this->heap != 0) {
-        this->heap->disposable_list.append(&this->ptr_link);
+JKRDisposer::JKRDisposer() : mLink(this) {
+    this->mHeap = JKRHeap::findFromRoot(this);
+    if (this->mHeap) {
+      this->mHeap->appendDisposer(this);
     }
 }
 
@@ -25,9 +25,9 @@ Maybe we are using the wrong compiler?
 */
 #ifdef NONMATCHING
 JKRDisposer::~JKRDisposer() {
-  JKRHeap* heap = this->heap;
-  if (heap != 0) {
-    heap->disposable_list.remove(&this->ptr_link);
+  JKRHeap* heap = this->mHeap;
+  if (heap) {
+    heap->removeDisposer(this);
   }
 }
 #else

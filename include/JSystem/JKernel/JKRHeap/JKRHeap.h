@@ -53,6 +53,26 @@ class JKRHeap : JKRDisposer {
 
     bool isSubHeap(JKRHeap* heap) const;
 
+    void* begin() const {
+        return (void*)mBegin;
+    }
+
+    void* end() const {
+        return (void*)mEnd;
+    }
+
+    u32 size() const {
+        return mSize;
+    }
+
+    void appendDisposer(JKRDisposer* disposer) {
+        mDisposerList.append(&disposer->mLink);
+    }
+
+    void removeDisposer(JKRDisposer* disposer) {
+        mDisposerList.remove(&disposer->mLink);
+    }
+
   protected:
     void callAllDisposer();
     virtual void vt_func4() = 0;
@@ -78,17 +98,16 @@ class JKRHeap : JKRDisposer {
 
   public:
     u8 mutex[24];
-    u32 begin;
-    u32 end;
-    u32 size;
+    u32 mBegin;
+    u32 mEnd;
+    u32 mSize;
     u8 field_0x3c;
     u8 field_0x3d;
     u8 field_0x3e;
     u8 field_0x3f;
-    JSUPtrList child_list;
-    JSUPtrLink heap_link;
-    JSUPtrList disposable_list;
-    bool error_flag;
+    JSUTree<JKRHeap> mChildTree;
+    JSUList<JKRDisposer> mDisposerList;
+    bool mErrorFlag;
     u8 field_0x69;
     u8 field_0x6a[2];
 };
