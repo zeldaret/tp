@@ -4,13 +4,11 @@
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
-#include "JSystem/JKernel/JKRHeap/JKRHeap_vtable.h"
-
 typedef void (*JKRErrorHandler)(void*, unsigned long, int);
-class JKRHeap {
+class JKRHeap : JKRDisposer {
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
-    ~JKRHeap();
+    virtual ~JKRHeap();
 
     static bool initArena(char**, u32*, int);
     JKRHeap* becomeSystemHeap();
@@ -23,7 +21,6 @@ class JKRHeap {
     static void free(void* ptr, JKRHeap* heap);
     void free(void* ptr);
 
-    void callAllDisposer();
     void freeAll();
     void freeTail();
 
@@ -56,12 +53,30 @@ class JKRHeap {
 
     bool isSubHeap(JKRHeap* heap) const;
 
-  public:
-      union {
-        JKRDisposer __base;
-        _VTABLE_JKRHeap* __vt;
-    };
+  protected:
+    void callAllDisposer();
+    virtual void vt_func4() = 0;
+    virtual void vt_func5() = 0;
+    virtual void dump_sort();
+    virtual void vt_func7()                         = 0;
+    virtual void do_destroy()                       = 0;
+    virtual void* do_alloc(u32 size, int alignment) = 0;
+    virtual void do_free(void* ptr)                 = 0;
+    virtual void do_freeAll()                       = 0;
+    virtual void do_freeTail()                      = 0;
+    virtual void vt_func13()                        = 0;
+    virtual s32 do_resize(void* ptr, u32 size)      = 0;
+    virtual s32 do_getSize(void* ptr)               = 0;
+    virtual s32 do_getFreeSize()                    = 0;
+    virtual s32 do_getMaxFreeBlock()                = 0;
+    virtual s32 do_getTotalFreeSize()               = 0;
+    virtual u8 do_changeGroupID(u8 param_1);
+    virtual void do_getCurrent();
+    virtual void state_register();
+    virtual void state_compare();
+    virtual void state_dump();
 
+  public:
     u8 mutex[24];
     u32 begin;
     u32 end;
@@ -75,7 +90,7 @@ class JKRHeap {
     JSUPtrList disposable_list;
     bool error_flag;
     u8 field_0x69;
-    u8 field_0x6a[4];
+    u8 field_0x6a[2];
 };
 
 void* operator new(u32 size);

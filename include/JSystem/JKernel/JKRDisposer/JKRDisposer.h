@@ -3,16 +3,16 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"
-#include "JSystem/JKernel/JKRDisposer/JKRDisposer_vtable.h"
 
 class JKRHeap;
 class JKRDisposer {
   public:
     JKRDisposer();
-    ~JKRDisposer();
+    virtual ~JKRDisposer();
+
+    virtual void callAllDisposer() = 0;
 
   public:
-    _VTABLE_JKRDisposer* __vt;
     JKRHeap* heap;
     JSUPtrLink ptr_link;
 };

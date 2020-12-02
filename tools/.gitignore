@@ -1,3 +1,4 @@
 # Build artifacts
 *.exe
 elf2dol
+vtable.lcf
