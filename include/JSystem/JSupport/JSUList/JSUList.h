@@ -183,7 +183,7 @@ class JSUListIterator {
     }
 
     T& operator*() {
-        return this->getObject();
+        return *this->getObject();
     }
 
     T* operator->() {
@@ -306,7 +306,7 @@ class JSUTreeIterator {
     }
 
     T& operator*() {
-        return this->getObject();
+        return *this->getObject();
     }
 
     T* operator->() {
