@@ -37,29 +37,27 @@ class JSUPtrLink {
 };
 
 template <typename T>
-class JSULink {
+class JSULink : protected JSUPtrLink {
   public:
-    JSULink(T* object) : mLink((void*)object) {
+    JSULink(T* object) : JSUPtrLink((void*)object) {
     }
+    ~JSULink() {};
 
     T* getObject() const {
-        return (T*)mLink.getObjectPtr();
+        return (T*)getObjectPtr();
     }
 
     JSUPtrList* getList() const {
-        return mLink.getList();
+        return getList();
     }
 
     JSULink<T>* getNext() const {
-        return (JSULink<T>*)mLink.getNext();
+        return (JSULink<T>*)getNext();
     }
 
     JSULink<T>* getPrev() const {
-        return (JSULink<T>*)mLink.getPrev();
+        return (JSULink<T>*)getPrev();
     }
-
-  private:
-    JSUPtrLink mLink;
 };
 
 //
@@ -86,7 +84,7 @@ class JSUPtrList {
     JSUPtrLink* getFirstLink() const {
         return mHead;
     }
-    
+
     JSUPtrLink* getLastLink() const {
         return mTail;
     }
@@ -102,36 +100,36 @@ class JSUPtrList {
 };
 
 template <typename T>
-class JSUList {
+class JSUList : protected JSUPtrList {
   public:
-    JSUList() : mList() {
+    JSUList() : JSUPtrList() {
     }
 
-    JSUList(bool init) : mList(init) {
+    JSUList(bool init) : JSUPtrList(init) {
     }
 
     bool append(JSULink<T>* link) {
-        return mList.append((JSUPtrLink*)link);
+        return this->JSUPtrList::append((JSUPtrLink*)link);
     }
 
     bool prepend(JSULink<T>* link) {
-        return mList.prepend((JSUPtrLink*)link);
+        return this->JSUPtrList::prepend((JSUPtrLink*)link);
     }
 
     bool insert(JSULink<T>* before, JSULink<T>* link) {
-        return mList.append((JSUPtrLink*)before, (JSUPtrLink*)link);
+        return this->JSUPtrList::insert((JSUPtrLink*)before, (JSUPtrLink*)link);
     }
 
     bool remove(JSULink<T>* link) {
-        return mList.remove((JSUPtrLink*)link);
+        return this->JSUPtrList::remove((JSUPtrLink*)link);
     }
 
     JSULink<T>* getFirst() const {
-        return (JSULink<T>*)mList.getFirstLink();
+        return (JSULink<T>*)getFirstLink();
     }
 
     JSULink<T>* getLast() const {
-        return (JSULink<T>*)mList.getLastLink();
+        return (JSULink<T>*)getLastLink();
     }
 
     JSULink<T>* getEnd() const {
@@ -139,11 +137,8 @@ class JSUList {
     }
 
     u32 getNumLinks() const {
-        return mList.getNumLinks();
+        return this->JSUPtrList::getNumLinks();
     }
-
-  private:
-    JSUPtrList mList;
 };
 
 template <typename T>
@@ -271,7 +266,7 @@ class JSUTree {
     }
 
     JSUTree<T>* getParent() const {
-        return (JSUTree<T>*)this->mList.getList();
+        return (JSUTree<T>*)this->mLink.getList();
     }
 
   private:

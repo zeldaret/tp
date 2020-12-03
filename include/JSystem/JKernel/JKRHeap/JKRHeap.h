@@ -31,7 +31,7 @@ class JKRHeap : JKRDisposer {
     s32 getSize(void* ptr);
 
     s32 getFreeSize();
-    s32 getMaxFreeBlock();
+    void* getMaxFreeBlock();
     s32 getTotalFreeSize();
     u8 changeGroupID(u8 param_1);
     s32 getMaxAllocatableSize(int alignment);
@@ -96,7 +96,7 @@ class JKRHeap : JKRDisposer {
     virtual s32 do_resize(void* ptr, u32 size)      = 0;
     virtual s32 do_getSize(void* ptr)               = 0;
     virtual s32 do_getFreeSize()                    = 0;
-    virtual s32 do_getMaxFreeBlock()                = 0;
+    virtual void* do_getMaxFreeBlock()                = 0;
     virtual s32 do_getTotalFreeSize()               = 0;
     virtual u8 do_changeGroupID(u8 param_1);
     virtual void do_getCurrent();
