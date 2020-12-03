@@ -37,26 +37,21 @@ class JSUPtrLink {
 };
 
 template <typename T>
-class JSULink : protected JSUPtrLink {
+class JSULink : public JSUPtrLink {
   public:
     JSULink(T* object) : JSUPtrLink((void*)object) {
     }
-    ~JSULink() {};
 
     T* getObject() const {
         return (T*)getObjectPtr();
     }
 
-    JSUPtrList* getList() const {
-        return getList();
-    }
-
     JSULink<T>* getNext() const {
-        return (JSULink<T>*)getNext();
+        return (JSULink<T>*)this->JSUPtrLink::getNext();
     }
 
     JSULink<T>* getPrev() const {
-        return (JSULink<T>*)getPrev();
+        return (JSULink<T>*)this->JSUPtrLink::getPrev();
     }
 };
 
