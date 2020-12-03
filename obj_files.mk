@@ -95,7 +95,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/a/itembase/d_a_itembase_static.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_item_static.o    \
             $(BUILD_DIR)/asm/d/a/shop/item/d_a_shop_item_static.o    \
-            $(BUILD_DIR)/asm/d/a/horse/d_a_horse_static.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_horse_static.o    \
             $(BUILD_DIR)/asm/d/d_demo.o    \
             $(BUILD_DIR)/asm/d/door/d_door_param2.o    \
             $(BUILD_DIR)/asm/d/d_resorce.o    \
