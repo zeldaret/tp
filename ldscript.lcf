@@ -774,6 +774,9 @@ FORCEACTIVE {
  deleteObject__14Z2CreatureLinkFv
  framework__14Z2CreatureLinkFUlSc
  startCollisionSE__14Z2CreatureLinkFUlUl
+ startCtrl__8daItem_cFv
+ startControl__8daItem_cFv
+ endControl__8daItem_cFv
 }
 /*
 .init 80003100 - 80005600
