@@ -109,7 +109,7 @@ extern "C" {
     void getTotalUsedSize__10JKRExpHeapCFv(void);
     void HeapCheck_NS_getUsedCount(void);
     void CheckHeap1__9HeapCheckFv(void);
-    void JUTException_NS_panic_f(void);
+    void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
     void Debug_console__FUl(void);
     void debugDisplay__Fv(void);
     void CheckHeap__FUl(void);

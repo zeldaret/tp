@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
-typedef void (*JKRErrorHandler)(void*, unsigned long, int);
+typedef void (*JKRErrorHandler)(void*, u32, int);
 class JKRHeap : JKRDisposer {
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
@@ -46,23 +46,31 @@ class JKRHeap : JKRDisposer {
     void dispose();
 
     static void copyMemory(void* dst, void* src, u32 size);
-    static void JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment);
+    static void fillMemory(void* dst, u32 size, u8 value); // NOTE: never used
+    static bool checkMemoryFilled(void* src, u32 size, u8 value);
+
 
     bool setErrorFlag(bool param_1);
-    static JKRErrorHandler setErrorHandler(JKRErrorHandler param_1);
+    static void JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment);
+    static JKRErrorHandler setErrorHandler(JKRErrorHandler error_handler);
+
 
     bool isSubHeap(JKRHeap* heap) const;
 
-    void* begin() const {
+    void* getBegin() const {
         return (void*)mBegin;
     }
 
-    void* end() const {
+    void* getEnd() const {
         return (void*)mEnd;
     }
 
-    u32 size() const {
+    u32 getSize() const {
         return mSize;
+    }
+
+    JSUTree<JKRHeap>& getHeapTree() {
+      return this->mChildTree;
     }
 
     void appendDisposer(JKRDisposer* disposer) {
