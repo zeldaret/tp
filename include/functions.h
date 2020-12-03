@@ -348,3 +348,9 @@ extern "C" {
     void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
     void JMath_NS_TRandom_fast_(void);
 }
+
+// d_a_horse_static
+extern "C"{
+    void Z2CreatureRide_NS_setLinkRiding(void);
+    void checkDownDamage__10e_wb_classFv(void);
+}
