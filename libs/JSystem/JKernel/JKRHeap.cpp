@@ -244,6 +244,7 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
     return lbl_80451378->findAllHeap(ptr);
 }
 
+#ifdef NONMATCHING
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE894.s"
 JKRHeap* JKRHeap::find(void* ptr) const {
     if ((void*)this->mBegin <= ptr && ptr < (void*)this->mEnd) {
@@ -264,7 +265,14 @@ JKRHeap* JKRHeap::find(void* ptr) const {
 
     return NULL;
 }
+#else
+asm JKRHeap* JKRHeap::find(void* ptr) const {
+    nofralloc
+    #include "JSystem/JKernel/JKRHeap/asm/func_802CE894.s"
+}
+#endif
 
+#ifdef NONMATCHING
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE93C.s"
 JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
     const JSUTree<JKRHeap>& tree = this->mChildTree;
@@ -287,7 +295,14 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
 
     return NULL;
 }
+#else
+asm JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
+    nofralloc
+    #include "JSystem/JKernel/JKRHeap/asm/func_802CE93C.s"
+}
+#endif
 
+#ifdef NONMATCHING
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE9E4.s"
 void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
     JSUListIterator<JKRDisposer> last_iterator;
@@ -312,6 +327,12 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
         }
     }
 }
+#else
+asm void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
+    nofralloc
+    #include "JSystem/JKernel/JKRHeap/asm/func_802CE9E4.s"
+}
+#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEA78.s"
 bool JKRHeap::dispose(void* ptr, u32 size) {
@@ -386,6 +407,7 @@ JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler error_handler) {
     return prev;
 }
 
+#ifdef NONMATCHING
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEBA8.s"
 bool JKRHeap::isSubHeap(JKRHeap* heap) const {
     if (!heap) return false;
@@ -408,6 +430,12 @@ bool JKRHeap::isSubHeap(JKRHeap* heap) const {
 
     return false;
 }
+#else
+asm bool JKRHeap::isSubHeap(JKRHeap* heap) const {
+    nofralloc
+    #include "JSystem/JKernel/JKRHeap/asm/func_802CEBA8.s"
+}
+#endif
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEC4C.s"
 void* operator new(u32 size) {

@@ -41,6 +41,7 @@ class JSULink : public JSUPtrLink {
   public:
     JSULink(T* object) : JSUPtrLink((void*)object) {
     }
+    ~JSULink() {};
 
     T* getObject() const {
         return (T*)getObjectPtr();
