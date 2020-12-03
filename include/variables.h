@@ -89,6 +89,7 @@ extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
 extern void* lbl_8045137C; // JKRHeap::mErrorHandler
 
+
 extern u8 lbl_804508B0[8]; // ::*fill*
 extern u8 lbl_80451380[4]; // DAT_80451380
 
@@ -127,8 +128,6 @@ extern u8 lbl_803CAD10[0x20];
 extern u32 lbl_80450B44;
 
 // func_80450B88
-extern u32 lbl_80450B88;
-extern u32 lbl_80450B7C;
 extern u32 lbl_80455C98;
 extern u32 lbl_80455C9C;
 extern u8 lbl_80455CA0[8];
@@ -142,10 +141,8 @@ extern u32 lbl_80455CC0;
 
 // func_802C3AFC
 extern u32 lbl_80450B40;
-extern u32 lbl_80450B48;
 
 // func_802C3BD4
-extern u32 lbl_80450B84;
 extern u8 lbl_80455CE0[8];
 extern u32 lbl_80455CC4;
 extern u32 lbl_80455CC8;
@@ -181,4 +178,18 @@ extern u32 lbl_80455834;
 // func_802A98D4
 extern u32 lbl_80451330;
 extern u32 lbl_80451334;
-extern u32 lbl_80450B80;
+
+
+//Z2SoundLib SInstance
+class Z2SceneMgr;
+extern Z2SceneMgr* lbl_80450B80; // Z2SceneMgr sInstance
+class Z2SoundMgr;
+extern Z2SoundMgr* lbl_80450B60; // Z2SoundMgr sInstance
+class Z2SeqMgr;
+extern Z2SeqMgr* lbl_80450B84; //Z2SeqMgr sInstance
+class Z2StatusMgr;
+extern Z2StatusMgr* lbl_80450B7C; //Z2StatusMgr sInstance
+class Z2SeMgr;
+extern Z2SeMgr* lbl_80450B88; //Z2SeMgr sInstance
+class Z2SoundObjMgr;
+extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance

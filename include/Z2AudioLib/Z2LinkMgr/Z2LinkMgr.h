@@ -1,4 +1,4 @@
-#include "dolphin/types.h"
+#include "global.h"
 
 struct Vec{ // move later
     float x, y, z;

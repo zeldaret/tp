@@ -1,4 +1,4 @@
-#include "dolphin/types.h"
+#include "global.h"
 
 namespace Z2Calc{
 struct CurveSign{
