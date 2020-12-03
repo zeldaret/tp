@@ -405,6 +405,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeqMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2StatusMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2FxLineMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundInfo.o    \

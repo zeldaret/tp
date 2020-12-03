@@ -10,7 +10,7 @@ JStudio_JAudio2_NS__unnamed_object_sound_cpp__NS_setValue_VOLUME_:
 /* 8028D730 0028A670  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028D734 0028A674  38 80 00 00 */	li r4, 0
 /* 8028D738 0028A678  38 63 00 48 */	addi r3, r3, 0x48
-/* 8028D73C 0028A67C  48 01 56 79 */	bl JAISoundParamsMove_NS_moveVolume
+/* 8028D73C 0028A67C  48 01 56 79 */	bl moveVolume__18JAISoundParamsMoveFfUl
 /* 8028D740 0028A680  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028D744 0028A684  7C 08 03 A6 */	mtlr r0
 /* 8028D748 0028A688  38 21 00 10 */	addi r1, r1, 0x10
