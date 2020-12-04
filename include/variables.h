@@ -213,4 +213,8 @@ extern float lbl_80455FC0; // JKernel::@934 = 100.0
 extern float lbl_80455FC4; // JKernel::@935 = 1000.0
 extern double lbl_80455FC8; // JKernel::@937 = 4.503599627370496E15
 
-
+extern u8 lbl_8043436C;
+extern u8 lbl_803CC438;
+extern u8 lbl_80434360;
+extern u8 lbl_8039D260;
+extern u8 lbl_803CC328;

@@ -171,6 +171,8 @@ extern "C" {
 
     void func_803621CC(void);
     void VIWaitForRetrace(void);
+    void func_80361C24(void);
+
 }
 
 // OS
@@ -179,6 +181,8 @@ struct OSMessageQueue;
 typedef void* OSMessage;
 extern "C" {
     void OSInitMutex(u8[24]);
+    void OSLockMutex(void);
+    void OSUnlockMutex(void);
     void OSEnableScheduler(void);
     void OSDisableScheduler(void);
     void OSCheckActiveThreads(void);
@@ -212,6 +216,8 @@ extern "C" {
     bool OSIsThreadTerminated(OSThread* thread);
     void OSInitMessageQueue(OSMessageQueue *queue, OSMessage* messages, int message_count);
     void OSSetSwitchThreadCallback(void);
+    void OSReceiveMessage(void);
+    void OSSendMessage(void);
 }
 
 // DVD
@@ -220,6 +226,10 @@ extern "C" {
     void DVDReadPrio(void);
     void DVDOpen(void);
     void DVDGetCurrentDiskID(void);
+    void DVDClose(void);
+    void DVDFastOpen(void);
+    void DVDGetCommandBlockStatus(void);
+    void DVDReadAsyncPrio(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -433,4 +443,21 @@ extern "C" {
     void run__9JKRThreadFv(void);
     void draw__15JKRThreadSwitchFP14JKRThreadName_(void);
     void __dt__15JKRThreadSwitchFv(void);
+}
+
+// JSystem/JKernel/JKRDvdFile
+extern "C" {
+    void __ct__10JKRDvdFileFPCc(void);
+    void __ct__10JKRDvdFileFl(void);
+    void __ct__10JKRDvdFileFv(void);
+    void __dt__10JKRDvdFileFv(void);
+    void close__10JKRDvdFileFv(void);
+    void doneProcess__10JKRDvdFileFlP11DVDFileInfo(void);
+    void getFileSize__10JKRDvdFileCFv(void);
+    void initiate__10JKRDvdFileFv(void);
+    void open__10JKRDvdFileFPCc(void);
+    void open__10JKRDvdFileFl(void);
+    void readData__10JKRDvdFileFPvll(void);
+    void sync__10JKRDvdFileFv(void);
+    void writeData__10JKRDvdFileFPCvll(void);
 }

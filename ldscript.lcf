@@ -791,6 +791,10 @@ FORCEACTIVE {
  draw__15JKRThreadSwitchFP14JKRThreadName_
  __dt__15JKRThreadSwitchFv
  __sinit_JKRThread_cpp
+ close__10JKRDvdFileFv
+getFileSize__10JKRDvdFileCFv
+readData__10JKRDvdFileFPvll
+writeData__10JKRDvdFileFPCvll
 }
 /*
 .init 80003100 - 80005600
