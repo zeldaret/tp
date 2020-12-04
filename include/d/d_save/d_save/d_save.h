@@ -1,3 +1,6 @@
+#ifndef D_SAVE_H_
+#define D_SAVE_H_
+
 #include "dolphin/types.h"
 #define MAX_BOTTLES 4
 #define MAX_ITEM_SLOTS 24
@@ -409,10 +412,10 @@ class dSv_player_config_c {
 class dSv_player_c {
    public:
     void init(void);
-    inline dSv_player_info_c& getPlayerInfo() {
+    dSv_player_info_c& getPlayerInfo() {
         return player_info;
     }
-    inline dSv_player_status_a_c getPlayerStatusA() {
+    dSv_player_status_a_c getPlayerStatusA() {
         return player_status_a;
     }
 
@@ -662,3 +665,5 @@ class dSv_info_c {
     dSv_event_c events;
     dSv_turnRestart_c turn_restart;
 };
+
+#endif
