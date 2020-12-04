@@ -1,4 +1,4 @@
-/* mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection JKRArchive::mount(void *, JKRHeap *, JKRArchive::EMountDirection) */
+/* mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::mount(void *, JKRHeap *, __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::EMountDirection) */
 /* JKRArchive_NS_mount_X1_ */
 /* 802D5840 002D2780  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5844 002D2784  7C 08 02 A6 */	mflr r0

@@ -1,4 +1,4 @@
-/* getFirstFile__10JKRArchiveCFPCc JKRArchive::getFirstFile( const(char const *)) */
+/* getFirstFile__10JKRArchiveCFPCc __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getFirstFile( const(char const *)) */
 /* missing reference */
 /* 802D61B0 002D30F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D61B4 002D30F4  7C 08 02 A6 */	mflr r0
@@ -16,12 +16,12 @@
 lbl_802D61E4:
 /* 802D61E4 002D3124  7F C3 F3 78 */	mr r3, r30
 /* 802D61E8 002D3128  38 A0 00 00 */	li r5, 0
-/* 802D61EC 002D312C  48 00 02 31 */	bl JKRArchive_NS_findDirectory
+/* 802D61EC 002D312C  48 00 02 31 */	bl findDirectory__10JKRArchiveCFPCcUl
 /* 802D61F0 002D3130  7C 7F 1B 78 */	mr r31, r3
 /* 802D61F4 002D3134  48 00 00 10 */	b lbl_802D6204
 lbl_802D61F8:
 /* 802D61F8 002D3138  80 AD 8E A0 */	lwz r5, lbl_80451420-_SDA_BASE_(r13)
-/* 802D61FC 002D313C  48 00 02 21 */	bl JKRArchive_NS_findDirectory
+/* 802D61FC 002D313C  48 00 02 21 */	bl findDirectory__10JKRArchiveCFPCcUl
 /* 802D6200 002D3140  7C 7F 1B 78 */	mr r31, r3
 lbl_802D6204:
 /* 802D6204 002D3144  28 1F 00 00 */	cmplwi r31, 0

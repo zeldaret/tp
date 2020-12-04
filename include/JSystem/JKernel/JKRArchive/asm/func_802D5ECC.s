@@ -1,4 +1,4 @@
-/* readIdxResource__10JKRArchiveFPvUlUl JKRArchive::readIdxResource(void *, unsigned long, unsigned long) */
+/* readIdxResource__10JKRArchiveFPvUlUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::readIdxResource(void *, unsigned long, unsigned long) */
 /* JKRArchive_NS_readIdxResource */
 /* 802D5ECC 002D2E0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5ED0 002D2E10  7C 08 02 A6 */	mflr r0
@@ -9,7 +9,7 @@
 /* 802D5EE4 002D2E24  7C 9E 23 78 */	mr r30, r4
 /* 802D5EE8 002D2E28  7C BF 2B 78 */	mr r31, r5
 /* 802D5EEC 002D2E2C  7C C4 33 78 */	mr r4, r6
-/* 802D5EF0 002D2E30  48 00 07 95 */	bl JKRArchive_NS_findIdxResource
+/* 802D5EF0 002D2E30  48 00 07 95 */	bl findIdxResource__10JKRArchiveCFUl
 /* 802D5EF4 002D2E34  7C 66 1B 79 */	or. r6, r3, r3
 /* 802D5EF8 002D2E38  41 82 00 2C */	beq lbl_802D5F24
 /* 802D5EFC 002D2E3C  7F A3 EB 78 */	mr r3, r29

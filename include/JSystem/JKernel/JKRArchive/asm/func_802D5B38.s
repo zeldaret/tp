@@ -1,4 +1,4 @@
-/* getGlbResource__10JKRArchiveFUlPCcP10JKRArchive JKRArchive::getGlbResource(unsigned long, char const *, JKRArchive *) */
+/* getGlbResource__10JKRArchiveFUlPCcP10JKRArchive __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getGlbResource(unsigned long, char const *, JKRArchive *) */
 /* JKRArchive_NS_getGlbResource */
 /* 802D5B38 002D2A78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5B3C 002D2A7C  7C 08 02 A6 */	mflr r0

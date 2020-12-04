@@ -1,4 +1,4 @@
-/* check_mount_already__10JKRArchiveFlP7JKRHeap JKRArchive::check_mount_already(long, JKRHeap *) */
+/* check_mount_already__10JKRArchiveFlP7JKRHeap __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::check_mount_already(long, JKRHeap *) */
 /* JKRArchive_NS_check_mount_already */
 /* 802D5778 002D26B8  28 04 00 00 */	cmplwi r4, 0
 /* 802D577C 002D26BC  40 82 00 08 */	bne lbl_802D5784

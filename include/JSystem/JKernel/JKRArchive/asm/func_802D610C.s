@@ -1,4 +1,4 @@
-/* countResource__10JKRArchiveCFv JKRArchive::countResource( const(void)) */
+/* countResource__10JKRArchiveCFv __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::countResource( const(void)) */
 /* JKRArchive_NS_countResource */
 /* 802D610C 002D304C  38 C0 00 00 */	li r6, 0
 /* 802D6110 002D3050  38 80 00 00 */	li r4, 0

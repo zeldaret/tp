@@ -1,4 +1,4 @@
-/* becomeCurrent__10JKRArchiveFPCc JKRArchive::becomeCurrent(char const *) */
+/* becomeCurrent__10JKRArchiveFPCc __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::becomeCurrent(char const *) */
 /* missing reference */
 /* 802D5A38 002D2978  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5A3C 002D297C  7C 08 02 A6 */	mflr r0
@@ -15,11 +15,11 @@
 lbl_802D5A68:
 /* 802D5A68 002D29A8  7F E3 FB 78 */	mr r3, r31
 /* 802D5A6C 002D29AC  38 A0 00 00 */	li r5, 0
-/* 802D5A70 002D29B0  48 00 09 AD */	bl JKRArchive_NS_findDirectory
+/* 802D5A70 002D29B0  48 00 09 AD */	bl findDirectory__10JKRArchiveCFPCcUl
 /* 802D5A74 002D29B4  48 00 00 0C */	b lbl_802D5A80
 lbl_802D5A78:
 /* 802D5A78 002D29B8  80 AD 8E A0 */	lwz r5, lbl_80451420-_SDA_BASE_(r13)
-/* 802D5A7C 002D29BC  48 00 09 A1 */	bl JKRArchive_NS_findDirectory
+/* 802D5A7C 002D29BC  48 00 09 A1 */	bl findDirectory__10JKRArchiveCFPCcUl
 lbl_802D5A80:
 /* 802D5A80 002D29C0  30 03 FF FF */	addic r0, r3, -1
 /* 802D5A84 002D29C4  7C 80 19 10 */	subfe r4, r0, r3

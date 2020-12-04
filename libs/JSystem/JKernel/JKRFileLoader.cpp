@@ -16,27 +16,27 @@ asm void JKRFileLoader::unmount(void) {
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D41D4.s"
 }
 
-asm void JKRFileLoader::getGlbResource(char const *) {
+asm void* JKRFileLoader::getGlbResource(char const *) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D4224.s"
 }
 
-asm void JKRFileLoader::getGlbResource(char const *, JKRFileLoader *) {
+asm void* JKRFileLoader::getGlbResource(char const *, JKRFileLoader *) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D4270.s"
 }
 
-asm void JKRFileLoader::removeResource(void *, JKRFileLoader *) {
+asm bool JKRFileLoader::removeResource(void *, JKRFileLoader *) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D4308.s"
 }
 
-asm void JKRFileLoader::detachResource(void *, JKRFileLoader *) {
+asm bool JKRFileLoader::detachResource(void *, JKRFileLoader *) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D43A0.s"
 }
 
-asm void JKRFileLoader::findVolume(char const **) {
+asm JKRFileLoader* JKRFileLoader::findVolume(char const **) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D4438.s"
 }

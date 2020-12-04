@@ -1,4 +1,4 @@
-/* mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection JKRArchive::mount(long, JKRArchive::EMountMode, JKRHeap *, JKRArchive::EMountDirection) */
+/* mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::mount(long, __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::EMountMode, JKRHeap *, __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::EMountDirection) */
 /* JKRArchive_NS_mount_X2_ */
 /* 802D58C8 002D2808  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D58CC 002D280C  7C 08 02 A6 */	mflr r0

@@ -1,11 +1,11 @@
-/* getResource__10JKRArchiveFUs JKRArchive::getResource(unsigned short) */
+/* getResource__10JKRArchiveFUs __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getResource(unsigned short) */
 /* JKRArchive_NS_getResource_X2_ */
 /* 802D5D38 002D2C78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5D3C 002D2C7C  7C 08 02 A6 */	mflr r0
 /* 802D5D40 002D2C80  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802D5D44 002D2C84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D5D48 002D2C88  7C 7F 1B 78 */	mr r31, r3
-/* 802D5D4C 002D2C8C  48 00 0A 25 */	bl JKRArchive_NS_findIdResource
+/* 802D5D4C 002D2C8C  48 00 0A 25 */	bl findIdResource__10JKRArchiveCFUs
 /* 802D5D50 002D2C90  7C 64 1B 79 */	or. r4, r3, r3
 /* 802D5D54 002D2C94  41 82 00 20 */	beq lbl_802D5D74
 /* 802D5D58 002D2C98  7F E3 FB 78 */	mr r3, r31

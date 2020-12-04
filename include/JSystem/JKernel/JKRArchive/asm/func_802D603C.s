@@ -1,4 +1,4 @@
-/* removeResource__10JKRArchiveFPv JKRArchive::removeResource(void *) */
+/* removeResource__10JKRArchiveFPv __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::removeResource(void *) */
 /* missing reference */
 /* 802D603C 002D2F7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6040 002D2F80  7C 08 02 A6 */	mflr r0
@@ -7,7 +7,7 @@
 /* 802D604C 002D2F8C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802D6050 002D2F90  7C 7E 1B 78 */	mr r30, r3
 /* 802D6054 002D2F94  7C 9F 23 78 */	mr r31, r4
-/* 802D6058 002D2F98  48 00 06 DD */	bl JKRArchive_NS_findPtrResource
+/* 802D6058 002D2F98  48 00 06 DD */	bl findPtrResource__10JKRArchiveCFPCv
 /* 802D605C 002D2F9C  28 03 00 00 */	cmplwi r3, 0
 /* 802D6060 002D2FA0  40 82 00 0C */	bne lbl_802D606C
 /* 802D6064 002D2FA4  38 60 00 00 */	li r3, 0

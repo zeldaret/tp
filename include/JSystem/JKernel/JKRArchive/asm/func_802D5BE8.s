@@ -1,4 +1,4 @@
-/* getResource__10JKRArchiveFPCc JKRArchive::getResource(char const *) */
+/* getResource__10JKRArchiveFPCc __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getResource(char const *) */
 /* missing reference */
 /* 802D5BE8 002D2B28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5BEC 002D2B2C  7C 08 02 A6 */	mflr r0
@@ -10,12 +10,12 @@
 /* 802D5C04 002D2B44  40 82 00 18 */	bne lbl_802D5C1C
 /* 802D5C08 002D2B48  38 84 00 01 */	addi r4, r4, 1
 /* 802D5C0C 002D2B4C  38 A0 00 00 */	li r5, 0
-/* 802D5C10 002D2B50  48 00 09 95 */	bl JKRArchive_NS_findFsResource
+/* 802D5C10 002D2B50  48 00 09 95 */	bl findFsResource__10JKRArchiveCFPCcUl
 /* 802D5C14 002D2B54  7C 64 1B 78 */	mr r4, r3
 /* 802D5C18 002D2B58  48 00 00 10 */	b lbl_802D5C28
 lbl_802D5C1C:
 /* 802D5C1C 002D2B5C  80 AD 8E A0 */	lwz r5, lbl_80451420-_SDA_BASE_(r13)
-/* 802D5C20 002D2B60  48 00 09 85 */	bl JKRArchive_NS_findFsResource
+/* 802D5C20 002D2B60  48 00 09 85 */	bl findFsResource__10JKRArchiveCFPCcUl
 /* 802D5C24 002D2B64  7C 64 1B 78 */	mr r4, r3
 lbl_802D5C28:
 /* 802D5C28 002D2B68  28 04 00 00 */	cmplwi r4, 0

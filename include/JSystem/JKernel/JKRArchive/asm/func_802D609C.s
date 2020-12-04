@@ -1,9 +1,9 @@
-/* detachResource__10JKRArchiveFPv JKRArchive::detachResource(void *) */
+/* detachResource__10JKRArchiveFPv __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::detachResource(void *) */
 /* missing reference */
 /* 802D609C 002D2FDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D60A0 002D2FE0  7C 08 02 A6 */	mflr r0
 /* 802D60A4 002D2FE4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802D60A8 002D2FE8  48 00 06 8D */	bl JKRArchive_NS_findPtrResource
+/* 802D60A8 002D2FE8  48 00 06 8D */	bl findPtrResource__10JKRArchiveCFPCv
 /* 802D60AC 002D2FEC  28 03 00 00 */	cmplwi r3, 0
 /* 802D60B0 002D2FF0  40 82 00 0C */	bne lbl_802D60BC
 /* 802D60B4 002D2FF4  38 60 00 00 */	li r3, 0

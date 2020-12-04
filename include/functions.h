@@ -211,6 +211,8 @@ extern "C" {
     void JKRDvdArchive(void);
     void JKRMemArchive(void);
     void JKRMemArchive_X1_(void);
+
+    void func_80365470(void);
 }
 
 // OS
@@ -686,4 +688,23 @@ extern "C" {
     void readResource__10JKRArchiveFPvUlUs(void);
     void removeResourceAll__10JKRArchiveFv(void);
     void removeResource__10JKRArchiveFPv(void);
+};
+
+// JSystem/JKernel/JKRArchivePri
+extern "C" {
+    void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode(void);
+    void __dt__10JKRArchiveFv(void);
+    void findDirectory__10JKRArchiveCFPCcUl(void);
+    void findFsResource__10JKRArchiveCFPCcUl(void);
+    void findIdResource__10JKRArchiveCFUs(void);
+    void findIdxResource__10JKRArchiveCFUl(void);
+    void findNameResource__10JKRArchiveCFPCc(void);
+    void findPtrResource__10JKRArchiveCFPCv(void);
+    void findResType__10JKRArchiveCFUl(void);
+    void findTypeResource__10JKRArchiveCFUlPCc(void);
+    void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry(void);
+    void isSameName__10JKRArchiveCFRQ210JKRArchive8CArcNameUlUs(void);
+    void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl(void);
+    void store__Q210JKRArchive8CArcNameFPCc(void);
+    void store__Q210JKRArchive8CArcNameFPCcc(void);
 };

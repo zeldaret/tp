@@ -884,6 +884,8 @@ readResource__10JKRArchiveFPvUlPCc
 readResource__10JKRArchiveFPvUlUlPCc
 removeResourceAll__10JKRArchiveFv
 removeResource__10JKRArchiveFPv
+getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
 }
 /*
 .init 80003100 - 80005600

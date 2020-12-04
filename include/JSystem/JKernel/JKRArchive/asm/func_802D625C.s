@@ -1,9 +1,9 @@
-/* getFileAttribute__10JKRArchiveCFUl JKRArchive::getFileAttribute( const(unsigned long)) */
+/* getFileAttribute__10JKRArchiveCFUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getFileAttribute( const(unsigned long)) */
 /* JKRArchive_NS_getFileAttribute */
 /* 802D625C 002D319C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6260 002D31A0  7C 08 02 A6 */	mflr r0
 /* 802D6264 002D31A4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802D6268 002D31A8  48 00 04 1D */	bl JKRArchive_NS_findIdxResource
+/* 802D6268 002D31A8  48 00 04 1D */	bl findIdxResource__10JKRArchiveCFUl
 /* 802D626C 002D31AC  28 03 00 00 */	cmplwi r3, 0
 /* 802D6270 002D31B0  41 82 00 10 */	beq lbl_802D6280
 /* 802D6274 002D31B4  80 03 00 04 */	lwz r0, 4(r3)

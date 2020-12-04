@@ -1,4 +1,4 @@
-/* removeResourceAll__10JKRArchiveFv JKRArchive::removeResourceAll(void) */
+/* removeResourceAll__10JKRArchiveFv __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::removeResourceAll(void) */
 /* missing reference */
 /* 802D5FB4 002D2EF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5FB8 002D2EF8  7C 08 02 A6 */	mflr r0
