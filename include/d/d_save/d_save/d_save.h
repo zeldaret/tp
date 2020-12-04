@@ -1,3 +1,6 @@
+#ifndef D_SAVE_H_
+#define D_SAVE_H_
+
 #include "dolphin/types.h"
 
 static const int MAX_ITEM_SLOTS = 24;
@@ -154,7 +157,7 @@ class dSv_player_status_b_c {
     u8 dark_clear_level_flag;
     u8 unk10;
     u8 unk11;
-    float unk12;
+    float time_of_day;
     u16 unk16;
     u8 unk18[3];
     u8 padding61[3];
@@ -296,7 +299,7 @@ class dSv_player_item_max_c {
     u8 getBombNum(u8) const;
 
    private:
-    u8 unk0[8];
+    u8 item_capacities[8];
 };
 
 class dSv_player_collect_c {
@@ -337,7 +340,7 @@ class dSv_light_drop_c {
     bool isLightDropGetFlag(u8) const;
 
    private:
-    u8 unk0[4];
+    u8 light_drop_counts[4];
     u8 light_drop_get_flag;
     u8 unk5[3];
 };
@@ -415,10 +418,10 @@ class dSv_player_config_c {
 class dSv_player_c {
    public:
     void init(void);
-    inline dSv_player_info_c& getPlayerInfo() {
+    dSv_player_info_c& getPlayerInfo() {
         return player_info;
     }
-    inline dSv_player_status_a_c getPlayerStatusA() {
+    dSv_player_status_a_c getPlayerStatusA() {
         return player_status_a;
     }
 
@@ -670,3 +673,5 @@ class dSv_info_c {
     dSv_event_c events;
     dSv_turnRestart_c turn_restart;
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef D_FILE_SEL_INFO_H_
+#define D_FILE_SEL_INFO_H_
+
 #include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
@@ -44,3 +47,5 @@ class dFile_info_c {
     char* play_time;
     char* unk56;
 };
+
+#endif
