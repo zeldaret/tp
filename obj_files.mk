@@ -264,7 +264,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/lin/c_bg_s_lin_chk.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/shdw/c_bg_s_shdw_draw.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/poly/c_bg_s_poly_info.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/c_bg_w.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_w.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_m2d.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_m3d.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_aab.o    \
@@ -464,7 +464,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTNameTab.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTException.o    \
