@@ -27,12 +27,12 @@ asm void JKRDvdFile::initiate(void) {
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D97E4.s"
 }
 
-asm void JKRDvdFile::open(char const *) {
+asm bool JKRDvdFile::open(char const *) {
     nofralloc
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D9850.s"
 }
 
-asm void JKRDvdFile::open(long) {
+asm bool JKRDvdFile::open(long) {
     nofralloc
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D98C4.s"
 }
@@ -47,7 +47,7 @@ asm void JKRDvdFile::readData(void *, long, long) {
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D99B4.s"
 }
 
-asm void JKRDvdFile::writeData(void const *, long, long) {
+asm s32 JKRDvdFile::writeData(void const *, long, long) {
     nofralloc
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D9A68.s"
 }
@@ -62,7 +62,7 @@ asm void JKRDvdFile::doneProcess(long, DVDFileInfo *) {
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D9AC4.s"
 }
 
-asm void JKRDvdFile::getFileSize(void) const {
+asm s32 JKRDvdFile::getFileSize(void) const {
     nofralloc
     #include "include/JSystem/JKernel/JKRDvdFile/asm/func_802D9AF8.s"
 }

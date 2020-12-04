@@ -4,25 +4,28 @@
 #include "dolphin/types.h"
 
 class JKRArchive;
-class JKRArcFinder {
+class JKRArcFinder : public JKRFileFinder {
   public:
     JKRArcFinder(JKRArchive*, long, long);
-    ~JKRArcFinder();
+    virtual ~JKRArcFinder();
 
-    void findNextFile(void);
+    virtual void findNextFile(void);
 };
 
-class JKRDvdFinder {
+class JKRDvdFinder : public JKRFileFinder {
   public:
     JKRDvdFinder(char const*);
-    ~JKRDvdFinder();
+    virtual ~JKRDvdFinder();
 
-    void findNextFile(void);
+    virtual void findNextFile(void);
 };
 
 class JKRFileFinder {
   public:
-    ~JKRFileFinder();
+    JKRFileFinder();
+    virtual ~JKRFileFinder();
+
+    virtual void findNextFile(void) = 0;
 };
 
 #endif

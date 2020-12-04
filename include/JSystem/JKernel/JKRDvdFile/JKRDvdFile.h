@@ -2,26 +2,29 @@
 #define __JKRDVDFILE_H__
 
 #include "dolphin/types.h"
+#include "JSystem/JKernel/JKRFile/JKRFile.h"
 
 class DVDFileInfo;
 
-class JKRDvdFile {
+class JKRDvdFile : public JKRFile {
   public:
     JKRDvdFile();
     JKRDvdFile(char const*);
     JKRDvdFile(long);
     ~JKRDvdFile();
-    
-    void initiate(void);
-    void open(char const*);
-    void open(long);
 
-    void close(void);
-    void readData(void*, long, long);
-    void writeData(void const*, long, long);
+    void initiate(void);
     void sync(void);
     void doneProcess(long, DVDFileInfo*);
-    void getFileSize(void) const;
+
+    virtual bool open(char const*);
+    virtual void close(void);
+    virtual void readData(void*, long, long);
+    virtual s32 writeData(void const*, long, long);
+    virtual s32 getFileSize(void) const;
+    virtual bool open(long);
+
+  public:
 };
 
 #endif
