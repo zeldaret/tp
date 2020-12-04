@@ -14062,7 +14062,7 @@ lbl_8019043C:
 /* 8019044C 0018D38C  48 00 07 5D */	bl dFile_select3D_c_NS_createMaskModel
 lbl_80190450:
 /* 80190450 0018D390  80 7D 00 04 */	lwz r3, 4(r29)
-/* 80190454 0018D394  48 14 07 A1 */	bl JKRSolidHeap_NS_adjustSize
+/* 80190454 0018D394  48 14 07 A1 */	bl adjustSize__12JKRSolidHeapFv
 /* 80190458 0018D398  80 61 00 08 */	lwz r3, 8(r1)
 /* 8019045C 0018D39C  4B E7 ED 71 */	bl mDoExt_setCurrentHeap
 /* 80190460 0018D3A0  80 1D 00 08 */	lwz r0, 8(r29)

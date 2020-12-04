@@ -620,3 +620,29 @@ extern "C" {
     void state_compare__10JKRExpHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState(void);
     void state_register__10JKRExpHeapCFPQ27JKRHeap6TStateUl(void);
 };
+
+// JSystem/JKernel/JKRSolidHeap
+extern "C" {
+    void __ct__12JKRSolidHeapFPvUlP7JKRHeapb(void);
+    void __dt__12JKRSolidHeapFv(void);
+    void adjustSize__12JKRSolidHeapFv(void);
+    void allocFromHead__12JKRSolidHeapFUli(void);
+    void allocFromTail__12JKRSolidHeapFUli(void);
+    void check__12JKRSolidHeapFv(void);
+    void create__12JKRSolidHeapFUlP7JKRHeapb(void);
+    void do_alloc__12JKRSolidHeapFUli(void);
+    void do_destroy__12JKRSolidHeapFv(void);
+    void do_fillFreeArea__12JKRSolidHeapFv(void);
+    void do_freeAll__12JKRSolidHeapFv(void);
+    void do_freeTail__12JKRSolidHeapFv(void);
+    void do_free__12JKRSolidHeapFPv(void);
+    void do_getFreeSize__12JKRSolidHeapFv(void);
+    void do_getMaxFreeBlock__12JKRSolidHeapFv(void);
+    void do_getSize__12JKRSolidHeapFPv(void);
+    void do_getTotalFreeSize__12JKRSolidHeapFv(void);
+    void do_resize__12JKRSolidHeapFPvUl(void);
+    void dump__12JKRSolidHeapFv(void);
+    void getHeapType__12JKRSolidHeapFv(void);
+    void state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState(void);
+    void state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl(void);
+};

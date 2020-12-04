@@ -7229,7 +7229,7 @@ lbl_801B662C:
 /* 801B6638 001B3578  90 1F 00 20 */	stw r0, 0x20(r31)
 lbl_801B663C:
 /* 801B663C 001B357C  80 7F 00 08 */	lwz r3, 8(r31)
-/* 801B6640 001B3580  48 11 A5 B5 */	bl JKRSolidHeap_NS_adjustSize
+/* 801B6640 001B3580  48 11 A5 B5 */	bl adjustSize__12JKRSolidHeapFv
 /* 801B6644 001B3584  4B E5 8B B1 */	bl mDoExt_restoreCurrentHeap
 /* 801B6648 001B3588  80 1F 00 18 */	lwz r0, 0x18(r31)
 /* 801B664C 001B358C  28 00 00 00 */	cmplwi r0, 0

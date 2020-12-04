@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d0a24
 
 
-.global JKRSolidHeap_NS_create
-JKRSolidHeap_NS_create:
+.global create__12JKRSolidHeapFUlP7JKRHeapb
+create__12JKRSolidHeapFUlP7JKRHeapb:
 /* 802D0A24 002CD964  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D0A28 002CD968  7C 08 02 A6 */	mflr r0
 /* 802D0A2C 002CD96C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -43,7 +43,7 @@ lbl_802D0A9C:
 /* 802D0AA0 002CD9E0  38 BF FF 80 */	addi r5, r31, -128
 /* 802D0AA4 002CD9E4  7F A6 EB 78 */	mr r6, r29
 /* 802D0AA8 002CD9E8  7F C7 F3 78 */	mr r7, r30
-/* 802D0AAC 002CD9EC  48 00 00 85 */	bl JKRSolidHeap
+/* 802D0AAC 002CD9EC  48 00 00 85 */	bl __ct__12JKRSolidHeapFPvUlP7JKRHeapb
 /* 802D0AB0 002CD9F0  7C 60 1B 78 */	mr r0, r3
 lbl_802D0AB4:
 /* 802D0AB4 002CD9F4  7C 03 03 78 */	mr r3, r0
@@ -80,8 +80,8 @@ lbl_802D0B18:
 /* 802D0B28 002CDA68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D0B2C 002CDA6C  4E 80 00 20 */	blr 
 
-.global JKRSolidHeap
-JKRSolidHeap:
+.global __ct__12JKRSolidHeapFPvUlP7JKRHeapb
+__ct__12JKRSolidHeapFPvUlP7JKRHeapb:
 /* 802D0B30 002CDA70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D0B34 002CDA74  7C 08 02 A6 */	mflr r0
 /* 802D0B38 002CDA78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -133,8 +133,8 @@ lbl_802D0BD8:
 /* 802D0BEC 002CDB2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D0BF0 002CDB30  4E 80 00 20 */	blr 
 
-.global JKRSolidHeap_NS_adjustSize
-JKRSolidHeap_NS_adjustSize:
+.global adjustSize__12JKRSolidHeapFv
+adjustSize__12JKRSolidHeapFv:
 /* 802D0BF4 002CDB34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D0BF8 002CDB38  7C 08 02 A6 */	mflr r0
 /* 802D0BFC 002CDB3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -208,7 +208,7 @@ lbl_802D0CE4:
 /* 802D0CFC 002CDC3C  41 80 00 08 */	blt lbl_802D0D04
 /* 802D0D00 002CDC40  7F E5 FB 78 */	mr r5, r31
 lbl_802D0D04:
-/* 802D0D04 002CDC44  48 00 00 55 */	bl JKRSolidHeap_NS_allocFromHead
+/* 802D0D04 002CDC44  48 00 00 55 */	bl allocFromHead__12JKRSolidHeapFUli
 /* 802D0D08 002CDC48  7C 7F 1B 78 */	mr r31, r3
 /* 802D0D0C 002CDC4C  48 00 00 28 */	b lbl_802D0D34
 lbl_802D0D10:
@@ -220,7 +220,7 @@ lbl_802D0D10:
 lbl_802D0D24:
 /* 802D0D24 002CDC64  7F A3 EB 78 */	mr r3, r29
 /* 802D0D28 002CDC68  7F C4 F3 78 */	mr r4, r30
-/* 802D0D2C 002CDC6C  48 00 00 F5 */	bl JKRSolidHeap_NS_allocFromTail
+/* 802D0D2C 002CDC6C  48 00 00 F5 */	bl allocFromTail__12JKRSolidHeapFUli
 /* 802D0D30 002CDC70  7C 7F 1B 78 */	mr r31, r3
 lbl_802D0D34:
 /* 802D0D34 002CDC74  38 7D 00 18 */	addi r3, r29, 0x18
@@ -233,8 +233,8 @@ lbl_802D0D34:
 /* 802D0D50 002CDC90  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D0D54 002CDC94  4E 80 00 20 */	blr 
 
-.global JKRSolidHeap_NS_allocFromHead
-JKRSolidHeap_NS_allocFromHead:
+.global allocFromHead__12JKRSolidHeapFUli
+allocFromHead__12JKRSolidHeapFUli:
 /* 802D0D58 002CDC98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D0D5C 002CDC9C  7C 08 02 A6 */	mflr r0
 /* 802D0D60 002CDCA0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -288,8 +288,8 @@ lbl_802D0E04:
 /* 802D0E18 002CDD58  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D0E1C 002CDD5C  4E 80 00 20 */	blr 
 
-.global JKRSolidHeap_NS_allocFromTail
-JKRSolidHeap_NS_allocFromTail:
+.global allocFromTail__12JKRSolidHeapFUli
+allocFromTail__12JKRSolidHeapFUli:
 /* 802D0E20 002CDD60  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D0E24 002CDD64  7C 08 02 A6 */	mflr r0
 /* 802D0E28 002CDD68  90 01 00 24 */	stw r0, 0x24(r1)
