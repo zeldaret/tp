@@ -14,7 +14,7 @@ void version_check(void) {
 
 void HeapCheck::CheckHeap1(void) {
     s32 totalUsedSize = this->heap->getTotalUsedSize();
-    s32 freeSize = ((JKRHeap*)this->heap)->getFreeSize();
+    s32 freeSize = this->heap->getFreeSize();
 
     if (this->max_total_used_size < totalUsedSize) {
         this->max_total_used_size = totalUsedSize;
