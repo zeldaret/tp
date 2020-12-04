@@ -163,7 +163,7 @@ mDoAud_setSceneName:
 /* 800071D8 00004118  38 63 04 A4 */	addi r3, r3, 0x4a4
 /* 800071DC 0000411C  7C E4 3B 78 */	mr r4, r7
 /* 800071E0 00004120  7C 05 03 78 */	mr r5, r0
-/* 800071E4 00004124  48 2A F9 15 */	bl Z2SceneMgr_NS_setSceneName
+/* 800071E4 00004124  48 2A F9 15 */	bl setSceneName__10Z2SceneMgrFPcll
 /* 800071E8 00004128  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800071EC 0000412C  7C 08 03 A6 */	mtlr r0
 /* 800071F0 00004130  38 21 00 10 */	addi r1, r1, 0x10
@@ -192,7 +192,7 @@ mDoAud_setFadeOutStart:
 /* 80007234 00004174  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80007238 00004178  38 63 04 A4 */	addi r3, r3, 0x4a4
 /* 8000723C 0000417C  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80007240 00004180  48 2A F7 3D */	bl Z2SceneMgr_NS_setFadeOutStart
+/* 80007240 00004180  48 2A F7 3D */	bl setFadeOutStart__10Z2SceneMgrFUc
 /* 80007244 00004184  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80007248 00004188  7C 08 03 A6 */	mtlr r0
 /* 8000724C 0000418C  38 21 00 10 */	addi r1, r1, 0x10
@@ -207,7 +207,7 @@ mDoAud_setFadeInStart:
 /* 80007264 000041A4  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80007268 000041A8  38 63 04 A4 */	addi r3, r3, 0x4a4
 /* 8000726C 000041AC  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80007270 000041B0  48 2A F7 A9 */	bl Z2SceneMgr_NS_setFadeInStart
+/* 80007270 000041B0  48 2A F7 A9 */	bl setFadeInStart__10Z2SceneMgrFUc
 /* 80007274 000041B4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80007278 000041B8  7C 08 03 A6 */	mtlr r0
 /* 8000727C 000041BC  38 21 00 10 */	addi r1, r1, 0x10

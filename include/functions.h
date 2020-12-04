@@ -24,6 +24,8 @@ extern "C" {
     void setBombNum__21dSv_player_item_max_cFUcUc(void);
     void func_80362224(void);
     void func_803621D8(void);
+    void func_803621CC(void);
+    void func_80362218(void);
     void _restgpr_26(void);
     void _savegpr_26(void);
     void _restgpr_29(void);
@@ -93,7 +95,6 @@ extern "C" {
     void func_80003540(void);
     void func_80362324(void);
     void func_8036221C(void);
-    void func_803621D0(void);
     void func_8036221C(void);
     void countUsed__FP10JKRExpHeap(void);
     void JUTReport(void);
@@ -110,7 +111,7 @@ extern "C" {
     void getTotalUsedSize__10JKRExpHeapCFv(void);
     void HeapCheck_NS_getUsedCount(void);
     void CheckHeap1__9HeapCheckFv(void);
-    void JUTException_NS_panic_f(void);
+    void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
     void Debug_console__FUl(void);
     void debugDisplay__Fv(void);
     void CheckHeap__FUl(void);
@@ -254,10 +255,130 @@ extern "C" {
 }
 
 extern "C" {
+struct TColor;
+
+extern void GXBegin(u8, u8, u16);
+extern void GXLoadTexObj(u32*, s32);
+extern void GXInitTexObjLOD(f32, f32, f32, u32*, s32, s32, u32, u8, u32);
+extern void GXInitTexObj(u32*, u32, u32, u32, u32, u32, u8);
+
+extern void GXSetNumChans(u32);
+extern void GXSetNumTevStages(u32);
+extern void GXSetNumTexGens(u32);
+extern void GXSetTevOrder(u32, u32, u32, u32);
+extern void GXSetChanCtrl(u32, u32, u32, u32, u32, u32, s32);
+extern void GXSetTevOp(s32, s32);
+extern void GXSetTevColor(s32, TColor);
+extern void GXSetTevColorIn(s32, u32, u32, u32, u32);
+extern void GXSetTevAlphaIn(s32, u32, u32, u32, u32);
+extern void GXSetTevColorOp(s32, u32, u32, u32, u32, u32);
+extern void GXSetTevAlphaOp(s32, u32, u32, u32, u32, u32);
+extern void GXSetBlendMode(u32, u32, u32, u32);
+extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
+extern void GXClearVtxDesc();
+extern void GXSetVtxDesc(u32, u32);
+}
+
+extern "C" {
     void JUTReport__FiiPCce(int, int, const char*, ...);
+    extern void JUTReportConsole(const char*);
 }
 
 // m_Do_main.h
 extern "C" {
     void mDoMch_HeapCheckAll(void);
+}
+
+//Z2SoundMgr
+extern "C"{
+    void resetFilterAll__10Z2SoundMgrFv(void);
+    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
+    void moveVolume__18JAISoundParamsMoveFfUl(void);
+    void Z2SeqMgr_NS_setBattleBgmOff(void);
+    void setSceneExist__10Z2SceneMgrFb(void);
+    void Z2StatusMgr_NS_menuOut(void);
+    void func_803621F4(void);
+    void Z2SceneMgr_NS_sceneChange(void);
+    void __ct__10JAISoundIDFRC10JAISoundID(void);
+    void Z2EnvSeMgr_NS_initSceneEnvSe(void);
+    void setFieldBgmPlay__8Z2SeqMgrFb(void);
+    void Z2SeqMgr_NS_setTimeProcVolMod(void);
+    void Z2SeqMgr_NS_setHeightVolMod(void);
+    void JAISound_NS_stop(void);
+    void JAUSoundTable_NS_getTypeID(void);
+    void JAIStreamMgr_NS_isActive(void);
+    void JAISound_NS_getID(void);
+    void JSUList_X1_(void);
+    void dComIfGs_isStageSwitch(void);
+    void dComIfGs_getStartPoint(void);
+    void Z2StatusMgr_NS_checkDayTime(void);
+    void Z2SeqMgr_NS_bgmStop(void);
+    void isSwitch__10dSv_info_cCFii(void);
+    void Z2SoundObjMgr_NS_setForceBattleArea(void);
+    void Z2SeqMgr_NS_unMuteSceneBgm(void);
+    void Z2SeqMgr_NS_muteSceneBgm(void);
+    void dComIfGs_isEventBit(void);
+    void Z2SeqMgr_NS_changeBgmStatus(void);
+    void JAISoundID_NS___as(void);
+    void dComIfGs_isSaveSwitch(void);
+    void Z2StatusMgr_NS_setDemoName(void);
+    void Z2SeMgr_NS_resetModY(void);
+    void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+    void Z2SeMgr_NS_resetCrowdSize(void);
+    void Z2SeqMgr_NS_setTwilightGateVol(void);
+    void Z2SeqMgr_NS_setWindStoneVol(void);
+    void Z2SeqMgr_NS_resetBattleBgmParams(void);
+    void JAISoundID_X1_(void);
+    void func_803621A8(void);
+    void moveVolume__18JAISoundParamsMoveFfUl(void);
+    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
+}
+// Z2LinkMgr
+extern "C" {
+    void Z2CreatureLink_NS_startLinkSound(void);
+    void Z2SoundObjSimple(void);
+    void Z2LinkSoundStarter(void);
+    void Z2Creature(void);
+    void JAISoundStarter_NS_dtor(void);
+    void Z2Creature_NS_dtor(void);
+    void Z2SoundObjBase_NS_dtor(void);
+    void Z2Creature_NS_deleteObject(void);
+    void deleteKantera__14Z2CreatureLinkFv(void);
+    void Z2Creature_NS_init_X1_(void);
+    void Z2SoundObjBase_NS_deleteObject(void);
+    void PSVECSquareDistance(void);
+    void moveVolume__18JAISoundParamsMoveFfUl(void);
+    void Z2CreatureLink_NS_startLinkSoundLevel(void);
+    void Z2SeMgr_NS_seStartLevel(void);
+    void Z2Creature_NS_framework(void);
+    void Z2Audience_NS_setTargetVolume(void);
+    void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+    void Z2FxLineMgr_NS_setFxForceOff(void);
+    void Z2SeMgr_NS_seStart(void);
+    void JAISoundParamsMove_NS_movePitch(void);
+    void Z2Calc_NS_linearTransform(void);
+    void JAISound_NS_stop(void);
+    void Z2SoundHandles_NS_getHandleSoundID(void);
+    void Z2SeqMgr_NS_setBattleSeqState(void);
+    void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(void);
+    void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(void);
+    void Z2SoundStarter_NS_setPortData(void);
+    void Z2SoundObjBase_NS_startCollisionSE(void);
+    void Z2SeqMgr_NS_setBattleLastHit(void);
+}
+
+// Z2Calc
+extern "C" {
+    void linearTransform__6Z2CalcFfffffb(void);
+    void func_8036C740(void);
+    void func_8036C780(void);
+    void getRandom_0_1__6Z2CalcFv(void);
+    void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
+    void JMath_NS_TRandom_fast_(void);
+}
+
+// d_a_horse_static
+extern "C"{
+    void Z2CreatureRide_NS_setLinkRiding(void);
+    void checkDownDamage__10e_wb_classFv(void);
 }

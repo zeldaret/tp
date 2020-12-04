@@ -93,9 +93,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
             $(BUILD_DIR)/asm/d/a/d_a_obj.o    \
             $(BUILD_DIR)/asm/d/a/itembase/d_a_itembase_static.o    \
-            $(BUILD_DIR)/asm/d/a/item/d_a_item_static.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_item_static.o    \
             $(BUILD_DIR)/asm/d/a/shop/item/d_a_shop_item_static.o    \
-            $(BUILD_DIR)/asm/d/a/horse/d_a_horse_static.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_horse_static.o    \
             $(BUILD_DIR)/asm/d/d_demo.o    \
             $(BUILD_DIR)/asm/d/door/d_door_param2.o    \
             $(BUILD_DIR)/asm/d/d_resorce.o    \
@@ -264,7 +264,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/lin/c_bg_s_lin_chk.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/shdw/c_bg_s_shdw_draw.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/poly/c_bg_s_poly_info.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/c_bg_w.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_w.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_m2d.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_m3d.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_aab.o    \
@@ -397,7 +397,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JMessage/processor.o    \
             $(BUILD_DIR)/asm/JMessage/resource.o    \
             $(BUILD_DIR)/asm/JMessage/locale.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2Calc.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2Calc.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2AudioArcLoader.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \
@@ -405,6 +405,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeqMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2StatusMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2FxLineMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundInfo.o    \
@@ -412,6 +413,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObject.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObjMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2Creature.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2LinkMgr.o \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2LinkMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2EnvSeMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2WolfHowlMgr.o    \
@@ -462,7 +464,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTNameTab.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTException.o    \

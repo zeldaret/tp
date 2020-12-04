@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2db4
 
 
-.global JAISoundParamsMove_NS_moveVolume
-JAISoundParamsMove_NS_moveVolume:
+.global moveVolume__18JAISoundParamsMoveFfUl
+moveVolume__18JAISoundParamsMoveFfUl:
 /* 802A2DB4 0029FCF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A2DB8 0029FCF8  28 04 00 00 */	cmplwi r4, 0
 /* 802A2DBC 0029FCFC  40 82 00 14 */	bne lbl_802A2DD0
