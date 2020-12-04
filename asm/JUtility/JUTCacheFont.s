@@ -14,16 +14,16 @@ JUTCacheFont:
 /* 802DD1A0 002DA0E0  7C 9D 23 78 */	mr r29, r4
 /* 802DD1A4 002DA0E4  7C BE 2B 78 */	mr r30, r5
 /* 802DD1A8 002DA0E8  7C DF 33 78 */	mr r31, r6
-/* 802DD1AC 002DA0EC  48 00 1D 9D */	bl JUTResFont
+/* 802DD1AC 002DA0EC  48 00 1D 9D */	bl __ct__10JUTResFontFv
 /* 802DD1B0 002DA0F0  3C 60 80 3D */	lis r3, lbl_803CC540@ha
 /* 802DD1B4 002DA0F4  38 03 C5 40 */	addi r0, r3, lbl_803CC540@l
 /* 802DD1B8 002DA0F8  90 1C 00 00 */	stw r0, 0(r28)
 /* 802DD1BC 002DA0FC  7F 83 E3 78 */	mr r3, r28
 /* 802DD1C0 002DA100  48 00 01 61 */	bl JUTCacheFont_NS_initialize_state
 /* 802DD1C4 002DA104  7F 83 E3 78 */	mr r3, r28
-/* 802DD1C8 002DA108  48 00 1E E9 */	bl JUTResFont_NS_initialize_state
+/* 802DD1C8 002DA108  48 00 1E E9 */	bl initialize_state__10JUTResFontFv
 /* 802DD1CC 002DA10C  7F 83 E3 78 */	mr r3, r28
-/* 802DD1D0 002DA110  48 00 1B 55 */	bl JUTFont_NS_initialize_state
+/* 802DD1D0 002DA110  48 00 1B 55 */	bl initialize_state__7JUTFontFv
 /* 802DD1D4 002DA114  7F 83 E3 78 */	mr r3, r28
 /* 802DD1D8 002DA118  7F A4 EB 78 */	mr r4, r29
 /* 802DD1DC 002DA11C  38 A0 00 00 */	li r5, 0
@@ -55,15 +55,15 @@ JUTCacheFont:
 /* 802DD244 002DA184  7F C3 F3 78 */	mr r3, r30
 /* 802DD248 002DA188  48 00 00 D9 */	bl JUTCacheFont_NS_initialize_state
 /* 802DD24C 002DA18C  7F C3 F3 78 */	mr r3, r30
-/* 802DD250 002DA190  48 00 1E 3D */	bl JUTResFont_NS_deleteMemBlocks_ResFont
+/* 802DD250 002DA190  48 00 1E 3D */	bl deleteMemBlocks_ResFont__10JUTResFontFv
 /* 802DD254 002DA194  7F C3 F3 78 */	mr r3, r30
-/* 802DD258 002DA198  48 00 1E 59 */	bl JUTResFont_NS_initialize_state
+/* 802DD258 002DA198  48 00 1E 59 */	bl initialize_state__10JUTResFontFv
 /* 802DD25C 002DA19C  7F C3 F3 78 */	mr r3, r30
-/* 802DD260 002DA1A0  48 00 1A C5 */	bl JUTFont_NS_initialize_state
+/* 802DD260 002DA1A0  48 00 1A C5 */	bl initialize_state__7JUTFontFv
 lbl_802DD264:
 /* 802DD264 002DA1A4  7F C3 F3 78 */	mr r3, r30
 /* 802DD268 002DA1A8  38 80 00 00 */	li r4, 0
-/* 802DD26C 002DA1AC  48 00 1D 95 */	bl JUTResFont_NS_dtor
+/* 802DD26C 002DA1AC  48 00 1D 95 */	bl __dt__10JUTResFontFv
 /* 802DD270 002DA1B0  7F E0 07 35 */	extsh. r0, r31
 /* 802DD274 002DA1B4  40 81 00 0C */	ble lbl_802DD280
 /* 802DD278 002DA1B8  7F C3 F3 78 */	mr r3, r30
@@ -266,9 +266,9 @@ JUTCacheFont_NS_initiate:
 /* 802DD50C 002DA44C  7F E3 FB 78 */	mr r3, r31
 /* 802DD510 002DA450  4B FF FD 8D */	bl JUTCacheFont_NS_deleteMemBlocks_CacheFont
 /* 802DD514 002DA454  7F E3 FB 78 */	mr r3, r31
-/* 802DD518 002DA458  48 00 1B 75 */	bl JUTResFont_NS_deleteMemBlocks_ResFont
+/* 802DD518 002DA458  48 00 1B 75 */	bl deleteMemBlocks_ResFont__10JUTResFontFv
 /* 802DD51C 002DA45C  7F E3 FB 78 */	mr r3, r31
-/* 802DD520 002DA460  48 00 18 05 */	bl JUTFont_NS_initialize_state
+/* 802DD520 002DA460  48 00 18 05 */	bl initialize_state__7JUTFontFv
 /* 802DD524 002DA464  38 00 00 00 */	li r0, 0
 /* 802DD528 002DA468  98 1F 00 04 */	stb r0, 4(r31)
 /* 802DD52C 002DA46C  38 60 00 00 */	li r3, 0
@@ -298,11 +298,11 @@ JUTCacheFont_NS_internal_initiate:
 /* 802DD578 002DA4B8  7F 63 DB 78 */	mr r3, r27
 /* 802DD57C 002DA4BC  4B FF FD A5 */	bl JUTCacheFont_NS_initialize_state
 /* 802DD580 002DA4C0  7F 63 DB 78 */	mr r3, r27
-/* 802DD584 002DA4C4  48 00 1B 09 */	bl JUTResFont_NS_deleteMemBlocks_ResFont
+/* 802DD584 002DA4C4  48 00 1B 09 */	bl deleteMemBlocks_ResFont__10JUTResFontFv
 /* 802DD588 002DA4C8  7F 63 DB 78 */	mr r3, r27
-/* 802DD58C 002DA4CC  48 00 1B 25 */	bl JUTResFont_NS_initialize_state
+/* 802DD58C 002DA4CC  48 00 1B 25 */	bl initialize_state__10JUTResFontFv
 /* 802DD590 002DA4D0  7F 63 DB 78 */	mr r3, r27
-/* 802DD594 002DA4D4  48 00 17 91 */	bl JUTFont_NS_initialize_state
+/* 802DD594 002DA4D4  48 00 17 91 */	bl initialize_state__7JUTFontFv
 /* 802DD598 002DA4D8  28 1C 00 00 */	cmplwi r28, 0
 /* 802DD59C 002DA4DC  40 82 00 0C */	bne lbl_802DD5A8
 /* 802DD5A0 002DA4E0  38 60 00 00 */	li r3, 0
