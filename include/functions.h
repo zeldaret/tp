@@ -173,6 +173,22 @@ extern "C" {
     void VIWaitForRetrace(void);
     void func_80361C24(void);
 
+    void JKRDvdFinder(void);
+    void JKRFileLoader(void);
+    void JKRFileLoader_NS_dtor(void);
+    void _restgpr_26(void);
+    void _restgpr_27(void);
+    void _restgpr_28(void);
+    void _restgpr_29(void);
+    void _savegpr_26(void);
+    void _savegpr_27(void);
+    void _savegpr_28(void);
+    void _savegpr_29(void);
+    void func_80003540(void);
+    void func_80365470(void);
+    void func_803688DC(void);
+    void func_80368ABC(void);
+    void func_80368BE4(void);
 }
 
 // OS
@@ -222,14 +238,18 @@ extern "C" {
 
 // DVD
 extern "C" {
+    void DVDOpen(void);
     void DVDClose(void);
     void DVDReadPrio(void);
-    void DVDOpen(void);
     void DVDGetCurrentDiskID(void);
-    void DVDClose(void);
     void DVDFastOpen(void);
     void DVDGetCommandBlockStatus(void);
     void DVDReadAsyncPrio(void);
+
+    void DVDChangeDir(void);
+    void DVDCloseDir(void);
+    void DVDOpenDir(void);
+    void DVDReadDir(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -245,6 +265,11 @@ extern "C" {
     void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink(void);
     void remove__10JSUPtrListFP10JSUPtrLink(void);
     void getNthLink__10JSUPtrListCFUl(void);
+}
+
+// JSyste,/JKernel/JKRFile
+extern "C" {
+    void read__7JKRFileFPvll(void);
 }
 
 // JSystem/JKernel/JKRDisposer
@@ -461,3 +486,31 @@ extern "C" {
     void sync__10JKRDvdFileFv(void);
     void writeData__10JKRDvdFileFPCvll(void);
 }
+
+// JSystem/JKernel/JKRFileCache
+extern "C" {
+    void __ct__12JKRFileCacheFPCcPCc(void);
+    void __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv(void);
+    void __dt__12JKRFileCacheFv(void);
+    void becomeCurrent__12JKRFileCacheFPCc(void);
+    void convStrLower__12JKRFileCacheCFPc(void);
+    void countFile__12JKRFileCacheCFPCc(void);
+    void detachResource__12JKRFileCacheFPv(void);
+    void findCacheBlock__12JKRFileCacheCFPCv(void);
+    void findCacheBlock__12JKRFileCacheCFUl(void);
+    void findFile__12JKRFileCacheCFPcPCc(void);
+    void getDvdPathName__12JKRFileCacheCFPCc(void);
+    void getFirstFile__12JKRFileCacheCFPCc(void);
+    void getFsResource__12JKRFileCacheFPCc(void);
+    void getNameResource__12JKRFileCacheFUlPCc(void);
+    void getResSize__12JKRFileCacheCFPCv(void);
+    void getResource__12JKRFileCacheFPCc(void);
+    void getResource__12JKRFileCacheFUlPCc(void);
+    void mount__12JKRFileCacheFPCcP7JKRHeapPCc(void);
+    void readFsResource__12JKRFileCacheFPvUlPCc(void);
+    void readNameResource__12JKRFileCacheFPvUlUlPCc(void);
+    void readResource__12JKRFileCacheFPvUlPCc(void);
+    void readResource__12JKRFileCacheFPvUlUlPCc(void);
+    void removeResourceAll__12JKRFileCacheFv(void);
+    void removeResource__12JKRFileCacheFPv(void);
+};

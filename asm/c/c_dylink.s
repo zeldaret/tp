@@ -213,7 +213,7 @@ cDyl_InitCallback:
 /* 800186A8 000155E8  38 63 5D E8 */	addi r3, r3, lbl_80375DE8@l
 /* 800186AC 000155EC  38 63 2A 56 */	addi r3, r3, 0x2a56
 /* 800186B0 000155F0  38 A0 00 00 */	li r5, 0
-/* 800186B4 000155F4  48 2B C3 01 */	bl JKRFileCache_NS_mount
+/* 800186B4 000155F4  48 2B C3 01 */	bl mount__12JKRFileCacheFPCcP7JKRHeapPCc
 /* 800186B8 000155F8  7C 7F 1B 78 */	mr r31, r3
 /* 800186BC 000155FC  48 24 A0 A1 */	bl DynamicModuleControl_NS_initialize
 /* 800186C0 00015600  3C 60 80 37 */	lis r3, lbl_80375DE8@ha

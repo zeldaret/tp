@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d49b4
 
 
-.global JKRFileCache_NS_mount
-JKRFileCache_NS_mount:
+.global mount__12JKRFileCacheFPCcP7JKRHeapPCc
+mount__12JKRFileCacheFPCcP7JKRHeapPCc:
 /* 802D49B4 002D18F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D49B8 002D18F8  7C 08 02 A6 */	mflr r0
 /* 802D49BC 002D18FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -66,7 +66,7 @@ lbl_802D4A68:
 /* 802D4A84 002D19C4  41 82 00 14 */	beq lbl_802D4A98
 /* 802D4A88 002D19C8  7F C4 F3 78 */	mr r4, r30
 /* 802D4A8C 002D19CC  7F E5 FB 78 */	mr r5, r31
-/* 802D4A90 002D19D0  48 00 00 25 */	bl JKRFileCache
+/* 802D4A90 002D19D0  48 00 00 25 */	bl __ct__12JKRFileCacheFPCcPCc
 /* 802D4A94 002D19D4  7C 60 1B 78 */	mr r0, r3
 lbl_802D4A98:
 /* 802D4A98 002D19D8  7C 03 03 78 */	mr r3, r0
@@ -78,8 +78,8 @@ lbl_802D4A9C:
 /* 802D4AAC 002D19EC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D4AB0 002D19F0  4E 80 00 20 */	blr 
 
-.global JKRFileCache
-JKRFileCache:
+.global __ct__12JKRFileCacheFPCcPCc
+__ct__12JKRFileCacheFPCcPCc:
 /* 802D4AB4 002D19F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D4AB8 002D19F8  7C 08 02 A6 */	mflr r0
 /* 802D4ABC 002D19FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -126,10 +126,10 @@ JKRFileCache:
 /* 802D4B60 002D1AA0  41 82 00 88 */	beq lbl_802D4BE8
 /* 802D4B64 002D1AA4  7F E3 FB 78 */	mr r3, r31
 /* 802D4B68 002D1AA8  80 9F 00 48 */	lwz r4, 0x48(r31)
-/* 802D4B6C 002D1AAC  48 00 0A B9 */	bl JKRFileCache_NS_convStrLower
+/* 802D4B6C 002D1AAC  48 00 0A B9 */	bl convStrLower__12JKRFileCacheCFPc
 /* 802D4B70 002D1AB0  7F E3 FB 78 */	mr r3, r31
 /* 802D4B74 002D1AB4  80 9F 00 4C */	lwz r4, 0x4c(r31)
-/* 802D4B78 002D1AB8  48 00 0A AD */	bl JKRFileCache_NS_convStrLower
+/* 802D4B78 002D1AB8  48 00 0A AD */	bl convStrLower__12JKRFileCacheCFPc
 /* 802D4B7C 002D1ABC  80 7F 00 4C */	lwz r3, 0x4c(r31)
 /* 802D4B80 002D1AC0  3C 80 80 3A */	lis r4, lbl_8039D158@ha
 /* 802D4B84 002D1AC4  38 84 D1 58 */	addi r4, r4, lbl_8039D158@l
@@ -154,7 +154,7 @@ lbl_802D4BA8:
 /* 802D4BCC 002D1B0C  48 09 3F 61 */	bl strcpy
 /* 802D4BD0 002D1B10  7F E3 FB 78 */	mr r3, r31
 /* 802D4BD4 002D1B14  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 802D4BD8 002D1B18  48 00 0A 4D */	bl JKRFileCache_NS_convStrLower
+/* 802D4BD8 002D1B18  48 00 0A 4D */	bl convStrLower__12JKRFileCacheCFPc
 /* 802D4BDC 002D1B1C  80 1F 00 50 */	lwz r0, 0x50(r31)
 /* 802D4BE0 002D1B20  90 1F 00 28 */	stw r0, 0x28(r31)
 /* 802D4BE4 002D1B24  48 00 00 58 */	b lbl_802D4C3C
@@ -178,7 +178,7 @@ lbl_802D4C00:
 /* 802D4C24 002D1B64  48 09 3F 09 */	bl strcpy
 /* 802D4C28 002D1B68  7F E3 FB 78 */	mr r3, r31
 /* 802D4C2C 002D1B6C  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 802D4C30 002D1B70  48 00 09 F5 */	bl JKRFileCache_NS_convStrLower
+/* 802D4C30 002D1B70  48 00 09 F5 */	bl convStrLower__12JKRFileCacheCFPc
 /* 802D4C34 002D1B74  80 1F 00 50 */	lwz r0, 0x50(r31)
 /* 802D4C38 002D1B78  90 1F 00 28 */	stw r0, 0x28(r31)
 lbl_802D4C3C:
@@ -259,7 +259,7 @@ lbl_802D4D28:
 /* 802D4D50 002D1C90  39 61 00 20 */	addi r11, r1, 0x20
 /* 802D4D54 002D1C94  48 08 D4 89 */	bl _savegpr_29
 /* 802D4D58 002D1C98  7C 7D 1B 78 */	mr r29, r3
-/* 802D4D5C 002D1C9C  48 00 07 C1 */	bl JKRFileCache_NS_getDvdPathName
+/* 802D4D5C 002D1C9C  48 00 07 C1 */	bl getDvdPathName__12JKRFileCacheCFPCc
 /* 802D4D60 002D1CA0  7C 7F 1B 78 */	mr r31, r3
 /* 802D4D64 002D1CA4  48 07 3F 91 */	bl DVDChangeDir
 /* 802D4D68 002D1CA8  30 03 FF FF */	addic r0, r3, -1
@@ -299,7 +299,7 @@ lbl_802D4DBC:
 /* 802D4DE8 002D1D28  48 08 D3 F1 */	bl _savegpr_28
 /* 802D4DEC 002D1D2C  7C 7C 1B 78 */	mr r28, r3
 /* 802D4DF0 002D1D30  3B E0 00 00 */	li r31, 0
-/* 802D4DF4 002D1D34  48 00 07 29 */	bl JKRFileCache_NS_getDvdPathName
+/* 802D4DF4 002D1D34  48 00 07 29 */	bl getDvdPathName__12JKRFileCacheCFPCc
 /* 802D4DF8 002D1D38  7C 7E 1B 78 */	mr r30, r3
 /* 802D4DFC 002D1D3C  38 61 00 08 */	addi r3, r1, 8
 /* 802D4E00 002D1D40  7F C4 F3 78 */	mr r4, r30
@@ -309,7 +309,7 @@ lbl_802D4DBC:
 /* 802D4E10 002D1D50  41 82 00 98 */	beq lbl_802D4EA8
 /* 802D4E14 002D1D54  7F 83 E3 78 */	mr r3, r28
 /* 802D4E18 002D1D58  80 81 00 94 */	lwz r4, 0x94(r1)
-/* 802D4E1C 002D1D5C  48 00 05 C9 */	bl JKRFileCache_NS_findCacheBlock_X1_
+/* 802D4E1C 002D1D5C  48 00 05 C9 */	bl findCacheBlock__12JKRFileCacheCFUl
 /* 802D4E20 002D1D60  28 03 00 00 */	cmplwi r3, 0
 /* 802D4E24 002D1D64  40 82 00 74 */	bne lbl_802D4E98
 /* 802D4E28 002D1D68  80 61 00 98 */	lwz r3, 0x98(r1)
@@ -335,7 +335,7 @@ lbl_802D4DBC:
 /* 802D4E78 002D1DB8  80 81 00 94 */	lwz r4, 0x94(r1)
 /* 802D4E7C 002D1DBC  80 A1 00 98 */	lwz r5, 0x98(r1)
 /* 802D4E80 002D1DC0  7F E6 FB 78 */	mr r6, r31
-/* 802D4E84 002D1DC4  48 00 07 E9 */	bl JKRFileCache_NS_CCacheBlock
+/* 802D4E84 002D1DC4  48 00 07 E9 */	bl __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
 /* 802D4E88 002D1DC8  7C 64 1B 78 */	mr r4, r3
 lbl_802D4E8C:
 /* 802D4E8C 002D1DCC  38 7C 00 3C */	addi r3, r28, 0x3c
@@ -377,7 +377,7 @@ lbl_802D4EA8:
 /* 802D4F14 002D1E54  7F A3 EB 78 */	mr r3, r29
 /* 802D4F18 002D1E58  38 81 00 08 */	addi r4, r1, 8
 /* 802D4F1C 002D1E5C  7F C5 F3 78 */	mr r5, r30
-/* 802D4F20 002D1E60  48 00 04 F1 */	bl JKRFileCache_NS_findFile
+/* 802D4F20 002D1E60  48 00 04 F1 */	bl findFile__12JKRFileCacheCFPcPCc
 /* 802D4F24 002D1E64  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D4F28 002D1E68  41 82 00 20 */	beq lbl_802D4F48
 /* 802D4F2C 002D1E6C  7F A3 EB 78 */	mr r3, r29
@@ -405,7 +405,7 @@ lbl_802D4F4C:
 /* 802D4F7C 002D1EBC  7C 9C 23 78 */	mr r28, r4
 /* 802D4F80 002D1EC0  7C BD 2B 78 */	mr r29, r5
 /* 802D4F84 002D1EC4  7C C4 33 78 */	mr r4, r6
-/* 802D4F88 002D1EC8  48 00 05 95 */	bl JKRFileCache_NS_getDvdPathName
+/* 802D4F88 002D1EC8  48 00 05 95 */	bl getDvdPathName__12JKRFileCacheCFPCc
 /* 802D4F8C 002D1ECC  7C 7F 1B 78 */	mr r31, r3
 /* 802D4F90 002D1ED0  38 61 00 08 */	addi r3, r1, 8
 /* 802D4F94 002D1ED4  7F E4 FB 78 */	mr r4, r31
@@ -425,7 +425,7 @@ lbl_802D4FA0:
 lbl_802D4FC8:
 /* 802D4FC8 002D1F08  7F 63 DB 78 */	mr r3, r27
 /* 802D4FCC 002D1F0C  80 81 00 94 */	lwz r4, 0x94(r1)
-/* 802D4FD0 002D1F10  48 00 04 15 */	bl JKRFileCache_NS_findCacheBlock_X1_
+/* 802D4FD0 002D1F10  48 00 04 15 */	bl findCacheBlock__12JKRFileCacheCFUl
 /* 802D4FD4 002D1F14  7C 64 1B 79 */	or. r4, r3, r3
 /* 802D4FD8 002D1F18  40 82 00 1C */	bne lbl_802D4FF4
 /* 802D4FDC 002D1F1C  38 61 00 08 */	addi r3, r1, 8
@@ -473,7 +473,7 @@ lbl_802D5008:
 /* 802D507C 002D1FBC  7F 63 DB 78 */	mr r3, r27
 /* 802D5080 002D1FC0  38 81 00 08 */	addi r4, r1, 8
 /* 802D5084 002D1FC4  7F C5 F3 78 */	mr r5, r30
-/* 802D5088 002D1FC8  48 00 03 89 */	bl JKRFileCache_NS_findFile
+/* 802D5088 002D1FC8  48 00 03 89 */	bl findFile__12JKRFileCacheCFPcPCc
 /* 802D508C 002D1FCC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D5090 002D1FD0  41 82 00 28 */	beq lbl_802D50B8
 /* 802D5094 002D1FD4  7F 63 DB 78 */	mr r3, r27
@@ -540,7 +540,7 @@ lbl_802D5144:
 /* 802D5174 002D20B4  48 08 D0 69 */	bl _savegpr_29
 /* 802D5178 002D20B8  7C 7D 1B 78 */	mr r29, r3
 /* 802D517C 002D20BC  7C 9E 23 78 */	mr r30, r4
-/* 802D5180 002D20C0  48 00 02 39 */	bl JKRFileCache_NS_findCacheBlock
+/* 802D5180 002D20C0  48 00 02 39 */	bl findCacheBlock__12JKRFileCacheCFPCv
 /* 802D5184 002D20C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D5188 002D20C8  40 82 00 0C */	bne lbl_802D5194
 /* 802D518C 002D20CC  38 60 00 00 */	li r3, 0
@@ -580,7 +580,7 @@ lbl_802D51E0:
 /* 802D5204 002D2144  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D5208 002D2148  93 C1 00 08 */	stw r30, 8(r1)
 /* 802D520C 002D214C  7C 7E 1B 78 */	mr r30, r3
-/* 802D5210 002D2150  48 00 01 A9 */	bl JKRFileCache_NS_findCacheBlock
+/* 802D5210 002D2150  48 00 01 A9 */	bl findCacheBlock__12JKRFileCacheCFPCv
 /* 802D5214 002D2154  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D5218 002D2158  40 82 00 0C */	bne lbl_802D5224
 /* 802D521C 002D215C  38 60 00 00 */	li r3, 0
@@ -610,7 +610,7 @@ lbl_802D5254:
 /* 802D526C 002D21AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5270 002D21B0  7C 08 02 A6 */	mflr r0
 /* 802D5274 002D21B4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802D5278 002D21B8  48 00 01 41 */	bl JKRFileCache_NS_findCacheBlock
+/* 802D5278 002D21B8  48 00 01 41 */	bl findCacheBlock__12JKRFileCacheCFPCv
 /* 802D527C 002D21BC  28 03 00 00 */	cmplwi r3, 0
 /* 802D5280 002D21C0  40 82 00 0C */	bne lbl_802D528C
 /* 802D5284 002D21C4  38 60 FF FF */	li r3, -1
@@ -628,7 +628,7 @@ lbl_802D5290:
 /* 802D52AC 002D21EC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802D52B0 002D21F0  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 802D52B4 002D21F4  3B E0 00 00 */	li r31, 0
-/* 802D52B8 002D21F8  48 00 02 65 */	bl JKRFileCache_NS_getDvdPathName
+/* 802D52B8 002D21F8  48 00 02 65 */	bl getDvdPathName__12JKRFileCacheCFPCc
 /* 802D52BC 002D21FC  7C 7E 1B 78 */	mr r30, r3
 /* 802D52C0 002D2200  38 81 00 14 */	addi r4, r1, 0x14
 /* 802D52C4 002D2204  48 07 3C BD */	bl DVDOpenDir
@@ -661,7 +661,7 @@ lbl_802D52F4:
 /* 802D5324 002D2264  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802D5328 002D2268  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D532C 002D226C  93 C1 00 08 */	stw r30, 8(r1)
-/* 802D5330 002D2270  48 00 01 ED */	bl JKRFileCache_NS_getDvdPathName
+/* 802D5330 002D2270  48 00 01 ED */	bl getDvdPathName__12JKRFileCacheCFPCc
 /* 802D5334 002D2274  7C 7E 1B 78 */	mr r30, r3
 /* 802D5338 002D2278  38 60 00 24 */	li r3, 0x24
 /* 802D533C 002D227C  80 8D 8D F0 */	lwz r4, lbl_80451370-_SDA_BASE_(r13)
@@ -700,8 +700,8 @@ lbl_802D53A0:
 /* 802D53B0 002D22F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D53B4 002D22F4  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_findCacheBlock
-JKRFileCache_NS_findCacheBlock:
+.global findCacheBlock__12JKRFileCacheCFPCv
+findCacheBlock__12JKRFileCacheCFPCv:
 /* 802D53B8 002D22F8  80 A3 00 3C */	lwz r5, 0x3c(r3)
 /* 802D53BC 002D22FC  48 00 00 18 */	b lbl_802D53D4
 lbl_802D53C0:
@@ -716,8 +716,8 @@ lbl_802D53D4:
 /* 802D53DC 002D231C  38 60 00 00 */	li r3, 0
 /* 802D53E0 002D2320  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_findCacheBlock_X1_
-JKRFileCache_NS_findCacheBlock_X1_:
+.global findCacheBlock__12JKRFileCacheCFUl
+findCacheBlock__12JKRFileCacheCFUl:
 /* 802D53E4 002D2324  80 A3 00 3C */	lwz r5, 0x3c(r3)
 /* 802D53E8 002D2328  48 00 00 18 */	b lbl_802D5400
 lbl_802D53EC:
@@ -732,8 +732,8 @@ lbl_802D5400:
 /* 802D5408 002D2348  38 60 00 00 */	li r3, 0
 /* 802D540C 002D234C  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_findFile
-JKRFileCache_NS_findFile:
+.global findFile__12JKRFileCacheCFPcPCc
+findFile__12JKRFileCacheCFPcPCc:
 /* 802D5410 002D2350  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802D5414 002D2354  7C 08 02 A6 */	mflr r0
 /* 802D5418 002D2358  90 01 00 44 */	stw r0, 0x44(r1)
@@ -766,7 +766,7 @@ lbl_802D5460:
 /* 802D5480 002D23C0  7F 43 D3 78 */	mr r3, r26
 /* 802D5484 002D23C4  7F 64 DB 78 */	mr r4, r27
 /* 802D5488 002D23C8  7F 85 E3 78 */	mr r5, r28
-/* 802D548C 002D23CC  4B FF FF 85 */	bl JKRFileCache_NS_findFile
+/* 802D548C 002D23CC  4B FF FF 85 */	bl findFile__12JKRFileCacheCFPcPCc
 /* 802D5490 002D23D0  7C 7D 1B 78 */	mr r29, r3
 /* 802D5494 002D23D4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D5498 002D23D8  40 82 00 60 */	bne lbl_802D54F8
@@ -807,8 +807,8 @@ lbl_802D5500:
 /* 802D5514 002D2454  38 21 00 40 */	addi r1, r1, 0x40
 /* 802D5518 002D2458  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_getDvdPathName
-JKRFileCache_NS_getDvdPathName:
+.global getDvdPathName__12JKRFileCacheCFPCc
+getDvdPathName__12JKRFileCacheCFPCc:
 /* 802D551C 002D245C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5520 002D2460  7C 08 02 A6 */	mflr r0
 /* 802D5524 002D2464  90 01 00 24 */	stw r0, 0x24(r1)
@@ -870,7 +870,7 @@ lbl_802D55B8:
 lbl_802D55FC:
 /* 802D55FC 002D253C  7F A3 EB 78 */	mr r3, r29
 /* 802D5600 002D2540  7F E4 FB 78 */	mr r4, r31
-/* 802D5604 002D2544  48 00 00 21 */	bl JKRFileCache_NS_convStrLower
+/* 802D5604 002D2544  48 00 00 21 */	bl convStrLower__12JKRFileCacheCFPc
 /* 802D5608 002D2548  7F E3 FB 78 */	mr r3, r31
 /* 802D560C 002D254C  39 61 00 20 */	addi r11, r1, 0x20
 /* 802D5610 002D2550  48 08 CC 19 */	bl _restgpr_29
@@ -879,8 +879,8 @@ lbl_802D55FC:
 /* 802D561C 002D255C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D5620 002D2560  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_convStrLower
-JKRFileCache_NS_convStrLower:
+.global convStrLower__12JKRFileCacheCFPc
+convStrLower__12JKRFileCacheCFPc:
 /* 802D5624 002D2564  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5628 002D2568  7C 08 02 A6 */	mflr r0
 /* 802D562C 002D256C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -902,8 +902,8 @@ lbl_802D564C:
 /* 802D5664 002D25A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D5668 002D25A8  4E 80 00 20 */	blr 
 
-.global JKRFileCache_NS_CCacheBlock
-JKRFileCache_NS_CCacheBlock:
+.global __ct__Q212JKRFileCache11CCacheBlockFUlUlPCv
+__ct__Q212JKRFileCache11CCacheBlockFUlUlPCv:
 /* 802D566C 002D25AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5670 002D25B0  7C 08 02 A6 */	mflr r0
 /* 802D5674 002D25B4  90 01 00 24 */	stw r0, 0x24(r1)

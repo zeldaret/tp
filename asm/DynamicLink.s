@@ -387,7 +387,7 @@ DynamicModuleControl_NS_mountCallback:
 /* 802626F0 0025F630  38 63 00 E0 */	addi r3, r3, 0xe0
 /* 802626F4 0025F634  7F E4 FB 78 */	mr r4, r31
 /* 802626F8 0025F638  38 A0 00 00 */	li r5, 0
-/* 802626FC 0025F63C  48 07 22 B9 */	bl JKRFileCache_NS_mount
+/* 802626FC 0025F63C  48 07 22 B9 */	bl mount__12JKRFileCacheFPCcP7JKRHeapPCc
 /* 80262700 0025F640  90 6D 8B C8 */	stw r3, lbl_80451148-_SDA_BASE_(r13)
 /* 80262704 0025F644  3C 60 80 3A */	lis r3, lbl_8039A4A0@ha
 /* 80262708 0025F648  38 63 A4 A0 */	addi r3, r3, lbl_8039A4A0@l
