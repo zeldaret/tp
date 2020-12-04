@@ -236,3 +236,13 @@ extern u32 lbl_80434348;
 extern u32 lbl_803D2D18;
 
 extern u8 lbl_803CC090;
+
+extern u8 lbl_80451398;
+extern u8 lbl_804513A4;
+extern u8 lbl_80455F98;
+extern u8 lbl_803CBFD0;
+extern u8 lbl_8039CAF0;
+extern u8 lbl_8045139C;
+extern u8 lbl_804513A0;
+extern u8 lbl_80455FA0;
+extern u8 lbl_804513A8;

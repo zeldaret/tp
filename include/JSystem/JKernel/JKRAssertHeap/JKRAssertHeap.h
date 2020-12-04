@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
-class JKRAssertHeap : JKRHeap {
+class JKRAssertHeap : public JKRHeap {
   public:
     JKRAssertHeap(void*, unsigned long, JKRHeap*, bool);
     virtual ~JKRAssertHeap();

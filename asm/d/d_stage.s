@@ -774,7 +774,7 @@ dStage_roomControl_c_NS_createMemoryBlock:
 /* 80024878 000217B8  7C 64 1B 78 */	mr r4, r3
 /* 8002487C 000217BC  7F A3 EB 78 */	mr r3, r29
 /* 80024880 000217C0  38 A0 00 00 */	li r5, 0
-/* 80024884 000217C4  48 2A A5 A9 */	bl JKRExpHeap_NS_create
+/* 80024884 000217C4  48 2A A5 A9 */	bl create__10JKRExpHeapFUlP7JKRHeapb
 /* 80024888 000217C8  7C 7F F1 2E */	stwx r3, r31, r30
 lbl_8002488C:
 /* 8002488C 000217CC  7C 7F F0 2E */	lwzx r3, r31, r30

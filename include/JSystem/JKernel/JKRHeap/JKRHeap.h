@@ -5,7 +5,12 @@
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
 typedef void (*JKRErrorHandler)(void*, u32, int);
-class JKRHeap : JKRDisposer {
+class JKRHeap : public JKRDisposer {
+  public:
+  class TState {
+
+  };
+
   public:
     JKRHeap(void*, u32, JKRHeap*, bool);
     virtual ~JKRHeap();
@@ -98,8 +103,8 @@ class JKRHeap : JKRDisposer {
     virtual s32 do_getTotalFreeSize()               = 0;
     virtual u8 do_changeGroupID(u8 param_1);
     virtual u8 do_getCurrentGroupId();
-    virtual void state_register();
-    virtual void state_compare();
+    virtual void state_register(JKRHeap::TState *, unsigned long) const;
+    virtual bool state_compare(JKRHeap::TState const &, JKRHeap::TState const &) const;
     virtual void state_dump();
 
   public:
