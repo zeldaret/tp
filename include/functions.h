@@ -173,9 +173,6 @@ extern "C" {
     void VIWaitForRetrace(void);
     void func_80361C24(void);
 
-    void JKRDvdFinder(void);
-    void JKRFileLoader(void);
-    void JKRFileLoader_NS_dtor(void);
     void _restgpr_26(void);
     void _restgpr_27(void);
     void _restgpr_28(void);
@@ -189,6 +186,9 @@ extern "C" {
     void func_803688DC(void);
     void func_80368ABC(void);
     void func_80368BE4(void);
+    void JKRFileLoader(void);
+    void JKRFileLoader_NS_dtor(void);
+    void JKRArchive_NS_getDirEntry(void);
 }
 
 // OS
@@ -513,4 +513,16 @@ extern "C" {
     void readResource__12JKRFileCacheFPvUlUlPCc(void);
     void removeResourceAll__12JKRFileCacheFv(void);
     void removeResource__12JKRFileCacheFPv(void);
+};
+
+
+// JSystem/JKernel/JKRFileCache
+extern "C" {
+    void __ct__12JKRArcFinderFP10JKRArchivell(void);
+    void __ct__12JKRDvdFinderFPCc(void);
+    void __dt__12JKRArcFinderFv(void);
+    void __dt__12JKRDvdFinderFv(void);
+    void __dt__13JKRFileFinderFv(void);
+    void findNextFile__12JKRArcFinderFv(void);
+    void findNextFile__12JKRDvdFinderFv(void);
 };

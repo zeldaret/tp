@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d4638
 
 
-.global JKRArcFinder
-JKRArcFinder:
+.global __ct__12JKRArcFinderFP10JKRArchivell
+__ct__12JKRArcFinderFP10JKRArchivell:
 /* 802D4638 002D1578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D463C 002D157C  7C 08 02 A6 */	mflr r0
 /* 802D4640 002D1580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -85,8 +85,8 @@ lbl_802D4758:
 /* 802D4768 002D16A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D476C 002D16AC  4E 80 00 20 */	blr 
 
-.global JKRDvdFinder
-JKRDvdFinder:
+.global __ct__12JKRDvdFinderFPCc
+__ct__12JKRDvdFinderFPCc:
 /* 802D4770 002D16B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D4774 002D16B4  7C 08 02 A6 */	mflr r0
 /* 802D4778 002D16B8  90 01 00 14 */	stw r0, 0x14(r1)

@@ -811,6 +811,11 @@ readResource__12JKRFileCacheFPvUlPCc
 readResource__12JKRFileCacheFPvUlUlPCc
 removeResourceAll__12JKRFileCacheFv
 removeResource__12JKRFileCacheFPv
+__dt__12JKRArcFinderFv
+__dt__12JKRDvdFinderFv
+__dt__13JKRFileFinderFv
+findNextFile__12JKRArcFinderFv
+findNextFile__12JKRDvdFinderFv
 }
 /*
 .init 80003100 - 80005600

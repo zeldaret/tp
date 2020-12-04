@@ -223,3 +223,7 @@ extern u8 lbl_80451418;
 extern u8 lbl_8039D158;
 extern u8 lbl_803CC238;
 extern u8 lbl_80434354;
+
+extern u8 lbl_803CC218;
+extern u8 lbl_803CC228;
+extern u8 lbl_803CC208;
