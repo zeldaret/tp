@@ -1,10 +1,5 @@
-.include "macros.inc"
-
-.section .text, "ax" # 802d9518
-
-
-.global JKRFile_NS_read
-JKRFile_NS_read:
+/* read__7JKRFileFPvll JKRFile::read(void *, long, long) */
+/* JKRFile_NS_read */
 /* 802D9518 002D6458  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D951C 002D645C  7C 08 02 A6 */	mflr r0
 /* 802D9520 002D6460  90 01 00 24 */	stw r0, 0x24(r1)
@@ -22,7 +17,7 @@ lbl_802D953C:
 /* 802D954C 002D648C  81 9C 00 00 */	lwz r12, 0(r28)
 /* 802D9550 002D6490  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 802D9554 002D6494  7D 89 03 A6 */	mtctr r12
-/* 802D9558 002D6498  4E 80 04 21 */	bctrl 
+/* 802D9558 002D6498  4E 80 04 21 */	bctrl
 /* 802D955C 002D649C  7C 1E 18 00 */	cmpw r30, r3
 /* 802D9560 002D64A0  41 82 00 0C */	beq lbl_802D956C
 /* 802D9564 002D64A4  48 07 34 61 */	bl VIWaitForRetrace
@@ -33,5 +28,4 @@ lbl_802D956C:
 /* 802D9574 002D64B4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802D9578 002D64B8  7C 08 03 A6 */	mtlr r0
 /* 802D957C 002D64BC  38 21 00 20 */	addi r1, r1, 0x20
-/* 802D9580 002D64C0  4E 80 00 20 */	blr 
-
+/* 802D9580 002D64C0  4E 80 00 20 */	blr

@@ -170,6 +170,7 @@ extern "C" {
     void JUTConsole_NS_clear(void);
 
     void func_803621CC(void);
+    void VIWaitForRetrace(void);
 }
 
 // OS
