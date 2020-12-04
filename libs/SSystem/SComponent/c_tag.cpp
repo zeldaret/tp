@@ -13,7 +13,7 @@ int cTg_SingleCutFromTree(create_tag_class *pTag)
 {
     if (pTag->mbIsUse == true) {
         pTag->mbIsUse = false;
-        cTr_SingleCut(pTag);
+        cTr_SingleCut(&pTag->pNode);
         return true;
     } else {
         return false;
@@ -23,7 +23,7 @@ int cTg_SingleCutFromTree(create_tag_class *pTag)
 int cTg_AdditionToTree(node_lists_tree_class *pTree, int listIdx, create_tag_class *pTag)
 {
     if (!pTag->mbIsUse) {
-        int ret = cTr_Addition(pTree, listIdx, pTag);
+        int ret = cTr_Addition(pTree, listIdx, &pTag->pNode);
         if (ret) {
             pTag->mbIsUse = true;
             return ret;
@@ -36,7 +36,7 @@ int cTg_AdditionToTree(node_lists_tree_class *pTree, int listIdx, create_tag_cla
 int cTg_InsertToTree(node_lists_tree_class *pTree, int listIdx, create_tag_class *pTag, int idx)
 {
     if (!pTag->mbIsUse) {
-        int ret = cTr_Insert(pTree, listIdx, pTag, idx);
+        int ret = cTr_Insert(pTree, listIdx, &pTag->pNode, idx);
         if (ret) {
             pTag->mbIsUse = true;
             return ret;
@@ -54,14 +54,14 @@ node_class * cTg_GetFirst(node_list_class *pList)
     } else {
         pTag = NULL;
     }
-    return pTag;
+    return &pTag->pNode;
 }
 
 int cTg_SingleCut(create_tag_class *pTag)
 {
     if (pTag->mbIsUse == 1) {
         pTag->mbIsUse = false;
-        cLs_SingleCut(pTag);
+        cLs_SingleCut(&pTag->pNode);
         return 1;
     }
 
@@ -71,7 +71,7 @@ int cTg_SingleCut(create_tag_class *pTag)
 int cTg_Addition(node_list_class *pList, create_tag_class *pTag)
 {
     if (!pTag->mbIsUse) {
-        int ret = cLs_Addition(pList, pTag);
+        int ret = cLs_Addition(pList, &pTag->pNode);
         if (ret) {
             pTag->mbIsUse = true;
             return ret;
@@ -83,7 +83,7 @@ int cTg_Addition(node_list_class *pList, create_tag_class *pTag)
 
 void cTg_Create(create_tag_class *pTag, void *pData)
 {
-    cNd_Create(pTag, NULL);
+    cNd_Create(&pTag->pNode, NULL);
     pTag->mpTagData = pData;
     pTag->mbIsUse = false;
 }

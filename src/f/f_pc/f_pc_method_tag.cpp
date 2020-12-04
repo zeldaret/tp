@@ -6,7 +6,7 @@ extern node_lists_tree_class lbl_804505D8;
 
 extern "C" {
 
-void fpcMtdTg_Do(process_method_tag_class *pMthd)
+int fpcMtdTg_Do(process_method_tag_class *pMthd)
 {
     pMthd->mpFunc(pMthd->mpMthdData);
 }

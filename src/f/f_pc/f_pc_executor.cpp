@@ -9,8 +9,6 @@
 
 extern "C" {
 
-extern int fpcLyTg_ToQueue(layer_management_tag_class *pTag, u32 layerID, u16 listID, u16 listPrio);
-extern int fpcLyTg_QueueTo(layer_management_tag_class *pTag);
 extern int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
 extern void * fpcLyIt_AllJudge(void *pFunc, void *pUserData);
 extern int fpcPause_IsEnable(base_process_class *pProc, int);
