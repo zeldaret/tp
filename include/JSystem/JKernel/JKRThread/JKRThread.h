@@ -14,6 +14,9 @@ struct OSMessageQueue {
 
 typedef void* OSMessage;
 
+class JKRThread;
+extern JSUList<JKRThread> lbl_8043428C;   // JSUList<JKRThread> JKRThread::sThreadList
+
 class JKRThreadName_;
 class JUTConsole;
 class JKRHeap;
@@ -27,24 +30,31 @@ class JKRThread : JKRDisposer {
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
 
+    OSThread* getThreadRecord() {
+      return this->mOsThread;
+    }
+
     static void* start(void* param_1);
     static JKRThread* searchThread(OSThread* thread);
+    static JSUList<JKRThread>* getList() {
+      return &lbl_8043428C;
+    }
 
-    u32 run();
+    virtual void* run();
 
   public:
-    JSUPtrLink thread_list_link;
-    JKRHeap* heap;
-    OSThread* os_thread;
-    OSMessageQueue queue;
-    OSMessage* messages;
-    int message_count;
-    void* stack_ptr;
-    u32 stack_size;
+    JSULink<JKRThread> mThreadListLink;
+    JKRHeap* mHeap;
+    OSThread* mOsThread;
+    OSMessageQueue mQueue;
+    OSMessage* mMessages;
+    int mMessageCount;
+    void* mStackPtr;
+    u32 mStackSize;
     u8 field_0x60;
     u8 padding_0x61[3];
-    u32 cost;
-    u32 switch_count;
+    u32 mCost;
+    u32 mSwitchCount;
     u32 field_0x6c;
     u32 field_0x70;
     JKRHeap* field_0x74;

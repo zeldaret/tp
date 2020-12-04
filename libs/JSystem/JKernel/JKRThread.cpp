@@ -3,9 +3,9 @@
 #include "global.h"
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1568.s"
-JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : thread_list_link(this) {
-    this->switch_count = 0;
-    this->cost         = 0;
+JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
+    this->mSwitchCount = 0;
+    this->mCost        = 0;
     this->field_0x6c   = 0;
     this->field_0x60   = 0;
     this->field_0x70   = 0;
@@ -16,13 +16,13 @@ JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : thread_li
     }
 
     this->setCommon_heapSpecified(heap, stack_size, param_3);
-    this->setCommon_mesgQueue(this->heap, message_count);
+    this->setCommon_mesgQueue(this->mHeap, message_count);
 }
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1610.s"
-JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4) : thread_list_link(this) {
-    this->switch_count = 0;
-    this->cost         = 0;
+JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4) : mThreadListLink(this) {
+    this->mSwitchCount = 0;
+    this->mCost        = 0;
     this->field_0x6c   = 0;
     this->field_0x60   = 0;
     this->field_0x70   = 0;
@@ -32,7 +32,7 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
     }
 
     this->setCommon_heapSpecified(heap, stack_size, param_4);
-    this->setCommon_mesgQueue(this->heap, message_count);
+    this->setCommon_mesgQueue(this->mHeap, message_count);
 }
 
 asm JKRThread::JKRThread(OSThread* thread, int message_count) {
@@ -47,11 +47,11 @@ asm JKRThread::~JKRThread() {
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1830.s"
 void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
-    this->message_count = message_count;
-    this->messages      = (OSMessage*)JKRHeap::alloc(this->message_count * sizeof(OSMessage), 0, heap);
+    this->mMessageCount = message_count;
+    this->mMessages     = (OSMessage*)JKRHeap::alloc(this->mMessageCount * sizeof(OSMessage), 0, heap);
 
-    OSInitMessageQueue(&this->queue, this->messages, this->message_count);
-    lbl_8043428C.append(&this->thread_list_link);
+    OSInitMessageQueue(&this->mQueue, this->mMessages, this->mMessageCount);
+    lbl_8043428C.append(&this->mThreadListLink);
 
     this->field_0x74 = (JKRHeap*)NULL;
     this->field_0x78 = (JKRHeap*)NULL;
@@ -59,49 +59,41 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D18A4.s"
 void JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3) {
-    this->heap       = heap;
-    this->stack_size = stack_size & 0xffffffe0;
-    this->stack_ptr  = JKRHeap::alloc(this->stack_size, 0x20, this->heap);
-    this->os_thread  = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, this->heap);
+    this->mHeap      = heap;
+    this->mStackSize = stack_size & 0xffffffe0;
+    this->mStackPtr  = JKRHeap::alloc(this->mStackSize, 0x20, this->mHeap);           
+    this->mOsThread  = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, this->mHeap); 
 
-    void* stackBase = (void*)((int)this->stack_ptr + this->stack_size);
-    OSCreateThread(this->os_thread, start, this, stackBase, this->stack_size, param_3, 1);
+    void* stackBase = (void*)((int)this->mStackPtr + this->mStackSize);
+    OSCreateThread(this->mOsThread, start, this, stackBase, this->mStackSize, param_3, 1);
 }
 
-/*
-Same problem as with other virtual calls.
-
--  2ce880:      81 83 00 00     lwz     r12,0(r3)
--  2ce884:      81 8c 00 0c     lwz     r12,12(r12)
-+  2ce880:      80 83 00 00     lwz     r4,0(r3)
-+  2ce884:      81 84 00 0c     lwz     r12,12(r4)
-*/
-#ifdef NONMATCHING
+// #include "JSystem/JKernel/JKRThread/asm/func_802D1934.s"
 void* JKRThread::start(void* param) {
     JKRThread* thread = (JKRThread*)param;
-    return (*thread->__vt->run)(thread);
+    return thread->run();
 }
-#else
-asm void* JKRThread::start(void* param_1) {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D1934.s"
-}
-#endif
 
+#ifdef NONMATCHING
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1960.s"
 JKRThread* JKRThread::searchThread(OSThread* thread) {
-    JSUPtrLink* node = lbl_8043428C.head;
-    while (node) {
-        JKRThread* jkr_thread = (JKRThread*)node->owner;
-        if (jkr_thread->os_thread == thread) {
-            return jkr_thread;
+    JSUList<JKRThread>* threadList = JKRThread::getList();
+    JSUListIterator<JKRThread> iterator;
+    for (iterator = threadList; iterator != threadList->getEnd(); iterator++) {
+        JKRThread* jkrThread = iterator.getObject();
+        if (jkrThread->mOsThread == thread) {
+            return jkrThread;
         }
-
-        node = node->next;
     }
 
-    return (JKRThread*)NULL;
+    return NULL;
 }
+#else
+asm JKRThread* JKRThread::searchThread(OSThread* thread) {
+    nofralloc
+#include "JSystem/JKernel/JKRThread/asm/func_802D1960.s"
+}
+#endif
 
 //
 //
@@ -136,8 +128,8 @@ asm void JKRThreadSwitch::draw(JKRThreadName_* param_1, JUTConsole* param_2){nof
 //
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1E14.s"
-u32 JKRThread::run() {
-    return 0;
+void* JKRThread::run() {
+    return NULL;
 }
 
 //

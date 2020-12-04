@@ -197,7 +197,6 @@ extern Z2SeMgr* lbl_80450B88; //Z2SeMgr sInstance
 class Z2SoundObjMgr;
 extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance
 extern void* lbl_803CC114; // JKRThread::__vt
-extern JSUPtrList lbl_8043428C;   // JSUPtrList JKRThread::sThreadList
 
 class JKRThreadSwitch;
 extern void* lbl_803CC100[5];         // JKRThreadSwitch::__vt

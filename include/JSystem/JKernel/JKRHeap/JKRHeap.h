@@ -82,7 +82,7 @@ class JKRHeap : JKRDisposer {
     }
 
   protected:
-    void callAllDisposer();
+    virtual void callAllDisposer();
     virtual void vt_func4() = 0;
     virtual void vt_func5() = 0;
     virtual void dump_sort();

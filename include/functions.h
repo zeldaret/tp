@@ -412,6 +412,8 @@ extern "C" {
 extern "C"{
     void Z2CreatureRide_NS_setLinkRiding(void);
     void checkDownDamage__10e_wb_classFv(void);
+}
+
 // JSystem/JKernel/JKRThread
 extern "C" {
     void __ct__9JKRThreadFUlii(void);

@@ -143,7 +143,7 @@ class JSUListIterator {
     }
     JSUListIterator(JSULink<T>* link) : mLink(link) {
     }
-    JSUListIterator(JSUList<T>* list) : JSUListIterator(list->getFirst()) {
+    JSUListIterator(JSUList<T>* list) : mLink(list->getFirst()) {
     }
 
     JSUListIterator<T>& operator=(JSULink<T>* link) {
