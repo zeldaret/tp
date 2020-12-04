@@ -35,7 +35,7 @@ dMeter2Draw_c:
 /* 8020FB20 0020CA60  38 64 4F 54 */	addi r3, r4, 0x524F4F54@l
 /* 8020FB24 0020CA64  3C 80 80 3A */	lis r4, lbl_803988D0@ha
 /* 8020FB28 0020CA68  38 84 88 D0 */	addi r4, r4, lbl_803988D0@l
-/* 8020FB2C 0020CA6C  48 0C 60 0D */	bl JKRArchive_NS_getGlbResource
+/* 8020FB2C 0020CA6C  48 0C 60 0D */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 8020FB30 0020CA70  3C 80 80 43 */	lis r4, lbl_80430188@ha
 /* 8020FB34 0020CA74  38 84 01 88 */	addi r4, r4, lbl_80430188@l
 /* 8020FB38 0020CA78  90 64 00 10 */	stw r3, 0x10(r4)
@@ -51,7 +51,7 @@ dMeter2Draw_c:
 /* 8020FB60 0020CAA0  3C A0 52 4F */	lis r5, 0x524F4F54@ha
 /* 8020FB64 0020CAA4  38 65 4F 54 */	addi r3, r5, 0x524F4F54@l
 /* 8020FB68 0020CAA8  7F 45 D3 78 */	mr r5, r26
-/* 8020FB6C 0020CAAC  48 0C 5F CD */	bl JKRArchive_NS_getGlbResource
+/* 8020FB6C 0020CAAC  48 0C 5F CD */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 8020FB70 0020CAB0  3C 80 80 43 */	lis r4, lbl_80430188@ha
 /* 8020FB74 0020CAB4  38 84 01 88 */	addi r4, r4, lbl_80430188@l
 /* 8020FB78 0020CAB8  90 64 00 14 */	stw r3, 0x14(r4)
@@ -61,7 +61,7 @@ dMeter2Draw_c:
 /* 8020FB88 0020CAC8  3C 80 80 3A */	lis r4, lbl_803988D0@ha
 /* 8020FB8C 0020CACC  38 84 88 D0 */	addi r4, r4, lbl_803988D0@l
 /* 8020FB90 0020CAD0  38 84 00 6E */	addi r4, r4, 0x6e
-/* 8020FB94 0020CAD4  48 0C 5F A5 */	bl JKRArchive_NS_getGlbResource
+/* 8020FB94 0020CAD4  48 0C 5F A5 */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 8020FB98 0020CAD8  3C 80 80 43 */	lis r4, lbl_80430188@ha
 /* 8020FB9C 0020CADC  38 84 01 88 */	addi r4, r4, lbl_80430188@l
 /* 8020FBA0 0020CAE0  90 64 00 18 */	stw r3, 0x18(r4)

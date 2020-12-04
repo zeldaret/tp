@@ -198,6 +198,19 @@ extern "C" {
 
     void func_803621CC(void);
     void func_80362218(void);
+
+    void JKRAramArchive(void);
+    void JKRArchive_NS_findDirectory(void);
+    void JKRArchive_NS_findFsResource(void);
+    void JKRArchive_NS_findIdResource(void);
+    void JKRArchive_NS_findIdxResource(void);
+    void JKRArchive_NS_findNameResource(void);
+    void JKRArchive_NS_findPtrResource(void);
+    void JKRArchive_NS_findTypeResource(void);
+    void JKRCompArchive(void);
+    void JKRDvdArchive(void);
+    void JKRMemArchive(void);
+    void JKRMemArchive_X1_(void);
 }
 
 // OS
@@ -254,6 +267,7 @@ extern "C" {
     void DVDFastOpen(void);
     void DVDGetCommandBlockStatus(void);
     void DVDReadAsyncPrio(void);
+    void DVDConvertPathToEntrynum(void);
 
     void DVDChangeDir(void);
     void DVDCloseDir(void);
@@ -645,4 +659,31 @@ extern "C" {
     void getHeapType__12JKRSolidHeapFv(void);
     void state_compare__12JKRSolidHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState(void);
     void state_register__12JKRSolidHeapCFPQ27JKRHeap6TStateUl(void);
+};
+
+// JSystem/JKernel/JKRArchivePub
+extern "C" {
+    void becomeCurrent__10JKRArchiveFPCc(void);
+    void check_mount_already__10JKRArchiveFlP7JKRHeap(void);
+    void countFile__10JKRArchiveCFPCc(void);
+    void countResource__10JKRArchiveCFv(void);
+    void detachResource__10JKRArchiveFPv(void);
+    void getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl(void);
+    void getFileAttribute__10JKRArchiveCFUl(void);
+    void getFirstFile__10JKRArchiveCFPCc(void);
+    void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
+    void getIdxResource__10JKRArchiveFUl(void);
+    void getResSize__10JKRArchiveCFPCv(void);
+    void getResource__10JKRArchiveFPCc(void);
+    void getResource__10JKRArchiveFUlPCc(void);
+    void getResource__10JKRArchiveFUs(void);
+    void mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection(void);
+    void mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection(void);
+    void mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection(void);
+    void readIdxResource__10JKRArchiveFPvUlUl(void);
+    void readResource__10JKRArchiveFPvUlPCc(void);
+    void readResource__10JKRArchiveFPvUlUlPCc(void);
+    void readResource__10JKRArchiveFPvUlUs(void);
+    void removeResourceAll__10JKRArchiveFv(void);
+    void removeResource__10JKRArchiveFPv(void);
 };

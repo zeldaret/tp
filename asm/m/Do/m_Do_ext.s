@@ -8337,7 +8337,7 @@ mDoExt_initFontCommon:
 /* 80014834 00011774  38 63 4F 54 */	addi r3, r3, 0x524F4F54@l
 /* 80014838 00011778  7C C4 33 78 */	mr r4, r6
 /* 8001483C 0001177C  7C E5 3B 78 */	mr r5, r7
-/* 80014840 00011780  48 2C 12 F9 */	bl JKRArchive_NS_getGlbResource
+/* 80014840 00011780  48 2C 12 F9 */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 80014844 00011784  90 7F 00 00 */	stw r3, 0(r31)
 /* 80014848 00011788  57 60 06 3F */	clrlwi. r0, r27, 0x18
 /* 8001484C 0001178C  40 82 00 70 */	bne lbl_800148BC

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d5778
 
 
-.global JKRArchive_NS_check_mount_already
-JKRArchive_NS_check_mount_already:
+.global check_mount_already__10JKRArchiveFlP7JKRHeap
+check_mount_already__10JKRArchiveFlP7JKRHeap:
 /* 802D5778 002D26B8  28 04 00 00 */	cmplwi r4, 0
 /* 802D577C 002D26BC  40 82 00 08 */	bne lbl_802D5784
 /* 802D5780 002D26C0  80 8D 8D F4 */	lwz r4, lbl_80451374-_SDA_BASE_(r13)
@@ -37,8 +37,8 @@ lbl_802D57D4:
 /* 802D57DC 002D271C  38 60 00 00 */	li r3, 0
 /* 802D57E0 002D2720  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_mount
-JKRArchive_NS_mount:
+.global mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
+mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection:
 /* 802D57E4 002D2724  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D57E8 002D2728  7C 08 02 A6 */	mflr r0
 /* 802D57EC 002D272C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -56,7 +56,7 @@ lbl_802D5818:
 /* 802D5818 002D2758  7F A4 EB 78 */	mr r4, r29
 /* 802D581C 002D275C  7F C5 F3 78 */	mr r5, r30
 /* 802D5820 002D2760  7F E6 FB 78 */	mr r6, r31
-/* 802D5824 002D2764  48 00 00 A5 */	bl JKRArchive_NS_mount_X2_
+/* 802D5824 002D2764  48 00 00 A5 */	bl mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
 lbl_802D5828:
 /* 802D5828 002D2768  39 61 00 20 */	addi r11, r1, 0x20
 /* 802D582C 002D276C  48 08 C9 FD */	bl _restgpr_29
@@ -65,8 +65,8 @@ lbl_802D5828:
 /* 802D5838 002D2778  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D583C 002D277C  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_mount_X1_
-JKRArchive_NS_mount_X1_:
+.global mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection
+mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection:
 /* 802D5840 002D2780  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5844 002D2784  7C 08 02 A6 */	mflr r0
 /* 802D5848 002D2788  90 01 00 24 */	stw r0, 0x24(r1)
@@ -75,7 +75,7 @@ JKRArchive_NS_mount_X1_:
 /* 802D5854 002D2794  7C 7D 1B 78 */	mr r29, r3
 /* 802D5858 002D2798  7C 9E 23 78 */	mr r30, r4
 /* 802D585C 002D279C  7C BF 2B 78 */	mr r31, r5
-/* 802D5860 002D27A0  4B FF FF 19 */	bl JKRArchive_NS_check_mount_already
+/* 802D5860 002D27A0  4B FF FF 19 */	bl check_mount_already__10JKRArchiveFlP7JKRHeap
 /* 802D5864 002D27A4  28 03 00 00 */	cmplwi r3, 0
 /* 802D5868 002D27A8  41 82 00 08 */	beq lbl_802D5870
 /* 802D586C 002D27AC  48 00 00 44 */	b lbl_802D58B0
@@ -106,8 +106,8 @@ lbl_802D58B0:
 /* 802D58C0 002D2800  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D58C4 002D2804  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_mount_X2_
-JKRArchive_NS_mount_X2_:
+.global mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
+mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection:
 /* 802D58C8 002D2808  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D58CC 002D280C  7C 08 02 A6 */	mflr r0
 /* 802D58D0 002D2810  90 01 00 24 */	stw r0, 0x24(r1)
@@ -118,7 +118,7 @@ JKRArchive_NS_mount_X2_:
 /* 802D58E4 002D2824  7C BD 2B 78 */	mr r29, r5
 /* 802D58E8 002D2828  7C DE 33 78 */	mr r30, r6
 /* 802D58EC 002D282C  7F A4 EB 78 */	mr r4, r29
-/* 802D58F0 002D2830  4B FF FE 89 */	bl JKRArchive_NS_check_mount_already
+/* 802D58F0 002D2830  4B FF FE 89 */	bl check_mount_already__10JKRArchiveFlP7JKRHeap
 /* 802D58F4 002D2834  28 03 00 00 */	cmplwi r3, 0
 /* 802D58F8 002D2838  41 82 00 08 */	beq lbl_802D5900
 /* 802D58FC 002D283C  48 00 01 24 */	b lbl_802D5A20
@@ -254,8 +254,8 @@ lbl_802D5AA8:
 /* 802D5AB8 002D29F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D5ABC 002D29FC  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_getDirEntry
-JKRArchive_NS_getDirEntry:
+.global getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl
+getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl:
 /* 802D5AC0 002D2A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5AC4 002D2A04  7C 08 02 A6 */	mflr r0
 /* 802D5AC8 002D2A08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -289,8 +289,8 @@ lbl_802D5B20:
 /* 802D5B30 002D2A70  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D5B34 002D2A74  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_getGlbResource
-JKRArchive_NS_getGlbResource:
+.global getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
+getGlbResource__10JKRArchiveFUlPCcP10JKRArchive:
 /* 802D5B38 002D2A78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5B3C 002D2A7C  7C 08 02 A6 */	mflr r0
 /* 802D5B40 002D2A80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -414,8 +414,8 @@ lbl_802D5CD0:
 /* 802D5CDC 002D2C1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D5CE0 002D2C20  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_getIdxResource
-JKRArchive_NS_getIdxResource:
+.global getIdxResource__10JKRArchiveFUl
+getIdxResource__10JKRArchiveFUl:
 /* 802D5CE4 002D2C24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5CE8 002D2C28  7C 08 02 A6 */	mflr r0
 /* 802D5CEC 002D2C2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -440,8 +440,8 @@ lbl_802D5D24:
 /* 802D5D30 002D2C70  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D5D34 002D2C74  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_getResource_X2_
-JKRArchive_NS_getResource_X2_:
+.global getResource__10JKRArchiveFUs
+getResource__10JKRArchiveFUs:
 /* 802D5D38 002D2C78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5D3C 002D2C7C  7C 08 02 A6 */	mflr r0
 /* 802D5D40 002D2C80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -555,8 +555,8 @@ lbl_802D5EB4:
 /* 802D5EC4 002D2E04  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D5EC8 002D2E08  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_readIdxResource
-JKRArchive_NS_readIdxResource:
+.global readIdxResource__10JKRArchiveFPvUlUl
+readIdxResource__10JKRArchiveFPvUlUl:
 /* 802D5ECC 002D2E0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5ED0 002D2E10  7C 08 02 A6 */	mflr r0
 /* 802D5ED4 002D2E14  90 01 00 24 */	stw r0, 0x24(r1)
@@ -589,8 +589,8 @@ lbl_802D5F28:
 /* 802D5F38 002D2E78  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D5F3C 002D2E7C  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_readResource_X2_
-JKRArchive_NS_readResource_X2_:
+.global readResource__10JKRArchiveFPvUlUs
+readResource__10JKRArchiveFPvUlUs:
 /* 802D5F40 002D2E80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D5F44 002D2E84  7C 08 02 A6 */	mflr r0
 /* 802D5F48 002D2E88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -719,8 +719,8 @@ lbl_802D60FC:
 /* 802D6104 002D3044  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D6108 002D3048  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_countResource
-JKRArchive_NS_countResource:
+.global countResource__10JKRArchiveCFv
+countResource__10JKRArchiveCFv:
 /* 802D610C 002D304C  38 C0 00 00 */	li r6, 0
 /* 802D6110 002D3050  38 80 00 00 */	li r4, 0
 /* 802D6114 002D3054  80 A3 00 44 */	lwz r5, 0x44(r3)
@@ -820,8 +820,8 @@ lbl_802D6244:
 /* 802D6254 002D3194  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D6258 002D3198  4E 80 00 20 */	blr 
 
-.global JKRArchive_NS_getFileAttribute
-JKRArchive_NS_getFileAttribute:
+.global getFileAttribute__10JKRArchiveCFUl
+getFileAttribute__10JKRArchiveCFUl:
 /* 802D625C 002D319C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6260 002D31A0  7C 08 02 A6 */	mflr r0
 /* 802D6264 002D31A4  90 01 00 14 */	stw r0, 0x14(r1)

@@ -6,9 +6,10 @@
 class JKRFileLoader {
   public:
     JKRFileLoader(void);
-    ~JKRFileLoader();
+    virtual ~JKRFileLoader();
+
+    virtual void unmount(void);
     
-    void unmount(void);
     void getGlbResource(char const*);
     void getGlbResource(char const*, JKRFileLoader*);
     void removeResource(void*, JKRFileLoader*);

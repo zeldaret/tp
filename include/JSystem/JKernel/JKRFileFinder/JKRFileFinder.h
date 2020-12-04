@@ -3,6 +3,14 @@
 
 #include "dolphin/types.h"
 
+class JKRFileFinder {
+  public:
+    JKRFileFinder();
+    virtual ~JKRFileFinder();
+
+    virtual void findNextFile(void) = 0;
+};
+
 class JKRArchive;
 class JKRArcFinder : public JKRFileFinder {
   public:
@@ -20,12 +28,5 @@ class JKRDvdFinder : public JKRFileFinder {
     virtual void findNextFile(void);
 };
 
-class JKRFileFinder {
-  public:
-    JKRFileFinder();
-    virtual ~JKRFileFinder();
-
-    virtual void findNextFile(void) = 0;
-};
 
 #endif

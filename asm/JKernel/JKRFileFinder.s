@@ -61,7 +61,7 @@ __ct__12JKRArcFinderFP10JKRArchivell:
 /* 802D470C 002D164C  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 802D4710 002D1650  38 81 00 08 */	addi r4, r1, 8
 /* 802D4714 002D1654  80 BF 00 20 */	lwz r5, 0x20(r31)
-/* 802D4718 002D1658  48 00 13 A9 */	bl JKRArchive_NS_getDirEntry
+/* 802D4718 002D1658  48 00 13 A9 */	bl getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl
 /* 802D471C 002D165C  98 7F 00 10 */	stb r3, 0x10(r31)
 /* 802D4720 002D1660  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 802D4724 002D1664  90 1F 00 00 */	stw r0, 0(r31)

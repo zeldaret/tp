@@ -68,7 +68,7 @@ JASResArcLoader_NS_loadResourceCallback:
 /* 80290C98 0028DBD8  80 9E 00 08 */	lwz r4, 8(r30)
 /* 80290C9C 0028DBDC  80 BE 00 0C */	lwz r5, 0xc(r30)
 /* 80290CA0 0028DBE0  A0 DE 00 04 */	lhz r6, 4(r30)
-/* 80290CA4 0028DBE4  48 04 52 9D */	bl JKRArchive_NS_readResource_X2_
+/* 80290CA4 0028DBE4  48 04 52 9D */	bl readResource__10JKRArchiveFPvUlUs
 /* 80290CA8 0028DBE8  7C 7F 1B 78 */	mr r31, r3
 /* 80290CAC 0028DBEC  81 9E 00 10 */	lwz r12, 0x10(r30)
 /* 80290CB0 0028DBF0  28 0C 00 00 */	cmplwi r12, 0
