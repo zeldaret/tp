@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d12c4
 
 
-.global JKRAssertHeap
-JKRAssertHeap:
+.global __ct__13JKRAssertHeapFPvUlP7JKRHeapb
+__ct__13JKRAssertHeapFPvUlP7JKRHeapb:
 /* 802D12C4 002CE204  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D12C8 002CE208  7C 08 02 A6 */	mflr r0
 /* 802D12CC 002CE20C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -48,8 +48,8 @@ lbl_802D134C:
 /* 802D1360 002CE2A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D1364 002CE2A4  4E 80 00 20 */	blr 
 
-.global JKRAssertHeap_NS_create
-JKRAssertHeap_NS_create:
+.global create__13JKRAssertHeapFP7JKRHeap
+create__13JKRAssertHeapFP7JKRHeap:
 /* 802D1368 002CE2A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D136C 002CE2AC  7C 08 02 A6 */	mflr r0
 /* 802D1370 002CE2B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -72,7 +72,7 @@ lbl_802D13A4:
 /* 802D13AC 002CE2EC  38 A0 00 00 */	li r5, 0
 /* 802D13B0 002CE2F0  7F E6 FB 78 */	mr r6, r31
 /* 802D13B4 002CE2F4  38 E0 00 00 */	li r7, 0
-/* 802D13B8 002CE2F8  4B FF FF 0D */	bl JKRAssertHeap
+/* 802D13B8 002CE2F8  4B FF FF 0D */	bl __ct__13JKRAssertHeapFPvUlP7JKRHeapb
 /* 802D13BC 002CE2FC  7C 60 1B 78 */	mr r0, r3
 lbl_802D13C0:
 /* 802D13C0 002CE300  7C 03 03 78 */	mr r3, r0

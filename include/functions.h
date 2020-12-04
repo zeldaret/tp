@@ -282,6 +282,8 @@ extern "C" {
 
 // JSystem/JKernel/JKRHeap
 extern "C" {
+    void __ct__7JKRHeapFPvUlP7JKRHeapb(void);
+    void __dt__7JKRHeapFv(void);
     void becomeCurrentHeap__7JKRHeapFv(void);
     void becomeSystemHeap__7JKRHeapFv(void);
     void destroy__7JKRHeapFv(void);
@@ -540,4 +542,28 @@ extern "C" {
     void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
     void removeResource__13JKRFileLoaderFPvP13JKRFileLoader(void);
     void unmount__13JKRFileLoaderFv(void);
+};
+
+// JSystem/JKernel/JKRAssertHeap
+extern "C" {
+    void __ct__13JKRAssertHeapFPvUlP7JKRHeapb(void);
+    void __dt__13JKRAssertHeapFv(void);
+    void check__13JKRAssertHeapFv(void);
+    void create__13JKRAssertHeapFP7JKRHeap(void);
+    void do_alloc__13JKRAssertHeapFUli(void);
+    void do_changeGroupID__13JKRAssertHeapFUc(void);
+    void do_destroy__13JKRAssertHeapFv(void);
+    void do_fillFreeArea__13JKRAssertHeapFv(void);
+    void do_freeAll__13JKRAssertHeapFv(void);
+    void do_freeTail__13JKRAssertHeapFv(void);
+    void do_free__13JKRAssertHeapFPv(void);
+    void do_getCurrentGroupId__13JKRAssertHeapFv(void);
+    void do_getFreeSize__13JKRAssertHeapFv(void);
+    void do_getMaxFreeBlock__13JKRAssertHeapFv(void);
+    void do_getSize__13JKRAssertHeapFPv(void);
+    void do_getTotalFreeSize__13JKRAssertHeapFv(void);
+    void do_resize__13JKRAssertHeapFPvUl(void);
+    void dump__13JKRAssertHeapFv(void);
+    void dump_sort__13JKRAssertHeapFv(void);
+    void getHeapType__13JKRAssertHeapFv(void);
 };

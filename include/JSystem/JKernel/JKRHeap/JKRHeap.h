@@ -49,11 +49,9 @@ class JKRHeap : JKRDisposer {
     static void fillMemory(void* dst, u32 size, u8 value); // NOTE: never used
     static bool checkMemoryFilled(void* src, u32 size, u8 value);
 
-
     bool setErrorFlag(bool param_1);
     static void JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment);
     static JKRErrorHandler setErrorHandler(JKRErrorHandler error_handler);
-
 
     bool isSubHeap(JKRHeap* heap) const;
 
@@ -70,7 +68,7 @@ class JKRHeap : JKRDisposer {
     }
 
     JSUTree<JKRHeap>& getHeapTree() {
-      return this->mChildTree;
+        return this->mChildTree;
     }
 
     void appendDisposer(JKRDisposer* disposer) {
@@ -83,23 +81,23 @@ class JKRHeap : JKRDisposer {
 
   protected:
     virtual void callAllDisposer();
-    virtual void vt_func4() = 0;
-    virtual void vt_func5() = 0;
+    virtual u32 getHeapType() = 0;
+    virtual bool check()      = 0;
     virtual void dump_sort();
-    virtual void vt_func7()                         = 0;
+    virtual bool dump()                             = 0;
     virtual void do_destroy()                       = 0;
     virtual void* do_alloc(u32 size, int alignment) = 0;
     virtual void do_free(void* ptr)                 = 0;
     virtual void do_freeAll()                       = 0;
     virtual void do_freeTail()                      = 0;
-    virtual void vt_func13()                        = 0;
+    virtual void do_fillFreeArea()                  = 0;
     virtual s32 do_resize(void* ptr, u32 size)      = 0;
     virtual s32 do_getSize(void* ptr)               = 0;
     virtual s32 do_getFreeSize()                    = 0;
-    virtual void* do_getMaxFreeBlock()                = 0;
+    virtual void* do_getMaxFreeBlock()              = 0;
     virtual s32 do_getTotalFreeSize()               = 0;
     virtual u8 do_changeGroupID(u8 param_1);
-    virtual void do_getCurrent();
+    virtual u8 do_getCurrentGroupId();
     virtual void state_register();
     virtual void state_compare();
     virtual void state_dump();

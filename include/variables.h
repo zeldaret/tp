@@ -234,3 +234,5 @@ extern u8 lbl_803CC1C8;
 extern u32 lbl_804508C0;
 extern u32 lbl_80434348;
 extern u32 lbl_803D2D18;
+
+extern u8 lbl_803CC090;
