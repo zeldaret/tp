@@ -94,7 +94,7 @@ void dSv_player_status_b_c::init() {
   this->transform_level_flag = 0;
   this->dark_clear_level_flag = 0;
   this->unk10 = 0;
-  this->unk12 = lbl_80451D58;
+  this->time_of_day = lbl_80451D58;
   this->unk16 = 0;
 
   for (int i = 0; i < 3; i++) {
@@ -643,19 +643,19 @@ u8 dSv_player_item_record_c::getBottleNum(u8 i_bottleIdx) const {
 void dSv_player_item_max_c::init(void) {
 
     for (int i = 0; i < 7; i++) {
-        this->unk0[i] = 30;
+        this->item_capacities[i] = 30;
     }
     setBombNum(REGULAR_BOMBS,30);
     setBombNum(WATER_BOMBS,15);
     setBombNum(BOMBLINGS,10);
-    this->unk0[7] = 0;
+    this->item_capacities[7] = 0;
 }
 
 void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
     switch (bomb_id) {
-        case REGULAR_BOMBS: this->unk0[1] = bomb_max; return;
-        case WATER_BOMBS: this->unk0[2] = bomb_max; return;
-        case BOMBLINGS: this->unk0[6] = bomb_max; return;
+        case REGULAR_BOMBS: this->item_capacities[1] = bomb_max; return;
+        case WATER_BOMBS: this->item_capacities[2] = bomb_max; return;
+        case BOMBLINGS: this->item_capacities[6] = bomb_max; return;
     }
 }
 
@@ -730,7 +730,7 @@ void dSv_player_wolf_c::init(void) {
 
 void dSv_light_drop_c::init(void) {
     for (int i = 0; i < 4; i++) {
-        this->unk0[i] = 0;
+        this->light_drop_counts[i] = 0;
     }
 
     this->light_drop_get_flag = 0;
@@ -742,7 +742,7 @@ void dSv_light_drop_c::init(void) {
 
 void dSv_light_drop_c::setLightDropNum(u8 i_nowLevel,u8 param_2) {
     if ((i_nowLevel < LIGHT_DROP_STAGE) || (i_nowLevel > 6)) {
-        this->unk0[i_nowLevel] = param_2;
+        this->light_drop_counts[i_nowLevel] = param_2;
     }
 }
 
@@ -750,7 +750,7 @@ u8 dSv_light_drop_c::getLightDropNum(u8 i_nowLevel) const {
     if ((i_nowLevel >= LIGHT_DROP_STAGE) && (i_nowLevel <= 6)) {
         return 0;
     }
-    return this->unk0[i_nowLevel];
+    return this->light_drop_counts[i_nowLevel];
 }
 
 void dSv_light_drop_c::onLightDropGetFlag(u8 i_nowLevel) {
