@@ -24,6 +24,8 @@ extern "C" {
     void setBombNum__21dSv_player_item_max_cFUcUc(void);
     void func_80362224(void);
     void func_803621D8(void);
+    void func_803621CC(void);
+    void func_80362218(void);
     void _restgpr_26(void);
     void _savegpr_26(void);
     void _restgpr_29(void);
@@ -253,7 +255,33 @@ extern "C" {
 }
 
 extern "C" {
+struct TColor;
+
+extern void GXBegin(u8, u8, u16);
+extern void GXLoadTexObj(u32*, s32);
+extern void GXInitTexObjLOD(f32, f32, f32, u32*, s32, s32, u32, u8, u32);
+extern void GXInitTexObj(u32*, u32, u32, u32, u32, u32, u8);
+
+extern void GXSetNumChans(u32);
+extern void GXSetNumTevStages(u32);
+extern void GXSetNumTexGens(u32);
+extern void GXSetTevOrder(u32, u32, u32, u32);
+extern void GXSetChanCtrl(u32, u32, u32, u32, u32, u32, s32);
+extern void GXSetTevOp(s32, s32);
+extern void GXSetTevColor(s32, TColor);
+extern void GXSetTevColorIn(s32, u32, u32, u32, u32);
+extern void GXSetTevAlphaIn(s32, u32, u32, u32, u32);
+extern void GXSetTevColorOp(s32, u32, u32, u32, u32, u32);
+extern void GXSetTevAlphaOp(s32, u32, u32, u32, u32, u32);
+extern void GXSetBlendMode(u32, u32, u32, u32);
+extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
+extern void GXClearVtxDesc();
+extern void GXSetVtxDesc(u32, u32);
+}
+
+extern "C" {
     void JUTReport__FiiPCce(int, int, const char*, ...);
+    extern void JUTReportConsole(const char*);
 }
 
 // m_Do_main.h

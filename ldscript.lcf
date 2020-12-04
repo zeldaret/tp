@@ -777,6 +777,15 @@ FORCEACTIVE {
  startCtrl__8daItem_cFv
  startControl__8daItem_cFv
  endControl__8daItem_cFv
+ loadImage__10JUTResFontFlUl
+ isLeadByte__10JUTResFontFl
+ getCellHeight__10JUTResFontFv
+ getCellWidth__10JUTResFontFv
+ getWidthEntry__10JUTResFontFlPQ27JUTFont6TWidth
+ drawChar_scale__10JUTResFontFffffib
+ setGX__10JUTResFontF6TColor6TColor
+ setGX__10JUTResFontFv
+ setBlock__10JUTResFontFv
 }
 /*
 .init 80003100 - 80005600

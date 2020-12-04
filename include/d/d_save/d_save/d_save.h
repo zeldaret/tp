@@ -154,7 +154,7 @@ class dSv_player_status_b_c {
     u8 dark_clear_level_flag;
     u8 unk10;
     u8 unk11;
-    float unk12;
+    float time_of_day;
     u16 unk16;
     u8 unk18[3];
     u8 padding61[3];
@@ -296,7 +296,7 @@ class dSv_player_item_max_c {
     u8 getBombNum(u8) const;
 
    private:
-    u8 unk0[8];
+    u8 item_capacities[8];
 };
 
 class dSv_player_collect_c {
@@ -337,7 +337,7 @@ class dSv_light_drop_c {
     bool isLightDropGetFlag(u8) const;
 
    private:
-    u8 unk0[4];
+    u8 light_drop_counts[4];
     u8 light_drop_get_flag;
     u8 unk5[3];
 };
