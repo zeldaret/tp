@@ -186,9 +186,11 @@ extern "C" {
     void func_803688DC(void);
     void func_80368ABC(void);
     void func_80368BE4(void);
-    void JKRFileLoader(void);
-    void JKRFileLoader_NS_dtor(void);
     void JKRArchive_NS_getDirEntry(void);
+    
+    void _restgpr_29(void);
+    void _savegpr_29(void);
+    void func_80361C24(void);
 }
 
 // OS
@@ -516,7 +518,7 @@ extern "C" {
 };
 
 
-// JSystem/JKernel/JKRFileCache
+// JSystem/JKernel/JKRFileFinder
 extern "C" {
     void __ct__12JKRArcFinderFP10JKRArchivell(void);
     void __ct__12JKRDvdFinderFPCc(void);
@@ -525,4 +527,17 @@ extern "C" {
     void __dt__13JKRFileFinderFv(void);
     void findNextFile__12JKRArcFinderFv(void);
     void findNextFile__12JKRDvdFinderFv(void);
+};
+
+// JSystem/JKernel/JKRFileLoader
+extern "C" {
+    void __ct__13JKRFileLoaderFv(void);
+    void __dt__13JKRFileLoaderFv(void);
+    void detachResource__13JKRFileLoaderFPvP13JKRFileLoader(void);
+    void fetchVolumeName__13JKRFileLoaderFPclPCc(void);
+    void findVolume__13JKRFileLoaderFPPCc(void);
+    void getGlbResource__13JKRFileLoaderFPCc(void);
+    void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
+    void removeResource__13JKRFileLoaderFPvP13JKRFileLoader(void);
+    void unmount__13JKRFileLoaderFv(void);
 };

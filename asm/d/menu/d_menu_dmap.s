@@ -384,7 +384,7 @@ lbl_801B84B4:
 /* 801B84D0 001B5410  38 84 57 60 */	addi r4, r4, lbl_80395760@l
 /* 801B84D4 001B5414  38 64 00 33 */	addi r3, r4, 0x33
 /* 801B84D8 001B5418  80 9F 5C C0 */	lwz r4, 0x5cc0(r31)
-/* 801B84DC 001B541C  48 11 BD 95 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801B84DC 001B541C  48 11 BD 95 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801B84E0 001B5420  48 15 05 8D */	bl J2DAnmLoaderDataBase_NS_load
 /* 801B84E4 001B5424  90 7D 0D 28 */	stw r3, 0xd28(r29)
 /* 801B84E8 001B5428  80 7D 0D 28 */	lwz r3, 0xd28(r29)

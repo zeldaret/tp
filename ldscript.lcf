@@ -816,6 +816,8 @@ __dt__12JKRDvdFinderFv
 __dt__13JKRFileFinderFv
 findNextFile__12JKRArcFinderFv
 findNextFile__12JKRDvdFinderFv
+__sinit_JKRFileLoader_cpp
+unmount__13JKRFileLoaderFv
 }
 /*
 .init 80003100 - 80005600

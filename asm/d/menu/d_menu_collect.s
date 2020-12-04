@@ -2145,7 +2145,7 @@ dMenu_Collect2D_c_NS_animationSet:
 /* 801B1C8C 001AEBCC  3C 80 80 40 */	lis r4, lbl_804061C0@ha
 /* 801B1C90 001AEBD0  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
 /* 801B1C94 001AEBD4  80 84 5C B8 */	lwz r4, 0x5cb8(r4)
-/* 801B1C98 001AEBD8  48 12 25 D9 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801B1C98 001AEBD8  48 12 25 D9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801B1C9C 001AEBDC  48 15 6D D1 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801B1CA0 001AEBE0  90 7F 00 2C */	stw r3, 0x2c(r31)
 /* 801B1CA4 001AEBE4  80 7F 00 2C */	lwz r3, 0x2c(r31)

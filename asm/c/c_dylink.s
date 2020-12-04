@@ -219,10 +219,10 @@ cDyl_InitCallback:
 /* 800186C0 00015600  3C 60 80 37 */	lis r3, lbl_80375DE8@ha
 /* 800186C4 00015604  38 63 5D E8 */	addi r3, r3, lbl_80375DE8@l
 /* 800186C8 00015608  38 63 2A 58 */	addi r3, r3, 0x2a58
-/* 800186CC 0001560C  48 2B BB 59 */	bl JKRFileLoader_NS_getGlbResource
+/* 800186CC 0001560C  48 2B BB 59 */	bl getGlbResource__13JKRFileLoaderFPCc
 /* 800186D0 00015610  7C 7E 1B 78 */	mr r30, r3
 /* 800186D4 00015614  7F E4 FB 78 */	mr r4, r31
-/* 800186D8 00015618  48 2B BC C9 */	bl JKRFileLoader_NS_detachResource
+/* 800186D8 00015618  48 2B BC C9 */	bl detachResource__13JKRFileLoaderFPvP13JKRFileLoader
 /* 800186DC 0001561C  7F E3 FB 78 */	mr r3, r31
 /* 800186E0 00015620  81 9F 00 00 */	lwz r12, 0(r31)
 /* 800186E4 00015624  81 8C 00 0C */	lwz r12, 0xc(r12)
