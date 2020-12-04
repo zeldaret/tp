@@ -194,64 +194,6 @@ class JSUListIterator {
     JSULink<T>* mLink;
 };
 
-template <typename T>
-class JSUListIterator {
-  public:
-    JSUListIterator() : mLink() {
-    }
-    JSUListIterator(JSULink<T>* link) : mLink(link) {
-    }
-    JSUListIterator(JSUList<T>* list) : JSUListIterator(list->getFirst()) {
-    }
-
-    JSUListIterator<T>& operator=(JSULink<T>* link) {
-        this->mLink = link;
-        return *this;
-    }
-
-    T* getObject() {
-        return this->mLink->getObject();
-    }
-
-    bool operator==(JSULink<T> const* other) const {
-        return this->mLink == other;
-    }
-
-    bool operator!=(JSULink<T> const* other) const {
-        return this->mLink != other;
-    }
-
-    bool operator==(JSUListIterator<T> const& other) const {
-        return this->mLink == other.mLink;
-    }
-
-    bool operator!=(JSUListIterator<T> const& other) const {
-        return this->mLink != other.other;
-    }
-
-    JSUListIterator<T> operator++(int) {
-        JSUListIterator<T> prev = *this;
-        this->mLink             = this->mLink->getNext();
-        return prev;
-    }
-
-    JSUListIterator<T>& operator++() {
-        this->mLink = this->mLink->getNext();
-        return *this;
-    }
-
-    T& operator*() {
-        return this->getObject();
-    }
-
-    T* operator->() {
-        return this->getObject();
-    }
-
-  private:
-    JSULink<T>* mLink;
-};
-
 //
 // Tree
 //

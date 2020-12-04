@@ -3,12 +3,28 @@
 
 #include "dolphin/types.h"
 
-class JKRFileFinder {
+struct JKRFileFinder_UnknownBase {
+    u32 field_0x0;
+    u32 field_0x4;
+    u16 field_0x8;
+    u16 field_0xa;
+};
+
+class JKRFileFinder : JKRFileFinder_UnknownBase {
   public:
     JKRFileFinder();
     virtual ~JKRFileFinder();
 
-    virtual void findNextFile(void) = 0;
+    virtual bool findNextFile(void) = 0;
+
+    bool isAvailable() {
+        return this->mIsAvailable;
+    }
+
+  private:
+    bool mIsAvailable;
+    bool field_0x11;
+    u8 padding_0x12[2];
 };
 
 class JKRArchive;
@@ -17,7 +33,13 @@ class JKRArcFinder : public JKRFileFinder {
     JKRArcFinder(JKRArchive*, long, long);
     virtual ~JKRArcFinder();
 
-    virtual void findNextFile(void);
+    virtual bool findNextFile(void);
+
+private:
+    JKRArchive* mArchive;
+    u32 field_0x18;
+    u32 field_0x1c;
+    u32 field_0x20;
 };
 
 class JKRDvdFinder : public JKRFileFinder {
@@ -25,8 +47,12 @@ class JKRDvdFinder : public JKRFileFinder {
     JKRDvdFinder(char const*);
     virtual ~JKRDvdFinder();
 
-    virtual void findNextFile(void);
-};
+    virtual bool findNextFile(void);
 
+  private:
+    u8 mDvd[12];
+    bool mDvdIsOpen;
+    u8 padding_0x21[3];
+};
 
 #endif

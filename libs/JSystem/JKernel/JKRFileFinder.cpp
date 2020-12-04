@@ -6,7 +6,7 @@ asm  JKRArcFinder::JKRArcFinder(JKRArchive *, long, long) {
     #include "include/JSystem/JKernel/JKRFileFinder/asm/func_802D4638.s"
 }
 
-asm void JKRArcFinder::findNextFile(void) {
+asm bool JKRArcFinder::findNextFile(void) {
     nofralloc
     #include "include/JSystem/JKernel/JKRFileFinder/asm/func_802D46C4.s"
 }
@@ -21,7 +21,7 @@ asm  JKRDvdFinder:: ~JKRDvdFinder() {
     #include "include/JSystem/JKernel/JKRFileFinder/asm/func_802D47F4.s"
 }
 
-asm void JKRDvdFinder::findNextFile(void) {
+asm bool JKRDvdFinder::findNextFile(void) {
     nofralloc
     #include "include/JSystem/JKernel/JKRFileFinder/asm/func_802D4874.s"
 }

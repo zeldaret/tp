@@ -57,7 +57,7 @@ class JKRArchive : public JKRFileLoader {
     void mount(char const*, EMountMode, JKRHeap*, EMountDirection);
     void mount(void*, JKRHeap*, EMountDirection);
     void mount(long, EMountMode, JKRHeap*, EMountDirection);
-    void getDirEntry(SDirEntry*, u32) const;
+    bool getDirEntry(SDirEntry*, u32) const;
     void getGlbResource(u32, char const*, JKRArchive*);
 
     void getIdxResource(u32);

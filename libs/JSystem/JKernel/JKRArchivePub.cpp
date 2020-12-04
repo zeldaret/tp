@@ -26,7 +26,7 @@ asm void JKRArchive::becomeCurrent(char const*) {
 #include "include/JSystem/JKernel/JKRArchive/asm/func_802D5A38.s"
 }
 
-asm void JKRArchive::getDirEntry(JKRArchive::SDirEntry*, u32) const {
+asm bool JKRArchive::getDirEntry(JKRArchive::SDirEntry*, u32) const {
     nofralloc
 #include "include/JSystem/JKernel/JKRArchive/asm/func_802D5AC0.s"
 }

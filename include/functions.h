@@ -168,7 +168,6 @@ extern "C" {
     void JUTConsole_NS_check(void);
     void JUTConsole_NS_print_f(void);
     void JUTConsole_NS_clear(void);
-    void JUTReportConsole(void);
     void JUTReportConsole_f(void);
     void JUTWarningConsole(void);
     void JUTWarningConsole_f(void);
@@ -376,7 +375,7 @@ extern void GXSetVtxDesc(u32, u32);
 
 extern "C" {
     void JUTReport__FiiPCce(int, int, const char*, ...);
-    extern void JUTReportConsole(const char*);
+    void JUTReportConsole(const char*);
 }
 
 // m_Do_main.h
