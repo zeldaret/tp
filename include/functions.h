@@ -221,6 +221,7 @@ extern "C" {
     void JKRAramHeap_NS_alloc(void);
     void JKRAram_NS_aramToMainRam(void);
     void JKRDvdAramRipper_NS_loadToAram(void);
+    void JKRAram_NS_mainRamToAram(void);
 }
 
 // DVD
@@ -741,4 +742,16 @@ extern "C" {
     void getAramAddress__14JKRAramArchiveFPCc(void);
     void getExpandedResSize__14JKRAramArchiveCFPCv(void);
     void open__14JKRAramArchiveFl(void);
+};
+
+// JSystem/JKernel/JKRCompArchive
+extern "C" {
+    void __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection(void);
+    void __dt__14JKRCompArchiveFv(void);
+    void fetchResource__14JKRCompArchiveFPQ210JKRArchive12SDIFileEntryPUl(void);
+    void fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl(void);
+    void getExpandedResSize__14JKRCompArchiveCFPCv(void);
+    void open__14JKRCompArchiveFl(void);
+    void removeResourceAll__14JKRCompArchiveFv(void);
+    void removeResource__14JKRCompArchiveFPv(void);
 };

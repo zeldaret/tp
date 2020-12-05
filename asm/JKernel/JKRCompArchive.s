@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d87d4
 
 
-.global JKRCompArchive
-JKRCompArchive:
+.global __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection
+__ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection:
 /* 802D87D4 002D5714  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D87D8 002D5718  7C 08 02 A6 */	mflr r0
 /* 802D87DC 002D571C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -21,7 +21,7 @@ JKRCompArchive:
 /* 802D8808 002D5748  93 FD 00 60 */	stw r31, 0x60(r29)
 /* 802D880C 002D574C  7F A3 EB 78 */	mr r3, r29
 /* 802D8810 002D5750  7F C4 F3 78 */	mr r4, r30
-/* 802D8814 002D5754  48 00 01 A9 */	bl JKRCompArchive_NS_open
+/* 802D8814 002D5754  48 00 01 A9 */	bl open__14JKRCompArchiveFl
 /* 802D8818 002D5758  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D881C 002D575C  40 82 00 0C */	bne lbl_802D8828
 /* 802D8820 002D5760  7F A3 EB 78 */	mr r3, r29
@@ -138,8 +138,8 @@ lbl_802D89A0:
 /* 802D89B4 002D58F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D89B8 002D58F8  4E 80 00 20 */	blr 
 
-.global JKRCompArchive_NS_open
-JKRCompArchive_NS_open:
+.global open__14JKRCompArchiveFl
+open__14JKRCompArchiveFl:
 /* 802D89BC 002D58FC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802D89C0 002D5900  7C 08 02 A6 */	mflr r0
 /* 802D89C4 002D5904  90 01 00 34 */	stw r0, 0x34(r1)
