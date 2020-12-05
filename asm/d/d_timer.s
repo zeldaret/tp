@@ -1610,7 +1610,7 @@ lbl_8025E034:
 /* 8025E090 0025AFD0  38 84 A3 D8 */	addi r4, r4, lbl_8039A3D8@l
 /* 8025E094 0025AFD4  38 64 00 26 */	addi r3, r4, 0x26
 /* 8025E098 0025AFD8  80 9F 00 7C */	lwz r4, 0x7c(r31)
-/* 8025E09C 0025AFDC  48 07 61 D5 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 8025E09C 0025AFDC  48 07 61 D5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 8025E0A0 0025AFE0  48 0A A9 CD */	bl J2DAnmLoaderDataBase_NS_load
 /* 8025E0A4 0025AFE4  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 8025E0A8 0025AFE8  38 60 00 6C */	li r3, 0x6c

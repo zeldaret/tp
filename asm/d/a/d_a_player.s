@@ -852,7 +852,7 @@ daPy_anmHeap_c_NS_loadData:
 /* 8015EFB8 0015BEF8  80 9E 00 0C */	lwz r4, 0xc(r30)
 /* 8015EFBC 0015BEFC  80 BE 00 08 */	lwz r5, 8(r30)
 /* 8015EFC0 0015BF00  54 C6 04 3E */	clrlwi r6, r6, 0x10
-/* 8015EFC4 0015BF04  48 17 6F 09 */	bl JKRArchive_NS_readIdxResource
+/* 8015EFC4 0015BF04  48 17 6F 09 */	bl readIdxResource__10JKRArchiveFPvUlUl
 /* 8015EFC8 0015BF08  7F C3 F3 78 */	mr r3, r30
 /* 8015EFCC 0015BF0C  48 00 01 9D */	bl daPy_anmHeap_c_NS_setAnimeHeap
 /* 8015EFD0 0015BF10  7C 7F 1B 78 */	mr r31, r3

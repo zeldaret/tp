@@ -403,7 +403,7 @@ lbl_8019473C:
 /* 801947A4 001916E4  38 9E 00 2C */	addi r4, r30, 0x2c
 /* 801947A8 001916E8  7C 64 00 2E */	lwzx r3, r4, r0
 /* 801947AC 001916EC  7F A4 EB 78 */	mr r4, r29
-/* 801947B0 001916F0  48 13 FA C1 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801947B0 001916F0  48 13 FA C1 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801947B4 001916F4  48 17 42 B9 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801947B8 001916F8  90 7F 00 30 */	stw r3, 0x30(r31)
 /* 801947BC 001916FC  80 7F 00 30 */	lwz r3, 0x30(r31)
@@ -434,7 +434,7 @@ lbl_801947E0:
 /* 80194818 00191758  38 9E 00 3C */	addi r4, r30, 0x3c
 /* 8019481C 0019175C  7C 64 00 2E */	lwzx r3, r4, r0
 /* 80194820 00191760  7F A4 EB 78 */	mr r4, r29
-/* 80194824 00191764  48 13 FA 4D */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80194824 00191764  48 13 FA 4D */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80194828 00191768  48 17 42 45 */	bl J2DAnmLoaderDataBase_NS_load
 /* 8019482C 0019176C  90 7F 00 34 */	stw r3, 0x34(r31)
 /* 80194830 00191770  80 7F 00 34 */	lwz r3, 0x34(r31)
@@ -465,7 +465,7 @@ lbl_80194854:
 /* 8019488C 001917CC  38 9E 00 4C */	addi r4, r30, 0x4c
 /* 80194890 001917D0  7C 64 00 2E */	lwzx r3, r4, r0
 /* 80194894 001917D4  7F A4 EB 78 */	mr r4, r29
-/* 80194898 001917D8  48 13 F9 D9 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80194898 001917D8  48 13 F9 D9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 8019489C 001917DC  48 17 41 D1 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801948A0 001917E0  90 7F 00 38 */	stw r3, 0x38(r31)
 /* 801948A4 001917E4  80 7F 00 38 */	lwz r3, 0x38(r31)
@@ -496,7 +496,7 @@ lbl_801948C8:
 /* 80194900 00191840  38 9E 00 1C */	addi r4, r30, 0x1c
 /* 80194904 00191844  7C 64 00 2E */	lwzx r3, r4, r0
 /* 80194908 00191848  7F A4 EB 78 */	mr r4, r29
-/* 8019490C 0019184C  48 13 F9 65 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 8019490C 0019184C  48 13 F9 65 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80194910 00191850  48 17 41 5D */	bl J2DAnmLoaderDataBase_NS_load
 /* 80194914 00191854  90 7F 00 2C */	stw r3, 0x2c(r31)
 /* 80194918 00191858  48 00 00 0C */	b lbl_80194924

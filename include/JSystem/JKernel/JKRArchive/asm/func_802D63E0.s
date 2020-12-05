@@ -1,0 +1,20 @@
+/* findResType__10JKRArchiveCFUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::findResType( const(unsigned long)) */
+/* JKRArchive_NS_findResType */
+/* 802D63E0 002D3320  80 A3 00 48 */	lwz r5, 0x48(r3)
+/* 802D63E4 002D3324  80 63 00 44 */	lwz r3, 0x44(r3)
+/* 802D63E8 002D3328  80 03 00 00 */	lwz r0, 0(r3)
+/* 802D63EC 002D332C  7C 09 03 A6 */	mtctr r0
+/* 802D63F0 002D3330  28 00 00 00 */	cmplwi r0, 0
+/* 802D63F4 002D3334  40 81 00 20 */	ble lbl_802D6414
+lbl_802D63F8:
+/* 802D63F8 002D3338  80 05 00 00 */	lwz r0, 0(r5)
+/* 802D63FC 002D333C  7C 00 20 40 */	cmplw r0, r4
+/* 802D6400 002D3340  40 82 00 0C */	bne lbl_802D640C
+/* 802D6404 002D3344  7C A3 2B 78 */	mr r3, r5
+/* 802D6408 002D3348  4E 80 00 20 */	blr
+lbl_802D640C:
+/* 802D640C 002D334C  38 A5 00 10 */	addi r5, r5, 0x10
+/* 802D6410 002D3350  42 00 FF E8 */	bdnz lbl_802D63F8
+lbl_802D6414:
+/* 802D6414 002D3354  38 60 00 00 */	li r3, 0
+/* 802D6418 002D3358  4E 80 00 20 */	blr

@@ -4,9 +4,9 @@
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
-    OSInitMutex(this->mutex);
+    OSInitMutex(this->mMutex);
     this->mSize  = size;
-    this->mBegin = (u32)data;
+    this->mStart = (u32)data;
     this->mEnd   = (u32)data + size;
 
     if (parent == NULL) {
@@ -28,9 +28,9 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
         lbl_8045137C = JKRHeap::JKRDefaultMemoryErrorRoutine;
     }
 
-    this->field_0x3c = lbl_804508B0[0];
-    this->field_0x3d = lbl_80451380[0];
-    this->field_0x69 = 0;
+    this->mDebugFill         = lbl_804508B0;
+    this->mCheckMemoryFilled = lbl_80451380;
+    this->mInitFlag          = false;
 }
 
 // using the wrong register for storing the results
@@ -42,7 +42,7 @@ JKRHeap::~JKRHeap() {
 
     JSUTree<JKRHeap>* nextRootHeap = lbl_80451378->mChildTree.getFirstChild();
 
-    JKRHeap* rootHeap = lbl_80451378;
+    JKRHeap* rootHeap    = lbl_80451378;
     JKRHeap* currentHeap = lbl_80451374;
     if (currentHeap == this) {
         if (!nextRootHeap) {
@@ -224,12 +224,11 @@ s32 JKRHeap::getMaxAllocatableSize(int alignment) {
     return alignedSize;
 }
 #else
-asm s32 JKRHeap::getMaxAllocatableSize(int alignment){
+asm s32 JKRHeap::getMaxAllocatableSize(int alignment) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
 }
 #endif
-
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE83C.s"
 JKRHeap* JKRHeap::findFromRoot(void* ptr) {
@@ -237,7 +236,7 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
         return NULL;
     }
 
-    if ((void*)lbl_80451378->mBegin <= ptr && ptr < (void*)lbl_80451378->mEnd) {
+    if (lbl_80451378->getStartAddr() <= ptr && ptr < lbl_80451378->getEndAddr()) {
         return lbl_80451378->find(ptr);
     }
 
@@ -246,7 +245,7 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE894.s"
 JKRHeap* JKRHeap::find(void* ptr) const {
-    if ((void*)this->mBegin <= ptr && ptr < (void*)this->mEnd) {
+    if (this->getStartAddr() <= ptr && ptr < this->getEndAddr()) {
         const JSUTree<JKRHeap>& tree = this->mChildTree;
         if (tree.getNumChildren() != 0) {
             JSUTreeIterator<JKRHeap> iterator;
@@ -280,8 +279,8 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
         }
     }
 
-    if ((void*)this->mBegin <= ptr && ptr < (void*)this->mEnd) {
-        // Cast away const
+    if (this->getStartAddr() <= ptr && ptr < this->getEndAddr()) {
+        // not sure about this... casting away const for now.
         return (JKRHeap*)this;
     }
 
