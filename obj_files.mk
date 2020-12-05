@@ -143,7 +143,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/ev/d_ev_camera.o    \
             $(BUILD_DIR)/asm/d/spline/d_spline_path.o    \
             $(BUILD_DIR)/src/d/d_item/d_item.o    \
-            $(BUILD_DIR)/asm/d/d_item.o    \
             $(BUILD_DIR)/asm/d/d_tresure.o    \
             $(BUILD_DIR)/asm/d/d_model.o    \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
