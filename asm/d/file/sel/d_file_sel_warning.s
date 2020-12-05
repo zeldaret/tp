@@ -137,7 +137,7 @@ lbl_80191D5C:
 /* 80191D88 0018ECC8  38 61 00 08 */	addi r3, r1, 8
 /* 80191D8C 0018ECCC  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80191D90 0018ECD0  80 9F 00 04 */	lwz r4, 4(r31)
-/* 80191D94 0018ECD4  48 14 24 DD */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80191D94 0018ECD4  48 14 24 DD */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80191D98 0018ECD8  48 17 6C D5 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80191D9C 0018ECDC  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 80191DA0 0018ECE0  80 7F 00 0C */	lwz r3, 0xc(r31)

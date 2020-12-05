@@ -143,7 +143,7 @@ lbl_8020EF08:
 /* 8020EF60 0020BEA0  38 84 82 10 */	addi r4, r4, lbl_80398210@l
 /* 8020EF64 0020BEA4  38 64 00 20 */	addi r3, r4, 0x20
 /* 8020EF68 0020BEA8  80 9F 00 18 */	lwz r4, 0x18(r31)
-/* 8020EF6C 0020BEAC  48 0C 53 05 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 8020EF6C 0020BEAC  48 0C 53 05 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 8020EF70 0020BEB0  48 0F 9A FD */	bl J2DAnmLoaderDataBase_NS_load
 /* 8020EF74 0020BEB4  90 7F 00 08 */	stw r3, 8(r31)
 /* 8020EF78 0020BEB8  38 60 00 6C */	li r3, 0x6c

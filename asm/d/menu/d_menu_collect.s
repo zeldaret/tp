@@ -57,7 +57,7 @@ lbl_801AFDBC:
 /* 801AFE08 001ACD48  38 63 60 00 */	addi r3, r3, 0x00046000@l
 /* 801AFE0C 001ACD4C  80 9F 00 04 */	lwz r4, 4(r31)
 /* 801AFE10 001ACD50  38 A0 00 00 */	li r5, 0
-/* 801AFE14 001ACD54  48 11 F0 19 */	bl JKRExpHeap_NS_create
+/* 801AFE14 001ACD54  48 11 F0 19 */	bl create__10JKRExpHeapFUlP7JKRHeapb
 /* 801AFE18 001ACD58  90 7F 00 08 */	stw r3, 8(r31)
 /* 801AFE1C 001ACD5C  7F E3 FB 78 */	mr r3, r31
 /* 801AFE20 001ACD60  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2145,7 +2145,7 @@ dMenu_Collect2D_c_NS_animationSet:
 /* 801B1C8C 001AEBCC  3C 80 80 40 */	lis r4, lbl_804061C0@ha
 /* 801B1C90 001AEBD0  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
 /* 801B1C94 001AEBD4  80 84 5C B8 */	lwz r4, 0x5cb8(r4)
-/* 801B1C98 001AEBD8  48 12 25 D9 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801B1C98 001AEBD8  48 12 25 D9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801B1C9C 001AEBDC  48 15 6D D1 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801B1CA0 001AEBE0  90 7F 00 2C */	stw r3, 0x2c(r31)
 /* 801B1CA4 001AEBE4  80 7F 00 2C */	lwz r3, 0x2c(r31)
@@ -7229,7 +7229,7 @@ lbl_801B662C:
 /* 801B6638 001B3578  90 1F 00 20 */	stw r0, 0x20(r31)
 lbl_801B663C:
 /* 801B663C 001B357C  80 7F 00 08 */	lwz r3, 8(r31)
-/* 801B6640 001B3580  48 11 A5 B5 */	bl JKRSolidHeap_NS_adjustSize
+/* 801B6640 001B3580  48 11 A5 B5 */	bl adjustSize__12JKRSolidHeapFv
 /* 801B6644 001B3584  4B E5 8B B1 */	bl mDoExt_restoreCurrentHeap
 /* 801B6648 001B3588  80 1F 00 18 */	lwz r0, 0x18(r31)
 /* 801B664C 001B358C  28 00 00 00 */	cmplwi r0, 0
