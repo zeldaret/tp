@@ -213,14 +213,15 @@ extern "C" {
 }
 
 // DVD
+class DVDFileInfo;
 extern "C" {
-    void DVDOpen(void);
-    void DVDClose(void);
+    s32 DVDOpen(const char*, u8[48]);
+    s32 DVDClose(u8[48]);
     void DVDReadPrio(void);
     void DVDGetCurrentDiskID(void);
-    void DVDFastOpen(void);
+    s32 DVDFastOpen(long, u8[48]);
     int DVDGetCommandBlockStatus(u8[48]);
-    void DVDReadAsyncPrio(void);
+    s32 DVDReadAsyncPrio(u8[48], void*, long, long, void(*)(long,DVDFileInfo*), long);
     void DVDConvertPathToEntrynum(void);
 
     void DVDChangeDir(void);
