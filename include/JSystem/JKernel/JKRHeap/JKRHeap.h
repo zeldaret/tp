@@ -2,6 +2,7 @@
 #define __JKRHEAP_H__
 
 #include "dolphin/types.h"
+#include "os.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 
 typedef void (*JKRErrorHandler)(void*, u32, int);
@@ -105,7 +106,7 @@ class JKRHeap : JKRDisposer {
     virtual void state_dump();
 
   public:
-    u8 mutex[24];
+    OSMutex mutex;
     u32 mBegin;
     u32 mEnd;
     u32 mSize;

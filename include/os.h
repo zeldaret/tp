@@ -1,12 +1,20 @@
 #ifndef __OS_H__
 #define __OS_H__
 
+
+/* TODO: actual structs! */
+struct OSMutex {
+    u8 x[24];
+};
+
+struct OSThread {
+    u8 x[792];
+};
+
 extern "C" {
-    void OSInitMutex(u8[24]);
     void OSEnableScheduler(void);
     void OSDisableScheduler(void);
     void OSCheckActiveThreads(void);
-    void OSReport_Error(char*,...);
     u32 OSGetSoundMode(void);
     void OSSuspendThread(void);
     void OSSetThreadPriority(void);
@@ -15,17 +23,39 @@ extern "C" {
     void OSGetThreadPriority(void);
     void OSGetConsoleType(void);
     void OSGetResetCode(void);
-    void OSAllocFromArenaLo(void);
     void OSReportInit(void);
-    void OSGetCurrentThread(void);
+    OSThread* OSGetCurrentThread(void);
     void OSTicksToCalendarTime(void);
     void OSGetTime(void);
+
+    void OSAttention(char *msg);
+    void OSPanic(char *file, s32 line, char* fmt, ...);
+    void OSReport(char *fmt, ...);
+    void OSReport_Error(char* fmt, ...);
+    void OSReport_FatalError(char* fmt, ...);
+    void OSReport_System(char* fmt, ...);
+    void OSReport_Warning(char* fmt, ...);
+    void OSReportDisable(void);
+    void OSReportEnable(void);
+    void OSReportForceEnableOff(void);
+    void OSReportForceEnableOn(void);
+    void OSReportInit(void);
+    void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
+    void OSVAttention(char *, /*__gnuc_va_list*/ void*);
 
     u32 OSGetArenaLo();
     u32 OSGetArenaHi();
     u32 OSInitAlloc(u32 low, u32 high, int param_3);
     void OSSetArenaLo(u32 param_1);
     void OSSetArenaHi(u32 param_1);
+    void OSAllocFromArenaLo(u32 size, int alignment);
+
+    // void OSCancelAlarm(OSAlarm *alarm);
+
+    void OSInitMutex(OSMutex *mutex);
+    void OSLocKMutex(OSMutex *mutex);
+    void OSTryLockMutex(OSMutex *mutex);
+    void OSUnlockMutex(OSMutex *mutex);
 };
 
 #endif
