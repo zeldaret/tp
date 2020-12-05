@@ -220,8 +220,8 @@ struct OSMessageQueue;
 typedef void* OSMessage;
 extern "C" {
     void OSInitMutex(u8[24]);
-    void OSLockMutex(void);
-    void OSUnlockMutex(void);
+    void OSLockMutex(u8[24]);
+    void OSUnlockMutex(u8[24]);
     void OSEnableScheduler(void);
     void OSDisableScheduler(void);
     void OSCheckActiveThreads(void);

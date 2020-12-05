@@ -92,8 +92,8 @@ extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
 extern void* lbl_8045137C;    // JKRHeap::mErrorHandler
 
-extern u8 lbl_804508B0[8]; // ::*fill*
-extern u8 lbl_80451380[4]; // DAT_80451380
+extern bool lbl_804508B0; // ::*fill*
+extern bool lbl_80451380; // DAT_80451380
 
 // func_802CE378
 extern void* lbl_80451384; // JKRHeap::mCodeStart

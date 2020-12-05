@@ -9,7 +9,7 @@ class JKRAssertHeap : public JKRHeap {
     JKRAssertHeap(void*, unsigned long, JKRHeap*, bool);
     virtual ~JKRAssertHeap();
 
-    void create(JKRHeap*);
+    static void create(JKRHeap*);
 
     virtual u32 getHeapType(void);
     virtual bool check(void);

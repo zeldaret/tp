@@ -13,6 +13,43 @@ class JKRExpHeap : public JKRHeap {
         void allocBack(u32, u8, u8, u8, u8);
         void free(JKRExpHeap*);
         void getHeapBlock(void*);
+
+        void newGroupId(u8 groupId) {
+            this->mGroupId = groupId;
+        }
+
+      public:
+        bool isValid() {
+            return this->mMagic == 0x484d;
+        }
+
+        bool _isTempMemBlock() {
+            return (this->mFlags & 0x80) ? true : false;
+        }
+
+        int getAlignment() const {
+            return this->mFlags & 0x7f;
+        }
+
+        void* getContent() {
+            return (void*)(this + 1);
+        }
+
+        CMemBlock* getPrevBlock() {
+            return this->mPrev;
+        }
+
+        CMemBlock* getNextBlock() {
+            return this->mNext;
+        }
+
+      private:
+        u16 mMagic;
+        u8 mFlags; // a|bbbbbbb a=temporary b=alignment
+        u8 mGroupId;
+        u32 size;
+        CMemBlock* mPrev;
+        CMemBlock* mNext;
     };
 
   public:
@@ -56,6 +93,15 @@ class JKRExpHeap : public JKRHeap {
     virtual u8 do_getCurrentGroupId();
     virtual void state_register(JKRHeap::TState*, u32) const;
     virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
+
+  private:
+    u32 field_0x6c;
+    u32 field_0x70;
+    u32 field_0x74;
+    CMemBlock* mHeadFreeList;
+    CMemBlock* mTailFreeList;
+    CMemBlock* mHeadUsedList;
+    CMemBlock* mTailUsedList;
 };
 
 #endif

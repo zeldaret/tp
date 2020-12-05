@@ -2,12 +2,21 @@
 #define __JKRFILECACHE_H__
 
 #include "dolphin/types.h"
+#include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 
 class JKRHeap;
-class JKRFileCache {
+class JKRFileCache : public JKRFileLoader {
+  public:
+    class CCacheBlock {
+      public:
+        CCacheBlock(unsigned long, unsigned long, void const*);
+    };
+
+    static void mount(char const*, JKRHeap*, char const*);
+
   public:
     JKRFileCache(char const*, char const*);
-    ~JKRFileCache();
+    virtual ~JKRFileCache();
 
     void becomeCurrent(char const*);
     void getResource(char const*);
@@ -30,12 +39,12 @@ class JKRFileCache {
     void readFsResource(void*, unsigned long, char const*);
     void readNameResource(void*, unsigned long, unsigned long, char const*);
 
-    void mount(char const *, JKRHeap *, char const *);
-
-    class CCacheBlock {
-      public:
-        CCacheBlock(unsigned long, unsigned long, void const*);
-    };
+  private:
+    JKRHeap* mParentHeap;
+    JSUList<CCacheBlock> mCacheBlockList;
+    char* field_0x40;
+    char* field_0x4c;
+    char* field_0x50;
 };
 
 #endif
