@@ -1,4 +1,5 @@
 #include "d/d_save/d_save/d_save.h"
+#include "os.h"
 #include "global.h"
 
 u8 dSv_item_rename(u8 item_id) {

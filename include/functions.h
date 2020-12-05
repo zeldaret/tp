@@ -98,7 +98,6 @@ extern "C" {
     void func_8036221C(void);
     void countUsed__FP10JKRExpHeap(void);
     void JUTReport(void);
-    void OSGetTime(void);
     void func_803621D0(void);
     void offEventBit__11dSv_event_cFUs(void);
     void func_803621C0(void);
@@ -157,33 +156,6 @@ extern "C" {
     void func_80003458(void);
     void dStage_roomControl_c_NS_initZone(void);
     void checkItemGet(u8,int);
-}
-
-// OS
-extern "C" {
-    void OSInitMutex(u8[24]);
-    void OSEnableScheduler(void);
-    void OSDisableScheduler(void);
-    void OSCheckActiveThreads(void);
-    void OSReport_Error(char*,...);
-    u32 OSGetSoundMode(void);
-    void OSSuspendThread(void);
-    void OSSetThreadPriority(void);
-    void OSResumeThread(void);
-    void OSCreateThread(void);
-    void OSGetThreadPriority(void);
-    void OSGetConsoleType(void);
-    void OSGetResetCode(void);
-    void OSAllocFromArenaLo(void);
-    void OSReportInit(void);
-    void OSGetCurrentThread(void);
-    void OSTicksToCalendarTime(void);
-
-    u32 OSGetArenaLo();
-    u32 OSGetArenaHi();
-    u32 OSInitAlloc(u32 low, u32 high, int param_3);
-    void OSSetArenaLo(u32 param_1);
-    void OSSetArenaHi(u32 param_1);
 }
 
 // DVD

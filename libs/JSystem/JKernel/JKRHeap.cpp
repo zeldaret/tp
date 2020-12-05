@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "os.h"
 #include "global.h"
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
