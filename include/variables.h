@@ -268,3 +268,7 @@ extern u8 lbl_8039D1B0; // "JKRDvdArchive.cpp"
 
 extern u8 lbl_803CC2D8; // JKRMemArchive::__vt
 extern u8 lbl_8039D160; // "JKRMemArchive.cpp"
+
+extern u8 lbl_803CC348; // JKRAramArchive::__vt
+extern u8 lbl_8039D188; // "JKRAramArchive.cpp"
+extern u8 lbl_804513C8; // JKRAram::sAramObject

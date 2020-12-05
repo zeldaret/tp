@@ -570,7 +570,7 @@ lbl_802D8FCC:
 /* 802D8FEC 002D5F2C  80 BC 00 38 */	lwz r5, 0x38(r28)
 /* 802D8FF0 002D5F30  7F E6 FB 78 */	mr r6, r31
 /* 802D8FF4 002D5F34  38 E1 00 0C */	addi r7, r1, 0xc
-/* 802D8FF8 002D5F38  4B FF E9 1D */	bl JKRAramArchive_NS_fetchResource_subroutine_X1_
+/* 802D8FF8 002D5F38  4B FF E9 1D */	bl fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc
 /* 802D8FFC 002D5F3C  90 7E 00 00 */	stw r3, 0(r30)
 /* 802D9000 002D5F40  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 802D9004 002D5F44  90 1D 00 10 */	stw r0, 0x10(r29)
@@ -703,7 +703,7 @@ lbl_802D91B0:
 /* 802D91D4 002D6114  7F 85 E3 78 */	mr r5, r28
 /* 802D91D8 002D6118  57 A6 00 34 */	rlwinm r6, r29, 0, 0, 0x1a
 /* 802D91DC 002D611C  7D 07 43 78 */	mr r7, r8
-/* 802D91E0 002D6120  4B FF E6 79 */	bl JKRAramArchive_NS_fetchResource_subroutine
+/* 802D91E0 002D6120  4B FF E6 79 */	bl fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli
 /* 802D91E4 002D6124  7C 7B 1B 78 */	mr r27, r3
 /* 802D91E8 002D6128  48 00 00 50 */	b lbl_802D9238
 lbl_802D91EC:

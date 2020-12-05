@@ -526,7 +526,7 @@ dLib_getExpandSizeFromAramArchive:
 /* 80032754 0002F694  93 CC FF F8 */	stw r30, -8(r12)
 /* 80032758 0002F698  7C 7E 1B 78 */	mr r30, r3
 /* 8003275C 0002F69C  7C 9F 23 78 */	mr r31, r4
-/* 80032760 0002F6A0  48 2A 50 BD */	bl JKRAramArchive_NS_getAramAddress
+/* 80032760 0002F6A0  48 2A 50 BD */	bl getAramAddress__14JKRAramArchiveFPCc
 /* 80032764 0002F6A4  28 03 00 00 */	cmplwi r3, 0
 /* 80032768 0002F6A8  40 82 00 0C */	bne lbl_80032774
 /* 8003276C 0002F6AC  38 60 00 00 */	li r3, 0

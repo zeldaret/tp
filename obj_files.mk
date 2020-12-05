@@ -445,7 +445,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePri.o    \
             $(BUILD_DIR)/asm/JKernel/JKRArchivePri.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRMemArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramArchive.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdArchive.o    \
             $(BUILD_DIR)/asm/JKernel/JKRCompArchive.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFile.o    \
