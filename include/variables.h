@@ -92,7 +92,6 @@ extern JKRHeap* lbl_80451378; // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374; // JKRHeap::sCurrentHeap
 extern void* lbl_8045137C;    // JKRHeap::mErrorHandler
 
-
 extern u8 lbl_804508B0[8]; // ::*fill*
 extern u8 lbl_80451380[4]; // DAT_80451380
 
@@ -182,21 +181,20 @@ extern u32 lbl_80455834;
 extern u32 lbl_80451330;
 extern u32 lbl_80451334;
 
-
-//Z2SoundLib SInstance
+// Z2SoundLib SInstance
 class Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80; // Z2SceneMgr sInstance
 class Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60; // Z2SoundMgr sInstance
 class Z2SeqMgr;
-extern Z2SeqMgr* lbl_80450B84; //Z2SeqMgr sInstance
+extern Z2SeqMgr* lbl_80450B84; // Z2SeqMgr sInstance
 class Z2StatusMgr;
-extern Z2StatusMgr* lbl_80450B7C; //Z2StatusMgr sInstance
+extern Z2StatusMgr* lbl_80450B7C; // Z2StatusMgr sInstance
 class Z2SeMgr;
-extern Z2SeMgr* lbl_80450B88; //Z2SeMgr sInstance
+extern Z2SeMgr* lbl_80450B88; // Z2SeMgr sInstance
 class Z2SoundObjMgr;
-extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance
-extern void* lbl_803CC114; // JKRThread::__vt
+extern Z2SoundObjMgr* lbl_80450B48; // Z2SoundObjMgr sInstance
+extern void* lbl_803CC114;          // JKRThread::__vt
 
 class JKRThreadSwitch;
 extern void* lbl_803CC100[5];         // JKRThreadSwitch::__vt
@@ -209,54 +207,44 @@ extern void* lbl_804513C4;            //  JKRThreadSwitch::mUserPostCallback
 
 extern char lbl_8039CFA8[1]; // 8039cfdc-0x34 "JKRThreadSwitch: currentHeap destroyed.\n"
 
-extern float lbl_80455FC0; // JKernel::@934 = 100.0
-extern float lbl_80455FC4; // JKernel::@935 = 1000.0
+extern float lbl_80455FC0;  // JKernel::@934 = 100.0
+extern float lbl_80455FC4;  // JKernel::@935 = 1000.0
 extern double lbl_80455FC8; // JKernel::@937 = 4.503599627370496E15
 
-extern u8 lbl_8043436C;
-extern u8 lbl_803CC438;
-extern u8 lbl_80434360;
-extern u8 lbl_8039D260;
-extern u8 lbl_803CC328;
+class JKRDvdFile;
+extern JSUList<JKRDvdFile> lbl_8043436C; // JKRDvdFile::sDvdList
+extern u8 lbl_803CC438;                  // JKRDvdFile::__vt
+extern u8 lbl_80434360;                  // JKernel::@657 (global destructor chain)
+extern u8 lbl_8039D260;                  // "JKRDvdFile.cpp"
+extern u8 lbl_803CC328;                  // JKRFile::__vt
 
-extern u8 lbl_80451418;
-extern u8 lbl_8039D158;
-extern u8 lbl_803CC238;
-extern u8 lbl_80434354;
-
-extern u8 lbl_803CC218;
-extern u8 lbl_803CC228;
-extern u8 lbl_803CC208;
-
-extern u8 lbl_8039D150;
-extern u8 lbl_80434354;
-extern u8 lbl_803CC1C8;
-extern u32 lbl_804508C0;
-extern u32 lbl_80434348;
-extern u32 lbl_803D2D18;
-
-extern u8 lbl_803CC090;
-
-extern u8 lbl_80451398;
-extern u8 lbl_804513A4;
-extern u8 lbl_80455F98;
-extern u8 lbl_803CBFD0;
-extern u8 lbl_8039CAF0;
-extern u8 lbl_8045139C;
-extern u8 lbl_804513A0;
-extern u8 lbl_80455FA0;
-extern u8 lbl_804513A8;
-
-extern u8 lbl_803CC030;
-extern u8 lbl_80455FB8;
-extern u8 lbl_8039CE50;
-extern u8 lbl_80455FB0;
-extern u8 lbl_80455FA8;
-
-extern u8 lbl_80451418;
-extern u8 lbl_80434354;
-extern u8 lbl_80451420;
-
-extern u8 lbl_803CC288;
-extern u8 lbl_80451418;
-extern u8 lbl_80451420;
+class JKRFileLoader;
+extern JKRFileLoader* lbl_80451418;         // JKRFileLoader::sCurrentVolume
+extern u8 lbl_8039D158;                     // "/"
+extern u8 lbl_803CC238;                     // JKRFileCache::__vt
+extern JSUList<JKRFileLoader> lbl_80434354; // JKRFileLoader::sVolumeList
+extern u8 lbl_803CC218;                     // JKRArcFinder::__vt
+extern u8 lbl_803CC228;                     // JKRFileFinder::__vt
+extern u8 lbl_803CC208;                     // JKRDvdFinder::__vt
+extern u8 lbl_8039D150;                     // "/"
+extern u8 lbl_803CC1C8;                     // JKRFileLoader::__vt
+extern u8 lbl_804508C0;                     // "/" JKernel::rootPath$2498
+extern u8 lbl_80434348;                     // JKernel::@2182 (global destructor chain)
+extern u8 lbl_803D2D18[256];                // MSL_C.PPCEABI.bare.H::__lower_map
+extern u8 lbl_803CC090;                     // JKRAssertHeap::__vt
+extern u8 lbl_80451398;                     // JKernel::DBfoundSize
+extern u8 lbl_8045139C;                     // JKernel::DBfoundOffset
+extern u8 lbl_804513A0;                     // JKernel::DBfoundBlock
+extern u8 lbl_804513A4;                     // JKernel::DBnewFreeBlock
+extern u8 lbl_804513A8;                     // JKernel::DBnewUsedBlock
+extern float lbl_80455F98;                  // JKernel::@1121 = 100.0
+extern u8 lbl_803CBFD0;                     // JKRExpHeap::__vt
+extern u8 lbl_8039CAF0;                     // ":::cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FA0;                 // JKernel::@1123 = 4.503599627370496E15
+extern u8 lbl_803CC030;                     // JKRSolidHeap::__vt
+extern double lbl_80455FB8;                 // JKernel::@697 = 4.503599627370496E15
+extern u8 lbl_8039CE50;                     // "allocFromHead: cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FB0;                 // JKernel::@695 = 4.503601774854144E15
+extern float lbl_80455FA8;                  // JKernel::@693 = 100.0
+extern u8 lbl_80451420;                     // JKRArchive::sCurrentDirID
+extern u8 lbl_803CC288;                     // JKRArchive::__vt
