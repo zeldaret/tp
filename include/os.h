@@ -2,14 +2,40 @@
 #define __OS_H__
 
 
-/* TODO: actual structs! */
+/* TODO: more structs, and get rid of the ones that are faked! */
+
 struct OSMutex {
     u8 x[24];
+};
+
+struct OSMutexLink {
+    struct OSMutex * prev;
+    struct OSMutex * next;
+};
+
+struct OSMutexQueue {
+    struct OSMutex * prev;
+    struct OSMutex * next;
 };
 
 struct OSThread {
     u8 x[792];
 };
+
+struct OSThreadLink {
+    struct OSThread * prev;
+    struct OSThread * next;
+};
+
+struct OSThreadQueue {
+    struct OSThread * head;
+    struct OSThread * tail;
+};
+
+struct OSCond {
+    struct OSThreadQueue queue;
+};
+
 
 extern "C" {
     void OSEnableScheduler(void);
