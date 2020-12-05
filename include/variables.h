@@ -265,3 +265,6 @@ extern JSUList<JKRThread> lbl_8043428C;   // JSUList<JKRThread> JKRThread::sThre
 
 extern u8 lbl_803CC398; // JKRDvdArchive::__vt
 extern u8 lbl_8039D1B0; // "JKRDvdArchive.cpp"
+
+extern u8 lbl_803CC2D8; // JKRMemArchive::__vt
+extern u8 lbl_8039D160; // "JKRMemArchive.cpp"

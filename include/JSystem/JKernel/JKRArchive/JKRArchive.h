@@ -18,7 +18,7 @@ class JKRArchive : public JKRFileLoader {
         DVD                = 3,
         COMP               = 4,
 
-        __EMOUNT_MODE_PADDING_FOR_32BIT = 0xFFFFFFFF        
+        __EMOUNT_MODE_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     enum EMountDirection {
@@ -59,19 +59,18 @@ class JKRArchive : public JKRFileLoader {
     JKRArchive(long, EMountMode);
     virtual ~JKRArchive();
 
-    /* vt[03] */
-    /* vt[04] */ virtual void becomeCurrent(char const*);
-    /* vt[05] */ virtual void getResource(char const*);
-    /* vt[06] */ virtual void getResource(u32, char const*);
-    /* vt[07] */ virtual void readResource(void*, u32, char const*);
-    /* vt[08] */ virtual void readResource(void*, u32, u32, char const*);
-    /* vt[09] */ virtual void removeResourceAll(void);
-    /* vt[10] */ virtual void removeResource(void*);
-    /* vt[11] */ virtual void detachResource(void*);
-    /* vt[12] */ virtual void getResSize(void const*) const;
-    /* vt[13] */ virtual void countFile(char const*) const;
-    /* vt[14] */ virtual void getFirstFile(char const*) const;
-    /* vt[15] */ virtual void getExpandedResSize(void const*) const;
+    /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
+    /* vt[05] */ virtual void getResource(char const*);                   /* override */
+    /* vt[06] */ virtual void getResource(u32, char const*);              /* override */
+    /* vt[07] */ virtual void readResource(void*, u32, char const*);      /* override */
+    /* vt[08] */ virtual void readResource(void*, u32, u32, char const*); /* override */
+    /* vt[09] */ virtual void removeResourceAll(void);                    /* override */
+    /* vt[10] */ virtual void removeResource(void*);                      /* override */
+    /* vt[11] */ virtual void detachResource(void*);                      /* override */
+    /* vt[12] */ virtual void getResSize(void const*) const;              /* override */
+    /* vt[13] */ virtual void countFile(char const*) const;               /* override */
+    /* vt[14] */ virtual void getFirstFile(char const*) const;            /* override */
+    /* vt[15] */ virtual void getExpandedResSize(void const*) const;      /* override */
     /* vt[16] */ virtual void fetchResource(SDIFileEntry*, u32)              = 0;
     /* vt[17] */ virtual void fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);

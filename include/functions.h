@@ -205,9 +205,6 @@ extern "C" {
     void JKRArchive_NS_findPtrResource(void);
     void JKRArchive_NS_findTypeResource(void);
     void JKRCompArchive(void);
-    void JKRDvdArchive(void);
-    void JKRMemArchive(void);
-    void JKRMemArchive_X1_(void);
 
     void func_80365470(void);
 
@@ -217,6 +214,9 @@ extern "C" {
     void func_803621CC(void);
     void func_80362218(void);
     void func_803650D0(void);
+
+    void JKRDecomp_NS_orderSync(void);
+    void func_80003540(void);
 }
 
 // DVD
@@ -707,4 +707,19 @@ extern "C" {
     void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii(void);
     void getExpandedResSize__13JKRDvdArchiveCFPCv(void);
     void open__13JKRDvdArchiveFl(void);
+};
+
+// JSystem/JKernel/JKRMemArchive
+extern "C" {
+    void __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag(void);
+    void __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
+    void __dt__13JKRMemArchiveFv(void);
+    void fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl(void);
+    void fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl(void);
+    void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli(void);
+    void getExpandedResSize__13JKRMemArchiveCFPCv(void);
+    void open__13JKRMemArchiveFPvUl15JKRMemBreakFlag(void);
+    void open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
+    void removeResourceAll__13JKRMemArchiveFv(void);
+    void removeResource__13JKRMemArchiveFPv(void);
 };

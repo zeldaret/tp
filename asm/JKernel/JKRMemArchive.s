@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d69b8
 
 
-.global JKRMemArchive
-JKRMemArchive:
+.global __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
+__ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
 /* 802D69B8 002D38F8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D69BC 002D38FC  7C 08 02 A6 */	mflr r0
 /* 802D69C0 002D3900  90 01 00 24 */	stw r0, 0x24(r1)
@@ -24,7 +24,7 @@ JKRMemArchive:
 /* 802D69F8 002D3938  7F A3 EB 78 */	mr r3, r29
 /* 802D69FC 002D393C  7F C4 F3 78 */	mr r4, r30
 /* 802D6A00 002D3940  80 BD 00 60 */	lwz r5, 0x60(r29)
-/* 802D6A04 002D3944  48 00 01 C9 */	bl JKRMemArchive_NS_open
+/* 802D6A04 002D3944  48 00 01 C9 */	bl open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
 /* 802D6A08 002D3948  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D6A0C 002D394C  40 82 00 0C */	bne lbl_802D6A18
 /* 802D6A10 002D3950  7F A3 EB 78 */	mr r3, r29
@@ -53,8 +53,8 @@ lbl_802D6A54:
 /* 802D6A64 002D39A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D6A68 002D39A8  4E 80 00 20 */	blr 
 
-.global JKRMemArchive_X1_
-JKRMemArchive_X1_:
+.global __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+__ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
 /* 802D6A6C 002D39AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D6A70 002D39B0  7C 08 02 A6 */	mflr r0
 /* 802D6A74 002D39B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -75,7 +75,7 @@ JKRMemArchive_X1_:
 /* 802D6AB0 002D39F0  7F A4 EB 78 */	mr r4, r29
 /* 802D6AB4 002D39F4  7F C5 F3 78 */	mr r5, r30
 /* 802D6AB8 002D39F8  7F E6 FB 78 */	mr r6, r31
-/* 802D6ABC 002D39FC  48 00 02 75 */	bl JKRMemArchive_NS_open_X1_
+/* 802D6ABC 002D39FC  48 00 02 75 */	bl open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
 /* 802D6AC0 002D3A00  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802D6AC4 002D3A04  40 82 00 0C */	bne lbl_802D6AD0
 /* 802D6AC8 002D3A08  7F 83 E3 78 */	mr r3, r28
@@ -149,8 +149,8 @@ lbl_802D6BB0:
 /* 802D6BC4 002D3B04  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D6BC8 002D3B08  4E 80 00 20 */	blr 
 
-.global JKRMemArchive_NS_open
-JKRMemArchive_NS_open:
+.global open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
+open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection:
 /* 802D6BCC 002D3B0C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D6BD0 002D3B10  7C 08 02 A6 */	mflr r0
 /* 802D6BD4 002D3B14  90 01 00 24 */	stw r0, 0x24(r1)
@@ -245,8 +245,8 @@ lbl_802D6D10:
 /* 802D6D28 002D3C68  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D6D2C 002D3C6C  4E 80 00 20 */	blr 
 
-.global JKRMemArchive_NS_open_X1_
-JKRMemArchive_NS_open_X1_:
+.global open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+open__13JKRMemArchiveFPvUl15JKRMemBreakFlag:
 /* 802D6D30 002D3C70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6D34 002D3C74  7C 08 02 A6 */	mflr r0
 /* 802D6D38 002D3C78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -346,7 +346,7 @@ lbl_802D6E88:
 /* 802D6E94 002D3DD4  7F E4 FB 78 */	mr r4, r31
 /* 802D6E98 002D3DD8  7F A5 EB 78 */	mr r5, r29
 /* 802D6E9C 002D3DDC  7D 06 43 78 */	mr r6, r8
-/* 802D6EA0 002D3DE0  48 00 00 BD */	bl JKRMemArchive_NS_fetchResource_subroutine
+/* 802D6EA0 002D3DE0  48 00 00 BD */	bl fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli
 /* 802D6EA4 002D3DE4  7C 7F 1B 78 */	mr r31, r3
 lbl_802D6EA8:
 /* 802D6EA8 002D3DE8  28 1E 00 00 */	cmplwi r30, 0
@@ -401,8 +401,8 @@ lbl_802D6F4C:
 /* 802D6F54 002D3E94  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D6F58 002D3E98  4E 80 00 20 */	blr 
 
-.global JKRMemArchive_NS_fetchResource_subroutine
-JKRMemArchive_NS_fetchResource_subroutine:
+.global fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli
+fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli:
 /* 802D6F5C 002D3E9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6F60 002D3EA0  7C 08 02 A6 */	mflr r0
 /* 802D6F64 002D3EA4  90 01 00 14 */	stw r0, 0x14(r1)
