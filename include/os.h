@@ -36,6 +36,21 @@ struct OSCond {
     struct OSThreadQueue queue;
 };
 
+typedef void* OSMessage;
+
+struct OSMessageQueue {
+    struct OSThreadQueue sending_queue;
+    struct OSThreadQueue receiving_queue;
+    void **message_array;
+    s32 num_messages;
+    s32 first_index;
+    s32 num_used;
+};
+
+typedef u32 OSTick;
+typedef s64 OSTime;
+
+typedef s32 OSHeapHandle;
 
 extern "C" {
     void OSEnableScheduler(void);
