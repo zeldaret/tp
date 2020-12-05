@@ -8,7 +8,7 @@ extern "C" {
 
 int fpcMtdTg_Do(process_method_tag_class *pMthd)
 {
-    pMthd->mpFunc(pMthd->mpMthdData);
+    return pMthd->mpFunc(pMthd->mpMthdData);
 }
 
 void fpcMtdTg_ToMethodQ(node_list_class *pList, process_method_tag_class *pMthd)
