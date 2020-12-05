@@ -275,3 +275,8 @@ extern u8 lbl_804513C8; // JKRAram::sAramObject
 
 extern u8 lbl_803CC3E8; // JKRCompArchive::__vt
 extern u8 lbl_8039D220; // "JKRCompArchive.cpp"
+
+extern u8 lbl_803CC460[32]; // JKRDecomp::sMessageBuffer
+extern OSMessageQueue lbl_803CC480; // JKRDecomp::sMessageQueue
+extern u8 lbl_804514B0; // JKRDecomp::sDecompObject
+extern u8 lbl_803CC4A0; // JKRDecomp::__vt

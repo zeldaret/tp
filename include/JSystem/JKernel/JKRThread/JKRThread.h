@@ -28,7 +28,7 @@ class JKRThread : JKRDisposer {
       return &lbl_8043428C;
     }
 
-    virtual void* run();
+    /* vt[03] */ virtual void* run();
 
   public:
     JSULink<JKRThread> mThreadListLink;

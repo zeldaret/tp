@@ -222,6 +222,7 @@ extern "C" {
     void JKRAram_NS_aramToMainRam(void);
     void JKRDvdAramRipper_NS_loadToAram(void);
     void JKRAram_NS_mainRamToAram(void);
+    void JKRAramPiece_NS_sendCommand(void);
 }
 
 // DVD
@@ -754,4 +755,23 @@ extern "C" {
     void open__14JKRCompArchiveFl(void);
     void removeResourceAll__14JKRCompArchiveFv(void);
     void removeResource__14JKRCompArchiveFPv(void);
+};
+
+// JSystem/JKernel/JKRDecomp
+extern "C" {
+    void __ct__16JKRDecompCommandFv(void);
+    void __ct__9JKRDecompFl(void);
+    void __dt__16JKRDecompCommandFv(void);
+    void __dt__9JKRDecompFv(void);
+    void checkCompressed__9JKRDecompFPUc(void);
+    void create__9JKRDecompFl(void);
+    void decodeSZP__9JKRDecompFPUcPUcUlUl(void);
+    void decodeSZS__9JKRDecompFPUcPUcUlUl(void);
+    void decode__9JKRDecompFPUcPUcUlUl(void);
+    void orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v(void);
+    void orderSync__9JKRDecompFPUcPUcUlUl(void);
+    void prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v(void);
+    void run__9JKRDecompFv(void);
+    void sendCommand__9JKRDecompFP16JKRDecompCommand(void);
+    void sync__9JKRDecompFP16JKRDecompCommandi(void);
 };

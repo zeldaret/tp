@@ -1284,6 +1284,8 @@ fetchResource__14JKRCompArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
 getExpandedResSize__14JKRCompArchiveCFPCv
 removeResourceAll__14JKRCompArchiveFv
 removeResource__14JKRCompArchiveFPv
+__dt__9JKRDecompFv
+run__9JKRDecompFv
 }
 /*
 .init 80003100 - 80005600

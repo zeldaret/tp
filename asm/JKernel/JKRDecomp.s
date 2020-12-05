@@ -3,8 +3,8 @@
 .section .text, "ax" # 802db680
 
 
-.global JKRDecomp_NS_create
-JKRDecomp_NS_create:
+.global create__9JKRDecompFl
+create__9JKRDecompFl:
 /* 802DB680 002D85C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB684 002D85C4  7C 08 02 A6 */	mflr r0
 /* 802DB688 002D85C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -20,7 +20,7 @@ JKRDecomp_NS_create:
 /* 802DB6B0 002D85F0  7C 60 1B 79 */	or. r0, r3, r3
 /* 802DB6B4 002D85F4  41 82 00 10 */	beq lbl_802DB6C4
 /* 802DB6B8 002D85F8  7F E4 FB 78 */	mr r4, r31
-/* 802DB6BC 002D85FC  48 00 00 25 */	bl JKRDecomp
+/* 802DB6BC 002D85FC  48 00 00 25 */	bl __ct__9JKRDecompFl
 /* 802DB6C0 002D8600  7C 60 1B 78 */	mr r0, r3
 lbl_802DB6C4:
 /* 802DB6C4 002D8604  90 0D 8F 30 */	stw r0, lbl_804514B0-_SDA_BASE_(r13)
@@ -32,8 +32,8 @@ lbl_802DB6C8:
 /* 802DB6D8 002D8618  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DB6DC 002D861C  4E 80 00 20 */	blr 
 
-.global JKRDecomp
-JKRDecomp:
+.global __ct__9JKRDecompFl
+__ct__9JKRDecompFl:
 /* 802DB6E0 002D8620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB6E4 002D8624  7C 08 02 A6 */	mflr r0
 /* 802DB6E8 002D8628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -102,7 +102,7 @@ lbl_802DB7C4:
 /* 802DB7DC 002D871C  80 9E 00 08 */	lwz r4, 8(r30)
 /* 802DB7E0 002D8720  80 BE 00 0C */	lwz r5, 0xc(r30)
 /* 802DB7E4 002D8724  80 DE 00 10 */	lwz r6, 0x10(r30)
-/* 802DB7E8 002D8728  48 00 01 F5 */	bl JKRDecomp_NS_decode
+/* 802DB7E8 002D8728  48 00 01 F5 */	bl decode__9JKRDecompFPUcPUcUlUl
 /* 802DB7EC 002D872C  80 1E 00 20 */	lwz r0, 0x20(r30)
 /* 802DB7F0 002D8730  2C 00 00 00 */	cmpwi r0, 0
 /* 802DB7F4 002D8734  41 82 00 18 */	beq lbl_802DB80C
@@ -134,8 +134,8 @@ lbl_802DB844:
 /* 802DB850 002D8790  48 06 31 A5 */	bl OSSendMessage
 /* 802DB854 002D8794  4B FF FF 70 */	b lbl_802DB7C4
 
-.global JKRDecomp_NS_prepareCommand
-JKRDecomp_NS_prepareCommand:
+.global prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v
+prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v:
 /* 802DB858 002D8798  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DB85C 002D879C  7C 08 02 A6 */	mflr r0
 /* 802DB860 002D87A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -152,7 +152,7 @@ JKRDecomp_NS_prepareCommand:
 /* 802DB88C 002D87CC  4B FF 34 0D */	bl __nw__FUlP7JKRHeapi
 /* 802DB890 002D87D0  7C 64 1B 79 */	or. r4, r3, r3
 /* 802DB894 002D87D4  41 82 00 0C */	beq lbl_802DB8A0
-/* 802DB898 002D87D8  48 00 04 D9 */	bl JKRDecompCommand
+/* 802DB898 002D87D8  48 00 04 D9 */	bl __ct__16JKRDecompCommandFv
 /* 802DB89C 002D87DC  7C 64 1B 78 */	mr r4, r3
 lbl_802DB8A0:
 /* 802DB8A0 002D87E0  93 64 00 04 */	stw r27, 4(r4)
@@ -168,8 +168,8 @@ lbl_802DB8A0:
 /* 802DB8C8 002D8808  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DB8CC 002D880C  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_sendCommand
-JKRDecomp_NS_sendCommand:
+.global sendCommand__9JKRDecompFP16JKRDecompCommand
+sendCommand__9JKRDecompFP16__ct__16JKRDecompCommandFv:
 /* 802DB8D0 002D8810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB8D4 002D8814  7C 08 02 A6 */	mflr r0
 /* 802DB8D8 002D8818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -183,15 +183,15 @@ JKRDecomp_NS_sendCommand:
 /* 802DB8F8 002D8838  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DB8FC 002D883C  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_orderAsync
-JKRDecomp_NS_orderAsync:
+.global orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v
+orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v:
 /* 802DB900 002D8840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB904 002D8844  7C 08 02 A6 */	mflr r0
 /* 802DB908 002D8848  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802DB90C 002D884C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802DB910 002D8850  4B FF FF 49 */	bl JKRDecomp_NS_prepareCommand
+/* 802DB910 002D8850  4B FF FF 49 */	bl prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v
 /* 802DB914 002D8854  7C 7F 1B 78 */	mr r31, r3
-/* 802DB918 002D8858  4B FF FF B9 */	bl JKRDecomp_NS_sendCommand
+/* 802DB918 002D8858  4B FF FF B9 */	bl sendCommand__9JKRDecompFP16JKRDecompCommand
 /* 802DB91C 002D885C  7F E3 FB 78 */	mr r3, r31
 /* 802DB920 002D8860  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802DB924 002D8864  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -199,8 +199,8 @@ JKRDecomp_NS_orderAsync:
 /* 802DB92C 002D886C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DB930 002D8870  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_sync
-JKRDecomp_NS_sync:
+.global sync__9JKRDecompFP16JKRDecompCommandi
+sync__9JKRDecompFP16JKRDecompCommandi:
 /* 802DB934 002D8874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB938 002D8878  7C 08 02 A6 */	mflr r0
 /* 802DB93C 002D887C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -225,22 +225,22 @@ lbl_802DB978:
 /* 802DB980 002D88C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DB984 002D88C4  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_orderSync
-JKRDecomp_NS_orderSync:
+.global orderSync__9JKRDecompFPUcPUcUlUl
+orderSync__9JKRDecompFPUcPUcUlUl:
 /* 802DB988 002D88C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DB98C 002D88CC  7C 08 02 A6 */	mflr r0
 /* 802DB990 002D88D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802DB994 002D88D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802DB998 002D88D8  93 C1 00 08 */	stw r30, 8(r1)
 /* 802DB99C 002D88DC  38 E0 00 00 */	li r7, 0
-/* 802DB9A0 002D88E0  4B FF FF 61 */	bl JKRDecomp_NS_orderAsync
+/* 802DB9A0 002D88E0  4B FF FF 61 */	bl orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v
 /* 802DB9A4 002D88E4  7C 7F 1B 78 */	mr r31, r3
 /* 802DB9A8 002D88E8  38 80 00 00 */	li r4, 0
-/* 802DB9AC 002D88EC  4B FF FF 89 */	bl JKRDecomp_NS_sync
+/* 802DB9AC 002D88EC  4B FF FF 89 */	bl sync__9JKRDecompFP16JKRDecompCommandi
 /* 802DB9B0 002D88F0  7C 7E 1B 78 */	mr r30, r3
 /* 802DB9B4 002D88F4  7F E3 FB 78 */	mr r3, r31
 /* 802DB9B8 002D88F8  38 80 00 01 */	li r4, 1
-/* 802DB9BC 002D88FC  48 00 04 05 */	bl JKRDecompCommand_NS_dtor
+/* 802DB9BC 002D88FC  48 00 04 05 */	bl __dt__16JKRDecompCommandFv
 /* 802DB9C0 002D8900  7F C3 F3 78 */	mr r3, r30
 /* 802DB9C4 002D8904  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802DB9C8 002D8908  83 C1 00 08 */	lwz r30, 8(r1)
@@ -249,8 +249,8 @@ JKRDecomp_NS_orderSync:
 /* 802DB9D4 002D8914  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DB9D8 002D8918  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_decode
-JKRDecomp_NS_decode:
+.global decode__9JKRDecompFPUcPUcUlUl
+decode__9JKRDecompFPUcPUcUlUl:
 /* 802DB9DC 002D891C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DB9E0 002D8920  7C 08 02 A6 */	mflr r0
 /* 802DB9E4 002D8924  90 01 00 24 */	stw r0, 0x24(r1)
@@ -260,14 +260,14 @@ JKRDecomp_NS_decode:
 /* 802DB9F4 002D8934  7C 9D 23 78 */	mr r29, r4
 /* 802DB9F8 002D8938  7C BE 2B 78 */	mr r30, r5
 /* 802DB9FC 002D893C  7C DF 33 78 */	mr r31, r6
-/* 802DBA00 002D8940  48 00 02 F9 */	bl JKRDecomp_NS_checkCompressed
+/* 802DBA00 002D8940  48 00 02 F9 */	bl checkCompressed__9JKRDecompFPUc
 /* 802DBA04 002D8944  2C 03 00 01 */	cmpwi r3, 1
 /* 802DBA08 002D8948  40 82 00 1C */	bne lbl_802DBA24
 /* 802DBA0C 002D894C  7F 83 E3 78 */	mr r3, r28
 /* 802DBA10 002D8950  7F A4 EB 78 */	mr r4, r29
 /* 802DBA14 002D8954  7F C5 F3 78 */	mr r5, r30
 /* 802DBA18 002D8958  7F E6 FB 78 */	mr r6, r31
-/* 802DBA1C 002D895C  48 00 00 3D */	bl JKRDecomp_NS_decodeSZP
+/* 802DBA1C 002D895C  48 00 00 3D */	bl decodeSZP__9JKRDecompFPUcPUcUlUl
 /* 802DBA20 002D8960  48 00 00 20 */	b lbl_802DBA40
 lbl_802DBA24:
 /* 802DBA24 002D8964  2C 03 00 02 */	cmpwi r3, 2
@@ -276,7 +276,7 @@ lbl_802DBA24:
 /* 802DBA30 002D8970  7F A4 EB 78 */	mr r4, r29
 /* 802DBA34 002D8974  7F C5 F3 78 */	mr r5, r30
 /* 802DBA38 002D8978  7F E6 FB 78 */	mr r6, r31
-/* 802DBA3C 002D897C  48 00 01 D9 */	bl JKRDecomp_NS_decodeSZS
+/* 802DBA3C 002D897C  48 00 01 D9 */	bl decodeSZS__9JKRDecompFPUcPUcUlUl
 lbl_802DBA40:
 /* 802DBA40 002D8980  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DBA44 002D8984  48 08 67 E1 */	bl _restgpr_28
@@ -285,8 +285,8 @@ lbl_802DBA40:
 /* 802DBA50 002D8990  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DBA54 002D8994  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_decodeSZP
-JKRDecomp_NS_decodeSZP:
+.global decodeSZP__9JKRDecompFPUcPUcUlUl
+decodeSZP__9JKRDecompFPUcPUcUlUl:
 /* 802DBA58 002D8998  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DBA5C 002D899C  7C 08 02 A6 */	mflr r0
 /* 802DBA60 002D89A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -412,8 +412,8 @@ lbl_802DBBFC:
 /* 802DBC0C 002D8B4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DBC10 002D8B50  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_decodeSZS
-JKRDecomp_NS_decodeSZS:
+.global decodeSZS__9JKRDecompFPUcPUcUlUl
+decodeSZS__9JKRDecompFPUcPUcUlUl:
 /* 802DBC14 002D8B54  39 20 00 00 */	li r9, 0
 /* 802DBC18 002D8B58  80 03 00 04 */	lwz r0, 4(r3)
 /* 802DBC1C 002D8B5C  7C 04 02 14 */	add r0, r4, r0
@@ -482,8 +482,8 @@ lbl_802DBCE4:
 /* 802DBCF0 002D8C30  40 82 FF 4C */	bne lbl_802DBC3C
 /* 802DBCF4 002D8C34  4E 80 00 20 */	blr 
 
-.global JKRDecomp_NS_checkCompressed
-JKRDecomp_NS_checkCompressed:
+.global checkCompressed__9JKRDecompFPUc
+checkCompressed__9JKRDecompFPUc:
 /* 802DBCF8 002D8C38  88 83 00 00 */	lbz r4, 0(r3)
 /* 802DBCFC 002D8C3C  2C 04 00 59 */	cmpwi r4, 0x59
 /* 802DBD00 002D8C40  40 82 00 40 */	bne lbl_802DBD40
@@ -518,8 +518,8 @@ lbl_802DBD68:
 /* 802DBD68 002D8CA8  38 60 00 00 */	li r3, 0
 /* 802DBD6C 002D8CAC  4E 80 00 20 */	blr 
 
-.global JKRDecompCommand
-JKRDecompCommand:
+.global __ct__16JKRDecompCommandFv
+__ct__16JKRDecompCommandFv:
 /* 802DBD70 002D8CB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DBD74 002D8CB4  7C 08 02 A6 */	mflr r0
 /* 802DBD78 002D8CB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -541,8 +541,8 @@ JKRDecompCommand:
 /* 802DBDB8 002D8CF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DBDBC 002D8CFC  4E 80 00 20 */	blr 
 
-.global JKRDecompCommand_NS_dtor
-JKRDecompCommand_NS_dtor:
+.global __dt__16JKRDecompCommandFv
+__dt__16JKRDecompCommandFv:
 /* 802DBDC0 002D8D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DBDC4 002D8D04  7C 08 02 A6 */	mflr r0
 /* 802DBDC8 002D8D08  90 01 00 14 */	stw r0, 0x14(r1)
