@@ -210,6 +210,13 @@ extern "C" {
     void JKRMemArchive_X1_(void);
 
     void func_80365470(void);
+
+    void DCInvalidateRange(void);
+    void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
+    void func_80003458(void);
+    void func_803621CC(void);
+    void func_80362218(void);
+    void func_803650D0(void);
 }
 
 // DVD
@@ -688,4 +695,16 @@ extern "C" {
     void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl(void);
     void store__Q210JKRArchive8CArcNameFPCc(void);
     void store__Q210JKRArchive8CArcNameFPCcc(void);
+};
+
+// JSystem/JKernel/JKRDvdArchive
+extern "C" {
+    void __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection(void);
+    void __dt__13JKRDvdArchiveFv(void);
+    void fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl(void);
+    void fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl(void);
+    void fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc(void);
+    void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii(void);
+    void getExpandedResSize__13JKRDvdArchiveCFPCv(void);
+    void open__13JKRDvdArchiveFl(void);
 };

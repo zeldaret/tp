@@ -263,3 +263,5 @@ extern u8 lbl_8037B0D0[0x8];
 class JKRThread;
 extern JSUList<JKRThread> lbl_8043428C;   // JSUList<JKRThread> JKRThread::sThreadList
 
+extern u8 lbl_803CC398; // JKRDvdArchive::__vt
+extern u8 lbl_8039D1B0; // "JKRDvdArchive.cpp"

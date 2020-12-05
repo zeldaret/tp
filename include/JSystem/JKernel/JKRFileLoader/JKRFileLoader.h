@@ -9,18 +9,18 @@ class JKRFileLoader : public JKRDisposer {
     JKRFileLoader(void);
     virtual ~JKRFileLoader();
 
-    virtual void unmount(void);
-    virtual void becomeCurrent(char const*)                 = 0;
-    virtual void getResource(char const*)                   = 0;
-    virtual void getResource(u32, char const*)              = 0;
-    virtual void readResource(void*, u32, char const*)      = 0;
-    virtual void readResource(void*, u32, u32, char const*) = 0;
-    virtual void removeResourceAll(void)                    = 0;
-    virtual void removeResource(void*)                      = 0;
-    virtual void detachResource(void*)                      = 0;
-    virtual void getResSize(void const*) const              = 0;
-    virtual void countFile(char const*) const               = 0;
-    virtual void getFirstFile(char const*) const            = 0;
+    /* vt[03] */ virtual void unmount(void);
+    /* vt[04] */ virtual void becomeCurrent(char const*)                 = 0;
+    /* vt[05] */ virtual void getResource(char const*)                   = 0;
+    /* vt[06] */ virtual void getResource(u32, char const*)              = 0;
+    /* vt[07] */ virtual void readResource(void*, u32, char const*)      = 0;
+    /* vt[08] */ virtual void readResource(void*, u32, u32, char const*) = 0;
+    /* vt[09] */ virtual void removeResourceAll(void)                    = 0;
+    /* vt[10] */ virtual void removeResource(void*)                      = 0;
+    /* vt[11] */ virtual void detachResource(void*)                      = 0;
+    /* vt[12] */ virtual void getResSize(void const*) const              = 0;
+    /* vt[13] */ virtual void countFile(char const*) const               = 0;
+    /* vt[14] */ virtual void getFirstFile(char const*) const            = 0;
 
     bool isMounted() {
         return this->mIsMounted;

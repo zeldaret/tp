@@ -595,7 +595,7 @@ lbl_802D9030:
 /* 802D904C 002D5F8C  7F E7 FB 78 */	mr r7, r31
 /* 802D9050 002D5F90  81 1C 00 5C */	lwz r8, 0x5c(r28)
 /* 802D9054 002D5F94  39 21 00 08 */	addi r9, r1, 8
-/* 802D9058 002D5F98  4B FF F4 1D */	bl JKRDvdArchive_NS_fetchResource_subroutine_X1_
+/* 802D9058 002D5F98  4B FF F4 1D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
 /* 802D905C 002D5F9C  28 1E 00 00 */	cmplwi r30, 0
 /* 802D9060 002D5FA0  41 82 00 08 */	beq lbl_802D9068
 /* 802D9064 002D5FA4  90 7E 00 00 */	stw r3, 0(r30)
@@ -716,7 +716,7 @@ lbl_802D91EC:
 /* 802D9204 002D6144  7F 86 E3 78 */	mr r6, r28
 /* 802D9208 002D6148  57 A7 00 34 */	rlwinm r7, r29, 0, 0, 0x1a
 /* 802D920C 002D614C  81 29 00 5C */	lwz r9, 0x5c(r9)
-/* 802D9210 002D6150  4B FF F0 5D */	bl JKRDvdArchive_NS_fetchResource_subroutine
+/* 802D9210 002D6150  4B FF F0 5D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
 /* 802D9214 002D6154  7C 7B 1B 78 */	mr r27, r3
 /* 802D9218 002D6158  48 00 00 20 */	b lbl_802D9238
 lbl_802D921C:

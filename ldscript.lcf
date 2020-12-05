@@ -1263,6 +1263,10 @@ setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
  item_getcheck_func_LV2_BOSS_KEY__Fv
  item_getcheck_func_KEY_OF_FILONE__Fv
  isInsect__FUc
+__dt__13JKRDvdArchiveFv
+fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl
+fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
+getExpandedResSize__13JKRDvdArchiveCFPCv
 }
 /*
 .init 80003100 - 80005600
