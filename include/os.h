@@ -1,3 +1,5 @@
+// at some point: we should split this up into various OS/... headers. but not yet, since barely any files include this atm.
+
 #ifndef __OS_H__
 #define __OS_H__
 
@@ -66,11 +68,19 @@ struct OSCalendarTime {
 
 typedef s32 OSHeapHandle;
 
+typedef enum OSSoundMode {
+    SOUND_MODE_MONO=0,
+    SOUND_MODE_STEREO=1,
+
+    __SOUND_MODE_FORCE_ENUM_U32=0xffffffff,
+} OSSoundMode;
+
 extern "C" {
-    void OSEnableScheduler(void);
-    void OSDisableScheduler(void);
-    void OSCheckActiveThreads(void);
-    u32 OSGetSoundMode(void);
+    s32 OSEnableScheduler(void);
+    s32 OSDisableScheduler(void);
+
+    s32 OSCheckActiveThreads(void);
+    OSThread* OSGetCurrentThread(void);
     void OSSuspendThread(void);
     void OSSetThreadPriority(void);
     void OSResumeThread(void);
@@ -79,7 +89,9 @@ extern "C" {
     void OSGetConsoleType(void);
     void OSGetResetCode(void);
     void OSReportInit(void);
-    OSThread* OSGetCurrentThread(void);
+
+    OSSoundMode OSGetSoundMode(void);
+    void OSGetSoundMode(OSSoundMode mode);
 
     void OSAttention(char *msg);
     void OSPanic(char *file, s32 line, char* fmt, ...);

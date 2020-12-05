@@ -2,6 +2,7 @@
 #define D_SAVE_H_
 
 #include "dolphin/types.h"
+#include "os.h"
 
 static const int MAX_ITEM_SLOTS = 24;
 static const int ITEM_XY_MAX_DUMMY = 8;
