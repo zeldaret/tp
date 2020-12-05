@@ -72,8 +72,8 @@ fpcM_Management:
 /* 8002216C 0001F0AC  7C 7E 1B 78 */	mr r30, r3
 /* 80022170 0001F0B0  7C 9F 23 78 */	mr r31, r4
 /* 80022174 0001F0B4  48 24 EC D9 */	bl MtxInit
-/* 80022178 0001F0B8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8002217C 0001F0BC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80022178 0001F0B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8002217C 0001F0BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80022180 0001F0C0  3C 63 00 02 */	addis r3, r3, 2
 /* 80022184 0001F0C4  38 63 C0 F4 */	addi r3, r3, -16140
 /* 80022188 0001F0C8  48 03 3E F9 */	bl dDlst_peekZ_c_NS_peekData
@@ -137,8 +137,8 @@ lbl_80022220:
 /* 8002224C 0001F18C  7D 89 03 A6 */	mtctr r12
 /* 80022250 0001F190  4E 80 04 21 */	bctrl 
 lbl_80022254:
-/* 80022254 0001F194  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80022258 0001F198  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80022254 0001F194  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80022258 0001F198  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002225C 0001F19C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80022260 0001F1A0  48 00 A8 65 */	bl dComIfG_play_c_NS_drawSimpleModel
 /* 80022264 0001F1A4  48 00 00 3C */	b lbl_800222A0

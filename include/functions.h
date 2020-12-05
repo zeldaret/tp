@@ -156,7 +156,7 @@ extern "C" {
     void init__14dComIfG_play_cFv(void);
     void func_80003458(void);
     void dStage_roomControl_c_NS_initZone(void);
-    void checkItemGet(u8,int);
+    int checkItemGet(u8,int);
 }
 
 // OS
@@ -385,4 +385,22 @@ extern "C" {
 extern "C"{
     void Z2CreatureRide_NS_setLinkRiding(void);
     void checkDownDamage__10e_wb_classFv(void);
+}
+
+// d_item
+extern "C"{
+    void onFirstBit__21dSv_player_get_item_cFUc(u8);
+    void addBombCount(u8,u8);
+    void onDungeonItem__12dSv_memBit_cFi(int);
+    int dComIfGs_getMaxLifeGauge(void);
+    void dComIfGs_setSelectEquipSword(u8);
+    void dComIfGs_setSelectEquipShield(u8);
+    void dComIfGs_setSelectEquipClothes(u8);
+    int item_getcheck_func_FISHING_ROD_1(void);
+    void onSwitch__10dSv_info_cFii(int, int);
+    void setCollect__20dSv_player_collect_cFiUc(int, u8);
+    void dMeter2Info_setSword(u8, bool);
+    void setEmptyBottleItemIn__17dSv_player_item_cFUc(u8);
+    void setBottleNum__24dSv_player_item_record_cFUcUc(u8,u8);
+    void item_func_BEE_CHILD(void);
 }

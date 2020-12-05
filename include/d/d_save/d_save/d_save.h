@@ -119,6 +119,13 @@ class dSv_player_status_a_c {
     inline u16& getCurrentHealth() {
         return current_health;
     }
+    inline void setWalletLV(u8 lv){
+        current_wallet = lv;
+    }
+    void setLanternOil(u16 amount){
+        max_lantern_oil = amount;
+        current_lantern_oil = amount;
+    }
 
    private:
     u16 max_health;
@@ -284,6 +291,10 @@ class dSv_player_item_record_c {
     u8 addBottleNum(u8, short);
     u8 getBottleNum(u8) const;
 
+    void setBowAmount(u8 amount){
+        bow = amount;
+    }
+
    private:
     u8 bow;
     u8 bomb_bags[3];
@@ -297,6 +308,10 @@ class dSv_player_item_max_c {
     void init(void);
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
+
+    void setBowCapacity(u8 max){
+        item_capacities[0] = max;
+    }
 
    private:
     u8 item_capacities[8];
@@ -423,6 +438,28 @@ class dSv_player_c {
     }
     dSv_player_status_a_c getPlayerStatusA() {
         return player_status_a;
+    }
+    dSv_player_item_c& getPlayerItem(){
+        return player_item;
+    }
+    dSv_player_collect_c& getPlayerCollect(){
+        return player_collect;
+    }
+    dSv_player_item_record_c& getPlayerItemRecord(){
+        return player_item_record;
+    }
+    dSv_player_item_max_c& getPlayerItemMax(){
+        return player_item_max;
+    }
+    dSv_light_drop_c& getLightDrop(){
+        return light_drop;
+    }
+
+    void setPlayerStatusAWalletLV(u8 lv) {
+        player_status_a.setWalletLV(lv);
+    }
+    void setPlayerStatusAOil(u16 amount){
+        player_status_a.setLanternOil(amount);
     }
 
    private:
@@ -631,6 +668,11 @@ class dSv_save_c {
     void init(void);
     dSv_memory2_c* getSave2(int);
     inline dSv_player_c& getPlayer() {return player; }
+    dSv_event_c& getEventFlags() {return event_flags;}
+
+    void setPlayerStatusAWallet(u8 lv){
+        player.setPlayerStatusAWalletLV(lv);
+    }
 
     static const int STAGE_MAX = 4;
    

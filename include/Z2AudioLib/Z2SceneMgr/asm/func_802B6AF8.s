@@ -1146,15 +1146,15 @@ lbl_802B7B58:
 /* 802B7BA4 002B4AE4  38 C0 04 4C */	li r6, 0x44c
 /* 802B7BA8 002B4AE8  38 E0 05 DC */	li r7, 0x5dc
 /* 802B7BAC 002B4AEC  48 00 7D D5 */	bl Z2SoundObjMgr_NS_setForceBattleArea
-/* 802B7BB0 002B4AF0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802B7BB4 002B4AF4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802B7BB0 002B4AF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802B7BB4 002B4AF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B7BB8 002B4AF8  38 80 00 2E */	li r4, 0x2e
 /* 802B7BBC 002B4AFC  38 A0 00 00 */	li r5, 0
 /* 802B7BC0 002B4B00  4B D7 D7 A1 */	bl isSwitch__10dSv_info_cCFii
 /* 802B7BC4 002B4B04  2C 03 00 00 */	cmpwi r3, 0
 /* 802B7BC8 002B4B08  41 82 00 3C */	beq lbl_802B7C04
-/* 802B7BCC 002B4B0C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802B7BD0 002B4B10  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802B7BCC 002B4B0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802B7BD0 002B4B10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B7BD4 002B4B14  38 80 00 11 */	li r4, 0x11
 /* 802B7BD8 002B4B18  38 A0 00 00 */	li r5, 0
 /* 802B7BDC 002B4B1C  4B D7 D7 85 */	bl isSwitch__10dSv_info_cCFii

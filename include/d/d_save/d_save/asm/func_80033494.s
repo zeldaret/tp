@@ -4,8 +4,8 @@
 /* 800334A0 000303E0  39 61 00 20 */	addi r11, r1, 0x20
 /* 800334A4 000303E4  48 32 ED 39 */	bl _savegpr_29
 /* 800334A8 000303E8  3B A0 00 00 */	li r29, 0
-/* 800334AC 000303EC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800334B0 000303F0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 800334AC 000303EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 800334B0 000303F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800334B4 000303F4  3B E3 00 9C */	addi r31, r3, 0x9c
 lbl_800334B8:
 /* 800334B8 000303F8  7F E3 FB 78 */	mr r3, r31

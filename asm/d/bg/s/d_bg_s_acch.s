@@ -567,8 +567,8 @@ dBgS_Acch_NS_LineCheck:
 /* 80076670 000735B0  D0 01 01 3C */	stfs f0, 0x13c(r1)
 /* 80076674 000735B4  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80076678 000735B8  D0 01 01 40 */	stfs f0, 0x140(r1)
-/* 8007667C 000735BC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80076680 000735C0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8007667C 000735BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80076680 000735C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80076684 000735C4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80076688 000735C8  38 81 00 FC */	addi r4, r1, 0xfc
 /* 8007668C 000735CC  4B FF EE 11 */	bl dBgS_NS_RoofChk
