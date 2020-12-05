@@ -212,51 +212,6 @@ extern "C" {
     void func_80365470(void);
 }
 
-// OS
-struct OSThread;
-struct OSMessageQueue;
-typedef void* OSMessage;
-extern "C" {
-    void OSInitMutex(u8[24]);
-    void OSLockMutex(u8[24]);
-    void OSUnlockMutex(u8[24]);
-    void OSEnableScheduler(void);
-    void OSDisableScheduler(void);
-    void OSCheckActiveThreads(void);
-    void OSReport_Error(char*,...);
-    u32 OSGetSoundMode(void);
-    void OSSuspendThread(void);
-    void OSSetThreadPriority(void);
-    void OSResumeThread(void);
-    void OSGetThreadPriority(void);
-    void OSGetConsoleType(void);
-    void OSGetResetCode(void);
-    void OSAllocFromArenaLo(void);
-    void OSReportInit(void);
-    void OSGetCurrentThread(void);
-    void OSTicksToCalendarTime(void);
-
-    u32 OSGetArenaLo();
-    u32 OSGetArenaHi();
-    u32 OSInitAlloc(u32 low, u32 high, int param_3);
-    void OSSetArenaLo(u32 param_1);
-    void OSSetArenaHi(u32 param_1);
-
-    void OSGetTick(void);
-
-
-    void OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
-                    void* stack, u32 stackSize, int param_6, int param_7);
-    void OSCancelThread(OSThread* thread);
-    void OSDetachThread(OSThread* thread);
-    bool OSIsThreadSuspended(OSThread* thread);
-    bool OSIsThreadTerminated(OSThread* thread);
-    void OSInitMessageQueue(OSMessageQueue *queue, OSMessage* messages, int message_count);
-    void OSSetSwitchThreadCallback(void);
-    void OSReceiveMessage(void);
-    void OSSendMessage(void);
-}
-
 // DVD
 extern "C" {
     void DVDOpen(void);

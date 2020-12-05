@@ -62,10 +62,10 @@ void JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param
     this->mHeap      = heap;
     this->mStackSize = stack_size & 0xffffffe0;
     this->mStackPtr  = JKRHeap::alloc(this->mStackSize, 0x20, this->mHeap);           
-    this->mOsThread  = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, this->mHeap); 
+    this->mOSThread  = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, this->mHeap); 
 
     void* stackBase = (void*)((int)this->mStackPtr + this->mStackSize);
-    OSCreateThread(this->mOsThread, start, this, stackBase, this->mStackSize, param_3, 1);
+    OSCreateThread(this->mOSThread, start, this, stackBase, this->mStackSize, param_3, 1);
 }
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D1934.s"
@@ -81,7 +81,7 @@ JKRThread* JKRThread::searchThread(OSThread* thread) {
     JSUListIterator<JKRThread> iterator;
     for (iterator = threadList; iterator != threadList->getEnd(); iterator++) {
         JKRThread* jkrThread = iterator.getObject();
-        if (jkrThread->mOsThread == thread) {
+        if (jkrThread->mOSThread == thread) {
             return jkrThread;
         }
     }

@@ -127,11 +127,11 @@ class JKRHeap : public JKRDisposer {
     }
 
     void lock() {
-      OSLockMutex(this->mMutex);
+      OSLockMutex(&this->mMutex);
     }
 
     void unlock() {
-      OSUnlockMutex(this->mMutex);
+      OSUnlockMutex(&this->mMutex);
     }
 
   public:
@@ -158,7 +158,7 @@ class JKRHeap : public JKRDisposer {
     virtual void state_dump();
 
   public:
-    u8 mMutex[24];
+    OSMutex mMutex;
     u32 mStart;
     u32 mEnd;
     u32 mSize;

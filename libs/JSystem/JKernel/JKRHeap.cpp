@@ -4,7 +4,7 @@
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
-    OSInitMutex(this->mMutex);
+    OSInitMutex(&this->mMutex);
     this->mSize  = size;
     this->mStart = (u32)data;
     this->mEnd   = (u32)data + size;

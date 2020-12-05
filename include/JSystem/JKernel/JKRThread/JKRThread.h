@@ -3,19 +3,7 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
-
-struct OSThread {
-    u8 unkn[0x318];
-};
-
-struct OSMessageQueue {
-    u8 unkn[0x20];
-};
-
-typedef void* OSMessage;
-
-class JKRThread;
-extern JSUList<JKRThread> lbl_8043428C;   // JSUList<JKRThread> JKRThread::sThreadList
+#include "global.h"
 
 class JKRThreadName_;
 class JUTConsole;
@@ -31,7 +19,7 @@ class JKRThread : JKRDisposer {
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
 
     OSThread* getThreadRecord() {
-      return this->mOsThread;
+      return this->mOSThread;
     }
 
     static void* start(void* param_1);
@@ -45,7 +33,7 @@ class JKRThread : JKRDisposer {
   public:
     JSULink<JKRThread> mThreadListLink;
     JKRHeap* mHeap;
-    OSThread* mOsThread;
+    OSThread* mOSThread;
     OSMessageQueue mQueue;
     OSMessage* mMessages;
     int mMessageCount;

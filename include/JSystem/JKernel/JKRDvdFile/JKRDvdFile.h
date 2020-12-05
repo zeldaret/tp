@@ -53,7 +53,7 @@ class JKRDvdFile : public JKRFile {
     u8 mQueue2[32];
     void* mMessages2[1];
     JSULink<JKRDvdFile> mDvdLink;
-    void* mOSThread;
+    OSThread* mOSThread;
 };
 
 #endif
