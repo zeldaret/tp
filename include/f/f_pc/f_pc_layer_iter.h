@@ -11,10 +11,12 @@ struct layer_iter {
 };
 
 extern "C" {
-    int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
-    int fpcLyIt_OnlyHereLY(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
-    void * fpcLyIt_Judge(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
-    void * fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void *pUserData);
+
+int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
+int fpcLyIt_OnlyHereLY(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
+void * fpcLyIt_Judge(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
+void * fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void *pUserData);
+
 }
 
 #endif
