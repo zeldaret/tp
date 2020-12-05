@@ -6,8 +6,8 @@
 #include "SComponent/c_node_iter.h"
 
 struct layer_iter {
-    void* pFunc;
-    void* pUserData;
+    void* mpFunc;
+    void* mpUserData;
 };
 
 extern "C" {

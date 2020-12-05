@@ -34,8 +34,8 @@ s32 fpcLyTg_ToQueue(layer_management_tag_class *pTag, u32 layerID, u16 listID, u
 s32 fpcLyTg_QueueTo(layer_management_tag_class *pTag) {
     if (fpcLy_QueueTo(pTag->mpLayer,&pTag->mCreateTag) == 1) {
         pTag->mpLayer = NULL;
-        pTag->mNodeListID = -1; // only matches when unsigned
-        pTag->mNodeListIdx = -1;
+        pTag->mNodeListID = 0xFFFF;
+        pTag->mNodeListIdx = 0xFFFF;
         return 1;
     } else {
         return 0;

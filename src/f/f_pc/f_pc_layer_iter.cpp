@@ -6,8 +6,8 @@ extern "C" {
 
 int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData) {
     layer_iter lIter;
-    lIter.pFunc = pFunc;
-    lIter.pUserData = pUserData;
+    lIter.mpFunc = pFunc;
+    lIter.mpUserData = pUserData;
     return cTrIt_Method(&pLayer->mNodeListTree,(cNdIt_MethodFunc) cTgIt_MethodCall, &lIter);
 }
 
@@ -22,15 +22,15 @@ int fpcLyIt_OnlyHereLY(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserD
 
 void * fpcLyIt_Judge(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData) {
     layer_iter lIter;
-    lIter.pFunc = pFunc;
-    lIter.pUserData = pUserData;
+    lIter.mpFunc = pFunc;
+    lIter.mpUserData = pUserData;
     return cTrIt_Judge(&pLayer->mNodeListTree,(cNdIt_JudgeFunc) cTgIt_JudgeFilter, &lIter);
 }
 
 void * fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void *pUserData) {
     layer_iter lIter;
-    lIter.pFunc = pFunc;
-    lIter.pUserData = pUserData;
+    lIter.mpFunc = pFunc;
+    lIter.mpUserData = pUserData;
     
     layer_class* current = fpcLy_RootLayer();
     while (current != NULL) {
