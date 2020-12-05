@@ -43,6 +43,7 @@ class JKRFileLoader : public JKRDisposer {
     u32 mVolumeType;
     bool mIsMounted;
     u8 padding_0x31[3];
+    int mMountCount;
 };
 
 #endif

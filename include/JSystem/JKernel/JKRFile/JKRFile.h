@@ -19,7 +19,7 @@ class JKRFile : public JKRDisposer {
     s32 read(void*, long, long);
 
   private:
-    bool field_0x18;
+    bool mIsOpen;
     u8 field_0x19[3];
 };
 

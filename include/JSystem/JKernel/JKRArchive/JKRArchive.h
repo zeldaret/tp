@@ -5,26 +5,46 @@
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 
 class JKRHeap;
+class JKRDvdFile;
 class JKRArchive : public JKRFileLoader {
   public:
     class SDirEntry {};
-    enum EMountMode {};
-    enum EMountDirection {};
-
     class SDIFileEntry {};
+
+    enum EMountMode {
+        UNKNOWN_MOUNT_MODE = 0,
+        MEM                = 1,
+        ARAM               = 2,
+        DVD                = 3,
+        COMP               = 4,
+    };
+
+    enum EMountDirection {
+        UNKNOWN_MOUNT_DIRECTION = 0,
+        HEAD                    = 1,
+        TAIL                    = 2,
+    };
+
     class CArcName {
       public:
         CArcName() {
         }
+        CArcName(char const* data) {
+            this->store(data);
+        }
         CArcName(char const** data, char endChar) {
-            *data = store(*data, endChar);
+            *data = this->store(*data, endChar);
         }
 
         void store(char const* data);
         const char* store(char const* data, char endChar);
 
-        u16 getHash() { return mHash; }
-        const char* getString() { return mData; }
+        u16 getHash() {
+            return mHash;
+        }
+        const char* getString() {
+            return mData;
+        }
 
         u16 mHash;
         u16 mLength;
@@ -78,6 +98,21 @@ class JKRArchive : public JKRFileLoader {
     void findNameResource(char const*) const;
     void findPtrResource(void const*) const;
     void findIdResource(unsigned short) const;
+
+  private:
+    JKRHeap* mHeap;
+    EMountMode mMountMode;
+    int mEntryNum;
+    void* mArcInfoBlock;
+    void* mNodes;
+    SDIFileEntry* mDirs;
+    int* mExpandedSize;
+    char* mStringTable;
+    u32 field_0x58;
+    u32 field_0x5c;
+    EMountDirection mMountDirection;
+    u32 field_0x64;
+    JKRDvdFile* mDvdFile;
 };
 
 #endif

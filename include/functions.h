@@ -266,7 +266,7 @@ extern "C" {
     void DVDReadPrio(void);
     void DVDGetCurrentDiskID(void);
     void DVDFastOpen(void);
-    void DVDGetCommandBlockStatus(void);
+    int DVDGetCommandBlockStatus(u8[48]);
     void DVDReadAsyncPrio(void);
     void DVDConvertPathToEntrynum(void);
 
