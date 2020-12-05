@@ -1,5 +1,5 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
-
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
 void version_check(void) {

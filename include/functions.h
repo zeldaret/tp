@@ -55,7 +55,6 @@ extern "C" {
     void setEquipBottleItemIn__17dSv_player_item_cFUcUc(u8,u8);
     void isFirstBit__21dSv_player_get_item_cCFUc(void);
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
-    void getBombNum__21dSv_player_item_max_cCFUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
     void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
@@ -396,11 +395,20 @@ extern "C"{
     void dComIfGs_setSelectEquipSword(u8);
     void dComIfGs_setSelectEquipShield(u8);
     void dComIfGs_setSelectEquipClothes(u8);
-    int item_getcheck_func_FISHING_ROD_1(void);
+    u32 item_getcheck_func_FISHING_ROD_1(void);
     void onSwitch__10dSv_info_cFii(int, int);
     void setCollect__20dSv_player_collect_cFiUc(int, u8);
     void dMeter2Info_setSword(u8, bool);
     void setEmptyBottleItemIn__17dSv_player_item_cFUc(u8);
     void setBottleNum__24dSv_player_item_record_cFUcUc(u8,u8);
     void item_func_BEE_CHILD(void);
+    int func_80368954(char*,char*,u32);
+    void dComIfG_play_c_NS_getLayerNo(int);
+    u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
+    void func_80362204(void);
+    void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
+    void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
+    u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
+    u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+    void func_803621B8(void);
 }

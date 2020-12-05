@@ -327,6 +327,10 @@ class dSv_player_collect_c {
     void onCollectMirror(u8);
     bool isCollectMirror(u8) const;
 
+    u8 getPoeCount(){
+        return poe_count;
+    }
+
    private:
     u8 unk0[8];
     u8 unk8;
@@ -454,6 +458,9 @@ class dSv_player_c {
     dSv_light_drop_c& getLightDrop(){
         return light_drop;
     }
+    dSv_player_get_item_c& getPlayerGetItem(){
+        return player_get_item;
+    }
 
     void setPlayerStatusAWalletLV(u8 lv) {
         player_status_a.setWalletLV(lv);
@@ -497,6 +504,10 @@ class dSv_memBit_c {
     bool isItem(int) const;
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
+
+    u8 getSmallKeys(){
+        return small_key_flags;
+    }
 
    private:
     u32 area_flags_bitfields1[2];

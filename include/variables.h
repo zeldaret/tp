@@ -207,3 +207,4 @@ struct unkEvent{  //figure out what this is later
     u8 unk567[0x439];
 };
 extern unkEvent lbl_803A7288;
+extern u8 lbl_8037B0D0[0x8];
