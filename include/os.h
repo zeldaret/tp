@@ -48,7 +48,21 @@ struct OSMessageQueue {
 };
 
 typedef u32 OSTick;
+
 typedef s64 OSTime;
+
+struct OSCalendarTime {
+    s32 seconds;
+    s32 minutes;
+    s32 hours;
+    s32 day_of_month;
+    s32 month;
+    s32 year;
+    s32 week_day;
+    s32 year_day;
+    s32 milliseconds;
+    s32 microseconds;
+};
 
 typedef s32 OSHeapHandle;
 
@@ -66,8 +80,6 @@ extern "C" {
     void OSGetResetCode(void);
     void OSReportInit(void);
     OSThread* OSGetCurrentThread(void);
-    void OSTicksToCalendarTime(void);
-    void OSGetTime(void);
 
     void OSAttention(char *msg);
     void OSPanic(char *file, s32 line, char* fmt, ...);
@@ -83,6 +95,9 @@ extern "C" {
     void OSReportInit(void);
     void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
     void OSVAttention(char *, /*__gnuc_va_list*/ void*);
+
+    void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *out_time);
+    OSTime OSGetTime(void);
 
     u32 OSGetArenaLo();
     u32 OSGetArenaHi();
