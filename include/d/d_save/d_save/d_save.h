@@ -2,7 +2,7 @@
 #define D_SAVE_H_
 
 #include "dolphin/types.h"
-#include "os.h"
+#include "os/OS.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 3
