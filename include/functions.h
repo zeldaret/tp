@@ -484,7 +484,7 @@ extern "C"{
     void dComIfGs_setSelectEquipSword(u8);
     void dComIfGs_setSelectEquipShield(u8);
     void dComIfGs_setSelectEquipClothes(u8);
-    u32 item_getcheck_func_FISHING_ROD_1(void);
+    int item_getcheck_func_FISHING_ROD_1(void);
     void onSwitch__10dSv_info_cFii(int, int);
     void setCollect__20dSv_player_collect_cFiUc(int, u8);
     void dMeter2Info_setSword(u8, bool);

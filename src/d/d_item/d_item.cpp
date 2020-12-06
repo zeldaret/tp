@@ -838,11 +838,11 @@ void item_func_noentry(void){
     return;
 }
 
-u32 item_getcheck_func_noentry(void){
+int item_getcheck_func_noentry(void){
     return -1;
 }
 
-u32 item_getcheck_func_HEART(void){
+int item_getcheck_func_HEART(void){
     return -1;
 }
 
@@ -874,11 +874,11 @@ void item_getcheck_func_SILVER_RUPEE(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(SILVER_RUPEE);
 }
 
-u32 item_getcheck_func_S_MAGIC(void){
+int item_getcheck_func_S_MAGIC(void){
     return -1;
 }
 
-u32 item_getcheck_func_L_MAGIC(void){
+int item_getcheck_func_L_MAGIC(void){
     return -1;
 }
 
@@ -918,23 +918,23 @@ void item_getcheck_func_PACHINKO_SHOT(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(PACHINKO_SHOT);
 }
 
-u32 item_getcheck_func_WATER_BOMB_5(void){
+int item_getcheck_func_WATER_BOMB_5(void){
     return -1;
 }
 
-u32 item_getcheck_func_WATER_BOMB_10(void){
+int item_getcheck_func_WATER_BOMB_10(void){
     return -1;
 }
 
-u32 item_getcheck_func_WATER_BOMB_20(void){
+int item_getcheck_func_WATER_BOMB_20(void){
     return -1;
 }
 
-u32 item_getcheck_func_WATER_BOMB_30(void){
+int item_getcheck_func_WATER_BOMB_30(void){
     return -1;
 }
 
-u32 item_getcheck_func_BOMB_INSECT_5(void){
+int item_getcheck_func_BOMB_INSECT_5(void){
     return -1;
 }
 
@@ -950,23 +950,23 @@ void item_getcheck_func_BOMB_INSECT_30(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(BOMB_INSECT_30);
 }
 
-u32 item_getcheck_func_RECOVER_FAILY(void){
+int item_getcheck_func_RECOVER_FAILY(void){
     return -1;
 }
 
-u32 item_getcheck_func_TRIPLE_HEART(void){
+int item_getcheck_func_TRIPLE_HEART(void){
     return -1;
 }
 
-u32 item_getcheck_func_SMALL_KEY(void){
+int item_getcheck_func_SMALL_KEY(void){
     return -1;
 }
 
-u32 item_getcheck_func_KAKERA_HEART(void){
+int item_getcheck_func_KAKERA_HEART(void){
     return -1;
 }
 
-u32 item_getcheck_func_UTUWA_HEART(void){
+int item_getcheck_func_UTUWA_HEART(void){
     return -1;
 }
 
@@ -974,11 +974,11 @@ bool item_getcheck_func_MAP(void){
     return g_dComIfG_gameInfo.memory.getTempFlags().isDungeonItem(MAP_FLAG);
 }
 
-u32 item_getcheck_func_COMPUS(void){
+int item_getcheck_func_COMPUS(void){
     return -1;
 }
 
-asm u32 item_getcheck_func_DUNGEON_EXIT(void){
+asm int item_getcheck_func_DUNGEON_EXIT(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099A70.s"
 }
@@ -987,7 +987,7 @@ bool item_getcheck_func_BOSS_KEY(void){
     return g_dComIfG_gameInfo.memory.getTempFlags().isDungeonItem(BOSS_KEY_FLAG);
 }
 
-asm u32 item_getcheck_func_DUNGEON_BACK(void){
+asm int item_getcheck_func_DUNGEON_BACK(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099AE4.s"
 }
@@ -1012,7 +1012,7 @@ void item_getcheck_func_HYLIA_SHIELD(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(HYLIA_SHIELD);
 }
 
-asm u32 item_getcheck_func_TKS_LETTER(void){
+asm int item_getcheck_func_TKS_LETTER(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099C20.s"
 }
@@ -1033,28 +1033,28 @@ void item_getcheck_func_WEAR_ZORA(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(WEAR_ZORA);
 }
 
-u32 item_getcheck_func_MAGIC_LV1(void){
+int item_getcheck_func_MAGIC_LV1(void){
     return -1;
 }
 
-asm u32 item_getcheck_func_DUNGEON_EXIT_2(void){
+asm int item_getcheck_func_DUNGEON_EXIT_2(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099D30.s"
 }
 
-u32 item_getcheck_func_WALLET_LV1(void){
+int item_getcheck_func_WALLET_LV1(void){
     return -1;
 }
 
-u32 item_getcheck_func_WALLET_LV2(void){
+int item_getcheck_func_WALLET_LV2(void){
     return -1;
 }
 
-u32 item_getcheck_func_WALLET_LV3(void){
+int item_getcheck_func_WALLET_LV3(void){
     return -1;
 }
 
-asm u32 item_getcheck_func_ZORAS_JEWEL(void){
+asm int item_getcheck_func_ZORAS_JEWEL(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099D8C.s"
 }
@@ -1067,47 +1067,47 @@ void item_getcheck_func_WOOD_STICK(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(WOOD_STICK);
 }
 
-asm u32 item_getcheck_func_BOOMERANG(void){
+asm int item_getcheck_func_BOOMERANG(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099E30.s"
 }
 
-asm u32 item_getcheck_func_SPINNER(void){
+asm int item_getcheck_func_SPINNER(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099E74.s"
 }
 
-asm u32 item_getcheck_func_IRONBALL(void){
+asm int item_getcheck_func_IRONBALL(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099EB8.s"
 }
 
-asm u32 item_getcheck_func_BOW(void){
+asm int item_getcheck_func_BOW(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099EFC.s"
 }
 
-asm u32 item_getcheck_func_HOOKSHOT(void){
+asm int item_getcheck_func_HOOKSHOT(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099F40.s"
 }
 
-asm u32 item_getcheck_func_HVY_BOOTS(void){
+asm int item_getcheck_func_HVY_BOOTS(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099F84.s"
 }
 
-asm u32 item_getcheck_func_COPY_ROD(void){
+asm int item_getcheck_func_COPY_ROD(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_80099FC8.s"
 }
 
-asm u32 item_getcheck_func_W_HOOKSHOT(void){
+asm int item_getcheck_func_W_HOOKSHOT(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A00C.s"
 }
 
-asm u32 item_getcheck_func_KANTERA(void){
+asm int item_getcheck_func_KANTERA(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A050.s"
 }
@@ -1116,17 +1116,17 @@ void item_getcheck_func_LIGHT_SWORD(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerCollect().isCollect(SWORD_BITFIELD,LIGHT_SWORD_FLAG);
 }
 
-asm u32 item_getcheck_func_FISHING_ROD_1(void){
+asm int item_getcheck_func_FISHING_ROD_1(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A0C8.s"
 }
 
-asm u32 item_getcheck_func_PACHINKO(void){
+asm int item_getcheck_func_PACHINKO(void){
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A1FC.s"
 }
 
-u32 item_getcheck_func_COPY_ROD_2(void){
+int item_getcheck_func_COPY_ROD_2(void){
     return -1;
 }
 
@@ -1146,30 +1146,30 @@ void item_getcheck_func_LIGHT_ARROW(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(LIGHT_ARROW);
 }
 
-asm u32 item_getcheck_func_ARROW_LV1(void) {
+asm int item_getcheck_func_ARROW_LV1(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A308.s"
 }
 
-asm u32 item_getcheck_func_ARROW_LV2(void) {
+asm int item_getcheck_func_ARROW_LV2(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A378.s"
 }
 
-asm u32 item_getcheck_func_ARROW_LV3(void) {
+asm int item_getcheck_func_ARROW_LV3(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009A3E8.s"
 }
 
-u32 item_getcheck_func_LURE_ROD(void){
+int item_getcheck_func_LURE_ROD(void){
     return -1;
 }
 
-u32 item_getcheck_func_BOMB_ARROW(void){
+int item_getcheck_func_BOMB_ARROW(void){
     return -1;
 }
 
-u32 item_getcheck_func_HAWK_ARROW(void){
+int item_getcheck_func_HAWK_ARROW(void){
     return -1;
 }
 
@@ -1193,112 +1193,112 @@ void item_getcheck_func_JEWEL_WORM_ROD(void){
     item_getcheck_func_FISHING_ROD_1();
 }
 
-u32 item_getcheck_func_EMPTY_BOTTLE(void){
+int item_getcheck_func_EMPTY_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(EMPTY_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_RED_BOTTLE(void){
+int item_getcheck_func_RED_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(RED_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_GREEN_BOTTLE(void){
+int item_getcheck_func_GREEN_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(GREEN_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_BLUE_BOTTLE(void){
+int item_getcheck_func_BLUE_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(BLUE_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_MILK_BOTTLE(void){
+int item_getcheck_func_MILK_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(MILK_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_HALF_MILK_BOTTLE(void){
+int item_getcheck_func_HALF_MILK_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(HALF_MILK_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_OIL_BOTTLE(void){
+int item_getcheck_func_OIL_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_WATER_BOTTLE(void){
+int item_getcheck_func_WATER_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(WATER_BOTTLE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_OIL_BOTTLE2(void){
+int item_getcheck_func_OIL_BOTTLE2(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE_2);
     return bottle_check;
 }
 
-u32 item_getcheck_func_RED_BOTTLE2(void){
+int item_getcheck_func_RED_BOTTLE2(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(RED_BOTTLE_2);
     return bottle_check;
 }
 
-u32 item_getcheck_func_UGLY_SOUP(void){
+int item_getcheck_func_UGLY_SOUP(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(UGLY_SOUP);
     return bottle_check;
 }
 
-u32 item_getcheck_func_HOT_SPRING(void){
+int item_getcheck_func_HOT_SPRING(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
     return bottle_check;
 }
 
-u32 item_getcheck_func_FAIRY_BOTTLE(void){
+int item_getcheck_func_FAIRY_BOTTLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(FAIRY);
     return bottle_check;
 }
 
-u32 item_getcheck_func_HOT_SPRING2(void){
+int item_getcheck_func_HOT_SPRING2(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
     return bottle_check;
 }
 
-u32 item_getcheck_func_OIL2(void){
+int item_getcheck_func_OIL2(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(OIL2);
     return bottle_check;
 }
 
-u32 item_getcheck_func_OIL(void){
+int item_getcheck_func_OIL(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(OIL);
@@ -1317,14 +1317,14 @@ void item_getcheck_func_POKE_BOMB(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(POKE_BOMB);
 }
 
-u32 item_getcheck_func_FAIRY_DROP(void){
+int item_getcheck_func_FAIRY_DROP(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(FAIRY_DROP);
     return bottle_check;
 }
 
-u32 item_getcheck_func_WORM(void){
+int item_getcheck_func_WORM(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(WORM);
@@ -1335,46 +1335,46 @@ void item_getcheck_func_DROP_BOTTLE(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(DROP_BOTTLE);
 }
 
-u32 item_getcheck_func_BEE_CHILD(void) {
+int item_getcheck_func_BEE_CHILD(void) {
     return -1;
 }
 
-u32 item_getcheck_func_CHUCHU_RARE(void){
+int item_getcheck_func_CHUCHU_RARE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_RARE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_CHUCHU_RED(void){
+int item_getcheck_func_CHUCHU_RED(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_RED);
     return bottle_check;
 }
 
-u32 item_getcheck_func_CHUCHU_BLUE(void){
+int item_getcheck_func_CHUCHU_BLUE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_BLUE);
     return bottle_check;
 }
 
-u32 item_getcheck_func_CHUCHU_GREEN(void){
+int item_getcheck_func_CHUCHU_GREEN(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_GREEN);
     return bottle_check;
 }
 
-u32 item_getcheck_func_CHUCHU_YELLOW(void){
+int item_getcheck_func_CHUCHU_YELLOW(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW);
     return bottle_check;
 }
 
-u32 item_getcheck_func_CHUCHU_PURPLE(void){
+int item_getcheck_func_CHUCHU_PURPLE(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_PURPLE);
@@ -1393,57 +1393,57 @@ void item_getcheck_func_LV3_SOUP(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(LV3_SOUP);
 }
 
-asm u32 item_getcheck_func_LETTER(void) {
+asm int item_getcheck_func_LETTER(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AB48.s"
 }
 
-asm u32 item_getcheck_func_BILL(void) {
+asm int item_getcheck_func_BILL(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AB8C.s"
 }
 
-asm u32 item_getcheck_func_WOOD_STATUE(void) {
+asm int item_getcheck_func_WOOD_STATUE(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009ABD0.s"
 }
 
-asm u32 item_getcheck_func_IRIAS_PENDANT(void) {
+asm int item_getcheck_func_IRIAS_PENDANT(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AC14.s"
 }
 
-asm u32 item_getcheck_func_HORSE_FLUTE(void) {
+asm int item_getcheck_func_HORSE_FLUTE(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AC58.s"
 }
 
-asm u32 item_getcheck_func_RAFRELS_MEMO(void) {
+asm int item_getcheck_func_RAFRELS_MEMO(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AC9C.s"
 }
 
-asm u32 item_getcheck_func_ASHS_SCRIBBLING(void) {
+asm int item_getcheck_func_ASHS_SCRIBBLING(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009ACE0.s"
 }
 
-u32 item_getcheck_func_CHUCHU_YELLOW2(void){
+int item_getcheck_func_CHUCHU_YELLOW2(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW2);
     return bottle_check;
 }
 
-u32 item_getcheck_func_OIL_BOTTLE3(void){
+int item_getcheck_func_OIL_BOTTLE3(void){
     return -1;
 }
 
-u32 item_getcheck_func_SHOP_BEE_CHILD(void){
+int item_getcheck_func_SHOP_BEE_CHILD(void){
     return -1;
 }
 
-u32 item_getcheck_func_CHUCHU_BLACK(void){
+int item_getcheck_func_CHUCHU_BLACK(void){
     u8 bottle_check;
 
     bottle_check = g_dComIfG_gameInfo.save_file.getPlayer().getPlayerItem().checkBottle(CHUCHU_BLACK);
@@ -1466,47 +1466,47 @@ void item_getcheck_func_DROP_CONTAINER03(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getLightDrop().isLightDropGetFlag(LANAYRU_VESSEL);
 }
 
-u32 item_getcheck_func_FILLED_CONTAINER(void){
+int item_getcheck_func_FILLED_CONTAINER(void){
     return -1;
 }
 
-u32 item_getcheck_func_MIRROR_PIECE_2(void){
+int item_getcheck_func_MIRROR_PIECE_2(void){
     return -1;
 }
 
-u32 item_getcheck_func_MIRROR_PIECE_3(void){
+int item_getcheck_func_MIRROR_PIECE_3(void){
     return -1;
 }
 
-u32 item_getcheck_func_MIRROR_PIECE_4(void){
+int item_getcheck_func_MIRROR_PIECE_4(void){
     return -1;
 }
 
-asm u32 item_getcheck_func_SMELL_YELIA_POUCH(void) {
+asm int item_getcheck_func_SMELL_YELIA_POUCH(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AE7C.s"
 }
 
-u32 item_getcheck_func_SMELL_PUMPKIN(void){
+int item_getcheck_func_SMELL_PUMPKIN(void){
     return -1;
 }
 
-asm u32 item_getcheck_func_SMELL_POH(void) {
+asm int item_getcheck_func_SMELL_POH(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AEA0.s"
 }
 
-asm u32 item_getcheck_func_SMELL_FISH(void) {
+asm int item_getcheck_func_SMELL_FISH(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AEBC.s"
 }
 
-asm u32 item_getcheck_func_SMELL_CHILDREN(void) {
+asm int item_getcheck_func_SMELL_CHILDREN(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AED8.s"
 }
 
-asm u32 item_getcheck_func_SMELL_MEDICINE(void) {
+asm int item_getcheck_func_SMELL_MEDICINE(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009AEF4.s"
 }
@@ -1607,55 +1607,55 @@ void item_getcheck_func_F_MAYFLY(void){
     g_dComIfG_gameInfo.save_file.getPlayer().getPlayerGetItem().isFirstBit(F_MAYFLY);
 }
 
-u32 item_getcheck_func_POU_SPIRIT(void){
+int item_getcheck_func_POU_SPIRIT(void){
     return g_dComIfG_gameInfo.save_file.getPlayer().getPlayerCollect().getPoeCount();
 }
 
-asm u32 item_getcheck_func_ANCIENT_DOCUMENT(void) {
+asm int item_getcheck_func_ANCIENT_DOCUMENT(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009B3A0.s"
 }
 
-asm u32 item_getcheck_func_AIR_LETTER(void) {
+asm int item_getcheck_func_AIR_LETTER(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009B3E4.s"
 }
 
-asm u32 item_getcheck_func_ANCIENT_DOCUMENT2(void) {
+asm int item_getcheck_func_ANCIENT_DOCUMENT2(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009B428.s"
 }
 
-asm u32 item_getcheck_func_LV7_DUNGEON_EXIT(void) {
+asm int item_getcheck_func_LV7_DUNGEON_EXIT(void) {
     nofralloc
     #include "d/d_item/d_item/asm/func_8009B46C.s"
 }
 
-u32 item_getcheck_func_LINKS_SAVINGS(void){
+int item_getcheck_func_LINKS_SAVINGS(void){
     return -1;
 }
 
-u32 item_getcheck_func_SMALL_KEY2(void){
+int item_getcheck_func_SMALL_KEY2(void){
     return -1;
 }
 
-u32 item_getcheck_func_POU_FIRE1(void){
+int item_getcheck_func_POU_FIRE1(void){
     return -1;
 }
 
-u32 item_getcheck_func_POU_FIRE2(void){
+int item_getcheck_func_POU_FIRE2(void){
     return -1;
 }
 
-u32 item_getcheck_func_POU_FIRE3(void){
+int item_getcheck_func_POU_FIRE3(void){
     return -1;
 }
 
-u32 item_getcheck_func_POU_FIRE4(void){
+int item_getcheck_func_POU_FIRE4(void){
     return -1;
 }
 
-u32 item_getcheck_func_BOSSRIDER_KEY(void){
+int item_getcheck_func_BOSSRIDER_KEY(void){
     return -1;
 }
 
@@ -1671,11 +1671,11 @@ void item_getcheck_func_LV5_BOSS_KEY(void){
     g_dComIfG_gameInfo.memory.getTempFlags().isDungeonItem(BOSS_KEY_FLAG);
 }
 
-u32 item_getcheck_func_SURFBOARD(void){
+int item_getcheck_func_SURFBOARD(void){
     return -1;
 }
 
-u32 item_getcheck_func_KANTERA2(void){
+int item_getcheck_func_KANTERA2(void){
     return -1;
 }
 
@@ -1699,7 +1699,7 @@ void item_getcheck_func_LV2_BOSS_KEY(void){
     g_dComIfG_gameInfo.memory.getTempFlags().isDungeonItem(BOSS_KEY_FLAG);
 }
 
-u32 item_getcheck_func_KEY_OF_FILONE(void){
+int item_getcheck_func_KEY_OF_FILONE(void){
     return g_dComIfG_gameInfo.memory.getTempFlags().getSmallKeys();
 }
 
