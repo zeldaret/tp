@@ -4,8 +4,8 @@
 /* 80097EEC 00094E2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80097EF0 00094E30  7C 9F 23 78 */	mr r31, r4
 /* 80097EF4 00094E34  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
-/* 80097EF8 00094E38  3C 60 80 3B */	lis r3, lbl_803AF578@ha
-/* 80097EFC 00094E3C  38 63 F5 78 */	addi r3, r3, lbl_803AF578@l
+/* 80097EF8 00094E38  3C 60 80 3B */	lis r3, item_getcheck_func_ptr@ha
+/* 80097EFC 00094E3C  38 63 F5 78 */	addi r3, r3, item_getcheck_func_ptr@l
 /* 80097F00 00094E40  7D 83 00 2E */	lwzx r12, r3, r0
 /* 80097F04 00094E44  7D 89 03 A6 */	mtctr r12
 /* 80097F08 00094E48  4E 80 04 21 */	bctrl 

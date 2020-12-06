@@ -195,8 +195,8 @@ extern Z2SoundObjMgr* lbl_80450B48; //Z2SoundObjMgr sInstance
 
 
 //d_item
-extern u8 lbl_803AF178[0x400];
-extern u8 lbl_803AF578[0x400];
+//extern u8 item_func_ptr[0x400];
+//extern u8 item_getcheck_func_ptr[0x400];
 extern float lbl_80452BD8;
 extern float lbl_80452BDC;
 extern double lbl_80452BE0;

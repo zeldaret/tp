@@ -155,7 +155,7 @@ extern "C" {
     void init__14dComIfG_play_cFv(void);
     void func_80003458(void);
     void dStage_roomControl_c_NS_initZone(void);
-    int checkItemGet(u8,int);
+    //int checkItemGet(u8,int);
 }
 
 // OS
@@ -411,4 +411,5 @@ extern "C"{
     u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
     u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
     void func_803621B8(void);
+    int checkItemGet__FUci(u8,int);
 }

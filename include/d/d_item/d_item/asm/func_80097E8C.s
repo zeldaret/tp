@@ -9,8 +9,8 @@
 /* 80097EAC 00094DEC  7F E4 FB 78 */	mr r4, r31
 /* 80097EB0 00094DF0  4B F9 BF B1 */	bl onFirstBit__21dSv_player_get_item_cFUc
 /* 80097EB4 00094DF4  57 E0 15 BA */	rlwinm r0, r31, 2, 0x16, 0x1d
-/* 80097EB8 00094DF8  3C 60 80 3B */	lis r3, lbl_803AF178@ha
-/* 80097EBC 00094DFC  38 63 F1 78 */	addi r3, r3, lbl_803AF178@l
+/* 80097EB8 00094DF8  3C 60 80 3B */	lis r3, item_func_ptr@ha
+/* 80097EBC 00094DFC  38 63 F1 78 */	addi r3, r3, item_func_ptr@l
 /* 80097EC0 00094E00  7D 83 00 2E */	lwzx r12, r3, r0
 /* 80097EC4 00094E04  7D 89 03 A6 */	mtctr r12
 /* 80097EC8 00094E08  4E 80 04 21 */	bctrl 
