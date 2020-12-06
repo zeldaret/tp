@@ -17,12 +17,16 @@ class JKRArchive : public JKRFileLoader {
         ARAM               = 2,
         DVD                = 3,
         COMP               = 4,
+
+        __EMOUNT_MODE_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
         HEAD                    = 1,
         TAIL                    = 2,
+
+        __EMOUNT_DIRECTION_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     class CArcName {
@@ -42,53 +46,30 @@ class JKRArchive : public JKRFileLoader {
         u16 getHash() {
             return mHash;
         }
+        
         const char* getString() {
             return mData;
         }
 
+      private:
         u16 mHash;
         u16 mLength;
         char mData[64];
     };
 
-  public:
+  protected:
+    JKRArchive();
     JKRArchive(long, EMountMode);
     virtual ~JKRArchive();
 
-    // virtual unmount from JKRFileLoader
-    virtual void becomeCurrent(char const*);
-    virtual void getResource(char const*);
-    virtual void getResource(u32, char const*);
-    virtual void readResource(void*, u32, char const*);
-    virtual void readResource(void*, u32, u32, char const*);
-    virtual void removeResourceAll(void);
-    virtual void removeResource(void*);
-    virtual void detachResource(void*);
-    virtual void getResSize(void const*) const;
-    virtual void countFile(char const*) const;
-    virtual void getFirstFile(char const*) const;
-    virtual void vt_func_16();
-    virtual void vt_func_17();
-    virtual void vt_func_18();
-    virtual void setExpandSize(SDIFileEntry*, u32);
-    virtual void getExpandSize(SDIFileEntry*) const;
-
-    void check_mount_already(long, JKRHeap*);
-    void mount(char const*, EMountMode, JKRHeap*, EMountDirection);
-    void mount(void*, JKRHeap*, EMountDirection);
-    void mount(long, EMountMode, JKRHeap*, EMountDirection);
+  public:
     bool getDirEntry(SDirEntry*, u32) const;
-    void getGlbResource(u32, char const*, JKRArchive*);
-
     void getIdxResource(u32);
     void getResource(unsigned short);
-
     void readIdxResource(void*, u32, u32);
     void readResource(void*, u32, unsigned short);
-
     void countResource(void) const;
     void getFileAttribute(u32) const;
-
     void isSameName(CArcName&, u32, unsigned short) const;
     void findResType(u32) const;
     void findDirectory(char const*, u32) const;
@@ -98,6 +79,24 @@ class JKRArchive : public JKRFileLoader {
     void findNameResource(char const*) const;
     void findPtrResource(void const*) const;
     void findIdResource(unsigned short) const;
+
+  public:
+    /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
+    /* vt[05] */ virtual void getResource(char const*);                   /* override */
+    /* vt[06] */ virtual void getResource(u32, char const*);              /* override */
+    /* vt[07] */ virtual void readResource(void*, u32, char const*);      /* override */
+    /* vt[08] */ virtual void readResource(void*, u32, u32, char const*); /* override */
+    /* vt[09] */ virtual void removeResourceAll(void);                    /* override */
+    /* vt[10] */ virtual void removeResource(void*);                      /* override */
+    /* vt[11] */ virtual void detachResource(void*);                      /* override */
+    /* vt[12] */ virtual void getResSize(void const*) const;              /* override */
+    /* vt[13] */ virtual void countFile(char const*) const;               /* override */
+    /* vt[14] */ virtual void getFirstFile(char const*) const;            /* override */
+    /* vt[15] */ virtual void getExpandedResSize(void const*) const;
+    /* vt[16] */ virtual void fetchResource(SDIFileEntry*, u32)              = 0;
+    /* vt[17] */ virtual void fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
+    /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
+    /* vt[19] */ virtual void getExpandSize(SDIFileEntry*) const;
 
   private:
     JKRHeap* mHeap;
@@ -113,6 +112,13 @@ class JKRArchive : public JKRFileLoader {
     EMountDirection mMountDirection;
     u32 field_0x64;
     JKRDvdFile* mDvdFile;
+
+  public:
+    static void check_mount_already(long, JKRHeap*);
+    static void mount(char const*, EMountMode, JKRHeap*, EMountDirection);
+    static void mount(void*, JKRHeap*, EMountDirection);
+    static void mount(long, EMountMode, JKRHeap*, EMountDirection);
+    static void getGlbResource(u32, char const*, JKRArchive*);
 };
 
 #endif

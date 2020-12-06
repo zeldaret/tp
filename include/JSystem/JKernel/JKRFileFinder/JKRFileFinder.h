@@ -15,11 +15,12 @@ class JKRFileFinder : JKRFileFinder_UnknownBase {
     JKRFileFinder();
     virtual ~JKRFileFinder();
 
-    virtual bool findNextFile(void) = 0;
-
     bool isAvailable() {
         return this->mIsAvailable;
     }
+
+  public:
+    /* vt[3] */ virtual bool findNextFile(void) = 0;
 
   private:
     bool mIsAvailable;
@@ -33,9 +34,10 @@ class JKRArcFinder : public JKRFileFinder {
     JKRArcFinder(JKRArchive*, long, long);
     virtual ~JKRArcFinder();
 
-    virtual bool findNextFile(void);
+  public:
+    /* vt[3] */ virtual bool findNextFile(void); /* override */
 
-private:
+  private:
     JKRArchive* mArchive;
     u32 field_0x18;
     u32 field_0x1c;
@@ -47,7 +49,8 @@ class JKRDvdFinder : public JKRFileFinder {
     JKRDvdFinder(char const*);
     virtual ~JKRDvdFinder();
 
-    virtual bool findNextFile(void);
+  public:
+    /* vt[3] */ virtual bool findNextFile(void); /* override */
 
   private:
     u8 mDvd[12];

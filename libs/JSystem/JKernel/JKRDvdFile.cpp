@@ -1,7 +1,6 @@
 #include "JSystem/JKernel/JKRDvdFile/JKRDvdFile.h"
 #include "global.h"
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9584.s"
 JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
     this->initiate();
 }
@@ -10,7 +9,7 @@ JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
 JKRDvdFile::JKRDvdFile(char const* param_1) : JKRFile(), mDvdLink(this) {
     this->initiate();
     bool result   = this->open(param_1);
-    this->mIsOpen = result;
+    this->mIsAvailable = result;
 }
 #else
 asm JKRDvdFile::JKRDvdFile(char const*) {
@@ -23,7 +22,7 @@ asm JKRDvdFile::JKRDvdFile(char const*) {
 JKRDvdFile::JKRDvdFile(long param_1) : JKRFile(), mDvdLink(this) {
     this->initiate();
     bool result   = this->open(param_1);
-    this->mIsOpen = result;
+    this->mIsAvailable = result;
 }
 #else
 asm JKRDvdFile::JKRDvdFile(long) {
@@ -32,10 +31,16 @@ asm JKRDvdFile::JKRDvdFile(long) {
 }
 #endif
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
+#ifndef NONMATCHING
 JKRDvdFile::~JKRDvdFile() {
     this->close();
 }
+#else
+asm JKRDvdFile::~JKRDvdFile() {
+    nofralloc
+    #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
+}
+#endif
 
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D97E4.s"
 void JKRDvdFile::initiate(void) {
@@ -51,34 +56,34 @@ void JKRDvdFile::initiate(void) {
 
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9850.s"
 bool JKRDvdFile::open(char const* param_1) {
-    if (!this->mIsOpen) {
-        this->mIsOpen = DVDOpen(param_1, this->mDvdCommandBlock);
-        if (this->mIsOpen) {
+    if (!this->mIsAvailable) {
+        this->mIsAvailable = DVDOpen(param_1, this->mDvdCommandBlock);
+        if (this->mIsAvailable) {
             lbl_8043436C.append(&this->mDvdLink);
             this->getStatus();
         }
     }
-    return this->mIsOpen;
+    return this->mIsAvailable;
 }
 
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D98C4.s"
 bool JKRDvdFile::open(long param_1) {
-    if (!this->mIsOpen) {
-        this->mIsOpen = DVDFastOpen(param_1, this->mDvdCommandBlock);
-        if (this->mIsOpen) {
+    if (!this->mIsAvailable) {
+        this->mIsAvailable = DVDFastOpen(param_1, this->mDvdCommandBlock);
+        if (this->mIsAvailable) {
             lbl_8043436C.append(&this->mDvdLink);
             this->getStatus();
         }
     }
-    return this->mIsOpen;
+    return this->mIsAvailable;
 }
 
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9938.s"
 void JKRDvdFile::close() {
-    if (this->mIsOpen) {
+    if (this->mIsAvailable) {
         s32 result = DVDClose(this->mDvdCommandBlock);
         if (result != 0) {
-            this->mIsOpen = false;
+            this->mIsAvailable = false;
             lbl_8043436C.remove(&this->mDvdLink);
         } else {
             const char* filename = lbl_8039D260;        // "JKRDvdFile.cpp"

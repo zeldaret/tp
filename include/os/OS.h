@@ -41,7 +41,8 @@ extern "C" {
     void OSSetArenaHi(u32 param_1);
 
     void OSGetTick(void);
-
+    void OSRestoreInterrupts(void);
+    void OSReport(void);
 
     void OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
                     void* stack, u32 stackSize, int param_6, int param_7);

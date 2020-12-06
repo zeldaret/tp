@@ -1,0 +1,25 @@
+/* removeResourceAll__13JKRMemArchiveFv __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::removeResourceAll(void) */
+/* missing reference */
+/* 802D6ED0 002D3E10  80 03 00 44 */	lwz r0, 0x44(r3)
+/* 802D6ED4 002D3E14  28 00 00 00 */	cmplwi r0, 0
+/* 802D6ED8 002D3E18  4D 82 00 20 */	beqlr
+/* 802D6EDC 002D3E1C  88 03 00 3C */	lbz r0, 0x3c(r3)
+/* 802D6EE0 002D3E20  28 00 00 01 */	cmplwi r0, 1
+/* 802D6EE4 002D3E24  4D 82 00 20 */	beqlr
+/* 802D6EE8 002D3E28  80 C3 00 4C */	lwz r6, 0x4c(r3)
+/* 802D6EEC 002D3E2C  38 E0 00 00 */	li r7, 0
+/* 802D6EF0 002D3E30  38 A0 00 00 */	li r5, 0
+/* 802D6EF4 002D3E34  48 00 00 18 */	b lbl_802D6F0C
+lbl_802D6EF8:
+/* 802D6EF8 002D3E38  80 06 00 10 */	lwz r0, 0x10(r6)
+/* 802D6EFC 002D3E3C  28 00 00 00 */	cmplwi r0, 0
+/* 802D6F00 002D3E40  41 82 00 08 */	beq lbl_802D6F08
+/* 802D6F04 002D3E44  90 A6 00 10 */	stw r5, 0x10(r6)
+lbl_802D6F08:
+/* 802D6F08 002D3E48  38 E7 00 01 */	addi r7, r7, 1
+lbl_802D6F0C:
+/* 802D6F0C 002D3E4C  80 83 00 44 */	lwz r4, 0x44(r3)
+/* 802D6F10 002D3E50  80 04 00 08 */	lwz r0, 8(r4)
+/* 802D6F14 002D3E54  7C 07 00 40 */	cmplw r7, r0
+/* 802D6F18 002D3E58  41 80 FF E0 */	blt lbl_802D6EF8
+/* 802D6F1C 002D3E5C  4E 80 00 20 */	blr

@@ -432,11 +432,14 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAram.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramBlock.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramStream.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramStream.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/asm/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileFinder.o    \
@@ -444,16 +447,19 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePub.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePri.o    \
             $(BUILD_DIR)/asm/JKernel/JKRArchivePri.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRMemArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRMemArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramArchive.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRDvdArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRCompArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRCompArchive.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFile.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdFile.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdFile.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdRipper.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRDecomp.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o    \
             $(BUILD_DIR)/asm/JSupport/JSUList.o    \
             $(BUILD_DIR)/libs/JSystem/JSupport/JSUList.o    \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \

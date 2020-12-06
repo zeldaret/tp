@@ -198,7 +198,7 @@ lbl_80006014:
 /* 80006020 00002F60  80 63 00 94 */	lwz r3, 0x94(r3)
 /* 80006024 00002F64  28 03 00 00 */	cmplwi r3, 0
 /* 80006028 00002F68  41 82 00 08 */	beq lbl_80006030
-/* 8000602C 00002F6C  48 2C D1 ED */	bl JKRAramHeap_NS_dump
+/* 8000602C 00002F6C  48 2C D1 ED */	bl dump__11JKRAramHeapFv
 lbl_80006030:
 /* 80006030 00002F70  48 25 C4 41 */	bl DynamicModuleControlBase_NS_dump
 /* 80006034 00002F74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha

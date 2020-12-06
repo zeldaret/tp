@@ -1,0 +1,54 @@
+/* fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection::fetchResource_subroutine(unsigned long, unsigned long, unsigned char *, unsigned long, int) */
+/* JKRAramArchive_NS_fetchResource_subroutine */
+/* 802D7858 002D4798  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802D785C 002D479C  7C 08 02 A6 */	mflr r0
+/* 802D7860 002D47A0  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802D7864 002D47A4  38 04 00 1F */	addi r0, r4, 0x1f
+/* 802D7868 002D47A8  54 00 00 34 */	rlwinm r0, r0, 0, 0, 0x1a
+/* 802D786C 002D47AC  54 C8 00 34 */	rlwinm r8, r6, 0, 0, 0x1a
+/* 802D7870 002D47B0  2C 07 00 00 */	cmpwi r7, 0
+/* 802D7874 002D47B4  41 82 00 14 */	beq lbl_802D7888
+/* 802D7878 002D47B8  41 80 00 6C */	blt lbl_802D78E4
+/* 802D787C 002D47BC  2C 07 00 03 */	cmpwi r7, 3
+/* 802D7880 002D47C0  40 80 00 64 */	bge lbl_802D78E4
+/* 802D7884 002D47C4  48 00 00 38 */	b lbl_802D78BC
+lbl_802D7888:
+/* 802D7888 002D47C8  7C 00 40 40 */	cmplw r0, r8
+/* 802D788C 002D47CC  40 81 00 08 */	ble lbl_802D7894
+/* 802D7890 002D47D0  7D 00 43 78 */	mr r0, r8
+lbl_802D7894:
+/* 802D7894 002D47D4  7C A4 2B 78 */	mr r4, r5
+/* 802D7898 002D47D8  7C 05 03 78 */	mr r5, r0
+/* 802D789C 002D47DC  38 C0 00 00 */	li r6, 0
+/* 802D78A0 002D47E0  7D 07 43 78 */	mr r7, r8
+/* 802D78A4 002D47E4  39 00 00 00 */	li r8, 0
+/* 802D78A8 002D47E8  39 20 FF FF */	li r9, -1
+/* 802D78AC 002D47EC  39 41 00 08 */	addi r10, r1, 8
+/* 802D78B0 002D47F0  4B FF AD 05 */	bl aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
+/* 802D78B4 002D47F4  80 61 00 08 */	lwz r3, 8(r1)
+/* 802D78B8 002D47F8  48 00 00 4C */	b lbl_802D7904
+lbl_802D78BC:
+/* 802D78BC 002D47FC  7C A4 2B 78 */	mr r4, r5
+/* 802D78C0 002D4800  7C 05 03 78 */	mr r5, r0
+/* 802D78C4 002D4804  38 C0 00 01 */	li r6, 1
+/* 802D78C8 002D4808  7D 07 43 78 */	mr r7, r8
+/* 802D78CC 002D480C  39 00 00 00 */	li r8, 0
+/* 802D78D0 002D4810  39 20 FF FF */	li r9, -1
+/* 802D78D4 002D4814  39 41 00 08 */	addi r10, r1, 8
+/* 802D78D8 002D4818  4B FF AC DD */	bl aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
+/* 802D78DC 002D481C  80 61 00 08 */	lwz r3, 8(r1)
+/* 802D78E0 002D4820  48 00 00 24 */	b lbl_802D7904
+lbl_802D78E4:
+/* 802D78E4 002D4824  3C 60 80 3A */	lis r3, lbl_8039D188@ha
+/* 802D78E8 002D4828  38 63 D1 88 */	addi r3, r3, lbl_8039D188@l
+/* 802D78EC 002D482C  38 80 02 8F */	li r4, 0x28f
+/* 802D78F0 002D4830  38 A3 00 13 */	addi r5, r3, 0x13
+/* 802D78F4 002D4834  38 C3 00 16 */	addi r6, r3, 0x16
+/* 802D78F8 002D4838  4C C6 31 82 */	crclr 6
+/* 802D78FC 002D483C  48 00 A9 01 */	bl JUTException_NS_panic_f
+/* 802D7900 002D4840  38 60 00 00 */	li r3, 0
+lbl_802D7904:
+/* 802D7904 002D4844  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802D7908 002D4848  7C 08 03 A6 */	mtlr r0
+/* 802D790C 002D484C  38 21 00 10 */	addi r1, r1, 0x10
+/* 802D7910 002D4850  4E 80 00 20 */	blr

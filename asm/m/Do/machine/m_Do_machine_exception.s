@@ -116,7 +116,7 @@ dispHeapInfo:
 /* 80017F10 00014E50  80 63 00 94 */	lwz r3, 0x94(r3)
 /* 80017F14 00014E54  28 03 00 00 */	cmplwi r3, 0
 /* 80017F18 00014E58  41 82 00 08 */	beq lbl_80017F20
-/* 80017F1C 00014E5C  48 2B B2 FD */	bl JKRAramHeap_NS_dump
+/* 80017F1C 00014E5C  48 2B B2 FD */	bl dump__11JKRAramHeapFv
 lbl_80017F20:
 /* 80017F20 00014E60  48 24 A5 51 */	bl DynamicModuleControlBase_NS_dump
 /* 80017F24 00014E64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha

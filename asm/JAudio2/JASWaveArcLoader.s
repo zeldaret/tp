@@ -233,7 +233,7 @@ JASWaveArc_NS_loadToAramCallback:
 /* 8029A3A0 002972E0  38 C0 00 00 */	li r6, 0
 /* 8029A3A4 002972E4  38 E0 00 00 */	li r7, 0
 /* 8029A3A8 002972E8  39 00 00 00 */	li r8, 0
-/* 8029A3AC 002972EC  48 04 04 C9 */	bl JKRDvdAramRipper_NS_loadToAram
+/* 8029A3AC 002972EC  48 04 04 C9 */	bl loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
 /* 8029A3B0 002972F0  28 03 00 00 */	cmplwi r3, 0
 /* 8029A3B4 002972F4  41 82 00 38 */	beq lbl_8029A3EC
 /* 8029A3B8 002972F8  A0 7F 00 5A */	lhz r3, 0x5a(r31)

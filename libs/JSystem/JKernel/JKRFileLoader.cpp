@@ -41,13 +41,7 @@ asm JKRFileLoader* JKRFileLoader::findVolume(char const **) {
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D4438.s"
 }
 
-#if 0
-// JSystem\JKernel\JKRFileLoader\asm\func_802D44C4.s:18: illegal object reference in constant expression (lbl_804508C0)
-// JSystem\JKernel\JKRFileLoader\asm\func_802D44C4.s:20: illegal object reference in constant expression (lbl_804508C0)
-// JSystem\JKernel\JKRFileLoader\asm\func_802D44C4.s:57: illegal object reference in constant expression (lbl_804508C0)
-asm void JKRFileLoader::fetchVolumeName(char *, long, char const *) {
+asm char* JKRFileLoader::fetchVolumeName(char *, long, char const *) {
     nofralloc
     #include "JSystem/JKernel/JKRFileLoader/asm/func_802D44C4.s"
 }
-
-#endif

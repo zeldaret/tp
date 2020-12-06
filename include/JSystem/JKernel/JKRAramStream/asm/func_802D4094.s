@@ -1,0 +1,25 @@
+/* getAvailable__20JSURandomInputStreamCFv JSURandomInputStream::getAvailable( const(void)) */
+/* missing reference */
+/* 802D4094 002D0FD4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 802D4098 002D0FD8  7C 08 02 A6 */	mflr r0
+/* 802D409C 002D0FDC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 802D40A0 002D0FE0  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 802D40A4 002D0FE4  93 C1 00 08 */	stw r30, 8(r1)
+/* 802D40A8 002D0FE8  7C 7E 1B 78 */	mr r30, r3
+/* 802D40AC 002D0FEC  81 83 00 00 */	lwz r12, 0(r3)
+/* 802D40B0 002D0FF0  81 8C 00 18 */	lwz r12, 0x18(r12)
+/* 802D40B4 002D0FF4  7D 89 03 A6 */	mtctr r12
+/* 802D40B8 002D0FF8  4E 80 04 21 */	bctrl
+/* 802D40BC 002D0FFC  7C 7F 1B 78 */	mr r31, r3
+/* 802D40C0 002D1000  7F C3 F3 78 */	mr r3, r30
+/* 802D40C4 002D1004  81 9E 00 00 */	lwz r12, 0(r30)
+/* 802D40C8 002D1008  81 8C 00 1C */	lwz r12, 0x1c(r12)
+/* 802D40CC 002D100C  7D 89 03 A6 */	mtctr r12
+/* 802D40D0 002D1010  4E 80 04 21 */	bctrl
+/* 802D40D4 002D1014  7C 63 F8 50 */	subf r3, r3, r31
+/* 802D40D8 002D1018  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 802D40DC 002D101C  83 C1 00 08 */	lwz r30, 8(r1)
+/* 802D40E0 002D1020  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 802D40E4 002D1024  7C 08 03 A6 */	mtlr r0
+/* 802D40E8 002D1028  38 21 00 10 */	addi r1, r1, 0x10
+/* 802D40EC 002D102C  4E 80 00 20 */	blr
