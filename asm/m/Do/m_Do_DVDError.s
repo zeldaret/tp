@@ -91,10 +91,10 @@ mDoDvdErr_Watch:
 /* 800166BC 000135FC  7C 64 1B 78 */	mr r4, r3
 /* 800166C0 00013600  38 61 00 08 */	addi r3, r1, 8
 /* 800166C4 00013604  38 A0 00 00 */	li r5, 0
-/* 800166C8 00013608  48 2B AF F1 */	bl JKRThread_X2_
+/* 800166C8 00013608  48 2B AF F1 */	bl __ct__9JKRThreadFP8OSThreadi
 /* 800166CC 0001360C  38 61 00 08 */	addi r3, r1, 8
 /* 800166D0 00013610  38 80 FF FF */	li r4, -1
-/* 800166D4 00013614  48 2B B0 85 */	bl JKRThread_NS_dtor
+/* 800166D4 00013614  48 2B B0 85 */	bl __dt__9JKRThreadFv
 /* 800166D8 00013618  4B FF 86 0D */	bl mDoExt_getAssertHeap
 /* 800166DC 0001361C  48 2B 7D 5D */	bl becomeCurrentHeap__7JKRHeapFv
 /* 800166E0 00013620  3C 60 80 3E */	lis r3, lbl_803DECC0@ha

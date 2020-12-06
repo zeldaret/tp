@@ -259,7 +259,7 @@ dMsgStringBase_c_NS_getResource:
 /* 80249740 00246680  38 63 4F 54 */	addi r3, r3, 0x524F4F54@l
 /* 80249744 00246684  3C 80 80 3A */	lis r4, lbl_80399C98@ha
 /* 80249748 00246688  38 84 9C 98 */	addi r4, r4, lbl_80399C98@l
-/* 8024974C 0024668C  48 08 C3 ED */	bl JKRArchive_NS_getGlbResource
+/* 8024974C 0024668C  48 08 C3 ED */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 80249750 00246690  90 7F 00 1C */	stw r3, 0x1c(r31)
 lbl_80249754:
 /* 80249754 00246694  83 E1 00 0C */	lwz r31, 0xc(r1)

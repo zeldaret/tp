@@ -8,7 +8,7 @@ JASResArcLoader_NS_getResSize:
 /* 80290BD0 0028DB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290BD4 0028DB14  7C 08 02 A6 */	mflr r0
 /* 80290BD8 0028DB18  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80290BDC 0028DB1C  48 04 5B 95 */	bl JKRArchive_NS_findIdResource
+/* 80290BDC 0028DB1C  48 04 5B 95 */	bl findIdResource__10JKRArchiveCFUs
 /* 80290BE0 0028DB20  28 03 00 00 */	cmplwi r3, 0
 /* 80290BE4 0028DB24  40 82 00 0C */	bne lbl_80290BF0
 /* 80290BE8 0028DB28  38 60 00 00 */	li r3, 0
@@ -37,7 +37,7 @@ JASResArcLoader_NS_getResMaxSize:
 lbl_80290C30:
 /* 80290C30 0028DB70  7F 83 E3 78 */	mr r3, r28
 /* 80290C34 0028DB74  7F A4 EB 78 */	mr r4, r29
-/* 80290C38 0028DB78  48 04 5A 4D */	bl JKRArchive_NS_findIdxResource
+/* 80290C38 0028DB78  48 04 5A 4D */	bl findIdxResource__10JKRArchiveCFUl
 /* 80290C3C 0028DB7C  28 03 00 00 */	cmplwi r3, 0
 /* 80290C40 0028DB80  41 82 00 14 */	beq lbl_80290C54
 /* 80290C44 0028DB84  80 03 00 0C */	lwz r0, 0xc(r3)
@@ -68,7 +68,7 @@ JASResArcLoader_NS_loadResourceCallback:
 /* 80290C98 0028DBD8  80 9E 00 08 */	lwz r4, 8(r30)
 /* 80290C9C 0028DBDC  80 BE 00 0C */	lwz r5, 0xc(r30)
 /* 80290CA0 0028DBE0  A0 DE 00 04 */	lhz r6, 4(r30)
-/* 80290CA4 0028DBE4  48 04 52 9D */	bl JKRArchive_NS_readResource_X2_
+/* 80290CA4 0028DBE4  48 04 52 9D */	bl readResource__10JKRArchiveFPvUlUs
 /* 80290CA8 0028DBE8  7C 7F 1B 78 */	mr r31, r3
 /* 80290CAC 0028DBEC  81 9E 00 10 */	lwz r12, 0x10(r30)
 /* 80290CB0 0028DBF0  28 0C 00 00 */	cmplwi r12, 0

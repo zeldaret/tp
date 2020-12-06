@@ -74,14 +74,14 @@ lbl_802489E8:
 /* 80248A48 00245988  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248A4C 0024598C  38 64 00 18 */	addi r3, r4, 0x18
 /* 80248A50 00245990  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248A54 00245994  48 08 B8 1D */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248A54 00245994  48 08 B8 1D */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248A58 00245998  48 0C 00 15 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248A5C 0024599C  90 7F 00 CC */	stw r3, 0xcc(r31)
 /* 80248A60 002459A0  3C 80 80 3A */	lis r4, lbl_80399C30@ha
 /* 80248A64 002459A4  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248A68 002459A8  38 64 00 30 */	addi r3, r4, 0x30
 /* 80248A6C 002459AC  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248A70 002459B0  48 08 B8 01 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248A70 002459B0  48 08 B8 01 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248A74 002459B4  48 0B FF F9 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248A78 002459B8  90 7F 00 D0 */	stw r3, 0xd0(r31)
 /* 80248A7C 002459BC  80 7F 00 D0 */	lwz r3, 0xd0(r31)
@@ -96,7 +96,7 @@ lbl_802489E8:
 /* 80248AA0 002459E0  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248AA4 002459E4  38 64 00 48 */	addi r3, r4, 0x48
 /* 80248AA8 002459E8  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248AAC 002459EC  48 08 B7 C5 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248AAC 002459EC  48 08 B7 C5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248AB0 002459F0  48 0B FF BD */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248AB4 002459F4  90 7F 00 D4 */	stw r3, 0xd4(r31)
 /* 80248AB8 002459F8  80 7F 00 D4 */	lwz r3, 0xd4(r31)

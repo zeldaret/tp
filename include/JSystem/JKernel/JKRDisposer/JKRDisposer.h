@@ -9,7 +9,6 @@ class JKRDisposer {
   public:
     JKRDisposer();
     virtual ~JKRDisposer();
-    virtual void callAllDisposer() = 0;
 
   public:
     JKRHeap* mHeap;

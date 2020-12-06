@@ -1,0 +1,20 @@
+/* findPtrResource__10JKRArchiveCFPCv __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::findPtrResource( const(void const *)) */
+/* JKRArchive_NS_findPtrResource */
+/* 802D6734 002D3674  80 A3 00 4C */	lwz r5, 0x4c(r3)
+/* 802D6738 002D3678  80 63 00 44 */	lwz r3, 0x44(r3)
+/* 802D673C 002D367C  80 03 00 08 */	lwz r0, 8(r3)
+/* 802D6740 002D3680  7C 09 03 A6 */	mtctr r0
+/* 802D6744 002D3684  28 00 00 00 */	cmplwi r0, 0
+/* 802D6748 002D3688  40 81 00 20 */	ble lbl_802D6768
+lbl_802D674C:
+/* 802D674C 002D368C  80 05 00 10 */	lwz r0, 0x10(r5)
+/* 802D6750 002D3690  7C 00 20 40 */	cmplw r0, r4
+/* 802D6754 002D3694  40 82 00 0C */	bne lbl_802D6760
+/* 802D6758 002D3698  7C A3 2B 78 */	mr r3, r5
+/* 802D675C 002D369C  4E 80 00 20 */	blr
+lbl_802D6760:
+/* 802D6760 002D36A0  38 A5 00 14 */	addi r5, r5, 0x14
+/* 802D6764 002D36A4  42 00 FF E8 */	bdnz lbl_802D674C
+lbl_802D6768:
+/* 802D6768 002D36A8  38 60 00 00 */	li r3, 0
+/* 802D676C 002D36AC  4E 80 00 20 */	blr

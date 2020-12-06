@@ -105,7 +105,7 @@ dScnName_c_NS_create:
 /* 802588EC 0025582C  7C 64 1B 78 */	mr r4, r3
 /* 802588F0 00255830  3C 60 00 18 */	lis r3, 0x18
 /* 802588F4 00255834  38 A0 00 00 */	li r5, 0
-/* 802588F8 00255838  48 07 65 35 */	bl JKRExpHeap_NS_create
+/* 802588F8 00255838  48 07 65 35 */	bl create__10JKRExpHeapFUlP7JKRHeapb
 /* 802588FC 0025583C  90 7D 01 CC */	stw r3, 0x1cc(r29)
 /* 80258900 00255840  80 7D 01 CC */	lwz r3, 0x1cc(r29)
 /* 80258904 00255844  4B DB 68 C9 */	bl mDoExt_setCurrentHeap

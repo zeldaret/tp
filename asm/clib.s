@@ -624,6 +624,8 @@ func_80362210:
 func_80362214:
 /* 80362214 0035F154  83 0B FF E0 */	lwz r24, -0x20(r11)
 
+.global _restgpr_25
+_restgpr_25:
 .global func_80362218
 func_80362218:
 /* 80362218 0035F158  83 2B FF E4 */	lwz r25, -0x1c(r11)

@@ -198,7 +198,7 @@ lbl_802459AC:
 /* 80245A0C 0024294C  38 84 9B 08 */	addi r4, r4, lbl_80399B08@l
 /* 80245A10 00242950  38 64 00 24 */	addi r3, r4, 0x24
 /* 80245A14 00242954  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
-/* 80245A18 00242958  48 08 E8 59 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80245A18 00242958  48 08 E8 59 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80245A1C 0024295C  48 0C 30 51 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80245A20 00242960  90 7F 00 08 */	stw r3, 8(r31)
 /* 80245A24 00242964  C0 02 B2 D8 */	lfs f0, lbl_80454CD8-_SDA2_BASE_(r2)
@@ -207,7 +207,7 @@ lbl_802459AC:
 /* 80245A30 00242970  38 84 9B 08 */	addi r4, r4, lbl_80399B08@l
 /* 80245A34 00242974  38 64 00 48 */	addi r3, r4, 0x48
 /* 80245A38 00242978  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
-/* 80245A3C 0024297C  48 08 E8 35 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80245A3C 0024297C  48 08 E8 35 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80245A40 00242980  48 0C 30 2D */	bl J2DAnmLoaderDataBase_NS_load
 /* 80245A44 00242984  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 80245A48 00242988  80 7F 00 0C */	lwz r3, 0xc(r31)

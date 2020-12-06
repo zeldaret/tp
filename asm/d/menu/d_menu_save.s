@@ -246,7 +246,7 @@ lbl_801EF9A4:
 /* 801EF9AC 001EC8EC  38 63 79 60 */	addi r3, r3, lbl_80397960@l
 /* 801EF9B0 001EC8F0  38 63 00 2F */	addi r3, r3, 0x2f
 /* 801EF9B4 001EC8F4  80 9F 00 04 */	lwz r4, 4(r31)
-/* 801EF9B8 001EC8F8  48 0E 48 B9 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801EF9B8 001EC8F8  48 0E 48 B9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801EF9BC 001EC8FC  7C 79 1B 78 */	mr r25, r3
 /* 801EF9C0 001EC900  48 11 90 AD */	bl J2DAnmLoaderDataBase_NS_load
 /* 801EF9C4 001EC904  90 7F 00 40 */	stw r3, 0x40(r31)
@@ -568,7 +568,7 @@ lbl_801EFDE4:
 /* 801EFE84 001ECDC4  38 63 79 60 */	addi r3, r3, lbl_80397960@l
 /* 801EFE88 001ECDC8  38 63 00 46 */	addi r3, r3, 0x46
 /* 801EFE8C 001ECDCC  80 9F 00 04 */	lwz r4, 4(r31)
-/* 801EFE90 001ECDD0  48 0E 43 E1 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801EFE90 001ECDD0  48 0E 43 E1 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801EFE94 001ECDD4  7C 7D 1B 78 */	mr r29, r3
 /* 801EFE98 001ECDD8  48 11 8B D5 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801EFE9C 001ECDDC  90 7F 01 40 */	stw r3, 0x140(r31)
@@ -584,7 +584,7 @@ lbl_801EFDE4:
 /* 801EFEC4 001ECE04  38 63 79 60 */	addi r3, r3, lbl_80397960@l
 /* 801EFEC8 001ECE08  38 63 00 5D */	addi r3, r3, 0x5d
 /* 801EFECC 001ECE0C  80 9F 00 04 */	lwz r4, 4(r31)
-/* 801EFED0 001ECE10  48 0E 43 A1 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801EFED0 001ECE10  48 0E 43 A1 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801EFED4 001ECE14  48 11 8B 99 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801EFED8 001ECE18  90 7F 01 48 */	stw r3, 0x148(r31)
 /* 801EFEDC 001ECE1C  80 7F 01 48 */	lwz r3, 0x148(r31)
@@ -806,7 +806,7 @@ lbl_801F0108:
 /* 801F021C 001ED15C  38 63 79 60 */	addi r3, r3, lbl_80397960@l
 /* 801F0220 001ED160  38 63 00 77 */	addi r3, r3, 0x77
 /* 801F0224 001ED164  80 9F 00 04 */	lwz r4, 4(r31)
-/* 801F0228 001ED168  48 0E 40 49 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801F0228 001ED168  48 0E 40 49 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801F022C 001ED16C  48 11 88 41 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801F0230 001ED170  90 7F 01 58 */	stw r3, 0x158(r31)
 /* 801F0234 001ED174  80 7F 01 58 */	lwz r3, 0x158(r31)
@@ -819,7 +819,7 @@ lbl_801F0108:
 /* 801F0250 001ED190  38 63 79 60 */	addi r3, r3, lbl_80397960@l
 /* 801F0254 001ED194  38 63 00 8E */	addi r3, r3, 0x8e
 /* 801F0258 001ED198  80 9F 00 04 */	lwz r4, 4(r31)
-/* 801F025C 001ED19C  48 0E 40 15 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801F025C 001ED19C  48 0E 40 15 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801F0260 001ED1A0  48 11 88 0D */	bl J2DAnmLoaderDataBase_NS_load
 /* 801F0264 001ED1A4  90 7F 01 60 */	stw r3, 0x160(r31)
 /* 801F0268 001ED1A8  80 7F 01 60 */	lwz r3, 0x160(r31)
