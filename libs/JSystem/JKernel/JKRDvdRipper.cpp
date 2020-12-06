@@ -41,7 +41,6 @@ asm void JKRDvdRipper::isErrorRetry(void) {
     #include "JSystem/JKernel/JKRDvdRipper/asm/func_802DA7D4.s"
 }
 
-// included from the original JKRDvdRipper.s
 #if 0
 asm void __sinit_JKRDvdRipper_cpp {
     nofralloc

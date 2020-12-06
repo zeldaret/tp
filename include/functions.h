@@ -235,6 +235,9 @@ extern "C" {
     void func_803621FC(void);
     void func_80362210(void);
     void func_80362214(void);
+
+    void ARQPostRequest(void);
+    void DCStoreRange(void);
 }
 
 // DVD
@@ -822,4 +825,18 @@ extern "C" {
     void dump__11JKRAramHeapFv(void);
     void getFreeSize__11JKRAramHeapFv(void);
     void getTotalFreeSize__11JKRAramHeapFv(void);
+};
+
+// JSystem/JKernel/JKRAramPiece
+extern "C" {
+    void __ct__12JKRAMCommandFv(void);
+    void __dt__12JKRAMCommandFv(void);
+    void __sinit_JKRAramPiece_cpp(void);
+    void doneDMA__12JKRAramPieceFUl(void);
+    void orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v(void);
+    void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+    void prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v(void);
+    void sendCommand__12JKRAramPieceFP12JKRAMCommand(void);
+    void startDMA__12JKRAramPieceFP12JKRAMCommand(void);
+    void sync__12JKRAramPieceFP12JKRAMCommandi(void);
 };

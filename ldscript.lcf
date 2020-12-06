@@ -1290,6 +1290,7 @@ __sinit_JKRDvdRipper_cpp
 __dt__12JKRAramBlockFv
 __dt__11JKRAramHeapFv
 __sinit_JKRAramHeap_cpp
+__sinit_JKRAramPiece_cpp
 }
 /*
 .init 80003100 - 80005600

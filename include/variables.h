@@ -310,3 +310,9 @@ extern u8 lbl_803CC168; // JKRAramHeap::__vt
 extern u8 lbl_80434300; // JKernel::@297 (global destructor chain)
 class JKRAramBlock;
 extern JSUList<JKRAramBlock> lbl_8043430C; // JKRAramHeap::sAramList
+
+extern u8 lbl_80434324;
+extern u8 lbl_80434330;
+extern u8 lbl_8039D0B8;
+extern u8 lbl_80434318;
+extern u8 lbl_803CC138;
