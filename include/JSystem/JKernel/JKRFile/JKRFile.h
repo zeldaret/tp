@@ -22,7 +22,7 @@ class JKRFile : public JKRDisposer {
     /* vt[06] */ virtual s32 writeData(const void*, long, long) = 0;
     /* vt[07] */ virtual s32 getFileSize() const = 0;
 
-  private:
+  protected:
     bool mIsAvailable;
     u8 field_0x19[3];
 };

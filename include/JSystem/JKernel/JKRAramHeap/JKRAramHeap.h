@@ -32,15 +32,15 @@ class JKRAramHeap : public JKRDisposer {
     }
 
     void lock() {
-        OSLockMutex(this->mMutex);
+        OSLockMutex(&this->mMutex);
     }
 
     void unlock() {
-        OSUnlockMutex(this->mMutex);
+        OSUnlockMutex(&this->mMutex);
     }
 
   public:
-    u8 mMutex[24]; // OSMutex
+    OSMutex mMutex;
     JKRHeap* mHeap;
     u32 field_0x34;
     u32 field_0x38;

@@ -11,10 +11,10 @@ class JKRDvdFile : public JKRFile {
     JKRDvdFile();
     JKRDvdFile(char const*);
     JKRDvdFile(long);
-    ~JKRDvdFile();
+    virtual ~JKRDvdFile();
 
     void initiate(void);
-    void sync(void);
+    s32 sync(void);
 
     int getFileID() const {
         return this->mFileID << 2;
@@ -31,7 +31,7 @@ class JKRDvdFile : public JKRFile {
   public:
     /* vt[03] */ virtual bool open(char const*);                 /* override */
     /* vt[04] */ virtual void close(void);                       /* override */
-    /* vt[05] */ virtual s32 readData(void*, long, long);       /* override */
+    /* vt[05] */ virtual s32 readData(void*, long, long);        /* override */
     /* vt[06] */ virtual s32 writeData(void const*, long, long); /* override */
     /* vt[07] */ virtual s32 getFileSize(void) const;            /* override */
     /* vt[08] */ virtual bool open(long);
@@ -58,5 +58,6 @@ class JKRDvdFile : public JKRFile {
   public:
     static void doneProcess(long, DVDFileInfo*);
 };
+
 
 #endif

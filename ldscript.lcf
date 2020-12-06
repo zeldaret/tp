@@ -755,6 +755,7 @@ SECTIONS {
 "__vt__12J3DAnmLoader" = 0x803cf260;
 "__vt__20J3DAnmVisibilityFull" = 0x803cf274;
 
+"__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
  set__17dSv_horse_place_cFPCcRC4cXyzsSc

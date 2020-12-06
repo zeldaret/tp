@@ -8,7 +8,7 @@ asm JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection) {
     #include "JSystem/JKernel/JKRAramArchive/asm/func_802D70C0.s"
 }
 
-asm JKRAramArchive::~JKRAramArchive(void) {
+asm JKRAramArchive::~JKRAramArchive() {
     nofralloc
     #include "JSystem/JKernel/JKRAramArchive/asm/func_802D7168.s"
 }
@@ -53,8 +53,9 @@ asm void JKRAramArchive::getExpandedResSize(void const *) const {
     #include "JSystem/JKernel/JKRAramArchive/asm/func_802D7A64.s"
 }
 
+#if 0
 asm JKRFile::~JKRFile() {
     nofralloc
     #include "JSystem/JKernel/JKRAramArchive/asm/func_802D7B90.s"
 }
-
+#endif
