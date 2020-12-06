@@ -87,7 +87,7 @@ lbl_802D3418:
 /* 802D3430 002D0370  4E 80 00 20 */	blr 
 
 .global allocHead__12JKRAramBlockFUlUcP11JKRAramHeap
-allocHead__12JKRAramBlockFUlUcP11JKRAramHeap:
+allocHead__12JKRAramBlockFUlUcP11__ct__11JKRAramHeapFUlUl:
 /* 802D3434 002D0374  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D3438 002D0378  7C 08 02 A6 */	mflr r0
 /* 802D343C 002D037C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -130,7 +130,7 @@ lbl_802D349C:
 /* 802D34CC 002D040C  4E 80 00 20 */	blr 
 
 .global allocTail__12JKRAramBlockFUlUcP11JKRAramHeap
-allocTail__12JKRAramBlockFUlUcP11JKRAramHeap:
+allocTail__12JKRAramBlockFUlUcP11__ct__11JKRAramHeapFUlUl:
 /* 802D34D0 002D0410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D34D4 002D0414  7C 08 02 A6 */	mflr r0
 /* 802D34D8 002D0418  90 01 00 24 */	stw r0, 0x24(r1)

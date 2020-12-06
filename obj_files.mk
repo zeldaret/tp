@@ -433,6 +433,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o    \

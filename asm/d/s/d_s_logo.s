@@ -1614,13 +1614,13 @@ lbl_80257830:
 /* 80257830 00254770  80 6D 8E 48 */	lwz r3, lbl_804513C8-_SDA_BASE_(r13)
 /* 80257834 00254774  83 63 00 94 */	lwz r27, 0x94(r3)
 /* 80257838 00254778  7F 63 DB 78 */	mr r3, r27
-/* 8025783C 0025477C  48 07 B9 71 */	bl JKRAramHeap_NS_getTotalFreeSize
+/* 8025783C 0025477C  48 07 B9 71 */	bl getTotalFreeSize__11JKRAramHeapFv
 /* 80257840 00254780  7C 7C 1B 78 */	mr r28, r3
 /* 80257844 00254784  4B DB D1 AD */	bl mDoExt_getMesgFont
 /* 80257848 00254788  4B DB D3 59 */	bl mDoExt_getSubFont
 /* 8025784C 0025478C  4B DB D2 B9 */	bl mDoExt_getRubyFont
 /* 80257850 00254790  7F 63 DB 78 */	mr r3, r27
-/* 80257854 00254794  48 07 B9 59 */	bl JKRAramHeap_NS_getTotalFreeSize
+/* 80257854 00254794  48 07 B9 59 */	bl getTotalFreeSize__11JKRAramHeapFv
 /* 80257858 00254798  7C 63 E0 50 */	subf r3, r3, r28
 /* 8025785C 0025479C  4B DB D5 01 */	bl mDoExt_setAraCacheSize
 /* 80257860 002547A0  80 7F 02 A0 */	lwz r3, 0x2a0(r31)

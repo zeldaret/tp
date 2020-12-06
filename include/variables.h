@@ -305,3 +305,8 @@ extern u8 lbl_804508CC; // JKRDvdRipper::sSZSBufferSize
 extern u8 lbl_8039D290; // "JKRDvdRipper.cpp"
 
 extern u8 lbl_803CC178; // JKRAramBlock::__vt
+
+extern u8 lbl_803CC168; // JKRAramHeap::__vt
+extern u8 lbl_80434300; // JKernel::@297 (global destructor chain)
+class JKRAramBlock;
+extern JSUList<JKRAramBlock> lbl_8043430C; // JKRAramHeap::sAramList

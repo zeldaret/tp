@@ -788,6 +788,7 @@ extern "C" {
     void sync__9JKRDecompFP16JKRDecompCommandi(void);
 };
 
+// JSystem/JKernel/JKRDvdRipper
 extern "C" {
     void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
     // void __dt__23JSUList<12JKRDMCommand>Fv(void);
@@ -801,9 +802,24 @@ extern "C" {
     void nextSrcData__FPUc(void);
 };
 
+// JSystem/JKernel/JKRAramBlock
 extern "C" {
     void __ct__12JKRAramBlockFUlUlUlUcb(void);
     void __dt__12JKRAramBlockFv(void);
     void allocHead__12JKRAramBlockFUlUcP11JKRAramHeap(void);
     void allocTail__12JKRAramBlockFUlUcP11JKRAramHeap(void);
+};
+
+// JSystem/JKernel/JKRAramHeap
+extern "C" {
+    void __ct__11JKRAramHeapFUlUl(void);
+    void __dt__11JKRAramHeapFv(void);
+    // void __dt__23JSUList<12JKRAramBlock>Fv(void);
+    void __sinit_JKRAramHeap_cpp(void);
+    void allocFromHead__11JKRAramHeapFUl(void);
+    void allocFromTail__11JKRAramHeapFUl(void);
+    void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode(void);
+    void dump__11JKRAramHeapFv(void);
+    void getFreeSize__11JKRAramHeapFv(void);
+    void getTotalFreeSize__11JKRAramHeapFv(void);
 };

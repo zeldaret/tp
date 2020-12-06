@@ -1,6 +1,6 @@
 .include "macros.inc"
 
-.section .text, "ax" # 802d9b98
+.section .text, "ax" # 802DA7DC
 
 .global __sinit_JKRDvdRipper_cpp
 __sinit_JKRDvdRipper_cpp:

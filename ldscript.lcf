@@ -1288,6 +1288,8 @@ __dt__9JKRDecompFv
 run__9JKRDecompFv
 __sinit_JKRDvdRipper_cpp
 __dt__12JKRAramBlockFv
+__dt__11JKRAramHeapFv
+__sinit_JKRAramHeap_cpp
 }
 /*
 .init 80003100 - 80005600
