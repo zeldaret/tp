@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d3304
 
 
-.global JKRAramBlock
-JKRAramBlock:
+.global __ct__12JKRAramBlockFUlUlUlUcb
+__ct__12JKRAramBlockFUlUlUlUcb:
 /* 802D3304 002D0244  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D3308 002D0248  7C 08 02 A6 */	mflr r0
 /* 802D330C 002D024C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -86,8 +86,8 @@ lbl_802D3418:
 /* 802D342C 002D036C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D3430 002D0370  4E 80 00 20 */	blr 
 
-.global JKRAramBlock_NS_allocHead
-JKRAramBlock_NS_allocHead:
+.global allocHead__12JKRAramBlockFUlUcP11JKRAramHeap
+allocHead__12JKRAramBlockFUlUcP11JKRAramHeap:
 /* 802D3434 002D0374  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D3438 002D0378  7C 08 02 A6 */	mflr r0
 /* 802D343C 002D037C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -112,7 +112,7 @@ JKRAramBlock_NS_allocHead:
 /* 802D3488 002D03C8  7F A6 EB 78 */	mr r6, r29
 /* 802D348C 002D03CC  7F 87 E3 78 */	mr r7, r28
 /* 802D3490 002D03D0  39 00 00 00 */	li r8, 0
-/* 802D3494 002D03D4  4B FF FE 71 */	bl JKRAramBlock
+/* 802D3494 002D03D4  4B FF FE 71 */	bl __ct__12JKRAramBlockFUlUlUlUcb
 /* 802D3498 002D03D8  7C 7F 1B 78 */	mr r31, r3
 lbl_802D349C:
 /* 802D349C 002D03DC  38 00 00 00 */	li r0, 0
@@ -129,8 +129,8 @@ lbl_802D349C:
 /* 802D34C8 002D0408  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D34CC 002D040C  4E 80 00 20 */	blr 
 
-.global JKRAramBlock_NS_allocTail
-JKRAramBlock_NS_allocTail:
+.global allocTail__12JKRAramBlockFUlUcP11JKRAramHeap
+allocTail__12JKRAramBlockFUlUcP11JKRAramHeap:
 /* 802D34D0 002D0410  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D34D4 002D0414  7C 08 02 A6 */	mflr r0
 /* 802D34D8 002D0418  90 01 00 24 */	stw r0, 0x24(r1)
@@ -156,7 +156,7 @@ JKRAramBlock_NS_allocTail:
 /* 802D3528 002D0468  38 C0 00 00 */	li r6, 0
 /* 802D352C 002D046C  7F A7 EB 78 */	mr r7, r29
 /* 802D3530 002D0470  39 00 00 01 */	li r8, 1
-/* 802D3534 002D0474  4B FF FD D1 */	bl JKRAramBlock
+/* 802D3534 002D0474  4B FF FD D1 */	bl __ct__12JKRAramBlockFUlUlUlUcb
 /* 802D3538 002D0478  7C 7F 1B 78 */	mr r31, r3
 lbl_802D353C:
 /* 802D353C 002D047C  80 1B 00 1C */	lwz r0, 0x1c(r27)

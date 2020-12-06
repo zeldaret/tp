@@ -800,3 +800,10 @@ extern "C" {
     void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
     void nextSrcData__FPUc(void);
 };
+
+extern "C" {
+    void __ct__12JKRAramBlockFUlUlUlUcb(void);
+    void __dt__12JKRAramBlockFv(void);
+    void allocHead__12JKRAramBlockFUlUcP11JKRAramHeap(void);
+    void allocTail__12JKRAramBlockFUlUcP11JKRAramHeap(void);
+};
