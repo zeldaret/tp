@@ -83,9 +83,11 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
     return 0;
 }
 
-asm bool dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
-    nofralloc
-    #include "d/d_save/d_save/asm/func_80032AF8.s"
+int dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
+    if (i_magic == 0) {
+        return g_dComIfG_gameInfo.save_file.getEventFlags().isEventBit(0x2304);
+    }
+    return (this->magic_flag & (u8)(1 << i_magic)) ? 1 : 0;
 }
 
 void dSv_player_status_b_c::init() {
@@ -238,9 +240,21 @@ void dSv_player_item_c::init(void) {
   }
 }
 
-asm void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
-    nofralloc
-    #include "d/d_save/d_save/asm/func_80032FB8.s"
+void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
+
+    if (current_items_index < MAX_ITEM_SLOTS) {
+        this->items[current_items_index] = new_items_index;
+        this->setLineUpItem();
+    }
+
+    int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
+
+    do {
+        if (current_items_index == g_dComIfG_gameInfo.save_file.getPlayerStatusA().getSelectItemIndex(select_item_index)) {
+            dComIfGp_setSelectItem(select_item_index);
+        }
+        select_item_index++;
+    } while (select_item_index < MAX_SELECT_ITEM);
 }
 
 #ifdef NONMATCHING
@@ -1012,8 +1026,8 @@ void dSv_event_c::offEventBit(u16 i_no) {
 }
 
 // (u8) cast doesn't work here, thank u metrowerks
-bool dSv_event_c::isEventBit(u16 i_no) const {
-    return this->events[(i_no >> 8)] & (i_no & 0xFF) ? true : false;
+int dSv_event_c::isEventBit(u16 i_no) const {
+    return this->events[(i_no >> 8)] & (i_no & 0xFF) ? 1 : 0;
 }
 
 void dSv_event_c::setEventReg(u16 param_1, u8 param_2) {

@@ -3,10 +3,14 @@
 
 #include "dolphin/types.h"
 
+#define DEFAULT_SELECT_ITEM_INDEX 0
+#define MAX_SELECT_ITEM 3
+
 static const int MAX_ITEM_SLOTS = 24;
 static const int ITEM_XY_MAX_DUMMY = 8;
 static const int LIGHT_DROP_STAGE = 4;
 static const int LETTER_INFO_BIT = 64;
+
 
 enum Wallets {
     WALLET,
@@ -317,7 +321,7 @@ class dSv_player_status_a_c {
     void setMixItemIndex(signed int, u8);
     u8 getMixItemIndex(signed int) const;
     u16 getRupeeMax(void) const;
-    bool isMagicFlag(u8) const;
+    int isMagicFlag(u8) const;
 
     inline u16& getCurrentHealth() {
         return current_health;
@@ -494,9 +498,7 @@ class dSv_player_item_record_c {
     u8 addBottleNum(u8, short);
     u8 getBottleNum(u8) const;
 
-    void setBowAmount(u8 amount){
-        bow = amount;
-    }
+    void setBowAmount(u8 amount){ bow = amount; }
 
    private:
     u8 bow;
@@ -512,9 +514,7 @@ class dSv_player_item_max_c {
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
-    void setBowCapacity(u8 max){
-        item_capacities[0] = max;
-    }
+    void setBowCapacity(u8 max){ item_capacities[0] = max; }
 
    private:
     u8 item_capacities[8];
@@ -530,9 +530,7 @@ class dSv_player_collect_c {
     void onCollectMirror(u8);
     bool isCollectMirror(u8) const;
 
-    u8 getPoeCount(){
-        return poe_count;
-    }
+    u8 getPoeCount(){ return poe_count; }
 
    private:
     u8 unk0[8];
@@ -594,9 +592,7 @@ class dSv_fishing_info_c {
 class dSv_player_info_c {
    public:
     void init(void);
-    inline char* getLinkName() {
-        return (char*)link_name;
-    }
+    char* getLinkName() { return (char*)link_name; }
 
    private:
     u32 unk0;
@@ -640,37 +636,17 @@ class dSv_player_config_c {
 class dSv_player_c {
    public:
     void init(void);
-    dSv_player_info_c& getPlayerInfo() {
-        return player_info;
-    }
-    dSv_player_status_a_c getPlayerStatusA() {
-        return player_status_a;
-    }
-    dSv_player_item_c& getPlayerItem(){
-        return player_item;
-    }
-    dSv_player_collect_c& getPlayerCollect(){
-        return player_collect;
-    }
-    dSv_player_item_record_c& getPlayerItemRecord(){
-        return player_item_record;
-    }
-    dSv_player_item_max_c& getPlayerItemMax(){
-        return player_item_max;
-    }
-    dSv_light_drop_c& getLightDrop(){
-        return light_drop;
-    }
-    dSv_player_get_item_c& getPlayerGetItem(){
-        return player_get_item;
-    }
+    dSv_player_info_c& getPlayerInfo() { return player_info; }
+    dSv_player_status_a_c& getPlayerStatusA() { return player_status_a; }
+    dSv_player_item_c& getPlayerItem(){ return player_item; }
+    dSv_player_collect_c& getPlayerCollect(){ return player_collect;}
+    dSv_player_item_record_c& getPlayerItemRecord(){ return player_item_record; }
+    dSv_player_item_max_c& getPlayerItemMax(){ return player_item_max;}
+    dSv_light_drop_c& getLightDrop(){ return light_drop; }
+    dSv_player_get_item_c& getPlayerGetItem(){ return player_get_item;}
 
-    void setPlayerStatusAWalletLV(u8 lv) {
-        player_status_a.setWalletLV(lv);
-    }
-    void setPlayerStatusAOil(u16 amount){
-        player_status_a.setLanternOil(amount);
-    }
+    void setPlayerStatusAWalletLV(u8 lv) { player_status_a.setWalletLV(lv); }
+    void setPlayerStatusAOil(u16 amount){ player_status_a.setLanternOil(amount);}
 
    private:
     dSv_player_status_a_c player_status_a;
@@ -726,7 +702,7 @@ class dSv_event_c {
     void init(void);
     void onEventBit(u16);
     void offEventBit(u16);
-    bool isEventBit(u16) const;
+    int isEventBit(u16) const;
     void setEventReg(u16, u8);
     u8 getEventReg(u16) const;
 
@@ -752,9 +728,7 @@ class dSv_memory_c {
    public:
     dSv_memory_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(void);
-    inline dSv_memBit_c& getTempFlags() {
-        return temp_flags;
-    }
+    dSv_memBit_c& getTempFlags() { return temp_flags; }
 
    private:
     dSv_memBit_c temp_flags;
@@ -835,17 +809,10 @@ class dSv_zone_c {
    public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
-    inline dSv_zoneBit_c& getZoneBit() {
-        return zone_bit;
-    }
+    dSv_zoneBit_c& getZoneBit() { return zone_bit;}
+    dSv_zoneActor_c& getZoneActor() { return zone_actor; }
 
-    inline s8& getUnk0() {
-        return unk0;
-    }
-
-    inline dSv_zoneActor_c& getZoneActor() {
-        return zone_actor;
-    }
+    s8& getUnk0() { return unk0; }
 
    private:
     s8 unk0;
@@ -881,12 +848,11 @@ class dSv_save_c {
    public:
     void init(void);
     dSv_memory2_c* getSave2(int);
-    inline dSv_player_c& getPlayer() {return player; }
+    dSv_player_c& getPlayer() {return player; }
+    dSv_player_status_a_c& getPlayerStatusA() {return player.getPlayerStatusA(); }
     dSv_event_c& getEventFlags() {return event_flags;}
 
-    void setPlayerStatusAWallet(u8 lv){
-        player.setPlayerStatusAWalletLV(lv);
-    }
+    void setPlayerStatusAWallet(u8 lv){ player.setPlayerStatusAWalletLV(lv); }
 
     static const int STAGE_MAX = 4;
    
