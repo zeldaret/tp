@@ -11,18 +11,20 @@ struct OSMutex {
 };
 
 struct OSMutexLink {
-    struct OSMutex * prev;
-    struct OSMutex * next;
+    struct OSMutex *prev;
+    struct OSMutex *next;
 };
 
 struct OSMutexQueue {
-    struct OSMutex * prev;
-    struct OSMutex * next;
+    struct OSMutex *prev;
+    struct OSMutex *next;
 };
 
 struct OSThread {
     u8 unk[792];
 };
+
+typedef void (*OSSwitchThreadCallback)(OSThread *from, OSThread *to);
 
 struct OSThreadLink {
     struct OSThread * prev;
@@ -78,22 +80,23 @@ typedef enum OSSoundMode {
 extern "C" {
     s32 OSEnableScheduler(void);
     s32 OSDisableScheduler(void);
-
     s32 OSCheckActiveThreads(void);
     OSThread* OSGetCurrentThread(void);
-    void OSSuspendThread(void); // TODO
-    void OSSetThreadPriority(void); // TODO
-    void OSGetThreadPriority(void); // TODO
-    void OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
+
+    s32 OSSuspendThread(OSThread* thread);
+    s32 OSSetThreadPriority(OSThread* thread, u32 pri);
+    s32 OSGetThreadPriority(OSThread* thread);
+    s32 OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
                     void* stack, u32 stackSize, int param_6, int param_7);
     void OSCancelThread(OSThread* thread);
     void OSDetachThread(OSThread* thread);
-    void OSResumeThread(void); // TODO
+    s32 OSResumeThread(OSThread *thread);
     void OSExitThread(void *exit_val);
     bool OSIsThreadSuspended(OSThread* thread);
     bool OSIsThreadTerminated(OSThread* thread);
+    OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback *callback);
+
     void OSInitMessageQueue(OSMessageQueue *queue, OSMessage* messages, int message_count);
-    void OSSetSwitchThreadCallback(void);
     void OSReceiveMessage(OSMessageQueue *queue, OSMessage message, int flags);
     void OSSendMessage(OSMessageQueue *queue, OSMessage message, int flags);
 
