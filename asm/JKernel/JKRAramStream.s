@@ -3,8 +3,8 @@
 .section .text, "ax" # 802d3b48
 
 
-.global JKRAramStream_NS_create
-JKRAramStream_NS_create:
+.global create__13JKRAramStreamFl
+create__13JKRAramStreamFl:
 /* 802D3B48 002D0A88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D3B4C 002D0A8C  7C 08 02 A6 */	mflr r0
 /* 802D3B50 002D0A90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -20,14 +20,14 @@ JKRAramStream_NS_create:
 /* 802D3B78 002D0AB8  7C 60 1B 79 */	or. r0, r3, r3
 /* 802D3B7C 002D0ABC  41 82 00 10 */	beq lbl_802D3B8C
 /* 802D3B80 002D0AC0  7F E4 FB 78 */	mr r4, r31
-/* 802D3B84 002D0AC4  48 00 00 35 */	bl JKRAramStream
+/* 802D3B84 002D0AC4  48 00 00 35 */	bl __ct__13JKRAramStreamFl
 /* 802D3B88 002D0AC8  7C 60 1B 78 */	mr r0, r3
 lbl_802D3B8C:
 /* 802D3B8C 002D0ACC  90 0D 8E 88 */	stw r0, lbl_80451408-_SDA_BASE_(r13)
 /* 802D3B90 002D0AD0  38 60 00 00 */	li r3, 0
 /* 802D3B94 002D0AD4  38 80 00 00 */	li r4, 0
 /* 802D3B98 002D0AD8  38 A0 00 00 */	li r5, 0
-/* 802D3B9C 002D0ADC  48 00 04 99 */	bl JKRAramStream_NS_setTransBuffer
+/* 802D3B9C 002D0ADC  48 00 04 99 */	bl setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap
 lbl_802D3BA0:
 /* 802D3BA0 002D0AE0  80 6D 8E 88 */	lwz r3, lbl_80451408-_SDA_BASE_(r13)
 /* 802D3BA4 002D0AE4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -36,8 +36,8 @@ lbl_802D3BA0:
 /* 802D3BB0 002D0AF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802D3BB4 002D0AF4  4E 80 00 20 */	blr 
 
-.global JKRAramStream
-JKRAramStream:
+.global __ct__13JKRAramStreamFl
+__ct__13JKRAramStreamFl:
 /* 802D3BB8 002D0AF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D3BBC 002D0AFC  7C 08 02 A6 */	mflr r0
 /* 802D3BC0 002D0B00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -109,19 +109,19 @@ lbl_802D3C98:
 /* 802D3CC0 002D0C00  40 80 00 08 */	bge lbl_802D3CC8
 /* 802D3CC4 002D0C04  4B FF FF D4 */	b lbl_802D3C98
 lbl_802D3CC8:
-/* 802D3CC8 002D0C08  48 00 00 11 */	bl JKRAramStream_NS_readFromAram
+/* 802D3CC8 002D0C08  48 00 00 11 */	bl readFromAram__13JKRAramStreamFv
 /* 802D3CCC 002D0C0C  4B FF FF CC */	b lbl_802D3C98
 lbl_802D3CD0:
-/* 802D3CD0 002D0C10  48 00 00 11 */	bl JKRAramStream_NS_writeToAram
+/* 802D3CD0 002D0C10  48 00 00 11 */	bl writeToAram__13JKRAramStreamFP20JKRAramStreamCommand
 /* 802D3CD4 002D0C14  4B FF FF C4 */	b lbl_802D3C98
 
-.global JKRAramStream_NS_readFromAram
-JKRAramStream_NS_readFromAram:
+.global readFromAram__13JKRAramStreamFv
+readFromAram__13JKRAramStreamFv:
 /* 802D3CD8 002D0C18  38 60 00 01 */	li r3, 1
 /* 802D3CDC 002D0C1C  4E 80 00 20 */	blr 
 
-.global JKRAramStream_NS_writeToAram
-JKRAramStream_NS_writeToAram:
+.global writeToAram__13JKRAramStreamFP20JKRAramStreamCommand
+writeToAram__13JKRAramStreamFP20__ct__20JKRAramStreamCommandFv:
 /* 802D3CE0 002D0C20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802D3CE4 002D0C24  7C 08 02 A6 */	mflr r0
 /* 802D3CE8 002D0C28  90 01 00 34 */	stw r0, 0x34(r1)
@@ -262,8 +262,8 @@ lbl_802D3EA4:
 /* 802D3EC8 002D0E08  38 21 00 30 */	addi r1, r1, 0x30
 /* 802D3ECC 002D0E0C  4E 80 00 20 */	blr 
 
-.global JKRAramStream_NS_write_StreamToAram_Async
-JKRAramStream_NS_write_StreamToAram_Async:
+.global write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl
+write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl:
 /* 802D3ED0 002D0E10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D3ED4 002D0E14  7C 08 02 A6 */	mflr r0
 /* 802D3ED8 002D0E18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -280,7 +280,7 @@ JKRAramStream_NS_write_StreamToAram_Async:
 /* 802D3F04 002D0E44  4B FF AD 95 */	bl __nw__FUlP7JKRHeapi
 /* 802D3F08 002D0E48  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D3F0C 002D0E4C  41 82 00 0C */	beq lbl_802D3F18
-/* 802D3F10 002D0E50  48 00 01 79 */	bl JKRAramStreamCommand
+/* 802D3F10 002D0E50  48 00 01 79 */	bl __ct__20JKRAramStreamCommandFv
 /* 802D3F14 002D0E54  7C 7F 1B 78 */	mr r31, r3
 lbl_802D3F18:
 /* 802D3F18 002D0E58  38 00 00 02 */	li r0, 2
@@ -319,8 +319,8 @@ lbl_802D3F60:
 /* 802D3F98 002D0ED8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D3F9C 002D0EDC  4E 80 00 20 */	blr 
 
-.global JKRAramStream_NS_sync
-JKRAramStream_NS_sync:
+.global sync__13JKRAramStreamFP20JKRAramStreamCommandi
+sync__13JKRAramStreamFP20JKRAramStreamCommandi:
 /* 802D3FA0 002D0EE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D3FA4 002D0EE4  7C 08 02 A6 */	mflr r0
 /* 802D3FA8 002D0EE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -364,8 +364,8 @@ lbl_802D4020:
 /* 802D402C 002D0F6C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802D4030 002D0F70  4E 80 00 20 */	blr 
 
-.global JKRAramStream_NS_setTransBuffer
-JKRAramStream_NS_setTransBuffer:
+.global setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap
+setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap:
 /* 802D4034 002D0F74  38 E0 00 00 */	li r7, 0
 /* 802D4038 002D0F78  90 ED 8E 8C */	stw r7, lbl_8045140C-_SDA_BASE_(r13)
 /* 802D403C 002D0F7C  3C C0 00 01 */	lis r6, 0x00008000@ha
@@ -390,8 +390,8 @@ lbl_802D4070:
 /* 802D4080 002D0FC0  90 AD 8E 94 */	stw r5, lbl_80451414-_SDA_BASE_(r13)
 /* 802D4084 002D0FC4  4E 80 00 20 */	blr 
 
-.global JKRAramStreamCommand
-JKRAramStreamCommand:
+.global __ct__20JKRAramStreamCommandFv
+__ct__20JKRAramStreamCommandFv:
 /* 802D4088 002D0FC8  38 00 00 00 */	li r0, 0
 /* 802D408C 002D0FCC  98 03 00 28 */	stb r0, 0x28(r3)
 /* 802D4090 002D0FD0  4E 80 00 20 */	blr 

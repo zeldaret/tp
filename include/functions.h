@@ -238,6 +238,9 @@ extern "C" {
 
     void ARQPostRequest(void);
     void DCStoreRange(void);
+
+    void JSUInputStream_NS_read(void);
+    void JSURandomInputStream_NS_seek(void);
 }
 
 // DVD
@@ -839,4 +842,19 @@ extern "C" {
     void sendCommand__12JKRAramPieceFP12JKRAMCommand(void);
     void startDMA__12JKRAramPieceFP12JKRAMCommand(void);
     void sync__12JKRAramPieceFP12JKRAMCommandi(void);
+};
+
+// JSystem/JKernel/JKRAramStream
+extern "C" {
+    void __ct__13JKRAramStreamFl(void);
+    void __ct__20JKRAramStreamCommandFv(void);
+    void __dt__13JKRAramStreamFv(void);
+    void create__13JKRAramStreamFl(void);
+    void getAvailable__20JSURandomInputStreamCFv(void);
+    void readFromAram__13JKRAramStreamFv(void);
+    void run__13JKRAramStreamFv(void);
+    void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap(void);
+    void sync__13JKRAramStreamFP20JKRAramStreamCommandi(void);
+    void writeToAram__13JKRAramStreamFP20JKRAramStreamCommand(void);
+    void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl(void);
 };

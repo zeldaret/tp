@@ -1291,6 +1291,9 @@ __dt__12JKRAramBlockFv
 __dt__11JKRAramHeapFv
 __sinit_JKRAramHeap_cpp
 __sinit_JKRAramPiece_cpp
+__dt__13JKRAramStreamFv
+getAvailable__20JSURandomInputStreamCFv
+run__13JKRAramStreamFv
 }
 /*
 .init 80003100 - 80005600

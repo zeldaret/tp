@@ -438,7 +438,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramStream.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramStream.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/asm/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileFinder.o    \

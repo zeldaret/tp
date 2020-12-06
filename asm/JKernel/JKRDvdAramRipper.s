@@ -335,7 +335,7 @@ lbl_802DACF4:
 /* 802DAD04 002D7C44  7F 83 E3 78 */	mr r3, r28
 /* 802DAD08 002D7C48  7C A6 D8 50 */	subf r5, r6, r27
 /* 802DAD0C 002D7C4C  80 FD 00 44 */	lwz r7, 0x44(r29)
-/* 802DAD10 002D7C50  4B FF 91 C1 */	bl JKRAramStream_NS_write_StreamToAram_Async
+/* 802DAD10 002D7C50  4B FF 91 C1 */	bl write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl
 /* 802DAD14 002D7C54  90 7D 00 50 */	stw r3, 0x50(r29)
 /* 802DAD18 002D7C58  48 00 00 5C */	b lbl_802DAD74
 lbl_802DAD1C:
@@ -346,7 +346,7 @@ lbl_802DAD1C:
 /* 802DAD2C 002D7C6C  7F 83 E3 78 */	mr r3, r28
 /* 802DAD30 002D7C70  7C A6 D8 50 */	subf r5, r6, r27
 /* 802DAD34 002D7C74  80 FD 00 44 */	lwz r7, 0x44(r29)
-/* 802DAD38 002D7C78  4B FF 91 99 */	bl JKRAramStream_NS_write_StreamToAram_Async
+/* 802DAD38 002D7C78  4B FF 91 99 */	bl write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl
 /* 802DAD3C 002D7C7C  90 7D 00 50 */	stw r3, 0x50(r29)
 /* 802DAD40 002D7C80  48 00 00 34 */	b lbl_802DAD74
 lbl_802DAD44:
@@ -439,7 +439,7 @@ JKRDvdAramRipper_NS_syncAram:
 /* 802DAE74 002D7DB4  28 03 00 00 */	cmplwi r3, 0
 /* 802DAE78 002D7DB8  41 82 00 38 */	beq lbl_802DAEB0
 /* 802DAE7C 002D7DBC  7F C4 F3 78 */	mr r4, r30
-/* 802DAE80 002D7DC0  4B FF 91 21 */	bl JKRAramStream_NS_sync
+/* 802DAE80 002D7DC0  4B FF 91 21 */	bl sync__13JKRAramStreamFP20JKRAramStreamCommandi
 /* 802DAE84 002D7DC4  30 03 FF FF */	addic r0, r3, -1
 /* 802DAE88 002D7DC8  7C 00 01 10 */	subfe r0, r0, r0
 /* 802DAE8C 002D7DCC  90 1D 00 48 */	stw r0, 0x48(r29)
