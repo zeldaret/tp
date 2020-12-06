@@ -6,19 +6,19 @@
 
 class JKRFile : public JKRDisposer {
   public:
-    JKRFile();
-    virtual ~JKRFile();
+    JKRFile() : mIsOpen(false) {}
+    virtual ~JKRFile() {}
 
     virtual bool open(const char*);
     virtual void close();
-    virtual void readData(void*, long, long);
+    virtual s32 readData(void*, long, long);
     virtual s32 writeData(const void*, long, long);
     virtual s32 getFileSize();
     virtual bool open(long);
 
     s32 read(void*, long, long);
 
-  private:
+  protected:
     bool mIsOpen;
     u8 field_0x19[3];
 };

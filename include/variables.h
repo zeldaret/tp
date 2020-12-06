@@ -213,7 +213,7 @@ class JKRDvdFile;
 extern JSUList<JKRDvdFile> lbl_8043436C; // JKRDvdFile::sDvdList
 extern u8 lbl_803CC438;                  // JKRDvdFile::__vt
 extern u8 lbl_80434360;                  // JKernel::@657 (global destructor chain)
-extern u8 lbl_8039D260;                  // "JKRDvdFile.cpp"
+extern char lbl_8039D260[12];                  // "JKRDvdFile.cpp"
 extern u8 lbl_803CC328;                  // JKRFile::__vt
 
 class JKRFileLoader;
@@ -259,3 +259,7 @@ struct unkEvent{  //figure out what this is later
 };
 extern unkEvent lbl_803A7288;
 extern u8 lbl_8037B0D0[0x8];
+
+class JKRThread;
+extern JSUList<JKRThread> lbl_8043428C;   // JSUList<JKRThread> JKRThread::sThreadList
+
