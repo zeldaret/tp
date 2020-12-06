@@ -4,11 +4,7 @@
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"
-
-class JSURandomInputStream {
-  public:
-    void getAvailable(void) const;
-};
+#include "JSystem/JSupport/JSURandomInputStream/JSURandomInputStream.h"
 
 class JKRAramStreamCommand {
   public:
@@ -35,19 +31,20 @@ class JKRAramStreamCommand {
 };
 
 class JKRAramStream : public JKRThread {
-  public:
+  private:
     JKRAramStream(long);
     virtual ~JKRAramStream();
 
-    static void create(long);
-
     /* vt[03] */ void* run(void); /* override */
 
-    void readFromAram(void);
-    void writeToAram(JKRAramStreamCommand*);
-    void write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
-    void sync(JKRAramStreamCommand*, int);
-    void setTransBuffer(u8*, u32, JKRHeap*);
+  public:
+    static void create(long);
+
+    static void readFromAram(void);
+    static void writeToAram(JKRAramStreamCommand*);
+    static void write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
+    static void sync(JKRAramStreamCommand*, int);
+    static void setTransBuffer(u8*, u32, JKRHeap*);
 };
 
 #endif

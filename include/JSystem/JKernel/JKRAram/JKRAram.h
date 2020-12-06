@@ -6,22 +6,71 @@
 
 // JKRExpandSwitch
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "global.h"
+
+#include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 
 class JKRHeap;
 class JKRAramBlock;
 class JKRAram : public JKRThread {
-  public:
+  private:
     JKRAram(u32, u32, long);
     virtual ~JKRAram();
 
-    static void create(u32, u32, long, long, long);
-
     /* vt[03] */ void* run(void); /* override */
+    
+  public:
+    void* getAudioMemory() {
+        return this->mAudioMemoryPtr;
+    }
+    u32 getAudioMemSize() {
+        return this->mAudioMemorySize;
+    }
 
-    void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
-    void changeGroupIdIfNeed(u8*, int);
-    void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-    void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+  private:
+    void* mAudioMemoryPtr;
+    u32 mAudioMemorySize;
+    void* mGraphMemoryPtr;
+    u32 mGraphMemorySize;
+    void* mAramMemoryPtr;
+    u32 mAramMemorySize;
+    JKRAramHeap* mAramHeap;
+    u32 field_0x9c;
+    u32 field_0xa0;
+
+  public:
+    static void create(u32, u32, long, long, long);
+    static void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
+    static void changeGroupIdIfNeed(u8*, int);
+    static void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+    static void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+
+    static JKRAram* getManager() {
+        return lbl_804513C8;
+    }
+
+    static JKRAramHeap* getAramHeap() {
+        return getManager()->mAramHeap;
+    }
+
+    static u8 decideAramGroupId(int groupId) {
+        JKRAramHeap* heap;
+        u8 finalGroupId;
+
+        if (groupId < 0) {
+            return getAramHeap()->getCurrentGroupID();
+        }
+
+        return (u8)groupId;
+    }
+
+    static u32 getSZSBufferSize() {
+        return lbl_804508B8;
+    }
+
+    void setSZSBufferSize(u32 size) {
+        lbl_804508B8 = size;
+    }
 };
 
 void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);

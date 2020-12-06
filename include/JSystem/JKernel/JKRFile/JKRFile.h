@@ -6,20 +6,24 @@
 
 class JKRFile : public JKRDisposer {
   public:
-    JKRFile() : mIsOpen(false) {}
+    JKRFile() : mIsAvailable(false) {}
     virtual ~JKRFile() {}
-
-    virtual bool open(const char*);
-    virtual void close();
-    virtual s32 readData(void*, long, long);
-    virtual s32 writeData(const void*, long, long);
-    virtual s32 getFileSize();
-    virtual bool open(long);
 
     s32 read(void*, long, long);
 
-  protected:
-    bool mIsOpen;
+    bool isAvailable() {
+        return this->mIsAvailable;
+    }
+
+  public:
+    /* vt[03] */ virtual bool open(const char*) = 0;
+    /* vt[04] */ virtual void close() = 0;
+    /* vt[05] */ virtual s32 readData(void*, long, long) = 0;
+    /* vt[06] */ virtual s32 writeData(const void*, long, long) = 0;
+    /* vt[07] */ virtual s32 getFileSize() const = 0;
+
+  private:
+    bool mIsAvailable;
     u8 field_0x19[3];
 };
 

@@ -14,15 +14,7 @@ class JKRDvdFile : public JKRFile {
     ~JKRDvdFile();
 
     void initiate(void);
-    s32 sync(void);
-    static void doneProcess(long, DVDFileInfo*);
-
-    virtual bool open(char const*);
-    virtual void close(void);
-    virtual s32 readData(void*, long, long);
-    virtual s32 writeData(void const*, long, long);
-    virtual s32 getFileSize(void) const;
-    virtual bool open(long);
+    void sync(void);
 
     int getFileID() const {
         return this->mFileID << 2;
@@ -36,7 +28,15 @@ class JKRDvdFile : public JKRFile {
         return DVDGetCommandBlockStatus(&this->mDvdCommandBlock[0]);
     }
 
-  protected:
+  public:
+    /* vt[03] */ virtual bool open(char const*);                 /* override */
+    /* vt[04] */ virtual void close(void);                       /* override */
+    /* vt[05] */ virtual s32 readData(void*, long, long);       /* override */
+    /* vt[06] */ virtual s32 writeData(void const*, long, long); /* override */
+    /* vt[07] */ virtual s32 getFileSize(void) const;            /* override */
+    /* vt[08] */ virtual bool open(long);
+
+  private:
     OSMutex mMutex1;
     OSMutex mMutex2;
     u32 field_0x4c;
@@ -54,6 +54,9 @@ class JKRDvdFile : public JKRFile {
     OSMessage mMessages2[1];
     JSULink<JKRDvdFile> mDvdLink;
     OSThread* mOSThread;
+
+  public:
+    static void doneProcess(long, DVDFileInfo*);
 };
 
 #endif

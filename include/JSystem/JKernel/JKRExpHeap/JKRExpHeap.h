@@ -18,7 +18,6 @@ class JKRExpHeap : public JKRHeap {
             this->mGroupId = groupId;
         }
 
-      public:
         bool isValid() {
             return this->mMagic == 0x484d;
         }
@@ -52,11 +51,7 @@ class JKRExpHeap : public JKRHeap {
         CMemBlock* mNext;
     };
 
-  public:
-    void createRoot(int, bool);
-    void create(u32, JKRHeap*, bool);
-    void create(void*, u32, JKRHeap*, bool);
-
+  protected:
     JKRExpHeap(void*, u32, JKRHeap*, bool);
     virtual ~JKRExpHeap();
 
@@ -64,8 +59,6 @@ class JKRExpHeap : public JKRHeap {
     void allocFromHead(u32);
     void allocFromTail(u32, int);
     void allocFromTail(u32);
-    s32 getUsedSize(u8) const;
-    s32 getTotalUsedSize(void) const;
     void appendUsedList(CMemBlock*);
     void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
     void removeFreeBlock(CMemBlock*);
@@ -74,25 +67,29 @@ class JKRExpHeap : public JKRHeap {
     void joinTwoBlocks(CMemBlock*);
 
   public:
-    virtual u32 getHeapType();
-    virtual bool check();
-    virtual void dump_sort();
-    virtual bool dump();
-    virtual void do_destroy();
-    virtual void* do_alloc(u32 size, int alignment);
-    virtual void do_free(void* ptr);
-    virtual void do_freeAll();
-    virtual void do_freeTail();
-    virtual void do_fillFreeArea();
-    virtual s32 do_resize(void* ptr, u32 size);
-    virtual s32 do_getSize(void* ptr);
-    virtual s32 do_getFreeSize();
-    virtual void* do_getMaxFreeBlock();
-    virtual s32 do_getTotalFreeSize();
-    virtual u8 do_changeGroupID(u8 param_1);
-    virtual u8 do_getCurrentGroupId();
-    virtual void state_register(JKRHeap::TState*, u32) const;
-    virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
+    s32 getUsedSize(u8) const;
+    s32 getTotalUsedSize(void) const;
+
+  public:
+    /* vt[04] */ virtual u32 getHeapType();                                           /* override */
+    /* vt[05] */ virtual bool check();                                                             /* override */
+    /* vt[06] */ virtual void dump_sort();                                                         /* override */
+    /* vt[07] */ virtual bool dump();                                                              /* override */
+    /* vt[08] */ virtual void do_destroy();                                                        /* override */
+    /* vt[09] */ virtual void* do_alloc(u32 size, int alignment);                                  /* override */
+    /* vt[10] */ virtual void do_free(void* ptr);                                                  /* override */
+    /* vt[11] */ virtual void do_freeAll();                                                        /* override */
+    /* vt[12] */ virtual void do_freeTail();                                                       /* override */
+    /* vt[13] */ virtual void do_fillFreeArea();                                                   /* override */
+    /* vt[14] */ virtual s32 do_resize(void* ptr, u32 size);                                       /* override */
+    /* vt[15] */ virtual s32 do_getSize(void* ptr);                                                /* override */
+    /* vt[16] */ virtual s32 do_getFreeSize();                                                     /* override */
+    /* vt[17] */ virtual void* do_getMaxFreeBlock();                                               /* override */
+    /* vt[18] */ virtual s32 do_getTotalFreeSize();                                                /* override */
+    /* vt[19] */ virtual u8 do_changeGroupID(u8 param_1);                                          /* override */
+    /* vt[20] */ virtual u8 do_getCurrentGroupId();                                                /* override */
+    /* vt[21] */ virtual void state_register(JKRHeap::TState*, u32) const;                         /* override */
+    /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const; /* override */
 
   private:
     u32 field_0x6c;
@@ -102,6 +99,11 @@ class JKRExpHeap : public JKRHeap {
     CMemBlock* mTailFreeList;
     CMemBlock* mHeadUsedList;
     CMemBlock* mTailUsedList;
+
+  public:
+    static void createRoot(int, bool);
+    static void create(u32, JKRHeap*, bool);
+    static void create(void*, u32, JKRHeap*, bool);
 };
 
 #endif

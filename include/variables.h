@@ -15,7 +15,6 @@ extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;
 extern u8 lbl_80450B19;
 extern u8 lbl_80450588;
-extern u8 lbl_804513C8;
 extern u8 lbl_804511B8;
 extern u8 lbl_80450B20;
 extern u8 lbl_80451A00;
@@ -271,7 +270,6 @@ extern u8 lbl_8039D160; // "JKRMemArchive.cpp"
 
 extern u8 lbl_803CC348; // JKRAramArchive::__vt
 extern u8 lbl_8039D188; // "JKRAramArchive.cpp"
-extern u8 lbl_804513C8; // JKRAram::sAramObject
 
 extern u8 lbl_803CC3E8; // JKRCompArchive::__vt
 extern u8 lbl_8039D220; // "JKRCompArchive.cpp"
@@ -348,13 +346,13 @@ extern u8 lbl_804514AC; // JKernel::tsArea (static?)
 
 extern u8 lbl_804508D4; // JKRDvdAramRipper::sSZSBufferSize
 extern u8 lbl_803CC4B0; // JSURandomInputStream::__vt
-extern u8 lbl_804513C8; // JKRAram::sAramObject
 extern u8 lbl_804343A8; // JKernel::@301 (global destructor chain)
 extern u8 lbl_804343B4; // JKRDvdAramRipper::sDvdAramAsyncList
 extern u8 lbl_804343C0; // JKernel::decompMutex
 extern u8 lbl_803CC518; // JSUFileInputStream::__vt
 
-extern u8 lbl_804513C8; // JKRAram::sAramObject
+class JKRAram;
+extern JKRAram* lbl_804513C8; // JKRAram::sAramObject
 extern u8 lbl_804513CC; // JKernel::szpBuf (static?)
 extern u8 lbl_804513D0; // JKernel::szpEnd (static?)
 extern u8 lbl_804513D4; // JKernel::refBuf (static?)

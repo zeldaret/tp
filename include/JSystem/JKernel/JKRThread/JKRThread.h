@@ -15,22 +15,16 @@ class JKRThread : JKRDisposer {
     JKRThread(OSThread* thread, int message_count);
     virtual ~JKRThread();
 
+    /* vt[03] */ virtual void* run();
+
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
 
     OSThread* getThreadRecord() {
-      return this->mOSThread;
+        return this->mOSThread;
     }
 
-    static void* start(void* param_1);
-    static JKRThread* searchThread(OSThread* thread);
-    static JSUList<JKRThread>* getList() {
-      return &lbl_8043428C;
-    }
-
-    /* vt[03] */ virtual void* run();
-
-  public:
+  private:
     JSULink<JKRThread> mThreadListLink;
     JKRHeap* mHeap;
     OSThread* mOSThread;
@@ -47,6 +41,13 @@ class JKRThread : JKRDisposer {
     u32 field_0x70;
     JKRHeap* field_0x74;
     JKRHeap* field_0x78;
+
+  public:
+    static void* start(void* param_1);
+    static JKRThread* searchThread(OSThread* thread);
+    static JSUList<JKRThread>* getList() {
+        return &lbl_8043428C;
+    }
 };
 
 class JKRThreadSwitch {

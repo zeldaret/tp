@@ -11,10 +11,13 @@ class JKRDecompCommand {
 };
 
 class JKRDecomp : public JKRThread {
-  public:
+  private:
     JKRDecomp(long);
     virtual ~JKRDecomp(void);
 
+    /* vt[03] */ virtual void* run(); /* override */
+
+  public:
     static void create(long);
     static void prepareCommand(u8*, u8*, u32, u32, void (*)(u32));
     static void sendCommand(JKRDecompCommand*);
@@ -22,11 +25,9 @@ class JKRDecomp : public JKRThread {
     static void orderAsync(u8*, u8*, u32, u32, void (*)(u32));
     static void orderSync(u8*, u8*, u32, u32);
     static void decode(u8*, u8*, u32, u32);
-    static void decodeSZP(u8 *, u8 *, u32, u32);
+    static void decodeSZP(u8*, u8*, u32, u32);
     static void decodeSZS(u8*, u8*, u32, u32);
     static void checkCompressed(u8*);
-
-    /* vt[03] */ virtual void* run(); /* override */
 };
 
 #endif
