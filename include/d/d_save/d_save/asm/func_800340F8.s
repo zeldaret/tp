@@ -6,8 +6,8 @@
 /* 8003410C 0003104C  7C 7D 1B 78 */	mr r29, r3
 /* 80034110 00031050  7C 9E 23 78 */	mr r30, r4
 /* 80034114 00031054  3B E0 00 01 */	li r31, 1
-/* 80034118 00031058  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8003411C 0003105C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80034118 00031058  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8003411C 0003105C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80034120 00031060  38 63 00 CC */	addi r3, r3, 0xcc
 /* 80034124 00031064  38 80 00 4F */	li r4, 0x4f
 /* 80034128 00031068  4B FF FD A1 */	bl isFirstBit__21dSv_player_get_item_cCFUc

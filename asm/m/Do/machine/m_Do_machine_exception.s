@@ -119,8 +119,8 @@ dispHeapInfo:
 /* 80017F1C 00014E5C  48 2B B2 FD */	bl JKRAramHeap_NS_dump
 lbl_80017F20:
 /* 80017F20 00014E60  48 24 A5 51 */	bl DynamicModuleControlBase_NS_dump
-/* 80017F24 00014E64  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80017F28 00014E68  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80017F24 00014E64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80017F28 00014E68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80017F2C 00014E6C  3C 63 00 02 */	addis r3, r3, 2
 /* 80017F30 00014E70  38 63 C2 F8 */	addi r3, r3, -15624
 /* 80017F34 00014E74  48 02 47 05 */	bl dRes_control_c_NS_dump
@@ -154,8 +154,8 @@ dispGameInfo:
 /* 80017F98 00014ED8  3C 60 80 37 */	lis r3, lbl_80374460@ha
 /* 80017F9C 00014EDC  38 63 44 60 */	addi r3, r3, lbl_80374460@l
 /* 80017FA0 00014EE0  38 63 00 A5 */	addi r3, r3, 0xa5
-/* 80017FA4 00014EE4  3C 80 80 40 */	lis r4, lbl_804061C0@ha
-/* 80017FA8 00014EE8  38 A4 61 C0 */	addi r5, r4, lbl_804061C0@l
+/* 80017FA4 00014EE4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
+/* 80017FA8 00014EE8  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
 /* 80017FAC 00014EEC  38 85 4E 00 */	addi r4, r5, 0x4e00
 /* 80017FB0 00014EF0  88 05 4E 0A */	lbz r0, 0x4e0a(r5)
 /* 80017FB4 00014EF4  7C 05 07 74 */	extsb r5, r0

@@ -36,8 +36,8 @@ daItemBase_c_NS_CreateItemHeap:
 /* 80144788 001416C8  AB 61 00 4A */	lha r27, 0x4a(r1)
 /* 8014478C 001416CC  7F C3 F3 78 */	mr r3, r30
 /* 80144790 001416D0  7C A4 07 34 */	extsh r4, r5
-/* 80144794 001416D4  3C A0 80 40 */	lis r5, lbl_804061C0@ha
-/* 80144798 001416D8  38 A5 61 C0 */	addi r5, r5, lbl_804061C0@l
+/* 80144794 001416D4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
+/* 80144798 001416D8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
 /* 8014479C 001416DC  3F 85 00 02 */	addis r28, r5, 2
 /* 801447A0 001416E0  3B 9C C2 F8 */	addi r28, r28, -15624
 /* 801447A4 001416E4  7F 85 E3 78 */	mr r5, r28
@@ -373,8 +373,8 @@ lbl_80144B7C:
 /* 80144C70 00141BB0  7C 08 03 A6 */	mtlr r0
 /* 80144C74 00141BB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80144C78 00141BB8  4E 80 00 20 */	blr 
-/* 80144C7C 00141BBC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80144C80 00141BC0  38 83 61 C0 */	addi r4, r3, lbl_804061C0@l
+/* 80144C7C 00141BBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80144C80 00141BC0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
 /* 80144C84 00141BC4  80 04 5F 88 */	lwz r0, 0x5f88(r4)
 /* 80144C88 00141BC8  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 80144C8C 00141BCC  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
@@ -385,8 +385,8 @@ lbl_80144B7C:
 
 .global daItemBase_c_NS_setListEnd
 daItemBase_c_NS_setListEnd:
-/* 80144CA0 00141BE0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80144CA4 00141BE4  38 83 61 C0 */	addi r4, r3, lbl_804061C0@l
+/* 80144CA0 00141BE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80144CA4 00141BE4  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
 /* 80144CA8 00141BE8  80 04 5F 80 */	lwz r0, 0x5f80(r4)
 /* 80144CAC 00141BEC  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 80144CB0 00141BF0  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l

@@ -38,8 +38,8 @@ Z2StatusMgr_NS_processHeartGaugeSound:
 /* 802B5F7C 002B2EBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802B5F80 002B2EC0  7C 08 02 A6 */	mflr r0
 /* 802B5F84 002B2EC4  90 01 00 24 */	stw r0, 0x24(r1)
-/* 802B5F88 002B2EC8  3C 80 80 40 */	lis r4, lbl_804061C0@ha
-/* 802B5F8C 002B2ECC  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
+/* 802B5F88 002B2EC8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
+/* 802B5F8C 002B2ECC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802B5F90 002B2ED0  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 802B5F94 002B2ED4  28 00 00 00 */	cmplwi r0, 0
 /* 802B5F98 002B2ED8  40 82 01 24 */	bne lbl_802B60BC

@@ -61,7 +61,6 @@ extern "C" {
     void setEquipBottleItemIn__17dSv_player_item_cFUcUc(u8,u8);
     void isFirstBit__21dSv_player_get_item_cCFUc(void);
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
-    void getBombNum__21dSv_player_item_max_cCFUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
     void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
@@ -162,7 +161,6 @@ extern "C" {
     void init__14dComIfG_play_cFv(void);
     void func_80003458(void);
     void dStage_roomControl_c_NS_initZone(void);
-    void checkItemGet(u8,int);
     void JUTWarningConsole(void);
     void JUTConsole_NS_print(void);
     void JUTConsole_NS_check(void);
@@ -475,6 +473,34 @@ extern "C" {
 extern "C"{
     void Z2CreatureRide_NS_setLinkRiding(void);
     void checkDownDamage__10e_wb_classFv(void);
+}
+
+// d_item
+extern "C"{
+    void onFirstBit__21dSv_player_get_item_cFUc(u8);
+    void addBombCount(u8,u8);
+    void onDungeonItem__12dSv_memBit_cFi(int);
+    int dComIfGs_getMaxLifeGauge(void);
+    void dComIfGs_setSelectEquipSword(u8);
+    void dComIfGs_setSelectEquipShield(u8);
+    void dComIfGs_setSelectEquipClothes(u8);
+    int item_getcheck_func_FISHING_ROD_1(void);
+    void onSwitch__10dSv_info_cFii(int, int);
+    void setCollect__20dSv_player_collect_cFiUc(int, u8);
+    void dMeter2Info_setSword(u8, bool);
+    void setEmptyBottleItemIn__17dSv_player_item_cFUc(u8);
+    void setBottleNum__24dSv_player_item_record_cFUcUc(u8,u8);
+    void item_func_BEE_CHILD(void);
+    int func_80368954(char*,char*,u32);
+    void dComIfG_play_c_NS_getLayerNo(int);
+    u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
+    void func_80362204(void);
+    void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
+    void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
+    u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
+    u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+    void func_803621B8(void);
+    int checkItemGet__FUci(u8,int);
 }
 
 // JSystem/JKernel/JKRThread

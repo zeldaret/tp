@@ -78,8 +78,8 @@ lbl_800070A8:
 /* 800070B4 00003FF4  4C C6 31 82 */	crclr 6
 /* 800070B8 00003FF8  4B FF FB 55 */	bl OSReport_Error
 lbl_800070BC:
-/* 800070BC 00003FFC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800070C0 00004000  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 800070BC 00003FFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 800070C0 00004000  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800070C4 00004004  38 83 07 F0 */	addi r4, r3, 0x7f0
 /* 800070C8 00004008  3C 60 80 3E */	lis r3, lbl_803DBF4C@ha
 /* 800070CC 0000400C  38 63 BF 4C */	addi r3, r3, lbl_803DBF4C@l
