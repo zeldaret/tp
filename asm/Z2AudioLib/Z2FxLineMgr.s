@@ -45,7 +45,7 @@ Z2FxLineMgr_NS_initDataArc:
 /* 802BA864 002B77A4  48 01 44 AD */	bl __nwa__FUlP7JKRHeapi
 /* 802BA868 002B77A8  90 77 00 10 */	stw r3, 0x10(r23)
 /* 802BA86C 002B77AC  7F 03 C3 78 */	mr r3, r24
-/* 802BA870 002B77B0  48 01 B8 9D */	bl JKRArchive_NS_countResource
+/* 802BA870 002B77B0  48 01 B8 9D */	bl countResource__10JKRArchiveCFv
 /* 802BA874 002B77B4  98 77 00 15 */	stb r3, 0x15(r23)
 /* 802BA878 002B77B8  88 17 00 15 */	lbz r0, 0x15(r23)
 /* 802BA87C 002B77BC  1C 60 00 30 */	mulli r3, r0, 0x30
@@ -67,7 +67,7 @@ Z2FxLineMgr_NS_initDataArc:
 lbl_802BA8BC:
 /* 802BA8BC 002B77FC  7F 03 C3 78 */	mr r3, r24
 /* 802BA8C0 002B7800  57 44 06 3E */	clrlwi r4, r26, 0x18
-/* 802BA8C4 002B7804  48 01 B4 75 */	bl JKRArchive_NS_getResource_X2_
+/* 802BA8C4 002B7804  48 01 B4 75 */	bl getResource__10JKRArchiveFUs
 /* 802BA8C8 002B7808  7C 79 1B 78 */	mr r25, r3
 /* 802BA8CC 002B780C  7F 03 C3 78 */	mr r3, r24
 /* 802BA8D0 002B7810  7F 24 CB 78 */	mr r4, r25

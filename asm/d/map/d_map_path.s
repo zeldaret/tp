@@ -13,8 +13,8 @@ dMpath_n_NS_dTexObjAggregate_c_NS_create:
 /* 8003C870 000397B0  7C 7A 1B 78 */	mr r26, r3
 /* 8003C874 000397B4  3B 60 00 00 */	li r27, 0
 /* 8003C878 000397B8  3B E0 00 00 */	li r31, 0
-/* 8003C87C 000397BC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8003C880 000397C0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8003C87C 000397BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8003C880 000397C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8003C884 000397C4  3F 83 00 02 */	addis r28, r3, 2
 /* 8003C888 000397C8  3C 60 80 38 */	lis r3, lbl_80379C4C@ha
 /* 8003C88C 000397CC  3B A3 9C 4C */	addi r29, r3, lbl_80379C4C@l
@@ -782,8 +782,8 @@ dRenderingFDAmap_c_NS_postRenderingMap:
 /* 8003D384 0003A2C4  48 32 32 4D */	bl GXSetClipMode
 /* 8003D388 0003A2C8  38 60 00 01 */	li r3, 1
 /* 8003D38C 0003A2CC  48 32 2A 4D */	bl GXSetDither
-/* 8003D390 0003A2D0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8003D394 0003A2D4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8003D390 0003A2D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8003D394 0003A2D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8003D398 0003A2D8  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 8003D39C 0003A2DC  81 83 00 00 */	lwz r12, 0(r3)
 /* 8003D3A0 0003A2E0  81 8C 00 18 */	lwz r12, 0x18(r12)

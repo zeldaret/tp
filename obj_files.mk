@@ -30,7 +30,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/ap/f_ap_game.o    \
             $(BUILD_DIR)/asm/f/op/f_op_actor.o    \
             $(BUILD_DIR)/asm/f/op/actor/f_op_actor_iter.o    \
-            $(BUILD_DIR)/asm/f/op/actor/f_op_actor_tag.o    \
+            $(BUILD_DIR)/src/f/f_op/f_op_actor_tag.o    \
             $(BUILD_DIR)/asm/f/op/actor/f_op_actor_mng.o    \
             $(BUILD_DIR)/asm/f/op/f_op_camera.o    \
             $(BUILD_DIR)/asm/f/op/camera/f_op_camera_mng.o    \
@@ -60,11 +60,11 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_executor.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_layer.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_layer.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_leaf.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
-            $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_iter.o    \
-            $(BUILD_DIR)/asm/f/pc/layer/f_pc_layer_tag.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_layer_iter.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_layer_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_load.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_manager.o    \
@@ -142,7 +142,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/cam/d_cam_param.o    \
             $(BUILD_DIR)/asm/d/ev/d_ev_camera.o    \
             $(BUILD_DIR)/asm/d/spline/d_spline_path.o    \
-            $(BUILD_DIR)/asm/d/d_item.o    \
+            $(BUILD_DIR)/src/d/d_item/d_item.o    \
             $(BUILD_DIR)/asm/d/d_tresure.o    \
             $(BUILD_DIR)/asm/d/d_model.o    \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
@@ -426,30 +426,40 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gf/GFTev.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRExpHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRSolidHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAssertHeap.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAram.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramBlock.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRAramStream.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramStream.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/asm/JKernel/JKRFileLoader.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRFileFinder.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRFileCache.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRArchivePub.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileFinder.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileCache.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePub.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePri.o    \
             $(BUILD_DIR)/asm/JKernel/JKRArchivePri.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRMemArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRMemArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramArchive.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRDvdArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRCompArchive.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRFile.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRCompArchive.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRFile.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdFile.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdFile.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdRipper.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRDecomp.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o    \
             $(BUILD_DIR)/asm/JSupport/JSUList.o    \
             $(BUILD_DIR)/libs/JSystem/JSupport/JSUList.o    \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \

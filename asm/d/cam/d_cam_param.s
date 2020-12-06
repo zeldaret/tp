@@ -288,8 +288,8 @@ dCamParam_c:
 /* 8008850C 0008544C  3C 60 80 3B */	lis r3, lbl_803AC50C@ha
 /* 80088510 00085450  38 03 C5 0C */	addi r0, r3, lbl_803AC50C@l
 /* 80088514 00085454  90 1E 00 1C */	stw r0, 0x1c(r30)
-/* 80088518 00085458  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8008851C 0008545C  38 A3 61 C0 */	addi r5, r3, lbl_804061C0@l
+/* 80088518 00085458  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8008851C 0008545C  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
 /* 80088520 00085460  80 65 5D 88 */	lwz r3, 0x5d88(r5)
 /* 80088524 00085464  3C 80 80 38 */	lis r4, lbl_8037A7E0@ha
 /* 80088528 00085468  38 84 A7 E0 */	addi r4, r4, lbl_8037A7E0@l
@@ -603,8 +603,8 @@ lbl_80088980:
 
 .global dCamSetup_c_NS_PlayerHideDist
 dCamSetup_c_NS_PlayerHideDist:
-/* 80088988 000858C8  3C 80 80 40 */	lis r4, lbl_804061C0@ha
-/* 8008898C 000858CC  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
+/* 80088988 000858C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
+/* 8008898C 000858CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80088990 000858D0  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 80088994 000858D4  80 04 05 74 */	lwz r0, 0x574(r4)
 /* 80088998 000858D8  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

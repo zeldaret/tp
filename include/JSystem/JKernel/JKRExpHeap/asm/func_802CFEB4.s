@@ -1,0 +1,18 @@
+/* removeFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock __ct__10JKRExpHeapFPvUlP7JKRHeapb::removeFreeBlock(__ct__10JKRExpHeapFPvUlP7JKRHeapb::CMemBlock *) */
+/* JKRExpHeap_NS_removeFreeBlock */
+/* 802CFEB4 002CCDF4  80 A4 00 08 */	lwz r5, 8(r4)
+/* 802CFEB8 002CCDF8  80 84 00 0C */	lwz r4, 0xc(r4)
+/* 802CFEBC 002CCDFC  28 05 00 00 */	cmplwi r5, 0
+/* 802CFEC0 002CCE00  40 82 00 0C */	bne lbl_802CFECC
+/* 802CFEC4 002CCE04  90 83 00 78 */	stw r4, 0x78(r3)
+/* 802CFEC8 002CCE08  48 00 00 08 */	b lbl_802CFED0
+lbl_802CFECC:
+/* 802CFECC 002CCE0C  90 85 00 0C */	stw r4, 0xc(r5)
+lbl_802CFED0:
+/* 802CFED0 002CCE10  28 04 00 00 */	cmplwi r4, 0
+/* 802CFED4 002CCE14  40 82 00 0C */	bne lbl_802CFEE0
+/* 802CFED8 002CCE18  90 A3 00 7C */	stw r5, 0x7c(r3)
+/* 802CFEDC 002CCE1C  4E 80 00 20 */	blr
+lbl_802CFEE0:
+/* 802CFEE0 002CCE20  90 A4 00 08 */	stw r5, 8(r4)
+/* 802CFEE4 002CCE24  4E 80 00 20 */	blr

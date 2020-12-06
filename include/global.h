@@ -5,6 +5,7 @@
 
 #include "dolphin/types.h"
 
+#include "os/OS.h"
 #include "functions.h"
 #include "variables.h"
 

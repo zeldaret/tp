@@ -1,12 +1,12 @@
 #include "d/d_save/d_save/d_save.h"
-#include "os.h"
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
 u8 dSv_item_rename(u8 item_id) {
     switch (item_id) {
-        case LANTERN_OIL_2: return LANTERN_OIL;
-        case RED_POTION_2: return RED_POTION;
-        case LANTERN_OIL_3: return LANTERN_OIL_4;
+        case OIL_BOTTLE_2: return OIL_BOTTLE;
+        case RED_BOTTLE_2: return RED_BOTTLE;
+        case OIL2: return OIL;
         default: return item_id;
     }
 }
@@ -29,7 +29,7 @@ void dSv_player_status_a_c::init() {
         this->equipment[i] = 0;
     }
 
-    this->equipment[0] = ORDON_CLOTHES;
+    this->equipment[0] = WEARS_CASUAL;
     this->equipment[1] = NO_ITEM;
     this->equipment[2] = NO_ITEM;
     this->equipment[3] = NO_ITEM;
@@ -83,9 +83,11 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
     return 0;
 }
 
-asm bool dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
-    nofralloc
-    #include "d/d_save/d_save/asm/func_80032AF8.s"
+int dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
+    if (i_magic == 0) {
+        return g_dComIfG_gameInfo.save_file.getEventFlags().isEventBit(0x2304);
+    }
+    return (this->magic_flag & (u8)(1 << i_magic)) ? 1 : 0;
 }
 
 void dSv_player_status_b_c::init() {
@@ -238,9 +240,21 @@ void dSv_player_item_c::init(void) {
   }
 }
 
-asm void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
-    nofralloc
-    #include "d/d_save/d_save/asm/func_80032FB8.s"
+void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
+
+    if (current_items_index < MAX_ITEM_SLOTS) {
+        this->items[current_items_index] = new_items_index;
+        this->setLineUpItem();
+    }
+
+    int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
+
+    do {
+        if (current_items_index == g_dComIfG_gameInfo.save_file.getPlayerStatusA().getSelectItemIndex(select_item_index)) {
+            dComIfGp_setSelectItem(select_item_index);
+        }
+        select_item_index++;
+    } while (select_item_index < MAX_SELECT_ITEM);
 }
 
 #ifdef NONMATCHING
@@ -260,32 +274,32 @@ u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
                     IVar1 = items[current_select_item_index];
                     current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
                     IVar2 = items[current_select_item_index];
-                    if (((IVar1 == HEROS_BOW) && (IVar2 == REGULAR_BOMBS)) ||
-                        ((IVar2 == HEROS_BOW && (IVar1 == REGULAR_BOMBS)))) {
+                    if (((IVar1 == BOW) && (IVar2 == NORMAL_BOMB)) ||
+                        ((IVar2 == BOW && (IVar1 == NORMAL_BOMB)))) {
                         return 0x59;
                     }
-                    if (((IVar1 == HEROS_BOW) && (IVar2 == WATER_BOMBS)) ||
-                        ((IVar2 == HEROS_BOW && (IVar1 == WATER_BOMBS)))) {
+                    if (((IVar1 == BOW) && (IVar2 == WATER_BOMB)) ||
+                        ((IVar2 == BOW && (IVar1 == WATER_BOMB)))) {
                         return 0x59;
                     }
-                    if (((IVar1 == HEROS_BOW) && (IVar2 == BOMBLINGS)) ||
-                        ((IVar2 == HEROS_BOW && (IVar1 == BOMBLINGS)))) {
+                    if (((IVar1 == BOW) && (IVar2 == POKE_BOMB)) ||
+                        ((IVar2 == BOW && (IVar1 == POKE_BOMB)))) {
                         return 0x59;
                     }
-                    if (((IVar1 == HEROS_BOW) && (IVar2 == HAWKEYE)) ||
-                        ((IVar2 == HEROS_BOW && (IVar1 == HAWKEYE)))) {
+                    if (((IVar1 == BOW) && (IVar2 == HAWK_EYE)) ||
+                        ((IVar2 == BOW && (IVar1 == HAWK_EYE)))) {
                         return 0x5a;
                     }
-                    if (((IVar1 == FISHING_ROD) && (IVar2 == BEE_LARVA)) ||
-                        ((IVar2 == FISHING_ROD && (IVar1 == BEE_LARVA)))) {
+                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == BEE_CHILD)) ||
+                        ((IVar2 == FISHING_ROD_1 && (IVar1 == BEE_CHILD)))) {
                         return 0x5b;
                     }
-                    if (((IVar1 == FISHING_ROD) && (IVar2 == ZORAS_JEWEL)) ||
-                        ((IVar2 == FISHING_ROD && (IVar1 == ZORAS_JEWEL)))) {
+                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == ZORAS_JEWEL)) ||
+                        ((IVar2 == FISHING_ROD_1 && (IVar1 == ZORAS_JEWEL)))) {
                         return 0x5c;
                     }
-                    if (((IVar1 == FISHING_ROD) && (IVar2 == WORM)) ||
-                        ((IVar2 == FISHING_ROD && (IVar1 == WORM)))) {
+                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == WORM)) ||
+                        ((IVar2 == FISHING_ROD_1 && (IVar1 == WORM)))) {
                         return 0x5d;
                     }
                     if (((select_item_index == 0x3) &&
@@ -450,11 +464,11 @@ asm void dSv_player_item_c::setBombBagItemIn(u8, u8, u8, bool) {
 }
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,bool param_2) {
-    setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2);
+    setBombBagItemIn(BOMB_BAG_LV1,param_1,param_2);
 }
 
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_1,u8 param_2, bool param_3) {
-    setBombBagItemIn(EMPTY_BOMBBAG,param_1,param_2,param_3);
+    setBombBagItemIn(BOMB_BAG_LV1,param_1,param_2,param_3);
 }
 
 // this is a few instructions off
@@ -506,16 +520,16 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     int current_fishing_rod_item_id = this->items[0x14];
 
     switch (current_fishing_rod_item_id) {
-        case ROD_BEE_LARVA: {
-            this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA;
+        case BEE_ROD: {
+            this->items[0x14] = JEWEL_BEE_ROD;
             break;
         }
-        case ROD_WORM: {
-            this->items[0x14] = ROD_CORAL_EARRING_WORM; 
+        case WORM_ROD: {
+            this->items[0x14] = JEWEL_WORM_ROD; 
             break;
         }
-        case FISHING_ROD: {
-            this->items[0x14] = ROD_CORAL_EARRING;
+        case FISHING_ROD_1: {
+            this->items[0x14] = JEWEL_ROD;
             break;
         }
     }
@@ -529,16 +543,16 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 #ifdef NONMATCHING
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
-        case BEE_LARVA: {
-            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_BEE_LARVA : this->items[0x14] = ROD_BEE_LARVA;
+        case BEE_CHILD: {
+            isFirstBit(61) ? this->items[0x14] = JEWEL_BEE_ROD : this->items[0x14] = BEE_ROD;
             break;
         }
         case WORM: {
-            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING_WORM : this->items[0x14] = ROD_WORM;
+            isFirstBit(61) ? this->items[0x14] = JEWEL_WORM_ROD : this->items[0x14] = WORM_ROD;
             break;
         }
         case NO_ITEM: {
-            isFirstBit(61) ? this->items[0x14] = ROD_CORAL_EARRING : this->items[0x14] = FISHING_ROD;
+            isFirstBit(61) ? this->items[0x14] = JEWEL_ROD : this->items[0x14] = FISHING_ROD_1;
             break;
         }
     }
@@ -646,17 +660,17 @@ void dSv_player_item_max_c::init(void) {
     for (int i = 0; i < 7; i++) {
         this->item_capacities[i] = 30;
     }
-    setBombNum(REGULAR_BOMBS,30);
-    setBombNum(WATER_BOMBS,15);
-    setBombNum(BOMBLINGS,10);
+    setBombNum(NORMAL_BOMB,30);
+    setBombNum(WATER_BOMB,15);
+    setBombNum(POKE_BOMB,10);
     this->item_capacities[7] = 0;
 }
 
 void dSv_player_item_max_c::setBombNum(u8 bomb_id,u8 bomb_max) {
     switch (bomb_id) {
-        case REGULAR_BOMBS: this->item_capacities[1] = bomb_max; return;
-        case WATER_BOMBS: this->item_capacities[2] = bomb_max; return;
-        case BOMBLINGS: this->item_capacities[6] = bomb_max; return;
+        case NORMAL_BOMB: this->item_capacities[1] = bomb_max; return;
+        case WATER_BOMB: this->item_capacities[2] = bomb_max; return;
+        case POKE_BOMB: this->item_capacities[6] = bomb_max; return;
     }
 }
 
@@ -671,9 +685,9 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     }
 
     switch (param_1) {
-        case WATER_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
-        case REGULAR_BOMBS: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
-        case BOMBLINGS: return (u8)(this->unk_ammo_max[0x2] * iVar3);
+        case WATER_BOMB: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+        case NORMAL_BOMB: return (u8)(this->bomb_bags_ammo_max[0x1] * iVar3);
+        case POKE_BOMB: return (u8)(this->unk_ammo_max[0x2] * iVar3);
         default: return 0;
     }
 }
@@ -1012,8 +1026,8 @@ void dSv_event_c::offEventBit(u16 i_no) {
 }
 
 // (u8) cast doesn't work here, thank u metrowerks
-bool dSv_event_c::isEventBit(u16 i_no) const {
-    return this->events[(i_no >> 8)] & (i_no & 0xFF) ? true : false;
+int dSv_event_c::isEventBit(u16 i_no) const {
+    return this->events[(i_no >> 8)] & (i_no & 0xFF) ? 1 : 0;
 }
 
 void dSv_event_c::setEventReg(u16 param_1, u8 param_2) {

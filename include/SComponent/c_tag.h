@@ -7,7 +7,8 @@
 #include "SComponent/c_list.h"
 #include "SComponent/c_tree.h"
 
-struct create_tag_class : public node_class {
+struct create_tag_class {
+    node_class pNode;
     void *mpTagData;
     s8 mbIsUse;
 };

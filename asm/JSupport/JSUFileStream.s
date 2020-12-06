@@ -3,8 +3,8 @@
 .section .text, "ax" # 802dc638
 
 
-.global JSUFileInputStream
-JSUFileInputStream:
+.global JSUFileInputStream_ct
+JSUFileInputStream_ct:
 /* 802DC638 002D9578  3C A0 80 3C */	lis r5, lbl_803C2DF8@ha
 /* 802DC63C 002D957C  38 05 2D F8 */	addi r0, r5, lbl_803C2DF8@l
 /* 802DC640 002D9580  90 03 00 00 */	stw r0, 0(r3)

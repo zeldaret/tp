@@ -36,6 +36,27 @@ class dComIfG_camera_info_class {
     u8 unk[0x38];
 };
 
+struct item_func{
+    float hearts;         //bf80
+    u32 rupees;         //bf84
+    s16 small_keys;     //bf88
+    s16 kakera_heart;   //bf8a
+    s16 magic;          //bf8c
+    u16 unk;            //bf8e
+    s16 magic_lv;       //bf90
+    u8 unk2[2];         //bf92/93 // removed stuff?
+    u32 unk3;           //bf94  //related to lantern?
+    u32 unk4;           //bf98  //related to lantern?
+    u32 unk5;           //bf9c  //related to lantern?
+    u32 unk6;           //bfa0  //related to oxygen?
+    u32 unk7;           //bfa4  //related to oxygen?
+    u32 unk8;           //bfa8  //related to oxygen?
+    u32 unk9;           //bfac  //related to oxygen?
+    u32 unk10;          //bfb0  //related to oxygen?
+    s16 arrows;         //bfb4
+    s16 seeds;          //bfb6
+};
+
 // 16 bytes too big, figure out later
 class dComIfG_inf_c {
    public:
@@ -61,7 +82,9 @@ class dComIfG_inf_c {
     /* 0x05B04 */ u8 unk10[0x244];
     /* 0x05D48 */ dDlst_window_c draw_list_window;
     /* 0x05D74 */ dComIfG_camera_info_class camera_info_class;
-    /* 0x05DAC */ u8 unk11[0x190];
+    /* 0x05DAC */ u8 unk11[0x14];
+    /* 0x05DC0 */ item_func give_item;
+    /* 0x05DF8 */ u8 unk35[0x144];
     /* 0x05F3C */ u32 unk12;
     /* 0x05F30 */ u32 unk13;
     /* 0x05F34 */ u32 unk14;

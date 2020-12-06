@@ -84,8 +84,8 @@ createAppend_X2_:
 /* 8001FAAC 0001C9EC  48 00 00 8C */	b lbl_8001FB38
 lbl_8001FAB0:
 /* 8001FAB0 0001C9F0  93 5F 00 00 */	stw r26, 0(r31)
-/* 8001FAB4 0001C9F4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8001FAB8 0001C9F8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8001FAB4 0001C9F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8001FAB8 0001C9F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8001FABC 0001C9FC  80 03 5D BC */	lwz r0, 0x5dbc(r3)
 /* 8001FAC0 0001CA00  28 00 00 00 */	cmplwi r0, 0
 /* 8001FAC4 0001CA04  41 82 00 0C */	beq lbl_8001FAD0
@@ -276,8 +276,8 @@ fopMsgM_messageSet:
 /* 8001FD48 0001CC88  7C 7C 1B 78 */	mr r28, r3
 /* 8001FD4C 0001CC8C  7C 9D 23 78 */	mr r29, r4
 /* 8001FD50 0001CC90  7C BE 2B 78 */	mr r30, r5
-/* 8001FD54 0001CC94  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8001FD58 0001CC98  3B E3 61 C0 */	addi r31, r3, lbl_804061C0@l
+/* 8001FD54 0001CC94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8001FD58 0001CC98  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 8001FD5C 0001CC9C  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FD60 0001CCA0  28 00 00 08 */	cmplwi r0, 8
 /* 8001FD64 0001CCA4  40 82 00 14 */	bne lbl_8001FD78
@@ -301,8 +301,8 @@ lbl_8001FD78:
 /* 8001FDA8 0001CCE8  48 00 00 C4 */	b lbl_8001FE6C
 lbl_8001FDAC:
 /* 8001FDAC 0001CCEC  38 00 00 FF */	li r0, 0xff
-/* 8001FDB0 0001CCF0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8001FDB4 0001CCF4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8001FDB0 0001CCF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8001FDB4 0001CCF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8001FDB8 0001CCF8  98 03 5E 7C */	stb r0, 0x5e7c(r3)
 /* 8001FDBC 0001CCFC  38 00 FF FF */	li r0, -1
 /* 8001FDC0 0001CD00  90 03 5E E8 */	stw r0, 0x5ee8(r3)
@@ -369,8 +369,8 @@ fopMsgM_messageSet_X1_:
 /* 8001FE94 0001CDD4  48 34 23 49 */	bl _savegpr_29
 /* 8001FE98 0001CDD8  7C 7D 1B 78 */	mr r29, r3
 /* 8001FE9C 0001CDDC  7C 9E 23 78 */	mr r30, r4
-/* 8001FEA0 0001CDE0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8001FEA4 0001CDE4  3B E3 61 C0 */	addi r31, r3, lbl_804061C0@l
+/* 8001FEA0 0001CDE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8001FEA4 0001CDE4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 8001FEA8 0001CDE8  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FEAC 0001CDEC  28 00 00 08 */	cmplwi r0, 8
 /* 8001FEB0 0001CDF0  40 82 00 14 */	bne lbl_8001FEC4
@@ -457,8 +457,8 @@ fopMsgM_messageSetDemo:
 /* 8001FFD4 0001CF14  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8001FFD8 0001CF18  7C 7E 1B 78 */	mr r30, r3
 /* 8001FFDC 0001CF1C  48 21 80 BD */	bl dMsgObject_c_NS_endFlowGroup
-/* 8001FFE0 0001CF20  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8001FFE4 0001CF24  3B E3 61 C0 */	addi r31, r3, lbl_804061C0@l
+/* 8001FFE0 0001CF20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8001FFE4 0001CF24  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 8001FFE8 0001CF28  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FFEC 0001CF2C  28 00 00 08 */	cmplwi r0, 8
 /* 8001FFF0 0001CF30  40 82 00 14 */	bne lbl_80020004
@@ -734,7 +734,7 @@ fopMsgM_createExpHeap:
 lbl_800203C0:
 /* 800203C0 0001D300  7F E3 FB 78 */	mr r3, r31
 /* 800203C4 0001D304  38 A0 00 00 */	li r5, 0
-/* 800203C8 0001D308  48 2A EA 65 */	bl JKRExpHeap_NS_create
+/* 800203C8 0001D308  48 2A EA 65 */	bl create__10JKRExpHeapFUlP7JKRHeapb
 /* 800203CC 0001D30C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800203D0 0001D310  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800203D4 0001D314  7C 08 03 A6 */	mtlr r0

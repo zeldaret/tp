@@ -490,8 +490,8 @@ lbl_801E2540:
 /* 801E2634 001DF574  7F E3 FB 78 */	mr r3, r31
 /* 801E2638 001DF578  38 80 03 F9 */	li r4, 0x3f9
 /* 801E263C 001DF57C  48 00 59 61 */	bl dMenu_Option_c_NS_setBButtonString
-/* 801E2640 001DF580  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E2644 001DF584  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E2640 001DF580  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E2644 001DF584  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E2648 001DF588  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 801E264C 001DF58C  3C 80 54 49 */	lis r4, 0x54494D47@ha
 /* 801E2650 001DF590  38 84 4D 47 */	addi r4, r4, 0x54494D47@l
@@ -591,7 +591,7 @@ lbl_801E2790:
 /* 801E27BC 001DF6FC  38 63 75 D8 */	addi r3, r3, lbl_803975D8@l
 /* 801E27C0 001DF700  38 63 00 DD */	addi r3, r3, 0xdd
 /* 801E27C4 001DF704  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 801E27C8 001DF708  48 0F 1A A9 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801E27C8 001DF708  48 0F 1A A9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801E27CC 001DF70C  7C 7A 1B 78 */	mr r26, r3
 /* 801E27D0 001DF710  48 12 62 9D */	bl J2DAnmLoaderDataBase_NS_load
 /* 801E27D4 001DF714  90 7F 00 24 */	stw r3, 0x24(r31)
@@ -682,7 +682,7 @@ lbl_801E28B4:
 /* 801E291C 001DF85C  38 63 75 D8 */	addi r3, r3, lbl_803975D8@l
 /* 801E2920 001DF860  38 63 01 01 */	addi r3, r3, 0x101
 /* 801E2924 001DF864  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 801E2928 001DF868  48 0F 19 49 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801E2928 001DF868  48 0F 19 49 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801E292C 001DF86C  48 12 61 41 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801E2930 001DF870  90 7F 00 2C */	stw r3, 0x2c(r31)
 /* 801E2934 001DF874  80 7F 00 2C */	lwz r3, 0x2c(r31)
@@ -697,7 +697,7 @@ lbl_801E28B4:
 /* 801E2958 001DF898  38 63 75 D8 */	addi r3, r3, lbl_803975D8@l
 /* 801E295C 001DF89C  38 63 01 25 */	addi r3, r3, 0x125
 /* 801E2960 001DF8A0  80 9F 00 50 */	lwz r4, 0x50(r31)
-/* 801E2964 001DF8A4  48 0F 19 0D */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 801E2964 001DF8A4  48 0F 19 0D */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801E2968 001DF8A8  48 12 61 05 */	bl J2DAnmLoaderDataBase_NS_load
 /* 801E296C 001DF8AC  90 7F 00 30 */	stw r3, 0x30(r31)
 /* 801E2970 001DF8B0  80 7F 00 30 */	lwz r3, 0x30(r31)
@@ -1440,8 +1440,8 @@ lbl_801E33BC:
 /* 801E33DC 001E031C  90 1F 00 50 */	stw r0, 0x50(r31)
 lbl_801E33E0:
 /* 801E33E0 001E0320  38 00 00 00 */	li r0, 0
-/* 801E33E4 001E0324  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E33E8 001E0328  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E33E4 001E0324  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E33E8 001E0328  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E33EC 001E032C  90 03 5C C4 */	stw r0, 0x5cc4(r3)
 /* 801E33F0 001E0330  39 61 00 30 */	addi r11, r1, 0x30
 /* 801E33F4 001E0334  48 17 EE 21 */	bl func_80362214
@@ -1648,8 +1648,8 @@ dMenu_Option_c_NS__draw:
 /* 801E36E4 001E0624  80 03 00 50 */	lwz r0, 0x50(r3)
 /* 801E36E8 001E0628  28 00 00 00 */	cmplwi r0, 0
 /* 801E36EC 001E062C  41 82 01 C8 */	beq lbl_801E38B4
-/* 801E36F0 001E0630  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E36F4 001E0634  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E36F0 001E0630  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E36F4 001E0634  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E36F8 001E0638  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801E36FC 001E063C  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 801E3700 001E0640  38 80 00 FF */	li r4, 0xff
@@ -1995,8 +1995,8 @@ lbl_801E3BE0:
 /* 801E3BE4 001E0B24  88 04 00 0C */	lbz r0, 0xc(r4)
 /* 801E3BE8 001E0B28  2C 00 00 00 */	cmpwi r0, 0
 /* 801E3BEC 001E0B2C  41 82 00 58 */	beq lbl_801E3C44
-/* 801E3BF0 001E0B30  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E3BF4 001E0B34  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E3BF0 001E0B30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E3BF4 001E0B34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E3BF8 001E0B38  80 03 5C C4 */	lwz r0, 0x5cc4(r3)
 /* 801E3BFC 001E0B3C  28 00 00 00 */	cmplwi r0, 0
 /* 801E3C00 001E0B40  40 82 00 4C */	bne lbl_801E3C4C
@@ -3384,8 +3384,8 @@ lbl_801E5020:
 /* 801E5050 001E1F90  40 82 00 78 */	bne lbl_801E50C8
 /* 801E5054 001E1F94  38 00 00 03 */	li r0, 3
 /* 801E5058 001E1F98  98 1F 03 EC */	stb r0, 0x3ec(r31)
-/* 801E505C 001E1F9C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E5060 001E1FA0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E505C 001E1F9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E5060 001E1FA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E5064 001E1FA4  3B C3 01 E0 */	addi r30, r3, 0x1e0
 /* 801E5068 001E1FA8  88 1F 03 E4 */	lbz r0, 0x3e4(r31)
 /* 801E506C 001E1FAC  98 03 01 E2 */	stb r0, 0x1e2(r3)
@@ -3400,8 +3400,8 @@ lbl_801E508C:
 /* 801E508C 001E1FCC  7F C3 F3 78 */	mr r3, r30
 /* 801E5090 001E1FD0  88 9F 03 E9 */	lbz r4, 0x3e9(r31)
 /* 801E5094 001E1FD4  4B E4 F5 F9 */	bl setSound__19dSv_player_config_cFUc
-/* 801E5098 001E1FD8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E509C 001E1FDC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E5098 001E1FD8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E509C 001E1FDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E50A0 001E1FE0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801E50A4 001E1FE4  88 9F 03 EA */	lbz r4, 0x3ea(r31)
 /* 801E50A8 001E1FE8  4B E4 63 01 */	bl dComIfG_play_c_NS_setNowVibration
@@ -3429,8 +3429,8 @@ lbl_801E50F0:
 /* 801E50F8 001E2038  40 82 00 88 */	bne lbl_801E5180
 /* 801E50FC 001E203C  38 00 00 03 */	li r0, 3
 /* 801E5100 001E2040  98 1F 03 EC */	stb r0, 0x3ec(r31)
-/* 801E5104 001E2044  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E5108 001E2048  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E5104 001E2044  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E5108 001E2048  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E510C 001E204C  3B C3 01 E0 */	addi r30, r3, 0x1e0
 /* 801E5110 001E2050  7F C3 F3 78 */	mr r3, r30
 /* 801E5114 001E2054  4B E4 F5 71 */	bl getSound__19dSv_player_config_cFv
@@ -6801,8 +6801,8 @@ dMenu_Option_c_NS_initialize:
 /* 801E8218 001E5158  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E821C 001E515C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801E8220 001E5160  7C 7F 1B 78 */	mr r31, r3
-/* 801E8224 001E5164  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E8228 001E5168  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E8224 001E5164  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E8228 001E5168  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E822C 001E516C  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 801E8230 001E5170  88 03 00 02 */	lbz r0, 2(r3)
 /* 801E8234 001E5174  98 1F 03 E4 */	stb r0, 0x3e4(r31)
@@ -6819,8 +6819,8 @@ dMenu_Option_c_NS_initialize:
 /* 801E8260 001E51A0  4B FF FE 41 */	bl dMenu_Option_c_NS_isRumbleSupported
 /* 801E8264 001E51A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801E8268 001E51A8  41 82 00 1C */	beq lbl_801E8284
-/* 801E826C 001E51AC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801E8270 001E51B0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801E826C 001E51AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801E8270 001E51B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E8274 001E51B4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801E8278 001E51B8  4B E4 31 39 */	bl dComIfG_play_c_NS_getNowVibration
 /* 801E827C 001E51BC  98 7F 03 EA */	stb r3, 0x3ea(r31)

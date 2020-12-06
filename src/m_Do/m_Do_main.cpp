@@ -1,5 +1,5 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
-#include "os.h"
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
 void version_check(void) {
@@ -14,7 +14,7 @@ void version_check(void) {
 
 void HeapCheck::CheckHeap1(void) {
     s32 totalUsedSize = this->heap->getTotalUsedSize();
-    s32 freeSize = ((JKRHeap*)this->heap)->getFreeSize();
+    s32 freeSize = this->heap->getFreeSize();
 
     if (this->max_total_used_size < totalUsedSize) {
         this->max_total_used_size = totalUsedSize;

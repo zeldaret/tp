@@ -138,7 +138,7 @@ J2DScreen_NS_setPriority:
 lbl_802F8674:
 /* 802F8674 002F55B4  7C 83 23 78 */	mr r3, r4
 /* 802F8678 002F55B8  7F E4 FB 78 */	mr r4, r31
-/* 802F867C 002F55BC  4B FD BB F5 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 802F867C 002F55BC  4B FD BB F5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 802F8680 002F55C0  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802F8684 002F55C4  41 82 00 A8 */	beq lbl_802F872C
 /* 802F8688 002F55C8  7F E3 FB 78 */	mr r3, r31
@@ -1270,7 +1270,7 @@ J2DScreen_NS_getNameResource:
 /* 802F964C 002F658C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F9650 002F6590  7C 7F 1B 78 */	mr r31, r3
 /* 802F9654 002F6594  38 80 00 00 */	li r4, 0
-/* 802F9658 002F6598  4B FD AC 19 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 802F9658 002F6598  4B FD AC 19 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 802F965C 002F659C  28 03 00 00 */	cmplwi r3, 0
 /* 802F9660 002F65A0  40 82 00 1C */	bne lbl_802F967C
 /* 802F9664 002F65A4  80 0D 90 10 */	lwz r0, lbl_80451590-_SDA_BASE_(r13)
