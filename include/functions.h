@@ -223,6 +223,18 @@ extern "C" {
     void JKRDvdAramRipper_NS_loadToAram(void);
     void JKRAram_NS_mainRamToAram(void);
     void JKRAramPiece_NS_sendCommand(void);
+
+    void DCInvalidateRange(void);
+    void DCStoreRangeNoSync(void);
+    void __RAS_OSDisableInterrupts_begin(void);
+    void func_80003540(void);
+    void func_80361C24(void);
+    void func_803621B0(void);
+    void func_803621C4(void);
+    void func_803621C8(void);
+    void func_803621FC(void);
+    void func_80362210(void);
+    void func_80362214(void);
 }
 
 // DVD
@@ -774,4 +786,17 @@ extern "C" {
     void run__9JKRDecompFv(void);
     void sendCommand__9JKRDecompFP16JKRDecompCommand(void);
     void sync__9JKRDecompFP16JKRDecompCommandi(void);
+};
+
+extern "C" {
+    void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
+    // void __dt__23JSUList<12JKRDMCommand>Fv(void);
+    void __sinit_JKRDvdRipper_cpp(void);
+    void decompSZS_subroutine__FPUcPUc(void);
+    void firstSrcData__Fv(void);
+    void isErrorRetry__12JKRDvdRipperFv(void);
+    void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+    void loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+    void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+    void nextSrcData__FPUc(void);
 };

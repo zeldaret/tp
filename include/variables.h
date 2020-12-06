@@ -280,3 +280,25 @@ extern u8 lbl_803CC460[32]; // JKRDecomp::sMessageBuffer
 extern OSMessageQueue lbl_803CC480; // JKRDecomp::sMessageQueue
 extern u8 lbl_804514B0; // JKRDecomp::sDecompObject
 extern u8 lbl_803CC4A0; // JKRDecomp::__vt
+
+extern u8 lbl_80434378;
+extern u8 lbl_8045142C;
+extern u8 lbl_80451448;
+extern u8 lbl_80451440;
+extern u8 lbl_80451458;
+extern u8 lbl_80451438;
+extern u8 lbl_80434384;
+extern u8 lbl_80434390;
+extern u8 lbl_804508C8;
+extern u8 lbl_80451450;
+extern u8 lbl_80451430;
+extern u8 lbl_804508CC;
+extern u8 lbl_8039D290;
+extern u8 lbl_80451454;
+extern u8 lbl_80451434;
+extern u8 lbl_8045145C;
+extern u8 lbl_80451428;
+extern u8 lbl_8045143C;
+extern u8 lbl_80451444;
+extern u8 lbl_80451460;
+extern u8 lbl_8045144C;

@@ -451,6 +451,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFile.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdFile.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdFile.o    \
+            $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o    \
