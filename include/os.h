@@ -85,9 +85,10 @@ extern "C" {
     void OSSetThreadPriority(void);
     void OSResumeThread(void);
     void OSCreateThread(void);
+    void OSExitThread(void *exit_val);
     void OSGetThreadPriority(void);
-    void OSGetConsoleType(void);
-    void OSGetResetCode(void);
+    s32 OSGetConsoleType(void);
+    s32 OSGetResetCode(void);
     void OSReportInit(void);
 
     OSSoundMode OSGetSoundMode(void);
@@ -124,6 +125,10 @@ extern "C" {
     void OSLocKMutex(OSMutex *mutex);
     void OSTryLockMutex(OSMutex *mutex);
     void OSUnlockMutex(OSMutex *mutex);
+
+    s32 OSDisableInterrupts();
+    s32 OSEnableInterrupts();
+    s32 OSRestoreInterrupts(s32 level);
 };
 
 #endif
