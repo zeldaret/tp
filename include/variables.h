@@ -345,10 +345,37 @@ extern u8 lbl_804514A0; // JKernel::maxDest (static?)
 extern u8 lbl_804514A4; // DAT_804514a4 (init global mutex)
 extern u8 lbl_804514A8; // JKernel::tsPtr (static?)
 extern u8 lbl_804514AC; // JKernel::tsArea (static?)
+
 extern u8 lbl_804508D4; // JKRDvdAramRipper::sSZSBufferSize
 extern u8 lbl_803CC4B0; // JSURandomInputStream::__vt
 extern u8 lbl_804513C8; // JKRAram::sAramObject
-extern u8 lbl_804343A8; // JKernel::@301  (global destructor chain)
+extern u8 lbl_804343A8; // JKernel::@301 (global destructor chain)
 extern u8 lbl_804343B4; // JKRDvdAramRipper::sDvdAramAsyncList
 extern u8 lbl_804343C0; // JKernel::decompMutex
 extern u8 lbl_803CC518; // JSUFileInputStream::__vt
+
+extern u8 lbl_804513C8; // JKRAram::sAramObject
+extern u8 lbl_804513CC; // JKernel::szpBuf (static?)
+extern u8 lbl_804513D0; // JKernel::szpEnd (static?)
+extern u8 lbl_804513D4; // JKernel::refBuf (static?)
+extern u8 lbl_804513D8; // JKernel::refEnd (static?)
+extern u8 lbl_804513DC; // JKernel::refCurrent (static?)
+extern u8 lbl_804513E0; // JKernel::srcOffset (static?)
+extern u8 lbl_804513E4; // JKernel::transLeft (static?)
+extern u8 lbl_804513E8; // JKernel::srcLimit (static?)
+extern u8 lbl_804513EC; // JKernel::srcAddress (static?)
+extern u8 lbl_804513F0; // JKernel::fileOffset (static?)
+extern u8 lbl_804513F4; // JKernel::readCount (static?)
+extern u8 lbl_804513F8; // JKernel::maxDest (static?)
+extern u8 lbl_804513FC; // DAT_804513fc (init global mutex)
+extern u8 lbl_80451400; // JKernel::tsPtr (static?)
+extern u8 lbl_80451404; // JKernel::tsArea (static?)
+
+extern u8 lbl_803CC158; // JKRAram::__vt
+extern u8 lbl_8039D078; // "JKRAram.cpp"
+extern u8 lbl_804342D0; // JKernel::@492 (global destructor chain)
+extern u8 lbl_803CC138; // JKRAram::sMessageQueue
+extern u8 lbl_804342DC; // JKRAram::sAramCommandList
+extern u8 lbl_804342E8; // JKernel::decompMutex (static?)
+extern u8 lbl_804508B8; // JKRAram::sSZSBufferSize
+extern u8 lbl_803CC128; // JKRAram::sMessageBuffer

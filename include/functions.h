@@ -245,6 +245,13 @@ extern "C" {
     void DCInvalidateRange(void);
     void JSUInputStream_NS_dtor(void);
     void JSUFileInputStream_ct(void);
+
+    void ARAlloc(void);
+    void ARGetSize(void);
+    void ARInit(void);
+    void ARQInit(void);
+    void DCStoreRangeNoSync(void);
+    void __RAS_OSDisableInterrupts_begin(void);
 }
 
 // DVD
@@ -880,4 +887,22 @@ extern "C" {
     void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
     void nextSrcData__FPUc(void);
     void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
+};
+
+// JSystem/JKernel/JKRAram
+extern "C" {
+    void JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl(void);
+    void __ct__7JKRAramFUlUll(void);
+    // void __dt__23JSUList<12JKRAMCommand>Fv(void);
+    void __dt__7JKRAramFv(void);
+    void __sinit_JKRAram_cpp(void);
+    void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
+    void changeGroupIdIfNeed__7JKRAramFPUci(void);
+    void checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl(void);
+    void create__7JKRAramFUlUllll(void);
+    void decompSZS_subroutine__FPUcPUc(void);
+    void firstSrcData__Fv(void);
+    void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
+    void nextSrcData__FPUc(void);
+    void run__7JKRAramFv(void);
 };
