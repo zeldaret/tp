@@ -169,8 +169,8 @@ dEnvSe_c_NS_execute_common:
 lbl_80183020:
 /* 80183020 0017FF60  83 44 00 00 */	lwz r26, 0(r4)
 /* 80183024 0017FF64  83 E4 00 04 */	lwz r31, 4(r4)
-/* 80183028 0017FF68  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8018302C 0017FF6C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80183028 0017FF68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8018302C 0017FF6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80183030 0017FF70  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 80183034 0017FF74  7C 00 07 74 */	extsb r0, r0
 /* 80183038 0017FF78  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -486,8 +486,8 @@ dEnvSe_c_NS_execute:
 /* 80183494 001803D4  7C 7C 1B 78 */	mr r28, r3
 /* 80183498 001803D8  8B CD 87 E4 */	lbz r30, lbl_80450D64-_SDA_BASE_(r13)
 /* 8018349C 001803DC  7F DE 07 74 */	extsb r30, r30
-/* 801834A0 001803E0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801834A4 001803E4  3B E3 61 C0 */	addi r31, r3, lbl_804061C0@l
+/* 801834A0 001803E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801834A4 001803E4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 801834A8 001803E8  38 7F 4E C4 */	addi r3, r31, 0x4ec4
 /* 801834AC 001803EC  7F C4 F3 78 */	mr r4, r30
 /* 801834B0 001803F0  4B EA 0E D5 */	bl dStage_roomControl_c_NS_getStatusRoomDt

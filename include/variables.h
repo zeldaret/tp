@@ -2,11 +2,9 @@
 
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
-extern int lbl_804061C0;
 extern float lbl_80451D58;
 extern u8 lbl_803A7270[24];
 extern u8 lbl_80430188[16];
-extern u8 lbl_803A7288;
 extern u8 lbl_80379235[16];
 extern char lbl_803739A0[0x310];
 extern u32 lbl_80451368;
@@ -248,3 +246,16 @@ extern double lbl_80455FB0;                 // JKernel::@695 = 4.503601774854144
 extern float lbl_80455FA8;                  // JKernel::@693 = 100.0
 extern u8 lbl_80451420;                     // JKRArchive::sCurrentDirID
 extern u8 lbl_803CC288;                     // JKRArchive::__vt
+
+//d_item
+extern float lbl_80452BD8;
+extern float lbl_80452BDC;
+extern double lbl_80452BE0;
+extern u8 lbl_80450D64;
+struct unkEvent{  //figure out what this is later
+    u8 unk0[0x235];
+    u16 unk566;
+    u8 unk567[0x439];
+};
+extern unkEvent lbl_803A7288;
+extern u8 lbl_8037B0D0[0x8];

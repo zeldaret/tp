@@ -8,8 +8,8 @@
 /* 80033FB8 00030EF8  88 7F 00 04 */	lbz r3, 4(r31)
 /* 80033FBC 00030EFC  7C A0 07 34 */	extsh r0, r5
 /* 80033FC0 00030F00  7F C3 02 14 */	add r30, r3, r0
-/* 80033FC4 00030F04  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80033FC8 00030F08  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80033FC4 00030F04  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80033FC8 00030F08  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80033FCC 00030F0C  38 63 00 9C */	addi r3, r3, 0x9c
 /* 80033FD0 00030F10  38 04 00 0B */	addi r0, r4, 0xb
 /* 80033FD4 00030F14  54 04 06 3E */	clrlwi r4, r0, 0x18

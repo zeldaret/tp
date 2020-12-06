@@ -18,8 +18,8 @@ dKyeff_c_NS_execute:
 /* 801ADD5C 001AAC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ADD60 001AACA0  7C 08 02 A6 */	mflr r0
 /* 801ADD64 001AACA4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801ADD68 001AACA8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801ADD6C 001AACAC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801ADD68 001AACA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801ADD6C 001AACAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801ADD70 001AACB0  38 63 4E 00 */	addi r3, r3, 0x4e00
 /* 801ADD74 001AACB4  3C 80 80 39 */	lis r4, lbl_80394F38@ha
 /* 801ADD78 001AACB8  38 84 4F 38 */	addi r4, r4, lbl_80394F38@l
@@ -61,8 +61,8 @@ lbl_801ADD8C:
 /* 801ADE04 001AAD44  7C 08 02 A6 */	mflr r0
 /* 801ADE08 001AAD48  90 01 00 44 */	stw r0, 0x44(r1)
 /* 801ADE0C 001AAD4C  4B EA 96 D5 */	bl dKyw_wether_init
-/* 801ADE10 001AAD50  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801ADE14 001AAD54  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801ADE10 001AAD50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801ADE14 001AAD54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801ADE18 001AAD58  38 63 4E 00 */	addi r3, r3, 0x4e00
 /* 801ADE1C 001AAD5C  3C 80 80 39 */	lis r4, lbl_80394F38@ha
 /* 801ADE20 001AAD60  38 84 4F 38 */	addi r4, r4, lbl_80394F38@l

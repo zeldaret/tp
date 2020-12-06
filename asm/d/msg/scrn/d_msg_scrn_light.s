@@ -176,8 +176,8 @@ lbl_802459AC:
 /* 802459B4 002428F4  3C 80 80 3A */	lis r4, lbl_80399B08@ha
 /* 802459B8 002428F8  38 84 9B 08 */	addi r4, r4, lbl_80399B08@l
 /* 802459BC 002428FC  3C A0 00 02 */	lis r5, 2
-/* 802459C0 00242900  3C C0 80 40 */	lis r6, lbl_804061C0@ha
-/* 802459C4 00242904  3B C6 61 C0 */	addi r30, r6, lbl_804061C0@l
+/* 802459C0 00242900  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
+/* 802459C4 00242904  3B C6 61 C0 */	addi r30, r6, g_dComIfG_gameInfo@l
 /* 802459C8 00242908  80 DE 5D 30 */	lwz r6, 0x5d30(r30)
 /* 802459CC 0024290C  48 0B 2C 7D */	bl J2DScreen_NS_setPriority
 /* 802459D0 00242910  80 7F 00 04 */	lwz r3, 4(r31)
@@ -680,8 +680,8 @@ dMsgScrnLight_c_NS_drawCommon:
 /* 8024612C 0024306C  FF 80 18 90 */	fmr f28, f3
 /* 80246130 00243070  FF A0 20 90 */	fmr f29, f4
 /* 80246134 00243074  FF C0 28 90 */	fmr f30, f5
-/* 80246138 00243078  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8024613C 0024307C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80246138 00243078  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8024613C 0024307C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80246140 00243080  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 80246144 00243084  7F E3 FB 78 */	mr r3, r31
 /* 80246148 00243088  81 9F 00 00 */	lwz r12, 0(r31)

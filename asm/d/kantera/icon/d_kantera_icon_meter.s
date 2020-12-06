@@ -118,8 +118,8 @@ lbl_801AEAC4:
 /* 801AEAC8 001ABA08  3C 80 80 39 */	lis r4, lbl_80394F50@ha
 /* 801AEACC 001ABA0C  38 84 4F 50 */	addi r4, r4, lbl_80394F50@l
 /* 801AEAD0 001ABA10  3C A0 00 02 */	lis r5, 2
-/* 801AEAD4 001ABA14  3C C0 80 40 */	lis r6, lbl_804061C0@ha
-/* 801AEAD8 001ABA18  38 C6 61 C0 */	addi r6, r6, lbl_804061C0@l
+/* 801AEAD4 001ABA14  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
+/* 801AEAD8 001ABA18  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l
 /* 801AEADC 001ABA1C  80 C6 5D 30 */	lwz r6, 0x5d30(r6)
 /* 801AEAE0 001ABA20  48 14 9B 69 */	bl J2DScreen_NS_setPriority
 /* 801AEAE4 001ABA24  7F C3 F3 78 */	mr r3, r30
@@ -259,8 +259,8 @@ dKantera_icon_c_NS_setNowGauge:
 /* 801AECC4 001ABC04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AECC8 001ABC08  93 C1 00 08 */	stw r30, 8(r1)
 /* 801AECCC 001ABC0C  7C 7E 1B 78 */	mr r30, r3
-/* 801AECD0 001ABC10  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801AECD4 001ABC14  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801AECD0 001ABC10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801AECD4 001ABC14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801AECD8 001ABC18  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801AECDC 001ABC1C  7F E3 FB 78 */	mr r3, r31
 /* 801AECE0 001ABC20  81 9F 00 00 */	lwz r12, 0(r31)

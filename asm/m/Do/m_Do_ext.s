@@ -1606,8 +1606,8 @@ mDoExt_invisibleModel_NS_entryJoint:
 /* 8000E6EC 0000B62C  83 F9 00 04 */	lwz r31, 4(r25)
 /* 8000E6F0 0000B630  40 82 00 78 */	bne lbl_8000E768
 /* 8000E6F4 0000B634  3B 60 00 00 */	li r27, 0
-/* 8000E6F8 0000B638  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8000E6FC 0000B63C  3B C3 61 C0 */	addi r30, r3, lbl_804061C0@l
+/* 8000E6F8 0000B638  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8000E6FC 0000B63C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
 /* 8000E700 0000B640  3B 9E 5F 64 */	addi r28, r30, 0x5f64
 /* 8000E704 0000B644  48 00 00 50 */	b lbl_8000E754
 lbl_8000E708:
@@ -1638,8 +1638,8 @@ lbl_8000E754:
 /* 8000E764 0000B6A4  48 00 00 44 */	b lbl_8000E7A8
 lbl_8000E768:
 /* 8000E768 0000B6A8  3B 60 00 00 */	li r27, 0
-/* 8000E76C 0000B6AC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8000E770 0000B6B0  3B C3 61 C0 */	addi r30, r3, lbl_804061C0@l
+/* 8000E76C 0000B6AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8000E770 0000B6B0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
 /* 8000E774 0000B6B4  3B 9E 5F 64 */	addi r28, r30, 0x5f64
 /* 8000E778 0000B6B8  48 00 00 20 */	b lbl_8000E798
 lbl_8000E77C:
@@ -1673,8 +1673,8 @@ lbl_8000E7A8:
 /* 8000E7E0 0000B720  3B E3 4A C8 */	addi r31, r3, lbl_80434AC8@l
 /* 8000E7E4 0000B724  83 DF 00 48 */	lwz r30, 0x48(r31)
 /* 8000E7E8 0000B728  83 BF 00 4C */	lwz r29, 0x4c(r31)
-/* 8000E7EC 0000B72C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8000E7F0 0000B730  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8000E7EC 0000B72C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8000E7F0 0000B730  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8000E7F4 0000B734  80 03 5F A8 */	lwz r0, 0x5fa8(r3)
 /* 8000E7F8 0000B738  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 8000E7FC 0000B73C  90 1F 00 4C */	stw r0, 0x4c(r31)
@@ -6245,8 +6245,8 @@ lbl_800128E8:
 lbl_800128FC:
 /* 800128FC 0000F83C  B0 92 00 14 */	sth r4, 0x14(r18)
 lbl_80012900:
-/* 80012900 0000F840  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80012904 0000F844  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80012900 0000F840  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80012904 0000F844  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80012908 0000F848  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 8001290C 0000F84C  83 B2 00 18 */	lwz r29, 0x18(r18)
 /* 80012910 0000F850  54 C0 04 3F */	clrlwi. r0, r6, 0x10
@@ -6620,8 +6620,8 @@ lbl_80012E94:
 lbl_80012EA8:
 /* 80012EA8 0000FDE8  B0 92 00 14 */	sth r4, 0x14(r18)
 lbl_80012EAC:
-/* 80012EAC 0000FDEC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80012EB0 0000FDF0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80012EAC 0000FDEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80012EB0 0000FDF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80012EB4 0000FDF4  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 80012EB8 0000FDF8  83 D2 00 18 */	lwz r30, 0x18(r18)
 /* 80012EBC 0000FDFC  A0 12 00 14 */	lhz r0, 0x14(r18)
@@ -7230,8 +7230,8 @@ lbl_800137D0:
 lbl_800137E4:
 /* 800137E4 00010724  B0 8F 00 34 */	sth r4, 0x34(r15)
 lbl_800137E8:
-/* 800137E8 00010728  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800137EC 0001072C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 800137E8 00010728  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 800137EC 0001072C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800137F0 00010730  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 800137F4 00010734  83 AF 00 38 */	lwz r29, 0x38(r15)
 /* 800137F8 00010738  54 C0 04 3F */	clrlwi. r0, r6, 0x10
@@ -7798,8 +7798,8 @@ lbl_80014028:
 lbl_8001403C:
 /* 8001403C 00010F7C  B0 8F 00 34 */	sth r4, 0x34(r15)
 lbl_80014040:
-/* 80014040 00010F80  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80014044 00010F84  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80014040 00010F80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80014044 00010F84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80014048 00010F88  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 8001404C 00010F8C  83 CF 00 38 */	lwz r30, 0x38(r15)
 /* 80014050 00010F90  A0 0F 00 34 */	lhz r0, 0x34(r15)
@@ -8276,8 +8276,8 @@ lbl_800146EC:
 /* 80014754 00011694  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80014758 00011698  28 00 00 00 */	cmplwi r0, 0
 /* 8001475C 0001169C  40 82 00 1C */	bne lbl_80014778
-/* 80014760 000116A0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80014764 000116A4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80014760 000116A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80014764 000116A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80014768 000116A8  80 63 5F 90 */	lwz r3, 0x5f90(r3)
 /* 8001476C 000116AC  7F C4 F3 78 */	mr r4, r30
 /* 80014770 000116B0  38 A0 00 00 */	li r5, 0
@@ -8439,8 +8439,8 @@ mDoExt_initFont0:
 /* 80014998 000118D8  7C 08 02 A6 */	mflr r0
 /* 8001499C 000118DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800149A0 000118E0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 800149A4 000118E4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800149A8 000118E8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 800149A4 000118E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 800149A8 000118E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800149AC 000118EC  83 E3 5C A4 */	lwz r31, 0x5ca4(r3)
 /* 800149B0 000118F0  4B FF A3 D1 */	bl mDoExt_getZeldaHeap
 /* 800149B4 000118F4  7C 65 1B 78 */	mr r5, r3
@@ -8519,8 +8519,8 @@ mDoExt_initFont1:
 /* 80014AA8 000119E8  7C 08 02 A6 */	mflr r0
 /* 80014AAC 000119EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80014AB0 000119F0  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80014AB4 000119F4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80014AB8 000119F8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80014AB4 000119F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80014AB8 000119F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80014ABC 000119FC  83 E3 5C A8 */	lwz r31, 0x5ca8(r3)
 /* 80014AC0 00011A00  4B FF A2 C1 */	bl mDoExt_getZeldaHeap
 /* 80014AC4 00011A04  7C 65 1B 78 */	mr r5, r3
@@ -8565,8 +8565,8 @@ mDoExt_initFont2:
 /* 80014B44 00011A84  7C 08 02 A6 */	mflr r0
 /* 80014B48 00011A88  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80014B4C 00011A8C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80014B50 00011A90  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80014B54 00011A94  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80014B50 00011A90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80014B54 00011A94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80014B58 00011A98  83 E3 5C A8 */	lwz r31, 0x5ca8(r3)
 /* 80014B5C 00011A9C  4B FF A2 25 */	bl mDoExt_getZeldaHeap
 /* 80014B60 00011AA0  7C 65 1B 78 */	mr r5, r3
