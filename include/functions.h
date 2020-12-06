@@ -241,6 +241,10 @@ extern "C" {
 
     void JSUInputStream_NS_read(void);
     void JSURandomInputStream_NS_seek(void);
+
+    void DCInvalidateRange(void);
+    void JSUInputStream_NS_dtor(void);
+    void JSUFileInputStream_ct(void);
 }
 
 // DVD
@@ -857,4 +861,23 @@ extern "C" {
     void sync__13JKRAramStreamFP20JKRAramStreamCommandi(void);
     void writeToAram__13JKRAramStreamFP20JKRAramStreamCommand(void);
     void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl(void);
+};
+
+// JSystem/JKernel/JKRDvdAramRipper
+extern "C" {
+    void JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl(void);
+    void __ct__12JKRADCommandFv(void);
+    void __dt__12JKRADCommandFv(void);
+    void __dt__18JSUFileInputStreamFv(void);
+    // void __dt__23JSUList<12JKRADCommand>Fv(void);
+    void __sinit_JKRDvdAramRipper_cpp(void);
+    void callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand(void);
+    void decompSZS_subroutine__FPUcUl(void);
+    void dmaBufferFlush__FUl(void);
+    void firstSrcData__Fv(void);
+    void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
+    void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
+    void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
+    void nextSrcData__FPUc(void);
+    void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
 };

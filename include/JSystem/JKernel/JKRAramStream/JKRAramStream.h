@@ -3,8 +3,8 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
+#include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"
 
-class JSUFileInputStream;
 class JSURandomInputStream {
   public:
     void getAvailable(void) const;

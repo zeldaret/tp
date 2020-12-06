@@ -1294,6 +1294,8 @@ __sinit_JKRAramPiece_cpp
 __dt__13JKRAramStreamFv
 getAvailable__20JSURandomInputStreamCFv
 run__13JKRAramStreamFv
+__dt__18JSUFileInputStreamFv
+__sinit_JKRDvdAramRipper_cpp
 }
 /*
 .init 80003100 - 80005600
