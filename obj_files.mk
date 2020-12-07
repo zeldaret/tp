@@ -50,7 +50,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_iter.o    \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_tag.o    \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_pause.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_base.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_base.o    \
             $(BUILD_DIR)/asm/f/pc/create/f_pc_create_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_tag.o    \

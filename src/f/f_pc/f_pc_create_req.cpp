@@ -155,7 +155,6 @@ void fpcCtRq_Handler(void)
 }
 
 extern void * cMl_NS_memalignB(int, unsigned long);
-extern int fpcBs_MakeOfId(void);
 
 create_request * fpcCtRq_Create(layer_class *pLayer, unsigned long size, create_request_method_class *pMthd)
 {
