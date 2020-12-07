@@ -18,7 +18,6 @@ extern "C" {
     void dComIfGs_setMixItemIndex(void);
     void dComIfGs_setSelectItemIndex(void);
     void dComIfGs_getMixItemIndex(void);
-    void dComIfGs_getBottleMax(void);
     char* strcpy(char*,const char*);
     int strcmp(char*,char*);
     void setBombNum__21dSv_player_item_max_cFUcUc(void);
@@ -251,6 +250,7 @@ extern "C" {
     void ARQInit(void);
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
+    u8 dComIfGs_getBottleMax(void);
 }
 
 // DVD
