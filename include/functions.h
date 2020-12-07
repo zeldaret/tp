@@ -102,7 +102,6 @@ extern "C" {
     void func_8036221C(void);
     void countUsed__FP10JKRExpHeap(void);
     void JUTReport(void);
-    void OSGetTime(void);
     void func_803621D0(void);
     void offEventBit__11dSv_event_cFUs(void);
     void func_803621C0(void);
