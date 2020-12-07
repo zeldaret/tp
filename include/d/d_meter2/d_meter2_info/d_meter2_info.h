@@ -7,6 +7,47 @@ struct dMeter2Info_c_vtable {
 };
 
 class dMeter2Info_c {
+   public:
+    dMeter2Info_c::dMeter2Info_c();
+    dMeter2Info_c::~dMeter2Info_c();
+    void init(void);
+    void setFloatingMessage(u16, s16, bool);
+    void setFloatingFlow(u16, s16, bool);
+    int isFloatingMessageVisible(void);
+    int decFloatingMessageTimer(void);
+    void resetFloatingMessage(void);
+    void decMsgKeyWaitTimer(void);
+    void getString(u32, char*, JMSMesgEntry_c*);  // define JMSMesgEntry
+    void getStringKana(u32, char*, JMSMesgEntry_c*);
+    void getStringKanji(u32, char*, JMSMesgEntry_c*);
+    double getStringLength(J2DTextBox*, char*);  // define J2DTextBox
+    dMeter2Info_c* getStringLength(JUTFont*, float, float, char*);
+    void onDirectUseItem(int);
+    int isDirectUseItem(int);
+    int setMeterString(s32);
+    void resetWarpStatus(void);
+    void warpInProc(void);
+    void warpOutProc(void);
+    void resetMeterString(void);
+    void setWarpInfo(const char*, const cXyz&, s16, u8, u8, u8);
+    u8 getItemType(u8);
+    u8 readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, int);  // define J2DPicture
+    void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
+    u8 get2ndTexture(u8);
+    u8 get3rdTexture(u8);
+    u8 get4thTexture(u8);
+    void set1stColor(u8, J2DPicture*);
+    void set2ndColor(u8, J2DPicture*);
+    void set3rdColor(u8, J2DPicture*);
+    void set4thColor(u8, J2DPicture*);
+    void setHotSpringTimer(u8);
+    void decHotSpringtimer(void);
+    void changeWater(u8);
+    void setMiniGameItem(u8);
+    void resetMiniGameItem(bool);
+    void setMiniGameCount(s8);
+    void setSaveStageName(const char*);
+
    private:
     dMeter2Info_c_vtable* vtable;
     u8 unk4[4];

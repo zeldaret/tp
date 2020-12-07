@@ -2,20 +2,48 @@
 #define D_SAVE_H_
 
 #include "dolphin/types.h"
+#include "global.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 3
+#define MAX_EVENTS 256
 
 static const int MAX_ITEM_SLOTS = 24;
 static const int ITEM_XY_MAX_DUMMY = 8;
 static const int LIGHT_DROP_STAGE = 4;
 static const int LETTER_INFO_BIT = 64;
 
-
 enum Wallets {
     WALLET,
     BIG_WALLET,
     GIANT_WALLET
+};
+
+enum ItemSlots {
+    SLOT_0,
+    SLOT_1,
+    SLOT_2,
+    SLOT_3,
+    SLOT_4,
+    SLOT_5,
+    SLOT_6,
+    SLOT_7,
+    SLOT_8,
+    SLOT_9,
+    SLOT_10,
+    SLOT_11,
+    SLOT_12,
+    SLOT_13,
+    SLOT_14,
+    SLOT_15,
+    SLOT_16,
+    SLOT_17,
+    SLOT_18,
+    SLOT_19,
+    SLOT_20,
+    SLOT_21,
+    SLOT_22,
+    SLOT_23
 };
 
 enum ItemTable {
@@ -277,40 +305,40 @@ enum ItemTable {
     noentry9 = 60
 };
 
-enum EquipmentBits{
-  CLOTHING_BITFIELD,
-  SWORD_BITFIELD,
-  SHIELD_BITFIELD
+enum EquipmentBits {
+    CLOTHING_BITFIELD,
+    SWORD_BITFIELD,
+    SHIELD_BITFIELD
 };
 
-enum Swords{
-  ORDON_SWORD_FLAG,
-  MASTER_SWORD_FLAG,
-  WOODEN_SWORD_FLAG,
-  LIGHT_SWORD_FLAG
+enum Swords {
+    ORDON_SWORD_FLAG,
+    MASTER_SWORD_FLAG,
+    WOODEN_SWORD_FLAG,
+    LIGHT_SWORD_FLAG
 };
 
-enum Shields{
-  ORDON_SHIELD_FLAG,
-  HYLIAN_SHIELD_FLAG,
-  WOODEN_SHIELD_FLAG
+enum Shields {
+    ORDON_SHIELD_FLAG,
+    HYLIAN_SHIELD_FLAG,
+    WOODEN_SHIELD_FLAG
 };
 
-enum Armors{
-  HEROS_CLOTHES_FLAG
+enum Armors {
+    HEROS_CLOTHES_FLAG
 };
 
-enum DungeonItem{
-  MAP_FLAG,
-  COMPASS_FLAG,
-  BOSS_KEY_FLAG,
-  OOCCOO_NOTE_FLAG = 6
+enum DungeonItem {
+    MAP_FLAG,
+    COMPASS_FLAG,
+    BOSS_KEY_FLAG,
+    OOCCOO_NOTE_FLAG = 6
 };
 
-enum AreaVessel{
-  FARON_VESSEL,
-  ELDIN_VESSEL,
-  LANAYRU_VESSEL
+enum AreaVessel {
+    FARON_VESSEL,
+    ELDIN_VESSEL,
+    LANAYRU_VESSEL
 };
 
 class dSv_player_status_a_c {
@@ -326,10 +354,10 @@ class dSv_player_status_a_c {
     inline u16& getCurrentHealth() {
         return current_health;
     }
-    inline void setWalletLV(u8 lv){
+    inline void setWalletLV(u8 lv) {
         current_wallet = lv;
     }
-    void setLanternOil(u16 amount){
+    void setLanternOil(u16 amount) {
         max_lantern_oil = amount;
         current_lantern_oil = amount;
     }
@@ -391,7 +419,7 @@ class dSv_horse_place_c {
    private:
     cXyz position;
     u16 angle;
-    u8 current_stage[8];
+    char current_stage[8];
     u8 spawn_id;
     u8 room_id;
 };
@@ -402,7 +430,7 @@ class dSv_player_return_place_c {
     void set(const char*, s8, u8);
 
    private:
-    u8 current_stage[8];
+    char current_stage[8];
     u8 spawn_id;
     u8 room_id;
     u8 unk10;
@@ -419,7 +447,7 @@ class dSv_player_field_last_stay_info_c {
    private:
     cXyz last_position;
     u16 last_angle;
-    u8 last_stage[8];
+    char last_stage[8];
     u8 last_spawn_id;
     u8 last_room_id;
     u8 unk24;
@@ -435,7 +463,7 @@ class dSv_player_last_mark_info_c {
    private:
     cXyz ooccoo_position;
     u16 ooccoo_angle;
-    u8 ooccoo_stage[8];
+    char ooccoo_stage[8];
     u8 ooccoo_spawn_id;
     u8 ooccoo_room_id;
     char unk24;
@@ -469,7 +497,7 @@ class dSv_player_item_c {
     void setRodTypeLevelUp(void);
     void setBaitItem(u8);
 
-    static const int BOMB_BAG_MAX = 4;
+    static const int BOMB_BAG_MAX = 3;
     static const int BOTTLE_MAX = 4;
 
    private:
@@ -482,7 +510,7 @@ class dSv_player_get_item_c {
     void init(void);
     void onFirstBit(u8);
     void offFirstBit(u8);
-    bool isFirstBit(u8) const;
+    int isFirstBit(u8) const;
 
    private:
     u32 pause_menu_bit_fields[4];
@@ -498,7 +526,7 @@ class dSv_player_item_record_c {
     u8 addBottleNum(u8, short);
     u8 getBottleNum(u8) const;
 
-    void setBowAmount(u8 amount){ bow = amount; }
+    void setBowAmount(u8 amount) { bow = amount; }
 
    private:
     u8 bow;
@@ -514,7 +542,7 @@ class dSv_player_item_max_c {
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
-    void setBowCapacity(u8 max){ item_capacities[0] = max; }
+    void setBowCapacity(u8 max) { item_capacities[0] = max; }
 
    private:
     u8 item_capacities[8];
@@ -530,7 +558,7 @@ class dSv_player_collect_c {
     void onCollectMirror(u8);
     bool isCollectMirror(u8) const;
 
-    u8 getPoeCount(){ return poe_count; }
+    u8 getPoeCount() { return poe_count; }
 
    private:
     u8 unk0[8];
@@ -554,7 +582,7 @@ class dSv_player_wolf_c {
 class dSv_light_drop_c {
    public:
     void init(void);
-    void setLightDropNum(u8,u8);
+    void setLightDropNum(u8, u8);
     u8 getLightDropNum(u8) const;
     void onLightDropGetFlag(u8);
     bool isLightDropGetFlag(u8) const;
@@ -571,10 +599,11 @@ class dSv_letter_info_c {
     void onLetterGetFlag(int);
     bool isLetterGetFlag(int) const;
     void onLetterReadFlag(int);
-    bool isLetterReadFlag(int) const;
+    int isLetterReadFlag(int) const;
 
    private:
-    u32 letter_read_flags[4];
+    u32 letter_get_bitfields[2];
+    u32 letter_read_bitfields[2];
     u8 unk16[64];
 };
 
@@ -638,15 +667,15 @@ class dSv_player_c {
     void init(void);
     dSv_player_info_c& getPlayerInfo() { return player_info; }
     dSv_player_status_a_c& getPlayerStatusA() { return player_status_a; }
-    dSv_player_item_c& getPlayerItem(){ return player_item; }
-    dSv_player_collect_c& getPlayerCollect(){ return player_collect;}
-    dSv_player_item_record_c& getPlayerItemRecord(){ return player_item_record; }
-    dSv_player_item_max_c& getPlayerItemMax(){ return player_item_max;}
-    dSv_light_drop_c& getLightDrop(){ return light_drop; }
-    dSv_player_get_item_c& getPlayerGetItem(){ return player_get_item;}
+    dSv_player_item_c& getPlayerItem() { return player_item; }
+    dSv_player_collect_c& getPlayerCollect() { return player_collect; }
+    dSv_player_item_record_c& getPlayerItemRecord() { return player_item_record; }
+    dSv_player_item_max_c& getPlayerItemMax() { return player_item_max; }
+    dSv_light_drop_c& getLightDrop() { return light_drop; }
+    dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
 
     void setPlayerStatusAWalletLV(u8 lv) { player_status_a.setWalletLV(lv); }
-    void setPlayerStatusAOil(u16 amount){ player_status_a.setLanternOil(amount);}
+    void setPlayerStatusAOil(u16 amount) { player_status_a.setLanternOil(amount); }
 
    private:
     dSv_player_status_a_c player_status_a;
@@ -684,7 +713,7 @@ class dSv_memBit_c {
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
-    u8 getSmallKeys(){
+    u8 getSmallKeys() {
         return small_key_flags;
     }
 
@@ -793,7 +822,7 @@ class dSv_zoneBit_c {
 };
 
 class dSv_zoneActor_c {
-   public: 
+   public:
     void init(void);
     void on(int);
     void off(int);
@@ -809,7 +838,7 @@ class dSv_zone_c {
    public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
-    dSv_zoneBit_c& getZoneBit() { return zone_bit;}
+    dSv_zoneBit_c& getZoneBit() { return zone_bit; }
     dSv_zoneActor_c& getZoneActor() { return zone_actor; }
 
     s8& getUnk0() { return unk0; }
@@ -848,14 +877,16 @@ class dSv_save_c {
    public:
     void init(void);
     dSv_memory2_c* getSave2(int);
-    dSv_player_c& getPlayer() {return player; }
-    dSv_player_status_a_c& getPlayerStatusA() {return player.getPlayerStatusA(); }
-    dSv_event_c& getEventFlags() {return event_flags;}
+    dSv_player_c& getPlayer() { return player; }
+    dSv_player_status_a_c& getPlayerStatusA() { return player.getPlayerStatusA(); }
+    dSv_player_get_item_c& getPlayerGetItem() { return player.getPlayerGetItem(); }
+    dSv_player_item_c& getPlayerItem() { return player.getPlayerItem(); }
+    dSv_event_c& getEventFlags() { return event_flags; }
 
-    void setPlayerStatusAWallet(u8 lv){ player.setPlayerStatusAWalletLV(lv); }
+    void setPlayerStatusAWallet(u8 lv) { player.setPlayerStatusAWalletLV(lv); }
 
     static const int STAGE_MAX = 4;
-   
+
    private:
     dSv_player_c player;
     u8 unk492[4];
