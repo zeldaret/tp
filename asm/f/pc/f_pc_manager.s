@@ -119,14 +119,10 @@ lbl_80022204:
 /* 80022218 0001F158  7D 89 03 A6 */	mtctr r12
 /* 8002221C 0001F15C  4E 80 04 21 */	bctrl 
 lbl_80022220:
-.global fpcM_Execute
 /* 80022220 0001F160  3C 60 80 02 */	lis r3, fpcM_Execute@ha
-.global fpcM_Execute
 /* 80022224 0001F164  38 63 20 F8 */	addi r3, r3, fpcM_Execute@l
 /* 80022228 0001F168  4B FF F3 41 */	bl fpcEx_Handler
-.global fpcM_DrawIterater
 /* 8002222C 0001F16C  3C 60 80 02 */	lis r3, fpcM_DrawIterater@ha
-.global fpcM_DrawIterater
 /* 80022230 0001F170  38 63 20 C0 */	addi r3, r3, fpcM_DrawIterater@l
 /* 80022234 0001F174  3C 80 80 02 */	lis r4, fpcM_Draw@ha
 /* 80022238 0001F178  38 84 20 A0 */	addi r4, r4, fpcM_Draw@l

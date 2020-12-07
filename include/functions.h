@@ -252,6 +252,16 @@ extern "C" {
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
     u8 dComIfGs_getBottleMax(void);
+
+    void JUTGamePad_NS_CRumble_NS_stopPatternedRumble(void);
+    void dLib_time_c_NS_stopTime(void);
+    void dLib_time_c_NS_startTime(void);
+    void dComIfG_play_c_NS_drawSimpleModel(void);
+    void cAPIGph_Painter(void);
+    void dDvdErrorMsg_c_NS_execute(void);
+    void dShutdownErrorMsg_c_NS_execute(void);
+    void dDlst_peekZ_c_NS_peekData(void);
+    void MtxInit(void);
 }
 
 // DVD
@@ -422,6 +432,7 @@ extern "C"{
     void func_803621A8(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void seMoveVolumeAll__7Z2SeMgrFfUl(void);
+    void Z2SoundMgr_NS_pauseAllGameSound(void);
 }
 // Z2LinkMgr
 extern "C" {
