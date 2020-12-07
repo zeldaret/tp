@@ -5,6 +5,8 @@
 #include "global.h"
 #include "f/f_pc/f_pc_method.h"
 
+struct nodedraw_method_class;
+
 struct process_profile_definition {
     s32 unk0;
     u16 unk4;
@@ -15,7 +17,7 @@ struct process_profile_definition {
     s32 unk10;
     s32 unk14;
     s32 mParameters;
-    s32 unk1C;
+    nodedraw_method_class *mNDrwMthCls;
     u8 unk20[4];
     s32 unk24;
 };

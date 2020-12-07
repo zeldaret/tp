@@ -6,17 +6,28 @@
 #include "f/f_pc/f_pc_method.h"
 #include "f/f_pc/f_pc_layer.h"
 
+struct nodedraw_method_class : public process_method_class {
+    process_method_func mpNodedrawFunc;
+};
+
 struct process_node_class : public base_process_class {
-    process_method_class *mpNodeMtd;
+    nodedraw_method_class *mpNodeMtd;
     layer_class mLayer;
     node_list_class mLayerNodeLists[16];
-    u8 mUnk0;
+    s8 mUnk0;
 };
+
 
 extern "C" {
 
-int fpcNd_Create(process_node_class *pNode);
-bool fpcNd_IsDeleteTiming(void);
+int fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData);
+int fpcNd_Draw(process_node_class *pProcNode);
+int fpcNd_Execute(process_node_class *pProcNode);
+void* fpcNd_IsCreatingFromUnder(process_node_class* param_1);
+int fpcNd_IsDeleteTiming(process_node_class* param_1);
+int fpcNd_IsDelete(process_node_class* param_1);
+int fpcNd_Delete(process_node_class* param_1);
+int fpcNd_Create(process_node_class* tmp);
 
 };
 

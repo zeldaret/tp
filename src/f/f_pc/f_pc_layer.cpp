@@ -43,7 +43,7 @@ int fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag) {
     return cTg_SingleCutFromTree(pTag);
 }
 
-bool fpcLy_IsDeletingMesg(layer_class *pLayer) {
+s32 fpcLy_IsDeletingMesg(layer_class *pLayer) {
     return pLayer->mDeletingCount > 0;
 }
 
@@ -57,7 +57,7 @@ void fpcLy_DeletedMesg(layer_class *pLayer) {
     }
 }
 
-bool fpcLy_IsCreatingMesg(layer_class *pLayer) {
+s32 fpcLy_IsCreatingMesg(layer_class *pLayer) {
     return pLayer->mCreatingCount > 0;
 }
 

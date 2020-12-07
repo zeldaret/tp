@@ -34,8 +34,8 @@ void fpcLy_CreatedMesg(layer_class *pLayer);
 void fpcLy_CreatingMesg(layer_class *pLayer);
 void fpcLy_DeletedMesg(layer_class *pLayer);
 void fpcLy_DeletingMesg(layer_class *pLayer);
-bool fpcLy_IsCreatingMesg(layer_class *pLayer);
-bool fpcLy_IsDeletingMesg(layer_class *pLayer);
+s32 fpcLy_IsCreatingMesg(layer_class *pLayer);
+s32 fpcLy_IsDeletingMesg(layer_class *pLayer);
 
 int fpcLy_IntoQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag, int idx);
 int fpcLy_ToQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag);

@@ -14,6 +14,8 @@ fpcNd_DrawMethod:
 /* 80022508 0001F448  7C 08 03 A6 */	mtlr r0
 /* 8002250C 0001F44C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022510 0001F450  4E 80 00 20 */	blr 
+.global fpcNd_Draw
+fpcNd_Draw:
 /* 80022514 0001F454  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80022518 0001F458  7C 08 02 A6 */	mflr r0
 /* 8002251C 0001F45C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -124,6 +126,8 @@ lbl_8002268C:
 /* 80022690 0001F5D0  7C 08 03 A6 */	mtlr r0
 /* 80022694 0001F5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022698 0001F5D8  4E 80 00 20 */	blr 
+.global fpcNd_IsDelete
+fpcNd_IsDelete:
 /* 8002269C 0001F5DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800226A0 0001F5E0  7C 08 02 A6 */	mflr r0
 /* 800226A4 0001F5E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -134,6 +138,8 @@ lbl_8002268C:
 /* 800226B8 0001F5F8  7C 08 03 A6 */	mtlr r0
 /* 800226BC 0001F5FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800226C0 0001F600  4E 80 00 20 */	blr 
+.global fpcNd_Delete
+fpcNd_Delete:
 /* 800226C4 0001F604  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800226C8 0001F608  7C 08 02 A6 */	mflr r0
 /* 800226CC 0001F60C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -161,6 +167,8 @@ lbl_80022714:
 /* 8002271C 0001F65C  7C 08 03 A6 */	mtlr r0
 /* 80022720 0001F660  38 21 00 10 */	addi r1, r1, 0x10
 /* 80022724 0001F664  4E 80 00 20 */	blr 
+.global fpcNd_Create
+fpcNd_Create:
 /* 80022728 0001F668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002272C 0001F66C  7C 08 02 A6 */	mflr r0
 /* 80022730 0001F670  90 01 00 14 */	stw r0, 0x14(r1)
