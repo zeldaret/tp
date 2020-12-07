@@ -35,8 +35,8 @@ struct base_process_class {
 
 extern "C" {
 
-extern int fpcBs_Is_JustOfType(int a, int b);
-extern int fpcBs_Execute(base_process_class *pProc);
+int fpcBs_Is_JustOfType(int a, int b);
+int fpcBs_Execute(base_process_class *pProc);
 
 };
 
