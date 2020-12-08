@@ -7,11 +7,12 @@
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 3
 #define MAX_EVENTS 256
-
-static const int MAX_ITEM_SLOTS = 24;
-static const int ITEM_XY_MAX_DUMMY = 8;
-static const int LIGHT_DROP_STAGE = 4;
-static const int LETTER_INFO_BIT = 64;
+#define MAX_ITEM_SLOTS 24
+#define ITEM_XY_MAX_DUMMY 8
+#define LIGHT_DROP_STAGE 4
+#define LETTER_INFO_BIT 64
+#define BOMB_BAG_MAX 3
+#define BOTTLE_MAX 4
 
 enum Wallets {
     WALLET,
@@ -414,14 +415,14 @@ class cXyz {
 class dSv_horse_place_c {
    public:
     void init(void);
-    void set(const char*, const cXyz&, short, s8);
+    void set(const char*, const cXyz&, s16, s8);
 
    private:
     cXyz mPosition;
     u16 mXRotation;
-    char current_stage[8];
-    u8 spawn_id;
-    u8 room_id;
+    char mCurrentStage[8];
+    u8 mSpawnId;
+    u8 mRoomId;
 };
 
 class dSv_player_return_place_c {
@@ -430,9 +431,9 @@ class dSv_player_return_place_c {
     void set(const char*, s8, u8);
 
    private:
-    char current_stage[8];
-    u8 spawn_id;
-    u8 room_id;
+    char mCurrentStage[8];
+    u8 mSpawnId;
+    u8 mRoomId;
     u8 unk10;
     u8 unk11;
 };
@@ -442,30 +443,30 @@ class dSv_player_field_last_stay_info_c {
     void init(void);
     BOOL isRegionBit(int unk) const;
     void onRegionBit(int unk);
-    void set(const char*, const cXyz&, short, s8, u8);
+    void set(const char*, const cXyz&, s16, s8, u8);
 
    private:
-    cXyz last_position;
-    short last_angle;
-    char last_stage[8];
-    u8 last_spawn_id;
-    u8 last_room_id;
+    cXyz mLastPosition;
+    s16 mLastAngle;
+    char mLastStage[8];
+    u8 mLastSpawnId;
+    u8 mLastRoomId;
     u8 unk24;
-    u8 last_region;
+    u8 mLastRegion;
     u8 unk26[2];
 };
 
 class dSv_player_last_mark_info_c {
    public:
     void init(void);
-    void setWarpItemData(const char*, const cXyz&, short, s8, u8, u8);
+    void setWarpItemData(const char*, const cXyz&, s16, s8, u8, u8);
 
    private:
-    cXyz ooccoo_position;
-    s16 ooccoo_angle;
-    char ooccoo_stage[8];
-    u8 ooccoo_spawn_id;
-    u8 ooccoo_room_id;
+    cXyz mOoccooPosition;
+    s16 mOoccooXRotation;
+    char mOoccooStage[8];
+    u8 mOoccooSpawnId;
+    u8 mOoccooRoomId;
     char unk24;
     u8 unk25[3];
 };
@@ -497,12 +498,9 @@ class dSv_player_item_c {
     void setRodTypeLevelUp(void);
     void setBaitItem(u8);
 
-    static const int BOMB_BAG_MAX = 3;
-    static const int BOTTLE_MAX = 4;
-
    private:
-    u8 items[24];
-    u8 item_slots[24];
+    u8 mItems[24];
+    u8 mItemSlots[24];
 };
 
 class dSv_player_get_item_c {
@@ -513,8 +511,8 @@ class dSv_player_get_item_c {
     int isFirstBit(u8) const;
 
    private:
-    u32 pause_menu_bit_fields[4];
-    u8 ok[16];
+    u32 mPauseMenuBitFields[4];
+    u8 padding[16];
 };
 
 class dSv_player_item_record_c {
@@ -523,16 +521,16 @@ class dSv_player_item_record_c {
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
     void setBottleNum(u8, u8);
-    u8 addBottleNum(u8, short);
+    u8 addBottleNum(u8, s16);
     u8 getBottleNum(u8) const;
 
-    void setBowAmount(u8 amount) { bow = amount; }
+    void setBowAmount(u8 amount) { mBow = amount; }
 
    private:
-    u8 bow;
-    u8 bomb_bags[3];
-    u8 bottles[4];
-    u8 slingshot;
+    u8 mBow;
+    u8 mBombBags[3];
+    u8 mBottles[4];
+    u8 mSlingshot;
     u8 unk5[3];
 };
 
@@ -542,10 +540,10 @@ class dSv_player_item_max_c {
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
-    void setBowCapacity(u8 max) { item_capacities[0] = max; }
+    void setBowCapacity(u8 max) { mItemCapacities[0] = max; }
 
    private:
-    u8 item_capacities[8];
+    u8 mItemCapacities[8];
 };
 
 class dSv_player_collect_c {
@@ -558,15 +556,15 @@ class dSv_player_collect_c {
     void onCollectMirror(u8);
     BOOL isCollectMirror(u8) const;
 
-    u8 getPoeCount() { return poe_count; }
+    u8 getPoeCount() { return mPoeCount; }
 
    private:
     u8 unk0[8];
     u8 unk8;
-    u8 crystal;
-    u8 mirror;
+    u8 mCrystal;
+    u8 mMirror;
     u8 unk11;
-    u8 poe_count;
+    u8 mPoeCount;
     u8 padding[3];
 };
 
@@ -588,8 +586,8 @@ class dSv_light_drop_c {
     BOOL isLightDropGetFlag(u8) const;
 
    private:
-    u8 light_drop_counts[4];
-    u8 light_drop_get_flag;
+    u8 mLightDropCounts[4];
+    u8 mLightDropGetFlag;
     u8 unk5[3];
 };
 
@@ -602,8 +600,8 @@ class dSv_letter_info_c {
     int isLetterReadFlag(int) const;
 
    private:
-    u32 letter_get_bitfields[2];
-    u32 letter_read_bitfields[2];
+    u32 mLetterGetBitfields[2];
+    u32 mLetterReadBitfields[2];
     u8 unk16[64];
 };
 
@@ -613,7 +611,7 @@ class dSv_fishing_info_c {
     void addFishCount(u8);  // merged with init in the assembly
 
    private:
-    u16 fish_count[16];
+    u16 mFishCount[16];
     u8 unk32[16];
     u8 padding[4];
 };
@@ -650,9 +648,9 @@ class dSv_player_config_c {
 
    private:
     u8 unk0;
-    u8 sound_mode;
+    u8 mSoundMode;
     u8 unk2;
-    u8 vibration_status;
+    u8 mVibrationStatus;
     u8 unk4;
     u8 unk5;
     u16 unk6;
@@ -665,7 +663,7 @@ class dSv_player_config_c {
 class dSv_player_c {
    public:
     void init(void);
-    dSv_player_info_c& getPlayerInfo() { return player_info; }
+    dSv_player_info_c& getPlayerInfo() { return mPlayerInfo; }
     dSv_player_status_a_c& getPlayerStatusA() { return player_status_a; }
     dSv_player_item_c& getPlayerItem() { return player_item; }
     dSv_player_collect_c& getPlayerCollect() { return player_collect; }
@@ -693,7 +691,7 @@ class dSv_player_c {
     dSv_light_drop_c light_drop;
     dSv_letter_info_c letter_info;
     dSv_fishing_info_c fishing_info;
-    dSv_player_info_c player_info;
+    dSv_player_info_c mPlayerInfo;
     dSv_player_config_c player_config;
 };
 
@@ -852,24 +850,24 @@ class dSv_zone_c {
 
 class dSv_restart_c {
    public:
-    void setRoom(const cXyz&, short, s8);
+    void setRoom(const cXyz&, s16, s8);
 
    private:
     u8 unk0;
     u8 unk1[5];
-    short mXRotation;
+    s16 mXRotation;
     cXyz mPosition;
     u8 padding20[16];
 };
 
 class dSv_turnRestart_c {
    public:
-    void set(const cXyz&, short, s8, u32);
+    void set(const cXyz&, s16, s8, u32);
 
    private:
     cXyz mPosition;
     u32 unk12;
-    short mXRotation;
+    s16 mXRotation;
     s8 unk18;
 };
 

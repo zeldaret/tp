@@ -132,53 +132,53 @@ void dSv_horse_place_c::init(void) {
     f32 position_val;
     char* default_stage;
 
-    default_stage = strcpy((char*)current_stage, (char*)lbl_80379234);
+    default_stage = strcpy(mCurrentStage, (char*)lbl_80379234);
     position_val = lbl_80451D5C;
     this->mPosition.x = lbl_80451D5C;
     this->mPosition.y = position_val;
     this->mPosition.z = position_val;
     this->mXRotation = 0;
-    this->spawn_id = 0;
-    this->room_id = 0;
+    this->mSpawnId = 0;
+    this->mRoomId = 0;
 }
 
 void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, s16 i_x_rot, signed char i_room_id) {
-    strcpy(current_stage, i_name);
+    strcpy(mCurrentStage, i_name);
     this->mPosition.x = i_position.x;
     this->mPosition.y = i_position.y;
     this->mPosition.z = i_position.z;
     this->mXRotation = i_x_rot;
-    this->room_id = i_room_id;
+    this->mRoomId = i_room_id;
 }
 
 void dSv_player_return_place_c::init(void) {
-    strcpy(current_stage, (char*)lbl_80379234 + 1);
-    this->room_id = 1;
-    this->spawn_id = 0;
+    strcpy(mCurrentStage, (char*)lbl_80379234 + 1);
+    this->mRoomId = 1;
+    this->mSpawnId = 0;
     this->unk10 = 21;
     this->unk11 = 0;
 }
 
 void dSv_player_return_place_c::set(const char* i_name, s8 i_room_id, u8 i_spawn_id) {
-    strcpy(current_stage, i_name);
-    this->room_id = i_room_id;
-    this->spawn_id = i_spawn_id;
+    strcpy(mCurrentStage, i_name);
+    this->mRoomId = i_room_id;
+    this->mSpawnId = i_spawn_id;
 }
 
 void dSv_player_field_last_stay_info_c::init() {
     f32 position_val;
 
-    strcpy(last_stage, (char*)lbl_80379234);
+    strcpy(mLastStage, (char*)lbl_80379234);
     position_val = lbl_80451D5C;
 
-    this->last_position.x = lbl_80451D5C;
-    this->last_position.y = position_val;
-    this->last_position.z = position_val;
-    this->last_angle = 0;
-    this->last_spawn_id = 0;
-    this->last_room_id = 1;
+    this->mLastPosition.x = lbl_80451D5C;
+    this->mLastPosition.y = position_val;
+    this->mLastPosition.z = position_val;
+    this->mLastAngle = 0;
+    this->mLastSpawnId = 0;
+    this->mLastRoomId = 1;
     this->unk24 = 0;
-    this->last_region = 0;
+    this->mLastRegion = 0;
 
     for (int i = 0; i < 2; i++) {
         this->unk26[i] = 0;
@@ -186,12 +186,12 @@ void dSv_player_field_last_stay_info_c::init() {
 }
 
 void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_last_position, s16 i_last_angle, signed char i_last_spawn_id, u8 i_last_room_id) {
-    strcpy(last_stage, i_name);
+    strcpy(mLastStage, i_name);
 
-    this->last_position = i_last_position;
-    this->last_angle = i_last_angle;
-    this->last_spawn_id = i_last_spawn_id;
-    this->last_room_id = i_last_room_id;
+    this->mLastPosition = i_last_position;
+    this->mLastAngle = i_last_angle;
+    this->mLastSpawnId = i_last_spawn_id;
+    this->mLastRoomId = i_last_room_id;
 }
 
 void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
@@ -201,12 +201,12 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region_bit) {
     if (8 <= i_region_bit) {
         return;
     }
-    this->last_region |= (u8)(1 << i_region_bit);
+    this->mLastRegion |= (u8)(1 << i_region_bit);
 }
 
 BOOL dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
     if ((param_1 >= 0) && (param_1 < 8)) {
-        return (last_region & (u8)(1 << param_1)) ? TRUE : FALSE;
+        return (mLastRegion & (u8)(1 << param_1)) ? TRUE : FALSE;
     }
     return false;
 }
@@ -214,14 +214,14 @@ BOOL dSv_player_field_last_stay_info_c::isRegionBit(int param_1) const {
 void dSv_player_last_mark_info_c::init(void) {
     f32 position;
 
-    strcpy(ooccoo_stage, (char*)lbl_80379234);
+    strcpy(mOoccooStage, (char*)lbl_80379234);
     position = lbl_80451D5C;
-    this->ooccoo_position.x = lbl_80451D5C;
-    this->ooccoo_position.y = position;
-    this->ooccoo_position.z = position;
-    this->ooccoo_angle = 0;
-    this->ooccoo_room_id = 0;
-    this->ooccoo_spawn_id = 0;
+    this->mOoccooPosition.x = lbl_80451D5C;
+    this->mOoccooPosition.y = position;
+    this->mOoccooPosition.z = position;
+    this->mOoccooXRotation = 0;
+    this->mOoccooRoomId = 0;
+    this->mOoccooSpawnId = 0;
     this->unk24 = -1;
 
     for (int i = 0; i < 3; i++) {
@@ -230,22 +230,22 @@ void dSv_player_last_mark_info_c::init(void) {
 }
 
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage, const cXyz& i_ooccoo_position, s16 i_ooccoo_angle, s8 i_ooccoo_room_id, u8 unk1, u8 unk2) {
-    strcpy(ooccoo_stage, i_ooccoo_stage);
-    this->ooccoo_position = i_ooccoo_position;
-    this->ooccoo_angle = i_ooccoo_angle;
-    this->ooccoo_room_id = i_ooccoo_room_id;
+    strcpy(mOoccooStage, i_ooccoo_stage);
+    this->mOoccooPosition = i_ooccoo_position;
+    this->mOoccooXRotation = i_ooccoo_angle;
+    this->mOoccooRoomId = i_ooccoo_room_id;
 }
 
 void dSv_player_item_c::init(void) {
     for (int i = 0; i < 24; i++) {
-        this->items[i] = NO_ITEM;
-        this->item_slots[i] = NO_ITEM;
+        this->mItems[i] = NO_ITEM;
+        this->mItemSlots[i] = NO_ITEM;
     }
 }
 
 void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
     if (current_items_index < MAX_ITEM_SLOTS) {
-        this->items[current_items_index] = new_items_index;
+        this->mItems[current_items_index] = new_items_index;
         this->setLineUpItem();
     }
 
@@ -356,7 +356,7 @@ asm void dSv_player_item_c::setLineUpItem(void) {
 
 u8 dSv_player_item_c::getLineUpItem(int slot_number) const {
     if (slot_number < MAX_ITEM_SLOTS) {
-        return this->item_slots[slot_number];
+        return this->mItemSlots[slot_number];
     }
     return NO_ITEM;
 }
@@ -431,7 +431,7 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
 
     item_id = dSv_item_rename(i_item_id);
     for (int i = 0; i < BOTTLE_MAX; i++) {
-        if (item_id == items[i + 0xb]) {
+        if (item_id == this->mItems[i + SLOT_11]) {
             num_bottles++;
         }
     }
@@ -448,7 +448,7 @@ u8 dSv_player_item_c::checkEmptyBottle(void) {
 
     for (int i = 0; i < BOTTLE_MAX; i++) {
         // Loop through the bottle slots (11 - 14) and increment counter for every empty bottle
-        if (items[i + SLOT_11] == EMPTY_BOTTLE) {
+        if (this->mItems[i + SLOT_11] == EMPTY_BOTTLE) {
             num++;
         }
     }
@@ -506,7 +506,7 @@ u8 dSv_player_item_c::checkBombBag(u8 param_1) {
 
     for (int i = 0; i < BOMB_BAG_MAX; i++) {
         // Loop through the bomb bag slots (15 - 17) and increment counter for every match
-        if (param_1 == this->items[i + SLOT_15]) {
+        if (param_1 == this->mItems[i + SLOT_15]) {
             counter++;
         }
     }
@@ -519,19 +519,19 @@ asm void dSv_player_item_c::setWarashibeItem(u8) {
 }
 
 void dSv_player_item_c::setRodTypeLevelUp(void) {
-    int current_fishing_rod_item_id = this->items[SLOT_20];
+    int current_fishing_rod_item_id = this->mItems[SLOT_20];
 
     switch (current_fishing_rod_item_id) {
         case BEE_ROD: {
-            this->items[SLOT_20] = JEWEL_BEE_ROD;
+            this->mItems[SLOT_20] = JEWEL_BEE_ROD;
             break;
         }
         case WORM_ROD: {
-            this->items[SLOT_20] = JEWEL_WORM_ROD;
+            this->mItems[SLOT_20] = JEWEL_WORM_ROD;
             break;
         }
         case FISHING_ROD_1: {
-            this->items[SLOT_20] = JEWEL_ROD;
+            this->mItems[SLOT_20] = JEWEL_ROD;
             break;
         }
     }
@@ -546,15 +546,15 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
         case BEE_CHILD: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_BEE_ROD : this->items[SLOT_20] = BEE_ROD;
+            isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_BEE_ROD : this->mItems[SLOT_20] = BEE_ROD;
             break;
         }
         case WORM: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_WORM_ROD : this->items[SLOT_20] = WORM_ROD;
+            isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_WORM_ROD : this->mItems[SLOT_20] = WORM_ROD;
             break;
         }
         case NO_ITEM: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_ROD : this->items[SLOT_20] = FISHING_ROD_1;
+            isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_ROD : this->mItems[SLOT_20] = FISHING_ROD_1;
             break;
         }
     }
@@ -572,7 +572,7 @@ asm void dSv_player_item_c::setBaitItem(u8 param_1) {
 
 void dSv_player_get_item_c::init(void) {
     for (int i = 0; i < 8; i++) {
-        this->pause_menu_bit_fields[i] = 0;
+        this->mPauseMenuBitFields[i] = 0;
     }
 }
 
@@ -580,7 +580,7 @@ void dSv_player_get_item_c::init(void) {
 #ifdef NONMATCHING
 void dSv_player_get_item_c::onFirstBit(u8 i_itemno) {
     int uVar1 = ((int)i_itemno & 0xe0) >> 0x3;
-    this->pause_menu_bit_fields[uVar1] |= (u32)(1 << (i_itemno & 0x1F));
+    this->mPauseMenuBitFields[uVar1] |= (u32)(1 << (i_itemno & 0x1F));
 }
 #else
 asm void dSv_player_get_item_c::onFirstBit(u8) {
@@ -600,17 +600,17 @@ asm BOOL dSv_player_get_item_c::isFirstBit(u8) const {
 }
 
 void dSv_player_item_record_c::init(void) {
-    this->bow = 0;
+    this->mBow = 0;
 
     for (int i = 0; i < 3; i++) {
-        this->bomb_bags[i] = 0;
+        this->mBombBags[i] = 0;
     }
 
     for (int i = 0; i < 4; i++) {
-        this->bottles[i] = 0;
+        this->mBottles[i] = 0;
     }
 
-    this->slingshot = 0;
+    this->mSlingshot = 0;
 
     for (int i = 0; i < 3; i++) {
         this->unk5[i] = 0;
@@ -618,56 +618,56 @@ void dSv_player_item_record_c::init(void) {
 }
 
 void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 bag_id) {
-    this->bomb_bags[i_bagIdx] = bag_id;
+    this->mBombBags[i_bagIdx] = bag_id;
 }
 
 u8 dSv_player_item_record_c::getBombNum(u8 i_bagIdx) const {
-    return this->bomb_bags[i_bagIdx];
+    return this->mBombBags[i_bagIdx];
 }
 
 void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 bottle_num) {
-    this->bottles[i_bottleIdx] = bottle_num;
+    this->mBottles[i_bottleIdx] = bottle_num;
 }
 
 u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 param_2) {
-    int iVar3 = this->bottles[i_bottleIdx] + param_2;
+    int iVar3 = this->mBottles[i_bottleIdx] + param_2;
 
     g_dComIfG_gameInfo.save_file.getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
 
     if (iVar3 < 0) {
-        this->bottles[i_bottleIdx] = 0;
+        this->mBottles[i_bottleIdx] = 0;
     } else if (iVar3 > dComIfGs_getBottleMax()) {
-        this->bottles[i_bottleIdx] = dComIfGs_getBottleMax();
+        this->mBottles[i_bottleIdx] = dComIfGs_getBottleMax();
     } else {
-        this->bottles[i_bottleIdx] = iVar3;
+        this->mBottles[i_bottleIdx] = iVar3;
     }
-    return this->bottles[i_bottleIdx];
+    return this->mBottles[i_bottleIdx];
 }
 
 u8 dSv_player_item_record_c::getBottleNum(u8 i_bottleIdx) const {
-    return this->bottles[i_bottleIdx];
+    return this->mBottles[i_bottleIdx];
 }
 
 void dSv_player_item_max_c::init(void) {
     for (int i = 0; i < 7; i++) {
-        this->item_capacities[i] = 30;
+        this->mItemCapacities[i] = 30;
     }
     setBombNum(NORMAL_BOMB, 30);
     setBombNum(WATER_BOMB, 15);
     setBombNum(POKE_BOMB, 10);
-    this->item_capacities[7] = 0;
+    this->mItemCapacities[7] = 0;
 }
 
 void dSv_player_item_max_c::setBombNum(u8 bomb_id, u8 bomb_max) {
     switch (bomb_id) {
         case NORMAL_BOMB:
-            this->item_capacities[1] = bomb_max;
+            this->mItemCapacities[1] = bomb_max;
             return;
         case WATER_BOMB:
-            this->item_capacities[2] = bomb_max;
+            this->mItemCapacities[2] = bomb_max;
             return;
         case POKE_BOMB:
-            this->item_capacities[6] = bomb_max;
+            this->mItemCapacities[6] = bomb_max;
             return;
     }
 }
@@ -682,11 +682,11 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
 
     switch (param_1) {
         case NORMAL_BOMB:
-            return (u8)(this->item_capacities[0x1] * iVar3);
+            return (u8)(this->mItemCapacities[0x1] * iVar3);
         case WATER_BOMB:
-            return (u8)(this->item_capacities[0x2] * iVar3);
+            return (u8)(this->mItemCapacities[0x2] * iVar3);
         case POKE_BOMB:
-            return (u8)(this->item_capacities[0x6] * iVar3);
+            return (u8)(this->mItemCapacities[0x6] * iVar3);
         default:
             return 0;
     }
@@ -698,10 +698,10 @@ void dSv_player_collect_c::init(void) {
     }
 
     this->unk8 = 0;
-    this->crystal = 0;
-    this->mirror = 0;
+    this->mCrystal = 0;
+    this->mMirror = 0;
     this->unk11 = 0xFF;
-    this->poe_count = 0;
+    this->mPoeCount = 0;
 }
 
 void dSv_player_collect_c::setCollect(int param_1, u8 i_item) {
@@ -713,19 +713,19 @@ BOOL dSv_player_collect_c::isCollect(int param_1, u8 i_item) const {
 }
 
 void dSv_player_collect_c::onCollectCrystal(u8 i_item) {
-    this->crystal |= (u8)(1 << i_item);
+    this->mCrystal |= (u8)(1 << i_item);
 }
 
 BOOL dSv_player_collect_c::isCollectCrystal(u8 i_item) const {
-    return this->crystal & (u8)(1 << i_item) ? TRUE : FALSE;
+    return this->mCrystal & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
 void dSv_player_collect_c::onCollectMirror(u8 i_item) {
-    this->mirror |= (u8)(1 << i_item);
+    this->mMirror |= (u8)(1 << i_item);
 }
 
 BOOL dSv_player_collect_c::isCollectMirror(u8 i_item) const {
-    return this->mirror & (u8)(1 << i_item) ? TRUE : FALSE;
+    return this->mMirror & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
 void dSv_player_wolf_c::init(void) {
@@ -738,10 +738,10 @@ void dSv_player_wolf_c::init(void) {
 
 void dSv_light_drop_c::init(void) {
     for (int i = 0; i < 4; i++) {
-        this->light_drop_counts[i] = 0;
+        this->mLightDropCounts[i] = 0;
     }
 
-    this->light_drop_get_flag = 0;
+    this->mLightDropGetFlag = 0;
 
     for (int i = 0; i < 3; i++) {
         this->unk5[i] = 0;
@@ -750,7 +750,7 @@ void dSv_light_drop_c::init(void) {
 
 void dSv_light_drop_c::setLightDropNum(u8 i_nowLevel, u8 param_2) {
     if ((i_nowLevel < LIGHT_DROP_STAGE) || (i_nowLevel > 6)) {
-        this->light_drop_counts[i_nowLevel] = param_2;
+        this->mLightDropCounts[i_nowLevel] = param_2;
     }
 }
 
@@ -758,12 +758,12 @@ u8 dSv_light_drop_c::getLightDropNum(u8 i_nowLevel) const {
     if ((i_nowLevel >= LIGHT_DROP_STAGE) && (i_nowLevel <= 6)) {
         return 0;
     }
-    return this->light_drop_counts[i_nowLevel];
+    return this->mLightDropCounts[i_nowLevel];
 }
 
 void dSv_light_drop_c::onLightDropGetFlag(u8 i_nowLevel) {
     if ((i_nowLevel < LIGHT_DROP_STAGE) || (i_nowLevel > 6)) {
-        this->light_drop_get_flag |= (u8)(1 << i_nowLevel);
+        this->mLightDropGetFlag |= (u8)(1 << i_nowLevel);
     }
 }
 
@@ -771,13 +771,13 @@ BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
     if ((i_nowLevel >= LIGHT_DROP_STAGE) && (i_nowLevel <= 6)) {
         return 0;
     }
-    return this->light_drop_get_flag & (u8)(1 << i_nowLevel) ? TRUE : FALSE;
+    return this->mLightDropGetFlag & (u8)(1 << i_nowLevel) ? TRUE : FALSE;
 }
 
 void dSv_letter_info_c::init(void) {
     for (int i = 0; i < 2; i++) {
-        this->letter_get_bitfields[i] = 0;
-        this->letter_read_bitfields[i] = 0;
+        this->mLetterGetBitfields[i] = 0;
+        this->mLetterReadBitfields[i] = 0;
     }
 
     for (int i = 0; i < LETTER_INFO_BIT; i++) {
@@ -786,31 +786,31 @@ void dSv_letter_info_c::init(void) {
 }
 
 void dSv_letter_info_c::onLetterGetFlag(int i_no) {
-    this->letter_get_bitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
+    this->mLetterGetBitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
 }
 
 BOOL dSv_letter_info_c::isLetterGetFlag(int i_no) const {
-    return this->letter_get_bitfields[i_no >> 0x5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
+    return this->mLetterGetBitfields[i_no >> 0x5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
 void dSv_letter_info_c::onLetterReadFlag(int i_no) {
-    this->letter_read_bitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
+    this->mLetterReadBitfields[i_no >> 0x5] |= 0x1 << (i_no & 0x1F);
 }
 
 BOOL dSv_letter_info_c::isLetterReadFlag(int i_no) const {
-    return this->letter_read_bitfields[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
+    return this->mLetterReadBitfields[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
 void dSv_fishing_info_c::init(void) {
     for (int i = 0; i < 16; i++) {
-        this->fish_count[i] = 0;
+        this->mFishCount[i] = 0;
         this->unk32[i] = 0;
     }
 }
 
 void dSv_fishing_info_c::addFishCount(u8 fish_index) {
-    if (this->fish_count[fish_index] < 999) {
-        this->fish_count[fish_index] += 1;
+    if (this->mFishCount[fish_index] < 999) {
+        this->mFishCount[fish_index] += 1;
     }
 }
 
@@ -855,20 +855,20 @@ asm void dSv_player_info_c::init(void) {
 #endif
 
 void dSv_player_config_c::init(void) {
-    OSSoundMode os_sound_mode;
+    OSSoundMode os_mSoundMode;
 
     this->unk0 = 1;
-    os_sound_mode = OSGetSoundMode();
-    if (os_sound_mode == SOUND_MODE_MONO) {
-        this->sound_mode = 0;
+    os_mSoundMode = OSGetSoundMode();
+    if (os_mSoundMode == SOUND_MODE_MONO) {
+        this->mSoundMode = 0;
         Z2AudioMgr_NS_setOutputMode(lbl_80451368, 0);
     } else {
-        this->sound_mode = 1;
+        this->mSoundMode = 1;
         Z2AudioMgr_NS_setOutputMode(lbl_80451368, 1);
     }
 
     this->unk2 = 0;
-    this->vibration_status = 1;
+    this->mVibrationStatus = 1;
     this->unk4 = 0;
     this->unk5 = 0;
     this->unk9 = 0;
@@ -891,19 +891,19 @@ asm u32 dSv_player_config_c::checkVibration(void) const {
 #endif
 
 u8 dSv_player_config_c::getSound(void) {
-    return this->sound_mode;
+    return this->mSoundMode;
 }
 
-void dSv_player_config_c::setSound(u8 i_sound_mode) {
-    this->sound_mode = i_sound_mode;
+void dSv_player_config_c::setSound(u8 i_mSoundMode) {
+    this->mSoundMode = i_mSoundMode;
 }
 
 u8 dSv_player_config_c::getVibration(void) {
-    return this->vibration_status;
+    return this->mVibrationStatus;
 }
 
-void dSv_player_config_c::setVibration(u8 i_vibration_status) {
-    this->vibration_status = i_vibration_status;
+void dSv_player_config_c::setVibration(u8 i_mVibrationStatus) {
+    this->mVibrationStatus = i_mVibrationStatus;
 }
 
 void dSv_player_c::init(void) {
@@ -922,7 +922,7 @@ void dSv_player_c::init(void) {
     light_drop.init();
     letter_info.init();
     fishing_info.init();
-    player_info.init();
+    mPlayerInfo.init();
     player_config.init();
 }
 
