@@ -6,7 +6,8 @@
 
 typedef int (*process_method_tag_func)(void *);
 
-struct process_method_tag_class : public create_tag_class {
+struct process_method_tag_class {
+    create_tag_class mCreateTag;
     process_method_tag_func mpFunc;
     void *mpMthdData;
 };

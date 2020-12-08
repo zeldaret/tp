@@ -1307,6 +1307,11 @@ fpcNd_IsDelete
 fpcNd_Delete
 fpcNd_Create
 fpcNd_IsCreatingFromUnder
+fpcNdRq_phase_IsCreated
+fpcNdRq_phase_Create
+fpcNdRq_phase_IsDeleteTiming
+fpcNdRq_phase_IsDeleted
+fpcNdRq_phase_Delete
 }
 /*
 .init 80003100 - 80005600
