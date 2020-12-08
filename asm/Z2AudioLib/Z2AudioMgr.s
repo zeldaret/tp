@@ -11,9 +11,9 @@ Z2AudioMgr:
 /* 802CD254 002CA194  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802CD258 002CA198  93 C1 00 08 */	stw r30, 8(r1)
 /* 802CD25C 002CA19C  7C 7F 1B 78 */	mr r31, r3
-/* 802CD260 002CA1A0  4B FD E3 ED */	bl Z2SeMgr
+/* 802CD260 002CA1A0  4B FD E3 ED */	bl __ct__7Z2SeMgrFv
 /* 802CD264 002CA1A4  38 7F 03 D0 */	addi r3, r31, 0x3d0
-/* 802CD268 002CA1A8  4B FE 1C 39 */	bl Z2SeqMgr
+/* 802CD268 002CA1A8  4B FE 1C 39 */	bl __ct__8Z2SeqMgrFv
 /* 802CD26C 002CA1AC  38 7F 04 A4 */	addi r3, r31, 0x4a4
 /* 802CD270 002CA1B0  4B FE 95 D1 */	bl __ct__10Z2SceneMgrFv
 /* 802CD274 002CA1B4  38 7F 04 C4 */	addi r3, r31, 0x4c4
@@ -371,7 +371,7 @@ lbl_802CD7A0:
 /* 802CD7A0 002CA6E0  7F 23 CB 78 */	mr r3, r25
 /* 802CD7A4 002CA6E4  4B FD 79 55 */	bl JAUSection_NS_finishBuild
 /* 802CD7A8 002CA6E8  7F C3 F3 78 */	mr r3, r30
-/* 802CD7AC 002CA6EC  4B FD DF A5 */	bl Z2SeMgr_NS_initSe
+/* 802CD7AC 002CA6EC  4B FD DF A5 */	bl initSe__7Z2SeMgrFv
 .global seqCallback
 /* 802CD7B0 002CA6F0  3C 60 80 2B */	lis r3, seqCallback@ha
 .global seqCallback
@@ -460,7 +460,7 @@ Z2AudioMgr_NS_zeldaGFrameWork:
 /* 802CD8D0 002CA810  38 7F 0F 2C */	addi r3, r31, 0xf2c
 /* 802CD8D4 002CA814  4B FF F0 FD */	bl Z2SpeechMgr2_NS_framework
 /* 802CD8D8 002CA818  7F E3 FB 78 */	mr r3, r31
-/* 802CD8DC 002CA81C  4B FE 08 A9 */	bl Z2SeMgr_NS_processSeFramework
+/* 802CD8DC 002CA81C  4B FE 08 A9 */	bl processSeFramework__7Z2SeMgrFv
 /* 802CD8E0 002CA820  38 7F 03 D0 */	addi r3, r31, 0x3d0
 /* 802CD8E4 002CA824  4B FE 5A C5 */	bl Z2SeqMgr_NS_processBgmFramework
 /* 802CD8E8 002CA828  38 7F 04 C4 */	addi r3, r31, 0x4c4

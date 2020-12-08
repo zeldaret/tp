@@ -1,4 +1,5 @@
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
+#include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 
 void Z2CreatureLink::setLinkGroupInfo(u8 param1) {
