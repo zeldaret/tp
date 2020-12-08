@@ -351,33 +351,33 @@ class dSv_player_status_a_c {
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    inline u16& getCurrentHealth() {
-        return current_health;
+    u16& getCurrentHealth() {
+        return mCurrentHealth;
     }
-    inline void setWalletLV(u8 lv) {
-        current_wallet = lv;
+    void setWalletLV(u8 lv) {
+        mCurrentWallet = lv;
     }
     void setLanternOil(u16 amount) {
-        max_lantern_oil = amount;
-        current_lantern_oil = amount;
+        mMaxLanternOil = amount;
+        mCurrentLanternOil = amount;
     }
 
    private:
-    u16 max_health;
-    u16 current_health;
-    u16 current_rupees;
-    u16 max_lantern_oil;
-    u16 current_lantern_oil;
+    u16 mMaxHealth;
+    u16 mCurrentHealth;
+    u16 mCurrentRupees;
+    u16 mMaxLanternOil;
+    u16 mCurrentLanternOil;
     u8 unk10;
-    u8 select_item[3];
-    u8 mix_item[3];
+    u8 mSelectItem[3];
+    u8 mMixItem[3];
     u8 unk17;
     u8 unk18;
-    u8 equipment[6];
-    u8 current_wallet;
+    u8 mEquipment[6];
+    u8 mCurrentWallet;
     u8 unk26;
     u8 unk27;
-    u8 magic_flag;
+    u8 mMagicFlag;
     u8 unk29;
     u8 unk30;
     u8 unk31[3];
@@ -388,21 +388,21 @@ class dSv_player_status_b_c {
    public:
     void init(void);
     void onDarkClearLV(int);
-    bool isDarkClearLV(int) const;
+    BOOL isDarkClearLV(int) const;
     void onTransformLV(int);
-    bool isTransformLV(int) const;
+    BOOL isTransformLV(int) const;
 
    private:
     u32 unk0;
     u32 unk4;
-    u8 transform_level_flag;
-    u8 dark_clear_level_flag;
+    u8 mTransformLevelFlag;
+    u8 mDarkClearLevelFlag;
     u8 unk10;
     u8 unk11;
-    float time_of_day;
+    float mTimeOfDay;
     u16 unk16;
     u8 unk18[3];
-    u8 padding61[3];
+    u8 padding[3];
 };
 
 // move to SComponent later
@@ -417,8 +417,8 @@ class dSv_horse_place_c {
     void set(const char*, const cXyz&, short, s8);
 
    private:
-    cXyz position;
-    u16 angle;
+    cXyz mPosition;
+    u16 mXRotation;
     char current_stage[8];
     u8 spawn_id;
     u8 room_id;
@@ -440,13 +440,13 @@ class dSv_player_return_place_c {
 class dSv_player_field_last_stay_info_c {
    public:
     void init(void);
-    bool isRegionBit(int unk) const;
+    BOOL isRegionBit(int unk) const;
     void onRegionBit(int unk);
     void set(const char*, const cXyz&, short, s8, u8);
 
    private:
     cXyz last_position;
-    u16 last_angle;
+    short last_angle;
     char last_stage[8];
     u8 last_spawn_id;
     u8 last_room_id;
@@ -462,7 +462,7 @@ class dSv_player_last_mark_info_c {
 
    private:
     cXyz ooccoo_position;
-    u16 ooccoo_angle;
+    s16 ooccoo_angle;
     char ooccoo_stage[8];
     u8 ooccoo_spawn_id;
     u8 ooccoo_room_id;
@@ -552,11 +552,11 @@ class dSv_player_collect_c {
    public:
     void init(void);
     void setCollect(int, u8);
-    bool isCollect(int, u8) const;
+    BOOL isCollect(int, u8) const;
     void onCollectCrystal(u8);
-    bool isCollectCrystal(u8) const;
+    BOOL isCollectCrystal(u8) const;
     void onCollectMirror(u8);
-    bool isCollectMirror(u8) const;
+    BOOL isCollectMirror(u8) const;
 
     u8 getPoeCount() { return poe_count; }
 
@@ -585,7 +585,7 @@ class dSv_light_drop_c {
     void setLightDropNum(u8, u8);
     u8 getLightDropNum(u8) const;
     void onLightDropGetFlag(u8);
-    bool isLightDropGetFlag(u8) const;
+    BOOL isLightDropGetFlag(u8) const;
 
    private:
     u8 light_drop_counts[4];
@@ -597,7 +597,7 @@ class dSv_letter_info_c {
    public:
     void init(void);
     void onLetterGetFlag(int);
-    bool isLetterGetFlag(int) const;
+    BOOL isLetterGetFlag(int) const;
     void onLetterReadFlag(int);
     int isLetterReadFlag(int) const;
 
@@ -703,13 +703,13 @@ class dSv_memBit_c {
     void init(void);
     void onTbox(int);
     void offTbox(int);
-    bool isTbox(int) const;
+    BOOL isTbox(int) const;
     void onSwitch(int);
     void offSwitch(int);
-    bool isSwitch(int) const;
+    BOOL isSwitch(int) const;
     u8 revSwitch(int);
     void onItem(int);
-    bool isItem(int) const;
+    BOOL isItem(int) const;
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
@@ -770,7 +770,7 @@ class dSv_memory2_c {
     void init(void);
     void onVisitedRoom(int);
     void offVisitedRoom(int);
-    bool isVisitedRoom(int);
+    BOOL isVisitedRoom(int);
 
    private:
     u32 unk0[2];
@@ -781,10 +781,10 @@ class dSv_danBit_c {
     bool init(s8);
     void onSwitch(int);
     void offSwitch(int);
-    bool isSwitch(int) const;
+    BOOL isSwitch(int) const;
     bool revSwitch(int);
     void onItem(int);
-    bool isItem(int) const;
+    BOOL isItem(int) const;
 
    private:
     s8 mStageNum;
@@ -802,16 +802,16 @@ class dSv_zoneBit_c {
     void clearRoomItem(void);
     void onSwitch(int);
     void offSwitch(int);
-    bool isSwitch(int) const;
+    BOOL isSwitch(int) const;
     bool revSwitch(int);
     void onOneSwitch(int);
     void offOneSwitch(int);
-    bool isOneSwitch(int) const;
+    BOOL isOneSwitch(int) const;
     bool revOneSwitch(int);
     void onItem(int);
-    bool isItem(int) const;
+    BOOL isItem(int) const;
     void onOneItem(int);
-    bool isOneItem(int) const;
+    BOOL isOneItem(int) const;
 
    private:
     u16 switch_bitfield[2];
@@ -826,7 +826,7 @@ class dSv_zoneActor_c {
     void init(void);
     void on(int);
     void off(int);
-    bool is(int) const;
+    BOOL is(int) const;
 
     static const int ACTOR_MAX = 0xFFFF;
 
@@ -857,8 +857,8 @@ class dSv_restart_c {
    private:
     u8 unk0;
     u8 unk1[5];
-    short angle;
-    cXyz position;
+    short mXRotation;
+    cXyz mPosition;
     u8 padding20[16];
 };
 
@@ -867,9 +867,9 @@ class dSv_turnRestart_c {
     void set(const cXyz&, short, s8, u32);
 
    private:
-    cXyz position;
+    cXyz mPosition;
     u32 unk12;
-    short angle;
+    short mXRotation;
     s8 unk18;
 };
 
@@ -906,13 +906,13 @@ class dSv_info_c {
     u32 createZone(int);
     void onSwitch(int, int);
     void offSwitch(int, int);
-    bool isSwitch(int, int) const;
+    BOOL isSwitch(int, int) const;
     u8 revSwitch(int, int);
     void onItem(int, int);
-    bool isItem(int, int) const;
+    BOOL isItem(int, int) const;
     void onActor(int, int);
     void offActor(int, int);
-    bool isActor(int, int) const;
+    BOOL isActor(int, int) const;
     void memory_to_card(char*, int);
     void card_to_memory(char*, int);
     void initdata_to_card(char*, int);
