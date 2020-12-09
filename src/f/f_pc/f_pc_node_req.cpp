@@ -151,30 +151,36 @@ int fpcNdRq_Handler(void) {
   }
   return 1;
 }
-int fpcNdRq_IsPossibleTarget(process_node_class *);
-#ifdef NON_MATCHING
+// int fpcNdRq_IsPossibleTarget(process_node_class *);
 int fpcNdRq_IsPossibleTarget(process_node_class *param_1) {
-  // registers are mixed up, lbl_803A3A38.mpHead is loaded directly, instead of loading lbl_803A3A38 first
   int bsPcId = param_1->mBsPcId;
-  for (request_node_class *currentNode = (request_node_class *)lbl_803A3A38.mpHead;currentNode != NULL;currentNode = (request_node_class*)NODE_GET_NEXT(currentNode)) {
-    if ((currentNode->mNodeCrReq->unk_0x40 == 2 || 
-      currentNode->mNodeCrReq->unk_0x40 == 4 ||
-      currentNode->mNodeCrReq->unk_0x40 == 1) && currentNode->mNodeCrReq->mNodeProc.mProcId == bsPcId) {
+  request_node_class *currentNode;
+  node_create_request *currentNdCr;
+  currentNode = (request_node_class *)lbl_803A3A38.mpHead;
+  while (currentNode != NULL) {
+    currentNdCr = currentNode->mNodeCrReq;
+    if ((currentNdCr->unk_0x40 == 2 || currentNdCr->unk_0x40 == 4 || currentNdCr->unk_0x40 == 1)
+      && currentNdCr->mNodeProc.mProcId == bsPcId) {
         return 0;
       }
+    currentNode = (request_node_class*)NODE_GET_NEXT(currentNode);
   }
   return 1;
 }
-#else
-asm int fpcNdRq_IsPossibleTarget(process_node_class *) {
-nofralloc
-#include "asm/80022BE4.s"
-}
-#endif
-int fpcNdRq_IsIng(process_node_class *);
-asm int fpcNdRq_IsIng(process_node_class *) {
-nofralloc
-#include "asm/80022C50.s"
+
+int fpcNdRq_IsIng(process_node_class *param_1) {
+  request_node_class *currentNode;
+  node_create_request *currentNdCr;
+  int bsPcId = param_1->mBsPcId;
+  currentNode = (request_node_class *)lbl_803A3A38.mpHead;
+  while (currentNode != NULL) {
+    currentNdCr = currentNode->mNodeCrReq;
+    if (currentNdCr->mCreatingID == bsPcId) {
+      return 1;
+    }
+    currentNode = (request_node_class*)NODE_GET_NEXT(currentNode);
+  }
+  return 0;
 }
 
 node_create_request *fpcNdRq_Create(s32 param_1) {
@@ -245,20 +251,50 @@ node_create_request *fpcNdRq_CreateNode(u32 param_1, s16 param_2, void *param_3)
   }
 }
 
-#ifdef NON_MATCHING
-#else
-asm void fpcNdRq_Request(void) {
-nofralloc
-#include "asm/80022FE8.s"
+node_create_request *fpcNdRq_Request(u32 param_1, s32 param_2, process_node_class *param_3, s16 param_4, void *param_5, node_create_request_method_class *param_6) {
+  node_create_request *req;
+  switch (param_2) {
+    case 0:
+      req = fpcNdRq_CreateNode(param_1, param_4, param_5);
+      break;
+    case 1:
+      req = fpcNdRq_DeleteNode(param_1, param_3);
+      break;
+    case 2:
+      req = fpcNdRq_ChangeNode(param_1, param_3, param_4, param_5);
+      break;
+    case 4:
+      break;
+  }
+  if (req != NULL) {
+    req->unk_0x40 = param_2;
+    req->mpNodeCrReqMthCls = param_6;
+    fpcNdRq_ToRequestQ(req);
+  }
+  return req;
 }
-#endif
-asm void fpcNdRq_ReChangeNode(void) {
-nofralloc
-#include "asm/80023098.s"
+
+int fpcNdRq_ReChangeNode(u32 param_1, s16 param_2, void *param_3) {
+  request_node_class *currentNode;
+  node_create_request *found;
+  currentNode = (request_node_class*)lbl_803A3A38.mpHead;
+  while (currentNode != NULL) {
+    found = currentNode->mNodeCrReq;
+    if (found->unk_0x40 == 2 && found->mRequestId == param_1) {
+      if (found->mCreatingID == -2) {
+        found->unk_0x58 = param_2;
+        found->unk_0x5C = param_3;
+        return 1;
+      }
+      return 0;
+    }
+    currentNode = (request_node_class*)NODE_GET_NEXT(currentNode);
+  }
+  return 0;
 }
-asm void fpcNdRq_ReRequest(void) {
-nofralloc
-#include "asm/80023110.s"
+
+int fpcNdRq_ReRequest(u32 param_1, s16 param_2, void *param_3) {
+  return fpcNdRq_ReChangeNode(param_1, param_2, param_3);
 }
 
 }
