@@ -33,15 +33,15 @@ int fpcNd_Execute(process_node_class *pProcNode) {
     return ret;
 }
 
-void* fpcNd_IsCreatingFromUnder(process_node_class* param_1) {
+void* fpcNd_IsCreatingFromUnder(process_node_class* pProcNode) {
     layer_class *layer;
-    if (param_1 != NULL && fpcBs_Is_JustOfType(lbl_80450D40,param_1->mSubType) != false) {
-        layer = &param_1->mLayer;
+    if (pProcNode != NULL && fpcBs_Is_JustOfType(lbl_80450D40,pProcNode->mSubType) != false) {
+        layer = &pProcNode->mLayer;
         int uVar1 = fpcLy_IsCreatingMesg(layer);
         if (uVar1 == 0x0) {
             return (process_node_class *)fpcLyIt_Judge(layer, (cNdIt_MethodFunc) fpcNd_IsCreatingFromUnder, NULL);
         } else {
-            return param_1;
+            return pProcNode;
         }
     }
     else {
@@ -49,8 +49,8 @@ void* fpcNd_IsCreatingFromUnder(process_node_class* param_1) {
     }
 }
 
-int fpcNd_IsDeleteTiming(process_node_class* param_1) {
-    if (lbl_804505E0 == 0x1 && fpcNd_IsCreatingFromUnder(param_1) != NULL) {
+int fpcNd_IsDeleteTiming(process_node_class* pProcNode) {
+    if (lbl_804505E0 == 0x1 && fpcNd_IsCreatingFromUnder(pProcNode) != NULL) {
         return 0;
     }
     else {
@@ -58,34 +58,34 @@ int fpcNd_IsDeleteTiming(process_node_class* param_1) {
     }
 }
 
-int fpcNd_IsDelete(process_node_class* param_1) {
-    return fpcMtd_IsDelete(param_1->mpNodeMtd, param_1);
+int fpcNd_IsDelete(process_node_class* pProcNode) {
+    return fpcMtd_IsDelete(pProcNode->mpNodeMtd, pProcNode);
 }
 
-int fpcNd_Delete(process_node_class* param_1) {
-  if ((fpcLy_IsDeletingMesg(&param_1->mLayer) == 0x0) && fpcMtd_Delete(param_1->mpNodeMtd,param_1) == 0x1) {
-    param_1->mSubType = 0x0;
-    return fpcLy_Delete(&param_1->mLayer);
+int fpcNd_Delete(process_node_class* pProcNode) {
+  if ((fpcLy_IsDeletingMesg(&pProcNode->mLayer) == 0x0) && fpcMtd_Delete(pProcNode->mpNodeMtd,pProcNode) == 0x1) {
+    pProcNode->mSubType = 0x0;
+    return fpcLy_Delete(&pProcNode->mLayer);
   }
   else {
     return 0;
   }
 }
 
-int fpcNd_Create(process_node_class* tmp) {
+int fpcNd_Create(process_node_class* pProcNode1) {
     // this is definetly fake, it doesn't match without the cast, naive approach swaps r31 and r30
-    process_node_class *param_1 = (process_node_class*) tmp;
-    process_profile_definition *ppVar4;
-    if (param_1->mInitState == '\0') {
-        ppVar4 = param_1->mpProf;
-        param_1->mSubType = fpcBs_MakeOfType(&lbl_80450D40);
-        param_1->mpNodeMtd = ppVar4->mNDrwMthCls;
-        fpcLy_Create(&param_1->mLayer,param_1,param_1->mLayerNodeLists,0x10);
-        param_1->mUnk0 = 0;
+    process_node_class *pProcNode = (process_node_class*) pProcNode1;
+    process_profile_definition *pProcProfileDef;
+    if (pProcNode->mInitState == '\0') {
+        pProcProfileDef = pProcNode->mpProf;
+        pProcNode->mSubType = fpcBs_MakeOfType(&lbl_80450D40);
+        pProcNode->mpNodeMtd = pProcProfileDef->mNDrwMthCls;
+        fpcLy_Create(&pProcNode->mLayer,pProcNode,pProcNode->mLayerNodeLists,0x10);
+        pProcNode->mUnk0 = 0;
     }
     layer_class *uVar2 = fpcLy_CurrentLayer();
-    fpcLy_SetCurrentLayer(&param_1->mLayer);
-    int uVar3 = fpcMtd_Create(param_1->mpNodeMtd,param_1);
+    fpcLy_SetCurrentLayer(&pProcNode->mLayer);
+    int uVar3 = fpcMtd_Create(pProcNode->mpNodeMtd,pProcNode);
     fpcLy_SetCurrentLayer(uVar2);
     return uVar3;
 }

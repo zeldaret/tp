@@ -7,9 +7,6 @@ extern s32 lbl_80450D40;
 
 extern "C" {
 
-    s32 fpcPause_Enable(process_node_class *pProc, u8 pauseMask);
-    s32 fpcPause_Disable(process_node_class *pProc, u8 pauseMask);
-
 #ifdef NON_MATCHING
 s32 fpcPause_IsEnable(base_process_class *pProc, u8 expected) {
     return ((pProc->mUnk1 & expected) == expected); 
@@ -37,7 +34,7 @@ s32 fpcPause_Disable(process_node_class *pProc, u8 pauseMask) {
     return 1;
 }
 
-void fpcPause_Init(process_node_class *pProc) {
+void fpcPause_Init(base_process_class *pProc) {
     pProc->mUnk1 = 0;
 }
 

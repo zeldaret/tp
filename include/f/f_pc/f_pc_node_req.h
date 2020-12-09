@@ -41,24 +41,24 @@ extern "C" {
 
 void fpcNdRq_RequestQTo(node_create_request *pNodeCreateReq);
 void fpcNdRq_ToRequestQ(node_create_request *pNodeCreateReq);
-int fpcNdRq_phase_IsCreated(node_create_request *pNodeCreateReq);
-int fpcNdRq_phase_Create(node_create_request *pNodeCreateReq);
-int fpcNdRq_phase_IsDeleteTiming(node_create_request *pNodeCreateReq);
-int fpcNdRq_phase_IsDeleted(node_create_request *pNodeCreateReq);
-int fpcNdRq_phase_Delete(node_create_request *pNodeCreateReq);
-int fpcNdRq_DoPhase(node_create_request *pNodeCreateReq);
-int fpcNdRq_Execute(node_create_request *pNodeCreateReq);
-int fpcNdRq_Delete(node_create_request *pNodeCreateReq);
-int fpcNdRq_Cancel(node_create_request *pNodeCreateReq);
-int fpcNdRq_Handler(void);
-int fpcNdRq_IsPossibleTarget(process_node_class *pProcNode);
-int fpcNdRq_IsIng(process_node_class *pProcNode);
+s32 fpcNdRq_phase_IsCreated(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_phase_Create(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_phase_IsDeleteTiming(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_phase_IsDeleted(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_phase_Delete(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_DoPhase(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_Execute(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_Delete(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_Cancel(node_create_request *pNodeCreateReq);
+s32 fpcNdRq_Handler(void);
+s32 fpcNdRq_IsPossibleTarget(process_node_class *pProcNode);
+s32 fpcNdRq_IsIng(process_node_class *pProcNode);
 node_create_request *fpcNdRq_Create(s32 pRequestSize);
 node_create_request *fpcNdRq_ChangeNode(u32 pRequestSize, process_node_class *pProcNode, s16 param_3, void *param_4);
 node_create_request *fpcNdRq_DeleteNode(u32 pRequestSize, process_node_class *pProcNode);
 node_create_request *fpcNdRq_CreateNode(u32 pRequestSize, s16 param_2, void *param_3);
 node_create_request *fpcNdRq_Request(u32 param_1, s32 param_2, process_node_class *param_3, s16 param_4, void *param_5, node_create_request_method_class *pNodeCreateRequestMethodClass);
-int fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void *param_3);
-int fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void *param_3);
+s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void *param_3);
+s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void *param_3);
 
 }
