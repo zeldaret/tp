@@ -15,8 +15,7 @@ struct layer_class {
     u32 mLayerID;
     node_lists_tree_class mNodeListTree;
     process_node_class *mpPcNode;
-    node_lists_tree_class mCancelListTree;
-    s32 mpUnk0;
+    node_list_class mCancelList;
     s32 mCreatingCount:16;// for some reason, the compiler only optimized these into a single word load/store instead of 2 halfword load/store, but only if they are written like this
     s32 mDeletingCount:16;
 };
