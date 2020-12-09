@@ -1,3 +1,6 @@
+#ifndef F_PC_NODE_REQ_H
+#define F_PC_NODE_REQ_H
+
 #include "global.h"
 #include "f/f_pc/f_pc_method_tag.h"
 #include "f/f_pc/f_pc_node.h"
@@ -62,3 +65,5 @@ s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void *param_3);
 s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void *param_3);
 
 }
+
+#endif
