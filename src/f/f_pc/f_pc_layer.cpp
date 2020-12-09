@@ -23,8 +23,7 @@ void fpcLy_CancelQTo(process_method_tag_class *pMthd) {
 }
 
 void fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
-    // this is obviously wrong
-    fpcMtdTg_ToMethodQ((node_list_class*)&pLayer->mCancelListTree, pMthd);
+    fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
 
 bool fpcLy_CancelMethod(process_method_tag_class *pLayer) {
@@ -109,7 +108,7 @@ void fpcLy_Regist(layer_class *pLayer) {
 }
 
 int fpcLy_Delete(layer_class *pLayer) {
-    if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mpUnk0 == NULL) {
+    if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mCancelList.mSize == 0) {
         cLs_SingleCut(&pLayer->mNode);
         *pLayer = lbl_803A39B0; 
         return 1;
@@ -119,8 +118,7 @@ int fpcLy_Delete(layer_class *pLayer) {
 }
 
 void fpcLy_Cancel(layer_class *pLayer) {
-    // data structures are messed up?
-    fpcMtdIt_Method((node_list_class*)&pLayer->mCancelListTree, (cNdIt_MethodFunc)fpcLy_CancelMethod);
+    fpcMtdIt_Method(&pLayer->mCancelList, (cNdIt_MethodFunc)fpcLy_CancelMethod);
 }
 
 void fpcLy_Create(layer_class *pLayer, process_node_class *pPcNode, node_list_class *pLists, int listNum) {

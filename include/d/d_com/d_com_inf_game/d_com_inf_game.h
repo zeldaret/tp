@@ -1,5 +1,5 @@
-#ifndef D_COM_INF_GAME_H_
-#define D_COM_INF_GAME_H_
+#ifndef __D_COM_INF_GAME_H_
+#define __D_COM_INF_GAME_H_
 
 #include "d/d_drawlist/d_drawlist.h"
 #include "d/d_event/d_event/d_event.h"

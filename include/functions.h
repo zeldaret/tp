@@ -18,7 +18,6 @@ extern "C" {
     void dComIfGs_setMixItemIndex(void);
     void dComIfGs_setSelectItemIndex(void);
     void dComIfGs_getMixItemIndex(void);
-    void dComIfGs_getBottleMax(void);
     char* strcpy(char*,const char*);
     int strcmp(char*,char*);
     void setBombNum__21dSv_player_item_max_cFUcUc(void);
@@ -103,7 +102,6 @@ extern "C" {
     void func_8036221C(void);
     void countUsed__FP10JKRExpHeap(void);
     void JUTReport(void);
-    void OSGetTime(void);
     void func_803621D0(void);
     void offEventBit__11dSv_event_cFUs(void);
     void func_803621C0(void);
@@ -252,6 +250,7 @@ extern "C" {
     void ARQInit(void);
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
+    u8 dComIfGs_getBottleMax(void);
 }
 
 // DVD
