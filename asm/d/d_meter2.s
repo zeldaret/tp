@@ -6735,7 +6735,7 @@ lbl_802249D0:
 /* 802249D4 00221914  4B FF 04 81 */	bl dMeter2Draw_c_NS_setAlphaLifeAnimeMax
 /* 802249D8 00221918  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 802249DC 0022191C  38 63 04 C4 */	addi r3, r3, 0x4c4
-/* 802249E0 00221920  48 09 15 91 */	bl Z2StatusMgr_NS_heartGaugeOn
+/* 802249E0 00221920  48 09 15 91 */	bl heartGaugeOn__11Z2StatusMgrFv
 lbl_802249E4:
 /* 802249E4 00221924  80 7F 01 0C */	lwz r3, 0x10c(r31)
 /* 802249E8 00221928  38 80 00 00 */	li r4, 0

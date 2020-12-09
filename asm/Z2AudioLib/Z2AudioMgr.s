@@ -17,7 +17,7 @@ Z2AudioMgr:
 /* 802CD26C 002CA1AC  38 7F 04 A4 */	addi r3, r31, 0x4a4
 /* 802CD270 002CA1B0  4B FE 95 D1 */	bl __ct__10Z2SceneMgrFv
 /* 802CD274 002CA1B4  38 7F 04 C4 */	addi r3, r31, 0x4c4
-/* 802CD278 002CA1B8  4B FE 8C A5 */	bl Z2StatusMgr
+/* 802CD278 002CA1B8  4B FE 8C A5 */	bl __ct__11Z2StatusMgrFv
 /* 802CD27C 002CA1BC  38 7F 04 F4 */	addi r3, r31, 0x4f4
 /* 802CD280 002CA1C0  4B FF 26 A1 */	bl Z2SoundObjMgr
 /* 802CD284 002CA1C4  3C 60 80 3D */	lis r3, lbl_803CBF38@ha
@@ -456,7 +456,7 @@ Z2AudioMgr_NS_zeldaGFrameWork:
 /* 802CD8C0 002CA800  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802CD8C4 002CA804  7C 7F 1B 78 */	mr r31, r3
 /* 802CD8C8 002CA808  38 7F 04 C4 */	addi r3, r31, 0x4c4
-/* 802CD8CC 002CA80C  4B FE 8E 51 */	bl Z2StatusMgr_NS_processTime
+/* 802CD8CC 002CA80C  4B FE 8E 51 */	bl processTime__11Z2StatusMgrFv
 /* 802CD8D0 002CA810  38 7F 0F 2C */	addi r3, r31, 0xf2c
 /* 802CD8D4 002CA814  4B FF F0 FD */	bl Z2SpeechMgr2_NS_framework
 /* 802CD8D8 002CA818  7F E3 FB 78 */	mr r3, r31
@@ -464,7 +464,7 @@ Z2AudioMgr_NS_zeldaGFrameWork:
 /* 802CD8E0 002CA820  38 7F 03 D0 */	addi r3, r31, 0x3d0
 /* 802CD8E4 002CA824  4B FE 5A C5 */	bl Z2SeqMgr_NS_processBgmFramework
 /* 802CD8E8 002CA828  38 7F 04 C4 */	addi r3, r31, 0x4c4
-/* 802CD8EC 002CA82C  4B FE 86 91 */	bl Z2StatusMgr_NS_processHeartGaugeSound
+/* 802CD8EC 002CA82C  4B FE 86 91 */	bl processHeartGaugeSound__11Z2StatusMgrFv
 /* 802CD8F0 002CA830  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802CD8F4 002CA834  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802CD8F8 002CA838  7C 08 03 A6 */	mtlr r0
@@ -550,7 +550,7 @@ Z2AudioMgr_NS_resetRecover:
 /* 802CDA0C 002CA94C  90 1F 04 70 */	stw r0, 0x470(r31)
 /* 802CDA10 002CA950  D0 1F 04 6C */	stfs f0, 0x46c(r31)
 /* 802CDA14 002CA954  38 7F 04 C4 */	addi r3, r31, 0x4c4
-/* 802CDA18 002CA958  4B FE 87 65 */	bl Z2StatusMgr_NS_menuOut
+/* 802CDA18 002CA958  4B FE 87 65 */	bl menuOut__11Z2StatusMgrFv
 /* 802CDA1C 002CA95C  C0 22 C5 5C */	lfs f1, lbl_80455F5C-_SDA2_BASE_(r2)
 /* 802CDA20 002CA960  D0 3F 04 44 */	stfs f1, 0x444(r31)
 /* 802CDA24 002CA964  C0 02 C5 60 */	lfs f0, lbl_80455F60-_SDA2_BASE_(r2)

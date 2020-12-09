@@ -84,7 +84,7 @@ lbl_800070BC:
 /* 800070C8 00004008  3C 60 80 3E */	lis r3, lbl_803DBF4C@ha
 /* 800070CC 0000400C  38 63 BF 4C */	addi r3, r3, lbl_803DBF4C@l
 /* 800070D0 00004010  38 63 04 C4 */	addi r3, r3, 0x4c4
-/* 800070D4 00004014  48 2A F6 85 */	bl Z2StatusMgr_NS_setEventBit
+/* 800070D4 00004014  48 2A F6 85 */	bl setEventBit__11Z2StatusMgrFPv
 /* 800070D8 00004018  3C 60 80 3E */	lis r3, lbl_803DBF4C@ha
 /* 800070DC 0000401C  38 63 BF 4C */	addi r3, r3, lbl_803DBF4C@l
 /* 800070E0 00004020  4B FF FE D5 */	bl mDoAud_zelAudio_c_NS_reset

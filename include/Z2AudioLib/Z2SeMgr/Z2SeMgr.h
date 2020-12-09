@@ -46,11 +46,8 @@ extern "C"{
     void __ct__12Z2MultiSeObjFv(void);
     void resetModY__7Z2SeMgrFv(void);
     void JAISoundHandles_NS_getFreeHandle(void);
-    void Z2StatusMgr_NS_isMovieDemo(void);
-    void Z2StatusMgr_NS_menuIn(void);
     void JAISoundHandles_NS_getHandleSoundID(void);
     void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(JAISoundID, Vec const*, u32, s8, float, float, float, float, u8);
-    //void Z2SeqMgr_NS_bgmStart(void);
     void JAISoundParamsMove_NS_moveDolby(void);
     void JAISoundParamsMove_NS_movePan(void);
     void JAISoundParamsMove_NS_moveFxMix(void);

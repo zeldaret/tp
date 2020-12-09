@@ -385,7 +385,6 @@ extern "C"{
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void Z2SeqMgr_NS_setBattleBgmOff(void);
     void setSceneExist__10Z2SceneMgrFb(void);
-    void Z2StatusMgr_NS_menuOut(void);
     void func_803621F4(void);
     void Z2SceneMgr_NS_sceneChange(void);
     void __ct__10JAISoundIDFRC10JAISoundID(void);
@@ -400,7 +399,6 @@ extern "C"{
     void JSUList_X1_(void);
     void dComIfGs_isStageSwitch(void);
     void dComIfGs_getStartPoint(void);
-    void Z2StatusMgr_NS_checkDayTime(void);
     void isSwitch__10dSv_info_cCFii(void);
     void Z2SoundObjMgr_NS_setForceBattleArea(void);
     void Z2SeqMgr_NS_unMuteSceneBgm(void);
@@ -408,7 +406,6 @@ extern "C"{
     void dComIfGs_isEventBit(void);
     void JAISoundID_NS___as(void);
     void dComIfGs_isSaveSwitch(void);
-    void Z2StatusMgr_NS_setDemoName(void);
     void Z2SoundObjMgr_NS_setGhostEnemyState(void);
     void Z2SeMgr_NS_resetCrowdSize(void);
     void Z2SeqMgr_NS_setTwilightGateVol(void);

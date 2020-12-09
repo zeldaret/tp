@@ -1,4 +1,5 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 
 extern "C"{
     void JAISoundHandle(void);

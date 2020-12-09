@@ -1,0 +1,68 @@
+#ifndef Z2STATUSMGR_H_
+#define Z2STATUSMGR_H_
+
+#include "global.h"
+
+struct Z2StatusMgr{
+    Z2StatusMgr(void);
+    void heartGaugeOn(void);
+    void processHeartGaugeSound(void);
+    void talkIn(void);
+    void talkOut(void);
+    void menuIn(void);
+    void menuOut(void);
+    bool isMovieDemo(void);
+    void setDemoName(char*);
+    void processTime(void);
+    bool checkDayTime(void);
+    void setEventBit(void*);
+    void setCameraPolygonPos(Vec*);
+    void setCameraGroupInfo(u8);
+    void setCameraInWaterDepth(float);
+
+    u8 current_time;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    s16 time;
+    u8 padding[2];
+    void* event_bit;
+    bool is_menu_in;
+    u8 padding2[3];
+    u32 unk16;
+    u32 unk20;
+    float underwater_depth;
+    float unk28;
+    Vec polygon_position;
+    u8 scene_num;
+    u8 heartGauge;
+    u8 padding3[2];
+};
+
+extern "C"{
+    void menuIn__11Z2StatusMgrFv(void);
+    void menuOut__11Z2StatusMgrFv(void);
+    bool isMovieDemo__11Z2StatusMgrFv(void);
+    void Z2SceneMgr_NS_sceneBgmStart(void);
+    void setDemoName__11Z2StatusMgrFPc(char*);
+    bool checkDayTime__11Z2StatusMgrFv(void);
+    void processTime__11Z2StatusMgrFv(void);
+    void setEventBit__11Z2StatusMgrFPv(void*);
+    void setCameraPolygonPos__11Z2StatusMgrFP3Vec(Vec*);
+    void setCameraGroupInfo__11Z2StatusMgrFUc(u8);
+    void Z2FxLineMgr_NS_setUnderWaterFx(void);
+}
+
+extern Z2StatusMgr* lbl_80450B7C; // Z2StatusMgr sInstance
+extern u8 lbl_8039BC88[0x320]; // stringBase0
+extern double lbl_80455A28;
+extern u32 lbl_803CA508;
+extern float lbl_80455A18; // polygon_position init to 1.0E7
+extern float lbl_80455A1C; // underwater_depth / unk28 init to 0.0
+extern float lbl_80455A20; // processHeartGaugeSound etc
+extern float lbl_80455A24; // processHeartGaugeSound
+extern u8 lbl_80451124; // used in processHeartGaugeSound
+extern float lbl_80455A30;
+extern float lbl_80455A34;
+
+#endif
