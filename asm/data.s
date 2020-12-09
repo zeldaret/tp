@@ -839,11 +839,11 @@ lbl_803ADD88:
 .global lbl_803AED78
 lbl_803AED78:
 	.incbin "baserom.dol", 0x3ABD78, 0x400
-.global lbl_803AF178
-lbl_803AF178:
+.global item_func_ptr
+item_func_ptr:
 	.incbin "baserom.dol", 0x3AC178, 0x400
-.global lbl_803AF578
-lbl_803AF578:
+.global item_getcheck_func_ptr
+item_getcheck_func_ptr:
 	.incbin "baserom.dol", 0x3AC578, 0x400
 .global lbl_803AF978
 lbl_803AF978:

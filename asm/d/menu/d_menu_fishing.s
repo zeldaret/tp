@@ -298,8 +298,8 @@ dMenu_Fishing_c_NS__draw:
 /* 801C5164 001C20A4  80 03 00 08 */	lwz r0, 8(r3)
 /* 801C5168 001C20A8  28 00 00 00 */	cmplwi r0, 0
 /* 801C516C 001C20AC  41 82 00 80 */	beq lbl_801C51EC
-/* 801C5170 001C20B0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801C5174 001C20B4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801C5170 001C20B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801C5174 001C20B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801C5178 001C20B8  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801C517C 001C20BC  80 7E 01 F0 */	lwz r3, 0x1f0(r30)
 /* 801C5180 001C20C0  38 80 00 FF */	li r4, 0xff
@@ -361,8 +361,8 @@ dMenu_Fishing_c_NS_init:
 /* 801C5240 001C2180  7C 7C 1B 78 */	mr r28, r3
 /* 801C5244 001C2184  3B A0 00 00 */	li r29, 0
 /* 801C5248 001C2188  3B E0 00 00 */	li r31, 0
-/* 801C524C 001C218C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801C5250 001C2190  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801C524C 001C218C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801C5250 001C2190  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801C5254 001C2194  3B C3 01 6C */	addi r30, r3, 0x16c
 lbl_801C5258:
 /* 801C5258 001C2198  57 A3 06 3E */	clrlwi r3, r29, 0x18
@@ -616,8 +616,8 @@ dMenu_Fishing_c_NS_screenSetBase:
 /* 801C55EC 001C252C  7C 7F 1B 78 */	mr r31, r3
 /* 801C55F0 001C2530  3C 60 80 39 */	lis r3, lbl_80395D90@ha
 /* 801C55F4 001C2534  3B C3 5D 90 */	addi r30, r3, lbl_80395D90@l
-/* 801C55F8 001C2538  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801C55FC 001C253C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801C55F8 001C2538  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801C55FC 001C253C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801C5600 001C2540  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 801C5604 001C2544  3C 80 54 49 */	lis r4, 0x54494D47@ha
 /* 801C5608 001C2548  38 84 4D 47 */	addi r4, r4, 0x54494D47@l
@@ -1340,8 +1340,8 @@ dMenu_Fishing_c_NS_setFishParam:
 /* 801C6090 001C2FD0  57 04 06 3E */	clrlwi r4, r24, 0x18
 /* 801C6094 001C2FD4  4B FF FF 85 */	bl dMenu_Fishing_c_NS_getFigure
 /* 801C6098 001C2FD8  57 05 06 3E */	clrlwi r5, r24, 0x18
-/* 801C609C 001C2FDC  3C 80 80 40 */	lis r4, lbl_804061C0@ha
-/* 801C60A0 001C2FE0  3B 24 61 C0 */	addi r25, r4, lbl_804061C0@l
+/* 801C609C 001C2FDC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
+/* 801C60A0 001C2FE0  3B 24 61 C0 */	addi r25, r4, g_dComIfG_gameInfo@l
 /* 801C60A4 001C2FE4  57 40 10 3A */	slwi r0, r26, 2
 /* 801C60A8 001C2FE8  7F FD 02 14 */	add r31, r29, r0
 /* 801C60AC 001C2FEC  54 7A 06 3E */	clrlwi r26, r3, 0x18

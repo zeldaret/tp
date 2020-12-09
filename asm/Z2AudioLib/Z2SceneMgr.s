@@ -22,8 +22,8 @@ JSUList_X1_:
 
 .global dComIfGs_getStartPoint
 dComIfGs_getStartPoint:
-/* 802B999C 002B68DC  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802B99A0 002B68E0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802B999C 002B68DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802B99A0 002B68E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B99A4 002B68E4  A8 63 0D B8 */	lha r3, 0xdb8(r3)
 /* 802B99A8 002B68E8  4E 80 00 20 */	blr 
 
@@ -104,8 +104,8 @@ dComIfGs_isSaveSwitch:
 /* 802B9A98 002B69D8  7C 08 02 A6 */	mflr r0
 /* 802B9A9C 002B69DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802B9AA0 002B69E0  7C 64 1B 78 */	mr r4, r3
-/* 802B9AA4 002B69E4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802B9AA8 002B69E8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802B9AA4 002B69E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802B9AA8 002B69E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B9AAC 002B69EC  38 63 09 58 */	addi r3, r3, 0x958
 /* 802B9AB0 002B69F0  4B D7 AD B1 */	bl isSwitch__12dSv_memBit_cCFi
 /* 802B9AB4 002B69F4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -347,8 +347,8 @@ Z2SceneMgr_NS__load1stWaveInner_1:
 /* 802B9DB4 002B6CF4  4B FF 3B 99 */	bl Z2SeMgr_NS_seStopAll
 /* 802B9DB8 002B6CF8  80 6D 85 BC */	lwz r3, lbl_80450B3C-_SDA_BASE_(r13)
 /* 802B9DBC 002B6CFC  48 00 CB E1 */	bl Z2EnvSeMgr_NS_resetSceneInner
-/* 802B9DC0 002B6D00  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802B9DC4 002B6D04  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802B9DC0 002B6D00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802B9DC4 002B6D04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B9DC8 002B6D08  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 802B9DCC 002B6D0C  3C 80 80 3A */	lis r4, lbl_803A7288@ha
 /* 802B9DD0 002B6D10  38 84 72 88 */	addi r4, r4, lbl_803A7288@l

@@ -93,8 +93,8 @@ dVibration_c_NS_Run:
 /* 8006F27C 0006C1BC  7C 7F 1B 78 */	mr r31, r3
 /* 8006F280 0006C1C0  38 00 00 01 */	li r0, 1
 /* 8006F284 0006C1C4  90 03 00 8C */	stw r0, 0x8c(r3)
-/* 8006F288 0006C1C8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006F28C 0006C1CC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006F288 0006C1C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006F28C 0006C1CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006F290 0006C1D0  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8006F294 0006C1D4  4B FC 53 B1 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006F298 0006C1D8  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -217,8 +217,8 @@ lbl_8006F404:
 /* 8006F434 0006C374  41 82 00 08 */	beq lbl_8006F43C
 /* 8006F438 0006C378  57 DE 07 32 */	rlwinm r30, r30, 0, 0x1c, 0x19
 lbl_8006F43C:
-/* 8006F43C 0006C37C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006F440 0006C380  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006F43C 0006C37C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006F440 0006C380  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006F444 0006C384  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8006F448 0006C388  28 03 00 00 */	cmplwi r3, 0
 /* 8006F44C 0006C38C  41 82 01 F0 */	beq lbl_8006F63C
@@ -254,8 +254,8 @@ lbl_8006F484:
 /* 8006F4C0 0006C400  41 82 00 08 */	beq lbl_8006F4C8
 /* 8006F4C4 0006C404  57 BD 07 32 */	rlwinm r29, r29, 0, 0x1c, 0x19
 lbl_8006F4C8:
-/* 8006F4C8 0006C408  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006F4CC 0006C40C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006F4C8 0006C408  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006F4CC 0006C40C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006F4D0 0006C410  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8006F4D4 0006C414  28 03 00 00 */	cmplwi r3, 0
 /* 8006F4D8 0006C418  41 82 01 64 */	beq lbl_8006F63C
@@ -309,8 +309,8 @@ lbl_8006F568:
 /* 8006F590 0006C4D0  41 82 00 08 */	beq lbl_8006F598
 /* 8006F594 0006C4D4  57 BD 07 32 */	rlwinm r29, r29, 0, 0x1c, 0x19
 lbl_8006F598:
-/* 8006F598 0006C4D8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006F59C 0006C4DC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006F598 0006C4D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006F59C 0006C4DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006F5A0 0006C4E0  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8006F5A4 0006C4E4  28 03 00 00 */	cmplwi r3, 0
 /* 8006F5A8 0006C4E8  41 82 00 5C */	beq lbl_8006F604
@@ -342,8 +342,8 @@ lbl_8006F604:
 /* 8006F60C 0006C54C  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 8006F610 0006C550  48 00 00 2C */	b lbl_8006F63C
 lbl_8006F614:
-/* 8006F614 0006C554  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006F618 0006C558  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006F614 0006C554  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006F618 0006C558  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006F61C 0006C55C  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8006F620 0006C560  28 03 00 00 */	cmplwi r3, 0
 /* 8006F624 0006C564  41 82 00 18 */	beq lbl_8006F63C
@@ -662,8 +662,8 @@ dVibration_c_NS_StartShock:
 lbl_8006FAA0:
 /* 8006FAA0 0006C9E0  54 A0 07 FF */	clrlwi. r0, r5, 0x1f
 /* 8006FAA4 0006C9E4  41 82 00 50 */	beq lbl_8006FAF4
-/* 8006FAA8 0006C9E8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006FAAC 0006C9EC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006FAA8 0006C9E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006FAAC 0006C9EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006FAB0 0006C9F0  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8006FAB4 0006C9F4  4B FC 4B 91 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FAB8 0006C9F8  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -726,8 +726,8 @@ dVibration_c_NS_StartQuake:
 lbl_8006FB8C:
 /* 8006FB8C 0006CACC  54 A0 07 FF */	clrlwi. r0, r5, 0x1f
 /* 8006FB90 0006CAD0  41 82 00 60 */	beq lbl_8006FBF0
-/* 8006FB94 0006CAD4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006FB98 0006CAD8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006FB94 0006CAD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006FB98 0006CAD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006FB9C 0006CADC  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8006FBA0 0006CAE0  4B FC 4A A5 */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FBA4 0006CAE4  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -833,8 +833,8 @@ dVibration_c_NS_StartQuake_X1_:
 lbl_8006FD24:
 /* 8006FD24 0006CC64  57 C0 07 FF */	clrlwi. r0, r30, 0x1f
 /* 8006FD28 0006CC68  41 82 00 50 */	beq lbl_8006FD78
-/* 8006FD2C 0006CC6C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8006FD30 0006CC70  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8006FD2C 0006CC6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8006FD30 0006CC70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006FD34 0006CC74  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8006FD38 0006CC78  4B FC 49 0D */	bl checkVibration__19dSv_player_config_cCFv
 /* 8006FD3C 0006CC7C  54 60 06 3E */	clrlwi r0, r3, 0x18

@@ -409,8 +409,8 @@ dMenu_Skill_c_NS__draw:
 /* 801F77C8 001F4708  80 03 00 08 */	lwz r0, 8(r3)
 /* 801F77CC 001F470C  28 00 00 00 */	cmplwi r0, 0
 /* 801F77D0 001F4710  41 82 01 68 */	beq lbl_801F7938
-/* 801F77D4 001F4714  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801F77D8 001F4718  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801F77D4 001F4714  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801F77D8 001F4718  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801F77DC 001F471C  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801F77E0 001F4720  80 7D 01 58 */	lwz r3, 0x158(r29)
 /* 801F77E4 001F4724  8B C3 00 B2 */	lbz r30, 0xb2(r3)
@@ -1783,8 +1783,8 @@ lbl_801F8C38:
 /* 801F8C3C 001F5B7C  80 7F 01 7C */	lwz r3, 0x17c(r31)
 /* 801F8C40 001F5B80  C0 22 AA 88 */	lfs f1, lbl_80454488-_SDA2_BASE_(r2)
 /* 801F8C44 001F5B84  48 05 CB 8D */	bl CPaneMgrAlpha_NS_setAlphaRate
-/* 801F8C48 001F5B88  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801F8C4C 001F5B8C  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801F8C48 001F5B88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801F8C4C 001F5B8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801F8C50 001F5B90  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 801F8C54 001F5B94  3C 80 54 49 */	lis r4, 0x54494D47@ha
 /* 801F8C58 001F5B98  38 84 4D 47 */	addi r4, r4, 0x54494D47@l
@@ -2358,8 +2358,8 @@ dMenu_Skill_c_NS_getSkillNum:
 /* 801F9484 001F63C4  3B 60 00 00 */	li r27, 0
 /* 801F9488 001F63C8  3B 40 00 00 */	li r26, 0
 /* 801F948C 001F63CC  3B E0 00 00 */	li r31, 0
-/* 801F9490 001F63D0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801F9494 001F63D4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801F9490 001F63D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801F9494 001F63D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801F9498 001F63D8  3B 83 07 F0 */	addi r28, r3, 0x7f0
 /* 801F949C 001F63DC  3C 60 80 3C */	lis r3, lbl_803BE8A4@ha
 /* 801F94A0 001F63E0  3B A3 E8 A4 */	addi r29, r3, lbl_803BE8A4@l

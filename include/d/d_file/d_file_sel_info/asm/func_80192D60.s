@@ -2,8 +2,8 @@
 /* 80192D64 0018FCA4  7C 08 02 A6 */	mflr r0
 /* 80192D68 0018FCA8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80192D6C 0018FCAC  7C 66 1B 78 */	mr r6, r3
-/* 80192D70 0018FCB0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80192D74 0018FCB4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80192D70 0018FCB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80192D74 0018FCB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80192D78 0018FCB8  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80192D7C 0018FCBC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 80192D80 0018FCC0  38 A3 01 B8 */	addi r5, r3, 0x1b8

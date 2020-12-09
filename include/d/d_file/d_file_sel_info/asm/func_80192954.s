@@ -15,8 +15,8 @@
 /* 8019298C 0018F8CC  28 00 00 01 */	cmplwi r0, 1
 /* 80192990 0018F8D0  40 82 00 8C */	bne lbl_80192A1C
 /* 80192994 0018F8D4  54 C6 06 3E */	clrlwi r6, r6, 0x18
-/* 80192998 0018F8D8  3C A0 80 40 */	lis r5, lbl_804061C0@ha
-/* 8019299C 0018F8DC  38 A5 61 C0 */	addi r5, r5, lbl_804061C0@l
+/* 80192998 0018F8D8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
+/* 8019299C 0018F8DC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
 /* 801929A0 0018F8E0  88 05 0F 18 */	lbz r0, 0xf18(r5)
 /* 801929A4 0018F8E4  7C 06 00 40 */	cmplw r6, r0
 /* 801929A8 0018F8E8  40 82 00 74 */	bne lbl_80192A1C
@@ -25,8 +25,8 @@
 /* 801929B4 0018F8F4  48 00 00 ED */	bl setHeartCnt__12dFile_info_cFP10dSv_save_c
 /* 801929B8 0018F8F8  38 00 00 0C */	li r0, 0xc
 /* 801929BC 0018F8FC  B0 1D 00 02 */	sth r0, 2(r29)
-/* 801929C0 0018F900  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801929C4 0018F904  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801929C0 0018F900  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801929C4 0018F904  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801929C8 0018F908  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 801929CC 0018F90C  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 801929D0 0018F910  48 1D 61 5D */	bl strcpy

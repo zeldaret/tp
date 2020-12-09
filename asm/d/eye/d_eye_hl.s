@@ -80,8 +80,8 @@ dEyeHL_mng_c_NS_update:
 /* 8009CA58 00099998  88 03 00 10 */	lbz r0, 0x10(r3)
 /* 8009CA5C 0009999C  28 00 00 00 */	cmplwi r0, 0
 /* 8009CA60 000999A0  41 82 00 2C */	beq lbl_8009CA8C
-/* 8009CA64 000999A4  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8009CA68 000999A8  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8009CA64 000999A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8009CA68 000999A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8009CA6C 000999AC  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8009CA70 000999B0  28 00 00 00 */	cmplwi r0, 0
 /* 8009CA74 000999B4  40 82 00 24 */	bne lbl_8009CA98

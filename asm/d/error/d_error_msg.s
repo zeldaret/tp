@@ -470,8 +470,8 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D264 0009A1A4  38 61 00 24 */	addi r3, r1, 0x24
 /* 8009D268 0009A1A8  48 24 C5 4D */	bl J2DOrthoGraph_NS_setPort
 /* 8009D26C 0009A1AC  38 01 00 24 */	addi r0, r1, 0x24
-/* 8009D270 0009A1B0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8009D274 0009A1B4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8009D270 0009A1B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8009D274 0009A1B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8009D278 0009A1B8  90 03 5F 50 */	stw r0, 0x5f50(r3)
 /* 8009D27C 0009A1BC  2C 1F 00 04 */	cmpwi r31, 4
 /* 8009D280 0009A1C0  40 82 00 14 */	bne lbl_8009D294

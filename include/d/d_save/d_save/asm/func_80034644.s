@@ -4,8 +4,8 @@
 /* 80034650 00031590  80 0D 8F 60 */	lwz r0, lbl_804514E0-_SDA_BASE_(r13)
 /* 80034654 00031594  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
 /* 80034658 00031598  41 82 00 18 */	beq lbl_80034670
-/* 8003465C 0003159C  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 80034660 000315A0  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 8003465C 0003159C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 80034660 000315A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80034664 000315A4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80034668 000315A8  4B FF 6D 49 */	bl dComIfG_play_c_NS_getNowVibration
 /* 8003466C 000315AC  48 00 00 08 */	b lbl_80034674

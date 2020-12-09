@@ -137,7 +137,7 @@ lbl_80191D5C:
 /* 80191D88 0018ECC8  38 61 00 08 */	addi r3, r1, 8
 /* 80191D8C 0018ECCC  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80191D90 0018ECD0  80 9F 00 04 */	lwz r4, 4(r31)
-/* 80191D94 0018ECD4  48 14 24 DD */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80191D94 0018ECD4  48 14 24 DD */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80191D98 0018ECD8  48 17 6C D5 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80191D9C 0018ECDC  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 80191DA0 0018ECE0  80 7F 00 0C */	lwz r3, 0xc(r31)
@@ -423,8 +423,8 @@ dFile_warning_c_NS__draw:
 /* 80192194 0018F0D4  7C 08 02 A6 */	mflr r0
 /* 80192198 0018F0D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8019219C 0018F0DC  7C 66 1B 78 */	mr r6, r3
-/* 801921A0 0018F0E0  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 801921A4 0018F0E4  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 801921A0 0018F0E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 801921A4 0018F0E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801921A8 0018F0E8  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 801921AC 0018F0EC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 801921B0 0018F0F0  38 A3 01 B8 */	addi r5, r3, 0x1b8
@@ -544,8 +544,8 @@ dFile_warning_c_NS_setFontColor:
 /* 80192354 0018F294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192358 0018F298  7C 08 02 A6 */	mflr r0
 /* 8019235C 0018F29C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80192360 0018F2A0  3C 80 80 40 */	lis r4, lbl_804061C0@ha
-/* 80192364 0018F2A4  38 84 61 C0 */	addi r4, r4, lbl_804061C0@l
+/* 80192360 0018F2A0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
+/* 80192364 0018F2A4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80192368 0018F2A8  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 8019236C 0018F2AC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80192370 0018F2B0  C0 22 9F D8 */	lfs f1, lbl_804539D8-_SDA2_BASE_(r2)

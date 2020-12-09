@@ -1,3 +1,6 @@
+#ifndef D_SAVE_HIO_H_
+#define D_SAVE_HIO_H_
+
 #include "dolphin/types.h"
 
 struct dSvBit_childSwPerfectionHIO_c_vtable {
@@ -17,3 +20,4 @@ class dSvBit_childSwPerfectionHIO_c {
      u8 unk0[10];
 };
 
+#endif

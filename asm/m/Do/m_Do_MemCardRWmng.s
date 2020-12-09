@@ -304,8 +304,8 @@ mDoMemCdRWm_BuildHeader:
 /* 800178D4 00014814  80 E1 00 14 */	lwz r7, 0x14(r1)
 /* 800178D8 00014818  4C C6 31 82 */	crclr 6
 /* 800178DC 0001481C  48 34 EC E1 */	bl func_803665BC
-/* 800178E0 00014820  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 800178E4 00014824  3B 83 61 C0 */	addi r28, r3, lbl_804061C0@l
+/* 800178E0 00014820  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 800178E4 00014824  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
 /* 800178E8 00014828  80 7C 5C F0 */	lwz r3, 0x5cf0(r28)
 /* 800178EC 0001482C  3C 80 80 37 */	lis r4, lbl_80374408@ha
 /* 800178F0 00014830  38 84 44 08 */	addi r4, r4, lbl_80374408@l

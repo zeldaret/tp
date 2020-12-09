@@ -146,8 +146,8 @@ lbl_804061A0:
 .global lbl_804061B4
 lbl_804061B4:
 	.skip 0xC
-.global lbl_804061C0
-lbl_804061C0:
+.global g_dComIfG_gameInfo
+g_dComIfG_gameInfo:
 	.skip 0x1DE10
 .global lbl_80423FD0
 lbl_80423FD0:

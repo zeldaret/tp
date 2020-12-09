@@ -52,8 +52,8 @@ lbl_802489E8:
 /* 802489F0 00245930  3C 80 80 3A */	lis r4, lbl_80399C30@ha
 /* 802489F4 00245934  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 802489F8 00245938  3C A0 01 02 */	lis r5, 0x102
-/* 802489FC 0024593C  3C C0 80 40 */	lis r6, lbl_804061C0@ha
-/* 80248A00 00245940  3B 66 61 C0 */	addi r27, r6, lbl_804061C0@l
+/* 802489FC 0024593C  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
+/* 80248A00 00245940  3B 66 61 C0 */	addi r27, r6, g_dComIfG_gameInfo@l
 /* 80248A04 00245944  80 DB 5C 74 */	lwz r6, 0x5c74(r27)
 /* 80248A08 00245948  48 0A FC 41 */	bl J2DScreen_NS_setPriority
 /* 80248A0C 0024594C  80 7F 00 04 */	lwz r3, 4(r31)
@@ -74,14 +74,14 @@ lbl_802489E8:
 /* 80248A48 00245988  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248A4C 0024598C  38 64 00 18 */	addi r3, r4, 0x18
 /* 80248A50 00245990  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248A54 00245994  48 08 B8 1D */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248A54 00245994  48 08 B8 1D */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248A58 00245998  48 0C 00 15 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248A5C 0024599C  90 7F 00 CC */	stw r3, 0xcc(r31)
 /* 80248A60 002459A0  3C 80 80 3A */	lis r4, lbl_80399C30@ha
 /* 80248A64 002459A4  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248A68 002459A8  38 64 00 30 */	addi r3, r4, 0x30
 /* 80248A6C 002459AC  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248A70 002459B0  48 08 B8 01 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248A70 002459B0  48 08 B8 01 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248A74 002459B4  48 0B FF F9 */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248A78 002459B8  90 7F 00 D0 */	stw r3, 0xd0(r31)
 /* 80248A7C 002459BC  80 7F 00 D0 */	lwz r3, 0xd0(r31)
@@ -96,7 +96,7 @@ lbl_802489E8:
 /* 80248AA0 002459E0  38 84 9C 30 */	addi r4, r4, lbl_80399C30@l
 /* 80248AA4 002459E4  38 64 00 48 */	addi r3, r4, 0x48
 /* 80248AA8 002459E8  80 9B 5C 74 */	lwz r4, 0x5c74(r27)
-/* 80248AAC 002459EC  48 08 B7 C5 */	bl JKRFileLoader_NS_getGlbResource_X1_
+/* 80248AAC 002459EC  48 08 B7 C5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 80248AB0 002459F0  48 0B FF BD */	bl J2DAnmLoaderDataBase_NS_load
 /* 80248AB4 002459F4  90 7F 00 D4 */	stw r3, 0xd4(r31)
 /* 80248AB8 002459F8  80 7F 00 D4 */	lwz r3, 0xd4(r31)
@@ -506,8 +506,8 @@ lbl_802490B4:
 /* 802490B8 00245FF8  2C 1B 00 03 */	cmpwi r27, 3
 /* 802490BC 00245FFC  3B BD 00 04 */	addi r29, r29, 4
 /* 802490C0 00246000  41 80 FF 9C */	blt lbl_8024905C
-/* 802490C4 00246004  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 802490C8 00246008  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 802490C4 00246004  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 802490C8 00246008  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802490CC 0024600C  80 63 5C 74 */	lwz r3, 0x5c74(r3)
 /* 802490D0 00246010  81 83 00 00 */	lwz r12, 0(r3)
 /* 802490D4 00246014  81 8C 00 24 */	lwz r12, 0x24(r12)
@@ -623,8 +623,8 @@ lbl_8024922C:
 /* 8024927C 002461BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80249280 002461C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80249284 002461C4  7C 7E 1B 78 */	mr r30, r3
-/* 80249288 002461C8  3C 60 80 40 */	lis r3, lbl_804061C0@ha
-/* 8024928C 002461CC  38 63 61 C0 */	addi r3, r3, lbl_804061C0@l
+/* 80249288 002461C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
+/* 8024928C 002461CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80249290 002461D0  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 80249294 002461D4  7F E3 FB 78 */	mr r3, r31
 /* 80249298 002461D8  81 9F 00 00 */	lwz r12, 0(r31)

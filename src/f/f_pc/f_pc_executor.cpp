@@ -3,16 +3,13 @@
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_line_iter.h"
 #include "f/f_pc/f_pc_layer_tag.h"
+#include "f/f_pc/f_pc_layer_iter.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
 
 extern "C" {
 
-extern int fpcLyTg_ToQueue(layer_management_tag_class *pTag, u32 layerID, u16 listID, u16 listPrio);
-extern int fpcLyTg_QueueTo(layer_management_tag_class *pTag);
-extern int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData);
-extern void * fpcLyIt_AllJudge(void *pFunc, void *pUserData);
 extern int fpcPause_IsEnable(base_process_class *pProc, int);
 
 // g_fpcNd_type
@@ -20,7 +17,7 @@ extern int lbl_80450D40;
 
 base_process_class * fpcEx_Search(void *pFunc, void *pUserData)
 {
-    return (base_process_class *) fpcLyIt_AllJudge(pFunc, pUserData);
+    return (base_process_class *) fpcLyIt_AllJudge((cNdIt_MethodFunc) pFunc, pUserData);
 }
 
 base_process_class * fpcEx_SearchByID(u32 id)
