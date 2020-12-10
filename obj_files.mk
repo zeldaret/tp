@@ -87,7 +87,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
             $(BUILD_DIR)/asm/d/com/inf/d_com_inf_game.o    \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
-            $(BUILD_DIR)/asm/d/d_bomb.o    \
+            $(BUILD_DIR)/src/d/d_bomb.o    \
             $(BUILD_DIR)/asm/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
