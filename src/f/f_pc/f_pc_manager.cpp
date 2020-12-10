@@ -21,13 +21,13 @@
 extern "C" {
 
 extern u8 lbl_80450D38;
-extern s32 lbl_80450D39;
-extern s32 lbl_80450EC4;
+extern s8 lbl_80450D39;
+extern u8 lbl_80450EC4;
 extern layer_class lbl_803F4DB0; // f_pc_manager::rootlayer$3716
 extern node_list_class lbl_803F4DDC; // f_pc_manager::queue$3717
 
 extern void fpcDw_Execute(base_process_class *pProc);
-extern void fpcDw_Handler(void);
+extern void fpcDw_Handler(void*, void*);
 extern base_process_class *fpcFCtRq_Request(layer_class *pLayer,s16 pProcTypeID, FastCreateReqFunc param_3,void *param_4,void *pData);
 extern void *fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void *pUserData);
 
@@ -51,16 +51,46 @@ bool fpcM_IsCreating(u32 pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 
-#ifdef NON_MATCHING
-void fpcM_Management(unk_func pFunc1, unk_func pFunc2) {
-
+typedef void (*fpcM_ManagementFunc)(void);
+void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
+    MtxInit();
+    dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.draw_list_list.dlstPeekZ);
+    if (!dShutdownErrorMsg_c_NS_execute()) {
+        if (lbl_80450D39 == 0) {
+            lbl_80450D38 = 0;
+            lbl_80450D39 = 1;
+        }
+        if (!dDvdErrorMsg_c_NS_execute()) {
+            if (lbl_80450D38 != 0) {
+                dLib_time_c_NS_startTime();
+                Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);
+                lbl_80450D38 = 0;
+            }
+            cAPIGph_Painter();
+            if ((lbl_80450EC4 & 1) == 0) {
+                fpcDt_Handler();
+            } else {
+                lbl_80450EC4 &= ~1;
+            }
+            fpcPi_Handler();
+            fpcCt_Handler();
+            if (pFunc1 != NULL) {
+                pFunc1();
+            }
+            fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
+            fpcDw_Handler(fpcM_DrawIterater, fpcM_Draw);
+            if (pFunc2 != NULL) {
+                pFunc2();
+            }
+            dComIfG_play_c_NS_drawSimpleModel(&g_dComIfG_gameInfo.play);
+        } else if(lbl_80450D38 == 0) {
+            dLib_time_c_NS_stopTime();
+            Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
+            JUTGamePad_NS_CRumble_NS_stopPatternedRumble(&lbl_803DD2D8[0]->rumble, lbl_803DD2D8[0]->pad_port); 
+            lbl_80450D38 = 1;
+        }
+    }
 }
-#else
-asm void fpcM_Management(void) {
-nofralloc
-#include "asm/80022158.s"
-}
-#endif
 
 void fpcM_Init(void) {
     fpcLy_Create(&lbl_803F4DB0, NULL, &lbl_803F4DDC, 10);

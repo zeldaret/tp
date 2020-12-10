@@ -251,15 +251,17 @@ extern "C" {
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
     u8 dComIfGs_getBottleMax(void);
-
-    void JUTGamePad_NS_CRumble_NS_stopPatternedRumble(void);
+    class CRumble;
+    void JUTGamePad_NS_CRumble_NS_stopPatternedRumble(CRumble *, s16);
     void dLib_time_c_NS_stopTime(void);
     void dLib_time_c_NS_startTime(void);
-    void dComIfG_play_c_NS_drawSimpleModel(void);
+    class dComIfG_play_c;
+    void dComIfG_play_c_NS_drawSimpleModel(dComIfG_play_c*);
     void cAPIGph_Painter(void);
-    void dDvdErrorMsg_c_NS_execute(void);
-    void dShutdownErrorMsg_c_NS_execute(void);
-    void dDlst_peekZ_c_NS_peekData(void);
+    bool dDvdErrorMsg_c_NS_execute(void);
+    bool dShutdownErrorMsg_c_NS_execute(void);
+    class dDlst_peekZ_c;
+    void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
     void MtxInit(void);
 }
 
@@ -431,7 +433,8 @@ extern "C"{
     void func_803621A8(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void seMoveVolumeAll__7Z2SeMgrFfUl(void);
-    void Z2SoundMgr_NS_pauseAllGameSound(void);
+    class Z2SoundMgr;
+    void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr*, bool);
 }
 // Z2LinkMgr
 extern "C" {

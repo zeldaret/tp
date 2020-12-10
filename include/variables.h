@@ -1,4 +1,5 @@
 #include "JSystem/JSupport/JSUList/JSUList.h"
+#include "JSystem/JUtility/JUTGamePad.h"
 
 extern float lbl_80451D5C;
 extern u8 lbl_80379234[0x64];
@@ -48,7 +49,8 @@ extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450580;
 extern u8 lbl_80450B1A;
-extern u8 lbl_803DD2D8;
+// m_Do_controller_pad::mDoCPd_c::m_gamePad
+extern JUTGamePad *lbl_803DD2D8[4];
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
