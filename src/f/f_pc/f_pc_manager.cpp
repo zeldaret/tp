@@ -35,7 +35,7 @@ void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class *) pProc);
 }
 
-int fpcM_DrawIterater(cNdIt_MethodFunc pFunc) {
+s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc) {
     return fpcLyIt_OnlyHere(fpcLy_RootLayer(), pFunc, NULL);
 }
 
@@ -78,7 +78,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
                 pFunc1();
             }
             fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
-            fpcDw_Handler(fpcM_DrawIterater, fpcM_Draw);
+            fpcDw_Handler((void*)fpcM_DrawIterater, fpcM_Draw);
             if (pFunc2 != NULL) {
                 pFunc2();
             }
@@ -101,7 +101,7 @@ base_process_class *fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, 
     return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, param_2, param_3, pData);
 }
 
-int fpcM_IsPause(void *pProc, u8 param_2) {
+s32 fpcM_IsPause(void *pProc, u8 param_2) {
     return fpcPause_IsEnable((base_process_class*)pProc, param_2 & 0xFF);
 }
 

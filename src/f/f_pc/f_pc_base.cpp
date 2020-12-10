@@ -55,7 +55,7 @@ s32 fpcBs_MakeOfId(void) {
 }
 
 s32 fpcBs_Execute(base_process_class *pProc) {
-    int result;
+    s32 result;
     layer_class* savedLayer = fpcLy_CurrentLayer();
     fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
     result = fpcMtd_Execute(pProc->mpPcMtd, pProc);
@@ -71,7 +71,7 @@ void fpcBs_DeleteAppend(base_process_class *pProc) {
 }
 
 s32 fpcBs_IsDelete(base_process_class* pProc) {
-    int result;
+    s32 result;
     layer_class* savedLayer = fpcLy_CurrentLayer();
     fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
     result = fpcMtd_IsDelete(pProc->mpPcMtd, pProc);
@@ -80,7 +80,7 @@ s32 fpcBs_IsDelete(base_process_class* pProc) {
 }
 
 s32 fpcBs_Delete(base_process_class* pProc) {
-    int deleteResult = fpcMtd_Delete(pProc->mpPcMtd,pProc);
+    s32 deleteResult = fpcMtd_Delete(pProc->mpPcMtd,pProc);
     if (deleteResult == 1) {
         fpcBs_DeleteAppend(pProc);
         pProc->mBsType = 0;

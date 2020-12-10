@@ -20,14 +20,14 @@ struct process_node_class : public base_process_class {
 
 extern "C" {
 
-int fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData);
-int fpcNd_Draw(process_node_class *pProcNode);
-int fpcNd_Execute(process_node_class *pProcNode);
+s32 fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData);
+s32 fpcNd_Draw(process_node_class *pProcNode);
+s32 fpcNd_Execute(process_node_class *pProcNode);
 void* fpcNd_IsCreatingFromUnder(process_node_class* pProcNode);
-int fpcNd_IsDeleteTiming(process_node_class* pProcNode);
-int fpcNd_IsDelete(process_node_class* pProcNode);
-int fpcNd_Delete(process_node_class* pProcNode);
-int fpcNd_Create(process_node_class* pProcNode);
+s32 fpcNd_IsDeleteTiming(process_node_class* pProcNode);
+s32 fpcNd_IsDelete(process_node_class* pProcNode);
+s32 fpcNd_Delete(process_node_class* pProcNode);
+s32 fpcNd_Create(process_node_class* pProcNode);
 
 };
 

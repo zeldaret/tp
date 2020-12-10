@@ -151,7 +151,7 @@ s32 fpcNdRq_Handler(void) {
   }
   return 1;
 }
-// int fpcNdRq_IsPossibleTarget(process_node_class *);
+
 s32 fpcNdRq_IsPossibleTarget(process_node_class *pProcNode) {
   s32 bsPcId = pProcNode->mBsPcId;
   request_node_class *currentNode;
