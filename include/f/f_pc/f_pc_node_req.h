@@ -25,13 +25,13 @@ struct node_create_request {
     request_of_phase_process_class mReqPhsProc;
     cPhs__Handler *mpPhsHandler;
     node_create_request_method_class *mpNodeCrReqMthCls;
-    s32 unk_0x40;
+    s32 mParameter;
     s32 mRequestId;
     unk_process_node_class mNodeProc;
     layer_class *mpLayerClass;
     u32 mCreatingID;
-    s16 unk_0x58;
-    void *unk_0x5C;
+    s16 mProcName;
+    void *mpUserData;
     s16 unk_0x60;
     
 }; // Size: 0x64

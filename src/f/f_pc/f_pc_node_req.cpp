@@ -58,8 +58,8 @@ nofralloc
 #endif
 
 s32 fpcNdRq_phase_Create(node_create_request *pNodeCreateReq) {
-  pNodeCreateReq->mCreatingID = fpcSCtRq_Request(pNodeCreateReq->mpLayerClass,pNodeCreateReq->unk_0x58,
-    pNodeCreateReq->mpNodeCrReqMthCls->mpPostMethodFunc,pNodeCreateReq,pNodeCreateReq->unk_0x5C);
+  pNodeCreateReq->mCreatingID = fpcSCtRq_Request(pNodeCreateReq->mpLayerClass,pNodeCreateReq->mProcName,
+    pNodeCreateReq->mpNodeCrReqMthCls->mpPostMethodFunc,pNodeCreateReq,pNodeCreateReq->mpUserData);
   return pNodeCreateReq->mCreatingID == -1 ? 3 : 2; 
 }
 
@@ -159,7 +159,7 @@ s32 fpcNdRq_IsPossibleTarget(process_node_class *pProcNode) {
   currentNode = (request_node_class *)lbl_803A3A38.mpHead;
   while (currentNode != NULL) {
     currentNdCr = currentNode->mNodeCrReq;
-    if ((currentNdCr->unk_0x40 == 2 || currentNdCr->unk_0x40 == 4 || currentNdCr->unk_0x40 == 1)
+    if ((currentNdCr->mParameter == 2 || currentNdCr->mParameter == 4 || currentNdCr->mParameter == 1)
       && currentNdCr->mNodeProc.mProcId == bsPcId) {
         return 0;
       }
@@ -207,8 +207,8 @@ node_create_request *fpcNdRq_ChangeNode(u32 pRequestSize, process_node_class *pP
       req->mNodeProc.mpNodeProc = pProcNode;
       req->mNodeProc.mProcId = pProcNode->mBsPcId;
       req->mpLayerClass = pProcNode->mLyTg.mpLayer;
-      req->unk_0x58 = param_3;
-      req->unk_0x5C = param_4;
+      req->mProcName = param_3;
+      req->mpUserData = param_4;
     }
     return req;
   } else {
@@ -244,8 +244,8 @@ node_create_request *fpcNdRq_CreateNode(u32 pRequestSize, s16 param_2, void *par
         req->mNodeProc.mProcId = layer->mpPcNode->mBsPcId;
       }
       req->mpLayerClass = layer;
-      req->unk_0x58 = param_2;
-      req->unk_0x5C = param_3;
+      req->mProcName = param_2;
+      req->mpUserData = param_3;
     }
     return req;
   }
@@ -267,7 +267,7 @@ node_create_request *fpcNdRq_Request(u32 param_1, s32 param_2, process_node_clas
       break;
   }
   if (req != NULL) {
-    req->unk_0x40 = param_2;
+    req->mParameter = param_2;
     req->mpNodeCrReqMthCls = pNodeCreateRequestMethodClass;
     fpcNdRq_ToRequestQ(req);
   }
@@ -280,10 +280,10 @@ s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void *param_3) {
   currentNode = (request_node_class*)lbl_803A3A38.mpHead;
   while (currentNode != NULL) {
     found = currentNode->mNodeCrReq;
-    if (found->unk_0x40 == 2 && found->mRequestId == pRequestId) {
+    if (found->mParameter == 2 && found->mRequestId == pRequestId) {
       if (found->mCreatingID == -2) {
-        found->unk_0x58 = param_2;
-        found->unk_0x5C = param_3;
+        found->mProcName = param_2;
+        found->mpUserData = param_3;
         return 1;
       }
       return 0;

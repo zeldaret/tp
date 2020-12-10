@@ -8,14 +8,14 @@
 struct nodedraw_method_class;
 
 struct process_profile_definition {
-    s32 unk0;
-    u16 unk4;
-    u16 unk6;
+    s32 mLayerID;
+    u16 mListID;
+    u16 mListPrio;
     s16 mProcName;
     s16 unkA; // probably padding
     process_method_class *mpPcMtd;
-    s32 unk10;
-    s32 unk14;
+    s32 mSize;
+    s32 mSizeOther;
     s32 mParameters;
     nodedraw_method_class *mNDrwMthCls;
     u8 unk20[4];

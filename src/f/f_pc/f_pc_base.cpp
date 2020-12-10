@@ -95,18 +95,18 @@ base_process_class *fpcBs_Create(s16 pProcTypeID, u32 pProcID, void *pData) {
     s32 size;
     
     procProfDef = fpcPf_Get(pProcTypeID);
-    size = procProfDef->unk10 + procProfDef->unk14;
+    size = procProfDef->mSize + procProfDef->mSizeOther;
     procClass = (base_process_class *)cMl_NS_memalignB(-4,size);
     if (procClass == NULL) {
         return NULL;
     }
     else {
         sBs_ClearArea(procClass,size);
-        fpcLyTg_Init(&procClass->mLyTg,procProfDef->unk0,procClass);
+        fpcLyTg_Init(&procClass->mLyTg,procProfDef->mLayerID,procClass);
         fpcLnTg_Init(&procClass->mLnTg,procClass);
         fpcDtTg_Init(&procClass->mDtTg,procClass);
-        fpcPi_Init(&procClass->mPi,procClass,procProfDef->unk0,procProfDef->unk4,
-                procProfDef->unk6);
+        fpcPi_Init(&procClass->mPi,procClass,procProfDef->mLayerID,procProfDef->mListID,
+                procProfDef->mListPrio);
         procClass->mInitState = 0;
         procClass->mUnk0 = 0;
         procClass->mBsPcId = pProcID;
