@@ -4,43 +4,38 @@
 #include "SComponent/c_phase.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_iter.h"
+#include "f/f_pc/f_pc_deletor.h"
+#include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_method.h"
-#include "f/f_pc/f_pc_executor.h"
-#include "f/f_pc/f_pc_deletor.h"
 
 extern "C" {
 
-bool fpcCtRq_isCreatingByID(create_tag *pTag, int *pId)
-{
-    create_request *pReq = (create_request *) (pTag->mpTagData);
+bool fpcCtRq_isCreatingByID(create_tag* pTag, int* pId) {
+    create_request* pReq = (create_request*)(pTag->mpTagData);
     return pReq->mBsPcId == *pId;
 }
 
-bool fpcCtRq_IsCreatingByID(unsigned int id)
-{
-    return fpcCtIt_Judge((cNdIt_JudgeFunc) fpcCtRq_isCreatingByID, &id) != NULL;
+bool fpcCtRq_IsCreatingByID(unsigned int id) {
+    return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtRq_isCreatingByID, &id) != NULL;
 }
 
-void fpcCtRq_CreateQTo(create_request *pReq)
-{
+void fpcCtRq_CreateQTo(create_request* pReq) {
     fpcCtTg_CreateQTo(pReq);
     fpcLy_CreatedMesg(pReq->mpLayer);
     fpcLy_CancelQTo(&pReq->mMtdTg);
 }
 
-void fpcCtRq_ToCreateQ(create_request *pReq)
-{
+void fpcCtRq_ToCreateQ(create_request* pReq) {
     fpcLy_CreatingMesg(pReq->mpLayer);
     fpcLy_ToCancelQ(pReq->mpLayer, &pReq->mMtdTg);
     fpcCtTg_ToCreateQ(pReq);
 }
 
-extern void cMl_NS_free(void *pPtr);
+extern void cMl_NS_free(void* pPtr);
 
 #if NON_MATCHING
-bool fpcCtRq_Delete(create_request *pReq)
-{
+bool fpcCtRq_Delete(create_request* pReq) {
     fpcCtRq_CreateQTo(pReq);
     if (pReq->mpCtRqMtd != NULL) {
         // flow control
@@ -56,8 +51,8 @@ bool fpcCtRq_Delete(create_request *pReq)
     return 0;
 }
 #else
-asm bool fpcCtRq_Delete(create_request *pReq)
-{
+// clang-format off
+asm bool fpcCtRq_Delete(create_request* pReq) {
     nofralloc
 /* 80020BA0 0001DAE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80020BA4 0001DAE4  7C 08 02 A6 */	mflr r0
@@ -92,13 +87,13 @@ lbl_80020C00:
 /* 80020C0C 0001DB4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80020C10 0001DB50  4E 80 00 20 */	blr 
 }
+// clang-format on
 #endif
 
-bool fpcCtRq_Cancel(create_request *pReq)
-{
+bool fpcCtRq_Cancel(create_request* pReq) {
     if (pReq != NULL && !pReq->mbIsCancelling) {
         pReq->mbIsCancelling = true;
-        base_process_class *pProc = pReq->mpRes;
+        base_process_class* pProc = pReq->mpRes;
 
         if (pProc != NULL && !fpcDt_Delete(pProc))
             return false;
@@ -112,16 +107,14 @@ bool fpcCtRq_Cancel(create_request *pReq)
     }
 }
 
-int fpcCtRq_IsDoing(create_request *pReq)
-{
+int fpcCtRq_IsDoing(create_request* pReq) {
     if (pReq != NULL)
         return pReq->mbIsCreating;
     else
         return false;
 }
 
-static bool fpcCtRq_Do(create_request *pReq)
-{
+static bool fpcCtRq_Do(create_request* pReq) {
     int ret = cPhs_COMPLEATE_e;
 
     if (pReq->mpCtRqMtd != NULL) {
@@ -149,21 +142,20 @@ static bool fpcCtRq_Do(create_request *pReq)
     return 1;
 }
 
-void fpcCtRq_Handler(void)
-{
-    fpcCtIt_Method((cNdIt_MethodFunc) fpcCtRq_Do, NULL);
+void fpcCtRq_Handler(void) {
+    fpcCtIt_Method((cNdIt_MethodFunc)fpcCtRq_Do, NULL);
 }
 
-extern void * cMl_NS_memalignB(int, unsigned long);
+extern void* cMl_NS_memalignB(int, unsigned long);
 extern int fpcBs_MakeOfId(void);
 
-create_request * fpcCtRq_Create(layer_class *pLayer, unsigned long size, create_request_method_class *pMthd)
-{
-    create_request *pReq = (create_request *) cMl_NS_memalignB(-4, size);
+create_request* fpcCtRq_Create(layer_class* pLayer, unsigned long size,
+                               create_request_method_class* pMthd) {
+    create_request* pReq = (create_request*)cMl_NS_memalignB(-4, size);
 
     if (pReq != NULL) {
         fpcCtTg_Init(pReq, pReq);
-        fpcMtdTg_Init(&pReq->mMtdTg, (process_method_tag_func) fpcCtRq_Cancel, pReq);
+        fpcMtdTg_Init(&pReq->mMtdTg, (process_method_tag_func)fpcCtRq_Cancel, pReq);
         pReq->mpLayer = pLayer;
         pReq->mpCtRqMtd = pMthd;
         pReq->mBsPcId = fpcBs_MakeOfId();
@@ -174,5 +166,4 @@ create_request * fpcCtRq_Create(layer_class *pLayer, unsigned long size, create_
 
     return pReq;
 }
-
 };

@@ -23,11 +23,10 @@ bool cBgW_CheckBRoof(float a1) {
     return a1 < lbl_804550EC;
 }
 
-bool cBgW_CheckBWall(float a1)
-{
+bool cBgW_CheckBWall(float a1) {
     if (!cBgW_CheckBGround(a1) && !cBgW_CheckBRoof(a1))
         return true;
-    
+
     return false;
 }
 

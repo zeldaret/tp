@@ -3,13 +3,11 @@
 
 extern "C" {
 
-int fpcLf_GetPriority(leafdraw_class *pLeaf)
-{
+int fpcLf_GetPriority(leafdraw_class* pLeaf) {
     return fpcDwPi_Get(&pLeaf->mDwPi);
 }
 
-int fpcLf_DrawMethod(leafdraw_method_class *pMthd, void *pUserData)
-{
+int fpcLf_DrawMethod(leafdraw_method_class* pMthd, void* pUserData) {
     return fpcMtd_Method(pMthd->mpDrawFunc, pUserData);
 }
 
@@ -22,5 +20,4 @@ int fpcLf_Draw(leafdraw_class *pLeaf)
     return ret;
 }
 #endif
-
 };

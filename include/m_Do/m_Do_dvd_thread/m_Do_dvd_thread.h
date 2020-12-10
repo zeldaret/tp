@@ -3,9 +3,6 @@
 
 #include "dolphin/types.h"
 
-class mDoDVDThd_command_c {
-
-};
-
+class mDoDVDThd_command_c {};
 
 #endif

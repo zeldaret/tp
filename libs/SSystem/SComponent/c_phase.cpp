@@ -1,33 +1,28 @@
 
-#include "global.h"
 #include "SComponent/c_phase.h"
+#include "global.h"
 
-void cPhs_Reset(request_of_phase_process_class *pPhase)
-{
+void cPhs_Reset(request_of_phase_process_class* pPhase) {
     pPhase->mPhaseStep = 0;
 }
 
-void cPhs_Set(request_of_phase_process_class *pPhase, cPhs__Handler *pHandlerTable)
-{
+void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable) {
     pPhase->mpHandlerTable = pHandlerTable;
     pPhase->mPhaseStep = 0;
 }
 
-void cPhs_UnCompleate(request_of_phase_process_class *pPhase)
-{
+void cPhs_UnCompleate(request_of_phase_process_class* pPhase) {
     pPhase->mpHandlerTable = NULL;
     cPhs_Reset(pPhase);
 }
 
-int cPhs_Compleate(request_of_phase_process_class *pPhase)
-{
+int cPhs_Compleate(request_of_phase_process_class* pPhase) {
     pPhase->mpHandlerTable = NULL;
     return cPhs_COMPLEATE_e;
 }
 
 #if NON_MATCHING
-int cPhs_Next(request_of_phase_process_class *pPhase)
-{
+int cPhs_Next(request_of_phase_process_class* pPhase) {
     // flow control
 
     if (pPhase->mpHandlerTable != NULL) {
@@ -42,8 +37,8 @@ int cPhs_Next(request_of_phase_process_class *pPhase)
     return cPhs_COMPLEATE_e;
 }
 #else
-asm int cPhs_Next(request_of_phase_process_class *pPhase)
-{
+// clang-format off
+asm int cPhs_Next(request_of_phase_process_class* pPhase) {
     nofralloc
     /* 80266678 002635B8  94 21 FF F0 */	stwu r1, -0x10(r1)
     /* 8026667C 002635BC  7C 08 02 A6 */	mflr r0
@@ -74,12 +69,12 @@ asm int cPhs_Next(request_of_phase_process_class *pPhase)
     /* 802666D0 00263610  38 21 00 10 */	addi r1, r1, 0x10
     /* 802666D4 00263614  4E 80 00 20 */	blr
 }
+// clang-format on
 #endif
 
 #if NON_MATCHING
-int cPhs_Do(request_of_phase_process_class *pPhase, void *pUserData)
-{
-    cPhs__Handler *pHandlerTable = pPhase->mpHandlerTable;
+int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
+    cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable;
     if (pHandlerTable != NULL) {
         // the load of pUserData seems to be slightly scrambled..
         int step = pPhase->mPhaseStep;
@@ -109,8 +104,8 @@ int cPhs_Do(request_of_phase_process_class *pPhase, void *pUserData)
     }
 }
 #else
-asm int cPhs_Do(request_of_phase_process_class *pPhase, void *pUserData)
-{
+// clang-format off
+asm int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
     nofralloc
     /* 802666D8 00263618  94 21 FF F0 */	stwu r1, -0x10(r1)
     /* 802666DC 0026361C  7C 08 02 A6 */	mflr r0
@@ -174,10 +169,11 @@ asm int cPhs_Do(request_of_phase_process_class *pPhase, void *pUserData)
     /* 802667A4 002636E4  38 21 00 10 */	addi r1, r1, 0x10
     /* 802667A8 002636E8  4E 80 00 20 */	blr 
 }
+// clang-format on
 #endif
 
-int cPhs_Handler(request_of_phase_process_class *pPhase, cPhs__Handler *pHandlerTable, void *pUserData)
-{
+int cPhs_Handler(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable,
+                 void* pUserData) {
     pPhase->mpHandlerTable = pHandlerTable;
     return cPhs_Do(pPhase, pUserData);
 }

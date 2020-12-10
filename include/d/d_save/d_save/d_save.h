@@ -13,11 +13,7 @@ static const int ITEM_XY_MAX_DUMMY = 8;
 static const int LIGHT_DROP_STAGE = 4;
 static const int LETTER_INFO_BIT = 64;
 
-enum Wallets {
-    WALLET,
-    BIG_WALLET,
-    GIANT_WALLET
-};
+enum Wallets { WALLET, BIG_WALLET, GIANT_WALLET };
 
 enum ItemSlots {
     SLOT_0,
@@ -305,44 +301,20 @@ enum ItemTable {
     noentry9 = 60
 };
 
-enum EquipmentBits {
-    CLOTHING_BITFIELD,
-    SWORD_BITFIELD,
-    SHIELD_BITFIELD
-};
+enum EquipmentBits { CLOTHING_BITFIELD, SWORD_BITFIELD, SHIELD_BITFIELD };
 
-enum Swords {
-    ORDON_SWORD_FLAG,
-    MASTER_SWORD_FLAG,
-    WOODEN_SWORD_FLAG,
-    LIGHT_SWORD_FLAG
-};
+enum Swords { ORDON_SWORD_FLAG, MASTER_SWORD_FLAG, WOODEN_SWORD_FLAG, LIGHT_SWORD_FLAG };
 
-enum Shields {
-    ORDON_SHIELD_FLAG,
-    HYLIAN_SHIELD_FLAG,
-    WOODEN_SHIELD_FLAG
-};
+enum Shields { ORDON_SHIELD_FLAG, HYLIAN_SHIELD_FLAG, WOODEN_SHIELD_FLAG };
 
-enum Armors {
-    HEROS_CLOTHES_FLAG
-};
+enum Armors { HEROS_CLOTHES_FLAG };
 
-enum DungeonItem {
-    MAP_FLAG,
-    COMPASS_FLAG,
-    BOSS_KEY_FLAG,
-    OOCCOO_NOTE_FLAG = 6
-};
+enum DungeonItem { MAP_FLAG, COMPASS_FLAG, BOSS_KEY_FLAG, OOCCOO_NOTE_FLAG = 6 };
 
-enum AreaVessel {
-    FARON_VESSEL,
-    ELDIN_VESSEL,
-    LANAYRU_VESSEL
-};
+enum AreaVessel { FARON_VESSEL, ELDIN_VESSEL, LANAYRU_VESSEL };
 
 class dSv_player_status_a_c {
-   public:
+public:
     void init(void);
     void setSelectItemIndex(signed int, u8);
     u8 getSelectItemIndex(signed int) const;
@@ -351,18 +323,14 @@ class dSv_player_status_a_c {
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    inline u16& getCurrentHealth() {
-        return current_health;
-    }
-    inline void setWalletLV(u8 lv) {
-        current_wallet = lv;
-    }
+    inline u16& getCurrentHealth() { return current_health; }
+    inline void setWalletLV(u8 lv) { current_wallet = lv; }
     void setLanternOil(u16 amount) {
         max_lantern_oil = amount;
         current_lantern_oil = amount;
     }
 
-   private:
+private:
     u16 max_health;
     u16 current_health;
     u16 current_rupees;
@@ -385,14 +353,14 @@ class dSv_player_status_a_c {
 };
 
 class dSv_player_status_b_c {
-   public:
+public:
     void init(void);
     void onDarkClearLV(int);
     bool isDarkClearLV(int) const;
     void onTransformLV(int);
     bool isTransformLV(int) const;
 
-   private:
+private:
     u32 unk0;
     u32 unk4;
     u8 transform_level_flag;
@@ -407,16 +375,16 @@ class dSv_player_status_b_c {
 
 // move to SComponent later
 class cXyz {
-   public:
+public:
     float x, y, z;
 };
 
 class dSv_horse_place_c {
-   public:
+public:
     void init(void);
     void set(const char*, const cXyz&, short, s8);
 
-   private:
+private:
     cXyz position;
     u16 angle;
     char current_stage[8];
@@ -425,11 +393,11 @@ class dSv_horse_place_c {
 };
 
 class dSv_player_return_place_c {
-   public:
+public:
     void init(void);
     void set(const char*, s8, u8);
 
-   private:
+private:
     char current_stage[8];
     u8 spawn_id;
     u8 room_id;
@@ -438,13 +406,13 @@ class dSv_player_return_place_c {
 };
 
 class dSv_player_field_last_stay_info_c {
-   public:
+public:
     void init(void);
     bool isRegionBit(int unk) const;
     void onRegionBit(int unk);
     void set(const char*, const cXyz&, short, s8, u8);
 
-   private:
+private:
     cXyz last_position;
     u16 last_angle;
     char last_stage[8];
@@ -456,11 +424,11 @@ class dSv_player_field_last_stay_info_c {
 };
 
 class dSv_player_last_mark_info_c {
-   public:
+public:
     void init(void);
     void setWarpItemData(const char*, const cXyz&, short, s8, u8, u8);
 
-   private:
+private:
     cXyz ooccoo_position;
     u16 ooccoo_angle;
     char ooccoo_stage[8];
@@ -471,7 +439,7 @@ class dSv_player_last_mark_info_c {
 };
 
 class dSv_player_item_c {
-   public:
+public:
     void init(void);
     void setItem(int, u8);
     u8 getItem(int, bool) const;
@@ -500,25 +468,25 @@ class dSv_player_item_c {
     static const int BOMB_BAG_MAX = 3;
     static const int BOTTLE_MAX = 4;
 
-   private:
+private:
     u8 items[24];
     u8 item_slots[24];
 };
 
 class dSv_player_get_item_c {
-   public:
+public:
     void init(void);
     void onFirstBit(u8);
     void offFirstBit(u8);
     int isFirstBit(u8) const;
 
-   private:
+private:
     u32 pause_menu_bit_fields[4];
     u8 ok[16];
 };
 
 class dSv_player_item_record_c {
-   public:
+public:
     void init(void);
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
@@ -528,7 +496,7 @@ class dSv_player_item_record_c {
 
     void setBowAmount(u8 amount) { bow = amount; }
 
-   private:
+private:
     u8 bow;
     u8 bomb_bags[3];
     u8 bottles[4];
@@ -537,19 +505,19 @@ class dSv_player_item_record_c {
 };
 
 class dSv_player_item_max_c {
-   public:
+public:
     void init(void);
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
     void setBowCapacity(u8 max) { item_capacities[0] = max; }
 
-   private:
+private:
     u8 item_capacities[8];
 };
 
 class dSv_player_collect_c {
-   public:
+public:
     void init(void);
     void setCollect(int, u8);
     bool isCollect(int, u8) const;
@@ -560,7 +528,7 @@ class dSv_player_collect_c {
 
     u8 getPoeCount() { return poe_count; }
 
-   private:
+private:
     u8 unk0[8];
     u8 unk8;
     u8 crystal;
@@ -571,59 +539,59 @@ class dSv_player_collect_c {
 };
 
 class dSv_player_wolf_c {
-   public:
+public:
     void init(void);
 
-   private:
+private:
     u8 unk0[3];
     u8 unk3;
 };
 
 class dSv_light_drop_c {
-   public:
+public:
     void init(void);
     void setLightDropNum(u8, u8);
     u8 getLightDropNum(u8) const;
     void onLightDropGetFlag(u8);
     bool isLightDropGetFlag(u8) const;
 
-   private:
+private:
     u8 light_drop_counts[4];
     u8 light_drop_get_flag;
     u8 unk5[3];
 };
 
 class dSv_letter_info_c {
-   public:
+public:
     void init(void);
     void onLetterGetFlag(int);
     bool isLetterGetFlag(int) const;
     void onLetterReadFlag(int);
     int isLetterReadFlag(int) const;
 
-   private:
+private:
     u32 letter_get_bitfields[2];
     u32 letter_read_bitfields[2];
     u8 unk16[64];
 };
 
 class dSv_fishing_info_c {
-   public:
+public:
     void init(void);
     void addFishCount(u8);  // merged with init in the assembly
 
-   private:
+private:
     u16 fish_count[16];
     u8 unk32[16];
     u8 padding[4];
 };
 
 class dSv_player_info_c {
-   public:
+public:
     void init(void);
     char* getLinkName() { return (char*)link_name; }
 
-   private:
+private:
     u32 unk0;
     u32 unk4;
     u32 unk8;
@@ -640,7 +608,7 @@ class dSv_player_info_c {
 };
 
 class dSv_player_config_c {
-   public:
+public:
     void init(void);
     u32 checkVibration(void) const;
     u8 getSound(void);
@@ -648,7 +616,7 @@ class dSv_player_config_c {
     u8 getVibration(void);
     void setVibration(u8);
 
-   private:
+private:
     u8 unk0;
     u8 sound_mode;
     u8 unk2;
@@ -663,7 +631,7 @@ class dSv_player_config_c {
 };
 
 class dSv_player_c {
-   public:
+public:
     void init(void);
     dSv_player_info_c& getPlayerInfo() { return player_info; }
     dSv_player_status_a_c& getPlayerStatusA() { return player_status_a; }
@@ -677,7 +645,7 @@ class dSv_player_c {
     void setPlayerStatusAWalletLV(u8 lv) { player_status_a.setWalletLV(lv); }
     void setPlayerStatusAOil(u16 amount) { player_status_a.setLanternOil(amount); }
 
-   private:
+private:
     dSv_player_status_a_c player_status_a;
     dSv_player_status_b_c player_status_b;
     dSv_horse_place_c horse_place;
@@ -699,7 +667,7 @@ class dSv_player_c {
 
 #pragma pack(push, 1)
 class dSv_memBit_c {
-   public:
+public:
     void init(void);
     void onTbox(int);
     void offTbox(int);
@@ -713,11 +681,9 @@ class dSv_memBit_c {
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
-    u8 getSmallKeys() {
-        return small_key_flags;
-    }
+    u8 getSmallKeys() { return small_key_flags; }
 
-   private:
+private:
     u32 area_flags_bitfields1[2];
     u32 area_flags_bitfields2[4];
     u32 rupee_flags_bitfields;
@@ -727,7 +693,7 @@ class dSv_memBit_c {
 #pragma pack(pop)
 
 class dSv_event_c {
-   public:
+public:
     void init(void);
     void onEventBit(u16);
     void offEventBit(u16);
@@ -735,15 +701,15 @@ class dSv_event_c {
     void setEventReg(u16, u8);
     u8 getEventReg(u16) const;
 
-   private:
+private:
     u8 events[256];
 };
 
 class dSv_MiniGame_c {
-   public:
+public:
     void init(void);
 
-   private:
+private:
     u8 unk0;
     u8 unk1[3];
     u32 unk4;
@@ -754,30 +720,30 @@ class dSv_MiniGame_c {
 };
 
 class dSv_memory_c {
-   public:
+public:
     dSv_memory_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(void);
     dSv_memBit_c& getTempFlags() { return temp_flags; }
 
-   private:
+private:
     dSv_memBit_c temp_flags;
     u8 padding30[2];
 };
 
 class dSv_memory2_c {
-   public:
+public:
     dSv_memory2_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(void);
     void onVisitedRoom(int);
     void offVisitedRoom(int);
     bool isVisitedRoom(int);
 
-   private:
+private:
     u32 unk0[2];
 };
 
 class dSv_danBit_c {
-   public:
+public:
     bool init(s8);
     void onSwitch(int);
     void offSwitch(int);
@@ -786,7 +752,7 @@ class dSv_danBit_c {
     void onItem(int);
     bool isItem(int) const;
 
-   private:
+private:
     s8 mStageNum;
     u8 unk1;
     u8 unk2[2];
@@ -796,7 +762,7 @@ class dSv_danBit_c {
 };
 
 class dSv_zoneBit_c {
-   public:
+public:
     void init(void);
     void clearRoomSwitch(void);
     void clearRoomItem(void);
@@ -813,7 +779,7 @@ class dSv_zoneBit_c {
     void onOneItem(int);
     bool isOneItem(int) const;
 
-   private:
+private:
     u16 switch_bitfield[2];
     u16 room_switch;
     u16 item_bitfield[2];
@@ -822,7 +788,7 @@ class dSv_zoneBit_c {
 };
 
 class dSv_zoneActor_c {
-   public:
+public:
     void init(void);
     void on(int);
     void off(int);
@@ -830,12 +796,12 @@ class dSv_zoneActor_c {
 
     static const int ACTOR_MAX = 0xFFFF;
 
-   private:
+private:
     u32 actor_bitfield[4];
 };
 
 class dSv_zone_c {
-   public:
+public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return zone_bit; }
@@ -843,7 +809,7 @@ class dSv_zone_c {
 
     s8& getUnk0() { return unk0; }
 
-   private:
+private:
     s8 unk0;
     u8 unk1;
     dSv_zoneBit_c zone_bit;
@@ -851,10 +817,10 @@ class dSv_zone_c {
 };
 
 class dSv_restart_c {
-   public:
+public:
     void setRoom(const cXyz&, short, s8);
 
-   private:
+private:
     u8 unk0;
     u8 unk1[5];
     short angle;
@@ -863,10 +829,10 @@ class dSv_restart_c {
 };
 
 class dSv_turnRestart_c {
-   public:
+public:
     void set(const cXyz&, short, s8, u32);
 
-   private:
+private:
     cXyz position;
     u32 unk12;
     short angle;
@@ -874,7 +840,7 @@ class dSv_turnRestart_c {
 };
 
 class dSv_save_c {
-   public:
+public:
     void init(void);
     dSv_memory2_c* getSave2(int);
     dSv_player_c& getPlayer() { return player; }
@@ -887,7 +853,7 @@ class dSv_save_c {
 
     static const int STAGE_MAX = 4;
 
-   private:
+private:
     dSv_player_c player;
     u8 unk492[4];
     dSv_memory_c area_flags[32];
@@ -898,7 +864,7 @@ class dSv_save_c {
 };
 
 class dSv_info_c {
-   public:
+public:
     void init(void);
     void getSave(int);
     void putSave(int);
@@ -917,7 +883,7 @@ class dSv_info_c {
     void card_to_memory(char*, int);
     void initdata_to_card(char*, int);
 
-   private:
+private:
     dSv_save_c save_file;
     dSv_memory_c memory;
     dSv_danBit_c dungeon_bit;

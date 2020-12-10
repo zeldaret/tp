@@ -1,15 +1,15 @@
 #ifndef JSYSTEM_JUTILITY_JUT_RES_FONT
-#define JSYSTEM_JUTILITY_JUT_RES_FONT 
+#define JSYSTEM_JUTILITY_JUT_RES_FONT
 
-#include "JSystem/JUtility/JUTFont/JUTFont.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JUtility/JUTFont/JUTFont.h"
 
 class JUTResFont : JUTFont {
 public:
     JUTResFont();
     JUTResFont(ResFONT font, JKRHeap* heap);
     ~JUTResFont();
-    
+
     struct Unknown {
         struct Unknown2 {
             u32 filler0;
@@ -53,6 +53,5 @@ public:
     u8 filler60[0xC];
     bool (**unk6C)(s32 a1);
 };
-
 
 #endif  // JSYSTEM_JUTILITY_JUT_RES_FONT

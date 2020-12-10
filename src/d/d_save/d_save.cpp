@@ -5,14 +5,14 @@
 
 u8 dSv_item_rename(u8 item_id) {
     switch (item_id) {
-        case OIL_BOTTLE_2:
-            return OIL_BOTTLE;
-        case RED_BOTTLE_2:
-            return RED_BOTTLE;
-        case OIL2:
-            return OIL;
-        default:
-            return item_id;
+    case OIL_BOTTLE_2:
+        return OIL_BOTTLE;
+    case RED_BOTTLE_2:
+        return RED_BOTTLE;
+    case OIL2:
+        return OIL;
+    default:
+        return item_id;
     }
 }
 
@@ -80,12 +80,12 @@ u8 dSv_player_status_a_c::getMixItemIndex(signed int i_no) const {
 u16 dSv_player_status_a_c::getRupeeMax(void) const {
     if (current_wallet < 3) {  // if you make this a default, it wont match. Compiler, pls.
         switch (current_wallet) {
-            case WALLET:
-                return 300;
-            case BIG_WALLET:
-                return 600;
-            case GIANT_WALLET:
-                return 1000;
+        case WALLET:
+            return 300;
+        case BIG_WALLET:
+            return 600;
+        case GIANT_WALLET:
+            return 1000;
         }
     }
     return 0;
@@ -127,7 +127,7 @@ void dSv_player_status_b_c::onTransformLV(int flagOnOff) {
 bool dSv_player_status_b_c::isTransformLV(int unk) const {
     return this->transform_level_flag & (u8)(1 << unk) ? true : false;
 }
-//extern u8 lbl_80379234[16];
+// extern u8 lbl_80379234[16];
 void dSv_horse_place_c::init(void) {
     float position_val;
     char* default_stage;
@@ -142,7 +142,8 @@ void dSv_horse_place_c::init(void) {
     this->room_id = 0;
 }
 
-void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, short i_angle, signed char i_room_id) {
+void dSv_horse_place_c::set(const char* i_name, const cXyz& i_position, short i_angle,
+                            signed char i_room_id) {
     strcpy(current_stage, i_name);
     this->position.x = i_position.x;
     this->position.y = i_position.y;
@@ -185,7 +186,9 @@ void dSv_player_field_last_stay_info_c::init() {
     }
 }
 
-void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_last_position, short i_last_angle, signed char i_last_spawn_id, u8 i_last_room_id) {
+void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_last_position,
+                                            short i_last_angle, signed char i_last_spawn_id,
+                                            u8 i_last_room_id) {
     strcpy(last_stage, i_name);
 
     this->last_position = i_last_position;
@@ -229,7 +232,10 @@ void dSv_player_last_mark_info_c::init(void) {
     }
 }
 
-void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage, const cXyz& i_ooccoo_position, short i_ooccoo_angle, s8 i_ooccoo_room_id, u8 unk1, u8 unk2) {
+void dSv_player_last_mark_info_c::setWarpItemData(const char* i_ooccoo_stage,
+                                                  const cXyz& i_ooccoo_position,
+                                                  short i_ooccoo_angle, s8 i_ooccoo_room_id,
+                                                  u8 unk1, u8 unk2) {
     strcpy(ooccoo_stage, i_ooccoo_stage);
     this->ooccoo_position = i_ooccoo_position;
     this->ooccoo_angle = i_ooccoo_angle;
@@ -252,7 +258,8 @@ void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
     int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
 
     do {
-        if (current_items_index == g_dComIfG_gameInfo.save_file.getPlayerStatusA().getSelectItemIndex(select_item_index)) {
+        if (current_items_index ==
+            g_dComIfG_gameInfo.save_file.getPlayerStatusA().getSelectItemIndex(select_item_index)) {
             dComIfGp_setSelectItem(select_item_index);
         }
         select_item_index++;
@@ -270,8 +277,10 @@ u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
             for (int select_item_index = 0; select_item_index < 2; select_item_index++) {
                 current_select_item_index = getSelectItemIndex(select_item_index);
                 if (((param_1 == (current_select_item_index)) ||
-                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), param_1 == (current_select_item_index))) &&
-                    (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index), (current_select_item_index) != NO_ITEM)) {
+                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index),
+                      param_1 == (current_select_item_index))) &&
+                    (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index),
+                     (current_select_item_index) != NO_ITEM)) {
                     current_select_item_index = getSelectItemIndex(select_item_index);
                     IVar1 = items[current_select_item_index];
                     current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
@@ -307,7 +316,8 @@ u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
                     if (((select_item_index == 0x3) &&
                          (current_select_item_index = getSelectItemIndex(0x3),
                           (current_select_item_index & 0xff) == 0x0)) &&
-                        (current_select_item_index = dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
+                        (current_select_item_index = dComIfGs_getMixItemIndex(0x3),
+                         (current_select_item_index & 0xff) == 0x0)) {
                         dComIfGs_setSelectItemIndex(0x3, -0x1);
                         dComIfGs_setMixItemIndex(0x3, -0x1);
                         return 0xff;
@@ -438,8 +448,7 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
     return num_bottles;
 }
 
-asm u8 dSv_player_item_c::checkInsectBottle(void){
-    nofralloc
+asm u8 dSv_player_item_c::checkInsectBottle(void){nofralloc
 #include "d/d_save/d_save/asm/func_80033754.s"
 }
 
@@ -496,8 +505,7 @@ asm void dSv_player_item_c::setEmptyBombBag(void) {
 }
 #endif
 
-asm void dSv_player_item_c::setEmptyBombBag(u8, u8){
-    nofralloc
+asm void dSv_player_item_c::setEmptyBombBag(u8, u8){nofralloc
 #include "d/d_save/d_save/asm/func_80033B08.s"
 }
 
@@ -522,18 +530,18 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     int current_fishing_rod_item_id = this->items[SLOT_20];
 
     switch (current_fishing_rod_item_id) {
-        case BEE_ROD: {
-            this->items[SLOT_20] = JEWEL_BEE_ROD;
-            break;
-        }
-        case WORM_ROD: {
-            this->items[SLOT_20] = JEWEL_WORM_ROD;
-            break;
-        }
-        case FISHING_ROD_1: {
-            this->items[SLOT_20] = JEWEL_ROD;
-            break;
-        }
+    case BEE_ROD: {
+        this->items[SLOT_20] = JEWEL_BEE_ROD;
+        break;
+    }
+    case WORM_ROD: {
+        this->items[SLOT_20] = JEWEL_WORM_ROD;
+        break;
+    }
+    case FISHING_ROD_1: {
+        this->items[SLOT_20] = JEWEL_ROD;
+        break;
+    }
     }
 
     for (int i = 0; i < 4; i++) {
@@ -545,18 +553,18 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 #ifdef NONMATCHING
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
-        case BEE_CHILD: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_BEE_ROD : this->items[SLOT_20] = BEE_ROD;
-            break;
-        }
-        case WORM: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_WORM_ROD : this->items[SLOT_20] = WORM_ROD;
-            break;
-        }
-        case NO_ITEM: {
-            isFirstBit(61) ? this->items[SLOT_20] = JEWEL_ROD : this->items[SLOT_20] = FISHING_ROD_1;
-            break;
-        }
+    case BEE_CHILD: {
+        isFirstBit(61) ? this->items[SLOT_20] = JEWEL_BEE_ROD : this->items[SLOT_20] = BEE_ROD;
+        break;
+    }
+    case WORM: {
+        isFirstBit(61) ? this->items[SLOT_20] = JEWEL_WORM_ROD : this->items[SLOT_20] = WORM_ROD;
+        break;
+    }
+    case NO_ITEM: {
+        isFirstBit(61) ? this->items[SLOT_20] = JEWEL_ROD : this->items[SLOT_20] = FISHING_ROD_1;
+        break;
+    }
     }
 
     for (int i = 0; i < 4; i++) {
@@ -660,15 +668,15 @@ void dSv_player_item_max_c::init(void) {
 
 void dSv_player_item_max_c::setBombNum(u8 bomb_id, u8 bomb_max) {
     switch (bomb_id) {
-        case NORMAL_BOMB:
-            this->item_capacities[1] = bomb_max;
-            return;
-        case WATER_BOMB:
-            this->item_capacities[2] = bomb_max;
-            return;
-        case POKE_BOMB:
-            this->item_capacities[6] = bomb_max;
-            return;
+    case NORMAL_BOMB:
+        this->item_capacities[1] = bomb_max;
+        return;
+    case WATER_BOMB:
+        this->item_capacities[2] = bomb_max;
+        return;
+    case POKE_BOMB:
+        this->item_capacities[6] = bomb_max;
+        return;
     }
 }
 
@@ -681,14 +689,14 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     }
 
     switch (param_1) {
-        case NORMAL_BOMB:
-            return (u8)(this->item_capacities[0x1] * iVar3);
-        case WATER_BOMB:
-            return (u8)(this->item_capacities[0x2] * iVar3);
-        case POKE_BOMB:
-            return (u8)(this->item_capacities[0x6] * iVar3);
-        default:
-            return 0;
+    case NORMAL_BOMB:
+        return (u8)(this->item_capacities[0x1] * iVar3);
+    case WATER_BOMB:
+        return (u8)(this->item_capacities[0x2] * iVar3);
+    case POKE_BOMB:
+        return (u8)(this->item_capacities[0x6] * iVar3);
+    default:
+        return 0;
     }
 }
 
@@ -817,10 +825,10 @@ void dSv_fishing_info_c::addFishCount(u8 fish_index) {
 // a few instructions off
 #ifdef NONMATCHING
 namespace d_meter2_info {
-    class dMeter2Info_c {
-       public:
-        void getString(unsigned long, char*, JMSMesgEntry_c*);
-    };
+class dMeter2Info_c {
+public:
+    void getString(unsigned long, char*, JMSMesgEntry_c*);
+};
 }  // namespace d_meter2_info
 
 void dSv_player_info_c::init(void) {

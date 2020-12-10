@@ -1,13 +1,18 @@
 #include "JSystem/JUtility/JUTResFont.h"
 
 extern "C" {
-extern void convertSjis__10JUTResFontFlPUs(); // remove when JUTResFont::getFontCode decompiled
-extern void getFontCode__10JUTResFontFl(); // remove when JUTResFont::getWidthEntry decompiled
-extern void loadFont__10JUTResFontFlUlPQ27JUTFont6TWidth(); // remove when JUTResFont::drawChar_scale decompiled
-extern void countBlock__10JUTResFontFv(); // remove when JUTResFont::protected_initiate decompiled
-extern void initialize_state__7JUTFontFv(); // remove when JUTResFont::protected_initiate decompiled
-extern void initialize_state__10JUTResFontFv(); // remove when JUTResFont::protected_initiate decompiled
-extern void deleteMemBlocks_ResFont__10JUTResFontFv(); // remove when JUTResFont::protected_initiate decompiled
+extern void convertSjis__10JUTResFontFlPUs();  // remove when JUTResFont::getFontCode decompiled
+extern void getFontCode__10JUTResFontFl();     // remove when JUTResFont::getWidthEntry decompiled
+extern void
+loadFont__10JUTResFontFlUlPQ27JUTFont6TWidth();  // remove when JUTResFont::drawChar_scale
+                                                 // decompiled
+extern void countBlock__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
+extern void
+initialize_state__7JUTFontFv();  // remove when JUTResFont::protected_initiate decompiled
+extern void
+initialize_state__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
+extern void
+deleteMemBlocks_ResFont__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
 }
 
 extern float lbl_80455FF0;
@@ -42,6 +47,7 @@ JUTResFont::~JUTResFont() {
     }
 }
 #else
+// clang-format off
 asm JUTResFont::~JUTResFont() {
     nofralloc
 /* 802DF000 002DBF40  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -83,10 +89,11 @@ lbl_802DF070:
 /* 802DF084 002DBFC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DF088 002DBFC8  4E 80 00 20 */	blr 
 }
+// clang-format on
 #endif
 
 void JUTResFont::deleteMemBlocks_ResFont() {
-    delete[] (void*)unk50;
+    delete[](void*) unk50;
 }
 
 void JUTResFont::initialize_state() {
@@ -144,7 +151,7 @@ void JUTResFont::setGX() {
     GXSetVtxDesc(0xd, 0x1);
 }
 
-void JUTResFont::setGX(TColor col1, TColor col2) {    
+void JUTResFont::setGX(TColor col1, TColor col2) {
     if ((col1.Raw() == CLR_BLACK) && (col2.Raw() == CLR_WHITE)) {
         setGX();
         return;
@@ -189,8 +196,7 @@ void JUTResFont::loadFont(s32 a1, u32 a2, TWidth* a3) {
     loadImage(code, a2);
 }
 
-asm void JUTResFont::getWidthEntry(s32 i_no, TWidth* width) {
-    nofralloc
+asm void JUTResFont::getWidthEntry(s32 i_no, TWidth* width){nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__getWidthEntry.s"
 }
 

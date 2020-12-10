@@ -1,8 +1,7 @@
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
 
 #ifdef NONMATCHING
-JUTFont::JUTFont()
-{
+JUTFont::JUTFont() {
     mColor1 = TColor();
     mColor2 = TColor();
     mColor3 = TColor();
@@ -11,8 +10,7 @@ JUTFont::JUTFont()
 }
 #endif
 
-void JUTFont::initialize_state()
-{
+void JUTFont::initialize_state() {
     setCharColor(TColor());
     unk5 = false;
     unk8 = 0;
@@ -33,7 +31,8 @@ void JUTFont::setGradColor(TColor col1, TColor col2) {
     mColor4 = col2;
 }
 
-asm float JUTFont::drawString_size_scale(float a1, float a2, float a3, float a4, char* a5, unsigned long usz, bool a7) {
+asm float JUTFont::drawString_size_scale(float a1, float a2, float a3, float a4, char* a5,
+                                         unsigned long usz, bool a7) {
     nofralloc
 
 #include "JSystem/JUtility/JUTFont/asm/drawString_size_scale.s"

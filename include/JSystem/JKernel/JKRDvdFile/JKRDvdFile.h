@@ -1,13 +1,13 @@
 #ifndef __JKRDVDFILE_H__
 #define __JKRDVDFILE_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRFile/JKRFile.h"
+#include "dolphin/types.h"
 #include "global.h"
 
 class DVDFileInfo;
 class JKRDvdFile : public JKRFile {
-  public:
+public:
     JKRDvdFile();
     JKRDvdFile(char const*);
     JKRDvdFile(long);
@@ -16,19 +16,13 @@ class JKRDvdFile : public JKRFile {
     void initiate(void);
     s32 sync(void);
 
-    int getFileID() const {
-        return this->mFileID << 2;
-    }
+    int getFileID() const { return this->mFileID << 2; }
 
-    const u8* getFileInfo() const {
-        return this->mDvdCommandBlock;
-    }
+    const u8* getFileInfo() const { return this->mDvdCommandBlock; }
 
-    int getStatus() {
-        return DVDGetCommandBlockStatus(&this->mDvdCommandBlock[0]);
-    }
+    int getStatus() { return DVDGetCommandBlockStatus(&this->mDvdCommandBlock[0]); }
 
-  public:
+public:
     /* vt[03] */ virtual bool open(char const*);                 /* override */
     /* vt[04] */ virtual void close(void);                       /* override */
     /* vt[05] */ virtual s32 readData(void*, long, long);        /* override */
@@ -36,7 +30,7 @@ class JKRDvdFile : public JKRFile {
     /* vt[07] */ virtual s32 getFileSize(void) const;            /* override */
     /* vt[08] */ virtual bool open(long);
 
-  private:
+private:
     OSMutex mMutex1;
     OSMutex mMutex2;
     u32 field_0x4c;
@@ -55,9 +49,8 @@ class JKRDvdFile : public JKRFile {
     JSULink<JKRDvdFile> mDvdLink;
     OSThread* mOSThread;
 
-  public:
+public:
     static void doneProcess(long, DVDFileInfo*);
 };
-
 
 #endif
