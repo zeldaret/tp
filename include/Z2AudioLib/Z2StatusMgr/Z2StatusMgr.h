@@ -20,22 +20,22 @@ struct Z2StatusMgr{
     void setCameraGroupInfo(u8);
     void setCameraInWaterDepth(float);
 
-    u8 current_time;
-    u8 unk1;
-    u8 unk2;
+    u8 hour;
+    u8 minute;
+    u8 weekday;
     u8 unk3;
     s16 time;
     u8 padding[2];
     void* event_bit;
     bool is_menu_in;
     u8 padding2[3];
-    u32 unk16;
+    u32 camera_map_info;
     u32 unk20;
     float underwater_depth;
-    float unk28;
+    float camera_in_water_depth_ratio;
     Vec polygon_position;
-    u8 scene_num;
-    u8 heartGauge;
+    u8 demo_status;
+    u8 heart_gauge_on;
     u8 padding3[2];
 };
 

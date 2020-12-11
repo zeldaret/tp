@@ -6,27 +6,27 @@
 
 Z2StatusMgr::Z2StatusMgr(){
     lbl_80450B7C = this;
-    this->current_time = 0;
-    this->unk1 = 0;
-    this->unk2 = 0;
+    this->hour = 0;
+    this->minute = 0;
+    this->weekday = 0;
     this->unk3 = 0;
     this->time = 3072;
     this->event_bit = (void*)0;
     this->is_menu_in = false;
-    this->unk16 = 0;
+    this->camera_map_info = 0;
     float polygon_pos_init = lbl_80455A18;
     this->polygon_position.x = polygon_pos_init;
     this->polygon_position.y = polygon_pos_init;
     this->polygon_position.z = polygon_pos_init;
     float depth_init = lbl_80455A1C;
     this->underwater_depth = depth_init;
-    this->unk28 = depth_init;
-    this->scene_num = 0;
-    this->heartGauge = 0;
+    this->camera_in_water_depth_ratio = depth_init;
+    this->demo_status = 0;
+    this->heart_gauge_on = 0;
 }
 
 void Z2StatusMgr::heartGaugeOn(void){
-    this->heartGauge = 2;
+    this->heart_gauge_on = 2;
 }
 
 asm void Z2StatusMgr::processHeartGaugeSound(void){
@@ -74,7 +74,7 @@ bool Z2StatusMgr::isMovieDemo(void){
     bool uvar2;
 
     uvar2 = false;
-    if(this->scene_num == 2 || this->scene_num == 8 || this->scene_num == 9){
+    if(this->demo_status == 2 || this->demo_status == 8 || this->demo_status == 9){
         uvar2 = true;
     }
     return uvar2;
@@ -92,12 +92,12 @@ asm void Z2StatusMgr::setDemoName(char*){
 }
 
 void Z2StatusMgr::processTime(void){
-    u16 temp = this->current_time * 256;
-    this->time = temp + unk1;
+    u16 temp = this->hour * 256;
+    this->time = temp + minute;
 }
 
 bool Z2StatusMgr::checkDayTime(void){
-    if(this->current_time >= 6 && this->current_time < 19){
+    if(this->hour >= 6 && this->hour < 19){
         return true;
     }
     else{
