@@ -7,7 +7,6 @@ extern u8 lbl_803A7270[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_803739A0[0x310];
-extern u32 lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
 extern u8 lbl_803DD2E8;
@@ -61,7 +60,8 @@ extern u8 __ct__12dSv_memory_cFv;
 extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
-extern u8 lbl_80450C78;
+struct mResetData;
+extern mResetData* lbl_80450C78;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -377,3 +377,38 @@ extern u8 lbl_804342DC; // JKRAram::sAramCommandList
 extern u8 lbl_804342E8; // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8; // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
+
+extern u8 lbl_80450BBA;
+extern u32 lbl_80450BC0;
+extern char lbl_80373D68[];
+extern u32 lbl_80450BC4;
+struct Z2AudioMgr;
+extern Z2AudioMgr lbl_803DBF4C;
+extern u8 lbl_80450BB8;
+
+extern Z2AudioMgr* mAudioMgrPtr;
+
+extern bool lbl_80450BB9;
+extern void* lbl_803DBF40;
+extern void* lbl_803A2F40;
+
+extern void* lbl_803CBF38; //Z2AudioMgr::__vt
+extern void* lbl_803CBF24; //Z2SpeechStarter::__vt
+struct Z2SpeechMgr2;
+extern Z2SpeechMgr2* lbl_80450B70; //Z2SpeechMgr2 sInstance
+extern void* lbl_803CAC48; //Z2SoundInfo::__vt
+struct Z2SoundInfo;
+extern Z2SoundInfo* lbl_80450B4C; //Z2SoundInfo sInstance
+extern void* lbl_803A2F4C; //JAUSoundInfo::__vt
+struct JAUSoundInfo;
+extern JAUSoundInfo* lbl_80450B50; //JAUSoundInfo sInstance
+extern void* lbl_803C9D70; //Z2SoundMgr::__vt
+struct JAIStreamMgr;
+extern JAIStreamMgr* lbl_80450B64; //JAIStreamMgr sInstance
+extern void* lbl_803C9958; //JAISeqMgr::__vt
+struct JAISeqMgr;
+extern JAISeqMgr* lbl_80450B68; //JAISeqMgr sInstance
+extern void* lbl_803C98B0; //JAISeMgr::__vt
+struct JAISeMgr;
+extern JAISeMgr* lbl_80450B6C; //JAISeMgr sInstance
+extern void* lbl_803C98C4; //JAISeCategoryMgr::__vt

@@ -1869,7 +1869,7 @@ dComIfG_changeOpeningScene:
 /* 8002CCAC 00029BEC  7C 04 07 74 */	extsb r4, r0
 /* 8002CCB0 00029BF0  88 05 4E 19 */	lbz r0, 0x4e19(r5)
 /* 8002CCB4 00029BF4  7C 05 07 74 */	extsb r5, r0
-/* 8002CCB8 00029BF8  4B FD A5 05 */	bl mDoAud_setSceneName
+/* 8002CCB8 00029BF8  4B FD A5 05 */	bl mDoAud_setSceneName__FPCcll
 /* 8002CCBC 00029BFC  38 00 00 00 */	li r0, 0
 /* 8002CCC0 00029C00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8002CCC4 00029C04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -1928,12 +1928,12 @@ lbl_8002CD7C:
 lbl_8002CD84:
 /* 8002CD84 00029CC4  38 80 00 0C */	li r4, 0xc
 /* 8002CD88 00029CC8  4B FF FE CD */	bl dComIfG_changeOpeningScene
-/* 8002CD8C 00029CCC  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
+/* 8002CD8C 00029CCC  80 6D 8D E8 */	lwz r3, mAudioMgrPtr-_SDA_BASE_(r13)
 /* 8002CD90 00029CD0  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 8002CD94 00029CD4  38 80 00 1E */	li r4, 0x1e
 /* 8002CD98 00029CD8  38 A0 00 00 */	li r5, 0
 /* 8002CD9C 00029CDC  48 28 26 6D */	bl Z2SeqMgr_NS_bgmStop
-/* 8002CDA0 00029CE0  4B FD A4 E5 */	bl mDoAud_resetProcess
+/* 8002CDA0 00029CE0  4B FD A4 E5 */	bl mDoAud_resetProcess__Fv
 /* 8002CDA4 00029CE4  38 60 00 01 */	li r3, 1
 lbl_8002CDA8:
 /* 8002CDA8 00029CE8  80 01 00 14 */	lwz r0, 0x14(r1)

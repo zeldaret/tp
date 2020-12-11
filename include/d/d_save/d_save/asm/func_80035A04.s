@@ -17,9 +17,9 @@
 /* 80035A44 00032984  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 80035A48 00032988  38 80 00 00 */	li r4, 0
 /* 80035A4C 0003298C  4B FF EC 41 */	bl setSound__19dSv_player_config_cFUc
-/* 80035A50 00032990  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
+/* 80035A50 00032990  80 6D 8D E8 */	lwz r3, mAudioMgrPtr-_SDA_BASE_(r13)
 /* 80035A54 00032994  38 80 00 00 */	li r4, 0
-/* 80035A58 00032998  48 29 7E 31 */	bl Z2AudioMgr_NS_setOutputMode
+/* 80035A58 00032998  48 29 7E 31 */	bl setOutputMode__10Z2AudioMgrFUl
 /* 80035A5C 0003299C  48 00 00 4C */	b lbl_80035AA8
 lbl_80035A60:
 /* 80035A60 000329A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -30,17 +30,17 @@ lbl_80035A60:
 /* 80035A74 000329B4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80035A78 000329B8  28 00 00 02 */	cmplwi r0, 2
 /* 80035A7C 000329BC  40 82 00 14 */	bne lbl_80035A90
-/* 80035A80 000329C0  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
+/* 80035A80 000329C0  80 6D 8D E8 */	lwz r3, mAudioMgrPtr-_SDA_BASE_(r13)
 /* 80035A84 000329C4  38 80 00 02 */	li r4, 2
-/* 80035A88 000329C8  48 29 7E 01 */	bl Z2AudioMgr_NS_setOutputMode
+/* 80035A88 000329C8  48 29 7E 01 */	bl setOutputMode__10Z2AudioMgrFUl
 /* 80035A8C 000329CC  48 00 00 1C */	b lbl_80035AA8
 lbl_80035A90:
 /* 80035A90 000329D0  7F E3 FB 78 */	mr r3, r31
 /* 80035A94 000329D4  38 80 00 01 */	li r4, 1
 /* 80035A98 000329D8  4B FF EB F5 */	bl setSound__19dSv_player_config_cFUc
-/* 80035A9C 000329DC  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
+/* 80035A9C 000329DC  80 6D 8D E8 */	lwz r3, mAudioMgrPtr-_SDA_BASE_(r13)
 /* 80035AA0 000329E0  38 80 00 01 */	li r4, 1
-/* 80035AA4 000329E4  48 29 7D E5 */	bl Z2AudioMgr_NS_setOutputMode
+/* 80035AA4 000329E4  48 29 7D E5 */	bl setOutputMode__10Z2AudioMgrFUl
 lbl_80035AA8:
 /* 80035AA8 000329E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80035AAC 000329EC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l

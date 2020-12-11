@@ -309,8 +309,8 @@ lbl_802B9D2C:
 /* 802B9D38 002B6C78  38 21 00 10 */	addi r1, r1, 0x10
 /* 802B9D3C 002B6C7C  4E 80 00 20 */	blr 
 
-.global Z2SceneMgr_NS_load1stDynamicWave
-Z2SceneMgr_NS_load1stDynamicWave:
+.global load1stDynamicWave__10Z2SceneMgrFv
+load1stDynamicWave__10Z2SceneMgrFv:
 /* 802B9D40 002B6C80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B9D44 002B6C84  7C 08 02 A6 */	mflr r0
 /* 802B9D48 002B6C88  90 01 00 14 */	stw r0, 0x14(r1)

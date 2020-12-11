@@ -2,6 +2,7 @@
 
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "os/OS.h"
+#include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 
 u8 dSv_item_rename(u8 item_id) {
     switch (item_id) {
@@ -860,11 +861,11 @@ void dSv_player_config_c::init(void) {
     this->unk0 = 1;
     os_sound_mode = OSGetSoundMode();
     if (os_sound_mode == SOUND_MODE_MONO) {
-        this->sound_mode = 0;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 0);
+        this->sound_mode = SOUND_MODE_MONO;
+        mAudioMgrPtr->setOutputMode(SOUND_MODE_MONO);
     } else {
-        this->sound_mode = 1;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 1);
+        this->sound_mode = SOUND_MODE_STEREO;
+        mAudioMgrPtr->setOutputMode(SOUND_MODE_STEREO);
     }
 
     this->unk2 = 0;

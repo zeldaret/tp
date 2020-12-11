@@ -625,9 +625,9 @@ lbl_802A0094:
 .global JAISeCategoryMgr
 /* 802A00B4 0029CFF4  38 84 09 94 */	addi r4, r4, JAISeCategoryMgr@l
 .global JAISeCategoryMgr_NS_dtor
-/* 802A00B8 0029CFF8  3C A0 80 00 */	lis r5, JAISeCategoryMgr_NS_dtor@ha
+/* 802A00B8 0029CFF8  3C A0 80 00 */	lis r5, __dt__16JAISeCategoryMgrFv@ha
 .global JAISeCategoryMgr_NS_dtor
-/* 802A00BC 0029CFFC  38 A5 78 DC */	addi r5, r5, JAISeCategoryMgr_NS_dtor@l
+/* 802A00BC 0029CFFC  38 A5 78 DC */	addi r5, r5, __dt__16JAISeCategoryMgrFv@l
 /* 802A00C0 0029D000  38 C0 00 6C */	li r6, 0x6c
 /* 802A00C4 0029D004  38 E0 00 10 */	li r7, 0x10
 /* 802A00C8 0029D008  48 0C 1C 99 */	bl func_80361D60
@@ -1248,9 +1248,9 @@ lbl_802A08E0:
 /* 802A0924 0029D864  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A0928 0029D868  38 7E 00 14 */	addi r3, r30, 0x14
 .global JAISeCategoryMgr_NS_dtor
-/* 802A092C 0029D86C  3C 80 80 00 */	lis r4, JAISeCategoryMgr_NS_dtor@ha
+/* 802A092C 0029D86C  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha
 .global JAISeCategoryMgr_NS_dtor
-/* 802A0930 0029D870  38 84 78 DC */	addi r4, r4, JAISeCategoryMgr_NS_dtor@l
+/* 802A0930 0029D870  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l
 /* 802A0934 0029D874  38 A0 00 6C */	li r5, 0x6c
 /* 802A0938 0029D878  38 C0 00 10 */	li r6, 0x10
 /* 802A093C 0029D87C  48 0C 13 AD */	bl func_80361CE8

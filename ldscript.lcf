@@ -758,6 +758,12 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ __sinit_m_Do_audio_cpp
+ hasReset__10Z2AudioMgrCFv
+ resetRecover__10Z2AudioMgrFv
+ mDoAud_resetRecover__Fv
+ resetProcess__10Z2AudioMgrFUlb
+ mDoAud_resetProcess__Fv
  set__17dSv_horse_place_cFPCcRC4cXyzsSc
  setLightDropNum__16dSv_light_drop_cFUcUc
  addFishCount__18dSv_fishing_info_cFUc

@@ -28,8 +28,7 @@ public:
     void setFieldBgmPlay(bool param_1);
 };
 
-class Z2SceneMgr{
-private: 
+struct Z2SceneMgr{
     long BGM_ID;
     int field_0x4;
     int timer;
@@ -52,13 +51,14 @@ private:
     u8 field_0x1c;
     bool field_0x1d;
     bool inDarkness;
-public:
+
     Z2SceneMgr(void);
     void setInDarkness(bool param_1);
     void setSceneExist(bool param_1);
     void setFadeOutStart(u8 param_1);
     void setFadeInStart(u8 param_1);
     void setSceneName(char* stageName, long roomNum, long layerNum);
+    void load1stDynamicWave(void);
     int checkFirstWaves(void);
 };
 

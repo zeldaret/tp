@@ -1490,8 +1490,8 @@ lbl_80451359:
 .global lbl_80451360
 lbl_80451360:
 	.skip 0x8
-.global lbl_80451368
-lbl_80451368:
+.global mAudioMgrPtr
+mAudioMgrPtr:
 	.skip 0x8
 .global lbl_80451370
 lbl_80451370:

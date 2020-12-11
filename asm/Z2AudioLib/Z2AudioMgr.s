@@ -3,8 +3,8 @@
 .section .text, "ax" # 802cd248
 
 
-.global Z2AudioMgr
-Z2AudioMgr:
+.global __ct__10Z2AudioMgrFv
+__ct__10Z2AudioMgrFv:
 /* 802CD248 002CA188  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD24C 002CA18C  7C 08 02 A6 */	mflr r0
 /* 802CD250 002CA190  90 01 00 14 */	stw r0, 0x14(r1)
@@ -60,7 +60,7 @@ lbl_802CD2E8:
 /* 802CD314 002CA254  4B FF E9 4D */	bl Z2SpeechMgr2
 /* 802CD318 002CA258  38 7F 13 70 */	addi r3, r31, 0x1370
 /* 802CD31C 002CA25C  4B FE D4 C1 */	bl Z2FxLineMgr
-/* 802CD320 002CA260  93 ED 8D E8 */	stw r31, lbl_80451368-_SDA_BASE_(r13)
+/* 802CD320 002CA260  93 ED 8D E8 */	stw r31, mAudioMgrPtr-_SDA_BASE_(r13)
 /* 802CD324 002CA264  38 00 00 00 */	li r0, 0
 /* 802CD328 002CA268  98 1F 05 18 */	stb r0, 0x518(r31)
 /* 802CD32C 002CA26C  98 1F 05 19 */	stb r0, 0x519(r31)
@@ -433,8 +433,8 @@ lbl_802CD86C:
 /* 802CD880 002CA7C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD884 002CA7C4  4E 80 00 20 */	blr 
 
-.global Z2AudioMgr_NS_setOutputMode
-Z2AudioMgr_NS_setOutputMode:
+.global setOutputMode__10Z2AudioMgrFUl
+setOutputMode__10Z2AudioMgrFUl:
 /* 802CD888 002CA7C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD88C 002CA7CC  7C 08 02 A6 */	mflr r0
 /* 802CD890 002CA7D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -471,8 +471,8 @@ Z2AudioMgr_NS_zeldaGFrameWork:
 /* 802CD8FC 002CA83C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD900 002CA840  4E 80 00 20 */	blr 
 
-.global Z2AudioMgr_NS_gframeProcess
-Z2AudioMgr_NS_gframeProcess:
+.global gframeProcess__10Z2AudioMgrFv
+gframeProcess__10Z2AudioMgrFv:
 /* 802CD904 002CA844  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD908 002CA848  7C 08 02 A6 */	mflr r0
 /* 802CD90C 002CA84C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -504,8 +504,8 @@ lbl_802CD960:
 /* 802CD96C 002CA8AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CD970 002CA8B0  4E 80 00 20 */	blr 
 
-.global Z2AudioMgr_NS_resetProcess
-Z2AudioMgr_NS_resetProcess:
+.global resetProcess__10Z2AudioMgrFUlb
+resetProcess__10Z2AudioMgrFUlb:
 /* 802CD974 002CA8B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802CD978 002CA8B8  7C 08 02 A6 */	mflr r0
 /* 802CD97C 002CA8BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -529,8 +529,8 @@ Z2AudioMgr_NS_resetProcess:
 /* 802CD9C4 002CA904  38 21 00 20 */	addi r1, r1, 0x20
 /* 802CD9C8 002CA908  4E 80 00 20 */	blr 
 
-.global Z2AudioMgr_NS_resetRecover
-Z2AudioMgr_NS_resetRecover:
+.global resetRecover__10Z2AudioMgrFv
+resetRecover__10Z2AudioMgrFv:
 /* 802CD9CC 002CA90C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CD9D0 002CA910  7C 08 02 A6 */	mflr r0
 /* 802CD9D4 002CA914  90 01 00 14 */	stw r0, 0x14(r1)
@@ -572,8 +572,8 @@ Z2AudioMgr_NS_resetRecover:
 /* 802CDA64 002CA9A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CDA68 002CA9A8  4E 80 00 20 */	blr 
 
-.global Z2AudioMgr_NS_hasReset
-Z2AudioMgr_NS_hasReset:
+.global hasReset__10Z2AudioMgrCFv
+hasReset__10Z2AudioMgrCFv:
 /* 802CDA6C 002CA9AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802CDA70 002CA9B0  7C 08 02 A6 */	mflr r0
 /* 802CDA74 002CA9B4  90 01 00 24 */	stw r0, 0x24(r1)
