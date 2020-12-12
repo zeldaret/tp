@@ -187,7 +187,7 @@ dName_c_NS__create:
 /* 8024E664 0024B5A4  C0 42 B3 BC */	lfs f2, lbl_80454DBC-_SDA2_BASE_(r2)
 /* 8024E668 0024B5A8  39 00 00 00 */	li r8, 0
 /* 8024E66C 0024B5AC  39 20 08 00 */	li r9, 0x800
-/* 8024E670 0024B5B0  4B DE 39 D5 */	bl STControl
+/* 8024E670 0024B5B0  4B DE 39 D5 */	bl __ct__9STControlFssssffss
 /* 8024E674 0024B5B4  7C 60 1B 78 */	mr r0, r3
 lbl_8024E678:
 /* 8024E678 0024B5B8  90 1F 00 04 */	stw r0, 4(r31)
@@ -415,7 +415,7 @@ dName_c_NS__move:
 /* 8024E9AC 0024B8EC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8024E9B0 0024B8F0  7C 7F 1B 78 */	mr r31, r3
 /* 8024E9B4 0024B8F4  80 63 00 04 */	lwz r3, 4(r3)
-/* 8024E9B8 0024B8F8  4B DE 37 E5 */	bl STControl_NS_checkTrigger
+/* 8024E9B8 0024B8F8  4B DE 37 E5 */	bl checkTrigger__9STControlFv
 /* 8024E9BC 0024B8FC  7F E3 FB 78 */	mr r3, r31
 /* 8024E9C0 0024B900  88 1F 02 AB */	lbz r0, 0x2ab(r31)
 /* 8024E9C4 0024B904  1C A0 00 0C */	mulli r5, r0, 0xc
@@ -682,7 +682,7 @@ lbl_8024ED08:
 /* 8024ED78 0024BCB8  48 00 02 A8 */	b lbl_8024F020
 lbl_8024ED7C:
 /* 8024ED7C 0024BCBC  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024ED80 0024BCC0  4B DE 37 29 */	bl STControl_NS_checkRightTrigger
+/* 8024ED80 0024BCC0  4B DE 37 29 */	bl checkRightTrigger__9STControlFv
 /* 8024ED84 0024BCC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024ED88 0024BCC8  41 82 00 7C */	beq lbl_8024EE04
 /* 8024ED8C 0024BCCC  38 00 00 B0 */	li r0, 0xb0
@@ -718,7 +718,7 @@ lbl_8024EDF0:
 /* 8024EE00 0024BD40  48 00 02 20 */	b lbl_8024F020
 lbl_8024EE04:
 /* 8024EE04 0024BD44  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024EE08 0024BD48  4B DE 36 25 */	bl STControl_NS_checkLeftTrigger
+/* 8024EE08 0024BD48  4B DE 36 25 */	bl checkLeftTrigger__9STControlFv
 /* 8024EE0C 0024BD4C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024EE10 0024BD50  41 82 00 7C */	beq lbl_8024EE8C
 /* 8024EE14 0024BD54  38 00 00 B0 */	li r0, 0xb0
@@ -755,7 +755,7 @@ lbl_8024EE78:
 /* 8024EE88 0024BDC8  48 00 01 98 */	b lbl_8024F020
 lbl_8024EE8C:
 /* 8024EE8C 0024BDCC  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024EE90 0024BDD0  4B DE 36 95 */	bl STControl_NS_checkUpTrigger
+/* 8024EE90 0024BDD0  4B DE 36 95 */	bl checkUpTrigger__9STControlFv
 /* 8024EE94 0024BDD4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024EE98 0024BDD8  41 82 00 BC */	beq lbl_8024EF54
 /* 8024EE9C 0024BDDC  88 1F 02 A5 */	lbz r0, 0x2a5(r31)
@@ -807,7 +807,7 @@ lbl_8024EF08:
 /* 8024EF50 0024BE90  48 00 00 D0 */	b lbl_8024F020
 lbl_8024EF54:
 /* 8024EF54 0024BE94  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024EF58 0024BE98  4B DE 36 49 */	bl STControl_NS_checkDownTrigger
+/* 8024EF58 0024BE98  4B DE 36 49 */	bl checkDownTrigger__9STControlFv
 /* 8024EF5C 0024BE9C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024EF60 0024BEA0  41 82 00 C0 */	beq lbl_8024F020
 /* 8024EF64 0024BEA4  88 1F 02 A5 */	lbz r0, 0x2a5(r31)
@@ -1633,15 +1633,15 @@ dName_c_NS_menuCursorPosSet:
 /* 8024FB14 0024CA54  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8024FB18 0024CA58  7C 7F 1B 78 */	mr r31, r3
 /* 8024FB1C 0024CA5C  80 63 00 04 */	lwz r3, 4(r3)
-/* 8024FB20 0024CA60  4B DE 29 89 */	bl STControl_NS_checkRightTrigger
+/* 8024FB20 0024CA60  4B DE 29 89 */	bl checkRightTrigger__9STControlFv
 /* 8024FB24 0024CA64  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024FB28 0024CA68  40 82 02 64 */	bne lbl_8024FD8C
 /* 8024FB2C 0024CA6C  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024FB30 0024CA70  4B DE 28 FD */	bl STControl_NS_checkLeftTrigger
+/* 8024FB30 0024CA70  4B DE 28 FD */	bl checkLeftTrigger__9STControlFv
 /* 8024FB34 0024CA74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024FB38 0024CA78  40 82 02 54 */	bne lbl_8024FD8C
 /* 8024FB3C 0024CA7C  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024FB40 0024CA80  4B DE 29 E5 */	bl STControl_NS_checkUpTrigger
+/* 8024FB40 0024CA80  4B DE 29 E5 */	bl checkUpTrigger__9STControlFv
 /* 8024FB44 0024CA84  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024FB48 0024CA88  41 82 00 60 */	beq lbl_8024FBA8
 /* 8024FB4C 0024CA8C  38 00 00 B0 */	li r0, 0xb0
@@ -1669,7 +1669,7 @@ dName_c_NS_menuCursorPosSet:
 /* 8024FBA4 0024CAE4  48 00 01 E8 */	b lbl_8024FD8C
 lbl_8024FBA8:
 /* 8024FBA8 0024CAE8  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8024FBAC 0024CAEC  4B DE 29 F5 */	bl STControl_NS_checkDownTrigger
+/* 8024FBAC 0024CAEC  4B DE 29 F5 */	bl checkDownTrigger__9STControlFv
 /* 8024FBB0 0024CAF0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8024FBB4 0024CAF4  41 82 00 60 */	beq lbl_8024FC14
 /* 8024FBB8 0024CAF8  38 00 00 B0 */	li r0, 0xb0

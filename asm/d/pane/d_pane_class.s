@@ -1700,7 +1700,7 @@ dPaneClass_setPriority:
 lbl_802551BC:
 /* 802551BC 002520FC  7F E3 FB 78 */	mr r3, r31
 /* 802551C0 00252100  7F 64 DB 78 */	mr r4, r27
-/* 802551C4 00252104  4B DD D5 75 */	bl dLib_getExpandSizeFromAramArchive
+/* 802551C4 00252104  4B DD D5 75 */	bl dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc
 /* 802551C8 00252108  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802551CC 0025210C  40 82 00 0C */	bne lbl_802551D8
 /* 802551D0 00252110  38 60 00 00 */	li r3, 0

@@ -35014,7 +35014,7 @@ lbl_8017FE34:
 /* 8017FE78 0017CDB8  2C 00 FF FF */	cmpwi r0, -1
 /* 8017FE7C 0017CDBC  41 82 00 10 */	beq lbl_8017FE8C
 /* 8017FE80 0017CDC0  54 03 06 3E */	clrlwi r3, r0, 0x18
-/* 8017FE84 0017CDC4  4B EC 36 55 */	bl dEvt_control_c_NS_searchMapEventData
+/* 8017FE84 0017CDC4  4B EC 36 55 */	bl searchMapEventData__14dEvt_control_cFUc
 /* 8017FE88 0017CDC8  90 7D 05 D4 */	stw r3, 0x5d4(r29)
 lbl_8017FE8C:
 /* 8017FE8C 0017CDCC  80 7D 05 D4 */	lwz r3, 0x5d4(r29)

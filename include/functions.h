@@ -1,4 +1,10 @@
 extern "C" { 
+    void searchMapEventData__14dEvt_control_cFUc(void);
+    void PSMTXMultVec(void);
+    void mDoMtx_YrotS(void);
+    void cXyz_NS___mi(void);
+    void Yinit__9STControlFv(void);
+    void Xinit__9STControlFv(void);
     void J2DScreen_NS_draw(void);
     void PSMTXCopy(void);
     void PSMTXConcat(void);
@@ -194,7 +200,6 @@ extern "C" {
     void func_803621CC(void);
     void func_80362218(void);
 
-    void JKRAramArchive(void);
     void JKRArchive_NS_findDirectory(void);
     void JKRArchive_NS_findFsResource(void);
     void JKRArchive_NS_findIdResource(void);
