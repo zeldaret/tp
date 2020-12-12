@@ -16,7 +16,7 @@ struct Z2SoundMgr{
 
 struct Z2SceneMgr{
     long BGM_ID;
-    int field_0x4;
+    int sceneNum;
     int timer;
     s8 roomNum;
     u8 SeWave_1;
@@ -34,8 +34,8 @@ struct Z2SceneMgr{
     u8 field_0x19;
     u8 field_0x1a;
     u8 field_0x1b;
-    u8 field_0x1c;
-    bool field_0x1d;
+    bool inGame;
+    bool sceneExist;
     bool inDarkness;
 
     Z2SceneMgr(void);
