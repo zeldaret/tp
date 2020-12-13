@@ -1,3 +1,6 @@
+#ifndef F_PC_STDCREATE_H
+#define F_PC_STDCREATE_H
+
 #include "global.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_create_req.h"
@@ -25,3 +28,5 @@ s32 fpcSCtRq_Cancel(standard_create_request_class*);
 s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, void* param_4, void* param_5);
 
 }
+
+#endif
