@@ -1,37 +1,22 @@
 #include "global.h"
+#include "JSystem/JAudio2/JAISe/JAISe.h"
+#include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 
-class JAISoundParamsMove{
-public:
+struct JAISoundParamsMove{
     void moveVolume(float param_1, u32 param_2);
-private:
+
     float unk_1;
 };
 
-class Z2SoundMgr{
-public:
+struct Z2SoundMgr{
     void resetFilterAll();
     u8 p1[0x3ec];
     JAISoundParamsMove* JAISoundParamsMove;
-private:
 };
 
-class Z2SeMgr{
-public:
-    void seMoveVolumeAll(float param_1, u32 param_2);
-};
-
-class Z2SeqMgr{
-private:
-    u8 p1[0xD0];
-    u8 unk_1;
-public:
-    void setFieldBgmPlay(bool param_1);
-};
-
-class Z2SceneMgr{
-private: 
+struct Z2SceneMgr{
     long BGM_ID;
-    int field_0x4;
+    int sceneNum;
     int timer;
     s8 roomNum;
     u8 SeWave_1;
@@ -49,10 +34,10 @@ private:
     u8 field_0x19;
     u8 field_0x1a;
     u8 field_0x1b;
-    u8 field_0x1c;
-    bool field_0x1d;
+    bool inGame;
+    bool sceneExist;
     bool inDarkness;
-public:
+
     Z2SceneMgr(void);
     void setInDarkness(bool param_1);
     void setSceneExist(bool param_1);
@@ -60,10 +45,4 @@ public:
     void setFadeInStart(u8 param_1);
     void setSceneName(char* stageName, long roomNum, long layerNum);
     int checkFirstWaves(void);
-};
-
-struct  JAISoundID
-{
-    u32 soundId;
-    JAISoundID(JAISoundID const &soundIdToSet);
 };
