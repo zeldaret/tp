@@ -45,15 +45,14 @@ s32 fpcPause_Enable(void *pProcess, u8 flag)
     return 1;
 }
 
-// According to symbols, they used u8 instead of u32, but I can't get a match with u8 here. This is the best I got...
-s32 fpcPause_Disable(void *pProcess, u32 flag)
+s32 fpcPause_Disable(void *pProcess, u8 flag)
 {
     base_process_class *pProc = (base_process_class *) pProcess;
     pProc->mPauseFlag &= (0xFF - flag) & 0xFF;
 
     if (fpcBs_Is_JustOfType(lbl_80450D40, pProc->mSubType)) {
         process_node_class *pNode = (process_node_class *) pProc;
-        fpcLyIt_OnlyHere(&pNode->mLayer, (cNdIt_MethodFunc)fpcPause_Disable, (void*) (flag & 0xFF));
+        fpcLyIt_OnlyHere(&pNode->mLayer, (cNdIt_MethodFunc)fpcPause_Disable, (void*) flag);
     }
 
     return 1;
