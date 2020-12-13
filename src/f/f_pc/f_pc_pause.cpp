@@ -18,7 +18,7 @@ bool fpcPause_IsEnable(void *pProcess, u8 flag)
     return (pProc->mPauseFlag & flag) == flag;
 }
 #else
-asm bool fpcPause_IsEnable(void *pProcess, u8 flag)
+asm s32 fpcPause_IsEnable(void *pProcess, u8 flag)
 {
     nofralloc
 /* 80023844 00020784  54 84 06 3E */	clrlwi r4, r4, 0x18
@@ -33,7 +33,7 @@ asm bool fpcPause_IsEnable(void *pProcess, u8 flag)
 }
 #endif
 
-int fpcPause_Enable(void *pProcess, u8 flag)
+s32 fpcPause_Enable(void *pProcess, u8 flag)
 {
     base_process_class *pProc = (base_process_class *) pProcess;
     pProc->mPauseFlag |= flag;
@@ -46,7 +46,7 @@ int fpcPause_Enable(void *pProcess, u8 flag)
 }
 
 // According to symbols, they used u8 instead of u32, but I can't get a match with u8 here. This is the best I got...
-int fpcPause_Disable(void *pProcess, u32 flag)
+s32 fpcPause_Disable(void *pProcess, u32 flag)
 {
     base_process_class *pProc = (base_process_class *) pProcess;
     pProc->mPauseFlag &= (0xFF - flag) & 0xFF;
