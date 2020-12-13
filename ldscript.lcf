@@ -1326,6 +1326,9 @@ fpcSCtRq_Handler
 fpcSCtRq_Delete
 fpcSCtRq_Request
 fpcSCtRq_Cancel
+fpcFCtRq_Do
+fpcFCtRq_Delete
+fpcFCtRq_Request
 }
 /*
 .init 80003100 - 80005600

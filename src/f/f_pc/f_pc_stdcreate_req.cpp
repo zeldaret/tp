@@ -6,8 +6,11 @@
 
 extern "C" {
 
+// f_pc_node::g_fpcNd_type
 extern s32 lbl_80450D40;
+// f_pc_stdcreate_req::submethod$2261
 extern create_request_method_class lbl_803A3AF0;
+// f_pc_stdcreate_req::method$2262
 extern cPhs__Handler lbl_803A3AFC[7];
 
 extern s32 fpcLd_Load(s16);
