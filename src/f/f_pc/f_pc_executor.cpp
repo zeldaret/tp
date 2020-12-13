@@ -47,7 +47,7 @@ int fpcEx_ToLineQ(base_process_class *pProc)
     base_process_class *pLayerPcNode = pLayer->mpPcNode;
 
     if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg) == true) {
-        int ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.b.mListID);
+        int ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
         if (ret == 0) {
             fpcLyTg_QueueTo(&pProc->mLyTg);
             return 0;
@@ -78,7 +78,7 @@ int fpcEx_ExecuteQTo(base_process_class *pProc)
 
 int fpcEx_ToExecuteQ(base_process_class *pProc)
 {
-    int ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.b.mLayer, pProc->mPi.b.mListID, pProc->mPi.b.mListPrio);
+    int ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer, pProc->mPi.mInfoCurr.mListID, pProc->mPi.mInfoCurr.mListPrio);
     if (ret == 1) {
         fpcEx_ToLineQ(pProc);
         return 1;

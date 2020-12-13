@@ -11,9 +11,9 @@ int fpcMtdTg_Do(process_method_tag_class *pMthd)
     return pMthd->mpFunc(pMthd->mpMthdData);
 }
 
-void fpcMtdTg_ToMethodQ(node_list_class *pList, process_method_tag_class *pMthd)
+int fpcMtdTg_ToMethodQ(node_list_class *pList, process_method_tag_class *pMthd)
 {
-    cTg_Addition(pList, &pMthd->mCreateTag);
+    return cTg_Addition(pList, &pMthd->mCreateTag);
 }
 
 void fpcMtdTg_MethodQTo(process_method_tag_class *pMthd)

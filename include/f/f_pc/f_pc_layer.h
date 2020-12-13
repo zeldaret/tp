@@ -44,7 +44,7 @@ void fpcLy_Cancel(layer_class *pLayer);
 bool fpcLy_CancelMethod(process_method_tag_class *pLayer);
 
 void fpcLy_CancelQTo(process_method_tag_class *pMthd);
-void fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd);
+int fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd);
 
 void fpcLy_Create(layer_class *pLayer, process_node_class *pPcNode, node_list_class *pLists, int listNum);
 int fpcLy_Delete(layer_class *pLayer);
