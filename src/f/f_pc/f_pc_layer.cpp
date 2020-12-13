@@ -22,8 +22,8 @@ void fpcLy_CancelQTo(process_method_tag_class *pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
 
-void fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
-    fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
+int fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
+    return fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
 
 bool fpcLy_CancelMethod(process_method_tag_class *pLayer) {

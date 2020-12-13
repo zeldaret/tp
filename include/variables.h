@@ -180,18 +180,14 @@ extern u32 lbl_80451330;
 extern u32 lbl_80451334;
 
 // Z2SoundLib SInstance
-class Z2SceneMgr;
+struct Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80; // Z2SceneMgr sInstance
-class Z2SoundMgr;
+struct Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60; // Z2SoundMgr sInstance
-class Z2SeqMgr;
-extern Z2SeqMgr* lbl_80450B84; // Z2SeqMgr sInstance
-class Z2StatusMgr;
-extern Z2StatusMgr* lbl_80450B7C; // Z2StatusMgr sInstance
-class Z2SeMgr;
-extern Z2SeMgr* lbl_80450B88; // Z2SeMgr sInstance
-class Z2SoundObjMgr;
+struct Z2SoundObjMgr;
 extern Z2SoundObjMgr* lbl_80450B48; // Z2SoundObjMgr sInstance
+struct Z2SpeechMgr2;
+extern Z2SpeechMgr2* lbl_80450B70; // Z2SpeechMgr2 sInstance
 extern void* lbl_803CC114;          // JKRThread::__vt
 
 class JKRThreadSwitch;
