@@ -16,7 +16,7 @@ struct delete_tag_class : public create_tag_class {
 
 extern "C" {
 
-bool fpcDtTg_IsEmpty(delete_tag_class *pTag);
+bool fpcDtTg_IsEmpty(void);
 void fpcDtTg_ToDeleteQ(delete_tag_class *pTag);
 void fpcDtTg_DeleteQTo(delete_tag_class *pTag);
 int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc);

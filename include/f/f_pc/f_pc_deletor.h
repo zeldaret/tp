@@ -3,6 +3,7 @@
 #define F_PC_DELETOR_H
 
 #include "global.h"
+#include "f/f_pc/f_pc_base.h"
 
 struct base_process_class;
 

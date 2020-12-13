@@ -56,7 +56,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_creator.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_delete_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_executor.o    \

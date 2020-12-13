@@ -7,7 +7,7 @@ extern node_list_class lbl_803A39A0;
 
 extern "C" {
 
-bool fpcDtTg_IsEmpty(delete_tag_class *pTag)
+bool fpcDtTg_IsEmpty(void)
 {
     return lbl_803A39A0.mSize == 0;
 }
