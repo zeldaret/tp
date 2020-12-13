@@ -18,7 +18,8 @@ struct process_profile_definition {
     s32 mSizeOther;
     s32 mParameters;
     nodedraw_method_class *mNDrwMthCls;
-    u8 unk20[4];
+    s16 unk20;
+    u8 unk22[2];
     s32 unk24;
 };
 

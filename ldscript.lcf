@@ -1329,6 +1329,11 @@ fpcSCtRq_Cancel
 fpcFCtRq_Do
 fpcFCtRq_Delete
 fpcFCtRq_Request
+fpcLf_Draw
+fpcLf_Execute
+fpcLf_IsDelete
+fpcLf_Delete
+fpcLf_Create
 }
 /*
 .init 80003100 - 80005600
