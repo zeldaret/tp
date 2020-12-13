@@ -5,12 +5,11 @@ struct CurveSign{
 // temp
 };
 
-class FNoise1f{
-   public:
+struct FNoise1f{
     void setParam(float, float, float);
     float tau(float);
     float calcNoise1f();
-   private:
+
     float unk0;
     float unk4;
     float unk8;

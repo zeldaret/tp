@@ -71,14 +71,14 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
             $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_priority.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_searcher.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_pause.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_pause.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
             $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
             $(BUILD_DIR)/asm/f/pc/stdcreate/f_pc_stdcreate_req.o    \
@@ -403,9 +403,10 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundHandles.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SeMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SeMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SeqMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeqMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2StatusMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2StatusMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2FxLineMgr.o    \
