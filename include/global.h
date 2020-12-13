@@ -3,6 +3,10 @@
 
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 
+struct Vec{
+    float x,y,z;
+};
+
 #include "dolphin/types.h"
 
 #include "os/OS.h"
