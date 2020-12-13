@@ -27,7 +27,7 @@ struct create_request : public create_tag {
     int mBsPcId;
     base_process_class *mpRes;
     layer_class *mpLayer;
-};
+}; // Size: 0x48
 
 extern "C" {
 

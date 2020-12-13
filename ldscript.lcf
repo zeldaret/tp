@@ -1316,6 +1316,16 @@ fpcNdRq_phase_Create
 fpcNdRq_phase_IsDeleteTiming
 fpcNdRq_phase_IsDeleted
 fpcNdRq_phase_Delete
+fpcSCtRq_phase_Load
+fpcSCtRq_phase_CreateProcess
+fpcSCtRq_phase_SubCreateProcess
+fpcSCtRq_phase_IsComplete
+fpcSCtRq_phase_PostMethod
+fpcSCtRq_phase_Done
+fpcSCtRq_Handler
+fpcSCtRq_Delete
+fpcSCtRq_Request
+fpcSCtRq_Cancel
 }
 /*
 .init 80003100 - 80005600
