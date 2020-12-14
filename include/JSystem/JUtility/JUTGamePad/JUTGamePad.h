@@ -3,14 +3,11 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
-
-struct PADStatus {};
+#include "pad/pad.h"
 
 typedef u32 EPadPort;
 typedef u32 EStickMode;
 typedef u32 EWhichStick;
-
-typedef u32 PADMask; // TODO: split to enum
 
 class JUTGamePad : public JKRDisposer {
 public:

@@ -310,7 +310,7 @@ mDoCPd_c_NS_recalibrate:
 /* 80007D7C 00004CBC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80007D80 00004CC0  48 2D 92 A5 */	bl clearForReset__10JUTGamePadFv
 /* 80007D84 00004CC4  3C 60 F0 00 */	lis r3, 0xf000
-/* 80007D88 00004CC8  48 2D 9C 51 */	bl setEnabled__Q210JUTGamePad7CRumbleFUl
+/* 80007D88 00004CC8  48 2D 9C 51 */	bl setEnabled__Q210JUTGamePad7CRumbleF7PADMask
 /* 80007D8C 00004CCC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80007D90 00004CD0  7C 08 03 A6 */	mtlr r0
 /* 80007D94 00004CD4  38 21 00 10 */	addi r1, r1, 0x10

@@ -928,21 +928,8 @@ extern "C" {
     void triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl(void);
     void stopPatternedRumble__Q210JUTGamePad7CRumbleFUs(void);
     void getGamePad__10JUTGamePadFl(void);
-    void setEnabled__Q210JUTGamePad7CRumbleFUl(void);
+    void setEnabled__Q210JUTGamePad7CRumbleF7PADMask(void);
     void setRepeat__Q210JUTGamePad7CButtonFUlUlUl(void);
-    void recalibrate__10JUTGamePadFUl(void);
+    void recalibrate__10JUTGamePadF7PADMask(void);
     void checkCallback__19JUTGamePadLongPressFlUl(void);
-}
-
-// PAD
-extern "C" {
-    void PADInit(void);
-    void PADSetAnalogMode(void);
-    void PADSetSpec(void);
-    void PADReset(void);
-    void PADClampCircle(void);
-    void PADClamp(void);
-    void PADRead(void);
-    void PADControlMotor(void);
-    void PADRecalibrate(void);
 }
