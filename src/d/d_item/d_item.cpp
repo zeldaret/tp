@@ -1191,114 +1191,82 @@ void item_getcheck_func_JEWEL_WORM_ROD(void){
 }
 
 int item_getcheck_func_EMPTY_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(EMPTY_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(EMPTY_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_RED_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(RED_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(RED_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_GREEN_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(GREEN_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(GREEN_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_BLUE_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(BLUE_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(BLUE_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_MILK_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(MILK_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(MILK_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_HALF_MILK_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HALF_MILK_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HALF_MILK_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_OIL_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_WATER_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(WATER_BOTTLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(WATER_BOTTLE);
     return bottle_check;
 }
 
 int item_getcheck_func_OIL_BOTTLE2(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE_2);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL_BOTTLE_2);
     return bottle_check;
 }
 
 int item_getcheck_func_RED_BOTTLE2(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(RED_BOTTLE_2);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(RED_BOTTLE_2);
     return bottle_check;
 }
 
 int item_getcheck_func_UGLY_SOUP(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(UGLY_SOUP);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(UGLY_SOUP);
     return bottle_check;
 }
 
 int item_getcheck_func_HOT_SPRING(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
     return bottle_check;
 }
 
 int item_getcheck_func_FAIRY_BOTTLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(FAIRY);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(FAIRY);
     return bottle_check;
 }
 
 int item_getcheck_func_HOT_SPRING2(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(HOT_SPRING);
     return bottle_check;
 }
 
 int item_getcheck_func_OIL2(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL2);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL2);
     return bottle_check;
 }
 
 int item_getcheck_func_OIL(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(OIL);
     return bottle_check;
 }
 
@@ -1315,16 +1283,12 @@ void item_getcheck_func_POKE_BOMB(void){
 }
 
 int item_getcheck_func_FAIRY_DROP(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(FAIRY_DROP);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(FAIRY_DROP);
     return bottle_check;
 }
 
 int item_getcheck_func_WORM(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(WORM);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(WORM);
     return bottle_check;
 }
 
@@ -1337,44 +1301,32 @@ int item_getcheck_func_BEE_CHILD(void) {
 }
 
 int item_getcheck_func_CHUCHU_RARE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_RARE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_RARE);
     return bottle_check;
 }
 
 int item_getcheck_func_CHUCHU_RED(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_RED);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_RED);
     return bottle_check;
 }
 
 int item_getcheck_func_CHUCHU_BLUE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_BLUE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_BLUE);
     return bottle_check;
 }
 
 int item_getcheck_func_CHUCHU_GREEN(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_GREEN);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_GREEN);
     return bottle_check;
 }
 
 int item_getcheck_func_CHUCHU_YELLOW(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW);
     return bottle_check;
 }
 
 int item_getcheck_func_CHUCHU_PURPLE(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_PURPLE);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_PURPLE);
     return bottle_check;
 }
 
@@ -1426,9 +1378,7 @@ int item_getcheck_func_ASHS_SCRIBBLING(void) {
 }
 
 int item_getcheck_func_CHUCHU_YELLOW2(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW2);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_YELLOW2);
     return bottle_check;
 }
 
@@ -1441,9 +1391,7 @@ int item_getcheck_func_SHOP_BEE_CHILD(void){
 }
 
 int item_getcheck_func_CHUCHU_BLACK(void){
-    u8 bottle_check;
-
-    bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_BLACK);
+    u8 bottle_check = g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(CHUCHU_BLACK);
     return bottle_check;
 }
 

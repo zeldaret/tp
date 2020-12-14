@@ -1,20 +1,12 @@
 #include "d/d_a/d_a_horse_static/d_a_horse_static.h"
 #include "global.h"
 
-// 1 instruction off
-#ifdef NONMATCHING
 u32 e_wb_class::checkWait(void){
     u32 temp;
 
-    temp = (0x2a - (this->unk1460)); // missing a cntlzw
-    return temp >> 5 & 0xff;
+    temp = __cntlzw(0x2a - this->unk1460);
+    return (u8)(temp >> 5);
 }
-#else
-asm u32 e_wb_class::checkWait(void) {
-    nofralloc
-    #include "d/d_a/d_a_horse_static/asm/func_80037C7C.s"
-}
-#endif
 
 void e_wb_class::setPlayerRideNow(void){
     this->unk1680 = 0x67;
@@ -29,7 +21,7 @@ void e_wb_class::setPlayerRide(void){
     this->unk1460 = 0;
     this->unk1726 |= 3;
 
-    setLinkRiding(true); // needs something else here
+    setLinkRiding(true); // needs to call Z2CreatureRide
 }
 #else
 asm void e_wb_class::setPlayerRide(void) {
