@@ -93,7 +93,7 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
 
 int dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
-        return g_dComIfG_gameInfo.save_file.getEventFlags().isEventBit(0x2304);
+        return g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(0x2304);
     }
     return (this->magic_flag & (u8)(1 << i_magic)) ? 1 : 0;
 }
@@ -252,7 +252,7 @@ void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
     int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
 
     do {
-        if (current_items_index == g_dComIfG_gameInfo.save_file.getPlayerStatusA().getSelectItemIndex(select_item_index)) {
+        if (current_items_index == g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(select_item_index)) {
             dComIfGp_setSelectItem(select_item_index);
         }
         select_item_index++;
@@ -632,7 +632,7 @@ void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 bottle_num) {
 u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, short param_2) {
     int iVar3 = this->bottles[i_bottleIdx] + param_2;
 
-    g_dComIfG_gameInfo.save_file.getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
+    g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
 
     if (iVar3 < 0) {
         this->bottles[i_bottleIdx] = 0;
@@ -676,7 +676,7 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     u8 iVar3;
 
     iVar3 = 0x1;
-    if (g_dComIfG_gameInfo.save_file.getPlayerGetItem().isFirstBit(BOMB_BAG_LV2)) {
+    if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(BOMB_BAG_LV2)) {
         iVar3 = 0x2;
     }
 
