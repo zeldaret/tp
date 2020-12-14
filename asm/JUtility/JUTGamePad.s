@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e06dc
 
 
-.global JUTGamePad
-JUTGamePad:
+.global __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+__ct__10JUTGamePadFQ210JUTGamePad8EPadPort:
 /* 802E06DC 002DD61C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E06E0 002DD620  7C 08 02 A6 */	mflr r0
 /* 802E06E4 002DD624  90 01 00 14 */	stw r0, 0x14(r1)

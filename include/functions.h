@@ -1,4 +1,18 @@
 extern "C" { 
+    void read__8mDoCPd_cFv(void);
+    void create__8mDoCPd_cFv(void);
+    void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort(void);
+    void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad(void);
+    void cLib_memSet__FPviUl(void);
+    void JUTGamePad_NS_clearForReset(void);
+    void JUTGamePad_NS_CRumble_NS_setEnabled(void);
+    void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad(void);
+    void mDoCPd_c_NS_recalibrate(void);
+    void mDoCPd_c_NS_convert(void);
+    void JUTGamePad_NS_getGamePad(void);
+    void JUTGamePad_NS_read(void);
+    void mDoCPd_c_NS_LRlockCheck(void);
+    void mDoRst_resetCallBack(void);
     void J2DScreen_NS_draw(void);
     void PSMTXCopy(void);
     void PSMTXConcat(void);
@@ -121,7 +135,6 @@ extern "C" {
     void debug__Fv(void);
     void mDoAud_Execute(void);
     void fapGm_Execute(void);
-    void mDoCPd_c_NS_read(void);
     void mDoMemCd_Ctrl_c_NS_update(void);
     void JKRSolidHeap_NS_create(void);
     void cDyl_InitAsync(void);

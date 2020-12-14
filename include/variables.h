@@ -373,3 +373,13 @@ extern u8 lbl_804342DC; // JKRAram::sAramCommandList
 extern u8 lbl_804342E8; // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8; // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
+
+extern bool lbl_80451501;
+extern void* lbl_804514EC;
+extern u32 lbl_804514F0;
+
+extern float lbl_80451A20;
+extern double lbl_80451A30;
+extern float lbl_80451A24;
+extern float lbl_80451A28;
+extern s32 lbl_804514DC;
