@@ -17,9 +17,6 @@ struct process_profile_definition {
     s32 mSize;
     s32 mSizeOther;
     s32 mParameters;
-    nodedraw_method_class *mNDrwMthCls;
-    u8 unk20[4];
-    s32 unk24;
 };
 
 extern "C" {

@@ -44,7 +44,7 @@ void fpcNdRq_ToRequestQ(node_create_request *pNodeCreateReq) {
 #ifdef NON_MATCHING
 s32 fpcNdRq_phase_IsCreated(node_create_request *pNodeCreateReq) {
     if (fpcCtRq_IsCreatingByID(pNodeCreateReq->mCreatingID) == 1) {
-        return 0x0;
+        return cPhs_ZERO_e;
     }
     else {
         return fpcEx_IsExist(pNodeCreateReq->mCreatingID) == true ? 2 : 3;
@@ -68,13 +68,13 @@ s32 fpcNdRq_phase_IsDeleteTiming(node_create_request *pNodeCreateReq) {
 }
 
 s32 fpcNdRq_phase_IsDeleted(node_create_request *pNodeCreateReq) {
-  return fpcDt_IsComplete() == 0 ? 0 : 2; 
+  return fpcDt_IsComplete() == 0 ? cPhs_ZERO_e : 2; 
 }
 
 s32 fpcNdRq_phase_Delete(node_create_request *pNodeCreateReq) {
   if (pNodeCreateReq->mNodeProc.mpNodeProc != NULL) {
     if (fpcDt_Delete(pNodeCreateReq->mNodeProc.mpNodeProc) == 0) {
-      return 0;
+      return cPhs_ZERO_e;
     }
     pNodeCreateReq->mNodeProc.mpNodeProc = NULL;
   }

@@ -18,6 +18,13 @@ struct process_node_class : public base_process_class {
 };
 
 
+struct node_process_profile_definition : public process_profile_definition {
+    nodedraw_method_class *mNDrwMthCls;
+    u8 unk20[4];
+    s32 unk24;
+};
+
+
 extern "C" {
 
 s32 fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData);
