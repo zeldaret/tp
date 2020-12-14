@@ -7,7 +7,7 @@
 #include "f/f_pc/f_pc_layer.h"
 
 struct nodedraw_method_class : public process_method_class {
-    process_method_func mpNodedrawFunc;
+    process_method_func mNodedrawFunc;
 };
 
 struct process_node_class : public base_process_class {
