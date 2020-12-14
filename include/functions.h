@@ -895,3 +895,54 @@ extern "C" {
     void nextSrcData__FPUc(void);
     void run__7JKRAramFv(void);
 };
+
+// JSystem/JUtility/JUTGamePad
+extern "C" {
+    void func_8036C720();
+
+    void JUTGamePad_NS_CButton_NS_setRepeat(void);
+    void JUTGamePad_NS_CStick_NS_update(void);
+    void JUTGamePad_NS_CRumble_NS_update(void);
+    void JUTGamePad_NS_CRumble_NS_clear_X1_(void);
+    void JUTGamePad_NS_CRumble_NS_setEnabled(void);
+    void JUTGamePadLongPress_NS_checkCallback(void);
+    void JUTGamePad_NS_recalibrate(void);
+    void JUTGamePad_NS_CRumble_NS_stopMotor(void);
+
+    void clear__Q210JUTGamePad6CStickFv(void);
+    void clear__Q210JUTGamePad7CButtonFv(void);
+    void initList__10JUTGamePadFv(void);
+    void clear__10JUTGamePadFv(void);
+    void assign__10JUTGamePadFv(void);
+    void checkResetCallback__10JUTGamePadFx(void);
+    void update__10JUTGamePadFv(void);
+    void checkResetSwitch__10JUTGamePadFv(void);
+    void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
+    void update__Q210JUTGamePad6CStickFScScUlUlUl(void);
+    void getButton__Q210JUTGamePad6CStickFUl(void);
+    void clear__Q210JUTGamePad7CRumbleFv(void);
+    void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void);
+    void startMotor__Q210JUTGamePad7CRumbleFi(void);
+    void stopMotor__Q210JUTGamePad7CRumbleFi(void);
+    void update__Q210JUTGamePad7CRumbleFUs(void);
+    void triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl(void);
+    void stopPatternedRumble__Q210JUTGamePad7CRumbleFUs(void);
+    void getGamePad__10JUTGamePadFl(void);
+    void setEnabled__Q210JUTGamePad7CRumbleFUl(void);
+    void setRepeat__Q210JUTGamePad7CButtonFUlUlUl(void);
+    void recalibrate__10JUTGamePadFUl(void);
+    void checkCallback__19JUTGamePadLongPressFlUl(void);
+}
+
+// PAD
+extern "C" {
+    void PADInit(void);
+    void PADSetAnalogMode(void);
+    void PADSetSpec(void);
+    void PADReset(void);
+    void PADClampCircle(void);
+    void PADClamp(void);
+    void PADRead(void);
+    void PADControlMotor(void);
+    void PADRecalibrate(void);
+}

@@ -154,7 +154,7 @@ lbl_80022268:
 /* 80022288 0001F1C8  80 83 D2 D8 */	lwz r4, lbl_803DD2D8@l(r3)
 /* 8002228C 0001F1CC  38 64 00 68 */	addi r3, r4, 0x68
 /* 80022290 0001F1D0  A8 84 00 7C */	lha r4, 0x7c(r4)
-/* 80022294 0001F1D4  48 2B F6 B5 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumble
+/* 80022294 0001F1D4  48 2B F6 B5 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFUs
 /* 80022298 0001F1D8  38 00 00 01 */	li r0, 1
 /* 8002229C 0001F1DC  98 0D 87 B8 */	stb r0, lbl_80450D38-_SDA_BASE_(r13)
 lbl_800222A0:

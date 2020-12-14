@@ -480,6 +480,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTException.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDirectPrint.o    \

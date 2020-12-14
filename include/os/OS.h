@@ -143,6 +143,9 @@ extern "C" {
     s32 OSDisableInterrupts();
     s32 OSEnableInterrupts();
     s32 OSRestoreInterrupts(s32 level);
+
+    u32 OSGetResetSwitchState();
+    u32 OSGetResetButtonState();
 };
 
 #endif
