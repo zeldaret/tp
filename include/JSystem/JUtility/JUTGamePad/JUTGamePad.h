@@ -76,7 +76,7 @@ public:
         void clear();
         void clear(JUTGamePad* pad);
         static void startMotor(int channel);
-        static void stopMotor(int channel);
+        static void stopMotor(int channel, bool stop);
         void update(u16 unk0);
         void triggerPatternedRumble(u32 unk0);
         void startPatternedRumble(void* unk0, ERumble rumble, u32 unk1);
@@ -92,11 +92,13 @@ public:
     };
 
 private:
-    u8 unk1[20];
     struct CButton buttons;
     struct CStick control_stick;
     struct CStick c_stick;
     struct CRumble rumble;
+    s16 pad_port;
+
+    friend class CRumble;
 };
 
 class JUTGamePadLongPress {

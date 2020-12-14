@@ -381,8 +381,6 @@ extern u8 lbl_804343E4;
 extern u8 lbl_804514D4;
 // func_802E121C
 extern u8 lbl_80456028;
-// func_802E15B4
-extern u8 lbl_804514E8;
 // func_802E085C
 extern u8 lbl_804514D0;
 // func_802E0898
@@ -424,3 +422,7 @@ extern u8 lbl_804508E0;
 extern u8 lbl_803CC5F0;
 // func_802E19D8
 extern u8 lbl_803CC600;
+
+// JUTGamePad.cpp
+extern bool lbl_804514E4[4]; // JUTGamePad::CRumble::mStatus (static?)
+extern u32 lbl_804514E8; // JUTGamePad::CRumble::mEnabled (static?)
