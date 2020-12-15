@@ -17,6 +17,13 @@ struct leafdraw_class : public base_process_class {
     draw_priority_class mDwPi;
 };
 
+struct leaf_process_profile_definition : public process_profile_definition{
+    leafdraw_method_class *mLfDrwMth;
+    s16 unk20;
+    u8 unk22[2];
+    s32 unk24;
+};
+
 extern "C" {
 
 s32 fpcLf_GetPriority(leafdraw_class *pLeaf);

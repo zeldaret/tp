@@ -8,6 +8,7 @@
 #include "f/f_pc/f_pc_delete_tag.h"
 #include "f/f_pc/f_pc_line_tag.h"
 #include "f/f_pc/f_pc_layer_tag.h"
+#include "SComponent/c_phase.h"
 
 extern s32 lbl_80450D04; // f_pc_base::t_type
 extern s8 lbl_80450D08;
@@ -125,11 +126,11 @@ base_process_class *fpcBs_Create(s16 pProcTypeID, u32 pProcID, void *pData) {
 s32 fpcBs_SubCreate(base_process_class *pProc) {
     switch (fpcMtd_Create(pProc->mpPcMtd,pProc)) {
     case 2:
-    case 4:
+    case cPhs_COMPLEATE_e:
         fpcBs_DeleteAppend(pProc);
         pProc->mUnk2 = 2;
         return 2;
-    case 0:
+    case cPhs_ZERO_e:
     case 1:
         pProc->mInitState = 1;
         pProc->mUnk2 = 0;
@@ -137,7 +138,7 @@ s32 fpcBs_SubCreate(base_process_class *pProc) {
     case 3:
         pProc->mUnk2 = 3;
         return 3;
-    case 5:
+    case cPhs_ERROR_e:
     default:
         pProc->mUnk2 = 5;
         return 5;

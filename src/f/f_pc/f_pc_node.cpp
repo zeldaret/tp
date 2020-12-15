@@ -10,7 +10,7 @@ extern int lbl_804505E0;
 extern "C" {
 
 s32 fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData) {
-    return fpcMtd_Method(pNodeMethod->mpNodedrawFunc, pData);
+    return fpcMtd_Method(pNodeMethod->mNodedrawFunc, pData);
 }
 
 s32 fpcNd_Draw(process_node_class *pProcNode) {
@@ -73,11 +73,11 @@ s32 fpcNd_Delete(process_node_class* pProcNode) {
 }
 
 s32 fpcNd_Create(process_node_class* pProcNode1) {
-    // this is definetly fake, it doesn't match without the cast, naive approach swaps r31 and r30
+    // this cast looks like a fake match, but it doesn't match without the cast, naive approach swaps r31 and r30
+    // most likely it gets casted to another unknown struct
     process_node_class *pProcNode = (process_node_class*) pProcNode1;
-    process_profile_definition *pProcProfileDef;
-    if (pProcNode->mInitState == '\0') {
-        pProcProfileDef = pProcNode->mpProf;
+    if (pProcNode->mInitState == 0) {
+        node_process_profile_definition *pProcProfileDef = (node_process_profile_definition*) pProcNode->mpProf;
         pProcNode->mSubType = fpcBs_MakeOfType(&lbl_80450D40);
         pProcNode->mpNodeMtd = pProcProfileDef->mNDrwMthCls;
         fpcLy_Create(&pProcNode->mLayer,pProcNode,pProcNode->mLayerNodeLists,0x10);

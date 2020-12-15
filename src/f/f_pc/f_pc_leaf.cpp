@@ -41,10 +41,10 @@ s32 fpcLf_Delete(leafdraw_class *pLeaf) {
 }
 
 s32 fpcLf_Create(leafdraw_class *pLeaf) {
-    process_profile_definition *profDef;
+    leaf_process_profile_definition *profDef;
     if (pLeaf->mInitState == 0) {
-        profDef = pLeaf->mpProf;
-        pLeaf->mpDrawMtd = (leafdraw_method_class*) profDef->mNDrwMthCls;
+        profDef = (leaf_process_profile_definition*)pLeaf->mpProf;
+        pLeaf->mpDrawMtd = profDef->mLfDrwMth;
         pLeaf->mSubType = fpcBs_MakeOfType(&lbl_80450D30);
         fpcDwPi_Init(&pLeaf->mDwPi, profDef->unk20);
         pLeaf->mbUnk0 = 0;

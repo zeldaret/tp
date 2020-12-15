@@ -17,9 +17,9 @@ s32 fpcDw_Execute(base_process_class *pProc) {
         layer_class *curLay = fpcLy_CurrentLayer();
         process_method_func func;
         if (fpcBs_Is_JustOfType(lbl_80450D30, pProc->mSubType)) {
-            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mpNodedrawFunc;
+            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mNodedrawFunc;
         } else {
-            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mpNodedrawFunc;
+            func = ((nodedraw_method_class*)pProc->mpPcMtd)->mNodedrawFunc;
         }
         fpcLy_SetCurrentLayer(pProc->mLyTg.mpLayer);
         s32 ret = func(pProc);

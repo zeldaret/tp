@@ -7,7 +7,7 @@
 #include "f/f_pc/f_pc_layer.h"
 
 struct nodedraw_method_class : public process_method_class {
-    process_method_func mpNodedrawFunc;
+    process_method_func mNodedrawFunc;
 };
 
 struct process_node_class : public base_process_class {
@@ -15,6 +15,14 @@ struct process_node_class : public base_process_class {
     layer_class mLayer;
     node_list_class mLayerNodeLists[16];
     s8 mUnk0;
+};
+
+
+struct node_process_profile_definition : public process_profile_definition {
+    nodedraw_method_class *mNDrwMthCls;
+    s16 unk20;
+    u8 unk22[2];
+    s32 unk24;
 };
 
 
