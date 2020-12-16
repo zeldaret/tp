@@ -1238,7 +1238,7 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F500 0015C440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F504 0015C444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F508 0015C448  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F50C 0015C44C  4B F4 12 39 */	bl daAlink_c_NS_setLookPosFromOut
+/* 8015F50C 0015C44C  4B F4 12 39 */	bl setLookPosFromOut__9daAlink_cFP4cXyz
 /* 8015F510 0015C450  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F514 0015C454  7C 08 03 A6 */	mtlr r0
 /* 8015F518 0015C458  38 21 00 10 */	addi r1, r1, 0x10
