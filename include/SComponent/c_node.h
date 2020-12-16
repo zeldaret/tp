@@ -2,13 +2,15 @@
 #ifndef SCOMPONENT_C_NODE_H
 #define SCOMPONENT_C_NODE_H
 
-struct node_class {
-    node_class *mpPrevNode;
-    void *mpData;
-    node_class *mpNextNode;
-};
+#include "compatibility_c_cpp.h"
 
-extern "C" {
+typedef struct node_class {
+    struct node_class *mpPrevNode;
+    void *mpData;
+    struct node_class *mpNextNode;
+} node_class;
+
+BEGIN_C_DECLARATIONS
 
 void cNd_Join(node_class *pA, node_class *pB);
 int cNd_LengthOf(node_class *pNode);
@@ -24,6 +26,6 @@ void cNd_ClearObject(node_class *pNode);
 void cNd_ForcedClear(node_class *pNode);
 void cNd_Create(node_class *pNode, void *pData);
 
-};
+END_C_DECLARATIONS
 
 #endif

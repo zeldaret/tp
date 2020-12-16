@@ -2,17 +2,18 @@
 #ifndef F_PC_CREATOR_H
 #define F_PC_CREATOR_H
 
-#include "global.h"
+#include "compatibility_c_cpp.h"
+#include "dolphin/types.h"
 
 struct base_process_class;
 
-extern "C" {
+BEGIN_C_DECLARATIONS
 
-bool fpcCt_IsCreatingByID(unsigned int id);
-int fpcCt_IsDoing(base_process_class *pProc);
-void fpcCt_Abort(base_process_class *pProc);
+BOOL fpcCt_IsCreatingByID(unsigned int id);
+int fpcCt_IsDoing(struct base_process_class *pProc);
+void fpcCt_Abort(struct base_process_class *pProc);
 void fpcCt_Handler(void);
 
-};
+END_C_DECLARATIONS
 
 #endif

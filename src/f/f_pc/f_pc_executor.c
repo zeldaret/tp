@@ -8,8 +8,6 @@
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
 
-extern "C" {
-
 extern int fpcPause_IsEnable(base_process_class *pProc, int);
 
 // g_fpcNd_type
@@ -28,7 +26,7 @@ base_process_class * fpcEx_SearchByID(u32 id)
     return fpcEx_Search(fpcSch_JudgeByID, &id);;
 }
 
-bool fpcEx_IsExist(int id)
+BOOL fpcEx_IsExist(int id)
 {
     return fpcEx_SearchByID(id) != NULL;
 }
@@ -37,16 +35,15 @@ int fpcEx_Execute(base_process_class *pProc)
 {
     if (pProc->mInitState != 2 || fpcPause_IsEnable(pProc, 1) == 1)
         return 0;
-    fpcBs_Execute(pProc);
-    // TODO: missing return?
+    return fpcBs_Execute(pProc);
 }
 
 int fpcEx_ToLineQ(base_process_class *pProc)
 {
     layer_class *pLayer = pProc->mLyTg.mpLayer;
-    base_process_class *pLayerPcNode = pLayer->mpPcNode;
+    base_process_class *pLayerPcNode = &pLayer->mpPcNode->mBase;
 
-    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg) == true) {
+    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg.mBase) == TRUE) {
         int ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
         if (ret == 0) {
             fpcLyTg_QueueTo(&pProc->mLyTg);
@@ -89,7 +86,5 @@ int fpcEx_ToExecuteQ(base_process_class *pProc)
 
 void fpcEx_Handler(cNdIt_MethodFunc pFunc)
 {
-    return fpcLnIt_Queue(pFunc);
+    fpcLnIt_Queue(pFunc);
 }
-
-};

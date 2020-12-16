@@ -1,10 +1,8 @@
-
+#include "dolphin/types.h"
 #include "f/f_pc/f_pc_leaf.h"
 
 // f_pc_leaf::g_fpcLf_type
 extern s32 lbl_80450D30;
-
-extern "C" {
 
 s32 fpcLf_GetPriority(leafdraw_class *pLeaf)
 {
@@ -25,31 +23,29 @@ s32 fpcLf_Draw(leafdraw_class *pLeaf)
 }
 
 s32 fpcLf_Execute(leafdraw_class *pLeaf) {
-    return fpcMtd_Execute(pLeaf->mpDrawMtd, pLeaf);
+    return fpcMtd_Execute(&pLeaf->mpDrawMtd->mBase, pLeaf);
 }
 
 s32 fpcLf_IsDelete(leafdraw_class *pLeaf) {
-    return fpcMtd_IsDelete(pLeaf->mpDrawMtd, pLeaf);
+    return fpcMtd_IsDelete(&pLeaf->mpDrawMtd->mBase, pLeaf);
 }
 
 s32 fpcLf_Delete(leafdraw_class *pLeaf) {
-    s32 ret = fpcMtd_Delete(pLeaf->mpDrawMtd, pLeaf);
+    s32 ret = fpcMtd_Delete(&pLeaf->mpDrawMtd->mBase, pLeaf);
     if (ret == 1) {
-        pLeaf->mSubType = 0;
+        pLeaf->mBase.mSubType = 0;
     }
     return ret;
 }
 
 s32 fpcLf_Create(leafdraw_class *pLeaf) {
     leaf_process_profile_definition *profDef;
-    if (pLeaf->mInitState == 0) {
-        profDef = (leaf_process_profile_definition*)pLeaf->mpProf;
+    if (pLeaf->mBase.mInitState == 0) {
+        profDef = (leaf_process_profile_definition*)pLeaf->mBase.mpProf;
         pLeaf->mpDrawMtd = profDef->mLfDrwMth;
-        pLeaf->mSubType = fpcBs_MakeOfType(&lbl_80450D30);
+        pLeaf->mBase.mSubType = fpcBs_MakeOfType(&lbl_80450D30);
         fpcDwPi_Init(&pLeaf->mDwPi, profDef->unk20);
         pLeaf->mbUnk0 = 0;
     }
-    return fpcMtd_Create(pLeaf->mpDrawMtd, pLeaf);
+    return fpcMtd_Create(&pLeaf->mpDrawMtd->mBase, pLeaf);
 }
-
-};

@@ -1,11 +1,10 @@
 
+#include "dolphin/types.h"
 #include "f/f_pc/f_pc_creator.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_req.h"
 
-extern "C" {
-
-bool fpcCt_IsCreatingByID(unsigned int id)
+BOOL fpcCt_IsCreatingByID(unsigned int id)
 {
     return fpcCtRq_IsCreatingByID(id);
 }
@@ -25,4 +24,3 @@ void fpcCt_Handler(void)
     fpcCtRq_Handler();
 }
 
-};

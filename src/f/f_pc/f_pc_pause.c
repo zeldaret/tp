@@ -4,9 +4,6 @@
 #include "f/f_pc/f_pc_layer_iter.h"
 #include "f/f_pc/f_pc_node.h"
 
-extern "C"
-{
-
 // f_pc_node::g_fpcNd_type
 extern int lbl_80450D40;
 
@@ -62,6 +59,4 @@ void fpcPause_Init(void *pProcess)
 {
     base_process_class *pProc = (base_process_class *) pProcess;
     pProc->mPauseFlag = 0;
-}
-
 }

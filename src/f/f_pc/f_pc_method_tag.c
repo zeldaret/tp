@@ -4,8 +4,6 @@
 // g_fpcLn_Queue
 extern node_lists_tree_class lbl_804505D8;
 
-extern "C" {
-
 int fpcMtdTg_Do(process_method_tag_class *pMthd)
 {
     return pMthd->mpFunc(pMthd->mpMthdData);
@@ -29,4 +27,3 @@ int fpcMtdTg_Init(process_method_tag_class *pMthd, process_method_tag_func pFunc
     return 1;
 }
 
-};

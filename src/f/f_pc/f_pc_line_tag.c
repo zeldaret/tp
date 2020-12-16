@@ -4,8 +4,6 @@
 // g_fpcLn_Queue
 extern node_lists_tree_class lbl_804505D8;
 
-extern "C" {
-
 int fpcLnTg_Move(line_tag *pLineTag, int newLineListID)
 {
     if (pLineTag->mLineListID != newLineListID) {
@@ -18,13 +16,13 @@ int fpcLnTg_Move(line_tag *pLineTag, int newLineListID)
 
 void fpcLnTg_QueueTo(line_tag *pLineTag)
 {
-    cTg_SingleCutFromTree(pLineTag);
+    cTg_SingleCutFromTree(&pLineTag->mBase);
     pLineTag->mLineListID = -1;
 }
 
 int fpcLnTg_ToQueue(line_tag *pLineTag, int lineListID)
 {
-    int ret = cTg_AdditionToTree(&lbl_804505D8, lineListID, pLineTag);
+    int ret = cTg_AdditionToTree(&lbl_804505D8, lineListID, &pLineTag->mBase);
 
     if (ret) {
         pLineTag->mLineListID = lineListID;
@@ -36,9 +34,6 @@ int fpcLnTg_ToQueue(line_tag *pLineTag, int lineListID)
 
 void fpcLnTg_Init(line_tag *pLineTag, void *pData)
 {
-    cTg_Create(pLineTag, pData);
+    cTg_Create(&pLineTag->mBase, pData);
     pLineTag->mLineListID = -1;
 }
-
-};
-

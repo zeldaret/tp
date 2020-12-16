@@ -13,8 +13,6 @@ extern node_list_class lbl_803A39A0;
 // g_fpcNd_type
 extern int lbl_80450D40;
 
-extern "C" {
-
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
 void fpcLd_Free(s16 procName);
@@ -134,7 +132,7 @@ lbl_800211B4:
 /* 800211C4 0001E104  38 60 00 01 */	li r3, 1
 /* 800211C8 0001E108  48 00 00 C4 */	b lbl_8002128C
 lbl_800211CC:
-/* 800211CC 0001E10C  80 6D 87 C0 */	lwz r3, lbl_80450D40-_SDA_BASE_(r13)
+/* 800211CC 0001E10C  80 6D 87 C0 */	lwz r3, -0x7840(r13)
 /* 800211D0 0001E110  80 9E 00 B4 */	lwz r4, 0xb4(r30)
 /* 800211D4 0001E114  4B FF F4 79 */	bl fpcBs_Is_JustOfType
 /* 800211D8 0001E118  2C 03 00 00 */	cmpwi r3, 0
@@ -211,5 +209,3 @@ int fpcDt_Delete(base_process_class *pProc)
         return 1;
     }
 }
-
-};

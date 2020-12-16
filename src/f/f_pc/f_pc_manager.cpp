@@ -47,7 +47,7 @@ void fpcM_Delete(void* pProc) {
     fpcDt_Delete((base_process_class *) pProc);
 }
 
-bool fpcM_IsCreating(u32 pID) {
+BOOL fpcM_IsCreating(u32 pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 

@@ -2,19 +2,21 @@
 #ifndef F_PC_LINE_TAG_H
 #define F_PC_LINE_TAG_H
 
+#include "compatibility_c_cpp.h"
 #include "SComponent/c_tag.h"
 
-struct line_tag : public create_tag_class {
+typedef struct line_tag {
+    create_tag_class mBase;
     int mLineListID;
-};
+} line_tag;
 
-extern "C" {
+BEGIN_C_DECLARATIONS
 
 int fpcLnTg_Move(line_tag *pLineTag, int newLineListID);
 void fpcLnTg_QueueTo(line_tag *pLineTag);
 int fpcLnTg_ToQueue(line_tag *pLineTag, int lineListID);
 void fpcLnTg_Init(line_tag *pLineTag, void *pData);
 
-};
+END_C_DECLARATIONS
 
 #endif

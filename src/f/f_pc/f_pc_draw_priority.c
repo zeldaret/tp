@@ -1,8 +1,5 @@
 
-#include "global.h"
 #include "f/f_pc/f_pc_draw_priority.h"
-
-extern "C" {
 
 int fpcDwPi_Get(draw_priority_class *pDwPi)
 {
@@ -18,5 +15,3 @@ void fpcDwPi_Init(draw_priority_class *pDwPi, int p)
 {
     fpcDwPi_Set(pDwPi, p);
 }
-
-};

@@ -1,4 +1,4 @@
-#include "global.h"
+#include "dolphin/types.h"
 #include "f/f_pc/f_pc_create_tag.h"
 #include "f/f_pc/f_pc_create_iter.h"
 #include "SComponent/c_tag_iter.h"
@@ -6,8 +6,6 @@
 
 // g_fpcCtTg_Queue
 extern node_list_class lbl_803A3990;
-
-extern "C" {
 
 int fpcCtIt_Method(cNdIt_MethodFunc pJudge, void *pUserData) {
     node_method_data iter;
@@ -40,5 +38,3 @@ nofralloc
 #include "asm/80020A94.s"
 }
 #endif
-
-}

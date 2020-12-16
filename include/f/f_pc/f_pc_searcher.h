@@ -2,15 +2,14 @@
 #ifndef F_PC_SEARCHER_H
 #define F_PC_SEARCHER_H
 
-#include "global.h"
+#include "compatibility_c_cpp.h"
+#include "f/f_pc/f_pc_base.h"
 
-struct base_process_class;
-
-extern "C" {
+BEGIN_C_DECLARATIONS
 
 void * fpcSch_JudgeForPName(base_process_class *pProc, void *pUserData);
 void * fpcSch_JudgeByID(base_process_class *pProc, void *pUserData);
 
-};
+END_C_DECLARATIONS
 
 #endif

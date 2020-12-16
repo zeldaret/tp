@@ -62,7 +62,8 @@ ASFLAGS := -mgekko -I include
 LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc $(INCLUDES)
+# CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack
@@ -110,6 +111,9 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
+
+$(BUILD_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<

@@ -6,27 +6,30 @@
 #include "f/f_pc/f_pc_method.h"
 #include "f/f_pc/f_pc_layer.h"
 
-struct nodedraw_method_class : public process_method_class {
+typedef struct nodedraw_method_class {
+    process_method_class mBase;
     process_method_func mNodedrawFunc;
-};
+} nodedraw_method_class;
 
-struct process_node_class : public base_process_class {
+typedef struct process_node_class {
+    base_process_class mBase;
     nodedraw_method_class *mpNodeMtd;
     layer_class mLayer;
     node_list_class mLayerNodeLists[16];
     s8 mUnk0;
-};
+} process_node_class;
 
 
-struct node_process_profile_definition : public process_profile_definition {
+typedef struct node_process_profile_definition {
+    process_profile_definition mBase;
     nodedraw_method_class *mNDrwMthCls;
     s16 unk20;
     u8 unk22[2];
     s32 unk24;
-};
+} node_process_profile_definition;
 
 
-extern "C" {
+BEGIN_C_DECLARATIONS
 
 s32 fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData);
 s32 fpcNd_Draw(process_node_class *pProcNode);
@@ -37,6 +40,6 @@ s32 fpcNd_IsDelete(process_node_class* pProcNode);
 s32 fpcNd_Delete(process_node_class* pProcNode);
 s32 fpcNd_Create(process_node_class* pProcNode);
 
-};
+END_C_DECLARATIONS
 
 #endif

@@ -2,18 +2,19 @@
 #ifndef SCOMPONENT_C_TAG_H
 #define SCOMPONENT_C_TAG_H
 
-#include "global.h"
+#include "compatibility_c_cpp.h"
+#include "dolphin/types.h"
 #include "SComponent/c_node.h"
 #include "SComponent/c_list.h"
 #include "SComponent/c_tree.h"
 
-struct create_tag_class {
+typedef struct create_tag_class {
     node_class mpNode;
     void *mpTagData;
     s8 mbIsUse;
-};
+} create_tag_class;
 
-extern "C" {
+BEGIN_C_DECLARATIONS
 
 int cTg_IsUse(create_tag_class *pTag);
 int cTg_SingleCutFromTree(create_tag_class *pTag);
@@ -24,6 +25,6 @@ int cTg_SingleCut(create_tag_class *pTag);
 int cTg_Addition(node_list_class *pList, create_tag_class *pTag);
 void cTg_Create(create_tag_class *pTag, void *pData);
 
-};
+END_C_DECLARATIONS
 
 #endif

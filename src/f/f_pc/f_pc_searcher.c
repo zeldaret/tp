@@ -2,8 +2,6 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "f/f_pc/f_pc_base.h"
 
-extern "C" {
-
 void * fpcSch_JudgeForPName(base_process_class *pProc, void *pUserData)
 {
     short pname = *(short*)pUserData;
@@ -19,5 +17,3 @@ void * fpcSch_JudgeByID(base_process_class *pProc, void *pUserData)
         return pProc;
     return NULL;
 }
-
-};
