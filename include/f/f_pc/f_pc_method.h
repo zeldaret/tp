@@ -2,7 +2,7 @@
 #ifndef F_PC_METHOD_H
 #define F_PC_METHOD_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 
 typedef int (*process_method_func)(void *);
 

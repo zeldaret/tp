@@ -2,7 +2,7 @@
 #ifndef F_PC_LOAD_H
 #define F_PC_LOAD_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 
 BEGIN_C_DECLARATIONS
 

@@ -2,8 +2,7 @@
 #ifndef F_PC_CREATE_TAG_H
 #define F_PC_CREATE_TAG_H
 
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 
 typedef struct create_tag {

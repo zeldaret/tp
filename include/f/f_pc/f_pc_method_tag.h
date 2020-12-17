@@ -2,9 +2,7 @@
 #ifndef F_PC_METHOD_TAG_H
 #define F_PC_METHOD_TAG_H
 
-
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 
 typedef int (*process_method_tag_func)(void *);

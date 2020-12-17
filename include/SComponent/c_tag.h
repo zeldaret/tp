@@ -2,8 +2,7 @@
 #ifndef SCOMPONENT_C_TAG_H
 #define SCOMPONENT_C_TAG_H
 
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "SComponent/c_node.h"
 #include "SComponent/c_list.h"
 #include "SComponent/c_tree.h"

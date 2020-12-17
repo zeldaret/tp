@@ -1,8 +1,7 @@
 #ifndef F_PC_NODE_REQ_H
 #define F_PC_NODE_REQ_H
 
-#include "dolphin/types.h"
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "f/f_pc/f_pc_method.h"
 #include "f/f_pc/f_pc_method_tag.h"
 #include "f/f_pc/f_pc_node.h"

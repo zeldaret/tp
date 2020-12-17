@@ -2,7 +2,7 @@
 #ifndef SCOMPONENT_C_LIST_ITER_H
 #define SCOMPONENT_C_LIST_ITER_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "SComponent/c_list.h"
 #include "SComponent/c_node_iter.h"
 

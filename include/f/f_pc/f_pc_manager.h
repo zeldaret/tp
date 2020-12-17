@@ -1,7 +1,7 @@
 #ifndef F_PC_MANAGER_H
 #define F_PC_MANAGER_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 #include "SComponent/c_node_iter.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"

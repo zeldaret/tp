@@ -1,7 +1,7 @@
 #ifndef F_PC_DRAW_H
 #define F_PC_DRAW_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "f/f_pc/f_pc_base.h"
 #include "SComponent/c_node_iter.h"
 

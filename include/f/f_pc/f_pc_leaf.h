@@ -2,7 +2,7 @@
 #ifndef F_PC_LEAF_H
 #define F_PC_LEAF_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_draw_priority.h"
 #include "f/f_pc/f_pc_method.h"

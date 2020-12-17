@@ -1,8 +1,7 @@
 #ifndef F_PC_PAUSE
 #define F_PC_PAUSE
 
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_node.h"
 

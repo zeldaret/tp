@@ -2,8 +2,7 @@
 #ifndef F_PC_DELETE_TAG_H
 #define F_PC_DELETE_TAG_H
 
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 #include "f/f_pc/f_pc_layer.h"
 

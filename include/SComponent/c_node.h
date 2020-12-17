@@ -2,7 +2,7 @@
 #ifndef SCOMPONENT_C_NODE_H
 #define SCOMPONENT_C_NODE_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 
 typedef struct node_class {
     struct node_class *mpPrevNode;

@@ -19,7 +19,6 @@ void fpcLd_Free(s16 procName);
 s32 fpcLd_Load(s16 procName);
 
 BOOL fpcDt_IsComplete() {
-    // bool vs BOOL
     return fpcDtTg_IsEmpty();
 }
 

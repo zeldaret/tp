@@ -1,7 +1,7 @@
 #ifndef F_PC_FSTCREATE_REQ_H
 #define F_PC_FSTCREATE_REQ_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_req.h"

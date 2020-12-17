@@ -2,7 +2,7 @@
 #ifndef F_PC_LINE_TAG_H
 #define F_PC_LINE_TAG_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 
 typedef struct line_tag {

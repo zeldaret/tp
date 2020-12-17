@@ -2,8 +2,7 @@
 #ifndef F_PC_CREATOR_H
 #define F_PC_CREATOR_H
 
-#include "compatibility_c_cpp.h"
-#include "dolphin/types.h"
+#include "global.h"
 
 struct base_process_class;
 

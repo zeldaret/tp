@@ -1,7 +1,7 @@
 #ifndef F_PC_LAYER_ITER_H
 #define F_PC_LAYER_ITER_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "SComponent/c_node_iter.h"
 

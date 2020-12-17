@@ -2,7 +2,7 @@
 #ifndef F_PC_METHOD_ITER_H
 #define F_PC_METHOD_ITER_H
 
-#include "compatibility_c_cpp.h"
+#include "global.h"
 #include "SComponent/c_list_iter.h"
 
 BEGIN_C_DECLARATIONS
