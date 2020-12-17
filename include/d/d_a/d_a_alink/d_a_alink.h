@@ -45,8 +45,8 @@ struct csXyz{       //move later
 class daAlink_c{
    public:
     u32 getE3Zhint(void);
-    char* getAlinkArcName(void);
-    u32 checkStageName(char const*);
+    const char* getAlinkArcName(void);
+    u32 checkStageName(const char*);
     void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
     void setMatrixWorldAxisRot(float(*)[4],short,short,short,int,const cXyz*);

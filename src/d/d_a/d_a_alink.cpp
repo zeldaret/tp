@@ -5,7 +5,7 @@ u32 daAlink_c::getE3Zhint(void){
     return 0;
 }
 
-asm char* daAlink_c::getAlinkArcName(void){
+asm const char* daAlink_c::getAlinkArcName(void){
     nofralloc
     #include "d/d_a/d_a_alink/asm/func_8009D884.s"
 }
@@ -39,14 +39,8 @@ asm void daAlink_matAnm_c::calc(J3DMaterial*) const{
 
 // 1 missing mr instruction
 #ifdef NONMATCHING
-u32 daAlink_c::checkStageName(char const* stage){
-    u32 uvar;
-    int check_stage;
-
-    check_stage = strcmp(g_dComIfG_gameInfo.current_map.stage,(char*)stage); // no idea if current stage vars are a struct or part of some class
-    uvar = __cntlzw(check_stage);
-
-    return uvar >> 5;
+u32 daAlink_c::checkStageName(const char* stage){
+    return (u32)__cntlzw(strcmp(g_dComIfG_gameInfo.stage,(char*)stage)) >> 5; // no idea if current stage vars are a struct or part of some class
 }
 #else
 asm u32 daAlink_c::checkStageName(char const* stage){
