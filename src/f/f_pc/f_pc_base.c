@@ -24,15 +24,15 @@ BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2) {
     return pType2 == pType1;
 }
 
-s32 fpcBs_MakeOfType(s32 *pInt) {
+s32 fpcBs_MakeOfType(s32 *pType) {
     if (lbl_80450D08 == 0) {
         lbl_80450D04 = 0x9130000;
         lbl_80450D08 = 1;
     }
-    if (*pInt == 0) {
-        *pInt = ++lbl_80450D04;
+    if (*pType == 0) {
+        *pType = ++lbl_80450D04;
     }
-    return *pInt;
+    return *pType;
 }
 
 s32 fpcBs_MakeOfId(void) {

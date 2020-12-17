@@ -7,7 +7,7 @@
 // g_fpcCtTg_Queue
 extern node_list_class lbl_803A3990;
 
-int fpcCtIt_Method(cNdIt_MethodFunc pJudge, void *pUserData) {
+s32 fpcCtIt_Method(cNdIt_MethodFunc pJudge, void *pUserData) {
     node_method_data iter;
     iter.mFunc = pJudge;
     iter.mpUserData = pUserData;

@@ -20,7 +20,7 @@ void fpcLy_CancelQTo(process_method_tag_class *pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
 
-int fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
+s32 fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
     return fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
 
@@ -28,15 +28,15 @@ BOOL fpcLy_CancelMethod(process_method_tag_class *pLayer) {
     return fpcMtdTg_Do(pLayer) == 1;
 }
 
-int fpcLy_IntoQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag, int idx) {
+s32 fpcLy_IntoQueue(layer_class *pLayer, s32 treeListIdx, create_tag_class *pTag, s32 idx) {
     return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);
 }
 
-int fpcLy_ToQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag) {
+s32 fpcLy_ToQueue(layer_class *pLayer, s32 treeListIdx, create_tag_class *pTag) {
     return cTg_AdditionToTree(&pLayer->mNodeListTree, treeListIdx, pTag);
 }
 
-int fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag) {
+s32 fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag) {
     return cTg_SingleCutFromTree(pTag);
 }
 
@@ -80,7 +80,7 @@ layer_class * fpcLy_CurrentLayer(void) {
     return lbl_80450D18;
 }
 
-layer_class * fpcLy_Search(unsigned int id) {
+layer_class * fpcLy_Search(u32 id) {
     layer_class* iVar1 = fpcLy_RootLayer();
     while (iVar1 != NULL) {
         if (iVar1->mLayerID == id) {
@@ -91,7 +91,7 @@ layer_class * fpcLy_Search(unsigned int id) {
     return NULL;
 }
 
-layer_class * fpcLy_Layer(unsigned int id) {
+layer_class * fpcLy_Layer(u32 id) {
     if (id == 0 || fpcLy_RootLayer()->mLayerID == id) {
         return fpcLy_RootLayer();
     } else if (id == ~2 || fpcLy_CurrentLayer()->mLayerID == id) {
@@ -105,34 +105,7 @@ void fpcLy_Regist(layer_class *pLayer) {
     cLs_Addition(&lbl_803A39DC, (node_class*)pLayer);
 }
 
-typedef struct test_struct {
-    struct test_struct *prev;
-    void *data;
-    struct test_struct *next;
-    u32 mLayerID;
-    u32 test;
-    u32 test2;
-    u32 test3;
-    u32 test4;
-    // node_lists_tree_class mNodeListTree;
-    // process_node_class *mpPcNode;
-    // node_list_class mCancelList;
-    // s16 mCreatingCount;// for some reason, the compiler only optimized these into a single word load/store instead of 2 halfword load/store, but only if they are written like this
-    // s16 mDeletingCount;
-} test_struct;
-
-// void fpcLy_Delete(test_struct *a, test_struct *b) {
-//     a->prev = b->prev;
-//     a->data = b->data;
-//     a->next = b->next;
-//     a->mLayerID = b->mLayerID;
-//     a->test = b->test;
-//     a->test2 = b->test2;
-//     a->test3 = b->test3;
-//     a->test4 = b->test4;
-// }
-
-int fpcLy_Delete(layer_class *pLayer) {
+s32 fpcLy_Delete(layer_class *pLayer) {
     if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mCancelList.mSize == 0) {
         cLs_SingleCut((node_class*)pLayer);
         pLayer->mNode = lbl_803A39B0.mNode;
@@ -151,9 +124,9 @@ void fpcLy_Cancel(layer_class *pLayer) {
     fpcMtdIt_Method(&pLayer->mCancelList, (cNdIt_MethodFunc)fpcLy_CancelMethod);
 }
 
-void fpcLy_Create(layer_class *pLayer, process_node_class *pPcNode, node_list_class *pLists, int listNum) {
+void fpcLy_Create(layer_class *pLayer, process_node_class *pPcNode, node_list_class *pLists, s32 listNum) {
     void *pvVar1;
-    int iVar2;
+    s32 iVar2;
     
     if (lbl_80450D20 == 0) {
         lbl_80450D1C = 0x1; // IsInitOfLayerList

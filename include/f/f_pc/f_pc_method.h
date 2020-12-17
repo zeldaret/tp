@@ -4,7 +4,7 @@
 
 #include "global.h"
 
-typedef int (*process_method_func)(void *);
+typedef s32 (*process_method_func)(void *);
 
 typedef struct process_method_class {
     process_method_func mpCreateFunc;
@@ -15,11 +15,11 @@ typedef struct process_method_class {
 
 BEGIN_C_DECLARATIONS
 
-int fpcMtd_Method(process_method_func pFunc, void *pUserData);
-int fpcMtd_Execute(process_method_class *pMthd, void *pUserData);
-int fpcMtd_IsDelete(process_method_class *pMthd, void *pUserData);
-int fpcMtd_Delete(process_method_class *pMthd, void *pUserData);
-int fpcMtd_Create(process_method_class *pMthd, void *pUserData);
+s32 fpcMtd_Method(process_method_func pFunc, void *pUserData);
+s32 fpcMtd_Execute(process_method_class *pMthd, void *pUserData);
+s32 fpcMtd_IsDelete(process_method_class *pMthd, void *pUserData);
+s32 fpcMtd_Delete(process_method_class *pMthd, void *pUserData);
+s32 fpcMtd_Create(process_method_class *pMthd, void *pUserData);
 
 END_C_DECLARATIONS
 

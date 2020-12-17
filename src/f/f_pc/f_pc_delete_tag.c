@@ -21,10 +21,10 @@ void fpcDtTg_DeleteQTo(delete_tag_class *pTag)
     cTg_SingleCut(&pTag->mBase);
 }
 
-int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc)
+s32 fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc)
 {
     if (pTag->mTimer <= 0) {
-        int ret;
+        s32 ret;
         fpcDtTg_DeleteQTo(pTag);
         ret = pFunc(pTag->mBase.mpTagData);
         if (ret == 0) {
@@ -39,7 +39,7 @@ int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc)
     }
 }
 
-int fpcDtTg_Init(delete_tag_class *pTag, void *pUserData)
+s32 fpcDtTg_Init(delete_tag_class *pTag, void *pUserData)
 {
     cTg_Create(&pTag->mBase, pUserData);
     return 1;

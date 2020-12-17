@@ -9,13 +9,13 @@
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_deletor.h"
 
-BOOL fpcCtRq_isCreatingByID(create_tag *pTag, int *pId)
+BOOL fpcCtRq_isCreatingByID(create_tag *pTag, s32 *pId)
 {
     create_request *pReq = (create_request *) (pTag->mBase.mpTagData);
     return pReq->mBsPcId == *pId;
 }
 
-BOOL fpcCtRq_IsCreatingByID(unsigned int id)
+BOOL fpcCtRq_IsCreatingByID(u32 id)
 {
     return fpcCtIt_Judge((cNdIt_JudgeFunc) fpcCtRq_isCreatingByID, &id) != NULL;
 }
@@ -69,7 +69,7 @@ BOOL fpcCtRq_Cancel(create_request *pReq)
     }
 }
 
-int fpcCtRq_IsDoing(create_request *pReq)
+s32 fpcCtRq_IsDoing(create_request *pReq)
 {
     if (pReq != NULL)
         return pReq->mbIsCreating;
@@ -79,7 +79,7 @@ int fpcCtRq_IsDoing(create_request *pReq)
 
 BOOL fpcCtRq_Do(create_request *pReq)
 {
-    int ret = cPhs_COMPLEATE_e;
+    s32 ret = cPhs_COMPLEATE_e;
 
     if (pReq->mpCtRqMtd != NULL) {
         cPhs__Handler pHandler = pReq->mpCtRqMtd->mpHandler;
@@ -92,7 +92,7 @@ BOOL fpcCtRq_Do(create_request *pReq)
 
     switch (ret) {
     case cPhs_COMPLEATE_e: {
-        int success = fpcEx_ToExecuteQ(pReq->mpRes);
+        s32 success = fpcEx_ToExecuteQ(pReq->mpRes);
         if (success == 0)
             return fpcCtRq_Cancel(pReq);
         else
@@ -111,9 +111,9 @@ void fpcCtRq_Handler(void)
     fpcCtIt_Method((cNdIt_MethodFunc) fpcCtRq_Do, NULL);
 }
 
-extern void * cMl_NS_memalignB(int, unsigned long);
+extern void * cMl_NS_memalignB(s32, u32);
 
-create_request * fpcCtRq_Create(layer_class *pLayer, unsigned long size, create_request_method_class *pMthd)
+create_request * fpcCtRq_Create(layer_class *pLayer, u32 size, create_request_method_class *pMthd)
 {
     create_request *pReq = (create_request *) cMl_NS_memalignB(-4, size);
 

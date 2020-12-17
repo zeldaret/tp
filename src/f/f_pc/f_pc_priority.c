@@ -11,19 +11,19 @@ extern process_priority_queue_info lbl_804505E8;
 // f_pc_priority::l_fpcPi_Queue
 extern node_list_class lbl_803F4E58;
 
-int fpcPi_IsInQueue(process_priority_class *pPi)
+s32 fpcPi_IsInQueue(process_priority_class *pPi)
 {
     return cTg_IsUse(&pPi->mBase);
 }
 
-int fpcPi_QueueTo(process_priority_class *pPi)
+s32 fpcPi_QueueTo(process_priority_class *pPi)
 {
     cTg_SingleCut(&pPi->mBase);
     fpcLy_CancelQTo(&pPi->mMtdTag);
     return 1;
 }
 
-int fpcPi_ToQueue(process_priority_class *pPi)
+s32 fpcPi_ToQueue(process_priority_class *pPi)
 {
     u32 layer = pPi->mInfoQ.mLayer;
 
@@ -57,7 +57,7 @@ process_priority_class * fpcPi_GetFromQueue(void)
     return NULL;
 }
 
-int fpcPi_Delete(process_priority_class *pPi)
+s32 fpcPi_Delete(process_priority_class *pPi)
 {
     fpcPi_QueueTo(pPi);
     pPi->mInfoQ.mLayer = lbl_804505E8.mLayer;
@@ -66,7 +66,7 @@ int fpcPi_Delete(process_priority_class *pPi)
     return 1;
 }
 
-int fpcPi_IsNormal(unsigned int layer, unsigned short listID, unsigned short priority)
+s32 fpcPi_IsNormal(u32 layer, u16 listID, u16 priority)
 {
     if ((layer < 0xFFFFFFFE) && (listID < 0xFFFE) && (priority < 0xFFFE))
         return 1;
@@ -74,10 +74,10 @@ int fpcPi_IsNormal(unsigned int layer, unsigned short listID, unsigned short pri
     return 0;
 }
 
-int fpcPi_Change(process_priority_class *pPi, unsigned int layer, unsigned short listID, unsigned short priority)
+s32 fpcPi_Change(process_priority_class *pPi, u32 layer, u16 listID, u16 priority)
 {
     base_process_class *pProc = (base_process_class *) pPi->mBase.mpTagData;
-    int changed = 0;
+    BOOL changed = 0;
 
     if (pProc->mInitState == 3)
         return 0;
@@ -117,7 +117,7 @@ int fpcPi_Change(process_priority_class *pPi, unsigned int layer, unsigned short
         return 0;
 }
 
-int fpcPi_Handler(void)
+s32 fpcPi_Handler(void)
 {
     process_priority_class *pPi;
     while (pPi = fpcPi_GetFromQueue()) {
@@ -137,7 +137,7 @@ int fpcPi_Handler(void)
     return 1;
 }
 
-int fpcPi_Init(process_priority_class *pPi, void *pUserData, unsigned int layer, unsigned short listID, unsigned short priority)
+s32 fpcPi_Init(process_priority_class *pPi, void *pUserData, u32 layer, u16 listID, u16 priority)
 {
     if (!fpcPi_IsNormal(layer, listID, priority))
         return 0;

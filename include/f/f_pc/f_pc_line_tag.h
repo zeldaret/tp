@@ -7,14 +7,14 @@
 
 typedef struct line_tag {
     create_tag_class mBase;
-    int mLineListID;
+    s32 mLineListID;
 } line_tag;
 
 BEGIN_C_DECLARATIONS
 
-int fpcLnTg_Move(line_tag *pLineTag, int newLineListID);
+s32 fpcLnTg_Move(line_tag *pLineTag, s32 newLineListID);
 void fpcLnTg_QueueTo(line_tag *pLineTag);
-int fpcLnTg_ToQueue(line_tag *pLineTag, int lineListID);
+s32 fpcLnTg_ToQueue(line_tag *pLineTag, s32 lineListID);
 void fpcLnTg_Init(line_tag *pLineTag, void *pData);
 
 END_C_DECLARATIONS

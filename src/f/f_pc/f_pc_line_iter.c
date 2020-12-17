@@ -7,11 +7,11 @@
 // g_fpcLn_Queue
 extern node_lists_tree_class lbl_804505D8;
 
-static int fpcLnIt_MethodCall(create_tag_class *pTag, method_filter *pFilter)
+static s32 fpcLnIt_MethodCall(create_tag_class *pTag, method_filter *pFilter)
 {
     layer_class *pLayer = ((base_process_class *) pTag->mpTagData)->mLyTg.mpLayer;
     layer_class *pCurLayer = fpcLy_CurrentLayer();
-    int ret;
+    s32 ret;
 
     fpcLy_SetCurrentLayer(pLayer);
     ret = cTgIt_MethodCall(pTag, pFilter);

@@ -6,7 +6,7 @@
 #include "SComponent/c_tag.h"
 #include "f/f_pc/f_pc_layer.h"
 
-typedef int (*delete_tag_func)(void*);
+typedef s32 (*delete_tag_func)(void*);
 
 typedef struct delete_tag_class {
     create_tag_class mBase;
@@ -19,8 +19,8 @@ BEGIN_C_DECLARATIONS
 BOOL fpcDtTg_IsEmpty(void);
 void fpcDtTg_ToDeleteQ(delete_tag_class *pTag);
 void fpcDtTg_DeleteQTo(delete_tag_class *pTag);
-int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc);
-int fpcDtTg_Init(delete_tag_class *pTag, void *pUserData);
+s32 fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc);
+s32 fpcDtTg_Init(delete_tag_class *pTag, void *pUserData);
 
 END_C_DECLARATIONS
 

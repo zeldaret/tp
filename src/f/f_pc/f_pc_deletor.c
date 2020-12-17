@@ -11,7 +11,7 @@
 // g_fpcDtTg_Queue
 extern node_list_class lbl_803A39A0;
 // g_fpcNd_type
-extern int lbl_80450D40;
+extern s32 lbl_80450D40;
 
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
@@ -22,7 +22,7 @@ BOOL fpcDt_IsComplete() {
     return fpcDtTg_IsEmpty();
 }
 
-int fpcDt_deleteMethod(base_process_class *pProc) {
+s32 fpcDt_deleteMethod(base_process_class *pProc) {
     layer_class *layer = pProc->mDtTg.mpLayer;
     s16 typeID = pProc->mBsTypeId;
 
@@ -41,7 +41,7 @@ void fpcDt_Handler(void) {
     cLsIt_Method(&lbl_803A39A0, (cNdIt_MethodFunc) fpcDtTg_Do, fpcDt_deleteMethod);
 }
 
-int fpcDt_ToQueue(base_process_class *pProc) {
+s32 fpcDt_ToQueue(base_process_class *pProc) {
     if (pProc->mUnk0 != 1 &&fpcBs_IsDelete(pProc) == 1) {
         if (fpcPi_IsInQueue(&pProc->mPi) == 1) {
             fpcPi_Delete(&pProc->mPi);
@@ -55,7 +55,7 @@ int fpcDt_ToQueue(base_process_class *pProc) {
     }
 }
 
-int fpcDt_ToDeleteQ(base_process_class *pProc) {
+s32 fpcDt_ToDeleteQ(base_process_class *pProc) {
     if (pProc->mUnk0 == 1) {
         return 0;
     } else {
@@ -95,7 +95,7 @@ int fpcDt_ToDeleteQ(base_process_class *pProc) {
     }
 }
 
-int fpcDt_Delete(base_process_class *pProc)
+s32 fpcDt_Delete(base_process_class *pProc)
 {
     if (pProc != NULL) {
         if (fpcCt_IsDoing(pProc) == 1)

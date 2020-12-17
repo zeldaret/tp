@@ -5,7 +5,7 @@
 #include "f/f_pc/f_pc_node.h"
 
 // f_pc_node::g_fpcNd_type
-extern int lbl_80450D40;
+extern s32 lbl_80450D40;
 
 #if NON_MATCHING
 s32 fpcPause_IsEnable(void *pProcess, u8 flag)

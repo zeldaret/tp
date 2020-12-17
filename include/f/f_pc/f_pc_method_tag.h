@@ -5,7 +5,7 @@
 #include "global.h"
 #include "SComponent/c_tag.h"
 
-typedef int (*process_method_tag_func)(void *);
+typedef s32 (*process_method_tag_func)(void *);
 
 typedef struct process_method_tag_class {
     create_tag_class mCreateTag;
@@ -15,10 +15,10 @@ typedef struct process_method_tag_class {
 
 BEGIN_C_DECLARATIONS
 
-int fpcMtdTg_Do(process_method_tag_class *pMthd);
-int fpcMtdTg_ToMethodQ(node_list_class *pList, process_method_tag_class *pMthd);
+s32 fpcMtdTg_Do(process_method_tag_class *pMthd);
+s32 fpcMtdTg_ToMethodQ(node_list_class *pList, process_method_tag_class *pMthd);
 void fpcMtdTg_MethodQTo(process_method_tag_class *pMthd);
-int fpcMtdTg_Init(process_method_tag_class *pMthd, process_method_tag_func pFunc, void *pMthdData);
+s32 fpcMtdTg_Init(process_method_tag_class *pMthd, process_method_tag_func pFunc, void *pMthdData);
 
 END_C_DECLARATIONS
 

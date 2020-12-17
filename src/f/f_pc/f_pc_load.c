@@ -3,9 +3,9 @@
 #include "SComponent/c_phase.h"
 #include "f/f_pc/f_pc_load.h"
 
-extern int cDyl_IsLinked(short procName);
-extern int cDyl_Unlink(short procName);
-extern int cDyl_LinkASync(short procName);
+extern s32 cDyl_IsLinked(s16 procName);
+extern s32 cDyl_Unlink(s16 procName);
+extern s32 cDyl_LinkASync(s16 procName);
 
 BOOL fpcLd_Use(u16 procName)
 {
@@ -14,7 +14,7 @@ BOOL fpcLd_Use(u16 procName)
     return FALSE;
 }
 
-int fpcLd_IsLoaded(u16 procName)
+s32 fpcLd_IsLoaded(u16 procName)
 {
     return cDyl_IsLinked(procName);
 }
@@ -24,9 +24,9 @@ void fpcLd_Free(u16 procName)
     cDyl_Unlink(procName);
 }
 
-int fpcLd_Load(u16 procName)
+s32 fpcLd_Load(u16 procName)
 {
-    int phase = cDyl_LinkASync(procName);
+    s32 phase = cDyl_LinkASync(procName);
 
     switch (phase) {
     case cPhs_COMPLEATE_e:

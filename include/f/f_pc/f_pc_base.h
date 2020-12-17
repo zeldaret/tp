@@ -37,7 +37,7 @@ typedef struct base_process_class {
 BEGIN_C_DECLARATIONS
 
 BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2);
-s32 fpcBs_MakeOfType(s32 *pInt);
+s32 fpcBs_MakeOfType(s32 *pType);
 s32 fpcBs_MakeOfId(void);
 s32 fpcBs_Execute(base_process_class *pProc);
 void fpcBs_DeleteAppend(base_process_class *pProc);

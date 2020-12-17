@@ -14,7 +14,7 @@ void fpcCtTg_CreateQTo(create_tag_class *pTag)
     cTg_SingleCut(pTag);
 }
 
-int fpcCtTg_Init(create_tag *pTag, void *pUserData)
+s32 fpcCtTg_Init(create_tag *pTag, void *pUserData)
 {
     cTg_Create(&pTag->mBase, pUserData);
     return 1;

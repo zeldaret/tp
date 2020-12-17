@@ -10,7 +10,7 @@
 
 BEGIN_C_DECLARATIONS
 
-typedef int (*FastCreateReqFunc)(void *);
+typedef s32 (*FastCreateReqFunc)(void *);
 
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc);

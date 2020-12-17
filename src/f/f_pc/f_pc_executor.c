@@ -8,10 +8,10 @@
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
 
-extern int fpcPause_IsEnable(base_process_class *pProc, int);
+extern s32 fpcPause_IsEnable(base_process_class *pProc, s32);
 
 // g_fpcNd_type
-extern int lbl_80450D40;
+extern s32 lbl_80450D40;
 
 base_process_class * fpcEx_Search(void *pFunc, void *pUserData)
 {
@@ -26,25 +26,25 @@ base_process_class * fpcEx_SearchByID(u32 id)
     return fpcEx_Search(fpcSch_JudgeByID, &id);;
 }
 
-BOOL fpcEx_IsExist(int id)
+BOOL fpcEx_IsExist(s32 id)
 {
     return fpcEx_SearchByID(id) != NULL;
 }
 
-int fpcEx_Execute(base_process_class *pProc)
+s32 fpcEx_Execute(base_process_class *pProc)
 {
     if (pProc->mInitState != 2 || fpcPause_IsEnable(pProc, 1) == 1)
         return 0;
     return fpcBs_Execute(pProc);
 }
 
-int fpcEx_ToLineQ(base_process_class *pProc)
+s32 fpcEx_ToLineQ(base_process_class *pProc)
 {
     layer_class *pLayer = pProc->mLyTg.mpLayer;
     base_process_class *pLayerPcNode = &pLayer->mpPcNode->mBase;
 
     if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg.mBase) == TRUE) {
-        int ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
+        s32 ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
         if (ret == 0) {
             fpcLyTg_QueueTo(&pProc->mLyTg);
             return 0;
@@ -62,9 +62,9 @@ int fpcEx_ToLineQ(base_process_class *pProc)
     return 0;
 }
 
-int fpcEx_ExecuteQTo(base_process_class *pProc)
+s32 fpcEx_ExecuteQTo(base_process_class *pProc)
 {
-    int ret = fpcLyTg_QueueTo(&pProc->mLyTg);
+    s32 ret = fpcLyTg_QueueTo(&pProc->mLyTg);
     if (ret == 1) {
         pProc->mInitState = 3;
         return 1;
@@ -73,9 +73,9 @@ int fpcEx_ExecuteQTo(base_process_class *pProc)
     }
 }
 
-int fpcEx_ToExecuteQ(base_process_class *pProc)
+s32 fpcEx_ToExecuteQ(base_process_class *pProc)
 {
-    int ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer, pProc->mPi.mInfoCurr.mListID, pProc->mPi.mInfoCurr.mListPrio);
+    s32 ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer, pProc->mPi.mInfoCurr.mListID, pProc->mPi.mInfoCurr.mListPrio);
     if (ret == 1) {
         fpcEx_ToLineQ(pProc);
         return 1;

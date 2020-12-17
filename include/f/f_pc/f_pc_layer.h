@@ -26,8 +26,8 @@ BEGIN_C_DECLARATIONS
 void fpcLy_SetCurrentLayer(layer_class *pLayer);
 layer_class * fpcLy_CurrentLayer(void);
 layer_class * fpcLy_RootLayer(void);
-layer_class * fpcLy_Layer(unsigned int id);
-layer_class * fpcLy_Search(unsigned int id);
+layer_class * fpcLy_Layer(u32 id);
+layer_class * fpcLy_Search(u32 id);
 void fpcLy_Regist(layer_class *pLayer);
 
 void fpcLy_CreatedMesg(layer_class *pLayer);
@@ -37,19 +37,19 @@ void fpcLy_DeletingMesg(layer_class *pLayer);
 BOOL fpcLy_IsCreatingMesg(layer_class *pLayer);
 BOOL fpcLy_IsDeletingMesg(layer_class *pLayer);
 
-int fpcLy_IntoQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag, int idx);
-int fpcLy_ToQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag);
-int fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag);
+s32 fpcLy_IntoQueue(layer_class *pLayer, s32 treeListIdx, create_tag_class *pTag, s32 idx);
+s32 fpcLy_ToQueue(layer_class *pLayer, s32 treeListIdx, create_tag_class *pTag);
+s32 fpcLy_QueueTo(layer_class *pLayer, create_tag_class *pTag);
 
 void fpcLy_Cancel(layer_class *pLayer);
 BOOL fpcLy_CancelMethod(struct process_method_tag_class *pLayer);
 
 void fpcLy_CancelQTo(struct process_method_tag_class *pMthd);
-int fpcLy_ToCancelQ(layer_class *pLayer, struct process_method_tag_class *pMthd);
+s32 fpcLy_ToCancelQ(layer_class *pLayer, struct process_method_tag_class *pMthd);
 
-void fpcLy_Create(layer_class *pLayer, struct process_node_class *pPcNode, node_list_class *pLists, int listNum);
+void fpcLy_Create(layer_class *pLayer, struct process_node_class *pPcNode, node_list_class *pLists, s32 listNum);
 
-// int fpcLy_Delete(layer_class *pLayer);
+s32 fpcLy_Delete(layer_class *pLayer);
 
 END_C_DECLARATIONS
 

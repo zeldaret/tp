@@ -5,7 +5,7 @@
 // g_fpcNd_type
 extern s32 lbl_80450D40;
 // f_pc_node::g_fpcNd_IsCheckOfDeleteTiming
-extern int lbl_804505E0;
+extern s32 lbl_804505E0;
 
 s32 fpcNd_DrawMethod(nodedraw_method_class *pNodeMethod, void* pData) {
     return fpcMtd_Method(pNodeMethod->mNodedrawFunc, pData);
