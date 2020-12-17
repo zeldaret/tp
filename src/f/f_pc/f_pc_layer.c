@@ -24,25 +24,9 @@ int fpcLy_ToCancelQ(layer_class *pLayer, process_method_tag_class *pMthd) {
     return fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
 
-#ifndef NON_MATCHING
 BOOL fpcLy_CancelMethod(process_method_tag_class *pLayer) {
     return fpcMtdTg_Do(pLayer) == 1;
 }
-#else
-asm BOOL fpcLy_CancelMethod(process_method_tag_class *pLayer) {
-nofralloc
-stwu r1, -0x10(r1)
-mflr r0
-stw r0, 0x14(r1)
-bl fpcMtdTg_Do
-addic r0,r3,-1
-subfe r3, r0, r3
-lwz r0,0x14(r1)
-mtlr r0
-addi r1,r1, 0x10
-blr
-}
-#endif
 
 int fpcLy_IntoQueue(layer_class *pLayer, int treeListIdx, create_tag_class *pTag, int idx) {
     return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);

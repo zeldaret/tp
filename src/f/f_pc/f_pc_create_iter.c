@@ -24,7 +24,6 @@ asm void *fpcCtIt_filter_JudgeInLayer(create_tag*,fpcCtIt_jilprm_c*) {
 nofralloc
 #include "asm/80020A40.s"
 }
-#ifndef NON_MATCHING
 void *fpcCtIt_JudgeInLayer(u32 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
     fpcCtIt_jilprm_c data;
     data.mUnk0 = pUnk0;
@@ -32,9 +31,3 @@ void *fpcCtIt_JudgeInLayer(u32 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
     data.mpUserData = pUserData;
     return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtIt_filter_JudgeInLayer, &data);
 }
-#else
-asm void *fpcCtIt_JudgeInLayer(u16 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
-nofralloc
-#include "asm/80020A94.s"
-}
-#endif

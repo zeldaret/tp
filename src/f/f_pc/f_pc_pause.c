@@ -8,7 +8,7 @@
 extern int lbl_80450D40;
 
 #if NON_MATCHING
-bool fpcPause_IsEnable(void *pProcess, u8 flag)
+s32 fpcPause_IsEnable(void *pProcess, u8 flag)
 {
     base_process_class *pProc = (base_process_class *) pProcess;
     // extra addic/subfe?

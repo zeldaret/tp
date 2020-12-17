@@ -40,21 +40,14 @@ void fpcNdRq_ToRequestQ(node_create_request *pNodeCreateReq) {
   fpcLy_CreatingMesg(pNodeCreateReq->mpLayerClass);
 }
 
-#ifdef NON_MATCHING
 s32 fpcNdRq_phase_IsCreated(node_create_request *pNodeCreateReq) {
-    if (fpcCtRq_IsCreatingByID(pNodeCreateReq->mCreatingID) == 1) {
+    if (fpcCtRq_IsCreatingByID(pNodeCreateReq->mCreatingID) == TRUE) {
         return cPhs_ZERO_e;
     }
     else {
-        return fpcEx_IsExist(pNodeCreateReq->mCreatingID) == true ? 2 : 3;
+        return fpcEx_IsExist(pNodeCreateReq->mCreatingID) == TRUE? 2 : 3;
     }
 }
-#else
-asm s32 fpcNdRq_phase_IsCreated(node_create_request *pNodeCreateReq) {
-nofralloc
-#include "asm/80022850.s"
-}
-#endif
 
 s32 fpcNdRq_phase_Create(node_create_request *pNodeCreateReq) {
   pNodeCreateReq->mCreatingID = fpcSCtRq_Request(pNodeCreateReq->mpLayerClass,pNodeCreateReq->mProcName,

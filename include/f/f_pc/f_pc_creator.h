@@ -11,7 +11,7 @@ BEGIN_C_DECLARATIONS
 
 BOOL fpcCt_IsCreatingByID(unsigned int id);
 int fpcCt_IsDoing(struct base_process_class *pProc);
-void fpcCt_Abort(struct base_process_class *pProc);
+BOOL fpcCt_Abort(struct base_process_class *pProc);
 void fpcCt_Handler(void);
 
 END_C_DECLARATIONS
