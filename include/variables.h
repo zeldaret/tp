@@ -61,7 +61,6 @@ extern u8 __ct__12dSv_memory_cFv;
 extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
-extern u8 lbl_80450C78;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -373,3 +372,13 @@ extern u8 lbl_804342DC; // JKRAram::sAramCommandList
 extern u8 lbl_804342E8; // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8; // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
+
+// m_Do_Reset
+// func_80015614
+extern u8 lbl_80451550;
+extern u8 lbl_80450BB8;
+extern u8 lbl_80374198;
+// func_8001574C
+extern u8 lbl_80451501;
+extern u8 lbl_804514EC;
+extern u8 lbl_804514F0;

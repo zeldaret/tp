@@ -62,7 +62,8 @@ extern "C" {
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
-    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
+    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);
+    u32 Z2AudioMgr_NS_hasReset(void*);
     void dComIfG_play_c_NS_getNowVibration(void);
     void setInitEventBit(void);
     void daObjCarry_c_NS_clrSaveFlag(void);
@@ -169,7 +170,6 @@ extern "C" {
     void JUTWarningConsole_f(void);
 
     void func_803621CC(void);
-    void VIWaitForRetrace(void);
     void func_80361C24(void);
 
     void _restgpr_26(void);
@@ -251,6 +251,14 @@ extern "C" {
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
     u8 dComIfGs_getBottleMax(void);
+
+
+    void mDoDvdErr_ThdCleanup(void);
+}
+
+class mDoCPd_c;
+extern "C" {
+    void cAPICPad_recalibrate(mDoCPd_c*);
 }
 
 // DVD
@@ -264,11 +272,14 @@ extern "C" {
     int DVDGetCommandBlockStatus(u8[48]);
     s32 DVDReadAsyncPrio(u8[48], void*, long, long, void(*)(long,DVDFileInfo*), long);
     void DVDConvertPathToEntrynum(void);
+    s32 /* DVDState */ DVDGetDriveStatus(void);
+    s32 DVDCheckDisk(void);
 
     void DVDChangeDir(void);
     void DVDCloseDir(void);
     void DVDOpenDir(void);
     void DVDReadDir(void);
+
 }
 
 // JSystem/JSupport/JSUList
@@ -366,11 +377,28 @@ extern void GXSetBlendMode(u32, u32, u32, u32);
 extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
 extern void GXClearVtxDesc();
 extern void GXSetVtxDesc(u32, u32);
+typedef void (* GXDrawDoneCallback)(void);
+extern void GXSetDrawDoneCallback(GXDrawDoneCallback);
+extern void GXDrawDone(void);
+extern void GXAbortFrame(void);
+extern void GXFlush(void);
+extern OSThread* GXSetCurrentGXThread(void);
+extern OSThread* GXGetCurrentGXThread(void);
+}
+
+extern "C" {
+void VIWaitForRetrace(void);
+void VISetBlack(s32);
+void VIFlush(void);
 }
 
 extern "C" {
     void JUTReport__FiiPCce(int, int, const char*, ...);
     void JUTReportConsole(const char*);
+}
+
+extern "C" {
+    void JUTXfb_NS_clearIndex(void); // *this
 }
 
 // m_Do_main.h
@@ -895,3 +923,25 @@ extern "C" {
     void nextSrcData__FPUc(void);
     void run__7JKRAramFv(void);
 };
+
+// JSystem/JUtility/JUTVideo
+class JUTVideo;
+extern "C" {
+    void JUTVideo_NS_destroyManager(void);
+}
+
+// JSystem/JAudio2/JASTaskThread
+extern "C" {
+    void JASTaskThread_NS_pause(void);
+}
+
+// JSystem/JAudio2/JASDvdThread
+extern "C" {
+    void JASDvd_NS_getThreadPointer(void);
+}
+
+// m_Do_Rst
+extern "C" {
+    void getResetData__6mDoRstFv(void);
+    void resetCallBack__6mDoRstFiPv(void);
+}

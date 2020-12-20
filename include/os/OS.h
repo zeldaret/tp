@@ -143,6 +143,12 @@ extern "C" {
     s32 OSDisableInterrupts();
     s32 OSEnableInterrupts();
     s32 OSRestoreInterrupts(s32 level);
+
+    void OSResetSystem(s32 param_1, u32 param_2, s32 param_3);
+
+    void OSSetSaveRegion(void* start, void* end);
+
+    void LCDisable(void);
 };
 
 #endif

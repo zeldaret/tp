@@ -19,7 +19,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_ext.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_lib.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_Reset.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_Reset.o    \
             $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_DVDError.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o    \
