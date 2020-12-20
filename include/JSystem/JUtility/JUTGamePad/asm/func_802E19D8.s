@@ -27,7 +27,7 @@ lbl_802E1A2C:
 /* 802E1A38 002DE978  41 82 00 10 */	beq lbl_802E1A48
 /* 802E1A3C 002DE97C  38 64 00 68 */	addi r3, r4, 0x68
 /* 802E1A40 002DE980  A8 84 00 7C */	lha r4, 0x7c(r4)
-/* 802E1A44 002DE984  4B FF FF 05 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFUs
+/* 802E1A44 002DE984  4B FF FF 05 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFs
 lbl_802E1A48:
 /* 802E1A48 002DE988  3B 9C 00 01 */	addi r28, r28, 1
 /* 802E1A4C 002DE98C  2C 1C 00 04 */	cmpwi r28, 4

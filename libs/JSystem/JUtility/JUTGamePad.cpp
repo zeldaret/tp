@@ -2,7 +2,7 @@
 #include "global.h"
 
 #ifdef NONMATCHING
-JUTGamePad::JUTGamePad(EPadPort port) {
+JUTGamePad::JUTGamePad(EPadPort port) : ptr_link(this) {
     this->buttons.clear();
     this->control_stick.clear();
     this->c_stick.clear();
@@ -20,19 +20,24 @@ asm JUTGamePad::~JUTGamePad() {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E07B0.s"
 }
 
-asm void JUTGamePad::initList() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E085C.s"
+void JUTGamePad::initList() {
+    if (/* mIsPadListInitialized */ lbl_804514D0 == false) {
+        /*mPadList*/ lbl_804343E4.initiate();
+        lbl_804514D0 = true;
+    }
 }
 
-asm s32 JUTGamePad::init() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E0898.s"
+s32 JUTGamePad::init() {
+    PADSetSpec(5);
+    /*sAnalogMode*/ lbl_804514DC = 3;
+    PADSetAnalogMode(3);
+
+    return PADInit();
 }
 
-asm void JUTGamePad::clear() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E08D0.s"
+void JUTGamePad::clear() {
+    this->field_0x98 = 0;
+    this->field_0xa8 = 1;
 }
 
 asm void JUTGamePad::read() {
@@ -40,14 +45,33 @@ asm void JUTGamePad::read() {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E08E4.s"
 }
 
-asm void JUTGamePad::assign() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E0BBC.s"
+void JUTGamePad::assign() {
+    s32 iVar3 = 0;
+
+    for (s32 i = 4; i > 0; i--) {
+        if ((/* mPadStatus */ lbl_804343F0[iVar3].error == 0) && (/* *puVar2 */ lbl_804514D4[iVar3] == 0)) {
+            this->pad_port = iVar3;
+            /* JUTGamePad::mPadAssign[iVar3] */ /* *puVar2 */ lbl_804514D4[iVar3] = 1;
+            /* JUTGamePad::mPadButton */ lbl_80434420[iVar3].setRepeat(this->buttons.field_0x24, this->buttons.field_0x28, this->buttons.field_0x2c);
+            this->rumble.clear(this);
+
+            return;
+        }
+
+        iVar3++;
+    }
 }
 
-asm void JUTGamePad::checkResetCallback(s64 unk) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E0C6C.s"
+
+void JUTGamePad::checkResetCallback(OSTime unk) {
+    if (unk < /* sThreshold */ lbl_804514F8)
+        return;
+
+    lbl_80451501 = true;
+    lbl_80451504 = this->pad_port;
+    if (/* sCallback* */ lbl_804514EC != NULL) {
+        lbl_804514EC(this->pad_port, /* sCallbackArg */ lbl_804514F0);
+    }
 }
 
 asm void JUTGamePad::update() {
@@ -55,14 +79,28 @@ asm void JUTGamePad::update() {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E0CD8.s"
 }
 
-asm void JUTGamePad::checkResetSwitch() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E0FA4.s"
+void JUTGamePad::checkResetSwitch() {
+    if (lbl_80451501 == false) {
+        if ((s32)OSGetResetSwitchState() != 0) {
+            lbl_80451500 = true;
+            return;
+        }
+
+        if (lbl_80451500 == true) {
+            lbl_80451501 = true;
+            /* sResetOccurredPort */ lbl_80451504 = -1;
+            if (/* sCallback* */ lbl_804514EC != NULL) {
+                lbl_804514EC(-1, /* sCallbackArg */ lbl_804514F0);
+            }
+        }
+
+        lbl_80451500 = false;
+    }
 }
 
-asm void JUTGamePad::clearForReset() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1024.s"
+void JUTGamePad::clearForReset() {
+    CRumble::setEnabled((PADMask)0);
+    JUTGamePad::recalibrate((PADMask)(PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT));
 }
 
 void JUTGamePad::CButton::clear() {
@@ -184,9 +222,18 @@ void JUTGamePad::CButton::setRepeat(u32 unk0, u32 unk1, u32 unk2) {
     this->field_0x2c = unk2;
 }
 
-asm bool JUTGamePad::recalibrate(PADMask pad_mask) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1A98.s"
+bool JUTGamePad::recalibrate(PADMask pad_mask) {
+    int iVar2 = 0;
+    for (int iVar3 = 4; iVar3 != 0; iVar3--) {
+        if ((/* sSuppressPadReset */ lbl_804514D8 & /* channel_mask */ (u32)lbl_803CC600[iVar2]) != 0) {
+            pad_mask = (PADMask)((u32)pad_mask & (lbl_803CC600[iVar2] ^ 0xffffffff));
+        }
+        iVar2++;
+    }
+
+    s32 sVar1 = PADRecalibrate(pad_mask);
+
+    return sVar1;
 }
 
 asm bool JUTGamePadLongPress::checkCallback(s32 unk0, u32 unk1) {

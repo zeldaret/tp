@@ -22,7 +22,7 @@ public:
     void clear();
     void read();
     void assign();
-    void checkResetCallback(s64 unk); // todo: weird arg
+    void checkResetCallback(OSTime unk); // todo: weird arg
     void update();
     static void checkResetSwitch();
     static void clearForReset();
@@ -71,31 +71,31 @@ public:
     };
 
     struct CRumble {
-        typedef u32 ERumble; // should probably be an enum
+        typedef s32 ERumble; // should probably be an enum
 
         void clear();
         void clear(JUTGamePad* pad);
         static void startMotor(int channel);
         static void stopMotor(int channel, bool stop);
-        void update(u16 unk0);
+        void update(s16 unk0);
         void triggerPatternedRumble(u32 unk0);
         void startPatternedRumble(void* unk0, ERumble rumble, u32 unk1);
-        void stopPatternedRumble(u16 pad_port);
+        void stopPatternedRumble(s16 pad_port);
         void stopPatternedRumbleAtThePeriod();
         static void setEnabled(PADMask pad_mask);
 
         u32 field_0x0;
         u32 field_0x4;
-        u32 field_0x8;
+        u8* field_0x8;
         u32 field_0xc;
-        u32 field_0x10;
+        u8* field_0x10;
     };
 
 private:
-    struct CButton buttons;
-    struct CStick control_stick;
-    struct CStick c_stick;
-    struct CRumble rumble;
+    CButton buttons;
+    CStick control_stick;
+    CStick c_stick;
+    CRumble rumble;
     s16 pad_port;
     s8 error_value;
     u8 pad0;

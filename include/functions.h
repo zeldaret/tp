@@ -924,9 +924,9 @@ extern "C" {
     void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void);
     void startMotor__Q210JUTGamePad7CRumbleFi(void);
     void stopMotor__Q210JUTGamePad7CRumbleFib(void);
-    void update__Q210JUTGamePad7CRumbleFUs(void);
+    void update__Q210JUTGamePad7CRumbleFs(void);
     void triggerPatternedRumble__Q210JUTGamePad7CRumbleFUl(void);
-    void stopPatternedRumble__Q210JUTGamePad7CRumbleFUs(void);
+    void stopPatternedRumble__Q210JUTGamePad7CRumbleFs(void);
     void getGamePad__10JUTGamePadFl(void);
     void setEnabled__Q210JUTGamePad7CRumbleF7PADMask(void);
     void setRepeat__Q210JUTGamePad7CButtonFUlUlUl(void);
