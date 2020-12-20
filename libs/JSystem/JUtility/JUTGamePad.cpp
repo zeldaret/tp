@@ -132,9 +132,11 @@ asm void JUTGamePad::CRumble::stopMotor(int channel, bool stop) {
 }
 
 extern "C" {
-asm u32 getNumBit(u8* unk0, u32 unk1) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E16F8.s"
+bool getNumBit(u8* buf, u32 n_bits) {
+    return (u8)(
+            (0x80 >> (n_bits & 0b111))
+            & (u32)*(buf + ((s32)n_bits >> 3) )
+        ) != 0;
 }
 }
 

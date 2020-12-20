@@ -104,7 +104,7 @@ class JUTGamePadLongPress {
 
 extern "C" {
 // s32 JUTGamePad_NS_init(void);
-u32 getNumBit(u8* unk0, u32 unk1);
+bool getNumBit(u8* unk0, u32 unk1);
 }
 
 #endif
