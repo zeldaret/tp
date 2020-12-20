@@ -2,6 +2,7 @@
 #include "global.h"
 
 #ifdef NONMATCHING
+// TODO(erin): probably ~easy to do, i just didn't do it yet :)
 JUTGamePad::JUTGamePad(EPadPort port) : ptr_link(this) {
     this->buttons.clear();
     this->control_stick.clear();
@@ -275,6 +276,12 @@ void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
 }
 
 #ifdef NONMATCHING
+/* TODO(erin): the issue here is that doing iterator++ removes a temp var fsr.
+ * if you comment out iterator++, you can get it to almost match, excepting the
+ * instruction that does link = link->mNext which will be missing. this is a
+ * matching issue in general; see JKRHeap::dispose or JKRThread::searchThread,
+ * both of which are currently nonmatching due to the same issue.
+ */
 JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
     JSUList<JUTGamePad>* threadList = &lbl_804343E4;
     JSUListIterator<JUTGamePad> iterator;
@@ -344,9 +351,3 @@ void JUTGamePadLongPress::checkCallback(s32 unk0, u32 unk1) {
         }
     }
 }
-
-
-// asm void JUTGamePad::CRumble::clear(JUTGamePad* pad) {
-//     nofralloc
-
-// }
