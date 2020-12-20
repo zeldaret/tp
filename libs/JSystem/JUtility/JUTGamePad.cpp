@@ -185,10 +185,62 @@ bool getNumBit(u8* buf, u32 n_bits) {
 }
 }
 
-asm void JUTGamePad::CRumble::update(u16 unk0) {
+
+#ifdef NONMATCHING
+void JUTGamePad::CRumble::update(s16 chn) {
+    // i can't get this to generate an `addic;subfe;clrlwi.`; it's just generating
+    // an `and.` :/
+    if ((/*mEnabled*/ lbl_804514E8 & /*sChannelMask*/ lbl_803CC5F0[chn]) == 0) {
+        this->field_0x0 = 0;
+        this->field_0x4 = 0;
+        this->field_0x8 = 0;
+        this->field_0xc = 0;
+        this->field_0x10 = 0;
+    }
+    
+    if (this->field_0x4 == 0)
+        return;
+
+    if (this->field_0x0 >= this->field_0x4) {
+        stopMotor(chn, true);
+        this->field_0x4 = 0;
+    } else {
+        if (this->field_0xc == 0) {
+            if (!/* mStatus */ lbl_804514E4[chn]) {
+                startMotor(chn);
+            }
+            return;
+        }
+
+        u32 uVar3 = getNumBit(this->field_0x8, this->field_0x0 % this->field_0xc);
+        bool bVar1 = /* mStatus */ lbl_804514E4[chn];
+        if (((uVar3 & 0xff) != 0) && !bVar1) {
+            startMotor(chn);
+        }
+        // } else {
+        //     if (uVar3 & 0xff == 0) {
+        //         uVar3 = 0;
+        //         if (this->field_0x10 != 0) {
+        //             uVar3 = getNumBit(this->field_0x10, this->field_0x0 - (this->field_0x0/this->field_0xc) * this->field_0xc);
+        //         }
+        //         if (bVar1 == false) {
+        //             if ((uVar3 & 0xff) != 0) {
+        //                 stopMotor(chn, true);
+        //             }
+        //         } else {
+        //             stopMotor(chn, uVar3);
+        //         }
+        //     }
+        // }
+    }
+    this->field_0x0 = this->field_0x0 +  1;
+}
+#else
+asm void JUTGamePad::CRumble::update(s16 unk0) {
     nofralloc
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E1720.s"
 }
+#endif
 
 void JUTGamePad::CRumble::triggerPatternedRumble(u32 unk0) {
     if (this->field_0x8 == 0)
@@ -222,10 +274,25 @@ void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
     this->field_0x4 = (field_0x0 + field_0xc - 1) % (field_0xc);
 }
 
+#ifdef NONMATCHING
+JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
+    JSUList<JUTGamePad>* threadList = &lbl_804343E4;
+    JSUListIterator<JUTGamePad> iterator;
+    for (iterator = threadList; iterator != threadList->getEnd(); iterator++) {
+        JUTGamePad* pad = iterator.getObject();
+        if (pad_index == pad->pad_port) {
+            return pad;
+        }
+    }
+
+    return NULL;
+}
+#else
 asm JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
     nofralloc
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E199C.s"
 }
+#endif
 
 void JUTGamePad::CRumble::setEnabled(PADMask pad_mask) {
     JUTGamePad *pGamePad;
