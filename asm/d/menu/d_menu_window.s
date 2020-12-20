@@ -5,16 +5,16 @@
 
 .global dMw_UP_TRIGGER
 dMw_UP_TRIGGER:
-/* 801F9F84 001F6EC4  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F9F88 001F6EC8  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F9F84 001F6EC4  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F9F88 001F6EC8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F9F8C 001F6ECC  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801F9F90 001F6ED0  54 03 EF FE */	rlwinm r3, r0, 0x1d, 0x1f, 0x1f
 /* 801F9F94 001F6ED4  4E 80 00 20 */	blr 
 
 .global dMw_DOWN_TRIGGER
 dMw_DOWN_TRIGGER:
-/* 801F9F98 001F6ED8  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F9F9C 001F6EDC  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F9F98 001F6ED8  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F9F9C 001F6EDC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F9FA0 001F6EE0  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801F9FA4 001F6EE4  54 03 F7 FE */	rlwinm r3, r0, 0x1e, 0x1f, 0x1f
 /* 801F9FA8 001F6EE8  4E 80 00 20 */	blr 
@@ -24,8 +24,8 @@ dMw_LEFT_TRIGGER:
 /* 801F9FAC 001F6EEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9FB0 001F6EF0  7C 08 02 A6 */	mflr r0
 /* 801F9FB4 001F6EF4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801F9FB8 001F6EF8  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F9FBC 001F6EFC  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F9FB8 001F6EF8  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F9FBC 001F6EFC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F9FC0 001F6F00  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801F9FC4 001F6F04  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 801F9FC8 001F6F08  41 82 00 18 */	beq lbl_801F9FE0
@@ -47,8 +47,8 @@ dMw_RIGHT_TRIGGER:
 /* 801F9FF4 001F6F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9FF8 001F6F38  7C 08 02 A6 */	mflr r0
 /* 801F9FFC 001F6F3C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801FA000 001F6F40  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FA004 001F6F44  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FA000 001F6F40  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FA004 001F6F44  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FA008 001F6F48  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA00C 001F6F4C  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 801FA010 001F6F50  41 82 00 18 */	beq lbl_801FA028
@@ -67,32 +67,32 @@ lbl_801FA02C:
 
 .global dMw_A_TRIGGER
 dMw_A_TRIGGER:
-/* 801FA03C 001F6F7C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FA040 001F6F80  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FA03C 001F6F7C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FA040 001F6F80  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FA044 001F6F84  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA048 001F6F88  54 03 C7 FE */	rlwinm r3, r0, 0x18, 0x1f, 0x1f
 /* 801FA04C 001F6F8C  4E 80 00 20 */	blr 
 
 .global dMw_B_TRIGGER
 dMw_B_TRIGGER:
-/* 801FA050 001F6F90  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FA054 001F6F94  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FA050 001F6F90  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FA054 001F6F94  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FA058 001F6F98  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA05C 001F6F9C  54 03 BF FE */	rlwinm r3, r0, 0x17, 0x1f, 0x1f
 /* 801FA060 001F6FA0  4E 80 00 20 */	blr 
 
 .global dMw_Z_TRIGGER
 dMw_Z_TRIGGER:
-/* 801FA064 001F6FA4  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FA068 001F6FA8  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FA064 001F6FA4  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FA068 001F6FA8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FA06C 001F6FAC  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA070 001F6FB0  54 03 E7 FE */	rlwinm r3, r0, 0x1c, 0x1f, 0x1f
 /* 801FA074 001F6FB4  4E 80 00 20 */	blr 
 
 .global dMw_START_TRIGGER
 dMw_START_TRIGGER:
-/* 801FA078 001F6FB8  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FA07C 001F6FBC  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FA078 001F6FB8  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FA07C 001F6FBC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FA080 001F6FC0  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA084 001F6FC4  54 03 A7 FE */	rlwinm r3, r0, 0x14, 0x1f, 0x1f
 /* 801FA088 001F6FC8  4E 80 00 20 */	blr 
@@ -829,8 +829,8 @@ lbl_801FAB0C:
 /* 801FABAC 001F7AEC  4E 80 04 21 */	bctrl 
 /* 801FABB0 001F7AF0  2C 03 00 00 */	cmpwi r3, 0
 /* 801FABB4 001F7AF4  40 82 04 10 */	bne lbl_801FAFC4
-/* 801FABB8 001F7AF8  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FABBC 001F7AFC  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FABB8 001F7AF8  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FABBC 001F7AFC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FABC0 001F7B00  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801FABC4 001F7B04  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801FABC8 001F7B08  40 82 00 0C */	bne lbl_801FABD4
@@ -2257,8 +2257,8 @@ lbl_801FC034:
 /* 801FC034 001F8F74  90 1F 01 14 */	stw r0, 0x114(r31)
 /* 801FC038 001F8F78  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 801FC03C 001F8F7C  4B FB B9 D1 */	bl dMenu_Collect_c_NS__create
-/* 801FC040 001F8F80  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FC044 001F8F84  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FC040 001F8F80  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FC044 001F8F84  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FC048 001F8F88  88 03 00 39 */	lbz r0, 0x39(r3)
 /* 801FC04C 001F8F8C  28 00 00 00 */	cmplwi r0, 0
 /* 801FC050 001F8F90  41 82 00 14 */	beq lbl_801FC064
@@ -3707,8 +3707,8 @@ lbl_801FD378:
 /* 801FD3BC 001FA2FC  48 16 4C C9 */	bl func_80362084
 /* 801FD3C0 001FA300  60 00 00 00 */	nop 
 lbl_801FD3C4:
-/* 801FD3C4 001FA304  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FD3C8 001FA308  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FD3C4 001FA304  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FD3C8 001FA308  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FD3CC 001FA30C  88 03 00 39 */	lbz r0, 0x39(r3)
 /* 801FD3D0 001FA310  28 00 00 00 */	cmplwi r0, 0
 /* 801FD3D4 001FA314  40 82 00 24 */	bne lbl_801FD3F8
@@ -3721,8 +3721,8 @@ lbl_801FD3C4:
 /* 801FD3F0 001FA330  38 80 00 01 */	li r4, 1
 /* 801FD3F4 001FA334  4B FF F9 09 */	bl dMw_c_NS_dMw_offButtonBit
 lbl_801FD3F8:
-/* 801FD3F8 001FA338  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801FD3FC 001FA33C  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801FD3F8 001FA338  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801FD3FC 001FA33C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801FD400 001FA340  88 03 00 3B */	lbz r0, 0x3b(r3)
 /* 801FD404 001FA344  28 00 00 00 */	cmplwi r0, 0
 /* 801FD408 001FA348  40 82 00 24 */	bne lbl_801FD42C

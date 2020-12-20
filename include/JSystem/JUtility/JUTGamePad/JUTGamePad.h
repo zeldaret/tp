@@ -10,7 +10,13 @@ typedef u32 EWhichStick;
 
 struct JUTGamePad : public JKRDisposer {
 public:
-    typedef u32 EPadPort;
+    //typedef u32 EPadPort;
+    enum EPadPort {
+        Port_1 = 0,
+        Port_2 = 0,
+        Port_3 = 0,
+        Port_4 = 0
+    };
     JUTGamePad(JUTGamePad::EPadPort port);
     virtual ~JUTGamePad();
 
@@ -23,7 +29,7 @@ public:
     void update();
     static void checkResetSwitch();
     static void clearForReset();
-    static JUTGamePad* getGamePad(s32 pad_index);
+    static JUTGamePad* getGamePad(int pad_index);
     static bool recalibrate(PADMask pad_mask);
 
     struct CButton {
@@ -79,7 +85,7 @@ public:
         void startPatternedRumble(void* unk0, ERumble rumble, u32 unk1);
         void stopPatternedRumble(u16 pad_port);
         void stopPatternedRumbleAtThePeriod();
-        static void setEnabled(PADMask pad_mask);
+        static void setEnabled(u32 pad_mask); //symbol says it should be unsigned long
 
         u32 field_0x0;
         u32 field_0x4;
@@ -87,13 +93,12 @@ public:
         u32 field_0xc;
         u32 field_0x10;
     };
-
-private:
     struct CButton buttons;
     struct CStick control_stick;
     struct CStick c_stick;
     struct CRumble rumble;
     s16 pad_port;
+    s8 error_value;
 
     friend class CRumble;
 };

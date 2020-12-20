@@ -87,20 +87,20 @@ STControl_NS_Yinit:
 /* 80032150 0002F090  A8 03 00 28 */	lha r0, 0x28(r3)
 /* 80032154 0002F094  B0 03 00 2C */	sth r0, 0x2c(r3)
 /* 80032158 0002F098  4E 80 00 20 */	blr 
-/* 8003215C 0002F09C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80032160 0002F0A0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8003215C 0002F09C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80032160 0002F0A0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80032164 0002F0A4  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80032168 0002F0A8  4E 80 00 20 */	blr 
-/* 8003216C 0002F0AC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80032170 0002F0B0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8003216C 0002F0AC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80032170 0002F0B0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80032174 0002F0B4  A8 63 00 0C */	lha r3, 0xc(r3)
 /* 80032178 0002F0B8  4E 80 00 20 */	blr 
-/* 8003217C 0002F0BC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80032180 0002F0C0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8003217C 0002F0BC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80032180 0002F0C0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80032184 0002F0C4  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 80032188 0002F0C8  4E 80 00 20 */	blr 
-/* 8003218C 0002F0CC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80032190 0002F0D0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8003218C 0002F0CC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80032190 0002F0D0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80032194 0002F0D4  A8 63 00 1C */	lha r3, 0x1c(r3)
 /* 80032198 0002F0D8  4E 80 00 20 */	blr 
 

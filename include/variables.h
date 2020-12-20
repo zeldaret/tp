@@ -10,7 +10,8 @@ extern char lbl_803739A0[0x310];
 extern u32 lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
-extern u8 lbl_803DD2E8;
+struct cpadInfo;
+extern cpadInfo m_cpadInfo;
 extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;
 extern u8 lbl_80450B19;
@@ -39,8 +40,8 @@ extern u8 lbl_80450B1C;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450B24;
 extern u8 lbl_80450B24;
-extern u8 lbl_803F1BBC;
-extern u8 lbl_803F1BBC;
+struct g_HIO_struct;
+extern g_HIO_struct g_HIO;
 extern u8 lbl_80450C2C;
 extern u8 lbl_80450C28;
 extern u8 lbl_80450C34;
@@ -48,7 +49,8 @@ extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450580;
 extern u8 lbl_80450B1A;
-extern u8 lbl_803DD2D8;
+struct JUTGamePad;
+extern JUTGamePad* m_gamePad[4];
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
@@ -61,7 +63,8 @@ extern u8 __ct__12dSv_memory_cFv;
 extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
-extern u8 lbl_80450C78;
+struct ResetData;
+extern ResetData* mResetData;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -378,8 +381,9 @@ extern bool lbl_80451501;
 extern void* lbl_804514EC;
 extern u32 lbl_804514F0;
 
-extern float lbl_80451A20;
-extern double lbl_80451A30;
-extern float lbl_80451A24;
-extern float lbl_80451A28;
-extern s32 lbl_804514DC;
+extern float lbl_80451A20; //m_Do_controller_pad::@3709 0.06666667 
+extern float lbl_80451A24; //m_Do_controller_pad::@3710 1.0
+extern float lbl_80451A28; //m_Do_controller_pad::@3711 0.007142857
+extern double lbl_80451A30; //m_Do_controller_pad::@3713 4.503599627370496E15
+
+extern s32 sAnalogMode;

@@ -60,8 +60,8 @@ lbl_802E0764:
 /* 802E07A8 002DD6E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E07AC 002DD6EC  4E 80 00 20 */	blr 
 
-.global JUTGamePad_NS_dtor
-JUTGamePad_NS_dtor:
+.global __dt__10JUTGamePadFv
+__dt__10JUTGamePadFv:
 /* 802E07B0 002DD6F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E07B4 002DD6F4  7C 08 02 A6 */	mflr r0
 /* 802E07B8 002DD6F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -136,7 +136,7 @@ JUTGamePad_NS_init:
 /* 802E08A4 002DD7E4  38 60 00 05 */	li r3, 5
 /* 802E08A8 002DD7E8  48 06 E9 B1 */	bl PADSetSpec
 /* 802E08AC 002DD7EC  38 00 00 03 */	li r0, 3
-/* 802E08B0 002DD7F0  90 0D 8F 5C */	stw r0, lbl_804514DC-_SDA_BASE_(r13)
+/* 802E08B0 002DD7F0  90 0D 8F 5C */	stw r0, sAnalogMode-_SDA_BASE_(r13)
 /* 802E08B4 002DD7F4  38 60 00 03 */	li r3, 3
 /* 802E08B8 002DD7F8  48 06 F1 59 */	bl PADSetAnalogMode
 /* 802E08BC 002DD7FC  48 06 E4 95 */	bl PADInit
@@ -153,8 +153,8 @@ JUTGamePad_NS_clear:
 /* 802E08DC 002DD81C  98 03 00 A8 */	stb r0, 0xa8(r3)
 /* 802E08E0 002DD820  4E 80 00 20 */	blr 
 
-.global JUTGamePad_NS_read
-JUTGamePad_NS_read:
+.global read__10JUTGamePadFv
+read__10JUTGamePadFv:
 /* 802E08E4 002DD824  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802E08E8 002DD828  7C 08 02 A6 */	mflr r0
 /* 802E08EC 002DD82C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -664,13 +664,13 @@ lbl_802E1014:
 /* 802E101C 002DDF5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E1020 002DDF60  4E 80 00 20 */	blr 
 
-.global JUTGamePad_NS_clearForReset
-JUTGamePad_NS_clearForReset:
+.global clearForReset__10JUTGamePadFv
+clearForReset__10JUTGamePadFv:
 /* 802E1024 002DDF64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E1028 002DDF68  7C 08 02 A6 */	mflr r0
 /* 802E102C 002DDF6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E1030 002DDF70  38 60 00 00 */	li r3, 0
-/* 802E1034 002DDF74  48 00 09 A5 */	bl JUTGamePad_NS_CRumble_NS_setEnabled
+/* 802E1034 002DDF74  48 00 09 A5 */	bl setEnabled__Q210JUTGamePad7CRumbleFUl
 /* 802E1038 002DDF78  3C 60 F0 00 */	lis r3, 0xf000
 /* 802E103C 002DDF7C  48 00 0A 5D */	bl JUTGamePad_NS_recalibrate
 /* 802E1040 002DDF80  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1370,8 +1370,8 @@ JUTGamePad_NS_CRumble_NS_stopPatternedRumbleAtThePeriod:
 /* 802E1994 002DE8D4  90 03 00 04 */	stw r0, 4(r3)
 /* 802E1998 002DE8D8  4E 80 00 20 */	blr 
 
-.global JUTGamePad_NS_getGamePad
-JUTGamePad_NS_getGamePad:
+.global getGamePad__10JUTGamePadFi
+getGamePad__10JUTGamePadFi:
 /* 802E199C 002DE8DC  3C 80 80 43 */	lis r4, lbl_804343E4@ha
 /* 802E19A0 002DE8E0  38 84 43 E4 */	addi r4, r4, lbl_804343E4@l
 /* 802E19A4 002DE8E4  80 84 00 00 */	lwz r4, 0(r4)
@@ -1391,8 +1391,8 @@ lbl_802E19C8:
 /* 802E19D0 002DE910  38 60 00 00 */	li r3, 0
 /* 802E19D4 002DE914  4E 80 00 20 */	blr 
 
-.global JUTGamePad_NS_CRumble_NS_setEnabled
-JUTGamePad_NS_CRumble_NS_setEnabled:
+.global setEnabled__Q210JUTGamePad7CRumbleFUl
+setEnabled__Q210JUTGamePad7CRumbleFUl:
 /* 802E19D8 002DE918  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E19DC 002DE91C  7C 08 02 A6 */	mflr r0
 /* 802E19E0 002DE920  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1417,7 +1417,7 @@ lbl_802E1A04:
 /* 802E1A28 002DE968  4B FF FC 65 */	bl JUTGamePad_NS_CRumble_NS_stopMotor
 lbl_802E1A2C:
 /* 802E1A2C 002DE96C  7F 83 E3 78 */	mr r3, r28
-/* 802E1A30 002DE970  4B FF FF 6D */	bl JUTGamePad_NS_getGamePad
+/* 802E1A30 002DE970  4B FF FF 6D */	bl getGamePad__10JUTGamePadFi
 /* 802E1A34 002DE974  7C 64 1B 79 */	or. r4, r3, r3
 /* 802E1A38 002DE978  41 82 00 10 */	beq lbl_802E1A48
 /* 802E1A3C 002DE97C  38 64 00 68 */	addi r3, r4, 0x68

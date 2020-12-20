@@ -6,8 +6,8 @@
 .global _unnamed_d_attention_cpp__NS_padLockButton
 _unnamed_d_attention_cpp__NS_padLockButton:
 /* 80070018 0006CF58  54 64 30 32 */	slwi r4, r3, 6
-/* 8007001C 0006CF5C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80070020 0006CF60  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 8007001C 0006CF5C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80070020 0006CF60  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80070024 0006CF64  7C 60 22 14 */	add r3, r0, r4
 /* 80070028 0006CF68  88 63 00 39 */	lbz r3, 0x39(r3)
 /* 8007002C 0006CF6C  30 03 FF FF */	addic r0, r3, -1
@@ -2828,8 +2828,8 @@ lbl_80072700:
 /* 80072708 0006F648  40 82 00 80 */	bne lbl_80072788
 /* 8007270C 0006F64C  80 1F 00 0C */	lwz r0, 0xc(r31)
 /* 80072710 0006F650  54 04 30 32 */	slwi r4, r0, 6
-/* 80072714 0006F654  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80072718 0006F658  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80072714 0006F654  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80072718 0006F658  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 8007271C 0006F65C  7C 60 22 14 */	add r3, r0, r4
 /* 80072720 0006F660  C0 23 00 04 */	lfs f1, 4(r3)
 /* 80072724 0006F664  C0 02 8C 34 */	lfs f0, lbl_80452634-_SDA2_BASE_(r2)

@@ -305,8 +305,8 @@ lbl_80450C70:
 .global lbl_80450C74
 lbl_80450C74:
 	.skip 0x4
-.global lbl_80450C78
-lbl_80450C78:
+.global mResetData
+mResetData:
 	.skip 0x8
 .global lbl_80450C80
 lbl_80450C80:
@@ -1745,8 +1745,8 @@ lbl_804514D4:
 .global lbl_804514D8
 lbl_804514D8:
 	.skip 0x4
-.global lbl_804514DC
-lbl_804514DC:
+.global sAnalogMode
+sAnalogMode:
 	.skip 0x4
 .global lbl_804514E0
 lbl_804514E0:

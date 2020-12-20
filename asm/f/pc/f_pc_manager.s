@@ -150,8 +150,8 @@ lbl_80022268:
 /* 80022278 0001F1B8  80 6D 85 E0 */	lwz r3, lbl_80450B60-_SDA_BASE_(r13)
 /* 8002227C 0001F1BC  38 80 00 01 */	li r4, 1
 /* 80022280 0001F1C0  48 28 84 31 */	bl Z2SoundMgr_NS_pauseAllGameSound
-/* 80022284 0001F1C4  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
-/* 80022288 0001F1C8  80 83 D2 D8 */	lwz r4, lbl_803DD2D8@l(r3)
+/* 80022284 0001F1C4  3C 60 80 3E */	lis r3, m_gamePad@ha
+/* 80022288 0001F1C8  80 83 D2 D8 */	lwz r4, m_gamePad@l(r3)
 /* 8002228C 0001F1CC  38 64 00 68 */	addi r3, r4, 0x68
 /* 80022290 0001F1D0  A8 84 00 7C */	lha r4, 0x7c(r4)
 /* 80022294 0001F1D4  48 2B F6 B5 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumble

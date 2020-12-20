@@ -1911,7 +1911,7 @@ dComIfG_resetToOpening:
 /* 8002CD44 00029C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CD48 00029C88  7C 08 02 A6 */	mflr r0
 /* 8002CD4C 00029C8C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002CD50 00029C90  80 8D 86 F8 */	lwz r4, lbl_80450C78-_SDA_BASE_(r13)
+/* 8002CD50 00029C90  80 8D 86 F8 */	lwz r4, mResetData-_SDA_BASE_(r13)
 /* 8002CD54 00029C94  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8002CD58 00029C98  2C 00 00 00 */	cmpwi r0, 0
 /* 8002CD5C 00029C9C  40 82 00 20 */	bne lbl_8002CD7C
@@ -4032,8 +4032,8 @@ dComIfGs_gameStart:
 /* 8002E9CC 0002B90C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002E9D0 0002B910  4E 80 00 20 */	blr 
 /* 8002E9D4 0002B914  54 64 30 32 */	slwi r4, r3, 6
-/* 8002E9D8 0002B918  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8002E9DC 0002B91C  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 8002E9D8 0002B918  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8002E9DC 0002B91C  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 8002E9E0 0002B920  7C 60 22 14 */	add r3, r0, r4
 /* 8002E9E4 0002B924  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8002E9E8 0002B928  54 03 05 EE */	rlwinm r3, r0, 0, 0x17, 0x17

@@ -9,8 +9,8 @@ extern "C" {
     void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad(void);
     void mDoCPd_c_NS_recalibrate(void);
     void mDoCPd_c_NS_convert(void);
-    void JUTGamePad_NS_getGamePad(void);
-    void JUTGamePad_NS_read(void);
+    void getGamePad__10JUTGamePadFi(void);
+    void read__10JUTGamePadFv(void);
     void mDoCPd_c_NS_LRlockCheck(void);
     void mDoRst_resetCallBack(void);
     void J2DScreen_NS_draw(void);
