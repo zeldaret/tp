@@ -268,9 +268,14 @@ bool JUTGamePad::recalibrate(PADMask pad_mask) {
     return sVar1;
 }
 
-asm bool JUTGamePadLongPress::checkCallback(s32 unk0, u32 unk1) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1AFC.s"
+void JUTGamePadLongPress::checkCallback(s32 unk0, u32 unk1) {
+    if ((0 <= unk0) && (unk1 >= this->field_0x1c)) {
+        this->field_0x11 = true;
+        this->field_0x48[unk0] = true;
+        if (this->callback != NULL) {
+            this->callback(unk0, this, this->field_0x50);
+        }
+    }
 }
 
 
