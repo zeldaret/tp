@@ -124,9 +124,12 @@ asm u32 JUTGamePad::CButton::update(PADStatus const *, u32 unk) {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E108C.s"
 }
 
-asm void JUTGamePad::CStick::clear() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E121C.s"
+void JUTGamePad::CStick::clear() {
+    float zero = lbl_80456028; // 0.0f
+    this->stick_x = zero;
+    this->stick_y = zero;
+    this->length_from_neutral = zero;
+    this->angle = 0;
 }
 
 asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, EStickMode mode, EWhichStick stick, u32 unk2) {
