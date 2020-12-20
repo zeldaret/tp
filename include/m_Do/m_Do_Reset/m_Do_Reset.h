@@ -8,9 +8,9 @@ extern "C" {
 }
 
 struct ResetData {
-    u32 field_0x0;
+    s32 field_0x0;
     u32 field_0x4;
-    u32 field_0x8;
+    s32 field_0x8;
     s32 pad_index;
     u8 field_0x10;
     u8 field_0x11;
@@ -21,8 +21,7 @@ struct ResetData {
     u8 field_0x16;
     u8 field_0x17;
 };
-extern ResetData* lbl_80450C78;
-
+extern ResetData* m_Do_Reset_NS_mDoRst_NS_mResetData;
 
 struct mDoRst {
     ResetData* getResetData();

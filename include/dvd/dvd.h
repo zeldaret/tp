@@ -15,7 +15,8 @@ typedef enum DVDState {
     DVD_STATE_IGNORED       = 0x8,
     DVD_STATE_CANCELED      = 0xa, // lmao they skipped 9
     DVD_STATE_RETRY         = 0xb,
-    DVD_STATE_FATAL_ERROR   = 0xffffffff,
+    DVD_STATE_FATAL_ERROR   = -1,
+    __DVD_STATE_ENUM_FORCE_S32 = INT32_MAX,
 } DVDState;
 }
 

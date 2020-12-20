@@ -75,18 +75,36 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     my_OSCancelAlarmAll();
     LCDisable();
     // probably false match; check out 80015728 or thereabouts in Ghidra
-    OSSetSaveRegion(/* mResetData */ lbl_80450C78, (u8*)(&getResetData__6mDoRstFv) + 0x18);
+    OSSetSaveRegion(/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData, (u8*)(&getResetData__6mDoRstFv) + 0x18);
     OSResetSystem(p1, p2, p3);
     do {
         VIWaitForRetrace();
     } while (true);
 }
 
-asm void mDoRst::resetCallBack(int p1, void* p2) {
-    nofralloc
-    #include "m_Do/m_Do_reset/asm/func_8001574C.s"
+void mDoRst::resetCallBack(int p1, void* p2) {
+    if (/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 == 0) {
+        if (p1 == -1) {
+            cAPICPad_recalibrate();
+        } else {
+            if (m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 != 0) {
+                lbl_80451501 = false;
+                /* sCallback */ lbl_804514EC = &mDoRst::resetCallBack;
+                /* sCallbackArg */ lbl_804514F0 = 0;
+                return;
+            }
+            m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 = 1;
+            m_Do_Reset_NS_mDoRst_NS_mResetData->pad_index = p1;
+            cAPICPad_recalibrate();
+        }
+
+        if ((DVDCheckDisk() == 0) && (DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR)) {
+            m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x11 = 1;
+        }
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 = 1;
+    }
 }
 
 ResetData* mDoRst::getResetData() {
-    return /* mResetData */ lbl_80450C78;
+    return /* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData;
 }
