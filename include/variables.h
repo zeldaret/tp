@@ -377,35 +377,14 @@ extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
 //// JUTGamePad:
 // func_802E06DC
 extern u8 lbl_803CC610;
-extern u8 lbl_804343E4;
-extern u8 lbl_804514D4;
-// func_802E121C
-extern u8 lbl_80456028;
-// func_802E085C
-extern u8 lbl_804514D0;
-// func_802E0898
-extern u8 lbl_804514DC;
 // func_802E08E4
 extern u8 lbl_804343D8;
 extern u8 lbl_804508DC;
 extern u8 lbl_804508D8;
-extern u8 lbl_804514D8;
-// func_802E0BBC
-extern u8 lbl_804343F0;
-extern u8 lbl_80434420;
-// func_802E0C6C
-extern u8 lbl_804514F8;
-extern u8 lbl_804514FC;
-extern u8 lbl_80451501;
-extern u8 lbl_80451504;
-extern u8 lbl_804514EC;
-extern u8 lbl_804514F0;
 // func_802E0CD8
 extern u8 lbl_804508E8;
 extern u8 lbl_804508EC;
 extern u8 lbl_8043456C;
-// func_802E0FA4
-extern u8 lbl_80451500;
 // func_802E108C
 extern u8 lbl_80456020;
 extern u8 lbl_80456018;
@@ -418,11 +397,3 @@ extern u8 lbl_8045604C;
 // func_802E1500
 extern u8 lbl_804508E4;
 extern u8 lbl_804508E0;
-// func_802E1634
-extern u8 lbl_803CC5F0;
-// func_802E19D8
-extern u8 lbl_803CC600;
-
-// JUTGamePad.cpp
-extern bool lbl_804514E4[4]; // JUTGamePad::CRumble::mStatus (static?)
-extern u32 lbl_804514E8; // JUTGamePad::CRumble::mEnabled (static?)
