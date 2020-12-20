@@ -111,8 +111,19 @@ private:
     friend class CRumble;
 };
 
-class JUTGamePadLongPress {
-    bool checkCallback(s32 unk0, u32 unk2);
+struct JUTGamePadLongPress {
+    void checkCallback(s32 unk0, u32 unk2);
+
+    u8 unk0[17];
+    bool field_0x11; // bool?
+    u8 unk1[10];
+    u32 field_0x1c;
+    u8 unk2[28];
+    u8 field_0x3c;
+    u8 unk3[11];
+    bool field_0x48[4]; // bool[4]?
+    void (*callback)(s32, JUTGamePadLongPress *, s32);
+    s32 field_0x50;
 };
 
 extern "C" {
