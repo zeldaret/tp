@@ -94,6 +94,16 @@ private:
     struct CStick c_stick;
     struct CRumble rumble;
     s16 pad_port;
+    s8 error_value;
+    u8 pad0;
+    JSUPtrLink ptr_link;
+    u8 unk0[8];
+    u8 field_0x98;
+    u8 unk1[3];
+    u8 reset_flag;
+    u8 pad1[3];
+    OSTime reset_time;
+    u8 field_0xa8;
 
     friend class CRumble;
 };
