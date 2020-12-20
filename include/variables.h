@@ -7,7 +7,7 @@ extern u8 lbl_803A7270[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_803739A0[0x310];
-extern u32 lbl_80451368;
+extern void* lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
 extern u8 lbl_803DD2E8;
@@ -52,7 +52,7 @@ extern u8 lbl_803DD2D8;
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
-extern u8 lbl_803EAF40;
+extern u8 lbl_803EAF40[];
 extern u8 lbl_80450B34;
 extern u8 lbl_80450B00;
 extern u8 lbl_80450C80;
@@ -75,6 +75,7 @@ extern u8 lbl_804539FC;
 extern u8 lbl_803BB498;
 extern float lbl_804550E8;
 extern float lbl_804550EC;
+extern u8 lbl_80450C90;
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
@@ -375,10 +376,12 @@ extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
 
 // m_Do_Reset
 // func_80015614
-extern u8 lbl_80451550;
+#include "JSystem/JUtility/JUTXfb/JUTXfb.h"
+extern JUTXfb* lbl_80451550;
 extern u8 lbl_80450BB8;
-extern u8 lbl_80374198;
+extern char lbl_80374198[16];
 // func_8001574C
 extern u8 lbl_80451501;
 extern u8 lbl_804514EC;
 extern u8 lbl_804514F0;
+extern u32 lbl_803ECF00;

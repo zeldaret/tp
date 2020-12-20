@@ -1,3 +1,5 @@
+#include "os/OS.h"
+
 extern "C" { 
     void J2DScreen_NS_draw(void);
     void PSMTXCopy(void);
@@ -62,7 +64,7 @@ extern "C" {
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
-    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);
+    void Z2AudioMgr_NS_setOutputMode(void*,unsigned long);
     u32 Z2AudioMgr_NS_hasReset(void*);
     void dComIfG_play_c_NS_getNowVibration(void);
     void setInitEventBit(void);
@@ -258,7 +260,7 @@ extern "C" {
 
 class mDoCPd_c;
 extern "C" {
-    void cAPICPad_recalibrate(mDoCPd_c*);
+    void cAPICPad_recalibrate(void);
 }
 
 // DVD
@@ -272,7 +274,7 @@ extern "C" {
     int DVDGetCommandBlockStatus(u8[48]);
     s32 DVDReadAsyncPrio(u8[48], void*, long, long, void(*)(long,DVDFileInfo*), long);
     void DVDConvertPathToEntrynum(void);
-    s32 /* DVDState */ DVDGetDriveStatus(void);
+    DVDState DVDGetDriveStatus(void);
     s32 DVDCheckDisk(void);
 
     void DVDChangeDir(void);
@@ -395,10 +397,6 @@ void VIFlush(void);
 extern "C" {
     void JUTReport__FiiPCce(int, int, const char*, ...);
     void JUTReportConsole(const char*);
-}
-
-extern "C" {
-    void JUTXfb_NS_clearIndex(void); // *this
 }
 
 // m_Do_main.h
@@ -931,13 +929,17 @@ extern "C" {
 }
 
 // JSystem/JAudio2/JASTaskThread
+struct JASTaskThread {
+    u8 unk0[0x2c];
+    OSThread* thread;
+};
 extern "C" {
-    void JASTaskThread_NS_pause(void);
+    s32 JASTaskThread_NS_pause(JASTaskThread*, bool);
 }
 
 // JSystem/JAudio2/JASDvdThread
 extern "C" {
-    void JASDvd_NS_getThreadPointer(void);
+    JASTaskThread* JASDvd_NS_getThreadPointer(void);
 }
 
 // m_Do_Rst

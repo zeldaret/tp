@@ -107,7 +107,7 @@ extern "C" {
     void OSSetSoundMode(OSSoundMode mode);
 
     void OSReportInit(void);
-    void OSAttention(char *msg);
+    void OSAttention(char *msg, ...);
     void OSPanic(char *file, s32 line, char* fmt, ...);
     void OSReport(char *fmt, ...);
     void OSReport_Error(char* fmt, ...);
