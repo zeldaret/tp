@@ -148,11 +148,11 @@ void JUTGamePad::CRumble::clear() {
     this->field_0x8 = 0;
     this->field_0xc = 0;
     this->field_0x10 = 0;
-    lbl_804514E8 = 0xf0000000; // mEnabled
+    lbl_804514E8 = (PADMask) 0xf0000000; // mEnabled
 }
 
 void JUTGamePad::CRumble::clear(JUTGamePad* pad) {
-    // TODO: potentially false match
+    // TODO: potentially fake match
     s16 tmp0 = (s16) pad->pad_port; 
     if ((tmp0 >= 0) && (tmp0 < 4)) {
         lbl_804514E4[tmp0] = false; // mStatus
@@ -162,14 +162,18 @@ void JUTGamePad::CRumble::clear(JUTGamePad* pad) {
     this->clear();
 }
 
-asm void JUTGamePad::CRumble::startMotor(int channel) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1634.s"
+void JUTGamePad::CRumble::startMotor(int channel) {
+    if ((/*mEnabled*/ lbl_804514E8 & /*sChannelMask*/ lbl_803CC5F0[channel]) != 0) {
+        PADControlMotor(channel, 1);
+        lbl_804514E4[channel] = true; // mStatus
+    }
 }
 
-asm void JUTGamePad::CRumble::stopMotor(int channel, bool stop) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E168C.s"
+void JUTGamePad::CRumble::stopMotor(int channel, bool stop) {
+    if ((/*mEnabled*/ lbl_804514E8 & /*sChannelMask*/ lbl_803CC5F0[channel]) != 0) {
+        PADControlMotor(channel, (u8)(stop ? 2 : 0));
+        lbl_804514E4[channel] = false; // mStatus
+    }
 }
 
 extern "C" {
@@ -186,25 +190,36 @@ asm void JUTGamePad::CRumble::update(u16 unk0) {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E1720.s"
 }
 
-asm void JUTGamePad::CRumble::triggerPatternedRumble(u32 unk0) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E18A4.s"
+void JUTGamePad::CRumble::triggerPatternedRumble(u32 unk0) {
+    if (this->field_0x8 == 0)
+        return;
+    
+    if (this->field_0xc == 0)
+        return;
+
+    this->field_0x4 = unk0;
+    this->field_0x0 = 0;
 }
 
-asm void JUTGamePad::CRumble::startPatternedRumble(void* unk0,
+void JUTGamePad::CRumble::startPatternedRumble(void* unk0,
         JUTGamePad::CRumble::ERumble rumble, u32 unk1) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E18CC.s"
+    this->field_0xc = (u32)(*((u8*)unk0) << 8) + (u32)*((u8*)unk0 + 1);
+    this->field_0x8 = (u8*)unk0 + 2;
+
+    switch (rumble) {
+        case 0: this->triggerPatternedRumble(this->field_0xc); break;
+        case 1: this->triggerPatternedRumble(-1); break;
+        case 2: this->triggerPatternedRumble(unk1); break;
+    }
 }
 
-asm void JUTGamePad::CRumble::stopPatternedRumble(u16 pad_port) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1948.s"
+void JUTGamePad::CRumble::stopPatternedRumble(s16 pad_port) {
+    this->field_0x4 = 0;
+    this->stopMotor(pad_port, true);
 }
 
-asm void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E1978.s"
+void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
+    this->field_0x4 = (field_0x0 + field_0xc - 1) % (field_0xc);
 }
 
 asm JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
@@ -212,9 +227,23 @@ asm JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
     #include "JSystem/JUtility/JUTGamePad/asm/func_802E199C.s"
 }
 
-asm void JUTGamePad::CRumble::setEnabled(PADMask pad_mask) {
-    nofralloc
-    #include "JSystem/JUtility/JUTGamePad/asm/func_802E19D8.s"
+void JUTGamePad::CRumble::setEnabled(PADMask pad_mask) {
+    JUTGamePad *pGamePad;
+
+    for (s32 channel = 0; channel < 4; channel++) {
+        if ((/* mEnabled */ lbl_804514E8 & /* channel_mask */ (u32)lbl_803CC600[channel]) == 0) {
+            if (/* mStatus */ lbl_804514E4[channel] != false) {
+                stopMotor(channel, false);
+            }
+
+            pGamePad = getGamePad(channel);
+            if (pGamePad != NULL) {
+                pGamePad->rumble.stopPatternedRumble(pGamePad->pad_port);
+            }
+        }
+    }
+
+    lbl_804514E8 = (PADMask) (pad_mask & (PAD_CHAN3_BIT|PAD_CHAN2_BIT|PAD_CHAN1_BIT|PAD_CHAN0_BIT));
 }
 
 void JUTGamePad::CButton::setRepeat(u32 unk0, u32 unk1, u32 unk2) {
