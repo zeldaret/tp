@@ -1,3 +1,5 @@
+#ifndef __FUNCTIONS_H__
+#define __FUNCTIONS_H__
 #include "os/OS.h"
 
 extern "C" { 
@@ -926,3 +928,17 @@ extern "C" {
     void getResetData__6mDoRstFv(void);
     void resetCallBack__6mDoRstFiPv(void);
 }
+
+// JUTXfb
+extern "C" {
+    void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
+    void createManager__6JUTXfbFP7JKRHeapl(void);
+    void delXfb__6JUTXfbFl(void);
+    void clearIndex__6JUTXfbFv(void);
+    void common_init__6JUTXfbFl(void);
+    void __ct__6JUTXfbFP15GXRenderModeObjP7JKRHeapl(void);
+    void __dt__6JUTXfbFv(void);
+    void JUTXfb_NS_initiate(void);
+}
+
+#endif

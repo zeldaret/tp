@@ -376,8 +376,6 @@ extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
 
 // m_Do_Reset
 // func_80015614
-#include "JSystem/JUtility/JUTXfb/JUTXfb.h"
-extern JUTXfb* lbl_80451550;
 extern u8 lbl_80450BB8;
 extern char lbl_80374198[16];
 // func_8001574C
@@ -385,3 +383,7 @@ extern bool lbl_80451501;
 extern void* lbl_804514EC; // JUTGamePad::C3ButtonReset::sCallback
 extern u32 lbl_804514F0; // JUTGamePad::C3ButtonReset::sCallbackArg
 extern u32 lbl_803ECF00;
+
+// JUTXfb
+// func_802E5260
+extern u8 lbl_80451538;

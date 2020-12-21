@@ -486,7 +486,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTAssert.o    \
             $(BUILD_DIR)/asm/JUtility/JUTVideo.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTXfb.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFader.o    \
             $(BUILD_DIR)/asm/JUtility/JUTProcBar.o    \
             $(BUILD_DIR)/asm/JUtility/JUTConsole.o    \

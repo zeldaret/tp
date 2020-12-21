@@ -2,6 +2,7 @@
 #define __M_DO_RESET_H__
 
 #include "dolphin/types.h"
+#include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 
 extern "C" {
 // void my_OSCancelAlarmAll(void);
