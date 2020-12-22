@@ -20,8 +20,8 @@ struct GXRenderModeObj {
 };
 
 extern "C" {
-f32 GXGetYScaleFactor(u32 efb_height, u32 xfb_height);
-u32 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
+f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
+u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale);
 }
 
 #endif

@@ -14,8 +14,8 @@ public:
     void clearIndex();
     void common_init(s32 xfb_number);
     void delXfb(s32 index);
-    void createManager(JKRHeap* heap, EXfbNumber xfb_number);
-    void destroyManager();
+    static JUTXfb* createManager(JKRHeap* heap, EXfbNumber xfb_number);
+    static void destroyManager();
     void initiate(u16 width, u16 height, JKRHeap* heap, JUTXfb::EXfbNumber xfb_number);
 
 private:

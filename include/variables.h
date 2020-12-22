@@ -383,7 +383,3 @@ extern bool lbl_80451501;
 extern void* lbl_804514EC; // JUTGamePad::C3ButtonReset::sCallback
 extern u32 lbl_804514F0; // JUTGamePad::C3ButtonReset::sCallbackArg
 extern u32 lbl_803ECF00;
-
-// JUTXfb
-// func_802E5260
-extern u8 lbl_80451538;
