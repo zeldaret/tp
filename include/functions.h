@@ -1,3 +1,5 @@
+#include "os/OS.h"
+
 extern "C" { 
     void J2DScreen_NS_draw(void);
     void PSMTXCopy(void);
@@ -62,7 +64,8 @@ extern "C" {
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
-    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
+    void Z2AudioMgr_NS_setOutputMode(void*,unsigned long);
+    u32 Z2AudioMgr_NS_hasReset(void*);
     void dComIfG_play_c_NS_getNowVibration(void);
     void setInitEventBit(void);
     void daObjCarry_c_NS_clrSaveFlag(void);
@@ -169,7 +172,6 @@ extern "C" {
     void JUTWarningConsole_f(void);
 
     void func_803621CC(void);
-    void VIWaitForRetrace(void);
     void func_80361C24(void);
 
     void _restgpr_26(void);
@@ -251,24 +253,14 @@ extern "C" {
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
     u8 dComIfGs_getBottleMax(void);
+
+
+    void mDoDvdErr_ThdCleanup(void);
 }
 
-// DVD
-class DVDFileInfo;
+class mDoCPd_c;
 extern "C" {
-    s32 DVDOpen(const char*, u8[48]);
-    s32 DVDClose(u8[48]);
-    void DVDReadPrio(void);
-    void DVDGetCurrentDiskID(void);
-    s32 DVDFastOpen(long, u8[48]);
-    int DVDGetCommandBlockStatus(u8[48]);
-    s32 DVDReadAsyncPrio(u8[48], void*, long, long, void(*)(long,DVDFileInfo*), long);
-    void DVDConvertPathToEntrynum(void);
-
-    void DVDChangeDir(void);
-    void DVDCloseDir(void);
-    void DVDOpenDir(void);
-    void DVDReadDir(void);
+    void cAPICPad_recalibrate(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -366,6 +358,19 @@ extern void GXSetBlendMode(u32, u32, u32, u32);
 extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
 extern void GXClearVtxDesc();
 extern void GXSetVtxDesc(u32, u32);
+typedef void (* GXDrawDoneCallback)(void);
+extern void GXSetDrawDoneCallback(GXDrawDoneCallback);
+extern void GXDrawDone(void);
+extern void GXAbortFrame(void);
+extern void GXFlush(void);
+extern OSThread* GXSetCurrentGXThread(void);
+extern OSThread* GXGetCurrentGXThread(void);
+}
+
+extern "C" {
+void VIWaitForRetrace(void);
+void VISetBlack(s32);
+void VIFlush(void);
 }
 
 extern "C" {
@@ -381,11 +386,9 @@ extern "C" {
 //Z2SoundMgr
 extern "C"{
     void resetFilterAll__10Z2SoundMgrFv(void);
-    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void Z2SeqMgr_NS_setBattleBgmOff(void);
     void setSceneExist__10Z2SceneMgrFb(void);
-    void Z2StatusMgr_NS_menuOut(void);
     void func_803621F4(void);
     void Z2SceneMgr_NS_sceneChange(void);
     void __ct__10JAISoundIDFRC10JAISoundID(void);
@@ -400,18 +403,13 @@ extern "C"{
     void JSUList_X1_(void);
     void dComIfGs_isStageSwitch(void);
     void dComIfGs_getStartPoint(void);
-    void Z2StatusMgr_NS_checkDayTime(void);
-    void Z2SeqMgr_NS_bgmStop(void);
     void isSwitch__10dSv_info_cCFii(void);
     void Z2SoundObjMgr_NS_setForceBattleArea(void);
     void Z2SeqMgr_NS_unMuteSceneBgm(void);
     void Z2SeqMgr_NS_muteSceneBgm(void);
     void dComIfGs_isEventBit(void);
-    void Z2SeqMgr_NS_changeBgmStatus(void);
     void JAISoundID_NS___as(void);
     void dComIfGs_isSaveSwitch(void);
-    void Z2StatusMgr_NS_setDemoName(void);
-    void Z2SeMgr_NS_resetModY(void);
     void Z2SoundObjMgr_NS_setGhostEnemyState(void);
     void Z2SeMgr_NS_resetCrowdSize(void);
     void Z2SeqMgr_NS_setTwilightGateVol(void);
@@ -420,7 +418,6 @@ extern "C"{
     void JAISoundID_X1_(void);
     void func_803621A8(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
-    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
 }
 // Z2LinkMgr
 extern "C" {
@@ -438,12 +435,10 @@ extern "C" {
     void PSVECSquareDistance(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void Z2CreatureLink_NS_startLinkSoundLevel(void);
-    void Z2SeMgr_NS_seStartLevel(void);
     void Z2Creature_NS_framework(void);
     void Z2Audience_NS_setTargetVolume(void);
     void Z2SoundObjMgr_NS_setGhostEnemyState(void);
     void Z2FxLineMgr_NS_setFxForceOff(void);
-    void Z2SeMgr_NS_seStart(void);
     void JAISoundParamsMove_NS_movePitch(void);
     void Z2Calc_NS_linearTransform(void);
     void JAISound_NS_stop(void);
@@ -905,3 +900,29 @@ extern "C" {
     void nextSrcData__FPUc(void);
     void run__7JKRAramFv(void);
 };
+
+// JSystem/JUtility/JUTVideo
+class JUTVideo;
+extern "C" {
+    void JUTVideo_NS_destroyManager(void);
+}
+
+// JSystem/JAudio2/JASTaskThread
+struct JASTaskThread {
+    u8 unk0[0x2c];
+    OSThread* thread;
+};
+extern "C" {
+    s32 JASTaskThread_NS_pause(JASTaskThread*, bool);
+}
+
+// JSystem/JAudio2/JASDvdThread
+extern "C" {
+    JASTaskThread* JASDvd_NS_getThreadPointer(void);
+}
+
+// m_Do_Rst
+extern "C" {
+    void getResetData__6mDoRstFv(void);
+    void resetCallBack__6mDoRstFiPv(void);
+}

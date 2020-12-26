@@ -36,6 +36,10 @@ class dComIfG_camera_info_class {
     u8 unk[0x38];
 };
 
+struct mDoExt_bckAnm{
+
+};
+
 struct item_func{
     float hearts;         //bf80
     u32 rupees;         //bf84
@@ -60,11 +64,8 @@ struct item_func{
 // 16 bytes too big, figure out later
 class dComIfG_inf_c {
    public:
-    /* 0x00000 */ dSv_save_c save_file;
-    /* 0x00958 */ dSv_memory_c memory;
-    /* 0x00978 */ u8 unk1[0x3C];
-    /* 0x009B4 */ dSv_zone_c zone;
-    /* 0x009D4 */ u8 unk2[0x564];
+    /* 0x00000 */ dSv_info_c info;
+    /* 0x00EEC */ u8 unk2[0x4C];
     /* 0x00F38 */ dComIfG_play_c play;
     /* 0x01038 */ u8 unk3[0x3B50];
     /* 0x04B88 */ dCcMassS_Mng mass_mng;

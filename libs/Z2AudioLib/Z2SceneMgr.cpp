@@ -1,11 +1,13 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 
 //Missing 2 instructions (beginning and end)
 #ifdef NONMATCHING
 Z2SceneMgr::Z2SceneMgr(void){
     lbl_80450B80 = this;
-    this->field_0x4 = -1;
+    this->sceneNum = -1;
     this->timer = -1;
     this->BGM_ID = -1;
     this->roomNum = -1;
@@ -23,9 +25,9 @@ Z2SceneMgr::Z2SceneMgr(void){
     this->field_0x19 = 0;
     this->field_0x1a = 0;
     this->field_0x1b = 0;
-    this->field_0x1d = 0;
-    this->field_0x1c = 0;
-    this->field_0x1e = false;
+    this->sceneExist = 0;
+    this->inGame = 0;
+    this->inDarkness = false;
     this->field_0x17 = 0;
     return;
 }
@@ -52,14 +54,14 @@ extern float lbl_80455A3C;
 #ifdef NONMATCHING
 void Z2SceneMgr::setSceneExist(bool param_1){
     Z2SoundMgr *Z2soundMgrPtr;
-    this->field_0x1d = param_1;
+    this->sceneExist = param_1;
     this->timer = 0;
     Z2soundMgrPtr = lbl_80450B60;
     if(param_1==false){
         Z2soundMgrPtr->JAISoundParamsMove->moveVolume(lbl_80455A38,0xb4);
     }
     else{
-        this->field_0x1c = 1;
+        this->inGame = 1;
         if (this->SeWave_3 == 0x85) {
             Z2soundMgrPtr->JAISoundParamsMove->moveVolume(lbl_80455A38,0);
         }

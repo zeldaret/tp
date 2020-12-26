@@ -758,6 +758,10 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ checkStateCarry__7dBomb_cFv
+ checkFlowerBombWait__7dBomb_cFP10fopAc_ac_c
+ checkWaterBomb__7dBomb_cFP10fopAc_ac_c
+ checkInsectBombMove__7dBomb_cFP10fopAc_ac_c
  set__17dSv_horse_place_cFPCcRC4cXyzsSc
  setLightDropNum__16dSv_light_drop_cFUcUc
  addFishCount__18dSv_fishing_info_cFUc
@@ -1300,6 +1304,9 @@ __sinit_JKRDvdAramRipper_cpp
 __dt__7JKRAramFv
 __sinit_JKRAram_cpp
 run__7JKRAramFv
+getAlinkArcName__9daAlink_cFv
+calc__16daAlink_matAnm_cCFP11J3DMaterial
+getResetData__6mDoRstFv
 }
 /*
 .init 80003100 - 80005600

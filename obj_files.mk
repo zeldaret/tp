@@ -19,7 +19,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_ext.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_lib.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_Reset.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_Reset.o    \
             $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_DVDError.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o    \
@@ -71,14 +71,14 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
             $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_priority.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_searcher.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_pause.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_pause.o    \
             $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
             $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
             $(BUILD_DIR)/asm/f/pc/stdcreate/f_pc_stdcreate_req.o    \
@@ -87,7 +87,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
             $(BUILD_DIR)/asm/d/com/inf/d_com_inf_game.o    \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
-            $(BUILD_DIR)/asm/d/d_bomb.o    \
+            $(BUILD_DIR)/src/d/d_bomb.o    \
             $(BUILD_DIR)/asm/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
@@ -147,6 +147,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_model.o    \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
@@ -403,9 +404,10 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundHandles.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SeMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SeMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SeqMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SeqMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2StatusMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2StatusMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/asm/Z2AudioLib/Z2FxLineMgr.o    \
@@ -484,6 +486,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTDirectPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTAssert.o    \
             $(BUILD_DIR)/asm/JUtility/JUTVideo.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFader.o    \
             $(BUILD_DIR)/asm/JUtility/JUTProcBar.o    \

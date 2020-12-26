@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "JSystem/JKernel/JKRFile/JKRFile.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 class DVDFileInfo;

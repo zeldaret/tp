@@ -497,7 +497,7 @@ lbl_80259AFC:
 /* 80259B08 00256A48  38 60 00 00 */	li r3, 0
 /* 80259B0C 00256A4C  48 00 00 DC */	b lbl_80259BE8
 lbl_80259B10:
-/* 80259B10 00256A50  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80259B10 00256A50  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259B14 00256A54  80 03 00 00 */	lwz r0, 0(r3)
 /* 80259B18 00256A58  2C 00 00 00 */	cmpwi r0, 0
 /* 80259B1C 00256A5C  41 82 00 A8 */	beq lbl_80259BC4
@@ -575,17 +575,17 @@ dScnPly_c_NS_offReset:
 /* 80259C20 00256B60  2C 03 00 00 */	cmpwi r3, 0
 /* 80259C24 00256B64  40 82 00 38 */	bne lbl_80259C5C
 /* 80259C28 00256B68  38 80 00 00 */	li r4, 0
-/* 80259C2C 00256B6C  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80259C2C 00256B6C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259C30 00256B70  90 83 00 00 */	stw r4, 0(r3)
-/* 80259C34 00256B74  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80259C34 00256B74  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259C38 00256B78  90 83 00 04 */	stw r4, 4(r3)
-/* 80259C3C 00256B7C  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80259C3C 00256B7C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259C40 00256B80  90 83 00 04 */	stw r4, 4(r3)
 /* 80259C44 00256B84  98 8D 8F 81 */	stb r4, lbl_80451501-_SDA_BASE_(r13)
-.global mDoRst_resetCallBack
-/* 80259C48 00256B88  3C 60 80 01 */	lis r3, mDoRst_resetCallBack@ha
-.global mDoRst_resetCallBack
-/* 80259C4C 00256B8C  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack@l
+.global resetCallBack__6mDoRstFiPv
+/* 80259C48 00256B88  3C 60 80 01 */	lis r3, resetCallBack__6mDoRstFiPv@ha
+.global resetCallBack__6mDoRstFiPv
+/* 80259C4C 00256B8C  38 03 57 4C */	addi r0, r3, resetCallBack__6mDoRstFiPv@l
 /* 80259C50 00256B90  90 0D 8F 6C */	stw r0, lbl_804514EC-_SDA_BASE_(r13)
 /* 80259C54 00256B94  90 8D 8F 70 */	stw r4, lbl_804514F0-_SDA_BASE_(r13)
 /* 80259C58 00256B98  98 9F 01 D4 */	stb r4, 0x1d4(r31)

@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRDvdAramRipper/JKRDvdAramRipper.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 asm void JKRDvdAramRipper::loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32 *) {

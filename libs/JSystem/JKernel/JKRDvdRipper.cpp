@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 asm void JKRDvdRipper::loadToMainRAM(char const *, u8 *, JKRExpandSwitch, u32, JKRHeap *, JKRDvdRipper::EAllocDirection, u32, int *, u32 *) {

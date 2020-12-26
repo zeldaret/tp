@@ -326,7 +326,7 @@ enum Shields {
 };
 
 enum Armors {
-    HEROS_CLOTHES_FLAG
+    KOKIRI_CLOTHES_FLAG
 };
 
 enum DungeonItem {
@@ -352,16 +352,11 @@ class dSv_player_status_a_c {
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    u16& getCurrentHealth() {
-        return mCurrentHealth;
-    }
-    void setWalletLV(u8 lv) {
-        mCurrentWallet = lv;
-    }
-    void setLanternOil(u16 amount) {
-        mMaxLanternOil = amount;
-        mCurrentLanternOil = amount;
-    }
+    u16& getCurrentHealth() { return mCurrentHealth; }
+    u8& getScent() { return mEquipment[3];}
+    void setWalletLV(u8 lv) { mCurrentWallet = lv;}
+    void setLanternOil(u16 amount) { mMaxLanternOil = amount; mCurrentLanternOil = amount; }
+
 
    private:
     u16 mMaxHealth;
@@ -541,6 +536,7 @@ class dSv_player_item_max_c {
     u8 getBombNum(u8) const;
 
     void setBowCapacity(u8 max) { mItemCapacities[0] = max; }
+    u8 getBowCapacity(){ return mItemCapacities[0];}
 
    private:
     u8 mItemCapacities[8];
@@ -920,6 +916,9 @@ class dSv_info_c {
     void memory_to_card(char*, int);
     void card_to_memory(char*, int);
     void initdata_to_card(char*, int);
+
+    dSv_save_c& getSaveFile(){ return save_file; }
+    dSv_memory_c& getMemory(){ return memory; }
 
    private:
     dSv_save_c save_file;

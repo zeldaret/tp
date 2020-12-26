@@ -7,7 +7,7 @@ extern u8 lbl_803A7270[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_803739A0[0x310];
-extern u32 lbl_80451368;
+extern void* lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
 extern u8 lbl_803DD2E8;
@@ -52,7 +52,7 @@ extern u8 lbl_803DD2D8;
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
-extern u8 lbl_803EAF40;
+extern u8 lbl_803EAF40[];
 extern u8 lbl_80450B34;
 extern u8 lbl_80450B00;
 extern u8 lbl_80450C80;
@@ -61,7 +61,6 @@ extern u8 __ct__12dSv_memory_cFv;
 extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
-extern u8 lbl_80450C78;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -76,6 +75,7 @@ extern u8 lbl_804539FC;
 extern u8 lbl_803BB498;
 extern float lbl_804550E8;
 extern float lbl_804550EC;
+extern u8 lbl_80450C90;
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
@@ -179,18 +179,14 @@ extern u32 lbl_80451330;
 extern u32 lbl_80451334;
 
 // Z2SoundLib SInstance
-class Z2SceneMgr;
+struct Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80; // Z2SceneMgr sInstance
-class Z2SoundMgr;
+struct Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60; // Z2SoundMgr sInstance
-class Z2SeqMgr;
-extern Z2SeqMgr* lbl_80450B84; // Z2SeqMgr sInstance
-class Z2StatusMgr;
-extern Z2StatusMgr* lbl_80450B7C; // Z2StatusMgr sInstance
-class Z2SeMgr;
-extern Z2SeMgr* lbl_80450B88; // Z2SeMgr sInstance
-class Z2SoundObjMgr;
+struct Z2SoundObjMgr;
 extern Z2SoundObjMgr* lbl_80450B48; // Z2SoundObjMgr sInstance
+struct Z2SpeechMgr2;
+extern Z2SpeechMgr2* lbl_80450B70; // Z2SpeechMgr2 sInstance
 extern void* lbl_803CC114;          // JKRThread::__vt
 
 class JKRThreadSwitch;
@@ -377,3 +373,15 @@ extern u8 lbl_804342DC; // JKRAram::sAramCommandList
 extern u8 lbl_804342E8; // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8; // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128; // JKRAram::sMessageBuffer
+
+// m_Do_Reset
+// func_80015614
+#include "JSystem/JUtility/JUTXfb/JUTXfb.h"
+extern JUTXfb* lbl_80451550;
+extern u8 lbl_80450BB8;
+extern char lbl_80374198[16];
+// func_8001574C
+extern bool lbl_80451501;
+extern void* lbl_804514EC; // JUTGamePad::C3ButtonReset::sCallback
+extern u32 lbl_804514F0; // JUTGamePad::C3ButtonReset::sCallbackArg
+extern u32 lbl_803ECF00;
