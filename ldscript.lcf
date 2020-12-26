@@ -1304,6 +1304,7 @@ __sinit_JKRDvdAramRipper_cpp
 __dt__7JKRAramFv
 __sinit_JKRAram_cpp
 run__7JKRAramFv
+getResetData__6mDoRstFv
 }
 /*
 .init 80003100 - 80005600

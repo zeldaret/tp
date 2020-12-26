@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 asm void JKRArchive::check_mount_already(long, JKRHeap*) {

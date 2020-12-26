@@ -2,15 +2,6 @@
 
 .section .text, "ax" # 802e5214
 
-
-.global JUTXfb_NS_clearIndex
-JUTXfb_NS_clearIndex:
-/* 802E5214 002E2154  38 00 FF FF */	li r0, -1
-/* 802E5218 002E2158  B0 03 00 14 */	sth r0, 0x14(r3)
-/* 802E521C 002E215C  B0 03 00 16 */	sth r0, 0x16(r3)
-/* 802E5220 002E2160  B0 03 00 18 */	sth r0, 0x18(r3)
-/* 802E5224 002E2164  4E 80 00 20 */	blr 
-
 .global JUTXfb_NS_common_init
 JUTXfb_NS_common_init:
 /* 802E5228 002E2168  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -19,7 +10,7 @@ JUTXfb_NS_common_init:
 /* 802E5234 002E2174  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802E5238 002E2178  7C 7F 1B 78 */	mr r31, r3
 /* 802E523C 002E217C  90 83 00 10 */	stw r4, 0x10(r3)
-/* 802E5240 002E2180  4B FF FF D5 */	bl JUTXfb_NS_clearIndex
+/* 802E5240 002E2180  4B FF FF D5 */	bl clearIndex__6JUTXfbFv
 /* 802E5244 002E2184  38 00 00 63 */	li r0, 0x63
 /* 802E5248 002E2188  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 802E524C 002E218C  83 E1 00 0C */	lwz r31, 0xc(r1)

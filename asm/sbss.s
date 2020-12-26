@@ -305,8 +305,8 @@ lbl_80450C70:
 .global lbl_80450C74
 lbl_80450C74:
 	.skip 0x4
-.global lbl_80450C78
-lbl_80450C78:
+.global m_Do_Reset_NS_mDoRst_NS_mResetData
+m_Do_Reset_NS_mDoRst_NS_mResetData:
 	.skip 0x8
 .global lbl_80450C80
 lbl_80450C80:
