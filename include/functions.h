@@ -1,3 +1,5 @@
+#include "os/OS.h"
+
 extern "C" { 
     void searchMapEventData__14dEvt_control_cFUc(void);
     void PSMTXMultVec(void);
@@ -68,7 +70,8 @@ extern "C" {
     void setBombNum__24dSv_player_item_record_cFUcUc(void);
     void setItem__17dSv_player_item_cFiUc(void);
     void dMeter2Info_c_NS_getString(void);
-    void Z2AudioMgr_NS_setOutputMode(u32,unsigned long);    
+    void Z2AudioMgr_NS_setOutputMode(void*,unsigned long);
+    u32 Z2AudioMgr_NS_hasReset(void*);
     void dComIfG_play_c_NS_getNowVibration(void);
     void setInitEventBit(void);
     void daObjCarry_c_NS_clrSaveFlag(void);
@@ -175,7 +178,6 @@ extern "C" {
     void JUTWarningConsole_f(void);
 
     void func_803621CC(void);
-    void VIWaitForRetrace(void);
     void func_80361C24(void);
 
     void _restgpr_26(void);
@@ -256,24 +258,14 @@ extern "C" {
     void DCStoreRangeNoSync(void);
     void __RAS_OSDisableInterrupts_begin(void);
     u8 dComIfGs_getBottleMax(void);
+
+
+    void mDoDvdErr_ThdCleanup(void);
 }
 
-// DVD
-class DVDFileInfo;
+class mDoCPd_c;
 extern "C" {
-    s32 DVDOpen(const char*, u8[48]);
-    s32 DVDClose(u8[48]);
-    void DVDReadPrio(void);
-    void DVDGetCurrentDiskID(void);
-    s32 DVDFastOpen(long, u8[48]);
-    int DVDGetCommandBlockStatus(u8[48]);
-    s32 DVDReadAsyncPrio(u8[48], void*, long, long, void(*)(long,DVDFileInfo*), long);
-    void DVDConvertPathToEntrynum(void);
-
-    void DVDChangeDir(void);
-    void DVDCloseDir(void);
-    void DVDOpenDir(void);
-    void DVDReadDir(void);
+    void cAPICPad_recalibrate(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -371,6 +363,19 @@ extern void GXSetBlendMode(u32, u32, u32, u32);
 extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
 extern void GXClearVtxDesc();
 extern void GXSetVtxDesc(u32, u32);
+typedef void (* GXDrawDoneCallback)(void);
+extern void GXSetDrawDoneCallback(GXDrawDoneCallback);
+extern void GXDrawDone(void);
+extern void GXAbortFrame(void);
+extern void GXFlush(void);
+extern OSThread* GXSetCurrentGXThread(void);
+extern OSThread* GXGetCurrentGXThread(void);
+}
+
+extern "C" {
+void VIWaitForRetrace(void);
+void VISetBlack(s32);
+void VIFlush(void);
 }
 
 extern "C" {
@@ -900,3 +905,29 @@ extern "C" {
     void nextSrcData__FPUc(void);
     void run__7JKRAramFv(void);
 };
+
+// JSystem/JUtility/JUTVideo
+class JUTVideo;
+extern "C" {
+    void JUTVideo_NS_destroyManager(void);
+}
+
+// JSystem/JAudio2/JASTaskThread
+struct JASTaskThread {
+    u8 unk0[0x2c];
+    OSThread* thread;
+};
+extern "C" {
+    s32 JASTaskThread_NS_pause(JASTaskThread*, bool);
+}
+
+// JSystem/JAudio2/JASDvdThread
+extern "C" {
+    JASTaskThread* JASDvd_NS_getThreadPointer(void);
+}
+
+// m_Do_Rst
+extern "C" {
+    void getResetData__6mDoRstFv(void);
+    void resetCallBack__6mDoRstFiPv(void);
+}

@@ -25,7 +25,7 @@ dStage_nextStage_c_NS_set:
 /* 80023E6C 00020DAC  2C 03 00 00 */	cmpwi r3, 0
 /* 80023E70 00020DB0  40 82 00 10 */	bne lbl_80023E80
 /* 80023E74 00020DB4  38 00 00 01 */	li r0, 1
-/* 80023E78 00020DB8  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80023E78 00020DB8  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80023E7C 00020DBC  90 03 00 00 */	stw r0, 0(r3)
 lbl_80023E80:
 /* 80023E80 00020DC0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -3441,7 +3441,7 @@ lbl_80026E34:
 /* 80026E64 00023DA4  48 00 E2 8D */	bl putSave__10dSv_info_cFi
 /* 80026E68 00023DA8  38 6D 87 F4 */	addi r3, r13, lbl_80450D74-_SDA_BASE_
 /* 80026E6C 00023DAC  4B FF DC 51 */	bl dStage_roomControl_c_NS_roomDzs_c_NS_remove
-/* 80026E70 00023DB0  80 6D 86 F8 */	lwz r3, lbl_80450C78-_SDA_BASE_(r13)
+/* 80026E70 00023DB0  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80026E74 00023DB4  80 03 00 00 */	lwz r0, 0(r3)
 /* 80026E78 00023DB8  2C 00 00 00 */	cmpwi r0, 0
 /* 80026E7C 00023DBC  40 82 00 2C */	bne lbl_80026EA8

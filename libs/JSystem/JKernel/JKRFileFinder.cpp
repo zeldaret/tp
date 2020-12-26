@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRFileFinder/JKRFileFinder.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 asm  JKRArcFinder::JKRArcFinder(JKRArchive *, long, long) {

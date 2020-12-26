@@ -23,4 +23,12 @@ class dRes_info_c {
     // void** resource_buffer;
 };
 
+struct J3DAnmBase{
+
+};
+
+struct J3DAnmTransform{
+
+};
+
 #endif

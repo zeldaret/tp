@@ -36,6 +36,10 @@ class dComIfG_camera_info_class {
     u8 unk[0x38];
 };
 
+struct mDoExt_bckAnm{
+
+};
+
 struct item_func{
     float hearts;         //bf80
     u32 rupees;         //bf84

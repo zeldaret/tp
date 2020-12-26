@@ -19,7 +19,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_ext.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_lib.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_Reset.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_Reset.o    \
             $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_DVDError.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o    \
@@ -147,6 +147,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_model.o    \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
@@ -485,6 +486,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTDirectPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTAssert.o    \
             $(BUILD_DIR)/asm/JUtility/JUTVideo.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFader.o    \
             $(BUILD_DIR)/asm/JUtility/JUTProcBar.o    \
