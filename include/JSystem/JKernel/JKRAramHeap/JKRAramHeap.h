@@ -1,18 +1,18 @@
 #ifndef __JKRARAMHEAP_H__
 #define __JKRARAMHEAP_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
+#include "dolphin/types.h"
 #include "global.h"
 
 class JKRAramHeap : public JKRDisposer {
-  public:
+public:
     enum EAllocMode {
         HEAD = 0,
         TAIL = 1,
     };
 
-  public:
+public:
     JKRAramHeap(u32, u32);
     virtual ~JKRAramHeap(void);
 
@@ -23,23 +23,15 @@ class JKRAramHeap : public JKRDisposer {
     void getTotalFreeSize(void);
     void dump(void);
 
-    u8 getCurrentGroupID() {
-        return this->mGroupId;
-    }
+    u8 getCurrentGroupID() { return this->mGroupId; }
 
-    JKRHeap* getMgrHeap() {
-        return this->mHeap;
-    }
+    JKRHeap* getMgrHeap() { return this->mHeap; }
 
-    void lock() {
-        OSLockMutex(&this->mMutex);
-    }
+    void lock() { OSLockMutex(&this->mMutex); }
 
-    void unlock() {
-        OSUnlockMutex(&this->mMutex);
-    }
+    void unlock() { OSUnlockMutex(&this->mMutex); }
 
-  public:
+public:
     OSMutex mMutex;
     JKRHeap* mHeap;
     u32 field_0x34;

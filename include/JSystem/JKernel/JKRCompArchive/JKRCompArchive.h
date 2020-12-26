@@ -1,11 +1,11 @@
 #ifndef __JKRCOMPARCHIVE_H__
 #define __JKRCOMPARCHIVE_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
+#include "dolphin/types.h"
 
 class JKRCompArchive : public JKRArchive {
-  public:
+public:
     JKRCompArchive(long, JKRArchive::EMountDirection);
     virtual ~JKRCompArchive();
 
@@ -18,7 +18,7 @@ class JKRCompArchive : public JKRArchive {
     /* vt[16] */ void fetchResource(JKRArchive::SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ void fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*); /* override */
 
-  public:
+public:
 };
 
 #endif

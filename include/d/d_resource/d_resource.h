@@ -8,8 +8,8 @@
 #include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 
 class dRes_info_c {
-   public:
-   private:
+public:
+private:
     u8 unk[0x24];
     // u8* name;
     // u32 unk4;
@@ -22,5 +22,9 @@ class dRes_info_c {
     // JKRSolidHeap* solid_heap;
     // void** resource_buffer;
 };
+
+struct J3DAnmBase {};
+
+struct J3DAnmTransform {};
 
 #endif

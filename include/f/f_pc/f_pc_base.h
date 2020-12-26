@@ -2,7 +2,7 @@
 #ifndef F_PC_BASE_H
 #define F_PC_BASE_H
 
-#include "dolphin/types.h"
+#include "global.h"
 #include "SComponent/c_tag.h"
 // #include "f/f_pc/f_pc_method.h"
 #include "f/f_pc/f_pc_profile.h"
@@ -12,6 +12,7 @@
 #include "f/f_pc/f_pc_priority.h"
 
 struct create_request;
+struct profile_method_class;
 
 typedef struct base_process_class {
     u32 mBsType;

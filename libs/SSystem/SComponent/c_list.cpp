@@ -1,19 +1,17 @@
 
-#include "global.h"
 #include "SComponent/c_list.h"
+#include "global.h"
 
 extern "C" {
 
-void cLs_Init(node_list_class *pList)
-{
+void cLs_Init(node_list_class* pList) {
     pList->mpHead = NULL;
     pList->mpTail = NULL;
     pList->mSize = 0;
 }
 
-int cLs_SingleCut(node_class *pNode)
-{
-    node_list_class *pList = (node_list_class *) pNode->mpData;
+int cLs_SingleCut(node_class* pNode) {
+    node_list_class* pList = (node_list_class*)pNode->mpData;
     if (pNode == pList->mpHead)
         pList->mpHead = pNode->mpNextNode;
     if (pNode == pList->mpTail)
@@ -25,8 +23,7 @@ int cLs_SingleCut(node_class *pNode)
     return newSize > 0;
 }
 
-int cLs_Addition(node_list_class *pList, node_class *pNode)
-{
+int cLs_Addition(node_list_class* pList, node_class* pNode) {
     if (pList->mpTail == NULL) {
         pList->mpHead = pNode;
     } else {
@@ -39,9 +36,8 @@ int cLs_Addition(node_list_class *pList, node_class *pNode)
     return pList->mSize;
 }
 
-int cLs_Insert(node_list_class *pList, int idx, node_class *pNode)
-{
-    node_class *pExisting = cNd_Order(pList->mpHead, idx);
+int cLs_Insert(node_list_class* pList, int idx, node_class* pNode) {
+    node_class* pExisting = cNd_Order(pList->mpHead, idx);
     if (pExisting == NULL) {
         return cLs_Addition(pList, pNode);
     } else {
@@ -53,10 +49,9 @@ int cLs_Insert(node_list_class *pList, int idx, node_class *pNode)
     }
 }
 
-node_class * cLs_GetFirst(node_list_class *pList)
-{
+node_class* cLs_GetFirst(node_list_class* pList) {
     if (pList->mSize != 0) {
-        node_class *pHead = pList->mpHead;
+        node_class* pHead = pList->mpHead;
         cLs_SingleCut(pHead);
         return pHead;
     } else {
@@ -64,9 +59,7 @@ node_class * cLs_GetFirst(node_list_class *pList)
     }
 }
 
-void cLs_Create(node_list_class *pList)
-{
+void cLs_Create(node_list_class* pList) {
     cLs_Init(pList);
 }
-
 };

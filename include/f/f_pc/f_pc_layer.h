@@ -2,6 +2,7 @@
 #ifndef F_PC_LAYER_H
 #define F_PC_LAYER_H
 
+#include "global.h"
 #include "SComponent/c_node.h"
 #include "SComponent/c_tree.h"
 #include "SComponent/c_tag.h"

@@ -1,16 +1,16 @@
 #ifndef __JKRARAMSTREAM_H__
 #define __JKRARAMSTREAM_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"
 #include "JSystem/JSupport/JSURandomInputStream/JSURandomInputStream.h"
+#include "dolphin/types.h"
 
 class JKRAramStreamCommand {
-  public:
+public:
     JKRAramStreamCommand();
 
-  public:
+public:
     u32 field_0x00;
     u32 field_0x04;
     u32 field_0x08;
@@ -31,13 +31,13 @@ class JKRAramStreamCommand {
 };
 
 class JKRAramStream : public JKRThread {
-  private:
+private:
     JKRAramStream(long);
     virtual ~JKRAramStream();
 
     /* vt[03] */ void* run(void); /* override */
 
-  public:
+public:
     static void create(long);
 
     static void readFromAram(void);

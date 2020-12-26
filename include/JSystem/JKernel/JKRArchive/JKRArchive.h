@@ -1,68 +1,59 @@
 #ifndef __JKRARCHIVEPUB_H__
 #define __JKRARCHIVEPUB_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
 class JKRDvdFile;
 class JKRArchive : public JKRFileLoader {
-  public:
+public:
     class SDirEntry {};
     class SDIFileEntry {};
 
     enum EMountMode {
         UNKNOWN_MOUNT_MODE = 0,
-        MEM                = 1,
-        ARAM               = 2,
-        DVD                = 3,
-        COMP               = 4,
+        MEM = 1,
+        ARAM = 2,
+        DVD = 3,
+        COMP = 4,
 
         __EMOUNT_MODE_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
-        HEAD                    = 1,
-        TAIL                    = 2,
+        HEAD = 1,
+        TAIL = 2,
 
         __EMOUNT_DIRECTION_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     class CArcName {
-      public:
-        CArcName() {
-        }
-        CArcName(char const* data) {
-            this->store(data);
-        }
-        CArcName(char const** data, char endChar) {
-            *data = this->store(*data, endChar);
-        }
+    public:
+        CArcName() {}
+        CArcName(char const* data) { this->store(data); }
+        CArcName(char const** data, char endChar) { *data = this->store(*data, endChar); }
 
         void store(char const* data);
         const char* store(char const* data, char endChar);
 
-        u16 getHash() {
-            return mHash;
-        }
-        
-        const char* getString() {
-            return mData;
-        }
+        u16 getHash() { return mHash; }
 
-      private:
+        const char* getString() { return mData; }
+
+    private:
         u16 mHash;
         u16 mLength;
         char mData[64];
     };
 
-  protected:
+protected:
     JKRArchive();
     JKRArchive(long, EMountMode);
     virtual ~JKRArchive();
 
-  public:
+public:
     bool getDirEntry(SDirEntry*, u32) const;
     void getIdxResource(u32);
     void getResource(unsigned short);
@@ -80,7 +71,7 @@ class JKRArchive : public JKRFileLoader {
     void findPtrResource(void const*) const;
     void findIdResource(unsigned short) const;
 
-  public:
+public:
     /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
     /* vt[05] */ virtual void getResource(char const*);                   /* override */
     /* vt[06] */ virtual void getResource(u32, char const*);              /* override */
@@ -93,12 +84,12 @@ class JKRArchive : public JKRFileLoader {
     /* vt[13] */ virtual void countFile(char const*) const;               /* override */
     /* vt[14] */ virtual void getFirstFile(char const*) const;            /* override */
     /* vt[15] */ virtual void getExpandedResSize(void const*) const;
-    /* vt[16] */ virtual void fetchResource(SDIFileEntry*, u32)              = 0;
+    /* vt[16] */ virtual void fetchResource(SDIFileEntry*, u32) = 0;
     /* vt[17] */ virtual void fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
     /* vt[19] */ virtual void getExpandSize(SDIFileEntry*) const;
 
-  private:
+private:
     JKRHeap* mHeap;
     EMountMode mMountMode;
     int mEntryNum;
@@ -113,7 +104,7 @@ class JKRArchive : public JKRFileLoader {
     u32 field_0x64;
     JKRDvdFile* mDvdFile;
 
-  public:
+public:
     static void check_mount_already(long, JKRHeap*);
     static void mount(char const*, EMountMode, JKRHeap*, EMountDirection);
     static void mount(void*, JKRHeap*, EMountDirection);

@@ -1,17 +1,17 @@
 #ifndef __JKRFILECACHE_H__
 #define __JKRFILECACHE_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
 class JKRFileCache : public JKRFileLoader {
-  public:
+public:
     class CCacheBlock {
-      public:
+    public:
         CCacheBlock(u32, u32, void const*);
 
-      private:
+    private:
         JSULink<CCacheBlock> mLink;
         u32 field_0x10;
         u32 mFileId;
@@ -19,7 +19,7 @@ class JKRFileCache : public JKRFileLoader {
         void const* mMemoryPtr;
     };
 
-  protected:
+protected:
     JKRFileCache(char const*, char const*);
     virtual ~JKRFileCache();
 
@@ -29,7 +29,7 @@ class JKRFileCache : public JKRFileLoader {
     void getDvdPathName(char const*) const;
     void convStrLower(char*) const;
 
-  public:
+public:
     /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
     /* vt[05] */ virtual void getResource(char const*);                   /* override */
     /* vt[06] */ virtual void getResource(u32, char const*);              /* override */
@@ -46,14 +46,14 @@ class JKRFileCache : public JKRFileLoader {
     /* vt[17] */ virtual void readFsResource(void*, u32, char const*);
     /* vt[18] */ virtual void readNameResource(void*, u32, u32, char const*);
 
-  private:
+private:
     JKRHeap* mParentHeap;
     JSUList<CCacheBlock> mCacheBlockList;
     char* field_0x40;
     char* field_0x4c;
     char* field_0x50;
 
-  public:
+public:
     static void mount(char const*, JKRHeap*, char const*);
 };
 

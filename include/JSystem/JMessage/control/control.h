@@ -3,10 +3,7 @@
 
 #include "dolphin/types.h"
 
-
 // this may actually go somewhere else, but defining it here for now
-class JMSMesgEntry_c {
-
-};
+class JMSMesgEntry_c {};
 
 #endif

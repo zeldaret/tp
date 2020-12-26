@@ -36729,7 +36729,7 @@ preparation:
 /* 801816B8 0017E5F8  D0 1E 0B 74 */	stfs f0, 0xb74(r30)
 /* 801816BC 0017E5FC  C0 02 9F 1C */	lfs f0, lbl_8045391C-_SDA2_BASE_(r2)
 /* 801816C0 0017E600  D0 1E 00 D4 */	stfs f0, 0xd4(r30)
-/* 801816C4 0017E604  4B F1 C1 B9 */	bl daAlink_c_NS_getE3Zhint
+/* 801816C4 0017E604  4B F1 C1 B9 */	bl getE3Zhint__9daAlink_cFv
 /* 801816C8 0017E608  2C 03 00 00 */	cmpwi r3, 0
 /* 801816CC 0017E60C  40 82 00 24 */	bne lbl_801816F0
 /* 801816D0 0017E610  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha

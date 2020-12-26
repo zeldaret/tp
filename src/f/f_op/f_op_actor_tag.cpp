@@ -1,6 +1,6 @@
 #include "f/f_op/f_op_actor_tag.h"
-#include "global.h"
 #include "SComponent/c_tag.h"
+#include "global.h"
 
 // f_op_actor_tag::g_fopAcTg_Queue
 extern node_list_class lbl_803A35E0;
@@ -19,5 +19,4 @@ u32 fopAcTg_Init(create_tag_class* pTag, void* data) {
     cTg_Create(pTag, data);
     return 1;
 }
-
 }
