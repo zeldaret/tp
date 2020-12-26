@@ -5,8 +5,8 @@
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
 #include "d/d_drawlist/d_drawlist.h"
-#include "d/d_save/d_save/d_save.h"
 #include "d/d_pane/d_pane_class_alpha/d_pane_class_alpha.h"
+#include "d/d_save/d_save/d_save.h"
 
 struct dFile_info_c_vtable {
     u32* addr1;
@@ -15,8 +15,8 @@ struct dFile_info_c_vtable {
 };
 
 class dFile_info_c {
-   public:
-    dFile_info_c(JKRArchive*,u8);
+public:
+    dFile_info_c(JKRArchive*, u8);
     ~dFile_info_c();
     void screenSet(void);
     s32 setSaveData(dSv_save_c*, int, u8);
@@ -27,7 +27,7 @@ class dFile_info_c {
     void modeMove(void);
     void _draw(void);
 
-   private:
+private:
     dFile_info_c_vtable vtable;
     JKRArchive* archive;
     dDlst_FileInfo_c file_info_draw_list;

@@ -1,16 +1,16 @@
 #ifndef __JKRDISPOSER_H__
 #define __JKRDISPOSER_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"
+#include "dolphin/types.h"
 
 class JKRHeap;
 class JKRDisposer {
-  public:
+public:
     JKRDisposer();
     virtual ~JKRDisposer();
 
-  public:
+public:
     JKRHeap* mHeap;
     JSULink<JKRDisposer> mLink;
 };
