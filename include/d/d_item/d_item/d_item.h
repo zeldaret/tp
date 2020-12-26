@@ -1,6 +1,8 @@
 #ifndef D_ITEM_H_
 #define D_ITEM_H_
 
+#include "global.h"
+
 int checkItemGet(u8, int);
 
 extern int (*item_func_ptr[256])(void);

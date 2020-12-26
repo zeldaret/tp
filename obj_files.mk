@@ -478,7 +478,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \

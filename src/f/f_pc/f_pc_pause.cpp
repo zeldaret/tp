@@ -18,30 +18,7 @@ bool fpcPause_IsEnable(void* pProcess, u8 flag) {
 #else
 asm bool fpcPause_IsEnable(void* pProcess, u8 flag) {
     nofralloc
-        /* 80023844 00020784  54 84 06 3E */ clrlwi r4,
-        r4,
-        0x18
-        /* 80023848 00020788  88 03 00 0B */ lbz r0,
-        0xb(r3)
-            /* 8002384C 0002078C  7C 80 00 38 */
-            and r0,
-        r4,
-        r0
-            /* 80023850 00020790  7C 64 00 50 */ subf r3,
-        r4,
-        r0
-            /* 80023854 00020794  30 03 FF FF */ addic r0,
-        r3,
-        -1
-        /* 80023858 00020798  7C 00 19 10 */ subfe r0,
-        r0,
-        r3
-            /* 8002385C 0002079C  7C 00 00 34 */ cntlzw r0,
-        r0
-            /* 80023860 000207A0  54 03 D9 7E */ srwi r3,
-        r0,
-        5
-        /* 80023864 000207A4  4E 80 00 20 */ blr
+#include "f/f_pc/f_pc_pause/asm/func_80023844.s"
 }
 #endif
 
