@@ -17,12 +17,12 @@ extern s32 fpcLd_Free(s16);
 s32 fpcSCtRq_phase_Load(standard_create_request_class* pStdCreateReq) {
     switch (fpcLd_Load(pStdCreateReq->mLoadID)) {
     case 0:
-        return 0;
+        return cPhs_ZERO_e;
     case 4:
         return 2;
     case 5:
     default:
-        return 5;
+        return cPhs_ERROR_e;
     }
 }
 
@@ -32,7 +32,7 @@ s32 fpcSCtRq_phase_CreateProcess(standard_create_request_class* pStdCreateReq) {
         fpcBs_Create(pStdCreateReq->mLoadID, pStdCreateReq->mBase.mBsPcId, pStdCreateReq->unk_0x54);
     if (pStdCreateReq->mBase.mpRes == NULL) {
         fpcLd_Free(pStdCreateReq->mLoadID);
-        return 5;
+        return cPhs_ERROR_e;
     } else {
         pStdCreateReq->mBase.mpRes->mpCtRq = (struct create_request*)pStdCreateReq;
         return 2;
@@ -48,7 +48,7 @@ s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* pStdCreateReq) {
     process_node_class* procNode = (process_node_class*)pStdCreateReq->mBase.mpRes;
     if (fpcBs_Is_JustOfType(lbl_80450D40, procNode->mBase.mSubType) == 1) {
         if (fpcLy_IsCreatingMesg(&procNode->mLayer) == 1) {
-            return 0;
+            return cPhs_ZERO_e;
         }
     }
     return 2;
@@ -57,7 +57,7 @@ s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* pStdCreateReq) {
 s32 fpcSCtRq_phase_PostMethod(standard_create_request_class* pStdCreateReq) {
     if (pStdCreateReq->unk_0x58 != NULL &&
         pStdCreateReq->unk_0x58(pStdCreateReq->mBase.mpRes, pStdCreateReq->unk_0x5C) == 0) {
-        return 0;
+        return cPhs_ZERO_e;
     } else {
         return 2;
     }

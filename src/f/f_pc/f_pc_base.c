@@ -121,13 +121,13 @@ s32 fpcBs_SubCreate(base_process_class* pProc) {
     case 1:
         pProc->mInitState = 1;
         pProc->mUnk2 = 0;
-        return 0;
+        return cPhs_ZERO_e;
     case 3:
         pProc->mUnk2 = 3;
         return 3;
     case cPhs_ERROR_e:
     default:
         pProc->mUnk2 = 5;
-        return 5;
+        return cPhs_ERROR_e;
     }
 }
