@@ -31,4 +31,6 @@ typedef int                 BOOL;
 
 #define NULL (0)
 
+#define INT32_MAX (0x7fffffff)
+
 #endif

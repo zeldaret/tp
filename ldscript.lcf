@@ -1306,6 +1306,7 @@ __sinit_JKRAram_cpp
 run__7JKRAramFv
 getAlinkArcName__9daAlink_cFv
 calc__16daAlink_matAnm_cCFP11J3DMaterial
+getResetData__6mDoRstFv
 }
 /*
 .init 80003100 - 80005600
