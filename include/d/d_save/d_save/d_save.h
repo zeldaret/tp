@@ -1,5 +1,5 @@
-#ifndef D_SAVE_H_
-#define D_SAVE_H_
+#ifndef __D_SAVE_H_
+#define __D_SAVE_H_
 
 #include "dolphin/types.h"
 #include "global.h"
@@ -658,6 +658,7 @@ class dSv_player_config_c {
     u8 unk9;
     u8 unk10;
     u8 unk11;
+    u8 padding[4];
 };
 
 class dSv_player_c {
@@ -871,6 +872,12 @@ class dSv_turnRestart_c {
     s8 unk18;
 };
 
+class dSv_reserve_c {
+   public:
+   private:
+    u8 unk[80];
+};
+
 class dSv_save_c {
    public:
     void init(void);
@@ -887,11 +894,10 @@ class dSv_save_c {
 
    private:
     dSv_player_c player;
-    u8 unk492[4];
     dSv_memory_c area_flags[32];
     dSv_memory2_c unk_flags[64];
     dSv_event_c event_flags;
-    u8 unk2288[80];
+    dSv_reserve_c reserve;
     dSv_MiniGame_c minigame_flags;
 };
 
