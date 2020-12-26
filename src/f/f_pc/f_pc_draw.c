@@ -10,9 +10,9 @@ typedef s32 (*cNdIt_MethodFuncFunc)(cNdIt_MethodFunc);
 extern void cAPIGph_AfterOfDraw(void);
 extern void cAPIGph_BeforeOfDraw(void);
 
-s32 fpcDw_Execute(base_process_class *pProc) {
+s32 fpcDw_Execute(base_process_class* pProc) {
     if (!fpcPause_IsEnable(pProc, 2)) {
-        layer_class *curLay;
+        layer_class* curLay;
         s32 ret;
         process_method_func func;
         curLay = fpcLy_CurrentLayer();
@@ -29,7 +29,6 @@ s32 fpcDw_Execute(base_process_class *pProc) {
         return 0;
     }
 }
-
 
 s32 fpcDw_Handler(cNdIt_MethodFuncFunc param_1, cNdIt_MethodFunc param_2) {
     s32 ret;

@@ -1,5 +1,5 @@
 #ifndef JSYSTEM_JUTILITY_JUT_GAME_PAD
-#define JSYSTEM_JUTILITY_JUT_GAME_PAD 
+#define JSYSTEM_JUTILITY_JUT_GAME_PAD
 
 #include "global.h"
 
@@ -14,7 +14,7 @@ class CButton {
     f32 analog_left;
     f32 analog_right;
     u8 unk_0x18[0x18];
-}; // Size: 0x30
+};  // Size: 0x30
 
 class CStick {
     f32 stick_x;
@@ -22,14 +22,14 @@ class CStick {
     f32 length_from_neutral;
     u16 angle;
     u8 padding[2];
-}; // Size: 0x10
+};  // Size: 0x10
 
 class CRumble {
     u8 unk_0x0[0x14];
-}; // Size: 0x14
+};  // Size: 0x14
 
 class JUTGamePad {
-    public:
+public:
     /* 0x0000 */ u8 unk_0x0[0x18];
     /* 0x0018 */ CButton buttons;
     /* 0x0048 */ CStick control_stick;
@@ -44,6 +44,6 @@ class JUTGamePad {
     /* 0x009D */ u8 padding_2[3];
     /* 0x00A0 */ OSTime reset_time;
     /* 0x00A8 */ u8 unk_0xA8[0x8];
-}; // Size: 0xB0
+};  // Size: 0xB0
 
 #endif

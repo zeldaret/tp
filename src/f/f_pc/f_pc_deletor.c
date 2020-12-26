@@ -1,12 +1,12 @@
 
-#include "f/f_pc/f_pc_creator.h"
 #include "f/f_pc/f_pc_deletor.h"
+#include "SComponent/c_list_iter.h"
 #include "f/f_pc/f_pc_base.h"
+#include "f/f_pc/f_pc_creator.h"
+#include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_layer_iter.h"
 #include "f/f_pc/f_pc_node.h"
-#include "f/f_pc/f_pc_executor.h"
-#include "SComponent/c_list_iter.h"
 
 // g_fpcDtTg_Queue
 extern node_list_class lbl_803A39A0;
@@ -22,8 +22,8 @@ BOOL fpcDt_IsComplete() {
     return fpcDtTg_IsEmpty();
 }
 
-s32 fpcDt_deleteMethod(base_process_class *pProc) {
-    layer_class *layer = pProc->mDtTg.mpLayer;
+s32 fpcDt_deleteMethod(base_process_class* pProc) {
+    layer_class* layer = pProc->mDtTg.mpLayer;
     s16 typeID = pProc->mBsTypeId;
 
     fpcLy_SetCurrentLayer(layer);
@@ -38,11 +38,11 @@ s32 fpcDt_deleteMethod(base_process_class *pProc) {
 }
 
 void fpcDt_Handler(void) {
-    cLsIt_Method(&lbl_803A39A0, (cNdIt_MethodFunc) fpcDtTg_Do, fpcDt_deleteMethod);
+    cLsIt_Method(&lbl_803A39A0, (cNdIt_MethodFunc)fpcDtTg_Do, fpcDt_deleteMethod);
 }
 
-s32 fpcDt_ToQueue(base_process_class *pProc) {
-    if (pProc->mUnk0 != 1 &&fpcBs_IsDelete(pProc) == 1) {
+s32 fpcDt_ToQueue(base_process_class* pProc) {
+    if (pProc->mUnk0 != 1 && fpcBs_IsDelete(pProc) == 1) {
         if (fpcPi_IsInQueue(&pProc->mPi) == 1) {
             fpcPi_Delete(&pProc->mPi);
         }
@@ -55,7 +55,7 @@ s32 fpcDt_ToQueue(base_process_class *pProc) {
     }
 }
 
-s32 fpcDt_ToDeleteQ(base_process_class *pProc) {
+s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
     if (pProc->mUnk0 == 1) {
         return 0;
     } else {
@@ -63,11 +63,11 @@ s32 fpcDt_ToDeleteQ(base_process_class *pProc) {
             return 1;
         } else {
             if (fpcBs_Is_JustOfType(lbl_80450D40, pProc->mSubType) != 0) {
-                process_node_class *procNode = (process_node_class*)pProc;
+                process_node_class* procNode = (process_node_class*)pProc;
                 if (fpcNd_IsDeleteTiming(procNode) == 0) {
                     return 0;
                 } else {
-                    layer_class *layer = &procNode->mLayer;
+                    layer_class* layer = &procNode->mLayer;
                     fpcLy_Cancel(layer);
                     if (fpcLyIt_OnlyHereLY(layer, (cNdIt_MethodFunc)fpcDt_ToDeleteQ, NULL) == 0) {
                         return 0;
@@ -95,8 +95,7 @@ s32 fpcDt_ToDeleteQ(base_process_class *pProc) {
     }
 }
 
-s32 fpcDt_Delete(base_process_class *pProc)
-{
+s32 fpcDt_Delete(base_process_class* pProc) {
     if (pProc != NULL) {
         if (fpcCt_IsDoing(pProc) == 1)
             return 0;
