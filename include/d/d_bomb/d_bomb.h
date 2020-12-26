@@ -1,6 +1,5 @@
 #include "global.h"
-
-class fopAc_ac_c;
+#include "f/f_op/f_op_actor.h"
 
 class dBomb_c{
 public:
