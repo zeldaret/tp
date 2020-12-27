@@ -13,6 +13,7 @@ import click
 from asm import asm, Emittable, Global, Label, Line, BlockComment, Instruction
 from demangle import parse_framework_map, demangle
 from util import PathPath, pairwise
+from pprint import pprint
 
 SDA_BASE = 0x80458580
 SDA2_BASE = 0x80459A00
@@ -36,8 +37,8 @@ def emit_lines(lines: List[Line]) -> str:
     return '\n'.join([line.emit() for line in lines])
 
 
-def comment_out(line: Emittable) -> Line:
-    return BlockComment(line.emit())
+def comment_out(line: Line) -> Line:
+    return Line(line.index, [BlockComment(line.emit())], None)
 
 
 def fix_sda_base_add(line: Line) -> Line:
@@ -58,6 +59,11 @@ def fix_sda_base_add(line: Line) -> Line:
         line.body.operands[2] = f'0x{lbl_addr:X} - 0x{sda_addr:X}'
     return line
 
+QUANT_REG_RE = re.compile(r'qr(\d+)')
+def patch_gqrs(line: Line) -> Line:
+    line.body.operands = [QUANT_REG_RE.sub(r'\1', o) for o in line.body.operands]
+    
+    return line
 
 @dataclass
 class Function:
@@ -262,9 +268,17 @@ def split(
         # fix SDA_BASE addi
         func.lines = [
             fix_sda_base_add(line)
-            if not isinstance(line, BlockComment)
-            and isinstance(line.body, Instruction)
+            if isinstance(line.body, Instruction)
             and line.body.opcode == 'addi'
+            else line
+            for line in func.lines
+        ]
+
+        # remove GQR mnemonics
+        func.lines = [
+            patch_gqrs(line)
+            if isinstance(line.body, Instruction)
+            and line.body.opcode.startswith('psq_')
             else line
             for line in func.lines
         ]
