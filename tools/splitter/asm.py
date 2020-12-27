@@ -2,8 +2,11 @@ from dataclasses import dataclass
 from parsy import string, regex, seq, generate, line_info
 from typing import Optional, List, Union, Protocol
 
+
 class Emittable(Protocol):
-    def emit(self) -> str: ...
+    def emit(self) -> str:
+        ...
+
 
 @dataclass
 class BlockComment:
@@ -12,6 +15,7 @@ class BlockComment:
     def emit(self) -> str:
         return f'/*{self.text}*/'
 
+
 @dataclass
 class TrailingComment:
     text: str
@@ -19,12 +23,14 @@ class TrailingComment:
     def emit(self) -> str:
         return f'# {self.text}'
 
+
 @dataclass
 class Include:
     file: str
 
     def emit(self) -> str:
         return f'.include "{self.file}"'
+
 
 @dataclass
 class Section:
@@ -38,6 +44,7 @@ class Section:
 
         return directive
 
+
 @dataclass
 class Global:
     symbol: str
@@ -45,12 +52,14 @@ class Global:
     def emit(self) -> str:
         return f'.global {self.symbol}'
 
+
 @dataclass
 class Label:
     symbol: str
 
     def emit(self) -> str:
         return f'{self.symbol}:'
+
 
 @dataclass
 class Instruction:
@@ -64,10 +73,15 @@ class Instruction:
 
         return instr
 
+
 @dataclass
 class Line:
     index: int
-    content: List[Union[BlockComment, TrailingComment, Instruction, Global, Section, Include, Label]]
+    content: List[
+        Union[
+            BlockComment, TrailingComment, Instruction, Global, Section, Include, Label
+        ]
+    ]
     body: Optional[Union[Global, Section, Include, Label, Instruction]]
 
     def emit(self) -> str:
@@ -80,33 +94,45 @@ line_ending = (string('\n') | string('\r\n')).desc('newline')
 pad = regex(r'[ \t]*')
 
 
-block_comment = (string('/*') >> regex(r'[\w\s]').many().concat().map(BlockComment) << string('*/')).desc('block comment')
-trailing_comment = (string('#') >> pad >> regex(r'[^\n\r]').many().concat().map(TrailingComment)).desc('trailing comment')
+block_comment = (
+    string('/*') >> regex(r'[\w\s]').many().concat().map(BlockComment) << string('*/')
+).desc('block comment')
+trailing_comment = (
+    string('#') >> pad >> regex(r'[^\n\r]').many().concat().map(TrailingComment)
+).desc('trailing comment')
 
 symbolname = regex(r'[a-zA-Z._$]') + regex(r'[a-zA-Z0-9._$?]').many().concat()
 label = (symbolname.map(Label) << string(':')).desc('label')
 
-delimited_string = (string('"') >> regex(r'[^"]').many().concat() << string('"')) \
-    .desc('double-quote delimited string')
+delimited_string = (string('"') >> regex(r'[^"]').many().concat() << string('"')).desc(
+    'double-quote delimited string'
+)
 
 directive_include = string('include') >> space >> delimited_string.map(Include)
 directive_section = seq(
-    name = string('section') >> space >> string('.') >> regex(r'[a-z]').at_least(1).concat(),
-    flags = (pad >> string(',') >> space >> delimited_string).optional()
+    name=string('section')
+    >> space
+    >> string('.')
+    >> regex(r'[a-z]').at_least(1).concat(),
+    flags=(pad >> string(',') >> space >> delimited_string).optional(),
 ).combine_dict(Section)
 directive_global = string('global') >> space >> symbolname.map(Global)
-directive = (string('.') >> (
+directive = (
+    string('.')
+    >> (
         directive_include
         | directive_section
         | directive_global
         | string('text').result(Section('text', flags=None))
         | string('data').result(Section('data', flags=None))
-    )).desc('directive')
+    )
+).desc('directive')
 
 opcode = regex(r'[a-z_0-9]+\.?').concat().desc('opcode')
 operand = regex(r'[^,#\s]').at_least(1).concat()
 operands = operand.sep_by(string(',') << pad)
 instruction = seq(opcode, (space >> operands).optional()).combine(Instruction)
+
 
 @generate
 def line():
@@ -121,7 +147,7 @@ def line():
     if trailing:
         content.append(trailing)
 
-
     return Line(line, content, body)
+
 
 asm = line.sep_by(line_ending)

@@ -21,6 +21,7 @@ special_funcs = {
     '__ml__': 'operator*',
 }
 
+
 @dataclass
 class Param:
     name: str = ''
@@ -29,7 +30,7 @@ class Param:
     is_ref: bool = False
     is_unsigned: bool = False
     is_signed: bool = False
-    
+
     def to_str(self) -> str:
         ret = ''
         if self.is_const:
@@ -43,11 +44,12 @@ class Param:
             ret += '&'
         return ret
 
+
 @dataclass
 class FuncParam:
     ret_type: Optional[str] = None
     params: List[str] = field(default_factory=list)
-    
+
     def to_str(self) -> str:
         ret = ''
         if self.ret_type is None:
@@ -59,8 +61,10 @@ class FuncParam:
         ret += ')'
         return ret
 
+
 class ParseError(Exception):
     ...
+
 
 class ParseCtx:
     def __init__(self, mangled: str):
@@ -75,7 +79,9 @@ class ParseCtx:
     def demangle(self):
         if self.mangled.startswith('__'):
             if self.mangled[4:6] != '__':
-                raise ParseError('symbol started with __; expected a prefix of the form __xx__')
+                raise ParseError(
+                    'symbol started with __; expected a prefix of the form __xx__'
+                )
             special_func_name = self.mangled[:6]
             self.mangled = self.mangled[6:]
             if special_func_name in special_funcs:
@@ -114,37 +120,37 @@ class ParseCtx:
             elif cur_char == 'U':
                 self.ensure_cur_param()
                 self.cur_type.is_unsigned = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'S':
                 self.ensure_cur_param()
                 self.cur_type.is_signed = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'C':
                 self.ensure_cur_param()
                 self.cur_type.is_const = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'P':
                 self.ensure_cur_param()
                 self.cur_type.is_pointer = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'R':
                 self.ensure_cur_param()
                 self.cur_type.is_ref = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'F':
                 if self.had_first_f:
                     func = self.demangle_function()
                     self.cur_type = None
                     self.demangled.append(func.to_str())
                 self.had_first_f = True
-                self.index+=1
+                self.index += 1
             else:
                 raise ParseError(f'unexpected character {cur_char}')
         if self.func_name == '.ctor':
             self.func_name = self.class_name
         if self.func_name == '.dtor':
             self.func_name = '~' + self.class_name
-    
+
     def demangle_function(self):
         self.index += 1
         func_param = FuncParam()
@@ -178,35 +184,37 @@ class ParseCtx:
                 if cur_func_param is None:
                     cur_func_param = Param()
                 cur_func_param.is_unsigned = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'S':
                 if cur_func_param is None:
                     cur_func_param = Param()
                 cur_func_param.is_signed = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'C':
                 if cur_func_param is None:
                     cur_func_param = Param()
                 cur_func_param.is_const = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'P':
                 if cur_func_param is None:
                     cur_func_param = Param()
                 cur_func_param.is_pointer = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'R':
                 if cur_func_param is None:
                     cur_func_param = Param()
                 cur_func_param.is_ref = True
-                self.index+=1
+                self.index += 1
             elif cur_char == 'F':
-                raise UnimplementedError('recursive function demangling not implemented')
+                raise UnimplementedError(
+                    'recursive function demangling not implemented'
+                )
             elif cur_char == '_':
                 is_at_return = True
-                self.index+=1
+                self.index += 1
             else:
                 raise ParseError(f'unexpected character {cur_char}')
-    
+
     def demangle_class(self):
         if not self.mangled[self.index].isdecimal():
             raise ParseError(f'class mangling must start with number')
@@ -214,22 +222,22 @@ class ParseCtx:
         cur_char = self.mangled[self.index]
         while cur_char.isdecimal():
             class_len_str += cur_char
-            self.index+=1
+            self.index += 1
             cur_char = self.mangled[self.index]
         class_len = int(class_len_str)
-        class_name = self.mangled[self.index:self.index+class_len]
+        class_name = self.mangled[self.index : self.index + class_len]
         self.index += class_len
         return class_name
-    
+
     def demangle_prim_type(self):
         ret = types[self.mangled[self.index]]
         self.index += 1
         return ret
-    
+
     def ensure_cur_param(self):
         if self.cur_type is None:
             self.cur_type = Param()
-    
+
 
 def demangle(s):
     p = ParseCtx(s)
@@ -241,6 +249,7 @@ def demangle(s):
     else:
         return p.class_name + '::' + p.func_name + '(' + ', '.join(p.demangled) + ')'
 
+
 def parse_framework_map(path: Path):
     address_funcname = {}
     with path.open() as f:
@@ -249,7 +258,7 @@ def parse_framework_map(path: Path):
                 return address_funcname
             if not line.startswith('  '):
                 continue
-            funcname = line[30:].split(' ',1)[0]
+            funcname = line[30:].split(' ', 1)[0]
             address = line[18:26]
             address_funcname[address] = funcname
     return address_funcname
