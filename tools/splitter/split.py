@@ -13,18 +13,12 @@ import click
 import itertools
 from asm import asm, Emittable, Global, Label, Line, BlockComment, Instruction
 from demangle import parse_framework_map, demangle
+from util import PathPath, pairwise
 
 SDA_BASE = 0x80458580
 SDA2_BASE = 0x80459A00
 
-__version__ = 'v0.2'
-
-def pairwise(iterable):
-    "s -> (s0,s1), (s1,s2), (s2, s3), ..."
-    a, b = itertools.tee(iterable)
-    next(b, None)
-    return itertools.zip_longest(a, b)
-
+__version__ = 'v0.3'
 
 def function_global_search(lines: List[Line]) -> Iterable[Line]:
     i = 0
@@ -55,6 +49,7 @@ def fix_sda_base_add(line: Line) -> Line:
         else:
             logger.error('Unknown SDABASE!')
             return line
+
         line.content[0].text += ' '+line.body.operands[2]
         line.body.operands[2] = str(lbl_addr-sda_addr)
     return line
@@ -88,21 +83,15 @@ def find_functions(lines: List[Line], framework_map) -> Iterable[Function]:
                 addr = int(line.content[0].text.strip().split()[0], 16)
                 if f'{addr:x}' in framework_map:
                     func_idx.append(idx)
+
         for start_idx, end_idx in pairwise(func_idx):
             sub_func_lines = func_lines[start_idx: (len(func_lines) if end_idx == None else end_idx)]
 
             addr = int(sub_func_lines[0].content[0].text.strip().split()[0], 16)
 
-            # TODO: Add to ldscript.lcf if not properly split
-            if start_idx == 0:
-                yield Function(name=func_global_line.body.symbol,
-                        addr=addr,
-                        lines=sub_func_lines)
-            else:
-                yield Function(name=f'func_{addr:x}',
-                        addr=addr,
-                        lines=sub_func_lines)
-
+            yield Function(name=func_global_line.body.symbol if start_idx == 0 else f'func_{addr:X}',
+                    addr=addr,
+                    lines=sub_func_lines)
 
 def emit_cxx_asmfn(inc_base: Path, func: Function) -> str:
     return dedent('''\
@@ -138,34 +127,28 @@ def emit_cxx_extern_vars(tu_file: str, labels: Iterable[str]) -> str:
 
 @click.command()
 @click.argument('src', type=click.File('r'))
-@click.argument('cxx_out', type=click.Path(file_okay=True, dir_okay=False))
-@click.option('--funcs-out', type=click.Path(file_okay=False, dir_okay=True), default='include/funcs')
+@click.argument('cxx_out', type=PathPath(file_okay=True, dir_okay=False))
+@click.option('--funcs-out', type=PathPath(file_okay=False, dir_okay=True), default='include/funcs')
 @click.option('--s-include-base', type=str, default='funcs')
-@click.option('--extern-functions-file', type=click.Path(file_okay=True, dir_okay=False), default='include/functions.h')
-@click.option('--extern-variables-file', type=click.Path(file_okay=True, dir_okay=False), default='include/variables.h')
-@click.option('--framework-map-file', type=click.Path(file_okay=True, dir_okay=False), default='frameworkF.map')
-@click.option('--ldscript-file', type=click.Path(file_okay=True, dir_okay=False), default='ldscript.lcf')
+@click.option('--extern-functions-file', type=PathPath(file_okay=True, dir_okay=False), default='include/functions.h')
+@click.option('--extern-variables-file', type=PathPath(file_okay=True, dir_okay=False), default='include/variables.h')
+@click.option('--framework-map-file', type=PathPath(file_okay=True, dir_okay=False), default='frameworkF.map')
+@click.option('--ldscript-file', type=PathPath(file_okay=True, dir_okay=False), default='ldscript.lcf')
 @click.option('--from-line', type=int)
 @click.option('--to-line', type=int)
 def split(src, cxx_out, funcs_out, s_include_base, extern_functions_file, extern_variables_file,
         framework_map_file, ldscript_file, from_line, to_line):
-    funcs_out_dir = Path(funcs_out)
-    funcs_out_dir.mkdir(exist_ok=True)
-
-    cxx_out = Path(cxx_out)
+    funcs_out.mkdir(exist_ok=True)
 
     lines = asm.parse(src.read())
     lines = lines[(from_line-1 if from_line else 0):(to_line-1 if to_line else -1)]
 
-    with open(extern_functions_file, 'r') as f:
-        extern_funcs_src = f.read()
-    with open(extern_variables_file, 'r') as f:
-        extern_vars_src = f.read()
+    extern_funcs_src = extern_functions_file.read_text()
+    extern_vars_src = extern_variables_file.read_text()
     
-    framework_map = parse_framework_map(Path(framework_map_file))
+    framework_map = parse_framework_map(framework_map_file)
     logger.debug(f'loaded {len(framework_map)} symbols from map')
 
-    ldscript_file = Path(ldscript_file)
     ldscript_file_content = ldscript_file.read_text()
     new_ldfuncs = []
 
@@ -202,7 +185,7 @@ def split(src, cxx_out, funcs_out, s_include_base, extern_functions_file, extern
         if label not in extern_vars_src:
             logger.info(f'adding extern var {label} to {extern_variables_file}')
             vars_new.add(label)
-    
+
     if len(vars_new) > 0:
         with open(extern_variables_file, 'a') as f:
             f.write('\n\n')
@@ -224,7 +207,7 @@ def split(src, cxx_out, funcs_out, s_include_base, extern_functions_file, extern
         if func.name.startswith('func_') and not func.name in ldscript_file_content:
             new_ldfuncs.append(func.name)
 
-        with open(out_path := funcs_out_dir / func.filename, 'w') as f:
+        with open(out_path := funcs_out / func.filename, 'w') as f:
             logger.debug(f'emitting {out_path}')
             f.write(emit_lines(func.lines))
     
@@ -261,16 +244,16 @@ def split(src, cxx_out, funcs_out, s_include_base, extern_functions_file, extern
                 demangled_func_name = demangle(mangled_func_name)
                 f.write(f'// {demangled_func_name}\n')
             except Exception as e:
-                logger.debug(f'could not demangle symbol: {e}')
+                logger.warning(f"could not demangle symbol '{mangled_func_name}': {e}")
             
             f.write(emit_cxx_asmfn(s_include_base, func))
             f.write('\n\n')
 
         f.write('};\n') # extern C end
     
-    # -- insert functions into FORCEACTIVE
+    # -- make defined functions FORCEACTIVE in ldscript.lcf
     forceactive_start = ldscript_file_content.find('FORCEACTIVE')
-    foreactive_end = ldscript_file_content.find('}', forceactive_start)
+    forceactive_end = ldscript_file_content.find('}', forceactive_start)
     for func in new_ldfuncs:
         ldscript_file_content = ldscript_file_content[:forceactive_end] + func + '\n' + ldscript_file_content[forceactive_end:]
     ldscript_file.write_text(ldscript_file_content)

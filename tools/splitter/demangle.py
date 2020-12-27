@@ -1,5 +1,6 @@
 from typing import List, Optional
 from pathlib import Path
+from dataclasses import dataclass, field
 
 types = {
     'i': 'int',
@@ -20,14 +21,14 @@ special_funcs = {
     '__ml__': 'operator*',
 }
 
+@dataclass
 class Param:
-    def __init__(self):
-        self.name = ''
-        self.is_pointer = False
-        self.is_const = False
-        self.is_ref = False
-        self.is_unsigned = False
-        self.is_signed = False
+    name: str = ''
+    is_pointer: bool = False
+    is_const: bool = False
+    is_ref: bool = False
+    is_unsigned: bool = False
+    is_signed: bool = False
     
     def to_str(self) -> str:
         ret = ''
@@ -42,10 +43,10 @@ class Param:
             ret += '&'
         return ret
 
+@dataclass
 class FuncParam:
-    def __init__(self):
-        self.ret_type: Optional[str] = None
-        self.params: List[str] = []
+    ret_type: Optional[str] = None
+    params: List[str] = field(default_factory=list)
     
     def to_str(self) -> str:
         ret = ''
@@ -57,6 +58,9 @@ class FuncParam:
         ret += ', '.join(self.params)
         ret += ')'
         return ret
+
+class ParseError(Exception):
+    ...
 
 class ParseCtx:
     def __init__(self, mangled: str):
@@ -70,7 +74,8 @@ class ParseCtx:
 
     def demangle(self):
         if self.mangled.startswith('__'):
-            assert self.mangled[4:6] == '__'
+            if self.mangled[4:6] != '__':
+                raise ParseError('symbol started with __; expected a prefix of the form __xx__')
             special_func_name = self.mangled[:6]
             self.mangled = self.mangled[6:]
             if special_func_name in special_funcs:
@@ -134,7 +139,7 @@ class ParseCtx:
                 self.had_first_f = True
                 self.index+=1
             else:
-                raise Exception('unk char '+cur_char)
+                raise ParseError(f'unexpected character {cur_char}')
         if self.func_name == '.ctor':
             self.func_name = self.class_name
         if self.func_name == '.dtor':
@@ -195,16 +200,16 @@ class ParseCtx:
                 cur_func_param.is_ref = True
                 self.index+=1
             elif cur_char == 'F':
-                raise Exception('recursive func')
+                raise UnimplementedError('recursive function demangling not implemented')
             elif cur_char == '_':
                 is_at_return = True
                 self.index+=1
             else:
-                raise Exception('unk char '+cur_char)
+                raise ParseError(f'unexpected character {cur_char}')
     
     def demangle_class(self):
         if not self.mangled[self.index].isdecimal():
-            raise Exception('has to start with number!')
+            raise ParseError(f'class mangling must start with number')
         class_len_str = ''
         cur_char = self.mangled[self.index]
         while cur_char.isdecimal():
@@ -248,19 +253,3 @@ def parse_framework_map(path: Path):
             address = line[18:26]
             address_funcname[address] = funcname
     return address_funcname
-
-
-def main():
-    with open('frameworkF.map') as f:
-        for line in f.readlines():
-            if line.startswith('.ctors'):
-                return
-            if not line.startswith('  '):
-                continue
-            try:
-                line = line[30:]
-                line_spl = line.split(' ',1)
-                demangle(line_spl[0])
-            except Exception as e:
-                # print(e)
-                pass
