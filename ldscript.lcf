@@ -1307,6 +1307,12 @@ run__7JKRAramFv
 getAlinkArcName__9daAlink_cFv
 calc__16daAlink_matAnm_cCFP11J3DMaterial
 getResetData__6mDoRstFv
+func_8007400C
+func_80073D08
+func_80073A08
+func_800738FC
+func_800732AC
+func_80070178
 }
 /*
 .init 80003100 - 80005600
