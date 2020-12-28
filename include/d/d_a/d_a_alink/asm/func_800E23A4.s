@@ -1,0 +1,23 @@
+/* 800E23A4 000DF2E4  94 21 FF F0 */ stwu r1, -0x10(r1)
+/* 800E23A8 000DF2E8  7C 08 02 A6 */ mflr r0
+/* 800E23AC 000DF2EC  90 01 00 14 */ stw r0, 0x14(r1)
+/* 800E23B0 000DF2F0  93 E1 00 0C */ stw r31, 0xc(r1)
+/* 800E23B4 000DF2F4  7C 7F 1B 78 */ mr r31, r3
+/* 800E23B8 000DF2F8  80 63 07 24 */ lwz r3, 0x724(r3)
+/* 800E23BC 000DF2FC  4B FC 6E 8D */ bl daAlink_c_NS_simpleAnmPlay
+/* 800E23C0 000DF300  38 7F 1F D0 */ addi r3, r31, 0x1fd0
+/* 800E23C4 000DF304  48 07 C1 09 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E23C8 000DF308  54 60 06 3F */ clrlwi. r0, r3, 0x18
+/* 800E23CC 000DF30C  41 82 00 18 */ beq lbl_800E23E4
+/* 800E23D0 000DF310  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
+/* 800E23D4 000DF314  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E23D8 000DF318  38 63 4F F8 */ addi r3, r3, 0x4ff8
+/* 800E23DC 000DF31C  80 9F 31 84 */ lwz r4, 0x3184(r31)
+/* 800E23E0 000DF320  4B F6 5D 9D */ bl dEvent_manager_c_NS_cutEnd
+lbl_800E23E4:
+/* 800E23E4 000DF324  38 60 00 01 */ li r3, 1
+/* 800E23E8 000DF328  83 E1 00 0C */ lwz r31, 0xc(r1)
+/* 800E23EC 000DF32C  80 01 00 14 */ lwz r0, 0x14(r1)
+/* 800E23F0 000DF330  7C 08 03 A6 */ mtlr r0
+/* 800E23F4 000DF334  38 21 00 10 */ addi r1, r1, 0x10
+/* 800E23F8 000DF338  4E 80 00 20 */ blr

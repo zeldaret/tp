@@ -148,7 +148,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
-            $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
             $(BUILD_DIR)/asm/d/a/d_a_npc.o    \

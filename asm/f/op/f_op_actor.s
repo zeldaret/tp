@@ -3,8 +3,8 @@
 .section .text, "ax" # 80018b64
 
 
-.global fopAc_ac_c
-fopAc_ac_c:
+.global fopAc_ac_c_NS_ctor
+fopAc_ac_c_NS_ctor:
 /* 80018B64 00015AA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018B68 00015AA8  7C 08 02 A6 */	mflr r0
 /* 80018B6C 00015AAC  90 01 00 14 */	stw r0, 0x14(r1)
