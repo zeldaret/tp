@@ -89,22 +89,21 @@ class Line:
 
 
 space = regex(r'[ \t]+')
-# pad   = regex(r'\s*')
-line_ending = (string('\n') | string('\r\n')).desc('newline')
+line_ending = regex('(\n)|(\r\n)').desc('newline')
 pad = regex(r'[ \t]*')
 
 
 block_comment = (
-    string('/*') >> regex(r'[\w\s]').many().concat().map(BlockComment) << string('*/')
+    string('/*') >> regex(r'[\w\s]*').map(BlockComment) << string('*/')
 ).desc('block comment')
 trailing_comment = (
-    string('#') >> pad >> regex(r'[^\n\r]').many().concat().map(TrailingComment)
+    string('#') >> pad >> regex(r'[^\n\r]*').map(TrailingComment)
 ).desc('trailing comment')
 
-symbolname = regex(r'[a-zA-Z._$]') + regex(r'[a-zA-Z0-9._$?]').many().concat()
+symbolname = regex(r'[a-zA-Z._$][a-zA-Z0-9._$?]*')
 label = (symbolname.map(Label) << string(':')).desc('label')
 
-delimited_string = (string('"') >> regex(r'[^"]').many().concat() << string('"')).desc(
+delimited_string = (string('"') >> regex(r'[^"]*') << string('"')).desc(
     'double-quote delimited string'
 )
 
@@ -113,7 +112,7 @@ directive_section = seq(
     name=string('section')
     >> space
     >> string('.')
-    >> regex(r'[a-z]').at_least(1).concat(),
+    >> regex(r'[a-z]+'),
     flags=(pad >> string(',') >> space >> delimited_string).optional(),
 ).combine_dict(Section)
 directive_global = string('global') >> space >> symbolname.map(Global)
@@ -129,10 +128,17 @@ directive = (
 ).desc('directive')
 
 opcode = regex(r'[a-z_0-9]+\.?').concat().desc('opcode')
-operand = regex(r'[^,#\s]').at_least(1).concat()
+operand = regex(r'[^,#\s]+')
 operands = operand.sep_by(string(',') << pad)
-instruction = seq(opcode, (space >> operands).optional()).combine(Instruction)
-
+@generate
+def instruction():
+    op = yield opcode
+    sp = yield space.optional()
+    if sp:
+        oprs = yield operands
+    else:
+        oprs = []
+    return Instruction(op, oprs)
 
 @generate
 def line():
