@@ -396,7 +396,7 @@ extern u32 lbl_80450DE4;
 // m_Do_Reset
 // func_80015614
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
-extern JUTXfb* lbl_80451550;
+// extern JUTXfb* lbl_80451550;
 extern u8 lbl_80450BB8;
 extern char lbl_80374198[16];
 // func_8001574C

@@ -261,6 +261,8 @@ void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
 
 void mDoDvdErr_ThdCleanup(void);
+void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
+void common_init__6JUTXfbFl(void);
 }
 
 class mDoCPd_c;
@@ -370,6 +372,12 @@ extern void GXAbortFrame(void);
 extern void GXFlush(void);
 extern OSThread* GXSetCurrentGXThread(void);
 extern OSThread* GXGetCurrentGXThread(void);
+}
+
+extern "C" {
+void VIWaitForRetrace(void);
+void VISetBlack(s32);
+void VIFlush(void);
 }
 
 extern "C" {
