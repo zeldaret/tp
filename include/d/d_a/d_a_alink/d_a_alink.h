@@ -295,17 +295,12 @@ extern double lbl_80452CB0;
 extern float lbl_80452CB8;
 
 // daalink setmatrixworldaxisrot
-struct now {  // m_Do_mtx::mDoMtx_stack_c::now
-    float unk0[4];
-    float unk10[4];
-    float unk20[4];
-};
 struct mCurrentMtx {  // J3DGraphBase::J3DSys::mCurrentMtx
     float unk0[4];
     float unk10[4];
     float unk20[4];
 };
-extern now lbl_803DD470;
+//extern now lbl_803DD470;
 extern mCurrentMtx lbl_80434BE4;
 
 // daalink modelcallback

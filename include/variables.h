@@ -378,7 +378,13 @@ extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
 extern double lbl_803DD2F0;
 extern f32 lbl_80451180;
 
-extern u32 lbl_803DD470;  // CHANGE TYPE LATER
+struct now {  // m_Do_mtx::mDoMtx_stack_c::now
+    float unk0[4];
+    float unk10[4];
+    float unk20[4];
+};
+
+extern now lbl_803DD470;  // CHANGE TYPE LATER
 
 extern s64 lbl_80450DE8;
 extern u32 lbl_80450DD8;
@@ -767,7 +773,6 @@ extern u8 lbl_8042552C;
 extern u8 lbl_80391E48;
 extern u8 lbl_80391D44;
 extern u8 lbl_804255A4;
-extern u8 lbl_80451180;
 extern u8 lbl_804532AC;
 extern u8 lbl_80452F04;
 extern u8 lbl_80391A2C;
