@@ -1,0 +1,5 @@
+/* 800D05FC 000CD53C  A0 03 2F E8 */ lhz r0, 0x2fe8(r3)
+/* 800D0600 000CD540  20 00 00 F1 */ subfic r0, r0, 0xf1
+/* 800D0604 000CD544  7C 00 00 34 */ cntlzw r0, r0
+/* 800D0608 000CD548  54 03 DE 3E */ rlwinm r3, r0, 0x1b, 0x18, 0x1f
+/* 800D060C 000CD54C  4E 80 00 20 */ blr

@@ -737,7 +737,7 @@ daItem_c_NS__daItem_create:
 /* 8015B7FC 0015873C  41 82 01 00 */	beq lbl_8015B8FC
 /* 8015B800 00158740  7C 1E 03 78 */	mr r30, r0
 /* 8015B804 00158744  7C 1D 03 78 */	mr r29, r0
-/* 8015B808 00158748  4B EB D3 5D */	bl fopAc_ac_c
+/* 8015B808 00158748  4B EB D3 5D */	bl fopAc_ac_c_NS_ctor
 /* 8015B80C 0015874C  3C 60 80 3B */	lis r3, lbl_803B3610@ha
 /* 8015B810 00158750  38 03 36 10 */	addi r0, r3, lbl_803B3610@l
 /* 8015B814 00158754  90 1D 05 68 */	stw r0, 0x568(r29)
@@ -767,7 +767,7 @@ daItem_c_NS__daItem_create:
 /* 8015B874 001587B4  90 1D 07 C0 */	stw r0, 0x7c0(r29)
 /* 8015B878 001587B8  3B 9D 07 E0 */	addi r28, r29, 0x7e0
 /* 8015B87C 001587BC  7F 83 E3 78 */	mr r3, r28
-/* 8015B880 001587C0  4B F2 81 A9 */	bl dCcD_GObjInf
+/* 8015B880 001587C0  4B F2 81 A9 */	bl dCcD_GObjInf_NS_ctor
 /* 8015B884 001587C4  3C 60 80 3C */	lis r3, lbl_803C36D0@ha
 /* 8015B888 001587C8  38 03 36 D0 */	addi r0, r3, lbl_803C36D0@l
 /* 8015B88C 001587CC  90 1C 01 20 */	stw r0, 0x120(r28)
