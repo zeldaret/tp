@@ -4967,8 +4967,8 @@ dDlst_shadowTri_c:
 /* 8005634C 0005328C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80056350 00053290  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80056354 00053294  7C 7F 1B 78 */	mr r31, r3
-/* 80056358 00053298  3C 80 80 01 */	lis r4, cXyz@ha
-/* 8005635C 0005329C  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80056358 00053298  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 8005635C 0005329C  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 80056360 000532A0  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80056364 000532A4  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80056368 000532A8  38 C0 00 0C */	li r6, 0xc
