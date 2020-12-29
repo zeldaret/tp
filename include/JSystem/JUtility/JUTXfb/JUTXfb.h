@@ -6,8 +6,9 @@
 class JUTXfb {
 public:
     void clearIndex();
+
 private:
-    void * xfb_buffer[3];
+    void* xfb_buffer[3];
     bool is_xfb_allocated[3];
     u8 padding_1;
     s32 num_xfbs;

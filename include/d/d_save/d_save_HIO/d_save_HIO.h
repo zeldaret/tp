@@ -10,14 +10,14 @@ struct dSvBit_childSwPerfectionHIO_c_vtable {
 };
 
 class dSvBit_childSwPerfectionHIO_c {
-    public:
-     dSvBit_childSwPerfectionHIO_c();
-     void init(void);
-     ~dSvBit_childSwPerfectionHIO_c();
-     dSvBit_childSwPerfectionHIO_c_vtable* __vt;
+public:
+    dSvBit_childSwPerfectionHIO_c();
+    void init(void);
+    ~dSvBit_childSwPerfectionHIO_c();
+    dSvBit_childSwPerfectionHIO_c_vtable* __vt;
 
-    private:
-     u8 unk0[10];
+private:
+    u8 unk0[10];
 };
 
 #endif

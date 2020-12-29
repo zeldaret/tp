@@ -8,19 +8,19 @@
 #include "d/d_save/d_save/d_save.h"
 
 class dComIfG_play_c {
-   public:
+public:
     void ct(void);
     void init(void);
     u8 unk[0x100];
 };
 
 class dCcMassS_Mng {
-   public:
+public:
     u8 unk[0x274];
 };
 
 class dAttDraw_c {
-   public:
+public:
     u8 unk[0x178];
 };
 
@@ -36,34 +36,32 @@ class dComIfG_camera_info_class {
     u8 unk[0x38];
 };
 
-struct mDoExt_bckAnm{
+struct mDoExt_bckAnm {};
 
-};
-
-struct item_func{
-    float hearts;         //bf80
-    u32 rupees;         //bf84
-    s16 small_keys;     //bf88
-    s16 kakera_heart;   //bf8a
-    s16 magic;          //bf8c
-    u16 unk;            //bf8e
-    s16 magic_lv;       //bf90
-    u8 unk2[2];         //bf92/93 // removed stuff?
-    u32 unk3;           //bf94  //related to lantern?
-    u32 unk4;           //bf98  //related to lantern?
-    u32 unk5;           //bf9c  //related to lantern?
-    u32 unk6;           //bfa0  //related to oxygen?
-    u32 unk7;           //bfa4  //related to oxygen?
-    u32 unk8;           //bfa8  //related to oxygen?
-    u32 unk9;           //bfac  //related to oxygen?
-    u32 unk10;          //bfb0  //related to oxygen?
-    s16 arrows;         //bfb4
-    s16 seeds;          //bfb6
+struct item_func {
+    float hearts;      // bf80
+    u32 rupees;        // bf84
+    s16 small_keys;    // bf88
+    s16 kakera_heart;  // bf8a
+    s16 magic;         // bf8c
+    u16 unk;           // bf8e
+    s16 magic_lv;      // bf90
+    u8 unk2[2];        // bf92/93 // removed stuff?
+    u32 unk3;          // bf94  //related to lantern?
+    u32 unk4;          // bf98  //related to lantern?
+    u32 unk5;          // bf9c  //related to lantern?
+    u32 unk6;          // bfa0  //related to oxygen?
+    u32 unk7;          // bfa4  //related to oxygen?
+    u32 unk8;          // bfa8  //related to oxygen?
+    u32 unk9;          // bfac  //related to oxygen?
+    u32 unk10;         // bfb0  //related to oxygen?
+    s16 arrows;        // bfb4
+    s16 seeds;         // bfb6
 };
 
 // 16 bytes too big, figure out later
 class dComIfG_inf_c {
-   public:
+public:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00EEC */ u8 unk2[0x4C];
     /* 0x00F38 */ dComIfG_play_c play;

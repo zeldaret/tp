@@ -4,9 +4,8 @@
 #include "dolphin/types.h"
 
 class JSUFileInputStream {
-  public:
+public:
     virtual ~JSUFileInputStream();
-
 };
 
 #endif

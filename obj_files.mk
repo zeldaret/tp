@@ -148,7 +148,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
-            $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
             $(BUILD_DIR)/asm/d/a/d_a_npc.o    \
@@ -478,7 +477,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \

@@ -3,9 +3,9 @@
 
 #include "global.h"
 
-struct  JAISoundID{
+struct JAISoundID {
     u32 soundId;
-    JAISoundID(JAISoundID const &soundIdToSet);
+    JAISoundID(JAISoundID const& soundIdToSet);
 };
 
 #endif

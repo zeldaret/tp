@@ -1,23 +1,23 @@
 #ifndef __JKRDECOMP_H__
 #define __JKRDECOMP_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
+#include "dolphin/types.h"
 
 class JKRDecompCommand {
-  public:
+public:
     JKRDecompCommand();
     ~JKRDecompCommand();
 };
 
 class JKRDecomp : public JKRThread {
-  private:
+private:
     JKRDecomp(long);
     virtual ~JKRDecomp(void);
 
     /* vt[03] */ virtual void* run(); /* override */
 
-  public:
+public:
     static void create(long);
     static void prepareCommand(u8*, u8*, u32, u32, void (*)(u32));
     static void sendCommand(JKRDecompCommand*);

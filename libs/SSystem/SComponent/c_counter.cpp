@@ -10,8 +10,7 @@ extern counter_class lbl_80430CD8;
 
 extern "C" {
 
-void cCt_Counter(int resetCounter1)
-{
+void cCt_Counter(int resetCounter1) {
     if (resetCounter1 == 1) {
         lbl_80430CD8.mCounter1 = 0;
     } else {
@@ -20,5 +19,4 @@ void cCt_Counter(int resetCounter1)
 
     lbl_80430CD8.mCounter0++;
 }
-
 };

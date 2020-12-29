@@ -1,15 +1,15 @@
 #ifndef __JKRMEMARCHIVE_H__
 #define __JKRMEMARCHIVE_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
+#include "dolphin/types.h"
 
 enum JKRMemBreakFlag {
     _JKRMemBreakFlag_PADDING_32BIT = 0xFFFFFFFF,
 };
 
 class JKRMemArchive : public JKRArchive {
-  public:
+public:
     JKRMemArchive(long, JKRArchive::EMountDirection);
     JKRMemArchive(void*, u32, JKRMemBreakFlag);
     virtual ~JKRMemArchive();
@@ -24,7 +24,7 @@ class JKRMemArchive : public JKRArchive {
     /* vt[16] */ void fetchResource(JKRArchive::SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ void fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*); /* override */
 
-  public:
+public:
     static void fetchResource_subroutine(u8*, u32, u8*, u32, int);
 };
 

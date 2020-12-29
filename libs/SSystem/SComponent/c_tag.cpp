@@ -4,13 +4,11 @@
 
 extern "C" {
 
-int cTg_IsUse(create_tag_class *pTag)
-{
+int cTg_IsUse(create_tag_class* pTag) {
     return pTag->mbIsUse;
 }
 
-int cTg_SingleCutFromTree(create_tag_class *pTag)
-{
+int cTg_SingleCutFromTree(create_tag_class* pTag) {
     if (pTag->mbIsUse == true) {
         pTag->mbIsUse = false;
         cTr_SingleCut(&pTag->mpNode);
@@ -20,8 +18,7 @@ int cTg_SingleCutFromTree(create_tag_class *pTag)
     }
 }
 
-int cTg_AdditionToTree(node_lists_tree_class *pTree, int listIdx, create_tag_class *pTag)
-{
+int cTg_AdditionToTree(node_lists_tree_class* pTree, int listIdx, create_tag_class* pTag) {
     if (!pTag->mbIsUse) {
         int ret = cTr_Addition(pTree, listIdx, &pTag->mpNode);
         if (ret) {
@@ -33,8 +30,7 @@ int cTg_AdditionToTree(node_lists_tree_class *pTree, int listIdx, create_tag_cla
     return 0;
 }
 
-int cTg_InsertToTree(node_lists_tree_class *pTree, int listIdx, create_tag_class *pTag, int idx)
-{
+int cTg_InsertToTree(node_lists_tree_class* pTree, int listIdx, create_tag_class* pTag, int idx) {
     if (!pTag->mbIsUse) {
         int ret = cTr_Insert(pTree, listIdx, &pTag->mpNode, idx);
         if (ret) {
@@ -46,9 +42,8 @@ int cTg_InsertToTree(node_lists_tree_class *pTree, int listIdx, create_tag_class
     return 0;
 }
 
-node_class * cTg_GetFirst(node_list_class *pList)
-{
-    create_tag_class *pTag = (create_tag_class *) cLs_GetFirst(pList);
+node_class* cTg_GetFirst(node_list_class* pList) {
+    create_tag_class* pTag = (create_tag_class*)cLs_GetFirst(pList);
     if (pTag != NULL) {
         pTag->mbIsUse = false;
     } else {
@@ -57,8 +52,7 @@ node_class * cTg_GetFirst(node_list_class *pList)
     return &pTag->mpNode;
 }
 
-int cTg_SingleCut(create_tag_class *pTag)
-{
+int cTg_SingleCut(create_tag_class* pTag) {
     if (pTag->mbIsUse == 1) {
         pTag->mbIsUse = false;
         cLs_SingleCut(&pTag->mpNode);
@@ -68,8 +62,7 @@ int cTg_SingleCut(create_tag_class *pTag)
     return 0;
 }
 
-int cTg_Addition(node_list_class *pList, create_tag_class *pTag)
-{
+int cTg_Addition(node_list_class* pList, create_tag_class* pTag) {
     if (!pTag->mbIsUse) {
         int ret = cLs_Addition(pList, &pTag->mpNode);
         if (ret) {
@@ -81,11 +74,9 @@ int cTg_Addition(node_list_class *pList, create_tag_class *pTag)
     return 0;
 }
 
-void cTg_Create(create_tag_class *pTag, void *pData)
-{
+void cTg_Create(create_tag_class* pTag, void* pData) {
     cNd_Create(&pTag->mpNode, NULL);
     pTag->mpTagData = pData;
     pTag->mbIsUse = false;
 }
-
 };

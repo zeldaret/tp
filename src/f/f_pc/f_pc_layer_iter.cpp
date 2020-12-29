@@ -1,17 +1,17 @@
 #include "f/f_pc/f_pc_layer_iter.h"
-#include "SComponent/c_tree_iter.h"
 #include "SComponent/c_tag_iter.h"
+#include "SComponent/c_tree_iter.h"
 
 extern "C" {
 
-int fpcLyIt_OnlyHere(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData) {
+int fpcLyIt_OnlyHere(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
     layer_iter lIter;
     lIter.mpFunc = pFunc;
     lIter.mpUserData = pUserData;
-    return cTrIt_Method(&pLayer->mNodeListTree,(cNdIt_MethodFunc) cTgIt_MethodCall, &lIter);
+    return cTrIt_Method(&pLayer->mNodeListTree, (cNdIt_MethodFunc)cTgIt_MethodCall, &lIter);
 }
 
-int fpcLyIt_OnlyHereLY(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData) {
+int fpcLyIt_OnlyHereLY(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
     int result;
     layer_class* currentLayer = fpcLy_CurrentLayer();
     fpcLy_SetCurrentLayer(pLayer);
@@ -20,21 +20,22 @@ int fpcLyIt_OnlyHereLY(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserD
     return result;
 }
 
-void * fpcLyIt_Judge(layer_class *pLayer, cNdIt_MethodFunc pFunc, void *pUserData) {
+void* fpcLyIt_Judge(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
     layer_iter lIter;
     lIter.mpFunc = pFunc;
     lIter.mpUserData = pUserData;
-    return cTrIt_Judge(&pLayer->mNodeListTree,(cNdIt_JudgeFunc) cTgIt_JudgeFilter, &lIter);
+    return cTrIt_Judge(&pLayer->mNodeListTree, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &lIter);
 }
 
-void * fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void *pUserData) {
+void* fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void* pUserData) {
     layer_iter lIter;
     lIter.mpFunc = pFunc;
     lIter.mpUserData = pUserData;
-    
+
     layer_class* current = fpcLy_RootLayer();
     while (current != NULL) {
-        void* result = cTrIt_Judge(&current->mNodeListTree,(cNdIt_JudgeFunc) cTgIt_JudgeFilter, &lIter);
+        void* result =
+            cTrIt_Judge(&current->mNodeListTree, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &lIter);
         if (result != NULL) {
             return result;
         }
@@ -42,5 +43,4 @@ void * fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void *pUserData) {
     }
     return NULL;
 }
-
 }

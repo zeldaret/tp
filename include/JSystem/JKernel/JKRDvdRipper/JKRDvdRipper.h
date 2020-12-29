@@ -10,14 +10,16 @@ enum JKRExpandSwitch {
 class JKRHeap;
 class JKRDvdFile;
 class JKRDvdRipper {
-  public:
+public:
     enum EAllocDirection {
 
     };
 
-    void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32, int*, u32*);
+    void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32, int*,
+                       u32*);
     void loadToMainRAM(long, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32, int*, u32*);
-    void loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32, int*, u32*);
+    void loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection, u32, int*,
+                       u32*);
 
     void isErrorRetry(void);
 };

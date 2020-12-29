@@ -3,8 +3,6 @@
 
 #include "global.h"
 
-struct JAISoundHandle{
-
-};
+struct JAISoundHandle {};
 
 #endif

@@ -4,9 +4,8 @@
 #include "dolphin/types.h"
 
 class JSURandomInputStream {
-  public:
+public:
     void getAvailable(void) const;
 };
-
 
 #endif

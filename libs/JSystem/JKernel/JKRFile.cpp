@@ -11,4 +11,3 @@ s32 JKRFile::read(void* data, s32 size, long param_3) {
             return result;
     }
 }
-

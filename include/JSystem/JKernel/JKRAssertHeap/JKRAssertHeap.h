@@ -1,15 +1,15 @@
 #ifndef __JKRASSERTHEAP_H__
 #define __JKRASSERTHEAP_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "dolphin/types.h"
 
 class JKRAssertHeap : public JKRHeap {
-  protected:
+protected:
     JKRAssertHeap(void*, unsigned long, JKRHeap*, bool);
     virtual ~JKRAssertHeap();
 
-  public:
+public:
     /* vt[04] */ virtual u32 getHeapType(void);           /* override */
     /* vt[05] */ virtual bool check(void);                /* override */
     /* vt[06] */ virtual bool dump(void);                 /* override */
@@ -28,7 +28,7 @@ class JKRAssertHeap : public JKRHeap {
     /* vt[19] */ virtual u8 do_changeGroupID(u8 param_1); /* override */
     /* vt[20] */ virtual u8 do_getCurrentGroupId(void);   /* override */
 
-  public:
+public:
     static void create(JKRHeap*);
 };
 

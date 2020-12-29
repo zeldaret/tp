@@ -6,8 +6,7 @@
 
 extern "C" {
 
-void fpcMtdIt_Method(node_list_class *pList, cNdIt_MethodFunc pMethod);
-
+void fpcMtdIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod);
 };
 
 #endif

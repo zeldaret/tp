@@ -1,30 +1,30 @@
 #ifndef D_A_ALINK_H_
 #define D_A_ALINK_H_
 
-#include "global.h"
-#include "f/f_op/f_op_actor.h"
-#include "d/d_cc/d_cc_d.h"
+#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
+#include "SComponent/c_bg_s_poly_info.h"
 #include "d/d_a/d_a_player/d_a_player.h"
+#include "d/d_cc/d_cc_d.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_resource/d_resource.h"
 #include "d/d_save/d_save/d_save.h"
-#include "SComponent/c_bg_s_poly_info.h"
-#include "JSystem/J3DGraphAnimator/J3DModelData.h"
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
-#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "f/f_op/f_op_actor.h"
+#include "global.h"
 
 typedef u32 daAlink_ANM;
 typedef u32 daAlink_UPPER;
 typedef u32 daAlink_UNDER;
 typedef u32 daAlink_FTANM;
 
-class daAlink_matAnm_c{
-   public:
+class daAlink_matAnm_c {
+public:
     void init(void);
     void calc(J3DMaterial*) const;
 
-   private:
+private:
     u8 unk0[0xf4];
     float unk244;
     float unk248;
@@ -38,18 +38,18 @@ class daAlinkHIO_anm_c;
 class daPy_frameCtrl_c;
 struct cM3dGPla;
 
-struct csXyz{       //move later
-    s16 x,y,z;
+struct csXyz {  // move later
+    s16 x, y, z;
 };
 
-class daAlink_c{
-   public:
+class daAlink_c {
+public:
     u32 getE3Zhint(void);
     const char* getAlinkArcName(void);
     u32 checkStageName(const char*);
     void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
-    void setMatrixWorldAxisRot(float(*)[4],short,short,short,int,const cXyz*);
+    void setMatrixWorldAxisRot(float (*)[4], short, short, short, int, const cXyz*);
     bool jointControll(int);
     void setUpperFront(void);
     void changeBlendRate(int);
@@ -59,7 +59,7 @@ class daAlink_c{
     bool wolfModelCallBack(int);
     void setHatAngle(void);
     void calcHairAngle(short*);
-    void setHairAngle(cXyz*,float,float);
+    void setHairAngle(cXyz*, float, float);
     void setLookPosFromOut(cXyz*);
     int checkAttentionPosAngle(cXyz*);
     bool checkActorPosAngle(fopAc_ac_c*, cXyz**);
@@ -68,13 +68,13 @@ class daAlink_c{
     double setEyeMove(cXyz*, short, short);
     void setNeckAngle(void);
     bool getStickAngleFromPlayerShape(short*) const;
-    void commonLineCheck(cXyz*,cXyz*);
+    void commonLineCheck(cXyz*, cXyz*);
     int getMoveBGActorName(cBgS_PolyInfo&, int);
     bool checkGoronRide(void);
     void setMoveSlantAngle(void);
     bool setArmMatrix(void);
     bool setFootMatrix(void);
-    void setMatrixOffset(float*,float);
+    void setMatrixOffset(float*, float);
     bool setLegAngle(float, daAlink_footData_c*, short*, short*, int);
     void footBgCheck(void);
     void handBgCheck(void);
@@ -134,7 +134,8 @@ class daAlink_c{
     bool checkUnderMove1BckNoArc(daAlink_ANM) const;
     u32 getUnderUpperAnime(daAlink_ANM, J3DAnmTransform**, J3DAnmTransform**, int, u32);
     void setDoubleAnimeBlendRatio(float);
-    void commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, float, float, float, int);
+    void commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*,
+                           float, float, float, int);
     bool setDoubleAnime(float, float, float, daAlink_ANM, daAlink_ANM, int, float);
     void commonSingleAnime(J3DAnmTransform*, J3DAnmTransform*, float, float, short);
     void setSingleAnimeBase(daAlink_ANM);
@@ -192,111 +193,114 @@ class daAlink_c{
     bool checkSlope(void) const;
     void setPlayerPosAndAngle(cXyz const*, short, int);
     void setPlayerPosAndAngle(cXyz const*, csXyz const*);
-    void setPlayerPosAndAngle(float(*)[4]);
+    void setPlayerPosAndAngle(float (*)[4]);
     u32 itemTriggerCheck(u8);
     u32 itemButtonCheck(u8);
 
-   private:
+private:
     u8 unk[14268];
 };
 
-extern "C"{
-    void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
-    void coHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*);
-    void J3DMaterialAnm_NS_calc(void);
-    void PSVECAdd(Vec*, Vec*, Vec*);
-    void mDoMtx_stack_c_NS_transM(float, float, float);
-    void daAlink_c_NS_concatMagneBootInvMtx(void);
-    void mDoMtx_ZXYrotM(void);
-    void mDoMtx_YrotM(void);
-    void daAlink_c_NS_concatMagneBootMtx(void);
-    void mDoMtx_stack_c_NS_transS(void);
-    void PSMTXQuat(void);
-    void PSMTXInverse(void);
-    void mDoMtx_stack_c_NS_quatM(void);
-    void PSMTXTrans(void);
-    void daAlink_c_NS_checkUnderMove0BckNoArc(void);
-    void mDoMtx_QuatConcat(void);
-    void JMAEulerToQuat(void);
-    void daAlink_c_NS_checkBowAnime(void);
-    void setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz(float(*)[4],short,short,short,int,const cXyz*);
-    void daAlink_c_NS_checkHorseLieAnime(void);
-    void csXyz_X1_(void);
-    void daAlink_c_NS_checkNoUpperAnime(void);
-    void daAlink_c_NS_checkUpperReadyThrowAnime(void);
-    void daAlink_c_NS_setDoubleAnimeBlendRatio(void);
-    void changeBlendRate__9daAlink_cFi(int);
-    void daAlink_c_NS_setArmMatrix(void);
-    void daAlink_c_NS_setFootMatrix(void);
-    void setUpperFront__9daAlink_cFv(void);
-    bool jointControll__9daAlink_cFi(int);
-    void resetRootMtx__9daAlink_cFv(void);
-    bool modelCallBack__9daAlink_cFi(int);
-    void daAlink_c_NS_checkZoraWearAbility(void);
-    void mDoMtx_stack_c_NS_scaleM(void);
-    void mDoMtx_XYZrotM(void);
-    void mDoMtx_ZrotM(void);
-    bool headModelCallBack__9daAlink_cFi(int);
-    void daAlink_c_NS_changeWolfBlendRate(void);
-    void daAlink_c_NS_setWolfFootMatrix(void);
-    bool wolfModelCallBack__9daAlink_cFi(int);
-    void cLib_addCalcAngleS2(void);
-    void PSMTXMultVec(void);
-    void daAlink_c_NS_getMoveBGActorName(void);
-    void daAlink_c_NS_multVecMagneBootInvMtx(void);
-    void cXyz_NS___ml(void);
-    void cXyz_NS_atan2sY_XZ(void);
-    void cM_atan2s(void);
-    void cLib_distanceAngleS(void);
-    void cXyz_NS_atan2sX_Z(void);
-    void PSMTXMultVecSR(void);
-    void cXyz_NS___mi(void);
-    void dKyw_get_AllWind_vec(void);
-    void PSVECSquareMag(void);
-    void cLib_addCalcAngleS(void);
-    void cM_rndF(void);
-    void calcHairAngle__9daAlink_cFPs(short*);
-    void setHairAngle__9daAlink_cFP4cXyzff(cXyz*,float,float);
-    void cLib_targetAngleY(void);
-    void daAlink_c_NS_checkEnemyGroup(void);
-    int checkAttentionPosAngle__9daAlink_cFP4cXyz(cXyz*);
-    void daAlink_c_NS_getDemoLookActor(void);
-    void daAlink_c_NS_checkDemoMoveMode(void);
-    bool isTransformLV__21dSv_player_status_b_cCFi(int);
-    void dKy_darkworld_check(void);
-    void daAlink_c_NS_checkAttentionState(void);
-    void daAlink_c_NS_checkUnderMove0BckNoArcWolf(void);
-    void daAlink_c_NS_checkWindSpeedOnAngleAnime(void);
-    void daAlink_c_NS_getCopyRodControllActor(void);
-    void dAttLook_c_NS_convPId(void);
-    void daAlink_c_NS_checkEventRun(void);
-    bool checkActorPosAngle__9daAlink_cFP10fopAc_ac_cPP4cXyz(fopAc_ac_c*, cXyz**);
-    void dCamera_c_NS_GetForceLockOnActor(void);
-    void dCam_getBody(void);
-    void dAttention_c_NS_LockonTarget(void);
-    void cM_rnd(void);
-    void fopAcIt_Judge(void);
-    void dAttList_c_NS_getActor(void);
-    void dAttention_c_NS_GetLockonList(void);
-    void fopAcM_getTalkEventPartner(void);
+extern "C" {
+void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc_ac_c*,
+                                                                           dCcD_GObjInf*,
+                                                                           dCcD_GObjInf*);
+void coHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*);
+void J3DMaterialAnm_NS_calc(void);
+void PSVECAdd(Vec*, Vec*, Vec*);
+void mDoMtx_stack_c_NS_transM(float, float, float);
+void daAlink_c_NS_concatMagneBootInvMtx(void);
+void mDoMtx_ZXYrotM(void);
+void mDoMtx_YrotM(void);
+void daAlink_c_NS_concatMagneBootMtx(void);
+void mDoMtx_stack_c_NS_transS(void);
+void PSMTXQuat(void);
+void PSMTXInverse(void);
+void mDoMtx_stack_c_NS_quatM(void);
+void PSMTXTrans(void);
+void daAlink_c_NS_checkUnderMove0BckNoArc(void);
+void mDoMtx_QuatConcat(void);
+void JMAEulerToQuat(void);
+void daAlink_c_NS_checkBowAnime(void);
+void setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz(float (*)[4], short, short, short, int,
+                                                        const cXyz*);
+void daAlink_c_NS_checkHorseLieAnime(void);
+void csXyz_X1_(void);
+void daAlink_c_NS_checkNoUpperAnime(void);
+void daAlink_c_NS_checkUpperReadyThrowAnime(void);
+void daAlink_c_NS_setDoubleAnimeBlendRatio(void);
+void changeBlendRate__9daAlink_cFi(int);
+void daAlink_c_NS_setArmMatrix(void);
+void daAlink_c_NS_setFootMatrix(void);
+void setUpperFront__9daAlink_cFv(void);
+bool jointControll__9daAlink_cFi(int);
+void resetRootMtx__9daAlink_cFv(void);
+bool modelCallBack__9daAlink_cFi(int);
+void daAlink_c_NS_checkZoraWearAbility(void);
+void mDoMtx_stack_c_NS_scaleM(void);
+void mDoMtx_XYZrotM(void);
+void mDoMtx_ZrotM(void);
+bool headModelCallBack__9daAlink_cFi(int);
+void daAlink_c_NS_changeWolfBlendRate(void);
+void daAlink_c_NS_setWolfFootMatrix(void);
+bool wolfModelCallBack__9daAlink_cFi(int);
+void cLib_addCalcAngleS2(void);
+void PSMTXMultVec(void);
+void daAlink_c_NS_getMoveBGActorName(void);
+void daAlink_c_NS_multVecMagneBootInvMtx(void);
+void cXyz_NS___ml(void);
+void cXyz_NS_atan2sY_XZ(void);
+void cM_atan2s(void);
+void cLib_distanceAngleS(void);
+void cXyz_NS_atan2sX_Z(void);
+void PSMTXMultVecSR(void);
+void cXyz_NS___mi(void);
+void dKyw_get_AllWind_vec(void);
+void PSVECSquareMag(void);
+void cLib_addCalcAngleS(void);
+void cM_rndF(void);
+void calcHairAngle__9daAlink_cFPs(short*);
+void setHairAngle__9daAlink_cFP4cXyzff(cXyz*, float, float);
+void cLib_targetAngleY(void);
+void daAlink_c_NS_checkEnemyGroup(void);
+int checkAttentionPosAngle__9daAlink_cFP4cXyz(cXyz*);
+void daAlink_c_NS_getDemoLookActor(void);
+void daAlink_c_NS_checkDemoMoveMode(void);
+bool isTransformLV__21dSv_player_status_b_cCFi(int);
+void dKy_darkworld_check(void);
+void daAlink_c_NS_checkAttentionState(void);
+void daAlink_c_NS_checkUnderMove0BckNoArcWolf(void);
+void daAlink_c_NS_checkWindSpeedOnAngleAnime(void);
+void daAlink_c_NS_getCopyRodControllActor(void);
+void dAttLook_c_NS_convPId(void);
+void daAlink_c_NS_checkEventRun(void);
+bool checkActorPosAngle__9daAlink_cFP10fopAc_ac_cPP4cXyz(fopAc_ac_c*, cXyz**);
+void dCamera_c_NS_GetForceLockOnActor(void);
+void dCam_getBody(void);
+void dAttention_c_NS_LockonTarget(void);
+void cM_rnd(void);
+void fopAcIt_Judge(void);
+void dAttList_c_NS_getActor(void);
+void dAttention_c_NS_GetLockonList(void);
+void fopAcM_getTalkEventPartner(void);
 }
 
-//daalink_matanm init
+// daalink_matanm init
 extern float lbl_80452CC0;
 extern u8 lbl_80450FC8;
 extern u8 lbl_80450FC9;
 
-//daalink_matanm calc
+// daalink_matanm calc
 extern double lbl_80452CB0;
 extern float lbl_80452CB8;
 
-//daalink setmatrixworldaxisrot
-struct now{ // m_Do_mtx::mDoMtx_stack_c::now
+// daalink setmatrixworldaxisrot
+struct now {  // m_Do_mtx::mDoMtx_stack_c::now
     float unk0[4];
     float unk10[4];
     float unk20[4];
 };
-struct mCurrentMtx{ // J3DGraphBase::J3DSys::mCurrentMtx
+struct mCurrentMtx {  // J3DGraphBase::J3DSys::mCurrentMtx
     float unk0[4];
     float unk10[4];
     float unk20[4];
@@ -304,14 +308,14 @@ struct mCurrentMtx{ // J3DGraphBase::J3DSys::mCurrentMtx
 extern now lbl_803DD470;
 extern mCurrentMtx lbl_80434BE4;
 
-//daalink modelcallback
-struct j3dsys;      // J3DGraphBase::j3dSys
+// daalink modelcallback
+struct j3dsys;  // J3DGraphBase::j3dSys
 extern j3dsys lbl_80434AC8;
 
-//daalink headmodelcallback
+// daalink headmodelcallback
 extern float lbl_80452EDC;
 
-//daalink sethatangle
+// daalink sethatangle
 extern float lbl_80452CE0;
 extern double lbl_80452CE8;
 extern float lbl_80452D50;
@@ -328,12 +332,12 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern cXyz lbl_80430CF4; // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C; // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24; // SComponent::cXyz::BaseY
-extern u8 lbl_80439A20[65536]; // JMath::JMath::sincosTable_
+extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
+extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
+extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
+extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
-//daalink sethairangle
+// daalink sethairangle
 extern float lbl_80452C98;
 extern float lbl_80452D18;
 extern float lbl_80452D5C;
@@ -354,15 +358,14 @@ extern float lbl_80453208;
 extern float lbl_8045320C;
 extern float lbl_80453210;
 
-//daalink checkattentionposangle
-extern u8 lbl_8038E5A4[0x6C]; // daAlinkHIO_horse_c0::m
+// daalink checkattentionposangle
+extern u8 lbl_8038E5A4[0x6C];  // daAlinkHIO_horse_c0::m
 
-//daalink getneckaimpos
-extern u32 lbl_80451018; // daPy_py_c::m_midnaActor
+// daalink getneckaimpos
+extern u32 lbl_80451018;  // daPy_py_c::m_midnaActor
 extern float lbl_80452D68;
 extern float lbl_80452DB0;
 extern float lbl_80452DE0;
 extern float lbl_80452E44;
-
 
 #endif
