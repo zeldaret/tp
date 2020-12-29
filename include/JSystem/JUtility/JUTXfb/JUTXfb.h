@@ -1,9 +1,9 @@
 #ifndef __JUTILITY_JUTXFB_JUTXFB_H__
 #define __JUTILITY_JUTXFB_JUTXFB_H__
 
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"
 #include "gx/GX.h"
-#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 
 class JUTXfb {
 public:
@@ -19,7 +19,7 @@ public:
     void initiate(u16 width, u16 height, JKRHeap* heap, JUTXfb::EXfbNumber xfb_number);
 
 private:
-    void * xfb_buffer[3];
+    void* xfb_buffer[3];
     bool is_xfb_allocated[3];
     u8 padding_1;
     s32 num_xfbs;

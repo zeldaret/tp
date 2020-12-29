@@ -3,6 +3,6 @@
 
 #include "dolphin/types.h"
 
-typedef void (* VIRetraceCallback)(u32);
+typedef void (*VIRetraceCallback)(u32);
 
 #endif

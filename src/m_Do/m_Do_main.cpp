@@ -1,5 +1,4 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
-#include "m_Do/m_Do_reset/m_Do_reset.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"

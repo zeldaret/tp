@@ -26,15 +26,13 @@ JUTXfb::JUTXfb(GXRenderModeObj* obj, JKRHeap* heap, JUTXfb::EXfbNumber xfb_numbe
         u16 efb_height = render_obj->efb_height;
         u16 xfb_height = render_obj->xfb_height;
         f32 scale_factor = GXGetYScaleFactor(efb_height, xfb_height);
-        this->initiate(fb_width,
-            GXGetNumXfbLines(efb_height, scale_factor),
-            heap, xfb_number);
+        this->initiate(fb_width, GXGetNumXfbLines(efb_height, scale_factor), heap, xfb_number);
     }
 }
 #else
 asm JUTXfb::JUTXfb(GXRenderModeObj* obj, JKRHeap* heap, JUTXfb::EXfbNumber xfb_number) {
     nofralloc
-    #include "JSystem/JUtility/JUTXfb/asm/func_802E5260.s"
+#include "JSystem/JUtility/JUTXfb/asm/func_802E5260.s"
 }
 #endif
 
@@ -69,9 +67,9 @@ void JUTXfb::initiate(u16 width, u16 height, JKRHeap* heap, JUTXfb::EXfbNumber x
         heap = /* sSystemHeap */ lbl_80451370;
     }
 
-    int size = ((u32) width+0xf & 0xfff0) * (u32) height * 2;
-    
-    void *pvVar1 = ::operator new[](size, heap, 0x20);
+    int size = ((u32)width + 0xf & 0xfff0) * (u32)height * 2;
+
+    void* pvVar1 = ::operator new[](size, heap, 0x20);
     this->xfb_buffer[0] = pvVar1;
     this->is_xfb_allocated[0] = true;
     if (xfb_number >= 2) {

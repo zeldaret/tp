@@ -1,8 +1,8 @@
 #ifndef __JUTILITY_JUTVIDEO_JUTVIDEO_H__
 #define __JUTILITY_JUTVIDEO_JUTVIDEO_H__
 
-#include "os/OS.h"
 #include "gx/GX.h"
+#include "os/OS.h"
 #include "vi/VI.h"
 
 struct JUTVideo {
