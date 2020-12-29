@@ -116,7 +116,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/kankyo/d_kankyo_wether.o    \
             $(BUILD_DIR)/asm/d/kankyo/d_kankyo_rain.o    \
             $(BUILD_DIR)/asm/d/d_vibration.o    \
-            $(BUILD_DIR)/asm/d/d_attention.o    \
+            $(BUILD_DIR)/src/d/d_attention.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_pc.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_plc.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_s.o    \
