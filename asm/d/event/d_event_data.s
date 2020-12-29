@@ -2126,7 +2126,7 @@ lbl_800454AC:
 /* 800454C8 00042408  B0 1D 00 42 */	sth r0, 0x42(r29)
 /* 800454CC 0004240C  A8 1D 00 42 */	lha r0, 0x42(r29)
 /* 800454D0 00042410  54 03 06 3E */	clrlwi r3, r0, 0x18
-/* 800454D4 00042414  4B FF E0 05 */	bl dEvt_control_c_NS_searchMapEventData
+/* 800454D4 00042414  4B FF E0 05 */	bl searchMapEventData__14dEvt_control_cFUc
 /* 800454D8 00042418  28 03 00 00 */	cmplwi r3, 0
 /* 800454DC 0004241C  41 82 00 28 */	beq lbl_80045504
 /* 800454E0 00042420  88 03 00 00 */	lbz r0, 0(r3)

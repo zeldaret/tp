@@ -758,6 +758,13 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz
+ getValueStick__10CSTControlFv
+ getAngleStick__10CSTControlFv
+ dLib_getEventSwitchNo__Fi
+ getValueStick__9STControlFv
+ getAngleStick__9STControlFv
+ init__9STControlFv
  checkStateCarry__7dBomb_cFv
  checkFlowerBombWait__7dBomb_cFP10fopAc_ac_c
  checkWaterBomb__7dBomb_cFP10fopAc_ac_c

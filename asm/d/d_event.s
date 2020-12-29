@@ -2391,8 +2391,8 @@ dEvt_info_c_NS_beforeProc:
 /* 800434D0 00040410  B0 03 00 06 */	sth r0, 6(r3)
 /* 800434D4 00040414  4E 80 00 20 */	blr 
 
-.global dEvt_control_c_NS_searchMapEventData
-dEvt_control_c_NS_searchMapEventData:
+.global searchMapEventData__14dEvt_control_cFUc
+searchMapEventData__14dEvt_control_cFUc:
 /* 800434D8 00040418  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800434DC 0004041C  7C 08 02 A6 */	mflr r0
 /* 800434E0 00040420  90 01 00 14 */	stw r0, 0x14(r1)
