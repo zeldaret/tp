@@ -3,9 +3,11 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"
+#include "m_Do/m_Do_reset/m_Do_reset.h"
 
 void version_check(void) {
-    if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) && (!strcmp(((char*)lbl_803739A0 + 0xA), ((char*)lbl_803739A0 + 0xA)))) {
+    if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) &&
+        (!strcmp(((char*)lbl_803739A0 + 0xA), ((char*)lbl_803739A0 + 0xA)))) {
         return;
     }
 
@@ -40,7 +42,8 @@ void CheckHeap(u32 param_1) {
 
     unk = 0;
 
-    if ((((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0xffffffef) == 0x60) && (((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0x10) != 0)) {
+    if ((((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0xffffffef) == 0x60) &&
+        (((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0x10) != 0)) {
         unk = 1;
     }
 
@@ -63,8 +66,7 @@ asm void CheckHeap(u32 param_1) {
 }
 #endif
 
-asm int countUsed(JKRExpHeap* heap){
-    nofralloc
+asm int countUsed(JKRExpHeap* heap){nofralloc
 #include "m_Do/m_Do_main/asm/func_80005848.s"
 }
 
@@ -88,11 +90,14 @@ void HeapCheck::heapDisplay(void) const {
     JUTReport__FiiPCce(0x64, 0xfd, lbl_803739A0 + 0x71, heap_total_free_size - heap_size2);
     JUTReport__FiiPCce(0x64, 0x10a, lbl_803739A0 + 0x87, heap_free_size - heap_size2);
     JUTReport__FiiPCce(0x64, 0x117, lbl_803739A0 + 0x9D, heap_total_used_size);
-    JUTReport__FiiPCce(0x64, 0x124, lbl_803739A0 + 0xB3, (int)(heap_total_used_size * 0x64) / (int)this->heap_size);
+    JUTReport__FiiPCce(0x64, 0x124, lbl_803739A0 + 0xB3,
+                       (int)(heap_total_used_size * 0x64) / (int)this->heap_size);
     JUTReport__FiiPCce(0x64, 0x131, lbl_803739A0 + 0xCF, this->max_total_used_size);
-    JUTReport__FiiPCce(0x64, 0x13e, lbl_803739A0 + 0xE5, (this->max_total_used_size * 0x64) / (int)this->heap_size);
+    JUTReport__FiiPCce(0x64, 0x13e, lbl_803739A0 + 0xE5,
+                       (this->max_total_used_size * 0x64) / (int)this->heap_size);
     JUTReport__FiiPCce(0x64, 0x14b, lbl_803739A0 + 0x101, this->max_total_free_size - heap_size2);
-    JUTReport__FiiPCce(0x64, 0x158, lbl_803739A0 + 0x117, ((this->max_total_free_size - heap_size2) * 0x64) / (int)this->heap_size);
+    JUTReport__FiiPCce(0x64, 0x158, lbl_803739A0 + 0x117,
+                       ((this->max_total_free_size - heap_size2) * 0x64) / (int)this->heap_size);
     heap_size2 = countUsed(this->heap);
     JUTReport__FiiPCce(0x64, 0x165, lbl_803739A0 + 0x133, heap_size2);
 }
@@ -142,13 +147,15 @@ void debug(void) {
             CheckHeap(0x2);
         }
 
-        if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x20) && (m_gamePad.buttons.field_0x4 & 0x10)) {
-            //if (1) {
+        if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x20) &&
+            (m_gamePad.buttons.field_0x4 & 0x10)) {
+            // if (1) {
             DAT_80450b18 = DAT_80450b18 ^ 0x1;
         }
 
         if (DAT_80450b18) {
-            if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x40) && (m_gamePad.buttons.field_0x4 & 0x10)) {
+            if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x40) &&
+                (m_gamePad.buttons.field_0x4 & 0x10)) {
                 if (DAT_80450588 < 0x5) {
                     DAT_80450588 = DAT_80450588 + 0x1;
                 } else {

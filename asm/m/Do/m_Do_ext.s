@@ -5894,8 +5894,8 @@ mDoExt_3Dline_c_NS_init:
 /* 800123F8 0000F338  1C 7B 00 0C */	mulli r3, r27, 0xc
 /* 800123FC 0000F33C  38 63 00 10 */	addi r3, r3, 0x10
 /* 80012400 0000F340  48 2B C8 C5 */	bl __nwa__FUl
-/* 80012404 0000F344  3C 80 80 01 */	lis r4, cXyz@ha
-/* 80012408 0000F348  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80012404 0000F344  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 80012408 0000F348  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 8001240C 0000F34C  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80012410 0000F350  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80012414 0000F354  38 C0 00 0C */	li r6, 0xc
@@ -5929,8 +5929,8 @@ lbl_80012468:
 /* 80012478 0000F3B8  1C 60 00 0C */	mulli r3, r0, 0xc
 /* 8001247C 0000F3BC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80012480 0000F3C0  48 2B C8 45 */	bl __nwa__FUl
-/* 80012484 0000F3C4  3C 80 80 01 */	lis r4, cXyz@ha
-/* 80012488 0000F3C8  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80012484 0000F3C4  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 80012488 0000F3C8  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 8001248C 0000F3CC  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80012490 0000F3D0  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80012494 0000F3D4  38 C0 00 0C */	li r6, 0xc
@@ -5946,8 +5946,8 @@ lbl_800124B8:
 /* 800124B8 0000F3F8  1C 7F 00 0C */	mulli r3, r31, 0xc
 /* 800124BC 0000F3FC  38 63 00 10 */	addi r3, r3, 0x10
 /* 800124C0 0000F400  48 2B C8 05 */	bl __nwa__FUl
-/* 800124C4 0000F404  3C 80 80 01 */	lis r4, cXyz@ha
-/* 800124C8 0000F408  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 800124C4 0000F404  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 800124C8 0000F408  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 800124CC 0000F40C  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 800124D0 0000F410  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 800124D4 0000F414  38 C0 00 0C */	li r6, 0xc
@@ -6025,8 +6025,8 @@ lbl_800125C4:
 /* 800125D4 0000F514  38 21 00 20 */	addi r1, r1, 0x20
 /* 800125D8 0000F518  4E 80 00 20 */	blr 
 
-.global cXyz
-cXyz:
+.global cXyz_NS_ctor
+cXyz_NS_ctor:
 /* 800125DC 0000F51C  4E 80 00 20 */	blr 
 /* 800125E0 0000F520  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800125E4 0000F524  7C 08 02 A6 */	mflr r0

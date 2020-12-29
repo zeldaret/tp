@@ -1,6 +1,6 @@
 #include "m_Do/m_Do_reset/m_Do_reset.h"
-#include "dvd/dvd.h"
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 extern "C" {
@@ -20,10 +20,10 @@ void destroyVideo() {
 
 // TODO: cleanup
 void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
-    mDoCPd_c *pmVar1;
+    mDoCPd_c* pmVar1;
     u32 uVar2;
     DVDState DVar3;
-    OSThread *thread;
+    OSThread* thread;
     s32 enable;
     /* sManager */ lbl_80451550->clearIndex();
     mDoDvdErr_ThdCleanup();
@@ -38,7 +38,7 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     if ((s32)DVDGetDriveStatus() == (s32)DVD_STATE_BUSY) {
         OSAttention(lbl_80374198);
     }
-    JASTaskThread *task_thread = JASDvd_NS_getThreadPointer();
+    JASTaskThread* task_thread = JASDvd_NS_getThreadPointer();
     if (task_thread != NULL) {
         JASTaskThread_NS_pause(task_thread, true);
         thread = task_thread->thread;
@@ -64,7 +64,6 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     GXDrawDone();
 
     OSRestoreInterrupts(enable);
-    
     destroyVideo();
 
     // nb: probably fake match (i am not sure that it's actually attached to this label lol)
@@ -75,7 +74,8 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     my_OSCancelAlarmAll();
     LCDisable();
     // probably false match; check out 80015728 or thereabouts in Ghidra
-    OSSetSaveRegion(/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData, (u8*)(&getResetData__6mDoRstFv) + 0x18);
+    OSSetSaveRegion(/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData,
+                    (u8*)(&getResetData__6mDoRstFv) + 0x18);
     OSResetSystem(p1, p2, p3);
     do {
         VIWaitForRetrace();

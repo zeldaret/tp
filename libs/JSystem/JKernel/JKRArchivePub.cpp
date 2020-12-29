@@ -7,7 +7,8 @@ asm void JKRArchive::check_mount_already(long, JKRHeap*) {
 #include "JSystem/JKernel/JKRArchive/asm/func_802D5778.s"
 }
 
-asm void JKRArchive::mount(char const*, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection) {
+asm void JKRArchive::mount(char const*, JKRArchive::EMountMode, JKRHeap*,
+                           JKRArchive::EMountDirection) {
     nofralloc
 #include "JSystem/JKernel/JKRArchive/asm/func_802D57E4.s"
 }

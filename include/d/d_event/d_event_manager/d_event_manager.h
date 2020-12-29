@@ -4,8 +4,8 @@
 #include "dolphin/types.h"
 
 class dEvent_manager_c {
-    public:
-     u8 unk[0x6C8];
+public:
+    u8 unk[0x6C8];
 };
 
 #endif

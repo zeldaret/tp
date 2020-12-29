@@ -1,30 +1,26 @@
 
-#include "global.h"
 #include "f/f_pc/f_pc_delete_tag.h"
+#include "global.h"
 
 // g_fpcDtTg_Queue
 extern node_list_class lbl_803A39A0;
 
 extern "C" {
 
-bool fpcDtTg_IsEmpty(delete_tag_class *pTag)
-{
+bool fpcDtTg_IsEmpty(delete_tag_class* pTag) {
     return lbl_803A39A0.mSize == 0;
 }
 
-void fpcDtTg_ToDeleteQ(delete_tag_class *pTag)
-{
+void fpcDtTg_ToDeleteQ(delete_tag_class* pTag) {
     pTag->mTimer = 1;
     cTg_Addition(&lbl_803A39A0, pTag);
 }
 
-void fpcDtTg_DeleteQTo(delete_tag_class *pTag)
-{
+void fpcDtTg_DeleteQTo(delete_tag_class* pTag) {
     cTg_SingleCut(pTag);
 }
 
-int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc)
-{
+int fpcDtTg_Do(delete_tag_class* pTag, delete_tag_func pFunc) {
     if (pTag->mTimer <= 0) {
         fpcDtTg_DeleteQTo(pTag);
         int ret = pFunc(pTag->mpTagData);
@@ -40,10 +36,8 @@ int fpcDtTg_Do(delete_tag_class *pTag, delete_tag_func pFunc)
     }
 }
 
-int fpcDtTg_Init(delete_tag_class *pTag, void *pUserData)
-{
+int fpcDtTg_Init(delete_tag_class* pTag, void* pUserData) {
     cTg_Create(pTag, pUserData);
     return 1;
 }
-
 };

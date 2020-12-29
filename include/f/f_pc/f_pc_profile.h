@@ -6,8 +6,7 @@
 
 extern "C" {
 
-void * fpcPf_Get(s16 profileID);
-
+void* fpcPf_Get(s16 profileID);
 };
 
 #endif

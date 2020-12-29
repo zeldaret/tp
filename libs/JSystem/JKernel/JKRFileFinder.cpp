@@ -2,38 +2,37 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
-asm  JKRArcFinder::JKRArcFinder(JKRArchive *, long, long) {
+asm JKRArcFinder::JKRArcFinder(JKRArchive*, long, long) {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D4638.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D4638.s"
 }
 
 asm bool JKRArcFinder::findNextFile(void) {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D46C4.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D46C4.s"
 }
 
-asm  JKRDvdFinder::JKRDvdFinder(char const *) {
+asm JKRDvdFinder::JKRDvdFinder(char const*) {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D4770.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D4770.s"
 }
 
-asm  JKRDvdFinder:: ~JKRDvdFinder() {
+asm JKRDvdFinder::~JKRDvdFinder() {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D47F4.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D47F4.s"
 }
 
 asm bool JKRDvdFinder::findNextFile(void) {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D4874.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D4874.s"
 }
 
-asm  JKRFileFinder::~JKRFileFinder() {
+asm JKRFileFinder::~JKRFileFinder() {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D4910.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D4910.s"
 }
 
-asm  JKRArcFinder::~JKRArcFinder() {
+asm JKRArcFinder::~JKRArcFinder() {
     nofralloc
-    #include "JSystem/JKernel/JKRFileFinder/asm/func_802D4958.s"
+#include "JSystem/JKernel/JKRFileFinder/asm/func_802D4958.s"
 }
-

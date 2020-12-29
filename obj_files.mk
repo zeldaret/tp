@@ -88,7 +88,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/com/inf/d_com_inf_game.o    \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
             $(BUILD_DIR)/src/d/d_bomb.o    \
-            $(BUILD_DIR)/asm/d/d_lib.o    \
+            $(BUILD_DIR)/src/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
@@ -147,7 +147,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_model.o    \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
-            $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
+            $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
             $(BUILD_DIR)/asm/d/a/d_a_npc.o    \
@@ -477,7 +477,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \

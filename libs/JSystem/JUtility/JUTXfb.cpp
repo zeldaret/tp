@@ -1,6 +1,6 @@
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 #include "JSystem/JUtility/JUTVideo/JUTVideo.h"
-#include "functions.h"
+#include "global.h"
 
 void JUTXfb::clearIndex() {
     this->active_xfb_index = -1;
