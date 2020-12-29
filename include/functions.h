@@ -202,7 +202,7 @@ void func_80361C24(void);
 void func_803621CC(void);
 void func_80362218(void);
 
-//void JKRAramArchive(void);
+// void JKRAramArchive(void);
 void JKRArchive_NS_findDirectory(void);
 void JKRArchive_NS_findFsResource(void);
 void JKRArchive_NS_findIdResource(void);

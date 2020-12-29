@@ -300,7 +300,7 @@ struct mCurrentMtx {  // J3DGraphBase::J3DSys::mCurrentMtx
     float unk10[4];
     float unk20[4];
 };
-//extern now lbl_803DD470;
+// extern now lbl_803DD470;
 extern mCurrentMtx lbl_80434BE4;
 
 // daalink modelcallback
