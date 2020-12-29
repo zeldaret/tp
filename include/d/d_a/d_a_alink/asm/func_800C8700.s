@@ -2256,7 +2256,7 @@ lbl_800CA744:
 /* 800CA780 000C76C0  4E 80 04 21 */ bctrl
 /* 800CA784 000C76C4  38 7F 2C A8 */ addi r3, r31, 0x2ca8
 /* 800CA788 000C76C8  38 80 00 05 */ li r4, 5
-/* 800CA78C 000C76CC  48 07 71 FD */ bl Z2CreatureLink_NS_setLinkState
+/* 800CA78C 000C76CC  48 07 71 FD */ bl setLinkState__14Z2CreatureLinkFUc
 /* 800CA790 000C76D0  48 00 00 50 */ b lbl_800CA7E0
 lbl_800CA794:
 /* 800CA794 000C76D4  48 07 71 FD */ bl dComIfGs_getRupee
@@ -2277,7 +2277,7 @@ lbl_800CA794:
 /* 800CA7D0 000C7710  4E 80 04 21 */ bctrl
 /* 800CA7D4 000C7714  38 7F 2C A8 */ addi r3, r31, 0x2ca8
 /* 800CA7D8 000C7718  38 80 00 04 */ li r4, 4
-/* 800CA7DC 000C771C  48 07 71 AD */ bl Z2CreatureLink_NS_setLinkState
+/* 800CA7DC 000C771C  48 07 71 AD */ bl setLinkState__14Z2CreatureLinkFUc
 lbl_800CA7E0:
 /* 800CA7E0 000C7720  7F E3 FB 78 */ mr r3, r31
 /* 800CA7E4 000C7724  48 07 6B E9 */ bl daPy_py_c_NS_checkWolf

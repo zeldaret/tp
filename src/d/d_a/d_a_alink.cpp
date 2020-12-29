@@ -1,6 +1,7 @@
 #include "d/d_a/d_a_alink/d_a_alink.h"
 #include "SComponent/c_bg_w.h"
 #include "SComponent/c_phase.h"
+#include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "f/f_pc/f_pc_searcher.h"
@@ -15049,11 +15050,8 @@ asm void dMeter2Info_offUseButton(void) {
 #include "d/d_a/d_a_alink/asm/func_8014196C.s"
 }
 
-// setLinkState__14Z2CreatureLinkFUc
-// Z2CreatureLink::setLinkState(unsigned char)
-asm void Z2CreatureLink_NS_setLinkState(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141988.s"
+void Z2CreatureLink::setLinkState(u8 state) {
+    link_state = state;
 }
 
 // dComIfGs_getRupee__Fv

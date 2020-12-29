@@ -1003,7 +1003,7 @@ void daAlink_c_NS_checkPlayerGuardAndAttack(void);
 void daAlink_c_NS_checkMidnaUseAbility(void);
 void daAlink_c_NS_setItemAction(void);
 void dBgS_NS_ChkPolyHSStick(void);
-void Z2CreatureLink_NS_setLinkState(void);
+void setLinkState__14Z2CreatureLinkFUc(void);
 void func_800D09EC(void);
 void dPa_control_c_NS_set_X1_(void);
 void daAlink_c_NS_checkWolfRopeHit(void);
