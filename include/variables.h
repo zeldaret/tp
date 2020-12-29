@@ -375,11 +375,10 @@ extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
 
-
 extern double lbl_803DD2F0;
 extern f32 lbl_80451180;
 
-extern u32 lbl_803DD470; //CHANGE TYPE LATER
+extern u32 lbl_803DD470;  // CHANGE TYPE LATER
 
 extern s64 lbl_80450DE8;
 extern u32 lbl_80450DD8;

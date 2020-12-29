@@ -2,14 +2,15 @@
 #include "d/d_event/d_event/d_event.h"
 #include "os/OS.h"
 
-
-STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6, s16 param_7, s16 param_8){
+STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
+                     s16 param_7, s16 param_8) {
     __vt = (STControl_vtable*)0x803a7260;
-    setWaitParm(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8);
+    setWaitParm(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8);
     init();
 }
 
-void STControl::setWaitParm(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6, s16 param_7, s16 param_8){
+void STControl::setWaitParm(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5,
+                            f32 param_6, s16 param_7, s16 param_8) {
     field_0x12 = param_1;
     field_0x14 = param_2;
     field_0x16 = param_3;
@@ -20,8 +21,7 @@ void STControl::setWaitParm(s16 param_1, s16 param_2, s16 param_3, s16 param_4, 
     field_0x26 = param_8;
 }
 
-
-STControl* STControl::init(void){
+STControl* STControl::init(void) {
     field_0xe = 0;
     field_0x10 = 0;
     field_0xd = 0;
@@ -37,7 +37,7 @@ STControl* STControl::init(void){
     return this;
 }
 
-void STControl::Xinit(void){
+void STControl::Xinit(void) {
     field_0xe = 0;
     field_0xc = field_0xc & 0xfc;
     field_0x18 = field_0x12;
@@ -45,9 +45,8 @@ void STControl::Xinit(void){
     field_0x2a = field_0x28;
 }
 
-
 #ifdef NONMATCHING
-void STControl::Yinit(void){ //produces andi. instead of rlwinm
+void STControl::Yinit(void) {  // produces andi. instead of rlwinm
     field_0x10 = 0;
     field_0xc = field_0xc & 0xf3;
     field_0x1a = field_0x12;
@@ -55,34 +54,34 @@ void STControl::Yinit(void){ //produces andi. instead of rlwinm
     field_0x2c = field_0x28;
 }
 #else
-asm void STControl::Yinit(void){
+asm void STControl::Yinit(void) {
     nofralloc
-    #include "d/d_lib/asm/STControl_NS_Yinit.s"
+#include "d/d_lib/asm/STControl_NS_Yinit.s"
 }
 #endif
 
-double STControl::getValueStick(){
+double STControl::getValueStick() {
     return lbl_803DD2E8.stickValue;
 }
 
-s16 STControl::getAngleStick(){
+s16 STControl::getAngleStick() {
     return lbl_803DD2E8.stickAngle;
 }
 
-double CSTControl::getValueStick(){
+double CSTControl::getValueStick() {
     return lbl_803DD2E8.CstickValue;
 }
 
-s16 CSTControl::getAngleStick(){
+s16 CSTControl::getAngleStick() {
     return lbl_803DD2E8.CstickAngle;
 }
 
-asm u32 STControl::checkTrigger(){
+asm u32 STControl::checkTrigger() {
     nofralloc
-    #include "d/d_lib/asm/STControl_NS_checkTrigger.s"
+#include "d/d_lib/asm/STControl_NS_checkTrigger.s"
 }
 
-bool STControl::checkLeftTrigger(){
+bool STControl::checkLeftTrigger() {
     if ((field_0xe == 0) && ((field_0xc & 1) != 0)) {
         field_0xe = field_0x18 + field_0x2a;
         field_0x2a = 0;
@@ -91,8 +90,7 @@ bool STControl::checkLeftTrigger(){
             if (field_0x18 < field_0x14) {
                 field_0x18 = field_0x14;
             }
-        }
-        else {
+        } else {
             field_0x1e = field_0x1e + -1;
         }
         return true;
@@ -100,7 +98,7 @@ bool STControl::checkLeftTrigger(){
     return false;
 }
 
-bool STControl::checkRightTrigger(){
+bool STControl::checkRightTrigger() {
     if ((field_0xe == 0) && ((field_0xc & 2) != 0)) {
         field_0xe = field_0x18 + field_0x2a;
         field_0x2a = 0;
@@ -109,8 +107,7 @@ bool STControl::checkRightTrigger(){
             if (field_0x18 < field_0x14) {
                 field_0x18 = field_0x14;
             }
-        }
-        else {
+        } else {
             field_0x1e = field_0x1e + -1;
         }
         return true;
@@ -118,7 +115,7 @@ bool STControl::checkRightTrigger(){
     return false;
 }
 
-bool STControl::checkUpTrigger(){
+bool STControl::checkUpTrigger() {
     if ((field_0x10 == 0) && ((field_0xc & 4) != 0)) {
         field_0x10 = field_0x1a + field_0x2c;
         field_0x2c = 0;
@@ -127,8 +124,7 @@ bool STControl::checkUpTrigger(){
             if (field_0x1a < field_0x14) {
                 field_0x1a = field_0x14;
             }
-        }
-        else {
+        } else {
             field_0x20 = field_0x20 + -1;
         }
         return true;
@@ -136,7 +132,7 @@ bool STControl::checkUpTrigger(){
     return false;
 }
 
-bool STControl::checkDownTrigger(){
+bool STControl::checkDownTrigger() {
     if ((field_0x10 == 0) && ((field_0xc & 8) != 0)) {
         field_0x10 = field_0x1a + field_0x2c;
         field_0x2c = 0;
@@ -145,8 +141,7 @@ bool STControl::checkDownTrigger(){
             if (field_0x1a < field_0x14) {
                 field_0x1a = field_0x14;
             }
-        }
-        else {
+        } else {
             field_0x20 = field_0x20 + -1;
         }
         return true;
@@ -154,30 +149,30 @@ bool STControl::checkDownTrigger(){
     return false;
 }
 
-asm u32 dLib_getEventSwitchNo(int param_1){
+asm u32 dLib_getEventSwitchNo(int param_1) {
     nofralloc
-    #include "d/d_lib/asm/dLib_getEventSwitchNo.s"
+#include "d/d_lib/asm/dLib_getEventSwitchNo.s"
 }
 
-asm bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3, cXyz const* param_4){
+asm bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3,
+                                    cXyz const* param_4) {
     nofralloc
-    #include "d/d_lib/asm/dLib_checkActorInRectangle.s"
+#include "d/d_lib/asm/dLib_checkActorInRectangle.s"
 }
 
-
-asm u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive *param_1,char const *param_2){
+asm u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_1, char const* param_2) {
     nofralloc
-    #include "d/d_lib/asm/dLib_getExpandSizeFromAramArchive.s"
+#include "d/d_lib/asm/dLib_getExpandSizeFromAramArchive.s"
 }
 
-asm s64 dLib_time_c::getTime(void){
+asm s64 dLib_time_c::getTime(void) {
     nofralloc
-    #include "d/d_lib/asm/dLib_time_c_NS_getTime.s"
+#include "d/d_lib/asm/dLib_time_c_NS_getTime.s"
 }
 
 #ifdef NONMATCHING
-void dLib_time_c::stopTime(void){ //way off
-    if (lbl_80450DE8 == 0){
+void dLib_time_c::stopTime(void) {  // way off
+    if (lbl_80450DE8 == 0) {
         OSTime time = OSGetTime();
         lbl_80450DE4 = time >> 0x20;
         lbl_80450DE8 = 1;
@@ -185,13 +180,13 @@ void dLib_time_c::stopTime(void){ //way off
     }
 }
 #else
-asm void dLib_time_c::stopTime(void){
+asm void dLib_time_c::stopTime(void) {
     nofralloc
-    #include "d/d_lib/asm/dLib_time_c_NS_stopTime.s"
+#include "d/d_lib/asm/dLib_time_c_NS_stopTime.s"
 }
 #endif
 
-asm void dLib_time_c::startTime(void){
+asm void dLib_time_c::startTime(void) {
     nofralloc
-    #include "d/d_lib/asm/dLib_time_c_NS_startTime.s"
+#include "d/d_lib/asm/dLib_time_c_NS_startTime.s"
 }

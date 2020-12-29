@@ -1,17 +1,18 @@
-#include "global.h"
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
+#include "global.h"
 
-
-struct STControl_vtable{
+struct STControl_vtable {
     void* addr_1;
     void* addr_2;
     void* addr_3;
     void* addr_4;
 };
 
-struct STControl{
-    STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6, s16 param_7, s16 param_8);
-    void setWaitParm(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6, s16 param_7, s16 param_8);
+struct STControl {
+    STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
+              s16 param_7, s16 param_8);
+    void setWaitParm(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
+                     s16 param_7, s16 param_8);
     STControl* init(void);
     void Xinit(void);
     void Yinit(void);
@@ -47,12 +48,12 @@ struct STControl{
     s16 field_0x2c;
 };
 
-struct CSTControl{
+struct CSTControl {
     double getValueStick();
     s16 getAngleStick();
 };
 
-struct m_cpadInfo{
+struct m_cpadInfo {
     u8 p1[0x8];
     f32 stickValue;
     s16 stickAngle;
@@ -66,18 +67,18 @@ u32 dLib_getEventSwitchNo(int param_1);
 
 struct fopAc_ac_c;
 
-struct cXyz{
+struct cXyz {
     f32 x;
     f32 y;
     f32 z;
 };
 
-bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3, cXyz const* param_4);
+bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3,
+                                cXyz const* param_4);
 
+u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_1, char const* param_2);
 
-u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_1,char const* param_2);
-
-class dLib_time_c{
+class dLib_time_c {
 public:
     s64 getTime(void);
     void stopTime(void);
