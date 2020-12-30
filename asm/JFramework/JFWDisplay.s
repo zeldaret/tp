@@ -71,7 +71,7 @@ JFWDisplay:
 /* 80272130 0026F070  4B FF FF 11 */	bl JFWDisplay_NS_ctor_subroutine
 /* 80272134 0026F074  7F C3 F3 78 */	mr r3, r30
 /* 80272138 0026F078  7F E4 FB 78 */	mr r4, r31
-/* 8027213C 0026F07C  48 07 32 7D */	bl JUTXfb_NS_createManager
+/* 8027213C 0026F07C  48 07 32 7D */	bl createManager__6JUTXfbFP7JKRHeapl
 /* 80272140 0026F080  90 7D 00 10 */	stw r3, 0x10(r29)
 /* 80272144 0026F084  7F A3 EB 78 */	mr r3, r29
 /* 80272148 0026F088  39 61 00 20 */	addi r11, r1, 0x20
@@ -98,7 +98,7 @@ JFWDisplay:
 /* 8027219C 0026F0DC  48 00 0A C5 */	bl JFWDisplay_NS_waitBlanking
 lbl_802721A0:
 /* 802721A0 0026F0E0  48 07 38 89 */	bl JUTProcBar_NS_destroy
-/* 802721A4 0026F0E4  48 07 32 81 */	bl JUTXfb_NS_destroyManager
+/* 802721A4 0026F0E4  48 07 32 81 */	bl destroyManager__6JUTXfbFv
 /* 802721A8 0026F0E8  38 00 00 00 */	li r0, 0
 /* 802721AC 0026F0EC  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 802721B0 0026F0F0  7F E0 07 35 */	extsh. r0, r31

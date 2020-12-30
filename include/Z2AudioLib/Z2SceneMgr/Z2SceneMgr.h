@@ -1,20 +1,20 @@
-#include "global.h"
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "global.h"
 
-struct JAISoundParamsMove{
+struct JAISoundParamsMove {
     void moveVolume(float param_1, u32 param_2);
 
     float unk_1;
 };
 
-struct Z2SoundMgr{
+struct Z2SoundMgr {
     void resetFilterAll();
     u8 p1[0x3ec];
     JAISoundParamsMove* JAISoundParamsMove;
 };
 
-struct Z2SceneMgr{
+struct Z2SceneMgr {
     long BGM_ID;
     int sceneNum;
     int timer;

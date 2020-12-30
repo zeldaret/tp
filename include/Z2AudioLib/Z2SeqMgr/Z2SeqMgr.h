@@ -1,14 +1,14 @@
 #ifndef Z2SEQMGR_H_
 #define Z2SEQMGR_H_
 
-#include "global.h"
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
+#include "global.h"
 
-struct Z2SeqMgr{
+struct Z2SeqMgr {
     Z2SeqMgr(void);
-    void bgmStart(u32,u32,s32);
-    void bgmStop(u32,s32);
+    void bgmStart(u32, u32, s32);
+    void bgmStop(u32, s32);
     void subBgmStart(u32);
     void subBgmStop(void);
     void subBgmStopInner(void);
@@ -42,7 +42,7 @@ struct Z2SeqMgr{
     void setBattleLastHit(u8);
     void battleBgmFramework(void);
     void startBattleBgm(bool);
-    void stopBattleBgm(u8,u8);
+    void stopBattleBgm(u8, u8);
     void fieldBgmStart(void);
     void fieldRidingMute(void);
     void onFieldBgmJumpStart(void);
@@ -59,40 +59,40 @@ struct Z2SeqMgr{
     u8 unk_1;
 };
 
-extern "C"{
-    void Z2SeqMgr_NS_fieldBgmStart(void);
-    void JAIStreamMgr_NS_stop_X1_(void);
-    void JAISeqMgr_NS_stop_X1_(void);
-    void bgmStart__8Z2SeqMgrFUlUll(u32,u32,s32);
-    void bgmStop__8Z2SeqMgrFUll(u32, s32);
-    void JAISoundHandle_NS_releaseSound(void);
-    void Z2SeqMgr_NS_subBgmStop(void);
-    void subBgmStop__8Z2SeqMgrFv(void);
-    void subBgmStopInner__8Z2SeqMgrFv(void);
-    void JAISoundStatus__NS_lockWhenPrepared();
-    void bgmStreamPrepare__8Z2SeqMgrFUl(u32);
-    void JAISound_NS_stop_X1_(void);
-    void JAISoundStatus__NS_unlockIfLocked(void);
-    void bgmStreamPlay__8Z2SeqMgrFv(void);
-    void bgmStreamStop__8Z2SeqMgrFUl(u32);
-    void subBgmStart__8Z2SeqMgrFUl(u32);
-    void Z2SeqMgr_NS_setChildTrackVolume(void);
-    void changeBgmStatus__8Z2SeqMgrFl(s32);
-    void changeSubBgmStatus__8Z2SeqMgrFl(s32);
-    void JAISeqMgr_NS_mixOut(void);
-    void JAISeqMgr_NS_calc(void);
+extern "C" {
+void Z2SeqMgr_NS_fieldBgmStart(void);
+void JAIStreamMgr_NS_stop_X1_(void);
+void JAISeqMgr_NS_stop_X1_(void);
+void bgmStart__8Z2SeqMgrFUlUll(u32, u32, s32);
+void bgmStop__8Z2SeqMgrFUll(u32, s32);
+void JAISoundHandle_NS_releaseSound(void);
+void Z2SeqMgr_NS_subBgmStop(void);
+void subBgmStop__8Z2SeqMgrFv(void);
+void subBgmStopInner__8Z2SeqMgrFv(void);
+void JAISoundStatus__NS_lockWhenPrepared();
+void bgmStreamPrepare__8Z2SeqMgrFUl(u32);
+void JAISound_NS_stop_X1_(void);
+void JAISoundStatus__NS_unlockIfLocked(void);
+void bgmStreamPlay__8Z2SeqMgrFv(void);
+void bgmStreamStop__8Z2SeqMgrFUl(u32);
+void subBgmStart__8Z2SeqMgrFUl(u32);
+void Z2SeqMgr_NS_setChildTrackVolume(void);
+void changeBgmStatus__8Z2SeqMgrFl(s32);
+void changeSubBgmStatus__8Z2SeqMgrFl(s32);
+void JAISeqMgr_NS_mixOut(void);
+void JAISeqMgr_NS_calc(void);
 }
 
-extern u8 lbl_8039BA08[0x280]; // Z2AudioLib stringBase0
+extern u8 lbl_8039BA08[0x280];  // Z2AudioLib stringBase0
 extern u32 lbl_803C9DF8;
 extern u32 lbl_803CA08C;
 extern u32 lbl_803CA308;
 extern u32 lbl_80450860;
 extern u8 lbl_80450861;
 extern u8 lbl_80450862;
-extern float lbl_804507F4; // SONIC_SPEED
-extern float lbl_80450818; // VOL_BGM_TALKING
-extern float lbl_8045083C; // VOL_BGM_PAUSING
+extern float lbl_804507F4;  // SONIC_SPEED
+extern float lbl_80450818;  // VOL_BGM_TALKING
+extern float lbl_8045083C;  // VOL_BGM_PAUSING
 extern float lbl_80455998;
 extern float lbl_8045599C;
 extern float lbl_804559A0;
@@ -112,7 +112,6 @@ extern float lbl_804559DC;
 extern float lbl_804559E0;
 extern double lbl_804559E8;
 
-
-extern Z2SeqMgr* lbl_80450B84; // Z2SeqMgr sInstance
+extern Z2SeqMgr* lbl_80450B84;  // Z2SeqMgr sInstance
 
 #endif

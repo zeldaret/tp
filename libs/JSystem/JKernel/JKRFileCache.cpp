@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRFileCache/JKRFileCache.h"
+#include "dvd/dvd.h"
 #include "global.h"
 
 asm void JKRFileCache::mount(char const*, JKRHeap*, char const*) {

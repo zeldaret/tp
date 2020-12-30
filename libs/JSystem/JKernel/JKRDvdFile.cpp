@@ -8,7 +8,7 @@ JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
 #ifdef NONMATCHING
 JKRDvdFile::JKRDvdFile(char const* param_1) : JKRFile(), mDvdLink(this) {
     this->initiate();
-    bool result   = this->open(param_1);
+    bool result = this->open(param_1);
     this->mIsAvailable = result;
 }
 #else
@@ -21,7 +21,7 @@ asm JKRDvdFile::JKRDvdFile(char const*) {
 #ifdef NONMATHCING
 JKRDvdFile::JKRDvdFile(long param_1) : JKRFile(), mDvdLink(this) {
     this->initiate();
-    bool result   = this->open(param_1);
+    bool result = this->open(param_1);
     this->mIsAvailable = result;
 }
 #else
@@ -38,7 +38,7 @@ JKRDvdFile::~JKRDvdFile() {
 #else
 asm JKRDvdFile::~JKRDvdFile() {
     nofralloc
-    #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
+#include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
 }
 #endif
 
@@ -49,7 +49,7 @@ void JKRDvdFile::initiate(void) {
     OSInitMutex(&this->mMutex2);
     OSInitMessageQueue(&this->mQueue2, this->mMessages2, 1);
     OSInitMessageQueue(&this->mQueue1, this->mMessages1, 1);
-    this->mOSThread  = NULL;
+    this->mOSThread = NULL;
     this->field_0x50 = 0;
     this->field_0x58 = 0;
 }
@@ -86,9 +86,9 @@ void JKRDvdFile::close() {
             this->mIsAvailable = false;
             lbl_8043436C.remove(&this->mDvdLink);
         } else {
-            const char* filename = lbl_8039D260;        // "JKRDvdFile.cpp"
-            const char* format   = lbl_8039D260 + 0x0F; // "%s"
-            const char* arg1     = lbl_8039D260 + 0x12; // "cannot close DVD file\n"
+            const char* filename = lbl_8039D260;       // "JKRDvdFile.cpp"
+            const char* format = lbl_8039D260 + 0x0F;  // "%s"
+            const char* arg1 = lbl_8039D260 + 0x12;    // "cannot close DVD file\n"
             JUTException_NS_panic_f(filename, 0xd5, format, arg1);
         }
     }
@@ -109,8 +109,8 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     this->mOSThread = OSGetCurrentThread();
 
     s32 result = -1;
-    s32 readAsyncResult =
-        DVDReadAsyncPrio(this->mDvdCommandBlock, param_1, length, param_3, JKRDvdFile::doneProcess, 2);
+    s32 readAsyncResult = DVDReadAsyncPrio(this->mDvdCommandBlock, param_1, length, param_3,
+                                           JKRDvdFile::doneProcess, 2);
     if (readAsyncResult) {
         result = this->sync();
     }
@@ -147,4 +147,3 @@ void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
 s32 JKRDvdFile::getFileSize(void) const {
     return this->mFileSize;
 }
-

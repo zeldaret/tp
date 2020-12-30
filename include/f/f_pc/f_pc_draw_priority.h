@@ -8,10 +8,9 @@ struct draw_priority_class {
 
 extern "C" {
 
-int fpcDwPi_Get(draw_priority_class *pDwPi);
-void fpcDwPi_Set(draw_priority_class *pDwPi, int p);
-void fpcDwPi_Init(draw_priority_class *pDwPi, int p);
-
+int fpcDwPi_Get(draw_priority_class* pDwPi);
+void fpcDwPi_Set(draw_priority_class* pDwPi, int p);
+void fpcDwPi_Init(draw_priority_class* pDwPi, int p);
 };
 
 #endif

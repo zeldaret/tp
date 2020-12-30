@@ -4,21 +4,21 @@
 #include "dolphin/types.h"
 
 class dDlst_FileInfo_c {
-   public:
+public:
     void draw(void);
     ~dDlst_FileInfo_c();
 
-   private:
+private:
 };
 
 class dDlst_list_c {
-   public:
+public:
     static u32 mWipeColor;
     static u32 mWipeDlst;
     static u32 mWipeRate;
     static u32 mWipeSpeed;
 
-   private:
+private:
     u8 unk[0x161A0];
 };
 

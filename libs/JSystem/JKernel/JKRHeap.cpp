@@ -5,9 +5,9 @@
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&this->mMutex);
-    this->mSize  = size;
+    this->mSize = size;
     this->mStart = (u32)data;
-    this->mEnd   = (u32)data + size;
+    this->mEnd = (u32)data + size;
 
     if (parent == NULL) {
         this->becomeSystemHeap();
@@ -28,9 +28,9 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
         lbl_8045137C = JKRHeap::JKRDefaultMemoryErrorRoutine;
     }
 
-    this->mDebugFill         = lbl_804508B0;
+    this->mDebugFill = lbl_804508B0;
     this->mCheckMemoryFilled = lbl_80451380;
-    this->mInitFlag          = false;
+    this->mInitFlag = false;
 }
 
 // using the wrong register for storing the results
@@ -42,7 +42,7 @@ JKRHeap::~JKRHeap() {
 
     JSUTree<JKRHeap>* nextRootHeap = lbl_80451378->mChildTree.getFirstChild();
 
-    JKRHeap* rootHeap    = lbl_80451378;
+    JKRHeap* rootHeap = lbl_80451378;
     JKRHeap* currentHeap = lbl_80451374;
     if (currentHeap == this) {
         if (!nextRootHeap) {
@@ -76,13 +76,14 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     u32 ram_end;
     u32 ram;
 
-    u32 low  = OSGetArenaLo();
+    u32 low = OSGetArenaLo();
     u32 high = OSGetArenaHi();
-    if (low == high) return false;
+    if (low == high)
+        return false;
 
-    ram          = OSInitAlloc(low, high, param_3);
-    ram_start    = (ram + 0x1fU & 0xffffffe0);
-    ram_end      = (high & 0xffffffe0);
+    ram = OSInitAlloc(low, high, param_3);
+    ram_start = (ram + 0x1fU & 0xffffffe0);
+    ram_end = (high & 0xffffffe0);
     lbl_80451384 = OS_GLOBAL_ADDR(void, 0x80000000);
     lbl_80451388 = (void*)ram_start;
     lbl_8045138C = (void*)ram_start;
@@ -91,21 +92,21 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     OSSetArenaLo(ram_end);
     OSSetArenaHi(ram_end);
     *memory = (char*)ram_start;
-    *size   = ram_end - ram_start;
+    *size = ram_end - ram_start;
     return true;
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE428.s"
 JKRHeap* JKRHeap::becomeSystemHeap() {
     JKRHeap* prev = lbl_80451370;
-    lbl_80451370  = this;
+    lbl_80451370 = this;
     return prev;
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CE438.s"
 JKRHeap* JKRHeap::becomeCurrentHeap() {
     JKRHeap* prev = lbl_80451374;
-    lbl_80451374  = this;
+    lbl_80451374 = this;
     return prev;
 }
 
@@ -136,7 +137,8 @@ void* JKRHeap::alloc(u32 size, int alignment) {
 void JKRHeap::free(void* ptr, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
-        if (!heap) return;
+        if (!heap)
+            return;
     }
 
     heap->free(ptr);
@@ -166,7 +168,8 @@ void JKRHeap::freeTail() {
 s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
-        if (!heap) return -1;
+        if (!heap)
+            return -1;
     }
 
     return heap->resize(ptr, size);
@@ -181,7 +184,8 @@ s32 JKRHeap::resize(void* ptr, u32 size) {
 s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
-        if (!heap) return -1;
+        if (!heap)
+            return -1;
     }
 
     return heap->getSize(ptr);
@@ -216,10 +220,10 @@ u8 JKRHeap::changeGroupID(u8 param_1) {
 #ifdef NONMATCHING
 s32 JKRHeap::getMaxAllocatableSize(int alignment) {
     u32 maxFreeBlock = (u32)this->getMaxFreeBlock();
-    s32 freeSize     = this->getFreeSize();
+    s32 freeSize = this->getFreeSize();
 
-    u32 mask        = alignment - 1U;
-    s32 ptrOffset   = mask & (alignment - (maxFreeBlock & 0xf));
+    u32 mask = alignment - 1U;
+    s32 ptrOffset = mask & (alignment - (maxFreeBlock & 0xf));
     s32 alignedSize = (freeSize - ptrOffset) & ~(alignment - 1U);
     return alignedSize;
 }
@@ -250,7 +254,7 @@ JKRHeap* JKRHeap::find(void* ptr) const {
         if (tree.getNumChildren() != 0) {
             JSUTreeIterator<JKRHeap> iterator;
             for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
-                JKRHeap* child  = iterator.getObject();
+                JKRHeap* child = iterator.getObject();
                 JKRHeap* result = child->find(ptr);
                 if (result) {
                     return result;
@@ -268,10 +272,9 @@ JKRHeap* JKRHeap::find(void* ptr) const {
 JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
     const JSUTree<JKRHeap>& tree = this->mChildTree;
     if (tree.getNumChildren() != 0) {
-
         JSUTreeIterator<JKRHeap> iterator;
         for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
-            JKRHeap* child  = iterator.getObject();
+            JKRHeap* child = iterator.getObject();
             JKRHeap* result = child->findAllHeap(ptr);
             if (result) {
                 return result;
@@ -315,7 +318,7 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEA78.s"
 bool JKRHeap::dispose(void* ptr, u32 size) {
     u32 begin = (u32)ptr;
-    u32 end   = (u32)ptr + size;
+    u32 end = (u32)ptr + size;
     this->dispose_subroutine(begin, end);
     return false;
 }
@@ -360,15 +363,15 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEB40.s"
 void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment) {
-    const char* filename = lbl_8039CAD8;      // "JKRHeap.cpp"
-    const char* format   = lbl_8039CAD8 + 12; // "%s"
-    const char* arg1     = lbl_8039CAD8 + 15; // "abort\n"
+    const char* filename = lbl_8039CAD8;     // "JKRHeap.cpp"
+    const char* format = lbl_8039CAD8 + 12;  // "%s"
+    const char* arg1 = lbl_8039CAD8 + 15;    // "abort\n"
     JUTException_NS_panic_f(filename, 0x33f, format, arg1);
 }
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEB78.s"
 bool JKRHeap::setErrorFlag(bool error_flag) {
-    bool prev        = this->mErrorFlag;
+    bool prev = this->mErrorFlag;
     this->mErrorFlag = error_flag;
     return prev;
 }
@@ -387,7 +390,8 @@ JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler error_handler) {
 
 // #include "JSystem/JKernel/JKRHeap/asm/func_802CEBA8.s"
 bool JKRHeap::isSubHeap(JKRHeap* heap) const {
-    if (!heap) return false;
+    if (!heap)
+        return false;
 
     const JSUTree<JKRHeap>& tree = this->mChildTree;
     if (tree.getNumChildren() != 0) {

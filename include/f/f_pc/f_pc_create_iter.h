@@ -6,9 +6,8 @@
 
 extern "C" {
 
-int fpcCtIt_Method(cNdIt_MethodFunc pJudge, void *pUserData);
-void * fpcCtIt_Judge(cNdIt_JudgeFunc pJudge, void *pUserData);
-
+int fpcCtIt_Method(cNdIt_MethodFunc pJudge, void* pUserData);
+void* fpcCtIt_Judge(cNdIt_JudgeFunc pJudge, void* pUserData);
 };
 
 #endif

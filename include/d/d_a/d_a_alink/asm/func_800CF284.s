@@ -1,0 +1,5 @@
+/* 800CF284 000CC1C4  88 03 2F AA */ lbz r0, 0x2faa(r3)
+/* 800CF288 000CC1C8  20 00 00 01 */ subfic r0, r0, 1
+/* 800CF28C 000CC1CC  7C 00 00 34 */ cntlzw r0, r0
+/* 800CF290 000CC1D0  54 03 DE 3E */ rlwinm r3, r0, 0x1b, 0x18, 0x1f
+/* 800CF294 000CC1D4  4E 80 00 20 */ blr

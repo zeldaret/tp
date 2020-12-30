@@ -3,6 +3,8 @@
 .section .text, "ax" # 8033d6f4
 
 
+.global OSDisableInterrupts 
+OSDisableInterrupts:
 .global __RAS_OSDisableInterrupts_begin 
 __RAS_OSDisableInterrupts_begin :
 /* 8033D6F4 0033A634  7C 60 00 A6 */	mfmsr r3

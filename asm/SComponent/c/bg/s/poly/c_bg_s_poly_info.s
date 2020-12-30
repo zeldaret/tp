@@ -3,8 +3,8 @@
 .section .text, "ax" # 80268074
 
 
-.global cBgS_PolyInfo
-cBgS_PolyInfo:
+.global cBgS_PolyInfo_NS_ctor
+cBgS_PolyInfo_NS_ctor:
 /* 80268074 00264FB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80268078 00264FB8  7C 08 02 A6 */	mflr r0
 /* 8026807C 00264FBC  90 01 00 14 */	stw r0, 0x14(r1)

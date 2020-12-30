@@ -1,19 +1,19 @@
 #ifndef __JKRDVDARAMRIPPER_H__
 #define __JKRDVDARAMRIPPER_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"
+#include "dolphin/types.h"
 
 class JKRADCommand {
-  public:
+public:
     JKRADCommand();
     ~JKRADCommand();
 };
 
 class JKRDvdFile;
 class JKRDvdAramRipper {
-  public:
+public:
     static void loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*);
     static void loadToAram(JKRDvdFile*, u32, JKRExpandSwitch, u32, u32, u32*);
     static void loadToAram_Async(JKRDvdFile*, u32, JKRExpandSwitch, void (*)(u32), u32, u32, u32*);

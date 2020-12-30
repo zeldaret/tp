@@ -1,15 +1,15 @@
 #ifndef __JKRTHREAD_H__
 #define __JKRTHREAD_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
+#include "dolphin/types.h"
 #include "global.h"
 
 class JKRThreadName_;
 class JUTConsole;
 class JKRHeap;
 class JKRThread : JKRDisposer {
-  public:
+public:
     JKRThread(u32 stack_size, int message_count, int param_3);
     JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4);
     JKRThread(OSThread* thread, int message_count);
@@ -20,11 +20,9 @@ class JKRThread : JKRDisposer {
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
 
-    OSThread* getThreadRecord() {
-        return this->mOSThread;
-    }
+    OSThread* getThreadRecord() { return this->mOSThread; }
 
-  private:
+private:
     JSULink<JKRThread> mThreadListLink;
     JKRHeap* mHeap;
     OSThread* mOSThread;
@@ -42,16 +40,14 @@ class JKRThread : JKRDisposer {
     JKRHeap* field_0x74;
     JKRHeap* field_0x78;
 
-  public:
+public:
     static void* start(void* param_1);
     static JKRThread* searchThread(OSThread* thread);
-    static JSUList<JKRThread>* getList() {
-        return &lbl_8043428C;
-    }
+    static JSUList<JKRThread>* getList() { return &lbl_8043428C; }
 };
 
 class JKRThreadSwitch {
-  public:
+public:
     JKRThreadSwitch(JKRHeap*);
     virtual ~JKRThreadSwitch();
 
@@ -62,7 +58,7 @@ class JKRThreadSwitch {
     void draw(JKRThreadName_* param_1, JUTConsole* param_2);
     void draw(JKRThreadName_* param_1);
 
-  public:
+public:
     JKRHeap* heap;
     u8 field_0x8[4];
     u32 field_0xC[2];

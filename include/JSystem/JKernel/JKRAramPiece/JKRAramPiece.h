@@ -4,14 +4,14 @@
 #include "dolphin/types.h"
 
 class JKRAMCommand {
-  public:
+public:
     JKRAMCommand(void);
     ~JKRAMCommand();
 };
 
 class JKRAramBlock;
 class JKRAramPiece {
-  public:
+public:
     static void prepareCommand(int, u32, u32, u32, JKRAramBlock*, void (*)(u32));
     static void sendCommand(JKRAMCommand*);
 

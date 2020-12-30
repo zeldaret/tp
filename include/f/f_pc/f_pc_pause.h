@@ -6,11 +6,10 @@
 
 extern "C" {
 
-bool fpcPause_IsEnable(void *pProcess, u8 flag);
-int fpcPause_Enable(void *pProcess, u8 flag);
-int fpcPause_Disable(void *pProcess, u32 flag);
-void fpcPause_Init(void *pProcess);
-
+bool fpcPause_IsEnable(void* pProcess, u8 flag);
+int fpcPause_Enable(void* pProcess, u8 flag);
+int fpcPause_Disable(void* pProcess, u32 flag);
+void fpcPause_Init(void* pProcess);
 };
 
 #endif
