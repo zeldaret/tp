@@ -143,11 +143,9 @@ extern PADStatus lbl_804343F0[4];            // JUTGamePad::mPadStatus
 extern JUTGamePad::CButton lbl_80434420[4];  // JUTGamePad::mPadButton
 extern bool lbl_80451501;
 extern bool lbl_80451500;
-extern s32 lbl_80451504;                  // JUTGamePad::C3ButtonReset::sResetOccurredPort
-extern void (*lbl_804514EC)(s32, void*);  // JUTGamePad::C3ButtonReset::sCallback
-extern void* lbl_804514F0;                // JUTGamePad::C3ButtonReset::sCallbackArg
-extern OSTime lbl_804514F8;               // JUTGamePad::C3ButtonReset::sThreshold
-extern u32 lbl_804514D8;                  // JUTGamePad::sSuppressPadReset
-extern PADMask lbl_803CC600[4];           // JUtility::channel_mask
+extern s32 lbl_80451504;         // JUTGamePad::C3ButtonReset::sResetOccurredPort
+extern OSTime lbl_804514F8;      // JUTGamePad::C3ButtonReset::sThreshold
+extern u32 lbl_804514D8;         // JUTGamePad::sSuppressPadReset
+extern PADMask lbl_803CC600[4];  // JUtility::channel_mask
 
 #endif
