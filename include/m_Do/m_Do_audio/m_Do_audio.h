@@ -1,3 +1,5 @@
+#ifndef __M_DO_AUDIO_H_
+#define __M_DO_AUDIO_H_
 #include "global.h"
 
 class mDoAud_zelAudio_c{
