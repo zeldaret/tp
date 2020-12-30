@@ -17,7 +17,7 @@ struct base_process_class {
     u32 mBsPcId;
     s16 mProcName;
     u8 mUnk0;
-    u8 mUnk1;
+    u8 mPauseFlag;
     s8 mInitState;
     u8 mUnk2;
     s16 mBsTypeId;

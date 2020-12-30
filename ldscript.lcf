@@ -764,6 +764,10 @@ FORCEACTIVE {
  mDoAud_resetRecover__Fv
  resetProcess__10Z2AudioMgrFUlb
  mDoAud_resetProcess__Fv
+ checkStateCarry__7dBomb_cFv
+ checkFlowerBombWait__7dBomb_cFP10fopAc_ac_c
+ checkWaterBomb__7dBomb_cFP10fopAc_ac_c
+ checkInsectBombMove__7dBomb_cFP10fopAc_ac_c
  set__17dSv_horse_place_cFPCcRC4cXyzsSc
  setLightDropNum__16dSv_light_drop_cFUcUc
  addFishCount__18dSv_fishing_info_cFUc

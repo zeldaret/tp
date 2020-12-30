@@ -411,11 +411,9 @@ extern "C" {
 //Z2SoundMgr
 extern "C"{
     void resetFilterAll__10Z2SoundMgrFv(void);
-    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void Z2SeqMgr_NS_setBattleBgmOff(void);
     void setSceneExist__10Z2SceneMgrFb(void);
-    void Z2StatusMgr_NS_menuOut(void);
     void func_803621F4(void);
     void Z2SceneMgr_NS_sceneChange(void);
     void __ct__10JAISoundIDFRC10JAISoundID(void);
@@ -430,18 +428,13 @@ extern "C"{
     void JSUList_X1_(void);
     void dComIfGs_isStageSwitch(void);
     void dComIfGs_getStartPoint(void);
-    void Z2StatusMgr_NS_checkDayTime(void);
-    void Z2SeqMgr_NS_bgmStop(void);
     void isSwitch__10dSv_info_cCFii(void);
     void Z2SoundObjMgr_NS_setForceBattleArea(void);
     void Z2SeqMgr_NS_unMuteSceneBgm(void);
     void Z2SeqMgr_NS_muteSceneBgm(void);
     void dComIfGs_isEventBit(void);
-    void Z2SeqMgr_NS_changeBgmStatus(void);
     void JAISoundID_NS___as(void);
     void dComIfGs_isSaveSwitch(void);
-    void Z2StatusMgr_NS_setDemoName(void);
-    void Z2SeMgr_NS_resetModY(void);
     void Z2SoundObjMgr_NS_setGhostEnemyState(void);
     void Z2SeMgr_NS_resetCrowdSize(void);
     void Z2SeqMgr_NS_setTwilightGateVol(void);
@@ -450,7 +443,6 @@ extern "C"{
     void JAISoundID_X1_(void);
     void func_803621A8(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
-    void seMoveVolumeAll__7Z2SeMgrFfUl(void);
 }
 // Z2LinkMgr
 extern "C" {
@@ -468,12 +460,10 @@ extern "C" {
     void PSVECSquareDistance(void);
     void moveVolume__18JAISoundParamsMoveFfUl(void);
     void Z2CreatureLink_NS_startLinkSoundLevel(void);
-    void Z2SeMgr_NS_seStartLevel(void);
     void Z2Creature_NS_framework(void);
     void Z2Audience_NS_setTargetVolume(void);
     void Z2SoundObjMgr_NS_setGhostEnemyState(void);
     void Z2FxLineMgr_NS_setFxForceOff(void);
-    void Z2SeMgr_NS_seStart(void);
     void JAISoundParamsMove_NS_movePitch(void);
     void Z2Calc_NS_linearTransform(void);
     void JAISound_NS_stop(void);

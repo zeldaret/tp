@@ -1,23 +1,12 @@
 #include "global.h"
+#include "JSystem/JAudio2/JAISe/JAISe.h"
+#include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
 
-struct Vec{ // move later
-    float x, y, z;
-};
-
-struct JAISoundID{ // move later
-    u32 value;
-};
-
-class Z2SoundObjBase{
+struct Z2SoundObjBase{
 
 };
 
-class JAISoundHandle{
-
-};
-
-class Z2CreatureLink {
-    public:
+struct Z2CreatureLink {
      void setLinkState(u8);
      void setLinkGroupInfo(u8);
      void setLinkHp(s32, s32);
@@ -45,7 +34,6 @@ class Z2CreatureLink {
      int startHitItemSE(u32, u32, Z2SoundObjBase*, float);
      void setResumeAttack(bool);
 
-    private:
      u8 unk0[179];
      u8 unk179;
      float unk180;
@@ -66,8 +54,7 @@ class Z2CreatureLink {
      u8 unk204;
 };
 
-class Z2LinkSoundStarter{
-   public:
+struct Z2LinkSoundStarter{
     Z2LinkSoundStarter(void);
     ~Z2LinkSoundStarter();
     //u32 startSound(JAISoundID, JAISoundHandle, TVec3<float>*, u32, float, float, float, float, float, u32);
