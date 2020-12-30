@@ -18,7 +18,7 @@ void* fpcCtIt_Judge(cNdIt_JudgeFunc pJudge, void* pUserData) {
 }
 asm void* fpcCtIt_filter_JudgeInLayer(create_tag*, fpcCtIt_jilprm_c*) {
     nofralloc
-#include "asm/80020A40.s"
+#include "f/f_pc/asm/80020A40.s"
 }
 void* fpcCtIt_JudgeInLayer(u32 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
     fpcCtIt_jilprm_c data;
