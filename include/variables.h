@@ -375,6 +375,30 @@ extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
 extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
 
+//// JUTGamePad:
+// func_802E06DC
+extern u8 lbl_803CC610;
+// func_802E08E4
+extern u8 lbl_804343D8;
+extern u8 lbl_804508DC;
+extern u8 lbl_804508D8;
+// func_802E0CD8
+extern u8 lbl_804508E8;
+extern u8 lbl_804508EC;
+extern u8 lbl_8043456C;
+// func_802E108C
+extern u8 lbl_80456020;
+extern u8 lbl_80456018;
+// func_802E1238
+extern u8 lbl_80456030;
+extern u8 lbl_80456038;
+extern u8 lbl_80456040;
+extern u8 lbl_80456048;
+extern u8 lbl_8045604C;
+// func_802E1500
+extern u8 lbl_804508E4;
+extern u8 lbl_804508E0;
+
 extern double lbl_803DD2F0;
 extern f32 lbl_80451180;
 
@@ -402,8 +426,8 @@ extern char lbl_80374198[16];
 // func_8001574C
 extern bool lbl_80451501;
 
-extern void* lbl_804514EC;  // JUTGamePad::C3ButtonReset::sCallback
-extern u32 lbl_804514F0;    // JUTGamePad::C3ButtonReset::sCallbackArg
+extern void (*lbl_804514EC)(int, void*);  // JUTGamePad::C3ButtonReset::sCallback
+extern void* lbl_804514F0;                // JUTGamePad::C3ButtonReset::sCallbackArg
 extern u32 lbl_803ECF00;
 
 // additional symbols needed for d_alink.cpp

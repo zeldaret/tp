@@ -72,7 +72,7 @@ private:
 };
 
 template <typename T>
-class JSUList : protected JSUPtrList {
+class JSUList : public JSUPtrList {
 public:
     JSUList() : JSUPtrList() {}
 
