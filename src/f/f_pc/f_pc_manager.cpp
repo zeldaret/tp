@@ -89,9 +89,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
             Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
-            lbl_803DD2D8[0]->rumble.stopPatternedRumble(lbl_803DD2D8[0]->pad_port);
-            // JUTGamePad_NS_CRumble_NS_stopPatternedRumble(&lbl_803DD2D8[0]->rumble,
-            //                                              lbl_803DD2D8[0]->pad_port);
+            lbl_803DD2D8[0]->stopPatternedRumble();
             lbl_80450D38 = 1;
         }
     }
