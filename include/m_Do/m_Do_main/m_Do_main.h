@@ -18,5 +18,4 @@ class HeapCheck {
      u32 heap_size;
      u32 used_count;
      u32 total_used_size;
-     
 };

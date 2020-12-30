@@ -6,8 +6,8 @@
 /* 802AB660 002A85A0  93 ED 86 08 */	stw r31, lbl_80450B88-_SDA_BASE_(r13)
 /* 802AB664 002A85A4  3C 80 80 2A */	lis r4, JAISoundHandle@ha
 /* 802AB668 002A85A8  38 84 4A C4 */	addi r4, r4, JAISoundHandle@l
-/* 802AB66C 002A85AC  3C A0 80 00 */	lis r5, JAISoundHandle_NS_dtor@ha
-/* 802AB670 002A85B0  38 A5 78 38 */	addi r5, r5, JAISoundHandle_NS_dtor@l
+/* 802AB66C 002A85AC  3C A0 80 00 */	lis r5, __dt__14JAISoundHandleFv@ha
+/* 802AB670 002A85B0  38 A5 78 38 */	addi r5, r5, __dt__14JAISoundHandleFv@l
 /* 802AB674 002A85B4  38 C0 00 04 */	li r6, 4
 /* 802AB678 002A85B8  38 E0 00 18 */	li r7, 0x18
 /* 802AB67C 002A85BC  48 0B 66 E5 */	bl func_80361D60
@@ -17,16 +17,16 @@
 /* 802AB68C 002A85CC  38 7F 00 68 */	addi r3, r31, 0x68
 /* 802AB690 002A85D0  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha
 /* 802AB694 002A85D4  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l
-/* 802AB698 002A85D8  3C A0 80 00 */	lis r5, Z2MultiSeObj_NS_dtor@ha
-/* 802AB69C 002A85DC  38 A5 78 88 */	addi r5, r5, Z2MultiSeObj_NS_dtor@l
+/* 802AB698 002A85D8  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha
+/* 802AB69C 002A85DC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
 /* 802AB6A0 002A85E0  38 C0 00 24 */	li r6, 0x24
 /* 802AB6A4 002A85E4  38 E0 00 0A */	li r7, 0xa
 /* 802AB6A8 002A85E8  48 0B 66 B9 */	bl func_80361D60
 /* 802AB6AC 002A85EC  38 7F 01 D4 */	addi r3, r31, 0x1d4
 /* 802AB6B0 002A85F0  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha
 /* 802AB6B4 002A85F4  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l
-/* 802AB6B8 002A85F8  3C A0 80 00 */	lis r5, Z2MultiSeObj_NS_dtor@ha
-/* 802AB6BC 002A85FC  38 A5 78 88 */	addi r5, r5, Z2MultiSeObj_NS_dtor@l
+/* 802AB6B8 002A85F8  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha
+/* 802AB6BC 002A85FC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
 /* 802AB6C0 002A8600  38 C0 00 24 */	li r6, 0x24
 /* 802AB6C4 002A8604  38 E0 00 0A */	li r7, 0xa
 /* 802AB6C8 002A8608  48 0B 66 99 */	bl func_80361D60

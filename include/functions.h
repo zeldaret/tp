@@ -1,12 +1,10 @@
 extern "C" { 
-    void Z2MultiSeObj_NS_dtor(void);
+    void __dt__12Z2MultiSeMgrFv(void);
     void Z2MultiSeMgr_NS_dtor(void);
     void __dt__16JAISeCategoryMgrFv(void);
     void __dt__14JAISoundHandleFv(void);
     void __dt__12Z2MultiSeObjFv(void);
     void JAISeCategoryMgr_NS_dtor(void);
-    void Z2MultiSeObj_NS_dtor(void);
-    void JAISoundHandle_NS_dtor(void);
     void JASAudioReseter_NS_dtor(void);
     void func_80361CE8(void);
     void JAISeqDataUser_NS_dtor(void);
@@ -25,7 +23,6 @@ extern "C" {
     void gframeProcess__10Z2AudioMgrFv(void);
     void mDoAud_Create__Fv(void);
     void reset__17mDoAud_zelAudio_cFv(void);
-    void Z2StatusMgr_NS_setEventBit(void);
     void Z2AudioMgr_NS_init(void);
     void mDoDvdThd_mountXArchive_c_NS_create(void);
     void mDoDvdThd_toMainRam_c_NS_create(void);

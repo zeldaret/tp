@@ -1,11 +1,11 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "JSystem/JAudio2/JAISoundHandle.h"
 
 void mDoAud_zelAudio_c::reset(void){
     lbl_80450BBA = 0;
 }
-
 
 asm void mDoAud_Create(void){
     nofralloc

@@ -2,6 +2,8 @@
 #define __Z2_AUDIO_MGR_H_
 #include "global.h"
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
+#include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 
 struct Z2AudioMgr{
     void gframeProcess(void);
@@ -15,3 +17,5 @@ struct Z2AudioMgr{
     Z2SceneMgr sceneMgr;
     u8 p2[0xdad];
 };
+
+#endif

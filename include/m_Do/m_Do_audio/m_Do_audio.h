@@ -23,16 +23,6 @@ struct mResetData {
     u8 unk_11;
 };
 
-class JAISoundHandle{
-public:
-    ~JAISoundHandle();
-};
-
-class Z2MultiSeObj{
-public:
-    ~Z2MultiSeObj();
-};
-
 class JAISeCategoryMgr{
 public:
     ~JAISeCategoryMgr();
@@ -54,3 +44,5 @@ void mDoAud_resetProcess(void);
 bool mDoAud_resetRecover(void);
 
 void init(void);
+
+#endif
