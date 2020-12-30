@@ -1,3 +1,5 @@
+#ifndef __Z2_AUDIO_MGR_H_
+#define __Z2_AUDIO_MGR_H_
 #include "global.h"
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 
