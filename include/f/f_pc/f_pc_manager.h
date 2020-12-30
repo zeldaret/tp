@@ -8,7 +8,7 @@
 #include "f/f_pc/f_pc_node_req.h"
 #include "global.h"
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 typedef s32 (*FastCreateReqFunc)(void*);
 
@@ -26,6 +26,6 @@ void fpcM_PauseEnable(void* pProc, u8 param_2);
 void fpcM_PauseDisable(void* pProc, u8 param_2);
 void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
 
-END_C_DECLARATIONS
+};
 
 #endif

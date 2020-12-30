@@ -17,9 +17,7 @@ typedef struct request_of_phase_process_class {
     int mPhaseStep;
 } request_of_phase_process_class;
 
-#ifdef __cplusplus
 extern "C" {
-#endif
 
 void cPhs_Reset(request_of_phase_process_class* pPhase);
 void cPhs_Set(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable);
@@ -29,9 +27,6 @@ int cPhs_Next(request_of_phase_process_class* pPhase);
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData);
 int cPhs_Handler(request_of_phase_process_class* pPhase, cPhs__Handler* pHandlerTable,
                  void* pUserData);
-
-#ifdef __cplusplus
 };
-#endif
 
 #endif

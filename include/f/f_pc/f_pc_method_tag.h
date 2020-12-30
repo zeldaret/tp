@@ -13,13 +13,13 @@ typedef struct process_method_tag_class {
     void* mpMthdData;
 } process_method_tag_class;
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 s32 fpcMtdTg_Do(process_method_tag_class* pMthd);
 s32 fpcMtdTg_ToMethodQ(node_list_class* pList, process_method_tag_class* pMthd);
 void fpcMtdTg_MethodQTo(process_method_tag_class* pMthd);
 s32 fpcMtdTg_Init(process_method_tag_class* pMthd, process_method_tag_func pFunc, void* pMthdData);
 
-END_C_DECLARATIONS
+};
 
 #endif

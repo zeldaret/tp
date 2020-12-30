@@ -4,10 +4,10 @@
 
 #include "SComponent/c_node_iter.h"
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 void fpcLnIt_Queue(cNdIt_MethodFunc pFunc);
 
-END_C_DECLARATIONS
+};
 
 #endif

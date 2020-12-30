@@ -19,10 +19,10 @@ typedef struct process_profile_definition {
     s32 mParameters;
 } process_profile_definition;
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 process_profile_definition* fpcPf_Get(s16 profileID);
 
-END_C_DECLARATIONS
+};
 
 #endif

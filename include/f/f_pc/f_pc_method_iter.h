@@ -5,10 +5,10 @@
 #include "SComponent/c_list_iter.h"
 #include "global.h"
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 void fpcMtdIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod);
 
-END_C_DECLARATIONS
+};
 
 #endif

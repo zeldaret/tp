@@ -35,7 +35,7 @@ typedef struct base_process_class {
     u32 mSubType;
 } base_process_class;
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2);
 s32 fpcBs_MakeOfType(s32* pType);
@@ -47,6 +47,6 @@ s32 fpcBs_Delete(base_process_class* pProc);
 base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData);
 s32 fpcBs_SubCreate(base_process_class* pProc);
 
-END_C_DECLARATIONS
+};
 
 #endif

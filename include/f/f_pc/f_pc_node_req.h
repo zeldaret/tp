@@ -41,7 +41,7 @@ typedef struct request_node_class {
     node_create_request* mNodeCrReq;
 } request_node_class;
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq);
 void fpcNdRq_ToRequestQ(node_create_request* pNodeCreateReq);
@@ -68,6 +68,6 @@ fpcNdRq_Request(u32 param_1, s32 param_2, struct process_node_class* param_3, s1
 s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void* param_3);
 s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void* param_3);
 
-END_C_DECLARATIONS
+};
 
 #endif

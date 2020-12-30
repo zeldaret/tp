@@ -28,7 +28,7 @@ typedef struct leaf_process_profile_definition {
     s32 unk24;
 } leaf_process_profile_definition;
 
-BEGIN_C_DECLARATIONS
+extern "C" {
 
 s32 fpcLf_GetPriority(leafdraw_class* pLeaf);
 s32 fpcLf_DrawMethod(leafdraw_method_class* pMthd, void* pUserData);
@@ -38,6 +38,6 @@ s32 fpcLf_IsDelete(leafdraw_class* pLeaf);
 s32 fpcLf_Delete(leafdraw_class* pLeaf);
 s32 fpcLf_Create(leafdraw_class* pLeaf);
 
-END_C_DECLARATIONS
+};
 
 #endif
