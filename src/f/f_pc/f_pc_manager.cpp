@@ -17,12 +17,11 @@
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
 #include "d/d_lib/d_lib.h"
-#include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "global.h"
 
 extern "C" {
 
-extern JUTGamePad *lbl_803DD2D8[4];
 extern u8 lbl_80450D38;
 extern s8 lbl_80450D39;
 extern u8 lbl_80450EC4;

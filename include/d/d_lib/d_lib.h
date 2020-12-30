@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
+#include "SComponent/c_xyz.h"
 #include "global.h"
 
 struct STControl_vtable {

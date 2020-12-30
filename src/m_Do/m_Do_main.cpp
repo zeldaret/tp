@@ -3,6 +3,7 @@
 #include "dvd/dvd.h"
 #include "global.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 void version_check(void) {
     if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) &&

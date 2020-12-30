@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 #include "global.h"
+#include "SComponent/c_xyz.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 3
@@ -373,12 +374,6 @@ private:
     u16 unk16;
     u8 unk18[3];
     u8 padding[3];
-};
-
-// move to SComponent later
-class cXyz {
-public:
-    float x, y, z;
 };
 
 class dSv_horse_place_c {
