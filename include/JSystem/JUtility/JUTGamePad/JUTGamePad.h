@@ -1,12 +1,11 @@
 #ifndef __JSYSTEM_JUTILITY_JUTGAMEPAD__
 #define __JSYSTEM_JUTILITY_JUTGAMEPAD__
 
+#include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
+#include "JSystem/JSupport/JSUList/JSUList.h"
 #include "dolphin/types.h"
 #include "os/OS.h"
 #include "pad/pad.h"
-#include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
-#include "JSystem/JSupport/JSUList/JSUList.h"
-
 
 typedef u32 EPadPort;
 typedef u32 EStickMode;
@@ -22,7 +21,7 @@ public:
     void clear();
     void read();
     void assign();
-    void checkResetCallback(OSTime unk); // todo: weird arg
+    void checkResetCallback(OSTime unk);  // todo: weird arg
     void update();
     static void checkResetSwitch();
     static void clearForReset();
@@ -32,7 +31,7 @@ public:
     struct CButton {
         CButton();
         void clear();
-        u32 update(PADStatus const *, u32 unk);
+        u32 update(PADStatus const*, u32 unk);
         void setRepeat(u32 unk0, u32 unk1, u32 unk2);
 
         u32 button_flags;
@@ -71,7 +70,7 @@ public:
     };
 
     struct CRumble {
-        typedef s32 ERumble; // should probably be an enum
+        typedef s32 ERumble;  // should probably be an enum
 
         void clear();
         void clear(JUTGamePad* pad);
@@ -115,14 +114,14 @@ struct JUTGamePadLongPress {
     void checkCallback(s32 unk0, u32 unk2);
 
     u8 unk0[17];
-    bool field_0x11; // bool?
+    bool field_0x11;  // bool?
     u8 unk1[10];
     u32 field_0x1c;
     u8 unk2[28];
     u8 field_0x3c;
     u8 unk3[11];
-    bool field_0x48[4]; // bool[4]?
-    void (*callback)(s32, JUTGamePadLongPress *, s32);
+    bool field_0x48[4];  // bool[4]?
+    void (*callback)(s32, JUTGamePadLongPress*, s32);
     s32 field_0x50;
 };
 
@@ -131,24 +130,24 @@ extern "C" {
 bool getNumBit(u8* unk0, u32 unk1);
 }
 
-extern float lbl_80456028; // JUTGamePad::CStick::clear() init to 0.0
-extern bool lbl_804514E4[4]; // JUTGamePad::CRumble::mStatus (static?)
-extern PADMask lbl_804514E8; // JUTGamePad::CRumble::mEnabled (static?)
-extern PADMask lbl_803CC5F0[4]; // JUTGamePad::CRumble::sChannelMask
-extern s32 lbl_804514DC; // JUTGamePad::sAnalogMode
-extern bool lbl_804514D0; // JUTGamePad::mIsPadListInitialized
-extern JSUList<JUTGamePad> lbl_804343E4; // JUTGamePad::mPadList
+extern float lbl_80456028;                // JUTGamePad::CStick::clear() init to 0.0
+extern bool lbl_804514E4[4];              // JUTGamePad::CRumble::mStatus (static?)
+extern PADMask lbl_804514E8;              // JUTGamePad::CRumble::mEnabled (static?)
+extern PADMask lbl_803CC5F0[4];           // JUTGamePad::CRumble::sChannelMask
+extern s32 lbl_804514DC;                  // JUTGamePad::sAnalogMode
+extern bool lbl_804514D0;                 // JUTGamePad::mIsPadListInitialized
+extern JSUList<JUTGamePad> lbl_804343E4;  // JUTGamePad::mPadList
 // extern JSUPtrList lbl_804343E4; // JUTGamePad::mPadList
-extern u8 lbl_804514D4[4]; // JUTGamePad::mPadAssign
-extern PADStatus lbl_804343F0[4]; // JUTGamePad::mPadStatus
-extern JUTGamePad::CButton lbl_80434420[4]; // JUTGamePad::mPadButton
+extern u8 lbl_804514D4[4];                   // JUTGamePad::mPadAssign
+extern PADStatus lbl_804343F0[4];            // JUTGamePad::mPadStatus
+extern JUTGamePad::CButton lbl_80434420[4];  // JUTGamePad::mPadButton
 extern bool lbl_80451501;
 extern bool lbl_80451500;
-extern s32 lbl_80451504; // JUTGamePad::C3ButtonReset::sResetOccurredPort
-extern void (*lbl_804514EC)(s32, void*); // JUTGamePad::C3ButtonReset::sCallback
-extern void* lbl_804514F0; // JUTGamePad::C3ButtonReset::sCallbackArg
-extern OSTime lbl_804514F8; // JUTGamePad::C3ButtonReset::sThreshold
-extern u32 lbl_804514D8; // JUTGamePad::sSuppressPadReset
-extern PADMask lbl_803CC600[4]; // JUtility::channel_mask
+extern s32 lbl_80451504;                  // JUTGamePad::C3ButtonReset::sResetOccurredPort
+extern void (*lbl_804514EC)(s32, void*);  // JUTGamePad::C3ButtonReset::sCallback
+extern void* lbl_804514F0;                // JUTGamePad::C3ButtonReset::sCallbackArg
+extern OSTime lbl_804514F8;               // JUTGamePad::C3ButtonReset::sThreshold
+extern u32 lbl_804514D8;                  // JUTGamePad::sSuppressPadReset
+extern PADMask lbl_803CC600[4];           // JUtility::channel_mask
 
 #endif

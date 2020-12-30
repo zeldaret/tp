@@ -1,6 +1,24 @@
 #include "os/OS.h"
 
 extern "C" {
+u32 OSGetResetSwitchState(void);
+void getButton__Q210JUTGamePad6CStickFUl(void);
+void checkResetSwitch__10JUTGamePadFv(void);
+void func_8036C720(void);
+void startMotor__Q210JUTGamePad7CRumbleFi(void);
+void clear__10JUTGamePadFv(void);
+void update__10JUTGamePadFv(void);
+void initList__10JUTGamePadFv(void);
+void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void);
+void stopMotor__Q210JUTGamePad7CRumbleFib(void);
+void clear__Q210JUTGamePad6CStickFv(void);
+void clear__Q210JUTGamePad7CButtonFv(void);
+void assign__10JUTGamePadFv(void);
+void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
+void update__Q210JUTGamePad6CStickFScScUlUlUl(void);
+void update__Q210JUTGamePad7CRumbleFs(void);
+void checkCallback__19JUTGamePadLongPressFlUl(void);
+void checkResetCallback__10JUTGamePadFx(void);
 void searchMapEventData__14dEvt_control_cFUc(void);
 void PSMTXMultVec(void);
 void mDoMtx_YrotS(void);

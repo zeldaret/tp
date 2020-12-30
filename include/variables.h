@@ -426,8 +426,8 @@ extern char lbl_80374198[16];
 // func_8001574C
 extern bool lbl_80451501;
 
-extern void* lbl_804514EC;  // JUTGamePad::C3ButtonReset::sCallback
-extern u32 lbl_804514F0;    // JUTGamePad::C3ButtonReset::sCallbackArg
+// extern void* lbl_804514EC;  // JUTGamePad::C3ButtonReset::sCallback
+// extern u32 lbl_804514F0;    // JUTGamePad::C3ButtonReset::sCallbackArg
 extern u32 lbl_803ECF00;
 
 // additional symbols needed for d_alink.cpp

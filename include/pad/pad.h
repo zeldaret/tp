@@ -1,7 +1,6 @@
 #ifndef __PAD_H__
 #define __PAD_H__
 
-
 typedef enum PADMask {
     PAD_CHAN3_BIT = (1 << 28),
     PAD_CHAN2_BIT = (1 << 29),
@@ -25,15 +24,15 @@ typedef struct PADStatus {
 } PADStatus;
 
 extern "C" {
-    u32 PADInit(void);
-    void PADSetAnalogMode(u32 mode);
-    void PADSetSpec(int spec);
-    s32 PADReset(PADMask mask);
-    void PADClampCircle(PADStatus* status);
-    void PADClamp(PADStatus* status);
-    u32 PADRead(PADStatus* status);
-    void PADControlMotor(s32 channel, u32 command);
-    s32 PADRecalibrate(PADMask mask);
+u32 PADInit(void);
+void PADSetAnalogMode(u32 mode);
+void PADSetSpec(int spec);
+s32 PADReset(PADMask mask);
+void PADClampCircle(PADStatus* status);
+void PADClamp(PADStatus* status);
+u32 PADRead(PADStatus* status);
+void PADControlMotor(s32 channel, u32 command);
+s32 PADRecalibrate(PADMask mask);
 }
 
 #endif
