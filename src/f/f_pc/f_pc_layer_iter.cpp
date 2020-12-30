@@ -2,6 +2,8 @@
 #include "SComponent/c_tag_iter.h"
 #include "SComponent/c_tree_iter.h"
 
+extern "C" {
+
 s32 fpcLyIt_OnlyHere(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData) {
     layer_iter lIter;
     lIter.mpFunc = pFunc;
@@ -41,4 +43,6 @@ void* fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void* pUserData) {
         current = (layer_class*)current->mNode.mpNextNode;
     }
     return NULL;
+}
+
 }

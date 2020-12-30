@@ -7,6 +7,8 @@ extern s32 lbl_80450D40;
 // f_pc_node::g_fpcNd_IsCheckOfDeleteTiming
 extern s32 lbl_804505E0;
 
+extern "C" {
+
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData) {
     return fpcMtd_Method(pNodeMethod->mNodedrawFunc, pData);
 }
@@ -88,4 +90,6 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
     uVar3 = fpcMtd_Create(&pProcNode->mpNodeMtd->mBase, pProcNode);
     fpcLy_SetCurrentLayer(uVar2);
     return uVar3;
+}
+
 }

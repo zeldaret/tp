@@ -4,6 +4,8 @@
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_req.h"
 
+extern "C" {
+
 BOOL fpcCt_IsCreatingByID(u32 id) {
     return fpcCtRq_IsCreatingByID(id);
 }
@@ -18,4 +20,6 @@ BOOL fpcCt_Abort(base_process_class* pProc) {
 
 void fpcCt_Handler(void) {
     fpcCtRq_Handler();
+}
+
 }

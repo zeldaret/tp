@@ -4,6 +4,8 @@
 // f_pc_fstcreate_req::submethod$2214
 extern create_request_method_class lbl_803A3AE0;
 
+extern "C" {
+
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
 void fpcLd_Free(s16 procName);
@@ -49,4 +51,6 @@ base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
         }
         return NULL;
     }
+}
+
 }

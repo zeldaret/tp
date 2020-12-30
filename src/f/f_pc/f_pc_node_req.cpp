@@ -21,6 +21,8 @@ extern cPhs__Handler lbl_803A3AD0[4];
 extern s32 lbl_80450D48;
 extern s8 lbl_80450D4C;
 
+extern "C" {
+
 extern void cMl_NS_free(void*);
 extern s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
 extern void sBs_ClearArea(void* pPtr, s32 pSize);
@@ -183,19 +185,20 @@ node_create_request* fpcNdRq_Create(s32 pRequestSize) {
             lbl_80450D4C = 1;
         }
         sBs_ClearArea(req, pRequestSize);
-        req->mCreateTag = lbl_803A3A44.mCreateTag;
-        req->mProcMthCls = lbl_803A3A44.mProcMthCls;
-        req->mReqPhsProc = lbl_803A3A44.mReqPhsProc;
-        req->mpPhsHandler = lbl_803A3A44.mpPhsHandler;
-        req->mpNodeCrReqMthCls = lbl_803A3A44.mpNodeCrReqMthCls;
-        req->mParameter = lbl_803A3A44.mParameter;
-        req->mRequestId = lbl_803A3A44.mRequestId;
-        req->mNodeProc = lbl_803A3A44.mNodeProc;
-        req->mpLayerClass = lbl_803A3A44.mpLayerClass;
-        req->mCreatingID = lbl_803A3A44.mCreatingID;
-        req->mProcName = lbl_803A3A44.mProcName;
-        req->mpUserData = lbl_803A3A44.mpUserData;
-        req->unk_0x60 = lbl_803A3A44.unk_0x60;
+        *req = lbl_803A3A44;
+        // req->mCreateTag = lbl_803A3A44.mCreateTag;
+        // req->mProcMthCls = lbl_803A3A44.mProcMthCls;
+        // req->mReqPhsProc = lbl_803A3A44.mReqPhsProc;
+        // req->mpPhsHandler = lbl_803A3A44.mpPhsHandler;
+        // req->mpNodeCrReqMthCls = lbl_803A3A44.mpNodeCrReqMthCls;
+        // req->mParameter = lbl_803A3A44.mParameter;
+        // req->mRequestId = lbl_803A3A44.mRequestId;
+        // req->mNodeProc = lbl_803A3A44.mNodeProc;
+        // req->mpLayerClass = lbl_803A3A44.mpLayerClass;
+        // req->mCreatingID = lbl_803A3A44.mCreatingID;
+        // req->mProcName = lbl_803A3A44.mProcName;
+        // req->mpUserData = lbl_803A3A44.mpUserData;
+        // req->unk_0x60 = lbl_803A3A44.unk_0x60;
         cTg_Create(&req->mCreateTag, req);
         fpcMtdTg_Init(&req->mProcMthCls, (process_method_tag_func)fpcNdRq_Cancel, req);
         req->mRequestId = lbl_80450D48++;
@@ -302,4 +305,6 @@ s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void* param_3) {
 
 s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void* param_3) {
     return fpcNdRq_ReChangeNode(pRequestId, param_2, param_3);
+}
+
 }

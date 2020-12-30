@@ -9,13 +9,15 @@
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_method.h"
 
+extern "C" {
+
 BOOL fpcCtRq_isCreatingByID(create_tag* pTag, s32* pId) {
     create_request* pReq = (create_request*)(pTag->mBase.mpTagData);
-    return pReq->mBsPcId == *pId;
+    return checkEqual(*pId, pReq->mBsPcId);
 }
 
 BOOL fpcCtRq_IsCreatingByID(u32 id) {
-    return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtRq_isCreatingByID, &id) != NULL;
+    return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtRq_isCreatingByID, &id) != NULL ? 1 : 0;
 }
 
 void fpcCtRq_CreateQTo(create_request* pReq) {
@@ -119,4 +121,6 @@ create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_met
     }
 
     return pReq;
+}
+
 }

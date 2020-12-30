@@ -4,8 +4,10 @@
 // g_fpcDtTg_Queue
 extern node_list_class lbl_803A39A0;
 
+extern "C" {
+
 BOOL fpcDtTg_IsEmpty(void) {
-    return lbl_803A39A0.mSize == 0;
+    return checkEqual(lbl_803A39A0.mSize, 0);
 }
 
 void fpcDtTg_ToDeleteQ(delete_tag_class* pTag) {
@@ -37,4 +39,6 @@ s32 fpcDtTg_Do(delete_tag_class* pTag, delete_tag_func pFunc) {
 s32 fpcDtTg_Init(delete_tag_class* pTag, void* pUserData) {
     cTg_Create(&pTag->mBase, pUserData);
     return 1;
+}
+
 }

@@ -3,6 +3,8 @@
 // g_fpcCtTg_Queue
 extern node_list_class lbl_803A3990;
 
+extern "C" {
+
 s32 fpcCtIt_Method(cNdIt_MethodFunc pJudge, void* pUserData) {
     node_method_data iter;
     iter.mFunc = pJudge;
@@ -26,4 +28,6 @@ void* fpcCtIt_JudgeInLayer(u32 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
     data.mFunc = pFunc;
     data.mpUserData = pUserData;
     return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtIt_filter_JudgeInLayer, &data);
+}
+
 }

@@ -16,12 +16,14 @@ extern s32 lbl_80450D0C;  // f_pc_base::process_id
 extern s8 lbl_80450D10;
 extern s32 lbl_80450D00;  // f_pc_base::g_fpcBs_type
 
+extern "C" {
+
 extern void cMl_NS_free(void* pPtr);
 extern void* cMl_NS_memalignB(s32 pAlign, s32 pSize);
 extern void sBs_ClearArea(void* pPtr, s32 pSize);
 
 BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2) {
-    return pType2 == pType1;
+    return checkEqual(pType1, pType2);
 }
 
 s32 fpcBs_MakeOfType(s32* pType) {
@@ -130,4 +132,6 @@ s32 fpcBs_SubCreate(base_process_class* pProc) {
         pProc->mUnk2 = 5;
         return cPhs_ERROR_e;
     }
+}
+
 }

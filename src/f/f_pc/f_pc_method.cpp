@@ -2,6 +2,8 @@
 #include "f/f_pc/f_pc_method.h"
 #include "dolphin/types.h"
 
+extern "C" {
+
 s32 fpcMtd_Method(process_method_func pFunc, void* pUserData) {
     if (pFunc != NULL)
         return pFunc(pUserData);
@@ -23,4 +25,6 @@ s32 fpcMtd_Delete(process_method_class* pMthd, void* pUserData) {
 
 s32 fpcMtd_Create(process_method_class* pMthd, void* pUserData) {
     return fpcMtd_Method(pMthd->mpCreateFunc, pUserData);
+}
+
 }

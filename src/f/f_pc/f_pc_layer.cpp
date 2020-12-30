@@ -16,6 +16,8 @@ extern node_list_class lbl_803A39DC;
 // f_pc_layer::l_fpcLy_Crear
 extern layer_class lbl_803A39B0;
 
+extern "C" {
+
 void fpcLy_CancelQTo(process_method_tag_class* pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
@@ -25,7 +27,7 @@ s32 fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd) {
 }
 
 BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
-    return fpcMtdTg_Do(pLayer) == 1;
+    return checkEqual(1, fpcMtdTg_Do(pLayer));
 }
 
 s32 fpcLy_IntoQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag, s32 idx) {
@@ -108,12 +110,7 @@ void fpcLy_Regist(layer_class* pLayer) {
 s32 fpcLy_Delete(layer_class* pLayer) {
     if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mCancelList.mSize == 0) {
         cLs_SingleCut((node_class*)pLayer);
-        pLayer->mNode = lbl_803A39B0.mNode;
-        pLayer->mLayerID = lbl_803A39B0.mLayerID;
-        pLayer->mNodeListTree = lbl_803A39B0.mNodeListTree;
-        pLayer->mpPcNode = lbl_803A39B0.mpPcNode;
-        pLayer->mCancelList = lbl_803A39B0.mCancelList;
-        pLayer->counts = lbl_803A39B0.counts;
+        *pLayer = lbl_803A39B0;
         return 1;
     } else {
         return 0;
@@ -137,12 +134,7 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
         lbl_80450D24 = 0;  // layer_id
         lbl_80450D28 = 1;
     }
-    pLayer->mNode = lbl_803A39B0.mNode;
-    pLayer->mLayerID = lbl_803A39B0.mLayerID;
-    pLayer->mNodeListTree = lbl_803A39B0.mNodeListTree;
-    pLayer->mpPcNode = lbl_803A39B0.mpPcNode;
-    pLayer->mCancelList = lbl_803A39B0.mCancelList;
-    pLayer->counts = lbl_803A39B0.counts;
+    *pLayer = lbl_803A39B0;
     cNd_Create((node_class*)pLayer, NULL);
     pLayer->mLayerID = lbl_80450D24++;
     pLayer->mpPcNode = pPcNode;
@@ -156,4 +148,6 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
     cTr_Create(&pLayer->mNodeListTree, (pLayer->mNodeListTree).mpLists,
                (pLayer->mNodeListTree).mNumLists);
     fpcLy_Regist(pLayer);
+}
+
 }

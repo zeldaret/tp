@@ -10,6 +10,8 @@ extern process_priority_queue_info lbl_804505E8;
 // f_pc_priority::l_fpcPi_Queue
 extern node_list_class lbl_803F4E58;
 
+extern "C" {
+
 s32 fpcPi_IsInQueue(process_priority_class* pPi) {
     return cTg_IsUse(&pPi->mBase);
 }
@@ -143,4 +145,6 @@ s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, u32 layer, u16 list
     cTg_Create(&pPi->mBase, pUserData);
     fpcMtdTg_Init(&pPi->mMtdTag, (process_method_tag_func)fpcPi_Delete, pPi);
     return 1;
+}
+
 }
