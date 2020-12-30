@@ -1,6 +1,7 @@
 #include "f/f_pc/f_pc_manager.h"
 #include "SComponent/c_tag.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_lib/d_lib.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_creator.h"
 #include "f/f_pc/f_pc_delete_tag.h"
@@ -16,9 +17,8 @@
 #include "f/f_pc/f_pc_pause.h"
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
-#include "d/d_lib/d_lib.h"
-#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "global.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
 

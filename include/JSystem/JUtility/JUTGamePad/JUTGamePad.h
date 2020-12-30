@@ -23,9 +23,7 @@ public:
     void assign();
     void checkResetCallback(OSTime unk);  // todo: weird arg
     void update();
-    void stopPatternedRumble() {
-        this->rumble.stopPatternedRumble(this->pad_port);
-    }
+    void stopPatternedRumble() { this->rumble.stopPatternedRumble(this->pad_port); }
     static void checkResetSwitch();
     static void clearForReset();
     static JUTGamePad* getGamePad(s32 pad_index);

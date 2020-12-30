@@ -1,9 +1,9 @@
 #ifndef __D_SAVE_H_
 #define __D_SAVE_H_
 
+#include "SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "global.h"
-#include "SComponent/c_xyz.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 3
