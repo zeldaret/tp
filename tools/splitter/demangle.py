@@ -176,23 +176,27 @@ class ParseCtx:
             elif cur_char == 'Q':
                 self.index += 1
                 return self.demangle_qualified_name()
-            elif cur_char == 'M':
-                # member
-                raise NotImplementedError("Member not implemented")
             elif cur_char == 'A':
-                # self.index += 1
-                # levels = self.read_next_int()
-                # if self.consume_next_char() != '_':
-                #     raise ParseError("char after array count has to be '_'!")
-                # array_type = self.demangle_next_type()
-                # if cur_type.pointer_lvl < 1:
-                #     raise ParseError("pointer level for array is wrong!")
-                # # array
-                # return f'ARRAY<{array_type}, {levels}>'
-                raise NotImplementedError("Array not implemented")
+                if cur_type.pointer_lvl < 1 and not cur_type.is_ref:
+                    raise ParseError("pointer level for array is wrong!")
+                # decrease pointer level by one, cause one is already handled in the array demangle
+                if not cur_type.is_ref:
+                    cur_type.pointer_lvl -= 1
+                cur_type.name = self.demangle_array()
+                return cur_type.to_str()
 
             else:
                 raise ParseError(f'unexpected character {cur_char}')
+
+    def demangle_array(self) -> str:
+        sizes = []
+        while self.peek_next_char() == 'A':
+            self.index += 1
+            sizes.append(self.read_next_int())
+            if self.consume_next_char() != '_':
+                raise ParseError("Need to have '_' after Array size!")
+        array_type = self.demangle_next_type()
+        return f'{array_type} []' + ''.join(f'[{i}]' for i in sizes)
 
     def demangle_function(self) -> FuncParam:
         func_param = FuncParam()
@@ -204,14 +208,14 @@ class ParseCtx:
                 return func_param
             func_param.params.append(self.demangle_next_type())
 
-    def demangle_qualified_name(self):
+    def demangle_qualified_name(self) -> str:
         part_count = int(self.consume_next_char())
         parts = []
         for _ in range(part_count):
             parts.append(self.demangle_class())
         return '::'.join(parts)
 
-    def read_next_int(self):
+    def read_next_int(self) -> int:
         class_len_str = ''
         cur_char = self.peek_next_char()
         while cur_char.isdecimal():
@@ -220,15 +224,18 @@ class ParseCtx:
             cur_char = self.peek_next_char()
         return int(class_len_str)
     
-    def demangle_class(self):
+    def demangle_class(self) -> str:
         if not self.peek_next_char().isdecimal():
             raise ParseError(f'class mangling must start with number')
         class_len = self.read_next_int()
         class_name = self.mangled[self.index : self.index + class_len]
         self.index += class_len
+        if self.peek_next_char() == 'M':
+            self.index += 1
+            class_name += '::' + self.demangle_class()
         return class_name
 
-    def demangle_prim_type(self):
+    def demangle_prim_type(self) -> str:
         ret = types[self.consume_next_char()]
         return ret
     
@@ -238,6 +245,8 @@ class ParseCtx:
         return next_char
     
     def peek_next_char(self) -> str:
+        if self.index >= len(self.mangled):
+            return None
         return self.mangled[self.index]
     
     def to_str(self) -> str:
@@ -281,8 +290,8 @@ def parse_framework_map(path: Path):
 #                 d = demangle(line_spl)
 #                 if d:
 #                     print(d)
-#             except NotImplementedError:
-#                 pass
+#             # except NotImplementedError:
+#             #     pass
 #             except Exception as e:
 #                 # print(f'could not demangle {line_spl}: {repr(e)}')
 #                 # raise e
