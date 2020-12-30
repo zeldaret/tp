@@ -16,10 +16,13 @@
 #include "f/f_pc/f_pc_pause.h"
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
+#include "d/d_lib/d_lib.h"
+#include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "global.h"
 
 extern "C" {
 
+extern JUTGamePad *lbl_803DD2D8[4];
 extern u8 lbl_80450D38;
 extern s8 lbl_80450D39;
 extern u8 lbl_80450EC4;
@@ -63,7 +66,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
         }
         if (!dDvdErrorMsg_c_NS_execute()) {
             if (lbl_80450D38 != 0) {
-                dLib_time_c_NS_startTime();
+                dLib_time_c::startTime();
                 Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);
                 lbl_80450D38 = 0;
             }
@@ -85,10 +88,11 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             }
             dComIfG_play_c_NS_drawSimpleModel(&g_dComIfG_gameInfo.play);
         } else if (lbl_80450D38 == 0) {
-            dLib_time_c_NS_stopTime();
+            dLib_time_c::stopTime();
             Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
-            JUTGamePad_NS_CRumble_NS_stopPatternedRumble(&lbl_803DD2D8[0]->rumble,
-                                                         lbl_803DD2D8[0]->pad_port);
+            lbl_803DD2D8[0]->rumble.stopPatternedRumble(lbl_803DD2D8[0]->pad_port);
+            // JUTGamePad_NS_CRumble_NS_stopPatternedRumble(&lbl_803DD2D8[0]->rumble,
+            //                                              lbl_803DD2D8[0]->pad_port);
             lbl_80450D38 = 1;
         }
     }
