@@ -9,8 +9,8 @@ typedef s32 (*cNdIt_MethodFuncFunc)(cNdIt_MethodFunc);
 
 extern "C" {
 
-extern void cAPIGph_AfterOfDraw(void);
-extern void cAPIGph_BeforeOfDraw(void);
+extern void cAPIGph_AfterOfDraw__Fv(void);
+extern void cAPIGph_BeforeOfDraw__Fv(void);
 
 s32 fpcDw_Execute(base_process_class* pProc) {
     if (!fpcPause_IsEnable(pProc, 2)) {
@@ -34,9 +34,9 @@ s32 fpcDw_Execute(base_process_class* pProc) {
 
 s32 fpcDw_Handler(cNdIt_MethodFuncFunc param_1, cNdIt_MethodFunc param_2) {
     s32 ret;
-    cAPIGph_BeforeOfDraw();
+    cAPIGph_BeforeOfDraw__Fv();
     ret = param_1(param_2);
-    cAPIGph_AfterOfDraw();
+    cAPIGph_AfterOfDraw__Fv();
     return ret;
 }
 }

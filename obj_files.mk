@@ -241,7 +241,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/DynamicLink.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_malloc.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o    \
-            $(BUILD_DIR)/asm/SComponent/c/API/c_API_graphic.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_API_graphic.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
