@@ -275,7 +275,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_sph.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_tri.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_lib.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_angle.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_angle.o    \
             $(BUILD_DIR)/asm/SStandard/s/s_basic.o    \
             $(BUILD_DIR)/asm/JFramework/JFWSystem.o    \
             $(BUILD_DIR)/asm/JFramework/JFWDisplay.o    \
