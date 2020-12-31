@@ -9,11 +9,11 @@ extern s32 lbl_80450D40;
 
 extern "C" {
 
-#ifndef NON_MATCHING
+#ifdef NON_MATCHING
 s32 fpcPause_IsEnable(void* pProcess, u8 flag) {
     base_process_class* pProc = (base_process_class*)pProcess;
     // extra addic/subfe?
-    return (u32)__cntlzw((u32)((pProc->mPauseFlag & flag) - flag ? 1 : 0)) >> 5;
+    return (pProc->mPauseFlag & flag) == flag;
 }
 #else
 asm s32 fpcPause_IsEnable(void* pProcess, u8 flag) {
