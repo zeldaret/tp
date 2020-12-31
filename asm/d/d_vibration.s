@@ -60,7 +60,7 @@ _unnamed_d_vibration_cpp__NS_randombit:
 /* 8006F20C 0006C14C  3F E0 40 00 */	lis r31, 0x4000
 /* 8006F210 0006C150  48 00 00 2C */	b lbl_8006F23C
 lbl_8006F214:
-/* 8006F214 0006C154  48 1F 86 59 */	bl cM_rnd
+/* 8006F214 0006C154  48 1F 86 59 */	bl cM_rnd__Fv
 /* 8006F218 0006C158  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 8006F21C 0006C15C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8006F220 0006C160  C8 01 00 08 */	lfd f0, 8(r1)

@@ -257,7 +257,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_sxyz.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_math.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_math.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/c_bg_s_chk.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/gnd/c_bg_s_gnd_chk.o    \
             $(BUILD_DIR)/asm/SComponent/c/bg/s/lin/c_bg_s_lin_chk.o    \

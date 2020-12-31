@@ -112,7 +112,7 @@ dCamMath_NS_zoomFovy:
 /* 800882B0 000851F0  38 61 00 08 */	addi r3, r1, 8
 /* 800882B4 000851F4  48 1E 91 3D */	bl cDegree_NS_Sin
 /* 800882B8 000851F8  FC 40 F8 90 */	fmr f2, f31
-/* 800882BC 000851FC  48 1D F5 59 */	bl cM_atan2f
+/* 800882BC 000851FC  48 1D F5 59 */	bl cM_atan2f__Fff
 /* 800882C0 00085200  C0 02 8E 14 */	lfs f0, lbl_80452814-_SDA2_BASE_(r2)
 /* 800882C4 00085204  EC 20 00 72 */	fmuls f1, f0, f1
 /* 800882C8 00085208  E3 E1 00 18 */	psq_l f31, 24(r1), 0, qr0

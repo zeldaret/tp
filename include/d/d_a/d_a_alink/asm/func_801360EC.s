@@ -51,7 +51,7 @@ lbl_8013617C:
 /* 801361AC 001330EC  D0 61 00 20 */ stfs f3, 0x20(r1)
 /* 801361B0 001330F0  FC 20 00 50 */ fneg f1, f0
 /* 801361B4 001330F4  FC 40 18 50 */ fneg f2, f3
-/* 801361B8 001330F8  48 13 14 BD */ bl cM_atan2s
+/* 801361B8 001330F8  48 13 14 BD */ bl cM_atan2s__Fff
 /* 801361BC 001330FC  4B F7 D2 D9 */ bl daAlink_c_NS_getDirectionFromAngle
 /* 801361C0 00133100  2C 03 00 00 */ cmpwi r3, 0
 /* 801361C4 00133104  40 82 00 2C */ bne lbl_801361F0
