@@ -3,7 +3,7 @@
 .section .text, "ax" # 80267b4c
 
 
-.global cBgS_Chk
+.global__ct__8cBgS_ChkFv
 cBgS_Chk:
 /* 80267B4C 00264A8C  3C 80 80 3C */	lis r4, lbl_803C3F80@ha
 /* 80267B50 00264A90  38 04 3F 80 */	addi r0, r4, lbl_803C3F80@l
@@ -15,8 +15,8 @@ cBgS_Chk:
 /* 80267B68 00264AA8  98 03 00 0C */	stb r0, 0xc(r3)
 /* 80267B6C 00264AAC  4E 80 00 20 */	blr 
 
-.global cBgS_Chk_NS_dtor
-cBgS_Chk_NS_dtor:
+.global __dt__8cBgS_ChkFv
+__dt__8cBgS_ChkFv:
 /* 80267B70 00264AB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80267B74 00264AB4  7C 08 02 A6 */	mflr r0
 /* 80267B78 00264AB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -37,8 +37,8 @@ lbl_80267BA0:
 /* 80267BB0 00264AF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80267BB4 00264AF4  4E 80 00 20 */	blr 
 
-.global cBgS_Chk_NS_SetExtChk
-cBgS_Chk_NS_SetExtChk:
+.global SetExtChk__8cBgS_ChkFR8cBgS_Chk
+SetExtChk__8cBgS_ChkFR8cBgS_Chk:
 /* 80267BB8 00264AF8  80 04 00 00 */	lwz r0, 0(r4)
 /* 80267BBC 00264AFC  90 03 00 00 */	stw r0, 0(r3)
 /* 80267BC0 00264B00  80 04 00 04 */	lwz r0, 4(r4)
@@ -49,8 +49,8 @@ cBgS_Chk_NS_SetExtChk:
 /* 80267BD4 00264B14  98 03 00 0C */	stb r0, 0xc(r3)
 /* 80267BD8 00264B18  4E 80 00 20 */	blr 
 
-.global cBgS_Chk_NS_ChkSameActorPid
-cBgS_Chk_NS_ChkSameActorPid:
+.global ChkSameActorPid__8cBgS_ChkCFUi
+ChkSameActorPid__8cBgS_ChkCFUi:
 /* 80267BDC 00264B1C  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80267BE0 00264B20  3C 05 00 01 */	addis r0, r5, 1
 /* 80267BE4 00264B24  28 00 FF FF */	cmplwi r0, 0xffff
