@@ -1,6 +1,7 @@
 #ifndef __D_SAVE_H_
 #define __D_SAVE_H_
 
+#include "SComponent/c_xyz.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -373,12 +374,6 @@ private:
     u16 unk16;
     u8 unk18[3];
     u8 padding[3];
-};
-
-// move to SComponent later
-class cXyz {
-public:
-    float x, y, z;
 };
 
 class dSv_horse_place_c {

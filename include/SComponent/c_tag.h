@@ -7,11 +7,11 @@
 #include "SComponent/c_tree.h"
 #include "global.h"
 
-struct create_tag_class {
+typedef struct create_tag_class {
     node_class mpNode;
     void* mpTagData;
     s8 mbIsUse;
-};
+} create_tag_class;
 
 extern "C" {
 

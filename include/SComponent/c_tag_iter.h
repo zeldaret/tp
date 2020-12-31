@@ -4,16 +4,17 @@
 
 #include "SComponent/c_node_iter.h"
 #include "SComponent/c_tag.h"
+#include "global.h"
 
-struct method_filter {
+typedef struct method_filter {
     cNdIt_MethodFunc mpMethodFunc;
     void* mpUserData;
-};
+} method_filter;
 
-struct judge_filter {
+typedef struct judge_filter {
     cNdIt_JudgeFunc mpJudgeFunc;
     void* mpUserData;
-};
+} judge_filter;
 
 extern "C" {
 

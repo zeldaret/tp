@@ -4,12 +4,11 @@
 
 #include "SComponent/c_list.h"
 #include "SComponent/c_node.h"
-#include "global.h"
 
-struct node_lists_tree_class {
+typedef struct node_lists_tree_class {
     node_list_class* mpLists;
     int mNumLists;
-};
+} node_lists_tree_class;
 
 extern "C" {
 

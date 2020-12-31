@@ -277,10 +277,40 @@ void ARQInit(void);
 void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
+class CRumble;
+void JUTGamePad_NS_CRumble_NS_stopPatternedRumble(CRumble*, s16);
+void dLib_time_c_NS_stopTime(void);
+void dLib_time_c_NS_startTime(void);
+class dComIfG_play_c;
+void dComIfG_play_c_NS_drawSimpleModel(dComIfG_play_c*);
+void cAPIGph_Painter(void);
+bool dDvdErrorMsg_c_NS_execute(void);
+bool dShutdownErrorMsg_c_NS_execute(void);
+class dDlst_peekZ_c;
+void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
+void MtxInit(void);
 
 void mDoDvdErr_ThdCleanup(void);
 void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
 void common_init__6JUTXfbFl(void);
+}
+
+// DVD
+class DVDFileInfo;
+extern "C" {
+s32 DVDOpen(const char*, u8[48]);
+s32 DVDClose(u8[48]);
+void DVDReadPrio(void);
+void DVDGetCurrentDiskID(void);
+s32 DVDFastOpen(long, u8[48]);
+int DVDGetCommandBlockStatus(u8[48]);
+s32 DVDReadAsyncPrio(u8[48], void*, long, long, void (*)(long, DVDFileInfo*), long);
+void DVDConvertPathToEntrynum(void);
+
+void DVDChangeDir(void);
+void DVDCloseDir(void);
+void DVDOpenDir(void);
+void DVDReadDir(void);
 }
 
 class mDoCPd_c;
@@ -399,12 +429,6 @@ void VIFlush(void);
 }
 
 extern "C" {
-void VIWaitForRetrace(void);
-void VISetBlack(s32);
-void VIFlush(void);
-}
-
-extern "C" {
 void JUTReport__FiiPCce(int, int, const char*, ...);
 void JUTReportConsole(const char*);
 }
@@ -449,6 +473,8 @@ void Z2SeqMgr_NS_resetBattleBgmParams(void);
 void JAISoundID_X1_(void);
 void func_803621A8(void);
 void moveVolume__18JAISoundParamsMoveFfUl(void);
+class Z2SoundMgr;
+void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr*, bool);
 }
 // Z2LinkMgr
 extern "C" {
@@ -2018,7 +2044,6 @@ void daAlink_c_NS_checkBoomerangCatchAction(void);
 void daAlink_c_NS_procGrassWhistleWaitInit(void);
 void daAlink_c_NS_procWolfChainReadyInit(void);
 void daAlink_c_NS_checkHorseGetOffAndSetDoStatus(void);
-void fpcM_IsCreating(void);
 void func_800D0B60(void);
 void func_800F6EFC(void);
 void func_801446D4(void);

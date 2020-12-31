@@ -49,7 +49,6 @@ extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450580;
 extern u8 lbl_80450B1A;
-extern u8 lbl_803DD2D8;
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
