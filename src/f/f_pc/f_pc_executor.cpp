@@ -7,7 +7,6 @@
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
 
-
 // g_fpcNd_type
 extern s32 lbl_80450D40;
 
@@ -84,5 +83,4 @@ s32 fpcEx_ToExecuteQ(base_process_class* pProc) {
 void fpcEx_Handler(cNdIt_MethodFunc pFunc) {
     fpcLnIt_Queue(pFunc);
 }
-
 }

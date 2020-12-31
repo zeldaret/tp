@@ -48,5 +48,4 @@ s32 fpcLf_Create(leafdraw_class* pLeaf) {
     }
     return fpcMtd_Create(&pLeaf->mpDrawMtd->mBase, pLeaf);
 }
-
 }

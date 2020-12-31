@@ -52,5 +52,4 @@ base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
         return NULL;
     }
 }
-
 }

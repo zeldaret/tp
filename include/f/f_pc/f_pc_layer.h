@@ -52,7 +52,6 @@ void fpcLy_Create(layer_class* pLayer, struct process_node_class* pPcNode, node_
                   s32 listNum);
 
 s32 fpcLy_Delete(layer_class* pLayer);
-
 };
 
 #endif

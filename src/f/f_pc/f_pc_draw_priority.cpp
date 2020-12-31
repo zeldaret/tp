@@ -13,5 +13,4 @@ void fpcDwPi_Set(draw_priority_class* pDwPi, s32 p) {
 void fpcDwPi_Init(draw_priority_class* pDwPi, s32 p) {
     fpcDwPi_Set(pDwPi, p);
 }
-
 }

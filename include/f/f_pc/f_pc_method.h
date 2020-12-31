@@ -20,7 +20,6 @@ s32 fpcMtd_Execute(process_method_class* pMthd, void* pUserData);
 s32 fpcMtd_IsDelete(process_method_class* pMthd, void* pUserData);
 s32 fpcMtd_Delete(process_method_class* pMthd, void* pUserData);
 s32 fpcMtd_Create(process_method_class* pMthd, void* pUserData);
-
 };
 
 #endif

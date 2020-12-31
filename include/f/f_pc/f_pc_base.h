@@ -46,7 +46,6 @@ s32 fpcBs_IsDelete(base_process_class* pProc);
 s32 fpcBs_Delete(base_process_class* pProc);
 base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData);
 s32 fpcBs_SubCreate(base_process_class* pProc);
-
 };
 
 #endif

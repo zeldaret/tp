@@ -306,5 +306,4 @@ s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void* param_3) {
 s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void* param_3) {
     return fpcNdRq_ReChangeNode(pRequestId, param_2, param_3);
 }
-
 }

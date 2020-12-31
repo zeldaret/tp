@@ -27,5 +27,4 @@ void fpcLnIt_Queue(cNdIt_MethodFunc pFunc) {
     filter.mpUserData = NULL;
     cTrIt_Method(&lbl_804505D8, (cNdIt_MethodFunc)fpcLnIt_MethodCall, &filter);
 }
-
 }

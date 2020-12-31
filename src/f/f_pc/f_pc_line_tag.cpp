@@ -35,5 +35,4 @@ void fpcLnTg_Init(line_tag* pLineTag, void* pData) {
     cTg_Create(&pLineTag->mBase, pData);
     pLineTag->mLineListID = -1;
 }
-
 }

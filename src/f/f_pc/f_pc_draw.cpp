@@ -39,5 +39,4 @@ s32 fpcDw_Handler(cNdIt_MethodFuncFunc param_1, cNdIt_MethodFunc param_2) {
     cAPIGph_AfterOfDraw();
     return ret;
 }
-
 }

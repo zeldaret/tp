@@ -28,7 +28,6 @@ s32 fpcSCtRq_Delete(standard_create_request_class*);
 s32 fpcSCtRq_Cancel(standard_create_request_class*);
 s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, void* param_4,
                      void* param_5);
-
 };
 
 #endif

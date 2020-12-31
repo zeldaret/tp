@@ -16,7 +16,6 @@ s32 fpcLyIt_OnlyHere(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserDat
 s32 fpcLyIt_OnlyHereLY(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData);
 void* fpcLyIt_Judge(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData);
 void* fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void* pUserData);
-
 };
 
 #endif

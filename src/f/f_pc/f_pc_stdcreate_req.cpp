@@ -110,5 +110,4 @@ s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, v
         }
     }
 }
-
 }

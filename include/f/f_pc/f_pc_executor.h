@@ -15,7 +15,6 @@ s32 fpcEx_ExecuteQTo(base_process_class* pProc);
 s32 fpcEx_Execute(base_process_class* pProc);
 s32 fpcEx_ToExecuteQ(base_process_class* pProc);
 void fpcEx_Handler(cNdIt_MethodFunc pFunc);
-
 };
 
 #endif

@@ -13,5 +13,4 @@ void fpcLn_Create(void) {
     while (i-- > 0)
         cLs_Create(pLine++);
 }
-
 }

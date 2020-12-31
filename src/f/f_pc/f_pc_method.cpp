@@ -26,5 +26,4 @@ s32 fpcMtd_Delete(process_method_class* pMthd, void* pUserData) {
 s32 fpcMtd_Create(process_method_class* pMthd, void* pUserData) {
     return fpcMtd_Method(pMthd->mpCreateFunc, pUserData);
 }
-
 }

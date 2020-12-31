@@ -16,7 +16,6 @@ s32 fpcLnTg_Move(line_tag* pLineTag, s32 newLineListID);
 void fpcLnTg_QueueTo(line_tag* pLineTag);
 s32 fpcLnTg_ToQueue(line_tag* pLineTag, s32 lineListID);
 void fpcLnTg_Init(line_tag* pLineTag, void* pData);
-
 };
 
 #endif

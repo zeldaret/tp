@@ -9,5 +9,4 @@ extern "C" {
 process_profile_definition* fpcPf_Get(s16 profileID) {
     return lbl_80450D50[profileID];
 }
-
 }

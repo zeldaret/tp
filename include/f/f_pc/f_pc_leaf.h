@@ -37,7 +37,6 @@ s32 fpcLf_Execute(leafdraw_class* pLeaf);
 s32 fpcLf_IsDelete(leafdraw_class* pLeaf);
 s32 fpcLf_Delete(leafdraw_class* pLeaf);
 s32 fpcLf_Create(leafdraw_class* pLeaf);
-
 };
 
 #endif

@@ -146,5 +146,4 @@ s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, u32 layer, u16 list
     fpcMtdTg_Init(&pPi->mMtdTag, (process_method_tag_func)fpcPi_Delete, pPi);
     return 1;
 }
-
 }

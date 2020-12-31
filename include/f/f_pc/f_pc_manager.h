@@ -25,7 +25,6 @@ s32 fpcM_IsPause(void* pProc, u8 param_2);
 void fpcM_PauseEnable(void* pProc, u8 param_2);
 void fpcM_PauseDisable(void* pProc, u8 param_2);
 void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
-
 };
 
 #endif

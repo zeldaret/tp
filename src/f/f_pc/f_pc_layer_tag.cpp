@@ -66,5 +66,4 @@ s32 fpcLyTg_Init(layer_management_tag_class* pTag, u32 param2, void* param3) {
         return 0;
     }
 }
-
 }

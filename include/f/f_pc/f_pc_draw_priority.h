@@ -13,7 +13,6 @@ extern "C" {
 s32 fpcDwPi_Get(draw_priority_class* pDwPi);
 void fpcDwPi_Set(draw_priority_class* pDwPi, s32 p);
 void fpcDwPi_Init(draw_priority_class* pDwPi, s32 p);
-
 };
 
 #endif

@@ -7,7 +7,6 @@
 extern "C" {
 
 void fpcLnIt_Queue(cNdIt_MethodFunc pFunc);
-
 };
 
 #endif

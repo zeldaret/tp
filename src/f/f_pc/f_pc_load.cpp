@@ -3,9 +3,8 @@
 #include "SComponent/c_phase.h"
 #include "dolphin/types.h"
 
-
 extern "C" {
-    
+
 extern s32 cDyl_IsLinked(s16 procName);
 extern s32 cDyl_Unlink(s16 procName);
 extern s32 cDyl_LinkASync(s16 procName);
@@ -36,5 +35,4 @@ s32 fpcLd_Load(u16 procName) {
         return cPhs_ERROR_e;
     }
 }
-
 }

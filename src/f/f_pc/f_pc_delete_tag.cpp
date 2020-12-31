@@ -40,5 +40,4 @@ s32 fpcDtTg_Init(delete_tag_class* pTag, void* pUserData) {
     cTg_Create(&pTag->mBase, pUserData);
     return 1;
 }
-
 }

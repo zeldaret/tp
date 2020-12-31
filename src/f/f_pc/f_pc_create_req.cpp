@@ -122,5 +122,4 @@ create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_met
 
     return pReq;
 }
-
 }

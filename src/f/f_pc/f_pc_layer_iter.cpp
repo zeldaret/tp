@@ -44,5 +44,4 @@ void* fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void* pUserData) {
     }
     return NULL;
 }
-
 }

@@ -91,5 +91,4 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
     fpcLy_SetCurrentLayer(uVar2);
     return uVar3;
 }
-
 }

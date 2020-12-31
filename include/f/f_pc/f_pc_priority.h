@@ -29,7 +29,6 @@ s32 fpcPi_IsNormal(u32 layer, u16 listID, u16 priority);
 s32 fpcPi_Change(process_priority_class* pPi, u32 layer, u16 listID, u16 priority);
 s32 fpcPi_Handler(void);
 s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, u32 layer, u16 listID, u16 priority);
-
 };
 
 #endif

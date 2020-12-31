@@ -6,5 +6,4 @@ extern "C" {
 void fpcMtdIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod) {
     cLsIt_Method(pList, pMethod, NULL);
 }
-
 }

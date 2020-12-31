@@ -21,7 +21,6 @@ s32 fpcFCtRq_Delete(fast_create_request*);
 base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
                                      fstCreateFunc pFastCreateFunc, void* pFastCreateData,
                                      void* pData);
-
 };
 
 #endif

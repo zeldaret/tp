@@ -29,5 +29,4 @@ void* fpcCtIt_JudgeInLayer(u32 pUnk0, cNdIt_JudgeFunc pFunc, void* pUserData) {
     data.mpUserData = pUserData;
     return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtIt_filter_JudgeInLayer, &data);
 }
-
 }

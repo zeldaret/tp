@@ -37,7 +37,6 @@ s32 fpcNd_IsDeleteTiming(process_node_class* pProcNode);
 s32 fpcNd_IsDelete(process_node_class* pProcNode);
 s32 fpcNd_Delete(process_node_class* pProcNode);
 s32 fpcNd_Create(process_node_class* pProcNode);
-
 };
 
 #endif

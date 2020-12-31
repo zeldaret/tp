@@ -18,5 +18,4 @@ s32 fpcCtTg_Init(create_tag* pTag, void* pUserData) {
     cTg_Create(&pTag->mBase, pUserData);
     return 1;
 }
-
 }

@@ -14,7 +14,6 @@ extern "C" {
 void fpcCtTg_ToCreateQ(create_tag_class* pTag);
 void fpcCtTg_CreateQTo(create_tag_class* pTag);
 s32 fpcCtTg_Init(create_tag* pTag, void* pUserData);
-
 };
 
 #endif

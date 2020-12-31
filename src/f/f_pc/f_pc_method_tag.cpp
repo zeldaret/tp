@@ -24,5 +24,4 @@ s32 fpcMtdTg_Init(process_method_tag_class* pMthd, process_method_tag_func pFunc
     pMthd->mpMthdData = pMthdData;
     return 1;
 }
-
 }
