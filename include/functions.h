@@ -3843,7 +3843,7 @@ void func_8036CA54(void);
 void Val__7cSAngleFf(void);
 void Norm__7cSAngleCFv(void);
 void Formal__7cSPolarFv(void);
-void cDegree_NS_Radian(void);
+void Radian__7cDegreeCFv(void);
 void func_8036C028(void);
 void __ct__7cSGlobeFfss(void);
 void Sin__7cDegreeCFv(void);
@@ -3854,6 +3854,7 @@ void Formal__7cDegreeFv(void);
 void __ct__7cSAngleFf(void);
 void Norm__7cSGlobeCFv(void);
 void cSAngle_NS_dtor(void);
+void __mi__7cSAngleCFv(void);
 }
 
 // additional symbols needed for c_API_controller_pad.cpp
