@@ -91,7 +91,6 @@ void dMeter2Info_c_NS_getString(void);
 void Z2AudioMgr_NS_setOutputMode(void*, unsigned long);
 u32 Z2AudioMgr_NS_hasReset(void*);
 void dComIfG_play_c_NS_getNowVibration(void);
-void setInitEventBit(void);
 void daObjCarry_c_NS_clrSaveFlag(void);
 void daObjCarry_c_NS_setSaveFlag(void);
 void init__14dSv_MiniGame_cFv(void);

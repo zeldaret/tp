@@ -88,7 +88,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_bomb.o    \
             $(BUILD_DIR)/src/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
-            $(BUILD_DIR)/asm/d/save/d_save_init.o    \
+            $(BUILD_DIR)/src/d/d_save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
             $(BUILD_DIR)/asm/d/a/d_a_obj.o    \
             $(BUILD_DIR)/asm/d/a/itembase/d_a_itembase_static.o    \
