@@ -3,15 +3,15 @@
 .section .text, "ax" # 80263358
 
 
-.global cCcD_DivideInfo_NS_Set
-cCcD_DivideInfo_NS_Set:
+.global Set__15cCcD_DivideInfoFUlUlUl
+Set__15cCcD_DivideInfoFUlUlUl:
 /* 80263358 00260298  90 83 00 00 */	stw r4, 0(r3)
 /* 8026335C 0026029C  90 A3 00 04 */	stw r5, 4(r3)
 /* 80263360 002602A0  90 C3 00 08 */	stw r6, 8(r3)
 /* 80263364 002602A4  4E 80 00 20 */	blr 
 
-.global cCcD_DivideInfo_NS_Chk
-cCcD_DivideInfo_NS_Chk:
+.global Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo
+Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo:
 /* 80263368 002602A8  80 A3 00 00 */	lwz r5, 0(r3)
 /* 8026336C 002602AC  80 04 00 00 */	lwz r0, 0(r4)
 /* 80263370 002602B0  7C A0 00 39 */	and. r0, r5, r0
@@ -31,8 +31,8 @@ lbl_802633A0:
 /* 802633A0 002602E0  38 60 00 01 */	li r3, 1
 /* 802633A4 002602E4  4E 80 00 20 */	blr 
 
-.global cCcD_DivideArea_NS_SetArea
-cCcD_DivideArea_NS_SetArea:
+.global SetArea__15cCcD_DivideAreaFRC8cM3dGAab
+SetArea__15cCcD_DivideAreaFRC8cM3dGAab:
 /* 802633A8 002602E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802633AC 002602EC  7C 08 02 A6 */	mflr r0
 /* 802633B0 002602F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -112,8 +112,8 @@ lbl_802634C0:
 /* 802634CC 0026040C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802634D0 00260410  4E 80 00 20 */	blr 
 
-.global cCcD_DivideArea_NS_CalcDivideInfo
-cCcD_DivideArea_NS_CalcDivideInfo:
+.global CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl
+CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl:
 /* 802634D4 00260414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802634D8 00260418  7C 08 02 A6 */	mflr r0
 /* 802634DC 0026041C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,7 +123,7 @@ cCcD_DivideArea_NS_CalcDivideInfo:
 /* 802634EC 0026042C  38 80 FF FF */	li r4, -1
 /* 802634F0 00260430  38 A0 FF FF */	li r5, -1
 /* 802634F4 00260434  38 C0 FF FF */	li r6, -1
-/* 802634F8 00260438  4B FF FE 61 */	bl cCcD_DivideInfo_NS_Set
+/* 802634F8 00260438  4B FF FE 61 */	bl Set__15cCcD_DivideInfoFUlUlUl
 /* 802634FC 0026043C  48 00 01 94 */	b lbl_80263690
 lbl_80263500:
 /* 80263500 00260440  88 03 00 1C */	lbz r0, 0x1c(r3)
@@ -234,15 +234,15 @@ lbl_80263680:
 /* 80263680 002605C0  7C 83 23 78 */	mr r3, r4
 /* 80263684 002605C4  7C E4 3B 78 */	mr r4, r7
 /* 80263688 002605C8  7D 05 43 78 */	mr r5, r8
-/* 8026368C 002605CC  4B FF FC CD */	bl cCcD_DivideInfo_NS_Set
+/* 8026368C 002605CC  4B FF FC CD */	bl Set__15cCcD_DivideInfoFUlUlUl
 lbl_80263690:
 /* 80263690 002605D0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80263694 002605D4  7C 08 03 A6 */	mtlr r0
 /* 80263698 002605D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8026369C 002605DC  4E 80 00 20 */	blr 
 
-.global cCcD_DivideArea_NS_CalcDivideInfoOverArea
-cCcD_DivideArea_NS_CalcDivideInfoOverArea:
+.global CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab
+CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab:
 /* 802636A0 002605E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802636A4 002605E4  7C 08 02 A6 */	mflr r0
 /* 802636A8 002605E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -378,7 +378,7 @@ lbl_80263874:
 /* 80263874 002607B4  7C 83 23 78 */	mr r3, r4
 /* 80263878 002607B8  7C E4 3B 78 */	mr r4, r7
 /* 8026387C 002607BC  7D 05 43 78 */	mr r5, r8
-/* 80263880 002607C0  4B FF FA D9 */	bl cCcD_DivideInfo_NS_Set
+/* 80263880 002607C0  4B FF FA D9 */	bl Set__15cCcD_DivideInfoFUlUlUl
 /* 80263884 002607C4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80263888 002607C8  7C 08 03 A6 */	mtlr r0
 /* 8026388C 002607CC  38 21 00 20 */	addi r1, r1, 0x20
@@ -388,8 +388,8 @@ lbl_80263874:
 /* 8026389C 002607DC  38 60 00 00 */	li r3, 0
 /* 802638A0 002607E0  4E 80 00 20 */	blr 
 
-.global cCcD_Stts_NS_Init
-cCcD_Stts_NS_Init:
+.global Init__9cCcD_SttsFiiPvUi
+Init__9cCcD_SttsFiiPvUi:
 /* 802638A4 002607E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802638A8 002607E8  7C 08 02 A6 */	mflr r0
 /* 802638AC 002607EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -415,8 +415,8 @@ cCcD_Stts_NS_Init:
 /* 802638FC 0026083C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80263900 00260840  4E 80 00 20 */	blr 
 
-.global cCcD_Stts_NS_Ct
-cCcD_Stts_NS_Ct:
+.global Ct__9cCcD_SttsFv
+Ct__9cCcD_SttsFv:
 /* 80263904 00260844  C0 02 B6 20 */	lfs f0, lbl_80455020-_SDA2_BASE_(r2)
 /* 80263908 00260848  D0 03 00 00 */	stfs f0, 0(r3)
 /* 8026390C 0026084C  D0 03 00 04 */	stfs f0, 4(r3)
@@ -430,8 +430,8 @@ cCcD_Stts_NS_Ct:
 /* 8026392C 0026086C  98 83 00 16 */	stb r4, 0x16(r3)
 /* 80263930 00260870  4E 80 00 20 */	blr 
 
-.global cCcD_Stts_NS_PlusCcMove
-cCcD_Stts_NS_PlusCcMove:
+.global PlusCcMove__9cCcD_SttsFfff
+PlusCcMove__9cCcD_SttsFfff:
 /* 80263934 00260874  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80263938 00260878  EC 00 08 2A */	fadds f0, f0, f1
 /* 8026393C 0026087C  D0 03 00 00 */	stfs f0, 0(r3)
@@ -443,8 +443,8 @@ cCcD_Stts_NS_PlusCcMove:
 /* 80263954 00260894  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80263958 00260898  4E 80 00 20 */	blr 
 
-.global cCcD_Stts_NS_ClrCcMove
-cCcD_Stts_NS_ClrCcMove:
+.global ClrCcMove__9cCcD_SttsFv
+ClrCcMove__9cCcD_SttsFv:
 /* 8026395C 0026089C  C0 02 B6 20 */	lfs f0, lbl_80455020-_SDA2_BASE_(r2)
 /* 80263960 002608A0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80263964 002608A4  D0 03 00 04 */	stfs f0, 4(r3)
@@ -459,8 +459,8 @@ cCcD_Stts_NS_PlusDmg:
 /* 8026397C 002608BC  98 83 00 16 */	stb r4, 0x16(r3)
 /* 80263980 002608C0  4E 80 00 20 */	blr 
 
-.global cCcD_Stts_NS_GetWeightF
-cCcD_Stts_NS_GetWeightF:
+.global GetWeightF__9cCcD_SttsCFv
+GetWeightF__9cCcD_SttsCFv:
 /* 80263984 002608C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263988 002608C8  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 8026398C 002608CC  C8 22 B6 28 */	lfd f1, lbl_80455028-_SDA2_BASE_(r2)
@@ -473,16 +473,16 @@ cCcD_Stts_NS_GetWeightF:
 /* 802639A8 002608E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802639AC 002608EC  4E 80 00 20 */	blr 
 
-.global cCcD_ObjCommonBase_NS_ct
-cCcD_ObjCommonBase_NS_ct:
+.global ct__18cCcD_ObjCommonBaseFv
+ct__18cCcD_ObjCommonBaseFv:
 /* 802639B0 002608F0  38 00 00 00 */	li r0, 0
 /* 802639B4 002608F4  90 03 00 00 */	stw r0, 0(r3)
 /* 802639B8 002608F8  90 03 00 04 */	stw r0, 4(r3)
 /* 802639BC 002608FC  90 03 00 08 */	stw r0, 8(r3)
 /* 802639C0 00260900  4E 80 00 20 */	blr 
 
-.global cCcD_ObjHitInf_NS_Set
-cCcD_ObjHitInf_NS_Set:
+.global Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf
+Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf:
 /* 802639C4 00260904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802639C8 00260908  7C 08 02 A6 */	mflr r0
 /* 802639CC 0026090C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -490,10 +490,10 @@ cCcD_ObjHitInf_NS_Set:
 /* 802639D4 00260914  93 C1 00 08 */	stw r30, 8(r1)
 /* 802639D8 00260918  7C 7E 1B 78 */	mr r30, r3
 /* 802639DC 0026091C  7C 9F 23 78 */	mr r31, r4
-/* 802639E0 00260920  48 00 0E 6D */	bl cCcD_ObjAt_NS_Set
+/* 802639E0 00260920  48 00 0E 6D */	bl Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
 /* 802639E4 00260924  38 7E 00 18 */	addi r3, r30, 0x18
 /* 802639E8 00260928  38 9F 00 0C */	addi r4, r31, 0xc
-/* 802639EC 0026092C  48 00 0E 95 */	bl cCcD_ObjTg_NS_Set
+/* 802639EC 0026092C  48 00 0E 95 */	bl Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
 /* 802639F0 00260930  80 1F 00 14 */	lwz r0, 0x14(r31)
 /* 802639F4 00260934  90 1E 00 2C */	stw r0, 0x2c(r30)
 /* 802639F8 00260938  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -503,28 +503,28 @@ cCcD_ObjHitInf_NS_Set:
 /* 80263A08 00260948  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263A0C 0026094C  4E 80 00 20 */	blr 
 
-.global cCcD_Obj_NS_ct
-cCcD_Obj_NS_ct:
+.global ct__8cCcD_ObjFv
+ct__8cCcD_ObjFv:
 /* 80263A10 00260950  38 00 00 00 */	li r0, 0
 /* 80263A14 00260954  90 03 00 40 */	stw r0, 0x40(r3)
 /* 80263A18 00260958  4E 80 00 20 */	blr 
 
-.global cCcD_Obj_NS_Set
-cCcD_Obj_NS_Set:
+.global Set__8cCcD_ObjFRC11cCcD_SrcObj
+Set__8cCcD_ObjFRC11cCcD_SrcObj:
 /* 80263A1C 0026095C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263A20 00260960  7C 08 02 A6 */	mflr r0
 /* 80263A24 00260964  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80263A28 00260968  80 04 00 00 */	lwz r0, 0(r4)
 /* 80263A2C 0026096C  90 03 00 40 */	stw r0, 0x40(r3)
 /* 80263A30 00260970  38 84 00 04 */	addi r4, r4, 4
-/* 80263A34 00260974  4B FF FF 91 */	bl cCcD_ObjHitInf_NS_Set
+/* 80263A34 00260974  4B FF FF 91 */	bl Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf
 /* 80263A38 00260978  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80263A3C 0026097C  7C 08 03 A6 */	mtlr r0
 /* 80263A40 00260980  38 21 00 10 */	addi r1, r1, 0x10
 /* 80263A44 00260984  4E 80 00 20 */	blr 
 
-.global cCcD_Obj_NS_GetAc
-cCcD_Obj_NS_GetAc:
+.global GetAc__8cCcD_ObjFv
+GetAc__8cCcD_ObjFv:
 /* 80263A48 00260988  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80263A4C 0026098C  28 03 00 00 */	cmplwi r3, 0
 /* 80263A50 00260990  40 82 00 0C */	bne lbl_80263A5C
@@ -898,8 +898,8 @@ lbl_80263FB4:
 /* 80263FBC 00260EFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80263FC0 00260F00  4E 80 00 20 */	blr 
 
-.global cCcD_CpsAttr_NS_CalcAabBox
-cCcD_CpsAttr_NS_CalcAabBox:
+.global CalcAabBox__12cCcD_CpsAttrFv
+CalcAabBox__12cCcD_CpsAttrFv:
 /* 80263FC4 00260F04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80263FC8 00260F08  7C 08 02 A6 */	mflr r0
 /* 80263FCC 00260F0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1403,8 +1403,8 @@ lbl_802646D0:
 /* 802646D8 00261618  38 21 00 20 */	addi r1, r1, 0x20
 /* 802646DC 0026161C  4E 80 00 20 */	blr 
 
-.global cCcD_SphAttr_NS_CalcAabBox
-cCcD_SphAttr_NS_CalcAabBox:
+.global CalcAabBox__12cCcD_SphAttrFv
+CalcAabBox__12cCcD_SphAttrFv:
 /* 802646E0 00261620  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802646E4 00261624  7C 08 02 A6 */	mflr r0
 /* 802646E8 00261628  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1495,15 +1495,15 @@ lbl_802647F4:
 /* 80264834 00261774  D0 04 00 14 */	stfs f0, 0x14(r4)
 /* 80264838 00261778  4E 80 00 20 */	blr 
 
-.global cCcD_ObjAt_NS_SetHit
-cCcD_ObjAt_NS_SetHit:
+.global SetHit__10cCcD_ObjAtFP8cCcD_Obj
+SetHit__10cCcD_ObjAtFP8cCcD_Obj:
 /* 8026483C 0026177C  38 00 00 01 */	li r0, 1
 /* 80264840 00261780  90 03 00 04 */	stw r0, 4(r3)
 /* 80264844 00261784  90 83 00 08 */	stw r4, 8(r3)
 /* 80264848 00261788  4E 80 00 20 */	blr 
 
-.global cCcD_ObjAt_NS_Set
-cCcD_ObjAt_NS_Set:
+.global Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt
+Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt:
 /* 8026484C 0026178C  80 04 00 08 */	lwz r0, 8(r4)
 /* 80264850 00261790  90 03 00 00 */	stw r0, 0(r3)
 /* 80264854 00261794  80 04 00 00 */	lwz r0, 0(r4)
@@ -1512,8 +1512,8 @@ cCcD_ObjAt_NS_Set:
 /* 80264860 002617A0  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80264864 002617A4  4E 80 00 20 */	blr 
 
-.global cCcD_ObjAt_NS_ClrHit
-cCcD_ObjAt_NS_ClrHit:
+.global ClrHit__10cCcD_ObjAtFv
+ClrHit__10cCcD_ObjAtFv:
 /* 80264868 002617A8  80 03 00 04 */	lwz r0, 4(r3)
 /* 8026486C 002617AC  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80264870 002617B0  90 03 00 04 */	stw r0, 4(r3)
@@ -1521,8 +1521,8 @@ cCcD_ObjAt_NS_ClrHit:
 /* 80264878 002617B8  90 03 00 08 */	stw r0, 8(r3)
 /* 8026487C 002617BC  4E 80 00 20 */	blr 
 
-.global cCcD_ObjTg_NS_Set
-cCcD_ObjTg_NS_Set:
+.global Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg
+Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg:
 /* 80264880 002617C0  80 04 00 04 */	lwz r0, 4(r4)
 /* 80264884 002617C4  90 03 00 00 */	stw r0, 0(r3)
 /* 80264888 002617C8  80 04 00 00 */	lwz r0, 0(r4)
@@ -1536,8 +1536,8 @@ cCcD_ObjTg_NS_Set:
 /* 802648A8 002617E8  90 03 00 00 */	stw r0, 0(r3)
 /* 802648AC 002617EC  4E 80 00 20 */	blr 
 
-.global cCcD_ObjTg_NS_ClrHit
-cCcD_ObjTg_NS_ClrHit:
+.global ClrHit__10cCcD_ObjTgFv
+ClrHit__10cCcD_ObjTgFv:
 /* 802648B0 002617F0  80 03 00 04 */	lwz r0, 4(r3)
 /* 802648B4 002617F4  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 802648B8 002617F8  90 03 00 04 */	stw r0, 4(r3)
@@ -1545,22 +1545,22 @@ cCcD_ObjTg_NS_ClrHit:
 /* 802648C0 00261800  90 03 00 08 */	stw r0, 8(r3)
 /* 802648C4 00261804  4E 80 00 20 */	blr 
 
-.global cCcD_ObjTg_NS_SetHit
-cCcD_ObjTg_NS_SetHit:
+.global SetHit__10cCcD_ObjTgFP8cCcD_Obj
+SetHit__10cCcD_ObjTgFP8cCcD_Obj:
 /* 802648C8 00261808  38 00 00 01 */	li r0, 1
 /* 802648CC 0026180C  90 03 00 04 */	stw r0, 4(r3)
 /* 802648D0 00261810  90 83 00 08 */	stw r4, 8(r3)
 /* 802648D4 00261814  4E 80 00 20 */	blr 
 
-.global cCcD_ObjCo_NS_SetHit
-cCcD_ObjCo_NS_SetHit:
+.global SetHit__10cCcD_ObjCoFP8cCcD_Obj
+SetHit__10cCcD_ObjCoFP8cCcD_Obj:
 /* 802648D8 00261818  38 00 00 01 */	li r0, 1
 /* 802648DC 0026181C  90 03 00 04 */	stw r0, 4(r3)
 /* 802648E0 00261820  90 83 00 08 */	stw r4, 8(r3)
 /* 802648E4 00261824  4E 80 00 20 */	blr 
 
-.global cCcD_ObjCo_NS_ClrHit
-cCcD_ObjCo_NS_ClrHit:
+.global ClrHit__10cCcD_ObjCoFv
+ClrHit__10cCcD_ObjCoFv:
 /* 802648E8 00261828  80 03 00 04 */	lwz r0, 4(r3)
 /* 802648EC 0026182C  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 802648F0 00261830  90 03 00 04 */	stw r0, 4(r3)
@@ -1568,8 +1568,8 @@ cCcD_ObjCo_NS_ClrHit:
 /* 802648F8 00261838  90 03 00 08 */	stw r0, 8(r3)
 /* 802648FC 0026183C  4E 80 00 20 */	blr 
 
-.global cCcD_ObjCo_NS_SetIGrp
-cCcD_ObjCo_NS_SetIGrp:
+.global SetIGrp__10cCcD_ObjCoFUl
+SetIGrp__10cCcD_ObjCoFUl:
 /* 80264900 00261840  80 03 00 00 */	lwz r0, 0(r3)
 /* 80264904 00261844  54 00 07 F6 */	rlwinm r0, r0, 0, 0x1f, 0x1b
 /* 80264908 00261848  90 03 00 00 */	stw r0, 0(r3)
@@ -1578,8 +1578,8 @@ cCcD_ObjCo_NS_SetIGrp:
 /* 80264914 00261854  90 03 00 00 */	stw r0, 0(r3)
 /* 80264918 00261858  4E 80 00 20 */	blr 
 
-.global cCcD_ObjCo_NS_SetVsGrp
-cCcD_ObjCo_NS_SetVsGrp:
+.global SetVsGrp__10cCcD_ObjCoFUl
+SetVsGrp__10cCcD_ObjCoFUl:
 /* 8026491C 0026185C  80 03 00 00 */	lwz r0, 0(r3)
 /* 80264920 00261860  54 00 07 30 */	rlwinm r0, r0, 0, 0x1c, 0x18
 /* 80264924 00261864  90 03 00 00 */	stw r0, 0(r3)
@@ -1587,8 +1587,8 @@ cCcD_ObjCo_NS_SetVsGrp:
 /* 8026492C 0026186C  7C 00 23 78 */	or r0, r0, r4
 /* 80264930 00261870  90 03 00 00 */	stw r0, 0(r3)
 /* 80264934 00261874  4E 80 00 20 */	blr 
-.global cCcD_TriAttr_NS_dtor
-cCcD_TriAttr_NS_dtor:
+.global __dt__12cCcD_TriAttrFv
+__dt__12cCcD_TriAttrFv:
 /* 80264938 00261878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026493C 0026187C  7C 08 02 A6 */	mflr r0
 /* 80264940 00261880  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1662,8 +1662,8 @@ lbl_802649C0:
 /* 80264A44 00261984  38 21 00 10 */	addi r1, r1, 0x10
 /* 80264A48 00261988  4E 80 00 20 */	blr 
 /* 80264A4C 0026198C  38 63 FF E0 */	addi r3, r3, -32
-.global cCcD_TriAttr_NS_dtor
-/* 80264A50 00261990  4B FF FE E8 */	b cCcD_TriAttr_NS_dtor
+.global __dt__12cCcD_TriAttrFv
+/* 80264A50 00261990  4B FF FE E8 */	b __dt__12cCcD_TriAttrFv
 /* 80264A54 00261994  38 63 FF E0 */	addi r3, r3, -32
 .global cCcD_CpsAttr_NS_dtor
 /* 80264A58 00261998  4B E2 09 F8 */	b cCcD_CpsAttr_NS_dtor
