@@ -1,23 +1,23 @@
 #ifndef __C_XYZ_H_
 #define __C_XYZ_H_
 
-#include "global.h"
 #include "SComponent/c_math.h"
+#include "global.h"
 
-extern float /* 1.0 */lbl_80455070;
-extern float /* epsilon */lbl_80455074;
+extern float /* 1.0 */ lbl_80455070;
+extern float /* epsilon */ lbl_80455074;
 extern float lbl_80455078;
 extern float lbl_8045507C;
 extern float lbl_80455080;
-extern float /* 32.0 */lbl_80455084;
+extern float /* 32.0 */ lbl_80455084;
 extern double lbl_80455088;
 extern double lbl_80455090;
 extern double lbl_80455098;
 extern u8 lbl_80430CE8;
 
-class cXyz : public Vec{
+class cXyz : public Vec {
 public:
-    ~cXyz() {};
+    ~cXyz(){};
     cXyz() {}
     cXyz(float x, float y, float z) {
         this->x = x;
@@ -66,13 +66,11 @@ public:
         this->z = lbl_80455070;
     }
 
-    bool checkEpsilon() const {
-        return !(PSVECSquareMag(this) < lbl_80455074);
-    }
+    bool checkEpsilon() const { return !(PSVECSquareMag(this) < lbl_80455074); }
 };
 
-extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
+extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
+extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
+extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
 
 #endif

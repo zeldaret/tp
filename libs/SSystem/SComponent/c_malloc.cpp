@@ -7,21 +7,20 @@ extern "C" {
 // cMl::init(JKRHeap*)
 asm void init__3cMlFP7JKRHeap(void) {
     nofralloc
-    #include "SComponent/c_malloc/asm/func_80263220.s"
+#include "SComponent/c_malloc/asm/func_80263220.s"
 }
 
 // memalignB__3cMlFiUl
 // cMl::memalignB(int, unsigned long)
-asm void *memalignB__3cMlFiUl(int, u32) {
+asm void* memalignB__3cMlFiUl(int, u32) {
     nofralloc
-    #include "SComponent/c_malloc/asm/func_80263228.s"
+#include "SComponent/c_malloc/asm/func_80263228.s"
 }
 
 // free__3cMlFPv
 // cMl::free(void*)
 asm void free__3cMlFPv(void*) {
     nofralloc
-    #include "SComponent/c_malloc/asm/func_80263260.s"
+#include "SComponent/c_malloc/asm/func_80263260.s"
 }
-
 };

@@ -7,21 +7,21 @@ extern "C" {
 // cM_rad2s__Ff(float)
 asm void cM_rad2s__Ff(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_802675E4.s"
+#include "SComponent/c_math/asm/func_802675E4.s"
 }
 
 // U_GetAtanTable__Fff
 // U_GetAtanTable__Fff(float, float)
 asm void U_GetAtanTable__Fff(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267640.s"
+#include "SComponent/c_math/asm/func_80267640.s"
 }
 }
 
 // cM_atan2s__Fff
 asm s16 cM_atan2s(float, float) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267674.s"
+#include "SComponent/c_math/asm/func_80267674.s"
 }
 
 extern "C" {
@@ -29,63 +29,62 @@ extern "C" {
 // cM_atan2f__Fff(float, float)
 asm void cM_atan2f__Fff(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267814.s"
+#include "SComponent/c_math/asm/func_80267814.s"
 }
 
 // cM_initRnd__Fiii
 // cM_initRnd__Fiii(int, int, int)
 asm void cM_initRnd__Fiii(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_8026785C.s"
+#include "SComponent/c_math/asm/func_8026785C.s"
 }
 
 // cM_rnd__Fv
 // cM_rnd__Fv(void)
 asm void cM_rnd__Fv(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_8026786C.s"
+#include "SComponent/c_math/asm/func_8026786C.s"
 }
 
 // cM_rndF__Ff
 // cM_rndF__Ff(float)
 asm void cM_rndF__Ff(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267954.s"
+#include "SComponent/c_math/asm/func_80267954.s"
 }
 
 // cM_rndFX__Ff
 // cM_rndFX__Ff(float)
 asm void cM_rndFX__Ff(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_8026798C.s"
+#include "SComponent/c_math/asm/func_8026798C.s"
 }
 
 // cM_initRnd2__Fiii
 // cM_initRnd2(int, int, int)
 asm void func_802679D4(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_802679D4.s"
+#include "SComponent/c_math/asm/func_802679D4.s"
 }
 
 // cM_rnd2__Fv
 // cM_rnd2__Fv(void)
 asm void cM_rnd2__Fv(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_802679E4.s"
+#include "SComponent/c_math/asm/func_802679E4.s"
 }
 
 // cM_rndF2__Ff
 // cM_rndF2(float)
 asm void func_80267ACC(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267ACC.s"
+#include "SComponent/c_math/asm/func_80267ACC.s"
 }
 
 // cM_rndFX2__Ff
 // cM_rndFX2(float)
 asm void func_80267B04(void) {
     nofralloc
-    #include "SComponent/c_math/asm/func_80267B04.s"
+#include "SComponent/c_math/asm/func_80267B04.s"
 }
-
 };

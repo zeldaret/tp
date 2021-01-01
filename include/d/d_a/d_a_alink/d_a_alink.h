@@ -325,9 +325,9 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
+extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
+extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
+extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
 
 // daalink sethairangle
 extern float lbl_80452C98;

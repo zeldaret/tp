@@ -7,28 +7,27 @@ extern "C" {
 // cM3dGTri::cross(const cM3dGCyl*, Vec*) const
 asm void cross__8cM3dGTriCFPC8cM3dGCylP3Vec(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_tri/asm/func_8026F7B0.s"
+#include "SComponent/c_m3d_g_tri/asm/func_8026F7B0.s"
 }
 
 // setPos__8cM3dGTriFPC3VecPC3VecPC3Vec
 // cM3dGTri::setPos(const Vec*, const Vec*, const Vec*)
 asm void setPos__8cM3dGTriFPC3VecPC3VecPC3Vec(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_tri/asm/func_8026F7DC.s"
+#include "SComponent/c_m3d_g_tri/asm/func_8026F7DC.s"
 }
 
 // setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla
 // cM3dGTri::setBg(const Vec*, const Vec*, const Vec*, const cM3dGPla*)
 asm void setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_tri/asm/func_8026F85C.s"
+#include "SComponent/c_m3d_g_tri/asm/func_8026F85C.s"
 }
 
 // set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec
 // cM3dGTri::set(const Vec*, const Vec*, const Vec*, const Vec*)
 asm void set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_tri/asm/func_8026F8C8.s"
+#include "SComponent/c_m3d_g_tri/asm/func_8026F8C8.s"
 }
-
 };

@@ -7,28 +7,27 @@ extern "C" {
 // cBgS_ShdwDraw::cBgS_ShdwDraw(void)
 asm void __ct__13cBgS_ShdwDrawFv(void) {
     nofralloc
-    #include "SComponent/c_bg_s_shdw_draw/asm/func_80267F88.s"
+#include "SComponent/c_bg_s_shdw_draw/asm/func_80267F88.s"
 }
 
 // __dt__13cBgS_ShdwDrawFv
 // cBgS_ShdwDraw::~cBgS_ShdwDraw(void)
 asm void __dt__13cBgS_ShdwDrawFv(void) {
     nofralloc
-    #include "SComponent/c_bg_s_shdw_draw/asm/func_80267FD0.s"
+#include "SComponent/c_bg_s_shdw_draw/asm/func_80267FD0.s"
 }
 
 // Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
 // cBgS_ShdwDraw::Set(cXyz&, cXyz&)
 asm void Set__13cBgS_ShdwDrawFR4cXyzR4cXyz(void) {
     nofralloc
-    #include "SComponent/c_bg_s_shdw_draw/asm/func_80268048.s"
+#include "SComponent/c_bg_s_shdw_draw/asm/func_80268048.s"
 }
 
 // SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i
 // cBgS_ShdwDraw::SetCallback(int (*)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*))
 asm void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i(void) {
     nofralloc
-    #include "SComponent/c_bg_s_shdw_draw/asm/func_8026806C.s"
+#include "SComponent/c_bg_s_shdw_draw/asm/func_8026806C.s"
 }
-
 };

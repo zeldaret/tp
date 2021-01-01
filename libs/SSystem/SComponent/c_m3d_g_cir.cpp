@@ -7,28 +7,27 @@ extern "C" {
 // cM3dGCir::cM3dGCir(void)
 asm void __ct__8cM3dGCirFv(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_cir/asm/func_8026EEB4.s"
+#include "SComponent/c_m3d_g_cir/asm/func_8026EEB4.s"
 }
 
 // __dt__8cM2dGCirFv
 // cM2dGCir::~cM2dGCir(void)
 asm void __dt__8cM2dGCirFv(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_cir/asm/func_8026EED0.s"
+#include "SComponent/c_m3d_g_cir/asm/func_8026EED0.s"
 }
 
 // __dt__8cM3dGCirFv
 // cM3dGCir::~cM3dGCir(void)
 asm void __dt__8cM3dGCirFv(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_cir/asm/func_8026EF18.s"
+#include "SComponent/c_m3d_g_cir/asm/func_8026EF18.s"
 }
 
 // Set__8cM3dGCirFffff
 // cM3dGCir::Set(float, float, float, float)
 asm void Set__8cM3dGCirFffff(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_cir/asm/func_8026EF74.s"
+#include "SComponent/c_m3d_g_cir/asm/func_8026EF74.s"
 }
-
 };

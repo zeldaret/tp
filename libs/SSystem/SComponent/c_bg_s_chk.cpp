@@ -7,28 +7,27 @@ extern "C" {
 // cBgS_Chk::cBgS_Chk(void)
 asm void __ct__8cBgS_ChkFv(void) {
     nofralloc
-    #include "SComponent/c_bg_s_chk/asm/func_80267B4C.s"
+#include "SComponent/c_bg_s_chk/asm/func_80267B4C.s"
 }
 
 // __dt__8cBgS_ChkFv
 // cBgS_Chk::~cBgS_Chk(void)
 asm void __dt__8cBgS_ChkFv(void) {
     nofralloc
-    #include "SComponent/c_bg_s_chk/asm/func_80267B70.s"
+#include "SComponent/c_bg_s_chk/asm/func_80267B70.s"
 }
 
 // SetExtChk__8cBgS_ChkFR8cBgS_Chk
 // cBgS_Chk::SetExtChk(cBgS_Chk&)
 asm void SetExtChk__8cBgS_ChkFR8cBgS_Chk(void) {
     nofralloc
-    #include "SComponent/c_bg_s_chk/asm/func_80267BB8.s"
+#include "SComponent/c_bg_s_chk/asm/func_80267BB8.s"
 }
 
 // ChkSameActorPid__8cBgS_ChkCFUi
 // cBgS_Chk::ChkSameActorPid(unsigned int) const
 asm void ChkSameActorPid__8cBgS_ChkCFUi(void) {
     nofralloc
-    #include "SComponent/c_bg_s_chk/asm/func_80267BDC.s"
+#include "SComponent/c_bg_s_chk/asm/func_80267BDC.s"
 }
-
 };

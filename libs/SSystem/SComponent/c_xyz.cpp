@@ -3,21 +3,21 @@
 #include "SComponent/c_xyz.h"
 
 // __pl__4cXyzCFRC3Vec
-cXyz cXyz::operator+(const Vec& vec) const{
+cXyz cXyz::operator+(const Vec& vec) const {
     Vec ret;
     PSVECAdd(this, &vec, &ret);
     return cXyz(ret);
 }
 
 // __mi__4cXyzCFRC3Vec
-cXyz cXyz::operator-(const Vec& vec) const{
+cXyz cXyz::operator-(const Vec& vec) const {
     Vec ret;
     PSVECSubtract(this, &vec, &ret);
     return cXyz(ret);
 }
 
 // __ml__4cXyzCFf
-cXyz cXyz::operator*(float scale) const{
+cXyz cXyz::operator*(float scale) const {
     Vec ret;
     PSVECScale(this, &ret, scale);
     return cXyz(ret);
@@ -30,7 +30,7 @@ inline void vecMul(const Vec* src1, const Vec* src2, Vec* dst) {
 }
 
 // __ml__4cXyzCFRC3Vec
-cXyz cXyz::operator*(const Vec& vec) const{
+cXyz cXyz::operator*(const Vec& vec) const {
     cXyz ret;
     vecMul(this, &vec, &ret);
     return cXyz(ret);
@@ -105,7 +105,7 @@ cXyz cXyz::normZC(void) const {
 #else
 asm cXyz cXyz::normZC(void) const {
     nofralloc
-    #include "SComponent/c_xyz/asm/func_80266DC4.s"
+#include "SComponent/c_xyz/asm/func_80266DC4.s"
 }
 #endif
 
@@ -150,9 +150,11 @@ bool cXyz::isZero(void) const {
     // return (float)fabsf(this->x) < lbl_80455084 * lbl_80450AEC &&
     //     (float)fabsf(this->y) < lbl_80455084 * lbl_80450AEC &&
     //     (float)fabsf(this->z) < lbl_80455084 * lbl_80450AEC;
-    return (float)fabsf(this->x) < /* 32 */lbl_80455084 * /* MSL_C.PPCEABI.bare.H::__float_epsilon */*(float*)0x80450AEC &&
-        (float)fabsf(this->y) < lbl_80455084 * *(float*)0x80450AEC &&
-        (float)fabsf(this->z) < lbl_80455084 * *(float*)0x80450AEC;
+    return (float)fabsf(this->x) <
+               /* 32 */ lbl_80455084 *
+                   /* MSL_C.PPCEABI.bare.H::__float_epsilon */ *(float*)0x80450AEC &&
+           (float)fabsf(this->y) < lbl_80455084 * *(float*)0x80450AEC &&
+           (float)fabsf(this->z) < lbl_80455084 * *(float*)0x80450AEC;
 }
 
 // atan2sX_Z__4cXyzCFv
@@ -163,7 +165,7 @@ s16 cXyz::atan2sX_Z(void) const {
 // atan2sY_XZ__4cXyzCFv
 asm s16 cXyz::atan2sY_XZ(void) const {
     nofralloc
-    #include "SComponent/c_xyz/asm/func_80267150.s"
+#include "SComponent/c_xyz/asm/func_80267150.s"
 }
 
 extern "C" {
@@ -171,7 +173,6 @@ extern "C" {
 // __sinit_c_xyz_cpp
 asm void __sinit_c_xyz_cpp(void) {
     nofralloc
-    #include "SComponent/c_xyz/asm/func_80267290.s"
+#include "SComponent/c_xyz/asm/func_80267290.s"
 }
-
 };

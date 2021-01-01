@@ -7,35 +7,34 @@ extern "C" {
 // cM3dGLin::cM3dGLin(const cXyz&, const cXyz&)
 asm void __ct__8cM3dGLinFRC4cXyzRC4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_lin/asm/func_8026F2A8.s"
+#include "SComponent/c_m3d_g_lin/asm/func_8026F2A8.s"
 }
 
 // SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz
 // cM3dGLin::SetStartEnd(const cXyz&, const cXyz&)
 asm void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_lin/asm/func_8026F2E8.s"
+#include "SComponent/c_m3d_g_lin/asm/func_8026F2E8.s"
 }
 
 // SetStartEnd__8cM3dGLinFRC3VecRC3Vec
 // cM3dGLin::SetStartEnd(const Vec&, const Vec&)
 asm void SetStartEnd__8cM3dGLinFRC3VecRC3Vec(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_lin/asm/func_8026F31C.s"
+#include "SComponent/c_m3d_g_lin/asm/func_8026F31C.s"
 }
 
 // CalcPos__8cM3dGLinCFP3Vecf
 // cM3dGLin::CalcPos(Vec*, float) const
 asm void CalcPos__8cM3dGLinCFP3Vecf(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_lin/asm/func_8026F350.s"
+#include "SComponent/c_m3d_g_lin/asm/func_8026F350.s"
 }
 
 // SetEnd__8cM3dGLinFRC4cXyz
 // cM3dGLin::SetEnd(const cXyz&)
 asm void SetEnd__8cM3dGLinFRC4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_lin/asm/func_8026F3C0.s"
+#include "SComponent/c_m3d_g_lin/asm/func_8026F3C0.s"
 }
-
 };

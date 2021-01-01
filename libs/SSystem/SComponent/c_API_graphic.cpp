@@ -7,21 +7,20 @@ extern "C" {
 // cAPIGph_Painter__Fv(void)
 asm void cAPIGph_Painter__Fv(void) {
     nofralloc
-    #include "SComponent/c_API_graphic/asm/func_802632C8.s"
+#include "SComponent/c_API_graphic/asm/func_802632C8.s"
 }
 
 // cAPIGph_BeforeOfDraw__Fv
 // cAPIGph_BeforeOfDraw__Fv(void)
 asm void cAPIGph_BeforeOfDraw__Fv(void) {
     nofralloc
-    #include "SComponent/c_API_graphic/asm/func_802632F8.s"
+#include "SComponent/c_API_graphic/asm/func_802632F8.s"
 }
 
 // cAPIGph_AfterOfDraw__Fv
 // cAPIGph_AfterOfDraw__Fv(void)
 asm void cAPIGph_AfterOfDraw__Fv(void) {
     nofralloc
-    #include "SComponent/c_API_graphic/asm/func_80263328.s"
+#include "SComponent/c_API_graphic/asm/func_80263328.s"
 }
-
 };

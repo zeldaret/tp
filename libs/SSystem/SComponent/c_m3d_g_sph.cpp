@@ -7,49 +7,48 @@ extern "C" {
 // cM3dGSph::SetC(const cXyz&)
 asm void SetC__8cM3dGSphFRC4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F648.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F648.s"
 }
 
 // Set__8cM3dGSphFRC4cXyzf
 // cM3dGSph::Set(const cXyz&, float)
 asm void Set__8cM3dGSphFRC4cXyzf(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F664.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F664.s"
 }
 
 // Set__8cM3dGSphFRC9cM3dGSphS
 // cM3dGSph::Set(const cM3dGSphS&)
 asm void Set__8cM3dGSphFRC9cM3dGSphS(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F6A8.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F6A8.s"
 }
 
 // SetR__8cM3dGSphFf
 // cM3dGSph::SetR(float)
 asm void SetR__8cM3dGSphFf(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F708.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F708.s"
 }
 
 // cross__8cM3dGSphCFPC8cM3dGSphP4cXyz
 // cM3dGSph::cross(const cM3dGSph*, cXyz*) const
 asm void cross__8cM3dGSphCFPC8cM3dGSphP4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F710.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F710.s"
 }
 
 // cross__8cM3dGSphCFPC8cM3dGCylP4cXyz
 // cM3dGSph::cross(const cM3dGCyl*, cXyz*) const
 asm void cross__8cM3dGSphCFPC8cM3dGCylP4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F73C.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F73C.s"
 }
 
 // GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz
 // cM3dGSph::GetMinMaxCube(cXyz&, cXyz&) const
 asm void GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz(void) {
     nofralloc
-    #include "SComponent/c_m3d_g_sph/asm/func_8026F76C.s"
+#include "SComponent/c_m3d_g_sph/asm/func_8026F76C.s"
 }
-
 };

@@ -7,7 +7,6 @@ extern "C" {
 // cM2d_CrossCirLin(cM2dGCir&, float, float, float, float, float*, float*)
 asm void cM2d_CrossCirLin__FR8cM2dGCirffffPfPf(void) {
     nofralloc
-    #include "SComponent/c_m2d/asm/func_80268260.s"
+#include "SComponent/c_m2d/asm/func_80268260.s"
 }
-
 };

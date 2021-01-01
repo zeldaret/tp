@@ -7,28 +7,27 @@ extern "C" {
 // cReq_Is_Done(request_base_class*)
 asm void cReq_Is_Done__FP18request_base_class(void) {
     nofralloc
-    #include "SComponent/c_request/asm/func_802667D4.s"
+#include "SComponent/c_request/asm/func_802667D4.s"
 }
 
 // cReq_Done__FP18request_base_class
 // cReq_Done(request_base_class*)
 asm void cReq_Done__FP18request_base_class(void) {
     nofralloc
-    #include "SComponent/c_request/asm/func_80266800.s"
+#include "SComponent/c_request/asm/func_80266800.s"
 }
 
 // cReq_Command__FP18request_base_classUc
 // cReq_Command(request_base_class*, unsigned char)
 asm void cReq_Command__FP18request_base_classUc(void) {
     nofralloc
-    #include "SComponent/c_request/asm/func_80266830.s"
+#include "SComponent/c_request/asm/func_80266830.s"
 }
 
 // cReq_Create__FP18request_base_classUc
 // cReq_Create(request_base_class*, unsigned char)
 asm void cReq_Create__FP18request_base_classUc(void) {
     nofralloc
-    #include "SComponent/c_request/asm/func_80266850.s"
+#include "SComponent/c_request/asm/func_80266850.s"
 }
-
 };

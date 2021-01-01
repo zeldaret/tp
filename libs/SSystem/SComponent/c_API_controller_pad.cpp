@@ -7,14 +7,13 @@ extern "C" {
 // cAPICPad_recalibrate__Fv(void)
 asm void cAPICPad_recalibrate__Fv(void) {
     nofralloc
-    #include "SComponent/c_API_controller_pad/asm/func_8026328C.s"
+#include "SComponent/c_API_controller_pad/asm/func_8026328C.s"
 }
 
 // cAPICPad_ANY_BUTTON__FUl
 // cAPICPad_ANY_BUTTON__FUl(unsigned long)
 asm void cAPICPad_ANY_BUTTON__FUl(void) {
     nofralloc
-    #include "SComponent/c_API_controller_pad/asm/func_802632AC.s"
+#include "SComponent/c_API_controller_pad/asm/func_802632AC.s"
 }
-
 };
