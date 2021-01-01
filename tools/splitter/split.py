@@ -15,6 +15,7 @@ from demangle import parse_framework_map, demangle
 from util import PathPath, pairwise
 from pprint import pprint
 import pickle
+import IPython
 
 SDA_BASE = 0x80458580
 SDA2_BASE = 0x80459A00
@@ -90,7 +91,8 @@ def find_functions(lines: List[Line], framework_map) -> Iterable[Function]:
     ):
         # some blocks weren't properly split, use the map to find missing functions
         fr = func_global_line.index + 2
-        to = next_func_global_line.index if next_func_global_line is not None else -1
+        # if no next global, to = None => end of file
+        to = next_func_global_line and next_func_global_line.index
         func_lines = lines[fr:to]
         func_idx = []
         for idx, line in enumerate(func_lines):
