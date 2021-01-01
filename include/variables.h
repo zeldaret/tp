@@ -10,8 +10,6 @@ extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
-struct m_cpadInfo;
-extern m_cpadInfo lbl_803DD2E8;
 extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;
 extern u8 lbl_80450B19;

@@ -4,6 +4,7 @@
 #include "d/d_a/d_a_alink/d_a_alink.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_pc/f_pc_searcher.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "global.h"
 
 extern "C" {

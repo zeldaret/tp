@@ -1,5 +1,6 @@
 #include "m_Do/m_Do_reset/m_Do_reset.h"
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
+#include "SComponent/c_API_controller_pad.h"
 #include "dvd/dvd.h"
 #include "global.h"
 

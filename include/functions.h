@@ -1,3 +1,6 @@
+#ifndef __FUNCTIONS_H__
+#define __FUNCTIONS_H__
+
 #include "os/OS.h"
 
 extern "C" {
@@ -314,7 +317,7 @@ void DVDReadDir(void);
 
 class mDoCPd_c;
 extern "C" {
-void cAPICPad_recalibrate(void);
+void mDoCPd_c_NS_recalibrate(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -3789,3 +3792,5 @@ void J3DGXColorS10(void);
 
 u32 dEv_noFinishSkipProc(void);
 }
+
+#endif

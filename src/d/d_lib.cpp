@@ -1,6 +1,7 @@
 #include "d/d_lib/d_lib.h"
 #include "d/d_event/d_event/d_event.h"
 #include "os/OS.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
                      s16 param_7, s16 param_8) {
@@ -61,19 +62,19 @@ asm void STControl::Yinit(void) {
 #endif
 
 double STControl::getValueStick() {
-    return lbl_803DD2E8.stickValue;
+    return (double) lbl_803DD2E8[0].mMainStickValue;
 }
 
 s16 STControl::getAngleStick() {
-    return lbl_803DD2E8.stickAngle;
+    return lbl_803DD2E8[0].mMainStickAngle;
 }
 
 double CSTControl::getValueStick() {
-    return lbl_803DD2E8.CstickValue;
+    return (double) lbl_803DD2E8[0].mCStickValue;
 }
 
 s16 CSTControl::getAngleStick() {
-    return lbl_803DD2E8.CstickAngle;
+    return lbl_803DD2E8[0].mCStickAngle;
 }
 
 asm u32 STControl::checkTrigger() {

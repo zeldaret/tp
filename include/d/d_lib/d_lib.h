@@ -54,16 +54,6 @@ struct CSTControl {
     s16 getAngleStick();
 };
 
-struct m_cpadInfo {
-    u8 p1[0x8];
-    f32 stickValue;
-    s16 stickAngle;
-    u8 p2[0x8];
-    f32 CstickValue;
-    s16 CstickAngle;
-    u8 p3[0xE2];
-};
-
 u32 dLib_getEventSwitchNo(int param_1);
 
 struct fopAc_ac_c;
