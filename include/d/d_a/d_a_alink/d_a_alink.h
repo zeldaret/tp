@@ -201,7 +201,7 @@ private:
     u8 unk[14268];
 };
 
-class daMidna_c{
+class daMidna_c {
 public:
     void onForcePanic(void);
     u32 checkForceNormalColor(void) const;
