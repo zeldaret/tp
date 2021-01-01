@@ -2214,6 +2214,7 @@ cLib_targetAngleY__FRC3VecRC3Vec
 cLib_chasePosXZ__FP4cXyzRC4cXyzf
 cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff
 __dt__8cM2dGCirFv
+setPos__8cM3dGTriFPC3VecPC3VecPC3Vec
 }
 /*
 .init 80003100 - 80005600

@@ -525,10 +525,10 @@ daItem_c_NS_CreateInit:
 /* 8015B4F4 00158434  EC 21 00 B2 */	fmuls f1, f1, f2
 lbl_8015B4F8:
 /* 8015B4F8 00158438  38 7F 09 04 */	addi r3, r31, 0x904
-/* 8015B4FC 0015843C  48 11 3D 05 */	bl cM3dGCyl_NS_SetR
+/* 8015B4FC 0015843C  48 11 3D 05 */	bl SetR__8cM3dGCylFf
 /* 8015B500 00158440  38 7F 09 04 */	addi r3, r31, 0x904
 /* 8015B504 00158444  FC 20 F8 90 */	fmr f1, f31
-/* 8015B508 00158448  48 11 3C F1 */	bl cM3dGCyl_NS_SetH
+/* 8015B508 00158448  48 11 3C F1 */	bl SetH__8cM3dGCylFf
 /* 8015B50C 0015844C  7F E3 FB 78 */	mr r3, r31
 /* 8015B510 00158450  48 00 02 AD */	bl daItem_c_NS_setCullInfo
 /* 8015B514 00158454  7F E3 FB 78 */	mr r3, r31
@@ -1266,7 +1266,7 @@ lbl_8015BF74:
 lbl_8015BF9C:
 /* 8015BF9C 00158EDC  38 7F 09 04 */	addi r3, r31, 0x904
 /* 8015BFA0 00158EE0  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 8015BFA4 00158EE4  48 11 32 39 */	bl cM3dGCyl_NS_SetC
+/* 8015BFA4 00158EE4  48 11 32 39 */	bl SetC__8cM3dGCylFRC4cXyz
 /* 8015BFA8 00158EE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015BFAC 00158EEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015BFB0 00158EF0  38 63 23 3C */	addi r3, r3, 0x233c
@@ -1611,7 +1611,7 @@ daItem_c_NS_procInitBoomerangCarry:
 /* 8015C498 001593D8  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8015C49C 001593DC  EC 00 08 28 */	fsubs f0, f0, f1
 /* 8015C4A0 001593E0  EC 22 00 32 */	fmuls f1, f2, f0
-/* 8015C4A4 001593E4  48 11 2D 5D */	bl cM3dGCyl_NS_SetR
+/* 8015C4A4 001593E4  48 11 2D 5D */	bl SetR__8cM3dGCylFf
 /* 8015C4A8 001593E8  38 7F 09 04 */	addi r3, r31, 0x904
 /* 8015C4AC 001593EC  C0 42 9B 9C */	lfs f2, lbl_8045359C-_SDA2_BASE_(r2)
 /* 8015C4B0 001593F0  57 C0 06 3E */	clrlwi r0, r30, 0x18
@@ -1622,7 +1622,7 @@ daItem_c_NS_procInitBoomerangCarry:
 /* 8015C4C4 00159404  C8 01 00 10 */	lfd f0, 0x10(r1)
 /* 8015C4C8 00159408  EC 00 08 28 */	fsubs f0, f0, f1
 /* 8015C4CC 0015940C  EC 22 00 32 */	fmuls f1, f2, f0
-/* 8015C4D0 00159410  48 11 2D 29 */	bl cM3dGCyl_NS_SetH
+/* 8015C4D0 00159410  48 11 2D 29 */	bl SetH__8cM3dGCylFf
 /* 8015C4D4 00159414  80 1F 08 0C */	lwz r0, 0x80c(r31)
 /* 8015C4D8 00159418  60 00 00 01 */	ori r0, r0, 1
 /* 8015C4DC 0015941C  90 1F 08 0C */	stw r0, 0x80c(r31)
@@ -1685,7 +1685,7 @@ lbl_8015C59C:
 /* 8015C5B8 001594F8  48 00 22 C5 */	bl daPy_boomerangMove_c_NS_bgCheckAfterOffset
 /* 8015C5BC 001594FC  38 7D 09 04 */	addi r3, r29, 0x904
 /* 8015C5C0 00159500  38 9D 04 D0 */	addi r4, r29, 0x4d0
-/* 8015C5C4 00159504  48 11 2C 19 */	bl cM3dGCyl_NS_SetC
+/* 8015C5C4 00159504  48 11 2C 19 */	bl SetC__8cM3dGCylFRC4cXyz
 /* 8015C5C8 00159508  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015C5CC 0015950C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015C5D0 00159510  38 63 23 3C */	addi r3, r3, 0x233c
@@ -2021,7 +2021,7 @@ lbl_8015C960:
 lbl_8015CA80:
 /* 8015CA80 001599C0  38 7F 09 04 */	addi r3, r31, 0x904
 /* 8015CA84 001599C4  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 8015CA88 001599C8  48 11 27 55 */	bl cM3dGCyl_NS_SetC
+/* 8015CA88 001599C8  48 11 27 55 */	bl SetC__8cM3dGCylFRC4cXyz
 /* 8015CA8C 001599CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015CA90 001599D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015CA94 001599D4  38 63 23 3C */	addi r3, r3, 0x233c
