@@ -429,7 +429,7 @@ lbl_8010C4CC:
 /* 8010C514 00109454  D0 81 00 9C */ stfs f4, 0x9c(r1)
 /* 8010C518 00109458  38 79 1D 08 */ addi r3, r25, 0x1d08
 /* 8010C51C 0010945C  38 81 00 94 */ addi r4, r1, 0x94
-/* 8010C520 00109460  48 15 B8 09 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8010C520 00109460  48 15 B8 09 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8010C524 00109464  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010C528 00109468  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010C52C 0010946C  38 63 0F 38 */ addi r3, r3, 0xf38

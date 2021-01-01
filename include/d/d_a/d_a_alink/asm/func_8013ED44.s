@@ -256,7 +256,7 @@ lbl_8013F078:
 /* 8013F0E0 0013C020  D0 41 00 10 */ stfs f2, 0x10(r1)
 /* 8013F0E4 0013C024  38 7E 1D 08 */ addi r3, r30, 0x1d08
 /* 8013F0E8 0013C028  38 81 00 08 */ addi r4, r1, 8
-/* 8013F0EC 0013C02C  48 12 8C 3D */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8013F0EC 0013C02C  48 12 8C 3D */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8013F0F0 0013C030  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013F0F4 0013C034  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013F0F8 0013C038  3B E3 0F 38 */ addi r31, r3, 0xf38

@@ -4938,7 +4938,7 @@ fopAcM_gc_c_NS_gndCheck:
 /* 8001DCC8 0001AC08  7C 64 1B 78 */	mr r4, r3
 /* 8001DCCC 0001AC0C  3C 60 80 3F */	lis r3, lbl_803F1CC4@ha
 /* 8001DCD0 0001AC10  38 63 1C C4 */	addi r3, r3, lbl_803F1CC4@l
-/* 8001DCD4 0001AC14  48 24 A0 55 */	bl cBgS_GndChk_NS_SetPos_X1_
+/* 8001DCD4 0001AC14  48 24 A0 55 */	bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8001DCD8 0001AC18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8001DCDC 0001AC1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8001DCE0 0001AC20  38 63 0F 38 */	addi r3, r3, 0xf38

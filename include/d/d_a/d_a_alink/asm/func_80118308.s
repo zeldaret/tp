@@ -128,7 +128,7 @@ lbl_80118488:
 /* 801184D8 00115418  D0 1E 00 08 */ stfs f0, 8(r30)
 /* 801184DC 0011541C  38 7D 1D 08 */ addi r3, r29, 0x1d08
 /* 801184E0 00115420  7F C4 F3 78 */ mr r4, r30
-/* 801184E4 00115424  48 14 F8 45 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 801184E4 00115424  48 14 F8 45 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 801184E8 00115428  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801184EC 0011542C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801184F0 00115430  38 63 0F 38 */ addi r3, r3, 0xf38

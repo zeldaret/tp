@@ -116,7 +116,7 @@ lbl_800FBF5C:
 /* 800FBFA8 000F8EE8  D0 81 00 2C */ stfs f4, 0x2c(r1)
 /* 800FBFAC 000F8EEC  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 800FBFB0 000F8EF0  38 81 00 24 */ addi r4, r1, 0x24
-/* 800FBFB4 000F8EF4  48 16 BD 75 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800FBFB4 000F8EF4  48 16 BD 75 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800FBFB8 000F8EF8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800FBFBC 000F8EFC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FBFC0 000F8F00  3B C3 0F 38 */ addi r30, r3, 0xf38

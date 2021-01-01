@@ -56,7 +56,7 @@ lbl_800E2E64:
 /* 800E2E98 000DFDD8  48 26 41 F9 */ bl PSVECAdd
 /* 800E2E9C 000DFDDC  38 7E 1D 08 */ addi r3, r30, 0x1d08
 /* 800E2EA0 000DFDE0  38 9E 04 D0 */ addi r4, r30, 0x4d0
-/* 800E2EA4 000DFDE4  48 18 4E 85 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800E2EA4 000DFDE4  48 18 4E 85 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800E2EA8 000DFDE8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E2EAC 000DFDEC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E2EB0 000DFDF0  38 63 0F 38 */ addi r3, r3, 0xf38

@@ -75,7 +75,7 @@ lbl_80135298:
 /* 80135310 00132250  D0 81 00 10 */ stfs f4, 0x10(r1)
 /* 80135314 00132254  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 80135318 00132258  38 81 00 08 */ addi r4, r1, 8
-/* 8013531C 0013225C  48 13 2A 0D */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8013531C 0013225C  48 13 2A 0D */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 80135320 00132260  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80135324 00132264  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80135328 00132268  38 63 0F 38 */ addi r3, r3, 0xf38

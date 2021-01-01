@@ -774,7 +774,7 @@ lbl_800E4A7C:
 /* 800E4A98 000E19D8  D0 41 00 FC */ stfs f2, 0xfc(r1)
 /* 800E4A9C 000E19DC  38 7F 1E CC */ addi r3, r31, 0x1ecc
 /* 800E4AA0 000E19E0  38 81 00 F4 */ addi r4, r1, 0xf4
-/* 800E4AA4 000E19E4  48 18 32 85 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800E4AA4 000E19E4  48 18 32 85 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800E4AA8 000E19E8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E4AAC 000E19EC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E4AB0 000E19F0  38 63 0F 38 */ addi r3, r3, 0xf38
