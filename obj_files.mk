@@ -539,7 +539,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DShapeFactory.o    \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DAnmLoader.o    \
             $(BUILD_DIR)/asm/JMath/JMath.o    \
-            $(BUILD_DIR)/asm/JMath/random.o    \
+            $(BUILD_DIR)/libs/JSystem/JMath/random.o    \
             $(BUILD_DIR)/asm/JMath/JMATrigonometric.o    \
             $(BUILD_DIR)/asm/base/PPCArch.o    \
             $(BUILD_DIR)/asm/os/OS.o    \
