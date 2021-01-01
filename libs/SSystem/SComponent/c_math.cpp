@@ -16,14 +16,15 @@ asm void U_GetAtanTable__Fff(void) {
     nofralloc
     #include "SComponent/c_math/asm/func_80267640.s"
 }
+}
 
 // cM_atan2s__Fff
-// cM_atan2s__Fff(float, float)
-asm void cM_atan2s__Fff(void) {
+asm s16 cM_atan2s(float, float) {
     nofralloc
     #include "SComponent/c_math/asm/func_80267674.s"
 }
 
+extern "C" {
 // cM_atan2f__Fff
 // cM_atan2f__Fff(float, float)
 asm void cM_atan2f__Fff(void) {

@@ -1495,7 +1495,7 @@ dMsgFlow_c_NS_query005:
 /* 8024B384 002482C4  38 61 00 14 */	addi r3, r1, 0x14
 /* 8024B388 002482C8  38 9F 05 50 */	addi r4, r31, 0x550
 /* 8024B38C 002482CC  38 A1 00 20 */	addi r5, r1, 0x20
-/* 8024B390 002482D0  48 01 B7 A5 */	bl cXyz_NS___mi
+/* 8024B390 002482D0  48 01 B7 A5 */	bl __mi__4cXyzCFRC3Vec
 /* 8024B394 002482D4  38 61 00 0C */	addi r3, r1, 0xc
 /* 8024B398 002482D8  38 81 00 14 */	addi r4, r1, 0x14
 /* 8024B39C 002482DC  48 02 64 E5 */	bl __ct__7cSGlobeFRC4cXyz

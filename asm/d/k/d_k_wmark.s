@@ -233,7 +233,7 @@ dkWmark_c_NS_setMatrix:
 /* 80261748 0025E688  38 A1 00 24 */	addi r5, r1, 0x24
 /* 8026174C 0025E68C  4B E1 2F F9 */	bl cBgS_NS_GetTriPla
 /* 80261750 0025E690  38 61 00 24 */	addi r3, r1, 0x24
-/* 80261754 0025E694  48 00 59 D5 */	bl cXyz_NS_atan2sX_Z
+/* 80261754 0025E694  48 00 59 D5 */	bl atan2sX_Z__4cXyzCFv
 /* 80261758 0025E698  A8 1D 04 8A */	lha r0, 0x48a(r29)
 /* 8026175C 0025E69C  7C 00 18 50 */	subf r0, r0, r3
 /* 80261760 0025E6A0  7C 1A 07 34 */	extsh r26, r0

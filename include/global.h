@@ -7,6 +7,12 @@ struct Vec {
     float x, y, z;
 };
 
+extern float __fabsf(float);
+
+inline double fabsf(double d) {
+    return __fabsf(d);
+}
+
 #include "dolphin/types.h"
 
 #include "functions.h"

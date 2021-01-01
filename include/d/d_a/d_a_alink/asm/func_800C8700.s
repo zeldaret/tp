@@ -32,7 +32,7 @@ lbl_800C8750:
 /* 800C8778 000C56B8  C8 01 00 80 */ lfd f0, 0x80(r1)
 /* 800C877C 000C56BC  EC 00 08 28 */ fsubs f0, f0, f1
 /* 800C8780 000C56C0  EC 22 00 24 */ fdivs f1, f2, f0
-/* 800C8784 000C56C4  48 19 E4 01 */ bl cXyz_NS___ml
+/* 800C8784 000C56C4  48 19 E4 01 */ bl __ml__4cXyzCFf
 /* 800C8788 000C56C8  38 7F 08 14 */ addi r3, r31, 0x814
 /* 800C878C 000C56CC  38 81 00 0C */ addi r4, r1, 0xc
 /* 800C8790 000C56D0  4B FC F0 49 */ bl cXyz_NS___as

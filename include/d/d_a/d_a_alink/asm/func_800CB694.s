@@ -23,7 +23,7 @@
 /* 800CB6EC 000C862C  D0 41 00 34 */ stfs f2, 0x34(r1)
 /* 800CB6F0 000C8630  D0 61 00 38 */ stfs f3, 0x38(r1)
 /* 800CB6F4 000C8634  38 61 00 30 */ addi r3, r1, 0x30
-/* 800CB6F8 000C8638  48 19 BA 31 */ bl cXyz_NS_atan2sX_Z
+/* 800CB6F8 000C8638  48 19 BA 31 */ bl atan2sX_Z__4cXyzCFv
 /* 800CB6FC 000C863C  B0 7E 2F F6 */ sth r3, 0x2ff6(r30)
 /* 800CB700 000C8640  7F C3 F3 78 */ mr r3, r30
 /* 800CB704 000C8644  4B F5 04 11 */ bl fopAcM_getTalkEventPartner

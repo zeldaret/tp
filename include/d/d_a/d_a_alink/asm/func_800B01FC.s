@@ -16,7 +16,7 @@
 /* 800B0238 000AD178  D0 21 00 1C */ stfs f1, 0x1c(r1)
 /* 800B023C 000AD17C  38 61 00 08 */ addi r3, r1, 8
 /* 800B0240 000AD180  38 81 00 14 */ addi r4, r1, 0x14
-/* 800B0244 000AD184  48 1B 6D 05 */ bl cXyz_NS_normalizeZP
+/* 800B0244 000AD184  48 1B 6D 05 */ bl normalizeZP__4cXyzFv
 /* 800B0248 000AD188  38 61 00 20 */ addi r3, r1, 0x20
 /* 800B024C 000AD18C  38 81 00 14 */ addi r4, r1, 0x14
 /* 800B0250 000AD190  C0 21 00 1C */ lfs f1, 0x1c(r1)

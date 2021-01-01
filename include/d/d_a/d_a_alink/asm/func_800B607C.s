@@ -467,7 +467,7 @@ lbl_800B6704:
 /* 800B6738 000B3678  38 9A 1B 5C */ addi r4, r26, 0x1b5c
 /* 800B673C 000B367C  48 1B 1A 0D */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 800B6740 000B3680  38 61 00 20 */ addi r3, r1, 0x20
-/* 800B6744 000B3684  48 1B 09 E5 */ bl cXyz_NS_atan2sX_Z
+/* 800B6744 000B3684  48 1B 09 E5 */ bl atan2sX_Z__4cXyzCFv
 /* 800B6748 000B3688  7C 64 1B 78 */ mr r4, r3
 /* 800B674C 000B368C  7F 43 D3 78 */ mr r3, r26
 /* 800B6750 000B3690  48 04 90 C9 */ bl daAlink_c_NS_procClimbDownStartInit
