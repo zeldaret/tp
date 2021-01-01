@@ -31,7 +31,7 @@
 /* 80101724 000FE664  4B FF FF 19 */ bl daAlink_c_NS_setRoofHangSwitch
 /* 80101728 000FE668  A8 7F 04 E6 */ lha r3, 0x4e6(r31)
 /* 8010172C 000FE66C  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
-/* 80101730 000FE670  48 16 F6 F5 */ bl cLib_distanceAngleS
+/* 80101730 000FE670  48 16 F6 F5 */ bl cLib_distanceAngleS__Fss
 /* 80101734 000FE674  2C 03 40 00 */ cmpwi r3, 0x4000
 /* 80101738 000FE678  40 81 00 18 */ ble lbl_80101750
 /* 8010173C 000FE67C  A8 7F 04 E6 */ lha r3, 0x4e6(r31)

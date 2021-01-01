@@ -1286,7 +1286,7 @@ dMap_c_NS_copyPalette:
 /* 80029760 000266A0  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80029764 000266A4  80 9F 00 40 */	lwz r4, 0x40(r31)
 /* 80029768 000266A8  38 A0 01 98 */	li r5, 0x198
-/* 8002976C 000266AC  48 24 61 D1 */	bl cLib_memCpy
+/* 8002976C 000266AC  48 24 61 D1 */	bl cLib_memCpy__FPvPCvUl
 /* 80029770 000266B0  7F E3 FB 78 */	mr r3, r31
 /* 80029774 000266B4  4B FF F9 ED */	bl renderingAmap_c_NS_getStayType
 /* 80029778 000266B8  2C 03 00 00 */	cmpwi r3, 0
@@ -1346,7 +1346,7 @@ dMap_c_NS_resCopy:
 /* 8002982C 0002676C  80 63 00 44 */	lwz r3, 0x44(r3)
 /* 80029830 00026770  80 9F 00 40 */	lwz r4, 0x40(r31)
 /* 80029834 00026774  38 A0 01 BC */	li r5, 0x1bc
-/* 80029838 00026778  48 24 61 05 */	bl cLib_memCpy
+/* 80029838 00026778  48 24 61 05 */	bl cLib_memCpy__FPvPCvUl
 /* 8002983C 0002677C  7F E3 FB 78 */	mr r3, r31
 /* 80029840 00026780  4B FF F9 21 */	bl renderingAmap_c_NS_getStayType
 /* 80029844 00026784  2C 03 00 00 */	cmpwi r3, 0

@@ -174,7 +174,7 @@ fopAcM_CreateAppend:
 /* 80019AC8 00016A08  41 82 00 3C */	beq lbl_80019B04
 /* 80019ACC 00016A0C  38 80 00 00 */	li r4, 0
 /* 80019AD0 00016A10  38 A0 00 24 */	li r5, 0x24
-/* 80019AD4 00016A14  48 25 5E 89 */	bl cLib_memSet
+/* 80019AD4 00016A14  48 25 5E 89 */	bl cLib_memSet__FPviUl
 /* 80019AD8 00016A18  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 80019ADC 00016A1C  38 03 FF FF */	addi r0, r3, 0x0000FFFF@l
 /* 80019AE0 00016A20  B0 1F 00 16 */	sth r0, 0x16(r31)
@@ -973,7 +973,7 @@ fopAcM_setCullSizeBox:
 /* 8001A5E0 00017520  7C 08 02 A6 */	mflr r0
 /* 8001A5E4 00017524  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001A5E8 00017528  38 63 04 DE */	addi r3, r3, 0x4de
-/* 8001A5EC 0001752C  48 25 65 A5 */	bl cLib_chaseAngleS
+/* 8001A5EC 0001752C  48 25 65 A5 */	bl cLib_chaseAngleS__FPsss
 /* 8001A5F0 00017530  30 03 FF FF */	addic r0, r3, -1
 /* 8001A5F4 00017534  7C 00 19 10 */	subfe r0, r0, r3
 /* 8001A5F8 00017538  54 03 06 3E */	clrlwi r3, r0, 0x18
@@ -1064,7 +1064,7 @@ fopAcM_searchActorAngleY:
 /* 8001A718 00017658  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001A71C 0001765C  38 63 04 D0 */	addi r3, r3, 0x4d0
 /* 8001A720 00017660  38 84 04 D0 */	addi r4, r4, 0x4d0
-/* 8001A724 00017664  48 25 64 E1 */	bl cLib_targetAngleY
+/* 8001A724 00017664  48 25 64 E1 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8001A728 00017668  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8001A72C 0001766C  7C 08 03 A6 */	mtlr r0
 /* 8001A730 00017670  38 21 00 10 */	addi r1, r1, 0x10
@@ -1105,7 +1105,7 @@ fopAcM_seenActorAngleY:
 /* 8001A7AC 000176EC  7C 7F 1B 78 */	mr r31, r3
 /* 8001A7B0 000176F0  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 8001A7B4 000176F4  38 84 04 D0 */	addi r4, r4, 0x4d0
-/* 8001A7B8 000176F8  48 25 64 4D */	bl cLib_targetAngleY
+/* 8001A7B8 000176F8  48 25 64 4D */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8001A7BC 000176FC  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8001A7C0 00017700  7C 00 18 50 */	subf r0, r0, r3
 /* 8001A7C4 00017704  7C 03 07 34 */	extsh r3, r0
@@ -3962,7 +3962,7 @@ lbl_8001CEB8:
 /* 8001CF40 00019E80  D3 C1 00 28 */	stfs f30, 0x28(r1)
 /* 8001CF44 00019E84  38 61 00 20 */	addi r3, r1, 0x20
 /* 8001CF48 00019E88  38 81 00 08 */	addi r4, r1, 8
-/* 8001CF4C 00019E8C  48 25 3F A1 */	bl MtxPosition
+/* 8001CF4C 00019E8C  48 25 3F A1 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 8001CF50 00019E90  38 61 00 08 */	addi r3, r1, 8
 /* 8001CF54 00019E94  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 8001CF58 00019E98  7C 65 1B 78 */	mr r5, r3
@@ -4175,7 +4175,7 @@ lbl_8001D1C0:
 /* 8001D270 0001A1B0  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8001D274 0001A1B4  38 61 00 20 */	addi r3, r1, 0x20
 /* 8001D278 0001A1B8  38 81 00 08 */	addi r4, r1, 8
-/* 8001D27C 0001A1BC  48 25 3C 71 */	bl MtxPosition
+/* 8001D27C 0001A1BC  48 25 3C 71 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 8001D280 0001A1C0  38 61 00 08 */	addi r3, r1, 8
 /* 8001D284 0001A1C4  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 8001D288 0001A1C8  7C 65 1B 78 */	mr r5, r3

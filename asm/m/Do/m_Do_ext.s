@@ -3126,7 +3126,7 @@ mDoExt_morf_c_NS_frameUpdate:
 /* 8000FBF4 0000CB34  40 80 00 34 */	bge lbl_8000FC28
 /* 8000FBF8 0000CB38  38 7F 00 30 */	addi r3, r31, 0x30
 /* 8000FBFC 0000CB3C  FC 40 10 50 */	fneg f2, f2
-/* 8000FC00 0000CB40  48 26 0B 41 */	bl cLib_chaseF
+/* 8000FC00 0000CB40  48 26 0B 41 */	bl cLib_chaseF__FPfff
 /* 8000FC04 0000CB44  C0 3F 00 28 */	lfs f1, 0x28(r31)
 /* 8000FC08 0000CB48  C0 5F 00 30 */	lfs f2, 0x30(r31)
 /* 8000FC0C 0000CB4C  C0 02 81 18 */	lfs f0, lbl_80451B18-_SDA2_BASE_(r2)
@@ -3138,7 +3138,7 @@ mDoExt_morf_c_NS_frameUpdate:
 /* 8000FC24 0000CB64  48 00 00 0C */	b lbl_8000FC30
 lbl_8000FC28:
 /* 8000FC28 0000CB68  38 7F 00 28 */	addi r3, r31, 0x28
-/* 8000FC2C 0000CB6C  48 26 0B 15 */	bl cLib_chaseF
+/* 8000FC2C 0000CB6C  48 26 0B 15 */	bl cLib_chaseF__FPfff
 lbl_8000FC30:
 /* 8000FC30 0000CB70  38 7F 00 0C */	addi r3, r31, 0xc
 /* 8000FC34 0000CB74  48 31 8D 99 */	bl J3DFrameCtrl_NS_update

@@ -56,7 +56,7 @@ BOOL fpcM_IsCreating(u32 pID) {
 
 typedef void (*fpcM_ManagementFunc)(void);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
-    MtxInit();
+    MtxInit__Fv();
     dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.draw_list_list.dlstPeekZ);
     if (!dShutdownErrorMsg_c_NS_execute()) {
         if (lbl_80450D39 == 0) {

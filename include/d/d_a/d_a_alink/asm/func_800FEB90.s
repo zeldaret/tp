@@ -20,7 +20,7 @@
 /* 800FEBDC 000FBB1C  38 61 00 14 */ addi r3, r1, 0x14
 /* 800FEBE0 000FBB20  48 16 85 49 */ bl cXyz_NS_atan2sX_Z
 /* 800FEBE4 000FBB24  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
-/* 800FEBE8 000FBB28  48 17 22 3D */ bl cLib_distanceAngleS
+/* 800FEBE8 000FBB28  48 17 22 3D */ bl cLib_distanceAngleS__Fss
 /* 800FEBEC 000FBB2C  2C 03 54 9F */ cmpwi r3, 0x549f
 /* 800FEBF0 000FBB30  41 80 00 24 */ blt lbl_800FEC14
 /* 800FEBF4 000FBB34  80 1E 31 A0 */ lwz r0, 0x31a0(r30)

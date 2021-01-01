@@ -37,7 +37,7 @@ lbl_800DA868:
 /* 800DA8B8 000D77F8  A8 98 04 DE */ lha r4, 0x4de(r24)
 /* 800DA8BC 000D77FC  38 04 80 00 */ addi r0, r4, -32768
 /* 800DA8C0 000D7800  7C 04 07 34 */ extsh r4, r0
-/* 800DA8C4 000D7804  48 19 65 61 */ bl cLib_distanceAngleS
+/* 800DA8C4 000D7804  48 19 65 61 */ bl cLib_distanceAngleS__Fss
 /* 800DA8C8 000D7808  2C 03 15 55 */ cmpwi r3, 0x1555
 /* 800DA8CC 000D780C  40 81 00 18 */ ble lbl_800DA8E4
 lbl_800DA8D0:

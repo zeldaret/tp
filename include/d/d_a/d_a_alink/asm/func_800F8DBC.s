@@ -14,7 +14,7 @@
 /* 800F8DF0 000F5D30  A8 A7 00 28 */ lha r5, 0x28(r7)
 /* 800F8DF4 000F5D34  A8 C7 00 2A */ lha r6, 0x2a(r7)
 /* 800F8DF8 000F5D38  A8 E7 00 2C */ lha r7, 0x2c(r7)
-/* 800F8DFC 000F5D3C  48 17 77 45 */ bl cLib_addCalcAngleS
+/* 800F8DFC 000F5D3C  48 17 77 45 */ bl cLib_addCalcAngleS__FPsssss
 /* 800F8E00 000F5D40  A8 7F 04 E6 */ lha r3, 0x4e6(r31)
 /* 800F8E04 000F5D44  A8 1F 04 DE */ lha r0, 0x4de(r31)
 /* 800F8E08 000F5D48  7C 03 00 00 */ cmpw r3, r0
@@ -67,7 +67,7 @@ lbl_800F8E70:
 /* 800F8EBC 000F5DFC  38 61 00 14 */ addi r3, r1, 0x14
 /* 800F8EC0 000F5E00  48 16 E2 91 */ bl cXyz_NS_atan2sY_XZ
 /* 800F8EC4 000F5E04  A8 9F 04 E4 */ lha r4, 0x4e4(r31)
-/* 800F8EC8 000F5E08  48 17 7F 5D */ bl cLib_distanceAngleS
+/* 800F8EC8 000F5E08  48 17 7F 5D */ bl cLib_distanceAngleS__Fss
 /* 800F8ECC 000F5E0C  2C 03 08 00 */ cmpwi r3, 0x800
 /* 800F8ED0 000F5E10  40 81 00 10 */ ble lbl_800F8EE0
 /* 800F8ED4 000F5E14  A8 1F 04 DE */ lha r0, 0x4de(r31)

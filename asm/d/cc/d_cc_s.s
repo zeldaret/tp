@@ -143,7 +143,7 @@ lbl_800860B4:
 /* 800860B8 00082FF8  3C 63 00 01 */	addis r3, r3, 1
 /* 800860BC 00082FFC  38 03 80 00 */	addi r0, r3, -32768
 /* 800860C0 00083000  7C 03 07 34 */	extsh r3, r0
-/* 800860C4 00083004  48 1E AD 61 */	bl cLib_distanceAngleS
+/* 800860C4 00083004  48 1E AD 61 */	bl cLib_distanceAngleS__Fss
 /* 800860C8 00083008  7F A0 07 34 */	extsh r0, r29
 /* 800860CC 0008300C  7C 03 00 00 */	cmpw r3, r0
 /* 800860D0 00083010  40 81 00 0C */	ble lbl_800860DC

@@ -243,24 +243,24 @@ bool headModelCallBack__9daAlink_cFi(int);
 void daAlink_c_NS_changeWolfBlendRate(void);
 void daAlink_c_NS_setWolfFootMatrix(void);
 bool wolfModelCallBack__9daAlink_cFi(int);
-void cLib_addCalcAngleS2(void);
+void cLib_addCalcAngleS2__FPssss(void);
 void PSMTXMultVec(void);
 void daAlink_c_NS_getMoveBGActorName(void);
 void daAlink_c_NS_multVecMagneBootInvMtx(void);
 void cXyz_NS___ml(void);
 void cXyz_NS_atan2sY_XZ(void);
 void cM_atan2s__Fff(void);
-void cLib_distanceAngleS(void);
+void cLib_distanceAngleS__Fss(void);
 void cXyz_NS_atan2sX_Z(void);
 void PSMTXMultVecSR(void);
 void cXyz_NS___mi(void);
 void dKyw_get_AllWind_vec(void);
 void PSVECSquareMag(void);
-void cLib_addCalcAngleS(void);
+void cLib_addCalcAngleS__FPsssss(void);
 void cM_rndF__Ff(void);
 void calcHairAngle__9daAlink_cFPs(short*);
 void setHairAngle__9daAlink_cFP4cXyzff(cXyz*, float, float);
-void cLib_targetAngleY(void);
+void cLib_targetAngleY__FPC3VecPC3Vec(void);
 void daAlink_c_NS_checkEnemyGroup(void);
 int checkAttentionPosAngle__9daAlink_cFP4cXyz(cXyz*);
 void daAlink_c_NS_getDemoLookActor(void);
@@ -329,7 +329,6 @@ extern float lbl_804531F4;
 extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
 extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
 extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
-extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle
 extern float lbl_80452C98;

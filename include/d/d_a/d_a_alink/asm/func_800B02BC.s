@@ -310,7 +310,7 @@ lbl_800B071C:
 /* 800B0724 000AD664  3C 84 00 01 */ addis r4, r4, 1
 /* 800B0728 000AD668  38 04 80 00 */ addi r0, r4, -32768
 /* 800B072C 000AD66C  7C 04 07 34 */ extsh r4, r0
-/* 800B0730 000AD670  48 1C 06 F5 */ bl cLib_distanceAngleS
+/* 800B0730 000AD670  48 1C 06 F5 */ bl cLib_distanceAngleS__Fss
 /* 800B0734 000AD674  7C 7F 1B 78 */ mr r31, r3
 /* 800B0738 000AD678  7E E0 07 34 */ extsh r0, r23
 /* 800B073C 000AD67C  7C 1F 00 00 */ cmpw r31, r0

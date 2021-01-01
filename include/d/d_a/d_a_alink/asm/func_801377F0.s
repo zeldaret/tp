@@ -255,7 +255,7 @@ lbl_80137B90:
 /* 80137B98 00134AD8  A8 A7 00 28 */ lha r5, 0x28(r7)
 /* 80137B9C 00134ADC  A8 C7 00 2A */ lha r6, 0x2a(r7)
 /* 80137BA0 00134AE0  A8 E7 00 2C */ lha r7, 0x2c(r7)
-/* 80137BA4 00134AE4  48 13 89 9D */ bl cLib_addCalcAngleS
+/* 80137BA4 00134AE4  48 13 89 9D */ bl cLib_addCalcAngleS__FPsssss
 lbl_80137BA8:
 /* 80137BA8 00134AE8  7F 23 CB 78 */ mr r3, r25
 /* 80137BAC 00134AEC  4B FF F5 81 */ bl daAlink_c_NS_getWolfLieMoveSpeed
