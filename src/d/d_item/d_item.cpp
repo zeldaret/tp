@@ -1140,27 +1140,27 @@ bool item_getcheck_func_BOW(void) {
 
 bool item_getcheck_func_HOOKSHOT(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_9, true) == HOOKSHOT;    
+               SLOT_9, true) == HOOKSHOT;
 }
 
 bool item_getcheck_func_HVY_BOOTS(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_3, true) == HVY_BOOTS;    
+               SLOT_3, true) == HVY_BOOTS;
 }
 
 bool item_getcheck_func_COPY_ROD(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_8, true) == COPY_ROD;  
+               SLOT_8, true) == COPY_ROD;
 }
 
 bool item_getcheck_func_W_HOOKSHOT(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_10, true) == W_HOOKSHOT;  
+               SLOT_10, true) == W_HOOKSHOT;
 }
 
 bool item_getcheck_func_KANTERA(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_1, true) == KANTERA;  
+               SLOT_1, true) == KANTERA;
 }
 
 void item_getcheck_func_LIGHT_SWORD(void) {
@@ -1175,7 +1175,7 @@ asm int item_getcheck_func_FISHING_ROD_1(void) {
 
 bool item_getcheck_func_PACHINKO(void) {
     return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().getItem(
-               SLOT_23, true) == PACHINKO;  
+               SLOT_23, true) == PACHINKO;
 }
 
 int item_getcheck_func_COPY_ROD_2(void) {
@@ -1308,8 +1308,7 @@ int item_getcheck_func_RED_BOTTLE2(void) {
 }
 
 int item_getcheck_func_UGLY_SOUP(void) {
-    return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(
-        UGLY_SOUP);
+    return g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().checkBottle(UGLY_SOUP);
 }
 
 int item_getcheck_func_HOT_SPRING(void) {
