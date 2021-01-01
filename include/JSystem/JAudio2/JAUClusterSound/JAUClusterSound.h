@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 
 struct JAISoundHandle {
-    void* unk; // probably JAISound*
+    void* unk;  // probably JAISound*
 
     JAISoundHandle();
 };

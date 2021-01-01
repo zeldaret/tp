@@ -7,5 +7,5 @@ void cAPICPad_recalibrate() {
 
 u32 cAPICPad_ANY_BUTTON(u32 pPadId) {
     interface_of_controller_pad* pad = &lbl_803DD2E8[pPadId];
-    return pad->mPressedButtonFlags & 0x1300; // TODO: flag
+    return pad->mPressedButtonFlags & 0x1300;  // TODO: flag
 }
