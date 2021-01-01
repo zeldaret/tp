@@ -60,7 +60,7 @@ fopOvlpM_Done:
 /* 8001E520 0001B460  7C 08 02 A6 */	mflr r0
 /* 8001E524 0001B464  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001E528 0001B468  38 63 00 C4 */	addi r3, r3, 0xc4
-/* 8001E52C 0001B46C  48 24 82 D5 */	bl cReq_Done
+/* 8001E52C 0001B46C  48 24 82 D5 */	bl cReq_Done__FP18request_base_class
 /* 8001E530 0001B470  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8001E534 0001B474  7C 08 03 A6 */	mtlr r0
 /* 8001E538 0001B478  38 21 00 10 */	addi r1, r1, 0x10
@@ -94,7 +94,7 @@ fopOvlpM_IsDone:
 /* 8001E580 0001B4C0  80 6D 80 30 */	lwz r3, lbl_804505B0-_SDA_BASE_(r13)
 /* 8001E584 0001B4C4  28 03 00 00 */	cmplwi r3, 0
 /* 8001E588 0001B4C8  41 82 00 0C */	beq lbl_8001E594
-/* 8001E58C 0001B4CC  48 24 82 49 */	bl cReq_Is_Done
+/* 8001E58C 0001B4CC  48 24 82 49 */	bl cReq_Is_Done__FP18request_base_class
 /* 8001E590 0001B4D0  48 00 00 08 */	b lbl_8001E598
 lbl_8001E594:
 /* 8001E594 0001B4D4  38 60 00 00 */	li r3, 0

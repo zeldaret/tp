@@ -252,7 +252,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tree.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tree_iter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_phase.o   \
-            $(BUILD_DIR)/asm/SComponent/c/c_request.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_request.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
             $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
