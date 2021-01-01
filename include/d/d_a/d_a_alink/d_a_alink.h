@@ -224,7 +224,7 @@ void daAlink_c_NS_checkBowAnime(void);
 void setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz(float (*)[4], short, short, short, int,
                                                         const cXyz*);
 void daAlink_c_NS_checkHorseLieAnime(void);
-void csXyz_X1_(void);
+void __ct__5csXyzFsss(void);
 void daAlink_c_NS_checkNoUpperAnime(void);
 void daAlink_c_NS_checkUpperReadyThrowAnime(void);
 void daAlink_c_NS_setDoubleAnimeBlendRatio(void);
