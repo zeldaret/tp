@@ -1051,7 +1051,7 @@ lbl_8000C020:
 /* 8000C05C 00008F9C  38 63 B9 5C */	addi r3, r3, fault_callback_scroll@l
 /* 8000C060 00008FA0  48 2D 7A 9D */	bl JUTException_NS_setPostUserCallback
 /* 8000C064 00008FA4  48 00 2D 1D */	bl mDoExt_getZeldaHeap
-/* 8000C068 00008FA8  48 25 71 B9 */	bl cMl_NS_init
+/* 8000C068 00008FA8  48 25 71 B9 */	bl init__3cMlFP7JKRHeap
 /* 8000C06C 00008FAC  38 60 00 64 */	li r3, 0x64
 /* 8000C070 00008FB0  38 80 00 64 */	li r4, 0x64
 /* 8000C074 00008FB4  38 A0 00 64 */	li r5, 0x64

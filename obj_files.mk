@@ -239,7 +239,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/k/d_k_wmark.o    \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o    \
             $(BUILD_DIR)/asm/DynamicLink.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_malloc.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_malloc.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_graphic.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_cc_d.o    \
