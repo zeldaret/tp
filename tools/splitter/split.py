@@ -185,6 +185,8 @@ def emit_cxx_extern_vars(tu_file: str, labels: Iterable[str]) -> str:
 @click.option('--from-line', type=int)
 @click.option('--to-line', type=int)
 @click.option('--preparsed', is_flag=True)
+@click.option('--forceactive',
+    type=click.Choice(['all', 'none', 'missingfunc']), default='missingfunc')
 def split(
     src,
     cxx_out,
@@ -197,6 +199,7 @@ def split(
     from_line,
     to_line,
     preparsed,
+    forceactive
 ):
     funcs_out.mkdir(exist_ok=True)
 
@@ -299,8 +302,9 @@ def split(
         ]
 
         # check if needs to be defined in ldscript
-        if func.name.startswith('func_') and not func.name in ldscript_file_content:
-            new_ldfuncs.append(func.name)
+        if forceactive != 'none':
+            if not func.name in ldscript_file_content and (forceactive=='all' or func.name.startswith('func_')):
+                new_ldfuncs.append(func.name)
 
         with open(out_path := funcs_out / func.filename, 'w') as f:
             logger.debug(f'emitting {out_path}')
