@@ -12,7 +12,7 @@ cBgS_LinChk:
 /* 80267D6C 00264CAC  7C 7F 1B 78 */	mr r31, r3
 /* 80267D70 00264CB0  4B FF FD DD */	bl __ct__8cBgS_ChkFv
 /* 80267D74 00264CB4  38 7F 00 14 */	addi r3, r31, 0x14
-/* 80267D78 00264CB8  48 00 02 FD */	bl cBgS_PolyInfo_NS_ctor
+/* 80267D78 00264CB8  48 00 02 FD */	bl __ct__13cBgS_PolyInfoFv
 /* 80267D7C 00264CBC  3C 60 80 3C */	lis r3, lbl_803C3FA8@ha
 /* 80267D80 00264CC0  38 63 3F A8 */	addi r3, r3, lbl_803C3FA8@l
 /* 80267D84 00264CC4  90 7F 00 10 */	stw r3, 0x10(r31)
@@ -22,7 +22,7 @@ cBgS_LinChk:
 /* 80267D94 00264CD4  38 03 78 F8 */	addi r0, r3, lbl_803A78F8@l
 /* 80267D98 00264CD8  90 1F 00 3C */	stw r0, 0x3c(r31)
 /* 80267D9C 00264CDC  7F E3 FB 78 */	mr r3, r31
-/* 80267DA0 00264CE0  48 00 00 A9 */	bl cBgS_LinChk_NS_ct
+/* 80267DA0 00264CE0  48 00 00 A9 */	bl ct__11cBgS_LinChkFv
 /* 80267DA4 00264CE4  7F E3 FB 78 */	mr r3, r31
 /* 80267DA8 00264CE8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80267DAC 00264CEC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -30,8 +30,8 @@ cBgS_LinChk:
 /* 80267DB4 00264CF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80267DB8 00264CF8  4E 80 00 20 */	blr 
 
-.global cBgS_LinChk_NS_dtor
-cBgS_LinChk_NS_dtor:
+.global __dt__11cBgS_LinChkFv
+__dt__11cBgS_LinChkFv:
 /* 80267DBC 00264CFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80267DC0 00264D00  7C 08 02 A6 */	mflr r0
 /* 80267DC4 00264D04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -53,7 +53,7 @@ cBgS_LinChk_NS_dtor:
 lbl_80267E04:
 /* 80267E04 00264D44  38 7E 00 14 */	addi r3, r30, 0x14
 /* 80267E08 00264D48  38 80 00 00 */	li r4, 0
-/* 80267E0C 00264D4C  48 00 02 A5 */	bl cBgS_PolyInfo_NS_dtor
+/* 80267E0C 00264D4C  48 00 02 A5 */	bl __dt__13cBgS_PolyInfoFv
 /* 80267E10 00264D50  7F C3 F3 78 */	mr r3, r30
 /* 80267E14 00264D54  38 80 00 00 */	li r4, 0
 /* 80267E18 00264D58  4B FF FD 59 */	bl __dt__8cBgS_ChkFv
@@ -70,8 +70,8 @@ lbl_80267E2C:
 /* 80267E40 00264D80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80267E44 00264D84  4E 80 00 20 */	blr 
 
-.global cBgS_LinChk_NS_ct
-cBgS_LinChk_NS_ct:
+.global ct__11cBgS_LinChkFv
+ct__11cBgS_LinChkFv:
 /* 80267E48 00264D88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80267E4C 00264D8C  7C 08 02 A6 */	mflr r0
 /* 80267E50 00264D90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -107,8 +107,8 @@ cBgS_LinChk_NS_ct:
 /* 80267EC8 00264E08  38 21 00 20 */	addi r1, r1, 0x20
 /* 80267ECC 00264E0C  4E 80 00 20 */	blr 
 
-.global cBgS_LinChk_NS_Set2
-cBgS_LinChk_NS_Set2:
+.global Set2__11cBgS_LinChkFPC4cXyzPC4cXyzUi
+Set2__11cBgS_LinChkFPC4cXyzPC4cXyzUi:
 /* 80267ED0 00264E10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80267ED4 00264E14  7C 08 02 A6 */	mflr r0
 /* 80267ED8 00264E18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -130,7 +130,7 @@ cBgS_LinChk_NS_Set2:
 /* 80267F18 00264E58  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 80267F1C 00264E5C  90 1D 00 4C */	stw r0, 0x4c(r29)
 /* 80267F20 00264E60  38 7D 00 14 */	addi r3, r29, 0x14
-/* 80267F24 00264E64  48 00 01 FD */	bl cBgS_PolyInfo_NS_ClearPi
+/* 80267F24 00264E64  48 00 01 FD */	bl ClearPi__13cBgS_PolyInfoFv
 /* 80267F28 00264E68  39 61 00 20 */	addi r11, r1, 0x20
 /* 80267F2C 00264E6C  48 0F A2 FD */	bl _restgpr_29
 /* 80267F30 00264E70  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -138,8 +138,8 @@ cBgS_LinChk_NS_Set2:
 /* 80267F38 00264E78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80267F3C 00264E7C  4E 80 00 20 */	blr 
 
-.global cBgS_LinChk_NS_PreCalc
-cBgS_LinChk_NS_PreCalc:
+.global PreCalc__11cBgS_LinChkFv
+PreCalc__11cBgS_LinChkFv:
 /* 80267F40 00264E80  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 80267F44 00264E84  54 00 00 42 */	rlwinm r0, r0, 0, 1, 1
 /* 80267F48 00264E88  7C 00 00 34 */	cntlzw r0, r0
@@ -157,5 +157,5 @@ cBgS_LinChk_NS_PreCalc:
 /* 80267F78 00264EB8  98 03 00 52 */	stb r0, 0x52(r3)
 /* 80267F7C 00264EBC  4E 80 00 20 */	blr 
 /* 80267F80 00264EC0  38 63 FF EC */	addi r3, r3, -20
-/* 80267F84 00264EC4  4B FF FE 38 */	b cBgS_LinChk_NS_dtor
+/* 80267F84 00264EC4  4B FF FE 38 */	b __dt__11cBgS_LinChkFv
 

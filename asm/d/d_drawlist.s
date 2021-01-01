@@ -3064,7 +3064,7 @@ realPolygonCheck:
 /* 80054884 000517C4  7C 9C 23 78 */	mr r28, r4
 /* 80054888 000517C8  7C BD 2B 78 */	mr r29, r5
 /* 8005488C 000517CC  38 61 00 20 */	addi r3, r1, 0x20
-/* 80054890 000517D0  48 21 36 F9 */	bl cBgS_ShdwDraw
+/* 80054890 000517D0  48 21 36 F9 */	bl __ct__13cBgS_ShdwDrawFv
 /* 80054894 000517D4  3C 60 80 3B */	lis r3, lbl_803A8DEC@ha
 /* 80054898 000517D8  38 03 8D EC */	addi r0, r3, lbl_803A8DEC@l
 /* 8005489C 000517DC  90 01 00 30 */	stw r0, 0x30(r1)
@@ -3153,20 +3153,20 @@ lbl_80054954:
 /* 800549D0 00051910  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800549D4 00051914  38 61 00 20 */	addi r3, r1, 0x20
 /* 800549D8 00051918  38 80 00 00 */	li r4, 0
-/* 800549DC 0005191C  48 21 35 F5 */	bl cBgS_ShdwDraw_NS_dtor
+/* 800549DC 0005191C  48 21 35 F5 */	bl __dt__13cBgS_ShdwDrawFv
 /* 800549E0 00051920  38 60 00 00 */	li r3, 0
 /* 800549E4 00051924  48 00 00 60 */	b lbl_80054A44
 lbl_800549E8:
 /* 800549E8 00051928  38 61 00 20 */	addi r3, r1, 0x20
 /* 800549EC 0005192C  38 81 00 14 */	addi r4, r1, 0x14
 /* 800549F0 00051930  38 A1 00 08 */	addi r5, r1, 8
-/* 800549F4 00051934  48 21 36 55 */	bl cBgS_ShdwDraw_NS_Set
+/* 800549F4 00051934  48 21 36 55 */	bl Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
 /* 800549F8 00051938  38 61 00 20 */	addi r3, r1, 0x20
 .global psdRealCallBack
 /* 800549FC 0005193C  3C 80 80 05 */	lis r4, psdRealCallBack@ha
 .global psdRealCallBack
 /* 80054A00 00051940  38 84 46 88 */	addi r4, r4, psdRealCallBack@l
-/* 80054A04 00051944  48 21 36 69 */	bl cBgS_ShdwDraw_NS_SetCallback
+/* 80054A04 00051944  48 21 36 69 */	bl SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i
 /* 80054A08 00051948  93 61 00 54 */	stw r27, 0x54(r1)
 /* 80054A0C 0005194C  93 81 00 58 */	stw r28, 0x58(r1)
 /* 80054A10 00051950  93 A1 00 5C */	stw r29, 0x5c(r1)
@@ -3180,7 +3180,7 @@ lbl_800549E8:
 /* 80054A30 00051970  90 01 00 30 */	stw r0, 0x30(r1)
 /* 80054A34 00051974  38 61 00 20 */	addi r3, r1, 0x20
 /* 80054A38 00051978  38 80 00 00 */	li r4, 0
-/* 80054A3C 0005197C  48 21 35 95 */	bl cBgS_ShdwDraw_NS_dtor
+/* 80054A3C 0005197C  48 21 35 95 */	bl __dt__13cBgS_ShdwDrawFv
 /* 80054A40 00051980  38 60 00 01 */	li r3, 1
 lbl_80054A44:
 /* 80054A44 00051984  E3 E1 00 98 */	psq_l f31, 152(r1), 0, qr0
@@ -3205,7 +3205,7 @@ lbl_80054A44:
 /* 80054A90 000519D0  38 04 8D EC */	addi r0, r4, lbl_803A8DEC@l
 /* 80054A94 000519D4  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80054A98 000519D8  38 80 00 00 */	li r4, 0
-/* 80054A9C 000519DC  48 21 35 35 */	bl cBgS_ShdwDraw_NS_dtor
+/* 80054A9C 000519DC  48 21 35 35 */	bl __dt__13cBgS_ShdwDrawFv
 /* 80054AA0 000519E0  7F E0 07 35 */	extsh. r0, r31
 /* 80054AA4 000519E4  40 81 00 0C */	ble lbl_80054AB0
 /* 80054AA8 000519E8  7F C3 F3 78 */	mr r3, r30

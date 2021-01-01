@@ -12,7 +12,7 @@ cBgS_GndChk:
 /* 80267C2C 00264B6C  7C 7F 1B 78 */	mr r31, r3
 /* 80267C30 00264B70  4B FF FF 1D */	bl __ct__8cBgS_ChkFv
 /* 80267C34 00264B74  38 7F 00 14 */	addi r3, r31, 0x14
-/* 80267C38 00264B78  48 00 04 3D */	bl cBgS_PolyInfo_NS_ctor
+/* 80267C38 00264B78  48 00 04 3D */	bl __ct__13cBgS_PolyInfoFv
 /* 80267C3C 00264B7C  3C 60 80 3C */	lis r3, lbl_803C3F90@ha
 /* 80267C40 00264B80  38 63 3F 90 */	addi r3, r3, lbl_803C3F90@l
 /* 80267C44 00264B84  90 7F 00 10 */	stw r3, 0x10(r31)
@@ -53,7 +53,7 @@ __dt__11cBgS_GndChkFv:
 /* 80267CC4 00264C04  90 1E 00 20 */	stw r0, 0x20(r30)
 /* 80267CC8 00264C08  38 7E 00 14 */	addi r3, r30, 0x14
 /* 80267CCC 00264C0C  38 80 00 00 */	li r4, 0
-/* 80267CD0 00264C10  48 00 03 E1 */	bl cBgS_PolyInfo_NS_dtor
+/* 80267CD0 00264C10  48 00 03 E1 */	bl __dt__13cBgS_PolyInfoFv
 /* 80267CD4 00264C14  7F C3 F3 78 */	mr r3, r30
 /* 80267CD8 00264C18  38 80 00 00 */	li r4, 0
 /* 80267CDC 00264C1C  4B FF FE 95 */	bl __dt__8cBgS_ChkFv

@@ -1327,17 +1327,17 @@ lbl_8025A6F8:
 /* 8025A71C 0025765C  3C 60 80 3F */	lis r3, lbl_803F1C48@ha
 /* 8025A720 00257660  38 63 1C 48 */	addi r3, r3, lbl_803F1C48@l
 /* 8025A724 00257664  38 63 00 14 */	addi r3, r3, 0x14
-/* 8025A728 00257668  48 00 D9 F9 */	bl cBgS_PolyInfo_NS_ClearPi
+/* 8025A728 00257668  48 00 D9 F9 */	bl ClearPi__13cBgS_PolyInfoFv
 /* 8025A72C 0025766C  3C 60 80 3F */	lis r3, lbl_803F1CC4@ha
 /* 8025A730 00257670  38 63 1C C4 */	addi r3, r3, lbl_803F1CC4@l
 /* 8025A734 00257674  38 63 00 14 */	addi r3, r3, 0x14
-/* 8025A738 00257678  48 00 D9 E9 */	bl cBgS_PolyInfo_NS_ClearPi
+/* 8025A738 00257678  48 00 D9 E9 */	bl ClearPi__13cBgS_PolyInfoFv
 /* 8025A73C 0025767C  3C 60 80 3F */	lis r3, lbl_803F1D24@ha
 /* 8025A740 00257680  38 63 1D 24 */	addi r3, r3, lbl_803F1D24@l
-/* 8025A744 00257684  48 00 D9 DD */	bl cBgS_PolyInfo_NS_ClearPi
+/* 8025A744 00257684  48 00 D9 DD */	bl ClearPi__13cBgS_PolyInfoFv
 /* 8025A748 00257688  3C 60 80 3F */	lis r3, lbl_803F1D80@ha
 /* 8025A74C 0025768C  38 63 1D 80 */	addi r3, r3, lbl_803F1D80@l
-/* 8025A750 00257690  48 00 D9 D1 */	bl cBgS_PolyInfo_NS_ClearPi
+/* 8025A750 00257690  48 00 D9 D1 */	bl ClearPi__13cBgS_PolyInfoFv
 /* 8025A754 00257694  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025A758 00257698  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025A75C 0025769C  38 63 23 3C */	addi r3, r3, 0x233c

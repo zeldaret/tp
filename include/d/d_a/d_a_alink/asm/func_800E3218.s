@@ -89,7 +89,7 @@ lbl_800E334C:
 /* 800E336C 000E02AC  4B F9 13 D9 */ bl cBgS_NS_GetTriPla
 /* 800E3370 000E02B0  38 7F 1E 2C */ addi r3, r31, 0x1e2c
 /* 800E3374 000E02B4  38 9F 1D C0 */ addi r4, r31, 0x1dc0
-/* 800E3378 000E02B8  48 18 4D D1 */ bl cBgS_PolyInfo_NS_SetPolyInfo
+/* 800E3378 000E02B8  48 18 4D D1 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 800E337C 000E02BC  C0 1F 1D DC */ lfs f0, 0x1ddc(r31)
 /* 800E3380 000E02C0  D0 1F 37 C8 */ stfs f0, 0x37c8(r31)
 /* 800E3384 000E02C4  C0 1F 1D E0 */ lfs f0, 0x1de0(r31)

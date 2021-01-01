@@ -3,8 +3,8 @@
 .section .text, "ax" # 80268074
 
 
-.global cBgS_PolyInfo_NS_ctor
-cBgS_PolyInfo_NS_ctor:
+.global __ct__13cBgS_PolyInfoFv
+__ct__13cBgS_PolyInfoFv:
 /* 80268074 00264FB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80268078 00264FB8  7C 08 02 A6 */	mflr r0
 /* 8026807C 00264FBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13,7 +13,7 @@ cBgS_PolyInfo_NS_ctor:
 /* 80268088 00264FC8  3C 80 80 3C */	lis r4, lbl_803C3FD0@ha
 /* 8026808C 00264FCC  38 04 3F D0 */	addi r0, r4, lbl_803C3FD0@l
 /* 80268090 00264FD0  90 03 00 0C */	stw r0, 0xc(r3)
-/* 80268094 00264FD4  48 00 00 8D */	bl cBgS_PolyInfo_NS_ClearPi
+/* 80268094 00264FD4  48 00 00 8D */	bl ClearPi__13cBgS_PolyInfoFv
 /* 80268098 00264FD8  7F E3 FB 78 */	mr r3, r31
 /* 8026809C 00264FDC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802680A0 00264FE0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -21,8 +21,8 @@ cBgS_PolyInfo_NS_ctor:
 /* 802680A8 00264FE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802680AC 00264FEC  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_dtor
-cBgS_PolyInfo_NS_dtor:
+.global __dt__13cBgS_PolyInfoFv
+__dt__13cBgS_PolyInfoFv:
 /* 802680B0 00264FF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802680B4 00264FF4  7C 08 02 A6 */	mflr r0
 /* 802680B8 00264FF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -43,8 +43,8 @@ lbl_802680E0:
 /* 802680F0 00265030  38 21 00 10 */	addi r1, r1, 0x10
 /* 802680F4 00265034  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_ChkSetInfo
-cBgS_PolyInfo_NS_ChkSetInfo:
+.global ChkSetInfo__13cBgS_PolyInfoCFv
+ChkSetInfo__13cBgS_PolyInfoCFv:
 /* 802680F8 00265038  A0 03 00 00 */	lhz r0, 0(r3)
 /* 802680FC 0026503C  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80268100 00265040  41 82 00 10 */	beq lbl_80268110
@@ -58,8 +58,8 @@ lbl_80268118:
 /* 80268118 00265058  38 60 00 01 */	li r3, 1
 /* 8026811C 0026505C  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_ClearPi
-cBgS_PolyInfo_NS_ClearPi:
+.global ClearPi__13cBgS_PolyInfoFv
+ClearPi__13cBgS_PolyInfoFv:
 /* 80268120 00265060  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 80268124 00265064  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
 /* 80268128 00265068  B0 03 00 00 */	sth r0, 0(r3)
@@ -71,8 +71,8 @@ cBgS_PolyInfo_NS_ClearPi:
 /* 80268140 00265080  90 03 00 08 */	stw r0, 8(r3)
 /* 80268144 00265084  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_SetPolyInfo
-cBgS_PolyInfo_NS_SetPolyInfo:
+.global SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
+SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo:
 /* 80268148 00265088  A0 04 00 00 */	lhz r0, 0(r4)
 /* 8026814C 0026508C  B0 03 00 00 */	sth r0, 0(r3)
 /* 80268150 00265090  A0 04 00 02 */	lhz r0, 2(r4)
@@ -83,15 +83,15 @@ cBgS_PolyInfo_NS_SetPolyInfo:
 /* 80268164 002650A4  90 03 00 08 */	stw r0, 8(r3)
 /* 80268168 002650A8  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_SetActorInfo
-cBgS_PolyInfo_NS_SetActorInfo:
+.global SetActorInfo__13cBgS_PolyInfoFiPvUi
+SetActorInfo__13cBgS_PolyInfoFiPvUi:
 /* 8026816C 002650AC  B0 83 00 02 */	sth r4, 2(r3)
 /* 80268170 002650B0  90 A3 00 04 */	stw r5, 4(r3)
 /* 80268174 002650B4  90 C3 00 08 */	stw r6, 8(r3)
 /* 80268178 002650B8  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_ChkSafe
-cBgS_PolyInfo_NS_ChkSafe:
+.global ChkSafe__13cBgS_PolyInfoCFPCvUi
+ChkSafe__13cBgS_PolyInfoCFPCvUi:
 /* 8026817C 002650BC  80 03 00 04 */	lwz r0, 4(r3)
 /* 80268180 002650C0  7C 00 20 40 */	cmplw r0, r4
 /* 80268184 002650C4  40 82 00 18 */	bne lbl_8026819C
@@ -104,13 +104,13 @@ lbl_8026819C:
 /* 8026819C 002650DC  38 60 00 00 */	li r3, 0
 /* 802681A0 002650E0  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_SetPolyIndex
-cBgS_PolyInfo_NS_SetPolyIndex:
+.global SetPolyIndex__13cBgS_PolyInfoFi
+SetPolyIndex__13cBgS_PolyInfoFi:
 /* 802681A4 002650E4  B0 83 00 00 */	sth r4, 0(r3)
 /* 802681A8 002650E8  4E 80 00 20 */	blr 
 
-.global cBgS_PolyInfo_NS_ChkBgIndex
-cBgS_PolyInfo_NS_ChkBgIndex:
+.global ChkBgIndex__13cBgS_PolyInfoCFv
+ChkBgIndex__13cBgS_PolyInfoCFv:
 /* 802681AC 002650EC  A0 03 00 02 */	lhz r0, 2(r3)
 /* 802681B0 002650F0  20 60 01 00 */	subfic r3, r0, 0x100
 /* 802681B4 002650F4  30 03 FF FF */	addic r0, r3, -1

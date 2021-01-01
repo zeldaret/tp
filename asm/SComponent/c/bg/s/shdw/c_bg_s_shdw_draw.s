@@ -24,8 +24,8 @@ cBgS_ShdwDraw:
 /* 80267FC8 00264F08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80267FCC 00264F0C  4E 80 00 20 */	blr 
 
-.global cBgS_ShdwDraw_NS_dtor
-cBgS_ShdwDraw_NS_dtor:
+.global __dt__13cBgS_ShdwDrawFv
+__dt__13cBgS_ShdwDrawFv:
 /* 80267FD0 00264F10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80267FD4 00264F14  7C 08 02 A6 */	mflr r0
 /* 80267FD8 00264F18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -59,8 +59,8 @@ lbl_8026802C:
 /* 80268040 00264F80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80268044 00264F84  4E 80 00 20 */	blr 
 
-.global cBgS_ShdwDraw_NS_Set
-cBgS_ShdwDraw_NS_Set:
+.global Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
+Set__13cBgS_ShdwDrawFR4cXyzR4cXyz:
 /* 80268048 00264F88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026804C 00264F8C  7C 08 02 A6 */	mflr r0
 /* 80268050 00264F90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -71,8 +71,8 @@ cBgS_ShdwDraw_NS_Set:
 /* 80268064 00264FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80268068 00264FA8  4E 80 00 20 */	blr 
 
-.global cBgS_ShdwDraw_NS_SetCallback
-cBgS_ShdwDraw_NS_SetCallback:
+.global SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i
+SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i:
 /* 8026806C 00264FAC  90 83 00 30 */	stw r4, 0x30(r3)
 /* 80268070 00264FB0  4E 80 00 20 */	blr 
 
