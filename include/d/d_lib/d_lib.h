@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
+#include "SComponent/c_xyz.h"
 #include "global.h"
 
 struct STControl_vtable {
@@ -67,12 +68,6 @@ u32 dLib_getEventSwitchNo(int param_1);
 
 struct fopAc_ac_c;
 
-struct cXyz {
-    f32 x;
-    f32 y;
-    f32 z;
-};
-
 bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3,
                                 cXyz const* param_4);
 
@@ -81,6 +76,6 @@ u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_1, char const* param
 class dLib_time_c {
 public:
     s64 getTime(void);
-    void stopTime(void);
-    void startTime(void);
+    static void stopTime(void);
+    static void startTime(void);
 };

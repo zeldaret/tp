@@ -64,7 +64,6 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     GXDrawDone();
 
     OSRestoreInterrupts(enable);
-
     destroyVideo();
 
     // nb: probably fake match (i am not sure that it's actually attached to this label lol)

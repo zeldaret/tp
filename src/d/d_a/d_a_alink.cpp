@@ -4,6 +4,7 @@
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
 
 u32 daAlink_c::getE3Zhint(void) {

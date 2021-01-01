@@ -1,7 +1,7 @@
 #include "f/f_pc/f_pc_layer.h"
+#include "dolphin/types.h"
 #include "f/f_pc/f_pc_method_iter.h"
 #include "f/f_pc/f_pc_method_tag.h"
-#include "global.h"
 
 // f_pc_layer::l_fpcLy_CurrLayer_p
 extern layer_class* lbl_80450D18;
@@ -22,51 +22,51 @@ void fpcLy_CancelQTo(process_method_tag_class* pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
 
-int fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd) {
+s32 fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd) {
     return fpcMtdTg_ToMethodQ(&pLayer->mCancelList, pMthd);
 }
 
-bool fpcLy_CancelMethod(process_method_tag_class* pLayer) {
-    return fpcMtdTg_Do(pLayer) == 1;
+BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
+    return checkEqual(1, fpcMtdTg_Do(pLayer));
 }
 
-int fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx) {
+s32 fpcLy_IntoQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag, s32 idx) {
     return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);
 }
 
-int fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag) {
+s32 fpcLy_ToQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag) {
     return cTg_AdditionToTree(&pLayer->mNodeListTree, treeListIdx, pTag);
 }
 
-int fpcLy_QueueTo(layer_class* pLayer, create_tag_class* pTag) {
+s32 fpcLy_QueueTo(layer_class* pLayer, create_tag_class* pTag) {
     return cTg_SingleCutFromTree(pTag);
 }
 
-bool fpcLy_IsDeletingMesg(layer_class* pLayer) {
-    return pLayer->mDeletingCount > 0;
+BOOL fpcLy_IsDeletingMesg(layer_class* pLayer) {
+    return pLayer->counts.mDeletingCount > 0;
 }
 
 void fpcLy_DeletingMesg(layer_class* pLayer) {
-    pLayer->mDeletingCount++;
+    pLayer->counts.mDeletingCount++;
 }
 
 void fpcLy_DeletedMesg(layer_class* pLayer) {
-    if (pLayer->mDeletingCount > 0) {
-        pLayer->mDeletingCount--;
+    if (pLayer->counts.mDeletingCount > 0) {
+        pLayer->counts.mDeletingCount--;
     }
 }
 
-bool fpcLy_IsCreatingMesg(layer_class* pLayer) {
-    return pLayer->mCreatingCount > 0;
+BOOL fpcLy_IsCreatingMesg(layer_class* pLayer) {
+    return pLayer->counts.mCreatingCount > 0;
 }
 
 void fpcLy_CreatingMesg(layer_class* pLayer) {
-    pLayer->mCreatingCount++;
+    pLayer->counts.mCreatingCount++;
 }
 
 void fpcLy_CreatedMesg(layer_class* pLayer) {
-    if (pLayer->mCreatingCount > 0) {
-        pLayer->mCreatingCount--;
+    if (pLayer->counts.mCreatingCount > 0) {
+        pLayer->counts.mCreatingCount--;
     }
 }
 
@@ -82,7 +82,7 @@ layer_class* fpcLy_CurrentLayer(void) {
     return lbl_80450D18;
 }
 
-layer_class* fpcLy_Search(unsigned int id) {
+layer_class* fpcLy_Search(u32 id) {
     layer_class* iVar1 = fpcLy_RootLayer();
     while (iVar1 != NULL) {
         if (iVar1->mLayerID == id) {
@@ -93,7 +93,7 @@ layer_class* fpcLy_Search(unsigned int id) {
     return NULL;
 }
 
-layer_class* fpcLy_Layer(unsigned int id) {
+layer_class* fpcLy_Layer(u32 id) {
     if (id == 0 || fpcLy_RootLayer()->mLayerID == id) {
         return fpcLy_RootLayer();
     } else if (id == ~2 || fpcLy_CurrentLayer()->mLayerID == id) {
@@ -104,12 +104,12 @@ layer_class* fpcLy_Layer(unsigned int id) {
 }
 
 void fpcLy_Regist(layer_class* pLayer) {
-    cLs_Addition(&lbl_803A39DC, &pLayer->mNode);
+    cLs_Addition(&lbl_803A39DC, (node_class*)pLayer);
 }
 
-int fpcLy_Delete(layer_class* pLayer) {
+s32 fpcLy_Delete(layer_class* pLayer) {
     if (pLayer->mNodeListTree.mpLists->mSize == 0 && pLayer->mCancelList.mSize == 0) {
-        cLs_SingleCut(&pLayer->mNode);
+        cLs_SingleCut((node_class*)pLayer);
         *pLayer = lbl_803A39B0;
         return 1;
     } else {
@@ -122,9 +122,9 @@ void fpcLy_Cancel(layer_class* pLayer) {
 }
 
 void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_class* pLists,
-                  int listNum) {
+                  s32 listNum) {
     void* pvVar1;
-    int iVar2;
+    s32 iVar2;
 
     if (lbl_80450D20 == 0) {
         lbl_80450D1C = 0x1;  // IsInitOfLayerList
@@ -135,7 +135,7 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
         lbl_80450D28 = 1;
     }
     *pLayer = lbl_803A39B0;
-    cNd_Create(&pLayer->mNode, NULL);
+    cNd_Create((node_class*)pLayer, NULL);
     pLayer->mLayerID = lbl_80450D24++;
     pLayer->mpPcNode = pPcNode;
     if (lbl_80450D1C == 0x1) {
