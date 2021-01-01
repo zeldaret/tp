@@ -2213,6 +2213,7 @@ MtxTrans__FfffUc
 cLib_targetAngleY__FRC3VecRC3Vec
 cLib_chasePosXZ__FP4cXyzRC4cXyzf
 cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff
+__dt__8cM2dGCirFv
 }
 /*
 .init 80003100 - 80005600
