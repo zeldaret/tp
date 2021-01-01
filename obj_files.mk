@@ -384,7 +384,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JAudio2/JAUAudioArcLoader.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUAudioMgr.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUBankTable.o    \
-            $(BUILD_DIR)/asm/JAudio2/JAUClusterSound.o    \
+            $(BUILD_DIR)/libs/JSystem/JAudio2/JAUClusterSound.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUInitializer.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSectionHeap.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSeqCollection.o    \
