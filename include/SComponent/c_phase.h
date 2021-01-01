@@ -12,10 +12,10 @@ enum cPhs__Step {
     cPhs_NEXT_e = 0x06,
 };
 
-struct request_of_phase_process_class {
+typedef struct request_of_phase_process_class {
     cPhs__Handler* mpHandlerTable;
     int mPhaseStep;
-};
+} request_of_phase_process_class;
 
 extern "C" {
 

@@ -305,8 +305,8 @@ dCcD_GObjTg_NS_Set:
 /* 80083A20 00080960  38 21 00 10 */	addi r1, r1, 0x10
 /* 80083A24 00080964  4E 80 00 20 */	blr 
 
-.global dCcD_GObjInf
-dCcD_GObjInf:
+.global dCcD_GObjInf_NS_ctor
+dCcD_GObjInf_NS_ctor:
 /* 80083A28 00080968  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80083A2C 0008096C  7C 08 02 A6 */	mflr r0
 /* 80083A30 00080970  90 01 00 24 */	stw r0, 0x24(r1)

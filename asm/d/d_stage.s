@@ -1018,7 +1018,7 @@ lbl_80024B70:
 /* 80024BB0 00021AF0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 80024BB4 00021AF4  80 7F 5C 68 */	lwz r3, 0x5c68(r31)
 /* 80024BB8 00021AF8  38 81 00 08 */	addi r4, r1, 8
-/* 80024BBC 00021AFC  48 00 DB 7D */	bl dLib_getExpandSizeFromAramArchive
+/* 80024BBC 00021AFC  48 00 DB 7D */	bl dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc
 /* 80024BC0 00021B00  7C 7C 1B 78 */	mr r28, r3
 /* 80024BC4 00021B04  4B FE A2 29 */	bl mDoExt_getArchiveHeap
 /* 80024BC8 00021B08  7F 84 E3 78 */	mr r4, r28

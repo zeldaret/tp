@@ -2381,8 +2381,8 @@ dMeter_fmapHIO_c:
 /* 80200708 001FD648  90 1F 02 54 */	stw r0, 0x254(r31)
 /* 8020070C 001FD64C  90 1F 02 58 */	stw r0, 0x258(r31)
 /* 80200710 001FD650  38 7F 02 5C */	addi r3, r31, 0x25c
-/* 80200714 001FD654  3C 80 80 01 */	lis r4, cXyz@ha
-/* 80200718 001FD658  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80200714 001FD654  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 80200718 001FD658  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 8020071C 001FD65C  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80200720 001FD660  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80200724 001FD664  38 C0 00 0C */	li r6, 0xc

@@ -50,27 +50,25 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_iter.o    \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_tag.o    \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_pause.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_base.o    \
-            $(BUILD_DIR)/asm/f/pc/create/f_pc_create_iter.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_base.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_create_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_creator.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_delete_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_executor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_leaf.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_load.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_manager.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_manager.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
-            $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_node.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_node_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_searcher.o    \
@@ -79,16 +77,16 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_pause.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
-            $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
-            $(BUILD_DIR)/asm/f/pc/stdcreate/f_pc_stdcreate_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_draw.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_fstcreate_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_stdcreate_req.o    \
             $(BUILD_DIR)/asm/d/d_stage.o    \
             $(BUILD_DIR)/asm/d/d_map.o    \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
             $(BUILD_DIR)/asm/d/com/inf/d_com_inf_game.o    \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
             $(BUILD_DIR)/src/d/d_bomb.o    \
-            $(BUILD_DIR)/asm/d/d_lib.o    \
+            $(BUILD_DIR)/src/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/asm/d/save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
@@ -116,7 +114,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/kankyo/d_kankyo_wether.o    \
             $(BUILD_DIR)/asm/d/kankyo/d_kankyo_rain.o    \
             $(BUILD_DIR)/asm/d/d_vibration.o    \
-            $(BUILD_DIR)/asm/d/d_attention.o    \
+            $(BUILD_DIR)/src/d/d_attention.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_pc.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_plc.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_s.o    \
@@ -148,7 +146,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
-            $(BUILD_DIR)/asm/d/a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
             $(BUILD_DIR)/asm/d/a/d_a_npc.o    \
@@ -480,13 +477,13 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
+            $(BUILD_DIR)/libs/JSystem/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTException.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDirectPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTAssert.o    \
             $(BUILD_DIR)/asm/JUtility/JUTVideo.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTXfb.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFader.o    \
             $(BUILD_DIR)/asm/JUtility/JUTProcBar.o    \
             $(BUILD_DIR)/asm/JUtility/JUTConsole.o    \

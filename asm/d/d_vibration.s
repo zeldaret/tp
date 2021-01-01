@@ -451,7 +451,7 @@ lbl_8006F750:
 /* 8006F78C 0006C6CC  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F790 0006C6D0  38 A0 00 00 */	li r5, 0
 /* 8006F794 0006C6D4  38 C0 00 3C */	li r6, 0x3c
-/* 8006F798 0006C6D8  48 27 21 35 */	bl JUTGamePad_NS_CRumble_NS_startPatternedRumble
+/* 8006F798 0006C6D8  48 27 21 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
 /* 8006F79C 0006C6DC  48 00 01 3C */	b lbl_8006F8D8
 lbl_8006F7A0:
 /* 8006F7A0 0006C6E0  83 BF 00 78 */	lwz r29, 0x78(r31)
@@ -477,7 +477,7 @@ lbl_8006F7A0:
 /* 8006F7F0 0006C730  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F7F4 0006C734  38 A0 00 01 */	li r5, 1
 /* 8006F7F8 0006C738  38 C0 00 3C */	li r6, 0x3c
-/* 8006F7FC 0006C73C  48 27 20 D1 */	bl JUTGamePad_NS_CRumble_NS_startPatternedRumble
+/* 8006F7FC 0006C73C  48 27 20 D1 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
 /* 8006F800 0006C740  48 00 00 D8 */	b lbl_8006F8D8
 lbl_8006F804:
 /* 8006F804 0006C744  80 1F 00 58 */	lwz r0, 0x58(r31)
@@ -518,20 +518,20 @@ lbl_8006F84C:
 /* 8006F88C 0006C7CC  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F890 0006C7D0  38 A0 00 00 */	li r5, 0
 /* 8006F894 0006C7D4  38 C0 00 3C */	li r6, 0x3c
-/* 8006F898 0006C7D8  48 27 20 35 */	bl JUTGamePad_NS_CRumble_NS_startPatternedRumble
+/* 8006F898 0006C7D8  48 27 20 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
 /* 8006F89C 0006C7DC  48 00 00 3C */	b lbl_8006F8D8
 lbl_8006F8A0:
 /* 8006F8A0 0006C7E0  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
 /* 8006F8A4 0006C7E4  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006F8A8 0006C7E8  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006F8AC 0006C7EC  38 63 00 68 */	addi r3, r3, 0x68
-/* 8006F8B0 0006C7F0  48 27 20 C9 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumbleAtThePeriod
+/* 8006F8B0 0006C7F0  48 27 20 C9 */	bl stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv
 /* 8006F8B4 0006C7F4  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
 /* 8006F8B8 0006C7F8  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006F8BC 0006C7FC  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006F8C0 0006C800  A8 63 00 7C */	lha r3, 0x7c(r3)
 /* 8006F8C4 0006C804  38 80 00 00 */	li r4, 0
-/* 8006F8C8 0006C808  48 27 1D C5 */	bl JUTGamePad_NS_CRumble_NS_stopMotor
+/* 8006F8C8 0006C808  48 27 1D C5 */	bl stopMotor__Q210JUTGamePad7CRumbleFib
 /* 8006F8CC 0006C80C  38 00 FF 9D */	li r0, -99
 /* 8006F8D0 0006C810  90 1F 00 84 */	stw r0, 0x84(r31)
 /* 8006F8D4 0006C814  90 1F 00 68 */	stw r0, 0x68(r31)
@@ -592,13 +592,13 @@ lbl_8006F990:
 /* 8006F99C 0006C8DC  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006F9A0 0006C8E0  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006F9A4 0006C8E4  38 63 00 68 */	addi r3, r3, 0x68
-/* 8006F9A8 0006C8E8  48 27 1F D1 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumbleAtThePeriod
+/* 8006F9A8 0006C8E8  48 27 1F D1 */	bl stopPatternedRumbleAtThePeriod__Q210JUTGamePad7CRumbleFv
 /* 8006F9AC 0006C8EC  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
 /* 8006F9B0 0006C8F0  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006F9B4 0006C8F4  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006F9B8 0006C8F8  A8 63 00 7C */	lha r3, 0x7c(r3)
 /* 8006F9BC 0006C8FC  38 80 00 00 */	li r4, 0
-/* 8006F9C0 0006C900  48 27 1C CD */	bl JUTGamePad_NS_CRumble_NS_stopMotor
+/* 8006F9C0 0006C900  48 27 1C CD */	bl stopMotor__Q210JUTGamePad7CRumbleFib
 /* 8006F9C4 0006C904  80 7F 00 80 */	lwz r3, 0x80(r31)
 /* 8006F9C8 0006C908  38 03 00 01 */	addi r0, r3, 1
 /* 8006F9CC 0006C90C  90 1F 00 80 */	stw r0, 0x80(r31)
@@ -905,13 +905,13 @@ dVibration_c_NS_Kill:
 /* 8006FE18 0006CD58  80 83 D2 D8 */	lwz r4, lbl_803DD2D8@l(r3)
 /* 8006FE1C 0006CD5C  38 64 00 68 */	addi r3, r4, 0x68
 /* 8006FE20 0006CD60  A8 84 00 7C */	lha r4, 0x7c(r4)
-/* 8006FE24 0006CD64  48 27 1B 25 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumble
+/* 8006FE24 0006CD64  48 27 1B 25 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFs
 /* 8006FE28 0006CD68  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
 /* 8006FE2C 0006CD6C  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006FE30 0006CD70  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006FE34 0006CD74  A8 63 00 7C */	lha r3, 0x7c(r3)
 /* 8006FE38 0006CD78  38 80 00 01 */	li r4, 1
-/* 8006FE3C 0006CD7C  48 27 18 51 */	bl JUTGamePad_NS_CRumble_NS_stopMotor
+/* 8006FE3C 0006CD7C  48 27 18 51 */	bl stopMotor__Q210JUTGamePad7CRumbleFib
 /* 8006FE40 0006CD80  7F E3 FB 78 */	mr r3, r31
 /* 8006FE44 0006CD84  48 00 00 41 */	bl dVibration_c_NS_setDefault
 /* 8006FE48 0006CD88  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1004,13 +1004,13 @@ lbl_8006FF70:
 /* 8006FF74 0006CEB4  80 83 D2 D8 */	lwz r4, lbl_803DD2D8@l(r3)
 /* 8006FF78 0006CEB8  38 64 00 68 */	addi r3, r4, 0x68
 /* 8006FF7C 0006CEBC  A8 84 00 7C */	lha r4, 0x7c(r4)
-/* 8006FF80 0006CEC0  48 27 19 C9 */	bl JUTGamePad_NS_CRumble_NS_stopPatternedRumble
+/* 8006FF80 0006CEC0  48 27 19 C9 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFs
 /* 8006FF84 0006CEC4  3C 60 80 3E */	lis r3, lbl_803DD2D8@ha
 /* 8006FF88 0006CEC8  38 63 D2 D8 */	addi r3, r3, lbl_803DD2D8@l
 /* 8006FF8C 0006CECC  80 63 00 00 */	lwz r3, 0(r3)
 /* 8006FF90 0006CED0  A8 63 00 7C */	lha r3, 0x7c(r3)
 /* 8006FF94 0006CED4  38 80 00 01 */	li r4, 1
-/* 8006FF98 0006CED8  48 27 16 F5 */	bl JUTGamePad_NS_CRumble_NS_stopMotor
+/* 8006FF98 0006CED8  48 27 16 F5 */	bl stopMotor__Q210JUTGamePad7CRumbleFib
 lbl_8006FF9C:
 /* 8006FF9C 0006CEDC  38 00 FF FF */	li r0, -1
 /* 8006FFA0 0006CEE0  90 1F 00 54 */	stw r0, 0x54(r31)

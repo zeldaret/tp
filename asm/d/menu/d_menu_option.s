@@ -1459,7 +1459,7 @@ dMenu_Option_c_NS__move:
 /* 801E3418 001E0358  93 C1 00 08 */	stw r30, 8(r1)
 /* 801E341C 001E035C  7C 7F 1B 78 */	mr r31, r3
 /* 801E3420 001E0360  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E3424 001E0364  4B E4 ED 79 */	bl STControl_NS_checkTrigger
+/* 801E3424 001E0364  4B E4 ED 79 */	bl checkTrigger__9STControlFv
 /* 801E3428 001E0368  88 1F 03 EA */	lbz r0, 0x3ea(r31)
 /* 801E342C 001E036C  28 00 00 00 */	cmplwi r0, 0
 /* 801E3430 001E0370  41 82 00 1C */	beq lbl_801E344C
@@ -1904,7 +1904,7 @@ dMenu_Option_c_NS_checkLeftTrigger:
 /* 801E3AA8 001E09E8  7C 08 02 A6 */	mflr r0
 /* 801E3AAC 001E09EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E3AB0 001E09F0  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E3AB4 001E09F4  4B E4 E9 79 */	bl STControl_NS_checkLeftTrigger
+/* 801E3AB4 001E09F4  4B E4 E9 79 */	bl checkLeftTrigger__9STControlFv
 /* 801E3AB8 001E09F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801E3ABC 001E09FC  7C 08 03 A6 */	mtlr r0
 /* 801E3AC0 001E0A00  38 21 00 10 */	addi r1, r1, 0x10
@@ -1916,7 +1916,7 @@ dMenu_Option_c_NS_checkRightTrigger:
 /* 801E3ACC 001E0A0C  7C 08 02 A6 */	mflr r0
 /* 801E3AD0 001E0A10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801E3AD4 001E0A14  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E3AD8 001E0A18  4B E4 E9 D1 */	bl STControl_NS_checkRightTrigger
+/* 801E3AD8 001E0A18  4B E4 E9 D1 */	bl checkRightTrigger__9STControlFv
 /* 801E3ADC 001E0A1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801E3AE0 001E0A20  7C 08 03 A6 */	mtlr r0
 /* 801E3AE4 001E0A24  38 21 00 10 */	addi r1, r1, 0x10
@@ -2264,7 +2264,7 @@ dMenu_Option_c_NS_atten_init:
 /* 801E3FD4 001E0F14  48 17 E2 09 */	bl _savegpr_29
 /* 801E3FD8 001E0F18  7C 7F 1B 78 */	mr r31, r3
 /* 801E3FDC 001E0F1C  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E3FE0 001E0F20  4B E4 E5 C1 */	bl STControl_NS_checkDownTrigger
+/* 801E3FE0 001E0F20  4B E4 E5 C1 */	bl checkDownTrigger__9STControlFv
 /* 801E3FE4 001E0F24  7C 7D 1B 78 */	mr r29, r3
 /* 801E3FE8 001E0F28  7F E3 FB 78 */	mr r3, r31
 /* 801E3FEC 001E0F2C  4B FF FA B9 */	bl dMenu_Option_c_NS_checkLeftTrigger
@@ -2414,10 +2414,10 @@ lbl_801E4188:
 /* 801E4208 001E1148  48 17 DF D1 */	bl _savegpr_28
 /* 801E420C 001E114C  7C 7F 1B 78 */	mr r31, r3
 /* 801E4210 001E1150  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E4214 001E1154  4B E4 E3 11 */	bl STControl_NS_checkUpTrigger
+/* 801E4214 001E1154  4B E4 E3 11 */	bl checkUpTrigger__9STControlFv
 /* 801E4218 001E1158  7C 7C 1B 78 */	mr r28, r3
 /* 801E421C 001E115C  80 7F 00 58 */	lwz r3, 0x58(r31)
-/* 801E4220 001E1160  4B E4 E3 81 */	bl STControl_NS_checkDownTrigger
+/* 801E4220 001E1160  4B E4 E3 81 */	bl checkDownTrigger__9STControlFv
 /* 801E4224 001E1164  7C 7D 1B 78 */	mr r29, r3
 /* 801E4228 001E1168  7F E3 FB 78 */	mr r3, r31
 /* 801E422C 001E116C  4B FF F8 79 */	bl dMenu_Option_c_NS_checkLeftTrigger
@@ -2492,7 +2492,7 @@ lbl_801E42F8:
 /* 801E4334 001E1274  38 9F 03 E0 */	addi r4, r31, 0x3e0
 /* 801E4338 001E1278  38 A0 00 00 */	li r5, 0
 /* 801E433C 001E127C  38 C0 00 3C */	li r6, 0x3c
-/* 801E4340 001E1280  48 0F D5 8D */	bl JUTGamePad_NS_CRumble_NS_startPatternedRumble
+/* 801E4340 001E1280  48 0F D5 8D */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
 /* 801E4344 001E1284  38 00 FF FB */	li r0, -5
 /* 801E4348 001E1288  B0 1F 03 DA */	sth r0, 0x3da(r31)
 /* 801E434C 001E128C  48 00 00 1C */	b lbl_801E4368
@@ -2541,7 +2541,7 @@ lbl_801E43B0:
 /* 801E43EC 001E132C  38 9F 03 E0 */	addi r4, r31, 0x3e0
 /* 801E43F0 001E1330  38 A0 00 00 */	li r5, 0
 /* 801E43F4 001E1334  38 C0 00 3C */	li r6, 0x3c
-/* 801E43F8 001E1338  48 0F D4 D5 */	bl JUTGamePad_NS_CRumble_NS_startPatternedRumble
+/* 801E43F8 001E1338  48 0F D4 D5 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
 /* 801E43FC 001E133C  38 00 00 05 */	li r0, 5
 /* 801E4400 001E1340  B0 1F 03 DA */	sth r0, 0x3da(r31)
 /* 801E4404 001E1344  48 00 00 1C */	b lbl_801E4420
@@ -2610,10 +2610,10 @@ lbl_801E4470:
 /* 801E44F0 001E1430  48 17 DC ED */	bl _savegpr_29
 /* 801E44F4 001E1434  7C 7F 1B 78 */	mr r31, r3
 /* 801E44F8 001E1438  80 63 00 58 */	lwz r3, 0x58(r3)
-/* 801E44FC 001E143C  4B E4 E0 29 */	bl STControl_NS_checkUpTrigger
+/* 801E44FC 001E143C  4B E4 E0 29 */	bl checkUpTrigger__9STControlFv
 /* 801E4500 001E1440  7C 7D 1B 78 */	mr r29, r3
 /* 801E4504 001E1444  80 7F 00 58 */	lwz r3, 0x58(r31)
-/* 801E4508 001E1448  4B E4 E0 99 */	bl STControl_NS_checkDownTrigger
+/* 801E4508 001E1448  4B E4 E0 99 */	bl checkDownTrigger__9STControlFv
 /* 801E450C 001E144C  7F E3 FB 78 */	mr r3, r31
 /* 801E4510 001E1450  4B FF F5 95 */	bl dMenu_Option_c_NS_checkLeftTrigger
 /* 801E4514 001E1454  7C 7E 1B 78 */	mr r30, r3

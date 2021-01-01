@@ -4,11 +4,11 @@
 
 #include "SComponent/c_node.h"
 
-struct node_list_class {
+typedef struct node_list_class {
     node_class* mpHead;
     node_class* mpTail;
     int mSize;
-};
+} node_list_class;
 
 extern "C" {
 

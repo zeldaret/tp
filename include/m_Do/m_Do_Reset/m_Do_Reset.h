@@ -1,6 +1,7 @@
 #ifndef __M_DO_RESET_H__
 #define __M_DO_RESET_H__
 
+#include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 #include "dolphin/types.h"
 
 extern "C" {
