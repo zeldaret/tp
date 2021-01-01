@@ -459,7 +459,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o    \
-            $(BUILD_DIR)/asm/JSupport/JSUList.o    \
             $(BUILD_DIR)/libs/JSystem/JSupport/JSUList.o    \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUMemoryStream.o    \
