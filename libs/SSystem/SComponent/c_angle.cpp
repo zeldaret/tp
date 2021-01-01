@@ -10,58 +10,60 @@ void cAngle_NS_Adjust(void);
 }
 
 // __ct__7cSAngleFRC7cSAngle
-asm cSAngle::cSAngle(const cSAngle&) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80270F68.s"
+cSAngle::cSAngle(const cSAngle& angle) {
+    this->Val(angle);
 }
 
 // __ct__7cSAngleFs
-asm cSAngle::cSAngle(s16) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80270F98.s"
+cSAngle::cSAngle(s16 angle) {
+    this->Val(angle);
 }
 
 // __ct__7cSAngleFf
-// cSAngle::cSAngle(float)
-asm cSAngle::cSAngle(float) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80270FC8.s"
+cSAngle::cSAngle(float angle) {
+    this->Val(angle);
 }
 
 // Val__7cSAngleFRC7cSAngle
-// cSAngle::Val(const cSAngle&)
-asm void cSAngle::Val(const cSAngle&) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80270FF8.s"
+void cSAngle::Val(const cSAngle& other) {
+    this->angle = other.angle;
 }
 
 // Val__7cSAngleFs
-// cSAngle::Val(short)
-asm void cSAngle::Val(s16) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80271004.s"
+void cSAngle::Val(s16 val) {
+    this->angle = val;
 }
 
 // Val__7cSAngleFf
-// cSAngle::Val(float)
-asm void cSAngle::Val(float) {
-    nofralloc
-#include "SComponent/c_angle/asm/func_8027100C.s"
+void cSAngle::Val(float f) {
+    this->angle = lbl_80455208 * f; 
 }
 
 // Degree__7cSAngleCFv
-// cSAngle::Degree(void) const
+#ifdef NON_MATCHING
+float cSAngle::Degree(void) const {
+    // matches, but adds a double constant for the s16 -> float conversion
+    return lbl_8045520C * this->angle;
+}
+#else
 asm float cSAngle::Degree(void) const {
     nofralloc
 #include "SComponent/c_angle/asm/func_80271030.s"
 }
+#endif
 
 // Radian__7cSAngleCFv
-// cSAngle::Radian(void) const
+#ifdef NON_MATCHING
+float cSAngle::Radian(void) const {
+    // matches, but adds a double constant for the s16 -> float conversion
+    return lbl_80455218 * this->angle;
+}
+#else
 asm float cSAngle::Radian(void) const {
     nofralloc
 #include "SComponent/c_angle/asm/func_80271064.s"
 }
+#endif
 
 // Norm__7cSAngleCFv
 // cSAngle::Norm(void) const
@@ -71,38 +73,28 @@ asm float cSAngle::Norm(void) const {
 }
 
 // Abs__7cSAngleCFv
-// cSAngle::Abs(void) const
-asm s16 cSAngle::Abs(void) const {
-    nofralloc
-#include "SComponent/c_angle/asm/func_802710CC.s"
+s16 cSAngle::Abs(void) const {
+    return this->angle >= 0 ? this->angle : -this->angle;
 }
 
 // Inv__7cSAngleCFv
-// cSAngle::Inv(void) const
-asm s16 cSAngle::Inv(void) const {
-    nofralloc
-#include "SComponent/c_angle/asm/func_802710E8.s"
+s16 cSAngle::Inv(void) const {
+    return this->angle - 0x8000;
 }
 
 // Sin__7cSAngleCFv
-// cSAngle::Sin(void) const
-asm float cSAngle::Sin(void) const {
-    nofralloc
-#include "SComponent/c_angle/asm/func_802710F8.s"
+float cSAngle::Sin(void) const {
+    return func_8036C590(this->Radian());
 }
 
 // Cos__7cSAngleCFv
-// cSAngle::Cos(void) const
-asm float cSAngle::Cos(void) const {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80271120.s"
+float cSAngle::Cos(void) const {
+    return func_8036C028(this->Radian());
 }
 
 // __mi__7cSAngleCFv
-// cSAngle::operator-(void) const
-asm cSAngle cSAngle::operator-(void) const {
-    nofralloc
-#include "SComponent/c_angle/asm/func_80271148.s"
+cSAngle cSAngle::operator-(void) const {
+    return cSAngle((s16)-this->angle);
 }
 
 // __pl__7cSAngleCFRC7cSAngle

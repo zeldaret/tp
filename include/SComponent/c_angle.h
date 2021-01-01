@@ -5,6 +5,8 @@
 #include "SComponent/c_xyz.h"
 
 class cSAngle {
+private:
+    s16 angle;
 public:
     cSAngle(const cSAngle&);
     cSAngle(s16);

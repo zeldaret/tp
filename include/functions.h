@@ -3809,7 +3809,8 @@ extern "C" {
 void Val__7cSGlobeFfss(void);
 void Cos__7cSAngleCFv(void);
 void Globe__7cSPolarCFP7cSGlobe(void);
-void func_8036C590(void);
+// MSL_C.PPCEABI.bare.H::sin
+double func_8036C590(double);
 void __amu__7cSAngleFf(void);
 void Val__7cSPolarFRC4cXyz(void);
 void __pl__7cSAngleCFs(void);
@@ -3844,7 +3845,8 @@ void Val__7cSAngleFf(void);
 void Norm__7cSAngleCFv(void);
 void Formal__7cSPolarFv(void);
 void Radian__7cDegreeCFv(void);
-void func_8036C028(void);
+// MSL_C.PPCEABI.bare.H::cos
+double func_8036C028(double);
 void __ct__7cSGlobeFfss(void);
 void Sin__7cDegreeCFv(void);
 void Cos__7cDegreeCFv(void);
