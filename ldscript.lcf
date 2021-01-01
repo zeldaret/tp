@@ -2215,6 +2215,9 @@ cLib_chasePosXZ__FP4cXyzRC4cXyzf
 cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff
 __dt__8cM2dGCirFv
 setPos__8cM3dGTriFPC3VecPC3VecPC3Vec
+__sinit_c_m3d_cpp
+cM3d_CalcVecAngle__FRC3VecPsPs
+cM3d_VectorProduct__FPC4cXyzPC4cXyzPC4cXyzP4cXyz
 }
 /*
 .init 80003100 - 80005600
