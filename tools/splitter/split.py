@@ -233,7 +233,6 @@ def split(
             defined_labels.add(line.body.symbol)
         if isinstance(line.body, Instruction):
             if line.body.opcode[0] == 'b' and line.body.operands != []:  # branch
-                print(line)
                 jumped_labels.add(line.body.operands[0])  # jump target
 
     # -- find everything of the form lbl_[hex] that's in an operand on the RHS of a l* instruction
