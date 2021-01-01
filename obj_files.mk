@@ -268,7 +268,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/SComponent/c/c_m3d.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_aab.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_cir.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_cps.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_cps.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_cyl.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_lin.o    \
             $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_pla.o    \
