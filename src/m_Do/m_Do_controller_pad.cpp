@@ -96,30 +96,34 @@ void mDoCPd_c::convert(interface_of_controller_pad* controllerInterface, JUTGame
     controllerInterface->cStick_length_from_neutral = gamePad->c_stick.length_from_neutral;
     controllerInterface->cStick_angle = gamePad->c_stick.angle;
     controllerInterface->analog_a =
-        (gamePad->buttons.analog_a - lbl_80451A30) * lbl_80451A20;  //@3709 *
-                                                                    //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_a)
-                                                                    //- @3713);
+        (gamePad->buttons.analog_a - lbl_80451A30) *
+        lbl_80451A20;  //@3709 *
+                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_a)
+                       //- @3713);
     if (controllerInterface->analog_a > lbl_80451A24) {
         controllerInterface->analog_a = lbl_80451A24;
     }
     controllerInterface->analog_b =
-        (gamePad->buttons.analog_b - lbl_80451A30) * lbl_80451A20;  //@3709 *
-                                                                    //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_b)
-                                                                    //- @3713);
+        (gamePad->buttons.analog_b - lbl_80451A30) *
+        lbl_80451A20;  //@3709 *
+                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_b)
+                       //- @3713);
     if (controllerInterface->analog_b > lbl_80451A24) {
         controllerInterface->analog_b = lbl_80451A24;
     }
     controllerInterface->trigger_left =
-        (gamePad->buttons.trigger_left - lbl_80451A30) * lbl_80451A28;  //@3711 *
-                                                                        //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_left)
-                                                                        //- @3713);
+        (gamePad->buttons.trigger_left - lbl_80451A30) *
+        lbl_80451A28;  //@3711 *
+                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_left)
+                       //- @3713);
     if (controllerInterface->trigger_left > lbl_80451A24) {
         controllerInterface->trigger_left = lbl_80451A24;
     }
     controllerInterface->trigger_right =
-        (gamePad->buttons.trigger_right - lbl_80451A30) * lbl_80451A28;  //@3711 *
-                                                                         //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_right)
-                                                                         //- @3713);
+        (gamePad->buttons.trigger_right - lbl_80451A30) *
+        lbl_80451A28;  //@3711 *
+                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_right)
+                       //- @3713);
     if (controllerInterface->trigger_right > lbl_80451A24) {
         controllerInterface->trigger_right = lbl_80451A24;
     }
