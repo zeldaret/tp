@@ -1224,7 +1224,7 @@ lbl_801D9284:
 /* 801D92E8 001D6228  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 801D92EC 001D622C  7C 7F 1B 78 */	mr r31, r3
 /* 801D92F0 001D6230  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 801D92F4 001D6234  4B E5 8E A9 */	bl STControl_NS_checkTrigger
+/* 801D92F4 001D6234  4B E5 8E A9 */	bl checkTrigger__9STControlFv
 /* 801D92F8 001D6238  3C 60 80 3E */	lis r3, m_cpadInfo@ha
 /* 801D92FC 001D623C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801D9300 001D6240  80 63 00 34 */	lwz r3, 0x34(r3)
@@ -1293,7 +1293,7 @@ lbl_801D93E8:
 /* 801D93F0 001D6330  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D93F4 001D6334  41 82 00 60 */	beq lbl_801D9454
 /* 801D93F8 001D6338  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 801D93FC 001D633C  4B E5 91 29 */	bl STControl_NS_checkUpTrigger
+/* 801D93FC 001D633C  4B E5 91 29 */	bl checkUpTrigger__9STControlFv
 /* 801D9400 001D6340  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D9404 001D6344  41 82 00 50 */	beq lbl_801D9454
 /* 801D9408 001D6348  88 1F 00 F7 */	lbz r0, 0xf7(r31)
@@ -1321,7 +1321,7 @@ lbl_801D9454:
 /* 801D945C 001D639C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D9460 001D63A0  41 82 00 5C */	beq lbl_801D94BC
 /* 801D9464 001D63A4  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 801D9468 001D63A8  4B E5 91 39 */	bl STControl_NS_checkDownTrigger
+/* 801D9468 001D63A8  4B E5 91 39 */	bl checkDownTrigger__9STControlFv
 /* 801D946C 001D63AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D9470 001D63B0  41 82 00 4C */	beq lbl_801D94BC
 /* 801D9474 001D63B4  88 1F 00 F7 */	lbz r0, 0xf7(r31)
@@ -2111,9 +2111,9 @@ dMenu_Insect_c_NS_cursorMove:
 /* 801D9FA8 001D6EE8  8B C3 00 F5 */	lbz r30, 0xf5(r3)
 /* 801D9FAC 001D6EEC  3B A0 00 00 */	li r29, 0
 /* 801D9FB0 001D6EF0  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 801D9FB4 001D6EF4  4B E5 81 E9 */	bl STControl_NS_checkTrigger
+/* 801D9FB4 001D6EF4  4B E5 81 E9 */	bl checkTrigger__9STControlFv
 /* 801D9FB8 001D6EF8  80 7C 00 0C */	lwz r3, 0xc(r28)
-/* 801D9FBC 001D6EFC  4B E5 84 ED */	bl STControl_NS_checkRightTrigger
+/* 801D9FBC 001D6EFC  4B E5 84 ED */	bl checkRightTrigger__9STControlFv
 /* 801D9FC0 001D6F00  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D9FC4 001D6F04  41 82 00 1C */	beq lbl_801D9FE0
 /* 801D9FC8 001D6F08  88 7C 00 F4 */	lbz r3, 0xf4(r28)
@@ -2124,7 +2124,7 @@ dMenu_Insect_c_NS_cursorMove:
 /* 801D9FDC 001D6F1C  48 00 00 28 */	b lbl_801DA004
 lbl_801D9FE0:
 /* 801D9FE0 001D6F20  80 7C 00 0C */	lwz r3, 0xc(r28)
-/* 801D9FE4 001D6F24  4B E5 84 49 */	bl STControl_NS_checkLeftTrigger
+/* 801D9FE4 001D6F24  4B E5 84 49 */	bl checkLeftTrigger__9STControlFv
 /* 801D9FE8 001D6F28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801D9FEC 001D6F2C  41 82 00 18 */	beq lbl_801DA004
 /* 801D9FF0 001D6F30  88 7C 00 F4 */	lbz r3, 0xf4(r28)
@@ -2134,7 +2134,7 @@ lbl_801D9FE0:
 /* 801DA000 001D6F40  98 1C 00 F4 */	stb r0, 0xf4(r28)
 lbl_801DA004:
 /* 801DA004 001D6F44  80 7C 00 0C */	lwz r3, 0xc(r28)
-/* 801DA008 001D6F48  4B E5 85 1D */	bl STControl_NS_checkUpTrigger
+/* 801DA008 001D6F48  4B E5 85 1D */	bl checkUpTrigger__9STControlFv
 /* 801DA00C 001D6F4C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DA010 001D6F50  41 82 00 1C */	beq lbl_801DA02C
 /* 801DA014 001D6F54  88 7C 00 F5 */	lbz r3, 0xf5(r28)
@@ -2145,7 +2145,7 @@ lbl_801DA004:
 /* 801DA028 001D6F68  48 00 00 28 */	b lbl_801DA050
 lbl_801DA02C:
 /* 801DA02C 001D6F6C  80 7C 00 0C */	lwz r3, 0xc(r28)
-/* 801DA030 001D6F70  4B E5 85 71 */	bl STControl_NS_checkDownTrigger
+/* 801DA030 001D6F70  4B E5 85 71 */	bl checkDownTrigger__9STControlFv
 /* 801DA034 001D6F74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DA038 001D6F78  41 82 00 18 */	beq lbl_801DA050
 /* 801DA03C 001D6F7C  88 7C 00 F5 */	lbz r3, 0xf5(r28)

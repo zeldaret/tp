@@ -7,7 +7,7 @@ struct dMeter2Info_c_vtable {
 };
 
 class dMeter2Info_c {
-   public:
+public:
     dMeter2Info_c::dMeter2Info_c();
     dMeter2Info_c::~dMeter2Info_c();
     void init(void);
@@ -31,7 +31,8 @@ class dMeter2Info_c {
     void resetMeterString(void);
     void setWarpInfo(const char*, const cXyz&, s16, u8, u8, u8);
     u8 getItemType(u8);
-    u8 readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, int);  // define J2DPicture
+    u8 readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*, J2DPicture*, void*,
+                       J2DPicture*, int);  // define J2DPicture
     void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
     u8 get2ndTexture(u8);
     u8 get3rdTexture(u8);
@@ -48,7 +49,7 @@ class dMeter2Info_c {
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
 
-   private:
+private:
     dMeter2Info_c_vtable* vtable;
     u8 unk4[4];
     u32 unk8;

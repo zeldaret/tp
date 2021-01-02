@@ -9,13 +9,9 @@ static const unsigned int CLR_BLACK = 0;
 typedef const char* ResFONT;
 
 struct TColor {
-    TColor() {
-        *(u32*)&r = 0xFFFFFFFF;
-    }
+    TColor() { *(u32*)&r = 0xFFFFFFFF; }
 
-    TColor(u32 raw) { 
-        *(u32*)&r = raw;
-    }
+    TColor(u32 raw) { *(u32*)&r = raw; }
 
     u32 Raw() { return *(u32*)&r; }
 
@@ -29,7 +25,7 @@ class JUTFont {
 public:
     JUTFont();
     virtual ~JUTFont();
-    
+
     struct TWidth {};
 
     virtual void setGX() = 0;
@@ -51,7 +47,8 @@ public:
     void initialize_state();
     void setCharColor(TColor col1);
     void setGradColor(TColor col1, TColor col2);
-    float drawString_size_scale(float a1, float a2, float a3, float a4, char* a5, unsigned long usz, bool a7);
+    float drawString_size_scale(float a1, float a2, float a3, float a4, char* a5, unsigned long usz,
+                                bool a7);
 
     bool unk4;
     bool unk5;

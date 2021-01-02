@@ -650,8 +650,8 @@ daPy_actorKeep_c_NS_clearData:
 /* 8015ED08 0015BC48  90 03 00 04 */	stw r0, 4(r3)
 /* 8015ED0C 0015BC4C  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c
-daPy_anmHeap_c:
+.global daPy_anmHeap_c_NS_ctor
+daPy_anmHeap_c_NS_ctor:
 /* 8015ED10 0015BC50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015ED14 0015BC54  7C 08 02 A6 */	mflr r0
 /* 8015ED18 0015BC58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1238,7 +1238,7 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F500 0015C440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F504 0015C444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F508 0015C448  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F50C 0015C44C  4B F4 12 39 */	bl daAlink_c_NS_setLookPosFromOut
+/* 8015F50C 0015C44C  4B F4 12 39 */	bl setLookPosFromOut__9daAlink_cFP4cXyz
 /* 8015F510 0015C450  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F514 0015C454  7C 08 03 A6 */	mtlr r0
 /* 8015F518 0015C458  38 21 00 10 */	addi r1, r1, 0x10

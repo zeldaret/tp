@@ -1560,19 +1560,19 @@ lbl_802E32B8:
 /* 802E32B8 002E01F8  38 61 02 C8 */	addi r3, r1, 0x2c8
 /* 802E32BC 002E01FC  7F C6 F3 78 */	mr r6, r30
 /* 802E32C0 002E0200  7F 65 DB 78 */	mr r5, r27
-/* 802E32C4 002E0204  4B FF D9 A9 */	bl JUTGamePad_NS_checkResetCallback
+/* 802E32C4 002E0204  4B FF D9 A9 */	bl checkResetCallback__10JUTGamePadFx
 /* 802E32C8 002E0208  38 61 02 18 */	addi r3, r1, 0x218
 /* 802E32CC 002E020C  7F 46 D3 78 */	mr r6, r26
 /* 802E32D0 002E0210  7F 85 E3 78 */	mr r5, r28
-/* 802E32D4 002E0214  4B FF D9 99 */	bl JUTGamePad_NS_checkResetCallback
+/* 802E32D4 002E0214  4B FF D9 99 */	bl checkResetCallback__10JUTGamePadFx
 /* 802E32D8 002E0218  38 61 01 68 */	addi r3, r1, 0x168
 /* 802E32DC 002E021C  7E E6 BB 78 */	mr r6, r23
 /* 802E32E0 002E0220  7F A5 EB 78 */	mr r5, r29
-/* 802E32E4 002E0224  4B FF D9 89 */	bl JUTGamePad_NS_checkResetCallback
+/* 802E32E4 002E0224  4B FF D9 89 */	bl checkResetCallback__10JUTGamePadFx
 /* 802E32E8 002E0228  38 61 00 B8 */	addi r3, r1, 0xb8
 /* 802E32EC 002E022C  7E C6 B3 78 */	mr r6, r22
 /* 802E32F0 002E0230  7F E5 FB 78 */	mr r5, r31
-/* 802E32F4 002E0234  4B FF D9 79 */	bl JUTGamePad_NS_checkResetCallback
+/* 802E32F4 002E0234  4B FF D9 79 */	bl checkResetCallback__10JUTGamePadFx
 /* 802E32F8 002E0238  28 19 00 00 */	cmplwi r25, 0
 /* 802E32FC 002E023C  41 82 00 24 */	beq lbl_802E3320
 /* 802E3300 002E0240  80 A1 00 D4 */	lwz r5, 0xd4(r1)
@@ -1660,7 +1660,7 @@ lbl_802E3428:
 /* 802E3428 002E0368  7C C5 33 78 */	mr r5, r6
 lbl_802E342C:
 /* 802E342C 002E036C  38 61 00 08 */	addi r3, r1, 8
-/* 802E3430 002E0370  4B FF D8 3D */	bl JUTGamePad_NS_checkResetCallback
+/* 802E3430 002E0370  4B FF D8 3D */	bl checkResetCallback__10JUTGamePadFx
 /* 802E3434 002E0374  4B FF D4 B1 */	bl read__10JUTGamePadFv
 /* 802E3438 002E0378  28 19 00 00 */	cmplwi r25, 0
 /* 802E343C 002E037C  41 82 00 0C */	beq lbl_802E3448

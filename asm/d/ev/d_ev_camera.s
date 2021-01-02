@@ -8269,7 +8269,7 @@ lbl_800901F0:
 /* 80090280 0008D1C0  90 1E 01 74 */	stw r0, 0x174(r30)
 /* 80090284 0008D1C4  80 01 00 08 */	lwz r0, 8(r1)
 /* 80090288 0008D1C8  54 03 06 3E */	clrlwi r3, r0, 0x18
-/* 8009028C 0008D1CC  4B FB 32 4D */	bl dEvt_control_c_NS_searchMapEventData
+/* 8009028C 0008D1CC  4B FB 32 4D */	bl searchMapEventData__14dEvt_control_cFUc
 /* 80090290 0008D1D0  90 7E 05 D4 */	stw r3, 0x5d4(r30)
 /* 80090294 0008D1D4  38 C0 00 FF */	li r6, 0xff
 /* 80090298 0008D1D8  80 7E 05 D4 */	lwz r3, 0x5d4(r30)

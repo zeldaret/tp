@@ -1,13 +1,13 @@
+#include "f/f_op/f_op_actor.h"
 #include "global.h"
 
-class fopAc_ac_c;
-
-class dBomb_c{
+class dBomb_c {
 public:
     bool checkStateCarry();
     bool checkFlowerBombWait(fopAc_ac_c* param_1);
     bool checkWaterBomb(fopAc_ac_c* param_1);
     bool checkInsectBombMove(fopAc_ac_c* param_1);
+
 private:
     u8 p1[0x8];
     s16 unk_1;

@@ -12,18 +12,18 @@
 /* 8025132C 0024E26C  38 03 2B 88 */	addi r0, r3, lbl_803C2B88@l
 /* 80251330 0024E270  90 1F 00 00 */	stw r0, 0(r31)
 /* 80251334 0024E274  38 7F 00 04 */	addi r3, r31, 4
-/* 80251338 0024E278  3C 80 80 01 */	lis r4, cXyz@ha
-/* 8025133C 0024E27C  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80251338 0024E278  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 8025133C 0024E27C  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 80251340 0024E280  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80251344 0024E284  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80251348 0024E288  38 C0 00 0C */	li r6, 0xc
 /* 8025134C 0024E28C  38 E0 00 04 */	li r7, 4
 /* 80251350 0024E290  48 11 0A 11 */	bl func_80361D60
 /* 80251354 0024E294  38 7F 00 34 */	addi r3, r31, 0x34
-.global csXyz
-/* 80251358 0024E298  3C 80 80 11 */	lis r4, csXyz@ha
-.global csXyz
-/* 8025135C 0024E29C  38 84 2C 80 */	addi r4, r4, csXyz@l
+.global csXyz_NS_ctor
+/* 80251358 0024E298  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
+.global csXyz_NS_ctor
+/* 8025135C 0024E29C  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
 .global csXyz_NS_dtor
 /* 80251360 0024E2A0  3C A0 80 02 */	lis r5, csXyz_NS_dtor@ha
 .global csXyz_NS_dtor
@@ -32,10 +32,10 @@
 /* 8025136C 0024E2AC  38 E0 00 04 */	li r7, 4
 /* 80251370 0024E2B0  48 11 09 F1 */	bl func_80361D60
 /* 80251374 0024E2B4  38 7F 00 4C */	addi r3, r31, 0x4c
-.global csXyz
-/* 80251378 0024E2B8  3C 80 80 11 */	lis r4, csXyz@ha
-.global csXyz
-/* 8025137C 0024E2BC  38 84 2C 80 */	addi r4, r4, csXyz@l
+.global csXyz_NS_ctor
+/* 80251378 0024E2B8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
+.global csXyz_NS_ctor
+/* 8025137C 0024E2BC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
 .global csXyz_NS_dtor
 /* 80251380 0024E2C0  3C A0 80 02 */	lis r5, csXyz_NS_dtor@ha
 .global csXyz_NS_dtor
@@ -44,10 +44,10 @@
 /* 8025138C 0024E2CC  38 E0 00 04 */	li r7, 4
 /* 80251390 0024E2D0  48 11 09 D1 */	bl func_80361D60
 /* 80251394 0024E2D4  38 7F 00 64 */	addi r3, r31, 0x64
-.global csXyz
-/* 80251398 0024E2D8  3C 80 80 11 */	lis r4, csXyz@ha
-.global csXyz
-/* 8025139C 0024E2DC  38 84 2C 80 */	addi r4, r4, csXyz@l
+.global csXyz_NS_ctor
+/* 80251398 0024E2D8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
+.global csXyz_NS_ctor
+/* 8025139C 0024E2DC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
 .global csXyz_NS_dtor
 /* 802513A0 0024E2E0  3C A0 80 02 */	lis r5, csXyz_NS_dtor@ha
 .global csXyz_NS_dtor
@@ -56,10 +56,10 @@
 /* 802513AC 0024E2EC  38 E0 00 04 */	li r7, 4
 /* 802513B0 0024E2F0  48 11 09 B1 */	bl func_80361D60
 /* 802513B4 0024E2F4  38 7F 00 7C */	addi r3, r31, 0x7c
-.global csXyz
-/* 802513B8 0024E2F8  3C 80 80 11 */	lis r4, csXyz@ha
-.global csXyz
-/* 802513BC 0024E2FC  38 84 2C 80 */	addi r4, r4, csXyz@l
+.global csXyz_NS_ctor
+/* 802513B8 0024E2F8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
+.global csXyz_NS_ctor
+/* 802513BC 0024E2FC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
 .global csXyz_NS_dtor
 /* 802513C0 0024E300  3C A0 80 02 */	lis r5, csXyz_NS_dtor@ha
 .global csXyz_NS_dtor
@@ -68,10 +68,10 @@
 /* 802513CC 0024E30C  38 E0 00 04 */	li r7, 4
 /* 802513D0 0024E310  48 11 09 91 */	bl func_80361D60
 /* 802513D4 0024E314  38 7F 00 94 */	addi r3, r31, 0x94
-.global csXyz
-/* 802513D8 0024E318  3C 80 80 11 */	lis r4, csXyz@ha
-.global csXyz
-/* 802513DC 0024E31C  38 84 2C 80 */	addi r4, r4, csXyz@l
+.global csXyz_NS_ctor
+/* 802513D8 0024E318  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
+.global csXyz_NS_ctor
+/* 802513DC 0024E31C  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
 .global csXyz_NS_dtor
 /* 802513E0 0024E320  3C A0 80 02 */	lis r5, csXyz_NS_dtor@ha
 .global csXyz_NS_dtor

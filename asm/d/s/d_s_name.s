@@ -306,7 +306,7 @@ dScnName_c_NS_execute:
 /* 80258BE8 00255B28  7F E3 FB 78 */	mr r3, r31
 /* 80258BEC 00255B2C  4B DD 41 59 */	bl dComIfG_resetToOpening
 lbl_80258BF0:
-/* 80258BF0 00255B30  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 80258BF0 00255B30  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80258BF4 00255B34  80 03 00 00 */	lwz r0, 0(r3)
 /* 80258BF8 00255B38  2C 00 00 00 */	cmpwi r0, 0
 /* 80258BFC 00255B3C  41 82 00 28 */	beq lbl_80258C24
@@ -582,7 +582,7 @@ lbl_80258FC0:
 /* 80258FC8 00255F08  7C 08 03 A6 */	mtlr r0
 /* 80258FCC 00255F0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80258FD0 00255F10  4E 80 00 20 */	blr 
-/* 80258FD4 00255F14  80 8D 86 F8 */	lwz r4, mResetData-_SDA_BASE_(r13)
+/* 80258FD4 00255F14  80 8D 86 F8 */	lwz r4, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80258FD8 00255F18  80 04 00 00 */	lwz r0, 0(r4)
 /* 80258FDC 00255F1C  2C 00 00 00 */	cmpwi r0, 0
 /* 80258FE0 00255F20  4C 82 00 20 */	bnelr 
@@ -661,7 +661,7 @@ lbl_802590E4:
 /* 80259100 00256040  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80259104 00256044  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80259108 00256048  7C 7F 1B 78 */	mr r31, r3
-/* 8025910C 0025604C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 8025910C 0025604C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259110 00256050  80 03 00 00 */	lwz r0, 0(r3)
 /* 80259114 00256054  2C 00 00 00 */	cmpwi r0, 0
 /* 80259118 00256058  40 82 00 94 */	bne lbl_802591AC

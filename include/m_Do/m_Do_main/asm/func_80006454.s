@@ -15,7 +15,7 @@
 /* 8000648C 000033CC  38 60 00 18 */	li r3, 0x18
 /* 80006490 000033D0  38 80 00 04 */	li r4, 4
 /* 80006494 000033D4  48 33 4E 19 */	bl OSAllocFromArenaLo
-/* 80006498 000033D8  90 6D 86 F8 */	stw r3, mResetData-_SDA_BASE_(r13)
+/* 80006498 000033D8  90 6D 86 F8 */	stw r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 8000649C 000033DC  28 03 00 00 */	cmplwi r3, 0
 /* 800064A0 000033E0  40 82 00 08 */	bne lbl_800064A8
 lbl_800064A4:
@@ -25,28 +25,28 @@ lbl_800064A8:
 /* 800064AC 000033EC  54 60 0F FF */	rlwinm. r0, r3, 1, 0x1f, 0x1f
 /* 800064B0 000033F0  40 82 00 64 */	bne lbl_80006514
 /* 800064B4 000033F4  38 80 00 00 */	li r4, 0
-/* 800064B8 000033F8  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064B8 000033F8  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064BC 000033FC  90 83 00 00 */	stw r4, 0(r3)
-/* 800064C0 00003400  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064C0 00003400  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064C4 00003404  90 83 00 04 */	stw r4, 4(r3)
-/* 800064C8 00003408  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064C8 00003408  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064CC 0000340C  90 83 00 04 */	stw r4, 4(r3)
-/* 800064D0 00003410  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064D0 00003410  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064D4 00003414  90 83 00 08 */	stw r4, 8(r3)
 /* 800064D8 00003418  38 00 FF FF */	li r0, -1
-/* 800064DC 0000341C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064DC 0000341C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064E0 00003420  90 03 00 0C */	stw r0, 0xc(r3)
-/* 800064E4 00003424  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064E4 00003424  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064E8 00003428  98 83 00 12 */	stb r4, 0x12(r3)
-/* 800064EC 0000342C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064EC 0000342C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064F0 00003430  98 83 00 13 */	stb r4, 0x13(r3)
-/* 800064F4 00003434  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064F4 00003434  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800064F8 00003438  98 83 00 14 */	stb r4, 0x14(r3)
-/* 800064FC 0000343C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 800064FC 0000343C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80006500 00003440  98 83 00 15 */	stb r4, 0x15(r3)
-/* 80006504 00003444  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 80006504 00003444  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80006508 00003448  98 83 00 10 */	stb r4, 0x10(r3)
-/* 8000650C 0000344C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 8000650C 0000344C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80006510 00003450  98 83 00 11 */	stb r4, 0x11(r3)
 lbl_80006514:
 /* 80006514 00003454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha

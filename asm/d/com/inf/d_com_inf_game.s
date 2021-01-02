@@ -1911,7 +1911,7 @@ dComIfG_resetToOpening:
 /* 8002CD44 00029C84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CD48 00029C88  7C 08 02 A6 */	mflr r0
 /* 8002CD4C 00029C8C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002CD50 00029C90  80 8D 86 F8 */	lwz r4, mResetData-_SDA_BASE_(r13)
+/* 8002CD50 00029C90  80 8D 86 F8 */	lwz r4, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 8002CD54 00029C94  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8002CD58 00029C98  2C 00 00 00 */	cmpwi r0, 0
 /* 8002CD5C 00029C9C  40 82 00 20 */	bne lbl_8002CD7C
@@ -5928,10 +5928,10 @@ dComIfG_inf_c:
 /* 80030360 0002D2A0  38 03 9C 48 */	addi r0, r3, lbl_803A9C48@l
 /* 80030364 0002D2A4  90 1E 47 88 */	stw r0, 0x4788(r30)
 /* 80030368 0002D2A8  38 7E 47 A8 */	addi r3, r30, 0x47a8
-.global dAttDraw_c
-/* 8003036C 0002D2AC  3C 80 80 03 */	lis r4, dAttDraw_c@ha
-.global dAttDraw_c
-/* 80030370 0002D2B0  38 84 07 F0 */	addi r4, r4, dAttDraw_c@l
+.global dAttDraw_c_NS_ctor
+/* 8003036C 0002D2AC  3C 80 80 03 */	lis r4, dAttDraw_c_NS_ctor@ha
+.global dAttDraw_c_NS_ctor
+/* 80030370 0002D2B0  38 84 07 F0 */	addi r4, r4, dAttDraw_c_NS_ctor@l
 .global dAttDraw_c_NS_dtor
 /* 80030374 0002D2B4  3C A0 80 03 */	lis r5, dAttDraw_c_NS_dtor@ha
 .global dAttDraw_c_NS_dtor
@@ -5940,10 +5940,10 @@ dComIfG_inf_c:
 /* 80030380 0002D2C0  38 E0 00 02 */	li r7, 2
 /* 80030384 0002D2C4  48 33 19 DD */	bl func_80361D60
 /* 80030388 0002D2C8  38 7E 4A B8 */	addi r3, r30, 0x4ab8
-.global dAttList_c
-/* 8003038C 0002D2CC  3C 80 80 03 */	lis r4, dAttList_c@ha
-.global dAttList_c
-/* 80030390 0002D2D0  38 84 05 0C */	addi r4, r4, dAttList_c@l
+.global dAttList_c_NS_ctor
+/* 8003038C 0002D2CC  3C 80 80 03 */	lis r4, dAttList_c_NS_ctor@ha
+.global dAttList_c_NS_ctor
+/* 80030390 0002D2D0  38 84 05 0C */	addi r4, r4, dAttList_c_NS_ctor@l
 .global dAttList_c_NS_dtor
 /* 80030394 0002D2D4  3C A0 80 03 */	lis r5, dAttList_c_NS_dtor@ha
 .global dAttList_c_NS_dtor
@@ -5952,10 +5952,10 @@ dComIfG_inf_c:
 /* 800303A0 0002D2E0  38 E0 00 08 */	li r7, 8
 /* 800303A4 0002D2E4  48 33 19 BD */	bl func_80361D60
 /* 800303A8 0002D2E8  38 7E 4B 60 */	addi r3, r30, 0x4b60
-.global dAttList_c
-/* 800303AC 0002D2EC  3C 80 80 03 */	lis r4, dAttList_c@ha
-.global dAttList_c
-/* 800303B0 0002D2F0  38 84 05 0C */	addi r4, r4, dAttList_c@l
+.global dAttList_c_NS_ctor
+/* 800303AC 0002D2EC  3C 80 80 03 */	lis r4, dAttList_c_NS_ctor@ha
+.global dAttList_c_NS_ctor
+/* 800303B0 0002D2F0  38 84 05 0C */	addi r4, r4, dAttList_c_NS_ctor@l
 .global dAttList_c_NS_dtor
 /* 800303B4 0002D2F4  3C A0 80 03 */	lis r5, dAttList_c_NS_dtor@ha
 .global dAttList_c_NS_dtor
@@ -5964,10 +5964,10 @@ dComIfG_inf_c:
 /* 800303C0 0002D300  38 E0 00 04 */	li r7, 4
 /* 800303C4 0002D304  48 33 19 9D */	bl func_80361D60
 /* 800303C8 0002D308  38 7E 4B B8 */	addi r3, r30, 0x4bb8
-.global dAttList_c
-/* 800303CC 0002D30C  3C 80 80 03 */	lis r4, dAttList_c@ha
-.global dAttList_c
-/* 800303D0 0002D310  38 84 05 0C */	addi r4, r4, dAttList_c@l
+.global dAttList_c_NS_ctor
+/* 800303CC 0002D30C  3C 80 80 03 */	lis r4, dAttList_c_NS_ctor@ha
+.global dAttList_c_NS_ctor
+/* 800303D0 0002D310  38 84 05 0C */	addi r4, r4, dAttList_c_NS_ctor@l
 .global dAttList_c_NS_dtor
 /* 800303D4 0002D314  3C A0 80 03 */	lis r5, dAttList_c_NS_dtor@ha
 .global dAttList_c_NS_dtor
@@ -6067,8 +6067,8 @@ lbl_800304F4:
 /* 80030500 0002D440  7C 08 03 A6 */	mtlr r0
 /* 80030504 0002D444  38 21 00 10 */	addi r1, r1, 0x10
 /* 80030508 0002D448  4E 80 00 20 */	blr 
-.global dAttList_c
-dAttList_c:
+.global dAttList_c_NS_ctor
+dAttList_c_NS_ctor:
 /* 8003050C 0002D44C  4E 80 00 20 */	blr 
 
 .global cSAngle_NS_dtor
@@ -6291,8 +6291,8 @@ lbl_800307D8:
 /* 800307E4 0002D724  7C 08 03 A6 */	mtlr r0
 /* 800307E8 0002D728  38 21 00 10 */	addi r1, r1, 0x10
 /* 800307EC 0002D72C  4E 80 00 20 */	blr 
-.global dAttDraw_c
-dAttDraw_c:
+.global dAttDraw_c_NS_ctor
+dAttDraw_c_NS_ctor:
 /* 800307F0 0002D730  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800307F4 0002D734  7C 08 02 A6 */	mflr r0
 /* 800307F8 0002D738  90 01 00 14 */	stw r0, 0x14(r1)

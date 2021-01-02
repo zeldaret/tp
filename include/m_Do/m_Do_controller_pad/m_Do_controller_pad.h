@@ -1,5 +1,8 @@
-#include "global.h"
+#ifndef __M_DO_CONTROLLER_PAD_H_
+#define __M_DO_CONTROLLER_PAD_H_
+
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
+#include "global.h"
 
 struct g_HIO_struct {
     u32 field_0x0;
@@ -67,13 +70,13 @@ struct interface_of_controller_pad {
     float stick_x;
     float stick_y;
     float length_from_neutral;
-    u16 controlStick_angle;
+    s16 controlStick_angle;
     u8 field_0xe;
     u8 field_0xf;
     float cStick_x;
     float cStick_y;
     float cStick_length_from_neutral;
-    u16 cStick_angle;
+    s16 cStick_angle;
     u8 field_0x1e;
     u8 field_0x1f;
     float analog_a;
@@ -89,31 +92,18 @@ struct interface_of_controller_pad {
     bool field_0x3c;
 };
 
-struct cpadInfo{
+struct cpadInfo {
     interface_of_controller_pad interface;
     cpadInfo* unk1;
-    u8 p1[191];
+    f32 stickValue;
+    s16 stickAngle;
+    u8 p2[0x8];
+    f32 CstickValue;
+    s16 CstickAngle;
+    u8 p3[0xE2];
 };
 
-struct ResetData {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    s32 pad_index;
-    u8 field_0x10;
-    u8 field_0x11;
-    u8 field_0x12;
-    u8 field_0x13;
-    u8 field_0x14;
-    u8 field_0x15;
-    u8 field_0x16;
-    u8 field_0x17;
-};
-
-
-
-struct mDoCPd_c
-{
+struct mDoCPd_c {
     void create();
     void read();
     static void convert(interface_of_controller_pad* controllerInteface, JUTGamePad* gamePad);
@@ -122,3 +112,4 @@ struct mDoCPd_c
 
     JUTGamePad* gamePad;
 };
+#endif

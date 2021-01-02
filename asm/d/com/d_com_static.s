@@ -1129,8 +1129,8 @@ daObjCarry_c_NS_setSaveFlag:
 /* 80031E5C 0002ED9C  90 7F 05 A8 */	stw r3, 0x5a8(r31)
 /* 80031E60 0002EDA0  90 1F 05 AC */	stw r0, 0x5ac(r31)
 /* 80031E64 0002EDA4  38 7F 05 BC */	addi r3, r31, 0x5bc
-/* 80031E68 0002EDA8  3C 80 80 01 */	lis r4, cXyz@ha
-/* 80031E6C 0002EDAC  38 84 25 DC */	addi r4, r4, cXyz@l
+/* 80031E68 0002EDA8  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
+/* 80031E6C 0002EDAC  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
 /* 80031E70 0002EDB0  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
 /* 80031E74 0002EDB4  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
 /* 80031E78 0002EDB8  38 C0 00 0C */	li r6, 0xc

@@ -121,7 +121,7 @@ mDoMemCd_Ctrl_c_NS_update:
 /* 8001689C 000137DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800168A0 000137E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800168A4 000137E4  7C 7F 1B 78 */	mr r31, r3
-/* 800168A8 000137E8  80 8D 86 F8 */	lwz r4, mResetData-_SDA_BASE_(r13)
+/* 800168A8 000137E8  80 8D 86 F8 */	lwz r4, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 800168AC 000137EC  80 04 00 00 */	lwz r0, 0(r4)
 /* 800168B0 000137F0  2C 00 00 00 */	cmpwi r0, 0
 /* 800168B4 000137F4  41 82 00 30 */	beq lbl_800168E4

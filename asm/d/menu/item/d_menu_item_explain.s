@@ -1661,7 +1661,7 @@ lbl_801DBF18:
 /* 801DBF50 001D8E90  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 801DBF54 001D8E94  7C 7F 1B 78 */	mr r31, r3
 /* 801DBF58 001D8E98  80 63 00 B8 */	lwz r3, 0xb8(r3)
-/* 801DBF5C 001D8E9C  4B E5 62 41 */	bl STControl_NS_checkTrigger
+/* 801DBF5C 001D8E9C  4B E5 62 41 */	bl checkTrigger__9STControlFv
 /* 801DBF60 001D8EA0  3C 60 80 3E */	lis r3, m_cpadInfo@ha
 /* 801DBF64 001D8EA4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801DBF68 001D8EA8  80 63 00 34 */	lwz r3, 0x34(r3)
@@ -1763,7 +1763,7 @@ lbl_801DC0C4:
 /* 801DC0CC 001D900C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DC0D0 001D9010  41 82 00 60 */	beq lbl_801DC130
 /* 801DC0D4 001D9014  80 7F 00 B8 */	lwz r3, 0xb8(r31)
-/* 801DC0D8 001D9018  4B E5 64 4D */	bl STControl_NS_checkUpTrigger
+/* 801DC0D8 001D9018  4B E5 64 4D */	bl checkUpTrigger__9STControlFv
 /* 801DC0DC 001D901C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DC0E0 001D9020  41 82 00 50 */	beq lbl_801DC130
 /* 801DC0E4 001D9024  88 1F 00 E2 */	lbz r0, 0xe2(r31)
@@ -1791,7 +1791,7 @@ lbl_801DC130:
 /* 801DC138 001D9078  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DC13C 001D907C  41 82 00 5C */	beq lbl_801DC198
 /* 801DC140 001D9080  80 7F 00 B8 */	lwz r3, 0xb8(r31)
-/* 801DC144 001D9084  4B E5 64 5D */	bl STControl_NS_checkDownTrigger
+/* 801DC144 001D9084  4B E5 64 5D */	bl checkDownTrigger__9STControlFv
 /* 801DC148 001D9088  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DC14C 001D908C  41 82 00 4C */	beq lbl_801DC198
 /* 801DC150 001D9090  88 1F 00 E2 */	lbz r0, 0xe2(r31)

@@ -9,27 +9,19 @@
 
 class JSUPtrList;
 class JSUPtrLink {
-  public:
+public:
     JSUPtrLink(void* object);
     ~JSUPtrLink();
 
-    void* getObjectPtr() const {
-        return mObject;
-    }
+    void* getObjectPtr() const { return mObject; }
 
-    JSUPtrList* getList() const {
-        return mList;
-    }
+    JSUPtrList* getList() const { return mList; }
 
-    JSUPtrLink* getNext() const {
-        return mNext;
-    }
+    JSUPtrLink* getNext() const { return mNext; }
 
-    JSUPtrLink* getPrev() const {
-        return mPrev;
-    }
+    JSUPtrLink* getPrev() const { return mPrev; }
 
-  public:
+public:
     void* mObject;
     JSUPtrList* mList;
     JSUPtrLink* mPrev;
@@ -38,21 +30,14 @@ class JSUPtrLink {
 
 template <typename T>
 class JSULink : public JSUPtrLink {
-  public:
-    JSULink(T* object) : JSUPtrLink((void*)object) {
-    }
+public:
+    JSULink(T* object) : JSUPtrLink((void*)object) {}
 
-    T* getObject() const {
-        return (T*)getObjectPtr();
-    }
+    T* getObject() const { return (T*)getObjectPtr(); }
 
-    JSULink<T>* getNext() const {
-        return (JSULink<T>*)this->JSUPtrLink::getNext();
-    }
+    JSULink<T>* getNext() const { return (JSULink<T>*)this->JSUPtrLink::getNext(); }
 
-    JSULink<T>* getPrev() const {
-        return (JSULink<T>*)this->JSUPtrLink::getPrev();
-    }
+    JSULink<T>* getPrev() const { return (JSULink<T>*)this->JSUPtrLink::getPrev(); }
 };
 
 //
@@ -60,10 +45,8 @@ class JSULink : public JSUPtrLink {
 //
 
 class JSUPtrList {
-  public:
-    JSUPtrList() {
-        this->initiate();
-    }
+public:
+    JSUPtrList() { this->initiate(); }
 
     JSUPtrList(bool init);
     ~JSUPtrList();
@@ -76,104 +59,69 @@ class JSUPtrList {
     bool remove(JSUPtrLink* ptr);
     JSUPtrLink* getNthLink(u32 i) const;
 
-    JSUPtrLink* getFirstLink() const {
-        return mHead;
-    }
+    JSUPtrLink* getFirstLink() const { return mHead; }
 
-    JSUPtrLink* getLastLink() const {
-        return mTail;
-    }
+    JSUPtrLink* getLastLink() const { return mTail; }
 
-    u32 getNumLinks() const {
-        return mLength;
-    }
+    u32 getNumLinks() const { return mLength; }
 
-  private:
+private:
     JSUPtrLink* mHead;
     JSUPtrLink* mTail;
     u32 mLength;
 };
 
 template <typename T>
-class JSUList : protected JSUPtrList {
-  public:
-    JSUList() : JSUPtrList() {
-    }
+class JSUList : public JSUPtrList {
+public:
+    JSUList() : JSUPtrList() {}
 
-    JSUList(bool init) : JSUPtrList(init) {
-    }
+    JSUList(bool init) : JSUPtrList(init) {}
 
-    bool append(JSULink<T>* link) {
-        return this->JSUPtrList::append((JSUPtrLink*)link);
-    }
+    bool append(JSULink<T>* link) { return this->JSUPtrList::append((JSUPtrLink*)link); }
 
-    bool prepend(JSULink<T>* link) {
-        return this->JSUPtrList::prepend((JSUPtrLink*)link);
-    }
+    bool prepend(JSULink<T>* link) { return this->JSUPtrList::prepend((JSUPtrLink*)link); }
 
     bool insert(JSULink<T>* before, JSULink<T>* link) {
         return this->JSUPtrList::insert((JSUPtrLink*)before, (JSUPtrLink*)link);
     }
 
-    bool remove(JSULink<T>* link) {
-        return this->JSUPtrList::remove((JSUPtrLink*)link);
-    }
+    bool remove(JSULink<T>* link) { return this->JSUPtrList::remove((JSUPtrLink*)link); }
 
-    JSULink<T>* getFirst() const {
-        return (JSULink<T>*)getFirstLink();
-    }
+    JSULink<T>* getFirst() const { return (JSULink<T>*)getFirstLink(); }
 
-    JSULink<T>* getLast() const {
-        return (JSULink<T>*)getLastLink();
-    }
+    JSULink<T>* getLast() const { return (JSULink<T>*)getLastLink(); }
 
-    JSULink<T>* getEnd() const {
-        return NULL;
-    }
+    JSULink<T>* getEnd() const { return NULL; }
 
-    u32 getNumLinks() const {
-        return this->JSUPtrList::getNumLinks();
-    }
+    u32 getNumLinks() const { return this->JSUPtrList::getNumLinks(); }
 };
 
 template <typename T>
 class JSUListIterator {
-  public:
-    JSUListIterator() : mLink() {
-    }
-    JSUListIterator(JSULink<T>* link) : mLink(link) {
-    }
-    JSUListIterator(JSUList<T>* list) : mLink(list->getFirst()) {
-    }
+public:
+    JSUListIterator() : mLink() {}
+    JSUListIterator(JSULink<T>* link) : mLink(link) {}
+    JSUListIterator(JSUList<T>* list) : mLink(list->getFirst()) {}
 
     JSUListIterator<T>& operator=(JSULink<T>* link) {
         this->mLink = link;
         return *this;
     }
 
-    T* getObject() {
-        return this->mLink->getObject();
-    }
+    T* getObject() { return this->mLink->getObject(); }
 
-    bool operator==(JSULink<T> const* other) const {
-        return this->mLink == other;
-    }
+    bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
 
-    bool operator!=(JSULink<T> const* other) const {
-        return this->mLink != other;
-    }
+    bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }
 
-    bool operator==(JSUListIterator<T> const& other) const {
-        return this->mLink == other.mLink;
-    }
+    bool operator==(JSUListIterator<T> const& other) const { return this->mLink == other.mLink; }
 
-    bool operator!=(JSUListIterator<T> const& other) const {
-        return this->mLink != other.other;
-    }
+    bool operator!=(JSUListIterator<T> const& other) const { return this->mLink != other.other; }
 
     JSUListIterator<T> operator++(int) {
         JSUListIterator<T> prev = *this;
-        this->mLink             = this->mLink->getNext();
+        this->mLink = this->mLink->getNext();
         return prev;
     }
 
@@ -182,15 +130,11 @@ class JSUListIterator {
         return *this;
     }
 
-    T& operator*() {
-        return *this->getObject();
-    }
+    T& operator*() { return *this->getObject(); }
 
-    T* operator->() {
-        return this->getObject();
-    }
+    T* operator->() { return this->getObject(); }
 
-  private:
+private:
     JSULink<T>* mLink;
 };
 
@@ -199,18 +143,17 @@ class JSUListIterator {
 //
 
 #define JSU_TREE_FROM_LINK(T, LINK) (JSUTree<T>*)(((u8*)(LINK)) - 12)
-#define JSU_TREE_LINK_IF_NOT_NULL(TREE)                                                                                \
-    if (TREE) {                                                                                                        \
-        TREE = (JSUTree<T>*)(&(TREE)->mLink);                                                                          \
+#define JSU_TREE_LINK_IF_NOT_NULL(TREE)                                                            \
+    if (TREE) {                                                                                    \
+        TREE = (JSUTree<T>*)(&(TREE)->mLink);                                                      \
     }
 
 #define _JSU_TREE_AS_LINK(TREE) ((JSULink<T>*)(TREE))
 
 template <typename T>
 class JSUTree {
-  public:
-    JSUTree(T* owner) : mList(), mLink(owner) {
-    }
+public:
+    JSUTree(T* owner) : mList(), mLink(owner) {}
 
     bool appendChild(JSUTree<T>* child) {
         JSU_TREE_LINK_IF_NOT_NULL(child);
@@ -228,9 +171,7 @@ class JSUTree {
         return this->mList.insert(_JSU_TREE_AS_LINK(before), _JSU_TREE_AS_LINK(child));
     }
 
-    JSUTree<T>* getEndChild() const {
-        return NULL;
-    }
+    JSUTree<T>* getEndChild() const { return NULL; }
 
     JSUTree<T>* getFirstChild() const {
         JSULink<T>* link = this->mList.getFirst();
@@ -252,51 +193,37 @@ class JSUTree {
         return link ? JSU_TREE_FROM_LINK(T, link) : (JSUTree<T>*)link;
     }
 
-    u32 getNumChildren() const {
-        return this->mList.getNumLinks();
-    }
+    u32 getNumChildren() const { return this->mList.getNumLinks(); }
 
-    T* getObject() const {
-        return this->mLink.getObject();
-    }
+    T* getObject() const { return this->mLink.getObject(); }
 
-    JSUTree<T>* getParent() const {
-        return (JSUTree<T>*)this->mLink.getList();
-    }
+    JSUTree<T>* getParent() const { return (JSUTree<T>*)this->mLink.getList(); }
 
-  private:
+private:
     JSUList<T> mList;
     JSULink<T> mLink;
 };
 
 template <typename T>
 class JSUTreeIterator {
-  public:
-    JSUTreeIterator() : mTree(NULL) {
-    }
-    JSUTreeIterator(JSUTree<T>* tree) : mTree(tree) {
-    }
+public:
+    JSUTreeIterator() : mTree(NULL) {}
+    JSUTreeIterator(JSUTree<T>* tree) : mTree(tree) {}
 
     JSUTreeIterator<T>& operator=(JSUTree<T>* tree) {
         this->mTree = tree;
         return *this;
     }
 
-    T* getObject() {
-        return this->mTree->getObject();
-    }
+    T* getObject() { return this->mTree->getObject(); }
 
-    bool operator==(JSUTree<T>* other) {
-        return this->mTree == other;
-    }
+    bool operator==(JSUTree<T>* other) { return this->mTree == other; }
 
-    bool operator!=(JSUTree<T>* other) {
-        return this->mTree != other;
-    }
+    bool operator!=(JSUTree<T>* other) { return this->mTree != other; }
 
     JSUTreeIterator<T> operator++(int) {
         JSUTreeIterator<T> prev = *this;
-        this->mTree             = this->mTree->getNextChild();
+        this->mTree = this->mTree->getNextChild();
         return prev;
     }
 
@@ -305,15 +232,11 @@ class JSUTreeIterator {
         return *this;
     }
 
-    T& operator*() {
-        return *this->getObject();
-    }
+    T& operator*() { return *this->getObject(); }
 
-    T* operator->() {
-        return this->getObject();
-    }
+    T* operator->() { return this->getObject(); }
 
-  private:
+private:
     JSUTree<T>* mTree;
 };
 

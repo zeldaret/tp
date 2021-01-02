@@ -1,6 +1,6 @@
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "global.h"
 
 // #include "JSystem/JKernel/asm/func_802D147C.s"
 JKRDisposer::JKRDisposer() : mLink(this) {
