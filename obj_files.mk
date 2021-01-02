@@ -197,9 +197,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/meter/d_meter_hakusha.o    \
             $(BUILD_DIR)/asm/d/meter/d_meter_map.o    \
             $(BUILD_DIR)/asm/d/meter/d_meter_string.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_draw.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_info.o    \
-            $(BUILD_DIR)/asm/d/d_meter2.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_draw.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_info.o    \
+            $(BUILD_DIR)/src/d/d_meter2.o    \
             $(BUILD_DIR)/asm/d/msg/out/d_msg_out_font.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_class.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_object.o    \
