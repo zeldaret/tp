@@ -1,4 +1,5 @@
 WINDOWS := $(shell which wine ; echo $$?)
+UNAME_S := $(shell uname -s)
 
 #-------------------------------------------------------------------------------
 # Files
@@ -41,13 +42,20 @@ else
   WINE := wine
 endif
 
+# Hack for OSX
+ifeq ($(UNAME_S),Darwin)
+	CPP     := cpp-10 -P
+	SHA1SUM := shasum -a 1
+else
+	CPP     := cpp -P
+	SHA1SUM := sha1sum
+endif
+
 AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
-CPP     := cpp -P
 CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
-SHA1SUM := sha1sum
 PYTHON  := python3
 
 POSTPROC := tools/postprocess.py
@@ -79,14 +87,15 @@ SBSS_PDHR := 10
 
 default: all
 
-all: $(DOL)
+all: dirs $(DOL)
 
 ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS))
 
 # Make sure build directory exists before compiling anything
-DUMMY != mkdir -p $(ALL_DIRS)
+dirs:
+	$(shell mkdir -p $(ALL_DIRS))
 
-.PHONY: tools
+.PHONY: dirs tools
 
 $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
