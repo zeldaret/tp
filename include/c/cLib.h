@@ -1,0 +1,1 @@
+void cLib_memSet(void* ptr, int value, unsigned long size);

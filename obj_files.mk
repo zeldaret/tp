@@ -13,7 +13,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_audio.o    \
-            $(BUILD_DIR)/asm/m/Do/controller/m_Do_controller_pad.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_machine.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
@@ -110,9 +110,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/particle/d_particle_copoly.o    \
             $(BUILD_DIR)/asm/d/d_path.o    \
             $(BUILD_DIR)/asm/d/d_drawlist.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_data.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_wether.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_rain.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_data.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_wether.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_rain.o    \
             $(BUILD_DIR)/asm/d/d_vibration.o    \
             $(BUILD_DIR)/src/d/d_attention.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_pc.o    \
@@ -168,7 +168,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/shop/item/d_shop_item_ctrl.o    \
             $(BUILD_DIR)/asm/d/shop/d_shop_system.o    \
             $(BUILD_DIR)/asm/d/d_gameover.o    \
-            $(BUILD_DIR)/asm/d/d_kankyo.o    \
+            $(BUILD_DIR)/src/d/d_kankyo.o    \
             $(BUILD_DIR)/asm/d/d_kyeff.o    \
             $(BUILD_DIR)/asm/d/d_kyeff2.o    \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o    \
