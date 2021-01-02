@@ -2,9 +2,9 @@
 #define __JKRARAMPIECE_H__
 
 #include "JSystem/JSupport/JSUList/JSUList.h"
+#include "ar/ARQ.h"
 #include "dolphin/types.h"
 #include "os/OS.h"
-#include "ar/ARQ.h"
 
 extern OSMutex lbl_80434330;
 
