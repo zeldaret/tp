@@ -4981,7 +4981,7 @@ void func_801A7814(void);
 void func_801A789C(void);
 void dKy_bg3_addcol_amb_set(void);
 void dScnKy_env_light_c_NS_Eflight_flush_proc(void);
-void func_80362144(void);
+void _savefpr_29(void);
 void func_801A441C(void);
 void BOSS_LIGHT_NS_dtor(void);
 void dKy_Outdoor_check(void);

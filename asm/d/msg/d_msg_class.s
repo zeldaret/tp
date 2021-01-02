@@ -7964,7 +7964,7 @@ jmessage_tRenderingProcessor_NS_getCharInfo:
 /* 8022F788 0022C6C8  7C 08 02 A6 */	mflr r0
 /* 8022F78C 0022C6CC  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8022F790 0022C6D0  39 61 00 40 */	addi r11, r1, 0x40
-/* 8022F794 0022C6D4  48 13 29 A9 */	bl func_8036213C
+/* 8022F794 0022C6D4  48 13 29 A9 */	bl _savefpr_27
 /* 8022F798 0022C6D8  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 8022F79C 0022C6DC  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 8022F7A0 0022C6E0  7C 7E 1B 78 */	mr r30, r3

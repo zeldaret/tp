@@ -456,24 +456,24 @@ lbl_80362100:
 /* 8036212C 0035F06C  DA EB FF B8 */	stfd f23, -0x48(r11)
 /* 80362130 0035F070  DB 0B FF C0 */	stfd f24, -0x40(r11)
 
-.global func_80362134
-func_80362134:
+.global _savefpr_25
+_savefpr_25:
 /* 80362134 0035F074  DB 2B FF C8 */	stfd f25, -0x38(r11)
 
-.global func_80362138
-func_80362138:
+.global _savefpr_26
+_savefpr_26:
 /* 80362138 0035F078  DB 4B FF D0 */	stfd f26, -0x30(r11)
 
-.global func_8036213C
-func_8036213C:
+.global _savefpr_27
+_savefpr_27:
 /* 8036213C 0035F07C  DB 6B FF D8 */	stfd f27, -0x28(r11)
 
-.global func_80362140
-func_80362140:
+.global _savefpr_28
+_savefpr_28:
 /* 80362140 0035F080  DB 8B FF E0 */	stfd f28, -0x20(r11)
 
-.global func_80362144
-func_80362144:
+.global _savefpr_29
+_savefpr_29:
 /* 80362144 0035F084  DB AB FF E8 */	stfd f29, -0x18(r11)
 /* 80362148 0035F088  DB CB FF F0 */	stfd f30, -0x10(r11)
 /* 8036214C 0035F08C  DB EB FF F8 */	stfd f31, -8(r11)
@@ -10802,7 +10802,7 @@ func_8036AB9C:
 /* 8036ABA0 00367AE0  7C 08 02 A6 */	mflr r0
 /* 8036ABA4 00367AE4  90 01 02 D4 */	stw r0, 0x2d4(r1)
 /* 8036ABA8 00367AE8  39 61 02 D0 */	addi r11, r1, 0x2d0
-/* 8036ABAC 00367AEC  4B FF 75 89 */	bl func_80362134
+/* 8036ABAC 00367AEC  4B FF 75 89 */	bl _savefpr_25
 /* 8036ABB0 00367AF0  BE 01 02 58 */	stmw r16, 0x258(r1)
 /* 8036ABB4 00367AF4  3D 20 2A AB */	lis r9, 0x2AAAAAAB@ha
 /* 8036ABB8 00367AF8  7C F7 3B 78 */	mr r23, r7

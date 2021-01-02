@@ -290,7 +290,7 @@ JStudio_NS_TFunctionValueAttribute_range_NS_range_getParameter:
 /* 80281A0C 0027E94C  7C 08 02 A6 */	mflr r0
 /* 80281A10 0027E950  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80281A14 0027E954  39 61 00 30 */	addi r11, r1, 0x30
-/* 80281A18 0027E958  48 0E 07 2D */	bl func_80362144
+/* 80281A18 0027E958  48 0E 07 2D */	bl _savefpr_29
 /* 80281A1C 0027E95C  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80281A20 0027E960  7C 7F 1B 78 */	mr r31, r3
 /* 80281A24 0027E964  FF E0 10 90 */	fmr f31, f2
