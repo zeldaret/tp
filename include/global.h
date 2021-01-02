@@ -13,10 +13,11 @@ struct Vec {
 };
 
 #include "dolphin/types.h"
+
+#include "ar/ARQ.h"
 #include "functions.h"
 #include "mwcc.h"
 #include "os/OS.h"
-#include "ar/ARQ.h"
 #include "variables.h"
 
 // hack to make functions that return comparisons as int match

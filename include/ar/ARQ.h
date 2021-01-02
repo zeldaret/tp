@@ -17,8 +17,9 @@ struct ARQRequest {
 };
 
 extern "C" {
-    void ARQInit(void);
-    void ARQPostRequest(ARQRequest * task, u32 owner, u32 type, u32 priority, u32 source, u32 destination, u32 length, ARQCallback callback);
+void ARQInit(void);
+void ARQPostRequest(ARQRequest* task, u32 owner, u32 type, u32 priority, u32 source,
+                    u32 destination, u32 length, ARQCallback callback);
 }
 
 #endif
