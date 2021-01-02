@@ -7,7 +7,7 @@
 class JKRSolidHeap : public JKRHeap {
 protected:
     JKRSolidHeap(void*, u32, JKRHeap*, bool);
-    virtual ~JKRSolidHeap(void);
+    virtual ~JKRSolidHeap();
 
     void adjustSize(void);
     void allocFromHead(u32, int);
