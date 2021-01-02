@@ -20,7 +20,6 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
-
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
@@ -88,7 +87,6 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
-
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -255,7 +253,6 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
-
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
@@ -328,7 +325,6 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
-
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -628,7 +624,6 @@ void resetFilterAll__10Z2SoundMgrFv(void);
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 void Z2SeqMgr_NS_setBattleBgmOff(void);
 void setSceneExist__10Z2SceneMgrFb(void);
-
 void Z2SceneMgr_NS_sceneChange(void);
 void __ct__10JAISoundIDFRC10JAISoundID(void);
 void Z2EnvSeMgr_NS_initSceneEnvSe(void);
@@ -725,7 +720,6 @@ void item_func_BEE_CHILD(void);
 int func_80368954(char*, char*, u32);
 void dComIfG_play_c_NS_getLayerNo(int);
 u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
-
 void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
 void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
@@ -1180,7 +1174,6 @@ void dAttention_c_NS_stockAttention(void);
 void distace_angle_adjust(void);
 void dAttDraw_c_NS_draw(void);
 void dAttCatch_c_NS_convPId(void);
-
 void dAttDraw_c_NS_setAnm(void);
 void dAttention_c_NS_lockSoundStart(void);
 void fopAcM_searchActorDistance(void);
@@ -1325,7 +1318,6 @@ void func_801119D8(void);
 void daAlink_c_NS_setLandPassiveData(void);
 void func_800D0290(void);
 void daAlink_c_NS_setCutTurnEffect(void);
-
 void func_8014190C(void);
 void daAlink_c_NS_checkHorseGetOffDirection(void);
 void func_80101534(void);
@@ -1586,7 +1578,6 @@ void daAlink_c_NS_getSwimMaxFallSpeed(void);
 void JPAParticleCallBack_NS_dtor(void);
 void func_801417D4(void);
 void func_8011E960(void);
-
 void setLinkBootsType__14Z2CreatureLinkFl(void);
 void cM_atan2s(void);
 void daAlink_c_NS_setLastSceneMode(void);
@@ -1922,7 +1913,6 @@ void dStage_stagInfo_GetSaveTbl(void);
 void daAlink_c_NS_setWolfScreamWaitAnime(void);
 void daObjSwHang_c_NS_getHangPos(void);
 void func_800C4514(void);
-
 void daAlink_c_NS_checkAtnWaitAnime(void);
 void dKy_plight_cut(void);
 void Z2Creature_NS_updateAnime(void);
@@ -4126,7 +4116,6 @@ void dComIfGs_setWarpItemData_X1_(void);
 void dMeter2Info_setNewLetterSender(void);
 void dMeter2Info_getNewLetterNum(void);
 void dMsgFlow_c_NS_getMsgNo(void);
-
 void func_8021C11C(void);
 void dMeter2Info_c_NS_isFloatingMessageVisible(void);
 void dMeter2Info_c_NS_changeWater(void);
@@ -4692,7 +4681,6 @@ void dKy_efplight_cut(void);
 void forward_overhead_bg_chk(void);
 void dKy_set_bgcol_ratio(void);
 void dKy_GxFog_set(void);
-
 void GXSetZCompLoc(void);
 void dKyr_moon_arrival_check(void);
 void PSVECAdd(Vec*, Vec*, Vec*);
@@ -4700,7 +4688,6 @@ void dKy_set_vrboxcol_ratio(void);
 void func_8036C590(void);
 void dBgS_CamGndChk_Wtr_NS_dtor(void);
 void func_8006F160(void);
-
 void dBgS_ObjGndChk_All_NS_dtor(void);
 void dKy_bg_addcol_amb_set(void);
 void dKy_set_fogcol_ratio(void);
