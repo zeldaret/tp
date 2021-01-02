@@ -1,6 +1,7 @@
 #include "d/d_lib/d_lib.h"
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "d/d_event/d_event/d_event.h"
+#include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "os/OS.h"
 
@@ -63,6 +64,7 @@ asm void STControl::Yinit(void) {
 #endif
 
 double STControl::getValueStick() {
+    return (double)m_cpadInfo[0].mMainStickValue;
 }
 
 s16 STControl::getAngleStick() {
@@ -90,6 +92,7 @@ bool STControl::checkLeftTrigger() {
             field_0x18 = field_0x18 - field_0x16;
             if (field_0x18 < field_0x14) {
                 field_0x18 = field_0x14;
+            }
         } else {
             field_0x1e = field_0x1e + -1;
         }

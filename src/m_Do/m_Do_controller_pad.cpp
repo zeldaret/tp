@@ -6,6 +6,7 @@
 #include "pad/pad.h"
 
 #ifdef NONMATCHING
+// TODO: change the cpadinfo stuff to use the new type of m_cpadInfo
 void mDoCPd_c::create() {
     JUTGamePad* JUTGamePad_ptr;
     cpadInfo* m_cpadInfo_addr;

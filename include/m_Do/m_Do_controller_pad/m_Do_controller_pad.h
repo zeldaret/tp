@@ -4,8 +4,8 @@
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "SComponent/c_API_controller_pad.h"
 
-extern JUTGamePad* lbl_803DD2D8[4];                  // m_Do_controller_pad::mDoCPd_c::m_gamePad
-extern interface_of_controller_pad lbl_803DD2E8[4];  // m_Do_controller_pad::mDoCPd_c::m_cpadInfo
+extern JUTGamePad* lbl_803DD2D8[4];                // m_Do_controller_pad::mDoCPd_c::m_gamePad
+extern interface_of_controller_pad m_cpadInfo[4];  // m_Do_controller_pad::mDoCPd_c::m_cpadInfo
 
 struct g_HIO_struct {
     u32 field_0x0;
@@ -74,7 +74,7 @@ struct mDoCPd_c {
     void read();
     static void convert(interface_of_controller_pad* controllerInteface, JUTGamePad* gamePad);
     static void LRlockCheck(interface_of_controller_pad* controllerInterface);
-    void recalibrate(void);
+    static void recalibrate(void);
 
     JUTGamePad* gamePad;
 };
