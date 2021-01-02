@@ -6,6 +6,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
 // limitf__22@unnamed@d_camera_cpp@Ffff
