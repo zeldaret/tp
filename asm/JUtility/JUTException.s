@@ -2272,7 +2272,7 @@ JUTException_NS_queryMapAddress_single:
 /* 802E3C94 002E0BD4  7C 08 02 A6 */	mflr r0
 /* 802E3C98 002E0BD8  90 01 0A D4 */	stw r0, 0xad4(r1)
 /* 802E3C9C 002E0BDC  39 61 0A D0 */	addi r11, r1, 0xad0
-/* 802E3CA0 002E0BE0  48 07 E5 09 */	bl func_803621A8
+/* 802E3CA0 002E0BE0  48 07 E5 09 */	bl _savegpr_16
 /* 802E3CA4 002E0BE4  7C 70 1B 79 */	or. r16, r3, r3
 /* 802E3CA8 002E0BE8  7C 98 23 78 */	mr r24, r4
 /* 802E3CAC 002E0BEC  7C B9 2B 78 */	mr r25, r5

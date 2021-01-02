@@ -1724,7 +1724,7 @@ dFile_select_c_NS_dataSelectInAnmSet:
 /* 80184E3C 00181D7C  7C 08 02 A6 */	mflr r0
 /* 80184E40 00181D80  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80184E44 00181D84  39 61 00 50 */	addi r11, r1, 0x50
-/* 80184E48 00181D88  48 1D D3 6D */	bl func_803621B4
+/* 80184E48 00181D88  48 1D D3 6D */	bl _savegpr_19
 /* 80184E4C 00181D8C  7C 76 1B 78 */	mr r22, r3
 /* 80184E50 00181D90  48 00 81 F5 */	bl dFile_select_c_NS_setSaveData
 /* 80184E54 00181D94  3B 56 03 B8 */	addi r26, r22, 0x3b8

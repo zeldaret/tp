@@ -2216,7 +2216,7 @@ renderingPlusDoorAndCursor_c_NS_drawTreasure:
 /* 80040B14 0003DA54  DB C1 00 50 */	stfd f30, 0x50(r1)
 /* 80040B18 0003DA58  F3 C1 00 58 */	psq_st f30, 88(r1), 0, qr0
 /* 80040B1C 0003DA5C  39 61 00 50 */	addi r11, r1, 0x50
-/* 80040B20 0003DA60  48 32 16 99 */	bl func_803621B8
+/* 80040B20 0003DA60  48 32 16 99 */	bl _savegpr_20
 /* 80040B24 0003DA64  7C 7F 1B 78 */	mr r31, r3
 /* 80040B28 0003DA68  81 83 00 00 */	lwz r12, 0(r3)
 /* 80040B2C 0003DA6C  81 8C 00 7C */	lwz r12, 0x7c(r12)
@@ -2453,7 +2453,7 @@ renderingPlusDoorAndCursor_c_NS_drawTreasureAfterPlayer:
 /* 80040E98 0003DDD8  DB C1 00 50 */	stfd f30, 0x50(r1)
 /* 80040E9C 0003DDDC  F3 C1 00 58 */	psq_st f30, 88(r1), 0, qr0
 /* 80040EA0 0003DDE0  39 61 00 50 */	addi r11, r1, 0x50
-/* 80040EA4 0003DDE4  48 32 13 15 */	bl func_803621B8
+/* 80040EA4 0003DDE4  48 32 13 15 */	bl _savegpr_20
 /* 80040EA8 0003DDE8  7C 7F 1B 78 */	mr r31, r3
 /* 80040EAC 0003DDEC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80040EB0 0003DDF0  81 8C 00 7C */	lwz r12, 0x7c(r12)

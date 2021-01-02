@@ -1666,7 +1666,7 @@ dMsgScrnHowl_c_NS_drawWave:
 /* 80242214 0023F154  DA 21 00 70 */	stfd f17, 0x70(r1)
 /* 80242218 0023F158  F2 21 00 78 */	psq_st f17, 120(r1), 0, qr0
 /* 8024221C 0023F15C  39 61 00 70 */	addi r11, r1, 0x70
-/* 80242220 0023F160  48 11 FF 9D */	bl func_803621BC
+/* 80242220 0023F160  48 11 FF 9D */	bl _savegpr_21
 /* 80242224 0023F164  7C 79 1B 78 */	mr r25, r3
 /* 80242228 0023F168  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8024222C 0023F16C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

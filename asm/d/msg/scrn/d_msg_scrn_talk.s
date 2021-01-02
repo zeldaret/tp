@@ -997,7 +997,7 @@ lbl_80247E20:
 /* 80247E58 00244D98  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80247E5C 00244D9C  F3 E1 00 58 */	psq_st f31, 88(r1), 0, qr0
 /* 80247E60 00244DA0  39 61 00 50 */	addi r11, r1, 0x50
-/* 80247E64 00244DA4  48 11 A3 59 */	bl func_803621BC
+/* 80247E64 00244DA4  48 11 A3 59 */	bl _savegpr_21
 /* 80247E68 00244DA8  7C 78 1B 78 */	mr r24, r3
 /* 80247E6C 00244DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80247E70 00244DB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

@@ -314,7 +314,7 @@ dMenu_Fmap_region_data_c_NS_getPointStagePathInnerNo:
 /* 8003DB9C 0003AADC  DB 61 00 B0 */	stfd f27, 0xb0(r1)
 /* 8003DBA0 0003AAE0  F3 61 00 B8 */	psq_st f27, 184(r1), 0, qr0
 /* 8003DBA4 0003AAE4  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 8003DBA8 0003AAE8  48 32 45 F9 */	bl func_803621A0
+/* 8003DBA8 0003AAE8  48 32 45 F9 */	bl _savegpr_14
 /* 8003DBAC 0003AAEC  7C 6F 1B 78 */	mr r15, r3
 /* 8003DBB0 0003AAF0  FF A0 08 90 */	fmr f29, f1
 /* 8003DBB4 0003AAF4  FF C0 10 90 */	fmr f30, f2

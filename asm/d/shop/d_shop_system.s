@@ -3725,7 +3725,7 @@ dShopSystem_c_NS_searchItemActor:
 /* 8019A5DC 0019751C  DB E1 00 B0 */	stfd f31, 0xb0(r1)
 /* 8019A5E0 00197520  F3 E1 00 B8 */	psq_st f31, 184(r1), 0, qr0
 /* 8019A5E4 00197524  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 8019A5E8 00197528  48 1C 7B D5 */	bl func_803621BC
+/* 8019A5E8 00197528  48 1C 7B D5 */	bl _savegpr_21
 /* 8019A5EC 0019752C  7C 7E 1B 78 */	mr r30, r3
 /* 8019A5F0 00197530  80 6D 8A DC */	lwz r3, lbl_8045105C-_SDA_BASE_(r13)
 /* 8019A5F4 00197534  2C 03 FF FF */	cmpwi r3, -1

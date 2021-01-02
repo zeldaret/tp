@@ -8,7 +8,7 @@
 /* 8020225C 001FF19C  DB A1 03 30 */ stfd f29, 0x330(r1)
 /* 80202260 001FF1A0  F3 A1 03 38 */ psq_st f29, 824(r1), 0, 0
 /* 80202264 001FF1A4  39 61 03 30 */ addi r11, r1, 0x330
-/* 80202268 001FF1A8  48 15 FF 55 */ bl func_803621BC
+/* 80202268 001FF1A8  48 15 FF 55 */ bl _savegpr_21
 /* 8020226C 001FF1AC  7C 7E 1B 78 */ mr r30, r3
 /* 80202270 001FF1B0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80202274 001FF1B4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

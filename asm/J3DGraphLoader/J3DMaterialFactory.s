@@ -319,7 +319,7 @@ J3DMaterialFactory_NS_createNormalMaterial:
 /* 80330444 0032D384  7C 08 02 A6 */	mflr r0
 /* 80330448 0032D388  90 01 01 24 */	stw r0, 0x124(r1)
 /* 8033044C 0032D38C  39 61 01 20 */	addi r11, r1, 0x120
-/* 80330450 0032D390  48 03 1D 65 */	bl func_803621B4
+/* 80330450 0032D390  48 03 1D 65 */	bl _savegpr_19
 /* 80330454 0032D394  7C 7E 1B 78 */	mr r30, r3
 /* 80330458 0032D398  7C 9F 23 78 */	mr r31, r4
 /* 8033045C 0032D39C  7C BD 2B 78 */	mr r29, r5
@@ -961,7 +961,7 @@ J3DMaterialFactory_NS_createPatchedMaterial:
 /* 80330D88 0032DCC8  7C 08 02 A6 */	mflr r0
 /* 80330D8C 0032DCCC  90 01 00 F4 */	stw r0, 0xf4(r1)
 /* 80330D90 0032DCD0  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 80330D94 0032DCD4  48 03 14 1D */	bl func_803621B0
+/* 80330D94 0032DCD4  48 03 14 1D */	bl _savegpr_18
 /* 80330D98 0032DCD8  7C 7E 1B 78 */	mr r30, r3
 /* 80330D9C 0032DCDC  7C 9F 23 79 */	or. r31, r4, r4
 /* 80330DA0 0032DCE0  7C BD 2B 78 */	mr r29, r5

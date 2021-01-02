@@ -513,36 +513,36 @@ func_80362190:
 /* 80362198 0035F0D8  CB EB FF F8 */	lfd f31, -8(r11)
 /* 8036219C 0035F0DC  4E 80 00 20 */	blr 
 
-.global func_803621A0
-func_803621A0:
+.global _savegpr_14
+_savegpr_14:
 /* 803621A0 0035F0E0  91 CB FF B8 */	stw r14, -0x48(r11)
 
-.global func_803621A4
-func_803621A4:
+.global _savegpr_15
+_savegpr_15:
 /* 803621A4 0035F0E4  91 EB FF BC */	stw r15, -0x44(r11)
 
-.global func_803621A8
-func_803621A8:
+.global _savegpr_16
+_savegpr_16:
 /* 803621A8 0035F0E8  92 0B FF C0 */	stw r16, -0x40(r11)
 
-.global func_803621AC
-func_803621AC:
+.global _savegpr_17
+_savegpr_17:
 /* 803621AC 0035F0EC  92 2B FF C4 */	stw r17, -0x3c(r11)
 
-.global func_803621B0
-func_803621B0:
+.global _savegpr_18
+_savegpr_18:
 /* 803621B0 0035F0F0  92 4B FF C8 */	stw r18, -0x38(r11)
 
-.global func_803621B4
-func_803621B4:
+.global _savegpr_19
+_savegpr_19:
 /* 803621B4 0035F0F4  92 6B FF CC */	stw r19, -0x34(r11)
 
-.global func_803621B8
-func_803621B8:
+.global _savegpr_20
+_savegpr_20:
 /* 803621B8 0035F0F8  92 8B FF D0 */	stw r20, -0x30(r11)
 
-.global func_803621BC
-func_803621BC:
+.global _savegpr_21
+_savegpr_21:
 /* 803621BC 0035F0FC  92 AB FF D4 */	stw r21, -0x2c(r11)
 
 .global _savegpr_22

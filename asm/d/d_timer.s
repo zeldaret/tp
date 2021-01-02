@@ -4562,7 +4562,7 @@ dDlst_TimerScrnDraw_c_NS_drawPikari:
 /* 80260B98 0025DAD8  DB 01 00 90 */	stfd f24, 0x90(r1)
 /* 80260B9C 0025DADC  F3 01 00 98 */	psq_st f24, 152(r1), 0, qr0
 /* 80260BA0 0025DAE0  39 61 00 90 */	addi r11, r1, 0x90
-/* 80260BA4 0025DAE4  48 10 16 19 */	bl func_803621BC
+/* 80260BA4 0025DAE4  48 10 16 19 */	bl _savegpr_21
 /* 80260BA8 0025DAE8  7C 7F 1B 78 */	mr r31, r3
 /* 80260BAC 0025DAEC  54 9A 20 36 */	slwi r26, r4, 4
 /* 80260BB0 0025DAF0  7F 3F D2 14 */	add r25, r31, r26
