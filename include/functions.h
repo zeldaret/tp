@@ -43,23 +43,11 @@ void _restgpr_25(void);
 void _restgpr_26(void);
 void _savegpr_26(void);
 
-
-
-
-
-
 void func_8036221C(void);
 
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
-
-
-
-
-
-
-
 
 void JKRAramHeap_NS_dump(void);
 void dRes_control_c_NS_dump(void);
@@ -187,17 +175,8 @@ void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 
-
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-
-
-
-
-
-
-
-
 
 void func_80003540(void);
 void func_80365470(void);
@@ -205,8 +184,6 @@ void func_803688DC(void);
 void func_80368ABC(void);
 void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
-
-
 
 void func_80361C24(void);
 
@@ -234,7 +211,6 @@ void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
 
-
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -260,12 +236,6 @@ void func_80362210(void);
 void _restgpr_18(void);
 void _restgpr_23(void);
 void _restgpr_24(void);
-
-
-
-
-
-
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -347,23 +317,11 @@ void _savegpr_26(void);
 void _savegpr_25(void);
 void _restgpr_25(void);
 
-
-
-
-
-
 void func_8036221C(void);
 
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
-
-
-
-
-
-
-
 
 void JKRAramHeap_NS_dump(void);
 void dRes_control_c_NS_dump(void);
@@ -494,16 +452,7 @@ void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 
-
 void func_80361C24(void);
-
-
-
-
-
-
-
-
 
 void func_80003540(void);
 void func_80365470(void);
@@ -511,8 +460,6 @@ void func_803688DC(void);
 void func_80368ABC(void);
 void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
-
-
 
 void func_80361C24(void);
 
@@ -541,7 +488,6 @@ void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
 
-
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -567,12 +513,6 @@ void func_80362210(void);
 void _restgpr_18(void);
 void _restgpr_23(void);
 void _restgpr_24(void);
-
-
-
-
-
-
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -4881,7 +4821,6 @@ void func_8036C028(void);
 void C_MTXLightPerspective(void);
 void cM3d_VectorProduct2d(void);
 void dCcMassS_Mng_NS_Prepare(void);
-
 }
 
 // additional symbols needed for d_kankyo.cpp
