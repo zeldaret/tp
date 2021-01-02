@@ -1,102 +1,105 @@
 #include "JSystem/JKernel/JKRAssertHeap/JKRAssertHeap.h"
 #include "global.h"
 
-asm JKRAssertHeap::JKRAssertHeap(void*, unsigned long, JKRHeap*, bool) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D12C4.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D12C4.s"
+JKRAssertHeap::JKRAssertHeap(void* data, unsigned long size, JKRHeap* parent, bool errorFlag)
+    : JKRHeap(data, size, parent, errorFlag) {}
+
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1300.s"
+JKRAssertHeap::~JKRAssertHeap() {
+    this->dispose();
 }
 
-asm JKRAssertHeap::~JKRAssertHeap() {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1300.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1368.s"
+JKRAssertHeap* JKRAssertHeap::create(JKRHeap* parent) {
+    if (!parent) {
+        parent = JKRHeap::getRootHeap();
+    }
+
+    // 0x70 is sizeof(JKRAssertHeap) aligned to 16 bytes
+    u32 size = 0x70;
+    int alignment = 16;
+
+    void* ptr = JKRHeap::alloc(size, alignment, parent);
+    if (!ptr)
+        return NULL;
+
+    return new (ptr) JKRAssertHeap(NULL, 0, parent, false);
 }
 
-asm void JKRAssertHeap::create(JKRHeap*) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1368.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D13D8.s"
+void JKRAssertHeap::do_destroy(void) {
+    this->~JKRAssertHeap();
 }
 
-asm void JKRAssertHeap::do_destroy(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D13D8.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1408.s"
+u32 JKRAssertHeap::getHeapType(void) {
+    return 0x41535448;  // FOURCC("ASTH")
 }
 
-asm u32 JKRAssertHeap::getHeapType(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1408.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1414.s"
+bool JKRAssertHeap::check(void) {
+    return true;
 }
 
-asm bool JKRAssertHeap::check(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1414.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D141C.s"
+bool JKRAssertHeap::dump(void) {
+    return true;
 }
 
-asm bool JKRAssertHeap::dump(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D141C.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1424.s"
+bool JKRAssertHeap::dump_sort(void) {
+    return true;
 }
 
-asm void JKRAssertHeap::dump_sort(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1424.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D142C.s"
+u8 JKRAssertHeap::do_changeGroupID(u8) {
+    return 0;
 }
 
-asm u8 JKRAssertHeap::do_changeGroupID(u8 param_1) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D142C.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1434.s"
+u8 JKRAssertHeap::do_getCurrentGroupId(void) {
+    return 0;
 }
 
-asm u8 JKRAssertHeap::do_getCurrentGroupId(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1434.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D143C.s"
+void* JKRAssertHeap::do_alloc(u32, int) {
+    return NULL;
 }
 
-asm void* JKRAssertHeap::do_alloc(u32, int) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D143C.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1444.s"
+void JKRAssertHeap::do_free(void*) {}
+
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1448.s"
+void JKRAssertHeap::do_freeAll(void) {}
+
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D144C.s"
+void JKRAssertHeap::do_freeTail(void) {}
+
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1450.s"
+void JKRAssertHeap::do_fillFreeArea(void) {}
+
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1454.s"
+s32 JKRAssertHeap::do_resize(void*, u32) {
+    return 0;
 }
 
-asm void JKRAssertHeap::do_free(void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1444.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D145C.s"
+s32 JKRAssertHeap::do_getSize(void*) {
+    return 0;
 }
 
-asm void JKRAssertHeap::do_freeAll(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1448.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1464.s"
+s32 JKRAssertHeap::do_getFreeSize(void) {
+    return 0;
 }
 
-asm void JKRAssertHeap::do_freeTail(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D144C.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D146C.s"
+void* JKRAssertHeap::do_getMaxFreeBlock(void) {
+    return NULL;
 }
 
-asm void JKRAssertHeap::do_fillFreeArea(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1450.s"
-}
-
-asm s32 JKRAssertHeap::do_resize(void*, u32) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1454.s"
-}
-
-asm s32 JKRAssertHeap::do_getSize(void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D145C.s"
-}
-
-asm s32 JKRAssertHeap::do_getFreeSize(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1464.s"
-}
-
-asm void* JKRAssertHeap::do_getMaxFreeBlock(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D146C.s"
-}
-
-asm s32 JKRAssertHeap::do_getTotalFreeSize(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1474.s"
+// #include "JSystem/JKernel/JKRAssertHeap/asm/func_802D1474.s"
+s32 JKRAssertHeap::do_getTotalFreeSize(void) {
+    return 0;
 }
