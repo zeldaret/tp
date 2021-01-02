@@ -38,13 +38,13 @@ public:
     void dispose(void* begin, void* end);
     void dispose();
 
-    bool setErrorFlag(bool param_1);
+    bool setErrorFlag(bool errorFlag);
     bool isSubHeap(JKRHeap* heap) const;
 
     /* vt[03] */ virtual void callAllDisposer();
     /* vt[04] */ virtual u32 getHeapType() = 0;
     /* vt[05] */ virtual bool check() = 0;
-    /* vt[06] */ virtual void dump_sort();
+    /* vt[06] */ virtual bool dump_sort();
     /* vt[07] */ virtual bool dump() = 0;
     /* vt[08] */ virtual void do_destroy() = 0;
     /* vt[09] */ virtual void* do_alloc(u32 size, int alignment) = 0;
@@ -57,7 +57,7 @@ public:
     /* vt[16] */ virtual s32 do_getFreeSize() = 0;
     /* vt[17] */ virtual void* do_getMaxFreeBlock() = 0;
     /* vt[18] */ virtual s32 do_getTotalFreeSize() = 0;
-    /* vt[19] */ virtual u8 do_changeGroupID(u8 param_1);
+    /* vt[19] */ virtual u8 do_changeGroupID(u8 newGroupID);
     /* vt[20] */ virtual u8 do_getCurrentGroupId();
     /* vt[21] */ virtual void state_register(JKRHeap::TState*, unsigned long) const;
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
@@ -145,5 +145,9 @@ void* operator new[](u32 size, JKRHeap* heap, int alignment);
 
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
+
+inline void* operator new(u32 size, void* ptr) {
+    return ptr;
+}
 
 #endif

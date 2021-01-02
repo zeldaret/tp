@@ -1,7 +1,13 @@
 #ifndef __PAD_H__
 #define __PAD_H__
+#include "global.h"
 
 typedef enum PADMask {
+    // PAD_CHAN3_BIT = (1 << 0),
+    // PAD_CHAN2_BIT = (1 << 1),
+    // PAD_CHAN1_BIT = (1 << 2),
+    // PAD_CHAN0_BIT = (1 << 3),
+
     PAD_CHAN3_BIT = (1 << 28),
     PAD_CHAN2_BIT = (1 << 29),
     PAD_CHAN1_BIT = (1 << 30),

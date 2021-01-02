@@ -1591,8 +1591,8 @@ dEvt_control_c_NS_skipper:
 /* 80042A14 0003F954  41 82 00 08 */	beq lbl_80042A1C
 /* 80042A18 0003F958  3B C0 00 01 */	li r30, 1
 lbl_80042A1C:
-/* 80042A1C 0003F95C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80042A20 0003F960  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 80042A1C 0003F95C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80042A20 0003F960  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80042A24 0003F964  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80042A28 0003F968  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 80042A2C 0003F96C  41 82 00 44 */	beq lbl_80042A70
