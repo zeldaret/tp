@@ -17,6 +17,8 @@ public:
 
     u32 getSize() { return this->mSize; }
 
+    u32 getFreeSize() { return this->mFreeSize; }
+
     bool isTempMemory() { return this->mIsTempMemory; }
 
     void newGroupID(u8 groupId) { this->mGroupId = groupId; }

@@ -306,12 +306,13 @@ extern u8 lbl_803CC168;  // JKRAramHeap::__vt
 extern u8 lbl_80434300;  // JKernel::@297 (global destructor chain)
 class JKRAramBlock;
 extern JSUList<JKRAramBlock> lbl_8043430C;  // JKRAramHeap::sAramList
+class JKRAMCommand;
+extern JSUList<JKRAMCommand> lbl_80434324;  // JKRAramPiece::sAramPieceCommandList
+extern OSMutex lbl_80434330;                // JKRAramPiece::mMutex
+extern char lbl_8039D0B8[];                 // "direction = %x\n"
 
-extern u8 lbl_80434324;  // JKRAramPiece::sAramPieceCommandList
-extern u8 lbl_80434330;  // JKRAramPiece::mMutex
-extern u8 lbl_8039D0B8;  // "direction = %x\n"
-extern u8 lbl_80434318;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_803CC138;  // JKRAram::sMessageQueue
+extern u8 lbl_80434318;              // JKernel::@492 (global destructor chain)
+extern OSMessageQueue lbl_803CC138;  // JKRAram::sMessageQueue
 
 extern u8 lbl_80451408;  // JKRAramStream::sAramStreamObject
 extern u8 lbl_80451414;  // JKRAramStream::transHeap
@@ -370,7 +371,6 @@ extern u8 lbl_80451404;        // JKernel::tsArea (static?)
 extern u8 lbl_803CC158;  // JKRAram::__vt
 extern u8 lbl_8039D078;  // "JKRAram.cpp"
 extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_803CC138;  // JKRAram::sMessageQueue
 extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
 extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
@@ -403,7 +403,6 @@ extern u8 lbl_80451404;  // JKernel::tsArea (static?)
 extern u8 lbl_803CC158;  // JKRAram::__vt
 extern u8 lbl_8039D078;  // "JKRAram.cpp"
 extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_803CC138;  // JKRAram::sMessageQueue
 extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
 extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
 extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
