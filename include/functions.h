@@ -1251,7 +1251,7 @@ JASTaskThread* JASDvd_NS_getThreadPointer(void);
 // m_Do_Rst
 extern "C" {
 void getResetData__6mDoRstFv(void);
-void resetCallBack__6mDoRstFiPv(void);
+void mDoRst_resetCallBack__FiPv(void);
 }
 
 // additional symbols needed for d_attention.cpp
