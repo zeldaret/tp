@@ -203,7 +203,7 @@ def split(
     preparsed,
     forceactive
 ):
-    funcs_out.mkdir(exist_ok=True)
+    funcs_out.mkdir(exist_ok=True, parents=True)
 
     if preparsed:
         logger.info('loading preparsed assembly')
