@@ -221,7 +221,6 @@ void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc
                                                                            dCcD_GObjInf*);
 void coHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*);
 void J3DMaterialAnm_NS_calc(void);
-void PSVECAdd(Vec*, Vec*, Vec*);
 void mDoMtx_stack_c_NS_transM(float, float, float);
 void daAlink_c_NS_concatMagneBootInvMtx(void);
 void mDoMtx_ZXYrotM(void);
@@ -317,10 +316,6 @@ struct mCurrentMtx {  // J3DGraphBase::J3DSys::mCurrentMtx
 // extern now lbl_803DD470;
 extern mCurrentMtx lbl_80434BE4;
 
-// daalink modelcallback
-struct j3dsys;  // J3DGraphBase::j3dSys
-extern j3dsys lbl_80434AC8;
-
 // daalink headmodelcallback
 extern float lbl_80452EDC;
 
@@ -341,10 +336,6 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
-extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle
 extern float lbl_80452C98;
