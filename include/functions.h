@@ -32,7 +32,6 @@ void isEventBit__11dSv_event_cCFUs(void);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
-
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
@@ -97,7 +96,6 @@ void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
-
 void offEventBit__11dSv_event_cFUs(void);
 
 void dMeter2Info_c_NS_setSaveStageName(void);
@@ -188,7 +186,6 @@ void func_80365470(void);
 void DCInvalidateRange(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
-
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -273,7 +270,6 @@ void dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
-
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
@@ -340,7 +336,6 @@ void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
-
 void offEventBit__11dSv_event_cFUs(void);
 
 void dMeter2Info_c_NS_setSaveStageName(void);
@@ -432,7 +427,6 @@ void func_80365470(void);
 void DCInvalidateRange(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
-
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -661,7 +655,6 @@ void Z2SeqMgr_NS_setTwilightGateVol(void);
 void Z2SeqMgr_NS_setWindStoneVol(void);
 void Z2SeqMgr_NS_resetBattleBgmParams(void);
 void JAISoundID_X1_(void);
-
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 class Z2SoundMgr;
 void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr*, bool);
@@ -737,7 +730,6 @@ void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
 void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
-
 int checkItemGet__FUci(u8, int);
 }
 
@@ -1273,6 +1265,8 @@ void dAttDraw_c_NS_alphaAnm(void);
 void dAttention_c_NS_LockonReleaseDistanse(void);
 void dAttention_c_NS_runDebugDisp(void);
 
+//void dAttParam_c(void);
+void dAttParam_c(void);
 void dAttention_c_NS_judgementStatus4Hold(void);
 void dAttention_c_NS_calcWeight(void);
 void dAttHint_c_NS_getPId(void);
@@ -2127,7 +2121,6 @@ void func_800D0688(void);
 void daAlink_c_NS_checkHangStartSideWall(void);
 void daAlink_c_NS_setDrawHand(void);
 void cM_rnd(void);
-
 void dCcD_GObjInf_NS_GetAtHitGObj(void);
 void dBgS_RoofChk(void);
 void daAlink_c_NS_getCutDirection(void);
@@ -2225,7 +2218,6 @@ void func_801391DC(void);
 void daAlink_c_NS_setWolfAnmVoice(void);
 void func_80362018(void);
 void daAlink_c_NS_resetWolfAtCollision(void);
-
 void func_800EA4CC(void);
 void daAlink_c_NS_getLadderMoveAnmSpeed(void);
 void daAlink_c_NS_checkBoomerangCatchAction(void);
@@ -2853,7 +2845,6 @@ void func_80140038(void);
 void daAlink_c_NS_seStartSwordCut(void);
 void daAlink_c_NS_checkItemButtonChange(void);
 void daAlink_c_NS_setOctaIealHangPos(void);
-
 void daAlink_c_NS_procCutJumpInit(void);
 void func_8011A5CC(void);
 void daAlink_c_NS_checkWolfComboCnt(void);
@@ -4162,7 +4153,6 @@ void dMeter2Info_c_NS_resetMeterString(void);
 void offFirstBit__21dSv_player_get_item_cFUc(void);
 void dComIfGs_setWarpMarkFlag(void);
 void func_8021C7F4(void);
-
 void dMeter2Info_c_NS_decMsgKeyWaitTimer(void);
 void dMeter2Info_c_NS_getItemType(void);
 void isLetterGetFlag__17dSv_letter_info_cCFi(void);
@@ -4734,7 +4724,6 @@ void vectle_calc_X1_(void);
 void dKy_vrbox_addcol_sky0_set(void);
 void dKy_efplight_set(void);
 void dKy_set_actcol_ratio(void);
-
 void PSMTXRotRad(void);
 void daPy_py_c_NS_checkNowWolfEyeUp(void);
 void dKyr_near_bosslight_check(void);
