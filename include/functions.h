@@ -20,11 +20,11 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
-void _restgpr_23(void);
+
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
-void _savegpr_23(void);
+
 void init__20dSv_player_collect_cFv(void);
 void dComIfGp_setSelectItem(int);
 void getUsedCount__9HeapCheckCFv(void);
@@ -42,19 +42,25 @@ void _savegpr_25(void);
 void _restgpr_25(void);
 void _restgpr_26(void);
 void _savegpr_26(void);
+
+
+
+
+
+
 void func_8036221C(void);
-void _savegpr_26(void);
+
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
-void _restgpr_29(void);
-void _savegpr_29(void);
-void _restgpr_28(void);
-void _savegpr_28(void);
-void _restgpr_27(void);
-void _savegpr_27(void);
-void _savegpr_26(void);
-void _restgpr_26(void);
+
+
+
+
+
+
+
+
 void JKRAramHeap_NS_dump(void);
 void dRes_control_c_NS_dump(void);
 void JUTConsole_NS_getLineOffset(void);
@@ -64,7 +70,7 @@ void JUTConsole_NS_clear(void);
 void JUTReport_X1_(void);
 void JUTAssertion_NS_setMessageCount(void);
 void DynamicModuleControlBase_NS_dump(void);
-void _restgpr_25(void);
+
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void setLineUpItem__17dSv_player_item_cFv(void);
 void dMeter2Info_c_NS_setHotSpringTimer(void);
@@ -107,7 +113,7 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
-void _restgpr_22(void);
+
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -116,9 +122,9 @@ void func_8036221C(void);
 void func_8036221C(void);
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
-void _savegpr_26(void);
+
 void offEventBit__11dSv_event_cFUs(void);
-void _savegpr_22(void);
+
 void dMeter2Info_c_NS_setSaveStageName(void);
 void dComIfG_play_c_NS_setNowVibration(void);
 void getVibration__19dSv_player_config_cFv(void);
@@ -181,18 +187,18 @@ void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 
-void _savegpr_25(void);
+
 void VIWaitForRetrace(void);
 void func_80361C24(void);
 
-void _restgpr_26(void);
-void _restgpr_27(void);
-void _restgpr_28(void);
-void _restgpr_29(void);
-void _savegpr_26(void);
-void _savegpr_27(void);
-void _savegpr_28(void);
-void _savegpr_29(void);
+
+
+
+
+
+
+
+
 void func_80003540(void);
 void func_80365470(void);
 void func_803688DC(void);
@@ -200,13 +206,15 @@ void func_80368ABC(void);
 void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
 
-void _restgpr_29(void);
-void _savegpr_29(void);
+
+
 void func_80361C24(void);
 
 void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
+
+
 
 void JKRArchive_NS_findDirectory(void);
 void JKRArchive_NS_findFsResource(void);
@@ -225,6 +233,8 @@ void func_80003458(void);
 void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
+
+
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -250,6 +260,12 @@ void func_80362210(void);
 void _restgpr_18(void);
 void _restgpr_23(void);
 void _restgpr_24(void);
+
+
+
+
+
+
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -303,11 +319,11 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
-void _restgpr_23(void);
+
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
-void _savegpr_23(void);
+
 void init__20dSv_player_collect_cFv(void);
 void dComIfGp_setSelectItem(int);
 void getUsedCount__9HeapCheckCFv(void);
@@ -330,19 +346,25 @@ void _restgpr_26(void);
 void _savegpr_26(void);
 void _savegpr_25(void);
 void _restgpr_25(void);
+
+
+
+
+
+
 void func_8036221C(void);
-void _savegpr_26(void);
+
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
-void _restgpr_29(void);
-void _savegpr_29(void);
-void _restgpr_28(void);
-void _savegpr_28(void);
-void _restgpr_27(void);
-void _savegpr_27(void);
-void _savegpr_26(void);
-void _restgpr_26(void);
+
+
+
+
+
+
+
+
 void JKRAramHeap_NS_dump(void);
 void dRes_control_c_NS_dump(void);
 void JUTConsole_NS_getLineOffset(void);
@@ -352,7 +374,7 @@ void JUTConsole_NS_clear(void);
 void JUTReport_X1_(void);
 void JUTAssertion_NS_setMessageCount(void);
 void DynamicModuleControlBase_NS_dump(void);
-void _restgpr_25(void);
+
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void setLineUpItem__17dSv_player_item_cFv(void);
 void dMeter2Info_c_NS_setHotSpringTimer(void);
@@ -397,7 +419,7 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
-void _restgpr_22(void);
+
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -406,9 +428,9 @@ void func_8036221C(void);
 void func_8036221C(void);
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
-void _savegpr_26(void);
+
 void offEventBit__11dSv_event_cFUs(void);
-void _savegpr_22(void);
+
 void dMeter2Info_c_NS_setSaveStageName(void);
 void dComIfG_play_c_NS_setNowVibration(void);
 void getVibration__19dSv_player_config_cFv(void);
@@ -472,17 +494,17 @@ void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 
-void _savegpr_25(void);
+
 void func_80361C24(void);
 
-void _restgpr_26(void);
-void _restgpr_27(void);
-void _restgpr_28(void);
-void _restgpr_29(void);
-void _savegpr_26(void);
-void _savegpr_27(void);
-void _savegpr_28(void);
-void _savegpr_29(void);
+
+
+
+
+
+
+
+
 void func_80003540(void);
 void func_80365470(void);
 void func_803688DC(void);
@@ -490,13 +512,15 @@ void func_80368ABC(void);
 void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
 
-void _restgpr_29(void);
-void _savegpr_29(void);
+
+
 void func_80361C24(void);
 
 void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
+
+
 
 // void JKRAramArchive(void);
 void JKRArchive_NS_findDirectory(void);
@@ -516,6 +540,8 @@ void func_80003458(void);
 void _savegpr_25(void);
 void _restgpr_25(void);
 void func_80362218(void);
+
+
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -541,6 +567,12 @@ void func_80362210(void);
 void _restgpr_18(void);
 void _restgpr_23(void);
 void _restgpr_24(void);
+
+
+
+
+
+
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -726,7 +758,7 @@ void resetFilterAll__10Z2SoundMgrFv(void);
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 void Z2SeqMgr_NS_setBattleBgmOff(void);
 void setSceneExist__10Z2SceneMgrFb(void);
-void _restgpr_16(void);
+
 void Z2SceneMgr_NS_sceneChange(void);
 void __ct__10JAISoundIDFRC10JAISoundID(void);
 void Z2EnvSeMgr_NS_initSceneEnvSe(void);
@@ -753,7 +785,7 @@ void Z2SeqMgr_NS_setTwilightGateVol(void);
 void Z2SeqMgr_NS_setWindStoneVol(void);
 void Z2SeqMgr_NS_resetBattleBgmParams(void);
 void JAISoundID_X1_(void);
-void _savegpr_16(void);
+
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 class Z2SoundMgr;
 void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr*, bool);
@@ -825,12 +857,12 @@ void item_func_BEE_CHILD(void);
 int func_80368954(char*, char*, u32);
 void dComIfG_play_c_NS_getLayerNo(int);
 u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
-void _restgpr_20(void);
+
 void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
 void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
-void _savegpr_20(void);
+
 int checkItemGet__FUci(u8, int);
 }
 
@@ -1281,7 +1313,7 @@ void dAttention_c_NS_stockAttention(void);
 void distace_angle_adjust(void);
 void dAttDraw_c_NS_draw(void);
 void dAttCatch_c_NS_convPId(void);
-void _restgpr_21(void);
+
 void dAttDraw_c_NS_setAnm(void);
 void dAttention_c_NS_lockSoundStart(void);
 void fopAcM_searchActorDistance(void);
@@ -1368,6 +1400,7 @@ void dAttention_c_NS_runDebugDisp(void);
 void func_803621BC(void);
 //void dAttParam_c(void);
 void _savegpr_21(void);
+
 void dAttParam_c(void);
 void dAttention_c_NS_judgementStatus4Hold(void);
 void dAttention_c_NS_calcWeight(void);
@@ -1427,7 +1460,7 @@ void func_801119D8(void);
 void daAlink_c_NS_setLandPassiveData(void);
 void func_800D0290(void);
 void daAlink_c_NS_setCutTurnEffect(void);
-void _restgpr_21(void);
+
 void func_8014190C(void);
 void daAlink_c_NS_checkHorseGetOffDirection(void);
 void func_80101534(void);
@@ -1688,7 +1721,7 @@ void daAlink_c_NS_getSwimMaxFallSpeed(void);
 void JPAParticleCallBack_NS_dtor(void);
 void func_801417D4(void);
 void func_8011E960(void);
-void _restgpr_14(void);
+
 void setLinkBootsType__14Z2CreatureLinkFl(void);
 void cM_atan2s(void);
 void daAlink_c_NS_setLastSceneMode(void);
@@ -2024,7 +2057,7 @@ void dStage_stagInfo_GetSaveTbl(void);
 void daAlink_c_NS_setWolfScreamWaitAnime(void);
 void daObjSwHang_c_NS_getHangPos(void);
 void func_800C4514(void);
-void _restgpr_15(void);
+
 void daAlink_c_NS_checkAtnWaitAnime(void);
 void dKy_plight_cut(void);
 void Z2Creature_NS_updateAnime(void);
@@ -2223,7 +2256,7 @@ void func_800D0688(void);
 void daAlink_c_NS_checkHangStartSideWall(void);
 void daAlink_c_NS_setDrawHand(void);
 void cM_rnd(void);
-void _savegpr_21(void);
+
 void dCcD_GObjInf_NS_GetAtHitGObj(void);
 void dBgS_RoofChk(void);
 void daAlink_c_NS_getCutDirection(void);
@@ -2321,7 +2354,7 @@ void func_801391DC(void);
 void daAlink_c_NS_setWolfAnmVoice(void);
 void func_80362018(void);
 void daAlink_c_NS_resetWolfAtCollision(void);
-void _savegpr_15(void);
+
 void func_800EA4CC(void);
 void daAlink_c_NS_getLadderMoveAnmSpeed(void);
 void daAlink_c_NS_checkBoomerangCatchAction(void);
@@ -2949,7 +2982,7 @@ void func_80140038(void);
 void daAlink_c_NS_seStartSwordCut(void);
 void daAlink_c_NS_checkItemButtonChange(void);
 void daAlink_c_NS_setOctaIealHangPos(void);
-void _savegpr_14(void);
+
 void daAlink_c_NS_procCutJumpInit(void);
 void func_8011A5CC(void);
 void daAlink_c_NS_checkWolfComboCnt(void);
@@ -4231,7 +4264,7 @@ void dComIfGs_setWarpItemData_X1_(void);
 void dMeter2Info_setNewLetterSender(void);
 void dMeter2Info_getNewLetterNum(void);
 void dMsgFlow_c_NS_getMsgNo(void);
-void _restgpr_19(void);
+
 void func_8021C11C(void);
 void dMeter2Info_c_NS_isFloatingMessageVisible(void);
 void dMeter2Info_c_NS_changeWater(void);
@@ -4258,7 +4291,7 @@ void dMeter2Info_c_NS_resetMeterString(void);
 void offFirstBit__21dSv_player_get_item_cFUc(void);
 void dComIfGs_setWarpMarkFlag(void);
 void func_8021C7F4(void);
-void _savegpr_19(void);
+
 void dMeter2Info_c_NS_decMsgKeyWaitTimer(void);
 void dMeter2Info_c_NS_getItemType(void);
 void isLetterGetFlag__17dSv_letter_info_cCFi(void);
@@ -4798,7 +4831,7 @@ void dKy_efplight_cut(void);
 void forward_overhead_bg_chk(void);
 void dKy_set_bgcol_ratio(void);
 void dKy_GxFog_set(void);
-void _restgpr_19(void);
+
 void GXSetZCompLoc(void);
 void dKyr_moon_arrival_check(void);
 void PSVECAdd(Vec*, Vec*, Vec*);
@@ -4806,7 +4839,7 @@ void dKy_set_vrboxcol_ratio(void);
 void func_8036C590(void);
 void dBgS_CamGndChk_Wtr_NS_dtor(void);
 void func_8006F160(void);
-void _restgpr_17(void);
+
 void dBgS_ObjGndChk_All_NS_dtor(void);
 void dKy_bg_addcol_amb_set(void);
 void dKy_set_fogcol_ratio(void);
@@ -4830,7 +4863,7 @@ void vectle_calc_X1_(void);
 void dKy_vrbox_addcol_sky0_set(void);
 void dKy_efplight_set(void);
 void dKy_set_actcol_ratio(void);
-void _savegpr_19(void);
+
 void PSMTXRotRad(void);
 void daPy_py_c_NS_checkNowWolfEyeUp(void);
 void dKyr_near_bosslight_check(void);
@@ -4848,7 +4881,7 @@ void func_8036C028(void);
 void C_MTXLightPerspective(void);
 void cM3d_VectorProduct2d(void);
 void dCcMassS_Mng_NS_Prepare(void);
-void _savegpr_17(void);
+
 }
 
 // additional symbols needed for d_kankyo.cpp
@@ -4981,7 +5014,7 @@ void func_801A7814(void);
 void func_801A789C(void);
 void dKy_bg3_addcol_amb_set(void);
 void dScnKy_env_light_c_NS_Eflight_flush_proc(void);
-void _savefpr_29(void);
+
 void func_801A441C(void);
 void BOSS_LIGHT_NS_dtor(void);
 void dKy_Outdoor_check(void);
@@ -4998,7 +5031,7 @@ void dKy_ParticleColor_get_base(void);
 void dScnKy_env_light_c_NS_setSunpos(void);
 void dKy_ParticleColor_get_actor(void);
 void dKy_pol_eff2_ratio_get(void);
-void _restfpr_29(void);
+
 void dKy_darkworld_Area_set(void);
 void dKy_shadow_mode_check(void);
 void mDoGph_gInf_c_NS_bloom_c_NS_create(void);
