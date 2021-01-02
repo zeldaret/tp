@@ -1254,7 +1254,7 @@ lbl_80257304:
 /* 80257304 00254244  38 60 00 00 */	li r3, 0
 /* 80257308 00254248  3C 80 80 00 */	lis r4, 0x8000
 /* 8025730C 0025424C  38 A0 00 00 */	li r5, 0
-/* 80257310 00254250  4B DB E3 05 */	bl reset__6mDoRstFlUll
+/* 80257310 00254250  4B DB E3 05 */	bl mDoRst_reset__FiUli
 lbl_80257314:
 /* 80257314 00254254  83 9F 01 E4 */	lwz r28, 0x1e4(r31)
 /* 80257318 00254258  28 1C 00 00 */	cmplwi r28, 0
@@ -1882,10 +1882,10 @@ lbl_80257C0C:
 lbl_80257C18:
 /* 80257C18 00254B58  38 80 00 00 */	li r4, 0
 /* 80257C1C 00254B5C  98 8D 8F 81 */	stb r4, lbl_80451501-_SDA_BASE_(r13)
-.global resetCallBack__6mDoRstFiPv
-/* 80257C20 00254B60  3C 60 80 01 */	lis r3, resetCallBack__6mDoRstFiPv@ha
-.global resetCallBack__6mDoRstFiPv
-/* 80257C24 00254B64  38 03 57 4C */	addi r0, r3, resetCallBack__6mDoRstFiPv@l
+.global mDoRst_resetCallBack__FiPv
+/* 80257C20 00254B60  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
+.global mDoRst_resetCallBack__FiPv
+/* 80257C24 00254B64  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
 /* 80257C28 00254B68  90 0D 8F 6C */	stw r0, lbl_804514EC-_SDA_BASE_(r13)
 /* 80257C2C 00254B6C  90 8D 8F 70 */	stw r4, lbl_804514F0-_SDA_BASE_(r13)
 /* 80257C30 00254B70  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)

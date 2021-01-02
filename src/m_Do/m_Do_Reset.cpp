@@ -20,7 +20,7 @@ void destroyVideo() {
 }
 
 // TODO: cleanup
-void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
+void mDoRst_reset(int p1, u32 p2, int p3) {
     mDoCPd_c* pmVar1;
     u32 uVar2;
     DVDState DVar3;
@@ -83,14 +83,14 @@ void mDoRst::reset(s32 p1, u32 p2, s32 p3) {
     } while (true);
 }
 
-void mDoRst::resetCallBack(int p1, void* p2) {
+void mDoRst_resetCallBack(int p1, void* p2) {
     if (/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 == 0) {
         if (p1 == -1) {
             cAPICPad_recalibrate();
         } else {
             if (m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 != 0) {
                 lbl_80451501 = false;
-                /* sCallback */ lbl_804514EC = &mDoRst::resetCallBack;
+                /* sCallback */ lbl_804514EC = &mDoRst_resetCallBack;
                 /* sCallbackArg */ lbl_804514F0 = 0;
                 return;
             }

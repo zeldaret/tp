@@ -155,7 +155,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_insect.o    \
             $(BUILD_DIR)/asm/d/a/obj/ss/d_a_obj_ss_base.o    \
             $(BUILD_DIR)/asm/d/a/d_a_player.o    \
-            $(BUILD_DIR)/asm/d/d_camera.o    \
+            $(BUILD_DIR)/src/d/d_camera.o    \
             $(BUILD_DIR)/asm/d/d_envse.o    \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \
@@ -172,7 +172,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_kyeff.o    \
             $(BUILD_DIR)/asm/d/d_kyeff2.o    \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o    \
-            $(BUILD_DIR)/asm/d/kantera/icon/d_kantera_icon_meter.o    \
+            $(BUILD_DIR)/src/d/d_kantera_icon_meter.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_calibration.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_collect.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_dmap.o    \
@@ -191,15 +191,15 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/menu/d_menu_skill.o    \
             $(BUILD_DIR)/asm/d/menu/window/d_menu_window_HIO.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_window.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_HIO.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_button.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_haihai.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_hakusha.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_map.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_string.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_draw.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_info.o    \
-            $(BUILD_DIR)/asm/d/d_meter2.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_HIO.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_button.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_haihai.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_hakusha.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_map.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_string.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_draw.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_info.o    \
+            $(BUILD_DIR)/src/d/d_meter2.o    \
             $(BUILD_DIR)/asm/d/msg/out/d_msg_out_font.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_class.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_object.o    \
