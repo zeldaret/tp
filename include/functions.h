@@ -87,6 +87,10 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -94,6 +98,10 @@ void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void offEventBit__11dSv_event_cFUs(void);
 
 void dMeter2Info_c_NS_setSaveStageName(void);
@@ -201,6 +209,12 @@ void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
 
+
+
+
+
+
+
 void ARQPostRequest(void);
 void DCStoreRange(void);
 
@@ -253,6 +267,10 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
@@ -325,6 +343,10 @@ void isItem__12dSv_memBit_cCFi(void);
 void isItem__12dSv_danBit_cCFi(void);
 void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
@@ -332,6 +354,10 @@ void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void offEventBit__11dSv_event_cFUs(void);
 
 void dMeter2Info_c_NS_setSaveStageName(void);
@@ -439,6 +465,12 @@ void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
+
+
+
+
+
+
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -624,6 +656,10 @@ void resetFilterAll__10Z2SoundMgrFv(void);
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 void Z2SeqMgr_NS_setBattleBgmOff(void);
 void setSceneExist__10Z2SceneMgrFb(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void Z2SceneMgr_NS_sceneChange(void);
 void __ct__10JAISoundIDFRC10JAISoundID(void);
 void Z2EnvSeMgr_NS_initSceneEnvSe(void);
@@ -650,6 +686,10 @@ void Z2SeqMgr_NS_setTwilightGateVol(void);
 void Z2SeqMgr_NS_setWindStoneVol(void);
 void Z2SeqMgr_NS_resetBattleBgmParams(void);
 void JAISoundID_X1_(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 class Z2SoundMgr;
 void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr*, bool);
@@ -720,10 +760,18 @@ void item_func_BEE_CHILD(void);
 int func_80368954(char*, char*, u32);
 void dComIfG_play_c_NS_getLayerNo(int);
 u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
 void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 int checkItemGet__FUci(u8, int);
 }
 
@@ -1174,6 +1222,10 @@ void dAttention_c_NS_stockAttention(void);
 void distace_angle_adjust(void);
 void dAttDraw_c_NS_draw(void);
 void dAttCatch_c_NS_convPId(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dAttDraw_c_NS_setAnm(void);
 void dAttention_c_NS_lockSoundStart(void);
 void fopAcM_searchActorDistance(void);
@@ -1318,6 +1370,10 @@ void func_801119D8(void);
 void daAlink_c_NS_setLandPassiveData(void);
 void func_800D0290(void);
 void daAlink_c_NS_setCutTurnEffect(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void func_8014190C(void);
 void daAlink_c_NS_checkHorseGetOffDirection(void);
 void func_80101534(void);
@@ -1578,6 +1634,10 @@ void daAlink_c_NS_getSwimMaxFallSpeed(void);
 void JPAParticleCallBack_NS_dtor(void);
 void func_801417D4(void);
 void func_8011E960(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void setLinkBootsType__14Z2CreatureLinkFl(void);
 void cM_atan2s(void);
 void daAlink_c_NS_setLastSceneMode(void);
@@ -1913,6 +1973,10 @@ void dStage_stagInfo_GetSaveTbl(void);
 void daAlink_c_NS_setWolfScreamWaitAnime(void);
 void daObjSwHang_c_NS_getHangPos(void);
 void func_800C4514(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void daAlink_c_NS_checkAtnWaitAnime(void);
 void dKy_plight_cut(void);
 void Z2Creature_NS_updateAnime(void);
@@ -2111,6 +2175,10 @@ void func_800D0688(void);
 void daAlink_c_NS_checkHangStartSideWall(void);
 void daAlink_c_NS_setDrawHand(void);
 void cM_rnd(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dCcD_GObjInf_NS_GetAtHitGObj(void);
 void dBgS_RoofChk(void);
 void daAlink_c_NS_getCutDirection(void);
@@ -2208,6 +2276,10 @@ void func_801391DC(void);
 void daAlink_c_NS_setWolfAnmVoice(void);
 void func_80362018(void);
 void daAlink_c_NS_resetWolfAtCollision(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void func_800EA4CC(void);
 void daAlink_c_NS_getLadderMoveAnmSpeed(void);
 void daAlink_c_NS_checkBoomerangCatchAction(void);
@@ -2835,6 +2907,10 @@ void func_80140038(void);
 void daAlink_c_NS_seStartSwordCut(void);
 void daAlink_c_NS_checkItemButtonChange(void);
 void daAlink_c_NS_setOctaIealHangPos(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void daAlink_c_NS_procCutJumpInit(void);
 void func_8011A5CC(void);
 void daAlink_c_NS_checkWolfComboCnt(void);
@@ -4116,6 +4192,10 @@ void dComIfGs_setWarpItemData_X1_(void);
 void dMeter2Info_setNewLetterSender(void);
 void dMeter2Info_getNewLetterNum(void);
 void dMsgFlow_c_NS_getMsgNo(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void func_8021C11C(void);
 void dMeter2Info_c_NS_isFloatingMessageVisible(void);
 void dMeter2Info_c_NS_changeWater(void);
@@ -4142,6 +4222,10 @@ void dMeter2Info_c_NS_resetMeterString(void);
 void offFirstBit__21dSv_player_get_item_cFUc(void);
 void dComIfGs_setWarpMarkFlag(void);
 void func_8021C7F4(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dMeter2Info_c_NS_decMsgKeyWaitTimer(void);
 void dMeter2Info_c_NS_getItemType(void);
 void isLetterGetFlag__17dSv_letter_info_cCFi(void);
@@ -4681,6 +4765,10 @@ void dKy_efplight_cut(void);
 void forward_overhead_bg_chk(void);
 void dKy_set_bgcol_ratio(void);
 void dKy_GxFog_set(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void GXSetZCompLoc(void);
 void dKyr_moon_arrival_check(void);
 void PSVECAdd(Vec*, Vec*, Vec*);
@@ -4688,6 +4776,10 @@ void dKy_set_vrboxcol_ratio(void);
 void func_8036C590(void);
 void dBgS_CamGndChk_Wtr_NS_dtor(void);
 void func_8006F160(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dBgS_ObjGndChk_All_NS_dtor(void);
 void dKy_bg_addcol_amb_set(void);
 void dKy_set_fogcol_ratio(void);
@@ -4711,6 +4803,10 @@ void vectle_calc_X1_(void);
 void dKy_vrbox_addcol_sky0_set(void);
 void dKy_efplight_set(void);
 void dKy_set_actcol_ratio(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void PSMTXRotRad(void);
 void daPy_py_c_NS_checkNowWolfEyeUp(void);
 void dKyr_near_bosslight_check(void);
@@ -4728,6 +4824,10 @@ void func_8036C028(void);
 void C_MTXLightPerspective(void);
 void cM3d_VectorProduct2d(void);
 void dCcMassS_Mng_NS_Prepare(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 }
 
 // additional symbols needed for d_kankyo.cpp
@@ -4860,6 +4960,10 @@ void func_801A7814(void);
 void func_801A789C(void);
 void dKy_bg3_addcol_amb_set(void);
 void dScnKy_env_light_c_NS_Eflight_flush_proc(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void func_801A441C(void);
 void BOSS_LIGHT_NS_dtor(void);
 void dKy_Outdoor_check(void);
@@ -4876,6 +4980,10 @@ void dKy_ParticleColor_get_base(void);
 void dScnKy_env_light_c_NS_setSunpos(void);
 void dKy_ParticleColor_get_actor(void);
 void dKy_pol_eff2_ratio_get(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void dKy_darkworld_Area_set(void);
 void dKy_shadow_mode_check(void);
 void mDoGph_gInf_c_NS_bloom_c_NS_create(void);
