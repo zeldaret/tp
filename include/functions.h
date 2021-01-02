@@ -209,12 +209,6 @@ void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
 
-
-
-
-
-
-
 void ARQPostRequest(void);
 void DCStoreRange(void);
 
@@ -267,10 +261,6 @@ void PSMTXScale(void);
 void screenSet__12dFile_info_cFv(void);
 void dFile_info_c_NS_screenSet(void);
 void mDoExt_removeMesgFont(void);
-<<<<<<< HEAD
-=======
-
->>>>>>> cleanup functions.h and moved intrisics to mwcc.h
 void JKRAramHeap_NS_getTotalFreeSize(void);
 void JKRAramHeap_NS_getFreeSize(void);
 void heapDisplay__9HeapCheckCFv(void);
@@ -465,12 +455,6 @@ void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
-
-
-
-
-
-
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -4825,9 +4809,12 @@ void C_MTXLightPerspective(void);
 void cM3d_VectorProduct2d(void);
 void dCcMassS_Mng_NS_Prepare(void);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> cleanup functions.h and moved intrisics to mwcc.h
+=======
+>>>>>>> formatting
 }
 
 // additional symbols needed for d_kankyo.cpp
