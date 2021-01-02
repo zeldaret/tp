@@ -12,8 +12,8 @@ protected:
 public:
     /* vt[04] */ virtual u32 getHeapType(void);           /* override */
     /* vt[05] */ virtual bool check(void);                /* override */
-    /* vt[06] */ virtual bool dump(void);                 /* override */
-    /* vt[07] */ virtual void dump_sort(void);            /* override */
+    /* vt[06] */ virtual bool dump_sort(void);            /* override */
+    /* vt[07] */ virtual bool dump(void);                 /* override */
     /* vt[08] */ virtual void do_destroy(void);           /* override */
     /* vt[09] */ virtual void* do_alloc(u32, int);        /* override */
     /* vt[10] */ virtual void do_free(void*);             /* override */
@@ -29,7 +29,7 @@ public:
     /* vt[20] */ virtual u8 do_getCurrentGroupId(void);   /* override */
 
 public:
-    static void create(JKRHeap*);
+    static JKRAssertHeap* create(JKRHeap*);
 };
 
 #endif
