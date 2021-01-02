@@ -443,7 +443,7 @@ extern u8 lbl_80453330;
 extern u8 lbl_804255D4;
 extern u8 lbl_8045324C;
 extern u8 lbl_80452E08;
-extern u8 lbl_80452EAC;
+extern float lbl_80452EAC;
 extern u8 lbl_804532B8;
 extern u8 lbl_8038DB40;
 extern u8 lbl_80452E10;

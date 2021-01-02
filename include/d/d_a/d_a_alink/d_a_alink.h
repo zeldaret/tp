@@ -201,6 +201,20 @@ private:
     u8 unk[14268];
 };
 
+class daMidna_c {
+public:
+    void onForcePanic(void);
+    u32 checkForceNormalColor(void) const;
+    u32 checkForceTiredColor(void) const;
+    bool checkMidnaTired(void);
+    void onNoServiceWait(void);
+
+private:
+    u8 unk[0x893];
+    u32 unk2196;
+    u32 unk2200;
+};
+
 extern "C" {
 void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc_ac_c*,
                                                                            dCcD_GObjInf*,
