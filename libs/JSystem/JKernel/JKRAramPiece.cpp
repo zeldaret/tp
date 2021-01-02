@@ -120,23 +120,23 @@ void JKRAramPiece::doneDMA(u32 requestAddress) {
 }
 
 JKRAMCommand::JKRAMCommand() : mPieceLink(this), field_0x30(this) {
-    OSInitMessageQueue(&this->mMessageQueue, this->mMessages, 1);
-    this->mCallback = NULL;
-    this->field_0x5C = NULL;
-    this->field_0x60 = 0;
-    this->field_0x8C = NULL;
-    this->field_0x90 = NULL;
-    this->field_0x94 = NULL;
+    OSInitMessageQueue(&mMessageQueue, mMessages, ARRAY_SIZE(mMessages));
+    mCallback = NULL;
+    field_0x5C = NULL;
+    field_0x60 = 0;
+    field_0x8C = NULL;
+    field_0x90 = NULL;
+    field_0x94 = NULL;
 }
 
 JKRAMCommand::~JKRAMCommand() {
-    if (this->field_0x8C)
-        delete this->field_0x8C;
-    if (this->field_0x90)
-        delete this->field_0x90;
+    if (field_0x8C)
+        delete field_0x8C;
+    if (field_0x90)
+        delete field_0x90;
 
-    if (this->field_0x94)
-        JKRHeap::free(this->field_0x94, NULL);
+    if (field_0x94)
+        JKRHeap::free(field_0x94, NULL);
 }
 
 #if 0

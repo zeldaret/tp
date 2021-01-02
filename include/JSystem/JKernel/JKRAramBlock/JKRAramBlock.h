@@ -13,15 +13,15 @@ public:
     JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
     JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
-    void* getAddress() { return (void*)this->mAddress; }
+    void* getAddress() const { return (void*)mAddress; }
 
-    u32 getSize() { return this->mSize; }
+    u32 getSize() const { return mSize; }
 
-    u32 getFreeSize() { return this->mFreeSize; }
+    u32 getFreeSize() const { return mFreeSize; }
 
-    bool isTempMemory() { return this->mIsTempMemory; }
+    bool isTempMemory() const { return mIsTempMemory; }
 
-    void newGroupID(u8 groupId) { this->mGroupId = groupId; }
+    void newGroupID(u8 groupId) { mGroupId = groupId; }
 
 public:
     JSULink<JKRAramBlock> mBlockLink;

@@ -27,14 +27,14 @@ public:
     // u32 getUsedSize(void);
     void dump(void);
 
-    u8 getCurrentGroupID() { return this->mGroupId; }
+    u8 getCurrentGroupID() const { return mGroupId; }
 
-    JKRHeap* getMgrHeap() { return this->mHeap; }
+    JKRHeap* getMgrHeap() const { return mHeap; }
 
 private:
-    void lock() { OSLockMutex(&this->mMutex); }
+    void lock() { OSLockMutex(&mMutex); }
 
-    void unlock() { OSUnlockMutex(&this->mMutex); }
+    void unlock() { OSUnlockMutex(&mMutex); }
 
 public:
     OSMutex mMutex;

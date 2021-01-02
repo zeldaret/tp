@@ -4,16 +4,15 @@
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
 
 JKRAramHeap::JKRAramHeap(u32 startAddress, u32 size) {
-    OSInitMutex(&this->mMutex);
+    OSInitMutex(&mMutex);
 
-    this->mHeap = JKRHeap::findFromRoot(this);
-    this->mSize = ALIGN_PREV(size, 0x20);
-    this->mHeadAddress = ALIGN_NEXT(startAddress, 0x20);
-    this->mTailAddress = this->mHeadAddress + this->mSize;
-    this->mGroupId = -1;
+    mHeap = JKRHeap::findFromRoot(this);
+    mSize = ALIGN_PREV(size, 0x20);
+    mHeadAddress = ALIGN_NEXT(startAddress, 0x20);
+    mTailAddress = mHeadAddress + mSize;
+    mGroupId = -1;
 
-    JKRAramBlock* block =
-        new (this->mHeap, 0) JKRAramBlock(this->mHeadAddress, 0, this->mSize, -1, false);
+    JKRAramBlock* block = new (mHeap, 0) JKRAramBlock(mHeadAddress, 0, mSize, -1, false);
     lbl_8043430C.append(&block->mBlockLink);
 }
 
@@ -37,16 +36,16 @@ asm JKRAramHeap::~JKRAramHeap() {
 #endif
 
 JKRAramBlock* JKRAramHeap::alloc(u32 size, JKRAramHeap::EAllocMode allocationMode) {
-    this->lock();
+    lock();
 
     JKRAramBlock* block;
     if (allocationMode == JKRAramHeap::HEAD) {
-        block = this->allocFromHead(size);
+        block = allocFromHead(size);
     } else {
-        block = this->allocFromTail(size);
+        block = allocFromTail(size);
     }
 
-    this->unlock();
+    unlock();
     return block;
 }
 
@@ -72,7 +71,7 @@ JKRAramBlock* JKRAramHeap::allocFromHead(u32 size) {
     }
 
     if (bestBlock) {
-        return bestBlock->allocHead(alignedSize, this->mGroupId, this);
+        return bestBlock->allocHead(alignedSize, mGroupId, this);
     }
 
     return NULL;
@@ -93,7 +92,7 @@ JKRAramBlock* JKRAramHeap::allocFromTail(u32 size) {
     }
 
     if (tailBlock) {
-        return tailBlock->allocTail(alignedSize, this->mGroupId, this);
+        return tailBlock->allocTail(alignedSize, mGroupId, this);
     }
 
     return NULL;
@@ -102,7 +101,7 @@ JKRAramBlock* JKRAramHeap::allocFromTail(u32 size) {
 u32 JKRAramHeap::getFreeSize(void) {
     u32 maxFreeSize = 0;
 
-    this->lock();
+    lock();
 
     JSUList<JKRAramBlock>* list = &lbl_8043430C;
     JSUListIterator<JKRAramBlock> iterator = list;
@@ -112,14 +111,14 @@ u32 JKRAramHeap::getFreeSize(void) {
         }
     }
 
-    this->unlock();
+    unlock();
     return maxFreeSize;
 }
 
 u32 JKRAramHeap::getTotalFreeSize(void) {
     u32 totalFreeSize = 0;
 
-    this->lock();
+    lock();
 
     JSUList<JKRAramBlock>* list = &lbl_8043430C;
     JSUListIterator<JKRAramBlock> iterator = list;
@@ -127,12 +126,12 @@ u32 JKRAramHeap::getTotalFreeSize(void) {
         totalFreeSize += iterator->mFreeSize;
     }
 
-    this->unlock();
+    unlock();
     return totalFreeSize;
 }
 
 void JKRAramHeap::dump(void) {
-    this->lock();
+    lock();
 
     JSUList<JKRAramBlock>* list = &lbl_8043430C;
     JSUListIterator<JKRAramBlock> iterator = list;
@@ -140,7 +139,7 @@ void JKRAramHeap::dump(void) {
         // The debug version calls OSReport
     }
 
-    this->unlock();
+    unlock();
 }
 
 #if 0
