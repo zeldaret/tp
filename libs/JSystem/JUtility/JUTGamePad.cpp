@@ -30,7 +30,7 @@ void JUTGamePad::initList() {
 
 s32 JUTGamePad::init() {
     PADSetSpec(5);
-    /*sAnalogMode*/ lbl_804514DC = 3;
+    /*sAnalogMode*/ sAnalogMode = 3;
     PADSetAnalogMode(3);
 
     return PADInit();
@@ -287,7 +287,7 @@ void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod() {
  * matching issue in general; see JKRHeap::dispose or JKRThread::searchThread,
  * both of which are currently nonmatching due to the same issue.
  */
-JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
+JUTGamePad* JUTGamePad::getGamePad(int pad_index) {
     JSUList<JUTGamePad>* threadList = &lbl_804343E4;
     JSUListIterator<JUTGamePad> iterator;
     for (iterator = threadList; iterator != threadList->getEnd(); iterator++) {
@@ -300,7 +300,7 @@ JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
     return NULL;
 }
 #else
-asm JUTGamePad* JUTGamePad::getGamePad(s32 pad_index) {
+asm JUTGamePad* JUTGamePad::getGamePad(int pad_index) {
     nofralloc
 #include "JSystem/JUtility/JUTGamePad/asm/func_802E199C.s"
 }

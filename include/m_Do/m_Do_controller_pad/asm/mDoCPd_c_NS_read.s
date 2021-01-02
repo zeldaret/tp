@@ -4,7 +4,7 @@
 /* 80007AA0 000049E0  39 61 00 20 */	addi r11, r1, 0x20
 /* 80007AA4 000049E4  48 35 A7 39 */	bl _savegpr_29
 /* 80007AA8 000049E8  48 2D 8E 3D */	bl read__10JUTGamePadFv
-/* 80007AAC 000049EC  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 80007AAC 000049EC  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80007AB0 000049F0  80 03 00 00 */	lwz r0, 0(r3)
 /* 80007AB4 000049F4  2C 00 00 00 */	cmpwi r0, 0
 /* 80007AB8 000049F8  40 82 00 4C */	bne lbl_80007B04
@@ -25,7 +25,7 @@ lbl_80007AF0:
 /* 80007AF0 00004A30  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80007AF4 00004A34  40 82 00 10 */	bne lbl_80007B04
 /* 80007AF8 00004A38  38 00 00 00 */	li r0, 0
-/* 80007AFC 00004A3C  80 6D 86 F8 */	lwz r3, mResetData-_SDA_BASE_(r13)
+/* 80007AFC 00004A3C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80007B00 00004A40  90 03 00 08 */	stw r0, 8(r3)
 lbl_80007B04:
 /* 80007B04 00004A44  3C 60 80 3E */	lis r3, m_gamePad@ha
