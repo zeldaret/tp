@@ -1,4 +1,5 @@
 #include "f/f_pc/f_pc_manager.h"
+#include "SComponent/c_API_graphic.h"
 #include "SComponent/c_tag.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_lib/d_lib.h"
@@ -69,7 +70,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
                 Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);
                 lbl_80450D38 = 0;
             }
-            cAPIGph_Painter__Fv();
+            cAPIGph_Painter();
             if ((lbl_80450EC4 & 1) == 0) {
                 fpcDt_Handler();
             } else {

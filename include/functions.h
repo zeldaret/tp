@@ -283,7 +283,6 @@ void dLib_time_c_NS_stopTime(void);
 void dLib_time_c_NS_startTime(void);
 class dComIfG_play_c;
 void dComIfG_play_c_NS_drawSimpleModel(dComIfG_play_c*);
-void cAPIGph_Painter__Fv(void);
 bool dDvdErrorMsg_c_NS_execute(void);
 bool dShutdownErrorMsg_c_NS_execute(void);
 class dDlst_peekZ_c;

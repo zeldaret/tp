@@ -2144,9 +2144,9 @@ func_800A87D8
 func_800A660C
 func_800A4820
 func_800A2160
-func_80267B04
-func_80267ACC
-func_802679D4
+cM_rndFX2__Ff
+cM_rndF2__Ff
+cM_initRnd2__Fiii
 func_80271BD4
 func_80267D54
 SetPos__11cBgS_GndChkFPC3Vec
