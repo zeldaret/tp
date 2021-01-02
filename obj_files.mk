@@ -155,7 +155,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_insect.o    \
             $(BUILD_DIR)/asm/d/a/obj/ss/d_a_obj_ss_base.o    \
             $(BUILD_DIR)/asm/d/a/d_a_player.o    \
-            $(BUILD_DIR)/asm/d/d_camera.o    \
+            $(BUILD_DIR)/src/d/d_camera.o    \
             $(BUILD_DIR)/asm/d/d_envse.o    \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \

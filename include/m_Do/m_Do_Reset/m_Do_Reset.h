@@ -4,10 +4,6 @@
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 #include "dolphin/types.h"
 
-extern "C" {
-// void my_OSCancelAlarmAll(void);
-}
-
 struct ResetData {
     s32 field_0x0;
     u32 field_0x4;
@@ -25,8 +21,9 @@ struct ResetData {
 
 struct mDoRst {
     ResetData* getResetData();
-    static void reset(s32 p1, u32 p2, s32 p3);
-    static void resetCallBack(int p1, void* p2);
 };
+
+void mDoRst_reset(int p1, u32 p2, int p3);
+void mDoRst_resetCallBack(int p1, void* p2);
 
 #endif
