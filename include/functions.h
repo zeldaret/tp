@@ -4876,7 +4876,6 @@ void dKy_ParticleColor_get_base(void);
 void dScnKy_env_light_c_NS_setSunpos(void);
 void dKy_ParticleColor_get_actor(void);
 void dKy_pol_eff2_ratio_get(void);
-
 void dKy_darkworld_Area_set(void);
 void dKy_shadow_mode_check(void);
 void mDoGph_gInf_c_NS_bloom_c_NS_create(void);
