@@ -191,12 +191,12 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/menu/d_menu_skill.o    \
             $(BUILD_DIR)/asm/d/menu/window/d_menu_window_HIO.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_window.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_HIO.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_button.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_haihai.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_hakusha.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_map.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_string.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_HIO.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_button.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_haihai.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_hakusha.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_map.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_string.o    \
             $(BUILD_DIR)/src/d/d_meter2/d_meter2_draw.o    \
             $(BUILD_DIR)/src/d/d_meter2/d_meter2_info.o    \
             $(BUILD_DIR)/src/d/d_meter2.o    \
