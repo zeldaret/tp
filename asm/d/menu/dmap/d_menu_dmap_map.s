@@ -457,7 +457,7 @@ dMenu_DmapMap_c_NS_setPos:
 /* 801C0EB8 001BDDF8  7F E5 07 74 */	extsb r5, r31
 /* 801C0EBC 001BDDFC  4B E7 EE 4D */	bl renderingDAmap_c_NS_entry
 /* 801C0EC0 001BDE00  39 61 00 30 */	addi r11, r1, 0x30
-/* 801C0EC4 001BDE04  48 1A 12 C9 */	bl func_8036218C
+/* 801C0EC4 001BDE04  48 1A 12 C9 */	bl _restfpr_28
 /* 801C0EC8 001BDE08  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C0ECC 001BDE0C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801C0ED0 001BDE10  80 01 00 34 */	lwz r0, 0x34(r1)

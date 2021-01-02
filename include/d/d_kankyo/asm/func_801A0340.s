@@ -42,7 +42,7 @@
 /* 801A03E4 0019D324  4B FF D2 A9 */ bl kankyo_color_ratio_set
 /* 801A03E8 0019D328  B0 7A 00 04 */ sth r3, 4(r26)
 /* 801A03EC 0019D32C  39 61 00 40 */ addi r11, r1, 0x40
-/* 801A03F0 0019D330  48 1C 1D A1 */ bl func_80362190
+/* 801A03F0 0019D330  48 1C 1D A1 */ bl _restfpr_29
 /* 801A03F4 0019D334  39 61 00 28 */ addi r11, r1, 0x28
 /* 801A03F8 0019D338  48 1C 1E 25 */ bl _restgpr_26
 /* 801A03FC 0019D33C  80 01 00 44 */ lwz r0, 0x44(r1)
