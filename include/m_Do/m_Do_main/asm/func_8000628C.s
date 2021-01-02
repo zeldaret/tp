@@ -6,7 +6,7 @@
 /* 800062A0 000031E0  3B E3 32 E0 */	addi r31, r3, lbl_803D32E0@l
 /* 800062A4 000031E4  48 00 5A A1 */	bl mDoMch_Create
 /* 800062A8 000031E8  48 00 4E CD */	bl mDoGph_Create
-/* 800062AC 000031EC  48 00 16 A9 */	bl mDoCPd_c_NS_create
+/* 800062AC 000031EC  48 00 16 A9 */	bl create__8mDoCPd_cFv
 /* 800062B0 000031F0  80 8D 8D F8 */	lwz r4, lbl_80451378-_SDA_BASE_(r13)
 /* 800062B4 000031F4  38 7F 00 00 */	addi r3, r31, 0
 /* 800062B8 000031F8  90 83 00 08 */	stw r4, 8(r3)
@@ -119,7 +119,7 @@ lbl_8000642C:
 /* 80006438 00003378  7F E3 FB 78 */	mr r3, r31
 /* 8000643C 0000337C  48 01 04 59 */	bl mDoMemCd_Ctrl_c_NS_update
 lbl_80006440:
-/* 80006440 00003380  48 00 16 55 */	bl mDoCPd_c_NS_read
+/* 80006440 00003380  48 00 16 55 */	bl read__8mDoCPd_cFv
 /* 80006444 00003384  48 01 26 29 */	bl fapGm_Execute
 /* 80006448 00003388  48 00 0D 1D */	bl mDoAud_Execute
 /* 8000644C 0000338C  4B FF FD 7D */	bl debug__Fv

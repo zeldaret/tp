@@ -378,8 +378,6 @@ private:
     u8 padding[3];
 };
 
-// move to SComponent later
-
 class dSv_horse_place_c {
 public:
     void init(void);

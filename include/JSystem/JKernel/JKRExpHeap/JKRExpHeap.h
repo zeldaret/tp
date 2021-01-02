@@ -59,7 +59,7 @@ public:
 public:
     /* vt[04] */ virtual u32 getHeapType();                                /* override */
     /* vt[05] */ virtual bool check();                                     /* override */
-    /* vt[06] */ virtual void dump_sort();                                 /* override */
+    /* vt[06] */ virtual bool dump_sort();                                 /* override */
     /* vt[07] */ virtual bool dump();                                      /* override */
     /* vt[08] */ virtual void do_destroy();                                /* override */
     /* vt[09] */ virtual void* do_alloc(u32 size, int alignment);          /* override */
@@ -72,7 +72,7 @@ public:
     /* vt[16] */ virtual s32 do_getFreeSize();                             /* override */
     /* vt[17] */ virtual void* do_getMaxFreeBlock();                       /* override */
     /* vt[18] */ virtual s32 do_getTotalFreeSize();                        /* override */
-    /* vt[19] */ virtual u8 do_changeGroupID(u8 param_1);                  /* override */
+    /* vt[19] */ virtual u8 do_changeGroupID(u8 newGroupID);               /* override */
     /* vt[20] */ virtual u8 do_getCurrentGroupId();                        /* override */
     /* vt[21] */ virtual void state_register(JKRHeap::TState*, u32) const; /* override */
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&,

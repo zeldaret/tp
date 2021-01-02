@@ -1872,8 +1872,8 @@ dCamera_c_NS_initPad:
 lbl_80161570:
 /* 80161570 0015E4B0  80 03 01 7C */	lwz r0, 0x17c(r3)
 /* 80161574 0015E4B4  54 00 30 32 */	slwi r0, r0, 6
-/* 80161578 0015E4B8  3C 80 80 3E */	lis r4, lbl_803DD2E8@ha
-/* 8016157C 0015E4BC  38 A4 D2 E8 */	addi r5, r4, lbl_803DD2E8@l
+/* 80161578 0015E4B8  3C 80 80 3E */	lis r4, m_cpadInfo@ha
+/* 8016157C 0015E4BC  38 A4 D2 E8 */	addi r5, r4, m_cpadInfo@l
 /* 80161580 0015E4C0  7C 05 04 2E */	lfsx f0, r5, r0
 /* 80161584 0015E4C4  D0 03 01 BC */	stfs f0, 0x1bc(r3)
 /* 80161588 0015E4C8  80 03 01 7C */	lwz r0, 0x17c(r3)
@@ -1903,8 +1903,8 @@ lbl_801615B0:
 lbl_801615E4:
 /* 801615E4 0015E524  80 03 01 7C */	lwz r0, 0x17c(r3)
 /* 801615E8 0015E528  54 00 30 32 */	slwi r0, r0, 6
-/* 801615EC 0015E52C  3C 80 80 3E */	lis r4, lbl_803DD2E8@ha
-/* 801615F0 0015E530  38 A4 D2 E8 */	addi r5, r4, lbl_803DD2E8@l
+/* 801615EC 0015E52C  3C 80 80 3E */	lis r4, m_cpadInfo@ha
+/* 801615F0 0015E530  38 A4 D2 E8 */	addi r5, r4, m_cpadInfo@l
 /* 801615F4 0015E534  7C 85 02 14 */	add r4, r5, r0
 /* 801615F8 0015E538  C0 04 00 10 */	lfs f0, 0x10(r4)
 /* 801615FC 0015E53C  D0 03 01 D8 */	stfs f0, 0x1d8(r3)
@@ -1931,8 +1931,8 @@ lbl_80161628:
 /* 8016164C 0015E58C  90 83 01 F4 */	stw r4, 0x1f4(r3)
 /* 80161650 0015E590  80 03 01 7C */	lwz r0, 0x17c(r3)
 /* 80161654 0015E594  54 06 30 32 */	slwi r6, r0, 6
-/* 80161658 0015E598  3C A0 80 3E */	lis r5, lbl_803DD2E8@ha
-/* 8016165C 0015E59C  38 05 D2 E8 */	addi r0, r5, lbl_803DD2E8@l
+/* 80161658 0015E598  3C A0 80 3E */	lis r5, m_cpadInfo@ha
+/* 8016165C 0015E59C  38 05 D2 E8 */	addi r0, r5, m_cpadInfo@l
 /* 80161660 0015E5A0  7C A0 32 14 */	add r5, r0, r6
 /* 80161664 0015E5A4  C0 25 00 28 */	lfs f1, 0x28(r5)
 /* 80161668 0015E5A8  D0 23 02 00 */	stfs f1, 0x200(r3)
@@ -2041,8 +2041,8 @@ dCamera_c_NS_updatePad:
 lbl_801617F8:
 /* 801617F8 0015E738  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 801617FC 0015E73C  54 04 30 32 */	slwi r4, r0, 6
-/* 80161800 0015E740  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161804 0015E744  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80161800 0015E740  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161804 0015E744  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80161808 0015E748  7C 60 22 14 */	add r3, r0, r4
 /* 8016180C 0015E74C  C0 23 00 00 */	lfs f1, 0(r3)
 /* 80161810 0015E750  C0 43 00 04 */	lfs f2, 4(r3)
@@ -2062,8 +2062,8 @@ lbl_80161818:
 /* 80161844 0015E784  D0 7E 01 C4 */	stfs f3, 0x1c4(r30)
 /* 80161848 0015E788  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 8016184C 0015E78C  54 04 30 32 */	slwi r4, r0, 6
-/* 80161850 0015E790  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161854 0015E794  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80161850 0015E790  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161854 0015E794  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80161858 0015E798  7C 60 22 14 */	add r3, r0, r4
 /* 8016185C 0015E79C  A8 83 00 0C */	lha r4, 0xc(r3)
 /* 80161860 0015E7A0  38 7E 01 D4 */	addi r3, r30, 0x1d4
@@ -2078,8 +2078,8 @@ lbl_80161818:
 lbl_80161884:
 /* 80161884 0015E7C4  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 80161888 0015E7C8  54 04 30 32 */	slwi r4, r0, 6
-/* 8016188C 0015E7CC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161890 0015E7D0  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 8016188C 0015E7CC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161890 0015E7D0  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80161894 0015E7D4  7C 60 22 14 */	add r3, r0, r4
 /* 80161898 0015E7D8  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 8016189C 0015E7DC  C0 43 00 14 */	lfs f2, 0x14(r3)
@@ -2099,16 +2099,16 @@ lbl_801618A4:
 /* 801618D0 0015E810  D0 7E 01 E0 */	stfs f3, 0x1e0(r30)
 /* 801618D4 0015E814  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 801618D8 0015E818  54 04 30 32 */	slwi r4, r0, 6
-/* 801618DC 0015E81C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801618E0 0015E820  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 801618DC 0015E81C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801618E0 0015E820  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 801618E4 0015E824  7C 60 22 14 */	add r3, r0, r4
 /* 801618E8 0015E828  A8 83 00 1C */	lha r4, 0x1c(r3)
 /* 801618EC 0015E82C  38 7E 01 F0 */	addi r3, r30, 0x1f0
 /* 801618F0 0015E830  48 10 F7 15 */	bl cSAngle_NS_Val_X2_
 /* 801618F4 0015E834  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 801618F8 0015E838  54 00 30 32 */	slwi r0, r0, 6
-/* 801618FC 0015E83C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161900 0015E840  38 83 D2 E8 */	addi r4, r3, lbl_803DD2E8@l
+/* 801618FC 0015E83C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161900 0015E840  38 83 D2 E8 */	addi r4, r3, m_cpadInfo@l
 /* 80161904 0015E844  7C 64 02 14 */	add r3, r4, r0
 /* 80161908 0015E848  C0 23 00 28 */	lfs f1, 0x28(r3)
 /* 8016190C 0015E84C  C0 1E 02 00 */	lfs f0, 0x200(r30)
@@ -2153,8 +2153,8 @@ lbl_80161990:
 lbl_8016199C:
 /* 8016199C 0015E8DC  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 801619A0 0015E8E0  54 00 30 32 */	slwi r0, r0, 6
-/* 801619A4 0015E8E4  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801619A8 0015E8E8  38 83 D2 E8 */	addi r4, r3, lbl_803DD2E8@l
+/* 801619A4 0015E8E4  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801619A8 0015E8E8  38 83 D2 E8 */	addi r4, r3, m_cpadInfo@l
 /* 801619AC 0015E8EC  7C 64 02 14 */	add r3, r4, r0
 /* 801619B0 0015E8F0  C0 23 00 2C */	lfs f1, 0x2c(r3)
 /* 801619B4 0015E8F4  C0 1E 02 0C */	lfs f0, 0x20c(r30)
@@ -2199,8 +2199,8 @@ lbl_80161A38:
 lbl_80161A44:
 /* 80161A44 0015E984  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 80161A48 0015E988  54 04 30 32 */	slwi r4, r0, 6
-/* 80161A4C 0015E98C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161A50 0015E990  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80161A4C 0015E98C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161A50 0015E990  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80161A54 0015E994  7C 60 22 14 */	add r3, r0, r4
 /* 80161A58 0015E998  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 80161A5C 0015E99C  54 63 B7 FE */	rlwinm r3, r3, 0x16, 0x1f, 0x1f
@@ -2400,8 +2400,8 @@ lbl_80161D1C:
 /* 80161D24 0015EC64  98 1E 02 24 */	stb r0, 0x224(r30)
 /* 80161D28 0015EC68  80 1E 01 7C */	lwz r0, 0x17c(r30)
 /* 80161D2C 0015EC6C  54 04 30 32 */	slwi r4, r0, 6
-/* 80161D30 0015EC70  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80161D34 0015EC74  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80161D30 0015EC70  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80161D34 0015EC74  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80161D38 0015EC78  7C 60 22 14 */	add r3, r0, r4
 /* 80161D3C 0015EC7C  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80161D40 0015EC80  C0 02 9C C0 */	lfs f0, lbl_804536C0-_SDA2_BASE_(r2)
@@ -13915,8 +13915,8 @@ _unnamed_d_camera_cpp__NS_sAngleX:
 .global mDoCPd_c_NS_getHoldA
 mDoCPd_c_NS_getHoldA:
 /* 8016C314 00169254  54 64 30 32 */	slwi r4, r3, 6
-/* 8016C318 00169258  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8016C31C 0016925C  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 8016C318 00169258  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8016C31C 0016925C  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 8016C320 00169260  7C 60 22 14 */	add r3, r0, r4
 /* 8016C324 00169264  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 8016C328 00169268  54 03 05 EE */	rlwinm r3, r0, 0, 0x17, 0x17
@@ -14738,7 +14738,7 @@ lbl_8016CF04:
 /* 8016CF10 00169E50  7C 64 1B 78 */	mr r4, r3
 /* 8016CF14 00169E54  38 61 00 DC */	addi r3, r1, 0xdc
 /* 8016CF18 00169E58  38 A1 01 40 */	addi r5, r1, 0x140
-/* 8016CF1C 00169E5C  48 10 44 05 */	bl __mi
+/* 8016CF1C 00169E5C  48 10 44 05 */	bl cSAngle_NS___mi_short
 /* 8016CF20 00169E60  38 61 01 38 */	addi r3, r1, 0x138
 /* 8016CF24 00169E64  38 81 00 DC */	addi r4, r1, 0xdc
 /* 8016CF28 00169E68  48 10 40 41 */	bl cSAngle_X1_
@@ -15510,7 +15510,7 @@ lbl_8016DA68:
 /* 8016DA70 0016A9B0  7C 64 1B 78 */	mr r4, r3
 /* 8016DA74 0016A9B4  38 61 00 68 */	addi r3, r1, 0x68
 /* 8016DA78 0016A9B8  38 A1 01 10 */	addi r5, r1, 0x110
-/* 8016DA7C 0016A9BC  48 10 38 79 */	bl __pl
+/* 8016DA7C 0016A9BC  48 10 38 79 */	bl cSAngle_NS___pl_short
 /* 8016DA80 0016A9C0  38 61 00 64 */	addi r3, r1, 0x64
 /* 8016DA84 0016A9C4  38 81 00 68 */	addi r4, r1, 0x68
 /* 8016DA88 0016A9C8  38 A1 01 24 */	addi r5, r1, 0x124
@@ -15698,7 +15698,7 @@ lbl_8016DD38:
 /* 8016DD40 0016AC80  7C 64 1B 78 */	mr r4, r3
 /* 8016DD44 0016AC84  38 61 00 48 */	addi r3, r1, 0x48
 /* 8016DD48 0016AC88  7E E5 BB 78 */	mr r5, r23
-/* 8016DD4C 0016AC8C  48 10 35 D5 */	bl __mi
+/* 8016DD4C 0016AC8C  48 10 35 D5 */	bl cSAngle_NS___mi_short
 /* 8016DD50 0016AC90  38 61 01 1C */	addi r3, r1, 0x11c
 /* 8016DD54 0016AC94  38 81 00 48 */	addi r4, r1, 0x48
 /* 8016DD58 0016AC98  48 01 4F 51 */	bl cSAngle_NS___as
@@ -16836,7 +16836,7 @@ lbl_8016EC84:
 /* 8016EE24 0016BD64  7C 64 1B 78 */	mr r4, r3
 /* 8016EE28 0016BD68  38 61 01 DC */	addi r3, r1, 0x1dc
 /* 8016EE2C 0016BD6C  38 A1 01 E0 */	addi r5, r1, 0x1e0
-/* 8016EE30 0016BD70  48 10 24 F1 */	bl __mi
+/* 8016EE30 0016BD70  48 10 24 F1 */	bl cSAngle_NS___mi_short
 /* 8016EE34 0016BD74  38 61 02 34 */	addi r3, r1, 0x234
 /* 8016EE38 0016BD78  38 81 01 DC */	addi r4, r1, 0x1dc
 /* 8016EE3C 0016BD7C  48 10 21 BD */	bl cSAngle_NS_Val_X1_
@@ -24703,7 +24703,7 @@ lbl_80176490:
 /* 8017649C 001733DC  38 61 00 34 */	addi r3, r1, 0x34
 /* 801764A0 001733E0  3B E1 00 66 */	addi r31, r1, 0x66
 /* 801764A4 001733E4  7F E5 FB 78 */	mr r5, r31
-/* 801764A8 001733E8  48 0F AE 79 */	bl __mi
+/* 801764A8 001733E8  48 0F AE 79 */	bl cSAngle_NS___mi_short
 /* 801764AC 001733EC  38 61 00 54 */	addi r3, r1, 0x54
 /* 801764B0 001733F0  38 81 00 34 */	addi r4, r1, 0x34
 /* 801764B4 001733F4  48 0F AA B5 */	bl cSAngle_X1_
@@ -26802,7 +26802,7 @@ lbl_801783D8:
 /* 80178440 00175380  7C 64 1B 78 */	mr r4, r3
 /* 80178444 00175384  38 61 00 80 */	addi r3, r1, 0x80
 /* 80178448 00175388  38 A1 00 84 */	addi r5, r1, 0x84
-/* 8017844C 0017538C  48 0F 8E D5 */	bl __mi
+/* 8017844C 0017538C  48 0F 8E D5 */	bl cSAngle_NS___mi_short
 /* 80178450 00175390  38 78 04 10 */	addi r3, r24, 0x410
 /* 80178454 00175394  38 81 00 80 */	addi r4, r1, 0x80
 /* 80178458 00175398  48 00 A8 51 */	bl cSAngle_NS___as
@@ -31802,7 +31802,7 @@ lbl_8017CECC:
 /* 8017CEF0 00179E30  7C 64 1B 78 */	mr r4, r3
 /* 8017CEF4 00179E34  38 61 00 A4 */	addi r3, r1, 0xa4
 /* 8017CEF8 00179E38  38 BF 00 62 */	addi r5, r31, 0x62
-/* 8017CEFC 00179E3C  48 0F 44 25 */	bl __mi
+/* 8017CEFC 00179E3C  48 0F 44 25 */	bl cSAngle_NS___mi_short
 /* 8017CF00 00179E40  38 61 01 4C */	addi r3, r1, 0x14c
 /* 8017CF04 00179E44  38 81 00 A4 */	addi r4, r1, 0xa4
 /* 8017CF08 00179E48  48 0F 40 61 */	bl cSAngle_X1_
@@ -31840,7 +31840,7 @@ lbl_8017CF68:
 /* 8017CF80 00179EC0  7C 64 1B 78 */	mr r4, r3
 /* 8017CF84 00179EC4  38 61 00 9C */	addi r3, r1, 0x9c
 /* 8017CF88 00179EC8  38 BF 00 62 */	addi r5, r31, 0x62
-/* 8017CF8C 00179ECC  48 0F 43 95 */	bl __mi
+/* 8017CF8C 00179ECC  48 0F 43 95 */	bl cSAngle_NS___mi_short
 /* 8017CF90 00179ED0  38 61 01 48 */	addi r3, r1, 0x148
 /* 8017CF94 00179ED4  38 81 00 9C */	addi r4, r1, 0x9c
 /* 8017CF98 00179ED8  48 0F 3F D1 */	bl cSAngle_X1_
@@ -38326,8 +38326,8 @@ dCamSetup_c_NS_WaitRollTimer:
 .global mDoCPd_c_NS_getTrigA
 mDoCPd_c_NS_getTrigA:
 /* 80182BF8 0017FB38  54 64 30 32 */	slwi r4, r3, 6
-/* 80182BFC 0017FB3C  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80182C00 0017FB40  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 80182BFC 0017FB3C  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80182C00 0017FB40  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 80182C04 0017FB44  7C 60 22 14 */	add r3, r0, r4
 /* 80182C08 0017FB48  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80182C0C 0017FB4C  54 03 05 EE */	rlwinm r3, r0, 0, 0x17, 0x17

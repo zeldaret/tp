@@ -13,7 +13,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_audio.o    \
-            $(BUILD_DIR)/asm/m/Do/controller/m_Do_controller_pad.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_machine.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
@@ -50,27 +50,25 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_iter.o    \
             $(BUILD_DIR)/asm/f/op/draw/f_op_draw_tag.o    \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_pause.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_base.o    \
-            $(BUILD_DIR)/asm/f/pc/create/f_pc_create_iter.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_base.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_create_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_create_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_creator.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_delete_tag.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_deletor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_executor.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_leaf.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_leaf.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_layer_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_line.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_load.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_manager.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_manager.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_node.o    \
-            $(BUILD_DIR)/asm/f/pc/node/f_pc_node_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_node.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_node_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_priority.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_profile.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_searcher.o    \
@@ -79,9 +77,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_iter.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_method_tag.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_pause.o    \
-            $(BUILD_DIR)/asm/f/pc/f_pc_draw.o    \
-            $(BUILD_DIR)/asm/f/pc/fstcreate/f_pc_fstcreate_req.o    \
-            $(BUILD_DIR)/asm/f/pc/stdcreate/f_pc_stdcreate_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_draw.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_fstcreate_req.o    \
+            $(BUILD_DIR)/src/f/f_pc/f_pc_stdcreate_req.o    \
             $(BUILD_DIR)/asm/d/d_stage.o    \
             $(BUILD_DIR)/asm/d/d_map.o    \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
@@ -112,9 +110,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/particle/d_particle_copoly.o    \
             $(BUILD_DIR)/asm/d/d_path.o    \
             $(BUILD_DIR)/asm/d/d_drawlist.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_data.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_wether.o    \
-            $(BUILD_DIR)/asm/d/kankyo/d_kankyo_rain.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_data.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_wether.o    \
+            $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_rain.o    \
             $(BUILD_DIR)/asm/d/d_vibration.o    \
             $(BUILD_DIR)/src/d/d_attention.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_pc.o    \
@@ -157,7 +155,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_insect.o    \
             $(BUILD_DIR)/asm/d/a/obj/ss/d_a_obj_ss_base.o    \
             $(BUILD_DIR)/asm/d/a/d_a_player.o    \
-            $(BUILD_DIR)/asm/d/d_camera.o    \
+            $(BUILD_DIR)/src/d/d_camera.o    \
             $(BUILD_DIR)/asm/d/d_envse.o    \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \
@@ -170,11 +168,11 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/shop/item/d_shop_item_ctrl.o    \
             $(BUILD_DIR)/asm/d/shop/d_shop_system.o    \
             $(BUILD_DIR)/asm/d/d_gameover.o    \
-            $(BUILD_DIR)/asm/d/d_kankyo.o    \
+            $(BUILD_DIR)/src/d/d_kankyo.o    \
             $(BUILD_DIR)/asm/d/d_kyeff.o    \
             $(BUILD_DIR)/asm/d/d_kyeff2.o    \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o    \
-            $(BUILD_DIR)/asm/d/kantera/icon/d_kantera_icon_meter.o    \
+            $(BUILD_DIR)/src/d/d_kantera_icon_meter.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_calibration.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_collect.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_dmap.o    \
@@ -193,15 +191,15 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/menu/d_menu_skill.o    \
             $(BUILD_DIR)/asm/d/menu/window/d_menu_window_HIO.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_window.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_HIO.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_button.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_haihai.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_hakusha.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_map.o    \
-            $(BUILD_DIR)/asm/d/meter/d_meter_string.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_draw.o    \
-            $(BUILD_DIR)/asm/d/meter2/d_meter2_info.o    \
-            $(BUILD_DIR)/asm/d/d_meter2.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_HIO.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_button.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_haihai.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_hakusha.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_map.o    \
+            $(BUILD_DIR)/src/d/d_meter/d_meter_string.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_draw.o    \
+            $(BUILD_DIR)/src/d/d_meter2/d_meter2_info.o    \
+            $(BUILD_DIR)/src/d/d_meter2.o    \
             $(BUILD_DIR)/asm/d/msg/out/d_msg_out_font.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_class.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_object.o    \

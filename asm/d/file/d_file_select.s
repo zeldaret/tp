@@ -2101,8 +2101,8 @@ lbl_801853AC:
 /* 801853D4 00182314  7C 7F 1B 78 */	mr r31, r3
 /* 801853D8 00182318  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 801853DC 0018231C  4B EA CD C1 */	bl checkTrigger__9STControlFv
-/* 801853E0 00182320  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801853E4 00182324  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801853E0 00182320  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801853E4 00182324  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801853E8 00182328  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801853EC 0018232C  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801853F0 00182330  40 82 00 0C */	bne lbl_801853FC
@@ -3428,8 +3428,8 @@ lbl_8018675C:
 /* 80186784 001836C4  7C 7F 1B 78 */	mr r31, r3
 /* 80186788 001836C8  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 8018678C 001836CC  4B EA BA 11 */	bl checkTrigger__9STControlFv
-/* 80186790 001836D0  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80186794 001836D4  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 80186790 001836D0  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80186794 001836D4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80186798 001836D8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8018679C 001836DC  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801867A0 001836E0  41 82 00 10 */	beq lbl_801867B0
@@ -5002,8 +5002,8 @@ lbl_80187EAC:
 /* 80187EE4 00184E24  7C 7F 1B 78 */	mr r31, r3
 /* 80187EE8 00184E28  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 80187EEC 00184E2C  4B EA A2 B1 */	bl checkTrigger__9STControlFv
-/* 80187EF0 00184E30  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80187EF4 00184E34  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 80187EF0 00184E30  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80187EF4 00184E34  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80187EF8 00184E38  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80187EFC 00184E3C  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80187F00 00184E40  41 82 00 10 */	beq lbl_80187F10
@@ -6343,8 +6343,8 @@ lbl_80189288:
 /* 801892AC 001861EC  7C 7F 1B 78 */	mr r31, r3
 /* 801892B0 001861F0  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 801892B4 001861F4  4B EA 8E E9 */	bl checkTrigger__9STControlFv
-/* 801892B8 001861F8  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801892BC 001861FC  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801892B8 001861F8  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801892BC 001861FC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801892C0 00186200  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801892C4 00186204  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801892C8 00186208  41 82 00 10 */	beq lbl_801892D8
@@ -13347,8 +13347,8 @@ dFile_select_c_NS_errYesNoSelect:
 /* 8018FA44 0018C984  3B E0 00 00 */	li r31, 0
 /* 8018FA48 0018C988  80 63 02 54 */	lwz r3, 0x254(r3)
 /* 8018FA4C 0018C98C  4B EA 27 51 */	bl checkTrigger__9STControlFv
-/* 8018FA50 0018C990  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8018FA54 0018C994  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8018FA50 0018C990  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8018FA54 0018C994  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 8018FA58 0018C998  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8018FA5C 0018C99C  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8018FA60 0018C9A0  41 82 00 90 */	beq lbl_8018FAF0

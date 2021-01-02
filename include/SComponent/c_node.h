@@ -2,11 +2,13 @@
 #ifndef SCOMPONENT_C_NODE_H
 #define SCOMPONENT_C_NODE_H
 
-struct node_class {
-    node_class* mpPrevNode;
+#include "global.h"
+
+typedef struct node_class {
+    struct node_class* mpPrevNode;
     void* mpData;
-    node_class* mpNextNode;
-};
+    struct node_class* mpNextNode;
+} node_class;
 
 extern "C" {
 

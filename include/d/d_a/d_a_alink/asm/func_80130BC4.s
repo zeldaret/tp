@@ -108,8 +108,8 @@ lbl_80130D38:
 /* 80130D4C 0012DC8C  D0 1F 34 7C */ stfs f0, 0x347c(r31)
 /* 80130D50 0012DC90  48 00 05 54 */ b lbl_801312A4
 lbl_80130D54:
-/* 80130D54 0012DC94  3C 60 80 3E */ lis r3, lbl_803DD2E8@ha
-/* 80130D58 0012DC98  38 63 D2 E8 */ addi r3, r3, lbl_803DD2E8@l
+/* 80130D54 0012DC94  3C 60 80 3E */ lis r3, m_cpadInfo@ha
+/* 80130D58 0012DC98  38 63 D2 E8 */ addi r3, r3, m_cpadInfo@l
 /* 80130D5C 0012DC9C  80 03 00 30 */ lwz r0, 0x30(r3)
 /* 80130D60 0012DCA0  54 1A C7 FE */ rlwinm r26, r0, 0x18, 0x1f, 0x1f
 /* 80130D64 0012DCA4  A8 1F 30 10 */ lha r0, 0x3010(r31)
@@ -252,8 +252,8 @@ lbl_80130F24:
 /* 80130F4C 0012DE8C  4B FF 87 8D */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
 lbl_80130F50:
 /* 80130F50 0012DE90  AB 3F 30 0E */ lha r25, 0x300e(r31)
-/* 80130F54 0012DE94  3C 60 80 3E */ lis r3, lbl_803DD2E8@ha
-/* 80130F58 0012DE98  38 63 D2 E8 */ addi r3, r3, lbl_803DD2E8@l
+/* 80130F54 0012DE94  3C 60 80 3E */ lis r3, m_cpadInfo@ha
+/* 80130F58 0012DE98  38 63 D2 E8 */ addi r3, r3, m_cpadInfo@l
 /* 80130F5C 0012DE9C  C3 E3 00 04 */ lfs f31, 4(r3)
 /* 80130F60 0012DEA0  38 7F 2D 84 */ addi r3, r31, 0x2d84
 /* 80130F64 0012DEA4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)

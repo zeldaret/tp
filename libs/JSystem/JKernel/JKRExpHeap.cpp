@@ -157,7 +157,7 @@ asm bool JKRExpHeap::dump(void) {
 #include "JSystem/JKernel/JKRExpHeap/asm/func_802D03B8.s"
 }
 
-asm void JKRExpHeap::dump_sort(void) {
+asm bool JKRExpHeap::dump_sort(void) {
     nofralloc
 #include "JSystem/JKernel/JKRExpHeap/asm/func_802D05CC.s"
 }

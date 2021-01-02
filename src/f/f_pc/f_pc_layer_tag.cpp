@@ -1,6 +1,6 @@
 #include "f/f_pc/f_pc_layer_tag.h"
+#include "dolphin/types.h"
 #include "f/f_pc/f_pc_layer.h"
-#include "global.h"
 
 // f_pc_layer_tag::crear
 extern layer_management_tag_class lbl_803A3A00;
@@ -16,7 +16,7 @@ s32 fpcLyTg_ToQueue(layer_management_tag_class* pTag, u32 layerID, u16 listID, u
             pTag->mpLayer = fpcLy_Layer(layerID);
         }
         if (layerID == -1 || layerID == -3) {
-            int tmp = fpcLy_ToQueue(pTag->mpLayer, listID, &pTag->mCreateTag);
+            s32 tmp = fpcLy_ToQueue(pTag->mpLayer, listID, &pTag->mCreateTag);
             if (tmp != 0x0) {
                 pTag->mNodeListID = listID;
                 pTag->mNodeListIdx = tmp - 1;
@@ -55,9 +55,10 @@ s32 fpcLyTg_Move(layer_management_tag_class* pTag, u32 layerID, u16 listID, u16 
 }
 
 s32 fpcLyTg_Init(layer_management_tag_class* pTag, u32 param2, void* param3) {
+    layer_class* layer;
     *pTag = lbl_803A3A00;
     cTg_Create(&pTag->mCreateTag, param3);
-    layer_class* layer = fpcLy_Layer(param2);
+    layer = fpcLy_Layer(param2);
     if (layer != NULL) {
         pTag->mpLayer = layer;
         return 1;

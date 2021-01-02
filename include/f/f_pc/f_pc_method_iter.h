@@ -3,6 +3,7 @@
 #define F_PC_METHOD_ITER_H
 
 #include "SComponent/c_list_iter.h"
+#include "global.h"
 
 extern "C" {
 

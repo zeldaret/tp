@@ -5,13 +5,15 @@
 #include "SComponent/c_tag.h"
 #include "global.h"
 
-struct create_tag : public create_tag_class {};
+typedef struct create_tag {
+    create_tag_class mBase;
+} create_tag;
 
 extern "C" {
 
 void fpcCtTg_ToCreateQ(create_tag_class* pTag);
 void fpcCtTg_CreateQTo(create_tag_class* pTag);
-int fpcCtTg_Init(create_tag* pTag, void* pUserData);
+s32 fpcCtTg_Init(create_tag* pTag, void* pUserData);
 };
 
 #endif

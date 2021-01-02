@@ -4,6 +4,7 @@
 
 #include "SComponent/c_node_iter.h"
 #include "SComponent/c_tree.h"
+#include "global.h"
 
 extern "C" {
 

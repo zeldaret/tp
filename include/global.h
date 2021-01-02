@@ -13,4 +13,10 @@ struct Vec {
 #include "os/OS.h"
 #include "variables.h"
 
+// hack to make functions that return comparisons as int match
+extern int __cntlzw(unsigned int);
+inline BOOL checkEqual(s32 a, s32 b) {
+    return (u32)__cntlzw(a - b) >> 5;
+}
+
 #endif

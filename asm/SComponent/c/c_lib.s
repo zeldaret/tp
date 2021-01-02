@@ -14,8 +14,8 @@ cLib_memCpy:
 /* 8026F954 0026C894  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026F958 0026C898  4E 80 00 20 */	blr 
 
-.global cLib_memSet
-cLib_memSet:
+.global cLib_memSet__FPviUl
+cLib_memSet__FPviUl:
 /* 8026F95C 0026C89C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8026F960 0026C8A0  7C 08 02 A6 */	mflr r0
 /* 8026F964 0026C8A4  90 01 00 14 */	stw r0, 0x14(r1)

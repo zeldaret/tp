@@ -1745,8 +1745,8 @@ lbl_804514D4:
 .global lbl_804514D8
 lbl_804514D8:
 	.skip 0x4
-.global lbl_804514DC
-lbl_804514DC:
+.global sAnalogMode
+sAnalogMode:
 	.skip 0x4
 .global _sRumbleSupported
 _sRumbleSupported:

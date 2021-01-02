@@ -1,4 +1,3 @@
-
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_layer.h"
@@ -8,12 +7,12 @@
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
 
+// g_fpcNd_type
+extern s32 lbl_80450D40;
+
 extern "C" {
 
-extern int fpcPause_IsEnable(base_process_class* pProc, int);
-
-// g_fpcNd_type
-extern int lbl_80450D40;
+extern s32 fpcPause_IsEnable(base_process_class* pProc, s32);
 
 base_process_class* fpcEx_Search(void* pFunc, void* pUserData) {
     return (base_process_class*)fpcLyIt_AllJudge((cNdIt_MethodFunc)pFunc, pUserData);
@@ -27,23 +26,22 @@ base_process_class* fpcEx_SearchByID(u32 id) {
     ;
 }
 
-bool fpcEx_IsExist(int id) {
-    return fpcEx_SearchByID(id) != NULL;
+BOOL fpcEx_IsExist(s32 id) {
+    return fpcEx_SearchByID(id) != NULL ? 1 : 0;
 }
 
-int fpcEx_Execute(base_process_class* pProc) {
+s32 fpcEx_Execute(base_process_class* pProc) {
     if (pProc->mInitState != 2 || fpcPause_IsEnable(pProc, 1) == 1)
         return 0;
-    fpcBs_Execute(pProc);
-    // TODO: missing return?
+    return fpcBs_Execute(pProc);
 }
 
-int fpcEx_ToLineQ(base_process_class* pProc) {
+s32 fpcEx_ToLineQ(base_process_class* pProc) {
     layer_class* pLayer = pProc->mLyTg.mpLayer;
-    base_process_class* pLayerPcNode = pLayer->mpPcNode;
+    base_process_class* pLayerPcNode = &pLayer->mpPcNode->mBase;
 
-    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg) == true) {
-        int ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
+    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg.mBase) == TRUE) {
+        s32 ret = fpcLnTg_ToQueue(&pProc->mLnTg, pProc->mPi.mInfoCurr.mListID);
         if (ret == 0) {
             fpcLyTg_QueueTo(&pProc->mLyTg);
             return 0;
@@ -61,8 +59,8 @@ int fpcEx_ToLineQ(base_process_class* pProc) {
     return 0;
 }
 
-int fpcEx_ExecuteQTo(base_process_class* pProc) {
-    int ret = fpcLyTg_QueueTo(&pProc->mLyTg);
+s32 fpcEx_ExecuteQTo(base_process_class* pProc) {
+    s32 ret = fpcLyTg_QueueTo(&pProc->mLyTg);
     if (ret == 1) {
         pProc->mInitState = 3;
         return 1;
@@ -71,8 +69,8 @@ int fpcEx_ExecuteQTo(base_process_class* pProc) {
     }
 }
 
-int fpcEx_ToExecuteQ(base_process_class* pProc) {
-    int ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer,
+s32 fpcEx_ToExecuteQ(base_process_class* pProc) {
+    s32 ret = fpcLyTg_ToQueue(&pProc->mLyTg, pProc->mPi.mInfoCurr.mLayer,
                               pProc->mPi.mInfoCurr.mListID, pProc->mPi.mInfoCurr.mListPrio);
     if (ret == 1) {
         fpcEx_ToLineQ(pProc);
@@ -83,6 +81,6 @@ int fpcEx_ToExecuteQ(base_process_class* pProc) {
 }
 
 void fpcEx_Handler(cNdIt_MethodFunc pFunc) {
-    return fpcLnIt_Queue(pFunc);
+    fpcLnIt_Queue(pFunc);
 }
-};
+}

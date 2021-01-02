@@ -4598,8 +4598,8 @@ lbl_801F391C:
 /* 801F3954 001F0894  40 82 01 2C */	bne lbl_801F3A80
 /* 801F3958 001F0898  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 801F395C 001F089C  4B E3 E8 41 */	bl checkTrigger__9STControlFv
-/* 801F3960 001F08A0  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F3964 001F08A4  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F3960 001F08A0  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F3964 001F08A4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F3968 001F08A8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801F396C 001F08AC  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801F3970 001F08B0  41 82 00 10 */	beq lbl_801F3980
@@ -5110,8 +5110,8 @@ lbl_801F40C0:
 /* 801F40F8 001F1038  40 82 01 2C */	bne lbl_801F4224
 /* 801F40FC 001F103C  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 801F4100 001F1040  4B E3 E0 9D */	bl checkTrigger__9STControlFv
-/* 801F4104 001F1044  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F4108 001F1048  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F4104 001F1044  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F4108 001F1048  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F410C 001F104C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801F4110 001F1050  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801F4114 001F1054  41 82 00 10 */	beq lbl_801F4124
@@ -6037,8 +6037,8 @@ dMenu_save_c_NS_errYesNoSelect:
 lbl_801F4E84:
 /* 801F4E84 001F1DC4  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 801F4E88 001F1DC8  4B E3 D3 15 */	bl checkTrigger__9STControlFv
-/* 801F4E8C 001F1DCC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 801F4E90 001F1DD0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 801F4E8C 001F1DCC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 801F4E90 001F1DD0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 801F4E94 001F1DD4  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801F4E98 001F1DD8  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 801F4E9C 001F1DDC  41 82 00 A0 */	beq lbl_801F4F3C
