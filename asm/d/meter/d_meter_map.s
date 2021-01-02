@@ -1066,8 +1066,8 @@ lbl_8020E310:
 /* 8020E374 0020B2B4  48 01 06 5D */	bl dMeter2Info_set2DVibration
 /* 8020E378 0020B2B8  48 00 00 28 */	b lbl_8020E3A0
 lbl_8020E37C:
-/* 8020E37C 0020B2BC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8020E380 0020B2C0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8020E37C 0020B2BC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8020E380 0020B2C0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 8020E384 0020B2C4  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8020E388 0020B2C8  54 60 07 39 */	rlwinm. r0, r3, 0, 0x1c, 0x1c
 /* 8020E38C 0020B2CC  40 82 00 14 */	bne lbl_8020E3A0

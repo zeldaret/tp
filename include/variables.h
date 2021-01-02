@@ -10,8 +10,8 @@ extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 lbl_804514E0;
 extern u8 lbl_803C3384;
-struct m_cpadInfo;
-extern m_cpadInfo lbl_803DD2E8;
+struct cpadInfo;
+extern cpadInfo m_cpadInfo;
 extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;
 extern u8 lbl_80450B19;
@@ -40,8 +40,8 @@ extern u8 lbl_80450B1C;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450B24;
 extern u8 lbl_80450B24;
-extern u8 lbl_803F1BBC;
-extern u8 lbl_803F1BBC;
+struct g_HIO_struct;
+extern g_HIO_struct g_HIO;
 extern u8 lbl_80450C2C;
 extern u8 lbl_80450C28;
 extern u8 lbl_80450C34;
@@ -49,6 +49,8 @@ extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450580;
 extern u8 lbl_80450B1A;
+struct JUTGamePad;
+extern JUTGamePad* m_gamePad[4];
 extern u8 lbl_80450B18;
 extern u8 lbl_803D32E0;
 extern u8 lbl_80450BBC;
@@ -61,6 +63,8 @@ extern u8 __ct__12dSv_memory_cFv;
 extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
+struct ResetData;
+extern ResetData* m_Do_Reset_NS_mDoRst_NS_mResetData;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -364,6 +368,39 @@ extern u8 lbl_804513F8;        // JKernel::maxDest (static?)
 extern u8 lbl_804513FC;        // DAT_804513fc (init global mutex)
 extern u8 lbl_80451400;        // JKernel::tsPtr (static?)
 extern u8 lbl_80451404;        // JKernel::tsArea (static?)
+
+extern u8 lbl_803CC158;  // JKRAram::__vt
+extern u8 lbl_8039D078;  // "JKRAram.cpp"
+extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
+extern u8 lbl_803CC138;  // JKRAram::sMessageQueue
+extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
+extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
+extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
+extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
+
+extern bool lbl_80451501;
+
+extern float lbl_80451A20;   // m_Do_controller_pad::@3709 0.06666667
+extern float lbl_80451A24;   // m_Do_controller_pad::@3710 1.0
+extern float lbl_80451A28;   // m_Do_controller_pad::@3711 0.007142857
+extern double lbl_80451A30;  // m_Do_controller_pad::@3713 4.503599627370496E15
+
+extern s32 sAnalogMode;
+extern u8 lbl_804513CC;  // JKernel::szpBuf (static?)
+extern u8 lbl_804513D0;  // JKernel::szpEnd (static?)
+extern u8 lbl_804513D4;  // JKernel::refBuf (static?)
+extern u8 lbl_804513D8;  // JKernel::refEnd (static?)
+extern u8 lbl_804513DC;  // JKernel::refCurrent (static?)
+extern u8 lbl_804513E0;  // JKernel::srcOffset (static?)
+extern u8 lbl_804513E4;  // JKernel::transLeft (static?)
+extern u8 lbl_804513E8;  // JKernel::srcLimit (static?)
+extern u8 lbl_804513EC;  // JKernel::srcAddress (static?)
+extern u8 lbl_804513F0;  // JKernel::fileOffset (static?)
+extern u8 lbl_804513F4;  // JKernel::readCount (static?)
+extern u8 lbl_804513F8;  // JKernel::maxDest (static?)
+extern u8 lbl_804513FC;  // DAT_804513fc (init global mutex)
+extern u8 lbl_80451400;  // JKernel::tsPtr (static?)
+extern u8 lbl_80451404;  // JKernel::tsArea (static?)
 
 extern u8 lbl_803CC158;  // JKRAram::__vt
 extern u8 lbl_8039D078;  // "JKRAram.cpp"

@@ -8,8 +8,8 @@
 /* 800057A8 000026E8  48 33 C7 59 */	bl OSCheckActiveThreads
 /* 800057AC 000026EC  38 A0 00 00 */	li r5, 0
 /* 800057B0 000026F0  57 64 30 32 */	slwi r4, r27, 6
-/* 800057B4 000026F4  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 800057B8 000026F8  38 03 D2 E8 */	addi r0, r3, lbl_803DD2E8@l
+/* 800057B4 000026F4  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 800057B8 000026F8  38 03 D2 E8 */	addi r0, r3, m_cpadInfo@l
 /* 800057BC 000026FC  7C 60 22 14 */	add r3, r0, r4
 /* 800057C0 00002700  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 800057C4 00002704  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
