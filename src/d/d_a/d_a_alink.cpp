@@ -1,6 +1,7 @@
 #include "d/d_a/d_a_alink/d_a_alink.h"
 #include "SComponent/c_bg_w.h"
 #include "SComponent/c_phase.h"
+#include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "f/f_pc/f_pc_manager.h"
@@ -15051,11 +15052,8 @@ asm void dMeter2Info_offUseButton(void) {
 #include "d/d_a/d_a_alink/asm/func_8014196C.s"
 }
 
-// setLinkState__14Z2CreatureLinkFUc
-// Z2CreatureLink::setLinkState(unsigned char)
-asm void Z2CreatureLink_NS_setLinkState(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141988.s"
+void Z2CreatureLink::setLinkState(u8 state) {
+    link_state = state;
 }
 
 // dComIfGs_getRupee__Fv
@@ -15078,25 +15076,16 @@ asm void dMeter2Info_setFloatingMessage(void) {
 #include "d/d_a/d_a_alink/asm/func_801419B8.s"
 }
 
-// onForcePanic__9daMidna_cFv
-// daMidna_c::onForcePanic(void)
-asm void daMidna_c_NS_onForcePanic(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_801419F4.s"
+void daMidna_c::onForcePanic(void) {
+    unk2200 |= 8;
 }
 
-// checkForceNormalColor__9daMidna_cCFv
-// daMidna_c::checkForceNormalColor(const void)
-asm void daMidna_c_NS_checkForceNormalColor(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141A04.s"
+u32 daMidna_c::checkForceNormalColor(void) const {
+    return unk2196 & 8;
 }
 
-// checkForceTiredColor__9daMidna_cCFv
-// daMidna_c::checkForceTiredColor(const void)
-asm void daMidna_c_NS_checkForceTiredColor(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141A10.s"
+u32 daMidna_c::checkForceTiredColor(void) const {
+    return unk2196 & 4;
 }
 
 // checkMidnaTired__9daMidna_cFv
@@ -15106,11 +15095,8 @@ asm void daMidna_c_NS_checkMidnaTired(void) {
 #include "d/d_a/d_a_alink/asm/func_80141A1C.s"
 }
 
-// onNoServiceWait__9daMidna_cFv
-// daMidna_c::onNoServiceWait(void)
-asm void daMidna_c_NS_onNoServiceWait(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141A84.s"
+void daMidna_c::onNoServiceWait(void) {
+    unk2200 |= 128;
 }
 
 // setControllActorData__8daCrod_cFv

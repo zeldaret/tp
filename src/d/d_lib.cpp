@@ -1,4 +1,5 @@
 #include "d/d_lib/d_lib.h"
+#include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "d/d_event/d_event/d_event.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "os/OS.h"
@@ -62,19 +63,18 @@ asm void STControl::Yinit(void) {
 #endif
 
 double STControl::getValueStick() {
-    return (double)lbl_803DD2E8[0].mMainStickValue;
 }
 
 s16 STControl::getAngleStick() {
-    return lbl_803DD2E8[0].mMainStickAngle;
+    return m_cpadInfo[0].mMainStickAngle;
 }
 
 double CSTControl::getValueStick() {
-    return (double)lbl_803DD2E8[0].mCStickValue;
+    return (double)m_cpadInfo[0].mCStickValue;
 }
 
 s16 CSTControl::getAngleStick() {
-    return lbl_803DD2E8[0].mCStickAngle;
+    return m_cpadInfo[0].mCStickAngle;
 }
 
 asm u32 STControl::checkTrigger() {
@@ -90,7 +90,6 @@ bool STControl::checkLeftTrigger() {
             field_0x18 = field_0x18 - field_0x16;
             if (field_0x18 < field_0x14) {
                 field_0x18 = field_0x14;
-            }
         } else {
             field_0x1e = field_0x1e + -1;
         }

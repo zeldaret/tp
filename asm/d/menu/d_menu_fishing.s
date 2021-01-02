@@ -597,8 +597,8 @@ lbl_801C5550:
 /* 801C55AC 001C24EC  80 04 00 04 */	lwz r0, 4(r4)
 /* 801C55B0 001C24F0  2C 00 00 01 */	cmpwi r0, 1
 /* 801C55B4 001C24F4  4C 82 00 20 */	bnelr 
-/* 801C55B8 001C24F8  3C 80 80 3E */	lis r4, lbl_803DD2E8@ha
-/* 801C55BC 001C24FC  38 84 D2 E8 */	addi r4, r4, lbl_803DD2E8@l
+/* 801C55B8 001C24F8  3C 80 80 3E */	lis r4, m_cpadInfo@ha
+/* 801C55BC 001C24FC  38 84 D2 E8 */	addi r4, r4, m_cpadInfo@l
 /* 801C55C0 001C2500  80 04 00 34 */	lwz r0, 0x34(r4)
 /* 801C55C4 001C2504  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 801C55C8 001C2508  4D 82 00 20 */	beqlr 
