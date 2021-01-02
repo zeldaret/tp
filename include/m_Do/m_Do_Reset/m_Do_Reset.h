@@ -22,7 +22,6 @@ struct ResetData {
     u8 field_0x16;
     u8 field_0x17;
 };
-extern ResetData* m_Do_Reset_NS_mDoRst_NS_mResetData;
 
 struct mDoRst {
     ResetData* getResetData();

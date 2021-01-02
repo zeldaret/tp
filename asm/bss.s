@@ -17,11 +17,11 @@ lbl_803DBF40:
 .global lbl_803DBF4C
 lbl_803DBF4C:
 	.skip 0x138C
-.global lbl_803DD2D8
-lbl_803DD2D8:
+.global m_gamePad
+m_gamePad:
 	.skip 0x10
-.global lbl_803DD2E8
-lbl_803DD2E8:
+.global m_cpadInfo
+m_cpadInfo:
 	.skip 0x100
 .global lbl_803DD3E8
 lbl_803DD3E8:
@@ -86,8 +86,8 @@ lbl_803F0F50:
 .global lbl_803F1BB0
 lbl_803F1BB0:
 	.skip 0xC
-.global lbl_803F1BBC
-lbl_803F1BBC:
+.global g_HIO
+g_HIO:
 	.skip 0x44
 .global lbl_803F1C00
 lbl_803F1C00:
