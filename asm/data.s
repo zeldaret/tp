@@ -296,8 +296,8 @@ lbl_803A7250:
 .global lbl_803A7260
 lbl_803A7260:
 	.incbin "baserom.dol", 0x3A4260, 0x10
-.global lbl_803A7270
-lbl_803A7270:
+.global i_item_lst
+i_item_lst:
 	.incbin "baserom.dol", 0x3A4270, 0x18
 .global lbl_803A7288
 lbl_803A7288:

@@ -2604,7 +2604,7 @@ dMsgScrnHowl_c_NS_drawGuide2:
 /* 80243020 0023FF60  DB 21 00 A0 */	stfd f25, 0xa0(r1)
 /* 80243024 0023FF64  F3 21 00 A8 */	psq_st f25, 168(r1), 0, qr0
 /* 80243028 0023FF68  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 8024302C 0023FF6C  48 11 F1 9D */	bl func_803621C8
+/* 8024302C 0023FF6C  48 11 F1 9D */	bl _savegpr_24
 /* 80243030 0023FF70  7C 7A 1B 78 */	mr r26, r3
 /* 80243034 0023FF74  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80243038 0023FF78  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
@@ -2969,7 +2969,7 @@ lbl_8024355C:
 /* 8024359C 002404DC  E3 21 00 A8 */	psq_l f25, 168(r1), 0, qr0
 /* 802435A0 002404E0  CB 21 00 A0 */	lfd f25, 0xa0(r1)
 /* 802435A4 002404E4  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 802435A8 002404E8  48 11 EC 6D */	bl func_80362214
+/* 802435A8 002404E8  48 11 EC 6D */	bl _restgpr_24
 /* 802435AC 002404EC  80 01 01 14 */	lwz r0, 0x114(r1)
 /* 802435B0 002404F0  7C 08 03 A6 */	mtlr r0
 /* 802435B4 002404F4  38 21 01 10 */	addi r1, r1, 0x110

@@ -553,12 +553,12 @@ func_803621C0:
 func_803621C4:
 /* 803621C4 0035F104  92 EB FF DC */	stw r23, -0x24(r11)
 
-.global func_803621C8
-func_803621C8:
+.global _savegpr_24
+_savegpr_24:
 /* 803621C8 0035F108  93 0B FF E0 */	stw r24, -0x20(r11)
 
-.global func_803621CC
-func_803621CC:
+.global _savegpr_25
+_savegpr_25:
 /* 803621CC 0035F10C  93 2B FF E4 */	stw r25, -0x1c(r11)
 
 .global _savegpr_26
@@ -620,8 +620,8 @@ func_8036220C:
 func_80362210:
 /* 80362210 0035F150  82 EB FF DC */	lwz r23, -0x24(r11)
 
-.global func_80362214
-func_80362214:
+.global _restgpr_24
+_restgpr_24:
 /* 80362214 0035F154  83 0B FF E0 */	lwz r24, -0x20(r11)
 
 .global _restgpr_25

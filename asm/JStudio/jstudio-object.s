@@ -221,7 +221,7 @@ JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_n:
 /* 802860D0 00283010  7C 08 02 A6 */	mflr r0
 /* 802860D4 00283014  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802860D8 00283018  39 61 00 30 */	addi r11, r1, 0x30
-/* 802860DC 0028301C  48 0D C0 F1 */	bl func_803621CC
+/* 802860DC 0028301C  48 0D C0 F1 */	bl _savegpr_25
 /* 802860E0 00283020  7C 79 1B 78 */	mr r25, r3
 /* 802860E4 00283024  7C 9A 23 78 */	mr r26, r4
 /* 802860E8 00283028  7D 1B 43 78 */	mr r27, r8

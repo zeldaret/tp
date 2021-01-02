@@ -77,8 +77,8 @@ dComIfG_play_c_NS_setNowVibration:
 /* 8002B3A8 000282E8  98 83 4F 5A */	stb r4, 0x4f5a(r3)
 /* 8002B3AC 000282EC  4E 80 00 20 */	blr 
 
-.global dComIfG_play_c_NS_getNowVibration
-dComIfG_play_c_NS_getNowVibration:
+.global getNowVibration__14dComIfG_play_cFv
+getNowVibration__14dComIfG_play_cFv:
 /* 8002B3B0 000282F0  88 63 4F 5A */	lbz r3, 0x4f5a(r3)
 /* 8002B3B4 000282F4  4E 80 00 20 */	blr 
 
@@ -3620,7 +3620,7 @@ dComIfGs_checkGetInsectNum:
 /* 8002E42C 0002B36C  7C 08 02 A6 */	mflr r0
 /* 8002E430 0002B370  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8002E434 0002B374  39 61 00 30 */	addi r11, r1, 0x30
-/* 8002E438 0002B378  48 33 3D 95 */	bl func_803621CC
+/* 8002E438 0002B378  48 33 3D 95 */	bl _savegpr_25
 /* 8002E43C 0002B37C  3B 60 00 00 */	li r27, 0
 /* 8002E440 0002B380  3C 60 80 3A */	lis r3, lbl_803A71D0@ha
 /* 8002E444 0002B384  38 03 71 D0 */	addi r0, r3, lbl_803A71D0@l
@@ -4048,7 +4048,7 @@ dComIfGp_calcNowRegion:
 /* 8002EA00 0002B940  7C 08 02 A6 */	mflr r0
 /* 8002EA04 0002B944  90 0C 00 04 */	stw r0, 4(r12)
 /* 8002EA08 0002B948  7D 8B 63 78 */	mr r11, r12
-/* 8002EA0C 0002B94C  48 33 37 C1 */	bl func_803621CC
+/* 8002EA0C 0002B94C  48 33 37 C1 */	bl _savegpr_25
 /* 8002EA10 0002B950  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8002EA14 0002B954  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 8002EA18 0002B958  80 7F 5C 68 */	lwz r3, 0x5c68(r31)
@@ -4217,7 +4217,7 @@ dComIfG_getNowCalcRegion:
 /* 8002EC64 0002BBA4  7C 08 02 A6 */	mflr r0
 /* 8002EC68 0002BBA8  90 0C 00 04 */	stw r0, 4(r12)
 /* 8002EC6C 0002BBAC  7D 8B 63 78 */	mr r11, r12
-/* 8002EC70 0002BBB0  48 33 35 5D */	bl func_803621CC
+/* 8002EC70 0002BBB0  48 33 35 5D */	bl _savegpr_25
 /* 8002EC74 0002BBB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8002EC78 0002BBB8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
 /* 8002EC7C 0002BBBC  80 7E 5C 68 */	lwz r3, 0x5c68(r30)

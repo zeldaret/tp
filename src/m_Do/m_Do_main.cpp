@@ -65,7 +65,8 @@ asm void CheckHeap(u32 param_1) {
 }
 #endif
 
-asm int countUsed(JKRExpHeap* heap){nofralloc
+asm int countUsed(JKRExpHeap* heap) {
+    nofralloc
 #include "m_Do/m_Do_main/asm/func_80005848.s"
 }
 

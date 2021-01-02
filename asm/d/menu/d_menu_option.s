@@ -104,7 +104,7 @@ dMenu_Option_c_NS__create:
 /* 801E2060 001DEFA0  7C 08 02 A6 */	mflr r0
 /* 801E2064 001DEFA4  90 01 00 64 */	stw r0, 0x64(r1)
 /* 801E2068 001DEFA8  39 61 00 60 */	addi r11, r1, 0x60
-/* 801E206C 001DEFAC  48 18 01 5D */	bl func_803621C8
+/* 801E206C 001DEFAC  48 18 01 5D */	bl _savegpr_24
 /* 801E2070 001DEFB0  7C 7F 1B 78 */	mr r31, r3
 /* 801E2074 001DEFB4  3C 60 80 39 */	lis r3, lbl_80396EA8@ha
 /* 801E2078 001DEFB8  3B C3 6E A8 */	addi r30, r3, lbl_80396EA8@l
@@ -872,7 +872,7 @@ lbl_801E2BB8:
 /* 801E2BFC 001DFB3C  38 80 00 01 */	li r4, 1
 /* 801E2C00 001DFB40  48 00 4C B9 */	bl dMenu_Option_c_NS_setHIO
 /* 801E2C04 001DFB44  39 61 00 60 */	addi r11, r1, 0x60
-/* 801E2C08 001DFB48  48 17 F6 0D */	bl func_80362214
+/* 801E2C08 001DFB48  48 17 F6 0D */	bl _restgpr_24
 /* 801E2C0C 001DFB4C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 801E2C10 001DFB50  7C 08 03 A6 */	mtlr r0
 /* 801E2C14 001DFB54  38 21 00 60 */	addi r1, r1, 0x60
@@ -884,7 +884,7 @@ dMenu_Option_c_NS__delete:
 /* 801E2C20 001DFB60  7C 08 02 A6 */	mflr r0
 /* 801E2C24 001DFB64  90 01 00 34 */	stw r0, 0x34(r1)
 /* 801E2C28 001DFB68  39 61 00 30 */	addi r11, r1, 0x30
-/* 801E2C2C 001DFB6C  48 17 F5 9D */	bl func_803621C8
+/* 801E2C2C 001DFB6C  48 17 F5 9D */	bl _savegpr_24
 /* 801E2C30 001DFB70  7C 7F 1B 78 */	mr r31, r3
 /* 801E2C34 001DFB74  80 63 00 48 */	lwz r3, 0x48(r3)
 /* 801E2C38 001DFB78  38 80 00 01 */	li r4, 1
@@ -1444,7 +1444,7 @@ lbl_801E33E0:
 /* 801E33E8 001E0328  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E33EC 001E032C  90 03 5C C4 */	stw r0, 0x5cc4(r3)
 /* 801E33F0 001E0330  39 61 00 30 */	addi r11, r1, 0x30
-/* 801E33F4 001E0334  48 17 EE 21 */	bl func_80362214
+/* 801E33F4 001E0334  48 17 EE 21 */	bl _restgpr_24
 /* 801E33F8 001E0338  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 801E33FC 001E033C  7C 08 03 A6 */	mtlr r0
 /* 801E3400 001E0340  38 21 00 30 */	addi r1, r1, 0x30
@@ -5804,7 +5804,7 @@ dMenu_Option_c_NS_setSelectColor:
 /* 801E73DC 001E431C  7C 08 02 A6 */	mflr r0
 /* 801E73E0 001E4320  90 01 00 64 */	stw r0, 0x64(r1)
 /* 801E73E4 001E4324  39 61 00 60 */	addi r11, r1, 0x60
-/* 801E73E8 001E4328  48 17 AD E5 */	bl func_803621CC
+/* 801E73E8 001E4328  48 17 AD E5 */	bl _savegpr_25
 /* 801E73EC 001E432C  7C 7C 1B 78 */	mr r28, r3
 /* 801E73F0 001E4330  7C BD 2B 78 */	mr r29, r5
 /* 801E73F4 001E4334  3B C0 00 00 */	li r30, 0
@@ -6695,7 +6695,7 @@ lbl_801E8088:
 
 .global dMenu_Option_c_NS_isRumbleSupported
 dMenu_Option_c_NS_isRumbleSupported:
-/* 801E80A0 001E4FE0  80 0D 8F 60 */	lwz r0, lbl_804514E0-_SDA_BASE_(r13)
+/* 801E80A0 001E4FE0  80 0D 8F 60 */	lwz r0, _sRumbleSupported-_SDA_BASE_(r13)
 /* 801E80A4 001E4FE4  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 801E80A8 001E4FE8  4E 80 00 20 */	blr 
 
@@ -6822,7 +6822,7 @@ dMenu_Option_c_NS_initialize:
 /* 801E826C 001E51AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801E8270 001E51B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E8274 001E51B4  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 801E8278 001E51B8  4B E4 31 39 */	bl dComIfG_play_c_NS_getNowVibration
+/* 801E8278 001E51B8  4B E4 31 39 */	bl getNowVibration__14dComIfG_play_cFv
 /* 801E827C 001E51BC  98 7F 03 EA */	stb r3, 0x3ea(r31)
 /* 801E8280 001E51C0  48 00 00 0C */	b lbl_801E828C
 lbl_801E8284:
@@ -7558,7 +7558,7 @@ dMenu_Option_c_NS_yesnoWakuAlpahAnm:
 /* 801E8D00 001E5C40  7C 08 02 A6 */	mflr r0
 /* 801E8D04 001E5C44  90 01 00 54 */	stw r0, 0x54(r1)
 /* 801E8D08 001E5C48  39 61 00 50 */	addi r11, r1, 0x50
-/* 801E8D0C 001E5C4C  48 17 94 C1 */	bl func_803621CC
+/* 801E8D0C 001E5C4C  48 17 94 C1 */	bl _savegpr_25
 /* 801E8D10 001E5C50  7C 79 1B 78 */	mr r25, r3
 /* 801E8D14 001E5C54  3B A0 00 00 */	li r29, 0
 /* 801E8D18 001E5C58  54 80 06 3E */	clrlwi r0, r4, 0x18

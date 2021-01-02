@@ -16,44 +16,44 @@ int checkItemGet(u8 item_id, int param_2) {
 }
 
 void item_func_HEART(void) {
-    g_dComIfG_gameInfo.give_item.hearts += lbl_80452BD8;
-    g_dComIfG_gameInfo.unk35[0xBE] = 0;
+    g_dComIfG_gameInfo.getPlayGiveItem().hearts += lbl_80452BD8;
+    g_dComIfG_gameInfo.getPlayUnkHeart() = 0;
 }
 
 void item_func_GREEN_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 1;
 }
 
 void item_func_BLUE_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 5;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 5;
 }
 
 void item_func_YELLOW_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 10;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 10;
 }
 
 void item_func_RED_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 20;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 20;
 }
 
 void item_func_PURPLE_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 50;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 50;
 }
 
 void item_func_ORANGE_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 100;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 100;
 }
 
 void item_func_SILVER_RUPEE(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 200;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 200;
 }
 
 void item_func_S_MAGIC(void) {
-    g_dComIfG_gameInfo.give_item.magic += 4;
+    g_dComIfG_gameInfo.getPlayGiveItem().magic += 4;
 }
 
 void item_func_L_MAGIC(void) {
-    g_dComIfG_gameInfo.give_item.magic += 8;
+    g_dComIfG_gameInfo.getPlayGiveItem().magic += 8;
 }
 
 void item_func_BOMB_5(void) {
@@ -73,23 +73,23 @@ void item_func_BOMB_30(void) {
 }
 
 void item_func_ARROW_10(void) {
-    g_dComIfG_gameInfo.give_item.arrows += 10;
+    g_dComIfG_gameInfo.getPlayGiveItem().arrows += 10;
 }
 
 void item_func_ARROW_20(void) {
-    g_dComIfG_gameInfo.give_item.arrows += 20;
+    g_dComIfG_gameInfo.getPlayGiveItem().arrows += 20;
 }
 
 void item_func_ARROW_30(void) {
-    g_dComIfG_gameInfo.give_item.arrows += 30;
+    g_dComIfG_gameInfo.getPlayGiveItem().arrows += 30;
 }
 
 void item_func_ARROW_1(void) {
-    g_dComIfG_gameInfo.give_item.arrows += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().arrows += 1;
 }
 
 void item_func_PACHINKO_SHOT(void) {
-    g_dComIfG_gameInfo.give_item.seeds += 50;
+    g_dComIfG_gameInfo.getPlayGiveItem().seeds += 50;
 }
 
 void item_func_WATER_BOMB_5(void) {
@@ -125,8 +125,8 @@ void item_func_BOMB_INSECT_30(void) {
 }
 
 void item_func_RECOVER_FAILY(void) {
-    g_dComIfG_gameInfo.give_item.hearts += lbl_80452BDC;
-    g_dComIfG_gameInfo.unk35[0xBE] = 0;
+    g_dComIfG_gameInfo.getPlayGiveItem().hearts += lbl_80452BDC;
+    g_dComIfG_gameInfo.getPlayUnkHeart() = 0;
 }
 
 void item_func_TRIPLE_HEART(void) {
@@ -134,11 +134,11 @@ void item_func_TRIPLE_HEART(void) {
 }
 
 void item_func_SMALL_KEY(void) {
-    g_dComIfG_gameInfo.give_item.small_keys += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().small_keys += 1;
 }
 
 void item_func_KAKERA_HEART(void) {
-    g_dComIfG_gameInfo.give_item.kakera_heart += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().kakera_heart += 1;
 }
 
 asm void item_func_UTUWA_HEART(void) {
@@ -218,8 +218,8 @@ void item_func_WEAR_ZORA(void) {
 }
 
 void item_func_MAGIC_LV1(void) {
-    g_dComIfG_gameInfo.give_item.magic += 16;
-    g_dComIfG_gameInfo.give_item.magic_lv += 16;
+    g_dComIfG_gameInfo.getPlayGiveItem().magic += 16;
+    g_dComIfG_gameInfo.getPlayGiveItem().magic_lv += 16;
 }
 
 void item_func_DUNGEON_EXIT_2(void) {
@@ -329,7 +329,7 @@ void item_func_FISHING_ROD_1(void) {
 }
 
 void item_func_PACHINKO(void) {
-    g_dComIfG_gameInfo.give_item.seeds += 50;
+    g_dComIfG_gameInfo.getPlayGiveItem().seeds += 50;
     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_23, PACHINKO);
 }
 
@@ -811,11 +811,11 @@ void item_func_LV7_DUNGEON_EXIT(void) {
 }
 
 void item_func_LINKS_SAVINGS(void) {
-    g_dComIfG_gameInfo.give_item.rupees += 50;
+    g_dComIfG_gameInfo.getPlayGiveItem().rupees += 50;
 }
 
 void item_func_SMALL_KEY2(void) {
-    g_dComIfG_gameInfo.give_item.small_keys += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().small_keys += 1;
 }
 
 void item_func_POU_FIRE1(void) {
@@ -879,7 +879,7 @@ void item_func_LV2_BOSS_KEY(void) {
 }
 
 void item_func_KEY_OF_FILONE(void) {
-    g_dComIfG_gameInfo.give_item.small_keys += 1;
+    g_dComIfG_gameInfo.getPlayGiveItem().small_keys += 1;
 }
 
 void item_func_noentry(void) {

@@ -1101,7 +1101,7 @@ dDlst_GameOverScrnDraw_c_NS_setBackAlpha:
 /* 8019BD00 00198C40  DB E1 00 60 */	stfd f31, 0x60(r1)
 /* 8019BD04 00198C44  F3 E1 00 68 */	psq_st f31, 104(r1), 0, qr0
 /* 8019BD08 00198C48  39 61 00 60 */	addi r11, r1, 0x60
-/* 8019BD0C 00198C4C  48 1C 64 BD */	bl func_803621C8
+/* 8019BD0C 00198C4C  48 1C 64 BD */	bl _savegpr_24
 /* 8019BD10 00198C50  7C 7E 1B 78 */	mr r30, r3
 /* 8019BD14 00198C54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8019BD18 00198C58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -1241,7 +1241,7 @@ lbl_8019BF08:
 /* 8019BF1C 00198E5C  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 8019BF20 00198E60  CB E1 00 60 */	lfd f31, 0x60(r1)
 /* 8019BF24 00198E64  39 61 00 60 */	addi r11, r1, 0x60
-/* 8019BF28 00198E68  48 1C 62 ED */	bl func_80362214
+/* 8019BF28 00198E68  48 1C 62 ED */	bl _restgpr_24
 /* 8019BF2C 00198E6C  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 8019BF30 00198E70  7C 08 03 A6 */	mtlr r0
 /* 8019BF34 00198E74  38 21 00 70 */	addi r1, r1, 0x70

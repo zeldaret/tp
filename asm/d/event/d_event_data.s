@@ -1721,7 +1721,7 @@ dEvDtStaff_c_NS_specialProcDirector:
 /* 80044EE8 00041E28  7C 08 02 A6 */	mflr r0
 /* 80044EEC 00041E2C  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80044EF0 00041E30  39 61 00 40 */	addi r11, r1, 0x40
-/* 80044EF4 00041E34  48 31 D2 D5 */	bl func_803621C8
+/* 80044EF4 00041E34  48 31 D2 D5 */	bl _savegpr_24
 /* 80044EF8 00041E38  7C 7D 1B 78 */	mr r29, r3
 /* 80044EFC 00041E3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80044F00 00041E40  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l
@@ -2376,7 +2376,7 @@ lbl_80045854:
 /* 8004585C 0004279C  48 00 29 21 */	bl dEvent_manager_c_NS_cutEnd
 lbl_80045860:
 /* 80045860 000427A0  39 61 00 40 */	addi r11, r1, 0x40
-/* 80045864 000427A4  48 31 C9 B1 */	bl func_80362214
+/* 80045864 000427A4  48 31 C9 B1 */	bl _restgpr_24
 /* 80045868 000427A8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8004586C 000427AC  7C 08 03 A6 */	mtlr r0
 /* 80045870 000427B0  38 21 00 40 */	addi r1, r1, 0x40
@@ -2390,7 +2390,7 @@ dEvDtStaff_c_NS_specialProcPackage:
 /* 80045884 000427C4  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80045888 000427C8  F3 E1 00 38 */	psq_st f31, 56(r1), 0, qr0
 /* 8004588C 000427CC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80045890 000427D0  48 31 C9 3D */	bl func_803621CC
+/* 80045890 000427D0  48 31 C9 3D */	bl _savegpr_25
 /* 80045894 000427D4  7C 7B 1B 78 */	mr r27, r3
 /* 80045898 000427D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8004589C 000427DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -2655,7 +2655,7 @@ dEvDtStaff_c_NS_specialProcEffect:
 /* 80045C48 00042B88  DB C1 00 50 */	stfd f30, 0x50(r1)
 /* 80045C4C 00042B8C  F3 C1 00 58 */	psq_st f30, 88(r1), 0, qr0
 /* 80045C50 00042B90  39 61 00 50 */	addi r11, r1, 0x50
-/* 80045C54 00042B94  48 31 C5 75 */	bl func_803621C8
+/* 80045C54 00042B94  48 31 C5 75 */	bl _savegpr_24
 /* 80045C58 00042B98  7C 7B 1B 78 */	mr r27, r3
 /* 80045C5C 00042B9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80045C60 00042BA0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
@@ -2961,7 +2961,7 @@ lbl_80046080:
 /* 80046088 00042FC8  E3 C1 00 58 */	psq_l f30, 88(r1), 0, qr0
 /* 8004608C 00042FCC  CB C1 00 50 */	lfd f30, 0x50(r1)
 /* 80046090 00042FD0  39 61 00 50 */	addi r11, r1, 0x50
-/* 80046094 00042FD4  48 31 C1 81 */	bl func_80362214
+/* 80046094 00042FD4  48 31 C1 81 */	bl _restgpr_24
 /* 80046098 00042FD8  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 8004609C 00042FDC  7C 08 03 A6 */	mtlr r0
 /* 800460A0 00042FE0  38 21 00 70 */	addi r1, r1, 0x70

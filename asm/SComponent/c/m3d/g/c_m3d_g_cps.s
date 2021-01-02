@@ -3,8 +3,8 @@
 .section .text, "ax" # 8026ef88
 
 
-.global cM3dGCps
-cM3dGCps:
+.global __ct__8cM3dGCpsFv
+__ct__8cM3dGCpsFv:
 /* 8026EF88 0026BEC8  3C 80 80 3A */	lis r4, lbl_803A78F8@ha
 /* 8026EF8C 0026BECC  38 04 78 F8 */	addi r0, r4, lbl_803A78F8@l
 /* 8026EF90 0026BED0  90 03 00 18 */	stw r0, 0x18(r3)
