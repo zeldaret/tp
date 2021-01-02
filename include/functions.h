@@ -1,6 +1,3 @@
-#ifndef __FUNCTIONS_H__
-#define __FUNCTIONS_H__
-
 #include "os/OS.h"
 
 extern "C" {
@@ -3792,5 +3789,3 @@ void J3DGXColorS10(void);
 
 u32 dEv_noFinishSkipProc(void);
 }
-
-#endif

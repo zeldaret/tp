@@ -1,7 +1,7 @@
 #ifndef __C_API_CONTROLLER_PAD__
 #define __C_API_CONTROLLER_PAD__
 
-#include "functions.h"
+#include "global.h"
 
 struct interface_of_controller_pad {
     f32 mMainStickPosX;
