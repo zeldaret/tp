@@ -172,7 +172,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/d_kyeff.o    \
             $(BUILD_DIR)/asm/d/d_kyeff2.o    \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o    \
-            $(BUILD_DIR)/asm/d/kantera/icon/d_kantera_icon_meter.o    \
+            $(BUILD_DIR)/src/d/d_kantera_icon_meter.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_calibration.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_collect.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_dmap.o    \
