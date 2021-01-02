@@ -1316,7 +1316,7 @@ lbl_800D8EF4:
 /* 800D8F20 000D5E60  48 05 14 11 */ bl daAlink_c_NS_checkWolfBarrierHitReverse
 lbl_800D8F24:
 /* 800D8F24 000D5E64  39 61 00 E0 */ addi r11, r1, 0xe0
-/* 800D8F28 000D5E68  48 28 92 E9 */ bl func_80362210
+/* 800D8F28 000D5E68  48 28 92 E9 */ bl _restgpr_23
 /* 800D8F2C 000D5E6C  80 01 00 E4 */ lwz r0, 0xe4(r1)
 /* 800D8F30 000D5E70  7C 08 03 A6 */ mtlr r0
 /* 800D8F34 000D5E74  38 21 00 E0 */ addi r1, r1, 0xe0
