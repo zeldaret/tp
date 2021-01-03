@@ -1,3 +1,5 @@
+#include "os/OS.h"
+
 extern "C" {
 void read__8mDoCPd_cFv(void);
 void create__8mDoCPd_cFv(void);
@@ -1232,7 +1234,6 @@ void dAttention_c_NS_LockonReleaseDistanse(void);
 void dAttention_c_NS_runDebugDisp(void);
 
 //void dAttParam_c(void);
-void dAttParam_c(void);
 void dAttention_c_NS_judgementStatus4Hold(void);
 void dAttention_c_NS_calcWeight(void);
 void dAttHint_c_NS_getPId(void);
