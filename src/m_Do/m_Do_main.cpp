@@ -67,8 +67,19 @@ asm void CheckHeap(u32 param_1) {
 }
 #endif
 
-asm int countUsed(JKRExpHeap* heap){nofralloc
-#include "m_Do/m_Do_main/asm/func_80005848.s"
+int countUsed(JKRExpHeap* heap) {
+    
+    OSDisableScheduler();
+    int counter = 0;
+    JKRExpHeap::CMemBlock* used_blocks_head = heap->getHeadUsedList();
+
+    while (used_blocks_head) {
+        used_blocks_head = used_blocks_head->getNextBlock();
+        counter++;
+    };
+
+    OSEnableScheduler();
+    return counter;
 }
 
 s32 HeapCheck::getUsedCount(void) const {

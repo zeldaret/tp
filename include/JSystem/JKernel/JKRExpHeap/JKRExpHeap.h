@@ -57,6 +57,7 @@ protected:
 public:
     s32 getUsedSize(u8) const;
     s32 getTotalUsedSize(void) const;
+    CMemBlock* getHeadUsedList() { return mHeadUsedList; }
 
 public:
     /* vt[04] */ virtual u32 getHeapType();                                /* override */
