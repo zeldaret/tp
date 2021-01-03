@@ -1408,7 +1408,6 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     return value;
 }
 
-
 BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     int value;
     if ((i_no == -1) || (i_no == 0xFF)) {

@@ -1233,7 +1233,7 @@ void dAttDraw_c_NS_alphaAnm(void);
 void dAttention_c_NS_LockonReleaseDistanse(void);
 void dAttention_c_NS_runDebugDisp(void);
 
-//void dAttParam_c(void);
+// void dAttParam_c(void);
 void dAttention_c_NS_judgementStatus4Hold(void);
 void dAttention_c_NS_calcWeight(void);
 void dAttHint_c_NS_getPId(void);
