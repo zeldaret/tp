@@ -28,6 +28,8 @@ public:
 
         CMemBlock* getNextBlock() { return this->mNext; }
 
+        u32 getSize() { return this->size; }
+
     private:
         u16 mMagic;
         u8 mFlags;  // a|bbbbbbb a=temporary b=alignment
