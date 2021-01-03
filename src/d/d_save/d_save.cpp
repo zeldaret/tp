@@ -94,7 +94,7 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
 
 BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
-        return g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(0x2304);
+        return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(0x2304);
     }
     return (this->mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
@@ -258,9 +258,8 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
     int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
 
     do {
-        if (item_slot ==
-            g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
-                select_item_index)) {
+        if (item_slot == g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectItemIndex(
+                             select_item_index)) {
             dComIfGp_setSelectItem(select_item_index);
         }
         select_item_index++;
@@ -268,77 +267,81 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
 }
 
 #ifdef NONMATCHING
-u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
-    int IVar1;
-    int IVar2;
-    u8 current_select_item_index;
-    int select_item_index;
 
-    if (param_1 < 0x18) {
-        if (!param_2) {
-            select_item_index = 0;
-            do {
-                current_select_item_index =
-                    g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
-                        select_item_index)
-            };
-            if (((param_1 == (current_select_item_index)) ||
-                 (dComIfGs_getMixItemIndex(select_item_index),
-                  param_1 == (current_select_item_index))) &&
-                (dComIfGs_getMixItemIndex(select_item_index),
-                 (current_select_item_index) != NO_ITEM)) {
-                current_select_item_index =
-                    g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
-                        select_item_index);
-                IVar1 = mItems[current_select_item_index];
-                dComIfGs_getMixItemIndex(select_item_index);
-                IVar2 = mItems[current_select_item_index];
-                if (((IVar1 == BOW) && (IVar2 == NORMAL_BOMB)) ||
-                    ((IVar2 == BOW && (IVar1 == NORMAL_BOMB)))) {
-                    return 0x59;
+inline u8 dComIfGs_getSelectItemIndex(int idx) {
+    return g_dComIfG_gameInfo.getPlayer().getPlayerStatusA().getSelectItemIndex(idx);
+}
+
+u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
+    if (item_idx < MAX_ITEM_SLOTS) {
+        if (isComboItem) {
+            for (int i = 0; i < 2; i++) {
+                if ((dComIfGs_getSelectItemIndex(i) == item_idx ||
+                     item_idx == dComIfGs_getMixItemIndex(i)) &&
+                    dComIfGs_getMixItemIndex(i) != NO_ITEM) {
+                    u8 item_id_2 = mItems[dComIfGs_getSelectItemIndex(i)];
+                    u8 item_id_1 = mItems[dComIfGs_getMixItemIndex(i)];
+
+                    // Get Bomb arrow check: Bow + Normal Bombs
+                    if ((item_id_2 == BOW && item_id_1 == NORMAL_BOMB) ||
+                        (item_id_1 == BOW && item_id_2 == NORMAL_BOMB)) {
+                        return BOMB_ARROW;
+                    }
+
+                    // Get Bomb arrow check: Bow + Water Bombs
+                    if ((item_id_2 == BOW && item_id_1 == WATER_BOMB) ||
+                        (item_id_1 == BOW && item_id_2 == WATER_BOMB)) {
+                        return BOMB_ARROW;
+                    }
+
+                    // Get Bomb arrow check: Bow + Bomblings
+                    if ((item_id_2 == BOW && item_id_1 == POKE_BOMB) ||
+                        (item_id_1 == BOW && item_id_2 == POKE_BOMB)) {
+                        return BOMB_ARROW;
+                    }
+
+                    // Get Hawkeye check
+                    if ((item_id_2 == BOW && item_id_1 == HAWK_EYE) ||
+                        (item_id_1 == BOW && item_id_2 == HAWK_EYE)) {
+                        return HAWK_ARROW;
+                    }
+
+                    // Get Rod w/ bee larva
+                    if ((item_id_2 == FISHING_ROD_1 && item_id_1 == BEE_CHILD) ||
+                        (item_id_1 == FISHING_ROD_1 && item_id_2 == BEE_CHILD)) {
+                        return BEE_ROD;
+                    }
+
+                    // Get Rod w/ coral earring
+                    if ((item_id_2 == FISHING_ROD_1 && item_id_1 == ZORAS_JEWEL) ||
+                        (item_id_1 == FISHING_ROD_1 && item_id_2 == ZORAS_JEWEL)) {
+                        return JEWEL_ROD;
+                    }
+
+                    // Get Rod w/ worm
+                    if ((item_id_2 == FISHING_ROD_1 && item_id_1 == WORM) ||
+                        (item_id_1 == FISHING_ROD_1 && item_id_2 == WORM)) {
+                        return WORM_ROD;
+                    }
+
+                    if (i == 3) {
+                        if (dComIfGs_getSelectItemIndex(i) == 0 &&
+                            dComIfGs_getMixItemIndex(i) == 0) {
+                            dComIfGs_setSelectItemIndex(i, 0xFF);
+                            dComIfGs_setMixItemIndex(i, 0xFF);
+                            return 0xFF;
+                        }
+                    }
+                    // 合成アイテム不定＝＝＝＞%d, %d\n
+                    // Uncertain combination item＝＝＝＞%d, %d\n
+                    OSReport_Error((char*)lbl_80379234 + 9, item_id_2, item_id_1);
                 }
-                if (((IVar1 == BOW) && (IVar2 == WATER_BOMB)) ||
-                    ((IVar2 == BOW && (IVar1 == WATER_BOMB)))) {
-                    return 0x59;
-                }
-                if (((IVar1 == BOW) && (IVar2 == POKE_BOMB)) ||
-                    ((IVar2 == BOW && (IVar1 == POKE_BOMB)))) {
-                    return 0x59;
-                }
-                if (((IVar1 == BOW) && (IVar2 == HAWK_EYE)) ||
-                    ((IVar2 == BOW && (IVar1 == HAWK_EYE)))) {
-                    return 0x5a;
-                }
-                if (((IVar1 == FISHING_ROD_1) && (IVar2 == BEE_CHILD)) ||
-                    ((IVar2 == FISHING_ROD_1 && (IVar1 == BEE_CHILD)))) {
-                    return 0x5b;
-                }
-                if (((IVar1 == FISHING_ROD_1) && (IVar2 == ZORAS_JEWEL)) ||
-                    ((IVar2 == FISHING_ROD_1 && (IVar1 == ZORAS_JEWEL)))) {
-                    return 0x5c;
-                }
-                if (((IVar1 == FISHING_ROD_1) && (IVar2 == WORM)) ||
-                    ((IVar2 == FISHING_ROD_1 && (IVar1 == WORM)))) {
-                    return 0x5d;
-                }
-                if (((select_item_index == 0x3) &&
-                     (current_select_item_index = g_dComIfG_gameInfo.info.getSaveFile()
-                                                      .getPlayerStatusA()
-                                                      .getSelectItemIndex(0x3),
-                      (current_select_item_index & 0xff) == 0x0)) &&
-                    (dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
-                    dComIfGs_setSelectItemIndex(0x3, -0x1);
-                    dComIfGs_setMixItemIndex(0x3, -0x1);
-                    return 0xff;
-                }
-                OSReport_Error((char*)lbl_80379234 + 9, (unsigned int)IVar1, (unsigned int)IVar2);
             }
         }
-        current_select_item_index = (unsigned int)mItems[param_1];
+        return this->mItems[item_idx];
     } else {
-        current_select_item_index = NO_ITEM;
+        return NO_ITEM;
     }
-    return current_select_item_index;
 }
 #else
 asm u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
@@ -485,8 +488,8 @@ int dSv_player_item_c::checkInsectBottle(void) {
     int j = 0;
     for (; i < 0x18; i++) {
         // replace these with dComIfGs_isItemFirstBit and dComIfGs_isEventBit later
-        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
-            !g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
+        if (g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
+            !g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(
                 lbl_803A7288.unk0[0x191 + j])) {
             return 1;
         }
@@ -572,13 +575,13 @@ u8 dSv_player_item_c::checkBombBag(u8 param_1) {
 void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
     u32 select_item_index;
 
-    g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_21, i_item_id);
+    g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_21, i_item_id);
     g_dComIfG_gameInfo.setPlayUnkWarashibe1(SLOT_21);
     g_dComIfG_gameInfo.setPlayUnkWarashibe2(i_item_id);
 
     for (int i = 0; i < 4; i++) {
         select_item_index =
-            g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().getSelectItemIndex(
+            g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getSelectItemIndex(
                 (u8)i);
         if (select_item_index == SLOT_21) {
             dComIfGp_setSelectItem((u8)i);
@@ -612,19 +615,19 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
-        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
             this->mItems[SLOT_20] = JEWEL_BEE_ROD :
             this->mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
-        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
             this->mItems[SLOT_20] = JEWEL_WORM_ROD :
             this->mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
-        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
             this->mItems[SLOT_20] = JEWEL_ROD :
             this->mItems[SLOT_20] = FISHING_ROD_1;
         break;
@@ -700,7 +703,7 @@ void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 bottle_num) {
 u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 param_2) {
     int iVar3 = this->mBottles[i_bottleIdx] + param_2;
 
-    g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
+    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
 
     if (iVar3 < 0) {
         this->mBottles[i_bottleIdx] = 0;
@@ -744,7 +747,7 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     u8 iVar3;
 
     iVar3 = 0x1;
-    if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(BOMB_BAG_LV2)) {
+    if (g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(BOMB_BAG_LV2)) {
         iVar3 = 0x2;
     }
 
@@ -940,7 +943,7 @@ void dSv_player_config_c::init(void) {
 }
 
 u32 dSv_player_config_c::checkVibration(void) const {
-    return _sRumbleSupported & 0x80000000 ? g_dComIfG_gameInfo.play.getNowVibration() : 0;
+    return _sRumbleSupported & 0x80000000 ? g_dComIfG_gameInfo.getNowVibration() : 0;
 }
 
 u8 dSv_player_config_c::getSound(void) {
