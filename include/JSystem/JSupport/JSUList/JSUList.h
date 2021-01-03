@@ -135,6 +135,17 @@ public:
         return *this;
     }
 
+    JSUListIterator<T> operator--(int) {
+        JSUListIterator<T> prev = *this;
+        this->mLink = this->mLink->getPrev();
+        return prev;
+    }
+
+    JSUListIterator<T>& operator--() {
+        this->mLink = this->mLink->getPrev();
+        return *this;
+    }
+
     T& operator*() { return *this->getObject(); }
 
     T* operator->() { return this->getObject(); }

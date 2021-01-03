@@ -8,6 +8,9 @@
 
 /* TODO: more structs, and get rid of the ones that are faked! */
 
+#define OS_MESSAGE_NON_BLOCKING 0
+#define OS_MESSAGE_BLOCKING 1
+
 struct OSMutex {
     u8 unk[24];
 };
@@ -99,7 +102,7 @@ bool OSIsThreadTerminated(OSThread* thread);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback* callback);
 
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
-void OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
 void OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
 
 s32 OSGetConsoleType(void);
