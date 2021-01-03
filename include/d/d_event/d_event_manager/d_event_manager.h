@@ -1,8 +1,8 @@
 #ifndef __D_EVENT_MANAGER_H_
 #define __D_EVENT_MANAGER_H_
 
-#include "dolphin/types.h"
 #include "d/d_event/d_event_data/d_event_data.h"
+#include "dolphin/types.h"
 
 class dEvent_exception_c {
 public:
