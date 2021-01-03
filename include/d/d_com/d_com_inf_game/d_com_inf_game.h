@@ -66,6 +66,7 @@ public:
     dStage_roomControl_c& getRoomControl() { return room_control; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
+
 private:
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ dCcS dccs;
@@ -165,7 +166,8 @@ extern dComIfG_inf_c g_dComIfG_gameInfo;
 // }
 
 // void dComIfGs_setItem(int item_slot, u8 item_id) {
-//     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(item_slot, item_id);
+//     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(item_slot,
+//     item_id);
 // }
 
 // u16 dComIfGs_getOil(void) {

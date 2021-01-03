@@ -865,7 +865,7 @@ private:
     dSv_reserve_c reserve;
     dSv_MiniGame_c minigame_flags;
 };
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dSv_info_c {
 public:
     void init(void);
