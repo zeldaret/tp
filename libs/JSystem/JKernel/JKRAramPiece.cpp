@@ -120,7 +120,7 @@ void JKRAramPiece::doneDMA(u32 requestAddress) {
 }
 
 JKRAMCommand::JKRAMCommand() : mPieceLink(this), field_0x30(this) {
-    OSInitMessageQueue(&mMessageQueue, mMessages, ARRAY_SIZE(mMessages));
+    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     mCallback = NULL;
     field_0x5C = NULL;
     field_0x60 = 0;

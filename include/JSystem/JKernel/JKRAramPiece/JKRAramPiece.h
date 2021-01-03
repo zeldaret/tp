@@ -33,7 +33,7 @@ public:
     /* 0x60 */ s32 field_0x60;
     /* 0x64 */ JKRDecompCommand* mDecompCommand;
     /* 0x68 */ OSMessageQueue mMessageQueue;
-    /* 0x88 */ OSMessage mMessages[1];
+    /* 0x88 */ OSMessage mMessage;
     /* 0x8C */ void* field_0x8C;
     /* 0x90 */ void* field_0x90;
     /* 0x94 */ void* field_0x94;
