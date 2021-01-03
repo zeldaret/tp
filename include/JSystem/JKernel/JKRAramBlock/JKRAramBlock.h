@@ -24,13 +24,14 @@ public:
     void newGroupID(u8 groupId) { mGroupId = groupId; }
 
 public:
-    JSULink<JKRAramBlock> mBlockLink;
-    u32 mAddress;
-    u32 mSize;
-    u32 mFreeSize;
-    u8 mGroupId;
-    u8 mIsTempMemory;
-    u8 padding[2];
+    /* 0x00 */  // vtable
+    /* 0x04 */ JSULink<JKRAramBlock> mBlockLink;
+    /* 0x14 */ u32 mAddress;
+    /* 0x18 */ u32 mSize;
+    /* 0x1C */ u32 mFreeSize;
+    /* 0x20 */ u8 mGroupId;
+    /* 0x21 */ u8 mIsTempMemory;
+    /* 0x22 */ u8 padding[2];
 };
 
 #endif
