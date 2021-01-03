@@ -575,14 +575,14 @@ void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
     u32 select_item_index;
 
     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_21, i_item_id);
-    g_dComIfG_gameInfo.setPlayUnkWarashibe1(0x15);
+    g_dComIfG_gameInfo.setPlayUnkWarashibe1(SLOT_21);
     g_dComIfG_gameInfo.setPlayUnkWarashibe2(i_item_id);
 
     for (int i = 0; i < 4; i++) {
         select_item_index =
             g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().getSelectItemIndex(
                 (u8)i);
-        if (select_item_index == 0x15) {
+        if (select_item_index == SLOT_21) {
             dComIfGp_setSelectItem((u8)i);
         }
     }
