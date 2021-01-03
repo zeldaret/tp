@@ -1,5 +1,6 @@
 #include "f/f_pc/f_pc_manager.h"
 #include "SComponent/c_API_graphic.h"
+#include "SComponent/c_lib.h"
 #include "SComponent/c_tag.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_lib/d_lib.h"
@@ -58,7 +59,7 @@ BOOL fpcM_IsCreating(u32 pID) {
 
 typedef void (*fpcM_ManagementFunc)(void);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
-    MtxInit__Fv();
+    MtxInit();
     dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.draw_list_list.dlstPeekZ);
     if (!dShutdownErrorMsg_c_NS_execute()) {
         if (lbl_80450D39 == 0) {
