@@ -4353,6 +4353,7 @@ void cM3d_CalcVecZAngle__FRC3VecP5csXyz(void);
 void cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph(void);
 void cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf(void);
 void cM3d_CrossZ_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_Len2dSq__Fffff(void);
 }
 
 // additional symbols needed for c_malloc.cpp
