@@ -107,7 +107,7 @@ asm JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
 asm JKRThread* JKRThreadSwitch::enter(JKRThread* param_1, int param_2) {
     nofralloc
 #include "JSystem/JKernel/JKRThread/asm/func_802D1A70.s"
-}
+}''
 
 asm void JKRThreadSwitch::callback(OSThread* param_1, OSThread* param_2) {
     nofralloc
