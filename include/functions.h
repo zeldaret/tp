@@ -32,18 +32,6 @@ void isEventBit__11dSv_event_cCFUs(void);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
-void func_80362224(void);
-void func_803621D8(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void _restgpr_28(void);
-void _savegpr_28(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void _restgpr_26(void);
-void _savegpr_26(void);
-
-void func_8036221C(void);
 
 void func_803620AC(void);
 void func_803626BC(void);
@@ -106,8 +94,7 @@ void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
 void func_80362324(void);
-void func_8036221C(void);
-void func_8036221C(void);
+
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
 
@@ -187,12 +174,6 @@ void JKRArchive_NS_getDirEntry(void);
 
 void func_80361C24(void);
 
-void _savegpr_25(void);
-void _restgpr_25(void);
-void func_80362218(void);
-
-
-
 void JKRArchive_NS_findDirectory(void);
 void JKRArchive_NS_findFsResource(void);
 void JKRArchive_NS_findIdResource(void);
@@ -207,9 +188,6 @@ void func_80365470(void);
 void DCInvalidateRange(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void func_80362218(void);
 
 void func_803650D0(void);
 
@@ -227,15 +205,6 @@ void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
-void func_803621B0(void);
-void _savegpr_18(void);
-void _savegpr_23(void);
-void _savegpr_24(void);
-void func_803621FC(void);
-void func_80362210(void);
-void _restgpr_18(void);
-void _restgpr_23(void);
-void _restgpr_24(void);
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -298,26 +267,12 @@ void init__20dSv_player_collect_cFv(void);
 void dComIfGp_setSelectItem(int);
 void getUsedCount__9HeapCheckCFv(void);
 void isEventBit__11dSv_event_cCFUs(void);
-void dComIfGs_setMixItemIndex(int,u8);
-void dComIfGs_setSelectItemIndex(int,u8);
+void dComIfGs_setMixItemIndex(int, u8);
+void dComIfGs_setSelectItemIndex(int, u8);
 void dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
-void func_80362224(void);
-void func_803621D8(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void _restgpr_28(void);
-void _savegpr_28(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void _restgpr_26(void);
-void _savegpr_26(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-
-void func_8036221C(void);
 
 void func_803620AC(void);
 void func_803626BC(void);
@@ -360,7 +315,7 @@ void init__10dSv_info_cFvZone(void);
 void init__10dSv_zone_cFi(void);
 void onOneSwitch__13dSv_zoneBit_cFi(void);
 void onSwitch__13dSv_zoneBit_cFi(void);
-int dStage_roomControl_c_NS_getZoneNo(int,int);
+int dStage_roomControl_c_NS_getZoneNo(int, int);
 void onSwitch__12dSv_danBit_cFi(void);
 void onSwitch__12dSv_memBit_cFi(void);
 void revOneSwitch__13dSv_zoneBit_cFi(void);
@@ -382,8 +337,7 @@ void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
 void func_80003540(void);
 void func_80362324(void);
-void func_8036221C(void);
-void func_8036221C(void);
+
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
 
@@ -463,12 +417,6 @@ void JKRArchive_NS_getDirEntry(void);
 
 void func_80361C24(void);
 
-void _savegpr_25(void);
-void _restgpr_25(void);
-void func_80362218(void);
-
-
-
 // void JKRAramArchive(void);
 void JKRArchive_NS_findDirectory(void);
 void JKRArchive_NS_findFsResource(void);
@@ -484,9 +432,6 @@ void func_80365470(void);
 void DCInvalidateRange(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
-void _savegpr_25(void);
-void _restgpr_25(void);
-void func_80362218(void);
 
 void func_803650D0(void);
 
@@ -504,15 +449,6 @@ void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80003540(void);
 void func_80361C24(void);
-void func_803621B0(void);
-void _savegpr_18(void);
-void _savegpr_23(void);
-void _savegpr_24(void);
-void func_803621FC(void);
-void func_80362210(void);
-void _restgpr_18(void);
-void _restgpr_23(void);
-void _restgpr_24(void);
 
 void ARQPostRequest(void);
 void DCStoreRange(void);
@@ -1314,7 +1250,7 @@ void dAttention_c_NS_ActionTarget(void);
 void cSAngle_NS___mi_X2_(void);
 void dAttention_c_NS_GetLockonList(void);
 void dAttHint_c_NS_init(void);
-//void dAttention_c(void);
+// void dAttention_c(void);
 void PSMTXTrans(void);
 void dAttention_c_NS_makeList(void);
 void mDoExt_bpkAnm_NS_entry(void);
@@ -1337,11 +1273,7 @@ void dAttDrawParam_c_NS_dtor(void);
 void dAttDraw_c_NS_alphaAnm(void);
 void dAttention_c_NS_LockonReleaseDistanse(void);
 void dAttention_c_NS_runDebugDisp(void);
-void func_803621BC(void);
-//void dAttParam_c(void);
-void _savegpr_21(void);
 
-void dAttParam_c(void);
 void dAttention_c_NS_judgementStatus4Hold(void);
 void dAttention_c_NS_calcWeight(void);
 void dAttHint_c_NS_getPId(void);
