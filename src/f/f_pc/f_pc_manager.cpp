@@ -33,6 +33,7 @@ extern void fpcDw_Handler(void*, void*);
 extern base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
                                             FastCreateReqFunc param_3, void* param_4, void* pData);
 extern void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
+}
 
 void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);
@@ -128,5 +129,4 @@ void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData) {
     } else {
         return NULL;
     }
-}
 }

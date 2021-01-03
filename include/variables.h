@@ -1,14 +1,14 @@
 #include "JSystem/JSupport/JSUList/JSUList.h"
 
 extern float lbl_80451D5C;
-extern u8 lbl_80379234[0x64];
 extern float lbl_80451D58;
-extern u8 lbl_803A7270[24];
+extern u8 i_item_lst[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
+extern u8 lbl_80379234[0x62];
 extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
-extern u32 lbl_804514E0;
+extern u32 _sRumbleSupported;
 extern u8 lbl_803C3384;
 extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;

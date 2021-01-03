@@ -249,16 +249,16 @@ void dSv_player_item_c::init(void) {
     }
 }
 
-void dSv_player_item_c::setItem(int current_items_index, u8 new_items_index) {
-    if (current_items_index < MAX_ITEM_SLOTS) {
-        this->mItems[current_items_index] = new_items_index;
+void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
+    if (item_slot < MAX_ITEM_SLOTS) {
+        this->mItems[item_slot] = item_id;
         this->setLineUpItem();
     }
 
     int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
 
     do {
-        if (current_items_index ==
+        if (item_slot ==
             g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
                 select_item_index)) {
             dComIfGp_setSelectItem(select_item_index);
@@ -272,62 +272,69 @@ u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
     int IVar1;
     int IVar2;
     u8 current_select_item_index;
+    int select_item_index;
 
     if (param_1 < 0x18) {
-        if (param_2 != false) {
-            for (int select_item_index = 0; select_item_index < 2; select_item_index++) {
-                current_select_item_index = getSelectItemIndex(select_item_index);
-                if (((param_1 == (current_select_item_index)) ||
-                     (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index),
-                      param_1 == (current_select_item_index))) &&
-                    (current_select_item_index = dComIfGs_getMixItemIndex(select_item_index),
-                     (current_select_item_index) != NO_ITEM)) {
-                    current_select_item_index = getSelectItemIndex(select_item_index);
-                    IVar1 = items[current_select_item_index];
-                    current_select_item_index = dComIfGs_getMixItemIndex(select_item_index);
-                    IVar2 = items[current_select_item_index];
-                    if (((IVar1 == BOW) && (IVar2 == NORMAL_BOMB)) ||
-                        ((IVar2 == BOW && (IVar1 == NORMAL_BOMB)))) {
-                        return 0x59;
-                    }
-                    if (((IVar1 == BOW) && (IVar2 == WATER_BOMB)) ||
-                        ((IVar2 == BOW && (IVar1 == WATER_BOMB)))) {
-                        return 0x59;
-                    }
-                    if (((IVar1 == BOW) && (IVar2 == POKE_BOMB)) ||
-                        ((IVar2 == BOW && (IVar1 == POKE_BOMB)))) {
-                        return 0x59;
-                    }
-                    if (((IVar1 == BOW) && (IVar2 == HAWK_EYE)) ||
-                        ((IVar2 == BOW && (IVar1 == HAWK_EYE)))) {
-                        return 0x5a;
-                    }
-                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == BEE_CHILD)) ||
-                        ((IVar2 == FISHING_ROD_1 && (IVar1 == BEE_CHILD)))) {
-                        return 0x5b;
-                    }
-                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == ZORAS_JEWEL)) ||
-                        ((IVar2 == FISHING_ROD_1 && (IVar1 == ZORAS_JEWEL)))) {
-                        return 0x5c;
-                    }
-                    if (((IVar1 == FISHING_ROD_1) && (IVar2 == WORM)) ||
-                        ((IVar2 == FISHING_ROD_1 && (IVar1 == WORM)))) {
-                        return 0x5d;
-                    }
-                    if (((select_item_index == 0x3) &&
-                         (current_select_item_index = getSelectItemIndex(0x3),
-                          (current_select_item_index & 0xff) == 0x0)) &&
-                        (current_select_item_index = dComIfGs_getMixItemIndex(0x3),
-                         (current_select_item_index & 0xff) == 0x0)) {
-                        dComIfGs_setSelectItemIndex(0x3, -0x1);
-                        dComIfGs_setMixItemIndex(0x3, -0x1);
-                        return 0xff;
-                    }
-                    OSReport_Error(lbl_8037923d, (unsigned int)IVar1, (unsigned int)IVar2);
+        if (!param_2) {
+            select_item_index = 0;
+            do {
+                current_select_item_index =
+                    g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
+                        select_item_index)
+            };
+            if (((param_1 == (current_select_item_index)) ||
+                 (dComIfGs_getMixItemIndex(select_item_index),
+                  param_1 == (current_select_item_index))) &&
+                (dComIfGs_getMixItemIndex(select_item_index),
+                 (current_select_item_index) != NO_ITEM)) {
+                current_select_item_index =
+                    g_dComIfG_gameInfo.info.getSaveFile().getPlayerStatusA().getSelectItemIndex(
+                        select_item_index);
+                IVar1 = mItems[current_select_item_index];
+                dComIfGs_getMixItemIndex(select_item_index);
+                IVar2 = mItems[current_select_item_index];
+                if (((IVar1 == BOW) && (IVar2 == NORMAL_BOMB)) ||
+                    ((IVar2 == BOW && (IVar1 == NORMAL_BOMB)))) {
+                    return 0x59;
                 }
+                if (((IVar1 == BOW) && (IVar2 == WATER_BOMB)) ||
+                    ((IVar2 == BOW && (IVar1 == WATER_BOMB)))) {
+                    return 0x59;
+                }
+                if (((IVar1 == BOW) && (IVar2 == POKE_BOMB)) ||
+                    ((IVar2 == BOW && (IVar1 == POKE_BOMB)))) {
+                    return 0x59;
+                }
+                if (((IVar1 == BOW) && (IVar2 == HAWK_EYE)) ||
+                    ((IVar2 == BOW && (IVar1 == HAWK_EYE)))) {
+                    return 0x5a;
+                }
+                if (((IVar1 == FISHING_ROD_1) && (IVar2 == BEE_CHILD)) ||
+                    ((IVar2 == FISHING_ROD_1 && (IVar1 == BEE_CHILD)))) {
+                    return 0x5b;
+                }
+                if (((IVar1 == FISHING_ROD_1) && (IVar2 == ZORAS_JEWEL)) ||
+                    ((IVar2 == FISHING_ROD_1 && (IVar1 == ZORAS_JEWEL)))) {
+                    return 0x5c;
+                }
+                if (((IVar1 == FISHING_ROD_1) && (IVar2 == WORM)) ||
+                    ((IVar2 == FISHING_ROD_1 && (IVar1 == WORM)))) {
+                    return 0x5d;
+                }
+                if (((select_item_index == 0x3) &&
+                     (current_select_item_index = g_dComIfG_gameInfo.info.getSaveFile()
+                                                      .getPlayerStatusA()
+                                                      .getSelectItemIndex(0x3),
+                      (current_select_item_index & 0xff) == 0x0)) &&
+                    (dComIfGs_getMixItemIndex(0x3), (current_select_item_index & 0xff) == 0x0)) {
+                    dComIfGs_setSelectItemIndex(0x3, -0x1);
+                    dComIfGs_setMixItemIndex(0x3, -0x1);
+                    return 0xff;
+                }
+                OSReport_Error((char*)lbl_80379234 + 9, (unsigned int)IVar1, (unsigned int)IVar2);
             }
         }
-        current_select_item_index = (unsigned int)items[param_1];
+        current_select_item_index = (unsigned int)mItems[param_1];
     } else {
         current_select_item_index = NO_ITEM;
     }
@@ -343,19 +350,16 @@ asm u8 dSv_player_item_c::getItem(int param_1, bool param_2) const {
 // this is close
 #ifdef NONMATCHING
 void dSv_player_item_c::setLineUpItem(void) {
-    u8* i_item_lst;
-
     for (int i = 0; i < 24; i++) {
-        item_slots[i] = 0xFF;
+        this->mItemSlots[i] = NO_ITEM;
     }
 
-    i_item_lst = lbl_803A7270;
-
     for (int i = 0; i < 23; i++) {
-        if (items[*i_item_lst] != 0xFF) {
-            item_slots[i] = *i_item_lst;
+        for (int j = 0; j < 24; j++) {
+            if (this->mItems[i_item_lst[j]] != NO_ITEM) {
+                this->mItemSlots[i] = i_item_lst[j];
+            }
         }
-        i_item_lst++;
     }
 }
 #else
@@ -407,8 +411,8 @@ asm void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2) {
 // this is 1 instruction off
 #ifdef NONMATCHING
 void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id) {
-    u8 item_id = (dSv_item_rename(i_item_id));
-    setBottleItemIn(96, item_id);
+    this->setBottleItemIn(EMPTY_BOTTLE, dSv_item_rename(i_item_id));
+    return;
 }
 #else
 asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id) {
@@ -417,15 +421,42 @@ asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id) {
 }
 #endif
 
+// r30 and r31 registers swapped
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBottle(void) {
+    for (int i = 0; i < 4; i++) {
+        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i + 11), true) ==
+            NO_ITEM) {
+            g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().setItem((u8)(i + 11),
+                                                                          EMPTY_BOTTLE);
+            return;
+        }
+    }
+}
+#else
 asm void dSv_player_item_c::setEmptyBottle(void) {
     nofralloc
 #include "d/d_save/d_save/asm/func_80033494.s"
 }
+#endif
 
-asm void dSv_player_item_c::setEmptyBottle(u8) {
+// same issue as the one above this
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBottle(u8 item_id) {
+    for (int i = 0; i < 4; i++) {
+        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i + 11), true) ==
+            NO_ITEM) {
+            g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().setItem((u8)(i + 11), item_id);
+            return;
+        }
+    }
+}
+#else
+asm void dSv_player_item_c::setEmptyBottle(u8 item_id) {
     nofralloc
 #include "d/d_save/d_save/asm/func_80033514.s"
 }
+#endif
 
 asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
     nofralloc
@@ -448,10 +479,28 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
     }
     return num_bottles;
 }
+extern u16 lbl_803a7288[0x336];
 
-asm u8 dSv_player_item_c::checkInsectBottle(void){nofralloc
+// close, registers swapped
+#ifdef NONMATCHING
+int dSv_player_item_c::checkInsectBottle(void) {
+    int j = 0;
+    for (int i = 0; i < 0x18; i++) {
+        if (!g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) ||
+            g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
+                lbl_803a7288[0x191 + j])) {
+            return 1;
+        }
+        j += 1;
+    }
+    return 0;
+}
+#else
+asm int dSv_player_item_c::checkInsectBottle(void) {
+    nofralloc
 #include "d/d_save/d_save/asm/func_80033754.s"
 }
+#endif
 
 u8 dSv_player_item_c::checkEmptyBottle(void) {
     u8 num = 0;
@@ -551,19 +600,24 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 }
 
 // this is a few instructions off
-#ifdef NONMATCHING
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
-        isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_BEE_ROD : this->mItems[SLOT_20] = BEE_ROD;
+        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+            this->mItems[SLOT_20] = JEWEL_BEE_ROD :
+            this->mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
-        isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_WORM_ROD : this->mItems[SLOT_20] = WORM_ROD;
+        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+            this->mItems[SLOT_20] = JEWEL_WORM_ROD :
+            this->mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
-        isFirstBit(61) ? this->mItems[SLOT_20] = JEWEL_ROD : this->mItems[SLOT_20] = FISHING_ROD_1;
+        g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
+            this->mItems[SLOT_20] = JEWEL_ROD :
+            this->mItems[SLOT_20] = FISHING_ROD_1;
         break;
     }
     }
@@ -572,12 +626,6 @@ void dSv_player_item_c::setBaitItem(u8 param_1) {
         dComIfGp_setSelectItem(i);
     }
 }
-#else
-asm void dSv_player_item_c::setBaitItem(u8 param_1) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033D40.s"
-}
-#endif
 
 void dSv_player_get_item_c::init(void) {
     for (int i = 0; i < 8; i++) {
@@ -588,8 +636,10 @@ void dSv_player_get_item_c::init(void) {
 // this is a few instructions off
 #ifdef NONMATCHING
 void dSv_player_get_item_c::onFirstBit(u8 i_itemno) {
-    int uVar1 = ((int)i_itemno & 0xe0) >> 0x3;
-    this->mPauseMenuBitFields[uVar1] |= (u32)(1 << (i_itemno & 0x1F));
+    int tmp = (int)i_itemno;
+    int tmp2 = (i_itemno >> 3) & 0xE0;
+    // int uVar1 = ;
+    this->mPauseMenuBitFields[tmp2] |= 1 << (tmp & 0x1F);
 }
 #else
 asm void dSv_player_get_item_c::onFirstBit(u8) {
@@ -887,17 +937,9 @@ void dSv_player_config_c::init(void) {
     this->unk11 = 1;
 }
 
-// a few instructions off
-#ifdef NONMATCHING
 u32 dSv_player_config_c::checkVibration(void) const {
-    return _sRumbleSupported & 0x80000000 ? getNowVibration() : 0;
+    return _sRumbleSupported & 0x80000000 ? g_dComIfG_gameInfo.play.getNowVibration() : 0;
 }
-#else
-asm u32 dSv_player_config_c::checkVibration(void) const {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80034644.s"
-}
-#endif
 
 u8 dSv_player_config_c::getSound(void) {
     return this->mSoundMode;
@@ -1017,7 +1059,6 @@ void dSv_event_c::offEventBit(u16 i_no) {
     this->events[(i_no >> 8)] &= ~(u8)i_no;
 }
 
-// (u8) cast doesn't work here, thank u metrowerks
 BOOL dSv_event_c::isEventBit(u16 i_no) const {
     return this->events[(i_no >> 8)] & (i_no & 0xFF) ? TRUE : FALSE;
 }
@@ -1411,15 +1452,73 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
     this->zones[zoneNo].getZoneActor().off(i_id);
 }
 
+// somewhat close
+#ifdef NONMATCHING
+BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
+    if (i_id == -1 || i_id == dSv_zoneActor_c::ACTOR_MAX || i_roomNo == -1) {
+        return FALSE;
+    }
+
+    int ActorZoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_id);
+    return this->zones[ActorZoneNo].getZoneActor().is(i_id);
+}
+#else
 asm BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
     nofralloc
 #include "d/d_save/d_save/asm/func_80035724.s"
 }
+#endif
 
+#ifdef NONMATCHING
+extern u8 lbl_803F6094[0x10100];
+void dSv_info_c::memory_to_card(char* param_1, int param_2) {
+    BOOL bVar1 = FALSE;
+    int uVar12 = 0;
+    BOOL bVar6 = dComIfGs_isEventBit(0x1B08);
+    if (!tmp) {
+        BOOL bVar7 = dComIfGs_isEventBit(0x1B20);
+        BOOL tmp = bVar7;
+        bVar7 = dComIfGs_isEventBit(0x1B10);
+        BOOL tmp2 = bVar7;
+        dComIfGs_offEventBit(0x1B20);
+        dComIfGs_offEventBit(0x1B10);
+    }
+
+    BOOL iVar4 = dComIfGs_isItemFirstBit(KANTERA);
+
+    if (iVar4) {
+        dComIfGs_setItem(SLOT_1, KANTERA);
+        u16 current_lantern_oil = dComIfGs_getOil();
+        u8 oil_gauge_backup = dMeter2Info_getOilGaugeBackUp();
+        dComIfGs_setOil(oil_gauge_backup & 0xFFFF);
+        bVar1 = TRUE;
+    }
+
+    int uVar3 = g_dComIfG_gameInfo + 0xF2C;
+    int iVar2 = g_dComIfG_gameInfo + 0xF28;
+
+    u32* ptr = lbl_803F6094 + 0x9f6c;
+    OSTime time = OSGetTime();
+
+    OSTime newTime = time >> 0x20;
+    int newTime2 = newTime - uVar3;
+
+    int newTime3 = newTime2 + g_dComIfG_gameInfo +
+                   0xF30
+
+                   int newTime4 = g_dComIfG_gameInfo + 0xF78
+
+                                  s64 sVar13 = __div2i((int)((ulonglong)uVar8 >> 0x20), (int)uVar8,
+                                                       0x0, _DAT_800000f8 >> 0x2);
+
+    BOOL bVar7 =
+}
+#else
 asm void dSv_info_c::memory_to_card(char*, int) {
     nofralloc
 #include "d/d_save/d_save/asm/func_80035798.s"
 }
+#endif
 
 asm void dSv_info_c::card_to_memory(char*, int) {
     nofralloc

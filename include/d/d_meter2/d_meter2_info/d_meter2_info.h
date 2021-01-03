@@ -1,3 +1,11 @@
+#ifndef __D_METER2_INFO_H_
+#define __D_METER2_INFO_H_
+
+#include "JSystem/J2DGraph/J2DPicture/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DTextBox/J2DTextBox.h"
+#include "JSystem/JMessage/control/control.h"
+#include "JSystem/JUtility/JUTFont/JUTFont.h"
 #include "dolphin/types.h"
 
 struct dMeter2Info_c_vtable {
@@ -8,8 +16,8 @@ struct dMeter2Info_c_vtable {
 
 class dMeter2Info_c {
 public:
-    dMeter2Info_c::dMeter2Info_c();
-    dMeter2Info_c::~dMeter2Info_c();
+    // dMeter2Info_c::dMeter2Info_c();
+    // dMeter2Info_c::~dMeter2Info_c();
     void init(void);
     void setFloatingMessage(u16, s16, bool);
     void setFloatingFlow(u16, s16, bool);
@@ -48,6 +56,7 @@ public:
     void resetMiniGameItem(bool);
     void setMiniGameCount(s8);
     void setSaveStageName(const char*);
+    u8& getDirectUseItem() { return mDirectUseItem; }
 
 private:
     dMeter2Info_c_vtable* vtable;
@@ -143,3 +152,5 @@ private:
 };
 
 extern dMeter2Info_c g_meter2_info;
+
+#endif

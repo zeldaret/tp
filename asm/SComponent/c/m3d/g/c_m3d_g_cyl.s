@@ -3,8 +3,8 @@
 .section .text, "ax" # 8026f0a8
 
 
-.global cM3dGCyl
-cM3dGCyl:
+.global __ct__8cM3dGCylFPC4cXyzff
+__ct__8cM3dGCylFPC4cXyzff:
 /* 8026F0A8 0026BFE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8026F0AC 0026BFEC  7C 08 02 A6 */	mflr r0
 /* 8026F0B0 0026BFF0  90 01 00 24 */	stw r0, 0x24(r1)
