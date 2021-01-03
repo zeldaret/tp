@@ -5,6 +5,7 @@
 #include "global.h"
 
 class cM3dGLin {
+public:
     cM3dGLin(const cXyz&, const cXyz&);
     void SetStartEnd(const cXyz&, const cXyz&);
     void SetStartEnd(const Vec&, const Vec&);

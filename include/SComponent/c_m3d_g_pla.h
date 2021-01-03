@@ -5,6 +5,7 @@
 #include "global.h"
 
 class cM3dGPla {
+public:
     cM3dGPla(const cXyz*, float);
     void crossInfLin(const cXyz&, const cXyz&, cXyz&) const;
     void SetupNP0(const Vec&, const Vec&);

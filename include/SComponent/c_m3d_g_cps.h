@@ -7,6 +7,7 @@
 struct cM3dGCpsS;
 
 class cM3dGCps {
+public:
     cM3dGCps(void);
     ~cM3dGCps(void);
     void Set(const cXyz&, const cXyz&, float);

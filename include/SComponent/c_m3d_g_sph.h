@@ -8,6 +8,7 @@
 struct cM3dGSphS;
 
 class cM3dGSph {
+public:
     void SetC(const cXyz&);
     void Set(const cXyz&, float);
     void Set(const cM3dGSphS&);

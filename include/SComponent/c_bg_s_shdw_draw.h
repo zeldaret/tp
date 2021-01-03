@@ -3,9 +3,9 @@
 
 #include "SComponent/c_xyz.h"
 #include "global.h"
+#include "SComponent/c_m3d_g_pla.h"
 
 struct cBgD_Vtx_t;
-struct cM3dGPla;  // TODO math3d
 
 typedef int (*cBgS_ShdwDraw_Callback)(class cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*);
 
