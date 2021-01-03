@@ -242,7 +242,7 @@ void getUsedCount__9HeapCheckCFv(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void dComIfGs_setMixItemIndex(int, u8);
 void dComIfGs_setSelectItemIndex(int, u8);
-void dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);

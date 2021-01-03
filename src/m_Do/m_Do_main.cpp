@@ -67,23 +67,31 @@ asm void CheckHeap(u32 param_1) {
 }
 #endif
 
-asm int countUsed(JKRExpHeap* heap){nofralloc
-#include "m_Do/m_Do_main/asm/func_80005848.s"
+int countUsed(JKRExpHeap* heap) {
+    OSDisableScheduler();
+    int counter = 0;
+    JKRExpHeap::CMemBlock* used_blocks_head = heap->getHeadUsedList();
+
+    while (used_blocks_head) {
+        used_blocks_head = used_blocks_head->getNextBlock();
+        counter++;
+    };
+
+    OSEnableScheduler();
+    return counter;
 }
 
 s32 HeapCheck::getUsedCount(void) const {
     return countUsed(this->heap);
 }
 
-// 1 instruction off
-#ifdef NONMATCHING
 void HeapCheck::heapDisplay(void) const {
-    u32 heap_size1 = heap->heap_size;
-    s32 heap_size2 = this->heap->heap_size - this->heap_size;
+    s32 heap_size1 = this->heap->getSize();
+    s32 heap_size2 = heap_size1 - this->heap_size;
 
     s32 heap_total_used_size = this->heap->getTotalUsedSize();
-    s32 heap_total_free_size = ((JKRHeap*)this->heap)->getTotalFreeSize();
-    s32 heap_free_size = ((JKRHeap*)this->heap)->getFreeSize();
+    s32 heap_total_free_size = this->heap->getTotalFreeSize();
+    s32 heap_free_size = this->heap->getFreeSize();
 
     JUTReport__FiiPCce(0x64, 0xd4, lbl_803739A0 + 0x3C, this->names[0]);
     JUTReport__FiiPCce(0x64, 0xe3, lbl_803739A0 + 0x45, heap_size1);
@@ -102,12 +110,6 @@ void HeapCheck::heapDisplay(void) const {
     heap_size2 = countUsed(this->heap);
     JUTReport__FiiPCce(0x64, 0x165, lbl_803739A0 + 0x133, heap_size2);
 }
-#else
-asm void HeapCheck::heapDisplay(void) const {
-    nofralloc
-#include "m_Do\m_Do_main\asm\func_800058C4.s"
-}
-#endif
 
 asm void debugDisplay(void) {
     nofralloc

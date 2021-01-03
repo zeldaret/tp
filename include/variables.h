@@ -5,7 +5,7 @@ extern float lbl_80451D58;
 extern u8 i_item_lst[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
-extern u8 lbl_80379234[0x62];
+extern char lbl_80379234[0x64];
 extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 _sRumbleSupported;
@@ -273,10 +273,11 @@ extern u8 lbl_8039D188;  // "JKRAramArchive.cpp"
 extern u8 lbl_803CC3E8;  // JKRCompArchive::__vt
 extern u8 lbl_8039D220;  // "JKRCompArchive.cpp"
 
-extern u8 lbl_803CC460[32];          // JKRDecomp::sMessageBuffer
+extern OSMessage lbl_803CC460[8];    // JKRDecomp::sMessageBuffer
 extern OSMessageQueue lbl_803CC480;  // JKRDecomp::sMessageQueue
-extern u8 lbl_804514B0;              // JKRDecomp::sDecompObject
-extern u8 lbl_803CC4A0;              // JKRDecomp::__vt
+class JKRDecomp;
+extern JKRDecomp* lbl_804514B0;  // JKRDecomp::sDecompObject
+extern u8 lbl_803CC4A0;          // JKRDecomp::__vt
 
 extern u8 lbl_80434378;  // JKernel::@491 (global destructor chain)
 extern u8 lbl_80451428;  // JKernel::szpBuf

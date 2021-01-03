@@ -122,6 +122,14 @@ public:
     // temp for setWarashibeItem
     void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
     void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
+    dSv_player_c& getPlayer() { return info.getPlayer(); }
+    dSv_save_c& getSaveFile() { return info.getSaveFile(); }
+    u32 getNowVibration() { return play.getNowVibration(); }
+    dDlst_peekZ_c& getdlstPeekZ() { return draw_list_list.dlstPeekZ; }
+    dComIfG_play_c& getPlay() { return play; }
+    dSv_memory_c& getMemory() { return info.getMemory(); }
+
+private:
     /* 0x00000 */ dSv_info_c info;
     /* 0x00EEB */ u8 field_0xeeb[0x39];
     /* 0x00F24 */ u32 saveTotalTime;
