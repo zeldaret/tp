@@ -1022,7 +1022,7 @@ bool dSv_memBit_c::revSwitch(int i_no) {
     return (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] & tmp ? true : false;
 }
 #else
-asm u8 dSv_memBit_c::revSwitch(int) {
+asm BOOL dSv_memBit_c::revSwitch(int) {
     nofralloc
 #include "d/d_save/d_save/asm/func_8003488C.s"
 }
@@ -1143,10 +1143,10 @@ BOOL dSv_danBit_c::isSwitch(int i_no) const {
     return this->switch_bitfield[i_no >> 0x5] & (0x1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-bool dSv_danBit_c::revSwitch(int i_no) {
+BOOL dSv_danBit_c::revSwitch(int i_no) {
     int uVar1 = 1 << (i_no & 0x1F);
     this->switch_bitfield[i_no >> 5] ^= uVar1;
-    return this->switch_bitfield[i_no >> 5] & uVar1 ? true : false;
+    return this->switch_bitfield[i_no >> 5] & uVar1 ? TRUE : FALSE;
 }
 
 void dSv_danBit_c::onItem(int i_no) {
@@ -1198,7 +1198,7 @@ bool dSv_zoneBit_c::revSwitch(int i_no) {
     return this->switch_bitfield[i_no >> 4] & uVar1 ? true : false;
 }
 #else
-asm bool dSv_zoneBit_c::revSwitch(int i_no) {
+asm BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     nofralloc
 #include "d/d_save/d_save/asm/func_80034D78.s"
 }
@@ -1216,10 +1216,10 @@ BOOL dSv_zoneBit_c::isOneSwitch(int i_no) const {
     return this->room_switch & 1 << i_no ? TRUE : FALSE;
 }
 
-bool dSv_zoneBit_c::revOneSwitch(int i_no) {
+BOOL dSv_zoneBit_c::revOneSwitch(int i_no) {
     int iVar1 = 1 << i_no;
     this->room_switch ^= iVar1;
-    return this->room_switch & iVar1 ? true : false;
+    return this->room_switch & iVar1 ? TRUE : FALSE;
 }
 
 void dSv_zoneBit_c::onItem(int i_no) {
@@ -1383,8 +1383,6 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     }
 }
 
-// doesn't like getZoneBit() returning a reference
-#ifndef NONMATCHING
 BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     int value;
     if ((i_no == -1) || (i_no == 0xFF)) {
@@ -1409,16 +1407,28 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     }
     return value;
 }
-#else
-asm BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80035360.s"
-}
-#endif
 
-asm u8 dSv_info_c::revSwitch(int i_no, int i_roomNo) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_8003542c.s"
+
+BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
+    int value;
+    if ((i_no == -1) || (i_no == 0xFF)) {
+        return FALSE;
+    }
+
+    if (i_no < 0x80) {
+        value = this->memory.getTempFlags().revSwitch(i_no);
+    } else if (i_no < 0xC0) {
+        value = this->dungeon_bit.revSwitch(i_no - 0x80);
+    } else {
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        if (i_no < 0xE0) {
+            value = this->zones[zoneNo].getZoneBit().revSwitch(i_no - 0xC0);
+        } else {
+            value = this->zones[zoneNo].getZoneBit().revOneSwitch(i_no - 0xE0);
+        }
+    }
+
+    return value;
 }
 
 void dSv_info_c::onItem(int i_no, int i_roomNo) {

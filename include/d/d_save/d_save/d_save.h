@@ -673,7 +673,7 @@ public:
     void onSwitch(int);
     void offSwitch(int);
     BOOL isSwitch(int) const;
-    u8 revSwitch(int);
+    BOOL revSwitch(int);
     void onItem(int);
     BOOL isItem(int) const;
     void onDungeonItem(int);
@@ -747,7 +747,7 @@ public:
     void onSwitch(int);
     void offSwitch(int);
     BOOL isSwitch(int) const;
-    bool revSwitch(int);
+    BOOL revSwitch(int);
     void onItem(int);
     BOOL isItem(int) const;
 
@@ -768,11 +768,11 @@ public:
     void onSwitch(int);
     void offSwitch(int);
     BOOL isSwitch(int) const;
-    bool revSwitch(int);
+    BOOL revSwitch(int);
     void onOneSwitch(int);
     void offOneSwitch(int);
     BOOL isOneSwitch(int) const;
-    bool revOneSwitch(int);
+    BOOL revOneSwitch(int);
     void onItem(int);
     BOOL isItem(int) const;
     void onOneItem(int);
@@ -879,7 +879,7 @@ public:
     void onSwitch(int, int);
     void offSwitch(int, int);
     BOOL isSwitch(int, int) const;
-    u8 revSwitch(int, int);
+    BOOL revSwitch(int, int);
     void onItem(int, int);
     BOOL isItem(int, int) const;
     void onActor(int, int);
