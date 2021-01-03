@@ -1384,24 +1384,30 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
 }
 
 // doesn't like getZoneBit() returning a reference
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
+    int value;
     if ((i_no == -1) || (i_no == 0xFF)) {
-        return false;
+        return FALSE;
     }
 
     if (i_no < 0x80) {
-        return this->memory.getTempFlags().isSwitch(i_no);
+        value = this->memory.getTempFlagsConst().isSwitch(i_no);
     } else if (i_no < 0xc0) {
-        return this->dungeon_bit.isSwitch(i_no - 0x80);
+        value = this->dungeon_bit.isSwitch(i_no - 0x80);
     } else {
         int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
-        if (i_no < 0xE0) {
-            return this->zones[zoneId].getZoneBit().isSwitch(i_no - 0xC0);
+        if ((zoneId < 0) || (zoneId >= 0x20)) {
+            value = FALSE;
         } else {
-            return this->zones[zoneId].getZoneBit().isOneSwitch(i_no - 0xE0);
+            if (i_no < 0xE0) {
+                value = this->zones[zoneId].getZoneBitConst().isSwitch(i_no - 0xC0);
+            } else {
+                value = this->zones[zoneId].getZoneBitConst().isOneSwitch(i_no - 0xE0);
+            }
         }
     }
+    return value;
 }
 #else
 asm BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
@@ -1409,6 +1415,11 @@ asm BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
 #include "d/d_save/d_save/asm/func_80035360.s"
 }
 #endif
+
+asm u8 dSv_info_c::revSwitch(int i_no, int i_roomNo) {
+    nofralloc
+#include "d/d_save/d_save/asm/func_8003542c.s"
+}
 
 void dSv_info_c::onItem(int i_no, int i_roomNo) {
     if ((i_no == -1) || (i_no == 0xFF)) {
@@ -1432,7 +1443,7 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
 BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     int value;
     if ((i_no == -1) || (i_no == 0xFF)) {
-        return 0;
+        return FALSE;
     }
 
     if (i_no < 0x80) {
