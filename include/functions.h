@@ -441,24 +441,6 @@ void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
 void common_init__6JUTXfbFl(void);
 }
 
-// DVD
-// class DVDFileInfo;
-// extern "C" {
-// s32 DVDOpen(const char*, DVDFileInfo*);
-// s32 DVDClose(DVDFileInfo*);
-// void DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
-// void DVDGetCurrentDiskID(void);
-// s32 DVDFastOpen(long, u8[48]);
-// int DVDGetCommandBlockStatus(u8[48]);
-// s32 DVDReadAsyncPrio(u8[48], void*, long, long, void (*)(long, DVDFileInfo*), long);
-// void DVDConvertPathToEntrynum(void);
-
-// void DVDChangeDir(void);
-// void DVDCloseDir(void);
-// void DVDOpenDir(void);
-// void DVDReadDir(void);
-// }
-
 class mDoCPd_c;
 extern "C" {
 void mDoCPd_c_NS_recalibrate(void);

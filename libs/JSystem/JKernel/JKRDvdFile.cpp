@@ -56,7 +56,7 @@ void JKRDvdFile::initiate(void) {
 
 bool JKRDvdFile::open(const char* param_1) {
     if (!mIsAvailable) {
-        mIsAvailable = DVDOpen(param_1, mDvdCommandBlock);
+        mIsAvailable = DVDOpen(param_1, &mFileInfo);
         if (mIsAvailable) {
             lbl_8043436C.append(&mDvdLink);
             getStatus();
@@ -67,7 +67,7 @@ bool JKRDvdFile::open(const char* param_1) {
 
 bool JKRDvdFile::open(long param_1) {
     if (!mIsAvailable) {
-        mIsAvailable = DVDFastOpen(param_1, mDvdCommandBlock);
+        mIsAvailable = DVDFastOpen(param_1, &mFileInfo);
         if (mIsAvailable) {
             lbl_8043436C.append(&mDvdLink);
             getStatus();
@@ -78,7 +78,7 @@ bool JKRDvdFile::open(long param_1) {
 
 void JKRDvdFile::close() {
     if (mIsAvailable) {
-        s32 result = DVDClose(mDvdCommandBlock);
+        s32 result = DVDClose(&mFileInfo);
         if (result != 0) {
             mIsAvailable = false;
             lbl_8043436C.remove(&mDvdLink);
@@ -104,7 +104,7 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     mOSThread = OSGetCurrentThread();
 
     s32 result = -1;
-    s32 readAsyncResult = DVDReadAsyncPrio(mDvdCommandBlock, param_1, length, param_3,
+    s32 readAsyncResult = DVDReadAsyncPrio(&mFileInfo, param_1, length, param_3,
                                            JKRDvdFile::doneProcess, 2);
     if (readAsyncResult) {
         result = sync();
@@ -136,5 +136,5 @@ void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
 }
 
 s32 JKRDvdFile::getFileSize(void) const {
-    return mFileSize;
+    return mFileInfo.length;
 }

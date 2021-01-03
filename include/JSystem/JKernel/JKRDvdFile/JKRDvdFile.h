@@ -18,11 +18,11 @@ public:
     void initiate(void);
     s32 sync(void);
 
-    int getFileID() const { return mFileID << 2; }
+    int getFileID() const { return mFileInfo.start_address << 2; }
 
-    const u8* getFileInfo() const { return mDvdCommandBlock; }
+    const DVDFileInfo& getFileInfo() const { return mFileInfo; }
 
-    int getStatus() { return DVDGetCommandBlockStatus(&mDvdCommandBlock[0]); }
+    int getStatus() { return DVDGetCommandBlockStatus(&mFileInfo.block); }
 
 public:
     /* vt[03] */ virtual bool open(const char*);                 /* override */
@@ -41,17 +41,14 @@ private:
     /* 0x50 */ u32 field_0x50;
     /* 0x54 */ u32 field_0x54;
     /* 0x58 */ u32 field_0x58;
-    /* 0x5C */ u8 mDvdCommandBlock[48];
-    /* 0x98 */ s32 mFileID;
-    /* 0x9C */ s32 mFileSize;
-    /* 0x00 */ u32 field_0x94;
+    /* 0x5C */ DVDFileInfo mFileInfo;
     /* 0x98 */ JKRDvdFile* mDvdFile;
     /* 0x9C */ OSMessageQueue mMessageQueue1;
-    /* 0x00 */ OSMessage mMessage1;
-    /* 0x00 */ OSMessageQueue mMessageQueue2;
-    /* 0x00 */ OSMessage mMessage2;
-    /* 0x00 */ JSULink<JKRDvdFile> mDvdLink;
-    /* 0x00 */ OSThread* mOSThread;
+    /* 0xBC */ OSMessage mMessage1;
+    /* 0xC0 */ OSMessageQueue mMessageQueue2;
+    /* 0xE0 */ OSMessage mMessage2;
+    /* 0xE4 */ JSULink<JKRDvdFile> mDvdLink;
+    /* 0xF4 */ OSThread* mOSThread;
 
 public:
     static void doneProcess(long, DVDFileInfo*);
