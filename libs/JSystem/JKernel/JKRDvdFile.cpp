@@ -32,16 +32,9 @@ asm JKRDvdFile::JKRDvdFile(long) {
 }
 #endif
 
-#ifndef NONMATCHING
 JKRDvdFile::~JKRDvdFile() {
     close();
 }
-#else
-asm JKRDvdFile::~JKRDvdFile() {
-    nofralloc
-#include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
-}
-#endif
 
 void JKRDvdFile::initiate(void) {
     mDvdFile = this;
