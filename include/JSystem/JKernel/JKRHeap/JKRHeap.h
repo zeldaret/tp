@@ -150,4 +150,8 @@ inline void* operator new(u32 size, void* ptr) {
     return ptr;
 }
 
+inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, heap);
+}
+
 #endif

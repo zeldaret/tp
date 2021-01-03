@@ -20,21 +20,19 @@ public:
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
 
-    OSThread* getThreadRecord() const { return mOSThread; }
-    void* getStack() const { return mStackBase; }
+    OSThread* getThreadRecord() const { return mThreadRecord; }
+    void* getStack() const { return mStackMemory; }
     u8 getLoadInfo() const { return field_0x60; }
     JKRHeap* getCurrentHeap() const { return mCurrentHeap; }
     JKRHeap* getCurrentHeapError() const { return mCurrentHeapError; }
 
-    void resume() { OSResumeThread(mOSThread); }
+    void resume() { OSResumeThread(mThreadRecord); }
     void sendMessage(OSMessage message) {
         OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
     }
-
     void sendMessageBlock(OSMessage message) {
         OSSendMessage(&mMessageQueue, message, OS_MESSAGE_BLOCKING);
     }
-
     OSMessage waitMessage() {
         OSMessage message;
         OSReceiveMessage(&mMessageQueue, &message, OS_MESSAGE_NON_BLOCKING);
@@ -54,11 +52,11 @@ private:
     /* 0x04 */  // JKRDisposer
     /* 0x18 */ JSULink<JKRThread> mThreadListLink;
     /* 0x28 */ JKRHeap* mHeap;
-    /* 0x2C */ OSThread* mOSThread;
+    /* 0x2C */ OSThread* mThreadRecord;
     /* 0x30 */ OSMessageQueue mMessageQueue;
     /* 0x50 */ OSMessage* mMessages;
     /* 0x54 */ s32 mMessageCount;
-    /* 0x58 */ void* mStackBase;
+    /* 0x58 */ void* mStackMemory;
     /* 0x5C */ u32 mStackSize;
     /* 0x60 */ u8 field_0x60;
     /* 0x61 */ u8 padding_0x61[3];

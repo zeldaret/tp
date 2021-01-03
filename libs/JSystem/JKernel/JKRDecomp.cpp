@@ -150,7 +150,7 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
                     return;
                 }
             } else {
-                dstLength = dstLength - 1;
+                dstLength--;
             }
             dstOffset++;
             srcDataOffset++;
