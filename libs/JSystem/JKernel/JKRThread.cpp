@@ -51,21 +51,21 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
     this->mMessageCount = message_count;
     this->mMessages = (OSMessage*)JKRHeap::alloc(this->mMessageCount * sizeof(OSMessage), 0, heap);
 
-    OSInitMessageQueue(&this->mQueue, this->mMessages, this->mMessageCount);
+    OSInitMessageQueue(&this->mMessageQueue, this->mMessages, this->mMessageCount);
     lbl_8043428C.append(&this->mThreadListLink);
 
-    this->field_0x74 = (JKRHeap*)NULL;
-    this->field_0x78 = (JKRHeap*)NULL;
+    this->mCurrentHeap = NULL;
+    this->mCurrentHeapError = NULL;
 }
 
 // #include "JSystem/JKernel/JKRThread/asm/func_802D18A4.s"
 void JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3) {
     this->mHeap = heap;
     this->mStackSize = stack_size & 0xffffffe0;
-    this->mStackPtr = JKRHeap::alloc(this->mStackSize, 0x20, this->mHeap);
+    this->mStackBase = JKRHeap::alloc(this->mStackSize, 0x20, this->mHeap);
     this->mOSThread = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, this->mHeap);
 
-    void* stackBase = (void*)((int)this->mStackPtr + this->mStackSize);
+    void* stackBase = (void*)((int)this->mStackBase + this->mStackSize);
     OSCreateThread(this->mOSThread, start, this, stackBase, this->mStackSize, param_3, 1);
 }
 
