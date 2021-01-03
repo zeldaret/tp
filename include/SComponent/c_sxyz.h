@@ -5,7 +5,7 @@
 
 class csXyz {
 private:
-    s16 x, y, z;
+    s16 mX, mY, mZ;
 
 public:
     csXyz(s16, s16, s16);

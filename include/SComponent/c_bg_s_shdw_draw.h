@@ -1,9 +1,9 @@
 #ifndef __C_BG_S_SHDW_DRAW_H_
 #define __C_BG_S_SHDW_DRAW_H_
 
+#include "SComponent/c_m3d_g_pla.h"
 #include "SComponent/c_xyz.h"
 #include "global.h"
-#include "SComponent/c_m3d_g_pla.h"
 
 struct cBgD_Vtx_t;
 
