@@ -6,6 +6,9 @@
 
 #include "dolphin/types.h"
 
+#define OS_MESSAGE_NON_BLOCKING 0
+#define OS_MESSAGE_BLOCKING 1
+
 /* TODO: more structs, and get rid of the ones that are faked! */
 
 #define OS_MESSAGE_NON_BLOCKING 0
@@ -103,7 +106,8 @@ OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback* callbac
 
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
 BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
-void OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
 
 s32 OSGetConsoleType(void);
 s32 OSGetResetCode(void);
