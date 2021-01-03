@@ -31,6 +31,10 @@ void isEventBit__11dSv_event_cCFUs(void);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
@@ -192,6 +196,10 @@ void func_80365470(void);
 void DCInvalidateRange(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
@@ -275,6 +283,10 @@ void dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
 int strcmp(char*, char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cleanup functions.h
 void func_803620AC(void);
 void func_803626BC(void);
 void func_803664DC(void);
