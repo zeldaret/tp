@@ -5,7 +5,7 @@ extern float lbl_80451D58;
 extern u8 i_item_lst[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
-extern u8 lbl_80379234[0x62];
+extern char lbl_80379234[0x64];
 extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 _sRumbleSupported;

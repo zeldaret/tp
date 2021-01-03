@@ -892,6 +892,7 @@ public:
     dSv_save_c& getSaveFile() { return save_file; }
     dSv_memory_c& getMemory() { return memory; }
     dSv_zone_c* getZones() { return zones; }
+    dSv_player_c& getPlayer() { return save_file.getPlayer(); }
 
 private:
     /* 0x000 */ dSv_save_c save_file;
