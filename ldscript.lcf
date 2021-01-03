@@ -776,6 +776,7 @@ FORCEACTIVE {
  offTbox__12dSv_memBit_cFi
  set__25dSv_player_return_place_cFPCcScUc
  offActor__10dSv_info_cFii
+ revSwitch__10dSv_info_cFii
  __dt__12dFile_info_cFv
  modeWait__12dFile_info_cFv
  modeMove__12dFile_info_cFv

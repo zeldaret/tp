@@ -128,7 +128,7 @@ void dSv_player_status_b_c::onTransformLV(int flagOnOff) {
 BOOL dSv_player_status_b_c::isTransformLV(int unk) const {
     return this->mTransformLevelFlag & (u8)(1 << unk) ? TRUE : FALSE;
 }
-// extern u8 lbl_80379234[16];
+
 void dSv_horse_place_c::init(void) {
     f32 position_val;
     char* default_stage;
@@ -464,7 +464,7 @@ asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
 }
 
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
-    setEquipBottleItemIn(selected_index, EMPTY_BOTTLE);
+    this->setEquipBottleItemIn(selected_index, EMPTY_BOTTLE);
 }
 
 u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
@@ -479,28 +479,21 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
     }
     return num_bottles;
 }
-extern u16 lbl_803a7288[0x336];
 
-// close, registers swapped
-#ifdef NONMATCHING
 int dSv_player_item_c::checkInsectBottle(void) {
+    int i = 0;
     int j = 0;
-    for (int i = 0; i < 0x18; i++) {
-        if (!g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) ||
-            g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
-                lbl_803a7288[0x191 + j])) {
+    for (; i < 0x18; i++) {
+
+        // replace these with dComIfGs_isItemFirstBit and dComIfGs_isEventBit later
+        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
+            !g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(lbl_803A7288.unk0[0x191 + j])) {
             return 1;
         }
         j += 1;
     }
     return 0;
 }
-#else
-asm int dSv_player_item_c::checkInsectBottle(void) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033754.s"
-}
-#endif
 
 u8 dSv_player_item_c::checkEmptyBottle(void) {
     u8 num = 0;
@@ -555,9 +548,14 @@ asm void dSv_player_item_c::setEmptyBombBag(void) {
 }
 #endif
 
-asm void dSv_player_item_c::setEmptyBombBag(u8, u8){nofralloc
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBombBag(u8, u8) {}
+#else
+asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
+    nofralloc
 #include "d/d_save/d_save/asm/func_80033B08.s"
 }
+#endif
 
 u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     u8 counter = 0;
@@ -611,7 +609,6 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     }
 }
 
-// this is a few instructions off
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
@@ -887,13 +884,6 @@ void dSv_fishing_info_c::addFishCount(u8 fish_index) {
 
 // a few instructions off
 #ifdef NONMATCHING
-namespace d_meter2_info {
-class dMeter2Info_c {
-public:
-    void getString(unsigned long, char*, JMSMesgEntry_c*);
-};
-}  // namespace d_meter2_info
-
 void dSv_player_info_c::init(void) {
     unsigned long a = 0x382;
     unsigned long b = 0x383;
@@ -931,11 +921,11 @@ void dSv_player_config_c::init(void) {
     this->unk0 = 1;
     os_mSoundMode = OSGetSoundMode();
     if (os_mSoundMode == SOUND_MODE_MONO) {
-        this->mSoundMode = 0;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 0);
+        this->mSoundMode = SOUND_MODE_MONO;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_MONO);
     } else {
-        this->mSoundMode = 1;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 1);
+        this->mSoundMode = SOUND_MODE_STEREO;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_STEREO);
     }
 
     this->unk2 = 0;
@@ -1028,13 +1018,13 @@ BOOL dSv_memBit_c::isSwitch(int i_no) const {
 
 // instruction in wrong place
 #ifdef NONMATCHING
-bool dSv_memBit_c::revSwitch(int i_no) {
+BOOL dSv_memBit_c::revSwitch(int i_no) {
     unsigned int tmp = 1 << (i_no & 0x1F);
     (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] ^= tmp;
-    return (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] & tmp ? true : false;
+    return (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] & tmp ? TRUE : FALSE;
 }
 #else
-asm u8 dSv_memBit_c::revSwitch(int) {
+asm BOOL dSv_memBit_c::revSwitch(int) {
     nofralloc
 #include "d/d_save/d_save/asm/func_8003488C.s"
 }
@@ -1155,10 +1145,10 @@ BOOL dSv_danBit_c::isSwitch(int i_no) const {
     return this->switch_bitfield[i_no >> 0x5] & (0x1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-bool dSv_danBit_c::revSwitch(int i_no) {
+BOOL dSv_danBit_c::revSwitch(int i_no) {
     int uVar1 = 1 << (i_no & 0x1F);
     this->switch_bitfield[i_no >> 5] ^= uVar1;
-    return this->switch_bitfield[i_no >> 5] & uVar1 ? true : false;
+    return this->switch_bitfield[i_no >> 5] & uVar1 ? TRUE : FALSE;
 }
 
 void dSv_danBit_c::onItem(int i_no) {
@@ -1204,13 +1194,13 @@ BOOL dSv_zoneBit_c::isSwitch(int i_no) const {
 
 // instruction in wrong place
 #ifdef NONMATCHING
-bool dSv_zoneBit_c::revSwitch(int i_no) {
+BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     int uVar1 = 1 << (i_no & 0xF);
     this->switch_bitfield[i_no >> 4] ^= uVar1;
-    return this->switch_bitfield[i_no >> 4] & uVar1 ? true : false;
+    return this->switch_bitfield[i_no >> 4] & uVar1 ? TRUE : FALSE;
 }
 #else
-asm bool dSv_zoneBit_c::revSwitch(int i_no) {
+asm BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     nofralloc
 #include "d/d_save/d_save/asm/func_80034D78.s"
 }
@@ -1228,10 +1218,10 @@ BOOL dSv_zoneBit_c::isOneSwitch(int i_no) const {
     return this->room_switch & 1 << i_no ? TRUE : FALSE;
 }
 
-bool dSv_zoneBit_c::revOneSwitch(int i_no) {
+BOOL dSv_zoneBit_c::revOneSwitch(int i_no) {
     int iVar1 = 1 << i_no;
     this->room_switch ^= iVar1;
-    return this->room_switch & iVar1 ? true : false;
+    return this->room_switch & iVar1 ? TRUE : FALSE;
 }
 
 void dSv_zoneBit_c::onItem(int i_no) {
@@ -1395,32 +1385,52 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     }
 }
 
-// doesn't like getZoneBit() returning a reference
-#ifdef NONMATCHING
 BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
+    int value;
     if ((i_no == -1) || (i_no == 0xFF)) {
-        return false;
+        return FALSE;
     }
 
     if (i_no < 0x80) {
-        return this->memory.getTempFlags().isSwitch(i_no);
+        value = this->memory.getTempFlagsConst().isSwitch(i_no);
     } else if (i_no < 0xc0) {
-        return this->dungeon_bit.isSwitch(i_no - 0x80);
+        value = this->dungeon_bit.isSwitch(i_no - 0x80);
     } else {
         int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
-        if (i_no < 0xE0) {
-            return this->zones[zoneId].getZoneBit().isSwitch(i_no - 0xC0);
+        if ((zoneId < 0) || (zoneId >= 0x20)) {
+            value = FALSE;
         } else {
-            return this->zones[zoneId].getZoneBit().isOneSwitch(i_no - 0xE0);
+            if (i_no < 0xE0) {
+                value = this->zones[zoneId].getZoneBitConst().isSwitch(i_no - 0xC0);
+            } else {
+                value = this->zones[zoneId].getZoneBitConst().isOneSwitch(i_no - 0xE0);
+            }
         }
     }
+    return value;
 }
-#else
-asm BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80035360.s"
+
+BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
+    int value;
+    if ((i_no == -1) || (i_no == 0xFF)) {
+        return FALSE;
+    }
+
+    if (i_no < 0x80) {
+        value = this->memory.getTempFlags().revSwitch(i_no);
+    } else if (i_no < 0xC0) {
+        value = this->dungeon_bit.revSwitch(i_no - 0x80);
+    } else {
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        if (i_no < 0xE0) {
+            value = this->zones[zoneNo].getZoneBit().revSwitch(i_no - 0xC0);
+        } else {
+            value = this->zones[zoneNo].getZoneBit().revOneSwitch(i_no - 0xE0);
+        }
+    }
+
+    return value;
 }
-#endif
 
 void dSv_info_c::onItem(int i_no, int i_roomNo) {
     if ((i_no == -1) || (i_no == 0xFF)) {
@@ -1444,7 +1454,7 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
 BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     int value;
     if ((i_no == -1) || (i_no == 0xFF)) {
-        return 0;
+        return FALSE;
     }
 
     if (i_no < 0x80) {
