@@ -2,22 +2,22 @@
 
 #include "SComponent/c_API_graphic.h"
 
+typedef void (*cAPIGph_Mthd)(void);
+extern cAPIGph_Mthd lbl_803C3528[6];
+
 // cAPIGph_Painter__Fv
-asm void cAPIGph_Painter(void) {
-    nofralloc
-#include "SComponent/c_API_graphic/asm/func_802632C8.s"
+void cAPIGph_Painter(void) {
+    lbl_803C3528[3]();
 }
 
 // cAPIGph_BeforeOfDraw__Fv
 // cAPIGph_BeforeOfDraw(void)
-asm void cAPIGph_BeforeOfDraw(void) {
-    nofralloc
-#include "SComponent/c_API_graphic/asm/func_802632F8.s"
+void cAPIGph_BeforeOfDraw(void) {
+    lbl_803C3528[1]();
 }
 
 // cAPIGph_AfterOfDraw__Fv
 // cAPIGph_AfterOfDraw(void)
-asm void cAPIGph_AfterOfDraw(void) {
-    nofralloc
-#include "SComponent/c_API_graphic/asm/func_80263328.s"
+void cAPIGph_AfterOfDraw(void) {
+    lbl_803C3528[2]();
 }
