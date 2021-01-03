@@ -3,6 +3,6 @@
 
 #include "global.h"
 
-class J2DTextBox{};
+class J2DTextBox {};
 
 #endif

@@ -3,6 +3,6 @@
 
 #include "global.h"
 
-class J2DPicture{};
+class J2DPicture {};
 
 #endif

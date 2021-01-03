@@ -1,12 +1,12 @@
 #ifndef __D_METER2_INFO_H_
 #define __D_METER2_INFO_H_
 
-#include "JSystem/JMessage/control/control.h"
-#include "dolphin/types.h"
 #include "JSystem/J2DGraph/J2DPicture/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox/J2DTextBox.h"
+#include "JSystem/JMessage/control/control.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
+#include "dolphin/types.h"
 
 struct dMeter2Info_c_vtable {
     u32* addr1;

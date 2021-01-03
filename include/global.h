@@ -8,8 +8,8 @@ struct Vec {
 };
 
 #include "dolphin/types.h"
-
 #include "functions.h"
+#include "mwcc.h"
 #include "os/OS.h"
 #include "variables.h"
 
