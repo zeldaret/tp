@@ -6,15 +6,15 @@
 
 class cSAngle {
 private:
-    s16 angle;
+    s16 mAngle;
 
 public:
     cSAngle() {}
     cSAngle(const cSAngle&);
     cSAngle(s16);
     cSAngle(float);
-    s16 Get() const { return this->angle; }
-    void Set(s16 angle) { this->angle = angle; }
+    s16 Get() const { return this->mAngle; }
+    // void Set(s16 angle) { this->mAngle = angle; }
     void Val(const cSAngle&);
     void Val(s16);
     void Val(float);
@@ -35,6 +35,8 @@ public:
     void operator+=(short);
     cSAngle operator*(float) const;
     void operator*=(float);
+    static cSAngle getMaxNegative(void) { return cSAngle((s16)-0x8000); }
+    void mirrorAtMaxNeg(void) { *this = getMaxNegative() - *this; }
 };
 
 cSAngle operator+(short, const cSAngle&);
@@ -42,7 +44,7 @@ cSAngle operator-(short, const cSAngle&);
 
 class cDegree {
 private:
-    float degree;
+    float mDegree;
 
 public:
     cDegree(float);
@@ -56,9 +58,9 @@ public:
 
 class cSPolar {
 private:
-    float radial;
-    cSAngle angle1;
-    cSAngle angle2;
+    float mRadial;
+    cSAngle mAngle1;
+    cSAngle mAngle2;
 
 public:
     cSPolar() {}
@@ -72,9 +74,9 @@ public:
 
 class cSGlobe {
 private:
-    float radius;
-    cSAngle azimuth;
-    cSAngle inclination;
+    float mRadius;
+    cSAngle mAzimuth;
+    cSAngle mInclination;
 
 public:
     cSGlobe(const cSGlobe&);

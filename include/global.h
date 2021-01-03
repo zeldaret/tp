@@ -18,6 +18,12 @@ inline double fabsf(double d) {
     return __fabsf(d);
 }
 
+extern float __fsqrte(float);
+
+inline double sqrt(double d) {
+    return __fsqrte(d);
+}
+
 #include "dolphin/types.h"
 
 #include "ar/ARQ.h"

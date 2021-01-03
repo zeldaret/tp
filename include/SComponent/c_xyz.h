@@ -73,8 +73,4 @@ extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
 extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
 extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
 
-extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
-
 #endif
