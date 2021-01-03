@@ -128,7 +128,7 @@ void dSv_player_status_b_c::onTransformLV(int flagOnOff) {
 BOOL dSv_player_status_b_c::isTransformLV(int unk) const {
     return this->mTransformLevelFlag & (u8)(1 << unk) ? TRUE : FALSE;
 }
-// extern u8 lbl_80379234[16];
+
 void dSv_horse_place_c::init(void) {
     f32 position_val;
     char* default_stage;
@@ -464,7 +464,7 @@ asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
 }
 
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 selected_index) {
-    setEquipBottleItemIn(selected_index, EMPTY_BOTTLE);
+    this->setEquipBottleItemIn(selected_index, EMPTY_BOTTLE);
 }
 
 u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
@@ -479,28 +479,21 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
     }
     return num_bottles;
 }
-extern u16 lbl_803a7288[0x336];
 
-// close, registers swapped
-#ifdef NONMATCHING
 int dSv_player_item_c::checkInsectBottle(void) {
+    int i = 0;
     int j = 0;
-    for (int i = 0; i < 0x18; i++) {
-        if (!g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) ||
-            g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
-                lbl_803a7288[0x191 + j])) {
+    for (; i < 0x18; i++) {
+        // replace these with dComIfGs_isItemFirstBit and dComIfGs_isEventBit later
+        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
+            !g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
+                lbl_803A7288.unk0[0x191 + j])) {
             return 1;
         }
         j += 1;
     }
     return 0;
 }
-#else
-asm int dSv_player_item_c::checkInsectBottle(void) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033754.s"
-}
-#endif
 
 u8 dSv_player_item_c::checkEmptyBottle(void) {
     u8 num = 0;
@@ -555,9 +548,14 @@ asm void dSv_player_item_c::setEmptyBombBag(void) {
 }
 #endif
 
-asm void dSv_player_item_c::setEmptyBombBag(u8, u8){nofralloc
+#ifdef NONMATCHING
+void dSv_player_item_c::setEmptyBombBag(u8, u8) {}
+#else
+asm void dSv_player_item_c::setEmptyBombBag(u8, u8) {
+    nofralloc
 #include "d/d_save/d_save/asm/func_80033B08.s"
 }
+#endif
 
 u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     u8 counter = 0;
@@ -571,9 +569,21 @@ u8 dSv_player_item_c::checkBombBag(u8 param_1) {
     return counter;
 }
 
-asm void dSv_player_item_c::setWarashibeItem(u8) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033C2C.s"
+void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
+    u32 select_item_index;
+
+    g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_21, i_item_id);
+    g_dComIfG_gameInfo.setPlayUnkWarashibe1(SLOT_21);
+    g_dComIfG_gameInfo.setPlayUnkWarashibe2(i_item_id);
+
+    for (int i = 0; i < 4; i++) {
+        select_item_index =
+            g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().getSelectItemIndex(
+                (u8)i);
+        if (select_item_index == SLOT_21) {
+            dComIfGp_setSelectItem((u8)i);
+        }
+    }
 }
 
 void dSv_player_item_c::setRodTypeLevelUp(void) {
@@ -599,7 +609,6 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     }
 }
 
-// this is a few instructions off
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
@@ -875,13 +884,6 @@ void dSv_fishing_info_c::addFishCount(u8 fish_index) {
 
 // a few instructions off
 #ifdef NONMATCHING
-namespace d_meter2_info {
-class dMeter2Info_c {
-public:
-    void getString(unsigned long, char*, JMSMesgEntry_c*);
-};
-}  // namespace d_meter2_info
-
 void dSv_player_info_c::init(void) {
     unsigned long a = 0x382;
     unsigned long b = 0x383;
@@ -919,11 +921,11 @@ void dSv_player_config_c::init(void) {
     this->unk0 = 1;
     os_mSoundMode = OSGetSoundMode();
     if (os_mSoundMode == SOUND_MODE_MONO) {
-        this->mSoundMode = 0;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 0);
+        this->mSoundMode = SOUND_MODE_MONO;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_MONO);
     } else {
-        this->mSoundMode = 1;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, 1);
+        this->mSoundMode = SOUND_MODE_STEREO;
+        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_STEREO);
     }
 
     this->unk2 = 0;
@@ -1016,10 +1018,10 @@ BOOL dSv_memBit_c::isSwitch(int i_no) const {
 
 // instruction in wrong place
 #ifdef NONMATCHING
-bool dSv_memBit_c::revSwitch(int i_no) {
+BOOL dSv_memBit_c::revSwitch(int i_no) {
     unsigned int tmp = 1 << (i_no & 0x1F);
     (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] ^= tmp;
-    return (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] & tmp ? true : false;
+    return (this->area_flags_bitfields1 + (i_no >> 0x5))[0x2] & tmp ? TRUE : FALSE;
 }
 #else
 asm BOOL dSv_memBit_c::revSwitch(int) {
@@ -1192,10 +1194,10 @@ BOOL dSv_zoneBit_c::isSwitch(int i_no) const {
 
 // instruction in wrong place
 #ifdef NONMATCHING
-bool dSv_zoneBit_c::revSwitch(int i_no) {
+BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     int uVar1 = 1 << (i_no & 0xF);
     this->switch_bitfield[i_no >> 4] ^= uVar1;
-    return this->switch_bitfield[i_no >> 4] & uVar1 ? true : false;
+    return this->switch_bitfield[i_no >> 4] & uVar1 ? TRUE : FALSE;
 }
 #else
 asm BOOL dSv_zoneBit_c::revSwitch(int i_no) {
@@ -1407,7 +1409,6 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     }
     return value;
 }
-
 
 BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     int value;

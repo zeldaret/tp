@@ -3,6 +3,11 @@
 
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 
+// Align X to the previous N bytes (N must be power of two)
+#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
+// Align X to the next N bytes (N must be power of two)
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+
 struct Vec {
     float x, y, z;
 };
@@ -14,6 +19,8 @@ inline double fabsf(double d) {
 }
 
 #include "dolphin/types.h"
+
+#include "ar/ARQ.h"
 #include "functions.h"
 #include "mwcc.h"
 #include "os/OS.h"
