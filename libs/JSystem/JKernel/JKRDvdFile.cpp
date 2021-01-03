@@ -104,8 +104,8 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     mOSThread = OSGetCurrentThread();
 
     s32 result = -1;
-    s32 readAsyncResult = DVDReadAsyncPrio(&mFileInfo, param_1, length, param_3,
-                                           JKRDvdFile::doneProcess, 2);
+    s32 readAsyncResult =
+        DVDReadAsyncPrio(&mFileInfo, param_1, length, param_3, JKRDvdFile::doneProcess, 2);
     if (readAsyncResult) {
         result = sync();
     }

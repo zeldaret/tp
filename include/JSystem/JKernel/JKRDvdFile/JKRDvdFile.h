@@ -33,8 +33,8 @@ public:
     /* vt[08] */ virtual bool open(long);
 
 private:
-    /* 0x00 */ // vtable
-    /* 0x04 */ // JKRFile
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRFile
     /* 0x1C */ OSMutex mMutex1;
     /* 0x34 */ OSMutex mMutex2;
     /* 0x4C */ u32 field_0x4c;
