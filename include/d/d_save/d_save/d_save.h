@@ -722,6 +722,7 @@ public:
     dSv_memory_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(void);
     dSv_memBit_c& getTempFlags() { return temp_flags; }
+    const dSv_memBit_c& getTempFlagsConst() const { return temp_flags; }
 
 private:
     dSv_memBit_c temp_flags;
@@ -803,6 +804,7 @@ public:
     dSv_zone_c(void);  // the assembly for this is in d_com_inf_game.s
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return zone_bit; }
+    const dSv_zoneBit_c& getZoneBitConst() const { return zone_bit; }
     dSv_zoneActor_c& getZoneActor() { return zone_actor; }
     const dSv_zoneActor_c& getZoneActorConst() const { return zone_actor; }
 
