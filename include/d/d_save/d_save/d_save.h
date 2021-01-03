@@ -804,6 +804,7 @@ public:
     void init(int);
     dSv_zoneBit_c& getZoneBit() { return zone_bit; }
     dSv_zoneActor_c& getZoneActor() { return zone_actor; }
+    const dSv_zoneActor_c& getZoneActorConst() const { return zone_actor; }
 
     s8& getUnk0() { return unk0; }
 

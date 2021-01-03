@@ -1452,22 +1452,14 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
     this->zones[zoneNo].getZoneActor().off(i_id);
 }
 
-// somewhat close
-#ifdef NONMATCHING
 BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
     if (i_id == -1 || i_id == dSv_zoneActor_c::ACTOR_MAX || i_roomNo == -1) {
         return FALSE;
     }
 
     int ActorZoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_id);
-    return this->zones[ActorZoneNo].getZoneActor().is(i_id);
+    return this->zones[ActorZoneNo].getZoneActorConst().is(i_id);
 }
-#else
-asm BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80035724.s"
-}
-#endif
 
 #ifdef NONMATCHING
 extern u8 lbl_803F6094[0x10100];
