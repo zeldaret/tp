@@ -15,4 +15,6 @@ public:
     csXyz operator*(float);
 };
 
+extern csXyz lbl_80451160;  // SComponent::csXyz::Zero
+
 #endif

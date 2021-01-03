@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
 #include "SComponent/c_bg_s_poly_info.h"
+#include "SComponent/c_sxyz.h"
 #include "d/d_a/d_a_player/d_a_player.h"
 #include "d/d_cc/d_cc_d.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
@@ -37,10 +38,6 @@ class daAlink_footData_c;
 class daAlinkHIO_anm_c;
 class daPy_frameCtrl_c;
 struct cM3dGPla;
-
-struct csXyz {  // move later
-    s16 x, y, z;
-};
 
 class daAlink_c {
 public:
