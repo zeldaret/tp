@@ -68,7 +68,6 @@ asm void CheckHeap(u32 param_1) {
 #endif
 
 int countUsed(JKRExpHeap* heap) {
-    
     OSDisableScheduler();
     int counter = 0;
     JKRExpHeap::CMemBlock* used_blocks_head = heap->getHeadUsedList();
