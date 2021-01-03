@@ -1,4 +1,5 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
+#include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"

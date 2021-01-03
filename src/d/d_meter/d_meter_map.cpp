@@ -3,6 +3,7 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
 // isEnableDispMap__11dMeterMap_cFv

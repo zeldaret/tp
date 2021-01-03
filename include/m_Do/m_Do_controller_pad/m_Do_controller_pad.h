@@ -2,7 +2,10 @@
 #define __M_DO_CONTROLLER_PAD_H_
 
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
-#include "global.h"
+#include "SComponent/c_API_controller_pad.h"
+
+extern JUTGamePad* lbl_803DD2D8[4];                // m_Do_controller_pad::mDoCPd_c::m_gamePad
+extern interface_of_controller_pad m_cpadInfo[4];  // m_Do_controller_pad::mDoCPd_c::m_cpadInfo
 
 struct g_HIO_struct {
     u32 field_0x0;
@@ -66,49 +69,12 @@ struct g_HIO_struct {
     u8 field_0x43;
 };
 
-struct interface_of_controller_pad {
-    float stick_x;
-    float stick_y;
-    float length_from_neutral;
-    s16 controlStick_angle;
-    u8 field_0xe;
-    u8 field_0xf;
-    float cStick_x;
-    float cStick_y;
-    float cStick_length_from_neutral;
-    s16 cStick_angle;
-    u8 field_0x1e;
-    u8 field_0x1f;
-    float analog_a;
-    float analog_b;
-    float trigger_left;
-    float trigger_right;
-    u32 button_flags;
-    u32 field_0x34;
-    s8 error_value;
-    bool field_0x39;
-    bool field_0x3a;
-    bool field_0x3b;
-    bool field_0x3c;
-};
-
-struct cpadInfo {
-    interface_of_controller_pad interface;
-    cpadInfo* unk1;
-    f32 stickValue;
-    s16 stickAngle;
-    u8 p2[0x8];
-    f32 CstickValue;
-    s16 CstickAngle;
-    u8 p3[0xE2];
-};
-
 struct mDoCPd_c {
     void create();
     void read();
     static void convert(interface_of_controller_pad* controllerInteface, JUTGamePad* gamePad);
     static void LRlockCheck(interface_of_controller_pad* controllerInterface);
-    void recalibrate(void);
+    static void recalibrate(void);
 
     JUTGamePad* gamePad;
 };

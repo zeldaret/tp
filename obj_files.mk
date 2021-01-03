@@ -88,7 +88,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_bomb.o    \
             $(BUILD_DIR)/src/d/d_lib.o    \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
-            $(BUILD_DIR)/asm/d/save/d_save_init.o    \
+            $(BUILD_DIR)/src/d/d_save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
             $(BUILD_DIR)/asm/d/a/d_a_obj.o    \
             $(BUILD_DIR)/asm/d/a/itembase/d_a_itembase_static.o    \
@@ -240,7 +240,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o    \
             $(BUILD_DIR)/asm/DynamicLink.o    \
             $(BUILD_DIR)/asm/SComponent/c/c_malloc.o    \
-            $(BUILD_DIR)/asm/SComponent/c/API/controller/c_API_controller_pad.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o \
             $(BUILD_DIR)/asm/SComponent/c/API/c_API_graphic.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
             $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
@@ -384,7 +384,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JAudio2/JAUAudioArcLoader.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUAudioMgr.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUBankTable.o    \
-            $(BUILD_DIR)/asm/JAudio2/JAUClusterSound.o    \
+            $(BUILD_DIR)/libs/JSystem/JAudio2/JAUClusterSound.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUInitializer.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSectionHeap.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSeqCollection.o    \
@@ -459,7 +459,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdAramRipper.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDecomp.o    \
-            $(BUILD_DIR)/asm/JSupport/JSUList.o    \
             $(BUILD_DIR)/libs/JSystem/JSupport/JSUList.o    \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUMemoryStream.o    \
@@ -540,7 +539,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DShapeFactory.o    \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DAnmLoader.o    \
             $(BUILD_DIR)/asm/JMath/JMath.o    \
-            $(BUILD_DIR)/asm/JMath/random.o    \
+            $(BUILD_DIR)/libs/JSystem/JMath/random.o    \
             $(BUILD_DIR)/asm/JMath/JMATrigonometric.o    \
             $(BUILD_DIR)/asm/base/PPCArch.o    \
             $(BUILD_DIR)/asm/os/OS.o    \

@@ -505,7 +505,7 @@ void DVDReadDir(void);
 
 class mDoCPd_c;
 extern "C" {
-void cAPICPad_recalibrate(void);
+void mDoCPd_c_NS_recalibrate(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -705,7 +705,6 @@ void func_8036C740(void);
 void func_8036C780(void);
 void getRandom_0_1__6Z2CalcFv(void);
 void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
-void JMath_NS_TRandom_fast_(void);
 }
 
 // d_a_horse_static

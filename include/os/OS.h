@@ -4,6 +4,8 @@
 #ifndef __OS_H__
 #define __OS_H__
 
+#include "dolphin/types.h"
+
 /* TODO: more structs, and get rid of the ones that are faked! */
 
 struct OSMutex {

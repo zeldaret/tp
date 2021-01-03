@@ -16,7 +16,7 @@ Z2SpeechMgr2:
 /* 802CBC80 002C8BC0  90 03 00 04 */	stw r0, 4(r3)
 /* 802CBC84 002C8BC4  38 7F 00 08 */	addi r3, r31, 8
 /* 802CBC88 002C8BC8  38 80 00 00 */	li r4, 0
-/* 802CBC8C 002C8BCC  48 06 DE 59 */	bl JMath_NS_TRandom_fast_
+/* 802CBC8C 002C8BCC  48 06 DE 59 */	bl __ct__Q25JMath13TRandom_fast_FUl
 /* 802CBC90 002C8BD0  38 7F 00 0C */	addi r3, r31, 0xc
 /* 802CBC94 002C8BD4  48 00 13 25 */	bl Z2SpeechStarter
 /* 802CBC98 002C8BD8  38 00 00 00 */	li r0, 0

@@ -448,7 +448,7 @@ myExceptionCallback:
 /* 8000B7DC 0000871C  90 8D 85 94 */	stw r4, lbl_80450B14-_SDA_BASE_(r13)
 /* 8000B7E0 00008720  90 6D 85 90 */	stw r3, lbl_80450B10-_SDA_BASE_(r13)
 /* 8000B7E4 00008724  4B FF B0 BD */	bl OSReportEnable
-/* 8000B7E8 00008728  48 25 7A A5 */	bl cAPICPad_recalibrate
+/* 8000B7E8 00008728  48 25 7A A5 */	bl cAPICPad_recalibrate__Fv
 /* 8000B7EC 0000872C  3C 60 80 37 */	lis r3, lbl_80373DE8@ha
 /* 8000B7F0 00008730  38 63 3D E8 */	addi r3, r3, lbl_80373DE8@l
 /* 8000B7F4 00008734  38 63 01 19 */	addi r3, r3, 0x119

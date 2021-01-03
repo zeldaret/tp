@@ -10,8 +10,6 @@ extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 _sRumbleSupported;
 extern u8 lbl_803C3384;
-struct cpadInfo;
-extern cpadInfo m_cpadInfo;
 extern u8 lbl_803A2EF4;
 extern u8 lbl_803A2EE0;
 extern u8 lbl_80450B19;

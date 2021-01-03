@@ -1,6 +1,7 @@
 #include "d/d_save/d_save/d_save.h"
 
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_save/d_save_init/d_save_init.h"
 #include "os/OS.h"
 
 u8 dSv_item_rename(u8 item_id) {
