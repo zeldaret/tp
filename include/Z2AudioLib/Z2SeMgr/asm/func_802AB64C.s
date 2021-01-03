@@ -4,8 +4,8 @@
 /* 802AB658 002A8598  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802AB65C 002A859C  7C 7F 1B 78 */	mr r31, r3
 /* 802AB660 002A85A0  93 ED 86 08 */	stw r31, lbl_80450B88-_SDA_BASE_(r13)
-/* 802AB664 002A85A4  3C 80 80 2A */	lis r4, JAISoundHandle@ha
-/* 802AB668 002A85A8  38 84 4A C4 */	addi r4, r4, JAISoundHandle@l
+/* 802AB664 002A85A4  3C 80 80 2A */	lis r4, __ct__14JAISoundHandleFv@ha
+/* 802AB668 002A85A8  38 84 4A C4 */	addi r4, r4, __ct__14JAISoundHandleFv@l
 /* 802AB66C 002A85AC  3C A0 80 00 */	lis r5, JAISoundHandle_NS_dtor@ha
 /* 802AB670 002A85B0  38 A5 78 38 */	addi r5, r5, JAISoundHandle_NS_dtor@l
 /* 802AB674 002A85B4  38 C0 00 04 */	li r6, 4

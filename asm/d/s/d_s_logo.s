@@ -96,8 +96,8 @@ dScnLogo_c_NS_checkProgSelect:
 /* 802561CC 0025310C  48 00 23 55 */	bl dScnLogo_c_NS_isProgressiveMode
 /* 802561D0 00253110  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802561D4 00253114  40 82 00 18 */	bne lbl_802561EC
-/* 802561D8 00253118  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 802561DC 0025311C  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 802561D8 00253118  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 802561DC 0025311C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 802561E0 00253120  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 802561E4 00253124  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 802561E8 00253128  41 82 00 14 */	beq lbl_802561FC
@@ -215,8 +215,8 @@ lbl_80256304:
 /* 80256390 002532D0  88 1D 02 09 */	lbz r0, 0x209(r29)
 /* 80256394 002532D4  28 00 00 00 */	cmplwi r0, 0
 /* 80256398 002532D8  40 82 00 80 */	bne lbl_80256418
-/* 8025639C 002532DC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 802563A0 002532E0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8025639C 002532DC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 802563A0 002532E0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 802563A4 002532E4  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 802563A8 002532E8  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 802563AC 002532EC  40 82 00 14 */	bne lbl_802563C0
@@ -248,8 +248,8 @@ lbl_802563C0:
 /* 80256410 00253350  B0 1D 02 12 */	sth r0, 0x212(r29)
 /* 80256414 00253354  48 00 00 78 */	b lbl_8025648C
 lbl_80256418:
-/* 80256418 00253358  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8025641C 0025335C  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 80256418 00253358  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8025641C 0025335C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80256420 00253360  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 80256424 00253364  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80256428 00253368  40 82 00 14 */	bne lbl_8025643C
@@ -279,8 +279,8 @@ lbl_8025643C:
 /* 80256484 002533C4  B0 1D 02 10 */	sth r0, 0x210(r29)
 /* 80256488 002533C8  B0 7D 02 12 */	sth r3, 0x212(r29)
 lbl_8025648C:
-/* 8025648C 002533CC  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80256490 002533D0  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8025648C 002533CC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80256490 002533D0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80256494 002533D4  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80256498 002533D8  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8025649C 002533DC  40 82 00 10 */	bne lbl_802564AC
@@ -874,8 +874,8 @@ lbl_80256D4C:
 /* 80256D4C 00253C8C  A0 1F 02 0C */	lhz r0, 0x20c(r31)
 /* 80256D50 00253C90  28 00 00 00 */	cmplwi r0, 0
 /* 80256D54 00253C94  41 82 00 18 */	beq lbl_80256D6C
-/* 80256D58 00253C98  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 80256D5C 00253C9C  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 80256D58 00253C98  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 80256D5C 00253C9C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80256D60 00253CA0  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80256D64 00253CA4  70 00 1F 7F */	andi. r0, r0, 0x1f7f
 /* 80256D68 00253CA8  41 82 00 44 */	beq lbl_80256DAC
@@ -1254,7 +1254,7 @@ lbl_80257304:
 /* 80257304 00254244  38 60 00 00 */	li r3, 0
 /* 80257308 00254248  3C 80 80 00 */	lis r4, 0x8000
 /* 8025730C 0025424C  38 A0 00 00 */	li r5, 0
-/* 80257310 00254250  4B DB E3 05 */	bl reset__6mDoRstFlUll
+/* 80257310 00254250  4B DB E3 05 */	bl mDoRst_reset__FiUli
 lbl_80257314:
 /* 80257314 00254254  83 9F 01 E4 */	lwz r28, 0x1e4(r31)
 /* 80257318 00254258  28 1C 00 00 */	cmplwi r28, 0
@@ -1882,10 +1882,10 @@ lbl_80257C0C:
 lbl_80257C18:
 /* 80257C18 00254B58  38 80 00 00 */	li r4, 0
 /* 80257C1C 00254B5C  98 8D 8F 81 */	stb r4, lbl_80451501-_SDA_BASE_(r13)
-.global resetCallBack__6mDoRstFiPv
-/* 80257C20 00254B60  3C 60 80 01 */	lis r3, resetCallBack__6mDoRstFiPv@ha
-.global resetCallBack__6mDoRstFiPv
-/* 80257C24 00254B64  38 03 57 4C */	addi r0, r3, resetCallBack__6mDoRstFiPv@l
+.global mDoRst_resetCallBack__FiPv
+/* 80257C20 00254B60  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
+.global mDoRst_resetCallBack__FiPv
+/* 80257C24 00254B64  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
 /* 80257C28 00254B68  90 0D 8F 6C */	stw r0, lbl_804514EC-_SDA_BASE_(r13)
 /* 80257C2C 00254B6C  90 8D 8F 70 */	stw r4, lbl_804514F0-_SDA_BASE_(r13)
 /* 80257C30 00254B70  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)

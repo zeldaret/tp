@@ -34,6 +34,7 @@ extern void fpcDw_Handler(void*, void*);
 extern base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
                                             FastCreateReqFunc param_3, void* param_4, void* pData);
 extern void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
+}
 
 void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);
@@ -90,7 +91,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
             Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
-            lbl_803DD2D8[0]->stopPatternedRumble();
+            m_gamePad[0]->stopPatternedRumble();
             lbl_80450D38 = 1;
         }
     }
@@ -129,5 +130,4 @@ void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData) {
     } else {
         return NULL;
     }
-}
 }

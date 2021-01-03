@@ -31,6 +31,8 @@ except ModuleNotFoundError:
     fail("Unable to find diff_settings.py in the same directory.")
 sys.path.pop(0)
 
+from elftools.elf.elffile import ELFFile
+
 # ==== COMMAND-LINE ====
 
 try:
@@ -234,6 +236,13 @@ parser.add_argument(
     default=1024,
     help="The maximum length of the diff, in lines.",
 )
+parser.add_argument(
+    "--lhs-name",
+    dest="lhs_name",
+    type=str,
+    metavar="SYMBOL",
+    help="override symbol name on lhs when using -o"
+)
 
 # Project-specific flags, e.g. different versions/make arguments.
 add_custom_arguments_fn = getattr(diff_settings, "add_custom_arguments", None)
@@ -287,7 +296,6 @@ makeflags: List[str] = config.get("makeflags", [])
 source_directories: Optional[List[str]] = config.get("source_directories")
 objdump_executable: Optional[str] = config.get("objdump_executable")
 map_format: str = config.get("map_format", "gnu")
-mw_build_dir: str = config.get("mw_build_dir", "build/")
 
 MAX_FUNCTION_SIZE_LINES: int = args.max_lines
 MAX_FUNCTION_SIZE_BYTES: int = MAX_FUNCTION_SIZE_LINES * 4
@@ -308,7 +316,7 @@ BUFFER_CMD: List[str] = ["tail", "-c", str(10 ** 9)]
 LESS_CMD: List[str] = ["less", "-SRic", "-#6"]
 
 DEBOUNCE_DELAY: float = 0.1
-FS_WATCH_EXTENSIONS: List[str] = [".c", ".h"]
+FS_WATCH_EXTENSIONS: List[str] = [".c", ".cpp", ".h", ".s"]
 
 # ==== LOGIC ====
 
@@ -428,10 +436,25 @@ base_shift: int = eval_int(
     args.base_shift, "Failed to parse --base-shift (-S) argument as an integer."
 )
 
+def disambiguate_objects(fn_name: str, objfiles: List[str]) -> str:
+    for objfile in objfiles:
+        with open(objfile, 'rb') as f:
+            elffile = ELFFile(f)
+            symtab = elffile.get_section_by_name('.symtab')
+            match = symtab.get_symbol_by_name(fn_name)
+            if match is None:
+                continue
+            if match[0].entry.st_info.type == 'STT_FUNC':
+                return objfile
 
-def search_map_file(fn_name: str) -> Tuple[Optional[str], Optional[int]]:
+    return None
+
+def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Optional[str] = None) -> Tuple[Optional[str], Optional[int]]:
     if not mapfile:
         fail(f"No map file configured; cannot find function {fn_name}.")
+    
+    if not build_dir:
+        build_dir = config.get('build_dir')
 
     try:
         with open(mapfile) as f:
@@ -479,10 +502,15 @@ def search_map_file(fn_name: str) -> Tuple[Optional[str], Optional[int]]:
             rom = int(find[0][1],16)
             objname = find[0][2]
             # The metrowerks linker map format does not contain the full object path, so we must complete it manually.
-            objfiles = [os.path.join(dirpath, f) for dirpath, _, filenames in os.walk(mw_build_dir) for f in filenames if f == objname]
+            objfiles = [os.path.join(dirpath, f) for dirpath, _, filenames in os.walk(build_dir) for f in filenames if f == objname]
             if len(objfiles) > 1:
-                all_objects = "\n".join(objfiles)
-                fail(f"Found multiple objects of the same name {objname} in {mw_build_dir}, cannot determine which to diff against: \n{all_objects}")
+                objfile = disambiguate_objects(fn_name, objfiles)
+                if objfile is None:
+                    all_objects = "\n".join(objfiles)
+                    fail(f"Found multiple objects of the same name {objname} in {build_dir}, cannot determine which to diff against: \n{all_objects}")
+
+                return objfile, rom
+
             if len(objfiles) == 1:
                 objfile = objfiles[0]
                 # TODO Currently the ram-rom conversion only works for diffing ELF executables, but it would likely be more convenient to diff DOLs.
@@ -531,7 +559,7 @@ def dump_objfile() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
     if args.start.startswith("0"):
         fail("numerical start address not supported with -o; pass a function name")
 
-    objfile, _ = search_map_file(args.start)
+    objfile, _ = search_map_file(args.start, config.get('mapfile'), config.get('build_dir'))
     if not objfile:
         fail("Not able to find .o file for function.")
 
@@ -541,7 +569,7 @@ def dump_objfile() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
     if not os.path.isfile(objfile):
         fail(f"Not able to find .o file for function: {objfile} is not a file.")
 
-    refobjfile = objfile
+    refobjfile, _ = search_map_file(args.lhs_name or args.start, config.get('expected_mapfile'), config.get('expected_build_dir'))
     if not os.path.isfile(refobjfile):
         fail(f'Please ensure an OK .o file exists at "{refobjfile}".')
 

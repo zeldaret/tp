@@ -1,5 +1,6 @@
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
 #include "SComponent/c_xyz.h"
+#include "f/f_op/f_op_actor.h"
 #include "global.h"
 
 struct STControl_vtable {
@@ -54,19 +55,7 @@ struct CSTControl {
     s16 getAngleStick();
 };
 
-struct m_cpadInfo {
-    u8 p1[0x8];
-    f32 stickValue;
-    s16 stickAngle;
-    u8 p2[0x8];
-    f32 CstickValue;
-    s16 CstickAngle;
-    u8 p3[0xE2];
-};
-
 u32 dLib_getEventSwitchNo(int param_1);
-
-struct fopAc_ac_c;
 
 bool dLib_checkActorInRectangle(fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz const* param_3,
                                 cXyz const* param_4);

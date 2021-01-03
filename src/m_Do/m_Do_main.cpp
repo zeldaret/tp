@@ -1,4 +1,5 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
+#include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"
@@ -31,7 +32,7 @@ void HeapCheck::CheckHeap1(void) {
 
 #ifdef NONMATCHING
 extern u8 lbl_803A2EF4[0x4c];
-extern u8 lbl_803DD2E8[0x100];
+extern u8 m_cpadInfo[0x100];
 
 void CheckHeap(u32 param_1) {
     HeapCheck* currentHeap;
@@ -42,8 +43,8 @@ void CheckHeap(u32 param_1) {
 
     unk = 0;
 
-    if ((((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0xffffffef) == 0x60) &&
-        (((lbl_803DD2E8 + 0x30)[param_1 * 0x10] & 0x10) != 0)) {
+    if ((((m_cpadInfo + 0x30)[param_1 * 0x10] & 0xffffffef) == 0x60) &&
+        (((m_cpadInfo + 0x30)[param_1 * 0x10] & 0x10) != 0)) {
         unk = 1;
     }
 

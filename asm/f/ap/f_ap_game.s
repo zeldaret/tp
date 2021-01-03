@@ -94,7 +94,7 @@ fapGm_Execute:
 /* 80018A7C 000159BC  3C 80 80 02 */	lis r4, fapGm_After@ha
 .global fapGm_After
 /* 80018A80 000159C0  38 84 8A 44 */	addi r4, r4, fapGm_After@l
-/* 80018A84 000159C4  48 00 96 D5 */	bl fpcM_Management
+/* 80018A84 000159C4  48 00 96 D5 */	bl fpcM_Management__FPFv_vPFv_v
 /* 80018A88 000159C8  38 60 00 00 */	li r3, 0
 /* 80018A8C 000159CC  48 24 D3 91 */	bl cCt_Counter
 /* 80018A90 000159D0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -113,8 +113,8 @@ fapGm_Create:
 /* 80018AB8 000159F8  48 00 58 C1 */	bl fopCamM_Init
 /* 80018ABC 000159FC  48 00 7A 5D */	bl fopDwTg_CreateQueue
 /* 80018AC0 00015A00  38 00 FF FF */	li r0, -1
-/* 80018AC4 00015A04  3C 60 80 3F */	lis r3, lbl_803F1BBC@ha
-/* 80018AC8 00015A08  38 63 1B BC */	addi r3, r3, lbl_803F1BBC@l
+/* 80018AC4 00015A04  3C 60 80 3F */	lis r3, g_HIO@ha
+/* 80018AC8 00015A08  38 63 1B BC */	addi r3, r3, g_HIO@l
 /* 80018ACC 00015A0C  98 03 00 04 */	stb r0, 4(r3)
 /* 80018AD0 00015A10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80018AD4 00015A14  7C 08 03 A6 */	mtlr r0
@@ -144,8 +144,8 @@ lbl_80018B10:
 /* 80018B28 00015A68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018B2C 00015A6C  7C 08 02 A6 */	mflr r0
 /* 80018B30 00015A70  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80018B34 00015A74  3C 60 80 3F */	lis r3, lbl_803F1BBC@ha
-/* 80018B38 00015A78  38 63 1B BC */	addi r3, r3, lbl_803F1BBC@l
+/* 80018B34 00015A74  3C 60 80 3F */	lis r3, g_HIO@ha
+/* 80018B38 00015A78  38 63 1B BC */	addi r3, r3, g_HIO@l
 /* 80018B3C 00015A7C  4B FF FE 09 */	bl fapGm_HIO_c
 .global fapGm_HIO_c_NS_dtor
 /* 80018B40 00015A80  3C 80 80 02 */	lis r4, fapGm_HIO_c_NS_dtor@ha

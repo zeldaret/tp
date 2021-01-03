@@ -1,5 +1,8 @@
 #include "d/d_lib/d_lib.h"
+#include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "d/d_event/d_event/d_event.h"
+#include "global.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "os/OS.h"
 
 STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
@@ -61,19 +64,19 @@ asm void STControl::Yinit(void) {
 #endif
 
 double STControl::getValueStick() {
-    return lbl_803DD2E8.stickValue;
+    return (double)m_cpadInfo[0].mMainStickValue;
 }
 
 s16 STControl::getAngleStick() {
-    return lbl_803DD2E8.stickAngle;
+    return m_cpadInfo[0].mMainStickAngle;
 }
 
 double CSTControl::getValueStick() {
-    return lbl_803DD2E8.CstickValue;
+    return (double)m_cpadInfo[0].mCStickValue;
 }
 
 s16 CSTControl::getAngleStick() {
-    return lbl_803DD2E8.CstickAngle;
+    return m_cpadInfo[0].mCStickAngle;
 }
 
 asm u32 STControl::checkTrigger() {

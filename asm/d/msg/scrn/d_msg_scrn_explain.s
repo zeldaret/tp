@@ -13,7 +13,7 @@ dMsgScrnExplain_c:
 /* 8023CC9C 00239BDC  DB C1 00 70 */	stfd f30, 0x70(r1)
 /* 8023CCA0 00239BE0  F3 C1 00 78 */	psq_st f30, 120(r1), 0, qr0
 /* 8023CCA4 00239BE4  39 61 00 70 */	addi r11, r1, 0x70
-/* 8023CCA8 00239BE8  48 12 55 21 */	bl func_803621C8
+/* 8023CCA8 00239BE8  48 12 55 21 */	bl _savegpr_24
 /* 8023CCAC 00239BEC  7C 7F 1B 78 */	mr r31, r3
 /* 8023CCB0 00239BF0  7C 9E 23 78 */	mr r30, r4
 /* 8023CCB4 00239BF4  7C BB 2B 78 */	mr r27, r5
@@ -583,7 +583,7 @@ lbl_8023D46C:
 /* 8023D518 0023A458  E3 C1 00 78 */	psq_l f30, 120(r1), 0, qr0
 /* 8023D51C 0023A45C  CB C1 00 70 */	lfd f30, 0x70(r1)
 /* 8023D520 0023A460  39 61 00 70 */	addi r11, r1, 0x70
-/* 8023D524 0023A464  48 12 4C F1 */	bl func_80362214
+/* 8023D524 0023A464  48 12 4C F1 */	bl _restgpr_24
 /* 8023D528 0023A468  80 01 00 94 */	lwz r0, 0x94(r1)
 /* 8023D52C 0023A46C  7C 08 03 A6 */	mtlr r0
 /* 8023D530 0023A470  38 21 00 90 */	addi r1, r1, 0x90
@@ -1188,8 +1188,8 @@ lbl_8023DD70:
 /* 8023DDD0 0023AD10  B0 03 00 5E */	sth r0, 0x5e(r3)
 /* 8023DDD4 0023AD14  48 00 00 A8 */	b lbl_8023DE7C
 lbl_8023DDD8:
-/* 8023DDD8 0023AD18  3C 80 80 3E */	lis r4, lbl_803DD2E8@ha
-/* 8023DDDC 0023AD1C  38 84 D2 E8 */	addi r4, r4, lbl_803DD2E8@l
+/* 8023DDD8 0023AD18  3C 80 80 3E */	lis r4, m_cpadInfo@ha
+/* 8023DDDC 0023AD1C  38 84 D2 E8 */	addi r4, r4, m_cpadInfo@l
 /* 8023DDE0 0023AD20  80 84 00 34 */	lwz r4, 0x34(r4)
 /* 8023DDE4 0023AD24  54 80 05 EF */	rlwinm. r0, r4, 0, 0x17, 0x17
 /* 8023DDE8 0023AD28  40 82 00 54 */	bne lbl_8023DE3C
@@ -1768,16 +1768,16 @@ lbl_8023E638:
 
 .global dMsgScrnExplain_c_NS_checkTriggerA
 dMsgScrnExplain_c_NS_checkTriggerA:
-/* 8023E640 0023B580  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8023E644 0023B584  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8023E640 0023B580  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8023E644 0023B584  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 8023E648 0023B588  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8023E64C 0023B58C  54 03 C7 FE */	rlwinm r3, r0, 0x18, 0x1f, 0x1f
 /* 8023E650 0023B590  4E 80 00 20 */	blr 
 
 .global dMsgScrnExplain_c_NS_checkTriggerB
 dMsgScrnExplain_c_NS_checkTriggerB:
-/* 8023E654 0023B594  3C 60 80 3E */	lis r3, lbl_803DD2E8@ha
-/* 8023E658 0023B598  38 63 D2 E8 */	addi r3, r3, lbl_803DD2E8@l
+/* 8023E654 0023B594  3C 60 80 3E */	lis r3, m_cpadInfo@ha
+/* 8023E658 0023B598  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 8023E65C 0023B59C  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 8023E660 0023B5A0  54 03 BF FE */	rlwinm r3, r0, 0x17, 0x1f, 0x1f
 /* 8023E664 0023B5A4  4E 80 00 20 */	blr 

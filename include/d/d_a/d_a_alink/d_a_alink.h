@@ -201,6 +201,20 @@ private:
     u8 unk[14268];
 };
 
+class daMidna_c {
+public:
+    void onForcePanic(void);
+    u32 checkForceNormalColor(void) const;
+    u32 checkForceTiredColor(void) const;
+    bool checkMidnaTired(void);
+    void onNoServiceWait(void);
+
+private:
+    u8 unk[0x893];
+    u32 unk2196;
+    u32 unk2200;
+};
+
 extern "C" {
 void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc_ac_c*,
                                                                            dCcD_GObjInf*,
@@ -301,10 +315,6 @@ struct mCurrentMtx {  // J3DGraphBase::J3DSys::mCurrentMtx
 // extern now lbl_803DD470;
 extern mCurrentMtx lbl_80434BE4;
 
-// daalink modelcallback
-struct j3dsys;  // J3DGraphBase::j3dSys
-extern j3dsys lbl_80434AC8;
-
 // daalink headmodelcallback
 extern float lbl_80452EDC;
 
@@ -325,9 +335,10 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
+extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
+extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
+extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
+extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle
 extern float lbl_80452C98;
