@@ -3,35 +3,40 @@
 #include "SComponent/c_sxyz.h"
 
 // __ct__5csXyzFsss
-asm csXyz::csXyz(s16, s16, s16) {
-    nofralloc
-#include "SComponent/c_sxyz/asm/func_802673F4.s"
+csXyz::csXyz(s16 pX, s16 pY, s16 pZ) {
+    mX = pX;
+    mY = pY;
+    mZ = pZ;
 }
 
 // __pl__5csXyzFR5csXyz
-asm csXyz csXyz::operator+(csXyz&) {
-    nofralloc
-#include "SComponent/c_sxyz/asm/func_80267404.s"
+csXyz csXyz::operator+(csXyz& other) {
+    return csXyz(mX + other.mX, mY + other.mY, mZ + other.mZ);
 }
 
 // __apl__5csXyzFR5csXyz
-asm void csXyz::operator+=(csXyz&) {
-    nofralloc
-#include "SComponent/c_sxyz/asm/func_8026745C.s"
+void csXyz::operator+=(csXyz& other) {
+    mX += other.mX;
+    mY += other.mY;
+    mZ += other.mZ;
 }
 
 // __mi__5csXyzFR5csXyz
-asm csXyz csXyz::operator-(csXyz&) {
-    nofralloc
-#include "SComponent/c_sxyz/asm/func_80267490.s"
+csXyz csXyz::operator-(csXyz& other) {
+    return csXyz(mX - other.mX, mY - other.mY, mZ - other.mZ);
 }
 
 // __ml__5csXyzFf
-// csXyz::operator*(float)
+#ifdef NON_MATCHING
+csXyz csXyz::operator*(float pFactor) {
+    return csXyz(mX * pFactor, mY * pFactor, mZ * pFactor);
+}
+#else
 asm csXyz csXyz::operator*(float) {
     nofralloc
 #include "SComponent/c_sxyz/asm/func_802674E8.s"
 }
+#endif
 
 extern "C" {
 
