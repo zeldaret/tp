@@ -89,8 +89,8 @@ public:
     void unlock() { OSUnlockMutex(&mMutex); }
 
 protected:
-    /* 0x00 */ // vtable
-    /* 0x04 */ // JKRDisposer
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRDisposer
     /* 0x18 */ OSMutex mMutex;
     /* 0x30 */ u32 mStart;
     /* 0x34 */ u32 mEnd;
