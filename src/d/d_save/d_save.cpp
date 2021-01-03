@@ -484,10 +484,10 @@ int dSv_player_item_c::checkInsectBottle(void) {
     int i = 0;
     int j = 0;
     for (; i < 0x18; i++) {
-
         // replace these with dComIfGs_isItemFirstBit and dComIfGs_isEventBit later
         if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
-            !g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(lbl_803A7288.unk0[0x191 + j])) {
+            !g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(
+                lbl_803A7288.unk0[0x191 + j])) {
             return 1;
         }
         j += 1;
