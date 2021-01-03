@@ -250,7 +250,8 @@ extern float lbl_80452BDC;
 extern double lbl_80452BE0;
 extern u8 lbl_80450D64;
 struct unkEvent {  // figure out what this is later
-    u8 unk0[0x235];
+    u16 unk0[0x11A];
+    u8 unk565;
     u16 unk566;
     u8 unk567[0x439];
 };

@@ -66,6 +66,8 @@ public:
     dStage_roomControl_c& getRoomControl() { return room_control; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
+    void setUnkWarashibe1(u8 num) { field_0x4ec0[0x85] = num; }
+    void setUnkWarashibe2(u8 num) { field_0x4ec0[0x86] = num; }
 
 private:
     /* 0x00000 */ dBgS dbgs;
@@ -117,6 +119,9 @@ public:
     // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }
     u8& getPlayUnkHeart() { return play.getUnkHeart(); }
+    // temp for setWarashibeItem
+    void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
+    void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
     /* 0x00000 */ dSv_info_c info;
     /* 0x00EEB */ u8 field_0xeeb[0x39];
     /* 0x00F24 */ u32 saveTotalTime;
