@@ -18,8 +18,6 @@ cSAngle::cSAngle(s16 angle) {
     this->Val(angle);
 }
 
-// __ct__7cSAngleFs __ct__7cSAngleFf __ct__7cSAngleFRC7cSAngle
-
 // __ct__7cSAngleFf
 cSAngle::cSAngle(float angle) {
     this->Val(angle);
@@ -68,8 +66,7 @@ asm float cSAngle::Radian(void) const {
 
 // Norm__7cSAngleCFv
 // cSAngle::Norm(void) const
-asm float cSAngle::Norm(void) const {
-    nofralloc
+asm float cSAngle::Norm(void) const {nofralloc
 #include "SComponent/c_angle/asm/func_80271098.s"
 }
 
