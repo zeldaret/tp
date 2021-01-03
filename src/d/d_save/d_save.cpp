@@ -1429,9 +1429,26 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     }
 }
 
-asm BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80035590.s"
+BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
+    int value;
+    if ((i_no == -1) || (i_no == 0xFF)) {
+        return 0;
+    }
+
+    if (i_no < 0x80) {
+        value = this->dungeon_bit.isItem(i_no);
+    } else if (i_no < 0xA0) {
+        value = this->memory.getTempFlagsConst().isItem(i_no - 0x80);
+    } else {
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        if (i_no < 0xC0) {
+            value = this->zones[zoneNo].getZoneBitConst().isItem(i_no - 0xA0);
+        } else {
+            value = this->zones[zoneNo].getZoneBitConst().isOneItem(i_no - 0xC0);
+        }
+    }
+
+    return value;
 }
 
 void dSv_info_c::onActor(int i_id, int i_roomNo) {
