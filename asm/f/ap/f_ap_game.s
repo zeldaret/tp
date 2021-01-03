@@ -94,7 +94,7 @@ fapGm_Execute:
 /* 80018A7C 000159BC  3C 80 80 02 */	lis r4, fapGm_After@ha
 .global fapGm_After
 /* 80018A80 000159C0  38 84 8A 44 */	addi r4, r4, fapGm_After@l
-/* 80018A84 000159C4  48 00 96 D5 */	bl fpcM_Management
+/* 80018A84 000159C4  48 00 96 D5 */	bl fpcM_Management__FPFv_vPFv_v
 /* 80018A88 000159C8  38 60 00 00 */	li r3, 0
 /* 80018A8C 000159CC  48 24 D3 91 */	bl cCt_Counter
 /* 80018A90 000159D0  80 01 00 14 */	lwz r0, 0x14(r1)

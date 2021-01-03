@@ -5,6 +5,8 @@
 
 class cSAngle {
 public:
+    cSAngle();
+
 private:
     s16 value;
 };

@@ -865,7 +865,7 @@ private:
     dSv_reserve_c reserve;
     dSv_MiniGame_c minigame_flags;
 };
-
+#pragma pack(push,1)
 class dSv_info_c {
 public:
     void init(void);
@@ -899,6 +899,7 @@ private:
     /* 0xDD8 */ dSv_event_c events;
     /* 0xED8 */ dSv_turnRestart_c turn_restart;
 };
+#pragma pack(pop)
 
 // u8 dMeter2Info_getOilGaugeBackUp() {
 //     return g_meter2_info.getDirectUseItem();

@@ -106,7 +106,7 @@ lbl_802D1DEC:
 /* 802D1DF4 002CED34  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0
 /* 802D1DF8 002CED38  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 802D1DFC 002CED3C  39 61 00 40 */	addi r11, r1, 0x40
-/* 802D1E00 002CED40  48 09 04 19 */	bl _restgpr_25 // func_80362218
+/* 802D1E00 002CED40  48 09 04 19 */	bl _restgpr_25 // _restgpr_25
 /* 802D1E04 002CED44  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 802D1E08 002CED48  7C 08 03 A6 */	mtlr r0
 /* 802D1E0C 002CED4C  38 21 00 50 */	addi r1, r1, 0x50

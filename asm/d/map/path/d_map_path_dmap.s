@@ -1918,7 +1918,7 @@ lbl_800406E8:
 /* 800406F0 0003D630  7F 23 CB 78 */	mr r3, r25
 /* 800406F4 0003D634  4B FF C7 85 */	bl dRenderingFDAmap_c_NS_setTevSettingNonTextureDirectColor
 /* 800406F8 0003D638  39 61 00 30 */	addi r11, r1, 0x30
-/* 800406FC 0003D63C  48 32 1B 1D */	bl func_80362218
+/* 800406FC 0003D63C  48 32 1B 1D */	bl _restgpr_25
 /* 80040700 0003D640  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80040704 0003D644  7C 08 03 A6 */	mtlr r0
 /* 80040708 0003D648  38 21 00 30 */	addi r1, r1, 0x30

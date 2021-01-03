@@ -6746,7 +6746,7 @@ dMenu_Ring_c_NS_clacEllipsePlotAverage:
 /* 801EF1DC 001EC11C  DB 21 00 40 */	stfd f25, 0x40(r1)
 /* 801EF1E0 001EC120  F3 21 00 48 */	psq_st f25, 72(r1), 0, qr0
 /* 801EF1E4 001EC124  39 61 00 40 */	addi r11, r1, 0x40
-/* 801EF1E8 001EC128  48 17 2F DD */	bl func_803621C4
+/* 801EF1E8 001EC128  48 17 2F DD */	bl _savegpr_23
 /* 801EF1EC 001EC12C  7C 7B 1B 78 */	mr r27, r3
 /* 801EF1F0 001EC130  7C 9C 23 78 */	mr r28, r4
 /* 801EF1F4 001EC134  FF 20 08 90 */	fmr f25, f1

@@ -113,17 +113,19 @@ private:
 
 class dComIfG_inf_c {
 public:
+    // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }
     u8& getPlayUnkHeart() { return play.getUnkHeart(); }
     /* 0x00000 */ dSv_info_c info;
-    /* 0x00EEC */ u8 field_0xeec[0x3C];
-    /* 0x00F28 */ u32 saveTotalTime;
-    /* 0x00F2C */ u32 saveStartTime;
-    /* 0x00F30 */ u32 field_0xf30;
-    /* 0x00F34 */ u32 field_0xf34;
-    /* 0x00F38 */ dComIfG_play_c play;
-    /* 0x05FD8 */ u8 unk35[0x1612C];
-    /* 0x1C104 */ u8 unk18[0x1F4];  // might be part of dDlst_list_c
+    /* 0x00EEB */ u8 field_0xeeb[0x39];
+    /* 0x00F24 */ u32 saveTotalTime;
+    /* 0x00F28 */ u32 saveStartTime;
+    /* 0x00F2C */ u32 field_0xf30;
+    /* 0x00F30 */ u32 field_0xf34;
+    /* 0x00F34 */ dComIfG_play_c play;
+    /* 0x05F60 */ u8 field_0x5f60[0x10];
+    /* 0x05F70 */ dDlst_list_c draw_list_list;
+    /* 0x1C110 */ u8 field_0x1C114[0x1E8];
     /* 0x1C2F8 */ dRes_info_c resource_info1;
     /* 0x1C31C */ u8 unk19[0x11DC];
     /* 0x1D4F8 */ dRes_info_c resource_info2;
