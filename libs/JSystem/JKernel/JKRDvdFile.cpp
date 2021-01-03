@@ -85,8 +85,7 @@ void JKRDvdFile::close() {
 }
 
 s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
-    // debug version have this:
-    // ASSERT((length & 0x1f) == 0);
+    JUT_ASSERT((length & 0x1f) == 0);
 
     OSLockMutex(&mMutex1);
     if (mOSThread) {
