@@ -22,12 +22,12 @@ asm void JKRFileCache::becomeCurrent(char const*) {
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D4D44.s"
 }
 
-asm void JKRFileCache::getResource(char const*) {
+asm void* JKRFileCache::getResource(char const*) {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D4DD8.s"
 }
 
-asm void JKRFileCache::getResource(unsigned long, char const*) {
+asm void* JKRFileCache::getResource(unsigned long, char const*) {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D4EDC.s"
 }
@@ -47,12 +47,12 @@ asm void JKRFileCache::removeResourceAll(void) {
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D50D4.s"
 }
 
-asm void JKRFileCache::removeResource(void*) {
+asm bool JKRFileCache::removeResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D5164.s"
 }
 
-asm void JKRFileCache::detachResource(void*) {
+asm bool JKRFileCache::detachResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D51F8.s"
 }
