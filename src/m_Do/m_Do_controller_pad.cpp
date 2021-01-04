@@ -6,8 +6,10 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
 #include "pad/pad.h"
 
+// TODO: m_cpadInfo uses a bad type in a number of the NONMATCHING functions,
+// and references need to be updated to reflect its correct type.
+
 #ifdef NONMATCHING
-// TODO: change the cpadinfo stuff to use the new type of m_cpadInfo
 void mDoCPd_c::create() {
     JUTGamePad* JUTGamePad_ptr;
     cpadInfo* m_cpadInfo_addr;
@@ -86,50 +88,41 @@ asm void mDoCPd_c::read() {
 #endif
 
 #ifdef NONMATCHING
-void mDoCPd_c::convert(interface_of_controller_pad* controllerInterface, JUTGamePad* gamePad) {
-    controllerInterface->button_flags = gamePad->buttons.button_flags;
-    controllerInterface->field_0x34 = gamePad->buttons.field_0x4;
-    controllerInterface->stick_x = gamePad->control_stick.stick_x;
-    controllerInterface->stick_y = gamePad->control_stick.stick_y;
-    controllerInterface->length_from_neutral = gamePad->control_stick.length_from_neutral;
-    controllerInterface->controlStick_angle = gamePad->control_stick.angle;
-    controllerInterface->cStick_x = gamePad->c_stick.stick_x;
-    controllerInterface->cStick_y = gamePad->c_stick.stick_y;
-    controllerInterface->cStick_length_from_neutral = gamePad->c_stick.length_from_neutral;
-    controllerInterface->cStick_angle = gamePad->c_stick.angle;
-    controllerInterface->analog_a =
-        (gamePad->buttons.analog_a - lbl_80451A30) *
-        lbl_80451A20;  //@3709 *
-                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_a)
-                       //- @3713);
-    if (controllerInterface->analog_a > lbl_80451A24) {
-        controllerInterface->analog_a = lbl_80451A24;
+// off on load order, regalloc, const placement (int-to-float conversion magic).
+void mDoCPd_c::convert(interface_of_controller_pad* pInterface, JUTGamePad* pPad) {
+    pInterface->mButtonFlags = pPad->buttons.mButtonFlags;
+    pInterface->mPressedButtonFlags = pPad->buttons.mPressedButtonFlags;
+    pInterface->mMainStickPosX = pPad->control_stick.mPosX;
+    pInterface->mMainStickPosY = pPad->control_stick.mPosY;
+    pInterface->mMainStickValue = pPad->control_stick.mValue;
+    pInterface->mMainStickAngle = pPad->control_stick.mAngle;
+    pInterface->mCStickPosX = pPad->c_stick.mPosX;
+    pInterface->mCStickPosY = pPad->c_stick.mPosY;
+    pInterface->mCStickValue = pPad->c_stick.mValue;
+    pInterface->mCStickAngle = pPad->c_stick.mAngle;
+
+    pInterface->mAnalogA = lbl_80451A20 * pPad->buttons.mAnalogARaw;
+    if (pInterface->mAnalogA > lbl_80451A24 /* 1.0 */) {
+        pInterface->mAnalogA = lbl_80451A24;
     }
-    controllerInterface->analog_b =
-        (gamePad->buttons.analog_b - lbl_80451A30) *
-        lbl_80451A20;  //@3709 *
-                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).analog_b)
-                       //- @3713);
-    if (controllerInterface->analog_b > lbl_80451A24) {
-        controllerInterface->analog_b = lbl_80451A24;
+
+    pInterface->mAnalogB = lbl_80451A20 * pPad->buttons.mAnalogBRaw;
+    if (pInterface->mAnalogB > lbl_80451A24 /* 1.0 */) {
+        pInterface->mAnalogB = lbl_80451A24;
     }
-    controllerInterface->trigger_left =
-        (gamePad->buttons.trigger_left - lbl_80451A30) *
-        lbl_80451A28;  //@3711 *
-                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_left)
-                       //- @3713);
-    if (controllerInterface->trigger_left > lbl_80451A24) {
-        controllerInterface->trigger_left = lbl_80451A24;
+
+    // pInterface->mTriggerLeft = pPad->buttons.mTriggerLeftRaw * (1/140.0f);
+    pInterface->mTriggerLeft = lbl_80451A28 * pPad->buttons.mTriggerLeftRaw;
+    if (pInterface->mTriggerLeft > lbl_80451A24 /* 1.0 */) {
+        pInterface->mTriggerLeft = lbl_80451A24;
     }
-    controllerInterface->trigger_right =
-        (gamePad->buttons.trigger_right - lbl_80451A30) *
-        lbl_80451A28;  //@3711 *
-                       //(float)((double)CONCAT44(0x43300000,(uint)(gamePad->buttons).trigger_right)
-                       //- @3713);
-    if (controllerInterface->trigger_right > lbl_80451A24) {
-        controllerInterface->trigger_right = lbl_80451A24;
+
+    pInterface->mTriggerRight = lbl_80451A28 * pPad->buttons.mTriggerRightRaw;
+    if (pInterface->mTriggerRight > lbl_80451A24 /* 1.0 */) {
+        pInterface->mTriggerRight = lbl_80451A24;
     }
-    controllerInterface->error_value = gamePad->error_value;
+
+    pInterface->mGamepadErrorFlags = pPad->error_value;
 }
 #else
 asm void mDoCPd_c::convert(interface_of_controller_pad* controllerInteface, JUTGamePad* gamePad) {
