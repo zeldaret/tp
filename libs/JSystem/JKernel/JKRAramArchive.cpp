@@ -18,12 +18,12 @@ asm void JKRAramArchive::open(long) {
 #include "JSystem/JKernel/JKRAramArchive/asm/func_802D72A8.s"
 }
 
-asm void JKRAramArchive::fetchResource(SDIFileEntry*, u32*) {
+asm void* JKRAramArchive::fetchResource(SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRAramArchive/asm/func_802D75E0.s"
 }
 
-asm void JKRAramArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
+asm void* JKRAramArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRAramArchive/asm/func_802D76F4.s"
 }

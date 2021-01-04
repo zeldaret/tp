@@ -16,12 +16,12 @@ asm void JKRDvdArchive::open(long) {
 #include "JSystem/JKernel/JKRDvdArchive/asm/func_802D7DB4.s"
 }
 
-asm void JKRDvdArchive::fetchResource(SDIFileEntry*, u32*) {
+asm void* JKRDvdArchive::fetchResource(SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdArchive/asm/func_802D8050.s"
 }
 
-asm void JKRDvdArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
+asm void* JKRDvdArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdArchive/asm/func_802D8168.s"
 }

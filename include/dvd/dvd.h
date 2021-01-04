@@ -77,7 +77,7 @@ void DVDGetCurrentDiskID(void);
 s32 DVDFastOpen(long, DVDFileInfo*);
 int DVDGetCommandBlockStatus(DVDCommandBlock*);
 s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
-void DVDConvertPathToEntrynum(void);
+s32 DVDConvertPathToEntrynum(const char*);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
 

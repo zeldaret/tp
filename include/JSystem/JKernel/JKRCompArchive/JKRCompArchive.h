@@ -15,10 +15,16 @@ public:
     /* vt[10] */ bool removeResource(void*);   /* override */
 
     /* vt[15] */ void getExpandedResSize(void const*) const;          /* override */
-    /* vt[16] */ void fetchResource(SDIFileEntry*, u32*);             /* override */
-    /* vt[17] */ void fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
+    /* vt[16] */ void* fetchResource(SDIFileEntry*, u32*);             /* override */
+    /* vt[17] */ void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 
 public:
+
+
+private:
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRArchive
+    u8 unk[36];
 };
 
 #endif

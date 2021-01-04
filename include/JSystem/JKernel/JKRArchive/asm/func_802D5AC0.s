@@ -1,4 +1,4 @@
-/* getDirEntry__10JKRArchiveCFPQ210JKRArchive9SDirEntryUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getDirEntry( const(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDirEntry *, unsigned long)) */
+/* getDirEntry__10JKRArchiveCFP9SDirEntryUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getDirEntry( const(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDirEntry *, unsigned long)) */
 /* JKRArchive_NS_getDirEntry */
 /* 802D5AC0 002D2A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D5AC4 002D2A04  7C 08 02 A6 */	mflr r0

@@ -5,7 +5,7 @@
 #include "dvd/dvd.h"
 
 struct JKRFileFinder_UnknownBase {
-    u32 mEntryNameOffset;
+    const char* mEntryName;
     s32 mEntryFileIndex;
     u16 mEntryId;
     u16 mEntryTypeFlags;
@@ -37,7 +37,7 @@ protected:
 class JKRArchive;
 class JKRArcFinder : public JKRFileFinder {
 public:
-    JKRArcFinder(JKRArchive*, long, long);
+    JKRArcFinder(JKRArchive*, s32, u32);
     virtual ~JKRArcFinder();
 
 public:

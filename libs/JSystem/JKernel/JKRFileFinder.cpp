@@ -3,10 +3,10 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
-JKRArcFinder::JKRArcFinder(JKRArchive* archive, long startIndex, long numEntries)
+JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIndex, u32 numEntries)
     : JKRFileFinder() {
     mArchive = archive;
-    mIsAvailable = numEntries > 0;
+    mIsAvailable = (s32)numEntries > 0;
     mStartIndex = startIndex;
     mEndIndex = startIndex + numEntries - 1;
     mNextIndex = mStartIndex;
@@ -20,7 +20,7 @@ bool JKRArcFinder::findNextFile(void) {
         mIsAvailable = !(mNextIndex > mEndIndex);
         if (mIsAvailable) {
             mIsAvailable = mArchive->getDirEntry(&entry, mNextIndex);
-            mEntryNameOffset = entry.name;
+            mEntryName = entry.name;
             mEntryFileIndex = mNextIndex;
             mEntryId = entry.other.id;
             mEntryTypeFlags = entry.other.flags;
