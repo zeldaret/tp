@@ -17,7 +17,7 @@ lbl_8011F0B0:
 /* 8011F0C0 0011C000  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011F0C4 0011C004  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8011F0C8 0011C008  38 80 00 00 */ li r4, 0
-/* 8011F0CC 0011C00C  4B F9 C6 A5 */ bl daAlink_c_NS_setSpecialGravity
+/* 8011F0CC 0011C00C  4B F9 C6 A5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8011F0D0 0011C010  38 00 00 00 */ li r0, 0
 /* 8011F0D4 0011C014  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 8011F0D8 0011C018  B0 1F 30 10 */ sth r0, 0x3010(r31)

@@ -196,9 +196,24 @@ public:
     void setPlayerPosAndAngle(float (*)[4]);
     u32 itemTriggerCheck(u8);
     u32 itemButtonCheck(u8);
+    /*---*/
+    BOOL checkMagicArmorHeavy(void) const;
+    BOOL checkBootsOrArmorHeavy(void) const;
+    void setSpecialGravity(float, float, int);
+    int checkMagicArmorWearAbility(void) const;
 
 private:
-    u8 unk[14268];
+    u8 unk[1328];
+    float unk1328;
+    float unk1332;
+    u8 unk1336[56];
+    u32 unk1392;
+    u32 unk1396;
+    u32 unk1400;
+    u32 unk1404;
+    u8 unk1408[6716];
+    u16 unk8124;
+    u8 unk8126[6142];
 };
 
 class daMidna_c {

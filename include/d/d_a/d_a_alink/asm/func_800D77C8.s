@@ -5,11 +5,11 @@
 /* 800D77D8 000D4718  93 C1 00 08 */ stw r30, 8(r1)
 /* 800D77DC 000D471C  7C 7E 1B 78 */ mr r30, r3
 /* 800D77E0 000D4720  3B E0 00 00 */ li r31, 0
-/* 800D77E4 000D4724  4B FE 86 19 */ bl daAlink_c_NS_checkMagicArmorWearAbility
+/* 800D77E4 000D4724  4B FE 86 19 */ bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800D77E8 000D4728  2C 03 00 00 */ cmpwi r3, 0
 /* 800D77EC 000D472C  41 82 00 18 */ beq lbl_800D7804
 /* 800D77F0 000D4730  7F C3 F3 78 */ mr r3, r30
-/* 800D77F4 000D4734  4B FE 3C 15 */ bl daAlink_c_NS_checkMagicArmorHeavy
+/* 800D77F4 000D4734  4B FE 3C 15 */ bl checkMagicArmorHeavy__9daAlink_cCFv
 /* 800D77F8 000D4738  2C 03 00 00 */ cmpwi r3, 0
 /* 800D77FC 000D473C  40 82 00 08 */ bne lbl_800D7804
 /* 800D7800 000D4740  3B E0 00 01 */ li r31, 1

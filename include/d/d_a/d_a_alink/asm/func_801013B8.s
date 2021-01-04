@@ -80,7 +80,7 @@ lbl_801014D8:
 /* 801014E4 000FE424  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801014E8 000FE428  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 801014EC 000FE42C  38 80 00 00 */ li r4, 0
-/* 801014F0 000FE430  4B FB A2 81 */ bl daAlink_c_NS_setSpecialGravity
+/* 801014F0 000FE430  4B FB A2 81 */ bl setSpecialGravity__9daAlink_cFffi
 /* 801014F4 000FE434  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801014F8 000FE438  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 801014FC 000FE43C  D0 1F 04 FC */ stfs f0, 0x4fc(r31)

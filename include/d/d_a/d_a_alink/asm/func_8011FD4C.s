@@ -232,7 +232,7 @@ lbl_80120088:
 /* 8012009C 0011CFDC  7F 83 E3 78 */ mr r3, r28
 /* 801200A0 0011CFE0  C0 5C 05 34 */ lfs f2, 0x534(r28)
 /* 801200A4 0011CFE4  38 80 00 00 */ li r4, 0
-/* 801200A8 0011CFE8  4B F9 B6 C9 */ bl daAlink_c_NS_setSpecialGravity
+/* 801200A8 0011CFE8  4B F9 B6 C9 */ bl setSpecialGravity__9daAlink_cFffi
 /* 801200AC 0011CFEC  38 00 00 01 */ li r0, 1
 /* 801200B0 0011CFF0  B0 1C 30 0A */ sth r0, 0x300a(r28)
 lbl_801200B4:

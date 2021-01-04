@@ -2212,7 +2212,7 @@ lbl_800CA6C0:
 /* 800CA6D8 000C7618  38 00 00 00 */ li r0, 0
 /* 800CA6DC 000C761C  98 1F 2F B8 */ stb r0, 0x2fb8(r31)
 /* 800CA6E0 000C7620  7F E3 FB 78 */ mr r3, r31
-/* 800CA6E4 000C7624  4B FF 57 19 */ bl daAlink_c_NS_checkMagicArmorWearAbility
+/* 800CA6E4 000C7624  4B FF 57 19 */ bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800CA6E8 000C7628  2C 03 00 00 */ cmpwi r3, 0
 /* 800CA6EC 000C762C  41 82 00 F4 */ beq lbl_800CA7E0
 /* 800CA6F0 000C7630  88 1F 2F BF */ lbz r0, 0x2fbf(r31)

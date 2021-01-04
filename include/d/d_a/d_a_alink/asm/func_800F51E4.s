@@ -144,7 +144,7 @@ lbl_800F53E8:
 /* 800F53F8 000F2338  7F 83 E3 78 */ mr r3, r28
 /* 800F53FC 000F233C  C0 5C 05 34 */ lfs f2, 0x534(r28)
 /* 800F5400 000F2340  38 80 00 00 */ li r4, 0
-/* 800F5404 000F2344  4B FC 63 6D */ bl daAlink_c_NS_setSpecialGravity
+/* 800F5404 000F2344  4B FC 63 6D */ bl setSpecialGravity__9daAlink_cFffi
 /* 800F5408 000F2348  38 60 00 01 */ li r3, 1
 lbl_800F540C:
 /* 800F540C 000F234C  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0

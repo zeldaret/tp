@@ -283,7 +283,7 @@ lbl_800B568C:
 /* 800B568C 000B25CC  28 03 00 07 */ cmplwi r3, 7
 /* 800B5690 000B25D0  40 82 00 E4 */ bne lbl_800B5774
 /* 800B5694 000B25D4  7F C3 F3 78 */ mr r3, r30
-/* 800B5698 000B25D8  48 00 5D 71 */ bl daAlink_c_NS_checkMagicArmorHeavy
+/* 800B5698 000B25D8  48 00 5D 71 */ bl checkMagicArmorHeavy__9daAlink_cCFv
 /* 800B569C 000B25DC  2C 03 00 00 */ cmpwi r3, 0
 /* 800B56A0 000B25E0  40 82 00 24 */ bne lbl_800B56C4
 /* 800B56A4 000B25E4  2C 1F 00 EE */ cmpwi r31, 0xee
