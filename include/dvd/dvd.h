@@ -20,7 +20,7 @@ typedef enum DVDState {
 } DVDState;
 }
 
-class DVDDiskID {
+struct DVDDiskID {
     char game_name[4];
     char company[2];
     u8 disk_number;
@@ -30,10 +30,14 @@ class DVDDiskID {
     u8 padding[22];
 };
 
-class DVDCommandBlock {
-public:
+struct DVDFileInfo;
+struct DVDCommandBlock;
+typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+typedef void (*DVDCallback)(s32 result, DVDFileInfo* info);
+
+struct DVDCommandBlock {
     DVDCommandBlock* next;
-    DVDCommandBlock* previous;
+    DVDCommandBlock* prev;
     u32 command;
     s32 state;
     u32 offset;
@@ -42,18 +46,15 @@ public:
     u32 current_transfer_size;
     u32 transferred_size;
     DVDDiskID* disk_id;
-    u8 callback[4];
+    DVDCBCallback callback;
     void* user_data;
 };
 
-// typedef void (*DVDCallback)(u32 result, DVDFileInfo *info);
-
-class DVDFileInfo {
-public:
+struct DVDFileInfo {
     DVDCommandBlock block;
     u32 start_address;
     u32 length;
-    u8 callback[4];
+    DVDCallback callback;
 };
 
 extern "C" {
@@ -62,8 +63,8 @@ s32 DVDClose(DVDFileInfo*);
 void DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
 void DVDGetCurrentDiskID(void);
 s32 DVDFastOpen(long, DVDFileInfo*);
-int DVDGetCommandBlockStatus(DVDFileInfo*);
-s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, void (*)(long, DVDFileInfo*), long);
+int DVDGetCommandBlockStatus(DVDCommandBlock*);
+s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
 void DVDConvertPathToEntrynum(void);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);

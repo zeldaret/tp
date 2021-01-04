@@ -12,6 +12,8 @@ struct Vec {
     float x, y, z;
 };
 
+#define JUT_ASSERT(...)
+
 #include "dolphin/types.h"
 
 #include "ar/ARQ.h"

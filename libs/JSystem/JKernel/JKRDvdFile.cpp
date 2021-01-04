@@ -2,14 +2,15 @@
 #include "global.h"
 
 JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
-    this->initiate();
+    initiate();
 }
 
+// end of fuctions is weird. instructions which should have been optimized out.
 #ifdef NONMATCHING
-JKRDvdFile::JKRDvdFile(char const* param_1) : JKRFile(), mDvdLink(this) {
-    this->initiate();
-    bool result = this->open(param_1);
-    this->mIsAvailable = result;
+JKRDvdFile::JKRDvdFile(const char* name) : JKRFile(), mDvdLink(this) {
+    initiate();
+    bool result = open(name);
+    mIsAvailable = result;
 }
 #else
 asm JKRDvdFile::JKRDvdFile(char const*) {
@@ -20,9 +21,9 @@ asm JKRDvdFile::JKRDvdFile(char const*) {
 
 #ifdef NONMATHCING
 JKRDvdFile::JKRDvdFile(long param_1) : JKRFile(), mDvdLink(this) {
-    this->initiate();
-    bool result = this->open(param_1);
-    this->mIsAvailable = result;
+    initiate();
+    bool result = open(param_1);
+    mIsAvailable = result;
 }
 #else
 asm JKRDvdFile::JKRDvdFile(long) {
@@ -31,60 +32,49 @@ asm JKRDvdFile::JKRDvdFile(long) {
 }
 #endif
 
-#ifndef NONMATCHING
 JKRDvdFile::~JKRDvdFile() {
-    this->close();
+    close();
 }
-#else
-asm JKRDvdFile::~JKRDvdFile() {
-    nofralloc
-#include "JSystem/JKernel/JKRDvdFile/asm/func_802D9748.s"
-}
-#endif
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D97E4.s"
 void JKRDvdFile::initiate(void) {
-    this->mDvdFile = this;
-    OSInitMutex(&this->mMutex1);
-    OSInitMutex(&this->mMutex2);
-    OSInitMessageQueue(&this->mQueue2, this->mMessages2, 1);
-    OSInitMessageQueue(&this->mQueue1, this->mMessages1, 1);
-    this->mOSThread = NULL;
-    this->field_0x50 = 0;
-    this->field_0x58 = 0;
+    mDvdFile = this;
+    OSInitMutex(&mMutex1);
+    OSInitMutex(&mMutex2);
+    OSInitMessageQueue(&mMessageQueue2, &mMessage2, 1);
+    OSInitMessageQueue(&mMessageQueue1, &mMessage1, 1);
+    mOSThread = NULL;
+    field_0x50 = 0;
+    field_0x58 = 0;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9850.s"
-bool JKRDvdFile::open(char const* param_1) {
-    if (!this->mIsAvailable) {
-        this->mIsAvailable = DVDOpen(param_1, &this->file_info);
-        if (this->mIsAvailable) {
-            lbl_8043436C.append(&this->mDvdLink);
-            this->getStatus();
+bool JKRDvdFile::open(const char* param_1) {
+    if (!mIsAvailable) {
+        mIsAvailable = DVDOpen(param_1, &mFileInfo);
+        if (mIsAvailable) {
+            lbl_8043436C.append(&mDvdLink);
+            getStatus();
         }
     }
-    return this->mIsAvailable;
+    return mIsAvailable;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D98C4.s"
 bool JKRDvdFile::open(long param_1) {
-    if (!this->mIsAvailable) {
-        this->mIsAvailable = DVDFastOpen(param_1, &this->file_info);
-        if (this->mIsAvailable) {
-            lbl_8043436C.append(&this->mDvdLink);
-            this->getStatus();
+    if (!mIsAvailable) {
+        mIsAvailable = DVDFastOpen(param_1, &mFileInfo);
+        if (mIsAvailable) {
+            lbl_8043436C.append(&mDvdLink);
+            getStatus();
         }
     }
-    return this->mIsAvailable;
+    return mIsAvailable;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9938.s"
 void JKRDvdFile::close() {
-    if (this->mIsAvailable) {
-        s32 result = DVDClose(&this->file_info);
+    if (mIsAvailable) {
+        s32 result = DVDClose(&mFileInfo);
         if (result != 0) {
-            this->mIsAvailable = false;
-            lbl_8043436C.remove(&this->mDvdLink);
+            mIsAvailable = false;
+            lbl_8043436C.remove(&mDvdLink);
         } else {
             const char* filename = lbl_8039D260;       // "JKRDvdFile.cpp"
             const char* format = lbl_8039D260 + 0x0F;  // "%s"
@@ -94,56 +84,49 @@ void JKRDvdFile::close() {
     }
 }
 
-#define JUT_ASSERT(CONDITION)
-
-//#include "JSystem/JKernel/JKRDvdFile/asm/func_802D99B4.s"
 s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     JUT_ASSERT((length & 0x1f) == 0);
 
-    OSLockMutex(&this->mMutex1);
-    if (this->mOSThread) {
-        OSUnlockMutex(&this->mMutex1);
+    OSLockMutex(&mMutex1);
+    if (mOSThread) {
+        OSUnlockMutex(&mMutex1);
         return -1;
     }
 
-    this->mOSThread = OSGetCurrentThread();
+    mOSThread = OSGetCurrentThread();
 
     s32 result = -1;
     s32 readAsyncResult =
-        DVDReadAsyncPrio(&this->file_info, param_1, length, param_3, JKRDvdFile::doneProcess, 2);
+        DVDReadAsyncPrio(&mFileInfo, param_1, length, param_3, JKRDvdFile::doneProcess, 2);
     if (readAsyncResult) {
-        result = this->sync();
+        result = sync();
     }
 
-    this->mOSThread = NULL;
-    OSUnlockMutex(&this->mMutex1);
+    mOSThread = NULL;
+    OSUnlockMutex(&mMutex1);
 
     return result;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9A68.s"
-s32 JKRDvdFile::writeData(void const*, long, long) {
+s32 JKRDvdFile::writeData(const void*, long, long) {
     return -1;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9A70.s"
 s32 JKRDvdFile::sync(void) {
     OSMessage message;
-    OSLockMutex(&this->mMutex1);
-    OSReceiveMessage(&this->mQueue2, &message, 1);
-    this->mOSThread = NULL;
-    OSUnlockMutex(&this->mMutex1);
+    OSLockMutex(&mMutex1);
+    OSReceiveMessage(&mMessageQueue2, &message, 1);
+    mOSThread = NULL;
+    OSUnlockMutex(&mMutex1);
     return (int)message;
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9AC4.s"
 void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
     // fileInfo->field_0x3c looks like some kind of user pointer?
     JKRDvdFile* dvdFile = *(JKRDvdFile**)((u8*)fileInfo + 0x3c);
-    OSSendMessage(&dvdFile->mQueue2, (OSMessage)id, 0);
+    OSSendMessage(&dvdFile->mMessageQueue2, (OSMessage)id, OS_MESSAGE_NON_BLOCKING);
 }
 
-// #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9AF8.s"
 s32 JKRDvdFile::getFileSize(void) const {
-    return this->file_info.length;
+    return mFileInfo.length;
 }
