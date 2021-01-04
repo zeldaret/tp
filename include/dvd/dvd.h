@@ -32,7 +32,7 @@ struct DVDDiskID {
 
 struct DVDFileInfo;
 struct DVDCommandBlock;
-typedef void (*DVDCBcallback)(s32 result, DVDCommandBlock* block);
+typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
 typedef void (*DVDCallback)(s32 result, DVDFileInfo* info);
 
 struct DVDCommandBlock {
@@ -64,7 +64,7 @@ void DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
 void DVDGetCurrentDiskID(void);
 s32 DVDFastOpen(long, DVDFileInfo*);
 int DVDGetCommandBlockStatus(DVDCommandBlock*);
-s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, void (*)(long, DVDFileInfo*), long);
+s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
 void DVDConvertPathToEntrynum(void);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
