@@ -73,13 +73,13 @@ public:
 
 public:
     /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
-    /* vt[05] */ virtual void getResource(char const*);                   /* override */
-    /* vt[06] */ virtual void getResource(u32, char const*);              /* override */
+    /* vt[05] */ virtual void* getResource(char const*);                  /* override */
+    /* vt[06] */ virtual void* getResource(u32, char const*);             /* override */
     /* vt[07] */ virtual void readResource(void*, u32, char const*);      /* override */
     /* vt[08] */ virtual void readResource(void*, u32, u32, char const*); /* override */
     /* vt[09] */ virtual void removeResourceAll(void);                    /* override */
-    /* vt[10] */ virtual void removeResource(void*);                      /* override */
-    /* vt[11] */ virtual void detachResource(void*);                      /* override */
+    /* vt[10] */ virtual bool removeResource(void*);                      /* override */
+    /* vt[11] */ virtual bool detachResource(void*);                      /* override */
     /* vt[12] */ virtual void getResSize(void const*) const;              /* override */
     /* vt[13] */ virtual void countFile(char const*) const;               /* override */
     /* vt[14] */ virtual void getFirstFile(char const*) const;            /* override */

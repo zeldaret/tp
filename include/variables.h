@@ -220,11 +220,11 @@ extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
 extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
 extern u8 lbl_803CC228;                      // JKRFileFinder::__vt
 extern u8 lbl_803CC208;                      // JKRDvdFinder::__vt
-extern u8 lbl_8039D150;                      // "/"
+extern const char lbl_8039D150[16];          // "/"
 extern u8 lbl_803CC1C8;                      // JKRFileLoader::__vt
-extern u8 lbl_804508C0;                      // "/" JKernel::rootPath$2498
+extern const char lbl_804508C0[16];          // "/" JKernel::rootPath$2498
 extern u8 lbl_80434348;                      // JKernel::@2182 (global destructor chain)
-extern u8 lbl_803D2D18[256];                 // MSL_C.PPCEABI.bare.H::__lower_map
+extern const char lbl_803D2D18[256];         // MSL_C.PPCEABI.bare.H::__lower_map
 extern u8 lbl_803CC090;                      // JKRAssertHeap::__vt
 extern u8 lbl_80451398;                      // JKernel::DBfoundSize
 extern u8 lbl_8045139C;                      // JKernel::DBfoundOffset

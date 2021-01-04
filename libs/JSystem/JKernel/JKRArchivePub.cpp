@@ -38,12 +38,12 @@ asm void JKRArchive::getGlbResource(u32, char const*, JKRArchive*) {
 #include "JSystem/JKernel/JKRArchive/asm/func_802D5B38.s"
 }
 
-asm void JKRArchive::getResource(char const*) {
+asm void* JKRArchive::getResource(char const*) {
     nofralloc
 #include "JSystem/JKernel/JKRArchive/asm/func_802D5BE8.s"
 }
 
-asm void JKRArchive::getResource(u32, char const*) {
+asm void* JKRArchive::getResource(u32, char const*) {
     nofralloc
 #include "JSystem/JKernel/JKRArchive/asm/func_802D5C64.s"
 }
@@ -83,12 +83,12 @@ asm void JKRArchive::removeResourceAll(void) {
 #include "JSystem/JKernel/JKRArchive/asm/func_802D5FB4.s"
 }
 
-asm void JKRArchive::removeResource(void*) {
+asm bool JKRArchive::removeResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRArchive/asm/func_802D603C.s"
 }
 
-asm void JKRArchive::detachResource(void*) {
+asm bool JKRArchive::detachResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRArchive/asm/func_802D609C.s"
 }

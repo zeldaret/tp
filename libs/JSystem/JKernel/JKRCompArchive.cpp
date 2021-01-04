@@ -31,7 +31,7 @@ asm void JKRCompArchive::removeResourceAll(void) {
 #include "JSystem/JKernel/JKRCompArchive/asm/func_802D9260.s"
 }
 
-asm void JKRCompArchive::removeResource(void*) {
+asm bool JKRCompArchive::removeResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRCompArchive/asm/func_802D92F4.s"
 }
