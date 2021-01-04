@@ -18,7 +18,7 @@ public:
     void open(void*, u32, JKRMemBreakFlag);
 
     /* vt[09] */ void removeResourceAll(void); /* override */
-    /* vt[10] */ void removeResource(void*);   /* override */
+    /* vt[10] */ bool removeResource(void*);   /* override */
 
     /* vt[15] */ void getExpandedResSize(void const*) const;                      /* override */
     /* vt[16] */ void fetchResource(JKRArchive::SDIFileEntry*, u32*);             /* override */

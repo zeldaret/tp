@@ -156,4 +156,12 @@ inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
+inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
+    JKRHeap::free(ptr, heap);
+}
+
+inline void JKRFree(void* ptr) {
+    JKRHeap::free(ptr, NULL);
+}
+
 #endif
