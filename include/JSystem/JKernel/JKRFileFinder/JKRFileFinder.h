@@ -48,9 +48,9 @@ private:
     /* 0x0C */  // vtable
     /* 0x10 */  // JKRFileFinder
     /* 0x14 */ JKRArchive* mArchive;
-    /* 0x18 */ u32 field_0x18;
-    /* 0x1C */ u32 field_0x1c;
-    /* 0x20 */ u32 field_0x20;
+    /* 0x18 */ s32 mStartIndex;
+    /* 0x1C */ s32 mEndIndex;
+    /* 0x20 */ s32 mNextIndex;
 };
 
 class JKRDvdFinder : public JKRFileFinder {

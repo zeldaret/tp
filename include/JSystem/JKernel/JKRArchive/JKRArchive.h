@@ -8,7 +8,16 @@ class JKRHeap;
 class JKRDvdFile;
 class JKRArchive : public JKRFileLoader {
 public:
-    class SDirEntry {};
+    struct SDirEntry {
+        u8 type_flags;
+        u8 field_0x1;
+        u16 id;
+        char* name;
+        u16 field_0x8;
+        u16 num_entries;
+        s32 first_file_index;
+    };
+
     class SDIFileEntry {};
 
     enum EMountMode {
