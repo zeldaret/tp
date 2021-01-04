@@ -2,7 +2,17 @@
 #define __M_DO_EXT_H_
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
+
+extern "C" {
+JKRExpHeap* mDoExt_getZeldaHeap();
+JKRExpHeap* mDoExt_getGameHeap();
+JKRExpHeap* mDoExt_getArchiveHeap();
+JKRExpHeap* mDoExt_getJ2dHeap();
+JKRExpHeap* mDoExt_getHostIOHeap();
+JKRExpHeap* mDoExt_getCommandHeap();
+}
 
 class mDoExt_baseAnm {
 public:

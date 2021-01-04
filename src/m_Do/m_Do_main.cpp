@@ -4,6 +4,9 @@
 #include "dvd/dvd.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "m_Do/m_Do_graphic/m_Do_graphic.h"
+#include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
 
 void version_check(void) {
@@ -141,8 +144,6 @@ asm void LOAD_COPYDATE(void*) {
 }
 #endif
 
-#ifndef NONMATCHING
-
 void debug(void) {
     if (lbl_80450580[0]) {
         if (lbl_80450B1A[0]) {
@@ -166,19 +167,70 @@ void debug(void) {
         Debug_console(2);
     }
 }
-#else
-asm void debug(void) {
-    nofralloc
-#include "m_Do\m_Do_main\asm\func_800061C8.s"
-}
-#endif
+#ifdef NONMATCHING
+void main01(void) {
+    mDoCPd_c controller;
 
+    mDoMch_Create();
+    mDoGph_Create();
+
+    controller.create();
+
+    // Root Heap
+    HeapCheckTable[0]->setHeap(lbl_80451378);
+    if (lbl_80451378) {
+        HeapCheckTable[0]->setHeapSize(lbl_80451378->getSize());
+    }
+
+    // System Heap
+    HeapCheckTable[1]->setHeap(lbl_80451370);
+    if (lbl_80451370) {
+        HeapCheckTable[1]->setHeapSize(lbl_80451370->getSize());
+    }
+
+    // Zelda Heap
+    HeapCheckTable[2]->setHeap(mDoExt_getZeldaHeap());
+    if (HeapCheckTable[2]->getHeap()) {
+        HeapCheckTable[2]->setHeapSize(HeapCheckTable[2]->getHeap()->getSize());
+    }
+
+    HeapCheckTable[3]->setHeap(mDoExt_getGameHeap());
+    if (HeapCheckTable[3]->getHeap()) {
+        HeapCheckTable[3]->setHeapSize(HeapCheckTable[3]->getHeap()->getSize());
+    }
+
+    HeapCheckTable[4]->setHeap(mDoExt_getArchiveHeap());
+    if (HeapCheckTable[4]->getHeap()) {
+        HeapCheckTable[4]->setHeapSize(HeapCheckTable[4]->getHeap()->getSize());
+    }
+
+    HeapCheckTable[5]->setHeap(mDoExt_getJ2dHeap());
+    if (HeapCheckTable[5]->getHeap()) {
+        HeapCheckTable[5]->setHeapSize(HeapCheckTable[5]->getHeap()->getSize());
+    }
+
+    HeapCheckTable[6]->setHeap(mDoExt_getHostIOHeap());
+    if (HeapCheckTable[6]->getHeap()) {
+        HeapCheckTable[6]->setHeapSize(HeapCheckTable[6]->getHeap()->getSize());
+    }
+
+    HeapCheckTable[7]->setHeap(mDoExt_getCommandHeap());
+    if (HeapCheckTable[7]->getHeap()) {
+        HeapCheckTable[7]->setHeapSize(HeapCheckTable[7]->getHeap()->getSize());
+    }
+}
+#else
 asm void main01(void) {
     nofralloc
 #include "m_Do\m_Do_main\asm\func_8000628C.s"
 }
+#endif
 
+#ifdef NONMATCHING
+void main(void) {}
+#else
 asm void main(void) {
     nofralloc
 #include "m_Do\m_Do_main\asm\func_80006454.s"
 }
+#endif

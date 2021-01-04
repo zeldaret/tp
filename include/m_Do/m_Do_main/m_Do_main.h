@@ -10,6 +10,8 @@ public:
     u32& getUsedCountRef() { return used_count; }
     u32& getTotalUsedSizeRef() { return total_used_size; }
     JKRExpHeap* getHeap() { return heap; }
+    void setHeap(JKRExpHeap* i_heap) { heap = i_heap; }
+    void setHeapSize(u32 i_size) { heap_size = i_size; }
 
 private:
     char* names[2];
