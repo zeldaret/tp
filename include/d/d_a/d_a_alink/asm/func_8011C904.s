@@ -43,7 +43,7 @@ lbl_8011C990:
 /* 8011C99C 001198DC  7F C3 F3 78 */ mr r3, r30
 /* 8011C9A0 001198E0  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 8011C9A4 001198E4  38 80 00 00 */ li r4, 0
-/* 8011C9A8 001198E8  4B F9 ED C9 */ bl daAlink_c_NS_setSpecialGravity
+/* 8011C9A8 001198E8  4B F9 ED C9 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8011C9AC 001198EC  38 00 00 00 */ li r0, 0
 /* 8011C9B0 001198F0  B0 1E 05 A0 */ sth r0, 0x5a0(r30)
 /* 8011C9B4 001198F4  38 60 00 01 */ li r3, 1

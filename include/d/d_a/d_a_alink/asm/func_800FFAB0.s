@@ -86,7 +86,7 @@ lbl_800FFBD4:
 /* 800FFBE0 000FCB20  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FFBE4 000FCB24  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 800FFBE8 000FCB28  38 80 00 00 */ li r4, 0
-/* 800FFBEC 000FCB2C  4B FB BB 85 */ bl daAlink_c_NS_setSpecialGravity
+/* 800FFBEC 000FCB2C  4B FB BB 85 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800FFBF0 000FCB30  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FFBF4 000FCB34  D0 1E 04 FC */ stfs f0, 0x4fc(r30)
 /* 800FFBF8 000FCB38  D0 1E 33 98 */ stfs f0, 0x3398(r30)

@@ -362,7 +362,7 @@ lbl_800CCD40:
 /* 800CCD4C 000C9C8C  2C 1F 00 00 */ cmpwi r31, 0
 /* 800CCD50 000C9C90  41 82 00 78 */ beq lbl_800CCDC8
 /* 800CCD54 000C9C94  7F 83 E3 78 */ mr r3, r28
-/* 800CCD58 000C9C98  4B FF 30 A5 */ bl daAlink_c_NS_checkMagicArmorWearAbility
+/* 800CCD58 000C9C98  4B FF 30 A5 */ bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800CCD5C 000C9C9C  2C 03 00 00 */ cmpwi r3, 0
 /* 800CCD60 000C9CA0  41 82 00 38 */ beq lbl_800CCD98
 /* 800CCD64 000C9CA4  88 1C 2F BF */ lbz r0, 0x2fbf(r28)
@@ -394,7 +394,7 @@ lbl_800CCDB0:
 /* 800CCDC4 000C9D04  48 00 00 64 */ b lbl_800CCE28
 lbl_800CCDC8:
 /* 800CCDC8 000C9D08  7F 83 E3 78 */ mr r3, r28
-/* 800CCDCC 000C9D0C  4B FF 30 31 */ bl daAlink_c_NS_checkMagicArmorWearAbility
+/* 800CCDCC 000C9D0C  4B FF 30 31 */ bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800CCDD0 000C9D10  2C 03 00 00 */ cmpwi r3, 0
 /* 800CCDD4 000C9D14  41 82 00 2C */ beq lbl_800CCE00
 /* 800CCDD8 000C9D18  80 7C 06 50 */ lwz r3, 0x650(r28)

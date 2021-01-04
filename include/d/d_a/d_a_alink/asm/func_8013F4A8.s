@@ -185,7 +185,7 @@ lbl_8013F6C0:
 /* 8013F754 0013C694  7F A3 EB 78 */ mr r3, r29
 /* 8013F758 0013C698  C0 5D 05 34 */ lfs f2, 0x534(r29)
 /* 8013F75C 0013C69C  38 80 00 00 */ li r4, 0
-/* 8013F760 0013C6A0  4B F7 C0 11 */ bl daAlink_c_NS_setSpecialGravity
+/* 8013F760 0013C6A0  4B F7 C0 11 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013F764 0013C6A4  3C 60 80 42 */ lis r3, lbl_8042561C@ha
 /* 8013F768 0013C6A8  C4 03 56 1C */ lfsu f0, lbl_8042561C@l(r3)
 /* 8013F76C 0013C6AC  D0 1D 35 88 */ stfs f0, 0x3588(r29)

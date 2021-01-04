@@ -28,7 +28,7 @@ lbl_800CF154:
 /* 800CF164 000CC0A4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800CF168 000CC0A8  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 800CF16C 000CC0AC  38 80 00 00 */ li r4, 0
-/* 800CF170 000CC0B0  4B FE C6 01 */ bl daAlink_c_NS_setSpecialGravity
+/* 800CF170 000CC0B0  4B FE C6 01 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800CF174 000CC0B4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800CF178 000CC0B8  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 800CF17C 000CC0BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

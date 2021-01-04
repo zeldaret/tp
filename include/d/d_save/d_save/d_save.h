@@ -327,6 +327,7 @@ public:
     int isMagicFlag(u8) const;
 
     u16& getCurrentHealth() { return mCurrentHealth; }
+    u16& getCurrentRupees() { return mCurrentRupees; }
     u16& getCurrentLanternOil() { return mCurrentLanternOil; }
     u8& getScent() { return mEquipment[3]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }

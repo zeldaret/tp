@@ -57,7 +57,7 @@ lbl_8011D794:
 /* 8011D7A4 0011A6E4  7F E3 FB 78 */ mr r3, r31
 /* 8011D7A8 0011A6E8  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8011D7AC 0011A6EC  38 80 00 00 */ li r4, 0
-/* 8011D7B0 0011A6F0  4B F9 DF C1 */ bl daAlink_c_NS_setSpecialGravity
+/* 8011D7B0 0011A6F0  4B F9 DF C1 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8011D7B4 0011A6F4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011D7B8 0011A6F8  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 8011D7BC 0011A6FC  38 60 00 01 */ li r3, 1

@@ -99,7 +99,7 @@ lbl_800FDEE0:
 /* 800FDEEC 000FAE2C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FDEF0 000FAE30  C0 5B 05 34 */ lfs f2, 0x534(r27)
 /* 800FDEF4 000FAE34  38 80 00 00 */ li r4, 0
-/* 800FDEF8 000FAE38  4B FB D8 79 */ bl daAlink_c_NS_setSpecialGravity
+/* 800FDEF8 000FAE38  4B FB D8 79 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800FDEFC 000FAE3C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FDF00 000FAE40  D0 1B 04 FC */ stfs f0, 0x4fc(r27)
 /* 800FDF04 000FAE44  D0 1B 33 98 */ stfs f0, 0x3398(r27)
