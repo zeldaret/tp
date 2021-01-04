@@ -1751,8 +1751,7 @@ asm void daAlink_c_NS_setBodyAngleXReadyAnime(void) {
 
 // setMagicArmorBrk__9daAlink_cFi
 // daAlink_c::setMagicArmorBrk(int)
-asm void daAlink_c_NS_setMagicArmorBrk(void) {
-    nofralloc
+asm void daAlink_c_NS_setMagicArmorBrk(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BB324.s"
 }
 
