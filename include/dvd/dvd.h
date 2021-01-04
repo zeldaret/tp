@@ -20,6 +20,18 @@ typedef enum DVDState {
 } DVDState;
 }
 
+struct DVDDirectory {
+    u32 entry_number;
+    u32 location;
+    u32 next;
+};
+
+struct DVDDirectoryEntry {
+    u32 entry_number;
+    BOOL is_directory;
+    char* name;
+};
+
 struct DVDDiskID {
     char game_name[4];
     char company[2];
@@ -70,9 +82,9 @@ DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
 
 void DVDChangeDir(void);
-void DVDCloseDir(void);
-void DVDOpenDir(void);
-void DVDReadDir(void);
+BOOL DVDCloseDir(DVDDirectory*);
+BOOL DVDOpenDir(const char*, DVDDirectory*);
+BOOL DVDReadDir(DVDDirectory*, DVDDirectoryEntry*);
 }
 
 #endif
