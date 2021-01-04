@@ -30,7 +30,7 @@ void dComIfGp_setSelectItem(int);
 void getUsedCount__9HeapCheckCFv(void);
 void isEventBit__11dSv_event_cCFUs(void);
 char* strcpy(char*, const char*);
-int strcmp(char*, char*);
+int strcmp(const char*, const char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
 void func_803620AC(void);
 void func_803626BC(void);
@@ -88,7 +88,6 @@ void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
-void func_80003540(void);
 void func_80362324(void);
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
@@ -156,7 +155,7 @@ void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-void func_80003540(void);
+void memcpy(void*, void*, int);
 void func_80365470(void);
 void func_803688DC(void);
 void func_80368ABC(void);
@@ -179,14 +178,12 @@ void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
 void func_803650D0(void);
 void JKRDecomp_NS_orderSync(void);
-void func_80003540(void);
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
 void JKRDvdAramRipper_NS_loadToAram(void);
 void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 void __RAS_OSDisableInterrupts_begin(void);
-void func_80003540(void);
 void func_80361C24(void);
 void JSUInputStream_NS_read(void);
 void JSURandomInputStream_NS_seek(void);
@@ -244,7 +241,7 @@ void dComIfGs_setMixItemIndex(int, u8);
 void dComIfGs_setSelectItemIndex(int, u8);
 u8 dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
-int strcmp(char*, char*);
+int strcmp(const char*, const char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
 void func_803620AC(void);
 void func_803626BC(void);
@@ -307,7 +304,6 @@ void is__15dSv_zoneActor_cCFi(void);
 
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
-void func_80003540(void);
 void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
@@ -380,7 +376,6 @@ void JUTWarningConsole_f(void);
 
 void func_80361C24(void);
 
-void func_80003540(void);
 void func_80365470(void);
 void func_803688DC(void);
 void func_80368ABC(void);
@@ -406,7 +401,6 @@ void func_80003458(void);
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
-void func_80003540(void);
 
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
@@ -415,7 +409,6 @@ void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 
 void __RAS_OSDisableInterrupts_begin(void);
-void func_80003540(void);
 void func_80361C24(void);
 
 void JSUInputStream_NS_read(void);
@@ -445,24 +438,6 @@ void MtxInit__Fv(void);
 void mDoDvdErr_ThdCleanup(void);
 void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
 void common_init__6JUTXfbFl(void);
-}
-
-// DVD
-class DVDFileInfo;
-extern "C" {
-s32 DVDOpen(const char*, u8[48]);
-s32 DVDClose(u8[48]);
-void DVDReadPrio(void);
-void DVDGetCurrentDiskID(void);
-s32 DVDFastOpen(long, u8[48]);
-int DVDGetCommandBlockStatus(u8[48]);
-s32 DVDReadAsyncPrio(u8[48], void*, long, long, void (*)(long, DVDFileInfo*), long);
-void DVDConvertPathToEntrynum(void);
-
-void DVDChangeDir(void);
-void DVDCloseDir(void);
-void DVDOpenDir(void);
-void DVDReadDir(void);
 }
 
 class mDoCPd_c;
@@ -1905,7 +1880,7 @@ void daAlink_c_NS_midnaTalkTrigger(void);
 void daAlink_c_NS_checkForceSwordSwing(void);
 void daPy_py_c_NS_checkBoarSingleBattle(void);
 void func_800F6E44(void);
-void daAlink_c_NS_checkMagicArmorWearAbility(void);
+int checkMagicArmorWearAbility__9daAlink_cCFv(void);
 void mDoExt_bckAnm_NS_entry(void);
 void func_8011D8F8(void);
 void func_80120DB0(void);
@@ -1928,7 +1903,7 @@ void daAlink_c_NS_setAttentionPos(void);
 void daAlink_c_NS_procHangReadyInit(void);
 void daAlink_c_NS_checkClimbMoveUpDownProc(void);
 void func_8012E684(void);
-void daAlink_c_NS_setSpecialGravity(void);
+void setSpecialGravity__9daAlink_cFffi(float, float, int);
 void daAlink_c_NS_procFallInit(void);
 void daAlink_c_NS_getBoomerangActor(void);
 void func_800DE770(void);
@@ -2508,7 +2483,7 @@ void dComIfGp_TargetWarpPt_get(void);
 void daAlink_c_NS_stopHalfMoveAnime(void);
 void daAlink_c_NS_checkCutJumpInFly(void);
 void daAlink_c_NS_checkReadyItem(void);
-void daAlink_c_NS_setMidnaTalkStatus(void);
+void setMidnaTalkStatus__9daAlink_cFUc(u8);
 void daAlink_c_NS_notTalk(void);
 void func_800FAE14(void);
 void func_800E3A14(void);
@@ -2906,7 +2881,7 @@ void func_800C397C(void);
 void daAlink_c_NS_setCrawlMoveAngle(void);
 void func_8011D82C(void);
 void daAlink_c_NS_procCoElecDamageInit(void);
-void daAlink_c_NS_checkMagicArmorHeavy(void);
+BOOL checkMagicArmorHeavy__9daAlink_cCFv(void);
 void fopKyM_create(void);
 void daAlink_c_NS_commonMagneLineCheck(void);
 void func_800F22A8(void);
@@ -2983,7 +2958,6 @@ void daAlink_c_NS_posMove(void);
 void dBgS_NS_GetHorseNoEntry(void);
 void func_800EC170(void);
 void dRes_info_c_NS_onWarpMaterial(void);
-void func_800C1DE0(void);
 void daAlink_c_NS_setHookshotPos(void);
 void func_800D0AC8(void);
 void daAlink_c_NS_modelDraw(void);
@@ -3533,7 +3507,6 @@ void daAlink_c_NS_stickArrowIncrement(void);
 void daAlink_c_NS_backJumpSpeedDec(void);
 void func_801418E4(void);
 void daAlink_c_NS_setSingleAnimeBaseSpeed(void);
-void func_800BB458(void);
 void daAlink_c_NS_getDemoLookActor(void);
 void dScnKy_env_light_c_NS_setLightTevColorType_MAJI(void);
 void daAlink_c_NS_commonGrabPutInit(void);

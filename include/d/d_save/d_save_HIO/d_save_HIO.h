@@ -2,6 +2,7 @@
 #define D_SAVE_HIO_H_
 
 #include "dolphin/types.h"
+#include "m_Do/m_Do_main/m_Do_main.h"
 
 struct dSvBit_childSwPerfectionHIO_c_vtable {
     u32* unk0;

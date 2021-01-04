@@ -348,7 +348,7 @@ lbl_800C8BF8:
 /* 800C8C24 000C5B64  48 00 75 41 */ bl daAlink_c_NS_set3DStatus
 /* 800C8C28 000C5B68  7F E3 FB 78 */ mr r3, r31
 /* 800C8C2C 000C5B6C  38 80 00 00 */ li r4, 0
-/* 800C8C30 000C5B70  48 00 75 1D */ bl daAlink_c_NS_setMidnaTalkStatus
+/* 800C8C30 000C5B70  48 00 75 1D */ bl setMidnaTalkStatus__9daAlink_cFUc
 /* 800C8C34 000C5B74  7F E3 FB 78 */ mr r3, r31
 /* 800C8C38 000C5B78  48 07 87 95 */ bl daPy_py_c_NS_checkWolf
 /* 800C8C3C 000C5B7C  28 03 00 00 */ cmplwi r3, 0
@@ -2212,7 +2212,7 @@ lbl_800CA6C0:
 /* 800CA6D8 000C7618  38 00 00 00 */ li r0, 0
 /* 800CA6DC 000C761C  98 1F 2F B8 */ stb r0, 0x2fb8(r31)
 /* 800CA6E0 000C7620  7F E3 FB 78 */ mr r3, r31
-/* 800CA6E4 000C7624  4B FF 57 19 */ bl daAlink_c_NS_checkMagicArmorWearAbility
+/* 800CA6E4 000C7624  4B FF 57 19 */ bl checkMagicArmorWearAbility__9daAlink_cCFv
 /* 800CA6E8 000C7628  2C 03 00 00 */ cmpwi r3, 0
 /* 800CA6EC 000C762C  41 82 00 F4 */ beq lbl_800CA7E0
 /* 800CA6F0 000C7630  88 1F 2F BF */ lbz r0, 0x2fbf(r31)

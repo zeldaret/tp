@@ -68,6 +68,10 @@ public:
     u8& getUnkHeart() { return unk_heart; }
     void setUnkWarashibe1(u8 num) { field_0x4ec0[0x85] = num; }
     void setUnkWarashibe2(u8 num) { field_0x4ec0[0x86] = num; }
+    void setZStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x3B] = status;
+        field_0x4ec0[0x56] = unk;
+    }
 
 private:
     /* 0x00000 */ dBgS dbgs;

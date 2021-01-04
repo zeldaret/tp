@@ -27,7 +27,7 @@ lbl_800BB510:
 /* 800BB518 000B8458  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB51C 000B845C  40 82 00 20 */ bne lbl_800BB53C
 /* 800BB520 000B8460  7F A3 EB 78 */ mr r3, r29
-/* 800BB524 000B8464  4B FF FE E5 */ bl daAlink_c_NS_checkMagicArmorHeavy
+/* 800BB524 000B8464  4B FF FE E5 */ bl checkMagicArmorHeavy__9daAlink_cCFv
 /* 800BB528 000B8468  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB52C 000B846C  40 82 00 10 */ bne lbl_800BB53C
 /* 800BB530 000B8470  80 1D 05 70 */ lwz r0, 0x570(r29)

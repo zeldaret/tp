@@ -107,14 +107,14 @@ void JUTGamePad::clearForReset() {
 }
 
 void JUTGamePad::CButton::clear() {
-    this->button_flags = 0;
-    this->field_0x4 = 0;
-    this->field_0x8 = 0;
+    this->mButtonFlags = 0;
+    this->mPressedButtonFlags = 0;
+    this->mReleasedButtonFlags = 0;
     this->field_0x18 = 0;
-    this->analog_a = 0;
-    this->analog_b = 0;
-    this->trigger_left = 0;
-    this->trigger_right = 0;
+    this->mAnalogARaw = 0;
+    this->mAnalogBRaw = 0;
+    this->mTriggerLeftRaw = 0;
+    this->mTriggerRightRaw = 0;
     this->field_0x1c = 0;
     this->field_0x20 = 0;
     this->field_0x24 = 0;
@@ -129,10 +129,10 @@ asm u32 JUTGamePad::CButton::update(PADStatus const*, u32 unk) {
 
 void JUTGamePad::CStick::clear() {
     float zero = lbl_80456028;  // 0.0f
-    this->stick_x = zero;
-    this->stick_y = zero;
-    this->length_from_neutral = zero;
-    this->angle = 0;
+    this->mPosX = zero;
+    this->mPosY = zero;
+    this->mValue = zero;
+    this->mAngle = 0;
 }
 
 asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, EStickMode mode, EWhichStick stick, u32 unk2) {

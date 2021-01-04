@@ -467,7 +467,7 @@ lbl_80134658:
 /* 801346A0 001315E0  EC 22 00 24 */ fdivs f1, f2, f0
 /* 801346A4 001315E4  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 801346A8 001315E8  38 80 00 00 */ li r4, 0
-/* 801346AC 001315EC  4B F8 70 C5 */ bl daAlink_c_NS_setSpecialGravity
+/* 801346AC 001315EC  4B F8 70 C5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 801346B0 001315F0  C0 22 97 3C */ lfs f1, lbl_8045313C-_SDA2_BASE_(r2)
 /* 801346B4 001315F4  C0 1E 05 30 */ lfs f0, 0x530(r30)
 /* 801346B8 001315F8  EC 21 00 32 */ fmuls f1, f1, f0
@@ -500,7 +500,7 @@ lbl_801346E0:
 /* 8013471C 0013165C  EC 22 00 24 */ fdivs f1, f2, f0
 /* 80134720 00131660  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 80134724 00131664  38 80 00 00 */ li r4, 0
-/* 80134728 00131668  4B F8 70 49 */ bl daAlink_c_NS_setSpecialGravity
+/* 80134728 00131668  4B F8 70 49 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013472C 0013166C  C0 1E 05 30 */ lfs f0, 0x530(r30)
 /* 80134730 00131670  FC 40 00 50 */ fneg f2, f0
 /* 80134734 00131674  A8 1E 30 08 */ lha r0, 0x3008(r30)
@@ -534,7 +534,7 @@ lbl_80134768:
 /* 801347A0 001316E0  EC 22 00 24 */ fdivs f1, f2, f0
 /* 801347A4 001316E4  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 801347A8 001316E8  38 80 00 00 */ li r4, 0
-/* 801347AC 001316EC  4B F8 6F C5 */ bl daAlink_c_NS_setSpecialGravity
+/* 801347AC 001316EC  4B F8 6F C5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 801347B0 001316F0  38 00 00 01 */ li r0, 1
 /* 801347B4 001316F4  B0 1E 30 0E */ sth r0, 0x300e(r30)
 lbl_801347B8:

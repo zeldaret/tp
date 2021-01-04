@@ -77,7 +77,7 @@ lbl_800A5DE4:
 /* 800A5DE4 000A2D24  2C 1A 00 00 */ cmpwi r26, 0
 /* 800A5DE8 000A2D28  41 82 00 1C */ beq lbl_800A5E04
 /* 800A5DEC 000A2D2C  7F E3 FB 78 */ mr r3, r31
-/* 800A5DF0 000A2D30  48 01 56 19 */ bl daAlink_c_NS_checkMagicArmorHeavy
+/* 800A5DF0 000A2D30  48 01 56 19 */ bl checkMagicArmorHeavy__9daAlink_cCFv
 /* 800A5DF4 000A2D34  2C 03 00 00 */ cmpwi r3, 0
 /* 800A5DF8 000A2D38  41 82 00 0C */ beq lbl_800A5E04
 /* 800A5DFC 000A2D3C  38 60 00 2F */ li r3, 0x2f

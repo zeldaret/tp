@@ -1,44 +1,43 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE138.s"
-JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error_flag)
+JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
-    OSInitMutex(&this->mMutex);
-    this->mSize = size;
-    this->mStart = (u32)data;
-    this->mEnd = (u32)data + size;
+    OSInitMutex(&mMutex);
+    mSize = size;
+    mStart = (u32)data;
+    mEnd = (u32)data + size;
 
     if (parent == NULL) {
-        this->becomeSystemHeap();
-        this->becomeCurrentHeap();
+        becomeSystemHeap();
+        becomeCurrentHeap();
     } else {
-        parent->mChildTree.appendChild(&this->mChildTree);
+        parent->mChildTree.appendChild(&mChildTree);
 
         if (lbl_80451370 == lbl_80451378) {
-            this->becomeSystemHeap();
+            becomeSystemHeap();
         }
         if (lbl_80451374 == lbl_80451378) {
-            this->becomeCurrentHeap();
+            becomeCurrentHeap();
         }
     }
 
-    this->mErrorFlag = error_flag;
-    if ((this->mErrorFlag == true) && (lbl_8045137C == NULL)) {
+    mErrorFlag = errorFlag;
+    if ((mErrorFlag == true) && (lbl_8045137C == NULL)) {
         lbl_8045137C = JKRHeap::JKRDefaultMemoryErrorRoutine;
     }
 
-    this->mDebugFill = lbl_804508B0;
-    this->mCheckMemoryFilled = lbl_80451380;
-    this->mInitFlag = false;
+    mDebugFill = lbl_804508B0;
+    mCheckMemoryFilled = lbl_80451380;
+    mInitFlag = false;
 }
 
 // using the wrong register for storing the results
 // lbl_80451370 = systemHeap;
 #ifdef NONMATCHING
 JKRHeap::~JKRHeap() {
-    JSUTree<JKRHeap>* parent = this->mChildTree.getParent();
-    parent->removeChild(&this->mChildTree);
+    JSUTree<JKRHeap>* parent = mChildTree.getParent();
+    parent->removeChild(&mChildTree);
 
     JSUTree<JKRHeap>* nextRootHeap = lbl_80451378->mChildTree.getFirstChild();
 
@@ -69,8 +68,6 @@ asm JKRHeap::~JKRHeap() {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE264.s"
 }
 #endif
-
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE378.s"
 bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     u32 ram_start;
     u32 ram_end;
@@ -96,26 +93,22 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     return true;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE428.s"
 JKRHeap* JKRHeap::becomeSystemHeap() {
     JKRHeap* prev = lbl_80451370;
     lbl_80451370 = this;
     return prev;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE438.s"
 JKRHeap* JKRHeap::becomeCurrentHeap() {
     JKRHeap* prev = lbl_80451374;
     lbl_80451374 = this;
     return prev;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE448.s"
 void JKRHeap::destroy() {
-    this->do_destroy();
+    do_destroy();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE474.s"
 void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
     if (heap != NULL) {
         return heap->alloc(size, alignment);
@@ -128,12 +121,10 @@ void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
     return NULL;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE4D4.s"
 void* JKRHeap::alloc(u32 size, int alignment) {
-    return this->do_alloc(size, alignment);
+    return do_alloc(size, alignment);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE500.s"
 void JKRHeap::free(void* ptr, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
@@ -144,9 +135,8 @@ void JKRHeap::free(void* ptr, JKRHeap* heap) {
     heap->free(ptr);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE548.s"
 void JKRHeap::free(void* ptr) {
-    this->do_free(ptr);
+    do_free(ptr);
 }
 
 asm void JKRHeap::callAllDisposer() {
@@ -154,17 +144,14 @@ asm void JKRHeap::callAllDisposer() {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE574.s"
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE5CC.s"
 void JKRHeap::freeAll() {
-    this->do_freeAll();
+    do_freeAll();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE5F8.s"
 void JKRHeap::freeTail() {
-    this->do_freeTail();
+    do_freeTail();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE624.s"
 s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
@@ -175,12 +162,10 @@ s32 JKRHeap::resize(void* ptr, u32 size, JKRHeap* heap) {
     return heap->resize(ptr, size);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE684.s"
 s32 JKRHeap::resize(void* ptr, u32 size) {
-    return this->do_resize(ptr, size);
+    return do_resize(ptr, size);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE6B0.s"
 s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
     if (!heap) {
         heap = findFromRoot(ptr);
@@ -191,36 +176,31 @@ s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
     return heap->getSize(ptr);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE700.s"
 s32 JKRHeap::getSize(void* ptr) {
-    return this->do_getSize(ptr);
+    return do_getSize(ptr);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE72C.s"
 s32 JKRHeap::getFreeSize() {
-    return this->do_getFreeSize();
+    return do_getFreeSize();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE758.s"
 void* JKRHeap::getMaxFreeBlock() {
-    return this->do_getMaxFreeBlock();
+    return do_getMaxFreeBlock();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE784.s"
 s32 JKRHeap::getTotalFreeSize() {
-    return this->do_getTotalFreeSize();
+    return do_getTotalFreeSize();
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE7B0.s"
 u8 JKRHeap::changeGroupID(u8 param_1) {
-    return this->do_changeGroupID(param_1);
+    return do_changeGroupID(param_1);
 }
 
 // "not/nor" instruction in the wrong place
 #ifdef NONMATCHING
 s32 JKRHeap::getMaxAllocatableSize(int alignment) {
-    u32 maxFreeBlock = (u32)this->getMaxFreeBlock();
-    s32 freeSize = this->getFreeSize();
+    u32 maxFreeBlock = (u32)getMaxFreeBlock();
+    s32 freeSize = getFreeSize();
 
     u32 mask = alignment - 1U;
     s32 ptrOffset = mask & (alignment - (maxFreeBlock & 0xf));
@@ -234,7 +214,6 @@ asm s32 JKRHeap::getMaxAllocatableSize(int alignment) {
 }
 #endif
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE83C.s"
 JKRHeap* JKRHeap::findFromRoot(void* ptr) {
     if (lbl_80451378 == NULL) {
         return NULL;
@@ -247,10 +226,9 @@ JKRHeap* JKRHeap::findFromRoot(void* ptr) {
     return lbl_80451378->findAllHeap(ptr);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE894.s"
 JKRHeap* JKRHeap::find(void* ptr) const {
-    if (this->getStartAddr() <= ptr && ptr < this->getEndAddr()) {
-        const JSUTree<JKRHeap>& tree = this->mChildTree;
+    if (getStartAddr() <= ptr && ptr < getEndAddr()) {
+        const JSUTree<JKRHeap>& tree = mChildTree;
         if (tree.getNumChildren() != 0) {
             JSUTreeIterator<JKRHeap> iterator;
             for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
@@ -268,9 +246,8 @@ JKRHeap* JKRHeap::find(void* ptr) const {
     return NULL;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE93C.s"
 JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
-    const JSUTree<JKRHeap>& tree = this->mChildTree;
+    const JSUTree<JKRHeap>& tree = mChildTree;
     if (tree.getNumChildren() != 0) {
         JSUTreeIterator<JKRHeap> iterator;
         for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); iterator++) {
@@ -282,7 +259,7 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
         }
     }
 
-    if (this->getStartAddr() <= ptr && ptr < this->getEndAddr()) {
+    if (getStartAddr() <= ptr && ptr < getEndAddr()) {
         // not sure about this... casting away const for now.
         return (JKRHeap*)this;
     }
@@ -290,19 +267,18 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
     return NULL;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CE9E4.s"
 void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
     JSUListIterator<JKRDisposer> last_iterator;
     JSUListIterator<JKRDisposer> next_iterator;
     JSUListIterator<JKRDisposer> iterator;
-    for (iterator = this->mDisposerList.getFirst(); iterator != this->mDisposerList.getEnd();
+    for (iterator = mDisposerList.getFirst(); iterator != mDisposerList.getEnd();
          iterator = next_iterator) {
         JKRDisposer* disposer = iterator.getObject();
 
         if ((void*)begin <= disposer && disposer < (void*)end) {
             disposer->~JKRDisposer();
             if (last_iterator == NULL) {
-                next_iterator = this->mDisposerList.getFirst();
+                next_iterator = mDisposerList.getFirst();
             } else {
                 next_iterator = last_iterator;
                 next_iterator++;
@@ -315,17 +291,15 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
     }
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEA78.s"
 bool JKRHeap::dispose(void* ptr, u32 size) {
     u32 begin = (u32)ptr;
     u32 end = (u32)ptr + size;
-    this->dispose_subroutine(begin, end);
+    dispose_subroutine(begin, end);
     return false;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEAA0.s"
 void JKRHeap::dispose(void* begin, void* end) {
-    this->dispose_subroutine((u32)begin, (u32)end);
+    dispose_subroutine((u32)begin, (u32)end);
 }
 
 // missing stack variable?
@@ -334,7 +308,7 @@ void JKRHeap::dispose() {
     JKRDisposer* disposer;
     JSUListIterator<JKRDisposer> iterator;
 
-    JSUList<JKRDisposer>* list = &this->mDisposerList;
+    JSUList<JKRDisposer>* list = &mDisposerList;
     while (iterator = list->getFirst(), iterator != list->getEnd()) {
         disposer = iterator.getObject();
         disposer->~JKRDisposer();
@@ -347,7 +321,6 @@ asm void JKRHeap::dispose() {
 }
 #endif
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEB18.s"
 void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
     u32 count = (size + 3) / 4;
 
@@ -361,7 +334,6 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
     }
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEB40.s"
 void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment) {
     const char* filename = lbl_8039CAD8;     // "JKRHeap.cpp"
     const char* format = lbl_8039CAD8 + 12;  // "%s"
@@ -369,31 +341,28 @@ void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignmen
     JUTException_NS_panic_f(filename, 0x33f, format, arg1);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEB78.s"
-bool JKRHeap::setErrorFlag(bool error_flag) {
-    bool prev = this->mErrorFlag;
-    this->mErrorFlag = error_flag;
+bool JKRHeap::setErrorFlag(bool errorFlag) {
+    bool prev = mErrorFlag;
+    mErrorFlag = errorFlag;
     return prev;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEB88.s"
-JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler error_handler) {
+JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler errorHandler) {
     JKRErrorHandler prev = (JKRErrorHandler)lbl_8045137C;
 
-    if (!error_handler) {
-        error_handler = (JKRErrorHandler)JKRHeap::JKRDefaultMemoryErrorRoutine;
+    if (!errorHandler) {
+        errorHandler = (JKRErrorHandler)JKRHeap::JKRDefaultMemoryErrorRoutine;
     }
 
-    lbl_8045137C = error_handler;
+    lbl_8045137C = errorHandler;
     return prev;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEBA8.s"
 bool JKRHeap::isSubHeap(JKRHeap* heap) const {
     if (!heap)
         return false;
 
-    const JSUTree<JKRHeap>& tree = this->mChildTree;
+    const JSUTree<JKRHeap>& tree = mChildTree;
     if (tree.getNumChildren() != 0) {
         JSUTreeIterator<JKRHeap> iterator;
         for (iterator = tree.getFirstChild(); iterator != tree.getEndChild(); ++iterator) {
@@ -412,42 +381,34 @@ bool JKRHeap::isSubHeap(JKRHeap* heap) const {
     return false;
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEC4C.s"
 void* operator new(u32 size) {
     return JKRHeap::alloc(size, 4, NULL);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEC74.s"
 void* operator new(u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, NULL);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CEC98.s"
 void* operator new(u32 size, JKRHeap* heap, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CECC4.s"
 void* operator new[](u32 size) {
     return JKRHeap::alloc(size, 4, NULL);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CECEC.s"
 void* operator new[](u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, NULL);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CED10.s"
 void* operator new[](u32 size, JKRHeap* heap, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CED3C.s"
 void operator delete(void* ptr) {
     JKRHeap::free(ptr, NULL);
 }
 
-// #include "JSystem/JKernel/JKRHeap/asm/func_802CED60.s"
 void operator delete[](void* ptr) {
     JKRHeap::free(ptr, NULL);
 }

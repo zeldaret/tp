@@ -1,5 +1,5 @@
-/* 8025BB78 00258AB8  3C 80 80 3C */	lis r4, lbl_803C3384@ha
-/* 8025BB7C 00258ABC  38 04 33 84 */	addi r0, r4, lbl_803C3384@l
+/* 8025BB78 00258AB8  3C 80 80 3C */	lis r4, HeapCheckTable@ha
+/* 8025BB7C 00258ABC  38 04 33 84 */	addi r0, r4, HeapCheckTable@l
 /* 8025BB80 00258AC0  90 03 00 00 */	stw r0, 0(r3)
 /* 8025BB84 00258AC4  38 C0 00 00 */	li r6, 0
 /* 8025BB88 00258AC8  38 80 00 00 */	li r4, 0

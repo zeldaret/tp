@@ -9,11 +9,10 @@ extern char lbl_80379234[0x64];
 extern char lbl_803739A0[0x310];
 extern void* lbl_80451368;
 extern u32 _sRumbleSupported;
-extern u8 lbl_803C3384;
 extern u8 lbl_803A2EF4;
-extern u8 lbl_803A2EE0;
+extern char lbl_803A2EE0[20];
 extern u8 lbl_80450B19;
-extern u8 lbl_80450588;
+// extern u8 lbl_80450588;
 extern u8 lbl_804511B8;
 extern u8 lbl_80450B20;
 extern u8 lbl_80451A00;
@@ -45,8 +44,8 @@ extern u8 lbl_80450C28;
 extern u8 lbl_80450C34;
 extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
-extern u8 lbl_80450580;
-extern u8 lbl_80450B1A;
+// extern u8 lbl_80450580;
+// extern u8 lbl_80450B1A;
 struct JUTGamePad;
 extern JUTGamePad* m_gamePad[4];
 extern u8 lbl_80450B18;
@@ -221,11 +220,11 @@ extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
 extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
 extern u8 lbl_803CC228;                      // JKRFileFinder::__vt
 extern u8 lbl_803CC208;                      // JKRDvdFinder::__vt
-extern u8 lbl_8039D150;                      // "/"
+extern const char lbl_8039D150[16];          // "/"
 extern u8 lbl_803CC1C8;                      // JKRFileLoader::__vt
-extern u8 lbl_804508C0;                      // "/" JKernel::rootPath$2498
+extern const char lbl_804508C0[16];          // "/" JKernel::rootPath$2498
 extern u8 lbl_80434348;                      // JKernel::@2182 (global destructor chain)
-extern u8 lbl_803D2D18[256];                 // MSL_C.PPCEABI.bare.H::__lower_map
+extern const char lbl_803D2D18[256];         // MSL_C.PPCEABI.bare.H::__lower_map
 extern u8 lbl_803CC090;                      // JKRAssertHeap::__vt
 extern u8 lbl_80451398;                      // JKernel::DBfoundSize
 extern u8 lbl_8045139C;                      // JKernel::DBfoundOffset

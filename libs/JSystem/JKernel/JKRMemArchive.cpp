@@ -41,7 +41,7 @@ asm void JKRMemArchive::removeResourceAll(void) {
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6ED0.s"
 }
 
-asm void JKRMemArchive::removeResource(void*) {
+asm bool JKRMemArchive::removeResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6F20.s"
 }

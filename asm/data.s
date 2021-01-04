@@ -2165,8 +2165,8 @@ lbl_803C336C:
 .global lbl_803C3378
 lbl_803C3378:
 	.incbin "baserom.dol", 0x3C0378, 0xC
-.global lbl_803C3384
-lbl_803C3384:
+.global HeapCheckTable
+HeapCheckTable:
 	.incbin "baserom.dol", 0x3C0384, 0xC
 .global lbl_803C3390
 lbl_803C3390:

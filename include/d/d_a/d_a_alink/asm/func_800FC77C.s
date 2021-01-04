@@ -36,7 +36,7 @@ lbl_800FC7E0:
 /* 800FC800 000F9740  7F C3 F3 78 */ mr r3, r30
 /* 800FC804 000F9744  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 800FC808 000F9748  38 80 00 00 */ li r4, 0
-/* 800FC80C 000F974C  4B FB EF 65 */ bl daAlink_c_NS_setSpecialGravity
+/* 800FC80C 000F974C  4B FB EF 65 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800FC810 000F9750  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FC814 000F9754  D0 1E 04 FC */ stfs f0, 0x4fc(r30)
 /* 800FC818 000F9758  38 00 00 00 */ li r0, 0

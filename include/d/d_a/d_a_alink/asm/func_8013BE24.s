@@ -333,7 +333,7 @@ lbl_8013C2B0:
 /* 8013C2CC 0013920C  EC 21 00 24 */ fdivs f1, f1, f0
 /* 8013C2D0 00139210  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8013C2D4 00139214  38 80 00 00 */ li r4, 0
-/* 8013C2D8 00139218  4B F7 F4 99 */ bl daAlink_c_NS_setSpecialGravity
+/* 8013C2D8 00139218  4B F7 F4 99 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013C2DC 0013921C  C0 1F 05 30 */ lfs f0, 0x530(r31)
 /* 8013C2E0 00139220  FC 00 00 50 */ fneg f0, f0
 /* 8013C2E4 00139224  EC 00 07 F2 */ fmuls f0, f0, f31

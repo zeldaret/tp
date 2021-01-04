@@ -72,8 +72,8 @@ struct g_HIO_struct {
 struct mDoCPd_c {
     void create();
     void read();
-    static void convert(interface_of_controller_pad* controllerInteface, JUTGamePad* gamePad);
-    static void LRlockCheck(interface_of_controller_pad* controllerInterface);
+    static void convert(interface_of_controller_pad* pInterface, JUTGamePad* pPad);
+    static void LRlockCheck(interface_of_controller_pad* pInterface);
     static void recalibrate(void);
 
     JUTGamePad* gamePad;

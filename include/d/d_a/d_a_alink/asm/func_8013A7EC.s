@@ -17,7 +17,7 @@
 /* 8013A82C 0013776C  7F E3 FB 78 */ mr r3, r31
 /* 8013A830 00137770  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8013A834 00137774  38 80 00 00 */ li r4, 0
-/* 8013A838 00137778  4B F8 0F 39 */ bl daAlink_c_NS_setSpecialGravity
+/* 8013A838 00137778  4B F8 0F 39 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013A83C 0013777C  7F E3 FB 78 */ mr r3, r31
 /* 8013A840 00137780  3C 80 00 01 */ lis r4, 0x00010038@ha
 /* 8013A844 00137784  38 84 00 38 */ addi r4, r4, 0x00010038@l

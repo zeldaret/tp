@@ -28,7 +28,7 @@
 /* 800D6034 000D2F74  7F C3 F3 78 */ mr r3, r30
 /* 800D6038 000D2F78  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 800D603C 000D2F7C  38 80 00 00 */ li r4, 0
-/* 800D6040 000D2F80  4B FE 57 31 */ bl daAlink_c_NS_setSpecialGravity
+/* 800D6040 000D2F80  4B FE 57 31 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800D6044 000D2F84  38 00 00 01 */ li r0, 1
 /* 800D6048 000D2F88  B0 1E 30 0E */ sth r0, 0x300e(r30)
 /* 800D604C 000D2F8C  7F C3 F3 78 */ mr r3, r30

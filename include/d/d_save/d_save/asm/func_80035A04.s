@@ -8,7 +8,7 @@
 /* 80035A20 00032960  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80035A24 00032964  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80035A28 00032968  38 A0 09 58 */	li r5, 0x958
-/* 80035A2C 0003296C  4B FC DB 15 */	bl func_80003540
+/* 80035A2C 0003296C  4B FC DB 15 */	bl memcpy
 /* 80035A30 00032970  48 30 AB 61 */	bl OSGetSoundMode
 /* 80035A34 00032974  28 03 00 00 */	cmplwi r3, 0
 /* 80035A38 00032978  40 82 00 28 */	bne lbl_80035A60

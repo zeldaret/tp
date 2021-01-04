@@ -12,6 +12,8 @@ struct Vec {
     float x, y, z;
 };
 
+#define JUT_ASSERT(...)
+
 extern float __fabsf(float);
 
 inline double fabsf(double d) {

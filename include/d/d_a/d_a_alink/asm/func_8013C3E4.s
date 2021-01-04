@@ -72,7 +72,7 @@ lbl_8013C4BC:
 /* 8013C4E8 00139428  C0 24 00 48 */ lfs f1, 0x48(r4)
 /* 8013C4EC 0013942C  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8013C4F0 00139430  38 80 00 00 */ li r4, 0
-/* 8013C4F4 00139434  4B F7 F2 7D */ bl daAlink_c_NS_setSpecialGravity
+/* 8013C4F4 00139434  4B F7 F2 7D */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013C4F8 00139438  48 00 00 28 */ b lbl_8013C520
 lbl_8013C4FC:
 /* 8013C4FC 0013943C  C0 1F 33 98 */ lfs f0, 0x3398(r31)
