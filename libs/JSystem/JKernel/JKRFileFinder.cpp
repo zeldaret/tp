@@ -3,8 +3,7 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
-JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIndex, u32 numEntries)
-    : JKRFileFinder() {
+JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIndex, u32 numEntries) : JKRFileFinder() {
     mArchive = archive;
     mIsAvailable = (s32)numEntries > 0;
     mStartIndex = startIndex;

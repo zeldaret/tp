@@ -129,8 +129,8 @@ public:
     /* vt[10] */ virtual bool removeResource(void*);                     /* override */
     /* vt[11] */ virtual bool detachResource(void*);                     /* override */
     /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
-    /* vt[13] */ virtual u32 countFile(const char*) const;              /* override */
-    /* vt[14] */ virtual JKRArcFinder* getFirstFile(const char*) const;           /* override */
+    /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
+    /* vt[14] */ virtual JKRArcFinder* getFirstFile(const char*) const;  /* override */
     /* vt[15] */ virtual void getExpandedResSize(const void*) const;
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
