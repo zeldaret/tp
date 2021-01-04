@@ -68,8 +68,10 @@ public:
     u8& getUnkHeart() { return unk_heart; }
     void setUnkWarashibe1(u8 num) { field_0x4ec0[0x85] = num; }
     void setUnkWarashibe2(u8 num) { field_0x4ec0[0x86] = num; }
-    void setMidnaTalkStatus(u8 status) { field_0x4ec0[0x3B] = status; }
-    void setMidnaTalkUnk(u8 num) { field_0x4ec0[0x56] = num; }
+    void setZStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x3B] = status;
+        field_0x4ec0[0x56] = unk;
+    }
 
 private:
     /* 0x00000 */ dBgS dbgs;
@@ -124,8 +126,6 @@ public:
     // temp for setWarashibeItem
     void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
     void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
-    void setPlayMidnaTalkStatus(u8 status) { play.setMidnaTalkStatus(status); }
-    void setPlayMidnaTalkUnk(u8 num) { play.setMidnaTalkUnk(num); }
     dSv_player_c& getPlayer() { return info.getPlayer(); }
     dSv_save_c& getSaveFile() { return info.getSaveFile(); }
     u32 getNowVibration() { return play.getNowVibration(); }

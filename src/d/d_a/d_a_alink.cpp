@@ -3264,8 +3264,7 @@ asm void daAlink_c_NS_checkSpecialDemoMode(void) {
 }
 
 void daAlink_c::setMidnaTalkStatus(u8 status) {
-    g_dComIfG_gameInfo.getPlay().setMidnaTalkStatus(status);
-    g_dComIfG_gameInfo.getPlay().setMidnaTalkUnk(0);
+    dComIfGp_setZStatus(status, 0);
 }
 
 // set3DStatus__9daAlink_cFUcUc
