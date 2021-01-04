@@ -26,11 +26,7 @@ struct SDirEntry {
         } other;
     };
 
-<<<<<<< HEAD
     const char* name;
-=======
-    u32 name;
->>>>>>> JKRArchivePri OK
     u16 field_0x8;
     u16 num_entries;
     s32 first_file_index;
@@ -47,10 +43,7 @@ struct SDIFileEntry {
     u32 getNameOffset() const { return type_flags_and_name_offset & 0xFFFFFF; }
     u16 getNameHash() const { return name_hash; }
     u32 getFlags() const { return type_flags_and_name_offset >> 24; }
-<<<<<<< HEAD
     u16 getFileID() const { return file_id; }
-=======
->>>>>>> JKRArchivePri OK
     bool isDirectory() const { return (getFlags() & 2) != 0; }
     bool isUnknownFlag1() const { return (getFlags() & 1) != 0; }
 };
@@ -63,19 +56,12 @@ class JKRArchive : public JKRFileLoader {
 public:
     enum EMountMode {
         UNKNOWN_MOUNT_MODE = 0,
-<<<<<<< HEAD
         MOUNT_MEM = 1,
         MOUNT_ARAM = 2,
         MOUNT_DVD = 3,
         MOUNT_COMP = 4,
 
         __EMOUNT_MODE_FORCE_32BIT = UINT32_MAX,
-=======
-        MEM = 1,
-        ARAM = 2,
-        DVD = 3,
-        COMP = 4,
->>>>>>> JKRArchivePri OK
     };
 
     enum EMountDirection {

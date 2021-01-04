@@ -19,7 +19,7 @@ bool JKRArcFinder::findNextFile(void) {
         mIsAvailable = !(mNextIndex > mEndIndex);
         if (mIsAvailable) {
             mIsAvailable = mArchive->getDirEntry(&entry, mNextIndex);
-            mEntryNameOffset = entry.name;
+            mEntryName = entry.name;
             mEntryFileIndex = mNextIndex;
             mEntryId = entry.other.id;
             mEntryTypeFlags = entry.other.flags;

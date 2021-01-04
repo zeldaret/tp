@@ -113,7 +113,6 @@ bool JKRArchive::becomeCurrent(const char* path) {
     return found;
 }
 
-<<<<<<< HEAD
 bool JKRArchive::getDirEntry(SDirEntry* dirEntry, u32 index) const {
     SDIFileEntry* fileEntry = findIdxResource(index);
     if (!fileEntry)
@@ -123,11 +122,6 @@ bool JKRArchive::getDirEntry(SDirEntry* dirEntry, u32 index) const {
     dirEntry->other.id = fileEntry->getFileID();
     dirEntry->name = mStringTable + fileEntry->getNameOffset();
     return true;
-=======
-asm bool JKRArchive::getDirEntry(SDirEntry*, u32) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D5AC0.s"
->>>>>>> JKRArchivePri OK
 }
 
 void* JKRArchive::getGlbResource(u32 param_1, const char* path, JKRArchive* archive) {
