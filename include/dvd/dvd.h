@@ -46,7 +46,7 @@ public:
     void* user_data;
 };
 
-//typedef void (*DVDCallback)(u32 result, DVDFileInfo *info);
+// typedef void (*DVDCallback)(u32 result, DVDFileInfo *info);
 
 class DVDFileInfo {
 public:

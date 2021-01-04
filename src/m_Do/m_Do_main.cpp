@@ -38,7 +38,8 @@ void CheckHeap(u32 controller_pad_no) {
     bool unk = false;
 
     // if L + R + Z is pressed...
-    if (((m_cpadInfo[controller_pad_no].mButtonFlags & ~0x10) == 0x60) && m_cpadInfo[controller_pad_no].mPressedButtonFlags & 0x10) {
+    if (((m_cpadInfo[controller_pad_no].mButtonFlags & ~0x10) == 0x60) &&
+        m_cpadInfo[controller_pad_no].mPressedButtonFlags & 0x10) {
         unk = true;
     }
 
@@ -118,7 +119,7 @@ asm void Debug_console(u32) {
 #ifdef NONMATCHING
 extern u8 lbl_803739a0[0x310];
 extern char lbl_803a2ee0[20];
-extern void memcpy(void*,void*,int);
+extern void memcpy(void*, void*, int);
 
 void LOAD_COPYDATE(void*) {
     s32 dvd_status;
