@@ -34,14 +34,34 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
     setCommon_mesgQueue(mHeap, message_count);
 }
 
-asm JKRThread::JKRThread(OSThread* thread, int message_count) {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D16B8.s"
+JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this) {
+    mSwitchCount = 0;
+    mCost = 0;
+    field_0x6c = 0;
+    field_0x60 = 0;
+    field_0x70 = 0;
+    mHeap = NULL;
+    mThreadRecord = thread;
+    mStackSize = (u32)thread->stack_end - (u32)thread->stack_base;
+    mStackMemory = thread->stack_base;
+
+    setCommon_mesgQueue(JKRHeap::getSystemHeap(), message_count);
 }
 
-asm JKRThread::~JKRThread() {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D1758.s"
+JKRThread::~JKRThread() {
+    // lbl_8043428C = JKRThread::sThreadList
+    lbl_8043428C.remove(&mThreadListLink);
+
+    if (mHeap) {
+        BOOL result = OSIsThreadTerminated(mThreadRecord);
+        if (result == FALSE) {
+            OSDetachThread(mThreadRecord);
+            OSCancelThread(mThreadRecord);
+        }
+        JKRFreeToHeap(mHeap, mStackMemory);
+        JKRFreeToHeap(mHeap, mThreadRecord);
+    }
+    JKRFree(mMessages);
 }
 
 void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
@@ -70,25 +90,17 @@ void* JKRThread::start(void* param) {
     return thread->run();
 }
 
-#ifdef NONMATCHING
 JKRThread* JKRThread::searchThread(OSThread* thread) {
     JSUList<JKRThread>* threadList = JKRThread::getList();
     JSUListIterator<JKRThread> iterator;
-    for (iterator = threadList; iterator != threadList->getEnd(); iterator++) {
-        JKRThread* jkrThread = iterator.getObject();
-        if (jkrThread->mThreadRecord == thread) {
-            return jkrThread;
+    for (iterator = threadList; iterator != threadList->getEnd(); ++iterator) {
+        if (iterator->getThreadRecord() == thread) {
+            return iterator.getObject();
         }
     }
 
     return NULL;
 }
-#else
-asm JKRThread* JKRThread::searchThread(OSThread* thread) {
-    nofralloc
-#include "JSystem/JKernel/JKRThread/asm/func_802D1960.s"
-}
-#endif
 
 //
 //

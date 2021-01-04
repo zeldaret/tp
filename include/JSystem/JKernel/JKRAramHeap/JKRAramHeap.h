@@ -37,13 +37,15 @@ private:
     void unlock() { OSUnlockMutex(&mMutex); }
 
 public:
-    OSMutex mMutex;
-    JKRHeap* mHeap;
-    u32 mHeadAddress;
-    u32 mTailAddress;
-    u32 mSize;
-    u8 mGroupId;
-    u8 padding_0x41[3];
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRDisposer
+    /* 0x18 */ OSMutex mMutex;
+    /* 0x30 */ JKRHeap* mHeap;
+    /* 0x34 */ u32 mHeadAddress;
+    /* 0x38 */ u32 mTailAddress;
+    /* 0x3C */ u32 mSize;
+    /* 0x40 */ u8 mGroupId;
+    /* 0x41 */ u8 padding_0x41[3];
 };
 
 #endif

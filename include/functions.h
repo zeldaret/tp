@@ -30,7 +30,7 @@ void dComIfGp_setSelectItem(int);
 void getUsedCount__9HeapCheckCFv(void);
 void isEventBit__11dSv_event_cCFUs(void);
 char* strcpy(char*, const char*);
-int strcmp(char*, char*);
+int strcmp(const char*, const char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
 void func_803620AC(void);
 void func_803626BC(void);
@@ -88,7 +88,6 @@ void off__15dSv_zoneActor_cFi(void);
 void is__15dSv_zoneActor_cCFi(void);
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
-void func_80003540(void);
 void func_80362324(void);
 void countUsed__FP10JKRExpHeap(void);
 void JUTReport(void);
@@ -156,7 +155,7 @@ void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-void func_80003540(void);
+void memcpy(void*, void*, int);
 void func_80365470(void);
 void func_803688DC(void);
 void func_80368ABC(void);
@@ -179,14 +178,12 @@ void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
 void func_80003458(void);
 void func_803650D0(void);
 void JKRDecomp_NS_orderSync(void);
-void func_80003540(void);
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
 void JKRDvdAramRipper_NS_loadToAram(void);
 void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 void __RAS_OSDisableInterrupts_begin(void);
-void func_80003540(void);
 void func_80361C24(void);
 void JSUInputStream_NS_read(void);
 void JSURandomInputStream_NS_seek(void);
@@ -244,7 +241,7 @@ void dComIfGs_setMixItemIndex(int, u8);
 void dComIfGs_setSelectItemIndex(int, u8);
 u8 dComIfGs_getMixItemIndex(int);
 char* strcpy(char*, const char*);
-int strcmp(char*, char*);
+int strcmp(const char*, const char*);
 void setBombNum__21dSv_player_item_max_cFUcUc(void);
 void func_803620AC(void);
 void func_803626BC(void);
@@ -307,7 +304,6 @@ void is__15dSv_zoneActor_cCFi(void);
 
 void onEventBit__11dSv_event_cFUs(void);
 void func_8036687C(void);
-void func_80003540(void);
 void func_80362324(void);
 
 void countUsed__FP10JKRExpHeap(void);
@@ -380,7 +376,6 @@ void JUTWarningConsole_f(void);
 
 void func_80361C24(void);
 
-void func_80003540(void);
 void func_80365470(void);
 void func_803688DC(void);
 void func_80368ABC(void);
@@ -406,7 +401,6 @@ void func_80003458(void);
 void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
-void func_80003540(void);
 
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
@@ -415,7 +409,6 @@ void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 
 void __RAS_OSDisableInterrupts_begin(void);
-void func_80003540(void);
 void func_80361C24(void);
 
 void JSUInputStream_NS_read(void);
@@ -446,24 +439,6 @@ void MtxInit(void);
 void mDoDvdErr_ThdCleanup(void);
 void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
 void common_init__6JUTXfbFl(void);
-}
-
-// DVD
-class DVDFileInfo;
-extern "C" {
-s32 DVDOpen(const char*, u8[48]);
-s32 DVDClose(u8[48]);
-void DVDReadPrio(void);
-void DVDGetCurrentDiskID(void);
-s32 DVDFastOpen(long, u8[48]);
-int DVDGetCommandBlockStatus(u8[48]);
-s32 DVDReadAsyncPrio(u8[48], void*, long, long, void (*)(long, DVDFileInfo*), long);
-void DVDConvertPathToEntrynum(void);
-
-void DVDChangeDir(void);
-void DVDCloseDir(void);
-void DVDOpenDir(void);
-void DVDReadDir(void);
 }
 
 class mDoCPd_c;
