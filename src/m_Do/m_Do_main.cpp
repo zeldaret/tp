@@ -150,14 +150,14 @@ void debug(void) {
             CheckHeap(2);
         }
 
-        if (((m_gamePad[2]->buttons.button_flags & ~0x10) == 0x20) &&
-            (m_gamePad[2]->buttons.field_0x4 & 0x10)) {
+        if (((m_gamePad[2]->buttons.mButtonFlags & ~0x10) == 0x20) &&
+            (m_gamePad[2]->buttons.mPressedButtonFlags & 0x10)) {
             lbl_80450B18 ^= 0x1;
         }
 
         if (lbl_80450B18) {
-            if (((m_gamePad[2]->buttons.button_flags & ~0x10) == 0x40) &&
-                (m_gamePad[2]->buttons.field_0x4 & 0x10)) {
+            if (((m_gamePad[2]->buttons.mButtonFlags & ~0x10) == 0x40) &&
+                (m_gamePad[2]->buttons.mPressedButtonFlags & 0x10)) {
                 lbl_80450588[0] < 0x5 ? lbl_80450588[0]++ : lbl_80450588[0] = 0x1;
             }
 
