@@ -397,28 +397,25 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JMessage/resource.o    \
             $(BUILD_DIR)/asm/JMessage/locale.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2Calc.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2AudioArcLoader.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundStarter.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundHandles.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2AudioArcLoader.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundStarter.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundHandles.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SeMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SeqMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SeqMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2StatusMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SceneMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2FxLineMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundInfo.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2Audience.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObject.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SoundObjMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2Creature.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2FxLineMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundInfo.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2Audience.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundObject.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundObjMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2Creature.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2LinkMgr.o \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2LinkMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2EnvSeMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2WolfHowlMgr.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2SpeechMgr2.o    \
-            $(BUILD_DIR)/asm/Z2AudioLib/Z2AudioMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2EnvSeMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2WolfHowlMgr.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2SpeechMgr2.o    \
+            $(BUILD_DIR)/libs/Z2AudioLib/Z2AudioMgr.o    \
             $(BUILD_DIR)/asm/gf/GFGeometry.o    \
             $(BUILD_DIR)/asm/gf/GFLight.o    \
             $(BUILD_DIR)/asm/gf/GFPixel.o    \

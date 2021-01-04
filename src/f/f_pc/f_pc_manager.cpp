@@ -1,5 +1,6 @@
 #include "f/f_pc/f_pc_manager.h"
 #include "SComponent/c_tag.h"
+#include "Z2AudioLib/Z2SoundMgr/Z2SoundMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_lib/d_lib.h"
 #include "f/f_pc/f_pc_base.h"

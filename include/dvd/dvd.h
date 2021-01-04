@@ -1,6 +1,8 @@
 #ifndef __DVD_H__
 #define __DVD_H__
 
+#include "dolphin/types.h"
+
 extern "C" {
 
 typedef enum DVDState {

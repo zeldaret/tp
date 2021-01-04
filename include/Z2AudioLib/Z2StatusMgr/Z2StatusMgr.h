@@ -45,7 +45,7 @@ void menuOut__11Z2StatusMgrFv(void);
 bool isMovieDemo__11Z2StatusMgrFv(void);
 void Z2SceneMgr_NS_sceneBgmStart(void);
 void setDemoName__11Z2StatusMgrFPc(char*);
-bool checkDayTime__11Z2StatusMgrFv(void);
+// bool checkDayTime__11Z2StatusMgrFv(void);
 void processTime__11Z2StatusMgrFv(void);
 void setEventBit__11Z2StatusMgrFPv(void*);
 void Z2FxLineMgr_NS_setUnderWaterFx(void);

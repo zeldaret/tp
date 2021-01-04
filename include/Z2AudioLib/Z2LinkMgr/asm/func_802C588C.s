@@ -1,0 +1,2 @@
+/* 802C588C 002C27CC  38 63 FF 70 */ addi r3, r3, -144
+/* 802C5890 002C27D0  4B FF DC 70 */ b __dt__14Z2CreatureLinkFv

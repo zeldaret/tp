@@ -161,3 +161,126 @@ asm void Z2CreatureLink::setResumeAttack(bool) {
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C48D8.s"
 }
 #endif
+
+extern "C" {
+// __ct__18Z2LinkSoundStarterFv
+// Z2LinkSoundStarter::Z2LinkSoundStarter(void)
+asm void Z2LinkSoundStarter_NS_ctor(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C48E8.s"
+}
+
+// startSound__18Z2LinkSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl
+// Z2LinkSoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f>, unsigned long,
+// float, float, float, float, float, unsigned long)
+asm void func_802C4928(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C4928.s"
+}
+
+// __ct__14Z2CreatureRideFv
+// Z2CreatureRide::Z2CreatureRide(void)
+asm void func_802C4FFC(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C4FFC.s"
+}
+
+// __dt__18Z2RideSoundStarterFv
+// Z2RideSoundStarter::~Z2RideSoundStarter(void)
+asm void func_802C5078(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C5078.s"
+}
+
+// __dt__14Z2CreatureRideFv
+// Z2CreatureRide::~Z2CreatureRide(void)
+asm void Z2CreatureRide_NS_dtor(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C5114.s"
+}
+
+// deleteObject__14Z2CreatureRideFv
+// Z2CreatureRide::deleteObject(void)
+asm void func_802C51EC(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C51EC.s"
+}
+
+// init__14Z2CreatureRideFP3VecP3VecUcUc
+// Z2CreatureRide::init(Vec*, Vec*, unsigned char, unsigned char)
+asm void func_802C520C(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C520C.s"
+}
+
+// setLinkRiding__14Z2CreatureRideFb
+// Z2CreatureRide::setLinkRiding(bool)
+asm void Z2CreatureRide_NS_setLinkRiding(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C522C.s"
+}
+
+// __ct__18Z2RideSoundStarterFP14Z2CreatureRide
+// Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide*)
+asm void Z2RideSoundStarter(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C5234.s"
+}
+
+// startSound__18Z2RideSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl
+// Z2RideSoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f>, unsigned long,
+// float, float, float, float, float, unsigned long)
+asm void func_802C5284(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C5284.s"
+}
+
+// __ct__15Z2SoundObjCoachFv
+// Z2SoundObjCoach::Z2SoundObjCoach(void)
+asm void func_802C54B8(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C54B8.s"
+}
+
+// init__15Z2SoundObjCoachFP3VecUc
+// Z2SoundObjCoach::init(Vec*, unsigned char)
+asm void func_802C54FC(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C54FC.s"
+}
+
+// startWheelSound__15Z2SoundObjCoachFf
+// Z2SoundObjCoach::startWheelSound(float)
+asm void func_802C551C(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C551C.s"
+}
+
+// startFireSound__15Z2SoundObjCoachFUs
+// Z2SoundObjCoach::startFireSound(unsigned short)
+asm void func_802C56C0(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C56C0.s"
+}
+
+// startSound__15Z2SoundObjCoachF10JAISoundIDUlSc
+// Z2SoundObjCoach::startSound(JAISoundID, unsigned long, char)
+asm void func_802C57C0(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C57C0.s"
+}
+
+// @144@__dt__14Z2CreatureLinkFv
+// Z2CreatureLink::@144@__dt(void)
+asm void func_802C588C(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C588C.s"
+}
+
+// @144@__dt__14Z2CreatureRideFv
+// Z2CreatureRide::@144@__dt(void)
+asm void func_802C5894(void) {
+    nofralloc
+#include "Z2AudioLib/Z2LinkMgr/asm/func_802C5894.s"
+}
+};

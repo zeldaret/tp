@@ -1,5 +1,6 @@
 #include "d/d_save/d_save/d_save.h"
 
+#include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_save/d_save_init/d_save_init.h"
 #include "os/OS.h"
