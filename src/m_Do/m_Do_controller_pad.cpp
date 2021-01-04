@@ -3,6 +3,7 @@
 #include "c/cLib.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
+#include "m_Do/m_Do_main/m_Do_main.h"
 #include "pad/pad.h"
 
 #ifdef NONMATCHING

@@ -23,3 +23,7 @@ private:
 };
 
 extern HeapCheck* HeapCheckTable[8];
+extern s8 lbl_80450580[4];
+extern u8 lbl_80450B1A[2];
+extern u8 lbl_80450B18;
+extern u8 lbl_80450588[8];

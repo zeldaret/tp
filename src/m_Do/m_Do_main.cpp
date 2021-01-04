@@ -117,8 +117,7 @@ asm void Debug_console(u32) {
 }
 
 #ifdef NONMATCHING
-extern u8 lbl_803739a0[0x310];
-extern char lbl_803a2ee0[20];
+
 extern void memcpy(void*, void*, int);
 
 void LOAD_COPYDATE(void*) {
@@ -126,11 +125,11 @@ void LOAD_COPYDATE(void*) {
     char buffer[32];
     DVDFileInfo file_info;
 
-    dvd_status = DVDOpen((const char*)lbl_803739a0 + 0x283, &file_info);
+    dvd_status = DVDOpen((const char*)lbl_803739A0[0x283], &file_info);
 
     if (dvd_status) {
         DVDReadPrio(&file_info, buffer, 32, 0, 2);
-        memcpy(lbl_803a2ee0, buffer, 17);
+        memcpy(lbl_803A2EE0, buffer, 17);
         DVDClose(&file_info);
     }
     return;
@@ -142,33 +141,29 @@ asm void LOAD_COPYDATE(void*) {
 }
 #endif
 
-#ifdef NONMATCHING
+#ifndef NONMATCHING
+
 void debug(void) {
-    if (DAT_80450580) {
-        if (DAT_80450b1a) {
-            CheckHeap(0x2);
+    if (lbl_80450580[0]) {
+        if (lbl_80450B1A[0]) {
+            CheckHeap(2);
         }
 
-        if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x20) &&
-            (m_gamePad.buttons.field_0x4 & 0x10)) {
-            // if (1) {
-            DAT_80450b18 = DAT_80450b18 ^ 0x1;
+        if (((m_gamePad[2]->buttons.button_flags & ~0x10) == 0x20) &&
+            (m_gamePad[2]->buttons.field_0x4 & 0x10)) {
+            lbl_80450B18 ^= 0x1;
         }
 
-        if (DAT_80450b18) {
-            if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x40) &&
-                (m_gamePad.buttons.field_0x4 & 0x10)) {
-                if (DAT_80450588 < 0x5) {
-                    DAT_80450588 = DAT_80450588 + 0x1;
-                } else {
-                    DAT_80450588 = 0x1;
-                }
+        if (lbl_80450B18) {
+            if (((m_gamePad[2]->buttons.button_flags & ~0x10) == 0x40) &&
+                (m_gamePad[2]->buttons.field_0x4 & 0x10)) {
+                lbl_80450588[0] < 0x5 ? lbl_80450588[0]++ : lbl_80450588[0] = 0x1;
             }
 
             debugDisplay();
         }
 
-        Debug_console(0x2);
+        Debug_console(2);
     }
 }
 #else
