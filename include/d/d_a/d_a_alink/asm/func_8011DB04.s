@@ -19,7 +19,7 @@ lbl_8011DB30:
 /* 8011DB48 0011AA88  7F E3 FB 78 */ mr r3, r31
 /* 8011DB4C 0011AA8C  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8011DB50 0011AA90  38 80 00 00 */ li r4, 0
-/* 8011DB54 0011AA94  4B F9 DC 1D */ bl daAlink_c_NS_setSpecialGravity
+/* 8011DB54 0011AA94  4B F9 DC 1D */ bl setSpecialGravity__9daAlink_cFffi
 /* 8011DB58 0011AA98  7F E3 FB 78 */ mr r3, r31
 /* 8011DB5C 0011AA9C  38 80 00 00 */ li r4, 0
 /* 8011DB60 0011AAA0  38 A0 00 01 */ li r5, 1

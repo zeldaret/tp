@@ -100,7 +100,7 @@ lbl_800E334C:
 /* 800E3398 000E02D8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E339C 000E02DC  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 800E33A0 000E02E0  38 80 00 00 */ li r4, 0
-/* 800E33A4 000E02E4  4B FD 83 CD */ bl daAlink_c_NS_setSpecialGravity
+/* 800E33A4 000E02E4  4B FD 83 CD */ bl setSpecialGravity__9daAlink_cFffi
 /* 800E33A8 000E02E8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E33AC 000E02EC  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 800E33B0 000E02F0  D0 1F 33 98 */ stfs f0, 0x3398(r31)

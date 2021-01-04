@@ -71,7 +71,7 @@ lbl_800BB740:
 /* 800BB740 000B8680  7F C3 F3 78 */ mr r3, r30
 /* 800BB744 000B8684  FC 40 F8 90 */ fmr f2, f31
 /* 800BB748 000B8688  38 80 00 01 */ li r4, 1
-/* 800BB74C 000B868C  48 00 00 25 */ bl daAlink_c_NS_setSpecialGravity
+/* 800BB74C 000B868C  48 00 00 25 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800BB750 000B8690  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0
 /* 800BB754 000B8694  CB E1 00 10 */ lfd f31, 0x10(r1)
 /* 800BB758 000B8698  83 E1 00 0C */ lwz r31, 0xc(r1)

@@ -85,7 +85,7 @@ lbl_8010C95C:
 /* 8010C970 001098B0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010C974 001098B4  C0 5C 05 34 */ lfs f2, 0x534(r28)
 /* 8010C978 001098B8  38 80 00 00 */ li r4, 0
-/* 8010C97C 001098BC  4B FA ED F5 */ bl daAlink_c_NS_setSpecialGravity
+/* 8010C97C 001098BC  4B FA ED F5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8010C980 001098C0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010C984 001098C4  D0 1C 33 98 */ stfs f0, 0x3398(r28)
 /* 8010C988 001098C8  D0 1C 04 FC */ stfs f0, 0x4fc(r28)

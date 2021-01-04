@@ -102,7 +102,7 @@ lbl_800EC374:
 /* 800EC380 000E92C0  7F E3 FB 78 */ mr r3, r31
 /* 800EC384 000E92C4  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 800EC388 000E92C8  38 80 00 00 */ li r4, 0
-/* 800EC38C 000E92CC  4B FC F3 E5 */ bl daAlink_c_NS_setSpecialGravity
+/* 800EC38C 000E92CC  4B FC F3 E5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800EC390 000E92D0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800EC394 000E92D4  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 800EC398 000E92D8  7F E3 FB 78 */ mr r3, r31

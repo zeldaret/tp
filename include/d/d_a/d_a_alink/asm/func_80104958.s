@@ -9,7 +9,7 @@
 /* 80104978 001018B8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010497C 001018BC  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 80104980 001018C0  38 80 00 00 */ li r4, 0
-/* 80104984 001018C4  4B FB 6D ED */ bl daAlink_c_NS_setSpecialGravity
+/* 80104984 001018C4  4B FB 6D ED */ bl setSpecialGravity__9daAlink_cFffi
 /* 80104988 001018C8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010498C 001018CC  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 80104990 001018D0  80 1F 05 70 */ lwz r0, 0x570(r31)

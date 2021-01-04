@@ -17,7 +17,7 @@
 /* 8013CD34 00139C74  7F E3 FB 78 */ mr r3, r31
 /* 8013CD38 00139C78  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8013CD3C 00139C7C  38 80 00 00 */ li r4, 0
-/* 8013CD40 00139C80  4B F7 EA 31 */ bl daAlink_c_NS_setSpecialGravity
+/* 8013CD40 00139C80  4B F7 EA 31 */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013CD44 00139C84  7F E3 FB 78 */ mr r3, r31
 /* 8013CD48 00139C88  80 9F 28 20 */ lwz r4, 0x2820(r31)
 /* 8013CD4C 00139C8C  4B FF C8 B5 */ bl daAlink_c_NS_setWolfEnemyHangBitePos

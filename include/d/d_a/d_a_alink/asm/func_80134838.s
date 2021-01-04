@@ -306,7 +306,7 @@ lbl_80134C24:
 /* 80134C8C 00131BCC  7F A3 EB 78 */ mr r3, r29
 /* 80134C90 00131BD0  C0 5D 05 34 */ lfs f2, 0x534(r29)
 /* 80134C94 00131BD4  38 80 00 00 */ li r4, 0
-/* 80134C98 00131BD8  4B F8 6A D9 */ bl daAlink_c_NS_setSpecialGravity
+/* 80134C98 00131BD8  4B F8 6A D9 */ bl setSpecialGravity__9daAlink_cFffi
 /* 80134C9C 00131BDC  38 00 00 04 */ li r0, 4
 /* 80134CA0 00131BE0  98 1D 2F 9D */ stb r0, 0x2f9d(r29)
 /* 80134CA4 00131BE4  7F A3 EB 78 */ mr r3, r29

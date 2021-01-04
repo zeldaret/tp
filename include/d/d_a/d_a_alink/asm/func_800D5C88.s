@@ -36,7 +36,7 @@ lbl_800D5CD4:
 /* 800D5D0C 000D2C4C  C0 24 00 3C */ lfs f1, 0x3c(r4)
 /* 800D5D10 000D2C50  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 800D5D14 000D2C54  38 80 00 00 */ li r4, 0
-/* 800D5D18 000D2C58  4B FE 5A 59 */ bl daAlink_c_NS_setSpecialGravity
+/* 800D5D18 000D2C58  4B FE 5A 59 */ bl setSpecialGravity__9daAlink_cFffi
 /* 800D5D1C 000D2C5C  28 1E 00 00 */ cmplwi r30, 0
 /* 800D5D20 000D2C60  41 82 00 3C */ beq lbl_800D5D5C
 /* 800D5D24 000D2C64  38 61 00 18 */ addi r3, r1, 0x18
