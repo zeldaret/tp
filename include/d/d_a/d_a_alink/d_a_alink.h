@@ -201,6 +201,8 @@ public:
     BOOL checkBootsOrArmorHeavy(void) const;
     void setSpecialGravity(float, float, int);
     int checkMagicArmorWearAbility(void) const;
+    void onFrollCrashFlg(u8, int);
+    void setMidnaTalkStatus(u8);
 
 private:
     u8 unk[1328];
@@ -213,7 +215,9 @@ private:
     u32 unk1404;
     u8 unk1408[6716];
     u16 unk8124;
-    u8 unk8126[6142];
+    u8 unk8126[4070];
+    u8 unk12196;
+    u8 unk12197[2071];
 };
 
 class daMidna_c {

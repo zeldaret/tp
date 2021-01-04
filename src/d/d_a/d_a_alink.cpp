@@ -2246,13 +2246,15 @@ asm void func_800C1DAC(void) {
 #include "d/d_a/d_a_alink/asm/func_800C1DAC.s"
 }
 
-// onFrollCrashFlg__9daAlink_cFUci
-// daAlink_c::onFrollCrashFlg(unsigned char, int)
-asm void func_800C1DE0(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800C1DE0.s"
+void daAlink_c::onFrollCrashFlg(u8 param1, int param2) {
+    if (param2 != 0) {
+        unk1392 |= 16;
+    } else {
+        unk1392 |= 8;
+    }
+    unk12196 = param1;
 }
-
+//
 // changeWarpMaterial__9daAlink_cFQ29daAlink_c21daAlink_WARP_MAT_MODE
 asm void daAlink_c_NS_changeWarpMaterial(void) {
     nofralloc
@@ -3261,11 +3263,9 @@ asm void daAlink_c_NS_checkSpecialDemoMode(void) {
 #include "d/d_a/d_a_alink/asm/func_800D0138.s"
 }
 
-// setMidnaTalkStatus__9daAlink_cFUc
-// daAlink_c::setMidnaTalkStatus(unsigned char)
-asm void daAlink_c_NS_setMidnaTalkStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800D014C.s"
+void daAlink_c::setMidnaTalkStatus(u8 status) {
+    g_dComIfG_gameInfo.getPlay().setMidnaTalkStatus(status);
+    g_dComIfG_gameInfo.getPlay().setMidnaTalkUnk(0);
 }
 
 // set3DStatus__9daAlink_cFUcUc

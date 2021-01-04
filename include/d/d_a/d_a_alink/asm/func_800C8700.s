@@ -348,7 +348,7 @@ lbl_800C8BF8:
 /* 800C8C24 000C5B64  48 00 75 41 */ bl daAlink_c_NS_set3DStatus
 /* 800C8C28 000C5B68  7F E3 FB 78 */ mr r3, r31
 /* 800C8C2C 000C5B6C  38 80 00 00 */ li r4, 0
-/* 800C8C30 000C5B70  48 00 75 1D */ bl daAlink_c_NS_setMidnaTalkStatus
+/* 800C8C30 000C5B70  48 00 75 1D */ bl setMidnaTalkStatus__9daAlink_cFUc
 /* 800C8C34 000C5B74  7F E3 FB 78 */ mr r3, r31
 /* 800C8C38 000C5B78  48 07 87 95 */ bl daPy_py_c_NS_checkWolf
 /* 800C8C3C 000C5B7C  28 03 00 00 */ cmplwi r3, 0
