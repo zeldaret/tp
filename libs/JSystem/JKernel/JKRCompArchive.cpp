@@ -16,12 +16,12 @@ asm void JKRCompArchive::open(long) {
 #include "JSystem/JKernel/JKRCompArchive/asm/func_802D89BC.s"
 }
 
-asm void JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, u32*) {
+asm void* JKRCompArchive::fetchResource(SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRCompArchive/asm/func_802D8F40.s"
 }
 
-asm void JKRCompArchive::fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*) {
+asm void* JKRCompArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRCompArchive/asm/func_802D90C0.s"
 }

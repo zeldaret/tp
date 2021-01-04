@@ -1,4 +1,4 @@
-/* fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource(JKRArchive::SDIFileEntry *, unsigned long *) */
+/* fetchResource__13JKRMemArchiveFP12SDIFileEntryPUl __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource(JKRArchive::SDIFileEntry *, unsigned long *) */
 /* missing reference */
 /* 802D6DDC 002D3D1C  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 802D6DE0 002D3D20  28 00 00 00 */	cmplwi r0, 0

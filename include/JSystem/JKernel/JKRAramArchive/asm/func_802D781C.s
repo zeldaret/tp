@@ -9,7 +9,7 @@
 /* 802D7834 002D4774  4B FF ED 71 */	bl findFsResource__10JKRArchiveCFPCcUl
 /* 802D7838 002D4778  7C 64 1B 78 */	mr r4, r3
 /* 802D783C 002D477C  7F E3 FB 78 */	mr r3, r31
-/* 802D7840 002D4780  4B FF FF B9 */	bl getAramAddress_Entry__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntry
+/* 802D7840 002D4780  4B FF FF B9 */	bl getAramAddress_Entry__14JKRAramArchiveFP12SDIFileEntry
 /* 802D7844 002D4784  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802D7848 002D4788  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802D784C 002D478C  7C 08 03 A6 */	mtlr r0
