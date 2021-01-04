@@ -34,7 +34,7 @@ __OSInitSystemCall:
 /* 80340A64 0033D9A4  38 84 0A 20 */	addi r4, r4, __OSSystemCallVectorStart @l
 /* 80340A68 0033D9A8  7F E3 FB 78 */	mr r3, r31
 /* 80340A6C 0033D9AC  7C A4 00 50 */	subf r5, r4, r0
-/* 80340A70 0033D9B0  4B CC 2A D1 */	bl func_80003540
+/* 80340A70 0033D9B0  4B CC 2A D1 */	bl memcpy
 /* 80340A74 0033D9B4  7F E3 FB 78 */	mr r3, r31
 /* 80340A78 0033D9B8  38 80 01 00 */	li r4, 0x100
 /* 80340A7C 0033D9BC  4B FF AB 91 */	bl DCFlushRangeNoSync

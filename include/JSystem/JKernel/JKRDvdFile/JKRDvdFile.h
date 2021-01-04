@@ -6,7 +6,8 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
-class DVDFileInfo;
+class JKRADCommand;
+class JSUFileInputStream;
 class JKRDvdFile : public JKRFile {
 public:
     JKRDvdFile();
@@ -17,11 +18,11 @@ public:
     void initiate(void);
     s32 sync(void);
 
-    int getFileID() const { return this->mFileID << 2; }
+    int getFileID() const { return this->file_info.start_address << 2; }
 
-    const u8* getFileInfo() const { return this->mDvdCommandBlock; }
+    const DVDFileInfo* getFileInfo() const { return &this->file_info; }
 
-    int getStatus() { return DVDGetCommandBlockStatus(&this->mDvdCommandBlock[0]); }
+    int getStatus() { return DVDGetCommandBlockStatus(&this->file_info); }
 
 public:
     /* vt[03] */ virtual bool open(char const*);                 /* override */
@@ -34,14 +35,14 @@ public:
 private:
     OSMutex mMutex1;
     OSMutex mMutex2;
-    u32 field_0x4c;
-    u32 field_0x50;
-    u32 field_0x54;
+    JKRADCommand* field_0x4c;
+    OSThread* field_0x50;
+    JSUFileInputStream* field_0x54;
     u32 field_0x58;
-    u8 mDvdCommandBlock[48];
-    s32 mFileID;
-    s32 mFileSize;
-    u32 field_0x94;
+    DVDFileInfo file_info;
+    // s32 mFileID;
+    // s32 mFileSize;
+    // u32 field_0x94;
     JKRDvdFile* mDvdFile;
     OSMessageQueue mQueue1;
     OSMessage mMessages1[1];

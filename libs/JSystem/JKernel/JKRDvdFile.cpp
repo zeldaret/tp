@@ -57,7 +57,7 @@ void JKRDvdFile::initiate(void) {
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9850.s"
 bool JKRDvdFile::open(char const* param_1) {
     if (!this->mIsAvailable) {
-        this->mIsAvailable = DVDOpen(param_1, this->mDvdCommandBlock);
+        this->mIsAvailable = DVDOpen(param_1, &this->file_info);
         if (this->mIsAvailable) {
             lbl_8043436C.append(&this->mDvdLink);
             this->getStatus();
@@ -69,7 +69,7 @@ bool JKRDvdFile::open(char const* param_1) {
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D98C4.s"
 bool JKRDvdFile::open(long param_1) {
     if (!this->mIsAvailable) {
-        this->mIsAvailable = DVDFastOpen(param_1, this->mDvdCommandBlock);
+        this->mIsAvailable = DVDFastOpen(param_1, &this->file_info);
         if (this->mIsAvailable) {
             lbl_8043436C.append(&this->mDvdLink);
             this->getStatus();
@@ -81,7 +81,7 @@ bool JKRDvdFile::open(long param_1) {
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9938.s"
 void JKRDvdFile::close() {
     if (this->mIsAvailable) {
-        s32 result = DVDClose(this->mDvdCommandBlock);
+        s32 result = DVDClose(&this->file_info);
         if (result != 0) {
             this->mIsAvailable = false;
             lbl_8043436C.remove(&this->mDvdLink);
@@ -109,7 +109,7 @@ s32 JKRDvdFile::readData(void* param_1, long length, long param_3) {
     this->mOSThread = OSGetCurrentThread();
 
     s32 result = -1;
-    s32 readAsyncResult = DVDReadAsyncPrio(this->mDvdCommandBlock, param_1, length, param_3,
+    s32 readAsyncResult = DVDReadAsyncPrio(&this->file_info, param_1, length, param_3,
                                            JKRDvdFile::doneProcess, 2);
     if (readAsyncResult) {
         result = this->sync();
@@ -145,5 +145,5 @@ void JKRDvdFile::doneProcess(long id, DVDFileInfo* fileInfo) {
 
 // #include "JSystem/JKernel/JKRDvdFile/asm/func_802D9AF8.s"
 s32 JKRDvdFile::getFileSize(void) const {
-    return this->mFileSize;
+    return this->file_info.length;
 }
