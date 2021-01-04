@@ -4,7 +4,7 @@
 #include "global.h"
 
 s16 cM_rad2s(float);
-s16 U_GetAtanTable(float, float);
+u16 U_GetAtanTable(float, float);
 s16 cM_atan2s(float, float);
 float cM_atan2f(float, float);
 void cM_initRnd(int, int, int);
