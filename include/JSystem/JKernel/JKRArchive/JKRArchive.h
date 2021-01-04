@@ -4,30 +4,61 @@
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "dolphin/types.h"
 
+struct SArcDataInfo {
+    u32 num_nodes;
+    u32 node_offset;
+    u32 num_file_entries;
+    u32 file_entry_offset;
+    u32 string_table_length;
+    u32 string_trable_offset;
+    u16 next_free_file_id;
+    bool sync_file_ids_and_indices;
+    u8 field_1b[5];
+};
+
+struct SDirEntry {
+    union {
+        u32 type;
+        struct {
+            u8 flags;
+            u8 padding;
+            u16 id;
+        } other;
+    };
+
+    u32 name;
+    u16 field_0x8;
+    u16 num_entries;
+    s32 first_file_index;
+};
+
+struct SDIFileEntry {
+    u16 file_id;
+    u16 name_hash;
+    u32 type_flags_and_name_offset;
+    u32 data_offset;
+    u32 data_size;
+    void* data;
+
+    u32 getNameOffset() const { return type_flags_and_name_offset & 0xFFFFFF; }
+    u16 getNameHash() const { return name_hash; }
+    u32 getFlags() const { return type_flags_and_name_offset >> 24; }
+    bool isDirectory() const { return (getFlags() & 2) != 0; }
+    bool isUnknownFlag1() const { return (getFlags() & 1) != 0; }
+};
+
+extern u32 lbl_80451420;  // JKRArchive::sCurrentDirID
+
 class JKRHeap;
 class JKRDvdFile;
 class JKRArchive : public JKRFileLoader {
 public:
-    struct SDirEntry {
-        u8 type_flags;
-        u8 field_0x1;
-        u16 id;
-        char* name;
-        u16 field_0x8;
-        u16 num_entries;
-        s32 first_file_index;
-    };
-
-    class SDIFileEntry {};
-
     enum EMountMode {
         UNKNOWN_MOUNT_MODE = 0,
         MEM = 1,
         ARAM = 2,
         DVD = 3,
         COMP = 4,
-
-        __EMOUNT_MODE_PADDING_FOR_32BIT = 0xFFFFFFFF
     };
 
     enum EMountDirection {
@@ -47,14 +78,14 @@ public:
         void store(char const* data);
         const char* store(char const* data, char endChar);
 
-        u16 getHash() { return mHash; }
+        u16 getHash() const { return mHash; }
 
-        const char* getString() { return mData; }
+        const char* getString() const { return mData; }
 
     private:
         u16 mHash;
         u16 mLength;
-        char mData[64];
+        char mData[256];
     };
 
 protected:
@@ -70,15 +101,15 @@ public:
     void readResource(void*, u32, unsigned short);
     void countResource(void) const;
     void getFileAttribute(u32) const;
-    void isSameName(CArcName&, u32, unsigned short) const;
-    void findResType(u32) const;
-    void findDirectory(char const*, u32) const;
-    void findTypeResource(u32, char const*) const;
-    void findFsResource(char const*, u32) const;
-    void findIdxResource(u32) const;
-    void findNameResource(char const*) const;
-    void findPtrResource(void const*) const;
-    void findIdResource(unsigned short) const;
+    bool isSameName(CArcName&, u32, u16) const;
+    SDirEntry* findResType(u32) const;
+    SDirEntry* findDirectory(const char*, u32) const;
+    SDIFileEntry* findTypeResource(u32, const char*) const;
+    SDIFileEntry* findFsResource(const char*, u32) const;
+    SDIFileEntry* findIdxResource(u32) const;
+    SDIFileEntry* findNameResource(const char*) const;
+    SDIFileEntry* findPtrResource(const void*) const;
+    SDIFileEntry* findIdResource(u16) const;
 
 public:
     /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
@@ -99,19 +130,17 @@ public:
     /* vt[19] */ virtual void getExpandSize(SDIFileEntry*) const;
 
 private:
-    JKRHeap* mHeap;
-    EMountMode mMountMode;
-    int mEntryNum;
-    void* mArcInfoBlock;
-    void* mNodes;
-    SDIFileEntry* mDirs;
-    int* mExpandedSize;
-    char* mStringTable;
-    u32 field_0x58;
-    u32 field_0x5c;
-    EMountDirection mMountDirection;
-    u32 field_0x64;
-    JKRDvdFile* mDvdFile;
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRFileLoader
+    /* 0x38 */ JKRHeap* mHeap;
+    /* 0x3C */ EMountMode mMountMode;
+    /* 0x40 */ s32 mEntryNum;
+    /* 0x44 */ SArcDataInfo* mArcInfoBlock;
+    /* 0x48 */ SDirEntry* mNodes;
+    /* 0x4C */ SDIFileEntry* mFiles;
+    /* 0x50 */ s32* mExpandedSize;
+    /* 0x54 */ char* mStringTable;
+    /* 0x58 */ u32 field_0x58;
 
 public:
     static void check_mount_already(long, JKRHeap*);
@@ -119,6 +148,9 @@ public:
     static void mount(void*, JKRHeap*, EMountDirection);
     static void mount(long, EMountMode, JKRHeap*, EMountDirection);
     static void getGlbResource(u32, char const*, JKRArchive*);
+
+    static u32 getCurrentDirID() { return lbl_80451420; }
+    static void setCurrentDirID(u32 dirID) { lbl_80451420 = dirID; }
 };
 
 #endif

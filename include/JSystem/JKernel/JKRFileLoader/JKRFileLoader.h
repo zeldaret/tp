@@ -4,6 +4,10 @@
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "dolphin/types.h"
 
+class JKRFileLoader;
+extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
+extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
+
 class JKRFileLoader : public JKRDisposer {
 public:
     JKRFileLoader(void);
@@ -27,7 +31,7 @@ public:
     /* vt[13] */ virtual void countFile(char const*) const = 0;
     /* vt[14] */ virtual void getFirstFile(char const*) const = 0;
 
-private:
+protected:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRDisposer
     /* 0x18 */ JSULink<JKRFileLoader> mFileLoaderLink;
@@ -44,6 +48,10 @@ public:
     static bool detachResource(void*, JKRFileLoader*);
     static JKRFileLoader* findVolume(char const**);
     static const char* fetchVolumeName(char*, long, char const*);
+
+    static JKRFileLoader* getCurrentVolume() { return lbl_80451418; }
+    static void setCurrentVolume(JKRFileLoader* fileLoader) { lbl_80451418 = fileLoader; }
+    static JSUList<JKRFileLoader>& getVolumeList() { return lbl_80434354; }
 };
 
 #endif

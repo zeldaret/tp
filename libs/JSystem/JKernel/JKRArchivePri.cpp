@@ -1,69 +1,197 @@
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "global.h"
 
-asm JKRArchive::JKRArchive(long, JKRArchive::EMountMode) {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6294.s"
+JKRArchive::JKRArchive(long entryNumber, JKRArchive::EMountMode mountMode) {
+    mIsMounted = false;
+    mMountMode = mountMode;
+    mMountCount = 1;
+    field_0x58 = 1;
+
+    mHeap = JKRHeap::findFromRoot(this);
+    if (mHeap == NULL) {
+        mHeap = JKRHeap::getCurrentHeap();
+    }
+
+    mEntryNum = entryNumber;
+    if (getCurrentVolume() == NULL) {
+        setCurrentVolume(this);
+        setCurrentDirID(0);
+    }
 }
 
-asm JKRArchive::~JKRArchive() {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6334.s"
+JKRArchive::~JKRArchive() {}
+
+bool JKRArchive::isSameName(JKRArchive::CArcName& name, u32 nameOffset, u16 nameHash) const {
+    u16 hash = name.getHash();
+    if (hash != nameHash)
+        return false;
+    return strcmp(mStringTable + nameOffset, name.getString()) == 0;
 }
 
-asm void JKRArchive::isSameName(JKRArchive::CArcName&, u32, unsigned short) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6394.s"
+SDirEntry* JKRArchive::findResType(u32 type) const {
+    SDirEntry* node = mNodes;
+    u32 count = 0;
+    while (count < mArcInfoBlock->num_nodes) {
+        if (node->type == type) {
+            return node;
+        }
+
+        node++;
+        count++;
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findResType(u32) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D63E0.s"
+SDirEntry* JKRArchive::findDirectory(const char* name, u32 directoryId) const {
+    if (name == NULL) {
+        return mNodes + directoryId;
+    }
+
+    CArcName arcName(&name, '/');
+    SDirEntry* dirEntry = mNodes + directoryId;
+    SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+
+    for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+        // regalloc doesn't like fileEntry->getNameHash()
+        if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
+            if (fileEntry->isDirectory()) {
+                return findDirectory(name, fileEntry->data_offset);
+            }
+            break;
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findDirectory(char const*, u32) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D641C.s"
+SDIFileEntry* JKRArchive::findTypeResource(u32 type, const char* name) const {
+    if (type) {
+        CArcName arcName(name);
+        SDirEntry* dirEntry = findResType(type);
+        if (dirEntry) {
+            SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+            for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+                if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->getNameHash())) {
+                    return fileEntry;
+                }
+            }
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findTypeResource(u32, char const*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D64F4.s"
+SDIFileEntry* JKRArchive::findFsResource(const char* name, u32 directoryId) const {
+    if (name) {
+        CArcName arcName(&name, '/');
+        SDirEntry* dirEntry = mNodes + directoryId;
+        SDIFileEntry* fileEntry = mFiles + dirEntry->first_file_index;
+        for (int i = 0; i < dirEntry->num_entries; fileEntry++, i++) {
+            // regalloc doesn't like fileEntry->getNameHash()
+            if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->name_hash)) {
+                if (fileEntry->isDirectory()) {
+                    return findFsResource(name, fileEntry->data_offset);
+                }
+
+                if (name == NULL) {
+                    return fileEntry;
+                }
+
+                return NULL;
+            }
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findFsResource(char const*, u32) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D65A4.s"
+SDIFileEntry* JKRArchive::findIdxResource(u32 fileIndex) const {
+    if (fileIndex < mArcInfoBlock->num_file_entries) {
+        return mFiles + fileIndex;
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findIdxResource(u32) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6684.s"
+SDIFileEntry* JKRArchive::findNameResource(const char* name) const {
+    SDIFileEntry* fileEntry = mFiles;
+
+    CArcName arcName(name);
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+        if (isSameName(arcName, fileEntry->getNameOffset(), fileEntry->getNameHash())) {
+            return fileEntry;
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findNameResource(char const*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D66AC.s"
+SDIFileEntry* JKRArchive::findPtrResource(const void* resource) const {
+    SDIFileEntry* fileEntry = mFiles;
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+        if (fileEntry->data == resource) {
+            return fileEntry;
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findPtrResource(void const*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6734.s"
+SDIFileEntry* JKRArchive::findIdResource(u16 id) const {
+    if (id != 0xFFFF) {
+        if (id < mArcInfoBlock->num_file_entries) {
+            SDIFileEntry* fileEntry = mFiles + id;
+            if (fileEntry->file_id == id && fileEntry->isUnknownFlag1()) {
+                return fileEntry;
+            }
+        }
+
+        SDIFileEntry* fileEntry = mFiles;
+        for (int i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
+            if (fileEntry->file_id == id && fileEntry->isUnknownFlag1()) {
+                return fileEntry;
+            }
+        }
+    }
+
+    return NULL;
 }
 
-asm void JKRArchive::findIdResource(unsigned short) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6770.s"
+void JKRArchive::CArcName::store(const char* name) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name) {
+        s32 ch = tolower(*name);
+        mHash = ch + mHash * 3;
+        if (length < (s32)ARRAY_SIZE(mData)) {
+            mData[length++] = ch;
+        }
+        name++;
+    }
+
+    mLength = (u16)length;
+    mData[length] = 0;
 }
 
-asm void JKRArchive::CArcName::store(char const*) {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D67F4.s"
-}
+const char* JKRArchive::CArcName::store(const char* name, char endChar) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name && *name != endChar) {
+        s32 lch = tolower((int)*name);
+        mHash = lch + mHash * 3;
+        if (length < (s32)ARRAY_SIZE(mData)) {
+            mData[length++] = lch;
+        }
+        name++;
+    }
 
-asm const char* JKRArchive::CArcName::store(char const*, char) {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6884.s"
+    mLength = (u16)length;
+    mData[length] = 0;
+
+    if (*name == 0)
+        return NULL;
+    return name + 1;
 }
 
 #if 0   

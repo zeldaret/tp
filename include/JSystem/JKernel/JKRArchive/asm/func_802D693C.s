@@ -1,4 +1,4 @@
-/* setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::setExpandSize(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDIFileEntry *, unsigned long) */
+/* setExpandSize__10JKRArchiveFP12SDIFileEntryUl __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::setExpandSize(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDIFileEntry *, unsigned long) */
 /* missing reference */
 /* 802D693C 002D387C  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 802D6940 002D3880  7C 80 20 50 */	subf r4, r0, r4
