@@ -316,7 +316,8 @@ inline BOOL dComIfGs_isCollectSword(u8 sword_id) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(SWORD_BITFIELD, sword_id);
 }
 inline BOOL dComIfGs_isCollectClothing(u8 clothing_id) {
-    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(CLOTHING_BITFIELD, clothing_id);
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(CLOTHING_BITFIELD,
+                                                                         clothing_id);
 }
 inline u8 dComIfGs_checkBottle(u8 type) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerItem().checkBottle(type);
