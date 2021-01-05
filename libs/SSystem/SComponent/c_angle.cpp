@@ -172,12 +172,12 @@ asm void cSAngle::operator*=(float) {
 
 // __pl__FsRC7cSAngle
 cSAngle operator+(short other, const cSAngle& angle) {
-    return cSAngle((s16)(other + angle.Get()));
+    return cSAngle((s16)(other + angle.Val()));
 }
 
 // __mi__FsRC7cSAngle
 cSAngle operator-(short other, const cSAngle& angle) {
-    return cSAngle((s16)(other - angle.Get()));
+    return cSAngle((s16)(other - angle.Val()));
 }
 
 // __ct__7cDegreeFf
@@ -230,7 +230,7 @@ cSPolar& cSPolar::Formal(void) {
         mAngle1.Val(tmp - mAngle1);
         mAngle2.Val(mAngle2.Inv());
     }
-    if (mAngle1.Get() < 0 && mAngle1.Get() != -0x8000) {
+    if (mAngle1.Val() < 0 && mAngle1.Val() != -0x8000) {
         mAngle1.Val(-mAngle1);
         mAngle2.Val(mAngle2.Inv());
     }
@@ -277,7 +277,7 @@ cXyz cSPolar::Xyz(void) const {
 
 // Globe__7cSPolarCFP7cSGlobe
 void cSPolar::Globe(cSGlobe* globe) const {
-    globe->Val(mRadial, 0x4000 - mAngle1.Get(), mAngle2.Get());
+    globe->Val(mRadial, 0x4000 - mAngle1.Val(), mAngle2.Val());
 }
 
 // __ct__7cSGlobeFRC7cSGlobe
@@ -307,7 +307,7 @@ cSGlobe& cSGlobe::Formal(void) {
         mAzimuth = -mAzimuth;
         mInclination.Val(mInclination.Inv());
     }
-    if (mAzimuth.Get() < -0x4000 || 0x4000 < mAzimuth.Get()) {
+    if (mAzimuth.Val() < -0x4000 || 0x4000 < mAzimuth.Val()) {
         mAzimuth.mirrorAtMaxNeg();
         mInclination.Val(mInclination.Inv());
     }
@@ -333,8 +333,8 @@ void cSGlobe::Val(float f, short s1, short s2) {
 // Val__7cSGlobeFfRC7cSAngleRC7cSAngle
 void cSGlobe::Val(float f, const cSAngle& a1, const cSAngle& a2) {
     mRadius = f;
-    mAzimuth = cSAngle(a1.Get());
-    mInclination = cSAngle(a2.Get());
+    mAzimuth = cSAngle(a1.Val());
+    mInclination = cSAngle(a2.Val());
     this->Formal();
 }
 
@@ -355,7 +355,7 @@ cXyz cSGlobe::Xyz(void) const {
 // Polar__7cSGlobeCFP7cSPolar
 // cSGlobe::Polar(cSPolar*) const
 void cSGlobe::Polar(cSPolar* csp) const {
-    csp->Val(mRadius, 0x4000 - mAzimuth.Get(), mInclination.Get());
+    csp->Val(mRadius, 0x4000 - mAzimuth.Val(), mInclination.Val());
 }
 
 // Norm__7cSGlobeCFv
