@@ -700,7 +700,7 @@ JStudio_NS_TObject_NS_dtor:
 lbl_802866FC:
 /* 802866FC 0028363C  7F C3 F3 78 */	mr r3, r30
 /* 80286700 00283640  38 80 00 00 */	li r4, 0
-/* 80286704 00283644  48 00 24 2D */	bl JStudio_NS_stb_NS_TObject_NS_dtor
+/* 80286704 00283644  48 00 24 2D */	bl __dt__Q37JStudio3stb7TObjectFv
 /* 80286708 00283648  7F E0 07 35 */	extsh. r0, r31
 /* 8028670C 0028364C  40 81 00 0C */	ble lbl_80286718
 /* 80286710 00283650  7F C3 F3 78 */	mr r3, r30
@@ -806,7 +806,7 @@ JStudio_NS_TObject:
 /* 80286874 002837B4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80286878 002837B8  7C 7E 1B 78 */	mr r30, r3
 /* 8028687C 002837BC  7C BF 2B 78 */	mr r31, r5
-/* 80286880 002837C0  48 00 22 41 */	bl JStudio_NS_stb_NS_TObject_X1_
+/* 80286880 002837C0  48 00 22 41 */	bl __ct__Q37JStudio3stb7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
 /* 80286884 002837C4  3C 60 80 3C */	lis r3, lbl_803C55F0@ha
 /* 80286888 002837C8  38 03 55 F0 */	addi r0, r3, lbl_803C55F0@l
 /* 8028688C 002837CC  90 1E 00 08 */	stw r0, 8(r30)
