@@ -1909,7 +1909,7 @@ void func_801415E4(void);
 void func_8011E9F8(void);
 void daAlink_c_NS_procHangWaitInit(void);
 void func_8013BD54(void);
-void dComIfGs_isItemFirstBit(void);
+void dComIfGs_isItemFirstBit__FUc(u8);
 void daAlink_c_NS_checkLetterItem(void);
 void fopAcM_searchActorDistanceXZ(void);
 void checkBottle__17dSv_player_item_cFUc(void);
