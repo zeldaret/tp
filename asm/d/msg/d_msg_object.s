@@ -3872,7 +3872,7 @@ lbl_802361F4:
 /* 80236208 00233148  90 7F 01 44 */	stw r3, 0x144(r31)
 lbl_8023620C:
 /* 8023620C 0023314C  80 7F 01 44 */	lwz r3, 0x144(r31)
-/* 80236210 00233150  48 09 85 75 */	bl getTotalFreeSize__7JKRHeapFv
+/* 80236210 00233150  48 09 85 75 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 80236214 00233154  3B C0 00 00 */	li r30, 0
 /* 80236218 00233158  80 1F 01 0C */	lwz r0, 0x10c(r31)
 /* 8023621C 0023315C  28 00 00 00 */	cmplwi r0, 0
@@ -6104,7 +6104,7 @@ dMsgObject_c_NS_setTalkActorLocal:
 /* 80237FA8 00234EE8  4B DD 72 25 */	bl mDoExt_setCurrentHeap
 /* 80237FAC 00234EEC  7C 7D 1B 78 */	mr r29, r3
 /* 80237FB0 00234EF0  80 7F 5E C8 */	lwz r3, 0x5ec8(r31)
-/* 80237FB4 00234EF4  48 09 67 D1 */	bl getTotalFreeSize__7JKRHeapFv
+/* 80237FB4 00234EF4  48 09 67 D1 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 80237FB8 00234EF8  7F C3 F3 78 */	mr r3, r30
 /* 80237FBC 00234EFC  4B DE 79 F9 */	bl fopMsgM_setStageLayer
 /* 80237FC0 00234F00  38 00 00 00 */	li r0, 0

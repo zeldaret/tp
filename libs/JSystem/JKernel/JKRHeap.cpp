@@ -5,8 +5,8 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);
     mSize = size;
-    mStart = (u32)data;
-    mEnd = (u32)data + size;
+    mStart = (u8*)data;
+    mEnd = (u8*)data + size;
 
     if (parent == NULL) {
         becomeSystemHeap();
@@ -68,6 +68,7 @@ asm JKRHeap::~JKRHeap() {
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE264.s"
 }
 #endif
+
 bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     u32 ram_start;
     u32 ram_end;
@@ -176,19 +177,19 @@ s32 JKRHeap::getSize(void* ptr, JKRHeap* heap) {
     return heap->getSize(ptr);
 }
 
-s32 JKRHeap::getSize(void* ptr) {
+s32 JKRHeap::getSize(void* ptr) const {
     return do_getSize(ptr);
 }
 
-s32 JKRHeap::getFreeSize() {
+s32 JKRHeap::getFreeSize() const {
     return do_getFreeSize();
 }
 
-void* JKRHeap::getMaxFreeBlock() {
+void* JKRHeap::getMaxFreeBlock() const {
     return do_getMaxFreeBlock();
 }
 
-s32 JKRHeap::getTotalFreeSize() {
+s32 JKRHeap::getTotalFreeSize() const {
     return do_getTotalFreeSize();
 }
 
@@ -198,7 +199,7 @@ u8 JKRHeap::changeGroupID(u8 param_1) {
 
 // "not/nor" instruction in the wrong place
 #ifdef NONMATCHING
-s32 JKRHeap::getMaxAllocatableSize(int alignment) {
+s32 JKRHeap::getMaxAllocatableSize(int alignment) const {
     u32 maxFreeBlock = (u32)getMaxFreeBlock();
     s32 freeSize = getFreeSize();
 
@@ -208,7 +209,7 @@ s32 JKRHeap::getMaxAllocatableSize(int alignment) {
     return alignedSize;
 }
 #else
-asm u32 JKRHeap::getMaxAllocatableSize(int alignment) {
+asm u32 JKRHeap::getMaxAllocatableSize(int alignment) const {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
 }
@@ -411,4 +412,28 @@ void operator delete(void* ptr) {
 
 void operator delete[](void* ptr) {
     JKRHeap::free(ptr, NULL);
+}
+
+void JKRHeap::state_register(JKRHeap::TState* p, u32 id) const {
+    JUT_ASSERT(p != 0);
+    JUT_ASSERT(p->getHeap() == this);
+}
+
+bool JKRHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const& r2) const {
+    JUT_ASSERT(r1.getHeap() == r2.getHeap());
+    return r1.getCheckCode() == r2.getCheckCode();
+}
+
+void JKRHeap::state_dump(JKRHeap::TState const& p) const {
+    LOGF("check-code : 0x%08x", p.getCheckCode());
+    LOGF("id         : 0x%08x", p.getId());
+    LOGF("used size  : %u", p.getUsedSize());
+}
+
+u8 JKRHeap::do_changeGroupID(u8 newGroupID) {
+    return 0;
+}
+
+u8 JKRHeap::do_getCurrentGroupId() const {
+    return 0;
 }

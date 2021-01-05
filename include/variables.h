@@ -88,7 +88,6 @@ class JKRHeap;
 extern JKRHeap* lbl_80451370;  // JKRHeap::sSystemHeap
 extern JKRHeap* lbl_80451378;  // JKRHeap::sRootHeap
 extern JKRHeap* lbl_80451374;  // JKRHeap::sCurrentHeap
-extern void* lbl_8045137C;     // JKRHeap::mErrorHandler
 
 extern bool lbl_804508B0;  // ::*fill*
 extern bool lbl_80451380;  // DAT_80451380
@@ -237,7 +236,7 @@ extern u8 lbl_8039CAF0;                      // ":::cannot alloc memory (0x%x by
 extern double lbl_80455FA0;                  // JKernel::@1123 = 4.503599627370496E15
 extern u8 lbl_803CC030;                      // JKRSolidHeap::__vt
 extern double lbl_80455FB8;                  // JKernel::@697 = 4.503599627370496E15
-extern u8 lbl_8039CE50;                      // "allocFromHead: cannot alloc memory (0x%x byte).\n"
+extern const char lbl_8039CE50[16];          // "allocFromHead: cannot alloc memory (0x%x byte).\n"
 extern double lbl_80455FB0;                  // JKernel::@695 = 4.503601774854144E15
 extern float lbl_80455FA8;                   // JKernel::@693 = 100.0
 extern u32 lbl_80451420;                     // JKRArchive::sCurrentDirID

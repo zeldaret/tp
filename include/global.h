@@ -10,6 +10,7 @@
 
 #define JUT_ASSERT(...)
 #define ASSERT(...)
+#define LOGF(FMT, ...)
 
 #include "dolphin/types.h"
 

@@ -48,7 +48,7 @@ lbl_8025CA54:
 /* 8025CAA8 002599E8  80 7F 01 00 */	lwz r3, 0x100(r31)
 /* 8025CAAC 002599EC  28 03 00 00 */	cmplwi r3, 0
 /* 8025CAB0 002599F0  41 82 00 70 */	beq lbl_8025CB20
-/* 8025CAB4 002599F4  48 07 1C D1 */	bl getTotalFreeSize__7JKRHeapFv
+/* 8025CAB4 002599F4  48 07 1C D1 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 8025CAB8 002599F8  38 60 03 E4 */	li r3, 0x3e4
 /* 8025CABC 002599FC  48 07 21 91 */	bl __nw__FUl
 /* 8025CAC0 00259A00  7C 60 1B 79 */	or. r0, r3, r3
@@ -695,7 +695,7 @@ dTimer_c_NS__delete:
 /* 8025D3E0 0025A320  4B DB 1D ED */	bl mDoExt_setCurrentHeap
 /* 8025D3E4 0025A324  7C 7E 1B 78 */	mr r30, r3
 /* 8025D3E8 0025A328  80 7F 01 00 */	lwz r3, 0x100(r31)
-/* 8025D3EC 0025A32C  48 07 13 99 */	bl getTotalFreeSize__7JKRHeapFv
+/* 8025D3EC 0025A32C  48 07 13 99 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 8025D3F0 0025A330  80 7F 00 FC */	lwz r3, 0xfc(r31)
 /* 8025D3F4 0025A334  48 00 18 69 */	bl dDlst_TimerScrnDraw_c_NS_deleteScreen
 /* 8025D3F8 0025A338  80 7F 00 FC */	lwz r3, 0xfc(r31)
