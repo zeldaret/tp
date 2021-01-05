@@ -4372,8 +4372,8 @@ func_80365468:
 func_8036546C:
 /* 8036546C 003623AC  4E 80 00 20 */	blr 
 
-.global func_80365470
-func_80365470:
+.global tolower
+tolower:
 /* 80365470 003623B0  2C 03 FF FF */	cmpwi r3, -1
 /* 80365474 003623B4  40 82 00 0C */	bne lbl_80365480
 /* 80365478 003623B8  38 60 FF FF */	li r3, -1

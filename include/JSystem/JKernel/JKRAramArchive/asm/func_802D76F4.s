@@ -1,4 +1,4 @@
-/* fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection::fetchResource(void *, unsigned long, JKRArchive::SDIFileEntry *, unsigned long *) */
+/* fetchResource__14JKRAramArchiveFPvUlP12SDIFileEntryPUl __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection::fetchResource(void *, unsigned long, JKRArchive::SDIFileEntry *, unsigned long *) */
 /* missing reference */
 /* 802D76F4 002D4634  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D76F8 002D4638  7C 08 02 A6 */	mflr r0

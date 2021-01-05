@@ -240,7 +240,7 @@ extern double lbl_80455FB8;                  // JKernel::@697 = 4.50359962737049
 extern u8 lbl_8039CE50;                      // "allocFromHead: cannot alloc memory (0x%x byte).\n"
 extern double lbl_80455FB0;                  // JKernel::@695 = 4.503601774854144E15
 extern float lbl_80455FA8;                   // JKernel::@693 = 100.0
-extern u8 lbl_80451420;                      // JKRArchive::sCurrentDirID
+extern u32 lbl_80451420;                     // JKRArchive::sCurrentDirID
 extern u8 lbl_803CC288;                      // JKRArchive::__vt
 
 // d_item

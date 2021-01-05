@@ -37,7 +37,7 @@ protected:
 class JKRArchive;
 class JKRArcFinder : public JKRFileFinder {
 public:
-    JKRArcFinder(JKRArchive*, long, long);
+    JKRArcFinder(JKRArchive*, s32, u32);
     virtual ~JKRArcFinder();
 
 public:
