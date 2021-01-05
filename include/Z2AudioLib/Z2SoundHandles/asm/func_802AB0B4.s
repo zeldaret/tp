@@ -6,7 +6,7 @@
 /* 802AB0C8 002A8008  7C 7E 1B 79 */ or. r30, r3, r3
 /* 802AB0CC 002A800C  7C 9F 23 78 */ mr r31, r4
 /* 802AB0D0 002A8010  41 82 00 2C */ beq lbl_802AB0FC
-/* 802AB0D4 002A8014  48 00 00 4D */ bl Z2SoundHandles_NS_deleteHandlesPool
+/* 802AB0D4 002A8014  48 00 00 4D */ bl deleteHandlesPool__14Z2SoundHandlesFv
 /* 802AB0D8 002A8018  28 1E 00 00 */ cmplwi r30, 0
 /* 802AB0DC 002A801C  41 82 00 10 */ beq lbl_802AB0EC
 /* 802AB0E0 002A8020  7F C3 F3 78 */ mr r3, r30

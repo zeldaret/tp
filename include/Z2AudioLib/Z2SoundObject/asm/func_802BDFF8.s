@@ -8,7 +8,7 @@
 /* 802BE014 002BAF54  7D 89 03 A6 */ mtctr r12
 /* 802BE018 002BAF58  4E 80 04 21 */ bctrl
 /* 802BE01C 002BAF5C  7F E3 FB 78 */ mr r3, r31
-/* 802BE020 002BAF60  4B FE D1 01 */ bl Z2SoundHandles_NS_deleteHandlesPool
+/* 802BE020 002BAF60  4B FE D1 01 */ bl deleteHandlesPool__14Z2SoundHandlesFv
 /* 802BE024 002BAF64  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802BE028 002BAF68  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802BE02C 002BAF6C  7C 08 03 A6 */ mtlr r0

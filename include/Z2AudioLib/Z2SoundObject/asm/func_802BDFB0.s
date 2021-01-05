@@ -6,7 +6,7 @@
 /* 802BDFC4 002BAF04  7C 7E 1B 78 */ mr r30, r3
 /* 802BDFC8 002BAF08  7C 9F 23 78 */ mr r31, r4
 /* 802BDFCC 002BAF0C  7C A4 2B 78 */ mr r4, r5
-/* 802BDFD0 002BAF10  4B FE D1 49 */ bl Z2SoundHandles_NS_initHandlesPool
+/* 802BDFD0 002BAF10  4B FE D1 49 */ bl initHandlesPool__14Z2SoundHandlesFUc
 /* 802BDFD4 002BAF14  93 FE 00 18 */ stw r31, 0x18(r30)
 /* 802BDFD8 002BAF18  38 00 00 01 */ li r0, 1
 /* 802BDFDC 002BAF1C  98 1E 00 1F */ stb r0, 0x1f(r30)
