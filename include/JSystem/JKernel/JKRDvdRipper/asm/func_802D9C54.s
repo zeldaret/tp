@@ -1,4 +1,4 @@
-/* loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl JKRDvdRipper::loadToMainRAM(long, unsigned char *, JKRExpandSwitch, unsigned long, JKRHeap *, JKRDvdRipper::EAllocDirection, unsigned long, int *, unsigned long *) */
+/* loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl JKRDvdRipper::loadToMainRAM(long, unsigned char *, JKRExpandSwitch, unsigned long, JKRHeap *, JKRDvdRipper::EAllocDirection, unsigned long, int *, unsigned long *) */
 /* JKRDvdRipper_NS_loadToMainRAM_X1_ */
 /* 802D9C54 002D6B94  94 21 FE D0 */	stwu r1, -0x130(r1)
 /* 802D9C58 002D6B98  7C 08 02 A6 */	mflr r0
@@ -36,7 +36,7 @@ lbl_802D9CBC:
 /* 802D9CD4 002D6C14  7F 88 E3 78 */	mr r8, r28
 /* 802D9CD8 002D6C18  7F A9 EB 78 */	mr r9, r29
 /* 802D9CDC 002D6C1C  7F CA F3 78 */	mr r10, r30
-/* 802D9CE0 002D6C20  48 00 00 31 */	bl loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+/* 802D9CE0 002D6C20  48 00 00 31 */	bl loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl
 /* 802D9CE4 002D6C24  7C 7F 1B 78 */	mr r31, r3
 /* 802D9CE8 002D6C28  38 61 00 10 */	addi r3, r1, 0x10
 /* 802D9CEC 002D6C2C  38 80 FF FF */	li r4, -1

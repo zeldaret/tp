@@ -13,6 +13,7 @@ struct Vec {
 };
 
 #define JUT_ASSERT(...)
+#define ASSERT(...)
 
 #include "dolphin/types.h"
 
