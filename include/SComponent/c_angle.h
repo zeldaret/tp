@@ -35,18 +35,10 @@ public:
     void operator+=(short);
     cSAngle operator*(float) const;
     void operator*=(float);
-    bool operator<(const cSAngle& other) const {
-        return mAngle < other.mAngle;
-    }
-    bool operator>(const cSAngle& other) const {
-        return mAngle > other.mAngle;
-    }
-    operator s16(void) const {
-        return mAngle;
-    }
-    void operator=(const cSAngle& other) {
-        mAngle = other.mAngle;
-    }
+    bool operator<(const cSAngle& other) const { return mAngle < other.mAngle; }
+    bool operator>(const cSAngle& other) const { return mAngle > other.mAngle; }
+    operator s16(void) const { return mAngle; }
+    void operator=(const cSAngle& other) { mAngle = other.mAngle; }
     static cSAngle getMaxNegative(void) { return cSAngle((s16)-0x8000); }
     void mirrorAtMaxNeg(void) { *this = getMaxNegative() - *this; }
 };
@@ -87,8 +79,8 @@ public:
 class cSGlobe {
 private:
     float mRadius;
-    cSAngle mAzimuth; // original: V
-    cSAngle mInclination; // original: U
+    cSAngle mAzimuth;      // original: V
+    cSAngle mInclination;  // original: U
 
 public:
     cSGlobe(const cSGlobe&);
@@ -100,15 +92,9 @@ public:
     void Val(float, short, short);
     void Val(float, const cSAngle&, const cSAngle&);
     void Val(const cXyz&);
-    float R(void) const {
-        return mRadius;
-    }
-    const cSAngle& V(void) const {
-        return mAzimuth;
-    }
-    const cSAngle& U(void) const {
-        return mInclination;
-    }
+    float R(void) const { return mRadius; }
+    const cSAngle& V(void) const { return mAzimuth; }
+    const cSAngle& U(void) const { return mInclination; }
     cXyz Xyz(void) const;
     void Polar(cSPolar*) const;
     cXyz Norm(void) const;
