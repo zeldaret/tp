@@ -1,29 +1,73 @@
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
 #include "global.h"
 
-asm void JKRSolidHeap::create(unsigned long, JKRHeap*, bool) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0A24.s"
+JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler) {
+    if (!heap) {
+        heap = getRootHeap();
+    }
+
+    if (size == 0xffffffff) {
+        size = heap->getMaxAllocatableSize(0x10);
+    }
+
+    u32 alignedSize = ALIGN_PREV(size, 0x10);
+    u32 solidHeapSize = ALIGN_NEXT(sizeof(JKRSolidHeap), 0x10);
+    if (alignedSize < solidHeapSize) {
+        return NULL;
+    }
+
+    JKRSolidHeap* solidHeap = (JKRSolidHeap*)JKRAllocFromHeap(heap, alignedSize, 0x10);
+    void* dataPtr = (u8*)solidHeap + solidHeapSize;
+    if (!solidHeap)
+        return NULL;
+
+    solidHeap =
+        new (solidHeap) JKRSolidHeap(dataPtr, alignedSize - solidHeapSize, heap, useErrorHandler);
+    return solidHeap;
 }
 
-asm void JKRSolidHeap::do_destroy(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0AD0.s"
+void JKRSolidHeap::do_destroy(void) {
+    JKRHeap* parent = getParent();
+    if (parent) {
+        this->~JKRSolidHeap();
+        JKRFreeToHeap(parent, this);
+    }
 }
 
-asm JKRSolidHeap::JKRSolidHeap(void*, unsigned long, JKRHeap*, bool) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0B30.s"
+JKRSolidHeap::JKRSolidHeap(void* start, u32 size, JKRHeap* parent, bool useErrorHandler)
+    : JKRHeap(start, size, parent, useErrorHandler) {
+    mFreeSize = mSize;
+    mSolidHead = (void*)mStart;
+    mSolidTail = (void*)mEnd;
+    field_0x78 = NULL;
 }
 
-asm JKRSolidHeap::~JKRSolidHeap(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0B8C.s"
+JKRSolidHeap::~JKRSolidHeap(void) {
+    dispose();
 }
 
-asm void JKRSolidHeap::adjustSize(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0BF4.s"
+s32 JKRSolidHeap::adjustSize(void) {
+    JKRHeap* parent = getParent();
+    if (parent) {
+        lock();
+        s32 start = mStart;
+        s32 newSize = (s32)this->mSolidHead - ALIGN_NEXT(start, 0x20);
+        s32 newSizeThis = newSize + (start - (s32)this);
+        s32 actualSize = parent->resize(this, newSizeThis);
+        if (actualSize != -1) {
+            mFreeSize = 0;
+            mSize = newSize;
+            mEnd = mStart + mSize;
+            mSolidHead = (void*)mEnd;
+            mSolidTail = (void*)mEnd;
+        }
+
+        unlock();
+
+        return newSizeThis;
+    }
+
+    return -1;
 }
 
 asm void* JKRSolidHeap::do_alloc(unsigned long, int) {

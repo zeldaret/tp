@@ -9,7 +9,7 @@ protected:
     JKRSolidHeap(void*, u32, JKRHeap*, bool);
     virtual ~JKRSolidHeap();
 
-    void adjustSize(void);
+    s32 adjustSize(void);
     void allocFromHead(u32, int);
     void allocFromTail(u32, int);
 
@@ -35,13 +35,15 @@ public:
                                             JKRHeap::TState const&) const; /* override */
 
 private:
-    u32 mFreeSize;
-    void* mSolidStart;
-    void* mSolidEnd;
-    u32 field_0x78;
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRHeap
+    /* 0x6C */ u32 mFreeSize;
+    /* 0x70 */ void* mSolidHead;
+    /* 0x74 */ void* mSolidTail;
+    /* 0x78 */ u32 field_0x78;
 
 public:
-    static void create(u32, JKRHeap*, bool);
+    static JKRSolidHeap* create(u32, JKRHeap*, bool);
 };
 
 #endif

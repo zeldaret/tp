@@ -208,7 +208,7 @@ s32 JKRHeap::getMaxAllocatableSize(int alignment) {
     return alignedSize;
 }
 #else
-asm s32 JKRHeap::getMaxAllocatableSize(int alignment) {
+asm u32 JKRHeap::getMaxAllocatableSize(int alignment) {
     nofralloc
 #include "JSystem/JKernel/JKRHeap/asm/func_802CE7DC.s"
 }

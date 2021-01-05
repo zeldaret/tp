@@ -28,7 +28,7 @@ public:
     void* getMaxFreeBlock();
     s32 getTotalFreeSize();
     u8 changeGroupID(u8 newGroupId);
-    s32 getMaxAllocatableSize(int alignment);
+    u32 getMaxAllocatableSize(int alignment);
 
     JKRHeap* find(void* ptr) const;
     JKRHeap* findAllHeap(void* ptr) const;
