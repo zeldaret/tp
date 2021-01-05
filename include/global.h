@@ -8,10 +8,6 @@
 // Align X to the next N bytes (N must be power of two)
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
-struct Vec {
-    float x, y, z;
-};
-
 #define JUT_ASSERT(...)
 #define ASSERT(...)
 
