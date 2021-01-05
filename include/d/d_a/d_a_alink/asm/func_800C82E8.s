@@ -42,7 +42,7 @@ lbl_800C836C:
 /* 800C8378 000C52B8  7F E3 FB 78 */ mr r3, r31
 /* 800C837C 000C52BC  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 800C8380 000C52C0  38 80 00 00 */ li r4, 0
-/* 800C8384 000C52C4  4B FF 33 ED */ bl daAlink_c_NS_setSpecialGravity
+/* 800C8384 000C52C4  4B FF 33 ED */ bl setSpecialGravity__9daAlink_cFffi
 /* 800C8388 000C52C8  38 60 00 01 */ li r3, 1
 lbl_800C838C:
 /* 800C838C 000C52CC  83 E1 00 0C */ lwz r31, 0xc(r1)

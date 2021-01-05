@@ -1,4 +1,4 @@
-/* fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource(void *, unsigned long, JKRArchive::SDIFileEntry *, unsigned long *) */
+/* fetchResource__13JKRMemArchiveFPvUlP12SDIFileEntryPUl __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource(void *, unsigned long, JKRArchive::SDIFileEntry *, unsigned long *) */
 /* missing reference */
 /* 802D6E10 002D3D50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802D6E14 002D3D54  7C 08 02 A6 */	mflr r0
@@ -18,7 +18,7 @@ lbl_802D6E40:
 /* 802D6E48 002D3D88  41 82 00 14 */	beq lbl_802D6E5C
 /* 802D6E4C 002D3D8C  7F A3 EB 78 */	mr r3, r29
 /* 802D6E50 002D3D90  7F E5 FB 78 */	mr r5, r31
-/* 802D6E54 002D3D94  4B D2 C6 ED */	bl func_80003540
+/* 802D6E54 002D3D94  4B D2 C6 ED */	bl memcpy
 /* 802D6E58 002D3D98  48 00 00 50 */	b lbl_802D6EA8
 lbl_802D6E5C:
 /* 802D6E5C 002D3D9C  80 06 00 04 */	lwz r0, 4(r6)

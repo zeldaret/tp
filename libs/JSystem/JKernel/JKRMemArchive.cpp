@@ -26,12 +26,12 @@ asm void JKRMemArchive::open(void*, u32, JKRMemBreakFlag) {
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6D30.s"
 }
 
-asm void JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry*, u32*) {
+asm void* JKRMemArchive::fetchResource(SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6DDC.s"
 }
 
-asm void JKRMemArchive::fetchResource(void*, u32, JKRArchive::SDIFileEntry*, u32*) {
+asm void* JKRMemArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6E10.s"
 }
@@ -41,7 +41,7 @@ asm void JKRMemArchive::removeResourceAll(void) {
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6ED0.s"
 }
 
-asm void JKRMemArchive::removeResource(void*) {
+asm bool JKRMemArchive::removeResource(void*) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6F20.s"
 }
@@ -51,7 +51,7 @@ asm void JKRMemArchive::fetchResource_subroutine(u8*, u32, u8*, u32, int) {
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6F5C.s"
 }
 
-asm void JKRMemArchive::getExpandedResSize(void const*) const {
+asm void JKRMemArchive::getExpandedResSize(const void*) const {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D7030.s"
 }

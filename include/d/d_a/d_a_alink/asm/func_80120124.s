@@ -26,7 +26,7 @@ lbl_8012017C:
 lbl_80120184:
 /* 80120184 0011D0C4  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 80120188 0011D0C8  38 80 00 01 */ li r4, 1
-/* 8012018C 0011D0CC  4B F9 B5 E5 */ bl daAlink_c_NS_setSpecialGravity
+/* 8012018C 0011D0CC  4B F9 B5 E5 */ bl setSpecialGravity__9daAlink_cFffi
 lbl_80120190:
 /* 80120190 0011D0D0  80 1E 06 14 */ lwz r0, 0x614(r30)
 /* 80120194 0011D0D4  28 00 00 2D */ cmplwi r0, 0x2d

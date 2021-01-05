@@ -10,35 +10,42 @@ public:
     enum EAllocMode {
         HEAD = 0,
         TAIL = 1,
+
+        __EALLOCMODE_FORCE_ENUM_S32 = INT32_MAX,
+        __EALLOCMODE_FORCE_ENUM_SIGNED = -1,
     };
 
 public:
     JKRAramHeap(u32, u32);
-    virtual ~JKRAramHeap(void);
+    virtual ~JKRAramHeap();
 
-    void alloc(u32, EAllocMode);
-    void allocFromHead(u32);
-    void allocFromTail(u32);
-    void getFreeSize(void);
-    void getTotalFreeSize(void);
+    JKRAramBlock* alloc(u32, EAllocMode);
+    JKRAramBlock* allocFromHead(u32);
+    JKRAramBlock* allocFromTail(u32);
+    u32 getFreeSize(void);
+    u32 getTotalFreeSize(void);
+    // u32 getUsedSize(void);
     void dump(void);
 
-    u8 getCurrentGroupID() { return this->mGroupId; }
+    u8 getCurrentGroupID() const { return mGroupId; }
 
-    JKRHeap* getMgrHeap() { return this->mHeap; }
+    JKRHeap* getMgrHeap() const { return mHeap; }
 
-    void lock() { OSLockMutex(&this->mMutex); }
+private:
+    void lock() { OSLockMutex(&mMutex); }
 
-    void unlock() { OSUnlockMutex(&this->mMutex); }
+    void unlock() { OSUnlockMutex(&mMutex); }
 
 public:
-    OSMutex mMutex;
-    JKRHeap* mHeap;
-    u32 field_0x34;
-    u32 field_0x38;
-    u32 field_0x3c;
-    u8 mGroupId;
-    u8 padding_0x41[3];
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRDisposer
+    /* 0x18 */ OSMutex mMutex;
+    /* 0x30 */ JKRHeap* mHeap;
+    /* 0x34 */ u32 mHeadAddress;
+    /* 0x38 */ u32 mTailAddress;
+    /* 0x3C */ u32 mSize;
+    /* 0x40 */ u8 mGroupId;
+    /* 0x41 */ u8 padding_0x41[3];
 };
 
 #endif

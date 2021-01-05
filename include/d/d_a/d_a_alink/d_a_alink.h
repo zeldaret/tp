@@ -44,6 +44,12 @@ struct csXyz {  // move later
 
 class daAlink_c {
 public:
+    // inlines
+    void dComIfGp_setZStatus(u8 status, u8 unk) {
+        g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
+    }
+
+    // member functions
     u32 getE3Zhint(void);
     const char* getAlinkArcName(void);
     u32 checkStageName(const char*);
@@ -196,9 +202,28 @@ public:
     void setPlayerPosAndAngle(float (*)[4]);
     u32 itemTriggerCheck(u8);
     u32 itemButtonCheck(u8);
+    /*---*/
+    BOOL checkMagicArmorHeavy(void) const;
+    BOOL checkBootsOrArmorHeavy(void) const;
+    void setSpecialGravity(float, float, int);
+    int checkMagicArmorWearAbility(void) const;
+    void onFrollCrashFlg(u8, int);
+    void setMidnaTalkStatus(u8);
 
 private:
-    u8 unk[14268];
+    u8 unk[1328];
+    float unk1328;
+    float unk1332;
+    u8 unk1336[56];
+    u32 unk1392;
+    u32 unk1396;
+    u32 unk1400;
+    u32 unk1404;
+    u8 unk1408[6716];
+    u16 unk8124;
+    u8 unk8126[4070];
+    u8 unk12196;
+    u8 unk12197[2071];
 };
 
 class daMidna_c {
@@ -221,7 +246,6 @@ void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc
                                                                            dCcD_GObjInf*);
 void coHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*);
 void J3DMaterialAnm_NS_calc(void);
-void mDoMtx_stack_c_NS_transM(float, float, float);
 void daAlink_c_NS_concatMagneBootInvMtx(void);
 void mDoMtx_ZXYrotM(void);
 void mDoMtx_YrotM(void);
@@ -362,7 +386,6 @@ extern float lbl_80453210;
 extern u8 lbl_8038E5A4[0x6C];  // daAlinkHIO_horse_c0::m
 
 // daalink getneckaimpos
-extern u32 lbl_80451018;  // daPy_py_c::m_midnaActor
 extern float lbl_80452D68;
 extern float lbl_80452DB0;
 extern float lbl_80452DE0;

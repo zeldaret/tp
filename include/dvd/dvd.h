@@ -20,23 +20,71 @@ typedef enum DVDState {
 } DVDState;
 }
 
-class DVDFileInfo;
+struct DVDDirectory {
+    u32 entry_number;
+    u32 location;
+    u32 next;
+};
+
+struct DVDDirectoryEntry {
+    u32 entry_number;
+    BOOL is_directory;
+    char* name;
+};
+
+struct DVDDiskID {
+    char game_name[4];
+    char company[2];
+    u8 disk_number;
+    u8 game_version;
+    u8 is_streaming;
+    u8 streaming_buffer_size;
+    u8 padding[22];
+};
+
+struct DVDFileInfo;
+struct DVDCommandBlock;
+typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+typedef void (*DVDCallback)(s32 result, DVDFileInfo* info);
+
+struct DVDCommandBlock {
+    DVDCommandBlock* next;
+    DVDCommandBlock* prev;
+    u32 command;
+    s32 state;
+    u32 offset;
+    u32 length;
+    void* buffer;
+    u32 current_transfer_size;
+    u32 transferred_size;
+    DVDDiskID* disk_id;
+    DVDCBCallback callback;
+    void* user_data;
+};
+
+struct DVDFileInfo {
+    DVDCommandBlock block;
+    u32 start_address;
+    u32 length;
+    DVDCallback callback;
+};
+
 extern "C" {
-s32 DVDOpen(const char*, u8[48]);
-s32 DVDClose(u8[48]);
-void DVDReadPrio(void);
+s32 DVDOpen(const char*, DVDFileInfo*);
+s32 DVDClose(DVDFileInfo*);
+void DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
 void DVDGetCurrentDiskID(void);
-s32 DVDFastOpen(long, u8[48]);
-int DVDGetCommandBlockStatus(u8[48]);
-s32 DVDReadAsyncPrio(u8[48], void*, long, long, void (*)(long, DVDFileInfo*), long);
-void DVDConvertPathToEntrynum(void);
+s32 DVDFastOpen(long, DVDFileInfo*);
+int DVDGetCommandBlockStatus(DVDCommandBlock*);
+s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
+s32 DVDConvertPathToEntrynum(const char*);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
 
 void DVDChangeDir(void);
-void DVDCloseDir(void);
-void DVDOpenDir(void);
-void DVDReadDir(void);
+BOOL DVDCloseDir(DVDDirectory*);
+BOOL DVDOpenDir(const char*, DVDDirectory*);
+BOOL DVDReadDir(DVDDirectory*, DVDDirectoryEntry*);
 }
 
 #endif

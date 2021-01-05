@@ -32,7 +32,7 @@ lbl_8010126C:
 /* 80101290 000FE1D0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80101294 000FE1D4  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 80101298 000FE1D8  38 80 00 00 */ li r4, 0
-/* 8010129C 000FE1DC  4B FB A4 D5 */ bl daAlink_c_NS_setSpecialGravity
+/* 8010129C 000FE1DC  4B FB A4 D5 */ bl setSpecialGravity__9daAlink_cFffi
 /* 801012A0 000FE1E0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801012A4 000FE1E4  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 801012A8 000FE1E8  D0 1E 04 FC */ stfs f0, 0x4fc(r30)

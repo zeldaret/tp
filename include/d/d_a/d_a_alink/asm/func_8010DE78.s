@@ -26,7 +26,7 @@ lbl_8010DEA4:
 /* 8010DED8 0010AE18  7F E3 FB 78 */ mr r3, r31
 /* 8010DEDC 0010AE1C  C0 5F 05 34 */ lfs f2, 0x534(r31)
 /* 8010DEE0 0010AE20  38 80 00 00 */ li r4, 0
-/* 8010DEE4 0010AE24  4B FA D8 8D */ bl daAlink_c_NS_setSpecialGravity
+/* 8010DEE4 0010AE24  4B FA D8 8D */ bl setSpecialGravity__9daAlink_cFffi
 /* 8010DEE8 0010AE28  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010DEEC 0010AE2C  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 8010DEF0 0010AE30  38 60 00 00 */ li r3, 0

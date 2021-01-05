@@ -1,4 +1,5 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
+#include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"
@@ -30,32 +31,27 @@ void HeapCheck::CheckHeap1(void) {
 }
 
 #ifdef NONMATCHING
-extern u8 lbl_803A2EF4[0x4c];
-extern u8 m_cpadInfo[0x100];
-
-void CheckHeap(u32 param_1) {
-    HeapCheck* currentHeap;
-    s32 unk;
-
+void CheckHeap(u32 controller_pad_no) {
     mDoMch_HeapCheckAll();
     OSCheckActiveThreads();
 
-    unk = 0;
+    bool unk = false;
 
-    if ((((m_cpadInfo + 0x30)[param_1 * 0x10] & 0xffffffef) == 0x60) &&
-        (((m_cpadInfo + 0x30)[param_1 * 0x10] & 0x10) != 0)) {
-        unk = 1;
+    // if L + R + Z is pressed...
+    if (((m_cpadInfo[controller_pad_no].mButtonFlags & ~0x10) == 0x60) &&
+        m_cpadInfo[controller_pad_no].mPressedButtonFlags & 0x10) {
+        unk = true;
     }
 
     for (int i = 0; i < 8; i++) {
-        ((HeapCheck*)lbl_803A2EF4[i])->CheckHeap1();
-
+        HeapCheckTable[i]->CheckHeap1();
         if (unk) {
-            currentHeap = (HeapCheck*)lbl_803A2EF4[i * 4];
-            s32 current_used_count = currentHeap->getUsedCount();
-            currentHeap->used_count = current_used_count;
-            s32 current_total_used_size = currentHeap->heap->getTotalUsedSize();
-            currentHeap->total_used_size = current_total_used_size;
+            HeapCheck* currentHeap = HeapCheckTable[i];
+            s32 used_count = currentHeap->getUsedCount();
+
+            currentHeap->getUsedCountRef() = used_count;
+            used_count = currentHeap->getHeap()->getTotalUsedSize();
+            currentHeap->getTotalUsedSizeRef() = used_count;
         }
     }
 }
@@ -66,23 +62,31 @@ asm void CheckHeap(u32 param_1) {
 }
 #endif
 
-asm int countUsed(JKRExpHeap* heap){nofralloc
-#include "m_Do/m_Do_main/asm/func_80005848.s"
+int countUsed(JKRExpHeap* heap) {
+    OSDisableScheduler();
+    int counter = 0;
+    JKRExpHeap::CMemBlock* used_blocks_head = heap->getHeadUsedList();
+
+    while (used_blocks_head) {
+        used_blocks_head = used_blocks_head->getNextBlock();
+        counter++;
+    };
+
+    OSEnableScheduler();
+    return counter;
 }
 
 s32 HeapCheck::getUsedCount(void) const {
     return countUsed(this->heap);
 }
 
-// 1 instruction off
-#ifdef NONMATCHING
 void HeapCheck::heapDisplay(void) const {
-    u32 heap_size1 = heap->heap_size;
-    s32 heap_size2 = this->heap->heap_size - this->heap_size;
+    s32 heap_size1 = this->heap->getSize();
+    s32 heap_size2 = heap_size1 - this->heap_size;
 
     s32 heap_total_used_size = this->heap->getTotalUsedSize();
-    s32 heap_total_free_size = ((JKRHeap*)this->heap)->getTotalFreeSize();
-    s32 heap_free_size = ((JKRHeap*)this->heap)->getFreeSize();
+    s32 heap_total_free_size = this->heap->getTotalFreeSize();
+    s32 heap_free_size = this->heap->getFreeSize();
 
     JUTReport__FiiPCce(0x64, 0xd4, lbl_803739A0 + 0x3C, this->names[0]);
     JUTReport__FiiPCce(0x64, 0xe3, lbl_803739A0 + 0x45, heap_size1);
@@ -101,12 +105,6 @@ void HeapCheck::heapDisplay(void) const {
     heap_size2 = countUsed(this->heap);
     JUTReport__FiiPCce(0x64, 0x165, lbl_803739A0 + 0x133, heap_size2);
 }
-#else
-asm void HeapCheck::heapDisplay(void) const {
-    nofralloc
-#include "m_Do\m_Do_main\asm\func_800058C4.s"
-}
-#endif
 
 asm void debugDisplay(void) {
     nofralloc
@@ -119,16 +117,19 @@ asm void Debug_console(u32) {
 }
 
 #ifdef NONMATCHING
+
+extern void memcpy(void*, void*, int);
+
 void LOAD_COPYDATE(void*) {
     s32 dvd_status;
     char buffer[32];
     DVDFileInfo file_info;
 
-    dvd_status = DVDOpen(lbl_803739a0 + 0x283, &file_info);
+    dvd_status = DVDOpen((const char*)lbl_803739A0[0x283], &file_info);
 
     if (dvd_status) {
         DVDReadPrio(&file_info, buffer, 32, 0, 2);
-        memcpy(memcpy_string, buffer, 17);
+        memcpy(lbl_803A2EE0, buffer, 17);
         DVDClose(&file_info);
     }
     return;
@@ -140,33 +141,29 @@ asm void LOAD_COPYDATE(void*) {
 }
 #endif
 
-#ifdef NONMATCHING
+#ifndef NONMATCHING
+
 void debug(void) {
-    if (DAT_80450580) {
-        if (DAT_80450b1a) {
-            CheckHeap(0x2);
+    if (lbl_80450580[0]) {
+        if (lbl_80450B1A[0]) {
+            CheckHeap(2);
         }
 
-        if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x20) &&
-            (m_gamePad.buttons.field_0x4 & 0x10)) {
-            // if (1) {
-            DAT_80450b18 = DAT_80450b18 ^ 0x1;
+        if (((m_gamePad[2]->buttons.mButtonFlags & ~0x10) == 0x20) &&
+            (m_gamePad[2]->buttons.mPressedButtonFlags & 0x10)) {
+            lbl_80450B18 ^= 0x1;
         }
 
-        if (DAT_80450b18) {
-            if (((m_gamePad.buttons.button_flags & 0xffffffef) == 0x40) &&
-                (m_gamePad.buttons.field_0x4 & 0x10)) {
-                if (DAT_80450588 < 0x5) {
-                    DAT_80450588 = DAT_80450588 + 0x1;
-                } else {
-                    DAT_80450588 = 0x1;
-                }
+        if (lbl_80450B18) {
+            if (((m_gamePad[2]->buttons.mButtonFlags & ~0x10) == 0x40) &&
+                (m_gamePad[2]->buttons.mPressedButtonFlags & 0x10)) {
+                lbl_80450588[0] < 0x5 ? lbl_80450588[0]++ : lbl_80450588[0] = 0x1;
             }
 
             debugDisplay();
         }
 
-        Debug_console(0x2);
+        Debug_console(2);
     }
 }
 #else

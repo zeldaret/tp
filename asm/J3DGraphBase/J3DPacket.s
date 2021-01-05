@@ -93,7 +93,7 @@ J3DDisplayListObj_NS_single_To_Double:
 lbl_803125B4:
 /* 803125B4 0030F4F4  80 9F 00 00 */	lwz r4, 0(r31)
 /* 803125B8 0030F4F8  80 BF 00 0C */	lwz r5, 0xc(r31)
-/* 803125BC 0030F4FC  4B CF 0F 85 */	bl func_80003540
+/* 803125BC 0030F4FC  4B CF 0F 85 */	bl memcpy
 /* 803125C0 0030F500  80 7F 00 04 */	lwz r3, 4(r31)
 /* 803125C4 0030F504  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 803125C8 0030F508  48 02 90 15 */	bl DCStoreRange

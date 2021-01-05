@@ -9,7 +9,7 @@ dMeter2_c_NS__create:
 /* 8021EA18 0021B958  7C 08 02 A6 */	mflr r0
 /* 8021EA1C 0021B95C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8021EA20 0021B960  39 61 00 30 */	addi r11, r1, 0x30
-/* 8021EA24 0021B964  48 14 37 A9 */	bl func_803621CC
+/* 8021EA24 0021B964  48 14 37 A9 */	bl _savegpr_25
 /* 8021EA28 0021B968  7C 7F 1B 78 */	mr r31, r3
 /* 8021EA2C 0021B96C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8021EA30 0021B970  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l
@@ -4155,7 +4155,7 @@ dMeter2_c_NS_moveButtonXY:
 /* 8022251C 0021F45C  7C 08 02 A6 */	mflr r0
 /* 80222520 0021F460  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80222524 0021F464  39 61 00 30 */	addi r11, r1, 0x30
-/* 80222528 0021F468  48 13 FC A5 */	bl func_803621CC
+/* 80222528 0021F468  48 13 FC A5 */	bl _savegpr_25
 /* 8022252C 0021F46C  7C 7C 1B 78 */	mr r28, r3
 /* 80222530 0021F470  38 A0 00 00 */	li r5, 0
 /* 80222534 0021F474  38 81 00 0C */	addi r4, r1, 0xc

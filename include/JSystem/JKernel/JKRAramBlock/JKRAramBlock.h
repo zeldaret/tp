@@ -10,25 +10,28 @@ public:
     JKRAramBlock(u32, u32, u32, u8, bool);
     virtual ~JKRAramBlock();
 
-    void allocHead(u32, u8, JKRAramHeap*);
-    void allocTail(u32, u8, JKRAramHeap*);
+    JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
+    JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
-    void* getAddress() { return (void*)this->mAddress; }
+    void* getAddress() const { return (void*)mAddress; }
 
-    u32 getSize() { return this->mSize; }
+    u32 getSize() const { return mSize; }
 
-    bool isTempMemory() { return this->mIsTempMemory; }
+    u32 getFreeSize() const { return mFreeSize; }
 
-    void newGroupID(u8 groupId) { this->mGroupId = groupId; }
+    bool isTempMemory() const { return mIsTempMemory; }
+
+    void newGroupID(u8 groupId) { mGroupId = groupId; }
 
 public:
-    JSULink<JKRAramBlock> mBlockLink;
-    u32 mAddress;
-    u32 mSize;
-    u32 field_;
-    u8 mGroupId;
-    u8 mIsTempMemory;
-    u8 padding[2];
+    /* 0x00 */  // vtable
+    /* 0x04 */ JSULink<JKRAramBlock> mBlockLink;
+    /* 0x14 */ u32 mAddress;
+    /* 0x18 */ u32 mSize;
+    /* 0x1C */ u32 mFreeSize;
+    /* 0x20 */ u8 mGroupId;
+    /* 0x21 */ u8 mIsTempMemory;
+    /* 0x22 */ u8 padding[2];
 };
 
 #endif

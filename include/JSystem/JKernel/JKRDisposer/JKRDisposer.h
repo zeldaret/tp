@@ -11,8 +11,9 @@ public:
     virtual ~JKRDisposer();
 
 public:
-    JKRHeap* mHeap;
-    JSULink<JKRDisposer> mLink;
+    /* 0x00 */  // vtable
+    /* 0x04 */ JKRHeap* mHeap;
+    /* 0x08 */ JSULink<JKRDisposer> mLink;
 };
 
 #endif

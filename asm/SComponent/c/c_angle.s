@@ -300,8 +300,8 @@ cSAngle_NS___amu:
 /* 802712EC 0026E22C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802712F0 0026E230  4E 80 00 20 */	blr 
 
-.global __pl
-__pl:
+.global cSAngle_NS___pl_short
+cSAngle_NS___pl_short:
 /* 802712F4 0026E234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802712F8 0026E238  7C 08 02 A6 */	mflr r0
 /* 802712FC 0026E23C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -314,8 +314,8 @@ __pl:
 /* 80271318 0026E258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027131C 0026E25C  4E 80 00 20 */	blr 
 
-.global __mi
-__mi:
+.global cSAngle_NS___mi_short
+cSAngle_NS___mi_short:
 /* 80271320 0026E260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80271324 0026E264  7C 08 02 A6 */	mflr r0
 /* 80271328 0026E268  90 01 00 14 */	stw r0, 0x14(r1)

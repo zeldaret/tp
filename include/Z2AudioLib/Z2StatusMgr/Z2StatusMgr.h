@@ -48,8 +48,6 @@ void setDemoName__11Z2StatusMgrFPc(char*);
 bool checkDayTime__11Z2StatusMgrFv(void);
 void processTime__11Z2StatusMgrFv(void);
 void setEventBit__11Z2StatusMgrFPv(void*);
-void setCameraPolygonPos__11Z2StatusMgrFP3Vec(Vec*);
-void setCameraGroupInfo__11Z2StatusMgrFUc(u8);
 void Z2FxLineMgr_NS_setUnderWaterFx(void);
 }
 

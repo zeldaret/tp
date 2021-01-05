@@ -1,4 +1,5 @@
 #include "Z2AudioLib/Z2Calc/Z2calc.h"
+#include "JSystem/JMath/random.h"
 
 // 1 instruction off
 #ifdef NONMATCHING

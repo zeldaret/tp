@@ -17,7 +17,7 @@ lbl_8013DB9C:
 /* 8013DBA8 0013AAE8  7F C3 F3 78 */ mr r3, r30
 /* 8013DBAC 0013AAEC  C0 5E 05 34 */ lfs f2, 0x534(r30)
 /* 8013DBB0 0013AAF0  38 80 00 00 */ li r4, 0
-/* 8013DBB4 0013AAF4  4B F7 DB BD */ bl daAlink_c_NS_setSpecialGravity
+/* 8013DBB4 0013AAF4  4B F7 DB BD */ bl setSpecialGravity__9daAlink_cFffi
 /* 8013DBB8 0013AAF8  88 1E 05 6A */ lbz r0, 0x56a(r30)
 /* 8013DBBC 0013AAFC  28 00 00 2C */ cmplwi r0, 0x2c
 /* 8013DBC0 0013AB00  40 82 00 14 */ bne lbl_8013DBD4

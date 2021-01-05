@@ -33,6 +33,7 @@ extern void fpcDw_Handler(void*, void*);
 extern base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
                                             FastCreateReqFunc param_3, void* param_4, void* pData);
 extern void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
+}
 
 void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);
@@ -57,7 +58,7 @@ BOOL fpcM_IsCreating(u32 pID) {
 typedef void (*fpcM_ManagementFunc)(void);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
     MtxInit();
-    dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.draw_list_list.dlstPeekZ);
+    dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.getdlstPeekZ());
     if (!dShutdownErrorMsg_c_NS_execute()) {
         if (lbl_80450D39 == 0) {
             lbl_80450D38 = 0;
@@ -85,7 +86,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             if (pFunc2 != NULL) {
                 pFunc2();
             }
-            dComIfG_play_c_NS_drawSimpleModel(&g_dComIfG_gameInfo.play);
+            dComIfG_play_c_NS_drawSimpleModel(&g_dComIfG_gameInfo.getPlay());
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
             Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
@@ -128,5 +129,4 @@ void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData) {
     } else {
         return NULL;
     }
-}
 }

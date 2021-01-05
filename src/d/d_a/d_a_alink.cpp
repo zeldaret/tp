@@ -6,6 +6,7 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 u32 daAlink_c::getE3Zhint(void) {
     return 0;
@@ -1750,23 +1751,29 @@ asm void daAlink_c_NS_setBodyAngleXReadyAnime(void) {
 
 // setMagicArmorBrk__9daAlink_cFi
 // daAlink_c::setMagicArmorBrk(int)
-asm void daAlink_c_NS_setMagicArmorBrk(void) {
-    nofralloc
+asm void daAlink_c_NS_setMagicArmorBrk(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BB324.s"
 }
 
-// checkMagicArmorHeavy__9daAlink_cCFv
-// daAlink_c::checkMagicArmorHeavy(const void)
-asm void daAlink_c_NS_checkMagicArmorHeavy(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800BB408.s"
+BOOL daAlink_c::checkMagicArmorHeavy(void) const {
+    BOOL check = FALSE;
+
+    if (checkMagicArmorWearAbility() != 0 &&
+        g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getCurrentRupees() == 0) {
+        check = TRUE;
+    }
+
+    return (u8)check;
 }
 
-// checkBootsOrArmorHeavy__9daAlink_cCFv
-// daAlink_c::checkBootsOrArmorHeavy(const void)
-asm void func_800BB458(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800BB458.s"
+BOOL daAlink_c::checkBootsOrArmorHeavy(void) const {
+    BOOL check = FALSE;
+
+    if ((unk1392 & 0x2000000) != 0 || checkMagicArmorHeavy() != FALSE || unk8124 == 0x19C) {
+        check = TRUE;
+    }
+
+    return (u8)check;
 }
 
 // checkHeavyStateOn__9daAlink_cFii
@@ -1790,11 +1797,14 @@ asm void daAlink_c_NS_initGravity(void) {
 #include "d/d_a/d_a_alink/asm/func_800BB644.s"
 }
 
-// setSpecialGravity__9daAlink_cFffi
-// daAlink_c::setSpecialGravity(float, float, int)
-asm void daAlink_c_NS_setSpecialGravity(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800BB770.s"
+void daAlink_c::setSpecialGravity(float param1, float param2, int param3) {
+    if (param3 != 0) {
+        unk1404 &= ~0x4000;
+    } else {
+        unk1404 |= 0x4000;
+    }
+    unk1328 = param1;
+    unk1332 = param2;
 }
 
 // transAnimeProc__9daAlink_cFP4cXyzff
@@ -2015,10 +2025,29 @@ asm void daAlink_c_NS_checkZoraWearAbility(void) {
 
 // checkMagicArmorWearAbility__9daAlink_cCFv
 // daAlink_c::checkMagicArmorWearAbility(const void)
-asm void daAlink_c_NS_checkMagicArmorWearAbility(void) {
+// close
+#ifdef NONMATCHING
+int daAlink_c::checkMagicArmorWearAbility(void) const {
+    bool uvar = false;
+    bool bvar = false;
+
+    if ((unk1396 & 0x2000000) == 0) {
+        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().getEquipment(0) ==
+            48) {
+            bvar = true;
+        }
+    }
+    if (bvar && (unk1400 & 0x80000) == 0) {
+        uvar = true;
+    }
+    return uvar;
+}
+#else
+asm int daAlink_c::checkMagicArmorWearAbility(void) const {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BFDFC.s"
 }
+#endif
 
 // loadAramBmd__9daAlink_cFUsUl
 // daAlink_c::loadAramBmd(unsigned short, unsigned long)
@@ -2216,13 +2245,15 @@ asm void func_800C1DAC(void) {
 #include "d/d_a/d_a_alink/asm/func_800C1DAC.s"
 }
 
-// onFrollCrashFlg__9daAlink_cFUci
-// daAlink_c::onFrollCrashFlg(unsigned char, int)
-asm void func_800C1DE0(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800C1DE0.s"
+void daAlink_c::onFrollCrashFlg(u8 param1, int param2) {
+    if (param2 != 0) {
+        unk1392 |= 16;
+    } else {
+        unk1392 |= 8;
+    }
+    unk12196 = param1;
 }
-
+//
 // changeWarpMaterial__9daAlink_cFQ29daAlink_c21daAlink_WARP_MAT_MODE
 asm void daAlink_c_NS_changeWarpMaterial(void) {
     nofralloc
@@ -3231,11 +3262,8 @@ asm void daAlink_c_NS_checkSpecialDemoMode(void) {
 #include "d/d_a/d_a_alink/asm/func_800D0138.s"
 }
 
-// setMidnaTalkStatus__9daAlink_cFUc
-// daAlink_c::setMidnaTalkStatus(unsigned char)
-asm void daAlink_c_NS_setMidnaTalkStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800D014C.s"
+void daAlink_c::setMidnaTalkStatus(u8 status) {
+    dComIfGp_setZStatus(status, 0);
 }
 
 // set3DStatus__9daAlink_cFUcUc

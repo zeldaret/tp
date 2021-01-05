@@ -4,8 +4,14 @@
 #ifndef __OS_H__
 #define __OS_H__
 
+#include "dolphin/types.h"
+
 /* TODO: more structs, and get rid of the ones that are faked! */
 
+#define OS_MESSAGE_NON_BLOCKING 0
+#define OS_MESSAGE_BLOCKING 1
+
+struct OSThread;
 struct OSMutex {
     u8 unk[24];
 };
@@ -20,8 +26,22 @@ struct OSMutexQueue {
     struct OSMutex* next;
 };
 
-struct OSThread {
-    u8 unk[792];
+struct OSContext {
+    u32 gpr[32];
+    u32 cr;
+    u32 lr;
+    u32 ctr;
+    u32 xer;
+    double fpr[32];
+    u32 padding_1;
+    u32 fpscr;
+    u32 srr0;
+    u32 srr1;
+    u16 mode;
+    u16 state;
+    u32 gqr[8];
+    u32 padding_2;
+    double ps[32];
 };
 
 typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
@@ -77,6 +97,33 @@ typedef enum OSSoundMode {
     __SOUND_MODE_FORCE_ENUM_U32 = 0xffffffff,
 } OSSoundMode;
 
+typedef u16 OSThreadState;
+#define OS_THREAD_STATE_UNINITIALIZED 0
+#define OS_THREAD_STATE_READY 1
+#define OS_THREAD_STATE_RUNNING 2
+#define OS_THREAD_STATE_WAITING 4
+#define OS_THREAD_STATE_DEAD 8
+
+struct OSThread {
+    OSContext context;
+    OSThreadState state;
+    u16 attributes;
+    s32 suspend_count;
+    u32 effective_priority;
+    u32 base_priority;
+    void* exit_value;
+    OSThreadQueue* queue;
+    OSThreadLink link;
+    OSThreadQueue join_queue;
+    OSMutex* mutex;
+    OSMutexQueue owned_mutexes;
+    OSThreadLink active_threads_link;
+    u8* stack_base;
+    u8* stack_end;
+    u8* error_code;
+    void* data[2];
+};
+
 extern "C" {
 s32 OSEnableScheduler(void);
 s32 OSDisableScheduler(void);
@@ -93,12 +140,13 @@ void OSDetachThread(OSThread* thread);
 s32 OSResumeThread(OSThread* thread);
 void OSExitThread(void* exit_val);
 bool OSIsThreadSuspended(OSThread* thread);
-bool OSIsThreadTerminated(OSThread* thread);
+BOOL OSIsThreadTerminated(OSThread* thread);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback* callback);
 
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
-void OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
-void OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
 
 s32 OSGetConsoleType(void);
 s32 OSGetResetCode(void);

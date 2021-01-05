@@ -582,10 +582,10 @@ dScnPly_c_NS_offReset:
 /* 80259C3C 00256B7C  80 6D 86 F8 */	lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80259C40 00256B80  90 83 00 04 */	stw r4, 4(r3)
 /* 80259C44 00256B84  98 8D 8F 81 */	stb r4, lbl_80451501-_SDA_BASE_(r13)
-.global resetCallBack__6mDoRstFiPv
-/* 80259C48 00256B88  3C 60 80 01 */	lis r3, resetCallBack__6mDoRstFiPv@ha
-.global resetCallBack__6mDoRstFiPv
-/* 80259C4C 00256B8C  38 03 57 4C */	addi r0, r3, resetCallBack__6mDoRstFiPv@l
+.global mDoRst_resetCallBack__FiPv
+/* 80259C48 00256B88  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
+.global mDoRst_resetCallBack__FiPv
+/* 80259C4C 00256B8C  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
 /* 80259C50 00256B90  90 0D 8F 6C */	stw r0, lbl_804514EC-_SDA_BASE_(r13)
 /* 80259C54 00256B94  90 8D 8F 70 */	stw r4, lbl_804514F0-_SDA_BASE_(r13)
 /* 80259C58 00256B98  98 9F 01 D4 */	stb r4, 0x1d4(r31)

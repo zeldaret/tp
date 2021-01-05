@@ -7,6 +7,9 @@ public:
     void CheckHeap1(void);
     s32 getUsedCount(void) const;
     void heapDisplay(void) const;
+    u32& getUsedCountRef() { return used_count; }
+    u32& getTotalUsedSizeRef() { return total_used_size; }
+    JKRExpHeap* getHeap() { return heap; }
 
 private:
     char* names[2];
@@ -18,3 +21,9 @@ private:
     u32 used_count;
     u32 total_used_size;
 };
+
+extern HeapCheck* HeapCheckTable[8];
+extern s8 lbl_80450580[4];
+extern u8 lbl_80450B1A[2];
+extern u8 lbl_80450B18;
+extern u8 lbl_80450588[8];

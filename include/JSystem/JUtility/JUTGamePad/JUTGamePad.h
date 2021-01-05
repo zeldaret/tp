@@ -36,19 +36,19 @@ public:
         u32 update(PADStatus const*, u32 unk);
         void setRepeat(u32 unk0, u32 unk1, u32 unk2);
 
-        u32 button_flags;
+        u32 mButtonFlags;
 
-        u32 field_0x4;
-        u32 field_0x8;
+        u32 mPressedButtonFlags;
+        u32 mReleasedButtonFlags;
 
-        u8 analog_a;
-        u8 analog_b;
-        u8 trigger_left;
-        u8 trigger_right;
-        f32 analog_left;
-        f32 analog_right;
+        u8 mAnalogARaw;
+        u8 mAnalogBRaw;
+        u8 mTriggerLeftRaw;
+        u8 mTriggerRightRaw;
+        f32 mTriggerLeft;
+        f32 mTriggerRight;
 
-        u32 field_0x18;
+        u32 field_0x18;  // padding?
         u32 field_0x1c;
         u32 field_0x20;
         u32 field_0x24;
@@ -63,10 +63,10 @@ public:
         u32 update(s8 unk0, s8 unk1, EStickMode mode, EWhichStick stick, u32 unk2);
         u32 getButton(u32 unk);
 
-        float stick_x;
-        float stick_y;
-        float length_from_neutral;
-        u16 angle;
+        float mPosX;
+        float mPosY;
+        float mValue;
+        s16 mAngle;
         s8 field_0xe;
         s8 field_0xf;
     };

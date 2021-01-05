@@ -76,6 +76,8 @@ void registMultiSePos__12Z2MultiSeMgrFP3Vec(Vec*);
 void resetMultiSePos__12Z2MultiSeMgrFv(void);
 float getPanPower__12Z2MultiSeMgrFv(void);
 float getDolbyPower__12Z2MultiSeMgrFv(void);
+
+void __ct__14JAISoundHandleFv(void);
 }
 
 extern Z2SeMgr* lbl_80450B88;  // Z2SeMgr sInstance

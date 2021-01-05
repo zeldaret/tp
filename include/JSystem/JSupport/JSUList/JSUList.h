@@ -3,6 +3,9 @@
 
 #include "dolphin/types.h"
 
+template <typename T>
+class JSUList;
+
 //
 // Link
 //
@@ -34,6 +37,8 @@ public:
     JSULink(T* object) : JSUPtrLink((void*)object) {}
 
     T* getObject() const { return (T*)getObjectPtr(); }
+
+    JSUList<T>* getSupervisor() const { return (JSUList<T>*)this->getList(); }
 
     JSULink<T>* getNext() const { return (JSULink<T>*)this->JSUPtrLink::getNext(); }
 
@@ -127,6 +132,17 @@ public:
 
     JSUListIterator<T>& operator++() {
         this->mLink = this->mLink->getNext();
+        return *this;
+    }
+
+    JSUListIterator<T> operator--(int) {
+        JSUListIterator<T> prev = *this;
+        this->mLink = this->mLink->getPrev();
+        return prev;
+    }
+
+    JSUListIterator<T>& operator--() {
+        this->mLink = this->mLink->getPrev();
         return *this;
     }
 

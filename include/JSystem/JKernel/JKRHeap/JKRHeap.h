@@ -27,7 +27,7 @@ public:
     s32 getFreeSize();
     void* getMaxFreeBlock();
     s32 getTotalFreeSize();
-    u8 changeGroupID(u8 param_1);
+    u8 changeGroupID(u8 newGroupId);
     s32 getMaxAllocatableSize(int alignment);
 
     JKRHeap* find(void* ptr) const;
@@ -63,7 +63,7 @@ public:
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
     /* vt[23] */ virtual void state_dump();
 
-    void setDebugFill(bool debugFill) { this->mDebugFill = debugFill; }
+    void setDebugFill(bool debugFill) { mDebugFill = debugFill; }
 
     void* getStartAddr() const { return (void*)mStart; }
 
@@ -71,37 +71,39 @@ public:
 
     u32 getSize() const { return mSize; }
 
-    bool getErrorFlag() { return mErrorFlag; }
+    bool getErrorFlag() const { return mErrorFlag; }
 
-    JKRHeap* getParent() {
-        JSUTree<JKRHeap>* parent = this->mChildTree.getParent();
+    JKRHeap* getParent() const {
+        JSUTree<JKRHeap>* parent = mChildTree.getParent();
         return parent->getObject();
     }
 
-    JSUTree<JKRHeap>& getHeapTree() { return this->mChildTree; }
+    JSUTree<JKRHeap>& getHeapTree() { return mChildTree; }
 
     void appendDisposer(JKRDisposer* disposer) { mDisposerList.append(&disposer->mLink); }
 
     void removeDisposer(JKRDisposer* disposer) { mDisposerList.remove(&disposer->mLink); }
 
-    void lock() { OSLockMutex(&this->mMutex); }
+    void lock() { OSLockMutex(&mMutex); }
 
-    void unlock() { OSUnlockMutex(&this->mMutex); }
+    void unlock() { OSUnlockMutex(&mMutex); }
 
 protected:
-    OSMutex mMutex;
-    u32 mStart;
-    u32 mEnd;
-    u32 mSize;
-    bool mDebugFill;
-    bool mCheckMemoryFilled;
-    u8 mAllocationMode;  // EAllocMode?
-    u8 mGroupId;
-    JSUTree<JKRHeap> mChildTree;
-    JSUList<JKRDisposer> mDisposerList;
-    bool mErrorFlag;
-    bool mInitFlag;
-    u8 padding_0x6a[2];
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRDisposer
+    /* 0x18 */ OSMutex mMutex;
+    /* 0x30 */ u32 mStart;
+    /* 0x34 */ u32 mEnd;
+    /* 0x38 */ u32 mSize;
+    /* 0x3C */ bool mDebugFill;
+    /* 0x3D */ bool mCheckMemoryFilled;
+    /* 0x3E */ u8 mAllocationMode;  // EAllocMode?
+    /* 0x3F */ u8 mGroupId;
+    /* 0x40 */ JSUTree<JKRHeap> mChildTree;
+    /* 0x5C */ JSUList<JKRDisposer> mDisposerList;
+    /* 0x68 */ bool mErrorFlag;
+    /* 0x69 */ bool mInitFlag;
+    /* 0x6A */ u8 padding_0x6a[2];
 
 public:
     static bool initArena(char**, u32*, int);
@@ -148,6 +150,18 @@ void operator delete[](void* ptr);
 
 inline void* operator new(u32 size, void* ptr) {
     return ptr;
+}
+
+inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, heap);
+}
+
+inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
+    JKRHeap::free(ptr, heap);
+}
+
+inline void JKRFree(void* ptr) {
+    JKRHeap::free(ptr, NULL);
 }
 
 #endif
