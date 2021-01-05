@@ -48,7 +48,7 @@ asm void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**)
 #include "JSystem/JKernel/JKRAramArchive/asm/func_802D7914.s"
 }
 
-asm void JKRAramArchive::getExpandedResSize(void const*) const {
+asm u32 JKRAramArchive::getExpandedResSize(void const*) const {
     nofralloc
 #include "JSystem/JKernel/JKRAramArchive/asm/func_802D7A64.s"
 }

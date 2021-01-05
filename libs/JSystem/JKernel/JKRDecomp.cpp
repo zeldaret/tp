@@ -92,19 +92,13 @@ bool JKRDecomp::orderSync(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
 }
 
 void JKRDecomp::decode(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
-    Compression compression = checkCompressed(srcBuffer);
-    if (compression == JKRDecomp::YAY0) {
+    JKRCompression compression = checkCompressed(srcBuffer);
+    if (compression == COMPRESSION_YAY0) {
         decodeSZP(srcBuffer, dstBuffer, srcLength, dstLength);
-    } else if (compression == JKRDecomp::YAZ0) {
+    } else if (compression == COMPRESSION_YAZ0) {
         decodeSZS(srcBuffer, dstBuffer, srcLength, dstLength);
     }
 }
-
-#define READ_BIG_ENDIAN_U32(P)                                                                     \
-    (((u32)(((u8*)(P))[0]) << 0x18) | ((u32)(((u8*)(P))[1]) << 0x10) |                             \
-     ((u32)(((u8*)(P))[2]) << 8) | ((u32)(((u8*)(P))[3])))
-
-#define READ_BIG_ENDIAN_U16(P) (((u32)(((u8*)(P))[0]) << 8) | ((u32)(((u8*)(P))[1])))
 
 // All instructions match. Wrong registers are used.
 #ifdef NONMATCHING
@@ -199,19 +193,19 @@ asm void JKRDecomp::decodeSZS(u8*, u8*, u32, u32){nofralloc
 #include "JSystem/JKernel/JKRDecomp/asm/func_802DBC14.s"
 }
 
-JKRDecomp::Compression JKRDecomp::checkCompressed(u8* src) {
+JKRCompression JKRDecomp::checkCompressed(u8* src) {
     if ((src[0] == 'Y') && (src[1] == 'a') && (src[3] == '0')) {
         if (src[2] == 'y') {
-            return JKRDecomp::YAY0;
+            return COMPRESSION_YAY0;
         }
         if (src[2] == 'z') {
-            return JKRDecomp::YAZ0;
+            return COMPRESSION_YAZ0;
         }
     }
     if ((src[0] == 'A') && (src[1] == 'S') && (src[2] == 'R')) {
-        return JKRDecomp::ASR;
+        return COMPRESSION_ASR;
     }
-    return JKRDecomp::NONE;
+    return COMPRESSION_NONE;
 }
 
 JKRDecompCommand::JKRDecompCommand() {

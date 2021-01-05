@@ -41,8 +41,8 @@ void dSv_player_status_a_c::init() {
     this->mEquipment[3] = NO_ITEM;
     this->mEquipment[4] = NO_ITEM;
     this->mCurrentWallet = WALLET;
-    this->unk26 = 0;
-    this->unk27 = 0;
+    this->mMaxMagic = 0;
+    this->mCurrentMagic = 0;
     this->mMagicFlag = 0;
     this->unk29 = 0;
     this->unk30 = 0;

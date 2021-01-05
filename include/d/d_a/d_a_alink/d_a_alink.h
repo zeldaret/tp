@@ -44,11 +44,6 @@ struct csXyz {  // move later
 
 class daAlink_c {
 public:
-    // inlines
-    void dComIfGp_setZStatus(u8 status, u8 unk) {
-        g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
-    }
-
     // member functions
     u32 getE3Zhint(void);
     const char* getAlinkArcName(void);

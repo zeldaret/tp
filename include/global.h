@@ -9,6 +9,7 @@
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
 #define JUT_ASSERT(...)
+#define ASSERT(...)
 
 #include "dolphin/types.h"
 
