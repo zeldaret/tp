@@ -2,20 +2,20 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
-asm void JKRDvdRipper::loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                     JKRDvdRipper::EAllocDirection, u32, int*, u32*) {
+asm void* JKRDvdRipper::loadToMainRAM(const char*, u8*, JKRExpandSwitch, u32, JKRHeap*,
+                                      JKRDvdRipper::EAllocDirection, u32, JKRCompression*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802D9B98.s"
 }
 
-asm void JKRDvdRipper::loadToMainRAM(long, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                     JKRDvdRipper::EAllocDirection, u32, int*, u32*) {
+asm void* JKRDvdRipper::loadToMainRAM(long, u8*, JKRExpandSwitch, u32, JKRHeap*,
+                                      JKRDvdRipper::EAllocDirection, u32, JKRCompression*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802D9C54.s"
 }
 
-asm void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                     JKRDvdRipper::EAllocDirection, u32, int*, u32*) {
+asm void* JKRDvdRipper::loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*,
+                                      JKRDvdRipper::EAllocDirection, u32, JKRCompression*, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802D9D10.s"
 }
