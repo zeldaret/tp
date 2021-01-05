@@ -1,4 +1,4 @@
-/* getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getExpandSize( const(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDIFileEntry *)) */
+/* getExpandSize__10JKRArchiveCFP12SDIFileEntry __ct__10JKRArchiveFlQ210JKRArchive10EMountMode::getExpandSize( const(__ct__10JKRArchiveFlQ210JKRArchive10EMountMode::SDIFileEntry *)) */
 /* missing reference */
 /* 802D6978 002D38B8  80 03 00 4C */	lwz r0, 0x4c(r3)
 /* 802D697C 002D38BC  7C 80 20 50 */	subf r4, r0, r4
