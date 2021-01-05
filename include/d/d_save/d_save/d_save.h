@@ -685,9 +685,11 @@ public:
 
     u8 getSmallKeys() { return small_key_flags; }
     void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
+    bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }
     void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE_FLAG); }
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY_FLAG); }
+    bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY_FLAG); }
 
 private:
     u32 area_flags_bitfields1[2];

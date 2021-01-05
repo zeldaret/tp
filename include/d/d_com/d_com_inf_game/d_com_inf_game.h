@@ -181,6 +181,8 @@ private:
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
+int dComIfGs_isItemFirstBit(u8);
+
 inline void dComIfGp_setZStatus(u8 status, u8 unk) {
     g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
 }
@@ -300,6 +302,27 @@ inline void dComIfGs_onLightDropFlag(u8 area_id) {
 }
 inline void dComIfGs_onSwitch(int param1, int param2) {
     g_dComIfG_gameInfo.getInfo().onSwitch(param1, param2);
+}
+inline bool dComIfGs_isDungeonItemMap(void) {
+    return g_dComIfG_gameInfo.getMemory().getTempFlags().isDungeonItemMap();
+}
+inline bool dComIfGs_isDungeonItemBossKey(void) {
+    return g_dComIfG_gameInfo.getMemory().getTempFlags().isDungeonItemBossKey();
+}
+inline u8 dComIfGs_getItem(int slot, bool unk) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerItem().getItem(slot, unk);
+}
+inline BOOL dComIfGs_isCollectSword(u8 sword_id) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(SWORD_BITFIELD, sword_id);
+}
+inline BOOL dComIfGs_isCollectClothing(u8 clothing_id) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerCollect().isCollect(CLOTHING_BITFIELD, clothing_id);
+}
+inline u8 dComIfGs_checkBottle(u8 type) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerItem().checkBottle(type);
+}
+inline BOOL dComIfGs_isLightDropGetFlag(u8 area_id) {
+    return g_dComIfG_gameInfo.getSaveFile().getLightDrop().isLightDropGetFlag(area_id);
 }
 
 // int dComIfGp_roomControl_getZoneNo(int zone_no) {

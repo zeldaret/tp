@@ -13753,11 +13753,8 @@ asm void fopAcM_onSwitch(void) {
 #include "d/d_a/d_a_alink/asm/func_80141230.s"
 }
 
-// dComIfGs_isItemFirstBit__FUc
-// dComIfGs_isItemFirstBit(unsigned char)
-asm void dComIfGs_isItemFirstBit(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141264.s"
+int dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(i_no);
 }
 
 // dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class
