@@ -1098,8 +1098,7 @@ void item_getcheck_func_LIGHT_ARROW(void) {
 }
 
 int item_getcheck_func_ARROW_LV1(void) {
-    return (dComIfGs_getItem(SLOT_4, false) ==
-                BOW &&
+    return (dComIfGs_getItem(SLOT_4, false) == BOW &&
             g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItemMax().getBowCapacity() >=
                 30) ?
                1 :
@@ -1107,8 +1106,7 @@ int item_getcheck_func_ARROW_LV1(void) {
 }
 
 int item_getcheck_func_ARROW_LV2(void) {
-    return (dComIfGs_getItem(SLOT_4, false) ==
-                BOW &&
+    return (dComIfGs_getItem(SLOT_4, false) == BOW &&
             g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItemMax().getBowCapacity() >=
                 60) ?
                1 :
@@ -1116,8 +1114,7 @@ int item_getcheck_func_ARROW_LV2(void) {
 }
 
 int item_getcheck_func_ARROW_LV3(void) {
-    return (dComIfGs_getItem(SLOT_4, false) ==
-                BOW &&
+    return (dComIfGs_getItem(SLOT_4, false) == BOW &&
             g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItemMax().getBowCapacity() >=
                 100) ?
                1 :

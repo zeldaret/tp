@@ -14,24 +14,24 @@
 #include "d/d_vibration/d_vibration.h"
 
 struct item_func {
-    float hearts;      // bf80
-    u32 rupees;        // bf84
-    s16 small_keys;    // bf88
-    s16 max_life;      // bf8a
-    s16 magic;         // bf8c
-    u16 unk;           // bf8e
-    s16 magic_lv;      // bf90
-    u8 unk2[2];        // bf92/93 // removed stuff?
-    u32 unk3;          // bf94  //related to lantern?
-    u32 unk4;          // bf98  //related to lantern?
-    u32 unk5;          // bf9c  //related to lantern?
-    int oxygen;        // bfa0
-    u32 unk7;          // bfa4  //related to oxygen?
-    int max_oxygen;    // bfa8
-    u32 unk9;          // bfac  //related to oxygen?
-    u32 unk10;         // bfb0  //related to oxygen?
-    s16 arrows;        // bfb4
-    s16 seeds;         // bfb6
+    float hearts;    // bf80
+    u32 rupees;      // bf84
+    s16 small_keys;  // bf88
+    s16 max_life;    // bf8a
+    s16 magic;       // bf8c
+    u16 unk;         // bf8e
+    s16 magic_lv;    // bf90
+    u8 unk2[2];      // bf92/93 // removed stuff?
+    u32 unk3;        // bf94  //related to lantern?
+    u32 unk4;        // bf98  //related to lantern?
+    u32 unk5;        // bf9c  //related to lantern?
+    int oxygen;      // bfa0
+    u32 unk7;        // bfa4  //related to oxygen?
+    int max_oxygen;  // bfa8
+    u32 unk9;        // bfac  //related to oxygen?
+    u32 unk10;       // bfb0  //related to oxygen?
+    s16 arrows;      // bfb4
+    s16 seeds;       // bfb6
 };
 
 class dComIfG_camera_info_class {

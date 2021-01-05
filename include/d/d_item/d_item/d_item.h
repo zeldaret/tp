@@ -1,8 +1,8 @@
 #ifndef D_ITEM_H_
 #define D_ITEM_H_
 
-#include "global.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "global.h"
 
 int checkItemGet(u8, int);
 
