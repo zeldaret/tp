@@ -4198,7 +4198,7 @@ void dKyr_shstar_init(void);
 void HOUSI_EFF_NS_dtor(void);
 void dKyr_mud_draw(void);
 void dKy_get_dayofweek(void);
-void func_8036608C(void);
+int func_8036608C(const void*, const void*, u32);
 void dKyr_snow_move(void);
 void func_8005703C(void);
 void dComIfG_getStageRes(void);

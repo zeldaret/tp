@@ -311,7 +311,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JStudio/jstudio-math.o    \
             $(BUILD_DIR)/asm/JStudio/jstudio-object.o    \
             $(BUILD_DIR)/asm/JStudio/object-id.o    \
-            $(BUILD_DIR)/asm/JStudio/stb.o    \
+            $(BUILD_DIR)/libs/JSystem/JStudio/stb.o    \
             $(BUILD_DIR)/asm/JStudio/stb-data-parse.o    \
             $(BUILD_DIR)/asm/JStudio_JStage/control.o    \
             $(BUILD_DIR)/asm/JStudio_JStage/object.o    \
@@ -465,6 +465,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JSupport/JSUMemoryStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUFileStream.o    \
             $(BUILD_DIR)/asm/JGadget/binary.o    \
+            $(BUILD_DIR)/libs/JSystem/JGadget/linklist.o    \
             $(BUILD_DIR)/asm/JGadget/linklist.o    \
             $(BUILD_DIR)/asm/JGadget/std-vector.o    \
             $(BUILD_DIR)/asm/JUtility/JUTCacheFont.o    \
