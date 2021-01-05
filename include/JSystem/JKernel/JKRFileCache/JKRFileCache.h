@@ -9,7 +9,7 @@ class JKRFileCache : public JKRFileLoader {
 public:
     class CCacheBlock {
     public:
-        CCacheBlock(u32, u32, void const*);
+        CCacheBlock(u32, u32, const void*);
 
     private:
         JSULink<CCacheBlock> mLink;
@@ -20,38 +20,40 @@ public:
     };
 
 protected:
-    JKRFileCache(char const*, char const*);
+    JKRFileCache(const char*, const char*);
     virtual ~JKRFileCache();
 
-    void findCacheBlock(void const*) const;
-    void findCacheBlock(u32) const;
-    void findFile(char*, char const*) const;
-    void getDvdPathName(char const*) const;
+    CCacheBlock* findCacheBlock(const void*) const;
+    CCacheBlock* findCacheBlock(u32) const;
+    void findFile(char*, const char*) const;
+    void getDvdPathName(const char*) const;
     void convStrLower(char*) const;
 
 public:
-    /* vt[04] */ virtual void becomeCurrent(char const*);                 /* override */
-    /* vt[05] */ virtual void* getResource(char const*);                  /* override */
-    /* vt[06] */ virtual void* getResource(u32, char const*);             /* override */
-    /* vt[07] */ virtual void readResource(void*, u32, char const*);      /* override */
-    /* vt[08] */ virtual void readResource(void*, u32, u32, char const*); /* override */
-    /* vt[09] */ virtual void removeResourceAll(void);                    /* override */
-    /* vt[10] */ virtual bool removeResource(void*);                      /* override */
-    /* vt[11] */ virtual bool detachResource(void*);                      /* override */
-    /* vt[12] */ virtual void getResSize(void const*) const;              /* override */
-    /* vt[13] */ virtual void countFile(char const*) const;               /* override */
-    /* vt[14] */ virtual void getFirstFile(char const*) const;            /* override */
-    /* vt[15] */ virtual void getFsResource(char const*);
-    /* vt[16] */ virtual void getNameResource(u32, char const*);
-    /* vt[17] */ virtual void readFsResource(void*, u32, char const*);
-    /* vt[18] */ virtual void readNameResource(void*, u32, u32, char const*);
+    /* vt[04] */ virtual bool becomeCurrent(const char*);                /* override */
+    /* vt[05] */ virtual void* getResource(const char*);                 /* override */
+    /* vt[06] */ virtual void* getResource(u32, const char*);            /* override */
+    /* vt[07] */ virtual u32 readResource(void*, u32, const char*);      /* override */
+    /* vt[08] */ virtual u32 readResource(void*, u32, u32, const char*); /* override */
+    /* vt[09] */ virtual void removeResourceAll(void);                   /* override */
+    /* vt[10] */ virtual bool removeResource(void*);                     /* override */
+    /* vt[11] */ virtual bool detachResource(void*);                     /* override */
+    /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
+    /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
+    /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
+    /* vt[15] */ virtual void* getFsResource(const char*);
+    /* vt[16] */ virtual void* getNameResource(u32, const char*);
+    /* vt[17] */ virtual void* readFsResource(void*, u32, const char*);
+    /* vt[18] */ virtual void* readNameResource(void*, u32, u32, const char*);
 
 private:
-    JKRHeap* mParentHeap;
-    JSUList<CCacheBlock> mCacheBlockList;
-    char* field_0x40;
-    char* field_0x4c;
-    char* field_0x50;
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRArchive
+    /* 0x5C */ JKRHeap* mParentHeap;
+    /* 0x5C */ JSUList<CCacheBlock> mCacheBlockList;
+    /* 0x5C */ char* field_0x40;
+    /* 0x5C */ char* field_0x4c;
+    /* 0x5C */ char* field_0x50;
 
 public:
     static void mount(char const*, JKRHeap*, char const*);
