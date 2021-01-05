@@ -248,7 +248,7 @@ void item_func_HAWK_EYE(void) {
 void item_func_WOOD_STICK(void) {
     dComIfGs_setCollectSword(WOODEN_SWORD_FLAG);
     dComIfGs_setSelectEquipSword(WOOD_STICK);
-    g_dComIfG_gameInfo.onSwitch(28, lbl_80450D64);  // wrong order
+    dComIfGs_onSwitch(28, lbl_80450D64);  // wrong order
 }
 #else
 asm void item_func_WOOD_STICK(void) {
