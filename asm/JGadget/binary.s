@@ -34,8 +34,8 @@ lbl_802DC8C0:
 /* 802DC8C0 002D9800  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DC8C4 002D9804  4E 80 00 20 */	blr 
 
-.global JGadget_NS_binary_NS_TParse_header_block_NS_dtor
-JGadget_NS_binary_NS_TParse_header_block_NS_dtor:
+.global __dt__Q37JGadget6binary19TParse_header_blockFv
+__dt__Q37JGadget6binary19TParse_header_blockFv:
 /* 802DC8C8 002D9808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DC8CC 002D980C  7C 08 02 A6 */	mflr r0
 /* 802DC8D0 002D9810  90 01 00 14 */	stw r0, 0x14(r1)

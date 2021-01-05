@@ -10,7 +10,7 @@ JStudio_NS_TControl:
 /* 8028511C 0028205C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80285120 00282060  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80285124 00282064  7C 7F 1B 78 */	mr r31, r3
-/* 80285128 00282068  48 00 3F 8D */	bl JStudio_NS_stb_NS_TControl
+/* 80285128 00282068  48 00 3F 8D */	bl __ct__Q37JStudio3stb8TControlFv
 /* 8028512C 0028206C  3C 60 80 3C */	lis r3, lbl_803C4AF4@ha
 /* 80285130 00282070  38 03 4A F4 */	addi r0, r3, lbl_803C4AF4@l
 /* 80285134 00282074  90 1F 00 00 */	stw r0, 0(r31)
@@ -62,7 +62,7 @@ JStudio_NS_TControl:
 /* 802851EC 0028212C  4B FF F4 AD */	bl JStudio_NS_fvb_NS_TControl_NS_dtor
 /* 802851F0 00282130  7F C3 F3 78 */	mr r3, r30
 /* 802851F4 00282134  38 80 00 00 */	li r4, 0
-/* 802851F8 00282138  48 00 3F 9D */	bl JStudio_NS_stb_NS_TControl_NS_dtor
+/* 802851F8 00282138  48 00 3F 9D */	bl __dt__Q37JStudio3stb8TControlFv
 /* 802851FC 0028213C  7F E0 07 35 */	extsh. r0, r31
 /* 80285200 00282140  40 81 00 0C */	ble lbl_8028520C
 /* 80285204 00282144  7F C3 F3 78 */	mr r3, r30
@@ -292,11 +292,11 @@ lbl_802854B8:
 /* 80285518 00282458  41 82 00 10 */	beq lbl_80285528
 /* 8028551C 0028245C  38 7E 00 04 */	addi r3, r30, 4
 /* 80285520 00282460  38 80 00 00 */	li r4, 0
-/* 80285524 00282464  48 05 74 F9 */	bl JGadget_NS_TNodeLinkList_NS_dtor
+/* 80285524 00282464  48 05 74 F9 */	bl __dt__Q27JGadget13TNodeLinkListFv
 lbl_80285528:
 /* 80285528 00282468  7F C3 F3 78 */	mr r3, r30
 /* 8028552C 0028246C  38 80 00 00 */	li r4, 0
-/* 80285530 00282470  48 00 40 85 */	bl JStudio_NS_stb_NS_TFactory_NS_dtor
+/* 80285530 00282470  48 00 40 85 */	bl __dt__Q37JStudio3stb8TFactoryFv
 /* 80285534 00282474  7F E0 07 35 */	extsh. r0, r31
 /* 80285538 00282478  40 81 00 0C */	ble lbl_80285544
 /* 8028553C 0028247C  7F C3 F3 78 */	mr r3, r30
@@ -326,7 +326,7 @@ JStudio_NS_TFactory_NS_appendCreateObject:
 /* 8028558C 002824CC  38 61 00 10 */	addi r3, r1, 0x10
 /* 80285590 002824D0  38 85 00 04 */	addi r4, r5, 4
 /* 80285594 002824D4  38 A1 00 14 */	addi r5, r1, 0x14
-/* 80285598 002824D8  48 05 76 11 */	bl JGadget_NS_TNodeLinkList_NS_Insert
+/* 80285598 002824D8  48 05 76 11 */	bl Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 /* 8028559C 002824DC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802855A0 002824E0  7C 08 03 A6 */	mtlr r0
 /* 802855A4 002824E4  38 21 00 20 */	addi r1, r1, 0x20
@@ -390,7 +390,7 @@ JStudio_NS_TParse:
 /* 80285674 002825B4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80285678 002825B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8028567C 002825BC  7C 7F 1B 78 */	mr r31, r3
-/* 80285680 002825C0  48 00 3F C1 */	bl JStudio_NS_stb_NS_TParse
+/* 80285680 002825C0  48 00 3F C1 */	bl __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl
 /* 80285684 002825C4  3C 60 80 3C */	lis r3, lbl_803C4AC0@ha
 /* 80285688 002825C8  38 03 4A C0 */	addi r0, r3, lbl_803C4AC0@l
 /* 8028568C 002825CC  90 1F 00 00 */	stw r0, 0(r31)
@@ -415,7 +415,7 @@ JStudio_NS_TParse_NS_dtor:
 /* 802856CC 0028260C  38 04 4A C0 */	addi r0, r4, lbl_803C4AC0@l
 /* 802856D0 00282610  90 1E 00 00 */	stw r0, 0(r30)
 /* 802856D4 00282614  38 80 00 00 */	li r4, 0
-/* 802856D8 00282618  48 00 3F 89 */	bl JStudio_NS_stb_NS_TParse_NS_dtor
+/* 802856D8 00282618  48 00 3F 89 */	bl __dt__Q37JStudio3stb6TParseFv
 /* 802856DC 0028261C  7F E0 07 35 */	extsh. r0, r31
 /* 802856E0 00282620  40 81 00 0C */	ble lbl_802856EC
 /* 802856E4 00282624  7F C3 F3 78 */	mr r3, r30
@@ -510,7 +510,7 @@ lbl_80285828:
 /* 80285828 00282768  48 00 00 C9 */	bl JStudio_NS_TParse_NS_parseBlock_block_ctb_
 /* 8028582C 0028276C  48 00 00 08 */	b lbl_80285834
 lbl_80285830:
-/* 80285830 00282770  48 00 3F B9 */	bl JStudio_NS_stb_NS_TParse_NS_parseBlock_block
+/* 80285830 00282770  48 00 3F B9 */	bl parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
 lbl_80285834:
 /* 80285834 00282774  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80285838 00282778  7C 08 03 A6 */	mtlr r0

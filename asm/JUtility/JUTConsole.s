@@ -1086,7 +1086,7 @@ JUTConsoleManager_NS_appendConsole:
 /* 802E8278 002E51B8  38 61 00 10 */	addi r3, r1, 0x10
 /* 802E827C 002E51BC  7F C4 F3 78 */	mr r4, r30
 /* 802E8280 002E51C0  38 A1 00 14 */	addi r5, r1, 0x14
-/* 802E8284 002E51C4  4B FF 49 25 */	bl JGadget_NS_TNodeLinkList_NS_Insert
+/* 802E8284 002E51C4  4B FF 49 25 */	bl Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 /* 802E8288 002E51C8  80 1E 00 0C */	lwz r0, 0xc(r30)
 /* 802E828C 002E51CC  28 00 00 00 */	cmplwi r0, 0
 /* 802E8290 002E51D0  40 82 00 08 */	bne lbl_802E8298
