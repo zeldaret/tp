@@ -1,57 +1,242 @@
 #include "JSystem/JKernel/JKRMemArchive/JKRMemArchive.h"
+#include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "global.h"
 
-asm JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D69B8.s"
+JKRMemArchive::JKRMemArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(entryNum, MOUNT_MEM) {
+    mIsMounted = false;
+    mMountDirection = mountDirection;
+    if (!open(entryNum, mMountDirection)) {
+        return;
+    }
+
+    mVolumeType = 'RARC';
+    mVolumeName = mStringTable + (u32)mNodes->name;
+
+    getVolumeList().prepend(&mFileLoaderLink);
+    mIsMounted = true;
 }
 
-asm JKRMemArchive::JKRMemArchive(void*, u32, JKRMemBreakFlag) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6A6C.s"
+JKRMemArchive::JKRMemArchive(void* buffer, u32 bufferSize, JKRMemBreakFlag param_3)
+    : JKRArchive((s32)buffer, MOUNT_MEM) {
+    mIsMounted = false;
+    if (!open(buffer, bufferSize, param_3)) {
+        return;
+    }
+
+    mVolumeType = 'RARC';
+    mVolumeName = mStringTable + (u32)mNodes->name;
+
+    getVolumeList().prepend(&mFileLoaderLink);
+    mIsMounted = true;
 }
 
-asm JKRMemArchive::~JKRMemArchive() {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6B24.s"
+JKRMemArchive::~JKRMemArchive() {
+    if (mIsMounted == true) {
+        if (mIsOpen) {
+            if (mArcHeader)
+                JKRFreeToHeap(mHeap, mArcHeader);
+        }
+
+        getVolumeList().remove(&mFileLoaderLink);
+        mIsMounted = false;
+    }
 }
 
-asm void JKRMemArchive::open(long, JKRArchive::EMountDirection) {
+// full match, except:
+// mArchiveData = (u8*)(mArcHeader->file_data_offset + mArcHeader->header_length + (u32)mArcHeader);
+// where the addition is swapped.
+#ifdef NONMATCHING
+bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirection) {
+    mArcHeader = NULL;
+    mArcInfoBlock = NULL;
+    mArchiveData = NULL;
+    mNodes = NULL;
+    mFiles = NULL;
+    mStringTable = NULL;
+    mIsOpen = false;
+    mMountDirection = mountDirection;
+
+    if (mMountDirection == JKRArchive::HEAD) {
+        u32 loadedSize;
+        mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::FORWARD, 0,
+            &mCompression, &loadedSize);
+        if (mArcHeader) {
+            DCInvalidateRange(mArcHeader, loadedSize);
+        }
+    } else {
+        u32 loadedSize;
+        mArcHeader = (SArcHeader*)JKRDvdRipper::loadToMainRAM(
+            entryNum, NULL, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::BACKWARD, 0,
+            &mCompression, &loadedSize);
+        if (mArcHeader) {
+            DCInvalidateRange(mArcHeader, loadedSize);
+        }
+    }
+
+    if (!mArcHeader) {
+        mMountMode = UNKNOWN_MOUNT_MODE;
+    } else {
+        ASSERT(mArcHeader->signature == 'RARC');
+        mArcInfoBlock = (SArcDataInfo*)((u8*)mArcHeader + mArcHeader->header_length);
+        mNodes = (SDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
+        mFiles = (SDIFileEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
+        mStringTable = (char*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
+
+        mArchiveData =
+            (u8*)(mArcHeader->file_data_offset + mArcHeader->header_length + (u32)mArcHeader);
+        mIsOpen = true;
+    }
+
+    return mMountMode != UNKNOWN_MOUNT_MODE;
+}
+#else
+asm bool JKRMemArchive::open(long entryNum, JKRArchive::EMountDirection mountDirection) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6BCC.s"
 }
+#endif
 
-asm void JKRMemArchive::open(void*, u32, JKRMemBreakFlag) {
+// full match, except:
+// mArchiveData = (u8*)(mArcHeader->file_data_offset + mArcHeader->header_length + (u32)mArcHeader);
+// where the addition is swapped.
+#ifdef NONMATCHING
+bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
+    mArcHeader = (SArcHeader*)buffer;
+
+    ASSERT(mArcHeader->signature == 'RARC');
+    mArcInfoBlock = (SArcDataInfo*)((u8*)mArcHeader + mArcHeader->header_length);
+    mNodes = (SDirEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->node_offset);
+    mFiles = (SDIFileEntry*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->file_entry_offset);
+    mStringTable = (char*)((u8*)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
+    mArchiveData =
+        (u8*)(mArcHeader->file_data_offset + mArcHeader->header_length + (u32)mArcHeader);
+    mIsOpen = (flag == JKRMEMBREAK_FLAG_UNKNOWN1);
+    mHeap = JKRHeap::findFromRoot(buffer);
+    mCompression = JKRDecomp::NONE;
+    return true;
+}
+#else
+asm bool JKRMemArchive::open(void* buffer, u32 bufferSize, JKRMemBreakFlag flag) {
     nofralloc
 #include "JSystem/JKernel/JKRMemArchive/asm/func_802D6D30.s"
 }
+#endif
 
-asm void* JKRMemArchive::fetchResource(SDIFileEntry*, u32*) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6DDC.s"
+void* JKRMemArchive::fetchResource(SDIFileEntry* fileEntry, u32* resourceSize) {
+    if (!fileEntry->data) {
+        fileEntry->data = mArchiveData + fileEntry->data_offset;
+    }
+
+    if (resourceSize) {
+        *resourceSize = fileEntry->data_size;
+    }
+
+    return fileEntry->data;
 }
 
-asm void* JKRMemArchive::fetchResource(void*, u32, SDIFileEntry*, u32*) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6E10.s"
+void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* fileEntry,
+                                   u32* resourceSize) {
+    u32 srcLength = fileEntry->data_size;
+    if (srcLength > bufferSize) {
+        srcLength = bufferSize;
+    }
+
+    if (fileEntry->data != NULL) {
+        memcpy(buffer, fileEntry->data, srcLength);
+    } else {
+        JKRCompression compression;
+        if (!fileEntry->isCompressed()) {
+            compression = COMPRESSION_NONE;
+        } else if (fileEntry->isYAZ0Compressed()) {
+            compression = COMPRESSION_YAZ0;
+        } else {
+            compression = COMPRESSION_YAY0;
+        }
+
+        void* data = mArchiveData + fileEntry->data_offset;
+        srcLength =
+            fetchResource_subroutine((u8*)data, srcLength, (u8*)buffer, bufferSize, compression);
+    }
+
+    if (resourceSize) {
+        *resourceSize = srcLength;
+    }
+
+    return buffer;
 }
 
-asm void JKRMemArchive::removeResourceAll(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6ED0.s"
+void JKRMemArchive::removeResourceAll(void) {
+    ASSERT(isMounted());
+
+    if (mArcInfoBlock == NULL)
+        return;
+    if (mMountMode == MOUNT_MEM)
+        return;
+
+    // !@bug: looping over file entries without incrementing the fileEntry pointer. Thus, only the
+    // first fileEntry will clear/remove the resource data.
+    SDIFileEntry* fileEntry = mFiles;
+    for (int i = 0; i < mArcInfoBlock->num_file_entries; i++) {
+        if (fileEntry->data) {
+            fileEntry->data = NULL;
+        }
+    }
 }
 
-asm bool JKRMemArchive::removeResource(void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6F20.s"
+bool JKRMemArchive::removeResource(void* resource) {
+    ASSERT(isMounted());
+
+    SDIFileEntry* fileEntry = findPtrResource(resource);
+    if (!fileEntry)
+        return false;
+
+    fileEntry->data = NULL;
+    return true;
 }
 
-asm void JKRMemArchive::fetchResource_subroutine(u8*, u32, u8*, u32, int) {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D6F5C.s"
+u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32 dstLength,
+                                            JKRCompression compression) {
+    switch (compression) {
+    case COMPRESSION_NONE:
+        if (srcLength > dstLength) {
+            srcLength = dstLength;
+        }
+
+        memcpy(dst, src, srcLength);
+        return srcLength;
+
+    case COMPRESSION_YAY0:
+    case COMPRESSION_YAZ0:
+        u32 expendedSize = JKRDecompExpandSize(src);
+        srcLength = expendedSize;
+        if (expendedSize > dstLength) {
+            srcLength = dstLength;
+        }
+
+        JKRDecompress(src, dst, srcLength, 0);
+        return srcLength;
+
+    default: {
+        const char* file = lbl_8039D160;               // "JKRMemArchive.cpp"
+        const char* format = lbl_8039D160 + 0x12;      // "%s"
+        const char* arg1 = lbl_8039D160 + 0x12 + 0x3;  // "??? bad sequence\n"
+        JUTException_NS_panic_f(file, 0x2d3, format, arg1);
+    } break;
+    }
+
+    return 0;
 }
 
-asm void JKRMemArchive::getExpandedResSize(const void*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRMemArchive/asm/func_802D7030.s"
+u32 JKRMemArchive::getExpandedResSize(const void* resource) const {
+    SDIFileEntry* fileEntry = findPtrResource(resource);
+    if (fileEntry == NULL)
+        return 0xFFFFFFFF;
+
+    if (fileEntry->isCompressed() == false) {
+        return getResSize(resource);
+    } else {
+        return JKRDecompExpandSize(resource);
+    }
 }
