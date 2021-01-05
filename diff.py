@@ -576,7 +576,7 @@ def dump_objfile() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
     objdump_flags = ["-drz"]
     return (
         objfile,
-        (objdump_flags, refobjfile, args.start),
+        (objdump_flags, refobjfile, args.lhs_name or args.start),
         (objdump_flags + maybe_get_objdump_source_flags(), objfile, args.start),
     )
 
