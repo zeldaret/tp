@@ -1,4 +1,4 @@
-/* getAramAddress_Entry__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntry __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection::getAramAddress_Entry(JKRArchive::SDIFileEntry *) */
+/* getAramAddress_Entry__14JKRAramArchiveFP12SDIFileEntry __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection::getAramAddress_Entry(JKRArchive::SDIFileEntry *) */
 /* JKRAramArchive_NS_getAramAddress_Entry */
 /* 802D77F8 002D4738  28 04 00 00 */	cmplwi r4, 0
 /* 802D77FC 002D473C  40 82 00 0C */	bne lbl_802D7808
