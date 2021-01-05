@@ -4,10 +4,6 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
-struct Mtx {
-    float data[3][4];
-};
-
 void cLib_memCpy(void*, const void*, unsigned long);
 void cLib_memSet(void*, int, unsigned long);
 float cLib_addCalc(float*, float, float, float, float);

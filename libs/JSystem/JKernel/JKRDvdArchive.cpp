@@ -36,7 +36,7 @@ asm void JKRDvdArchive::fetchResource_subroutine(long, u32, u32, JKRHeap*, int, 
 #include "JSystem/JKernel/JKRDvdArchive/asm/func_802D8474.s"
 }
 
-asm void JKRDvdArchive::getExpandedResSize(void const*) const {
+asm u32 JKRDvdArchive::getExpandedResSize(void const*) const {
     nofralloc
 #include "JSystem/JKernel/JKRDvdArchive/asm/func_802D8698.s"
 }

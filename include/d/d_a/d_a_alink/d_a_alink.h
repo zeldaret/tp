@@ -7,6 +7,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_sxyz.h"
+#include "SComponent/c_xyz.h"
 #include "d/d_a/d_a_player/d_a_player.h"
 #include "d/d_cc/d_cc_d.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
@@ -41,11 +42,6 @@ struct cM3dGPla;
 
 class daAlink_c {
 public:
-    // inlines
-    void dComIfGp_setZStatus(u8 status, u8 unk) {
-        g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
-    }
-
     // member functions
     u32 getE3Zhint(void);
     const char* getAlinkArcName(void);
@@ -249,10 +245,7 @@ void mDoMtx_ZXYrotM(void);
 void mDoMtx_YrotM(void);
 void daAlink_c_NS_concatMagneBootMtx(void);
 void mDoMtx_stack_c_NS_transS(void);
-void PSMTXQuat(void);
-void PSMTXInverse(void);
 void mDoMtx_stack_c_NS_quatM(void);
-void PSMTXTrans(void);
 void daAlink_c_NS_checkUnderMove0BckNoArc(void);
 void mDoMtx_QuatConcat(void);
 void JMAEulerToQuat(void);
@@ -280,7 +273,6 @@ void daAlink_c_NS_changeWolfBlendRate(void);
 void daAlink_c_NS_setWolfFootMatrix(void);
 bool wolfModelCallBack__9daAlink_cFi(int);
 void cLib_addCalcAngleS2__FPssss(void);
-void PSMTXMultVec(void);
 void daAlink_c_NS_getMoveBGActorName(void);
 void daAlink_c_NS_multVecMagneBootInvMtx(void);
 void __ml__4cXyzCFf(void);
@@ -288,7 +280,6 @@ void atan2sY_XZ__4cXyzCFv(void);
 void cM_atan2s__Fff(void);
 void cLib_distanceAngleS__Fss(void);
 void atan2sX_Z__4cXyzCFv(void);
-void PSMTXMultVecSR(void);
 void __mi__4cXyzCFRC3Vec(void);
 void dKyw_get_AllWind_vec(void);
 void cLib_addCalcAngleS__FPsssss(void);
@@ -357,9 +348,6 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern cXyz lbl_80430CF4;       // SComponent::cXyz::Zero
-extern cXyz lbl_80430D0C;       // SComponent::cXyz::BaseX
-extern cXyz lbl_80430D24;       // SComponent::cXyz::BaseY
 extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle

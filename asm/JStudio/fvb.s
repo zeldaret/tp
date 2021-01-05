@@ -520,7 +520,7 @@ JStudio_NS_fvb_NS_TControl_NS_dtor:
 /* 802846C8 00281608  41 82 00 10 */	beq lbl_802846D8
 /* 802846CC 0028160C  38 7E 00 08 */	addi r3, r30, 8
 /* 802846D0 00281610  38 80 00 00 */	li r4, 0
-/* 802846D4 00281614  48 05 83 49 */	bl JGadget_NS_TNodeLinkList_NS_dtor
+/* 802846D4 00281614  48 05 83 49 */	bl __dt__Q27JGadget13TNodeLinkListFv
 lbl_802846D8:
 /* 802846D8 00281618  7F E0 07 35 */	extsh. r0, r31
 /* 802846DC 0028161C  40 81 00 0C */	ble lbl_802846E8
@@ -551,7 +551,7 @@ JStudio_NS_fvb_NS_TControl_NS_appendObject:
 /* 80284730 00281670  38 61 00 10 */	addi r3, r1, 0x10
 /* 80284734 00281674  38 85 00 08 */	addi r4, r5, 8
 /* 80284738 00281678  38 A1 00 14 */	addi r5, r1, 0x14
-/* 8028473C 0028167C  48 05 84 6D */	bl JGadget_NS_TNodeLinkList_NS_Insert
+/* 8028473C 0028167C  48 05 84 6D */	bl Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 /* 80284740 00281680  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80284744 00281684  7C 08 03 A6 */	mtlr r0
 /* 80284748 00281688  38 21 00 20 */	addi r1, r1, 0x20
@@ -852,7 +852,7 @@ JStudio_NS_fvb_NS_TParse_NS_dtor:
 /* 80284B20 00281A60  38 04 4A 1C */	addi r0, r4, lbl_803C4A1C@l
 /* 80284B24 00281A64  90 1E 00 00 */	stw r0, 0(r30)
 /* 80284B28 00281A68  38 80 00 00 */	li r4, 0
-/* 80284B2C 00281A6C  48 05 7D 9D */	bl JGadget_NS_binary_NS_TParse_header_block_NS_dtor
+/* 80284B2C 00281A6C  48 05 7D 9D */	bl __dt__Q37JGadget6binary19TParse_header_blockFv
 /* 80284B30 00281A70  7F E0 07 35 */	extsh. r0, r31
 /* 80284B34 00281A74  40 81 00 0C */	ble lbl_80284B40
 /* 80284B38 00281A78  7F C3 F3 78 */	mr r3, r30
