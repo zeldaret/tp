@@ -626,11 +626,13 @@ void Z2SeqMgr_NS_setBattleLastHit(void);
 
 // Z2Calc
 extern "C" {
-void linearTransform__6Z2CalcFfffffb(void);
-void func_8036C740(void);
-void func_8036C780(void);
-void getRandom_0_1__6Z2CalcFv(void);
-void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
+    void linearTransform__6Z2CalcFfffffb(void);
+    // MSL_C.PPCEABI.bare.H::exp
+    double func_8036C740(double);
+    // MSL_C.PPCEABI.bare.H::pow
+    double func_8036C780(double, double);
+    void getRandom_0_1__6Z2CalcFv(void);
+    void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
 }
 
 // d_a_horse_static

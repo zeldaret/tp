@@ -168,16 +168,16 @@ extern u32 lbl_80455D0C;
 extern u32 lbl_80455D18;
 
 // func_802A96F4
-extern u32 lbl_80455828;
-extern float lbl_8045582C;
+// Z2AudioLib::@380, 0.0
+extern f32 lbl_80455828;
+// Z2AudioLib::@381, 1.0
+extern f32 lbl_8045582C;
 
 // func_802A9814
-extern u32 lbl_80455830;
-extern u32 lbl_80455834;
-
-// func_802A98D4
-extern u32 lbl_80451330;
-extern u32 lbl_80451334;
+// Z2AudioLib::@396, 2.0
+extern f32 lbl_80455830;
+// Z2AudioLib::@397, -2.0
+extern f32 lbl_80455834;
 
 // Z2SoundLib SInstance
 struct Z2SceneMgr;
