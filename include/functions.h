@@ -5980,7 +5980,7 @@ void func_802BE7AC(void);
 void Z2SoundHandles_NS_dtor(void);
 void Z2SoundObjAnime_NS_ageSounds_(void);
 void Z2SoundObjBase_NS_startSound(void);
-void Z2SoundObjBase_NS_framework(void);
+void framework__14Z2SoundObjBaseFUlSc(void);
 void JAISound_NS_newAudible(void);
 void Z2SoundObjAnime_NS_playsSound(void);
 void func_802BE880(void);
@@ -6003,7 +6003,6 @@ void Z2SoundObjBase_NS_startLevelSound(void);
 void func_802BE104(void);
 
 // manual
-void Z2SoundHandles(void);
 void __ct__14Z2SoundHandlesFv(void);
 void __dt__14Z2SoundHandlesFv(void);
 }

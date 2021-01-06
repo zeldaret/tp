@@ -29,14 +29,17 @@ asm void Z2SoundObjBase_NS_deleteObject(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BDFF8.s"
 }
+};
 
-// framework__14Z2SoundObjBaseFUlSc
-// Z2SoundObjBase::framework(unsigned long, char)
-asm void Z2SoundObjBase_NS_framework(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BE038.s"
+void Z2SoundObjBase::framework(u32 p1, s8 p2) {
+    if (mIsInitialized) {
+        this->field_0x1c = p1;
+        this->field_0x1e = p2;
+        this->setPos(*this->sound_pos);
+    }
 }
 
+extern "C" {
 // dispose__14Z2SoundObjBaseFv
 // Z2SoundObjBase::dispose(void)
 asm void func_802BE070(void) {

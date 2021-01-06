@@ -102,11 +102,9 @@ bool Z2SoundHandles::isActive() const {
     return false;
 }
 
-extern "C" {
 // setPos__14Z2SoundHandlesFRCQ29JGeometry8TVec3<f>
 // Z2SoundHandles::setPos(JGeometry::TVec3<f>)
-asm void Z2SoundHandles_NS_setPos(void) {
+asm void Z2SoundHandles::setPos(const JGeometry::TVec3<f32>& pos) {
     nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB538.s"
 }
-};
