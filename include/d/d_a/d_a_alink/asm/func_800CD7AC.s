@@ -31,7 +31,7 @@
 /* 800CD824 000CA764  80 7F 07 6C */ lwz r3, 0x76c(r31)
 /* 800CD828 000CA768  28 03 00 00 */ cmplwi r3, 0
 /* 800CD82C 000CA76C  41 82 00 10 */ beq lbl_800CD83C
-/* 800CD830 000CA770  48 1F 07 C9 */ bl Z2SoundObjBase_NS_deleteObject
+/* 800CD830 000CA770  48 1F 07 C9 */ bl deleteObject__14Z2SoundObjBaseFv
 /* 800CD834 000CA774  38 00 00 00 */ li r0, 0
 /* 800CD838 000CA778  90 1F 07 6C */ stw r0, 0x76c(r31)
 lbl_800CD83C:

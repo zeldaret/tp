@@ -4,7 +4,7 @@
 /* 802C3758 002C0698  38 00 00 00 */	li r0, 0
 /* 802C375C 002C069C  98 03 00 C5 */	stb r0, 0xc5(r3)
 /* 802C3760 002C06A0  38 63 00 94 */	addi r3, r3, 0x94
-/* 802C3764 002C06A4  4B FF A8 95 */	bl Z2SoundObjBase_NS_deleteObject
+/* 802C3764 002C06A4  4B FF A8 95 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 802C3768 002C06A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802C376C 002C06AC  7C 08 03 A6 */	mtlr r0
 /* 802C3770 002C06B0  38 21 00 10 */	addi r1, r1, 0x10

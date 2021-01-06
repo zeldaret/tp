@@ -2,6 +2,7 @@
 
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "global.h"
 
 extern "C" {

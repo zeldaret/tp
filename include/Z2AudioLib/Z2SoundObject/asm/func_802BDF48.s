@@ -9,7 +9,7 @@
 /* 802BDF68 002BAEA8  3C 80 80 3D */ lis r4, lbl_803CAD50@ha
 /* 802BDF6C 002BAEAC  38 04 AD 50 */ addi r0, r4, lbl_803CAD50@l
 /* 802BDF70 002BAEB0  90 1E 00 10 */ stw r0, 0x10(r30)
-/* 802BDF74 002BAEB4  48 00 00 85 */ bl Z2SoundObjBase_NS_deleteObject
+/* 802BDF74 002BAEB4  48 00 00 85 */ bl deleteObject__14Z2SoundObjBaseFv
 /* 802BDF78 002BAEB8  7F C3 F3 78 */ mr r3, r30
 /* 802BDF7C 002BAEBC  38 80 00 00 */ li r4, 0
 /* 802BDF80 002BAEC0  4B FE D1 35 */ bl __dt__14Z2SoundHandlesFv

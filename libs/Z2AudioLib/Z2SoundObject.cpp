@@ -13,15 +13,9 @@ Z2SoundObjBase::Z2SoundObjBase() {
     field_0x1e = 0;
 }
 
-extern "C" {
-// __dt__14Z2SoundObjBaseFv
-// Z2SoundObjBase::~Z2SoundObjBase(void)
-asm void Z2SoundObjBase_NS_dtor(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BDF48.s"
+Z2SoundObjBase::~Z2SoundObjBase() {
+    this->deleteObject();
 }
-
-};
 
 // init__14Z2SoundObjBaseFP3VecUc
 // Z2SoundObjBase::init(Vec*, unsigned char)
@@ -33,7 +27,7 @@ asm void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
 extern "C" {
 // deleteObject__14Z2SoundObjBaseFv
 // Z2SoundObjBase::deleteObject(void)
-asm void Z2SoundObjBase_NS_deleteObject(void) {
+asm void Z2SoundObjBase::deleteObject() {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BDFF8.s"
 }

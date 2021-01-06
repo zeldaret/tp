@@ -20,6 +20,9 @@
 
 class Z2SoundObjBase : protected Z2SoundHandles {
     Z2SoundObjBase();
+    ~Z2SoundObjBase();
+
+    void deleteObject();
 
     virtual void framework(u32, s8);
     virtual void dispose(void);
