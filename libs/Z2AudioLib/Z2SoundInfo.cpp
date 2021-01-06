@@ -2,15 +2,17 @@
 
 #include "dvd/dvd.h"
 #include "global.h"
+#include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 
 extern "C" {
 // getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const
-asm void Z2SoundInfo_NS_getBgmSeqResourceID(void) {
+asm u32 Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB00C.s"
 }
 
+// @todo thunk
 // getSoundType__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getSoundType(JAISoundID) const
 asm void func_802BB090(void) {

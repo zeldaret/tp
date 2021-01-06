@@ -6030,7 +6030,7 @@ void Z2SoundInfo_NS_getStreamFilePath(void);
 void func_802BB6DC(void);
 void func_802BBCBC(void);
 void func_802BB0E0(void);
-void Z2SoundInfo_NS_getBgmSeqResourceID(void);
+void getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID(void);
 void Z2SoundInfo_NS_getSoundInfo_(void);
 void func_802BBCD4(void);
 void func_802BBCCC(void);
