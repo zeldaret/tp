@@ -133,7 +133,7 @@ void* JKRFileCache::getResource(const char* path) {
 
                 cacheBlock = new (JKRHeap::getSystemHeap(), 0)
                     CCacheBlock(dvdFile.getFileID(), dvdFile.getFileInfo().length, buffer);
-                mCacheBlockList.append(&cacheBlock->mLink);
+                mCacheBlockList.append(&cacheBlock->mCacheBlockLink);
             }
         } else {
             cacheBlock->mReferenceCount++;
@@ -168,11 +168,8 @@ u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
 
     u32 resourceSize = 0;
 
-// !@bug: (maybe) The goto is required to match the function, but it doesn't make any sense. Because
-// if dvdFile.isAvailable() is true then we will loop forever. Because, in JKRDvdFile the only
-// functions that changes isAvailable() are the "JKRDvdFile::JKRDvdFile()", "JKRDvdFile::open()",
-// and "JKRDvdFile::close()". And because "JKRDvdFile::read()" is not one of them, we're stuck in an
-// infinite loop.
+// !@bug: (maybe?) Infinite Loop: Because dvdFile.isAvailable() is never updated in the loop-body
+// will would never exit the loop.
 loop:
     if (dvdFile.isAvailable()) {
         // dvdFile.getFileSize() not inlined
@@ -243,7 +240,7 @@ bool JKRFileCache::removeResource(void* resource) {
     cacheBlock->mReferenceCount = referenceCount;
     if (referenceCount == 0) {
         JKRFreeToHeap(mParentHeap, resource);
-        mCacheBlockList.remove(&cacheBlock->mLink);
+        mCacheBlockList.remove(&cacheBlock->mCacheBlockLink);
         delete cacheBlock;
     }
 
@@ -257,7 +254,7 @@ bool JKRFileCache::detachResource(void* resource) {
     if (!cacheBlock)
         return false;
 
-    mCacheBlockList.remove(&cacheBlock->mLink);
+    mCacheBlockList.remove(&cacheBlock->mCacheBlockLink);
     delete cacheBlock;
     return true;
 }
@@ -308,52 +305,110 @@ JKRFileFinder* JKRFileCache::getFirstFile(const char* path) const {
     return finder;
 }
 
-asm JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D53B8.s"
+JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void* resource) const {
+    JSUListIterator<CCacheBlock> iterator;
+    for (iterator = mCacheBlockList.getFirst(); iterator != mCacheBlockList.getEnd(); ++iterator) {
+        if (iterator->mMemoryPtr == resource) {
+            return iterator.getObject();
+        }
+    }
+
+    return NULL;
 }
 
-asm JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(unsigned long) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D53E4.s"
+JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(u32 fileID) const {
+    JSUListIterator<CCacheBlock> iterator;
+    for (iterator = mCacheBlockList.getFirst(); iterator != mCacheBlockList.getEnd(); ++iterator) {
+        if (iterator->mFileId == fileID) {
+            return iterator.getObject();
+        }
+    }
+
+    return NULL;
 }
 
-asm bool JKRFileCache::findFile(char*, const char*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D5410.s"
+bool JKRFileCache::findFile(char* path, const char* fileName) const {
+    DVDDirectory dir;
+    DVDDirectoryEntry dirEntry;
+
+    bool result = false;
+    u32 pathLength = strlen(path);
+    if (DVDOpenDir(path, &dir)) {
+        while (DVDReadDir(&dir, &dirEntry)) {
+            if (dirEntry.is_directory) {
+                char* endOfPath = path + pathLength;
+                *endOfPath = '/';
+                strcpy(path + pathLength + 1, dirEntry.name);
+                result = findFile(path, fileName);
+                if (result)
+                    break;
+                *endOfPath = '\0';
+            } else {
+                result = (strcmp(fileName, dirEntry.name) == 0);
+                if (result) {
+                    strcat(path, lbl_8039D158);  // "/"
+                    strcat(path, fileName);
+                    break;
+                }
+            }
+        }
+
+        DVDCloseDir(&dir);
+    }
+
+    return result;
 }
 
-asm char* JKRFileCache::getDvdPathName(const char*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D551C.s"
+char* JKRFileCache::getDvdPathName(const char* path) const {
+    char* newPath;
+    if (path[0] == '/') {
+        u32 length = strlen(mRootPath) + strlen(path) + 2;
+        newPath = (char*)JKRAllocFromSysHeap(length, 1);
+        strcpy(newPath, mRootPath);
+        if (path[1]) {
+            if (mRootPath[1] == 0) {
+                strcat(newPath, path + 1);
+            } else {
+                strcat(newPath, path);
+            }
+        }
+    } else {
+        u32 length = strlen(mCurrentPath) + strlen(path) + 2;
+        newPath = (char*)JKRAllocFromSysHeap(length, 1);
+        strcpy(newPath, mCurrentPath);
+        strcat(newPath, path);
+    }
+
+    convStrLower(newPath);
+    return newPath;
 }
 
-asm void JKRFileCache::convStrLower(char*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D5624.s"
+void JKRFileCache::convStrLower(char* buffer) const {
+    while (*buffer) {
+        *buffer++ = tolower(*buffer);
+    }
 }
 
-asm JKRFileCache::CCacheBlock::CCacheBlock(u32, u32, const void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D566C.s"
+JKRFileCache::CCacheBlock::CCacheBlock(u32 fileId, u32 fileSize, const void* resource)
+    : mCacheBlockLink(this) {
+    mReferenceCount = 1;
+    mFileId = fileId;
+    mFileSize = fileSize;
+    mMemoryPtr = (void*)resource;  // todo: don't cast away const
 }
 
-asm void* JKRFileCache::getFsResource(const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D56C8.s"
+void* JKRFileCache::getFsResource(const char* path) {
+    return getResource(path);
 }
 
-asm void* JKRFileCache::getNameResource(u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D56F4.s"
+void* JKRFileCache::getNameResource(u32 type, const char* path) {
+    return getResource(type, path);
 }
 
-asm void* JKRFileCache::readFsResource(void*, u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D5720.s"
+u32 JKRFileCache::readFsResource(void* dst, u32 dstLength, const char* path) {
+    return readResource(dst, dstLength, path);
 }
 
-asm void* JKRFileCache::readNameResource(void*, u32, u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D574C.s"
+u32 JKRFileCache::readNameResource(void* dst, u32 dstLength, u32 type, const char* path) {
+    return readResource(dst, dstLength, type, path);
 }

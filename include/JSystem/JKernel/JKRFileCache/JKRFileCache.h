@@ -10,9 +10,10 @@ public:
     class CCacheBlock {
     public:
         CCacheBlock(u32, u32, const void*);
+        ~CCacheBlock() {}
 
     public:
-        /* 0x00 */ JSULink<CCacheBlock> mLink;
+        /* 0x00 */ JSULink<CCacheBlock> mCacheBlockLink;
         /* 0x10 */ u32 mReferenceCount;
         /* 0x14 */ u32 mFileId;
         /* 0x18 */ u32 mFileSize;
@@ -43,8 +44,8 @@ public:
     /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
     /* vt[15] */ virtual void* getFsResource(const char*);
     /* vt[16] */ virtual void* getNameResource(u32, const char*);
-    /* vt[17] */ virtual void* readFsResource(void*, u32, const char*);
-    /* vt[18] */ virtual void* readNameResource(void*, u32, u32, const char*);
+    /* vt[17] */ virtual u32 readFsResource(void*, u32, const char*);
+    /* vt[18] */ virtual u32 readNameResource(void*, u32, u32, const char*);
 
 private:
     /* 0x00 */  // vtable

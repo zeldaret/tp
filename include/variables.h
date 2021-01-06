@@ -214,7 +214,7 @@ extern u8 lbl_803CC328;                   // JKRFile::__vt
 
 class JKRFileLoader;
 extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
-extern char lbl_8039D158[16];                      // "/"
+extern char lbl_8039D158[16];                // "/"
 extern u8 lbl_803CC238;                      // JKRFileCache::__vt
 extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
 extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
