@@ -1,11 +1,11 @@
 #include "JSystem/JUtility/JUTResFont.h"
 
 extern "C" {
-extern void convertSjis__10JUTResFontFlPUs();  // remove when JUTResFont::getFontCode decompiled
-extern void getFontCode__10JUTResFontFl();     // remove when JUTResFont::getWidthEntry decompiled
+extern void convertSjis__10JUTResFontCFiPUs();  // remove when JUTResFont::getFontCode decompiled
+extern void getFontCode__10JUTResFontCFi();     // remove when JUTResFont::getWidthEntry decompiled
 extern void
-loadFont__10JUTResFontFlUlPQ27JUTFont6TWidth();  // remove when JUTResFont::drawChar_scale
-                                                 // decompiled
+loadFont__10JUTResFontFi11_GXTexMapIDPQ27JUTFont6TWidth();  // remove when
+                                                            // JUTResFont::drawChar_scale decompiled
 extern void countBlock__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
 extern void
 initialize_state__7JUTFontFv();  // remove when JUTResFont::protected_initiate decompiled
@@ -32,34 +32,26 @@ JUTResFont::JUTResFont() {
     ((JUTFont*)this)->initialize_state();
 }
 
-JUTResFont::JUTResFont(ResFONT font, JKRHeap* heap) {
+JUTResFont::JUTResFont(const ResFONT* font, JKRHeap* heap) {
     initialize_state();
     ((JUTFont*)this)->initialize_state();
     initiate(font, heap);
 }
 
-#ifdef NONMATCHING
 JUTResFont::~JUTResFont() {
     if (unk4) {
-        deleteMemBlocks_ResFont();
-        initialize_state();
+        delete_and_initialize();
         ((JUTFont*)this)->initialize_state();
     }
 }
-#else
-asm JUTResFont::~JUTResFont() {
-    nofralloc
-#include "JSystem/JUtility/asm/JUTResFont__dtor.s"
-}
-#endif
 
 void JUTResFont::deleteMemBlocks_ResFont() {
-    delete[](void*) unk50;
+    delete[](void*) pMemBlocks;
 }
 
 void JUTResFont::initialize_state() {
-    unk48 = 0;
-    unk50 = NULL;
+    pFontFile = NULL;
+    pMemBlocks = NULL;
     unk54 = 0;
     unk58 = NULL;
     unk5C = 0;
@@ -68,10 +60,9 @@ void JUTResFont::initialize_state() {
     unk44 = 0xFFFFFFFF;
 }
 
-bool JUTResFont::initiate(ResFONT font, JKRHeap* heap) {
+bool JUTResFont::initiate(const ResFONT* font, JKRHeap* heap) {
     if (!protected_initiate(font, heap)) {
-        deleteMemBlocks_ResFont();
-        initialize_state();
+        delete_and_initialize();
         ((JUTFont*)this)->initialize_state();
         unk4 = false;
         return false;
@@ -80,7 +71,7 @@ bool JUTResFont::initiate(ResFONT font, JKRHeap* heap) {
     return true;
 }
 
-asm bool JUTResFont::protected_initiate(ResFONT font, JKRHeap* heap) {
+asm bool JUTResFont::protected_initiate(const ResFONT* font, JKRHeap* heap) {
     nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__protected_initiate.s"
 }
@@ -112,8 +103,8 @@ void JUTResFont::setGX() {
     GXSetVtxDesc(0xd, 0x1);
 }
 
-void JUTResFont::setGX(TColor col1, TColor col2) {
-    if ((col1.Raw() == CLR_BLACK) && (col2.Raw() == CLR_WHITE)) {
+void JUTResFont::setGX(JUtility::TColor col1, JUtility::TColor col2) {
+    if ((u32(col1) == 0) && (u32(col2) == 0xFFFFFFFF)) {
         setGX();
         return;
     }
@@ -144,52 +135,79 @@ void JUTResFont::setGX(TColor col1, TColor col2) {
     GXSetVtxDesc(0xd, 0x1);
 }
 
-asm void JUTResFont::drawChar_scale(float a1, float a2, float a3, float a4, int a5, bool a6) {
+asm float JUTResFont::drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4, int a5, bool a6) {
     nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__drawChar_scale.s"
 }
 
-void JUTResFont::loadFont(s32 a1, u32 a2, TWidth* a3) {
-    if (a3 != NULL)
+void JUTResFont::loadFont(int a1, GXTexMapID a2, TWidth* a3) {
+    if (a3 != NULL)  // for variable width?
         getWidthEntry(a1, a3);
 
-    u32 code = getFontCode(a1);
-    loadImage(code, a2);
+    loadImage(getFontCode(a1), a2);
 }
 
-asm void JUTResFont::getWidthEntry(s32 i_no, TWidth* width){nofralloc
+asm void JUTResFont::getWidthEntry(int i_no, TWidth* width) const {nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__getWidthEntry.s"
 }
 
-u32 JUTResFont::getCellWidth() {
-    if (unk58 != NULL && unk58->unk0 != NULL)
-        return unk58->unk0->unkC;
+u32 JUTResFont::getCellWidth() const {
+    if (unk58 != NULL && unk58->cell != NULL)
+        return unk58->cell->width;
 
     return getWidth();
 }
 
-u32 JUTResFont::getCellHeight() {
-    if (unk58 != NULL && unk58->unk0 != NULL)
-        return unk58->unk0->unkE;
+u32 JUTResFont::getCellHeight() const {
+    if (unk58 != NULL && unk58->cell != NULL)
+        return unk58->cell->height;
 
     return getHeight();
 }
 
-bool JUTResFont::isLeadByte(s32 a1) {
-    return (*unk6C)(a1);
+bool JUTResFont::isLeadByte(int a1) const {
+    return (*unk6C)(a1);  // saoAboutEncoding_
 }
 
-asm u32 JUTResFont::getFontCode(s32 a1) {
+asm int JUTResFont::getFontCode(int a1) const {
     nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__getFontCode.s"
 }
 
-asm void JUTResFont::loadImage(s32 a1, u32 a2) {
-    nofralloc
+asm void JUTResFont::loadImage(int a1, _GXTexMapID a2){nofralloc
 #include "JSystem/JUtility/asm/JUTResFont__loadImage.s"
 }
 
-asm s32 JUTResFont::convertSjis(s32 a1, u16* a2) {
-    nofralloc
-#include "JSystem/JUtility/asm/JUTResFont__convertSjis.s"
+u32 JUTResFont::convertSjis(int a1, u16* a2) const {
+    u8 hi = JSUHiByte(a1);
+    u8 lo = JSULoByte(a1);
+
+    // SJIS lo byte is always 0x80-0xFF
+    s32 temp = lo - 0x40;
+    if (temp >= 0x40)
+        temp--;
+
+    u16 off = 0x31C;
+    if (a2 != NULL)
+        off = *a2;
+
+    return (temp + (hi - 0x88) * 0xBC) - 0x5E + off;
+}
+
+bool JUTFont::isLeadByte_1Byte(int b) {
+    return false;
+}
+
+bool JUTFont::isLeadByte_2Byte(int b) {
+    return true;
+}
+
+bool JUTFont::isLeadByte_ShiftJIS(int b) {
+    bool result = false;
+
+    // 00 - 0x7F = ASCII, 0xA1 - 0xDF = JIS, everything else = SJIS
+    if (((0x81 <= b) && (b <= 0x9f)) || ((0xe0 <= b && (b <= 0xfc))))
+        result = true;
+
+    return result;
 }

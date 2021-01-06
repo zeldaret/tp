@@ -758,6 +758,9 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ isLeadByte_1Byte__7JUTFontFi
+ isLeadByte_2Byte__7JUTFontFi
+ isLeadByte_ShiftJIS__7JUTFontFi
  dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz
  getValueStick__10CSTControlFv
  getAngleStick__10CSTControlFv
@@ -790,13 +793,13 @@ FORCEACTIVE {
  startCtrl__8daItem_cFv
  startControl__8daItem_cFv
  endControl__8daItem_cFv
- loadImage__10JUTResFontFlUl
- isLeadByte__10JUTResFontFl
- getCellHeight__10JUTResFontFv
- getCellWidth__10JUTResFontFv
- getWidthEntry__10JUTResFontFlPQ27JUTFont6TWidth
+ loadImage__10JUTResFontFi11_GXTexMapID
+ isLeadByte__10JUTResFontCFi
+ getCellHeight__10JUTResFontCFv
+ getCellWidth__10JUTResFontCFv
+ getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth
  drawChar_scale__10JUTResFontFffffib
- setGX__10JUTResFontF6TColor6TColor
+ setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor
  setGX__10JUTResFontFv
  setBlock__10JUTResFontFv
  draw__15JKRThreadSwitchFP14JKRThreadName_P10JUTConsole
