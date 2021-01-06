@@ -33,6 +33,8 @@ class JAISound {
 public:
     JAISoundID getID() const { return JAISoundID((u32)this->sound_id); }
 
+    void stop(u32 fadeout);
+
     // TODO: do proper struct later
     void* __vt;
     struct JAISoundHandle* handle;
@@ -117,6 +119,11 @@ public:
     u8 field_0x92;
     u8 field_0x93;
 };
+
+extern "C" {
+    void stop__8JAISoundFUl(JAISound*, u32 fadeout);
+    void stop__8JAISoundFv(JAISound*);
+}
 
 class JAISoundHandle {
 public:

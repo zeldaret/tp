@@ -73,7 +73,6 @@ void subBgmStop__8Z2SeqMgrFv(void);
 void subBgmStopInner__8Z2SeqMgrFv(void);
 void JAISoundStatus__NS_lockWhenPrepared();
 void bgmStreamPrepare__8Z2SeqMgrFUl(u32);
-void JAISound_NS_stop_X1_(void);
 void JAISoundStatus__NS_unlockIfLocked(void);
 void bgmStreamPlay__8Z2SeqMgrFv(void);
 void bgmStreamStop__8Z2SeqMgrFUl(u32);

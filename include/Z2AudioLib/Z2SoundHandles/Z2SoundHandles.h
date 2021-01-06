@@ -19,6 +19,8 @@ public:
 
     JAISoundHandle* getHandleSoundID(JAISoundID pSoundId);
 
+    void stopAllSounds(u32 fadeout);
+
 private:
     u8 mNumHandles;
 };

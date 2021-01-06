@@ -35,7 +35,7 @@ JAISound_NS_attachHandle:
 /* 802A21D8 0029F118  80 64 00 00 */	lwz r3, 0(r4)
 /* 802A21DC 0029F11C  28 03 00 00 */	cmplwi r3, 0
 /* 802A21E0 0029F120  41 82 00 08 */	beq lbl_802A21E8
-/* 802A21E4 0029F124  48 00 03 B5 */	bl JAISound_NS_stop_X1_
+/* 802A21E4 0029F124  48 00 03 B5 */	bl stop__8JAISoundFv
 lbl_802A21E8:
 /* 802A21E8 0029F128  80 1E 00 04 */	lwz r0, 4(r30)
 /* 802A21EC 0029F12C  28 00 00 00 */	cmplwi r0, 0
@@ -256,14 +256,14 @@ lbl_802A249C:
 /* 802A24D4 0029F414  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A24D8 0029F418  4E 80 00 20 */	blr 
 
-.global JAISound_NS_stop
-JAISound_NS_stop:
+.global stop__8JAISoundFUl
+stop__8JAISoundFUl:
 /* 802A24DC 0029F41C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A24E0 0029F420  7C 08 02 A6 */	mflr r0
 /* 802A24E4 0029F424  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802A24E8 0029F428  28 04 00 00 */	cmplwi r4, 0
 /* 802A24EC 0029F42C  40 82 00 0C */	bne lbl_802A24F8
-/* 802A24F0 0029F430  48 00 00 A9 */	bl JAISound_NS_stop_X1_
+/* 802A24F0 0029F430  48 00 00 A9 */	bl stop__8JAISoundFv
 /* 802A24F4 0029F434  48 00 00 94 */	b lbl_802A2588
 lbl_802A24F8:
 /* 802A24F8 0029F438  41 82 00 40 */	beq lbl_802A2538
@@ -310,8 +310,8 @@ lbl_802A2588:
 /* 802A2590 0029F4D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A2594 0029F4D4  4E 80 00 20 */	blr 
 
-.global JAISound_NS_stop_X1_
-JAISound_NS_stop_X1_:
+.global stop__8JAISoundFv
+stop__8JAISoundFv:
 /* 802A2598 0029F4D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A259C 0029F4DC  7C 08 02 A6 */	mflr r0
 /* 802A25A0 0029F4E0  90 01 00 14 */	stw r0, 0x14(r1)

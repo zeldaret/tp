@@ -63,14 +63,25 @@ asm void Z2SoundHandles_NS_getLowPrioSound(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB3D0.s"
 }
+};
 
 // stopAllSounds__14Z2SoundHandlesFUl
 // Z2SoundHandles::stopAllSounds(unsigned long)
-asm void Z2SoundHandles_NS_stopAllSounds(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundHandles/asm/func_802AB4A0.s"
+void Z2SoundHandles::stopAllSounds(u32 fadeout) {
+    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
+        link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        //! @meme: explicit operator bool call required to match and be similar
+        //!        to CHN_debug; could more concisely write handle->isSoundAttached
+        //!        (for some reason cast-to-bool doesn't work?)
+        if (handle && handle->operator bool()) { 
+            (*handle)->stop(fadeout);
+        }
+        // if ((handle == NULL) && (bool)handle) {
+        //     (*handle)->stop(fadeout);
+        // }
+    }
 }
-};
 
 bool Z2SoundHandles::isActive() const {
     for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
