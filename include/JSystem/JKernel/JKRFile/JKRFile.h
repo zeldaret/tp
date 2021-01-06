@@ -11,7 +11,7 @@ public:
 
     s32 read(void*, long, long);
 
-    bool isAvailable() const { return this->mIsAvailable; }
+    bool isAvailable() const { return mIsAvailable; }
 
 public:
     /* vt[03] */ virtual bool open(const char*) = 0;

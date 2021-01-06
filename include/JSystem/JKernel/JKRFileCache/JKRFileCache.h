@@ -11,12 +11,12 @@ public:
     public:
         CCacheBlock(u32, u32, const void*);
 
-    private:
-        JSULink<CCacheBlock> mLink;
-        u32 field_0x10;
-        u32 mFileId;
-        u32 mFileSize;
-        void const* mMemoryPtr;
+    public:
+        /* 0x00 */ JSULink<CCacheBlock> mLink;
+        /* 0x10 */ u32 mReferenceCount;
+        /* 0x14 */ u32 mFileId;
+        /* 0x18 */ u32 mFileSize;
+        /* 0x1C */ void* mMemoryPtr;
     };
 
 protected:
@@ -25,7 +25,7 @@ protected:
 
     CCacheBlock* findCacheBlock(const void*) const;
     CCacheBlock* findCacheBlock(u32) const;
-    void findFile(char*, const char*) const;
+    bool findFile(char*, const char*) const;
     char* getDvdPathName(const char*) const;
     void convStrLower(char*) const;
 

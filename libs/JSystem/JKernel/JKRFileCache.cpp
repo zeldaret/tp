@@ -1,4 +1,6 @@
 #include "JSystem/JKernel/JKRFileCache/JKRFileCache.h"
+#include "JSystem/JKernel/JKRDvdFile/JKRDvdFile.h"
+#include "JSystem/JKernel/JKRFileFinder/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
@@ -86,6 +88,8 @@ JKRFileCache::~JKRFileCache() {
     getVolumeList().remove(&mFileLoaderLink);
 }
 
+// full match, except wrong use of one register
+#ifdef NONMATCHING
 bool JKRFileCache::becomeCurrent(const char* path) {
     char* name = getDvdPathName(path);
     BOOL result = DVDChangeDir(name);
@@ -104,55 +108,204 @@ bool JKRFileCache::becomeCurrent(const char* path) {
 
     return didChangeDir;
 }
-
-asm void* JKRFileCache::getResource(const char*) {
+#else
+asm bool JKRFileCache::becomeCurrent(const char* path) {
     nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D4DD8.s"
+#include "JSystem/JKernel/JKRFileCache/asm/func_802D4D44.s"
+}
+#endif
+
+void* JKRFileCache::getResource(const char* path) {
+    ASSERT(isMounted());
+
+    void* buffer = NULL;
+    char* name = getDvdPathName(path);
+    JKRDvdFile dvdFile(name);
+    if (dvdFile.isAvailable()) {
+        CCacheBlock* cacheBlock = findCacheBlock(dvdFile.getFileID());
+        if (!cacheBlock) {
+            // dvdFile.getFileSize() not inlined
+            u32 fileSize = dvdFile.getFileInfo().length;
+            u32 alignedSize = ALIGN_NEXT(fileSize, 0x20);
+            buffer = JKRAllocFromHeap(mParentHeap, alignedSize, 0x20);
+            if (buffer) {
+                dvdFile.read(buffer, alignedSize, 0);
+
+                cacheBlock = new (JKRHeap::getSystemHeap(), 0)
+                    CCacheBlock(dvdFile.getFileID(), dvdFile.getFileInfo().length, buffer);
+                mCacheBlockList.append(&cacheBlock->mLink);
+            }
+        } else {
+            cacheBlock->mReferenceCount++;
+            buffer = cacheBlock->mMemoryPtr;
+        }
+    }
+
+    JKRFreeToSysHeap(name);
+    return buffer;
 }
 
-asm void* JKRFileCache::getResource(u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D4EDC.s"
+void* JKRFileCache::getResource(u32, const char* path) {
+    ASSERT(isMounted());
+
+    char finalPath[256];
+    u32 rootLength = strlen(mRootPath);
+    char* filePath = finalPath + rootLength;
+    strcpy(finalPath, mRootPath);
+
+    bool found = findFile(finalPath, path);
+    if (!found)
+        return NULL;
+
+    return getResource(filePath);
 }
 
-asm u32 JKRFileCache::readResource(void*, u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D4F64.s"
+u32 JKRFileCache::readResource(void* dst, u32 dstLength, const char* path) {
+    ASSERT(isMounted());
+
+    char* name = getDvdPathName(path);
+    JKRDvdFile dvdFile(name);
+
+    u32 resourceSize = 0;
+
+// !@bug: (maybe) The goto is required to match the function, but it doesn't make any sense. Because
+// if dvdFile.isAvailable() is true then we will loop forever. Because, in JKRDvdFile the only
+// functions that changes isAvailable() are the "JKRDvdFile::JKRDvdFile()", "JKRDvdFile::open()",
+// and "JKRDvdFile::close()". And because "JKRDvdFile::read()" is not one of them, we're stuck in an
+// infinite loop.
+loop:
+    if (dvdFile.isAvailable()) {
+        // dvdFile.getFileSize() not inlined
+        u32 fileSize = dvdFile.getFileInfo().length;
+        resourceSize = ALIGN_NEXT(fileSize, 0x20);
+        dstLength = ALIGN_PREV(dstLength, 0x20);
+        if (resourceSize > dstLength) {
+            resourceSize = dstLength;
+        }
+
+        CCacheBlock* cacheBlock = findCacheBlock(dvdFile.getFileID());
+        if (!cacheBlock) {
+            dvdFile.read(dst, resourceSize, 0);
+        } else {
+            memcpy(dst, cacheBlock->mMemoryPtr, resourceSize);
+        }
+        goto loop;
+    }
+
+    JKRFreeToSysHeap(name);
+    return resourceSize;
 }
 
-asm u32 JKRFileCache::readResource(void*, u32, u32, const char*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D503C.s"
+u32 JKRFileCache::readResource(void* dst, u32 dstLength, u32, const char* path) {
+    ASSERT(isMounted());
+
+    char finalPath[256];
+    u32 rootLength = strlen(mRootPath);
+    char* filePath = finalPath + rootLength;
+    strcpy(finalPath, mRootPath);
+
+    bool found = findFile(finalPath, path);
+    if (!found)
+        return NULL;
+
+    return readResource(dst, dstLength, filePath);
 }
 
+#ifdef NONMATCHING
+void JKRFileCache::removeResourceAll(void) {
+    ASSERT(isMounted());
+
+    JSUListIterator<CCacheBlock> iterator;
+    iterator = mCacheBlockList.getFirst();
+    while (iterator != mCacheBlockList.getEnd()) {
+        JKRFreeToHeap(mParentHeap, iterator->mMemoryPtr);
+        mCacheBlockList.remove(&iterator->mLink);
+        JSUListIterator<CCacheBlock> next = iterator++;
+        CCacheBlock* cacheBlock = next.getObject();
+        delete cacheBlock;
+    }
+}
+#else
 asm void JKRFileCache::removeResourceAll(void) {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D50D4.s"
 }
+#endif
 
-asm bool JKRFileCache::removeResource(void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D5164.s"
+bool JKRFileCache::removeResource(void* resource) {
+    ASSERT(isMounted());
+
+    CCacheBlock* cacheBlock = findCacheBlock(resource);
+    if (!cacheBlock)
+        return false;
+
+    u32 referenceCount = cacheBlock->mReferenceCount - 1;
+    cacheBlock->mReferenceCount = referenceCount;
+    if (referenceCount == 0) {
+        JKRFreeToHeap(mParentHeap, resource);
+        mCacheBlockList.remove(&cacheBlock->mLink);
+        delete cacheBlock;
+    }
+
+    return true;
 }
 
-asm bool JKRFileCache::detachResource(void*) {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D51F8.s"
+bool JKRFileCache::detachResource(void* resource) {
+    ASSERT(isMounted());
+
+    CCacheBlock* cacheBlock = findCacheBlock(resource);
+    if (!cacheBlock)
+        return false;
+
+    mCacheBlockList.remove(&cacheBlock->mLink);
+    delete cacheBlock;
+    return true;
 }
 
-asm u32 JKRFileCache::getResSize(const void*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D526C.s"
+u32 JKRFileCache::getResSize(const void* resource) const {
+    ASSERT(isMounted());
+
+    CCacheBlock* cacheBlock = findCacheBlock(resource);
+    if (cacheBlock == NULL) {
+        return -1;
+    } else {
+        return cacheBlock->mFileSize;
+    }
 }
 
-asm u32 JKRFileCache::countFile(const char*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D52A0.s"
+u32 JKRFileCache::countFile(const char* path) const {
+    ASSERT(isMounted());
+
+    DVDDirectory dir;
+    DVDDirectoryEntry dirEntry;
+
+    u32 count = 0;
+    char* name = getDvdPathName(path);
+    BOOL result = DVDOpenDir(name, &dir);
+    if (result != 0) {
+        while (result = DVDReadDir(&dir, &dirEntry), result != FALSE) {
+            count = count + 1;
+        }
+
+        DVDCloseDir(&dir);
+    }
+
+    JKRFreeToSysHeap(name);
+    return count;
 }
 
-asm JKRFileFinder* JKRFileCache::getFirstFile(const char*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRFileCache/asm/func_802D531C.s"
+JKRFileFinder* JKRFileCache::getFirstFile(const char* path) const {
+    char* name = getDvdPathName(path);
+    JKRHeap* systemHeap = JKRHeap::getSystemHeap();
+    JKRDvdFinder* finder = new (systemHeap, 0) JKRDvdFinder(name);
+    JKRFreeToSysHeap(name);
+
+    if (finder->isAvailable() != true) {
+        delete finder;
+        return NULL;
+    }
+
+    return finder;
 }
 
 asm JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void*) const {
@@ -165,7 +318,7 @@ asm JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(unsigned long) const
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D53E4.s"
 }
 
-asm void JKRFileCache::findFile(char*, const char*) const {
+asm bool JKRFileCache::findFile(char*, const char*) const {
     nofralloc
 #include "JSystem/JKernel/JKRFileCache/asm/func_802D5410.s"
 }

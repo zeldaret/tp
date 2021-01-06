@@ -154,7 +154,7 @@ void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-void memcpy(void*, void*, int);
+void memcpy(void*, const void*, int);
 int tolower(int);
 char* strrchr(char*,int);
 char* strcat(char*,char*);
