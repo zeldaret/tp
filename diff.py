@@ -243,6 +243,13 @@ parser.add_argument(
     metavar="SYMBOL",
     help="override symbol name on lhs when using -o"
 )
+parser.add_argument(
+    "--select-occurence",
+    dest="select_occurence",
+    type=int,
+    default=0,
+    help="If multiple occurence of the same symbol is found, use this to select the correct ocurrance."
+)
 
 # Project-specific flags, e.g. different versions/make arguments.
 add_custom_arguments_fn = getattr(diff_settings, "add_custom_arguments", None)
@@ -497,8 +504,15 @@ def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Opti
         #                                         ram   elf rom                                                       object name
         find = re.findall(re.compile(r'  \S+ \S+ (\S+) (\S+)  . ' + fn_name + r'(?: \(entry of \.(?:init|text)\))? \t(\S+)'), contents)
         if len(find) > 1:
-            fail(f"Found multiple occurrences of function {fn_name} in map file.")
+            if args.select_occurence > 0:
+                find = [find[args.select_occurence - 1]]
+            else:
+                print(f"Found multiple occurrences of function {fn_name} in map file:", file=sys.stderr)
+                for i,location in enumerate(find):
+                    print(f"    {i+1}: {location[2]}", file=sys.stderr)
+                fail(f"Use --select-occurence to select the right occurrence.")
         if len(find) == 1:
+            print(find)
             rom = int(find[0][1],16)
             objname = find[0][2]
             # The metrowerks linker map format does not contain the full object path, so we must complete it manually.
