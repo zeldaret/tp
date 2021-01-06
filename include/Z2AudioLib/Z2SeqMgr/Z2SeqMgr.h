@@ -2,7 +2,7 @@
 #define Z2SEQMGR_H_
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
-#include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
+#include "JSystem/JAudio2/JAISound/JAISound.h"
 #include "Z2AudioLib/Z2Param/Z2Param.h"
 #include "global.h"
 
