@@ -26,7 +26,7 @@ protected:
     CCacheBlock* findCacheBlock(const void*) const;
     CCacheBlock* findCacheBlock(u32) const;
     void findFile(char*, const char*) const;
-    void getDvdPathName(const char*) const;
+    char* getDvdPathName(const char*) const;
     void convStrLower(char*) const;
 
 public:
@@ -48,15 +48,15 @@ public:
 
 private:
     /* 0x00 */  // vtable
-    /* 0x04 */  // JKRArchive
-    /* 0x5C */ JKRHeap* mParentHeap;
-    /* 0x5C */ JSUList<CCacheBlock> mCacheBlockList;
-    /* 0x5C */ char* field_0x40;
-    /* 0x5C */ char* field_0x4c;
-    /* 0x5C */ char* field_0x50;
+    /* 0x04 */  // JKRFileLoader
+    /* 0x38 */ JKRHeap* mParentHeap;
+    /* 0x3C */ JSUList<CCacheBlock> mCacheBlockList;
+    /* 0x48 */ char* mRootPath;
+    /* 0x4C */ char* mCurrentPath;
+    /* 0x50 */ char* mVolumePath;
 
 public:
-    static void mount(char const*, JKRHeap*, char const*);
+    static JKRFileCache* mount(const char*, JKRHeap*, const char*);
 };
 
 #endif
