@@ -12,9 +12,8 @@ JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler
 
     u32 alignedSize = ALIGN_PREV(size, 0x10);
     u32 solidHeapSize = ALIGN_NEXT(sizeof(JKRSolidHeap), 0x10);
-    if (alignedSize < solidHeapSize) {
+    if (alignedSize < solidHeapSize)
         return NULL;
-    }
 
     JKRSolidHeap* solidHeap = (JKRSolidHeap*)JKRAllocFromHeap(heap, alignedSize, 0x10);
     void* dataPtr = (u8*)solidHeap + solidHeapSize;
