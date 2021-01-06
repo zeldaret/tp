@@ -509,7 +509,7 @@ def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Opti
             else:
                 print(f"Found multiple occurrences of function {fn_name} in map file:", file=sys.stderr)
                 for i,location in enumerate(find):
-                    print(f"    {i+1}: {location[2]}", file=sys.stderr)
+                    print(f"    {i+1}: {location[0]} {location[1]} {str(location[2]).ljust(40, ' ')}", file=sys.stderr)
                 fail(f"Use --select-occurence to select the right occurrence.")
         if len(find) == 1:
             print(find)
