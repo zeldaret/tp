@@ -69,12 +69,11 @@ float Z2Calc::getRandom_0_1(void) {
         lbl_80451330 = true;
     }
     // this is really just lbl_80451334.get_ufloat_1()
-    lbl_80451334.value = (lbl_80451334.value * 0x19660d) + 0x3c6ef35f;
     union {
         f32 f;
-        s32 s;
+        u32 s;
     } out;
-    out.s = ((lbl_80451334.value >> 9) & 0x7FFFFF) | 0x3f800000;
+    out.s = (lbl_80451334.get() >> 9) | 0x3f800000;
     return out.f - lbl_8045582C;
 }
 

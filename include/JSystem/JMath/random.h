@@ -18,11 +18,13 @@ struct TRandom_fast_ {
     // due to the float constant, having this function inlined adds that float to data,
     // making it not match
     float get_ufloat_1(void) {
+        // !@bug UB: in C++ it's not legal to read from an union member other
+        // than the last one that was written to.
         union {
             f32 f;
-            s32 s;
+            u32 s;
         } out;
-        out.s = ((this->get() >> 9) & 0x7FFFFF) | 0x3f800000;
+        out.s = (this->get() >> 9) | 0x3f800000;
         return out.f - 1;
     }
 
