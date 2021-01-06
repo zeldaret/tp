@@ -82,14 +82,16 @@ asm void Z2SoundInfo_NS_getStreamFileEntry(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBA88.s"
 }
+};
 
 // getSwBit__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getSwBit(JAISoundID) const
-asm void Z2SoundInfo_NS_getSwBit(void) {
+asm u32 Z2SoundInfo::getSwBit(JAISoundID) const {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBAC8.s"
 }
 
+extern "C" {
 // getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound
 // Z2SoundInfo::getSoundInfo_(JAISoundID, JAISound*) const
 asm void Z2SoundInfo_NS_getSoundInfo_(void) {

@@ -2,6 +2,7 @@
 
 #include "Z2AudioLib/Z2SoundObject/Z2SoundObject.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 
 Z2SoundObjBase::Z2SoundObjBase() {
     //! @note initializer list doesn't work since fields were initialized out of
@@ -48,14 +49,13 @@ asm void func_802BE070(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE070.s"
 }
+};
 
-// stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool
-// Z2SoundObjBase::stopOK(Z2SoundHandlePool&)
-asm void func_802BE104(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BE104.s"
+u32 Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
+    return checkEqual(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000, 0);
 }
 
+extern "C" {
 // startSound__14Z2SoundObjBaseF10JAISoundIDUlSc
 // Z2SoundObjBase::startSound(JAISoundID, unsigned long, char)
 asm void Z2SoundObjBase_NS_startSound(void) {

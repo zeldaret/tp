@@ -5781,7 +5781,7 @@ void JAISeMgr_NS_stop(void);
 void JAISeMgr_NS_initParams(void);
 void JASTrack_NS_setFIR(void);
 void Z2SoundMgr_NS_isPlayingSoundID(void);
-void Z2SoundInfo_NS_getSwBit(void);
+void getSwBit__11Z2SoundInfoCF10JAISoundID(void);
 void JAISeMgr_NS_calc(void);
 void JAISeqMgr_NS_stopSoundID(void);
 void Z2SoundMgr_NS_multiVolumeSoundID(void);
@@ -6000,7 +6000,7 @@ void initHandlesPool__14Z2SoundHandlesFUc(void);
 void getHandleUserData__14Z2SoundHandlesFUl(void);
 void func_802BE5FC(void);
 void Z2SoundObjBase_NS_startLevelSound(void);
-void func_802BE104(void);
+void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool(void);
 
 // manual
 void __ct__14Z2SoundHandlesFv(void);
