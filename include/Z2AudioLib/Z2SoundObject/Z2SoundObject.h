@@ -24,12 +24,12 @@ class Z2SoundObjBase : protected Z2SoundHandles {
     virtual void framework(u32, s8);
     virtual void dispose(void);
     virtual u32 stopOK(Z2SoundHandlePool&);
-    virtual void init(Vec* pVec, u8 pNumHandles);
+    virtual void init(Vec* pSoundPos, u8 pNumHandles);
 
 
     // Z2SoundObjBase_vtable* vtable;
-    Z2SoundStarter* sound_starter;
-    JGeometry::TVec3<f32>* sound_pos;
+    Z2SoundStarter* mSoundStarter;
+    Vec* mSoundPos;
     u16 field_0x1c;
     u8 field_0x1e;
     bool mIsInitialized;

@@ -14,5 +14,7 @@ struct Z2SoundStarter {
     Z2SoundStarter_vtable * vtable;
 };
 
+extern Z2SoundStarter* lbl_80450B74;
+
 
 #endif

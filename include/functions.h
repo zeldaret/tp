@@ -5897,7 +5897,7 @@ void func_802C06F4(void);
 void func_802C1A14(void);
 void Z2CreatureCitizen_NS_setMdlType(void);
 void func_802C1D10(void);
-void Z2SoundObjBase_NS_init(void);
+void init__14Z2SoundObjBaseFP3VecUc(void);
 void Z2CreatureCitizen_NS_init(void);
 void func_802C0AF8(void);
 void func_802C10D4(void);

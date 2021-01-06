@@ -115,7 +115,6 @@ extern u8 lbl_80451360[8];
 // func_802C3464
 extern u8 lbl_803CB96C[0x14];
 extern u8 lbl_803C9D80[0x18];
-extern u32 lbl_80450B74;
 
 // func_802C3500
 extern u8 lbl_803CAD10[0x20];

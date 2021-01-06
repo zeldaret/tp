@@ -3,9 +3,14 @@
 #include "Z2AudioLib/Z2SoundObject/Z2SoundObject.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 
-asm Z2SoundObjBase::Z2SoundObjBase() {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BDEF0.s"
+Z2SoundObjBase::Z2SoundObjBase() {
+    //! @note initializer list doesn't work since fields were initialized out of
+    //! structure layout order, indicating original code didn't use initializer list.
+    mSoundPos = NULL;
+    mIsInitialized = false;
+    mSoundStarter = lbl_80450B74;
+    field_0x1c = 0;
+    field_0x1e = 0;
 }
 
 extern "C" {
@@ -16,13 +21,16 @@ asm void Z2SoundObjBase_NS_dtor(void) {
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BDF48.s"
 }
 
+};
+
 // init__14Z2SoundObjBaseFP3VecUc
 // Z2SoundObjBase::init(Vec*, unsigned char)
-asm void Z2SoundObjBase_NS_init(void) {
+asm void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BDFB0.s"
 }
 
+extern "C" {
 // deleteObject__14Z2SoundObjBaseFv
 // Z2SoundObjBase::deleteObject(void)
 asm void Z2SoundObjBase_NS_deleteObject(void) {
@@ -35,7 +43,7 @@ void Z2SoundObjBase::framework(u32 p1, s8 p2) {
     if (mIsInitialized) {
         this->field_0x1c = p1;
         this->field_0x1e = p2;
-        this->setPos(*this->sound_pos);
+        this->setPos(*(JGeometry::TVec3<f32>*)this->mSoundPos);
     }
 }
 
