@@ -41,9 +41,6 @@ enum JKRCompression {
     COMPRESSION_YAY0 = 1,
     COMPRESSION_YAZ0 = 2,
     COMPRESSION_ASR = 3,
-
-    __COMPRESSION_ENUM_FORCE_S32 = INT32_MAX,
-    __COMPRESSION_ENUM_FORCE_SIGNED = -1,
 };
 
 class JKRDecomp : public JKRThread {

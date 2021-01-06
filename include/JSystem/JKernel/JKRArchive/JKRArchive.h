@@ -74,17 +74,12 @@ public:
         MOUNT_ARAM = 2,
         MOUNT_DVD = 3,
         MOUNT_COMP = 4,
-
-        __EMOUNT_MODE_FORCE_32BIT = UINT32_MAX,
     };
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
         HEAD = 1,
         TAIL = 2,
-
-        __EMOUNT_DIRECTION_FORCE_32BIT = INT32_MAX,
-        __EMOUNT_DIRECTION_FORCE_SIGNED = -1,
     };
 
     class CArcName {
@@ -120,7 +115,7 @@ public:
     u32 countResource(void) const;
     u32 getFileAttribute(u32) const;
 
-    EMountMode getMountMode() const { return (EMountMode)mMountMode; }
+    u32 getMountMode() const { return mMountMode; }
 
 protected:
     bool isSameName(CArcName&, u32, u16) const;

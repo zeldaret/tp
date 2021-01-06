@@ -7,7 +7,6 @@
 enum JKRMemBreakFlag {
     JKRMEMBREAK_FLAG_UNKNOWN0 = 0,
     JKRMEMBREAK_FLAG_UNKNOWN1 = 1,
-    _JKRMemBreakFlag_PADDING_32BIT = 0xFFFFFFFF,
 };
 
 class JKRMemArchive : public JKRArchive {
