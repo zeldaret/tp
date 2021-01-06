@@ -189,7 +189,7 @@ JMessage_NS_TResourceContainer_NS_TCResource_NS_dtor:
 /* 802A8F30 002A5E70  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 802A8F34 002A5E74  41 82 00 0C */	beq lbl_802A8F40
 /* 802A8F38 002A5E78  38 80 00 00 */	li r4, 0
-/* 802A8F3C 002A5E7C  48 03 3A E1 */	bl JGadget_NS_TNodeLinkList_NS_dtor
+/* 802A8F3C 002A5E7C  48 03 3A E1 */	bl __dt__Q27JGadget13TNodeLinkListFv
 lbl_802A8F40:
 /* 802A8F40 002A5E80  7F E0 07 35 */	extsh. r0, r31
 /* 802A8F44 002A5E84  40 81 00 0C */	ble lbl_802A8F50
@@ -361,7 +361,7 @@ JMessage_NS_TParse:
 /* 802A917C 002A60BC  38 04 9C 94 */	addi r0, r4, lbl_803C9C94@l
 /* 802A9180 002A60C0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A9184 002A60C4  38 80 00 00 */	li r4, 0
-/* 802A9188 002A60C8  48 03 37 41 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_dtor
+/* 802A9188 002A60C8  48 03 37 41 */	bl __dt__Q37JGadget6binary19TParse_header_blockFv
 /* 802A918C 002A60CC  7F E0 07 35 */	extsh. r0, r31
 /* 802A9190 002A60D0  40 81 00 0C */	ble lbl_802A919C
 /* 802A9194 002A60D4  7F C3 F3 78 */	mr r3, r30
@@ -451,7 +451,7 @@ lbl_802A92A8:
 /* 802A92C0 002A6200  38 61 00 10 */	addi r3, r1, 0x10
 /* 802A92C4 002A6204  7F A4 EB 78 */	mr r4, r29
 /* 802A92C8 002A6208  38 A1 00 14 */	addi r5, r1, 0x14
-/* 802A92CC 002A620C  48 03 38 DD */	bl JGadget_NS_TNodeLinkList_NS_Insert
+/* 802A92CC 002A620C  48 03 38 DD */	bl Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 /* 802A92D0 002A6210  80 7F 00 08 */	lwz r3, 8(r31)
 /* 802A92D4 002A6214  93 C3 00 08 */	stw r30, 8(r3)
 /* 802A92D8 002A6218  38 60 00 01 */	li r3, 1

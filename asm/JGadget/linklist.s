@@ -2,26 +2,6 @@
 
 .section .text, "ax" # 802dca1c
 
-
-.global JGadget_NS_TNodeLinkList_NS_dtor
-JGadget_NS_TNodeLinkList_NS_dtor:
-/* 802DCA1C 002D995C  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 802DCA20 002D9960  7C 08 02 A6 */	mflr r0
-/* 802DCA24 002D9964  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802DCA28 002D9968  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802DCA2C 002D996C  7C 7F 1B 79 */	or. r31, r3, r3
-/* 802DCA30 002D9970  41 82 00 10 */	beq lbl_802DCA40
-/* 802DCA34 002D9974  7C 80 07 35 */	extsh. r0, r4
-/* 802DCA38 002D9978  40 81 00 08 */	ble lbl_802DCA40
-/* 802DCA3C 002D997C  4B FF 23 01 */	bl __dl__FPv
-lbl_802DCA40:
-/* 802DCA40 002D9980  7F E3 FB 78 */	mr r3, r31
-/* 802DCA44 002D9984  83 E1 00 0C */	lwz r31, 0xc(r1)
-/* 802DCA48 002D9988  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 802DCA4C 002D998C  7C 08 03 A6 */	mtlr r0
-/* 802DCA50 002D9990  38 21 00 10 */	addi r1, r1, 0x10
-/* 802DCA54 002D9994  4E 80 00 20 */	blr 
-
 .global JGadget_NS_TNodeLinkList_NS_erase
 JGadget_NS_TNodeLinkList_NS_erase:
 /* 802DCA58 002D9998  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -110,7 +90,7 @@ lbl_802DCB60:
 /* 802DCB80 002D9AC0  7F A4 EB 78 */	mr r4, r29
 /* 802DCB84 002D9AC4  38 A1 00 10 */	addi r5, r1, 0x10
 /* 802DCB88 002D9AC8  7F E6 FB 78 */	mr r6, r31
-/* 802DCB8C 002D9ACC  48 00 00 1D */	bl JGadget_NS_TNodeLinkList_NS_Insert
+/* 802DCB8C 002D9ACC  48 00 00 1D */	bl Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
 lbl_802DCB90:
 /* 802DCB90 002D9AD0  39 61 00 40 */	addi r11, r1, 0x40
 /* 802DCB94 002D9AD4  48 08 56 95 */	bl _restgpr_29
@@ -119,8 +99,8 @@ lbl_802DCB90:
 /* 802DCBA0 002D9AE0  38 21 00 40 */	addi r1, r1, 0x40
 /* 802DCBA4 002D9AE4  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TNodeLinkList_NS_Insert
-JGadget_NS_TNodeLinkList_NS_Insert:
+.global Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
+Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode:
 /* 802DCBA8 002D9AE8  80 A5 00 00 */	lwz r5, 0(r5)
 /* 802DCBAC 002D9AEC  80 E5 00 04 */	lwz r7, 4(r5)
 /* 802DCBB0 002D9AF0  90 A6 00 00 */	stw r5, 0(r6)
@@ -195,7 +175,7 @@ lbl_802DCC8C:
 /* 802DCCA0 002D9BE0  40 82 FF A8 */	bne lbl_802DCC48
 /* 802DCCA4 002D9BE4  38 61 00 30 */	addi r3, r1, 0x30
 /* 802DCCA8 002D9BE8  38 80 FF FF */	li r4, -1
-/* 802DCCAC 002D9BEC  4B FF FD 71 */	bl JGadget_NS_TNodeLinkList_NS_dtor
+/* 802DCCAC 002D9BEC  4B FF FD 71 */	bl __dt__Q27JGadget13TNodeLinkListFv
 /* 802DCCB0 002D9BF0  39 61 00 50 */	addi r11, r1, 0x50
 /* 802DCCB4 002D9BF4  48 08 55 71 */	bl _restgpr_28
 /* 802DCCB8 002D9BF8  80 01 00 54 */	lwz r0, 0x54(r1)

@@ -36,7 +36,7 @@ protected:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRDisposer
     /* 0x18 */ JSULink<JKRFileLoader> mFileLoaderLink;
-    /* 0x28 */ char* mVolumeName;
+    /* 0x28 */ const char* mVolumeName;
     /* 0x2C */ u32 mVolumeType;
     /* 0x30 */ bool mIsMounted;
     /* 0x31 */ u8 field_0x31[3];

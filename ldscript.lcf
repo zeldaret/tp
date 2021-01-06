@@ -758,9 +758,24 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+<<<<<<< HEAD
  isLeadByte_1Byte__7JUTFontFi
  isLeadByte_2Byte__7JUTFontFi
  isLeadByte_ShiftJIS__7JUTFontFi
+=======
+ parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
+ parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
+ parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
+ parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
+ destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
+ create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
+ __dt__Q37JStudio3stb15TObject_controlFv
+ do_begin__Q37JStudio3stb7TObjectFv
+ do_end__Q37JStudio3stb7TObjectFv
+ do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
+ do_wait__Q37JStudio3stb7TObjectFUl
+ do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
+>>>>>>> upstream/master
  dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz
  getValueStick__10CSTControlFv
  getAngleStick__10CSTControlFv
