@@ -5997,7 +5997,7 @@ void func_802BE65C(void);
 void Z2SoundHandles_NS_getFreeHandle(void);
 void func_802BEBDC(void);
 void initHandlesPool__14Z2SoundHandlesFUc(void);
-void Z2SoundHandles_NS_getHandleUserData(void);
+void getHandleUserData__14Z2SoundHandlesFUl(void);
 void func_802BE5FC(void);
 void Z2SoundObjBase_NS_startLevelSound(void);
 void func_802BE104(void);

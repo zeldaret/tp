@@ -21,13 +21,13 @@ asm void Z2SoundHandles::deleteHandlesPool() {
 }
 
 extern "C" {
-
 // __dt__31JASMemPool<17Z2SoundHandlePool>Fv
 // JASMemPool<17Z2SoundHandlePool>::~JASMemPool<17Z2SoundHandlePool>(void)
 asm void JASMemPool_NS_dtor_X4_(void){
 nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB200.s"
 }
+};
 
 JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
     for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
@@ -43,13 +43,21 @@ JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
     return NULL;
 }
 
-// getHandleUserData__14Z2SoundHandlesFUl
-// Z2SoundHandles::getHandleUserData(unsigned long)
-asm void Z2SoundHandles_NS_getHandleUserData(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundHandles/asm/func_802AB2A0.s"
+JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
+    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
+         link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        if (handle->isSoundAttached()) {
+            if ((*handle)->getUserData() == pUserData) {
+                return handle;
+            }
+        }
+    }
+
+    return NULL;
 }
 
+extern "C" {
 // getFreeHandle__14Z2SoundHandlesFv
 // Z2SoundHandles::getFreeHandle(void)
 asm void Z2SoundHandles_NS_getFreeHandle(void) {

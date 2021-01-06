@@ -18,8 +18,13 @@ public:
     bool isActive() const;
 
     JAISoundHandle* getHandleSoundID(JAISoundID pSoundId);
+    JAISoundHandle* getHandleUserData(u32 pUserData);
 
     void stopAllSounds(u32 fadeout);
+
+    u32 getNumHandles() const {
+        return this->getNumLinks();
+    }
 
 private:
     u8 mNumHandles;

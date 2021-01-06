@@ -35,6 +35,10 @@ public:
 
     void stop(u32 fadeout);
 
+    u32 getUserData() const {
+        return user_data;
+    }
+
     // TODO: do proper struct later
     void* __vt;
     struct JAISoundHandle* handle;
@@ -47,10 +51,7 @@ public:
     u8 field_0x19;
     u8 field_0x1a;
     u8 field_0x1b;
-    u8 field_0x1c;
-    u8 field_0x1d;
-    u8 field_0x1e;
-    u8 field_0x1f;
+    u32 user_data;
     float field_0x20;
     float field_0x24;
     float field_0x28;
