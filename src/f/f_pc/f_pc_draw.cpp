@@ -1,4 +1,5 @@
 #include "f/f_pc/f_pc_draw.h"
+#include "SComponent/c_API_graphic.h"
 #include "f/f_pc/f_pc_layer.h"
 #include "f/f_pc/f_pc_pause.h"
 
@@ -8,9 +9,6 @@ extern s32 lbl_80450D30;
 typedef s32 (*cNdIt_MethodFuncFunc)(cNdIt_MethodFunc);
 
 extern "C" {
-
-extern void cAPIGph_AfterOfDraw(void);
-extern void cAPIGph_BeforeOfDraw(void);
 
 s32 fpcDw_Execute(base_process_class* pProc) {
     if (!fpcPause_IsEnable(pProc, 2)) {

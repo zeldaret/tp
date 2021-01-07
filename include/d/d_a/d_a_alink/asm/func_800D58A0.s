@@ -60,7 +60,7 @@ lbl_800D5968:
 /* 800D5988 000D28C8  38 80 40 00 */ li r4, 0x4000
 /* 800D598C 000D28CC  A8 BF 04 E6 */ lha r5, 0x4e6(r31)
 /* 800D5990 000D28D0  38 C0 00 00 */ li r6, 0
-/* 800D5994 000D28D4  48 19 1A 61 */ bl csXyz_X1_
+/* 800D5994 000D28D4  48 19 1A 61 */ bl __ct__5csXyzFsss
 /* 800D5998 000D28D8  38 DE 05 68 */ addi r6, r30, 0x568
 /* 800D599C 000D28DC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D59A0 000D28E0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

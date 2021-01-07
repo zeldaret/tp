@@ -315,7 +315,7 @@ u32 JKRArchive::countFile(const char* path) const {
     return 0;
 }
 
-JKRArcFinder* JKRArchive::getFirstFile(const char* path) const {
+JKRFileFinder* JKRArchive::getFirstFile(const char* path) const {
     SDirEntry* dirEntry;
     if (*path == '/') {
         path++;

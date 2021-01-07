@@ -387,7 +387,7 @@ lbl_801218D8:
 /* 8012191C 0011E85C  D0 01 00 A4 */ stfs f0, 0xa4(r1)
 /* 80121920 0011E860  38 7B 1D 08 */ addi r3, r27, 0x1d08
 /* 80121924 0011E864  38 81 00 9C */ addi r4, r1, 0x9c
-/* 80121928 0011E868  48 14 64 01 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 80121928 0011E868  48 14 64 01 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8012192C 0011E86C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80121930 0011E870  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80121934 0011E874  38 63 0F 38 */ addi r3, r3, 0xf38

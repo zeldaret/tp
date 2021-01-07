@@ -7336,7 +7336,7 @@ lbl_801B67B0:
 /* 801B67B0 001B36F0  38 A0 00 04 */	li r5, 4
 /* 801B67B4 001B36F4  38 C0 08 00 */	li r6, 0x800
 /* 801B67B8 001B36F8  38 E0 00 80 */	li r7, 0x80
-/* 801B67BC 001B36FC  48 0B 9D 85 */	bl cLib_addCalcAngleS
+/* 801B67BC 001B36FC  48 0B 9D 85 */	bl cLib_addCalcAngleS__FPsssss
 lbl_801B67C0:
 /* 801B67C0 001B3700  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801B67C4 001B3704  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

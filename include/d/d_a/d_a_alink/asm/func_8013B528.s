@@ -35,7 +35,7 @@ lbl_8013B59C:
 lbl_8013B5AC:
 /* 8013B5AC 001384EC  38 7F 04 D0 */ addi r3, r31, 0x4d0
 /* 8013B5B0 001384F0  38 81 00 24 */ addi r4, r1, 0x24
-/* 8013B5B4 001384F4  48 13 56 51 */ bl cLib_targetAngleY
+/* 8013B5B4 001384F4  48 13 56 51 */ bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8013B5B8 001384F8  B0 7F 04 DE */ sth r3, 0x4de(r31)
 /* 8013B5BC 001384FC  A8 1F 04 DE */ lha r0, 0x4de(r31)
 /* 8013B5C0 00138500  54 00 04 38 */ rlwinm r0, r0, 0, 0x10, 0x1c

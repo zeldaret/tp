@@ -173,8 +173,18 @@ inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
+inline void* JKRAllocFromSysHeap(u32 size, int alignment) {
+    JKRHeap* systemHeap = JKRHeap::getSystemHeap();
+    return systemHeap->alloc(size, alignment);
+}
+
 inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
     JKRHeap::free(ptr, heap);
+}
+
+inline void JKRFreeToSysHeap(void* ptr) {
+    JKRHeap* systemHeap = JKRHeap::getSystemHeap();
+    systemHeap->free(ptr);
 }
 
 inline void JKRFree(void* ptr) {

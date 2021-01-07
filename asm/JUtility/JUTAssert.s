@@ -119,7 +119,7 @@ JUTAssertion_NS_flushMessage_dbPrint:
 /* 802E4AE8 002E1A28  4B FF A2 89 */	bl setCharColor__7JUTFontF6TColor
 /* 802E4AEC 002E1A2C  3C 60 80 43 */	lis r3, lbl_80434870@ha
 /* 802E4AF0 002E1A30  38 63 48 70 */	addi r3, r3, lbl_80434870@l
-/* 802E4AF4 002E1A34  48 08 40 F1 */	bl func_80368BE4
+/* 802E4AF4 002E1A34  48 08 40 F1 */	bl strlen
 /* 802E4AF8 002E1A38  7C 7E 1B 78 */	mr r30, r3
 /* 802E4AFC 002E1A3C  7F E3 FB 78 */	mr r3, r31
 /* 802E4B00 002E1A40  81 9F 00 00 */	lwz r12, 0(r31)
@@ -156,7 +156,7 @@ JUTAssertion_NS_flushMessage_dbPrint:
 /* 802E4B7C 002E1ABC  4B FF A2 AD */	bl drawString_size_scale__7JUTFontFffffPcUlb
 /* 802E4B80 002E1AC0  3C 60 80 43 */	lis r3, lbl_804348B0@ha
 /* 802E4B84 002E1AC4  38 63 48 B0 */	addi r3, r3, lbl_804348B0@l
-/* 802E4B88 002E1AC8  48 08 40 5D */	bl func_80368BE4
+/* 802E4B88 002E1AC8  48 08 40 5D */	bl strlen
 /* 802E4B8C 002E1ACC  7C 7E 1B 78 */	mr r30, r3
 /* 802E4B90 002E1AD0  7F E3 FB 78 */	mr r3, r31
 /* 802E4B94 002E1AD4  81 9F 00 00 */	lwz r12, 0(r31)
