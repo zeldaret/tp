@@ -500,38 +500,6 @@ void __dla__FPv(void);
 }
 
 extern "C" {
-struct TColor;
-
-extern void GXBegin(u8, u8, u16);
-extern void GXLoadTexObj(u32*, s32);
-extern void GXInitTexObjLOD(f32, f32, f32, u32*, s32, s32, u32, u8, u32);
-extern void GXInitTexObj(u32*, u32, u32, u32, u32, u32, u8);
-
-extern void GXSetNumChans(u32);
-extern void GXSetNumTevStages(u32);
-extern void GXSetNumTexGens(u32);
-extern void GXSetTevOrder(u32, u32, u32, u32);
-extern void GXSetChanCtrl(u32, u32, u32, u32, u32, u32, s32);
-extern void GXSetTevOp(s32, s32);
-extern void GXSetTevColor(s32, TColor);
-extern void GXSetTevColorIn(s32, u32, u32, u32, u32);
-extern void GXSetTevAlphaIn(s32, u32, u32, u32, u32);
-extern void GXSetTevColorOp(s32, u32, u32, u32, u32, u32);
-extern void GXSetTevAlphaOp(s32, u32, u32, u32, u32, u32);
-extern void GXSetBlendMode(u32, u32, u32, u32);
-extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
-extern void GXClearVtxDesc();
-extern void GXSetVtxDesc(u32, u32);
-typedef void (*GXDrawDoneCallback)(void);
-extern void GXSetDrawDoneCallback(GXDrawDoneCallback);
-extern void GXDrawDone(void);
-extern void GXAbortFrame(void);
-extern void GXFlush(void);
-extern OSThread* GXSetCurrentGXThread(void);
-extern OSThread* GXGetCurrentGXThread(void);
-}
-
-extern "C" {
 void VIWaitForRetrace(void);
 void VISetBlack(s32);
 void VIFlush(void);

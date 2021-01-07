@@ -472,7 +472,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTPalette.o    \
             $(BUILD_DIR)/asm/JUtility/JUTNameTab.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
