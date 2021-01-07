@@ -33,7 +33,7 @@ public:
     cSAngle operator+(short) const;
     cSAngle operator-(short) const;
     void operator+=(short);
-    cSAngle operator*(float) const;
+    cSAngle operator*(float)const;
     void operator*=(float);
     bool operator<(const cSAngle& other) const { return mAngle < other.mAngle; }
     bool operator>(const cSAngle& other) const { return mAngle > other.mAngle; }

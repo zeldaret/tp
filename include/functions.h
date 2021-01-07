@@ -364,7 +364,7 @@ void JUTConsole_NS_check(void);
 void JUTConsole_NS_print_f(void);
 void JUTConsole_NS_clear(void);
 void JUTWarningConsole(void);
-void JUTWarningConsole_f(void);
+// void JUTWarningConsole_f(void);
 void func_80361C24(void);
 void JKRArchive_NS_getDirEntry(void);
 void func_80361C24(void);
