@@ -15,7 +15,7 @@
 /* 800DE3B8 000DB2F8  A8 A7 00 14 */ lha r5, 0x14(r7)
 /* 800DE3BC 000DB2FC  A8 DE 30 0A */ lha r6, 0x300a(r30)
 /* 800DE3C0 000DB300  A8 E7 00 18 */ lha r7, 0x18(r7)
-/* 800DE3C4 000DB304  48 19 21 7D */ bl cLib_addCalcAngleS
+/* 800DE3C4 000DB304  48 19 21 7D */ bl cLib_addCalcAngleS__FPsssss
 /* 800DE3C8 000DB308  A8 1E 30 0C */ lha r0, 0x300c(r30)
 /* 800DE3CC 000DB30C  7C 00 E8 50 */ subf r0, r0, r29
 /* 800DE3D0 000DB310  7C 1F 07 34 */ extsh r31, r0

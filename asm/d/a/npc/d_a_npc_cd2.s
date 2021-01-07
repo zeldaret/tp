@@ -1658,7 +1658,7 @@ lbl_801594A4:
 /* 801594CC 0015640C  D8 01 00 48 */	stfd f0, 0x48(r1)
 /* 801594D0 00156410  80 81 00 4C */	lwz r4, 0x4c(r1)
 /* 801594D4 00156414  38 61 00 08 */	addi r3, r1, 8
-/* 801594D8 00156418  48 10 DF 1D */	bl csXyz_X1_
+/* 801594D8 00156418  48 10 DF 1D */	bl __ct__5csXyzFsss
 /* 801594DC 0015641C  80 7E 00 84 */	lwz r3, 0x84(r30)
 /* 801594E0 00156420  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 801594E4 00156424  1F FF 00 30 */	mulli r31, r31, 0x30
@@ -1823,7 +1823,7 @@ s_sub1:
 /* 80159744 00156684  4B EC 0F CD */	bl fopAcM_searchActorAngleY
 /* 80159748 00156688  7C 64 1B 78 */	mr r4, r3
 /* 8015974C 0015668C  A8 6D 8A 8C */	lha r3, lbl_8045100C-_SDA_BASE_(r13)
-/* 80159750 00156690  48 11 76 D5 */	bl cLib_distanceAngleS
+/* 80159750 00156690  48 11 76 D5 */	bl cLib_distanceAngleS__Fss
 /* 80159754 00156694  80 0D 8A 84 */	lwz r0, lbl_80451004-_SDA_BASE_(r13)
 /* 80159758 00156698  28 00 00 00 */	cmplwi r0, 0
 /* 8015975C 0015669C  40 82 00 20 */	bne lbl_8015977C
@@ -2374,7 +2374,7 @@ PathTrace_c_NS_setAvoidPoint:
 /* 80159EEC 00156E2C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80159EF0 00156E30  38 83 04 D0 */	addi r4, r3, 0x4d0
 /* 80159EF4 00156E34  7F A3 EB 78 */	mr r3, r29
-/* 80159EF8 00156E38  48 11 6D 0D */	bl cLib_targetAngleY
+/* 80159EF8 00156E38  48 11 6D 0D */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80159EFC 00156E3C  7C 7E 1B 78 */	mr r30, r3
 /* 80159F00 00156E40  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80159F04 00156E44  80 9F 00 20 */	lwz r4, 0x20(r31)
@@ -2382,7 +2382,7 @@ PathTrace_c_NS_setAvoidPoint:
 /* 80159F0C 00156E4C  7C 64 1B 78 */	mr r4, r3
 /* 80159F10 00156E50  7F A3 EB 78 */	mr r3, r29
 /* 80159F14 00156E54  38 84 00 04 */	addi r4, r4, 4
-/* 80159F18 00156E58  48 11 6C ED */	bl cLib_targetAngleY
+/* 80159F18 00156E58  48 11 6C ED */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80159F1C 00156E5C  7F C4 07 34 */	extsh r4, r30
 /* 80159F20 00156E60  7C 03 20 50 */	subf r0, r3, r4
 /* 80159F24 00156E64  7C 00 07 35 */	extsh. r0, r0
@@ -2778,7 +2778,7 @@ lbl_8015A468:
 /* 8015A480 001573C0  38 61 00 08 */	addi r3, r1, 8
 /* 8015A484 001573C4  38 81 00 0C */	addi r4, r1, 0xc
 /* 8015A488 001573C8  38 A1 00 10 */	addi r5, r1, 0x10
-/* 8015A48C 001573CC  48 10 E1 A1 */	bl cM3d_Len2dSqPntAndSegLine
+/* 8015A48C 001573CC  48 10 E1 A1 */	bl cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf
 /* 8015A490 001573D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8015A494 001573D4  41 82 00 24 */	beq lbl_8015A4B8
 /* 8015A498 001573D8  C8 22 9B 48 */	lfd f1, lbl_80453548-_SDA2_BASE_(r2)

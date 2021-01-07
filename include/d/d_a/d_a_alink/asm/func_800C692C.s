@@ -62,7 +62,7 @@ lbl_800C69DC:
 /* 800C6A10 000C3950  EC 00 00 B2 */ fmuls f0, f0, f2
 /* 800C6A14 000C3954  EC 21 00 32 */ fmuls f1, f1, f0
 /* 800C6A18 000C3958  C0 44 00 8C */ lfs f2, 0x8c(r4)
-/* 800C6A1C 000C395C  48 1A 9D 25 */ bl cLib_chaseF
+/* 800C6A1C 000C395C  48 1A 9D 25 */ bl cLib_chaseF__FPfff
 /* 800C6A20 000C3960  C0 3F 34 78 */ lfs f1, 0x3478(r31)
 /* 800C6A24 000C3964  C0 1F 34 7C */ lfs f0, 0x347c(r31)
 /* 800C6A28 000C3968  EC 01 00 2A */ fadds f0, f1, f0

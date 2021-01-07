@@ -18,7 +18,7 @@ lbl_8013AD20:
 /* 8013AD34 00137C74  3C 80 80 39 */ lis r4, lbl_8038EF28@ha
 /* 8013AD38 00137C78  38 84 EF 28 */ addi r4, r4, lbl_8038EF28@l
 /* 8013AD3C 00137C7C  C0 44 00 10 */ lfs f2, 0x10(r4)
-/* 8013AD40 00137C80  48 13 5A 01 */ bl cLib_chaseF
+/* 8013AD40 00137C80  48 13 5A 01 */ bl cLib_chaseF__FPfff
 /* 8013AD44 00137C84  7F C3 F3 78 */ mr r3, r30
 /* 8013AD48 00137C88  4B F9 73 B5 */ bl daAlink_c_NS_setComboReserb
 /* 8013AD4C 00137C8C  7F C3 F3 78 */ mr r3, r30

@@ -29,7 +29,7 @@ lbl_8024899C:
 /* 802489A4 002458E4  90 7F 00 D8 */	stw r3, 0xd8(r31)
 lbl_802489A8:
 /* 802489A8 002458E8  80 7F 00 D8 */	lwz r3, 0xd8(r31)
-/* 802489AC 002458EC  48 08 5D D9 */	bl getTotalFreeSize__7JKRHeapFv
+/* 802489AC 002458EC  48 08 5D D9 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 802489B0 002458F0  7F E3 FB 78 */	mr r3, r31
 /* 802489B4 002458F4  4B FF 37 B9 */	bl dMsgScrnBase_c_NS_init
 /* 802489B8 002458F8  28 1C 00 00 */	cmplwi r28, 0

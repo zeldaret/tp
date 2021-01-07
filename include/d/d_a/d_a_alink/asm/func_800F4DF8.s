@@ -82,7 +82,7 @@ lbl_800F4EEC:
 lbl_800F4F38:
 /* 800F4F38 000F1E78  38 7E 1D 08 */ addi r3, r30, 0x1d08
 /* 800F4F3C 000F1E7C  38 81 00 14 */ addi r4, r1, 0x14
-/* 800F4F40 000F1E80  48 17 2D E9 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800F4F40 000F1E80  48 17 2D E9 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800F4F44 000F1E84  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F4F48 000F1E88  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F4F4C 000F1E8C  38 63 0F 38 */ addi r3, r3, 0xf38

@@ -248,13 +248,13 @@
 /* 800CF71C 000CC65C  38 7F 1D AC */ addi r3, r31, 0x1dac
 /* 800CF720 000CC660  4B FA 89 11 */ bl dBgS_LinkLinChk
 /* 800CF724 000CC664  38 7F 1E 1C */ addi r3, r31, 0x1e1c
-/* 800CF728 000CC668  48 19 89 4D */ bl cBgS_PolyInfo_NS_ctor
+/* 800CF728 000CC668  48 19 89 4D */ bl __ct__13cBgS_PolyInfoFv
 /* 800CF72C 000CC66C  38 7F 1E 2C */ addi r3, r31, 0x1e2c
-/* 800CF730 000CC670  48 19 89 45 */ bl cBgS_PolyInfo_NS_ctor
+/* 800CF730 000CC670  48 19 89 45 */ bl __ct__13cBgS_PolyInfoFv
 /* 800CF734 000CC674  38 7F 1E 3C */ addi r3, r31, 0x1e3c
-/* 800CF738 000CC678  48 19 89 3D */ bl cBgS_PolyInfo_NS_ctor
+/* 800CF738 000CC678  48 19 89 3D */ bl __ct__13cBgS_PolyInfoFv
 /* 800CF73C 000CC67C  38 7F 1E 4C */ addi r3, r31, 0x1e4c
-/* 800CF740 000CC680  48 19 89 35 */ bl cBgS_PolyInfo_NS_ctor
+/* 800CF740 000CC680  48 19 89 35 */ bl __ct__13cBgS_PolyInfoFv
 /* 800CF744 000CC684  38 7F 1E 5C */ addi r3, r31, 0x1e5c
 /* 800CF748 000CC688  4B FA 88 15 */ bl dBgS_ObjLinChk
 /* 800CF74C 000CC68C  3B 5F 1E CC */ addi r26, r31, 0x1ecc

@@ -195,10 +195,10 @@ lbl_8000B45C:
 /* 8000B484 000083C4  4B FF FD 69 */	bl myGetHeapTypeByString
 /* 8000B488 000083C8  7C 7D 1B 78 */	mr r29, r3
 /* 8000B48C 000083CC  7F E3 FB 78 */	mr r3, r31
-/* 8000B490 000083D0  48 2C 32 F5 */	bl getTotalFreeSize__7JKRHeapFv
+/* 8000B490 000083D0  48 2C 32 F5 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 8000B494 000083D4  7C 7E 1B 78 */	mr r30, r3
 /* 8000B498 000083D8  7F E3 FB 78 */	mr r3, r31
-/* 8000B49C 000083DC  48 2C 32 91 */	bl getFreeSize__7JKRHeapFv
+/* 8000B49C 000083DC  48 2C 32 91 */	bl getFreeSize__7JKRHeapCFv
 /* 8000B4A0 000083E0  7C 64 1B 78 */	mr r4, r3
 /* 8000B4A4 000083E4  93 81 00 08 */	stw r28, 8(r1)
 /* 8000B4A8 000083E8  93 A1 00 0C */	stw r29, 0xc(r1)
@@ -947,7 +947,7 @@ lbl_8000BED4:
 /* 8000BED4 00008E14  3C 60 80 01 */	lis r3, myMemoryErrorRoutine@ha
 .global myMemoryErrorRoutine
 /* 8000BED8 00008E18  38 63 B3 EC */	addi r3, r3, myMemoryErrorRoutine@l
-/* 8000BEDC 00008E1C  48 2C 2C AD */	bl setErrorHandler__7JKRHeapFPFPvUli_v
+/* 8000BEDC 00008E1C  48 2C 2C AD */	bl setErrorHandler__7JKRHeapFPFP7JKRHeapUli_v
 /* 8000BEE0 00008E20  80 6D 8D F8 */	lwz r3, lbl_80451378-_SDA_BASE_(r13)
 /* 8000BEE4 00008E24  38 80 00 01 */	li r4, 1
 /* 8000BEE8 00008E28  48 2C 2C 91 */	bl setErrorFlag__7JKRHeapFb
@@ -999,7 +999,7 @@ lbl_8000BED4:
 /* 8000BFA0 00008EE0  4B FF FD 59 */	bl my_SysPrintHeap
 /* 8000BFA4 00008EE4  83 ED 8D F0 */	lwz r31, lbl_80451370-_SDA_BASE_(r13)
 /* 8000BFA8 00008EE8  7F E3 FB 78 */	mr r3, r31
-/* 8000BFAC 00008EEC  48 2C 27 81 */	bl getFreeSize__7JKRHeapFv
+/* 8000BFAC 00008EEC  48 2C 27 81 */	bl getFreeSize__7JKRHeapCFv
 /* 8000BFB0 00008EF0  3F C3 FF FF */	addis r30, r3, 0xffff
 /* 8000BFB4 00008EF4  7F C3 F3 78 */	mr r3, r30
 /* 8000BFB8 00008EF8  7F E4 FB 78 */	mr r4, r31
@@ -1051,11 +1051,11 @@ lbl_8000C020:
 /* 8000C05C 00008F9C  38 63 B9 5C */	addi r3, r3, fault_callback_scroll@l
 /* 8000C060 00008FA0  48 2D 7A 9D */	bl JUTException_NS_setPostUserCallback
 /* 8000C064 00008FA4  48 00 2D 1D */	bl mDoExt_getZeldaHeap
-/* 8000C068 00008FA8  48 25 71 B9 */	bl cMl_NS_init
+/* 8000C068 00008FA8  48 25 71 B9 */	bl init__3cMlFP7JKRHeap
 /* 8000C06C 00008FAC  38 60 00 64 */	li r3, 0x64
 /* 8000C070 00008FB0  38 80 00 64 */	li r4, 0x64
 /* 8000C074 00008FB4  38 A0 00 64 */	li r5, 0x64
-/* 8000C078 00008FB8  48 25 B7 E5 */	bl cM_initRnd
+/* 8000C078 00008FB8  48 25 B7 E5 */	bl cM_initRnd__Fiii
 /* 8000C07C 00008FBC  38 00 40 00 */	li r0, 0x4000
 /* 8000C080 00008FC0  90 0D 83 4C */	stw r0, lbl_804508CC-_SDA_BASE_(r13)
 /* 8000C084 00008FC4  90 0D 83 54 */	stw r0, lbl_804508D4-_SDA_BASE_(r13)
