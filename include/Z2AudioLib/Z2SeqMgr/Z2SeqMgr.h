@@ -3,6 +3,7 @@
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
+#include "Z2AudioLib/Z2Param/Z2Param.h"
 #include "global.h"
 
 struct Z2SeqMgr {
@@ -65,6 +66,7 @@ void JAIStreamMgr_NS_stop_X1_(void);
 void JAISeqMgr_NS_stop_X1_(void);
 void bgmStart__8Z2SeqMgrFUlUll(u32, u32, s32);
 void bgmStop__8Z2SeqMgrFUll(u32, s32);
+void bgmStreamCheckReady__8Z2SeqMgrFv(void);
 void JAISoundHandle_NS_releaseSound(void);
 void Z2SeqMgr_NS_subBgmStop(void);
 void subBgmStop__8Z2SeqMgrFv(void);
@@ -78,7 +80,7 @@ void bgmStreamStop__8Z2SeqMgrFUl(u32);
 void subBgmStart__8Z2SeqMgrFUl(u32);
 void Z2SeqMgr_NS_setChildTrackVolume(void);
 void changeBgmStatus__8Z2SeqMgrFl(s32);
-void changeSubBgmStatus__8Z2SeqMgrFl(s32);
+// void changeSubBgmStatus__8Z2SeqMgrFl(s32);
 void JAISeqMgr_NS_mixOut(void);
 void JAISeqMgr_NS_calc(void);
 }
@@ -90,9 +92,7 @@ extern u32 lbl_803CA308;
 extern u32 lbl_80450860;
 extern u8 lbl_80450861;
 extern u8 lbl_80450862;
-extern float lbl_804507F4;  // SONIC_SPEED
-extern float lbl_80450818;  // VOL_BGM_TALKING
-extern float lbl_8045083C;  // VOL_BGM_PAUSING
+
 extern float lbl_80455998;
 extern float lbl_8045599C;
 extern float lbl_804559A0;

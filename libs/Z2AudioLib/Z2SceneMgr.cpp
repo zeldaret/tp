@@ -1,7 +1,11 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+
+extern u8 lbl_803CA9BC;
+extern u8 lbl_80450863;
 
 // Missing 2 instructions (beginning and end)
 #ifdef NONMATCHING
@@ -108,8 +112,6 @@ extern float lbl_80455A5C;
 extern u32 lbl_80450860;
 extern float lbl_80455A60;
 extern float lbl_80455A64;
-extern void* lbl_80450B58;  // JAUSoundTable sInstance
-extern void* lbl_80450B3C;  // Z2EnvSeMgr sInstance
 
 asm void Z2SceneMgr::setSceneName(char* stageName, long roomNum, long layerNum){nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B6AF8.s"
@@ -130,3 +132,195 @@ asm void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B9968.s"
 }
 #endif
+
+extern "C" {
+// isActive__12JAIStreamMgrCFv
+// JAIStreamMgr::isActive(void) const
+asm void JAIStreamMgr_NS_isActive(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9978.s"
+}
+
+// getID__8JAISoundCFv
+// JAISound::getID(void) const
+asm void JAISound_NS_getID(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9988.s"
+}
+
+// getFirst__19JSUList<9JAIStream>CFv
+// JSUList<9JAIStream>::getFirst(void) const
+asm void JSUList_X1_(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9994.s"
+}
+
+// dComIfGs_getStartPoint__Fv
+// dComIfGs_getStartPoint(void)
+asm void dComIfGs_getStartPoint(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B999C.s"
+}
+
+// unMuteSceneBgm__8Z2SeqMgrFUl
+// Z2SeqMgr::unMuteSceneBgm(unsigned long)
+asm void Z2SeqMgr_NS_unMuteSceneBgm(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B99AC.s"
+}
+
+// muteSceneBgm__8Z2SeqMgrFUlf
+// Z2SeqMgr::muteSceneBgm(unsigned long, float)
+asm void Z2SeqMgr_NS_muteSceneBgm(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9A24.s"
+}
+
+// __as__10JAISoundIDFRC10JAISoundID
+// JAISoundID::operator=(const JAISoundID&)
+asm void JAISoundID_NS___as(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9A88.s"
+}
+
+// dComIfGs_isSaveSwitch__Fi
+// dComIfGs_isSaveSwitch(int)
+asm void dComIfGs_isSaveSwitch(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9A94.s"
+}
+
+// resetCrowdSize__7Z2SeMgrFv
+// Z2SeMgr::resetCrowdSize(void)
+asm void Z2SeMgr_NS_resetCrowdSize(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9AC4.s"
+}
+
+// setTwilightGateVol__8Z2SeqMgrFf
+// Z2SeqMgr::setTwilightGateVol(float)
+asm void Z2SeqMgr_NS_setTwilightGateVol(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9AD0.s"
+}
+
+// setWindStoneVol__8Z2SeqMgrFfUl
+// Z2SeqMgr::setWindStoneVol(float, unsigned long)
+asm void Z2SeqMgr_NS_setWindStoneVol(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9AFC.s"
+}
+
+// __ct__10JAISoundIDFUl
+// JAISoundID::JAISoundID(unsigned long)
+asm void JAISoundID_X1_(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9B60.s"
+}
+
+// sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb
+// Z2SceneMgr::sceneChange(JAISoundID, unsigned char, unsigned char, unsigned char, unsigned char,
+// unsigned char, bool)
+asm void Z2SceneMgr_NS_sceneChange(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9B68.s"
+}
+
+// framework__10Z2SceneMgrFv
+// Z2SceneMgr::framework(void)
+asm void Z2SceneMgr_NS_framework(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9C50.s"
+}
+
+// load1stDynamicWave__10Z2SceneMgrFv
+// Z2SceneMgr::load1stDynamicWave(void)
+asm void Z2SceneMgr_NS_load1stDynamicWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9D40.s"
+}
+
+// _load1stWaveInner_1__10Z2SceneMgrFv
+// Z2SceneMgr::_load1stWaveInner_1(void)
+asm void Z2SceneMgr_NS__load1stWaveInner_1(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9D98.s"
+}
+
+// _load1stWaveInner_2__10Z2SceneMgrFv
+// Z2SceneMgr::_load1stWaveInner_2(void)
+asm void Z2SceneMgr_NS__load1stWaveInner_2(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802B9FC8.s"
+}
+
+// check1stDynamicWave__10Z2SceneMgrFv
+// Z2SceneMgr::check1stDynamicWave(void)
+asm void Z2SceneMgr_NS_check1stDynamicWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA09C.s"
+}
+
+// load2ndDynamicWave__10Z2SceneMgrFv
+// Z2SceneMgr::load2ndDynamicWave(void)
+asm void Z2SceneMgr_NS_load2ndDynamicWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA120.s"
+}
+
+// sceneBgmStart__10Z2SceneMgrFv
+// Z2SceneMgr::sceneBgmStart(void)
+asm void Z2SceneMgr_NS_sceneBgmStart(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA294.s"
+}
+
+// loadStaticWaves__10Z2SceneMgrFv
+// Z2SceneMgr::loadStaticWaves(void)
+asm void Z2SceneMgr_NS_loadStaticWaves(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA56C.s"
+}
+
+// checkFirstWaves__10Z2SceneMgrFv
+// Z2SceneMgr::checkFirstWaves(void)
+asm void Z2SceneMgr_NS_checkFirstWaves(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA5C0.s"
+}
+
+// eraseSeWave__10Z2SceneMgrFUl
+// Z2SceneMgr::eraseSeWave(unsigned long)
+asm void Z2SceneMgr_NS_eraseSeWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA5C8.s"
+}
+
+// eraseBgmWave__10Z2SceneMgrFUl
+// Z2SceneMgr::eraseBgmWave(unsigned long)
+asm void Z2SceneMgr_NS_eraseBgmWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA630.s"
+}
+
+// getWaveLoadStatus__10Z2SceneMgrFUlUl
+// Z2SceneMgr::getWaveLoadStatus(unsigned long, unsigned long)
+asm void Z2SceneMgr_NS_getWaveLoadStatus(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA698.s"
+}
+
+// loadSeWave__10Z2SceneMgrFUl
+// Z2SceneMgr::loadSeWave(unsigned long)
+asm void Z2SceneMgr_NS_loadSeWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA704.s"
+}
+
+// loadBgmWave__10Z2SceneMgrFUl
+// Z2SceneMgr::loadBgmWave(unsigned long)
+asm void Z2SceneMgr_NS_loadBgmWave(void) {
+    nofralloc
+#include "Z2AudioLib/Z2SceneMgr/asm/func_802BA770.s"
+}
+};

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2f6c
 
 
-.global JAISoundStarter
-JAISoundStarter:
+.global JAISoundStarter_NS_ctor
+JAISoundStarter_NS_ctor:
 /* 802A2F6C 0029FEAC  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A2F70 0029FEB0  41 82 00 08 */	beq lbl_802A2F78
 /* 802A2F74 0029FEB4  90 6D 85 F8 */	stw r3, lbl_80450B78-_SDA_BASE_(r13)
