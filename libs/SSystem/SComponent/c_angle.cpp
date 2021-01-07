@@ -152,7 +152,7 @@ cSAngle cSAngle::operator*(float f1) const {
     return cSAngle((s16)(angle * f1));
 }
 #else
-asm cSAngle cSAngle::operator*(float)const {
+asm cSAngle cSAngle::operator*(float) const {
     nofralloc
 #include "SComponent/c_angle/asm/func_80271264.s"
 }
