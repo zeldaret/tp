@@ -154,11 +154,11 @@ void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-void memcpy(void*, void*, int);
+void memcpy(void*, const void*, int);
 int tolower(int);
-void func_803688DC(void);
-void func_80368ABC(void);
-void func_80368BE4(void);
+char* strrchr(char*, int);
+char* strcat(char*, const char*);
+u32 strlen(const char*);
 void JKRArchive_NS_getDirEntry(void);
 void func_80361C24(void);
 void JKRArchive_NS_findDirectory(void);
@@ -366,14 +366,8 @@ void JUTConsole_NS_clear(void);
 void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
 void JUTWarningConsole_f(void);
-
 void func_80361C24(void);
-
-void func_803688DC(void);
-void func_80368ABC(void);
-void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
-
 void func_80361C24(void);
 
 // void JKRAramArchive(void);
