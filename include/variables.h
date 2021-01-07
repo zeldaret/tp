@@ -133,7 +133,7 @@ extern u8 lbl_80455CA0[8];
 extern u8 lbl_80455CA8[8];
 extern u8 lbl_80455CB0[8];
 extern u8 lbl_80455CB8[8];
-extern u32 lbl_80450AE0;
+extern f32 lbl_80450AE0[4];
 
 // func_802C3A6C
 extern u32 lbl_80455CC0;
