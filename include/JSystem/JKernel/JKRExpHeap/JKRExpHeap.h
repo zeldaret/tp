@@ -15,20 +15,13 @@ public:
         void getHeapBlock(void*);
 
         void newGroupId(u8 groupId) { this->mGroupId = groupId; }
-
-        bool isValid() { return this->mMagic == 0x484d; }
-
-        bool _isTempMemBlock() { return (this->mFlags & 0x80) ? true : false; }
-
+        bool isValid() const { return this->mMagic == 0x484d; }
+        bool _isTempMemBlock() const { return (this->mFlags & 0x80) ? true : false; }
         int getAlignment() const { return this->mFlags & 0x7f; }
-
-        void* getContent() { return (void*)(this + 1); }
-
-        CMemBlock* getPrevBlock() { return this->mPrev; }
-
-        CMemBlock* getNextBlock() { return this->mNext; }
-
-        u32 getSize() { return this->size; }
+        void* getContent() const { return (void*)(this + 1); }
+        CMemBlock* getPrevBlock() const { return this->mPrev; }
+        CMemBlock* getNextBlock() const { return this->mNext; }
+        u32 getSize() const { return this->size; }
 
     private:
         u16 mMagic;
@@ -57,10 +50,10 @@ protected:
 public:
     s32 getUsedSize(u8) const;
     s32 getTotalUsedSize(void) const;
-    CMemBlock* getHeadUsedList() { return mHeadUsedList; }
+    CMemBlock* getHeadUsedList() const { return mHeadUsedList; }
 
 public:
-    /* vt[04] */ virtual u32 getHeapType();                                /* override */
+    /* vt[04] */ virtual u32 getHeapType() const;                          /* override */
     /* vt[05] */ virtual bool check();                                     /* override */
     /* vt[06] */ virtual bool dump_sort();                                 /* override */
     /* vt[07] */ virtual bool dump();                                      /* override */
@@ -71,12 +64,12 @@ public:
     /* vt[12] */ virtual void do_freeTail();                               /* override */
     /* vt[13] */ virtual void do_fillFreeArea();                           /* override */
     /* vt[14] */ virtual s32 do_resize(void* ptr, u32 size);               /* override */
-    /* vt[15] */ virtual s32 do_getSize(void* ptr);                        /* override */
-    /* vt[16] */ virtual s32 do_getFreeSize();                             /* override */
-    /* vt[17] */ virtual void* do_getMaxFreeBlock();                       /* override */
-    /* vt[18] */ virtual s32 do_getTotalFreeSize();                        /* override */
+    /* vt[15] */ virtual s32 do_getSize(void* ptr) const;                  /* override */
+    /* vt[16] */ virtual s32 do_getFreeSize() const;                       /* override */
+    /* vt[17] */ virtual void* do_getMaxFreeBlock() const;                 /* override */
+    /* vt[18] */ virtual s32 do_getTotalFreeSize() const;                  /* override */
     /* vt[19] */ virtual u8 do_changeGroupID(u8 newGroupID);               /* override */
-    /* vt[20] */ virtual u8 do_getCurrentGroupId();                        /* override */
+    /* vt[20] */ virtual u8 do_getCurrentGroupId() const;                  /* override */
     /* vt[21] */ virtual void state_register(JKRHeap::TState*, u32) const; /* override */
     /* vt[22] */ virtual bool state_compare(JKRHeap::TState const&,
                                             JKRHeap::TState const&) const; /* override */

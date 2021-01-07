@@ -13,7 +13,7 @@
 /* 800FD078 000F9FB8  4B F7 77 79 */ bl cBgS_NS_GetTriPnt
 /* 800FD07C 000F9FBC  38 7F 1E 1C */ addi r3, r31, 0x1e1c
 /* 800FD080 000F9FC0  38 9F 1B 5C */ addi r4, r31, 0x1b5c
-/* 800FD084 000F9FC4  48 16 B0 C5 */ bl cBgS_PolyInfo_NS_SetPolyInfo
+/* 800FD084 000F9FC4  48 16 B0 C5 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 800FD088 000F9FC8  C0 41 00 24 */ lfs f2, 0x24(r1)
 /* 800FD08C 000F9FCC  C0 01 00 18 */ lfs f0, 0x18(r1)
 /* 800FD090 000F9FD0  EC 02 00 28 */ fsubs f0, f2, f0

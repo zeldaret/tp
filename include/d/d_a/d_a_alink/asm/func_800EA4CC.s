@@ -52,7 +52,7 @@ lbl_800EA564:
 lbl_800EA584:
 /* 800EA584 000E74C4  A8 7F 2F E2 */ lha r3, 0x2fe2(r31)
 /* 800EA588 000E74C8  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
-/* 800EA58C 000E74CC  48 18 68 99 */ bl cLib_distanceAngleS
+/* 800EA58C 000E74CC  48 18 68 99 */ bl cLib_distanceAngleS__Fss
 /* 800EA590 000E74D0  7C 7E 1B 78 */ mr r30, r3
 /* 800EA594 000E74D4  80 7F 27 E0 */ lwz r3, 0x27e0(r31)
 /* 800EA598 000E74D8  4B F8 62 E9 */ bl dAttention_c_NS_getActionBtnB

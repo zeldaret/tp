@@ -28,8 +28,8 @@ void JKRAssertHeap::do_destroy(void) {
     this->~JKRAssertHeap();
 }
 
-u32 JKRAssertHeap::getHeapType(void) {
-    return 0x41535448;  // FOURCC("ASTH")
+u32 JKRAssertHeap::getHeapType(void) const {
+    return 'ASTH';
 }
 
 bool JKRAssertHeap::check(void) {
@@ -48,7 +48,7 @@ u8 JKRAssertHeap::do_changeGroupID(u8) {
     return 0;
 }
 
-u8 JKRAssertHeap::do_getCurrentGroupId(void) {
+u8 JKRAssertHeap::do_getCurrentGroupId(void) const {
     return 0;
 }
 
@@ -68,18 +68,18 @@ s32 JKRAssertHeap::do_resize(void*, u32) {
     return 0;
 }
 
-s32 JKRAssertHeap::do_getSize(void*) {
+s32 JKRAssertHeap::do_getSize(void*) const {
     return 0;
 }
 
-s32 JKRAssertHeap::do_getFreeSize(void) {
+s32 JKRAssertHeap::do_getFreeSize(void) const {
     return 0;
 }
 
-void* JKRAssertHeap::do_getMaxFreeBlock(void) {
+void* JKRAssertHeap::do_getMaxFreeBlock(void) const {
     return NULL;
 }
 
-s32 JKRAssertHeap::do_getTotalFreeSize(void) {
+s32 JKRAssertHeap::do_getTotalFreeSize(void) const {
     return 0;
 }

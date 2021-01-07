@@ -14,7 +14,7 @@
 /* 8013548C 001323CC  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 80135490 001323D0  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 80135494 001323D4  38 81 00 08 */ addi r4, r1, 8
-/* 80135498 001323D8  48 13 28 91 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 80135498 001323D8  48 13 28 91 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8013549C 001323DC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801354A0 001323E0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801354A4 001323E4  38 63 0F 38 */ addi r3, r3, 0xf38

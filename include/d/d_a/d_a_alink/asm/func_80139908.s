@@ -32,7 +32,7 @@ lbl_80139970:
 /* 80139978 001368B8  3C 80 80 39 */ lis r4, lbl_8038EF28@ha
 /* 8013997C 001368BC  38 84 EF 28 */ addi r4, r4, lbl_8038EF28@l
 /* 80139980 001368C0  C0 44 00 10 */ lfs f2, 0x10(r4)
-/* 80139984 001368C4  48 13 6D BD */ bl cLib_chaseF
+/* 80139984 001368C4  48 13 6D BD */ bl cLib_chaseF__FPfff
 /* 80139988 001368C8  7F E3 FB 78 */ mr r3, r31
 /* 8013998C 001368CC  38 80 00 00 */ li r4, 0
 /* 80139990 001368D0  4B F7 9D A5 */ bl daAlink_c_NS_setShapeAngleToAtnActor

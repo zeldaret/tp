@@ -9,7 +9,7 @@
 /* 800C7718 000C4658  3C 80 80 39 */ lis r4, lbl_8038D6BC@ha
 /* 800C771C 000C465C  38 84 D6 BC */ addi r4, r4, lbl_8038D6BC@l
 /* 800C7720 000C4660  C0 44 00 38 */ lfs f2, 0x38(r4)
-/* 800C7724 000C4664  48 1A 90 1D */ bl cLib_chaseF
+/* 800C7724 000C4664  48 1A 90 1D */ bl cLib_chaseF__FPfff
 /* 800C7728 000C4668  7F A3 EB 78 */ mr r3, r29
 /* 800C772C 000C466C  4B FE BD D5 */ bl daAlink_c_NS_checkAttentionState
 /* 800C7730 000C4670  54 60 06 3F */ clrlwi. r0, r3, 0x18
