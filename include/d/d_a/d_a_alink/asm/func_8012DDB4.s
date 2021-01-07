@@ -18,7 +18,7 @@ lbl_8012DDF0:
 /* 8012DDF4 0012AD34  38 84 EF 28 */ addi r4, r4, lbl_8038EF28@l
 /* 8012DDF8 0012AD38  C0 44 00 10 */ lfs f2, 0x10(r4)
 lbl_8012DDFC:
-/* 8012DDFC 0012AD3C  48 14 29 45 */ bl cLib_chaseF
+/* 8012DDFC 0012AD3C  48 14 29 45 */ bl cLib_chaseF__FPfff
 /* 8012DE00 0012AD40  7F C3 F3 78 */ mr r3, r30
 /* 8012DE04 0012AD44  4B FF BC 7D */ bl daAlink_c_NS_checkWolfGroundSpecialMode
 /* 8012DE08 0012AD48  2C 03 00 00 */ cmpwi r3, 0
@@ -31,7 +31,7 @@ lbl_8012DE18:
 /* 8012DE20 0012AD60  38 A0 00 1E */ li r5, 0x1e
 /* 8012DE24 0012AD64  38 C0 3C DF */ li r6, 0x3cdf
 /* 8012DE28 0012AD68  38 E0 1F 40 */ li r7, 0x1f40
-/* 8012DE2C 0012AD6C  48 14 27 15 */ bl cLib_addCalcAngleS
+/* 8012DE2C 0012AD6C  48 14 27 15 */ bl cLib_addCalcAngleS__FPsssss
 /* 8012DE30 0012AD70  7C 7F 1B 78 */ mr r31, r3
 /* 8012DE34 0012AD74  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8012DE38 0012AD78  B0 1E 04 DE */ sth r0, 0x4de(r30)

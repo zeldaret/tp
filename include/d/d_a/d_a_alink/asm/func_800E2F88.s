@@ -27,7 +27,7 @@
 /* 800E2FF0 000DFF30  D0 01 00 1C */ stfs f0, 0x1c(r1)
 /* 800E2FF4 000DFF34  38 61 00 08 */ addi r3, r1, 8
 /* 800E2FF8 000DFF38  38 81 00 14 */ addi r4, r1, 0x14
-/* 800E2FFC 000DFF3C  48 18 3F 4D */ bl cXyz_NS_normalizeZP
+/* 800E2FFC 000DFF3C  48 18 3F 4D */ bl normalizeZP__4cXyzFv
 /* 800E3000 000DFF40  38 7F 36 A8 */ addi r3, r31, 0x36a8
 /* 800E3004 000DFF44  38 81 00 14 */ addi r4, r1, 0x14
 /* 800E3008 000DFF48  48 26 41 8D */ bl PSVECDotProduct

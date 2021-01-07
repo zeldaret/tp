@@ -18,8 +18,6 @@ extern s32 lbl_80450D00;  // f_pc_base::g_fpcBs_type
 
 extern "C" {
 
-extern void cMl_NS_free(void* pPtr);
-extern void* cMl_NS_memalignB(s32 pAlign, s32 pSize);
 extern void sBs_ClearArea(void* pPtr, s32 pSize);
 
 BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2) {
@@ -56,7 +54,7 @@ s32 fpcBs_Execute(base_process_class* pProc) {
 
 void fpcBs_DeleteAppend(base_process_class* pProc) {
     if (pProc->mpUserData != NULL) {
-        cMl_NS_free(pProc->mpUserData);
+        free__3cMlFPv(pProc->mpUserData);
         pProc->mpUserData = NULL;
     }
 }
@@ -75,7 +73,7 @@ s32 fpcBs_Delete(base_process_class* pProc) {
     if (deleteResult == 1) {
         fpcBs_DeleteAppend(pProc);
         pProc->mBsType = 0;
-        cMl_NS_free(pProc);
+        free__3cMlFPv(pProc);
     }
     return deleteResult;
 }
@@ -87,7 +85,7 @@ base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData) {
 
     procProfDef = fpcPf_Get(pProcTypeID);
     size = procProfDef->mSize + procProfDef->mSizeOther;
-    procClass = (base_process_class*)cMl_NS_memalignB(-4, size);
+    procClass = (base_process_class*)memalignB__3cMlFiUl(-4, size);
     if (procClass == NULL) {
         return NULL;
     } else {

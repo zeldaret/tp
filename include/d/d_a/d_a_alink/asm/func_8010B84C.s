@@ -7,7 +7,7 @@
 /* 8010B864 001087A4  7C 7F 1B 78 */ mr r31, r3
 /* 8010B868 001087A8  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 8010B86C 001087AC  38 9F 38 34 */ addi r4, r31, 0x3834
-/* 8010B870 001087B0  48 15 C4 B9 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8010B870 001087B0  48 15 C4 B9 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8010B874 001087B4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010B878 001087B8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010B87C 001087BC  38 63 0F 38 */ addi r3, r3, 0xf38

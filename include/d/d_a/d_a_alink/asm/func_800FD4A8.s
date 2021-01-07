@@ -72,7 +72,7 @@ lbl_800FD5A0:
 lbl_800FD5BC:
 /* 800FD5BC 000FA4FC  38 7E 1E 1C */ addi r3, r30, 0x1e1c
 /* 800FD5C0 000FA500  38 9E 1B 5C */ addi r4, r30, 0x1b5c
-/* 800FD5C4 000FA504  48 16 AB 85 */ bl cBgS_PolyInfo_NS_SetPolyInfo
+/* 800FD5C4 000FA504  48 16 AB 85 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 800FD5C8 000FA508  38 60 00 00 */ li r3, 0
 lbl_800FD5CC:
 /* 800FD5CC 000FA50C  83 E1 00 1C */ lwz r31, 0x1c(r1)
