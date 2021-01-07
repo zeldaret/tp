@@ -30,8 +30,8 @@ lbl_802D8828:
 /* 802D883C 002D577C  80 03 00 04 */	lwz r0, 4(r3)
 /* 802D8840 002D5780  7C 04 02 14 */	add r0, r4, r0
 /* 802D8844 002D5784  90 1D 00 28 */	stw r0, 0x28(r29)
-/* 802D8848 002D5788  3C 60 80 43 */	lis r3, lbl_80434354@ha
-/* 802D884C 002D578C  38 63 43 54 */	addi r3, r3, lbl_80434354@l
+/* 802D8848 002D5788  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
+/* 802D884C 002D578C  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
 /* 802D8850 002D5790  38 9D 00 18 */	addi r4, r29, 0x18
 /* 802D8854 002D5794  48 00 37 9D */	bl prepend__10JSUPtrListFP10JSUPtrLink
 /* 802D8858 002D5798  38 00 00 01 */	li r0, 1

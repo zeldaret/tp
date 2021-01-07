@@ -215,7 +215,7 @@ class JKRFileLoader;
 extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
 extern char lbl_8039D158[16];                // "/"
 extern u8 lbl_803CC238;                      // JKRFileCache::__vt
-extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
+extern JSUList<JKRFileLoader> sVolumeList__13JKRFileLoader;  // JKRFileLoader::sVolumeList
 extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
 extern u8 lbl_803CC228;                      // JKRFileFinder::__vt
 extern u8 lbl_803CC208;                      // JKRDvdFinder::__vt

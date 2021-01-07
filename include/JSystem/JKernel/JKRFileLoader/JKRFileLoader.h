@@ -6,7 +6,6 @@
 
 class JKRFileLoader;
 extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
-extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
 
 class JKRFileFinder;
 class JKRFileLoader : public JKRDisposer {
@@ -51,7 +50,9 @@ public:
 
     static JKRFileLoader* getCurrentVolume() { return lbl_80451418; }
     static void setCurrentVolume(JKRFileLoader* fileLoader) { lbl_80451418 = fileLoader; }
-    static JSUList<JKRFileLoader>& getVolumeList() { return lbl_80434354; }
+    static JSUList<JKRFileLoader>& getVolumeList() { return sVolumeList; }
+
+    static JSUList<JKRFileLoader> sVolumeList;
 };
 
 #endif

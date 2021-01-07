@@ -33,8 +33,8 @@ lbl_802D4CD4:
 /* 802D4CE0 002D1C20  80 6D 8D F0 */	lwz r3, lbl_80451370-_SDA_BASE_(r13)
 /* 802D4CE4 002D1C24  4B FF 98 65 */	bl free__7JKRHeapFPv
 lbl_802D4CE8:
-/* 802D4CE8 002D1C28  3C 60 80 43 */	lis r3, lbl_80434354@ha
-/* 802D4CEC 002D1C2C  38 63 43 54 */	addi r3, r3, lbl_80434354@l
+/* 802D4CE8 002D1C28  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
+/* 802D4CEC 002D1C2C  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
 /* 802D4CF0 002D1C30  38 9E 00 18 */	addi r4, r30, 0x18
 /* 802D4CF4 002D1C34  48 00 74 69 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D4CF8 002D1C38  34 1E 00 3C */	addic. r0, r30, 0x3c

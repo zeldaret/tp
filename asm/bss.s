@@ -839,8 +839,8 @@ lbl_80434330:
 .global lbl_80434348
 lbl_80434348:
 	.skip 0xC
-.global lbl_80434354
-lbl_80434354:
+.global sVolumeList__13JKRFileLoader
+sVolumeList__13JKRFileLoader:
 	.skip 0xC
 .global lbl_80434360
 lbl_80434360:
