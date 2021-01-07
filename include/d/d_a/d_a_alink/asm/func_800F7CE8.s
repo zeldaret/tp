@@ -13,7 +13,7 @@
 /* 800F7D18 000F4C58  80 63 5D 74 */ lwz r3, 0x5d74(r3)
 /* 800F7D1C 000F4C5C  A8 63 02 32 */ lha r3, 0x232(r3)
 /* 800F7D20 000F4C60  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
-/* 800F7D24 000F4C64  48 17 91 01 */ bl cLib_distanceAngleS
+/* 800F7D24 000F4C64  48 17 91 01 */ bl cLib_distanceAngleS__Fss
 /* 800F7D28 000F4C68  38 00 40 00 */ li r0, 0x4000
 /* 800F7D2C 000F4C6C  7C 60 02 78 */ xor r0, r3, r0
 /* 800F7D30 000F4C70  7C 04 0E 70 */ srawi r4, r0, 1

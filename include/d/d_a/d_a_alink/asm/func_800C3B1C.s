@@ -9,7 +9,7 @@
 /* 800C3B3C 000C0A7C  3C 80 80 39 */ lis r4, lbl_8038D6BC@ha
 /* 800C3B40 000C0A80  38 84 D6 BC */ addi r4, r4, lbl_8038D6BC@l
 /* 800C3B44 000C0A84  C0 44 00 38 */ lfs f2, 0x38(r4)
-/* 800C3B48 000C0A88  48 1A CB F9 */ bl cLib_chaseF
+/* 800C3B48 000C0A88  48 1A CB F9 */ bl cLib_chaseF__FPfff
 /* 800C3B4C 000C0A8C  7F C3 F3 78 */ mr r3, r30
 /* 800C3B50 000C0A90  4B FF 64 01 */ bl daAlink_c_NS_checkGroundSpecialMode
 /* 800C3B54 000C0A94  2C 03 00 00 */ cmpwi r3, 0
@@ -29,7 +29,7 @@ lbl_800C3B7C:
 /* 800C3B84 000C0AC4  38 A0 00 1E */ li r5, 0x1e
 /* 800C3B88 000C0AC8  38 C0 3C DF */ li r6, 0x3cdf
 /* 800C3B8C 000C0ACC  38 E0 1F 40 */ li r7, 0x1f40
-/* 800C3B90 000C0AD0  48 1A C9 B1 */ bl cLib_addCalcAngleS
+/* 800C3B90 000C0AD0  48 1A C9 B1 */ bl cLib_addCalcAngleS__FPsssss
 /* 800C3B94 000C0AD4  7C 7F 1B 78 */ mr r31, r3
 /* 800C3B98 000C0AD8  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 800C3B9C 000C0ADC  B0 1E 04 DE */ sth r0, 0x4de(r30)

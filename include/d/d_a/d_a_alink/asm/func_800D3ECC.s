@@ -87,7 +87,7 @@ lbl_800D3FFC:
 /* 800D4008 000D0F48  7F C3 F3 78 */ mr r3, r30
 /* 800D400C 000D0F4C  4B FD F6 25 */ bl daAlink_c_NS_getShapeAngleYAtnActor
 /* 800D4010 000D0F50  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
-/* 800D4014 000D0F54  48 19 CE 11 */ bl cLib_distanceAngleS
+/* 800D4014 000D0F54  48 19 CE 11 */ bl cLib_distanceAngleS__Fss
 /* 800D4018 000D0F58  2C 03 08 00 */ cmpwi r3, 0x800
 /* 800D401C 000D0F5C  40 80 00 0C */ bge lbl_800D4028
 /* 800D4020 000D0F60  38 00 00 01 */ li r0, 1

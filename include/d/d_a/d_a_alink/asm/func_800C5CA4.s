@@ -8,7 +8,7 @@
 /* 800C5CC0 000C2C00  3C 80 80 39 */ lis r4, lbl_8038D6BC@ha
 /* 800C5CC4 000C2C04  38 84 D6 BC */ addi r4, r4, lbl_8038D6BC@l
 /* 800C5CC8 000C2C08  C0 44 00 44 */ lfs f2, 0x44(r4)
-/* 800C5CCC 000C2C0C  48 1A AA 75 */ bl cLib_chaseF
+/* 800C5CCC 000C2C0C  48 1A AA 75 */ bl cLib_chaseF__FPfff
 /* 800C5CD0 000C2C10  7F E3 FB 78 */ mr r3, r31
 /* 800C5CD4 000C2C14  4B FE DC 31 */ bl daAlink_c_NS_checkZeroSpeedF
 /* 800C5CD8 000C2C18  54 60 06 3F */ clrlwi. r0, r3, 0x18

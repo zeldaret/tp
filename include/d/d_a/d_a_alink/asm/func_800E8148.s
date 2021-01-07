@@ -63,7 +63,7 @@ lbl_800E8218:
 /* 800E8238 000E5178  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 800E823C 000E517C  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 800E8240 000E5180  38 81 00 08 */ addi r4, r1, 8
-/* 800E8244 000E5184  48 17 FA E5 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800E8244 000E5184  48 17 FA E5 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800E8248 000E5188  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E824C 000E518C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8250 000E5190  38 63 0F 38 */ addi r3, r3, 0xf38

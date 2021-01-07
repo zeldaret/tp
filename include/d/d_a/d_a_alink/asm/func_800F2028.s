@@ -24,7 +24,7 @@ lbl_800F2058:
 /* 800F2080 000EEFC0  EC 00 08 28 */ fsubs f0, f0, f1
 /* 800F2084 000EEFC4  EC 02 00 28 */ fsubs f0, f2, f0
 /* 800F2088 000EEFC8  EC 23 00 32 */ fmuls f1, f3, f0
-/* 800F208C 000EEFCC  48 17 55 59 */ bl cM_rad2s
+/* 800F208C 000EEFCC  48 17 55 59 */ bl cM_rad2s__Ff
 /* 800F2090 000EEFD0  54 60 04 38 */ rlwinm r0, r3, 0, 0x10, 0x1c
 /* 800F2094 000EEFD4  3C 60 80 44 */ lis r3, lbl_80439A20@ha
 /* 800F2098 000EEFD8  38 63 9A 20 */ addi r3, r3, lbl_80439A20@l

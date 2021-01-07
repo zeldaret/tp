@@ -105,7 +105,7 @@ lbl_800CEA0C:
 /* 800CEA30 000CB970  38 A0 00 05 */ li r5, 5
 /* 800CEA34 000CB974  38 C0 10 00 */ li r6, 0x1000
 /* 800CEA38 000CB978  38 E0 04 00 */ li r7, 0x400
-/* 800CEA3C 000CB97C  48 1A 1B 05 */ bl cLib_addCalcAngleS
+/* 800CEA3C 000CB97C  48 1A 1B 05 */ bl cLib_addCalcAngleS__FPsssss
 lbl_800CEA40:
 /* 800CEA40 000CB980  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800CEA44 000CB984  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

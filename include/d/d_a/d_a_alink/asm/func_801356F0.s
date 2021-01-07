@@ -166,7 +166,7 @@ lbl_80135904:
 lbl_80135954:
 /* 80135954 00132894  38 7E 1D 08 */ addi r3, r30, 0x1d08
 /* 80135958 00132898  38 81 00 30 */ addi r4, r1, 0x30
-/* 8013595C 0013289C  48 13 23 CD */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8013595C 0013289C  48 13 23 CD */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 80135960 001328A0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80135964 001328A4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80135968 001328A8  3B A3 0F 38 */ addi r29, r3, 0xf38
