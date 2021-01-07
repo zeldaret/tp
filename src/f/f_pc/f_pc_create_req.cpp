@@ -32,7 +32,7 @@ void fpcCtRq_ToCreateQ(create_request* pReq) {
     fpcCtTg_ToCreateQ(&pReq->mBase.mBase);
 }
 
-extern void cMl_NS_free(void* pPtr);
+extern void free__3cMlFPv(void* pPtr);
 
 BOOL fpcCtRq_Delete(create_request* pReq) {
     fpcCtRq_CreateQTo(pReq);
@@ -42,7 +42,7 @@ BOOL fpcCtRq_Delete(create_request* pReq) {
         if (pReq->mpRes) {
             pReq->mpRes->mpCtRq = NULL;
         }
-        cMl_NS_free(pReq);
+        free__3cMlFPv(pReq);
         return 1;
     }
 }
@@ -104,10 +104,8 @@ void fpcCtRq_Handler(void) {
     fpcCtIt_Method((cNdIt_MethodFunc)fpcCtRq_Do, NULL);
 }
 
-extern void* cMl_NS_memalignB(s32, u32);
-
 create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_method_class* pMthd) {
-    create_request* pReq = (create_request*)cMl_NS_memalignB(-4, size);
+    create_request* pReq = (create_request*)memalignB__3cMlFiUl(-4, size);
 
     if (pReq != NULL) {
         fpcCtTg_Init(&pReq->mBase, pReq);

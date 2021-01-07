@@ -263,7 +263,7 @@ lbl_800BAC98:
 /* 800BACD0 000B7C10  EC 00 10 28 */ fsubs f0, f0, f2
 /* 800BACD4 000B7C14  EC 00 20 28 */ fsubs f0, f0, f4
 /* 800BACD8 000B7C18  EC 43 00 24 */ fdivs f2, f3, f0
-/* 800BACDC 000B7C1C  48 1B 5A 65 */ bl cLib_chaseF
+/* 800BACDC 000B7C1C  48 1B 5A 65 */ bl cLib_chaseF__FPfff
 /* 800BACE0 000B7C20  C0 01 00 08 */ lfs f0, 8(r1)
 /* 800BACE4 000B7C24  D0 1D 1F 50 */ stfs f0, 0x1f50(r29)
 lbl_800BACE8:

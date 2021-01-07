@@ -9,7 +9,7 @@
 /* 800C3D58 000C0C98  A8 BF 30 0A */ lha r5, 0x300a(r31)
 /* 800C3D5C 000C0C9C  A8 DF 30 0E */ lha r6, 0x300e(r31)
 /* 800C3D60 000C0CA0  A8 FF 30 10 */ lha r7, 0x3010(r31)
-/* 800C3D64 000C0CA4  48 1A C7 DD */ bl cLib_addCalcAngleS
+/* 800C3D64 000C0CA4  48 1A C7 DD */ bl cLib_addCalcAngleS__FPsssss
 /* 800C3D68 000C0CA8  7F E3 FB 78 */ mr r3, r31
 /* 800C3D6C 000C0CAC  38 80 00 00 */ li r4, 0
 /* 800C3D70 000C0CB0  4B FF 63 61 */ bl daAlink_c_NS_checkNextAction

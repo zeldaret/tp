@@ -239,11 +239,11 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/k/d_k_wmark.o    \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o    \
             $(BUILD_DIR)/asm/DynamicLink.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_malloc.o    \
-            $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o \
-            $(BUILD_DIR)/asm/SComponent/c/API/c_API_graphic.o    \
-            $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_d.o    \
-            $(BUILD_DIR)/asm/SComponent/c/cc/c_cc_s.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_malloc.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_API_graphic.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_cc_d.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_cc_s.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_list.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_list_iter.o   \
@@ -252,30 +252,30 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tree.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tree_iter.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_phase.o   \
-            $(BUILD_DIR)/asm/SComponent/c/c_request.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_request.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
-            $(BUILD_DIR)/asm/SComponent/c/c_xyz.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_sxyz.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_math.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/s/c_bg_s_chk.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/s/gnd/c_bg_s_gnd_chk.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/s/lin/c_bg_s_lin_chk.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/s/shdw/c_bg_s_shdw_draw.o    \
-            $(BUILD_DIR)/asm/SComponent/c/bg/s/poly/c_bg_s_poly_info.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_xyz.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_sxyz.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_math.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_chk.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_gnd_chk.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_lin_chk.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_shdw_draw.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_poly_info.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_w.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_m2d.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_m3d.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_aab.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_cir.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_cps.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_cyl.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_lin.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_pla.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_sph.o    \
-            $(BUILD_DIR)/asm/SComponent/c/m3d/g/c_m3d_g_tri.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_lib.o    \
-            $(BUILD_DIR)/asm/SComponent/c/c_angle.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m2d.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_aab.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_cir.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_cps.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_cyl.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_lin.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_pla.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_sph.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_tri.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_lib.o    \
+            $(BUILD_DIR)/libs/SSystem/SComponent/c_angle.o    \
             $(BUILD_DIR)/asm/SStandard/s/s_basic.o    \
             $(BUILD_DIR)/asm/JFramework/JFWSystem.o    \
             $(BUILD_DIR)/asm/JFramework/JFWDisplay.o    \
@@ -424,7 +424,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gf/GFPixel.o    \
             $(BUILD_DIR)/asm/gf/GFTev.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o    \
@@ -473,7 +472,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JUtility/JUTPalette.o    \
             $(BUILD_DIR)/asm/JUtility/JUTNameTab.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
-            $(BUILD_DIR)/asm/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \

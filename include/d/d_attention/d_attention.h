@@ -1,7 +1,7 @@
 #ifndef __D_ATTENTION_H_
 #define __D_ATTENTION_H_
 
-#include "SComponent/c_angle/c_angle.h"
+#include "SComponent/c_angle.h"
 #include "SComponent/c_xyz/c_xyz.h"
 #include "global.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"

@@ -2,6 +2,7 @@
 # PYTHON_ARGCOMPLETE_OK
 import argparse
 import sys
+from pathlib import Path, PurePath
 from typing import (
     Any,
     Dict,
@@ -1330,9 +1331,12 @@ def chunk_diff(diff: List[OutputLine]) -> List[Union[List[OutputLine], OutputLin
     chunks.append(cur_right)
     return chunks
 
+def elide_path(p: Path) -> PurePath:
+    return PurePath(p.parts[0]) / '...' / PurePath(p.parts[-1])
 
 def format_diff(
-    old_diff: List[OutputLine], new_diff: List[OutputLine]
+    old_diff: List[OutputLine], new_diff: List[OutputLine],
+    base_obj_path: Optional[Path] = None, ref_obj_path: Optional[Path] = None
 ) -> Tuple[str, List[str]]:
     old_chunks = chunk_diff(old_diff)
     new_chunks = chunk_diff(new_diff)
@@ -1376,7 +1380,7 @@ def format_diff(
             for (base, old, new) in output
         ]
     else:
-        header_line = ""
+        header_line = f'{elide_path(base_obj_path)}'.ljust(width) + f'  {elide_path(ref_obj_path)}'.ljust(width)
         diff_lines = [
             ansi_ljust(base, width) + new.fmt2
             for (base, old, new) in output
@@ -1468,12 +1472,18 @@ class Display:
     ready_queue: "queue.Queue[None]"
     watch_queue: "queue.Queue[Optional[float]]"
     less_proc: "Optional[subprocess.Popen[bytes]]"
+    base_obj_path: Optional[Path]
+    ref_obj_path: Optional[Path]
 
-    def __init__(self, basedump: str, mydump: str) -> None:
+    def __init__(self, basedump: str, mydump: str,
+                 base_obj_path: Optional[Path] = None,
+                 ref_obj_path: Optional[Path] = None) -> None:
         self.basedump = basedump
         self.mydump = mydump
         self.emsg = None
         self.last_diff_output = None
+        self.base_obj_path = base_obj_path
+        self.ref_obj_path = ref_obj_path
 
     def run_less(self) -> "Tuple[subprocess.Popen[bytes], subprocess.Popen[bytes]]":
         if self.emsg is not None:
@@ -1483,7 +1493,7 @@ class Display:
             last_diff_output = self.last_diff_output or diff_output
             if args.threeway != "base" or not self.last_diff_output:
                 self.last_diff_output = diff_output
-            header, diff_lines = format_diff(last_diff_output, diff_output)
+            header, diff_lines = format_diff(last_diff_output, diff_output, self.base_obj_path, self.ref_obj_path)
             header_lines = [header] if header else []
             output = "\n".join(header_lines + diff_lines[args.skip_lines :])
 
@@ -1589,7 +1599,9 @@ def main() -> None:
 
     mydump = run_objdump(mycmd)
 
-    display = Display(basedump, mydump)
+    base_obj_path = Path(basecmd[1])
+    ref_obj_path = Path(mycmd[1])
+    display = Display(basedump, mydump, base_obj_path, ref_obj_path)
 
     if not args.watch:
         display.run_sync()

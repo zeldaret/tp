@@ -93,8 +93,6 @@ typedef s32 OSHeapHandle;
 typedef enum OSSoundMode {
     SOUND_MODE_MONO = 0,
     SOUND_MODE_STEREO = 1,
-
-    __SOUND_MODE_FORCE_ENUM_U32 = 0xffffffff,
 } OSSoundMode;
 
 typedef u16 OSThreadState;
@@ -151,7 +149,7 @@ BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
 s32 OSGetConsoleType(void);
 s32 OSGetResetCode(void);
 
-OSSoundMode OSGetSoundMode(void);
+u32 OSGetSoundMode(void);
 void OSSetSoundMode(OSSoundMode mode);
 
 void OSReportInit(void);

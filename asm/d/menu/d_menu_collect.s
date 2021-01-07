@@ -105,7 +105,7 @@ dMenu_Collect2D_c_NS__create:
 /* 801AFEB4 001ACDF4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801AFEB8 001ACDF8  7C 7F 1B 78 */	mr r31, r3
 /* 801AFEBC 001ACDFC  80 63 00 04 */	lwz r3, 4(r3)
-/* 801AFEC0 001ACE00  48 11 E8 C5 */	bl getTotalFreeSize__7JKRHeapFv
+/* 801AFEC0 001ACE00  48 11 E8 C5 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 801AFEC4 001ACE04  38 60 01 18 */	li r3, 0x118
 /* 801AFEC8 001ACE08  48 11 ED 85 */	bl __nw__FUl
 /* 801AFECC 001ACE0C  7C 60 1B 79 */	or. r0, r3, r3
@@ -266,7 +266,7 @@ dMenu_Collect2D_c_NS__delete:
 /* 801B0110 001AD050  48 1B 20 B9 */	bl _savegpr_24
 /* 801B0114 001AD054  7C 7F 1B 78 */	mr r31, r3
 /* 801B0118 001AD058  80 63 00 04 */	lwz r3, 4(r3)
-/* 801B011C 001AD05C  48 11 E6 69 */	bl getTotalFreeSize__7JKRHeapFv
+/* 801B011C 001AD05C  48 11 E6 69 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 801B0120 001AD060  88 9F 02 58 */	lbz r4, 0x258(r31)
 /* 801B0124 001AD064  88 1F 02 57 */	lbz r0, 0x257(r31)
 /* 801B0128 001AD068  3C 60 80 43 */	lis r3, lbl_80430188@ha
@@ -7193,7 +7193,7 @@ dMenu_Collect3D_c_NS__create:
 /* 801B65B4 001B34F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801B65B8 001B34F8  7C 7F 1B 78 */	mr r31, r3
 /* 801B65BC 001B34FC  80 63 00 04 */	lwz r3, 4(r3)
-/* 801B65C0 001B3500  48 11 81 C5 */	bl getTotalFreeSize__7JKRHeapFv
+/* 801B65C0 001B3500  48 11 81 C5 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 801B65C4 001B3504  3C 60 00 02 */	lis r3, 0x00025800@ha
 /* 801B65C8 001B3508  38 63 58 00 */	addi r3, r3, 0x00025800@l
 /* 801B65CC 001B350C  80 9F 00 04 */	lwz r4, 4(r31)
@@ -7336,7 +7336,7 @@ lbl_801B67B0:
 /* 801B67B0 001B36F0  38 A0 00 04 */	li r5, 4
 /* 801B67B4 001B36F4  38 C0 08 00 */	li r6, 0x800
 /* 801B67B8 001B36F8  38 E0 00 80 */	li r7, 0x80
-/* 801B67BC 001B36FC  48 0B 9D 85 */	bl cLib_addCalcAngleS
+/* 801B67BC 001B36FC  48 0B 9D 85 */	bl cLib_addCalcAngleS__FPsssss
 lbl_801B67C0:
 /* 801B67C0 001B3700  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801B67C4 001B3704  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

@@ -1,8 +1,10 @@
+#include "JSystem/JMath/random.h"
 #include "global.h"
 
 namespace Z2Calc {
-struct CurveSign {
-    // temp
+enum CurveSign {
+    CURVE_SIGN_0 = 0,
+    CURVE_SIGN_1 = 1,
 };
 
 struct FNoise1f {
