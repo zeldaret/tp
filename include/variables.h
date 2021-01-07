@@ -85,19 +85,19 @@ extern u8 J3DLightObj;
 extern void* lbl_803CBF70;  // JKRHeap::__vt
 
 class JKRHeap;
-extern JKRHeap* lbl_80451370;  // JKRHeap::sSystemHeap
-extern JKRHeap* lbl_80451378;  // JKRHeap::sRootHeap
-extern JKRHeap* lbl_80451374;  // JKRHeap::sCurrentHeap
+extern JKRHeap* sSystemHeap__7JKRHeap;  // JKRHeap::sSystemHeap
+extern JKRHeap* sRootHeap__7JKRHeap;  // JKRHeap::sRootHeap
+extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
 
 extern bool lbl_804508B0;  // ::*fill*
 extern bool lbl_80451380;  // DAT_80451380
 
 // func_802CE378
-extern void* lbl_80451384;  // JKRHeap::mCodeStart
-extern void* lbl_80451388;  // JKRHeap::mCodeEnd
-extern void* lbl_8045138C;  // JKRHeap::mUserRamStart
-extern void* lbl_80451390;  // JKRHeap::mUserRamEnd
-extern u32 lbl_80451394;    // JKRHeap::mMemorySize
+extern void* mCodeStart__7JKRHeap;  // JKRHeap::mCodeStart
+extern void* mCodeEnd__7JKRHeap;  // JKRHeap::mCodeEnd
+extern void* mUserRamStart__7JKRHeap;  // JKRHeap::mUserRamStart
+extern void* mUserRamEnd__7JKRHeap;  // JKRHeap::mUserRamEnd
+extern u32 mMemorySize__7JKRHeap;    // JKRHeap::mMemorySize
 
 extern u8 lbl_80000000;
 extern u32 lbl_80000028;
@@ -212,35 +212,34 @@ extern char lbl_8039D260[12];             // "JKRDvdFile.cpp"
 extern u8 lbl_803CC328;                   // JKRFile::__vt
 
 class JKRFileLoader;
-extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
-extern char lbl_8039D158[16];                // "/"
-extern u8 lbl_803CC238;                      // JKRFileCache::__vt
+extern JKRFileLoader* sCurrentVolume__13JKRFileLoader;       // JKRFileLoader::sCurrentVolume
+extern char lbl_8039D158[16];                                // "/"
+extern u8 lbl_803CC238;                                      // JKRFileCache::__vt
 extern JSUList<JKRFileLoader> sVolumeList__13JKRFileLoader;  // JKRFileLoader::sVolumeList
-extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
-extern u8 lbl_803CC228;                      // JKRFileFinder::__vt
-extern u8 lbl_803CC208;                      // JKRDvdFinder::__vt
-extern const char lbl_8039D150[16];          // "/"
-extern u8 lbl_803CC1C8;                      // JKRFileLoader::__vt
-extern const char lbl_804508C0[16];          // "/" JKernel::rootPath$2498
-extern u8 lbl_80434348;                      // JKernel::@2182 (global destructor chain)
-extern const char lbl_803D2D18[256];         // MSL_C.PPCEABI.bare.H::__lower_map
-extern u8 lbl_803CC090;                      // JKRAssertHeap::__vt
-extern u8 lbl_80451398;                      // JKernel::DBfoundSize
-extern u8 lbl_8045139C;                      // JKernel::DBfoundOffset
-extern u8 lbl_804513A0;                      // JKernel::DBfoundBlock
-extern u8 lbl_804513A4;                      // JKernel::DBnewFreeBlock
-extern u8 lbl_804513A8;                      // JKernel::DBnewUsedBlock
-extern float lbl_80455F98;                   // JKernel::@1121 = 100.0
-extern u8 lbl_803CBFD0;                      // JKRExpHeap::__vt
-extern u8 lbl_8039CAF0;                      // ":::cannot alloc memory (0x%x byte).\n"
-extern double lbl_80455FA0;                  // JKernel::@1123 = 4.503599627370496E15
-extern u8 lbl_803CC030;                      // JKRSolidHeap::__vt
-extern double lbl_80455FB8;                  // JKernel::@697 = 4.503599627370496E15
-extern const char lbl_8039CE50[16];          // "allocFromHead: cannot alloc memory (0x%x byte).\n"
-extern double lbl_80455FB0;                  // JKernel::@695 = 4.503601774854144E15
-extern float lbl_80455FA8;                   // JKernel::@693 = 100.0
-extern u32 lbl_80451420;                     // JKRArchive::sCurrentDirID
-extern u8 lbl_803CC288;                      // JKRArchive::__vt
+extern u8 lbl_803CC218;                                      // JKRArcFinder::__vt
+extern u8 lbl_803CC228;                                      // JKRFileFinder::__vt
+extern u8 lbl_803CC208;                                      // JKRDvdFinder::__vt
+extern const char lbl_8039D150[16];                          // "/"
+extern const char lbl_804508C0[16];                          // "/" JKernel::rootPath$2498
+extern u8 lbl_80434348;               // JKernel::@2182 (global destructor chain)
+extern const char lbl_803D2D18[256];  // MSL_C.PPCEABI.bare.H::__lower_map
+extern u8 lbl_803CC090;               // JKRAssertHeap::__vt
+extern u8 lbl_80451398;               // JKernel::DBfoundSize
+extern u8 lbl_8045139C;               // JKernel::DBfoundOffset
+extern u8 lbl_804513A0;               // JKernel::DBfoundBlock
+extern u8 lbl_804513A4;               // JKernel::DBnewFreeBlock
+extern u8 lbl_804513A8;               // JKernel::DBnewUsedBlock
+extern float lbl_80455F98;            // JKernel::@1121 = 100.0
+extern u8 lbl_803CBFD0;               // JKRExpHeap::__vt
+extern u8 lbl_8039CAF0;               // ":::cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FA0;           // JKernel::@1123 = 4.503599627370496E15
+extern u8 lbl_803CC030;               // JKRSolidHeap::__vt
+extern double lbl_80455FB8;           // JKernel::@697 = 4.503599627370496E15
+extern const char lbl_8039CE50[16];   // "allocFromHead: cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FB0;           // JKernel::@695 = 4.503601774854144E15
+extern float lbl_80455FA8;            // JKernel::@693 = 100.0
+extern u32 lbl_80451420;              // JKRArchive::sCurrentDirID
+extern u8 lbl_803CC288;               // JKRArchive::__vt
 
 // d_item
 extern float lbl_80452BD8;
@@ -257,7 +256,7 @@ extern unkEvent lbl_803A7288;
 extern u8 lbl_8037B0D0[0x8];
 
 class JKRThread;
-extern JSUList<JKRThread> lbl_8043428C;  // JSUList<JKRThread> JKRThread::sThreadList
+extern JSUList<JKRThread> sThreadList__9JKRThread;  // JSUList<JKRThread> JKRThread::sThreadList
 
 extern u8 lbl_803CC398;  // JKRDvdArchive::__vt
 extern u8 lbl_8039D1B0;  // "JKRDvdArchive.cpp"

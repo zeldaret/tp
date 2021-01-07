@@ -809,8 +809,8 @@ lbl_80434274:
 .global lbl_80434280
 lbl_80434280:
 	.skip 0xC
-.global lbl_8043428C
-lbl_8043428C:
+.global sThreadList__9JKRThread
+sThreadList__9JKRThread:
 	.skip 0x44
 .global lbl_804342D0
 lbl_804342D0:

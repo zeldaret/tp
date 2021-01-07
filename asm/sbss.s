@@ -1493,14 +1493,14 @@ lbl_80451360:
 .global lbl_80451368
 lbl_80451368:
 	.skip 0x8
-.global lbl_80451370
-lbl_80451370:
+.global sSystemHeap__7JKRHeap
+sSystemHeap__7JKRHeap:
 	.skip 0x4
-.global lbl_80451374
-lbl_80451374:
+.global sCurrentHeap__7JKRHeap
+sCurrentHeap__7JKRHeap:
 	.skip 0x4
-.global lbl_80451378
-lbl_80451378:
+.global sRootHeap__7JKRHeap
+sRootHeap__7JKRHeap:
 	.skip 0x4
 .global lbl_8045137C
 lbl_8045137C:
@@ -1508,20 +1508,20 @@ lbl_8045137C:
 .global lbl_80451380
 lbl_80451380:
 	.skip 0x4
-.global lbl_80451384
-lbl_80451384:
+.global mCodeStart__7JKRHeap
+mCodeStart__7JKRHeap:
 	.skip 0x4
-.global lbl_80451388
-lbl_80451388:
+.global mCodeEnd__7JKRHeap
+mCodeEnd__7JKRHeap:
 	.skip 0x4
-.global lbl_8045138C
-lbl_8045138C:
+.global mUserRamStart__7JKRHeap
+mUserRamStart__7JKRHeap:
 	.skip 0x4
-.global lbl_80451390
-lbl_80451390:
+.global mUserRamEnd__7JKRHeap
+mUserRamEnd__7JKRHeap:
 	.skip 0x4
-.global lbl_80451394
-lbl_80451394:
+.global mMemorySize__7JKRHeap
+mMemorySize__7JKRHeap:
 	.skip 0x4
 .global lbl_80451398
 lbl_80451398:
@@ -1616,8 +1616,8 @@ lbl_80451410:
 .global lbl_80451414
 lbl_80451414:
 	.skip 0x4
-.global lbl_80451418
-lbl_80451418:
+.global sCurrentVolume__13JKRFileLoader
+sCurrentVolume__13JKRFileLoader:
 	.skip 0x8
 .global lbl_80451420
 lbl_80451420:

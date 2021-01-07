@@ -1,7 +1,8 @@
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "global.h"
 
-JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
+// todo: static initialization is working uncomment this
+// JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 
 JKRFileLoader::JKRFileLoader(void)
     : mFileLoaderLink(this), mVolumeName(NULL), mVolumeType(0), mMountCount(0) {}
@@ -88,7 +89,7 @@ bool JKRFileLoader::detachResource(void* resource, JKRFileLoader* fileLoader) {
 
 JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
     if (*volumeName[0] != '/') {
-        return lbl_80451418;
+        return getCurrentVolume();
     }
 
     char volumeNameBuffer[0x101];

@@ -26,6 +26,7 @@ public:
     JKRHeap* getCurrentHeap() const { return mCurrentHeap; }
     JKRHeap* getCurrentHeapError() const { return mCurrentHeapError; }
 
+protected:
     void resume() { OSResumeThread(mThreadRecord); }
     void sendMessage(OSMessage message) {
         OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NON_BLOCKING);
@@ -70,7 +71,9 @@ private:
 public:
     static void* start(void* param_1);
     static JKRThread* searchThread(OSThread* thread);
-    static JSUList<JKRThread>* getList() { return &lbl_8043428C; }
+    static JSUList<JKRThread>& getList() { return sThreadList; }
+
+    static JSUList<JKRThread> sThreadList; 
 };
 
 class JKRThreadSwitch {

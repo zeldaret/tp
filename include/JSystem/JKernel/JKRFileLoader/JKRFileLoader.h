@@ -4,9 +4,6 @@
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "dolphin/types.h"
 
-class JKRFileLoader;
-extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
-
 class JKRFileFinder;
 class JKRFileLoader : public JKRDisposer {
 public:
@@ -41,17 +38,18 @@ protected:
     /* 0x34 */ u32 mMountCount;
 
 public:
-    static void* getGlbResource(char const*);
-    static void* getGlbResource(char const*, JKRFileLoader*);
+    static void* getGlbResource(const char*);
+    static void* getGlbResource(const char*, JKRFileLoader*);
     static bool removeResource(void*, JKRFileLoader*);
     static bool detachResource(void*, JKRFileLoader*);
-    static JKRFileLoader* findVolume(char const**);
-    static const char* fetchVolumeName(char*, long, char const*);
+    static JKRFileLoader* findVolume(const char**);
+    static const char* fetchVolumeName(char*, long, const char*);
 
-    static JKRFileLoader* getCurrentVolume() { return lbl_80451418; }
-    static void setCurrentVolume(JKRFileLoader* fileLoader) { lbl_80451418 = fileLoader; }
+    static JKRFileLoader* getCurrentVolume() { return sCurrentVolume; }
+    static void setCurrentVolume(JKRFileLoader* fileLoader) { sCurrentVolume = fileLoader; }
     static JSUList<JKRFileLoader>& getVolumeList() { return sVolumeList; }
 
+    static JKRFileLoader* sCurrentVolume;
     static JSUList<JKRFileLoader> sVolumeList;
 };
 
