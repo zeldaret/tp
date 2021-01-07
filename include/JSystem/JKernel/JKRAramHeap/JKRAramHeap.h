@@ -10,9 +10,6 @@ public:
     enum EAllocMode {
         HEAD = 0,
         TAIL = 1,
-
-        __EALLOCMODE_FORCE_ENUM_S32 = INT32_MAX,
-        __EALLOCMODE_FORCE_ENUM_SIGNED = -1,
     };
 
 public:

@@ -919,7 +919,7 @@ asm void dSv_player_info_c::init(void) {
 #endif
 
 void dSv_player_config_c::init(void) {
-    OSSoundMode os_mSoundMode;
+    u32 os_mSoundMode;
 
     this->unk0 = 1;
     os_mSoundMode = OSGetSoundMode();
