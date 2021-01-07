@@ -28,7 +28,7 @@ lbl_80244E7C:
 /* 80244E84 00241DC4  90 7F 00 D4 */	stw r3, 0xd4(r31)
 lbl_80244E88:
 /* 80244E88 00241DC8  80 7F 00 D4 */	lwz r3, 0xd4(r31)
-/* 80244E8C 00241DCC  48 08 98 F9 */	bl getTotalFreeSize__7JKRHeapFv
+/* 80244E8C 00241DCC  48 08 98 F9 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 80244E90 00241DD0  7F E3 FB 78 */	mr r3, r31
 /* 80244E94 00241DD4  4B FF 72 D9 */	bl dMsgScrnBase_c_NS_init
 /* 80244E98 00241DD8  38 60 01 18 */	li r3, 0x118

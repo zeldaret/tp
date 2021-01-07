@@ -424,7 +424,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gf/GFPixel.o    \
             $(BUILD_DIR)/asm/gf/GFTev.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o    \
-            $(BUILD_DIR)/asm/JKernel/JKRHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o    \

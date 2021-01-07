@@ -38,7 +38,7 @@ dMenu_ItemExplain_c:
 /* 801DA7CC 001D770C  90 1F 00 08 */	stw r0, 8(r31)
 /* 801DA7D0 001D7710  93 DF 00 B8 */	stw r30, 0xb8(r31)
 /* 801DA7D4 001D7714  80 7F 00 04 */	lwz r3, 4(r31)
-/* 801DA7D8 001D7718  48 0F 3F AD */	bl getTotalFreeSize__7JKRHeapFv
+/* 801DA7D8 001D7718  48 0F 3F AD */	bl getTotalFreeSize__7JKRHeapCFv
 /* 801DA7DC 001D771C  38 00 00 00 */	li r0, 0
 /* 801DA7E0 001D7720  90 1F 00 C8 */	stw r0, 0xc8(r31)
 /* 801DA7E4 001D7724  90 1F 00 CC */	stw r0, 0xcc(r31)

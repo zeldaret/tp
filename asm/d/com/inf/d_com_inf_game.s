@@ -3470,7 +3470,7 @@ dComIfGp_createSubExpHeap2D:
 /* 8002E240 0002B180  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8002E244 0002B184  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
 /* 8002E248 0002B188  80 7D 5E BC */	lwz r3, 0x5ebc(r29)
-/* 8002E24C 0002B18C  48 2A 05 39 */	bl getTotalFreeSize__7JKRHeapFv
+/* 8002E24C 0002B18C  48 2A 05 39 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 8002E250 0002B190  C8 22 83 10 */	lfd f1, lbl_80451D10-_SDA2_BASE_(r2)
 /* 8002E254 0002B194  6C 60 80 00 */	xoris r0, r3, 0x8000
 /* 8002E258 0002B198  90 01 00 0C */	stw r0, 0xc(r1)
