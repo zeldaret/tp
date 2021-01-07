@@ -12,8 +12,6 @@ typedef enum PADMask {
     PAD_CHAN2_BIT = (1 << 29),
     PAD_CHAN1_BIT = (1 << 30),
     PAD_CHAN0_BIT = (1 << 31),
-
-    __PAD_MASK_FORCE_ENUM_U32 = 0xffffffff,
 } PADMask;
 
 typedef struct PADStatus {

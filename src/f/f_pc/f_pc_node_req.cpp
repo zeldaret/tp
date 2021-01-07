@@ -23,10 +23,8 @@ extern s8 lbl_80450D4C;
 
 extern "C" {
 
-extern void cMl_NS_free(void*);
 extern s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
 extern void sBs_ClearArea(void* pPtr, s32 pSize);
-extern void* cMl_NS_memalignB(s32 pAlign, s32 pSize);
 
 void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq) {
     fpcLy_CreatedMesg(pNodeCreateReq->mpLayerClass);
@@ -106,7 +104,7 @@ s32 fpcNdRq_Delete(node_create_request* pNodeCreateReq) {
         fpcMtd_Method(pNodeCreateReq->mpNodeCrReqMthCls->mpUnkFunc, pNodeCreateReq) == 0) {
         return 0;
     }
-    cMl_NS_free(pNodeCreateReq);
+    free__3cMlFPv(pNodeCreateReq);
     return 1;
 }
 
@@ -178,7 +176,7 @@ s32 fpcNdRq_IsIng(process_node_class* pProcNode) {
 }
 
 node_create_request* fpcNdRq_Create(s32 pRequestSize) {
-    node_create_request* req = (node_create_request*)cMl_NS_memalignB(-4, pRequestSize);
+    node_create_request* req = (node_create_request*)memalignB__3cMlFiUl(-4, pRequestSize);
     if (req != NULL) {
         if (lbl_80450D4C == 0) {
             lbl_80450D48 = 0;

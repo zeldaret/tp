@@ -25,9 +25,9 @@ lbl_800A082C:
 /* 800A082C 0009D76C  3B E0 60 00 */	li r31, 0x6000
 lbl_800A0830:
 /* 800A0830 0009D770  38 7E 34 E0 */	addi r3, r30, 0x34e0
-/* 800A0834 0009D774  48 1D 03 D1 */	bl cLib_targetAngleY
+/* 800A0834 0009D774  48 1D 03 D1 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 800A0838 0009D778  A8 9E 2F E6 */	lha r4, 0x2fe6(r30)
-/* 800A083C 0009D77C  48 1D 05 E9 */	bl cLib_distanceAngleS
+/* 800A083C 0009D77C  48 1D 05 E9 */	bl cLib_distanceAngleS__Fss
 /* 800A0840 0009D780  7F E5 FE 70 */	srawi r5, r31, 0x1f
 /* 800A0844 0009D784  54 64 0F FE */	srwi r4, r3, 0x1f
 /* 800A0848 0009D788  7C 03 F8 10 */	subfc r0, r3, r31

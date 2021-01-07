@@ -32,7 +32,7 @@ lbl_80138050:
 /* 80138074 00134FB4  A8 A7 00 3C */ lha r5, 0x3c(r7)
 /* 80138078 00134FB8  A8 C7 00 40 */ lha r6, 0x40(r7)
 /* 8013807C 00134FBC  A8 E7 00 3E */ lha r7, 0x3e(r7)
-/* 80138080 00134FC0  48 13 84 C1 */ bl cLib_addCalcAngleS
+/* 80138080 00134FC0  48 13 84 C1 */ bl cLib_addCalcAngleS__FPsssss
 /* 80138084 00134FC4  3C 60 80 44 */ lis r3, lbl_80439A20@ha
 /* 80138088 00134FC8  38 63 9A 20 */ addi r3, r3, lbl_80439A20@l
 /* 8013808C 00134FCC  A8 9F 04 DE */ lha r4, 0x4de(r31)
@@ -78,7 +78,7 @@ lbl_8013810C:
 /* 8013811C 0013505C  A8 A7 00 42 */ lha r5, 0x42(r7)
 /* 80138120 00135060  A8 C7 00 46 */ lha r6, 0x46(r7)
 /* 80138124 00135064  A8 E7 00 44 */ lha r7, 0x44(r7)
-/* 80138128 00135068  48 13 84 19 */ bl cLib_addCalcAngleS
+/* 80138128 00135068  48 13 84 19 */ bl cLib_addCalcAngleS__FPsssss
 lbl_8013812C:
 /* 8013812C 0013506C  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80138130 00135070  B0 1F 04 DE */ sth r0, 0x4de(r31)

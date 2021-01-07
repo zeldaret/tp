@@ -100,7 +100,7 @@ lbl_800F04F0:
 /* 800F04FC 000ED43C  4B FB CA B5 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
 /* 800F0500 000ED440  38 7E 1D 08 */ addi r3, r30, 0x1d08
 /* 800F0504 000ED444  38 81 00 08 */ addi r4, r1, 8
-/* 800F0508 000ED448  48 17 78 21 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800F0508 000ED448  48 17 78 21 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800F050C 000ED44C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F0510 000ED450  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F0514 000ED454  38 63 0F 38 */ addi r3, r3, 0xf38

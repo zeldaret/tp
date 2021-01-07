@@ -2,61 +2,63 @@
 #define JSYSTEM_JUTILITY_JUTFONT_H
 
 #include "global.h"
+#include "gx/GX.h"
 
-static const unsigned int CLR_WHITE = 0xFFFFFFFF;
-static const unsigned int CLR_BLACK = 0;
+namespace JUtility {
 
-typedef const char* ResFONT;
-
-struct TColor {
-    TColor() { *(u32*)&r = 0xFFFFFFFF; }
+struct TColor : _GXColor {
+    TColor() { set(-1); }
 
     TColor(u32 raw) { *(u32*)&r = raw; }
 
-    u32 Raw() { return *(u32*)&r; }
+    void set(u32 col) { *(u32*)&r = col; }
 
-    u8 r;
-    u8 g;
-    u8 b;
-    u8 a;
+    u32 toUInt32() const { return *(u32*)&r; }
+
+    operator u32() const { return toUInt32(); }
+    void operator=(const TColor& rhs) { ((_GXColor*)this)->operator=(rhs); }
 };
+
+}  // namespace JUtility
 
 class JUTFont {
 public:
     JUTFont();
-    virtual ~JUTFont();
+    virtual ~JUTFont() {}
 
     struct TWidth {};
 
-    virtual void setGX() = 0;
-    virtual void setGX(TColor col1, TColor col2);
+    /* 0x0c */ virtual void setGX() = 0;
+    /* 0x10 */ virtual void setGX(JUtility::TColor col1, JUtility::TColor col2);
+    /* 0x14 */ virtual f32 drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4, int a5, bool a6) = 0;
+    /* 0x18 */ virtual u16 getLeading() const = 0;
+    /* 0x1c */ virtual u16 getAscent() const = 0;
+    /* 0x20 */ virtual u16 getDescent() const = 0;
+    /* 0x24 */ virtual u32 getHeight() const = 0;
+    /* 0x28 */ virtual u32 getWidth() const = 0;
+    /* 0x2c */ virtual void getWidthEntry(int i_no, TWidth* width) const;
+    /* 0x30 */ virtual u32 getCellWidth() const;
+    /* 0x34 */ virtual u32 getCellHeight() const;
+    /* 0x38 */ virtual u32 getFontType() const = 0;
+    /* 0x3c */ virtual void getResFont() const = 0;
+    /* 0x40 */ virtual bool isLeadByte(int a1) const = 0;
 
-    virtual void drawChar_scale(float a1, float a2, float a3, float a4, int a5, bool a6);
-    virtual u16 getLeading() = 0;
-    virtual u16 getAscent() = 0;
-    virtual u16 getDescent() = 0;
-    virtual u32 getHeight() = 0;
-    virtual u32 getWidth() = 0;
-    virtual void getWidthEntry(s32 i_no, TWidth* width);
-    virtual u32 getCellWidth();
-    virtual u32 getCellHeight();
-    virtual u32 getFontType() = 0;
-    virtual TColor getResFont() = 0;
-    virtual bool isLeadByte(s32 a1) = 0;
+    static bool isLeadByte_1Byte(int b);
+    static bool isLeadByte_2Byte(int b);
+    static bool isLeadByte_ShiftJIS(int b);
 
     void initialize_state();
-    void setCharColor(TColor col1);
-    void setGradColor(TColor col1, TColor col2);
-    float drawString_size_scale(float a1, float a2, float a3, float a4, char* a5, unsigned long usz,
-                                bool a7);
+    void setCharColor(JUtility::TColor col1);
+    void setGradColor(JUtility::TColor col1, JUtility::TColor col2);
+    f32 drawString_size_scale(f32 a1, f32 a2, f32 a3, f32 a4, const char* a5, u32 usz, bool a7);
 
-    bool unk4;
+    u8 unk4;
     bool unk5;
     int unk8;
-    TColor mColor1;
-    TColor mColor2;
-    TColor mColor3;
-    TColor mColor4;
+    JUtility::TColor mColor1;
+    JUtility::TColor mColor2;
+    JUtility::TColor mColor3;
+    JUtility::TColor mColor4;
     int unk1C;
 };
 

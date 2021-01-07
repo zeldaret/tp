@@ -16,7 +16,7 @@
 /* 80100A4C 000FD98C  4B FA C6 A9 */ bl daAlink_c_NS_setSingleAnimeParam
 /* 80100A50 000FD990  38 7C 1E 2C */ addi r3, r28, 0x1e2c
 /* 80100A54 000FD994  7F A4 EB 78 */ mr r4, r29
-/* 80100A58 000FD998  48 16 76 F1 */ bl cBgS_PolyInfo_NS_SetPolyInfo
+/* 80100A58 000FD998  48 16 76 F1 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 80100A5C 000FD99C  C0 1E 00 00 */ lfs f0, 0(r30)
 /* 80100A60 000FD9A0  D0 1C 04 D0 */ stfs f0, 0x4d0(r28)
 /* 80100A64 000FD9A4  C0 1E 00 04 */ lfs f0, 4(r30)

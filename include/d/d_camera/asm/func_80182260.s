@@ -41,7 +41,7 @@ lbl_801822D4:
 /* 801822FC 0017F23C  D0 01 00 0C */ stfs f0, 0xc(r1)
 /* 80182300 0017F240  38 61 00 14 */ addi r3, r1, 0x14
 /* 80182304 0017F244  38 81 00 08 */ addi r4, r1, 8
-/* 80182308 0017F248  48 0E 5A 21 */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 80182308 0017F248  48 0E 5A 21 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 8018230C 0017F24C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80182310 0017F250  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80182314 0017F254  3B A3 0F 38 */ addi r29, r3, 0xf38

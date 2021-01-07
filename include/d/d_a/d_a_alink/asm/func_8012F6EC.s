@@ -21,7 +21,7 @@ lbl_8012F734:
 /* 8012F738 0012C678  38 84 EF 28 */ addi r4, r4, lbl_8038EF28@l
 /* 8012F73C 0012C67C  C0 44 00 40 */ lfs f2, 0x40(r4)
 lbl_8012F740:
-/* 8012F740 0012C680  48 14 10 01 */ bl cLib_chaseF
+/* 8012F740 0012C680  48 14 10 01 */ bl cLib_chaseF__FPfff
 /* 8012F744 0012C684  7F C3 F3 78 */ mr r3, r30
 /* 8012F748 0012C688  48 02 ED 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
 /* 8012F74C 0012C68C  54 60 06 3F */ clrlwi. r0, r3, 0x18

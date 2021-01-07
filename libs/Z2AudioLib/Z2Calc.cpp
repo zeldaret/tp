@@ -1,8 +1,10 @@
-#include "Z2AudioLib/Z2Calc/Z2calc.h"
-#include "JSystem/JMath/random.h"
+#include "Z2AudioLib/Z2Calc/Z2Calc.h"
 
-// 1 instruction off
-#ifdef NONMATCHING
+// s_is_oRandom_initialized
+extern s8 lbl_80451330;
+// Z2AudioLib::oRandom$401
+extern JMath::TRandom_fast_ lbl_80451334;
+
 float Z2Calc::linearTransform(float param1, float param2, float param3, float param4, float param5,
                               bool param6) {
     float temp;
@@ -14,10 +16,10 @@ float Z2Calc::linearTransform(float param1, float param2, float param3, float pa
     } else if (param4 < param5) {
         if (temp > param5) {
             return param5;
-        } else if (temp >= param4) {  // something wrong here idk
-            return temp;
-        } else {
+        } else if (temp < param4) {
             return param4;
+        } else {
+            return temp;
         }
     } else if (temp > param4) {
         return param4;
@@ -27,27 +29,52 @@ float Z2Calc::linearTransform(float param1, float param2, float param3, float pa
         return temp;
     }
 }
-#else
-asm float Z2Calc::linearTransform(float param1, float param2, float param3, float param4,
-                                  float param5, bool param6) {
-    nofralloc
-#include "Z2AudioLib/Z2Calc/asm/func_802A968C.s"
-}
-#endif
 
-asm float Z2Calc::getParamByExp(float, float, float, float, float, float, Z2Calc::CurveSign) {
-    nofralloc
-#include "Z2AudioLib/Z2Calc/asm/func_802A96F4.s"
+float Z2Calc::getParamByExp(float f1, float f2, float f3, float f4, float f5, float f6,
+                            Z2Calc::CurveSign sign) {
+    float out;
+    if (sign == Z2Calc::CURVE_SIGN_1) {
+        float tmp =
+            func_8036C740(Z2Calc::linearTransform(f1, f2, f3, /* 0.0 */ lbl_80455828, f4, true));
+        out = Z2Calc::linearTransform(tmp, /* 1.0 */ lbl_8045582C, func_8036C740(f4), f5, f6, true);
+    } else if (sign == Z2Calc::CURVE_SIGN_0) {
+        float tmp =
+            func_8036C740(Z2Calc::linearTransform(f1, f2, f3, f4, /* 0.0 */ lbl_80455828, true));
+        out = Z2Calc::linearTransform(tmp, func_8036C740(f4), /* 1.0 */ lbl_8045582C, f5, f6, true);
+    } else {
+        out = Z2Calc::linearTransform(f1, f2, f3, f5, f6, false);
+    }
+    if (out > f6) {
+        return f6;
+    }
+    if (out < f5) {
+        return f5;
+    }
+    return out;
 }
 
-asm float Z2Calc::getRandom(float, float, float) {
-    nofralloc
-#include "Z2AudioLib/Z2Calc/asm/func_802A9814.s"
+float Z2Calc::getRandom(float f1, float f2, float f3) {
+    float tmp = /* 2.0 */ lbl_80455830 * f3;
+    float tmp2 = (/* 1.0 */ lbl_8045582C - f3) * /* -2.0 */ lbl_80455834;
+    f1 *= Z2Calc::getRandom_0_1() < f3 ? tmp : tmp2;
+    float tmp3 = func_8036C780(Z2Calc::getRandom_0_1(), f2);
+    return tmp3 * f1;
 }
 
-asm float Z2Calc::getRandom_0_1(void) {
-    nofralloc
-#include "Z2AudioLib/Z2Calc/asm/func_802A98D4.s"
+float Z2Calc::getRandom_0_1(void) {
+    // this is really just
+    // static JMath::TRandom_fast_ lbl_80451334(0);
+    if (!lbl_80451330) {
+        __ct__Q25JMath13TRandom_fast_FUl(&lbl_80451334, 0);
+        lbl_80451330 = true;
+    }
+    // this is really just lbl_80451334.get_ufloat_1()
+    union {
+        f32 f;
+        u32 s;
+    } out;
+    out.s = (lbl_80451334.get() >> 9) | 0x3f800000;
+    return out.f - lbl_8045582C;
 }
 
 void Z2Calc::FNoise1f::setParam(float param1, float param2, float param3) {

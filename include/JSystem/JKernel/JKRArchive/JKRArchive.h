@@ -1,8 +1,20 @@
 #ifndef __JKRARCHIVEPUB_H__
 #define __JKRARCHIVEPUB_H__
 
+#include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "dolphin/types.h"
+
+struct SArcHeader {
+    u32 signature;
+    u32 file_length;
+    u32 header_length;
+    u32 file_data_offset;
+    u32 file_data_length;
+    u32 field_0x14;
+    u32 field_0x18;
+    u32 field_0x1c;
+};
 
 struct SArcDataInfo {
     u32 num_nodes;
@@ -10,7 +22,7 @@ struct SArcDataInfo {
     u32 num_file_entries;
     u32 file_entry_offset;
     u32 string_table_length;
-    u32 string_trable_offset;
+    u32 string_table_offset;
     u16 next_free_file_id;
     bool sync_file_ids_and_indices;
     u8 field_1b[5];
@@ -44,8 +56,10 @@ struct SDIFileEntry {
     u16 getNameHash() const { return name_hash; }
     u32 getFlags() const { return type_flags_and_name_offset >> 24; }
     u16 getFileID() const { return file_id; }
-    bool isDirectory() const { return (getFlags() & 2) != 0; }
-    bool isUnknownFlag1() const { return (getFlags() & 1) != 0; }
+    bool isDirectory() const { return (getFlags() & 0x02) != 0; }
+    bool isUnknownFlag1() const { return (getFlags() & 0x01) != 0; }
+    bool isCompressed() const { return (getFlags() & 0x04) != 0; }
+    bool isYAZ0Compressed() const { return (getFlags() & 0x80) != 0; }
 };
 
 extern u32 lbl_80451420;  // JKRArchive::sCurrentDirID
@@ -60,17 +74,12 @@ public:
         MOUNT_ARAM = 2,
         MOUNT_DVD = 3,
         MOUNT_COMP = 4,
-
-        __EMOUNT_MODE_FORCE_32BIT = UINT32_MAX,
     };
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
         HEAD = 1,
         TAIL = 2,
-
-        __EMOUNT_DIRECTION_FORCE_32BIT = INT32_MAX,
-        __EMOUNT_DIRECTION_FORCE_SIGNED = -1,
     };
 
     class CArcName {
@@ -106,7 +115,7 @@ public:
     u32 countResource(void) const;
     u32 getFileAttribute(u32) const;
 
-    EMountMode getMountMode() const { return (EMountMode)mMountMode; }
+    u32 getMountMode() const { return mMountMode; }
 
 protected:
     bool isSameName(CArcName&, u32, u16) const;
@@ -130,14 +139,14 @@ public:
     /* vt[11] */ virtual bool detachResource(void*);                     /* override */
     /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
     /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
-    /* vt[14] */ virtual JKRArcFinder* getFirstFile(const char*) const;  /* override */
-    /* vt[15] */ virtual void getExpandedResSize(const void*) const;
+    /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
+    /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
-    /* vt[19] */ virtual void getExpandSize(SDIFileEntry*) const;
+    /* vt[19] */ virtual u32 getExpandSize(SDIFileEntry*) const;
 
-private:
+protected:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRFileLoader
     /* 0x38 */ JKRHeap* mHeap;

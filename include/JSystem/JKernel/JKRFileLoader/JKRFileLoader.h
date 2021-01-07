@@ -8,14 +8,13 @@ class JKRFileLoader;
 extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
 extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
 
-class JKRArcFinder;
+class JKRFileFinder;
 class JKRFileLoader : public JKRDisposer {
 public:
     JKRFileLoader(void);
     virtual ~JKRFileLoader();
 
     bool isMounted() const { return this->mIsMounted; }
-
     u32 getVolumeType() const { return this->mVolumeType; }
 
 public:
@@ -30,13 +29,13 @@ public:
     /* vt[11] */ virtual bool detachResource(void*) = 0;
     /* vt[12] */ virtual u32 getResSize(const void*) const = 0;
     /* vt[13] */ virtual u32 countFile(const char*) const = 0;
-    /* vt[14] */ virtual JKRArcFinder* getFirstFile(const char*) const = 0;
+    /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const = 0;
 
 protected:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRDisposer
     /* 0x18 */ JSULink<JKRFileLoader> mFileLoaderLink;
-    /* 0x28 */ char* mVolumeName;
+    /* 0x28 */ const char* mVolumeName;
     /* 0x2C */ u32 mVolumeType;
     /* 0x30 */ bool mIsMounted;
     /* 0x31 */ u8 field_0x31[3];

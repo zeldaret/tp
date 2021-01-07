@@ -19,7 +19,7 @@ lbl_8012F39C:
 /* 8012F39C 0012C2DC  38 9F 18 D0 */ addi r4, r31, 0x18d0
 /* 8012F3A0 0012C2E0  C0 44 00 10 */ lfs f2, 0x10(r4)
 lbl_8012F3A4:
-/* 8012F3A4 0012C2E4  48 14 13 9D */ bl cLib_chaseF
+/* 8012F3A4 0012C2E4  48 14 13 9D */ bl cLib_chaseF__FPfff
 /* 8012F3A8 0012C2E8  7F A3 EB 78 */ mr r3, r29
 /* 8012F3AC 0012C2EC  4B F8 32 B9 */ bl daAlink_c_NS_spActionButton
 /* 8012F3B0 0012C2F0  2C 03 00 00 */ cmpwi r3, 0

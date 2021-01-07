@@ -8,11 +8,21 @@
 // Align X to the next N bytes (N must be power of two)
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
-struct Vec {
-    float x, y, z;
-};
-
 #define JUT_ASSERT(...)
+#define ASSERT(...)
+#define LOGF(FMT, ...)
+
+extern float __fabsf(float);
+
+inline double fabsf(double d) {
+    return __fabsf(d);
+}
+
+extern float __fsqrte(float);
+
+inline double sqrt(double d) {
+    return __fsqrte(d);
+}
 
 #include "dolphin/types.h"
 

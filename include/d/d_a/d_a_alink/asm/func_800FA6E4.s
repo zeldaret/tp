@@ -28,7 +28,7 @@
 /* 800FA750 000F7690  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 800FA754 000F7694  38 7F 1D 08 */ addi r3, r31, 0x1d08
 /* 800FA758 000F7698  38 81 00 08 */ addi r4, r1, 8
-/* 800FA75C 000F769C  48 16 D5 CD */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 800FA75C 000F769C  48 16 D5 CD */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800FA760 000F76A0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800FA764 000F76A4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FA768 000F76A8  38 63 0F 38 */ addi r3, r3, 0xf38

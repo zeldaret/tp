@@ -331,10 +331,14 @@ public:
     u16& getCurrentLanternOil() { return mCurrentLanternOil; }
     u8& getScent() { return mEquipment[3]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }
-    void setLanternOil(u16 amount) {
-        mMaxLanternOil = amount;
-        mCurrentLanternOil = amount;
-    }
+    void setOil(u16 oil) { mCurrentLanternOil = oil; }
+    void setMaxOil(u16 max) { mMaxLanternOil = max; }
+    void setWalletSize(u8 size) { mCurrentWallet = size; }
+    void setMagic(u8 magic) { mCurrentMagic = magic; }
+    void setMaxMagic(u8 max) { mMaxMagic = max; }
+    void setRupee(u16 rupees) { mCurrentRupees = rupees; }
+    void setLife(u16 life) { mCurrentHealth = life; }
+    void setMaxLife(u8 max) { mMaxHealth = max; }
 
 private:
     u16 mMaxHealth;
@@ -349,8 +353,8 @@ private:
     u8 unk18;
     u8 mEquipment[6];
     u8 mCurrentWallet;
-    u8 unk26;
-    u8 unk27;
+    u8 mMaxMagic;
+    u8 mCurrentMagic;
     u8 mMagicFlag;
     u8 unk29;
     u8 unk30;
@@ -491,7 +495,7 @@ public:
     u8 addBottleNum(u8, s16);
     u8 getBottleNum(u8) const;
 
-    void setBowAmount(u8 amount) { mBow = amount; }
+    void setArrowNum(u8 amount) { mBow = amount; }
 
 private:
     u8 mBow;
@@ -507,7 +511,7 @@ public:
     void setBombNum(u8, u8);
     u8 getBombNum(u8) const;
 
-    void setBowCapacity(u8 max) { mItemCapacities[0] = max; }
+    void setArrowNum(u8 max) { mItemCapacities[0] = max; }
     u8 getBowCapacity() { return mItemCapacities[0]; }
 
 private:
@@ -642,7 +646,6 @@ public:
     dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
 
     void setPlayerStatusAWalletLV(u8 lv) { player_status_a.setWalletLV(lv); }
-    void setPlayerStatusAOil(u16 amount) { player_status_a.setLanternOil(amount); }
 
 private:
     dSv_player_status_a_c player_status_a;
@@ -681,6 +684,12 @@ public:
     bool isDungeonItem(int) const;
 
     u8 getSmallKeys() { return small_key_flags; }
+    void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
+    bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
+    void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }
+    void onDungeonItemWarp() { onDungeonItem(OOCCOO_NOTE_FLAG); }
+    void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY_FLAG); }
+    bool isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY_FLAG); }
 
 private:
     u32 area_flags_bitfields1[2];
@@ -854,7 +863,11 @@ public:
     dSv_player_c& getPlayer() { return player; }
     dSv_player_status_a_c& getPlayerStatusA() { return player.getPlayerStatusA(); }
     dSv_player_get_item_c& getPlayerGetItem() { return player.getPlayerGetItem(); }
+    dSv_player_item_record_c& getPlayerItemRecord() { return player.getPlayerItemRecord(); }
+    dSv_player_item_max_c& getPlayerItemMax() { return player.getPlayerItemMax(); }
     dSv_player_item_c& getPlayerItem() { return player.getPlayerItem(); }
+    dSv_player_collect_c& getPlayerCollect() { return player.getPlayerCollect(); }
+    dSv_light_drop_c& getLightDrop() { return player.getLightDrop(); }
     dSv_event_c& getEventFlags() { return event_flags; }
 
     void setPlayerStatusAWallet(u8 lv) { player.setPlayerStatusAWalletLV(lv); }
@@ -894,6 +907,7 @@ public:
     dSv_memory_c& getMemory() { return memory; }
     dSv_zone_c* getZones() { return zones; }
     dSv_player_c& getPlayer() { return save_file.getPlayer(); }
+    dSv_event_c& getEvent() { return events; }
 
 private:
     /* 0x000 */ dSv_save_c save_file;
