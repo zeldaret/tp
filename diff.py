@@ -519,7 +519,6 @@ def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Opti
                     print(f"    {i+1}: {location[0]} {location[1]} {str(location[2]).ljust(40, ' ')}", file=sys.stderr)
                 fail(f"Use --select-occurence to select the right occurrence.")
         if len(find) == 1:
-            print(find)
             rom = int(find[0][1],16)
             objname = find[0][2]
             # The metrowerks linker map format does not contain the full object path, so we must complete it manually.
@@ -567,7 +566,7 @@ def dump_elf() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
     objdump_flags = ["-drz", "-j", ".text"]
     return (
         myimg,
-        (objdump_flags + flags1 + maybe_get_objdump_source_flags(), baseimg, None),
+        (objdump_flags + flags1, baseimg, None),
         (objdump_flags + flags2 + maybe_get_objdump_source_flags(), myimg, None),
     )
 
