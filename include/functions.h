@@ -6163,7 +6163,6 @@ void subBgmStopInner__8Z2SeqMgrFv(void);
 void Z2SeqMgr_NS_battleBgmFramework(void);
 void changeSubBgmStatus__8Z2SeqMgrFl(void);
 void Z2SeqMgr_NS_fieldRidingMute(void);
-}
 void Set__8cM3dGSphFRC4cXyzf(void);
 void __pl__FsRC7cSAngle(void);
 void __mi__FsRC7cSAngle(void);
