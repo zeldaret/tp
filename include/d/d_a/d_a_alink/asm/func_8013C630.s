@@ -10,7 +10,7 @@
 /* 8013C654 00139594  38 7E 04 D0 */ addi r3, r30, 0x4d0
 /* 8013C658 00139598  80 9E 07 C8 */ lwz r4, 0x7c8(r30)
 /* 8013C65C 0013959C  38 84 05 38 */ addi r4, r4, 0x538
-/* 8013C660 001395A0  48 13 45 A5 */ bl cLib_targetAngleY
+/* 8013C660 001395A0  48 13 45 A5 */ bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8013C664 001395A4  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8013C668 001395A8  7C 00 18 50 */ subf r0, r0, r3
 /* 8013C66C 001395AC  7C 03 07 34 */ extsh r3, r0

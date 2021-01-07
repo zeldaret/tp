@@ -15,7 +15,7 @@ lbl_802CEE50:
 /* 802CEE58 002CBD98  40 82 00 10 */	bne lbl_802CEE68
 /* 802CEE5C 002CBD9C  7F 83 E3 78 */	mr r3, r28
 /* 802CEE60 002CBDA0  38 80 00 10 */	li r4, 0x10
-/* 802CEE64 002CBDA4  4B FF F9 79 */	bl getMaxAllocatableSize__7JKRHeapFi
+/* 802CEE64 002CBDA4  4B FF F9 79 */	bl getMaxAllocatableSize__7JKRHeapCFi
 lbl_802CEE68:
 /* 802CEE68 002CBDA8  54 7F 00 36 */	rlwinm r31, r3, 0, 0, 0x1b
 /* 802CEE6C 002CBDAC  28 1F 00 A0 */	cmplwi r31, 0xa0

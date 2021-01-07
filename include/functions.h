@@ -149,16 +149,16 @@ void JUTConsole_NS_print(void);
 void JUTConsole_NS_check(void);
 void JUTConsole_NS_print_f(void);
 void JUTConsole_NS_clear(void);
-void JUTReportConsole_f(void);
+void JUTReportConsole_f(const char*, ...);
 void JUTWarningConsole(void);
-void JUTWarningConsole_f(void);
+void JUTWarningConsole_f(const char*, ...);
 void VIWaitForRetrace(void);
 void func_80361C24(void);
-void memcpy(void*, void*, int);
+void memcpy(void*, const void*, int);
 int tolower(int);
-void func_803688DC(void);
-void func_80368ABC(void);
-void func_80368BE4(void);
+char* strrchr(char*, int);
+char* strcat(char*, const char*);
+u32 strlen(const char*);
 void JKRArchive_NS_getDirEntry(void);
 void func_80361C24(void);
 void JKRArchive_NS_findDirectory(void);
@@ -215,7 +215,7 @@ void checkCallback__19JUTGamePadLongPressFlUl(void);
 void checkResetCallback__10JUTGamePadFx(void);
 void searchMapEventData__14dEvt_control_cFUc(void);
 void mDoMtx_YrotS(void);
-void cXyz_NS___mi(void);
+void __mi__4cXyzCFRC3Vec(void);
 void Yinit__9STControlFv(void);
 void Xinit__9STControlFv(void);
 void J2DScreen_NS_draw(void);
@@ -361,17 +361,10 @@ void JUTConsole_NS_print(void);
 void JUTConsole_NS_check(void);
 void JUTConsole_NS_print_f(void);
 void JUTConsole_NS_clear(void);
-void JUTReportConsole_f(void);
 void JUTWarningConsole(void);
-void JUTWarningConsole_f(void);
-
+// void JUTWarningConsole_f(void);
 void func_80361C24(void);
-
-void func_803688DC(void);
-void func_80368ABC(void);
-void func_80368BE4(void);
 void JKRArchive_NS_getDirEntry(void);
-
 void func_80361C24(void);
 
 // void JKRAramArchive(void);
@@ -416,12 +409,11 @@ void dLib_time_c_NS_stopTime(void);
 void dLib_time_c_NS_startTime(void);
 class dComIfG_play_c;
 void dComIfG_play_c_NS_drawSimpleModel(dComIfG_play_c*);
-void cAPIGph_Painter(void);
 bool dDvdErrorMsg_c_NS_execute(void);
 bool dShutdownErrorMsg_c_NS_execute(void);
 class dDlst_peekZ_c;
 void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
-void MtxInit(void);
+void MtxInit__Fv(void);
 
 void mDoDvdErr_ThdCleanup(void);
 void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
@@ -430,7 +422,7 @@ void common_init__6JUTXfbFl(void);
 
 class mDoCPd_c;
 extern "C" {
-void mDoCPd_c_NS_recalibrate(void);
+void cAPICPad_recalibrate__Fv(void);
 }
 
 // JSystem/JSupport/JSUList
@@ -478,11 +470,11 @@ void resize__7JKRHeapFPvUlP7JKRHeap(void);
 void resize__7JKRHeapFPvUl(void);
 void getSize__7JKRHeapFPvP7JKRHeap(void);
 void getSize__7JKRHeapFPv(void);
-void getFreeSize__7JKRHeapFv(void);
-void getMaxFreeBlock__7JKRHeapFv(void);
-void getTotalFreeSize__7JKRHeapFv(void);
+void getFreeSize__7JKRHeapCFv(void);
+void getMaxFreeBlock__7JKRHeapCFv(void);
+void getTotalFreeSize__7JKRHeapCFv(void);
 void changeGroupID__7JKRHeapFUc(void);
-void getMaxAllocatableSize__7JKRHeapFi(void);
+void getMaxAllocatableSize__7JKRHeapCFi(void);
 void findFromRoot__7JKRHeapFPv(void);
 void find__7JKRHeapCFPv(void);
 void findAllHeap__7JKRHeapCFPv(void);
@@ -493,7 +485,7 @@ void dispose__7JKRHeapFv(void);
 void copyMemory__7JKRHeapFPvPvUl(void);
 void JKRDefaultMemoryErrorRoutine__FPvUli(void);
 void setErrorFlag__7JKRHeapFb(void);
-void setErrorHandler__7JKRHeapFPFPvUli_v(void);
+void setErrorHandler__7JKRHeapFPFP7JKRHeapUli_v(void);
 void isSubHeap__7JKRHeapCFP7JKRHeap(void);
 void __nw__FUl(void);
 void __nw__FUli(void);
@@ -503,38 +495,6 @@ void __nwa__FUli(void);
 void __nwa__FUlP7JKRHeapi(void);
 void __dl__FPv(void);
 void __dla__FPv(void);
-}
-
-extern "C" {
-struct TColor;
-
-extern void GXBegin(u8, u8, u16);
-extern void GXLoadTexObj(u32*, s32);
-extern void GXInitTexObjLOD(f32, f32, f32, u32*, s32, s32, u32, u8, u32);
-extern void GXInitTexObj(u32*, u32, u32, u32, u32, u32, u8);
-
-extern void GXSetNumChans(u32);
-extern void GXSetNumTevStages(u32);
-extern void GXSetNumTexGens(u32);
-extern void GXSetTevOrder(u32, u32, u32, u32);
-extern void GXSetChanCtrl(u32, u32, u32, u32, u32, u32, s32);
-extern void GXSetTevOp(s32, s32);
-extern void GXSetTevColor(s32, TColor);
-extern void GXSetTevColorIn(s32, u32, u32, u32, u32);
-extern void GXSetTevAlphaIn(s32, u32, u32, u32, u32);
-extern void GXSetTevColorOp(s32, u32, u32, u32, u32, u32);
-extern void GXSetTevAlphaOp(s32, u32, u32, u32, u32, u32);
-extern void GXSetBlendMode(u32, u32, u32, u32);
-extern void GXSetVtxAttrFmt(u32, u32, u32, u32, u32);
-extern void GXClearVtxDesc();
-extern void GXSetVtxDesc(u32, u32);
-typedef void (*GXDrawDoneCallback)(void);
-extern void GXSetDrawDoneCallback(GXDrawDoneCallback);
-extern void GXDrawDone(void);
-extern void GXAbortFrame(void);
-extern void GXFlush(void);
-extern OSThread* GXSetCurrentGXThread(void);
-extern OSThread* GXGetCurrentGXThread(void);
 }
 
 extern "C" {
@@ -622,8 +582,10 @@ void Z2SeqMgr_NS_setBattleLastHit(void);
 // Z2Calc
 extern "C" {
 void linearTransform__6Z2CalcFfffffb(void);
-void func_8036C740(void);
-void func_8036C780(void);
+// MSL_C.PPCEABI.bare.H::exp
+double func_8036C740(double);
+// MSL_C.PPCEABI.bare.H::pow
+double func_8036C780(double, double);
 void getRandom_0_1__6Z2CalcFv(void);
 void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign(void);
 }
@@ -1100,7 +1062,8 @@ void mDoRst_resetCallBack__FiPv(void);
 // additional symbols needed for d_attention.cpp
 // autogenerated by split.py v0.3 at 2020-12-27 23:10:29.338588
 extern "C" {
-void func_8036C668(void);
+// tan
+double func_8036C668(double);
 void dAttCatch_c_NS_init(void);
 void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
 void dAttention_c_NS_stockAttention(void);
@@ -1124,7 +1087,7 @@ void select_attention(void);
 void dAttention_c_NS_EnemyDistance(void);
 void dAttention_c_NS_Run(void);
 void dAttention_c_NS_nextAttention(void);
-void cXyz_NS___mi(void);
+void __mi__4cXyzCFRC3Vec(void);
 void dAttDrawParam_c(void);
 void func_80361CE8(void);
 void mDoExt_bckAnm_NS_init(void);
@@ -1132,12 +1095,12 @@ void mDoExt_btkAnm_NS_entry(void);
 void dAttList_c_NS_getActor(void);
 void mDoExt_restoreCurrentHeap(void);
 void mDoExt_modelUpdateDL(void);
-void cSGlobe_X4_(void);
+void __ct__7cSGlobeFRC4cXyz(void);
 void dAttention_c_NS_setList(void);
 void dAttLook_c_NS_convPId(void);
 void dAttention_c_NS_lostCheck(void);
 void dAttention_c_NS_getActionBtnXY(void);
-void cSAngle_X2_(void);
+void __ct__7cSAngleFs(void);
 void fopAcIt_Judge(void);
 void dAttHint_c_NS_convPId(void);
 void dAttCatch_c_NS_proc(void);
@@ -1161,7 +1124,7 @@ void dAttention_c_NS_CheckObjectTarget(void);
 void dAttention_c_NS_chkAttMask(void);
 void dAttention_c_NS_triggerProc(void);
 void dAttention_c_NS_ActionTarget(void);
-void cSAngle_NS___mi_X2_(void);
+void __mi__7cSAngleCFs(void);
 void dAttention_c_NS_GetLockonList(void);
 void dAttHint_c_NS_init(void);
 // void dAttention_c(void);
@@ -1171,7 +1134,7 @@ void func_800738FC(void);
 void mDoExt_brkAnm_NS_entry(void);
 void dAttention_c_NS_judgementStatus4Switch(void);
 void check_event_condition(void);
-void cSAngle_X1_(void);
+void __ct__7cSAngleFRC7cSAngle(void);
 void daPy_py_c_NS_getAttentionOffsetY(void);
 void mDoExt_baseAnm_NS_play(void);
 void _unnamed_d_attention_cpp__NS_padLockButton(void);
@@ -1180,7 +1143,7 @@ void dAttention_c_NS_SelectAttention(void);
 void dAttLook_c_NS_init(void);
 void mDoExt_adjustSolidHeap(void);
 void mDoExt_destroySolidHeap(void);
-void cSAngle_NS_Inv(void);
+void Inv__7cSAngleCFv(void);
 void mDoExt_brkAnm_NS_init(void);
 void dAttDrawParam_c_NS_dtor(void);
 void dAttDraw_c_NS_alphaAnm(void);
@@ -1322,7 +1285,7 @@ void dBgS_AcchCir(void);
 void daAlink_c_NS_getBoomFlyMax(void);
 void daAlink_c_NS_setSmellSave(void);
 void daAlink_c_NS_checkLv2MiddleBossBgRide(void);
-void cM3d_3PlaneCrossPos(void);
+void cM3d_3PlaneCrossPos__FRC8cM3dGPlaRC8cM3dGPlaRC8cM3dGPlaP3Vec(void);
 void daAlink_c_NS_checkUpperItemAction(void);
 void daAlink_c_NS_checkGrabTalkActor(void);
 void func_800D9E88(void);
@@ -1353,9 +1316,9 @@ void daAlink_c_NS_getRoofHangSMoveAnmSpeed(void);
 void func_8011DB9C(void);
 void func_8014156C(void);
 void func_801416B8(void);
-void cM3dGCyl_NS_SetC(void);
+void SetC__8cM3dGCylFRC4cXyz(void);
 void daAlink_c_NS_procWolfLieAutoMoveInit(void);
-void cM_rndFX(void);
+void cM_rndFX__Ff(void);
 void daAlink_c_NS_procBossBodyHangInit(void);
 void func_8010DA34(void);
 void cBgS_NS_GroundCross(void);
@@ -1380,7 +1343,7 @@ void J3DModel_NS_calcWeightEnvelopeMtx(void);
 void dKy_WolfEyeLight_set(void);
 void daAlink_c_NS_setHookshotModel(void);
 void func_801417E0(void);
-void cXyz_NS_normZP(void);
+void normZP__4cXyzCFv(void);
 void daAlink_c_NS_checkEquipAnime(void);
 void daAlink_c_NS_concatMagneBootInvMtx(void);
 void dComIfGp_getRStatus(void);
@@ -1482,7 +1445,7 @@ void daAlink_c_NS_setMetamorphoseModel(void);
 void daAlink_c_NS_procCoLargeDamageInit(void);
 void func_80141810(void);
 void func_80141864(void);
-void cBgS_GndChk_NS_SetPos_X1_(void);
+void SetPos__11cBgS_GndChkFPC4cXyz(void);
 void func_8014184C(void);
 void dEvent_manager_c_NS_cutEnd(void);
 void daAlink_c_NS_initModel(void);
@@ -1507,9 +1470,9 @@ void JPAParticleCallBack_NS_dtor(void);
 void func_801417D4(void);
 void func_8011E960(void);
 void setLinkBootsType__14Z2CreatureLinkFl(void);
-void cM_atan2s(void);
+void cM_atan2s__Fff(void);
 void daAlink_c_NS_setLastSceneMode(void);
-void cBgS_PolyInfo_NS_dtor(void);
+void __dt__13cBgS_PolyInfoFv(void);
 void daAlink_c_getDemoIDData(void);
 void func_8011EC60(void);
 void daAlink_c_NS_resetAtCollision(void);
@@ -1584,7 +1547,7 @@ void daAlink_c_NS_checkLandAction(void);
 void daAlink_c_NS_setHeavyBoots(void);
 void func_800C5484(void);
 void func_8013DC5C(void);
-void cXyz_NS_atan2sY_XZ(void);
+void atan2sY_XZ__4cXyzCFv(void);
 void daAlink_c_NS_procMoveTurnInit(void);
 void func_800FB790(void);
 void daAlink_c_NS_setUpperAnimeBase(void);
@@ -1632,7 +1595,7 @@ void func_801415B4(void);
 void daAlink_c_NS_setBowSight(void);
 void daAlink_c_NS_checkGrabLineCheck(void);
 void daAlink_c_NS_dtor(void);
-void cLib_addCalcPos(void);
+void cLib_addCalcPos__FP4cXyzRC4cXyzfff(void);
 void func_8013C7A4(void);
 void func_800FC240(void);
 void dCamera_c_NS_Stop(void);
@@ -1694,7 +1657,7 @@ void func_800F2898(void);
 void daAlink_c_NS_procCopyRodSwingInit(void);
 void daPy_addCalcShort(void);
 void daAlink_c_NS_setSyncBoarPos(void);
-void cM3d_Len2dSqPntAndSegLine(void);
+void cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf(void);
 void daAlink_c_NS_itemTriggerCheck(void);
 void daAlink_c_NS_checkClimbRoof(void);
 void daAlink_c_NS_checkUpperItemActionFly(void);
@@ -1725,7 +1688,7 @@ void daAlink_c_NS_checkWolfGroundSpecialMode(void);
 void func_800F0CE4(void);
 void getLightDropNum__16dSv_light_drop_cCFUc(void);
 void func_800CFDF4(void);
-void cLib_addCalc(void);
+void cLib_addCalc__FPfffff(void);
 void daAlink_c_NS_setIronBallBaseAnime(void);
 void daAlink_c_NS_procCutFinishJumpUpInit(void);
 void daPy_py_c_NS_checkTradeItem(void);
@@ -1928,7 +1891,7 @@ void daAlink_c_NS_setFrontWallType(void);
 void daAlink_c_NS_setHangGroundY(void);
 void dBgS_Acch_NS_Set_X1_(void);
 void daAlink_c_NS_setWolfLockAttackEffect(void);
-void cLib_distanceAngleS(void);
+void cLib_distanceAngleS__Fss(void);
 void dPa_control_c_NS_setWaterRipple(void);
 void dBgS_Acch_NS_ChkRoofHit(void);
 void daAlink_c_NS_procCanoeFishingGetInit(void);
@@ -1956,7 +1919,7 @@ void func_800D0468(void);
 void func_800FB1A4(void);
 void daAlink_c_NS_setSyncBoarRunPos(void);
 void func_800E1248(void);
-void cM3dGPla_NS_crossInfLin(void);
+void crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz(void);
 void GXSetZMode(void);
 void J3DModel_NS_getAnmMtx(void);
 void func_800F6394(void);
@@ -1979,14 +1942,14 @@ void daAlink_c_NS_checkHangFootWall(void);
 void func_8010BCA4(void);
 void daAlink_c_NS_checkCutLandDamage(void);
 void func_80141914(void);
-void cCcS_NS_Set(void);
+void Set__4cCcSFP8cCcD_Obj(void);
 void daAlink_c_NS_setFaceBasicAnime(void);
 void daAlink_c_NS_setCommonBoardAnime(void);
 void daAlink_c_NS_setWolfCollisionPos(void);
 void func_800D05FC(void);
 void func_800F3F38(void);
 void daAlink_c_NS_procCanoePaddlePutInit(void);
-void cM3dGCyl_NS_SetR(void);
+void SetR__8cM3dGCylFf(void);
 void daAlink_c_NS_checkSwordTwirlAnime(void);
 void daAlink_c_NS_checkWindSpeedOnAngle(void);
 void daAlink_c_NS_setDoubleAnime(void);
@@ -2019,10 +1982,10 @@ void daAlink_c_NS_checkHorseServiceWaitAnime(void);
 void dBgS_RopeLinChk_NS_dtor(void);
 void func_800C6D20(void);
 void daAlink_c_NS_setHorseTurnUpperAnime(void);
-void cXyz_NS_normalize(void);
+void normalize__4cXyzFv(void);
 void daAlink_c_NS_procGuardBreakInit(void);
 void daAlink_c_NS_procWolfStepMoveInit(void);
-void cXyz_NS___mi(void);
+void __mi__4cXyzCFRC3Vec(void);
 void daAlink_c_NS_changeCrawlAutoMoveProc(void);
 void daAlink_c_NS_createHeap(void);
 void daAlink_c_NS_getBoardRowAnmSpeed(void);
@@ -2037,7 +2000,7 @@ void daAlink_c_NS_procSumouReadyInit(void);
 void func_800D0688(void);
 void daAlink_c_NS_checkHangStartSideWall(void);
 void daAlink_c_NS_setDrawHand(void);
-void cM_rnd(void);
+void cM_rnd__Fv(void);
 void dCcD_GObjInf_NS_GetAtHitGObj(void);
 void dBgS_RoofChk(void);
 void daAlink_c_NS_getCutDirection(void);
@@ -2076,7 +2039,7 @@ void func_800E21FC(void);
 void func_800D6A38(void);
 void daAlink_c_NS_procHorseBowSubjectInit(void);
 void daAlink_c_NS_setDemoMoveData(void);
-void cM_rndF(void);
+void cM_rndF__Ff(void);
 void daAlink_c_NS_statusWindowExecute(void);
 void func_800E08C4(void);
 void func_800D06D8(void);
@@ -2098,7 +2061,7 @@ void func_800F6874(void);
 void daAlink_c_NS_procCoGetReadySitInit(void);
 void GXLoadPosMtxImm(void);
 void daAlink_c_NS_transAnimeProc(void);
-void cLib_chaseUC(void);
+void cLib_chaseUC__FPUcUcUc(void);
 void mDoMtx_XrotS(void);
 void daAlink_c_NS_commonInitForceRideRein(void);
 void func_8013E80C(void);
@@ -2266,7 +2229,7 @@ void dBgS_BoomerangLinChk(void);
 void func_800D03F0(void);
 void daPy_py_c_NS_offNoResetFlg2(void);
 void daAlink_c_NS_getMoveBGActorName(void);
-void cXyz_NS___pl(void);
+void __pl__4cXyzCFRC3Vec(void);
 void dCcD_GObjInf_NS_ResetAtHit(void);
 void J3DModel_NS_setBaseTRMtx(void);
 void daAlink_c_NS_checkRestartRoom(void);
@@ -2315,7 +2278,7 @@ void dCcD_GObjInf_NS_getHitSeID(void);
 void func_80138644(void);
 void daAlink_c_NS_setClimbStartNotGround(void);
 void daAlink_c_NS_procHangWallCatchInit(void);
-void cLib_addCalcAngleS(void);
+void cLib_addCalcAngleS__FPsssss(void);
 void daTagMagne_c_NS_checkMagnetCode(void);
 void daAlink_c_NS_procLadderMoveInit(void);
 void func_800FC390(void);
@@ -2326,7 +2289,7 @@ void func_800F2628(void);
 void daAlink_c_NS_setUnderAnime(void);
 void func_80112304(void);
 void daAlink_c_NS_setOldRootQuaternion(void);
-void cXyz_NS_atan2sX_Z(void);
+void atan2sX_Z__4cXyzCFv(void);
 void daAlink_c_NS_getCopyRodCameraActor(void);
 void dBgS_PolyPassChk_NS_ClrLink(void);
 void daAlink_c_NS_resetFacePriAnime(void);
@@ -2384,7 +2347,7 @@ void func_8011C62C(void);
 void daPy_py_c_NS_onNoResetFlg0(void);
 void daAlink_c_NS_setSpeedAndAngleWolfAtn(void);
 void func_800E3760(void);
-void cM3dGLin_NS_SetStartEnd(void);
+void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz(void);
 void GXSetNumIndStages(void);
 void daAlink_c_NS_getCanoeMaxSpeed(void);
 void mDoExt_destroyExpHeap(void);
@@ -2503,7 +2466,7 @@ void daPy_frameCtrl_c_NS_setFrameCtrl(void);
 void daPy_anmHeap_c_NS___defctor(void);
 void daAlink_matAnm_c_NS_offSetFlg(void);
 void daAlink_c_NS_checkNextActionHookshot(void);
-void cXyz_NS___ml(void);
+void __ml__4cXyzCFf(void);
 void daAlink_c_NS_checkWolfWaitSlipPolygon(void);
 void daAlink_c_NS_checkLadderFall(void);
 void func_8011243C(void);
@@ -2585,7 +2548,7 @@ void daPy_sightPacket_c_NS_setSight(void);
 void func_800F7684(void);
 void daAlink_c_NS_decSwordBlur(void);
 void func_800D04B8(void);
-void cLib_chasePos(void);
+void cLib_chasePos__FP4cXyzRC4cXyzf(void);
 void GXSetCullMode(void);
 void daAlink_c_NS_bottleModelCallBack(void);
 void daAlink_c_NS_simpleAnmPlay(void);
@@ -2654,7 +2617,7 @@ void func_8013A8A0(void);
 void func_80110518(void);
 void fopOvlpM_IsPeek(void);
 void daAlink_c_NS_setShieldModel(void);
-void cM3d_SignedLenPlaAndPos(void);
+void cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec(void);
 void daAlink_c_NS_checkNotCrawlStand_X1_(void);
 void mDoExt_setCurrentHeap(void);
 void daAlink_c_NS_checkMiddleBossGoronRoom(void);
@@ -2705,7 +2668,7 @@ void daAlink_c_NS_setCrawlAutoMoveAimPos(void);
 void daAlink_c_NS_checkDungeon(void);
 void dEvt_control_c_NS_setPtI_Id(void);
 void func_801115CC(void);
-void cBgS_PolyInfo_NS_SetPolyInfo(void);
+void SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo(void);
 void daAlink_c_NS_resetFacePriBtp(void);
 void daAlink_c_NS_procTurnMoveInit(void);
 void daAlink_c_NS_setHighModelFaceBtk(void);
@@ -2789,7 +2752,7 @@ void daAlinkHIO_cut_c_NS_dtor(void);
 void daPy_demo_c_NS_setSpecialDemoType(void);
 void func_800D05C0(void);
 void daAlink_c_NS_initHookshotUpperAnimeSpeed(void);
-void cBgS_PolyInfo_NS_ctor(void);
+void __ct__13cBgS_PolyInfoFv(void);
 void J3DDrawBuffer_NS_entryImm(void);
 void daAlink_c_NS_checkZeroSpeedF(void);
 void daAlink_c_NS_resetStatusWindow(void);
@@ -2799,7 +2762,7 @@ void func_800BF124(void);
 void func_8011BDF0(void);
 void func_800EA3AC(void);
 void dEvt_info_c_NS_onCondition(void);
-void cM_rad2s(void);
+void cM_rad2s__Ff(void);
 void daAlink_c_NS_checkServiceWaitMode(void);
 void dMsgObject_c_NS_getStatus(void);
 void func_8012EFB8(void);
@@ -2884,7 +2847,7 @@ void daAlink_c_NS_checkUpSwimButtonAccept(void);
 void func_80133930(void);
 void daAlink_c_NS_procCutReverseInit(void);
 void daAlink_c_NS_procWolfMoveInit(void);
-void cM3dGSph_NS_SetR(void);
+void SetR__8cM3dGSphFf(void);
 void dBgS_NS_GetWallCode(void);
 void dBgS_ObjLinChk_NS_dtor(void);
 void func_800A87D8(void);
@@ -2959,7 +2922,7 @@ void dPaPoF_c_NS_clearFourAllID(void);
 void func_800C3504(void);
 void daAlink_c_NS_checkCrawlInHoll(void);
 void cLib_calcTimer(void);
-void cCcD_Stts_NS_ClrCcMove(void);
+void ClrCcMove__9cCcD_SttsFv(void);
 void func_80126354(void);
 void daAlink_c_NS_setUpperAnime(void);
 void daAlink_c_NS_setItemHeap(void);
@@ -3045,10 +3008,10 @@ void setRunRideMode__10e_wb_classFv(void);
 void daAlink_c_NS_setDemoLeftHandIndex(void);
 void daAlink_c_NS_setSlingModel(void);
 void daAlink_c_NS_setIronBallReadyAnime(void);
-void cM3dGSph_NS_SetC(void);
+void SetC__8cM3dGSphFRC4cXyz(void);
 void dPa_control_c_NS_level_c_NS_getEmitter(void);
 void daAlink_c_NS_procSmallJumpInit(void);
-void cM3dGCyl_NS_SetH(void);
+void SetH__8cM3dGCylFf(void);
 void func_8011EAE8(void);
 void func_80131408(void);
 void dBgS_NS_GetMagnetCode(void);
@@ -3239,12 +3202,12 @@ void daAlink_c_NS_checkNextActionCanoe(void);
 void func_801124FC(void);
 void func_800F6188(void);
 void daAlink_c_NS_setBowOrSlingStatus(void);
-void cLib_targetAngleY(void);
+void cLib_targetAngleY__FPC3VecPC3Vec(void);
 void daAlink_c_NS_procHorseRunInit(void);
 void func_8011DF68(void);
 void daAlink_c_NS_subjectCancelTrigger(void);
 void func_801415DC(void);
-void csXyz_X1_(void);
+void __ct__5csXyzFsss(void);
 void func_800E5EC8(void);
 void daAlink_c_NS_procBackJumpInit(void);
 void func_801417C0(void);
@@ -3276,7 +3239,7 @@ void setMagnetized__14Z2CreatureLinkFb(void);
 void func_8011EB8C(void);
 void func_80141730(void);
 void daAlink_c_NS_checkZoraSwimMove(void);
-void cLib_chaseF(void);
+void cLib_chaseF__FPfff(void);
 void daAlink_c_NS_damageMagnification(void);
 void daAlink_c_NS_setSyncHorse(void);
 void daAlink_c_NS_procGoronRideWaitInit(void);
@@ -3291,7 +3254,7 @@ void func_800DE990(void);
 void func_80141694(void);
 void func_800D084C(void);
 void daAlink_c_NS_checkIronBallReturnChange(void);
-void cCcD_ObjCo_NS_SetVsGrp(void);
+void SetVsGrp__10cCcD_ObjCoFUl(void);
 void daAlink_c_NS_setDoubleAnimeBlendRatio(void);
 void func_80141824(void);
 void func_801416A8(void);
@@ -3333,12 +3296,12 @@ void daAlink_c_NS_procCanoeFishingReelInit(void);
 void dPaneClass_showNullPane(void);
 void daAlink_c_NS_checkUnderMove0BckNoArc(void);
 void func_801417E8(void);
-void cXyz_NS_outprod(void);
+void outprod__4cXyzCFRC3Vec(void);
 void func_800CF344(void);
 void daAlink_c_NS_setSwordPushAnime(void);
 void dRes_control_c_NS_getRes_X1_(void);
 void func_800F194C(void);
-void cLib_memCpy(void);
+void cLib_memCpy__FPvPCvUl(void);
 void func_800D07D4(void);
 void func_800DDF2C(void);
 void dComIfGd_setShadow(void);
@@ -3346,7 +3309,7 @@ void cXyz_NS_dtor(void);
 void daAlink_c_NS_checkUpperItemActionBoomerangFly(void);
 void daAlink_c_NS_checkPolyDamage(void);
 void func_8013B424(void);
-void cLib_chaseAngleS(void);
+void cLib_chaseAngleS__FPsss(void);
 void dBgS_RoofChk_NS_SetPos(void);
 void daAlink_c_NS_procFrontRollInit(void);
 void daAlink_c_NS_checkNextActionCopyRod(void);
@@ -3430,7 +3393,7 @@ void daAlink_c_NS_checkCutTurnInput(void);
 void dAttention_c_NS_LockonTarget(void);
 void func_801446E4(void);
 void daAlink_c_NS_checkHorseZeldaBowMode(void);
-void cXyz_NS___dv(void);
+void __dv__4cXyzCFf(void);
 void daAlink_c_NS_setWolfWaitSlip(void);
 void daAlink_c_NS_setRoofHangSwitch(void);
 void daAlink_c_NS_sumouPunchTrigger(void);
@@ -3473,7 +3436,7 @@ void daAlink_c_NS_procCoLavaReturnInit(void);
 void daAlink_c_NS_iceSlipBgCheck(void);
 void func_800D02B8(void);
 void func_801417D8(void);
-void cM3dGCps_NS_dtor(void);
+void __dt__8cM3dGCpsFv(void);
 void GXSetChanMatColor(void);
 void daAlink_c_NS_checkWolfLieCode(void);
 void func_800CF018(void);
@@ -3485,7 +3448,7 @@ void daAlink_c_NS_getDemoLookActor(void);
 void dScnKy_env_light_c_NS_setLightTevColorType_MAJI(void);
 void daAlink_c_NS_commonGrabPutInit(void);
 void func_800F5FEC(void);
-void cLib_chaseS(void);
+void cLib_chaseS__FPsss(void);
 void daPy_actorKeep_c_NS_setData(void);
 void func_800D04A4(void);
 void daAlink_c_NS_setFaceBck(void);
@@ -3628,7 +3591,7 @@ void dEvent_manager_c_NS_getMyStaffId(void);
 void daAlink_c_NS_checkRoofHangMovePos(void);
 void daAlink_c_NS_setFootSpeed(void);
 void daPy_frameCtrl_c_NS_updateFrame(void);
-void cCcD_ObjCo_NS_SetIGrp(void);
+void SetIGrp__10cCcD_ObjCoFUl(void);
 void daAlink_c_NS_checkAtnRightAnime(void);
 void mDoExt_bckAnm_NS_changeBckOnly(void);
 void func_800C3338(void);
@@ -3691,7 +3654,7 @@ void func_8012FD2C(void);
 void dKy_Sound_set(void);
 void dMsgObject_c_NS_setSmellType(void);
 void daAlink_c_NS_getCopyRodControllActor(void);
-void cBgS_PolyInfo_NS_ClearPi(void);
+void ClearPi__13cBgS_PolyInfoFv(void);
 void func_800D3ECC(void);
 void daAlink_c_NS_checkBowGrabLeftHand(void);
 void daAlink_c_NS_setBaseRideAnime(void);
@@ -3706,7 +3669,7 @@ void daAlink_c_NS_getMoveGroundAngleSpeedRate(void);
 void func_800EFDC4(void);
 void func_801387A0(void);
 void daAlink_c_NS_checkCutTurnInputTrigger(void);
-void cM_atan2f(void);
+void cM_atan2f__Fff(void);
 void fopAcM_delete(void);
 void func_800CF25C(void);
 void daAlink_c_NS_procCutDownLandInit(void);
@@ -3726,7 +3689,7 @@ void daAlink_c_NS_checkSumouVsActor(void);
 void daAlink_c_NS_footBgCheck(void);
 void daAlink_c_NS_checkNextHookPoint(void);
 void func_8011BD6C(void);
-void cXyz_NS_normalizeZP(void);
+void normalizeZP__4cXyzFv(void);
 void func_800D3CCC(void);
 void func_8013DA8C(void);
 void dCamera_c_NS_StartEventCamera(void);
@@ -3780,7 +3743,7 @@ void dVibration_c_NS_StartShock(void);
 void daAlink_c_NS_setHorseCutTurnEffect(void);
 void func_80141814(void);
 void func_80130138(void);
-void cM3dGPla_X1_(void);
+void __ct__8cM3dGPlaFPC4cXyzf(void);
 void func_800D5FC8(void);
 void daAlink_c_NS_setBottleModel(void);
 void dCcD_Sph_NS_Set(void);
@@ -3876,6 +3839,461 @@ void cXyz_NS_ctor(void);
 void J3DGXColorS10(void);
 
 u32 dEv_noFinishSkipProc(void);
+}
+
+// additional symbols needed for c_math.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 13:20:59.345428
+extern "C" {
+double func_8036C760(double, double);
+void func_80267B04(void);
+void func_80267ACC(void);
+void cM_initRnd__Fiii(void);
+void U_GetAtanTable__Fff(void);
+void cM_rnd2__Fv(void);
+void func_802679D4(void);
+}
+
+// additional symbols needed for c_angle.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 13:27:46.812932
+extern "C" {
+void Val__7cSGlobeFfss(void);
+void Cos__7cSAngleCFv(void);
+void Globe__7cSPolarCFP7cSGlobe(void);
+// MSL_C.PPCEABI.bare.H::sin
+double func_8036C590(double);
+void __amu__7cSAngleFf(void);
+void Val__7cSPolarFRC4cXyz(void);
+void __pl__7cSAngleCFs(void);
+void __ct__7cSGlobeFfRC7cSAngleRC7cSAngle(void);
+void Abs__7cSAngleCFv(void);
+void Val__7cSPolarFfss(void);
+void Tan__7cDegreeCFv(void);
+void Val__7cSGlobeFRC7cSGlobe(void);
+void Xyz__7cSGlobeCFv(void);
+void __mi__7cSAngleCFRC7cSAngle(void);
+void Val__7cSAngleFRC7cSAngle(void);
+void Degree__7cSAngleCFv(void);
+void Polar__7cSGlobeCFP7cSPolar(void);
+void Radian__7cSAngleCFv(void);
+void Val__7cSGlobeFfRC7cSAngleRC7cSAngle(void);
+void Formal__7cSGlobeFv(void);
+void __ml__7cSAngleCFf(void);
+void Xyz__7cSPolarCFv(void);
+void __ami__7cSAngleFRC7cSAngle(void);
+void Val__7cDegreeFf(void);
+void __ct__7cSGlobeFRC7cSGlobe(void);
+void Val__7cSGlobeFRC4cXyz(void);
+void Invert__7cSGlobeFv(void);
+void __apl__7cSAngleFRC7cSAngle(void);
+void __apl__7cSAngleFs(void);
+void Val__7cSAngleFs(void);
+void __ct__7cSPolarFRC4cXyz(void);
+void Sin__7cSAngleCFv(void);
+void __ct__7cDegreeFf(void);
+double func_8036CA54(double);
+void Val__7cSAngleFf(void);
+void Norm__7cSAngleCFv(void);
+void Formal__7cSPolarFv(void);
+void Radian__7cDegreeCFv(void);
+// MSL_C.PPCEABI.bare.H::cos
+double func_8036C028(double);
+void __ct__7cSGlobeFfss(void);
+void Sin__7cDegreeCFv(void);
+void Cos__7cDegreeCFv(void);
+void func_80271BD4(void);
+void __pl__7cSAngleCFRC7cSAngle(void);
+void Formal__7cDegreeFv(void);
+void __ct__7cSAngleFf(void);
+void Norm__7cSGlobeCFv(void);
+void cSAngle_NS_dtor(void);
+void __mi__7cSAngleCFv(void);
+}
+
+// additional symbols needed for c_API_controller_pad.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 13:48:48.938863
+extern "C" {
+void cAPICPad_ANY_BUTTON__FUl(void);
+void mDoCPd_c_NS_recalibrate(void);
+}
+
+// additional symbols needed for c_API_graphic.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 13:52:43.580987
+extern "C" {
+void cAPIGph_BeforeOfDraw__Fv(void);
+void cAPIGph_AfterOfDraw__Fv(void);
+}
+
+// additional symbols needed for c_bg_s_chk.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 13:59:04.394780
+extern "C" {
+void ChkSameActorPid__8cBgS_ChkCFUi(void);
+void __ct__8cBgS_ChkFv(void);
+void SetExtChk__8cBgS_ChkFR8cBgS_Chk(void);
+void __dt__8cBgS_ChkFv(void);
+}
+
+// additional symbols needed for c_bg_s_gnd_chk.cpp
+// autogenerated by split.py v0.3 at 2020-12-31 14:10:48.798982
+extern "C" {
+void func_80267D54(void);
+void __dt__11cBgS_GndChkFv(void);
+void PreCheck__11cBgS_GndChkFv(void);
+void SetPos__11cBgS_GndChkFPC3Vec(void);
+}
+
+// additional symbols needed for c_bg_s_lin_chk.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 12:56:44.690422
+extern "C" {
+void Set2__11cBgS_LinChkFPC4cXyzPC4cXyzUi(void);
+void __dt__11cBgS_LinChkFv(void);
+void ct__11cBgS_LinChkFv(void);
+void PreCalc__11cBgS_LinChkFv(void);
+void __ct__11cBgS_LinChkFv(void);
+void func_80267F80(void);
+}
+
+// additional symbols needed for c_bg_s_poly_info.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 12:59:59.592477
+extern "C" {
+void SetActorInfo__13cBgS_PolyInfoFiPvUi(void);
+void SetPolyIndex__13cBgS_PolyInfoFi(void);
+void ChkBgIndex__13cBgS_PolyInfoCFv(void);
+void ChkSafe__13cBgS_PolyInfoCFPCvUi(void);
+void ChkSetInfo__13cBgS_PolyInfoCFv(void);
+}
+
+// additional symbols needed for c_bg_s_shdw_draw.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 13:07:28.491346
+extern "C" {
+void Set__8cM3dGAabFPC4cXyzPC4cXyz(void);
+void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i(void);
+void __ct__13cBgS_ShdwDrawFv(void);
+void __dt__13cBgS_ShdwDrawFv(void);
+void Set__13cBgS_ShdwDrawFR4cXyzR4cXyz(void);
+}
+
+// additional symbols needed for c_cc_d.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 13:13:18.270964
+extern "C" {
+void CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CpsAttrP4cXyz(void);
+void CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CylAttrP4cXyz(void);
+void getShapeAccess__14cCcD_ShapeAttrCFPQ214cCcD_ShapeAttr5Shape(void);
+void Set__8cCcD_ObjFRC11cCcD_SrcObj(void);
+void CrossAtTg__12cCcD_SphAttrCFRC12cCcD_TriAttrP4cXyz(void);
+void func_80264A54(void);
+void PlusR__8cM3dGAabFf(void);
+void Init__9cCcD_SttsFiiPvUi(void);
+void CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_CpsAttrP4cXyz(void);
+void GetGStts__9cCcD_SttsCFv(void);
+void cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec(void);
+void CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CylAttrP4cXyz(void);
+void ct__18cCcD_ObjCommonBaseFv(void);
+void func_80264A4C(void);
+void ClrHit__10cCcD_ObjCoFv(void);
+void ClrHit__10cCcD_ObjAtFv(void);
+void CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz(void);
+void CrossCo__12cCcD_CpsAttrCFRC12cCcD_SphAttrPf(void);
+void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylPf(void);
+void ClearForMinMax__8cM3dGAabFv(void);
+void ct__8cCcD_ObjFv(void);
+void CrossCo__12cCcD_SphAttrCFRC12cCcD_CpsAttrPf(void);
+void GetNVec__12cCcD_SphAttrCFRC4cXyzP4cXyz(void);
+void CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl(void);
+void cCcD_CpsAttr_NS_dtor(void);
+void ClrAt__9cCcD_SttsFv(void);
+void CrossAtTg__12cCcD_SphAttrCFRC12cCcD_SphAttrP4cXyz(void);
+void cCcD_Stts_NS_PlusDmg(void);
+void CalcAabBox__12cCcD_TriAttrFv(void);
+void SetHit__10cCcD_ObjCoFP8cCcD_Obj(void);
+void CrossAtTg__12cCcD_CylAttrCFRC12cCcD_TriAttrP4cXyz(void);
+void CrossCo__12cCcD_CylAttrCFRC12cCcD_CpsAttrPf(void);
+void cCcD_CylAttr_NS_dtor(void);
+void CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_TriAttrP4cXyz(void);
+void cM3d_Cross_CpsCyl__FRC8cM3dGCpsRC8cM3dGCylP3Vec(void);
+void func_80264A64(void);
+void CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CylAttrP4cXyz(void);
+void CrossAtTg__14cCcD_ShapeAttrCFRC14cCcD_ShapeAttrP4cXyz(void);
+void CrossCo__12cCcD_SphAttrCFRC12cCcD_SphAttrPf(void);
+void CrossCo__12cCcD_CpsAttrCFRC12cCcD_CylAttrPf(void);
+void Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt(void);
+void CalcAabBox__12cCcD_SphAttrFv(void);
+void cM3d_Cross_CpsCps__FRC8cM3dGCpsRC8cM3dGCpsP3Vec(void);
+void getShapeAccess__12cCcD_CylAttrCFPQ214cCcD_ShapeAttr5Shape(void);
+void cross__8cM3dGCylCFPC8cM3dGCylP4cXyz(void);
+void CrossAtTg__12cCcD_TriAttrCFRC12cCcD_TriAttrP4cXyz(void);
+void CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab(void);
+void SetHit__10cCcD_ObjAtFP8cCcD_Obj(void);
+void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo(void);
+void Set__14cCcD_ObjHitInfFRC17cCcD_SrcObjHitInf(void);
+void cM3d_Cross_SphTri__FPC8cM3dGSphPC8cM3dGTriP3Vec(void);
+void CrossAtTg__12cCcD_CylAttrCFRC12cCcD_CylAttrP4cXyz(void);
+void CrossAtTg__12cCcD_CylAttrCFRC12cCcD_SphAttrP4cXyz(void);
+void GetGStts__9cCcD_SttsFv(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphPf(void);
+void cross__8cM3dGSphCFPC8cM3dGSphP4cXyz(void);
+void cM3d_Cross_CpsSph__FRC8cM3dGCpsRC8cM3dGSphP3Vec(void);
+void cCcD_SphAttr_NS_dtor(void);
+void SetHit__10cCcD_ObjTgFP8cCcD_Obj(void);
+void getShapeAccess__12cCcD_SphAttrCFPQ214cCcD_ShapeAttr5Shape(void);
+void ClrTg__9cCcD_SttsFv(void);
+void cross__8cM3dGTriCFPC8cM3dGCylP3Vec(void);
+void CrossAtTg__12cCcD_TriAttrCFRC12cCcD_SphAttrP4cXyz(void);
+void Ct__9cCcD_SttsFv(void);
+void SetGrp__10cCcD_ObjTgFUl(void);
+void CrossCo__12cCcD_CpsAttrCFRC12cCcD_CpsAttrPf(void);
+void func_80264A5C(void);
+void CalcAabBox__12cCcD_CpsAttrFv(void);
+void SetArea__15cCcD_DivideAreaFRC8cM3dGAab(void);
+void CrossAtTg__12cCcD_SphAttrCFRC12cCcD_CpsAttrP4cXyz(void);
+void SetMinMax__8cM3dGAabFRC4cXyz(void);
+void PlusCcMove__9cCcD_SttsFfff(void);
+void GetNVec__12cCcD_CpsAttrCFRC4cXyzP4cXyz(void);
+void CalcAabBox__12cCcD_CylAttrFv(void);
+void cM3d_Cross_CpsTri__FRC8cM3dGCps8cM3dGTriP3Vec(void);
+void GetWeightF__9cCcD_SttsCFv(void);
+void CrossCo__14cCcD_ShapeAttrCFRC14cCcD_ShapeAttrPf(void);
+void cross__8cM3dGCylCFPC8cM3dGSphP4cXyz(void);
+void __sinit_c_cc_d_cpp(void);
+void CrossCo__12cCcD_SphAttrCFRC12cCcD_CylAttrPf(void);
+void ClrHit__10cCcD_ObjTgFv(void);
+void Set__15cCcD_DivideInfoFUlUlUl(void);
+void cross__8cM3dGSphCFPC8cM3dGCylP4cXyz(void);
+void GetNVec__12cCcD_TriAttrCFRC4cXyzP4cXyz(void);
+void GetNVec__12cCcD_CylAttrCFRC4cXyzP4cXyz(void);
+void __dt__12cCcD_TriAttrFv(void);
+void GetAc__8cCcD_ObjFv(void);
+void CrossCo__12cCcD_CylAttrCFRC12cCcD_CylAttrPf(void);
+void CrossCo__12cCcD_CylAttrCFRC12cCcD_SphAttrPf(void);
+void cM3d_Cross_TriTri__FRC8cM3dGTriRC8cM3dGTriP3Vec(void);
+void CrossAtTg__12cCcD_CpsAttrCFRC12cCcD_SphAttrP4cXyz(void);
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphPf(void);
+void Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg(void);
+}
+
+// additional symbols needed for c_cc_s.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 13:55:15.722404
+extern "C" {
+void Move__4cCcSFv(void);
+void ChkNoHitGAtTg__4cCcSFPC12cCcD_GObjInfPC12cCcD_GObjInfP10cCcD_GSttsP10cCcD_GStts(void);
+void SetCoGObjInf__4cCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts(
+    void);
+void ChkCo__4cCcSFv(void);
+void ChkNoHitCo__4cCcSFP8cCcD_ObjP8cCcD_Obj(void);
+void DrawClear__4cCcSFv(void);
+void SetMinMax__8cM3dGAabFRC8cM3dGAab(void);
+void SetAtTgGObjInf__4cCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz(
+    void);
+void SetCoCommonHitInf__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf(void);
+void ChkAtTgHitAfterCross__4cCcSFbbPC12cCcD_GObjInfPC12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts(
+    void);
+void ClrCoHitInf__4cCcSFv(void);
+void SetPosCorrect__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf(void);
+void CalcTgPlusDmg__4cCcSFP8cCcD_ObjP8cCcD_ObjP9cCcD_SttsP9cCcD_Stts(void);
+void SetCoGCorrectProc__4cCcSFP8cCcD_ObjP8cCcD_Obj(void);
+void MoveAfterCheck__4cCcSFv(void);
+void CalcCenter__8cM3dGAabCFP4cXyz(void);
+void ClrAtHitInf__4cCcSFv(void);
+void ChkNoHitGCo__4cCcSFP8cCcD_ObjP8cCcD_Obj(void);
+void GetWt__4cCcSCFUc(void);
+void SetAtTgCommonHitInf__4cCcSFP8cCcD_ObjP8cCcD_ObjP4cXyz(void);
+void ChkAtTg__4cCcSFv(void);
+void ClrTgHitInf__4cCcSFv(void);
+void CalcArea__4cCcSFv(void);
+void Ct__4cCcSFv(void);
+void ChkNoHitAtTg__4cCcSFP8cCcD_ObjP8cCcD_Obj(void);
+void Dt__4cCcSFv(void);
+}
+
+// additional symbols needed for c_lib.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:12:11.765814
+extern "C" {
+void cLib_addCalcPosXZ__FP4cXyzRC4cXyzfff(void);
+void cLib_targetAngleY__FRC3VecRC3Vec(void);
+void cLib_addCalc0__FPfff(void);
+void __eq__4cXyzCFRC3Vec(void);
+void cLib_memSet__FPviUl(void);
+void MtxPush__Fv(void);
+void cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz(void);
+void MtxTrans__FfffUc(void);
+void MtxScale__FfffUc(void);
+void MtxPull__Fv(void);
+void cLib_chasePosXZ__FP4cXyzRC4cXyzf(void);
+void cLib_addCalc2__FPffff(void);
+void cLib_targetAngleX__FPC4cXyzPC4cXyz(void);
+void __ne__4cXyzCFRC3Vec(void);
+void MtxPosition__FP4cXyzP4cXyz(void);
+void cLib_addCalcPos2__FP4cXyzRC4cXyzff(void);
+void cLib_addCalcPosXZ2__FP4cXyzRC4cXyzff(void);
+void cLib_addCalcAngleS2__FPssss(void);
+}
+
+// additional symbols needed for c_m2d.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:23:08.024598
+extern "C" {
+void cM2d_CrossCirLin__FR8cM2dGCirffffPfPf(void);
+}
+
+// additional symbols needed for c_m3d_g_aab.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:25:53.397929
+extern "C" {
+void SetMax__8cM3dGAabFRC4cXyz(void);
+void CrossY__8cM3dGAabCFPC4cXyz(void);
+void TopPlaneYUnder__8cM3dGAabCFf(void);
+void UnderPlaneYUnder__8cM3dGAabCFf(void);
+void SetMin__8cM3dGAabFRC4cXyz(void);
+}
+
+// additional symbols needed for c_m3d_g_cir.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:33:18.200707
+extern "C" {
+void __ct__8cM3dGCirFv(void);
+void __dt__8cM3dGCirFv(void);
+void Set__8cM3dGCirFffff(void);
+void __dt__8cM2dGCirFv(void);
+}
+
+// additional symbols needed for c_m3d_g_cps.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:41:13.420999
+extern "C" {
+void Set__8cM3dGCpsFRC4cXyzRC4cXyzf(void);
+void Set__8cM3dGCpsFRC9cM3dGCpsS(void);
+void SetCps__8cM3dGCpsFRC8cM3dGCps(void);
+void SetStartEnd__8cM3dGLinFRC3VecRC3Vec(void);
+}
+
+// additional symbols needed for c_m3d_g_cyl.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:45:46.600418
+extern "C" {
+void calcMinMax__8cM3dGCylFP4cXyzP4cXyz(void);
+void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec(void);
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf(void);
+void Set__8cM3dGCylFRC4cXyzff(void);
+}
+
+// additional symbols needed for c_m3d_g_lin.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:48:45.519386
+extern "C" {
+void SetEnd__8cM3dGLinFRC4cXyz(void);
+void CalcPos__8cM3dGLinCFP3Vecf(void);
+}
+
+// additional symbols needed for c_m3d_g_pla.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:50:54.809865
+extern "C" {
+void SetupNP__8cM3dGPlaFRC3VecRC3Vec(void);
+void getCrossY__8cM3dGPlaCFRC4cXyzPf(void);
+void SetupNP0__8cM3dGPlaFRC3VecRC3Vec(void);
+void Set__8cM3dGPlaFPC8cM3dGPla(void);
+void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec(void);
+void getCrossYLessD__8cM3dGPlaCFRC3VecPf(void);
+}
+
+// additional symbols needed for c_m3d_g_sph.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:53:31.074671
+extern "C" {
+void GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz(void);
+void Set__8cM3dGSphFRC9cM3dGSphS(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec(void);
+}
+
+// additional symbols needed for c_m3d_g_tri.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:55:53.593433
+extern "C" {
+void cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf(void);
+void setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla(void);
+void set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec(void);
+void setPos__8cM3dGTriFPC3VecPC3VecPC3Vec(void);
+}
+
+// additional symbols needed for c_m3d.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 14:58:46.459273
+extern "C" {
+void cM3d_CalcVecAngle__FRC3VecPsPs(void);
+void cM3d_Cross_SphPnt__FPC8cM3dGSphPC3Vec(void);
+void cM3d_Cross_LinPla__FPC8cM3dGLinPC8cM3dGPlaP3Vecbb(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3VecPf(void);
+void cM3d_lineVsPosSuisenCross__FPC8cM3dGLinPC3VecP3Vec(void);
+void __sinit_c_m3d_cpp(void);
+void cM3d_Cross_LinSph_CrossPos__FRC8cM3dGSphRC8cM3dGLinP3VecP3Vec(void);
+void cM3d_Cross_LinTri_Easy__FPC8cM3dGTriPC3Vec(void);
+void cM3d_Cross_CylPnt__FPC8cM3dGCylPC3Vec(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphPfPf(void);
+void cM3d_Cross_AabAab__FPC8cM3dGAabPC8cM3dGAab(void);
+void cM3d_VectorProduct2d__Fffffff(void);
+void cM3d_PlaneCrossLineProcWork__FfffffffPfPf(void);
+void __ct__8cM3dGLinFRC4cXyzRC4cXyz(void);
+void cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin(void);
+void cM3d_Cross_CpsSph_CrossPos__FRC8cM3dGCpsRC8cM3dGSphRC3VecP3Vec(void);
+void cM3d_CrossZ_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrawVec__FRC3VecRC3VecP3Vec(void);
+void cM3d_CrossY_Tri__FRC3VecRC3VecRC3VecRC8cM3dGPlaPC3Vec(void);
+void cM3d_InDivPos1__FPC3VecPC3VecfP3Vec(void);
+void cM3d_CrossZ_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_lineVsPosSuisenCross__FRC3VecRC3VecRC3VecP3Vec(void);
+void cM3d_InclusionCheckPosIn3PosBox3d__FPC3VecPC3VecPC3VecPC3Vecf(void);
+void cM3d_Cross_MinMaxBoxLine__FPC3VecPC3VecPC3VecPC3Vec(void);
+void cM3d_InclusionCheckPosIn3PosBox2d__Ffffffffff(void);
+void cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf(void);
+void cM3d_Cross_LinSph__FPC8cM3dGLinPC8cM3dGSphP3Vec(void);
+void cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_CrossY_Tri_Front__FRC3VecRC3VecRC3VecPC3Vec(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3VecPC10cM3d_RangePf(void);
+void cM3d_Cross_AabCyl__FPC8cM3dGAabPC8cM3dGCyl(void);
+void cM3d_CrossY_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec(void);
+void cM3d_Cross_CylLin__FPC8cM3dGCylPC8cM3dGLinP3VecP3Vec(void);
+void cM3d_Cross_LinTri__FPC8cM3dGLinPC8cM3dGTriP3Vecbb(void);
+void cM3d_CrossX_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_2PlaneLinePosNearPos__FRC8cM3dGPlaRC8cM3dGPlaPC3VecP3Vec(void);
+void cM3d_Cross_CylPntPnt__FPC8cM3dGCylPC3VecPC3VecP3VecP3Vec(void);
+void cM3d_VectorProduct__FPC4cXyzPC4cXyzPC4cXyzP4cXyz(void);
+void cM3d_CrossInfLineVsInfPlane_proc__FffPC3VecPC3VecP3Vec(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CalcVecZAngle__FRC3VecP5csXyz(void);
+void cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph(void);
+void cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf(void);
+void cM3d_CrossZ_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_Len2dSq__Fffff(void);
+}
+
+// additional symbols needed for c_malloc.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 15:18:22.738527
+extern "C" {
+void init__3cMlFP7JKRHeap(void);
+void free__3cMlFPv(void* pPtr);
+void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+}
+
+// additional symbols needed for c_request.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 15:27:56.858531
+extern "C" {
+void cReq_Is_Done__FP18request_base_class(void);
+void cReq_Done__FP18request_base_class(void);
+void cReq_Create__FP18request_base_classUc(void);
+void cReq_Command__FP18request_base_classUc(void);
+}
+
+// additional symbols needed for c_sxyz.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 15:36:38.121567
+extern "C" {
+void __ml__5csXyzFf(void);
+void __sinit_c_sxyz_cpp(void);
+void __mi__5csXyzFR5csXyz(void);
+void __pl__5csXyzFR5csXyz(void);
+void __apl__5csXyzFR5csXyz(void);
+}
+
+// additional symbols needed for c_xyz.cpp
+// autogenerated by split.py v0.3 at 2021-01-01 15:42:30.569970
+extern "C" {
+void __sinit_c_xyz_cpp(void);
+void normZC__4cXyzCFv(void);
+void isZero__4cXyzCFv(void);
+void __ml__4cXyzCFRC3Vec(void);
+void getCrossProduct__4cXyzCFRC3Vec(void);
+void normalizeRS__4cXyzFv(void);
 }
 
 // additional symbols needed for d_meter2_draw.cpp
@@ -3985,7 +4403,7 @@ void J2DPicture_X3_(void);
 void dMeter2Draw_c_NS_init(void);
 void dMeter2Draw_c_NS_drawLife(void);
 void dMeter2Info_c_NS_getStringKana(void);
-void cLib_addCalc2(void);
+void cLib_addCalc2__FPffff(void);
 void dMeter2Draw_c_NS_initLightDrop(void);
 void dMsgObject_c_NS_isHowlMessage(void);
 void J2DPane_NS_getGlbVtx(void);
@@ -4447,7 +4865,7 @@ void SNOW_EFF(void);
 void dKyw_Sunlenz_Draw(void);
 void dKyw_Star_Draw(void);
 void dKyw_wether_delete(void);
-void cXyz_NS___ne(void);
+void __ne__4cXyzCFRC3Vec(void);
 void cloud_shadow_move(void);
 void dKyr_shstar_move(void);
 void func_800570AC(void);
@@ -4601,7 +5019,6 @@ void dKy_GxFog_set(void);
 void GXSetZCompLoc(void);
 void dKyr_moon_arrival_check(void);
 void dKy_set_vrboxcol_ratio(void);
-void func_8036C590(void);
 void dBgS_CamGndChk_Wtr_NS_dtor(void);
 void func_8006F160(void);
 void dBgS_ObjGndChk_All_NS_dtor(void);
@@ -4634,12 +5051,10 @@ void dKy_daynight_check(void);
 void GXLoadTexMtxImm(void);
 void dKy_addcol_fog_set(void);
 void dKy_bg1_addcol_amb_set(void);
-void func_8036CA54(void);
 void rain_bg_chk(void);
 void Z2EnvSeMgr_NS_startNearThunderSe(void);
 void dKr_cullVtx_Set(void);
 void overhead_bg_chk(void);
-void func_8036C028(void);
 void cM3d_VectorProduct2d(void);
 void dCcMassS_Mng_NS_Prepare(void);
 }
@@ -4827,13 +5242,13 @@ void cSGlobe_NS_U(void);
 void dCamera_c_NS_jutOutCheck(void);
 void std_NS_fabsf(void);
 void dBgS_NS_GetRoomCamId(void);
-void cSAngle_NS_Norm(void);
+void Norm__7cSAngleCFv(void);
 void cSAngle_NS_dtor(void);
 void dCamParam_c_NS_Change(void);
 void cSAngle_NS___as(void);
 void func_8016E4F4(void);
 void cXyz_NS___apl(void);
-void cSAngle_NS___ami(void);
+void __ami__7cSAngleFRC7cSAngle(void);
 void dCamera_c_NS_setUSOAngle(void);
 void dCamera_c_NS_infoReport(void);
 void dCamMath_NS_xyzHorizontalDistance(void);
@@ -4859,11 +5274,11 @@ void dCamMath_NS_xyzRotateX(void);
 void dCamera_c_NS_onHorseDush(void);
 void dCamParam_c_NS_Val(void);
 void dComIfG_Bgsp(void);
-void cSGlobe_X3_(void);
+void __ct__7cSGlobeFfRC7cSAngleRC7cSAngle(void);
 void dCamera_c_NS_GetForceLockOnActor(void);
 void dCamera_c_NS_popInfo(void);
 void dCcS_NS_chkCameraPoint(void);
-void cM3d_2PlaneLinePosNearPos(void);
+void cM3d_2PlaneLinePosNearPos__FRC8cM3dGPlaRC8cM3dGPlaPC3VecP3Vec(void);
 void dCamera_c_NS_radiusActorInSight(void);
 void func_801824C0(void);
 void dCamera_c_NS_blureCamera(void);
@@ -4874,7 +5289,7 @@ void daPy_py_c_NS_checkThrowDamage(void);
 void std_NS_fabs(void);
 void dCamera_c_NS_Bank(void);
 void dCamera_c_NS_clrFlag(void);
-void cSAngle_NS_Cos(void);
+void Cos__7cSAngleCFv(void);
 void dDlst_window_c_NS_setViewPort(void);
 void dCcMassS_Mng_NS_SetCam(void);
 void dCamera_c_NS_getUSOAngle(void);
@@ -4895,11 +5310,11 @@ void func_80176E00(void);
 void dCamera_c_NS_setEventRecoveryTrans(void);
 void func_80181F70(void);
 void cSAngle_NS___lt(void);
-void cSAngle_NS_Val_X2_(void);
+void Val__7cSAngleFs(void);
 void dCamera_c_NS_checkGroundInfo(void);
 void cCcD_ShapeAttr_NS_Shape_NS_dtor(void);
 void dCamera_c_NS_V(void);
-void cSGlobe_NS_Val_X1_(void);
+void Val__7cSGlobeFRC7cSGlobe(void);
 // void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(void);
 void mDoGph_gInf_c_NS_onBlure(void);
 void func_80182454(void);
@@ -4908,25 +5323,25 @@ void dAttention_c_NS_keepLock(void);
 void d2DBSplinePath_NS_Spot(void);
 void func_80181ECC(void);
 void dCamera_c_NS_getMsgCmdCut(void);
-void cDegree_NS_Cos(void);
+void Cos__7cDegreeCFv(void);
 void dEvent_manager_c_NS_getMyActIdx(void);
 void dCamera_c_NS_StartShake(void);
 void dCamSetup_c_NS_ThrowVAngle(void);
-void cM3d_Cross_CylLin(void);
+void cM3d_Cross_CylLin__FPC8cM3dGCylPC8cM3dGLinP3VecP3Vec(void);
 void mDoMtx_stack_c_NS_scaleM_X1_(void);
-void cSAngle_X3_(void);
+void __ct__7cSAngleFf(void);
 void _unnamed_d_camera_cpp__NS_defaultRadius(void);
 void dCamera_c_NS__class_3665d_camera_cpp(void);
 void dCamera_c_NS_getEvFloatData(void);
 void dCamera_c_NS_pointInSight(void);
 void func_80180C18(void);
-void cDegree_NS_Tan(void);
+void Tan__7cDegreeCFv(void);
 void dCamera_c_NS_talkEyePos(void);
 void dCamera_c_NS_tooNearEscape(void);
 void dCamera_c_NS_nextType(void);
 void fopAcM_GetParam(void);
 void dCamera_c_NS_chaseCamera(void);
-void cSGlobe_NS_Val_X2_(void);
+void Val__7cSGlobeFfss(void);
 void dCamera_c_NS_Set_X1_(void);
 void dBgS_PolyPassChk_NS_SetUnderwaterRoof(void);
 void dCamera_c_NS_initialize(void);
@@ -4935,9 +5350,9 @@ void dCamera_c_NS_setView(void);
 void _unnamed_d_camera_cpp__NS_check_owner_action(void);
 void dDlst_effectLine_c_NS_update(void);
 void dCamSetup_c(void);
-void cXyz_NS___ml_X1_(void);
+void __ml__4cXyzCFRC3Vec(void);
 void dCamParam_c_NS_Arg1(void);
-void cSGlobe_NS_Xyz(void);
+void Xyz__7cSGlobeCFv(void);
 void dCamera_c_NS_heightOf(void);
 void dCamera_c_NS_onRoomChange(void);
 void dCcMassS_Mng_NS_GetCamTopPos(void);
@@ -4948,14 +5363,14 @@ void dCamForcusLine_NS_Draw(void);
 void daTagMwait_c_NS_checkEndMessage(void);
 void dAttention_c_NS_LockEdge(void);
 void view_setup(void);
-void cSAngle_NS___ml(void);
+void __ml__7cSAngleCFf(void);
 void dCamSetup_c_NS_ChargeBRatio(void);
 void func_801815F0(void);
 void dCamera_c_NS_dCamInfo_c(void);
 void dCamera_c_NS_shakeCamera(void);
 void func_801827EC(void);
 void daTagMhint_c_NS_checkNoAttention(void);
-void cM3dGLin_NS_SetStartEnd_X1_(void);
+void SetStartEnd__8cM3dGLinFRC3VecRC3Vec(void);
 void dCamMapToolData_NS_Set(void);
 void dCamera_c_NS_bumpCheck(void);
 void dCamForcusLine_NS_Init(void);
@@ -4986,7 +5401,7 @@ void dBgS_SphChk(void);
 void _unnamed_d_camera_cpp__NS_sAngleY(void);
 void dComIfGp_evmng_cameraPlay(void);
 void dCamera_c_NS_getEvIntData_X1_(void);
-void cSGlobe_X2_(void);
+void __ct__7cSGlobeFfss(void);
 void dCamera_c_NS_eventCamera(void);
 void func_801811B8(void);
 void _unnamed_d_camera_cpp__NS_posInLine2D(void);
@@ -5007,7 +5422,7 @@ void cSGlobe_NS_U_X1_(void);
 void dComIfGp_getRoomArrow(void);
 void dCamera_c_NS_Up(void);
 void dCamera_c_NS_compWallMargin(void);
-void cSAngle_NS_Degree(void);
+void Degree__7cSAngleCFv(void);
 void cSAngle_NS___gt(void);
 void dCamera_c_NS_SetBlureScale(void);
 void mDoMtx_lookAt_X1_(void);
@@ -5020,8 +5435,8 @@ void dCamMath_NS_rationalBezierRatio(void);
 void dCamera_c_NS_getEvIntData(void);
 void dCamera_c_NS_GetCameraTypeFromMapToolID(void);
 void cAngle_NS_d2s(void);
-void cSAngle_NS_Sin(void);
-void cSAngle_NS_Val_X3_(void);
+void Sin__7cSAngleCFv(void);
+void Val__7cSAngleFf(void);
 void daPy_py_c_NS_getThrowBoomerangActor(void);
 void daPy_py_c_NS_checkCopyRodThrowAfter(void);
 void func_80176074(void);
@@ -5037,14 +5452,13 @@ void dCamera_c_NS__class_3665d_camera_cpp_NS_dtor(void);
 void func_80182484(void);
 void dCamForcusLine_NS_Off(void);
 void func_801767F8(void);
-void cSAngle_NS_Abs(void);
+void Abs__7cSAngleCFv(void);
 void dCamera_c_NS_getEvActor_X1_(void);
 void dCamera_c_NS_getMsgCmdSpeaker(void);
 void func_80174ED4(void);
 void func_8017ADC0(void);
 void dCamera_c_NS_Reset(void);
-void cSAngle_NS___apl(void);
-void cDegree(void);
+void __apl__7cSAngleFRC7cSAngle(void);
 void dCamSetup_c_NS_dtor(void);
 void daAlink_getAlinkActorClass(void);
 void dCamera_c_NS_U(void);
@@ -5053,7 +5467,7 @@ void dCamera_c_NS_directionOf(void);
 void daPy_py_c_NS_getRightFootPosP(void);
 void _unnamed_d_camera_cpp__NS_isPlayerFlying(void);
 void _unnamed_d_camera_cpp__NS_is_player(void);
-void cSAngle_NS___pl(void);
+void __pl__7cSAngleCFRC7cSAngle(void);
 void cM3dGPla_NS_GetNP(void);
 void dCamera_c_NS_forwardCheckAngle(void);
 void dCamParam_c_NS_Fovy_X1_(void);
@@ -5064,7 +5478,7 @@ void dCam_getCamera(void);
 void func_80180B40(void);
 void func_8017DFAC(void);
 void dCamera_c_NS_updateMonitor(void);
-void cSPolar_NS_Xyz(void);
+void Xyz__7cSPolarCFv(void);
 void func_8017D974(void);
 void cSGlobe_NS_R(void);
 void _unnamed_d_camera_cpp__NS_isPlayerCharging(void);
@@ -5085,7 +5499,7 @@ void dComIfGs_isTmpBit(void);
 void fopAcM_GetID(void);
 void func_8018050C(void);
 void dCamera_c_NS_pushInfo(void);
-void cSAngle_NS___apl_X1_(void);
+void __apl__7cSAngleFs(void);
 void dCamera_c_NS_onStyleChange(void);
 void dCamSetup_c_NS_WaitRollTimer(void);
 void daHorse_c_NS_checkJump(void);
@@ -5093,7 +5507,7 @@ void _unnamed_d_camera_cpp__NS_check_owner_action1(void);
 void func_8017A2A0(void);
 void dCstick_c_NS_Shift(void);
 void dCamParam_c_NS_Arg2(void);
-void cSAngle_NS___amu(void);
+void __amu__7cSAngleFf(void);
 void cXyz_NS___ami(void);
 void dBgS_CamLinChk_NS_dtor(void);
 void dCamera_c_NS_SetBlureActor(void);
@@ -5112,19 +5526,19 @@ void func_8017E730(void);
 void func_80178E50(void);
 void dCamera_c_NS_SetBlurePosition(void);
 void dCcMassS_Mng_NS_GetResultCam(void);
-void cSAngle_NS_Val_X1_(void);
-void cSAngle_NS___mi_X1_(void);
+void Val__7cSAngleFRC7cSAngle(void);
+void __mi__7cSAngleCFRC7cSAngle(void);
 void dCamera_c_NS_onTypeChange(void);
 void func_80174EAC(void);
 void mDoGph_gInf_c_NS_onBlure_X1_(void);
-void cM3dGCps_NS_Set(void);
+void Set__8cM3dGCpsFRC4cXyzRC4cXyzf(void);
 void dCamParam_c_NS_Flag(void);
 void dCamera_c_NS_initMonitor(void);
 void dCamera_c_NS_setStageMapToolData(void);
 void dCamera_c_NS_push_any_key(void);
 void dCamParam_c_NS_Arg1_X1_(void);
-void cSGlobe_NS_Val_X3_(void);
-void cSGlobe_X1_(void);
+void Val__7cSGlobeFfRC7cSAngleRC7cSAngle(void);
+void __ct__7cSGlobeFRC7cSGlobe(void);
 void cXyz_NS_set(void);
 void fopCamM_GetParam(void);
 void dCamera_c_NS_lineBGCheck_X2_(void);
@@ -5135,11 +5549,11 @@ void daPy_py_c_NS_getLeftFootPosP(void);
 void func_8017F25C(void);
 void daHorse_c_NS_checkTurnStandCamera(void);
 void fopAcM_searchFromName4Event(void);
-void cSAngle_NS___pl_X1_(void);
+void __pl__7cSAngleCFs(void);
 void mDoLib_clipper_NS_setup(void);
 void cSGlobe_NS_V_X1_(void);
 void dCamera_c_NS_Run(void);
-void cM3d_Len3dSqPntAndSegLine(void);
+void cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf(void);
 void dCamera_c_NS_lineBGCheck(void);
 void dCamera_c_NS_onModeChange(void);
 void d2DBSplinePath_NS_Init(void);
@@ -5152,7 +5566,7 @@ void sph_chk_callback(void);
 void daAlink_c_NS_checkCokkoGlide(void);
 void dCamera_c_NS_chkFlag(void);
 void _unnamed_d_camera_cpp__NS_relationalPos2(void);
-void cSGlobe_NS_Invert(void);
+void Invert__7cSGlobeFv(void);
 void dCamera_c_NS_getWaterSurfaceHeight(void);
 void dCamParam_c_NS_Arg0_X1_(void);
 void dCamera_c_NS_Eye(void);
@@ -5165,19 +5579,20 @@ void dCamMath_NS_zoomFovy(void);
 void func_801821E0(void);
 void dBgS_PolyPassChk_NS_ClrCam(void);
 void cM_rnd_c_NS_init(void);
-void cM3d_Cross_LinSph_CrossPos(void);
+void cM3d_Cross_LinSph_CrossPos__FRC8cM3dGSphRC8cM3dGLinP3VecP3Vec(void);
 
 // manual
-void cXyz_NS_norm(void);
-void cM3dGLin(void);
-void cM3dGSph_NS_Set(void);
-void cSAngle_NS___mi(void);
+void norm__4cXyzCFv(void);
+void __ct__8cM3dGLinFRC4cXyzRC4cXyz(void);
+void Set__8cM3dGSphFRC9cM3dGSphS(void);
+void __mi__7cSAngleCFRC7cSAngle(void);
 void __ct__8cM3dGCylFPC4cXyzff(void);
 void __ct__7cSAngleFv(void);
-void cXyz_NS___pl(void);
-void cSAngle_NS___pl_short(void);  // c_angle.o
-void cSAngle_NS___mi_short(void);
-void cSGlobe(void);
+void __pl__4cXyzCFRC3Vec(void);
+void __pl__7cSAngleCFs(void);  // c_angle.o
+void __mi__7cSAngleCFs(void);
+void __ct__7cSGlobeFRC7cSGlobe(void);
+void __ct__7cSGlobeFv(void);
 
 void mDoMtx_stack_c_NS_transM(float, float, float);
 
@@ -5748,4 +6163,8 @@ void subBgmStopInner__8Z2SeqMgrFv(void);
 void Z2SeqMgr_NS_battleBgmFramework(void);
 void changeSubBgmStatus__8Z2SeqMgrFl(void);
 void Z2SeqMgr_NS_fieldRidingMute(void);
+}
+void Set__8cM3dGSphFRC4cXyzf(void);
+void __pl__FsRC7cSAngle(void);
+void __mi__FsRC7cSAngle(void);
 }

@@ -18,7 +18,6 @@ typedef enum DVDState {
     DVD_STATE_CANCELED = 0xa,  // lmao they skipped 9
     DVD_STATE_RETRY = 0xb,
     DVD_STATE_FATAL_ERROR = -1,
-    __DVD_STATE_ENUM_FORCE_S32 = INT32_MAX,
 } DVDState;
 }
 
@@ -83,7 +82,7 @@ s32 DVDConvertPathToEntrynum(const char*);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
 
-void DVDChangeDir(void);
+BOOL DVDChangeDir(const char*);
 BOOL DVDCloseDir(DVDDirectory*);
 BOOL DVDOpenDir(const char*, DVDDirectory*);
 BOOL DVDReadDir(DVDDirectory*, DVDDirectoryEntry*);

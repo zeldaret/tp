@@ -74,17 +74,12 @@ public:
         MOUNT_ARAM = 2,
         MOUNT_DVD = 3,
         MOUNT_COMP = 4,
-
-        __EMOUNT_MODE_FORCE_32BIT = UINT32_MAX,
     };
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
         HEAD = 1,
         TAIL = 2,
-
-        __EMOUNT_DIRECTION_FORCE_32BIT = INT32_MAX,
-        __EMOUNT_DIRECTION_FORCE_SIGNED = -1,
     };
 
     class CArcName {
@@ -120,7 +115,7 @@ public:
     u32 countResource(void) const;
     u32 getFileAttribute(u32) const;
 
-    EMountMode getMountMode() const { return (EMountMode)mMountMode; }
+    u32 getMountMode() const { return mMountMode; }
 
 protected:
     bool isSameName(CArcName&, u32, u16) const;
@@ -144,7 +139,7 @@ public:
     /* vt[11] */ virtual bool detachResource(void*);                     /* override */
     /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
     /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
-    /* vt[14] */ virtual JKRArcFinder* getFirstFile(const char*) const;  /* override */
+    /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
     /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;

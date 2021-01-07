@@ -178,7 +178,7 @@ JUTDbPrint_NS_flush_X1_:
 /* 802E0398 002DD2D8  90 01 00 08 */	stw r0, 8(r1)
 /* 802E039C 002DD2DC  80 7C 00 04 */	lwz r3, 4(r28)
 /* 802E03A0 002DD2E0  38 81 00 08 */	addi r4, r1, 8
-/* 802E03A4 002DD2E4  4B FF E9 CD */	bl setCharColor__7JUTFontF6TColor
+/* 802E03A4 002DD2E4  4B FF E9 CD */	bl setCharColor__7JUTFontFQ28JUtility6TColor
 /* 802E03A8 002DD2E8  48 00 00 60 */	b lbl_802E0408
 lbl_802E03AC:
 /* 802E03AC 002DD2EC  88 1C 00 0C */	lbz r0, 0xc(r28)
@@ -276,7 +276,7 @@ JUTDbPrint_NS_drawString:
 /* 802E0500 002DD440  7F C4 F3 78 */	mr r4, r30
 /* 802E0504 002DD444  7F A5 EB 78 */	mr r5, r29
 /* 802E0508 002DD448  38 C0 00 01 */	li r6, 1
-/* 802E050C 002DD44C  4B FF E9 1D */	bl drawString_size_scale__7JUTFontFffffPcUlb
+/* 802E050C 002DD44C  4B FF E9 1D */	bl drawString_size_scale__7JUTFontFffffPCcUlb
 /* 802E0510 002DD450  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 802E0514 002DD454  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 802E0518 002DD458  39 61 00 40 */	addi r11, r1, 0x40

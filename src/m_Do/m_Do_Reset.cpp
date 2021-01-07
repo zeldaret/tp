@@ -29,7 +29,7 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     s32 enable;
     /* sManager */ lbl_80451550->clearIndex();
     mDoDvdErr_ThdCleanup();
-    cAPICPad_recalibrate();
+    cAPICPad_recalibrate__Fv();
     if (lbl_80450BB8 != 0) {
         do {
             // uVar2 = lbl_80451368->hasReset();
@@ -87,7 +87,7 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
 void mDoRst_resetCallBack(int p1, void* p2) {
     if (/* mResetData */ m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 == 0) {
         if (p1 == -1) {
-            cAPICPad_recalibrate();
+            cAPICPad_recalibrate__Fv();
         } else {
             if (m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 != 0) {
                 lbl_80451501 = false;
@@ -97,7 +97,7 @@ void mDoRst_resetCallBack(int p1, void* p2) {
             }
             m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 = 1;
             m_Do_Reset_NS_mDoRst_NS_mResetData->pad_index = p1;
-            cAPICPad_recalibrate();
+            cAPICPad_recalibrate__Fv();
         }
 
         if ((DVDCheckDisk() == 0) && (DVDGetDriveStatus() != DVD_STATE_FATAL_ERROR)) {

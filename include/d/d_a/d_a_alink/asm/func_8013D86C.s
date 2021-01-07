@@ -10,7 +10,7 @@
 /* 8013D890 0013A7D0  3C 80 80 39 */ lis r4, lbl_8038EF28@ha
 /* 8013D894 0013A7D4  38 84 EF 28 */ addi r4, r4, lbl_8038EF28@l
 /* 8013D898 0013A7D8  C0 44 00 10 */ lfs f2, 0x10(r4)
-/* 8013D89C 0013A7DC  48 13 2E A5 */ bl cLib_chaseF
+/* 8013D89C 0013A7DC  48 13 2E A5 */ bl cLib_chaseF__FPfff
 /* 8013D8A0 0013A7E0  7F C3 F3 78 */ mr r3, r30
 /* 8013D8A4 0013A7E4  38 80 00 00 */ li r4, 0
 /* 8013D8A8 0013A7E8  4B F7 5E 8D */ bl daAlink_c_NS_setShapeAngleToAtnActor

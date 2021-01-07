@@ -10,7 +10,7 @@
 /* 80165810 00162750  4B F1 1D 6D */ bl dBgS_GndChk
 /* 80165814 00162754  38 61 00 5C */ addi r3, r1, 0x5c
 /* 80165818 00162758  7F C4 F3 78 */ mr r4, r30
-/* 8016581C 0016275C  48 10 25 0D */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8016581C 0016275C  48 10 25 0D */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 80165820 00162760  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80165824 00162764  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80165828 00162768  3B E3 0F 38 */ addi r31, r3, 0xf38
@@ -22,7 +22,7 @@
 /* 80165840 00162780  4B F1 21 C1 */ bl dBgS_CamGndChk_Wtr
 /* 80165844 00162784  38 61 00 08 */ addi r3, r1, 8
 /* 80165848 00162788  7F C4 F3 78 */ mr r4, r30
-/* 8016584C 0016278C  48 10 24 DD */ bl cBgS_GndChk_NS_SetPos_X1_
+/* 8016584C 0016278C  48 10 24 DD */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 80165850 00162790  7F E3 FB 78 */ mr r3, r31
 /* 80165854 00162794  38 81 00 08 */ addi r4, r1, 8
 /* 80165858 00162798  4B F0 EC 49 */ bl cBgS_NS_GroundCross

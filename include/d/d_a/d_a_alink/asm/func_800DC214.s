@@ -6,7 +6,7 @@
 /* 800DC228 000D9168  38 7F 2B A8 */ addi r3, r31, 0x2ba8
 /* 800DC22C 000D916C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800DC230 000D9170  C0 42 93 44 */ lfs f2, lbl_80452D44-_SDA2_BASE_(r2)
-/* 800DC234 000D9174  48 19 45 0D */ bl cLib_chaseF
+/* 800DC234 000D9174  48 19 45 0D */ bl cLib_chaseF__FPfff
 /* 800DC238 000D9178  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 800DC23C 000D917C  48 08 22 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
 /* 800DC240 000D9180  54 60 06 3F */ clrlwi. r0, r3, 0x18

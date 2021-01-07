@@ -64,7 +64,7 @@ lbl_800F78DC:
 /* 800F78FC 000F483C  A8 A7 00 18 */ lha r5, 0x18(r7)
 /* 800F7900 000F4840  A8 C7 00 14 */ lha r6, 0x14(r7)
 /* 800F7904 000F4844  A8 E7 00 16 */ lha r7, 0x16(r7)
-/* 800F7908 000F4848  48 17 8C 39 */ bl cLib_addCalcAngleS
+/* 800F7908 000F4848  48 17 8C 39 */ bl cLib_addCalcAngleS__FPsssss
 /* 800F790C 000F484C  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 800F7910 000F4850  B0 1F 04 DE */ sth r0, 0x4de(r31)
 lbl_800F7914:

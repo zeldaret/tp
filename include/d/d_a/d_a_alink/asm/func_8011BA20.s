@@ -8,7 +8,7 @@
 /* 8011BA3C 0011897C  41 82 00 54 */ beq lbl_8011BA90
 /* 8011BA40 00118980  38 7F 34 E0 */ addi r3, r31, 0x34e0
 /* 8011BA44 00118984  38 84 05 38 */ addi r4, r4, 0x538
-/* 8011BA48 00118988  48 15 51 BD */ bl cLib_targetAngleY
+/* 8011BA48 00118988  48 15 51 BD */ bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8011BA4C 0011898C  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
 /* 8011BA50 00118990  7C 04 18 50 */ subf r0, r4, r3
 /* 8011BA54 00118994  7C 00 07 34 */ extsh r0, r0
@@ -27,7 +27,7 @@ lbl_8011BA7C:
 /* 8011BA80 001189C0  38 A0 00 02 */ li r5, 2
 /* 8011BA84 001189C4  38 C0 08 00 */ li r6, 0x800
 /* 8011BA88 001189C8  38 E0 01 00 */ li r7, 0x100
-/* 8011BA8C 001189CC  48 15 4A B5 */ bl cLib_addCalcAngleS
+/* 8011BA8C 001189CC  48 15 4A B5 */ bl cLib_addCalcAngleS__FPsssss
 lbl_8011BA90:
 /* 8011BA90 001189D0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011BA94 001189D4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
