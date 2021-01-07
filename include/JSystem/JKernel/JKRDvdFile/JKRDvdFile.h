@@ -18,19 +18,17 @@ public:
     void initiate(void);
     s32 sync(void);
 
-    int getFileID() const { return mFileInfo.start_address << 2; }
-
+    u32 getFileID() const { return mFileInfo.start_address; }
     const DVDFileInfo& getFileInfo() const { return mFileInfo; }
-
     int getStatus() { return DVDGetCommandBlockStatus(&mFileInfo.block); }
 
 public:
-    /* vt[03] */ virtual bool open(const char*);                 /* override */
-    /* vt[04] */ virtual void close(void);                       /* override */
-    /* vt[05] */ virtual s32 readData(void*, long, long);        /* override */
-    /* vt[06] */ virtual s32 writeData(const void*, long, long); /* override */
-    /* vt[07] */ virtual s32 getFileSize(void) const;            /* override */
-    /* vt[08] */ virtual bool open(long);
+    /* vt[03] */ virtual bool open(const char*);               /* override */
+    /* vt[04] */ virtual void close(void);                     /* override */
+    /* vt[05] */ virtual s32 readData(void*, s32, s32);        /* override */
+    /* vt[06] */ virtual s32 writeData(const void*, s32, s32); /* override */
+    /* vt[07] */ virtual s32 getFileSize(void) const;          /* override */
+    /* vt[08] */ virtual bool open(s32);
 
 private:
     /* 0x00 */  // vtable

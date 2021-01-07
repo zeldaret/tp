@@ -81,7 +81,7 @@ s32 DVDConvertPathToEntrynum(const char*);
 DVDState DVDGetDriveStatus(void);
 s32 DVDCheckDisk(void);
 
-void DVDChangeDir(void);
+BOOL DVDChangeDir(const char*);
 BOOL DVDCloseDir(DVDDirectory*);
 BOOL DVDOpenDir(const char*, DVDDirectory*);
 BOOL DVDReadDir(DVDDirectory*, DVDDirectoryEntry*);
