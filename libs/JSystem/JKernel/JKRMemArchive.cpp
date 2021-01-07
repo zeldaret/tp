@@ -138,7 +138,7 @@ void* JKRMemArchive::fetchResource(SDIFileEntry* fileEntry, u32* resourceSize) {
 
 void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* fileEntry,
                                    u32* resourceSize) {
-    u32 srcLength = fileEntry->data_size;
+    u32 srcLength = fileEntry->data_size; 
     if (srcLength > bufferSize) {
         srcLength = bufferSize;
     }
@@ -146,15 +146,7 @@ void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* f
     if (fileEntry->data != NULL) {
         memcpy(buffer, fileEntry->data, srcLength);
     } else {
-        JKRCompression compression;
-        if (!fileEntry->isCompressed()) {
-            compression = COMPRESSION_NONE;
-        } else if (fileEntry->isYAZ0Compressed()) {
-            compression = COMPRESSION_YAZ0;
-        } else {
-            compression = COMPRESSION_YAY0;
-        }
-
+        JKRCompression compression = JKRConvertAttrToCompressionType(fileEntry->getAttr());
         void* data = mArchiveData + fileEntry->data_offset;
         srcLength =
             fetchResource_subroutine((u8*)data, srcLength, (u8*)buffer, bufferSize, compression);

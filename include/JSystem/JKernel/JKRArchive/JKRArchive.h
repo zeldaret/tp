@@ -55,6 +55,7 @@ struct SDIFileEntry {
     u32 getNameOffset() const { return type_flags_and_name_offset & 0xFFFFFF; }
     u16 getNameHash() const { return name_hash; }
     u32 getFlags() const { return type_flags_and_name_offset >> 24; }
+    u32 getAttr() const { return getFlags(); }
     u16 getFileID() const { return file_id; }
     bool isDirectory() const { return (getFlags() & 0x02) != 0; }
     bool isUnknownFlag1() const { return (getFlags() & 0x01) != 0; }
@@ -78,8 +79,8 @@ public:
 
     enum EMountDirection {
         UNKNOWN_MOUNT_DIRECTION = 0,
-        HEAD = 1,
-        TAIL = 2,
+        MOUNT_DIRECTION_HEAD = 1,
+        MOUNT_DIRECTION_TAIL = 2,
     };
 
     class CArcName {
@@ -167,8 +168,29 @@ public:
     static JKRArchive* mount(s32, EMountMode, JKRHeap*, EMountDirection);
     static void* getGlbResource(u32, const char*, JKRArchive*);
 
+#define FLAG_HAS(V, F) (((V) & (F)) == 0)
+
+    static JKRCompression convertAttrToCompressionType(u32 attr) {
+        #define JKRARCHIVE_ATTR_COMPRESSION 0x04
+        #define JKRARCHIVE_ATTR_YAY0 0x80
+
+        JKRCompression compression;
+        if (FLAG_HAS(attr, JKRARCHIVE_ATTR_COMPRESSION)) {
+            compression = COMPRESSION_NONE;
+        } else if (!FLAG_HAS(attr, JKRARCHIVE_ATTR_YAY0)) {
+            compression = COMPRESSION_YAZ0;
+        } else {
+            compression = COMPRESSION_YAY0;
+        }
+        return compression;
+    }
+
     static u32 getCurrentDirID() { return lbl_80451420; }
     static void setCurrentDirID(u32 dirID) { lbl_80451420 = dirID; }
 };
+
+inline JKRCompression JKRConvertAttrToCompressionType(u32 attr) {
+    return JKRArchive::convertAttrToCompressionType(attr);
+}
 
 #endif
