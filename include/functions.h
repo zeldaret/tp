@@ -140,7 +140,7 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void func_80362540(void);
 void dDlst_list_c_NS_set(void);
 void init__14dComIfG_play_cFv(void);
-void func_80003458(void);
+void* memset(void *dest,int ch,u32 count);
 void dStage_roomControl_c_NS_initZone(void);
 void JUTWarningConsole(void);
 void JUTConsole_NS_print(void);
@@ -170,8 +170,7 @@ void DCStoreRange(void*, u32);
 void DCInvalidateRange(void*, u32);
 void DCStoreRangeNoSync(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
-void func_80003458(void);
-void func_803650D0(void);
+int abs(int);
 void JKRDecomp_NS_orderSync(void);
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
@@ -351,7 +350,6 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void func_80362540(void);
 void dDlst_list_c_NS_set(void);
 void init__14dComIfG_play_cFv(void);
-void func_80003458(void);
 void dStage_roomControl_c_NS_initZone(void);
 void JUTWarningConsole(void);
 void JUTConsole_NS_print(void);
@@ -374,8 +372,6 @@ void JKRArchive_NS_findPtrResource(void);
 void JKRArchive_NS_findTypeResource(void);
 
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
-void func_80003458(void);
-void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
 
@@ -858,8 +854,8 @@ void __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection(void);
 void __dt__13JKRDvdArchiveFv(void);
 void fetchResource__13JKRDvdArchiveFP12SDIFileEntryPUl(void);
 void fetchResource__13JKRDvdArchiveFPvUlP12SDIFileEntryPUl(void);
-void fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapi14JKRCompressionPPUc(void);
-void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUli14JKRCompression(void);
+void fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc(void);
+void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii(void);
 void getExpandedResSize__13JKRDvdArchiveCFPCv(void);
 void open__13JKRDvdArchiveFl(void);
 };
@@ -871,7 +867,7 @@ void __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
 void __dt__13JKRMemArchiveFv(void);
 void fetchResource__13JKRMemArchiveFP12SDIFileEntryPUl(void);
 void fetchResource__13JKRMemArchiveFPvUlP12SDIFileEntryPUl(void);
-void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUl14JKRCompression(void);
+void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli(void);
 void getExpandedResSize__13JKRMemArchiveCFPCv(void);
 void open__13JKRMemArchiveFPvUl15JKRMemBreakFlag(void);
 void open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
@@ -933,11 +929,11 @@ void __sinit_JKRDvdRipper_cpp(void);
 void decompSZS_subroutine__FPUcPUc(void);
 void firstSrcData__Fv(void);
 void isErrorRetry__12JKRDvdRipperFv(void);
-void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 void nextSrcData__FPUc(void);
 };

@@ -37,7 +37,7 @@ lbl_802D81C4:
 /* 802D81E4 002D5124  7F 66 DB 78 */	mr r6, r27
 /* 802D81E8 002D5128  7F 87 E3 78 */	mr r7, r28
 /* 802D81EC 002D512C  81 29 00 5C */	lwz r9, 0x5c(r9)
-/* 802D81F0 002D5130  48 00 00 7D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUli14JKRCompression
+/* 802D81F0 002D5130  48 00 00 7D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
 /* 802D81F4 002D5134  7C 7F 1B 78 */	mr r31, r3
 /* 802D81F8 002D5138  48 00 00 4C */	b lbl_802D8244
 lbl_802D81FC:
