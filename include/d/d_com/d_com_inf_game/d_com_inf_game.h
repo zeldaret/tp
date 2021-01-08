@@ -95,12 +95,12 @@ public:
 
 private:
     /* 0x00000 */ dBgS dbgs;
-    /* 0x0143C */ u8 field_0x143c[0x2A8C];
+    /* 0x0143C */ u8 field_0x143c[0x2999];
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03ED5 */ u8 field_0x3ed5[0x49];
     /* 0x03F1E */ dStage_nextStage_c mNextStage;
     /* 0x03F2F */ u8 padding;
     /* 0x03F30 */ dStage_stageDt_c mStageData;
+    u8 field_[0x9c];
     /* 0x03F34 */ dStage_roomControl_c mRoomControl;
     /* 0x03FD8 */ dEvt_control_c mEventControl;
     /* 0x0409C */ u8 field_0x409c[0x24];
@@ -130,13 +130,6 @@ private:
     /* 0x04E88 */ item_func give_item;
     /* 0x04EC0 */ u8 field_0x4ec0[0xBE];
     /* 0x04F7E */ u8 unk_heart;
-    /* 0x04F7F */ u8 field_0x4f7f[0x79];
-    /* 0x04FF8 */ u32 field_0x4ff8;
-    /* 0x04FFC */ u32 field_0x4ffc;
-    /* 0x05000 */ u32 field_0x5000;
-    /* 0x05004 */ u32 field_0x5004;
-    /* 0x05008 */ u8 field_0x5008[0x1C];
-    /* 0x05024 */ u8 field_0x5024[0x8];
 };
 #pragma pack(pop)
 
@@ -167,7 +160,7 @@ private:
     /* 0x00F30 */ u32 field_0xf34;
     u8 unk[3];
     /* 0x00F34 */ dComIfG_play_c play;
-    /* 0x05F60 */ u8 field_0x5f60[0x10];
+    /* 0x05F60 */ u8 field_0x5f60[0xBD];
     /* 0x05F70 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8];
     /* 0x1C2F8 */ dRes_info_c resource_info1;
