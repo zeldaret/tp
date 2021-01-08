@@ -54,6 +54,14 @@ class dStage_FloorInfo_c {};
 
 class dStage_Multi_c {};
 
+class dStage_FileList2_dt_c {};
+
+class dStage_FileList_dt_c {};
+
+class dStage_Lbnk_c {};
+
+class stage_pure_lightvec_info_class {};
+
 class dStage_stageDt_c {
 public:
     stage_camera_class* getCamera(void);
@@ -177,6 +185,90 @@ private:
     stage_tgsc_class* mDrTg;
     stage_tgsc_class* mDoor;
     dStage_Elst_c* mElst;
+};
+
+class dStage_roomDt_c {
+public:
+    stage_pure_lightvec_info_class* getLightVecInfo(void);
+    int getLightVecInfoNum(void);
+    stage_map_info_class* getMapInfo(void);
+    stage_map_info_dummy_class* getMapInfoBase(void);
+    stage_vrbox_info_class* getVrboxInfo(void);
+    stage_vrboxcol_info_class* getVrboxcolInfo(void);
+    dStage_FileList2_dt_c* getFileList2Info(void);
+    dStage_FileList_dt_c* getFileListInfo(void);
+    stage_actor_class* getPlayer(void);
+    dStage_dPnt_c* getPnt2Info(void);
+    dStage_dPath_c* getPath2Info(void);
+    stage_camera_class* getCamera(void);
+    stage_arrow_class* getArrow(void);
+    dStage_MapEventInfo_c* getMapEventInfo(void);
+    dStage_SoundInfo_c* getSoundInfo(void);
+    dStage_SoundInfo_c* getSoundInfCL(void);
+    stage_scls_info_dummy_class* getSclsInfo(void);
+    dStage_Lbnk_c* getLbnk(void);
+    stage_tresure_class* getTreasure(void);
+    stage_tgsc_class* getDrTg(void);
+    stage_tgsc_class* getDoor(void);
+    dStage_FloorInfo_c* getFloorInfo(void);
+    u16 getPlayerNum(void);
+    int getVrboxNumInfo(void);
+    int getVrboxcolNumInfo(void);
+
+    void setLightVecInfo(stage_pure_lightvec_info_class*);
+    void setLightVecInfoNum(int);
+    void setMapInfo(stage_map_info_class*);
+    void setMapInfoBase(stage_map_info_dummy_class*);
+    void setVrboxInfo(stage_vrbox_info_class*);
+    void setVrboxcolInfo(stage_vrboxcol_info_class*);
+    void setFileList2Info(dStage_FileList2_dt_c*);
+    void setFileListInfo(dStage_FileList_dt_c*);
+    void setPlayer(stage_actor_class*);
+    void setPnt2Info(dStage_dPnt_c*);
+    void setPath2Info(dStage_dPath_c*);
+    void setCamera(stage_camera_class*);
+    void setArrow(stage_arrow_class*);
+    void setMapEventInfo(dStage_MapEventInfo_c*);
+    void setSoundInfo(dStage_SoundInfo_c*);
+    void setSoundInfCL(dStage_SoundInfo_c*);
+    void setSclsInfo(stage_scls_info_dummy_class*);
+    void setLbnk(dStage_Lbnk_c*);
+    void setTreasure(stage_tresure_class*);
+    void setDrTg(stage_tgsc_class*);
+    void setDoor(stage_tgsc_class*);
+    void setFloorInfo(dStage_FloorInfo_c*);
+    void setPlayerNum(u16);
+    void setVrboxNumInfo(int);
+    void setVrboxcolNumInfo(int);
+
+private:
+    u8 field_0x0[0x8];
+    stage_pure_lightvec_info_class* mLightVecInfo;
+    int mLightVecInfoNum;
+    stage_map_info_class* mMapInfo;
+    stage_map_info_dummy_class* mMapInfoBase;
+    stage_vrbox_info_class* mVrboxInfo;
+    stage_vrboxcol_info_class* mVrboxcolInfo;
+    dStage_FileList2_dt_c* mFileList2Info;
+    dStage_FileList_dt_c* mFileListInfo;
+    stage_actor_class* mPlayer;
+    dStage_dPnt_c* mPnt2Info;
+    dStage_dPath_c* mPath2Info;
+    stage_camera_class* mCamera;
+    stage_arrow_class* mArrow;
+    dStage_MapEventInfo_c* mMapEventInfo;
+    dStage_SoundInfo_c* mSoundInfo;
+    dStage_SoundInfo_c* mSoundInfCL;
+    stage_scls_info_dummy_class* mSclsInfo;
+    dStage_Lbnk_c* mLbnk;
+    stage_tresure_class* mTreasure;
+    stage_tgsc_class* mDrTg;
+    stage_tgsc_class* mDoor;
+    dStage_FloorInfo_c* mFloorInfo;
+    u16 mPlayerNum;
+    u16 field_0x62;
+    int mVrboxNumInfo;
+    int mVrboxcolNumInfo;
 };
 
 #pragma pack(push, 1)
