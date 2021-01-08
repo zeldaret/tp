@@ -251,6 +251,12 @@ parser.add_argument(
     default=0,
     help="If multiple occurence of the same symbol is found, use this to select the correct ocurrance."
 )
+parser.add_argument(
+    "--source-wslpath",
+    dest="source_wslpath",
+    action="store_true",
+    help="Pass source code path through 'wslpath' before reading it."
+)
 
 # Project-specific flags, e.g. different versions/make arguments.
 add_custom_arguments_fn = getattr(diff_settings, "add_custom_arguments", None)
@@ -419,7 +425,7 @@ def maybe_get_objdump_source_flags() -> List[str]:
 
     flags = [
         "--source",
-        "--source-comment=│ ",
+        #"--source-comment=│ ",
         "-l",
     ]
 
@@ -513,7 +519,6 @@ def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Opti
                     print(f"    {i+1}: {location[0]} {location[1]} {str(location[2]).ljust(40, ' ')}", file=sys.stderr)
                 fail(f"Use --select-occurence to select the right occurrence.")
         if len(find) == 1:
-            print(find)
             rom = int(find[0][1],16)
             objname = find[0][2]
             # The metrowerks linker map format does not contain the full object path, so we must complete it manually.
@@ -631,7 +636,6 @@ def ansi_ljust(s: str, width: int) -> str:
     else:
         return s
 
-
 if arch == "mips":
     re_int = re.compile(r"[0-9]+")
     re_comment = re.compile(r"<.*?>")
@@ -710,11 +714,12 @@ elif arch == "aarch64":
     instructions_with_address_immediates = branch_instructions.union({"adrp"})
 elif arch == "ppc":
     re_int = re.compile(r"[0-9]+")
-    re_comment = re.compile(r"(<.*?>|//.*$)")
+    re_comment = re.compile(r"(<.*?>$|<.*?>|//.*$)")
     re_reg = re.compile(r"\$?\b([rf][0-9]+)\b")
     re_sprel = re.compile(r"(?<=,)(-?[0-9]+|-?0x[0-9a-f]+)\(r1\)")
     re_large_imm = re.compile(r"-?[1-9][0-9]{2,}|-?0x[0-9a-f]{3,}")
     re_imm = re.compile(r"(\b|-)([0-9]+|0x[0-9a-fA-F]+)\b(?!\(r1)|[^@]*@(ha|h|lo)")
+    re_file_line = re.compile(r"(.*\.cpp)\:([0-9]+)")
     arch_flags = []
     forbidden = set(string.ascii_letters + "_")
     branch_likely_instructions = set()
@@ -928,6 +933,7 @@ def make_difference_normalizer() -> DifferenceNormalizer:
 
 
 def process(lines: List[str]) -> List[Line]:
+    file_cache = dict()
     normalizer = make_difference_normalizer()
     skip_next = False
     source_lines = []
@@ -936,14 +942,12 @@ def process(lines: List[str]) -> List[Line]:
         if lines and not lines[-1]:
             lines.pop()
 
+    last_path = None
+    last_line = None
     output: List[Line] = []
     stop_after_delay_slot = False
     for row in lines:
         if args.diff_obj and (">:" in row or not row):
-            continue
-
-        if args.source and (row and row[0] != " "):
-            source_lines.append(row)
             continue
 
         if "R_AARCH64_" in row:
@@ -961,6 +965,44 @@ def process(lines: List[str]) -> List[Line]:
         if "R_PPC_" in row:
             new_original = process_ppc_reloc(row, output[-1].original)
             output[-1] = output[-1]._replace(original=new_original)
+            continue
+
+        if args.source and (row and row[0] != " "):
+            m_file_line = re.match(re_file_line, row)
+            if m_file_line:
+                path = m_file_line.group(1)
+                line = int(m_file_line.group(2))
+                if args.source_wslpath:
+                    path = subprocess.check_output(["wslpath","-ua", path],universal_newlines=True).strip()
+
+                if path in file_cache:
+                    file_lines = file_cache[path]
+                else:
+                    if not Path(path).is_file():
+                        fail(f"Source file not found: '{path}'")
+                    with open(path) as source_file:
+                        file_lines = source_file.readlines()
+                        file_cache[path] = [x.rstrip() for x in file_lines]
+
+                if path == last_path:
+                    if last_line:
+                        i = last_line
+                        while i + 1 < line:
+                            if i > 0 and i <= len(file_lines):
+                                source_lines.append(file_lines[i - 1])
+                            i += 1
+                else:
+                    source_lines.append(f"// \"{elide_path(Path(path))}\"")
+                    
+                if line > 0 and line <= len(file_lines):
+                    source_lines.append(file_lines[line - 1])
+
+                last_path = path
+                last_line = line
+            else:
+                last_path = None
+                last_line = None
+                source_lines.append(row)
             continue
 
         m_comment = re.search(re_comment, row)
@@ -1260,8 +1302,8 @@ def do_diff(basedump: str, mydump: str) -> List[OutputLine]:
             out1 = ""
             out2 = line2.original
 
-        if args.source and line2 and line2.comment:
-            out2 += f" {line2.comment}"
+        #if args.source and line2 and line2.comment:
+        #    out2 += f" {line2.comment}"
 
         def format_part(
             out: str,
