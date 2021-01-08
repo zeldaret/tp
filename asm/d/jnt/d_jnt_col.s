@@ -958,8 +958,8 @@ lbl_800369E8:
 /* 80036A54 00033994  38 21 02 B0 */	addi r1, r1, 0x2b0
 /* 80036A58 00033998  4E 80 00 20 */	blr 
 
-.global cM3dGLin_NS_dtor
-cM3dGLin_NS_dtor:
+.global __dt__8cM3dGLinFv
+__dt__8cM3dGLinFv:
 /* 80036A5C 0003399C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036A60 000339A0  7C 08 02 A6 */	mflr r0
 /* 80036A64 000339A4  90 01 00 14 */	stw r0, 0x14(r1)

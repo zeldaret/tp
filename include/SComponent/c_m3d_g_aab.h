@@ -4,8 +4,14 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
+// Axis aligned bounding box
 class cM3dGAab {
+private:
+    cXyz mMin;
+    cXyz mMax;
+
 public:
+    virtual ~cM3dGAab();
     void Set(const cXyz*, const cXyz*);
     bool CrossY(const cXyz*) const;
     bool UnderPlaneYUnder(float) const;

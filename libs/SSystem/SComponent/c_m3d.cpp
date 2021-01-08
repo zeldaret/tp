@@ -286,7 +286,7 @@ asm bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, float*, float*) {
 
 // cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec
 // cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*)
-asm void cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*) {
+asm bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_8026BD88.s"
 }

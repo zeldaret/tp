@@ -5,9 +5,16 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
-struct cM3dGSphS;
+struct cM3dGSphS {
+    Vec mCenter;
+    float mRadius;
+};
 
 class cM3dGSph {
+private:
+    cXyz mCenter;
+    float mRadius;
+
 public:
     void SetC(const cXyz&);
     void Set(const cXyz&, float);

@@ -3,32 +3,18 @@
 #include "SComponent/c_m3d_g_cir.h"
 
 // __ct__8cM3dGCirFv
-// cM3dGCir::cM3dGCir(void)
-asm cM3dGCir::cM3dGCir(void) {
-    nofralloc
-#include "SComponent/c_m3d_g_cir/asm/func_8026EEB4.s"
-}
+cM3dGCir::cM3dGCir(void) {}
 
-extern "C" {
-
+// inlined here
 // __dt__8cM2dGCirFv
-// cM2dGCir::~cM2dGCir(void)
-asm void __dt__8cM2dGCirFv(void) {
-    nofralloc
-#include "SComponent/c_m3d_g_cir/asm/func_8026EED0.s"
-}
-}
 
 // __dt__8cM3dGCirFv
-// cM3dGCir::~cM3dGCir(void)
-asm cM3dGCir::~cM3dGCir(void) {
-    nofralloc
-#include "SComponent/c_m3d_g_cir/asm/func_8026EF18.s"
-}
+cM3dGCir::~cM3dGCir(void) {}
 
 // Set__8cM3dGCirFffff
-// cM3dGCir::Set(float, float, float, float)
-asm void cM3dGCir::Set(float, float, float, float) {
-    nofralloc
-#include "SComponent/c_m3d_g_cir/asm/func_8026EF74.s"
+void cM3dGCir::Set(float pPosX, float pPosY, float pPosZ, float pRadius) {
+    mPosX = pPosX;
+    mPosY = pPosY;
+    mRadius = pRadius;
+    mPosZ = pPosZ;
 }

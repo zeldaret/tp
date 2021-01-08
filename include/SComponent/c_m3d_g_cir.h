@@ -3,10 +3,21 @@
 
 #include "global.h"
 
-class cM3dGCir {
+class cM2dGCir {
+public:
+    float mPosX;
+    float mPosY;
+    float mRadius;
+    cM2dGCir() {}
+    virtual ~cM2dGCir() {}
+};
+
+class cM3dGCir : public cM2dGCir {
+    float mPosZ;
+
 public:
     cM3dGCir(void);
-    ~cM3dGCir(void);
+    virtual ~cM3dGCir(void);
     void Set(float, float, float, float);
 };
 

@@ -4,10 +4,14 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
+// Plane with a normal
 class cM3dGPla {
 public:
+    cXyz mNormal;
+    float mD;
     cM3dGPla(const cXyz*, float);
-    void crossInfLin(const cXyz&, const cXyz&, cXyz&) const;
+    virtual ~cM3dGPla();
+    bool crossInfLin(const cXyz&, const cXyz&, cXyz&) const;
     void SetupNP0(const Vec&, const Vec&);
     void SetupNP(const Vec&, const Vec&);
     bool getCrossY(const cXyz&, float*) const;

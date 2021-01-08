@@ -4,12 +4,18 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
-struct cM3dGCylS;
+// Cylinder
+struct cM3dGCylS {
+    cXyz mCenter;
+    float mRadius;
+    float mHeight;
+};
 struct cM3dGSph;
 
-class cM3dGCyl {
+class cM3dGCyl : public cM3dGCylS {
 public:
     cM3dGCyl(const cXyz*, float, float);
+    virtual ~cM3dGCyl();
     void Set(const cM3dGCylS&);
     void Set(const cXyz&, float, float);
     void SetC(const cXyz&);

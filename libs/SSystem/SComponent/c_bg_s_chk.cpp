@@ -22,7 +22,7 @@ void cBgS_Chk::SetExtChk(cBgS_Chk& other) {
 
 // ChkSameActorPid__8cBgS_ChkCFUi
 bool cBgS_Chk::ChkSameActorPid(unsigned int pUint) const {
-    if (unk_0x08 == -1 || pUint == UINT32_MAX || unk_0x0C == 0) { 
+    if (unk_0x08 == -1 || pUint == UINT32_MAX || unk_0x0C == 0) {
         return 0;
     } else {
         return (unk_0x08 == pUint) ? 1 : 0;

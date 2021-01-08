@@ -5260,7 +5260,7 @@ void setCameraInWaterDepth__11Z2StatusMgrFf(void);
 void mDoCPd_c_NS_getTrigA(void);
 void dCamSetup_c_NS_PlayerHideDist(void);
 void preparation(void);
-void cM3dGLin_NS_dtor(void);
+void __dt__8cM3dGLinFv(void);
 void dCamSetup_c_NS_CheckLatitudeRange(void);
 void daPy_py_c_NS_checkGoronSideMove(void);
 void dComIfGp_getAttention(void);
