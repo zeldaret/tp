@@ -7,11 +7,11 @@ __sinit_JKRDvdFile_cpp:
 /* 802D9B00 002D6A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D9B04 002D6A44  7C 08 02 A6 */	mflr r0
 /* 802D9B08 002D6A48  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802D9B0C 002D6A4C  3C 60 80 43 */	lis r3, lbl_8043436C@ha
-/* 802D9B10 002D6A50  38 63 43 6C */	addi r3, r3, lbl_8043436C@l
+/* 802D9B0C 002D6A4C  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha
+/* 802D9B10 002D6A50  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l
 /* 802D9B14 002D6A54  48 00 24 01 */	bl initiate__10JSUPtrListFv
-/* 802D9B18 002D6A58  3C 60 80 43 */	lis r3, lbl_8043436C@ha
-/* 802D9B1C 002D6A5C  38 63 43 6C */	addi r3, r3, lbl_8043436C@l
+/* 802D9B18 002D6A58  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha
+/* 802D9B1C 002D6A5C  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l
 .global JSUList_NS_dtor_X7_
 /* 802D9B20 002D6A60  3C 80 80 2E */	lis r4, JSUList_NS_dtor_X7_@ha
 .global JSUList_NS_dtor_X7_

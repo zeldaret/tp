@@ -11,6 +11,7 @@
 #define JUT_ASSERT(...)
 #define ASSERT(...)
 #define LOGF(FMT, ...)
+#define FLAG_HAS(V, F) (((V) & (F)) == 0)
 
 extern float __fabsf(float);
 

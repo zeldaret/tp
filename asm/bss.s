@@ -845,8 +845,8 @@ sVolumeList__13JKRFileLoader:
 .global lbl_80434360
 lbl_80434360:
 	.skip 0xC
-.global lbl_8043436C
-lbl_8043436C:
+.global sDvdList__10JKRDvdFile
+sDvdList__10JKRDvdFile:
 	.skip 0xC
 .global lbl_80434378
 lbl_80434378:

@@ -205,7 +205,7 @@ extern float lbl_80455FC4;   // JKernel::@935 = 1000.0
 extern double lbl_80455FC8;  // JKernel::@937 = 4.503599627370496E15
 
 class JKRDvdFile;
-extern JSUList<JKRDvdFile> lbl_8043436C;  // JKRDvdFile::sDvdList
+extern JSUList<JKRDvdFile> sDvdList__10JKRDvdFile;  // JKRDvdFile::sDvdList
 extern u8 lbl_803CC438;                   // JKRDvdFile::__vt
 extern u8 lbl_80434360;                   // JKernel::@657 (global destructor chain)
 extern char lbl_8039D260[12];             // "JKRDvdFile.cpp"
@@ -238,7 +238,7 @@ extern double lbl_80455FB8;           // JKernel::@697 = 4.503599627370496E15
 extern const char lbl_8039CE50[16];   // "allocFromHead: cannot alloc memory (0x%x byte).\n"
 extern double lbl_80455FB0;           // JKernel::@695 = 4.503601774854144E15
 extern float lbl_80455FA8;            // JKernel::@693 = 100.0
-extern u32 lbl_80451420;              // JKRArchive::sCurrentDirID
+extern u32 sCurrentDirID__10JKRArchive;              // JKRArchive::sCurrentDirID
 extern u8 lbl_803CC288;               // JKRArchive::__vt
 
 // d_item

@@ -1619,8 +1619,8 @@ lbl_80451414:
 .global sCurrentVolume__13JKRFileLoader
 sCurrentVolume__13JKRFileLoader:
 	.skip 0x8
-.global lbl_80451420
-lbl_80451420:
+.global sCurrentDirID__10JKRArchive
+sCurrentDirID__10JKRArchive:
 	.skip 0x8
 .global lbl_80451428
 lbl_80451428:

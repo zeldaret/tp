@@ -6,7 +6,7 @@
 #include "JSystem/JKernel/SArc.h"
 #include "dolphin/types.h"
 
-extern u32 lbl_80451420;  // JKRArchive::sCurrentDirID
+extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 
 class JKRHeap;
 class JKRDvdFile;
@@ -111,8 +111,6 @@ public:
     static JKRArchive* mount(s32, EMountMode, JKRHeap*, EMountDirection);
     static void* getGlbResource(u32, const char*, JKRArchive*);
 
-#define FLAG_HAS(V, F) (((V) & (F)) == 0)
-
     static JKRCompression convertAttrToCompressionType(u32 attr) {
 #define JKRARCHIVE_ATTR_COMPRESSION 0x04
 #define JKRARCHIVE_ATTR_YAY0 0x80
@@ -128,8 +126,11 @@ public:
         return compression;
     }
 
-    static u32 getCurrentDirID() { return lbl_80451420; }
-    static void setCurrentDirID(u32 dirID) { lbl_80451420 = dirID; }
+    static u32 getCurrentDirID() { return sCurrentDirID; }
+    static void setCurrentDirID(u32 dirID) { sCurrentDirID = dirID; }
+
+private:
+    static u32 sCurrentDirID;
 };
 
 inline JKRCompression JKRConvertAttrToCompressionType(u32 attr) {
