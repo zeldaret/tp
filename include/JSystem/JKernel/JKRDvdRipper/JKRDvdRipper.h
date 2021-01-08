@@ -16,8 +16,8 @@ class JKRDvdRipper {
 public:
     enum EAllocDirection {
         UNKNOWN_EALLOC_DIRECTION = 0,
-        FORWARD = 1,
-        BACKWARD = 2,
+        ALLOC_DIRECTION_FORWARD = 1,
+        ALLOC_DIRECTION_BACKWARD = 2,
     };
 
     static void* loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*, EAllocDirection,
@@ -34,5 +34,12 @@ void JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);
 static void decompSZS_subroutine(u8*, u8*);
 static void firstSrcData(void);
 static void nextSrcData(u8*);
+
+inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength,
+                             JKRHeap* heap, JKRDvdRipper::EAllocDirection allocDirection,
+                             u32 offset, JKRCompression* compression, u32* returnSize) {
+    return JKRDvdRipper::loadToMainRAM(entryNum, dst, expandSwitch, dstLength, heap, allocDirection,
+                                       offset, compression, returnSize);
+}
 
 #endif

@@ -51,10 +51,6 @@ public:
     static JKRCompression checkCompressed(u8*);
 };
 
-inline u32 JKRDecompExpandSize(const void* resource) {
-    return READ_BIG_ENDIAN_U32((u8*)resource + 4);
-}
-
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
     JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }

@@ -37,7 +37,7 @@ lbl_802D80A4:
 /* 802D80C8 002D5008  7F E7 FB 78 */	mr r7, r31
 /* 802D80CC 002D500C  81 1C 00 5C */	lwz r8, 0x5c(r28)
 /* 802D80D0 002D5010  39 21 00 08 */	addi r9, r1, 8
-/* 802D80D4 002D5014  48 00 03 A1 */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
+/* 802D80D4 002D5014  48 00 03 A1 */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapi14JKRCompressionPPUc
 /* 802D80D8 002D5018  90 7E 00 00 */	stw r3, 0(r30)
 /* 802D80DC 002D501C  28 03 00 00 */	cmplwi r3, 0
 /* 802D80E0 002D5020  40 82 00 0C */	bne lbl_802D80EC

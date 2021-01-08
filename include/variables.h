@@ -85,19 +85,19 @@ extern u8 J3DLightObj;
 extern void* lbl_803CBF70;  // JKRHeap::__vt
 
 class JKRHeap;
-extern JKRHeap* sSystemHeap__7JKRHeap;  // JKRHeap::sSystemHeap
-extern JKRHeap* sRootHeap__7JKRHeap;  // JKRHeap::sRootHeap
+extern JKRHeap* sSystemHeap__7JKRHeap;   // JKRHeap::sSystemHeap
+extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
 extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
 
 extern bool lbl_804508B0;  // ::*fill*
 extern bool lbl_80451380;  // DAT_80451380
 
 // func_802CE378
-extern void* mCodeStart__7JKRHeap;  // JKRHeap::mCodeStart
-extern void* mCodeEnd__7JKRHeap;  // JKRHeap::mCodeEnd
+extern void* mCodeStart__7JKRHeap;     // JKRHeap::mCodeStart
+extern void* mCodeEnd__7JKRHeap;       // JKRHeap::mCodeEnd
 extern void* mUserRamStart__7JKRHeap;  // JKRHeap::mUserRamStart
-extern void* mUserRamEnd__7JKRHeap;  // JKRHeap::mUserRamEnd
-extern u32 mMemorySize__7JKRHeap;    // JKRHeap::mMemorySize
+extern void* mUserRamEnd__7JKRHeap;    // JKRHeap::mUserRamEnd
+extern u32 mMemorySize__7JKRHeap;      // JKRHeap::mMemorySize
 
 extern u8 lbl_80000000;
 extern u32 lbl_80000028;
@@ -258,8 +258,8 @@ extern u8 lbl_8037B0D0[0x8];
 class JKRThread;
 extern JSUList<JKRThread> sThreadList__9JKRThread;  // JSUList<JKRThread> JKRThread::sThreadList
 
-extern u8 lbl_803CC398;  // JKRDvdArchive::__vt
-extern u8 lbl_8039D1B0;  // "JKRDvdArchive.cpp"
+extern u8 lbl_803CC398;        // JKRDvdArchive::__vt
+extern char lbl_8039D1B0[16];  // "JKRDvdArchive.cpp"
 
 extern u8 lbl_803CC2D8;              // JKRMemArchive::__vt
 extern const char lbl_8039D160[16];  // "JKRMemArchive.cpp"

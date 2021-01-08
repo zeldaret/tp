@@ -76,7 +76,7 @@ lbl_802D9030:
 /* 802D904C 002D5F8C  7F E7 FB 78 */	mr r7, r31
 /* 802D9050 002D5F90  81 1C 00 5C */	lwz r8, 0x5c(r28)
 /* 802D9054 002D5F94  39 21 00 08 */	addi r9, r1, 8
-/* 802D9058 002D5F98  4B FF F4 1D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
+/* 802D9058 002D5F98  4B FF F4 1D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapi14JKRCompressionPPUc
 /* 802D905C 002D5F9C  28 1E 00 00 */	cmplwi r30, 0
 /* 802D9060 002D5FA0  41 82 00 08 */	beq lbl_802D9068
 /* 802D9064 002D5FA4  90 7E 00 00 */	stw r3, 0(r30)

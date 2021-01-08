@@ -1,4 +1,4 @@
-/* fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection::fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap *, int, int, unsigned char **) */
+/* fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapi14JKRCompressionPPUc __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection::fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap *, int, int, unsigned char **) */
 /* JKRDvdArchive_NS_fetchResource_subroutine_X1_ */
 /* 802D8474 002D53B4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802D8478 002D53B8  7C 08 02 A6 */	mflr r0

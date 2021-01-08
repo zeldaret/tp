@@ -12,13 +12,13 @@ public:
 
     bool open(s32);
 
-    /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;            /* override */
+    /* vt[15] */ virtual u32 getExpandedResSize(const void*) ;            /* override */
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 
 public:
-    static void fetchResource_subroutine(s32, u32, u32, u8*, u32, int, int);
-    static void fetchResource_subroutine(s32, u32, u32, JKRHeap*, int, int, u8**);
+    static u32 fetchResource_subroutine(s32, u32, u32, u8*, u32, JKRCompression, JKRCompression);
+    static u32 fetchResource_subroutine(s32, u32, u32, JKRHeap*, JKRCompression, JKRCompression, u8**);
 
 private:
     /* 0x00 */  // vtable

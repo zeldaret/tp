@@ -92,7 +92,7 @@ lbl_802D91EC:
 /* 802D9204 002D6144  7F 86 E3 78 */	mr r6, r28
 /* 802D9208 002D6148  57 A7 00 34 */	rlwinm r7, r29, 0, 0, 0x1a
 /* 802D920C 002D614C  81 29 00 5C */	lwz r9, 0x5c(r9)
-/* 802D9210 002D6150  4B FF F0 5D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
+/* 802D9210 002D6150  4B FF F0 5D */	bl fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUli14JKRCompression
 /* 802D9214 002D6154  7C 7B 1B 78 */	mr r27, r3
 /* 802D9218 002D6158  48 00 00 20 */	b lbl_802D9238
 lbl_802D921C:
