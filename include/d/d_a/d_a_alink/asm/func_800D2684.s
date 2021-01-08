@@ -4,7 +4,7 @@
 /* 800D2690 000CF5D0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D2694 000CF5D4  7C 7F 1B 78 */ mr r31, r3
 /* 800D2698 000CF5D8  38 80 00 08 */ li r4, 8
-/* 800D269C 000CF5DC  4B FD FF 4D */ bl daAlink_c_NS_itemButtonCheck
+/* 800D269C 000CF5DC  4B FD FF 4D */ bl itemButtonCheck__9daAlink_cFUc
 /* 800D26A0 000CF5E0  2C 03 00 00 */ cmpwi r3, 0
 /* 800D26A4 000CF5E4  41 82 00 2C */ beq lbl_800D26D0
 /* 800D26A8 000CF5E8  A8 7F 30 12 */ lha r3, 0x3012(r31)

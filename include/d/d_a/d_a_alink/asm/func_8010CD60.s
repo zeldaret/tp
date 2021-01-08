@@ -9,7 +9,7 @@
 /* 8010CD80 00109CC0  41 82 00 10 */ beq lbl_8010CD90
 /* 8010CD84 00109CC4  7F E3 FB 78 */ mr r3, r31
 /* 8010CD88 00109CC8  38 80 00 12 */ li r4, 0x12
-/* 8010CD8C 00109CCC  4B FA 64 C5 */ bl daAlink_c_NS_setDoStatus
+/* 8010CD8C 00109CCC  4B FA 64 C5 */ bl setDoStatus__9daAlink_cFUc
 lbl_8010CD90:
 /* 8010CD90 00109CD0  7F E3 FB 78 */ mr r3, r31
 /* 8010CD94 00109CD4  4B FF EB D9 */ bl daAlink_c_NS_commonHookshotRoofWait

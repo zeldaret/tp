@@ -10,7 +10,7 @@
 /* 800F28BC 000EF7FC  41 82 00 10 */ beq lbl_800F28CC
 /* 800F28C0 000EF800  7F E3 FB 78 */ mr r3, r31
 /* 800F28C4 000EF804  38 80 00 12 */ li r4, 0x12
-/* 800F28C8 000EF808  4B FC 09 89 */ bl daAlink_c_NS_setDoStatus
+/* 800F28C8 000EF808  4B FC 09 89 */ bl setDoStatus__9daAlink_cFUc
 lbl_800F28CC:
 /* 800F28CC 000EF80C  7F E3 FB 78 */ mr r3, r31
 /* 800F28D0 000EF810  4B FF B1 55 */ bl daAlink_c_NS_setSyncRidePos

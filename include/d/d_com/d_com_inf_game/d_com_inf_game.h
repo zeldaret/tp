@@ -79,6 +79,18 @@ public:
         field_0x4ec0[0x3B] = status;
         field_0x4ec0[0x56] = unk;
     }
+    void setRStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x24] = status;
+        field_0x4ec0[0x4A] = unk;
+    }
+    void setDoStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x2C] = status;
+        field_0x4ec0[0x52] = unk;
+    }
+    void setAStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x25] = status;
+        field_0x4ec0[0x4B] = unk;
+    }
     void setItemLifeCount(float hearts, u8 unk) {
         give_item.hearts += hearts;
         unk_heart = unk;
@@ -92,6 +104,7 @@ public:
     void setItemMaxLifeCount(short max) { give_item.max_life += max; }
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
+    u8 getDoStatus(void) { return field_0x4ec0[0x2C]; }
 
 private:
     /* 0x00000 */ dBgS dbgs;
@@ -188,6 +201,15 @@ extern dComIfG_inf_c g_dComIfG_gameInfo;
 
 int dComIfGs_isItemFirstBit(u8);
 
+inline void dComIfGp_setRStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setRStatus(status, unk);
+}
+inline void dComIfGp_setDoStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setDoStatus(status, unk);
+}
+inline void dComIfGp_setAStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setAStatus(status, unk);
+}
 inline void dComIfGp_setZStatus(u8 status, u8 unk) {
     g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
 }

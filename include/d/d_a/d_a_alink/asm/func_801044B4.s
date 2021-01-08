@@ -45,7 +45,7 @@ lbl_8010453C:
 /* 80104558 00101498  41 82 00 10 */ beq lbl_80104568
 /* 8010455C 0010149C  7F E3 FB 78 */ mr r3, r31
 /* 80104560 001014A0  38 80 00 04 */ li r4, 4
-/* 80104564 001014A4  4B FA EC ED */ bl daAlink_c_NS_setDoStatus
+/* 80104564 001014A4  4B FA EC ED */ bl setDoStatus__9daAlink_cFUc
 lbl_80104568:
 /* 80104568 001014A8  7F E3 FB 78 */ mr r3, r31
 /* 8010456C 001014AC  4B FF EA ED */ bl daAlink_c_NS_checkSwimUpAction
