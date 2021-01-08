@@ -14,33 +14,42 @@ JKRExpHeap* mDoExt_getHostIOHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
 }
 
+#pragma pack(push, 1)
 class mDoExt_baseAnm {
 public:
 private:
     J3DFrameCtrl frame_control;
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class mDoExt_btkAnm {
 public:
 private:
     mDoExt_baseAnm base_anm;
     u32 field_0x14;
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class mDoExt_brkAnm {
 public:
 private:
     mDoExt_baseAnm mDoExt_baseAnm;
     u32 field_0x14;
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class mDoExt_bpkAnm {
 public:
 private:
     mDoExt_baseAnm mDoExt_baseAnm;
     u32 field_0x14;
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class mDoExt_bckAnm {
 public:
 private:
@@ -48,11 +57,14 @@ private:
     u8 field_0x14[4];
     u32 field_0x18;
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class mDoExt_McaMorfCallBack1_c {
 public:
 private:
     void* vtable;
 };
+#pragma pack(pop)
 
 #endif

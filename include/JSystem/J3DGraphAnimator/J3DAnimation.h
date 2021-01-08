@@ -3,6 +3,7 @@
 
 #include "global.h"
 
+#pragma pack(push, 1)
 class J3DFrameCtrl {
 public:
 private:
@@ -15,5 +16,6 @@ private:
     float field_0xc;
     float field_0x10;
 };
+#pragma pack(pop)
 
 #endif

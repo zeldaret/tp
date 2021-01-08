@@ -1,5 +1,6 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
 #include "dolphin/types.h"
 
 class HeapCheck {
@@ -14,18 +15,29 @@ public:
     void setHeapSize(u32 i_size) { heap_size = i_size; }
 
 private:
-    char* names[2];
-    JKRExpHeap* heap;
-    s32 max_total_used_size;
-    s32 max_total_free_size;
-    u8 unk20[8];  // 8 bytes
-    u32 heap_size;
-    u32 used_count;
-    u32 total_used_size;
+    /* 0x00 */ char* names[2];
+    /* 0x08 */ JKRExpHeap* heap;
+    /* 0x0C */ s32 max_total_used_size;
+    /* 0x10 */ s32 max_total_free_size;
+    /* 0x14 */ u8 unk20[8];
+    /* 0x1C */ u32 heap_size;
+    /* 0x20 */ u32 used_count;
+    /* 0x24 */ u32 total_used_size;
 };
 
 extern HeapCheck* HeapCheckTable[8];
+extern HeapCheck lbl_803D32E0[8]; // RootHeapCheck
+// extern HeapCheck lbl_803D3308; // SystemHeapCheck
+// extern HeapCheck lbl_803D3330; // ZeldaHeapCheck
+// extern HeapCheck lbl_803D3358; // GameHeapCheck
+// extern HeapCheck lbl_803D3380; // ArchiveHeapCheck
+// extern HeapCheck lbl_803D33A8; // J2dHeapCheck
+// extern HeapCheck lbl_803D33D0; // HostioHeapCheck
+// extern HeapCheck lbl_803D33F8; // CommandHeapCheck
 extern s8 lbl_80450580[4];
 extern u8 lbl_80450B1A[2];
 extern u8 lbl_80450B18;
 extern u8 lbl_80450588[8];
+extern u8 lbl_804511B8[4];
+extern u8 lbl_80451210[4];
+extern JKRSolidHeap* lbl_80450BBC;

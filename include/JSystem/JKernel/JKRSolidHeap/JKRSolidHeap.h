@@ -57,4 +57,8 @@ public:
     static JKRSolidHeap* create(u32, JKRHeap*, bool);
 };
 
+extern "C" {
+    JKRSolidHeap* JKRSolidHeap_NS_create(u32 size, JKRHeap* heap, bool use_default_error_handler);
+}
+
 #endif

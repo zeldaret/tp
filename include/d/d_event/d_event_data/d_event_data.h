@@ -8,7 +8,7 @@ public:
 private:
     u8 field_0x0[320];
 };
-
+#pragma pack(push,1)
 class dEvDtBase_c {
 public:
 private:
@@ -22,5 +22,6 @@ private:
     u32 field_0x1c;
     u32 field_0x20;
 };
+#pragma pack(pop)
 
 #endif

@@ -59,6 +59,7 @@ private:
     float field_0x8;
 };
 
+#pragma pack(push, 1)
 class dAttList_c {
 public:
 private:
@@ -66,7 +67,9 @@ private:
     cSAngle angle;
     u8 field_0xa[10];
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 class dAttDraw_c {
     u8 field_0x0;
     u8 field_0x1;
@@ -91,6 +94,8 @@ class dAttDraw_c {
     mDoExt_brkAnm brkAnm3;
     mDoExt_btkAnm btkAnm2;
 };
+#pragma pack(pop)
+
 
 class dAttDraw_CallBack_c {
     mDoExt_McaMorfCallBack1_c mDoExt_McaMorfCallback;

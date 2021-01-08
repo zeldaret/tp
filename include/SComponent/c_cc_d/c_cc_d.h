@@ -7,15 +7,15 @@
 class cCcD_ShapeAttr {
 public:
 private:
-    cM3dGAab cm3dgaab;
-    void* vtable;
+    /* 0x00 */ cM3dGAab cm3dgaab;
+    /* 0x1C */ void* vtable;
 };
 
 class cCcD_CpsAttr {
 public:
 private:
-    cCcD_ShapeAttr cccd_shapeattr;
-    cM3dGCps cm3dgcps;
+    /* 0x00 */ cCcD_ShapeAttr cccd_shapeattr;
+    /* 0x20 */ cM3dGCps cm3dgcps;
 };
 
 class cCcD_CylAttr {

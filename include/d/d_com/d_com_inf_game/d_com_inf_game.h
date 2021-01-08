@@ -13,6 +13,7 @@
 #include "d/d_stage/d_stage.h"
 #include "d/d_vibration/d_vibration.h"
 
+#pragma pack(push,1)
 struct item_func {
     float hearts;    // bf80
     u32 rupees;      // bf84
@@ -33,7 +34,9 @@ struct item_func {
     s16 arrows;      // bfb4
     s16 seeds;       // bfb6
 };
+#pragma pack(pop)
 
+#pragma pack(push,1)
 class dComIfG_camera_info_class {
 public:
 private:
@@ -41,7 +44,9 @@ private:
     cXyz field_0xc;
     cXyz field_0x18;
 };
+#pragma pack(pop)
 
+#pragma pack(push,1)
 class dDlst_window_c {
 public:
 private:
@@ -57,13 +62,15 @@ private:
     float scissor4;
     int camera_id;
 };
+#pragma pack(pop)
 
+#pragma pack(push,1)
 class dComIfG_play_c {
 public:
     void ct(void);
     void init(void);
     u32 getNowVibration();
-    dStage_roomControl_c& getRoomControl() { return room_control; }
+    dStage_roomControl_c& getRoomControl() { return mRoomControl; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
     void setUnkWarashibe1(u8 num) { field_0x4ec0[0x85] = num; }
@@ -85,39 +92,39 @@ public:
     void setItemMaxLifeCount(short max) { give_item.max_life += max; }
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
-
 private:
     /* 0x00000 */ dBgS dbgs;
-    /* 0x0143C */ dCcS dccs;
-    /* 0x03F08 */ u8 field_0x3f08[0x16];
-    /* 0x03F1E */ dStage_nextStage_c next_stage;
+    /* 0x0143C */ u8 field_0x143c[0x2A8C];
+    /* 0x03EC8 */ dStage_startStage_c mStartStage;
+    /* 0x03ED5 */ u8 field_0x3ed5[0x49];
+    /* 0x03F1E */ dStage_nextStage_c mNextStage;
     /* 0x03F2F */ u8 padding;
-    /* 0x03F30 */ dStage_stageDt_c stage_data;
-    /* 0x03F34 */ dStage_roomControl_c room_control;
-    /* 0x03FD8 */ dEvt_control_c event_control;
+    /* 0x03F30 */ dStage_stageDt_c mStageData;
+    /* 0x03F34 */ dStage_roomControl_c mRoomControl;
+    /* 0x03FD8 */ dEvt_control_c mEventControl;
     /* 0x0409C */ u8 field_0x409c[0x24];
-    /* 0x040C0 */ dEvent_manager_c event_manager;
+    /* 0x040C0 */ dEvent_manager_c mEventManager;
     /* 0x0475B */ u8 field_0x475B[0x2D];
     /* 0x04788 */ void* vtable;
     /* 0x0478C */ u8 field_0x478c[0x1C];
-    /* 0x047A8 */ dAttDraw_c attention_draw;
+    /* 0x047A8 */ dAttDraw_c mAttentionDraw;
     /* 0x0490C */ u8 field_0x490c[0x1AC];
-    /* 0x04AB8 */ dAttList_c attention_list1;
+    /* 0x04AB8 */ dAttList_c mAttentionList1;
     /* 0x04ACC */ u8 field_0x4acc[0x94];
-    /* 0x04B60 */ dAttList_c attention_list2;
+    /* 0x04B60 */ dAttList_c mAttentionList2;
     /* 0x04B74 */ u8 field_0x4b74[0x44];
-    /* 0x04BB8 */ dAttList_c attention_list3;
+    /* 0x04BB8 */ dAttList_c mAttentionList3;
     /* 0x04BCC */ u8 field_0x4bcc[0xBC];
     /* 0x04c88 */ void* vtable2;
     /* 0x04C8C */ u8 field_0x4c8c[0x55];
     /* 0x04CE1 */ u8 field_0x4ce1[0x37];
-    /* 0x04D18 */ dVibration_c vibration;
+    /* 0x04D18 */ dVibration_c mVibration;
     /* 0x04DA8 */ u8 field_0x4da8[0x5C];
     /* 0x04E04 */ u32 field_0x4e04;
     /* 0x04E08 */ u8 field_0x4e08[0x4];
     /* 0x04E0C */ u8 field_0x4e0c[0x4];
-    /* 0x04E10 */ dDlst_window_c draw_list_window;
-    /* 0x04ED4 */ dComIfG_camera_info_class camera_info;
+    /* 0x04E10 */ dDlst_window_c mDrawlistWindow;
+    /* 0x04ED4 */ dComIfG_camera_info_class mCameraInfo;
     /* 0x04E60 */ u8 field_0x4e60[0x28];
     /* 0x04E88 */ item_func give_item;
     /* 0x04EC0 */ u8 field_0x4ec0[0xBE];
@@ -128,9 +135,11 @@ private:
     /* 0x05000 */ u32 field_0x5000;
     /* 0x05004 */ u32 field_0x5004;
     /* 0x05008 */ u8 field_0x5008[0x1C];
-    /* 0x05024 */ u8 field_0x5024[8];
+    /* 0x05024 */ u8 field_0x5024[0x8];
 };
+#pragma pack(pop)
 
+#pragma pack(push,1)
 class dComIfG_inf_c {
 public:
     // temp until we map the item short function names
@@ -155,6 +164,7 @@ private:
     /* 0x00F28 */ u32 saveStartTime;
     /* 0x00F2C */ u32 field_0xf30;
     /* 0x00F30 */ u32 field_0xf34;
+                u8 unk[3];
     /* 0x00F34 */ dComIfG_play_c play;
     /* 0x05F60 */ u8 field_0x5f60[0x10];
     /* 0x05F70 */ dDlst_list_c draw_list_list;
@@ -178,6 +188,7 @@ private:
     /* 0x1DE0A */ u8 unk33;
     /* 0x1DE0B */ u8 unk34[0x5];  // probably padding
 };
+#pragma pack(pop)
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 

@@ -8,9 +8,9 @@
 class dCcS {
 public:
 private:
-    cCcS cccs;
-    u8 field_0x2834[36];
-    dCcMassS_Mng dccmass_mng;
+    /* 0x0000 */ cCcS cccs;
+    /* 0x2834 */ u8 field_0x2834[36];
+    /* 0x2858 */ dCcMassS_Mng dccmass_mng;
 };
 
 #endif

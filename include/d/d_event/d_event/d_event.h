@@ -3,6 +3,7 @@
 
 #include "dolphin/types.h"
 
+#pragma pack(push,1)
 class dEvt_order_c {
 public:
 private:
@@ -198,7 +199,9 @@ private:
     u8 field_0xbd;
     u8 field_0xbe;
 };
+#pragma pack(pop)
 
+#pragma pack(push,1)
 class dEvt_control_c {
 public:
     void searchMapEventData(u8 param_1);
@@ -208,5 +211,6 @@ private:
     dEvt_order_c event_order;
     u8 field_0xc3;
 };
+#pragma pack(pop)
 
 #endif
