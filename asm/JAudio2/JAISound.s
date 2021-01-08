@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2184
 
 
-.global JAISoundHandle_NS_releaseSound
-JAISoundHandle_NS_releaseSound:
+.global releaseSound__14JAISoundHandleFv
+releaseSound__14JAISoundHandleFv:
 /* 802A2184 0029F0C4  80 83 00 00 */	lwz r4, 0(r3)
 /* 802A2188 0029F0C8  28 04 00 00 */	cmplwi r4, 0
 /* 802A218C 0029F0CC  4D 82 00 20 */	beqlr 

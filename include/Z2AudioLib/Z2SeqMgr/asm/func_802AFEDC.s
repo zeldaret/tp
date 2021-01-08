@@ -42,7 +42,7 @@ lbl_802AFF58:
 /* 802AFF68 002ACEA8  4B FF 25 75 */	bl stop__8JAISoundFUl
 lbl_802AFF6C:
 /* 802AFF6C 002ACEAC  38 7E 00 0C */	addi r3, r30, 0xc
-/* 802AFF70 002ACEB0  4B FF 22 15 */	bl JAISoundHandle_NS_releaseSound
+/* 802AFF70 002ACEB0  4B FF 22 15 */	bl releaseSound__14JAISoundHandleFv
 /* 802AFF74 002ACEB4  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802AFF78 002ACEB8  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 802AFF7C 002ACEBC  80 01 00 24 */	lwz r0, 0x24(r1)

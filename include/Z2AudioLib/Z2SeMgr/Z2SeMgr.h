@@ -57,7 +57,7 @@ void Z2Audience_NS_calcOffMicSound(void);
 void modHeightAtCamera__7Z2SeMgrFPPC3Vec(Vec const**);
 void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(JAISoundID, Vec const*, u32, s8, float,
                                                          float, float, float, u8);
-void JAISoundHandle_NS_releaseSound(void);
+void releaseSound__14JAISoundHandleFv(void);
 void seStop__7Z2SeMgrF10JAISoundIDUl(JAISoundID, u32);
 void JAISeCategoryMgr_NS_stop(void);
 void seMoveVolumeAll__7Z2SeMgrFfUl(float, u32);

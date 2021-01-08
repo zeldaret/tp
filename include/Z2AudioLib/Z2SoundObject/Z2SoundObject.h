@@ -25,8 +25,8 @@ class Z2SoundObjBase : protected Z2SoundHandles {
     void deleteObject();
 
     virtual void framework(u32, s8);
-    virtual void dispose(void);
-    virtual u32 stopOK(Z2SoundHandlePool&);
+    virtual void dispose();
+    virtual bool stopOK(Z2SoundHandlePool&);
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
 
 

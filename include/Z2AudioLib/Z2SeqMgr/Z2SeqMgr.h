@@ -67,7 +67,7 @@ void JAISeqMgr_NS_stop_X1_(void);
 void bgmStart__8Z2SeqMgrFUlUll(u32, u32, s32);
 void bgmStop__8Z2SeqMgrFUll(u32, s32);
 void bgmStreamCheckReady__8Z2SeqMgrFv(void);
-void JAISoundHandle_NS_releaseSound(void);
+void releaseSound__14JAISoundHandleFv(void);
 void Z2SeqMgr_NS_subBgmStop(void);
 void subBgmStop__8Z2SeqMgrFv(void);
 void subBgmStopInner__8Z2SeqMgrFv(void);

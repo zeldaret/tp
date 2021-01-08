@@ -85,9 +85,6 @@ void Z2SoundHandles::stopAllSounds(u32 fadeout) {
         if (handle && handle->operator bool()) { 
             (*handle)->stop(fadeout);
         }
-        // if ((handle == NULL) && (bool)handle) {
-        //     (*handle)->stop(fadeout);
-        // }
     }
 }
 

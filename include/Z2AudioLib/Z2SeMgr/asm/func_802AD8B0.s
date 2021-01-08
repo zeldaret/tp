@@ -27,7 +27,7 @@ lbl_802AD8E8:
 /* 802AD914 002AA854  4B FF 4B C9 */	bl stop__8JAISoundFUl
 /* 802AD918 002AA858  80 1B 00 60 */	lwz r0, 0x60(r27)
 /* 802AD91C 002AA85C  7C 60 FA 14 */	add r3, r0, r31
-/* 802AD920 002AA860  4B FF 48 65 */	bl JAISoundHandle_NS_releaseSound
+/* 802AD920 002AA860  4B FF 48 65 */	bl releaseSound__14JAISoundHandleFv
 lbl_802AD924:
 /* 802AD924 002AA864  3B DE 00 01 */	addi r30, r30, 1
 lbl_802AD928:

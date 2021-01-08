@@ -42,17 +42,28 @@ void Z2SoundObjBase::framework(u32 p1, s8 p2) {
     }
 }
 
-extern "C" {
 // dispose__14Z2SoundObjBaseFv
 // Z2SoundObjBase::dispose(void)
-asm void func_802BE070(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BE070.s"
-}
-};
+// nonmatching; r30, r31 flipped.
+void Z2SoundObjBase::dispose() {
+    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
+         link = link->getNext()) {
+        JAISoundHandle* handle = link->getObject();
+        if (handle && *handle) {
+            u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());
+            if ((swBit & 0x8000) != 0) {
+                handle->releaseSound();
+            } else {
+                (*handle)->stop();
+            }
+        }
+    }
 
-u32 Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
-    return checkEqual(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000, 0);
+    this->mIsInitialized = false;
+}
+
+bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
+    return !(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);
 }
 
 extern "C" {

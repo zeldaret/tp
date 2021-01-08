@@ -34,6 +34,7 @@ public:
     JAISoundID getID() const { return JAISoundID((u32)this->sound_id); }
 
     void stop(u32 fadeout);
+    void stop();
 
     u32 getUserData() const {
         return user_data;
@@ -140,6 +141,8 @@ public:
     operator bool() const {
         return isSoundAttached();
     }
+
+    void releaseSound();
 
     // private:
     JAISound* mSound;
