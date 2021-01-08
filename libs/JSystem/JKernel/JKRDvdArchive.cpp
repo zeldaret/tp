@@ -43,7 +43,7 @@ JKRDvdArchive::~JKRDvdArchive() {
     }
 }
 
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 bool JKRDvdArchive::open(s32 entryNum) {
     mArcInfoBlock = NULL;
     field_0x64 = NULL;
@@ -60,7 +60,7 @@ bool JKRDvdArchive::open(s32 entryNum) {
     SArcHeader* arcHeader = (SArcHeader*)JKRAllocFromSysHeap(sizeof(SArcHeader), 0x20);
     if (!arcHeader) {
         mMountMode = UNKNOWN_MOUNT_MODE;
-        return false;
+        goto cleanup;
     }
 
     JKRDvdToMainRam(entryNum, (u8*)arcHeader, EXPAND_SWITCH_UNKNOWN1, sizeof(SArcHeader), NULL,
@@ -77,7 +77,7 @@ bool JKRDvdArchive::open(s32 entryNum) {
     mArcInfoBlock = (SArcDataInfo*)JKRAllocFromHeap(mHeap, arcHeader->file_data_offset, alignment);
     if (!mArcInfoBlock) {
         mMountMode = UNKNOWN_MOUNT_MODE;
-        return false;
+        goto cleanup;
     }
 
     JKRDvdToMainRam(entryNum, (u8*)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1,
@@ -107,7 +107,7 @@ bool JKRDvdArchive::open(s32 entryNum) {
             // allocator.
             JKRFreeToSysHeap(mArcInfoBlock);
             mMountMode = UNKNOWN_MOUNT_MODE;
-            return false;
+            goto cleanup;
         }
 
         memset(mExpandedSize, 0, sizeof(s32) * mArcInfoBlock->num_file_entries);
@@ -115,16 +115,17 @@ bool JKRDvdArchive::open(s32 entryNum) {
 
     field_0x64 = arcHeader->header_length + arcHeader->file_data_offset;
 
+cleanup:
     if (arcHeader) {
         JKRFreeToSysHeap(arcHeader);
     }
 
     if (mMountMode == UNKNOWN_MOUNT_MODE) {
-        if(mDvdFile) {
+        if (mDvdFile) {
             delete mDvdFile;
         }
         return false;
-    } 
+    }
 
     return true;
 }

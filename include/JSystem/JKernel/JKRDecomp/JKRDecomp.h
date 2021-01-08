@@ -1,9 +1,9 @@
 #ifndef __JKRDECOMP_H__
 #define __JKRDECOMP_H__
 
+#include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "dolphin/types.h"
-#include "JSystem/JKernel/JKRCompression.h"
 
 class JKRAMCommand;
 class JKRDecompCommand {

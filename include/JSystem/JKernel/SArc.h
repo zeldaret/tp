@@ -12,7 +12,7 @@ struct SArcHeader {
     u32 field_0x14;
     u32 field_0x18;
     u32 field_0x1c;
-} __attribute__ ((aligned (32)));
+} __attribute__((aligned(32)));
 
 struct SArcDataInfo {
     u32 num_nodes;

@@ -138,7 +138,7 @@ void* JKRMemArchive::fetchResource(SDIFileEntry* fileEntry, u32* resourceSize) {
 
 void* JKRMemArchive::fetchResource(void* buffer, u32 bufferSize, SDIFileEntry* fileEntry,
                                    u32* resourceSize) {
-    u32 srcLength = fileEntry->data_size; 
+    u32 srcLength = fileEntry->data_size;
     if (srcLength > bufferSize) {
         srcLength = bufferSize;
     }

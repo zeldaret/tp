@@ -9,7 +9,7 @@ JKRDvdFile::JKRDvdFile(const char* name) : JKRFile(), mDvdLink(this) {
     initiate();
     bool result = open(name);
     mIsAvailable = result;
-        // weird code. doesn't match without this, maybe remains from assert or something?
+    // weird code. doesn't match without this, maybe remains from assert or something?
     if (mIsAvailable)
         return;
     else
@@ -53,9 +53,9 @@ bool JKRDvdFile::open(const char* param_1) {
     return mIsAvailable;
 }
 
-bool JKRDvdFile::open(long param_1) {
+bool JKRDvdFile::open(long entryNum) {
     if (!mIsAvailable) {
-        mIsAvailable = DVDFastOpen(param_1, &mFileInfo);
+        mIsAvailable = DVDFastOpen(entryNum, &mFileInfo);
         if (mIsAvailable) {
             getDvdList().append(&mDvdLink);
             getStatus();

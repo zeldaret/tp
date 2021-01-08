@@ -73,7 +73,7 @@ public:
     static JKRThread* searchThread(OSThread* thread);
     static JSUList<JKRThread>& getList() { return sThreadList; }
 
-    static JSUList<JKRThread> sThreadList; 
+    static JSUList<JKRThread> sThreadList;
 };
 
 class JKRThreadSwitch {

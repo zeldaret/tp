@@ -140,7 +140,7 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void func_80362540(void);
 void dDlst_list_c_NS_set(void);
 void init__14dComIfG_play_cFv(void);
-void* memset(void *dest,int ch,u32 count);
+void* memset(void* dest, int ch, u32 count);
 void dStage_roomControl_c_NS_initZone(void);
 void JUTWarningConsole(void);
 void JUTConsole_NS_print(void);
