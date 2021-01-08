@@ -331,36 +331,4 @@ inline BOOL dComIfGs_isLightDropGetFlag(u8 area_id) {
     return g_dComIfG_gameInfo.getSaveFile().getLightDrop().isLightDropGetFlag(area_id);
 }
 
-// int dComIfGp_roomControl_getZoneNo(int zone_no) {
-//     return g_dComIfG_gameInfo.play.getRoomControl().getZoneNo(zone_no);
-// }
-
-// BOOL dComIfGs_isEventBit(u16 event_no) {
-//     return g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().isEventBit(event_no);
-// }
-
-// void dComIfGs_offEventBit(u16 event_no) {
-//     g_dComIfG_gameInfo.info.getSaveFile().getEventFlags().offEventBit(event_no);
-// }
-
-// BOOL dComIfGs_isItemFirstBit(u8 i_no) {
-//     return g_dComIfG_gameInfo.info.getSaveFile().getPlayerGetItem().isFirstBit(i_no);
-// }
-
-// void dComIfGs_setItem(int item_slot, u8 item_id) {
-//     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerItem().setItem(item_slot,
-//     item_id);
-// }
-
-// u16 dComIfGs_getOil(void) {
-//     return g_dComIfG_gameInfo.info.getSaveFile()
-//         .getPlayer()
-//         .getPlayerStatusA()
-//         .getCurrentLanternOil();
-// }
-
-// void dComIfGs_setOil(u16 oil_value) {
-//     g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().setLanternOil(oil_value);
-// }
-
 #endif
