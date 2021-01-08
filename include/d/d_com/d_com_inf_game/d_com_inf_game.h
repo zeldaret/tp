@@ -13,7 +13,7 @@
 #include "d/d_stage/d_stage.h"
 #include "d/d_vibration/d_vibration.h"
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 struct item_func {
     float hearts;    // bf80
     u32 rupees;      // bf84
@@ -36,7 +36,7 @@ struct item_func {
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dComIfG_camera_info_class {
 public:
 private:
@@ -46,7 +46,7 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dDlst_window_c {
 public:
 private:
@@ -64,7 +64,7 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dComIfG_play_c {
 public:
     void ct(void);
@@ -92,6 +92,7 @@ public:
     void setItemMaxLifeCount(short max) { give_item.max_life += max; }
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
+
 private:
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ u8 field_0x143c[0x2A8C];
@@ -139,7 +140,7 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
     // temp until we map the item short function names
@@ -164,7 +165,7 @@ private:
     /* 0x00F28 */ u32 saveStartTime;
     /* 0x00F2C */ u32 field_0xf30;
     /* 0x00F30 */ u32 field_0xf34;
-                u8 unk[3];
+    u8 unk[3];
     /* 0x00F34 */ dComIfG_play_c play;
     /* 0x05F60 */ u8 field_0x5f60[0x10];
     /* 0x05F70 */ dDlst_list_c draw_list_list;

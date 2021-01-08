@@ -26,7 +26,7 @@ private:
 };
 
 extern HeapCheck* HeapCheckTable[8];
-extern HeapCheck lbl_803D32E0[8]; // RootHeapCheck
+extern HeapCheck lbl_803D32E0[8];  // RootHeapCheck
 // extern HeapCheck lbl_803D3308; // SystemHeapCheck
 // extern HeapCheck lbl_803D3330; // ZeldaHeapCheck
 // extern HeapCheck lbl_803D3358; // GameHeapCheck

@@ -7,7 +7,7 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dRes_info_c {
 public:
 private:

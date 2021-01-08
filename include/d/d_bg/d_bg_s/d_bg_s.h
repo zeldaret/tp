@@ -3,7 +3,7 @@
 
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
 #include "global.h"
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class cBgS_ChkElm {
     /* 0x00 */ dBgW_Base* bgw_base_pointer;
     /* 0x04 */ u8 used;
@@ -14,7 +14,7 @@ class cBgS_ChkElm {
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class cBgS {
     /* 0x0000 */ cBgS_ChkElm cbgs_elements[256];
 };
@@ -32,7 +32,7 @@ class dBgS_HIO {
     /* 0x30 */ u8 field_0x30[4];
 };
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dBgS {
 public:
 private:

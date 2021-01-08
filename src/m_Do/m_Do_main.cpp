@@ -4,11 +4,11 @@
 #include "dvd/dvd.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
-#include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 
 void version_check(void) {
     if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) &&
@@ -175,17 +175,16 @@ void main01(void) {
     mDoGph_Create();
     create__8mDoCPd_cFv();
     mDoDVDThd_callback_c thread_callback;
-    //JKRSolidHeap audio_heap;
+    // JKRSolidHeap audio_heap;
 
     // Root Heap
-    heaps[0].setHeap((JKRExpHeap *)lbl_80451378);
+    heaps[0].setHeap((JKRExpHeap*)lbl_80451378);
     if (lbl_80451378) {
         heaps[0].setHeapSize(lbl_80451378->getSize());
     }
 
-    
     // System Heap
-    heaps[1].setHeap((JKRExpHeap *)lbl_80451370);
+    heaps[1].setHeap((JKRExpHeap*)lbl_80451370);
     if (lbl_80451370) {
         heaps[1].setHeapSize(lbl_80451370->getSize());
     }
@@ -234,37 +233,37 @@ void main01(void) {
         unk = 3;
     }
 
-    *(lbl_804511B8+0x58) = unk;
-    *(systemConsole+0x40) = 0x20;
-    *(systemConsole+0x44) = 0x2a;
+    *(lbl_804511B8 + 0x58) = unk;
+    *(systemConsole + 0x40) = 0x20;
+    *(systemConsole + 0x44) = 0x2a;
 
     // lol
-    thread_callback.create((void * (*)(void *))LOAD_COPYDATE,0);
+    thread_callback.create((void* (*)(void*))LOAD_COPYDATE, 0);
     fapGm_Create();
     fopAcM_initManager();
     lbl_80450B18 = 0;
     cDyl_InitAsync();
 
     // g_mDoAud_audioHeap
-    
-    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800,lbl_80451374,false);
-    
+
+    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800, lbl_80451374, false);
+
     // main loop
     do {
-       // global frame counter?
-       lbl_80450B34++; 
+        // global frame counter?
+        lbl_80450B34++;
 
-       if (lbl_80450B00 && (lbl_80450B34 == ((lbl_80450B34 / lbl_80450B00) * lbl_80450B00))) {
-           mDoMch_HeapCheckAll();
-       }
+        if (lbl_80450B00 && (lbl_80450B34 == ((lbl_80450B34 / lbl_80450B00) * lbl_80450B00))) {
+            mDoMch_HeapCheckAll();
+        }
 
-       if (lbl_80450C80) {
-           mDoMemCd_Ctrl_c_NS_update();
-       }
-       mDoCPd_c_NS_read();
-       fapGm_Execute();
-       mDoAud_Execute();
-       debug();
+        if (lbl_80450C80) {
+            mDoMemCd_Ctrl_c_NS_update();
+        }
+        mDoCPd_c_NS_read();
+        fapGm_Execute();
+        mDoAud_Execute();
+        debug();
     } while (true);
 }
 #else

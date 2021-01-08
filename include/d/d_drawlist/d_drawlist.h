@@ -3,7 +3,6 @@
 
 #include "dolphin/types.h"
 
-
 class dDlst_FileInfo_c {
 public:
     void draw(void);
@@ -12,13 +11,13 @@ public:
 private:
 };
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dDlst_peekZ_c {
     u8 unk[7];
 };  // actual size unknown!!!
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dDlst_list_c {
 public:
     static u32 mWipeColor;

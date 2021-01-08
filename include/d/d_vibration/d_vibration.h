@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dVibration_c {
 public:
 private:

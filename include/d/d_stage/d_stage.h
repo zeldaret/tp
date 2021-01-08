@@ -2,7 +2,7 @@
 #define __D_STAGE_H_
 #include "global.h"
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dStage_roomControl_c {
 public:
 private:
@@ -10,7 +10,7 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dStage_stageDt_c {
 public:
 private:
@@ -18,7 +18,7 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dStage_nextStage_c {
 public:
 private:
@@ -42,10 +42,10 @@ private:
 };
 #pragma pack(pop)
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 class dStage_startStage_c {
-    public:
-    private:
+public:
+private:
     /* 0x0 */ char mStage[8];
     /* 0x8 */ s16 mPoint;
     /* 0xA */ s8 mRoomNo;

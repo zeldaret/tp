@@ -49,7 +49,7 @@ extern u8 lbl_80450B1C;
 struct JUTGamePad;
 extern JUTGamePad* m_gamePad[4];
 extern u8 lbl_80450B18;
-//extern u8 lbl_803D32E0;
+// extern u8 lbl_803D32E0;
 extern u8 lbl_803EAF40[];
 extern u8 lbl_80450B34;
 extern u8 lbl_80450B00;

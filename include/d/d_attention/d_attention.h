@@ -96,7 +96,6 @@ class dAttDraw_c {
 };
 #pragma pack(pop)
 
-
 class dAttDraw_CallBack_c {
     mDoExt_McaMorfCallBack1_c mDoExt_McaMorfCallback;
 };

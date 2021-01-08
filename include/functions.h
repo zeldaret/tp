@@ -318,7 +318,7 @@ void mDoAud_Execute(void);
 void fapGm_Execute(void);
 void mDoCPd_c_NS_read(void);
 void mDoMemCd_Ctrl_c_NS_update(void);
-//void JKRSolidHeap_NS_create(void);
+// void JKRSolidHeap_NS_create(void);
 void cDyl_InitAsync(void);
 void fopAcM_initManager(void);
 void fapGm_Create(void);
