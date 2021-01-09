@@ -363,7 +363,7 @@ extern u32 lbl_804513EC;        // JKernel::srcAddress (static?)
 extern u32 lbl_804513F0;        // JKernel::fileOffset (static?)
 extern u32 lbl_804513F4;        // JKernel::readCount (static?)
 extern u32 lbl_804513F8;        // JKernel::maxDest (static?)
-extern OSMutex lbl_804513FC;        // DAT_804513fc (init global mutex)
+extern bool lbl_804513FC;        // DAT_804513fc (init global mutex)
 extern u32* lbl_80451400;        // JKernel::tsPtr (static?)
 extern u32 lbl_80451404;        // JKernel::tsArea (static?)
 

@@ -13,6 +13,7 @@ static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);
 static u8* nextSrcData(u8*);
 
+#ifdef NONMATCHING
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {
     if (!lbl_804513C8) {
@@ -25,7 +26,15 @@ JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
     lbl_804513C8->resume();
     return lbl_804513C8;
 }
+#else
+asm JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
+                             long stream_priority, long decomp_priority, long piece_priority) {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D1FA4.s"
+}
+#endif
 
+#ifdef NONMATCHING
 JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
     : JKRThread(0xc00, 0x10, priority) {
     u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
@@ -53,12 +62,25 @@ JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
 
     mAramHeap = new (JKRHeap::getSystemHeap(), 0) JKRAramHeap(mGraphMemoryPtr, mGraphMemorySize);
 }
+#else
+asm JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority) {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D2040.s"
+}
+#endif
 
+#ifdef NONMATCHING
 JKRAram::~JKRAram() {
     lbl_804513C8 = NULL;
     if (mAramHeap)
         delete mAramHeap;
 }
+#else
+asm JKRAram::~JKRAram() {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D214C.s"
+}
+#endif
 
 // almost full match
 #ifdef NONMATCHING
@@ -85,6 +107,7 @@ asm void* JKRAram::run(void) {
 }
 #endif
 
+#ifdef NONMATCHING
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
         const char* file = lbl_8039D078;
@@ -100,7 +123,14 @@ void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_
         JUTException_NS_panic_f(file, 0xe3, format, arg1);
     }
 }
+#else
+asm void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D2248.s"
+}
+#endif
 
+#ifdef NONMATCHING
 void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
     JKRHeap* currentHeap = JKRHeap::getCurrentHeap();
     u32 heapType = currentHeap->getHeapType();
@@ -109,6 +139,12 @@ void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
         block->newGroupId(groupId);
     }
 }
+#else
+asm void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D22DC.s"
+}
+#endif
 
 asm void JKRAram::mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*) {
     nofralloc
@@ -215,14 +251,16 @@ void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLe
 asm void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength,
                                         u32 offset, u32* resourceSize) {
     nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D29A0.s"
+#include "JSystem/JKernel/JKRAram/asm/func_802D2830.s"
 }
 #endif
 
-asm void decompSZS_subroutine(u8*, u8*){nofralloc
+asm void decompSZS_subroutine(u8*, u8*) {
+    nofralloc
 #include "JSystem/JKernel/JKRAram/asm/func_802D29A0.s"
 }
 
+#ifdef NONMATCHING
 u8* firstSrcData(void) {
 #define szpBuf lbl_804513CC
 #define szpEnd lbl_804513D0
@@ -260,15 +298,21 @@ u8* firstSrcData(void) {
 #undef srcLimit
 #undef srcAddress
 }
+#else
+asm u8* firstSrcData(void) {
+    nofralloc
+#include "JSystem/JKernel/JKRAram/asm/func_802D2C40.s"
+}
+#endif
 
 // missing one add instruction
-#ifdef NONMATCHING
 inline u32 nextSrcData_MIN(u32 A, u32 B) {
     if (A > B)
         return B;
     return A;
 }
 
+#ifdef NONMATCHING
 static u8* nextSrcData(u8* current) {
 #define szpBuf lbl_804513CC
 #define szpEnd lbl_804513D0
@@ -306,7 +350,7 @@ static u8* nextSrcData(u8* current) {
 #undef srcAddress
 }
 #else
-asm static u8* nextSrcData(u8* current) {
+asm u8* nextSrcData(u8* current) {
     nofralloc
 #include "JSystem/JKernel/JKRAram/asm/func_802D2CE4.s"
 }
