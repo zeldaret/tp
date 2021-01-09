@@ -31,9 +31,6 @@ public:
 };
 
 void JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);
-static void decompSZS_subroutine(u8*, u8*);
-static void firstSrcData(void);
-static void nextSrcData(u8*);
 
 inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength,
                              JKRHeap* heap, JKRDvdRipper::EAllocDirection allocDirection,

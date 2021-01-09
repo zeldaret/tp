@@ -183,9 +183,6 @@ void JSUInputStream_NS_read(void);
 void JSURandomInputStream_NS_seek(void);
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);
-void ARAlloc(void);
-void ARGetSize(void);
-void ARInit(void);
 void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
@@ -390,9 +387,6 @@ void JSURandomInputStream_NS_seek(void);
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);
 
-void ARAlloc(void);
-void ARGetSize(void);
-void ARInit(void);
 void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
@@ -927,7 +921,6 @@ void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
 // void __dt__23JSUList<12JKRDMCommand>Fv(void);
 void __sinit_JKRDvdRipper_cpp(void);
 void decompSZS_subroutine__FPUcPUc(void);
-void firstSrcData__Fv(void);
 void isErrorRetry__12JKRDvdRipperFv(void);
 void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
@@ -936,6 +929,7 @@ void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 };
 
 // JSystem/JKernel/JKRAramBlock
@@ -1000,11 +994,11 @@ void __sinit_JKRDvdAramRipper_cpp(void);
 void callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand(void);
 void decompSZS_subroutine__FPUcUl(void);
 void dmaBufferFlush__FUl(void);
-void firstSrcData__Fv(void);
 void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
 void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
 void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
 };
 
@@ -1020,9 +1014,9 @@ void changeGroupIdIfNeed__7JKRAramFPUci(void);
 void checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl(void);
 void create__7JKRAramFUlUllll(void);
 void decompSZS_subroutine__FPUcPUc(void);
-void firstSrcData__Fv(void);
 void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 void run__7JKRAramFv(void);
 };
 
