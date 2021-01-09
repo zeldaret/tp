@@ -116,9 +116,9 @@ public:
 #define JKRARCHIVE_ATTR_YAY0 0x80
 
         JKRCompression compression;
-        if (FLAG_HAS(attr, JKRARCHIVE_ATTR_COMPRESSION)) {
+        if (FLAG_ON(attr, JKRARCHIVE_ATTR_COMPRESSION)) {
             compression = COMPRESSION_NONE;
-        } else if (!FLAG_HAS(attr, JKRARCHIVE_ATTR_YAY0)) {
+        } else if (!FLAG_ON(attr, JKRARCHIVE_ATTR_YAY0)) {
             compression = COMPRESSION_YAZ0;
         } else {
             compression = COMPRESSION_YAY0;
