@@ -80,7 +80,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_fstcreate_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_stdcreate_req.o    \
-            $(BUILD_DIR)/asm/d/d_stage.o    \
+            $(BUILD_DIR)/src/d/d_stage.o    \
             $(BUILD_DIR)/asm/d/d_map.o    \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
             $(BUILD_DIR)/asm/d/com/inf/d_com_inf_game.o    \
