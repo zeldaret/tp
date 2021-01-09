@@ -179,8 +179,10 @@ void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80361C24(void);
-void JSUInputStream_NS_read(void);
-void JSURandomInputStream_NS_seek(void);
+class JSUInputStream;
+s32 JSUInputStream_NS_read(JSUInputStream*,u8*,u32);
+class JSURandomInputStream;
+void JSURandomInputStream_NS_seek(JSURandomInputStream*,u32,u32);
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);
 void DCStoreRangeNoSync(void);
@@ -380,9 +382,6 @@ void JKRAramPiece_NS_sendCommand(void);
 
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80361C24(void);
-
-void JSUInputStream_NS_read(void);
-void JSURandomInputStream_NS_seek(void);
 
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);

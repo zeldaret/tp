@@ -207,4 +207,8 @@ inline JKRHeap* JKRGetSystemHeap() {
     return JKRHeap::getSystemHeap();
 }
 
+inline JKRHeap* JKRGetCurrentHeap() {
+    return JKRHeap::getCurrentHeap();
+}
+
 #endif

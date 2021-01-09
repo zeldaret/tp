@@ -51,7 +51,7 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
 }
 
 BOOL JKRAramPiece::sync(JKRAMCommand* command, int is_non_blocking) {
-    OSMessage* message;
+    OSMessage message;
 
     lock();
     if (is_non_blocking == 0) {

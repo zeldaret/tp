@@ -312,14 +312,15 @@ extern char lbl_8039D0B8[];                 // "direction = %x\n"
 
 extern u8 lbl_80434318;              // JKernel::@492 (global destructor chain)
 
-extern u8 lbl_80451408;  // JKRAramStream::sAramStreamObject
-extern u8 lbl_80451414;  // JKRAramStream::transHeap
-extern u8 lbl_8039D120;  // "JKRAramStream.cpp"
-extern u8 lbl_8045140C;  // JKRAramStream::transBuffer
-extern u8 lbl_80451410;  // JKRAramStream::transSize
+class JKRAramStream;
+extern JKRAramStream* sAramStreamObject__13JKRAramStream;  // JKRAramStream::sAramStreamObject
+extern u8 transHeap__13JKRAramStream;  // JKRAramStream::transHeap
+extern char lbl_8039D120[16];  // "JKRAramStream.cpp"
+extern u8 transBuffer__13JKRAramStream;  // JKRAramStream::transBuffer
+extern u8 transSize__13JKRAramStream;  // JKRAramStream::transSize
 extern u8 lbl_803CC1B8;  // JKRAramStream::__vt
-extern u8 lbl_803CC198;  // JKRAramStream::sMessageQueue
-extern u8 lbl_803CC188;  // JKRAramStream::sMessageBuffer
+extern OSMessageQueue sMessageQueue__13JKRAramStream;  // JKRAramStream::sMessageQueue
+extern OSMessage sMessageBuffer__13JKRAramStream[4];  // JKRAramStream::sMessageBuffer
 
 extern u8 lbl_804508D0;  // DAT_804508d0
 extern u8 lbl_80451468;  // JKernel::szpBuf (static?)

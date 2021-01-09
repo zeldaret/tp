@@ -8,26 +8,32 @@
 
 class JKRAramStreamCommand {
 public:
+    enum Type {
+        UNKNOWN = 0,
+        READ = 1,
+        WRITE = 2,
+    };
+
     JKRAramStreamCommand();
 
 public:
-    u32 field_0x00;
-    u32 field_0x04;
-    u32 field_0x08;
-    u32 field_0x0c;
-    JSUFileInputStream* field_0x10;
-    u32 field_0x14;
-    u32* field_0x18;
-    u32 field_0x1c;
-    u32 field_0x20;
-    u32 field_0x24;
-    bool field_0x28;
-    u8 padding_0x29[3];
-    u32 field_0x2c;
-    OSMessageQueue mQueue;
-    OSMessage mMessage;
-    u32 field_0x54;
-    u32 field_0x58;
+    /* 0x00 */ Type mType;
+    /* 0x04 */ u32 mAddress;
+    /* 0x08 */ u32 mSize;
+    /* 0x0C */ u32 field_0x0c;
+    /* 0x10 */ JSUFileInputStream* mStream;
+    /* 0x14 */ u32 mOffset;
+    /* 0x18 */ u32* mReturnSize;
+    /* 0x1C */ u8* mTransferBuffer;
+    /* 0x20 */ u32 mTransferBufferSize;
+    /* 0x24 */ JKRHeap* mHeap;
+    /* 0x28 */ bool mAllocatedTransferBuffer;
+    /* 0x29 */ u8 padding_0x29[3];
+    /* 0x2C */ u32 field_0x2c;
+    /* 0x30 */ OSMessageQueue mMessageQueue;
+    /* 0x50 */ OSMessage mMessage;
+    /* 0x54 */ u32 field_0x54;
+    /* 0x58 */ u32 field_0x58;
 };
 
 class JKRAramStream : public JKRThread {
@@ -40,11 +46,20 @@ private:
 public:
     static JKRAramStream* create(long);
 
-    static void readFromAram(void);
-    static void writeToAram(JKRAramStreamCommand*);
-    static void write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
-    static void sync(JKRAramStreamCommand*, int);
+    static s32 readFromAram(void);
+    static s32 writeToAram(JKRAramStreamCommand*);
+    static JKRAramStreamCommand* write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
+    static JKRAramStreamCommand* sync(JKRAramStreamCommand*, BOOL);
     static void setTransBuffer(u8*, u32, JKRHeap*);
+
+private:
+    static JKRAramStream* sAramStreamObject;
+    static OSMessage sMessageBuffer[4];
+    static OSMessageQueue sMessageQueue;
+
+    static u8* transBuffer;
+    static u32 transSize;
+    static JKRHeap* transHeap;
 };
 
 inline JKRAramStream* JKRCreateAramStreamManager(long priority) {

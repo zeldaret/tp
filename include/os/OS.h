@@ -142,7 +142,7 @@ BOOL OSIsThreadTerminated(OSThread* thread);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback* callback);
 
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int message_count);
-BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* message, int flags);
 BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
 BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
 

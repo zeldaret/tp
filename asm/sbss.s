@@ -1604,17 +1604,17 @@ JKRAram__tsPtr:
 .global JKRAram__tsArea
 JKRAram__tsArea:
 	.skip 0x4
-.global lbl_80451408
-lbl_80451408:
+.global sAramStreamObject__13JKRAramStream
+sAramStreamObject__13JKRAramStream:
 	.skip 0x4
-.global lbl_8045140C
-lbl_8045140C:
+.global transBuffer__13JKRAramStream
+transBuffer__13JKRAramStream:
 	.skip 0x4
-.global lbl_80451410
-lbl_80451410:
+.global transSize__13JKRAramStream
+transSize__13JKRAramStream:
 	.skip 0x4
-.global lbl_80451414
-lbl_80451414:
+.global transHeap__13JKRAramStream
+transHeap__13JKRAramStream:
 	.skip 0x4
 .global sCurrentVolume__13JKRFileLoader
 sCurrentVolume__13JKRFileLoader:
