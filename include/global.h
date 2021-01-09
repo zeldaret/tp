@@ -7,7 +7,8 @@
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))
 // Align X to the next N bytes (N must be power of two)
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
-#define IS_ALIGNED(X, N) (((X) & ~((N)-1)) == 0)
+#define IS_ALIGNED(X, N) (((X) & ((N)-1)) == 0)
+#define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
 #define JUT_ASSERT(...)
 #define ASSERT(...)

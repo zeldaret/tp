@@ -13,7 +13,6 @@ static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);
 static u8* nextSrcData(u8*);
 
-#ifdef NONMATCHING
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {
     if (!lbl_804513C8) {
@@ -26,15 +25,7 @@ JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
     lbl_804513C8->resume();
     return lbl_804513C8;
 }
-#else
-asm JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
-                             long stream_priority, long decomp_priority, long piece_priority) {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D1FA4.s"
-}
-#endif
 
-#ifdef NONMATCHING
 JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
     : JKRThread(0xc00, 0x10, priority) {
     u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
@@ -62,25 +53,12 @@ JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
 
     mAramHeap = new (JKRHeap::getSystemHeap(), 0) JKRAramHeap(mGraphMemoryPtr, mGraphMemorySize);
 }
-#else
-asm JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority) {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D2040.s"
-}
-#endif
 
-#ifdef NONMATCHING
 JKRAram::~JKRAram() {
     lbl_804513C8 = NULL;
     if (mAramHeap)
         delete mAramHeap;
 }
-#else
-asm JKRAram::~JKRAram() {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D214C.s"
-}
-#endif
 
 // almost full match
 #ifdef NONMATCHING
@@ -107,7 +85,6 @@ asm void* JKRAram::run(void) {
 }
 #endif
 
-#ifdef NONMATCHING
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
         const char* file = lbl_8039D078;
@@ -116,35 +93,21 @@ void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_
         JUTException_NS_panic_f(file, 0xdb, format, arg1);
     }
 
-    if (block && !IS_ALIGNED(param_4 + block->mAddress, 0x20)) {
+    if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
         const char* file = lbl_8039D078;
         const char* format = lbl_8039D078 + 0xc;
         const char* arg1 = lbl_8039D078 + 0xc + 0x3;
         JUTException_NS_panic_f(file, 0xe3, format, arg1);
     }
 }
-#else
-asm void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D2248.s"
-}
-#endif
 
-#ifdef NONMATCHING
 void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
     JKRHeap* currentHeap = JKRHeap::getCurrentHeap();
-    u32 heapType = currentHeap->getHeapType();
-    if (heapType == 'EXPH' && groupId >= 0) {
+    if (currentHeap->getHeapType() == 'EXPH' && groupId >= 0) {
         JKRExpHeap::CMemBlock* block = JKRExpHeap::CMemBlock::getBlock(data);
         block->newGroupId(groupId);
     }
 }
-#else
-asm void JKRAram::changeGroupIdIfNeed(u8* data, int groupId) {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D22DC.s"
-}
-#endif
 
 asm void JKRAram::mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*) {
     nofralloc
@@ -260,59 +223,57 @@ asm void decompSZS_subroutine(u8*, u8*) {
 #include "JSystem/JKernel/JKRAram/asm/func_802D29A0.s"
 }
 
-#ifdef NONMATCHING
+static int JKRAram__;
+
+static u8* JKRAram__szpBuf;        // JKernel::szpBuf (static?)
+static u8* JKRAram__szpEnd;        // JKernel::szpEnd (static?)
+static u8* lbl_804513D4;        // JKernel::refBuf (static?)
+static u8* lbl_804513D8;        // JKernel::refEnd (static?)
+static u8* lbl_804513DC;        // JKernel::refCurrent (static?)
+static u32 JKRAram__srcOffset;        // JKernel::srcOffset (static?)
+static u32 JKRAram__transLeft;        // JKernel::transLeft (static?)
+static u32 JKRAram__srcLimit;        // JKernel::srcLimit (static?)
+static u32 JKRAram__srcAddress;        // JKernel::srcAddress (static?)
+static u32 lbl_804513F0;        // JKernel::fileOffset (static?)
+static u32 lbl_804513F4;        // JKernel::readCount (static?)
+static u32 lbl_804513F8;        // JKernel::maxDest (static?)
+static u32* lbl_80451400;        // JKernel::tsPtr (static?)
+static u32 lbl_80451404;        // JKernel::tsArea (static?)
+
 u8* firstSrcData(void) {
-#define szpBuf lbl_804513CC
-#define szpEnd lbl_804513D0
-#define srcOffset lbl_804513E0
-#define transLeft lbl_804513E4
-#define srcLimit lbl_804513E8
-#define srcAddress lbl_804513EC
-    srcLimit = (u32)(szpEnd - 0x19);
-    u8* buffer = szpBuf;
+    JKRAram__srcLimit = (u32)(JKRAram__szpEnd - 0x19);
+    u8* buffer = JKRAram__szpBuf;
 
     u32 length;
-    u32 size = szpEnd - szpBuf;
-    if (transLeft < size) {
-        length = transLeft;
+    u32 size = JKRAram__szpEnd - JKRAram__szpBuf;
+    if (JKRAram__transLeft < size) {
+        length = JKRAram__transLeft;
     } else {
         length = size;
     }
 
-    u32 src = (u32)(srcAddress + srcOffset);
+    u32 src = (u32)(JKRAram__srcAddress + JKRAram__srcOffset);
     u32 dst = (u32)buffer;
     u32 alignedLength = ALIGN_NEXT(length, 0x20);
     JKRAramPcs(1, src, dst, alignedLength, NULL);
 
-    srcOffset += length;
-    transLeft -= length;
-    if (!transLeft) {
-        srcLimit = (u32)(buffer + length);
+    JKRAram__srcOffset += length;
+    JKRAram__transLeft -= length;
+    if (!JKRAram__transLeft) {
+        JKRAram__srcLimit = (u32)(buffer + length);
     }
 
     return buffer;
-#undef szpBuf
-#undef szpEnd
-#undef srcOffset
-#undef transLeft
-#undef srcLimit
-#undef srcAddress
 }
-#else
-asm u8* firstSrcData(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRAram/asm/func_802D2C40.s"
-}
-#endif
 
 // missing one add instruction
+#ifdef NONMATCHING
 inline u32 nextSrcData_MIN(u32 A, u32 B) {
     if (A > B)
         return B;
     return A;
 }
 
-#ifdef NONMATCHING
 static u8* nextSrcData(u8* current) {
 #define szpBuf lbl_804513CC
 #define szpEnd lbl_804513D0
@@ -338,7 +299,7 @@ static u8* nextSrcData(u8* current) {
     transLeft -= transSize;
 
     if (transLeft == 0) {
-        srcLimit = (u8*)(dest + left) + transSize;
+        srcLimit = (u32)(dest + left) + transSize;
     }
 
     return dest;
