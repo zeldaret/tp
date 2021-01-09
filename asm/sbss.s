@@ -1559,50 +1559,50 @@ lbl_804513C4:
 .global lbl_804513C8
 lbl_804513C8:
 	.skip 0x4
-.global lbl_804513CC
-lbl_804513CC:
+.global JKRAram__szpBuf
+JKRAram__szpBuf:
 	.skip 0x4
-.global lbl_804513D0
-lbl_804513D0:
+.global JKRAram__szpEnd
+JKRAram__szpEnd:
 	.skip 0x4
-.global lbl_804513D4
-lbl_804513D4:
+.global JKRAram__refBuf
+JKRAram__refBuf:
 	.skip 0x4
-.global lbl_804513D8
-lbl_804513D8:
+.global JKRAram__refEnd
+JKRAram__refEnd:
 	.skip 0x4
-.global lbl_804513DC
-lbl_804513DC:
+.global JKRAram__refCurrent
+JKRAram__refCurrent:
 	.skip 0x4
-.global lbl_804513E0
-lbl_804513E0:
+.global JKRAram__srcOffset
+JKRAram__srcOffset:
 	.skip 0x4
-.global lbl_804513E4
-lbl_804513E4:
+.global JKRAram__transLeft
+JKRAram__transLeft:
 	.skip 0x4
-.global lbl_804513E8
-lbl_804513E8:
+.global JKRAram__srcLimit
+JKRAram__srcLimit:
 	.skip 0x4
-.global lbl_804513EC
-lbl_804513EC:
+.global JKRAram__srcAddress
+JKRAram__srcAddress:
 	.skip 0x4
-.global lbl_804513F0
-lbl_804513F0:
+.global JKRAram__fileOffset
+JKRAram__fileOffset:
 	.skip 0x4
-.global lbl_804513F4
-lbl_804513F4:
+.global JKRAram__readCount
+JKRAram__readCount:
 	.skip 0x4
-.global lbl_804513F8
-lbl_804513F8:
+.global JKRAram__maxDest
+JKRAram__maxDest:
 	.skip 0x4
 .global lbl_804513FC
 lbl_804513FC:
 	.skip 0x4
-.global lbl_80451400
-lbl_80451400:
+.global JKRAram__tsPtr
+JKRAram__tsPtr:
 	.skip 0x4
-.global lbl_80451404
-lbl_80451404:
+.global JKRAram__tsArea
+JKRAram__tsArea:
 	.skip 0x4
 .global lbl_80451408
 lbl_80451408:

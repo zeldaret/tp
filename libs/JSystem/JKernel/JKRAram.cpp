@@ -13,6 +13,23 @@ static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);
 static u8* nextSrcData(u8*);
 
+// The prefix JKRAram__ is for now used to skip name collision in 'sbss.s'. All of these variables
+// are probably defined as static and only visible in this translation unit.
+extern u8* JKRAram__szpBuf;
+extern u8* JKRAram__szpEnd;
+extern u8* JKRAram__refBuf;
+extern u8* JKRAram__refEnd;
+extern u8* JKRAram__refCurrent;
+extern u32 JKRAram__srcOffset;
+extern u32 JKRAram__transLeft;
+extern u32 JKRAram__srcLimit;
+extern u32 JKRAram__srcAddress;
+extern u32 JKRAram__fileOffset;
+extern u32 JKRAram__readCount;
+extern u32 JKRAram__maxDest;
+extern u32* JKRAram__tsPtr;
+extern u32 JKRAram__tsArea;
+
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {
     if (!lbl_804513C8) {
@@ -125,21 +142,7 @@ asm void JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, i
 // doesn't use r13
 void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset,
                                     u32* resourceSize) {
-#define szpBuf lbl_804513CC
-#define szpEnd lbl_804513D0
-#define refBuf lbl_804513D4
-#define refEnd lbl_804513D8
-#define refCurrent lbl_804513DC
-#define srcOffset lbl_804513E0
-#define transLeft lbl_804513E4
-#define srcLimit lbl_804513E8
-#define srcAddress lbl_804513EC
-#define fileOffset lbl_804513F0
-#define readCount lbl_804513F4
-#define maxDest lbl_804513F8
 #define s_is_decompress_mutex_initialized lbl_804513FC
-#define tsPtr lbl_80451400
-#define tsArea lbl_80451404
 #define decompMutex lbl_804343C0
 
     // STATIC BEGIN
@@ -193,21 +196,7 @@ void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLe
     }
     DCStoreRangeNoSync(dst, *tsPtr);
     OSUnlockMutex(&decompMutex);
-#undef szpBuf
-#undef szpEnd
-#undef refBuf
-#undef refEnd
-#undef refCurrent
-#undef srcOffset
-#undef transLeft
-#undef srcLimit
-#undef srcAddress
-#undef fileOffset
-#undef readCount
-#undef maxDest
 #undef s_is_decompress_mutex_initialized
-#undef tsPtr
-#undef tsArea
 #undef decompMutex
 }
 #else
@@ -218,27 +207,9 @@ asm void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 d
 }
 #endif
 
-asm void decompSZS_subroutine(u8*, u8*) {
-    nofralloc
+asm void decompSZS_subroutine(u8*, u8*){nofralloc
 #include "JSystem/JKernel/JKRAram/asm/func_802D29A0.s"
 }
-
-static int JKRAram__;
-
-static u8* JKRAram__szpBuf;        // JKernel::szpBuf (static?)
-static u8* JKRAram__szpEnd;        // JKernel::szpEnd (static?)
-static u8* lbl_804513D4;        // JKernel::refBuf (static?)
-static u8* lbl_804513D8;        // JKernel::refEnd (static?)
-static u8* lbl_804513DC;        // JKernel::refCurrent (static?)
-static u32 JKRAram__srcOffset;        // JKernel::srcOffset (static?)
-static u32 JKRAram__transLeft;        // JKernel::transLeft (static?)
-static u32 JKRAram__srcLimit;        // JKernel::srcLimit (static?)
-static u32 JKRAram__srcAddress;        // JKernel::srcAddress (static?)
-static u32 lbl_804513F0;        // JKernel::fileOffset (static?)
-static u32 lbl_804513F4;        // JKernel::readCount (static?)
-static u32 lbl_804513F8;        // JKernel::maxDest (static?)
-static u32* lbl_80451400;        // JKernel::tsPtr (static?)
-static u32 lbl_80451404;        // JKernel::tsArea (static?)
 
 u8* firstSrcData(void) {
     JKRAram__srcLimit = (u32)(JKRAram__szpEnd - 0x19);
@@ -275,12 +246,6 @@ inline u32 nextSrcData_MIN(u32 A, u32 B) {
 }
 
 static u8* nextSrcData(u8* current) {
-#define szpBuf lbl_804513CC
-#define szpEnd lbl_804513D0
-#define srcOffset lbl_804513E0
-#define transLeft lbl_804513E4
-#define srcLimit lbl_804513E8
-#define srcAddress lbl_804513EC
     u8* dest;
     u32 left = (u32)(szpEnd - current);
     if (!IS_NOT_ALIGNED(left, 0x20)) {
@@ -303,12 +268,6 @@ static u8* nextSrcData(u8* current) {
     }
 
     return dest;
-#undef szpBuf
-#undef szpEnd
-#undef srcOffset
-#undef transLeft
-#undef srcLimit
-#undef srcAddress
 }
 #else
 asm u8* nextSrcData(u8* current) {
