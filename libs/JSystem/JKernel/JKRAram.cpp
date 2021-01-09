@@ -1,5 +1,4 @@
 #include "JSystem/JKernel/JKRAram/JKRAram.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
@@ -7,6 +6,7 @@
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "global.h"
 
 // Uncomment when static initialization is working
 // JKRAram* JKRAram::sAramObject = NULL;

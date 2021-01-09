@@ -63,7 +63,7 @@ private:
     static JKRAram* sAramObject;
     static u32 sSZSBufferSize;
     static OSMessage sMessageBuffer[4];
-    static OSMessageQueue sMessageQueue;  
+    static OSMessageQueue sMessageQueue;
     static JSUList<JKRAMCommand> sAramCommandList;
 };
 

@@ -9,9 +9,7 @@ enum EIoState {
 
 class JSUIosBase {
 public:
-    JSUIosBase() {
-        mState = false;
-    }
+    JSUIosBase() { mState = false; }
 
     virtual ~JSUIosBase();
 

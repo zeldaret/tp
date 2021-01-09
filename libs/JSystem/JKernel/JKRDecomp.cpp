@@ -1,6 +1,6 @@
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
+#include "global.h"
 
 JKRDecomp* JKRDecomp::create(long priority) {
     if (!lbl_804514B0) {
