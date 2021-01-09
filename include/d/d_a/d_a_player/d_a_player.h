@@ -27,8 +27,8 @@ private:
 
 class daPy_py_c {
 public:
-    enum daPy_FLG2{};
-    enum daPy_ERFLG0{};
+    enum daPy_FLG2 {};
+    enum daPy_ERFLG0 {};
 
     u32 checkBoarSingleBattle(void) const;
     u32 checkEndResetFlg0(daPy_ERFLG0) const;
@@ -108,7 +108,7 @@ public:
     int checkPointSubWindowMode(void) const;
     void setClothesChange(int);
     void setPlayerPosAndAngle(float (*)[4]);
-    //void setPlayerPosAndAngle(cXyz const*, csXyz const*);
+    // void setPlayerPosAndAngle(cXyz const*, csXyz const*);
     void setPlayerPosAndAngle(cXyz const*, short, int);
     int setThrowDamage(short, float, float, int, int, int);
     int checkSetNpcTks(cXyz*, int, int);

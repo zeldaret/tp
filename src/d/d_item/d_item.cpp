@@ -1636,22 +1636,18 @@ int check_itemno(int param1) {
     if (dComIfGs_isGetMagicUseFlag() == 0 && (param1 == 8 || param1 == 9)) {
         param1 = 1;
         return param1;
-    }
-    else if (param1 == 0x11) {
+    } else if (param1 == 0x11) {
         if (dComIfGs_isItemFirstBit(67) == false) {
             param1 = 1;
             return param1;
         }
-    }
-    else if (isArrow(param1)) {
+    } else if (isArrow(param1)) {
         if (dComIfGs_isItemFirstBit(67) == false) {
             param1 = 1;
             return param1;
         }
-    }
-    else if (test_getLayerNo(0) != 0xd) {
+    } else if (test_getLayerNo(0) != 0xd) {
         if (test_getLayerNo(0) == 0xe) {
-            
         }
     }
     return param1;

@@ -1035,7 +1035,7 @@ asm void daAlink_c_NS_setSandShapeOffset(void) {
 bool daAlink_c::checkLv2MiddleBossBgRide(short param1) {
     bool check = 0;
     
-    //beqlr needs to be beq
+    // beqlr needs to be beq
     if (param1 != 0x7B && param1 == 0x7D) {
         check = 1;
     }
@@ -1078,8 +1078,7 @@ asm void func_800B23FC(void) {
 }
 
 // setPlayerPosAndAngle__9daAlink_cFPA4_f
-asm void func_800B24F4(void) {
-    nofralloc
+asm void func_800B24F4(void) {nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B24F4.s"
 }
 
@@ -3129,8 +3128,7 @@ asm void dComIfGp_att_getCatghTarget(void) {
 
 // mDoAud_setLinkHp__Fll
 // mDoAud_setLinkHp(long, long)
-asm void mDoAud_setLinkHp(void) {
-    nofralloc
+asm void mDoAud_setLinkHp(void) {nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFEF4.s"
 }
 
@@ -15022,8 +15020,7 @@ asm void func_80141934(void) {
 
 // checkCutJumpMode__9daPy_py_cCFv
 // daPy_py_c::checkCutJumpMode(const void)
-asm void func_8014193C(void) {
-    nofralloc
+asm void func_8014193C(void) {nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014193C.s"
 }
 
