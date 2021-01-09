@@ -114,9 +114,9 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     s32 offset;
     s32 i;
 
-    decodedSize = READ_BIG_ENDIAN_U32(src + 4);
-    linkTableOffset = READ_BIG_ENDIAN_U32(src + 8);
-    srcDataOffset = READ_BIG_ENDIAN_U32(src + 12);
+    decodedSize = read_big_endian_u32(src + 4);
+    linkTableOffset = read_big_endian_u32(src + 8);
+    srcDataOffset = read_big_endian_u32(src + 12);
 
     dstOffset = 0;
     counter = 0;
@@ -131,7 +131,7 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     length = srcLength;
     do {
         if (counter == 0) {
-            chunkBits = READ_BIG_ENDIAN_U32(src + srcChunkOffset);
+            chunkBits = read_big_endian_u32(src + srcChunkOffset);
             srcChunkOffset += 4;
             counter = 32;
         }
@@ -149,7 +149,7 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
             dstOffset++;
             srcDataOffset++;
         } else {
-            u32 linkInfo = READ_BIG_ENDIAN_U16(src + linkTableOffset);
+            u32 linkInfo = read_big_endian_u16(src + linkTableOffset);
             linkTableOffset += 2;
 
             offset = dstOffset - (linkInfo & 0xFFF);
