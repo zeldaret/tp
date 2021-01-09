@@ -217,6 +217,7 @@ public:
     int checkMagicArmorWearAbility(void) const;
     void onFrollCrashFlg(u8, int);
     void setMidnaTalkStatus(u8);
+    void setShieldChange(void);
 
 private:
     u8 unk[1328];
@@ -238,7 +239,11 @@ private:
     u8 unk12196;
     u8 unk12197[9];
     u8 unk12206;
-    u8 unk12207[2061];
+    u8 unk12207[16];
+    u8 unk12223;
+    u8 unk12224[17];
+    u8 unk12241;
+    u8 unk12242[2026];
 };
 
 class daMidna_c {

@@ -2912,7 +2912,7 @@ void daAlink_c_NS_setIronBallPos(void);
 void daAlink_c_NS_setSwordVoiceSe(void);
 void func_800D07FC(void);
 void daAlink_c_NS_checkGrabNotThrow(void);
-void daAlink_c_NS_setShieldChange(void);
+void setShieldChange__9daAlink_cFv(void);
 void daAlink_c_NS_setWolfBiteDamage(void);
 void func_800F3818(void);
 void dPaPoF_c_NS_clearFourAllID(void);

@@ -13469,9 +13469,8 @@ asm void func_80140038(void) {
 
 // setShieldChange__9daAlink_cFv
 // daAlink_c::setShieldChange(void)
-asm void daAlink_c_NS_setShieldChange(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80140064.s"
+void daAlink_c::setShieldChange(void) {
+    unk12241 = 4;
 }
 
 // loadModelDVD__9daAlink_cFv
