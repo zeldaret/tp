@@ -1734,7 +1734,7 @@ BOOL daAlink_c::checkMagicArmorHeavy(void) const {
     BOOL check = FALSE;
 
     if (checkMagicArmorWearAbility() != 0 &&
-        g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getCurrentRupees() == 0) {
+        g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getRupee() == 0) {
         check = TRUE;
     }
 
@@ -3134,18 +3134,12 @@ asm void mDoAud_setLinkHp(void) {
 #include "d/d_a/d_a_alink/asm/func_800CFEF4.s"
 }
 
-// dComIfGs_getLife__Fv
-// dComIfGs_getLife(void)
-asm void dComIfGs_getLife(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFF2C.s"
+u16 dComIfGs_getLife(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getLife();
 }
 
-// dComIfGp_getRStatus__Fv
-// dComIfGp_getRStatus(void)
-asm void dComIfGp_getRStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFF3C.s"
+u8 dComIfGp_getRStatus(void) {
+    return g_dComIfG_gameInfo.getPlay().getRStatus();
 }
 
 // checkAttentionLock__9daAlink_cFv
@@ -3155,11 +3149,8 @@ asm void daAlink_c_NS_checkAttentionLock(void) {
 #include "d/d_a/d_a_alink/asm/func_800CFF4C.s"
 }
 
-// dComIfGp_setItemLifeCount__FfUc
-// dComIfGp_setItemLifeCount(float, unsigned char)
-asm void dComIfGp_setItemLifeCount(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFFA4.s"
+void dComIfGp_setItemLifeCount(float amount, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
 }
 
 // cMtx_multVec__FPA4_CfPC3VecP3Vec
@@ -15062,18 +15053,12 @@ void Z2CreatureLink::setLinkState(u8 state) {
     link_state = state;
 }
 
-// dComIfGs_getRupee__Fv
-// dComIfGs_getRupee(void)
-asm void dComIfGs_getRupee(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141990.s"
+u16 dComIfGs_getRupee(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getRupee();
 }
 
-// dComIfGp_setItemRupeeCount__Fl
-// dComIfGp_setItemRupeeCount(long)
-asm void dComIfGp_setItemRupeeCount(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_801419A0.s"
+void dComIfGp_setItemRupeeCount(long amount) {
+    g_dComIfG_gameInfo.getPlay().setItemRupeeCount(amount);
 }
 
 // dMeter2Info_setFloatingMessage__FUssb

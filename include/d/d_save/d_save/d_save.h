@@ -326,9 +326,9 @@ public:
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    u16& getCurrentHealth() { return mCurrentHealth; }
-    u16& getCurrentRupees() { return mCurrentRupees; }
-    u16& getCurrentLanternOil() { return mCurrentLanternOil; }
+    u16& getLife() { return mCurrentHealth; }
+    u16& getRupee() { return mCurrentRupees; }
+    u16& getOil() { return mCurrentLanternOil; }
     u8& getSelectEquip(int item) { return mEquipment[item]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }
     void setOil(u16 oil) { mCurrentLanternOil = oil; }

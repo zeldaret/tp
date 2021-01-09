@@ -105,6 +105,7 @@ public:
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
     u8 getDoStatus(void) { return field_0x4ec0[0x2C]; }
+    u8 getRStatus(void) { return field_0x4ec0[0x24]; }
 
 private:
     /* 0x00000 */ dBgS dbgs;

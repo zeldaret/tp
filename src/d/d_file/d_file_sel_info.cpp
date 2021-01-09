@@ -34,9 +34,9 @@ s32 dFile_info_c::setSaveData(dSv_save_c* save_file, int param_2, u8 param_3) {
     } else {
         if (!save_file->getPlayer().getPlayerInfo().getLinkName()) {
             if ((this->unk34) && (param_3 == DAT_804070D8)) {
-                save_file->getPlayer().getPlayerStatusA().getCurrentHealth() = DAT_804061C2;
+                save_file->getPlayer().getPlayerStatusA().getLife() = DAT_804061C2;
                 this->setHeartCnt(save_file);
-                save_file->getPlayer().getPlayerStatusA().getCurrentHealth() = 0xC;
+                save_file->getPlayer().getPlayerStatusA().getLife() = 0xC;
                 strcpy(this->unk44, DAT_80406374);
                 strcpy(this->save_date, (char*)DAT_803948D8);
                 strcpy(this->play_time, (char*)DAT_803948D8);
