@@ -1,7 +1,7 @@
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
 #include "global.h"
 
-asm void JKRAramStream::create(long) {
+asm JKRAramStream* JKRAramStream::create(long) {
     nofralloc
 #include "JSystem/JKernel/JKRAramStream/asm/func_802D3B48.s"
 }

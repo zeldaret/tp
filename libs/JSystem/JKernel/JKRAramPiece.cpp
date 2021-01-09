@@ -1,7 +1,7 @@
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
-#include "global.h"
-
+#include "JSystem/JKernel/JKRAram/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
+#include "global.h"
 
 JKRAMCommand* JKRAramPiece::prepareCommand(int direction, u32 src, u32 dst, u32 length,
                                            JKRAramBlock* block,
@@ -41,7 +41,7 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
     message->field_0x00 = 1;
     message->command = command;
 
-    OSSendMessage(&lbl_803CC138, message, OS_MESSAGE_BLOCKING);
+    OSSendMessage(&JKRAram::sMessageQueue, message, OS_MESSAGE_BLOCKING);
     if (command->mCallback != NULL) {
         lbl_80434324.append(&command->mPieceLink);
     }

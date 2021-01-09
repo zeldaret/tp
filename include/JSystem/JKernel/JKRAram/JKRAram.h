@@ -41,9 +41,9 @@ public:
     static void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     static void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 
-    static JKRAram* getManager() { return lbl_804513C8; }
-
+    static JKRAram* getManager() { return sAramObject; }
     static JKRAramHeap* getAramHeap() { return getManager()->mAramHeap; }
+    static JSUList<JKRAMCommand>& getCommandList() { return sAramCommandList; }
 
     static u8 decideAramGroupId(int groupId) {
         JKRAramHeap* heap;
@@ -56,8 +56,15 @@ public:
         return (u8)groupId;
     }
 
-    static u32 getSZSBufferSize() { return lbl_804508B8; }
-    static void setSZSBufferSize(u32 size) { lbl_804508B8 = size; }
+    static u32 getSZSBufferSize() { return sSZSBufferSize; }
+    static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
+
+private:
+    static JKRAram* sAramObject;
+    static u32 sSZSBufferSize;
+    static OSMessage sMessageBuffer[4];
+    static OSMessageQueue sMessageQueue;  
+    static JSUList<JKRAMCommand> sAramCommandList;
 };
 
 void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);

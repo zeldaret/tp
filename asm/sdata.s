@@ -506,8 +506,8 @@ lbl_804508A8:
 .global lbl_804508B0
 lbl_804508B0:
 	.incbin "baserom.dol", 0x3D0610, 0x8
-.global lbl_804508B8
-lbl_804508B8:
+.global sSZSBufferSize__7JKRAram
+sSZSBufferSize__7JKRAram:
 	.incbin "baserom.dol", 0x3D0618, 0x8
 .global lbl_804508C0
 lbl_804508C0:

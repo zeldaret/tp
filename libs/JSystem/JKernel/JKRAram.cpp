@@ -1,6 +1,5 @@
 #include "JSystem/JKernel/JKRAram/JKRAram.h"
 #include "global.h"
-
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
@@ -8,6 +7,10 @@
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+
+// Uncomment when static initialization is working
+// JKRAram* JKRAram::sAramObject = NULL;
+// u32 JKRAram::sSZSBufferSize = 0x400;
 
 static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);
@@ -32,19 +35,19 @@ extern u32 JKRAram__tsArea;
 
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {
-    if (!lbl_804513C8) {
-        lbl_804513C8 = new (JKRHeap::getSystemHeap(), 0)
+    if (!sAramObject) {
+        sAramObject = new (JKRHeap::getSystemHeap(), 0)
             JKRAram(aram_audio_buffer_size, aram_audio_graph_size, piece_priority);
     }
 
-    JKRAramStream::create(stream_priority);
-    JKRDecomp::create(decomp_priority);
-    lbl_804513C8->resume();
-    return lbl_804513C8;
+    JKRCreateAramStreamManager(stream_priority);
+    JKRCreateDecompManager(decomp_priority);
+    sAramObject->resume();
+    return sAramObject;
 }
 
 JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
-    : JKRThread(0xc00, 0x10, priority) {
+    : JKRThread(0xC00, 0x10, priority) {
     u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
     ARQInit();
 
@@ -72,7 +75,7 @@ JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, long priority)
 }
 
 JKRAram::~JKRAram() {
-    lbl_804513C8 = NULL;
+    sAramObject = NULL;
     if (mAramHeap)
         delete mAramHeap;
 }
@@ -83,9 +86,9 @@ void* JKRAram::run(void) {
     int result;
     JKRAMCommand* command;
     JKRAMCommand::Message* message;
-    OSInitMessageQueue(&lbl_803CC138, lbl_803CC128, 4);
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
     do {
-        OSReceiveMessage(&lbl_803CC138, &message, OS_MESSAGE_BLOCKING);
+        OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCKING);
         result = message->field_0x0;
         command = message->command;
         delete message;
@@ -156,7 +159,7 @@ void JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLe
     // STATIC END
 
     OSLockMutex(&decompMutex);
-    u32 szpSize = JKRAram::getSZSBufferSize();
+    u32 szpSize = getSZSBufferSize();
     szpBuf = (u8*)JKRAllocFromSysHeap(szpSize, 0x20);
     ASSERT(szpBuf != 0);
     szpEnd = szpBuf + szpSize;

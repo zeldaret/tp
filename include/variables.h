@@ -311,7 +311,6 @@ extern OSMutex lbl_80434330;                // JKRAramPiece::mMutex
 extern char lbl_8039D0B8[];                 // "direction = %x\n"
 
 extern u8 lbl_80434318;              // JKernel::@492 (global destructor chain)
-extern OSMessageQueue lbl_803CC138;  // JKRAram::sMessageQueue
 
 extern u8 lbl_80451408;  // JKRAramStream::sAramStreamObject
 extern u8 lbl_80451414;  // JKRAramStream::transHeap
@@ -350,16 +349,16 @@ extern u8 lbl_804343C0;  // JKernel::decompMutex
 extern u8 lbl_803CC518;  // JSUFileInputStream::__vt
 
 class JKRAram;
-extern JKRAram* lbl_804513C8;  // JKRAram::sAramObject
-extern bool lbl_804513FC;        // DAT_804513fc (init global mutex)
-
 extern u8 lbl_803CC158;  // JKRAram::__vt
 extern char lbl_8039D078[16];  // "JKRAram.cpp"
-extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
+extern JKRAram* sAramObject__7JKRAram;  // JKRAram::sAramObject
+extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
+extern bool lbl_804513FC;        // DAT_804513fc (init global mutex)
 extern OSMutex lbl_804342E8;  // JKernel::decompMutex (static?)
-extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
-extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
+extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
+extern u8 sAramCommandList__7JKRAram;  // JKRAram::sAramCommandList
+extern u8 sSZSBufferSize__7JKRAram;  // JKRAram::sSZSBufferSize
+extern u8 sMessageBuffer__7JKRAram;  // JKRAram::sMessageBuffer
 
 extern bool lbl_80451501;
 

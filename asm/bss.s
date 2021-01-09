@@ -815,8 +815,8 @@ sThreadList__9JKRThread:
 .global lbl_804342D0
 lbl_804342D0:
 	.skip 0xC
-.global lbl_804342DC
-lbl_804342DC:
+.global sAramCommandList__7JKRAram
+sAramCommandList__7JKRAram:
 	.skip 0xC
 .global lbl_804342E8
 lbl_804342E8:

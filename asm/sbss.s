@@ -1556,8 +1556,8 @@ lbl_804513C0:
 .global lbl_804513C4
 lbl_804513C4:
 	.skip 0x4
-.global lbl_804513C8
-lbl_804513C8:
+.global sAramObject__7JKRAram
+sAramObject__7JKRAram:
 	.skip 0x4
 .global JKRAram__szpBuf
 JKRAram__szpBuf:

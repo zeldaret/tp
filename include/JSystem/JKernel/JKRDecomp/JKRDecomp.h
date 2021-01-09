@@ -55,4 +55,8 @@ inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLe
     JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
 }
 
+inline JKRDecomp* JKRCreateDecompManager(long priority) {
+    return JKRDecomp::create(priority);
+}
+
 #endif

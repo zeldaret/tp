@@ -203,4 +203,8 @@ inline void JKRFree(void* ptr) {
     JKRHeap::free(ptr, NULL);
 }
 
+inline JKRHeap* JKRGetSystemHeap() {
+    return JKRHeap::getSystemHeap();
+}
+
 #endif

@@ -38,7 +38,7 @@ private:
     /* vt[03] */ void* run(void); /* override */
 
 public:
-    static void create(long);
+    static JKRAramStream* create(long);
 
     static void readFromAram(void);
     static void writeToAram(JKRAramStreamCommand*);
@@ -46,5 +46,9 @@ public:
     static void sync(JKRAramStreamCommand*, int);
     static void setTransBuffer(u8*, u32, JKRHeap*);
 };
+
+inline JKRAramStream* JKRCreateAramStreamManager(long priority) {
+    return JKRAramStream::create(priority);
+}
 
 #endif

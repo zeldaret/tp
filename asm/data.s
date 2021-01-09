@@ -3041,11 +3041,11 @@ lbl_803CC100:
 .global lbl_803CC114
 lbl_803CC114:
 	.incbin "baserom.dol", 0x3C9114, 0x14
-.global lbl_803CC128
-lbl_803CC128:
+.global sMessageBuffer__7JKRAram
+sMessageBuffer__7JKRAram:
 	.incbin "baserom.dol", 0x3C9128, 0x10
-.global lbl_803CC138
-lbl_803CC138:
+.global sMessageQueue__7JKRAram
+sMessageQueue__7JKRAram:
 	.incbin "baserom.dol", 0x3C9138, 0x20
 .global lbl_803CC158
 lbl_803CC158:
