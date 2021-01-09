@@ -81,11 +81,12 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
     ram = OSInitAlloc(low, high, param_3);
     ram_start = ALIGN_NEXT(ram, 0x20);
     ram_end = ALIGN_PREV(high, 0x20);
-    mCodeStart = OS_GLOBAL_ADDR(void, 0x80000000);
+    GLOBAL_MEMORY* globalMemory = (GLOBAL_MEMORY*)OSPhysicalToCached(0);
+    mCodeStart = globalMemory;
     mCodeEnd = (void*)ram_start;
     mUserRamStart = (void*)ram_start;
     mUserRamEnd = (void*)ram_end;
-    mMemorySize = OS_GLOBAL(u32, 0x80000028);
+    mMemorySize = globalMemory->memory_size;
     OSSetArenaLo(ram_end);
     OSSetArenaHi(ram_end);
     *memory = (char*)ram_start;
