@@ -4,7 +4,7 @@
 /* 800FD5F0 000FA530  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800FD5F4 000FA534  7C 7F 1B 78 */ mr r31, r3
 /* 800FD5F8 000FA538  38 80 00 33 */ li r4, 0x33
-/* 800FD5FC 000FA53C  4B FB 5C 55 */ bl daAlink_c_NS_setDoStatus
+/* 800FD5FC 000FA53C  4B FB 5C 55 */ bl setDoStatus__9daAlink_cFUc
 /* 800FD600 000FA540  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 800FD604 000FA544  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800FD608 000FA548  41 82 00 28 */ beq lbl_800FD630

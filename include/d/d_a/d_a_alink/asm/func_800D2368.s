@@ -5,7 +5,7 @@
 /* 800D2378 000CF2B8  93 C1 00 08 */ stw r30, 8(r1)
 /* 800D237C 000CF2BC  7C 7E 1B 78 */ mr r30, r3
 /* 800D2380 000CF2C0  3B E0 00 00 */ li r31, 0
-/* 800D2384 000CF2C4  4B FE 03 35 */ bl daAlink_c_NS_swordSwingTrigger
+/* 800D2384 000CF2C4  4B FE 03 35 */ bl swordSwingTrigger__9daAlink_cFv
 /* 800D2388 000CF2C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800D238C 000CF2CC  41 82 00 18 */ beq lbl_800D23A4
 /* 800D2390 000CF2D0  7F C3 F3 78 */ mr r3, r30

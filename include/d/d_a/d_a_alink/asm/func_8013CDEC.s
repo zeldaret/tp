@@ -24,7 +24,7 @@ lbl_8013CE28:
 /* 8013CE44 00139D84  B0 1D 04 DE */ sth r0, 0x4de(r29)
 /* 8013CE48 00139D88  7F A3 EB 78 */ mr r3, r29
 /* 8013CE4C 00139D8C  38 80 00 03 */ li r4, 3
-/* 8013CE50 00139D90  4B F7 64 31 */ bl daAlink_c_NS_setDoStatusContinuation
+/* 8013CE50 00139D90  4B F7 64 31 */ bl setDoStatusContinuation__9daAlink_cFUc
 /* 8013CE54 00139D94  88 1D 2F 8D */ lbz r0, 0x2f8d(r29)
 /* 8013CE58 00139D98  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8013CE5C 00139D9C  41 82 00 20 */ beq lbl_8013CE7C

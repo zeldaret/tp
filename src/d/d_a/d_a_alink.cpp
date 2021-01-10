@@ -44,14 +44,14 @@ asm void daAlink_matAnm_c::calc(J3DMaterial*) const {
 #include "d/d_a/d_a_alink/asm/func_8009D90C.s"
 }
 
-// 1 missing mr instruction
+// matches but need to fix class structure
 #ifdef NONMATCHING
-u32 daAlink_c::checkStageName(const char* stage) {
-    return (u32)__cntlzw(strcmp(g_dComIfG_gameInfo.stage, (char*)stage)) >>
-           5;  // no idea if current stage vars are a struct or part of some class
+bool daAlink_c::checkStageName(const char* stage) {
+    stage = (const char*)this;
+    return strcmp(dComIfGp_getStartStageName(), stage) == 0;
 }
 #else
-asm u32 daAlink_c::checkStageName(char const* stage) {
+asm bool daAlink_c::checkStageName(char const* stage) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8009DA60.s"
 }
@@ -1031,10 +1031,23 @@ asm void daAlink_c_NS_setSandShapeOffset(void) {
 
 // checkLv2MiddleBossBgRide__9daAlink_cFs
 // daAlink_c::checkLv2MiddleBossBgRide(short)
+#ifdef NONMATCHING
+bool daAlink_c::checkLv2MiddleBossBgRide(short param1) {
+    bool check = 0;
+
+    // beqlr needs to be beq
+    if (param1 != 0x7B && param1 == 0x7D) {
+        check = 1;
+    }
+
+    return check;
+}
+#else
 asm void daAlink_c_NS_checkLv2MiddleBossBgRide(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B1FB8.s"
 }
+#endif
 
 // getSlidePolygon__9daAlink_cFP8cM3dGPla
 // daAlink_c::getSlidePolygon(cM3dGPla*)
@@ -1065,65 +1078,42 @@ asm void func_800B23FC(void) {
 }
 
 // setPlayerPosAndAngle__9daAlink_cFPA4_f
-asm void func_800B24F4(void) {
-    nofralloc
+asm void func_800B24F4(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B24F4.s"
 }
 
-// itemTriggerCheck__9daAlink_cFUc
-// daAlink_c::itemTriggerCheck(unsigned char)
-asm void daAlink_c_NS_itemTriggerCheck(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B25CC.s"
+u32 daAlink_c::itemTriggerCheck(u8 param1) {
+    unk12206 |= param1;
+    return unk12173 & param1;
 }
 
-// itemButtonCheck__9daAlink_cFUc
-// daAlink_c::itemButtonCheck(unsigned char)
-asm void daAlink_c_NS_itemButtonCheck(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B25E8.s"
+u32 daAlink_c::itemButtonCheck(u8 param1) {
+    unk12206 |= param1;
+    return unk12174 & param1;
 }
 
-// itemButton__9daAlink_cFv
-// daAlink_c::itemButton(void)
-asm void daAlink_c_NS_itemButton(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B2604.s"
+void daAlink_c::itemButton(void) {
+    itemButtonCheck(1 << unk12188);
 }
 
-// itemTrigger__9daAlink_cFv
-// daAlink_c::itemTrigger(void)
-asm void daAlink_c_NS_itemTrigger(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B2634.s"
+void daAlink_c::itemTrigger(void) {
+    itemTriggerCheck(1 << unk12188);
 }
 
-// spActionButton__9daAlink_cFv
-// daAlink_c::spActionButton(void)
-asm void daAlink_c_NS_spActionButton(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B2664.s"
+void daAlink_c::spActionButton(void) {
+    itemButtonCheck(64);
 }
 
-// spActionTrigger__9daAlink_cFv
-// daAlink_c::spActionTrigger(void)
-asm void daAlink_c_NS_spActionTrigger(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B2688.s"
+void daAlink_c::spActionTrigger(void) {
+    itemTriggerCheck(64);
 }
 
-// midnaTalkTrigger__9daAlink_cCFv
-// daAlink_c::midnaTalkTrigger(const void)
-asm void daAlink_c_NS_midnaTalkTrigger(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B26AC.s"
+u32 daAlink_c::midnaTalkTrigger(void) const {
+    return unk12173 & 4;
 }
 
-// swordSwingTrigger__9daAlink_cFv
-// daAlink_c::swordSwingTrigger(void)
-asm void daAlink_c_NS_swordSwingTrigger(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B26B8.s"
+void daAlink_c::swordSwingTrigger(void) {
+    itemTriggerCheck(8);
 }
 
 // setItemActionButtonStatus__9daAlink_cFUc
@@ -1156,44 +1146,28 @@ asm void daAlink_c_NS_setAtnList(void) {
 
 // setRStatus__9daAlink_cFUc
 // daAlink_c::setRStatus(unsigned char)
-asm void daAlink_c_NS_setRStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3220.s"
+void daAlink_c::setRStatus(u8 status) {
+    dComIfGp_setRStatus(status, 0);
 }
 
-// setRStatusEmphasys__9daAlink_cFUc
-// daAlink_c::setRStatusEmphasys(unsigned char)
-asm void daAlink_c_NS_setRStatusEmphasys(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3238.s"
+void daAlink_c::setRStatusEmphasys(u8 status) {
+    dComIfGp_setRStatus(status, 2);
 }
 
-// setDoStatus__9daAlink_cFUc
-// daAlink_c::setDoStatus(unsigned char)
-asm void daAlink_c_NS_setDoStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3250.s"
+void daAlink_c::setDoStatus(u8 status) {
+    dComIfGp_setDoStatus(status, 0);
 }
 
-// setDoStatusEmphasys__9daAlink_cFUc
-// daAlink_c::setDoStatusEmphasys(unsigned char)
-asm void daAlink_c_NS_setDoStatusEmphasys(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3268.s"
+void daAlink_c::setDoStatusEmphasys(u8 status) {
+    dComIfGp_setDoStatus(status, 2);
 }
 
-// setDoStatusContinuation__9daAlink_cFUc
-// daAlink_c::setDoStatusContinuation(unsigned char)
-asm void daAlink_c_NS_setDoStatusContinuation(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3280.s"
+void daAlink_c::setDoStatusContinuation(u8 status) {
+    dComIfGp_setDoStatus(status, 4);
 }
 
-// setBStatus__9daAlink_cFUc
-// daAlink_c::setBStatus(unsigned char)
-asm void daAlink_c_NS_setBStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800B3298.s"
+void daAlink_c::setBStatus(u8 status) {
+    dComIfGp_setAStatus(status, 0);
 }
 
 // checkAtnWaitAnime__9daAlink_cFv
@@ -1759,7 +1733,7 @@ BOOL daAlink_c::checkMagicArmorHeavy(void) const {
     BOOL check = FALSE;
 
     if (checkMagicArmorWearAbility() != 0 &&
-        g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getCurrentRupees() == 0) {
+        g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getRupee() == 0) {
         check = TRUE;
     }
 
@@ -2156,10 +2130,24 @@ asm void daAlink_c_NS_checkRoomOnly(void) {
 
 // checkLv2DungeonRoomSpecial__9daAlink_cFv
 // daAlink_c::checkLv2DungeonRoomSpecial(void)
+#ifdef NONMATCHING
+bool daAlink_c::checkLv2DungeonRoomSpecial(void) {
+    bool check = 0;
+
+    // lbl_80392094 needs to be in r3 instead of r4
+    if (checkStageName(lbl_80392094.lv2) &&
+        (lbl_80450D64 == 14 || lbl_80450D64 == 16 || lbl_80450D64 == 17)) {
+        check = 1;
+    }
+
+    return check;
+}
+#else
 asm void daAlink_c_NS_checkLv2DungeonRoomSpecial(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C044C.s"
 }
+#endif
 
 // checkRoomSpecial__9daAlink_cFv
 // daAlink_c::checkRoomSpecial(void)
@@ -3140,23 +3128,16 @@ asm void dComIfGp_att_getCatghTarget(void) {
 
 // mDoAud_setLinkHp__Fll
 // mDoAud_setLinkHp(long, long)
-asm void mDoAud_setLinkHp(void) {
-    nofralloc
+asm void mDoAud_setLinkHp(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFEF4.s"
 }
 
-// dComIfGs_getLife__Fv
-// dComIfGs_getLife(void)
-asm void dComIfGs_getLife(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFF2C.s"
+u16 dComIfGs_getLife(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getLife();
 }
 
-// dComIfGp_getRStatus__Fv
-// dComIfGp_getRStatus(void)
-asm void dComIfGp_getRStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFF3C.s"
+u8 dComIfGp_getRStatus(void) {
+    return g_dComIfG_gameInfo.getPlay().getRStatus();
 }
 
 // checkAttentionLock__9daAlink_cFv
@@ -3166,11 +3147,8 @@ asm void daAlink_c_NS_checkAttentionLock(void) {
 #include "d/d_a/d_a_alink/asm/func_800CFF4C.s"
 }
 
-// dComIfGp_setItemLifeCount__FfUc
-// dComIfGp_setItemLifeCount(float, unsigned char)
-asm void dComIfGp_setItemLifeCount(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_800CFFA4.s"
+void dComIfGp_setItemLifeCount(float amount, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
 }
 
 // cMtx_multVec__FPA4_CfPC3VecP3Vec
@@ -13480,9 +13458,8 @@ asm void func_80140038(void) {
 
 // setShieldChange__9daAlink_cFv
 // daAlink_c::setShieldChange(void)
-asm void daAlink_c_NS_setShieldChange(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80140064.s"
+void daAlink_c::setShieldChange(void) {
+    unk12241 = 4;
 }
 
 // loadModelDVD__9daAlink_cFv
@@ -13668,7 +13645,7 @@ asm void func_801410A4(void) {
 
 // __ct__16daPy_actorKeep_cFv
 // daPy_actorKeep_c::daPy_actorKeep_c(void)
-asm void daPy_actorKeep_c(void) {
+asm daPy_actorKeep_c::daPy_actorKeep_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801410EC.s"
 }
@@ -15043,23 +15020,16 @@ asm void func_80141934(void) {
 
 // checkCutJumpMode__9daPy_py_cCFv
 // daPy_py_c::checkCutJumpMode(const void)
-asm void func_8014193C(void) {
-    nofralloc
+asm void func_8014193C(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014193C.s"
 }
 
-// getZeldaActor__9daHorse_cFv
-// daHorse_c::getZeldaActor(void)
-asm void daHorse_c_NS_getZeldaActor(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141944.s"
+u32 daHorse_c::getZeldaActor(void) {
+    return actorKeep.getActor();
 }
 
-// dComIfGp_getDoStatus__Fv
-// dComIfGp_getDoStatus(void)
-asm void dComIfGp_getDoStatus(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_8014194C.s"
+u8 dComIfGp_getDoStatus(void) {
+    return g_dComIfG_gameInfo.getPlay().getDoStatus();
 }
 
 // __ct__4cXyzFfff
@@ -15080,18 +15050,12 @@ void Z2CreatureLink::setLinkState(u8 state) {
     link_state = state;
 }
 
-// dComIfGs_getRupee__Fv
-// dComIfGs_getRupee(void)
-asm void dComIfGs_getRupee(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_80141990.s"
+u16 dComIfGs_getRupee(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getRupee();
 }
 
-// dComIfGp_setItemRupeeCount__Fl
-// dComIfGp_setItemRupeeCount(long)
-asm void dComIfGp_setItemRupeeCount(void) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_801419A0.s"
+void dComIfGp_setItemRupeeCount(long amount) {
+    g_dComIfG_gameInfo.getPlay().setItemRupeeCount(amount);
 }
 
 // dMeter2Info_setFloatingMessage__FUssb

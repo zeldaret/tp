@@ -24,7 +24,7 @@ lbl_800EAA78:
 /* 800EAA7C 000E79BC  4B FF FE B1 */ bl daAlink_c_NS_setSumouPunchStatus
 /* 800EAA80 000E79C0  7F E3 FB 78 */ mr r3, r31
 /* 800EAA84 000E79C4  38 80 00 15 */ li r4, 0x15
-/* 800EAA88 000E79C8  4B FC 87 E1 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800EAA88 000E79C8  4B FC 87 E1 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 800EAA8C 000E79CC  38 00 00 05 */ li r0, 5
 /* 800EAA90 000E79D0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800EAA94 000E79D4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

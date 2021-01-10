@@ -4,7 +4,7 @@
 /* 800F21C0 000EF100  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F21C4 000EF104  7C 7F 1B 78 */ mr r31, r3
 /* 800F21C8 000EF108  38 80 00 12 */ li r4, 0x12
-/* 800F21CC 000EF10C  4B FC 10 85 */ bl daAlink_c_NS_setDoStatus
+/* 800F21CC 000EF10C  4B FC 10 85 */ bl setDoStatus__9daAlink_cFUc
 /* 800F21D0 000EF110  7F E3 FB 78 */ mr r3, r31
 /* 800F21D4 000EF114  4B FF B8 51 */ bl daAlink_c_NS_setSyncRidePos
 /* 800F21D8 000EF118  2C 03 00 00 */ cmpwi r3, 0

@@ -44,7 +44,7 @@ lbl_80112070:
 lbl_8011208C:
 /* 8011208C 0010EFCC  7F C3 F3 78 */ mr r3, r30
 /* 80112090 0010EFD0  38 80 00 00 */ li r4, 0
-/* 80112094 0010EFD4  4B FA 12 05 */ bl daAlink_c_NS_setBStatus
+/* 80112094 0010EFD4  4B FA 12 05 */ bl setBStatus__9daAlink_cFUc
 /* 80112098 0010EFD8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011209C 0010EFDC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801120A0 0010EFE0  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

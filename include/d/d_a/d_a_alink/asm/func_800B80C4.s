@@ -118,7 +118,7 @@ lbl_800B8268:
 /* 800B8274 000B51B4  60 00 08 00 */ ori r0, r0, 0x800
 /* 800B8278 000B51B8  B0 03 00 AE */ sth r0, 0xae(r3)
 /* 800B827C 000B51BC  7F E3 FB 78 */ mr r3, r31
-/* 800B8280 000B51C0  4B FF A4 2D */ bl daAlink_c_NS_midnaTalkTrigger
+/* 800B8280 000B51C0  4B FF A4 2D */ bl midnaTalkTrigger__9daAlink_cCFv
 /* 800B8284 000B51C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800B8288 000B51C8  41 82 00 D0 */ beq lbl_800B8358
 /* 800B828C 000B51CC  28 1E 00 00 */ cmplwi r30, 0

@@ -10,7 +10,7 @@
 /* 800F73AC 000F42EC  41 82 00 10 */ beq lbl_800F73BC
 /* 800F73B0 000F42F0  7F E3 FB 78 */ mr r3, r31
 /* 800F73B4 000F42F4  38 80 00 12 */ li r4, 0x12
-/* 800F73B8 000F42F8  4B FB BE 99 */ bl daAlink_c_NS_setDoStatus
+/* 800F73B8 000F42F8  4B FB BE 99 */ bl setDoStatus__9daAlink_cFUc
 lbl_800F73BC:
 /* 800F73BC 000F42FC  7F E3 FB 78 */ mr r3, r31
 /* 800F73C0 000F4300  4B FF D4 19 */ bl daAlink_c_NS_canoeCommon

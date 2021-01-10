@@ -68,7 +68,7 @@ lbl_800F1A44:
 lbl_800F1A48:
 /* 800F1A48 000EE988  7F C3 F3 78 */ mr r3, r30
 /* 800F1A4C 000EE98C  38 80 00 08 */ li r4, 8
-/* 800F1A50 000EE990  4B FC 0B 99 */ bl daAlink_c_NS_itemButtonCheck
+/* 800F1A50 000EE990  4B FC 0B 99 */ bl itemButtonCheck__9daAlink_cFUc
 /* 800F1A54 000EE994  2C 03 00 00 */ cmpwi r3, 0
 /* 800F1A58 000EE998  40 82 00 38 */ bne lbl_800F1A90
 /* 800F1A5C 000EE99C  A8 1E 30 0C */ lha r0, 0x300c(r30)

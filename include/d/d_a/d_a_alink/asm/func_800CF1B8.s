@@ -7,7 +7,7 @@
 /* 800CF1D0 000CC110  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800CF1D4 000CC114  40 82 00 14 */ bne lbl_800CF1E8
 /* 800CF1D8 000CC118  38 80 00 08 */ li r4, 8
-/* 800CF1DC 000CC11C  4B FE 33 F1 */ bl daAlink_c_NS_itemTriggerCheck
+/* 800CF1DC 000CC11C  4B FE 33 F1 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800CF1E0 000CC120  2C 03 00 00 */ cmpwi r3, 0
 /* 800CF1E4 000CC124  41 82 00 60 */ beq lbl_800CF244
 lbl_800CF1E8:

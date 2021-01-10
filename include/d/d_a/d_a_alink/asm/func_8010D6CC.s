@@ -9,7 +9,7 @@
 /* 8010D6EC 0010A62C  41 82 00 10 */ beq lbl_8010D6FC
 /* 8010D6F0 0010A630  7F A3 EB 78 */ mr r3, r29
 /* 8010D6F4 0010A634  38 80 00 12 */ li r4, 0x12
-/* 8010D6F8 0010A638  4B FA 5B 59 */ bl daAlink_c_NS_setDoStatus
+/* 8010D6F8 0010A638  4B FA 5B 59 */ bl setDoStatus__9daAlink_cFUc
 lbl_8010D6FC:
 /* 8010D6FC 0010A63C  7F A3 EB 78 */ mr r3, r29
 /* 8010D700 0010A640  4B FF E3 6D */ bl daAlink_c_NS_commonHookshotWallWait

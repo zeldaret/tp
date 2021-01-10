@@ -5,7 +5,7 @@
 /* 800F6D74 000F3CB4  48 26 B4 69 */ bl _savegpr_29
 /* 800F6D78 000F3CB8  7C 7D 1B 78 */ mr r29, r3
 /* 800F6D7C 000F3CBC  38 80 00 12 */ li r4, 0x12
-/* 800F6D80 000F3CC0  4B FB C4 D1 */ bl daAlink_c_NS_setDoStatus
+/* 800F6D80 000F3CC0  4B FB C4 D1 */ bl setDoStatus__9daAlink_cFUc
 /* 800F6D84 000F3CC4  AB FD 04 E6 */ lha r31, 0x4e6(r29)
 /* 800F6D88 000F3CC8  AB DD 04 DE */ lha r30, 0x4de(r29)
 /* 800F6D8C 000F3CCC  7F A3 EB 78 */ mr r3, r29

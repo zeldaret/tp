@@ -173,10 +173,10 @@ lbl_800B7848:
 lbl_800B784C:
 /* 800B784C 000B478C  7F E3 FB 78 */ mr r3, r31
 /* 800B7850 000B4790  7F A4 EB 78 */ mr r4, r29
-/* 800B7854 000B4794  4B FF BA 45 */ bl daAlink_c_NS_setBStatus
+/* 800B7854 000B4794  4B FF BA 45 */ bl setBStatus__9daAlink_cFUc
 /* 800B7858 000B4798  7F E3 FB 78 */ mr r3, r31
 /* 800B785C 000B479C  7F A4 EB 78 */ mr r4, r29
-/* 800B7860 000B47A0  4B FF B9 F1 */ bl daAlink_c_NS_setDoStatus
+/* 800B7860 000B47A0  4B FF B9 F1 */ bl setDoStatus__9daAlink_cFUc
 /* 800B7864 000B47A4  57 A4 06 3E */ clrlwi r4, r29, 0x18
 /* 800B7868 000B47A8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800B786C 000B47AC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -195,7 +195,7 @@ lbl_800B7888:
 /* 800B789C 000B47DC  40 82 02 C4 */ bne lbl_800B7B60
 /* 800B78A0 000B47E0  7F E3 FB 78 */ mr r3, r31
 /* 800B78A4 000B47E4  38 80 00 08 */ li r4, 8
-/* 800B78A8 000B47E8  4B FF AD 25 */ bl daAlink_c_NS_itemTriggerCheck
+/* 800B78A8 000B47E8  4B FF AD 25 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800B78AC 000B47EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800B78B0 000B47F0  41 82 02 B0 */ beq lbl_800B7B60
 lbl_800B78B4:
@@ -225,7 +225,7 @@ lbl_800B78FC:
 /* 800B7904 000B4844  B0 1F 30 F6 */ sth r0, 0x30f6(r31)
 /* 800B7908 000B4848  7F E3 FB 78 */ mr r3, r31
 /* 800B790C 000B484C  38 80 00 08 */ li r4, 8
-/* 800B7910 000B4850  4B FF AC BD */ bl daAlink_c_NS_itemTriggerCheck
+/* 800B7910 000B4850  4B FF AC BD */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800B7914 000B4854  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7918 000B4858  40 82 00 10 */ bne lbl_800B7928
 /* 800B791C 000B485C  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
