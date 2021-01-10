@@ -41,7 +41,7 @@ lbl_802D6E88:
 /* 802D6E94 002D3DD4  7F E4 FB 78 */	mr r4, r31
 /* 802D6E98 002D3DD8  7F A5 EB 78 */	mr r5, r29
 /* 802D6E9C 002D3DDC  7D 06 43 78 */	mr r6, r8
-/* 802D6EA0 002D3DE0  48 00 00 BD */	bl fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUl14JKRCompression
+/* 802D6EA0 002D3DE0  48 00 00 BD */	bl fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli
 /* 802D6EA4 002D3DE4  7C 7F 1B 78 */	mr r31, r3
 lbl_802D6EA8:
 /* 802D6EA8 002D3DE8  28 1E 00 00 */	cmplwi r30, 0

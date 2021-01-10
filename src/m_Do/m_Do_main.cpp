@@ -178,15 +178,15 @@ void main01(void) {
     // JKRSolidHeap audio_heap;
 
     // Root Heap
-    heaps[0].setHeap((JKRExpHeap*)lbl_80451378);
-    if (lbl_80451378) {
-        heaps[0].setHeapSize(lbl_80451378->getSize());
+    heaps[0].setHeap((JKRExpHeap*)JKRHeap::getRootHeap());
+    if (JKRHeap::getRootHeap()) {
+        heaps[0].setHeapSize(JKRHeap::getRootHeap()->getSize());
     }
 
     // System Heap
-    heaps[1].setHeap((JKRExpHeap*)lbl_80451370);
-    if (lbl_80451370) {
-        heaps[1].setHeapSize(lbl_80451370->getSize());
+    heaps[1].setHeap((JKRExpHeap*)JKRHeap::getSystemHeap());
+    if (JKRHeap::getSystemHeap()) {
+        heaps[1].setHeapSize(JKRHeap::getSystemHeap()->getSize());
     }
 
     // Zelda Heap
@@ -246,7 +246,7 @@ void main01(void) {
 
     // g_mDoAud_audioHeap
 
-    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800, lbl_80451374, false);
+    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800, JKRHeap::getCurrentHeap(), false);
 
     // main loop
     do {

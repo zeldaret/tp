@@ -11,7 +11,7 @@ JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadLi
 
     JKRHeap* heap = JKRHeap::findFromRoot(this);
     if (heap == NULL) {
-        heap = lbl_80451370;
+        heap = JKRHeap::getSystemHeap();
     }
 
     setCommon_heapSpecified(heap, stack_size, param_3);
@@ -27,7 +27,7 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
     field_0x70 = 0;
 
     if (heap == NULL) {
-        heap = lbl_80451374;
+        heap = JKRHeap::getCurrentHeap();
     }
 
     setCommon_heapSpecified(heap, stack_size, param_4);
@@ -49,8 +49,7 @@ JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this
 }
 
 JKRThread::~JKRThread() {
-    // lbl_8043428C = JKRThread::sThreadList
-    lbl_8043428C.remove(&mThreadListLink);
+    getList().remove(&mThreadListLink);
 
     if (mHeap) {
         BOOL result = OSIsThreadTerminated(mThreadRecord);
@@ -69,7 +68,7 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int message_count) {
     mMessages = (OSMessage*)JKRHeap::alloc(mMessageCount * sizeof(OSMessage), 0, heap);
 
     OSInitMessageQueue(&mMessageQueue, mMessages, mMessageCount);
-    lbl_8043428C.append(&mThreadListLink);
+    getList().append(&mThreadListLink);
 
     mCurrentHeap = NULL;
     mCurrentHeapError = NULL;
@@ -91,9 +90,9 @@ void* JKRThread::start(void* param) {
 }
 
 JKRThread* JKRThread::searchThread(OSThread* thread) {
-    JSUList<JKRThread>* threadList = JKRThread::getList();
+    JSUList<JKRThread>& threadList = getList();
     JSUListIterator<JKRThread> iterator;
-    for (iterator = threadList; iterator != threadList->getEnd(); ++iterator) {
+    for (iterator = threadList.getFirst(); iterator != threadList.getEnd(); ++iterator) {
         if (iterator->getThreadRecord() == thread) {
             return iterator.getObject();
         }

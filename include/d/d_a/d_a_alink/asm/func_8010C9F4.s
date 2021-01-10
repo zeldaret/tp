@@ -82,7 +82,7 @@ lbl_8010CAFC:
 lbl_8010CB28:
 /* 8010CB28 00109A68  7F E3 FB 78 */ mr r3, r31
 /* 8010CB2C 00109A6C  38 80 00 01 */ li r4, 1
-/* 8010CB30 00109A70  4B FA 67 39 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 8010CB30 00109A70  4B FA 67 39 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 8010CB34 00109A74  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 8010CB38 00109A78  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8010CB3C 00109A7C  41 82 00 18 */ beq lbl_8010CB54
@@ -111,7 +111,7 @@ lbl_8010CB8C:
 /* 8010CB90 00109AD0  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CB94 00109AD4  41 82 00 1C */ beq lbl_8010CBB0
 /* 8010CB98 00109AD8  7F E3 FB 78 */ mr r3, r31
-/* 8010CB9C 00109ADC  4B FA 5A 69 */ bl daAlink_c_NS_itemButton
+/* 8010CB9C 00109ADC  4B FA 5A 69 */ bl itemButton__9daAlink_cFv
 /* 8010CBA0 00109AE0  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CBA4 00109AE4  40 82 00 0C */ bne lbl_8010CBB0
 /* 8010CBA8 00109AE8  38 00 00 00 */ li r0, 0

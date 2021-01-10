@@ -88,7 +88,7 @@ lbl_80132A40:
 lbl_80132A5C:
 /* 80132A5C 0012F99C  7F C3 F3 78 */ mr r3, r30
 /* 80132A60 0012F9A0  38 80 00 33 */ li r4, 0x33
-/* 80132A64 0012F9A4  4B F8 07 ED */ bl daAlink_c_NS_setDoStatus
+/* 80132A64 0012F9A4  4B F8 07 ED */ bl setDoStatus__9daAlink_cFUc
 /* 80132A68 0012F9A8  88 1E 2F 8D */ lbz r0, 0x2f8d(r30)
 /* 80132A6C 0012F9AC  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80132A70 0012F9B0  41 82 00 84 */ beq lbl_80132AF4

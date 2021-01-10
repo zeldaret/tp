@@ -9,8 +9,8 @@
 /* 802D1778 002CE6B8  3C 60 80 3D */	lis r3, lbl_803CC114@ha
 /* 802D177C 002CE6BC  38 03 C1 14 */	addi r0, r3, lbl_803CC114@l
 /* 802D1780 002CE6C0  90 1E 00 00 */	stw r0, 0(r30)
-/* 802D1784 002CE6C4  3C 60 80 43 */	lis r3, lbl_8043428C@ha
-/* 802D1788 002CE6C8  38 63 42 8C */	addi r3, r3, lbl_8043428C@l
+/* 802D1784 002CE6C4  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
+/* 802D1788 002CE6C8  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l
 /* 802D178C 002CE6CC  38 9E 00 18 */	addi r4, r30, 0x18
 /* 802D1790 002CE6D0  48 00 A9 CD */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D1794 002CE6D4  80 1E 00 28 */	lwz r0, 0x28(r30)

@@ -10,7 +10,7 @@
 /* 800D1050 000CDF90  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D1054 000CDF94  40 82 00 1C */ bne lbl_800D1070
 /* 800D1058 000CDF98  7F E3 FB 78 */ mr r3, r31
-/* 800D105C 000CDF9C  4B FE 16 5D */ bl daAlink_c_NS_swordSwingTrigger
+/* 800D105C 000CDF9C  4B FE 16 5D */ bl swordSwingTrigger__9daAlink_cFv
 /* 800D1060 000CDFA0  2C 03 00 00 */ cmpwi r3, 0
 /* 800D1064 000CDFA4  41 82 00 0C */ beq lbl_800D1070
 /* 800D1068 000CDFA8  38 60 00 01 */ li r3, 1

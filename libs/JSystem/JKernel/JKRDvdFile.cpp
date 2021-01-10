@@ -5,32 +5,27 @@ JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
     initiate();
 }
 
-// end of fuctions is weird. instructions which should have been optimized out.
-#ifdef NONMATCHING
 JKRDvdFile::JKRDvdFile(const char* name) : JKRFile(), mDvdLink(this) {
     initiate();
     bool result = open(name);
     mIsAvailable = result;
+    // weird code. doesn't match without this, maybe remains from assert or something?
+    if (mIsAvailable)
+        return;
+    else
+        return;
 }
-#else
-asm JKRDvdFile::JKRDvdFile(char const*) {
-    nofralloc
-#include "JSystem/JKernel/JKRDvdFile/asm/func_802D95F8.s"
-}
-#endif
 
-#ifdef NONMATHCING
-JKRDvdFile::JKRDvdFile(long param_1) : JKRFile(), mDvdLink(this) {
+JKRDvdFile::JKRDvdFile(long entryNum) : JKRFile(), mDvdLink(this) {
     initiate();
-    bool result = open(param_1);
+    bool result = open(entryNum);
     mIsAvailable = result;
+    // weird code. doesn't match without this, maybe remains from assert or something?
+    if (mIsAvailable)
+        return;
+    else
+        return;
 }
-#else
-asm JKRDvdFile::JKRDvdFile(long) {
-    nofralloc
-#include "JSystem/JKernel/JKRDvdFile/asm/func_802D96A0.s"
-}
-#endif
 
 JKRDvdFile::~JKRDvdFile() {
     close();
@@ -51,18 +46,18 @@ bool JKRDvdFile::open(const char* param_1) {
     if (!mIsAvailable) {
         mIsAvailable = DVDOpen(param_1, &mFileInfo);
         if (mIsAvailable) {
-            lbl_8043436C.append(&mDvdLink);
+            getDvdList().append(&mDvdLink);
             getStatus();
         }
     }
     return mIsAvailable;
 }
 
-bool JKRDvdFile::open(long param_1) {
+bool JKRDvdFile::open(long entryNum) {
     if (!mIsAvailable) {
-        mIsAvailable = DVDFastOpen(param_1, &mFileInfo);
+        mIsAvailable = DVDFastOpen(entryNum, &mFileInfo);
         if (mIsAvailable) {
-            lbl_8043436C.append(&mDvdLink);
+            getDvdList().append(&mDvdLink);
             getStatus();
         }
     }
@@ -74,7 +69,7 @@ void JKRDvdFile::close() {
         s32 result = DVDClose(&mFileInfo);
         if (result != 0) {
             mIsAvailable = false;
-            lbl_8043436C.remove(&mDvdLink);
+            getDvdList().remove(&mDvdLink);
         } else {
             const char* filename = lbl_8039D260;       // "JKRDvdFile.cpp"
             const char* format = lbl_8039D260 + 0x0F;  // "%s"
