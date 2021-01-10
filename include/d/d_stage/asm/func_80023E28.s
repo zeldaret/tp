@@ -10,7 +10,7 @@
 /* 80023E4C 00020D8C  98 03 00 0E */ stb r0, 0xe(r3)
 /* 80023E50 00020D90  99 03 00 0F */ stb r8, 0xf(r3)
 /* 80023E54 00020D94  99 23 00 10 */ stb r9, 0x10(r3)
-/* 80023E58 00020D98  48 00 03 45 */ bl dStage_startStage_c_NS_set
+/* 80023E58 00020D98  48 00 03 45 */ bl set__19dStage_startStage_cFPCcScsSc
 /* 80023E5C 00020D9C  7F E3 FB 78 */ mr r3, r31
 /* 80023E60 00020DA0  3C 80 80 38 */ lis r4, lbl_80378A50@ha
 /* 80023E64 00020DA4  38 84 8A 50 */ addi r4, r4, lbl_80378A50@l

@@ -5,7 +5,7 @@
 /* 8002825C 0002519C  3C 60 80 3F */ lis r3, lbl_803F4E68@ha
 /* 80028260 000251A0  3B E3 4E 68 */ addi r31, r3, lbl_803F4E68@l
 /* 80028264 000251A4  38 7F 00 0C */ addi r3, r31, 0xc
-/*.global stage_tgsc_data_class*/
+/*.global stage_tgsc_data_class
 /* 80028268 000251A8  3C 80 80 03 */ lis r4, stage_tgsc_data_class@ha
 /*.global stage_tgsc_data_class*/
 /* 8002826C 000251AC  38 84 84 B8 */ addi r4, r4, stage_tgsc_data_class@l
