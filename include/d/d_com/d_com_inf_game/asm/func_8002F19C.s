@@ -35,7 +35,7 @@
 /* 8002F224 0002C164  7F A6 EB 78 */ mr r6, r29
 /* 8002F228 0002C168  7F C7 F3 78 */ mr r7, r30
 /* 8002F22C 0002C16C  7F E8 FB 78 */ mr r8, r31
-/* 8002F230 0002C170  48 00 00 1D */ bl dComIfGs_setLastWarpMarkItemData
+/* 8002F230 0002C170  48 00 00 1D */ bl dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc
 /* 8002F234 0002C174  39 61 00 40 */ addi r11, r1, 0x40
 /* 8002F238 0002C178  48 33 2F E5 */ bl _restgpr_26
 /* 8002F23C 0002C17C  80 01 00 44 */ lwz r0, 0x44(r1)

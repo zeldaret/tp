@@ -1,11 +1,11 @@
-#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
-#include "d/d_item/d_item/d_item.h"
-#include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "SComponent/c_phase.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "d/d_bg/d_bg_s/d_bg_s.h"
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_item/d_item/d_item.h"
+#include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
-#include "global.h"
 
 asm void dComIfG_play_c::ct(void) {
     nofralloc
@@ -51,18 +51,12 @@ asm void dComIfG_play_c_NS_clearItemBombNumCount(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002B394.s"
 }
 
-// setNowVibration__14dComIfG_play_cFUc
-// dComIfG_play_c::setNowVibration(unsigned char)
-asm void dComIfG_play_c_NS_setNowVibration(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002B3A8.s"
+void dComIfG_play_c::setNowVibration(u8 status) {
+    mNowVibration = status;
 }
 
-// getNowVibration__14dComIfG_play_cFv
-// dComIfG_play_c::getNowVibration(void)
-asm void getNowVibration__14dComIfG_play_cFv(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002B3B0.s"
+u32 dComIfG_play_c::getNowVibration(void) {
+    return mNowVibration;
 }
 
 // setStartStage__14dComIfG_play_cFP19dStage_startStage_c
@@ -72,11 +66,10 @@ asm void dComIfG_play_c_NS_setStartStage(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002B3B8.s"
 }
 
-// dComIfG_get_timelayer__FPi
-// dComIfG_get_timelayer(int*)
-asm void dComIfG_get_timelayer(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002B3F4.s"
+void dComIfG_get_timelayer(int* param1) {
+    if (dKy_daynight_check() != FALSE) {
+        *param1 += 1;
+    }
 }
 
 // getLayerNo_common_common__14dComIfG_play_cFPCcii
@@ -149,60 +142,36 @@ asm void func_8002CB68(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002CB68.s"
 }
 
-// setTimerNowTimeMs__14dComIfG_play_cFi
-// dComIfG_play_c::setTimerNowTimeMs(int)
-asm void dComIfG_play_c_NS_setTimerNowTimeMs(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CB94.s"
+void dComIfG_play_c::setTimerNowTimeMs(int time) {
+    mTimerNowTimeMs = time;
 }
 
-// getTimerNowTimeMs__14dComIfG_play_cFv
-// dComIfG_play_c::getTimerNowTimeMs(void)
-asm void dComIfG_play_c_NS_getTimerNowTimeMs(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CB9C.s"
+int dComIfG_play_c::getTimerNowTimeMs(void) {
+    return mTimerNowTimeMs;
 }
 
-// setTimerLimitTimeMs__14dComIfG_play_cFi
-// dComIfG_play_c::setTimerLimitTimeMs(int)
-asm void dComIfG_play_c_NS_setTimerLimitTimeMs(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBA4.s"
+void dComIfG_play_c::setTimerLimitTimeMs(int time) {
+    mTimerLimitTimeMs = time;
 }
 
-// getTimerLimitTimeMs__14dComIfG_play_cFv
-// dComIfG_play_c::getTimerLimitTimeMs(void)
-asm void dComIfG_play_c_NS_getTimerLimitTimeMs(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBAC.s"
+int dComIfG_play_c::getTimerLimitTimeMs(void) {
+    return mTimerLimitTimeMs;
 }
 
-// setTimerMode__14dComIfG_play_cFi
-// dComIfG_play_c::setTimerMode(int)
-asm void dComIfG_play_c_NS_setTimerMode(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBB4.s"
+void dComIfG_play_c::setTimerMode(int mode) {
+    mTimerMode = mode;
 }
 
-// getTimerMode__14dComIfG_play_cFv
-// dComIfG_play_c::getTimerMode(void)
-asm void dComIfG_play_c_NS_getTimerMode(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBBC.s"
+int dComIfG_play_c::getTimerMode(void) {
+    return mTimerMode;
 }
 
-// setTimerType__14dComIfG_play_cFUc
-// dComIfG_play_c::setTimerType(unsigned char)
-asm void dComIfG_play_c_NS_setTimerType(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBC4.s"
+void dComIfG_play_c::setTimerType(u8 type) {
+    mTimerType = type;
 }
 
-// getTimerType__14dComIfG_play_cFv
-// dComIfG_play_c::getTimerType(void)
-asm void dComIfG_play_c_NS_getTimerType(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBCC.s"
+u8 dComIfG_play_c::getTimerType(void) {
+    return mTimerType;
 }
 
 // setTimerPtr__14dComIfG_play_cFP8dTimer_c
@@ -212,11 +181,8 @@ asm void dComIfG_play_c_NS_setTimerPtr(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002CBD4.s"
 }
 
-// getTimerPtr__14dComIfG_play_cFv
-// dComIfG_play_c::getTimerPtr(void)
-asm void dComIfG_play_c_NS_getTimerPtr(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002CBDC.s"
+u32 dComIfG_play_c::getTimerPtr(void) {
+    return mTimerPtr;
 }
 
 // ct__13dComIfG_inf_cFv
@@ -485,39 +451,45 @@ asm void dComIfGs_isOneZoneItem(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002DC3C.s"
 }
 
-// dComIfGs_getMaxLifeGauge__Fv
-// dComIfGs_getMaxLifeGauge(void)
-asm int dComIfGs_getMaxLifeGauge(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002DCA8.s"
+u16 dComIfGs_getMaxLifeGauge(void) {
+    return (dComIfGs_getMaxLife() / 5) * 4;
 }
 
-// dComIfGs_setSelectItemIndex__FiUc
-// dComIfGs_setSelectItemIndex(int, unsigned char)
-asm void dComIfGs_setSelectItemIndex(int, u8) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002DCC4.s"
+void dComIfGs_setSelectItemIndex(int i_no, u8 item_index) {
+    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setSelectItemIndex(i_no, item_index);
+    dComIfGp_setSelectItem(i_no);
 }
 
-// dComIfGs_setMixItemIndex__FiUc
-// dComIfGs_setMixItemIndex(int, unsigned char)
-asm void dComIfGs_setMixItemIndex(int, u8) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002DD08.s"
+void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
+    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMixItemIndex(i_no, item_index);
 }
 
 // dComIfGs_getSelectMixItemNoArrowIndex__Fi
 // dComIfGs_getSelectMixItemNoArrowIndex(int)
+
+// close
+#ifdef NONMATCHING
+u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
+    u8 item_index = dComIfGs_getSelectItemIndex(p1);
+    u8 mix_index = dComIfGs_getMixItemIndex(p1);
+
+    if (item_index < 0xf || item_index < 0x12) {
+        return item_index;
+    }
+    if (mix_index == 255 || mix_index < 0xf || mix_index < 0x12) {
+        item_index = 255;
+        return item_index;
+    } 
+}
+#else
 asm void dComIfGs_getSelectMixItemNoArrowIndex(void) {
     nofralloc
     #include "d/d_com/d_com_inf_game/asm/func_8002DD3C.s"
 }
+#endif
 
-// dComIfGs_getMixItemIndex__Fi
-// dComIfGs_getMixItemIndex(int)
-asm u8 dComIfGs_getMixItemIndex(int) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002DDC8.s"
+u8 dComIfGs_getMixItemIndex(int i_no) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getMixItemIndex(i_no);
 }
 
 // dComIfGp_setSelectItem__Fi
@@ -534,25 +506,16 @@ asm void dComIfGp_getSelectItem(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002DF1C.s"
 }
 
-// dComIfGp_mapShow__Fv
-// dComIfGp_mapShow(void)
-asm void dComIfGp_mapShow(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002E048.s"
+void dComIfGp_mapShow(void) {
+    dComIfGs_offEventBit(0x1D01);
 }
 
-// dComIfGp_mapHide__Fv
-// dComIfGp_mapHide(void)
-asm void dComIfGp_mapHide(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002E078.s"
+void dComIfGp_mapHide(void) {
+    dComIfGs_onEventBit(0x1D01);
 }
 
-// dComIfGp_checkMapShow__Fv
-// dComIfGp_checkMapShow(void)
-asm void dComIfGp_checkMapShow(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002E0A8.s"
+bool dComIfGp_checkMapShow(void) {
+    return !dComIfGs_isEventBit(0x1D01);
 }
 
 // dComIfGp_setHeapLockFlag__FUc
@@ -618,11 +581,8 @@ asm void dComIfGs_checkGetItem(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002E4CC.s"
 }
 
-// dComIfGs_getBottleMax__Fv
-// dComIfGs_getBottleMax(void)
-asm u8 dComIfGs_getBottleMax(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002E5B8.s"
+u8 dComIfGs_getBottleMax(void) {
+    return 10;
 }
 
 // dComIfGp_getSelectItemNum__Fi
@@ -702,11 +662,8 @@ asm void dComIfGp_getNowLevel(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002EE60.s"
 }
 
-// dComIfGs_setSelectEquipClothes__FUc
-// dComIfGs_setSelectEquipClothes(unsigned char)
-asm void dComIfGs_setSelectEquipClothes(u8) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002EEB0.s"
+void dComIfGs_setSelectEquipClothes(u8 item) {
+    g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setSelectEquip(CLOTHING_BITFIELD, item);
 }
 
 // dComIfGs_setSelectEquipSword__FUc
@@ -730,16 +687,14 @@ asm void dComIfGs_setKeyNum(int, u8) {
     #include "d/d_com/d_com_inf_game/asm/func_8002F040.s"
 }
 
-// dComIfGs_setWarpItemData__FiPCc4cXyzsScUcUc
-// dComIfGs_setWarpItemData(int, const char*, cXyz, short, char, unsigned char, unsigned char)
-asm void dComIfGs_setWarpItemData(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002F0E0.s"
+void dComIfGs_setWarpItemData(int unk1, const char* stage, cXyz pos, s16 angle, s8 room, u8 unk2,
+                              u8 unk3) {
+    g_dComIfG_gameInfo.getPlay().setWarpItemData(stage, pos, angle, room, unk2, unk3);
 }
 
 // setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc
 // dComIfG_play_c::setWarpItemData(const char*, cXyz, short, char, unsigned char, unsigned char)
-asm void dComIfG_play_c_NS_setWarpItemData(void) {
+asm void dComIfG_play_c::setWarpItemData(const char*, cXyz, s16, s8, u8, u8) {
     nofralloc
     #include "d/d_com/d_com_inf_game/asm/func_8002F128.s"
 }
@@ -751,11 +706,10 @@ asm void dComIfGs_setWarpItemData_X1_(void) {
     #include "d/d_com/d_com_inf_game/asm/func_8002F19C.s"
 }
 
-// dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc
-// dComIfGs_setLastWarpMarkItemData(const char*, cXyz, short, char, unsigned char, unsigned char)
-asm void dComIfGs_setLastWarpMarkItemData(void) {
-    nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002F24C.s"
+void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8 room, u8 unk1,
+                                      u8 unk2) {
+    g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().setWarpItemData(stage, pos, angle,
+                                                                             room, unk1, unk2);
 }
 
 // dComIfGs_getWarpStageName__Fv
