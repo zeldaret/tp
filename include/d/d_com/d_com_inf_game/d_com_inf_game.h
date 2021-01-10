@@ -39,6 +39,7 @@ struct item_func {
 #pragma pack(push, 1)
 class dComIfG_camera_info_class {
 public:
+    dComIfG_camera_info_class(void);
 private:
     u8 field_0x0[12];
     cXyz field_0xc;
@@ -49,6 +50,7 @@ private:
 #pragma pack(push, 1)
 class dDlst_window_c {
 public:
+    dDlst_window_c(void);
 private:
     float view_port1;
     float view_port2;
@@ -69,6 +71,7 @@ class dComIfG_play_c {
 public:
     void ct(void);
     void init(void);
+    void drawSimpleModel(void);
     u32 getNowVibration();
     dStage_roomControl_c& getRoomControl() { return mRoomControl; }
     item_func& getGiveItem() { return give_item; }
@@ -136,6 +139,8 @@ private:
 #pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
+    dComIfG_inf_c(void);
+
     // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }
     u8& getPlayUnkHeart() { return play.getUnkHeart(); }

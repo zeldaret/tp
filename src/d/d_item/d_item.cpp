@@ -1,4 +1,5 @@
 #include "d/d_item/d_item/d_item.h"
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
 void execItemGet(u8 item_id) {

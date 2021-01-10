@@ -19,6 +19,7 @@ private:
 
 #pragma pack(push, 1)
 struct dEvent_manager_c {
+    dEvent_manager_c(void);
     /* 0x0000 */ dEvDtBase_c event_data_base;
     /* 0x0024 */ u8 field_0x24[0x64];
     /* 0x0088 */ u8 field_0x88[0x104];

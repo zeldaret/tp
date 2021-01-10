@@ -207,8 +207,8 @@ lbl_80046680:
 /* 80046680 000435C0  38 60 00 00 */	li r3, 0
 /* 80046684 000435C4  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c
-dEvent_manager_c:
+.global __ct__16dEvent_manager_cFv
+__ct__16dEvent_manager_cFv:
 /* 80046688 000435C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004668C 000435CC  7C 08 02 A6 */	mflr r0
 /* 80046690 000435D0  90 01 00 14 */	stw r0, 0x14(r1)

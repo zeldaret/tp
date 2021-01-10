@@ -3,8 +3,8 @@
 .section .text, "ax" # 8003a260
 
 
-.global dRes_info_c
-dRes_info_c:
+.global __ct__11dRes_info_cFv
+__ct__11dRes_info_cFv:
 /* 8003A260 000371A0  38 00 00 00 */	li r0, 0
 /* 8003A264 000371A4  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 8003A268 000371A8  90 03 00 10 */	stw r0, 0x10(r3)

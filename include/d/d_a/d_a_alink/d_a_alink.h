@@ -291,7 +291,7 @@ void daAlink_c_NS_checkEnemyGroup(void);
 int checkAttentionPosAngle__9daAlink_cFP4cXyz(cXyz*);
 void daAlink_c_NS_getDemoLookActor(void);
 void daAlink_c_NS_checkDemoMoveMode(void);
-bool isTransformLV__21dSv_player_status_b_cCFi(int);
+BOOL isTransformLV__21dSv_player_status_b_cCFi(int);
 void dKy_darkworld_check(void);
 void daAlink_c_NS_checkAttentionState(void);
 void daAlink_c_NS_checkUnderMove0BckNoArcWolf(void);

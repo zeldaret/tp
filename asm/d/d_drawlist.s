@@ -4781,8 +4781,8 @@ lbl_800560C4:
 /* 800560E8 00053028  38 21 00 20 */	addi r1, r1, 0x20
 /* 800560EC 0005302C  4E 80 00 20 */	blr 
 
-.global dDlst_list_c
-dDlst_list_c:
+.global __ct__12dDlst_list_cFv
+__ct__12dDlst_list_cFv:
 /* 800560F0 00053030  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800560F4 00053034  7C 08 02 A6 */	mflr r0
 /* 800560F8 00053038  90 01 00 14 */	stw r0, 0x14(r1)
