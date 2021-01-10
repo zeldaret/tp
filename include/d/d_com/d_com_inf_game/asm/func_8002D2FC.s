@@ -144,7 +144,7 @@ lbl_8002D4EC:
 /* 8002D500 0002A440  7F 06 C3 78 */ mr r6, r24
 /* 8002D504 0002A444  7F 47 D3 78 */ mr r7, r26
 /* 8002D508 0002A448  7F 88 E3 78 */ mr r8, r28
-/* 8002D50C 0002A44C  4B FF 69 1D */ bl dStage_nextStage_c_NS_set
+/* 8002D50C 0002A44C  4B FF 69 1D */ bl set__18dStage_nextStage_cFPCcScsScScUc
 /* 8002D510 0002A450  80 01 00 08 */ lwz r0, 8(r1)
 /* 8002D514 0002A454  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D518 0002A458  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

@@ -6641,4 +6641,5 @@ extern "C" {
     void setWarpItemData__27dSv_player_last_mark_info_cFPCcRC4cXyzsScUcUc(void);
     void set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc(void);
     void dComIfG_resLoad(void);
+    void set__18dStage_nextStage_cFPCcScsScScUc(void);
 }

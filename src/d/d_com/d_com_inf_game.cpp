@@ -4,6 +4,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_item/d_item/d_item.h"
 #include "global.h"
+#include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 
