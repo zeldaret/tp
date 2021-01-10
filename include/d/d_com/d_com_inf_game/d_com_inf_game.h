@@ -1,6 +1,7 @@
 #ifndef __D_COM_INF_GAME_H_
 #define __D_COM_INF_GAME_H_
 
+#include "SComponent/c_xyz/c_xyz.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
@@ -12,7 +13,6 @@
 #include "d/d_save/d_save/d_save.h"
 #include "d/d_stage/d_stage.h"
 #include "d/d_vibration/d_vibration.h"
-#include "SComponent/c_xyz/c_xyz.h"
 
 #pragma pack(push, 1)
 struct item_func {
@@ -41,6 +41,7 @@ struct item_func {
 class dComIfG_camera_info_class {
 public:
     dComIfG_camera_info_class(void);
+
 private:
     u8 field_0x0[12];
     cXyz field_0xc;
@@ -52,6 +53,7 @@ private:
 class dDlst_window_c {
 public:
     dDlst_window_c(void);
+
 private:
     float view_port1;
     float view_port2;

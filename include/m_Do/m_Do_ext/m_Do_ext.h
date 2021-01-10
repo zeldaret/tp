@@ -26,6 +26,7 @@ private:
 class mDoExt_btkAnm {
 public:
     mDoExt_btkAnm(void);
+
 private:
     mDoExt_baseAnm base_anm;
     u32 field_0x14;
@@ -36,6 +37,7 @@ private:
 class mDoExt_brkAnm {
 public:
     mDoExt_brkAnm(void);
+
 private:
     mDoExt_baseAnm mDoExt_baseAnm;
     u32 field_0x14;
@@ -46,6 +48,7 @@ private:
 class mDoExt_bpkAnm {
 public:
     mDoExt_bpkAnm(void);
+
 private:
     mDoExt_baseAnm mDoExt_baseAnm;
     u32 field_0x14;
@@ -56,6 +59,7 @@ private:
 class mDoExt_bckAnm {
 public:
     mDoExt_bckAnm(void);
+
 private:
     mDoExt_baseAnm base_anm;
     u8 field_0x14[4];

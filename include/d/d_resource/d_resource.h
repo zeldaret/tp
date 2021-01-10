@@ -11,6 +11,7 @@
 class dRes_info_c {
 public:
     dRes_info_c(void);
+
 private:
     u8 unk[0x24];
     // u8* name;
