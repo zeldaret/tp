@@ -251,8 +251,6 @@ public:
     stage_plight_info_class* getPlightInfo(void) const;
     int getPaletteNumInfo(void) const;
     int getPselectNumInfo(void) const;
-    
-    
 
     void initFileList2(void);
     void init(void);
