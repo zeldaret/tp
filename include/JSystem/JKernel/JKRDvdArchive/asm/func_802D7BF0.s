@@ -30,8 +30,8 @@ lbl_802D7C44:
 /* 802D7C58 002D4B98  80 03 00 04 */	lwz r0, 4(r3)
 /* 802D7C5C 002D4B9C  7C 04 02 14 */	add r0, r4, r0
 /* 802D7C60 002D4BA0  90 1D 00 28 */	stw r0, 0x28(r29)
-/* 802D7C64 002D4BA4  3C 60 80 43 */	lis r3, lbl_80434354@ha
-/* 802D7C68 002D4BA8  38 63 43 54 */	addi r3, r3, lbl_80434354@l
+/* 802D7C64 002D4BA4  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
+/* 802D7C68 002D4BA8  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
 /* 802D7C6C 002D4BAC  38 9D 00 18 */	addi r4, r29, 0x18
 /* 802D7C70 002D4BB0  48 00 43 81 */	bl prepend__10JSUPtrListFP10JSUPtrLink
 /* 802D7C74 002D4BB4  38 00 00 01 */	li r0, 1

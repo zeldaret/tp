@@ -24,7 +24,7 @@ lbl_800D2140:
 /* 800D2150 000CF090  28 00 00 00 */ cmplwi r0, 0
 /* 800D2154 000CF094  40 82 00 20 */ bne lbl_800D2174
 /* 800D2158 000CF098  7F E3 FB 78 */ mr r3, r31
-/* 800D215C 000CF09C  4B FE 05 5D */ bl daAlink_c_NS_swordSwingTrigger
+/* 800D215C 000CF09C  4B FE 05 5D */ bl swordSwingTrigger__9daAlink_cFv
 /* 800D2160 000CF0A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800D2164 000CF0A4  41 82 00 10 */ beq lbl_800D2174
 /* 800D2168 000CF0A8  80 1F 05 78 */ lwz r0, 0x578(r31)

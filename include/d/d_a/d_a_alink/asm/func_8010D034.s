@@ -24,7 +24,7 @@ lbl_8010D060:
 lbl_8010D08C:
 /* 8010D08C 00109FCC  7F C3 F3 78 */ mr r3, r30
 /* 8010D090 00109FD0  38 80 00 01 */ li r4, 1
-/* 8010D094 00109FD4  4B FA 61 D5 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 8010D094 00109FD4  4B FA 61 D5 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 8010D098 00109FD8  88 1E 2F 8D */ lbz r0, 0x2f8d(r30)
 /* 8010D09C 00109FDC  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8010D0A0 00109FE0  41 82 00 18 */ beq lbl_8010D0B8

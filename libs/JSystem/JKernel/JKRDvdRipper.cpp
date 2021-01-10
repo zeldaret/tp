@@ -2,6 +2,11 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
+static void decompSZS_subroutine(u8*, u8*);
+static u8* firstSrcData(void);
+static u8* nextSrcData(u8*);
+extern "C" void firstSrcData__Fv();
+
 asm void* JKRDvdRipper::loadToMainRAM(const char*, u8*, JKRExpandSwitch, u32, JKRHeap*,
                                       JKRDvdRipper::EAllocDirection, u32, JKRCompression*, u32*) {
     nofralloc
@@ -30,12 +35,12 @@ asm void decompSZS_subroutine(u8*, u8*) {
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802DA35C.s"
 }
 
-asm void firstSrcData(void) {
+asm u8* firstSrcData(void) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802DA60C.s"
 }
 
-asm void nextSrcData(u8*) {
+asm u8* nextSrcData(u8*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdRipper/asm/func_802DA6D8.s"
 }

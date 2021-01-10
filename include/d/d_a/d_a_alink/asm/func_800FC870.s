@@ -62,7 +62,7 @@ lbl_800FC93C:
 /* 800FC950 000F9890  41 82 00 10 */ beq lbl_800FC960
 /* 800FC954 000F9894  7F A3 EB 78 */ mr r3, r29
 /* 800FC958 000F9898  38 80 00 30 */ li r4, 0x30
-/* 800FC95C 000F989C  4B FB 69 0D */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800FC95C 000F989C  4B FB 69 0D */ bl setDoStatusEmphasys__9daAlink_cFUc
 lbl_800FC960:
 /* 800FC960 000F98A0  3B DD 1F D0 */ addi r30, r29, 0x1fd0
 /* 800FC964 000F98A4  7F C3 F3 78 */ mr r3, r30
@@ -142,7 +142,7 @@ lbl_800FCA44:
 /* 800FCA6C 000F99AC  40 82 00 14 */ bne lbl_800FCA80
 lbl_800FCA70:
 /* 800FCA70 000F99B0  7F A3 EB 78 */ mr r3, r29
-/* 800FCA74 000F99B4  4B FB 5C 45 */ bl daAlink_c_NS_swordSwingTrigger
+/* 800FCA74 000F99B4  4B FB 5C 45 */ bl swordSwingTrigger__9daAlink_cFv
 /* 800FCA78 000F99B8  2C 03 00 00 */ cmpwi r3, 0
 /* 800FCA7C 000F99BC  41 82 01 94 */ beq lbl_800FCC10
 lbl_800FCA80:

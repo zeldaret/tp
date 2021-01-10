@@ -1,5 +1,5 @@
-/* 802D1960 002CE8A0  3C 80 80 43 */	lis r4, lbl_8043428C@ha
-/* 802D1964 002CE8A4  38 84 42 8C */	addi r4, r4, lbl_8043428C@l
+/* 802D1960 002CE8A0  3C 80 80 43 */	lis r4, sThreadList__9JKRThread@ha
+/* 802D1964 002CE8A4  38 84 42 8C */	addi r4, r4, sThreadList__9JKRThread@l
 /* 802D1968 002CE8A8  80 84 00 00 */	lwz r4, 0(r4)
 /* 802D196C 002CE8AC  48 00 00 20 */	b lbl_802D198C
 lbl_802D1970:

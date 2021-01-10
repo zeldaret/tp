@@ -59,7 +59,7 @@ lbl_800B7CB8:
 /* 800B7CD0 000B4C10  7F 83 E3 78 */ mr r3, r28
 /* 800B7CD4 000B4C14  7F E0 F0 30 */ slw r0, r31, r30
 /* 800B7CD8 000B4C18  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 800B7CDC 000B4C1C  4B FF A8 F1 */ bl daAlink_c_NS_itemTriggerCheck
+/* 800B7CDC 000B4C1C  4B FF A8 F1 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800B7CE0 000B4C20  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7CE4 000B4C24  41 82 00 2C */ beq lbl_800B7D10
 /* 800B7CE8 000B4C28  57 C0 08 3C */ slwi r0, r30, 1

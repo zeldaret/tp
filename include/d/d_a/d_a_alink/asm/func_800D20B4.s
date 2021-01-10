@@ -6,7 +6,7 @@
 /* 800D20C8 000CF008  A0 03 2F DC */ lhz r0, 0x2fdc(r3)
 /* 800D20CC 000CF00C  28 00 01 03 */ cmplwi r0, 0x103
 /* 800D20D0 000CF010  40 82 00 14 */ bne lbl_800D20E4
-/* 800D20D4 000CF014  4B FE 05 E5 */ bl daAlink_c_NS_swordSwingTrigger
+/* 800D20D4 000CF014  4B FE 05 E5 */ bl swordSwingTrigger__9daAlink_cFv
 /* 800D20D8 000CF018  2C 03 00 00 */ cmpwi r3, 0
 /* 800D20DC 000CF01C  41 82 00 08 */ beq lbl_800D20E4
 /* 800D20E0 000CF020  3B E0 00 01 */ li r31, 1

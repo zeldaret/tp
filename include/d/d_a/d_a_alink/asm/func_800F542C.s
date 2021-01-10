@@ -46,7 +46,7 @@ lbl_800F546C:
 /* 800F54D8 000F2418  40 82 00 10 */ bne lbl_800F54E8
 /* 800F54DC 000F241C  7F E3 FB 78 */ mr r3, r31
 /* 800F54E0 000F2420  38 80 00 16 */ li r4, 0x16
-/* 800F54E4 000F2424  4B FB DD 85 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800F54E4 000F2424  4B FB DD 85 */ bl setDoStatusEmphasys__9daAlink_cFUc
 lbl_800F54E8:
 /* 800F54E8 000F2428  7F E3 FB 78 */ mr r3, r31
 /* 800F54EC 000F242C  38 80 00 00 */ li r4, 0

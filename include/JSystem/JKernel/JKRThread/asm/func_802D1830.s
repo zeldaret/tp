@@ -15,8 +15,8 @@
 /* 802D1868 002CE7A8  80 9F 00 50 */	lwz r4, 0x50(r31)
 /* 802D186C 002CE7AC  80 BF 00 54 */	lwz r5, 0x54(r31)
 /* 802D1870 002CE7B0  48 06 D1 25 */	bl OSInitMessageQueue
-/* 802D1874 002CE7B4  3C 60 80 43 */	lis r3, lbl_8043428C@ha
-/* 802D1878 002CE7B8  38 63 42 8C */	addi r3, r3, lbl_8043428C@l
+/* 802D1874 002CE7B4  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
+/* 802D1878 002CE7B8  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l
 /* 802D187C 002CE7BC  38 9F 00 18 */	addi r4, r31, 0x18
 /* 802D1880 002CE7C0  48 00 A6 CD */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802D1884 002CE7C4  38 00 00 00 */	li r0, 0

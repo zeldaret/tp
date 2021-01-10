@@ -3041,11 +3041,11 @@ lbl_803CC100:
 .global lbl_803CC114
 lbl_803CC114:
 	.incbin "baserom.dol", 0x3C9114, 0x14
-.global lbl_803CC128
-lbl_803CC128:
+.global sMessageBuffer__7JKRAram
+sMessageBuffer__7JKRAram:
 	.incbin "baserom.dol", 0x3C9128, 0x10
-.global lbl_803CC138
-lbl_803CC138:
+.global sMessageQueue__7JKRAram
+sMessageQueue__7JKRAram:
 	.incbin "baserom.dol", 0x3C9138, 0x20
 .global lbl_803CC158
 lbl_803CC158:
@@ -3056,11 +3056,11 @@ lbl_803CC168:
 .global lbl_803CC178
 lbl_803CC178:
 	.incbin "baserom.dol", 0x3C9178, 0x10
-.global lbl_803CC188
-lbl_803CC188:
+.global sMessageBuffer__13JKRAramStream
+sMessageBuffer__13JKRAramStream:
 	.incbin "baserom.dol", 0x3C9188, 0x10
-.global lbl_803CC198
-lbl_803CC198:
+.global sMessageQueue__13JKRAramStream
+sMessageQueue__13JKRAramStream:
 	.incbin "baserom.dol", 0x3C9198, 0x20
 .global lbl_803CC1B8
 lbl_803CC1B8:

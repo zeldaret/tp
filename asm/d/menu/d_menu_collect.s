@@ -3325,7 +3325,7 @@ lbl_801B2D34:
 /* 801B2D80 001AFCC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801B2D84 001AFCC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801B2D88 001AFCC8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 801B2D8C 001AFCCC  4B F8 D2 D9 */	bl daAlink_c_NS_setShieldChange
+/* 801B2D8C 001AFCCC  4B F8 D2 D9 */	bl setShieldChange__9daAlink_cFv
 /* 801B2D90 001AFCD0  38 00 00 4F */	li r0, 0x4f
 /* 801B2D94 001AFCD4  90 01 00 10 */	stw r0, 0x10(r1)
 /* 801B2D98 001AFCD8  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -3361,7 +3361,7 @@ lbl_801B2DCC:
 /* 801B2E0C 001AFD4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801B2E10 001AFD50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801B2E14 001AFD54  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 801B2E18 001AFD58  4B F8 D2 4D */	bl daAlink_c_NS_setShieldChange
+/* 801B2E18 001AFD58  4B F8 D2 4D */	bl setShieldChange__9daAlink_cFv
 /* 801B2E1C 001AFD5C  38 00 00 4F */	li r0, 0x4f
 /* 801B2E20 001AFD60  90 01 00 0C */	stw r0, 0xc(r1)
 /* 801B2E24 001AFD64  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -3392,7 +3392,7 @@ lbl_801B2E58:
 /* 801B2E84 001AFDC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801B2E88 001AFDC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801B2E8C 001AFDCC  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 801B2E90 001AFDD0  4B F8 D1 D5 */	bl daAlink_c_NS_setShieldChange
+/* 801B2E90 001AFDD0  4B F8 D1 D5 */	bl setShieldChange__9daAlink_cFv
 /* 801B2E94 001AFDD4  38 00 00 4F */	li r0, 0x4f
 /* 801B2E98 001AFDD8  90 01 00 08 */	stw r0, 8(r1)
 /* 801B2E9C 001AFDDC  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)

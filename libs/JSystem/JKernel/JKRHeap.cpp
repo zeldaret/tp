@@ -14,10 +14,10 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     } else {
         parent->mChildTree.appendChild(&mChildTree);
 
-        if (lbl_80451370 == lbl_80451378) {
+        if (getSystemHeap() == getRootHeap()) {
             becomeSystemHeap();
         }
-        if (lbl_80451374 == lbl_80451378) {
+        if (getCurrentHeap() == getRootHeap()) {
             becomeCurrentHeap();
         }
     }
@@ -33,16 +33,15 @@ JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
 }
 
 // using the wrong register for storing the results
-// lbl_80451370 = systemHeap;
 #ifdef NONMATCHING
 JKRHeap::~JKRHeap() {
     JSUTree<JKRHeap>* parent = mChildTree.getParent();
     parent->removeChild(&mChildTree);
 
-    JSUTree<JKRHeap>* nextRootHeap = lbl_80451378->mChildTree.getFirstChild();
+    JSUTree<JKRHeap>* nextRootHeap = getRootHeap()->mChildTree.getFirstChild();
 
-    JKRHeap* rootHeap = lbl_80451378;
-    JKRHeap* currentHeap = lbl_80451374;
+    JKRHeap* rootHeap = getRootHeap();
+    JKRHeap* currentHeap = getCurrentHeap();
     if (currentHeap == this) {
         if (!nextRootHeap) {
             currentHeap = rootHeap;
@@ -50,9 +49,9 @@ JKRHeap::~JKRHeap() {
             currentHeap = nextRootHeap->getObject();
         }
     }
-    lbl_80451374 = currentHeap;
+    setCurrentHeap(currentHeap);
 
-    JKRHeap* systemHeap = lbl_80451370;
+    JKRHeap* systemHeap = getSystemHeap();
     if (systemHeap == this) {
         if (!nextRootHeap) {
             systemHeap = rootHeap;
@@ -60,7 +59,7 @@ JKRHeap::~JKRHeap() {
             systemHeap = nextRootHeap->getObject();
         }
     }
-    lbl_80451370 = systemHeap;
+    setSystemHeap(systemHeap);
 }
 #else
 asm JKRHeap::~JKRHeap() {
@@ -80,13 +79,14 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
         return false;
 
     ram = OSInitAlloc(low, high, param_3);
-    ram_start = (ram + 0x1fU & 0xffffffe0);
-    ram_end = (high & 0xffffffe0);
-    lbl_80451384 = OS_GLOBAL_ADDR(void, 0x80000000);
-    lbl_80451388 = (void*)ram_start;
-    lbl_8045138C = (void*)ram_start;
-    lbl_80451390 = (void*)ram_end;
-    lbl_80451394 = OS_GLOBAL(u32, 0x80000028);
+    ram_start = ALIGN_NEXT(ram, 0x20);
+    ram_end = ALIGN_PREV(high, 0x20);
+    GLOBAL_MEMORY* globalMemory = (GLOBAL_MEMORY*)OSPhysicalToCached(0);
+    mCodeStart = globalMemory;
+    mCodeEnd = (void*)ram_start;
+    mUserRamStart = (void*)ram_start;
+    mUserRamEnd = (void*)ram_end;
+    mMemorySize = globalMemory->memory_size;
     OSSetArenaLo(ram_end);
     OSSetArenaHi(ram_end);
     *memory = (char*)ram_start;
@@ -95,14 +95,14 @@ bool JKRHeap::initArena(char** memory, u32* size, int param_3) {
 }
 
 JKRHeap* JKRHeap::becomeSystemHeap() {
-    JKRHeap* prev = lbl_80451370;
-    lbl_80451370 = this;
+    JKRHeap* prev = JKRHeap::getSystemHeap();
+    setSystemHeap(this);
     return prev;
 }
 
 JKRHeap* JKRHeap::becomeCurrentHeap() {
-    JKRHeap* prev = lbl_80451374;
-    lbl_80451374 = this;
+    JKRHeap* prev = getCurrentHeap();
+    setCurrentHeap(this);
     return prev;
 }
 
@@ -115,8 +115,8 @@ void* JKRHeap::alloc(u32 size, int alignment, JKRHeap* heap) {
         return heap->alloc(size, alignment);
     }
 
-    if (lbl_80451374 != NULL) {
-        return lbl_80451374->alloc(size, alignment);
+    if (getCurrentHeap() != NULL) {
+        return getCurrentHeap()->alloc(size, alignment);
     }
 
     return NULL;
@@ -216,15 +216,16 @@ asm u32 JKRHeap::getMaxAllocatableSize(int alignment) const {
 #endif
 
 JKRHeap* JKRHeap::findFromRoot(void* ptr) {
-    if (lbl_80451378 == NULL) {
+    JKRHeap* rootHeap = getRootHeap();
+    if (rootHeap == NULL) {
         return NULL;
     }
 
-    if (lbl_80451378->getStartAddr() <= ptr && ptr < lbl_80451378->getEndAddr()) {
-        return lbl_80451378->find(ptr);
+    if (rootHeap->getStartAddr() <= ptr && ptr < rootHeap->getEndAddr()) {
+        return rootHeap->find(ptr);
     }
 
-    return lbl_80451378->findAllHeap(ptr);
+    return rootHeap->findAllHeap(ptr);
 }
 
 JKRHeap* JKRHeap::find(void* ptr) const {
@@ -241,6 +242,7 @@ JKRHeap* JKRHeap::find(void* ptr) const {
             }
         }
 
+        // todo: not sure about this... casting away const for now.
         return (JKRHeap*)this;
     }
 
@@ -261,7 +263,7 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
     }
 
     if (getStartAddr() <= ptr && ptr < getEndAddr()) {
-        // not sure about this... casting away const for now.
+        // todo: not sure about this... casting away const for now.
         return (JKRHeap*)this;
     }
 
@@ -306,13 +308,11 @@ void JKRHeap::dispose(void* begin, void* end) {
 // missing stack variable?
 #ifdef NONMATCHING
 void JKRHeap::dispose() {
-    JKRDisposer* disposer;
+    const JSUList<JKRDisposer>& list = mDisposerList;
     JSUListIterator<JKRDisposer> iterator;
-
-    JSUList<JKRDisposer>* list = &mDisposerList;
-    while (iterator = list->getFirst(), iterator != list->getEnd()) {
-        disposer = iterator.getObject();
-        disposer->~JKRDisposer();
+    while (list.getFirst() != list.getEnd()) {
+        iterator = list.getFirst();
+        iterator->~JKRDisposer();
     }
 }
 #else

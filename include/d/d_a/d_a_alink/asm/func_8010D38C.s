@@ -87,7 +87,7 @@ lbl_8010D4BC:
 lbl_8010D4D4:
 /* 8010D4D4 0010A414  7F E3 FB 78 */ mr r3, r31
 /* 8010D4D8 0010A418  38 80 00 01 */ li r4, 1
-/* 8010D4DC 0010A41C  4B FA 5D 8D */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 8010D4DC 0010A41C  4B FA 5D 8D */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 8010D4E0 0010A420  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 8010D4E4 0010A424  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8010D4E8 0010A428  41 82 00 18 */ beq lbl_8010D500
@@ -113,7 +113,7 @@ lbl_8010D52C:
 /* 8010D530 0010A470  2C 00 00 00 */ cmpwi r0, 0
 /* 8010D534 0010A474  41 82 00 1C */ beq lbl_8010D550
 /* 8010D538 0010A478  7F E3 FB 78 */ mr r3, r31
-/* 8010D53C 0010A47C  4B FA 50 C9 */ bl daAlink_c_NS_itemButton
+/* 8010D53C 0010A47C  4B FA 50 C9 */ bl itemButton__9daAlink_cFv
 /* 8010D540 0010A480  2C 03 00 00 */ cmpwi r3, 0
 /* 8010D544 0010A484  40 82 00 0C */ bne lbl_8010D550
 /* 8010D548 0010A488  38 00 00 00 */ li r0, 0

@@ -25,7 +25,7 @@ lbl_800F71AC:
 /* 800F71B0 000F40F0  41 82 00 10 */ beq lbl_800F71C0
 /* 800F71B4 000F40F4  7F E3 FB 78 */ mr r3, r31
 /* 800F71B8 000F40F8  38 80 00 12 */ li r4, 0x12
-/* 800F71BC 000F40FC  4B FB C0 95 */ bl daAlink_c_NS_setDoStatus
+/* 800F71BC 000F40FC  4B FB C0 95 */ bl setDoStatus__9daAlink_cFUc
 lbl_800F71C0:
 /* 800F71C0 000F4100  7F E3 FB 78 */ mr r3, r31
 /* 800F71C4 000F4104  4B FF D6 15 */ bl daAlink_c_NS_canoeCommon

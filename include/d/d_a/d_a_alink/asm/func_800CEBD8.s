@@ -6,7 +6,7 @@
 /* 800CEBEC 000CBB2C  7C 7E 1B 78 */ mr r30, r3
 /* 800CEBF0 000CBB30  7C 9F 23 78 */ mr r31, r4
 /* 800CEBF4 000CBB34  38 80 00 12 */ li r4, 0x12
-/* 800CEBF8 000CBB38  4B FE 46 59 */ bl daAlink_c_NS_setDoStatus
+/* 800CEBF8 000CBB38  4B FE 46 59 */ bl setDoStatus__9daAlink_cFUc
 /* 800CEBFC 000CBB3C  7F C3 F3 78 */ mr r3, r30
 /* 800CEC00 000CBB40  48 04 70 21 */ bl daAlink_c_NS_checkEventRun
 /* 800CEC04 000CBB44  2C 03 00 00 */ cmpwi r3, 0

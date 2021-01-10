@@ -1,4 +1,4 @@
-/* fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUl14JKRCompression __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource_subroutine(unsigned char *, unsigned long, unsigned char *, unsigned long, int) */
+/* fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection::fetchResource_subroutine(unsigned char *, unsigned long, unsigned char *, unsigned long, int) */
 /* JKRMemArchive_NS_fetchResource_subroutine */
 /* 802D6F5C 002D3E9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D6F60 002D3EA0  7C 08 02 A6 */	mflr r0
