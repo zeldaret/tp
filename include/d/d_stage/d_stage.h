@@ -344,6 +344,7 @@ private:
 #pragma pack(push, 1)
 class dStage_nextStage_c {
 public:
+void set(const char*, s8, s16, s8, s8, u8);
 private:
     u8 field_0x0;
     u8 field_0x1;
@@ -359,7 +360,7 @@ private:
     u8 field_0xb;
     u8 field_0xc;
     u8 field_0xd;
-    u8 enabled;
+    s8 enabled;
     u8 wipe;
     u8 wipe_speed;
 };
@@ -368,6 +369,7 @@ private:
 #pragma pack(push, 1)
 class dStage_startStage_c {
 public:
+void set(const char*, s8, s16, s8);
 private:
     /* 0x0 */ char mStage[8];
     /* 0x8 */ s16 mPoint;

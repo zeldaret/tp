@@ -4,15 +4,32 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
+#include "m_Do/m_Do_Reset/m_Do_Reset.h"
 
-extern "C" {
 // set__18dStage_nextStage_cFPCcScsScScUc
-// dStage_nextStage_c::set(const char*, char, short, char, char, unsigned char)
-asm void dStage_nextStage_c_NS_set(void) {
+//
+#ifdef NONMATCHING
+void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4, s8 param_5,
+                             u8 param_6) {
+    if (!enabled) {
+        enabled = 1;
+        wipe = param_5;
+        wipe_speed = param_6;
+        set__19dStage_startStage_cFPCcScsSc(param_1, param_2, param_3, param_4);
+        if (!strcmp(param_1, lbl_80378A50)) {
+            m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 = 1;
+        }
+    }
+}
+#else
+asm void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4,
+                                 s8 param_5, u8 param_6) {
     nofralloc
 #include "d/d_stage/asm/func_80023E28.s"
 }
+#endif
 
+extern "C" {
 // dStage_SetErrorRoom__Fv
 // dStage_SetErrorRoom(void)
 asm void dStage_SetErrorRoom(void) {
@@ -85,11 +102,11 @@ asm void func_80024174(void) {
 #include "d/d_stage/asm/func_80024174.s"
 }
 
-// set__19dStage_startStage_cFPCcScsSc
-// dStage_startStage_c::set(const char*, char, short, char)
-asm void dStage_startStage_c_NS_set(void) {
-    nofralloc
-#include "d/d_stage/asm/func_8002419C.s"
+void dStage_startStage_c::set(const char* i_Stage, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
+    strcpy(mStage,i_Stage);
+    mRoomNo = i_RoomNo;
+    mPoint = i_Point;
+    mLayer = i_Layer;
 }
 
 // init__20dStage_roomControl_cFv
