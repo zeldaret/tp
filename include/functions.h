@@ -6177,7 +6177,7 @@ void dStage_KeepDoorInfoInit(void);
 void dStage_KeepDoorInfoProc(void);
 void dStage_KeepDoorInfo_NS_dtor(void);
 void dStage_RoomKeepDoorInfoProc(void);
-void dStage_SetErrorRoom(void);
+//void dStage_SetErrorRoom(void);
 void dStage_SetErrorStage(void);
 void dStage_actorCreate(void);
 void dStage_actorInit(void);

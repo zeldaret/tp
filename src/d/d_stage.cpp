@@ -11,11 +11,12 @@
 #ifdef NONMATCHING
 void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4, s8 param_5,
                              u8 param_6) {
+                                 
     if (!enabled) {
         enabled = 1;
         wipe = param_5;
         wipe_speed = param_6;
-        set__19dStage_startStage_cFPCcScsSc(param_1, param_2, param_3, param_4);
+        dStage_startStage_c::set(param_1, param_2, param_3, param_4);
         if (!strcmp(param_1, lbl_80378A50)) {
             m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 = 1;
         }
@@ -29,14 +30,11 @@ asm void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s
 }
 #endif
 
-extern "C" {
-// dStage_SetErrorRoom__Fv
-// dStage_SetErrorRoom(void)
-asm void dStage_SetErrorRoom(void) {
-    nofralloc
-#include "d/d_stage/asm/func_80023E94.s"
+void dStage_SetErrorRoom(void) {
+    OSReport_Error(lbl_80378A50+8);
 }
 
+extern "C" {
 // dStage_SetErrorStage__Fv
 // dStage_SetErrorStage(void)
 asm void dStage_SetErrorStage(void) {
