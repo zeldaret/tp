@@ -206,33 +206,57 @@ private:
 
 class dStage_roomDt_c {
 public:
-    stage_pure_lightvec_info_class* getLightVecInfo(void);
-    int getLightVecInfoNum(void);
+    stage_pure_lightvec_info_class* getLightVecInfo(void) const;
+    int getLightVecInfoNum(void) const;
     stage_map_info_class* getMapInfo(void) const;
     stage_map_info_dummy_class* getMapInfoBase(void) const;
     int getMapPath(void);
-    stage_vrbox_info_class* getVrboxInfo(void);
-    stage_vrboxcol_info_class* getVrboxcolInfo(void);
-    dStage_FileList2_dt_c* getFileList2Info(void);
-    dStage_FileList_dt_c* getFileListInfo(void);
-    stage_actor_class* getPlayer(void);
-    dStage_dPnt_c* getPnt2Info(void);
-    dStage_dPath_c* getPath2Info(void);
+    stage_vrbox_info_class* getVrboxInfo(void) const;
+    stage_vrboxcol_info_class* getVrboxcolInfo(void) const;
+    dStage_FileList2_dt_c* getFileList2Info(void) const;
+    dStage_FileList_dt_c* getFileListInfo(void) const;
+    stage_actor_class* getPlayer(void) const;
+    dStage_dPnt_c* getPnt2Inf(void) const;
+    dStage_dPath_c* getPath2Inf(void) const;
     stage_camera_class* getCamera(void) const;
     stage_arrow_class* getArrow(void) const;
     dStage_MapEventInfo_c* getMapEventInfo(void) const;
-    dStage_SoundInfo_c* getSoundInfo(void) const;
+    dStage_SoundInfo_c* getSoundInf(void) const;
     dStage_SoundInfo_c* getSoundInfCL(void) const;
     stage_scls_info_dummy_class* getSclsInfo(void) const;
     dStage_Lbnk_c* getLbnk(void) const;
-    stage_tresure_class* getTresure(void);
-    stage_tgsc_class* getDrTg(void);
-    stage_tgsc_class* getDoor(void);
-    dStage_FloorInfo_c* getFloorInfo(void);
+    stage_tresure_class* getTresure(void) const;
+    stage_tgsc_class* getDrTg(void) const;
+    stage_tgsc_class* getDoor(void) const;
+    dStage_FloorInfo_c* getFloorInfo(void) const;
     u16 getPlayerNum(void) const;
-    int getVrboxNumInfo(void);
-    int getVrboxcolNumInfo(void);
+    int getEnvrNumInfo(void) const;
+    int getVrboxNumInfo(void) const;
+    int getVrboxcolNumInfo(void) const;
     int getMapInfo2(int) const;
+    int getPlightNumInfo(void) const;
+    stage_stag_info_class* getStagInfo(void) const;
+    dStage_dPnt_c* getPntInf(void) const;
+    dStage_dPath_c* getPathInf(void) const;
+    dStage_MemoryConfig_c* getMemoryConfig(void) const;
+    dStage_MemoryMap_c* getMemoryMap(void) const;
+    dStage_Multi_c* getMulti(void) const;
+    dStage_Multi_c* getOldMulti(void) const;
+    dStage_DMap_c* getDMap(void) const;
+    dStage_Elst_c* getElst(void);
+    roomRead_class* getRoom(void) const;
+    stage_palette_info_class* getPaletteInfo(void) const;
+    stage_pselect_info_class* getPselectInfo(void) const;
+    stage_envr_info_class* getEnvrInfo(void) const;
+    stage_plight_info_class* getPlightInfo(void) const;
+    int getPaletteNumInfo(void) const;
+    int getPselectNumInfo(void) const;
+    
+    
+
+    void initFileList2(void);
+    void init(void);
+
     void setLightVecInfo(stage_pure_lightvec_info_class*);
     void setLightVecInfoNum(int);
     void setMapInfo(stage_map_info_class*);
@@ -247,7 +271,7 @@ public:
     void setCamera(stage_camera_class*);
     void setArrow(stage_arrow_class*);
     void setMapEventInfo(dStage_MapEventInfo_c*);
-    void setSoundInfo(dStage_SoundInfo_c*);
+    void setSoundInf(dStage_SoundInfo_c*);
     void setSoundInfCL(dStage_SoundInfo_c*);
     void setSclsInfo(stage_scls_info_dummy_class*);
     void setLbnk(dStage_Lbnk_c*);
@@ -258,6 +282,28 @@ public:
     void setPlayerNum(u16);
     void setVrboxNumInfo(int);
     void setVrboxcolNumInfo(int);
+    void setStagInfo(stage_stag_info_class*);
+    void setPntInfo(dStage_dPnt_c*);
+    void setPathInfo(dStage_dPath_c*);
+    void setPnt2Info(dStage_dPnt_c*);
+    void setPlightNumInfo(int);
+    void setMemoryConfig(dStage_MemoryConfig_c*);
+    void setMemoryMap(dStage_MemoryMap_c*);
+    void setMulti(dStage_Multi_c*);
+    void setOldMulti(void);
+    void resetOldMulti(void);
+    void setTresure(stage_tresure_class*);
+    void setDMap(dStage_DMap_c*);
+    void setMapPath(void*);
+    void setElst(dStage_Elst_c*);
+    void setRoom(roomRead_class*);
+    void setPaletteInfo(stage_palette_info_class*);
+    void setPselectInfo(stage_pselect_info_class*);
+    void setEnvrInfo(stage_envr_info_class*);
+    void setPlightInfo(stage_plight_info_class*);
+    void setPaletteNumInfo(int);
+    void setPselectNumInfo(int);
+    void setEnvrNumInfo(int);
 
 private:
     u8 field_0x0[0x8];

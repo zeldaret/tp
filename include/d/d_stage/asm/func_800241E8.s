@@ -32,7 +32,7 @@ lbl_8002424C:
 /* 80024258 00021198  7D 89 03 A6 */ mtctr r12
 /* 8002425C 0002119C  4E 80 04 21 */ bctrl
 /* 80024260 000211A0  7F C3 F3 78 */ mr r3, r30
-/* 80024264 000211A4  48 00 0A 45 */ bl dStage_roomDt_c_NS_initFileList2
+/* 80024264 000211A4  48 00 0A 45 */ bl initFileList2__15dStage_roomDt_cFv
 /* 80024268 000211A8  38 00 00 00 */ li r0, 0
 /* 8002426C 000211AC  7C 7F E2 14 */ add r3, r31, r28
 /* 80024270 000211B0  98 03 03 F4 */ stb r0, 0x3f4(r3)

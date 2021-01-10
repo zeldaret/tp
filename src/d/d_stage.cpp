@@ -235,23 +235,23 @@ asm void dStage_stageDt_c::init(void) {
 #include "d/d_stage/asm/func_80024C1C.s"
 }
 
-// initFileList2__15dStage_roomDt_cFv
-// dStage_roomDt_c::initFileList2(void)
-asm void dStage_roomDt_c_NS_initFileList2(void) {
+// 
+//
+asm void dStage_roomDt_c::initFileList2(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024CA8.s"
 }
 
-// init__15dStage_roomDt_cFv
-// dStage_roomDt_c::init(void)
-asm void func_80024CB4(void) {
+// 
+//
+asm void dStage_roomDt_c::init(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024CB4.s"
 }
 
 // dStage_roomInit__Fi
 // dStage_roomInit(int)
-asm void dStage_roomInit(void) {
+asm void func_80024D10(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024D10.s"
 }
@@ -303,9 +303,7 @@ asm void dStage_cameraCreate(void) {
 #include "d/d_stage/asm/func_80024F98.s"
 }
 
-// getPlayer__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPlayer(void) const
-asm void func_80025004(void) {
+asm stage_actor_class* dStage_roomDt_c::getPlayer(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80025004.s"
 }
@@ -343,16 +341,16 @@ asm void func_8002533C(void) {
 #include "d/d_stage/asm/func_8002533C.s"
 }
 
-// getMapInfo2__15dStage_roomDt_cCFi
-// dStage_roomDt_c::getMapInfo2(int) const
-asm void func_80025370(void) {
+// 
+// 
+asm int dStage_roomDt_c::getMapInfo2(int) const {
     nofralloc
 #include "d/d_stage/asm/func_80025370.s"
 }
 
-// getMapInfoBase__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMapInfoBase(void) const
-asm void func_800253FC(void) {
+// 
+// 
+asm stage_map_info_dummy_class* dStage_roomDt_c::getMapInfoBase(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800253FC.s"
 }
@@ -830,9 +828,9 @@ asm void dStage_changeScene(void) {
 #include "d/d_stage/asm/func_80027170.s"
 }
 
-// getSclsInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getSclsInfo(void) const
-asm void func_800272E0(void) {
+// 
+// 
+asm stage_scls_info_dummy_class* dStage_roomDt_c::getSclsInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800272E0.s"
 }
@@ -856,597 +854,427 @@ asm void dStage_restartRoom(void) {
 #include "d/d_stage/asm/func_800274B0.s"
 }
 
-// setCamera__15dStage_roomDt_cFP18stage_camera_class
-// dStage_roomDt_c::setCamera(stage_camera_class*)
-asm void func_80027524(void) {
+asm void dStage_roomDt_c::setCamera(stage_camera_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027524.s"
 }
 
-// getCamera__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getCamera(void) const
-asm void func_8002752C(void) {
+asm stage_camera_class* dStage_roomDt_c::getCamera(void) const {
     nofralloc
 #include "d/d_stage/asm/func_8002752C.s"
 }
 
-// setArrow__15dStage_roomDt_cFP17stage_arrow_class
-// dStage_roomDt_c::setArrow(stage_arrow_class*)
-asm void func_80027534(void) {
+asm void dStage_roomDt_c::setArrow(stage_arrow_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027534.s"
 }
 
-// getArrow__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getArrow(void) const
-asm void func_8002753C(void) {
+asm stage_arrow_class* dStage_roomDt_c::getArrow(void) const {
     nofralloc
 #include "d/d_stage/asm/func_8002753C.s"
 }
 
-// setPlayer__15dStage_roomDt_cFP17stage_actor_class
-// dStage_roomDt_c::setPlayer(stage_actor_class*)
-asm void func_80027544(void) {
+asm void dStage_roomDt_c::setPlayer(stage_actor_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027544.s"
 }
 
-// setPlayerNum__15dStage_roomDt_cFUs
-// dStage_roomDt_c::setPlayerNum(unsigned short)
-asm void func_8002754C(void) {
+asm void dStage_roomDt_c::setPlayerNum(unsigned short) {
     nofralloc
 #include "d/d_stage/asm/func_8002754C.s"
 }
 
-// getPlayerNum__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPlayerNum(void) const
-asm void func_80027554(void) {
+asm u16 dStage_roomDt_c::getPlayerNum(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027554.s"
 }
 
-// setRoom__15dStage_roomDt_cFP14roomRead_class
-// dStage_roomDt_c::setRoom(roomRead_class*)
-asm void func_8002755C(void) {
+asm void dStage_roomDt_c::setRoom(roomRead_class*) {
     nofralloc
 #include "d/d_stage/asm/func_8002755C.s"
 }
 
-// getRoom__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getRoom(void) const
-asm void func_80027590(void) {
+asm roomRead_class* dStage_roomDt_c::getRoom(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027590.s"
 }
 
-// setMapInfo__15dStage_roomDt_cFP20stage_map_info_class
-// dStage_roomDt_c::setMapInfo(stage_map_info_class*)
-asm void func_800275C4(void) {
+asm void dStage_roomDt_c::setMapInfo(stage_map_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800275C4.s"
 }
 
-// getMapInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMapInfo(void) const
-asm void func_800275CC(void) {
+asm stage_map_info_class* dStage_roomDt_c::getMapInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800275CC.s"
 }
 
-// setMapInfoBase__15dStage_roomDt_cFP26stage_map_info_dummy_class
-// dStage_roomDt_c::setMapInfoBase(stage_map_info_dummy_class*)
-asm void func_800275D4(void) {
+asm void dStage_roomDt_c::setMapInfoBase(stage_map_info_dummy_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800275D4.s"
 }
 
-// setPaletteInfo__15dStage_roomDt_cFP24stage_palette_info_class
-// dStage_roomDt_c::setPaletteInfo(stage_palette_info_class*)
-asm void func_800275DC(void) {
+asm void dStage_roomDt_c::setPaletteInfo(stage_palette_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800275DC.s"
 }
 
-// getPaletteInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPaletteInfo(void) const
-asm void func_80027610(void) {
+asm stage_palette_info_class* dStage_roomDt_c::getPaletteInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027610.s"
 }
 
-// setPselectInfo__15dStage_roomDt_cFP24stage_pselect_info_class
-// dStage_roomDt_c::setPselectInfo(stage_pselect_info_class*)
-asm void func_80027644(void) {
+asm void dStage_roomDt_c::setPselectInfo(stage_pselect_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027644.s"
 }
 
-// getPselectInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPselectInfo(void) const
-asm void func_80027678(void) {
+asm stage_pselect_info_class* dStage_roomDt_c::getPselectInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027678.s"
 }
 
-// setEnvrInfo__15dStage_roomDt_cFP21stage_envr_info_class
-// dStage_roomDt_c::setEnvrInfo(stage_envr_info_class*)
-asm void func_800276AC(void) {
+asm void dStage_roomDt_c::setEnvrInfo(stage_envr_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800276AC.s"
 }
 
-// getEnvrInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getEnvrInfo(void) const
-asm void func_800276E0(void) {
+asm stage_envr_info_class* dStage_roomDt_c::getEnvrInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800276E0.s"
 }
 
-// setVrboxInfo__15dStage_roomDt_cFP22stage_vrbox_info_class
-// dStage_roomDt_c::setVrboxInfo(stage_vrbox_info_class*)
-asm void func_80027714(void) {
+asm void dStage_roomDt_c::setVrboxInfo(stage_vrbox_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027714.s"
 }
 
-// getVrboxInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getVrboxInfo(void) const
-asm void func_8002771C(void) {
+asm stage_vrbox_info_class* dStage_roomDt_c::getVrboxInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_8002771C.s"
 }
 
-// setVrboxcolInfo__15dStage_roomDt_cFP25stage_vrboxcol_info_class
-// dStage_roomDt_c::setVrboxcolInfo(stage_vrboxcol_info_class*)
-asm void func_80027724(void) {
+asm void dStage_roomDt_c::setVrboxcolInfo(stage_vrboxcol_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027724.s"
 }
 
-// getVrboxcolInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getVrboxcolInfo(void) const
-asm void func_8002772C(void) {
+asm stage_vrboxcol_info_class* dStage_roomDt_c::getVrboxcolInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_8002772C.s"
 }
 
-// setPlightInfo__15dStage_roomDt_cFP23stage_plight_info_class
-// dStage_roomDt_c::setPlightInfo(stage_plight_info_class*)
-asm void func_80027734(void) {
+asm void dStage_roomDt_c::setPlightInfo(stage_plight_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027734.s"
 }
 
-// getPlightInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPlightInfo(void) const
-asm void func_80027768(void) {
+asm stage_plight_info_class* dStage_roomDt_c::getPlightInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027768.s"
 }
 
-// setPaletteNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setPaletteNumInfo(int)
-asm void func_8002779C(void) {
+asm void dStage_roomDt_c::setPaletteNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_8002779C.s"
 }
 
-// getPaletteNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPaletteNumInfo(void) const
-asm void func_800277D0(void) {
+asm int dStage_roomDt_c::getPaletteNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800277D0.s"
 }
 
-// setPselectNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setPselectNumInfo(int)
-asm void func_80027804(void) {
+asm void dStage_roomDt_c::setPselectNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027804.s"
 }
 
-// getPselectNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPselectNumInfo(void) const
-asm void func_80027838(void) {
+asm int dStage_roomDt_c::getPselectNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027838.s"
 }
 
-// setEnvrNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setEnvrNumInfo(int)
-asm void func_8002786C(void) {
+asm void dStage_roomDt_c::setEnvrNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_8002786C.s"
 }
 
-// getEnvrNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getEnvrNumInfo(void) const
-asm void func_800278A0(void) {
+asm int dStage_roomDt_c::getEnvrNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800278A0.s"
 }
 
-// setVrboxNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setVrboxNumInfo(int)
-asm void func_800278D4(void) {
+asm void dStage_roomDt_c::setVrboxNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_800278D4.s"
 }
-
-// getVrboxNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getVrboxNumInfo(void) const
-asm void func_800278DC(void) {
+ 
+asm int dStage_roomDt_c::getVrboxNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800278DC.s"
 }
-
-// setVrboxcolNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setVrboxcolNumInfo(int)
-asm void func_800278E4(void) {
+ 
+asm void dStage_roomDt_c::setVrboxcolNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_800278E4.s"
 }
 
-// getVrboxcolNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getVrboxcolNumInfo(void) const
-asm void func_800278EC(void) {
+asm int dStage_roomDt_c::getVrboxcolNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800278EC.s"
 }
 
-// setPlightNumInfo__15dStage_roomDt_cFi
-// dStage_roomDt_c::setPlightNumInfo(int)
-asm void func_800278F4(void) {
+asm void dStage_roomDt_c::setPlightNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_800278F4.s"
 }
 
-// getPlightNumInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPlightNumInfo(void) const
-asm void func_80027928(void) {
+asm int dStage_roomDt_c::getPlightNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027928.s"
 }
 
-// setLightVecInfo__15dStage_roomDt_cFP30stage_pure_lightvec_info_class
-// dStage_roomDt_c::setLightVecInfo(stage_pure_lightvec_info_class*)
-asm void func_8002795C(void) {
+asm void dStage_roomDt_c::setLightVecInfo(stage_pure_lightvec_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_8002795C.s"
 }
-
-// getLightVecInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getLightVecInfo(void) const
-asm void func_80027964(void) {
+ 
+asm stage_pure_lightvec_info_class* dStage_roomDt_c::getLightVecInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027964.s"
 }
 
-// setLightVecInfoNum__15dStage_roomDt_cFi
-// dStage_roomDt_c::setLightVecInfoNum(int)
-asm void func_8002796C(void) {
+asm void dStage_roomDt_c::setLightVecInfoNum(int) {
     nofralloc
 #include "d/d_stage/asm/func_8002796C.s"
 }
 
-// getLightVecInfoNum__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getLightVecInfoNum(void) const
-asm void func_80027974(void) {
+asm int dStage_roomDt_c::getLightVecInfoNum(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027974.s"
 }
 
-// setStagInfo__15dStage_roomDt_cFP21stage_stag_info_class
-// dStage_roomDt_c::setStagInfo(stage_stag_info_class*)
-asm void func_8002797C(void) {
+asm void dStage_roomDt_c::setStagInfo(stage_stag_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_8002797C.s"
 }
-
-// getStagInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getStagInfo(void) const
-asm void func_800279B0(void) {
+ 
+asm stage_stag_info_class* dStage_roomDt_c::getStagInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800279B0.s"
 }
 
-// setSclsInfo__15dStage_roomDt_cFP27stage_scls_info_dummy_class
-// dStage_roomDt_c::setSclsInfo(stage_scls_info_dummy_class*)
-asm void func_800279E4(void) {
+asm void dStage_roomDt_c::setSclsInfo(stage_scls_info_dummy_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800279E4.s"
 }
 
-// setPntInfo__15dStage_roomDt_cFP13dStage_dPnt_c
-// dStage_roomDt_c::setPntInfo(dStage_dPnt_c*)
-asm void func_800279EC(void) {
+asm void dStage_roomDt_c::setPntInfo(dStage_dPnt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_800279EC.s"
 }
 
-// getPntInf__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPntInf(void) const
-asm void func_80027A20(void) {
+asm dStage_dPnt_c* dStage_roomDt_c::getPntInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027A20.s"
 }
 
-// setPathInfo__15dStage_roomDt_cFP14dStage_dPath_c
-// dStage_roomDt_c::setPathInfo(dStage_dPath_c*)
-asm void func_80027A54(void) {
+asm void dStage_roomDt_c::setPathInfo(dStage_dPath_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027A54.s"
 }
 
-// getPathInf__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPathInf(void) const
-asm void func_80027A88(void) {
+asm dStage_dPath_c* dStage_roomDt_c::getPathInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027A88.s"
 }
-
-// setPnt2Info__15dStage_roomDt_cFP13dStage_dPnt_c
-// dStage_roomDt_c::setPnt2Info(dStage_dPnt_c*)
-asm void func_80027ABC(void) {
+ 
+asm void dStage_roomDt_c::setPnt2Info(dStage_dPnt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027ABC.s"
 }
-
-// getPnt2Inf__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPnt2Inf(void) const
-asm void func_80027AC4(void) {
+ 
+asm dStage_dPnt_c* dStage_roomDt_c::getPnt2Inf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027AC4.s"
 }
 
-// setPath2Info__15dStage_roomDt_cFP14dStage_dPath_c
-// dStage_roomDt_c::setPath2Info(dStage_dPath_c*)
-asm void func_80027ACC(void) {
+asm void dStage_roomDt_c::setPath2Info(dStage_dPath_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027ACC.s"
 }
 
-// getPath2Inf__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getPath2Inf(void) const
-asm void func_80027AD4(void) {
+asm dStage_dPath_c* dStage_roomDt_c::getPath2Inf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027AD4.s"
 }
-
-// setSoundInf__15dStage_roomDt_cFP18dStage_SoundInfo_c
-// dStage_roomDt_c::setSoundInf(dStage_SoundInfo_c*)
-asm void func_80027ADC(void) {
+ 
+asm void dStage_roomDt_c::setSoundInf(dStage_SoundInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027ADC.s"
 }
 
-// getSoundInf__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getSoundInf(void) const
-asm void func_80027AE4(void) {
+asm dStage_SoundInfo_c* dStage_roomDt_c::getSoundInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027AE4.s"
 }
 
-// setSoundInfCL__15dStage_roomDt_cFP18dStage_SoundInfo_c
-// dStage_roomDt_c::setSoundInfCL(dStage_SoundInfo_c*)
-asm void func_80027AEC(void) {
+asm void dStage_roomDt_c::setSoundInfCL(dStage_SoundInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027AEC.s"
 }
 
-// getSoundInfCL__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getSoundInfCL(void) const
-asm void func_80027AF4(void) {
+asm dStage_SoundInfo_c* dStage_roomDt_c::getSoundInfCL(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027AF4.s"
 }
 
-// setMapEventInfo__15dStage_roomDt_cFP21dStage_MapEventInfo_c
-// dStage_roomDt_c::setMapEventInfo(dStage_MapEventInfo_c*)
-asm void func_80027AFC(void) {
+asm void dStage_roomDt_c::setMapEventInfo(dStage_MapEventInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027AFC.s"
 }
 
-// getMapEventInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMapEventInfo(void) const
-asm void func_80027B04(void) {
+asm dStage_MapEventInfo_c* dStage_roomDt_c::getMapEventInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027B04.s"
 }
 
-// setFileList2Info__15dStage_roomDt_cFP21dStage_FileList2_dt_c
-// dStage_roomDt_c::setFileList2Info(dStage_FileList2_dt_c*)
-asm void func_80027B0C(void) {
+asm void dStage_roomDt_c::setFileList2Info(dStage_FileList2_dt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027B0C.s"
 }
-
-// getFileList2Info__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getFileList2Info(void) const
-asm void func_80027B14(void) {
+ 
+asm dStage_FileList2_dt_c* dStage_roomDt_c::getFileList2Info(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027B14.s"
 }
 
-// setFileListInfo__15dStage_roomDt_cFP20dStage_FileList_dt_c
-// dStage_roomDt_c::setFileListInfo(dStage_FileList_dt_c*)
-asm void func_80027B1C(void) {
+asm void dStage_roomDt_c::setFileListInfo(dStage_FileList_dt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027B1C.s"
 }
 
-// setFloorInfo__15dStage_roomDt_cFP18dStage_FloorInfo_c
-// dStage_roomDt_c::setFloorInfo(dStage_FloorInfo_c*)
-asm void func_80027B24(void) {
+asm void dStage_roomDt_c::setFloorInfo(dStage_FloorInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027B24.s"
 }
 
-// getFloorInfo__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getFloorInfo(void) const
-asm void func_80027B2C(void) {
+asm dStage_FloorInfo_c* dStage_roomDt_c::getFloorInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027B2C.s"
 }
 
-// setMemoryConfig__15dStage_roomDt_cFP21dStage_MemoryConfig_c
-// dStage_roomDt_c::setMemoryConfig(dStage_MemoryConfig_c*)
-asm void func_80027B34(void) {
+asm void dStage_roomDt_c::setMemoryConfig(dStage_MemoryConfig_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027B34.s"
 }
 
-// getMemoryConfig__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMemoryConfig(void) const
-asm void func_80027B64(void) {
+asm dStage_MemoryConfig_c* dStage_roomDt_c::getMemoryConfig(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027B64.s"
 }
 
-// setMemoryMap__15dStage_roomDt_cFP18dStage_MemoryMap_c
-// dStage_roomDt_c::setMemoryMap(dStage_MemoryMap_c*)
-asm void func_80027B98(void) {
+asm void dStage_roomDt_c::setMemoryMap(dStage_MemoryMap_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027B98.s"
 }
 
-// getMemoryMap__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMemoryMap(void) const
-asm void func_80027BC8(void) {
+asm dStage_MemoryMap_c* dStage_roomDt_c::getMemoryMap(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027BC8.s"
 }
 
-// setMulti__15dStage_roomDt_cFP14dStage_Multi_c
-// dStage_roomDt_c::setMulti(dStage_Multi_c*)
-asm void func_80027BFC(void) {
+asm void dStage_roomDt_c::setMulti(dStage_Multi_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027BFC.s"
 }
 
-// getMulti__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getMulti(void) const
-asm void func_80027C2C(void) {
+asm dStage_Multi_c* dStage_roomDt_c::getMulti(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027C2C.s"
 }
 
-// setOldMulti__15dStage_roomDt_cFv
-// dStage_roomDt_c::setOldMulti(void)
-asm void func_80027C60(void) {
+asm void dStage_roomDt_c::setOldMulti(void) {
     nofralloc
 #include "d/d_stage/asm/func_80027C60.s"
 }
 
-// resetOldMulti__15dStage_roomDt_cFv
-// dStage_roomDt_c::resetOldMulti(void)
-asm void func_80027C90(void) {
+asm void dStage_roomDt_c::resetOldMulti(void) {
     nofralloc
 #include "d/d_stage/asm/func_80027C90.s"
 }
 
-// getOldMulti__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getOldMulti(void) const
-asm void func_80027CC0(void) {
+asm dStage_Multi_c* dStage_roomDt_c::getOldMulti(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027CC0.s"
 }
 
-// setLbnk__15dStage_roomDt_cFP13dStage_Lbnk_c
-// dStage_roomDt_c::setLbnk(dStage_Lbnk_c*)
-asm void func_80027CF4(void) {
+asm void dStage_roomDt_c::setLbnk(dStage_Lbnk_c*){
     nofralloc
 #include "d/d_stage/asm/func_80027CF4.s"
 }
 
-// getLbnk__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getLbnk(void) const
-asm void func_80027CFC(void) {
+asm dStage_Lbnk_c* dStage_roomDt_c::getLbnk(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027CFC.s"
 }
 
-// setTresure__15dStage_roomDt_cFP19stage_tresure_class
-// dStage_roomDt_c::setTresure(stage_tresure_class*)
-asm void func_80027D04(void) {
+asm void dStage_roomDt_c::setTresure(stage_tresure_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027D04.s"
 }
 
-// getTresure__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getTresure(void) const
-asm void func_80027D0C(void) {
+asm stage_tresure_class* dStage_roomDt_c::getTresure(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027D0C.s"
 }
 
-// setDMap__15dStage_roomDt_cFP13dStage_DMap_c
-// dStage_roomDt_c::setDMap(dStage_DMap_c*)
-asm void func_80027D14(void) {
+asm void dStage_roomDt_c::setDMap(dStage_DMap_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027D14.s"
 }
 
-// getDMap__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getDMap(void) const
-asm void func_80027D18(void) {
+asm dStage_DMap_c* dStage_roomDt_c::getDMap(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027D18.s"
 }
 
-// setDrTg__15dStage_roomDt_cFP16stage_tgsc_class
-// dStage_roomDt_c::setDrTg(stage_tgsc_class*)
-asm void func_80027D20(void) {
+asm void dStage_roomDt_c::setDrTg(stage_tgsc_class*){
     nofralloc
 #include "d/d_stage/asm/func_80027D20.s"
 }
 
-// getDrTg__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getDrTg(void) const
-asm void func_80027D28(void) {
+asm stage_tgsc_class* dStage_roomDt_c::getDrTg(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027D28.s"
 }
 
-// setDoor__15dStage_roomDt_cFP16stage_tgsc_class
-// dStage_roomDt_c::setDoor(stage_tgsc_class*)
-asm void func_80027D30(void) {
+asm void dStage_roomDt_c::setDoor(stage_tgsc_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027D30.s"
 }
 
-// getDoor__15dStage_roomDt_cCFv
-// dStage_roomDt_c::getDoor(void) const
-asm void func_80027D38(void) {
+asm stage_tgsc_class* dStage_roomDt_c::getDoor(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027D38.s"
 }
-
-// setMapPath__15dStage_roomDt_cFPv
-// dStage_roomDt_c::setMapPath(void*)
-asm void func_80027D40(void) {
+ 
+asm void dStage_roomDt_c::setMapPath(void*) {
     nofralloc
 #include "d/d_stage/asm/func_80027D40.s"
 }
 
-// getMapPath__15dStage_roomDt_cFv
-// dStage_roomDt_c::getMapPath(void)
-asm void func_80027D70(void) {
+asm int dStage_roomDt_c::getMapPath(void) {
     nofralloc
 #include "d/d_stage/asm/func_80027D70.s"
 }
 
-// setElst__15dStage_roomDt_cFP13dStage_Elst_c
-// dStage_roomDt_c::setElst(dStage_Elst_c*)
-asm void func_80027DA4(void) {
+asm void dStage_roomDt_c::setElst(dStage_Elst_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80027DA4.s"
 }
 
-// getElst__15dStage_roomDt_cFv
-// dStage_roomDt_c::getElst(void)
-asm void func_80027DD8(void) {
+asm dStage_Elst_c* dStage_roomDt_c::getElst(void) {
     nofralloc
 #include "d/d_stage/asm/func_80027DD8.s"
 }
@@ -1481,526 +1309,376 @@ asm void dStage_stageDt_c::setPlayerNum(u16) {
 #include "d/d_stage/asm/func_80027E38.s"
 }
 
-// 
-// 
 asm u16 dStage_stageDt_c::getPlayerNum(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027E40.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setRoom(roomRead_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E48.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMapInfo(stage_map_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E50.s"
 }
 
-// 
-// 
 asm stage_map_info_class* dStage_stageDt_c::getMapInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027E58.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMapInfoBase(stage_map_info_dummy_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E60.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPaletteInfo(stage_palette_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E68.s"
 }
-
-// 
-// 
+ 
 asm stage_palette_info_class* dStage_stageDt_c::getPaletteInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027E70.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPselectInfo(stage_pselect_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E78.s"
 }
 
-// 
-// 
 asm stage_pselect_info_class* dStage_stageDt_c::getPselectInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027E80.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setEnvrInfo(stage_envr_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E88.s"
 }
-
-// 
-// 
+ 
 asm stage_envr_info_class* dStage_stageDt_c::getEnvrInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027E90.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setVrboxInfo(stage_vrbox_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027E98.s"
 }
-
-// 
-// 
+ 
 asm stage_vrbox_info_class* dStage_stageDt_c::getVrboxInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027EA0.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setVrboxcolInfo(stage_vrboxcol_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027EA8.s"
 }
-
-// 
-// 
+ 
 asm stage_vrboxcol_info_class* dStage_stageDt_c::getVrboxcolInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027EB0.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setPlightInfo(stage_plight_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027EB8.s"
 }
 
-// 
-// 
 asm stage_plight_info_class* dStage_stageDt_c::getPlightInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027EC0.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPaletteNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027EC8.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getPaletteNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027ED0.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setPselectNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027ED8.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getPselectNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027EE0.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setEnvrNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027EE8.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getEnvrNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027EF0.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setVrboxNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027EF8.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getVrboxNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027F00.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setVrboxcolNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027F08.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getVrboxcolNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027F10.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setLightVecInfo(stage_pure_lightvec_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027F18.s"
 }
 
-// 
-// 
 asm stage_pure_lightvec_info_class* dStage_stageDt_c::getLightVecInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027F4C.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setLightVecInfoNum(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027F80.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getLightVecInfoNum(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027FB4.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPlightNumInfo(int) {
     nofralloc
 #include "d/d_stage/asm/func_80027FE8.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getPlightNumInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80027FF0.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setStagInfo(stage_stag_info_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80027FF8.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setSclsInfo(stage_scls_info_dummy_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80028000.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPntInfo(dStage_dPnt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028008.s"
 }
 
-// 
-// 
 asm dStage_dPnt_c* dStage_stageDt_c::getPntInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028010.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setPathInfo(dStage_dPath_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028018.s"
 }
 
-// 
-// 
 asm dStage_dPath_c* dStage_stageDt_c::getPathInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028020.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPnt2Info(dStage_dPnt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028028.s"
 }
 
-// 
-// 
 asm dStage_dPnt_c* dStage_stageDt_c::getPnt2Inf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028030.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setPath2Info(dStage_dPath_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028038.s"
 }
 
-// 
-// 
 asm dStage_dPath_c* dStage_stageDt_c::getPath2Inf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028040.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setSoundInf(dStage_SoundInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028048.s"
 }
 
-// 
-// 
 asm dStage_SoundInfo_c* dStage_stageDt_c::getSoundInf(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028050.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setSoundInfCL(dStage_SoundInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028058.s"
 }
 
-// 
-// 
 asm dStage_SoundInfo_c* dStage_stageDt_c::getSoundInfCL(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028060.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMapEventInfo(dStage_MapEventInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028068.s"
 }
-
-// 
-// 
+ 
 asm dStage_MapEventInfo_c* dStage_stageDt_c::getMapEventInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028070.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setFileList2Info(dStage_FileList2_dt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028078.s"
 }
 
-// 
-// 
 asm dStage_FileList2_dt_c* dStage_stageDt_c::getFileList2Info(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800280AC.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setFileListInfo(dStage_FileList_dt_c*) {
     nofralloc
 #include "d/d_stage/asm/func_800280E0.s"
 }
 
-// 
-// 
 asm dStage_FileList_dt_c* dStage_stageDt_c::getFileListInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028114.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setFloorInfo(dStage_FloorInfo_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028148.s"
 }
 
-// 
-// 
 asm dStage_FloorInfo_c* dStage_stageDt_c::getFloorInfo(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028150.s"
 }
-
-// 
-// 
+ 
 asm void dStage_stageDt_c::setMemoryConfig(dStage_MemoryConfig_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028158.s"
 }
-
-// 
-// 
+ 
 asm dStage_MemoryConfig_c* dStage_stageDt_c::getMemoryConfig(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028160.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMemoryMap(dStage_MemoryMap_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028168.s"
 }
-
-// 
-// 
+ 
 asm dStage_MemoryMap_c* dStage_stageDt_c::getMemoryMap(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028170.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMulti(dStage_Multi_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028178.s"
 }
 
-// 
-// 
 asm dStage_Multi_c* dStage_stageDt_c::getMulti(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028180.s"
 }
 
-// 
-// 
 asm dStage_Multi_c* dStage_stageDt_c::getOldMulti(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028188.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setLbnk(dStage_Lbnk_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028190.s"
 }
 
-// 
-// 
 asm dStage_Lbnk_c* dStage_stageDt_c::getLbnk(void) const {
     nofralloc
 #include "d/d_stage/asm/func_800281C4.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setTresure(stage_tresure_class*) {
     nofralloc
 #include "d/d_stage/asm/func_800281F8.s"
 }
 
-// 
-// 
 asm stage_tresure_class* dStage_stageDt_c::getTresure(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028200.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setDMap(dStage_DMap_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028208.s"
 }
 
-// 
-// 
 asm dStage_DMap_c* dStage_stageDt_c::getDMap(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028210.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setDrTg(stage_tgsc_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80028218.s"
 }
 
-// 
-// 
 asm stage_tgsc_class* dStage_stageDt_c::getDrTg(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028220.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setDoor(stage_tgsc_class*) {
     nofralloc
 #include "d/d_stage/asm/func_80028228.s"
 }
 
-// 
-// 
 asm stage_tgsc_class* dStage_stageDt_c::getDoor(void) const {
     nofralloc
 #include "d/d_stage/asm/func_80028230.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setMapPath(void*) {
     nofralloc
 #include "d/d_stage/asm/func_80028238.s"
 }
 
-// 
-// 
 asm int dStage_stageDt_c::getMapPath(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002823C.s"
 }
 
-// 
-// 
 asm void dStage_stageDt_c::setElst(dStage_Elst_c*) {
     nofralloc
 #include "d/d_stage/asm/func_80028244.s"
