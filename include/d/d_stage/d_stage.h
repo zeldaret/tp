@@ -321,7 +321,7 @@ private:
     stage_camera_class* mCamera;
     stage_arrow_class* mArrow;
     dStage_MapEventInfo_c* mMapEventInfo;
-    dStage_SoundInfo_c* mSoundInfo;
+    dStage_SoundInfo_c* mSoundInf;
     dStage_SoundInfo_c* mSoundInfCL;
     stage_scls_info_dummy_class* mSclsInfo;
     dStage_Lbnk_c* mLbnk;
