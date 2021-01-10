@@ -22,6 +22,7 @@ public:
         CMemBlock* getPrevBlock() const { return this->mPrev; }
         CMemBlock* getNextBlock() const { return this->mNext; }
         u32 getSize() const { return this->size; }
+        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((u32)data + -0x10); }
 
     private:
         u16 mMagic;

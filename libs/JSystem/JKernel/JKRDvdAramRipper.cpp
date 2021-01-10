@@ -2,6 +2,10 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
+static void decompSZS_subroutine(u8*, u32);
+static u8* firstSrcData(void);
+static u8* nextSrcData(u8*);
+
 asm void JKRDvdAramRipper::loadToAram(long, u32, JKRExpandSwitch, u32, u32, u32*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdAramRipper/asm/func_802DA874.s"
@@ -53,12 +57,12 @@ asm void decompSZS_subroutine(u8*, u32) {
 #include "JSystem/JKernel/JKRDvdAramRipper/asm/func_802DB160.s"
 }
 
-asm void firstSrcData(void) {
+asm u8* firstSrcData(void) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdAramRipper/asm/func_802DB3E8.s"
 }
 
-asm void nextSrcData(u8*) {
+asm u8* nextSrcData(u8*) {
     nofralloc
 #include "JSystem/JKernel/JKRDvdAramRipper/asm/func_802DB49C.s"
 }

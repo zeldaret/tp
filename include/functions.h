@@ -140,7 +140,7 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void func_80362540(void);
 void dDlst_list_c_NS_set(void);
 void init__14dComIfG_play_cFv(void);
-void func_80003458(void);
+void* memset(void* dest, int ch, u32 count);
 void dStage_roomControl_c_NS_initZone(void);
 void JUTWarningConsole(void);
 void JUTConsole_NS_print(void);
@@ -170,8 +170,7 @@ void DCStoreRange(void*, u32);
 void DCInvalidateRange(void*, u32);
 void DCStoreRangeNoSync(void);
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
-void func_80003458(void);
-void func_803650D0(void);
+int abs(int);
 void JKRDecomp_NS_orderSync(void);
 void JKRAramHeap_NS_alloc(void);
 void JKRAram_NS_aramToMainRam(void);
@@ -180,13 +179,12 @@ void JKRAram_NS_mainRamToAram(void);
 void JKRAramPiece_NS_sendCommand(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80361C24(void);
-void JSUInputStream_NS_read(void);
-void JSURandomInputStream_NS_seek(void);
+class JSUInputStream;
+s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+class JSURandomInputStream;
+void JSURandomInputStream_NS_seek(JSURandomInputStream*, u32, u32);
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);
-void ARAlloc(void);
-void ARGetSize(void);
-void ARInit(void);
 void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
@@ -351,7 +349,6 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void func_80362540(void);
 void dDlst_list_c_NS_set(void);
 void init__14dComIfG_play_cFv(void);
-void func_80003458(void);
 void dStage_roomControl_c_NS_initZone(void);
 void JUTWarningConsole(void);
 void JUTConsole_NS_print(void);
@@ -374,8 +371,6 @@ void JKRArchive_NS_findPtrResource(void);
 void JKRArchive_NS_findTypeResource(void);
 
 void JKRDvdRipper_NS_loadToMainRAM_X1_(void);
-void func_80003458(void);
-void func_803650D0(void);
 
 void JKRDecomp_NS_orderSync(void);
 
@@ -388,15 +383,9 @@ void JKRAramPiece_NS_sendCommand(void);
 void __RAS_OSDisableInterrupts_begin(void);
 void func_80361C24(void);
 
-void JSUInputStream_NS_read(void);
-void JSURandomInputStream_NS_seek(void);
-
 void JSUInputStream_NS_dtor(void);
 void JSUFileInputStream_ct(void);
 
-void ARAlloc(void);
-void ARGetSize(void);
-void ARInit(void);
 void DCStoreRangeNoSync(void);
 void __RAS_OSDisableInterrupts_begin(void);
 u8 dComIfGs_getBottleMax(void);
@@ -871,7 +860,7 @@ void __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
 void __dt__13JKRMemArchiveFv(void);
 void fetchResource__13JKRMemArchiveFP12SDIFileEntryPUl(void);
 void fetchResource__13JKRMemArchiveFPvUlP12SDIFileEntryPUl(void);
-void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUl14JKRCompression(void);
+void fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli(void);
 void getExpandedResSize__13JKRMemArchiveCFPCv(void);
 void open__13JKRMemArchiveFPvUl15JKRMemBreakFlag(void);
 void open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection(void);
@@ -931,15 +920,15 @@ void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
 // void __dt__23JSUList<12JKRDMCommand>Fv(void);
 void __sinit_JKRDvdRipper_cpp(void);
 void decompSZS_subroutine__FPUcPUc(void);
-void firstSrcData__Fv(void);
 void isErrorRetry__12JKRDvdRipperFv(void);
-void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlP14JKRCompressionPUl(
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 };
 
 // JSystem/JKernel/JKRAramBlock
@@ -1004,11 +993,11 @@ void __sinit_JKRDvdAramRipper_cpp(void);
 void callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand(void);
 void decompSZS_subroutine__FPUcUl(void);
 void dmaBufferFlush__FUl(void);
-void firstSrcData__Fv(void);
 void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
 void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
 void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
 };
 
@@ -1024,9 +1013,9 @@ void changeGroupIdIfNeed__7JKRAramFPUci(void);
 void checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl(void);
 void create__7JKRAramFUlUllll(void);
 void decompSZS_subroutine__FPUcPUc(void);
-void firstSrcData__Fv(void);
 void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
 void nextSrcData__FPUc(void);
+void firstSrcData__Fv(void);
 void run__7JKRAramFv(void);
 };
 

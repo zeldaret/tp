@@ -136,14 +136,16 @@ public:
     static void JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment);
     static JKRErrorHandler setErrorHandler(JKRErrorHandler errorHandler);
 
-    static void* getCodeStart(void) { return lbl_80451384; }
-    static void* getCodeEnd(void) { return lbl_80451388; }
-    static void* getUserRamStart(void) { return lbl_8045138C; }
-    static void* getUserRamEnd(void) { return lbl_80451390; }
-    static u32 getMemorySize(void) { return lbl_80451394; }
-    static JKRHeap* getRootHeap() { return lbl_80451378; }
-    static JKRHeap* getSystemHeap() { return lbl_80451370; }
-    static JKRHeap* getCurrentHeap() { return lbl_80451374; }
+    static void* getCodeStart(void) { return mCodeStart; }
+    static void* getCodeEnd(void) { return mCodeEnd; }
+    static void* getUserRamStart(void) { return mUserRamStart; }
+    static void* getUserRamEnd(void) { return mUserRamEnd; }
+    static u32 getMemorySize(void) { return mMemorySize; }
+    static JKRHeap* getRootHeap() { return sRootHeap; }
+    static JKRHeap* getSystemHeap() { return sSystemHeap; }
+    static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
+    static void setSystemHeap(JKRHeap* heap) { sSystemHeap = heap; }
+    static void setCurrentHeap(JKRHeap* heap) { sCurrentHeap = heap; }
 
     static void setState_u32ID_(TState* state, u32 id) { state->mId = id; }
     static void setState_uUsedSize_(TState* state, u32 usedSize) { state->mUsedSize = usedSize; }
@@ -152,6 +154,16 @@ public:
     }
     static void* getState_buf_(TState* state) { return &state->mBuf; }
     static void* getState_(TState* state) { return getState_buf_(state); }
+
+    static void* mCodeStart;
+    static void* mCodeEnd;
+    static void* mUserRamStart;
+    static void* mUserRamEnd;
+    static u32 mMemorySize;
+
+    static JKRHeap* sRootHeap;
+    static JKRHeap* sSystemHeap;
+    static JKRHeap* sCurrentHeap;
 };
 
 void* operator new(u32 size);
@@ -189,6 +201,14 @@ inline void JKRFreeToSysHeap(void* ptr) {
 
 inline void JKRFree(void* ptr) {
     JKRHeap::free(ptr, NULL);
+}
+
+inline JKRHeap* JKRGetSystemHeap() {
+    return JKRHeap::getSystemHeap();
+}
+
+inline JKRHeap* JKRGetCurrentHeap() {
+    return JKRHeap::getCurrentHeap();
 }
 
 #endif

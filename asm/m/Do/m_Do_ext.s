@@ -2151,7 +2151,7 @@ mDoExt_createSolidHeap:
 /* 8000EE4C 0000BD8C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000EE50 0000BD90  28 04 00 00 */	cmplwi r4, 0
 /* 8000EE54 0000BD94  40 82 00 08 */	bne lbl_8000EE5C
-/* 8000EE58 0000BD98  80 8D 8D F4 */	lwz r4, lbl_80451374-_SDA_BASE_(r13)
+/* 8000EE58 0000BD98  80 8D 8D F4 */	lwz r4, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
 lbl_8000EE5C:
 /* 8000EE5C 0000BD9C  28 03 00 00 */	cmplwi r3, 0
 /* 8000EE60 0000BDA0  41 82 00 10 */	beq lbl_8000EE70
@@ -2240,7 +2240,7 @@ mDoExt_createSolidHeapToCurrent:
 /* 8000EF74 0000BEB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000EF78 0000BEB8  28 03 00 00 */	cmplwi r3, 0
 /* 8000EF7C 0000BEBC  41 82 00 0C */	beq lbl_8000EF88
-/* 8000EF80 0000BEC0  80 0D 8D F4 */	lwz r0, lbl_80451374-_SDA_BASE_(r13)
+/* 8000EF80 0000BEC0  80 0D 8D F4 */	lwz r0, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 8000EF84 0000BEC4  90 03 00 00 */	stw r0, 0(r3)
 lbl_8000EF88:
 /* 8000EF88 0000BEC8  7C 83 23 78 */	mr r3, r4
@@ -2429,7 +2429,7 @@ mDoExt_setCurrentHeap:
 
 .global mDoExt_getCurrentHeap
 mDoExt_getCurrentHeap:
-/* 8000F1EC 0000C12C  80 6D 8D F4 */	lwz r3, lbl_80451374-_SDA_BASE_(r13)
+/* 8000F1EC 0000C12C  80 6D 8D F4 */	lwz r3, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 8000F1F0 0000C130  4E 80 00 20 */	blr 
 
 .global mDoExt_restoreCurrentHeap

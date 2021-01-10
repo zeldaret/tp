@@ -22,9 +22,6 @@ public:
 };
 
 void JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*);
-static void decompSZS_subroutine(u8*, u32);
-static void firstSrcData(void);
-static void nextSrcData(u8*);
 void dmaBufferFlush(u32);
 
 #endif

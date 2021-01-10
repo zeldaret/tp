@@ -50,6 +50,11 @@ private:
 
 public:
     static void doneProcess(long, DVDFileInfo*);
+
+    static JSUList<JKRDvdFile>& getDvdList() { return sDvdList; }
+
+private:
+    static JSUList<JKRDvdFile> sDvdList;
 };
 
 #endif

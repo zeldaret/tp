@@ -44,7 +44,7 @@ JKRArchive* JKRArchive::mount(void* ptr, JKRHeap* heap,
         return archive;
 
     int alignment;
-    if (mountDirection == JKRArchive::HEAD) {
+    if (mountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
         alignment = 4;
     } else {
         alignment = -4;
@@ -61,7 +61,7 @@ JKRArchive* JKRArchive::mount(s32 entryNum, JKRArchive::EMountMode mountMode, JK
         return archive;
     } else {
         int alignment;
-        if (mountDirection == JKRArchive::HEAD) {
+        if (mountDirection == JKRArchive::MOUNT_DIRECTION_HEAD) {
             alignment = 4;
         } else {
             alignment = -4;

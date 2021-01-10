@@ -1,16 +1,15 @@
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "global.h"
 
-JKRFileLoader::JKRFileLoader(void) : mFileLoaderLink(this) {
-    mVolumeName = NULL;
-    mVolumeType = 0;
-    mMountCount = 0;
-}
+// todo: static initialization is working uncomment this
+// JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
+
+JKRFileLoader::JKRFileLoader(void)
+    : mFileLoaderLink(this), mVolumeName(NULL), mVolumeType(0), mMountCount(0) {}
 
 JKRFileLoader::~JKRFileLoader() {
-    // lbl_80451418 = JKRFileLoader::sCurrentVolume
-    if (lbl_80451418 == this) {
-        lbl_80451418 = NULL;
+    if (getCurrentVolume() == this) {
+        setCurrentVolume(NULL);
     }
 }
 
@@ -41,15 +40,14 @@ void* JKRFileLoader::getGlbResource(const char* name) {
 }
 
 void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* fileLoader) {
-    // lbl_80434354 = JKRFileLoader::sVolumeList
-
     void* resource = NULL;
     if (fileLoader) {
         return fileLoader->getResource(0, name);
     }
 
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
     JSUListIterator<JKRFileLoader> iterator;
-    for (iterator = lbl_80434354.getFirst(); iterator != lbl_80434354.getEnd(); ++iterator) {
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
         resource = iterator->getResource(0, name);
         if (resource)
             break;
@@ -58,14 +56,13 @@ void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* fileLoader)
 }
 
 bool JKRFileLoader::removeResource(void* resource, JKRFileLoader* fileLoader) {
-    // lbl_80434354 = JKRFileLoader::sVolumeList
-
     if (fileLoader) {
         return fileLoader->removeResource(resource);
     }
 
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
     JSUListIterator<JKRFileLoader> iterator;
-    for (iterator = lbl_80434354.getFirst(); iterator != lbl_80434354.getEnd(); ++iterator) {
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
         if (iterator->removeResource(resource)) {
             return true;
         }
@@ -75,14 +72,13 @@ bool JKRFileLoader::removeResource(void* resource, JKRFileLoader* fileLoader) {
 }
 
 bool JKRFileLoader::detachResource(void* resource, JKRFileLoader* fileLoader) {
-    // lbl_80434354 = JKRFileLoader::sVolumeList
-
     if (fileLoader) {
         return fileLoader->detachResource(resource);
     }
 
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
     JSUListIterator<JKRFileLoader> iterator;
-    for (iterator = lbl_80434354.getFirst(); iterator != lbl_80434354.getEnd(); ++iterator) {
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
         if (iterator->detachResource(resource)) {
             return true;
         }
@@ -92,17 +88,16 @@ bool JKRFileLoader::detachResource(void* resource, JKRFileLoader* fileLoader) {
 }
 
 JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
-    // lbl_80451418 = JKRFileLoader::sCurrentVolume
-
     if (*volumeName[0] != '/') {
-        return lbl_80451418;
+        return getCurrentVolume();
     }
 
     char volumeNameBuffer[0x101];
     *volumeName = fetchVolumeName(volumeNameBuffer, ARRAY_SIZE(volumeNameBuffer), *volumeName);
 
+    JSUList<JKRFileLoader>& volumeList = getVolumeList();
     JSUListIterator<JKRFileLoader> iterator;
-    for (iterator = lbl_80434354.getFirst(); iterator != lbl_80434354.getEnd(); ++iterator) {
+    for (iterator = volumeList.getFirst(); iterator != volumeList.getEnd(); ++iterator) {
         if (strcmp(volumeNameBuffer, iterator->mVolumeName) == 0) {
             return iterator.getObject();
         }
