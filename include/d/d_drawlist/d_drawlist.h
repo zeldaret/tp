@@ -20,6 +20,7 @@ class dDlst_peekZ_c {
 #pragma pack(push, 1)
 class dDlst_list_c {
 public:
+    dDlst_list_c(void);
     static u32 mWipeColor;
     static u32 mWipeDlst;
     static u32 mWipeRate;

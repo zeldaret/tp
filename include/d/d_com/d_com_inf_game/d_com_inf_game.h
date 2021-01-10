@@ -1,6 +1,7 @@
 #ifndef __D_COM_INF_GAME_H_
 #define __D_COM_INF_GAME_H_
 
+#include "SComponent/c_xyz/c_xyz.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
@@ -39,6 +40,8 @@ struct item_func {
 #pragma pack(push, 1)
 class dComIfG_camera_info_class {
 public:
+    dComIfG_camera_info_class(void);
+
 private:
     u8 field_0x0[12];
     cXyz field_0xc;
@@ -49,6 +52,8 @@ private:
 #pragma pack(push, 1)
 class dDlst_window_c {
 public:
+    dDlst_window_c(void);
+
 private:
     float view_port1;
     float view_port2;
@@ -69,27 +74,56 @@ class dComIfG_play_c {
 public:
     void ct(void);
     void init(void);
-    u32 getNowVibration();
+    void itemInit(void);
+    void setItemBombNumCount(u8, s16);
+    s16 getItemBombNumCount(u8);
+    void clearItemBombNumCount(u8);
+    void setNowVibration(u8);
+    u32 getNowVibration(void);
+    void setStartStage(dStage_startStage_c*);
+    int getLayerNo_common_common(char const*, int, int);
+    int getLayerNo_common(char const*, int, int);
+    int getLayerNo(int);
+    void createParticle(void);
+    u32 createSimpleModel(void);
+    void deleteSimpleModel(void);
+    void drawSimpleModel(void);
+    // u32 addSimpleModel(J3DModelData*, int, u8);
+    // u32 removeSimpleModel(J3DModelData*, int);
+    // u32 entrySimpleModel(J3DModel*, int);
+    void setTimerNowTimeMs(int);
+    int getTimerNowTimeMs(void);
+    void setTimerLimitTimeMs(int);
+    int getTimerLimitTimeMs(void);
+    void setTimerMode(int);
+    int getTimerMode(void);
+    void setTimerType(u8);
+    u8 getTimerType(void);
+    // void setTimerPtr(dTimer_c*);
+    u32 getTimerPtr(void);
+    void setWarpItemData(const char*, cXyz, s16, s8, u8, u8);
+
+    // inlines
     dStage_roomControl_c& getRoomControl() { return mRoomControl; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
-    void setUnkWarashibe1(u8 num) { field_0x4ec0[0x85] = num; }
-    void setUnkWarashibe2(u8 num) { field_0x4ec0[0x86] = num; }
+    void setUnkWarashibe1(u8 num) { unkWarashibe1 = num; }
+    void setUnkWarashibe2(u8 num) { unkWarashibe2 = num; }
     void setZStatus(u8 status, u8 unk) {
-        field_0x4ec0[0x3B] = status;
-        field_0x4ec0[0x56] = unk;
+        mZStatus = status;
+        unkZStatus = unk;
     }
     void setRStatus(u8 status, u8 unk) {
-        field_0x4ec0[0x24] = status;
-        field_0x4ec0[0x4A] = unk;
+        mRStatus = status;
+        unkRStatus = unk;
     }
     void setDoStatus(u8 status, u8 unk) {
-        field_0x4ec0[0x2C] = status;
-        field_0x4ec0[0x52] = unk;
+        mDoStatus = status;
+        unkDoStatus = unk;
     }
     void setAStatus(u8 status, u8 unk) {
-        field_0x4ec0[0x25] = status;
-        field_0x4ec0[0x4B] = unk;
+        mAStatus = status;
+        unkAStatus = unk;
     }
     void setItemLifeCount(float hearts, u8 unk) {
         give_item.hearts += hearts;
@@ -104,8 +138,8 @@ public:
     void setItemMaxLifeCount(short max) { give_item.max_life += max; }
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
-    u8 getDoStatus(void) { return field_0x4ec0[0x2C]; }
-    u8 getRStatus(void) { return field_0x4ec0[0x24]; }
+    u8 getDoStatus(void) { return mDoStatus; }
+    u8 getRStatus(void) { return mRStatus; }
 
 private:
     /* 0x00000 */ dBgS dbgs;
@@ -142,14 +176,41 @@ private:
     /* 0x04ED4 */ dComIfG_camera_info_class mCameraInfo;
     /* 0x04E60 */ u8 field_0x4e60[0x28];
     /* 0x04E88 */ item_func give_item;
-    /* 0x04EC0 */ u8 field_0x4ec0[0xBE];
+    /* 0x04EC0 */ u8 field_0x4ec0[0x24];
+    /* 0x04EE4 */ u8 mRStatus;
+    /* 0x04EE5 */ u8 mAStatus;
+    /* 0x04EE6 */ u8 field_0x4ec6[0x6];
+    /* 0x04EEC */ u8 mDoStatus;
+    /* 0x04EED */ u8 field_0x4eed[0xE];
+    /* 0x04EFB */ u8 mZStatus;
+    /* 0x04EFC */ u8 field_0x4efc[0xE];
+    /* 0x04F0A */ u8 unkRStatus;
+    /* 0x04F0B */ u8 unkAStatus;
+    /* 0x04F0C */ u8 field_0x4f0c[0x6];
+    /* 0x04F12 */ u8 unkDoStatus;
+    /* 0x04F13 */ u8 field_0x4f13[0x3];
+    /* 0x04F16 */ u8 unkZStatus;
+    /* 0x04F17 */ u8 field_0x4f17[0x2E];
+    /* 0x04F45 */ u8 unkWarashibe1;
+    /* 0x04F46 */ u8 unkWarashibe2;
+    /* 0x04F47 */ u8 field_0x4f47[0x13];
+    /* 0x04F5A */ u8 mNowVibration;
+    /* 0x04F5B */ u8 field_0x4f5b[0x23];
     /* 0x04F7E */ u8 unk_heart;
+    /* 0x04F7F */ u8 field_0x4f7f[0x79];
+    /* 0x04FF8 */ u32 mTimerPtr;
+    /* 0x04FFC */ int mTimerNowTimeMs;
+    /* 0x05000 */ int mTimerLimitTimeMs;
+    /* 0x05004 */ int mTimerMode;
+    /* 0x05008 */ u8 mTimerType;
 };
 #pragma pack(pop)
 
 #pragma pack(push, 1)
 class dComIfG_inf_c {
 public:
+    dComIfG_inf_c(void);
+
     // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }
     u8& getPlayUnkHeart() { return play.getUnkHeart(); }
@@ -174,7 +235,7 @@ private:
     /* 0x00F30 */ u32 field_0xf34;
     u8 unk[3];
     /* 0x00F34 */ dComIfG_play_c play;
-    /* 0x05F60 */ u8 field_0x5f60[0xBD];
+    /* 0x05F60 */ u8 field_0x5f60[0x33];
     /* 0x05F70 */ dDlst_list_c draw_list_list;
     /* 0x1C110 */ u8 field_0x1C114[0x1E8];
     /* 0x1C2F8 */ dRes_info_c resource_info1;
@@ -363,6 +424,15 @@ inline u8 dComIfGs_getKeyNum(void) {
 }
 inline void dComIfGs_onItemFirstBit(u8 i_no) {
     g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().onFirstBit(i_no);
+}
+inline u16 dComIfGs_getMaxLife(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getMaxLife();
+}
+inline void dComIfGs_offEventBit(u16 event) {
+    g_dComIfG_gameInfo.getSaveFile().getEventFlags().offEventBit(event);
+}
+inline int dComIfGs_isEventBit(u16 event) {
+    return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
 }
 
 #endif

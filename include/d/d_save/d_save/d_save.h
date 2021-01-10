@@ -326,6 +326,7 @@ public:
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
+    u16& getMaxLife() { return mMaxHealth; }
     u16& getLife() { return mCurrentHealth; }
     u16& getRupee() { return mCurrentRupees; }
     u16& getOil() { return mCurrentLanternOil; }
@@ -339,6 +340,7 @@ public:
     void setRupee(u16 rupees) { mCurrentRupees = rupees; }
     void setLife(u16 life) { mCurrentHealth = life; }
     void setMaxLife(u8 max) { mMaxHealth = max; }
+    void setSelectEquip(int item_index, u8 item) { mEquipment[item_index] = item; }
 
 private:
     u16 mMaxHealth;
@@ -642,6 +644,7 @@ public:
     dSv_player_collect_c& getPlayerCollect() { return player_collect; }
     dSv_player_item_record_c& getPlayerItemRecord() { return player_item_record; }
     dSv_player_item_max_c& getPlayerItemMax() { return player_item_max; }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player_last_mark; }
     dSv_light_drop_c& getLightDrop() { return light_drop; }
     dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
 
@@ -865,6 +868,7 @@ public:
     dSv_player_get_item_c& getPlayerGetItem() { return player.getPlayerGetItem(); }
     dSv_player_item_record_c& getPlayerItemRecord() { return player.getPlayerItemRecord(); }
     dSv_player_item_max_c& getPlayerItemMax() { return player.getPlayerItemMax(); }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player.getPlayerLastMarkInfo(); }
     dSv_player_item_c& getPlayerItem() { return player.getPlayerItem(); }
     dSv_player_collect_c& getPlayerCollect() { return player.getPlayerCollect(); }
     dSv_light_drop_c& getLightDrop() { return player.getLightDrop(); }

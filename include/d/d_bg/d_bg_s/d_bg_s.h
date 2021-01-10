@@ -5,6 +5,7 @@
 #include "global.h"
 #pragma pack(push, 1)
 class cBgS_ChkElm {
+    cBgS_ChkElm(void);
     /* 0x00 */ dBgW_Base* bgw_base_pointer;
     /* 0x04 */ u8 used;
     /* 0x05 */ u8 padding[3];

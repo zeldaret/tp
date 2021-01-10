@@ -204,6 +204,7 @@ private:
 #pragma pack(push, 1)
 class dEvt_control_c {
 public:
+    dEvt_control_c(void);
     void searchMapEventData(u8 param_1);
 
 private:

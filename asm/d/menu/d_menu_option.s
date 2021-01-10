@@ -3404,7 +3404,7 @@ lbl_801E508C:
 /* 801E509C 001E1FDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801E50A0 001E1FE0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801E50A4 001E1FE4  88 9F 03 EA */	lbz r4, 0x3ea(r31)
-/* 801E50A8 001E1FE8  4B E4 63 01 */	bl dComIfG_play_c_NS_setNowVibration
+/* 801E50A8 001E1FE8  4B E4 63 01 */	bl setNowVibration__14dComIfG_play_cFUc
 /* 801E50AC 001E1FEC  88 1F 03 E5 */	lbz r0, 0x3e5(r31)
 /* 801E50B0 001E1FF0  98 1E 00 0A */	stb r0, 0xa(r30)
 /* 801E50B4 001E1FF4  80 7F 00 44 */	lwz r3, 0x44(r31)

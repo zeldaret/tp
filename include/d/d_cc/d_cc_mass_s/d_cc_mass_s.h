@@ -11,6 +11,8 @@ private:
 
 class dCcMassS_Mng {
 public:
+    dCcMassS_Mng(void);
+
 private:
     /* 0x0000 */ cCcD_DivideArea cccd_dividearea;
     /* 0x0020 */ u8 field_0x20[36];

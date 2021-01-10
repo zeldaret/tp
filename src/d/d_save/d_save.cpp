@@ -1361,7 +1361,7 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xc0) {
         this->dungeon_bit.onSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if (i_no < 0xE0) {
             this->zones[zoneId].getZoneBit().onSwitch(i_no - 0xC0);
         } else {
@@ -1380,7 +1380,7 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xc0) {
         this->dungeon_bit.offSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if (i_no < 0xE0) {
             this->zones[zoneId].getZoneBit().offSwitch(i_no - 0xC0);
         } else {
@@ -1400,7 +1400,7 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     } else if (i_no < 0xc0) {
         value = this->dungeon_bit.isSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if ((zoneId < 0) || (zoneId >= 0x20)) {
             value = FALSE;
         } else {
@@ -1425,7 +1425,7 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xC0) {
         value = this->dungeon_bit.revSwitch(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if (i_no < 0xE0) {
             value = this->zones[zoneNo].getZoneBit().revSwitch(i_no - 0xC0);
         } else {
@@ -1446,7 +1446,7 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     } else if (i_no < 0xA0) {
         this->memory.getTempFlags().onItem(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if (i_no < 0xC0) {
             this->zones[zoneNo].getZoneBit().onItem(i_no - 0xA0);
         } else {
@@ -1466,7 +1466,7 @@ BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     } else if (i_no < 0xA0) {
         value = this->memory.getTempFlagsConst().isItem(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_no);
+        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
         if (i_no < 0xC0) {
             value = this->zones[zoneNo].getZoneBitConst().isItem(i_no - 0xA0);
         } else {
@@ -1482,7 +1482,7 @@ void dSv_info_c::onActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_id);
+    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
     this->zones[zoneNo].getZoneActor().on(i_id);
 }
 
@@ -1491,7 +1491,7 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_id);
+    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
     this->zones[zoneNo].getZoneActor().off(i_id);
 }
 
@@ -1500,7 +1500,7 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
         return FALSE;
     }
 
-    int ActorZoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo, i_id);
+    int ActorZoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
     return this->zones[ActorZoneNo].getZoneActorConst().is(i_id);
 }
 
