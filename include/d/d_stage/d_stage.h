@@ -62,6 +62,8 @@ class dStage_Lbnk_c {};
 
 class stage_pure_lightvec_info_class {};
 
+class stage_tgsc_data_class {};
+
 class dStage_stageDt_c {
 public:
     stage_camera_class* getCamera(void) const;
@@ -336,6 +338,8 @@ private:
 #pragma pack(push, 1)
 class dStage_roomControl_c {
 public:
+    void init(void);
+
 private:
     u8 field_0x0[164];
 };
@@ -344,7 +348,8 @@ private:
 #pragma pack(push, 1)
 class dStage_nextStage_c {
 public:
-void set(const char*, s8, s16, s8, s8, u8);
+    void set(const char*, s8, s16, s8, s8, u8);
+
 private:
     u8 field_0x0;
     u8 field_0x1;
@@ -369,7 +374,8 @@ private:
 #pragma pack(push, 1)
 class dStage_startStage_c {
 public:
-void set(const char*, s8, s16, s8);
+    void set(const char*, s8, s16, s8);
+
 private:
     /* 0x0 */ char mStage[8];
     /* 0x8 */ s16 mPoint;
@@ -378,5 +384,11 @@ private:
     /* 0xC */ s8 mDarkArea;
 };
 #pragma pack(pop)
+
+extern u32* lbl_803F4E74;
+
+extern "C" {
+void init__20dStage_roomControl_cFv(void);
+}
 
 #endif

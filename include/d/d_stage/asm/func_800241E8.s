@@ -18,7 +18,7 @@
 /* 8002422C 0002116C  2C 00 FF FC */ cmpwi r0, -4
 /* 80024230 00021170  40 82 00 08 */ bne lbl_80024238
 lbl_80024234:
-/* 80024234 00021174  48 00 01 05 */ bl dStage_roomControl_c_NS_initZone
+/* 80024234 00021174  48 00 01 05 */ bl init__20dStage_roomControl_cFvZone
 lbl_80024238:
 /* 80024238 00021178  3C 60 80 3F */ lis r3, lbl_803F6094@ha
 /* 8002423C 0002117C  3B E3 60 94 */ addi r31, r3, lbl_803F6094@l

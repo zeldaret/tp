@@ -6,16 +6,14 @@
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 
-// set__18dStage_nextStage_cFPCcScsScScUc
-//
 #ifdef NONMATCHING
 void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4, s8 param_5,
                              u8 param_6) {
-                                 
     if (!enabled) {
         enabled = 1;
         wipe = param_5;
         wipe_speed = param_6;
+        // this generates extra mr instructions
         dStage_startStage_c::set(param_1, param_2, param_3, param_4);
         if (!strcmp(param_1, lbl_80378A50)) {
             m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 = 1;
@@ -31,20 +29,24 @@ asm void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s
 #endif
 
 void dStage_SetErrorRoom(void) {
-    OSReport_Error(lbl_80378A50+8);
+    OSReport_Error(lbl_80378A50 + 8);
 }
 
 void dStage_SetErrorStage(void) {
-    OSReport_Error(lbl_80378A50+73);
+    OSReport_Error(lbl_80378A50 + 73);
 }
 
 extern "C" {
-// dStage_GetKeepDoorInfo__Fv
-// dStage_GetKeepDoorInfo(void)
+#ifdef NONMATCHING
+u32* dStage_GetKeepDoorInfo(void) {
+    return lbl_803F4E74;
+}
+#else
 asm void dStage_GetKeepDoorInfo(void) {
     nofralloc
 #include "d/d_stage/asm/func_80023EF4.s"
 }
+#endif
 
 // dStage_isBossStage__FP11dStage_dt_c
 // dStage_isBossStage(dStage_dt_c*)
@@ -98,22 +100,20 @@ asm void func_80024174(void) {
 }
 
 void dStage_startStage_c::set(const char* i_Stage, s8 i_RoomNo, s16 i_Point, s8 i_Layer) {
-    strcpy(mStage,i_Stage);
+    strcpy(mStage, i_Stage);
     mRoomNo = i_RoomNo;
     mPoint = i_Point;
     mLayer = i_Layer;
 }
 
-// init__20dStage_roomControl_cFv
-// dStage_roomControl_c::init(void)
-asm void dStage_roomControl_c_NS_init(void) {
+asm void dStage_roomControl_c::init(void) {
     nofralloc
 #include "d/d_stage/asm/func_800241E8.s"
 }
 
 // initZone__20dStage_roomControl_cFv
 // dStage_roomControl_c::initZone(void)
-asm void dStage_roomControl_c_NS_initZone(void) {
+asm void init__20dStage_roomControl_cFvZone(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024338.s"
 }
