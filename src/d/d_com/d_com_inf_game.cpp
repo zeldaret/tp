@@ -687,10 +687,18 @@ asm void dComIfGs_setKeyNum(int, u8) {
 #include "d/d_com/d_com_inf_game/asm/func_8002F040.s"
 }
 
+#ifdef NONMATCHING
 void dComIfGs_setWarpItemData(int unk1, const char* stage, cXyz pos, s16 angle, s8 room, u8 unk2,
                               u8 unk3) {
     g_dComIfG_gameInfo.getPlay().setWarpItemData(stage, pos, angle, room, unk2, unk3);
 }
+#else
+asm void dComIfGs_setWarpItemData(int unk1, const char* stage, cXyz pos, s16 angle, s8 room,
+                                  u8 unk2, u8 unk3) {
+    nofralloc
+#include "d/d_com/d_com_inf_game/asm/func_8002F0E0.s"
+}
+#endif
 
 // setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc
 // dComIfG_play_c::setWarpItemData(const char*, cXyz, short, char, unsigned char, unsigned char)
