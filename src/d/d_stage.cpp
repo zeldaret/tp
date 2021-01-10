@@ -34,14 +34,11 @@ void dStage_SetErrorRoom(void) {
     OSReport_Error(lbl_80378A50+8);
 }
 
-extern "C" {
-// dStage_SetErrorStage__Fv
-// dStage_SetErrorStage(void)
-asm void dStage_SetErrorStage(void) {
-    nofralloc
-#include "d/d_stage/asm/func_80023EC4.s"
+void dStage_SetErrorStage(void) {
+    OSReport_Error(lbl_80378A50+73);
 }
 
+extern "C" {
 // dStage_GetKeepDoorInfo__Fv
 // dStage_GetKeepDoorInfo(void)
 asm void dStage_GetKeepDoorInfo(void) {
