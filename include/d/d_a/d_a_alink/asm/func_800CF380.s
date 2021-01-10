@@ -33,9 +33,9 @@
 /* 800CF400 000CC340  90 1A 00 18 */ stw r0, 0x18(r26)
 /* 800CF404 000CC344  38 7F 07 C4 */ addi r3, r31, 0x7c4
 /*.global daPy_actorKeep_c*/
-/* 800CF408 000CC348  3C 80 80 14 */ lis r4, daPy_actorKeep_c@ha
+/* 800CF408 000CC348  3C 80 80 14 */ lis r4, __ct__16daPy_actorKeep_cFv@ha
 /*.global daPy_actorKeep_c*/
-/* 800CF40C 000CC34C  38 84 10 EC */ addi r4, r4, daPy_actorKeep_c@l
+/* 800CF40C 000CC34C  38 84 10 EC */ addi r4, r4, __ct__16daPy_actorKeep_cFv@l
 /* 800CF410 000CC350  38 A0 00 00 */ li r5, 0
 /* 800CF414 000CC354  38 C0 00 08 */ li r6, 8
 /* 800CF418 000CC358  38 E0 00 0A */ li r7, 0xa

@@ -326,10 +326,10 @@ public:
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    u16& getCurrentHealth() { return mCurrentHealth; }
-    u16& getCurrentRupees() { return mCurrentRupees; }
-    u16& getCurrentLanternOil() { return mCurrentLanternOil; }
-    u8& getScent() { return mEquipment[3]; }
+    u16& getLife() { return mCurrentHealth; }
+    u16& getRupee() { return mCurrentRupees; }
+    u16& getOil() { return mCurrentLanternOil; }
+    u8& getSelectEquip(int item) { return mEquipment[item]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }
     void setOil(u16 oil) { mCurrentLanternOil = oil; }
     void setMaxOil(u16 max) { mMaxLanternOil = max; }
@@ -512,7 +512,7 @@ public:
     u8 getBombNum(u8) const;
 
     void setArrowNum(u8 max) { mItemCapacities[0] = max; }
-    u8 getBowCapacity() { return mItemCapacities[0]; }
+    u8 getArrowNum() { return mItemCapacities[0]; }
 
 private:
     u8 mItemCapacities[8];
@@ -528,7 +528,7 @@ public:
     void onCollectMirror(u8);
     BOOL isCollectMirror(u8) const;
 
-    u8 getPoeCount() { return mPoeCount; }
+    u8 getPohNum() { return mPoeCount; }
 
 private:
     u8 unk0[8];
@@ -683,7 +683,7 @@ public:
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
-    u8 getSmallKeys() { return small_key_flags; }
+    u8 getKeyNum() { return small_key_flags; }
     void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
     bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }

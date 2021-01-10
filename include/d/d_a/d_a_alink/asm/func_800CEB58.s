@@ -23,7 +23,7 @@
 lbl_800CEBB0:
 /* 800CEBB0 000CBAF0  7F E3 FB 78 */ mr r3, r31
 /* 800CEBB4 000CBAF4  38 80 00 08 */ li r4, 8
-/* 800CEBB8 000CBAF8  4B FE 3A 15 */ bl daAlink_c_NS_itemTriggerCheck
+/* 800CEBB8 000CBAF8  4B FE 3A 15 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800CEBBC 000CBAFC  48 00 00 08 */ b lbl_800CEBC4
 lbl_800CEBC0:
 /* 800CEBC0 000CBB00  38 60 00 00 */ li r3, 0

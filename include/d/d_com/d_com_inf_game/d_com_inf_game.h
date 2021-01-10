@@ -79,6 +79,18 @@ public:
         field_0x4ec0[0x3B] = status;
         field_0x4ec0[0x56] = unk;
     }
+    void setRStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x24] = status;
+        field_0x4ec0[0x4A] = unk;
+    }
+    void setDoStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x2C] = status;
+        field_0x4ec0[0x52] = unk;
+    }
+    void setAStatus(u8 status, u8 unk) {
+        field_0x4ec0[0x25] = status;
+        field_0x4ec0[0x4B] = unk;
+    }
     void setItemLifeCount(float hearts, u8 unk) {
         give_item.hearts += hearts;
         unk_heart = unk;
@@ -92,6 +104,8 @@ public:
     void setItemMaxLifeCount(short max) { give_item.max_life += max; }
     void setOxygen(long oxygen) { give_item.oxygen = oxygen; }
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
+    u8 getDoStatus(void) { return field_0x4ec0[0x2C]; }
+    u8 getRStatus(void) { return field_0x4ec0[0x24]; }
 
 private:
     /* 0x00000 */ dBgS dbgs;
@@ -186,16 +200,21 @@ private:
 
 extern dComIfG_inf_c g_dComIfG_gameInfo;
 
+void dComIfGp_setItemLifeCount(float, u8);
+void dComIfGp_setItemRupeeCount(long);
 int dComIfGs_isItemFirstBit(u8);
 
+inline void dComIfGp_setRStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setRStatus(status, unk);
+}
+inline void dComIfGp_setDoStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setDoStatus(status, unk);
+}
+inline void dComIfGp_setAStatus(u8 status, u8 unk) {
+    g_dComIfG_gameInfo.getPlay().setAStatus(status, unk);
+}
 inline void dComIfGp_setZStatus(u8 status, u8 unk) {
     g_dComIfG_gameInfo.getPlay().setZStatus(status, unk);
-}
-inline void dComIfGp_setItemLifeCount(float amount, u8 unk) {
-    g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
-}
-inline void dComIfGp_setItemRupeeCount(long amount) {
-    g_dComIfG_gameInfo.getPlay().setItemRupeeCount(amount);
 }
 inline void dComIfGp_setItemMagicCount(short amount) {
     g_dComIfG_gameInfo.getPlay().setItemMagicCount(amount);
@@ -329,6 +348,21 @@ inline u8 dComIfGs_checkBottle(u8 type) {
 }
 inline BOOL dComIfGs_isLightDropGetFlag(u8 area_id) {
     return g_dComIfG_gameInfo.getSaveFile().getLightDrop().isLightDropGetFlag(area_id);
+}
+inline u8 dComIfGs_getArrowMax(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItemMax().getArrowNum();
+}
+inline u8 dComIfGs_getCollectSmell(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getSelectEquip(3);
+}
+inline u8 dComIfGs_getPohSpiritNum(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerCollect().getPohNum();
+}
+inline u8 dComIfGs_getKeyNum(void) {
+    return g_dComIfG_gameInfo.getMemory().getTempFlags().getKeyNum();
+}
+inline void dComIfGs_onItemFirstBit(u8 i_no) {
+    g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().onFirstBit(i_no);
 }
 
 #endif

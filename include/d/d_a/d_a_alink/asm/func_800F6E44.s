@@ -4,7 +4,7 @@
 /* 800F6E50 000F3D90  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F6E54 000F3D94  7C 7F 1B 78 */ mr r31, r3
 /* 800F6E58 000F3D98  38 80 00 12 */ li r4, 0x12
-/* 800F6E5C 000F3D9C  4B FB C3 F5 */ bl daAlink_c_NS_setDoStatus
+/* 800F6E5C 000F3D9C  4B FB C3 F5 */ bl setDoStatus__9daAlink_cFUc
 /* 800F6E60 000F3DA0  7F E3 FB 78 */ mr r3, r31
 /* 800F6E64 000F3DA4  4B FF D9 75 */ bl daAlink_c_NS_canoeCommon
 /* 800F6E68 000F3DA8  2C 03 00 00 */ cmpwi r3, 0

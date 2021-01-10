@@ -45,7 +45,7 @@ public:
     // member functions
     u32 getE3Zhint(void);
     const char* getAlinkArcName(void);
-    u32 checkStageName(const char*);
+    bool checkStageName(const char*);
     void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
     void setMatrixWorldAxisRot(float (*)[4], short, short, short, int, const cXyz*);
@@ -195,13 +195,29 @@ public:
     void setPlayerPosAndAngle(float (*)[4]);
     u32 itemTriggerCheck(u8);
     u32 itemButtonCheck(u8);
+    void itemButton(void);
+    void itemTrigger(void);
+    void spActionButton(void);
+    void spActionTrigger(void);
+    u32 midnaTalkTrigger(void) const;
+    void swordSwingTrigger(void);
+    void setItemActionButtonStatus(u8);
+    void itemActionTrigger(void);
     /*---*/
+    void setRStatus(u8);
+    void setRStatusEmphasys(u8);
+    void setDoStatus(u8);
+    void setDoStatusEmphasys(u8);
+    void setDoStatusContinuation(u8);
+    void setBStatus(u8);
+    int checkRAction(void);
     BOOL checkMagicArmorHeavy(void) const;
     BOOL checkBootsOrArmorHeavy(void) const;
     void setSpecialGravity(float, float, int);
     int checkMagicArmorWearAbility(void) const;
     void onFrollCrashFlg(u8, int);
     void setMidnaTalkStatus(u8);
+    void setShieldChange(void);
 
 private:
     u8 unk[1328];
@@ -214,9 +230,20 @@ private:
     u32 unk1404;
     u8 unk1408[6716];
     u16 unk8124;
-    u8 unk8126[4070];
+    u8 unk8126[4047];
+    u8 unk12173;
+    u8 unk12174;
+    u8 unk12175[13];
+    u8 unk12188;
+    u8 unk12199[7];
     u8 unk12196;
-    u8 unk12197[2071];
+    u8 unk12197[9];
+    u8 unk12206;
+    u8 unk12207[16];
+    u8 unk12223;
+    u8 unk12224[17];
+    u8 unk12241;
+    u8 unk12242[2026];
 };
 
 class daMidna_c {
@@ -231,6 +258,15 @@ private:
     u8 unk[0x893];
     u32 unk2196;
     u32 unk2200;
+};
+
+class daHorse_c {
+public:
+    u32 getZeldaActor(void);
+
+private:
+    u8 unk[0x1254];
+    daPy_actorKeep_c actorKeep;
 };
 
 extern "C" {

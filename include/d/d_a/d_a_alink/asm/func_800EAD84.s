@@ -106,7 +106,7 @@ lbl_800EAED4:
 lbl_800EAF00:
 /* 800EAF00 000E7E40  7F A3 EB 78 */ mr r3, r29
 /* 800EAF04 000E7E44  38 80 00 64 */ li r4, 0x64
-/* 800EAF08 000E7E48  4B FC 83 79 */ bl daAlink_c_NS_setDoStatusContinuation
+/* 800EAF08 000E7E48  4B FC 83 79 */ bl setDoStatusContinuation__9daAlink_cFUc
 /* 800EAF0C 000E7E4C  C0 3D 33 9C */ lfs f1, 0x339c(r29)
 /* 800EAF10 000E7E50  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800EAF14 000E7E54  FC 01 00 40 */ fcmpo cr0, f1, f0
