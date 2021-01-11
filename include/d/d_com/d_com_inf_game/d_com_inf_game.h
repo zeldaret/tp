@@ -171,7 +171,9 @@ private:
     /* 0x04DA8 */ u8 field_0x4da8[0x5C];
     /* 0x04E04 */ u32 field_0x4e04;
     /* 0x04E08 */ u8 field_0x4e08[0x4];
-    /* 0x04E0C */ u8 field_0x4e0c[0x4];
+    /* 0x04E0C */ u8 field_0x4e0c;
+    /* 0x04E0D */ u8 field_0x4e0d;
+    /* 0x04E0E */ u8 field_0x4e0e[0x2];
     /* 0x04E10 */ dDlst_window_c mDrawlistWindow;
     /* 0x04ED4 */ dComIfG_camera_info_class mCameraInfo;
     /* 0x04E60 */ u8 field_0x4e60[0x28];
@@ -217,6 +219,9 @@ public:
     // temp for setWarashibeItem
     void setPlayUnkWarashibe1(u8 num) { play.setUnkWarashibe1(num); }
     void setPlayUnkWarashibe2(u8 num) { play.setUnkWarashibe2(num); }
+    void setWorldDark(u8 state) { mWorldDark = state; }
+    u8 setWorldDark() { return mWorldDark; }
+
     dSv_player_c& getPlayer() { return info.getPlayer(); }
     dSv_save_c& getSaveFile() { return info.getSaveFile(); }
     u32 getNowVibration() { return play.getNowVibration(); }
@@ -243,18 +248,18 @@ private:
     /* 0x1D4F8 */ dRes_info_c resource_info2;
     /* 0x1D51C */ u8 unk20[0x8DC];
     /* 0x1DDF8 */ u8 unk21;
-    /* 0x1DDF9 */ u8 unk22;
-    /* 0x1DDFA */ u8 unk23;
-    /* 0x1DDFB */ u8 unk24;
-    /* 0x1DDFC */ u8 unk25;
+    /* 0x1DDF9 */ u8 mWorldDark;
+    /* 0x1DDFA */ u8 mUnk;
+    /* 0x1DDFB */ u8 mPolyDamage;
+    /* 0x1DDFC */ u8 mGrassHide;
     /* 0x1DDFD */ u8 unk26[0x3];  // probably padding
     /* 0x1DE00 */ u8 unk27;
     /* 0x1DE01 */ u8 unk28[0x3];  // probably padding
     /* 0x1DE04 */ u8 unk29;
     /* 0x1DE05 */ u8 unk30[0x3];  // probably padding
     /* 0x1DE08 */ u8 unk31;
-    /* 0x1DE09 */ u8 unk32;
-    /* 0x1DE0A */ u8 unk33;
+    /* 0x1DE09 */ u8 mTargetWarpPt;
+    /* 0x1DE0A */ u8 mSelectWarpPt;
     /* 0x1DE0B */ u8 unk34[0x5];  // probably padding
 };
 #pragma pack(pop)
@@ -433,6 +438,33 @@ inline void dComIfGs_offEventBit(u16 event) {
 }
 inline int dComIfGs_isEventBit(u16 event) {
     return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
+}
+inline const char* dComIfGs_getLastWarpMarkStageName(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getName();
+}
+inline cXyz dComIfGs_getLastWarpMarkPlayerPos(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getPos();
+}
+inline s16 dComIfGs_getLastWarpMarkPlayerAngleY(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getAngleY();
+}
+inline s8 dComIfGs_getLastWarpMarkRoomNo(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getRoomNo();
+}
+inline char dComIfGs_getLastWarpAcceptStage(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getWarpAcceptStage();
+}
+inline u8 dComIfGs_getSelectEquipClothes(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(CLOTHING_BITFIELD);
+}
+inline u8 dComIfGs_getSelectEquipSword(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(SWORD_BITFIELD);
+}
+inline u8 dComIfGs_getSelectEquipShield(void) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectEquip(SHIELD_BITFIELD);
+}
+inline u8 dComIfGs_getLightDropNum(u8 area_id) {
+    return g_dComIfG_gameInfo.getSaveFile().getLightDrop().getLightDropNum(area_id);
 }
 
 #endif

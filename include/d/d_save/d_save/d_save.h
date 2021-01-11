@@ -330,7 +330,7 @@ public:
     u16& getLife() { return mCurrentHealth; }
     u16& getRupee() { return mCurrentRupees; }
     u16& getOil() { return mCurrentLanternOil; }
-    u8& getSelectEquip(int item) { return mEquipment[item]; }
+    u8 getSelectEquip(int item) const { return mEquipment[item]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }
     void setOil(u16 oil) { mCurrentLanternOil = oil; }
     void setMaxOil(u16 max) { mMaxLanternOil = max; }
@@ -434,13 +434,19 @@ public:
     void init(void);
     void setWarpItemData(const char*, const cXyz&, s16, s8, u8, u8);
 
+    const char* getName(void) { return mOoccooStage; }
+    cXyz getPos(void) { return mOoccooPosition; }
+    s16 getAngleY(void) { return mOoccooXRotation; }
+    s8 getRoomNo(void) { return mOoccooRoomId; }
+    char getWarpAcceptStage(void) { return mWarpAcceptStage; }
+
 private:
     cXyz mOoccooPosition;
     s16 mOoccooXRotation;
     char mOoccooStage[8];
     u8 mOoccooSpawnId;
-    u8 mOoccooRoomId;
-    char unk24;
+    s8 mOoccooRoomId;
+    char mWarpAcceptStage;
     u8 unk25[3];
 };
 

@@ -8,10 +8,22 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 
+// memset first arg is wrong
+#ifdef NONMATCHING
+void dComIfG_play_c::ct(void) {
+    field_0x4e0c = 0;
+    field_0x4e04 = 0;
+    field_0x4e0d = 0;
+
+    memset((void*)(this + 0x5024), 0, 8);
+    init();
+}
+#else
 asm void dComIfG_play_c::ct(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B1DC.s"
 }
+#endif
 
 asm void dComIfG_play_c::init(void) {
     nofralloc
@@ -574,10 +586,25 @@ asm void dComIfGs_checkGetInsectNum(void) {
 #include "d/d_com/d_com_inf_game/asm/func_8002E428.s"
 }
 
-// dComIfGs_checkGetItem__FUc
-// dComIfGs_checkGetItem(unsigned char)
-asm void dComIfGs_checkGetItem(void){nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002E4CC.s"
+u8 dComIfGs_checkGetItem(u8 i_no) {
+    u8 count = 0;
+
+    for (int i = 0; i < 60; i++) {
+        if (i_no == dComIfGs_getItem(i, true)) {
+            count++;
+        }
+    }
+    if (dComIfGs_getSelectEquipClothes() == i_no) {
+        count++;
+    }
+    if (dComIfGs_getSelectEquipSword() == i_no) {
+        count++;
+    }
+    if (dComIfGs_getSelectEquipShield() == i_no) {
+        count++;
+    }
+
+    return count;
 }
 
 u8 dComIfGs_getBottleMax(void) {
@@ -648,11 +675,13 @@ asm void dComIfG_getNowCalcRegion(void) {
 #include "d/d_com/d_com_inf_game/asm/func_8002EC54.s"
 }
 
-// dComIfGp_isLightDropMapVisible__Fv
-// dComIfGp_isLightDropMapVisible(void)
-asm void dComIfGp_isLightDropMapVisible(void) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002EDE0.s"
+BOOL dComIfGp_isLightDropMapVisible(void) {
+    for (int i = 0; i < 3; i++) {
+        if (dComIfGs_isLightDropGetFlag(i) != FALSE && dComIfGs_getLightDropNum(i) < 16) {
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
 // dComIfGp_getNowLevel__Fv
@@ -720,11 +749,8 @@ void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8
                                                                              room, unk1, unk2);
 }
 
-// dComIfGs_getWarpStageName__Fv
-// dComIfGs_getWarpStageName(void)
-asm void dComIfGs_getWarpStageName(void) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002F2AC.s"
+const char* dComIfGs_getWarpStageName(void) {
+    return dComIfGs_getLastWarpMarkStageName();
 }
 
 // dComIfGs_getWarpPlayerPos__Fv
@@ -734,18 +760,12 @@ asm void dComIfGs_getWarpPlayerPos(void) {
 #include "d/d_com/d_com_inf_game/asm/func_8002F2BC.s"
 }
 
-// dComIfGs_getWarpPlayerAngleY__Fv
-// dComIfGs_getWarpPlayerAngleY(void)
-asm void dComIfGs_getWarpPlayerAngleY(void) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002F2CC.s"
+s16 dComIfGs_getWarpPlayerAngleY(void) {
+    return dComIfGs_getLastWarpMarkPlayerAngleY();
 }
 
-// dComIfGs_getWarpRoomNo__Fv
-// dComIfGs_getWarpRoomNo(void)
-asm void dComIfGs_getWarpRoomNo(void) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002F2DC.s"
+int dComIfGs_getWarpRoomNo(void) {
+    return dComIfGs_getLastWarpMarkRoomNo();
 }
 
 // dComIfGs_getWarpMarkFlag__Fv
@@ -755,11 +775,8 @@ asm void dComIfGs_getWarpMarkFlag(void) {
 #include "d/d_com/d_com_inf_game/asm/func_8002F2F0.s"
 }
 
-// dComIfGs_setWarpMarkFlag__FUc
-// dComIfGs_setWarpMarkFlag(unsigned char)
-asm void dComIfGs_setWarpMarkFlag(void) {
-    nofralloc
-#include "d/d_com/d_com_inf_game/asm/func_8002F310.s"
+void dComIfGs_setWarpMarkFlag(void) {
+    return;
 }
 
 // __ct__19dComIfG_resLoader_cFv
@@ -813,17 +830,33 @@ asm void dComIfGp_ret_wp_set(void) {
 
 // dComIfGp_world_dark_set__FUc
 // dComIfGp_world_dark_set(unsigned char)
-asm void dComIfGp_world_dark_set(void) {
+
+// matches but dComIfG_inf_c structure is wrong
+#ifdef NONMATCHING
+void dComIfGp_world_dark_set(u8 state) {
+    g_dComIfG_gameInfo.setWorldDark(state);
+}
+#else
+asm void dComIfGp_world_dark_set(u8) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F504.s"
 }
+#endif
 
 // dComIfGp_world_dark_get__Fv
 // dComIfGp_world_dark_get(void)
+
+// same issue as above
+#ifdef NONMATCHING
+u8 dComIfGp_world_dark_get(void) {
+    return g_dComIfG_gameInfo.getWorldDark();
+}
+#else
 asm void dComIfGp_world_dark_get(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F518.s"
 }
+#endif
 
 // dComIfG_TimerStart__Fis
 // dComIfG_TimerStart(int, short)

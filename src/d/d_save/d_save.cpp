@@ -227,7 +227,7 @@ void dSv_player_last_mark_info_c::init(void) {
     this->mOoccooXRotation = 0;
     this->mOoccooRoomId = 0;
     this->mOoccooSpawnId = 0;
-    this->unk24 = -1;
+    this->mWarpAcceptStage = -1;
 
     for (int i = 0; i < 3; i++) {
         this->unk25[i] = 0;
