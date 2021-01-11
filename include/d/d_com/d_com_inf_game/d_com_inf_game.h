@@ -107,8 +107,9 @@ public:
     dStage_roomControl_c& getRoomControl() { return mRoomControl; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
-    void setUnkWarashibe1(u8 num) { unkWarashibe1 = num; }
-    void setUnkWarashibe2(u8 num) { unkWarashibe2 = num; }
+    void setItem(u8 slot, u8 i_no) { mItemSlot = slot; mItemID = i_no; }
+    void setUnkWarashibe1(u8 num) { mItemSlot = num; }
+    void setUnkWarashibe2(u8 num) { mItemID = num; }
     void setZStatus(u8 status, u8 unk) {
         mZStatus = status;
         unkZStatus = unk;
@@ -193,8 +194,8 @@ private:
     /* 0x04F13 */ u8 field_0x4f13[0x3];
     /* 0x04F16 */ u8 unkZStatus;
     /* 0x04F17 */ u8 field_0x4f17[0x2E];
-    /* 0x04F45 */ u8 unkWarashibe1;
-    /* 0x04F46 */ u8 unkWarashibe2;
+    /* 0x04F45 */ u8 mItemSlot;
+    /* 0x04F46 */ u8 mItemID;
     /* 0x04F47 */ u8 field_0x4f47[0x13];
     /* 0x04F5A */ u8 mNowVibration;
     /* 0x04F5B */ u8 field_0x4f5b[0x23];
@@ -465,6 +466,15 @@ inline u8 dComIfGs_getSelectEquipShield(void) {
 }
 inline u8 dComIfGs_getLightDropNum(u8 area_id) {
     return g_dComIfG_gameInfo.getSaveFile().getLightDrop().getLightDropNum(area_id);
+}
+inline u8 dComIfGs_getSelectItemIndex(int idx) {
+    return g_dComIfG_gameInfo.getPlayer().getPlayerStatusA().getSelectItemIndex(idx);
+}
+inline void dComIfGp_setItem(u8 slot, u8 i_no) {
+    g_dComIfG_gameInfo.getPlay().setItem(slot, i_no);
+}
+inline u32 dComIfGp_getNowVibration(void) {
+    return g_dComIfG_gameInfo.getPlay().getNowVibration();
 }
 
 #endif
