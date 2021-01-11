@@ -593,21 +593,18 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_BEE_ROD :
-            this->mItems[SLOT_20] = BEE_ROD;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_BEE_ROD :
+                                               this->mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_WORM_ROD :
-            this->mItems[SLOT_20] = WORM_ROD;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_WORM_ROD :
+                                               this->mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
-        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_ROD :
-            this->mItems[SLOT_20] = FISHING_ROD_1;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_ROD :
+                                               this->mItems[SLOT_20] = FISHING_ROD_1;
         break;
     }
     }

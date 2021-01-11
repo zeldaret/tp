@@ -107,7 +107,10 @@ public:
     dStage_roomControl_c& getRoomControl() { return mRoomControl; }
     item_func& getGiveItem() { return give_item; }
     u8& getUnkHeart() { return unk_heart; }
-    void setItem(u8 slot, u8 i_no) { mItemSlot = slot; mItemID = i_no; }
+    void setItem(u8 slot, u8 i_no) {
+        mItemSlot = slot;
+        mItemID = i_no;
+    }
     void setUnkWarashibe1(u8 num) { mItemSlot = num; }
     void setUnkWarashibe2(u8 num) { mItemID = num; }
     void setZStatus(u8 status, u8 unk) {
