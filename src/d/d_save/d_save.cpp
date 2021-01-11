@@ -5,6 +5,10 @@
 #include "d/d_save/d_save_init/d_save_init.h"
 #include "os/OS.h"
 
+inline int dComIfGs_isItemFirstBit(u8 i_no) {
+    return g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(i_no);
+}
+
 u8 dSv_item_rename(u8 item_id) {
     switch (item_id) {
     case OIL_BOTTLE_2:
@@ -95,7 +99,7 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
 
 BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
-        return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(0x2304);
+        return dComIfGs_isEventBit(0x2304);
     }
     return (this->mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
@@ -227,7 +231,7 @@ void dSv_player_last_mark_info_c::init(void) {
     this->mOoccooXRotation = 0;
     this->mOoccooRoomId = 0;
     this->mOoccooSpawnId = 0;
-    this->unk24 = -1;
+    this->mWarpAcceptStage = -1;
 
     for (int i = 0; i < 3; i++) {
         this->unk25[i] = 0;
@@ -259,8 +263,7 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
     int select_item_index = DEFAULT_SELECT_ITEM_INDEX;
 
     do {
-        if (item_slot == g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getSelectItemIndex(
-                             select_item_index)) {
+        if (item_slot == dComIfGs_getSelectItemIndex(select_item_index)) {
             dComIfGp_setSelectItem(select_item_index);
         }
         select_item_index++;
@@ -268,11 +271,6 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
 }
 
 #ifdef NONMATCHING
-
-inline u8 dComIfGs_getSelectItemIndex(int idx) {
-    return g_dComIfG_gameInfo.getPlayer().getPlayerStatusA().getSelectItemIndex(idx);
-}
-
 u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
     if (item_idx < MAX_ITEM_SLOTS) {
         if (isComboItem) {
@@ -425,42 +423,23 @@ asm void dSv_player_item_c::setEmptyBottleItemIn(u8 i_item_id) {
 }
 #endif
 
-// r30 and r31 registers swapped
-#ifdef NONMATCHING
 void dSv_player_item_c::setEmptyBottle(void) {
     for (int i = 0; i < 4; i++) {
-        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i + 11), true) ==
-            NO_ITEM) {
-            g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().setItem((u8)(i + 11),
-                                                                          EMPTY_BOTTLE);
+        if (dComIfGs_getItem((u8)(i + 11), true) == NO_ITEM) {
+            dComIfGs_setItem((u8)(i + 11), EMPTY_BOTTLE);
             return;
         }
     }
 }
-#else
-asm void dSv_player_item_c::setEmptyBottle(void) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033494.s"
-}
-#endif
 
-// same issue as the one above this
-#ifdef NONMATCHING
 void dSv_player_item_c::setEmptyBottle(u8 item_id) {
     for (int i = 0; i < 4; i++) {
-        if (g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().getItem((u8)(i + 11), true) ==
-            NO_ITEM) {
-            g_dComIfG_gameInfo.info.getSaveFile().getPlayerItem().setItem((u8)(i + 11), item_id);
+        if (dComIfGs_getItem((u8)(i + 11), true) == NO_ITEM) {
+            dComIfGs_setItem((u8)(i + 11), item_id);
             return;
         }
     }
 }
-#else
-asm void dSv_player_item_c::setEmptyBottle(u8 item_id) {
-    nofralloc
-#include "d/d_save/d_save/asm/func_80033514.s"
-}
-#endif
 
 asm void dSv_player_item_c::setEquipBottleItemIn(u8, u8) {
     nofralloc
@@ -488,10 +467,8 @@ int dSv_player_item_c::checkInsectBottle(void) {
     int i = 0;
     int j = 0;
     for (; i < 0x18; i++) {
-        // replace these with dComIfGs_isItemFirstBit and dComIfGs_isEventBit later
-        if (g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(192 + i) &&
-            !g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(
-                lbl_803A7288.unk0[0x191 + j])) {
+        if (dComIfGs_isItemFirstBit(192 + i) &&
+            !dComIfGs_isEventBit(lbl_803A7288.unk0[0x191 + j])) {
             return 1;
         }
         j += 1;
@@ -576,14 +553,14 @@ u8 dSv_player_item_c::checkBombBag(u8 param_1) {
 void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
     u32 select_item_index;
 
-    g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerItem().setItem(SLOT_21, i_item_id);
+    dComIfGs_setItem(SLOT_21, i_item_id);
+    // inline should be used, but it wrongly swaps instruction order ??
+    // dComIfGp_setItem(SLOT_21, i_item_id);
     g_dComIfG_gameInfo.setPlayUnkWarashibe1(SLOT_21);
     g_dComIfG_gameInfo.setPlayUnkWarashibe2(i_item_id);
 
     for (int i = 0; i < 4; i++) {
-        select_item_index =
-            g_dComIfG_gameInfo.getSaveFile().getPlayer().getPlayerStatusA().getSelectItemIndex(
-                (u8)i);
+        select_item_index = dComIfGs_getSelectItemIndex((u8)i);
         if (select_item_index == SLOT_21) {
             dComIfGp_setSelectItem((u8)i);
         }
@@ -616,21 +593,18 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
 void dSv_player_item_c::setBaitItem(u8 param_1) {
     switch (param_1) {
     case BEE_CHILD: {
-        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_BEE_ROD :
-            this->mItems[SLOT_20] = BEE_ROD;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_BEE_ROD :
+                                               this->mItems[SLOT_20] = BEE_ROD;
         break;
     }
     case WORM: {
-        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_WORM_ROD :
-            this->mItems[SLOT_20] = WORM_ROD;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_WORM_ROD :
+                                               this->mItems[SLOT_20] = WORM_ROD;
         break;
     }
     case NO_ITEM: {
-        g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(ZORAS_JEWEL) ?
-            this->mItems[SLOT_20] = JEWEL_ROD :
-            this->mItems[SLOT_20] = FISHING_ROD_1;
+        dComIfGs_isItemFirstBit(ZORAS_JEWEL) ? this->mItems[SLOT_20] = JEWEL_ROD :
+                                               this->mItems[SLOT_20] = FISHING_ROD_1;
         break;
     }
     }
@@ -704,7 +678,7 @@ void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 bottle_num) {
 u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 param_2) {
     int iVar3 = this->mBottles[i_bottleIdx] + param_2;
 
-    g_dComIfG_gameInfo.getSaveFile().getPlayerItem().getItem((u8)(i_bottleIdx + 0xB), true);
+    dComIfGs_getItem((u8)(i_bottleIdx + 0xB), true);
 
     if (iVar3 < 0) {
         this->mBottles[i_bottleIdx] = 0;
@@ -748,7 +722,7 @@ u8 dSv_player_item_max_c::getBombNum(u8 param_1) const {
     u8 iVar3;
 
     iVar3 = 0x1;
-    if (g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(BOMB_BAG_LV2)) {
+    if (dComIfGs_isItemFirstBit(BOMB_BAG_LV2)) {
         iVar3 = 0x2;
     }
 
@@ -944,7 +918,7 @@ void dSv_player_config_c::init(void) {
 }
 
 u32 dSv_player_config_c::checkVibration(void) const {
-    return _sRumbleSupported & 0x80000000 ? g_dComIfG_gameInfo.getNowVibration() : 0;
+    return _sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
 }
 
 u8 dSv_player_config_c::getSound(void) {
