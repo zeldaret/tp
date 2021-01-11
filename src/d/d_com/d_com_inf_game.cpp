@@ -581,7 +581,7 @@ asm void dComIfGp_getSubHeap2D(void) {
 
 // dComIfGs_checkGetInsectNum__Fv
 // dComIfGs_checkGetInsectNum(void)
-asm void dComIfGs_checkGetInsectNum(void) {nofralloc
+asm void dComIfGs_checkGetInsectNum(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E428.s"
 }
 
@@ -669,7 +669,7 @@ asm void dComIfGp_calcNowRegion(void) {
 
 // dComIfG_getNowCalcRegion__Fv
 // dComIfG_getNowCalcRegion(void)
-asm void dComIfG_getNowCalcRegion(void) {nofralloc
+asm void dComIfG_getNowCalcRegion(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002EC54.s"
 }
 
@@ -753,7 +753,7 @@ const char* dComIfGs_getWarpStageName(void) {
 
 // dComIfGs_getWarpPlayerPos__Fv
 // dComIfGs_getWarpPlayerPos(void)
-asm void dComIfGs_getWarpPlayerPos(void) {nofralloc
+asm void dComIfGs_getWarpPlayerPos(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F2BC.s"
 }
 
