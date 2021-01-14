@@ -19,6 +19,7 @@
  */
 
 class Z2SoundObjBase : protected Z2SoundHandles {
+public:
     Z2SoundObjBase();
     ~Z2SoundObjBase();
 
@@ -28,7 +29,7 @@ class Z2SoundObjBase : protected Z2SoundHandles {
 
     virtual void framework(u32, s8);
     virtual void dispose();
-    virtual bool stopOK(Z2SoundHandlePool&);
+    virtual bool stopOK(Z2SoundHandlePool& pool);
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
 
     // Z2SoundObjBase_vtable* vtable;
@@ -37,6 +38,14 @@ class Z2SoundObjBase : protected Z2SoundHandles {
     u16 field_0x1c;
     u8 field_0x1e;
     bool mIsInitialized;
+};
+
+class Z2SoundObjSimple : protected Z2SoundHandles {
+public:
+    virtual void init(Vec* pSoundPos, u8 pNumHandles);
+};
+
+class Z2DopplerSoundObjBase : protected Z2SoundHandles {
 };
 
 #endif

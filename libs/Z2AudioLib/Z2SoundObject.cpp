@@ -97,7 +97,7 @@ asm void func_802BE5FC(void) {
 
 // init__21Z2DopplerSoundObjBaseFP3VecUc
 // Z2DopplerSoundObjBase::init(Vec*, unsigned char)
-asm void func_802BE65C(void) {
+asm void init__21Z2DopplerSoundObjBaseFP3VecUc(Vec* pSoundPos, u8 pNumHandles) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE65C.s"
 }
@@ -130,12 +130,24 @@ asm void Z2SoundObjSimple(void) {
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE844.s"
 }
 
+#ifdef NONMATCHING
 // init__16Z2SoundObjSimpleFP3VecUc
 // Z2SoundObjSimple::init(Vec*, unsigned char)
-asm void func_802BE880(void) {
+void Z2SoundObjSimple::init(Vec* pSoundPos, u8 pNumHandles) {
+    // i would write
+    //   Z2SoundObjBase::init(pSoundPos, pNumHandles);
+    // but MWCC says "illegal use of non-static member"
+    // was calling like this not in C++98?
+
+    // and this doesn't match
+    ((Z2SoundObjBase*)this)->init(pSoundPos, pNumHandles);
+}
+#else
+asm void Z2SoundObjSimple::init(Vec* pSoundPos, u8 pNumHandles) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE880.s"
 }
+#endif
 
 // startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc
 // Z2SoundObjSimple::startSound(JAISoundID, unsigned long, char)
