@@ -2775,11 +2775,11 @@ func_802BEB74
 func_802BEB38
 func_802BE9B0
 func_802BE8A0
-func_802BE880
+init__16Z2SoundObjSimpleFP3VecUc
 func_802BE7AC
 func_802BE714
 func_802BE6B8
-func_802BE65C
+init__21Z2DopplerSoundObjBaseFP3VecUc
 func_802BE5FC
 stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool
 func_802BE070

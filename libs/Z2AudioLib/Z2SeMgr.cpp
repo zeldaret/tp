@@ -34,14 +34,19 @@ asm void Z2SeMgr::modHeightAtCamera(Vec const** param1) {
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AB830.s"
 }
 
-asm void Z2SeMgr::incrCrowdSize(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AB93C.s"
+void Z2SeMgr::incrCrowdSize(void) {
+    this->crowd_size++;
+
+    if (this->crowd_size > 100)
+        this->crowd_size = 100;
 }
 
-asm void Z2SeMgr::decrCrowdSize(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AB960.s"
+void Z2SeMgr::decrCrowdSize(void) {
+    this->crowd_size--;
+    //! @bug probably copypasta from incrCrowdSize(), but semantically it's still correct,
+    //!      since an underflow would result in crowd_size > 100, triggering the clamp.
+    if (this->crowd_size > 100)
+        this->crowd_size = 0;
 }
 
 asm void Z2SeMgr::seStart(JAISoundID, Vec const*, u32, s8, float, float, float, float, u8) {

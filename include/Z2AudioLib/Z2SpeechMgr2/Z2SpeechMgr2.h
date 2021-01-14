@@ -18,8 +18,8 @@ public:
     Z2SpeechMgr2();
 
 private:
-    JAISoundHandle mSoundHandle;
-    u32 field_0x4;
+    JAISoundHandle mSoundHandle1;
+    JAISoundHandle mSoundHandle2;
     JMath::TRandom_fast_ mRandom;
     Z2SpeechStarter mSpeechStarter;
 
