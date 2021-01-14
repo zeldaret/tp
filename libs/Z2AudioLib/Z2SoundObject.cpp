@@ -45,6 +45,7 @@ void Z2SoundObjBase::framework(u32 p1, s8 p2) {
 // dispose__14Z2SoundObjBaseFv
 // Z2SoundObjBase::dispose(void)
 // nonmatching; r30, r31 flipped.
+#ifndef NONMATCHING
 void Z2SoundObjBase::dispose() {
     for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
          link = link->getNext()) {
@@ -61,6 +62,12 @@ void Z2SoundObjBase::dispose() {
 
     this->mIsInitialized = false;
 }
+#else
+asm void Z2SoundObjBase::dispose() {
+    nofralloc
+#include "Z2AudioLib/Z2SoundObject/asm/func_802BE070.s"
+}
+#endif
 
 bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
     return !(lbl_80450B4C->getSwBit(pSoundHandlePool->getID()) & 0x8000);

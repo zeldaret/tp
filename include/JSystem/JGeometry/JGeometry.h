@@ -11,7 +11,7 @@ struct TVec3 {
     T y;
     T z;
 };
-/* 
+/*
 template <>
 struct TVec3<f32> {
     TVec3(Vec& v) {
@@ -20,6 +20,6 @@ struct TVec3<f32> {
 };
  */
 
-}
+}  // namespace JGeometry
 
 #endif

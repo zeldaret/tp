@@ -9,7 +9,7 @@ public:
 
     JAISoundID(u32 pId) : mId(pId) {}
 
-    JAISoundID(JAISoundID const& other); 
+    JAISoundID(JAISoundID const& other);
 
 private:
     u32 mId;
@@ -36,9 +36,7 @@ public:
     void stop(u32 fadeout);
     void stop();
 
-    u32 getUserData() const {
-        return user_data;
-    }
+    u32 getUserData() const { return user_data; }
 
     // TODO: do proper struct later
     void* __vt;
@@ -123,8 +121,8 @@ public:
 };
 
 extern "C" {
-    void stop__8JAISoundFUl(JAISound*, u32 fadeout);
-    void stop__8JAISoundFv(JAISound*);
+void stop__8JAISoundFUl(JAISound*, u32 fadeout);
+void stop__8JAISoundFv(JAISound*);
 }
 
 class JAISoundHandle {
@@ -138,9 +136,7 @@ public:
         return mSound;
     }
 
-    operator bool() const {
-        return isSoundAttached();
-    }
+    operator bool() const { return isSoundAttached(); }
 
     void releaseSound();
 

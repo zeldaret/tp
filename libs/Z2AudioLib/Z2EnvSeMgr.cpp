@@ -2,8 +2,8 @@
 
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
-#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
+#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 

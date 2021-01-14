@@ -1,10 +1,10 @@
 #ifndef __Z2SOUNDHANDLES_H__
 #define __Z2SOUNDHANDLES_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
-#include "JSystem/JSupport/JSUList/JSUList.h"
 #include "JSystem/JGeometry/JGeometry.h"
+#include "JSystem/JSupport/JSUList/JSUList.h"
+#include "dolphin/types.h"
 
 class Z2SoundHandlePool : public JAISoundHandle, JSULink<Z2SoundHandlePool> {};
 
@@ -25,9 +25,7 @@ public:
 
     void setPos(const JGeometry::TVec3<f32>& pos);
 
-    u32 getNumHandles() const {
-        return this->getNumLinks();
-    }
+    u32 getNumHandles() const { return this->getNumLinks(); }
 
 private:
     u8 mNumHandles;

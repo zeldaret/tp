@@ -1,8 +1,8 @@
 #ifndef __Z2SOUNDINFO_H__
 #define __Z2SOUNDINFO_H__
 
-#include "dolphin/types.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
+#include "dolphin/types.h"
 
 class Z2SoundInfo {
 public:

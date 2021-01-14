@@ -1,10 +1,10 @@
 #ifndef __Z2SOUNDOBJECT_H__
 #define __Z2SOUNDOBJECT_H__
 
-#include "global.h"
+#include "JSystem/JGeometry/JGeometry.h"
 #include "Z2AudioLib/Z2SoundHandles/Z2SoundHandles.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
-#include "JSystem/JGeometry/JGeometry.h"
+#include "global.h"
 
 /* struct Z2SoundObjBase_vtable {
     void* field_0x0;
@@ -28,7 +28,6 @@ class Z2SoundObjBase : protected Z2SoundHandles {
     virtual void dispose();
     virtual bool stopOK(Z2SoundHandlePool&);
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
-
 
     // Z2SoundObjBase_vtable* vtable;
     Z2SoundStarter* mSoundStarter;

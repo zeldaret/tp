@@ -23,8 +23,8 @@ asm void Z2SoundHandles::deleteHandlesPool() {
 extern "C" {
 // __dt__31JASMemPool<17Z2SoundHandlePool>Fv
 // JASMemPool<17Z2SoundHandlePool>::~JASMemPool<17Z2SoundHandlePool>(void)
-asm void JASMemPool_NS_dtor_X4_(void){
-nofralloc
+asm void JASMemPool_NS_dtor_X4_(void) {
+    nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB200.s"
 }
 };
@@ -77,12 +77,12 @@ asm void Z2SoundHandles_NS_getLowPrioSound(void) {
 // Z2SoundHandles::stopAllSounds(unsigned long)
 void Z2SoundHandles::stopAllSounds(u32 fadeout) {
     for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-        link = link->getNext()) {
+         link = link->getNext()) {
         JAISoundHandle* handle = link->getObject();
         //! @meme: explicit operator bool call required to match and be similar
         //!        to CHN_debug; could more concisely write handle->isSoundAttached
         //!        (for some reason cast-to-bool doesn't work?)
-        if (handle && handle->operator bool()) { 
+        if (handle && handle->operator bool()) {
             (*handle)->stop(fadeout);
         }
     }

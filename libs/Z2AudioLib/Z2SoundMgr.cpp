@@ -3,8 +3,8 @@
 #include "Z2AudioLib/Z2SoundMgr/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
+#include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "global.h"
 
 extern "C" {

@@ -3,15 +3,14 @@
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
+#include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "global.h"
 
 #ifdef NONMATCHING
 Z2SpeechMgr2::Z2SpeechMgr2()
     : mSound(NULL), field_0x4(0), mRandom(0), mSpeechStarter(), field_0x3f8(0), mTextCount(-1),
-      field_0x3fc(0), field_0x3fe(0), field_0x3ff(0), field_0x401(0)
-{
+      field_0x3fc(0), field_0x3fe(0), field_0x3ff(0), field_0x401(0) {
     // lbl_80450B70 = this;
     // this->sound = NULL;
     // this->field_0x4 = 0;
@@ -22,7 +21,7 @@ Z2SpeechMgr2::Z2SpeechMgr2()
 #else
 asm Z2SpeechMgr2::Z2SpeechMgr2() {
     nofralloc
-    #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CBC60.s"
+#include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CBC60.s"
 }
 #endif
 
