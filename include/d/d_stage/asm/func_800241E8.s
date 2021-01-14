@@ -18,7 +18,7 @@
 /* 8002422C 0002116C  2C 00 FF FC */ cmpwi r0, -4
 /* 80024230 00021170  40 82 00 08 */ bne lbl_80024238
 lbl_80024234:
-/* 80024234 00021174  48 00 01 05 */ bl dStage_roomControl_c_NS_initZone
+/* 80024234 00021174  48 00 01 05 */ bl init__20dStage_roomControl_cFvZone
 lbl_80024238:
 /* 80024238 00021178  3C 60 80 3F */ lis r3, lbl_803F6094@ha
 /* 8002423C 0002117C  3B E3 60 94 */ addi r31, r3, lbl_803F6094@l
@@ -32,7 +32,7 @@ lbl_8002424C:
 /* 80024258 00021198  7D 89 03 A6 */ mtctr r12
 /* 8002425C 0002119C  4E 80 04 21 */ bctrl
 /* 80024260 000211A0  7F C3 F3 78 */ mr r3, r30
-/* 80024264 000211A4  48 00 0A 45 */ bl dStage_roomDt_c_NS_initFileList2
+/* 80024264 000211A4  48 00 0A 45 */ bl initFileList2__15dStage_roomDt_cFv
 /* 80024268 000211A8  38 00 00 00 */ li r0, 0
 /* 8002426C 000211AC  7C 7F E2 14 */ add r3, r31, r28
 /* 80024270 000211B0  98 03 03 F4 */ stb r0, 0x3f4(r3)

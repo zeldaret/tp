@@ -40,8 +40,8 @@ dCcMassS_HitInf_NS_ClearPointer:
 /* 80085348 00082288  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 8008534C 0008228C  4E 80 00 20 */	blr 
 
-.global dCcMassS_Mng
-dCcMassS_Mng:
+.global __ct__12dCcMassS_MngFv
+__ct__12dCcMassS_MngFv:
 /* 80085350 00082290  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80085354 00082294  7C 08 02 A6 */	mflr r0
 /* 80085358 00082298  90 01 00 14 */	stw r0, 0x14(r1)

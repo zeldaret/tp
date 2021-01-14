@@ -152,7 +152,7 @@ lbl_80025208:
 /* 80025240 00022180  A8 C6 4E 08 */ lha r6, 0x4e08(r6)
 /* 80025244 00022184  88 07 4E 0B */ lbz r0, 0x4e0b(r7)
 /* 80025248 00022188  7C 07 07 74 */ extsb r7, r0
-/* 8002524C 0002218C  4B FF EF 51 */ bl dStage_startStage_c_NS_set
+/* 8002524C 0002218C  4B FF EF 51 */ bl set__19dStage_startStage_cFPCcScsSc
 /* 80025250 00022190  7F C3 F3 78 */ mr r3, r30
 /* 80025254 00022194  7F A4 EB 78 */ mr r4, r29
 /* 80025258 00022198  4B FF FC A5 */ bl dStage_actorCreate

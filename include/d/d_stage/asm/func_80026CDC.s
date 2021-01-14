@@ -11,7 +11,7 @@
 /* 80026D04 00023C44  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80026D08 00023C48  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 80026D0C 00023C4C  38 7F 4E C4 */ addi r3, r31, 0x4ec4
-/* 80026D10 00023C50  4B FF D4 D9 */ bl dStage_roomControl_c_NS_init
+/* 80026D10 00023C50  4B FF D4 D9 */ bl init__20dStage_roomControl_cFv
 /* 80026D14 00023C54  7F C3 F3 78 */ mr r3, r30
 /* 80026D18 00023C58  38 9F 4E 20 */ addi r4, r31, 0x4e20
 /* 80026D1C 00023C5C  4B FF FC 25 */ bl dStage_dt_c_stageInitLoader
