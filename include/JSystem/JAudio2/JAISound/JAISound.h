@@ -1,7 +1,7 @@
 #ifndef __JAISOUND_H__
 #define __JAISOUND_H__
 
-#include "dolphin/types.h"
+#include "global.h"
 
 class JAISoundID {
 public:
@@ -132,7 +132,7 @@ public:
     bool isSoundAttached() const { return mSound != NULL; }
 
     JAISound* operator->() const {
-        // assert on null here in DEBUG (see 8039a7c4 in CHN_debug)
+        JUT_ASSERT(mSound != NULL);
         return mSound;
     }
 
@@ -140,7 +140,7 @@ public:
 
     void releaseSound();
 
-    // private:
+private:
     JAISound* mSound;
 };
 
