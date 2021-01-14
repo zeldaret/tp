@@ -18,21 +18,16 @@ Z2SoundObjBase::~Z2SoundObjBase() {
     this->deleteObject();
 }
 
-// init__14Z2SoundObjBaseFP3VecUc
-// Z2SoundObjBase::init(Vec*, unsigned char)
-asm void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BDFB0.s"
+void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
+    this->initHandlesPool(pNumHandles);
+    mSoundPos = pSoundPos;
+    mIsInitialized = true;
 }
 
-extern "C" {
-// deleteObject__14Z2SoundObjBaseFv
-// Z2SoundObjBase::deleteObject(void)
-asm void Z2SoundObjBase::deleteObject() {
-    nofralloc
-#include "Z2AudioLib/Z2SoundObject/asm/func_802BDFF8.s"
+void Z2SoundObjBase::deleteObject() {
+    this->dispose();
+    this->deleteHandlesPool();
 }
-};
 
 void Z2SoundObjBase::framework(u32 p1, s8 p2) {
     if (mIsInitialized) {
@@ -42,15 +37,12 @@ void Z2SoundObjBase::framework(u32 p1, s8 p2) {
     }
 }
 
-// dispose__14Z2SoundObjBaseFv
-// Z2SoundObjBase::dispose(void)
-// nonmatching; r30, r31 flipped.
 void Z2SoundObjBase::dispose() {
     JAISoundHandle* handle;
     for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
          link = link->getNext()) {
         handle = link->getObject();
-        if (handle && (bool)*handle) {
+        if (handle != NULL && (bool)*handle) {
             u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());
             if ((swBit & 0x8000) != 0) {
                 handle->releaseSound();

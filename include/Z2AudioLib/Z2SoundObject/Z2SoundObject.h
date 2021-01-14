@@ -24,6 +24,8 @@ class Z2SoundObjBase : protected Z2SoundHandles {
 
     void deleteObject();
 
+    bool isAlive() const { return mIsInitialized; }
+
     virtual void framework(u32, s8);
     virtual void dispose();
     virtual bool stopOK(Z2SoundHandlePool&);
