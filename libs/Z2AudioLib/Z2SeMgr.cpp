@@ -43,8 +43,9 @@ void Z2SeMgr::incrCrowdSize(void) {
 
 void Z2SeMgr::decrCrowdSize(void) {
     this->crowd_size--;
-    //! @bug probably copypasta from incrCrowdSize(), but semantically it's still correct,
-    //!      since an underflow would result in crowd_size > 100, triggering the clamp.
+
+    //! @bug probably copypasta from incrCrowdSize(), but semantically it's still correct: crowd_size is a u8,
+    //!      so an underflow would result in crowd_size > 100, triggering the clamp.
     if (this->crowd_size > 100)
         this->crowd_size = 0;
 }
@@ -134,9 +135,15 @@ asm u32 Z2MultiSeMgr::registMultiSePos(Vec*) {
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AEB70.s"
 }
 
-asm void Z2MultiSeMgr::resetMultiSePos(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AECBC.s"
+void Z2MultiSeMgr::resetMultiSePos(void) {
+    this->field_0x18 = -1;
+    // @todo fix when we have proper const placement
+    f32 zero = /* 0.0f */ lbl_80455878;
+    this->field_0x8  = zero;
+    this->field_0xc  = zero;
+    this->field_0x10 = zero;
+    this->field_0x14 = zero;
+    this->field_0x4  = zero;
 }
 
 asm float Z2MultiSeMgr::getPanPower(void) {
