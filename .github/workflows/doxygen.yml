@@ -1,0 +1,23 @@
+name: run Doxygen to generate docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: generate docs
+      uses: mattnotmitt/doxygen-action@v1
+      with:
+        doxyfile-path: 'Doxyfile'
+        enable-latex: true
+    - name: deploy docs to github pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/doxygen
