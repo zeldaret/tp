@@ -1,6 +1,6 @@
 
-#ifndef SCOMPONENT_C_NODE_ITER_H
-#define SCOMPONENT_C_NODE_ITER_H
+#ifndef SCOMPONENT_C_NODE_ITER_H_
+#define SCOMPONENT_C_NODE_ITER_H_
 
 #include "SComponent/c_node.h"
 

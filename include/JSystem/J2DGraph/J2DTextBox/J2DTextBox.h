@@ -1,5 +1,5 @@
-#ifndef __J2DTEXTBOX_H_
-#define __J2DTEXTBOX_H_
+#ifndef J2DTEXTBOX_H_
+#define J2DTEXTBOX_H_
 
 #include "global.h"
 

@@ -1,5 +1,5 @@
-#ifndef __JUTILITY_JUTVIDEO_JUTVIDEO_H__
-#define __JUTILITY_JUTVIDEO_JUTVIDEO_H__
+#ifndef JUTILITY_JUTVIDEO_JUTVIDEO_H_
+#define JUTILITY_JUTVIDEO_JUTVIDEO_H_
 
 #include "gx/GX.h"
 #include "os/OS.h"

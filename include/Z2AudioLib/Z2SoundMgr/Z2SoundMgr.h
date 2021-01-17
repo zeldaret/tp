@@ -1,5 +1,5 @@
-#ifndef __Z2SOUNDMGR_H__
-#define __Z2SOUNDMGR_H__
+#ifndef Z2SOUNDMGR_H_
+#define Z2SOUNDMGR_H_
 
 class Z2SoundMgr;
 

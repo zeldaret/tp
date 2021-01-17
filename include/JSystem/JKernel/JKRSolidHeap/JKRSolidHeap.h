@@ -1,5 +1,5 @@
-#ifndef __JKRSOLIDHEAP_H__
-#define __JKRSOLIDHEAP_H__
+#ifndef JKRSOLIDHEAP_H_
+#define JKRSOLIDHEAP_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"

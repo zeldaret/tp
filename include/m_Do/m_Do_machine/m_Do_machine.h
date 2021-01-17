@@ -1,5 +1,5 @@
-#ifndef __M_DO_MACHINE_H__
-#define __M_DO_MACHINE_H__
+#ifndef M_DO_MACHINE_H_
+#define M_DO_MACHINE_H_
 
 #include "global.h"
 

@@ -1,6 +1,6 @@
 
-#ifndef F_PC_LOAD_H
-#define F_PC_LOAD_H
+#ifndef F_PC_LOAD_H_
+#define F_PC_LOAD_H_
 
 #include "global.h"
 

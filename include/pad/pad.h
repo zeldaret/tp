@@ -1,5 +1,5 @@
-#ifndef __PAD_H__
-#define __PAD_H__
+#ifndef PAD_H_
+#define PAD_H_
 #include "global.h"
 
 typedef enum PADMask {

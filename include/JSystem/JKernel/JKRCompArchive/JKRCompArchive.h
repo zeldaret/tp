@@ -1,5 +1,5 @@
-#ifndef __JKRCOMPARCHIVE_H__
-#define __JKRCOMPARCHIVE_H__
+#ifndef JKRCOMPARCHIVE_H_
+#define JKRCOMPARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"

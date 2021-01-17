@@ -1,5 +1,5 @@
-#ifndef F_PC_MANAGER_H
-#define F_PC_MANAGER_H
+#ifndef F_PC_MANAGER_H_
+#define F_PC_MANAGER_H_
 
 #include "SComponent/c_node_iter.h"
 #include "SComponent/c_tag.h"

@@ -1,5 +1,5 @@
-#ifndef __C_LIB_H_
-#define __C_LIB_H_
+#ifndef C_LIB_H_
+#define C_LIB_H_
 
 #include "SComponent/c_xyz.h"
 #include "global.h"

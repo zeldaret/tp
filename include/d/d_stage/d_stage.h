@@ -1,5 +1,5 @@
-#ifndef __D_STAGE_H_
-#define __D_STAGE_H_
+#ifndef D_STAGE_H_
+#define D_STAGE_H_
 #include "global.h"
 
 class stage_arrow_class {};
