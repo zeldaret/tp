@@ -4,7 +4,7 @@
 /* 802CB65C 002C859C  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 802CB660 002C85A0  7C 7F 1B 78 */ mr r31, r3
 /* 802CB664 002C85A4  88 83 00 BA */ lbz r4, 0xba(r3)
-/* 802CB668 002C85A8  4B FF FC B9 */ bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 802CB668 002C85A8  4B FF FC B9 */ bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 802CB66C 002C85AC  54 60 84 3E */ srwi r0, r3, 0x10
 /* 802CB670 002C85B0  B0 01 00 08 */ sth r0, 8(r1)
 /* 802CB674 002C85B4  88 01 00 08 */ lbz r0, 8(r1)

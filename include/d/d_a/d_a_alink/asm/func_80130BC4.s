@@ -18,7 +18,7 @@
 /* 80130C08 0012DB48  54 1B 06 3F */ clrlwi. r27, r0, 0x18
 /* 80130C0C 0012DB4C  41 82 00 0C */ beq lbl_80130C18
 /* 80130C10 0012DB50  38 7F 2D 84 */ addi r3, r31, 0x2d84
-/* 80130C14 0012DB54  48 19 AF 45 */ bl Z2WolfHowlMgr_NS_skipCorrectDemo
+/* 80130C14 0012DB54  48 19 AF 45 */ bl skipCorrectDemo__13Z2WolfHowlMgrFv
 lbl_80130C18:
 /* 80130C18 0012DB58  7F E3 FB 78 */ mr r3, r31
 /* 80130C1C 0012DB5C  80 9F 32 CC */ lwz r4, 0x32cc(r31)
@@ -260,7 +260,7 @@ lbl_80130F50:
 /* 80130F68 0012DEA8  FC 40 F8 90 */ fmr f2, f31
 /* 80130F6C 0012DEAC  7F 44 D3 78 */ mr r4, r26
 /* 80130F70 0012DEB0  FC 60 08 90 */ fmr f3, f1
-/* 80130F74 0012DEB4  48 19 9F 61 */ bl Z2WolfHowlMgr_NS_startWolfHowlSound
+/* 80130F74 0012DEB4  48 19 9F 61 */ bl startWolfHowlSound__13Z2WolfHowlMgrFffbf
 /* 80130F78 0012DEB8  7C 60 07 74 */ extsb r0, r3
 /* 80130F7C 0012DEBC  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 80130F80 0012DEC0  3B 40 00 00 */ li r26, 0
