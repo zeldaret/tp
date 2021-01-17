@@ -2766,8 +2766,8 @@ func_802C087C
 func_802C0720
 func_802C06F4
 func_802C0618
-func_802AAFF0
-func_802AABF4
+__dt__14Z2SoundStarterFv
+startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>
 func_802CBB7C
 startWindStoneSound__13Z2WolfHowlMgrFScP3Vec
 func_802BEBDC

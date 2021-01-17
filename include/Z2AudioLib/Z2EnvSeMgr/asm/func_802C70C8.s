@@ -444,7 +444,7 @@ lbl_802C7710:
 /* 802C777C 002C46BC  88 DF 01 41 */ lbz r6, 0x141(r31)
 /* 802C7780 002C46C0  7C C6 07 74 */ extsb r6, r6
 /* 802C7784 002C46C4  38 E0 FF FF */ li r7, -1
-/* 802C7788 002C46C8  4B FE 37 55 */ bl Z2SoundStarter_NS_setPortData
+/* 802C7788 002C46C8  4B FE 37 55 */ bl setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc
 lbl_802C778C:
 /* 802C778C 002C46CC  80 1C 00 00 */ lwz r0, 0(r28)
 /* 802C7790 002C46D0  28 00 00 00 */ cmplwi r0, 0
@@ -455,7 +455,7 @@ lbl_802C778C:
 /* 802C77A4 002C46E4  88 DF 01 41 */ lbz r6, 0x141(r31)
 /* 802C77A8 002C46E8  7C C6 07 74 */ extsb r6, r6
 /* 802C77AC 002C46EC  38 E0 FF FF */ li r7, -1
-/* 802C77B0 002C46F0  4B FE 37 2D */ bl Z2SoundStarter_NS_setPortData
+/* 802C77B0 002C46F0  4B FE 37 2D */ bl setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc
 lbl_802C77B4:
 /* 802C77B4 002C46F4  38 60 00 00 */ li r3, 0
 /* 802C77B8 002C46F8  57 A0 06 3F */ clrlwi. r0, r29, 0x18

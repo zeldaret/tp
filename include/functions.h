@@ -556,7 +556,7 @@ void getHandleSoundID__14Z2SoundHandlesF10JAISoundID(void);
 void Z2SeqMgr_NS_setBattleSeqState(void);
 void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(void);
 void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(void);
-void Z2SoundStarter_NS_setPortData(void);
+void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc(void);
 void Z2SoundObjBase_NS_startCollisionSE(void);
 void Z2SeqMgr_NS_setBattleLastHit(void);
 }
@@ -5608,7 +5608,7 @@ void Z2SpeechMgr2_NS_selectTail(void);
 void _savegpr_26(void);
 void _restgpr_26(void);
 void Z2SpeechMgr2_NS_selectUnit(void);
-void Z2SoundStarter_NS_ctor(void);
+void __ct__14Z2SoundStarterFb(void);
 }
 
 // additional symbols needed for Z2Audience.cpp
@@ -5939,10 +5939,9 @@ void Z2SoundObjSimple_NS_dtor(void);
 extern "C" {
 void JASTrack_NS_readPort(void);
 void JASTrack_NS_openChild(void);
-void Z2SoundStarter_NS_getPortData(void);
-void func_802AABF4(void);
-void Z2SoundStarter_NS_startSound_X1_(void);
-void func_802AAFF0(void);
+void getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc(void);
+void startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3_SUB_0f_SUB_1UlfffffUl(void);
+void __dt__14Z2SoundStarterFv(void);
 void JAISoundStarter_NS_ctor(void);
 }
 

@@ -2023,7 +2023,7 @@ lbl_802B1DA0:
 /* 802B1DA8 002AECE8  38 A0 00 09 */	li r5, 9
 /* 802B1DAC 002AECEC  57 C6 04 3E */	clrlwi r6, r30, 0x10
 /* 802B1DB0 002AECF0  38 E0 FF FF */	li r7, -1
-/* 802B1DB4 002AECF4  4B FF 91 29 */	bl Z2SoundStarter_NS_setPortData
+/* 802B1DB4 002AECF4  4B FF 91 29 */	bl setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc
 /* 802B1DB8 002AECF8  9B DD 00 BC */	stb r30, 0xbc(r29)
 lbl_802B1DBC:
 /* 802B1DBC 002AECFC  E3 E1 00 78 */	psq_l f31, 120(r1), 0, 0

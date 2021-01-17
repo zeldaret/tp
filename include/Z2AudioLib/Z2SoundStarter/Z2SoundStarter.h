@@ -1,5 +1,8 @@
-#ifndef __Z2SOUNDSTARTER_H__
-#define __Z2SOUNDSTARTER_H__
+#ifndef Z2SOUNDSTARTER_H_
+#define Z2SOUNDSTARTER_H_
+
+#include "JSystem/JGeometry/JGeometry.h"
+#include "JSystem/JAudio2/JAISound/JAISound.h"
 
 struct Z2SoundStarter_vtable {
     void* field_0x0;
@@ -10,9 +13,19 @@ struct Z2SoundStarter_vtable {
 };
 
 struct Z2SoundStarter {
-    Z2SoundStarter_vtable* vtable;
+    // Z2SoundStarter_vtable* vtable;
+
+    Z2SoundStarter(bool);
+    virtual ~Z2SoundStarter();
+
+    virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const *);
+    virtual void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const *, u32, float, float, float, float, float, u32);
+
+
+    void setPortData(JAISoundHandle*, u32, u16, s8);
+    void getPortData(JAISoundHandle*, u32, s8);
 };
 
 extern Z2SoundStarter* lbl_80450B74;
 
-#endif
+#endif // Z2SOUNDSTARTER_H_
