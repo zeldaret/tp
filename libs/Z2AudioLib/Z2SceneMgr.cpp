@@ -117,7 +117,7 @@ asm void Z2SceneMgr::setSceneName(char* stageName, long roomNum, long layerNum){
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B6AF8.s"
 }
 
-//! @todo,@meme this looks to be non-inlined here because @ref setSceneName is too large
+//! @meme this looks to be non-inlined here because @ref setSceneName is too large
 JAISoundID::JAISoundID(JAISoundID const& soundIdToSet) {
     this->mId = soundIdToSet.mId;
     return;

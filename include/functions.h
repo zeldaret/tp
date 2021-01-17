@@ -5807,7 +5807,7 @@ void JAU_JASInitializer(void);
 void __ct__7Z2SeMgrFv(void);
 void JASHeap_NS_free(void);
 void Z2AudioMgr_NS_init(void);
-void Z2AudioArcLoader(void);
+void __ct__16Z2AudioArcLoaderFP10JAUSection(void);
 void JAUAudioArcLoader_NS_load(void);
 void __ct__10Z2SceneMgrFv(void);
 void func_8036679C(void);
@@ -6048,9 +6048,9 @@ void func_802BB0D8(void);
 extern "C" {
 void JAUSectionHeap_NS_getOpenSection(void);
 void func_802A9B54(void);
-void func_802A9A70(void);
+void readCommandMore__16Z2AudioArcLoaderFUl(void);
 void Z2FxLineMgr_NS_initDataArc(void);
-void Z2AudioArcLoader_NS_readBFCA(void);
+void readBFCA__16Z2AudioArcLoaderFPCv(void);
 void func_802A9B58(void);
 
 // manual

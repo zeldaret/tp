@@ -2794,9 +2794,9 @@ func_802BB6DC
 func_802BB0E0
 func_802BB0D8
 func_802BB090
-func_802A9B58
-func_802A9B54
-func_802A9A70
+__dt__16Z2AudioArcLoaderFv
+readBSTN__16Z2AudioArcLoaderFPCvUl
+readCommandMore__16Z2AudioArcLoaderFUl
 func_802C5894
 func_802C588C
 func_802C57C0
