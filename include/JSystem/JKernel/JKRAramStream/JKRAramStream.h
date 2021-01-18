@@ -1,5 +1,5 @@
-#ifndef __JKRARAMSTREAM_H__
-#define __JKRARAMSTREAM_H__
+#ifndef JKRARAMSTREAM_H_
+#define JKRARAMSTREAM_H_
 
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"

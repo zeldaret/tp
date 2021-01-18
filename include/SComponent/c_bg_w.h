@@ -1,5 +1,5 @@
-#ifndef SCOMPONENT_C_BG_W_H
-#define SCOMPONENT_C_BG_W_H
+#ifndef SCOMPONENT_C_BG_W_H_
+#define SCOMPONENT_C_BG_W_H_
 
 #include "global.h"
 

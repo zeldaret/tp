@@ -1,5 +1,5 @@
-#ifndef __VI_H__
-#define __VI_H__
+#ifndef VI_H_
+#define VI_H_
 
 #include "dolphin/types.h"
 

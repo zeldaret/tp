@@ -1,5 +1,5 @@
-#ifndef __JKRDVDRIPPER_H__
-#define __JKRDVDRIPPER_H__
+#ifndef JKRDVDRIPPER_H_
+#define JKRDVDRIPPER_H_
 
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "dolphin/types.h"

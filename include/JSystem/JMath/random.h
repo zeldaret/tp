@@ -1,5 +1,5 @@
-#ifndef __JSYSTEM_JMATH_RANDOM_H__
-#define __JSYSTEM_JMATH_RANDOM_H__
+#ifndef JSYSTEM_JMATH_RANDOM_H_
+#define JSYSTEM_JMATH_RANDOM_H_
 
 #include "dolphin/types.h"
 

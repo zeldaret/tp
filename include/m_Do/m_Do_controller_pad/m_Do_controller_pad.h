@@ -1,5 +1,5 @@
-#ifndef __M_DO_CONTROLLER_PAD_H_
-#define __M_DO_CONTROLLER_PAD_H_
+#ifndef M_DO_CONTROLLER_PAD_H_
+#define M_DO_CONTROLLER_PAD_H_
 
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "SComponent/c_API_controller_pad.h"

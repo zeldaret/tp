@@ -1,5 +1,5 @@
-#ifndef __JKRARAMHEAP_H__
-#define __JKRARAMHEAP_H__
+#ifndef JKRARAMHEAP_H_
+#define JKRARAMHEAP_H_
 
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "dolphin/types.h"

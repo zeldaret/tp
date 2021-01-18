@@ -2,6 +2,16 @@ WINDOWS := $(shell which wine ; echo $$?)
 UNAME_S := $(shell uname -s)
 
 #-------------------------------------------------------------------------------
+# Options
+#-------------------------------------------------------------------------------
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g
+else
+	CFLAGS +=
+endif
+
+#-------------------------------------------------------------------------------
 # Files
 #-------------------------------------------------------------------------------
 
@@ -53,10 +63,12 @@ endif
 
 AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
+STRIP   := $(DEVKITPPC)/bin/powerpc-eabi-strip
 CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 PYTHON  := python3
+DOXYGEN := doxygen
 
 POSTPROC := tools/postprocess.py
 
@@ -70,7 +82,7 @@ ASFLAGS := -mgekko -I include
 LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -enum int $(INCLUDES)
+CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -enum int $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack
@@ -95,8 +107,6 @@ ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS)
 dirs:
 	$(shell mkdir -p $(ALL_DIRS))
 
-.PHONY: dirs tools
-
 $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
@@ -110,6 +120,9 @@ clean:
 
 tools:
 	$(MAKE) -C tools
+
+docs:
+	$(DOXYGEN) Doxyfile
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
 	echo $(O_FILES) > build/o_files
@@ -131,3 +144,5 @@ $(BUILD_DIR)/%.o: %.cpp
 ### Debug Print ###
 
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
+
+.PHONY: default all dirs clean tools docs print-%

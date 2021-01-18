@@ -1,5 +1,5 @@
-#ifndef __C_MALLOC_H_
-#define __C_MALLOC_H_
+#ifndef C_MALLOC_H_
+#define C_MALLOC_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"

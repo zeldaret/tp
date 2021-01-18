@@ -1,6 +1,6 @@
 
-#ifndef F_PC_SEARCHER_H
-#define F_PC_SEARCHER_H
+#ifndef F_PC_SEARCHER_H_
+#define F_PC_SEARCHER_H_
 
 #include "f/f_pc/f_pc_base.h"
 #include "global.h"

@@ -1,5 +1,5 @@
-#ifndef __CONTROL_H_
-#define __CONTROL_H_
+#ifndef CONTROL_H_
+#define CONTROL_H_
 
 #include "dolphin/types.h"
 

@@ -1,5 +1,5 @@
-#ifndef __J2DPICTURE_H_
-#define __J2DPICTURE_H_
+#ifndef J2DPICTURE_H_
+#define J2DPICTURE_H_
 
 #include "global.h"
 

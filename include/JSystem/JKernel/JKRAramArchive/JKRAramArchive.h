@@ -1,5 +1,5 @@
-#ifndef __JKRARAMARCHIVE_H__
-#define __JKRARAMARCHIVE_H__
+#ifndef JKRARAMARCHIVE_H_
+#define JKRARAMARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"

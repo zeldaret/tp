@@ -1,5 +1,5 @@
-#ifndef __MTX_VEC_H_
-#define __MTX_VEC_H_
+#ifndef MTX_VEC_H_
+#define MTX_VEC_H_
 
 #include "dolphin/types.h"
 

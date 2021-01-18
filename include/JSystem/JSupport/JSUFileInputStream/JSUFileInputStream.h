@@ -1,5 +1,5 @@
-#ifndef __JSUFILEINPUTSTREAM_H__
-#define __JSUFILEINPUTSTREAM_H__
+#ifndef JSUFILEINPUTSTREAM_H_
+#define JSUFILEINPUTSTREAM_H_
 
 #include "JSystem/JSupport/JSURandomInputStream/JSURandomInputStream.h"
 #include "dolphin/types.h"
