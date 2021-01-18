@@ -1,5 +1,5 @@
-#ifndef __D_COM_INF_GAME_H_
-#define __D_COM_INF_GAME_H_
+#ifndef D_COM_INF_GAME_H_
+#define D_COM_INF_GAME_H_
 
 #include "SComponent/c_xyz/c_xyz.h"
 #include "d/d_attention/d_attention.h"

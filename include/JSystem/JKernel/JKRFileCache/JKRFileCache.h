@@ -1,5 +1,5 @@
-#ifndef __JKRFILECACHE_H__
-#define __JKRFILECACHE_H__
+#ifndef JKRFILECACHE_H_
+#define JKRFILECACHE_H_
 
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "dolphin/types.h"

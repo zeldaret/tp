@@ -1,5 +1,5 @@
-#ifndef F_PC_NODE_REQ_H
-#define F_PC_NODE_REQ_H
+#ifndef F_PC_NODE_REQ_H_
+#define F_PC_NODE_REQ_H_
 
 #include "SComponent/c_phase.h"
 #include "f/f_pc/f_pc_method.h"

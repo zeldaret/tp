@@ -1,6 +1,6 @@
 
-#ifndef SCOMPONENT_C_TREE_H
-#define SCOMPONENT_C_TREE_H
+#ifndef SCOMPONENT_C_TREE_H_
+#define SCOMPONENT_C_TREE_H_
 
 #include "SComponent/c_list.h"
 #include "SComponent/c_node.h"

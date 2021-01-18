@@ -1,6 +1,6 @@
 
-#ifndef SCOMPONENT_C_PHASE_H
-#define SCOMPONENT_C_PHASE_H
+#ifndef SCOMPONENT_C_PHASE_H_
+#define SCOMPONENT_C_PHASE_H_
 
 typedef int (*cPhs__Handler)(void*);
 

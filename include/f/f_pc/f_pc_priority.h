@@ -1,6 +1,6 @@
 
-#ifndef F_PC_PRIORITY_H
-#define F_PC_PRIORITY_H
+#ifndef F_PC_PRIORITY_H_
+#define F_PC_PRIORITY_H_
 
 #include "SComponent/c_tag.h"
 #include "f/f_pc/f_pc_method_tag.h"

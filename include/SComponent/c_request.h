@@ -1,5 +1,5 @@
-#ifndef __C_REQUEST_H_
-#define __C_REQUEST_H_
+#ifndef C_REQUEST_H_
+#define C_REQUEST_H_
 
 #include "f/f_pc/f_pc_base.h"
 #include "global.h"

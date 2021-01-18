@@ -1,5 +1,5 @@
-#ifndef __SARC_H__
-#define __SARC_H__
+#ifndef SARC_H_
+#define SARC_H_
 
 #include "dolphin/types.h"
 

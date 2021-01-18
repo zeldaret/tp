@@ -1,5 +1,5 @@
-#ifndef __JSYSTEM_JUTILITY_JUTGAMEPAD__
-#define __JSYSTEM_JUTILITY_JUTGAMEPAD__
+#ifndef JSYSTEM_JUTILITY_JUTGAMEPAD_
+#define JSYSTEM_JUTILITY_JUTGAMEPAD_
 
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"

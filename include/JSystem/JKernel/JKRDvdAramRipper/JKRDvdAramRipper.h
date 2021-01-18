@@ -1,5 +1,5 @@
-#ifndef __JKRDVDARAMRIPPER_H__
-#define __JKRDVDARAMRIPPER_H__
+#ifndef JKRDVDARAMRIPPER_H_
+#define JKRDVDARAMRIPPER_H_
 
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"

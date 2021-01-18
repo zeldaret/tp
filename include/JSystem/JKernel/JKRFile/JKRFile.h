@@ -1,5 +1,5 @@
-#ifndef __JKRFILE_H__
-#define __JKRFILE_H__
+#ifndef JKRFILE_H_
+#define JKRFILE_H_
 
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "dolphin/types.h"

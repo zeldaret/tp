@@ -1,5 +1,5 @@
-#ifndef __M_DO_EXT_H_
-#define __M_DO_EXT_H_
+#ifndef M_DO_EXT_H_
+#define M_DO_EXT_H_
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"

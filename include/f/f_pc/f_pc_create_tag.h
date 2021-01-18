@@ -1,6 +1,6 @@
 
-#ifndef F_PC_CREATE_TAG_H
-#define F_PC_CREATE_TAG_H
+#ifndef F_PC_CREATE_TAG_H_
+#define F_PC_CREATE_TAG_H_
 
 #include "SComponent/c_tag.h"
 #include "global.h"

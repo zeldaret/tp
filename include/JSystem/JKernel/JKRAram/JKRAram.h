@@ -1,5 +1,5 @@
-#ifndef __JKRARAM_H__
-#define __JKRARAM_H__
+#ifndef JKRARAM_H_
+#define JKRARAM_H_
 
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
