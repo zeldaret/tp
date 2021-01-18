@@ -2,7 +2,8 @@
 # PYTHON_ARGCOMPLETE_OK
 import argparse
 import sys
-from pathlib import Path, PurePath
+import platform
+from pathlib import Path, PurePath, PureWindowsPath
 from typing import (
     Any,
     Dict,
@@ -252,10 +253,10 @@ parser.add_argument(
     help="If multiple occurence of the same symbol is found, use this to select the correct ocurrance."
 )
 parser.add_argument(
-    "--source-wslpath",
-    dest="source_wslpath",
-    action="store_true",
-    help="Pass source code path through 'wslpath' before reading it."
+    "--source-path-postprocess",
+    dest="source_path_postprocess",
+    choices=["none", "wsl", "wine"],
+    help="Preprocess source path for a given platform before reading it. If unspecified, OS detection is used."
 )
 
 # Project-specific flags, e.g. different versions/make arguments.
@@ -931,6 +932,24 @@ def make_difference_normalizer() -> DifferenceNormalizer:
         return DifferenceNormalizerAArch64()
     return DifferenceNormalizer()
 
+def in_wsl() -> bool:
+    """
+    WSL is thought to be the only common Linux kernel with Microsoft in the name, per Microsoft:
+
+    https://github.com/microsoft/WSL/issues/4071#issuecomment-496715404
+    """
+
+    return 'Microsoft' in platform.uname().release
+
+def guess_sourcepath_processing() -> str:
+    if platform.system() == 'Windows':
+        return 'none' # we don't need to process
+    else:
+        if in_wsl():
+            return 'wsl'
+        else:
+            return 'unix'
+
 
 def process(lines: List[str]) -> List[Line]:
     file_cache = dict()
@@ -972,8 +991,17 @@ def process(lines: List[str]) -> List[Line]:
             if m_file_line:
                 path = m_file_line.group(1)
                 line = int(m_file_line.group(2))
-                if args.source_wslpath:
-                    path = subprocess.check_output(["wslpath","-ua", path],universal_newlines=True).strip()
+
+                if not args.source_path_postprocess:
+                    args.source_path_postprocess = guess_sourcepath_processing()
+
+                if args.source_path_postprocess == 'none': ...
+                elif args.source_path_postprocess == 'wine':
+                    # on Wine, use winepath to convert
+                    path = subprocess.check_output(["winepath","-u", path], universal_newlines=True).strip()
+                elif args.source_path_postprocess == 'wsl':
+                    # on WSL, use wslpath to convert
+                    path = subprocess.check_output(["wslpath","-ua", path], universal_newlines=True).strip()
 
                 if path in file_cache:
                     file_lines = file_cache[path]
@@ -992,7 +1020,7 @@ def process(lines: List[str]) -> List[Line]:
                                 source_lines.append(file_lines[i - 1])
                             i += 1
                 else:
-                    source_lines.append(f"// \"{elide_path(Path(path))}\"")
+                    source_lines.append(f"// \"{elide_path(Path(path), n_lhs=0, n_rhs=2)}\"")
                     
                 if line > 0 and line <= len(file_lines):
                     source_lines.append(file_lines[line - 1])
@@ -1373,8 +1401,13 @@ def chunk_diff(diff: List[OutputLine]) -> List[Union[List[OutputLine], OutputLin
     chunks.append(cur_right)
     return chunks
 
-def elide_path(p: Path) -> PurePath:
-    return PurePath(p.parts[0]) / '...' / PurePath(p.parts[-1])
+def elide_path(p: Path, n_lhs: int = 1, n_rhs: int = 1) -> PurePath:
+    if n_lhs == 0:
+        path = PurePath('...')
+    else:
+        path = PurePath(*p.parts[:n_lhs]) / '...'
+    path = path / PurePath(*p.parts[-n_rhs:])
+    return path
 
 def format_diff(
     old_diff: List[OutputLine], new_diff: List[OutputLine],
