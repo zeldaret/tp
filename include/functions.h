@@ -5939,7 +5939,8 @@ extern "C" {
 void JASTrack_NS_readPort(void);
 void JASTrack_NS_openChild(void);
 void getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc(void);
-void startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3_SUB_0f_SUB_1UlfffffUl(void);
+void startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3_SUB_0f_SUB_1UlfffffUl(
+    void);
 void __dt__14Z2SoundStarterFv(void);
 void JAISoundStarter_NS_ctor(void);
 }

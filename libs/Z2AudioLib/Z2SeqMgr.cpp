@@ -1,6 +1,6 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 
 asm Z2SeqMgr::Z2SeqMgr(void) {

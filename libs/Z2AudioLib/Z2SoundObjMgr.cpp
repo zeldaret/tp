@@ -74,11 +74,13 @@ asm void Z2SoundObjMgr_NS_checkBattleFinish(void) {
 void Z2SoundObjMgr::deleteEnemyAll() {
     JSULink<Z2CreatureEnemy>* link;
 
-    // not moving the link pointer forward looks like a bug, but deleteObject() actually unlinks the enemy from its owning list
+    // not moving the link pointer forward looks like a bug, but deleteObject() actually unlinks the
+    // enemy from its owning list
     while (link = this->getFirst(), link != NULL) {
         Z2CreatureEnemy* enemy = link->getObject();
         if (enemy == NULL) {
-            // setWarningMessage_f((JUTAssertion *)0x1,(ulong)"Z2SoundObjMgr.cpp",(char *)0x16f,(int)&*fill*,
+            // setWarningMessage_f((JUTAssertion *)0x1,(ulong)"Z2SoundObjMgr.cpp",(char
+            // *)0x16f,(int)&*fill*,
             //                     "[Z2SoundObjMgr::searchEnemy] remain remove enemy\n",in_r8);
         } else {
             enemy->deleteObject();

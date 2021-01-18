@@ -144,5 +144,4 @@ private:
     JAISound* mSound;
 };
 
-
 #endif

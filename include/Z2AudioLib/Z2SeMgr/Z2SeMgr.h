@@ -67,18 +67,17 @@ struct Z2MultiSeMgr {
     float getPanPower(void);
     float getDolbyPower(void);
 
-    u8  field_0x0;
-    u8  field_0x1;
-    u8  field_0x2;
-    u8  field_0x3;
+    u8 field_0x0;
+    u8 field_0x1;
+    u8 field_0x2;
+    u8 field_0x3;
     f32 field_0x4;
     f32 field_0x8;
     f32 field_0xc;
     f32 field_0x10;
     f32 field_0x14;
-    s8  field_0x18;
+    s8 field_0x18;
 };
-
 
 extern "C" {
 void Z2MultiSeObj(void);
@@ -126,7 +125,7 @@ extern float lbl_804558D4;
 extern double lbl_804558E0;
 extern float lbl_804558C0;
 extern float lbl_8045587C;
-extern float lbl_80455878; // 0.0f
+extern float lbl_80455878;  // 0.0f
 extern float lbl_80455870;
 extern float lbl_80455874;
 extern float lbl_80455880;

@@ -5,7 +5,7 @@
 extern "C" {
 // __ct__16Z2AudioArcLoaderFP10JAUSection
 // Z2AudioArcLoader::Z2AudioArcLoader(JAUSection*)
-asm Z2AudioArcLoader::Z2AudioArcLoader(JAUSection *) {
+asm Z2AudioArcLoader::Z2AudioArcLoader(JAUSection*) {
     nofralloc
 #include "Z2AudioLib/Z2AudioArcLoader/asm/func_802A9A34.s"
 }

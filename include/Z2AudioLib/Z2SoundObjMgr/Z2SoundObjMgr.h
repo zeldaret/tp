@@ -1,9 +1,9 @@
 #ifndef Z2SOUNDOBJMGR_H_
 #define Z2SOUNDOBJMGR_H_
 
-#include "dolphin/types.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
+#include "dolphin/types.h"
 
 class Z2SoundObjMgr : protected JSUList<Z2CreatureEnemy> {
 public:
@@ -39,4 +39,4 @@ private:
 
 extern Z2SoundObjMgr* lbl_80450B48;  // Z2SoundObjMgr sInstance
 
-#endif // Z2SOUNDOBJMGR_H_
+#endif  // Z2SOUNDOBJMGR_H_

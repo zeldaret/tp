@@ -5,7 +5,7 @@
 
 class JAISoundHandles {
 public:
-	JAISoundHandle mHandles[24];
+    JAISoundHandle mHandles[24];
 };
 
-#endif // JAISOUNDHANDLES_H_
+#endif  // JAISOUNDHANDLES_H_

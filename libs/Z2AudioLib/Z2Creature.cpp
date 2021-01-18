@@ -3,9 +3,9 @@
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
-#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "global.h"
 
 extern "C" {

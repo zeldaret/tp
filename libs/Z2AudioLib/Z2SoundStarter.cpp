@@ -15,7 +15,7 @@ asm Z2SoundStarter::Z2SoundStarter(bool) {
 
 // startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>
 // Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f>)
-asm void Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const *) {
+asm void Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*) {
     nofralloc
 #include "Z2AudioLib/Z2SoundStarter/asm/func_802AABF4.s"
 }
@@ -23,7 +23,8 @@ asm void Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec
 // startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl
 // Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f>, unsigned long,
 // float, float, float, float, float, unsigned long)
-asm void Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const *, u32, float, float, float, float, float, u32) {
+asm void Z2SoundStarter::startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32,
+                                    float, float, float, float, float, u32) {
     nofralloc
 #include "Z2AudioLib/Z2SoundStarter/asm/func_802AAC3C.s"
 }

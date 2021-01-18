@@ -1,7 +1,6 @@
 #ifndef JAIAUDIENCE_H_
 #define JAIAUDIENCE_H_
 
-struct JAIAudience {
-};
+struct JAIAudience {};
 
-#endif // JAIAUDIENCE_H_
+#endif  // JAIAUDIENCE_H_

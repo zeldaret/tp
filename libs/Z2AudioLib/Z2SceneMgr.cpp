@@ -1,9 +1,9 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
-#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 
 extern u8 lbl_803CA9BC;
 extern u8 lbl_80450863;

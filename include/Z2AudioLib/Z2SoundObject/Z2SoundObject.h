@@ -45,7 +45,6 @@ public:
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
 };
 
-class Z2DopplerSoundObjBase : protected Z2SoundHandles {
-};
+class Z2DopplerSoundObjBase : protected Z2SoundHandles {};
 
 #endif
