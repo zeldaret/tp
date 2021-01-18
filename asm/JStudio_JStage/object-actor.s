@@ -769,7 +769,7 @@ lbl_8028B0D0:
 /* 8028B0D4 00288014  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8028B0D8 00288018  40 81 00 24 */	ble lbl_8028B0FC
 /* 8028B0DC 0028801C  7F A3 EB 78 */	mr r3, r29
-/* 8028B0E0 00288020  4B FF 65 69 */	bl JStudio_NS_TFunctionValue_NS_toFunction_outside
+/* 8028B0E0 00288020  4B FF 65 69 */	bl toFunction_outside__Q27JStudio14TFunctionValueFi
 /* 8028B0E4 00288024  FC 20 F0 90 */	fmr f1, f30
 /* 8028B0E8 00288028  FC 40 F8 90 */	fmr f2, f31
 /* 8028B0EC 0028802C  7C 6C 1B 78 */	mr r12, r3
