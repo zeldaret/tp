@@ -2,12 +2,6 @@
 
 .section .text, "ax" # 802dccc8
 
-
-.global JGadget_NS_vector_NS_extend_default
-JGadget_NS_vector_NS_extend_default:
-/* 802DCCC8 002D9C08  54 83 08 3C */	slwi r3, r4, 1
-/* 802DCCCC 002D9C0C  4E 80 00 20 */	blr 
-
 .global JGadget_NS_TVector_pointer_void
 JGadget_NS_TVector_pointer_void:
 /* 802DCCD0 002D9C10  88 04 00 00 */	lbz r0, 0(r4)
@@ -17,10 +11,8 @@ JGadget_NS_TVector_pointer_void:
 /* 802DCCE0 002D9C20  80 03 00 04 */	lwz r0, 4(r3)
 /* 802DCCE4 002D9C24  90 03 00 08 */	stw r0, 8(r3)
 /* 802DCCE8 002D9C28  90 83 00 0C */	stw r4, 0xc(r3)
-.global JGadget_NS_vector_NS_extend_default
-/* 802DCCEC 002D9C2C  3C 80 80 2E */	lis r4, JGadget_NS_vector_NS_extend_default@ha
-.global JGadget_NS_vector_NS_extend_default
-/* 802DCCF0 002D9C30  38 04 CC C8 */	addi r0, r4, JGadget_NS_vector_NS_extend_default@l
+/* 802DCCEC 002D9C2C  3C 80 80 2E */	lis r4, extend_default__Q27JGadget6vectorFUlUlUl@ha
+/* 802DCCF0 002D9C30  38 04 CC C8 */	addi r0, r4, extend_default__Q27JGadget6vectorFUlUlUl@l
 /* 802DCCF4 002D9C34  90 03 00 10 */	stw r0, 0x10(r3)
 /* 802DCCF8 002D9C38  4E 80 00 20 */	blr 
 
@@ -86,8 +78,8 @@ JGadget_NS_TVector_pointer_void_NS_insert:
 /* 802DCDBC 002D9CFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DCDC0 002D9D00  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TVector_pointer_void_NS_erase
-JGadget_NS_TVector_pointer_void_NS_erase:
+.global erase__Q27JGadget20TVector_pointer_voidFPPvPPv
+erase__Q27JGadget20TVector_pointer_voidFPPvPPv:
 /* 802DCDC4 002D9D04  80 C3 00 08 */	lwz r6, 8(r3)
 /* 802DCDC8 002D9D08  7C 87 23 78 */	mr r7, r4
 /* 802DCDCC 002D9D0C  38 06 00 03 */	addi r0, r6, 3

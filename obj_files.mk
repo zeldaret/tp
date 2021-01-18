@@ -303,7 +303,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JStage/JSGObject.o    \
             $(BUILD_DIR)/asm/JStage/JSGSystem.o    \
             $(BUILD_DIR)/asm/JStudio/ctb.o    \
+            $(BUILD_DIR)/libs/JSystem/JStudio/functionvalue.o    \
             $(BUILD_DIR)/asm/JStudio/functionvalue.o    \
+            $(BUILD_DIR)/libs/JSystem/JStudio/fvb.o    \
             $(BUILD_DIR)/asm/JStudio/fvb.o    \
             $(BUILD_DIR)/asm/JStudio/fvb-data-parse.o    \
             $(BUILD_DIR)/asm/JStudio/jstudio-control.o    \
@@ -460,6 +462,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JGadget/binary.o    \
             $(BUILD_DIR)/libs/JSystem/JGadget/linklist.o    \
             $(BUILD_DIR)/asm/JGadget/linklist.o    \
+            $(BUILD_DIR)/libs/JSystem/JGadget/std-vector.o    \
             $(BUILD_DIR)/asm/JGadget/std-vector.o    \
             $(BUILD_DIR)/asm/JUtility/JUTCacheFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTResource.o    \

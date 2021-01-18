@@ -31,16 +31,19 @@ struct TNodeLinkList {
         oNode_.pPrev_ = &oNode_;
     }
 
-    void Insert(iterator iter, TLinkListNode* node);
-
+    TLinkListNode* size() const { return iter.node; }
+    bool empty() const { return size() == 0; }
     iterator end() { return iterator(oNode_.pNext_); }
+
+    void Insert(iterator iter, TLinkListNode* node);
 
     iterator iter;
     TLinkListNode oNode_;
 };
 
 // Currently non matching, but its a rough idea
-template <class T, int U, int V>
+// Shows up as 3 args in Ghidra, but the 'undefined' is just -1
+template <class T, int U>
 struct TLinkList : TNodeLinkList {
     TLinkListNode* Element_toNode(T* p) { return &static_cast<JStudio::stb::TObject*>(p)->mNode; }
 
