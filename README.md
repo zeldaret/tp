@@ -6,7 +6,7 @@ It builds the following DOL:
 
 main.dol - `sha1: 4997D93B9692620C40E90374A0F1DBF0E4889395`
 
-And will eventually build all the [RELs](./rels_sha1.md).
+And will eventually build all the [RELs](./docs/rels_sha1.md).
 
 ## Windows Prerequisites
 
