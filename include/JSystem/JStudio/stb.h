@@ -1,5 +1,5 @@
-#ifndef JSYSTEM_OBJECTID_H
-#define JSYSTEM_OBJECTID_H
+#ifndef JSYSTEM_OBJECTID_H_
+#define JSYSTEM_OBJECTID_H_
 
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"

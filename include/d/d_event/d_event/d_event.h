@@ -1,5 +1,5 @@
-#ifndef __D_EVENT_H_
-#define __D_EVENT_H_
+#ifndef D_EVENT_H_
+#define D_EVENT_H_
 
 #include "dolphin/types.h"
 

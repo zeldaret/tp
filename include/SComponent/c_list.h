@@ -1,6 +1,6 @@
 
-#ifndef SCOMPONENT_C_LIST_H
-#define SCOMPONENT_C_LIST_H
+#ifndef SCOMPONENT_C_LIST_H_
+#define SCOMPONENT_C_LIST_H_
 
 #include "SComponent/c_node.h"
 

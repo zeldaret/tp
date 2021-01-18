@@ -9,6 +9,9 @@ build/
 *.dol
 vtable.lcf
 
+# Generated documentation
+docs/doxygen/
+
 # Temporary files
 *.swp
 *.dump

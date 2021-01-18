@@ -1,5 +1,5 @@
-#ifndef __D_ATTENTION_H_
-#define __D_ATTENTION_H_
+#ifndef D_ATTENTION_H_
+#define D_ATTENTION_H_
 
 #include "SComponent/c_angle.h"
 #include "SComponent/c_xyz/c_xyz.h"

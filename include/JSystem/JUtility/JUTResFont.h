@@ -1,5 +1,5 @@
-#ifndef JSYSTEM_JUTILITY_JUT_RES_FONT
-#define JSYSTEM_JUTILITY_JUT_RES_FONT
+#ifndef JSYSTEM_JUTILITY_JUT_RES_FONT_
+#define JSYSTEM_JUTILITY_JUT_RES_FONT_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"

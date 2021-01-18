@@ -1,5 +1,5 @@
-#ifndef JSYSTEM_JGADGET_LINKLIST_H
-#define JSYSTEM_JGADGET_LINKLIST_H
+#ifndef JSYSTEM_JGADGET_LINKLIST_H_
+#define JSYSTEM_JGADGET_LINKLIST_H_
 
 #include "dolphin/types.h"
 

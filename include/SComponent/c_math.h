@@ -1,5 +1,5 @@
-#ifndef __C_MATH_H_
-#define __C_MATH_H_
+#ifndef C_MATH_H_
+#define C_MATH_H_
 
 #include "global.h"
 
