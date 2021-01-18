@@ -74,7 +74,7 @@ class ToReplace:
         self.dest = dest # String to patch
         self.src_size = src_size # Pad rest with zeroes
 
-        print("To replace: %s %s %s" % (self.position, self.dest, self.src_size))
+        # print("To replace: %s %s %s" % (self.position, self.dest, self.src_size))
 
 def read_string(f):
     tmp = ""
