@@ -44,8 +44,8 @@ JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
 }
 
 JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
-    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-         link = link->getNext()) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = this->getFirst(); link != NULL; link = link->getNext()) {
         JAISoundHandle* handle = link->getObject();
         if (handle->isSoundAttached()) {
             if ((*handle)->getUserData() == pUserData) {

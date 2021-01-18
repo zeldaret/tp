@@ -3,15 +3,14 @@
 #include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 
-// __ct__13Z2SoundObjMgrFv
-// Z2SoundObjMgr::Z2SoundObjMgr(void)
 #ifdef NONMATCHING
+// order wrong because this needs to inherit from JASGlobalInstance<T>
 Z2SoundObjMgr::Z2SoundObjMgr() {
     lbl_80450B48 = this;
     this->field_0x19 = 0;
     this->mIsTwilightBattle = false;
     this->setBattleInit();
-    this->setForceBattleArea(false, 700, 0x44c, 0x5dc);
+    this->setForceBattleArea(false, 700, 1100, 1500);
 }
 #else
 asm Z2SoundObjMgr::Z2SoundObjMgr() {

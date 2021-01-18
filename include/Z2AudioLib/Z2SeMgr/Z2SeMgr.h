@@ -54,7 +54,7 @@ struct Z2SeMgr {
     u8 unk0[128];
     s8 unk1[12];
 
-    u8 crowd_size;
+    u8 mCrowdSize;
 
     u8 unk2[3];
 };
