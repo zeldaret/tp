@@ -2,6 +2,16 @@ WINDOWS := $(shell which wine ; echo $$?)
 UNAME_S := $(shell uname -s)
 
 #-------------------------------------------------------------------------------
+# Options
+#-------------------------------------------------------------------------------
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g
+else
+	CFLAGS +=
+endif
+
+#-------------------------------------------------------------------------------
 # Files
 #-------------------------------------------------------------------------------
 
@@ -53,6 +63,7 @@ endif
 
 AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
 OBJCOPY := $(DEVKITPPC)/bin/powerpc-eabi-objcopy
+STRIP   := $(DEVKITPPC)/bin/powerpc-eabi-strip
 CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
@@ -71,7 +82,7 @@ ASFLAGS := -mgekko -I include
 LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
 
 # Compiler flags
-CFLAGS  := -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -enum int $(INCLUDES)
+CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -enum int $(INCLUDES)
 
 # for postprocess.py
 PROCFLAGS := -fprologue-fixup=old_stack
