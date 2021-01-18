@@ -1,5 +1,5 @@
-#ifndef F_PC_LINE_H
-#define F_PC_LINE_H
+#ifndef F_PC_LINE_H_
+#define F_PC_LINE_H_
 
 extern "C" {
 

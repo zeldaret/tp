@@ -1,5 +1,5 @@
-#ifndef __C_CC_S_H_
-#define __C_CC_S_H_
+#ifndef C_CC_S_H_
+#define C_CC_S_H_
 
 #include "SComponent/c_cc_d/c_cc_d.h"
 #include "global.h"

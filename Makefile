@@ -68,6 +68,7 @@ CC      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwcceppc.exe
 LD      := $(WINE) tools/mwcc_compiler/$(MWCC_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 PYTHON  := python3
+DOXYGEN := doxygen
 
 POSTPROC := tools/postprocess.py
 
@@ -106,8 +107,6 @@ ALL_DIRS := build $(BUILD_DIR) $(addprefix $(BUILD_DIR)/,$(SRC_DIRS) $(ASM_DIRS)
 dirs:
 	$(shell mkdir -p $(ALL_DIRS))
 
-.PHONY: dirs tools
-
 $(LDSCRIPT): ldscript.lcf
 	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
@@ -121,6 +120,9 @@ clean:
 
 tools:
 	$(MAKE) -C tools
+
+docs:
+	$(DOXYGEN) Doxyfile
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
 	echo $(O_FILES) > build/o_files
@@ -142,3 +144,5 @@ $(BUILD_DIR)/%.o: %.cpp
 ### Debug Print ###
 
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
+
+.PHONY: default all dirs clean tools docs print-%

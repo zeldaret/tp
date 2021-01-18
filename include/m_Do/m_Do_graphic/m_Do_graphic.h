@@ -1,5 +1,5 @@
-#ifndef __M_DO_GRAPHIC_H__
-#define __M_DO_GRAPHIC_H__
+#ifndef M_DO_GRAPHIC_H_
+#define M_DO_GRAPHIC_H_
 
 #include "global.h"
 

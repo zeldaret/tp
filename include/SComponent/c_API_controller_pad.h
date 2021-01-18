@@ -1,5 +1,5 @@
-#ifndef __C_API_CONTROLLER_PAD__
-#define __C_API_CONTROLLER_PAD__
+#ifndef C_API_CONTROLLER_PAD_
+#define C_API_CONTROLLER_PAD_
 
 #include "global.h"
 

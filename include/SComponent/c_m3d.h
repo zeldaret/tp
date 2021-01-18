@@ -1,5 +1,5 @@
-#ifndef __C_M3D_H_
-#define __C_M3D_H_
+#ifndef C_M3D_H_
+#define C_M3D_H_
 
 #include "SComponent/c_m3d_g_aab.h"
 #include "SComponent/c_m3d_g_cps.h"
