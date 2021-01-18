@@ -11,9 +11,16 @@
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
 #define JUT_ASSERT(...)
+#define JUT_EXPECT(...)
+#define JUTReport(...)
 #define ASSERT(...)
 #define LOGF(FMT, ...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)
+
+struct JUTWarn {
+    JUTWarn& operator<<(const char*) { return *this; }
+    JUTWarn& operator<<(long) { return *this; }
+};
 
 extern float __fabsf(float);
 
