@@ -179,8 +179,6 @@ struct Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80;  // Z2SceneMgr sInstance
 struct Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60;  // Z2SoundMgr sInstance
-struct Z2SoundObjMgr;
-extern Z2SoundObjMgr* lbl_80450B48;  // Z2SoundObjMgr sInstance
 struct Z2SpeechMgr2;
 extern void* lbl_803CC114;  // JKRThread::__vt
 

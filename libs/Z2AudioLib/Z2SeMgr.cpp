@@ -2,6 +2,7 @@
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 
 extern "C" {
 void JAISoundHandle(void);

@@ -517,13 +517,13 @@ void JSUList_X1_(void);
 void dComIfGs_isStageSwitch(void);
 void dComIfGs_getStartPoint(void);
 void isSwitch__10dSv_info_cCFii(void);
-void Z2SoundObjMgr_NS_setForceBattleArea(void);
+void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs(void);
 void Z2SeqMgr_NS_unMuteSceneBgm(void);
 void Z2SeqMgr_NS_muteSceneBgm(void);
 void dComIfGs_isEventBit(void);
 void JAISoundID_NS___as(void);
 void dComIfGs_isSaveSwitch(void);
-void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
 void Z2SeMgr_NS_resetCrowdSize(void);
 void Z2SeqMgr_NS_setTwilightGateVol(void);
 void Z2SeqMgr_NS_setWindStoneVol(void);
@@ -534,9 +534,9 @@ void moveVolume__18JAISoundParamsMoveFfUl(void);
 }
 // Z2LinkMgr
 extern "C" {
+void __ct__10Z2CreatureFv(void);
 void Z2CreatureLink_NS_startLinkSound(void);
 void Z2SoundObjSimple(void);
-void Z2Creature(void);
 void JAISoundStarter_NS_dtor(void);
 void Z2Creature_NS_dtor(void);
 void __dt__14Z2SoundObjBaseFv(void);
@@ -548,7 +548,7 @@ void moveVolume__18JAISoundParamsMoveFfUl(void);
 void Z2CreatureLink_NS_startLinkSoundLevel(void);
 void Z2Creature_NS_framework(void);
 void Z2Audience_NS_setTargetVolume(void);
-void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
 void Z2FxLineMgr_NS_setFxForceOff(void);
 void JAISoundParamsMove_NS_movePitch(void);
 void Z2Calc_NS_linearTransform(void);
@@ -5851,7 +5851,7 @@ void JASDriver_NS_getSubFrames(void);
 // ctors
 void Z2FxLineMgr(void);
 void Z2Audience(void);
-void Z2SoundObjMgr_NS_ctor(void);
+void __ct__13Z2SoundObjMgrFv(void);
 void JASHeap_NS___defctor();
 void JASHeap_NS_dtor();
 void JASMemPool_NS_dtor_X4_();
@@ -5906,7 +5906,6 @@ void func_802C0ED8(void);
 void Z2_E_sw_modPitch(void);
 void func_802C1B90(void);
 void Z2_B_zan_modPitch(void);
-void Z2CreatureEnemy(void);
 void func_802C136C(void);
 void Z2SoundObjAnime(void);
 void Z2CreatureEnemy_NS_deleteObject(void);
@@ -6010,13 +6009,13 @@ void __dt__14Z2SoundHandlesFv(void);
 extern "C" {
 void Z2SeqMgr_NS_setBattleDistState(void);
 void Z2SeqMgr_NS_stopBattleBgm(void);
-void Z2SoundObjMgr_NS_isTwilightBattle(void);
+void isTwilightBattle__13Z2SoundObjMgrFv(void);
 void Z2SoundObjMgr_NS_checkBattleFinish(void);
 void Z2SoundObjMgr_NS_searchEnemy(void);
-void Z2SeqMgr_NS_setBattleGhostMute(void);
+void setBattleGhostMute__8Z2SeqMgrFb(void);
 void func_802C01EC(void);
-void Z2SoundObjMgr_NS_deleteEnemyAll(void);
-void Z2SoundObjMgr_NS_setBattleInit(void);
+void deleteEnemyAll__13Z2SoundObjMgrFv(void);
+void setBattleInit__13Z2SoundObjMgrFv(void);
 void Z2SeqMgr_NS_setBattleSearched(void);
 }
 
