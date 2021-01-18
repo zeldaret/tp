@@ -1,5 +1,5 @@
-#ifndef __D_BG_W_BASE_H_
-#define __D_BG_W_BASE_H_
+#ifndef D_BG_W_BASE_H_
+#define D_BG_W_BASE_H_
 
 #include "global.h"
 #pragma pack(push, 1)

@@ -1,5 +1,5 @@
-#ifndef __JSUINPUTSTREAM_H__
-#define __JSUINPUTSTREAM_H__
+#ifndef JSUINPUTSTREAM_H_
+#define JSUINPUTSTREAM_H_
 
 #include "JSystem/JSupport/JSUIosBase.h"
 #include "dolphin/types.h"

@@ -1,5 +1,5 @@
-#ifndef __TYPES_H__
-#define __TYPES_H__
+#ifndef TYPES_H_
+#define TYPES_H_
 
 typedef signed char s8;
 typedef signed short s16;

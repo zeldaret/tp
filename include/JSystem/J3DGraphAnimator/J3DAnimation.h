@@ -1,5 +1,5 @@
-#ifndef __J3DANIMATION_H_
-#define __J3DANIMATION_H_
+#ifndef J3DANIMATION_H_
+#define J3DANIMATION_H_
 
 #include "global.h"
 

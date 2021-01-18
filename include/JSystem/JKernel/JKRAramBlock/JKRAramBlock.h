@@ -1,5 +1,5 @@
-#ifndef __JKRARAMBLOCK_H__
-#define __JKRARAMBLOCK_H__
+#ifndef JKRARAMBLOCK_H_
+#define JKRARAMBLOCK_H_
 
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "dolphin/types.h"

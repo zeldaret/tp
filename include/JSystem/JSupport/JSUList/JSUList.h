@@ -1,5 +1,5 @@
-#ifndef __JSULIST_H__
-#define __JSULIST_H__
+#ifndef JSULIST_H_
+#define JSULIST_H_
 
 #include "dolphin/types.h"
 

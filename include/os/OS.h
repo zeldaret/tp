@@ -1,8 +1,8 @@
 // at some point: we should split this up into various OS/... headers. but not
 // yet, since barely any files include this atm.
 
-#ifndef __OS_H__
-#define __OS_H__
+#ifndef OS_H_
+#define OS_H_
 
 #include "dolphin/types.h"
 

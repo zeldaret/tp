@@ -1,5 +1,5 @@
-#ifndef __ARQ_H__
-#define __ARQ_H__
+#ifndef ARQ_H_
+#define ARQ_H_
 
 #include "dolphin/types.h"
 

@@ -1,5 +1,5 @@
-#ifndef __C_M2D_H_
-#define __C_M2D_H_
+#ifndef C_M2D_H_
+#define C_M2D_H_
 
 #include "global.h"
 

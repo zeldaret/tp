@@ -1,5 +1,5 @@
-#ifndef __JKRARAMPIECE_H__
-#define __JKRARAMPIECE_H__
+#ifndef JKRARAMPIECE_H_
+#define JKRARAMPIECE_H_
 
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "ar/ARQ.h"

@@ -1,5 +1,5 @@
-#ifndef __C_SXYZ_H_
-#define __C_SXYZ_H_
+#ifndef C_SXYZ_H_
+#define C_SXYZ_H_
 
 #include "global.h"
 

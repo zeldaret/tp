@@ -1,5 +1,5 @@
-#ifndef __C_ANGLE_H_
-#define __C_ANGLE_H_
+#ifndef C_ANGLE_H_
+#define C_ANGLE_H_
 
 #include "SComponent/c_xyz.h"
 #include "global.h"

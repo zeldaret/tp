@@ -1,5 +1,5 @@
-#ifndef __Z2PARAM_H__
-#define __Z2PARAM_H__
+#ifndef Z2PARAM_H_
+#define Z2PARAM_H_
 
 #include "dolphin/types.h"
 

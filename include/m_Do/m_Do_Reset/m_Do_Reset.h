@@ -1,5 +1,5 @@
-#ifndef __M_DO_RESET_H__
-#define __M_DO_RESET_H__
+#ifndef M_DO_RESET_H_
+#define M_DO_RESET_H_
 
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 #include "dolphin/types.h"

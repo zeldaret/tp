@@ -1,5 +1,5 @@
-#ifndef __DVD_H__
-#define __DVD_H__
+#ifndef DVD_H_
+#define DVD_H_
 
 #include "dolphin/types.h"
 
