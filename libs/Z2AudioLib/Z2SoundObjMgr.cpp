@@ -7,7 +7,7 @@
 // order wrong because this needs to inherit from JASGlobalInstance<T>
 Z2SoundObjMgr::Z2SoundObjMgr() {
     lbl_80450B48 = this;
-    this->field_0x19 = 0;
+    field_0x19 = 0;
     this->mIsTwilightBattle = false;
     this->setBattleInit();
     this->setForceBattleArea(false, 700, 1100, 1500);
@@ -36,7 +36,7 @@ asm void Z2SoundObjMgr_NS_searchEnemy(void) {
 
 void Z2SoundObjMgr::setGhostEnemyState(u8 p1) {
     if (p1 == 0x20) {
-        if (this->field_0x1a >= this->field_0x16) {
+        if (field_0x1a >= field_0x16) {
             lbl_80450B84->setBattleGhostMute(true);
         }
     } else {

@@ -15,11 +15,11 @@ Z2SoundObjBase::Z2SoundObjBase() {
 }
 
 Z2SoundObjBase::~Z2SoundObjBase() {
-    this->deleteObject();
+    deleteObject();
 }
 
 void Z2SoundObjBase::init(Vec* pSoundPos, u8 pNumHandles) {
-    this->initHandlesPool(pNumHandles);
+    initHandlesPool(pNumHandles);
     mSoundPos = pSoundPos;
     mIsInitialized = true;
 }
@@ -39,8 +39,8 @@ void Z2SoundObjBase::framework(u32 p1, s8 p2) {
 
 void Z2SoundObjBase::dispose() {
     JAISoundHandle* handle;
-    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-         link = link->getNext()) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = this->getFirst(); link != NULL; link = link->getNext()) {
         handle = link->getObject();
         if (handle != NULL && (bool)*handle) {
             u32 swBit = lbl_80450B4C->getSwBit((*handle)->getID());

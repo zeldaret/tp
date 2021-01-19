@@ -5,5 +5,5 @@
 //!        first place we need a ref to this ctor.
 //! @todo: eventually move this into JAISound.h once this file is decomped.
 JAISoundHandle::JAISoundHandle() {
-    this->mSound = NULL;
+    mSound = NULL;
 }

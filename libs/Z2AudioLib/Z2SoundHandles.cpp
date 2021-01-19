@@ -8,7 +8,7 @@ Z2SoundHandles::Z2SoundHandles() {
 }
 
 Z2SoundHandles::~Z2SoundHandles() {
-    this->deleteHandlesPool();
+    deleteHandlesPool();
 }
 
 void Z2SoundHandles::initHandlesPool(u8 pNumHandles) {
@@ -30,8 +30,8 @@ asm void JASMemPool_NS_dtor_X4_(void) {
 };
 
 JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
-    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-         link = link->getNext()) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = this->getFirst(); link != NULL; link = link->getNext()) {
         JAISoundHandle* handle = link->getObject();
         if (handle->isSoundAttached()) {
             if ((*handle)->getID() == pSoundId) {
@@ -76,8 +76,8 @@ asm void Z2SoundHandles_NS_getLowPrioSound(void) {
 // stopAllSounds__14Z2SoundHandlesFUl
 // Z2SoundHandles::stopAllSounds(unsigned long)
 void Z2SoundHandles::stopAllSounds(u32 fadeout) {
-    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-         link = link->getNext()) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = this->getFirst(); link != NULL; link = link->getNext()) {
         JAISoundHandle* handle = link->getObject();
         //! @meme: explicit operator bool call required to match and be similar
         //!        to CHN_debug; could more concisely write handle->isSoundAttached
@@ -89,8 +89,8 @@ void Z2SoundHandles::stopAllSounds(u32 fadeout) {
 }
 
 bool Z2SoundHandles::isActive() const {
-    for (JSULink<Z2SoundHandlePool>* link = this->getFirst(); link != NULL;
-         link = link->getNext()) {
+    JSULink<Z2SoundHandlePool>* link;
+    for (link = this->getFirst(); link != NULL; link = link->getNext()) {
         if (link->getObject()->isSoundAttached()) {
             return true;
         }

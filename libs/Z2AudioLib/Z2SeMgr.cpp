@@ -137,10 +137,10 @@ asm u32 Z2MultiSeMgr::registMultiSePos(Vec*) {
 }
 
 void Z2MultiSeMgr::resetMultiSePos(void) {
-    this->field_0x18 = -1;
+    field_0x18 = -1;
     // @todo fix when we have proper const placement
     f32 zero = /* 0.0f */ lbl_80455878;
-    this->field_0x8 = zero;
+    field_0x8 = zero;
     this->field_0xc = zero;
     this->field_0x10 = zero;
     this->field_0x14 = zero;
