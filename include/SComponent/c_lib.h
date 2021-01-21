@@ -29,7 +29,7 @@ short cLib_targetAngleY(const Vec&, const Vec&);
 short cLib_targetAngleX(const cXyz*, const cXyz*);
 
 void cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*);
-short cLib_distanceAngleS(short, short);
+s32 cLib_distanceAngleS(s16 x, s16 y);
 
 void MtxInit(void);
 void MtxTrans(float, float, float, unsigned char);

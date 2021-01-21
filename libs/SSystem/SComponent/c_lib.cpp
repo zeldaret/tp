@@ -149,9 +149,8 @@ asm void cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*) {
 
 // cLib_distanceAngleS__Fss
 // cLib_distanceAngleS(short, short)
-asm short cLib_distanceAngleS(short, short) {
-    nofralloc
-#include "SComponent/c_lib/asm/func_80270E24.s"
+s32 cLib_distanceAngleS(s16 x, s16 y) {
+    return abs(static_cast<s16>(x - y));
 }
 
 // MtxInit__Fv
