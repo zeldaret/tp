@@ -4,16 +4,14 @@
 
 // cLib_memCpy__FPvPCvUl
 // cLib_memCpy(void*, const void*, unsigned long)
-asm void cLib_memCpy(void*, const void*, unsigned long) {
-    nofralloc
-#include "SComponent/c_lib/asm/func_8026F93C.s"
+void cLib_memCpy(void* dst, const void* src, unsigned long size) {
+    memcpy(dst, src, size);
 }
 
 // cLib_memSet__FPviUl
 // cLib_memSet(void*, int, unsigned long)
-asm void cLib_memSet(void*, int, unsigned long) {
-    nofralloc
-#include "SComponent/c_lib/asm/func_8026F95C.s"
+void cLib_memSet(void* ptr, int value, unsigned long size) {
+    memset(ptr, value, size);
 }
 
 // cLib_addCalc__FPfffff
