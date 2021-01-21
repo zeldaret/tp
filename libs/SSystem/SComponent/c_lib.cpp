@@ -115,8 +115,7 @@ asm int cLib_chasePosXZ(cXyz*, const cXyz&, float) {
 
 // cLib_chaseAngleS__FPsss
 // cLib_chaseAngleS(short*, short, short)
-asm int cLib_chaseAngleS(short*, short, short) {
-    nofralloc
+asm int cLib_chaseAngleS(short*, short, short){nofralloc
 #include "SComponent/c_lib/asm/func_80270B90.s"
 }
 
@@ -141,8 +140,7 @@ asm short cLib_targetAngleX(const cXyz*, const cXyz*) {
 
 // cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
 // cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*)
-asm void cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*) {
-    nofralloc
+asm void cLib_offsetPos(cXyz*, const cXyz*, short, const cXyz*){nofralloc
 #include "SComponent/c_lib/asm/func_80270DC0.s"
 }
 
