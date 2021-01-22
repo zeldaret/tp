@@ -1,15 +1,15 @@
-#include "global.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 #include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
+#include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
-#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 void version_check(void) {
     if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) &&

@@ -5,8 +5,8 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
-#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 #ifdef NONMATCHING
 Z2SpeechMgr2::Z2SpeechMgr2()

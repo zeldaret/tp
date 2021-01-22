@@ -6,8 +6,8 @@
 #include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
-#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // __ct__10Z2CreatureFv

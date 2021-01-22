@@ -3,6 +3,4 @@
 
 #include "dolphin/types.h"
 
-
-
 #endif

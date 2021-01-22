@@ -1,13 +1,13 @@
 #ifndef Z2AUDIOMGR_H_
 #define Z2AUDIOMGR_H_
-#include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
-struct Z2AudioMgr{
+#include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
+struct Z2AudioMgr {
     Z2AudioMgr();
     ~Z2AudioMgr();
     void gframeProcess(void);
-    Z2AudioMgr* setOutputMode(unsigned long outputMode); 
+    Z2AudioMgr* setOutputMode(unsigned long outputMode);
     u32 resetProcess(u32 param_1, bool param_2);
     bool hasReset(void) const;
     void resetRecover(void);
@@ -18,9 +18,9 @@ struct Z2AudioMgr{
     u8 p2[0xdad];
 };
 
-extern "C"{
-    void setOutputMode__10Z2AudioMgrFUl(void);
-    void setOutputMode__9JASDriverFUl(void);
+extern "C" {
+void setOutputMode__10Z2AudioMgrFUl(void);
+void setOutputMode__9JASDriverFUl(void);
 }
 
 extern Z2AudioMgr lbl_803DBF4C;

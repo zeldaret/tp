@@ -3,8 +3,8 @@
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
-#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // __ct__14Z2SoundStarterFb
