@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a3b68
 
 
-.global JAIStreamMgr
-JAIStreamMgr:
+.global __ct__12JAIStreamMgrFb
+__ct__12JAIStreamMgrFb:
 /* 802A3B68 002A0AA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A3B6C 002A0AAC  7C 08 02 A6 */	mflr r0
 /* 802A3B70 002A0AB0  90 01 00 14 */	stw r0, 0x14(r1)

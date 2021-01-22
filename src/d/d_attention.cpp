@@ -6,6 +6,7 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // padLockButton__25@unnamed@d_attention_cpp@Fl

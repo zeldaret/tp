@@ -1,3 +1,5 @@
+#ifndef __M_DO_MAIN_H_
+#define __M_DO_MAIN_H_
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
@@ -41,3 +43,4 @@ extern u8 lbl_80450588[8];
 extern u8 lbl_804511B8[4];
 extern u8 lbl_80451210[4];
 extern JKRSolidHeap* lbl_80450BBC;
+#endif

@@ -4,6 +4,7 @@
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
 
 extern "C" {

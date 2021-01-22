@@ -3,6 +3,7 @@
 #include "SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
 
 extern "C" {

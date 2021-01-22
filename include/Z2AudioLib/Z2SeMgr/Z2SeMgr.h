@@ -8,6 +8,7 @@
 
 struct Z2MultiSeObj {
     Z2MultiSeObj();
+    ~Z2MultiSeObj();
 };
 
 struct Z2SeMgr {

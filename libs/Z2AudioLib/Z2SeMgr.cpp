@@ -1,10 +1,10 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 void JAISoundHandle(void);
 void JAISoundHandle_NS_dtor(void);
-void Z2MultiSeObj_NS_dtor(void);
 }
 
 asm Z2SeMgr::Z2SeMgr(void) {

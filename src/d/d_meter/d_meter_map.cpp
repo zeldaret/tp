@@ -4,6 +4,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // isEnableDispMap__11dMeterMap_cFv

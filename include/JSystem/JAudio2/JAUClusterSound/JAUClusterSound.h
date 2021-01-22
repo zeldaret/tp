@@ -7,6 +7,7 @@ struct JAISoundHandle {
     void* unk;  // probably JAISound*
 
     JAISoundHandle();
+    ~JAISoundHandle();
 };
 
 #endif

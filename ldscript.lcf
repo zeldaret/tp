@@ -758,6 +758,12 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ __sinit_m_Do_audio_cpp
+ hasReset__10Z2AudioMgrCFv
+ resetRecover__10Z2AudioMgrFv
+ mDoAud_resetRecover__Fv
+ resetProcess__10Z2AudioMgrFUlb
+ mDoAud_resetProcess__Fv
  isLeadByte_1Byte__7JUTFontFi
  isLeadByte_2Byte__7JUTFontFi
  isLeadByte_ShiftJIS__7JUTFontFi

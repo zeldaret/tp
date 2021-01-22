@@ -85,8 +85,8 @@ lbl_802A18FC:
 /* 802A190C 0029E84C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A1910 0029E850  4E 80 00 20 */	blr 
 
-.global JAISeqMgr
-JAISeqMgr:
+.global __ct__9JAISeqMgrFb
+__ct__9JAISeqMgrFb:
 /* 802A1914 0029E854  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1918 0029E858  7C 08 02 A6 */	mflr r0
 /* 802A191C 0029E85C  90 01 00 14 */	stw r0, 0x14(r1)

@@ -3,6 +3,7 @@
 #include "Z2AudioLib/Z2SoundMgr/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "global.h"
 
 extern "C" {

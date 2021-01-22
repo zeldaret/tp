@@ -235,7 +235,7 @@ asm void Z2SceneMgr_NS_framework(void) {
 
 // load1stDynamicWave__10Z2SceneMgrFv
 // Z2SceneMgr::load1stDynamicWave(void)
-asm void Z2SceneMgr_NS_load1stDynamicWave(void) {
+asm void Z2SceneMgr::load1stDynamicWave(void) {
     nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B9D40.s"
 }

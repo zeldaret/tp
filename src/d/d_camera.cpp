@@ -7,6 +7,7 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // limitf__22@unnamed@d_camera_cpp@Ffff
