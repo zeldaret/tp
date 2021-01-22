@@ -83,11 +83,11 @@ void dBgS_PolyPassChk::SetHorse() {
     mHorse = true;
 }
 
-// ChkNoHorse__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ChkNoHorse(void)
-asm bool dBgS_PolyPassChk::ChkNoHorse() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078F04.s"
+bool dBgS_PolyPassChk::ChkNoHorse() {
+    if (mObject || mCamera || mLink || mArrow || mBomb || mBoomerang || mRope || mUnderwaterRoof) {
+        return true;
+    }
+    return !mHorse;
 }
 
 void dBgS_PolyPassChk::SetStatue() {
