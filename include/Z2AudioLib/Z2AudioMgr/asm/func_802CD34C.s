@@ -253,7 +253,7 @@ lbl_802CD6A8:
 /* 802CD708 002CA648  4B FD 89 A5 */ bl JAUSectionHeap_NS_newDynamicSeqBlock
 /* 802CD70C 002CA64C  38 61 00 08 */ addi r3, r1, 8
 /* 802CD710 002CA650  7F 24 CB 78 */ mr r4, r25
-/* 802CD714 002CA654  4B FD C3 21 */ bl Z2AudioArcLoader
+/* 802CD714 002CA654  4B FD C3 21 */ bl __ct__16Z2AudioArcLoaderFP10JAUSection
 /* 802CD718 002CA658  38 61 00 08 */ addi r3, r1, 8
 /* 802CD71C 002CA65C  7F 44 D3 78 */ mr r4, r26
 /* 802CD720 002CA660  4B FD 70 6D */ bl JAUAudioArcLoader_NS_load

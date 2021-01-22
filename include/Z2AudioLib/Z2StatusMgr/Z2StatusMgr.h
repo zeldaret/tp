@@ -20,6 +20,8 @@ struct Z2StatusMgr {
     void setCameraGroupInfo(u8);
     void setCameraInWaterDepth(float);
 
+    //! @todo there are a number of inlines only called from rels: see CHN_debug
+
     u8 hour;
     u8 minute;
     u8 weekday;
