@@ -17,102 +17,70 @@ asm dBgS_PolyPassChk::~dBgS_PolyPassChk() {
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078DB0.s"
 }
 
-// SetPassChkInfo__16dBgS_PolyPassChkFR16dBgS_PolyPassChk
-// dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk&)
-asm void dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk&) {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E0C.s"
+void dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk& chk) {
+    mObject = chk.mObject;
+    mCamera = chk.mCamera;
+    mLink = chk.mLink;
+    mArrow = chk.mArrow;
+    mBomb = chk.mBomb;
+    mBoomerang = chk.mBoomerang;
+    mRope = chk.mRope;
+    mUnderwaterRoof = chk.mUnderwaterRoof;
+    mHorse = chk.mHorse;
+    mStatue = chk.mStatue;
+    mIronBall = chk.mIronBall;
 }
 
-// SetObj__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetObj(void)
-asm void dBgS_PolyPassChk::SetObj() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E68.s"
+void dBgS_PolyPassChk::SetObj() {
+    mObject = true;
 }
 
-// ClrObj__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrObj(void)
-asm void dBgS_PolyPassChk::ClrObj() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E74.s"
+void dBgS_PolyPassChk::ClrObj() {
+    mObject = false;
 }
 
-// SetCam__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetCam(void)
-asm void dBgS_PolyPassChk::SetCam() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E80.s"
+void dBgS_PolyPassChk::SetCam() {
+    mCamera = true;
 }
 
-// ClrCam__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrCam(void)
-asm void dBgS_PolyPassChk::ClrCam() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E8C.s"
+void dBgS_PolyPassChk::ClrCam() {
+    mCamera = false;
 }
 
-// SetLink__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetLink(void)
-asm void dBgS_PolyPassChk::SetLink() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078E98.s"
+void dBgS_PolyPassChk::SetLink() {
+    mLink = true;
 }
 
-// ClrLink__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrLink(void)
-asm void dBgS_PolyPassChk::ClrLink() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EA4.s"
+void dBgS_PolyPassChk::ClrLink() {
+    mLink = false;
 }
 
-// SetArrow__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetArrow(void)
-asm void dBgS_PolyPassChk::SetArrow() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EB0.s"
+void dBgS_PolyPassChk::SetArrow() {
+    mArrow = true;
 }
 
-// SetBomb__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetBomb(void)
-asm void dBgS_PolyPassChk::SetBomb() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EBC.s"
+void dBgS_PolyPassChk::SetBomb() {
+    mBomb = true;
 }
 
-// ClrBomb__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrBomb(void)
-asm void dBgS_PolyPassChk::ClrBomb() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EC8.s"
+void dBgS_PolyPassChk::ClrBomb() {
+    mBomb = false;
 }
 
-// SetBoomerang__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetBoomerang(void)
-asm void dBgS_PolyPassChk::SetBoomerang() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078ED4.s"
+void dBgS_PolyPassChk::SetBoomerang() {
+    mBoomerang = true;
 }
 
-// SetRope__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetRope(void)
-asm void dBgS_PolyPassChk::SetRope() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EE0.s"
+void dBgS_PolyPassChk::SetRope() {
+    mRope = true;
 }
 
-// SetUnderwaterRoof__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetUnderwaterRoof(void)
-asm void dBgS_PolyPassChk::SetUnderwaterRoof() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EEC.s"
+void dBgS_PolyPassChk::SetUnderwaterRoof() {
+    mUnderwaterRoof = true;
 }
 
-// SetHorse__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetHorse(void)
-asm void dBgS_PolyPassChk::SetHorse() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078EF8.s"
+void dBgS_PolyPassChk::SetHorse() {
+    mHorse = true;
 }
 
 // ChkNoHorse__16dBgS_PolyPassChkFv
@@ -122,32 +90,20 @@ asm bool dBgS_PolyPassChk::ChkNoHorse() {
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078F04.s"
 }
 
-// SetStatue__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetStatue(void)
-asm void dBgS_PolyPassChk::SetStatue() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078F7C.s"
+void dBgS_PolyPassChk::SetStatue() {
+    mStatue = true;
 }
 
-// ClrStatue__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrStatue(void)
-asm void dBgS_PolyPassChk::ClrStatue() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078F88.s"
+void dBgS_PolyPassChk::ClrStatue() {
+    mStatue = false;
 }
 
-// SetIronBall__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::SetIronBall(void)
-asm void dBgS_PolyPassChk::SetIronBall() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078F94.s"
+void dBgS_PolyPassChk::SetIronBall() {
+    mIronBall = true;
 }
 
-// ClrIronBall__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::ClrIronBall(void)
-asm void dBgS_PolyPassChk::ClrIronBall() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078FA0.s"
+void dBgS_PolyPassChk::ClrIronBall() {
+    mIronBall = false;
 }
 
 extern "C" {
