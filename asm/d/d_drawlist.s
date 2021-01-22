@@ -2172,7 +2172,7 @@ dDlst_2D_c:
 /* 80053BA0 00050AE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80053BA4 00050AE4  7C 08 02 A6 */	mflr r0
 /* 80053BA8 00050AE8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80053BAC 00050AEC  48 2A 44 59 */	bl J2DPane_NS_clearAnmTransform
+/* 80053BAC 00050AEC  48 2A 44 59 */	bl clearAnmTransform__7J2DPaneFv
 /* 80053BB0 00050AF0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80053BB4 00050AF4  7C 08 03 A6 */	mtlr r0
 /* 80053BB8 00050AF8  38 21 00 10 */	addi r1, r1, 0x10

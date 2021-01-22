@@ -16,7 +16,7 @@
 /* 80213D28 00210C68  D3 E3 00 08 */ stfs f31, 8(r3)
 /* 80213D2C 00210C6C  80 7F 03 9C */ lwz r3, 0x39c(r31)
 /* 80213D30 00210C70  80 63 00 04 */ lwz r3, 4(r3)
-/* 80213D34 00210C74  48 0E 42 99 */ bl J2DPane_NS_animationTransform
+/* 80213D34 00210C74  48 0E 42 99 */ bl animationTransform__7J2DPaneFv
 /* 80213D38 00210C78  80 7F 03 9C */ lwz r3, 0x39c(r31)
 /* 80213D3C 00210C7C  80 63 00 04 */ lwz r3, 4(r3)
 /* 80213D40 00210C80  38 80 00 00 */ li r4, 0

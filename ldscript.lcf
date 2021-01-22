@@ -758,6 +758,23 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ getParentPane__7J2DPaneFv
+ J2DCast_F32_to_S16__7J2DPaneFfUc
+ setAnimation__7J2DPaneFP10J2DAnmBase
+ setAnimation__7J2DPaneFP15J2DAnmTransform
+ animationTransform__7J2DPaneFv
+ animationTransform__7J2DPaneFPC15J2DAnmTransform
+ setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+ setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+ animationPane__7J2DPaneFPC15J2DAnmTransform
+ drawSelf__7J2DPaneFffPA3_A4_f
+ rewriteAlpha__7J2DPaneFv
+ setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+ setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+ setCullBack__7J2DPaneFb
+ setConnectParent__7J2DPaneFb
+ update__7J2DPaneFv
+ drawSelf__7J2DPaneFff
  isLeadByte_1Byte__7JUTFontFi
  isLeadByte_2Byte__7JUTFontFi
  isLeadByte_ShiftJIS__7JUTFontFi
@@ -3086,9 +3103,9 @@ func_802F83D0
 func_802F83CC
 func_802F83C8
 func_802F8080
-func_802F7540
-func_802F6FB4
-func_802F6F60
+makeMatrix__7J2DPaneFffff
+add__7J2DPaneFff
+move__7J2DPaneFff
 }
 /*
 .init 80003100 - 80005600

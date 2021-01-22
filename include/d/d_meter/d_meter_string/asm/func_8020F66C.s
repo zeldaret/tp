@@ -16,7 +16,7 @@
 /* 8020F6A8 0020C5E8  D3 E3 00 08 */ stfs f31, 8(r3)
 /* 8020F6AC 0020C5EC  80 7F 00 0C */ lwz r3, 0xc(r31)
 /* 8020F6B0 0020C5F0  80 63 00 04 */ lwz r3, 4(r3)
-/* 8020F6B4 0020C5F4  48 0E 89 19 */ bl J2DPane_NS_animationTransform
+/* 8020F6B4 0020C5F4  48 0E 89 19 */ bl animationTransform__7J2DPaneFv
 /* 8020F6B8 0020C5F8  80 7F 00 0C */ lwz r3, 0xc(r31)
 /* 8020F6BC 0020C5FC  80 63 00 04 */ lwz r3, 4(r3)
 /* 8020F6C0 0020C600  38 80 00 00 */ li r4, 0
