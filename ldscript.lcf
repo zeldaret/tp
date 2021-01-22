@@ -3138,6 +3138,8 @@ func_8002CB30
 func_8002CAF0
 __ct__14JAISoundHandleFv
 dispose__14Z2SoundObjBaseFv
+func_80078FAC
+func_80078FA0
 }
 /*
 .init 80003100 - 80005600
