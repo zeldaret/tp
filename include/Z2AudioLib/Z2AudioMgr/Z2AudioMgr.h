@@ -13,9 +13,9 @@ struct Z2AudioMgr {
     void resetRecover(void);
     void init(JKRSolidHeap*, unsigned long, void*, JKRArchive*);
 
-    u8 p1[0x4a4];
+    u8 unk_1[0x4a4];
     Z2SceneMgr sceneMgr;
-    u8 p2[0xdad];
+    u8 unk_2[0xdad];
 };
 
 extern "C" {

@@ -3,15 +3,10 @@
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "global.h"
 
-class mDoAud_zelAudio_c {  // Based on Z2AudioMgr
+class mDoAud_zelAudio_c {  // Seems to be based on Z2AudioMgr; more research is needed
 public:
     void reset(void);
     ~mDoAud_zelAudio_c();
-};
-
-class JAISeCategoryMgr {
-public:
-    ~JAISeCategoryMgr();
 };
 
 void mDoAud_Create(void);
