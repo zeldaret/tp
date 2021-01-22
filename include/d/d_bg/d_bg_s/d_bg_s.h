@@ -1,5 +1,5 @@
-#ifndef __D_BG_S_H_
-#define __D_BG_S_H_
+#ifndef D_BG_S_H_
+#define D_BG_S_H_
 
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
 #include "global.h"

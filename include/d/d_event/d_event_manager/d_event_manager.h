@@ -1,5 +1,5 @@
-#ifndef __D_EVENT_MANAGER_H_
-#define __D_EVENT_MANAGER_H_
+#ifndef D_EVENT_MANAGER_H_
+#define D_EVENT_MANAGER_H_
 
 #include "d/d_event/d_event_data/d_event_data.h"
 #include "dolphin/types.h"

@@ -508,7 +508,6 @@ void Z2EnvSeMgr_NS_initSceneEnvSe(void);
 void setFieldBgmPlay__8Z2SeqMgrFb(void);
 void Z2SeqMgr_NS_setTimeProcVolMod(void);
 void Z2SeqMgr_NS_setHeightVolMod(void);
-void JAISound_NS_stop(void);
 void JAUSoundTable_NS_getTypeID(void);
 void JAIStreamMgr_NS_isActive(void);
 void JAISound_NS_getID(void);
@@ -516,13 +515,13 @@ void JSUList_X1_(void);
 void dComIfGs_isStageSwitch(void);
 void dComIfGs_getStartPoint(void);
 void isSwitch__10dSv_info_cCFii(void);
-void Z2SoundObjMgr_NS_setForceBattleArea(void);
+void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs(void);
 void Z2SeqMgr_NS_unMuteSceneBgm(void);
 void Z2SeqMgr_NS_muteSceneBgm(void);
 void dComIfGs_isEventBit(void);
 void JAISoundID_NS___as(void);
 void dComIfGs_isSaveSwitch(void);
-void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
 void Z2SeMgr_NS_resetCrowdSize(void);
 void Z2SeqMgr_NS_setTwilightGateVol(void);
 void Z2SeqMgr_NS_setWindStoneVol(void);
@@ -533,30 +532,29 @@ void moveVolume__18JAISoundParamsMoveFfUl(void);
 }
 // Z2LinkMgr
 extern "C" {
+void __ct__10Z2CreatureFv(void);
 void Z2CreatureLink_NS_startLinkSound(void);
 void Z2SoundObjSimple(void);
-void Z2Creature(void);
 void JAISoundStarter_NS_dtor(void);
 void Z2Creature_NS_dtor(void);
-void Z2SoundObjBase_NS_dtor(void);
+void __dt__14Z2SoundObjBaseFv(void);
 void Z2Creature_NS_deleteObject(void);
 void deleteKantera__14Z2CreatureLinkFv(void);
 void Z2Creature_NS_init_X1_(void);
-void Z2SoundObjBase_NS_deleteObject(void);
+void deleteObject__14Z2SoundObjBaseFv(void);
 void moveVolume__18JAISoundParamsMoveFfUl(void);
 void Z2CreatureLink_NS_startLinkSoundLevel(void);
 void Z2Creature_NS_framework(void);
 void Z2Audience_NS_setTargetVolume(void);
-void Z2SoundObjMgr_NS_setGhostEnemyState(void);
+void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
 void Z2FxLineMgr_NS_setFxForceOff(void);
 void JAISoundParamsMove_NS_movePitch(void);
 void Z2Calc_NS_linearTransform(void);
-void JAISound_NS_stop(void);
-void Z2SoundHandles_NS_getHandleSoundID(void);
+void getHandleSoundID__14Z2SoundHandlesF10JAISoundID(void);
 void Z2SeqMgr_NS_setBattleSeqState(void);
 void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(void);
 void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(void);
-void Z2SoundStarter_NS_setPortData(void);
+void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc(void);
 void Z2SoundObjBase_NS_startCollisionSE(void);
 void Z2SeqMgr_NS_setBattleLastHit(void);
 }
@@ -1600,7 +1598,7 @@ void daAlink_c_NS_procBoomerangMoveInit(void);
 void daAlink_c_NS_checkHorseLieAnime(void);
 void func_800C6FE4(void);
 void daAlink_c_NS_setBowModel(void);
-void Z2WolfHowlMgr(void);
+void __ct__13Z2WolfHowlMgrFv(void);
 void daAlink_c_NS_getBaseHorseAnime(void);
 void daAlink_c_NS_checkHorseDashAccept(void);
 void func_8010755C(void);
@@ -1701,7 +1699,7 @@ void func_800D087C(void);
 void dAttHint_c_NS_convPId(void);
 void dMsgFlow_c_NS_dtor(void);
 void dBgS_PolyPassChk_NS_SetLink(void);
-void Z2WolfHowlMgr_NS_startWolfHowlSound(void);
+void startWolfHowlSound__13Z2WolfHowlMgrFffbf(void);
 void daAlink_c_NS_setGrabItemActor(void);
 void fopKyM_createWpillar(void);
 void daAlink_c_NS_checkAcceptUseItemInWater(void);
@@ -1722,7 +1720,7 @@ void daAlink_c_NS_procWolfSlipTurnLandInit(void);
 void daAlink_c_NS_procRollJumpInit(void);
 void mDoMtx_MtxToRot(void);
 void func_800D0998(void);
-void Z2WolfHowlMgr_NS_skipCorrectDemo(void);
+void skipCorrectDemo__13Z2WolfHowlMgrFv(void);
 void dKy_shadow_mode_reset(void);
 void dPaPo_c_NS_setEffectCenter(void);
 void daAlink_c_NS_procWaitTurnInit(void);
@@ -2313,7 +2311,7 @@ void func_80110648(void);
 void daAlink_c_NS_getSceneExitMoveAngle(void);
 void func_800E3454(void);
 void daAlink_c_NS_setArmMatrix(void);
-void JAISoundHandle_NS_releaseSound(void);
+void releaseSound__14JAISoundHandleFv(void);
 void func_8010F698(void);
 void func_80141684(void);
 void daAlink_c_NS_procCoDeadInit(void);
@@ -2380,7 +2378,7 @@ void func_800F3754(void);
 void daPy_py_c_NS_checkFishingRodItem(void);
 void daAlink_c_NS_procHorseComebackInit(void);
 void dKyw_get_AllWind_vec(void);
-void Z2WolfHowlMgr_NS_setCorrectData(void);
+void setCorrectData__13Z2WolfHowlMgrFScP14Z2WolfHowlData(void);
 void func_800D6D94(void);
 void func_800D09C8(void);
 void daAlink_c_NS_checkWolfLockData(void);
@@ -5586,9 +5584,9 @@ void setCameraGroupInfo__11Z2StatusMgrFUc(u8);
 extern "C" {
 void Z2EnvSeMgr_NS_getFogDensity(void);
 void Z2SpeechMgr2_NS_isNonVerbal(void);
-void Z2SpeechMgr2_NS_ctor(void);
+void __ct__12Z2SpeechMgr2Fv(void);
 void _savegpr_29(void);
-void Z2SpeechStarter(void);
+void __ct__15Z2SpeechStarterFv(void);
 void Z2SpeechMgr2_NS_setString(void);
 void Z2SpeechMgr2_NS_speakOneWord(void);
 void JAISoundParamsMove_NS_moveDolby(void);
@@ -5597,7 +5595,6 @@ void Z2SpeechMgr2_NS_setTextCount(void);
 void func_802CCFF8(void);
 void _savegpr_28(void);
 void _restgpr_28(void);
-void JAISound_NS_stop_X1_(void);
 void JAISoundParamsMove_NS_movePan(void);
 void Z2SpeechMgr2_NS_framework(void);
 // void subBgmStart__8Z2SeqMgrFUl(void);
@@ -5609,7 +5606,7 @@ void Z2SpeechMgr2_NS_selectTail(void);
 void _savegpr_26(void);
 void _restgpr_26(void);
 void Z2SpeechMgr2_NS_selectUnit(void);
-void Z2SoundStarter_NS_ctor(void);
+void __ct__14Z2SoundStarterFb(void);
 }
 
 // additional symbols needed for Z2Audience.cpp
@@ -5780,7 +5777,7 @@ void JAISeMgr_NS_stop(void);
 void JAISeMgr_NS_initParams(void);
 void JASTrack_NS_setFIR(void);
 void Z2SoundMgr_NS_isPlayingSoundID(void);
-void Z2SoundInfo_NS_getSwBit(void);
+void getSwBit__11Z2SoundInfoCF10JAISoundID(void);
 void JAISeMgr_NS_calc(void);
 void JAISeqMgr_NS_stopSoundID(void);
 void Z2SoundMgr_NS_multiVolumeSoundID(void);
@@ -5803,7 +5800,7 @@ void JAU_JASInitializer(void);
 void __ct__7Z2SeMgrFv(void);
 void JASHeap_NS_free(void);
 void Z2AudioMgr_NS_init(void);
-void Z2AudioArcLoader(void);
+void __ct__16Z2AudioArcLoaderFP10JAUSection(void);
 void JAUAudioArcLoader_NS_load(void);
 void __ct__10Z2SceneMgrFv(void);
 void func_8036679C(void);
@@ -5847,7 +5844,7 @@ void JASDriver_NS_getSubFrames(void);
 // ctors
 void Z2FxLineMgr(void);
 void Z2Audience(void);
-void Z2SoundObjMgr_NS_ctor(void);
+void __ct__13Z2SoundObjMgrFv(void);
 void JASHeap_NS___defctor();
 void JASHeap_NS_dtor();
 void JASMemPool_NS_dtor_X4_();
@@ -5893,7 +5890,7 @@ void func_802C06F4(void);
 void func_802C1A14(void);
 void Z2CreatureCitizen_NS_setMdlType(void);
 void func_802C1D10(void);
-void Z2SoundObjBase_NS_init(void);
+void init__14Z2SoundObjBaseFP3VecUc(void);
 void Z2CreatureCitizen_NS_init(void);
 void func_802C0AF8(void);
 void func_802C10D4(void);
@@ -5902,7 +5899,6 @@ void func_802C0ED8(void);
 void Z2_E_sw_modPitch(void);
 void func_802C1B90(void);
 void Z2_B_zan_modPitch(void);
-void Z2CreatureEnemy(void);
 void func_802C136C(void);
 void Z2SoundObjAnime(void);
 void Z2CreatureEnemy_NS_deleteObject(void);
@@ -5926,7 +5922,7 @@ void func_802C19D8(void);
 void Z2_E_ms_modVol(void);
 
 // manual
-void Z2SoundObjBase_NS_ctor(void);
+void __ct__14Z2SoundObjBaseFv(void);
 void Z2SoundObjSimple_NS_dtor(void);
 }
 
@@ -5935,29 +5931,29 @@ void Z2SoundObjSimple_NS_dtor(void);
 extern "C" {
 void JASTrack_NS_readPort(void);
 void JASTrack_NS_openChild(void);
-void Z2SoundStarter_NS_getPortData(void);
-void func_802AABF4(void);
-void Z2SoundStarter_NS_startSound_X1_(void);
-void func_802AAFF0(void);
+void getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc(void);
+void startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3_SUB_0f_SUB_1UlfffffUl(
+    void);
+void __dt__14Z2SoundStarterFv(void);
 void JAISoundStarter_NS_ctor(void);
 }
 
 // additional symbols needed for Z2WolfHowlMgr.cpp
 // autogenerated by split.py v0.3 at 2021-01-04 23:43:51.357906
 extern "C" {
-void Z2WolfHowlMgr_NS_getCorrectLineNum(void);
-void Z2WolfHowlMgr_NS_getNowPitch(void);
-void Z2WolfHowlMgr_NS_getCorrectLine(void);
-void Z2WolfHowlMgr_NS_calcPitchMod(void);
+void getCorrectLineNum__13Z2WolfHowlMgrFv(void);
+void getNowPitch__13Z2WolfHowlMgrFv(void);
+void getCorrectLine__13Z2WolfHowlMgrFUc(void);
+void calcPitchMod__13Z2WolfHowlMgrFff(void);
 void func_802CBB7C(void);
-void Z2WolfHowlMgr_NS_calcVolumeMod(void);
-void Z2WolfHowlMgr_NS_startGuideMelody(void);
+void calcVolumeMod__13Z2WolfHowlMgrFf(void);
+void startGuideMelody__13Z2WolfHowlMgrFb(void);
 void func_802CB6EC(void);
 void Z2SeqMgr_NS_stopWolfHowlSong(void);
-void Z2WolfHowlMgr_NS_getNowInputValue(void);
-void Z2WolfHowlMgr_NS_resetState(void);
-void Z2WolfHowlMgr_NS_getOnLineNum(void);
-void Z2WolfHowlMgr_NS_checkLine(void);
+void getNowInputValue__13Z2WolfHowlMgrFv(void);
+void resetState__13Z2WolfHowlMgrFv(void);
+void getOnLineNum__13Z2WolfHowlMgrFv(void);
+void checkLine__13Z2WolfHowlMgrFv(void);
 }
 
 // additional symbols needed for Z2SoundObject.cpp
@@ -5976,14 +5972,13 @@ void func_802BE7AC(void);
 void Z2SoundHandles_NS_dtor(void);
 void Z2SoundObjAnime_NS_ageSounds_(void);
 void Z2SoundObjBase_NS_startSound(void);
-void Z2SoundObjBase_NS_framework(void);
+void framework__14Z2SoundObjBaseFUlSc(void);
 void JAISound_NS_newAudible(void);
 void Z2SoundObjAnime_NS_playsSound(void);
 void func_802BE880(void);
 void func_802BEB38(void);
-void func_802BE070(void);
 void func_802BE8A0(void);
-void Z2SoundHandles_NS_deleteHandlesPool(void);
+void deleteHandlesPool__14Z2SoundHandlesFv(void);
 // void isSoundCulling__7Z2SeMgrF10JAISoundID(void);
 void Z2SoundHandles_NS_getLowPrioSound(void);
 void Z2SoundHandles_NS_setPos(void);
@@ -5992,14 +5987,15 @@ void func_802BE9B0(void);
 void func_802BE65C(void);
 void Z2SoundHandles_NS_getFreeHandle(void);
 void func_802BEBDC(void);
-void Z2SoundHandles_NS_initHandlesPool(void);
-void Z2SoundHandles_NS_getHandleUserData(void);
+void initHandlesPool__14Z2SoundHandlesFUc(void);
+void getHandleUserData__14Z2SoundHandlesFUl(void);
 void func_802BE5FC(void);
 void Z2SoundObjBase_NS_startLevelSound(void);
-void func_802BE104(void);
+void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool(void);
 
 // manual
-void Z2SoundHandles(void);
+void __ct__14Z2SoundHandlesFv(void);
+void __dt__14Z2SoundHandlesFv(void);
 }
 
 // additional symbols needed for Z2SoundObjMgr.cpp
@@ -6007,13 +6003,13 @@ void Z2SoundHandles(void);
 extern "C" {
 void Z2SeqMgr_NS_setBattleDistState(void);
 void Z2SeqMgr_NS_stopBattleBgm(void);
-void Z2SoundObjMgr_NS_isTwilightBattle(void);
+void isTwilightBattle__13Z2SoundObjMgrFv(void);
 void Z2SoundObjMgr_NS_checkBattleFinish(void);
 void Z2SoundObjMgr_NS_searchEnemy(void);
-void Z2SeqMgr_NS_setBattleGhostMute(void);
+void setBattleGhostMute__8Z2SeqMgrFb(void);
 void func_802C01EC(void);
-void Z2SoundObjMgr_NS_deleteEnemyAll(void);
-void Z2SoundObjMgr_NS_setBattleInit(void);
+void deleteEnemyAll__13Z2SoundObjMgrFv(void);
+void setBattleInit__13Z2SoundObjMgrFv(void);
 void Z2SeqMgr_NS_setBattleSearched(void);
 }
 
@@ -6024,7 +6020,7 @@ void Z2SoundInfo_NS_getStreamFilePath(void);
 void func_802BB6DC(void);
 void func_802BBCBC(void);
 void func_802BB0E0(void);
-void Z2SoundInfo_NS_getBgmSeqResourceID(void);
+void getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID(void);
 void Z2SoundInfo_NS_getSoundInfo_(void);
 void func_802BBCD4(void);
 void func_802BBCCC(void);
@@ -6045,9 +6041,9 @@ void func_802BB0D8(void);
 extern "C" {
 void JAUSectionHeap_NS_getOpenSection(void);
 void func_802A9B54(void);
-void func_802A9A70(void);
+void readCommandMore__16Z2AudioArcLoaderFUl(void);
 void Z2FxLineMgr_NS_initDataArc(void);
-void Z2AudioArcLoader_NS_readBFCA(void);
+void readBFCA__16Z2AudioArcLoaderFPCv(void);
 void func_802A9B58(void);
 
 // manual
@@ -6070,11 +6066,11 @@ void JASDsp_NS_setFXLine(void);
 // additional symbols needed for Z2SoundHandles.cpp
 // autogenerated by split.py v0.3 at 2021-01-05 01:21:30.657314
 extern "C" {
-void Z2SoundHandles_NS_isActive(void);
-void Z2SoundHandles_NS_stopAllSounds(void);
+void isActive__14Z2SoundHandlesCFv(void);
+void stopAllSounds__14Z2SoundHandlesFUl(void);
 }
 
-// additional symbols needed for .cpp
+// additional symbols needed for _Z2LinkMgr.cpp
 // autogenerated by split.py v0.3 at 2021-01-05 01:30:23.453804
 extern "C" {
 void func_802C5078(void);

@@ -1,9 +1,8 @@
-#ifndef __Z2AUDIOMGR_H__
-#define __Z2AUDIOMGR_H__
+#ifndef Z2AUDIOMGR_H_
+#define Z2AUDIOMGR_H_
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
-
 struct Z2AudioMgr{
     Z2AudioMgr();
     ~Z2AudioMgr();

@@ -1,6 +1,7 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 
@@ -117,8 +118,9 @@ asm void Z2SceneMgr::setSceneName(char* stageName, long roomNum, long layerNum){
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B6AF8.s"
 }
 
+//! @meme this looks to be non-inlined here because @ref setSceneName is too large
 JAISoundID::JAISoundID(JAISoundID const& soundIdToSet) {
-    this->soundId = soundIdToSet.soundId;
+    mId = soundIdToSet.mId;
     return;
 }
 

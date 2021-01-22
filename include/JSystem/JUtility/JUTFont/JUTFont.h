@@ -1,5 +1,5 @@
-#ifndef JSYSTEM_JUTILITY_JUTFONT_H
-#define JSYSTEM_JUTILITY_JUTFONT_H
+#ifndef JSYSTEM_JUTILITY_JUTFONT_H_
+#define JSYSTEM_JUTILITY_JUTFONT_H_
 
 #include "global.h"
 #include "gx/GX.h"

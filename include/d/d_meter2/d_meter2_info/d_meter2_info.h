@@ -1,5 +1,5 @@
-#ifndef __D_METER2_INFO_H_
-#define __D_METER2_INFO_H_
+#ifndef D_METER2_INFO_H_
+#define D_METER2_INFO_H_
 
 #include "JSystem/J2DGraph/J2DPicture/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"

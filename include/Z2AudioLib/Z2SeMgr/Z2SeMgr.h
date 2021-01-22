@@ -2,6 +2,7 @@
 #define Z2SEMGR_H_
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
+#include "JSystem/JAudio2/JAISoundHandles/JAISoundHandles.h"
 #include "Z2AudioLib/Z2Param/Z2Param.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "global.h"
@@ -9,6 +10,10 @@
 struct Z2MultiSeObj {
     Z2MultiSeObj();
     ~Z2MultiSeObj();
+
+    u8 unk0[28];
+    u32 field_0x1c;
+    u8 unk1[4];
 };
 
 struct Z2SeMgr {
@@ -32,6 +37,27 @@ struct Z2SeMgr {
     void processSeFramework(void);
     bool isLevelSe(JAISoundID);
     bool isSoundCulling(JAISoundID);
+
+    JAISoundHandles sound_handles;
+    Z2SeMgr* se_mgr;
+    u32 field_0x64;
+
+    Z2MultiSeObj level_object_se[10];
+    u8 level_object_se_count;
+
+    u8 padding_1[3];
+
+    Z2MultiSeObj multi_trigger_se[10];
+    u8 multi_trigger_se_count;
+
+    u8 padding_2[3];
+
+    u8 unk0[128];
+    s8 unk1[12];
+
+    u8 mCrowdSize;
+
+    u8 unk2[3];
 };
 
 struct Z2MultiSeMgr {
@@ -41,6 +67,17 @@ struct Z2MultiSeMgr {
     void resetMultiSePos(void);
     float getPanPower(void);
     float getDolbyPower(void);
+
+    u8 field_0x0;
+    u8 field_0x1;
+    u8 field_0x2;
+    u8 field_0x3;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+    f32 field_0x14;
+    s8 field_0x18;
 };
 
 extern "C" {
@@ -58,7 +95,7 @@ void Z2Audience_NS_calcOffMicSound(void);
 void modHeightAtCamera__7Z2SeMgrFPPC3Vec(Vec const**);
 void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(JAISoundID, Vec const*, u32, s8, float,
                                                          float, float, float, u8);
-void JAISoundHandle_NS_releaseSound(void);
+void releaseSound__14JAISoundHandleFv(void);
 void seStop__7Z2SeMgrF10JAISoundIDUl(JAISoundID, u32);
 void JAISeCategoryMgr_NS_stop(void);
 void seMoveVolumeAll__7Z2SeMgrFfUl(float, u32);
@@ -89,7 +126,7 @@ extern float lbl_804558D4;
 extern double lbl_804558E0;
 extern float lbl_804558C0;
 extern float lbl_8045587C;
-extern float lbl_80455878;
+extern float lbl_80455878;  // 0.0f
 extern float lbl_80455870;
 extern float lbl_80455874;
 extern float lbl_80455880;

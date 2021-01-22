@@ -1,6 +1,6 @@
 
-#ifndef F_PC_LAYER_H
-#define F_PC_LAYER_H
+#ifndef F_PC_LAYER_H_
+#define F_PC_LAYER_H_
 
 #include "SComponent/c_node.h"
 #include "SComponent/c_tag.h"

@@ -1,5 +1,5 @@
-#ifndef __JSUIOSBASE_H__
-#define __JSUIOSBASE_H__
+#ifndef JSUIOSBASE_H_
+#define JSUIOSBASE_H_
 
 #include "dolphin/types.h"
 

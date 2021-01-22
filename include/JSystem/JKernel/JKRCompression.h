@@ -1,5 +1,5 @@
-#ifndef __JKRCOMPREESION_H__
-#define __JKRCOMPREESION_H__
+#ifndef JKRCOMPREESION_H_
+#define JKRCOMPREESION_H_
 
 #include "JSystem/JKernel/SArc.h"
 #include "dolphin/types.h"

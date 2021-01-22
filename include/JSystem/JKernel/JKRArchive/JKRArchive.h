@@ -1,5 +1,5 @@
-#ifndef __JKRARCHIVEPUB_H__
-#define __JKRARCHIVEPUB_H__
+#ifndef JKRARCHIVEPUB_H_
+#define JKRARCHIVEPUB_H_
 
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"

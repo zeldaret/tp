@@ -1,5 +1,5 @@
-#ifndef __JKRDECOMP_H__
-#define __JKRDECOMP_H__
+#ifndef JKRDECOMP_H_
+#define JKRDECOMP_H_
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"

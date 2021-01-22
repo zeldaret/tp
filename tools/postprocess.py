@@ -34,12 +34,12 @@ import struct
 
 # Substitutions
 substitutions = (
-    ('<',  '?0'),
-    ('>',  '?1'),
-    ('@',  '?2'),
-    ('\\', '?3'),
-    (',',  '?4'),
-    ('-',  '?5')
+    ('<',  '_SUB_0'),
+    ('>',  '_SUB_1'),
+    ('@',  '_SUB_2'),
+    ('\\', '_SUB_3'),
+    (',',  '_SUB_4'),
+    ('-',  '_SUB_5')
 )
 
 def format(symbol):
@@ -117,7 +117,7 @@ def impl_postprocess_elf(f, do_ctor_realign, do_old_stack, do_symbol_fixup):
     f.seek(0x30)
     nSecHeader = read_u16(f)
     idxSegNameSeg = read_u16(f)
-    secF = False # First instance the section names
+    secF = True # First instance the section names
 
     # Header: 0x32:
     patch_align_ofs = []
@@ -132,8 +132,9 @@ def impl_postprocess_elf(f, do_ctor_realign, do_old_stack, do_symbol_fixup):
 
         if sh_type == SHT_STRTAB and do_symbol_fixup:
             if not secF:
-                secF = True
                 continue
+            secF = False
+
             f.seek(ofsSecHeader + i * 0x28 + 0x10)
             ofs = read_u32(f)
             size = read_u32(f)

@@ -1,5 +1,5 @@
 #include "JSystem/JAudio2/JAISe/JAISe.h"
-#include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
+#include "JSystem/JAudio2/JAISound/JAISound.h"
 #include "global.h"
 
 struct Z2SoundObjBase {};
