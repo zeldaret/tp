@@ -591,6 +591,8 @@ def dump_objfile() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
         fail(f"Not able to find .o file for function: {objfile} is not a file.")
 
     refobjfile, _ = search_map_file(args.lhs_name or args.start, config.get('expected_mapfile'), config.get('expected_build_dir'))
+    if not refobjfile:
+        fail("Not able to find .o file for reference function.")
     if not os.path.isfile(refobjfile):
         fail(f'Please ensure an OK .o file exists at "{refobjfile}".')
 
