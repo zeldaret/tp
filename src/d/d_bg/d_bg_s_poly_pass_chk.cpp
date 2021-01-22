@@ -3,159 +3,158 @@
 #include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "global.h"
 
-extern "C" {
 // __ct__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::dBgS_PolyPassChk(void)
-asm void dBgS_PolyPassChk(void) {
+asm dBgS_PolyPassChk::dBgS_PolyPassChk() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078D64.s"
 }
 
 // __dt__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::~dBgS_PolyPassChk(void)
-asm void dBgS_PolyPassChk_NS_dtor(void) {
+asm dBgS_PolyPassChk::~dBgS_PolyPassChk() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078DB0.s"
 }
 
 // SetPassChkInfo__16dBgS_PolyPassChkFR16dBgS_PolyPassChk
 // dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk&)
-asm void dBgS_PolyPassChk_NS_SetPassChkInfo(void) {
+asm void dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk&) {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E0C.s"
 }
 
 // SetObj__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetObj(void)
-asm void dBgS_PolyPassChk_NS_SetObj(void) {
+asm void dBgS_PolyPassChk::SetObj() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E68.s"
 }
 
 // ClrObj__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrObj(void)
-asm void dBgS_PolyPassChk_NS_ClrObj(void) {
+asm void dBgS_PolyPassChk::ClrObj() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E74.s"
 }
 
 // SetCam__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetCam(void)
-asm void dBgS_PolyPassChk_NS_SetCam(void) {
+asm void dBgS_PolyPassChk::SetCam() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E80.s"
 }
 
 // ClrCam__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrCam(void)
-asm void dBgS_PolyPassChk_NS_ClrCam(void) {
+asm void dBgS_PolyPassChk::ClrCam() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E8C.s"
 }
 
 // SetLink__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetLink(void)
-asm void dBgS_PolyPassChk_NS_SetLink(void) {
+asm void dBgS_PolyPassChk::SetLink() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078E98.s"
 }
 
 // ClrLink__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrLink(void)
-asm void dBgS_PolyPassChk_NS_ClrLink(void) {
+asm void dBgS_PolyPassChk::ClrLink() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EA4.s"
 }
 
 // SetArrow__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetArrow(void)
-asm void dBgS_PolyPassChk_NS_SetArrow(void) {
+asm void dBgS_PolyPassChk::SetArrow() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EB0.s"
 }
 
 // SetBomb__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetBomb(void)
-asm void dBgS_PolyPassChk_NS_SetBomb(void) {
+asm void dBgS_PolyPassChk::SetBomb() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EBC.s"
 }
 
 // ClrBomb__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrBomb(void)
-asm void dBgS_PolyPassChk_NS_ClrBomb(void) {
+asm void dBgS_PolyPassChk::ClrBomb() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EC8.s"
 }
 
 // SetBoomerang__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetBoomerang(void)
-asm void dBgS_PolyPassChk_NS_SetBoomerang(void) {
+asm void dBgS_PolyPassChk::SetBoomerang() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078ED4.s"
 }
 
 // SetRope__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetRope(void)
-asm void dBgS_PolyPassChk_NS_SetRope(void) {
+asm void dBgS_PolyPassChk::SetRope() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EE0.s"
 }
 
 // SetUnderwaterRoof__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetUnderwaterRoof(void)
-asm void dBgS_PolyPassChk_NS_SetUnderwaterRoof(void) {
+asm void dBgS_PolyPassChk::SetUnderwaterRoof() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EEC.s"
 }
 
 // SetHorse__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetHorse(void)
-asm void dBgS_PolyPassChk_NS_SetHorse(void) {
+asm void dBgS_PolyPassChk::SetHorse() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078EF8.s"
 }
 
 // ChkNoHorse__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ChkNoHorse(void)
-asm void dBgS_PolyPassChk_NS_ChkNoHorse(void) {
+asm bool dBgS_PolyPassChk::ChkNoHorse() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078F04.s"
 }
 
 // SetStatue__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetStatue(void)
-asm void dBgS_PolyPassChk_NS_SetStatue(void) {
+asm void dBgS_PolyPassChk::SetStatue() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078F7C.s"
 }
 
 // ClrStatue__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrStatue(void)
-asm void dBgS_PolyPassChk_NS_ClrStatue(void) {
+asm void dBgS_PolyPassChk::ClrStatue() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078F88.s"
 }
 
 // SetIronBall__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::SetIronBall(void)
-asm void dBgS_PolyPassChk_NS_SetIronBall(void) {
+asm void dBgS_PolyPassChk::SetIronBall() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078F94.s"
 }
 
 // ClrIronBall__16dBgS_PolyPassChkFv
 // dBgS_PolyPassChk::ClrIronBall(void)
-asm void func_80078FA0(void) {
+asm void dBgS_PolyPassChk::ClrIronBall() {
     nofralloc
     #include "d/d_bg/d_bg_s/polypass/asm/func_80078FA0.s"
 }
 
+extern "C" {
 // __dt__16cBgS_PolyPassChkFv
 // cBgS_PolyPassChk::~cBgS_PolyPassChk(void)
 asm void func_80078FAC(void) {
     nofralloc
 #include "d/d_bg/d_bg_s/polypass/asm/func_80078FAC.s"
 }
-
 };

@@ -5062,7 +5062,7 @@ fopAcM_initManager:
 /* 8001DE90 0001ADD0  38 03 00 24 */	addi r0, r3, 0x24
 /* 8001DE94 0001ADD4  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 8001DE98 0001ADD8  38 7E 00 3C */	addi r3, r30, 0x3c
-/* 8001DE9C 0001ADDC  48 05 AF CD */	bl dBgS_PolyPassChk_NS_SetObj
+/* 8001DE9C 0001ADDC  48 05 AF CD */	bl SetObj__16dBgS_PolyPassChkFv
 /* 8001DEA0 0001ADE0  7F C3 F3 78 */	mr r3, r30
 .global dBgS_ObjGndChk_NS_dtor
 /* 8001DEA4 0001ADE4  3C 80 80 02 */	lis r4, dBgS_ObjGndChk_NS_dtor@ha
@@ -5083,7 +5083,7 @@ fopAcM_initManager:
 /* 8001DEDC 0001AE1C  38 03 00 24 */	addi r0, r3, 0x24
 /* 8001DEE0 0001AE20  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 8001DEE4 0001AE24  38 7E 00 24 */	addi r3, r30, 0x24
-/* 8001DEE8 0001AE28  48 05 AF 81 */	bl dBgS_PolyPassChk_NS_SetObj
+/* 8001DEE8 0001AE28  48 05 AF 81 */	bl SetObj__16dBgS_PolyPassChkFv
 /* 8001DEEC 0001AE2C  7F C3 F3 78 */	mr r3, r30
 .global dBgS_ObjRoofChk_NS_dtor
 /* 8001DEF0 0001AE30  3C 80 80 02 */	lis r4, dBgS_ObjRoofChk_NS_dtor@ha
