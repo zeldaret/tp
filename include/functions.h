@@ -6664,11 +6664,6 @@ extern "C" {
     void func_80262F28(void);
     void func_80263000(void);
     void func_80263070(void);
-    void ModuleProlog(void);
-    void ModuleEpilog(void);
-    void ModuleUnresolved(void);
-    void ModuleConstructorsX(void);
-    void ModuleDestructorsX(void);
     void func_802631D4(void);
     void func_802631DC(void);
     void func_802631E4(void);
