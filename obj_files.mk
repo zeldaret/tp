@@ -494,7 +494,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o \
             $(BUILD_DIR)/asm/rodata/rodata_DynamicLink.o \
             $(BUILD_DIR)/asm/sdata2/DynamicLink.o \
-            $(BUILD_DIR)/asm/DynamicLink.o \
+            $(BUILD_DIR)/src/DynamicLink.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_malloc.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_graphic.o \
@@ -1099,7 +1099,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/gx/GXPerf.o \
             $(BUILD_DIR)/asm/gd/GDBase.o \
             $(BUILD_DIR)/asm/gd/GDGeometry.o \
-            $(BUILD_DIR)/asm/clib.o     
+            $(BUILD_DIR)/asm/clib.o
 
 CTORS_O_FILES :=                                    \
     $(BUILD_DIR)/asm/ctors.o
@@ -1132,10 +1132,10 @@ RODATA_O_FILES := \
             $(BUILD_DIR)/asm/rodata/rodata_targimpl.o \
             $(BUILD_DIR)/asm/rodata/rodata_main_TRK.o \
             $(BUILD_DIR)/asm/rodata/rodata_dolphin_trk_glue.o \
-            $(BUILD_DIR)/asm/rodata/rodata_main.o 
+            $(BUILD_DIR)/asm/rodata/rodata_main.o
 
 DATA_O_FILES :=                                     \
-    $(BUILD_DIR)/asm/data.o                         
+    $(BUILD_DIR)/asm/data.o
 
 BSS_O_FILES :=                                      \
     $(BUILD_DIR)/asm/bss.o
@@ -1168,7 +1168,7 @@ SDATA2_O_FILES :=  \
             $(BUILD_DIR)/asm/sdata2/s_ldexp.o \
             $(BUILD_DIR)/asm/sdata2/s_sin.o \
             $(BUILD_DIR)/asm/sdata2/s_tan.o \
-            $(BUILD_DIR)/asm/sdata2/e_sqrt.o 
+            $(BUILD_DIR)/asm/sdata2/e_sqrt.o
 
 SBSS2_O_FILES :=                                    \
     $(BUILD_DIR)/asm/sbss2.o
