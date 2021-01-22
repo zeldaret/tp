@@ -1,6 +1,6 @@
 
-#ifndef F_PC_LEAF_H
-#define F_PC_LEAF_H
+#ifndef F_PC_LEAF_H_
+#define F_PC_LEAF_H_
 
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_draw_priority.h"

@@ -1,5 +1,5 @@
-#ifndef __GX_H__
-#define __GX_H__
+#ifndef GX_H_
+#define GX_H_
 
 #include "dolphin/types.h"
 

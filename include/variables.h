@@ -115,7 +115,6 @@ extern u8 lbl_80451360[8];
 // func_802C3464
 extern u8 lbl_803CB96C[0x14];
 extern u8 lbl_803C9D80[0x18];
-extern u32 lbl_80450B74;
 
 // func_802C3500
 extern u8 lbl_803CAD10[0x20];
@@ -130,7 +129,7 @@ extern u8 lbl_80455CA0[8];
 extern u8 lbl_80455CA8[8];
 extern u8 lbl_80455CB0[8];
 extern u8 lbl_80455CB8[8];
-extern u32 lbl_80450AE0;
+extern f32 lbl_80450AE0[4];
 
 // func_802C3A6C
 extern u32 lbl_80455CC0;
@@ -180,11 +179,8 @@ struct Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80;  // Z2SceneMgr sInstance
 struct Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60;  // Z2SoundMgr sInstance
-struct Z2SoundObjMgr;
-extern Z2SoundObjMgr* lbl_80450B48;  // Z2SoundObjMgr sInstance
 struct Z2SpeechMgr2;
-extern Z2SpeechMgr2* lbl_80450B70;  // Z2SpeechMgr2 sInstance
-extern void* lbl_803CC114;          // JKRThread::__vt
+extern void* lbl_803CC114;  // JKRThread::__vt
 
 class JKRThreadSwitch;
 extern void* lbl_803CC100[5];          // JKRThreadSwitch::__vt
@@ -2501,7 +2497,6 @@ extern u8 lbl_80455B2C;
 extern u8 lbl_804507E0;
 extern u8 lbl_804507DC;
 extern u8 lbl_80455AD8;
-extern u8 lbl_80450B4C;
 extern u8 lbl_8039C220;
 extern u8 lbl_80455AE0;
 extern u8 lbl_803CAC98;

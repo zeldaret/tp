@@ -6,7 +6,7 @@
 /* 802B9D54 002B6C94  38 00 00 00 */ li r0, 0
 /* 802B9D58 002B6C98  90 03 00 08 */ stw r0, 8(r3)
 /* 802B9D5C 002B6C9C  80 6D 85 C8 */ lwz r3, lbl_80450B48-_SDA_BASE_(r13)
-/* 802B9D60 002B6CA0  48 00 63 DD */ bl Z2SoundObjMgr_NS_deleteEnemyAll
+/* 802B9D60 002B6CA0  48 00 63 DD */ bl deleteEnemyAll__13Z2SoundObjMgrFv
 /* 802B9D64 002B6CA4  7F E3 FB 78 */ mr r3, r31
 /* 802B9D68 002B6CA8  38 80 00 00 */ li r4, 0
 /* 802B9D6C 002B6CAC  4B FF CB 75 */ bl setSceneExist__10Z2SceneMgrFb

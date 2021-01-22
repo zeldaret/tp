@@ -1,5 +1,5 @@
-#ifndef __C_API_GRAPHIC_H_
-#define __C_API_GRAPHIC_H_
+#ifndef C_API_GRAPHIC_H_
+#define C_API_GRAPHIC_H_
 
 #include "global.h"
 

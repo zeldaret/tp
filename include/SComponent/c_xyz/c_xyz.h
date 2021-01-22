@@ -1,5 +1,5 @@
-#ifndef __C_XYZ_H_
-#define __C_XYZ_H_
+#ifndef C_XYZ_H_
+#define C_XYZ_H_
 #include "global.h"
 
 class cXyz {

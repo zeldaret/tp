@@ -1,5 +1,5 @@
-#ifndef __JKRDISPOSER_H__
-#define __JKRDISPOSER_H__
+#ifndef JKRDISPOSER_H_
+#define JKRDISPOSER_H_
 
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "dolphin/types.h"

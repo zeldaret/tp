@@ -1,5 +1,5 @@
-#ifndef __JKRDVDARCHIVE_H__
-#define __JKRDVDARCHIVE_H__
+#ifndef JKRDVDARCHIVE_H_
+#define JKRDVDARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"

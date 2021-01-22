@@ -1,5 +1,5 @@
-#ifndef __JKRFILEFINDER_H__
-#define __JKRFILEFINDER_H__
+#ifndef JKRFILEFINDER_H_
+#define JKRFILEFINDER_H_
 
 #include "dolphin/types.h"
 #include "dvd/dvd.h"

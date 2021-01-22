@@ -902,7 +902,7 @@ Z2SoundObjSimple_NS_dtor:
 /* 8015BA60 001589A0  38 04 AD 10 */	addi r0, r4, lbl_803CAD10@l
 /* 8015BA64 001589A4  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 8015BA68 001589A8  38 80 00 00 */	li r4, 0
-/* 8015BA6C 001589AC  48 16 24 DD */	bl Z2SoundObjBase_NS_dtor
+/* 8015BA6C 001589AC  48 16 24 DD */	bl __dt__14Z2SoundObjBaseFv
 /* 8015BA70 001589B0  7F E0 07 35 */	extsh. r0, r31
 /* 8015BA74 001589B4  40 81 00 0C */	ble lbl_8015BA80
 /* 8015BA78 001589B8  7F C3 F3 78 */	mr r3, r30
@@ -1153,7 +1153,7 @@ daItem_c_NS__daItem_delete:
 /* 8015BDF4 00158D34  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015BDF8 00158D38  7C 7F 1B 78 */	mr r31, r3
 /* 8015BDFC 00158D3C  38 7F 09 78 */	addi r3, r31, 0x978
-/* 8015BE00 00158D40  48 16 21 F9 */	bl Z2SoundObjBase_NS_deleteObject
+/* 8015BE00 00158D40  48 16 21 F9 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 8015BE04 00158D44  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 8015BE08 00158D48  28 00 00 06 */	cmplwi r0, 6
 /* 8015BE0C 00158D4C  41 82 00 0C */	beq lbl_8015BE18

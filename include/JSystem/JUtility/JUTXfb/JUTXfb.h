@@ -1,5 +1,5 @@
-#ifndef __JUTILITY_JUTXFB_JUTXFB_H__
-#define __JUTILITY_JUTXFB_JUTXFB_H__
+#ifndef JUTILITY_JUTXFB_JUTXFB_H_
+#define JUTILITY_JUTXFB_JUTXFB_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"

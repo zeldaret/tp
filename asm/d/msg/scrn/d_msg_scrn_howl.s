@@ -910,7 +910,7 @@ lbl_802415B4:
 /* 80241720 0023E660  41 80 00 28 */	blt lbl_80241748
 /* 80241724 0023E664  80 7D 5D B4 */	lwz r3, 0x5db4(r29)
 /* 80241728 0023E668  38 63 2D 84 */	addi r3, r3, 0x2d84
-/* 8024172C 0023E66C  48 08 9C 45 */	bl Z2WolfHowlMgr_NS_getCorrectLineNum
+/* 8024172C 0023E66C  48 08 9C 45 */	bl getCorrectLineNum__13Z2WolfHowlMgrFv
 /* 80241730 0023E670  98 7F 21 96 */	stb r3, 0x2196(r31)
 /* 80241734 0023E674  38 00 00 1E */	li r0, 0x1e
 /* 80241738 0023E678  98 1F 21 97 */	stb r0, 0x2197(r31)
@@ -1427,7 +1427,7 @@ lbl_80241E64:
 /* 80241EA4 0023EDE4  81 8C 02 98 */	lwz r12, 0x298(r12)
 /* 80241EA8 0023EDE8  7D 89 03 A6 */	mtctr r12
 /* 80241EAC 0023EDEC  4E 80 04 21 */	bctrl 
-/* 80241EB0 0023EDF0  48 08 8E 1D */	bl Z2WolfHowlMgr_NS_getNowInputValue
+/* 80241EB0 0023EDF0  48 08 8E 1D */	bl getNowInputValue__13Z2WolfHowlMgrFv
 /* 80241EB4 0023EDF4  FC 20 08 50 */	fneg f1, f1
 /* 80241EB8 0023EDF8  7F E3 FB 78 */	mr r3, r31
 /* 80241EBC 0023EDFC  48 00 20 D9 */	bl dMsgScrnHowl_c_NS_getNowPlotPitch
@@ -1499,7 +1499,7 @@ lbl_80241FA0:
 /* 80241FB4 0023EEF4  7D 89 03 A6 */	mtctr r12
 /* 80241FB8 0023EEF8  4E 80 04 21 */	bctrl 
 /* 80241FBC 0023EEFC  7F C4 F3 78 */	mr r4, r30
-/* 80241FC0 0023EF00  48 08 9A C9 */	bl Z2WolfHowlMgr_NS_startGuideMelody
+/* 80241FC0 0023EF00  48 08 9A C9 */	bl startGuideMelody__13Z2WolfHowlMgrFb
 /* 80241FC4 0023EF04  90 7F 01 7C */	stw r3, 0x17c(r31)
 /* 80241FC8 0023EF08  A8 1F 21 2A */	lha r0, 0x212a(r31)
 /* 80241FCC 0023EF0C  2C 00 00 1E */	cmpwi r0, 0x1e
@@ -3231,7 +3231,7 @@ lbl_80243964:
 /* 80243974 002408B4  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
 /* 80243978 002408B8  80 7E 5D B4 */	lwz r3, 0x5db4(r30)
 /* 8024397C 002408BC  38 63 2D 84 */	addi r3, r3, 0x2d84
-/* 80243980 002408C0  48 08 7C D1 */	bl Z2WolfHowlMgr_NS_getOnLineNum
+/* 80243980 002408C0  48 08 7C D1 */	bl getOnLineNum__13Z2WolfHowlMgrFv
 /* 80243984 002408C4  7C 60 07 75 */	extsb. r0, r3
 /* 80243988 002408C8  41 80 00 48 */	blt lbl_802439D0
 /* 8024398C 002408CC  A8 1F 21 2A */	lha r0, 0x212a(r31)
@@ -3264,7 +3264,7 @@ lbl_802439E0:
 /* 802439F0 00240930  81 8C 02 98 */	lwz r12, 0x298(r12)
 /* 802439F4 00240934  7D 89 03 A6 */	mtctr r12
 /* 802439F8 00240938  4E 80 04 21 */	bctrl 
-/* 802439FC 0024093C  48 08 72 D1 */	bl Z2WolfHowlMgr_NS_getNowInputValue
+/* 802439FC 0024093C  48 08 72 D1 */	bl getNowInputValue__13Z2WolfHowlMgrFv
 /* 80243A00 00240940  FC 20 08 50 */	fneg f1, f1
 /* 80243A04 00240944  7F E3 FB 78 */	mr r3, r31
 /* 80243A08 00240948  48 00 05 8D */	bl dMsgScrnHowl_c_NS_getNowPlotPitch
@@ -3921,7 +3921,7 @@ lbl_80244330:
 /* 80244330 00241270  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 80244334 00241274  38 63 2D 84 */	addi r3, r3, 0x2d84
 /* 80244338 00241278  57 A4 06 3E */	clrlwi r4, r29, 0x18
-/* 8024433C 0024127C  48 08 6F E5 */	bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 8024433C 0024127C  48 08 6F E5 */	bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 80244340 00241280  54 60 84 3E */	srwi r0, r3, 0x10
 /* 80244344 00241284  B0 01 00 08 */	sth r0, 8(r1)
 /* 80244348 00241288  B0 01 00 0C */	sth r0, 0xc(r1)
@@ -3963,7 +3963,7 @@ lbl_802443C4:
 /* 802443C4 00241304  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 802443C8 00241308  38 63 2D 84 */	addi r3, r3, 0x2d84
 /* 802443CC 0024130C  57 84 06 3E */	clrlwi r4, r28, 0x18
-/* 802443D0 00241310  48 08 6F 51 */	bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 802443D0 00241310  48 08 6F 51 */	bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 802443D4 00241314  54 60 84 3E */	srwi r0, r3, 0x10
 /* 802443D8 00241318  B0 01 00 0C */	sth r0, 0xc(r1)
 /* 802443DC 0024131C  B0 01 00 14 */	sth r0, 0x14(r1)
@@ -3978,7 +3978,7 @@ lbl_802443C4:
 /* 80244400 00241340  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 80244404 00241344  38 63 2D 84 */	addi r3, r3, 0x2d84
 /* 80244408 00241348  57 84 06 3E */	clrlwi r4, r28, 0x18
-/* 8024440C 0024134C  48 08 6F 15 */	bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 8024440C 0024134C  48 08 6F 15 */	bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 80244410 00241350  54 60 84 3E */	srwi r0, r3, 0x10
 /* 80244414 00241354  B0 01 00 08 */	sth r0, 8(r1)
 /* 80244418 00241358  B0 01 00 10 */	sth r0, 0x10(r1)

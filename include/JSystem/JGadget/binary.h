@@ -1,5 +1,5 @@
-#ifndef JSYSTEM_JGADGET_BINARY_H
-#define JSYSTEM_JGADGET_BINARY_H
+#ifndef JSYSTEM_JGADGET_BINARY_H_
+#define JSYSTEM_JGADGET_BINARY_H_
 
 #include "dolphin/types.h"
 

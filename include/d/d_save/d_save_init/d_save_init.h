@@ -1,5 +1,5 @@
-#ifndef __D_SAVE_INIT_H__
-#define __D_SAVE_INIT_H__
+#ifndef D_SAVE_INIT_H_
+#define D_SAVE_INIT_H_
 
 extern "C" {
 void setInitEventBit();

@@ -1,6 +1,6 @@
 
-#ifndef SCOMPONENT_C_NODE_H
-#define SCOMPONENT_C_NODE_H
+#ifndef SCOMPONENT_C_NODE_H_
+#define SCOMPONENT_C_NODE_H_
 
 #include "global.h"
 

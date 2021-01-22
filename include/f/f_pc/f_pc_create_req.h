@@ -1,6 +1,6 @@
 
-#ifndef F_PC_CREATE_REQ_H
-#define F_PC_CREATE_REQ_H
+#ifndef F_PC_CREATE_REQ_H_
+#define F_PC_CREATE_REQ_H_
 
 #include "SComponent/c_phase.h"
 #include "SComponent/c_tag.h"
