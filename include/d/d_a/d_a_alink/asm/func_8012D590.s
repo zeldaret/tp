@@ -75,7 +75,7 @@ lbl_8012D670:
 /* 8012D6A4 0012A5E4  48 00 02 04 */ b lbl_8012D8A8
 lbl_8012D6A8:
 /* 8012D6A8 0012A5E8  7F C3 F3 78 */ mr r3, r30
-/* 8012D6AC 0012A5EC  4B F8 50 0D */ bl daAlink_c_NS_swordSwingTrigger
+/* 8012D6AC 0012A5EC  4B F8 50 0D */ bl swordSwingTrigger__9daAlink_cFv
 /* 8012D6B0 0012A5F0  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D6B4 0012A5F4  41 82 00 0C */ beq lbl_8012D6C0
 /* 8012D6B8 0012A5F8  38 00 00 01 */ li r0, 1

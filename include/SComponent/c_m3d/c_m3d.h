@@ -1,5 +1,5 @@
-#ifndef __C_M3D_H_
-#define __C_M3D_H_
+#ifndef C_M3D_H_
+#define C_M3D_H_
 
 #include "SComponent/c_xyz/c_xyz.h"
 #include "global.h"

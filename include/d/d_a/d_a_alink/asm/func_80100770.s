@@ -29,7 +29,7 @@
 lbl_801007E0:
 /* 801007E0 000FD720  7F C3 F3 78 */ mr r3, r30
 /* 801007E4 000FD724  38 80 00 33 */ li r4, 0x33
-/* 801007E8 000FD728  4B FB 2A 69 */ bl daAlink_c_NS_setDoStatus
+/* 801007E8 000FD728  4B FB 2A 69 */ bl setDoStatus__9daAlink_cFUc
 /* 801007EC 000FD72C  88 1E 2F 8D */ lbz r0, 0x2f8d(r30)
 /* 801007F0 000FD730  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 801007F4 000FD734  41 82 00 20 */ beq lbl_80100814

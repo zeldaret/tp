@@ -249,7 +249,7 @@ lbl_800E9F44:
 lbl_800E9F58:
 /* 800E9F58 000E6E98  7F 83 E3 78 */ mr r3, r28
 /* 800E9F5C 000E6E9C  38 80 00 15 */ li r4, 0x15
-/* 800E9F60 000E6EA0  4B FC 93 09 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800E9F60 000E6EA0  4B FC 93 09 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 800E9F64 000E6EA4  A8 7C 04 E6 */ lha r3, 0x4e6(r28)
 /* 800E9F68 000E6EA8  A8 1C 2F E2 */ lha r0, 0x2fe2(r28)
 /* 800E9F6C 000E6EAC  7C 03 00 50 */ subf r0, r3, r0

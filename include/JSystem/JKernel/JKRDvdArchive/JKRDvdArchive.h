@@ -1,28 +1,33 @@
-#ifndef __JKRDVDARCHIVE_H__
-#define __JKRDVDARCHIVE_H__
+#ifndef JKRDVDARCHIVE_H_
+#define JKRDVDARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"
 
+class JKRDvdFile;
 class JKRDvdArchive : public JKRArchive {
 public:
-    JKRDvdArchive(long, JKRArchive::EMountDirection);
+    JKRDvdArchive(s32, JKRArchive::EMountDirection);
     virtual ~JKRDvdArchive();
 
-    void open(long);
+    bool open(s32);
 
-    /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;            /* override */
+    /* vt[15] */ virtual u32 getExpandedResSize(const void*);                  /* override */
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 
 public:
-    static void fetchResource_subroutine(long, u32, u32, u8*, u32, int, int);
-    static void fetchResource_subroutine(long, u32, u32, JKRHeap*, int, int, u8**);
+    static u32 fetchResource_subroutine(s32, u32, u32, u8*, u32, JKRCompression, JKRCompression);
+    static u32 fetchResource_subroutine(s32, u32, u32, JKRHeap*, JKRCompression, JKRCompression,
+                                        u8**);
 
 private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
-    u8 unk[16];
+    /* 0x5C */ JKRCompression mCompression;
+    /* 0x60 */ EMountDirection mMountDirection;
+    /* 0x64 */ s32 field_0x64;
+    /* 0x68 */ JKRDvdFile* mDvdFile;
 };
 
 #endif

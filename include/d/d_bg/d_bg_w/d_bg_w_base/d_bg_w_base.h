@@ -1,8 +1,8 @@
-#ifndef __D_BG_W_BASE_H_
-#define __D_BG_W_BASE_H_
+#ifndef D_BG_W_BASE_H_
+#define D_BG_W_BASE_H_
 
 #include "global.h"
-
+#pragma pack(push, 1)
 class dBgW_Base {
 public:
 private:
@@ -16,5 +16,6 @@ private:
     s16 field_0xc;
     s16 field_0xe;
 };
+#pragma pack(pop)
 
 #endif

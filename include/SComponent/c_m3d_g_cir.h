@@ -1,5 +1,5 @@
-#ifndef __C_M3D_G_CIR_H_
-#define __C_M3D_G_CIR_H_
+#ifndef C_M3D_G_CIR_H_
+#define C_M3D_G_CIR_H_
 
 #include "global.h"
 

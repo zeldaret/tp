@@ -9,7 +9,7 @@
 /* 802C58CC 002C280C  34 1E 00 04 */ addic. r0, r30, 4
 /* 802C58D0 002C2810  41 82 00 0C */ beq lbl_802C58DC
 /* 802C58D4 002C2814  38 7E 00 04 */ addi r3, r30, 4
-/* 802C58D8 002C2818  4B FD C8 AD */ bl JAISoundHandle_NS_releaseSound
+/* 802C58D8 002C2818  4B FD C8 AD */ bl releaseSound__14JAISoundHandleFv
 lbl_802C58DC:
 /* 802C58DC 002C281C  7F E0 07 35 */ extsh. r0, r31
 /* 802C58E0 002C2820  40 81 00 0C */ ble lbl_802C58EC

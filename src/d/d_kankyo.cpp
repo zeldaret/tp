@@ -366,7 +366,7 @@ asm void dKy_getdaytime_minute(void) {
 
 // dKy_daynight_check__Fv
 // dKy_daynight_check(void)
-asm void dKy_daynight_check(void) {
+asm int dKy_daynight_check(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019FAB8.s"
 }

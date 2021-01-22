@@ -1,5 +1,5 @@
-#ifndef F_OP_ACTOR_TAG_H
-#define F_OP_ACTOR_TAG_H
+#ifndef F_OP_ACTOR_TAG_H_
+#define F_OP_ACTOR_TAG_H_
 
 #include "SComponent/c_tag.h"
 #include "global.h"

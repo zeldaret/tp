@@ -1,5 +1,5 @@
-#ifndef __JKRMEMARCHIVE_H__
-#define __JKRMEMARCHIVE_H__
+#ifndef JKRMEMARCHIVE_H_
+#define JKRMEMARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"
@@ -21,7 +21,7 @@ public:
     /* vt[09] */ void removeResourceAll(void); /* override */
     /* vt[10] */ bool removeResource(void*);   /* override */
 
-    /* vt[15] */ u32 getExpandedResSize(const void*) const;            /* override */
+    /* vt[15] */ u32 getExpandedResSize(const void*);                  /* override */
     /* vt[16] */ void* fetchResource(SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 

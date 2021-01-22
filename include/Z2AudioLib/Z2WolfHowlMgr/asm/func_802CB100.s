@@ -103,14 +103,14 @@ lbl_802CB258:
 lbl_802CB26C:
 /* 802CB26C 002C81AC  7F E3 FB 78 */ mr r3, r31
 /* 802CB270 002C81B0  7F A4 EB 78 */ mr r4, r29
-/* 802CB274 002C81B4  48 00 00 AD */ bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 802CB274 002C81B4  48 00 00 AD */ bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 802CB278 002C81B8  54 60 84 3E */ srwi r0, r3, 0x10
 /* 802CB27C 002C81BC  B0 01 00 10 */ sth r0, 0x10(r1)
 /* 802CB280 002C81C0  88 01 00 11 */ lbz r0, 0x11(r1)
 /* 802CB284 002C81C4  7F DE 02 14 */ add r30, r30, r0
 /* 802CB288 002C81C8  7F E3 FB 78 */ mr r3, r31
 /* 802CB28C 002C81CC  7F A4 EB 78 */ mr r4, r29
-/* 802CB290 002C81D0  48 00 00 91 */ bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 802CB290 002C81D0  48 00 00 91 */ bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 802CB294 002C81D4  54 60 84 3E */ srwi r0, r3, 0x10
 /* 802CB298 002C81D8  B0 01 00 0C */ sth r0, 0xc(r1)
 /* 802CB29C 002C81DC  88 01 00 0C */ lbz r0, 0xc(r1)
@@ -122,7 +122,7 @@ lbl_802CB26C:
 /* 802CB2B4 002C81F4  B0 1F 00 BE */ sth r0, 0xbe(r31)
 /* 802CB2B8 002C81F8  7F E3 FB 78 */ mr r3, r31
 /* 802CB2BC 002C81FC  7F A4 EB 78 */ mr r4, r29
-/* 802CB2C0 002C8200  48 00 00 61 */ bl Z2WolfHowlMgr_NS_getCorrectLine
+/* 802CB2C0 002C8200  48 00 00 61 */ bl getCorrectLine__13Z2WolfHowlMgrFUc
 /* 802CB2C4 002C8204  54 60 84 3E */ srwi r0, r3, 0x10
 /* 802CB2C8 002C8208  B0 01 00 08 */ sth r0, 8(r1)
 /* 802CB2CC 002C820C  A0 7F 00 BE */ lhz r3, 0xbe(r31)
@@ -133,7 +133,7 @@ lbl_802CB2DC:
 /* 802CB2DC 002C821C  3B BD 00 01 */ addi r29, r29, 1
 lbl_802CB2E0:
 /* 802CB2E0 002C8220  7F E3 FB 78 */ mr r3, r31
-/* 802CB2E4 002C8224  48 00 00 8D */ bl Z2WolfHowlMgr_NS_getCorrectLineNum
+/* 802CB2E4 002C8224  48 00 00 8D */ bl getCorrectLineNum__13Z2WolfHowlMgrFv
 /* 802CB2E8 002C8228  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 802CB2EC 002C822C  57 A0 06 3E */ clrlwi r0, r29, 0x18
 /* 802CB2F0 002C8230  7C 00 18 40 */ cmplw r0, r3

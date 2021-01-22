@@ -1,5 +1,5 @@
-#ifndef __D_SAVE_H_
-#define __D_SAVE_H_
+#ifndef D_SAVE_H_
+#define D_SAVE_H_
 
 #include "SComponent/c_xyz/c_xyz.h"
 #include "d/d_meter2/d_meter2_info/d_meter2_info.h"
@@ -326,10 +326,11 @@ public:
     u16 getRupeeMax(void) const;
     int isMagicFlag(u8) const;
 
-    u16& getCurrentHealth() { return mCurrentHealth; }
-    u16& getCurrentRupees() { return mCurrentRupees; }
-    u16& getCurrentLanternOil() { return mCurrentLanternOil; }
-    u8& getScent() { return mEquipment[3]; }
+    u16& getMaxLife() { return mMaxHealth; }
+    u16& getLife() { return mCurrentHealth; }
+    u16& getRupee() { return mCurrentRupees; }
+    u16& getOil() { return mCurrentLanternOil; }
+    u8 getSelectEquip(int item) const { return mEquipment[item]; }
     void setWalletLV(u8 lv) { mCurrentWallet = lv; }
     void setOil(u16 oil) { mCurrentLanternOil = oil; }
     void setMaxOil(u16 max) { mMaxLanternOil = max; }
@@ -339,6 +340,7 @@ public:
     void setRupee(u16 rupees) { mCurrentRupees = rupees; }
     void setLife(u16 life) { mCurrentHealth = life; }
     void setMaxLife(u8 max) { mMaxHealth = max; }
+    void setSelectEquip(int item_index, u8 item) { mEquipment[item_index] = item; }
 
 private:
     u16 mMaxHealth;
@@ -432,13 +434,19 @@ public:
     void init(void);
     void setWarpItemData(const char*, const cXyz&, s16, s8, u8, u8);
 
+    const char* getName(void) { return mOoccooStage; }
+    cXyz getPos(void) { return mOoccooPosition; }
+    s16 getAngleY(void) { return mOoccooXRotation; }
+    s8 getRoomNo(void) { return mOoccooRoomId; }
+    char getWarpAcceptStage(void) { return mWarpAcceptStage; }
+
 private:
     cXyz mOoccooPosition;
     s16 mOoccooXRotation;
     char mOoccooStage[8];
     u8 mOoccooSpawnId;
-    u8 mOoccooRoomId;
-    char unk24;
+    s8 mOoccooRoomId;
+    char mWarpAcceptStage;
     u8 unk25[3];
 };
 
@@ -512,7 +520,7 @@ public:
     u8 getBombNum(u8) const;
 
     void setArrowNum(u8 max) { mItemCapacities[0] = max; }
-    u8 getBowCapacity() { return mItemCapacities[0]; }
+    u8 getArrowNum() { return mItemCapacities[0]; }
 
 private:
     u8 mItemCapacities[8];
@@ -528,7 +536,7 @@ public:
     void onCollectMirror(u8);
     BOOL isCollectMirror(u8) const;
 
-    u8 getPoeCount() { return mPoeCount; }
+    u8 getPohNum() { return mPoeCount; }
 
 private:
     u8 unk0[8];
@@ -642,6 +650,7 @@ public:
     dSv_player_collect_c& getPlayerCollect() { return player_collect; }
     dSv_player_item_record_c& getPlayerItemRecord() { return player_item_record; }
     dSv_player_item_max_c& getPlayerItemMax() { return player_item_max; }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player_last_mark; }
     dSv_light_drop_c& getLightDrop() { return light_drop; }
     dSv_player_get_item_c& getPlayerGetItem() { return player_get_item; }
 
@@ -683,7 +692,7 @@ public:
     void onDungeonItem(int);
     bool isDungeonItem(int) const;
 
-    u8 getSmallKeys() { return small_key_flags; }
+    u8 getKeyNum() { return small_key_flags; }
     void onDungeonItemMap() { onDungeonItem(MAP_FLAG); }
     bool isDungeonItemMap() const { return isDungeonItem(MAP_FLAG); }
     void onDungeonItemCompass() { onDungeonItem(COMPASS_FLAG); }
@@ -865,6 +874,7 @@ public:
     dSv_player_get_item_c& getPlayerGetItem() { return player.getPlayerGetItem(); }
     dSv_player_item_record_c& getPlayerItemRecord() { return player.getPlayerItemRecord(); }
     dSv_player_item_max_c& getPlayerItemMax() { return player.getPlayerItemMax(); }
+    dSv_player_last_mark_info_c& getPlayerLastMarkInfo() { return player.getPlayerLastMarkInfo(); }
     dSv_player_item_c& getPlayerItem() { return player.getPlayerItem(); }
     dSv_player_collect_c& getPlayerCollect() { return player.getPlayerCollect(); }
     dSv_light_drop_c& getLightDrop() { return player.getLightDrop(); }

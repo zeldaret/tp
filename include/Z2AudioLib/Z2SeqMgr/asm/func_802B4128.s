@@ -8,7 +8,7 @@
 /* 802B4144 002B1084  38 A0 02 BC */ li r5, 0x2bc
 /* 802B4148 002B1088  38 C0 04 4C */ li r6, 0x44c
 /* 802B414C 002B108C  38 E0 05 DC */ li r7, 0x5dc
-/* 802B4150 002B1090  48 00 B8 31 */ bl Z2SoundObjMgr_NS_setForceBattleArea
+/* 802B4150 002B1090  48 00 B8 31 */ bl setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
 lbl_802B4154:
 /* 802B4154 002B1094  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802B4158 002B1098  7C 08 03 A6 */ mtlr r0

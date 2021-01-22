@@ -89,7 +89,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             if (pFunc2 != NULL) {
                 pFunc2();
             }
-            dComIfG_play_c_NS_drawSimpleModel(&g_dComIfG_gameInfo.getPlay());
+            g_dComIfG_gameInfo.getPlay().drawSimpleModel();
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
             Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);

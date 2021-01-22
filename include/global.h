@@ -7,10 +7,20 @@
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))
 // Align X to the next N bytes (N must be power of two)
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+#define IS_ALIGNED(X, N) (((X) & ((N)-1)) == 0)
+#define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
 #define JUT_ASSERT(...)
+#define JUT_EXPECT(...)
+#define JUTReport(...)
 #define ASSERT(...)
 #define LOGF(FMT, ...)
+#define FLAG_ON(V, F) (((V) & (F)) == 0)
+
+struct JUTWarn {
+    JUTWarn& operator<<(const char*) { return *this; }
+    JUTWarn& operator<<(long) { return *this; }
+};
 
 extern float __fabsf(float);
 
@@ -30,6 +40,7 @@ inline double sqrt(float f) {
 
 #include "dolphin/types.h"
 
+#include "ar/AR.h"
 #include "ar/ARQ.h"
 #include "functions.h"
 #include "mwcc.h"

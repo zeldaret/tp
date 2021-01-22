@@ -2231,7 +2231,7 @@ dDemo_c_NS_end:
 /* 80039D0C 00036C4C  7F E3 FB 78 */	mr r3, r31
 /* 80039D10 00036C50  48 24 F5 F1 */	bl destroyObject_all__Q37JStudio3stb8TControlFv
 /* 80039D14 00036C54  38 7F 00 60 */	addi r3, r31, 0x60
-/* 80039D18 00036C58  48 24 AA B9 */	bl JStudio_NS_fvb_NS_TControl_NS_destroyObject_all
+/* 80039D18 00036C58  48 24 AA B9 */	bl destroyObject_all__Q37JStudio3fvb8TControlFv
 /* 80039D1C 00036C5C  38 7F 00 74 */	addi r3, r31, 0x74
 /* 80039D20 00036C60  48 24 74 0D */	bl JStudio_NS_ctb_NS_TControl_NS_destroyObject_all
 /* 80039D24 00036C64  80 6D 88 A0 */	lwz r3, lbl_80450E20-_SDA_BASE_(r13)
@@ -2255,7 +2255,7 @@ dDemo_c_NS_branch:
 /* 80039D60 00036CA0  7F E3 FB 78 */	mr r3, r31
 /* 80039D64 00036CA4  48 24 F5 9D */	bl destroyObject_all__Q37JStudio3stb8TControlFv
 /* 80039D68 00036CA8  38 7F 00 60 */	addi r3, r31, 0x60
-/* 80039D6C 00036CAC  48 24 AA 65 */	bl JStudio_NS_fvb_NS_TControl_NS_destroyObject_all
+/* 80039D6C 00036CAC  48 24 AA 65 */	bl destroyObject_all__Q37JStudio3fvb8TControlFv
 /* 80039D70 00036CB0  38 7F 00 74 */	addi r3, r31, 0x74
 /* 80039D74 00036CB4  48 24 73 B9 */	bl JStudio_NS_ctb_NS_TControl_NS_destroyObject_all
 /* 80039D78 00036CB8  80 6D 88 C4 */	lwz r3, lbl_80450E44-_SDA_BASE_(r13)

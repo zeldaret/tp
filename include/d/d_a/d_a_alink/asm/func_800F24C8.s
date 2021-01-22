@@ -25,7 +25,7 @@ lbl_800F2518:
 /* 800F251C 000EF45C  41 82 00 10 */ beq lbl_800F252C
 /* 800F2520 000EF460  7F E3 FB 78 */ mr r3, r31
 /* 800F2524 000EF464  38 80 00 12 */ li r4, 0x12
-/* 800F2528 000EF468  4B FC 0D 29 */ bl daAlink_c_NS_setDoStatus
+/* 800F2528 000EF468  4B FC 0D 29 */ bl setDoStatus__9daAlink_cFUc
 lbl_800F252C:
 /* 800F252C 000EF46C  7F E3 FB 78 */ mr r3, r31
 /* 800F2530 000EF470  4B FF B4 F5 */ bl daAlink_c_NS_setSyncRidePos

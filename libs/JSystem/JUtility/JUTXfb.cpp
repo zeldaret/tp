@@ -64,7 +64,7 @@ void JUTXfb::destroyManager() {
 
 void JUTXfb::initiate(u16 width, u16 height, JKRHeap* heap, JUTXfb::EXfbNumber xfb_number) {
     if (heap == NULL) {
-        heap = /* sSystemHeap */ lbl_80451370;
+        heap = JKRHeap::getSystemHeap();
     }
 
     int size = ((u32)width + 0xf & 0xfff0) * (u32)height * 2;

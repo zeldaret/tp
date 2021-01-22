@@ -46,11 +46,11 @@ lbl_80224C38:
 /* 80224C50 00221B90  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80224C54 00221B94  3B A3 0F 38 */ addi r29, r3, 0xf38
 /* 80224C58 00221B98  7F A3 EB 78 */ mr r3, r29
-/* 80224C5C 00221B9C  4B E0 7F 61 */ bl dComIfG_play_c_NS_getTimerMode
+/* 80224C5C 00221B9C  4B E0 7F 61 */ bl getTimerMode__14dComIfG_play_cFv
 /* 80224C60 00221BA0  2C 03 00 03 */ cmpwi r3, 3
 /* 80224C64 00221BA4  41 82 00 60 */ beq lbl_80224CC4
 /* 80224C68 00221BA8  7F A3 EB 78 */ mr r3, r29
-/* 80224C6C 00221BAC  4B E0 7F 51 */ bl dComIfG_play_c_NS_getTimerMode
+/* 80224C6C 00221BAC  4B E0 7F 51 */ bl getTimerMode__14dComIfG_play_cFv
 /* 80224C70 00221BB0  2C 03 00 04 */ cmpwi r3, 4
 /* 80224C74 00221BB4  41 82 00 50 */ beq lbl_80224CC4
 lbl_80224C78:

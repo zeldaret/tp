@@ -1,5 +1,5 @@
-#ifndef __Z2ENVSEMGR_H__
-#define __Z2ENVSEMGR_H__
+#ifndef Z2ENVSEMGR_H_
+#define Z2ENVSEMGR_H_
 
 extern void* lbl_80450B3C;  // Z2EnvSeMgr sInstance
 

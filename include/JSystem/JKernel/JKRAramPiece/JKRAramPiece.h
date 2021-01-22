@@ -1,5 +1,5 @@
-#ifndef __JKRARAMPIECE_H__
-#define __JKRARAMPIECE_H__
+#ifndef JKRARAMPIECE_H_
+#define JKRARAMPIECE_H_
 
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "ar/ARQ.h"
@@ -61,5 +61,10 @@ private:
     static void lock() { OSLockMutex(&lbl_80434330); }
     static void unlock() { OSUnlockMutex(&lbl_80434330); }
 };
+
+inline BOOL JKRAramPcs(int direction, u32 source, u32 destination, u32 length,
+                       JKRAramBlock* block) {
+    return JKRAramPiece::orderSync(direction, source, destination, length, block);
+}
 
 #endif

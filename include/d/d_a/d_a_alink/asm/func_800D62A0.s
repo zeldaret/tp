@@ -15,7 +15,7 @@ lbl_800D62C8:
 /* 800D62D4 000D3214  41 82 00 14 */ beq lbl_800D62E8
 /* 800D62D8 000D3218  7F E3 FB 78 */ mr r3, r31
 /* 800D62DC 000D321C  38 80 00 30 */ li r4, 0x30
-/* 800D62E0 000D3220  4B FD CF 89 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800D62E0 000D3220  4B FD CF 89 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 800D62E4 000D3224  48 00 00 30 */ b lbl_800D6314
 lbl_800D62E8:
 /* 800D62E8 000D3228  7F E3 FB 78 */ mr r3, r31
@@ -24,12 +24,12 @@ lbl_800D62E8:
 /* 800D62F4 000D3234  41 82 00 14 */ beq lbl_800D6308
 /* 800D62F8 000D3238  7F E3 FB 78 */ mr r3, r31
 /* 800D62FC 000D323C  38 80 00 77 */ li r4, 0x77
-/* 800D6300 000D3240  4B FD CF 69 */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 800D6300 000D3240  4B FD CF 69 */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 800D6304 000D3244  48 00 00 10 */ b lbl_800D6314
 lbl_800D6308:
 /* 800D6308 000D3248  7F E3 FB 78 */ mr r3, r31
 /* 800D630C 000D324C  38 80 00 86 */ li r4, 0x86
-/* 800D6310 000D3250  4B FD CF 41 */ bl daAlink_c_NS_setDoStatus
+/* 800D6310 000D3250  4B FD CF 41 */ bl setDoStatus__9daAlink_cFUc
 lbl_800D6314:
 /* 800D6314 000D3254  7F E3 FB 78 */ mr r3, r31
 /* 800D6318 000D3258  4B FF BF A5 */ bl daAlink_c_NS_setSwordChargeVoiceSe

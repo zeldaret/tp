@@ -15,7 +15,7 @@
 lbl_80139AA8:
 /* 80139AA8 001369E8  7F C3 F3 78 */ mr r3, r30
 /* 80139AAC 001369EC  38 80 00 08 */ li r4, 8
-/* 80139AB0 001369F0  4B F7 8B 39 */ bl daAlink_c_NS_itemButtonCheck
+/* 80139AB0 001369F0  4B F7 8B 39 */ bl itemButtonCheck__9daAlink_cFUc
 /* 80139AB4 001369F4  2C 03 00 00 */ cmpwi r3, 0
 /* 80139AB8 001369F8  41 82 00 10 */ beq lbl_80139AC8
 /* 80139ABC 001369FC  A8 1E 30 0A */ lha r0, 0x300a(r30)

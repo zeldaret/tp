@@ -1,8 +1,9 @@
-#ifndef JSYSTEM_OBJECTID_H
-#define JSYSTEM_OBJECTID_H
+#ifndef JSYSTEM_OBJECTID_H_
+#define JSYSTEM_OBJECTID_H_
 
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
+#include "JSystem/JStudio/object-id.h"
 #include "global.h"
 
 using namespace JGadget::binary;
@@ -12,23 +13,23 @@ namespace stb {
 
 class TControl;
 
-static const int STATUS_STILL = 0;
-static const int STATUS_UNK1 = 1;
-static const int STATUS_WAIT = 2;
-static const int STATUS_SUSPEND = 4;
-static const int STATUS_INACTIVE = 8;
+const int STATUS_STILL = 0;
+const int STATUS_UNK1 = 1;
+const int STATUS_WAIT = 2;
+const int STATUS_SUSPEND = 4;
+const int STATUS_INACTIVE = 8;
 
 namespace data {
 
-static const int BLOCK_SOUND = 'JSND';
-static const int BLOCK_ACTOR = 'JACT';
-static const int BLOCK_AMBIENTLIGHT = 'JABL';
-static const int BLOCK_CAMERA = 'JCMR';
-static const int BLOCK_FOG = 'JFOG';
-static const int BLOCK_LIGHT = 'JLIT';
-static const int BLOCK_MESSAGE = 'JMSG';
-static const int BLOCK_PARTICLE = 'JPTC';
-static const int BLOCK_NONE = -1;
+const int BLOCK_SOUND = 'JSND';
+const int BLOCK_ACTOR = 'JACT';
+const int BLOCK_AMBIENTLIGHT = 'JABL';
+const int BLOCK_CAMERA = 'JCMR';
+const int BLOCK_FOG = 'JFOG';
+const int BLOCK_LIGHT = 'JLIT';
+const int BLOCK_MESSAGE = 'JMSG';
+const int BLOCK_PARTICLE = 'JPTC';
+const int BLOCK_NONE = -1;
 
 struct THeader {
     struct Target {
@@ -121,20 +122,9 @@ private:
     TControl* pControl;
 };
 
-struct TIDData {
-    TIDData(const void* arg1, u32 arg2) : _0(arg1), _4(arg2) {}
-
-    const void* _0;
-    u32 _4;
-};
-
-struct TObject_ID : public TIDData {
-    TObject_ID(const void* arg1, u32 arg2) : TIDData(arg1, arg2) {}
-};
-
-class TObject : public TObject_ID {
+class TObject : public object::TObject_ID {
 public:
-    TObject(u32 arg1, const void* arg2, u32 arg3);
+    TObject(u32 arg1, const void* id, u32 id_size);
     explicit TObject(const data::TParse_TBlock_object& object);
     virtual ~TObject();
 
@@ -235,7 +225,7 @@ private:
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
     /* 0x0c */ TFactory* pFactory;
-    /* 0x10 */ JGadget::TLinkList<TObject, 0, 2> mObjectContainer;
+    /* 0x10 */ JGadget::TLinkList<TObject, -12> mObjectContainer;
     /* 0x1c */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
     /* 0x54 */ u32 _54;  // "second per frame"?

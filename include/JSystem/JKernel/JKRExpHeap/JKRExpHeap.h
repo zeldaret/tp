@@ -1,5 +1,5 @@
-#ifndef __JKREXPHEAP_H__
-#define __JKREXPHEAP_H__
+#ifndef JKREXPHEAP_H_
+#define JKREXPHEAP_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"
@@ -22,6 +22,7 @@ public:
         CMemBlock* getPrevBlock() const { return this->mPrev; }
         CMemBlock* getNextBlock() const { return this->mNext; }
         u32 getSize() const { return this->size; }
+        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((u32)data + -0x10); }
 
     private:
         u16 mMagic;

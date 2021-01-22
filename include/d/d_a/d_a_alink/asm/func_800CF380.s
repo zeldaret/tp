@@ -33,9 +33,9 @@
 /* 800CF400 000CC340  90 1A 00 18 */ stw r0, 0x18(r26)
 /* 800CF404 000CC344  38 7F 07 C4 */ addi r3, r31, 0x7c4
 /*.global daPy_actorKeep_c*/
-/* 800CF408 000CC348  3C 80 80 14 */ lis r4, daPy_actorKeep_c@ha
+/* 800CF408 000CC348  3C 80 80 14 */ lis r4, __ct__16daPy_actorKeep_cFv@ha
 /*.global daPy_actorKeep_c*/
-/* 800CF40C 000CC34C  38 84 10 EC */ addi r4, r4, daPy_actorKeep_c@l
+/* 800CF40C 000CC34C  38 84 10 EC */ addi r4, r4, __ct__16daPy_actorKeep_cFv@l
 /* 800CF410 000CC350  38 A0 00 00 */ li r5, 0
 /* 800CF414 000CC354  38 C0 00 08 */ li r6, 8
 /* 800CF418 000CC358  38 E0 00 0A */ li r7, 0xa
@@ -487,7 +487,7 @@
 /* 800CFA60 000CC9A0  38 7F 2C A8 */ addi r3, r31, 0x2ca8
 /* 800CFA64 000CC9A4  48 1F 38 D9 */ bl __ct__14Z2CreatureLinkFv
 /* 800CFA68 000CC9A8  38 7F 2D 84 */ addi r3, r31, 0x2d84
-/* 800CFA6C 000CC9AC  48 1F B0 55 */ bl Z2WolfHowlMgr
+/* 800CFA6C 000CC9AC  48 1F B0 55 */ bl __ct__13Z2WolfHowlMgrFv
 /* 800CFA70 000CC9B0  38 7F 2E 44 */ addi r3, r31, 0x2e44
 /* 800CFA74 000CC9B4  4B F6 62 19 */ bl dJntCol_c
 /* 800CFA78 000CC9B8  3C 60 80 3B */ lis r3, lbl_803A8578@ha

@@ -1,5 +1,5 @@
-#ifndef __JKRASSERTHEAP_H__
-#define __JKRASSERTHEAP_H__
+#ifndef JKRASSERTHEAP_H_
+#define JKRASSERTHEAP_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"

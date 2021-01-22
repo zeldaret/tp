@@ -1,5 +1,5 @@
-#ifndef _MWCC_H_
-#define _MWCC_H_
+#ifndef MWCC_H_
+#define MWCC_H_
 
 extern "C" {
 void _savegpr_14(void);

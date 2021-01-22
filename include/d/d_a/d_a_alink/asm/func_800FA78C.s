@@ -33,7 +33,7 @@ lbl_800FA7E8:
 lbl_800FA808:
 /* 800FA808 000F7748  7F E3 FB 78 */ mr r3, r31
 /* 800FA80C 000F774C  38 80 00 33 */ li r4, 0x33
-/* 800FA810 000F7750  4B FB 8A 41 */ bl daAlink_c_NS_setDoStatus
+/* 800FA810 000F7750  4B FB 8A 41 */ bl setDoStatus__9daAlink_cFUc
 /* 800FA814 000F7754  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 800FA818 000F7758  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800FA81C 000F775C  41 82 00 28 */ beq lbl_800FA844

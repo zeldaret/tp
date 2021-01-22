@@ -1,8 +1,9 @@
-#ifndef __J3DANIMATION_H_
-#define __J3DANIMATION_H_
+#ifndef J3DANIMATION_H_
+#define J3DANIMATION_H_
 
 #include "global.h"
 
+#pragma pack(push, 1)
 class J3DFrameCtrl {
 public:
 private:
@@ -15,5 +16,6 @@ private:
     float field_0xc;
     float field_0x10;
 };
+#pragma pack(pop)
 
 #endif

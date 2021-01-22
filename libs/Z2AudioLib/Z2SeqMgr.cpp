@@ -1,4 +1,6 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 
 asm Z2SeqMgr::Z2SeqMgr(void) {
@@ -178,7 +180,7 @@ asm void Z2SeqMgr_NS_setBattleDistIgnore(void) {
 
 // setBattleGhostMute__8Z2SeqMgrFb
 // Z2SeqMgr::setBattleGhostMute(bool)
-asm void Z2SeqMgr_NS_setBattleGhostMute(void) {
+asm void Z2SeqMgr::setBattleGhostMute(bool) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B43E0.s"
 }

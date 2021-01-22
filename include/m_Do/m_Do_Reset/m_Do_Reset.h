@@ -1,5 +1,5 @@
-#ifndef __M_DO_RESET_H__
-#define __M_DO_RESET_H__
+#ifndef M_DO_RESET_H_
+#define M_DO_RESET_H_
 
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 #include "dolphin/types.h"
@@ -25,5 +25,7 @@ struct mDoRst {
 
 void mDoRst_reset(int p1, u32 p2, int p3);
 void mDoRst_resetCallBack(int p1, void* p2);
+
+extern ResetData* m_Do_Reset_NS_mDoRst_NS_mResetData;
 
 #endif

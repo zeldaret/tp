@@ -3,8 +3,8 @@
 .section .text, "ax" # 8003a260
 
 
-.global dRes_info_c
-dRes_info_c:
+.global __ct__11dRes_info_cFv
+__ct__11dRes_info_cFv:
 /* 8003A260 000371A0  38 00 00 00 */	li r0, 0
 /* 8003A264 000371A4  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 8003A268 000371A8  90 03 00 10 */	stw r0, 0x10(r3)
@@ -1295,7 +1295,7 @@ lbl_8003B420:
 /* 8003B46C 000383AC  38 00 00 00 */	li r0, 0
 /* 8003B470 000383B0  38 61 00 08 */	addi r3, r1, 8
 /* 8003B474 000383B4  7C 03 D9 AE */	stbx r0, r3, r27
-/* 8003B478 000383B8  80 6D 8D F4 */	lwz r3, lbl_80451374-_SDA_BASE_(r13)
+/* 8003B478 000383B8  80 6D 8D F4 */	lwz r3, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 8003B47C 000383BC  48 29 33 C1 */	bl findFromRoot__7JKRHeapFPv
 /* 8003B480 000383C0  4B FD 38 D1 */	bl mDoExt_getGameHeap
 /* 8003B484 000383C4  7E E3 BB 78 */	mr r3, r23

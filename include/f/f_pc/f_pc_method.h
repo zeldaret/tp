@@ -1,6 +1,6 @@
 
-#ifndef F_PC_METHOD_H
-#define F_PC_METHOD_H
+#ifndef F_PC_METHOD_H_
+#define F_PC_METHOD_H_
 
 #include "global.h"
 

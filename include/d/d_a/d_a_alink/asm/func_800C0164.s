@@ -21,7 +21,7 @@ lbl_800C018C:
 /* 800C01B0 000BD0F0  7F 63 DB 78 */ mr r3, r27
 /* 800C01B4 000BD0F4  7F E0 F0 30 */ slw r0, r31, r30
 /* 800C01B8 000BD0F8  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 800C01BC 000BD0FC  4B FF 24 11 */ bl daAlink_c_NS_itemTriggerCheck
+/* 800C01BC 000BD0FC  4B FF 24 11 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 800C01C0 000BD100  2C 03 00 00 */ cmpwi r3, 0
 /* 800C01C4 000BD104  41 82 00 18 */ beq lbl_800C01DC
 /* 800C01C8 000BD108  2C 1C 00 45 */ cmpwi r28, 0x45

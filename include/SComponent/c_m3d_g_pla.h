@@ -1,5 +1,5 @@
-#ifndef __C_M3C_G_PLA_H_
-#define __C_M3C_G_PLA_H_
+#ifndef C_M3C_G_PLA_H_
+#define C_M3C_G_PLA_H_
 
 #include "SComponent/c_xyz.h"
 #include "global.h"

@@ -2,6 +2,7 @@
 
 .section .text, "ax" # 802D7B90
 
+/* JKRFile::~JKRFile(void) */
 /* 802D7B90 002D4AD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802D7B94 002D4AD4  7C 08 02 A6 */	mflr r0
 /* 802D7B98 002D4AD8  90 01 00 14 */	stw r0, 0x14(r1)

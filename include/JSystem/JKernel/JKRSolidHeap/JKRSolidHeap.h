@@ -1,5 +1,5 @@
-#ifndef __JKRSOLIDHEAP_H__
-#define __JKRSOLIDHEAP_H__
+#ifndef JKRSOLIDHEAP_H_
+#define JKRSOLIDHEAP_H_
 
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dolphin/types.h"
@@ -56,5 +56,9 @@ private:
 public:
     static JKRSolidHeap* create(u32, JKRHeap*, bool);
 };
+
+extern "C" {
+JKRSolidHeap* JKRSolidHeap_NS_create(u32 size, JKRHeap* heap, bool use_default_error_handler);
+}
 
 #endif

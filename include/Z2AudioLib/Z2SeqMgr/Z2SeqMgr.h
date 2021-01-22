@@ -2,7 +2,7 @@
 #define Z2SEQMGR_H_
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
-#include "JSystem/JAudio2/JAUClusterSound/JAUClusterSound.h"
+#include "JSystem/JAudio2/JAISound/JAISound.h"
 #include "Z2AudioLib/Z2Param/Z2Param.h"
 #include "global.h"
 
@@ -67,13 +67,12 @@ void JAISeqMgr_NS_stop_X1_(void);
 void bgmStart__8Z2SeqMgrFUlUll(u32, u32, s32);
 void bgmStop__8Z2SeqMgrFUll(u32, s32);
 void bgmStreamCheckReady__8Z2SeqMgrFv(void);
-void JAISoundHandle_NS_releaseSound(void);
+void releaseSound__14JAISoundHandleFv(void);
 void Z2SeqMgr_NS_subBgmStop(void);
 void subBgmStop__8Z2SeqMgrFv(void);
 void subBgmStopInner__8Z2SeqMgrFv(void);
 void JAISoundStatus__NS_lockWhenPrepared();
 void bgmStreamPrepare__8Z2SeqMgrFUl(u32);
-void JAISound_NS_stop_X1_(void);
 void JAISoundStatus__NS_unlockIfLocked(void);
 void bgmStreamPlay__8Z2SeqMgrFv(void);
 void bgmStreamStop__8Z2SeqMgrFUl(u32);

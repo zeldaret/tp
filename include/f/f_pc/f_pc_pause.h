@@ -1,5 +1,5 @@
-#ifndef F_PC_PAUSE
-#define F_PC_PAUSE
+#ifndef F_PC_PAUSE_
+#define F_PC_PAUSE_
 
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_node.h"

@@ -194,29 +194,18 @@ const char* JKRArchive::CArcName::store(const char* name, char endChar) {
     return name + 1;
 }
 
-// using include vs the JKRArchivePri.s file yields different code
-// super weird...
-#if 0
-#if NONMATCHING
 void JKRArchive::setExpandSize(SDIFileEntry* fileEntry, u32 expandSize) {
     int index = fileEntry - mFiles;
-    if (!mExpandedSize)
-        return;
-
-    if (index <= mArcInfoBlock->num_file_entries)
+    if (!mExpandedSize || index >= mArcInfoBlock->num_file_entries)
         return;
 
     mExpandedSize[index] = expandSize;
 }
-#else
-asm void JKRArchive::setExpandSize(SDIFileEntry* fileEntry, u32 expandSize) {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D693C.s"
-}
-#endif
 
-asm void JKRArchive::getExpandSize(SDIFileEntry*) const {
-    nofralloc
-#include "JSystem/JKernel/JKRArchive/asm/func_802D6978.s"
+u32 JKRArchive::getExpandSize(SDIFileEntry* fileEntry) const {
+    int index = fileEntry - mFiles;
+    if (!mExpandedSize || index >= mArcInfoBlock->num_file_entries)
+        return 0;
+
+    return mExpandedSize[index];
 }
-#endif

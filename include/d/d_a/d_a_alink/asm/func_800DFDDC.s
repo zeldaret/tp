@@ -4,7 +4,7 @@
 /* 800DFDE8 000DCD28  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DFDEC 000DCD2C  7C 7F 1B 78 */ mr r31, r3
 /* 800DFDF0 000DCD30  38 80 00 12 */ li r4, 0x12
-/* 800DFDF4 000DCD34  4B FD 34 5D */ bl daAlink_c_NS_setDoStatus
+/* 800DFDF4 000DCD34  4B FD 34 5D */ bl setDoStatus__9daAlink_cFUc
 /* 800DFDF8 000DCD38  7F E3 FB 78 */ mr r3, r31
 /* 800DFDFC 000DCD3C  38 80 00 00 */ li r4, 0
 /* 800DFE00 000DCD40  4B FD A2 D1 */ bl daAlink_c_NS_checkNextAction

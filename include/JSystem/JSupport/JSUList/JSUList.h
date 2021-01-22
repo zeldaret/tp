@@ -1,5 +1,5 @@
-#ifndef __JSULIST_H__
-#define __JSULIST_H__
+#ifndef JSULIST_H_
+#define JSULIST_H_
 
 #include "dolphin/types.h"
 
@@ -105,7 +105,7 @@ public:
 template <typename T>
 class JSUListIterator {
 public:
-    JSUListIterator() : mLink() {}
+    JSUListIterator() : mLink(NULL) {}
     JSUListIterator(JSULink<T>* link) : mLink(link) {}
     JSUListIterator(JSUList<T>* list) : mLink(list->getFirst()) {}
 
@@ -117,11 +117,8 @@ public:
     T* getObject() { return this->mLink->getObject(); }
 
     bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
-
     bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }
-
     bool operator==(JSUListIterator<T> const& other) const { return this->mLink == other.mLink; }
-
     bool operator!=(JSUListIterator<T> const& other) const { return this->mLink != other.other; }
 
     JSUListIterator<T> operator++(int) {
@@ -170,6 +167,7 @@ template <typename T>
 class JSUTree {
 public:
     JSUTree(T* owner) : mList(), mLink(owner) {}
+    ~JSUTree() {}
 
     bool appendChild(JSUTree<T>* child) {
         JSU_TREE_LINK_IF_NOT_NULL(child);

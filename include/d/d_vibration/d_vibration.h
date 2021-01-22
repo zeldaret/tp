@@ -1,8 +1,9 @@
-#ifndef __D_VIBRATION_H_
-#define __D_VIBRATION_H_
+#ifndef D_VIBRATION_H_
+#define D_VIBRATION_H_
 
 #include "global.h"
 
+#pragma pack(push, 1)
 class dVibration_c {
 public:
 private:
@@ -43,5 +44,6 @@ private:
     u32 field_0x88;
     u32 field_0x8c;
 };
+#pragma pack(pop)
 
 #endif

@@ -73,8 +73,8 @@ _unnamed_d_event_cpp__NS_clear_tmpflag_for_message:
 /* 80041578 0003E4B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004157C 0003E4BC  4E 80 00 20 */	blr 
 
-.global dEvt_control_c
-dEvt_control_c:
+.global __ct__14dEvt_control_cFv
+__ct__14dEvt_control_cFv:
 /* 80041580 0003E4C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80041584 0003E4C4  7C 08 02 A6 */	mflr r0
 /* 80041588 0003E4C8  90 01 00 14 */	stw r0, 0x14(r1)

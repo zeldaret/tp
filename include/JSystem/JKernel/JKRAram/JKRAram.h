@@ -1,14 +1,11 @@
-#ifndef __JKRARAM_H__
-#define __JKRARAM_H__
-
-#include "JSystem/JKernel/JKRThread/JKRThread.h"
-#include "dolphin/types.h"
-
-// JKRExpandSwitch
-#include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
-#include "global.h"
+#ifndef JKRARAM_H_
+#define JKRARAM_H_
 
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
+#include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRThread/JKRThread.h"
+#include "dolphin/types.h"
+#include "global.h"
 
 class JKRHeap;
 class JKRAramBlock;
@@ -20,30 +17,33 @@ private:
     /* vt[03] */ void* run(void); /* override */
 
 public:
-    void* getAudioMemory() { return this->mAudioMemoryPtr; }
-    u32 getAudioMemSize() { return this->mAudioMemorySize; }
+    u32 getAudioMemory() const { return mAudioMemoryPtr; }
+    u32 getAudioMemSize() const { return mAudioMemorySize; }
+    u32 getGraphMemory() const { return mGraphMemoryPtr; }
+    u32 getGraphMemSize() const { return mGraphMemorySize; }
 
 private:
-    void* mAudioMemoryPtr;
-    u32 mAudioMemorySize;
-    void* mGraphMemoryPtr;
-    u32 mGraphMemorySize;
-    void* mAramMemoryPtr;
-    u32 mAramMemorySize;
-    JKRAramHeap* mAramHeap;
-    u32 field_0x9c;
-    u32 field_0xa0;
+    /* 0x00 */  // vtable
+    /* 0x04 */  // JKRThread
+    /* 0x7C */ u32 mAudioMemoryPtr;
+    /* 0x80 */ u32 mAudioMemorySize;
+    /* 0x84 */ u32 mGraphMemoryPtr;
+    /* 0x88 */ u32 mGraphMemorySize;
+    /* 0x8C */ u32 mAramMemoryPtr;
+    /* 0x90 */ u32 mAramMemorySize;
+    /* 0x94 */ JKRAramHeap* mAramHeap;
+    /* 0x98 */ u32 mStackArray[3];
 
 public:
-    static void create(u32, u32, long, long, long);
+    static JKRAram* create(u32, u32, long, long, long);
     static void checkOkAddress(u8*, u32, JKRAramBlock*, u32);
     static void changeGroupIdIfNeed(u8*, int);
     static void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     static void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 
-    static JKRAram* getManager() { return lbl_804513C8; }
-
+    static JKRAram* getManager() { return sAramObject; }
     static JKRAramHeap* getAramHeap() { return getManager()->mAramHeap; }
+    static JSUList<JKRAMCommand>& getCommandList() { return sAramCommandList; }
 
     static u8 decideAramGroupId(int groupId) {
         JKRAramHeap* heap;
@@ -56,14 +56,17 @@ public:
         return (u8)groupId;
     }
 
-    static u32 getSZSBufferSize() { return lbl_804508B8; }
+    static u32 getSZSBufferSize() { return sSZSBufferSize; }
+    static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
 
-    void setSZSBufferSize(u32 size) { lbl_804508B8 = size; }
+private:
+    static JKRAram* sAramObject;
+    static u32 sSZSBufferSize;
+    static OSMessage sMessageBuffer[4];
+    static OSMessageQueue sMessageQueue;
+    static JSUList<JKRAMCommand> sAramCommandList;
 };
 
 void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
-static void decompSZS_subroutine(u8*, u8*);
-static void firstSrcData(void);
-static void nextSrcData(u8*);
 
 #endif

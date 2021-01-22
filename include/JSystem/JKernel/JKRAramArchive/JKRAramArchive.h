@@ -1,5 +1,5 @@
-#ifndef __JKRARAMARCHIVE_H__
-#define __JKRARAMARCHIVE_H__
+#ifndef JKRARAMARCHIVE_H_
+#define JKRARAMARCHIVE_H_
 
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "dolphin/types.h"
@@ -13,7 +13,7 @@ public:
     void getAramAddress_Entry(SDIFileEntry*);
     void getAramAddress(char const*);
 
-    /* vt[15] */ u32 getExpandedResSize(const void*) const;            /* override */
+    /* vt[15] */ u32 getExpandedResSize(const void*);                  /* override */
     /* vt[16] */ void* fetchResource(SDIFileEntry*, u32*);             /* override */
     /* vt[17] */ void* fetchResource(void*, u32, SDIFileEntry*, u32*); /* override */
 

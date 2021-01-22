@@ -99,7 +99,7 @@ lbl_80035B60:
 /* 80035B74 00032AB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80035B78 00032AB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80035B7C 00032ABC  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80035B80 00032AC0  4B FF 58 29 */	bl dComIfG_play_c_NS_setNowVibration
+/* 80035B80 00032AC0  4B FF 58 29 */	bl setNowVibration__14dComIfG_play_cFUc
 /* 80035B84 00032AC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80035B88 00032AC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80035B8C 00032ACC  38 83 00 58 */	addi r4, r3, 0x58

@@ -622,7 +622,7 @@ JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_FVR_NAME_:
 /* 802865F8 00283538  38 64 00 60 */	addi r3, r4, 0x60
 /* 802865FC 0028353C  7C C4 33 78 */	mr r4, r6
 /* 80286600 00283540  7C E5 3B 78 */	mr r5, r7
-/* 80286604 00283544  4B FF E2 31 */	bl JStudio_NS_fvb_NS_TControl_NS_getObject
+/* 80286604 00283544  4B FF E2 31 */	bl getObject__Q37JStudio3fvb8TControlFPCvUl
 /* 80286608 00283548  28 03 00 00 */	cmplwi r3, 0
 /* 8028660C 0028354C  40 82 00 0C */	bne lbl_80286618
 /* 80286610 00283550  38 80 00 00 */	li r4, 0
@@ -654,7 +654,7 @@ JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_FVR_INDEX_:
 /* 80286660 002835A0  7F E3 02 14 */	add r31, r3, r0
 /* 80286664 002835A4  38 64 00 60 */	addi r3, r4, 0x60
 /* 80286668 002835A8  80 86 00 00 */	lwz r4, 0(r6)
-/* 8028666C 002835AC  4B FF E2 69 */	bl JStudio_NS_fvb_NS_TControl_NS_getObject_index
+/* 8028666C 002835AC  4B FF E2 69 */	bl getObject_index__Q37JStudio3fvb8TControlFUl
 /* 80286670 002835B0  28 03 00 00 */	cmplwi r3, 0
 /* 80286674 002835B4  40 82 00 0C */	bne lbl_80286680
 /* 80286678 002835B8  38 80 00 00 */	li r4, 0

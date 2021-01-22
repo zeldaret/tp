@@ -2,7 +2,8 @@
 # PYTHON_ARGCOMPLETE_OK
 import argparse
 import sys
-from pathlib import Path, PurePath
+import platform
+from pathlib import Path, PurePath, PureWindowsPath
 from typing import (
     Any,
     Dict,
@@ -251,6 +252,12 @@ parser.add_argument(
     default=0,
     help="If multiple occurence of the same symbol is found, use this to select the correct ocurrance."
 )
+parser.add_argument(
+    "--source-path-postprocess",
+    dest="source_path_postprocess",
+    choices=["none", "wsl", "wine"],
+    help="Preprocess source path for a given platform before reading it. If unspecified, OS detection is used."
+)
 
 # Project-specific flags, e.g. different versions/make arguments.
 add_custom_arguments_fn = getattr(diff_settings, "add_custom_arguments", None)
@@ -419,7 +426,7 @@ def maybe_get_objdump_source_flags() -> List[str]:
 
     flags = [
         "--source",
-        "--source-comment=│ ",
+        #"--source-comment=│ ",
         "-l",
     ]
 
@@ -513,7 +520,6 @@ def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Opti
                     print(f"    {i+1}: {location[0]} {location[1]} {str(location[2]).ljust(40, ' ')}", file=sys.stderr)
                 fail(f"Use --select-occurence to select the right occurrence.")
         if len(find) == 1:
-            print(find)
             rom = int(find[0][1],16)
             objname = find[0][2]
             # The metrowerks linker map format does not contain the full object path, so we must complete it manually.
@@ -631,7 +637,6 @@ def ansi_ljust(s: str, width: int) -> str:
     else:
         return s
 
-
 if arch == "mips":
     re_int = re.compile(r"[0-9]+")
     re_comment = re.compile(r"<.*?>")
@@ -710,11 +715,12 @@ elif arch == "aarch64":
     instructions_with_address_immediates = branch_instructions.union({"adrp"})
 elif arch == "ppc":
     re_int = re.compile(r"[0-9]+")
-    re_comment = re.compile(r"(<.*?>|//.*$)")
+    re_comment = re.compile(r"(<.*?>$|<.*?>|//.*$)")
     re_reg = re.compile(r"\$?\b([rf][0-9]+)\b")
     re_sprel = re.compile(r"(?<=,)(-?[0-9]+|-?0x[0-9a-f]+)\(r1\)")
     re_large_imm = re.compile(r"-?[1-9][0-9]{2,}|-?0x[0-9a-f]{3,}")
     re_imm = re.compile(r"(\b|-)([0-9]+|0x[0-9a-fA-F]+)\b(?!\(r1)|[^@]*@(ha|h|lo)")
+    re_file_line = re.compile(r"(.*\.cpp)\:([0-9]+)")
     arch_flags = []
     forbidden = set(string.ascii_letters + "_")
     branch_likely_instructions = set()
@@ -926,8 +932,27 @@ def make_difference_normalizer() -> DifferenceNormalizer:
         return DifferenceNormalizerAArch64()
     return DifferenceNormalizer()
 
+def in_wsl() -> bool:
+    """
+    WSL is thought to be the only common Linux kernel with Microsoft in the name, per Microsoft:
+
+    https://github.com/microsoft/WSL/issues/4071#issuecomment-496715404
+    """
+
+    return 'Microsoft' in platform.uname().release
+
+def guess_sourcepath_processing() -> str:
+    if platform.system() == 'Windows':
+        return 'none' # we don't need to process
+    else:
+        if in_wsl():
+            return 'wsl'
+        else:
+            return 'unix'
+
 
 def process(lines: List[str]) -> List[Line]:
+    file_cache = dict()
     normalizer = make_difference_normalizer()
     skip_next = False
     source_lines = []
@@ -936,14 +961,12 @@ def process(lines: List[str]) -> List[Line]:
         if lines and not lines[-1]:
             lines.pop()
 
+    last_path = None
+    last_line = None
     output: List[Line] = []
     stop_after_delay_slot = False
     for row in lines:
         if args.diff_obj and (">:" in row or not row):
-            continue
-
-        if args.source and (row and row[0] != " "):
-            source_lines.append(row)
             continue
 
         if "R_AARCH64_" in row:
@@ -961,6 +984,53 @@ def process(lines: List[str]) -> List[Line]:
         if "R_PPC_" in row:
             new_original = process_ppc_reloc(row, output[-1].original)
             output[-1] = output[-1]._replace(original=new_original)
+            continue
+
+        if args.source and (row and row[0] != " "):
+            m_file_line = re.match(re_file_line, row)
+            if m_file_line:
+                path = m_file_line.group(1)
+                line = int(m_file_line.group(2))
+
+                if not args.source_path_postprocess:
+                    args.source_path_postprocess = guess_sourcepath_processing()
+
+                if args.source_path_postprocess == 'none': ...
+                elif args.source_path_postprocess == 'wine':
+                    # on Wine, use winepath to convert
+                    path = subprocess.check_output(["winepath","-u", path], universal_newlines=True).strip()
+                elif args.source_path_postprocess == 'wsl':
+                    # on WSL, use wslpath to convert
+                    path = subprocess.check_output(["wslpath","-ua", path], universal_newlines=True).strip()
+
+                if path in file_cache:
+                    file_lines = file_cache[path]
+                else:
+                    if not Path(path).is_file():
+                        fail(f"Source file not found: '{path}'")
+                    with open(path) as source_file:
+                        file_lines = source_file.readlines()
+                        file_cache[path] = [x.rstrip() for x in file_lines]
+
+                if path == last_path:
+                    if last_line:
+                        i = last_line
+                        while i + 1 < line:
+                            if i > 0 and i <= len(file_lines):
+                                source_lines.append(file_lines[i - 1])
+                            i += 1
+                else:
+                    source_lines.append(f"// \"{elide_path(Path(path), n_lhs=0, n_rhs=2)}\"")
+                    
+                if line > 0 and line <= len(file_lines):
+                    source_lines.append(file_lines[line - 1])
+
+                last_path = path
+                last_line = line
+            else:
+                last_path = None
+                last_line = None
+                source_lines.append(row)
             continue
 
         m_comment = re.search(re_comment, row)
@@ -1260,8 +1330,8 @@ def do_diff(basedump: str, mydump: str) -> List[OutputLine]:
             out1 = ""
             out2 = line2.original
 
-        if args.source and line2 and line2.comment:
-            out2 += f" {line2.comment}"
+        #if args.source and line2 and line2.comment:
+        #    out2 += f" {line2.comment}"
 
         def format_part(
             out: str,
@@ -1331,8 +1401,13 @@ def chunk_diff(diff: List[OutputLine]) -> List[Union[List[OutputLine], OutputLin
     chunks.append(cur_right)
     return chunks
 
-def elide_path(p: Path) -> PurePath:
-    return PurePath(p.parts[0]) / '...' / PurePath(p.parts[-1])
+def elide_path(p: Path, n_lhs: int = 1, n_rhs: int = 1) -> PurePath:
+    if n_lhs == 0:
+        path = PurePath('...')
+    else:
+        path = PurePath(*p.parts[:n_lhs]) / '...'
+    path = path / PurePath(*p.parts[-n_rhs:])
+    return path
 
 def format_diff(
     old_diff: List[OutputLine], new_diff: List[OutputLine],

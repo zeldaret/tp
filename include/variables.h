@@ -13,7 +13,7 @@ extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[20];
 extern u8 lbl_80450B19;
 // extern u8 lbl_80450588;
-extern u8 lbl_804511B8;
+// extern u8 lbl_804511B8;
 extern u8 lbl_80450B20;
 extern u8 lbl_80451A00;
 extern u8 lbl_80450B1C;
@@ -44,24 +44,20 @@ extern u8 lbl_80450C28;
 extern u8 lbl_80450C34;
 extern u8 lbl_80450B24;
 extern u8 lbl_80450B1C;
-// extern u8 lbl_80450580;
+extern s8 lbl_80450580[4];
 // extern u8 lbl_80450B1A;
 struct JUTGamePad;
 extern JUTGamePad* m_gamePad[4];
 extern u8 lbl_80450B18;
-extern u8 lbl_803D32E0;
-extern u8 lbl_80450BBC;
+// extern u8 lbl_803D32E0;
 extern u8 lbl_803EAF40[];
 extern u8 lbl_80450B34;
 extern u8 lbl_80450B00;
 extern u8 lbl_80450C80;
 extern u8 LOAD_COPYDATE__FPv;
-extern u8 __ct__12dSv_memory_cFv;
-extern u8 __ct__13dSv_memory2_cFv;
 extern u8 lbl_803D3420;
 extern u8 lbl_80450B0C;
-struct ResetData;
-extern ResetData* m_Do_Reset_NS_mDoRst_NS_mResetData;
+// struct ResetData;
 extern u8 lbl_80450B08;
 extern u8 lbl_803DB420;
 extern u8 main01__Fv;
@@ -77,6 +73,7 @@ extern u8 lbl_803BB498;
 extern float lbl_804550E8;
 extern float lbl_804550EC;
 extern u8 lbl_80450C90;
+extern u8 J3DLightObj;
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
@@ -85,19 +82,19 @@ extern u8 lbl_80450C90;
 extern void* lbl_803CBF70;  // JKRHeap::__vt
 
 class JKRHeap;
-extern JKRHeap* lbl_80451370;  // JKRHeap::sSystemHeap
-extern JKRHeap* lbl_80451378;  // JKRHeap::sRootHeap
-extern JKRHeap* lbl_80451374;  // JKRHeap::sCurrentHeap
+extern JKRHeap* sSystemHeap__7JKRHeap;   // JKRHeap::sSystemHeap
+extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
+extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
 
 extern bool lbl_804508B0;  // ::*fill*
 extern bool lbl_80451380;  // DAT_80451380
 
 // func_802CE378
-extern void* lbl_80451384;  // JKRHeap::mCodeStart
-extern void* lbl_80451388;  // JKRHeap::mCodeEnd
-extern void* lbl_8045138C;  // JKRHeap::mUserRamStart
-extern void* lbl_80451390;  // JKRHeap::mUserRamEnd
-extern u32 lbl_80451394;    // JKRHeap::mMemorySize
+extern void* mCodeStart__7JKRHeap;     // JKRHeap::mCodeStart
+extern void* mCodeEnd__7JKRHeap;       // JKRHeap::mCodeEnd
+extern void* mUserRamStart__7JKRHeap;  // JKRHeap::mUserRamStart
+extern void* mUserRamEnd__7JKRHeap;    // JKRHeap::mUserRamEnd
+extern u32 mMemorySize__7JKRHeap;      // JKRHeap::mMemorySize
 
 extern u8 lbl_80000000;
 extern u32 lbl_80000028;
@@ -118,7 +115,6 @@ extern u8 lbl_80451360[8];
 // func_802C3464
 extern u8 lbl_803CB96C[0x14];
 extern u8 lbl_803C9D80[0x18];
-extern u32 lbl_80450B74;
 
 // func_802C3500
 extern u8 lbl_803CAD10[0x20];
@@ -133,7 +129,7 @@ extern u8 lbl_80455CA0[8];
 extern u8 lbl_80455CA8[8];
 extern u8 lbl_80455CB0[8];
 extern u8 lbl_80455CB8[8];
-extern u32 lbl_80450AE0;
+extern f32 lbl_80450AE0[4];
 
 // func_802C3A6C
 extern u32 lbl_80455CC0;
@@ -183,11 +179,8 @@ struct Z2SceneMgr;
 extern Z2SceneMgr* lbl_80450B80;  // Z2SceneMgr sInstance
 struct Z2SoundMgr;
 extern Z2SoundMgr* lbl_80450B60;  // Z2SoundMgr sInstance
-struct Z2SoundObjMgr;
-extern Z2SoundObjMgr* lbl_80450B48;  // Z2SoundObjMgr sInstance
 struct Z2SpeechMgr2;
-extern Z2SpeechMgr2* lbl_80450B70;  // Z2SpeechMgr2 sInstance
-extern void* lbl_803CC114;          // JKRThread::__vt
+extern void* lbl_803CC114;  // JKRThread::__vt
 
 class JKRThreadSwitch;
 extern void* lbl_803CC100[5];          // JKRThreadSwitch::__vt
@@ -205,42 +198,41 @@ extern float lbl_80455FC4;   // JKernel::@935 = 1000.0
 extern double lbl_80455FC8;  // JKernel::@937 = 4.503599627370496E15
 
 class JKRDvdFile;
-extern JSUList<JKRDvdFile> lbl_8043436C;  // JKRDvdFile::sDvdList
-extern u8 lbl_803CC438;                   // JKRDvdFile::__vt
-extern u8 lbl_80434360;                   // JKernel::@657 (global destructor chain)
-extern char lbl_8039D260[12];             // "JKRDvdFile.cpp"
-extern u8 lbl_803CC328;                   // JKRFile::__vt
+extern JSUList<JKRDvdFile> sDvdList__10JKRDvdFile;  // JKRDvdFile::sDvdList
+extern u8 lbl_803CC438;                             // JKRDvdFile::__vt
+extern u8 lbl_80434360;                             // JKernel::@657 (global destructor chain)
+extern char lbl_8039D260[12];                       // "JKRDvdFile.cpp"
+extern u8 lbl_803CC328;                             // JKRFile::__vt
 
 class JKRFileLoader;
-extern JKRFileLoader* lbl_80451418;          // JKRFileLoader::sCurrentVolume
-extern char lbl_8039D158[16];                // "/"
-extern u8 lbl_803CC238;                      // JKRFileCache::__vt
-extern JSUList<JKRFileLoader> lbl_80434354;  // JKRFileLoader::sVolumeList
-extern u8 lbl_803CC218;                      // JKRArcFinder::__vt
-extern u8 lbl_803CC228;                      // JKRFileFinder::__vt
-extern u8 lbl_803CC208;                      // JKRDvdFinder::__vt
-extern const char lbl_8039D150[16];          // "/"
-extern u8 lbl_803CC1C8;                      // JKRFileLoader::__vt
-extern const char lbl_804508C0[16];          // "/" JKernel::rootPath$2498
-extern u8 lbl_80434348;                      // JKernel::@2182 (global destructor chain)
-extern const char lbl_803D2D18[256];         // MSL_C.PPCEABI.bare.H::__lower_map
-extern u8 lbl_803CC090;                      // JKRAssertHeap::__vt
-extern u8 lbl_80451398;                      // JKernel::DBfoundSize
-extern u8 lbl_8045139C;                      // JKernel::DBfoundOffset
-extern u8 lbl_804513A0;                      // JKernel::DBfoundBlock
-extern u8 lbl_804513A4;                      // JKernel::DBnewFreeBlock
-extern u8 lbl_804513A8;                      // JKernel::DBnewUsedBlock
-extern float lbl_80455F98;                   // JKernel::@1121 = 100.0
-extern u8 lbl_803CBFD0;                      // JKRExpHeap::__vt
-extern u8 lbl_8039CAF0;                      // ":::cannot alloc memory (0x%x byte).\n"
-extern double lbl_80455FA0;                  // JKernel::@1123 = 4.503599627370496E15
-extern u8 lbl_803CC030;                      // JKRSolidHeap::__vt
-extern double lbl_80455FB8;                  // JKernel::@697 = 4.503599627370496E15
-extern const char lbl_8039CE50[16];          // "allocFromHead: cannot alloc memory (0x%x byte).\n"
-extern double lbl_80455FB0;                  // JKernel::@695 = 4.503601774854144E15
-extern float lbl_80455FA8;                   // JKernel::@693 = 100.0
-extern u32 lbl_80451420;                     // JKRArchive::sCurrentDirID
-extern u8 lbl_803CC288;                      // JKRArchive::__vt
+extern JKRFileLoader* sCurrentVolume__13JKRFileLoader;       // JKRFileLoader::sCurrentVolume
+extern char lbl_8039D158[16];                                // "/"
+extern u8 lbl_803CC238;                                      // JKRFileCache::__vt
+extern JSUList<JKRFileLoader> sVolumeList__13JKRFileLoader;  // JKRFileLoader::sVolumeList
+extern u8 lbl_803CC218;                                      // JKRArcFinder::__vt
+extern u8 lbl_803CC228;                                      // JKRFileFinder::__vt
+extern u8 lbl_803CC208;                                      // JKRDvdFinder::__vt
+extern const char lbl_8039D150[16];                          // "/"
+extern const char lbl_804508C0[16];                          // "/" JKernel::rootPath$2498
+extern u8 lbl_80434348;                  // JKernel::@2182 (global destructor chain)
+extern const char lbl_803D2D18[256];     // MSL_C.PPCEABI.bare.H::__lower_map
+extern u8 lbl_803CC090;                  // JKRAssertHeap::__vt
+extern u8 lbl_80451398;                  // JKernel::DBfoundSize
+extern u8 lbl_8045139C;                  // JKernel::DBfoundOffset
+extern u8 lbl_804513A0;                  // JKernel::DBfoundBlock
+extern u8 lbl_804513A4;                  // JKernel::DBnewFreeBlock
+extern u8 lbl_804513A8;                  // JKernel::DBnewUsedBlock
+extern float lbl_80455F98;               // JKernel::@1121 = 100.0
+extern u8 lbl_803CBFD0;                  // JKRExpHeap::__vt
+extern u8 lbl_8039CAF0;                  // ":::cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FA0;              // JKernel::@1123 = 4.503599627370496E15
+extern u8 lbl_803CC030;                  // JKRSolidHeap::__vt
+extern double lbl_80455FB8;              // JKernel::@697 = 4.503599627370496E15
+extern const char lbl_8039CE50[16];      // "allocFromHead: cannot alloc memory (0x%x byte).\n"
+extern double lbl_80455FB0;              // JKernel::@695 = 4.503601774854144E15
+extern float lbl_80455FA8;               // JKernel::@693 = 100.0
+extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
+extern u8 lbl_803CC288;                  // JKRArchive::__vt
 
 // d_item
 extern float lbl_80452BD8;
@@ -257,10 +249,10 @@ extern unkEvent lbl_803A7288;
 extern u8 lbl_8037B0D0[0x8];
 
 class JKRThread;
-extern JSUList<JKRThread> lbl_8043428C;  // JSUList<JKRThread> JKRThread::sThreadList
+extern JSUList<JKRThread> sThreadList__9JKRThread;  // JSUList<JKRThread> JKRThread::sThreadList
 
-extern u8 lbl_803CC398;  // JKRDvdArchive::__vt
-extern u8 lbl_8039D1B0;  // "JKRDvdArchive.cpp"
+extern u8 lbl_803CC398;        // JKRDvdArchive::__vt
+extern char lbl_8039D1B0[16];  // "JKRDvdArchive.cpp"
 
 extern u8 lbl_803CC2D8;              // JKRMemArchive::__vt
 extern const char lbl_8039D160[16];  // "JKRMemArchive.cpp"
@@ -311,17 +303,17 @@ extern JSUList<JKRAMCommand> lbl_80434324;  // JKRAramPiece::sAramPieceCommandLi
 extern OSMutex lbl_80434330;                // JKRAramPiece::mMutex
 extern char lbl_8039D0B8[];                 // "direction = %x\n"
 
-extern u8 lbl_80434318;              // JKernel::@492 (global destructor chain)
-extern OSMessageQueue lbl_803CC138;  // JKRAram::sMessageQueue
+extern u8 lbl_80434318;  // JKernel::@492 (global destructor chain)
 
-extern u8 lbl_80451408;  // JKRAramStream::sAramStreamObject
-extern u8 lbl_80451414;  // JKRAramStream::transHeap
-extern u8 lbl_8039D120;  // "JKRAramStream.cpp"
-extern u8 lbl_8045140C;  // JKRAramStream::transBuffer
-extern u8 lbl_80451410;  // JKRAramStream::transSize
-extern u8 lbl_803CC1B8;  // JKRAramStream::__vt
-extern u8 lbl_803CC198;  // JKRAramStream::sMessageQueue
-extern u8 lbl_803CC188;  // JKRAramStream::sMessageBuffer
+class JKRAramStream;
+extern JKRAramStream* sAramStreamObject__13JKRAramStream;  // JKRAramStream::sAramStreamObject
+extern u8 transHeap__13JKRAramStream;                      // JKRAramStream::transHeap
+extern char lbl_8039D120[16];                              // "JKRAramStream.cpp"
+extern u8 transBuffer__13JKRAramStream;                    // JKRAramStream::transBuffer
+extern u8 transSize__13JKRAramStream;                      // JKRAramStream::transSize
+extern u8 lbl_803CC1B8;                                    // JKRAramStream::__vt
+extern OSMessageQueue sMessageQueue__13JKRAramStream;      // JKRAramStream::sMessageQueue
+extern OSMessage sMessageBuffer__13JKRAramStream[4];       // JKRAramStream::sMessageBuffer
 
 extern u8 lbl_804508D0;  // DAT_804508d0
 extern u8 lbl_80451468;  // JKernel::szpBuf (static?)
@@ -351,30 +343,16 @@ extern u8 lbl_804343C0;  // JKernel::decompMutex
 extern u8 lbl_803CC518;  // JSUFileInputStream::__vt
 
 class JKRAram;
-extern JKRAram* lbl_804513C8;  // JKRAram::sAramObject
-extern u8 lbl_804513CC;        // JKernel::szpBuf (static?)
-extern u8 lbl_804513D0;        // JKernel::szpEnd (static?)
-extern u8 lbl_804513D4;        // JKernel::refBuf (static?)
-extern u8 lbl_804513D8;        // JKernel::refEnd (static?)
-extern u8 lbl_804513DC;        // JKernel::refCurrent (static?)
-extern u8 lbl_804513E0;        // JKernel::srcOffset (static?)
-extern u8 lbl_804513E4;        // JKernel::transLeft (static?)
-extern u8 lbl_804513E8;        // JKernel::srcLimit (static?)
-extern u8 lbl_804513EC;        // JKernel::srcAddress (static?)
-extern u8 lbl_804513F0;        // JKernel::fileOffset (static?)
-extern u8 lbl_804513F4;        // JKernel::readCount (static?)
-extern u8 lbl_804513F8;        // JKernel::maxDest (static?)
-extern u8 lbl_804513FC;        // DAT_804513fc (init global mutex)
-extern u8 lbl_80451400;        // JKernel::tsPtr (static?)
-extern u8 lbl_80451404;        // JKernel::tsArea (static?)
-
-extern u8 lbl_803CC158;  // JKRAram::__vt
-extern u8 lbl_8039D078;  // "JKRAram.cpp"
-extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
-extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
-extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
-extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
+extern u8 lbl_803CC158;                         // JKRAram::__vt
+extern char lbl_8039D078[16];                   // "JKRAram.cpp"
+extern JKRAram* sAramObject__7JKRAram;          // JKRAram::sAramObject
+extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
+extern bool lbl_804513FC;                       // DAT_804513fc (init global mutex)
+extern OSMutex lbl_804342E8;                    // JKernel::decompMutex (static?)
+extern u8 lbl_804342D0;                         // JKernel::@492 (global destructor chain)
+extern u8 sAramCommandList__7JKRAram;           // JKRAram::sAramCommandList
+extern u8 sSZSBufferSize__7JKRAram;             // JKRAram::sSZSBufferSize
+extern u8 sMessageBuffer__7JKRAram;             // JKRAram::sMessageBuffer
 
 extern bool lbl_80451501;
 
@@ -384,29 +362,6 @@ extern float lbl_80451A28;   // m_Do_controller_pad::@3711 0.007142857
 extern double lbl_80451A30;  // m_Do_controller_pad::@3713 4.503599627370496E15
 
 extern s32 sAnalogMode;
-extern u8 lbl_804513CC;  // JKernel::szpBuf (static?)
-extern u8 lbl_804513D0;  // JKernel::szpEnd (static?)
-extern u8 lbl_804513D4;  // JKernel::refBuf (static?)
-extern u8 lbl_804513D8;  // JKernel::refEnd (static?)
-extern u8 lbl_804513DC;  // JKernel::refCurrent (static?)
-extern u8 lbl_804513E0;  // JKernel::srcOffset (static?)
-extern u8 lbl_804513E4;  // JKernel::transLeft (static?)
-extern u8 lbl_804513E8;  // JKernel::srcLimit (static?)
-extern u8 lbl_804513EC;  // JKernel::srcAddress (static?)
-extern u8 lbl_804513F0;  // JKernel::fileOffset (static?)
-extern u8 lbl_804513F4;  // JKernel::readCount (static?)
-extern u8 lbl_804513F8;  // JKernel::maxDest (static?)
-extern u8 lbl_804513FC;  // DAT_804513fc (init global mutex)
-extern u8 lbl_80451400;  // JKernel::tsPtr (static?)
-extern u8 lbl_80451404;  // JKernel::tsArea (static?)
-
-extern u8 lbl_803CC158;  // JKRAram::__vt
-extern u8 lbl_8039D078;  // "JKRAram.cpp"
-extern u8 lbl_804342D0;  // JKernel::@492 (global destructor chain)
-extern u8 lbl_804342DC;  // JKRAram::sAramCommandList
-extern u8 lbl_804342E8;  // JKernel::decompMutex (static?)
-extern u8 lbl_804508B8;  // JKRAram::sSZSBufferSize
-extern u8 lbl_803CC128;  // JKRAram::sMessageBuffer
 
 //// JUTGamePad:
 // func_802E06DC
@@ -2504,7 +2459,6 @@ extern u8 lbl_80455B2C;
 extern u8 lbl_804507E0;
 extern u8 lbl_804507DC;
 extern u8 lbl_80455AD8;
-extern u8 lbl_80450B4C;
 extern u8 lbl_8039C220;
 extern u8 lbl_80455AE0;
 extern u8 lbl_803CAC98;
@@ -2889,3 +2843,66 @@ extern u8 lbl_80455A04;
 extern u8 lbl_80450870;
 extern u8 lbl_8045086B;
 extern u8 lbl_80450878;
+
+// additional symbols needed for d_stage.cpp
+// autogenerated by split.py v0.3 at 2021-01-08 16:07:10.282857
+extern char lbl_80378A50[0x3F8];  // d_stage string literals
+extern u8 lbl_803A3B18;
+extern u8 lbl_803A65CC;
+extern u8 lbl_803A65FC;
+extern u8 lbl_803A6620;
+extern u8 lbl_803A6638;
+extern u8 lbl_803A6644;
+extern u8 lbl_803A6650;
+extern u8 lbl_803A668C;
+extern u8 lbl_803A66BC;
+extern u8 lbl_803A67F4;
+extern u8 lbl_803A689C;
+extern u8 lbl_803A68FC;
+extern u8 lbl_803A6920;
+extern u8 lbl_803A696C;
+extern u8 lbl_803A6AAC;
+extern u8 lbl_803A6D94;
+extern u8 lbl_803F0000;
+extern u8 lbl_803F4E68;
+// extern stage_tgsc_data_class* lbl_803F4E74;
+extern u8 lbl_803F5784;
+extern u8 lbl_804307EC;
+extern u8 lbl_804505F0;
+extern u8 lbl_80450D60;
+extern u8 lbl_80450D65;
+extern u8 lbl_80450D66;
+extern u8 lbl_80450D68;
+extern u8 lbl_80450D6C;
+extern u8 lbl_80450D70;
+extern u8 lbl_80450D74;
+extern u8 lbl_80451C90;
+extern u8 lbl_80451C94;
+extern u8 lbl_80451C98;
+
+// additional symbols needed for d_com_inf_game.cpp
+// autogenerated by split.py v0.3 at 2021-01-10 01:01:02.326268
+extern u8 lbl_80378F38;
+extern u8 lbl_803A6C20;
+extern u8 lbl_803A71B8;
+extern u8 lbl_803A71C4;
+extern u8 lbl_803A71D0;
+extern u8 lbl_803A71F4;
+extern u8 lbl_803A7224;
+extern u8 lbl_803A7230;
+extern u8 lbl_803AB608;
+extern u8 lbl_803AB61C;
+extern u8 lbl_803AB630;
+extern u8 lbl_803AC3E4;
+extern u8 lbl_804061A0;
+extern u8 lbl_804061B4;
+extern u8 lbl_80423FD0;
+extern u8 lbl_80450604;
+extern u8 lbl_80450BC8;
+extern u8 lbl_80451D00;
+extern u8 lbl_80451D04;
+extern u8 lbl_80451D08;
+extern u8 lbl_80451D10;
+extern u8 lbl_80451D18;
+extern u8 lbl_80451D1C;
+extern u8 lbl_80451D20;

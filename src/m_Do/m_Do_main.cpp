@@ -4,6 +4,10 @@
 #include "dvd/dvd.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
+#include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "m_Do/m_Do_graphic/m_Do_graphic.h"
+#include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
 
 void version_check(void) {
@@ -18,15 +22,15 @@ void version_check(void) {
 }
 
 void HeapCheck::CheckHeap1(void) {
-    s32 totalUsedSize = this->heap->getTotalUsedSize();
-    s32 freeSize = this->heap->getFreeSize();
+    s32 totalUsedSize = heap->getTotalUsedSize();
+    s32 freeSize = heap->getFreeSize();
 
-    if (this->max_total_used_size < totalUsedSize) {
-        this->max_total_used_size = totalUsedSize;
+    if (max_total_used_size < totalUsedSize) {
+        max_total_used_size = totalUsedSize;
     }
 
-    if (this->max_total_free_size > freeSize) {
-        this->max_total_free_size = freeSize;
+    if (max_total_free_size > freeSize) {
+        max_total_free_size = freeSize;
     }
 }
 
@@ -77,32 +81,32 @@ int countUsed(JKRExpHeap* heap) {
 }
 
 s32 HeapCheck::getUsedCount(void) const {
-    return countUsed(this->heap);
+    return countUsed(heap);
 }
 
 void HeapCheck::heapDisplay(void) const {
-    s32 heap_size1 = this->heap->getSize();
-    s32 heap_size2 = heap_size1 - this->heap_size;
+    s32 heap_size1 = heap->getSize();
+    s32 heap_size2 = heap_size1 - heap_size;
 
-    s32 heap_total_used_size = this->heap->getTotalUsedSize();
-    s32 heap_total_free_size = this->heap->getTotalFreeSize();
-    s32 heap_free_size = this->heap->getFreeSize();
+    s32 heap_total_used_size = heap->getTotalUsedSize();
+    s32 heap_total_free_size = heap->getTotalFreeSize();
+    s32 heap_free_size = heap->getFreeSize();
 
-    JUTReport__FiiPCce(0x64, 0xd4, lbl_803739A0 + 0x3C, this->names[0]);
+    JUTReport__FiiPCce(0x64, 0xd4, lbl_803739A0 + 0x3C, names[0]);
     JUTReport__FiiPCce(0x64, 0xe3, lbl_803739A0 + 0x45, heap_size1);
-    JUTReport__FiiPCce(0x64, 0xf0, lbl_803739A0 + 0x5B, this->heap_size);
+    JUTReport__FiiPCce(0x64, 0xf0, lbl_803739A0 + 0x5B, heap_size);
     JUTReport__FiiPCce(0x64, 0xfd, lbl_803739A0 + 0x71, heap_total_free_size - heap_size2);
     JUTReport__FiiPCce(0x64, 0x10a, lbl_803739A0 + 0x87, heap_free_size - heap_size2);
     JUTReport__FiiPCce(0x64, 0x117, lbl_803739A0 + 0x9D, heap_total_used_size);
     JUTReport__FiiPCce(0x64, 0x124, lbl_803739A0 + 0xB3,
-                       (int)(heap_total_used_size * 0x64) / (int)this->heap_size);
-    JUTReport__FiiPCce(0x64, 0x131, lbl_803739A0 + 0xCF, this->max_total_used_size);
+                       (int)(heap_total_used_size * 0x64) / (int)heap_size);
+    JUTReport__FiiPCce(0x64, 0x131, lbl_803739A0 + 0xCF, max_total_used_size);
     JUTReport__FiiPCce(0x64, 0x13e, lbl_803739A0 + 0xE5,
-                       (this->max_total_used_size * 0x64) / (int)this->heap_size);
-    JUTReport__FiiPCce(0x64, 0x14b, lbl_803739A0 + 0x101, this->max_total_free_size - heap_size2);
+                       (max_total_used_size * 0x64) / (int)heap_size);
+    JUTReport__FiiPCce(0x64, 0x14b, lbl_803739A0 + 0x101, max_total_free_size - heap_size2);
     JUTReport__FiiPCce(0x64, 0x158, lbl_803739A0 + 0x117,
-                       ((this->max_total_free_size - heap_size2) * 0x64) / (int)this->heap_size);
-    heap_size2 = countUsed(this->heap);
+                       ((max_total_free_size - heap_size2) * 0x64) / (int)heap_size);
+    heap_size2 = countUsed(heap);
     JUTReport__FiiPCce(0x64, 0x165, lbl_803739A0 + 0x133, heap_size2);
 }
 
@@ -141,8 +145,6 @@ asm void LOAD_COPYDATE(void*) {
 }
 #endif
 
-#ifndef NONMATCHING
-
 void debug(void) {
     if (lbl_80450580[0]) {
         if (lbl_80450B1A[0]) {
@@ -166,19 +168,116 @@ void debug(void) {
         Debug_console(2);
     }
 }
-#else
-asm void debug(void) {
-    nofralloc
-#include "m_Do\m_Do_main\asm\func_800061C8.s"
-}
-#endif
+#ifdef NONMATCHING
+void main01(void) {
+    HeapCheck* heaps = lbl_803D32E0;
+    mDoMch_Create();
+    mDoGph_Create();
+    create__8mDoCPd_cFv();
+    mDoDVDThd_callback_c thread_callback;
+    // JKRSolidHeap audio_heap;
 
+    // Root Heap
+    heaps[0].setHeap((JKRExpHeap*)JKRHeap::getRootHeap());
+    if (JKRHeap::getRootHeap()) {
+        heaps[0].setHeapSize(JKRHeap::getRootHeap()->getSize());
+    }
+
+    // System Heap
+    heaps[1].setHeap((JKRExpHeap*)JKRHeap::getSystemHeap());
+    if (JKRHeap::getSystemHeap()) {
+        heaps[1].setHeapSize(JKRHeap::getSystemHeap()->getSize());
+    }
+
+    // Zelda Heap
+    heaps[2].setHeap(mDoExt_getZeldaHeap());
+    if (heaps[2].getHeap()) {
+        heaps[2].setHeapSize(heaps[2].getHeap()->getSize());
+    }
+
+    // Game Heap
+    heaps[3].setHeap(mDoExt_getGameHeap());
+    if (heaps[3].getHeap()) {
+        heaps[3].setHeapSize(heaps[3].getHeap()->getSize());
+    }
+
+    // Archive Heap
+    heaps[4].setHeap(mDoExt_getArchiveHeap());
+    if (heaps[4].getHeap()) {
+        heaps[4].setHeapSize(heaps[4].getHeap()->getSize());
+    }
+
+    // J2D Heap
+    heaps[5].setHeap(mDoExt_getJ2dHeap());
+    if (heaps[5].getHeap()) {
+        heaps[5].setHeapSize(heaps[5].getHeap()->getSize());
+    }
+
+    // HostIO Heap
+    heaps[6].setHeap(mDoExt_getHostIOHeap());
+    if (heaps[6].getHeap()) {
+        heaps[6].setHeapSize(heaps[6].getHeap()->getSize());
+    }
+
+    // Command Heap
+    heaps[7].setHeap(mDoExt_getCommandHeap());
+
+    u8* systemConsole = lbl_804511B8;
+
+    if (heaps[7].getHeap()) {
+        heaps[7].setHeapSize(heaps[7].getHeap()->getSize());
+    }
+
+    int unk = 0;
+    if (lbl_80450580) {
+        unk = 3;
+    }
+
+    *(lbl_804511B8 + 0x58) = unk;
+    *(systemConsole + 0x40) = 0x20;
+    *(systemConsole + 0x44) = 0x2a;
+
+    // lol
+    thread_callback.create((void* (*)(void*))LOAD_COPYDATE, 0);
+    fapGm_Create();
+    fopAcM_initManager();
+    lbl_80450B18 = 0;
+    cDyl_InitAsync();
+
+    // g_mDoAud_audioHeap
+
+    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800, JKRHeap::getCurrentHeap(), false);
+
+    // main loop
+    do {
+        // global frame counter?
+        lbl_80450B34++;
+
+        if (lbl_80450B00 && (lbl_80450B34 == ((lbl_80450B34 / lbl_80450B00) * lbl_80450B00))) {
+            mDoMch_HeapCheckAll();
+        }
+
+        if (lbl_80450C80) {
+            mDoMemCd_Ctrl_c_NS_update();
+        }
+        mDoCPd_c_NS_read();
+        fapGm_Execute();
+        mDoAud_Execute();
+        debug();
+    } while (true);
+}
+#else
 asm void main01(void) {
     nofralloc
 #include "m_Do\m_Do_main\asm\func_8000628C.s"
 }
+#endif
 
+#ifdef NONMATCHING
+void main(void) {}
+#else
 asm void main(void) {
     nofralloc
 #include "m_Do\m_Do_main\asm\func_80006454.s"
 }
+#endif

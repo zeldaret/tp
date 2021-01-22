@@ -1,6 +1,7 @@
-#ifndef __JKRDECOMP_H__
-#define __JKRDECOMP_H__
+#ifndef JKRDECOMP_H_
+#define JKRDECOMP_H_
 
+#include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
 #include "dolphin/types.h"
 
@@ -30,19 +31,6 @@ public:
 #define JKRDECOMP_SYNC_BLOCKING 0
 #define JKRDECOMP_SYNC_NON_BLOCKING 1
 
-#define READ_BIG_ENDIAN_U32(P)                                                                     \
-    (((u32)(((u8*)(P))[0]) << 0x18) | ((u32)(((u8*)(P))[1]) << 0x10) |                             \
-     ((u32)(((u8*)(P))[2]) << 8) | ((u32)(((u8*)(P))[3])))
-
-#define READ_BIG_ENDIAN_U16(P) (((u32)(((u8*)(P))[0]) << 8) | ((u32)(((u8*)(P))[1])))
-
-enum JKRCompression {
-    COMPRESSION_NONE = 0,
-    COMPRESSION_YAY0 = 1,
-    COMPRESSION_YAZ0 = 2,
-    COMPRESSION_ASR = 3,
-};
-
 class JKRDecomp : public JKRThread {
 private:
     JKRDecomp(long);
@@ -63,12 +51,12 @@ public:
     static JKRCompression checkCompressed(u8*);
 };
 
-inline u32 JKRDecompExpandSize(const void* resource) {
-    return READ_BIG_ENDIAN_U32((u8*)resource + 4);
-}
-
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
     JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
+}
+
+inline JKRDecomp* JKRCreateDecompManager(long priority) {
+    return JKRDecomp::create(priority);
 }
 
 #endif

@@ -24,7 +24,7 @@ lbl_80135224:
 /* 80135250 00132190  41 82 01 74 */ beq lbl_801353C4
 /* 80135254 00132194  7F E3 FB 78 */ mr r3, r31
 /* 80135258 00132198  38 80 00 1C */ li r4, 0x1c
-/* 8013525C 0013219C  4B F7 E0 0D */ bl daAlink_c_NS_setDoStatusEmphasys
+/* 8013525C 0013219C  4B F7 E0 0D */ bl setDoStatusEmphasys__9daAlink_cFUc
 /* 80135260 001321A0  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 80135264 001321A4  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80135268 001321A8  41 82 00 30 */ beq lbl_80135298

@@ -1,5 +1,5 @@
-#ifndef __JKRDVDFILE_H__
-#define __JKRDVDFILE_H__
+#ifndef JKRDVDFILE_H_
+#define JKRDVDFILE_H_
 
 #include "JSystem/JKernel/JKRFile/JKRFile.h"
 #include "dolphin/types.h"
@@ -50,6 +50,11 @@ private:
 
 public:
     static void doneProcess(long, DVDFileInfo*);
+
+    static JSUList<JKRDvdFile>& getDvdList() { return sDvdList; }
+
+private:
+    static JSUList<JKRDvdFile> sDvdList;
 };
 
 #endif

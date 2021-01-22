@@ -1,4 +1,7 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
+#include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 
 extern "C" {
@@ -32,14 +35,20 @@ asm void Z2SeMgr::modHeightAtCamera(Vec const** param1) {
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AB830.s"
 }
 
-asm void Z2SeMgr::incrCrowdSize(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AB93C.s"
+void Z2SeMgr::incrCrowdSize(void) {
+    mCrowdSize++;
+
+    if (mCrowdSize > 100)
+        mCrowdSize = 100;
 }
 
-asm void Z2SeMgr::decrCrowdSize(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AB960.s"
+void Z2SeMgr::decrCrowdSize(void) {
+    mCrowdSize--;
+
+    //! @bug probably copypasta from incrCrowdSize(), but semantically it's still correct:
+    //! mCrowdSize is a u8, so an underflow would result in mCrowdSize > 100, triggering the clamp.
+    if (mCrowdSize > 100)
+        mCrowdSize = 0;
 }
 
 asm void Z2SeMgr::seStart(JAISoundID, Vec const*, u32, s8, float, float, float, float, u8) {
@@ -127,9 +136,15 @@ asm u32 Z2MultiSeMgr::registMultiSePos(Vec*) {
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AEB70.s"
 }
 
-asm void Z2MultiSeMgr::resetMultiSePos(void) {
-    nofralloc
-#include "Z2AudioLib/Z2SeMgr/asm/func_802AECBC.s"
+void Z2MultiSeMgr::resetMultiSePos(void) {
+    field_0x18 = -1;
+    // @todo fix when we have proper const placement
+    f32 zero = /* 0.0f */ lbl_80455878;
+    field_0x8 = zero;
+    this->field_0xc = zero;
+    this->field_0x10 = zero;
+    this->field_0x14 = zero;
+    this->field_0x4 = zero;
 }
 
 asm float Z2MultiSeMgr::getPanPower(void) {

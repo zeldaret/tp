@@ -30,10 +30,10 @@ lbl_80112370:
 /* 80112370 0010F2B0  83 FE 28 10 */ lwz r31, 0x2810(r30)
 /* 80112374 0010F2B4  7F C3 F3 78 */ mr r3, r30
 /* 80112378 0010F2B8  38 80 00 12 */ li r4, 0x12
-/* 8011237C 0010F2BC  4B FA 0F 1D */ bl daAlink_c_NS_setBStatus
+/* 8011237C 0010F2BC  4B FA 0F 1D */ bl setBStatus__9daAlink_cFUc
 /* 80112380 0010F2C0  7F C3 F3 78 */ mr r3, r30
 /* 80112384 0010F2C4  38 80 00 31 */ li r4, 0x31
-/* 80112388 0010F2C8  4B FA 0E C9 */ bl daAlink_c_NS_setDoStatus
+/* 80112388 0010F2C8  4B FA 0E C9 */ bl setDoStatus__9daAlink_cFUc
 /* 8011238C 0010F2CC  88 1E 2F 8D */ lbz r0, 0x2f8d(r30)
 /* 80112390 0010F2D0  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80112394 0010F2D4  41 82 00 2C */ beq lbl_801123C0
@@ -50,7 +50,7 @@ lbl_80112370:
 lbl_801123C0:
 /* 801123C0 0010F300  7F C3 F3 78 */ mr r3, r30
 /* 801123C4 0010F304  38 80 00 08 */ li r4, 8
-/* 801123C8 0010F308  4B FA 02 05 */ bl daAlink_c_NS_itemTriggerCheck
+/* 801123C8 0010F308  4B FA 02 05 */ bl itemTriggerCheck__9daAlink_cFUc
 /* 801123CC 0010F30C  2C 03 00 00 */ cmpwi r3, 0
 /* 801123D0 0010F310  41 82 00 10 */ beq lbl_801123E0
 /* 801123D4 0010F314  7F C3 F3 78 */ mr r3, r30

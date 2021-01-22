@@ -56,7 +56,7 @@ mDoGph_gInf_c_NS_create:
 /* 80007E48 00004D88  7C 08 02 A6 */	mflr r0
 /* 80007E4C 00004D8C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80007E50 00004D90  38 60 00 00 */	li r3, 0
-/* 80007E54 00004D94  80 8D 8D F4 */	lwz r4, lbl_80451374-_SDA_BASE_(r13)
+/* 80007E54 00004D94  80 8D 8D F4 */	lwz r4, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 80007E58 00004D98  38 A0 00 02 */	li r5, 2
 /* 80007E5C 00004D9C  38 C0 00 01 */	li r6, 1
 /* 80007E60 00004DA0  48 26 A3 7D */	bl JFWDisplay_NS_createManager

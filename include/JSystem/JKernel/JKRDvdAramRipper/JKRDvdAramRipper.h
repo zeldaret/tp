@@ -1,5 +1,5 @@
-#ifndef __JKRDVDARAMRIPPER_H__
-#define __JKRDVDARAMRIPPER_H__
+#ifndef JKRDVDARAMRIPPER_H_
+#define JKRDVDARAMRIPPER_H_
 
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "JSystem/JSupport/JSUFileInputStream/JSUFileInputStream.h"
@@ -22,9 +22,6 @@ public:
 };
 
 void JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*);
-static void decompSZS_subroutine(u8*, u32);
-static void firstSrcData(void);
-static void nextSrcData(u8*);
 void dmaBufferFlush(u32);
 
 #endif

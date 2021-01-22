@@ -1,9 +1,10 @@
-#ifndef __D_EVENT_MANAGER_H_
-#define __D_EVENT_MANAGER_H_
+#ifndef D_EVENT_MANAGER_H_
+#define D_EVENT_MANAGER_H_
 
 #include "d/d_event/d_event_data/d_event_data.h"
 #include "dolphin/types.h"
 
+#pragma pack(push, 1)
 class dEvent_exception_c {
 public:
 private:
@@ -14,9 +15,11 @@ private:
     u8 field_0x7;
     u32 field_0x8;
 };
+#pragma pack(pop)
 
 #pragma pack(push, 1)
 struct dEvent_manager_c {
+    dEvent_manager_c(void);
     /* 0x0000 */ dEvDtBase_c event_data_base;
     /* 0x0024 */ u8 field_0x24[0x64];
     /* 0x0088 */ u8 field_0x88[0x104];

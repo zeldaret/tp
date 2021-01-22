@@ -22,9 +22,9 @@ extern const char** lbl_804554D8;  // "STB"\0
 namespace JStudio {
 namespace stb {
 
-TObject::TObject(u32 arg1, const void* arg2, u32 arg3)
-    : TObject_ID(arg2, arg3), pControl(NULL), _18(arg1), mFlag(0), bSequence_(0), _20(0), _24(NULL),
-      _28(NULL), u32Wait_(0), mStatus(0) {}
+TObject::TObject(u32 arg1, const void* id, u32 id_size)
+    : TObject_ID(id, id_size), pControl(NULL), _18(arg1), mFlag(0), bSequence_(0), _20(0),
+      _24(NULL), _28(NULL), u32Wait_(0), mStatus(0) {}
 
 TObject::TObject(const data::TParse_TBlock_object& object)
     : TObject_ID(object.get_ID(), object.get_IDSize()), pControl(NULL), _18(object.get_type()),
