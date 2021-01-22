@@ -43,11 +43,11 @@ lbl_802C1060:
 /* 802C1060 002BDFA0  38 00 00 00 */ li r0, 0
 /* 802C1064 002BDFA4  90 1F 00 28 */ stw r0, 0x28(r31)
 /* 802C1068 002BDFA8  38 7F 00 08 */ addi r3, r31, 8
-/* 802C106C 002BDFAC  4B FF CF 8D */ bl Z2SoundObjBase_NS_deleteObject
+/* 802C106C 002BDFAC  4B FF CF 8D */ bl deleteObject__14Z2SoundObjBaseFv
 /* 802C1070 002BDFB0  38 7F 00 50 */ addi r3, r31, 0x50
-/* 802C1074 002BDFB4  4B FF CF 85 */ bl Z2SoundObjBase_NS_deleteObject
+/* 802C1074 002BDFB4  4B FF CF 85 */ bl deleteObject__14Z2SoundObjBaseFv
 /* 802C1078 002BDFB8  38 7F 00 70 */ addi r3, r31, 0x70
-/* 802C107C 002BDFBC  4B FF CF 7D */ bl Z2SoundObjBase_NS_deleteObject
+/* 802C107C 002BDFBC  4B FF CF 7D */ bl deleteObject__14Z2SoundObjBaseFv
 /* 802C1080 002BDFC0  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 802C1084 002BDFC4  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 802C1088 002BDFC8  7C 08 03 A6 */ mtlr r0

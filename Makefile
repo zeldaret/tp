@@ -84,9 +84,6 @@ LDFLAGS := -map $(MAP) -fp hard -nodefaults -w off
 # Compiler flags
 CFLAGS  += -Cpp_exceptions off -proc gekko -fp hard -O3 -nodefaults -msgstyle gcc -enum int $(INCLUDES)
 
-# for postprocess.py
-PROCFLAGS := -fprologue-fixup=old_stack
-
 # elf2dol needs to know these in order to calculate sbss correctly.
 SDATA_PDHR := 9
 SBSS_PDHR := 10
@@ -138,8 +135,7 @@ $(BUILD_DIR)/%.o: %.c
 
 $(BUILD_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
-	# TODO: See if this is necessary after actually adding some C code
-	# $(PYTHON) $(POSTPROC) $(PROCFLAGS) $@
+	$(PYTHON) $(POSTPROC) -fsymbol-fixup $@
 
 ### Debug Print ###
 
