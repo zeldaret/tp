@@ -3340,11 +3340,11 @@ func_802631EC
 func_802631E4
 func_802631DC
 func_802631D4
-func_80263190
-func_8026314C
-func_80263090
-func_8026308C
-func_80263088
+ModuleDestructorsX
+ModuleConstructorsX
+ModuleUnresolved
+ModuleEpilog
+ModuleProlog
 func_80263070
 func_80263000
 func_80262F28

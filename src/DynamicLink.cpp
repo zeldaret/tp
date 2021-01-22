@@ -146,35 +146,35 @@ asm void func_80263070(void) {
 
 // ModuleProlog
 // 
-asm void func_80263088(void) {
+asm void ModuleProlog(void) {
     nofralloc
     #include "DynamicLink/asm/func_80263088.s"
 }
 
 // ModuleEpilog
 // 
-asm void func_8026308C(void) {
+asm void ModuleEpilog(void) {
     nofralloc
     #include "DynamicLink/asm/func_8026308C.s"
 }
 
 // ModuleUnresolved
 // 
-asm void func_80263090(void) {
+asm void ModuleUnresolved(void) {
     nofralloc
     #include "DynamicLink/asm/func_80263090.s"
 }
 
 // ModuleConstructorsX
 // 
-asm void func_8026314C(void) {
+asm void ModuleConstructorsX(void) {
     nofralloc
     #include "DynamicLink/asm/func_8026314C.s"
 }
 
 // ModuleDestructorsX
 // 
-asm void func_80263190(void) {
+asm void ModuleDestructorsX(void) {
     nofralloc
     #include "DynamicLink/asm/func_80263190.s"
 }
