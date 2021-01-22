@@ -3,19 +3,11 @@
 #include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "global.h"
 
-// __ct__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::dBgS_PolyPassChk(void)
-asm dBgS_PolyPassChk::dBgS_PolyPassChk() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078D64.s"
-}
+dBgS_PolyPassChk::dBgS_PolyPassChk()
+    : mObject(false), mCamera(false), mLink(false), mArrow(false), mBomb(false), mBoomerang(false),
+      mRope(false), mUnderwaterRoof(false), mHorse(false), mStatue(false), mIronBall(false) {}
 
-// __dt__16dBgS_PolyPassChkFv
-// dBgS_PolyPassChk::~dBgS_PolyPassChk(void)
-asm dBgS_PolyPassChk::~dBgS_PolyPassChk() {
-    nofralloc
-    #include "d/d_bg/d_bg_s/polypass/asm/func_80078DB0.s"
-}
+dBgS_PolyPassChk::~dBgS_PolyPassChk() {}
 
 void dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk& chk) {
     mObject = chk.mObject;
