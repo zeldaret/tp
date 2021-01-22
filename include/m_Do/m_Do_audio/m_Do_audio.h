@@ -66,7 +66,7 @@ extern "C" {
     void JAISoundInfo_NS_dtor(void);
     void JAIStreamDataMgr_NS_dtor(void);
     void Z2Audience_NS_dtor(void);
-    void JAISoundHandle_NS_releaseSound(void);
+    void releaseSound__14JAISoundHandleFv(void);
     void __dt__17mDoAud_zelAudio_cFv(void);
     void __dt__10Z2AudioMgrFv(void);
     void __ct__10Z2AudioMgrFv(void);
