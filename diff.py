@@ -996,7 +996,7 @@ def process(lines: List[str]) -> List[Line]:
                     args.source_path_postprocess = guess_sourcepath_processing()
 
                 if args.source_path_postprocess == 'none': ...
-                elif args.source_path_postprocess == 'wine':
+                elif args.source_path_postprocess == 'unix':
                     # on Wine, use winepath to convert
                     path = subprocess.check_output(["winepath","-u", path], universal_newlines=True).strip()
                 elif args.source_path_postprocess == 'wsl':
