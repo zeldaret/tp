@@ -2,111 +2,312 @@
 
 #include "SComponent/c_m3d.h"
 
+extern float lbl_80455118;  // SComponent::@2256, 0.0
+extern float lbl_80455138;  // SComponent::@2273, 1.0
+extern float lbl_8045513C;  // SComponent::@2346, 0.02
+extern float lbl_804551C4;  // SComponent::@3892, 0.5
+
 // cM3d_InDivPos1__FPC3VecPC3VecfP3Vec
-// cM3d_InDivPos1(const Vec*, const Vec*, float, Vec*)
-asm void cM3d_InDivPos1(const Vec*, const Vec*, float, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268560.s"
+void cM3d_InDivPos1(const Vec* vec1, const Vec* vec2, float f, Vec* out) {
+    Vec tmp;
+    PSVECScale(vec2, &tmp, f);
+    PSVECAdd(&tmp, vec1, out);
 }
 
 // cM3d_InDivPos2__FPC3VecPC3VecfP3Vec
-// cM3d_InDivPos2(const Vec*, const Vec*, float, Vec*)
-asm void cM3d_InDivPos2(const Vec*, const Vec*, float, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_802685B0.s"
+void cM3d_InDivPos2(const Vec* vec1, const Vec* vec2, float f, Vec* out) {
+    Vec tmp;
+    PSVECSubtract(vec2, vec1, &tmp);
+    cM3d_InDivPos1(vec1, &tmp, f, out);
 }
 
 // cM3d_Len2dSq__Fffff
-// cM3d_Len2dSq(float, float, float, float)
-asm float cM3d_Len2dSq(float, float, float, float) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268614.s"
+float cM3d_Len2dSq(float pX1, float pY1, float pX2, float pY2) {
+    float xDiff = pX1 - pX2;
+    float yDiff = pY1 - pY2;
+    return xDiff * xDiff + yDiff * yDiff;
+}
+
+inline bool cM3d_IsZero(float f) {
+    return (float)fabsf(f) < lbl_80451180;
 }
 
 // cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf
-// cM3d_Len2dSqPntAndSegLine(float, float, float, float, float, float, float*, float*, float*)
-asm bool cM3d_Len2dSqPntAndSegLine(float, float, float, float, float, float, float*, float*,
-                                   float*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026862C.s"
+bool cM3d_Len2dSqPntAndSegLine(float param_1, float param_2, float param_3, float param_4, float p5,
+                               float p6, float* param_7, float* param_8, float* param_9) {
+    bool retVal = false;
+    float param_5 = p5 - param_3;
+    float param_6 = p6 - param_4;
+    float len = param_5 * param_5 + param_6 * param_6;
+    if (cM3d_IsZero(len)) {
+        *param_9 = /* 0.0 */ lbl_80455118;
+        return retVal;
+    } else {
+        len = (param_5 * (param_1 - param_3) + param_6 * (param_2 - param_4)) / len;
+        if (len >= /* 0.0 */ lbl_80455118 && len <= /* 1.0 */ lbl_80455138) {
+            retVal = true;
+        }
+        *param_7 = param_3 + param_5 * len;
+        *param_8 = param_4 + param_6 * len;
+        *param_9 = cM3d_Len2dSq(*param_7, *param_8, param_1, param_2);
+        return retVal;
+    }
 }
 
 // cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf
-// cM3d_Len3dSqPntAndSegLine(const cM3dGLin*, const Vec*, Vec*, float*)
-asm bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin*, const Vec*, Vec*, float*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268710.s"
+bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* outVec, float* outF) {
+    bool retVal = 0;
+    Vec tmp;
+    PSVECSubtract(&pLine->End(), &pLine->Start(), &tmp);
+    float seqLen = PSVECDotProduct(&tmp, &tmp);
+    if (cM3d_IsZero(seqLen)) {
+        *outF = /* 0.0 */ lbl_80455118;
+        return retVal;
+    } else {
+        Vec tmp2;
+        PSVECSubtract(pVec, &pLine->Start(), &tmp2);
+        float tmpF = PSVECDotProduct(&tmp2, &tmp);
+        tmpF /= seqLen;
+        if (tmpF < /* 0.0 */ lbl_80455118 || tmpF > /* 1.0 */ lbl_80455138) {
+            retVal = false;
+        } else {
+            retVal = true;
+        }
+        PSVECScale(&tmp, &tmp, tmpF);
+        PSVECAdd(&tmp, &pLine->Start(), outVec);
+        *outF = PSVECSquareDistance(outVec, pVec);
+        return retVal;
+    }
 }
 
 // cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec
-// cM3d_SignedLenPlaAndPos(const cM3dGPla*, const Vec*)
-asm float cM3d_SignedLenPlaAndPos(const cM3dGPla*, const Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268814.s"
+float cM3d_SignedLenPlaAndPos(const cM3dGPla* pPlane, const Vec* pPosition) {
+    float mag = PSVECMag(&pPlane->mNormal);
+    if (cM3d_IsZero(mag)) {
+        return /* 0.0 */ lbl_80455118;
+    } else {
+        return (pPlane->mD + PSVECDotProduct(&pPlane->mNormal, pPosition)) / mag;
+    }
 }
 
 // cM3d_VectorProduct2d__Fffffff
-// cM3d_VectorProduct2d(float, float, float, float, float, float)
-asm float cM3d_VectorProduct2d(float, float, float, float, float, float) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268894.s"
+float cM3d_VectorProduct2d(float mX1, float mY1, float mX2, float mY2, float mX3, float mY3) {
+    return (mX2 - mX1) * (mY3 - mY1) - (mY2 - mY1) * (mX3 - mX1);
 }
 
 // cM3d_VectorProduct__FPC4cXyzPC4cXyzPC4cXyzP4cXyz
-// cM3d_VectorProduct(const cXyz*, const cXyz*, const cXyz*, cXyz*)
-asm void cM3d_VectorProduct(const cXyz*, const cXyz*, const cXyz*, cXyz*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_802688B4.s"
+void cM3d_VectorProduct(const cXyz* pVec1, const cXyz* pVec2, const cXyz* pVec3, cXyz* pVecOut) {
+    Vec tmp1;
+    Vec tmp2;
+    PSVECSubtract(pVec2, pVec1, &tmp1);
+    PSVECSubtract(pVec3, pVec1, &tmp2);
+    PSVECCrossProduct(&tmp1, &tmp2, pVecOut);
 }
 
 // cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf
-// cM3d_CalcPla(const Vec*, const Vec*, const Vec*, Vec*, float*)
-asm void cM3d_CalcPla(const Vec*, const Vec*, const Vec*, Vec*, float*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026891C.s"
+void cM3d_CalcPla(const Vec* pVec1, const Vec* pVec2, const Vec* pVec3, Vec* pVecOut, float* pD) {
+    Vec tmp2;
+    Vec tmp1;
+    PSVECSubtract(pVec2, pVec1, &tmp1);
+    PSVECSubtract(pVec3, pVec1, &tmp2);
+    PSVECCrossProduct(&tmp1, &tmp2, pVecOut);
+    float mag = PSVECMag(pVecOut);
+    if ((float)fabsf(mag) >= /* 0.02 */ lbl_8045513C) {
+        PSVECScale(pVecOut, pVecOut, /* 1.0 */ lbl_80455138 / mag);
+        *pD = -PSVECDotProduct(pVecOut, pVec1);
+    } else {
+        float zero = /* 0.0 */ lbl_80455118;
+        pVecOut->y = zero;
+        *pD = zero;
+        pVecOut->z = zero;
+        pVecOut->x = zero;
+    }
+}
+
+inline bool cM3d_CrossNumSection(float lMinX, float lMaxX, float rMinX, float rMaxX) {
+    if (lMinX > rMaxX) {
+        return false;
+    } else if (lMaxX < rMinX) {
+        return false;
+    } else if (rMinX > lMaxX) {
+        return false;
+    } else if (rMaxX < lMinX) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 // cM3d_Cross_AabAab__FPC8cM3dGAabPC8cM3dGAab
-// cM3d_Cross_AabAab(const cM3dGAab*, const cM3dGAab*)
-asm bool cM3d_Cross_AabAab(const cM3dGAab*, const cM3dGAab*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_802689E8.s"
+bool cM3d_Cross_AabAab(const cM3dGAab* lhs, const cM3dGAab* rhs) {
+    if (cM3d_CrossNumSection(lhs->getMinP().x, lhs->getMaxP().x, rhs->getMinP().x,
+                             rhs->getMaxP().x) &&
+        cM3d_CrossNumSection(lhs->getMinP().y, lhs->getMaxP().y, rhs->getMinP().y,
+                             rhs->getMaxP().y) &&
+        cM3d_CrossNumSection(lhs->getMinP().z, lhs->getMaxP().z, rhs->getMinP().z,
+                             rhs->getMaxP().z)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // cM3d_Cross_AabCyl__FPC8cM3dGAabPC8cM3dGCyl
-// cM3d_Cross_AabCyl(const cM3dGAab*, const cM3dGCyl*)
-asm bool cM3d_Cross_AabCyl(const cM3dGAab*, const cM3dGCyl*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268B0C.s"
+bool cM3d_Cross_AabCyl(const cM3dGAab* pAab, const cM3dGCyl* pCyl) {
+    if (pAab->getMinP().x > pCyl->GetCP().x + pCyl->GetR()) {
+        return false;
+    } else if (pAab->getMaxP().x < pCyl->GetCP().x - pCyl->GetR()) {
+        return false;
+    } else if (pAab->getMinP().z > pCyl->GetCP().z + pCyl->GetR()) {
+        return false;
+    } else if (pAab->getMaxP().z < pCyl->GetCP().z - pCyl->GetR()) {
+        return false;
+    } else if (pAab->getMinP().y > pCyl->GetCP().y + pCyl->GetH()) {
+        return false;
+    } else if (pAab->getMaxP().y < pCyl->GetCP().y) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
+// inline float addF(float a, float b) {
+//     return a + b;
+// }
+
 // cM3d_Cross_AabSph__FPC8cM3dGAabPC8cM3dGSph
-// cM3d_Cross_AabSph(const cM3dGAab*, const cM3dGSph*)
+#ifdef NON_MATCHING
+bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
+    float radius = pSph->GetR();
+    if (pAab->GetMinX() > pSph->GetC().GetX() + radius) {  // addition registers are flipped
+        return false;
+    } else if (pAab->GetMaxX() < pSph->GetC().GetX() - radius) {
+        return false;
+    } else if (pAab->GetMinZ() > pSph->GetC().GetZ() + radius) {
+        return false;
+    } else if (pAab->GetMaxZ() < pSph->GetC().GetZ() - radius) {
+        return false;
+    } else if (pAab->GetMinY() > pSph->GetC().GetY() + radius) {
+        return false;
+    } else if (pAab->GetMaxY() < pSph->GetC().GetY() - radius) {
+        return false;
+    } else {
+        return true;
+    }
+}
+#else
 asm bool cM3d_Cross_AabSph(const cM3dGAab*, const cM3dGSph*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_80268BB4.s"
 }
+#endif
 
+#ifdef NON_MATCHING
 // cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf
+int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, float* pFloatA,
+                      float* pFloatB) {
+    Vec linAVec;
+    Vec linBVec;
+    pLinA->CalcVec(&linAVec);
+    pLinB->CalcVec(&linBVec);
+    float linALen = PSVECMag(&linAVec);
+    float linBLen = PSVECMag(&linBVec);
+    if (cM3d_IsZero(linALen) || cM3d_IsZero(linBLen)) {
+        return 1;
+    } else {
+        float invLinALen = /* 1.0 */ lbl_80455138 / linALen;
+        float invLinBLen = /* 1.0 */ lbl_80455138 / linBLen;
+        PSVECScale(&linAVec, &linAVec, invLinALen);
+        PSVECScale(&linBVec, &linBVec, invLinBLen);
+        Vec tmp;
+        PSVECSubtract(&pLinA->Start(), &pLinB->Start(), &tmp);
+        float tmpF = -PSVECDotProduct(&linAVec, &linBVec);
+        float tmpF2 = PSVECDotProduct(&tmp, &linAVec);
+        PSVECSquareMag(&tmp);  // result not used
+        float tmpF3 = fabsf(/* 1.0 */ lbl_80455138 - (tmpF * tmpF));
+        if (!cM3d_IsZero(tmpF3)) {
+            float tmpF4 = -PSVECDotProduct(&tmp, &linBVec);
+            float tmpF7 = /* 1.0 */ lbl_80455138 / tmpF3;
+            float outFloatAtmp = ((tmpF * tmpF4) - tmpF2) * tmpF7;
+            *pFloatA = outFloatAtmp * invLinALen;
+            float outFloatBtmp = ((tmpF * tmpF2) - tmpF4) * tmpF7;
+            *pFloatB = outFloatBtmp * invLinBLen;
+            return 3;
+        } else {
+            float tmpF5 = -tmpF2;
+            float tmpF6 =
+                lbl_80455118;  // gets closer if lbl_80455118 is replaced with the actual data 0
+            if (tmpF5 < lbl_80455118 ||
+                (tmpF5 > linALen)) {  // always generates the comparison the other way around
+                tmpF6 = linBLen;
+                tmpF5 = (tmpF6 * tmpF) - tmpF2;
+            }
+            float tmpF7 = PSVECDotProduct(&tmp, &linBVec);
+            if (tmpF5 < /* 0.0 */ lbl_80455118 || linALen < tmpF5) {
+                tmpF6 = /* 0.0 */ lbl_80455118;
+                tmpF5 = tmpF7;
+            }
+            if (tmpF5 < /* 0.0 */ lbl_80455118 || linBLen < tmpF5) {
+                tmpF5 = linALen;
+                tmpF6 = tmpF7 + (-linALen * tmpF);
+            }
+            *pFloatA = tmpF5 * invLinALen;
+            *pFloatB = tmpF6 * invLinBLen;
+            return 2;
+        }
+    }
+}
+#else
 // cM3d_Check_LinLin(const cM3dGLin*, const cM3dGLin*, float*, float*)
 asm int cM3d_Check_LinLin(const cM3dGLin*, const cM3dGLin*, float*, float*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_80268C5C.s"
 }
+#endif
 
 // cM3d_CrossInfLineVsInfPlane_proc__FffPC3VecPC3VecP3Vec
-// cM3d_CrossInfLineVsInfPlane_proc(float, float, const Vec*, const Vec*, Vec*)
-asm bool cM3d_CrossInfLineVsInfPlane_proc(float, float, const Vec*, const Vec*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_80268ED4.s"
+bool cM3d_CrossInfLineVsInfPlane_proc(float f1, float f2, const Vec* vec1, const Vec* vec2,
+                                      Vec* vecOut) {
+    if (cM3d_IsZero(f1 - f2)) {
+        *vecOut = *vec2;
+        return false;
+    } else {
+        cM3d_InDivPos2(vec1, vec2, f1 / (f1 - f2), vecOut);
+        return true;
+    }
 }
 
 // cM3d_Cross_LinPla__FPC8cM3dGLinPC8cM3dGPlaP3Vecbb
-// cM3d_Cross_LinPla(const cM3dGLin*, const cM3dGPla*, Vec*, bool, bool)
+#ifdef NON_MATCHING
+bool cM3d_Cross_LinPla(const cM3dGLin* pLine, const cM3dGPla* pPlane, Vec* pVecOut, bool pBoolA,
+                       bool pBoolB) {
+    float startVal = pPlane->getPlaneFunc(&pLine->mStart);
+    float endVal = pPlane->getPlaneFunc(&pLine->mEnd);
+    if (startVal * endVal > /* 0.0 */ lbl_80455118) {
+        *pVecOut = pLine->mEnd;
+        return false;
+    } else {
+        if (startVal >= /* 0.0 */ lbl_80455118 && endVal <= /* 0.0 */ lbl_80455118) {
+            if (pBoolA) {
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->mStart,
+                                                        &pLine->mEnd, pVecOut);
+            }
+        } else {
+            if (pBoolB) {
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->mStart,
+                                                        &pLine->mEnd, pVecOut);
+            }
+        }
+        *pVecOut = pLine->mEnd;
+        return true;
+    }
+}
+#else
 asm bool cM3d_Cross_LinPla(const cM3dGLin*, const cM3dGPla*, Vec*, bool, bool) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_80268F34.s"
 }
+#endif
 
 // cM3d_Cross_MinMaxBoxLine__FPC3VecPC3VecPC3VecPC3Vec
 // cM3d_Cross_MinMaxBoxLine(const Vec*, const Vec*, const Vec*, const Vec*)
@@ -285,17 +486,38 @@ asm bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, float*, float*) {
 }
 
 // cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec
-// cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*)
-asm bool cM3d_Cross_SphSph(const cM3dGSph*, const cM3dGSph*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026BD88.s"
+bool cM3d_Cross_SphSph(const cM3dGSph* pSphereA, const cM3dGSph* pSphereB, Vec* pVecOut) {
+    float centerDist;
+    float overlapLen;
+    if (cM3d_Cross_SphSph(pSphereA, pSphereB, &centerDist, &overlapLen)) {
+        if (!cM3d_IsZero(centerDist)) {
+            // could be an inlined function
+            float tmpF = pSphereB->GetR() / centerDist;
+            Vec tmp;
+            PSVECSubtract(&pSphereA->GetC(), &pSphereB->GetC(), &tmp);
+            PSVECScale(&tmp, &tmp, tmpF);
+            PSVECAdd(&tmp, &pSphereB->GetC(), pVecOut);
+        } else {
+            *pVecOut = pSphereA->GetC();
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec
-// cM3d_CalcSphVsTriCrossPoint(const cM3dGSph*, const cM3dGTri*, Vec*)
-asm void cM3d_CalcSphVsTriCrossPoint(const cM3dGSph*, const cM3dGTri*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026BE5C.s"
+void cM3d_CalcSphVsTriCrossPoint(const cM3dGSph* pSphere, const cM3dGTri* pTriangle, Vec* pVecOut) {
+    Vec tmp2;
+    Vec tmp;
+    PSVECAdd(&pTriangle->mA, &pTriangle->mB, &tmp);
+    PSVECScale(&tmp, &tmp2, /* 0.5 */ lbl_804551C4);
+    float sqDist = PSVECSquareDistance(&tmp2, &pSphere->GetC());
+    if (cM3d_IsZero(sqDist)) {
+        *pVecOut = pSphere->GetC();
+    } else {
+        cM3d_InDivPos2(&pSphere->GetC(), &tmp2, pSphere->GetR() / sqDist, pVecOut);
+    }
 }
 
 // cM3d_Cross_SphTri__FPC8cM3dGSphPC8cM3dGTriP3Vec
@@ -334,18 +556,34 @@ asm int cM3d_Cross_CylLin(const cM3dGCyl*, const cM3dGLin*, Vec*, Vec*) {
 }
 
 // cM3d_Cross_CylPntPnt__FPC8cM3dGCylPC3VecPC3VecP3VecP3Vec
-// cM3d_Cross_CylPntPnt(const cM3dGCyl*, const Vec*, const Vec*, Vec*, Vec*)
-asm int cM3d_Cross_CylPntPnt(const cM3dGCyl*, const Vec*, const Vec*, Vec*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026D044.s"
+int cM3d_Cross_CylPntPnt(const cM3dGCyl* pCylinder, const Vec* pVecStart, const Vec* pVecEnd,
+                         Vec* pVecOutA, Vec* pVecOutB) {
+    cM3dGLin lin;
+    lin.SetStartEnd(*pVecStart, *pVecEnd);
+    return cM3d_Cross_CylLin(pCylinder, &lin, pVecOutA, pVecOutB);
 }
 
 // cM3d_Cross_CylPnt__FPC8cM3dGCylPC3Vec
-// cM3d_Cross_CylPnt(const cM3dGCyl*, const Vec*)
+#ifdef NON_MATHING
+bool cM3d_Cross_CylPnt(const cM3dGCyl* pCylinder, const Vec* pPoint) {
+    float dX, maxY, cpY, dZ;  // FPR alloc
+    dX = pCylinder->GetCP().GetX() - pPoint->x;
+    dZ = pCylinder->GetCP().GetZ() - pPoint->z;
+    cpY = pCylinder->GetCP().GetY();
+    maxY = cpY + pCylinder->GetH();
+    if (dX * dX + dZ * dZ < pCylinder->GetR() * pCylinder->GetR() &&
+        pCylinder->GetCP().GetY() < pPoint->y && maxY > pPoint->y) {
+        return true;
+    } else {
+        return false;
+    }
+}
+#else
 asm bool cM3d_Cross_CylPnt(const cM3dGCyl*, const Vec*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_8026D0B0.s"
 }
+#endif
 
 // cM3d_Cross_CpsCps__FRC8cM3dGCpsRC8cM3dGCpsP3Vec
 // cM3d_Cross_CpsCps(const cM3dGCps&, const cM3dGCps&, Vec*)
@@ -390,10 +628,9 @@ asm bool cM3d_Cross_CpsTri(const cM3dGCps&, cM3dGTri, Vec*) {
 }
 
 // cM3d_CalcVecAngle__FRC3VecPsPs
-// cM3d_CalcVecAngle(const Vec&, short*, short*)
-asm void cM3d_CalcVecAngle(const Vec&, short*, short*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026E4FC.s"
+void cM3d_CalcVecAngle(const Vec& pVec, s16* pOutA, s16* pOutB) {
+    *pOutA = -cM_atan2s(-pVec.z * pVec.y, /* 1.0 */ lbl_80455138);
+    *pOutB = cM_atan2s(-pVec.x * pVec.y, /* 1.0 */ lbl_80455138);
 }
 
 // cM3d_CalcVecZAngle__FRC3VecP5csXyz
@@ -404,39 +641,108 @@ asm void cM3d_CalcVecZAngle(const Vec&, csXyz*) {
 }
 
 // cM3d_PlaneCrossLineProcWork__FfffffffPfPf
-// cM3d_PlaneCrossLineProcWork(float, float, float, float, float, float, float, float*, float*)
-asm void cM3d_PlaneCrossLineProcWork(float, float, float, float, float, float, float, float*,
-                                     float*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026E6C4.s"
+void cM3d_PlaneCrossLineProcWork(float f1, float f2, float f3, float f4, float f5, float f6,
+                                 float f7, float* pF1, float* pF2) {
+    *pF1 = ((f2 * f7) - (f4 * f6)) / f5;
+    *pF2 = ((f3 * f6) - (f1 * f7)) / f5;
 }
 
 // cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin
-// cM3d_2PlaneCrossLine(const cM3dGPla&, const cM3dGPla&, cM3dGLin*)
-asm int cM3d_2PlaneCrossLine(const cM3dGPla&, const cM3dGPla&, cM3dGLin*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026E6F0.s"
+int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, cM3dGLin* pLinOut) {
+    Vec tmp;
+    PSVECCrossProduct(&pPlaneA.mNormal, &pPlaneB.mNormal, &tmp);
+    if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {
+        return 0;
+    } else {
+        float absTX = fabsf(tmp.x);
+        float absTY = fabsf(tmp.y);
+        float absTZ = fabsf(tmp.z);
+        if (absTX >= absTY && absTX >= absTZ) {
+            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetY(), pPlaneA.mNormal.GetZ(),
+                                        pPlaneB.mNormal.GetY(), pPlaneB.mNormal.GetZ(), tmp.x,
+                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.y,
+                                        &pLinOut->mStart.z);
+            pLinOut->mStart.x = /* 0.0 */ lbl_80455118;
+        } else if (absTY >= absTX && absTY >= absTZ) {
+            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetZ(), pPlaneA.mNormal.GetX(),
+                                        pPlaneB.mNormal.GetZ(), pPlaneB.mNormal.GetX(), tmp.y,
+                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.z,
+                                        &pLinOut->mStart.x);
+            pLinOut->mStart.y = /* 0.0 */ lbl_80455118;
+        } else {
+            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetX(), pPlaneA.mNormal.GetY(),
+                                        pPlaneB.mNormal.GetX(), pPlaneB.mNormal.GetY(), tmp.z,
+                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.x,
+                                        &pLinOut->mStart.y);
+            pLinOut->mStart.z = /* 0.0 */ lbl_80455118;
+        }
+        float scale = PSVECMag(&pLinOut->Start());
+        if (cM3d_IsZero(scale)) {
+            scale = /* 1.0 */ lbl_80455138;
+        }
+        PSVECScale(&tmp, &tmp, scale);
+        PSVECAdd(&pLinOut->Start(), &tmp, &pLinOut->mEnd);
+        return 1;
+    }
 }
 
 // cM3d_3PlaneCrossPos__FRC8cM3dGPlaRC8cM3dGPlaRC8cM3dGPlaP3Vec
-// cM3d_3PlaneCrossPos(const cM3dGPla&, const cM3dGPla&, const cM3dGPla&, Vec*)
-asm bool cM3d_3PlaneCrossPos(const cM3dGPla&, const cM3dGPla&, const cM3dGPla&, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026E8A0.s"
+bool cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const cM3dGPla& pPlaneC,
+                         Vec* pVecOut) {
+    cM3dGLin lin;
+    if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {
+        return false;
+    } else {
+        const Vec* end = &lin.End();
+        float tmpf1 = pPlaneC.mD + PSVECDotProduct(&pPlaneC.mNormal, &lin.Start());
+        float tmpf2 = pPlaneC.mD + PSVECDotProduct(&pPlaneC.mNormal, end);
+        if (!cM3d_CrossInfLineVsInfPlane_proc(tmpf1, tmpf2, &lin.Start(), end, pVecOut)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 // cM3d_lineVsPosSuisenCross__FPC8cM3dGLinPC3VecP3Vec
-// cM3d_lineVsPosSuisenCross(const cM3dGLin*, const Vec*, Vec*)
-asm float cM3d_lineVsPosSuisenCross(const cM3dGLin*, const Vec*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026E980.s"
+float cM3d_lineVsPosSuisenCross(const cM3dGLin* pLine, const Vec* pPoint, Vec* pVecOut) {
+    Vec tmp1;
+    Vec tmp2;
+    Vec tmp3;
+    PSVECSubtract(&pLine->End(), &pLine->Start(), &tmp1);
+    float diffLen = PSVECSquareMag(&tmp1);
+    if (cM3d_IsZero(diffLen)) {
+        *pVecOut = *pPoint;
+        return /* 0.0 */ lbl_80455118;
+    } else {
+        PSVECSubtract(pPoint, &pLine->Start(), &tmp2);
+        float dotProd = PSVECDotProduct(&tmp2, &tmp1);
+        float retVal = dotProd / diffLen;
+        PSVECScale(&tmp1, &tmp3, retVal);
+        PSVECAdd(&tmp3, &pLine->Start(), pVecOut);
+        return retVal;
+    }
 }
 
 // cM3d_lineVsPosSuisenCross__FRC3VecRC3VecRC3VecP3Vec
-// cM3d_lineVsPosSuisenCross(const Vec&, const Vec&, const Vec&, Vec*)
-asm float cM3d_lineVsPosSuisenCross(const Vec&, const Vec&, const Vec&, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026EA5C.s"
+float cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, const Vec& pPoint,
+                                Vec* pVecOut) {
+    Vec tmp1;
+    Vec tmp2;
+    Vec tmp3;
+    PSVECSubtract(&pLinePointB, &pLinePointA, &tmp1);
+    float diffLen = PSVECSquareMag(&tmp1);
+    if (cM3d_IsZero(diffLen)) {
+        *pVecOut = pPoint;
+        return /* 0.0 */ lbl_80455118;
+    } else {
+        PSVECSubtract(&pPoint, &pLinePointA, &tmp2);
+        float dotProd = PSVECDotProduct(&tmp2, &tmp1);
+        float retVal = dotProd / diffLen;
+        PSVECScale(&tmp1, &tmp3, retVal);
+        PSVECAdd(&tmp3, &pLinePointA, pVecOut);
+        return retVal;
+    }
 }
 
 // cM3d_2PlaneLinePosNearPos__FRC8cM3dGPlaRC8cM3dGPlaPC3VecP3Vec
@@ -447,11 +753,20 @@ asm int cM3d_2PlaneLinePosNearPos(const cM3dGPla&, const cM3dGPla&, const Vec*, 
 }
 
 // cM3d_CrawVec__FRC3VecRC3VecP3Vec
-// cM3d_CrawVec(const Vec&, const Vec&, Vec*)
+#ifdef NM
+void cM3d_CrawVec(const Vec& vec1, const Vec& vec2, Vec* vecOut) {
+    Vec tmp;
+    float absLen = fabsf(vec2.x * vec1.x + vec2.y * vec1.y + vec2.z * vec1.z);
+    // PSVECScale(&vec1, &tmp, absLen);
+    testF(&vec1, absLen, &tmp);
+    PSVECAdd(&tmp, &vec2, vecOut);
+}
+#else
 asm void cM3d_CrawVec(const Vec&, const Vec&, Vec*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_8026EBBC.s"
 }
+#endif
 
 extern "C" {
 

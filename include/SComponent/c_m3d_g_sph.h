@@ -12,10 +12,10 @@ struct cM3dGSphS {
 
 class cM3dGSph {
 private:
+public:
     cXyz mCenter;
     float mRadius;
 
-public:
     void SetC(const cXyz&);
     void Set(const cXyz&, float);
     void Set(const cM3dGSphS&);
@@ -23,6 +23,11 @@ public:
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void GetMinMaxCube(cXyz&, cXyz&) const;
+    const cXyz& GetC(void) const { return mCenter; }
+    const float GetR(void) const { return mRadius; }
+    float GetCX(void) const { return mCenter.GetX(); }
+    float GetCY(void) const { return mCenter.GetY(); }
+    float GetCZ(void) const { return mCenter.GetZ(); }
 };
 
 #endif

@@ -10,7 +10,7 @@ struct cM3dGCylS {
     float mRadius;
     float mHeight;
 };
-struct cM3dGSph;
+class cM3dGSph;
 
 class cM3dGCyl : public cM3dGCylS {
 public:
@@ -24,6 +24,9 @@ public:
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
+    const cXyz& GetCP(void) const { return mCenter; }
+    float GetR(void) const { return mRadius; }
+    float GetH(void) const { return mHeight; }
 };
 
 #endif

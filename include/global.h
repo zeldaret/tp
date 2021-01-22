@@ -14,14 +14,18 @@
 
 extern float __fabsf(float);
 
-inline double fabsf(double d) {
-    return __fabsf(d);
+inline double fabsf(float f) {
+    return __fabsf(f);
+}
+
+inline float fabsff(float f) {
+    return (float)fabsf(f);
 }
 
 extern float __fsqrte(float);
 
-inline double sqrt(double d) {
-    return __fsqrte(d);
+inline double sqrt(float f) {
+    return __fsqrte(f);
 }
 
 #include "dolphin/types.h"

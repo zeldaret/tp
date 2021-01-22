@@ -6,17 +6,18 @@
 
 // Line
 class cM3dGLin {
-private:
+    // private:
+public:
     cXyz mStart;
     cXyz mEnd;
 
-public:
     cM3dGLin() {}
     cM3dGLin(const cXyz&, const cXyz&);
     virtual ~cM3dGLin() {}
     void SetStartEnd(const cXyz&, const cXyz&);
     void SetStartEnd(const Vec&, const Vec&);
     void CalcPos(Vec*, float) const;
+    void CalcVec(Vec* pOut) const { PSVECSubtract(&this->mEnd, &this->mStart, pOut); }
     void SetEnd(const cXyz&);
     const cXyz& Start(void) const { return mStart; }
     const cXyz& End(void) const { return mEnd; }

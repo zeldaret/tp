@@ -6,6 +6,7 @@
 #include "SComponent/c_m3d_g_cyl.h"
 #include "SComponent/c_m3d_g_lin.h"
 #include "SComponent/c_m3d_g_pla.h"
+#include "SComponent/c_m3d_g_sph.h"
 #include "SComponent/c_m3d_g_tri.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"

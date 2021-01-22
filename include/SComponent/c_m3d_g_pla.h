@@ -17,6 +17,7 @@ public:
     bool getCrossY(const cXyz&, float*) const;
     bool getCrossYLessD(const Vec&, float*) const;
     void Set(const cM3dGPla*);
+    float getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
 };
 
 #endif
