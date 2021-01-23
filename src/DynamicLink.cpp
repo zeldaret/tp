@@ -53,47 +53,32 @@ extern "C" {
     void __dt__24DynamicModuleControlBaseFv(void);
 };
 
-extern "C" {
-
-// link__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::link(void)
-asm void DynamicModuleControlBase_NS_link(void) {
+asm bool DynamicModuleControlBase::link() {
     nofralloc
     #include "DynamicLink/asm/func_802622D0.s"
 }
 
-// unlink__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::unlink(void)
-asm void DynamicModuleControlBase_NS_unlink(void) {
+asm int DynamicModuleControlBase::unlink() {
     nofralloc
     #include "DynamicLink/asm/func_80262364.s"
 }
 
-// load_async__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::load_async(void)
-asm void DynamicModuleControlBase_NS_load_async(void) {
+asm int DynamicModuleControlBase::load_async() {
     nofralloc
     #include "DynamicLink/asm/func_802623EC.s"
 }
 
-
-};
-
-// force_unlink__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::force_unlink(void)
 asm int DynamicModuleControlBase::force_unlink() {
     nofralloc
     #include "DynamicLink/asm/func_8026242C.s"
 }
 
-extern "C" {
-// dump__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::dump(void)
-asm void DynamicModuleControlBase_NS_dump(void) {
+asm void DynamicModuleControlBase::dump(void) {
     nofralloc
     #include "DynamicLink/asm/func_80262470.s"
 }
 
+extern "C" {
 // __ct__20DynamicModuleControlFPCc
 // DynamicModuleControl::DynamicModuleControl(const char*)
 asm void DynamicModuleControl(void) {

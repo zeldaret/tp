@@ -200,7 +200,7 @@ lbl_80006014:
 /* 80006028 00002F68  41 82 00 08 */	beq lbl_80006030
 /* 8000602C 00002F6C  48 2C D1 ED */	bl dump__11JKRAramHeapFv
 lbl_80006030:
-/* 80006030 00002F70  48 25 C4 41 */	bl DynamicModuleControlBase_NS_dump
+/* 80006030 00002F70  48 25 C4 41 */	bl dump__24DynamicModuleControlBaseFv
 /* 80006034 00002F74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80006038 00002F78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8000603C 00002F7C  3C 63 00 02 */	addis r3, r3, 2

@@ -27,7 +27,10 @@ public:
     virtual int do_link();
     virtual int do_unlink();
 
+    bool link();
+    int unlink();
     int force_unlink();
+    int load_async();
 };
 
 extern DynamicModuleControlBase* lbl_80451138; // mFirst

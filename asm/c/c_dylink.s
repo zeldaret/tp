@@ -132,7 +132,7 @@ cDyl_Unlink:
 /* 80018598 000154D8  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8001859C 000154DC  28 03 00 00 */	cmplwi r3, 0
 /* 800185A0 000154E0  41 82 00 0C */	beq lbl_800185AC
-/* 800185A4 000154E4  48 24 9D C1 */	bl DynamicModuleControlBase_NS_unlink
+/* 800185A4 000154E4  48 24 9D C1 */	bl unlink__24DynamicModuleControlBaseFv
 /* 800185A8 000154E8  48 00 00 08 */	b lbl_800185B0
 lbl_800185AC:
 /* 800185AC 000154EC  38 60 00 00 */	li r3, 0
@@ -172,11 +172,11 @@ lbl_8001860C:
 /* 8001861C 0001555C  28 1F 00 00 */	cmplwi r31, 0
 /* 80018620 00015560  41 82 00 50 */	beq lbl_80018670
 /* 80018624 00015564  7F E3 FB 78 */	mr r3, r31
-/* 80018628 00015568  48 24 9D C5 */	bl DynamicModuleControlBase_NS_load_async
+/* 80018628 00015568  48 24 9D C5 */	bl load_async__24DynamicModuleControlBaseFv
 /* 8001862C 0001556C  2C 03 00 00 */	cmpwi r3, 0
 /* 80018630 00015570  41 82 00 38 */	beq lbl_80018668
 /* 80018634 00015574  7F E3 FB 78 */	mr r3, r31
-/* 80018638 00015578  48 24 9C 99 */	bl DynamicModuleControlBase_NS_link
+/* 80018638 00015578  48 24 9C 99 */	bl link__24DynamicModuleControlBaseFv
 /* 8001863C 0001557C  2C 03 00 00 */	cmpwi r3, 0
 /* 80018640 00015580  41 82 00 0C */	beq lbl_8001864C
 /* 80018644 00015584  38 60 00 04 */	li r3, 4
@@ -236,7 +236,7 @@ cDyl_InitCallback:
 /* 80018704 00015644  38 84 2A 7E */	addi r4, r4, 0x2a7e
 /* 80018708 00015648  48 24 9F 59 */	bl DynamicModuleControl
 /* 8001870C 0001564C  38 61 00 08 */	addi r3, r1, 8
-/* 80018710 00015650  48 24 9B C1 */	bl DynamicModuleControlBase_NS_link
+/* 80018710 00015650  48 24 9B C1 */	bl link__24DynamicModuleControlBaseFv
 /* 80018714 00015654  38 00 00 01 */	li r0, 1
 /* 80018718 00015658  90 0D 87 2C */	stw r0, lbl_80450CAC-_SDA_BASE_(r13)
 /* 8001871C 0001565C  38 60 00 09 */	li r3, 9
