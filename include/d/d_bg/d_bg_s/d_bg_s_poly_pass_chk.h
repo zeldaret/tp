@@ -13,7 +13,18 @@ public:
     dBgS_PolyPassChk();
     ~dBgS_PolyPassChk();
 
+    bool ChkArrow() { return mArrow; }
+    bool ChkBomb() { return mBomb; }
+    bool ChkBoomerang() { return mBoomerang; }
+    bool ChkCam() { return mCamera; }
+    bool ChkHorse() { return mHorse; }
+    bool ChkIronBall() { return mIronBall; }
+    bool ChkLink() { return mLink; }
     bool ChkNoHorse();
+    bool ChkObj() { return mObject; }
+    bool ChkRope() { return mRope; }
+    bool ChkStatue() { return mStatue; }
+    bool ChkUnderwaterRoof() { return mUnderwaterRoof; }
 
     void ClrBomb();
     void ClrCam();

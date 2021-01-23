@@ -10,17 +10,7 @@ dBgS_PolyPassChk::dBgS_PolyPassChk()
 dBgS_PolyPassChk::~dBgS_PolyPassChk() {}
 
 void dBgS_PolyPassChk::SetPassChkInfo(dBgS_PolyPassChk& chk) {
-    mObject = chk.mObject;
-    mCamera = chk.mCamera;
-    mLink = chk.mLink;
-    mArrow = chk.mArrow;
-    mBomb = chk.mBomb;
-    mBoomerang = chk.mBoomerang;
-    mRope = chk.mRope;
-    mUnderwaterRoof = chk.mUnderwaterRoof;
-    mHorse = chk.mHorse;
-    mStatue = chk.mStatue;
-    mIronBall = chk.mIronBall;
+    *this = chk;
 }
 
 void dBgS_PolyPassChk::SetObj() {
@@ -76,10 +66,11 @@ void dBgS_PolyPassChk::SetHorse() {
 }
 
 bool dBgS_PolyPassChk::ChkNoHorse() {
-    if (mObject || mCamera || mLink || mArrow || mBomb || mBoomerang || mRope || mUnderwaterRoof) {
+    if (ChkObj() || ChkCam() || ChkLink() || ChkArrow() || ChkBomb() || ChkBoomerang() ||
+        ChkRope() || ChkUnderwaterRoof()) {
         return true;
     }
-    return !mHorse;
+    return !ChkHorse();
 }
 
 void dBgS_PolyPassChk::SetStatue() {
