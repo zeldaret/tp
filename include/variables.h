@@ -2809,8 +2809,6 @@ extern u8 lbl_8039A4A0;
 extern u8 lbl_803C34B0;
 extern u8 lbl_803C34C0;
 extern u8 lbl_803C34F4;
-extern u8 lbl_80451138;
-extern u8 lbl_8045113C;
 extern u8 lbl_80451140;
 extern u8 lbl_80451144;
 extern u8 lbl_80451148;

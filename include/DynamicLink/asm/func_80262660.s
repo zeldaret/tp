@@ -5,7 +5,7 @@
 /* 80262670 0025F5B0  93 C1 00 08 */ stw r30, 8(r1)
 /* 80262674 0025F5B4  7C 7E 1B 78 */ mr r30, r3
 /* 80262678 0025F5B8  7C 9F 23 78 */ mr r31, r4
-/* 8026267C 0025F5BC  4B FF FC 09 */ bl DynamicModuleControlBase
+/* 8026267C 0025F5BC  4B FF FC 09 */ bl __ct__24DynamicModuleControlBaseFv
 /* 80262680 0025F5C0  3C 60 80 3C */ lis r3, lbl_803C34C0@ha
 /* 80262684 0025F5C4  38 03 34 C0 */ addi r0, r3, lbl_803C34C0@l
 /* 80262688 0025F5C8  90 1E 00 0C */ stw r0, 0xc(r30)

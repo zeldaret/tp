@@ -11,13 +11,34 @@ asm void DynamicModuleControlBase_NS_dtor(void) {
     nofralloc
     #include "DynamicLink/asm/func_802621CC.s"
 }
+};
 
 // __ct__24DynamicModuleControlBaseFv
 // DynamicModuleControlBase::DynamicModuleControlBase(void)
-asm void DynamicModuleControlBase(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_80262284.s"
+DynamicModuleControlBase::DynamicModuleControlBase() {
+    mLinkCount = 0;
+    field_0x2 = 0;
+    mNext = NULL;
+
+    if (/* mFirst */ lbl_80451138 == NULL) {
+        lbl_80451138 = this;
+    }
+
+    mPrev = /* mLast */ lbl_8045113C;
+
+    DynamicModuleControlBase* prev = mPrev;
+    if (prev != NULL) {
+        prev->mNext = this;
+    }
+
+    /* mLast */ lbl_8045113C = this;
 }
+
+extern "C" {
+    void __ct__24DynamicModuleControlBaseFv(void);
+};
+
+extern "C" {
 
 // link__24DynamicModuleControlBaseFv
 // DynamicModuleControlBase::link(void)
