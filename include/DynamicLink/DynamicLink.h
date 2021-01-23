@@ -16,9 +16,9 @@ public:
     DynamicModuleControlBase();
     virtual ~DynamicModuleControlBase();
 
-    virtual void getModuleName() const;
-    virtual void getModuleSize() const;
-    virtual void getModuleTypeString() const;
+    virtual char* getModuleName() const;
+    virtual u32 getModuleSize() const;
+    virtual char* getModuleTypeString() const;
     virtual void dump();
     virtual void dump2();
     virtual int do_load();

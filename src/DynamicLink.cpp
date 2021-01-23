@@ -233,64 +233,50 @@ void ModuleDestructorsX(ModuleDtor* dtors) {
         dtors++;
     }
 }
+};
 
 
-// do_link__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::do_link(void)
-asm void func_802631D4(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631D4.s"
+int DynamicModuleControlBase::do_link() {
+    return 1;
 }
 
-// do_load__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::do_load(void)
-asm void func_802631DC(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631DC.s"
+int DynamicModuleControlBase::do_load() {
+    return 1;
 }
 
-// do_unload__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::do_unload(void)
-asm void func_802631E4(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631E4.s"
+int DynamicModuleControlBase::do_unload() {
+    return 1;
 }
 
-// do_unlink__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::do_unlink(void)
-asm void func_802631EC(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631EC.s"
+int DynamicModuleControlBase::do_unlink() {
+    return 1;
 }
 
-// do_load_async__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::do_load_async(void)
-asm void func_802631F4(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631F4.s"
+int DynamicModuleControlBase::do_load_async() {
+    return 1;
 }
 
-// dump2__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::dump2(void)
-asm void func_802631FC(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802631FC.s"
+void DynamicModuleControlBase::dump2() {
+    return;
 }
 
 // getModuleTypeString__24DynamicModuleControlBaseCFv
 // DynamicModuleControlBase::getModuleTypeString(void) const
-asm void func_80263200(void) {
+asm char* DynamicModuleControlBase::getModuleTypeString() const {
+    // kinda need string placement for this one tbh
+    // or at least some rodata fixes
     nofralloc
     #include "DynamicLink/asm/func_80263200.s"
 }
 
 // getModuleSize__24DynamicModuleControlBaseCFv
 // DynamicModuleControlBase::getModuleSize(void) const
-asm void func_80263210(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_80263210.s"
+u32 DynamicModuleControlBase::getModuleSize() const {
+    return 0;
 }
 
+
+extern "C" {
 // getModuleName__20DynamicModuleControlCFv
 // DynamicModuleControl::getModuleName(void) const
 asm void func_80263218(void) {
