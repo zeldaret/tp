@@ -90,9 +90,7 @@ void dBgS_PolyPassChk::ClrIronBall() {
 }
 
 extern "C" {
-// __dt__16cBgS_PolyPassChkFv
-// cBgS_PolyPassChk::~cBgS_PolyPassChk(void)
-asm void func_80078FAC(void) {
+asm void __dt__16cBgS_PolyPassChkFv(void) {
     nofralloc
 #include "d/d_bg/d_bg_s/polypass/asm/func_80078FAC.s"
 }
