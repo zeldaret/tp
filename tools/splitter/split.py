@@ -10,7 +10,7 @@ from loguru import logger
 from datetime import datetime
 import re
 import click
-from parser import asm, Emittable, Global, Label, Line, BlockComment, Instruction
+from asm_parser import asm, Emittable, Global, Label, Line, BlockComment, Instruction
 from demangle import parse_framework_map, demangle
 from util import PathPath, pairwise
 from pprint import pprint
