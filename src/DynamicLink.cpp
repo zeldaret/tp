@@ -4,17 +4,31 @@
 #include "DynamicLink/DynamicLink.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 
-extern "C" {
-// __dt__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::~DynamicModuleControlBase(void)
-asm void DynamicModuleControlBase_NS_dtor(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_802621CC.s"
-}
-};
+DynamicModuleControlBase::~DynamicModuleControlBase(void) {
+    this->force_unlink();
 
-// __ct__24DynamicModuleControlBaseFv
-// DynamicModuleControlBase::DynamicModuleControlBase(void)
+    DynamicModuleControlBase* prev = this->mPrev;
+    if (prev != NULL) {
+        prev->mNext = this->mNext;
+    }
+
+    DynamicModuleControlBase* next = this->mNext;
+    if (next != NULL) {
+        next->mPrev = this->mPrev;
+    }
+
+    if (/* mFirst */ lbl_80451138 == this) {
+        lbl_80451138 = this->mNext;
+    }
+
+    if (/* mLast */ lbl_8045113C == this) {
+        lbl_8045113C = this->mPrev;
+    }
+
+    this->mNext = NULL;
+    this->mPrev = NULL;
+}
+
 DynamicModuleControlBase::DynamicModuleControlBase() {
     mLinkCount = 0;
     field_0x2 = 0;
@@ -36,6 +50,7 @@ DynamicModuleControlBase::DynamicModuleControlBase() {
 
 extern "C" {
     void __ct__24DynamicModuleControlBaseFv(void);
+    void __dt__24DynamicModuleControlBaseFv(void);
 };
 
 extern "C" {
@@ -61,13 +76,17 @@ asm void DynamicModuleControlBase_NS_load_async(void) {
     #include "DynamicLink/asm/func_802623EC.s"
 }
 
+
+};
+
 // force_unlink__24DynamicModuleControlBaseFv
 // DynamicModuleControlBase::force_unlink(void)
-asm void DynamicModuleControlBase_NS_force_unlink(void) {
+asm int DynamicModuleControlBase::force_unlink() {
     nofralloc
     #include "DynamicLink/asm/func_8026242C.s"
 }
 
+extern "C" {
 // dump__24DynamicModuleControlBaseFv
 // DynamicModuleControlBase::dump(void)
 asm void DynamicModuleControlBase_NS_dump(void) {
