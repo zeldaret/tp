@@ -19,7 +19,7 @@ private:
     // u32 unk8;
     // s16 reference_count;
     // u8 padding[2];
-    // mDoDVDThd_command_c* command;
+    // mDoDvdThd_command_c* command;
     // JKRArchive* archive;
     // JKRHeap* heap;
     // JKRSolidHeap* solid_heap;

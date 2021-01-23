@@ -6,7 +6,7 @@
 /* 80262770 0025F6B0  90 0D 8B C0 */ stw r0, lbl_80451140-_SDA_BASE_(r13)
 /* 80262774 0025F6B4  90 0D 8B C4 */ stw r0, lbl_80451144-_SDA_BASE_(r13)
 /* 80262778 0025F6B8  38 60 00 00 */ li r3, 0
-/* 8026277C 0025F6BC  4B FF FF 55 */ bl DynamicModuleControl_NS_mountCallback
+/* 8026277C 0025F6BC  4B FF FF 55 */ bl mountCallback__20DynamicModuleControlFPv
 /* 80262780 0025F6C0  38 60 00 01 */ li r3, 1
 /* 80262784 0025F6C4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80262788 0025F6C8  7C 08 03 A6 */ mtlr r0

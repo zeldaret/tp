@@ -6648,8 +6648,8 @@ extern "C" {
     void load_async__24DynamicModuleControlBaseFv(void);
     void unlink__24DynamicModuleControlBaseFv(void);
     void DynamicModuleControl_NS_callback(void);
-    void DynamicModuleControl_NS_initialize(void);
-    void DynamicModuleControl_NS_mountCallback(void);
+    void initialize__20DynamicModuleControlFv(void);
+    void mountCallback__20DynamicModuleControlFPv(void);
     void OSGetStackPointer(void);
     void OSLink(void);
     void OSLinkFixed(void);

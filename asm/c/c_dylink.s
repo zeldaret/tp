@@ -75,7 +75,7 @@ lbl_800184B4:
 /* 800184D8 00015418  7C 64 1B 79 */	or. r4, r3, r3
 /* 800184DC 0001541C  41 82 00 10 */	beq lbl_800184EC
 /* 800184E0 00015420  80 9B 00 04 */	lwz r4, 4(r27)
-/* 800184E4 00015424  48 24 A1 7D */	bl DynamicModuleControl
+/* 800184E4 00015424  48 24 A1 7D */	bl __ct__20DynamicModuleControlFPCc
 /* 800184E8 00015428  7C 64 1B 78 */	mr r4, r3
 lbl_800184EC:
 /* 800184EC 0001542C  A8 1B 00 00 */	lha r0, 0(r27)
@@ -215,7 +215,7 @@ cDyl_InitCallback:
 /* 800186B0 000155F0  38 A0 00 00 */	li r5, 0
 /* 800186B4 000155F4  48 2B C3 01 */	bl mount__12JKRFileCacheFPCcP7JKRHeapPCc
 /* 800186B8 000155F8  7C 7F 1B 78 */	mr r31, r3
-/* 800186BC 000155FC  48 24 A0 A1 */	bl DynamicModuleControl_NS_initialize
+/* 800186BC 000155FC  48 24 A0 A1 */	bl initialize__20DynamicModuleControlFv
 /* 800186C0 00015600  3C 60 80 37 */	lis r3, lbl_80375DE8@ha
 /* 800186C4 00015604  38 63 5D E8 */	addi r3, r3, lbl_80375DE8@l
 /* 800186C8 00015608  38 63 2A 58 */	addi r3, r3, 0x2a58
@@ -234,7 +234,7 @@ cDyl_InitCallback:
 /* 800186FC 0001563C  3C 80 80 37 */	lis r4, lbl_80375DE8@ha
 /* 80018700 00015640  38 84 5D E8 */	addi r4, r4, lbl_80375DE8@l
 /* 80018704 00015644  38 84 2A 7E */	addi r4, r4, 0x2a7e
-/* 80018708 00015648  48 24 9F 59 */	bl DynamicModuleControl
+/* 80018708 00015648  48 24 9F 59 */	bl __ct__20DynamicModuleControlFPCc
 /* 8001870C 0001564C  38 61 00 08 */	addi r3, r1, 8
 /* 80018710 00015650  48 24 9B C1 */	bl link__24DynamicModuleControlBaseFv
 /* 80018714 00015654  38 00 00 01 */	li r0, 1

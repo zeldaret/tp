@@ -3,17 +3,17 @@
 
 #include "dolphin/types.h"
 
-class mDoDVDThd_command_c {
+class mDoDvdThd_command_c {
 public:
 private:
 };
 
-class mDoDVDThd_callback_c {
+class mDoDvdThd_callback_c {
 public:
-    mDoDVDThd_callback_c(void*(void*), void*);
-    ~mDoDVDThd_callback_c();
-    mDoDVDThd_command_c* create(void*(void*), void*);
-    mDoDVDThd_command_c* execute();
+    mDoDvdThd_callback_c(void*(void*), void*);
+    ~mDoDvdThd_callback_c();
+    mDoDvdThd_command_c* create(void*(void*), void*);
+    mDoDvdThd_command_c* execute();
 };
 
 #endif

@@ -449,7 +449,7 @@ void main01(void) {
     mDoMch_Create();
     mDoGph_Create();
     create__8mDoCPd_cFv();
-    mDoDVDThd_callback_c thread_callback;
+    mDoDvdThd_callback_c thread_callback;
     // JKRSolidHeap audio_heap;
 
     // Root Heap
