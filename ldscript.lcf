@@ -3332,6 +3332,7 @@ func_80015D44
 func_80015CF0
 func_80015BB8
 func_80263218
+getModuleName__20DynamicModuleControlCFv
 getModuleSize__24DynamicModuleControlBaseCFv
 getModuleTypeString__24DynamicModuleControlBaseCFv
 dump2__24DynamicModuleControlBaseFv

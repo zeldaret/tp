@@ -20,9 +20,9 @@ public:
     DynamicModuleControlBase();
     virtual ~DynamicModuleControlBase();
 
-    virtual char* getModuleName() const;
+    virtual const char* getModuleName() const;
     virtual u32 getModuleSize() const;
-    virtual char* getModuleTypeString() const;
+    virtual const char* getModuleTypeString() const;
     virtual void dump();
     virtual void dump2();
     virtual int do_load();
@@ -41,11 +41,13 @@ class DynamicModuleControl : public DynamicModuleControlBase {
 public:
     DynamicModuleControl(const char* pModuleName);
 
-    JKRArchive* mountCallback(void*);
-    bool initialize();
+    static JKRArchive* mountCallback(void*);
+    bool initialize();    
 
+    virtual const char* getModuleName() const;
     virtual u32 getModuleSize() const;
-    virtual char* getModuleTypeString() const;
+    virtual const char* getModuleTypeString() const;
+    virtual int do_unload();
 
 private:
     OSModuleHeader* mResource;
@@ -64,6 +66,7 @@ extern DynamicModuleControlBase* lbl_8045113C; // mLast
 extern char lbl_8039A4A0[69]; // "%08x DynamicModuleControlBase::unlink() mLinkCount id already zero.\n"
 extern JKRFileCache* lbl_80451148; // DynamicLink::DynamicModuleControl::sFileCache
 extern JKRArchive* lbl_80451144; // DynamicLink::DynamicModuleControl::sArchive
+extern u32 lbl_80451140; // DynamicLink::DynamicModuleControl::sAllocBytes;
 extern char lbl_8039A580[19];
 extern char lbl_8039A593[9];
 extern char lbl_8039A59C[69];

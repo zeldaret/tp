@@ -147,9 +147,13 @@ asm JKRArchive* DynamicModuleControl::mountCallback(void*) {
 
 // initialize__20DynamicModuleControlFv
 // DynamicModuleControl::initialize(void)
-asm bool DynamicModuleControl::initialize() {
-    nofralloc
-    #include "DynamicLink/asm/func_8026275C.s"
+bool DynamicModuleControl::initialize() {
+    /* sFileCache */ lbl_80451148 = NULL;
+    /* sArchive */ lbl_80451140 = 0;
+    /* sAllocBytes */ lbl_80451144 = NULL;
+    mountCallback(NULL);
+
+    return true;
 }
 
 extern "C" {
@@ -246,7 +250,7 @@ u32 DynamicModuleControl::getModuleSize() const {
 
 // getModuleTypeString__20DynamicModuleControlCFv
 // DynamicModuleControl::getModuleTypeString(void) const
-char* DynamicModuleControl::getModuleTypeString() const {
+const char* DynamicModuleControl::getModuleTypeString() const {
     return lbl_803C34B0[this->mResourceType & 3];
 }
 
@@ -312,26 +316,21 @@ void DynamicModuleControlBase::dump2() {
 
 // getModuleTypeString__24DynamicModuleControlBaseCFv
 // DynamicModuleControlBase::getModuleTypeString(void) const
-asm char* DynamicModuleControlBase::getModuleTypeString() const {
+asm const char* DynamicModuleControlBase::getModuleTypeString() const {
     // kinda need string placement for this one tbh
     // or at least some rodata fixes
     nofralloc
     #include "DynamicLink/asm/func_80263200.s"
 }
 
-// getModuleSize__24DynamicModuleControlBaseCFv
-// DynamicModuleControlBase::getModuleSize(void) const
 u32 DynamicModuleControlBase::getModuleSize() const {
     return 0;
 }
 
 
-extern "C" {
-// getModuleName__20DynamicModuleControlCFv
-// DynamicModuleControl::getModuleName(void) const
-asm void func_80263218(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_80263218.s"
+const char* DynamicModuleControl::getModuleName() const {
+    return mModuleName;
 }
 
-};
+// @todo `__dt__20DynamicModuleControlFv` is getting generated here but should be in c_dylib.o
+// it gets pruned by the linker in any case b/c there's no ref to it
