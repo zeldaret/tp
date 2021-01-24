@@ -3351,7 +3351,7 @@ getModuleSize__20DynamicModuleControlCFv
 func_80262F28
 func_80262C5C
 func_80262C0C
-func_80262BC4
+do_unload__20DynamicModuleControlFv
 func_80262AFC
 func_802627E8
 }

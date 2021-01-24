@@ -201,11 +201,13 @@ asm void func_80262AFC(void) {
     #include "DynamicLink/asm/func_80262AFC.s"
 }
 
-// do_unload__20DynamicModuleControlFv
-// DynamicModuleControl::do_unload(void)
-asm void func_80262BC4(void) {
-    nofralloc
-    #include "DynamicLink/asm/func_80262BC4.s"
+int DynamicModuleControl::do_unload() {
+    if (mResource != NULL) {
+        JKRFree(mResource);
+        mResource = NULL;
+    }
+
+    return 1;
 }
 
 // dump2__20DynamicModuleControlFv
