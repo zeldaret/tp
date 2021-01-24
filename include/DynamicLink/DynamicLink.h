@@ -1,6 +1,7 @@
 #ifndef DYNAMIC_LINK_H_
 #define DYNAMIC_LINK_H_
 
+#include "os/OS.h"
 #include "JSystem/JSupport/JSUList/JSUList.h"
 #include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
@@ -43,8 +44,11 @@ public:
     JKRArchive* mountCallback(void*);
     bool initialize();
 
+    virtual u32 getModuleSize() const;
+    virtual char* getModuleTypeString() const;
+
 private:
-    void* mResource;
+    OSModuleHeader* mResource;
     void* mBss;
     u32 field_0x18;
     const char* mModuleName;

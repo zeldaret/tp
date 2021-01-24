@@ -3345,8 +3345,8 @@ ModuleConstructorsX
 ModuleUnresolved
 ModuleEpilog
 ModuleProlog
-func_80263070
-func_80263000
+getModuleTypeString__20DynamicModuleControlCFv
+getModuleSize__20DynamicModuleControlCFv
 func_80262F28
 func_80262C5C
 func_80262C0C
