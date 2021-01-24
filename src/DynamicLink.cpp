@@ -64,13 +64,13 @@ bool DynamicModuleControlBase::link() {
             return false;
         }
 
-        if (field_0x2 < 0xffff) {
+        if (field_0x2 < 65535) {
             field_0x2++;
         }
     }
 
-    JUT_ASSERT(mLinkCount != 0xffff);  // "mLinkCount < 65535"
-    if (mLinkCount < 0xffff) {
+    JUT_ASSERT(mLinkCount != 65535);  // "mLinkCount < 65535"
+    if (mLinkCount < 65535) {
         mLinkCount++;
     }
 
