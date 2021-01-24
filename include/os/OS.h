@@ -299,19 +299,21 @@ inline void* OSPhysicalToCached(u32 offset) {
 
 typedef struct OSModuleInfo OSModuleInfo;
 typedef struct OSModuleLinks {
-    OSModuleInfo* next; // Pointer to next module, filled at runtime
-    OSModuleInfo* prev; // Pointer to previous module, filled at runtime
+    OSModuleInfo* next;  // Pointer to next module, filled at runtime
+    OSModuleInfo* prev;  // Pointer to previous module, filled at runtime
 } OSModuleLinks;
 
 // field descriptions are from the tockdom wiki
 typedef struct OSModuleInfo {
-    u32 id; // arbitrary identification number. must be unique amongst all rels used by a game. must not be 0.
+    u32 id;  // arbitrary identification number. must be unique amongst all rels used by a game.
+             // must not be 0.
     OSModuleLinks links;
-    u32 numSections; // number of sections in the file
-    u32 sectionInfoOffset; // offset to the start of the section table
-    u32 nameOffset; // offset to ASCII string containing name of module. may be NULL. relative to start of REL
-    u32 nameSize; // size of module name in bytes
-    u32 version; // REL format version
+    u32 numSections;        // number of sections in the file
+    u32 sectionInfoOffset;  // offset to the start of the section table
+    u32 nameOffset;  // offset to ASCII string containing name of module. may be NULL. relative to
+                     // start of REL
+    u32 nameSize;    // size of module name in bytes
+    u32 version;     // REL format version
 } OSModuleInfo;
 
 typedef struct OSModuleHeader {
@@ -321,20 +323,21 @@ typedef struct OSModuleHeader {
     u32 relOffset;         // offset to rel table
     u32 impOffset;         // offset to imp table
     u32 impSize;           // size of imp table
-    u8  prologSection;     // section idx for _prolog fn
-    u8  epilogSection;     // section idx for _epilog fn
-    u8  unresolvedSection; // section idx for _unresolved fn
-    u8  bssSection;        // section idx for .bss (set at runtime!)
+    u8 prologSection;      // section idx for _prolog fn
+    u8 epilogSection;      // section idx for _epilog fn
+    u8 unresolvedSection;  // section idx for _unresolved fn
+    u8 bssSection;         // section idx for .bss (set at runtime!)
     u32 prolog;            // _prolog function offset
     u32 epilog;            // _epilog function offset
     u32 unresolved;        // _unresolved function offset
 
     // version >= 2
-    u32 align;             // alignment constraint for all sections (as pow of 2)
-    u32 bssAlign;          // alignment constraint for .bss section(s) (as pow of 2)
+    u32 align;     // alignment constraint for all sections (as pow of 2)
+    u32 bssAlign;  // alignment constraint for .bss section(s) (as pow of 2)
 
     // version >= 3
-    u32 fixSize;           // if REL is linked w/ OSLinkFixed, the space after this addr can be used for other purposes (eg .bss)
+    u32 fixSize;  // if REL is linked w/ OSLinkFixed, the space after this addr can be used for
+                  // other purposes (eg .bss)
 } OSModuleHeader;
 
 #endif
