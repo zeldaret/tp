@@ -246,9 +246,8 @@ u32 DynamicModuleControl::getModuleSize() const {
 
 // getModuleTypeString__20DynamicModuleControlCFv
 // DynamicModuleControl::getModuleTypeString(void) const
-asm char* DynamicModuleControl::getModuleTypeString() const {
-    nofralloc
-    #include "DynamicLink/asm/func_80263070.s"
+char* DynamicModuleControl::getModuleTypeString() const {
+    return lbl_803C34B0[this->mResourceType & 3];
 }
 
 extern "C" {

@@ -67,5 +67,7 @@ extern JKRArchive* lbl_80451144; // DynamicLink::DynamicModuleControl::sArchive
 extern char lbl_8039A580[19];
 extern char lbl_8039A593[9];
 extern char lbl_8039A59C[69];
+extern char* lbl_803C34B0[4]; // .rodata: module type string table (local to DynamicModuleControl::getModuleTypeString)
+
 
 #endif // DYNAMIC_LINK_H_
