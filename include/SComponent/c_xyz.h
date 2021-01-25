@@ -10,9 +10,9 @@ extern f32 lbl_80455078;
 extern f32 lbl_8045507C;
 extern f32 lbl_80455080;
 extern f32 /* 32.0 */ lbl_80455084;
-extern double lbl_80455088;
-extern double lbl_80455090;
-extern double lbl_80455098;
+extern f64 lbl_80455088;
+extern f64 lbl_80455090;
+extern f64 lbl_80455098;
 extern u8 lbl_80430CE8;
 
 class cXyz : public Vec {

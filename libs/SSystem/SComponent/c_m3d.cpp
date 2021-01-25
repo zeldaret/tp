@@ -75,8 +75,8 @@ inline bool cM3d_IsZero(f32 pF) {
 }
 
 // cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf
-bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 p5,
-                               f32 p6, f32* param_7, f32* param_8, f32* param_9) {
+bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 p5, f32 p6,
+                               f32* param_7, f32* param_8, f32* param_9) {
     bool retVal = false;
     f32 param_5 = p5 - param_3;
     f32 param_6 = p6 - param_4;
@@ -242,8 +242,7 @@ asm bool cM3d_Cross_AabSph(const cM3dGAab*, const cM3dGSph*) {
 
 #ifdef NON_MATCHING
 // cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf
-int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA,
-                      f32* pFloatB) {
+int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA, f32* pFloatB) {
     Vec linAVec;
     Vec linBVec;
     pLinA->CalcVec(&linAVec);
@@ -412,8 +411,7 @@ bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const
 
 // cM3d_InclusionCheckPosIn3PosBox2d__Ffffffffff
 // cM3d_InclusionCheckPosIn3PosBox2d(f32, f32, f32, f32, f32, f32, f32, f32, f32)
-asm bool cM3d_InclusionCheckPosIn3PosBox2d(f32, f32, f32, f32, f32, f32, f32, f32,
-                                           f32) {
+asm bool cM3d_InclusionCheckPosIn3PosBox2d(f32, f32, f32, f32, f32, f32, f32, f32, f32) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_80269D64.s"
 }
@@ -698,8 +696,8 @@ asm bool cM3d_Cross_TriTri(const cM3dGTri&, const cM3dGTri&, Vec*) {
 #include "SComponent/c_m3d/asm/func_8026DE2C.s"
 }
 
-inline f32 cM3d_2LinCenter(cM3dGLin const pLinA, f32 pLinAF, cM3dGLin const& pLinB,
-                             f32 pLinBF, Vec* pVecOut) {
+inline f32 cM3d_2LinCenter(cM3dGLin const pLinA, f32 pLinAF, cM3dGLin const& pLinB, f32 pLinBF,
+                           Vec* pVecOut) {
     Vec tmp, tmp2;
     pLinA.CalcPos(&tmp, pLinAF);
     pLinB.CalcPos(&tmp2, pLinBF);
@@ -729,8 +727,8 @@ asm void cM3d_CalcVecZAngle(const Vec&, csXyz*) {
 }
 
 // cM3d_PlaneCrossLineProcWork__FfffffffPfPf
-void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6,
-                                 f32 f7, f32* pF1, f32* pF2) {
+void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6, f32 f7, f32* pF1,
+                                 f32* pF2) {
     *pF1 = ((f2 * f7) - (f4 * f6)) / f5;
     *pF2 = ((f3 * f6) - (f1 * f7)) / f5;
 }
@@ -813,7 +811,7 @@ f32 cM3d_lineVsPosSuisenCross(const cM3dGLin* pLine, const Vec* pPoint, Vec* pVe
 
 // cM3d_lineVsPosSuisenCross__FRC3VecRC3VecRC3VecP3Vec
 f32 cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, const Vec& pPoint,
-                                Vec* pVecOut) {
+                              Vec* pVecOut) {
     Vec tmp1;
     Vec tmp2;
     Vec tmp3;

@@ -31,8 +31,7 @@ bool cM3d_CrossInfLineVsInfPlane_proc(f32, f32, const Vec*, const Vec*, Vec*);
 bool cM3d_Cross_LinPla(const cM3dGLin*, const cM3dGPla*, Vec*, bool, bool);
 bool cM3d_Cross_MinMaxBoxLine(const Vec*, const Vec*, const Vec*, const Vec*);
 bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec*, const Vec*, const Vec*, const Vec*, f32);
-bool cM3d_InclusionCheckPosIn3PosBox2d(f32, f32, f32, f32, f32, f32, f32, f32,
-                                       f32);
+bool cM3d_InclusionCheckPosIn3PosBox2d(f32, f32, f32, f32, f32, f32, f32, f32, f32);
 bool cM3d_CrossX_Tri(const cM3dGTri*, const Vec*, f32);
 bool cM3d_CrossX_Tri(const cM3dGTri*, const Vec*);
 bool cM3d_CrossX_LinTri_proc(const cM3dGTri*, const Vec*);
