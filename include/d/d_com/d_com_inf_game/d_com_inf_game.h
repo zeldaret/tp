@@ -480,4 +480,8 @@ inline u32 dComIfGp_getNowVibration(void) {
     return g_dComIfG_gameInfo.getPlay().getNowVibration();
 }
 
+extern "C" {
+void dComIfGs_staffroll_next_go(void);
+}
+
 #endif

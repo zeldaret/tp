@@ -30,4 +30,9 @@ public:
     f32 GetCZ(void) const { return mCenter.GetZ(); }
 };
 
+// additional symbols needed for cM3dGSph
+extern "C" {
+void Set__8cM3dGSphFRC4cXyzf(void);
+}
+
 #endif

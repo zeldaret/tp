@@ -1,14 +1,15 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "JSystem/JAudio2/JAISeCategoryMgr.h"
+#include "JSystem/JAudio2/JAISoundParamsMove.h"
+#include "JSystem/JAudio2/JAIStreamMgr.h"
+#include "Z2AudioLib/Z2Audience/Z2Audience.h"
+#include "Z2AudioLib/Z2Calc/Z2Calc.h"
+#include "Z2AudioLib/Z2SoundMgr/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
-
-extern "C" {
-void JAISoundHandle(void);
-void JAISoundHandle_NS_dtor(void);
-}
 
 asm Z2SeMgr::Z2SeMgr(void) {
     nofralloc

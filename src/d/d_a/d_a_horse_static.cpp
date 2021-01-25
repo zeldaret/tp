@@ -1,4 +1,5 @@
 #include "d/d_a/d_a_horse_static/d_a_horse_static.h"
+#include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "global.h"
 
 u32 e_wb_class::checkWait(void) {
