@@ -39,4 +39,23 @@ private:
 //!        const placement is fixed.
 extern Z2SpeechMgr2* lbl_80450B70;  // m_Do_main::JASGlobalInstance<Z2SpeechMgr2>::sInstance
 
+// Additional symbols needed for Z2SpeechMgr2.cpp
+extern "C" {
+void __ct__15Z2SpeechStarterFv(void);
+
+void __ct__12Z2SpeechMgr2Fv(void);
+void Z2SpeechMgr2_NS_framework(void);
+void Z2SpeechMgr2_NS_isMidnaSpeak(void);
+void Z2SpeechMgr2_NS_isNonVerbal(void);
+void Z2SpeechMgr2_NS_playOneShotVoice(void);
+void Z2SpeechMgr2_NS_selectTail(void);
+void Z2SpeechMgr2_NS_selectUnit(void);
+void Z2SpeechMgr2_NS_setString(void);
+void Z2SpeechMgr2_NS_setTextCount(void);
+void Z2SpeechMgr2_NS_speakOneWord(void);
+
+void func_802CCFF8(void);
+void func_802CBCEC(void);
+}
+
 #endif

@@ -2,6 +2,9 @@
 
 #include "global.h"
 
+#include "JSystem/JAudio2/JAISoundParamsMove.h"
+#include "JSystem/JAudio2/JAISoundStarter.h"
+#include "Z2AudioLib/Z2Calc/Z2Calc.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"

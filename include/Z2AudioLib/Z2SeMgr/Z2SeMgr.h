@@ -16,8 +16,10 @@ struct Z2MultiSeObj {
     u8 unk1[4];
 };
 
-struct Z2SeMgr {
+class Z2SeMgr {
+public:
     Z2SeMgr(void);
+
     void initSe(void);
     void resetModY(void);
     void modHeightAtCamera(Vec const**);
@@ -38,6 +40,7 @@ struct Z2SeMgr {
     bool isLevelSe(JAISoundID);
     bool isSoundCulling(JAISoundID);
 
+private:
     JAISoundHandles sound_handles;
     Z2SeMgr* se_mgr;
     u32 field_0x64;
@@ -60,14 +63,17 @@ struct Z2SeMgr {
     u8 unk2[3];
 };
 
-struct Z2MultiSeMgr {
+class Z2MultiSeMgr {
+public:
     Z2MultiSeMgr();
     ~Z2MultiSeMgr();
+
     u32 registMultiSePos(Vec*);
     void resetMultiSePos(void);
     float getPanPower(void);
     float getDolbyPower(void);
 
+private:
     u8 field_0x0;
     u8 field_0x1;
     u8 field_0x2;
@@ -83,40 +89,37 @@ struct Z2MultiSeMgr {
 extern "C" {
 void Z2MultiSeObj(void);
 void __ct__12Z2MultiSeObjFv(void);
+
+void __ct__12Z2MultiSeMgrFv(void);
+void __dt__12Z2MultiSeMgrFv(void);
+void resetMultiSePos__12Z2MultiSeMgrFv(void);
+
+void __ct__7Z2SeMgrFv(void);
+void decrCrowdSize__7Z2SeMgrFv(void);
+void incrCrowdSize__7Z2SeMgrFv(void);
+void initSe__7Z2SeMgrFv(void);
+void isLevelSe__7Z2SeMgrF10JAISoundID(JAISoundID);
+void isSoundCulling__7Z2SeMgrF10JAISoundID(JAISoundID);
+void modHeightAtCamera__7Z2SeMgrFPPC3Vec(Vec const**);
+void processSeFramework__7Z2SeMgrFv(void);
 void resetModY__7Z2SeMgrFv(void);
-void JAISoundHandles_NS_getFreeHandle(void);
-void JAISoundHandles_NS_getHandleSoundID(void);
+void seMoveVolumeAll__7Z2SeMgrFfUl(float, u32);
 void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(JAISoundID, Vec const*, u32, s8, float, float,
                                                     float, float, u8);
-void JAISoundParamsMove_NS_moveDolby(void);
-void JAISoundParamsMove_NS_movePan(void);
-void JAISoundParamsMove_NS_moveFxMix(void);
-void Z2Audience_NS_calcOffMicSound(void);
-void modHeightAtCamera__7Z2SeMgrFPPC3Vec(Vec const**);
 void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc(JAISoundID, Vec const*, u32, s8, float,
                                                          float, float, float, u8);
-void releaseSound__14JAISoundHandleFv(void);
 void seStop__7Z2SeMgrF10JAISoundIDUl(JAISoundID, u32);
-void JAISeCategoryMgr_NS_stop(void);
-void seMoveVolumeAll__7Z2SeMgrFfUl(float, u32);
-void Z2SpeechMgr2_NS_playOneShotVoice(void);
+void seStopAll__7Z2SeMgrFUl(void);
 void setLevObjSE__7Z2SeMgrFUlP3VecSc(u32, Vec*, s8);
 void setMultiTriggerSE__7Z2SeMgrFUlP3VecSc(u32, Vec*, s8);
-void isLevelSe__7Z2SeMgrF10JAISoundID(JAISoundID);
-void Z2SoundMgr_NS_stopSoundID(void);
-void Z2SoundMgr_NS_multiVolumeSoundID(void);
-void isSoundCulling__7Z2SeMgrF10JAISoundID(JAISoundID);
+
 void __ct__12Z2MultiSeMgrFv(void);
-void Z2Audience_NS_calcRelPosDolby(void);
-void Z2Audience_NS_calcRelPosPan(void);
-void Z2Audience_NS_calcRelPosVolume(void);
-void Z2Audience_NS_convertAbsToRel(void);
 void registMultiSePos__12Z2MultiSeMgrFP3Vec(Vec*);
 void resetMultiSePos__12Z2MultiSeMgrFv(void);
 float getPanPower__12Z2MultiSeMgrFv(void);
 float getDolbyPower__12Z2MultiSeMgrFv(void);
 
-void __ct__14JAISoundHandleFv(void);
+void Z2SeMgr_NS_resetCrowdSize(void);
 }
 
 extern Z2SeMgr* lbl_80450B88;  // Z2SeMgr sInstance

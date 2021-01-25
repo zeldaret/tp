@@ -19,15 +19,6 @@ private:
     float field_0x1c;
 };
 
-class cM3dGCyl { /* Cylinder class */
-public:
-private:
-    cXyz center;
-    float radius;
-    float height;
-    void* vtable;
-};
-
 class cM3dGAab { /* Axis-aligned bounding box */
 public:
 private:

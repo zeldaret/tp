@@ -1,4 +1,7 @@
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
+#include "JSystem/JAudio2/JAISoundParamsMove.h"
+#include "Z2AudioLib/Z2Calc/Z2Calc.h"
+#include "Z2AudioLib/Z2FxLineMgr/Z2FxLineMgr.h"
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"

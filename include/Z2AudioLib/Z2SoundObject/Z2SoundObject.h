@@ -47,4 +47,43 @@ public:
 
 class Z2DopplerSoundObjBase : protected Z2SoundHandles {};
 
+extern "C" {
+void __ct__14Z2SoundObjBaseFv(void);
+void __dt__14Z2SoundObjBaseFv(void);
+void deleteObject__14Z2SoundObjBaseFv(void);
+void framework__14Z2SoundObjBaseFUlSc(void);
+void init__14Z2SoundObjBaseFP3VecUc(void);
+void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool(void);
+
+void Z2SoundObjAnime(void);
+void Z2SoundObjAnime_NS_ageSounds_(void);
+void Z2SoundObjAnime_NS_getSoundID(void);
+void Z2SoundObjAnime_NS_initAnime(void);
+void Z2SoundObjAnime_NS_playsSound(void);
+void Z2SoundObjAnime_NS_startSoundInner(void);
+void Z2SoundObjAnime_NS_updateAnime(void);
+void Z2SoundObjAnime_NS_updateSoundLifeTime_(void);
+
+void Z2SoundObjBase_NS_startCollisionSE(void);
+void Z2SoundObjBase_NS_startLevelSound(void);
+void Z2SoundObjBase_NS_startSound(void);
+
+void Z2SoundObjSimple(void);
+void Z2SoundObjSimple_NS_dtor(void);
+
+void Z2DopplerSoundObjBase(void);
+
+void func_802BE7AC(void);
+void func_802BE714(void);
+void func_802BEB74(void);
+void func_802BE6B8(void);
+void func_802BE880(void);
+void func_802BEB38(void);
+void func_802BE8A0(void);
+void func_802BE9B0(void);
+void func_802BE65C(void);
+void func_802BEBDC(void);
+void func_802BE5FC(void);
+}
+
 #endif

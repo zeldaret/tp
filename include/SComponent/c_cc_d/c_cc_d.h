@@ -2,6 +2,7 @@
 #define C_CC_D_H_
 
 #include "SComponent/c_m3d/c_m3d.h"
+#include "SComponent/c_m3d_g_cyl.h"
 #include "global.h"
 
 class cCcD_ShapeAttr {

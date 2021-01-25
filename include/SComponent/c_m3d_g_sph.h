@@ -18,4 +18,9 @@ public:
     void GetMinMaxCube(cXyz&, cXyz&) const;
 };
 
+// additional symbols needed for cM3dGSph
+extern "C" {
+void Set__8cM3dGSphFRC4cXyzf(void);
+}
+
 #endif
