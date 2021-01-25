@@ -1783,14 +1783,14 @@ lbl_8023AA68:
 /* 8023AA68 002379A8  3B DF 00 34 */	addi r30, r31, 0x34
 /* 8023AA6C 002379AC  7C 7C F0 2E */	lwzx r3, r28, r30
 /* 8023AA70 002379B0  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023AA74 002379B4  48 0B C6 8D */	bl J2DPane_NS_getBounds
+/* 8023AA74 002379B4  48 0B C6 8D */	bl getBounds__7J2DPaneFv
 /* 8023AA78 002379B8  C3 E3 00 00 */	lfs f31, 0(r3)
 /* 8023AA7C 002379BC  7F 83 E3 78 */	mr r3, r28
 /* 8023AA80 002379C0  7F A4 EB 78 */	mr r4, r29
 /* 8023AA84 002379C4  48 00 0D ED */	bl dMsgScrn3Select_c_NS_selectAnimeTransform
 /* 8023AA88 002379C8  7C 7C F0 2E */	lwzx r3, r28, r30
 /* 8023AA8C 002379CC  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023AA90 002379D0  48 0B C6 71 */	bl J2DPane_NS_getBounds
+/* 8023AA90 002379D0  48 0B C6 71 */	bl getBounds__7J2DPaneFv
 /* 8023AA94 002379D4  C0 43 00 04 */	lfs f2, 4(r3)
 /* 8023AA98 002379D8  7C 7C F0 2E */	lwzx r3, r28, r30
 /* 8023AA9C 002379DC  80 63 00 04 */	lwz r3, 4(r3)
@@ -2710,7 +2710,7 @@ lbl_8023B5A4:
 lbl_8023B7F8:
 /* 8023B7F8 00238738  80 7E 00 64 */	lwz r3, 0x64(r30)
 /* 8023B7FC 0023873C  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023B800 00238740  48 0B B9 01 */	bl J2DPane_NS_getBounds
+/* 8023B800 00238740  48 0B B9 01 */	bl getBounds__7J2DPaneFv
 /* 8023B804 00238744  C0 03 00 00 */	lfs f0, 0(r3)
 /* 8023B808 00238748  80 7E 00 64 */	lwz r3, 0x64(r30)
 /* 8023B80C 0023874C  C0 23 00 24 */	lfs f1, 0x24(r3)
@@ -2764,7 +2764,7 @@ dMsgScrn3Select_c_NS_selectAnimeTransform:
 /* 8023B8B8 002387F8  4E 80 04 21 */	bctrl 
 /* 8023B8BC 002387FC  80 7F 00 34 */	lwz r3, 0x34(r31)
 /* 8023B8C0 00238800  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023B8C4 00238804  48 0B C7 09 */	bl J2DPane_NS_animationTransform
+/* 8023B8C4 00238804  48 0B C7 09 */	bl animationTransform__7J2DPaneFv
 /* 8023B8C8 00238808  80 7F 00 34 */	lwz r3, 0x34(r31)
 /* 8023B8CC 0023880C  80 63 00 04 */	lwz r3, 4(r3)
 /* 8023B8D0 00238810  38 80 00 00 */	li r4, 0

@@ -765,7 +765,7 @@ lbl_80246248:
 /* 80246268 002431A8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8024626C 002431AC  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80246270 002431B0  80 63 00 04 */	lwz r3, 4(r3)
-/* 80246274 002431B4  48 0B 1D 59 */	bl J2DPane_NS_animationTransform
+/* 80246274 002431B4  48 0B 1D 59 */	bl animationTransform__7J2DPaneFv
 /* 80246278 002431B8  80 7E 00 04 */	lwz r3, 4(r30)
 /* 8024627C 002431BC  48 0B 34 15 */	bl J2DScreen_NS_animation
 lbl_80246280:
