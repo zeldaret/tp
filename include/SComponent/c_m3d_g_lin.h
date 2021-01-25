@@ -16,7 +16,7 @@ public:
     virtual ~cM3dGLin() {}
     void SetStartEnd(const cXyz&, const cXyz&);
     void SetStartEnd(const Vec&, const Vec&);
-    void CalcPos(Vec*, float) const;
+    void CalcPos(Vec*, f32) const;
     void CalcVec(Vec* pOut) const { PSVECSubtract(&this->mEnd, &this->mStart, pOut); }
     void SetEnd(const cXyz&);
     const cXyz& GetStartP(void) const { return mStart; }

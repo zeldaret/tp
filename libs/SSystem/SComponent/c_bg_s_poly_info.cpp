@@ -28,11 +28,11 @@ void cBgS_PolyInfo::ClearPi(void) {
 }
 
 // SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
-void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& other) {
-    mPolyIndex = other.mPolyIndex;
-    unk_0x02 = other.unk_0x02;
-    unk_0x04 = other.unk_0x04;
-    unk_0x08 = other.unk_0x08;
+void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& pOther) {
+    mPolyIndex = pOther.mPolyIndex;
+    unk_0x02 = pOther.unk_0x02;
+    unk_0x04 = pOther.unk_0x04;
+    unk_0x08 = pOther.unk_0x08;
 }
 
 // SetActorInfo__13cBgS_PolyInfoFiPvUi

@@ -4,7 +4,7 @@
 #include "SComponent/c_m3d.h"
 
 // __ct__8cM3dGCylFPC4cXyzff
-cM3dGCyl::cM3dGCyl(const cXyz* pCenter, float pRadius, float pHeight) {
+cM3dGCyl::cM3dGCyl(const cXyz* pCenter, f32 pRadius, f32 pHeight) {
     this->SetC(*pCenter);
     this->SetR(pRadius);
     this->SetH(pHeight);
@@ -18,7 +18,7 @@ void cM3dGCyl::Set(const cM3dGCylS& other) {
 }
 
 // Set__8cM3dGCylFRC4cXyzff
-void cM3dGCyl::Set(const cXyz& pCenter, float pRadius, float pHeight) {
+void cM3dGCyl::Set(const cXyz& pCenter, f32 pRadius, f32 pHeight) {
     this->SetC(pCenter);
     this->SetR(pRadius);
     this->SetH(pHeight);
@@ -30,32 +30,32 @@ void cM3dGCyl::SetC(const cXyz& pCenter) {
 }
 
 // SetH__8cM3dGCylFf
-void cM3dGCyl::SetH(float pHeight) {
+void cM3dGCyl::SetH(f32 pHeight) {
     mHeight = pHeight;
 }
 
 // SetR__8cM3dGCylFf
-void cM3dGCyl::SetR(float pRadius) {
+void cM3dGCyl::SetR(f32 pRadius) {
     mRadius = pRadius;
 }
 
 // cross__8cM3dGCylCFPC8cM3dGSphP4cXyz
-bool cM3dGCyl::cross(const cM3dGSph* other, cXyz* out) const {
-    float f;
-    return cM3d_Cross_CylSph(this, other, out, &f);
+bool cM3dGCyl::cross(const cM3dGSph* pOther, cXyz* pOut) const {
+    f32 f;
+    return cM3d_Cross_CylSph(this, pOther, pOut, &f);
 }
 
 // cross__8cM3dGCylCFPC8cM3dGCylP4cXyz
-bool cM3dGCyl::cross(const cM3dGCyl* other, cXyz* out) const {
-    return cM3d_Cross_CylCyl(this, other, out);
+bool cM3dGCyl::cross(const cM3dGCyl* pOther, cXyz* pOut) const {
+    return cM3d_Cross_CylCyl(this, pOther, pOut);
 }
 
 // calcMinMax__8cM3dGCylFP4cXyzP4cXyz
-void cM3dGCyl::calcMinMax(cXyz* min, cXyz* max) {
-    min->x = mCenter.x - mRadius;
-    min->y = mCenter.y;
-    min->z = mCenter.z - mRadius;
-    max->x = mCenter.x + mRadius;
-    max->y = mCenter.y + mHeight;
-    max->z = mCenter.z + mRadius;
+void cM3dGCyl::calcMinMax(cXyz* pMin, cXyz* pMax) {
+    pMin->x = mCenter.x - mRadius;
+    pMin->y = mCenter.y;
+    pMin->z = mCenter.z - mRadius;
+    pMax->x = mCenter.x + mRadius;
+    pMax->y = mCenter.y + mHeight;
+    pMax->z = mCenter.z + mRadius;
 }

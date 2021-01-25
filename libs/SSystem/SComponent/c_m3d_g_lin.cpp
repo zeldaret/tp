@@ -3,29 +3,29 @@
 #include "SComponent/c_m3d.h"
 
 // __ct__8cM3dGLinFRC4cXyzRC4cXyz
-cM3dGLin::cM3dGLin(const cXyz& start, const cXyz& end) : mStart(start), mEnd(end) {}
+cM3dGLin::cM3dGLin(const cXyz& pStart, const cXyz& pEnd) : mStart(pStart), mEnd(pEnd) {}
 
 // SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz
-void cM3dGLin::SetStartEnd(const cXyz& start, const cXyz& end) {
-    mStart = start;
-    mEnd = end;
+void cM3dGLin::SetStartEnd(const cXyz& pStart, const cXyz& pEnd) {
+    mStart = pStart;
+    mEnd = pEnd;
 }
 
 // SetStartEnd__8cM3dGLinFRC3VecRC3Vec
-void cM3dGLin::SetStartEnd(const Vec& start, const Vec& end) {
-    mStart = start;
-    mEnd = end;
+void cM3dGLin::SetStartEnd(const Vec& pStart, const Vec& pEnd) {
+    mStart = pStart;
+    mEnd = pEnd;
 }
 
 // CalcPos__8cM3dGLinCFP3Vecf
-void cM3dGLin::CalcPos(Vec* out, float scale) const {
+void cM3dGLin::CalcPos(Vec* pOut, f32 pScale) const {
     Vec tmp;
     PSVECSubtract(&mEnd, &mStart, &tmp);
-    PSVECScale(&tmp, &tmp, scale);
-    PSVECAdd(&tmp, &mStart, out);
+    PSVECScale(&tmp, &tmp, pScale);
+    PSVECAdd(&tmp, &mStart, pOut);
 }
 
 // SetEnd__8cM3dGLinFRC4cXyz
-void cM3dGLin::SetEnd(const cXyz& end) {
-    mEnd = end;
+void cM3dGLin::SetEnd(const cXyz& pEnd) {
+    mEnd = pEnd;
 }

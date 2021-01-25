@@ -8,18 +8,18 @@
 class cM3dGPla {
 public:
     cXyz mNormal;
-    float mD;
-    cM3dGPla(const cXyz*, float);
+    f32 mD;
+    cM3dGPla(const cXyz*, f32);
     virtual ~cM3dGPla();
     bool crossInfLin(const cXyz&, const cXyz&, cXyz&) const;
     void SetupNP0(const Vec&, const Vec&);
     void SetupNP(const Vec&, const Vec&);
-    bool getCrossY(const cXyz&, float*) const;
-    bool getCrossYLessD(const Vec&, float*) const;
+    bool getCrossY(const cXyz&, f32*) const;
+    bool getCrossYLessD(const Vec&, f32*) const;
     void Set(const cM3dGPla*);
-    float getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
+    f32 getPlaneFunc(const Vec* pPoint) const { return mD + PSVECDotProduct(&mNormal, pPoint); }
     const cXyz& GetNP() const { return mNormal; }
-    float GetD() const { return mD; }
+    f32 GetD() const { return mD; }
 };
 
 #endif

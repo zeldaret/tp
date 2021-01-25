@@ -12,7 +12,7 @@ cM3dGCir::cM3dGCir(void) {}
 cM3dGCir::~cM3dGCir(void) {}
 
 // Set__8cM3dGCirFffff
-void cM3dGCir::Set(float pPosX, float pPosY, float pPosZ, float pRadius) {
+void cM3dGCir::Set(f32 pPosX, f32 pPosY, f32 pPosZ, f32 pRadius) {
     mPosX = pPosX;
     mPosY = pPosY;
     mRadius = pRadius;

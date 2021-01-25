@@ -4,12 +4,12 @@
 #include "SComponent/c_math.h"
 #include "global.h"
 
-extern float /* 1.0 */ lbl_80455070;
-extern float /* epsilon */ lbl_80455074;
-extern float lbl_80455078;
-extern float lbl_8045507C;
-extern float lbl_80455080;
-extern float /* 32.0 */ lbl_80455084;
+extern f32 /* 1.0 */ lbl_80455070;
+extern f32 /* epsilon */ lbl_80455074;
+extern f32 lbl_80455078;
+extern f32 lbl_8045507C;
+extern f32 lbl_80455080;
+extern f32 /* 32.0 */ lbl_80455084;
 extern double lbl_80455088;
 extern double lbl_80455090;
 extern double lbl_80455098;
@@ -19,7 +19,7 @@ class cXyz : public Vec {
 public:
     ~cXyz(){};
     cXyz() {}
-    cXyz(float x, float y, float z) {
+    cXyz(f32 x, f32 y, f32 z) {
         this->x = x;
         this->y = y;
         this->z = z;
@@ -41,15 +41,15 @@ public:
     }
     cXyz operator+(const Vec& vec) const;
     cXyz operator-(const Vec& vec) const;
-    cXyz operator*(float scale) const;
+    cXyz operator*(f32 scale) const;
     cXyz operator*(const Vec& vec) const;
-    cXyz operator/(float) const;
-    void operator+=(float f) {
+    cXyz operator/(f32) const;
+    void operator+=(f32 f) {
         x += f;
         y += f;
         z += f;
     }
-    void operator-=(float f) {
+    void operator-=(f32 f) {
         x -= f;
         y -= f;
         z -= f;
@@ -68,7 +68,7 @@ public:
     s16 atan2sX_Z(void) const;
     s16 atan2sY_XZ(void) const;
 
-    void setAll(float f) {
+    void setAll(f32 f) {
         z = f;
         y = f;
         x = f;

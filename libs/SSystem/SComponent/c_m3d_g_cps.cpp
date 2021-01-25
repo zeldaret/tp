@@ -9,9 +9,9 @@ cM3dGCps::cM3dGCps(void) {}
 cM3dGCps::~cM3dGCps(void) {}
 
 // Set__8cM3dGCpsFRC4cXyzRC4cXyzf
-void cM3dGCps::Set(const cXyz& pStart, const cXyz& pEnd, float f) {
+void cM3dGCps::Set(const cXyz& pStart, const cXyz& pEnd, f32 pUnkF) {
     this->SetStartEnd(pStart, pEnd);
-    unk_0x1c = f;
+    unk_0x1c = pUnkF;
 }
 
 // Set__8cM3dGCpsFRC9cM3dGCpsS

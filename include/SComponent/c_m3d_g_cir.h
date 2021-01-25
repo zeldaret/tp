@@ -5,20 +5,20 @@
 
 class cM2dGCir {
 public:
-    float mPosX;
-    float mPosY;
-    float mRadius;
+    f32 mPosX;
+    f32 mPosY;
+    f32 mRadius;
     cM2dGCir() {}
     virtual ~cM2dGCir() {}
 };
 
 class cM3dGCir : public cM2dGCir {
-    float mPosZ;
+    f32 mPosZ;
 
 public:
     cM3dGCir(void);
     virtual ~cM3dGCir(void);
-    void Set(float, float, float, float);
+    void Set(f32, f32, f32, f32);
 };
 
 #endif

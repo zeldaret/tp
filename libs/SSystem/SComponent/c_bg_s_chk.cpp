@@ -13,11 +13,11 @@ cBgS_Chk::cBgS_Chk(void) {
 cBgS_Chk::~cBgS_Chk(void) {}
 
 // SetExtChk__8cBgS_ChkFR8cBgS_Chk
-void cBgS_Chk::SetExtChk(cBgS_Chk& other) {
-    unk_0x00 = other.unk_0x00;
-    unk_0x04 = other.unk_0x04;
-    unk_0x08 = other.unk_0x08;
-    unk_0x0C = other.unk_0x0C;
+void cBgS_Chk::SetExtChk(cBgS_Chk& pOther) {
+    unk_0x00 = pOther.unk_0x00;
+    unk_0x04 = pOther.unk_0x04;
+    unk_0x08 = pOther.unk_0x08;
+    unk_0x0C = pOther.unk_0x0C;
 }
 
 // ChkSameActorPid__8cBgS_ChkCFUi

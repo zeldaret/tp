@@ -9,39 +9,39 @@ void cM3dGSph::SetC(const cXyz& pCenter) {
 }
 
 // Set__8cM3dGSphFRC4cXyzf
-void cM3dGSph::Set(const cXyz& pCenter, float pRadius) {
+void cM3dGSph::Set(const cXyz& pCenter, f32 pRadius) {
     this->SetC(pCenter);
     this->SetR(pRadius);
 }
 
 // Set__8cM3dGSphFRC9cM3dGSphS
-void cM3dGSph::Set(const cM3dGSphS& other) {
-    this->SetC(cXyz(other.mCenter));
-    this->SetR(other.mRadius);
+void cM3dGSph::Set(const cM3dGSphS& pOther) {
+    this->SetC(cXyz(pOther.mCenter));
+    this->SetR(pOther.mRadius);
 }
 
 // SetR__8cM3dGSphFf
-void cM3dGSph::SetR(float pRadius) {
+void cM3dGSph::SetR(f32 pRadius) {
     mRadius = pRadius;
 }
 
 // cross__8cM3dGSphCFPC8cM3dGSphP4cXyz
-bool cM3dGSph::cross(const cM3dGSph* other, cXyz* out) const {
-    return cM3d_Cross_SphSph(other, this, out);
+bool cM3dGSph::cross(const cM3dGSph* pOther, cXyz* pOut) const {
+    return cM3d_Cross_SphSph(pOther, this, pOut);
 }
 
 // cross__8cM3dGSphCFPC8cM3dGCylP4cXyz
-bool cM3dGSph::cross(const cM3dGCyl* cylinder, cXyz* out) const {
-    float f;
-    return cM3d_Cross_CylSph(cylinder, this, out, &f);
+bool cM3dGSph::cross(const cM3dGCyl* pCylinder, cXyz* pOut) const {
+    f32 f;
+    return cM3d_Cross_CylSph(pCylinder, this, pOut, &f);
 }
 
 // GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz
-void cM3dGSph::GetMinMaxCube(cXyz& min, cXyz& max) const {
-    min.x = mCenter.x - mRadius;
-    min.y = mCenter.y - mRadius;
-    min.z = mCenter.z - mRadius;
-    max.x = mCenter.x + mRadius;
-    max.y = mCenter.y + mRadius;
-    max.z = mCenter.z + mRadius;
+void cM3dGSph::GetMinMaxCube(cXyz& pMin, cXyz& pMax) const {
+    pMin.x = mCenter.x - mRadius;
+    pMin.y = mCenter.y - mRadius;
+    pMin.z = mCenter.z - mRadius;
+    pMax.x = mCenter.x + mRadius;
+    pMax.y = mCenter.y + mRadius;
+    pMax.z = mCenter.z + mRadius;
 }
