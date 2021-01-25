@@ -3144,6 +3144,8 @@ func_8002CB30
 func_8002CAF0
 __ct__14JAISoundHandleFv
 dispose__14Z2SoundObjBaseFv
+__dt__16cBgS_PolyPassChkFv
+ClrIronBall__16dBgS_PolyPassChkFv
 }
 /*
 .init 80003100 - 80005600

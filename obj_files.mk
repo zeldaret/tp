@@ -125,7 +125,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/bg/s/movebg/d_bg_s_movebg_actor.o    \
             $(BUILD_DIR)/asm/d/bg/s/sph/d_bg_s_sph_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/spl/grp/d_bg_s_spl_grp_chk.o    \
-            $(BUILD_DIR)/asm/d/bg/s/poly/pass/d_bg_s_poly_pass_chk.o    \
+            $(BUILD_DIR)/src/d/d_bg/d_bg_s_poly_pass_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/roof/d_bg_s_roof_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/wtr/d_bg_s_wtr_chk.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_w.o    \
