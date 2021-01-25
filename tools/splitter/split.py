@@ -165,16 +165,6 @@ def emit_cxx_extern_vars(tu_file: str, labels: Iterable[str]) -> str:
 )
 @click.option('--s-include-base', type=str, default='funcs')
 @click.option(
-    '--extern-functions-file',
-    type=PathPath(file_okay=True, dir_okay=False),
-    default='include/functions.h',
-)
-@click.option(
-    '--extern-variables-file',
-    type=PathPath(file_okay=True, dir_okay=False),
-    default='include/variables.h',
-)
-@click.option(
     '--framework-map-file',
     type=PathPath(file_okay=True, dir_okay=False),
     default='frameworkF.map',
@@ -194,8 +184,6 @@ def split(
     cxx_out,
     funcs_out,
     s_include_base,
-    extern_functions_file,
-    extern_variables_file,
     framework_map_file,
     ldscript_file,
     from_line,
@@ -215,15 +203,6 @@ def split(
         lines = lines[
             (from_line - 1 if from_line else 0) : (to_line - 1 if to_line else -1)
         ]
-
-    logger.info('reading extern func/vars files')
-    extern_funcs_src = extern_functions_file.read_text()
-    extern_vars_src = extern_variables_file.read_text()
-
-    include_re = re.compile(r'#include "(.*)"')
-
-    for include in include_re.findall(extern_funcs_src):
-        extern_funcs_src += (Path('include') / include).read_text()
 
     logger.info('parsing map file')
     framework_map = parse_framework_map(framework_map_file)
@@ -261,14 +240,6 @@ def split(
         if isinstance(line.body, Instruction):
             if line.body.opcode[0] in {'l', 's'}:  # load and store instructions, ish
                 loaded_labels |= set(find_labels_in_operands(line.body.operands))
-
-    # -- dump new variable labels to variables.h
-    logger.info('dumping variable labels to extern vars header')
-    vars_new = set()
-    for label in loaded_labels:
-        if label not in extern_vars_src:
-            logger.debug(f'adding extern var {label} to {extern_variables_file}')
-            vars_new.add(label)
 
     # -- find all defined functions and split them
     functions = list(find_functions(lines, framework_map))
@@ -319,14 +290,6 @@ def split(
     for func in functions:
         func_labels.add(func.name)
 
-    # get rid of stuff already in functions.h. extremely hacky
-    funcs_new_labels = set()
-    for label in func_labels:
-        if label not in extern_funcs_src:
-            logger.info(f'adding extern func {label} to {extern_functions_file}')
-            funcs_new_labels.add(label)
-
-
     # -- write asm stubs to cxx_out (could've done this as part of previous loop but imo this is cleaner)
     logger.info(f'emitting c++ asm stubs to {cxx_out}')
     with open(cxx_out, 'w') as f:
@@ -336,11 +299,11 @@ def split(
         f.write('#include "global.h"\n\n')
 
         # extern functions
-        f.write(emit_cxx_extern_fns(cxx_out.name, funcs_new_labels))
+        f.write(emit_cxx_extern_fns(cxx_out.name, func_labels))
         f.write('\n\n')
         
         # extern variables
-        f.write(emit_cxx_extern_vars(cxx_out.name, vars_new))
+        f.write(emit_cxx_extern_vars(cxx_out.name, loaded_labels))
         f.write('\n\n')
 
         f.write('extern "C" {\n')
