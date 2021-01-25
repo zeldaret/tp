@@ -10,12 +10,19 @@ types = {
     'l': 'long',
     's': 'short',
     'c': 'char',
-    'f': 'float',
-    'd': 'double',
+    'f': 'f32',
+    'd': 'f64',
     'v': 'void',
     'x': 'long long',
     'b': 'bool',
     'e': 'varargs...',
+}
+
+short_type_names = {
+    'char': '8',
+    'short': '16',
+    'long' : '32',
+    'long long': '64',
 }
 
 # {'defctor', 'ops',}
@@ -55,9 +62,13 @@ class Param:
         ret = ''
         if self.is_const:
             ret += 'const '
-        if self.is_unsigned:
-            ret += 'unsigned '
-        ret += self.name
+        if self.name in short_type_names:
+            ret += 'u' if self.is_unsigned else 's'
+            ret += short_type_names[self.name]
+        else:
+            if self.is_unsigned:
+                ret += 'unsigned '
+            ret += self.name
         for _ in range(self.pointer_lvl):
             ret += '*'
         if self.is_ref:
