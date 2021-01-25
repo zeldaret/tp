@@ -5,6 +5,15 @@
 
 struct Vec {
     float x, y, z;
+    float GetX() const {
+        return x;
+    }
+    float GetY() const {
+        return y;
+    }
+    float GetZ() const {
+        return z;
+    }
 };
 
 struct Quaternion {

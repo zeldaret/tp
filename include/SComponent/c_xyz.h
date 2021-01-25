@@ -98,12 +98,6 @@ public:
         }
     }
 
-    float GetX(void) const { return x; }
-
-    float GetY(void) const { return y; }
-
-    float GetZ(void) const { return z; }
-
     bool checkEpsilon() const { return !(PSVECSquareMag(this) < lbl_80455074); }
 };
 

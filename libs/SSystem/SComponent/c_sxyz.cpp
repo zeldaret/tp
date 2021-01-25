@@ -2,6 +2,9 @@
 
 #include "SComponent/c_sxyz.h"
 
+extern u8 lbl_804550A0;
+extern u8 lbl_80430DA8;
+
 // __ct__5csXyzFsss
 csXyz::csXyz(s16 pX, s16 pY, s16 pZ) {
     mX = pX;
