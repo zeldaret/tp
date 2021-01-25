@@ -30,8 +30,8 @@ JASDriver_NS_getDSPLevel:
 /* 8029E170 0029B0B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029E174 0029B0B4  4E 80 00 20 */	blr 
 
-.global JASDriver_NS_setOutputMode
-JASDriver_NS_setOutputMode:
+.global setOutputMode__9JASDriverFUl
+setOutputMode__9JASDriverFUl:
 /* 8029E178 0029B0B8  90 6D 82 44 */	stw r3, lbl_804507C4-_SDA_BASE_(r13)
 /* 8029E17C 0029B0BC  4E 80 00 20 */	blr 
 

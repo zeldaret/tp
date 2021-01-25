@@ -49,7 +49,7 @@ dOvlpFd_FadeOut:
 /* 80252214 0024F154  2C 00 00 00 */	cmpwi r0, 0
 /* 80252218 0024F158  40 82 00 4C */	bne lbl_80252264
 /* 8025221C 0024F15C  38 60 00 00 */	li r3, 0
-/* 80252220 0024F160  4B DB 50 35 */	bl mDoAud_setFadeInStart
+/* 80252220 0024F160  4B DB 50 35 */	bl mDoAud_setFadeInStart__FUc
 /* 80252224 0024F164  A8 1E 00 0E */	lha r0, 0xe(r30)
 /* 80252228 0024F168  2C 00 00 08 */	cmpwi r0, 8
 /* 8025222C 0024F16C  40 82 00 10 */	bne lbl_8025223C
@@ -175,7 +175,7 @@ lbl_802523B4:
 lbl_802523BC:
 /* 802523BC 0024F2FC  93 DF 00 D4 */	stw r30, 0xd4(r31)
 /* 802523C0 0024F300  38 60 00 00 */	li r3, 0
-/* 802523C4 0024F304  4B DB 4E 61 */	bl mDoAud_setFadeOutStart
+/* 802523C4 0024F304  4B DB 4E 61 */	bl mDoAud_setFadeOutStart__FUc
 lbl_802523C8:
 /* 802523C8 0024F308  80 7F 00 D0 */	lwz r3, 0xd0(r31)
 /* 802523CC 0024F30C  34 03 FF FF */	addic. r0, r3, -1

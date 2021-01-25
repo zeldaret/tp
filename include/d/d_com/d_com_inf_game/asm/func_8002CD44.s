@@ -23,7 +23,7 @@ lbl_8002CD84:
 /* 8002CD94 00029CD4  38 80 00 1E */ li r4, 0x1e
 /* 8002CD98 00029CD8  38 A0 00 00 */ li r5, 0
 /* 8002CD9C 00029CDC  48 28 26 6D */ bl bgmStop__8Z2SeqMgrFUll
-/* 8002CDA0 00029CE0  4B FD A4 E5 */ bl mDoAud_resetProcess
+/* 8002CDA0 00029CE0  4B FD A4 E5 */ bl mDoAud_resetProcess__Fv
 /* 8002CDA4 00029CE4  38 60 00 01 */ li r3, 1
 lbl_8002CDA8:
 /* 8002CDA8 00029CE8  80 01 00 14 */ lwz r0, 0x14(r1)
