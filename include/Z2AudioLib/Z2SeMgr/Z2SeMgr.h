@@ -9,6 +9,7 @@
 
 struct Z2MultiSeObj {
     Z2MultiSeObj();
+    ~Z2MultiSeObj();
 
     u8 unk0[28];
     u32 field_0x1c;

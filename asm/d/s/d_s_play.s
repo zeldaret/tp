@@ -491,7 +491,7 @@ dScnPly_c_NS_resetGame:
 /* 80259AF4 00256A34  38 60 00 00 */	li r3, 0
 /* 80259AF8 00256A38  48 00 00 F0 */	b lbl_80259BE8
 lbl_80259AFC:
-/* 80259AFC 00256A3C  4B DA D7 C9 */	bl mDoAud_resetRecover
+/* 80259AFC 00256A3C  4B DA D7 C9 */	bl mDoAud_resetRecover__Fv
 /* 80259B00 00256A40  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80259B04 00256A44  40 82 00 0C */	bne lbl_80259B10
 /* 80259B08 00256A48  38 60 00 00 */	li r3, 0
@@ -653,8 +653,8 @@ lbl_80259D14:
 /* 80259D3C 00256C7C  7C 65 1B 78 */	mr r5, r3
 /* 80259D40 00256C80  7F C3 F3 78 */	mr r3, r30
 /* 80259D44 00256C84  7F E4 FB 78 */	mr r4, r31
-/* 80259D48 00256C88  4B DA D4 75 */	bl mDoAud_setSceneName
-/* 80259D4C 00256C8C  4B DA D4 AD */	bl mDoAud_load1stDynamicWave
+/* 80259D48 00256C88  4B DA D4 75 */	bl mDoAud_setSceneName__FPCcll
+/* 80259D4C 00256C8C  4B DA D4 AD */	bl mDoAud_load1stDynamicWave__Fv
 /* 80259D50 00256C90  2C 03 00 00 */	cmpwi r3, 0
 /* 80259D54 00256C94  40 82 00 0C */	bne lbl_80259D60
 /* 80259D58 00256C98  38 60 00 00 */	li r3, 0

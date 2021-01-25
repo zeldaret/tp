@@ -775,6 +775,12 @@ FORCEACTIVE {
  setConnectParent__7J2DPaneFb
  update__7J2DPaneFv
  drawSelf__7J2DPaneFff
+ __sinit_m_Do_audio_cpp
+ hasReset__10Z2AudioMgrCFv
+ resetRecover__10Z2AudioMgrFv
+ mDoAud_resetRecover__Fv
+ resetProcess__10Z2AudioMgrFUlb
+ mDoAud_resetProcess__Fv
  prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
@@ -3153,7 +3159,6 @@ func_8002CDB8
 func_8002CB68
 func_8002CB30
 func_8002CAF0
-<<<<<<< HEAD
 func_802F847C
 func_802F8478
 func_802F8474
@@ -3167,10 +3172,8 @@ func_802F8080
 makeMatrix__7J2DPaneFffff
 add__7J2DPaneFff
 move__7J2DPaneFff
-=======
 __ct__14JAISoundHandleFv
 dispose__14Z2SoundObjBaseFv
->>>>>>> upstream/master
 }
 /*
 .init 80003100 - 80005600
