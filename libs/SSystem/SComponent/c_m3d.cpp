@@ -849,20 +849,11 @@ int cM3d_2PlaneLinePosNearPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, 
 }
 
 // cM3d_CrawVec__FRC3VecRC3VecP3Vec
-#ifdef NM
 void cM3d_CrawVec(const Vec& vec1, const Vec& vec2, Vec* vecOut) {
     Vec tmp;
-    float absLen = fabsf(vec2.x * vec1.x + vec2.y * vec1.y + vec2.z * vec1.z);
-    // PSVECScale(&vec1, &tmp, absLen);
-    testF(&vec1, absLen, &tmp);
+    PSVECScale(&vec1, &tmp, fabsf(vec2.x * vec1.x + vec2.y * vec1.y + vec2.z * vec1.z));
     PSVECAdd(&tmp, &vec2, vecOut);
 }
-#else
-asm void cM3d_CrawVec(const Vec&, const Vec&, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026EBBC.s"
-}
-#endif
 
 extern "C" {
 

@@ -24,12 +24,12 @@ struct JUTWarn {
 
 extern float __fabsf(float);
 
-inline double fabsf(float f) {
+inline double fabsd(float f) {
     return __fabsf(f);
 }
 
-inline float fabsff(float f) {
-    return (float)fabsf(f);
+inline float fabsf(float f) {
+    return (float)fabsd(f);
 }
 
 extern float __fsqrte(float);
