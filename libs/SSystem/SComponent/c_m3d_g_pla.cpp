@@ -10,7 +10,7 @@ cM3dGPla::cM3dGPla(const cXyz* pNormal, float pD) : mNormal(*pNormal), mD(pD) {}
 bool cM3dGPla::crossInfLin(const cXyz& pStart, const cXyz& pEnd, cXyz& out) const {
     float tmp1 = (mD + PSVECDotProduct(&mNormal, &pStart));
     float tmp2 = tmp1 - (mD + PSVECDotProduct(&mNormal, &pEnd));
-    if ((float)fabsf(tmp2) < lbl_80451180) {
+    if (fabsf(tmp2) < lbl_80451180) {
         out = pEnd;
         return false;
     } else {
@@ -34,7 +34,7 @@ void cM3dGPla::SetupNP(const Vec& pNormal, const Vec& pPoint) {
 
 // getCrossY__8cM3dGPlaCFRC4cXyzPf
 bool cM3dGPla::getCrossY(const cXyz& xyz, float* out) const {
-    if ((float)fabsf(mNormal.y) < lbl_80451180) {
+    if (fabsf(mNormal.y) < lbl_80451180) {
         return false;
     } else {
         *out = (-mNormal.x * xyz.x - mNormal.z * xyz.z - mD) / mNormal.y;
@@ -44,7 +44,7 @@ bool cM3dGPla::getCrossY(const cXyz& xyz, float* out) const {
 
 // getCrossYLessD__8cM3dGPlaCFRC3VecPf
 bool cM3dGPla::getCrossYLessD(const Vec& xyz, float* out) const {
-    if ((float)fabsf(mNormal.y) < lbl_80451180) {
+    if (fabsf(mNormal.y) < lbl_80451180) {
         return false;
     } else {
         *out = (-mNormal.x * xyz.x - mNormal.z * xyz.z) / mNormal.y;

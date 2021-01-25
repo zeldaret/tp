@@ -150,11 +150,11 @@ bool cXyz::isZero(void) const {
     // return (float)fabsf(this->x) < lbl_80455084 * lbl_80450AEC &&
     //     (float)fabsf(this->y) < lbl_80455084 * lbl_80450AEC &&
     //     (float)fabsf(this->z) < lbl_80455084 * lbl_80450AEC;
-    return (float)fabsf(this->x) <
+    return fabsf(this->x) <
                /* 32 */ lbl_80455084 *
                    /* MSL_C.PPCEABI.bare.H::__float_epsilon */ *(float*)0x80450AEC &&
-           (float)fabsf(this->y) < lbl_80455084 * *(float*)0x80450AEC &&
-           (float)fabsf(this->z) < lbl_80455084 * *(float*)0x80450AEC;
+           fabsf(this->y) < lbl_80455084 * *(float*)0x80450AEC &&
+           fabsf(this->z) < lbl_80455084 * *(float*)0x80450AEC;
 }
 
 // atan2sX_Z__4cXyzCFv
