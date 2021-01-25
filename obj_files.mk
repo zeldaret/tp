@@ -491,7 +491,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/J2DGraph/J2DMatBlock.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DMaterialFactory.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DPrint.o    \
-            $(BUILD_DIR)/asm/J2DGraph/J2DPane.o    \
+            $(BUILD_DIR)/libs/JSystem/J2DGraph/J2DPane.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DScreen.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DWindow.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DPicture.o    \

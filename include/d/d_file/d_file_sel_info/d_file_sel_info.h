@@ -1,7 +1,7 @@
 #ifndef D_FILE_SEL_INFO_H_
 #define D_FILE_SEL_INFO_H_
 
-#include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
 #include "d/d_drawlist/d_drawlist.h"
