@@ -101,14 +101,14 @@ bool cM3d_Len2dSqPntAndSegLine(float param_1, float param_2, float param_3, floa
 bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* outVec, float* outF) {
     bool retVal = 0;
     Vec tmp;
-    PSVECSubtract(&pLine->End(), &pLine->Start(), &tmp);
+    PSVECSubtract(&pLine->GetEndP(), &pLine->GetStartP(), &tmp);
     float seqLen = PSVECDotProduct(&tmp, &tmp);
     if (cM3d_IsZero(seqLen)) {
         *outF = /* 0.0 */ lbl_80455118;
         return retVal;
     } else {
         Vec tmp2;
-        PSVECSubtract(pVec, &pLine->Start(), &tmp2);
+        PSVECSubtract(pVec, &pLine->GetStartP(), &tmp2);
         float tmpF = PSVECDotProduct(&tmp2, &tmp);
         tmpF /= seqLen;
         if (tmpF < /* 0.0 */ lbl_80455118 || tmpF > /* 1.0 */ lbl_80455138) {
@@ -117,7 +117,7 @@ bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* outV
             retVal = true;
         }
         PSVECScale(&tmp, &tmp, tmpF);
-        PSVECAdd(&tmp, &pLine->Start(), outVec);
+        PSVECAdd(&tmp, &pLine->GetStartP(), outVec);
         *outF = PSVECSquareDistance(outVec, pVec);
         return retVal;
     }
@@ -125,11 +125,11 @@ bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* outV
 
 // cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec
 float cM3d_SignedLenPlaAndPos(const cM3dGPla* pPlane, const Vec* pPosition) {
-    float mag = PSVECMag(&pPlane->mNormal);
+    float mag = PSVECMag(&pPlane->GetNP());
     if (cM3d_IsZero(mag)) {
         return /* 0.0 */ lbl_80455118;
     } else {
-        return (pPlane->mD + PSVECDotProduct(&pPlane->mNormal, pPosition)) / mag;
+        return (pPlane->mD + PSVECDotProduct(&pPlane->GetNP(), pPosition)) / mag;
     }
 }
 
@@ -320,27 +320,27 @@ bool cM3d_CrossInfLineVsInfPlane_proc(float f1, float f2, const Vec* vec1, const
 #ifdef NON_MATCHING
 bool cM3d_Cross_LinPla(const cM3dGLin* pLine, const cM3dGPla* pPlane, Vec* pVecOut, bool pBoolA,
                        bool pBoolB) {
-    float startVal = pPlane->getPlaneFunc(&pLine->mStart);
-    float endVal = pPlane->getPlaneFunc(&pLine->mEnd);
+    float startVal = pPlane->getPlaneFunc(&pLine->GetStartP());
+    float endVal = pPlane->getPlaneFunc(&pLine->GetEndP());
     if (startVal * endVal > /* 0.0 */ lbl_80455118) {
     // matches with the literal, but that screws up data
     // if (startVal * endVal > 0) {
-        *pVecOut = pLine->mEnd;
+        *pVecOut = pLine->GetEndP();
         return false;
     } else {
         if (startVal >= /* 0.0 */ lbl_80455118 && endVal <= /* 0.0 */ lbl_80455118) {
         // if (startVal >= 0 && endVal <= 0) {
             if (pBoolA) {
-                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->mStart,
-                                                        &pLine->mEnd, pVecOut);
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->GetStartP(),
+                                                        &pLine->GetEndP(), pVecOut);
             }
         } else {
             if (pBoolB) {
-                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->mStart,
-                                                        &pLine->mEnd, pVecOut);
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->GetStartP(),
+                                                        &pLine->GetEndP(), pVecOut);
             }
         }
-        *pVecOut = pLine->mEnd;
+        *pVecOut = pLine->GetEndP();
         return true;
     }
 }
@@ -740,7 +740,7 @@ void cM3d_PlaneCrossLineProcWork(float f1, float f2, float f3, float f4, float f
 // cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin
 int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, cM3dGLin* pLinOut) {
     Vec tmp;
-    PSVECCrossProduct(&pPlaneA.mNormal, &pPlaneB.mNormal, &tmp);
+    PSVECCrossProduct(&pPlaneA.GetNP(), &pPlaneB.GetNP(), &tmp);
     if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {
         return 0;
     } else {
@@ -748,30 +748,30 @@ int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, cM3dG
         float absTY = fabsf(tmp.y);
         float absTZ = fabsf(tmp.z);
         if (absTX >= absTY && absTX >= absTZ) {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetY(), pPlaneA.mNormal.GetZ(),
-                                        pPlaneB.mNormal.GetY(), pPlaneB.mNormal.GetZ(), tmp.x,
-                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.y,
-                                        &pLinOut->mStart.z);
-            pLinOut->mStart.x = /* 0.0 */ lbl_80455118;
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().y, pPlaneA.GetNP().z,
+                                        pPlaneB.GetNP().y, pPlaneB.GetNP().z, tmp.x,
+                                        pPlaneA.GetD(), pPlaneB.GetD(), &pLinOut->GetStartP().y,
+                                        &pLinOut->GetStartP().z);
+            pLinOut->GetStartP().x = /* 0.0 */ lbl_80455118;
         } else if (absTY >= absTX && absTY >= absTZ) {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetZ(), pPlaneA.mNormal.GetX(),
-                                        pPlaneB.mNormal.GetZ(), pPlaneB.mNormal.GetX(), tmp.y,
-                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.z,
-                                        &pLinOut->mStart.x);
-            pLinOut->mStart.y = /* 0.0 */ lbl_80455118;
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().z, pPlaneA.GetNP().x,
+                                        pPlaneB.GetNP().z, pPlaneB.GetNP().x, tmp.y,
+                                        pPlaneA.GetD(), pPlaneB.GetD(), &pLinOut->GetStartP().z,
+                                        &pLinOut->GetStartP().x);
+            pLinOut->GetStartP().y = /* 0.0 */ lbl_80455118;
         } else {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.mNormal.GetX(), pPlaneA.mNormal.GetY(),
-                                        pPlaneB.mNormal.GetX(), pPlaneB.mNormal.GetY(), tmp.z,
-                                        pPlaneA.mD, pPlaneB.mD, &pLinOut->mStart.x,
-                                        &pLinOut->mStart.y);
-            pLinOut->mStart.z = /* 0.0 */ lbl_80455118;
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().x, pPlaneA.GetNP().y,
+                                        pPlaneB.GetNP().x, pPlaneB.GetNP().y, tmp.z,
+                                        pPlaneA.GetD(), pPlaneB.GetD(), &pLinOut->GetStartP().x,
+                                        &pLinOut->GetStartP().y);
+            pLinOut->GetStartP().z = /* 0.0 */ lbl_80455118;
         }
-        float scale = PSVECMag(&pLinOut->Start());
+        float scale = PSVECMag(&pLinOut->GetStartP());
         if (cM3d_IsZero(scale)) {
             scale = /* 1.0 */ lbl_80455138;
         }
         PSVECScale(&tmp, &tmp, scale);
-        PSVECAdd(&pLinOut->Start(), &tmp, &pLinOut->mEnd);
+        PSVECAdd(&pLinOut->GetStartP(), &tmp, &pLinOut->GetEndP());
         return 1;
     }
 }
@@ -783,10 +783,10 @@ bool cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const
     if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {
         return false;
     } else {
-        const Vec* end = &lin.End();
-        float tmpf1 = pPlaneC.mD + PSVECDotProduct(&pPlaneC.mNormal, &lin.Start());
-        float tmpf2 = pPlaneC.mD + PSVECDotProduct(&pPlaneC.mNormal, end);
-        if (!cM3d_CrossInfLineVsInfPlane_proc(tmpf1, tmpf2, &lin.Start(), end, pVecOut)) {
+        const Vec* end = &lin.GetEndP();
+        float tmpf1 = pPlaneC.getPlaneFunc(&lin.GetStartP());
+        float tmpf2 = pPlaneC.getPlaneFunc(end);
+        if (!cM3d_CrossInfLineVsInfPlane_proc(tmpf1, tmpf2, &lin.GetStartP(), end, pVecOut)) {
             return false;
         } else {
             return true;
@@ -799,17 +799,19 @@ float cM3d_lineVsPosSuisenCross(const cM3dGLin* pLine, const Vec* pPoint, Vec* p
     Vec tmp1;
     Vec tmp2;
     Vec tmp3;
-    PSVECSubtract(&pLine->End(), &pLine->Start(), &tmp1);
+    // PSVECSubtract(&pLine->GetEndP(), &pLine->GetStartP(), &tmp1);
+    pLine->CalcVec(&tmp1);
     float diffLen = PSVECSquareMag(&tmp1);
     if (cM3d_IsZero(diffLen)) {
         *pVecOut = *pPoint;
         return /* 0.0 */ lbl_80455118;
     } else {
-        PSVECSubtract(pPoint, &pLine->Start(), &tmp2);
-        float dotProd = PSVECDotProduct(&tmp2, &tmp1);
-        float retVal = dotProd / diffLen;
+        PSVECSubtract(pPoint, &pLine->GetStartP(), &tmp2);
+        // float dotProd = PSVECDotProduct(&tmp2, &tmp1);
+        // float retVal = dotProd / diffLen;
+        float retVal = PSVECDotProduct(&tmp2, &tmp1) / diffLen;
         PSVECScale(&tmp1, &tmp3, retVal);
-        PSVECAdd(&tmp3, &pLine->Start(), pVecOut);
+        PSVECAdd(&tmp3, &pLine->GetStartP(), pVecOut);
         return retVal;
     }
 }
@@ -836,11 +838,13 @@ float cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, 
 }
 
 // cM3d_2PlaneLinePosNearPos__FRC8cM3dGPlaRC8cM3dGPlaPC3VecP3Vec
-// cM3d_2PlaneLinePosNearPos(const cM3dGPla&, const cM3dGPla&, const Vec*, Vec*)
+// #ifdef NON_MATCHING
+// #else
 asm int cM3d_2PlaneLinePosNearPos(const cM3dGPla&, const cM3dGPla&, const Vec*, Vec*) {
     nofralloc
 #include "SComponent/c_m3d/asm/func_8026EB38.s"
 }
+// #endif
 
 // cM3d_CrawVec__FRC3VecRC3VecP3Vec
 #ifdef NM

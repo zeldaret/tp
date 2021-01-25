@@ -19,8 +19,10 @@ public:
     void CalcPos(Vec*, float) const;
     void CalcVec(Vec* pOut) const { PSVECSubtract(&this->mEnd, &this->mStart, pOut); }
     void SetEnd(const cXyz&);
-    const cXyz& Start(void) const { return mStart; }
-    const cXyz& End(void) const { return mEnd; }
+    const cXyz& GetStartP(void) const { return mStart; }
+    cXyz& GetStartP(void) { return mStart; }
+    const cXyz& GetEndP(void) const { return mEnd; }
+    cXyz& GetEndP(void) { return mEnd; }
 };
 
 #endif

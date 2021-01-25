@@ -22,5 +22,5 @@ void cM3dGCps::Set(const cM3dGCpsS& other) {
 
 // SetCps__8cM3dGCpsFRC8cM3dGCps
 void cM3dGCps::SetCps(const cM3dGCps& other) {
-    this->Set(other.Start(), other.End(), other.unk_0x1c);
+    this->Set(other.GetStartP(), other.GetEndP(), other.unk_0x1c);
 }
