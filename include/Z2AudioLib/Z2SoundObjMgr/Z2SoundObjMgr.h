@@ -39,4 +39,21 @@ private:
 
 extern Z2SoundObjMgr* lbl_80450B48;  // Z2SoundObjMgr sInstance
 
+extern "C" {
+void __ct__13Z2SoundObjMgrFv(void);
+void deleteEnemyAll__13Z2SoundObjMgrFv(void);
+void isTwilightBattle__13Z2SoundObjMgrFv(void);
+void setBattleInit__13Z2SoundObjMgrFv(void);
+void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs(void);
+void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
+
+void Z2SoundObjMgr_NS_checkBattleFinish(void);
+void Z2SoundObjMgr_NS_getEnemyID(void);
+void Z2SoundObjMgr_NS_removeEnemy(void);
+void Z2SoundObjMgr_NS_searchEnemy(void);
+
+// Static initializer
+void func_802C01EC(void);
+}
+
 #endif  // Z2SOUNDOBJMGR_H_

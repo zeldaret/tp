@@ -22,4 +22,20 @@ class Z2WolfHowlMgr {
     void skipCorrectDemo();
 };
 
+extern "C" {
+void calcPitchMod__13Z2WolfHowlMgrFff(void);
+void calcVolumeMod__13Z2WolfHowlMgrFf(void);
+void checkLine__13Z2WolfHowlMgrFv(void);
+void getCorrectLine__13Z2WolfHowlMgrFUc(void);
+void getCorrectLineNum__13Z2WolfHowlMgrFv(void);
+void getNowInputValue__13Z2WolfHowlMgrFv(void);
+void getNowPitch__13Z2WolfHowlMgrFv(void);
+void getOnLineNum__13Z2WolfHowlMgrFv(void);
+void resetState__13Z2WolfHowlMgrFv(void);
+void startGuideMelody__13Z2WolfHowlMgrFb(void);
+
+void func_802CBB7C(void);
+void func_802CB6EC(void);
+}
+
 #endif  // Z2WOLFHOWLMGR_H_

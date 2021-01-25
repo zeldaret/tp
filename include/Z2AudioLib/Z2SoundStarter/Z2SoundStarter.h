@@ -28,4 +28,14 @@ struct Z2SoundStarter {
 
 extern Z2SoundStarter* lbl_80450B74;
 
+extern "C" {
+void __ct__14Z2SoundStarterFb(void);
+void __dt__14Z2SoundStarterFv(void);
+
+void getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc(void);
+void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc(void);
+void startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3_SUB_0f_SUB_1UlfffffUl(
+    void);
+}
+
 #endif  // Z2SOUNDSTARTER_H_

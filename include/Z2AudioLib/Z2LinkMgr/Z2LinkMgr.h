@@ -1,18 +1,23 @@
+#ifndef Z2LINKMGR_H_
+#define Z2LINKMGR_H_
+
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
 #include "global.h"
 
-struct Z2SoundObjBase {};
+class Z2SoundObjBase;
 
-struct Z2CreatureLink {
+class Z2CreatureLink {
+public:
+    Z2CreatureLink(void);
+    ~Z2CreatureLink();
+
     void setLinkState(u8);
     void setLinkGroupInfo(u8);
     void setLinkHp(s32, s32);
     void setLinkSwordType(s32, s32);
     void setLinkShieldType(s32, s32);
     void setLinkBootsType(s32);
-    Z2CreatureLink(void);
-    ~Z2CreatureLink();
     void deleteObject();
     void init(Vec*, Vec*, Vec*);
     void initKantera(Vec*);
@@ -32,6 +37,7 @@ struct Z2CreatureLink {
     int startHitItemSE(u32, u32, Z2SoundObjBase*, float);
     void setResumeAttack(bool);
 
+private:
     u8 unk0[179];
     u8 unk179;
     float unk180;
@@ -58,3 +64,27 @@ struct Z2LinkSoundStarter {
     // u32 startSound(JAISoundID, JAISoundHandle, TVec3<float>*, u32, float, float, float, float,
     // float, u32);
 };
+
+extern "C" {
+void Z2CreatureRide_NS_dtor(void);
+
+void func_802C5078(void);
+void func_802C57C0(void);
+void func_802C551C(void);
+void func_802C5284(void);
+void func_802C4FFC(void);
+void func_802C5894(void);
+void func_802C4928(void);
+void func_802C588C(void);
+void func_802C54FC(void);
+void func_802C54B8(void);
+void func_802C56C0(void);
+void func_802C51EC(void);
+void func_802C520C(void);
+
+void Z2LinkSoundStarter_NS_ctor(void);
+
+void Z2RideSoundStarter(void);
+}
+
+#endif  // Z2LINKMGR_H_
