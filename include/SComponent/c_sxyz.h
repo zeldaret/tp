@@ -17,4 +17,10 @@ public:
 
 extern csXyz lbl_80451160;  // SComponent::csXyz::Zero
 
+// additional symbols needed for csXyz
+extern "C" {
+void __pl__FsRC7cSAngle(void);
+void __mi__FsRC7cSAngle(void);
+}
+
 #endif
