@@ -900,10 +900,10 @@ void dSv_player_config_c::init(void) {
     os_mSoundMode = OSGetSoundMode();
     if (os_mSoundMode == SOUND_MODE_MONO) {
         this->mSoundMode = SOUND_MODE_MONO;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_MONO);
+        lbl_80451368->setOutputMode(SOUND_MODE_MONO);
     } else {
         this->mSoundMode = SOUND_MODE_STEREO;
-        Z2AudioMgr_NS_setOutputMode(lbl_80451368, SOUND_MODE_STEREO);
+        lbl_80451368->setOutputMode(SOUND_MODE_STEREO);
     }
 
     this->unk2 = 0;

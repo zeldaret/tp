@@ -30,10 +30,9 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     /* sManager */ lbl_80451550->clearIndex();
     mDoDvdErr_ThdCleanup();
     cAPICPad_recalibrate__Fv();
-    if (lbl_80450BB8 != 0) {
+    if (lbl_80450BB8 != false) {
         do {
-            // uVar2 = lbl_80451368->hasReset();
-            uVar2 = Z2AudioMgr_NS_hasReset(lbl_80451368);
+            uVar2 = lbl_80451368->hasReset();
         } while ((uVar2 & 0xff) == 0);
     }
 

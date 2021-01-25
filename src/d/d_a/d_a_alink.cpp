@@ -4,8 +4,10 @@
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
+#include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 u32 daAlink_c::getE3Zhint(void) {

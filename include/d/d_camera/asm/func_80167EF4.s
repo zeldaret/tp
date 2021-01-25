@@ -16,7 +16,7 @@
 /* 80167F30 00164E70  38 61 00 68 */ addi r3, r1, 0x68
 /* 80167F34 00164E74  4B F1 10 C1 */ bl dBgS_RoofChk
 /* 80167F38 00164E78  38 61 00 8C */ addi r3, r1, 0x8c
-/* 80167F3C 00164E7C  4B F1 0F B1 */ bl dBgS_PolyPassChk_NS_SetUnderwaterRoof
+/* 80167F3C 00164E7C  4B F1 0F B1 */ bl SetUnderwaterRoof__16dBgS_PolyPassChkFv
 /* 80167F40 00164E80  C0 01 00 08 */ lfs f0, 8(r1)
 /* 80167F44 00164E84  D0 01 00 A4 */ stfs f0, 0xa4(r1)
 /* 80167F48 00164E88  C0 01 00 0C */ lfs f0, 0xc(r1)

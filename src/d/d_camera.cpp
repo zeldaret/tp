@@ -3,9 +3,11 @@
 #include "SComponent/c_bg_w.h"
 #include "SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
+#include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {

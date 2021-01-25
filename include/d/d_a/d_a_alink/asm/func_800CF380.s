@@ -208,7 +208,7 @@
 /* 800CF67C 000CC5BC  38 03 00 18 */ addi r0, r3, 0x18
 /* 800CF680 000CC5C0  90 1A 00 24 */ stw r0, 0x24(r26)
 /* 800CF684 000CC5C4  38 7A 00 14 */ addi r3, r26, 0x14
-/* 800CF688 000CC5C8  4B FA 98 11 */ bl dBgS_PolyPassChk_NS_SetLink
+/* 800CF688 000CC5C8  4B FA 98 11 */ bl SetLink__16dBgS_PolyPassChkFv
 /* 800CF68C 000CC5CC  38 7F 1B 48 */ addi r3, r31, 0x1b48
 /* 800CF690 000CC5D0  4B FA 89 A1 */ bl dBgS_LinkLinChk
 /* 800CF694 000CC5D4  38 7F 1B B8 */ addi r3, r31, 0x1bb8
@@ -230,7 +230,7 @@
 /* 800CF6D4 000CC614  38 03 00 24 */ addi r0, r3, 0x24
 /* 800CF6D8 000CC618  90 1A 00 4C */ stw r0, 0x4c(r26)
 /* 800CF6DC 000CC61C  38 7A 00 3C */ addi r3, r26, 0x3c
-/* 800CF6E0 000CC620  4B FA 97 B9 */ bl dBgS_PolyPassChk_NS_SetLink
+/* 800CF6E0 000CC620  4B FA 97 B9 */ bl SetLink__16dBgS_PolyPassChkFv
 /* 800CF6E4 000CC624  3B 5F 1D 5C */ addi r26, r31, 0x1d5c
 /* 800CF6E8 000CC628  7F 43 D3 78 */ mr r3, r26
 /* 800CF6EC 000CC62C  4B FA 99 09 */ bl dBgS_RoofChk
@@ -244,7 +244,7 @@
 /* 800CF70C 000CC64C  38 03 00 24 */ addi r0, r3, 0x24
 /* 800CF710 000CC650  90 1A 00 34 */ stw r0, 0x34(r26)
 /* 800CF714 000CC654  38 7A 00 24 */ addi r3, r26, 0x24
-/* 800CF718 000CC658  4B FA 97 81 */ bl dBgS_PolyPassChk_NS_SetLink
+/* 800CF718 000CC658  4B FA 97 81 */ bl SetLink__16dBgS_PolyPassChkFv
 /* 800CF71C 000CC65C  38 7F 1D AC */ addi r3, r31, 0x1dac
 /* 800CF720 000CC660  4B FA 89 11 */ bl dBgS_LinkLinChk
 /* 800CF724 000CC664  38 7F 1E 1C */ addi r3, r31, 0x1e1c
@@ -270,7 +270,7 @@
 /* 800CF774 000CC6B4  38 03 00 24 */ addi r0, r3, 0x24
 /* 800CF778 000CC6B8  90 1A 00 4C */ stw r0, 0x4c(r26)
 /* 800CF77C 000CC6BC  38 7A 00 3C */ addi r3, r26, 0x3c
-/* 800CF780 000CC6C0  4B FA 96 E9 */ bl dBgS_PolyPassChk_NS_SetObj
+/* 800CF780 000CC6C0  4B FA 96 E9 */ bl SetObj__16dBgS_PolyPassChkFv
 /* 800CF784 000CC6C4  38 7F 1F 28 */ addi r3, r31, 0x1f28
 /*.global mDoExt_AnmRatioPack*/
 /* 800CF788 000CC6C8  3C 80 80 14 */ lis r4, mDoExt_AnmRatioPack@ha
