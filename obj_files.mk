@@ -12,7 +12,7 @@ EXTABINDEX_O_FILES :=                               \
 TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_audio.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_audio.o    \
             $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_machine.o    \
@@ -125,7 +125,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/bg/s/movebg/d_bg_s_movebg_actor.o    \
             $(BUILD_DIR)/asm/d/bg/s/sph/d_bg_s_sph_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/spl/grp/d_bg_s_spl_grp_chk.o    \
-            $(BUILD_DIR)/asm/d/bg/s/poly/pass/d_bg_s_poly_pass_chk.o    \
+            $(BUILD_DIR)/src/d/d_bg/d_bg_s_poly_pass_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/roof/d_bg_s_roof_chk.o    \
             $(BUILD_DIR)/asm/d/bg/s/wtr/d_bg_s_wtr_chk.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_w.o    \

@@ -9964,7 +9964,7 @@ daBaseNpc_c:
 /* 8014E710 0014B650  38 03 00 18 */	addi r0, r3, 0x18
 /* 8014E714 0014B654  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 8014E718 0014B658  38 7E 00 14 */	addi r3, r30, 0x14
-/* 8014E71C 0014B65C  4B F2 A7 4D */	bl dBgS_PolyPassChk_NS_SetObj
+/* 8014E71C 0014B65C  4B F2 A7 4D */	bl SetObj__16dBgS_PolyPassChkFv
 /* 8014E720 0014B660  38 7F 07 58 */	addi r3, r31, 0x758
 /* 8014E724 0014B664  48 17 1C A5 */	bl __ct__10Z2CreatureFv
 /* 8014E728 0014B668  3B DF 07 EC */	addi r30, r31, 0x7ec

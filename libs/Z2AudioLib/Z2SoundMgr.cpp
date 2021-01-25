@@ -6,6 +6,7 @@
 #include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
 // seqCallback__FP8JASTrackUs

@@ -1114,7 +1114,7 @@ lbl_80076E74:
 /* 80076E74 00073DB4  38 61 00 38 */	addi r3, r1, 0x38
 /* 80076E78 00073DB8  48 00 21 7D */	bl dBgS_RoofChk
 /* 80076E7C 00073DBC  38 61 00 5C */	addi r3, r1, 0x5c
-/* 80076E80 00073DC0  48 00 20 6D */	bl dBgS_PolyPassChk_NS_SetUnderwaterRoof
+/* 80076E80 00073DC0  48 00 20 6D */	bl SetUnderwaterRoof__16dBgS_PolyPassChkFv
 /* 80076E84 00073DC4  80 7E 00 30 */	lwz r3, 0x30(r30)
 /* 80076E88 00073DC8  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80076E8C 00073DCC  D0 01 00 74 */	stfs f0, 0x74(r1)
@@ -1152,7 +1152,7 @@ lbl_80076ED8:
 /* 80076F04 00073E44  48 00 1C 8D */	bl dBgS_SplGrpChk_NS_Set
 /* 80076F08 00073E48  38 7E 01 A4 */	addi r3, r30, 0x1a4
 /* 80076F0C 00073E4C  38 9E 00 14 */	addi r4, r30, 0x14
-/* 80076F10 00073E50  48 00 1E FD */	bl dBgS_PolyPassChk_NS_SetPassChkInfo
+/* 80076F10 00073E50  48 00 1E FD */	bl SetPassChkInfo__16dBgS_PolyPassChkFR16dBgS_PolyPassChk
 /* 80076F14 00073E54  7F E3 FB 78 */	mr r3, r31
 /* 80076F18 00073E58  38 9E 01 80 */	addi r4, r30, 0x180
 /* 80076F1C 00073E5C  4B FF E6 49 */	bl dBgS_NS_SplGrpChk
