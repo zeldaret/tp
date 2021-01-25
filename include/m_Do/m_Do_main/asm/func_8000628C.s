@@ -121,6 +121,6 @@ lbl_8000642C:
 lbl_80006440:
 /* 80006440 00003380  48 00 16 55 */	bl read__8mDoCPd_cFv
 /* 80006444 00003384  48 01 26 29 */	bl fapGm_Execute
-/* 80006448 00003388  48 00 0D 1D */	bl mDoAud_Execute
+/* 80006448 00003388  48 00 0D 1D */	bl mDoAud_Execute__Fv
 /* 8000644C 0000338C  4B FF FD 7D */	bl debug__Fv
 /* 80006450 00003390  4B FF FF B0 */	b lbl_80006400

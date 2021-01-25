@@ -1,3 +1,5 @@
+#ifndef __Z2SCENEMGR_H_
+#define __Z2SCENEMGR_H_
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "global.h"
@@ -45,4 +47,6 @@ struct Z2SceneMgr {
     void setFadeInStart(u8 param_1);
     void setSceneName(char* stageName, long roomNum, long layerNum);
     int checkFirstWaves(void);
+    void load1stDynamicWave(void);
 };
+#endif

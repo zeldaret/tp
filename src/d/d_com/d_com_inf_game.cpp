@@ -5,6 +5,7 @@
 #include "d/d_item/d_item/d_item.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 

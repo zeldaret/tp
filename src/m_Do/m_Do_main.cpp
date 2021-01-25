@@ -3,6 +3,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_dvd_thread/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"

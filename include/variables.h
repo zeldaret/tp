@@ -7,7 +7,6 @@ extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_80379234[0x64];
 extern char lbl_803739A0[0x310];
-extern void* lbl_80451368;
 extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[20];
@@ -409,7 +408,7 @@ extern u32 lbl_80450DE4;
 // func_80015614
 #include "JSystem/JUtility/JUTXfb/JUTXfb.h"
 // extern JUTXfb* lbl_80451550;
-extern u8 lbl_80450BB8;
+extern bool lbl_80450BB8;
 extern char lbl_80374198[16];
 // func_8001574C
 extern bool lbl_80451501;

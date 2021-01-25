@@ -602,8 +602,8 @@ lbl_802A005C:
 /* 802A006C 0029CFAC  38 21 00 40 */	addi r1, r1, 0x40
 /* 802A0070 0029CFB0  4E 80 00 20 */	blr 
 
-.global JAISeMgr
-JAISeMgr:
+.global __ct__8JAISeMgrFb
+__ct__8JAISeMgrFb:
 /* 802A0074 0029CFB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A0078 0029CFB8  7C 08 02 A6 */	mflr r0
 /* 802A007C 0029CFBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -624,10 +624,10 @@ lbl_802A0094:
 /* 802A00B0 0029CFF0  3C 80 80 2A */	lis r4, JAISeCategoryMgr@ha
 .global JAISeCategoryMgr
 /* 802A00B4 0029CFF4  38 84 09 94 */	addi r4, r4, JAISeCategoryMgr@l
-.global JAISeCategoryMgr_NS_dtor
-/* 802A00B8 0029CFF8  3C A0 80 00 */	lis r5, JAISeCategoryMgr_NS_dtor@ha
-.global JAISeCategoryMgr_NS_dtor
-/* 802A00BC 0029CFFC  38 A5 78 DC */	addi r5, r5, JAISeCategoryMgr_NS_dtor@l
+.global __dt__16JAISeCategoryMgrFv
+/* 802A00B8 0029CFF8  3C A0 80 00 */	lis r5, __dt__16JAISeCategoryMgrFv@ha
+.global __dt__16JAISeCategoryMgrFv
+/* 802A00BC 0029CFFC  38 A5 78 DC */	addi r5, r5, __dt__16JAISeCategoryMgrFv@l
 /* 802A00C0 0029D000  38 C0 00 6C */	li r6, 0x6c
 /* 802A00C4 0029D004  38 E0 00 10 */	li r7, 0x10
 /* 802A00C8 0029D008  48 0C 1C 99 */	bl func_80361D60
@@ -1247,10 +1247,10 @@ lbl_802A08E0:
 /* 802A0920 0029D860  38 03 98 B0 */	addi r0, r3, lbl_803C98B0@l
 /* 802A0924 0029D864  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A0928 0029D868  38 7E 00 14 */	addi r3, r30, 0x14
-.global JAISeCategoryMgr_NS_dtor
-/* 802A092C 0029D86C  3C 80 80 00 */	lis r4, JAISeCategoryMgr_NS_dtor@ha
-.global JAISeCategoryMgr_NS_dtor
-/* 802A0930 0029D870  38 84 78 DC */	addi r4, r4, JAISeCategoryMgr_NS_dtor@l
+.global __dt__16JAISeCategoryMgrFv
+/* 802A092C 0029D86C  3C 80 80 00 */	lis r4, __dt__16JAISeCategoryMgrFv@ha
+.global __dt__16JAISeCategoryMgrFv
+/* 802A0930 0029D870  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l
 /* 802A0934 0029D874  38 A0 00 6C */	li r5, 0x6c
 /* 802A0938 0029D878  38 C0 00 10 */	li r6, 0x10
 /* 802A093C 0029D87C  48 0C 13 AD */	bl func_80361CE8

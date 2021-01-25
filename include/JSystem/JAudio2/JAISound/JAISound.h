@@ -128,6 +128,7 @@ void stop__8JAISoundFv(JAISound*);
 class JAISoundHandle {
 public:
     JAISoundHandle();  // noninline in JAUClusterSound.cpp
+    ~JAISoundHandle();
 
     bool isSoundAttached() const { return mSound != NULL; }
 
