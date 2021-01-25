@@ -133,7 +133,7 @@ lbl_80248B08:
 /* 80248B30 00245A70  D0 04 00 08 */	stfs f0, 8(r4)
 /* 80248B34 00245A74  80 9F 00 08 */	lwz r4, 8(r31)
 /* 80248B38 00245A78  80 64 00 04 */	lwz r3, 4(r4)
-/* 80248B3C 00245A7C  48 0A F4 91 */	bl J2DPane_NS_animationTransform
+/* 80248B3C 00245A7C  48 0A F4 91 */	bl animationTransform__7J2DPaneFv
 /* 80248B40 00245A80  80 9F 00 08 */	lwz r4, 8(r31)
 /* 80248B44 00245A84  80 64 00 04 */	lwz r3, 4(r4)
 /* 80248B48 00245A88  38 80 00 00 */	li r4, 0

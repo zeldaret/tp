@@ -4525,7 +4525,7 @@ dDlst_TimerScrnDraw_c_NS_playBckAnimation:
 /* 80260B10 0025DA50  D3 E3 00 08 */	stfs f31, 8(r3)
 /* 80260B14 0025DA54  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 80260B18 0025DA58  80 63 00 04 */	lwz r3, 4(r3)
-/* 80260B1C 0025DA5C  48 09 74 B1 */	bl J2DPane_NS_animationTransform
+/* 80260B1C 0025DA5C  48 09 74 B1 */	bl animationTransform__7J2DPaneFv
 /* 80260B20 0025DA60  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 80260B24 0025DA64  80 63 00 04 */	lwz r3, 4(r3)
 /* 80260B28 0025DA68  38 80 00 00 */	li r4, 0
@@ -4598,7 +4598,7 @@ dDlst_TimerScrnDraw_c_NS_drawPikari:
 lbl_80260C28:
 /* 80260C28 0025DB68  C0 03 00 CC */	lfs f0, 0xcc(r3)
 /* 80260C2C 0025DB6C  EF 39 00 32 */	fmuls f25, f25, f0
-/* 80260C30 0025DB70  48 09 6E CD */	bl J2DPane_NS_getParentPane
+/* 80260C30 0025DB70  48 09 6E CD */	bl getParentPane__7J2DPaneFv
 lbl_80260C34:
 /* 80260C34 0025DB74  28 03 00 00 */	cmplwi r3, 0
 /* 80260C38 0025DB78  40 82 FF F0 */	bne lbl_80260C28

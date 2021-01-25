@@ -109,7 +109,7 @@ lbl_80244F94:
 /* 80244FBC 00241EFC  D0 04 00 08 */	stfs f0, 8(r4)
 /* 80244FC0 00241F00  80 9F 00 08 */	lwz r4, 8(r31)
 /* 80244FC4 00241F04  80 64 00 04 */	lwz r3, 4(r4)
-/* 80244FC8 00241F08  48 0B 30 05 */	bl J2DPane_NS_animationTransform
+/* 80244FC8 00241F08  48 0B 30 05 */	bl animationTransform__7J2DPaneFv
 /* 80244FCC 00241F0C  80 9F 00 08 */	lwz r4, 8(r31)
 /* 80244FD0 00241F10  80 64 00 04 */	lwz r3, 4(r4)
 /* 80244FD4 00241F14  38 80 00 00 */	li r4, 0

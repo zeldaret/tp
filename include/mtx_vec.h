@@ -11,9 +11,7 @@ struct Quaternion {
     float x, y, z, w;
 };
 
-struct Mtx {
-    float data[3][4];
-};
+typedef float Mtx[3][4];
 
 extern "C" {
 void PSMTXIdentity(Mtx* matrix);
