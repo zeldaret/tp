@@ -838,13 +838,15 @@ float cM3d_lineVsPosSuisenCross(const Vec& pLinePointA, const Vec& pLinePointB, 
 }
 
 // cM3d_2PlaneLinePosNearPos__FRC8cM3dGPlaRC8cM3dGPlaPC3VecP3Vec
-// #ifdef NON_MATCHING
-// #else
-asm int cM3d_2PlaneLinePosNearPos(const cM3dGPla&, const cM3dGPla&, const Vec*, Vec*) {
-    nofralloc
-#include "SComponent/c_m3d/asm/func_8026EB38.s"
+int cM3d_2PlaneLinePosNearPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const Vec* pVec, Vec* pVecOut) {
+    cM3dGLin lin;
+    if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {
+        return FALSE;
+    } else {
+        cM3d_lineVsPosSuisenCross(&lin, pVec, pVecOut);
+        return TRUE;
+    }
 }
-// #endif
 
 // cM3d_CrawVec__FRC3VecRC3VecP3Vec
 #ifdef NM
