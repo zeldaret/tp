@@ -57,7 +57,7 @@ s32 fpcNdRq_Cancel(node_create_request* pNodeCreateReq);
 s32 fpcNdRq_Handler(void);
 s32 fpcNdRq_IsPossibleTarget(struct process_node_class* pProcNode);
 s32 fpcNdRq_IsIng(struct process_node_class* pProcNode);
-node_create_request* fpcNdRq_Create(s32 pRequestSize);
+node_create_request* fpcNdRq_Create(u32 pRequestSize);
 node_create_request* fpcNdRq_ChangeNode(u32 pRequestSize, struct process_node_class* pProcNode,
                                         s16 param_3, void* param_4);
 node_create_request* fpcNdRq_DeleteNode(u32 pRequestSize, struct process_node_class* pProcNode);

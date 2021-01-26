@@ -1,12 +1,12 @@
 #include "JSystem/J2DGraph/J2DPane.h"
 
-J2DPane::J2DPane() : _20(), _30(), _40(), mPaneTree(this) {
+J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
     mTransform = NULL;
     id = 'PAN1';
     mVisible = true;
-    _10 = 0;
-    _18 = 0;
-    _20.set(lbl_804561F0, lbl_804561F0, lbl_804561F0, lbl_804561F0);
+    mInfoTag = 0;
+    mUserInfoTag = 0;
+    mBounds.set(lbl_804561F0, lbl_804561F0, lbl_804561F0, lbl_804561F0);
     initiate();
     changeUseTrans(NULL);
     calcMtx();
@@ -14,14 +14,14 @@ J2DPane::J2DPane() : _20(), _30(), _40(), mPaneTree(this) {
 
 void J2DPane::initiate() {
     _4 = -1;
-    _c8 = _c4 = _c0 = _bc = _b8 = lbl_804561F0;
-    _b7 = 0;
+    mRotateOffsetY = mRotateOffsetX = mRotateZ = mRotateY = mRotateX = lbl_804561F0;
+    mBasePosition = 0;
     mRotAxis = AXIS_Z;
-    _d0 = _cc = lbl_804561F4;
+    mScaleY = mScaleX = lbl_804561F4;
     mCullMode = GX_CULL_NONE;
     mAlpha = 0xFF;
-    _b4 = 1;
-    _b3 = 0xFF;
+    mIsInfluencedAlpha = true;
+    mColorAlpha = 0xFF;
     mConnected = false;
 
     calcMtx();
@@ -52,12 +52,12 @@ asm void J2DPane_X2_(void) {
 }
 
 #ifdef NONMATCHING  // templating..... again
-void J2DPane::initialize(u64 arg1, const TBox2<f32>& dim) {
+void J2DPane::initialize(u64 tag, const TBox2<f32>& dim) {
     id = 'PAN1';
     mVisible = true;
-    _10 = arg1;
-    _18 = arg1;
-    _20.set(dim);
+    mInfoTag = tag;
+    mUserInfoTag = tag;
+    mBounds.set(dim);
     initiate();
     changeUseTrans(NULL);
     calcMtx();
@@ -111,7 +111,7 @@ bool J2DPane::appendChild(J2DPane* child) {
     bool result = mPaneTree.appendChild(&child->mPaneTree);
 
     if (result && parent == NULL) {
-        child->add(_20.i.x, _20.i.y);
+        child->add(mBounds.i.x, mBounds.i.y);
         child->calcMtx();
     }
 
@@ -128,7 +128,7 @@ bool J2DPane::insertChild(J2DPane* before, J2DPane* child) {
     bool result = mPaneTree.insertChild(&before->mPaneTree, &child->mPaneTree);
 
     if (result && parent == NULL) {
-        child->add(_20.i.x, _20.i.y);
+        child->add(mBounds.i.x, mBounds.i.y);
         child->calcMtx();
     }
 
@@ -167,20 +167,20 @@ asm void J2DPane::move(f32 x, f32 y) {
 #endif
 
 void J2DPane::add(f32 x, f32 y) {
-    _d4 += x;
-    _d8 += y;
+    mTranslateX += x;
+    mTranslateY += y;
     calcMtx();
 }
 
 #ifdef NONMATCHING
 void J2DPane::resize(f32 x, f32 y) {
-    TBox2<f32> box = _20;
+    TBox2<f32> box = mBounds;
 
-    box.addPos(TVec2<f32>(_d4, _d8));
+    box.addPos(TVec2<f32>(mTranslateX, mTranslateY));
 
     const J2DPane* parent = getParentPane();
     if (parent != NULL) {
-        box.addPos(TVec2<f32>(-parent->_20.i.x, -parent->_20.i.y));
+        box.addPos(TVec2<f32>(-parent->mBounds.i.x, -parent->mBounds.i.y));
     }
 
     box.f.x = box.i.x + x;
@@ -196,12 +196,12 @@ asm void J2DPane::resize(f32 x, f32 y) {
 
 #ifdef NONMATCHING  // close ish
 TBox2<f32>& J2DPane::getBounds() {
-    lbl_804349B0 = _20;
-    lbl_804349B0.addPos(TVec2<f32>(_d4, _d8));
+    lbl_804349B0 = mBounds;
+    lbl_804349B0.addPos(TVec2<f32>(mTranslateX, mTranslateY));
 
     const J2DPane* parent = getParentPane();
     if (parent != NULL) {
-        lbl_804349B0.addPos(TVec2<f32>(-parent->_20.i.x, -parent->_20.i.y));
+        lbl_804349B0.addPos(TVec2<f32>(-parent->mBounds.i.x, -parent->mBounds.i.y));
     }
 
     return lbl_804349B0;
@@ -213,20 +213,21 @@ asm TBox2<f32>& J2DPane::getBounds() {
 }
 #endif
 
-void J2DPane::rotate(f32 a, f32 b, J2DRotateAxis axis, f32 angle) {
-    _c4 = a;
-    _c8 = b;
+void J2DPane::rotate(f32 offsetX, f32 offsetY, J2DRotateAxis axis, f32 angle) {
+    mRotateOffsetX = offsetX;
+    mRotateOffsetY = offsetY;
     mRotAxis = axis;
     rotate(angle);
 }
 
 void J2DPane::rotate(f32 angle) {
-    if (mRotAxis == AXIS_X)
-        _b8 = angle;
-    else if (mRotAxis == AXIS_Y)
-        _bc = angle;
-    else
-        _c0 = angle;
+    if (mRotAxis == AXIS_X) {
+        mRotateX = angle;
+    } else if (mRotAxis == AXIS_Y) {
+        mRotateY = angle;
+    } else {
+        mRotateZ = angle;
+    }
 
     calcMtx();
 }
@@ -244,32 +245,34 @@ asm void clip__7J2DPaneFRCQ29JGeometry8TBox2(void) {
 // void J2DPane::clip(const TBox2<f32>& bounds) {
 //     TBox2<f32> box = bounds;
 
-//     box.addPos(TVec2<f32>(_30, _34));
-//     _40.intersect(box);
+//     box.addPos(TVec2<f32>(mGlobalBounds, _34));
+//     mClipRect.intersect(box);
 // }
 
-const class J2DPane* J2DPane::search(u64 arg1) {
-    if (arg1 == _10)
+const J2DPane* J2DPane::search(u64 tag) {
+    if (tag == mInfoTag) {
         return this;
+    }
 
     JSUTreeIterator<J2DPane> iter;
     for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
-        const J2DPane* result = iter.getObject()->search(arg1);
-        if (result)
+        if (const J2DPane* result = iter.getObject()->search(tag)) {
             return result;
+        }
     }
     return NULL;
 }
 
-const class J2DPane* J2DPane::searchUserInfo(u64 arg1) {
-    if (arg1 == _18)
+const J2DPane* J2DPane::searchUserInfo(u64 tag) {
+    if (tag == mUserInfoTag) {
         return this;
+    }
 
     JSUTreeIterator<J2DPane> iter;
     for (iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
-        const J2DPane* result = iter.getObject()->searchUserInfo(arg1);
-        if (result)
+        if (const J2DPane* result = iter.getObject()->searchUserInfo(tag)) {
             return result;
+        }
     }
     return NULL;
 }
@@ -307,26 +310,26 @@ void J2DPane::setCullBack(GXCullMode mode) {
 }
 
 void J2DPane::setBasePosition(J2DBasePosition position) {
-    _b7 = position;
+    mBasePosition = position;
     mRotAxis = AXIS_Z;
 
-    _c4 = lbl_804561F0;
+    mRotateOffsetX = lbl_804561F0;
 
     if (position % 3 == 1) {
         f32 width = getWidth();
-        _c4 = width * lbl_80456208;
+        mRotateOffsetX = width * lbl_80456208;
     } else if (position % 3 == 2) {
         f32 width = getWidth();
-        _c4 = width;
+        mRotateOffsetX = width;
     }
 
-    _c8 = lbl_804561F0;
+    mRotateOffsetY = lbl_804561F0;
     if (position / 3 == 1) {
         f32 height = getHeight();
-        _c8 = height * lbl_80456208;
+        mRotateOffsetY = height * lbl_80456208;
     } else if (position / 3 == 2) {
         f32 height = getHeight();
-        _c8 = height;
+        mRotateOffsetY = height;
     }
 
     calcMtx();
@@ -343,27 +346,27 @@ asm void J2DPane::getGlbVtx(u8 arg1) const {
 }
 
 #ifdef NONMATCHING  // probably an issue with JSUTree
-const class J2DPane* J2DPane::getFirstChildPane() {
+const J2DPane* J2DPane::getFirstChildPane() {
     if (!getFirstChild())
         return NULL;
 
     return getFirstChild()->getObject();
 }
 #else
-asm const class J2DPane* J2DPane::getFirstChildPane() {
+asm const J2DPane* J2DPane::getFirstChildPane() {
     nofralloc
 #include "JSystem/J2DGraph/J2DPane/asm/func_802F7A8C.s"
 }
 #endif
 
-const class J2DPane* J2DPane::getNextChildPane() {
+const J2DPane* J2DPane::getNextChildPane() {
     if (getPaneTree()->getNextChild() == NULL)
         return NULL;
 
     return getPaneTree()->getNextChild()->getObject();
 }
 
-const class J2DPane* J2DPane::getParentPane() {
+const J2DPane* J2DPane::getParentPane() {
     if (getPaneTree()->getParent() == NULL)
         return NULL;
 

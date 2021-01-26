@@ -1,5 +1,7 @@
 #include "f/f_pc/f_pc_base.h"
+#include "SComponent/c_malloc.h"
 #include "SComponent/c_phase.h"
+#include "SStandard/s_basic.h"
 #include "dolphin/types.h"
 #include "f/f_pc/f_pc_delete_tag.h"
 #include "f/f_pc/f_pc_layer.h"
@@ -17,8 +19,6 @@ extern s8 lbl_80450D10;
 extern s32 lbl_80450D00;  // f_pc_base::g_fpcBs_type
 
 extern "C" {
-
-extern void sBs_ClearArea(void* pPtr, s32 pSize);
 
 BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2) {
     return checkEqual(pType1, pType2);
@@ -54,7 +54,7 @@ s32 fpcBs_Execute(base_process_class* pProc) {
 
 void fpcBs_DeleteAppend(base_process_class* pProc) {
     if (pProc->mpUserData != NULL) {
-        free__3cMlFPv(pProc->mpUserData);
+        cMl::free(pProc->mpUserData);
         pProc->mpUserData = NULL;
     }
 }
@@ -73,7 +73,7 @@ s32 fpcBs_Delete(base_process_class* pProc) {
     if (deleteResult == 1) {
         fpcBs_DeleteAppend(pProc);
         pProc->mBsType = 0;
-        free__3cMlFPv(pProc);
+        cMl::free(pProc);
     }
     return deleteResult;
 }
@@ -81,11 +81,11 @@ s32 fpcBs_Delete(base_process_class* pProc) {
 base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData) {
     process_profile_definition* procProfDef;
     base_process_class* procClass;
-    s32 size;
+    u32 size;
 
     procProfDef = fpcPf_Get(pProcTypeID);
     size = procProfDef->mSize + procProfDef->mSizeOther;
-    procClass = (base_process_class*)memalignB__3cMlFiUl(-4, size);
+    procClass = (base_process_class*)cMl::memalignB(-4, size);
     if (procClass == NULL) {
         return NULL;
     } else {
