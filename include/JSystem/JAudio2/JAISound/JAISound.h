@@ -120,14 +120,10 @@ public:
     u8 field_0x93;
 };
 
-extern "C" {
-void stop__8JAISoundFUl(JAISound*, u32 fadeout);
-void stop__8JAISoundFv(JAISound*);
-}
-
 class JAISoundHandle {
 public:
     JAISoundHandle();  // noninline in JAUClusterSound.cpp
+    ~JAISoundHandle();
 
     bool isSoundAttached() const { return mSound != NULL; }
 
@@ -143,5 +139,23 @@ public:
 private:
     JAISound* mSound;
 };
+
+extern "C" {
+void __ct__14JAISoundHandleFv(void);
+void releaseSound__14JAISoundHandleFv(void);
+
+void JAISoundHandle_NS_dtor(void);
+
+void stop__8JAISoundFUl(JAISound*, u32 fadeout);
+void stop__8JAISoundFv(JAISound*);
+
+void JAISoundID_NS___as(void);
+void JAISoundID_X1_(void);
+
+void JAISound_NS_acceptsNewAudible(void);
+void JAISound_NS_getID(void);
+void JAISound_NS_newAudible(void);
+void JAISound_NS_releaseHandle(void);
+}
 
 #endif

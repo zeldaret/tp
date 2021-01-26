@@ -2,7 +2,7 @@
 #define D_METER2_INFO_H_
 
 #include "JSystem/J2DGraph/J2DPicture/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DScreen/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox/J2DTextBox.h"
 #include "JSystem/JMessage/control/control.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"

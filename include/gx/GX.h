@@ -3,6 +3,13 @@
 
 #include "dolphin/types.h"
 
+typedef enum _GXCullMode {
+    GX_CULL_NONE = 0,
+    GX_CULL_FRONT = 1,
+    GX_CULL_BACK = 2,
+    GX_CULL_ALL = 3
+} GXCullMode;
+
 typedef enum _GXTexMapID {
     GX_TEXMAP1 = 1,
     GX_TEXMAP2 = 2,
@@ -76,6 +83,8 @@ void GXSetDrawDoneCallback(GXDrawDoneCallback);
 void GXDrawDone(void);
 void GXAbortFrame(void);
 void GXFlush(void);
+
+struct OSThread;
 OSThread* GXSetCurrentGXThread(void);
 OSThread* GXGetCurrentGXThread(void);
 }

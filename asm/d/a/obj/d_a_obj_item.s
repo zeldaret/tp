@@ -752,7 +752,7 @@ daItem_c_NS__daItem_create:
 /* 8015B838 00158778  38 03 00 18 */	addi r0, r3, 0x18
 /* 8015B83C 0015877C  90 1C 00 24 */	stw r0, 0x24(r28)
 /* 8015B840 00158780  38 7C 00 14 */	addi r3, r28, 0x14
-/* 8015B844 00158784  4B F1 D6 25 */	bl dBgS_PolyPassChk_NS_SetObj
+/* 8015B844 00158784  4B F1 D6 25 */	bl SetObj__16dBgS_PolyPassChkFv
 /* 8015B848 00158788  38 7D 07 64 */	addi r3, r29, 0x764
 /* 8015B84C 0015878C  4B F1 A6 61 */	bl dBgS_AcchCir
 /* 8015B850 00158790  3C 60 80 3C */	lis r3, lbl_803C3728@ha

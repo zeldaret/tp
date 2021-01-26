@@ -1,3 +1,6 @@
+#ifndef Z2SCENEMGR_H_
+#define Z2SCENEMGR_H_
+
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "global.h"
@@ -14,7 +17,19 @@ struct Z2SoundMgr {
     JAISoundParamsMove* JAISoundParamsMove;
 };
 
-struct Z2SceneMgr {
+class Z2SceneMgr {
+public:
+    Z2SceneMgr(void);
+
+    void setInDarkness(bool param_1);
+    void setSceneExist(bool param_1);
+    void setFadeOutStart(u8 param_1);
+    void setFadeInStart(u8 param_1);
+    void setSceneName(char* stageName, long roomNum, long layerNum);
+    int checkFirstWaves(void);
+    void load1stDynamicWave(void);
+
+private:
     long BGM_ID;
     int sceneNum;
     int timer;
@@ -37,12 +52,25 @@ struct Z2SceneMgr {
     bool inGame;
     bool sceneExist;
     bool inDarkness;
-
-    Z2SceneMgr(void);
-    void setInDarkness(bool param_1);
-    void setSceneExist(bool param_1);
-    void setFadeOutStart(u8 param_1);
-    void setFadeInStart(u8 param_1);
-    void setSceneName(char* stageName, long roomNum, long layerNum);
-    int checkFirstWaves(void);
 };
+
+extern "C" {
+void __ct__10Z2SceneMgrFv(void);
+void setSceneExist__10Z2SceneMgrFb(void);
+
+void Z2SceneMgr_NS_check1stDynamicWave(void);
+void Z2SceneMgr_NS_checkFirstWaves(void);
+void Z2SceneMgr_NS_eraseBgmWave(void);
+void Z2SceneMgr_NS_eraseSeWave(void);
+void Z2SceneMgr_NS_framework(void);
+void Z2SceneMgr_NS_getWaveLoadStatus(void);
+void Z2SceneMgr_NS__load1stWaveInner_1(void);
+void Z2SceneMgr_NS__load1stWaveInner_2(void);
+void Z2SceneMgr_NS_loadBgmWave(void);
+void Z2SceneMgr_NS_loadSeWave(void);
+void Z2SceneMgr_NS_loadStaticWaves(void);
+void Z2SceneMgr_NS_sceneBgmStart(void);
+void Z2SceneMgr_NS_sceneChange(void);
+}
+
+#endif  // Z2SCENEMGR_H_

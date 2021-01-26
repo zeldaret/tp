@@ -3,7 +3,7 @@ name: run Doxygen to generate docs
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -15,7 +15,6 @@ jobs:
       uses: mattnotmitt/doxygen-action@v1
       with:
         doxyfile-path: 'Doxyfile'
-        enable-latex: true
     - name: deploy docs to github pages
       uses: peaceiris/actions-gh-pages@v3
       with:

@@ -101,7 +101,7 @@ lbl_80255518:
 /* 8025552C 0025246C  28 00 00 00 */	cmplwi r0, 0
 /* 80255530 00252470  41 82 00 54 */	beq lbl_80255584
 /* 80255534 00252474  80 7E 00 04 */	lwz r3, 4(r30)
-/* 80255538 00252478  48 0A 25 55 */	bl J2DPane_NS_getFirstChildPane
+/* 80255538 00252478  48 0A 25 55 */	bl getFirstChildPane__7J2DPaneFv
 /* 8025553C 0025247C  7C 64 1B 78 */	mr r4, r3
 /* 80255540 00252480  7F C3 F3 78 */	mr r3, r30
 /* 80255544 00252484  48 00 05 1D */	bl CPaneMgrAlpha_NS_childPaneCount
@@ -116,7 +116,7 @@ lbl_80255518:
 /* 80255568 002524A8  80 1E 00 0C */	lwz r0, 0xc(r30)
 /* 8025556C 002524AC  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80255570 002524B0  80 7E 00 04 */	lwz r3, 4(r30)
-/* 80255574 002524B4  48 0A 25 19 */	bl J2DPane_NS_getFirstChildPane
+/* 80255574 002524B4  48 0A 25 19 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255578 002524B8  7C 64 1B 78 */	mr r4, r3
 /* 8025557C 002524BC  7F C3 F3 78 */	mr r3, r30
 /* 80255580 002524C0  48 00 05 4D */	bl CPaneMgrAlpha_NS_childPaneGetAlpha
@@ -272,7 +272,7 @@ lbl_80255750:
 /* 80255780 002526C0  80 1E 00 0C */	lwz r0, 0xc(r30)
 /* 80255784 002526C4  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80255788 002526C8  80 7E 00 04 */	lwz r3, 4(r30)
-/* 8025578C 002526CC  48 0A 23 01 */	bl J2DPane_NS_getFirstChildPane
+/* 8025578C 002526CC  48 0A 23 01 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255790 002526D0  7C 64 1B 78 */	mr r4, r3
 /* 80255794 002526D4  7F C3 F3 78 */	mr r3, r30
 /* 80255798 002526D8  7F E5 FB 78 */	mr r5, r31
@@ -484,12 +484,12 @@ CPaneMgrAlpha_NS_childPaneCount:
 /* 80255A84 002529C4  38 03 00 01 */	addi r0, r3, 1
 /* 80255A88 002529C8  B0 1E 00 14 */	sth r0, 0x14(r30)
 /* 80255A8C 002529CC  7F E3 FB 78 */	mr r3, r31
-/* 80255A90 002529D0  48 0A 1F FD */	bl J2DPane_NS_getFirstChildPane
+/* 80255A90 002529D0  48 0A 1F FD */	bl getFirstChildPane__7J2DPaneFv
 /* 80255A94 002529D4  7C 64 1B 78 */	mr r4, r3
 /* 80255A98 002529D8  7F C3 F3 78 */	mr r3, r30
 /* 80255A9C 002529DC  4B FF FF C5 */	bl CPaneMgrAlpha_NS_childPaneCount
 /* 80255AA0 002529E0  7F E3 FB 78 */	mr r3, r31
-/* 80255AA4 002529E4  48 0A 20 21 */	bl J2DPane_NS_getNextChildPane
+/* 80255AA4 002529E4  48 0A 20 21 */	bl getNextChildPane__7J2DPaneFv
 /* 80255AA8 002529E8  7C 64 1B 78 */	mr r4, r3
 /* 80255AAC 002529EC  7F C3 F3 78 */	mr r3, r30
 /* 80255AB0 002529F0  4B FF FF B1 */	bl CPaneMgrAlpha_NS_childPaneCount
@@ -526,12 +526,12 @@ lbl_80255B08:
 /* 80255B14 00252A54  38 03 00 01 */	addi r0, r3, 1
 /* 80255B18 00252A58  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80255B1C 00252A5C  7F E3 FB 78 */	mr r3, r31
-/* 80255B20 00252A60  48 0A 1F 6D */	bl J2DPane_NS_getFirstChildPane
+/* 80255B20 00252A60  48 0A 1F 6D */	bl getFirstChildPane__7J2DPaneFv
 /* 80255B24 00252A64  7C 64 1B 78 */	mr r4, r3
 /* 80255B28 00252A68  7F C3 F3 78 */	mr r3, r30
 /* 80255B2C 00252A6C  4B FF FF A1 */	bl CPaneMgrAlpha_NS_childPaneGetAlpha
 /* 80255B30 00252A70  7F E3 FB 78 */	mr r3, r31
-/* 80255B34 00252A74  48 0A 1F 91 */	bl J2DPane_NS_getNextChildPane
+/* 80255B34 00252A74  48 0A 1F 91 */	bl getNextChildPane__7J2DPaneFv
 /* 80255B38 00252A78  7C 64 1B 78 */	mr r4, r3
 /* 80255B3C 00252A7C  7F C3 F3 78 */	mr r3, r30
 /* 80255B40 00252A80  4B FF FF 8D */	bl CPaneMgrAlpha_NS_childPaneGetAlpha
@@ -598,13 +598,13 @@ lbl_80255C14:
 /* 80255C18 00252B58  38 03 00 01 */	addi r0, r3, 1
 /* 80255C1C 00252B5C  90 1D 00 10 */	stw r0, 0x10(r29)
 /* 80255C20 00252B60  7F C3 F3 78 */	mr r3, r30
-/* 80255C24 00252B64  48 0A 1E 69 */	bl J2DPane_NS_getFirstChildPane
+/* 80255C24 00252B64  48 0A 1E 69 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255C28 00252B68  7C 64 1B 78 */	mr r4, r3
 /* 80255C2C 00252B6C  7F A3 EB 78 */	mr r3, r29
 /* 80255C30 00252B70  7F E5 FB 78 */	mr r5, r31
 /* 80255C34 00252B74  4B FF FF 29 */	bl CPaneMgrAlpha_NS_childPaneSetAlpha
 /* 80255C38 00252B78  7F C3 F3 78 */	mr r3, r30
-/* 80255C3C 00252B7C  48 0A 1E 89 */	bl J2DPane_NS_getNextChildPane
+/* 80255C3C 00252B7C  48 0A 1E 89 */	bl getNextChildPane__7J2DPaneFv
 /* 80255C40 00252B80  7C 64 1B 78 */	mr r4, r3
 /* 80255C44 00252B84  7F A3 EB 78 */	mr r3, r29
 /* 80255C48 00252B88  7F E5 FB 78 */	mr r5, r31
@@ -732,7 +732,7 @@ CPaneMgrAlphaMorf_NS_setBackupAlpha:
 /* 80255DF8 00252D38  80 1F 00 24 */	lwz r0, 0x24(r31)
 /* 80255DFC 00252D3C  90 1F 00 28 */	stw r0, 0x28(r31)
 /* 80255E00 00252D40  80 7F 00 04 */	lwz r3, 4(r31)
-/* 80255E04 00252D44  48 0A 1C 89 */	bl J2DPane_NS_getFirstChildPane
+/* 80255E04 00252D44  48 0A 1C 89 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255E08 00252D48  7C 64 1B 78 */	mr r4, r3
 /* 80255E0C 00252D4C  7F E3 FB 78 */	mr r3, r31
 /* 80255E10 00252D50  48 00 00 89 */	bl CPaneMgrAlphaMorf_NS_childPaneBackupAlpha
@@ -760,7 +760,7 @@ CPaneMgrAlphaMorf_NS_setAlphaMorfRate:
 /* 80255E58 00252D98  80 1F 00 24 */	lwz r0, 0x24(r31)
 /* 80255E5C 00252D9C  90 1F 00 28 */	stw r0, 0x28(r31)
 /* 80255E60 00252DA0  80 7F 00 04 */	lwz r3, 4(r31)
-/* 80255E64 00252DA4  48 0A 1C 29 */	bl J2DPane_NS_getFirstChildPane
+/* 80255E64 00252DA4  48 0A 1C 29 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255E68 00252DA8  7C 64 1B 78 */	mr r4, r3
 /* 80255E6C 00252DAC  7F E3 FB 78 */	mr r3, r31
 /* 80255E70 00252DB0  FC 20 F8 90 */	fmr f1, f31
@@ -799,12 +799,12 @@ CPaneMgrAlphaMorf_NS_childPaneBackupAlpha:
 /* 80255EE0 00252E20  38 03 00 01 */	addi r0, r3, 1
 /* 80255EE4 00252E24  90 1E 00 28 */	stw r0, 0x28(r30)
 /* 80255EE8 00252E28  7F E3 FB 78 */	mr r3, r31
-/* 80255EEC 00252E2C  48 0A 1B A1 */	bl J2DPane_NS_getFirstChildPane
+/* 80255EEC 00252E2C  48 0A 1B A1 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255EF0 00252E30  7C 64 1B 78 */	mr r4, r3
 /* 80255EF4 00252E34  7F C3 F3 78 */	mr r3, r30
 /* 80255EF8 00252E38  4B FF FF A1 */	bl CPaneMgrAlphaMorf_NS_childPaneBackupAlpha
 /* 80255EFC 00252E3C  7F E3 FB 78 */	mr r3, r31
-/* 80255F00 00252E40  48 0A 1B C5 */	bl J2DPane_NS_getNextChildPane
+/* 80255F00 00252E40  48 0A 1B C5 */	bl getNextChildPane__7J2DPaneFv
 /* 80255F04 00252E44  7C 64 1B 78 */	mr r4, r3
 /* 80255F08 00252E48  7F C3 F3 78 */	mr r3, r30
 /* 80255F0C 00252E4C  4B FF FF 8D */	bl CPaneMgrAlphaMorf_NS_childPaneBackupAlpha
@@ -861,13 +861,13 @@ lbl_80255FB0:
 /* 80255FC0 00252F00  38 03 00 01 */	addi r0, r3, 1
 /* 80255FC4 00252F04  90 1E 00 28 */	stw r0, 0x28(r30)
 /* 80255FC8 00252F08  7F E3 FB 78 */	mr r3, r31
-/* 80255FCC 00252F0C  48 0A 1A C1 */	bl J2DPane_NS_getFirstChildPane
+/* 80255FCC 00252F0C  48 0A 1A C1 */	bl getFirstChildPane__7J2DPaneFv
 /* 80255FD0 00252F10  7C 64 1B 78 */	mr r4, r3
 /* 80255FD4 00252F14  7F C3 F3 78 */	mr r3, r30
 /* 80255FD8 00252F18  FC 20 F8 90 */	fmr f1, f31
 /* 80255FDC 00252F1C  4B FF FF 4D */	bl CPaneMgrAlphaMorf_NS_childPaneSetAlphaMorf
 /* 80255FE0 00252F20  7F E3 FB 78 */	mr r3, r31
-/* 80255FE4 00252F24  48 0A 1A E1 */	bl J2DPane_NS_getNextChildPane
+/* 80255FE4 00252F24  48 0A 1A E1 */	bl getNextChildPane__7J2DPaneFv
 /* 80255FE8 00252F28  7C 64 1B 78 */	mr r4, r3
 /* 80255FEC 00252F2C  7F C3 F3 78 */	mr r3, r30
 /* 80255FF0 00252F30  FC 20 F8 90 */	fmr f1, f31

@@ -758,6 +758,29 @@ SECTIONS {
 "__dt__7JKRFileFv" = 0x802D7B90;
 }
 FORCEACTIVE {
+ getParentPane__7J2DPaneFv
+ J2DCast_F32_to_S16__7J2DPaneFfUc
+ setAnimation__7J2DPaneFP10J2DAnmBase
+ setAnimation__7J2DPaneFP15J2DAnmTransform
+ animationTransform__7J2DPaneFv
+ animationTransform__7J2DPaneFPC15J2DAnmTransform
+ setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+ setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+ animationPane__7J2DPaneFPC15J2DAnmTransform
+ drawSelf__7J2DPaneFffPA3_A4_f
+ rewriteAlpha__7J2DPaneFv
+ setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+ setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+ setCullBack__7J2DPaneFb
+ setConnectParent__7J2DPaneFb
+ update__7J2DPaneFv
+ drawSelf__7J2DPaneFff
+ __sinit_m_Do_audio_cpp
+ hasReset__10Z2AudioMgrCFv
+ resetRecover__10Z2AudioMgrFv
+ mDoAud_resetRecover__Fv
+ resetProcess__10Z2AudioMgrFUlb
+ mDoAud_resetProcess__Fv
  prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
  prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
@@ -3136,6 +3159,19 @@ func_8002CDB8
 func_8002CB68
 func_8002CB30
 func_8002CAF0
+func_802F847C
+func_802F8478
+func_802F8474
+func_802F8464
+func_802F8428
+func_802F83FC
+func_802F83D0
+func_802F83CC
+func_802F83C8
+func_802F8080
+makeMatrix__7J2DPaneFffff
+add__7J2DPaneFff
+move__7J2DPaneFff
 __ct__14JAISoundHandleFv
 dispose__14Z2SoundObjBaseFv
 dKyeff_Draw__FP8dKyeff_c
@@ -3143,6 +3179,8 @@ dKyeff_Execute__FP8dKyeff_c
 dKyeff_IsDelete__FP8dKyeff_c
 dKyeff_Delete__FP8dKyeff_c
 dKyeff_Create__FP12kankyo_class
+__dt__16cBgS_PolyPassChkFv
+ClrIronBall__16dBgS_PolyPassChkFv
 }
 /*
 .init 80003100 - 80005600

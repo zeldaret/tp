@@ -484,4 +484,8 @@ inline char* dComIfGp_getStartStageName(void) {
     return g_dComIfG_gameInfo.getPlay().getStartStageName();
 }
 
+extern "C" {
+void dComIfGs_staffroll_next_go(void);
+}
+
 #endif

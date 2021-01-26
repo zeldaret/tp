@@ -4,6 +4,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
+#include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "os/OS.h"
 
 extern "C" {

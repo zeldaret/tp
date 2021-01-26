@@ -1,5 +1,10 @@
 #include "Z2AudioLib/Z2SceneMgr/Z2SceneMgr.h"
+#include "JSystem/JAudio2/JAISoundParamsMove.h"
+#include "JSystem/JAudio2/JAIStreamMgr.h"
+#include "JSystem/JAudio2/JASWaveArc.h"
+#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
+#include "Z2AudioLib/Z2FxLineMgr/Z2FxLineMgr.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SoundObjMgr/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
@@ -237,7 +242,7 @@ asm void Z2SceneMgr_NS_framework(void) {
 
 // load1stDynamicWave__10Z2SceneMgrFv
 // Z2SceneMgr::load1stDynamicWave(void)
-asm void Z2SceneMgr_NS_load1stDynamicWave(void) {
+asm void Z2SceneMgr::load1stDynamicWave(void) {
     nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B9D40.s"
 }

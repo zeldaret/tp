@@ -18,6 +18,12 @@ public:
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
+
+private:
+    cXyz center;
+    float radius;
+    float height;
+    void* vtable;
 };
 
 #endif

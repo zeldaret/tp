@@ -55,7 +55,7 @@ lbl_80168098:
 /* 801680C0 00165000  38 61 00 E0 */ addi r3, r1, 0xe0
 /* 801680C4 00165004  4B F1 0F 31 */ bl dBgS_RoofChk
 /* 801680C8 00165008  38 61 01 04 */ addi r3, r1, 0x104
-/* 801680CC 0016500C  4B F1 0E 21 */ bl dBgS_PolyPassChk_NS_SetUnderwaterRoof
+/* 801680CC 0016500C  4B F1 0E 21 */ bl SetUnderwaterRoof__16dBgS_PolyPassChkFv
 /* 801680D0 00165010  C0 01 00 74 */ lfs f0, 0x74(r1)
 /* 801680D4 00165014  D0 01 01 1C */ stfs f0, 0x11c(r1)
 /* 801680D8 00165018  C0 01 00 78 */ lfs f0, 0x78(r1)
@@ -86,12 +86,12 @@ lbl_80168110:
 /* 80168138 00165078  38 03 00 24 */ addi r0, r3, 0x24
 /* 8016813C 0016507C  90 01 00 D8 */ stw r0, 0xd8(r1)
 /* 80168140 00165080  38 7B 00 3C */ addi r3, r27, 0x3c
-/* 80168144 00165084  4B F1 0D 3D */ bl dBgS_PolyPassChk_NS_SetCam
+/* 80168144 00165084  4B F1 0D 3D */ bl SetCam__16dBgS_PolyPassChkFv
 /* 80168148 00165088  3B 61 00 C8 */ addi r27, r1, 0xc8
 /* 8016814C 0016508C  7F 63 DB 78 */ mr r3, r27
-/* 80168150 00165090  4B F1 0D 3D */ bl dBgS_PolyPassChk_NS_ClrCam
+/* 80168150 00165090  4B F1 0D 3D */ bl ClrCam__16dBgS_PolyPassChkFv
 /* 80168154 00165094  7F 63 DB 78 */ mr r3, r27
-/* 80168158 00165098  4B F1 0D 11 */ bl dBgS_PolyPassChk_NS_SetObj
+/* 80168158 00165098  4B F1 0D 11 */ bl SetObj__16dBgS_PolyPassChkFv
 /* 8016815C 0016509C  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80168160 001650A0  38 81 00 80 */ addi r4, r1, 0x80
 /* 80168164 001650A4  48 0F FB C5 */ bl SetPos__11cBgS_GndChkFPC4cXyz
@@ -100,9 +100,9 @@ lbl_80168110:
 /* 80168170 001650B0  4B F0 C3 31 */ bl cBgS_NS_GroundCross
 /* 80168174 001650B4  FF E0 08 90 */ fmr f31, f1
 /* 80168178 001650B8  38 7C 03 68 */ addi r3, r28, 0x368
-/* 8016817C 001650BC  4B F1 0D 05 */ bl dBgS_PolyPassChk_NS_SetCam
+/* 8016817C 001650BC  4B F1 0D 05 */ bl SetCam__16dBgS_PolyPassChkFv
 /* 80168180 001650C0  38 7C 03 68 */ addi r3, r28, 0x368
-/* 80168184 001650C4  4B F1 0C F1 */ bl dBgS_PolyPassChk_NS_ClrObj
+/* 80168184 001650C4  4B F1 0C F1 */ bl ClrObj__16dBgS_PolyPassChkFv
 /* 80168188 001650C8  38 7C 03 2C */ addi r3, r28, 0x32c
 /* 8016818C 001650CC  38 81 00 80 */ addi r4, r1, 0x80
 /* 80168190 001650D0  48 0F FB 99 */ bl SetPos__11cBgS_GndChkFPC4cXyz

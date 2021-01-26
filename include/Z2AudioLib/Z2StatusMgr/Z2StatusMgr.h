@@ -42,15 +42,19 @@ struct Z2StatusMgr {
 };
 
 extern "C" {
+void __ct__11Z2StatusMgrFv(void);
+
+bool isMovieDemo__11Z2StatusMgrFv(void);
 void menuIn__11Z2StatusMgrFv(void);
 void menuOut__11Z2StatusMgrFv(void);
-bool isMovieDemo__11Z2StatusMgrFv(void);
-void Z2SceneMgr_NS_sceneBgmStart(void);
-void setDemoName__11Z2StatusMgrFPc(char*);
-// bool checkDayTime__11Z2StatusMgrFv(void);
+void processHeartGaugeSound__11Z2StatusMgrFv(void);
 void processTime__11Z2StatusMgrFv(void);
+void setCameraGroupInfo__11Z2StatusMgrFUc(u8);
+void setCameraPolygonPos__11Z2StatusMgrFP3Vec(Vec*);
+void setDemoName__11Z2StatusMgrFPc(char*);
 void setEventBit__11Z2StatusMgrFPv(void*);
-void Z2FxLineMgr_NS_setUnderWaterFx(void);
+
+void Z2SceneMgr_NS_sceneBgmStart(void);
 }
 
 extern Z2StatusMgr* lbl_80450B7C;  // Z2StatusMgr sInstance
