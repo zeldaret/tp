@@ -17,7 +17,7 @@ lbl_80006A3C:
 /* 80006A4C 0000398C  28 00 00 00 */ cmplwi r0, 0
 /* 80006A50 00003990  40 82 00 34 */ bne lbl_80006A84
 lbl_80006A54:
-/* 80006A54 00003994  48 00 E3 11 */ bl mDoExt_GetCurrentRunningThread
+/* 80006A54 00003994  48 00 E3 11 */ bl mDoExt_GetCurrentRunningThread__Fv
 /* 80006A58 00003998  80 0D 86 20 */ lwz r0, lbl_80450BA0-_SDA_BASE_(r13)
 /* 80006A5C 0000399C  28 00 00 00 */ cmplwi r0, 0
 /* 80006A60 000039A0  41 82 00 0C */ beq lbl_80006A6C

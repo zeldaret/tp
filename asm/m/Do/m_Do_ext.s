@@ -8721,8 +8721,8 @@ mDoExt_setAraCacheSize:
 /* 80014D5C 00011C9C  90 6D 86 E8 */	stw r3, lbl_80450C68-_SDA_BASE_(r13)
 /* 80014D60 00011CA0  4E 80 00 20 */	blr 
 
-.global mDoExt_GetCurrentRunningThread
-mDoExt_GetCurrentRunningThread:
+.global mDoExt_GetCurrentRunningThread__Fv
+mDoExt_GetCurrentRunningThread__Fv:
 /* 80014D64 00011CA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80014D68 00011CA8  7C 08 02 A6 */	mflr r0
 /* 80014D6C 00011CAC  90 01 00 14 */	stw r0, 0x14(r1)

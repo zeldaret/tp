@@ -123,7 +123,7 @@ struct OSThread {
 };
 
 struct __va_list_struct {
-
+    
 };
 
 extern "C" {
@@ -198,6 +198,8 @@ void OSSetSaveRegion(void* start, void* end);
 void LCDisable(void);
 
 void OSReportInit__Fv(void); //needed for inline asm
+
+u8* OSGetStackPointer(void);
 }; //extern "C"
 
 void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);

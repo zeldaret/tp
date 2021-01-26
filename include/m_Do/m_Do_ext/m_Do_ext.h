@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
+#include "os/OS.h"
 #include "global.h"
 
 extern "C" {
@@ -13,6 +14,7 @@ JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
 }
+OSThread* mDoExt_GetCurrentRunningThread(void);
 
 #pragma pack(push, 1)
 class mDoExt_baseAnm {

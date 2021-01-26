@@ -5,7 +5,7 @@
 /* 80006994 000038D4  48 35 B8 49 */ bl _savegpr_29
 /* 80006998 000038D8  7C 7D 1B 78 */ mr r29, r3
 /* 8000699C 000038DC  7C 9E 23 78 */ mr r30, r4
-/* 800069A0 000038E0  48 00 E3 C5 */ bl mDoExt_GetCurrentRunningThread
+/* 800069A0 000038E0  48 00 E3 C5 */ bl mDoExt_GetCurrentRunningThread__Fv
 /* 800069A4 000038E4  7C 7F 1B 79 */ or. r31, r3, r3
 /* 800069A8 000038E8  40 82 00 14 */ bne lbl_800069BC
 /* 800069AC 000038EC  7F A3 EB 78 */ mr r3, r29
