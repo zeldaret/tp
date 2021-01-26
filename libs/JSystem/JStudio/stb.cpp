@@ -256,7 +256,7 @@ TParse::TParse(TControl* pControl) : pControl(pControl) {}
 TParse::~TParse() {}
 
 #ifdef NONMATCHING  // Close but is missing a temp or something
-int TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3) {
+bool TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3) {
     const void* pData = *ppData_inout;
     const data::TParse_THeader& header(pData);
 
@@ -279,19 +279,19 @@ int TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 ar
     return parseHeader(header, arg3);
 }
 #else
-asm int TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3) {
+asm bool TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3) {
     nofralloc
 #include "JSystem/JStudio/asm/parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl.s"
 }
 #endif
 
-asm int TParse::parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg3) {
+asm bool TParse::parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg3) {
     nofralloc
 #include "JSystem/JStudio/asm/parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl.s"
 }
 
-int TParse::parseHeader(const data::TParse_THeader& header, u32 arg2) {
-    return 1;
+bool TParse::parseHeader(const data::TParse_THeader& header, u32 arg2) {
+    return true;
 }
 
 bool TParse::parseBlock_block(const data::TParse_TBlock& ppBlock, u32 arg2) {
