@@ -2135,7 +2135,7 @@ dDemo_c_NS_start:
 /* 80039BAC 00036AEC  38 61 00 0C */	addi r3, r1, 0xc
 /* 80039BB0 00036AF0  38 81 00 08 */	addi r4, r1, 8
 /* 80039BB4 00036AF4  38 A0 00 00 */	li r5, 0
-/* 80039BB8 00036AF8  48 2A 2D 59 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80039BB8 00036AF8  48 2A 2D 59 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80039BBC 00036AFC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80039BC0 00036B00  40 82 00 2C */	bne lbl_80039BEC
 /* 80039BC4 00036B04  3C 60 80 38 */	lis r3, lbl_803797F8@ha

@@ -547,7 +547,7 @@ lbl_8028588C:
 /* 8028589C 002827DC  38 61 00 0C */	addi r3, r1, 0xc
 /* 802858A0 002827E0  38 81 00 08 */	addi r4, r1, 8
 /* 802858A4 002827E4  7F C5 F3 78 */	mr r5, r30
-/* 802858A8 002827E8  48 05 70 69 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 802858A8 002827E8  48 05 70 69 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 802858AC 002827EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802858B0 002827F0  40 82 00 18 */	bne lbl_802858C8
 /* 802858B4 002827F4  38 61 00 0C */	addi r3, r1, 0xc
@@ -599,7 +599,7 @@ lbl_8028593C:
 /* 8028594C 0028288C  38 61 00 0C */	addi r3, r1, 0xc
 /* 80285950 00282890  38 81 00 08 */	addi r4, r1, 8
 /* 80285954 00282894  7F A5 EB 78 */	mr r5, r29
-/* 80285958 00282898  48 05 6F B9 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80285958 00282898  48 05 6F B9 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 8028595C 0028289C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80285960 002828A0  40 82 00 18 */	bne lbl_80285978
 /* 80285964 002828A4  38 61 00 0C */	addi r3, r1, 0xc
