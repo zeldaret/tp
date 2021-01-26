@@ -1,5 +1,6 @@
 #include "dolphin/types.h"
 
+#include "SComponent/c_malloc.h"
 #include "SComponent/c_phase.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_iter.h"
@@ -32,8 +33,6 @@ void fpcCtRq_ToCreateQ(create_request* pReq) {
     fpcCtTg_ToCreateQ(&pReq->mBase.mBase);
 }
 
-extern void free__3cMlFPv(void* pPtr);
-
 BOOL fpcCtRq_Delete(create_request* pReq) {
     fpcCtRq_CreateQTo(pReq);
     if (pReq->mpCtRqMtd != NULL && fpcMtd_Method(pReq->mpCtRqMtd->mpDelete, pReq) == 0) {
@@ -42,7 +41,7 @@ BOOL fpcCtRq_Delete(create_request* pReq) {
         if (pReq->mpRes) {
             pReq->mpRes->mpCtRq = NULL;
         }
-        free__3cMlFPv(pReq);
+        cMl::free(pReq);
         return 1;
     }
 }
@@ -105,7 +104,7 @@ void fpcCtRq_Handler(void) {
 }
 
 create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_method_class* pMthd) {
-    create_request* pReq = (create_request*)memalignB__3cMlFiUl(-4, size);
+    create_request* pReq = (create_request*)cMl::memalignB(-4, size);
 
     if (pReq != NULL) {
         fpcCtTg_Init(&pReq->mBase, pReq);

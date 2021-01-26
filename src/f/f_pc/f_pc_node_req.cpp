@@ -1,4 +1,6 @@
 #include "f/f_pc/f_pc_node_req.h"
+#include "SComponent/c_malloc.h"
+#include "SStandard/s_basic.h"
 #include "dolphin/types.h"
 #include "f/f_pc/f_pc_base.h"
 #include "f/f_pc/f_pc_create_req.h"
@@ -6,6 +8,7 @@
 #include "f/f_pc/f_pc_deletor.h"
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_layer.h"
+#include "f/f_pc/f_pc_stdcreate_req.h"
 
 // f_pc_node_req::l_fpcNdRq_Queue
 extern node_list_class lbl_803A3A38;
@@ -22,9 +25,6 @@ extern s32 lbl_80450D48;
 extern s8 lbl_80450D4C;
 
 extern "C" {
-
-extern s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
-extern void sBs_ClearArea(void* pPtr, s32 pSize);
 
 void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq) {
     fpcLy_CreatedMesg(pNodeCreateReq->mpLayerClass);
@@ -49,8 +49,8 @@ s32 fpcNdRq_phase_IsCreated(node_create_request* pNodeCreateReq) {
 s32 fpcNdRq_phase_Create(node_create_request* pNodeCreateReq) {
     pNodeCreateReq->mCreatingID =
         fpcSCtRq_Request(pNodeCreateReq->mpLayerClass, pNodeCreateReq->mProcName,
-                         pNodeCreateReq->mpNodeCrReqMthCls->mpPostMethodFunc, pNodeCreateReq,
-                         pNodeCreateReq->mpUserData);
+                         (stdCreateFunc)pNodeCreateReq->mpNodeCrReqMthCls->mpPostMethodFunc,
+                         pNodeCreateReq, pNodeCreateReq->mpUserData);
     return pNodeCreateReq->mCreatingID == -1 ? 3 : 2;
 }
 
@@ -104,7 +104,7 @@ s32 fpcNdRq_Delete(node_create_request* pNodeCreateReq) {
         fpcMtd_Method(pNodeCreateReq->mpNodeCrReqMthCls->mpUnkFunc, pNodeCreateReq) == 0) {
         return 0;
     }
-    free__3cMlFPv(pNodeCreateReq);
+    cMl::free(pNodeCreateReq);
     return 1;
 }
 
@@ -175,8 +175,8 @@ s32 fpcNdRq_IsIng(process_node_class* pProcNode) {
     return 0;
 }
 
-node_create_request* fpcNdRq_Create(s32 pRequestSize) {
-    node_create_request* req = (node_create_request*)memalignB__3cMlFiUl(-4, pRequestSize);
+node_create_request* fpcNdRq_Create(u32 pRequestSize) {
+    node_create_request* req = (node_create_request*)cMl::memalignB(-4, pRequestSize);
     if (req != NULL) {
         if (lbl_80450D4C == 0) {
             lbl_80450D48 = 0;
@@ -184,19 +184,6 @@ node_create_request* fpcNdRq_Create(s32 pRequestSize) {
         }
         sBs_ClearArea(req, pRequestSize);
         *req = lbl_803A3A44;
-        // req->mCreateTag = lbl_803A3A44.mCreateTag;
-        // req->mProcMthCls = lbl_803A3A44.mProcMthCls;
-        // req->mReqPhsProc = lbl_803A3A44.mReqPhsProc;
-        // req->mpPhsHandler = lbl_803A3A44.mpPhsHandler;
-        // req->mpNodeCrReqMthCls = lbl_803A3A44.mpNodeCrReqMthCls;
-        // req->mParameter = lbl_803A3A44.mParameter;
-        // req->mRequestId = lbl_803A3A44.mRequestId;
-        // req->mNodeProc = lbl_803A3A44.mNodeProc;
-        // req->mpLayerClass = lbl_803A3A44.mpLayerClass;
-        // req->mCreatingID = lbl_803A3A44.mCreatingID;
-        // req->mProcName = lbl_803A3A44.mProcName;
-        // req->mpUserData = lbl_803A3A44.mpUserData;
-        // req->unk_0x60 = lbl_803A3A44.unk_0x60;
         cTg_Create(&req->mCreateTag, req);
         fpcMtdTg_Init(&req->mProcMthCls, (process_method_tag_func)fpcNdRq_Cancel, req);
         req->mRequestId = lbl_80450D48++;
