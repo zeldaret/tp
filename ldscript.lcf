@@ -3186,6 +3186,15 @@ dKyeff2_Execute__FP9dKyeff2_c
 dKyeff2_IsDelete__FP9dKyeff2_c
 dKyeff2_Delete__FP9dKyeff2_c
 dKyeff2_Create__FP12kankyo_class
+func_8000B1E4
+func_8000B1D0
+func_8000B118
+func_8000A604
+func_80008474
+func_80008450
+func_80008420
+func_8000841C
+func_80008028
 }
 /*
 .init 80003100 - 80005600
