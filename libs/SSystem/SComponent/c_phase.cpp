@@ -21,49 +21,43 @@ int cPhs_Compleate(request_of_phase_process_class* pPhase) {
     return cPhs_COMPLEATE_e;
 }
 
-#if NON_MATCHING
 int cPhs_Next(request_of_phase_process_class* pPhase) {
-    // flow control
-
-    if (pPhase->mpHandlerTable != NULL) {
+    if (const cPhs__Handler* handlerTable = pPhase->mpHandlerTable) {
         pPhase->mPhaseStep++;
-        cPhs__Handler pHandler = pPhase->mpHandlerTable[pPhase->mPhaseStep];
-        if (pHandler == NULL)
+        cPhs__Handler handler = handlerTable[pPhase->mPhaseStep];
+
+        // Double null check here actually matters for emitted assembly.
+        // Wee old compilers.
+        if (handler == NULL || handler == NULL) {
             return cPhs_Compleate(pPhase);
-        else if (pHandler != NULL)
+        } else {
             return 1;
+        }
     }
 
     return cPhs_COMPLEATE_e;
 }
-#else
-asm int cPhs_Next(request_of_phase_process_class* pPhase) {
-    nofralloc
-#include "SComponent/c_phase/asm/func_80266678.s"
-}
-#endif
 
 #if NON_MATCHING
 int cPhs_Do(request_of_phase_process_class* pPhase, void* pUserData) {
-    cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable;
-    if (pHandlerTable != NULL) {
+    if (const cPhs__Handler* pHandlerTable = pPhase->mpHandlerTable) {
         // the load of pUserData seems to be slightly scrambled..
-        int step = pPhase->mPhaseStep;
-        cPhs__Handler pHandler = pHandlerTable[step];
-        int newStep = pHandler(pUserData);
+        const cPhs__Handler pHandler = pHandlerTable[pPhase->mPhaseStep];
+        const int newStep = pHandler(pUserData);
+
         switch (newStep) {
         case 1:
             return cPhs_Next(pPhase);
         case 2: {
-            int step2 = cPhs_Next(pPhase);
+            const int step2 = cPhs_Next(pPhase);
             return step2 == 1 ? 2 : cPhs_COMPLEATE_e;
         }
+        case cPhs_COMPLEATE_e:
+            return cPhs_Compleate(pPhase);
         case 3: {
             cPhs_UnCompleate(pPhase);
             return 3;
         }
-        case cPhs_COMPLEATE_e:
-            return cPhs_Compleate(pPhase);
         case cPhs_ERROR_e:
             cPhs_UnCompleate(pPhase);
             return cPhs_ERROR_e;
