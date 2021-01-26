@@ -9,13 +9,13 @@
 /* 801ADD7C 001AACBC  48 1B AC 19 */ bl strcmp
 /* 801ADD80 001AACC0  2C 03 00 00 */ cmpwi r3, 0
 /* 801ADD84 001AACC4  41 82 00 08 */ beq lbl_801ADD8C
-/* 801ADD88 001AACC8  4B EA A5 71 */ bl dKyw_wether_move
+/* 801ADD88 001AACC8  4B EA A5 71 */ bl dKyw_wether_move__Fv
 lbl_801ADD8C:
-/* 801ADD8C 001AACCC  4B EA C3 2D */ bl dKyw_wether_move_draw
-/* 801ADD90 001AACD0  4B FE FF BD */ bl dKy_FiveSenses_fullthrottle_dark
+/* 801ADD8C 001AACCC  4B EA C3 2D */ bl dKyw_wether_move_draw__Fv
+/* 801ADD90 001AACD0  4B FE FF BD */ bl dKy_FiveSenses_fullthrottle_dark__Fv
 /* 801ADD94 001AACD4  3C 60 80 43 */ lis r3, lbl_8042DD70@ha
 /* 801ADD98 001AACD8  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
-/* 801ADD9C 001AACDC  48 11 89 15 */ bl Z2EnvSeMgr_NS_framework
+/* 801ADD9C 001AACDC  48 11 89 15 */ bl framework__10Z2EnvSeMgrFv
 /* 801ADDA0 001AACE0  38 60 00 01 */ li r3, 1
 /* 801ADDA4 001AACE4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801ADDA8 001AACE8  7C 08 03 A6 */ mtlr r0

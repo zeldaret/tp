@@ -7,6 +7,7 @@
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "d/d_kankyo/d_kankyo.h"
 
 u32 daAlink_c::getE3Zhint(void) {
     return 0;

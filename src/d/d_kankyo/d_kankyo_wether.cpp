@@ -3,6 +3,7 @@
 #include "SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 
 extern "C" {
@@ -418,6 +419,7 @@ asm void dKyw_wether_init2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800579EC.s"
 }
+};
 
 // dKyw_wether_delete__Fv
 // dKyw_wether_delete(void)
@@ -425,7 +427,7 @@ asm void dKyw_wether_delete(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80057A04.s"
 }
-
+extern "C" {
 // __dt__19dKankyo_evil_PacketFv
 // dKankyo_evil_Packet::~dKankyo_evil_Packet(void)
 asm void func_80057C84(void) {
@@ -516,14 +518,14 @@ asm void wether_move_thunder(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058290.s"
 }
-
+};
 // dKyw_wether_move__Fv
 // dKyw_wether_move(void)
 asm void dKyw_wether_move(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800582F8.s"
 }
-
+extern "C" {
 // wether_move_sun__Fv
 // wether_move_sun(void)
 asm void wether_move_sun(void) {
@@ -593,14 +595,14 @@ asm void wether_move_evil(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80059F74.s"
 }
-
+};
 // dKyw_wether_move_draw__Fv
 // dKyw_wether_move_draw(void)
 asm void dKyw_wether_move_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A0B8.s"
 }
-
+extern "C" {
 // dKyw_wether_move_draw2__Fv
 // dKyw_wether_move_draw2(void)
 asm void dKyw_wether_move_draw2(void) {
@@ -608,12 +610,15 @@ asm void dKyw_wether_move_draw2(void) {
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A154.s"
 }
 
+};
 // dKyw_wether_draw__Fv
 // dKyw_wether_draw(void)
 asm void dKyw_wether_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A174.s"
 }
+
+extern "C" {
 
 // dKyw_wether_draw2__Fv
 // dKyw_wether_draw2(void)

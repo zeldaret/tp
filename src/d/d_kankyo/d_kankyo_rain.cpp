@@ -2,6 +2,7 @@
 
 #include "SComponent/c_math.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 
 extern "C" {

@@ -7,6 +7,7 @@
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "d/d_kankyo/d_kankyo.h"
 
 // memset first arg is wrong
 #ifdef NONMATCHING

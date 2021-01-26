@@ -144,8 +144,9 @@ public:
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
+    inline char* getStartStageName() {return mStartStage.getName();}
 
-private:
+private: //NEEDS TO BE FIXED
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ u8 field_0x143c[0x2999];
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
@@ -478,6 +479,9 @@ inline void dComIfGp_setItem(u8 slot, u8 i_no) {
 }
 inline u32 dComIfGp_getNowVibration(void) {
     return g_dComIfG_gameInfo.getPlay().getNowVibration();
+}
+inline char* dComIfGp_getStartStageName(void) {
+    return g_dComIfG_gameInfo.getPlay().getStartStageName();
 }
 
 #endif
