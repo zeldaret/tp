@@ -11,7 +11,7 @@ EXTABINDEX_O_FILES :=                               \
 
 TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
-            $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
+            $(BUILD_DIR)/src/m_Do/m_Do_printf.o    \
             $(BUILD_DIR)/src/m_Do/m_Do_audio.o    \
             $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o    \
