@@ -413,14 +413,14 @@ asm void dKyw_wether_init(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800574E0.s"
 }
-
+};
 // dKyw_wether_init2__Fv
 // dKyw_wether_init2(void)
 asm void dKyw_wether_init2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800579EC.s"
 }
-};
+
 
 // dKyw_wether_delete__Fv
 // dKyw_wether_delete(void)
@@ -498,14 +498,14 @@ asm void func_80058128(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058128.s"
 }
-
+};
 // dKyw_wether_delete2__Fv
 // dKyw_wether_delete2(void)
 asm void dKyw_wether_delete2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800581AC.s"
 }
-
+extern "C" {
 // __dt__21dKankyo_vrkumo_PacketFv
 // dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet(void)
 asm void func_8005820C(void) {
@@ -603,7 +603,6 @@ asm void dKyw_wether_move_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A0B8.s"
 }
-extern "C" {
 // dKyw_wether_move_draw2__Fv
 // dKyw_wether_move_draw2(void)
 asm void dKyw_wether_move_draw2(void) {
@@ -611,7 +610,6 @@ asm void dKyw_wether_move_draw2(void) {
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A154.s"
 }
 
-};
 // dKyw_wether_draw__Fv
 // dKyw_wether_draw(void)
 asm void dKyw_wether_draw(void) {
@@ -619,7 +617,6 @@ asm void dKyw_wether_draw(void) {
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A174.s"
 }
 
-extern "C" {
 
 // dKyw_wether_draw2__Fv
 // dKyw_wether_draw2(void)
@@ -627,7 +624,7 @@ asm void dKyw_wether_draw2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A304.s"
 }
-
+extern "C" {
 // dKyw_wether_proc__Fv
 // dKyw_wether_proc(void)
 asm void dKyw_wether_proc(void) {

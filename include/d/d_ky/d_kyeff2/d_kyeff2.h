@@ -1,16 +1,16 @@
 #ifndef _D_KYEFF2_H
 #define _D_KYEFF2_H
+#include "d/d_kankyo/d_kankyo.h"
 
-extern "C" {
-    void dKyeff2_c_NS_execute(void);
-    void dKyw_wether_delete2(void);
-    void dKyw_wether_draw2(void);
-    void dKyw_wether_init2(void);
-    void dKyw_wether_move_draw2(void);
-    void func_801ADEE8(void);
-    void func_801ADF08(void);
-    void func_801ADF10(void);
-    void func_801ADF34(void);
-}
+class dKyeff2_c{
+public:
+    bool execute(void);
+};
+
+bool dKyeff2_Draw(dKyeff2_c * p_dKyeff2_c);
+bool dKyeff2_Execute(dKyeff2_c* p_dKyeff2_c);
+bool dKyeff2_IsDelete(dKyeff2_c* p_dKyeff2_c);
+bool dKyeff2_Delete(dKyeff2_c* p_dKyeff2_c);
+int dKyeff2_Create(kankyo_class* p_kankyo_class);
 
 #endif

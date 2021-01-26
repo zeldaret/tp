@@ -1,47 +1,30 @@
 #include "global.h"
 #include "d/d_ky/d_kyeff2/d_kyeff2.h"
 
-extern "C" {
-
-asm void dKyeff2_Draw__FP9dKyeff2_c(void){
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADEA0.s"
+bool dKyeff2_Draw(dKyeff2_c* p_dKyeff2_c){
+    dKyw_wether_draw2();
+    return true;
 }
 
-
-// execute__9dKyeff2_cFv
-// dKyeff2_c::execute(void)
-asm void dKyeff2_c_NS_execute(void) {
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADEC4.s"
+bool dKyeff2_c::execute(void) {
+    dKyw_wether_move_draw2();
+    return true;
 }
 
-// dKyeff2_Execute__FP9dKyeff2_c
-// dKyeff2_Execute(dKyeff2_c*)
-asm void dKyeff2_Execute__FP9dKyeff2_c(void) {
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADEE8.s"
+bool dKyeff2_Execute(dKyeff2_c* p_dKyeff2_c) {
+    return p_dKyeff2_c->execute();
 }
 
-// dKyeff2_IsDelete__FP9dKyeff2_c
-// dKyeff2_IsDelete(dKyeff2_c*)
-asm void dKyeff2_IsDelete__FP9dKyeff2_c(void) {
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADF08.s"
+bool dKyeff2_IsDelete(dKyeff2_c* p_dKyeff2_c){
+    return true;
 }
 
-// dKyeff2_Delete__FP9dKyeff2_c
-// dKyeff2_Delete(dKyeff2_c*)
-asm void dKyeff2_Delete__FP9dKyeff2_c(void) {
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADF10.s"
+bool dKyeff2_Delete(dKyeff2_c* p_dKyeff2_c){
+    dKyw_wether_delete2();
+    return true;
 }
 
-// dKyeff2_Create__FP12kankyo_class
-// dKyeff2_Create(kankyo_class*)
-asm void dKyeff2_Create__FP12kankyo_class(void) {
-    nofralloc
-    #include "d/d_ky/d_kyeff2/asm/func_801ADF34.s"
+int dKyeff2_Create(kankyo_class* p_kankyo_class){
+    dKyw_wether_init2();
+    return 4;
 }
-
-};
