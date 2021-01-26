@@ -19,9 +19,9 @@ struct FILE {
     char ungetc_buffer[2];
     u16 ungetc_wide_buffer[2];
     u32 position;
-    u8 * buffer;
+    u8* buffer;
     u32 buffer_size;
-    u8 * buffer_ptr;
+    u8* buffer_ptr;
     u32 buffer_length;
     u32 buffer_alignment;
     u32 buffer_length2;
@@ -31,10 +31,10 @@ struct FILE {
     void* write_fn;
     void* close_fn;
     void* unknown;
-    struct FILE * next_file;
+    struct FILE* next_file;
 };
 
-struct __files{
+struct __files {
     u8 padding[0x50];
     FILE stdout;
 };
@@ -60,24 +60,24 @@ struct mDoPrintf_FiberStack {
 extern mDoPrintf_FiberStack lbl_803DB740;
 
 extern "C" {
-    void OSVAttention__FPCcP16__va_list_struct(void);
-    void PPCHalt(void);
-    void __RAS_OSDisableInterrupts_begin(void);
-    void _restgpr_29(void);
-    void _savegpr_29(void);
-    void cr1(void);
-    void fputs(const char*, FILE*);
-    void func_803658C0(void);
-    void vprintf(const char* fmt, __va_list_struct* list);
-    void mDoPrintf_VReport(const char* format, __va_list_struct* list);
-    void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct(void);
-    void mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct(void);
-    void mDoPrintf_vprintf__FPCcP16__va_list_struct(void);
-    void my_PutString(void);
-    void OSSwitchFiberEx__FUlUlUlUlUlUl(void);
-    void my_PutString__FPCc(void);
-    void OSReportInit__Fv(void);
-    void mDoExt_GetCurrentRunningThread__Fv(void);
+void OSVAttention__FPCcP16__va_list_struct(void);
+void PPCHalt(void);
+void __RAS_OSDisableInterrupts_begin(void);
+void _restgpr_29(void);
+void _savegpr_29(void);
+void cr1(void);
+void fputs(const char*, FILE*);
+void func_803658C0(void);
+void vprintf(const char* fmt, __va_list_struct* list);
+void mDoPrintf_VReport(const char* format, __va_list_struct* list);
+void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct(void);
+void mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct(void);
+void mDoPrintf_vprintf__FPCcP16__va_list_struct(void);
+void my_PutString(void);
+void OSSwitchFiberEx__FUlUlUlUlUlUl(void);
+void my_PutString__FPCc(void);
+void OSReportInit__Fv(void);
+void mDoExt_GetCurrentRunningThread__Fv(void);
 }
 
 #endif

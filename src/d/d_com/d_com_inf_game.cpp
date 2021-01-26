@@ -3,12 +3,12 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_item/d_item/d_item.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
-#include "d/d_kankyo/d_kankyo.h"
 
 // memset first arg is wrong
 #ifdef NONMATCHING

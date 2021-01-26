@@ -144,9 +144,9 @@ public:
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
-    inline char* getStartStageName() {return mStartStage.getName();}
+    inline char* getStartStageName() { return mStartStage.getName(); }
 
-private: //NEEDS TO BE FIXED
+private:  // NEEDS TO BE FIXED
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ u8 field_0x143c[0x2999];
     /* 0x03EC8 */ dStage_startStage_c mStartStage;

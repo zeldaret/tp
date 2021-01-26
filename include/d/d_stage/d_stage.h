@@ -375,7 +375,7 @@ private:
 class dStage_startStage_c {
 public:
     void set(const char*, s8, s16, s8);
-    inline char* getName() {return this->mStage;}
+    inline char* getName() { return this->mStage; }
 
 private:
     /* 0x0 */ char mStage[8];

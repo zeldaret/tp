@@ -3,8 +3,8 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
-#include "os/OS.h"
 #include "global.h"
+#include "os/OS.h"
 
 extern "C" {
 JKRExpHeap* mDoExt_getZeldaHeap();

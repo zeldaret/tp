@@ -5,7 +5,9 @@
 #include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 
-inline void mDoAud_mEnvse_framework(void) {lbl_8042DD70.framework();}
+inline void mDoAud_mEnvse_framework(void) {
+    lbl_8042DD70.framework();
+}
 
 class mDoAud_zelAudio_c {  // Seems to be based on Z2AudioMgr; more research is needed
 public:

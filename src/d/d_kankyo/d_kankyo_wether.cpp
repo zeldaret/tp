@@ -421,7 +421,6 @@ asm void dKyw_wether_init2(void) {
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800579EC.s"
 }
 
-
 // dKyw_wether_delete__Fv
 // dKyw_wether_delete(void)
 asm void dKyw_wether_delete(void) {
@@ -616,7 +615,6 @@ asm void dKyw_wether_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A174.s"
 }
-
 
 // dKyw_wether_draw2__Fv
 // dKyw_wether_draw2(void)
