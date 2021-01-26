@@ -24,14 +24,18 @@ struct JUTWarn {
 
 extern float __fabsf(float);
 
-inline double fabsf(double d) {
-    return __fabsf(d);
+inline double fabsd(float f) {
+    return __fabsf(f);
+}
+
+inline float fabsf(float f) {
+    return (float)fabsd(f);
 }
 
 extern float __fsqrte(float);
 
-inline double sqrt(double d) {
-    return __fsqrte(d);
+inline double sqrt(float f) {
+    return __fsqrte(f);
 }
 
 #include "dolphin/types.h"

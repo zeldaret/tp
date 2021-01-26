@@ -7,7 +7,13 @@
 #include "global.h"
 
 class cM3dGTri {
+    // private:
 public:
+    cM3dGPla mPlane;
+    cXyz mA;
+    cXyz mB;
+    cXyz mC;
+
     bool cross(const cM3dGCyl*, Vec*) const;
     void setPos(const Vec*, const Vec*, const Vec*);
     void setBg(const Vec*, const Vec*, const Vec*, const cM3dGPla*);

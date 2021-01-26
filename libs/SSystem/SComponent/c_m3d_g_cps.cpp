@@ -3,36 +3,24 @@
 #include "SComponent/c_m3d_g_cps.h"
 
 // __ct__8cM3dGCpsFv
-// cM3dGCps::cM3dGCps(void)
-asm cM3dGCps::cM3dGCps(void) {
-    nofralloc
-#include "SComponent/c_m3d_g_cps/asm/func_8026EF88.s"
-}
+cM3dGCps::cM3dGCps(void) {}
 
 // __dt__8cM3dGCpsFv
-// cM3dGCps::~cM3dGCps(void)
-asm cM3dGCps::~cM3dGCps(void) {
-    nofralloc
-#include "SComponent/c_m3d_g_cps/asm/func_8026EFA4.s"
-}
+cM3dGCps::~cM3dGCps(void) {}
 
 // Set__8cM3dGCpsFRC4cXyzRC4cXyzf
-// cM3dGCps::Set(const cXyz&, const cXyz&, float)
-asm void cM3dGCps::Set(const cXyz&, const cXyz&, float) {
-    nofralloc
-#include "SComponent/c_m3d_g_cps/asm/func_8026F000.s"
+void cM3dGCps::Set(const cXyz& pStart, const cXyz& pEnd, f32 pUnkF) {
+    this->SetStartEnd(pStart, pEnd);
+    unk_0x1c = pUnkF;
 }
 
 // Set__8cM3dGCpsFRC9cM3dGCpsS
-// cM3dGCps::Set(const cM3dGCpsS&)
-asm void cM3dGCps::Set(const cM3dGCpsS&) {
-    nofralloc
-#include "SComponent/c_m3d_g_cps/asm/func_8026F03C.s"
+void cM3dGCps::Set(const cM3dGCpsS& other) {
+    this->SetStartEnd(other.mStart, other.mEnd);
+    unk_0x1c = other.unk_0x1c;
 }
 
 // SetCps__8cM3dGCpsFRC8cM3dGCps
-// cM3dGCps::SetCps(const cM3dGCps&)
-asm void cM3dGCps::SetCps(const cM3dGCps&) {
-    nofralloc
-#include "SComponent/c_m3d_g_cps/asm/func_8026F080.s"
+void cM3dGCps::SetCps(const cM3dGCps& other) {
+    this->Set(other.GetStartP(), other.GetEndP(), other.unk_0x1c);
 }

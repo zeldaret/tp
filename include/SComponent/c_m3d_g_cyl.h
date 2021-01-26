@@ -4,26 +4,29 @@
 #include "SComponent/c_xyz.h"
 #include "global.h"
 
-struct cM3dGCylS;
-struct cM3dGSph;
+// Cylinder
+struct cM3dGCylS {
+    cXyz mCenter;
+    f32 mRadius;
+    f32 mHeight;
+};
+class cM3dGSph;
 
-class cM3dGCyl {
+class cM3dGCyl : public cM3dGCylS {
 public:
-    cM3dGCyl(const cXyz*, float, float);
+    cM3dGCyl(const cXyz*, f32, f32);
+    virtual ~cM3dGCyl();
     void Set(const cM3dGCylS&);
-    void Set(const cXyz&, float, float);
+    void Set(const cXyz&, f32, f32);
     void SetC(const cXyz&);
-    void SetH(float);
-    void SetR(float);
+    void SetH(f32);
+    void SetR(f32);
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
-
-private:
-    cXyz center;
-    float radius;
-    float height;
-    void* vtable;
+    const cXyz& GetCP(void) const { return mCenter; }
+    f32 GetR(void) const { return mRadius; }
+    f32 GetH(void) const { return mHeight; }
 };
 
 #endif

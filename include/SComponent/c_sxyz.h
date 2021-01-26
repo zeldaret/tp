@@ -12,7 +12,7 @@ public:
     csXyz operator+(csXyz&);
     void operator+=(csXyz&);
     csXyz operator-(csXyz&);
-    csXyz operator*(float);
+    csXyz operator*(f32);
 };
 
 extern csXyz lbl_80451160;  // SComponent::csXyz::Zero
