@@ -109,9 +109,9 @@ public:
     virtual ~TParse();
 
     // virtuals
-    virtual int parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3);
-    virtual int parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg3);
-    virtual int parseHeader(const data::TParse_THeader& header, u32 arg2);
+    virtual bool parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg3);
+    virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg3);
+    virtual bool parseHeader(const data::TParse_THeader& header, u32 arg2);
     virtual bool parseBlock_block(const data::TParse_TBlock& referBlock, u32 arg2);
     virtual bool parseBlock_object(const data::TParse_TBlock_object& referObject, u32 arg2);
 

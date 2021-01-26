@@ -459,7 +459,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JSupport/JSUInputStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUMemoryStream.o    \
             $(BUILD_DIR)/asm/JSupport/JSUFileStream.o    \
-            $(BUILD_DIR)/asm/JGadget/binary.o    \
+            $(BUILD_DIR)/libs/JSystem/JGadget/binary.o    \
             $(BUILD_DIR)/libs/JSystem/JGadget/linklist.o    \
             $(BUILD_DIR)/asm/JGadget/linklist.o    \
             $(BUILD_DIR)/libs/JSystem/JGadget/std-vector.o    \

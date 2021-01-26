@@ -6,6 +6,13 @@
 namespace JGadget {
 namespace binary {
 
+struct TEBit {
+    u32 value;
+};
+
+const void* parseVariableUInt_16_32_following(const void* pu16, u32* pu32First, u32* pu32Second,
+                                              TEBit* tebit);
+
 inline u32 align_roundUp(u32 arg0, u32 uAlign) {
     return (arg0 + uAlign - 1) & ~(uAlign - 1);
 }
@@ -27,8 +34,10 @@ struct TParseData_aligned : public TParseData {
 struct TParse_header_block {
     virtual ~TParse_header_block();
 
-    virtual int parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg2) = 0;
-    virtual int parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg2) = 0;
+    virtual bool parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg2) = 0;
+    virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg2) = 0;
+
+    bool parse_next(const void** ppData_inout, u32 a2);
 };
 
 }  // namespace binary

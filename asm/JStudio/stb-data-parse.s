@@ -37,7 +37,7 @@ JStudio_NS_stb_NS_data_NS_TParse_TParagraph_NS_getData:
 /* 80289A20 00286960  38 81 00 08 */	addi r4, r1, 8
 /* 80289A24 00286964  7F E5 FB 78 */	mr r5, r31
 /* 80289A28 00286968  38 C0 00 00 */	li r6, 0
-/* 80289A2C 0028696C  48 05 2E 39 */	bl JGadget_NS_binary_NS_parseVariableUInt_16_32_following
+/* 80289A2C 0028696C  48 05 2E 39 */	bl parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary5TEBit
 /* 80289A30 00286970  80 01 00 08 */	lwz r0, 8(r1)
 /* 80289A34 00286974  90 1F 00 04 */	stw r0, 4(r31)
 /* 80289A38 00286978  80 01 00 08 */	lwz r0, 8(r1)
