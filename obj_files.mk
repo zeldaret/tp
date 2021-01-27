@@ -10,27 +10,41 @@ EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/extabindex.o
 
 TEXT_O_FILES := 						            \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_main.o \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_printf.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_audio.o \
             $(BUILD_DIR)/src/m_Do/m_Do_audio.o    \
             $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_graphic.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_machine.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_ext.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_ext.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_lib.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_Reset.o \
             $(BUILD_DIR)/src/m_Do/m_Do_Reset.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_dvd_thread.o \
             $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o    \
             $(BUILD_DIR)/asm/m/Do/m_Do_DVDError.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCard.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCardRWmng.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCardRWmng.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine_exception.o \
             $(BUILD_DIR)/asm/m/Do/machine/m_Do_machine_exception.o    \
             $(BUILD_DIR)/asm/c/c_damagereaction.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_c_dylink.o \
             $(BUILD_DIR)/asm/c/c_dylink.o    \
             $(BUILD_DIR)/asm/f/ap/f_ap_game.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_f_op_actor.o \
             $(BUILD_DIR)/asm/f/op/f_op_actor.o    \
             $(BUILD_DIR)/asm/f/op/actor/f_op_actor_iter.o    \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_tag.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_f_op_actor_mng.o \
             $(BUILD_DIR)/asm/f/op/actor/f_op_actor_mng.o    \
             $(BUILD_DIR)/asm/f/op/f_op_camera.o    \
             $(BUILD_DIR)/asm/f/op/camera/f_op_camera_mng.o    \
@@ -80,39 +94,61 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_pc/f_pc_draw.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_fstcreate_req.o    \
             $(BUILD_DIR)/src/f/f_pc/f_pc_stdcreate_req.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_stage.o \
             $(BUILD_DIR)/src/d/d_stage.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_map.o \
             $(BUILD_DIR)/asm/d/d_map.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_com_inf_game.o \
             $(BUILD_DIR)/src/d/d_com/d_com_inf_game.o  \
+            $(BUILD_DIR)/asm/rodata/rodata_d_com_static.o \
             $(BUILD_DIR)/asm/d/com/d_com_static.o    \
             $(BUILD_DIR)/src/d/d_bomb.o    \
             $(BUILD_DIR)/src/d/d_lib.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_save.o \
             $(BUILD_DIR)/src/d/d_save/d_save.o \
             $(BUILD_DIR)/src/d/d_save/d_save_init.o    \
             $(BUILD_DIR)/asm/d/jnt/d_jnt_col.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_obj.o \
             $(BUILD_DIR)/asm/d/a/d_a_obj.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_itembase_static.o \
             $(BUILD_DIR)/asm/d/a/itembase/d_a_itembase_static.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_item_static.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_shop_item_static.o \
             $(BUILD_DIR)/asm/d/a/shop/item/d_a_shop_item_static.o    \
             $(BUILD_DIR)/src/d/d_a/d_a_horse_static.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_demo.o \
             $(BUILD_DIR)/asm/d/d_demo.o    \
             $(BUILD_DIR)/asm/d/door/d_door_param2.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_resorce.o \
             $(BUILD_DIR)/asm/d/d_resorce.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_map_path.o \
             $(BUILD_DIR)/asm/d/map/d_map_path.o    \
             $(BUILD_DIR)/asm/d/map/path/d_map_path_fmap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_map_path_dmap.o \
             $(BUILD_DIR)/asm/d/map/path/d_map_path_dmap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_event.o \
             $(BUILD_DIR)/asm/d/d_event.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_event_data.o \
             $(BUILD_DIR)/asm/d/event/d_event_data.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_event_manager.o \
             $(BUILD_DIR)/asm/d/event/d_event_manager.o    \
             $(BUILD_DIR)/asm/d/event/d_event_lib.o    \
             $(BUILD_DIR)/asm/d/simple/d_simple_model.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_particle.o \
             $(BUILD_DIR)/asm/d/d_particle.o    \
             $(BUILD_DIR)/asm/d/particle/d_particle_copoly.o    \
             $(BUILD_DIR)/asm/d/d_path.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_drawlist.o \
             $(BUILD_DIR)/asm/d/d_drawlist.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kankyo_data.o \
             $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_data.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kankyo_wether.o \
             $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_wether.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kankyo_rain.o \
             $(BUILD_DIR)/src/d/d_kankyo/d_kankyo_rain.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_vib_pattern.o \
             $(BUILD_DIR)/asm/d/d_vibration.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_attention.o \
             $(BUILD_DIR)/src/d/d_attention.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_pc.o    \
             $(BUILD_DIR)/asm/d/bg/d_bg_plc.o    \
@@ -132,94 +168,170 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/bg/w/d_bg_w_base.o    \
             $(BUILD_DIR)/asm/d/bg/w/d_bg_w_kcol.o    \
             $(BUILD_DIR)/asm/d/bg/w/d_bg_w_sv.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_cc_d.o \
             $(BUILD_DIR)/asm/d/cc/d_cc_d.o    \
             $(BUILD_DIR)/asm/d/cc/mass/d_cc_mass_s.o    \
             $(BUILD_DIR)/asm/d/cc/d_cc_s.o    \
             $(BUILD_DIR)/asm/d/cc/d_cc_uty.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_cam_param.o \
             $(BUILD_DIR)/asm/d/cam/d_cam_param.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_ev_camera.o \
             $(BUILD_DIR)/asm/d/ev/d_ev_camera.o    \
             $(BUILD_DIR)/asm/d/spline/d_spline_path.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_item_data.o \
+            $(BUILD_DIR)/asm/rodata/rodata_d_item.o \
             $(BUILD_DIR)/src/d/d_item/d_item.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_tresure.o \
             $(BUILD_DIR)/asm/d/d_tresure.o    \
             $(BUILD_DIR)/asm/d/d_model.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_eye_hl.o \
             $(BUILD_DIR)/asm/d/eye/d_eye_hl.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_error_msg.o \
             $(BUILD_DIR)/asm/d/error/d_error_msg.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_alink.o \
             $(BUILD_DIR)/src/d/d_a/d_a_alink.o    \
             $(BUILD_DIR)/asm/d/a/d_a_itembase.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_no_chg_room.o \
             $(BUILD_DIR)/asm/d/a/no/chg/d_a_no_chg_room.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_npc.o \
             $(BUILD_DIR)/asm/d/a/d_a_npc.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_npc_cd.o \
             $(BUILD_DIR)/asm/d/a/npc/d_a_npc_cd.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_npc_cd2.o \
             $(BUILD_DIR)/asm/d/a/npc/d_a_npc_cd2.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_obj_item.o \
             $(BUILD_DIR)/asm/d/a/obj/d_a_obj_item.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_insect.o \
             $(BUILD_DIR)/asm/d/d_insect.o    \
             $(BUILD_DIR)/asm/d/a/obj/ss/d_a_obj_ss_base.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_a_player.o \
             $(BUILD_DIR)/asm/d/a/d_a_player.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_camera.o \
             $(BUILD_DIR)/src/d/d_camera.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_envse.o \
             $(BUILD_DIR)/asm/d/d_envse.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_file_select.o \
             $(BUILD_DIR)/asm/d/file/d_file_select.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_file_sel_warning.o \
             $(BUILD_DIR)/asm/d/file/sel/d_file_sel_warning.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_file_sel_info.o \
             $(BUILD_DIR)/src/d/d_file/d_file_sel_info.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_bright_check.o \
             $(BUILD_DIR)/asm/d/bright/d_bright_check.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_scope.o \
             $(BUILD_DIR)/asm/d/d_scope.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_select_cursor.o \
             $(BUILD_DIR)/asm/d/select/d_select_cursor.o    \
             $(BUILD_DIR)/asm/d/select/d_select_icon.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_shop_system.o \
             $(BUILD_DIR)/asm/d/shop/d_shop_camera.o    \
             $(BUILD_DIR)/asm/d/shop/item/d_shop_item_ctrl.o    \
             $(BUILD_DIR)/asm/d/shop/d_shop_system.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_gameover.o \
             $(BUILD_DIR)/asm/d/d_gameover.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kankyo.o \
             $(BUILD_DIR)/src/d/d_kankyo.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kyeff.o \
             $(BUILD_DIR)/asm/d/d_kyeff.o    \
             $(BUILD_DIR)/asm/d/d_kyeff2.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_ky_thunder.o \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_kantera_icon_meter.o \
             $(BUILD_DIR)/src/d/d_kantera_icon_meter.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_calibration.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_calibration.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_collect.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_collect.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_dmap.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_dmap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_dmap_map.o \
             $(BUILD_DIR)/asm/d/menu/dmap/d_menu_dmap_map.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_map_common.o \
             $(BUILD_DIR)/asm/d/menu/map/d_menu_map_common.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_fishing.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_fishing.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_fmap.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_fmap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_fmap_map.o \
             $(BUILD_DIR)/asm/d/menu/fmap/d_menu_fmap_map.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_fmap2D.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_fmap2D.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_insect.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_insect.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_item_explain.o \
             $(BUILD_DIR)/asm/d/menu/item/d_menu_item_explain.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_letter.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_letter.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_option.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_option.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_ring.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_ring.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_save.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_save.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_skill.o \
             $(BUILD_DIR)/asm/d/menu/d_menu_skill.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_menu_window.o \
             $(BUILD_DIR)/asm/d/menu/window/d_menu_window_HIO.o    \
             $(BUILD_DIR)/asm/d/menu/d_menu_window.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_HIO.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_HIO.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_button.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_button.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_haihai.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_haihai.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_hakusha.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_hakusha.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_map.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_map.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter_string.o \
             $(BUILD_DIR)/src/d/d_meter/d_meter_string.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter2_draw.o \
             $(BUILD_DIR)/src/d/d_meter2/d_meter2_draw.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter2_info.o \
             $(BUILD_DIR)/src/d/d_meter2/d_meter2_info.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_meter2.o \
             $(BUILD_DIR)/src/d/d_meter2.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_out_font.o \
             $(BUILD_DIR)/asm/d/msg/out/d_msg_out_font.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_class.o \
             $(BUILD_DIR)/asm/d/msg/d_msg_class.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_object.o \
             $(BUILD_DIR)/asm/d/msg/d_msg_object.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_unit.o \
             $(BUILD_DIR)/asm/d/msg/d_msg_unit.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_3select.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_3select.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_arrow.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_arrow.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_boss.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_base.o    \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_boss.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_explain.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_explain.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_item.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_item.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_howl.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_howl.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_jimaku.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_jimaku.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_kanban.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_kanban.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_light.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_light.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_place.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_place.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_staff.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_staff.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_talk.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_talk.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_scrn_tree.o \
             $(BUILD_DIR)/asm/d/msg/scrn/d_msg_scrn_tree.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_string_base.o \
             $(BUILD_DIR)/asm/d/msg/string/d_msg_string_base.o    \
             $(BUILD_DIR)/asm/d/msg/d_msg_string.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_msg_flow.o \
             $(BUILD_DIR)/asm/d/msg/d_msg_flow.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_name.o \
             $(BUILD_DIR)/asm/d/d_name.o    \
             $(BUILD_DIR)/asm/d/npc/d_npc_lib.o    \
             $(BUILD_DIR)/asm/d/ovlp/d_ovlp_fade.o    \
@@ -228,19 +340,27 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/pane/d_pane_class.o    \
             $(BUILD_DIR)/asm/d/pane/class/d_pane_class_alpha.o    \
             $(BUILD_DIR)/asm/d/pane/class/d_pane_class_ex.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_s_logo.o \
             $(BUILD_DIR)/asm/d/s/d_s_logo.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_s_name.o \
             $(BUILD_DIR)/asm/d/s/d_s_name.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_s_play.o \
             $(BUILD_DIR)/asm/d/s/d_s_play.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_s_room.o \
             $(BUILD_DIR)/asm/d/s/d_s_room.o    \
             $(BUILD_DIR)/src/d/d_save/d_save_HIO.o    \
             $(BUILD_DIR)/asm/d/save/d_save_HIO.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_timer.o \
             $(BUILD_DIR)/asm/d/d_timer.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_d_k_wmark.o \
             $(BUILD_DIR)/asm/d/k/d_k_wmark.o    \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_DynamicLink.o \
             $(BUILD_DIR)/asm/DynamicLink.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_malloc.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_controller_pad.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_API_graphic.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_c_cc_d.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_cc_d.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_cc_s.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_counter.o   \
@@ -254,6 +374,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_request.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o   \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o   \
+            $(BUILD_DIR)/asm/rodata/rodata_c_xyz.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_xyz.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_sxyz.o    \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_math.o    \
@@ -277,7 +398,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_angle.o    \
             $(BUILD_DIR)/libs/SSystem/SStandard/s_basic.o    \
             $(BUILD_DIR)/asm/JFramework/JFWSystem.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JFWDisplay.o \
             $(BUILD_DIR)/asm/JFramework/JFWDisplay.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DUClipper.o \
             $(BUILD_DIR)/asm/J3DU/J3DUClipper.o    \
             $(BUILD_DIR)/asm/J3DU/J3DUDL.o    \
             $(BUILD_DIR)/asm/JParticle/JPAResourceManager.o    \
@@ -304,16 +427,22 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JStage/JSGSystem.o    \
             $(BUILD_DIR)/asm/JStudio/ctb.o    \
             $(BUILD_DIR)/libs/JSystem/JStudio/functionvalue.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_functionvalue.o \
             $(BUILD_DIR)/asm/JStudio/functionvalue.o    \
             $(BUILD_DIR)/libs/JSystem/JStudio/fvb.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_fvb.o \
             $(BUILD_DIR)/asm/JStudio/fvb.o    \
             $(BUILD_DIR)/asm/JStudio/fvb-data-parse.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_jstudio-control.o \
             $(BUILD_DIR)/asm/JStudio/jstudio-control.o    \
             $(BUILD_DIR)/asm/JStudio/jstudio-math.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_jstudio-object.o \
             $(BUILD_DIR)/asm/JStudio/jstudio-object.o    \
             $(BUILD_DIR)/asm/JStudio/object-id.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_stb-data.o \
             $(BUILD_DIR)/libs/JSystem/JStudio/stb.o    \
             $(BUILD_DIR)/asm/JStudio/stb-data-parse.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_control.o \
             $(BUILD_DIR)/asm/JStudio_JStage/control.o    \
             $(BUILD_DIR)/asm/JStudio_JStage/object.o    \
             $(BUILD_DIR)/asm/JStudio_JStage/object-actor.o    \
@@ -325,6 +454,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JStudio_JAudio2/object-sound.o    \
             $(BUILD_DIR)/asm/JStudio_JParticle/control.o    \
             $(BUILD_DIR)/asm/JStudio_JParticle/object-particle.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASCalc.o \
             $(BUILD_DIR)/asm/JAudio2/JASCalc.o    \
             $(BUILD_DIR)/asm/JAudio2/JASTaskThread.o    \
             $(BUILD_DIR)/asm/JAudio2/JASDvdThread.o    \
@@ -334,15 +464,20 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JAudio2/JASProbe.o    \
             $(BUILD_DIR)/asm/JAudio2/JASReport.o    \
             $(BUILD_DIR)/asm/JAudio2/JASCmdStack.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASTrack.o \
             $(BUILD_DIR)/asm/JAudio2/JASTrack.o    \
             $(BUILD_DIR)/asm/JAudio2/JASTrackPort.o    \
             $(BUILD_DIR)/asm/JAudio2/JASRegisterParam.o    \
             $(BUILD_DIR)/asm/JAudio2/JASSeqCtrl.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASSeqParser.o \
             $(BUILD_DIR)/asm/JAudio2/JASSeqParser.o    \
             $(BUILD_DIR)/asm/JAudio2/JASSeqReader.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASAramStream.o \
             $(BUILD_DIR)/asm/JAudio2/JASAramStream.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASBank.o \
             $(BUILD_DIR)/asm/JAudio2/JASBank.o    \
             $(BUILD_DIR)/asm/JAudio2/JASBasicBank.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASVoiceBank.o \
             $(BUILD_DIR)/asm/JAudio2/JASVoiceBank.o    \
             $(BUILD_DIR)/asm/JAudio2/JASBasicInst.o    \
             $(BUILD_DIR)/asm/JAudio2/JASDrumSet.o    \
@@ -353,25 +488,32 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JAudio2/JASWaveArcLoader.o    \
             $(BUILD_DIR)/asm/JAudio2/JASChannel.o    \
             $(BUILD_DIR)/asm/JAudio2/JASLfo.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASOscillator.o \
             $(BUILD_DIR)/asm/JAudio2/JASOscillator.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASAiCtrl.o \
             $(BUILD_DIR)/asm/JAudio2/JASAiCtrl.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASAudioThread.o \
             $(BUILD_DIR)/asm/JAudio2/JASAudioThread.o    \
             $(BUILD_DIR)/asm/JAudio2/JASAudioReseter.o    \
             $(BUILD_DIR)/asm/JAudio2/JASDSPChannel.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JASDSPInterface.o \
             $(BUILD_DIR)/asm/JAudio2/JASDSPInterface.o    \
             $(BUILD_DIR)/asm/JAudio2/JASDriverIF.o    \
             $(BUILD_DIR)/asm/JAudio2/JASSoundParams.o    \
             $(BUILD_DIR)/asm/JAudio2/dspproc.o    \
             $(BUILD_DIR)/asm/JAudio2/dsptask.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_osdsp.o \
             $(BUILD_DIR)/asm/JAudio2/osdsp.o    \
             $(BUILD_DIR)/asm/JAudio2/osdsp/osdsp_task.o    \
             $(BUILD_DIR)/asm/JAudio2/JAIAudible.o    \
             $(BUILD_DIR)/asm/JAudio2/JAIAudience.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISe.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JAISeMgr.o \
             $(BUILD_DIR)/asm/JAudio2/JAISeMgr.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISeq.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISeqDataMgr.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISeqMgr.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JAISound.o \
             $(BUILD_DIR)/asm/JAudio2/JAISound.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISoundChild.o    \
             $(BUILD_DIR)/asm/JAudio2/JAISoundHandles.o    \
@@ -387,6 +529,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JAudio2/JAUBankTable.o    \
             $(BUILD_DIR)/libs/JSystem/JAudio2/JAUClusterSound.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUInitializer.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JAUSectionHeap.o \
             $(BUILD_DIR)/asm/JAudio2/JAUSectionHeap.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSeqCollection.o    \
             $(BUILD_DIR)/asm/JAudio2/JAUSeqDataBlockMgr.o    \
@@ -399,57 +542,83 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JMessage/locale.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2Calc.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2AudioArcLoader.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SoundMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundStarter.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundHandles.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SeMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SeMgr.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SeqMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SeqMgr.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2StatusMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2StatusMgr.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SceneMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SceneMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2FxLineMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundInfo.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2Audience.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2Audience.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SoundObject.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundObject.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SoundObjMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SoundObjMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2Creature.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2LinkMgr.o \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2EnvSeMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2EnvSeMgr.o    \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2WolfHowlMgr.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2SpeechMgr2.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2SpeechMgr2.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_Z2AudioMgr.o \
             $(BUILD_DIR)/libs/Z2AudioLib/Z2AudioMgr.o    \
             $(BUILD_DIR)/asm/gf/GFGeometry.o    \
             $(BUILD_DIR)/asm/gf/GFLight.o    \
             $(BUILD_DIR)/asm/gf/GFPixel.o    \
             $(BUILD_DIR)/asm/gf/GFTev.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRSolidHeap_padding.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRThread.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o    \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRAram.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAram.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRAramPiece.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRAramStream.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramStream.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRFileLoader.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/asm/JKernel/JKRFileLoader.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileFinder.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRFileCache.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFileCache.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePub.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRArchivePri.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRMemArchive.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRMemArchive.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRAramArchive.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramArchive.o    \
             $(BUILD_DIR)/asm/JKernel/JKRAramArchive.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRDvdArchive.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdArchive.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRCompArchive.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRCompArchive.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRFile.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRDvdFile.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdFile.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdFile.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JKRDvdRipper.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/asm/JKernel/JKRDvdRipper.o    \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDvdAramRipper.o    \
@@ -464,55 +633,73 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JGadget/linklist.o    \
             $(BUILD_DIR)/libs/JSystem/JGadget/std-vector.o    \
             $(BUILD_DIR)/asm/JGadget/std-vector.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTCacheFont.o \
             $(BUILD_DIR)/asm/JUtility/JUTCacheFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTResource.o    \
             $(BUILD_DIR)/asm/JUtility/JUTTexture.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTPalette.o \
             $(BUILD_DIR)/asm/JUtility/JUTPalette.o    \
             $(BUILD_DIR)/asm/JUtility/JUTNameTab.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGraphFifo.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTFont.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTResFont.o \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDbPrint.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTGamePad.o    \
             $(BUILD_DIR)/asm/JUtility/JUTGamePad.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTException.o \
             $(BUILD_DIR)/asm/JUtility/JUTException.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTDirectPrint.o \
             $(BUILD_DIR)/asm/JUtility/JUTDirectPrint.o    \
             $(BUILD_DIR)/asm/JUtility/JUTAssert.o    \
             $(BUILD_DIR)/asm/JUtility/JUTVideo.o    \
             $(BUILD_DIR)/libs/JSystem/JUtility/JUTXfb.o    \
             $(BUILD_DIR)/asm/JUtility/JUTFader.o    \
             $(BUILD_DIR)/asm/JUtility/JUTProcBar.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_JUTConsole.o \
             $(BUILD_DIR)/asm/JUtility/JUTConsole.o    \
             $(BUILD_DIR)/asm/JUtility/JUTDirectFile.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DGrafContext.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DOrthoGraph.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DTevs.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DTevs.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DMaterial.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DMatBlock.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DMatBlock.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DMaterialFactory.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DPrint.o    \
             $(BUILD_DIR)/libs/JSystem/J2DGraph/J2DPane.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DScreen.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DWindow.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DWindow.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DPicture.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DTextBox.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DTextBox.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DWindowEx.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DWindowEx.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DPictureEx.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DPictureEx.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J2DTextBoxEx.o \
             $(BUILD_DIR)/asm/J2DGraph/J2DTextBoxEx.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DAnmLoader.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DAnimation.o    \
             $(BUILD_DIR)/asm/J2DGraph/J2DManage.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DGD.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DSys.o \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DSys.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DVertex.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DTransform.o \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DTransform.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DTexture.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DPacket.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DShapeMtx.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DShapeDraw.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DShape.o \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DShape.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DMaterial.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DMatBlock.o \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DMatBlock.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DTevs.o \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DTevs.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DDrawBuffer.o    \
             $(BUILD_DIR)/asm/J3DGraphBase/J3DStruct.o    \
@@ -523,17 +710,24 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DModel.o    \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DAnimation.o    \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DMaterialAnm.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DSkinDeform.o \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DSkinDeform.o    \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DCluster.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DJoint.o \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DJoint.o    \
             $(BUILD_DIR)/asm/J3DGraphAnimator/J3DMaterialAttach.o    \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DMaterialFactory.o    \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DMaterialFactory/J3DMaterialFactory_v21.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DClusterLoader.o \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DClusterLoader.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DModelLoader.o \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DModelLoader.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DModelLoaderCalcSize.o \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DModelLoaderCalcSize.o    \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DJointFactory.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DShapeFactory.o \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DShapeFactory.o    \
+            $(BUILD_DIR)/asm/rodata/rodata_J3DAnmLoader.o \
             $(BUILD_DIR)/asm/J3DGraphLoader/J3DAnmLoader.o    \
             $(BUILD_DIR)/asm/JMath/JMath.o    \
             $(BUILD_DIR)/libs/JSystem/JMath/random.o    \
@@ -627,11 +821,35 @@ CTORS_O_FILES :=                                    \
 DTORS_O_FILES :=                                    \
     $(BUILD_DIR)/asm/dtors.o
 
-RODATA_O_FILES :=                                   \
-    $(BUILD_DIR)/asm/rodata.o
+RODATA_O_FILES := \
+            $(BUILD_DIR)/asm/rodata/rodata_Padclamp.o \
+            $(BUILD_DIR)/asm/rodata/rodata_ptmf.o \
+            $(BUILD_DIR)/asm/rodata/rodata_runtime.o \
+            $(BUILD_DIR)/asm/rodata/rodata_GCN_mem_alloc.o \
+            $(BUILD_DIR)/asm/rodata/rodata_alloc.o \
+            $(BUILD_DIR)/asm/rodata/rodata_ansi_fp.o \
+            $(BUILD_DIR)/asm/rodata/rodata_printf.o \
+            $(BUILD_DIR)/asm/rodata/rodata_e_exp.o \
+            $(BUILD_DIR)/asm/rodata/rodata_e_fmod.o \
+            $(BUILD_DIR)/asm/rodata/rodata_e_pow.o \
+            $(BUILD_DIR)/asm/rodata/rodata_e_rem_pio2.o \
+            $(BUILD_DIR)/asm/rodata/rodata_k_rem_pio2.o \
+            $(BUILD_DIR)/asm/rodata/rodata_k_tan.o \
+            $(BUILD_DIR)/asm/rodata/rodata_s_atan.o \
+            $(BUILD_DIR)/asm/rodata/rodata_nubinit.o \
+            $(BUILD_DIR)/asm/rodata/rodata_msg.o \
+            $(BUILD_DIR)/asm/rodata/rodata_msgbuf.o \
+            $(BUILD_DIR)/asm/rodata/rodata_serpoll.o \
+            $(BUILD_DIR)/asm/rodata/rodata_dispatch.o \
+            $(BUILD_DIR)/asm/rodata/rodata_msghndlr.o \
+            $(BUILD_DIR)/asm/rodata/rodata_support.o \
+            $(BUILD_DIR)/asm/rodata/rodata_targimpl.o \
+            $(BUILD_DIR)/asm/rodata/rodata_main_TRK.o \
+            $(BUILD_DIR)/asm/rodata/rodata_dolphin_trk_glue.o \
+            $(BUILD_DIR)/asm/rodata/rodata_main.o 
 
 DATA_O_FILES :=                                     \
-    $(BUILD_DIR)/asm/data.o                         \
+    $(BUILD_DIR)/asm/data.o                         
 
 BSS_O_FILES :=                                      \
     $(BUILD_DIR)/asm/bss.o
