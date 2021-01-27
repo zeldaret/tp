@@ -208,7 +208,8 @@ bool JKRSolidHeap::check(void) {
     u32 availableSize = mSize;
     if (calculatedSize != availableSize) {
         result = false;
-        JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", availableSize, calculatedSize);
+        JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", availableSize,
+                            calculatedSize);
     }
 
     unlock();
