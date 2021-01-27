@@ -122,9 +122,7 @@ void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
         mSolidHead += totalSize;
         mFreeSize -= totalSize;
     } else {
-        // "allocFromHead: cannot alloc memory (0x%x byte).\n"
-        const char* format = lbl_8039CE50;
-        JUTWarningConsole_f(format, totalSize);
+        JUTWarningConsole_f("allocFromHead: cannot alloc memory (0x%x byte).\n", totalSize);
         if (getErrorFlag() == true) {
             callErrorHandler(this, alignedSize, alignment);
         }
@@ -133,21 +131,25 @@ void* JKRSolidHeap::allocFromHead(u32 size, int alignment) {
     return ptr;
 }
 #else
+#if 1
+const char* _allocFromHead_str0 = "allocFromHead: cannot alloc memory (0x%x byte).\n";
+#endif
 asm void* JKRSolidHeap::allocFromHead(u32, int) {
     nofralloc
 #include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0D58.s"
 }
 #endif
 
+#if 1
+const char* _allocFromTail_str0 = "allocFromTail: cannot alloc memory (0x%x byte).\n";
+#endif
 asm void* JKRSolidHeap::allocFromTail(u32, int) {
     nofralloc
 #include "JSystem/JKernel/JKRSolidHeap/asm/func_802D0E20.s"
 }
 
 void JKRSolidHeap::do_free(void* ptr) {
-    // "free: cannot free memory block (%08x)\n"
-    const char* format = lbl_8039CE50 + 0x62;
-    JUTWarningConsole_f(format, ptr);
+    JUTWarningConsole_f("free: cannot free memory block (%08x)\n", ptr);
 }
 
 void JKRSolidHeap::do_freeAll(void) {
@@ -188,16 +190,12 @@ void JKRSolidHeap::do_fillFreeArea(void) {
 }
 
 s32 JKRSolidHeap::do_resize(void* ptr, u32 newSize) {
-    // "resize: cannot resize memory block (%08x: %d)\n"
-    const char* format = lbl_8039CE50 + 0x89;
-    JUTWarningConsole_f(format, ptr, newSize);
+    JUTWarningConsole_f("resize: cannot resize memory block (%08x: %d)\n", ptr, newSize);
     return -1;
 }
 
 s32 JKRSolidHeap::do_getSize(void* ptr) const {
-    // "getSize: cannot get memory block size (%08x)\n"
-    const char* format = lbl_8039CE50 + 0xB8;
-    JUTWarningConsole_f(format, ptr);
+    JUTWarningConsole_f("getSize: cannot get memory block size (%08x)\n", ptr);
     return -1;
 }
 
@@ -210,9 +208,7 @@ bool JKRSolidHeap::check(void) {
     u32 availableSize = mSize;
     if (calculatedSize != availableSize) {
         result = false;
-        // "check: bad total memory block size (%08X, %08X)\n"
-        const char* format = lbl_8039CE50 + 0xE6;
-        JUTWarningConsole_f(format, availableSize, calculatedSize);
+        JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", availableSize, calculatedSize);
     }
 
     unlock();
@@ -230,21 +226,22 @@ bool JKRSolidHeap::dump(void) {
     u32 headSize = ((u32)mSolidHead - (u32)mStart);
     u32 tailSize = ((u32)mEnd - (u32)mSolidTail);
     s32 htSize = headSize + tailSize;
-    const char* format1 = lbl_8039CE50 + 0x117;  // "head %08x: %08x\n"
-    JUTReportConsole_f(format1, mStart, headSize);
-
-    const char* format2 = lbl_8039CE50 + 0x128;  // "tail %08x: %08x\n"
-    JUTReportConsole_f(format2, mSolidTail, ((u32)mEnd - (u32)mSolidTail));
+    JUTReportConsole_f("head %08x: %08x\n", mStart, headSize);
+    JUTReportConsole_f("tail %08x: %08x\n", mSolidTail, ((u32)mEnd - (u32)mSolidTail));
 
     u32 totalSize = mSize;
     float percentage = (float)htSize / (float)totalSize * lbl_80455FA8;
-    const char* format3 = lbl_8039CE50 + 0x139;  // "%d / %d bytes (%6.2f%%) used\n"
-    JUTReportConsole_f(format3, htSize, totalSize, percentage);
+    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", htSize, totalSize, percentage);
     unlock();
 
     return result;
 }
 #else
+#if 1
+const char* _dump_str0 = "head %08x: %08x\n";
+const char* _dump_str1 = "tail %08x: %08x\n";
+const char* _dump_str2 = "%d / %d bytes (%6.2f%%) used\n";
+#endif
 asm bool JKRSolidHeap::dump(void) {
     nofralloc
 #include "JSystem/JKernel/JKRSolidHeap/asm/func_802D10FC.s"
