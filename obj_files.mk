@@ -518,7 +518,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_c_xyz.o \
             $(BUILD_DIR)/asm/sdata2/c_xyz.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_xyz.o \
-            $(BUILD_DIR)/asm/sdata2/c_sxyz.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_sxyz.o \
             $(BUILD_DIR)/asm/sdata2/c_math.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_math.o \
