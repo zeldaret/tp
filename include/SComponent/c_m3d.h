@@ -1,18 +1,20 @@
 #ifndef C_M3D_H_
 #define C_M3D_H_
 
-#include "SComponent/c_m3d_g_aab.h"
-#include "SComponent/c_m3d_g_cps.h"
-#include "SComponent/c_m3d_g_cyl.h"
-#include "SComponent/c_m3d_g_lin.h"
-#include "SComponent/c_m3d_g_pla.h"
-#include "SComponent/c_m3d_g_sph.h"
-#include "SComponent/c_m3d_g_tri.h"
-#include "SComponent/c_sxyz.h"
-#include "SComponent/c_xyz.h"
-#include "global.h"
+#include "dolphin/types.h"
+
+class cM3dGAab;
+class cM3dGCps;
+class cM3dGCyl;
+class cM3dGLin;
+class cM3dGPla;
+class cM3dGSph;
+class cM3dGTri;
+class csXyz;
+class cXyz;
 
 struct cM3d_Range;
+struct Vec;
 
 void cM3d_InDivPos1(const Vec*, const Vec*, f32, Vec*);
 void cM3d_InDivPos2(const Vec*, const Vec*, f32, Vec*);
