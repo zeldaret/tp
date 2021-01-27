@@ -216,10 +216,6 @@ bool JKRSolidHeap::check(void) {
     return result;
 }
 
-// problem: int -> float conversion creates a temporary value (lbl_80455FA0 = 4.503599627370496E15).
-// Because the value is compiler generated the location in the .dol will not be the same as in the
-// original .dol file.
-#ifdef NONMATCHING
 bool JKRSolidHeap::dump(void) {
     bool result = check();
 
@@ -231,23 +227,12 @@ bool JKRSolidHeap::dump(void) {
     JUTReportConsole_f("tail %08x: %08x\n", mSolidTail, ((u32)mEnd - (u32)mSolidTail));
 
     u32 totalSize = mSize;
-    float percentage = (float)htSize / (float)totalSize * lbl_80455FA8;
+    float percentage = (float)htSize / (float)totalSize * 100.0f;
     JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", htSize, totalSize, percentage);
     unlock();
 
     return result;
 }
-#else
-#if 1
-const char* _dump_str0 = "head %08x: %08x\n";
-const char* _dump_str1 = "tail %08x: %08x\n";
-const char* _dump_str2 = "%d / %d bytes (%6.2f%%) used\n";
-#endif
-asm bool JKRSolidHeap::dump(void) {
-    nofralloc
-#include "JSystem/JKernel/JKRSolidHeap/asm/func_802D10FC.s"
-}
-#endif
 
 // full match expect using the wrong register
 #ifdef NONMATCHING

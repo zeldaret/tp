@@ -809,7 +809,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_JKRExpHeap.o \
             $(BUILD_DIR)/asm/sdata2/JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o \
-            $(BUILD_DIR)/asm/sdata2/JKRSolidHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRSolidHeap_padding.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o \
