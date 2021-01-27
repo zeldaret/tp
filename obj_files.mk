@@ -594,9 +594,11 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/JStage/JSGLight.o \
             $(BUILD_DIR)/asm/sdata2/JSGObject.o \
             $(BUILD_DIR)/asm/JStage/JSGObject.o \
+            $(BUILD_DIR)/asm/sdata2/ctb-data.o \
             $(BUILD_DIR)/asm/JStage/JSGSystem.o \
             $(BUILD_DIR)/asm/JStudio/ctb.o \
             $(BUILD_DIR)/asm/sdata2/functionvalue.o \
+            $(BUILD_DIR)/asm/sdata2/fvb-data.o \
             $(BUILD_DIR)/libs/JSystem/JStudio/functionvalue.o \
             $(BUILD_DIR)/asm/rodata/rodata_functionvalue.o \
             $(BUILD_DIR)/asm/JStudio/functionvalue.o \
@@ -607,6 +609,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_jstudio-control.o \
             $(BUILD_DIR)/asm/sdata2/jstudio-control.o \
             $(BUILD_DIR)/asm/JStudio/jstudio-control.o \
+            $(BUILD_DIR)/asm/sdata2/jstudio-data.o \
             $(BUILD_DIR)/asm/sdata2/jstudio-math.o \
             $(BUILD_DIR)/asm/JStudio/jstudio-math.o \
             $(BUILD_DIR)/asm/rodata/rodata_jstudio-object.o \
@@ -616,6 +619,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_stb-data.o \
             $(BUILD_DIR)/asm/sdata2/stb.o \
             $(BUILD_DIR)/libs/JSystem/JStudio/stb.o \
+            $(BUILD_DIR)/asm/sdata2/stb-data.o \
             $(BUILD_DIR)/asm/JStudio/stb-data-parse.o \
             $(BUILD_DIR)/asm/rodata/rodata_control.o \
             $(BUILD_DIR)/asm/JStudio_JStage/control.o \
@@ -735,6 +739,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/JSystem/JAudio2/JAUClusterSound.o \
             $(BUILD_DIR)/asm/sdata2/JAUInitializer.o \
             $(BUILD_DIR)/asm/JAudio2/JAUInitializer.o \
+            $(BUILD_DIR)/asm/sdata2/data.o \
             $(BUILD_DIR)/asm/rodata/rodata_JAUSectionHeap.o \
             $(BUILD_DIR)/asm/JAudio2/JAUSectionHeap.o \
             $(BUILD_DIR)/asm/JAudio2/JAUSeqCollection.o \
@@ -1149,11 +1154,6 @@ SBSS_O_FILES :=                                     \
     $(BUILD_DIR)/asm/sbss.o
 
 SDATA2_O_FILES :=  \
-            $(BUILD_DIR)/asm/sdata2/ctb-data.o \
-            $(BUILD_DIR)/asm/sdata2/fvb-data.o \
-            $(BUILD_DIR)/asm/sdata2/jstudio-data.o \
-            $(BUILD_DIR)/asm/sdata2/stb-data.o \
-            $(BUILD_DIR)/asm/sdata2/data.o \
             $(BUILD_DIR)/asm/sdata2/ansi_fp.o \
             $(BUILD_DIR)/asm/sdata2/mbstring.o \
             $(BUILD_DIR)/asm/sdata2/printf.o \

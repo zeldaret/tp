@@ -11,7 +11,7 @@ lbl_80455BDC:
 
 .global lbl_80455BE0
 lbl_80455BE0:
-.incbin "baserom.dol", 0x3D4A40, 0x8
+.incbin "baserom.dol", 0x3D4A40, 0x4
 
 .global lbl_80455BE4
 lbl_80455BE4:

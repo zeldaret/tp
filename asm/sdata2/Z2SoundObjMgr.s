@@ -3,7 +3,7 @@
 
 .global lbl_80455B80
 lbl_80455B80:
-.incbin "baserom.dol", 0x3D49E0, 0x8
+.incbin "baserom.dol", 0x3D49E0, 0x4
 
 .global lbl_80455B84
 lbl_80455B84:
@@ -35,7 +35,7 @@ lbl_80455B9C:
 
 .global lbl_80455BA0
 lbl_80455BA0:
-.incbin "baserom.dol", 0x3D4A00, 0x8
+.incbin "baserom.dol", 0x3D4A00, 0x4
 
 .global lbl_80455BA4
 lbl_80455BA4:

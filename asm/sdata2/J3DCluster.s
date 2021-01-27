@@ -7,7 +7,7 @@ lbl_80456470:
 
 .global lbl_80456474
 lbl_80456474:
-.incbin "baserom.dol", 0x3D52D4, 0x8
+.incbin "baserom.dol", 0x3D52D4, 0x4
 
 .global lbl_80456478
 lbl_80456478:
