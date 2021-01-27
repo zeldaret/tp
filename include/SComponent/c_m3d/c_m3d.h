@@ -1,7 +1,7 @@
 #ifndef C_M3D_H_
 #define C_M3D_H_
 
-#include "SComponent/c_xyz/c_xyz.h"
+#include "SComponent/c_xyz.h"
 #include "global.h"
 
 class cM3dGLin_members {

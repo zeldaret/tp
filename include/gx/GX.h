@@ -130,6 +130,49 @@ void GXFlush(void);
 struct OSThread;
 OSThread* GXSetCurrentGXThread(void);
 OSThread* GXGetCurrentGXThread(void);
-}
+
+//Below needs proper symbols
+void GXClearVtxDesc(void);
+void GXCopyTex(void);
+void GXGetProjectionv(void);
+u32 GXGetTexBufferSize(u16 width,u16 height,u32 format,s32 is_mip_map,u8 max_lod);
+void GXGetViewportv(void);
+void GXInitLightColor(void);
+void GXInitLightDir(void);
+void GXInitLightDistAttn(void);
+void GXInitLightPos(void);
+void GXInitLightSpot(void);
+void GXInvalidateTexAll(void);
+void GXLoadLightObjImm(void);
+void GXLoadPosMtxImm(void);
+void GXLoadTexMtxImm(void);
+void GXPixModeSync(void);
+void GXProject(void);
+void GXSetAlphaCompare(void);
+void GXSetAlphaUpdate(void);
+void GXSetChanMatColor(void);
+void GXSetClipMode(void);
+void GXSetCoPlanar(void);
+void GXSetCopyFilter(void);
+void GXSetCullMode(void);
+void GXSetCurrentMtx(void);
+void GXSetDither(void);
+void GXSetFog(void);
+void GXSetFogRangeAdj(void);
+void GXSetNumIndStages(void);
+void GXSetProjection(void);
+void GXSetScissor(void);
+void GXSetTevColorS10(void);
+void GXSetTevKAlphaSel(void);
+void GXSetTevSwapMode(void);
+void GXSetTevSwapModeTable(void);
+void GXSetTexCoordGen2(void);
+void GXSetTexCopyDst(void);
+void GXSetTexCopySrc(void);
+void GXSetViewport(void);
+void GXSetZCompLoc(void);
+void GXSetZMode(void);
+void GXSetZTexture(void);
+};
 
 #endif

@@ -4,7 +4,7 @@
 /* 8000A598 000074D8  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 8000A59C 000074DC  38 61 00 08 */ addi r3, r1, 8
 /* 8000A5A0 000074E0  48 1A D0 49 */ bl dMenu_Collect3D_c_NS_setupItem3D
-/* 8000A5A4 000074E4  4B FF FF 61 */ bl setLight
+/* 8000A5A4 000074E4  4B FF FF 61 */ bl setLight__Fv
 /* 8000A5A8 000074E8  38 61 00 08 */ addi r3, r1, 8
 /* 8000A5AC 000074EC  3C 80 80 43 */ lis r4, lbl_80434AC8@ha
 /* 8000A5B0 000074F0  38 84 4A C8 */ addi r4, r4, lbl_80434AC8@l

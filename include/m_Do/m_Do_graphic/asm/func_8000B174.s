@@ -7,7 +7,7 @@
 /* 8000B18C 000080CC  38 A0 00 00 */ li r5, 0
 /* 8000B190 000080D0  48 00 3E 2D */ bl mDoExt_createSolidHeapToCurrent_X1_
 /* 8000B194 000080D4  7C 7F 1B 78 */ mr r31, r3
-/* 8000B198 000080D8  4B FF CC AD */ bl mDoGph_gInf_c_NS_create
+/* 8000B198 000080D8  4B FF CC AD */ bl create__13mDoGph_gInf_cFv
 /* 8000B19C 000080DC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8000B1A0 000080E0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8000B1A4 000080E4  38 63 5F 64 */ addi r3, r3, 0x5f64

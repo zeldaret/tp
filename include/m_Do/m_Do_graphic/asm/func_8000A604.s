@@ -38,7 +38,7 @@ lbl_8000A640:
 /* 8000A694 000075D4  98 03 00 0A */ stb r0, 0xa(r3)
 /* 8000A698 000075D8  88 01 00 0F */ lbz r0, 0xf(r1)
 /* 8000A69C 000075DC  98 03 00 0B */ stb r0, 0xb(r3)
-/* 8000A6A0 000075E0  4B FF D8 F1 */ bl mDoGph_gInf_c_NS_beginRender
+/* 8000A6A0 000075E0  4B FF D8 F1 */ bl beginRender__13mDoGph_gInf_cFv
 /* 8000A6A4 000075E4  38 60 00 00 */ li r3, 0
 /* 8000A6A8 000075E8  48 35 55 C9 */ bl GXSetAlphaUpdate
 /* 8000A6AC 000075EC  88 0D 80 80 */ lbz r0, lbl_80450600-_SDA_BASE_(r13)
@@ -285,7 +285,7 @@ lbl_8000AA10:
 /* 8000AA58 00007998  28 00 00 00 */ cmplwi r0, 0
 /* 8000AA5C 0000799C  40 82 04 9C */ bne lbl_8000AEF8
 /* 8000AA60 000079A0  7F C3 F3 78 */ mr r3, r30
-/* 8000AA64 000079A4  4B FF F8 2D */ bl motionBlure
+/* 8000AA64 000079A4  4B FF F8 2D */ bl motionBlure__FP10view_class
 /* 8000AA68 000079A8  7F C3 F3 78 */ mr r3, r30
 /* 8000AA6C 000079AC  7F A4 EB 78 */ mr r4, r29
 /* 8000AA70 000079B0  3C A0 80 40 */ lis r5, g_dComIfG_gameInfo@ha
@@ -295,7 +295,7 @@ lbl_8000AA10:
 /* 8000AA80 000079C0  FC 00 00 1E */ fctiwz f0, f0
 /* 8000AA84 000079C4  D8 01 03 80 */ stfd f0, 0x380(r1)
 /* 8000AA88 000079C8  80 A1 03 84 */ lwz r5, 0x384(r1)
-/* 8000AA8C 000079CC  4B FF DB A5 */ bl drawDepth2
+/* 8000AA8C 000079CC  4B FF DB A5 */ bl drawDepth2__FP10view_classP15view_port_classi
 /* 8000AA90 000079D0  48 35 3B D5 */ bl GXInvalidateTexAll
 /* 8000AA94 000079D4  38 60 00 00 */ li r3, 0
 /* 8000AA98 000079D8  48 35 5B 39 */ bl GXSetClipMode
@@ -398,7 +398,7 @@ lbl_8000ABE8:
 /* 8000ABF4 00007B34  FC 00 00 1E */ fctiwz f0, f0
 /* 8000ABF8 00007B38  D8 01 03 80 */ stfd f0, 0x380(r1)
 /* 8000ABFC 00007B3C  80 A1 03 84 */ lwz r5, 0x384(r1)
-/* 8000AC00 00007B40  4B FF F5 61 */ bl retry_captue_frame
+/* 8000AC00 00007B40  4B FF F5 61 */ bl retry_captue_frame__FP10view_classP15view_port_classi
 /* 8000AC04 00007B44  38 60 00 00 */ li r3, 0
 /* 8000AC08 00007B48  48 35 59 C9 */ bl GXSetClipMode
 /* 8000AC0C 00007B4C  88 19 12 FA */ lbz r0, 0x12fa(r25)
@@ -442,7 +442,7 @@ lbl_8000AC58:
 /* 8000AC9C 00007BDC  FC 00 00 1E */ fctiwz f0, f0
 /* 8000ACA0 00007BE0  D8 01 03 80 */ stfd f0, 0x380(r1)
 /* 8000ACA4 00007BE4  80 A1 03 84 */ lwz r5, 0x384(r1)
-/* 8000ACA8 00007BE8  4B FF F4 B9 */ bl retry_captue_frame
+/* 8000ACA8 00007BE8  4B FF F4 B9 */ bl retry_captue_frame__FP10view_classP15view_port_classi
 lbl_8000ACAC:
 /* 8000ACAC 00007BEC  C0 22 80 38 */ lfs f1, lbl_80451A38-_SDA2_BASE_(r2)
 /* 8000ACB0 00007BF0  FC 40 08 90 */ fmr f2, f1
@@ -525,11 +525,11 @@ lbl_8000ADD0:
 /* 8000ADDC 00007D1C  FC 00 00 1E */ fctiwz f0, f0
 /* 8000ADE0 00007D20  D8 01 03 80 */ stfd f0, 0x380(r1)
 /* 8000ADE4 00007D24  80 A1 03 84 */ lwz r5, 0x384(r1)
-/* 8000ADE8 00007D28  4B FF F3 79 */ bl retry_captue_frame
+/* 8000ADE8 00007D28  4B FF F3 79 */ bl retry_captue_frame__FP10view_classP15view_port_classi
 lbl_8000ADEC:
 /* 8000ADEC 00007D2C  3C 60 80 3E */ lis r3, lbl_803DD428@ha
 /* 8000ADF0 00007D30  38 63 D4 28 */ addi r3, r3, lbl_803DD428@l
-/* 8000ADF4 00007D34  4B FF E8 5D */ bl mDoGph_gInf_c_NS_bloom_c_NS_draw
+/* 8000ADF4 00007D34  4B FF E8 5D */ bl draw__Q213mDoGph_gInf_c7bloom_cFv
 /* 8000ADF8 00007D38  38 7E 01 40 */ addi r3, r30, 0x140
 /* 8000ADFC 00007D3C  3C 80 80 43 */ lis r4, lbl_80434AC8@ha
 /* 8000AE00 00007D40  38 84 4A C8 */ addi r4, r4, lbl_80434AC8@l
@@ -583,7 +583,7 @@ lbl_8000ADEC:
 lbl_8000AEC0:
 /* 8000AEC0 00007E00  7F C3 F3 78 */ mr r3, r30
 /* 8000AEC4 00007E04  7F A4 EB 78 */ mr r4, r29
-/* 8000AEC8 00007E08  4B FF E2 F9 */ bl trimming
+/* 8000AEC8 00007E08  4B FF E2 F9 */ bl trimming__FP10view_classP15view_port_class
 /* 8000AECC 00007E0C  7F 23 CB 78 */ mr r3, r25
 /* 8000AED0 00007E10  3C 80 80 37 */ lis r4, lbl_80373DD0@ha
 /* 8000AED4 00007E14  38 84 3D D0 */ addi r4, r4, lbl_80373DD0@l
@@ -594,7 +594,7 @@ lbl_8000AEC0:
 /* 8000AEE8 00007E28  88 0D 86 66 */ lbz r0, lbl_80450BE6-_SDA_BASE_(r13)
 /* 8000AEEC 00007E2C  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8000AEF0 00007E30  40 82 00 08 */ bne lbl_8000AEF8
-/* 8000AEF4 00007E34  4B FF D4 3D */ bl mDoGph_gInf_c_NS_calcFade
+/* 8000AEF4 00007E34  4B FF D4 3D */ bl calcFade__13mDoGph_gInf_cFv
 lbl_8000AEF8:
 /* 8000AEF8 00007E38  38 60 00 00 */ li r3, 0
 /* 8000AEFC 00007E3C  48 35 56 D5 */ bl GXSetClipMode
@@ -665,7 +665,7 @@ lbl_8000AFE4:
 /* 8000AFF8 00007F38  38 A5 61 C0 */ addi r5, r5, g_dComIfG_gameInfo@l
 /* 8000AFFC 00007F3C  80 A5 61 18 */ lwz r5, 0x6118(r5)
 /* 8000B000 00007F40  48 04 B7 C5 */ bl dDlst_list_c_NS_draw
-/* 8000B004 00007F44  4B FF F5 89 */ bl drawItem3D
+/* 8000B004 00007F44  4B FF F5 89 */ bl drawItem3D__Fv
 /* 8000B008 00007F48  38 61 02 A8 */ addi r3, r1, 0x2a8
 /* 8000B00C 00007F4C  48 2D E7 A9 */ bl J2DOrthoGraph_NS_setPort
 /* 8000B010 00007F50  7F E3 FB 78 */ mr r3, r31
@@ -703,7 +703,7 @@ lbl_8000B064:
 /* 8000B08C 00007FCC  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8000B090 00007FD0  41 82 00 08 */ beq lbl_8000B098
 lbl_8000B094:
-/* 8000B094 00007FD4  4B FF D2 9D */ bl mDoGph_gInf_c_NS_calcFade
+/* 8000B094 00007FD4  4B FF D2 9D */ bl calcFade__13mDoGph_gInf_cFv
 lbl_8000B098:
 /* 8000B098 00007FD8  80 7C 5D 3C */ lwz r3, 0x5d3c(r28)
 /* 8000B09C 00007FDC  28 03 00 00 */ cmplwi r3, 0

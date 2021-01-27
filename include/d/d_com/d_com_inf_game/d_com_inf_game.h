@@ -1,7 +1,7 @@
 #ifndef D_COM_INF_GAME_H_
 #define D_COM_INF_GAME_H_
 
-#include "SComponent/c_xyz/c_xyz.h"
+#include "SComponent/c_xyz.h"
 #include "d/d_attention/d_attention.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_bg/d_bg_w/d_bg_w_base/d_bg_w_base.h"
