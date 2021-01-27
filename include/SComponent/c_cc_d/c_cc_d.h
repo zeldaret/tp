@@ -1,8 +1,9 @@
 #ifndef C_CC_D_H_
 #define C_CC_D_H_
 
-#include "SComponent/c_m3d.h"
-#include "global.h"
+#include "SComponent/c_m3d_g_aab.h"
+#include "SComponent/c_m3d_g_cps.h"
+#include "SComponent/c_m3d_g_cyl.h"
 
 class cCcD_ShapeAttr {
 public:
