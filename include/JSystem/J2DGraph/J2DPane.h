@@ -109,8 +109,8 @@ public:
     /* 0x30 */ virtual void update();
     /* 0x34 */ virtual void drawSelf(f32 arg1, f32 arg2);
     /* 0x38 */ virtual void drawSelf(f32 arg1, f32 arg2, Mtx* mtx);
-    /* 0x3c */ virtual const class J2DPane* search(u64 arg1);
-    /* 0x40 */ virtual const class J2DPane* searchUserInfo(u64 arg1);
+    /* 0x3c */ virtual const J2DPane* search(u64 tag);
+    /* 0x40 */ virtual const J2DPane* searchUserInfo(u64 tag);
     /* 0x44 */ virtual void makeMatrix();
     /* 0x48 */ virtual void makeMatrix(f32 a, f32 b, f32 c, f32 d);
     /* 0x4c */ virtual bool isUsed(const ResTIMG* timg);
@@ -133,14 +133,14 @@ public:
     /* 0x90 */ virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* transform);
 
     // inlines
-    f32 getHeight() const { return _20.getHeight(); }
-    f32 getWidth() const { return _20.getWidth(); }
+    f32 getHeight() const { return mBounds.getHeight(); }
+    f32 getWidth() const { return mBounds.getWidth(); }
     JSUTree<J2DPane>* getFirstChild() { return mPaneTree.getFirstChild(); }
     const JSUTree<J2DPane>* getPaneTree() { return &mPaneTree; }
 
     // member functions
     void initiate();
-    void initialize(u64 arg1, const TBox2<f32>& dim);
+    void initialize(u64 tag, const TBox2<f32>& dim);
     void makePaneStream(J2DPane* other, JSURandomInputStream* stream);
     void changeUseTrans(J2DPane* other);
     bool appendChild(J2DPane* child);
@@ -148,15 +148,15 @@ public:
     void draw(f32 a1, f32 a2, const J2DGrafContext* ctx, bool a4, bool a5);
     void place(const TBox2<f32>& dim);
     TBox2<f32>& getBounds();
-    void rotate(f32 a, f32 b, J2DRotateAxis axis, f32 angle);
+    void rotate(f32 offsetX, f32 offsetY, J2DRotateAxis axis, f32 angle);
     void rotate(f32 angle);
     void clip(const TBox2<f32>& bounds);
     void setBasePosition(J2DBasePosition position);
     void setInfluencedAlpha(bool arg1, bool arg2);
     void getGlbVtx(u8 arg1) const;
-    const class J2DPane* getFirstChildPane();
-    const class J2DPane* getNextChildPane();
-    const class J2DPane* getParentPane();
+    const J2DPane* getFirstChildPane();
+    const J2DPane* getNextChildPane();
+    const J2DPane* getParentPane();
     void makePaneExStream(J2DPane* other, JSURandomInputStream* stream);
     static s16 J2DCast_F32_to_S16(f32 value, u8 arg2);
     void* getPointer(JSURandomInputStream* stream, u32 size, JKRArchive* archive);
@@ -168,30 +168,30 @@ private:
     /* 0x006 */ u8 _6[2];
     /* 0x008 */ int id;
     /* 0x00c */ u8 _c[4];
-    /* 0x010 */ u64 _10;
-    /* 0x018 */ u64 _18;
-    /* 0x020 */ TBox2<f32> _20;
-    /* 0x030 */ TBox2<f32> _30;
-    /* 0x040 */ TBox2<f32> _40;
-    /* 0x050 */ Mtx _50;
-    /* 0x080 */ Mtx _80;
+    /* 0x010 */ u64 mInfoTag;
+    /* 0x018 */ u64 mUserInfoTag;
+    /* 0x020 */ TBox2<f32> mBounds;
+    /* 0x030 */ TBox2<f32> mGlobalBounds;
+    /* 0x040 */ TBox2<f32> mClipRect;
+    /* 0x050 */ Mtx mPositionMtx;
+    /* 0x080 */ Mtx mGlobalMtx;
     /* 0x0b0 */ bool mVisible;
     /* 0x0b1 */ u8 mCullMode;
     /* 0x0b2 */ u8 mAlpha;
-    /* 0x0b3 */ u8 _b3;
-    /* 0x0b4 */ u8 _b4;
+    /* 0x0b3 */ u8 mColorAlpha;
+    /* 0x0b4 */ bool mIsInfluencedAlpha;
     /* 0x0b5 */ bool mConnected;
     /* 0x0b6 */ char mRotAxis;
-    /* 0x0b7 */ u8 _b7;
-    /* 0x0b8 */ f32 _b8;
-    /* 0x0bc */ f32 _bc;
-    /* 0x0c0 */ f32 _c0;
-    /* 0x0c4 */ f32 _c4;
-    /* 0x0c8 */ f32 _c8;
-    /* 0x0cc */ f32 _cc;
-    /* 0x0d0 */ f32 _d0;
-    /* 0x0d4 */ f32 _d4;
-    /* 0x0d8 */ f32 _d8;
+    /* 0x0b7 */ u8 mBasePosition;
+    /* 0x0b8 */ f32 mRotateX;
+    /* 0x0bc */ f32 mRotateY;
+    /* 0x0c0 */ f32 mRotateZ;
+    /* 0x0c4 */ f32 mRotateOffsetX;
+    /* 0x0c8 */ f32 mRotateOffsetY;
+    /* 0x0cc */ f32 mScaleX;
+    /* 0x0d0 */ f32 mScaleY;
+    /* 0x0d4 */ f32 mTranslateX;
+    /* 0x0d8 */ f32 mTranslateY;
     /* 0x0dc */ JSUTree<J2DPane> mPaneTree;
     /* 0x0f8 */ const J2DAnmTransform* mTransform;
     /* 0x0fc */ u32 _fc;

@@ -3,64 +3,60 @@
 #include "SComponent/c_bg_s_poly_info.h"
 
 // __ct__13cBgS_PolyInfoFv
-// cBgS_PolyInfo::cBgS_PolyInfo(void)
-asm cBgS_PolyInfo::cBgS_PolyInfo(void) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_80268074.s"
+cBgS_PolyInfo::cBgS_PolyInfo(void) {
+    this->ClearPi();
 }
 
 // __dt__13cBgS_PolyInfoFv
-// cBgS_PolyInfo::~cBgS_PolyInfo(void)
-asm cBgS_PolyInfo::~cBgS_PolyInfo(void) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_802680B0.s"
-}
+cBgS_PolyInfo::~cBgS_PolyInfo(void) {}
 
 // ChkSetInfo__13cBgS_PolyInfoCFv
-// cBgS_PolyInfo::ChkSetInfo(void) const
-asm bool cBgS_PolyInfo::ChkSetInfo(void) const {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_802680F8.s"
+bool cBgS_PolyInfo::ChkSetInfo(void) const {
+    if (mPolyIndex == 0xFFFF || unk_0x02 == 0x100) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 // ClearPi__13cBgS_PolyInfoFv
-// cBgS_PolyInfo::ClearPi(void)
-asm void cBgS_PolyInfo::ClearPi(void) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_80268120.s"
+void cBgS_PolyInfo::ClearPi(void) {
+    mPolyIndex = 0xFFFF;
+    unk_0x02 = 0x100;
+    unk_0x04 = 0;
+    unk_0x08 = -1;
 }
 
 // SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
-// cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo&)
-asm void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo&) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_80268148.s"
+void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& pOther) {
+    mPolyIndex = pOther.mPolyIndex;
+    unk_0x02 = pOther.unk_0x02;
+    unk_0x04 = pOther.unk_0x04;
+    unk_0x08 = pOther.unk_0x08;
 }
 
 // SetActorInfo__13cBgS_PolyInfoFiPvUi
-// cBgS_PolyInfo::SetActorInfo(int, void*, unsigned int)
-asm void cBgS_PolyInfo::SetActorInfo(int, void*, unsigned int) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_8026816C.s"
+void cBgS_PolyInfo::SetActorInfo(int param_1, void* param_2, unsigned int param_3) {
+    unk_0x02 = param_1;
+    unk_0x04 = param_2;
+    unk_0x08 = param_3;
 }
 
 // ChkSafe__13cBgS_PolyInfoCFPCvUi
-// cBgS_PolyInfo::ChkSafe(const void*, unsigned int) const
-asm bool cBgS_PolyInfo::ChkSafe(const void*, unsigned int) const {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_8026817C.s"
+bool cBgS_PolyInfo::ChkSafe(const void* param_1, unsigned int param_2) const {
+    if (unk_0x04 == param_1 && unk_0x08 == param_2) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // SetPolyIndex__13cBgS_PolyInfoFi
-// cBgS_PolyInfo::SetPolyIndex(int)
-asm void cBgS_PolyInfo::SetPolyIndex(int) {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_802681A4.s"
+void cBgS_PolyInfo::SetPolyIndex(int pPolyIndex) {
+    mPolyIndex = pPolyIndex;
 }
 
 // ChkBgIndex__13cBgS_PolyInfoCFv
-// cBgS_PolyInfo::ChkBgIndex(void) const
-asm bool cBgS_PolyInfo::ChkBgIndex(void) const {
-    nofralloc
-#include "SComponent/c_bg_s_poly_info/asm/func_802681AC.s"
+bool cBgS_PolyInfo::ChkBgIndex(void) const {
+    return unk_0x02 != 0x100;
 }

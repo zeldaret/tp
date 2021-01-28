@@ -17,7 +17,7 @@ cXyz cXyz::operator-(const Vec& vec) const {
 }
 
 // __ml__4cXyzCFf
-cXyz cXyz::operator*(float scale) const {
+cXyz cXyz::operator*(f32 scale) const {
     Vec ret;
     PSVECScale(this, &ret, scale);
     return cXyz(ret);
@@ -37,7 +37,7 @@ cXyz cXyz::operator*(const Vec& vec) const {
 }
 
 // __dv__4cXyzCFf
-cXyz cXyz::operator/(float scale) const {
+cXyz cXyz::operator/(f32 scale) const {
     Vec ret;
     PSVECScale(this, &ret, /* 1.0 */ lbl_80455070 / scale);
     return cXyz(ret);
@@ -90,12 +90,12 @@ cXyz cXyz::normZC(void) const {
         if (!local_40.checkEpsilon()) {
             cXyz ret;
             // ret.baseZ();
-            float v = lbl_80455080;
+            f32 v = lbl_80455080;
             ret.x = v;
             ret.y = v;
             v = lbl_80455070;
             ret.z = v;
-            // should do a struct copy with word and not float loads
+            // should do a struct copy with word and not f32 loads
             vec = lbl_8039A868;
             vec = ret;
         }
@@ -147,14 +147,14 @@ bool cXyz::operator!=(const Vec& vec) const {
 
 // isZero__4cXyzCFv
 bool cXyz::isZero(void) const {
-    // return (float)fabsf(this->x) < lbl_80455084 * lbl_80450AEC &&
-    //     (float)fabsf(this->y) < lbl_80455084 * lbl_80450AEC &&
-    //     (float)fabsf(this->z) < lbl_80455084 * lbl_80450AEC;
-    return (float)fabsf(this->x) <
+    // return (f32)fabsf(this->x) < lbl_80455084 * lbl_80450AEC &&
+    //     (f32)fabsf(this->y) < lbl_80455084 * lbl_80450AEC &&
+    //     (f32)fabsf(this->z) < lbl_80455084 * lbl_80450AEC;
+    return fabsf(this->x) <
                /* 32 */ lbl_80455084 *
-                   /* MSL_C.PPCEABI.bare.H::__float_epsilon */ *(float*)0x80450AEC &&
-           (float)fabsf(this->y) < lbl_80455084 * *(float*)0x80450AEC &&
-           (float)fabsf(this->z) < lbl_80455084 * *(float*)0x80450AEC;
+                   /* MSL_C.PPCEABI.bare.H::__f32_epsilon */ *(f32*)0x80450AEC &&
+           fabsf(this->y) < lbl_80455084 * *(f32*)0x80450AEC &&
+           fabsf(this->z) < lbl_80455084 * *(f32*)0x80450AEC;
 }
 
 // atan2sX_Z__4cXyzCFv
