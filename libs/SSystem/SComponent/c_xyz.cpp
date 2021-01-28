@@ -2,6 +2,23 @@
 
 #include "SComponent/c_xyz.h"
 
+
+extern f32 lbl_80455070;
+extern f32 lbl_80455078;
+extern f32 lbl_8045507C;
+extern f32 lbl_80455080;
+extern f32 lbl_80455084;
+
+
+// const static f32 lbl_80455070 = 1.0f;
+// const static f32 lbl_80455078 = 1.25f;
+// const static f32 lbl_8045507C = 1000000.0f;
+// const static f32 lbl_80455080 = 0.0f;
+// const static f32 lbl_80455084 = 32.0f;
+const static f64 lbl_80455088 = 0.5;
+const static f64 lbl_80455090 = 3.0;
+const static f64 lbl_80455098 = 0.0;
+
 // __pl__4cXyzCFRC3Vec
 cXyz cXyz::operator+(const Vec& vec) const {
     Vec ret;
@@ -65,7 +82,7 @@ cXyz cXyz::norm(void) const {
 // normZP__4cXyzCFv
 cXyz cXyz::normZP(void) const {
     Vec vec;
-    if (this->checkEpsilon()) {
+    if (this->isNearZeroSquare() == false) {
         PSVECNormalize(this, &vec);
     } else {
         vec = lbl_80430CF4;
@@ -75,32 +92,36 @@ cXyz cXyz::normZP(void) const {
 
 extern cXyz lbl_8039A868;
 
-// normZC__4cXyzCFv
-#ifdef NON_MATCHING
-cXyz cXyz::normZC(void) const {
-    Vec vec;
-    if (this->checkEpsilon()) {
-        PSVECNormalize(this, &vec);
-    } else {
-        cXyz local_40 = (*this * lbl_8045507C * lbl_80455078).normZP();
-        vec.x = local_40.x;
-        vec.y = local_40.y;
-        vec.z = local_40.z;
-        // return tmp.checkEpsilon() ? tmp : cXyz::xonly();
-        if (!local_40.checkEpsilon()) {
-            cXyz ret;
-            // ret.baseZ();
-            f32 v = lbl_80455080;
-            ret.x = v;
-            ret.y = v;
-            v = lbl_80455070;
-            ret.z = v;
-            // should do a struct copy with word and not f32 loads
-            vec = lbl_8039A868;
-            vec = ret;
-        }
+// static const Vec asdf = {0,0,1};
+
+inline void normToUpZIfNearZero(Vec &vec) {
+    if (cXyz(vec).isNearZeroSquare())  {
+        vec.x = lbl_80455080;
+        vec.y = lbl_80455080;
+        vec.z = lbl_80455070;
+        const Vec v = {0,0,1};
+        vec = v;
     }
-    return cXyz(vec);
+}
+
+// normZC__4cXyzCFv
+#ifndef NON_MATCHING
+cXyz cXyz::normZC(void) const {
+    Vec outVec; // stack: 0x38 -> 0x2C, 0x2C -> 0x20, 0x20 -> 0x14, 0x14 -> 0x8, 0x8 -> 0x38
+    if (this->isNearZeroSquare() == false) {
+        PSVECNormalize(this, &outVec);
+    } else {
+        outVec = (*this * lbl_80455078 * lbl_8045507C).normZP();
+        normToUpZIfNearZero(outVec);
+        // if (cXyz(outVec).isNearZeroSquare()) {
+        //     outVec.x = lbl_80455080;
+        //     outVec.y = lbl_80455080;
+        //     outVec.z = lbl_80455070;
+        //     Vec tmp = {0,0,1};
+        //     outVec = tmp;
+        // }
+    }
+    return outVec;
 }
 #else
 asm cXyz cXyz::normZC(void) const {
@@ -117,7 +138,7 @@ cXyz cXyz::normalize(void) {
 
 // normalizeZP__4cXyzFv
 cXyz cXyz::normalizeZP(void) {
-    if (this->checkEpsilon()) {
+    if (this->isNearZeroSquare() == false) {
         PSVECNormalize(this, this);
     } else {
         *this = lbl_80430CF4;
@@ -127,7 +148,7 @@ cXyz cXyz::normalizeZP(void) {
 
 // normalizeRS__4cXyzFv
 bool cXyz::normalizeRS(void) {
-    if ((PSVECSquareMag(this) < lbl_80455074)) {
+    if (this->isNearZeroSquare()) {
         return false;
     } else {
         PSVECNormalize(this, this);
