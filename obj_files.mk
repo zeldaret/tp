@@ -10,10 +10,10 @@ EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/extabindex.o
 
 TEXT_O_FILES := 						            \
-            $(BUILD_DIR)/asm/rodata/rodata_m_Do_main.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_main.o \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_printf.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_printf.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_printf.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_audio.o \
             $(BUILD_DIR)/src/m_Do/m_Do_audio.o \
@@ -804,26 +804,21 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/sdata2/GFPixel.o \
             $(BUILD_DIR)/asm/gf/GFPixel.o \
             $(BUILD_DIR)/asm/gf/GFTev.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRExpHeap.o \
             $(BUILD_DIR)/asm/sdata2/JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRSolidHeap_padding.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRThread.o \
-            $(BUILD_DIR)/asm/sdata2/JKRThread.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRAram.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAram.o \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRAramPiece.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRAramStream.o \

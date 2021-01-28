@@ -336,10 +336,7 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 }
 
 void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment) {
-    const char* filename = lbl_8039CAD8;     // "JKRHeap.cpp"
-    const char* format = lbl_8039CAD8 + 12;  // "%s"
-    const char* arg1 = lbl_8039CAD8 + 15;    // "abort\n"
-    JUTException_NS_panic_f(filename, 0x33f, format, arg1);
+    JUTException_NS_panic_f("JKRHeap.cpp", 0x33f, "%s", "abort\n");
 }
 
 bool JKRHeap::setErrorFlag(bool errorFlag) {
@@ -437,3 +434,5 @@ u8 JKRHeap::do_changeGroupID(u8 newGroupID) {
 u8 JKRHeap::do_getCurrentGroupId() const {
     return 0;
 }
+
+const char* lbl_8039CAEE = "\x00"; /* padding */

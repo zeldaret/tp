@@ -24,15 +24,11 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
                                        JKRAramBlock* block, JKRAMCommand::AsyncCallback callback) {
     lock();
     if (((source & 0x1f) != 0) || ((destination & 0x1f) != 0)) {
-        OSReport(lbl_8039D0B8, direction);           // "direction = %x\n"
-        OSReport(lbl_8039D0B8 + 0x10, source);       // "source = %x\n"
-        OSReport(lbl_8039D0B8 + 0x1D, destination);  // "destination = %x\n"
-        OSReport(lbl_8039D0B8 + 0x2F, length);       // "length = %x\n"
-
-        const char* filename = lbl_8039D0B8 + 0x3C;       // "JKRAramPiece.cpp"§
-        const char* format = lbl_8039D0B8 + 0x3C + 0x11;  // "%s"
-        const char* arg1 = lbl_8039D0B8 + 0x3C + 0x14;    // "illegal address. abort."
-        JUTException_NS_panic_f(filename, 0x6c, format, arg1);
+        OSReport("direction = %x\n", direction); 
+        OSReport("source = %x\n", source);     
+        OSReport("destination = %x\n", destination); 
+        OSReport("length = %x\n", length);      
+        JUTException_NS_panic_f("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
     }
 
     Message* message = new (JKRHeap::getSystemHeap(), -4) Message();
