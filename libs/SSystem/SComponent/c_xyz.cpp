@@ -2,19 +2,11 @@
 
 #include "SComponent/c_xyz.h"
 
-
-extern f32 lbl_80455070;
-extern f32 lbl_80455078;
-extern f32 lbl_8045507C;
-extern f32 lbl_80455080;
-extern f32 lbl_80455084;
-
-
-// const static f32 lbl_80455070 = 1.0f;
-// const static f32 lbl_80455078 = 1.25f;
-// const static f32 lbl_8045507C = 1000000.0f;
-// const static f32 lbl_80455080 = 0.0f;
-// const static f32 lbl_80455084 = 32.0f;
+const static f32 lbl_80455070 = 1.0f;
+const static f32 lbl_80455078 = 1.25f;
+const static f32 lbl_8045507C = 1000000.0f;
+const static f32 lbl_80455080 = 0.0f;
+const static f32 lbl_80455084 = 32.0f;
 const static f64 lbl_80455088 = 0.5;
 const static f64 lbl_80455090 = 3.0;
 const static f64 lbl_80455098 = 0.0;
@@ -56,7 +48,7 @@ cXyz cXyz::operator*(const Vec& vec) const {
 // __dv__4cXyzCFf
 cXyz cXyz::operator/(f32 scale) const {
     Vec ret;
-    PSVECScale(this, &ret, /* 1.0 */ lbl_80455070 / scale);
+    PSVECScale(this, &ret, /* 1.0 */ *(f32*)&lbl_80455070 / scale);
     return cXyz(ret);
 }
 
@@ -90,45 +82,27 @@ cXyz cXyz::normZP(void) const {
     return cXyz(vec);
 }
 
-extern cXyz lbl_8039A868;
-
-// static const Vec asdf = {0,0,1};
-
-inline void normToUpZIfNearZero(Vec &vec) {
-    if (cXyz(vec).isNearZeroSquare())  {
-        vec.x = lbl_80455080;
-        vec.y = lbl_80455080;
-        vec.z = lbl_80455070;
-        const Vec v = {0,0,1};
+inline void normToUpZIfNearZero(Vec& vec) {
+    if (cXyz(vec).isNearZeroSquare()) {
+        vec.x = *(f32*)&lbl_80455080;
+        vec.y = *(f32*)&lbl_80455080;
+        vec.z = *(f32*)&lbl_80455070;
+        const Vec v = {0, 0, 1};
         vec = v;
     }
 }
 
 // normZC__4cXyzCFv
-#ifndef NON_MATCHING
 cXyz cXyz::normZC(void) const {
-    Vec outVec; // stack: 0x38 -> 0x2C, 0x2C -> 0x20, 0x20 -> 0x14, 0x14 -> 0x8, 0x8 -> 0x38
+    Vec outVec;
     if (this->isNearZeroSquare() == false) {
         PSVECNormalize(this, &outVec);
     } else {
-        outVec = (*this * lbl_80455078 * lbl_8045507C).normZP();
+        outVec = (*this * *(f32*)&lbl_80455078 * *(f32*)&lbl_8045507C).normZP();
         normToUpZIfNearZero(outVec);
-        // if (cXyz(outVec).isNearZeroSquare()) {
-        //     outVec.x = lbl_80455080;
-        //     outVec.y = lbl_80455080;
-        //     outVec.z = lbl_80455070;
-        //     Vec tmp = {0,0,1};
-        //     outVec = tmp;
-        // }
     }
     return outVec;
 }
-#else
-asm cXyz cXyz::normZC(void) const {
-    nofralloc
-#include "SComponent/c_xyz/asm/func_80266DC4.s"
-}
-#endif
 
 // normalize__4cXyzFv
 cXyz cXyz::normalize(void) {
@@ -168,14 +142,11 @@ bool cXyz::operator!=(const Vec& vec) const {
 
 // isZero__4cXyzCFv
 bool cXyz::isZero(void) const {
-    // return (f32)fabsf(this->x) < lbl_80455084 * lbl_80450AEC &&
-    //     (f32)fabsf(this->y) < lbl_80455084 * lbl_80450AEC &&
-    //     (f32)fabsf(this->z) < lbl_80455084 * lbl_80450AEC;
     return fabsf(this->x) <
                /* 32 */ lbl_80455084 *
-                   /* MSL_C.PPCEABI.bare.H::__f32_epsilon */ *(f32*)0x80450AEC &&
-           fabsf(this->y) < lbl_80455084 * *(f32*)0x80450AEC &&
-           fabsf(this->z) < lbl_80455084 * *(f32*)0x80450AEC;
+                   /* MSL_C.PPCEABI.bare.H::__f32_epsilon */ lbl_80450AEC[0] &&
+           fabsf(this->y) < lbl_80455084 * lbl_80450AEC[0] &&
+           fabsf(this->z) < lbl_80455084 * lbl_80450AEC[0];
 }
 
 // atan2sX_Z__4cXyzCFv

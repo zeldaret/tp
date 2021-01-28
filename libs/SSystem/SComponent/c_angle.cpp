@@ -8,7 +8,7 @@ extern "C" {
 float cAngle_NS_Adjust(float, float, float);
 }
 
-extern u8 lbl_80430F98;      // SComponent::@2401
+extern u8 lbl_80430F98;  // SComponent::@2401
 
 // __ct__7cSAngleFRC7cSAngle
 cSAngle::cSAngle(const cSAngle& angle) {
@@ -42,7 +42,7 @@ void cSAngle::Val(float f) {
 
 // Degree__7cSAngleCFv
 float cSAngle::Degree(void) const {
-    return (360.0f/65536.0f) * this->mAngle;
+    return (360.0f / 65536.0f) * this->mAngle;
 }
 
 // Radian__7cSAngleCFv

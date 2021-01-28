@@ -2412,7 +2412,7 @@ extern u8 lbl_80451354;
 extern u8 lbl_804507F0;
 extern u8 lbl_80455AC0;
 extern u8 lbl_80455B0C;
-extern u8 lbl_80450AEC;
+extern float lbl_80450AEC[4];  // array to force 2 step load, MSL_C.PPCEABI.bare.H::__f32_epsilon
 extern u8 lbl_80455B14;
 extern u8 lbl_80455AC8;
 

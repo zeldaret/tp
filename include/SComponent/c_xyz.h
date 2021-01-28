@@ -4,8 +4,8 @@
 #include "SComponent/c_math.h"
 #include "global.h"
 
-// const static f32 /* epsilon */ lbl_80455074 = 8.0E-11f;
-extern f32 lbl_80455074;
+const static f32 /* epsilon */ lbl_80455074 = 8.0E-11f;
+// extern f32 lbl_80455074;
 
 extern u8 lbl_80430CE8;
 
@@ -92,13 +92,9 @@ public:
         }
     }
 
-    float getSquareMag() const {
-        return PSVECSquareMag(this);
-    }
+    float getSquareMag() const { return PSVECSquareMag(this); }
 
-    static float getNearZeroValue() {
-        return lbl_80455074;
-    }
+    static float getNearZeroValue() { return *(f32*)&lbl_80455074; }
 
     bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
 };

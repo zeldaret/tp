@@ -37,7 +37,7 @@ extern u8 lbl_804551A0;
 extern u8 lbl_80455174;
 extern u8 lbl_80455178;
 extern u8 lbl_804551CC;
-extern u8 lbl_80450AEC;
+extern float lbl_80450AEC[4];
 extern u8 lbl_8045516C;
 extern u8 lbl_80455194;
 extern u8 lbl_804551C0;
