@@ -52,7 +52,7 @@ parser = argparse.ArgumentParser(description="Extract section data and generate 
 parser.add_argument(
     "--section",
     dest="section",
-   type=str,
+    type=str,
     metavar="SECTION",
     help="SECTION to extract data from.",
     required=True
@@ -61,7 +61,7 @@ parser.add_argument(
 parser.add_argument(
     "--file-offset",
     dest="file_offset",
-   type=lambda x: int(x,0),
+    type=lambda x: int(x,0),
     metavar="OFFSET",
     help="OFFSET in the baserom for the SECTION."
 )
@@ -69,9 +69,18 @@ parser.add_argument(
 parser.add_argument(
     "--object",
     dest="object_name",
-   type=str,
+    type=str,
     metavar="OBJECT",
     help="OBJECT filename to extract data from. (e.g. JKRSolidHeap.o)"
+)
+
+parser.add_argument(
+    "--map",
+    dest="map_path",
+    type=str,
+    metavar="MAP",
+    help="frameworkF.map path",
+    default="frameworkF.map"
 )
 
 parser.add_argument(
@@ -289,7 +298,7 @@ class ObjectFile:
         last_symbol.padding = self.end - (last_symbol.addr + last_symbol.size)
 
 def find_symbols():
-    file = open('frameworkF.map', 'r') 
+    file = map_path.open('r') 
     lines = file.readlines() 
     
     in_section = False
@@ -576,6 +585,7 @@ section = args.section
 object_name = args.object_name
 file_offset: Optional[int] = args.file_offset
 baserom = Path(args.baserom)
+map_path = Path(args.map_path)
 
 file_offsets = {
     ".rodata": 0x80003000,
@@ -592,6 +602,10 @@ if not file_offset:
 
 if not baserom.exists():
     print("error: baserom '%s' not found!" % args.baserom)
+    sys.exit(1)
+
+if not map_path.exists():
+    print("error: frameworkF.map '%s' not found!" % args.map_path)
     sys.exit(1)
 
 object_map: Dict[str,ObjectFile] = {}
