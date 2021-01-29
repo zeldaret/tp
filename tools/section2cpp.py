@@ -3,12 +3,11 @@
 
 """
 
-This script will extract literal and strings data 
-from secific section located in the baserom.dol. 
-Useful when trying to match .rodata and .sdata2 
-in translation units.
+This script will extract literals and strings data 
+from sections located in the baserom.dol. 
+Useful when trying to match .rodata and .sdata2.
 
-usage: 
+Usage: 
 ./tools/section2cpp.py --section .rodata --string --object JKRSolidHeap.o
 
 """
@@ -17,7 +16,6 @@ import argparse
 import sys
 import os
 import struct
-import shlex
 from decimal import getcontext, Decimal
 from pathlib import Path, PurePath, PureWindowsPath
 from typing import (
