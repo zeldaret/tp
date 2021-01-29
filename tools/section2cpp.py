@@ -562,7 +562,7 @@ def output_cpp():
 
             if padding:
                 padding_label = "lbl_%s" % (hex(symbol.addr + symbol.size).upper()[2:])
-                literals += [ ArrayLiteral(padding_label, data, "padding") ]
+                literals += [ ArrayLiteral(padding_label, padding, "padding") ]
     
     for lit in literals:
         print(lit)
