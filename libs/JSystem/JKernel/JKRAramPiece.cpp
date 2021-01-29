@@ -24,10 +24,10 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
                                        JKRAramBlock* block, JKRAMCommand::AsyncCallback callback) {
     lock();
     if (((source & 0x1f) != 0) || ((destination & 0x1f) != 0)) {
-        OSReport("direction = %x\n", direction); 
-        OSReport("source = %x\n", source);     
-        OSReport("destination = %x\n", destination); 
-        OSReport("length = %x\n", length);      
+        OSReport("direction = %x\n", direction);
+        OSReport("source = %x\n", source);
+        OSReport("destination = %x\n", destination);
+        OSReport("length = %x\n", length);
         JUTException_NS_panic_f("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
     }
 

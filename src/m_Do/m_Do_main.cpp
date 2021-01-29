@@ -22,12 +22,13 @@ extern u8 lbl_80451A18;
 extern char lbl_803739A0;
 
 void version_check(void) {
-    if ((!strcmp("20Apr2004", "20Apr2004")) &&
-        (!strcmp("Patch2", "Patch2"))) {
+    if ((!strcmp("20Apr2004", "20Apr2004")) && (!strcmp("Patch2", "Patch2"))) {
         return;
     }
 
-    OSReport_Error((char*)"\x53\x44\x4B\x82\xCC\x83\x6F\x81\x5B\x83\x57\x83\x87\x83\x93\x82\xAA\x88\xEA\x92\x76\x82\xB5\x82\xDC\x82\xB9\x82\xF1\x81\x42\x92\xE2\x8E\x7E\x82\xB5\x82\xDC\x82\xB7\x0A");
+    OSReport_Error((char*)"\x53\x44\x4B\x82\xCC\x83\x6F\x81\x5B\x83\x57\x83\x87\x83\x93\x82\xAA\x88"
+                          "\xEA\x92\x76\x82\xB5\x82\xDC\x82\xB9\x82\xF1\x81\x42\x92\xE2\x8E\x7E\x82"
+                          "\xB5\x82\xDC\x82\xB7\x0A");
     do {
     } while (true);
 }
@@ -103,7 +104,7 @@ void HeapCheck::heapDisplay(void) const {
     s32 heap_total_free_size = heap->getTotalFreeSize();
     s32 heap_free_size = heap->getFreeSize();
 
-    JUTReport__FiiPCce(0x64, 0xd4,"[%sName]", names[0]);
+    JUTReport__FiiPCce(0x64, 0xd4, "[%sName]", names[0]);
     JUTReport__FiiPCce(0x64, 0xe3, "HeapSize         %8ld", heap_size1);
     JUTReport__FiiPCce(0x64, 0xf0, "TargetHeapSize   %8ld", heap_size);
     JUTReport__FiiPCce(0x64, 0xfd, "TotalFree        %8ld", heap_total_free_size - heap_size2);
@@ -137,7 +138,9 @@ const char* lbl_80373B4C = "%10d";
 const char* lbl_80373B51 = "Press X+Y+START to CLEAR console.";
 const char* lbl_80373B73 = "3DStick UP/Down to scroll";
 const char* lbl_80373B8D = "Press A to output terminal from console.";
-const char* lbl_80373BB6 = "\x53\x43\x52\x4F\x4C\x4C\x81\x46\x25\x33\x64\x20\x25\x33\x64\x20\x25\x33\x64\x20\x4F\x75\x74\x70\x75\x74\x3D\x25\x31\x78"; /* undecodable string */
+const char* lbl_80373BB6 =
+    "\x53\x43\x52\x4F\x4C\x4C\x81\x46\x25\x33\x64\x20\x25\x33\x64\x20\x25\x33\x64\x20\x4F\x75\x74"
+    "\x70\x75\x74\x3D\x25\x31\x78"; /* undecodable string */
 const char* lbl_80373BD5 = "Press L+R trigger to control console.";
 const char* lbl_80373BFB = "Press [Z] trigger to close this window.";
 
@@ -157,7 +160,7 @@ void LOAD_COPYDATE(void*) {
 
     s32 dvd_status = DVDOpen("/str/Final/Release/COPYDATE", &file_info);
     if (dvd_status) {
-    char buffer[32];
+        char buffer[32];
         DVDReadPrio(&file_info, buffer, 32, 0, 2);
         memcpy(lbl_803A2EE0, buffer, 17);
         DVDClose(&file_info);
@@ -187,7 +190,6 @@ const char* lbl_80373C8F = "Hostio";
 const char* lbl_80373C96 = "\x83\x7A\x83\x58\x83\x67\x49\x4F"; /* undecodable string */
 const char* lbl_80373C9F = "Command";
 const char* lbl_80373CA7 = "\x83\x52\x83\x7D\x83\x93\x83\x68"; /* undecodable string */
-
 
 void debug(void) {
     if (lbl_80450580[0]) {

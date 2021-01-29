@@ -207,4 +207,3 @@ JKRAramStreamCommand::JKRAramStreamCommand() {
 s32 JSURandomInputStream::getAvailable() const {
     return getLength() - getPosition();
 }
-
