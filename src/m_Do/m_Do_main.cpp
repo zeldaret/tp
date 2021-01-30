@@ -11,13 +11,24 @@
 #include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
 
+extern u8 lbl_80451A00;
+extern u8 lbl_80451A04;
+extern u8 lbl_80451A08;
+extern u8 lbl_80451A0C;
+extern u8 lbl_80451A10;
+extern u8 lbl_80451A18;
+// extern char lbl_803739A0[0x310];
+
+extern char lbl_803739A0;
+
 void version_check(void) {
-    if ((!strcmp((char*)lbl_803739A0, (char*)lbl_803739A0)) &&
-        (!strcmp(((char*)lbl_803739A0 + 0xA), ((char*)lbl_803739A0 + 0xA)))) {
+    if ((!strcmp("20Apr2004", "20Apr2004")) && (!strcmp("Patch2", "Patch2"))) {
         return;
     }
 
-    OSReport_Error((char*)lbl_803739A0 + 0x11);
+    OSReport_Error((char*)"\x53\x44\x4B\x82\xCC\x83\x6F\x81\x5B\x83\x57\x83\x87\x83\x93\x82\xAA\x88"
+                          "\xEA\x92\x76\x82\xB5\x82\xDC\x82\xB9\x82\xF1\x81\x42\x92\xE2\x8E\x7E\x82"
+                          "\xB5\x82\xDC\x82\xB7\x0A");
     do {
     } while (true);
 }
@@ -93,23 +104,45 @@ void HeapCheck::heapDisplay(void) const {
     s32 heap_total_free_size = heap->getTotalFreeSize();
     s32 heap_free_size = heap->getFreeSize();
 
-    JUTReport__FiiPCce(0x64, 0xd4, lbl_803739A0 + 0x3C, names[0]);
-    JUTReport__FiiPCce(0x64, 0xe3, lbl_803739A0 + 0x45, heap_size1);
-    JUTReport__FiiPCce(0x64, 0xf0, lbl_803739A0 + 0x5B, heap_size);
-    JUTReport__FiiPCce(0x64, 0xfd, lbl_803739A0 + 0x71, heap_total_free_size - heap_size2);
-    JUTReport__FiiPCce(0x64, 0x10a, lbl_803739A0 + 0x87, heap_free_size - heap_size2);
-    JUTReport__FiiPCce(0x64, 0x117, lbl_803739A0 + 0x9D, heap_total_used_size);
-    JUTReport__FiiPCce(0x64, 0x124, lbl_803739A0 + 0xB3,
+    JUTReport__FiiPCce(0x64, 0xd4, "[%sName]", names[0]);
+    JUTReport__FiiPCce(0x64, 0xe3, "HeapSize         %8ld", heap_size1);
+    JUTReport__FiiPCce(0x64, 0xf0, "TargetHeapSize   %8ld", heap_size);
+    JUTReport__FiiPCce(0x64, 0xfd, "TotalFree        %8ld", heap_total_free_size - heap_size2);
+    JUTReport__FiiPCce(0x64, 0x10a, "FreeSize         %8ld", heap_free_size - heap_size2);
+    JUTReport__FiiPCce(0x64, 0x117, "TotalUsedSize    %8ld", heap_total_used_size);
+    JUTReport__FiiPCce(0x64, 0x124, "TotalUsedRate        %3ld%%",
                        (int)(heap_total_used_size * 0x64) / (int)heap_size);
-    JUTReport__FiiPCce(0x64, 0x131, lbl_803739A0 + 0xCF, max_total_used_size);
-    JUTReport__FiiPCce(0x64, 0x13e, lbl_803739A0 + 0xE5,
+    JUTReport__FiiPCce(0x64, 0x131, "MaxTotalUsedSize %8ld", max_total_used_size);
+    JUTReport__FiiPCce(0x64, 0x13e, "MaxTotalUsedRate     %3ld%%",
                        (max_total_used_size * 0x64) / (int)heap_size);
-    JUTReport__FiiPCce(0x64, 0x14b, lbl_803739A0 + 0x101, max_total_free_size - heap_size2);
-    JUTReport__FiiPCce(0x64, 0x158, lbl_803739A0 + 0x117,
+    JUTReport__FiiPCce(0x64, 0x14b, "MinFreeSize      %8ld", max_total_free_size - heap_size2);
+    JUTReport__FiiPCce(0x64, 0x158, "MinFreeRate          %3ld%%",
                        ((max_total_free_size - heap_size2) * 0x64) / (int)heap_size);
     heap_size2 = countUsed(heap);
-    JUTReport__FiiPCce(0x64, 0x165, lbl_803739A0 + 0x133, heap_size2);
+    JUTReport__FiiPCce(0x64, 0x165, "UsedCount             %3ld%", heap_size2);
 }
+
+const char* lbl_80373AEF = "";
+const char* lbl_80373AF0 = "TotalFree";
+const char* lbl_80373AFA = "MaxUsed  ";
+const char* lbl_80373B04 = "Used     ";
+const char* lbl_80373B0E = "RelUsed  ";
+const char* lbl_80373B18 = "/ MaxFree";
+const char* lbl_80373B22 = "/HeapSize";
+const char* lbl_80373B2C = "Blk/Bytes";
+const char* lbl_80373B36 = "ARAM Free";
+const char* lbl_80373B40 = "%d";
+const char* lbl_80373B43 = "%s";
+const char* lbl_80373B46 = " [%s]";
+const char* lbl_80373B4C = "%10d";
+const char* lbl_80373B51 = "Press X+Y+START to CLEAR console.";
+const char* lbl_80373B73 = "3DStick UP/Down to scroll";
+const char* lbl_80373B8D = "Press A to output terminal from console.";
+const char* lbl_80373BB6 =
+    "\x53\x43\x52\x4F\x4C\x4C\x81\x46\x25\x33\x64\x20\x25\x33\x64\x20\x25\x33\x64\x20\x4F\x75\x74"
+    "\x70\x75\x74\x3D\x25\x31\x78"; /* undecodable string */
+const char* lbl_80373BD5 = "Press L+R trigger to control console.";
+const char* lbl_80373BFB = "Press [Z] trigger to close this window.";
 
 asm void debugDisplay(void) {
     nofralloc
@@ -122,29 +155,41 @@ asm void Debug_console(u32) {
 }
 
 #ifdef NONMATCHING
-
-extern void memcpy(void*, void*, int);
-
 void LOAD_COPYDATE(void*) {
-    s32 dvd_status;
-    char buffer[32];
     DVDFileInfo file_info;
 
-    dvd_status = DVDOpen((const char*)lbl_803739A0[0x283], &file_info);
-
+    s32 dvd_status = DVDOpen("/str/Final/Release/COPYDATE", &file_info);
     if (dvd_status) {
+        char buffer[32];
         DVDReadPrio(&file_info, buffer, 32, 0, 2);
         memcpy(lbl_803A2EE0, buffer, 17);
         DVDClose(&file_info);
     }
-    return;
 }
 #else
+const char* lbl_80373C23 = "/str/Final/Release/COPYDATE";
 asm void LOAD_COPYDATE(void*) {
     nofralloc
 #include "m_Do\m_Do_main\asm\func_8000614C.s"
 }
 #endif
+
+const char* lbl_80373C3F = "Root";
+const char* lbl_80373C44 = "\x83\x8B\x81\x5B\x83\x67"; /* undecodable string */
+const char* lbl_80373C4B = "System";
+const char* lbl_80373C52 = "\x83\x56\x83\x58\x83\x65\x83\x80"; /* undecodable string */
+const char* lbl_80373C5B = "Zelda";
+const char* lbl_80373C61 = "\x83\x5B\x83\x8B\x83\x5F"; /* undecodable string */
+const char* lbl_80373C68 = "Game";
+const char* lbl_80373C6D = "\x83\x51\x81\x5B\x83\x80"; /* undecodable string */
+const char* lbl_80373C74 = "Archive";
+const char* lbl_80373C7C = "\x83\x41\x81\x5B\x83\x4A\x83\x43\x83\x75"; /* undecodable string */
+const char* lbl_80373C87 = "J2d";
+const char* lbl_80373C8B = "J2D";
+const char* lbl_80373C8F = "Hostio";
+const char* lbl_80373C96 = "\x83\x7A\x83\x58\x83\x67\x49\x4F"; /* undecodable string */
+const char* lbl_80373C9F = "Command";
+const char* lbl_80373CA7 = "\x83\x52\x83\x7D\x83\x93\x83\x68"; /* undecodable string */
 
 void debug(void) {
     if (lbl_80450580[0]) {

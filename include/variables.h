@@ -6,7 +6,6 @@ extern u8 i_item_lst[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_80379234[0x64];
-extern char lbl_803739A0[0x310];
 extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[20];
@@ -14,23 +13,16 @@ extern u8 lbl_80450B19;
 // extern u8 lbl_80450588;
 // extern u8 lbl_804511B8;
 extern u8 lbl_80450B20;
-extern u8 lbl_80451A00;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450B28;
-extern u8 lbl_80451A04;
 extern u8 lbl_80450B24;
 extern u8 lbl_80450B28;
 extern u8 lbl_80450B30;
-extern u8 lbl_80451A08;
 extern u8 lbl_80450B2C;
 extern u8 lbl_80450B30;
-extern u8 lbl_80451A08;
 extern u8 lbl_80450B2C;
 extern u8 lbl_80450B2C;
-extern u8 lbl_80451A0C;
-extern u8 lbl_80451A10;
 extern u8 lbl_80450B2C;
-extern u8 lbl_80451A18;
 extern u8 lbl_80450B2C;
 extern u8 lbl_80450B1C;
 extern u8 lbl_80450B1C;
@@ -100,9 +92,6 @@ extern u32 lbl_80000028;
 
 #define OS_GLOBAL(T, ADDR) *((T*)((void*)ADDR))
 #define OS_GLOBAL_ADDR(T, ADDR) ((T*)((void*)ADDR))
-
-// func_802CEB40
-extern char lbl_8039CAD8[12];  // "JKRHeap.cpp"
 
 // func_802D147C
 extern void* lbl_803CC0F0;  // JKRDisposer::__vt
@@ -191,10 +180,6 @@ extern void* lbl_804513C0;             // JKRThreadSwitch::mUserPreCallback
 extern void* lbl_804513C4;             //  JKRThreadSwitch::mUserPostCallback
 
 extern char lbl_8039CFA8[1];  // 8039cfdc-0x34 "JKRThreadSwitch: currentHeap destroyed.\n"
-
-extern float lbl_80455FC0;   // JKernel::@934 = 100.0
-extern float lbl_80455FC4;   // JKernel::@935 = 1000.0
-extern double lbl_80455FC8;  // JKernel::@937 = 4.503599627370496E15
 
 class JKRDvdFile;
 extern JSUList<JKRDvdFile> sDvdList__10JKRDvdFile;  // JKRDvdFile::sDvdList
@@ -307,7 +292,6 @@ extern u8 lbl_80434318;  // JKernel::@492 (global destructor chain)
 class JKRAramStream;
 extern JKRAramStream* sAramStreamObject__13JKRAramStream;  // JKRAramStream::sAramStreamObject
 extern u8 transHeap__13JKRAramStream;                      // JKRAramStream::transHeap
-extern char lbl_8039D120[16];                              // "JKRAramStream.cpp"
 extern u8 transBuffer__13JKRAramStream;                    // JKRAramStream::transBuffer
 extern u8 transSize__13JKRAramStream;                      // JKRAramStream::transSize
 extern u8 lbl_803CC1B8;                                    // JKRAramStream::__vt
@@ -343,7 +327,6 @@ extern u8 lbl_803CC518;  // JSUFileInputStream::__vt
 
 class JKRAram;
 extern u8 lbl_803CC158;                         // JKRAram::__vt
-extern char lbl_8039D078[16];                   // "JKRAram.cpp"
 extern JKRAram* sAramObject__7JKRAram;          // JKRAram::sAramObject
 extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
 extern bool lbl_804513FC;                       // DAT_804513fc (init global mutex)

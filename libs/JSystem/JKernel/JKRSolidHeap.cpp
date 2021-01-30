@@ -282,3 +282,5 @@ void* JKRSolidHeap::do_getMaxFreeBlock(void) const {
 s32 JKRSolidHeap::do_getTotalFreeSize(void) const {
     return getFreeSize();
 }
+
+const char* lbl_8039CFA7 = ""; /* padding */
