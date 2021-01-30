@@ -107,17 +107,11 @@ asm void* JKRAram::run(void) {
 
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        const char* file = lbl_8039D078;
-        const char* format = lbl_8039D078 + 0xc;
-        const char* arg1 = lbl_8039D078 + 0xc + 0x3;
-        JUTException_NS_panic_f(file, 0xdb, format, arg1);
+        JUTException_NS_panic_f("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        const char* file = lbl_8039D078;
-        const char* format = lbl_8039D078 + 0xc;
-        const char* arg1 = lbl_8039D078 + 0xc + 0x3;
-        JUTException_NS_panic_f(file, 0xe3, format, arg1);
+        JUTException_NS_panic_f("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
     }
 }
 
@@ -290,3 +284,6 @@ asm JSUList<12JKRAMCommand>::~JSUList<12JKRAMCommand>(void) {
 #include "JSystem/JKernel/JKRAram/asm/func_802D2DF0.s"
 }
 #endif
+
+const char* lbl_8039D0A6 = "bad aramSync\n";
+const char* lbl_8039D0B4 = "\x00\x00\x00"; /* padding */
