@@ -7,6 +7,11 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 
+extern "C" {
+void __dl__FPv(void);
+void getNthLink__10JSUPtrListCFUl(void);
+}
+
 Z2SoundObjBase::Z2SoundObjBase() {
     //! @note initializer list doesn't work since fields were initialized out of
     //! structure layout order, indicating original code didn't use initializer list.

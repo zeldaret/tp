@@ -1,6 +1,11 @@
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
 #include "global.h"
 
+extern "C" {
+char* strcpy(char*, const char*);
+int strcmp(const char*, const char*);
+}
+
 // todo: static initialization is working uncomment this
 // JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 

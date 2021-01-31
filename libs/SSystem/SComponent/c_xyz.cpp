@@ -2,6 +2,14 @@
 
 #include "SComponent/c_xyz.h"
 
+extern "C" {
+void __ml__4cXyzCFf(void);
+void cM_atan2s__Fff(void);
+void cXyz_NS_dtor(void);
+void normZP__4cXyzCFv(void);
+void func_80361C24(void);
+}
+
 // __pl__4cXyzCFRC3Vec
 cXyz cXyz::operator+(const Vec& vec) const {
     Vec ret;

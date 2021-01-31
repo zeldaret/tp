@@ -2,6 +2,31 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
+extern "C" {
+int checkItemGet__FUci(u8, int);
+int func_80368954(char*, char*, u32);
+int item_getcheck_func_FISHING_ROD_1(void);
+u16 dComIfGs_getMaxLifeGauge(void);
+u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
+u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
+u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+void addBombCount(u8, u8);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
+void dComIfGs_setSelectEquipClothes(u8);
+void dComIfGs_setSelectEquipShield(u8);
+void dComIfGs_setSelectEquipSword(u8);
+void dMeter2Info_setSword(u8, bool);
+void getItem__17dSv_player_item_cCFib(void);
+void isFirstBit__21dSv_player_get_item_cCFUc(void);
+void onDungeonItem__12dSv_memBit_cFi(int);
+void onSwitch__10dSv_info_cFii(int, int);
+void setBottleNum__24dSv_player_item_record_cFUcUc(u8, u8);
+void setCollect__20dSv_player_collect_cFiUc(int, u8);
+void setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb(u8, bool);
+void setEmptyBottleItemIn__17dSv_player_item_cFUc(u8);
+}
+
 inline void dComIfGp_setItemLifeCount(float amount, u8 unk) {
     g_dComIfG_gameInfo.getPlay().setItemLifeCount(amount, unk);
 }

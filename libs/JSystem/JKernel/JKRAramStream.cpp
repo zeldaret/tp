@@ -1,6 +1,15 @@
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "global.h"
+extern "C" {
+s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void JSURandomInputStream_NS_seek(JSURandomInputStream*, u32, u32);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+}
 
 extern char lbl_8039D120[32];
 

@@ -4,6 +4,18 @@
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 
 extern "C" {
+void __dl__FPv(void);
+void cXyz_NS_ctor(void);
+void cXyz_NS_dtor(void);
+void dMeter_fmapHIO_c_NS_MapBlinkAnime(void);
+void free__7JKRHeapFPv(void);
+void func_80361C24(void);
+void func_80361CE8(void);
+void func_80361D60(void);
+void JUtility_NS_TColor(void);
+}
+
+extern "C" {
 // __ct__16dMeter_menuHIO_cFv
 // dMeter_menuHIO_c::dMeter_menuHIO_c(void)
 asm void dMeter_menuHIO_c(void) {

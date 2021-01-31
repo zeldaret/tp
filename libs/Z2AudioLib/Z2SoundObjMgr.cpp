@@ -4,6 +4,13 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 
+extern "C" {
+int strcmp(const char*, const char*);
+void initiate__10JSUPtrListFv(void);
+void append__10JSUPtrListFP10JSUPtrLink(void);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+}
+
 #ifdef NONMATCHING
 // order wrong because this needs to inherit from JASGlobalInstance<T>
 Z2SoundObjMgr::Z2SoundObjMgr() {

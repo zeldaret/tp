@@ -6,6 +6,17 @@
 #include "m_Do/m_Do_main/m_Do_main.h"
 #include "pad/pad.h"
 
+extern "C" {
+void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort(void);
+void __nw__FUl(void);
+void cLib_memSet__FPviUl(void);
+void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad(void);
+void getGamePad__10JUTGamePadFi(void);
+void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad(void);
+void mDoRst_resetCallBack__FiPv(void);
+void read__10JUTGamePadFv(void);
+}
+
 // TODO: m_cpadInfo uses a bad type in a number of the NONMATCHING functions,
 // and references need to be updated to reflect its correct type.
 

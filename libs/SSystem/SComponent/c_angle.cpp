@@ -4,7 +4,13 @@
 #include "global.h"
 
 extern "C" {
-
+double func_8036C028(double);
+double func_8036C590(double);
+double func_8036C668(double);
+double func_8036CA54(double);
+void __ct__7cSAngleFs(void);
+void cSAngle_NS_dtor(void);
+void func_80361C24(void);
 float cAngle_NS_Adjust(float, float, float);
 }
 

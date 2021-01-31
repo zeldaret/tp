@@ -3,6 +3,14 @@
 #include "SComponent/c_m3d_g_cyl.h"
 #include "SComponent/c_m3d.h"
 
+extern "C" {
+void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec(void);
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf(void);
+void SetC__8cM3dGCylFRC4cXyz(void);
+void SetH__8cM3dGCylFf(void);
+void SetR__8cM3dGCylFf(void);
+}
+
 // __ct__8cM3dGCylFPC4cXyzff
 cM3dGCyl::cM3dGCyl(const cXyz* pCenter, f32 pRadius, f32 pHeight) {
     this->SetC(*pCenter);

@@ -9,6 +9,10 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
+void __dl__FPv(void);
+}
+
+extern "C" {
 // __ct__14Z2SoundStarterFb
 // Z2SoundStarter::Z2SoundStarter(bool)
 asm Z2SoundStarter::Z2SoundStarter(bool) {
