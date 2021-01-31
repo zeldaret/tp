@@ -3298,6 +3298,7 @@ func_8000D8EC
 func_8000D8E4
 __dt__7JUTFontFv
 func_80015544
+func_80017470
 }
 /*
 .init 80003100 - 80005600

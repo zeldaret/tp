@@ -38,7 +38,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o \
             $(BUILD_DIR)/src/m_Do/m_Do_DVDError.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCard.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_MemCard.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCardRWmng.o \
             $(BUILD_DIR)/asm/m/Do/m_Do_MemCardRWmng.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine_exception.o \
