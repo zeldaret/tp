@@ -1,7 +1,7 @@
 #ifndef D_SAVE_H_
 #define D_SAVE_H_
 
-#include "SComponent/c_xyz/c_xyz.h"
+#include "SComponent/c_xyz.h"
 #include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "dolphin/types.h"
 #include "global.h"

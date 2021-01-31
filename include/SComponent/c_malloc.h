@@ -5,6 +5,7 @@
 #include "global.h"
 
 class cMl {
+public:
     static void init(JKRHeap*);
     static void* memalignB(int, unsigned long);
     static void free(void*);

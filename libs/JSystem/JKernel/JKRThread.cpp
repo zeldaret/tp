@@ -2,6 +2,13 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
+// lbl_80455FC0 JKRThread.o @934
+static const u8 lbl_80455FC0[4] = {0x42, 0xc8, 0x0, 0x0};
+// lbl_80455FC4 JKRThread.o @935
+static const u8 lbl_80455FC4[4] = {0x44, 0x7a, 0x0, 0x0};
+// lbl_80455FC8 JKRThread.o @937
+static const u8 lbl_80455FC8[8] = {0x43, 0x30, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};
+
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
     mSwitchCount = 0;
     mCost = 0;

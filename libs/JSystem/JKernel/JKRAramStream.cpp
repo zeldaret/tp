@@ -2,6 +2,8 @@
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "global.h"
 
+extern char lbl_8039D120[32];
+
 JKRAramStream* JKRAramStream::create(long priority) {
     if (!sAramStreamObject) {
         sAramStreamObject = new (JKRGetSystemHeap(), 0) JKRAramStream(priority);
@@ -86,10 +88,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        const char* file = lbl_8039D120;           // "JKRAramStream.cpp";
-        const char* format = lbl_8039D120 + 0x12;  // "%s";
-        const char* arg1 = lbl_8039D120 + 0x15;    // ":::Cannot alloc memory\n";
-        JUTException_NS_panic_f(file, 0xac, format, arg1);
+        JUTException_NS_panic_f("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
     }
 
     if (buffer) {

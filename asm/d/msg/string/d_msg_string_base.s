@@ -82,7 +82,7 @@ lbl_80249494:
 /* 802494C4 00246404  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 802494C8 00246408  38 81 00 08 */	addi r4, r1, 8
 /* 802494CC 0024640C  38 A0 00 00 */	li r5, 0
-/* 802494D0 00246410  48 09 34 41 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 802494D0 00246410  48 09 34 41 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 802494D4 00246414  80 7F 00 08 */	lwz r3, 8(r31)
 /* 802494D8 00246418  48 05 E0 FD */	bl JMessage_NS_TControl_NS_reset
 /* 802494DC 0024641C  80 7F 00 08 */	lwz r3, 8(r31)
@@ -300,7 +300,7 @@ dMsgStringBase_c_NS_getStringLocal:
 /* 802497D4 00246714  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 802497D8 00246718  38 81 00 0C */	addi r4, r1, 0xc
 /* 802497DC 0024671C  38 A0 00 80 */	li r5, 0x80
-/* 802497E0 00246720  48 09 31 31 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 802497E0 00246720  48 09 31 31 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 802497E4 00246724  48 00 00 2C */	b lbl_80249810
 lbl_802497E8:
 /* 802497E8 00246728  80 1E 00 1C */	lwz r0, 0x1c(r30)
@@ -312,7 +312,7 @@ lbl_802497E8:
 /* 80249800 00246740  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 80249804 00246744  38 81 00 08 */	addi r4, r1, 8
 /* 80249808 00246748  38 A0 00 80 */	li r5, 0x80
-/* 8024980C 0024674C  48 09 31 05 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 8024980C 0024674C  48 09 31 05 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 lbl_80249810:
 /* 80249810 00246750  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80249814 00246754  7F 24 CB 78 */	mr r4, r25
@@ -400,7 +400,7 @@ dMsgStringBase_c_NS_getStringPageLocal:
 /* 80249948 00246888  80 78 00 18 */	lwz r3, 0x18(r24)
 /* 8024994C 0024688C  38 81 00 0C */	addi r4, r1, 0xc
 /* 80249950 00246890  38 A0 00 80 */	li r5, 0x80
-/* 80249954 00246894  48 09 2F BD */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80249954 00246894  48 09 2F BD */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80249958 00246898  48 00 00 2C */	b lbl_80249984
 lbl_8024995C:
 /* 8024995C 0024689C  80 18 00 1C */	lwz r0, 0x1c(r24)
@@ -412,7 +412,7 @@ lbl_8024995C:
 /* 80249974 002468B4  80 78 00 18 */	lwz r3, 0x18(r24)
 /* 80249978 002468B8  38 81 00 08 */	addi r4, r1, 8
 /* 8024997C 002468BC  38 A0 00 80 */	li r5, 0x80
-/* 80249980 002468C0  48 09 2F 91 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80249980 002468C0  48 09 2F 91 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 lbl_80249984:
 /* 80249984 002468C4  80 78 00 0C */	lwz r3, 0xc(r24)
 /* 80249988 002468C8  7F 84 E3 78 */	mr r4, r28
@@ -506,7 +506,7 @@ dMsgStringBase_c_NS_getMessageLocal:
 /* 80249AC8 00246A08  80 7D 00 18 */	lwz r3, 0x18(r29)
 /* 80249ACC 00246A0C  38 81 00 0C */	addi r4, r1, 0xc
 /* 80249AD0 00246A10  38 A0 00 80 */	li r5, 0x80
-/* 80249AD4 00246A14  48 09 2E 3D */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80249AD4 00246A14  48 09 2E 3D */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80249AD8 00246A18  48 00 00 2C */	b lbl_80249B04
 lbl_80249ADC:
 /* 80249ADC 00246A1C  80 1D 00 1C */	lwz r0, 0x1c(r29)
@@ -518,7 +518,7 @@ lbl_80249ADC:
 /* 80249AF4 00246A34  80 7D 00 18 */	lwz r3, 0x18(r29)
 /* 80249AF8 00246A38  38 81 00 08 */	addi r4, r1, 8
 /* 80249AFC 00246A3C  38 A0 00 80 */	li r5, 0x80
-/* 80249B00 00246A40  48 09 2E 11 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80249B00 00246A40  48 09 2E 11 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 lbl_80249B04:
 /* 80249B04 00246A44  80 7D 00 0C */	lwz r3, 0xc(r29)
 /* 80249B08 00246A48  38 80 00 00 */	li r4, 0

@@ -689,7 +689,7 @@ lbl_8023346C:
 /* 80233478 002303B8  80 7E 01 24 */	lwz r3, 0x124(r30)
 /* 8023347C 002303BC  38 81 00 08 */	addi r4, r1, 8
 /* 80233480 002303C0  38 A0 00 00 */	li r5, 0
-/* 80233484 002303C4  48 0A 94 8D */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80233484 002303C4  48 0A 94 8D */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80233488 002303C8  80 7E 01 14 */	lwz r3, 0x114(r30)
 /* 8023348C 002303CC  48 07 41 49 */	bl JMessage_NS_TControl_NS_reset
 /* 80233490 002303D0  80 7E 01 14 */	lwz r3, 0x114(r30)
@@ -4713,7 +4713,7 @@ lbl_80236D9C:
 /* 80236DB0 00233CF0  80 7E 01 24 */	lwz r3, 0x124(r30)
 /* 80236DB4 00233CF4  38 81 00 08 */	addi r4, r1, 8
 /* 80236DB8 00233CF8  38 A0 00 80 */	li r5, 0x80
-/* 80236DBC 00233CFC  48 0A 5B 55 */	bl JGadget_NS_binary_NS_TParse_header_block_NS_parse_next
+/* 80236DBC 00233CFC  48 0A 5B 55 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 lbl_80236DC0:
 /* 80236DC0 00233D00  B3 FE 01 6C */	sth r31, 0x16c(r30)
 lbl_80236DC4:
