@@ -3,6 +3,10 @@
 #include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "global.h"
 
+extern "C" {
+void __dl__FPv(void);
+}
+
 dBgS_PolyPassChk::dBgS_PolyPassChk()
     : mObject(false), mCamera(false), mLink(false), mArrow(false), mBomb(false), mBoomerang(false),
       mRope(false), mUnderwaterRoof(false), mHorse(false), mStatue(false), mIronBall(false) {}

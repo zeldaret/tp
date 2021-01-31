@@ -1,9 +1,47 @@
 #include "d/d_save/d_save/d_save.h"
-
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_save/d_save_init/d_save_init.h"
 #include "os/OS.h"
+
+extern "C" {
+char* strcpy(char*, const char*);
+int dStage_roomControl_c_NS_getZoneNo(int);
+u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
+u8 dComIfGs_getBottleMax(void);
+u8 dComIfGs_getMixItemIndex(int);
+unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
+void __ct__12dSv_memory_cFv(void);
+void __ct__13dSv_memory2_cFv(void);
+void daObjCarry_c_NS_clrSaveFlag(void);
+void daObjCarry_c_NS_setSaveFlag(void);
+void dComIfGp_setSelectItem(int);
+void dComIfGs_setKeyNum(int, u8);
+void dComIfGs_setMixItemIndex(int, u8);
+void dComIfGs_setSelectItemIndex(int, u8);
+void dMeter2Info_c_NS_getString(void);
+void dMeter2Info_c_NS_setHotSpringTimer(void);
+void dMeter2Info_c_NS_setSaveStageName(void);
+void dSv_item_rename__FUc(void);
+void func_80361D60(void);
+void func_80362324(void);
+void func_8036687C(void);
+void getItem__17dSv_player_item_cCFib(void);
+void getSound__19dSv_player_config_cFv(void);
+void getVibration__19dSv_player_config_cFv(void);
+void init__10dSv_save_cFv(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void isFirstBit__21dSv_player_get_item_cCFUc(void);
+void memcpy(void*, const void*, int);
+void offEventBit__11dSv_event_cFUs(void);
+void onEventBit__11dSv_event_cFUs(void);
+void setBombNum__24dSv_player_item_record_cFUcUc(void);
+void setBottleItemIn__17dSv_player_item_cFUcUc(void);
+void setItem__17dSv_player_item_cFiUc(void);
+void setLineUpItem__17dSv_player_item_cFv(void);
+void setNowVibration__14dComIfG_play_cFUc(u8);
+void setSound__19dSv_player_config_cFUc(void);
+}
 
 inline int dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(i_no);
@@ -97,11 +135,13 @@ u16 dSv_player_status_a_c::getRupeeMax(void) const {
     return 0;
 }
 
-BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
-    if (i_magic == 0) {
-        return dComIfGs_isEventBit(0x2304);
-    }
-    return (this->mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
+asm BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
+    nofralloc
+#include "d/d_save/d_save/asm/func_80032AF8.s"
+    // if (i_magic == 0) {
+    //     return dComIfGs_isEventBit(0x2304);
+    // }
+    // return (this->mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
 
 void dSv_player_status_b_c::init() {
@@ -463,17 +503,19 @@ u8 dSv_player_item_c::checkBottle(u8 i_item_id) {
     return num_bottles;
 }
 
-int dSv_player_item_c::checkInsectBottle(void) {
-    int i = 0;
-    int j = 0;
-    for (; i < 0x18; i++) {
-        if (dComIfGs_isItemFirstBit(192 + i) &&
-            !dComIfGs_isEventBit(lbl_803A7288.unk0[0x191 + j])) {
-            return 1;
-        }
-        j += 1;
-    }
-    return 0;
+asm int dSv_player_item_c::checkInsectBottle(void){
+    nofralloc
+#include "d/d_save/d_save/asm/func_80033754.s"
+    // int i = 0;
+    // int j = 0;
+    // for (; i < 0x18; i++) {
+    //     if (dComIfGs_isItemFirstBit(192 + i) &&
+    //         !dComIfGs_isEventBit(lbl_803A7288.unk0[0x191 + j])) {
+    //         return 1;
+    //     }
+    //     j += 1;
+    // }
+    // return 0;
 }
 
 u8 dSv_player_item_c::checkEmptyBottle(void) {

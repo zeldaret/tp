@@ -12,9 +12,6 @@ unsigned int cBgW_BgId::ChkUsed() const {
     unsigned int temp = mId - 0x100;
     return temp >> 0x1f;
 }
-
-extern "C" {
-
 bool cBgW_CheckBGround(float a1) {
     return a1 >= lbl_804550E8;
 }
@@ -29,5 +26,3 @@ bool cBgW_CheckBWall(float a1) {
 
     return false;
 }
-
-}  // extern "C"

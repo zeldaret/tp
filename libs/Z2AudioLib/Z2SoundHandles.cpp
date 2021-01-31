@@ -5,6 +5,15 @@
 #include "JSystem/JAudio2/JASMemPool.h"
 #include "global.h"
 
+extern "C" {
+void __ct__10JSUPtrLinkFPv(void);
+void __dl__FPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void func_80361C24(void);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+void append__10JSUPtrListFP10JSUPtrLink(void);
+}
+
 Z2SoundHandles::Z2SoundHandles() {
     mNumHandles = 0;
 }

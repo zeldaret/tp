@@ -2,6 +2,23 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
+extern "C" {
+void __ct__15JKRThreadSwitchFP7JKRHeap(void);
+void __dl__FPv(void);
+void __nw__FUlP7JKRHeapi(void);
+void becomeCurrentHeap__7JKRHeapFv(void);
+void callback__15JKRThreadSwitchFP8OSThreadP8OSThread(void);
+void func_803620AC(void);
+void func_803626BC(void);
+void func_803664DC(void);
+void isSubHeap__7JKRHeapCFP7JKRHeap(void);
+void JUTConsole_NS_clear(void);
+void JUTConsole_NS_print_f(void);
+void JUTConsole_NS_print(void);
+void JUTWarningConsole(void);
+void searchThread__9JKRThreadFP8OSThread(void);
+}
+
 // lbl_80455FC0 JKRThread.o @934
 static const u8 lbl_80455FC0[4] = {0x42, 0xc8, 0x0, 0x0};
 // lbl_80455FC4 JKRThread.o @935

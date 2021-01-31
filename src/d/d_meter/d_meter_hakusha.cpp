@@ -4,6 +4,34 @@
 #include "global.h"
 
 extern "C" {
+int strcmp(const char*, const char*);
+void __ct__9J2DScreenFv(void);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void CPaneMgr_NS_getGlobalVtxCenter(void);
+void CPaneMgr_NS_paneTrans(void);
+void CPaneMgr_X1_(void);
+void CPaneMgrAlpha_NS_getAlphaRate(void);
+void CPaneMgrAlpha_NS_hide(void);
+void CPaneMgrAlpha_NS_setAlphaRate(void);
+void CPaneMgrAlpha_NS_show(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dMeter2Draw_c_NS_drawPikariHakusha(void);
+void dMeter2Draw_c_NS_setAlphaAnimeMax(void);
+void dMeter2Draw_c_NS_setAlphaAnimeMin(void);
+void dMeterHakusha_c_NS_alphaAnimeHakusha(void);
+void dMeterHakusha_c_NS_getHakushaNum(void);
+void dMeterHakusha_c_NS_setAlphaButtonAnimeMax(void);
+void dMeterHakusha_c_NS_setAlphaButtonAnimeMin(void);
+void dMeterHakusha_c_NS_setAlphaHakushaAnimeMax(void);
+void dMeterHakusha_c_NS_setAlphaHakushaAnimeMin(void);
+void dMeterHakusha_c_NS_updateHakusha(void);
+void dPaneClass_showNullPane(void);
+void J2DScreen_NS_draw(void);
+void J2DScreen_NS_setPriority(void);
+}
+
+extern "C" {
 // __ct__15dMeterHakusha_cFPv
 // dMeterHakusha_c::dMeterHakusha_c(void*)
 asm void dMeterHakusha_c(void) {

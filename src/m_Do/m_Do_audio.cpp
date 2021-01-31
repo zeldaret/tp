@@ -9,6 +9,15 @@
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 
+extern "C" {
+void __dl__FPv(void);
+void __dt__10JSUPtrListFv(void);
+void adjustSize__12JKRSolidHeapFv(void);
+void changeGroupID__7JKRHeapFUc(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void func_80361C24(void);
+}
+
 void mDoAud_zelAudio_c::reset(void) {
     lbl_80450BBA = false;
 }

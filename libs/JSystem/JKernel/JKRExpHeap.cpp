@@ -1,6 +1,43 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 
+extern "C" {
+void __ct__10JKRExpHeapFPvUlP7JKRHeapb(void);
+void __ct__7JKRHeapFPvUlP7JKRHeapb(void);
+void __dl__FPv(void);
+void __dt__7JKRHeapFv(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void allocBack__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void);
+void allocFore__Q210JKRExpHeap9CMemBlockFUlUcUcUcUc(void);
+void allocFromHead__10JKRExpHeapFUl(void);
+void allocFromHead__10JKRExpHeapFUli(void);
+void allocFromTail__10JKRExpHeapFUl(void);
+void allocFromTail__10JKRExpHeapFUli(void);
+void appendUsedList__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
+void callAllDisposer__7JKRHeapFv(void);
+void dispose__7JKRHeapFPvUl(void);
+void dispose__7JKRHeapFv(void);
+void find__7JKRHeapCFPv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void free__Q210JKRExpHeap9CMemBlockFP10JKRExpHeap(void);
+void getHeapBlock__Q210JKRExpHeap9CMemBlockFPv(void);
+void getMaxAllocatableSize__7JKRHeapCFi(void);
+void getTotalFreeSize__7JKRHeapCFv(void);
+void getUsedSize__10JKRExpHeapCFUc(void);
+void initArena__7JKRHeapFPPcPUli(void);
+void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc(void);
+void joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void JUTReportConsole_f(const char*, ...);
+void JUTReportConsole(const char*);
+void JUTWarningConsole_f(const char*, ...);
+void JUTWarningConsole(void);
+void recycleFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
+void removeFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
+void removeUsedBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
+void setFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlock(void);
+}
+
 asm void JKRExpHeap::createRoot(int, bool) {
     nofralloc
 #include "JSystem/JKernel/JKRExpHeap/asm/func_802CEDB4.s"

@@ -3,6 +3,18 @@
 #include "SComponent/c_lib.h"
 #include "SComponent/c_math.h"
 
+extern "C" {
+int abs(int);
+void __eq__4cXyzCFRC3Vec(void);
+void __mi__4cXyzCFRC3Vec(void);
+void __ml__4cXyzCFf(void);
+void __ne__4cXyzCFRC3Vec(void);
+void cM_atan2s__Fff(void);
+void memcpy(void*, const void*, int);
+void normZP__4cXyzCFv(void);
+void* memset(void* dest, int ch, u32 count);
+}
+
 // cLib_memCpy__FPvPCvUl
 // cLib_memCpy(void*, const void*, unsigned long)
 void cLib_memCpy(void* dst, const void* src, unsigned long size) {

@@ -20,6 +20,41 @@ extern u8 lbl_80451A18;
 // extern char lbl_803739A0[0x310];
 
 extern char lbl_803739A0;
+extern "C" {
+int strcmp(const char*, const char*);
+void cDyl_InitAsync(void);
+void CheckHeap1__9HeapCheckFv(void);
+void create__12JKRSolidHeapFUlP7JKRHeapb(void);
+void create__8mDoCPd_cFv(void);
+void dComIfG_inf_c_NS_ct(void);
+void debug__Fv(void);
+void dRes_control_c_NS_dump(void);
+void dump__11JKRAramHeapFv(void);
+void DynamicModuleControlBase_NS_dump(void);
+void fapGm_Create(void);
+void fapGm_Execute(void);
+void fopAcM_initManager(void);
+void getFreeSize__11JKRAramHeapFv(void);
+void getFreeSize__7JKRHeapCFv(void);
+void getTotalFreeSize__11JKRAramHeapFv(void);
+void getTotalFreeSize__7JKRHeapCFv(void);
+void getTotalUsedSize__10JKRExpHeapCFv(void);
+void getUsedCount__9HeapCheckCFv(void);
+void heapDisplay__9HeapCheckCFv(void);
+void JUTAssertion_NS_setMessageCount(void);
+void JUTConsole_NS_clear(void);
+void JUTConsole_NS_dumpToTerminal(void);
+void JUTConsole_NS_getLineOffset(void);
+void JUTConsole_NS_scroll(void);
+void JUTReport__FiiPCce(int, int, const char*, ...);
+void JUTReport_X1_(void);
+void mDoDvdThd_callback_c_NS_create(void);
+void mDoMch_HeapCheckAll(void);
+void mDoMemCd_Ctrl_c_NS_update(void);
+void memcpy(void*, const void*, int);
+void read__8mDoCPd_cFv(void);
+void version_check__Fv(void);
+}
 
 void version_check(void) {
     if ((!strcmp("20Apr2004", "20Apr2004")) && (!strcmp("Patch2", "Patch2"))) {

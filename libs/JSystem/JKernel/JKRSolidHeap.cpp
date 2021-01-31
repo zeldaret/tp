@@ -1,6 +1,13 @@
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
 #include "global.h"
 
+extern "C" {
+void getTotalFreeSize__7JKRHeapCFv(void);
+void JUTReportConsole_f(const char*, ...);
+void JUTWarningConsole_f(const char*, ...);
+void resize__7JKRHeapFPvUl(void);
+}
+
 JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler) {
     if (!heap) {
         heap = getRootHeap();

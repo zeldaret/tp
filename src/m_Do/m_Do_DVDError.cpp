@@ -14,11 +14,7 @@ extern "C" {
     void __RAS_OSDisableInterrupts_begin(void);
     void __ct__9JKRThreadFP8OSThreadi(void);
     void __dt__9JKRThreadFv(void);
-    void _restgpr_29(void);
-    void _savegpr_29(void);
     void becomeCurrentHeap__7JKRHeapFv(void);
-    void mDoDvdErr_ThdCleanup(void);
-    void mDoDvdErr_ThdInit(void);
     void mDoDvdErr_Watch(void);
     void mDoDvdThd_NS_suspend(void);
     void mDoExt_getAssertHeap(void);

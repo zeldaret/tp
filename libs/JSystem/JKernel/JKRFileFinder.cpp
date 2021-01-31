@@ -3,6 +3,10 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
+extern "C" {
+void __dl__FPv(void);
+}
+
 JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIndex, u32 numEntries) : JKRFileFinder() {
     mArchive = archive;
     mIsAvailable = (s32)numEntries > 0;

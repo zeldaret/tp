@@ -3482,8 +3482,8 @@ lbl_8000B15C:
 /* 8000B16C 000080AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8000B170 000080B0  4E 80 00 20 */	blr 
 
-.global mDoGph_Create
-mDoGph_Create:
+.global mDoGph_Create__Fv
+mDoGph_Create__Fv:
 /* 8000B174 000080B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8000B178 000080B8  7C 08 02 A6 */	mflr r0
 /* 8000B17C 000080BC  90 01 00 14 */	stw r0, 0x14(r1)
