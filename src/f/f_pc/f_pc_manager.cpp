@@ -30,7 +30,7 @@ void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
 void fpcDw_Execute(base_process_class* pProc);
 void fpcDw_Handler(void*, void*);
 base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
-                                            FastCreateReqFunc param_3, void* param_4, void* pData);
+                                     FastCreateReqFunc param_3, void* param_4, void* pData);
 void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
 }
 

@@ -1,6 +1,6 @@
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
+#include "global.h"
 extern "C" {
 void __dl__FPv(void);
 void __dt__11JKRDisposerFv(void);

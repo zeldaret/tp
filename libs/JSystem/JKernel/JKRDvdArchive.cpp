@@ -14,7 +14,8 @@ void DCInvalidateRange(void*, u32);
 void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii(void);
 void free__7JKRHeapFPv(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
+    void);
 void* memset(void* dest, int ch, u32 count);
 }
 

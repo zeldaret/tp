@@ -25,7 +25,8 @@ void getMaxAllocatableSize__7JKRHeapCFi(void);
 void getTotalFreeSize__7JKRHeapCFv(void);
 void getUsedSize__10JKRExpHeapCFUc(void);
 void initArena__7JKRHeapFPPcPUli(void);
-void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc(void);
+void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc(
+    void);
 void joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void JUTReportConsole_f(const char*, ...);
@@ -35,7 +36,8 @@ void JUTWarningConsole(void);
 void recycleFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
 void removeFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
 void removeUsedBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
-void setFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlock(void);
+void setFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlock(
+    void);
 }
 
 asm void JKRExpHeap::createRoot(int, bool) {

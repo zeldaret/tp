@@ -2,8 +2,8 @@
 #define C_XYZ_H_
 
 #include "SComponent/c_math.h"
-#include "mtx_vec.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 extern f32 /* 1.0 */ lbl_80455070;
 extern f32 /* epsilon */ lbl_80455074;

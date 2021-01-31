@@ -24,7 +24,8 @@ void free__7JKRHeapFPv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
+    void);
 void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
 void open__14JKRCompArchiveFl(void);
 void orderSync__9JKRDecompFPUcPUcUlUl(void);

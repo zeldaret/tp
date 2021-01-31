@@ -5,11 +5,14 @@ void __nwa__FUlP7JKRHeapi(void);
 void JUTReportConsole(const char*);
 void convertSjis__10JUTResFontCFiPUs();  // remove when JUTResFont::getFontCode decompiled
 void getFontCode__10JUTResFontCFi();     // remove when JUTResFont::getWidthEntry decompiled
-void loadFont__10JUTResFontFi11_GXTexMapIDPQ27JUTFont6TWidth();  // remove when JUTResFont::drawChar_scale decompiled
-void countBlock__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
-void initialize_state__7JUTFontFv();  // remove when JUTResFont::protected_initiate decompiled
+void loadFont__10JUTResFontFi11_GXTexMapIDPQ27JUTFont6TWidth();  // remove when
+                                                                 // JUTResFont::drawChar_scale
+                                                                 // decompiled
+void countBlock__10JUTResFontFv();        // remove when JUTResFont::protected_initiate decompiled
+void initialize_state__7JUTFontFv();      // remove when JUTResFont::protected_initiate decompiled
 void initialize_state__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
-void deleteMemBlocks_ResFont__10JUTResFontFv();  // remove when JUTResFont::protected_initiate decompiled
+void deleteMemBlocks_ResFont__10JUTResFontFv();  // remove when JUTResFont::protected_initiate
+                                                 // decompiled
 }
 
 extern float lbl_80455FF0;

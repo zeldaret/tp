@@ -14,7 +14,7 @@ extern "C" {
 void free__3cMlFPv(void* pPtr);
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
 void sBs_ClearArea(void* pPtr, s32 pSize);
-s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
+// s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
 }
 
 // f_pc_node_req::l_fpcNdRq_Queue

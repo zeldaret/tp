@@ -802,8 +802,8 @@ void dComIfGp_mapHide(void) {
 
 asm bool dComIfGp_checkMapShow(void) {
     nofralloc
-    #include "d/d_com/d_com_inf_game/asm/func_8002E0A8.s"
-    //return !dComIfGs_isEventBit(0x1D01);
+#include "d/d_com/d_com_inf_game/asm/func_8002E0A8.s"
+    // return !dComIfGs_isEventBit(0x1D01);
 }
 
 // dComIfGp_setHeapLockFlag__FUc

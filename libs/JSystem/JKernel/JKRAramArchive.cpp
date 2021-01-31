@@ -1,6 +1,6 @@
 #include "JSystem/JKernel/JKRAramArchive/JKRAramArchive.h"
-#include "global.h"
 #include "JSystem/JKernel/JKRFile/JKRFile.h"
+#include "global.h"
 extern "C" {
 int abs(int);
 void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode(void);
@@ -23,7 +23,8 @@ void free__7JKRHeapFPvP7JKRHeap(void);
 void getAramAddress_Entry__14JKRAramArchiveFP12SDIFileEntry(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl(void);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
+    void);
 void open__14JKRAramArchiveFl(void);
 void prepend__10JSUPtrListFP10JSUPtrLink(void);
 void remove__10JSUPtrListFP10JSUPtrLink(void);

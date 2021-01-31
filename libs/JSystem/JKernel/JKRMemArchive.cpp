@@ -6,7 +6,8 @@ extern "C" {
 void DCInvalidateRange(void*, u32);
 void findFromRoot__7JKRHeapFPv(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
-void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
+    void);
 void memcpy(void*, const void*, int);
 }
 

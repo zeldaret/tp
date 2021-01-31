@@ -14,6 +14,7 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
+void __dt__8cM3dGLinFv(void);
 double func_8036C668(double);
 int func_80368954(char*, char*, u32);
 int strcmp(const char*, const char*);
