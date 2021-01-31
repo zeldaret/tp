@@ -26,7 +26,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/sdata2/m_Do_machine.o \
             $(BUILD_DIR)/src/m_Do/m_Do_machine.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_mtx.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_mtx.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_ext.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_ext.o \
             $(BUILD_DIR)/src/m_Do/m_Do_ext.o \
