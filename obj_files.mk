@@ -31,7 +31,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/sdata2/m_Do_ext.o \
             $(BUILD_DIR)/src/m_Do/m_Do_ext.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_lib.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_lib.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_lib.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_Reset.o \
             $(BUILD_DIR)/src/m_Do/m_Do_Reset.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_dvd_thread.o \
