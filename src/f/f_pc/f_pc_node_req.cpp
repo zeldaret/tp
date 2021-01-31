@@ -7,6 +7,13 @@
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_layer.h"
 
+extern "C" {
+void free__3cMlFPv(void* pPtr);
+void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+void sBs_ClearArea(void* pPtr, s32 pSize);
+s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
+}
+
 // f_pc_node_req::l_fpcNdRq_Queue
 extern node_list_class lbl_803A3A38;
 // f_pc_node_req::clear$2359
@@ -20,11 +27,6 @@ extern cPhs__Handler lbl_803A3AD0[4];
 // f_pc_node_req::request_id$2360
 extern s32 lbl_80450D48;
 extern s8 lbl_80450D4C;
-
-extern "C" {
-
-extern s32 fpcSCtRq_Request(layer_class*, s16, process_method_func, void*, void*);
-extern void sBs_ClearArea(void* pPtr, s32 pSize);
 
 void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq) {
     fpcLy_CreatedMesg(pNodeCreateReq->mpLayerClass);
@@ -303,5 +305,4 @@ s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void* param_3) {
 
 s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void* param_3) {
     return fpcNdRq_ReChangeNode(pRequestId, param_2, param_3);
-}
 }

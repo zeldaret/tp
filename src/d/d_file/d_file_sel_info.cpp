@@ -2,6 +2,29 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
+extern "C" {
+char* strcpy(char*, const char*);
+void __ct__9J2DScreenFv(void);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void CPaneMgrAlpha_X1_(void);
+void dDlst_list_c_NS_set(void);
+void dMeter2Info_c_NS_getString(void);
+void func_80362324(void);
+void func_80362540(void);
+void func_803664DC(void);
+void J2DScreen_NS_draw(void);
+void J2DScreen_NS_setPriority(void);
+void J2DTextBox_NS_getStringPtr(void);
+void J2DTextBox_NS_setString_X1_(void);
+void mDoExt_getMesgFont(void);
+void mDoExt_removeMesgFont(void);
+void screenSet__12dFile_info_cFv(void);
+void setHeartCnt__12dFile_info_cFP10dSv_save_c(void);
+void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
+void setSaveDate__12dFile_info_cFP10dSv_save_c(void);
+}
+
 asm dFile_info_c::dFile_info_c(JKRArchive*, u8) {
     nofralloc
 #include "d/d_file/d_file_sel_info/asm/func_80192434.s"

@@ -2,6 +2,11 @@
 
 #include "SComponent/c_bg_s_poly_info.h"
 
+extern "C" {
+void __dl__FPv(void);
+void ClearPi__13cBgS_PolyInfoFv(void);
+}
+
 // __ct__13cBgS_PolyInfoFv
 // cBgS_PolyInfo::cBgS_PolyInfo(void)
 asm cBgS_PolyInfo::cBgS_PolyInfo(void) {

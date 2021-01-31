@@ -5,6 +5,17 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "os/OS.h"
 
+extern "C" {
+void __mi__4cXyzCFRC3Vec(void);
+void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
+void findFsResource__10JKRArchiveCFPCcUl(void);
+void getAramAddress__14JKRAramArchiveFPCc(void);
+void mDoMtx_YrotS(void);
+void searchMapEventData__14dEvt_control_cFUc(void);
+void Xinit__9STControlFv(void);
+void Yinit__9STControlFv(void);
+}
+
 STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
                      s16 param_7, s16 param_8) {
     __vt = (STControl_vtable*)0x803a7260;

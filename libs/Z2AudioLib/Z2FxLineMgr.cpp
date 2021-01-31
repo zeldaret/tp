@@ -6,6 +6,16 @@
 #include "global.h"
 
 extern "C" {
+class JSUInputStream;
+s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+void JSUInputStream_NS_dtor(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void getResource__10JKRArchiveFUs(void);
+void countResource__10JKRArchiveCFv(void);
+void __nwa__FUlP7JKRHeapi(void);
+}
+
+extern "C" {
 // __ct__11Z2FxLineMgrFv
 // Z2FxLineMgr::Z2FxLineMgr(void)
 asm void Z2FxLineMgr(void) {

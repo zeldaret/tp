@@ -14,6 +14,15 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
+void __dl__FPv(void);
+void __ct__10JSUPtrLinkFPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void append__10JSUPtrListFP10JSUPtrLink(void);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+void func_80361D60(void);
+}
+
+extern "C" {
 // __ct__10Z2CreatureFv
 // Z2Creature::Z2Creature(void)
 asm Z2Creature::Z2Creature(void) {

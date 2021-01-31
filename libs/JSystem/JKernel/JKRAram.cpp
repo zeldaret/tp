@@ -3,10 +3,28 @@
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
-#include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
-#include "global.h"
+extern "C" {
+void __dl__FPv(void);
+void __RAS_OSDisableInterrupts_begin(void);
+void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode(void);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void changeGroupIdIfNeed__7JKRAramFPUci(void);
+void checkCompressed__9JKRDecompFPUc(void);
+void checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl(void);
+void DCStoreRangeNoSync(void);
+void decompSZS_subroutine__FPUcPUc(void);
+void firstSrcData__Fv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void memcpy(void*, const void*, int);
+void nextSrcData__FPUc(void);
+void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+void orderSync__9JKRDecompFPUcPUcUlUl(void);
+void startDMA__12JKRAramPieceFP12JKRAMCommand(void);
+}
 
 // Uncomment when static initialization is working
 // JKRAram* JKRAram::sAramObject = NULL;

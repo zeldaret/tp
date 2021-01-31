@@ -4,6 +4,36 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+void cCcD_CpsAttr_NS_dtor(void);
+void cCcD_CylAttr_NS_dtor(void);
+void cCcD_SphAttr_NS_dtor(void);
+void ClearForMinMax__8cM3dGAabFv(void);
+void cM3d_Cross_CpsCps__FRC8cM3dGCpsRC8cM3dGCpsP3Vec(void);
+void cM3d_Cross_CpsCyl__FRC8cM3dGCpsRC8cM3dGCylP3Vec(void);
+void cM3d_Cross_CpsSph__FRC8cM3dGCpsRC8cM3dGSphP3Vec(void);
+void cM3d_Cross_CpsTri__FRC8cM3dGCps8cM3dGTriP3Vec(void);
+void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylPf(void);
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphPf(void);
+void cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphPf(void);
+void cM3d_Cross_SphTri__FPC8cM3dGSphPC8cM3dGTriP3Vec(void);
+void cM3d_Cross_TriTri__FRC8cM3dGTriRC8cM3dGTriP3Vec(void);
+void cross__8cM3dGCylCFPC8cM3dGCylP4cXyz(void);
+void cross__8cM3dGCylCFPC8cM3dGSphP4cXyz(void);
+void cross__8cM3dGSphCFPC8cM3dGCylP4cXyz(void);
+void cross__8cM3dGSphCFPC8cM3dGSphP4cXyz(void);
+void cross__8cM3dGTriCFPC8cM3dGCylP3Vec(void);
+void cXyz_NS_dtor(void);
+void func_80361C24(void);
+void PlusR__8cM3dGAabFf(void);
+void Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt(void);
+void Set__10cCcD_ObjTgFRC13cCcD_SrcObjTg(void);
+void Set__8cM3dGAabFPC4cXyzPC4cXyz(void);
+void SetMinMax__8cM3dGAabFRC4cXyz(void);
+}
+
+extern "C" {
 
 // Set__15cCcD_DivideInfoFUlUlUl
 // cCcD_DivideInfo::Set(unsigned long, unsigned long, unsigned long)

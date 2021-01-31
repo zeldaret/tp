@@ -2,6 +2,29 @@
 #include "dvd/dvd.h"
 #include "global.h"
 
+extern "C" {
+void __ct__10JKRDvdFileFv(void);
+void __dt__10JKRDvdFileFv(void);
+void __RAS_OSDisableInterrupts_begin(void);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void checkCompressed__9JKRDecompFPUc(void);
+void DCInvalidateRange(void*, u32);
+void DCStoreRangeNoSync(void);
+void decompSZS_subroutine__FPUcPUc(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void isErrorRetry__12JKRDvdRipperFv(void);
+void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void memcpy(void*, const void*, int);
+void nextSrcData__FPUc(void);
+void open__10JKRDvdFileFl(void);
+void open__10JKRDvdFileFPCc(void);
+void orderSync__9JKRDecompFPUcPUcUlUl(void);
+void VIWaitForRetrace(void);
+}
+
 static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);
 static u8* nextSrcData(u8*);

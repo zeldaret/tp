@@ -4,6 +4,36 @@
 #include "global.h"
 
 extern "C" {
+char* strcpy(char*, const char*);
+void __ct__9J2DScreenFv(void);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void animationTransform__7J2DPaneFv(void);
+void CPaneMgr_NS_getGlobalVtxCenter(void);
+void CPaneMgr_NS_paneTrans(void);
+void CPaneMgr_X1_(void);
+void CPaneMgrAlpha_NS_setAlphaRate(void);
+void dComIfG_TimerDeleteRequest(void);
+void dMeter2Draw_c_NS_drawPikari_X1_(void);
+void dMeter2Info_c_NS_getString(void);
+void dMeter2Info_c_NS_resetMeterString(void);
+void dMeterString_c_NS_createString(void);
+void dMeterString_c_NS_drawPikari(void);
+void dMeterString_c_NS_isLeadByte(void);
+void dMeterString_c_NS_playBckAnimation(void);
+void dPaneClass_showNullPane(void);
+void dTimer_createTimer(void);
+void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
+void getParentPane__7J2DPaneFv(void);
+void J2DAnmLoaderDataBase_NS_load(void);
+void J2DScreen_NS_draw(void);
+void J2DScreen_NS_setPriority(void);
+void J2DTextBox_NS_getStringPtr(void);
+void J2DTextBox_NS_setString_X1_(void);
+void mDoExt_getMesgFont(void);
+}
+
+extern "C" {
 // __ct__14dMeterString_cFi
 // dMeterString_c::dMeterString_c(int)
 asm void dMeterString_c(void) {

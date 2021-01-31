@@ -2,6 +2,53 @@
 
 #include "SComponent/c_m3d.h"
 
+extern "C" {
+void __ct__8cM3dGLinFRC4cXyzRC4cXyz(void);
+void CalcPos__8cM3dGLinCFP3Vecf(void);
+void cM_atan2s__Fff(void);
+void cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin(void);
+void cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec(void);
+void cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf(void);
+void cM3d_Cross_CpsSph_CrossPos__FRC8cM3dGCpsRC8cM3dGSphRC3VecP3Vec(void);
+void cM3d_Cross_CylLin__FPC8cM3dGCylPC8cM3dGLinP3VecP3Vec(void);
+void cM3d_Cross_CylPnt__FPC8cM3dGCylPC3Vec(void);
+void cM3d_Cross_CylPntPnt__FPC8cM3dGCylPC3VecPC3VecP3VecP3Vec(void);
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf(void);
+void cM3d_Cross_LinPla__FPC8cM3dGLinPC8cM3dGPlaP3Vecbb(void);
+void cM3d_Cross_LinSph__FPC8cM3dGLinPC8cM3dGSphP3Vec(void);
+void cM3d_Cross_LinSph_CrossPos__FRC8cM3dGSphRC8cM3dGLinP3VecP3Vec(void);
+void cM3d_Cross_LinTri__FPC8cM3dGLinPC8cM3dGTriP3Vecbb(void);
+void cM3d_Cross_LinTri_Easy__FPC8cM3dGTriPC3Vec(void);
+void cM3d_Cross_SphPnt__FPC8cM3dGSphPC3Vec(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphPfPf(void);
+void cM3d_Cross_SphTri__FPC8cM3dGSphPC8cM3dGTriP3Vec(void);
+void cM3d_CrossInfLineVsInfPlane_proc__FffPC3VecPC3VecP3Vec(void);
+void cM3d_CrossX_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossX_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_CrossY_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3VecPC10cM3d_RangePf(void);
+void cM3d_CrossY_Tri__FPC8cM3dGTriPC3VecPf(void);
+void cM3d_CrossZ_LinTri_proc__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossZ_Tri__FPC8cM3dGTriPC3Vec(void);
+void cM3d_CrossZ_Tri__FPC8cM3dGTriPC3Vecf(void);
+void cM3d_InclusionCheckPosIn3PosBox2d__Ffffffffff(void);
+void cM3d_InclusionCheckPosIn3PosBox3d__FPC3VecPC3VecPC3VecPC3Vecf(void);
+void cM3d_InDivPos1__FPC3VecPC3VecfP3Vec(void);
+void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec(void);
+void cM3d_Len2dSq__Fffff(void);
+void cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf(void);
+void cM3d_lineVsPosSuisenCross__FPC8cM3dGLinPC3VecP3Vec(void);
+void cM3d_PlaneCrossLineProcWork__FfffffffPfPf(void);
+void cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec(void);
+void cM3d_VectorProduct2d__Fffffff(void);
+void SetC__8cM3dGSphFRC4cXyz(void);
+void SetR__8cM3dGSphFf(void);
+void SetStartEnd__8cM3dGLinFRC3VecRC3Vec(void);
+}
+
 // cM3d_InDivPos1__FPC3VecPC3VecfP3Vec
 // cM3d_InDivPos1(const Vec*, const Vec*, float, Vec*)
 asm void cM3d_InDivPos1(const Vec*, const Vec*, float, Vec*) {

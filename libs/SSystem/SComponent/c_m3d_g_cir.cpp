@@ -2,6 +2,10 @@
 
 #include "SComponent/c_m3d_g_cir.h"
 
+extern "C" {
+void __dl__FPv(void);
+}
+
 // __ct__8cM3dGCirFv
 // cM3dGCir::cM3dGCir(void)
 asm cM3dGCir::cM3dGCir(void) {

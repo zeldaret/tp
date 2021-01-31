@@ -38,7 +38,6 @@ inline double sqrt(double d) {
 
 #include "ar/AR.h"
 #include "ar/ARQ.h"
-#include "functions.h"
 #include "mwcc.h"
 #include "os/OS.h"
 #include "variables.h"

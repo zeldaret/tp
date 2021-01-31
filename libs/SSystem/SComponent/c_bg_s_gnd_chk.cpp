@@ -2,6 +2,15 @@
 
 #include "SComponent/c_bg_s_gnd_chk.h"
 
+extern "C" {
+void __ct__13cBgS_PolyInfoFv(void);
+void __ct__8cBgS_ChkFv(void);
+void __dl__FPv(void);
+void __dt__11cBgS_GndChkFv(void);
+void __dt__13cBgS_PolyInfoFv(void);
+void __dt__8cBgS_ChkFv(void);
+}
+
 // __ct__11cBgS_GndChkFv
 asm cBgS_GndChk::cBgS_GndChk(void) {
     nofralloc

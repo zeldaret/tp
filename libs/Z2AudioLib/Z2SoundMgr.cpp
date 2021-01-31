@@ -17,6 +17,10 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
+void func_803664DC(void);
+}
+
+extern "C" {
 // seqCallback__FP8JASTrackUs
 // seqCallback(JASTrack*, unsigned short)
 asm void seqCallback(void) {

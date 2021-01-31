@@ -4,6 +4,30 @@
 #include "global.h"
 
 extern "C" {
+void __ct__9J2DScreenFv(void);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void animationTransform__7J2DPaneFv(void);
+void CPaneMgr_X1_(void);
+void dMeterHaihai_c_NS_alphaAnimeHaihai(void);
+void dMeterHaihai_c_NS_drawHaihaiBottom(void);
+void dMeterHaihai_c_NS_drawHaihaiLeft(void);
+void dMeterHaihai_c_NS_drawHaihaiRight(void);
+void dMeterHaihai_c_NS_drawHaihaiTop(void);
+void dMeterHaihai_c_NS_playBckAnime(void);
+void dMeterHaihai_c_NS_playBpkAnime(void);
+void dMeterHaihai_c_NS_playBtkAnime(void);
+void dMeterHaihai_c_NS_updateHaihai(void);
+void dPaneClass_showNullPane(void);
+void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
+void J2DAnmLoaderDataBase_NS_load(void);
+void J2DScreen_NS_animation(void);
+void J2DScreen_NS_draw(void);
+void J2DScreen_NS_setPriority(void);
+void rotate__7J2DPaneFff13J2DRotateAxisf(void);
+}
+
+extern "C" {
 // __ct__14dMeterHaihai_cFUc
 // dMeterHaihai_c::dMeterHaihai_c(unsigned char)
 asm void dMeterHaihai_c(void) {

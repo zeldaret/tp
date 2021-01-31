@@ -1,6 +1,34 @@
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "global.h"
 
+extern "C" {
+u32 OSGetResetSwitchState(void);
+void __ct__10JSUPtrLinkFPv(void);
+void __ct__11JKRDisposerFv(void);
+void __dl__FPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void __dt__11JKRDisposerFv(void);
+void append__10JSUPtrListFP10JSUPtrLink(void);
+void assign__10JUTGamePadFv(void);
+void checkCallback__19JUTGamePadLongPressFlUl(void);
+void checkResetCallback__10JUTGamePadFx(void);
+void checkResetSwitch__10JUTGamePadFv(void);
+void clear__10JUTGamePadFv(void);
+void clear__Q210JUTGamePad6CStickFv(void);
+void clear__Q210JUTGamePad7CButtonFv(void);
+void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void);
+void func_8036C720(void);
+void getButton__Q210JUTGamePad6CStickFUl(void);
+void initList__10JUTGamePadFv(void);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+void startMotor__Q210JUTGamePad7CRumbleFi(void);
+void stopMotor__Q210JUTGamePad7CRumbleFib(void);
+void update__10JUTGamePadFv(void);
+void update__Q210JUTGamePad6CStickFScScUlUlUl(void);
+void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
+void update__Q210JUTGamePad7CRumbleFs(void);
+}
+
 #ifdef NONMATCHING
 // TODO(erin): probably ~easy to do, i just didn't do it yet :)
 JUTGamePad::JUTGamePad(EPadPort port) : ptr_link(this) {

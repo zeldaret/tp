@@ -3,7 +3,6 @@
 #include "global.h"
 
 extern "C" {
-
 int cTgIt_MethodCall(create_tag_class* pTag, method_filter* pMethodFilter) {
     return pMethodFilter->mpMethodFunc((node_class*)pTag->mpTagData, pMethodFilter->mpUserData);
 }

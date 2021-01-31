@@ -2,6 +2,12 @@
 
 #include "SComponent/c_m3d_g_aab.h"
 
+extern "C" {
+void SetMax__8cM3dGAabFRC4cXyz(void);
+void SetMin__8cM3dGAabFRC4cXyz(void);
+void SetMinMax__8cM3dGAabFRC4cXyz(void);
+}
+
 // Set__8cM3dGAabFPC4cXyzPC4cXyz
 // cM3dGAab::Set(const cXyz*, const cXyz*)
 asm void cM3dGAab::Set(const cXyz*, const cXyz*) {

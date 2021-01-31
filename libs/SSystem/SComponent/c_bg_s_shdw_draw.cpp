@@ -2,6 +2,13 @@
 
 #include "SComponent/c_bg_s_shdw_draw.h"
 
+extern "C" {
+void __ct__8cBgS_ChkFv(void);
+void __dl__FPv(void);
+void __dt__8cBgS_ChkFv(void);
+void Set__8cM3dGAabFPC4cXyzPC4cXyz(void);
+}
+
 // __ct__13cBgS_ShdwDrawFv
 // cBgS_ShdwDraw::cBgS_ShdwDraw(void)
 asm cBgS_ShdwDraw::cBgS_ShdwDraw(void) {

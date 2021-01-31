@@ -2,6 +2,18 @@
 
 #include "SComponent/c_bg_s_lin_chk.h"
 
+extern "C" {
+void __ct__13cBgS_PolyInfoFv(void);
+void __ct__8cBgS_ChkFv(void);
+void __dl__FPv(void);
+void __dt__11cBgS_LinChkFv(void);
+void __dt__13cBgS_PolyInfoFv(void);
+void __dt__8cBgS_ChkFv(void);
+void ClearPi__13cBgS_PolyInfoFv(void);
+void ct__11cBgS_LinChkFv(void);
+void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz(void);
+}
+
 // __ct__11cBgS_LinChkFv
 // cBgS_LinChk::cBgS_LinChk(void)
 asm cBgS_LinChk::cBgS_LinChk(void) {

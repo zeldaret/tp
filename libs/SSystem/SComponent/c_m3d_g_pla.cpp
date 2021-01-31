@@ -2,6 +2,10 @@
 
 #include "SComponent/c_m3d_g_pla.h"
 
+extern "C" {
+void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec(void);
+}
+
 // __ct__8cM3dGPlaFPC4cXyzf
 // cM3dGPla::cM3dGPla(const cXyz*, float)
 asm cM3dGPla::cM3dGPla(const cXyz*, float) {

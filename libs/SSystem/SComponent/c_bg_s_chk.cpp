@@ -2,6 +2,10 @@
 
 #include "SComponent/c_bg_s_chk.h"
 
+extern "C" {
+void __dl__FPv(void);
+}
+
 // __ct__8cBgS_ChkFv
 asm cBgS_Chk::cBgS_Chk(void) {
     nofralloc

@@ -2,6 +2,13 @@
 
 #include "SComponent/c_m3d_g_tri.h"
 
+extern "C" {
+void cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf(void);
+void cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec(void);
+void Set__8cM3dGPlaFPC8cM3dGPla(void);
+void SetupNP__8cM3dGPlaFRC3VecRC3Vec(void);
+}
+
 // cross__8cM3dGTriCFPC8cM3dGCylP3Vec
 // cM3dGTri::cross(const cM3dGCyl*, Vec*) const
 asm bool cM3dGTri::cross(const cM3dGCyl*, Vec*) const {

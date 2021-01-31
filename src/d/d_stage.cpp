@@ -6,6 +6,73 @@
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 
+extern "C" {
+char* strcpy(char*, const char*);
+int strcmp(const char*, const char*);
+void __arraydtor_5375(void);
+void __dl__FPv(void);
+void __dla__FPv(void);
+void __nwa__FUlP7JKRHeapi(void);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void clearRoomItem__13dSv_zoneBit_cFv(void);
+void clearRoomSwitch__13dSv_zoneBit_cFv(void);
+void create__10JKRExpHeapFUlP7JKRHeapb(void);
+void daSus_c_NS_check(void);
+void daSus_c_NS_execute(void);
+void dBgS_NS_GetExitId(void);
+void dBgS_NS_GetRoomId(void);
+void dComIfG_getOldStageRes(void);
+void dComIfG_getStageRes(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfGp_setNextStage(void);
+void dEvent_manager_c_NS_create(void);
+void dEvent_manager_c_NS_remove(void);
+void dKy_set_nexttime(void);
+void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc(void);
+void dMpath_c_NS_setPointer_X1_(void);
+void dMpath_c_NS_setPointer(void);
+void dRes_control_c_NS_deleteRes(void);
+void dRes_control_c_NS_getResInfo(void);
+void dRes_control_c_NS_syncRes(void);
+void dStage_changeScene(void);
+void dStage_KeepDoorInfo_NS_dtor(void);
+void dStage_roomControl_c_NS_SetTimePass(void);
+void dStage_roomStatus_c_NS_dtor(void);
+void dStage_roomStatus_c(void);
+void dSvBit_HIO_c_NS_init(void);
+void dTres_c_NS_addData(void);
+void fopAcM_CreateAppend(void);
+void fopAcM_delete(void);
+void fopAcM_FastCreate(void);
+void fopCamM_Create(void);
+void fopKyM_fastCreate(void);
+void fopMsgM_Create(void);
+void fopScnM_CreateReq(void);
+void fopScnM_SearchByID(void);
+void free__7JKRHeapFPv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void func_80361C24(void);
+void func_80361CE8(void);
+void func_80361D60(void);
+void func_803664DC(void);
+void func_803665BC(void);
+void func_80368AE8(void);
+void getSave__10dSv_info_cFi(void);
+void init__12dSv_danBit_cFSc(void);
+void init__20dStage_roomControl_cFvZone(void);
+void initFileList2__15dStage_roomDt_cFv(void);
+void initZone__10dSv_info_cFv(void);
+void isActor__10dSv_info_cCFii(void);
+void J3DLightInfo_NS___as(void);
+void mDoExt_destroyExpHeap(void);
+void putSave__10dSv_info_cFi(void);
+void set__19dStage_startStage_cFPCcScsSc(const char*, s8, s16, s8);
+void stage_tgsc_data_class_NS_dtor(void);
+void stage_tgsc_data_class(void);
+void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+}
+
 #ifdef NONMATCHING
 void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4, s8 param_5,
                              u8 param_6) {

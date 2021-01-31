@@ -2,6 +2,12 @@
 
 #include "SComponent/c_sxyz.h"
 
+extern "C" {
+void __ct__5csXyzFsss(void);
+void csXyz_NS_dtor(void);
+void func_80361C24(void);
+}
+
 // __ct__5csXyzFsss
 csXyz::csXyz(s16 pX, s16 pY, s16 pZ) {
     mX = pX;

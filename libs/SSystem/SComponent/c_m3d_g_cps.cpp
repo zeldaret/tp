@@ -2,6 +2,13 @@
 
 #include "SComponent/c_m3d_g_cps.h"
 
+extern "C" {
+void __dl__FPv(void);
+void Set__8cM3dGCpsFRC4cXyzRC4cXyzf(void);
+void SetStartEnd__8cM3dGLinFRC3VecRC3Vec(void);
+void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz(void);
+}
+
 // __ct__8cM3dGCpsFv
 // cM3dGCps::cM3dGCps(void)
 asm cM3dGCps::cM3dGCps(void) {

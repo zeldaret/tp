@@ -9,6 +9,61 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
+double func_8036C668(double);
+int strcmp(const char*, const char*);
+void __ct__7cSAngleFRC7cSAngle(void);
+void __ct__7cSAngleFs(void);
+void __ct__7cSGlobeFRC4cXyz(void);
+void __dl__FPv(void);
+void __mi__7cSAngleCFs(void);
+void daPy_py_c_NS_getAttentionOffsetY(void);
+void dAttCatch_c_NS_init(void);
+void dAttCatch_c_NS_proc(void);
+void dAttDraw_c_NS_ctor(void);
+void dAttDraw_c_NS_draw(void);
+void dAttDraw_c_NS_dtor(void);
+void dAttDraw_c_NS_setAlphaAnm(void);
+void dAttDraw_c_NS_setAnm(void);
+void dAttention_c_NS_initList(void);
+void dAttention_c_NS_LockonTargetPId(void);
+void dAttention_c_NS_LockonTruth(void);
+void dAttention_c_NS_lockSoundStart(void);
+void dAttention_c_NS_SelectAttention(void);
+void dAttHint_c_NS_init(void);
+void dAttHint_c_NS_proc(void);
+void dAttList_c_NS_ctor(void);
+void dAttList_c_NS_dtor(void);
+void dAttList_c_NS_setActor(void);
+void dAttLook_c_NS_init(void);
+void dAttLook_c_NS_proc(void);
+void DCStoreRangeNoSync(void);
+void dRes_control_c_NS_getRes(void);
+void fopAcIt_Executor(void);
+void fopAcM_searchActorDistance(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void Inv__7cSAngleCFv(void);
+void isSwitch__12dSv_danBit_cCFi(void);
+void mDoExt_adjustSolidHeap(void);
+void mDoExt_baseAnm_NS_play(void);
+void mDoExt_bckAnm_NS_entry(void);
+void mDoExt_bckAnm_NS_init(void);
+void mDoExt_bpkAnm_NS_entry(void);
+void mDoExt_bpkAnm_NS_init(void);
+void mDoExt_brkAnm_NS_entry(void);
+void mDoExt_brkAnm_NS_init(void);
+void mDoExt_btkAnm_NS_entry(void);
+void mDoExt_btkAnm_NS_init(void);
+void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
+void mDoExt_destroySolidHeap(void);
+void mDoExt_J3DModel__create(void);
+void mDoExt_modelUpdateDL(void);
+void mDoExt_restoreCurrentHeap(void);
+void memcpy(void*, const void*, int);
+void Z2SeqMgr_NS_bgmNowBattle(void);
+}
+
+extern "C" {
 // padLockButton__25@unnamed@d_attention_cpp@Fl
 // @unnamed@d_attention_cpp@::padLockButton(long)
 asm void _unnamed_d_attention_cpp__NS_padLockButton(void) {

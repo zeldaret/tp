@@ -6,6 +6,23 @@
 #include "global.h"
 
 extern "C" {
+class JSURandomInputStream;
+class mDoCPd_c;
+struct JASTaskThread {
+    u8 unk0[0x2c];
+    OSThread* thread;
+};
+JASTaskThread* JASDvd_NS_getThreadPointer(void);
+s32 JASTaskThread_NS_pause(JASTaskThread*, bool);
+void cAPICPad_recalibrate__Fv(void);
+void getResetData__6mDoRstFv(void);
+void JUTVideo_NS_destroyManager(void);
+void mDoDvdErr_ThdCleanup(void);
+void VIFlush(void);
+void VISetBlack(s32);
+void VIWaitForRetrace(void);
+}
+
 void my_OSCancelAlarmAll(void) {
     return;
 }
@@ -17,7 +34,6 @@ void destroyVideo() {
     VIFlush();
     VIWaitForRetrace();
     return;
-}
 }
 
 // TODO: cleanup

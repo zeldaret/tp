@@ -3,10 +3,8 @@
 #include "global.h"
 
 extern "C" {
-
 #define NODE_GET_PREV(pNode) (pNode ? pNode->mpPrevNode : NULL)
 #define NODE_GET_NEXT(pNode) (pNode ? pNode->mpNextNode : NULL)
-
 void cNd_Join(node_class* pA, node_class* pB) {
     pA->mpNextNode = pB;
     pB->mpPrevNode = pA;

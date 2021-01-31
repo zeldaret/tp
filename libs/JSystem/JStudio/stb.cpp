@@ -1,19 +1,19 @@
 #include "JSystem/JStudio/stb.h"
 
 extern "C" {
-extern void process_sequence___Q37JStudio3stb7TObjectFv();
-extern void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl();
-extern void JStudio_NS_stb_NS_data_NS_TParse_TParagraph_NS_getData();
-extern void setFlag_operation__Q37JStudio3stb7TObjectFUci();
-extern void JStudio_NS_stb_NS_data_NS_TParse_TSequence_NS_getData();
-extern void JGadget_NS_TNodeLinkList_NS_Erase();
-extern void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject();
-extern void std_NS_find_if_X2_();
-extern void reset__Q37JStudio3stb7TObjectFPCv();
-extern void forward__Q37JStudio3stb7TObjectFUl();
-extern void JStudio_NS_object_NS_TIDData_NS_isEqual();
+int func_8036608C(const void*, const void*, u32);
+void process_sequence___Q37JStudio3stb7TObjectFv();
+void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl();
+void JStudio_NS_stb_NS_data_NS_TParse_TParagraph_NS_getData();
+void setFlag_operation__Q37JStudio3stb7TObjectFUci();
+void JStudio_NS_stb_NS_data_NS_TParse_TSequence_NS_getData();
+void JGadget_NS_TNodeLinkList_NS_Erase();
+void Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
+void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject();
+void std_NS_find_if_X2_();
+void reset__Q37JStudio3stb7TObjectFPCv();
+void forward__Q37JStudio3stb7TObjectFUl();
+void JStudio_NS_object_NS_TIDData_NS_isEqual();
 }
 
 extern u8 lbl_804554D0;            // 0xFF
