@@ -3,6 +3,7 @@
 #include "SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
@@ -477,7 +478,7 @@ asm void dKyw_evil_Draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800574BC.s"
 }
-
+};
 // dKyw_wether_init__Fv
 // dKyw_wether_init(void)
 asm void dKyw_wether_init(void) {
@@ -498,7 +499,7 @@ asm void dKyw_wether_delete(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80057A04.s"
 }
-
+extern "C" {
 // __dt__19dKankyo_evil_PacketFv
 // dKankyo_evil_Packet::~dKankyo_evil_Packet(void)
 asm void func_80057C84(void) {
@@ -568,14 +569,14 @@ asm void func_80058128(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058128.s"
 }
-
+};
 // dKyw_wether_delete2__Fv
 // dKyw_wether_delete2(void)
 asm void dKyw_wether_delete2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800581AC.s"
 }
-
+extern "C" {
 // __dt__21dKankyo_vrkumo_PacketFv
 // dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet(void)
 asm void func_8005820C(void) {
@@ -589,14 +590,14 @@ asm void wether_move_thunder(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058290.s"
 }
-
+};
 // dKyw_wether_move__Fv
 // dKyw_wether_move(void)
 asm void dKyw_wether_move(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800582F8.s"
 }
-
+extern "C" {
 // wether_move_sun__Fv
 // wether_move_sun(void)
 asm void wether_move_sun(void) {
@@ -666,14 +667,13 @@ asm void wether_move_evil(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80059F74.s"
 }
-
+};
 // dKyw_wether_move_draw__Fv
 // dKyw_wether_move_draw(void)
 asm void dKyw_wether_move_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A0B8.s"
 }
-
 // dKyw_wether_move_draw2__Fv
 // dKyw_wether_move_draw2(void)
 asm void dKyw_wether_move_draw2(void) {
@@ -694,7 +694,7 @@ asm void dKyw_wether_draw2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A304.s"
 }
-
+extern "C" {
 // dKyw_wether_proc__Fv
 // dKyw_wether_proc(void)
 asm void dKyw_wether_proc(void) {

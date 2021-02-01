@@ -13,7 +13,7 @@
 /* 801ADCCC 001AAC0C  38 BF 00 00 */ addi r5, r31, 0
 /* 801ADCD0 001AAC10  48 1B 3F 55 */ bl func_80361C24
 /* 801ADCD4 001AAC14  38 7F 13 28 */ addi r3, r31, 0x1328
-/* 801ADCD8 001AAC18  48 11 84 45 */ bl Z2EnvSeMgr
+/* 801ADCD8 001AAC18  48 11 84 45 */ bl __ct__10Z2EnvSeMgrFv
 /*.global Z2EnvSeMgr_NS_dtor*/
 /* 801ADCDC 001AAC1C  3C 80 80 2C */ lis r4, Z2EnvSeMgr_NS_dtor@ha
 /*.global Z2EnvSeMgr_NS_dtor*/

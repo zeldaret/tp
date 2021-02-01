@@ -3863,7 +3863,7 @@ lbl_8024D670:
 /* 8024D68C 0024A5CC  EC 02 00 24 */	fdivs f0, f2, f0
 /* 8024D690 0024A5D0  FC 20 00 50 */	fneg f1, f0
 /* 8024D694 0024A5D4  38 61 00 0C */	addi r3, r1, 0xc
-/* 8024D698 0024A5D8  4B DB A9 41 */	bl mDoGph_gInf_c_NS_fadeOut
+/* 8024D698 0024A5D8  4B DB A9 41 */	bl fadeOut__13mDoGph_gInf_cFfR8_GXColor
 lbl_8024D69C:
 /* 8024D69C 0024A5DC  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 8024D6A0 0024A5E0  48 00 04 11 */	bl cLib_calcTimer_X3_
@@ -3917,7 +3917,7 @@ lbl_8024D740:
 /* 8024D758 0024A698  EC 00 08 28 */	fsubs f0, f0, f1
 /* 8024D75C 0024A69C  EC 22 00 24 */	fdivs f1, f2, f0
 /* 8024D760 0024A6A0  38 61 00 0C */	addi r3, r1, 0xc
-/* 8024D764 0024A6A4  4B DB A8 75 */	bl mDoGph_gInf_c_NS_fadeOut
+/* 8024D764 0024A6A4  4B DB A8 75 */	bl fadeOut__13mDoGph_gInf_cFfR8_GXColor
 lbl_8024D768:
 /* 8024D768 0024A6A8  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 8024D76C 0024A6AC  48 00 03 45 */	bl cLib_calcTimer_X3_
