@@ -40,11 +40,9 @@ void OSReportForceEnableOff(void) {
 };  // extern "C"
 
 void OSReportInit(void) {
-    if (lbl_80450BB4) {
-        return;
+    if (lbl_80450BB4 == false) {
+        lbl_80450BB4 = true;
     }
-    lbl_80450BB4 = true;
-    return;
 }
 
 void mDoPrintf_vprintf_Interrupt(const char* format, __va_list_struct* list) {
