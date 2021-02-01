@@ -61,9 +61,7 @@ void version_check(void) {
         return;
     }
 
-    OSReport_Error((char*)"\x53\x44\x4B\x82\xCC\x83\x6F\x81\x5B\x83\x57\x83\x87\x83\x93\x82\xAA\x88"
-                          "\xEA\x92\x76\x82\xB5\x82\xDC\x82\xB9\x82\xF1\x81\x42\x92\xE2\x8E\x7E\x82"
-                          "\xB5\x82\xDC\x82\xB7\x0A");
+    OSReport_Error((char*)"SDKのバージョンが一致しません。停止します\n");
     do {
     } while (true);
 }
@@ -173,9 +171,7 @@ const char* lbl_80373B4C = "%10d";
 const char* lbl_80373B51 = "Press X+Y+START to CLEAR console.";
 const char* lbl_80373B73 = "3DStick UP/Down to scroll";
 const char* lbl_80373B8D = "Press A to output terminal from console.";
-const char* lbl_80373BB6 =
-    "\x53\x43\x52\x4F\x4C\x4C\x81\x46\x25\x33\x64\x20\x25\x33\x64\x20\x25\x33\x64\x20\x4F\x75\x74"
-    "\x70\x75\x74\x3D\x25\x31\x78"; /* undecodable string */
+const char* lbl_80373BB6 = "SCROLL：%3d %3d %3d Output=%1x";
 const char* lbl_80373BD5 = "Press L+R trigger to control console.";
 const char* lbl_80373BFB = "Press [Z] trigger to close this window.";
 
@@ -210,21 +206,21 @@ asm void LOAD_COPYDATE(void*) {
 #endif
 
 const char* lbl_80373C3F = "Root";
-const char* lbl_80373C44 = "\x83\x8B\x81\x5B\x83\x67"; /* undecodable string */
+const char* lbl_80373C44 = "ルート";
 const char* lbl_80373C4B = "System";
-const char* lbl_80373C52 = "\x83\x56\x83\x58\x83\x65\x83\x80"; /* undecodable string */
+const char* lbl_80373C52 = "システム";
 const char* lbl_80373C5B = "Zelda";
-const char* lbl_80373C61 = "\x83\x5B\x83\x8B\x83\x5F"; /* undecodable string */
+const char* lbl_80373C61 = "ゼルダ";
 const char* lbl_80373C68 = "Game";
-const char* lbl_80373C6D = "\x83\x51\x81\x5B\x83\x80"; /* undecodable string */
+const char* lbl_80373C6D = "ゲーム";
 const char* lbl_80373C74 = "Archive";
-const char* lbl_80373C7C = "\x83\x41\x81\x5B\x83\x4A\x83\x43\x83\x75"; /* undecodable string */
+const char* lbl_80373C7C = "アーカイブ";
 const char* lbl_80373C87 = "J2d";
 const char* lbl_80373C8B = "J2D";
 const char* lbl_80373C8F = "Hostio";
-const char* lbl_80373C96 = "\x83\x7A\x83\x58\x83\x67\x49\x4F"; /* undecodable string */
+const char* lbl_80373C96 = "ホストIO";
 const char* lbl_80373C9F = "Command";
-const char* lbl_80373CA7 = "\x83\x52\x83\x7D\x83\x93\x83\x68"; /* undecodable string */
+const char* lbl_80373CA7 = "コマンド";
 
 void debug(void) {
     if (lbl_80450580[0]) {
