@@ -8,8 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: DoozyX/clang-format-lint-action@v0.11
-      with:
-        source: '.'
-        extensions: 'h,cpp'
-        clangFormatVersion: 11
+    - name: Install clang-format
+      run: sudo apt-get install clang-format-10
+    - name: Run clang-format-check
+      run: sh tools/clang-format-check.sh
+    
