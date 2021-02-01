@@ -373,7 +373,7 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
                     }
                     // 合成アイテム不定＝＝＝＞%d, %d\n
                     // Uncertain combination item＝＝＝＞%d, %d\n
-                    OSReport_Error((char*)lbl_80379234 + 9, item_id_2, item_id_1);
+                    OSReport_Error(lbl_80379234 + 9, item_id_2, item_id_1);
                 }
             }
         }

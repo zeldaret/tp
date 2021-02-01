@@ -17,7 +17,7 @@ void OSVAttention(const char* fmt, __va_list_struct* va_list) {
 }
 
 extern "C" {
-asm void OSAttention(char* msg, ...) {
+asm void OSAttention(const char* msg, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006814.s"
 }
@@ -99,32 +99,32 @@ void OSVReport(const char* format, __va_list_struct* list) {
     mDoPrintf_VReport(format, list);
 }
 
-asm void OSReport(char* fmt, ...) {
+asm void OSReport(const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006ABC.s"
 }
 
-asm void OSReport_FatalError(char* fmt, ...) {
+asm void OSReport_FatalError(const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006B3C.s"
 }
 
-asm void OSReport_Error(char* fmt, ...) {
+asm void OSReport_Error(const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006C0C.s"
 }
 
-asm void OSReport_Warning(char* fmt, ...) {
+asm void OSReport_Warning(const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006CEC.s"
 }
 
-asm void OSReport_System(char* fmt, ...) {
+asm void OSReport_System(const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006DCC.s"
 }
 
-asm void OSPanic(char* file, s32 line, char* fmt, ...) {
+asm void OSPanic(const char* file, s32 line, const char* fmt, ...) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006E7C.s"
 }

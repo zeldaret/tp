@@ -61,7 +61,7 @@ void version_check(void) {
         return;
     }
 
-    OSReport_Error((char*)"SDKのバージョンが一致しません。停止します\n");
+    OSReport_Error("SDKのバージョンが一致しません。停止します\n");
     do {
     } while (true);
 }
