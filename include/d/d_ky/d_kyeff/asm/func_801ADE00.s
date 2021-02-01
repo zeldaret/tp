@@ -1,7 +1,7 @@
 /* 801ADE00 001AAD40  94 21 FF C0 */ stwu r1, -0x40(r1)
 /* 801ADE04 001AAD44  7C 08 02 A6 */ mflr r0
 /* 801ADE08 001AAD48  90 01 00 44 */ stw r0, 0x44(r1)
-/* 801ADE0C 001AAD4C  4B EA 96 D5 */ bl dKyw_wether_init
+/* 801ADE0C 001AAD4C  4B EA 96 D5 */ bl dKyw_wether_init__Fv
 /* 801ADE10 001AAD50  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801ADE14 001AAD54  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801ADE18 001AAD58  38 63 4E 00 */ addi r3, r3, 0x4e00

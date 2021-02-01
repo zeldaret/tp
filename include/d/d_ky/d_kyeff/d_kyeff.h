@@ -24,6 +24,7 @@ extern "C" {
 void dKy_FiveSenses_fullthrottle_dark__Fv(void);
 void dKyw_wether_move__Fv(void);
 void dKyw_wether_move_draw__Fv(void);
+void dKyw_wether_init__Fv(void);
 }
 
 #endif

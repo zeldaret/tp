@@ -128,6 +128,7 @@ void motionBlure__FP10view_class(void);
 void retry_captue_frame__FP10view_classP15view_port_classi(void);
 void setLight__Fv(void);
 void trimming__FP10view_classP15view_port_class(void);
+void VISetBlack(void);
 }
 
 // additional symbols needed for m_Do_graphic.cpp

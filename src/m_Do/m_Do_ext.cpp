@@ -244,7 +244,6 @@ void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
 void mDoExt_3DlineMatSortPacket_NS_dtor(void);
 void mDoExt_3Dline_c(void);
 void mDoExt_3Dline_c_NS_init(void);
-void mDoExt_GetCurrentRunningThread(void);
 void mDoExt_J3DModel__create(void);
 void mDoExt_McaMorf2_NS_ERROR_EXIT(void);
 void mDoExt_McaMorf2_NS_create(void);
@@ -1841,14 +1840,14 @@ asm void mDoExt_setAraCacheSize(void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_80014D5C.s"
 }
-
+};
 // mDoExt_GetCurrentRunningThread__Fv
 // mDoExt_GetCurrentRunningThread(void)
-asm void mDoExt_GetCurrentRunningThread(void) {
+asm OSThread* mDoExt_GetCurrentRunningThread(void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_80014D64.s"
 }
-
+extern "C" {
 // setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
 // JUTFont::setGX(JUtility::TColor, JUtility::TColor)
 asm void func_80014D9C(void) {

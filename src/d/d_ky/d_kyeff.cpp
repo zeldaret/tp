@@ -1,4 +1,5 @@
 #include "d/d_ky/d_kyeff/d_kyeff.h"
+#include "SComponent/c_lib.h"
 #include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_kankyo/d_kankyo.h"

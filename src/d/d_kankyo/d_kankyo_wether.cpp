@@ -478,14 +478,14 @@ asm void dKyw_evil_Draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800574BC.s"
 }
-
+};
 // dKyw_wether_init__Fv
 // dKyw_wether_init(void)
 asm void dKyw_wether_init(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800574E0.s"
 }
-};
+
 // dKyw_wether_init2__Fv
 // dKyw_wether_init2(void)
 asm void dKyw_wether_init2(void) {
