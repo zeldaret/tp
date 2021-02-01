@@ -29,6 +29,7 @@
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
+#include "m_Do/m_Do_printf/m_Do_printf.h"
 
 extern "C" {
 void __dl__FPv(void);

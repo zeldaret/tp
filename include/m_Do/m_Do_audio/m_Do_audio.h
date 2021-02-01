@@ -1,7 +1,13 @@
 #ifndef __M_DO_AUDIO_H_
 #define __M_DO_AUDIO_H_
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
+#include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
+
+inline void mDoAud_mEnvse_framework(void) {
+    lbl_8042DD70.framework();
+}
 
 class mDoAud_zelAudio_c {  // Seems to be based on Z2AudioMgr; more research is needed
 public:

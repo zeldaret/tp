@@ -5,7 +5,7 @@
 /* 8000629C 000031DC  3C 60 80 3D */	lis r3, lbl_803D32E0@ha
 /* 800062A0 000031E0  3B E3 32 E0 */	addi r31, r3, lbl_803D32E0@l
 /* 800062A4 000031E4  48 00 5A A1 */	bl mDoMch_Create
-/* 800062A8 000031E8  48 00 4E CD */	bl mDoGph_Create
+/* 800062A8 000031E8  48 00 4E CD */	bl mDoGph_Create__Fv
 /* 800062AC 000031EC  48 00 16 A9 */	bl create__8mDoCPd_cFv
 /* 800062B0 000031F0  80 8D 8D F8 */	lwz r4, sRootHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 800062B4 000031F4  38 7F 00 00 */	addi r3, r31, 0

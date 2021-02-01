@@ -107,7 +107,7 @@ lbl_80181340:
 /* 80181424 0017E364  4B E8 B9 79 */ bl mDoMtx_stack_c_NS_transM
 /* 80181428 0017E368  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8018142C 0017E36C  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
-/* 80181430 0017E370  4B E8 6C 71 */ bl mDoGph_gInf_c_NS_onBlure_X1_
+/* 80181430 0017E370  4B E8 6C 71 */ bl onBlure__13mDoGph_gInf_cFPA4_Cf
 /* 80181434 0017E374  C0 22 9F 18 */ lfs f1, lbl_80453918-_SDA2_BASE_(r2)
 /* 80181438 0017E378  C0 1F 07 30 */ lfs f0, 0x730(r31)
 /* 8018143C 0017E37C  EC 01 00 32 */ fmuls f0, f1, f0

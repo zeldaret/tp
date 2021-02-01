@@ -396,7 +396,7 @@ lbl_80259868:
 /* 8025999C 002568DC  4B E4 2E C9 */	bl dMdl_mng_c_NS_remove
 /* 802599A0 002568E0  3C 60 80 3E */	lis r3, lbl_803DD428@ha
 /* 802599A4 002568E4  38 63 D4 28 */	addi r3, r3, lbl_803DD428@l
-/* 802599A8 002568E8  4B DA FC 51 */	bl mDoGph_gInf_c_NS_bloom_c_NS_remove
+/* 802599A8 002568E8  4B DA FC 51 */	bl remove__Q213mDoGph_gInf_c7bloom_cFv
 /* 802599AC 002568EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802599B0 002568F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802599B4 002568F4  3B C0 00 00 */	li r30, 0

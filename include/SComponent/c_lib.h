@@ -38,4 +38,8 @@ void MtxPosition(cXyz*, cXyz*);
 void MtxPush(void);
 Mtx* MtxPull(void);
 
+extern "C" {
+int strcmp(const char*, const char*);
+};
+
 #endif

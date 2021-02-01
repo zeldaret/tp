@@ -5106,8 +5106,8 @@ lbl_8005651C:
 /* 80056530 00053470  38 21 00 20 */	addi r1, r1, 0x20
 /* 80056534 00053474  4E 80 00 20 */	blr 
 
-.global dDlst_list_c_NS_reset
-dDlst_list_c_NS_reset:
+.global reset__12dDlst_list_cFv
+reset__12dDlst_list_cFv:
 /* 80056538 00053478  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8005653C 0005347C  7C 08 02 A6 */	mflr r0
 /* 80056540 00053480  90 01 00 24 */	stw r0, 0x24(r1)
