@@ -186,7 +186,7 @@ public:
     int checkCopyRodTopUse(void);
     int checkCopyRodEquip(void) const;
     int checkCutJumpMode(void) const;
-    int getAtnActorID(void) const; //might not be int
+    int getAtnActorID(void) const;  // might not be int
 
 private:
     u8 unk[0x4e6];

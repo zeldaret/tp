@@ -2,7 +2,9 @@
 #define JSYSTEM_JUTILITY_TEXTURE_H
 #include "global.h"
 
-struct ResTIMG { /* Acts as the header to image data. Usually texture data immediately follows it, so any pointer arithmetic to go past the end of this structure is so that a variable sized allocated buffer can be accessed. */
+struct ResTIMG { /* Acts as the header to image data. Usually texture data immediately follows it,
+                    so any pointer arithmetic to go past the end of this structure is so that a
+                    variable sized allocated buffer can be accessed. */
     u8 texture_format;
     bool is_alpha_enabled;
     u16 texture_width;

@@ -1,5 +1,6 @@
 #include "d/d_a/d_a_alink/d_a_alink.h"
 #include "SComponent/c_bg_w.h"
+#include "SComponent/c_lib.h"
 #include "SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
@@ -12,7 +13,6 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
-#include "SComponent/c_lib.h"
 
 u32 daAlink_c::getE3Zhint(void) {
     return 0;

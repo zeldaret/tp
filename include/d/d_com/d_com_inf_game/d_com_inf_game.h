@@ -235,6 +235,7 @@ public:
     dSv_memory_c& getMemory() { return info.getMemory(); }
     dSv_event_c& getEvent() { return info.getEvent(); }
     dSv_info_c& getInfo() { return info; }
+    inline dDlst_list_c& getDrawlist() { return draw_list_list; }
 
 private:
     /* 0x00000 */ dSv_info_c info;
@@ -482,6 +483,9 @@ inline u32 dComIfGp_getNowVibration(void) {
 }
 inline char* dComIfGp_getStartStageName(void) {
     return g_dComIfG_gameInfo.getPlay().getStartStageName();
+}
+inline void dComIfGd_reset(void) {
+    g_dComIfG_gameInfo.getDrawlist().reset();
 }
 
 extern "C" {
