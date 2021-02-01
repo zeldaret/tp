@@ -2,6 +2,10 @@
 
 #include "SComponent/c_request.h"
 
+extern "C" {
+void cReq_Create__FP18request_base_classUc(void);
+}
+
 // cReq_Is_Done__FP18request_base_class
 asm int cReq_Is_Done(request_base_class*) {
     nofralloc

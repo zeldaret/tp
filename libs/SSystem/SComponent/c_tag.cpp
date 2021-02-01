@@ -3,7 +3,6 @@
 #include "SComponent/c_tree.h"
 
 extern "C" {
-
 int cTg_IsUse(create_tag_class* pTag) {
     return pTag->mbIsUse;
 }

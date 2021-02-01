@@ -1,6 +1,17 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
+extern "C" {
+void __dl__FPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void __dt__10JSUPtrListFv(void);
+void __dt__11JKRDisposerFv(void);
+void getFreeSize__7JKRHeapCFv(void);
+void getMaxFreeBlock__7JKRHeapCFv(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+}
+
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);

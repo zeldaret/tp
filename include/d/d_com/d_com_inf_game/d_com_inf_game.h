@@ -442,9 +442,9 @@ inline u16 dComIfGs_getMaxLife(void) {
 inline void dComIfGs_offEventBit(u16 event) {
     g_dComIfG_gameInfo.getSaveFile().getEventFlags().offEventBit(event);
 }
-inline int dComIfGs_isEventBit(u16 event) {
-    return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
-}
+// inline int dComIfGs_isEventBit(u16 event) {
+//     return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
+// }
 inline const char* dComIfGs_getLastWarpMarkStageName(void) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getName();
 }

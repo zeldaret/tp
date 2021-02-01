@@ -9,6 +9,10 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+}
+
+extern "C" {
 // getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const
 asm u32 Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const {

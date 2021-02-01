@@ -10,6 +10,19 @@
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 
+extern "C" {
+int strcmp(const char*, const char*);
+void __ct__10JAISoundIDFRC10JAISoundID(void);
+void JSUList_X1_(void);
+void dComIfGs_isStageSwitch(void);
+void dComIfGs_getStartPoint(void);
+void isSwitch__10dSv_info_cCFii(void);
+void dComIfGs_isEventBit(void);
+void dComIfGs_isSaveSwitch(void);
+void isSwitch__12dSv_memBit_cCFi(void);
+void isEventBit__11dSv_event_cCFUs(void);
+}
+
 extern u8 lbl_803CA9BC;
 extern u8 lbl_80450863;
 

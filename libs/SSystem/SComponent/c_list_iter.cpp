@@ -3,7 +3,6 @@
 #include "global.h"
 
 extern "C" {
-
 int cLsIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod, void* pUserData) {
     if (pList->mSize > 0)
         return cNdIt_Method(pList->mpHead, pMethod, pUserData);

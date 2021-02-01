@@ -32,6 +32,13 @@
 #include "m_Do/m_Do_printf/m_Do_printf.h"
 
 extern "C" {
+void __dl__FPv(void);
+void __nw__FUlP7JKRHeapi(void);
+void func_80361C24(void);
+void func_80361D60(void);
+}
+
+extern "C" {
 // __ct__10Z2AudioMgrFv
 // Z2AudioMgr::Z2AudioMgr(void)
 asm void __ct__10Z2AudioMgrFv() {  // cpp constructor won't compile???

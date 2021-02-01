@@ -3,7 +3,6 @@
 #include "global.h"
 
 extern "C" {
-
 int cTr_SingleCut(node_class* pNode) {
     return cLs_SingleCut(pNode);
 }

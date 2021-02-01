@@ -2,6 +2,10 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
 
+extern "C" {
+void isSwitch__12dSv_memBit_cCFi(void);
+}
+
 #ifdef NONMATCHING
 dSvBit_childSwPerfectionHIO_c::dSvBit_childSwPerfectionHIO_c() {
     this->__vt = (dSvBit_childSwPerfectionHIO_c_vtable*)0x803C3384;

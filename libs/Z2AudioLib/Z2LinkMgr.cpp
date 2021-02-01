@@ -12,6 +12,14 @@
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 
+extern "C" {
+
+void __dl__FPv(void);
+void __dt__14Z2CreatureLinkFv(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc(void);
+}
+
 void Z2CreatureLink::setLinkGroupInfo(u8 param1) {
     return;
 }

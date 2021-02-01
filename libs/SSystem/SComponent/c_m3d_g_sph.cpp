@@ -3,6 +3,13 @@
 #include "SComponent/c_m3d_g_sph.h"
 #include "SComponent/c_m3d.h"
 
+extern "C" {
+void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf(void);
+void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec(void);
+void SetC__8cM3dGSphFRC4cXyz(void);
+void SetR__8cM3dGSphFf(void);
+}
+
 // SetC__8cM3dGSphFRC4cXyz
 void cM3dGSph::SetC(const cXyz& pCenter) {
     mCenter = pCenter;

@@ -2,6 +2,10 @@
 #include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "global.h"
 
+extern "C" {
+void checkDownDamage__10e_wb_classFv(void);
+}
+
 u32 e_wb_class::checkWait(void) {
     u32 temp;
 

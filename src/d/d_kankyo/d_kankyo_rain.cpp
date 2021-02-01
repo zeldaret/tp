@@ -7,6 +7,93 @@
 #include "global.h"
 
 extern "C" {
+double func_8036C028(double);
+double func_8036C590(double);
+double func_8036CA54(double);
+int dKy_daynight_check(void);
+int func_8036608C(const void*, const void*, u32);
+int strcmp(const char*, const char*);
+void __ct__5csXyzFsss(void);
+void __nw__FUli(void);
+void __pl__4cXyzCFRC3Vec(void);
+void cBgS_NS_GroundCross(void);
+void cLib_addCalc__FPfffff(void);
+void cM3d_VectorProduct2d__Fffffff(void);
+void csXyz_NS_dtor(void);
+void cXyz_NS_dtor(void);
+void daPy_py_c_NS_checkNowWolfEyeUp(void);
+void dBgS_CamGndChk_Wtr_NS_dtor(void);
+void dBgS_CamGndChk_Wtr(void);
+void dBgS_GndChk_NS_dtor(void);
+void dBgS_GndChk(void);
+void dBgS_NS_RoofChk(void);
+void dBgS_ObjGndChk_All_NS_dtor(void);
+void dBgS_RoofChk_NS_dtor(void);
+void dBgS_RoofChk(void);
+void dCcMassS_Mng_NS_Prepare(void);
+void dComIfG_getStageRes(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfGs_PolyDamageOff_Set(void);
+void dDlst_peekZ_c_NS_newData(void);
+void dEvent_manager_c_NS_getRunEventName(void);
+void dKy_actor_addcol_amb_set(void);
+void dKy_addcol_fog_set(void);
+void dKy_bg_addcol_amb_set(void);
+void dKy_bg1_addcol_amb_set(void);
+void dKy_darkworld_check(void);
+void dKy_efplight_cut(void);
+void dKy_efplight_set(void);
+void dKy_get_parcent(void);
+void dKy_GxFog_set(void);
+void dKy_move_room_ratio(void);
+void dKy_ParticleColor_get_bg(void);
+void dKy_rain_check(void);
+void dKy_set_actcol_ratio(void);
+void dKy_set_bgcol_ratio(void);
+void dKy_set_fogcol_ratio(void);
+void dKy_set_vrboxcol_ratio(void);
+void dKy_vrbox_addcol_kasumi_set(void);
+void dKy_vrbox_addcol_sky0_set(void);
+void dKyw_get_wind_pow(void);
+void dKyw_get_wind_vec(void);
+void dKyw_get_wind_vecpow(void);
+void dKyw_pntwind_get_vecpow(void);
+void dPa_control_c_NS_set_X1_(void);
+void dRes_control_c_NS_getRes(void);
+void dScnKy_env_light_c_NS_getDaytime(void);
+void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void fopKyM_create(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void func_8036C720(void);
+void GXLoadPosMtxImm(void);
+void GXLoadTexMtxImm(void);
+void GXSetAlphaCompare(void);
+void GXSetClipMode(void);
+void GXSetColorUpdate(void);
+void GXSetCullMode(void);
+void GXSetCurrentMtx(void);
+void GXSetFog(void);
+void GXSetNumIndStages(void);
+void GXSetTexCoordGen2(void);
+void GXSetZCompLoc(void);
+void GXSetZMode(void);
+void isDungeonItem__12dSv_memBit_cCFi(void);
+void J3DSys_NS_reinitGX(void);
+void mDoLib_project(void);
+void mDoMtx_XrotM(void);
+void mDoMtx_YrotM(void);
+void mDoMtx_ZrotM(void);
+void mDoMtx_ZXYrotM(void);
+void SetPos__11cBgS_GndChkFPC4cXyz(void);
+void SNOW_EFF_NS_dtor(void);
+void SNOW_EFF(void);
+void STAR_EFF_NS_dtor(void);
+void STAR_EFF(void);
+void Z2EnvSeMgr_NS_startNearThunderSe(void);
+}
+
+extern "C" {
 // vectle_calc__FP10DOUBLE_POSP4cXyz
 // vectle_calc(DOUBLE_POS*, cXyz*)
 asm void vectle_calc_X1_(void) {

@@ -3,6 +3,27 @@
 #include "global.h"
 
 extern "C" {
+void CalcCenter__8cM3dGAabCFP4cXyz(void);
+void CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl(void);
+void cCcD_Stts_NS_PlusDmg(void);
+void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo(void);
+void ClearForMinMax__8cM3dGAabFv(void);
+void ClrCcMove__9cCcD_SttsFv(void);
+void cXyz_NS_dtor(void);
+void func_80361C24(void);
+void GetAc__8cCcD_ObjFv(void);
+void GetWeightF__9cCcD_SttsCFv(void);
+void PlusCcMove__9cCcD_SttsFfff(void);
+void SetArea__15cCcD_DivideAreaFRC8cM3dGAab(void);
+void SetAtTgCommonHitInf__4cCcSFP8cCcD_ObjP8cCcD_ObjP4cXyz(void);
+void SetCoCommonHitInf__4cCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf(void);
+void SetHit__10cCcD_ObjAtFP8cCcD_Obj(void);
+void SetHit__10cCcD_ObjCoFP8cCcD_Obj(void);
+void SetHit__10cCcD_ObjTgFP8cCcD_Obj(void);
+void SetMinMax__8cM3dGAabFRC8cM3dGAab(void);
+}
+
+extern "C" {
 // __ct__4cCcSFv
 // cCcS::cCcS(void)
 asm void __ct__4cCcSFv(void) {

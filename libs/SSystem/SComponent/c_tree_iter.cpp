@@ -4,7 +4,6 @@
 #include "global.h"
 
 extern "C" {
-
 int cTrIt_Method(node_lists_tree_class* pTree, cNdIt_MethodFunc pMethod, void* pUserData) {
     node_list_class* pList = pTree->mpLists;
     int i = pTree->mNumLists;

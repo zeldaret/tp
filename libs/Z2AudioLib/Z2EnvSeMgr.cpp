@@ -14,6 +14,15 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void dComIfGp_getReverb(void);
+void func_803620AC(void);
+void isSwitch__12dSv_memBit_cCFi(void);
+void Z2EnvSeMgr_NS_startRainSe(void);
+}
+
+extern "C" {
 // __ct__11Z2EnvSeBaseFP3Vec
 // Z2EnvSeBase::Z2EnvSeBase(Vec*)
 asm void Z2EnvSeBase(void) {

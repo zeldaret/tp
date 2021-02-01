@@ -10,6 +10,11 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
+extern "C" {
+void __dl__FPv(void);
+void dComIfGp_getReverb(void);
+}
+
 #ifdef NONMATCHING
 Z2SpeechMgr2::Z2SpeechMgr2()
     : mSound(NULL), field_0x4(0), mRandom(0), mSpeechStarter(), field_0x3f8(0), mTextCount(-1),

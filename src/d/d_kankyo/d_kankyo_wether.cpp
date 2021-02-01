@@ -8,6 +8,78 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
+int func_8036608C(const void*, const void*, u32);
+int strcmp(const char*, const char*);
+void __dl__FPv(void);
+void __ml__4cXyzCFf(void);
+void __ne__4cXyzCFRC3Vec(void);
+void __nw__FUli(void);
+void __pl__4cXyzCFRC3Vec(void);
+void cLib_addCalc__FPfffff(void);
+void cloud_shadow_move(void);
+void cXyz_NS_ctor(void);
+void cXyz_NS_dtor(void);
+void dComIfG_getStageRes(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfGp_getReverb(void);
+void dKy_darkworld_check(void);
+void dKy_get_dayofweek(void);
+void dKy_undwater_filter_draw(void);
+void dKyr_drawHousi(void);
+void dKyr_drawLenzflare(void);
+void dKyr_drawRain(void);
+void dKyr_drawSibuki(void);
+void dKyr_drawSnow(void);
+void dKyr_drawStar(void);
+void dKyr_drawSun(void);
+void dKyr_evil_draw(void);
+void dKyr_evil_init(void);
+void dKyr_evil_move(void);
+void dKyr_get_vectle_calc(void);
+void dKyr_housi_move(void);
+void dKyr_lenzflare_move(void);
+void dKyr_mud_draw(void);
+void dKyr_mud_init(void);
+void dKyr_mud_move(void);
+void dKyr_odour_draw(void);
+void dKyr_odour_init(void);
+void dKyr_odour_move(void);
+void dKyr_rain_init(void);
+void dKyr_rain_move(void);
+void dKyr_shstar_init(void);
+void dKyr_shstar_move(void);
+void dKyr_snow_init(void);
+void dKyr_snow_move(void);
+void dKyr_star_init(void);
+void dKyr_star_move(void);
+void dKyr_sun_move(void);
+void dKyr_thunder_init(void);
+void dKyr_thunder_move(void);
+void dKyw_get_wind_pow(void);
+void dKyw_get_wind_vec(void);
+void dKyw_pntlight_set(void);
+void dKyw_pntwind_cut(void);
+void dKyw_pntwind_init(void);
+void dKyw_wind_init(void);
+void dPa_control_c_NS_set(void);
+void drawCloudShadow(void);
+void drawVrkumo(void);
+void dRes_control_c_NS_getRes(void);
+void dScnKy_env_light_c_NS_getDaytime(void);
+void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void J3DDrawBuffer_NS_entryImm(void);
+void normZP__4cXyzCFv(void);
+void squal_proc(void);
+void vrkumo_move(void);
+void Z2EnvSeMgr_NS_initStrongWindSe(void);
+void Z2EnvSeMgr_NS_setWindDirection(void);
+void Z2EnvSeMgr_NS_startRainSe(void);
+void Z2EnvSeMgr_NS_startStrongWindSe(void);
+}
+
+extern "C" {
 // dKyw_setDrawPacketList__FP9J3DPacketi
 // dKyw_setDrawPacketList(J3DPacket*, int)
 asm void dKyw_setDrawPacketList(void) {
