@@ -115,7 +115,7 @@ lbl_80139BF0:
 /*.global daAlink_searchWolfLockEnemy*/
 /* 80139C14 00136B54  38 63 92 A8 */ addi r3, r3, daAlink_searchWolfLockEnemy@l
 /* 80139C18 00136B58  38 81 00 08 */ addi r4, r1, 8
-/* 80139C1C 00136B5C  4B ED FB A1 */ bl fopAcIt_Executor
+/* 80139C1C 00136B5C  4B ED FB A1 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80139C20 00136B60  80 01 00 08 */ lwz r0, 8(r1)
 /* 80139C24 00136B64  28 00 00 00 */ cmplwi r0, 0
 /* 80139C28 00136B68  41 82 00 58 */ beq lbl_80139C80

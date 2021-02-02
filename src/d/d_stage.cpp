@@ -5,6 +5,7 @@
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
+#include "f/f_op/f_op_actor_mng.h"
 
 extern "C" {
 char* strcpy(char*, const char*);
@@ -42,9 +43,6 @@ void dStage_roomStatus_c_NS_dtor(void);
 void dStage_roomStatus_c(void);
 void dSvBit_HIO_c_NS_init(void);
 void dTres_c_NS_addData(void);
-void fopAcM_CreateAppend(void);
-void fopAcM_delete(void);
-void fopAcM_FastCreate(void);
 void fopCamM_Create(void);
 void fopKyM_fastCreate(void);
 void fopMsgM_Create(void);
@@ -345,7 +343,7 @@ asm roomRead_class* dStage_stageDt_c::getRoom(void) const {
 
 // dStage_searchName__FPCc
 // dStage_searchName(const char*)
-asm void dStage_searchName(void) {
+asm objectNameInfo *dStage_searchName(const char*) {
     nofralloc
 #include "d/d_stage/asm/func_80024DC0.s"
 }

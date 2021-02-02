@@ -200,7 +200,7 @@ lbl_800B6CE4:
 /*.global daAlink_searchTagKandelaar*/
 /* 800B6D18 000B3C58  38 63 06 54 */ addi r3, r3, daAlink_searchTagKandelaar@l
 /* 800B6D1C 000B3C5C  38 80 00 00 */ li r4, 0
-/* 800B6D20 000B3C60  4B F6 2A D9 */ bl fopAcIt_Judge
+/* 800B6D20 000B3C60  4B F6 2A D9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B6D24 000B3C64  7C 7D 1B 78 */ mr r29, r3
 lbl_800B6D28:
 /* 800B6D28 000B3C68  28 1D 00 00 */ cmplwi r29, 0
@@ -212,7 +212,7 @@ lbl_800B6D28:
 /* 800B6D40 000B3C80  C0 1D 04 D4 */ lfs f0, 0x4d4(r29)
 /* 800B6D44 000B3C84  EF E1 00 28 */ fsubs f31, f1, f0
 /* 800B6D48 000B3C88  7F A3 EB 78 */ mr r3, r29
-/* 800B6D4C 000B3C8C  4B F6 3C 19 */ bl fopAcM_searchActorDistanceXZ
+/* 800B6D4C 000B3C8C  4B F6 3C 19 */ bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800B6D50 000B3C90  C0 1D 04 EC */ lfs f0, 0x4ec(r29)
 /* 800B6D54 000B3C94  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800B6D58 000B3C98  40 80 00 68 */ bge lbl_800B6DC0

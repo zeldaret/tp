@@ -6,6 +6,7 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
+#include "JSystem/JMath/JMath.h"
 #include "os/OS.h"
 
 extern "C" {
@@ -127,7 +128,6 @@ void mDoExt_baseAnm_NS_play(void);
 void mDoExt_btkAnm_NS_entry(void);
 void mDoExt_btkAnm_NS_init(void);
 void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
-void mDoExt_destroySolidHeap(void);
 void mDoExt_J3DModel__create(void);
 void mDoExt_modelUpdateDL(void);
 void mDoExt_restoreCurrentHeap(void);

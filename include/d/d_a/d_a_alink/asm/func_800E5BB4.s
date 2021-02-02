@@ -7,7 +7,7 @@
 /* 800E5BCC 000E2B0C  7C 9F 23 78 */ mr r31, r4
 /* 800E5BD0 000E2B10  7F E3 FB 78 */ mr r3, r31
 /* 800E5BD4 000E2B14  38 80 00 01 */ li r4, 1
-/* 800E5BD8 000E2B18  4B F3 6F 71 */ bl fopAcM_setCarryNow
+/* 800E5BD8 000E2B18  4B F3 6F 71 */ bl fopAcM_setCarryNow__FP10fopAc_ac_ci
 /* 800E5BDC 000E2B1C  38 7E 28 2C */ addi r3, r30, 0x282c
 /* 800E5BE0 000E2B20  7F E4 FB 78 */ mr r4, r31
 /* 800E5BE4 000E2B24  48 07 90 D5 */ bl daPy_actorKeep_c_NS_setData

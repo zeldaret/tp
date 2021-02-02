@@ -340,10 +340,10 @@ void dCamera_c_NS_GetForceLockOnActor(void);
 void dCam_getBody(void);
 void dAttention_c_NS_LockonTarget(void);
 void cM_rnd__Fv(void);
-void fopAcIt_Judge(void);
+void fopAcIt_Judge__FPFPvPv_PvPv(void);
 void dAttList_c_NS_getActor(void);
 void dAttention_c_NS_GetLockonList(void);
-void fopAcM_getTalkEventPartner(void);
+void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c(void);
 }
 
 // daalink_matanm init

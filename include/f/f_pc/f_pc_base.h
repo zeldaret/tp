@@ -15,25 +15,25 @@ struct create_request;
 struct profile_method_class;
 
 typedef struct base_process_class {
-    u32 mBsType;
-    u32 mBsPcId;
-    s16 mProcName;
-    s8 mUnk0;
-    u8 mPauseFlag;
-    s8 mInitState;
-    u8 mUnk2;
-    s16 mBsTypeId;
-    process_profile_definition* mpProf;
-    struct create_request* mpCtRq;
-    layer_management_tag_class mLyTg;
-    line_tag mLnTg;
-    delete_tag_class mDtTg;
-    process_priority_class mPi;
-    process_method_class* mpPcMtd;
-    void* mpUserData;
-    u32 mParameters;
-    u32 mSubType;
-} base_process_class;
+    /* 0x00 */ u32 mBsType;
+    /* 0x04 */ u32 mBsPcId;
+    /* 0x08 */ s16 mProcName;
+    /* 0x0A */ s8 mUnk0;
+    /* 0x0B */ u8 mPauseFlag;
+    /* 0x0C */ s8 mInitState;
+    /* 0x0D */ u8 mUnk2;
+    /* 0x0E */ s16 mBsTypeId;
+    /* 0x10 */ process_profile_definition* mpProf;
+    /* 0x14 */ struct create_request* mpCtRq;
+    /* 0x18 */ layer_management_tag_class mLyTg;
+    /* 0x34 */ line_tag mLnTg;
+    /* 0x4C */ delete_tag_class mDtTg;
+    /* 0x68 */ process_priority_class mPi;
+    /* 0xA8 */ process_method_class* mpPcMtd;
+    /* 0xAC */ void* mpUserData;
+    /* 0xB0 */ u32 mParameters;
+    /* 0xB4 */ u32 mSubType;
+} base_process_class; // Size: 0xB8
 
 extern "C" {
 

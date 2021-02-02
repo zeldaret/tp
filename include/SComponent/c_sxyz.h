@@ -5,14 +5,33 @@
 
 class csXyz {
 private:
+public:
     s16 mX, mY, mZ;
 
-public:
+    csXyz() {}
+    csXyz(const csXyz& other) {
+        *this = other;
+    }
     csXyz(s16, s16, s16);
+    s16 GetX() const {
+        return mX;
+    }
+    s16 GetY() const {
+        return mY;
+    }
+    s16 GetZ() const {
+        return mZ;
+    }
     csXyz operator+(csXyz&);
     void operator+=(csXyz&);
     csXyz operator-(csXyz&);
     csXyz operator*(f32);
+    csXyz createRotY(s16 yRot) const {
+        // return csXyz(this->mX, this->mY + yRot, this->mZ);
+        csXyz ret(*this);
+        ret.mY += yRot;
+        return ret;
+    }
 };
 
 extern csXyz lbl_80451160;  // SComponent::csXyz::Zero

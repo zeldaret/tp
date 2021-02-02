@@ -22,7 +22,7 @@ lbl_800E4C1C:
 /* 800E4C24 000E1B64  90 1E 04 9C */ stw r0, 0x49c(r30)
 lbl_800E4C28:
 /* 800E4C28 000E1B68  7F C3 F3 78 */ mr r3, r30
-/* 800E4C2C 000E1B6C  4B F3 7F 75 */ bl fopAcM_cancelCarryNow
+/* 800E4C2C 000E1B6C  4B F3 7F 75 */ bl fopAcM_cancelCarryNow__FP10fopAc_ac_c
 /* 800E4C30 000E1B70  38 00 00 00 */ li r0, 0
 /* 800E4C34 000E1B74  B0 1E 04 E8 */ sth r0, 0x4e8(r30)
 /* 800E4C38 000E1B78  B0 1E 04 E4 */ sth r0, 0x4e4(r30)

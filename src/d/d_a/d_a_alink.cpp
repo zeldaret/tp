@@ -11,6 +11,8 @@
 #include "d/d_kankyo/d_kankyo.h"
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
+#include "f/f_op/f_op_actor_mng.h"
+#include "f/f_op/f_op_actor_iter.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
@@ -1247,7 +1249,6 @@ void mDoExt_J3DModel__create(void);
 void mDoExt_modelEntryDL(void);
 void mDoExt_MtxCalcAnmBlendTbl_NS_getAnm(void);
 void mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf(void);
-void mDoExt_setCurrentHeap(void);
 void mDoLib_pos2camera(void);
 void mDoLib_project(void);
 void mDoMtx_MtxToRot(void);

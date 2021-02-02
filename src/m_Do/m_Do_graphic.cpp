@@ -11,6 +11,8 @@
 #include "global.h"
 #include "gx/GX.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
+#include "JSystem/JMath/JMath.h"
+#include "f/f_op/f_op_actor_iter.h"
 
 #ifdef NONMATCHING  // mr and addi swapped
 ResTIMG* createTimg(u16 width, u16 height, u32 format) {

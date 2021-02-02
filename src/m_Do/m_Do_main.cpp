@@ -10,6 +10,7 @@
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
+#include "f/f_op/f_op_actor_mng.h"
 
 extern u8 lbl_80451A00;
 extern u8 lbl_80451A04;
@@ -317,7 +318,7 @@ void main01(void) {
     // lol
     thread_callback.create((void* (*)(void*))LOAD_COPYDATE, 0);
     fapGm_Create();
-    fopAcM_initManager();
+    fopAcM_initManager__Fv();
     lbl_80450B18 = 0;
     cDyl_InitAsync();
 

@@ -45,7 +45,7 @@ lbl_800E938C:
 /*.global daAlink_searchGoat*/
 /* 800E93E8 000E6328  38 63 91 B0 */ addi r3, r3, daAlink_searchGoat@l
 /* 800E93EC 000E632C  38 80 00 00 */ li r4, 0
-/* 800E93F0 000E6330  4B F3 04 09 */ bl fopAcIt_Judge
+/* 800E93F0 000E6330  4B F3 04 09 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800E93F4 000E6334  7C 64 1B 79 */ or. r4, r3, r3
 /* 800E93F8 000E6338  41 82 00 0C */ beq lbl_800E9404
 /* 800E93FC 000E633C  38 7F 28 0C */ addi r3, r31, 0x280c

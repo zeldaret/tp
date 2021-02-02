@@ -10,12 +10,12 @@
 
 extern "C" {
 
-typedef s32 (*FastCreateReqFunc)(void*);
+typedef int (*FastCreateReqFunc)(void*);
 
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc);
 void fpcM_Execute(void* pProc);
-void fpcM_Delete(void* pProc);
+s32 fpcM_Delete(void* pProc);
 BOOL fpcM_IsCreating(u32 pID);
 // void fpcM_Management(unk_func pFunc1, unk_func pFunc2);
 void fpcM_Init(void);

@@ -6,6 +6,7 @@
 #include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
+#include "JSystem/JMath/JMath.h"
 
 extern "C" {
 int func_8036608C(const void*, const void*, u32);

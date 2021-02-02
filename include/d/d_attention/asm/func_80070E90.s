@@ -64,7 +64,7 @@ lbl_80070F3C:
 /*.global fpcSch_JudgeByID*/
 /* 80070F70 0006DEB0  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 80070F74 0006DEB4  38 81 00 08 */ addi r4, r1, 8
-/* 80070F78 0006DEB8  4B FA 88 81 */ bl fopAcIt_Judge
+/* 80070F78 0006DEB8  4B FA 88 81 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80070F7C 0006DEBC  7C 18 18 40 */ cmplw r24, r3
 /* 80070F80 0006DEC0  40 82 00 0C */ bne lbl_80070F8C
 /* 80070F84 0006DEC4  C0 22 8C 50 */ lfs f1, lbl_80452650-_SDA2_BASE_(r2)

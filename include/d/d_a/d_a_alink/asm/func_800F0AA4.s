@@ -61,7 +61,7 @@ lbl_800F0B70:
 /*.global daAlink_searchBoar*/
 /* 800F0B80 000EDAC0  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
 /* 800F0B84 000EDAC4  38 80 00 00 */ li r4, 0
-/* 800F0B88 000EDAC8  4B F2 8C 71 */ bl fopAcIt_Judge
+/* 800F0B88 000EDAC8  4B F2 8C 71 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800F0B8C 000EDACC  7C 7D 1B 79 */ or. r29, r3, r3
 /* 800F0B90 000EDAD0  41 82 00 C0 */ beq lbl_800F0C50
 /* 800F0B94 000EDAD4  38 7D 04 D0 */ addi r3, r29, 0x4d0

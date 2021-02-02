@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
 #include "global.h"
 #include "os/OS.h"
 
@@ -13,6 +14,8 @@ JKRExpHeap* mDoExt_getArchiveHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
+void mDoExt_destroySolidHeap(JKRSolidHeap *);
+JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
 }
 OSThread* mDoExt_GetCurrentRunningThread(void);
 

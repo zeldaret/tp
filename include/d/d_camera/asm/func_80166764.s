@@ -135,7 +135,7 @@ lbl_80166930:
 /*.global fpcSch_JudgeByID*/
 /* 80166968 001638A8  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8016696C 001638AC  38 81 00 44 */ addi r4, r1, 0x44
-/* 80166970 001638B0  4B EB 2E 89 */ bl fopAcIt_Judge
+/* 80166970 001638B0  4B EB 2E 89 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80166974 001638B4  28 03 00 00 */ cmplwi r3, 0
 /* 80166978 001638B8  41 82 00 2C */ beq lbl_801669A4
 /* 8016697C 001638BC  88 63 04 9A */ lbz r3, 0x49a(r3)

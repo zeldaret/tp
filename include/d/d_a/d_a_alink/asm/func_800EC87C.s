@@ -5,7 +5,7 @@
 /* 800EC88C 000E97CC  7C 7F 1B 78 */ mr r31, r3
 /* 800EC890 000E97D0  80 63 27 F4 */ lwz r3, 0x27f4(r3)
 /* 800EC894 000E97D4  7F E4 FB 78 */ mr r4, r31
-/* 800EC898 000E97D8  4B F2 DE 79 */ bl fopAcM_searchActorAngleY
+/* 800EC898 000E97D8  4B F2 DE 79 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800EC89C 000E97DC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 800EC8A0 000E97E0  A8 04 04 E6 */ lha r0, 0x4e6(r4)
 /* 800EC8A4 000E97E4  7C 00 18 50 */ subf r0, r0, r3

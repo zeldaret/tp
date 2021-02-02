@@ -23,7 +23,7 @@ lbl_8012E100:
 /* 8012E100 0012B040  80 9F 27 EC */ lwz r4, 0x27ec(r31)
 /* 8012E104 0012B044  28 04 00 00 */ cmplwi r4, 0
 /* 8012E108 0012B048  41 82 00 48 */ beq lbl_8012E150
-/* 8012E10C 0012B04C  4B EE C6 05 */ bl fopAcM_searchActorAngleY
+/* 8012E10C 0012B04C  4B EE C6 05 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8012E110 0012B050  7C 64 1B 78 */ mr r4, r3
 /* 8012E114 0012B054  38 7F 04 E6 */ addi r3, r31, 0x4e6
 /* 8012E118 0012B058  38 A0 00 05 */ li r5, 5

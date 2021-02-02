@@ -40,7 +40,7 @@ lbl_800719E0:
 /*.global fpcSch_JudgeByID*/
 /* 800719EC 0006E92C  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800719F0 0006E930  38 81 00 08 */ addi r4, r1, 8
-/* 800719F4 0006E934  4B FA 7E 05 */ bl fopAcIt_Judge
+/* 800719F4 0006E934  4B FA 7E 05 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800719F8 0006E938  7C 7F 1B 78 */ mr r31, r3
 /* 800719FC 0006E93C  7F C3 F3 78 */ mr r3, r30
 /* 80071A00 0006E940  38 80 FF FF */ li r4, -1

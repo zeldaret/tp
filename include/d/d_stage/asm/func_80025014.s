@@ -32,7 +32,7 @@ lbl_8002508C:
 /* 8002508C 00021FCC  38 60 00 01 */ li r3, 1
 /* 80025090 00021FD0  48 00 02 10 */ b lbl_800252A0
 lbl_80025094:
-/* 80025094 00021FD4  4B FF 4A 15 */ bl fopAcM_CreateAppend
+/* 80025094 00021FD4  4B FF 4A 15 */ bl fopAcM_CreateAppend__Fv
 /* 80025098 00021FD8  7C 7D 1B 78 */ mr r29, r3
 /* 8002509C 00021FDC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800250A0 00021FE0  38 C3 61 C0 */ addi r6, r3, g_dComIfG_gameInfo@l

@@ -10,6 +10,7 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
 #include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 #include "Z2AudioLib/Z2SpotMic/Z2SpotMic.h"
+#include "JSystem/JMath/JMath.h"
 #include "global.h"
 
 extern "C" {

@@ -468,7 +468,7 @@ lbl_800C8D9C:
 /*.global fpcSch_JudgeByID*/
 /* 800C8DDC 000C5D1C  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800C8DE0 000C5D20  38 81 00 08 */ addi r4, r1, 8
-/* 800C8DE4 000C5D24  4B F5 0A 15 */ bl fopAcIt_Judge
+/* 800C8DE4 000C5D24  4B F5 0A 15 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800C8DE8 000C5D28  7C 64 1B 79 */ or. r4, r3, r3
 /* 800C8DEC 000C5D2C  41 82 00 18 */ beq lbl_800C8E04
 /* 800C8DF0 000C5D30  38 7F 28 24 */ addi r3, r31, 0x2824
@@ -619,7 +619,7 @@ lbl_800C8FDC:
 /* 800C8FE0 000C5F20  2C 00 00 00 */ cmpwi r0, 0
 /* 800C8FE4 000C5F24  41 82 02 CC */ beq lbl_800C92B0
 /* 800C8FE8 000C5F28  7F E3 FB 78 */ mr r3, r31
-/* 800C8FEC 000C5F2C  4B F5 2B 29 */ bl fopAcM_getTalkEventPartner
+/* 800C8FEC 000C5F2C  4B F5 2B 29 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800C8FF0 000C5F30  7C 7D 1B 78 */ mr r29, r3
 /* 800C8FF4 000C5F34  7F E3 FB 78 */ mr r3, r31
 /* 800C8FF8 000C5F38  48 04 CC 29 */ bl daAlink_c_NS_checkEventRun

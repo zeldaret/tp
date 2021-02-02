@@ -600,7 +600,7 @@ daPy_actorKeep_c_NS_setActor:
 .global fpcSch_JudgeByID
 /* 8015EC74 0015BBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 8015EC78 0015BBB8  38 81 00 08 */	addi r4, r1, 8
-/* 8015EC7C 0015BBBC  4B EB AB 7D */	bl fopAcIt_Judge
+/* 8015EC7C 0015BBBC  4B EB AB 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8015EC80 0015BBC0  90 7F 00 04 */	stw r3, 4(r31)
 /* 8015EC84 0015BBC4  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8015EC88 0015BBC8  28 00 00 00 */	cmplwi r0, 0

@@ -14,7 +14,7 @@
 /*.global fpcSch_JudgeByID*/
 /* 8011EFE8 0011BF28  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8011EFEC 0011BF2C  38 81 00 08 */ addi r4, r1, 8
-/* 8011EFF0 0011BF30  4B EF A8 09 */ bl fopAcIt_Judge
+/* 8011EFF0 0011BF30  4B EF A8 09 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8011EFF4 0011BF34  7C 7F 1B 79 */ or. r31, r3, r3
 /* 8011EFF8 0011BF38  41 82 00 70 */ beq lbl_8011F068
 /* 8011EFFC 0011BF3C  38 7E 28 0C */ addi r3, r30, 0x280c

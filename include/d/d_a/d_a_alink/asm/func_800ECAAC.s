@@ -9,7 +9,7 @@
 /*.global daAlink_searchBoar*/
 /* 800ECAC8 000E9A08  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
 /* 800ECACC 000E9A0C  38 80 00 00 */ li r4, 0
-/* 800ECAD0 000E9A10  4B F2 CD 29 */ bl fopAcIt_Judge
+/* 800ECAD0 000E9A10  4B F2 CD 29 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800ECAD4 000E9A14  7C 7F 1B 79 */ or. r31, r3, r3
 /* 800ECAD8 000E9A18  40 82 00 0C */ bne lbl_800ECAE4
 /* 800ECADC 000E9A1C  38 60 00 00 */ li r3, 0

@@ -409,7 +409,7 @@ daItemBase_c_NS_setListEnd:
 /* 80144CF4 00141C34  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80144CF8 00141C38  80 83 00 04 */	lwz r4, 4(r3)
 /* 80144CFC 00141C3C  7F E3 FB 78 */	mr r3, r31
-/* 80144D00 00141C40  4B ED 87 2D */	bl fopAcM_setEffectMtx
+/* 80144D00 00141C40  4B ED 87 2D */	bl fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData
 lbl_80144D04:
 /* 80144D04 00141C44  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80144D08 00141C48  80 01 00 14 */	lwz r0, 0x14(r1)

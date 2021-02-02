@@ -52,8 +52,8 @@ void fpcM_Execute(void* pProc) {
     fpcEx_Execute((base_process_class*)pProc);
 }
 
-void fpcM_Delete(void* pProc) {
-    fpcDt_Delete((base_process_class*)pProc);
+s32 fpcM_Delete(void* pProc) {
+    return fpcDt_Delete((base_process_class*)pProc);
 }
 
 BOOL fpcM_IsCreating(u32 pID) {

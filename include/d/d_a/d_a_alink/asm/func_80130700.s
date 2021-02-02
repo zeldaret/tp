@@ -303,7 +303,7 @@ lbl_80130B00:
 /*.global daAlink_searchGoldWolf*/
 /* 80130B60 0012DAA0  38 63 05 6C */ addi r3, r3, daAlink_searchGoldWolf@l
 /* 80130B64 0012DAA4  38 80 00 00 */ li r4, 0
-/* 80130B68 0012DAA8  4B EE 8C 91 */ bl fopAcIt_Judge
+/* 80130B68 0012DAA8  4B EE 8C 91 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80130B6C 0012DAAC  7C 64 1B 78 */ mr r4, r3
 /* 80130B70 0012DAB0  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 80130B74 0012DAB4  48 02 E1 45 */ bl daPy_actorKeep_c_NS_setData

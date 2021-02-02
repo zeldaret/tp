@@ -67,7 +67,7 @@ lbl_800DC870:
 /* 800DC890 000D97D0  38 E0 00 00 */ li r7, 0
 /* 800DC894 000D97D4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800DC898 000D97D8  FC 40 08 90 */ fmr f2, f1
-/* 800DC89C 000D97DC  4B F3 F9 61 */ bl fopAcM_createItemForSimpleDemo
+/* 800DC89C 000D97DC  4B F3 F9 61 */ bl fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff
 lbl_800DC8A0:
 /* 800DC8A0 000D97E0  80 1E 05 80 */ lwz r0, 0x580(r30)
 /* 800DC8A4 000D97E4  60 00 00 01 */ ori r0, r0, 1

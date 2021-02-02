@@ -2,6 +2,7 @@
 
 #include "SComponent/c_lib.h"
 #include "SComponent/c_math.h"
+#include "JSystem/JMath/JMath.h"
 
 extern "C" {
 int abs(int);

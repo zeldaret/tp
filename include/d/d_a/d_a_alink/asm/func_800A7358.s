@@ -73,7 +73,7 @@ lbl_800A7460:
 /* 800A7468 000A43A8  38 A1 00 28 */ addi r5, r1, 0x28
 /* 800A746C 000A43AC  38 C1 00 0C */ addi r6, r1, 0xc
 /* 800A7470 000A43B0  38 E0 00 00 */ li r7, 0
-/* 800A7474 000A43B4  4B F7 65 35 */ bl fopAcM_getWaterStream
+/* 800A7474 000A43B4  4B F7 65 35 */ bl fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii
 /* 800A7478 000A43B8  2C 03 00 00 */ cmpwi r3, 0
 /* 800A747C 000A43BC  41 82 00 10 */ beq lbl_800A748C
 /* 800A7480 000A43C0  80 1E 05 7C */ lwz r0, 0x57c(r30)

@@ -257,7 +257,7 @@ lbl_80145540:
 /* 8014555C 0014249C  38 A1 00 08 */	addi r5, r1, 8
 /* 80145560 001424A0  48 20 18 0D */	bl PSMTXMultVec
 /* 80145564 001424A4  38 61 00 08 */	addi r3, r1, 8
-/* 80145568 001424A8  4B ED 87 55 */	bl fopAcM_gc_c_NS_gndCheck
+/* 80145568 001424A8  4B ED 87 55 */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 8014556C 001424AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80145570 001424B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80145574 001424B4  38 63 0F 38 */	addi r3, r3, 0xf38
