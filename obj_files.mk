@@ -53,7 +53,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/f_op_actor.o \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_iter.o \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_tag.o \
-            $(BUILD_DIR)/asm/rodata/rodata_f_op_actor_mng.o \
             $(BUILD_DIR)/asm/sdata2/f_op_actor_mng.o \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_mng.o \
             $(BUILD_DIR)/asm/f/op/f_op_camera.o \
