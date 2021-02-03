@@ -36,7 +36,6 @@ extern HeapCheck lbl_803D32E0[8];  // RootHeapCheck
 // extern HeapCheck lbl_803D33A8; // J2dHeapCheck
 // extern HeapCheck lbl_803D33D0; // HostioHeapCheck
 // extern HeapCheck lbl_803D33F8; // CommandHeapCheck
-extern s8 lbl_80450580[4];
 extern u8 lbl_80450B1A[2];
 extern u8 lbl_80450B18;
 extern u8 lbl_80450588[8];

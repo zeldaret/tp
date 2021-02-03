@@ -133,7 +133,7 @@ OSThread* OSGetCurrentThread(void);
 s32 OSSuspendThread(OSThread* thread);
 s32 OSSetThreadPriority(OSThread* thread, u32 pri);
 s32 OSGetThreadPriority(OSThread* thread);
-s32 OSCreateThread(OSThread* thread, void* (*func)(void*), void* param, void* stack, u32 stackSize,
+s32 OSCreateThread(OSThread* thread, void* func, void* param, void* stack, u32 stackSize,
                    int param_6, int param_7);
 void OSCancelThread(OSThread* thread);
 void OSDetachThread(OSThread* thread);
@@ -149,7 +149,7 @@ BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
 BOOL OSJamMessage(OSMessageQueue* queue, OSMessage message, int flags);
 
 s32 OSGetConsoleType(void);
-s32 OSGetResetCode(void);
+u32 OSGetResetCode(void);
 
 u32 OSGetSoundMode(void);
 void OSSetSoundMode(OSSoundMode mode);
@@ -176,7 +176,7 @@ u32 OSGetArenaHi();
 u32 OSInitAlloc(u32 low, u32 high, int param_3);
 void OSSetArenaLo(u32 param_1);
 void OSSetArenaHi(u32 param_1);
-void OSAllocFromArenaLo(u32 size, int alignment);
+void* OSAllocFromArenaLo(u32 size, int alignment);
 
 // void OSCancelAlarm(OSAlarm *alarm);
 

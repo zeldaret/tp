@@ -17,6 +17,7 @@ extern u8 lbl_80451A08;
 extern u8 lbl_80451A0C;
 extern u8 lbl_80451A10;
 extern u8 lbl_80451A18;
+extern u8 lbl_803D0000;
 // extern char lbl_803739A0[0x310];
 
 extern char lbl_803739A0;
@@ -54,6 +55,8 @@ void mDoMemCd_Ctrl_c_NS_update(void);
 void memcpy(void*, const void*, int);
 void read__8mDoCPd_cFv(void);
 void version_check__Fv(void);
+void main01__Fv(void);
+void ct__13dComIfG_inf_cFv(void);
 }
 
 void version_check(void) {
@@ -223,7 +226,7 @@ const char* lbl_80373C9F = "Command";
 const char* lbl_80373CA7 = "ƒRƒ}ƒ“ƒh";
 
 void debug(void) {
-    if (lbl_80450580[0]) {
+    if (lbl_80450580) {
         if (lbl_80450B1A[0]) {
             CheckHeap(2);
         }
@@ -351,7 +354,62 @@ asm void main01(void) {
 #endif
 
 #ifdef NONMATCHING
-void main(void) {}
+void main(void) {
+    s32 current_thread_priority;
+    u32 test;
+    u32 resetCode;
+
+    OSThread* current_thread = OSGetCurrentThread();
+    test = lbl_803D3420[0];
+    OSTime current_time = OSGetTime();
+    lbl_80450B0C = (current_time >> 0x20);
+    lbl_80450B08 = test;
+
+    OSReportInit__Fv();
+    version_check__Fv();
+    m_Do_Reset_NS_mDoRst_NS_mResetData = (ResetData *)OSAllocFromArenaLo(0x18,4);
+    if (!m_Do_Reset_NS_mDoRst_NS_mResetData) {
+        do {
+
+        } while (true);
+    }
+
+    resetCode = OSGetResetCode();
+    if (!resetCode) {
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x0 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x4 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x4 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x8 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->pad_index = -1;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x12 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x13 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x14 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x15 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x10 = 0;
+        m_Do_Reset_NS_mDoRst_NS_mResetData->field_0x11 = 0;
+    }
+
+    g_dComIfG_gameInfo.ct();
+
+    if (lbl_80450580 < 0) {
+        DVDDiskID* disk_id = DVDGetCurrentDiskID();
+        if (disk_id->game_version > 0x90) {
+            lbl_80450580 = 0;
+        } else {
+            if (disk_id->game_version > 0x80) {
+                resetCode = OSGetConsoleType();
+                lbl_80450580 = (resetCode >> 0x1C) & 1;
+            }
+            lbl_80450580 = 1;
+        }
+    }
+
+    current_thread_priority = OSGetThreadPriority(current_thread);
+    OSCreateThread(&lbl_803DB420,main01__Fv, 0, &lbl_803DB420, 0x8000, current_thread_priority, 0);
+    OSResumeThread(&lbl_803DB420);
+    OSSetThreadPriority(current_thread, 0x1F);
+    OSSuspendThread(current_thread);
+}
 #else
 asm void main(void) {
     nofralloc

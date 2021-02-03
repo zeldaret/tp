@@ -74,7 +74,7 @@ extern "C" {
 s32 DVDOpen(const char*, DVDFileInfo*);
 s32 DVDClose(DVDFileInfo*);
 void DVDReadPrio(DVDFileInfo*, void*, s32, s32, s32);
-void DVDGetCurrentDiskID(void);
+DVDDiskID* DVDGetCurrentDiskID(void);
 s32 DVDFastOpen(long, DVDFileInfo*);
 int DVDGetCommandBlockStatus(DVDCommandBlock*);
 s32 DVDReadAsyncPrio(DVDFileInfo*, void*, long, long, DVDCallback, long);
