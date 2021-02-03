@@ -13,15 +13,14 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/sdata2/m_Do_main.o \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_printf.o \
-            $(BUILD_DIR)/src/m_Do/m_Do_printf.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_printf.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_printf.o    \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_audio.o \
             $(BUILD_DIR)/src/m_Do/m_Do_audio.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_controller_pad.o \
             $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_graphic.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_graphic.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_graphic.o    \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_machine.o \
             $(BUILD_DIR)/src/m_Do/m_Do_machine.o \
@@ -309,8 +308,8 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_kankyo.o \
             $(BUILD_DIR)/asm/rodata/rodata_d_kyeff.o \
             $(BUILD_DIR)/asm/sdata2/d_kyeff.o \
-            $(BUILD_DIR)/asm/d/d_kyeff.o \
-            $(BUILD_DIR)/asm/d/d_kyeff2.o \
+            $(BUILD_DIR)/src/d/d_ky/d_kyeff.o    \
+            $(BUILD_DIR)/src/d/d_ky/d_kyeff2.o    \
             $(BUILD_DIR)/asm/rodata/rodata_d_ky_thunder.o \
             $(BUILD_DIR)/asm/sdata2/d_ky_thunder.o \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o \

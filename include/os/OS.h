@@ -122,6 +122,8 @@ struct OSThread {
     void* data[2];
 };
 
+struct __va_list_struct {};
+
 extern "C" {
 s32 OSEnableScheduler(void);
 s32 OSDisableScheduler(void);
@@ -152,21 +154,18 @@ s32 OSGetResetCode(void);
 u32 OSGetSoundMode(void);
 void OSSetSoundMode(OSSoundMode mode);
 
-void OSReportInit(void);
-void OSAttention(char* msg, ...);
-void OSPanic(char* file, s32 line, char* fmt, ...);
-void OSReport(char* fmt, ...);
-void OSReport_Error(char* fmt, ...);
-void OSReport_FatalError(char* fmt, ...);
-void OSReport_System(char* fmt, ...);
-void OSReport_Warning(char* fmt, ...);
+void OSAttention(const char* msg, ...);
+void OSPanic(const char* file, s32 line, const char* fmt, ...);
+void OSReport(const char* fmt, ...);
+void OSReport_Error(const char* fmt, ...);
+void OSReport_FatalError(const char* fmt, ...);
+void OSReport_System(const char* fmt, ...);
+void OSReport_Warning(const char* fmt, ...);
 void OSReportDisable(void);
 void OSReportEnable(void);
 void OSReportForceEnableOff(void);
 void OSReportForceEnableOn(void);
-void OSReportInit(void);
-void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
-void OSVAttention(char*, /*__gnuc_va_list*/ void*);
+void OSVReport(const char* format, __va_list_struct* list);
 
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime* out_time);
 OSTime OSGetTime(void);
@@ -195,7 +194,17 @@ void OSResetSystem(s32 param_1, u32 param_2, s32 param_3);
 void OSSetSaveRegion(void* start, void* end);
 
 void LCDisable(void);
-};
+
+void OSReportInit__Fv(void);  // needed for inline asm
+
+u8* OSGetStackPointer(void);
+};  // extern "C"
+
+void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
+
+void OSVAttention(const char* fmt, __va_list_struct* va_list);
+
+void OSReportInit(void);
 
 #include "dvd/dvd.h"
 

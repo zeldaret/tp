@@ -12,6 +12,7 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic/m_Do_graphic.h"
 
 extern "C" {
 void __dt__8cM3dGLinFv(void);
