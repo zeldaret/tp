@@ -51,7 +51,7 @@ extern u32 lbl_80450B0C;
 // struct ResetData;
 extern u32 lbl_80450B08;
 extern OSThread lbl_803DB420;
-//extern u8 main01__Fv;
+// extern u8 main01__Fv;
 extern u8 lbl_803BB598;
 extern u8 lbl_803A6F88;
 extern u8 lbl_803BB588;

@@ -367,10 +367,9 @@ void main(void) {
 
     OSReportInit__Fv();
     version_check__Fv();
-    m_Do_Reset_NS_mDoRst_NS_mResetData = (ResetData *)OSAllocFromArenaLo(0x18,4);
+    m_Do_Reset_NS_mDoRst_NS_mResetData = (ResetData*)OSAllocFromArenaLo(0x18, 4);
     if (!m_Do_Reset_NS_mDoRst_NS_mResetData) {
         do {
-
         } while (true);
     }
 
@@ -405,7 +404,7 @@ void main(void) {
     }
 
     current_thread_priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&lbl_803DB420,main01__Fv, 0, &lbl_803DB420, 0x8000, current_thread_priority, 0);
+    OSCreateThread(&lbl_803DB420, main01__Fv, 0, &lbl_803DB420, 0x8000, current_thread_priority, 0);
     OSResumeThread(&lbl_803DB420);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);
