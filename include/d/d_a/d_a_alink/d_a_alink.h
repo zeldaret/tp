@@ -5,6 +5,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
+#include "JSystem/JMath/JMath.h"
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
@@ -384,7 +385,6 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle
 extern float lbl_80452C98;

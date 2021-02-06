@@ -22,7 +22,7 @@ typedef float Mtx[3][4];
 extern "C" {
 void PSMTXIdentity(Mtx* matrix);
 void PSMTXCopy(const Mtx* src, Mtx* dst);
-void PSMTXConcat(const Mtx* src_a, const Mtx* src_b, Mtx* dst);
+void PSMTXConcat(const Mtx src_a, const Mtx src_b, Mtx dst);
 u32 PSMTXInverse(const Mtx* src, Mtx* dst);
 void PSMTXRotRad(Mtx* matrix, u8 axis, float rad);
 void PSMTXRotTrig(Mtx* matrix, u8 axis, float sin, float cos);

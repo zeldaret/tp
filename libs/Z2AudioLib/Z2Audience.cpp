@@ -5,12 +5,12 @@
 #include "JSystem/JAudio2/JAIAudience/JAIAudience.h"
 #include "JSystem/JAudio2/JASGenericMemPool.h"
 #include "JSystem/JAudio2/JASSoundParams.h"
+#include "JSystem/JMath/JMath.h"
 #include "Z2AudioLib/Z2AudibleChannel/Z2AudibleChannel.h"
 #include "Z2AudioLib/Z2AudioCamera/Z2AudioCamera.h"
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
 #include "Z2AudioLib/Z2SoundInfo/Z2SoundInfo.h"
 #include "Z2AudioLib/Z2SpotMic/Z2SpotMic.h"
-#include "JSystem/JMath/JMath.h"
 #include "global.h"
 
 extern "C" {

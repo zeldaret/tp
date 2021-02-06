@@ -33,7 +33,7 @@ typedef struct base_process_class {
     /* 0xAC */ void* mpUserData;
     /* 0xB0 */ u32 mParameters;
     /* 0xB4 */ u32 mSubType;
-} base_process_class; // Size: 0xB8
+} base_process_class;  // Size: 0xB8
 
 extern "C" {
 

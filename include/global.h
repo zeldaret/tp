@@ -32,10 +32,10 @@ inline float fabsf(float f) {
     return (float)fabsd(f);
 }
 
-extern float __fsqrte(float);
+// extern float __frsqrte(float);
 
 inline double sqrt(float f) {
-    return __fsqrte(f);
+    return __frsqrte(f);
 }
 
 #include "dolphin/types.h"

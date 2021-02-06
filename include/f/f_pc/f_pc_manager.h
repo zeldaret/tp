@@ -12,6 +12,9 @@ extern "C" {
 
 typedef int (*FastCreateReqFunc)(void*);
 
+inline u32 fpcM_GetID(const void* pProc) {
+    return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : 0xFFFFFFFF;
+}
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc);
 void fpcM_Execute(void* pProc);

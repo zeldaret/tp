@@ -14,7 +14,7 @@ JKRExpHeap* mDoExt_getArchiveHeap();
 JKRExpHeap* mDoExt_getJ2dHeap();
 JKRExpHeap* mDoExt_getHostIOHeap();
 JKRExpHeap* mDoExt_getCommandHeap();
-void mDoExt_destroySolidHeap(JKRSolidHeap *);
+void mDoExt_destroySolidHeap(JKRSolidHeap*);
 JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
 }
 OSThread* mDoExt_GetCurrentRunningThread(void);

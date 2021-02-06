@@ -1592,8 +1592,11 @@ extern u8 lbl_80452190;
 extern u8 lbl_8045213C;
 extern u8 lbl_80424938;
 
-#include "SComponent/c_xyz.h"
-struct j3dsys;  // J3DGraphBase::j3dSys
+// #include "SComponent/c_xyz.h"
+#include "mtx_vec.h"
+struct j3dsys {
+    Mtx mtx;
+};  // J3DGraphBase::j3dSys
 extern j3dsys lbl_80434AC8;
 
 // additional symbols needed for d_kankyo_rain.cpp

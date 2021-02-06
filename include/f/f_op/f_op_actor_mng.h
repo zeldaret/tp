@@ -4,28 +4,28 @@
 #include "SComponent/c_m3d_g_pla.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
+#include "f/f_op/f_op_actor.h"
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_fstcreate_req.h"
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
-#include "f/f_op/f_op_actor.h"
 
 struct fopAcM_prm_class {
-    /* 0x00 */ u32   unk_0x00;
-    /* 0x04 */ cXyz  unk_0x04;
+    /* 0x00 */ u32 unk_0x00;
+    /* 0x04 */ cXyz unk_0x04;
     /* 0x10 */ csXyz unk_0x10;
-    /* 0x16 */ u16   unk_0x16;
-    /* 0x18 */ u8    unk_0x18;
-    /* 0x19 */ u8    unk_0x19;
-    /* 0x1A */ u8    unk_0x1A;
-    /* 0x1B */ u8    unk_0x1B;
-    /* 0x1C */ s32   unk_0x1C;
-    /* 0x20 */ s8    unk_0x20;
-    /* 0x21 */ s8    unk_0x21;
-    /* 0x22 */ u8    unk_0x22;
-    /* 0x23 */ u8    unk_0x23;
+    /* 0x16 */ u16 unk_0x16;
+    /* 0x18 */ u8 unk_0x18;
+    /* 0x19 */ u8 unk_0x19;
+    /* 0x1A */ u8 unk_0x1A;
+    /* 0x1B */ u8 unk_0x1B;
+    /* 0x1C */ s32 unk_0x1C;
+    /* 0x20 */ s8 unk_0x20;
+    /* 0x21 */ s8 unk_0x21;
+    /* 0x22 */ u8 unk_0x22;
+    /* 0x23 */ u8 unk_0x23;
 };
 
 class fopAcM_lc_c {
@@ -64,7 +64,8 @@ int fopAcM_setRoomLayer(void*, int);
 s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** actor);
 s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** actor);
 fopAcM_prm_class* fopAcM_CreateAppend(void);
-fopAcM_prm_class* createAppend(u16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8, unsigned int);
+fopAcM_prm_class* createAppend(u16, u32, const cXyz*, int, const csXyz*, const cXyz*, s8,
+                               unsigned int);
 void fopAcM_Log(const fopAc_ac_c*, const char*);
 void fopAcM_delete(fopAc_ac_c*);
 s32 fopAcM_delete(unsigned int);
@@ -80,26 +81,29 @@ s32 fopAcM_createChildFromOffset(s16, unsigned int, u32, const cXyz*, int, const
                                  const cXyz*, s8, createFunc);
 void fopAcM_DeleteHeap(fopAc_ac_c*);
 s32 fopAcM_callCallback(fopAc_ac_c*, heapCallbackFunc, JKRHeap*);
-s32 fopAcM_entrySolidHeap_(fopAc_ac_c*, heapCallbackFunc, u32);
-s32 fopAcM_entrySolidHeap(fopAc_ac_c*, heapCallbackFunc, u32);
+bool fopAcM_entrySolidHeap_(fopAc_ac_c*, heapCallbackFunc, u32);
+bool fopAcM_entrySolidHeap(fopAc_ac_c*, heapCallbackFunc, u32);
 void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
 void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
 void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
 void fopAcM_setCullSizeSphere(fopAc_ac_c*, f32, f32, f32, f32);
 void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
 bool fopAcM_addAngleY(fopAc_ac_c*, s16, s16);
+inline csXyz& fopAcM_GetAngle_p(fopAc_ac_c* pActor) {
+    return pActor->mAngle;
+}
 void fopAcM_calcSpeed(fopAc_ac_c*);
 void fopAcM_posMove(fopAc_ac_c*, const cXyz*);
 void fopAcM_posMoveF(fopAc_ac_c*, const cXyz*);
 s16 fopAcM_searchActorAngleY(const fopAc_ac_c*, const fopAc_ac_c*);
 s16 fopAcM_searchActorAngleX(const fopAc_ac_c*, const fopAc_ac_c*);
-s16 fopAcM_seenActorAngleY(const fopAc_ac_c*, const fopAc_ac_c*);
+s32 fopAcM_seenActorAngleY(const fopAc_ac_c*, const fopAc_ac_c*);
 f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*);
 f32 fopAcM_searchActorDistance2(const fopAc_ac_c*, const fopAc_ac_c*);
 f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c*, const fopAc_ac_c*);
 f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c*, const fopAc_ac_c*);
 s32 fopAcM_rollPlayerCrash(const fopAc_ac_c*, f32, u32, f32, f32, int, f32);
-bool fopAcM_checkCullingBox(f32[3][4], f32, f32, f32, f32, f32, f32);
+s32 fopAcM_checkCullingBox(f32[3][4], f32, f32, f32, f32, f32, f32);
 s32 fopAcM_cullingCheck(const fopAc_ac_c*);
 s32 event_second_actor(u16);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
@@ -161,7 +165,6 @@ s32 fopAcM_getWaterY(const cXyz*, f32*);
 void fpoAcM_relativePos(const fopAc_ac_c*, const cXyz*, cXyz*);
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);
 s16 fopAcM_getPolygonAngle(const cBgS_PolyInfo&, s16);
-
 
 extern "C" {
 void fopAcM_initManager__Fv(void);
@@ -264,9 +267,9 @@ void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci(void);
 void fopAcM_riverStream__FP4cXyzPsPff(void);
 void fopAcM_carryOffRevise__FP10fopAc_ac_c(void);
 void fopAcM_searchFromName4Event__FPCcs(void);
-void fopAcM_GetName(void); // mostly inlined
-void fopAcM_GetID(void); // mostly inlined
-void fopAcM_GetParam(void); // mostly inlined
+void fopAcM_GetName(void);   // mostly inlined
+void fopAcM_GetID(void);     // mostly inlined
+void fopAcM_GetParam(void);  // mostly inlined
 }
 
 #endif
