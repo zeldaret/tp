@@ -262,7 +262,7 @@ asm void debugDisplay(void) {
 }
 #endif
 
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 void Debug_console(u32 controller_no) {
     float tmp2;
     float tmp3;
