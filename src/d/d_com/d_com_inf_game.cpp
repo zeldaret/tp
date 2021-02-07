@@ -232,7 +232,7 @@ void func_80030E84(void);
 void func_80030ECC(void);
 void func_80361C24(void);
 void func_80361D60(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void func_803664DC(void);
 void getBottleNum__24dSv_player_item_record_cCFUc(void);
 void getItem__17dSv_player_item_cCFib(void);

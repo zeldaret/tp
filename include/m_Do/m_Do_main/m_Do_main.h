@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap/JKRSolidHeap.h"
+#include "JSystem/JUtility/JUTConsole/JUTConsole.h"
 #include "dolphin/types.h"
 
 class HeapCheck {
@@ -15,6 +16,9 @@ public:
     JKRExpHeap* getHeap() { return heap; }
     void setHeap(JKRExpHeap* i_heap) { heap = i_heap; }
     void setHeapSize(u32 i_size) { heap_size = i_size; }
+    s32 getMaxTotalUsedSize() { return max_total_used_size; }
+    s32 getMaxTotalFreeSize() { return max_total_free_size; }
+    char** getNames() { return names; }
 
 private:
     /* 0x00 */ char* names[2];
@@ -38,8 +42,8 @@ extern HeapCheck lbl_803D32E0[8];  // RootHeapCheck
 // extern HeapCheck lbl_803D33F8; // CommandHeapCheck
 extern u8 lbl_80450B1A[2];
 extern u8 lbl_80450B18;
-extern u8 lbl_80450588[8];
-extern u8 lbl_804511B8[4];
+extern u8 lbl_80450588;
+extern JUTConsole* lbl_804511B8;
 extern u8 lbl_80451210[4];
 extern JKRSolidHeap* lbl_80450BBC;
 #endif

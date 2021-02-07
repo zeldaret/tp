@@ -16,7 +16,7 @@ extern "C" {
 void __dl__FPv(void);
 void func_80361C24(void);
 void func_80361D60(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 }
 
 extern "C" {

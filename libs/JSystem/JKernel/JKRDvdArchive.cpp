@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRDvdArchive/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRDvdFile/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 
 extern "C" {
@@ -18,6 +19,8 @@ void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRip
     void);
 void* memset(void* dest, int ch, u32 count);
 }
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, MOUNT_DVD), mMountDirection(mountDirection) {

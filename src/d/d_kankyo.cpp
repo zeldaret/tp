@@ -95,7 +95,7 @@ void DUNGEON_LIGHT_NS_dtor(void);
 void DUNGEON_LIGHT(void);
 void func_80361C24(void);
 void func_80361D60(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void GB_MAPLE_COL_CHANGE(void);
 void GFSetFog(void);
 void GXInitLightAttn(void);

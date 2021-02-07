@@ -465,7 +465,7 @@ lbl_80259A98:
 /* 80259A98 002569D8  7F E3 FB 78 */	mr r3, r31
 /* 80259A9C 002569DC  4B DD 17 91 */	bl init__14dComIfG_play_cFv
 /* 80259AA0 002569E0  38 60 00 00 */	li r3, 0
-/* 80259AA4 002569E4  48 08 B1 99 */	bl JUTAssertion_NS_setMessageCount
+/* 80259AA4 002569E4  48 08 B1 99 */	bl setMessageCount__12JUTAssertionFi
 /* 80259AA8 002569E8  38 60 00 01 */	li r3, 1
 /* 80259AAC 002569EC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80259AB0 002569F0  48 10 87 6D */	bl _restgpr_26

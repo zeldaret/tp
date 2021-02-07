@@ -1,7 +1,7 @@
 #include "JSystem/JStudio/functionvalue.h"
 
 extern "C" {
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 }
 
 namespace JStudio {

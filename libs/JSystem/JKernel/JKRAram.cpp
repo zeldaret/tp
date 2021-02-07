@@ -50,6 +50,7 @@ extern u32 JKRAram__readCount;
 extern u32 JKRAram__maxDest;
 extern u32* JKRAram__tsPtr;
 extern u32 JKRAram__tsArea;
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {

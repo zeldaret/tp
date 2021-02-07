@@ -10,31 +10,8 @@ extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[20];
 extern u8 lbl_80450B19;
-// extern u8 lbl_80450588;
-// extern u8 lbl_804511B8;
-extern u8 lbl_80450B20;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B28;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B28;
-extern u8 lbl_80450B30;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B30;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B24;
 struct g_HIO_struct;
 extern g_HIO_struct g_HIO;
-extern u8 lbl_80450C2C;
-extern u8 lbl_80450C28;
-extern u8 lbl_80450C34;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B1C;
 extern s8 lbl_80450580;
 // extern u8 lbl_80450B1A;
 struct JUTGamePad;
@@ -73,7 +50,6 @@ extern u8 J3DLightObj;
 extern void* lbl_803CBF70;  // JKRHeap::__vt
 
 class JKRHeap;
-extern JKRHeap* sSystemHeap__7JKRHeap;   // JKRHeap::sSystemHeap
 extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
 extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
 
@@ -325,9 +301,7 @@ extern u8 lbl_804343B4;  // JKRDvdAramRipper::sDvdAramAsyncList
 extern u8 lbl_804343C0;  // JKernel::decompMutex
 extern u8 lbl_803CC518;  // JSUFileInputStream::__vt
 
-class JKRAram;
 extern u8 lbl_803CC158;                         // JKRAram::__vt
-extern JKRAram* sAramObject__7JKRAram;          // JKRAram::sAramObject
 extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
 extern bool lbl_804513FC;                       // DAT_804513fc (init global mutex)
 extern OSMutex lbl_804342E8;                    // JKernel::decompMutex (static?)

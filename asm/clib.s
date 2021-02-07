@@ -417,8 +417,8 @@ lbl_803620A4:
 /* 803620A4 0035EFE4  7D 89 03 A6 */	mtctr r12
 /* 803620A8 0035EFE8  4E 80 04 20 */	bctr 
 
-.global func_803620AC
-func_803620AC:
+.global __cvt_fp2unsigned
+__cvt_fp2unsigned:
 /* 803620AC 0035EFEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803620B0 0035EFF0  3C 80 80 3A */	lis r4, lbl_803A2190@h
 /* 803620B4 0035EFF4  60 84 21 90 */	ori r4, r4, lbl_803A2190@l

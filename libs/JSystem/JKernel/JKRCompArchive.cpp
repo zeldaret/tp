@@ -1,4 +1,6 @@
 #include "JSystem/JKernel/JKRCompArchive/JKRCompArchive.h"
+#include "JSystem/JKernel/JKRAram/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 
 extern "C" {
@@ -33,6 +35,8 @@ void prepend__10JSUPtrListFP10JSUPtrLink(void);
 void remove__10JSUPtrListFP10JSUPtrLink(void);
 void* memset(void* dest, int ch, u32 count);
 }
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 asm JKRCompArchive::JKRCompArchive(long, JKRArchive::EMountDirection) {
     nofralloc

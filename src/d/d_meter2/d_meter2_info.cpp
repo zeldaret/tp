@@ -42,7 +42,7 @@ void dMsgFlow_c_NS_init(void);
 void dMsgFlow_c(void);
 void dMsgObject_c_NS_setLetterNameID(void);
 void func_80361C24(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
 void getItem__17dSv_player_item_cCFib(void);
 void isEventBit__11dSv_event_cCFUs(void);

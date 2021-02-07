@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 
 extern "C" {
@@ -11,6 +12,8 @@ void getMaxFreeBlock__7JKRHeapCFv(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {

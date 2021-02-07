@@ -1162,7 +1162,7 @@ void func_80361D60(void);
 void func_80361F14(void);
 void func_80362018(void);
 void func_80362084(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
 void getLightDropNum__16dSv_light_drop_cCFUc(void);
 void getNeckAimPos__9daAlink_cFP4cXyzPii(void);

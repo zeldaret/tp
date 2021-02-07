@@ -1,5 +1,6 @@
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 extern "C" {
 s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
@@ -12,6 +13,7 @@ void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
 }
 
 extern char lbl_8039D120[32];
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRAramStream* JKRAramStream::create(long priority) {
     if (!sAramStreamObject) {
