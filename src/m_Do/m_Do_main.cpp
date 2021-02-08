@@ -516,7 +516,7 @@ void main01(void) {
     // lol
     thread_callback.create((void* (*)(void*))LOAD_COPYDATE, 0);
     fapGm_Create();
-    fopAcM_initManager__Fv();
+    fopAcM_initManager();
     lbl_80450B18 = 0;
     cDyl_InitAsync();
 

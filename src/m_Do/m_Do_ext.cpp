@@ -296,7 +296,6 @@ void mDoExt_createSolidHeapToCurrent(void);
 void mDoExt_createSolidHeapToCurrent_X1_(void);
 void mDoExt_createZeldaHeap(void);
 void mDoExt_destroyExpHeap(void);
-// void mDoExt_destroySolidHeap(void);
 void mDoExt_getArchiveHeapPtr(void);
 void mDoExt_getAssertHeap(void);
 
@@ -325,7 +324,6 @@ void mDoExt_removeSubFont(void);
 void mDoExt_resIDToIndex(void);
 void mDoExt_restoreCurrentHeap(void);
 void mDoExt_setAraCacheSize(void);
-// void mDoExt_setCurrentHeap(void);
 void mDoMtx_stack_c_NS_dtor_X1_(void);
 void normalizeZP__4cXyzFv(void);
 void outprod__4cXyzCFRC3Vec(void);

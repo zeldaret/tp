@@ -8,12 +8,8 @@ struct SVec {
 };
 
 class csXyz : public SVec {
-private:
 public:
-    // s16 mX, mY, mZ;
-
     csXyz() {}
-    // csXyz(const csXyz& other) { *this = other; }
     csXyz(const csXyz& other) : SVec(other){};
     csXyz(s16, s16, s16);
     ~csXyz() {}
@@ -24,12 +20,6 @@ public:
     void operator+=(csXyz&);
     csXyz operator-(csXyz&);
     csXyz operator*(f32);
-    csXyz createRotY(s16 yRot) const {
-        // return csXyz(this->mX, this->mY + yRot, this->mZ);
-        csXyz ret(*this);
-        ret.mY += yRot;
-        return ret;
-    }
 };
 
 extern csXyz lbl_80451160;  // SComponent::csXyz::Zero
