@@ -4,7 +4,13 @@ lbl_803A2EE0:
 	.incbin "baserom.dol", 0x39FEE0, 0x14
 .global lbl_803A2EF4
 lbl_803A2EF4:
-	.incbin "baserom.dol", 0x39FEF4, 0x4C
+	.incbin "baserom.dol", 0x39FEF4, 0x20
+.global lbl_803A2F14
+lbl_803A2F14:
+	.incbin "baserom.dol", 0x39FF14, 0x14
+.global lbl_803A2F28
+lbl_803A2F28:
+	.incbin "baserom.dol", 0x39FF28, 0x18
 .global lbl_803A2F40
 lbl_803A2F40:
 	.incbin "baserom.dol", 0x39FF40, 0xC

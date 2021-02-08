@@ -217,6 +217,7 @@ private:  // NEEDS TO BE FIXED
 class dComIfG_inf_c {
 public:
     dComIfG_inf_c(void);
+    void ct(void);
 
     // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }

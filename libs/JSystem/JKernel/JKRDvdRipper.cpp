@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
 
@@ -25,6 +26,8 @@ void open__10JKRDvdFileFPCc(void);
 void orderSync__9JKRDecompFPUcPUcUlUl(void);
 void VIWaitForRetrace(void);
 }
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 static void decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData(void);

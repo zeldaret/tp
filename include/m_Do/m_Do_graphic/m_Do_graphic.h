@@ -107,7 +107,7 @@ void func_8000A604(void);
 void func_8000B118(void);
 void func_8000B1D0(void);
 void func_8000B1E4(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void mDoExt_adjustSolidHeap(void);
 void mDoExt_createSolidHeapToCurrent_X1_(void);
 void mDoExt_restoreCurrentHeap(void);

@@ -1,6 +1,9 @@
 #include "JSystem/JKernel/JKRDvdAramRipper/JKRDvdAramRipper.h"
+#include "JSystem/JKernel/JKRAram/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+
 extern "C" {
 void __ct__10JKRDvdFileFv(void);
 void __ct__10JSUPtrLinkFPv(void);
@@ -36,6 +39,8 @@ void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
 void VIWaitForRetrace(void);
 void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl(void);
 }
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 static void decompSZS_subroutine(u8*, u32);
 static u8* firstSrcData(void);

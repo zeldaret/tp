@@ -232,7 +232,7 @@ void func_80030E84(void);
 void func_80030ECC(void);
 void func_80361C24(void);
 void func_80361D60(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void func_803664DC(void);
 void getBottleNum__24dSv_player_item_record_cCFUc(void);
 void getItem__17dSv_player_item_cCFib(void);
@@ -281,6 +281,7 @@ void setBottleNum__24dSv_player_item_record_cFUcUc(u8, u8);
 void setCollect__20dSv_player_collect_cFiUc(int, u8);
 void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc(void);
 void* memset(void* dest, int ch, u32 count);
+void ct__13dComIfG_inf_cFv(void);
 }
 
 // memset first arg is wrong
@@ -474,7 +475,7 @@ u32 dComIfG_play_c::getTimerPtr(void) {
 
 // ct__13dComIfG_inf_cFv
 // dComIfG_inf_c::ct(void)
-asm void dComIfG_inf_c_NS_ct(void) {
+asm void dComIfG_inf_c::ct(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CBE4.s"
 }

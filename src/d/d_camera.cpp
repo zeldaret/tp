@@ -304,7 +304,7 @@ void fopCamM_GetParam(void);
 void func_80361C24(void);
 void func_80361D60(void);
 void func_80362084(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void getE3Zhint__9daAlink_cFv(void);
 void Inv__7cSAngleCFv(void);
 void Invert__7cSGlobeFv(void);

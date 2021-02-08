@@ -206,8 +206,8 @@ JUTAssertion_NS_setVisible:
 /* 802E4C34 002E1B74  98 6D 83 78 */	stb r3, lbl_804508F8-_SDA_BASE_(r13)
 /* 802E4C38 002E1B78  4E 80 00 20 */	blr 
 
-.global JUTAssertion_NS_setMessageCount
-JUTAssertion_NS_setMessageCount:
+.global setMessageCount__12JUTAssertionFi
+setMessageCount__12JUTAssertionFi:
 /* 802E4C3C 002E1B7C  7C 03 00 D0 */	neg r0, r3
 /* 802E4C40 002E1B80  7C 60 03 38 */	orc r0, r3, r0
 /* 802E4C44 002E1B84  7C 00 FE 70 */	srawi r0, r0, 0x1f

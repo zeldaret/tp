@@ -344,8 +344,8 @@ lbl_802E05E8:
 /* 802E05F8 002DD538  38 21 01 80 */	addi r1, r1, 0x180
 /* 802E05FC 002DD53C  4E 80 00 20 */	blr 
 
-.global JUTReport_X1_
-JUTReport_X1_:
+.global JUTReport__FiiiPCce
+JUTReport__FiiiPCce:
 /* 802E0600 002DD540  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 802E0604 002DD544  7C 08 02 A6 */	mflr r0
 /* 802E0608 002DD548  90 01 01 94 */	stw r0, 0x194(r1)

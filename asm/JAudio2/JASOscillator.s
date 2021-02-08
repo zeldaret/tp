@@ -330,7 +330,7 @@ JASOscillator_NS_updateCurrentValue:
 /* 8029C2FC 0029923C  EC 00 08 24 */	fdivs f0, f0, f1
 /* 8029C300 00299240  EF E2 00 32 */	fmuls f31, f2, f0
 /* 8029C304 00299244  FC 20 F8 90 */	fmr f1, f31
-/* 8029C308 00299248  48 0C 5D A5 */	bl func_803620AC
+/* 8029C308 00299248  48 0C 5D A5 */	bl __cvt_fp2unsigned
 /* 8029C30C 0029924C  C8 22 BD 18 */	lfd f1, lbl_80455718-_SDA2_BASE_(r2)
 /* 8029C310 00299250  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8029C314 00299254  3C 00 43 30 */	lis r0, 0x4330

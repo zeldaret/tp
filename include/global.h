@@ -12,7 +12,6 @@
 
 #define JUT_ASSERT(...)
 #define JUT_EXPECT(...)
-#define JUTReport(...)
 #define ASSERT(...)
 #define LOGF(FMT, ...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)

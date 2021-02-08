@@ -17,7 +17,7 @@ extern "C" {
 void __dl__FPv(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void dComIfGp_getReverb(void);
-void func_803620AC(void);
+void __cvt_fp2unsigned(void);
 void isSwitch__12dSv_memBit_cCFi(void);
 void Z2EnvSeMgr_NS_startRainSe(void);
 }

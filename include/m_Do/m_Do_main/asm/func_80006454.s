@@ -51,7 +51,7 @@ lbl_800064A8:
 lbl_80006514:
 /* 80006514 00003454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80006518 00003458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
-/* 8000651C 0000345C  48 02 66 C9 */	bl dComIfG_inf_c_NS_ct
+/* 8000651C 0000345C  48 02 66 C9 */	bl ct__13dComIfG_inf_cFv
 /* 80006520 00003460  88 0D 80 00 */	lbz r0, lbl_80450580-_SDA_BASE_(r13)
 /* 80006524 00003464  7C 00 07 75 */	extsb. r0, r0
 /* 80006528 00003468  40 80 00 40 */	bge lbl_80006568
