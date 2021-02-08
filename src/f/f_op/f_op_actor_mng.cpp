@@ -16,20 +16,14 @@ const char* lbl_803788C8 = "アクターの削除";
 const char* lbl_803788D7 = "アクターのヒープの生成";
 const char* lbl_803788EE = "fopAcM_createHeap 確保失敗\n";
 const char* lbl_8037890A = "アクターのヒープの破壊";
-const char* lbl_80378921 =
-    "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
-const char* lbl_80378959 =
-    "見積もりヒープが確保できませんでした。 %08x [%s]\n";
-const char* lbl_8037898B =
-    "最大空きヒープサイズで確保失敗。[%s]\n";
-const char* lbl_803789B1 =
-    "最大空きヒープサイズで登録失敗。%08x[%s]\n";
-const char* lbl_803789DB =
-    "ぴったりサイズで、登録失敗？(バグ)\n";
+const char* lbl_80378921 = "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
+const char* lbl_80378959 = "見積もりヒープが確保できませんでした。 %08x [%s]\n";
+const char* lbl_8037898B = "最大空きヒープサイズで確保失敗。[%s]\n";
+const char* lbl_803789B1 = "最大空きヒープサイズで登録失敗。%08x[%s]\n";
+const char* lbl_803789DB = "ぴったりサイズで、登録失敗？(バグ)\n";
 const char* lbl_803789FF = "ばぐばぐです\n";
 const char* lbl_80378A0D = "緊急回避措置\n";
-const char* lbl_80378A1B =
-    "fopAcM_entrySolidHeap だめでした [%s]\n";
+const char* lbl_80378A1B = "fopAcM_entrySolidHeap だめでした [%s]\n";
 const char* lbl_80378A42 = "UNKOWN";
 const char* lbl_80378A49 = "\x00\x00\x00\x00\x00\x00";
 
@@ -772,8 +766,7 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB)
 }
 
 // fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-asm f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*) {
-    nofralloc
+asm f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001A7E0.s"
 }
 
