@@ -12,52 +12,45 @@
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
 
-// const u8 lbl_80378880[12] = {
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-// };
-// const u8 lbl_8037888C[12] = {
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-// };
-const char* lbl_803788C8 = "アクターの削除";                // TODO: shift-jis strings in Metrowerks
-const char* lbl_803788D7 = "アクターのヒープの生成";        // TODO: shift-jis strings in Metrowerks
-const char* lbl_803788EE = "fopAcM_createHeap 確保失敗\n";  // TODO: shift-jis strings in Metrowerks
-const char* lbl_8037890A = "アクターのヒープの破壊";        // TODO: shift-jis strings in Metrowerks
+const char* lbl_803788C8 = "アクターの削除";
+const char* lbl_803788D7 = "アクターのヒープの生成";
+const char* lbl_803788EE = "fopAcM_createHeap 確保失敗\n";
+const char* lbl_8037890A = "アクターのヒープの破壊";
 const char* lbl_80378921 =
-    "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";  // TODO: shift-jis strings in
-                                                                 // Metrowerks
+    "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
 const char* lbl_80378959 =
-    "見積もりヒープが確保できませんでした。 %08x [%s]\n";  // TODO: shift-jis strings in Metrowerks
+    "見積もりヒープが確保できませんでした。 %08x [%s]\n";
 const char* lbl_8037898B =
-    "最大空きヒープサイズで確保失敗。[%s]\n";  // TODO: shift-jis strings in Metrowerks
+    "最大空きヒープサイズで確保失敗。[%s]\n";
 const char* lbl_803789B1 =
-    "最大空きヒープサイズで登録失敗。%08x[%s]\n";  // TODO: shift-jis strings in Metrowerks
+    "最大空きヒープサイズで登録失敗。%08x[%s]\n";
 const char* lbl_803789DB =
-    "ぴったりサイズで、登録失敗？(バグ)\n";   // TODO: shift-jis strings in Metrowerks
-const char* lbl_803789FF = "ばぐばぐです\n";  // TODO: shift-jis strings in Metrowerks
-const char* lbl_80378A0D = "緊急回避措置\n";  // TODO: shift-jis strings in Metrowerks
+    "ぴったりサイズで、登録失敗？(バグ)\n";
+const char* lbl_803789FF = "ばぐばぐです\n";
+const char* lbl_80378A0D = "緊急回避措置\n";
 const char* lbl_80378A1B =
-    "fopAcM_entrySolidHeap だめでした [%s]\n";  // TODO: shift-jis strings in Metrowerks
+    "fopAcM_entrySolidHeap だめでした [%s]\n";
 const char* lbl_80378A42 = "UNKOWN";
-const char* lbl_80378A49 = "\x00\x00\x00\x00\x00\x00";  // padding
+const char* lbl_80378A49 = "\x00\x00\x00\x00\x00\x00";
 
 // can't migrate data because 2 are swapped
-// static const float lbl_80451C00 = 10.0f;                                                   //
-// 0x41200000 static const s32 lbl_80451C04 = 0; static const double lbl_80451C08 = 0.5; //
-// 0x3fe0000000000000 static const double lbl_80451C10 = 3.0; // 0x4008000000000000 static const s64
-// lbl_80451C18 = 0; static const float lbl_80451C20 = 40.0f; // 0x42200000 static const float
+// static const f32 lbl_80451C00 = 10.0f;                                                   //
+// 0x41200000 static const s32 lbl_80451C04 = 0; static const f64 lbl_80451C08 = 0.5; //
+// 0x3fe0000000000000 static const f64 lbl_80451C10 = 3.0; // 0x4008000000000000 static const s64
+// lbl_80451C18 = 0; static const f32 lbl_80451C20 = 40.0f; // 0x42200000 static const f32
 // lbl_80451C24 = 55.0f;                                                   // 0x425c0000 static
-// const s32 lbl_80451C28 = 0x417fff97; static const float lbl_80451C2C = 32767.0f; // 0x46fffe00
-// static const float lbl_80451C30 = 2.0f;                                                    //
-// 0x40000000 static const float lbl_80451C34 = 8192.0f; // 0x46000000 static const float
+// const s32 lbl_80451C28 = 0x417fff97; static const f32 lbl_80451C2C = 32767.0f; // 0x46fffe00
+// static const f32 lbl_80451C30 = 2.0f;                                                    //
+// 0x40000000 static const f32 lbl_80451C34 = 8192.0f; // 0x46000000 static const f32
 // lbl_80451C38 = 1.0f;                                                    // 0x3f800000 static
-// const float lbl_80451C3C = 0.3f; static const float lbl_80451C40 = 0.2f; static const float
+// const f32 lbl_80451C3C = 0.3f; static const f32 lbl_80451C40 = 0.2f; static const f32
 // lbl_80451C44 = 2048.0f;                                                 // 0x45000000 static
-// const float lbl_80451C48 = 100.0f;                                                  // 0x42c80000
-// static const float lbl_80451C4C = 50.0f;                                                   //
-// 0x42480000 static const s32 lbl_80451C50 = 0x01b201b3; static const float lbl_80451C54 = 150.0f;
-// // 0x43160000 static const float lbl_80451C58 = -1000000000.0f; // 0xce6e6b28 static const float
+// const f32 lbl_80451C48 = 100.0f;                                                  // 0x42c80000
+// static const f32 lbl_80451C4C = 50.0f;                                                   //
+// 0x42480000 static const s32 lbl_80451C50 = 0x01b201b3; static const f32 lbl_80451C54 = 150.0f;
+// // 0x43160000 static const f32 lbl_80451C58 = -1000000000.0f; // 0xce6e6b28 static const f32
 // lbl_80451C5C = 1000000000.0f;                                           // 0x4e6e6b28 static
-// const s64 lbl_80451C60 = 0x43fa000000000000; static const float lbl_80451C60 = 500.0f; //
+// const s64 lbl_80451C60 = 0x43fa000000000000; static const f32 lbl_80451C60 = 500.0f; //
 // 0x43fa0000 static const u8 lbl_80451C64[4] = { 0x00, 0x00, 0x00, 0x00 }; // padding
 
 // additional symbols needed for f_op_actor_mng.cpp
@@ -493,7 +486,6 @@ s32 fopAcM_createChild(s16 pProcTypeID, unsigned int param_2, u32 pActorParams,
 }
 
 // fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
-#ifndef NON_MATCHING
 s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u32 pActorParams,
                                  const cXyz* pActorPos, int param_5, const csXyz* pActorRot,
                                  const cXyz* param_7, s8 param_8, createFunc param_9) {
@@ -503,7 +495,6 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
     searchParams.procID = pParentProcID;
     fopAc_ac_c* parentActor =
         static_cast<fopAc_ac_c*>(fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &searchParams));
-    // s16 parentRotY = *(s16*)(((int)parentActor) + 0x4de);
     s16 parentRotY = parentActor->getAngle().GetY();
     cXyz tmpPos;
     if (pActorPos == NULL) {
@@ -517,7 +508,6 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
     } else {
         tmpRot = *pActorRot;
     }
-    // csXyz tmpRot = pActorRot != NULL ? lbl_80451160 : *pActorRot;
     cXyz parentPos = parentActor->getPosition();
     csXyz tmpRotCopy(tmpRot);
     tmpRotCopy.mY += parentRotY;
@@ -533,13 +523,6 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
                                 prmClass);
     }
 }
-#else
-asm s32 fopAcM_createChildFromOffset(s16, unsigned int, u32, const cXyz*, int, const csXyz*,
-                                     const cXyz*, s8, createFunc) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_80019F78.s"
-}
-#endif
 
 // fopAcM_DeleteHeap__FP10fopAc_ac_c
 void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
@@ -551,19 +534,12 @@ void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
 }
 
 // fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap
-#ifndef NM
 s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRHeap* pHeap) {
     JKRHeap* oldHeap = mDoExt_setCurrentHeap(pHeap);
     s32 ret = pCallbackFunc(pActor);
     mDoExt_setCurrentHeap(oldHeap);
     return ret;
 }
-#else
-asm s32 fopAcM_callCallback(fopAc_ac_c*, heapCallbackFunc, JKRHeap*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001A188.s"
-}
-#endif
 
 // fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, u32 pSize) {
@@ -763,14 +739,14 @@ s16 fopAcM_searchActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActor
     return cLib_targetAngleY(&pActorA->mPosition, &pActorB->mPosition);
 }
 
-inline float JMAFastSqrt(float f) {
+inline f32 JMAFastSqrt(f32 f) {
     if (f > lbl_80451C04) {
-        f = __frsqrte(f) * f;  // generates a useless frsp
+        f *= __frsqrte(f);  // generates a useless frsp
     }
     return f;
 }
 
-inline float square(float f) {
+inline f32 square(f32 f) {
     return f * f;
 }
 
@@ -796,31 +772,31 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB)
 }
 
 // fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-asm float fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*) {
+asm f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001A7E0.s"
 }
 
 // fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c
-float fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
+f32 fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
     cXyz tmp = (pActorB->mPosition - pActorA->mPosition);
     return tmp.abs2();
 }
 
 // fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
-asm float fopAcM_searchActorDistanceXZ(const fopAc_ac_c*, const fopAc_ac_c*) {
+asm f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c*, const fopAc_ac_c*) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001A964.s"
 }
 
-// TODO: replace calls to this with .abs2XZ, needs additional float at the moment
+// TODO: replace calls to this with .abs2XZ, needs additional float constant at the moment
 inline f32 cXyzAbs2XZ(const cXyz& ths) {
     cXyz tmp(ths.x, /* 0.0f */ lbl_80451C04, ths.z);
     return tmp.abs2();
 }
 
 // fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
-float fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
+f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
     const cXyz& posA = fopAcM_GetPosition_p(pActorA);
     const cXyz& posB = fopAcM_GetPosition_p(pActorB);
     return cXyzAbs2XZ(posB - posA);
