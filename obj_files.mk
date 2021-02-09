@@ -515,7 +515,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_request.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o \
-            $(BUILD_DIR)/asm/sdata2/c_xyz.o  \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_xyz.o \
             $(BUILD_DIR)/asm/rodata/rodata_c_xyz_padding.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_sxyz.o \

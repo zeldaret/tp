@@ -48,7 +48,7 @@ cXyz cXyz::operator*(const Vec& vec) const {
 // __dv__4cXyzCFf
 cXyz cXyz::operator/(f32 scale) const {
     Vec ret;
-    PSVECScale(this, &ret, /* 1.0 */ *(f32*)&lbl_80455070 / scale);
+    PSVECScale(this, &ret, /* 1.0 */ FLOAT_LABEL(lbl_80455070) / scale);
     return cXyz(ret);
 }
 
@@ -84,9 +84,9 @@ cXyz cXyz::normZP(void) const {
 
 inline void normToUpZIfNearZero(Vec& vec) {
     if (cXyz(vec).isNearZeroSquare()) {
-        vec.x = *(f32*)&lbl_80455080;
-        vec.y = *(f32*)&lbl_80455080;
-        vec.z = *(f32*)&lbl_80455070;
+        vec.x = FLOAT_LABEL(lbl_80455080);
+        vec.y = FLOAT_LABEL(lbl_80455080);
+        vec.z = FLOAT_LABEL(lbl_80455070);
         const Vec v = {0, 0, 1};
         vec = v;
     }
@@ -98,7 +98,7 @@ cXyz cXyz::normZC(void) const {
     if (this->isNearZeroSquare() == false) {
         PSVECNormalize(this, &outVec);
     } else {
-        outVec = (*this * *(f32*)&lbl_80455078 * *(f32*)&lbl_8045507C).normZP();
+        outVec = (*this * FLOAT_LABEL(lbl_80455078) * FLOAT_LABEL(lbl_8045507C)).normZP();
         normToUpZIfNearZero(outVec);
     }
     return outVec;
@@ -143,10 +143,10 @@ bool cXyz::operator!=(const Vec& vec) const {
 // isZero__4cXyzCFv
 bool cXyz::isZero(void) const {
     return fabsf(this->x) <
-               /* 32 */ lbl_80455084 *
+               /* 32 */ FLOAT_LABEL(lbl_80455084) *
                    /* MSL_C.PPCEABI.bare.H::__f32_epsilon */ lbl_80450AEC[0] &&
-           fabsf(this->y) < lbl_80455084 * lbl_80450AEC[0] &&
-           fabsf(this->z) < lbl_80455084 * lbl_80450AEC[0];
+           fabsf(this->y) < FLOAT_LABEL(lbl_80455084) * lbl_80450AEC[0] &&
+           fabsf(this->z) < FLOAT_LABEL(lbl_80455084) * lbl_80450AEC[0];
 }
 
 // atan2sX_Z__4cXyzCFv
@@ -154,11 +154,58 @@ s16 cXyz::atan2sX_Z(void) const {
     return cM_atan2s(this->x, this->z);
 }
 
+inline s32 fpclassify(f32 f) {
+    u32 var = *(u32*)&f;
+    switch (var & 0x7F800000) {
+        case 0x7F800000:
+            if ((var & 0x7FFFFF) != 0) {
+                return 1;
+            } else {
+                return 2;
+            }
+        case 0:
+            if ((var & 0x7FFFFF) != 0) {
+                return 5;
+            } else {
+                return 3;
+            }
+        default:
+            return 4;
+    }
+}
+
+inline f32 VecMagXZ(const cXyz& xyz) {
+    return cXyz(xyz.x, FLOAT_LABEL(lbl_80455080), xyz.z).getSquareMag();
+    // return cXyz(xyz.x, 0, xyz.z).getSquareMag(); // matches, but screws up data
+}
+
+inline f32 sqrtf(f32 mag) {
+    if (mag > FLOAT_LABEL(lbl_80455080)) {
+        f64 tmpd = __frsqrte(mag);
+        tmpd = DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag);
+        tmpd = DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag);
+        return DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag) * mag;
+    } else if (mag < DOUBLE_LABEL(lbl_80455098)) {
+        return /* __float_nan */ lbl_80450AE0[0];
+    } else if (fpclassify(mag) == 1) {
+        return /* __float_nan */ lbl_80450AE0[0];
+    } else {
+        return mag;
+    }
+}
+
 // atan2sY_XZ__4cXyzCFv
+#ifdef NON_MATCHING
+s16 cXyz::atan2sY_XZ(void) const {
+    f32 mag = VecMagXZ(*this); // would match if the float literal in VecMagXZ would be used
+    return cM_atan2s(-this->y, sqrtf(mag));
+}
+#else
 asm s16 cXyz::atan2sY_XZ(void) const {
     nofralloc
 #include "SComponent/c_xyz/asm/func_80267150.s"
 }
+#endif
 
 extern "C" {
 

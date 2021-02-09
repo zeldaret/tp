@@ -17,6 +17,9 @@
 #define LOGF(FMT, ...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)
 
+#define FLOAT_LABEL(x) (*(f32*)&x)
+#define DOUBLE_LABEL(x) (*(f64*)&x)
+
 struct JUTWarn {
     JUTWarn& operator<<(const char*) { return *this; }
     JUTWarn& operator<<(long) { return *this; }
