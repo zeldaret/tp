@@ -11,6 +11,10 @@
 #include "f/f_pc/f_pc_method.h"
 
 extern "C" {
+void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+}
+
+extern "C" {
 
 BOOL fpcCtRq_isCreatingByID(create_tag* pTag, s32* pId) {
     create_request* pReq = (create_request*)(pTag->mBase.mpTagData);

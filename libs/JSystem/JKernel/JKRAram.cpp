@@ -3,10 +3,28 @@
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
-#include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
-#include "global.h"
+extern "C" {
+void __dl__FPv(void);
+void __RAS_OSDisableInterrupts_begin(void);
+void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode(void);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void changeGroupIdIfNeed__7JKRAramFPUci(void);
+void checkCompressed__9JKRDecompFPUc(void);
+void checkOkAddress__7JKRAramFPUcUlP12JKRAramBlockUl(void);
+void DCStoreRangeNoSync(void);
+void decompSZS_subroutine__FPUcPUc(void);
+void firstSrcData__Fv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void memcpy(void*, const void*, int);
+void nextSrcData__FPUc(void);
+void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+void orderSync__9JKRDecompFPUcPUcUlUl(void);
+void startDMA__12JKRAramPieceFP12JKRAMCommand(void);
+}
 
 // Uncomment when static initialization is working
 // JKRAram* JKRAram::sAramObject = NULL;
@@ -32,6 +50,7 @@ extern u32 JKRAram__readCount;
 extern u32 JKRAram__maxDest;
 extern u32* JKRAram__tsPtr;
 extern u32 JKRAram__tsArea;
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRAram* JKRAram::create(u32 aram_audio_buffer_size, u32 aram_audio_graph_size,
                          long stream_priority, long decomp_priority, long piece_priority) {
@@ -107,17 +126,11 @@ asm void* JKRAram::run(void) {
 
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        const char* file = lbl_8039D078;
-        const char* format = lbl_8039D078 + 0xc;
-        const char* arg1 = lbl_8039D078 + 0xc + 0x3;
-        JUTException_NS_panic_f(file, 0xdb, format, arg1);
+        JUTException_NS_panic_f("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        const char* file = lbl_8039D078;
-        const char* format = lbl_8039D078 + 0xc;
-        const char* arg1 = lbl_8039D078 + 0xc + 0x3;
-        JUTException_NS_panic_f(file, 0xe3, format, arg1);
+        JUTException_NS_panic_f("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
     }
 }
 
@@ -290,3 +303,6 @@ asm JSUList<12JKRAMCommand>::~JSUList<12JKRAMCommand>(void) {
 #include "JSystem/JKernel/JKRAram/asm/func_802D2DF0.s"
 }
 #endif
+
+const char* lbl_8039D0A6 = "bad aramSync\n";
+const char* lbl_8039D0B4 = "\x00\x00\x00"; /* padding */

@@ -14,6 +14,15 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void dComIfGp_getReverb(void);
+void __cvt_fp2unsigned(void);
+void isSwitch__12dSv_memBit_cCFi(void);
+void Z2EnvSeMgr_NS_startRainSe(void);
+}
+
+extern "C" {
 // __ct__11Z2EnvSeBaseFP3Vec
 // Z2EnvSeBase::Z2EnvSeBase(Vec*)
 asm void Z2EnvSeBase(void) {
@@ -111,28 +120,26 @@ asm void Z2EnvSeAutoPan_NS_startEnvSeAutoPanLevel(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C60E0.s"
 }
-
 // __ct__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::Z2EnvSeMgr(void)
-asm void Z2EnvSeMgr(void) {
+asm void __ct__10Z2EnvSeMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C611C.s"
 }
-
 // __dt__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::~Z2EnvSeMgr(void)
 asm void Z2EnvSeMgr_NS_dtor(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C6540.s"
 }
-
+};
 // framework__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::framework(void)
-asm void Z2EnvSeMgr_NS_framework(void) {
+asm void Z2EnvSeMgr::framework(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C66B0.s"
 }
-
+extern "C" {
 // resetScene__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::resetScene(void)
 asm void Z2EnvSeMgr_NS_resetScene(void) {

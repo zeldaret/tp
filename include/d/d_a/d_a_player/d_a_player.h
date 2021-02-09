@@ -3,7 +3,6 @@
 
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_xyz.h"
-#include "d/d_a/d_a_alink/d_a_alink.h"
 #include "f/f_op/f_op_actor.h"
 #include "global.h"
 
@@ -187,6 +186,7 @@ public:
     int checkCopyRodTopUse(void);
     int checkCopyRodEquip(void) const;
     int checkCutJumpMode(void) const;
+    int getAtnActorID(void) const;  // might not be int
 
 private:
     u8 unk[0x4e6];

@@ -393,7 +393,7 @@ lbl_8028EAA0:
 /* 8028EACC 0028BA0C  48 00 00 18 */	b lbl_8028EAE4
 lbl_8028EAD0:
 /* 8028EAD0 0028BA10  C0 25 00 00 */	lfs f1, 0(r5)
-/* 8028EAD4 0028BA14  48 0D 35 D9 */	bl func_803620AC
+/* 8028EAD4 0028BA14  48 0D 35 D9 */	bl __cvt_fp2unsigned
 /* 8028EAD8 0028BA18  90 7F 01 C8 */	stw r3, 0x1c8(r31)
 /* 8028EADC 0028BA1C  7F E3 FB 78 */	mr r3, r31
 /* 8028EAE0 0028BA20  48 00 06 29 */	bl JStudio_JParticle_NS_TAdaptor_particle_NS_beginParticle_fadeIn_
@@ -424,7 +424,7 @@ lbl_8028EAE4:
 /* 8028EB40 0028BA80  48 00 00 18 */	b lbl_8028EB58
 lbl_8028EB44:
 /* 8028EB44 0028BA84  C0 25 00 00 */	lfs f1, 0(r5)
-/* 8028EB48 0028BA88  48 0D 35 65 */	bl func_803620AC
+/* 8028EB48 0028BA88  48 0D 35 65 */	bl __cvt_fp2unsigned
 /* 8028EB4C 0028BA8C  7C 64 1B 78 */	mr r4, r3
 /* 8028EB50 0028BA90  7F E3 FB 78 */	mr r3, r31
 /* 8028EB54 0028BA94  48 00 06 6D */	bl JStudio_JParticle_NS_TAdaptor_particle_NS_endParticle_fadeOut_
@@ -941,7 +941,7 @@ lbl_8028F278:
 /* 8028F2B0 0028C1F0  C8 01 00 18 */	lfd f0, 0x18(r1)
 /* 8028F2B4 0028C1F4  FC 00 10 28 */	fsub f0, f0, f2
 /* 8028F2B8 0028C1F8  FC 21 00 24 */	fdiv f1, f1, f0
-/* 8028F2BC 0028C1FC  48 0D 2D F1 */	bl func_803620AC
+/* 8028F2BC 0028C1FC  48 0D 2D F1 */	bl __cvt_fp2unsigned
 /* 8028F2C0 0028C200  90 7E 01 C0 */	stw r3, 0x1c0(r30)
 /* 8028F2C4 0028C204  80 1E 01 C0 */	lwz r0, 0x1c0(r30)
 /* 8028F2C8 0028C208  7C 1F 00 50 */	subf r0, r31, r0

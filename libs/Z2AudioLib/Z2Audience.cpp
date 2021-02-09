@@ -13,6 +13,13 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void __cvt_fp2unsigned(void);
+}
+
+extern "C" {
 // calc__15Z2AudibleAbsPosFRCQ29JGeometry8TVec3<f>
 // Z2AudibleAbsPos::calc(JGeometry::TVec3<f>)
 asm void Z2AudibleAbsPos_NS_calc(void) {

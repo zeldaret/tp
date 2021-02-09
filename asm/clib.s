@@ -417,8 +417,8 @@ lbl_803620A4:
 /* 803620A4 0035EFE4  7D 89 03 A6 */	mtctr r12
 /* 803620A8 0035EFE8  4E 80 04 20 */	bctr 
 
-.global func_803620AC
-func_803620AC:
+.global __cvt_fp2unsigned
+__cvt_fp2unsigned:
 /* 803620AC 0035EFEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803620B0 0035EFF0  3C 80 80 3A */	lis r4, lbl_803A2190@h
 /* 803620B4 0035EFF4  60 84 21 90 */	ori r4, r4, lbl_803A2190@l
@@ -4173,8 +4173,8 @@ func_803651A4:
 /* 803651D0 00362110  90 03 00 34 */	stw r0, 0x34(r3)
 /* 803651D4 00362114  4E 80 00 20 */	blr 
 
-.global func_803651D8
-func_803651D8:
+.global fputs
+fputs:
 /* 803651D8 00362118  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803651DC 0036211C  7C 08 02 A6 */	mflr r0
 /* 803651E0 00362120  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5778,8 +5778,8 @@ lbl_803666EC:
 /* 803666FC 0036363C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80366700 00363640  4E 80 00 20 */	blr 
 
-.global func_80366704
-func_80366704:
+.global vprintf
+vprintf:
 /* 80366704 00363644  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80366708 00363648  7C 08 02 A6 */	mflr r0
 /* 8036670C 0036364C  3C A0 80 3D */	lis r5, lbl_803D29B0@ha

@@ -40,6 +40,7 @@ public:
     static void changeGroupIdIfNeed(u8*, int);
     static void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     static void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+    static void dump(void);
 
     static JKRAram* getManager() { return sAramObject; }
     static JKRAramHeap* getAramHeap() { return getManager()->mAramHeap; }
@@ -66,6 +67,8 @@ private:
     static OSMessageQueue sMessageQueue;
     static JSUList<JKRAMCommand> sAramCommandList;
 };
+
+extern JKRAram* sAramObject__7JKRAram;  // JKRAram::sAramObject
 
 void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
 

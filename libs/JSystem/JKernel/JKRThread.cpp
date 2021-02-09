@@ -1,6 +1,32 @@
 #include "JSystem/JKernel/JKRThread/JKRThread.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
+
+extern "C" {
+void __ct__15JKRThreadSwitchFP7JKRHeap(void);
+void __dl__FPv(void);
+void __nw__FUlP7JKRHeapi(void);
+void becomeCurrentHeap__7JKRHeapFv(void);
+void callback__15JKRThreadSwitchFP8OSThreadP8OSThread(void);
+void __cvt_fp2unsigned(void);
+void func_803626BC(void);
+void func_803664DC(void);
+void isSubHeap__7JKRHeapCFP7JKRHeap(void);
+void clear__10JUTConsoleFv(void);
+void JUTConsole_NS_print_f(void);
+void JUTConsole_NS_print(void);
+void JUTWarningConsole(void);
+void searchThread__9JKRThreadFP8OSThread(void);
+}
+
+// lbl_80455FC0 JKRThread.o @934
+static const u8 lbl_80455FC0[4] = {0x42, 0xc8, 0x0, 0x0};
+// lbl_80455FC4 JKRThread.o @935
+static const u8 lbl_80455FC4[4] = {0x44, 0x7a, 0x0, 0x0};
+// lbl_80455FC8 JKRThread.o @937
+static const u8 lbl_80455FC8[8] = {0x43, 0x30, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
     mSwitchCount = 0;

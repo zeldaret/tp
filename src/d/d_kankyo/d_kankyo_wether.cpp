@@ -3,8 +3,81 @@
 #include "SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
+
+extern "C" {
+int func_8036608C(const void*, const void*, u32);
+int strcmp(const char*, const char*);
+void __dl__FPv(void);
+void __ml__4cXyzCFf(void);
+void __ne__4cXyzCFRC3Vec(void);
+void __nw__FUli(void);
+void __pl__4cXyzCFRC3Vec(void);
+void cLib_addCalc__FPfffff(void);
+void cloud_shadow_move(void);
+void cXyz_NS_ctor(void);
+void cXyz_NS_dtor(void);
+void dComIfG_getStageRes(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfGp_getReverb(void);
+void dKy_darkworld_check(void);
+void dKy_get_dayofweek(void);
+void dKy_undwater_filter_draw(void);
+void dKyr_drawHousi(void);
+void dKyr_drawLenzflare(void);
+void dKyr_drawRain(void);
+void dKyr_drawSibuki(void);
+void dKyr_drawSnow(void);
+void dKyr_drawStar(void);
+void dKyr_drawSun(void);
+void dKyr_evil_draw(void);
+void dKyr_evil_init(void);
+void dKyr_evil_move(void);
+void dKyr_get_vectle_calc(void);
+void dKyr_housi_move(void);
+void dKyr_lenzflare_move(void);
+void dKyr_mud_draw(void);
+void dKyr_mud_init(void);
+void dKyr_mud_move(void);
+void dKyr_odour_draw(void);
+void dKyr_odour_init(void);
+void dKyr_odour_move(void);
+void dKyr_rain_init(void);
+void dKyr_rain_move(void);
+void dKyr_shstar_init(void);
+void dKyr_shstar_move(void);
+void dKyr_snow_init(void);
+void dKyr_snow_move(void);
+void dKyr_star_init(void);
+void dKyr_star_move(void);
+void dKyr_sun_move(void);
+void dKyr_thunder_init(void);
+void dKyr_thunder_move(void);
+void dKyw_get_wind_pow(void);
+void dKyw_get_wind_vec(void);
+void dKyw_pntlight_set(void);
+void dKyw_pntwind_cut(void);
+void dKyw_pntwind_init(void);
+void dKyw_wind_init(void);
+void dPa_control_c_NS_set(void);
+void drawCloudShadow(void);
+void drawVrkumo(void);
+void dRes_control_c_NS_getRes(void);
+void dScnKy_env_light_c_NS_getDaytime(void);
+void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void J3DDrawBuffer_NS_entryImm(void);
+void normZP__4cXyzCFv(void);
+void squal_proc(void);
+void vrkumo_move(void);
+void Z2EnvSeMgr_NS_initStrongWindSe(void);
+void Z2EnvSeMgr_NS_setWindDirection(void);
+void Z2EnvSeMgr_NS_startRainSe(void);
+void Z2EnvSeMgr_NS_startStrongWindSe(void);
+}
 
 extern "C" {
 // dKyw_setDrawPacketList__FP9J3DPacketi
@@ -405,7 +478,7 @@ asm void dKyw_evil_Draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800574BC.s"
 }
-
+};
 // dKyw_wether_init__Fv
 // dKyw_wether_init(void)
 asm void dKyw_wether_init(void) {
@@ -426,7 +499,7 @@ asm void dKyw_wether_delete(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80057A04.s"
 }
-
+extern "C" {
 // __dt__19dKankyo_evil_PacketFv
 // dKankyo_evil_Packet::~dKankyo_evil_Packet(void)
 asm void func_80057C84(void) {
@@ -496,14 +569,14 @@ asm void func_80058128(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058128.s"
 }
-
+};
 // dKyw_wether_delete2__Fv
 // dKyw_wether_delete2(void)
 asm void dKyw_wether_delete2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800581AC.s"
 }
-
+extern "C" {
 // __dt__21dKankyo_vrkumo_PacketFv
 // dKankyo_vrkumo_Packet::~dKankyo_vrkumo_Packet(void)
 asm void func_8005820C(void) {
@@ -517,14 +590,14 @@ asm void wether_move_thunder(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80058290.s"
 }
-
+};
 // dKyw_wether_move__Fv
 // dKyw_wether_move(void)
 asm void dKyw_wether_move(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_800582F8.s"
 }
-
+extern "C" {
 // wether_move_sun__Fv
 // wether_move_sun(void)
 asm void wether_move_sun(void) {
@@ -594,14 +667,13 @@ asm void wether_move_evil(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80059F74.s"
 }
-
+};
 // dKyw_wether_move_draw__Fv
 // dKyw_wether_move_draw(void)
 asm void dKyw_wether_move_draw(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A0B8.s"
 }
-
 // dKyw_wether_move_draw2__Fv
 // dKyw_wether_move_draw2(void)
 asm void dKyw_wether_move_draw2(void) {
@@ -622,7 +694,7 @@ asm void dKyw_wether_draw2(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005A304.s"
 }
-
+extern "C" {
 // dKyw_wether_proc__Fv
 // dKyw_wether_proc(void)
 asm void dKyw_wether_proc(void) {

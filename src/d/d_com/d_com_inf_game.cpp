@@ -3,11 +3,286 @@
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_item/d_item/d_item.h"
+#include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+
+extern "C" {
+bool dComIfGp_checkMapShow(void);
+BOOL dComIfGp_isLightDropMapVisible(void);
+BOOL isTransformLV__21dSv_player_status_b_cCFi(int);
+char* strcpy(char*, const char*);
+const char* dComIfGs_getWarpStageName(void);
+int dComIfGs_getWarpRoomNo(void);
+int dKy_daynight_check(void);
+int dStage_roomControl_c_NS_getZoneNo(int);
+int getTimerMode__14dComIfG_play_cFv(void);
+int strcmp(const char*, const char*);
+s16 dComIfGs_getWarpPlayerAngleY(void);
+u16 dComIfGs_getMaxLifeGauge(void);
+u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
+u32 getTimerPtr__14dComIfG_play_cFv(void);
+u8 dComIfGs_checkGetItem(u8);
+u8 dComIfGs_getBottleMax(void);
+u8 dComIfGs_getMixItemIndex(int);
+u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
+void __ct__10dSv_zone_cFv(void);
+void __ct__11cBgS_ChkElmFv(void);
+void __ct__11dRes_info_cFv(void);
+void __ct__12dCcMassS_MngFv(void);
+void __ct__12dDlst_list_cFv(void);
+void __ct__12dSv_memory_cFv(void);
+void __ct__13dComIfG_inf_cFv(void);
+void __ct__13dSv_memory2_cFv(void);
+void __ct__13mDoExt_bckAnmFv(void);
+void __ct__13mDoExt_bpkAnmFv(void);
+void __ct__13mDoExt_brkAnmFv(void);
+void __ct__13mDoExt_btkAnmFv(void);
+void __ct__14dDlst_window_cFv(void);
+void __ct__14dEvt_control_cFv(void);
+void __ct__16dEvent_manager_cFv(void);
+void __ct__25dComIfG_camera_info_classFv(void);
+void __ct__4cCcSFv(void);
+void __dl__FPv(void);
+void __dt__8cM3dGCpsFv(void);
+void __nw__FUl(void);
+void addBottleNum__24dSv_player_item_record_cFUcs(void);
+void cBgS_ChkElm_NS_dtor(void);
+void cBgS_ChkElm_NS_Init(void);
+void cBgS_NS_GetTriPla(void);
+void ChkSetInfo__13cBgS_PolyInfoCFv(void);
+void cM3dGCyl_NS_dtor(void);
+void create__10JKRExpHeapFUlP7JKRHeapb(void);
+void cSAngle_NS_dtor(void);
+void ct__14dComIfG_play_cFv(void);
+void daAlink_c_NS_setLastSceneMode(void);
+void dAttDraw_c_NS_ctor(void);
+void dAttDraw_c_NS_dtor(void);
+void dAttention_c_NS_dtor(void);
+void dAttList_c_NS_ctor(void);
+void dAttList_c_NS_dtor(void);
+void dCcMassS_Obj_NS_dtor(void);
+void dCcS_NS_dtor(void);
+void dComIfG_camera_info_class_NS_dtor(void);
+void dComIfG_changeOpeningScene(void);
+void dComIfG_get_timelayer__FPi(int*);
+void dComIfG_getOldStageRes(void);
+void dComIfG_getRoomArcName(void);
+void dComIfG_getStageRes(void);
+void dComIfG_inf_c_NS_ct(void);
+void dComIfG_inf_c_NS_dtor(void);
+void dComIfG_play_c_NS_clearItemBombNumCount(void);
+void dComIfG_play_c_NS_createParticle(void);
+void dComIfG_play_c_NS_createSimpleModel(void);
+void dComIfG_play_c_NS_deleteSimpleModel(void);
+void dComIfG_play_c_NS_dtor(void);
+void dComIfG_play_c_NS_getItemBombNumCount(void);
+void dComIfG_play_c_NS_getLayerNo_common_common(void);
+void dComIfG_play_c_NS_getLayerNo_common(void);
+void dComIfG_play_c_NS_getLayerNo(int);
+void dComIfG_play_c_NS_itemInit(void);
+void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
+void dComIfG_play_c_NS_setStartStage(void);
+void dComIfG_play_c_NS_setTimerPtr(void);
+void dComIfG_resDelete(void);
+void dComIfG_resetToOpening(void);
+void dComIfG_resLoad_X1_(void);
+void dComIfG_resLoad(void);
+void dComIfG_TimerDeleteRequest(void);
+void dComIfGd_setShadow(void);
+void dComIfGd_setSimpleShadow(void);
+void dComIfGp_addSelectItemNum(void);
+void dComIfGp_calcNowRegion(void);
+void dComIfGp_checkEmptySubHeap2D(void);
+void dComIfGp_createSubExpHeap2D(void);
+void dComIfGp_destroySubExpHeap2D(void);
+void dComIfGp_getNowLevel(void);
+void dComIfGp_getReverb(void);
+void dComIfGp_getRoomArrow(void);
+void dComIfGp_getRoomCamera(void);
+void dComIfGp_getSelectItem(void);
+void dComIfGp_getSelectItemMaxNum(void);
+void dComIfGp_getSelectItemNum(void);
+void dComIfGp_getSubHeap2D(void);
+void dComIfGp_mapHide(void);
+void dComIfGp_mapShow(void);
+void dComIfGp_offHeapLockFlag(void);
+void dComIfGp_ret_wp_set(void);
+void dComIfGp_searchUseSubHeap2D(void);
+void dComIfGp_SelectWarpPt_get(void);
+void dComIfGp_SelectWarpPt_set(void);
+void dComIfGp_setHeapLockFlag(void);
+void dComIfGp_setNextStage_X1_(void);
+void dComIfGp_setNextStage(void);
+void dComIfGp_setSelectItem(int);
+void dComIfGp_setSelectItemNum(void);
+void dComIfGp_TargetWarpPt_get(void);
+void dComIfGp_TargetWarpPt_set(void);
+void dComIfGp_TransportWarp_check(void);
+void dComIfGp_world_dark_get(void);
+void dComIfGp_world_dark_set(u8);
+void dComIfGs_BossLife_public_Set(void);
+void dComIfGs_checkGetInsectNum(void);
+void dComIfGs_gameStart(void);
+void dComIfGs_getSelectMixItemNoArrowIndex(void);
+void dComIfGs_getWarpMarkFlag(void);
+void dComIfGs_getWarpPlayerPos(void);
+void dComIfGs_isDungeonItemWarp(void);
+void dComIfGs_isOneZoneItem(void);
+void dComIfGs_isOneZoneSwitch(void);
+void dComIfGs_isStageSwitch(void);
+void dComIfGs_isStageTbox(void);
+void dComIfGs_isVisitedRoom(void);
+void dComIfGs_isZoneItem(void);
+void dComIfGs_isZoneSwitch(void);
+void dComIfGs_offOneZoneSwitch(void);
+void dComIfGs_offStageSwitch(void);
+void dComIfGs_offZoneSwitch(void);
+void dComIfGs_onOneZoneSwitch(void);
+void dComIfGs_onStageSwitch(void);
+void dComIfGs_onVisitedRoom(void);
+void dComIfGs_onZoneSwitch(void);
+void dComIfGs_PolyDamageOff_Check(void);
+void dComIfGs_PolyDamageOff_Set(void);
+void dComIfGs_sense_type_change_Get(void);
+void dComIfGs_setKeyNum(int, u8);
+void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(void);
+void dComIfGs_setMixItemIndex(int, u8);
+void dComIfGs_setSelectEquipClothes(u8);
+void dComIfGs_setSelectEquipShield(u8);
+void dComIfGs_setSelectEquipSword(u8);
+void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGs_setWarpItemData_X1_(void);
+void dComIfGs_setWarpMarkFlag(void);
+void dComIfGs_staffroll_next_go_check(void);
+void dComIfGs_Wolf_Change_Check(void);
+void dComIfGs_wolfeye_effect_check(void);
+void dComLbG_PhaseHandler(void);
+void dDlst_list_c_NS_dtor(void);
+void dDlst_shadowControl_c_NS_setReal(void);
+void dDlst_shadowControl_c_NS_setSimple(void);
+void dDlst_window_c_NS_dtor(void);
+void dEvDtBase_c_NS_dtor(void);
+void dEvt_order_c_NS_dtor(void);
+void dKy_darkworld_stage_check(void);
+void dMapInfo_n_NS_getMapPlayerPos(void);
+void dMenuFmap_getStartStageName(void);
+void dMeter2Info_c_NS_init(void);
+void dMeter2Info_c_NS_setSaveStageName(void);
+void dPa_control_c(void);
+void dRes_control_c_NS_deleteRes(void);
+void dRes_control_c_NS_dtor(void);
+void dRes_control_c_NS_getRes_X1_(void);
+void dRes_control_c_NS_setRes(void);
+void dRes_control_c_NS_syncRes(void);
+void dRes_info_c_NS_dtor(void);
+void dSmplMdl_draw_c_NS_addModel(void);
+void dSmplMdl_draw_c_NS_draw(void);
+void dSmplMdl_draw_c_NS_entry(void);
+void dSmplMdl_draw_c_NS_removeModel(void);
+void dSmplMdl_draw_c(void);
+void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void dStage_roomRead_dt_c_GetReverbStage(void);
+void dTimer_c_NS_deleteCheck(void);
+void dTimer_c_NS_deleteRequest(void);
+void dTimer_c_NS_end(void);
+void dTimer_c_NS_restart(void);
+void dTimer_c_NS_start_X1_(void);
+void dTimer_c_NS_start(void);
+void dTimer_c_NS_stop(void);
+void fopScnM_ChangeReq(void);
+void fopScnM_ReRequest(void);
+void func_8002CAF0(void);
+void func_8002CB30(void);
+void func_8002CB68(void);
+void func_8002CDB8(void);
+void func_8002CE38(void);
+void func_8002CEB4(void);
+void func_8002CEFC(void);
+void func_8002CF5C(void);
+void func_8002CFB8(void);
+void func_8002D1AC(void);
+void func_8002D7D0(void);
+void func_8002D910(void);
+void func_8002D924(void);
+void func_8002E9D4(void);
+void func_8002F314(void);
+void func_8002F328(void);
+void func_8002F3B4(void);
+void func_8002F52C(void);
+void func_8002F5C0(void);
+void func_8002F638(void);
+void func_8002F6B0(void);
+void func_8002F72C(void);
+void func_8002FA18(void);
+void func_8002FA30(void);
+void func_8002FA84(void);
+void func_8002FC3C(void);
+void func_8002FD18(void);
+void func_80030A74(void);
+void func_80030BDC(void);
+void func_80030C50(void);
+void func_80030CCC(void);
+void func_80030DE0(void);
+void func_80030E84(void);
+void func_80030ECC(void);
+void func_80361C24(void);
+void func_80361D60(void);
+void __cvt_fp2unsigned(void);
+void func_803664DC(void);
+void getBottleNum__24dSv_player_item_record_cCFUc(void);
+void getItem__17dSv_player_item_cCFib(void);
+void getSave2__10dSv_save_cFi(void);
+void getTotalFreeSize__7JKRHeapCFv(void);
+void getVibration__19dSv_player_config_cFv(void);
+void init__12dSv_memory_cFv(void);
+void init__13dSv_memory2_cFv(void);
+void init__14dComIfG_play_cFv(void);
+void init__20dStage_roomControl_cFvZone(void);
+void isDarkClearLV__21dSv_player_status_b_cCFi(void);
+void isDungeonItem__12dSv_memBit_cCFi(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void isFirstBit__21dSv_player_get_item_cCFUc(void);
+void isItem__13dSv_zoneBit_cCFi(void);
+void isOneItem__13dSv_zoneBit_cCFi(void);
+void isOneSwitch__13dSv_zoneBit_cCFi(void);
+void isRegionBit__33dSv_player_field_last_stay_info_cCFi(void);
+void isSwitch__10dSv_info_cCFii(void);
+void isSwitch__12dSv_memBit_cCFi(void);
+void isSwitch__13dSv_zoneBit_cCFi(void);
+void isTbox__12dSv_memBit_cCFi(void);
+void isVisitedRoom__13dSv_memory2_cFi(void);
+void J3DFrameCtrl_NS_init(void);
+void mDoExt_bckAnm_NS_dtor(void);
+void mDoExt_bpkAnm_NS_dtor(void);
+void mDoExt_brkAnm_NS_dtor(void);
+void mDoExt_btkAnm_NS_dtor(void);
+void mDoExt_destroyExpHeap(void);
+void offOneSwitch__13dSv_zoneBit_cFi(void);
+void offSwitch__10dSv_info_cFii(void);
+void offSwitch__12dSv_memBit_cFi(void);
+void offSwitch__13dSv_zoneBit_cFi(void);
+void offVisitedRoom__13dSv_memory2_cFi(void);
+void onDungeonItem__12dSv_memBit_cFi(int);
+void onOneSwitch__13dSv_zoneBit_cFi(void);
+void onRegionBit__33dSv_player_field_last_stay_info_cFi(void);
+void onSwitch__10dSv_info_cFii(int, int);
+void onSwitch__12dSv_memBit_cFi(void);
+void onSwitch__13dSv_zoneBit_cFi(void);
+void onVisitedRoom__13dSv_memory2_cFi(void);
+void set__18dStage_nextStage_cFPCcScsScScUc(void);
+void set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc(void);
+void setBombNum__24dSv_player_item_record_cFUcUc(void);
+void setBottleNum__24dSv_player_item_record_cFUcUc(u8, u8);
+void setCollect__20dSv_player_collect_cFiUc(int, u8);
+void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc(void);
+void* memset(void* dest, int ch, u32 count);
+void ct__13dComIfG_inf_cFv(void);
+}
 
 // memset first arg is wrong
 #ifdef NONMATCHING
@@ -200,7 +475,7 @@ u32 dComIfG_play_c::getTimerPtr(void) {
 
 // ct__13dComIfG_inf_cFv
 // dComIfG_inf_c::ct(void)
-asm void dComIfG_inf_c_NS_ct(void) {
+asm void dComIfG_inf_c::ct(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CBE4.s"
 }
@@ -527,8 +802,10 @@ void dComIfGp_mapHide(void) {
     dComIfGs_onEventBit(0x1D01);
 }
 
-bool dComIfGp_checkMapShow(void) {
-    return !dComIfGs_isEventBit(0x1D01);
+asm bool dComIfGp_checkMapShow(void) {
+    nofralloc
+#include "d/d_com/d_com_inf_game/asm/func_8002E0A8.s"
+    // return !dComIfGs_isEventBit(0x1D01);
 }
 
 // dComIfGp_setHeapLockFlag__FUc

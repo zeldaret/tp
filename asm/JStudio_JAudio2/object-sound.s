@@ -398,7 +398,7 @@ lbl_8028DC78:
 /* 8028DCA4 0028ABE4  48 00 00 18 */	b lbl_8028DCBC
 lbl_8028DCA8:
 /* 8028DCA8 0028ABE8  C0 25 00 00 */	lfs f1, 0(r5)
-/* 8028DCAC 0028ABEC  48 0D 44 01 */	bl func_803620AC
+/* 8028DCAC 0028ABEC  48 0D 44 01 */	bl __cvt_fp2unsigned
 /* 8028DCB0 0028ABF0  90 7F 01 28 */	stw r3, 0x128(r31)
 /* 8028DCB4 0028ABF4  7F E3 FB 78 */	mr r3, r31
 /* 8028DCB8 0028ABF8  48 00 02 ED */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_
@@ -432,7 +432,7 @@ lbl_8028DCF0:
 /* 8028DD1C 0028AC5C  48 00 00 18 */	b lbl_8028DD34
 lbl_8028DD20:
 /* 8028DD20 0028AC60  C0 25 00 00 */	lfs f1, 0(r5)
-/* 8028DD24 0028AC64  48 0D 43 89 */	bl func_803620AC
+/* 8028DD24 0028AC64  48 0D 43 89 */	bl __cvt_fp2unsigned
 /* 8028DD28 0028AC68  7C 64 1B 78 */	mr r4, r3
 /* 8028DD2C 0028AC6C  7F E3 FB 78 */	mr r3, r31
 /* 8028DD30 0028AC70  48 00 03 25 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_endSound_fadeOut_

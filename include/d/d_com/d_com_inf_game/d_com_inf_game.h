@@ -144,8 +144,9 @@ public:
     void setMaxOxygen(long max) { give_item.max_oxygen = max; }
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
+    inline char* getStartStageName() { return mStartStage.getName(); }
 
-private:
+private:  // NEEDS TO BE FIXED
     /* 0x00000 */ dBgS dbgs;
     /* 0x0143C */ u8 field_0x143c[0x2999];
     /* 0x03EC8 */ dStage_startStage_c mStartStage;
@@ -216,6 +217,7 @@ private:
 class dComIfG_inf_c {
 public:
     dComIfG_inf_c(void);
+    void ct(void);
 
     // temp until we map the item short function names
     item_func& getPlayGiveItem() { return play.getGiveItem(); }
@@ -234,6 +236,7 @@ public:
     dSv_memory_c& getMemory() { return info.getMemory(); }
     dSv_event_c& getEvent() { return info.getEvent(); }
     dSv_info_c& getInfo() { return info; }
+    inline dDlst_list_c& getDrawlist() { return draw_list_list; }
 
 private:
     /* 0x00000 */ dSv_info_c info;
@@ -440,9 +443,9 @@ inline u16 dComIfGs_getMaxLife(void) {
 inline void dComIfGs_offEventBit(u16 event) {
     g_dComIfG_gameInfo.getSaveFile().getEventFlags().offEventBit(event);
 }
-inline int dComIfGs_isEventBit(u16 event) {
-    return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
-}
+// inline int dComIfGs_isEventBit(u16 event) {
+//     return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
+// }
 inline const char* dComIfGs_getLastWarpMarkStageName(void) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerLastMarkInfo().getName();
 }
@@ -478,6 +481,12 @@ inline void dComIfGp_setItem(u8 slot, u8 i_no) {
 }
 inline u32 dComIfGp_getNowVibration(void) {
     return g_dComIfG_gameInfo.getPlay().getNowVibration();
+}
+inline char* dComIfGp_getStartStageName(void) {
+    return g_dComIfG_gameInfo.getPlay().getStartStageName();
+}
+inline void dComIfGd_reset(void) {
+    g_dComIfG_gameInfo.getDrawlist().reset();
 }
 
 extern "C" {

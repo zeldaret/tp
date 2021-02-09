@@ -5,6 +5,40 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+extern "C" {
+bool dComIfGp_checkMapShow(void);
+int strcmp(const char*, const char*);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void cLib_addCalcAngleS__FPsssss(void);
+void dComIfGp_mapHide(void);
+void dComIfGp_mapShow(void);
+void dDlst_list_c_NS_set(void);
+void dMap_c_NS__draw(void);
+void dMap_c_NS__move(void);
+void dMap_c(void);
+void dMapInfo_n_NS_getMapPlayerPos(void);
+void dMeter2Info_set2DVibration(void);
+void dMeterMap_c_NS__create(void);
+void dMeterMap_c_NS__delete(void);
+void dMeterMap_c_NS_checkMoveStatus(void);
+void dMeterMap_c_NS_ctrlShowMap(void);
+void dMeterMap_c_NS_getMapDispSizeTypeNo(void);
+void dMeterMap_c_NS_isDmapScreen(void);
+void dMeterMap_c_NS_isFmapScreen(void);
+void dMeterMap_c_NS_isShow(void);
+void dMeterMap_c_NS_keyCheck(void);
+void dMpath_c_NS_isExistMapPathData(void);
+void dMsgObject_c_NS_getStatus(void);
+void dMw_LEFT_TRIGGER(void);
+void dMw_RIGHT_TRIGGER(void);
+void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void fopOvlpM_IsDoingReq(void);
+void isDungeonItem__12dSv_memBit_cCFi(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void J2DPicture_X3_(void);
+void onEventBit__11dSv_event_cFUs(void);
+}
 
 extern "C" {
 // isEnableDispMap__11dMeterMap_cFv

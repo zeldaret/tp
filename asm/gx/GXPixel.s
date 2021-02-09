@@ -95,7 +95,7 @@ lbl_8035F9BC:
 /* 8035F9E8 0035C928  EC 00 10 28 */	fsubs f0, f0, f2
 /* 8035F9EC 0035C92C  EC 03 00 24 */	fdivs f0, f3, f0
 /* 8035F9F0 0035C930  D0 01 00 24 */	stfs f0, 0x24(r1)
-/* 8035F9F4 0035C934  48 00 26 B9 */	bl func_803620AC
+/* 8035F9F4 0035C934  48 00 26 B9 */	bl __cvt_fp2unsigned
 /* 8035F9F8 0035C938  50 7E 02 3E */	rlwimi r30, r3, 0, 8, 0x1f
 /* 8035F9FC 0035C93C  D3 E1 00 20 */	stfs f31, 0x20(r1)
 /* 8035FA00 0035C940  52 FD 06 FE */	rlwimi r29, r23, 0, 0x1b, 0x1f

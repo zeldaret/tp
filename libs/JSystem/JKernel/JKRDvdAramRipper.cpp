@@ -1,6 +1,46 @@
 #include "JSystem/JKernel/JKRDvdAramRipper/JKRDvdAramRipper.h"
+#include "JSystem/JKernel/JKRAram/JKRAram.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+
+extern "C" {
+void __ct__10JKRDvdFileFv(void);
+void __ct__10JSUPtrLinkFPv(void);
+void __ct__12JKRADCommandFv(void);
+void __dl__FPv(void);
+void __dt__10JKRDvdFileFv(void);
+void __dt__10JSUPtrLinkFv(void);
+void __dt__12JKRADCommandFv(void);
+void __nw__FUlP7JKRHeapi(void);
+void __RAS_OSDisableInterrupts_begin(void);
+void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode(void);
+void alloc__7JKRHeapFUli(void);
+void append__10JSUPtrListFP10JSUPtrLink(void);
+void callCommand_Async__16JKRDvdAramRipperFP12JKRADCommand(void);
+void checkCompressed__9JKRDecompFPUc(void);
+void DCInvalidateRange(void*, u32);
+void decompSZS_subroutine__FPUcUl(void);
+void dmaBufferFlush__FUl(void);
+void firstSrcData__Fv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl(void);
+void JSUFileInputStream_ct(void);
+void JSUInputStream_NS_dtor(void);
+void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
+void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
+void memcpy(void*, const void*, int);
+void nextSrcData__FPUc(void);
+void open__10JKRDvdFileFl(void);
+void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+void sync__13JKRAramStreamFP20JKRAramStreamCommandi(void);
+void syncAram__16JKRDvdAramRipperFP12JKRADCommandi(void);
+void VIWaitForRetrace(void);
+void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl(void);
+}
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 static void decompSZS_subroutine(u8*, u32);
 static u8* firstSrcData(void);

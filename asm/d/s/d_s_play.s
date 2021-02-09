@@ -396,7 +396,7 @@ lbl_80259868:
 /* 8025999C 002568DC  4B E4 2E C9 */	bl dMdl_mng_c_NS_remove
 /* 802599A0 002568E0  3C 60 80 3E */	lis r3, lbl_803DD428@ha
 /* 802599A4 002568E4  38 63 D4 28 */	addi r3, r3, lbl_803DD428@l
-/* 802599A8 002568E8  4B DA FC 51 */	bl mDoGph_gInf_c_NS_bloom_c_NS_remove
+/* 802599A8 002568E8  4B DA FC 51 */	bl remove__Q213mDoGph_gInf_c7bloom_cFv
 /* 802599AC 002568EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802599B0 002568F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802599B4 002568F4  3B C0 00 00 */	li r30, 0
@@ -465,7 +465,7 @@ lbl_80259A98:
 /* 80259A98 002569D8  7F E3 FB 78 */	mr r3, r31
 /* 80259A9C 002569DC  4B DD 17 91 */	bl init__14dComIfG_play_cFv
 /* 80259AA0 002569E0  38 60 00 00 */	li r3, 0
-/* 80259AA4 002569E4  48 08 B1 99 */	bl JUTAssertion_NS_setMessageCount
+/* 80259AA4 002569E4  48 08 B1 99 */	bl setMessageCount__12JUTAssertionFi
 /* 80259AA8 002569E8  38 60 00 01 */	li r3, 1
 /* 80259AAC 002569EC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80259AB0 002569F0  48 10 87 6D */	bl _restgpr_26

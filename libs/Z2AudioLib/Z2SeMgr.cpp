@@ -11,6 +11,12 @@
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
+extern "C" {
+void __dl__FPv(void);
+void func_80361D60(void);
+void __cvt_fp2unsigned(void);
+}
+
 asm Z2SeMgr::Z2SeMgr(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AB64C.s"

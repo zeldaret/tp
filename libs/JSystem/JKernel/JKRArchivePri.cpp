@@ -1,6 +1,11 @@
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
 #include "global.h"
 
+extern "C" {
+int strcmp(const char*, const char*);
+int tolower(int);
+}
+
 JKRArchive::JKRArchive(long entryNumber, JKRArchive::EMountMode mountMode) {
     mIsMounted = false;
     mMountMode = mountMode;

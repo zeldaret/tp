@@ -6,6 +6,11 @@
 #include "global.h"
 
 extern "C" {
+void __dl__FPv(void);
+void mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection(void);
+}
+
+extern "C" {
 // __ct__16Z2AudioArcLoaderFP10JAUSection
 // Z2AudioArcLoader::Z2AudioArcLoader(JAUSection*)
 asm Z2AudioArcLoader::Z2AudioArcLoader(JAUSection*) {

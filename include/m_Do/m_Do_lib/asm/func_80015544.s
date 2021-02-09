@@ -1,0 +1,21 @@
+/* 80015544 00012484  94 21 FF F0 */ stwu r1, -0x10(r1)
+/* 80015548 00012488  7C 08 02 A6 */ mflr r0
+/* 8001554C 0001248C  90 01 00 14 */ stw r0, 0x14(r1)
+/* 80015550 00012490  3C 60 80 3A */ lis r3, lbl_803A3498@ha
+/* 80015554 00012494  38 03 34 98 */ addi r0, r3, lbl_803A3498@l
+/* 80015558 00012498  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
+/* 8001555C 0001249C  94 03 D8 E4 */ stwu r0, lbl_803DD8E4@l(r3)
+/* 80015560 000124A0  48 25 E2 19 */ bl J3DUClipper_NS_init
+/* 80015564 000124A4  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
+/* 80015568 000124A8  38 63 D8 E4 */ addi r3, r3, lbl_803DD8E4@l
+/*.global J3DUClipper_NS_dtor*/
+/* 8001556C 000124AC  3C 80 80 01 */ lis r4, J3DUClipper_NS_dtor@ha
+/*.global J3DUClipper_NS_dtor*/
+/* 80015570 000124B0  38 84 55 90 */ addi r4, r4, J3DUClipper_NS_dtor@l
+/* 80015574 000124B4  3C A0 80 3E */ lis r5, lbl_803DD8D8@ha
+/* 80015578 000124B8  38 A5 D8 D8 */ addi r5, r5, lbl_803DD8D8@l
+/* 8001557C 000124BC  48 34 C6 A9 */ bl func_80361C24
+/* 80015580 000124C0  80 01 00 14 */ lwz r0, 0x14(r1)
+/* 80015584 000124C4  7C 08 03 A6 */ mtlr r0
+/* 80015588 000124C8  38 21 00 10 */ addi r1, r1, 0x10
+/* 8001558C 000124CC  4E 80 00 20 */ blr

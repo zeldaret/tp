@@ -4,6 +4,18 @@
 #include "global.h"
 
 extern "C" {
+void __ct__9J2DScreenFv(void);
+void __dl__FPv(void);
+void __nw__FUl(void);
+void CPaneMgr_X1_(void);
+void CPaneMgrAlpha_NS_setAlphaRate(void);
+void dKantera_icon_c_NS_initiate(void);
+void dPaneClass_showNullPane(void);
+void J2DScreen_NS_draw(void);
+void J2DScreen_NS_setPriority(void);
+}
+
+extern "C" {
 // __ct__15dKantera_icon_cFv
 // dKantera_icon_c::dKantera_icon_c(void)
 asm void dKantera_icon_c(void) {

@@ -1,5 +1,19 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
+
+extern "C" {
+void __dl__FPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void __dt__10JSUPtrListFv(void);
+void __dt__11JKRDisposerFv(void);
+void getFreeSize__7JKRHeapCFv(void);
+void getMaxFreeBlock__7JKRHeapCFv(void);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+}
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {
@@ -336,10 +350,7 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 }
 
 void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment) {
-    const char* filename = lbl_8039CAD8;     // "JKRHeap.cpp"
-    const char* format = lbl_8039CAD8 + 12;  // "%s"
-    const char* arg1 = lbl_8039CAD8 + 15;    // "abort\n"
-    JUTException_NS_panic_f(filename, 0x33f, format, arg1);
+    JUTException_NS_panic_f("JKRHeap.cpp", 0x33f, "%s", "abort\n");
 }
 
 bool JKRHeap::setErrorFlag(bool errorFlag) {
@@ -437,3 +448,5 @@ u8 JKRHeap::do_changeGroupID(u8 newGroupID) {
 u8 JKRHeap::do_getCurrentGroupId() const {
     return 0;
 }
+
+const char* lbl_8039CAEE = "\x00"; /* padding */

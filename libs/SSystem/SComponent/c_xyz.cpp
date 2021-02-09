@@ -2,6 +2,14 @@
 
 #include "SComponent/c_xyz.h"
 
+extern "C" {
+void __ml__4cXyzCFf(void);
+void cM_atan2s__Fff(void);
+void cXyz_NS_dtor(void);
+void normZP__4cXyzCFv(void);
+void func_80361C24(void);
+}
+
 const static f32 lbl_80455070 = 1.0f;
 const static f32 lbl_80455078 = 1.25f;
 const static f32 lbl_8045507C = 1000000.0f;

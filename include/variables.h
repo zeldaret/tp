@@ -6,44 +6,13 @@ extern u8 i_item_lst[24];
 extern u8 lbl_80430188[16];
 extern u8 lbl_80379235[16];
 extern char lbl_80379234[0x64];
-extern char lbl_803739A0[0x310];
 extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[20];
 extern u8 lbl_80450B19;
-// extern u8 lbl_80450588;
-// extern u8 lbl_804511B8;
-extern u8 lbl_80450B20;
-extern u8 lbl_80451A00;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B28;
-extern u8 lbl_80451A04;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B28;
-extern u8 lbl_80450B30;
-extern u8 lbl_80451A08;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B30;
-extern u8 lbl_80451A08;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80451A0C;
-extern u8 lbl_80451A10;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80451A18;
-extern u8 lbl_80450B2C;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B1C;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B24;
 struct g_HIO_struct;
 extern g_HIO_struct g_HIO;
-extern u8 lbl_80450C2C;
-extern u8 lbl_80450C28;
-extern u8 lbl_80450C34;
-extern u8 lbl_80450B24;
-extern u8 lbl_80450B1C;
-extern s8 lbl_80450580[4];
+extern s8 lbl_80450580;
 // extern u8 lbl_80450B1A;
 struct JUTGamePad;
 extern JUTGamePad* m_gamePad[4];
@@ -54,12 +23,12 @@ extern u8 lbl_80450B34;
 extern u8 lbl_80450B00;
 extern u8 lbl_80450C80;
 extern u8 LOAD_COPYDATE__FPv;
-extern u8 lbl_803D3420;
-extern u8 lbl_80450B0C;
+extern u32 lbl_803D3420[8192];
+extern u32 lbl_80450B0C;
 // struct ResetData;
-extern u8 lbl_80450B08;
-extern u8 lbl_803DB420;
-extern u8 main01__Fv;
+extern u32 lbl_80450B08;
+extern OSThread lbl_803DB420;
+// extern u8 main01__Fv;
 extern u8 lbl_803BB598;
 extern u8 lbl_803A6F88;
 extern u8 lbl_803BB588;
@@ -81,7 +50,6 @@ extern u8 J3DLightObj;
 extern void* lbl_803CBF70;  // JKRHeap::__vt
 
 class JKRHeap;
-extern JKRHeap* sSystemHeap__7JKRHeap;   // JKRHeap::sSystemHeap
 extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
 extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
 
@@ -100,9 +68,6 @@ extern u32 lbl_80000028;
 
 #define OS_GLOBAL(T, ADDR) *((T*)((void*)ADDR))
 #define OS_GLOBAL_ADDR(T, ADDR) ((T*)((void*)ADDR))
-
-// func_802CEB40
-extern char lbl_8039CAD8[12];  // "JKRHeap.cpp"
 
 // func_802D147C
 extern void* lbl_803CC0F0;  // JKRDisposer::__vt
@@ -191,10 +156,6 @@ extern void* lbl_804513C0;             // JKRThreadSwitch::mUserPreCallback
 extern void* lbl_804513C4;             //  JKRThreadSwitch::mUserPostCallback
 
 extern char lbl_8039CFA8[1];  // 8039cfdc-0x34 "JKRThreadSwitch: currentHeap destroyed.\n"
-
-extern float lbl_80455FC0;   // JKernel::@934 = 100.0
-extern float lbl_80455FC4;   // JKernel::@935 = 1000.0
-extern double lbl_80455FC8;  // JKernel::@937 = 4.503599627370496E15
 
 class JKRDvdFile;
 extern JSUList<JKRDvdFile> sDvdList__10JKRDvdFile;  // JKRDvdFile::sDvdList
@@ -307,7 +268,6 @@ extern u8 lbl_80434318;  // JKernel::@492 (global destructor chain)
 class JKRAramStream;
 extern JKRAramStream* sAramStreamObject__13JKRAramStream;  // JKRAramStream::sAramStreamObject
 extern u8 transHeap__13JKRAramStream;                      // JKRAramStream::transHeap
-extern char lbl_8039D120[16];                              // "JKRAramStream.cpp"
 extern u8 transBuffer__13JKRAramStream;                    // JKRAramStream::transBuffer
 extern u8 transSize__13JKRAramStream;                      // JKRAramStream::transSize
 extern u8 lbl_803CC1B8;                                    // JKRAramStream::__vt
@@ -341,10 +301,7 @@ extern u8 lbl_804343B4;  // JKRDvdAramRipper::sDvdAramAsyncList
 extern u8 lbl_804343C0;  // JKernel::decompMutex
 extern u8 lbl_803CC518;  // JSUFileInputStream::__vt
 
-class JKRAram;
 extern u8 lbl_803CC158;                         // JKRAram::__vt
-extern char lbl_8039D078[16];                   // "JKRAram.cpp"
-extern JKRAram* sAramObject__7JKRAram;          // JKRAram::sAramObject
 extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
 extern bool lbl_804513FC;                       // DAT_804513fc (init global mutex)
 extern OSMutex lbl_804342E8;                    // JKernel::decompMutex (static?)
@@ -733,7 +690,6 @@ extern u8 lbl_80450FCC;
 extern u8 lbl_80452DC8;
 extern u8 lbl_80452EA0;
 extern u8 lbl_80453388;
-extern u8 lbl_8042CA54;
 extern u8 lbl_80452D28;
 extern u8 lbl_80452FA4;
 extern u8 lbl_803F1D80;
@@ -1568,7 +1524,6 @@ extern u8 lbl_80424944;
 extern u8 lbl_80452160;
 extern u8 lbl_804521A0;
 extern u8 lbl_80452100;
-extern u8 lbl_8042DD70;
 extern u8 lbl_804521A4;
 extern u8 lbl_80452134;
 extern u8 lbl_8045210C;
@@ -2225,7 +2180,6 @@ extern u8 lbl_804537C4;
 extern u8 lbl_80453914;
 extern u8 lbl_803AB6B8;
 extern u8 lbl_80451038;
-extern u8 lbl_803A2FD8;
 extern u8 lbl_8045385C;
 extern u8 lbl_804537B4;
 extern u8 lbl_804536A8;
@@ -2327,7 +2281,6 @@ extern u8 lbl_804538B4;
 extern u8 lbl_804536BC;
 extern u8 lbl_80453708;
 extern u8 lbl_804537E0;
-extern u8 lbl_80450BE4;
 extern u8 lbl_8045373C;
 extern u8 lbl_804537FC;
 extern u8 lbl_8045371C;
@@ -2520,7 +2473,6 @@ extern u8 lbl_803C9D70;
 // additional symbols needed for Z2AudioMgr.cpp
 // autogenerated by split.py v0.3 at 2021-01-04 23:11:48.308778
 extern u8 lbl_803C9CD0;
-extern u8 lbl_803D29B0;
 extern u8 lbl_80455F60;
 extern u8 lbl_803C9A78;
 extern u8 lbl_80450B50;

@@ -31,7 +31,7 @@ lbl_802E73AC:
 /* 802E73AC 002E42EC  38 1D 00 6C */	addi r0, r29, 0x6c
 /* 802E73B0 002E42F0  90 1F 00 28 */	stw r0, 0x28(r31)
 /* 802E73B4 002E42F4  7F E3 FB 78 */	mr r3, r31
-/* 802E73B8 002E42F8  48 00 02 35 */	bl JUTConsole_NS_clear
+/* 802E73B8 002E42F8  48 00 02 35 */	bl clear__10JUTConsoleFv
 /* 802E73BC 002E42FC  7F C3 F3 78 */	mr r3, r30
 /* 802E73C0 002E4300  7F E4 FB 78 */	mr r4, r31
 /* 802E73C4 002E4304  48 00 0E 7D */	bl JUTConsoleManager_NS_appendConsole
@@ -69,7 +69,7 @@ lbl_802E7434:
 /* 802E7434 002E4374  38 1D 00 6C */	addi r0, r29, 0x6c
 /* 802E7438 002E4378  90 1F 00 28 */	stw r0, 0x28(r31)
 /* 802E743C 002E437C  7F E3 FB 78 */	mr r3, r31
-/* 802E7440 002E4380  48 00 01 AD */	bl JUTConsole_NS_clear
+/* 802E7440 002E4380  48 00 01 AD */	bl clear__10JUTConsoleFv
 /* 802E7444 002E4384  7F C3 F3 78 */	mr r3, r30
 /* 802E7448 002E4388  7F E4 FB 78 */	mr r4, r31
 /* 802E744C 002E438C  48 00 0D F5 */	bl JUTConsoleManager_NS_appendConsole
@@ -188,8 +188,8 @@ JUTConsole_NS_getLineFromObjectSize:
 /* 802E75E4 002E4524  7C 63 03 96 */	divwu r3, r3, r0
 /* 802E75E8 002E4528  4E 80 00 20 */	blr 
 
-.global JUTConsole_NS_clear
-JUTConsole_NS_clear:
+.global clear__10JUTConsoleFv
+clear__10JUTConsoleFv:
 /* 802E75EC 002E452C  38 C0 00 00 */	li r6, 0
 /* 802E75F0 002E4530  90 C3 00 30 */	stw r6, 0x30(r3)
 /* 802E75F4 002E4534  90 C3 00 34 */	stw r6, 0x34(r3)
@@ -851,8 +851,8 @@ JUTConsole_print_f_va_:
 /* 802E7F74 002E4EB4  38 21 04 10 */	addi r1, r1, 0x410
 /* 802E7F78 002E4EB8  4E 80 00 20 */	blr 
 
-.global JUTConsole_NS_dumpToTerminal
-JUTConsole_NS_dumpToTerminal:
+.global dumpToTerminal__10JUTConsoleFUi
+dumpToTerminal__10JUTConsoleFUi:
 /* 802E7F7C 002E4EBC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E7F80 002E4EC0  7C 08 02 A6 */	mflr r0
 /* 802E7F84 002E4EC4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -936,8 +936,8 @@ lbl_802E8090:
 /* 802E80A0 002E4FE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E80A4 002E4FE4  4E 80 00 20 */	blr 
 
-.global JUTConsole_NS_scroll
-JUTConsole_NS_scroll:
+.global scroll__10JUTConsoleFi
+scroll__10JUTConsoleFi:
 /* 802E80A8 002E4FE8  2C 04 00 00 */	cmpwi r4, 0
 /* 802E80AC 002E4FEC  40 80 00 34 */	bge lbl_802E80E0
 /* 802E80B0 002E4FF0  80 A3 00 34 */	lwz r5, 0x34(r3)
@@ -1017,8 +1017,8 @@ lbl_802E819C:
 /* 802E81A0 002E50E0  7C 64 02 14 */	add r3, r4, r0
 /* 802E81A4 002E50E4  4E 80 00 20 */	blr 
 
-.global JUTConsole_NS_getLineOffset
-JUTConsole_NS_getLineOffset:
+.global getLineOffset__10JUTConsoleCFv
+getLineOffset__10JUTConsoleCFv:
 /* 802E81A8 002E50E8  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 802E81AC 002E50EC  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 802E81B0 002E50F0  7C 84 00 51 */	subf. r4, r4, r0

@@ -1,6 +1,10 @@
 #include "JSystem/JKernel/JKRDvdFile/JKRDvdFile.h"
 #include "global.h"
 
+extern "C" {
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+}
+
 JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
     initiate();
 }

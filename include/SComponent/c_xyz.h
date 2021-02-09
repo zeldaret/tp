@@ -3,6 +3,7 @@
 
 #include "SComponent/c_math.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 const static f32 /* epsilon */ lbl_80455074 = 8.0E-11f;
 // extern f32 lbl_80455074;
@@ -11,7 +12,7 @@ extern u8 lbl_80430CE8;
 
 class cXyz : public Vec {
 public:
-    ~cXyz(){};
+    ~cXyz() {}
     cXyz() {}
     cXyz(f32 x, f32 y, f32 z) {
         this->x = x;
@@ -102,5 +103,9 @@ public:
 extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero
 extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
 extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
+
+extern "C" {  // needed for inline asm
+void cXyz_NS_dtor(void);
+}
 
 #endif

@@ -12,6 +12,11 @@
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
 
+extern "C" {
+void free__3cMlFPv(void* pPtr);
+void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+}
+
 extern s32 lbl_80450D04;  // f_pc_base::t_type
 extern s8 lbl_80450D08;
 extern s32 lbl_80450D0C;  // f_pc_base::process_id

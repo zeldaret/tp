@@ -441,7 +441,7 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D1F0 0009A130  98 03 00 0A */	stb r0, 0xa(r3)
 /* 8009D1F4 0009A134  88 01 00 0F */	lbz r0, 0xf(r1)
 /* 8009D1F8 0009A138  98 03 00 0B */	stb r0, 0xb(r3)
-/* 8009D1FC 0009A13C  4B F6 AD 95 */	bl mDoGph_gInf_c_NS_beginRender
+/* 8009D1FC 0009A13C  4B F6 AD 95 */	bl beginRender__13mDoGph_gInf_cFv
 /* 8009D200 0009A140  38 60 00 00 */	li r3, 0
 /* 8009D204 0009A144  48 2C 2A 6D */	bl GXSetAlphaUpdate
 /* 8009D208 0009A148  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
@@ -645,7 +645,7 @@ lbl_8009D48C:
 /* 8009D4D4 0009A414  98 03 00 0A */	stb r0, 0xa(r3)
 /* 8009D4D8 0009A418  88 01 00 0F */	lbz r0, 0xf(r1)
 /* 8009D4DC 0009A41C  98 03 00 0B */	stb r0, 0xb(r3)
-/* 8009D4E0 0009A420  4B F6 AA B1 */	bl mDoGph_gInf_c_NS_beginRender
+/* 8009D4E0 0009A420  4B F6 AA B1 */	bl beginRender__13mDoGph_gInf_cFv
 /* 8009D4E4 0009A424  38 60 00 00 */	li r3, 0
 /* 8009D4E8 0009A428  48 2C 27 89 */	bl GXSetAlphaUpdate
 /* 8009D4EC 0009A42C  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
@@ -803,7 +803,7 @@ lbl_8009D48C:
 /* 8009D74C 0009A68C  48 2B DE 79 */	bl GXSetVtxAttrFmt
 /* 8009D750 0009A690  38 60 00 01 */	li r3, 1
 /* 8009D754 0009A694  38 80 00 01 */	li r4, 1
-/* 8009D758 0009A698  4B F6 BD 5D */	bl mDoGph_drawFilterQuad
+/* 8009D758 0009A698  4B F6 BD 5D */	bl mDoGph_drawFilterQuad__FScSc
 /* 8009D75C 0009A69C  80 6D 8C 40 */	lwz r3, lbl_804511C0-_SDA_BASE_(r13)
 /* 8009D760 0009A6A0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8009D764 0009A6A4  81 8C 00 0C */	lwz r12, 0xc(r12)

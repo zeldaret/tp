@@ -24,19 +24,21 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
+bool dDvdErrorMsg_c_NS_execute(void);
+bool dShutdownErrorMsg_c_NS_execute(void);
+void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
+void fpcDw_Execute(base_process_class* pProc);
+void fpcDw_Handler(void*, void*);
+base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
+                                     FastCreateReqFunc param_3, void* param_4, void* pData);
+void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
+}
 
 extern u8 lbl_80450D38;
 extern s8 lbl_80450D39;
 extern u8 lbl_80450EC4;
 extern layer_class lbl_803F4DB0;      // f_pc_manager::rootlayer$3716
 extern node_list_class lbl_803F4DDC;  // f_pc_manager::queue$3717
-
-extern void fpcDw_Execute(base_process_class* pProc);
-extern void fpcDw_Handler(void*, void*);
-extern base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
-                                            FastCreateReqFunc param_3, void* param_4, void* pData);
-extern void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
-}
 
 void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);

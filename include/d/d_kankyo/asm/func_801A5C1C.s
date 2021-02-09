@@ -25,7 +25,7 @@
 /* 801A5C7C 001A2BBC  41 82 00 10 */ beq lbl_801A5C8C
 /* 801A5C80 001A2BC0  3C 60 80 3E */ lis r3, lbl_803DD428@ha
 /* 801A5C84 001A2BC4  38 63 D4 28 */ addi r3, r3, lbl_803DD428@l
-/* 801A5C88 001A2BC8  4B E6 38 BD */ bl mDoGph_gInf_c_NS_bloom_c_NS_create
+/* 801A5C88 001A2BC8  4B E6 38 BD */ bl create__Q213mDoGph_gInf_c7bloom_cFv
 lbl_801A5C8C:
 /* 801A5C8C 001A2BCC  4B FF 90 0D */ bl envcolor_init
 /* 801A5C90 001A2BD0  38 00 00 00 */ li r0, 0

@@ -2,6 +2,11 @@
 #include "JSystem/JUtility/JUTVideo/JUTVideo.h"
 #include "global.h"
 
+extern "C" {
+void common_init__6JUTXfbFl(void);
+void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
+}
+
 void JUTXfb::clearIndex() {
     this->active_xfb_index = -1;
     this->last_drawn_xfb_index = -1;

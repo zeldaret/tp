@@ -5,6 +5,58 @@
 #include "global.h"
 
 extern "C" {
+char* strcpy(char*, const char*);
+int strcmp(const char*, const char*);
+u8 dComIfGs_getMixItemIndex(int);
+u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
+unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
+void __ct__5csXyzFsss(void);
+void __dl__FPv(void);
+void daNpcF_getPlayerInfoFromPlayerList(void);
+void dComIfGp_setSelectItem(int);
+void dComIfGs_setMixItemIndex(int, u8);
+void dComIfGs_setSelectEquipClothes(u8);
+void dComIfGs_setSelectEquipShield(u8);
+void dComIfGs_setSelectEquipSword(u8);
+void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGs_setWarpItemData_X1_(void);
+void dComIfGs_setWarpMarkFlag(void);
+void DCStoreRangeNoSync(void);
+void dMeter2Info_c_NS_changeWater(void);
+void dMeter2Info_c_NS_get2ndTexture(void);
+void dMeter2Info_c_NS_get3rdTexture(void);
+void dMeter2Info_c_NS_get4thTexture(void);
+void dMeter2Info_c_NS_init(void);
+void dMeter2Info_c_NS_resetWarpStatus(void);
+void dMeter2Info_c_NS_set1stColor(void);
+void dMeter2Info_c_NS_set2ndColor(void);
+void dMeter2Info_c_NS_set3rdColor(void);
+void dMeter2Info_c_NS_set4thColor(void);
+void dMeter2Info_c_NS_setSaveStageName(void);
+void dMeter2Info_c_NS_setWarpInfo(void);
+void dMeterMap_c_NS_isMapOpenCheck(void);
+void dMsgFlow_c_NS_doFlow(void);
+void dMsgFlow_c_NS_dtor(void);
+void dMsgFlow_c_NS_getMsgNo(void);
+void dMsgFlow_c_NS_init(void);
+void dMsgFlow_c(void);
+void dMsgObject_c_NS_setLetterNameID(void);
+void func_80361C24(void);
+void __cvt_fp2unsigned(void);
+void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
+void getItem__17dSv_player_item_cCFib(void);
+void isEventBit__11dSv_event_cCFUs(void);
+void isLetterGetFlag__17dSv_letter_info_cCFi(void);
+void isLightDropGetFlag__16dSv_light_drop_cCFUc(void);
+void memcpy(void*, const void*, int);
+void offFirstBit__21dSv_player_get_item_cFUc(void);
+void onLetterGetFlag__17dSv_letter_info_cFi(void);
+void readIdxResource__10JKRArchiveFPvUlUl(void);
+void setBombNum__24dSv_player_item_record_cFUcUc(void);
+void setItem__17dSv_player_item_cFiUc(void);
+}
+
+extern "C" {
 // __ct__13dMeter2Info_cFv
 // dMeter2Info_c::dMeter2Info_c(void)
 asm void dMeter2Info_c(void) {

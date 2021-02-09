@@ -29,6 +29,14 @@
 #include "Z2AudioLib/Z2SpeechMgr2/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
+#include "m_Do/m_Do_printf/m_Do_printf.h"
+
+extern "C" {
+void __dl__FPv(void);
+void __nw__FUlP7JKRHeapi(void);
+void func_80361C24(void);
+void func_80361D60(void);
+}
 
 extern "C" {
 // __ct__10Z2AudioMgrFv

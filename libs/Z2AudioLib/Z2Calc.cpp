@@ -1,5 +1,10 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
 
+extern "C" {
+double func_8036C740(double);
+double func_8036C780(double, double);
+}
+
 // s_is_oRandom_initialized
 extern s8 lbl_80451330;
 // Z2AudioLib::oRandom$401

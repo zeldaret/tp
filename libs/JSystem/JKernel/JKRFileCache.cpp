@@ -1,9 +1,28 @@
 #include "JSystem/JKernel/JKRFileCache/JKRFileCache.h"
 #include "JSystem/JKernel/JKRDvdFile/JKRDvdFile.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRFileFinder/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+
+extern "C" {
+char* strcat(char*, const char*);
+char* strcpy(char*, const char*);
+char* strrchr(char*, int);
+int strcmp(const char*, const char*);
+int tolower(int);
+u32 strlen(const char*);
+void __dl__FPv(void);
+void __dt__10JSUPtrLinkFv(void);
+void free__7JKRHeapFPv(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void getDvdPathName__12JKRFileCacheCFPCc(void);
+void memcpy(void*, const void*, int);
+void remove__10JSUPtrListFP10JSUPtrLink(void);
+}
+
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* param_3) {
     if (!path || *path != '/') {

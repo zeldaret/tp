@@ -10,39 +10,38 @@ EXTABINDEX_O_FILES :=                               \
     $(BUILD_DIR)/asm/extabindex.o
 
 TEXT_O_FILES := 						            \
-            $(BUILD_DIR)/asm/rodata/rodata_m_Do_main.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_main.o \
             $(BUILD_DIR)/src/m_Do/m_Do_main.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_printf.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_printf.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_printf.o    \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_audio.o \
             $(BUILD_DIR)/src/m_Do/m_Do_audio.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_controller_pad.o \
             $(BUILD_DIR)/src/m_Do/m_Do_controller_pad.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_graphic.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_graphic.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_graphic.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_graphic.o    \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_machine.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_machine.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_machine.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_mtx.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_mtx.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_mtx.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_ext.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_ext.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_ext.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_ext.o \
             $(BUILD_DIR)/asm/sdata2/m_Do_lib.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_lib.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_lib.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_Reset.o \
             $(BUILD_DIR)/src/m_Do/m_Do_Reset.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_dvd_thread.o \
-            $(BUILD_DIR)/asm/m/Do/dvd/m_Do_dvd_thread.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_DVDError.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_dvd_thread.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_DVDError.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCard.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_MemCard.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_MemCard.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_MemCardRWmng.o \
-            $(BUILD_DIR)/asm/m/Do/m_Do_MemCardRWmng.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_MemCardRWmng.o \
             $(BUILD_DIR)/asm/rodata/rodata_m_Do_machine_exception.o \
-            $(BUILD_DIR)/asm/m/Do/machine/m_Do_machine_exception.o \
+            $(BUILD_DIR)/src/m_Do/m_Do_machine_exception.o \
             $(BUILD_DIR)/asm/sdata2/c_damagereaction.o \
             $(BUILD_DIR)/asm/c/c_damagereaction.o \
             $(BUILD_DIR)/asm/rodata/rodata_c_dylink.o \
@@ -309,8 +308,8 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/d/d_kankyo.o \
             $(BUILD_DIR)/asm/rodata/rodata_d_kyeff.o \
             $(BUILD_DIR)/asm/sdata2/d_kyeff.o \
-            $(BUILD_DIR)/asm/d/d_kyeff.o \
-            $(BUILD_DIR)/asm/d/d_kyeff2.o \
+            $(BUILD_DIR)/src/d/d_ky/d_kyeff.o    \
+            $(BUILD_DIR)/src/d/d_ky/d_kyeff2.o    \
             $(BUILD_DIR)/asm/rodata/rodata_d_ky_thunder.o \
             $(BUILD_DIR)/asm/sdata2/d_ky_thunder.o \
             $(BUILD_DIR)/asm/d/ky/d_ky_thunder.o \
@@ -801,26 +800,21 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/sdata2/GFPixel.o \
             $(BUILD_DIR)/asm/gf/GFPixel.o \
             $(BUILD_DIR)/asm/gf/GFTev.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRHeap.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRExpHeap.o \
             $(BUILD_DIR)/asm/sdata2/JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRExpHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRSolidHeap.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRSolidHeap_padding.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAssertHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRDisposer.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRThread.o \
-            $(BUILD_DIR)/asm/sdata2/JKRThread.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRThread.o \
             $(BUILD_DIR)/asm/JKernel/JKRThread.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRAram.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAram.o \
             $(BUILD_DIR)/asm/JKernel/JKRAram.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramHeap.o \
             $(BUILD_DIR)/asm/JKernel/JKRAramHeap.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramBlock.o \
-            $(BUILD_DIR)/asm/rodata/rodata_JKRAramPiece.o \
             $(BUILD_DIR)/libs/JSystem/JKernel/JKRAramPiece.o \
             $(BUILD_DIR)/asm/JKernel/JKRAramPiece.o \
             $(BUILD_DIR)/asm/rodata/rodata_JKRAramStream.o \

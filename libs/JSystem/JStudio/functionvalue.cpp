@@ -1,5 +1,9 @@
 #include "JSystem/JStudio/functionvalue.h"
 
+extern "C" {
+void __cvt_fp2unsigned(void);
+}
+
 namespace JStudio {
 
 DoubleFunc TFunctionValue::toFunction_outside(int arg1) {

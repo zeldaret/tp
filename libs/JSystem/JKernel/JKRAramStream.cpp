@@ -1,6 +1,19 @@
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
+extern "C" {
+s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+void alloc__7JKRHeapFUli(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void free__7JKRHeapFPvP7JKRHeap(void);
+void JSURandomInputStream_NS_seek(JSURandomInputStream*, u32, u32);
+void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
+}
+
+extern char lbl_8039D120[32];
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRAramStream* JKRAramStream::create(long priority) {
     if (!sAramStreamObject) {
@@ -86,10 +99,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        const char* file = lbl_8039D120;           // "JKRAramStream.cpp";
-        const char* format = lbl_8039D120 + 0x12;  // "%s";
-        const char* arg1 = lbl_8039D120 + 0x15;    // ":::Cannot alloc memory\n";
-        JUTException_NS_panic_f(file, 0xac, format, arg1);
+        JUTException_NS_panic_f("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
     }
 
     if (buffer) {

@@ -3,7 +3,6 @@
 #include "global.h"
 
 extern "C" {
-
 void cLs_Init(node_list_class* pList) {
     pList->mpHead = NULL;
     pList->mpTail = NULL;
