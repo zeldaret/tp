@@ -89,7 +89,7 @@ void mDoGph_gInf_c::onBlure(void) {
 
 void mDoGph_gInf_c::onBlure(const Mtx InMtx) {
     lbl_80450BE4 = true;
-    PSMTXCopy((Mtx*)InMtx, &lbl_803DD43C);
+    PSMTXCopy(InMtx, lbl_803DD43C);
 }
 
 void mDoGph_gInf_c::fadeOut(f32 speed) {
