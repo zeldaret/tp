@@ -12,7 +12,7 @@ extern void toFunction_outside__Q27JStudio14TFunctionValueFi();
 extern void JGadget_NS_TVector_pointer_void();
 extern void __ct__Q27JStudio14TFunctionValueFv();
 extern void func_80365078();
-extern void func_8036C0FC();
+extern void floor();
 extern void interpolateValue_hermite__Q27JStudio13functionvalueFddddddd();
 extern void interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd();
 extern void JGadget_NS_findUpperBound_binary_current();

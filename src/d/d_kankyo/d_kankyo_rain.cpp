@@ -5,10 +5,9 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 extern "C" {
-double func_8036C028(double);
-double func_8036C590(double);
 double func_8036CA54(double);
 int dKy_daynight_check(void);
 int func_8036608C(const void*, const void*, u32);
@@ -65,7 +64,6 @@ void dStage_roomControl_c_NS_getStatusRoomDt(void);
 void fopKyM_create(void);
 void func_80361C24(void);
 void func_80361D60(void);
-void func_8036C720(void);
 void GXLoadPosMtxImm(void);
 void GXLoadTexMtxImm(void);
 void GXSetAlphaCompare(void);

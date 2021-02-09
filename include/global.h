@@ -24,22 +24,6 @@ struct JUTWarn {
     JUTWarn& operator<<(long) { return *this; }
 };
 
-extern float __fabsf(float);
-
-inline double fabsd(float f) {
-    return __fabsf(f);
-}
-
-inline float fabsf(float f) {
-    return (float)fabsd(f);
-}
-
-extern float __fsqrte(float);
-
-inline double sqrt(float f) {
-    return __fsqrte(f);
-}
-
 #include "dolphin/types.h"
 
 #include "ar/AR.h"

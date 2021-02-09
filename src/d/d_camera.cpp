@@ -16,7 +16,7 @@
 
 extern "C" {
 void __dt__8cM3dGLinFv(void);
-double func_8036C668(double);
+double tan(double);
 int func_80368954(char*, char*, u32);
 int strcmp(const char*, const char*);
 void __ami__7cSAngleFRC7cSAngle(void);

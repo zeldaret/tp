@@ -2,11 +2,9 @@
 
 #include "SComponent/c_angle.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 extern "C" {
-double func_8036C028(double);
-double func_8036C590(double);
-double func_8036C668(double);
 double func_8036CA54(double);
 void __ct__7cSAngleFs(void);
 void cSAngle_NS_dtor(void);
@@ -73,12 +71,12 @@ s16 cSAngle::Inv(void) const {
 
 // Sin__7cSAngleCFv
 float cSAngle::Sin(void) const {
-    return func_8036C590(this->Radian());
+    return sin(this->Radian());
 }
 
 // Cos__7cSAngleCFv
 float cSAngle::Cos(void) const {
-    return func_8036C028(this->Radian());
+    return cos(this->Radian());
 }
 
 // __mi__7cSAngleCFv
@@ -165,17 +163,17 @@ float cDegree::Radian(void) const {
 
 // Sin__7cDegreeCFv
 float cDegree::Sin(void) const {
-    return func_8036C590(this->Radian());
+    return sin(this->Radian());
 }
 
 // Cos__7cDegreeCFv
 float cDegree::Cos(void) const {
-    return func_8036C028(this->Radian());
+    return cos(this->Radian());
 }
 
 // Tan__7cDegreeCFv
 float cDegree::Tan(void) const {
-    return func_8036C668(this->Radian());
+    return tan(this->Radian());
 }
 
 // __ct__7cSPolarFRC4cXyz
@@ -229,10 +227,10 @@ void cSPolar::Val(const cXyz& xyz) {
 cXyz cSPolar::Xyz(void) const {
     float ang1Cos;
     float ang2Cos;
-    float ang1Sin = mRadial * (float)func_8036C590(mAngle1.Radian());
-    ang2Cos = (float)func_8036C028(mAngle2.Radian());
-    ang1Cos = mRadial * (float)func_8036C028(mAngle1.Radian());
-    float ang2Sin = func_8036C590(mAngle2.Radian());
+    float ang1Sin = mRadial * (float)sin(mAngle1.Radian());
+    ang2Cos = (float)cos(mAngle2.Radian());
+    ang1Cos = mRadial * (float)cos(mAngle1.Radian());
+    float ang2Sin = sin(mAngle2.Radian());
     return cXyz(ang1Sin * ang2Sin, ang1Cos, ang1Sin * ang2Cos);
 }
 

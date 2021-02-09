@@ -7,10 +7,9 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "os/OS.h"
+#include "msl_c/math.h"
 
 extern "C" {
-double func_8036C028(double);
-double func_8036C590(double);
 int abs(int);
 int func_8036608C(const void*, const void*, u32);
 int strcmp(const char*, const char*);

@@ -9,7 +9,7 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
-double func_8036C668(double);
+double tan(double);
 int strcmp(const char*, const char*);
 void __ct__7cSAngleFRC7cSAngle(void);
 void __ct__7cSAngleFs(void);
