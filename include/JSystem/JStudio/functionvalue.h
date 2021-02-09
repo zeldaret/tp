@@ -19,7 +19,7 @@ extern void JGadget_NS_findUpperBound_binary_current();
 extern void range_getParameter__Q27JStudio29TFunctionValueAttribute_rangeCFddd();
 extern void interpolateValue_BSpline_nonuniform__Q27JStudio13functionvalueFdPCdPCd();
 extern void JGadget_NS_findUpperBound_binary_current_X2_();
-extern f64 func_8036C760(f64 a1, f64 a2);
+extern f64 fmod(f64 a1, f64 a2);
 }
 
 extern DoubleFunc lbl_8039A9F0[];

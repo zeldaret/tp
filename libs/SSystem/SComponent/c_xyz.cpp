@@ -165,20 +165,20 @@ s16 cXyz::atan2sX_Z(void) const {
 inline s32 fpclassify(f32 f) {
     u32 var = *(u32*)&f;
     switch (var & 0x7F800000) {
-        case 0x7F800000:
-            if ((var & 0x7FFFFF) != 0) {
-                return 1;
-            } else {
-                return 2;
-            }
-        case 0:
-            if ((var & 0x7FFFFF) != 0) {
-                return 5;
-            } else {
-                return 3;
-            }
-        default:
-            return 4;
+    case 0x7F800000:
+        if ((var & 0x7FFFFF) != 0) {
+            return 1;
+        } else {
+            return 2;
+        }
+    case 0:
+        if ((var & 0x7FFFFF) != 0) {
+            return 5;
+        } else {
+            return 3;
+        }
+    default:
+        return 4;
     }
 }
 
@@ -192,7 +192,8 @@ inline f32 sqrtf(f32 mag) {
         f64 tmpd = __frsqrte(mag);
         tmpd = DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag);
         tmpd = DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag);
-        return DOUBLE_LABEL(lbl_80455088) * tmpd * (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag) * mag;
+        return DOUBLE_LABEL(lbl_80455088) * tmpd *
+               (DOUBLE_LABEL(lbl_80455090) - tmpd * tmpd * mag) * mag;
     } else if (mag < DOUBLE_LABEL(lbl_80455098)) {
         return /* __float_nan */ lbl_80450AE0[0];
     } else if (fpclassify(mag) == 1) {
@@ -205,7 +206,7 @@ inline f32 sqrtf(f32 mag) {
 // atan2sY_XZ__4cXyzCFv
 #ifdef NON_MATCHING
 s16 cXyz::atan2sY_XZ(void) const {
-    f32 mag = VecMagXZ(*this); // would match if the float literal in VecMagXZ would be used
+    f32 mag = VecMagXZ(*this);  // would match if the float literal in VecMagXZ would be used
     return cM_atan2s(-this->y, sqrtf(mag));
 }
 #else

@@ -535,7 +535,7 @@ f64 extrapolateParameter_raw(f64 a1, f64 a2) {
 }
 
 f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
-    f64 t = func_8036C760(a1, a2);
+    f64 t = fmod(a1, a2);
 
     if (t < lbl_80455400)
         t += a2;
