@@ -538,7 +538,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_pla.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_sph.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_tri.o \
-            $(BUILD_DIR)/asm/sdata2/c_lib.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_lib.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_angle.o \
             $(BUILD_DIR)/libs/SSystem/SStandard/s_basic.o \

@@ -49,11 +49,6 @@ void _restfpr_26(void);
 void _restfpr_27(void);
 void _restfpr_28(void);
 void _restfpr_29(void);
-
-f64 fmod(f64, f64);
-inline f32 fmodf(f32 f1, f32 f2) {
-    return (f32)fmod(f1, f2);
-}
 }
 
 #endif

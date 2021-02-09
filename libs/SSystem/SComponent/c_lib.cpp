@@ -3,6 +3,14 @@
 #include "SComponent/c_lib.h"
 #include "SComponent/c_math.h"
 
+static const f32 lbl_804551E0 = 0;
+static const f64 lbl_804551E8 = 0.5;                                                    // 0x3fe0000000000000
+static const f64 lbl_804551F0 = 3.0;                                                    // 0x4008000000000000
+static const f64 lbl_804551F8 = 0.0;
+// static const u8 lbl_80455200[4] = { 0x2e, 0xaf, 0xeb, 0xff };
+// static const u8 lbl_80455204[4] = { 0x00, 0x00, 0x00, 0x00 };                              // padding
+static const s64 lbl_80455200 = 0x2eafebff00000000;
+
 extern "C" {
 int abs(int);
 void __eq__4cXyzCFRC3Vec(void);

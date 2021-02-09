@@ -11,6 +11,10 @@ extern s32 lbl_8045117C;  // SComponent::r22
 
 extern u16 lbl_803C3778[1028];  // SComponent::atntable
 
+extern "C" {
+    f64 fmod(f64, f64);
+}
+
 // cM_rad2s__Ff
 s16 cM_rad2s(float f0) {
     f32 tmpF = fmod(f0, 6.2831854820251465 /* approx. 2 * PI */);
