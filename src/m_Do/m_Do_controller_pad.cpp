@@ -1,6 +1,6 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
-#include "c/cLib.h"
+#include "SComponent/c_lib.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
