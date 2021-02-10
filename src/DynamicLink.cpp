@@ -6,6 +6,21 @@
 #include "global.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 
+extern "C" {
+void JUTReportConsole_f(const char*, ...);
+void mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection(void);
+void mount__12JKRFileCacheFPCcP7JKRHeapPCc(void);
+void loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(void);
+void detachResource__13JKRFileLoaderFPvP13JKRFileLoader(void);
+void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
+void func_803665BC(void); // something from clib
+void free__7JKRHeapFPvP7JKRHeap(void);
+void mDoDvdThd_callback_c_NS_create(void);
+void resize__7JKRHeapFPvUlP7JKRHeap(void);
+void alloc__7JKRHeapFUliP7JKRHeap(void);
+void getSize__7JKRHeapFPvP7JKRHeap(void);
+};
+
 DynamicModuleControlBase::~DynamicModuleControlBase(void) {
     this->force_unlink();
 

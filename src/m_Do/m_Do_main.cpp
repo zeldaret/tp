@@ -44,7 +44,6 @@ void dComIfG_inf_c_NS_ct(void);
 void debug__Fv(void);
 void dRes_control_c_NS_dump(void);
 void dump__11JKRAramHeapFv(void);
-void DynamicModuleControlBase_NS_dump(void);
 void fapGm_Create(void);
 void fapGm_Execute(void);
 void fopAcM_initManager(void);
@@ -70,6 +69,7 @@ void dumpToTerminal__10JUTConsoleFUi(void);
 void scroll__10JUTConsoleFi(void);
 void clear__10JUTConsoleFv(void);
 void setMessageCount__12JUTAssertionFi(void);
+void dump__24DynamicModuleControlBaseFv(void);
 }
 
 extern char* lbl_803A2F14[5];
@@ -80,7 +80,7 @@ void version_check(void) {
         return;
     }
 
-    OSReport_Error("SDK‚Ìƒo[ƒWƒ‡ƒ“‚ªˆê’v‚µ‚Ü‚¹‚ñB’â~‚µ‚Ü‚·\n");
+    OSReport_Error("SDKï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½ï¿½~ï¿½ï¿½ï¿½Ü‚ï¿½\n");
     do {
     } while (true);
 }
@@ -190,7 +190,7 @@ const char* lbl_80373B4C = "%10d";
 const char* lbl_80373B51 = "Press X+Y+START to CLEAR console.";
 const char* lbl_80373B73 = "3DStick UP/Down to scroll";
 const char* lbl_80373B8D = "Press A to output terminal from console.";
-const char* lbl_80373BB6 = "SCROLLF%3d %3d %3d Output=%1x";
+const char* lbl_80373BB6 = "SCROLLï¿½F%3d %3d %3d Output=%1x";
 const char* lbl_80373BD5 = "Press L+R trigger to control console.";
 const char* lbl_80373BFB = "Press [Z] trigger to close this window.";
 
@@ -355,7 +355,7 @@ void Debug_console(u32 controller_no) {
                     sAramObject__7JKRAram->getAramHeap()->dump();
                 }
 
-                DynamicModuleControlBase_NS_dump();
+                DynamicModuleControlBase::dump();
                 dRes_control_c_NS_dump();
             }
 
@@ -404,21 +404,21 @@ asm void LOAD_COPYDATE(void*) {
 #endif
 
 const char* lbl_80373C3F = "Root";
-const char* lbl_80373C44 = "ƒ‹[ƒg";
+const char* lbl_80373C44 = "ï¿½ï¿½ï¿½[ï¿½g";
 const char* lbl_80373C4B = "System";
-const char* lbl_80373C52 = "ƒVƒXƒeƒ€";
+const char* lbl_80373C52 = "ï¿½Vï¿½Xï¿½eï¿½ï¿½";
 const char* lbl_80373C5B = "Zelda";
-const char* lbl_80373C61 = "ƒ[ƒ‹ƒ_";
+const char* lbl_80373C61 = "ï¿½[ï¿½ï¿½ï¿½_";
 const char* lbl_80373C68 = "Game";
-const char* lbl_80373C6D = "ƒQ[ƒ€";
+const char* lbl_80373C6D = "ï¿½Qï¿½[ï¿½ï¿½";
 const char* lbl_80373C74 = "Archive";
-const char* lbl_80373C7C = "ƒA[ƒJƒCƒu";
+const char* lbl_80373C7C = "ï¿½Aï¿½[ï¿½Jï¿½Cï¿½u";
 const char* lbl_80373C87 = "J2d";
 const char* lbl_80373C8B = "J2D";
 const char* lbl_80373C8F = "Hostio";
-const char* lbl_80373C96 = "ƒzƒXƒgIO";
+const char* lbl_80373C96 = "ï¿½zï¿½Xï¿½gIO";
 const char* lbl_80373C9F = "Command";
-const char* lbl_80373CA7 = "ƒRƒ}ƒ“ƒh";
+const char* lbl_80373CA7 = "ï¿½Rï¿½}ï¿½ï¿½ï¿½h";
 
 void debug(void) {
     if (lbl_80450580) {

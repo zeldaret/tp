@@ -340,4 +340,10 @@ typedef struct OSModuleHeader {
                   // other purposes (eg .bss)
 } OSModuleHeader;
 
+extern "C" {
+BOOL OSLink(OSModuleInfo* newModule, void* bss);
+BOOL OSLinkFixed(OSModuleInfo* newModule, void* bss);
+BOOL OSUnlink(OSModuleInfo* oldModule);
+};
+
 #endif
