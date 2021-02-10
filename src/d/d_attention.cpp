@@ -7,11 +7,10 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "msl_c/math.h"
 #include "msl_c/string.h"
 
 extern "C" {
-double tan(double);
-int strcmp(const char*, const char*);
 void __ct__7cSAngleFRC7cSAngle(void);
 void __ct__7cSAngleFs(void);
 void __ct__7cSGlobeFRC4cXyz(void);

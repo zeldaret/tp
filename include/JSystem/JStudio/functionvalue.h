@@ -12,14 +12,12 @@ extern void toFunction_outside__Q27JStudio14TFunctionValueFi();
 extern void JGadget_NS_TVector_pointer_void();
 extern void __ct__Q27JStudio14TFunctionValueFv();
 extern void func_80365078();
-extern void floor();
 extern void interpolateValue_hermite__Q27JStudio13functionvalueFddddddd();
 extern void interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd();
 extern void JGadget_NS_findUpperBound_binary_current();
 extern void range_getParameter__Q27JStudio29TFunctionValueAttribute_rangeCFddd();
 extern void interpolateValue_BSpline_nonuniform__Q27JStudio13functionvalueFdPCdPCd();
 extern void JGadget_NS_findUpperBound_binary_current_X2_();
-extern f64 fmod(f64 a1, f64 a2);
 }
 
 extern DoubleFunc lbl_8039A9F0[];

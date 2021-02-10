@@ -1,9 +1,5 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
-
-extern "C" {
-double exp(double);
-double pow(double, double);
-}
+#include "msl_c/math.h"
 
 // s_is_oRandom_initialized
 extern s8 lbl_80451330;

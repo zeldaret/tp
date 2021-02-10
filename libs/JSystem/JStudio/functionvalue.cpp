@@ -1,4 +1,5 @@
 #include "JSystem/JStudio/functionvalue.h"
+#include "msl_c/math.h"
 
 extern "C" {
 void __cvt_fp2unsigned(void);

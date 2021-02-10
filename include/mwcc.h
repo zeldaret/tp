@@ -1,8 +1,6 @@
 #ifndef MWCC_H_
 #define MWCC_H_
 
-#include "dolphin/types.h"
-
 extern "C" {
 void _savegpr_14(void);
 void _savegpr_15(void);

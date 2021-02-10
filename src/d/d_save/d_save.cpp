@@ -370,8 +370,8 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
                             return 0xFF;
                         }
                     }
-                    // 蜷域?舌い繧､繝?繝?荳榊ｮ夲ｼ晢ｼ晢ｼ晢ｼ?%d, %d\n
-                    // Uncertain combination item?ｼ晢ｼ晢ｼ晢ｼ?%d, %d\n
+                    // 合成アイテム不定＝＝＝＞%d, %d\n
+                    // Uncertain combination item＝＝＝＞%d, %d\n
                     OSReport_Error(lbl_80379234 + 9, item_id_2, item_id_1);
                 }
             }

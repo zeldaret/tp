@@ -95,7 +95,7 @@ public:
 
     float getSquareMag() const { return PSVECSquareMag(this); }
 
-    static float getNearZeroValue() { return *(f32*)&lbl_80455074; }
+    static float getNearZeroValue() { return FLOAT_LABEL(lbl_80455074); }
 
     bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
 };
