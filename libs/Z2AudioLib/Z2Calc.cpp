@@ -39,12 +39,10 @@ float Z2Calc::getParamByExp(float f1, float f2, float f3, float f4, float f5, fl
                             Z2Calc::CurveSign sign) {
     float out;
     if (sign == Z2Calc::CURVE_SIGN_1) {
-        float tmp =
-            exp(Z2Calc::linearTransform(f1, f2, f3, /* 0.0 */ lbl_80455828, f4, true));
+        float tmp = exp(Z2Calc::linearTransform(f1, f2, f3, /* 0.0 */ lbl_80455828, f4, true));
         out = Z2Calc::linearTransform(tmp, /* 1.0 */ lbl_8045582C, exp(f4), f5, f6, true);
     } else if (sign == Z2Calc::CURVE_SIGN_0) {
-        float tmp =
-            exp(Z2Calc::linearTransform(f1, f2, f3, f4, /* 0.0 */ lbl_80455828, true));
+        float tmp = exp(Z2Calc::linearTransform(f1, f2, f3, f4, /* 0.0 */ lbl_80455828, true));
         out = Z2Calc::linearTransform(tmp, exp(f4), /* 1.0 */ lbl_8045582C, f5, f6, true);
     } else {
         out = Z2Calc::linearTransform(f1, f2, f3, f5, f6, false);

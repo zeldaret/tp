@@ -11,6 +11,7 @@
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 extern f32 lbl_80455118;  // SComponent::@2256, 0.0
 extern f32 lbl_80455138;  // SComponent::@2273, 1.0

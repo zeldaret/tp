@@ -19,14 +19,17 @@ extern f32 __fabsf(f32);
 inline f64 fabs(f64 f) {
     return __fabsf(f);
 }
+inline f64 fabsf2(f32 f) {
+    return __fabsf(f);
+}
 inline f32 fabsf(f32 f) {
-    return (f32)fabs(f);
+    return fabsf2(f);
 }
 
 f64 floor(f64);
 f64 fmod(f64, f64);
 inline f32 fmodf(f32 f1, f32 f2) {
-    return (f32)fmod(f1, f2);
+    return fmod(f1, f2);
 }
 f64 frexp(f64, s32*);
 f64 ldexp(f64, s32);
@@ -36,7 +39,7 @@ f64 sin(f64);
 f32 sinf(f32);
 f64 tan(f64);
 f32 tanf(f32);
-f64 sin(f64);
+f64 func_8036C590(f64);
 }
 
 #endif

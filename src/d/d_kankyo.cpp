@@ -6,9 +6,9 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
-#include "os/OS.h"
 #include "msl_c/math.h"
 #include "msl_c/string.h"
+#include "os/OS.h"
 
 extern "C" {
 int abs(int);
