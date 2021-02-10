@@ -40,6 +40,7 @@ public:
 class DynamicModuleControl : public DynamicModuleControlBase {
 public:
     DynamicModuleControl(const char* pModuleName);
+    virtual ~DynamicModuleControl();
 
     static JKRArchive* mountCallback(void*);
     bool initialize();
@@ -68,9 +69,6 @@ extern char
 extern JKRFileCache* lbl_80451148;  // DynamicLink::DynamicModuleControl::sFileCache
 extern JKRArchive* lbl_80451144;    // DynamicLink::DynamicModuleControl::sArchive
 extern u32 lbl_80451140;            // DynamicLink::DynamicModuleControl::sAllocBytes;
-extern char lbl_8039A580[19];
-extern char lbl_8039A593[9];
-extern char lbl_8039A59C[69];
 extern char* lbl_803C34B0[4];  // .rodata: module type string table (local to
                                // DynamicModuleControl::getModuleTypeString)
 
