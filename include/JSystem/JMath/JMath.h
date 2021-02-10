@@ -11,11 +11,11 @@ struct sinCosTableEntry {
 extern sinCosTableEntry lbl_80439A20[0x2000];  // JMath::JMath::sincosTable_
 
 inline f32 cM_scos(s16 s) {
-    return lbl_80439A20[(s & 0xFFFF) >> 3].cos;
+    return lbl_80439A20[static_cast<u16>(s) >> 3].cos;
 }
 
 inline f32 cM_ssin(s16 s) {
-    return lbl_80439A20[(s & 0xFFFF) >> 3].sin;
+    return lbl_80439A20[static_cast<u16>(s) >> 3].sin;
 }
 
 #endif
