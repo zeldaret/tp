@@ -481,7 +481,7 @@ def disambiguate_objects(fn_name: str, objfiles: List[str]) -> str:
             match = symtab.get_symbol_by_name(fn_name)
             if match is None:
                 continue
-            if match[0].entry.st_info.type == 'STT_FUNC':
+            if match[0].entry.st_info.type in ['STT_FUNC', 'STT_NOTYPE']:
                 return objfile
 
     return None
@@ -489,7 +489,7 @@ def disambiguate_objects(fn_name: str, objfiles: List[str]) -> str:
 def search_map_file(fn_name: str, mapfile: Optional[str] = None, build_dir: Optional[str] = None) -> Tuple[Optional[str], Optional[int]]:
     if not mapfile:
         fail(f"No map file configured; cannot find function {fn_name}.")
-    
+
     if not build_dir:
         build_dir = config.get('build_dir')
 
@@ -749,28 +749,28 @@ elif arch == "ppc":
     forbidden = set(string.ascii_letters + "_")
     branch_likely_instructions = set()
     branch_instructions = {
-        "b", 
-        "beq", 
-        "beq+", 
-        "beq-", 
-        "bne", 
-        "bne+", 
-        "bne-", 
-        "blt", 
-        "blt+", 
-        "blt-", 
+        "b",
+        "beq",
+        "beq+",
+        "beq-",
+        "bne",
+        "bne+",
+        "bne-",
+        "blt",
+        "blt+",
+        "blt-",
         "ble",
         "ble+",
-        "ble-", 
-        "bdnz", 
-        "bdnz+", 
+        "ble-",
+        "bdnz",
+        "bdnz+",
         "bdnz-",
-        "bge", 
-        "bge+", 
-        "bge-", 
-        "bgt", 
-        "bgt+", 
-        "bgt-", 
+        "bge",
+        "bge+",
+        "bge-",
+        "bgt",
+        "bgt+",
+        "bgt-",
     }
     instructions_with_address_immediates = branch_instructions.union({"bl"})
 else:
@@ -1027,7 +1027,7 @@ def process(lines: List[str]) -> List[Line]:
                             i += 1
                 else:
                     source_lines.append(f"// \"{elide_path(Path(path), n_lhs=0, n_rhs=2)}\"")
-                    
+
                 if line > 0 and line <= len(file_lines):
                     source_lines.append(file_lines[line - 1])
 
