@@ -13,7 +13,6 @@
 extern "C" {
 int abs(int);
 int func_8036608C(const void*, const void*, u32);
-int strcmp(const char*, const char*);
 void __dl__FPv(void);
 void __mi__4cXyzCFRC3Vec(void);
 void __ml__4cXyzCFf(void);
@@ -143,7 +142,6 @@ void Z2EnvSeMgr_NS_dtor(void);
 void Z2EnvSeMgr_NS_resetScene(void);
 void Z2EnvSeMgr(void);
 void Z2SceneMgr_NS_load2ndDynamicWave(void);
-void* memset(void* dest, int ch, u32 count);
 }
 
 extern "C" {
