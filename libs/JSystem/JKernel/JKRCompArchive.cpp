@@ -2,6 +2,7 @@
 #include "JSystem/JKernel/JKRAram/JKRAram.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 int abs(int);
@@ -33,7 +34,6 @@ void open__14JKRCompArchiveFl(void);
 void orderSync__9JKRDecompFPUcPUcUlUl(void);
 void prepend__10JSUPtrListFP10JSUPtrLink(void);
 void remove__10JSUPtrListFP10JSUPtrLink(void);
-void* memset(void* dest, int ch, u32 count);
 }
 
 extern JKRExpHeap* sSystemHeap__7JKRHeap;

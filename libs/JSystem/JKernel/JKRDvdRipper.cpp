@@ -2,6 +2,7 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 void __ct__10JKRDvdFileFv(void);
@@ -19,7 +20,6 @@ void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void memcpy(void*, const void*, int);
 void nextSrcData__FPUc(void);
 void open__10JKRDvdFileFl(void);
 void open__10JKRDvdFileFPCc(void);

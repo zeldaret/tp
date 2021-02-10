@@ -7,6 +7,7 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "msl_c/string.h"
 
 extern "C" {
 double tan(double);
@@ -59,7 +60,6 @@ void mDoExt_destroySolidHeap(void);
 void mDoExt_J3DModel__create(void);
 void mDoExt_modelUpdateDL(void);
 void mDoExt_restoreCurrentHeap(void);
-void memcpy(void*, const void*, int);
 void Z2SeqMgr_NS_bgmNowBattle(void);
 }
 

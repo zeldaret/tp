@@ -6,11 +6,7 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
-
-extern "C" {
-int func_80368954(char*, char*, u32);
-int strcmp(const char*, const char*);
-}
+#include "msl_c/string.h"
 
 Z2StatusMgr::Z2StatusMgr() {
     lbl_80450B7C = this;

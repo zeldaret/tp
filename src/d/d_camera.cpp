@@ -13,12 +13,11 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
+#include "msl_c/math.h"
+#include "msl_c/string.h"
 
 extern "C" {
 void __dt__8cM3dGLinFv(void);
-double tan(double);
-int func_80368954(char*, char*, u32);
-int strcmp(const char*, const char*);
 void __ami__7cSAngleFRC7cSAngle(void);
 void __amu__7cSAngleFf(void);
 void __apl__7cSAngleFRC7cSAngle(void);

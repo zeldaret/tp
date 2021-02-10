@@ -8,6 +8,7 @@
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "os/OS.h"
 #include "msl_c/math.h"
+#include "msl_c/string.h"
 
 extern "C" {
 int abs(int);
@@ -134,7 +135,6 @@ void mDoGph_gInf_c_NS_bloom_c_NS_create(void);
 void mDoLib_project(void);
 void mDoMtx_inverseTranspose(void);
 void mDoMtx_lookAt(void);
-void memcpy(void*, const void*, int);
 void offEventBit__11dSv_event_cFUs(void);
 void SetPos__11cBgS_GndChkFPC4cXyz(void);
 void WIND_INF_ENTITY_NS_dtor(void);

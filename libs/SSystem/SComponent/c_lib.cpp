@@ -2,6 +2,7 @@
 
 #include "SComponent/c_lib.h"
 #include "SComponent/c_math.h"
+#include "msl_c/string.h"
 
 static const f32 lbl_804551E0 = 0;
 static const f64 lbl_804551E8 = 0.5;                                                    // 0x3fe0000000000000
@@ -18,9 +19,7 @@ void __mi__4cXyzCFRC3Vec(void);
 void __ml__4cXyzCFf(void);
 void __ne__4cXyzCFRC3Vec(void);
 void cM_atan2s__Fff(void);
-void memcpy(void*, const void*, int);
 void normZP__4cXyzCFv(void);
-void* memset(void* dest, int ch, u32 count);
 }
 
 // cLib_memCpy__FPvPCvUl

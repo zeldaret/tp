@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream/JKRAramStream.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
+#include "msl_c/string.h"
 extern "C" {
 void __dl__FPv(void);
 void __RAS_OSDisableInterrupts_begin(void);
@@ -19,7 +20,6 @@ void firstSrcData__Fv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
-void memcpy(void*, const void*, int);
 void nextSrcData__FPUc(void);
 void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
 void orderSync__9JKRDecompFPUcPUcUlUl(void);

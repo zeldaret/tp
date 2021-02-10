@@ -14,6 +14,7 @@
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "m_Do/m_Do_machine/m_Do_machine.h"
 #include "m_Do/m_Do_reset/m_Do_reset.h"
+#include "msl_c/string.h"
 
 extern float lbl_80451A00;
 extern float lbl_80451A04;
@@ -35,7 +36,6 @@ extern s8 lbl_80450B30;
 
 extern char lbl_803739A0[0x310];
 extern "C" {
-int strcmp(const char*, const char*);
 void cDyl_InitAsync(void);
 void CheckHeap1__9HeapCheckFv(void);
 void create__12JKRSolidHeapFUlP7JKRHeapb(void);
@@ -60,7 +60,6 @@ void JUTReport__FiiiPCce(void);
 void mDoDvdThd_callback_c_NS_create(void);
 void mDoMch_HeapCheckAll(void);
 void mDoMemCd_Ctrl_c_NS_update(void);
-void memcpy(void*, const void*, int);
 void read__8mDoCPd_cFv(void);
 void version_check__Fv(void);
 void main01__Fv(void);
