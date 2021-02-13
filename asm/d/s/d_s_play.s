@@ -1410,7 +1410,7 @@ lbl_8025A788:
 /* 8025A864 002577A4  38 E0 00 00 */	li r7, 0
 /* 8025A868 002577A8  39 00 00 00 */	li r8, 0
 /* 8025A86C 002577AC  39 20 FF FF */	li r9, -1
-/* 8025A870 002577B0  4B DB F5 29 */	bl fopAcM_create_X1_
+/* 8025A870 002577B0  4B DB F5 29 */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 8025A874 002577B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025A878 002577B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025A87C 002577BC  4B DD A7 51 */	bl init__10dSv_info_cFv

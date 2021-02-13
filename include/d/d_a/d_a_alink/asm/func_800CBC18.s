@@ -266,7 +266,7 @@ lbl_800CBFC8:
 /* 800CBFD8 000C8F18  48 00 01 20 */ b lbl_800CC0F8
 lbl_800CBFDC:
 /* 800CBFDC 000C8F1C  38 7D 38 04 */ addi r3, r29, 0x3804
-/* 800CBFE0 000C8F20  4B F5 1C DD */ bl fopAcM_gc_c_NS_gndCheck
+/* 800CBFE0 000C8F20  4B F5 1C DD */ bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 800CBFE4 000C8F24  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBFE8 000C8F28  41 82 01 10 */ beq lbl_800CC0F8
 /* 800CBFEC 000C8F2C  80 7D 32 D4 */ lwz r3, 0x32d4(r29)
@@ -378,7 +378,7 @@ lbl_800CC14C:
 /*.global fpcSch_JudgeByID*/
 /* 800CC174 000C90B4  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800CC178 000C90B8  38 81 00 10 */ addi r4, r1, 0x10
-/* 800CC17C 000C90BC  4B F4 D6 7D */ bl fopAcIt_Judge
+/* 800CC17C 000C90BC  4B F4 D6 7D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC180 000C90C0  7C 65 1B 79 */ or. r5, r3, r3
 /* 800CC184 000C90C4  41 82 00 14 */ beq lbl_800CC198
 /* 800CC188 000C90C8  7F E3 FB 78 */ mr r3, r31
@@ -396,7 +396,7 @@ lbl_800CC198:
 /*.global fpcSch_JudgeByID*/
 /* 800CC1B0 000C90F0  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800CC1B4 000C90F4  38 81 00 0C */ addi r4, r1, 0xc
-/* 800CC1B8 000C90F8  4B F4 D6 41 */ bl fopAcIt_Judge
+/* 800CC1B8 000C90F8  4B F4 D6 41 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC1BC 000C90FC  28 03 00 00 */ cmplwi r3, 0
 /* 800CC1C0 000C9100  41 82 00 24 */ beq lbl_800CC1E4
 /* 800CC1C4 000C9104  80 A3 05 24 */ lwz r5, 0x524(r3)
@@ -423,7 +423,7 @@ lbl_800CC1E4:
 /*.global fpcSch_JudgeByID*/
 /* 800CC210 000C9150  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800CC214 000C9154  38 81 00 08 */ addi r4, r1, 8
-/* 800CC218 000C9158  4B F4 D5 E1 */ bl fopAcIt_Judge
+/* 800CC218 000C9158  4B F4 D5 E1 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800CC21C 000C915C  28 03 00 00 */ cmplwi r3, 0
 /* 800CC220 000C9160  41 82 00 24 */ beq lbl_800CC244
 /* 800CC224 000C9164  80 A3 05 24 */ lwz r5, 0x524(r3)

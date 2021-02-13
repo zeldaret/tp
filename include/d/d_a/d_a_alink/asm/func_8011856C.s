@@ -4,7 +4,7 @@
 /* 80118578 001154B8  39 61 00 20 */ addi r11, r1, 0x20
 /* 8011857C 001154BC  48 24 9C 61 */ bl _savegpr_29
 /* 80118580 001154C0  7C 7D 1B 78 */ mr r29, r3
-/* 80118584 001154C4  4B F0 35 91 */ bl fopAcM_getTalkEventPartner
+/* 80118584 001154C4  4B F0 35 91 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80118588 001154C8  7C 7E 1B 79 */ or. r30, r3, r3
 /* 8011858C 001154CC  41 82 00 B0 */ beq lbl_8011863C
 /* 80118590 001154D0  AB FE 00 08 */ lha r31, 8(r30)
@@ -48,7 +48,7 @@ lbl_80118604:
 lbl_80118618:
 /* 80118618 00115558  7F A3 EB 78 */ mr r3, r29
 /* 8011861C 0011555C  7F C4 F3 78 */ mr r4, r30
-/* 80118620 00115560  4B F0 20 F1 */ bl fopAcM_searchActorAngleY
+/* 80118620 00115560  4B F0 20 F1 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80118624 00115564  7C 64 1B 78 */ mr r4, r3
 lbl_80118628:
 /* 80118628 00115568  38 7D 04 E6 */ addi r3, r29, 0x4e6

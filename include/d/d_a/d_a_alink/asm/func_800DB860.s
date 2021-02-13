@@ -13,7 +13,7 @@
 /*.global fpcSch_JudgeByID*/
 /* 800DB88C 000D87CC  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800DB890 000D87D0  38 81 00 0C */ addi r4, r1, 0xc
-/* 800DB894 000D87D4  4B F3 DF 65 */ bl fopAcIt_Judge
+/* 800DB894 000D87D4  4B F3 DF 65 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800DB898 000D87D8  7C 7E 1B 79 */ or. r30, r3, r3
 /* 800DB89C 000D87DC  41 82 00 10 */ beq lbl_800DB8AC
 /* 800DB8A0 000D87E0  80 1F 05 74 */ lwz r0, 0x574(r31)

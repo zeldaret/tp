@@ -57,7 +57,7 @@ dkWpillar_c_NS_create:
 /* 80261C10 0025EB50  48 10 01 51 */	bl func_80361D60
 lbl_80261C14:
 /* 80261C14 0025EB54  38 7F 00 DC */	addi r3, r31, 0xdc
-/* 80261C18 0025EB58  4B DB C0 A5 */	bl fopAcM_gc_c_NS_gndCheck
+/* 80261C18 0025EB58  4B DB C0 A5 */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 80261C1C 0025EB5C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80261C20 0025EB60  41 82 00 40 */	beq lbl_80261C60
 /* 80261C24 0025EB64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -358,7 +358,7 @@ lbl_80262054:
 lbl_80262068:
 /* 80262068 0025EFA8  38 7F 00 DC */	addi r3, r31, 0xdc
 /* 8026206C 0025EFAC  38 81 00 08 */	addi r4, r1, 8
-/* 80262070 0025EFB0  4B DB B8 21 */	bl fopAcM_getWaterY
+/* 80262070 0025EFB0  4B DB B8 21 */	bl fopAcM_getWaterY__FPC4cXyzPf
 /* 80262074 0025EFB4  2C 03 00 00 */	cmpwi r3, 0
 /* 80262078 0025EFB8  41 82 00 18 */	beq lbl_80262090
 /* 8026207C 0025EFBC  80 7F 00 F8 */	lwz r3, 0xf8(r31)

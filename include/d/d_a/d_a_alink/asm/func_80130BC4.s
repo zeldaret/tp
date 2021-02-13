@@ -306,7 +306,7 @@ lbl_80130FF8:
 /*.global daAlink_searchWolfHowl*/
 /* 8013100C 0012DF4C  38 63 05 80 */ addi r3, r3, daAlink_searchWolfHowl@l
 /* 80131010 0012DF50  38 81 00 08 */ addi r4, r1, 8
-/* 80131014 0012DF54  4B EE 87 A9 */ bl fopAcIt_Executor
+/* 80131014 0012DF54  4B EE 87 A9 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80131018 0012DF58  48 00 00 08 */ b lbl_80131020
 lbl_8013101C:
 /* 8013101C 0012DF5C  93 81 00 08 */ stw r28, 8(r1)

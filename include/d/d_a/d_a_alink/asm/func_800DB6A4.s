@@ -40,7 +40,7 @@ lbl_800DB6F4:
 /*.global fpcSch_JudgeByID*/
 /* 800DB734 000D8674  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800DB738 000D8678  38 81 00 0C */ addi r4, r1, 0xc
-/* 800DB73C 000D867C  4B F3 E0 BD */ bl fopAcIt_Judge
+/* 800DB73C 000D867C  4B F3 E0 BD */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800DB740 000D8680  28 03 00 00 */ cmplwi r3, 0
 /* 800DB744 000D8684  41 82 00 F8 */ beq lbl_800DB83C
 /* 800DB748 000D8688  38 63 04 A8 */ addi r3, r3, 0x4a8

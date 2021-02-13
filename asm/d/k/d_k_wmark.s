@@ -214,7 +214,7 @@ dkWmark_c_NS_setMatrix:
 /* 802616FC 0025E63C  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 80261700 0025E640  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 80261704 0025E644  38 61 00 18 */	addi r3, r1, 0x18
-/* 80261708 0025E648  4B DB C5 B5 */	bl fopAcM_gc_c_NS_gndCheck
+/* 80261708 0025E648  4B DB C5 B5 */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 8026170C 0025E64C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80261710 0025E650  41 82 02 28 */	beq lbl_80261938
 /* 80261714 0025E654  C0 0D 87 50 */	lfs f0, lbl_80450CD0-_SDA_BASE_(r13)

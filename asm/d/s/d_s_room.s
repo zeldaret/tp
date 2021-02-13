@@ -440,7 +440,7 @@ lbl_8025B3F0:
 /* 8025B400 00258340  38 E0 00 00 */	li r7, 0
 /* 8025B404 00258344  39 00 00 00 */	li r8, 0
 /* 8025B408 00258348  39 20 FF FF */	li r9, -1
-/* 8025B40C 0025834C  4B DB E9 8D */	bl fopAcM_create_X1_
+/* 8025B40C 0025834C  4B DB E9 8D */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 8025B410 00258350  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025B414 00258354  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B418 00258358  3B E3 4F F8 */	addi r31, r3, 0x4ff8

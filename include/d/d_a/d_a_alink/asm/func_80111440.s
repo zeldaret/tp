@@ -65,7 +65,7 @@ lbl_8011150C:
 /*.global daAlink_searchTagKtOnFire*/
 /* 80111528 0010E468  38 63 06 68 */ addi r3, r3, daAlink_searchTagKtOnFire@l
 /* 8011152C 0010E46C  38 80 00 00 */ li r4, 0
-/* 80111530 0010E470  4B F0 82 C9 */ bl fopAcIt_Judge
+/* 80111530 0010E470  4B F0 82 C9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80111534 0010E474  28 03 00 00 */ cmplwi r3, 0
 /* 80111538 0010E478  41 82 00 40 */ beq lbl_80111578
 lbl_8011153C:

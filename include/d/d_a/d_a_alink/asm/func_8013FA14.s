@@ -34,7 +34,7 @@ lbl_8013FA58:
 /* 8013FA94 0013C9D4  4B F7 F6 25 */ bl daAlink_c_NS_voiceStartLevel
 /* 8013FA98 0013C9D8  7F E3 FB 78 */ mr r3, r31
 /* 8013FA9C 0013C9DC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013FAA0 0013C9E0  4B ED AC 71 */ bl fopAcM_searchActorAngleY
+/* 8013FAA0 0013C9E0  4B ED AC 71 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013FAA4 0013C9E4  B0 7F 04 E6 */ sth r3, 0x4e6(r31)
 /* 8013FAA8 0013C9E8  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8013FAAC 0013C9EC  B0 1F 04 DE */ sth r0, 0x4de(r31)

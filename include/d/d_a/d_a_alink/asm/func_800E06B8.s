@@ -60,7 +60,7 @@ lbl_800E0784:
 /* 800E079C 000DD6DC  A8 1D 04 E6 */ lha r0, 0x4e6(r29)
 /* 800E07A0 000DD6E0  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 800E07A4 000DD6E4  7F E3 FB 78 */ mr r3, r31
-/* 800E07A8 000DD6E8  4B F3 C3 F9 */ bl fopAcM_cancelCarryNow
+/* 800E07A8 000DD6E8  4B F3 C3 F9 */ bl fopAcM_cancelCarryNow__FP10fopAc_ac_c
 /* 800E07AC 000DD6EC  3B E0 00 00 */ li r31, 0
 /* 800E07B0 000DD6F0  38 00 00 FF */ li r0, 0xff
 /* 800E07B4 000DD6F4  B0 1D 2F DC */ sth r0, 0x2fdc(r29)

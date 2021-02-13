@@ -178,7 +178,7 @@ dEvLib_callback_c_NS_executeStart:
 /* 80048AB0 000459F0  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80048AB4 000459F4  A0 FF 00 0C */	lhz r7, 0xc(r31)
 /* 80048AB8 000459F8  39 00 00 00 */	li r8, 0
-/* 80048ABC 000459FC  4B FD 2C F9 */	bl fopAcM_orderMapToolEvent
+/* 80048ABC 000459FC  4B FD 2C F9 */	bl fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs
 /* 80048AC0 00045A00  48 00 00 24 */	b lbl_80048AE4
 lbl_80048AC4:
 /* 80048AC4 00045A04  A8 86 00 FC */	lha r4, 0xfc(r6)
@@ -188,7 +188,7 @@ lbl_80048AC4:
 /* 80048AD4 00045A14  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80048AD8 00045A18  38 E0 00 00 */	li r7, 0
 /* 80048ADC 00045A1C  A1 1F 00 0C */	lhz r8, 0xc(r31)
-/* 80048AE0 00045A20  4B FD 2B 9D */	bl fopAcM_orderOtherEventId
+/* 80048AE0 00045A20  4B FD 2B 9D */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 lbl_80048AE4:
 /* 80048AE4 00045A24  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80048AE8 00045A28  A0 03 00 FA */	lhz r0, 0xfa(r3)

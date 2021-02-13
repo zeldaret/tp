@@ -270,7 +270,7 @@ lbl_80116288:
 /* 801162A0 001131E0  41 82 00 4C */ beq lbl_801162EC
 /* 801162A4 001131E4  83 CD 8A 98 */ lwz r30, lbl_80451018-_SDA_BASE_(r13)
 /* 801162A8 001131E8  7F A3 EB 78 */ mr r3, r29
-/* 801162AC 001131EC  4B F0 58 69 */ bl fopAcM_getTalkEventPartner
+/* 801162AC 001131EC  4B F0 58 69 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 801162B0 001131F0  7C 03 F0 40 */ cmplw r3, r30
 /* 801162B4 001131F4  40 82 00 38 */ bne lbl_801162EC
 /* 801162B8 001131F8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -299,11 +299,11 @@ lbl_801162FC:
 /* 8011630C 0011324C  28 00 00 00 */ cmplwi r0, 0
 /* 80116310 00113250  41 82 00 48 */ beq lbl_80116358
 /* 80116314 00113254  7F A3 EB 78 */ mr r3, r29
-/* 80116318 00113258  4B F0 57 FD */ bl fopAcM_getTalkEventPartner
+/* 80116318 00113258  4B F0 57 FD */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 8011631C 0011325C  28 03 00 00 */ cmplwi r3, 0
 /* 80116320 00113260  41 82 00 2C */ beq lbl_8011634C
 /* 80116324 00113264  7F A3 EB 78 */ mr r3, r29
-/* 80116328 00113268  4B F0 57 ED */ bl fopAcM_getTalkEventPartner
+/* 80116328 00113268  4B F0 57 ED */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 8011632C 0011326C  7C 64 1B 78 */ mr r4, r3
 /* 80116330 00113270  7F A3 EB 78 */ mr r3, r29
 /* 80116334 00113274  48 00 1F A1 */ bl daAlink_c_NS_checkGrabTalkActor
@@ -402,7 +402,7 @@ lbl_8011645C:
 /*.global daAlink_searchCanoe*/
 /* 80116484 001133C4  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe@l
 /* 80116488 001133C8  38 80 00 00 */ li r4, 0
-/* 8011648C 001133CC  4B F0 33 6D */ bl fopAcIt_Judge
+/* 8011648C 001133CC  4B F0 33 6D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80116490 001133D0  7C 7E 1B 78 */ mr r30, r3
 /* 80116494 001133D4  38 60 02 E4 */ li r3, 0x2e4
 /* 80116498 001133D8  38 80 00 0D */ li r4, 0xd
@@ -411,7 +411,7 @@ lbl_8011645C:
 /* 801164A4 001133E4  38 E0 00 00 */ li r7, 0
 /* 801164A8 001133E8  39 00 00 00 */ li r8, 0
 /* 801164AC 001133EC  39 20 FF FF */ li r9, -1
-/* 801164B0 001133F0  4B F0 38 E9 */ bl fopAcM_create_X1_
+/* 801164B0 001133F0  4B F0 38 E9 */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 801164B4 001133F4  90 7E 14 64 */ stw r3, 0x1464(r30)
 /* 801164B8 001133F8  7F A3 EB 78 */ mr r3, r29
 /* 801164BC 001133FC  38 80 00 00 */ li r4, 0
@@ -435,7 +435,7 @@ lbl_801164D0:
 /*.global daAlink_searchIceLeaf*/
 /* 801164F8 00113438  38 63 5A 84 */ addi r3, r3, daAlink_searchIceLeaf@l
 /* 801164FC 0011343C  38 80 00 00 */ li r4, 0
-/* 80116500 00113440  4B F0 32 F9 */ bl fopAcIt_Judge
+/* 80116500 00113440  4B F0 32 F9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80116504 00113444  7C 64 1B 79 */ or. r4, r3, r3
 /* 80116508 00113448  41 82 00 54 */ beq lbl_8011655C
 /* 8011650C 0011344C  38 00 00 05 */ li r0, 5

@@ -146,7 +146,7 @@ lbl_800A5718:
 /*.global fpcSch_JudgeByID*/
 /* 800A5738 000A2678  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800A573C 000A267C  38 81 00 08 */ addi r4, r1, 8
-/* 800A5740 000A2680  4B F7 40 B9 */ bl fopAcIt_Judge
+/* 800A5740 000A2680  4B F7 40 B9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A5744 000A2684  7C 64 1B 78 */ mr r4, r3
 /* 800A5748 000A2688  7F 03 C3 78 */ mr r3, r24
 /* 800A574C 000A268C  48 06 12 ED */ bl daAlink_c_NS_procBoardWaitInit

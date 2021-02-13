@@ -296,7 +296,6 @@ void mDoExt_createSolidHeapToCurrent(void);
 void mDoExt_createSolidHeapToCurrent_X1_(void);
 void mDoExt_createZeldaHeap(void);
 void mDoExt_destroyExpHeap(void);
-void mDoExt_destroySolidHeap(void);
 void mDoExt_getArchiveHeapPtr(void);
 void mDoExt_getAssertHeap(void);
 
@@ -325,7 +324,6 @@ void mDoExt_removeSubFont(void);
 void mDoExt_resIDToIndex(void);
 void mDoExt_restoreCurrentHeap(void);
 void mDoExt_setAraCacheSize(void);
-void mDoExt_setCurrentHeap(void);
 void mDoMtx_stack_c_NS_dtor_X1_(void);
 void normalizeZP__4cXyzFv(void);
 void outprod__4cXyzCFRC3Vec(void);
@@ -1304,7 +1302,7 @@ asm void mDoExt_adjustSolidHeapToSystem(void) {
 
 // mDoExt_destroySolidHeap__FP12JKRSolidHeap
 // mDoExt_destroySolidHeap(JKRSolidHeap*)
-asm void mDoExt_destroySolidHeap(void) {
+asm void mDoExt_destroySolidHeap(JKRSolidHeap*) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_8000F18C.s"
 }
@@ -1318,7 +1316,7 @@ asm void mDoExt_destroyExpHeap(void) {
 
 // mDoExt_setCurrentHeap__FP7JKRHeap
 // mDoExt_setCurrentHeap(JKRHeap*)
-asm void mDoExt_setCurrentHeap(void) {
+asm JKRHeap* mDoExt_setCurrentHeap(JKRHeap*) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_8000F1CC.s"
 }

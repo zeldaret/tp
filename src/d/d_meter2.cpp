@@ -175,7 +175,6 @@ void isCollectCrystal__20dSv_player_collect_cCFUc(void);
 void isCollectMirror__20dSv_player_collect_cCFUc(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void isLightDropGetFlag__16dSv_light_drop_cCFUc(void);
-void mDoExt_setCurrentHeap(void);
 void onCollectCrystal__20dSv_player_collect_cFUc(void);
 void onCollectMirror__20dSv_player_collect_cFUc(void);
 void setBombNum__24dSv_player_item_record_cFUcUc(void);

@@ -39,7 +39,7 @@ lbl_800A09AC:
 /* 800A09CC 0009D90C  41 82 02 40 */	beq lbl_800A0C0C
 /* 800A09D0 0009D910  28 05 01 5D */	cmplwi r5, 0x15d
 /* 800A09D4 0009D914  41 82 02 38 */	beq lbl_800A0C0C
-/* 800A09D8 0009D918  4B F7 B1 3D */	bl fopAcM_getTalkEventPartner
+/* 800A09D8 0009D918  4B F7 B1 3D */	bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800A09DC 0009D91C  7C 7A 1B 79 */	or. r26, r3, r3
 /* 800A09E0 0009D920  41 82 02 2C */	beq lbl_800A0C0C
 /* 800A09E4 0009D924  83 0D 8A 98 */	lwz r24, lbl_80451018-_SDA_BASE_(r13)
@@ -139,7 +139,7 @@ lbl_800A0B1C:
 /* 800A0B30 0009DA70  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
 /* 800A0B34 0009DA74  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 800A0B38 0009DA78  38 81 00 0C */	addi r4, r1, 0xc
-/* 800A0B3C 0009DA7C  4B F7 8C BD */	bl fopAcIt_Judge
+/* 800A0B3C 0009DA7C  4B F7 8C BD */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A0B40 0009DA80  A8 9F 30 F8 */	lha r4, 0x30f8(r31)
 /* 800A0B44 0009DA84  38 04 FF FF */	addi r0, r4, -1
 /* 800A0B48 0009DA88  B0 1F 30 F8 */	sth r0, 0x30f8(r31)

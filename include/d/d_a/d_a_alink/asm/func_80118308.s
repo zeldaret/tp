@@ -5,7 +5,7 @@
 /* 80118318 00115258  48 24 9E C5 */ bl _savegpr_29
 /* 8011831C 0011525C  7C 7D 1B 78 */ mr r29, r3
 /* 80118320 00115260  7C 9E 23 78 */ mr r30, r4
-/* 80118324 00115264  4B F0 37 F1 */ bl fopAcM_getTalkEventPartner
+/* 80118324 00115264  4B F0 37 F1 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80118328 00115268  7C 7F 1B 79 */ or. r31, r3, r3
 /* 8011832C 0011526C  41 82 02 24 */ beq lbl_80118550
 /* 80118330 00115270  A8 1F 00 08 */ lha r0, 8(r31)

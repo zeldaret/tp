@@ -43,13 +43,13 @@ lbl_800E72DC:
 /* 800E72F0 000E4230  48 07 79 C9 */ bl daPy_actorKeep_c_NS_setData
 /* 800E72F4 000E4234  7F E3 FB 78 */ mr r3, r31
 /* 800E72F8 000E4238  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E72FC 000E423C  4B F3 37 99 */ bl fopAcM_searchActorDistanceXZ2
+/* 800E72FC 000E423C  4B F3 37 99 */ bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800E7300 000E4240  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E7304 000E4244  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800E7308 000E4248  40 81 00 14 */ ble lbl_800E731C
 /* 800E730C 000E424C  7F E3 FB 78 */ mr r3, r31
 /* 800E7310 000E4250  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E7314 000E4254  4B F3 33 FD */ bl fopAcM_searchActorAngleY
+/* 800E7314 000E4254  4B F3 33 FD */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800E7318 000E4258  B0 7F 04 E6 */ sth r3, 0x4e6(r31)
 lbl_800E731C:
 /* 800E731C 000E425C  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
@@ -129,7 +129,7 @@ lbl_800E7418:
 /* 800E7438 000E4378  38 80 00 01 */ li r4, 1
 lbl_800E743C:
 /* 800E743C 000E437C  80 7F 27 F4 */ lwz r3, 0x27f4(r31)
-/* 800E7440 000E4380  4B F3 57 09 */ bl fopAcM_setCarryNow
+/* 800E7440 000E4380  4B F3 57 09 */ bl fopAcM_setCarryNow__FP10fopAc_ac_ci
 /* 800E7444 000E4384  38 60 00 01 */ li r3, 1
 lbl_800E7448:
 /* 800E7448 000E4388  83 E1 00 1C */ lwz r31, 0x1c(r1)

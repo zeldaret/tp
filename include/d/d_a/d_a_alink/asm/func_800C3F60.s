@@ -9,7 +9,7 @@
 /* 800C3F80 000C0EC0  A8 1F 30 0A */ lha r0, 0x300a(r31)
 /* 800C3F84 000C0EC4  2C 00 00 00 */ cmpwi r0, 0
 /* 800C3F88 000C0EC8  41 82 00 48 */ beq lbl_800C3FD0
-/* 800C3F8C 000C0ECC  4B F5 67 85 */ bl fopAcM_searchActorAngleY
+/* 800C3F8C 000C0ECC  4B F5 67 85 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800C3F90 000C0ED0  7C 64 1B 78 */ mr r4, r3
 /* 800C3F94 000C0ED4  38 7F 04 E6 */ addi r3, r31, 0x4e6
 /* 800C3F98 000C0ED8  38 A0 00 05 */ li r5, 5

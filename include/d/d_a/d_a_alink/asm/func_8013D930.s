@@ -32,7 +32,7 @@ lbl_8013D980:
 /* 8013D9A4 0013A8E4  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 8013D9A8 0013A8E8  7F E3 FB 78 */ mr r3, r31
 /* 8013D9AC 0013A8EC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013D9B0 0013A8F0  4B ED CD 61 */ bl fopAcM_searchActorAngleY
+/* 8013D9B0 0013A8F0  4B ED CD 61 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013D9B4 0013A8F4  B0 7F 04 E6 */ sth r3, 0x4e6(r31)
 /* 8013D9B8 0013A8F8  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8013D9BC 0013A8FC  B0 1F 04 DE */ sth r0, 0x4de(r31)

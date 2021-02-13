@@ -11,7 +11,7 @@
 /* 800F7730 000F4670  38 E0 00 00 */ li r7, 0
 /* 800F7734 000F4674  39 00 00 00 */ li r8, 0
 /* 800F7738 000F4678  39 20 FF FF */ li r9, -1
-/* 800F773C 000F467C  4B F2 26 5D */ bl fopAcM_create_X1_
+/* 800F773C 000F467C  4B F2 26 5D */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800F7740 000F4680  90 7F 28 24 */ stw r3, 0x2824(r31)
 /* 800F7744 000F4684  7F E3 FB 78 */ mr r3, r31
 /* 800F7748 000F4688  4B FF C6 59 */ bl daAlink_c_NS_initFishingRodHand

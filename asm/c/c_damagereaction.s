@@ -89,7 +89,7 @@ lbl_8001829C:
 /* 800182C0 00015200  28 00 00 00 */	cmplwi r0, 0
 /* 800182C4 00015204  41 82 00 50 */	beq lbl_80018314
 /* 800182C8 00015208  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 800182CC 0001520C  48 00 38 49 */	bl fopAcM_getTalkEventPartner
+/* 800182CC 0001520C  48 00 38 49 */	bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800182D0 00015210  28 03 00 00 */	cmplwi r3, 0
 /* 800182D4 00015214  41 82 00 40 */	beq lbl_80018314
 /* 800182D8 00015218  A8 03 00 08 */	lha r0, 8(r3)

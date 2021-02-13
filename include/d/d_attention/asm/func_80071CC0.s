@@ -27,7 +27,7 @@ lbl_80071D04:
 /* 80071D1C 0006EC5C  48 00 00 3C */ b lbl_80071D58
 lbl_80071D20:
 /* 80071D20 0006EC60  7F E4 FB 78 */ mr r4, r31
-/* 80071D24 0006EC64  4B FA 8A BD */ bl fopAcM_searchActorDistance
+/* 80071D24 0006EC64  4B FA 8A BD */ bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80071D28 0006EC68  88 1F 05 46 */ lbz r0, 0x546(r31)
 /* 80071D2C 0006EC6C  1C 00 00 1C */ mulli r0, r0, 0x1c
 /* 80071D30 0006EC70  3C 60 80 3B */ lis r3, lbl_803A9C70@ha
