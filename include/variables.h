@@ -10,8 +10,6 @@ extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
 extern char lbl_803A2EE0[16];
 extern u8 lbl_80450B19;
-struct g_HIO_struct;
-extern g_HIO_struct g_HIO;
 extern s8 lbl_80450580;
 // extern u8 lbl_80450B1A;
 struct JUTGamePad;

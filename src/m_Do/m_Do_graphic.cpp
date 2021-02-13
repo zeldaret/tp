@@ -12,6 +12,7 @@
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
 #include "gx/GX.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 
 #ifdef NONMATCHING  // mr and addi swapped

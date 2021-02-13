@@ -9,7 +9,7 @@ extern interface_of_controller_pad m_cpadInfo[4];  // m_Do_controller_pad::mDoCP
 
 struct g_HIO_struct {
     u32 field_0x0;
-    u8 field_0x4;
+    s8 field_0x4;
     u8 field_0x5;
     u8 field_0x6;
     u8 field_0x7;
@@ -68,6 +68,8 @@ struct g_HIO_struct {
     u8 field_0x42;
     u8 field_0x43;
 };
+
+extern g_HIO_struct g_HIO;
 
 struct mDoCPd_c {
     void create();

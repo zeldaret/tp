@@ -7,6 +7,7 @@
 #include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
+#include "f/f_ap_game/f_ap_game.h"
 #include "f/f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
