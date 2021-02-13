@@ -29,12 +29,12 @@
 /* 800AA658 000A7598  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA65C 000A759C  41 82 00 34 */ beq lbl_800AA690
 /* 800AA660 000A75A0  7F C3 F3 78 */ mr r3, r30
-/* 800AA664 000A75A4  4B F7 14 B1 */ bl fopAcM_getTalkEventPartner
+/* 800AA664 000A75A4  4B F7 14 B1 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800AA668 000A75A8  28 03 00 00 */ cmplwi r3, 0
 /* 800AA66C 000A75AC  41 82 00 18 */ beq lbl_800AA684
 /* 800AA670 000A75B0  83 ED 8A 98 */ lwz r31, lbl_80451018-_SDA_BASE_(r13)
 /* 800AA674 000A75B4  7F C3 F3 78 */ mr r3, r30
-/* 800AA678 000A75B8  4B F7 14 9D */ bl fopAcM_getTalkEventPartner
+/* 800AA678 000A75B8  4B F7 14 9D */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800AA67C 000A75BC  7C 03 F8 40 */ cmplw r3, r31
 /* 800AA680 000A75C0  41 82 00 10 */ beq lbl_800AA690
 lbl_800AA684:

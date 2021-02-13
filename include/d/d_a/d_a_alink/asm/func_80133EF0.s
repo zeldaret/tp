@@ -25,7 +25,7 @@ lbl_80133F44:
 /* 80133F44 00130E84  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80133F48 00130E88  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80133F4C 00130E8C  80 63 5D B4 */ lwz r3, 0x5db4(r3)
-/* 80133F50 00130E90  4B EE 7B C5 */ bl fopAcM_getTalkEventPartner
+/* 80133F50 00130E90  4B EE 7B C5 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80133F54 00130E94  38 A0 00 00 */ li r5, 0
 /* 80133F58 00130E98  80 1F 05 80 */ lwz r0, 0x580(r31)
 /* 80133F5C 00130E9C  54 00 03 9D */ rlwinm. r0, r0, 0, 0xe, 0xe

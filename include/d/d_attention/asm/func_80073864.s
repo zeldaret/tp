@@ -8,7 +8,7 @@
 /*.global fpcSch_JudgeByID*/
 /* 8007387C 000707BC  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 80073880 000707C0  38 81 00 08 */ addi r4, r1, 8
-/* 80073884 000707C4  4B FA 5F 75 */ bl fopAcIt_Judge
+/* 80073884 000707C4  4B FA 5F 75 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80073888 000707C8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8007388C 000707CC  7C 08 03 A6 */ mtlr r0
 /* 80073890 000707D0  38 21 00 10 */ addi r1, r1, 0x10

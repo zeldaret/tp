@@ -91,7 +91,7 @@ lbl_800DF184:
 /* 800DF218 000DC158  39 00 00 00 */ li r8, 0
 /* 800DF21C 000DC15C  39 20 FF FF */ li r9, -1
 /* 800DF220 000DC160  39 40 00 00 */ li r10, 0
-/* 800DF224 000DC164  4B F3 AB E1 */ bl fopAcM_fastCreate
+/* 800DF224 000DC164  4B F3 AB E1 */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 800DF228 000DC168  28 03 00 00 */ cmplwi r3, 0
 /* 800DF22C 000DC16C  41 82 00 34 */ beq lbl_800DF260
 /* 800DF230 000DC170  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

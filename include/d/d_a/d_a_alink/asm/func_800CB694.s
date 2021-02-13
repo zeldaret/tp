@@ -26,7 +26,7 @@
 /* 800CB6F8 000C8638  48 19 BA 31 */ bl atan2sX_Z__4cXyzCFv
 /* 800CB6FC 000C863C  B0 7E 2F F6 */ sth r3, 0x2ff6(r30)
 /* 800CB700 000C8640  7F C3 F3 78 */ mr r3, r30
-/* 800CB704 000C8644  4B F5 04 11 */ bl fopAcM_getTalkEventPartner
+/* 800CB704 000C8644  4B F5 04 11 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 800CB708 000C8648  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 800CB70C 000C864C  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800CB710 000C8650  80 04 5F 18 */ lwz r0, 0x5f18(r4)
@@ -97,7 +97,7 @@ lbl_800CB79C:
 /* 800CB7F8 000C8738  38 61 00 24 */ addi r3, r1, 0x24
 /* 800CB7FC 000C873C  38 81 00 18 */ addi r4, r1, 0x18
 /* 800CB800 000C8740  7F C5 F3 78 */ mr r5, r30
-/* 800CB804 000C8744  4B F5 24 65 */ bl fopAcM_lc_c_NS_lineCheck
+/* 800CB804 000C8744  4B F5 24 65 */ bl lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800CB808 000C8748  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CB80C 000C874C  41 82 00 0C */ beq lbl_800CB818
 /* 800CB810 000C8750  3B E0 00 01 */ li r31, 1

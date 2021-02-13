@@ -15,7 +15,7 @@
 /* 800B7BB4 000B4AF4  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
 /* 800B7BB8 000B4AF8  38 E0 00 01 */ li r7, 1
 /* 800B7BBC 000B4AFC  39 00 00 00 */ li r8, 0
-/* 800B7BC0 000B4B00  4B F6 39 21 */ bl fopAcM_orderOtherEvent_X1_
+/* 800B7BC0 000B4B00  4B F6 39 21 */ bl fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs
 /* 800B7BC4 000B4B04  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 800B7BC8 000B4B08  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800B7BCC 000B4B0C  41 82 00 10 */ beq lbl_800B7BDC

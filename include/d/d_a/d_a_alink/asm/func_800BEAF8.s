@@ -116,7 +116,7 @@ lbl_800BEC88:
 /* 800BEC94 000BBBD4  7F A3 EB 78 */ mr r3, r29
 /* 800BEC98 000BBBD8  38 9C 04 D0 */ addi r4, r28, 0x4d0
 /* 800BEC9C 000BBBDC  38 A1 00 08 */ addi r5, r1, 8
-/* 800BECA0 000BBBE0  4B F5 EC 61 */ bl fpoAcM_relativePos
+/* 800BECA0 000BBBE0  4B F5 EC 61 */ bl fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz
 /* 800BECA4 000BBBE4  C0 41 00 0C */ lfs f2, 0xc(r1)
 /* 800BECA8 000BBBE8  C0 02 97 40 */ lfs f0, lbl_80453140-_SDA2_BASE_(r2)
 /* 800BECAC 000BBBEC  FC 02 00 40 */ fcmpo cr0, f2, f0

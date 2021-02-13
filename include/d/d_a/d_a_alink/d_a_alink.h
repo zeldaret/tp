@@ -5,6 +5,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
+#include "JSystem/JMath/JMath.h"
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
@@ -340,10 +341,10 @@ void dCamera_c_NS_GetForceLockOnActor(void);
 void dCam_getBody(void);
 void dAttention_c_NS_LockonTarget(void);
 void cM_rnd__Fv(void);
-void fopAcIt_Judge(void);
+void fopAcIt_Judge__FPFPvPv_PvPv(void);
 void dAttList_c_NS_getActor(void);
 void dAttention_c_NS_GetLockonList(void);
-void fopAcM_getTalkEventPartner(void);
+void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c(void);
 }
 
 // daalink_matanm init
@@ -384,7 +385,6 @@ extern float lbl_80453058;
 extern float lbl_80453100;
 extern float lbl_804531F0;
 extern float lbl_804531F4;
-extern u8 lbl_80439A20[65536];  // JMath::JMath::sincosTable_
 
 // daalink sethairangle
 extern float lbl_80452C98;

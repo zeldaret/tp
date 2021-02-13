@@ -58,7 +58,7 @@ lbl_801822D4:
 /* 80182340 0017F280  48 00 00 F4 */ b lbl_80182434
 lbl_80182344:
 /* 80182344 0017F284  7F 83 E3 78 */ mr r3, r28
-/* 80182348 0017F288  4B E9 75 7D */ bl fopAcM_setStageLayer
+/* 80182348 0017F288  4B E9 75 7D */ bl fopAcM_setStageLayer__FPv
 /* 8018234C 0017F28C  38 00 00 01 */ li r0, 1
 /* 80182350 0017F290  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80182354 0017F294  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

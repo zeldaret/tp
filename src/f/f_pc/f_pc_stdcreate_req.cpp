@@ -91,9 +91,9 @@ s32 fpcSCtRq_Cancel(standard_create_request_class* pStdCreateReq) {
     return 1;
 }
 
-s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, void* param_4,
+s32 fpcSCtRq_Request(layer_class* param_1, s16 pProcName, stdCreateFunc param_3, void* param_4,
                      void* param_5) {
-    if (param_2 >= 0x7FFF) {
+    if (pProcName >= 0x7FFF) {
         return -1;
     } else {
         standard_create_request_class* request =
@@ -102,7 +102,7 @@ s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, v
             return -1;
         } else {
             cPhs_Set(&request->unk_0x48, lbl_803A3AFC);
-            request->mLoadID = param_2;
+            request->mLoadID = pProcName;
             request->unk_0x58 = param_3;
             request->unk_0x5C = param_4;
             request->unk_0x54 = param_5;

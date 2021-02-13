@@ -17,7 +17,7 @@
 /* 80112108 0010F048  28 04 00 00 */ cmplwi r4, 0
 /* 8011210C 0010F04C  41 82 00 2C */ beq lbl_80112138
 /* 80112110 0010F050  7F E3 FB 78 */ mr r3, r31
-/* 80112114 0010F054  4B F0 85 FD */ bl fopAcM_searchActorAngleY
+/* 80112114 0010F054  4B F0 85 FD */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80112118 0010F058  7C 64 1B 78 */ mr r4, r3
 /* 8011211C 0010F05C  38 7F 04 E6 */ addi r3, r31, 0x4e6
 /* 80112120 0010F060  38 A0 00 02 */ li r5, 2

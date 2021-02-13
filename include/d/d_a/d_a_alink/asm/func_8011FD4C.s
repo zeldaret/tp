@@ -241,7 +241,7 @@ lbl_801200B4:
 /*.global daAlink_searchPortal*/
 /* 801200B8 0011CFF8  38 63 F5 D4 */ addi r3, r3, daAlink_searchPortal@l
 /* 801200BC 0011CFFC  38 9C 04 D0 */ addi r4, r28, 0x4d0
-/* 801200C0 0011D000  4B EF 97 39 */ bl fopAcIt_Judge
+/* 801200C0 0011D000  4B EF 97 39 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801200C4 0011D004  28 03 00 00 */ cmplwi r3, 0
 /* 801200C8 0011D008  41 82 00 0C */ beq lbl_801200D4
 /* 801200CC 0011D00C  88 03 05 C6 */ lbz r0, 0x5c6(r3)

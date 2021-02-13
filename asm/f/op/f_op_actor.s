@@ -151,7 +151,7 @@ fopAc_IsActor:
 /* 80018D60 00015CA0  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 80018D64 00015CA4  41 82 00 14 */	beq lbl_80018D78
 /* 80018D68 00015CA8  7F E3 FB 78 */	mr r3, r31
-/* 80018D6C 00015CAC  48 00 1F 81 */	bl fopAcM_cullingCheck
+/* 80018D6C 00015CAC  48 00 1F 81 */	bl fopAcM_cullingCheck__FPC10fopAc_ac_c
 /* 80018D70 00015CB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80018D74 00015CB4  40 82 00 30 */	bne lbl_80018DA4
 lbl_80018D78:
@@ -275,7 +275,7 @@ lbl_80018F14:
 /* 80018F30 00015E70  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80018F34 00015E74  40 81 00 0C */	ble lbl_80018F40
 /* 80018F38 00015E78  7F E3 FB 78 */	mr r3, r31
-/* 80018F3C 00015E7C  48 00 0D 41 */	bl fopAcM_delete
+/* 80018F3C 00015E7C  48 00 0D 41 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80018F40:
 /* 80018F40 00015E80  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)
 /* 80018F44 00015E84  C0 02 81 CC */	lfs f0, lbl_80451BCC-_SDA2_BASE_(r2)
@@ -332,7 +332,7 @@ lbl_80018FB0:
 /* 80019004 00015F44  38 7F 00 D8 */	addi r3, r31, 0xd8
 /* 80019008 00015F48  48 00 74 CD */	bl fopDwTg_DrawQTo
 /* 8001900C 00015F4C  7F E3 FB 78 */	mr r3, r31
-/* 80019010 00015F50  48 00 11 29 */	bl fopAcM_DeleteHeap
+/* 80019010 00015F50  48 00 11 29 */	bl fopAcM_DeleteHeap__FP10fopAc_ac_c
 /* 80019014 00015F54  80 6D 88 A0 */	lwz r3, lbl_80450E20-_SDA_BASE_(r13)
 /* 80019018 00015F58  88 9F 04 98 */	lbz r4, 0x498(r31)
 /* 8001901C 00015F5C  48 02 00 6D */	bl dDemo_object_c_NS_getActor

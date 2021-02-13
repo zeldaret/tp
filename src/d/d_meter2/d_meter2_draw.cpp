@@ -116,7 +116,6 @@ void J2DScreen_NS_setPriority(void);
 void J2DTextBox_NS_getStringPtr(void);
 void J2DTextBox_NS_setString_X1_(void);
 void mDoExt_getMesgFont(void);
-void mDoExt_setCurrentHeap(void);
 void rotate__7J2DPaneFff13J2DRotateAxisf(void);
 void setBasePosition__7J2DPaneF15J2DBasePosition(void);
 }

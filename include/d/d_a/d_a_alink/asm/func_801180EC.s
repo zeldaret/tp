@@ -22,7 +22,7 @@ lbl_8011811C:
 lbl_8011813C:
 /* 8011813C 0011507C  2C 00 00 03 */ cmpwi r0, 3
 /* 80118140 00115080  40 82 00 0C */ bne lbl_8011814C
-/* 80118144 00115084  4B F0 39 D1 */ bl fopAcM_getTalkEventPartner
+/* 80118144 00115084  4B F0 39 D1 */ bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80118148 00115088  48 00 00 18 */ b lbl_80118160
 lbl_8011814C:
 /* 8011814C 0011508C  2C 00 00 04 */ cmpwi r0, 4

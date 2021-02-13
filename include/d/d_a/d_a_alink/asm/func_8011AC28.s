@@ -131,7 +131,7 @@ lbl_8011ADFC:
 /* 8011AE08 00117D48  B0 1C 04 E6 */ sth r0, 0x4e6(r28)
 lbl_8011AE0C:
 /* 8011AE0C 00117D4C  7F 83 E3 78 */ mr r3, r28
-/* 8011AE10 00117D50  4B F0 0D 35 */ bl fopAcM_getItemEventPartner
+/* 8011AE10 00117D50  4B F0 0D 35 */ bl fopAcM_getItemEventPartner__FPC10fopAc_ac_c
 /* 8011AE14 00117D54  7C 7D 1B 78 */ mr r29, r3
 /* 8011AE18 00117D58  A8 1C 30 0C */ lha r0, 0x300c(r28)
 /* 8011AE1C 00117D5C  2C 00 FF FF */ cmpwi r0, -1

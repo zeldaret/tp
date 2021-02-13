@@ -3,10 +3,13 @@
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_a/d_a_alink/d_a_alink.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "f/f_op/f_op_actor_iter.h"
+#include "f/f_op/f_op_actor_mng.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+#include "m_Do/m_Do_ext/m_Do_ext.h"
 
 extern "C" {
 double func_8036C668(double);
@@ -55,7 +58,6 @@ void mDoExt_brkAnm_NS_init(void);
 void mDoExt_btkAnm_NS_entry(void);
 void mDoExt_btkAnm_NS_init(void);
 void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
-void mDoExt_destroySolidHeap(void);
 void mDoExt_J3DModel__create(void);
 void mDoExt_modelUpdateDL(void);
 void mDoExt_restoreCurrentHeap(void);

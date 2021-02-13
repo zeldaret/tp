@@ -102,7 +102,7 @@ lbl_8013EEA0:
 lbl_8013EEB0:
 /* 8013EEB0 0013BDF0  7F C3 F3 78 */ mr r3, r30
 /* 8013EEB4 0013BDF4  7F E4 FB 78 */ mr r4, r31
-/* 8013EEB8 0013BDF8  4B ED B8 59 */ bl fopAcM_searchActorAngleY
+/* 8013EEB8 0013BDF8  4B ED B8 59 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013EEBC 0013BDFC  7C 7D 1B 78 */ mr r29, r3
 /* 8013EEC0 0013BE00  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8013EEC4 0013BE04  7C 00 E8 50 */ subf r0, r0, r29
@@ -286,7 +286,7 @@ lbl_8013F140:
 /* 8013F150 0013C090  C0 1E 37 D0 */ lfs f0, 0x37d0(r30)
 /* 8013F154 0013C094  D0 1E 37 DC */ stfs f0, 0x37dc(r30)
 /* 8013F158 0013C098  38 7E 37 C8 */ addi r3, r30, 0x37c8
-/* 8013F15C 0013C09C  4B ED EC 29 */ bl fopAcM_wt_c_NS_waterCheck
+/* 8013F15C 0013C09C  4B ED EC 29 */ bl waterCheck__11fopAcM_wt_cFPC4cXyz
 /* 8013F160 0013C0A0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013F164 0013C0A4  41 82 00 4C */ beq lbl_8013F1B0
 /* 8013F168 0013C0A8  7F E3 FB 78 */ mr r3, r31

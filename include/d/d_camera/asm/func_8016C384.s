@@ -353,7 +353,7 @@ lbl_8016C8AC:
 /*.global fpcSch_JudgeByID*/
 /* 8016C8D4 00169814  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8016C8D8 00169818  38 81 01 50 */ addi r4, r1, 0x150
-/* 8016C8DC 0016981C  4B EA CF 1D */ bl fopAcIt_Judge
+/* 8016C8DC 0016981C  4B EA CF 1D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8016C8E0 00169820  90 7E 01 84 */ stw r3, 0x184(r30)
 /* 8016C8E4 00169824  80 1E 01 84 */ lwz r0, 0x184(r30)
 /* 8016C8E8 00169828  28 00 00 00 */ cmplwi r0, 0
@@ -380,7 +380,7 @@ lbl_8016C90C:
 /*.global fpcSch_JudgeByID*/
 /* 8016C930 00169870  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8016C934 00169874  38 81 01 4C */ addi r4, r1, 0x14c
-/* 8016C938 00169878  4B EA CE C1 */ bl fopAcIt_Judge
+/* 8016C938 00169878  4B EA CE C1 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8016C93C 0016987C  90 7E 01 84 */ stw r3, 0x184(r30)
 lbl_8016C940:
 /* 8016C940 00169880  3B 40 00 00 */ li r26, 0

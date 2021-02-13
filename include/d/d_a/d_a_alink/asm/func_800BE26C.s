@@ -11,7 +11,7 @@
 /*.global daAlink_searchCoach*/
 /* 800BE290 000BB1D0  38 63 C7 58 */ addi r3, r3, daAlink_searchCoach@l
 /* 800BE294 000BB1D4  38 80 00 00 */ li r4, 0
-/* 800BE298 000BB1D8  4B F5 B5 61 */ bl fopAcIt_Judge
+/* 800BE298 000BB1D8  4B F5 B5 61 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800BE29C 000BB1DC  28 03 00 00 */ cmplwi r3, 0
 /* 800BE2A0 000BB1E0  41 82 00 08 */ beq lbl_800BE2A8
 /* 800BE2A4 000BB1E4  3B E0 00 01 */ li r31, 1

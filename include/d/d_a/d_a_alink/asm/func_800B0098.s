@@ -37,7 +37,7 @@ lbl_800B010C:
 lbl_800B0120:
 /* 800B0120 000AD060  38 61 00 08 */ addi r3, r1, 8
 /* 800B0124 000AD064  7F C4 F3 78 */ mr r4, r30
-/* 800B0128 000AD068  4B F6 DA B1 */ bl fopAcM_getPolygonAngle_X1_
+/* 800B0128 000AD068  4B F6 DA B1 */ bl fopAcM_getPolygonAngle__FPC8cM3dGPlas
 /* 800B012C 000AD06C  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 800B0130 000AD070  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800B0134 000AD074  90 01 00 18 */ stw r0, 0x18(r1)

@@ -27,7 +27,7 @@ lbl_800EA2D8:
 /* 800EA30C 000E724C  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800EA310 000E7250  80 7F 27 F4 */ lwz r3, 0x27f4(r31)
 /* 800EA314 000E7254  7F E4 FB 78 */ mr r4, r31
-/* 800EA318 000E7258  4B F3 03 F9 */ bl fopAcM_searchActorAngleY
+/* 800EA318 000E7258  4B F3 03 F9 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800EA31C 000E725C  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 800EA320 000E7260  A8 84 04 E6 */ lha r4, 0x4e6(r4)
 /* 800EA324 000E7264  7C 04 18 50 */ subf r0, r4, r3

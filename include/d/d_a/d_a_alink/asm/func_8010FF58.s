@@ -185,7 +185,7 @@ lbl_801101F8:
 /* 80110208 0010D148  7F C3 F3 78 */ mr r3, r30
 /* 8011020C 0010D14C  38 A0 00 00 */ li r5, 0
 /* 80110210 0010D150  38 C0 00 00 */ li r6, 0
-/* 80110214 0010D154  4B F0 B1 21 */ bl fopAcM_orderCatchEvent
+/* 80110214 0010D154  4B F0 B1 21 */ bl fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 /* 80110218 0010D158  48 00 00 2C */ b lbl_80110244
 lbl_8011021C:
 /* 8011021C 0010D15C  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
@@ -197,7 +197,7 @@ lbl_8011021C:
 /* 80110234 0010D174  7F C3 F3 78 */ mr r3, r30
 /* 80110238 0010D178  38 A0 00 00 */ li r5, 0
 /* 8011023C 0010D17C  38 C0 00 00 */ li r6, 0
-/* 80110240 0010D180  4B F0 B0 F5 */ bl fopAcM_orderCatchEvent
+/* 80110240 0010D180  4B F0 B0 F5 */ bl fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 lbl_80110244:
 /* 80110244 0010D184  7F E3 FB 78 */ mr r3, r31
 /* 80110248 0010D188  48 04 E2 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd

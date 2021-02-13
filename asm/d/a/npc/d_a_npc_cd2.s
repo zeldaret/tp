@@ -1820,7 +1820,7 @@ s_sub1:
 /* 80159738 00156678  40 82 00 6C */	bne lbl_801597A4
 /* 8015973C 0015667C  7F E3 FB 78 */	mr r3, r31
 /* 80159740 00156680  7F C4 F3 78 */	mr r4, r30
-/* 80159744 00156684  4B EC 0F CD */	bl fopAcM_searchActorAngleY
+/* 80159744 00156684  4B EC 0F CD */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80159748 00156688  7C 64 1B 78 */	mr r4, r3
 /* 8015974C 0015668C  A8 6D 8A 8C */	lha r3, lbl_8045100C-_SDA_BASE_(r13)
 /* 80159750 00156690  48 11 76 D5 */	bl cLib_distanceAngleS__Fss
@@ -1829,7 +1829,7 @@ s_sub1:
 /* 8015975C 0015669C  40 82 00 20 */	bne lbl_8015977C
 /* 80159760 001566A0  7F E3 FB 78 */	mr r3, r31
 /* 80159764 001566A4  7F C4 F3 78 */	mr r4, r30
-/* 80159768 001566A8  4B EC 13 2D */	bl fopAcM_searchActorDistanceXZ2
+/* 80159768 001566A8  4B EC 13 2D */	bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8015976C 001566AC  D0 2D 8A 88 */	stfs f1, lbl_80451008-_SDA_BASE_(r13)
 /* 80159770 001566B0  93 CD 8A 84 */	stw r30, lbl_80451004-_SDA_BASE_(r13)
 /* 80159774 001566B4  38 60 00 00 */	li r3, 0
@@ -1839,7 +1839,7 @@ lbl_8015977C:
 /* 80159780 001566C0  40 81 00 24 */	ble lbl_801597A4
 /* 80159784 001566C4  7F E3 FB 78 */	mr r3, r31
 /* 80159788 001566C8  7F C4 F3 78 */	mr r4, r30
-/* 8015978C 001566CC  4B EC 13 09 */	bl fopAcM_searchActorDistanceXZ2
+/* 8015978C 001566CC  4B EC 13 09 */	bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80159790 001566D0  C0 0D 8A 88 */	lfs f0, lbl_80451008-_SDA_BASE_(r13)
 /* 80159794 001566D4  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 80159798 001566D8  40 81 00 0C */	ble lbl_801597A4
@@ -1864,7 +1864,7 @@ lbl_801597A8:
 /* 801597DC 0015671C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 801597E0 00156720  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 801597E4 00156724  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 801597E8 00156728  4B EC 0F 29 */	bl fopAcM_searchActorAngleY
+/* 801597E8 00156728  4B EC 0F 29 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 801597EC 0015672C  B0 6D 8A 8C */	sth r3, lbl_8045100C-_SDA_BASE_(r13)
 .global s_sub1
 /* 801597F0 00156730  3C 60 80 16 */	lis r3, s_sub1@ha
@@ -1919,7 +1919,7 @@ lbl_80159894:
 /* 801598A8 001567E8  FF E0 08 18 */	frsp f31, f1
 /* 801598AC 001567EC  7F A3 EB 78 */	mr r3, r29
 /* 801598B0 001567F0  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 801598B4 001567F4  4B EC 11 E1 */	bl fopAcM_searchActorDistanceXZ2
+/* 801598B4 001567F4  4B EC 11 E1 */	bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 801598B8 001567F8  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 801598BC 001567FC  40 80 00 08 */	bge lbl_801598C4
 /* 801598C0 00156800  3B C0 00 01 */	li r30, 1

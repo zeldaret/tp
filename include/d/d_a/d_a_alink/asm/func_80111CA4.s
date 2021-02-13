@@ -46,7 +46,7 @@ lbl_80111D1C:
 /*.global daAlink_searchWhistle*/
 /* 80111D48 0010EC88  38 63 17 4C */ addi r3, r3, daAlink_searchWhistle@l
 /* 80111D4C 0010EC8C  38 80 00 00 */ li r4, 0
-/* 80111D50 0010EC90  4B F0 7A A9 */ bl fopAcIt_Judge
+/* 80111D50 0010EC90  4B F0 7A A9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80111D54 0010EC94  7C 7E 1B 79 */ or. r30, r3, r3
 /* 80111D58 0010EC98  41 82 00 60 */ beq lbl_80111DB8
 /* 80111D5C 0010EC9C  80 1E 04 9C */ lwz r0, 0x49c(r30)

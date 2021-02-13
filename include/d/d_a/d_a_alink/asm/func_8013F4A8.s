@@ -34,7 +34,7 @@ lbl_8013F50C:
 /* 8013F520 0013C460  40 82 01 28 */ bne lbl_8013F648
 /* 8013F524 0013C464  80 7D 27 F4 */ lwz r3, 0x27f4(r29)
 /* 8013F528 0013C468  7F A4 EB 78 */ mr r4, r29
-/* 8013F52C 0013C46C  4B ED B2 71 */ bl fopAcM_seenActorAngleY
+/* 8013F52C 0013C46C  4B ED B2 71 */ bl fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013F530 0013C470  2C 03 40 00 */ cmpwi r3, 0x4000
 /* 8013F534 0013C474  41 81 00 1C */ bgt lbl_8013F550
 /* 8013F538 0013C478  80 7D 27 F4 */ lwz r3, 0x27f4(r29)
@@ -99,7 +99,7 @@ lbl_8013F5C4:
 /* 8013F60C 0013C54C  D0 21 00 24 */ stfs f1, 0x24(r1)
 /* 8013F610 0013C550  D0 41 00 28 */ stfs f2, 0x28(r1)
 /* 8013F614 0013C554  38 61 00 20 */ addi r3, r1, 0x20
-/* 8013F618 0013C558  4B ED E6 A5 */ bl fopAcM_gc_c_NS_gndCheck
+/* 8013F618 0013C558  4B ED E6 A5 */ bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 8013F61C 0013C55C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013F620 0013C560  41 82 00 7C */ beq lbl_8013F69C
 /* 8013F624 0013C564  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

@@ -59,7 +59,7 @@ lbl_8013D1A4:
 /* 8013D1AC 0013A0EC  4B FA 8A 09 */ bl daAlink_c_NS_setGrabItemActor
 /* 8013D1B0 0013A0F0  7F E3 FB 78 */ mr r3, r31
 /* 8013D1B4 0013A0F4  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013D1B8 0013A0F8  4B ED D5 59 */ bl fopAcM_searchActorAngleY
+/* 8013D1B8 0013A0F8  4B ED D5 59 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013D1BC 0013A0FC  B0 7F 04 E6 */ sth r3, 0x4e6(r31)
 /* 8013D1C0 0013A100  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8013D1C4 0013A104  B0 1F 04 DE */ sth r0, 0x4de(r31)

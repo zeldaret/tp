@@ -18,7 +18,7 @@ lbl_801122A4:
 /*.global daAlink_searchHawk*/
 /* 801122B4 0010F1F4  38 63 17 70 */ addi r3, r3, daAlink_searchHawk@l
 /* 801122B8 0010F1F8  38 80 00 00 */ li r4, 0
-/* 801122BC 0010F1FC  4B F0 75 3D */ bl fopAcIt_Judge
+/* 801122BC 0010F1FC  4B F0 75 3D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801122C0 0010F200  7C 64 1B 79 */ or. r4, r3, r3
 /* 801122C4 0010F204  41 82 00 0C */ beq lbl_801122D0
 /* 801122C8 0010F208  38 7F 28 0C */ addi r3, r31, 0x280c

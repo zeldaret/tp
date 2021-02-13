@@ -88,7 +88,7 @@ lbl_800063A8:
 /* 800063C4 00003304  38 80 00 00 */	li r4, 0
 /* 800063C8 00003308  48 00 F8 AD */	bl mDoDvdThd_callback_c_NS_create
 /* 800063CC 0000330C  48 01 26 D5 */	bl fapGm_Create
-/* 800063D0 00003310  48 01 7A 41 */	bl fopAcM_initManager
+/* 800063D0 00003310  48 01 7A 41 */	bl fopAcM_initManager__Fv
 /* 800063D4 00003314  38 00 00 00 */	li r0, 0
 /* 800063D8 00003318  98 0D 85 98 */	stb r0, lbl_80450B18-_SDA_BASE_(r13)
 /* 800063DC 0000331C  48 01 23 89 */	bl cDyl_InitAsync

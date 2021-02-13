@@ -40,7 +40,7 @@ lbl_8013A968:
 /* 8013A98C 001378CC  54 00 07 39 */ rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8013A990 001378D0  40 82 00 14 */ bne lbl_8013A9A4
 /* 8013A994 001378D4  7F A3 EB 78 */ mr r3, r29
-/* 8013A998 001378D8  4B ED FE 05 */ bl fopAcM_seenActorAngleY
+/* 8013A998 001378D8  4B ED FE 05 */ bl fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8013A99C 001378DC  2C 03 50 00 */ cmpwi r3, 0x5000
 /* 8013A9A0 001378E0  41 81 00 0C */ bgt lbl_8013A9AC
 lbl_8013A9A4:

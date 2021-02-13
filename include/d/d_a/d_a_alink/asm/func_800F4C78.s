@@ -14,7 +14,7 @@
 /*.global daAlink_searchCanoe*/
 /* 800F4CA8 000F1BE8  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe@l
 /* 800F4CAC 000F1BEC  38 80 00 00 */ li r4, 0
-/* 800F4CB0 000F1BF0  4B F2 4B 49 */ bl fopAcIt_Judge
+/* 800F4CB0 000F1BF0  4B F2 4B 49 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800F4CB4 000F1BF4  7C 7E 1B 78 */ mr r30, r3
 /* 800F4CB8 000F1BF8  3B E0 00 01 */ li r31, 1
 /* 800F4CBC 000F1BFC  48 00 00 08 */ b lbl_800F4CC4
