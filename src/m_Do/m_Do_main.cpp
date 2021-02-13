@@ -2,8 +2,8 @@
 #include "JSystem/JKernel/JKRAram/JKRAram.h"
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JUtility/JUTAssert/JUTAssert.h"
-#include "JSystem/JUtility/JUTReport/JUTReport.h"
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
+#include "JSystem/JUtility/JUTReport/JUTReport.h"
 #include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
@@ -390,10 +390,9 @@ s32 LOAD_COPYDATE(void*) {
     s32 status;
     u8 buffer[32];
     u8 fileInfo[80];
-    //DVDFileInfo fileInfo;
+    // DVDFileInfo fileInfo;
 
     status = DVDOpen("/str/Final/Release/COPYDATE", (DVDFileInfo*)&fileInfo);
-    
 
     if (status) {
         DVDReadPrio((DVDFileInfo*)fileInfo, &buffer, 32, 0, 2);
@@ -522,7 +521,7 @@ void main01(void) {
     systemConsole->field_0x44 = 0x2A;
 
     // lol
-    mDoDVDThd_callback_c::create(LOAD_COPYDATE,0);
+    mDoDVDThd_callback_c::create(LOAD_COPYDATE, 0);
     fapGm_Create();
     fopAcM_initManager();
     lbl_80450B18 = 0;
