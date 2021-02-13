@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JUtility/JUTAssert/JUTAssert.h"
 #include "JSystem/JUtility/JUTReport/JUTReport.h"
+#include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "SComponent/c_API_controller_pad.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "dvd/dvd.h"
@@ -264,7 +265,7 @@ asm void debugDisplay(void) {
 #endif
 
 #ifdef NONMATCHING
-void Debug_console(u32 controller_no) {
+void Debug_console(u32 controller_pad_no) {
     float tmp2;
     float tmp3;
     int tmp6;
@@ -285,32 +286,32 @@ void Debug_console(u32 controller_no) {
             lbl_80450B30 = 1;
         }
 
-        u32 tmp5 = m_cpadInfo[controller_no].mPressedButtonFlags;
+        u32 tmp5 = m_cpadInfo[controller_pad_no].mPressedButtonFlags;
 
-        if ((m_cpadInfo[controller_no].mPressedButtonFlags & 0x10) &&
-            !(m_cpadInfo[controller_no].mButtonFlags & 0xFFFFFFEF)) {
+        if ((m_cpadInfo[controller_pad_no].mPressedButtonFlags & 0x10) &&
+            !(m_cpadInfo[controller_pad_no].mButtonFlags & ~0x10)) {
             lbl_804511B8->field_0x68 = !lbl_804511B8->field_0x68;
             JUTAssertion::setMessageCount(0);
         }
 
         if (lbl_804511B8->field_0x68) {
-            u32 tmp = m_cpadInfo[controller_no].mButtonFlags;
+            u32 tmp = m_cpadInfo[controller_pad_no].mButtonFlags;
 
             // if R and L are pressed
-            if ((tmp & 0x40 && tmp & 0x20) ||
-                ((lbl_80451A08 > m_cpadInfo[controller_no].mTriggerLeft) &&
-                 (lbl_80451A08 > m_cpadInfo[controller_no].mTriggerRight))) {
-                tmp2 = m_cpadInfo[controller_no].mMainStickPosX;
-                tmp3 = m_cpadInfo[controller_no].mMainStickPosY;
+            if ((tmp & CButton::R && tmp & CButton::L) ||
+                ((lbl_80451A08 > m_cpadInfo[controller_pad_no].mTriggerLeft) &&
+                 (lbl_80451A08 > m_cpadInfo[controller_pad_no].mTriggerRight))) {
+                tmp2 = m_cpadInfo[controller_pad_no].mMainStickPosX;
+                tmp3 = m_cpadInfo[controller_pad_no].mMainStickPosY;
 
                 // if x buttons are pressed, clear the console
-                if (tmp & 0xC00 && tmp5 & 0x1000) {
+                if (tmp & (CButton::Y | CButton::START) && tmp5 & CButton::START) {
                     lbl_804511B8->clear();
                 }
 
-                u32 tmp = m_cpadInfo[controller_no].mButtonFlags;
+                u32 tmp = m_cpadInfo[controller_pad_no].mButtonFlags;
 
-                if (!(tmp & 0xC00)) {
+                if (!(tmp & (CButton::Y | CButton::START))) {
                     // subtract console scroll value from stick Y
                     float tmp4 = lbl_80450B2C;
                     lbl_80450B2C = tmp4 - tmp3;
@@ -325,16 +326,16 @@ void Debug_console(u32 controller_no) {
                         lbl_804511B8->scroll(tmp);
                     }
                 } else {
-                    if (tmp & 0x400) {
+                    if (tmp & CButton::X) {
                         lbl_80450B2C += tmp2;
                     }
 
-                    if (tmp & 0x800) {
+                    if (tmp & CButton::Y) {
                         lbl_80450B2C -= tmp3;
                     }
                 }
 
-                if (tmp5 & 0x100) {
+                if (tmp5 & CButton::A) {
                     lbl_804511B8->dumpToTerminal(0xFFFFFFFF);
                     lbl_804511B8->field_0x58 = 3;
                 }
@@ -385,16 +386,21 @@ asm void Debug_console(u32) {
 #endif
 
 #ifdef NONMATCHING
-void LOAD_COPYDATE(void*) {
-    DVDFileInfo file_info;
+s32 LOAD_COPYDATE(void*) {
+    s32 status;
+    u8 buffer[32];
+    u8 fileInfo[80];
+    //DVDFileInfo fileInfo;
 
-    s32 dvd_status = DVDOpen("/str/Final/Release/COPYDATE", &file_info);
-    if (dvd_status) {
-        char buffer[32];
-        DVDReadPrio(&file_info, buffer, 32, 0, 2);
+    status = DVDOpen("/str/Final/Release/COPYDATE", (DVDFileInfo*)&fileInfo);
+    
+
+    if (status) {
+        DVDReadPrio((DVDFileInfo*)fileInfo, &buffer, 32, 0, 2);
         memcpy(lbl_803A2EE0, buffer, 17);
-        DVDClose(&file_info);
+        status = DVDClose((DVDFileInfo*)fileInfo);
     }
+    return status;
 }
 #else
 const char* lbl_80373C23 = "/str/Final/Release/COPYDATE";
@@ -447,10 +453,12 @@ void debug(void) {
 #ifdef NONMATCHING
 void main01(void) {
     HeapCheck* heaps = lbl_803D32E0;
+
     mDoMch_Create();
     mDoGph_Create();
     create__8mDoCPd_cFv();
-    mDoDVDThd_callback_c thread_callback;
+
+    // mDoDVDThd_callback_c thread_callback;
     // JKRSolidHeap audio_heap;
 
     // Root Heap
@@ -498,23 +506,23 @@ void main01(void) {
     // Command Heap
     heaps[7].setHeap(mDoExt_getCommandHeap());
 
-    u8* systemConsole = lbl_804511B8;
+    JUTConsole* systemConsole = lbl_804511B8;
 
     if (heaps[7].getHeap()) {
         heaps[7].setHeapSize(heaps[7].getHeap()->getSize());
     }
 
-    int unk = 0;
+    u32 unk = 0;
     if (lbl_80450580) {
         unk = 3;
     }
 
-    *(lbl_804511B8 + 0x58) = unk;
-    *(systemConsole + 0x40) = 0x20;
-    *(systemConsole + 0x44) = 0x2a;
+    systemConsole->field_0x58 = unk;
+    systemConsole->field_0x40 = 0x20;
+    systemConsole->field_0x44 = 0x2A;
 
     // lol
-    thread_callback.create((void* (*)(void*))LOAD_COPYDATE, 0);
+    mDoDVDThd_callback_c::create(LOAD_COPYDATE,0);
     fapGm_Create();
     fopAcM_initManager();
     lbl_80450B18 = 0;
@@ -522,7 +530,7 @@ void main01(void) {
 
     // g_mDoAud_audioHeap
 
-    lbl_80450BBC = JKRSolidHeap_NS_create(0x14d800, JKRHeap::getCurrentHeap(), false);
+    lbl_80450BBC = JKRSolidHeap::create(0x14d800, JKRHeap::getCurrentHeap(), false);
 
     // main loop
     do {

@@ -3374,6 +3374,7 @@ fopAcM_SetMax__FP10fopAc_ac_cfff
 fopAcM_SetMin__FP10fopAc_ac_cfff
 fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 fopAcM_SearchByName__FsPP10fopAc_ac_c
+func_80018B28
 }
 /*
 .init 80003100 - 80005600

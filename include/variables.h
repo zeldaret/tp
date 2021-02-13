@@ -8,7 +8,7 @@ extern u8 lbl_80379235[16];
 extern char lbl_80379234[0x64];
 extern u32 _sRumbleSupported;
 extern u8 lbl_803A2EF4;
-extern char lbl_803A2EE0[20];
+extern char lbl_803A2EE0[16];
 extern u8 lbl_80450B19;
 struct g_HIO_struct;
 extern g_HIO_struct g_HIO;

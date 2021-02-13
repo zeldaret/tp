@@ -60,7 +60,6 @@ BOOL fpcM_IsCreating(u32 pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 
-typedef void (*fpcM_ManagementFunc)(void);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
     MtxInit();
     dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.getdlstPeekZ());

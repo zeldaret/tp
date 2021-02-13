@@ -47,7 +47,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_c_dylink.o \
             $(BUILD_DIR)/asm/c/c_dylink.o \
             $(BUILD_DIR)/asm/sdata2/f_ap_game.o \
-            $(BUILD_DIR)/asm/f/ap/f_ap_game.o \
+            $(BUILD_DIR)/src/f/f_ap_game.o \
             $(BUILD_DIR)/asm/rodata/rodata_f_op_actor.o \
             $(BUILD_DIR)/asm/sdata2/f_op_actor.o \
             $(BUILD_DIR)/asm/f/op/f_op_actor.o \
