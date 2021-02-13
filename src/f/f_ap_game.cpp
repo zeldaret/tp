@@ -21,6 +21,7 @@ void fopScnM_Init(void);
 void fpcM_Init(void);
 void func_80018B28(void);
 void func_80361C24(void);
+void __ct__11fapGm_HIO_cFv(void);
 }
 
 // additional symbols needed for f_ap_game.cpp
@@ -32,10 +33,56 @@ extern u8 lbl_80451BC4;
 
 // __ct__11fapGm_HIO_cFv
 // fapGm_HIO_c::fapGm_HIO_c(void)
-asm void fapGm_HIO_c(void) {
+#ifdef NONMATCHING
+fapGm_HIO_c::fapGm_HIO_c(void) {
+    this->field_0x14 = 1;
+    if (!lbl_80450580) {
+        this->field_0x15 = 0;
+        this->field_0x16 = 0;
+        this->field_0x17 = 0;
+    } else {
+        this->field_0x15 = 1;
+        this->field_0x16 = 1;
+    }
+    this->field_0x17 = 1;
+    this->field_0x18 = 1;
+    this->field_0x19 = 0;
+    this->field_0x1a = 0;
+    this->field_0x8 = -1;
+    this->field_0x9 = -1;
+    this->field_0xa = -1;
+    this->field_0xb = -1;
+    this->field_0xc = lbl_80451BC0;
+    this->field_0x10 = lbl_80451BC4;
+    this->field_0x24 = -1;
+    this->field_0x25 = -0x6a;
+    this->field_0x26 = 0;
+    this->field_0x27 = -1;
+    this->field_0x28 = -1;
+    this->field_0x29 = 120;
+    this->field_0x2a = 0;
+    this->field_0x2b = -1;
+    this->field_0x2c = 0;
+    this->field_0x2d = 0;
+    this->field_0x2e = 0;
+    this->field_0x2f = -1;
+    this->field_0x30 = 0;
+    this->field_0x31 = 0;
+    this->field_0x32 = 0;
+    this->field_0x33 = -1;
+    this->field_0x34 = 0;
+    this->field_0x36 = 10;
+    this->field_0x3c = 0x1b;
+    this->field_0x38 = 0;
+    this->field_0x3a = 0;
+    this->field_0x3e = -0x7e;
+}
+#else
+asm fapGm_HIO_c::fapGm_HIO_c(void) {
     nofralloc
 #include "f/f_ap_game/asm/func_80018944.s"
 }
+#endif
 
 void fapGm_After(void) {
     fopScnM_Management();
