@@ -4,7 +4,7 @@
 /* 80018AAC 000159EC  48 00 98 0D */ bl fpcM_Init
 /* 80018AB0 000159F0  48 00 63 81 */ bl fopScnM_Init
 /* 80018AB4 000159F4  48 00 5C 35 */ bl fopOvlpM_Init
-/* 80018AB8 000159F8  48 00 58 C1 */ bl fopCamM_Init
+/* 80018AB8 000159F8  48 00 58 C1 */ bl fopCamM_Init__Fv
 /* 80018ABC 000159FC  48 00 7A 5D */ bl fopDwTg_CreateQueue
 /* 80018AC0 00015A00  38 00 FF FF */ li r0, -1
 /* 80018AC4 00015A04  3C 60 80 3F */ lis r3, g_HIO@ha

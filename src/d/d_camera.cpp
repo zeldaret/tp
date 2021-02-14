@@ -11,12 +11,14 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "f/f_op/f_op_actor_mng.h"
+#include "f/f_op/f_op_camera_mng.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 
 extern "C" {
+void fopCamM_GetParam__FP12camera_class(void);
 void __dt__8cM3dGLinFv(void);
 double func_8036C668(double);
 int func_80368954(char*, char*, u32);

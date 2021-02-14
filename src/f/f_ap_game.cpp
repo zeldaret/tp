@@ -14,7 +14,6 @@ extern "C" {
 void __dl__FPv(void);
 void fapGm_HIO_c(void);
 void fapGm_HIO_c_NS_dtor(void);
-void fopCamM_Init(void);
 void fopDwTg_CreateQueue(void);
 void fopOvlpM_Init(void);
 void fopScnM_Init(void);

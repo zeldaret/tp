@@ -104,8 +104,8 @@ lbl_803F1D24:
 .global lbl_803F1D80
 lbl_803F1D80:
 	.skip 0x58
-.global lbl_803F1DD8
-lbl_803F1DD8:
+.global l_fopCamM_id
+l_fopCamM_id:
 	.skip 0x10
 .global lbl_803F1DE8
 lbl_803F1DE8:

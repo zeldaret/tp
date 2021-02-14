@@ -13360,7 +13360,7 @@ lbl_80094D58:
 /* 80094EF0 00091E30  48 00 00 CC */	b lbl_80094FBC
 lbl_80094EF4:
 /* 80094EF4 00091E34  80 7E 00 00 */	lwz r3, 0(r30)
-/* 80094EF8 00091E38  4B F8 94 11 */	bl fopCamM_GetParam
+/* 80094EF8 00091E38  4B F8 94 11 */	bl fopCamM_GetParam__FP12camera_class
 /* 80094EFC 00091E3C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80094F00 00091E40  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80094F04 00091E44  1C 03 00 38 */	mulli r0, r3, 0x38

@@ -8,7 +8,7 @@
 /* 80165198 001620D8  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 8016519C 001620DC  7C 9F 23 78 */ mr r31, r4
 /* 801651A0 001620E0  80 63 00 00 */ lwz r3, 0(r3)
-/* 801651A4 001620E4  4B EB 91 65 */ bl fopCamM_GetParam
+/* 801651A4 001620E4  4B EB 91 65 */ bl fopCamM_GetParam__FP12camera_class
 /* 801651A8 001620E8  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 801651AC 001620EC  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 801651B0 001620F0  1C 03 00 38 */ mulli r0, r3, 0x38
