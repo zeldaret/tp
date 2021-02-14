@@ -25,13 +25,13 @@ lbl_800E5D04:
 /* 800E5D14 000E2C54  4B FF FE A1 */ bl daAlink_c_NS_setGrabItemActor
 /* 800E5D18 000E2C58  7F E3 FB 78 */ mr r3, r31
 /* 800E5D1C 000E2C5C  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E5D20 000E2C60  4B F3 4D 75 */ bl fopAcM_searchActorDistanceXZ2
+/* 800E5D20 000E2C60  4B F3 4D 75 */ bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800E5D24 000E2C64  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E5D28 000E2C68  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800E5D2C 000E2C6C  40 81 00 14 */ ble lbl_800E5D40
 /* 800E5D30 000E2C70  7F E3 FB 78 */ mr r3, r31
 /* 800E5D34 000E2C74  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E5D38 000E2C78  4B F3 49 D9 */ bl fopAcM_searchActorAngleY
+/* 800E5D38 000E2C78  4B F3 49 D9 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800E5D3C 000E2C7C  B0 7F 04 E6 */ sth r3, 0x4e6(r31)
 lbl_800E5D40:
 /* 800E5D40 000E2C80  A8 1F 04 E6 */ lha r0, 0x4e6(r31)

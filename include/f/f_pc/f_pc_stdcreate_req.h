@@ -5,7 +5,7 @@
 #include "f/f_pc/f_pc_layer.h"
 #include "global.h"
 
-typedef s32 (*stdCreateFunc)(void*, void*);
+typedef int (*stdCreateFunc)(void*, void*);
 
 typedef struct standard_create_request_class {
     /* 0x00 */ create_request mBase;

@@ -49,7 +49,7 @@ lbl_800E9910:
 /* 800E9950 000E6890  38 61 00 14 */ addi r3, r1, 0x14
 /* 800E9954 000E6894  38 81 00 08 */ addi r4, r1, 8
 /* 800E9958 000E6898  7F E5 FB 78 */ mr r5, r31
-/* 800E995C 000E689C  4B F3 43 0D */ bl fopAcM_lc_c_NS_lineCheck
+/* 800E995C 000E689C  4B F3 43 0D */ bl lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800E9960 000E68A0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E9964 000E68A4  41 82 00 18 */ beq lbl_800E997C
 /* 800E9968 000E68A8  7F C3 F3 78 */ mr r3, r30

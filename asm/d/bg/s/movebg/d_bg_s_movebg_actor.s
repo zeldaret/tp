@@ -161,7 +161,7 @@ lbl_80078844:
 .global CheckCreateHeap
 /* 80078858 00075798  38 84 86 68 */	addi r4, r4, CheckCreateHeap@l
 /* 8007885C 0007579C  7F C5 F3 78 */	mr r5, r30
-/* 80078860 000757A0  4B FA 1C 51 */	bl fopAcM_entrySolidHeap
+/* 80078860 000757A0  4B FA 1C 51 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80078864 000757A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80078868 000757A8  40 82 00 0C */	bne lbl_80078874
 /* 8007886C 000757AC  38 60 00 05 */	li r3, 5

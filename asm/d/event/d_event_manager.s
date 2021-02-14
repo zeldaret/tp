@@ -522,7 +522,7 @@ lbl_80046A88:
 /* 80046AC8 00043A08  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80046ACC 00043A0C  38 E0 00 05 */	li r7, 5
 /* 80046AD0 00043A10  39 00 00 01 */	li r8, 1
-/* 80046AD4 00043A14  4B FD 4B A9 */	bl fopAcM_orderOtherEventId
+/* 80046AD4 00043A14  4B FD 4B A9 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80046AD8 00043A18  48 00 00 D0 */	b lbl_80046BA8
 lbl_80046ADC:
 /* 80046ADC 00043A1C  2C 00 FF FF */	cmpwi r0, -1
@@ -543,7 +543,7 @@ lbl_80046ADC:
 /* 80046B18 00043A58  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80046B1C 00043A5C  38 E0 00 01 */	li r7, 1
 /* 80046B20 00043A60  39 00 00 05 */	li r8, 5
-/* 80046B24 00043A64  4B FD 4D BD */	bl fopAcM_orderMapToolAutoNextEvent
+/* 80046B24 00043A64  4B FD 4D BD */	bl fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs
 /* 80046B28 00043A68  48 00 00 80 */	b lbl_80046BA8
 lbl_80046B2C:
 /* 80046B2C 00043A6C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
@@ -578,7 +578,7 @@ lbl_80046B78:
 /* 80046B98 00043AD8  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80046B9C 00043ADC  38 E0 00 05 */	li r7, 5
 /* 80046BA0 00043AE0  39 00 00 01 */	li r8, 1
-/* 80046BA4 00043AE4  4B FD 4A D9 */	bl fopAcM_orderOtherEventId
+/* 80046BA4 00043AE4  4B FD 4A D9 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 lbl_80046BA8:
 /* 80046BA8 00043AE8  2C 03 00 00 */	cmpwi r3, 0
 /* 80046BAC 00043AEC  40 82 00 44 */	bne lbl_80046BF0
@@ -597,7 +597,7 @@ lbl_80046BA8:
 /* 80046BE0 00043B20  38 C6 FF FF */	addi r6, r6, 0x0000FFFF@l
 /* 80046BE4 00043B24  38 E0 00 05 */	li r7, 5
 /* 80046BE8 00043B28  39 00 00 01 */	li r8, 1
-/* 80046BEC 00043B2C  4B FD 4A 91 */	bl fopAcM_orderOtherEventId
+/* 80046BEC 00043B2C  4B FD 4A 91 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 lbl_80046BF0:
 /* 80046BF0 00043B30  7F C3 07 34 */	extsh r3, r30
 lbl_80046BF4:
@@ -693,7 +693,7 @@ lbl_80046CE0:
 /* 80046D20 00043C60  40 82 00 10 */	bne lbl_80046D30
 /* 80046D24 00043C64  7F 63 DB 78 */	mr r3, r27
 /* 80046D28 00043C68  38 80 FF FF */	li r4, -1
-/* 80046D2C 00043C6C  4B FD 6A 75 */	bl fopAcM_searchFromName4Event
+/* 80046D2C 00043C6C  4B FD 6A 75 */	bl fopAcM_searchFromName4Event__FPCcs
 lbl_80046D30:
 /* 80046D30 00043C70  28 03 00 00 */	cmplwi r3, 0
 /* 80046D34 00043C74  41 82 00 10 */	beq lbl_80046D44
@@ -761,7 +761,7 @@ lbl_80046DE8:
 /* 80046E00 00043D40  3C 60 80 04 */	lis r3, allOffObjectCallBack@ha
 .global allOffObjectCallBack
 /* 80046E04 00043D44  38 63 6C 9C */	addi r3, r3, allOffObjectCallBack@l
-/* 80046E08 00043D48  4B FD 29 F1 */	bl fopAcIt_Judge
+/* 80046E08 00043D48  4B FD 29 F1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80046E0C 00043D4C  38 00 00 02 */	li r0, 2
 /* 80046E10 00043D50  90 1D 01 8C */	stw r0, 0x18c(r29)
 /* 80046E14 00043D54  38 00 00 00 */	li r0, 0
@@ -2325,7 +2325,7 @@ dEvent_manager_c_NS_issueStaff:
 .global extraOnObjectCallBack
 /* 80048300 00045240  38 63 6C 74 */	addi r3, r3, extraOnObjectCallBack@l
 /* 80048304 00045244  38 80 00 00 */	li r4, 0
-/* 80048308 00045248  4B FD 14 F1 */	bl fopAcIt_Judge
+/* 80048308 00045248  4B FD 14 F1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8004830C 0004524C  48 00 00 28 */	b lbl_80048334
 lbl_80048310:
 /* 80048310 00045250  38 61 00 08 */	addi r3, r1, 8
@@ -2333,7 +2333,7 @@ lbl_80048310:
 /* 80048318 00045258  48 32 08 15 */	bl strcpy
 /* 8004831C 0004525C  38 61 00 08 */	addi r3, r1, 8
 /* 80048320 00045260  38 80 FF FF */	li r4, -1
-/* 80048324 00045264  4B FD 54 7D */	bl fopAcM_searchFromName4Event
+/* 80048324 00045264  4B FD 54 7D */	bl fopAcM_searchFromName4Event__FPCcs
 /* 80048328 00045268  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 8004832C 0004526C  60 00 08 00 */	ori r0, r0, 0x800
 /* 80048330 00045270  90 03 04 9C */	stw r0, 0x49c(r3)
@@ -2363,7 +2363,7 @@ dEvent_manager_c_NS_cancelStaff:
 .global extraOffObjectCallBack
 /* 8004837C 000452BC  38 63 6C 88 */	addi r3, r3, extraOffObjectCallBack@l
 /* 80048380 000452C0  38 80 00 00 */	li r4, 0
-/* 80048384 000452C4  4B FD 14 75 */	bl fopAcIt_Judge
+/* 80048384 000452C4  4B FD 14 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80048388 000452C8  48 00 00 28 */	b lbl_800483B0
 lbl_8004838C:
 /* 8004838C 000452CC  38 61 00 08 */	addi r3, r1, 8
@@ -2371,7 +2371,7 @@ lbl_8004838C:
 /* 80048394 000452D4  48 32 07 99 */	bl strcpy
 /* 80048398 000452D8  38 61 00 08 */	addi r3, r1, 8
 /* 8004839C 000452DC  38 80 FF FF */	li r4, -1
-/* 800483A0 000452E0  4B FD 54 01 */	bl fopAcM_searchFromName4Event
+/* 800483A0 000452E0  4B FD 54 01 */	bl fopAcM_searchFromName4Event__FPCcs
 /* 800483A4 000452E4  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 800483A8 000452E8  54 00 05 66 */	rlwinm r0, r0, 0, 0x15, 0x13
 /* 800483AC 000452EC  90 03 04 9C */	stw r0, 0x49c(r3)
@@ -2506,7 +2506,7 @@ dEvent_manager_c_NS_specialCast_Shutter:
 .global findShutterCallBack
 /* 80048554 00045494  38 63 84 6C */	addi r3, r3, findShutterCallBack@l
 /* 80048558 00045498  38 81 00 08 */	addi r4, r1, 8
-/* 8004855C 0004549C  4B FD 12 9D */	bl fopAcIt_Judge
+/* 8004855C 0004549C  4B FD 12 9D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80048560 000454A0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80048564 000454A4  41 82 00 98 */	beq lbl_800485FC
 /* 80048568 000454A8  2C 1D 00 00 */	cmpwi r29, 0

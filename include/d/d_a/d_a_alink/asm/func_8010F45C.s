@@ -38,7 +38,7 @@ lbl_8010F4C4:
 /* 8010F4E4 0010C424  39 00 00 00 */ li r8, 0
 /* 8010F4E8 0010C428  39 20 FF FF */ li r9, -1
 /* 8010F4EC 0010C42C  39 40 00 00 */ li r10, 0
-/* 8010F4F0 0010C430  4B F0 A9 15 */ bl fopAcM_fastCreate
+/* 8010F4F0 0010C430  4B F0 A9 15 */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 8010F4F4 0010C434  7C 64 1B 78 */ mr r4, r3
 /* 8010F4F8 0010C438  38 7F 28 5C */ addi r3, r31, 0x285c
 /* 8010F4FC 0010C43C  48 04 F7 BD */ bl daPy_actorKeep_c_NS_setData

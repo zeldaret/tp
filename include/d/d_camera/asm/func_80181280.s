@@ -13,7 +13,7 @@
 /* 801812B0 0017E1F0  28 00 00 00 */ cmplwi r0, 0
 /* 801812B4 0017E1F4  41 82 00 8C */ beq lbl_80181340
 /* 801812B8 0017E1F8  80 7F 00 00 */ lwz r3, 0(r31)
-/* 801812BC 0017E1FC  4B E9 D0 4D */ bl fopCamM_GetParam
+/* 801812BC 0017E1FC  4B E9 D0 4D */ bl fopCamM_GetParam__FP12camera_class
 /* 801812C0 0017E200  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 801812C4 0017E204  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 801812C8 0017E208  1C 03 00 38 */ mulli r0, r3, 0x38

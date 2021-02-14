@@ -437,7 +437,7 @@ lbl_8012C8B0:
 /* 8012C958 00129898  A8 9F 00 02 */ lha r4, 2(r31)
 /* 8012C95C 0012989C  38 04 40 00 */ addi r0, r4, 0x4000
 /* 8012C960 001298A0  7C 04 07 34 */ extsh r4, r0
-/* 8012C964 001298A4  4B EF 12 75 */ bl fopAcM_getPolygonAngle_X1_
+/* 8012C964 001298A4  4B EF 12 75 */ bl fopAcM_getPolygonAngle__FPC8cM3dGPlas
 /* 8012C968 001298A8  B0 7F 00 04 */ sth r3, 4(r31)
 /* 8012C96C 001298AC  A8 7F 00 04 */ lha r3, 4(r31)
 /* 8012C970 001298B0  A8 1F FF FE */ lha r0, -2(r31)

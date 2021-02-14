@@ -9,6 +9,9 @@
 #include "Z2AudioLib/Z2StatusMgr/Z2StatusMgr.h"
 #include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "f/f_op/f_op_actor_iter.h"
+#include "f/f_op/f_op_actor_mng.h"
+#include "f/f_op/f_op_camera_mng.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
@@ -17,6 +20,7 @@
 #include "msl_c/string.h"
 
 extern "C" {
+void fopCamM_GetParam__FP12camera_class(void);
 void __dt__8cM3dGLinFv(void);
 void __ami__7cSAngleFRC7cSAngle(void);
 void __amu__7cSAngleFf(void);
@@ -297,12 +301,6 @@ void dPath_GetRoomPath(void);
 void dRes_control_c_NS_getRes_X1_(void);
 void dStage_roomControl_c_NS_getStatusRoomDt(void);
 void dVibration_c_NS_StartShock(void);
-void fopAcIt_Judge(void);
-void fopAcM_GetID(void);
-void fopAcM_GetName(void);
-void fopAcM_GetParam(void);
-void fopAcM_searchFromName4Event(void);
-void fopAcM_setStageLayer(void);
 void fopCamM_GetParam(void);
 void func_80361C24(void);
 void func_80361D60(void);

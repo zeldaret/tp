@@ -434,7 +434,7 @@ lbl_80253500:
 /* 80253570 002504B0  80 04 00 08 */	lwz r0, 8(r4)
 /* 80253574 002504B4  90 1F 00 D4 */	stw r0, 0xd4(r31)
 /* 80253578 002504B8  7F E3 FB 78 */	mr r3, r31
-/* 8025357C 002504BC  4B DC AF A1 */	bl fopOvlpM_Done
+/* 8025357C 002504BC  4B DC AF A1 */	bl fopOvlpM_Done__FP18overlap_task_class
 /* 80253580 002504C0  38 00 FF FF */	li r0, -1
 /* 80253584 002504C4  98 1F 01 1D */	stb r0, 0x11d(r31)
 lbl_80253588:
@@ -460,7 +460,7 @@ lbl_80253598:
 /* 802535D0 00250510  88 03 01 1D */	lbz r0, 0x11d(r3)
 /* 802535D4 00250514  7C 00 07 75 */	extsb. r0, r0
 /* 802535D8 00250518  40 82 00 44 */	bne lbl_8025361C
-/* 802535DC 0025051C  4B DC AF 29 */	bl fopOvlpM_IsOutReq
+/* 802535DC 0025051C  4B DC AF 29 */	bl fopOvlpM_IsOutReq__FP18overlap_task_class
 /* 802535E0 00250520  2C 03 00 00 */	cmpwi r3, 0
 /* 802535E4 00250524  41 82 00 38 */	beq lbl_8025361C
 /* 802535E8 00250528  4B DC AE DD */	bl fopOvlpM_SceneIsStart
@@ -571,7 +571,7 @@ lbl_8025371C:
 /* 80253778 002506B8  48 00 00 20 */	b lbl_80253798
 lbl_8025377C:
 /* 8025377C 002506BC  7F E3 FB 78 */	mr r3, r31
-/* 80253780 002506C0  4B DC AD 9D */	bl fopOvlpM_Done
+/* 80253780 002506C0  4B DC AD 9D */	bl fopOvlpM_Done__FP18overlap_task_class
 /* 80253784 002506C4  38 00 00 01 */	li r0, 1
 /* 80253788 002506C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025378C 002506CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

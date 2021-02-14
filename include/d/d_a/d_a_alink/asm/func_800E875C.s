@@ -82,7 +82,7 @@ lbl_800E885C:
 /* 800E8884 000E57C4  4B F8 BD 95 */ bl cBgS_NS_GetActorPointer
 /* 800E8888 000E57C8  7C 7E 1B 78 */ mr r30, r3
 /* 800E888C 000E57CC  7F E4 FB 78 */ mr r4, r31
-/* 800E8890 000E57D0  4B F3 1E 81 */ bl fopAcM_searchActorAngleY
+/* 800E8890 000E57D0  4B F3 1E 81 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800E8894 000E57D4  B0 7F 30 0E */ sth r3, 0x300e(r31)
 /* 800E8898 000E57D8  C0 5E 04 D8 */ lfs f2, 0x4d8(r30)
 /* 800E889C 000E57DC  C0 1E 04 D0 */ lfs f0, 0x4d0(r30)

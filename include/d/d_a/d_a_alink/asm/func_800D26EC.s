@@ -13,7 +13,7 @@ lbl_800D2718:
 /* 800D2718 000CF658  80 9F 27 EC */ lwz r4, 0x27ec(r31)
 /* 800D271C 000CF65C  28 04 00 00 */ cmplwi r4, 0
 /* 800D2720 000CF660  41 82 00 18 */ beq lbl_800D2738
-/* 800D2724 000CF664  4B F4 7F ED */ bl fopAcM_searchActorAngleY
+/* 800D2724 000CF664  4B F4 7F ED */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800D2728 000CF668  A8 1F 2F E2 */ lha r0, 0x2fe2(r31)
 /* 800D272C 000CF66C  7C 03 00 50 */ subf r0, r3, r0
 /* 800D2730 000CF670  7C 03 07 34 */ extsh r3, r0

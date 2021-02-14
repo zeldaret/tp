@@ -42,10 +42,10 @@ lbl_800DC93C:
 /*.global fpcSch_JudgeByID*/
 /* 800DC950 000D9890  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800DC954 000D9894  38 81 00 08 */ addi r4, r1, 8
-/* 800DC958 000D9898  4B F3 CE A1 */ bl fopAcIt_Judge
+/* 800DC958 000D9898  4B F3 CE A1 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800DC95C 000D989C  28 03 00 00 */ cmplwi r3, 0
 /* 800DC960 000D98A0  41 82 00 08 */ beq lbl_800DC968
-/* 800DC964 000D98A4  4B F3 D3 19 */ bl fopAcM_delete
+/* 800DC964 000D98A4  4B F3 D3 19 */ bl fopAcM_delete__FP10fopAc_ac_c
 lbl_800DC968:
 /* 800DC968 000D98A8  38 A0 00 00 */ li r5, 0
 /* 800DC96C 000D98AC  38 60 00 00 */ li r3, 0
@@ -79,7 +79,7 @@ lbl_800DC978:
 /* 800DC9D8 000D9918  38 E0 00 00 */ li r7, 0
 /* 800DC9DC 000D991C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800DC9E0 000D9920  FC 40 08 90 */ fmr f2, f1
-/* 800DC9E4 000D9924  4B F3 F8 19 */ bl fopAcM_createItemForSimpleDemo
+/* 800DC9E4 000D9924  4B F3 F8 19 */ bl fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff
 lbl_800DC9E8:
 /* 800DC9E8 000D9928  2C 1E 00 00 */ cmpwi r30, 0
 /* 800DC9EC 000D992C  41 82 00 28 */ beq lbl_800DCA14

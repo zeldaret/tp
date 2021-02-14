@@ -84,7 +84,7 @@ lbl_80252284:
 /* 80252290 0024F1D0  90 1E 00 CC */	stw r0, 0xcc(r30)
 /* 80252294 0024F1D4  40 82 00 18 */	bne lbl_802522AC
 /* 80252298 0024F1D8  7F C3 F3 78 */	mr r3, r30
-/* 8025229C 0024F1DC  4B DC C2 81 */	bl fopOvlpM_Done
+/* 8025229C 0024F1DC  4B DC C2 81 */	bl fopOvlpM_Done__FP18overlap_task_class
 /* 802522A0 0024F1E0  80 7E 00 CC */	lwz r3, 0xcc(r30)
 /* 802522A4 0024F1E4  38 03 00 01 */	addi r0, r3, 1
 /* 802522A8 0024F1E8  90 1E 00 CC */	stw r0, 0xcc(r30)
@@ -101,7 +101,7 @@ dOvlpFd_Wait:
 /* 802522C8 0024F208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802522CC 0024F20C  7C 08 02 A6 */	mflr r0
 /* 802522D0 0024F210  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802522D4 0024F214  4B DC C2 31 */	bl fopOvlpM_IsOutReq
+/* 802522D4 0024F214  4B DC C2 31 */	bl fopOvlpM_IsOutReq__FP18overlap_task_class
 /* 802522D8 0024F218  2C 03 00 00 */	cmpwi r3, 0
 /* 802522DC 0024F21C  41 82 00 10 */	beq lbl_802522EC
 .global dOvlpFd_FadeOut
@@ -197,7 +197,7 @@ lbl_802523C8:
 /* 80252404 0024F344  4E 80 04 21 */	bctrl 
 lbl_80252408:
 /* 80252408 0024F348  7F E3 FB 78 */	mr r3, r31
-/* 8025240C 0024F34C  4B DC C1 11 */	bl fopOvlpM_Done
+/* 8025240C 0024F34C  4B DC C1 11 */	bl fopOvlpM_Done__FP18overlap_task_class
 lbl_80252410:
 /* 80252410 0024F350  38 60 00 01 */	li r3, 1
 lbl_80252414:

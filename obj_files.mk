@@ -47,23 +47,22 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/rodata/rodata_c_dylink.o \
             $(BUILD_DIR)/asm/c/c_dylink.o \
             $(BUILD_DIR)/asm/sdata2/f_ap_game.o \
-            $(BUILD_DIR)/asm/f/ap/f_ap_game.o \
+            $(BUILD_DIR)/src/f/f_ap_game.o \
             $(BUILD_DIR)/asm/rodata/rodata_f_op_actor.o \
             $(BUILD_DIR)/asm/sdata2/f_op_actor.o \
             $(BUILD_DIR)/asm/f/op/f_op_actor.o \
-            $(BUILD_DIR)/asm/f/op/actor/f_op_actor_iter.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_actor_iter.o \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_tag.o \
-            $(BUILD_DIR)/asm/rodata/rodata_f_op_actor_mng.o \
             $(BUILD_DIR)/asm/sdata2/f_op_actor_mng.o \
-            $(BUILD_DIR)/asm/f/op/actor/f_op_actor_mng.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_actor_mng.o \
             $(BUILD_DIR)/asm/f/op/f_op_camera.o \
-            $(BUILD_DIR)/asm/f/op/camera/f_op_camera_mng.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_camera_mng.o \
             $(BUILD_DIR)/asm/f/op/f_op_overlap.o \
-            $(BUILD_DIR)/asm/f/op/overlap/f_op_overlap_mng.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_overlap_mng.o \
             $(BUILD_DIR)/asm/f/op/overlap/f_op_overlap_req.o \
             $(BUILD_DIR)/asm/f/op/f_op_scene.o \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_iter.o \
-            $(BUILD_DIR)/asm/f/op/scene/f_op_scene_mng.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_scene_mng.o \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_req.o \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_tag.o \
             $(BUILD_DIR)/asm/f/op/f_op_view.o \

@@ -90,7 +90,7 @@ lbl_80072D00:
 /*.global fpcSch_JudgeByID*/
 /* 80072D18 0006FC58  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 80072D1C 0006FC5C  38 81 00 08 */ addi r4, r1, 8
-/* 80072D20 0006FC60  4B FA 6A D9 */ bl fopAcIt_Judge
+/* 80072D20 0006FC60  4B FA 6A D9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80072D24 0006FC64  7C 7E 1B 79 */ or. r30, r3, r3
 /* 80072D28 0006FC68  41 82 00 30 */ beq lbl_80072D58
 /* 80072D2C 0006FC6C  38 7F 00 28 */ addi r3, r31, 0x28

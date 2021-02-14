@@ -30,7 +30,7 @@ lbl_800DEA88:
 /* 800DEAAC 000DB9EC  39 00 00 00 */ li r8, 0
 /* 800DEAB0 000DB9F0  39 20 FF FF */ li r9, -1
 /* 800DEAB4 000DB9F4  39 40 00 00 */ li r10, 0
-/* 800DEAB8 000DB9F8  4B F3 B3 4D */ bl fopAcM_fastCreate
+/* 800DEAB8 000DB9F8  4B F3 B3 4D */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 800DEABC 000DB9FC  7C 64 1B 78 */ mr r4, r3
 /* 800DEAC0 000DBA00  38 7F 28 24 */ addi r3, r31, 0x2824
 /* 800DEAC4 000DBA04  48 08 01 F5 */ bl daPy_actorKeep_c_NS_setData

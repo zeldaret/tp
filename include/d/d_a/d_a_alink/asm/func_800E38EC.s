@@ -12,7 +12,7 @@
 /* 800E3918 000E0858  D0 41 00 10 */ stfs f2, 0x10(r1)
 /* 800E391C 000E085C  38 81 00 08 */ addi r4, r1, 8
 /* 800E3920 000E0860  38 63 05 50 */ addi r3, r3, 0x550
-/* 800E3924 000E0864  4B F3 A3 45 */ bl fopAcM_lc_c_NS_lineCheck
+/* 800E3924 000E0864  4B F3 A3 45 */ bl lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800E3928 000E0868  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E392C 000E086C  41 82 00 54 */ beq lbl_800E3980
 /* 800E3930 000E0870  3C 60 80 3A */ lis r3, lbl_803A37C0@ha

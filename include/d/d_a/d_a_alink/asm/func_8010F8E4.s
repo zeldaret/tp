@@ -194,7 +194,7 @@ lbl_8010FB88:
 /*.global fpcSch_JudgeByID*/
 /* 8010FBB4 0010CAF4  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8010FBB8 0010CAF8  38 81 00 08 */ addi r4, r1, 8
-/* 8010FBBC 0010CAFC  4B F0 9C 3D */ bl fopAcIt_Judge
+/* 8010FBBC 0010CAFC  4B F0 9C 3D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8010FBC0 0010CB00  7C 7F 1B 79 */ or. r31, r3, r3
 /* 8010FBC4 0010CB04  41 82 00 58 */ beq lbl_8010FC1C
 /* 8010FBC8 0010CB08  38 00 00 00 */ li r0, 0

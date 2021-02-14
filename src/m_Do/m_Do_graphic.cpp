@@ -1,15 +1,18 @@
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
 #include "JSystem/J2DSys.h"
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "JSystem/JMath/JMath.h"
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "SComponent/c_lib.h"
 #include "d/d_a/d_a_player/d_a_player.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_drawlist/d_drawlist.h"
 #include "d/d_kankyo/d_kankyo.h"
+#include "f/f_op/f_op_actor_iter.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "global.h"
 #include "gx/GX.h"
+#include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 
 #ifdef NONMATCHING  // mr and addi swapped
@@ -87,7 +90,7 @@ void mDoGph_gInf_c::onBlure(void) {
 
 void mDoGph_gInf_c::onBlure(const Mtx InMtx) {
     lbl_80450BE4 = true;
-    PSMTXCopy((Mtx*)InMtx, &lbl_803DD43C);
+    PSMTXCopy(InMtx, lbl_803DD43C);
 }
 
 void mDoGph_gInf_c::fadeOut(f32 speed) {

@@ -75,7 +75,7 @@ lbl_8000871C:
 /*.global fpcSch_JudgeByID*/
 /* 80008748 00005688  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 8000874C 0000568C  38 81 00 0C */ addi r4, r1, 0xc
-/* 80008750 00005690  48 01 10 A9 */ bl fopAcIt_Judge
+/* 80008750 00005690  48 01 10 A9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80008754 00005694  28 03 00 00 */ cmplwi r3, 0
 /* 80008758 00005698  41 82 01 F0 */ beq lbl_80008948
 /* 8000875C 0000569C  C0 03 05 38 */ lfs f0, 0x538(r3)

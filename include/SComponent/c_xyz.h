@@ -49,6 +49,11 @@ public:
         y -= f;
         z -= f;
     }
+    void operator+=(const Vec& vec) {
+        x += vec.x;
+        y += vec.y;
+        z += vec.z;
+    }
     cXyz getCrossProduct(const Vec&) const;
     cXyz outprod(const Vec&) const;
     cXyz norm(void) const;
@@ -67,6 +72,12 @@ public:
         z = f;
         y = f;
         x = f;
+    }
+
+    void set(f32 pX, f32 pY, f32 pZ) {
+        x = pX;
+        y = pY;
+        z = pZ;
     }
 
     void setMin(const cXyz& other) {
@@ -98,6 +109,11 @@ public:
     static float getNearZeroValue() { return FLOAT_LABEL(lbl_80455074); }
 
     bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
+    f32 abs2() const { return this->getSquareMag(); }
+    f32 abs2XZ() const {
+        cXyz tmp(this->x, 0, this->z);
+        return tmp.abs2();
+    }
 };
 
 extern cXyz lbl_80430CF4;  // SComponent::cXyz::Zero

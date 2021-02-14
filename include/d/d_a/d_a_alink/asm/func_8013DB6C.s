@@ -33,7 +33,7 @@ lbl_8013DBD4:
 /*.global daAlink_searchEnemyCargo*/
 /* 8013DBE0 0013AB20  38 63 DB 58 */ addi r3, r3, daAlink_searchEnemyCargo@l
 /* 8013DBE4 0013AB24  38 80 00 00 */ li r4, 0
-/* 8013DBE8 0013AB28  4B ED BC 11 */ bl fopAcIt_Judge
+/* 8013DBE8 0013AB28  4B ED BC 11 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8013DBEC 0013AB2C  7C 64 1B 79 */ or. r4, r3, r3
 /* 8013DBF0 0013AB30  41 82 00 0C */ beq lbl_8013DBFC
 /* 8013DBF4 0013AB34  38 7E 28 0C */ addi r3, r30, 0x280c

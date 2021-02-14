@@ -124,7 +124,7 @@ lbl_800B850C:
 /*.global daAlink_searchKolin*/
 /* 800B8528 000B5468  38 63 7F 84 */ addi r3, r3, daAlink_searchKolin@l
 /* 800B852C 000B546C  38 80 00 00 */ li r4, 0
-/* 800B8530 000B5470  4B F6 12 C9 */ bl fopAcIt_Judge
+/* 800B8530 000B5470  4B F6 12 C9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B8534 000B5474  28 03 00 00 */ cmplwi r3, 0
 /* 800B8538 000B5478  41 82 00 10 */ beq lbl_800B8548
 /* 800B853C 000B547C  7F E3 FB 78 */ mr r3, r31
@@ -172,7 +172,7 @@ lbl_800B8598:
 /*.global daAlink_searchBouDoor*/
 /* 800B85CC 000B550C  38 63 7D 4C */ addi r3, r3, daAlink_searchBouDoor@l
 /* 800B85D0 000B5510  38 80 00 00 */ li r4, 0
-/* 800B85D4 000B5514  4B F6 12 25 */ bl fopAcIt_Judge
+/* 800B85D4 000B5514  4B F6 12 25 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B85D8 000B5518  28 03 00 00 */ cmplwi r3, 0
 /* 800B85DC 000B551C  40 82 00 18 */ bne lbl_800B85F4
 lbl_800B85E0:
@@ -180,7 +180,7 @@ lbl_800B85E0:
 /* 800B85E4 000B5524  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 800B85E8 000B5528  38 A0 00 00 */ li r5, 0
 /* 800B85EC 000B552C  38 C0 00 00 */ li r6, 0
-/* 800B85F0 000B5530  4B F6 2C 55 */ bl fopAcM_orderDoorEvent
+/* 800B85F0 000B5530  4B F6 2C 55 */ bl fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 lbl_800B85F4:
 /* 800B85F4 000B5534  7F E3 FB 78 */ mr r3, r31
 /* 800B85F8 000B5538  4B FF D2 F5 */ bl daAlink_c_NS_checkWaitAction
@@ -190,7 +190,7 @@ lbl_800B8600:
 /* 800B8604 000B5544  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 800B8608 000B5548  38 A0 00 00 */ li r5, 0
 /* 800B860C 000B554C  38 C0 00 00 */ li r6, 0
-/* 800B8610 000B5550  4B F6 34 6D */ bl fopAcM_orderTreasureEvent
+/* 800B8610 000B5550  4B F6 34 6D */ bl fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 lbl_800B8614:
 /* 800B8614 000B5554  38 60 00 01 */ li r3, 1
 /* 800B8618 000B5558  48 00 02 F8 */ b lbl_800B8910

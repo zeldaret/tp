@@ -103,7 +103,7 @@ lbl_8011A8F4:
 /* 8011A908 00117848  7C 07 07 74 */ extsb r7, r0
 /* 8011A90C 0011784C  39 00 00 00 */ li r8, 0
 /* 8011A910 00117850  39 20 00 00 */ li r9, 0
-/* 8011A914 00117854  4B F0 12 D5 */ bl fopAcM_createItemForPresentDemo
+/* 8011A914 00117854  4B F0 12 D5 */ bl fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz
 /* 8011A918 00117858  7C 64 1B 78 */ mr r4, r3
 /* 8011A91C 0011785C  3C 04 00 01 */ addis r0, r4, 1
 /* 8011A920 00117860  28 00 FF FF */ cmplwi r0, 0xffff
@@ -117,7 +117,7 @@ lbl_8011A938:
 /* 8011A93C 0011787C  48 00 00 2C */ b lbl_8011A968
 lbl_8011A940:
 /* 8011A940 00117880  7F A3 EB 78 */ mr r3, r29
-/* 8011A944 00117884  4B F0 12 01 */ bl fopAcM_getItemEventPartner
+/* 8011A944 00117884  4B F0 12 01 */ bl fopAcM_getItemEventPartner__FPC10fopAc_ac_c
 /* 8011A948 00117888  28 03 00 00 */ cmplwi r3, 0
 /* 8011A94C 0011788C  41 82 00 14 */ beq lbl_8011A960
 /* 8011A950 00117890  4B F1 D1 0D */ bl daItemBase_c_NS_getItemNo

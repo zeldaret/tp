@@ -100,7 +100,7 @@ lbl_800DE148:
 /* 800DE174 000DB0B4  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 800DE178 000DB0B8  7F 83 E3 78 */ mr r3, r28
 /* 800DE17C 000DB0BC  7F C4 F3 78 */ mr r4, r30
-/* 800DE180 000DB0C0  4B F3 C5 91 */ bl fopAcM_searchActorAngleY
+/* 800DE180 000DB0C0  4B F3 C5 91 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800DE184 000DB0C4  B0 7C 04 E6 */ sth r3, 0x4e6(r28)
 /* 800DE188 000DB0C8  C0 01 00 24 */ lfs f0, 0x24(r1)
 /* 800DE18C 000DB0CC  D0 01 00 0C */ stfs f0, 0xc(r1)

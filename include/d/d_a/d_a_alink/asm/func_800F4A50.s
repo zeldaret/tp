@@ -39,7 +39,7 @@
 /* 800F4AE8 000F1A28  4B FF FA 7D */ bl daAlink_c_NS_setRideCanoeBasePos
 /* 800F4AEC 000F1A2C  7F E3 FB 78 */ mr r3, r31
 /* 800F4AF0 000F1A30  7F C4 F3 78 */ mr r4, r30
-/* 800F4AF4 000F1A34  4B F2 5C 1D */ bl fopAcM_searchActorAngleY
+/* 800F4AF4 000F1A34  4B F2 5C 1D */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800F4AF8 000F1A38  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
 /* 800F4AFC 000F1A3C  7C 04 18 50 */ subf r0, r4, r3
 /* 800F4B00 000F1A40  7C 00 07 35 */ extsh. r0, r0

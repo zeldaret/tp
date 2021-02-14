@@ -34,7 +34,7 @@ lbl_800B7C64:
 /* 800B7C74 000B4BB4  80 9C 27 F4 */ lwz r4, 0x27f4(r28)
 /* 800B7C78 000B4BB8  38 A0 00 00 */ li r5, 0
 /* 800B7C7C 000B4BBC  38 C0 00 00 */ li r6, 0
-/* 800B7C80 000B4BC0  4B F6 33 E9 */ bl fopAcM_orderTalkEvent
+/* 800B7C80 000B4BC0  4B F6 33 E9 */ bl fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 /* 800B7C84 000B4BC4  38 60 00 01 */ li r3, 1
 /* 800B7C88 000B4BC8  48 00 00 AC */ b lbl_800B7D34
 lbl_800B7C8C:
@@ -69,7 +69,7 @@ lbl_800B7CB8:
 /* 800B7CF8 000B4C38  80 BC 27 F8 */ lwz r5, 0x27f8(r28)
 /* 800B7CFC 000B4C3C  38 C0 00 00 */ li r6, 0
 /* 800B7D00 000B4C40  38 E0 00 00 */ li r7, 0
-/* 800B7D04 000B4C44  4B F6 33 F9 */ bl fopAcM_orderTalkItemBtnEvent
+/* 800B7D04 000B4C44  4B F6 33 F9 */ bl fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs
 /* 800B7D08 000B4C48  38 60 00 01 */ li r3, 1
 /* 800B7D0C 000B4C4C  48 00 00 28 */ b lbl_800B7D34
 lbl_800B7D10:

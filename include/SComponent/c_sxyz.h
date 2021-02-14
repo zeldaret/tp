@@ -3,12 +3,19 @@
 
 #include "global.h"
 
-class csXyz {
-private:
+struct SVec {
     s16 mX, mY, mZ;
+};
 
+class csXyz : public SVec {
 public:
+    csXyz() {}
+    csXyz(const csXyz& other) : SVec(other){};
     csXyz(s16, s16, s16);
+    ~csXyz() {}
+    s16 GetX() const { return mX; }
+    s16 GetY() const { return mY; }
+    s16 GetZ() const { return mZ; }
     csXyz operator+(csXyz&);
     void operator+=(csXyz&);
     csXyz operator-(csXyz&);

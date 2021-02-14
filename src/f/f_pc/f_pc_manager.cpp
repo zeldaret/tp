@@ -52,15 +52,14 @@ void fpcM_Execute(void* pProc) {
     fpcEx_Execute((base_process_class*)pProc);
 }
 
-void fpcM_Delete(void* pProc) {
-    fpcDt_Delete((base_process_class*)pProc);
+s32 fpcM_Delete(void* pProc) {
+    return fpcDt_Delete((base_process_class*)pProc);
 }
 
 BOOL fpcM_IsCreating(u32 pID) {
     return fpcCt_IsCreatingByID(pID);
 }
 
-typedef void (*fpcM_ManagementFunc)(void);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
     MtxInit();
     dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.getdlstPeekZ());

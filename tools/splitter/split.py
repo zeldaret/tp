@@ -46,19 +46,17 @@ def comment_out(line: Line) -> Line:
 def fix_sda_base_add(line: Line) -> Line:
     if 'SDA' in line.body.operands[2]:
         ops = line.body.operands[2].split('-')
-        lbl_addr = int(ops[0][4:], 16)
+        lbl_name = ops[0]
         if ops[1] == '_SDA_BASE_':
-            sda_addr = SDA_BASE
+            sda_reg = 'r13'
         elif ops[1] == '_SDA2_BASE_':
-            sda_addr = SDA2_BASE
+            sda_reg = 'r2'
         else:
             logger.error('Unknown SDABASE!')
             return line
 
-        line.content.append(
-            BlockComment(f'SDA HACK; original: {line.body.operands[2]}')
-        )
-        line.body.operands[2] = f'0x{lbl_addr:X} - 0x{sda_addr:X}'
+        line.body.opcode = 'la'
+        line.body.operands = [line.body.operands[0], f'{lbl_name}({sda_reg})']
     return line
 
 QUANT_REG_RE = re.compile(r'qr(\d+)')
@@ -238,7 +236,7 @@ def split(
     loaded_labels = set()
     for line in lines:
         if isinstance(line.body, Instruction):
-            if line.body.opcode[0] in {'l', 's'}:  # load and store instructions, ish
+            if line.body.opcode[0] in {'l', 's'} or line.body.opcode == 'addi':  # load and store instructions, ish. Also addi for loading SDA addresses
                 loaded_labels |= set(find_labels_in_operands(line.body.operands))
 
     # -- find all defined functions and split them

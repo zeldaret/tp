@@ -10,7 +10,7 @@
 /* 800C54A8 000C23E8  80 83 27 EC */ lwz r4, 0x27ec(r3)
 /* 800C54AC 000C23EC  28 04 00 00 */ cmplwi r4, 0
 /* 800C54B0 000C23F0  41 82 00 48 */ beq lbl_800C54F8
-/* 800C54B4 000C23F4  4B F5 52 5D */ bl fopAcM_searchActorAngleY
+/* 800C54B4 000C23F4  4B F5 52 5D */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 800C54B8 000C23F8  7C 64 1B 78 */ mr r4, r3
 /* 800C54BC 000C23FC  38 7F 04 E6 */ addi r3, r31, 0x4e6
 /* 800C54C0 000C2400  38 A0 00 05 */ li r5, 5

@@ -15,7 +15,7 @@
 /*.global sound_attention*/
 /* 80071E20 0006ED60  38 63 1D 6C */ addi r3, r3, sound_attention@l
 /* 80071E24 0006ED64  7F E4 FB 78 */ mr r4, r31
-/* 80071E28 0006ED68  4B FA 79 95 */ bl fopAcIt_Executor
+/* 80071E28 0006ED68  4B FA 79 95 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80071E2C 0006ED6C  80 1F 05 14 */ lwz r0, 0x514(r31)
 /* 80071E30 0006ED70  90 01 00 08 */ stw r0, 8(r1)
 /*.global fpcSch_JudgeByID*/
@@ -23,7 +23,7 @@
 /*.global fpcSch_JudgeByID*/
 /* 80071E38 0006ED78  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 80071E3C 0006ED7C  38 81 00 08 */ addi r4, r1, 8
-/* 80071E40 0006ED80  4B FA 79 B9 */ bl fopAcIt_Judge
+/* 80071E40 0006ED80  4B FA 79 B9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80071E44 0006ED84  28 03 00 00 */ cmplwi r3, 0
 /* 80071E48 0006ED88  41 82 00 28 */ beq lbl_80071E70
 /* 80071E4C 0006ED8C  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)

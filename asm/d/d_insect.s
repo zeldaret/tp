@@ -53,11 +53,11 @@ lbl_8015E0B8:
 /* 8015E0C4 0015B004  80 1F 05 5C */	lwz r0, 0x55c(r31)
 /* 8015E0C8 0015B008  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 8015E0CC 0015B00C  90 1F 05 5C */	stw r0, 0x55c(r31)
-/* 8015E0D0 0015B010  4B EB EA D1 */	bl fopAcM_cancelCarryNow
+/* 8015E0D0 0015B010  4B EB EA D1 */	bl fopAcM_cancelCarryNow__FP10fopAc_ac_c
 /* 8015E0D4 0015B014  7F E3 FB 78 */	mr r3, r31
 /* 8015E0D8 0015B018  38 80 00 00 */	li r4, 0
 /* 8015E0DC 0015B01C  38 A0 00 00 */	li r5, 0
-/* 8015E0E0 0015B020  4B EB D8 F1 */	bl fopAcM_orderItemEvent
+/* 8015E0E0 0015B020  4B EB D8 F1 */	bl fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
 /* 8015E0E4 0015B024  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 8015E0E8 0015B028  60 00 00 08 */	ori r0, r0, 8
 /* 8015E0EC 0015B02C  B0 1F 00 FA */	sth r0, 0xfa(r31)
@@ -68,7 +68,7 @@ lbl_8015E0B8:
 /* 8015E100 0015B040  7C 06 07 74 */	extsb r6, r0
 /* 8015E104 0015B044  38 E0 00 00 */	li r7, 0
 /* 8015E108 0015B048  39 00 00 00 */	li r8, 0
-/* 8015E10C 0015B04C  4B EB DB 69 */	bl fopAcM_createItemForTrBoxDemo
+/* 8015E10C 0015B04C  4B EB DB 69 */	bl fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz
 /* 8015E110 0015B050  90 7F 05 88 */	stw r3, 0x588(r31)
 /* 8015E114 0015B054  38 00 00 01 */	li r0, 1
 /* 8015E118 0015B058  90 1F 05 8C */	stw r0, 0x58c(r31)
@@ -105,7 +105,7 @@ lbl_8015E174:
 lbl_8015E188:
 /* 8015E188 0015B0C8  38 80 00 00 */	li r4, 0
 /* 8015E18C 0015B0CC  38 A0 00 00 */	li r5, 0
-/* 8015E190 0015B0D0  4B EB D8 41 */	bl fopAcM_orderItemEvent
+/* 8015E190 0015B0D0  4B EB D8 41 */	bl fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
 /* 8015E194 0015B0D4  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 8015E198 0015B0D8  60 00 00 08 */	ori r0, r0, 8
 /* 8015E19C 0015B0DC  B0 1F 00 FA */	sth r0, 0xfa(r31)
@@ -150,13 +150,13 @@ lbl_8015E204:
 /* 8015E230 0015B170  38 E0 00 00 */	li r7, 0
 /* 8015E234 0015B174  39 00 00 00 */	li r8, 0
 /* 8015E238 0015B178  39 20 00 00 */	li r9, 0
-/* 8015E23C 0015B17C  4B EB E0 05 */	bl fopAcM_createItem
+/* 8015E23C 0015B17C  4B EB E0 05 */	bl fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi
 /* 8015E240 0015B180  38 00 00 01 */	li r0, 1
 /* 8015E244 0015B184  98 1F 05 84 */	stb r0, 0x584(r31)
 /* 8015E248 0015B188  48 00 00 0C */	b lbl_8015E254
 lbl_8015E24C:
 /* 8015E24C 0015B18C  7F E3 FB 78 */	mr r3, r31
-/* 8015E250 0015B190  4B EB BA 2D */	bl fopAcM_delete
+/* 8015E250 0015B190  4B EB BA 2D */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_8015E254:
 /* 8015E254 0015B194  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015E258 0015B198  83 C1 00 08 */	lwz r30, 8(r1)

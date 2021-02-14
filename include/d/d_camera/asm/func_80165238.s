@@ -22,7 +22,7 @@
 /* 8016528C 001621CC  7D 1F 43 78 */ mr r31, r8
 /* 80165290 001621D0  FF 60 10 90 */ fmr f27, f2
 /* 80165294 001621D4  80 63 00 00 */ lwz r3, 0(r3)
-/* 80165298 001621D8  4B EB 90 71 */ bl fopCamM_GetParam
+/* 80165298 001621D8  4B EB 90 71 */ bl fopCamM_GetParam__FP12camera_class
 /* 8016529C 001621DC  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 801652A0 001621E0  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 801652A4 001621E4  1C 03 00 38 */ mulli r0, r3, 0x38

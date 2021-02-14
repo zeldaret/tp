@@ -67,7 +67,7 @@ dShopItemCtrl_c_NS_getCurrentPos:
 .global fpcSch_JudgeByID
 /* 801969E4 00193924  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 801969E8 00193928  38 81 00 08 */	addi r4, r1, 8
-/* 801969EC 0019392C  4B E8 2E 0D */	bl fopAcIt_Judge
+/* 801969EC 0019392C  4B E8 2E 0D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801969F0 00193930  28 03 00 00 */	cmplwi r3, 0
 /* 801969F4 00193934  41 82 00 1C */	beq lbl_80196A10
 /* 801969F8 00193938  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
@@ -111,7 +111,7 @@ dShopItemCtrl_c_NS_isHomePos:
 .global fpcSch_JudgeByID
 /* 80196A7C 001939BC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 80196A80 001939C0  38 81 00 08 */	addi r4, r1, 8
-/* 80196A84 001939C4  4B E8 2D 75 */	bl fopAcIt_Judge
+/* 80196A84 001939C4  4B E8 2D 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196A88 001939C8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80196A8C 001939CC  41 82 00 4C */	beq lbl_80196AD8
 /* 80196A90 001939D0  4B EA 11 8D */	bl daShopItem_c_NS_getPosP
@@ -164,7 +164,7 @@ lbl_80196B14:
 .global fpcSch_JudgeByID
 /* 80196B30 00193A70  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 80196B34 00193A74  38 81 00 08 */	addi r4, r1, 8
-/* 80196B38 00193A78  4B E8 2C C1 */	bl fopAcIt_Judge
+/* 80196B38 00193A78  4B E8 2C C1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196B3C 00193A7C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80196B40 00193A80  41 82 00 3C */	beq lbl_80196B7C
 /* 80196B44 00193A84  4B EA 10 D1 */	bl daShopItem_c_NS_getRotateP
@@ -220,7 +220,7 @@ lbl_80196BD4:
 .global fpcSch_JudgeByID
 /* 80196BF0 00193B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
 /* 80196BF4 00193B34  38 81 00 18 */	addi r4, r1, 0x18
-/* 80196BF8 00193B38  4B E8 2C 01 */	bl fopAcIt_Judge
+/* 80196BF8 00193B38  4B E8 2C 01 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196BFC 00193B3C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80196C00 00193B40  41 82 04 70 */	beq lbl_80197070
 /* 80196C04 00193B44  4B EA 10 19 */	bl daShopItem_c_NS_getPosP

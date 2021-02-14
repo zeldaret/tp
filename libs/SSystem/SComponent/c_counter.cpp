@@ -1,3 +1,4 @@
+#include "SComponent/c_counter.h"
 
 struct counter_class {
     int mCounter0;

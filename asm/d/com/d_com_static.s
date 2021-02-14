@@ -710,7 +710,7 @@ daTagStream_c_NS_checkArea:
 /* 800318C0 0002E800  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800318C4 0002E804  7C 7F 1B 78 */	mr r31, r3
 /* 800318C8 0002E808  38 A1 00 08 */	addi r5, r1, 8
-/* 800318CC 0002E80C  4B FE C0 35 */	bl fpoAcM_relativePos
+/* 800318CC 0002E80C  4B FE C0 35 */	bl fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz
 /* 800318D0 0002E810  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 800318D4 0002E814  C0 02 83 54 */	lfs f0, lbl_80451D54-_SDA2_BASE_(r2)
 /* 800318D8 0002E818  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -775,7 +775,7 @@ lbl_80031980:
 /* 800319A8 0002E8E8  38 60 00 00 */	li r3, 0
 /* 800319AC 0002E8EC  48 00 00 0C */	b lbl_800319B8
 lbl_800319B0:
-/* 800319B0 0002E8F0  4B FE 82 CD */	bl fopAcM_delete
+/* 800319B0 0002E8F0  4B FE 82 CD */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 800319B4 0002E8F4  38 60 00 01 */	li r3, 1
 lbl_800319B8:
 /* 800319B8 0002E8F8  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -18,6 +18,7 @@ from typing import (
     Callable,
     Pattern,
 )
+import functools
 
 
 def fail(msg: str) -> NoReturn:
@@ -372,6 +373,27 @@ if not objdump_executable:
         "Missing binutils; please ensure mips-linux-gnu-objdump or mips64-elf-objdump exist, or configure objdump_executable."
     )
 
+def in_wsl() -> bool:
+    """
+    WSL is thought to be the only common Linux kernel with Microsoft in the name, per Microsoft:
+
+    https://github.com/microsoft/WSL/issues/4071#issuecomment-496715404
+    """
+
+    return 'Microsoft' in platform.uname().release
+
+def guess_sourcepath_processing() -> str:
+    if platform.system() == 'Windows':
+        return 'none' # we don't need to process
+    else:
+        if in_wsl():
+            return 'wsl'
+        else:
+            return 'unix'
+
+if not args.source_path_postprocess:
+    args.source_path_postprocess = guess_sourcepath_processing()
+
 
 def maybe_eval_int(expr: str) -> Optional[int]:
     try:
@@ -591,6 +613,8 @@ def dump_objfile() -> Tuple[str, ObjdumpCommand, ObjdumpCommand]:
         fail(f"Not able to find .o file for function: {objfile} is not a file.")
 
     refobjfile, _ = search_map_file(args.lhs_name or args.start, config.get('expected_mapfile'), config.get('expected_build_dir'))
+    if not refobjfile:
+        fail("Not able to find .o file for reference function.")
     if not os.path.isfile(refobjfile):
         fail(f'Please ensure an OK .o file exists at "{refobjfile}".')
 
@@ -932,24 +956,17 @@ def make_difference_normalizer() -> DifferenceNormalizer:
         return DifferenceNormalizerAArch64()
     return DifferenceNormalizer()
 
-def in_wsl() -> bool:
-    """
-    WSL is thought to be the only common Linux kernel with Microsoft in the name, per Microsoft:
+@functools.lru_cache(maxsize=None) # ideally would use functools.cache but that needs py3.9 which most ppl don't have
+def convert_src_path(path: str) -> str:
+    if args.source_path_postprocess == 'none': ...
+    elif args.source_path_postprocess == 'unix':
+        # on Wine, use winepath to convert
+        path = subprocess.check_output(["winepath","-u", path], universal_newlines=True).strip()
+    elif args.source_path_postprocess == 'wsl':
+        # on WSL, use wslpath to convert
+        path = subprocess.check_output(["wslpath","-ua", path], universal_newlines=True).strip()
 
-    https://github.com/microsoft/WSL/issues/4071#issuecomment-496715404
-    """
-
-    return 'Microsoft' in platform.uname().release
-
-def guess_sourcepath_processing() -> str:
-    if platform.system() == 'Windows':
-        return 'none' # we don't need to process
-    else:
-        if in_wsl():
-            return 'wsl'
-        else:
-            return 'unix'
-
+    return path
 
 def process(lines: List[str]) -> List[Line]:
     file_cache = dict()
@@ -989,19 +1006,8 @@ def process(lines: List[str]) -> List[Line]:
         if args.source and (row and row[0] != " "):
             m_file_line = re.match(re_file_line, row)
             if m_file_line:
-                path = m_file_line.group(1)
+                path = convert_src_path(m_file_line.group(1))
                 line = int(m_file_line.group(2))
-
-                if not args.source_path_postprocess:
-                    args.source_path_postprocess = guess_sourcepath_processing()
-
-                if args.source_path_postprocess == 'none': ...
-                elif args.source_path_postprocess == 'wine':
-                    # on Wine, use winepath to convert
-                    path = subprocess.check_output(["winepath","-u", path], universal_newlines=True).strip()
-                elif args.source_path_postprocess == 'wsl':
-                    # on WSL, use wslpath to convert
-                    path = subprocess.check_output(["wslpath","-ua", path], universal_newlines=True).strip()
 
                 if path in file_cache:
                     file_lines = file_cache[path]

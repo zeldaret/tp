@@ -5120,7 +5120,7 @@ lbl_8004DC10:
 /* 8004DC4C 0004AB8C  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 8004DC50 0004AB90  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 8004DC54 0004AB94  38 61 00 08 */	addi r3, r1, 8
-/* 8004DC58 0004AB98  4B FD 01 2D */	bl fopAcM_wt_c_NS_waterCheck
+/* 8004DC58 0004AB98  4B FD 01 2D */	bl waterCheck__11fopAcM_wt_cFPC4cXyz
 /* 8004DC5C 0004AB9C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004DC60 0004ABA0  41 82 00 2C */	beq lbl_8004DC8C
 /* 8004DC64 0004ABA4  C0 21 00 0C */	lfs f1, 0xc(r1)

@@ -33,13 +33,13 @@ lbl_80135224:
 /*.global daAlink_searchGiantTalk*/
 /* 80135270 001321B0  38 63 50 A4 */ addi r3, r3, daAlink_searchGiantTalk@l
 /* 80135274 001321B4  38 80 00 00 */ li r4, 0
-/* 80135278 001321B8  4B EE 45 81 */ bl fopAcIt_Judge
+/* 80135278 001321B8  4B EE 45 81 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8013527C 001321BC  7C 64 1B 79 */ or. r4, r3, r3
 /* 80135280 001321C0  41 82 01 44 */ beq lbl_801353C4
 /* 80135284 001321C4  7F E3 FB 78 */ mr r3, r31
 /* 80135288 001321C8  38 A0 00 00 */ li r5, 0
 /* 8013528C 001321CC  38 C0 00 00 */ li r6, 0
-/* 80135290 001321D0  4B EE 5D D9 */ bl fopAcM_orderTalkEvent
+/* 80135290 001321D0  4B EE 5D D9 */ bl fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 /* 80135294 001321D4  48 00 01 30 */ b lbl_801353C4
 lbl_80135298:
 /* 80135298 001321D8  C0 3F 33 AC */ lfs f1, 0x33ac(r31)
@@ -93,7 +93,7 @@ lbl_80135298:
 /*.global daAlink_searchGiant*/
 /* 80135354 00132294  38 63 50 50 */ addi r3, r3, daAlink_searchGiant@l
 /* 80135358 00132298  38 81 00 08 */ addi r4, r1, 8
-/* 8013535C 0013229C  4B EE 44 9D */ bl fopAcIt_Judge
+/* 8013535C 0013229C  4B EE 44 9D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80135360 001322A0  28 03 00 00 */ cmplwi r3, 0
 /* 80135364 001322A4  40 82 00 60 */ bne lbl_801353C4
 /* 80135368 001322A8  3C 60 80 39 */ lis r3, lbl_8038EF28@ha

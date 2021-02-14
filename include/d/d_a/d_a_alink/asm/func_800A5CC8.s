@@ -88,7 +88,7 @@ lbl_800A5E04:
 /* 800A5E0C 000A2D4C  93 E3 5D AC */ stw r31, 0x5dac(r3)
 /* 800A5E10 000A2D50  93 E3 5D B4 */ stw r31, 0x5db4(r3)
 /* 800A5E14 000A2D54  7F E3 FB 78 */ mr r3, r31
-/* 800A5E18 000A2D58  4B F7 3A AD */ bl fopAcM_setStageLayer
+/* 800A5E18 000A2D58  4B F7 3A AD */ bl fopAcM_setStageLayer__FPv
 /* 800A5E1C 000A2D5C  28 1B 00 07 */ cmplwi r27, 7
 /* 800A5E20 000A2D60  40 82 00 34 */ bne lbl_800A5E54
 /* 800A5E24 000A2D64  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -206,7 +206,7 @@ lbl_800A5FB0:
 /* 800A5FB8 000A2EF8  38 84 48 F0 */ addi r4, r4, daAlink_createHeap@l
 /* 800A5FBC 000A2EFC  3C A0 C0 04 */ lis r5, 0xC003E930@ha
 /* 800A5FC0 000A2F00  38 A5 E9 30 */ addi r5, r5, 0xC003E930@l
-/* 800A5FC4 000A2F04  4B F7 44 ED */ bl fopAcM_entrySolidHeap
+/* 800A5FC4 000A2F04  4B F7 44 ED */ bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 800A5FC8 000A2F08  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A5FCC 000A2F0C  40 82 00 0C */ bne lbl_800A5FD8
 /* 800A5FD0 000A2F10  38 60 00 05 */ li r3, 5
@@ -235,7 +235,7 @@ lbl_800A5FD8:
 /* 800A6028 000A2F68  38 FF 04 E4 */ addi r7, r31, 0x4e4
 /* 800A602C 000A2F6C  39 00 00 00 */ li r8, 0
 /* 800A6030 000A2F70  39 20 FF FF */ li r9, -1
-/* 800A6034 000A2F74  4B F7 3D 65 */ bl fopAcM_create_X1_
+/* 800A6034 000A2F74  4B F7 3D 65 */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800A6038 000A2F78  90 7F 29 00 */ stw r3, 0x2900(r31)
 /* 800A603C 000A2F7C  48 00 00 44 */ b lbl_800A6080
 lbl_800A6040:
@@ -250,7 +250,7 @@ lbl_800A6040:
 /* 800A6060 000A2FA0  38 FF 04 E4 */ addi r7, r31, 0x4e4
 /* 800A6064 000A2FA4  39 00 00 00 */ li r8, 0
 /* 800A6068 000A2FA8  39 20 FF FF */ li r9, -1
-/* 800A606C 000A2FAC  4B F7 3D 2D */ bl fopAcM_create_X1_
+/* 800A606C 000A2FAC  4B F7 3D 2D */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800A6070 000A2FB0  90 7F 29 00 */ stw r3, 0x2900(r31)
 /* 800A6074 000A2FB4  48 00 00 0C */ b lbl_800A6080
 lbl_800A6078:
@@ -284,7 +284,7 @@ lbl_800A60C8:
 /*.global daAlink_searchPortal*/
 /* 800A60D8 000A3018  38 63 F5 D4 */ addi r3, r3, daAlink_searchPortal@l
 /* 800A60DC 000A301C  38 9F 04 D0 */ addi r4, r31, 0x4d0
-/* 800A60E0 000A3020  4B F7 37 19 */ bl fopAcIt_Judge
+/* 800A60E0 000A3020  4B F7 37 19 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A60E4 000A3024  7C 78 1B 79 */ or. r24, r3, r3
 /* 800A60E8 000A3028  41 82 00 F0 */ beq lbl_800A61D8
 lbl_800A60EC:
@@ -298,7 +298,7 @@ lbl_800A60EC:
 /*.global fpcSch_JudgeByID*/
 /* 800A6104 000A3044  38 63 35 90 */ addi r3, r3, fpcSch_JudgeByID@l
 /* 800A6108 000A3048  38 81 00 10 */ addi r4, r1, 0x10
-/* 800A610C 000A304C  4B F7 36 ED */ bl fopAcIt_Judge
+/* 800A610C 000A304C  4B F7 36 ED */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A6110 000A3050  28 03 00 00 */ cmplwi r3, 0
 /* 800A6114 000A3054  41 82 00 C4 */ beq lbl_800A61D8
 lbl_800A6118:
@@ -311,7 +311,7 @@ lbl_800A6118:
 /*.global daAlink_searchCanoe*/
 /* 800A612C 000A306C  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe@l
 /* 800A6130 000A3070  38 80 00 00 */ li r4, 0
-/* 800A6134 000A3074  4B F7 36 C5 */ bl fopAcIt_Judge
+/* 800A6134 000A3074  4B F7 36 C5 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A6138 000A3078  28 03 00 00 */ cmplwi r3, 0
 /* 800A613C 000A307C  41 82 00 9C */ beq lbl_800A61D8
 lbl_800A6140:
@@ -324,7 +324,7 @@ lbl_800A6140:
 /*.global daAlink_searchBoar*/
 /* 800A6154 000A3094  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
 /* 800A6158 000A3098  38 80 00 00 */ li r4, 0
-/* 800A615C 000A309C  4B F7 36 9D */ bl fopAcIt_Judge
+/* 800A615C 000A309C  4B F7 36 9D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A6160 000A30A0  28 03 00 00 */ cmplwi r3, 0
 /* 800A6164 000A30A4  41 82 00 74 */ beq lbl_800A61D8
 lbl_800A6168:
@@ -350,7 +350,7 @@ lbl_800A61A4:
 /*.global daAlink_searchLightBall*/
 /* 800A61A8 000A30E8  38 63 38 80 */ addi r3, r3, daAlink_searchLightBall@l
 /* 800A61AC 000A30EC  38 80 00 00 */ li r4, 0
-/* 800A61B0 000A30F0  4B F7 36 49 */ bl fopAcIt_Judge
+/* 800A61B0 000A30F0  4B F7 36 49 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A61B4 000A30F4  28 03 00 00 */ cmplwi r3, 0
 /* 800A61B8 000A30F8  41 82 00 20 */ beq lbl_800A61D8
 lbl_800A61BC:
@@ -534,7 +534,7 @@ lbl_800A6448:
 /*.global daAlink_searchLightBall*/
 /* 800A644C 000A338C  38 63 38 80 */ addi r3, r3, daAlink_searchLightBall@l
 /* 800A6450 000A3390  38 80 00 00 */ li r4, 0
-/* 800A6454 000A3394  4B F7 33 A5 */ bl fopAcIt_Judge
+/* 800A6454 000A3394  4B F7 33 A5 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800A6458 000A3398  7C 64 1B 78 */ mr r4, r3
 /* 800A645C 000A339C  7F E3 FB 78 */ mr r3, r31
 /* 800A6460 000A33A0  38 A0 00 01 */ li r5, 1
@@ -552,7 +552,7 @@ lbl_800A6478:
 /* 800A648C 000A33CC  38 FF 04 E4 */ addi r7, r31, 0x4e4
 /* 800A6490 000A33D0  39 00 00 00 */ li r8, 0
 /* 800A6494 000A33D4  39 20 FF FF */ li r9, -1
-/* 800A6498 000A33D8  4B F7 39 01 */ bl fopAcM_create_X1_
+/* 800A6498 000A33D8  4B F7 39 01 */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800A649C 000A33DC  7F E3 FB 78 */ mr r3, r31
 /* 800A64A0 000A33E0  38 9F 04 D0 */ addi r4, r31, 0x4d0
 /* 800A64A4 000A33E4  88 1F 04 E2 */ lbz r0, 0x4e2(r31)
@@ -599,7 +599,7 @@ lbl_800A64FC:
 /* 800A6540 000A3480  39 01 00 1C */ addi r8, r1, 0x1c
 /* 800A6544 000A3484  39 20 00 00 */ li r9, 0
 /* 800A6548 000A3488  39 40 FF FF */ li r10, -1
-/* 800A654C 000A348C  4B F7 39 A5 */ bl fopAcM_createChild
+/* 800A654C 000A348C  4B F7 39 A5 */ bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 lbl_800A6550:
 /* 800A6550 000A3490  38 7B 3E E8 */ addi r3, r27, 0x3ee8
 /* 800A6554 000A3494  81 9B 3E E8 */ lwz r12, 0x3ee8(r27)

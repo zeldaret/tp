@@ -18,7 +18,7 @@ lbl_800CF1E8:
 /*.global daAlink_searchPeepObj*/
 /* 800CF1F4 000CC134  38 63 ED 48 */ addi r3, r3, daAlink_searchPeepObj@l
 /* 800CF1F8 000CC138  38 81 00 08 */ addi r4, r1, 8
-/* 800CF1FC 000CC13C  4B F4 A5 C1 */ bl fopAcIt_Executor
+/* 800CF1FC 000CC13C  4B F4 A5 C1 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 800CF200 000CC140  80 61 00 08 */ lwz r3, 8(r1)
 /* 800CF204 000CC144  28 03 00 00 */ cmplwi r3, 0
 /* 800CF208 000CC148  41 82 00 0C */ beq lbl_800CF214

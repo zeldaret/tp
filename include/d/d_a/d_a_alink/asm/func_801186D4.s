@@ -27,7 +27,7 @@ lbl_80118728:
 /* 80118734 00115674  7C 07 07 74 */ extsb r7, r0
 /* 80118738 00115678  39 1F 04 E4 */ addi r8, r31, 0x4e4
 /* 8011873C 0011567C  39 3F 04 EC */ addi r9, r31, 0x4ec
-/* 80118740 00115680  4B F0 34 A9 */ bl fopAcM_createItemForPresentDemo
+/* 80118740 00115680  4B F0 34 A9 */ bl fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz
 /* 80118744 00115684  7C 64 1B 78 */ mr r4, r3
 /* 80118748 00115688  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011874C 0011568C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

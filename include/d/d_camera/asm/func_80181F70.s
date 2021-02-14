@@ -8,7 +8,7 @@
 /* 80181F8C 0017EECC  7C 7D 1B 78 */ mr r29, r3
 /* 80181F90 0017EED0  7F BB EB 78 */ mr r27, r29
 /* 80181F94 0017EED4  3B DD 02 48 */ addi r30, r29, 0x248
-/* 80181F98 0017EED8  4B E9 C3 71 */ bl fopCamM_GetParam
+/* 80181F98 0017EED8  4B E9 C3 71 */ bl fopCamM_GetParam__FP12camera_class
 /* 80181F9C 0017EEDC  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 80181FA0 0017EEE0  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 80181FA4 0017EEE4  1C 03 00 38 */ mulli r0, r3, 0x38
@@ -20,7 +20,7 @@
 /* 80181FBC 0017EEFC  3B 83 4E 10 */ addi r28, r3, 0x4e10
 /* 80181FC0 0017EF00  7F 9F E2 14 */ add r28, r31, r28
 /* 80181FC4 0017EF04  7F 63 DB 78 */ mr r3, r27
-/* 80181FC8 0017EF08  4B E9 C3 41 */ bl fopCamM_GetParam
+/* 80181FC8 0017EF08  4B E9 C3 41 */ bl fopCamM_GetParam__FP12camera_class
 /* 80181FCC 0017EF0C  7C 7B 1B 78 */ mr r27, r3
 /* 80181FD0 0017EF10  C0 1E 09 20 */ lfs f0, 0x920(r30)
 /* 80181FD4 0017EF14  FC 00 00 1E */ fctiwz f0, f0
