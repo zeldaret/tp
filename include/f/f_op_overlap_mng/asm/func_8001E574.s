@@ -1,7 +1,7 @@
 /* 8001E574 0001B4B4  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8001E578 0001B4B8  7C 08 02 A6 */ mflr r0
 /* 8001E57C 0001B4BC  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8001E580 0001B4C0  80 6D 80 30 */ lwz r3, lbl_804505B0-_SDA_BASE_(r13)
+/* 8001E580 0001B4C0  80 6D 80 30 */ lwz r3, l_fopOvlpM_overlap-_SDA_BASE_(r13)
 /* 8001E584 0001B4C4  28 03 00 00 */ cmplwi r3, 0
 /* 8001E588 0001B4C8  41 82 00 0C */ beq lbl_8001E594
 /* 8001E58C 0001B4CC  48 24 82 49 */ bl cReq_Is_Done__FP18request_base_class

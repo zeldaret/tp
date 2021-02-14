@@ -29,8 +29,8 @@ lbl_804505A8:
 .global lbl_804505AC
 lbl_804505AC:
 	.incbin "baserom.dol", 0x3D030C, 0x4
-.global lbl_804505B0
-lbl_804505B0:
+.global l_fopOvlpM_overlap
+l_fopOvlpM_overlap:
 	.incbin "baserom.dol", 0x3D0310, 0x8
 .global lbl_804505B8
 lbl_804505B8:

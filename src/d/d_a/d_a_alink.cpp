@@ -11,6 +11,7 @@
 #include "d/d_kankyo/d_kankyo.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "f/f_op/f_op_actor_mng.h"
+#include "f/f_op/f_op_overlap_mng.h"
 #include "f/f_pc/f_pc_manager.h"
 #include "f/f_pc/f_pc_searcher.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
@@ -1156,7 +1157,6 @@ void fopKyM_create(void);
 void fopKyM_createWpillar(void);
 void fopMsgM_messageSet_X1_(void);
 void fopMsgM_SearchByID(void);
-void fopOvlpM_IsPeek(void);
 void fpoAcM_relativePos(void);
 void freeAll__7JKRHeapFv(void);
 void func_80361C24(void);
@@ -1164,6 +1164,7 @@ void func_80361D60(void);
 void func_80361F14(void);
 void func_80362018(void);
 void func_80362084(void);
+void fopOvlpM_IsPeek__Fv(void);
 void __cvt_fp2unsigned(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
 void getLightDropNum__16dSv_light_drop_cCFUc(void);
