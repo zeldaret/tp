@@ -69,7 +69,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/f_op_kankyo.o \
             $(BUILD_DIR)/asm/f/op/f_op_msg.o \
             $(BUILD_DIR)/asm/sdata2/f_op_kankyo_mng.o \
-            $(BUILD_DIR)/asm/f/op/kankyo/f_op_kankyo_mng.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_kankyo_mng.o \
             $(BUILD_DIR)/asm/sdata2/f_op_msg_mng.o \
             $(BUILD_DIR)/asm/f/op/msg/f_op_msg_mng.o \
             $(BUILD_DIR)/src/f/f_op/f_op_draw_iter.o \
