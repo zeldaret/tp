@@ -2,7 +2,8 @@
 
 .section .text, "ax" # 8001e37c
 
-
+.global fopOvlp_Draw
+fopOvlp_Draw:
 /* 8001E37C 0001B2BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E380 0001B2C0  7C 08 02 A6 */	mflr r0
 /* 8001E384 0001B2C4  90 01 00 14 */	stw r0, 0x14(r1)

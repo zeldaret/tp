@@ -2,7 +2,8 @@
 
 .section .text, "ax" # 8001eb34
 
-
+.global fopScn_Draw
+fopScn_Draw:
 /* 8001EB34 0001BA74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EB38 0001BA78  7C 08 02 A6 */	mflr r0
 /* 8001EB3C 0001BA7C  90 01 00 14 */	stw r0, 0x14(r1)

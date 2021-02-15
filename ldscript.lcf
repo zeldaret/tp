@@ -3425,6 +3425,16 @@ func_8001F53C
 func_8001F4E8
 func_8001F4B0
 fopMsg_Draw
+func_8001E41C
+func_8001E3F4
+func_8001E3CC
+func_8001E3A4
+fopOvlp_Draw
+func_8001EC00
+func_8001EBAC
+func_8001EB84
+func_8001EB5C
+fopScn_Draw
 }
 /*
 .init 80003100 - 80005600
