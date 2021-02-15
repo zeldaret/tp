@@ -3380,6 +3380,11 @@ func_8001F248
 func_8001F220
 func_8001F1F8
 func_8001F1D0
+fopCam_Draw
+func_8001E270
+func_8001E21C
+func_8001E1C8
+func_8001E180
 }
 /*
 .init 80003100 - 80005600

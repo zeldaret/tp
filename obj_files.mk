@@ -55,7 +55,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_tag.o \
             $(BUILD_DIR)/asm/sdata2/f_op_actor_mng.o \
             $(BUILD_DIR)/src/f/f_op/f_op_actor_mng.o \
-            $(BUILD_DIR)/asm/f/op/f_op_camera.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_camera.o \
             $(BUILD_DIR)/src/f/f_op/f_op_camera_mng.o \
             $(BUILD_DIR)/asm/f/op/f_op_overlap.o \
             $(BUILD_DIR)/src/f/f_op/f_op_overlap_mng.o \
