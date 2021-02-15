@@ -3375,6 +3375,11 @@ fopAcM_SetMin__FP10fopAc_ac_cfff
 fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 fopAcM_SearchByName__FsPP10fopAc_ac_c
 func_80018B28
+fopVw_Draw
+func_8001F248
+func_8001F220
+func_8001F1F8
+func_8001F1D0
 }
 /*
 .init 80003100 - 80005600
