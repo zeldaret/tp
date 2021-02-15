@@ -2,7 +2,8 @@
 
 .section .text, "ax" # 8001ee34
 
-
+.global fopScnRq_phase_ClearOverlap
+fopScnRq_phase_ClearOverlap:
 /* 8001EE34 0001BD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EE38 0001BD78  7C 08 02 A6 */	mflr r0
 /* 8001EE3C 0001BD7C  90 01 00 14 */	stw r0, 0x14(r1)

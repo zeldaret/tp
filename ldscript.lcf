@@ -3396,6 +3396,25 @@ func_8001E854
 func_8001E7E4
 func_8001E794
 func_8001E748
+func_8001EFB0
+func_8001EF6C
+func_8001EEE4
+func_8001EEB4
+func_8001EE84
+func_8001EE64
+fopScnRq_phase_ClearOverlap
+fopScnIt_Judge
+fopScnTg_QueueTo
+fopScnTg_ToQueue
+fopScnTg_Init
+fopScnPause_Enable__FP11scene_class
+fopScnPause_Disable__FP11scene_class
+func_8001EE64
+func_8001EE84
+func_8001EEB4
+func_8001EEE4
+func_8001EF6C
+func_8001EFB0
 }
 /*
 .init 80003100 - 80005600
