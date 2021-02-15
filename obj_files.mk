@@ -66,7 +66,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/f/op/scene/f_op_scene_req.o \
             $(BUILD_DIR)/src/f/f_op/f_op_scene_tag.o \
             $(BUILD_DIR)/src/f/f_op/f_op_view.o \
-            $(BUILD_DIR)/asm/f/op/f_op_kankyo.o \
+            $(BUILD_DIR)/src/f/f_op/f_op_kankyo.o \
             $(BUILD_DIR)/asm/f/op/f_op_msg.o \
             $(BUILD_DIR)/asm/sdata2/f_op_kankyo_mng.o \
             $(BUILD_DIR)/src/f/f_op/f_op_kankyo_mng.o \
