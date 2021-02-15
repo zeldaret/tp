@@ -3380,7 +3380,7 @@ func_8001F248
 func_8001F220
 func_8001F1F8
 func_8001F1D0
-fopCam_Draw
+fopCam_Draw__FP12camera_class
 func_8001E270
 func_8001E21C
 func_8001E1C8
@@ -3435,6 +3435,10 @@ func_8001EBAC
 func_8001EB84
 func_8001EB5C
 fopScn_Draw
+fopCam_Execute__FP12camera_class
+fopCam_IsDelete__FP12camera_class
+fopCam_Delete__FP12camera_class
+fopCam_Create__FPv
 }
 /*
 .init 80003100 - 80005600

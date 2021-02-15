@@ -9,7 +9,7 @@
 /* 8001F55C 0001C49C  48 00 2F 4D */ bl fpcMtd_Delete
 /* 8001F560 0001C4A0  7C 7F 1B 78 */ mr r31, r3
 /* 8001F564 0001C4A4  38 7E 00 C4 */ addi r3, r30, 0xc4
-/* 8001F568 0001C4A8  48 00 0F 6D */ bl fopDwTg_DrawQTo
+/* 8001F568 0001C4A8  48 00 0F 6D */ bl fopDwTg_DrawQTo__FP16create_tag_class
 /* 8001F56C 0001C4AC  7F E3 FB 78 */ mr r3, r31
 /* 8001F570 0001C4B0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8001F574 0001C4B4  83 C1 00 08 */ lwz r30, 8(r1)
