@@ -7,7 +7,7 @@
 /* 8001E49C 0001B3DC  80 63 00 20 */ lwz r3, 0x20(r3)
 /* 8001E4A0 0001B3E0  80 63 00 C8 */ lwz r3, 0xc8(r3)
 /* 8001E4A4 0001B3E4  48 00 2E B5 */ bl fpcEx_SearchByID
-/* 8001E4A8 0001B3E8  48 00 20 A1 */ bl fopScnPause_Enable
+/* 8001E4A8 0001B3E8  48 00 20 A1 */ bl fopScnPause_Enable__FP11scene_class
 /* 8001E4AC 0001B3EC  48 00 00 08 */ b lbl_8001E4B4
 lbl_8001E4B0:
 /* 8001E4B0 0001B3F0  38 60 00 00 */ li r3, 0

@@ -172,8 +172,8 @@ lbl_8001E8F0:
 /* 8001E94C 0001B88C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E950 0001B890  4E 80 00 20 */	blr 
 
-.global fopOvlpReq_Request
-fopOvlpReq_Request:
+.global fopOvlpReq_Request__FP21overlap_request_classsUs
+fopOvlpReq_Request__FP21overlap_request_classsUs:
 /* 8001E954 0001B894  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001E958 0001B898  7C 08 02 A6 */	mflr r0
 /* 8001E95C 0001B89C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -216,8 +216,8 @@ lbl_8001E9D8:
 /* 8001E9E8 0001B928  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001E9EC 0001B92C  4E 80 00 20 */	blr 
 
-.global fopOvlpReq_Handler
-fopOvlpReq_Handler:
+.global fopOvlpReq_Handler__FP21overlap_request_class
+fopOvlpReq_Handler__FP21overlap_request_class:
 /* 8001E9F0 0001B930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E9F4 0001B934  7C 08 02 A6 */	mflr r0
 /* 8001E9F8 0001B938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -242,7 +242,7 @@ lbl_8001EA34:
 /* 8001EA40 0001B980  48 00 00 20 */	b lbl_8001EA60
 lbl_8001EA44:
 /* 8001EA44 0001B984  7F E3 FB 78 */	mr r3, r31
-/* 8001EA48 0001B988  4B FF FF A9 */	bl fopOvlpReq_Handler
+/* 8001EA48 0001B988  4B FF FF A9 */	bl fopOvlpReq_Handler__FP21overlap_request_class
 /* 8001EA4C 0001B98C  48 00 00 28 */	b lbl_8001EA74
 lbl_8001EA50:
 /* 8001EA50 0001B990  38 60 00 00 */	li r3, 0
@@ -265,8 +265,8 @@ lbl_8001EA74:
 /* 8001EA80 0001B9C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001EA84 0001B9C4  4E 80 00 20 */	blr 
 
-.global fopOvlpReq_Cancel
-fopOvlpReq_Cancel:
+.global fopOvlpReq_Cancel__FP21overlap_request_class
+fopOvlpReq_Cancel__FP21overlap_request_class:
 /* 8001EA88 0001B9C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EA8C 0001B9CC  7C 08 02 A6 */	mflr r0
 /* 8001EA90 0001B9D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -294,8 +294,8 @@ fopOvlpReq_SetPeektime:
 /* 8001EAD0 0001BA10  B0 83 00 06 */	sth r4, 6(r3)
 /* 8001EAD4 0001BA14  4E 80 00 20 */	blr 
 
-.global fopOvlpReq_OverlapClr
-fopOvlpReq_OverlapClr:
+.global fopOvlpReq_OverlapClr__FP21overlap_request_class
+fopOvlpReq_OverlapClr__FP21overlap_request_class:
 /* 8001EAD8 0001BA18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EADC 0001BA1C  7C 08 02 A6 */	mflr r0
 /* 8001EAE0 0001BA20  90 01 00 14 */	stw r0, 0x14(r1)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80020548
 
 
-.global fopScnPause_Enable
-fopScnPause_Enable:
+.global fopScnPause_Enable__FP11scene_class
+fopScnPause_Enable__FP11scene_class:
 /* 80020548 0001D488  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002054C 0001D48C  7C 08 02 A6 */	mflr r0
 /* 80020550 0001D490  90 01 00 14 */	stw r0, 0x14(r1)
@@ -27,8 +27,8 @@ lbl_80020580:
 /* 8002058C 0001D4CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80020590 0001D4D0  4E 80 00 20 */	blr 
 
-.global fopScnPause_Disable
-fopScnPause_Disable:
+.global fopScnPause_Disable__FP11scene_class
+fopScnPause_Disable__FP11scene_class:
 /* 80020594 0001D4D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80020598 0001D4D8  7C 08 02 A6 */	mflr r0
 /* 8002059C 0001D4DC  90 01 00 14 */	stw r0, 0x14(r1)

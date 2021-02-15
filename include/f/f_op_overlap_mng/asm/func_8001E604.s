@@ -6,10 +6,10 @@
 /* 8001E618 0001B558  80 0D 80 30 */ lwz r0, l_fopOvlpM_overlap-_SDA_BASE_(r13)
 /* 8001E61C 0001B55C  28 00 00 00 */ cmplwi r0, 0
 /* 8001E620 0001B560  40 82 00 1C */ bne lbl_8001E63C
-/* 8001E624 0001B564  3C 60 80 3F */ lis r3, lbl_803F1DE8@ha
-/* 8001E628 0001B568  38 63 1D E8 */ addi r3, r3, lbl_803F1DE8@l
+/* 8001E624 0001B564  3C 60 80 3F */ lis r3, l_fopOvlpM_Request@ha
+/* 8001E628 0001B568  38 63 1D E8 */ addi r3, r3, l_fopOvlpM_Request@l
 /* 8001E62C 0001B56C  7C C4 33 78 */ mr r4, r6
-/* 8001E630 0001B570  48 00 03 25 */ bl fopOvlpReq_Request
+/* 8001E630 0001B570  48 00 03 25 */ bl fopOvlpReq_Request__FP21overlap_request_classsUs
 /* 8001E634 0001B574  90 6D 80 30 */ stw r3, l_fopOvlpM_overlap-_SDA_BASE_(r13)
 /* 8001E638 0001B578  48 00 00 08 */ b lbl_8001E640
 lbl_8001E63C:

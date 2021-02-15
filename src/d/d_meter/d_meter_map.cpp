@@ -2,10 +2,12 @@
 
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "f/f_op/f_op_overlap_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 extern "C" {
+void fopOvlpM_IsDoingReq__Fv(void);
 bool dComIfGp_checkMapShow(void);
 int strcmp(const char*, const char*);
 void __dl__FPv(void);
@@ -33,7 +35,6 @@ void dMsgObject_c_NS_getStatus(void);
 void dMw_LEFT_TRIGGER(void);
 void dMw_RIGHT_TRIGGER(void);
 void dStage_roomControl_c_NS_getStatusRoomDt(void);
-void fopOvlpM_IsDoingReq(void);
 void isDungeonItem__12dSv_memBit_cCFi(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void J2DPicture_X3_(void);

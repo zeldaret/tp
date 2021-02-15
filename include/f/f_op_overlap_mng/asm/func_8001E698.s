@@ -7,7 +7,7 @@
 /* 8001E6B0 0001B5F0  38 60 00 01 */ li r3, 1
 /* 8001E6B4 0001B5F4  48 00 00 24 */ b lbl_8001E6D8
 lbl_8001E6B8:
-/* 8001E6B8 0001B5F8  48 00 03 D1 */ bl fopOvlpReq_Cancel
+/* 8001E6B8 0001B5F8  48 00 03 D1 */ bl fopOvlpReq_Cancel__FP21overlap_request_class
 /* 8001E6BC 0001B5FC  2C 03 00 01 */ cmpwi r3, 1
 /* 8001E6C0 0001B600  40 82 00 14 */ bne lbl_8001E6D4
 /* 8001E6C4 0001B604  38 00 00 00 */ li r0, 0

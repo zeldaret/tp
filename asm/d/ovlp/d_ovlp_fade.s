@@ -78,7 +78,7 @@ lbl_80252264:
 /* 8025227C 0024F1BC  38 60 00 07 */	li r3, 7
 /* 80252280 0024F1C0  4B FF FF 05 */	bl dOvlpFd_startFadeIn
 lbl_80252284:
-/* 80252284 0024F1C4  4B DC C2 41 */	bl fopOvlpM_SceneIsStart
+/* 80252284 0024F1C4  4B DC C2 41 */	bl fopOvlpM_SceneIsStart__Fv
 /* 80252288 0024F1C8  80 7E 00 CC */	lwz r3, 0xcc(r30)
 /* 8025228C 0024F1CC  34 03 FF FF */	addic. r0, r3, -1
 /* 80252290 0024F1D0  90 1E 00 CC */	stw r0, 0xcc(r30)

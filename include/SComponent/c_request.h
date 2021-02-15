@@ -9,7 +9,9 @@ struct request_base_class {
     u8 field_0x1;
     u8 field_0x2;
     u8 field_0x3;
-    u32 field_0x4;
+    u16 field_0x4;
+    u8 field_0x6;
+    u8 field_0x7;
     u32 field_0x8;
     u8 field_0xc;
     u8 field_0xd;
