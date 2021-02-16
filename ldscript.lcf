@@ -3439,6 +3439,11 @@ fopCam_Execute__FP12camera_class
 fopCam_IsDelete__FP12camera_class
 fopCam_Delete__FP12camera_class
 fopCam_Create__FPv
+fopOvlp_Draw__FPv
+fopOvlp_Execute__FPv
+fopOvlp_IsDelete__FPv
+fopOvlp_Delete__FPv
+fopOvlp_Create__FPv
 }
 /*
 .init 80003100 - 80005600
