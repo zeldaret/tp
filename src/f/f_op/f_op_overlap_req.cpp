@@ -49,14 +49,26 @@ int fopOvlpReq_phase_Done(overlap_request_class* pOvlpReq) {
     return 0;
 }
 
+// return line is wrong
+#ifdef NONMATCHING
+s16 fopOvlpReq_phase_IsDone(overlap_request_class* param_1) {
+    cReq_Done((request_base_class*)param_1);
+    param_1->field_0x2--;
+    return ((int)param_1->field_0x2 | ~-(int)param_1->field_0x2) >> 0x1F & 2;
+}
+#else
 asm void fopOvlpReq_phase_IsDone(overlap_request_class*) {
     nofralloc
 #include "f/f_op/f_op_overlap_req/asm/func_8001E748.s"
 }
+#endif
 
-asm void fopOvlpReq_phase_IsWaitOfFadeout(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E794.s"
+int fopOvlpReq_phase_IsWaitOfFadeout(overlap_request_class* pOvlpReq) {
+    if (cReq_Is_Done((request_base_class*)(pOvlpReq->field_0x20 + 0xC4))) {
+        pOvlpReq->field_0x8 = 0;
+        return 2;
+    }
+    return 0;
 }
 
 asm void fopOvlpReq_phase_WaitOfFadeout(overlap_request_class*) {
