@@ -136,13 +136,12 @@ asm int fopOvlpReq_Handler(overlap_request_class*) {
 #include "f/f_op/f_op_overlap_req/asm/func_8001E9F0.s"
 }
 
-bool fopOvlpReq_Cancel(overlap_request_class* pOvlpReq) {
-    return (bool)(fopOvlpReq_phase_Done(pOvlpReq) == 2);
+int fopOvlpReq_Cancel(overlap_request_class* pOvlpReq) {
+    return fopOvlpReq_phase_Done(pOvlpReq) == 2 ? 1 : 0;
 }
 
-asm void fopOvlpReq_Is_PeektimeLimit(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001EAB4.s"
+int fopOvlpReq_Is_PeektimeLimit(overlap_request_class* pOvlpReq) {
+    return pOvlpReq->field_0x6 == 0 ? 1 : 0;
 }
 
 asm void fopOvlpReq_SetPeektime(overlap_request_class*, u16) {

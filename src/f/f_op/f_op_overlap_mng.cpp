@@ -108,7 +108,7 @@ int fopOvlpM_Cancel(void) {
     if (!l_fopOvlpM_overlap) {
         return 1;
     }
-    if (fopOvlpReq_Cancel((overlap_request_class*)l_fopOvlpM_overlap) == 1) {
+    if (fopOvlpReq_Cancel((overlap_request_class*)l_fopOvlpM_overlap) == true) {
         l_fopOvlpM_overlap = 0;
         return 1;
     }
