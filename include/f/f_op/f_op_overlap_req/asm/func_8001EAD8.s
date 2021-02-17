@@ -7,7 +7,7 @@
 /* 8001EAF0 0001BA30  54 00 CF FE */ rlwinm r0, r0, 0x19, 0x1f, 0x1f
 /* 8001EAF4 0001BA34  28 00 00 01 */ cmplwi r0, 1
 /* 8001EAF8 0001BA38  41 82 00 10 */ beq lbl_8001EB08
-/* 8001EAFC 0001BA3C  4B FF FF B9 */ bl fopOvlpReq_Is_PeektimeLimit
+/* 8001EAFC 0001BA3C  4B FF FF B9 */ bl fopOvlpReq_Is_PeektimeLimit__FP21overlap_request_class
 /* 8001EB00 0001BA40  2C 03 00 00 */ cmpwi r3, 0
 /* 8001EB04 0001BA44  40 82 00 0C */ bne lbl_8001EB10
 lbl_8001EB08:

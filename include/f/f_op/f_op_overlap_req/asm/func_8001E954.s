@@ -21,7 +21,7 @@ lbl_8001E988:
 /* 8001E9A0 0001B8E0  48 24 7C 91 */ bl cPhs_Set
 /* 8001E9A4 0001B8E4  7F A3 EB 78 */ mr r3, r29
 /* 8001E9A8 0001B8E8  7F E4 FB 78 */ mr r4, r31
-/* 8001E9AC 0001B8EC  48 00 01 19 */ bl fopOvlpReq_SetPeektime
+/* 8001E9AC 0001B8EC  48 00 01 19 */ bl fopOvlpReq_SetPeektime__FP21overlap_request_classUs
 /* 8001E9B0 0001B8F0  38 00 00 01 */ li r0, 1
 /* 8001E9B4 0001B8F4  B0 1D 00 04 */ sth r0, 4(r29)
 /* 8001E9B8 0001B8F8  B0 1D 00 02 */ sth r0, 2(r29)
