@@ -77,7 +77,7 @@ int fopOvlpReq_phase_WaitOfFadeout(overlap_request_class* pOvlpReq) {
     }
 
     if (((u8)(pOvlpReq->field_0x0 & 0x3F)) == 2 && !pOvlpReq->field_0x6) {
-        cReq_Command((request_base_class*)(pOvlpReq->field_0x20+0xC4),2);
+        cReq_Command((request_base_class*)(pOvlpReq->field_0x20 + 0xC4), 2);
         return 2;
     }
 
@@ -85,9 +85,12 @@ int fopOvlpReq_phase_WaitOfFadeout(overlap_request_class* pOvlpReq) {
     return 0;
 }
 
-asm void fopOvlpReq_phase_IsComplete(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E854.s"
+int fopOvlpReq_phase_IsComplete(overlap_request_class* pOvlpReq) {
+    if (cReq_Is_Done((request_base_class*)(pOvlpReq->field_0x20 + 0xC4))) {
+        cReq_Done((request_base_class*)pOvlpReq);
+        return 2;
+    }
+    return 0;
 }
 
 asm void fopOvlpReq_phase_IsCreated(overlap_request_class*) {
