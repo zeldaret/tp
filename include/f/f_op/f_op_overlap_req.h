@@ -6,7 +6,7 @@
 
 class overlap_request_class {
 public:
-    u8 field_0x0;
+    s8 field_0x0;
     u8 field_0x1;
     s16 field_0x2;
     u16 field_0x4;

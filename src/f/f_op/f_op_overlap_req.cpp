@@ -71,9 +71,18 @@ int fopOvlpReq_phase_IsWaitOfFadeout(overlap_request_class* pOvlpReq) {
     return 0;
 }
 
-asm void fopOvlpReq_phase_WaitOfFadeout(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E7E4.s"
+int fopOvlpReq_phase_WaitOfFadeout(overlap_request_class* pOvlpReq) {
+    if (pOvlpReq->field_0x6) {
+        pOvlpReq->field_0x6--;
+    }
+
+    if (((u8)(pOvlpReq->field_0x0 & 0x3F)) == 2 && !pOvlpReq->field_0x6) {
+        cReq_Command((request_base_class*)(pOvlpReq->field_0x20+0xC4),2);
+        return 2;
+    }
+
+    pOvlpReq->field_0x8 = 1;
+    return 0;
 }
 
 asm void fopOvlpReq_phase_IsComplete(overlap_request_class*) {
