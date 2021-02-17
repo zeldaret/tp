@@ -42,7 +42,7 @@ int fopOvlpReq_phase_Done(overlap_request_class* pOvlpReq) {
     if (fpcM_Delete(pOvlpReq->field_0x20) == 1) {
         pOvlpReq->field_0x20 = 0;
         pOvlpReq->field_0x4 = 0;
-        pOvlpReq->field_0x6 = 0;
+        pOvlpReq->mPeektime = 0;
         pOvlpReq->field_0x8 = 0;
         pOvlpReq->field_0xc = 0;
         return 2;
@@ -73,11 +73,11 @@ int fopOvlpReq_phase_IsWaitOfFadeout(overlap_request_class* pOvlpReq) {
 }
 
 int fopOvlpReq_phase_WaitOfFadeout(overlap_request_class* pOvlpReq) {
-    if (pOvlpReq->field_0x6) {
-        pOvlpReq->field_0x6--;
+    if (pOvlpReq->mPeektime) {
+        pOvlpReq->mPeektime--;
     }
 
-    if (((u8)(pOvlpReq->field_0x0 & 0x3F)) == 2 && !pOvlpReq->field_0x6) {
+    if (((u8)(pOvlpReq->field_0x0 & 0x3F)) == 2 && !pOvlpReq->mPeektime) {
         cReq_Command((request_base_class*)(pOvlpReq->field_0x20 + 0xC4), 2);
         return 2;
     }
@@ -141,12 +141,14 @@ int fopOvlpReq_Cancel(overlap_request_class* pOvlpReq) {
 }
 
 int fopOvlpReq_Is_PeektimeLimit(overlap_request_class* pOvlpReq) {
-    return pOvlpReq->field_0x6 == 0 ? 1 : 0;
+    return pOvlpReq->mPeektime == 0 ? 1 : 0;
 }
 
-asm void fopOvlpReq_SetPeektime(overlap_request_class*, u16) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001EAC4.s"
+void fopOvlpReq_SetPeektime(overlap_request_class* pOvlpReq, u16 param_2) {
+    if (0x7fff < param_2) {
+        return;
+    }
+    pOvlpReq->mPeektime = param_2;
 }
 
 asm int fopOvlpReq_OverlapClr(overlap_request_class*) {

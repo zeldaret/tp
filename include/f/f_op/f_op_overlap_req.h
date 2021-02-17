@@ -12,7 +12,7 @@ public:
     u8 field_0x1;
     s16 field_0x2;
     u16 field_0x4;
-    u16 field_0x6;
+    u16 mPeektime;
     u32 field_0x8;
     u32 field_0xc;
     s16 field_0x10;
