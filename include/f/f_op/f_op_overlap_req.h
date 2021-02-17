@@ -26,7 +26,7 @@ public:
 int fopOvlpReq_OverlapClr(overlap_request_class* param_1);
 request_base_class* fopOvlpReq_Request(overlap_request_class*, s16, u16);
 int fopOvlpReq_Handler(overlap_request_class*);
-int fopOvlpReq_Cancel(overlap_request_class*);
+bool fopOvlpReq_Cancel(overlap_request_class*);
 int fopOvlpReq_phase_Done(overlap_request_class* param_1);
 
 #endif
