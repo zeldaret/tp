@@ -16,8 +16,8 @@ lbl_8001E988:
 /* 8001E98C 0001B8CC  48 24 7E A5 */ bl cReq_Command__FP18request_base_classUc
 /* 8001E990 0001B8D0  B3 DD 00 10 */ sth r30, 0x10(r29)
 /* 8001E994 0001B8D4  38 7D 00 18 */ addi r3, r29, 0x18
-/* 8001E998 0001B8D8  3C 80 80 3A */ lis r4, lbl_803A3890@ha
-/* 8001E99C 0001B8DC  38 84 38 90 */ addi r4, r4, lbl_803A3890@l
+/* 8001E998 0001B8D8  3C 80 80 3A */ lis r4, phaseMethod@ha
+/* 8001E99C 0001B8DC  38 84 38 90 */ addi r4, r4, phaseMethod@l
 /* 8001E9A0 0001B8E0  48 24 7C 91 */ bl cPhs_Set
 /* 8001E9A4 0001B8E4  7F A3 EB 78 */ mr r3, r29
 /* 8001E9A8 0001B8E8  7F E4 FB 78 */ mr r4, r31
