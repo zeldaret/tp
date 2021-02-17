@@ -3,6 +3,7 @@
 #include "f/f_op/f_op_overlap_req.h"
 #include "f/f_pc/f_pc_executor.h"
 #include "f/f_pc/f_pc_manager.h"
+#include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
 
 // additional symbols needed for f_op_overlap_req.cpp
@@ -24,7 +25,6 @@ void fopOvlpReq_SetPeektime__FP21overlap_request_classUs(void);
 void fopOvlpReq_Is_PeektimeLimit__FP21overlap_request_class(void);
 void fopOvlpReq_SetPeektime(void);
 void fopOvlpReq_phase_Done(void);
-void fpcSCtRq_Request(void);
 void func_8001E748(void);
 void func_8001E794(void);
 void func_8001E7E4(void);
@@ -105,9 +105,10 @@ int fopOvlpReq_phase_IsCreated(overlap_request_class* pOvlpReq) {
     return 0;
 }
 
-asm void fopOvlpReq_phase_Create(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E904.s"
+int fopOvlpReq_phase_Create(overlap_request_class* pOvlpReq) {
+    fpcLy_SetCurrentLayer(pOvlpReq->pCurrentLayer);
+    pOvlpReq->field_0x14 = fpcSCtRq_Request(fpcLy_CurrentLayer(),pOvlpReq->field_0x10, 0,0,0);
+    return 2;
 }
 
 asm request_base_class* fopOvlpReq_Request(overlap_request_class*, s16, u16) {
