@@ -41,8 +41,8 @@ lbl_804505C0:
 .global lbl_804505C8
 lbl_804505C8:
 	.incbin "baserom.dol", 0x3D0328, 0x8
-.global lbl_804505D0
-lbl_804505D0:
+.global g_fopDwTg_Queue
+g_fopDwTg_Queue:
 	.incbin "baserom.dol", 0x3D0330, 0x8
 .global lbl_804505D8
 lbl_804505D8:

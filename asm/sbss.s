@@ -368,8 +368,8 @@ lbl_80450CE8:
 .global lbl_80450CF0
 lbl_80450CF0:
 	.skip 0x8
-.global lbl_80450CF8
-lbl_80450CF8:
+.global l_fopDwTg_id
+l_fopDwTg_id:
 	.skip 0x8
 .global lbl_80450D00
 lbl_80450D00:

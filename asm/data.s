@@ -140,8 +140,8 @@ lbl_803A37FC:
 .global lbl_803A382C
 lbl_803A382C:
 	.incbin "baserom.dol", 0x3A082C, 0x64
-.global lbl_803A3890
-lbl_803A3890:
+.global phaseMethod
+phaseMethod:
 	.incbin "baserom.dol", 0x3A0890, 0x38
 .global lbl_803A38C8
 lbl_803A38C8:

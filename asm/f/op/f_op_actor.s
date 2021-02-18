@@ -306,7 +306,7 @@ lbl_80018F5C:
 /* 80018FA0 00015EE0  2C 1E 00 01 */	cmpwi r30, 1
 /* 80018FA4 00015EE4  40 82 00 0C */	bne lbl_80018FB0
 /* 80018FA8 00015EE8  38 7F 00 D8 */	addi r3, r31, 0xd8
-/* 80018FAC 00015EEC  48 00 75 29 */	bl fopDwTg_DrawQTo
+/* 80018FAC 00015EEC  48 00 75 29 */	bl fopDwTg_DrawQTo__FP16create_tag_class
 lbl_80018FB0:
 /* 80018FB0 00015EF0  7F C3 F3 78 */	mr r3, r30
 /* 80018FB4 00015EF4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -330,7 +330,7 @@ lbl_80018FB0:
 /* 80018FFC 00015F3C  38 7F 00 C4 */	addi r3, r31, 0xc4
 /* 80019000 00015F40  48 00 08 61 */	bl fopAcTg_ActorQTo
 /* 80019004 00015F44  38 7F 00 D8 */	addi r3, r31, 0xd8
-/* 80019008 00015F48  48 00 74 CD */	bl fopDwTg_DrawQTo
+/* 80019008 00015F48  48 00 74 CD */	bl fopDwTg_DrawQTo__FP16create_tag_class
 /* 8001900C 00015F4C  7F E3 FB 78 */	mr r3, r31
 /* 80019010 00015F50  48 00 11 29 */	bl fopAcM_DeleteHeap__FP10fopAc_ac_c
 /* 80019014 00015F54  80 6D 88 A0 */	lwz r3, lbl_80450E20-_SDA_BASE_(r13)

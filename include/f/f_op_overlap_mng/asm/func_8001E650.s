@@ -4,7 +4,7 @@
 /* 8001E65C 0001B59C  80 6D 80 30 */ lwz r3, l_fopOvlpM_overlap-_SDA_BASE_(r13)
 /* 8001E660 0001B5A0  28 03 00 00 */ cmplwi r3, 0
 /* 8001E664 0001B5A4  41 82 00 24 */ beq lbl_8001E688
-/* 8001E668 0001B5A8  48 00 03 89 */ bl fopOvlpReq_Handler
+/* 8001E668 0001B5A8  48 00 03 89 */ bl fopOvlpReq_Handler__FP21overlap_request_class
 /* 8001E66C 0001B5AC  2C 03 00 06 */ cmpwi r3, 6
 /* 8001E670 0001B5B0  40 80 00 18 */ bge lbl_8001E688
 /* 8001E674 0001B5B4  2C 03 00 03 */ cmpwi r3, 3

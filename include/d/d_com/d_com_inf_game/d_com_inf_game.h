@@ -72,6 +72,7 @@ private:
 #pragma pack(push, 1)
 class dComIfG_play_c {
 public:
+    bool& getField0x4f7d() { return field_0x4f7d; }
     void ct(void);
     void init(void);
     void itemInit(void);
@@ -202,9 +203,11 @@ private:  // NEEDS TO BE FIXED
     /* 0x04F46 */ u8 mItemID;
     /* 0x04F47 */ u8 field_0x4f47[0x13];
     /* 0x04F5A */ u8 mNowVibration;
-    /* 0x04F5B */ u8 field_0x4f5b[0x23];
+    /* 0x04F5B */ u8 field_0x4f5b[0x22];
+    /* 0x04F7D */ bool field_0x4f7d;
     /* 0x04F7E */ u8 unk_heart;
-    /* 0x04F7F */ u8 field_0x4f7f[0x79];
+    /* 0x04F7F */ u8 field_0x4f7f;
+    /* 0x04F80 */ u8 field_0x4f80[0x78];
     /* 0x04FF8 */ u32 mTimerPtr;
     /* 0x04FFC */ int mTimerNowTimeMs;
     /* 0x05000 */ int mTimerLimitTimeMs;
