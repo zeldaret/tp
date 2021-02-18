@@ -163,26 +163,6 @@ s16 cXyz::atan2sX_Z(void) const {
     return cM_atan2s(this->x, this->z);
 }
 
-inline s32 fpclassify(f32 f) {
-    u32 var = *(u32*)&f;
-    switch (var & 0x7F800000) {
-    case 0x7F800000:
-        if ((var & 0x7FFFFF) != 0) {
-            return 1;
-        } else {
-            return 2;
-        }
-    case 0:
-        if ((var & 0x7FFFFF) != 0) {
-            return 5;
-        } else {
-            return 3;
-        }
-    default:
-        return 4;
-    }
-}
-
 inline f32 VecMagXZ(const cXyz& xyz) {
     return cXyz(xyz.x, FLOAT_LABEL(lbl_80455080), xyz.z).getSquareMag();
     // return cXyz(xyz.x, 0, xyz.z).getSquareMag(); // matches, but screws up data
