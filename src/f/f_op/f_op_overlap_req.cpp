@@ -151,7 +151,10 @@ void fopOvlpReq_SetPeektime(overlap_request_class* pOvlpReq, u16 param_2) {
     pOvlpReq->mPeektime = param_2;
 }
 
-asm int fopOvlpReq_OverlapClr(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001EAD8.s"
+int fopOvlpReq_OverlapClr(overlap_request_class* pOvlpReq) {
+    if ((u8)((pOvlpReq->field_0x0 >> 7) & 1) == 1 || !fopOvlpReq_Is_PeektimeLimit(pOvlpReq)) {
+        return 0;
+    }
+    cReq_Create((request_base_class*)pOvlpReq, 2);
+    return 1;
 }
