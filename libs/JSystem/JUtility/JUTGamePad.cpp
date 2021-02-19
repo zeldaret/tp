@@ -1,5 +1,6 @@
 #include "JSystem/JUtility/JUTGamePad/JUTGamePad.h"
 #include "global.h"
+#include "msl_c/math.h"
 
 extern "C" {
 u32 OSGetResetSwitchState(void);
@@ -17,7 +18,6 @@ void clear__10JUTGamePadFv(void);
 void clear__Q210JUTGamePad6CStickFv(void);
 void clear__Q210JUTGamePad7CButtonFv(void);
 void clear__Q210JUTGamePad7CRumbleFP10JUTGamePad(void);
-void func_8036C720(void);
 void getButton__Q210JUTGamePad6CStickFUl(void);
 void initList__10JUTGamePadFv(void);
 void remove__10JSUPtrListFP10JSUPtrLink(void);

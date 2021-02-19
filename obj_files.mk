@@ -513,12 +513,9 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_request.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_tag_iter.o \
-            $(BUILD_DIR)/asm/rodata/rodata_c_xyz.o \
-            $(BUILD_DIR)/asm/sdata2/c_xyz.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_xyz.o \
-            $(BUILD_DIR)/asm/sdata2/c_sxyz.o \
+            $(BUILD_DIR)/asm/rodata/rodata_c_xyz_padding.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_sxyz.o \
-            $(BUILD_DIR)/asm/sdata2/c_math.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_math.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_chk.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_bg_s_gnd_chk.o \
@@ -540,9 +537,7 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_pla.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_sph.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_m3d_g_tri.o \
-            $(BUILD_DIR)/asm/sdata2/c_lib.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_lib.o \
-            $(BUILD_DIR)/asm/sdata2/c_angle.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_angle.o \
             $(BUILD_DIR)/libs/SSystem/SStandard/s_basic.o \
             $(BUILD_DIR)/asm/sdata2/JFWSystem.o \

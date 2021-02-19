@@ -9,18 +9,17 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "msl_c/string.h"
 
 extern "C" {
 bool dComIfGp_checkMapShow(void);
 BOOL dComIfGp_isLightDropMapVisible(void);
 BOOL isTransformLV__21dSv_player_status_b_cCFi(int);
-char* strcpy(char*, const char*);
 const char* dComIfGs_getWarpStageName(void);
 int dComIfGs_getWarpRoomNo(void);
 int dKy_daynight_check(void);
 int dStage_roomControl_c_NS_getZoneNo(int);
 int getTimerMode__14dComIfG_play_cFv(void);
-int strcmp(const char*, const char*);
 s16 dComIfGs_getWarpPlayerAngleY(void);
 u16 dComIfGs_getMaxLifeGauge(void);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
@@ -280,7 +279,6 @@ void setBombNum__24dSv_player_item_record_cFUcUc(void);
 void setBottleNum__24dSv_player_item_record_cFUcUc(u8, u8);
 void setCollect__20dSv_player_collect_cFiUc(int, u8);
 void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc(void);
-void* memset(void* dest, int ch, u32 count);
 void ct__13dComIfG_inf_cFv(void);
 }
 

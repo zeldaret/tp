@@ -2,10 +2,10 @@
 #include "Z2AudioLib/Z2AudioMgr/Z2AudioMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_save/d_save_init/d_save_init.h"
+#include "msl_c/string.h"
 #include "os/OS.h"
 
 extern "C" {
-char* strcpy(char*, const char*);
 int dStage_roomControl_c_NS_getZoneNo(int);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u8 dComIfGs_getBottleMax(void);
@@ -32,7 +32,6 @@ void getVibration__19dSv_player_config_cFv(void);
 void init__10dSv_save_cFv(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void isFirstBit__21dSv_player_get_item_cCFUc(void);
-void memcpy(void*, const void*, int);
 void offEventBit__11dSv_event_cFUs(void);
 void onEventBit__11dSv_event_cFUs(void);
 void setBombNum__24dSv_player_item_record_cFUcUc(void);
@@ -371,8 +370,8 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
                             return 0xFF;
                         }
                     }
-                    // åˆæˆã‚¢ã‚¤ãƒ†ãƒ ä¸å®šï¼ï¼ï¼ï¼%d, %d\n
-                    // Uncertain combination itemï¼ï¼ï¼ï¼%d, %d\n
+                    // ‡¬ƒAƒCƒeƒ€•s’è„%d, %d\n
+                    // Uncertain combination item„%d, %d\n
                     OSReport_Error(lbl_80379234 + 9, item_id_2, item_id_1);
                 }
             }

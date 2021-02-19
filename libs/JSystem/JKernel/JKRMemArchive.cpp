@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRMemArchive/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 void DCInvalidateRange(void*, u32);
@@ -8,7 +9,6 @@ void findFromRoot__7JKRHeapFPv(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void memcpy(void*, const void*, int);
 }
 
 JKRMemArchive::JKRMemArchive(long entryNum, JKRArchive::EMountDirection mountDirection)

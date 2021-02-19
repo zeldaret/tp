@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 void __ct__10JKRDvdFileFv(void);
@@ -29,7 +30,6 @@ void JSUFileInputStream_ct(void);
 void JSUInputStream_NS_dtor(void);
 void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
 void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
-void memcpy(void*, const void*, int);
 void nextSrcData__FPUc(void);
 void open__10JKRDvdFileFl(void);
 void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);

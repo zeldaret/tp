@@ -9,6 +9,7 @@
 #include "d/d_stage/d_stage.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "msl_c/string.h"
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
 
@@ -220,7 +221,6 @@ void func_8001E128(void);
 void func_8001E130(void);
 void func_8001E138(void);
 void func_80361C24(void);
-void func_80368924(void);
 void get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz(void);
 void isHeart__FUc(void);
 void l_HIO_NS_dtor(void);

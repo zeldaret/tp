@@ -213,7 +213,7 @@ lbl_803583C8:
 /* 803583F0 00355330  80 06 00 0C */	lwz r0, 0xc(r6)
 /* 803583F4 00355334  7C 1B 03 96 */	divwu r0, r27, r0
 /* 803583F8 00355338  B0 07 00 38 */	sth r0, 0x38(r7)
-/* 803583FC 0035533C  48 01 06 ED */	bl func_80368AE8
+/* 803583FC 0035533C  48 01 06 ED */	bl strncpy
 /* 80358400 00355340  80 81 00 1C */	lwz r4, 0x1c(r1)
 .global CreateCallbackFat
 /* 80358404 00355344  3C 60 80 36 */	lis r3, CreateCallbackFat@ha

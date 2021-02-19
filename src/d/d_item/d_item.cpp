@@ -1,10 +1,10 @@
 #include "d/d_item/d_item/d_item.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 int checkItemGet__FUci(u8, int);
-int func_80368954(char*, char*, u32);
 int item_getcheck_func_FISHING_ROD_1(void);
 u16 dComIfGs_getMaxLifeGauge(void);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);

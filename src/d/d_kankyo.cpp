@@ -7,14 +7,13 @@
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_graphic/m_Do_graphic.h"
+#include "msl_c/math.h"
+#include "msl_c/string.h"
 #include "os/OS.h"
 
 extern "C" {
-double func_8036C028(double);
-double func_8036C590(double);
 int abs(int);
 int func_8036608C(const void*, const void*, u32);
-int strcmp(const char*, const char*);
 void __dl__FPv(void);
 void __mi__4cXyzCFRC3Vec(void);
 void __ml__4cXyzCFf(void);
@@ -135,7 +134,6 @@ void mDoGph_gInf_c_NS_bloom_c_NS_create(void);
 void mDoLib_project(void);
 void mDoMtx_inverseTranspose(void);
 void mDoMtx_lookAt(void);
-void memcpy(void*, const void*, int);
 void offEventBit__11dSv_event_cFUs(void);
 void SetPos__11cBgS_GndChkFPC4cXyz(void);
 void WIND_INF_ENTITY_NS_dtor(void);
@@ -144,7 +142,6 @@ void Z2EnvSeMgr_NS_dtor(void);
 void Z2EnvSeMgr_NS_resetScene(void);
 void Z2EnvSeMgr(void);
 void Z2SceneMgr_NS_load2ndDynamicWave(void);
-void* memset(void* dest, int ch, u32 count);
 }
 
 extern "C" {

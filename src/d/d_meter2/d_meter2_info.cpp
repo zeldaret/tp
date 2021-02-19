@@ -3,10 +3,9 @@
 // #include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
-char* strcpy(char*, const char*);
-int strcmp(const char*, const char*);
 u8 dComIfGs_getMixItemIndex(int);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
@@ -48,7 +47,6 @@ void getItem__17dSv_player_item_cCFib(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void isLetterGetFlag__17dSv_letter_info_cCFi(void);
 void isLightDropGetFlag__16dSv_light_drop_cCFUc(void);
-void memcpy(void*, const void*, int);
 void offFirstBit__21dSv_player_get_item_cFUc(void);
 void onLetterGetFlag__17dSv_letter_info_cFi(void);
 void readIdxResource__10JKRArchiveFPvUlUl(void);
