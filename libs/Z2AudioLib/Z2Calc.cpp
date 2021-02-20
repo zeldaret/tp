@@ -1,9 +1,5 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
-
-extern "C" {
-double func_8036C740(double);
-double func_8036C780(double, double);
-}
+#include "msl_c/math.h"
 
 // s_is_oRandom_initialized
 extern s8 lbl_80451330;
@@ -39,13 +35,11 @@ float Z2Calc::getParamByExp(float f1, float f2, float f3, float f4, float f5, fl
                             Z2Calc::CurveSign sign) {
     float out;
     if (sign == Z2Calc::CURVE_SIGN_1) {
-        float tmp =
-            func_8036C740(Z2Calc::linearTransform(f1, f2, f3, /* 0.0 */ lbl_80455828, f4, true));
-        out = Z2Calc::linearTransform(tmp, /* 1.0 */ lbl_8045582C, func_8036C740(f4), f5, f6, true);
+        float tmp = exp(Z2Calc::linearTransform(f1, f2, f3, /* 0.0 */ lbl_80455828, f4, true));
+        out = Z2Calc::linearTransform(tmp, /* 1.0 */ lbl_8045582C, exp(f4), f5, f6, true);
     } else if (sign == Z2Calc::CURVE_SIGN_0) {
-        float tmp =
-            func_8036C740(Z2Calc::linearTransform(f1, f2, f3, f4, /* 0.0 */ lbl_80455828, true));
-        out = Z2Calc::linearTransform(tmp, func_8036C740(f4), /* 1.0 */ lbl_8045582C, f5, f6, true);
+        float tmp = exp(Z2Calc::linearTransform(f1, f2, f3, f4, /* 0.0 */ lbl_80455828, true));
+        out = Z2Calc::linearTransform(tmp, exp(f4), /* 1.0 */ lbl_8045582C, f5, f6, true);
     } else {
         out = Z2Calc::linearTransform(f1, f2, f3, f5, f6, false);
     }
@@ -62,7 +56,7 @@ float Z2Calc::getRandom(float f1, float f2, float f3) {
     float tmp = /* 2.0 */ lbl_80455830 * f3;
     float tmp2 = (/* 1.0 */ lbl_8045582C - f3) * /* -2.0 */ lbl_80455834;
     f1 *= Z2Calc::getRandom_0_1() < f3 ? tmp : tmp2;
-    float tmp3 = func_8036C780(Z2Calc::getRandom_0_1(), f2);
+    float tmp3 = pow(Z2Calc::getRandom_0_1(), f2);
     return tmp3 * f1;
 }
 

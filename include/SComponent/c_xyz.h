@@ -5,15 +5,9 @@
 #include "global.h"
 #include "mtx_vec.h"
 
-extern f32 /* 1.0 */ lbl_80455070;
-extern f32 /* epsilon */ lbl_80455074;
-extern f32 lbl_80455078;
-extern f32 lbl_8045507C;
-extern f32 lbl_80455080;
-extern f32 /* 32.0 */ lbl_80455084;
-extern f64 lbl_80455088;
-extern f64 lbl_80455090;
-extern f64 lbl_80455098;
+const static f32 /* epsilon */ lbl_80455074 = 8.0E-11f;
+// extern f32 lbl_80455074;
+
 extern u8 lbl_80430CE8;
 
 class cXyz : public Vec {
@@ -110,8 +104,11 @@ public:
         }
     }
 
-    bool checkEpsilon() const { return !(PSVECSquareMag(this) < lbl_80455074); }
-    f32 getSquareMag() const { return PSVECSquareMag(this); }
+    float getSquareMag() const { return PSVECSquareMag(this); }
+
+    static float getNearZeroValue() { return FLOAT_LABEL(lbl_80455074); }
+
+    bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
     f32 abs2() const { return this->getSquareMag(); }
     f32 abs2XZ() const {
         cXyz tmp(this->x, 0, this->z);

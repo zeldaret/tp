@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
 int abs(int);
@@ -17,7 +18,6 @@ void free__7JKRHeapFPv(void);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
-void* memset(void* dest, int ch, u32 count);
 }
 
 extern JKRExpHeap* sSystemHeap__7JKRHeap;

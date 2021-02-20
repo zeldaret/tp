@@ -494,7 +494,7 @@ dMapInfo_n_NS_getFloorParameter:
 /* 8003F348 0003C288  FC 00 02 10 */	fabs f0, f0
 /* 8003F34C 0003C28C  FF A0 00 18 */	frsp f29, f0
 /* 8003F350 0003C290  EC 3C F8 24 */	fdivs f1, f28, f31
-/* 8003F354 0003C294  48 32 CD A9 */	bl func_8036C0FC
+/* 8003F354 0003C294  48 32 CD A9 */	bl floor
 /* 8003F358 0003C298  FC 00 08 18 */	frsp f0, f1
 /* 8003F35C 0003C29C  FC 00 00 1E */	fctiwz f0, f0
 /* 8003F360 0003C2A0  D8 01 00 20 */	stfd f0, 0x20(r1)

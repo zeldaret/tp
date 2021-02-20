@@ -5,20 +5,14 @@
 #include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "dvd/dvd.h"
 #include "global.h"
+#include "msl_c/string.h"
 
 extern "C" {
-char* strcat(char*, const char*);
-char* strcpy(char*, const char*);
-char* strrchr(char*, int);
-int strcmp(const char*, const char*);
-int tolower(int);
-u32 strlen(const char*);
 void __dl__FPv(void);
 void __dt__10JSUPtrLinkFv(void);
 void free__7JKRHeapFPv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void getDvdPathName__12JKRFileCacheCFPCc(void);
-void memcpy(void*, const void*, int);
 void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
 

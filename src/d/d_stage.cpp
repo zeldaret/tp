@@ -59,7 +59,7 @@ void func_80361CE8(void);
 void func_80361D60(void);
 void func_803664DC(void);
 void func_803665BC(void);
-void func_80368AE8(void);
+void strncpy(void);
 void getSave__10dSv_info_cFi(void);
 void init__12dSv_danBit_cFSc(void);
 void init__20dStage_roomControl_cFvZone(void);

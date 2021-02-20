@@ -2,10 +2,7 @@
 
 #include "SComponent/c_m3d_g_pla.h"
 #include "SComponent/c_m3d.h"
-
-extern "C" {
-void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec(void);
-}
+#include "msl_c/math.h"
 
 // __ct__8cM3dGPlaFPC4cXyzf
 cM3dGPla::cM3dGPla(const cXyz* pNormal, f32 pD) : mNormal(*pNormal), mD(pD) {}

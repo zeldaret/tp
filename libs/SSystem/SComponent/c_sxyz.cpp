@@ -35,16 +35,9 @@ csXyz csXyz::operator-(csXyz& other) {
 }
 
 // __ml__5csXyzFf
-#ifdef NON_MATCHING
 csXyz csXyz::operator*(f32 pFactor) {
     return csXyz(mX * pFactor, mY * pFactor, mZ * pFactor);
 }
-#else
-asm csXyz csXyz::operator*(f32) {
-    nofralloc
-#include "SComponent/c_sxyz/asm/func_802674E8.s"
-}
-#endif
 
 extern "C" {
 

@@ -54,7 +54,6 @@ void outprod__4cXyzCFRC3Vec(void);
 extern u8 lbl_803DD4A0;
 extern u8 lbl_804505A8;
 extern u8 lbl_804505AC;
-extern u8 lbl_80450AEC;
 extern u8 lbl_80451B08;
 extern u8 lbl_80451B0C;
 extern u8 lbl_80451B10;

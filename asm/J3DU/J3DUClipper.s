@@ -26,7 +26,7 @@ J3DUClipper_NS_calcViewFrustum:
 /* 802737B4 002706F4  C0 1E 00 4C */	lfs f0, 0x4c(r30)
 /* 802737B8 002706F8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 802737BC 002706FC  EC 22 00 32 */	fmuls f1, f2, f0
-/* 802737C0 00270700  48 0F 8E A9 */	bl func_8036C668
+/* 802737C0 00270700  48 0F 8E A9 */	bl tan
 /* 802737C4 00270704  FC 00 08 18 */	frsp f0, f1
 /* 802737C8 00270708  C0 3E 00 54 */	lfs f1, 0x54(r30)
 /* 802737CC 0027070C  EC 81 00 32 */	fmuls f4, f1, f0
