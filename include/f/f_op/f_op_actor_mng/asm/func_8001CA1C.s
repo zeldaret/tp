@@ -8,7 +8,7 @@
 /* 8001CA38 00019978  1C 00 04 04 */ mulli r0, r0, 0x404
 /* 8001CA3C 0001997C  7C 64 02 14 */ add r3, r4, r0
 /* 8001CA40 00019980  80 63 03 FC */ lwz r3, 0x3fc(r3)
-/* 8001CA44 00019984  48 00 22 6D */ bl fopScnM_SearchByID
+/* 8001CA44 00019984  48 00 22 6D */ bl fopScnM_SearchByID__FUi
 /* 8001CA48 00019988  7C 7F 1B 78 */ mr r31, r3
 /* 8001CA4C 0001998C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8001CA50 00019990  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

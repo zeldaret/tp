@@ -4,11 +4,13 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_op/f_op_actor_mng.h"
 #include "f/f_op/f_op_camera_mng.h"
+#include "f/f_op/f_op_scene_iter.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 
 extern "C" {
+    void fopScnM_SearchByID__FUi(void);
 void fopCamM_Create__FisPv(void);
 char* strcpy(char*, const char*);
 int strcmp(const char*, const char*);

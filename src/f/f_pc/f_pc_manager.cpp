@@ -82,12 +82,12 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             }
             fpcPi_Handler();
             fpcCt_Handler();
-            if (pFunc1 != NULL) {
+            if (pFunc1) {
                 pFunc1();
             }
             fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
             fpcDw_Handler((void*)fpcM_DrawIterater, fpcM_Draw);
-            if (pFunc2 != NULL) {
+            if (pFunc2) {
                 pFunc2();
             }
             g_dComIfG_gameInfo.getPlay().drawSimpleModel();
