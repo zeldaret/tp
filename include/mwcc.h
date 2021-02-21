@@ -18,7 +18,6 @@ void _savegpr_26(void);
 void _savegpr_27(void);
 void _savegpr_28(void);
 void _savegpr_29(void);
-
 void _restgpr_14(void);
 void _restgpr_15(void);
 void _restgpr_16(void);
@@ -35,13 +34,11 @@ void _restgpr_26(void);
 void _restgpr_27(void);
 void _restgpr_28(void);
 void _restgpr_29(void);
-
 void _savefpr_25(void);
 void _savefpr_26(void);
 void _savefpr_27(void);
 void _savefpr_28(void);
 void _savefpr_29(void);
-
 void _restfpr_25(void);
 void _restfpr_26(void);
 void _restfpr_27(void);
