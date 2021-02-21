@@ -42,6 +42,20 @@ void setNowVibration__14dComIfG_play_cFUc(u8);
 void setSound__19dSv_player_config_cFUc(void);
 }
 
+extern f32 lbl_80451D58;
+extern char lbl_80379234[0x64];
+extern f32 lbl_80451D5C;
+extern u8 i_item_lst[24];
+extern u8 lbl_80430188[16];
+struct unkEvent {  // figure out what this is later
+    u16 unk0[0x11A];
+    u8 unk565;
+    u16 unk566;
+    u8 unk567[0x439];
+};
+extern unkEvent lbl_803A7288;
+extern u32 _sRumbleSupported;
+
 inline int dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerGetItem().isFirstBit(i_no);
 }
@@ -370,8 +384,8 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
                             return 0xFF;
                         }
                     }
-                    // 合成アイテム不定＝＝＝＞%d, %d\n
-                    // Uncertain combination item＝＝＝＞%d, %d\n
+                    // 插擣アイテム不定撈撈撈揆%d, %d\n
+                    // Uncertain combination item撈撈撈揆%d, %d\n
                     OSReport_Error(lbl_80379234 + 9, item_id_2, item_id_1);
                 }
             }

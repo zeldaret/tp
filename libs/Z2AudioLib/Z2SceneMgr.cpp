@@ -25,6 +25,12 @@ void isEventBit__11dSv_event_cCFUs(void);
 
 extern u8 lbl_803CA9BC;
 extern u8 lbl_80450863;
+extern Z2SoundMgr* lbl_80450B60;  // Z2SoundMgr sInstance
+extern u8 lbl_80450B80;
+extern u8 lbl_803A7288;
+extern u8 lbl_80450B58;
+extern u8 lbl_80450B40;
+extern u8 lbl_80450CC0;
 
 // Missing 2 instructions (beginning and end)
 #ifdef NONMATCHING

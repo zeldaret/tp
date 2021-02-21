@@ -64,6 +64,7 @@ extern u8 lbl_803A3530;
 extern u8 lbl_803DFC20;
 extern u8 lbl_803E0C20;
 extern u8 lbl_803E0F40;
+extern u8 lbl_803EAF40;
 
 extern "C" {
 // __ct__15mDoMemCd_Ctrl_cFv

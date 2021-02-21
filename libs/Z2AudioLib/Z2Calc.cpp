@@ -1,6 +1,11 @@
 #include "Z2AudioLib/Z2Calc/Z2Calc.h"
 #include "msl_c/math.h"
 
+extern f32 lbl_80455828;
+extern f32 lbl_8045582C;
+extern f32 lbl_80455830;
+extern f32 lbl_80455834;
+
 // s_is_oRandom_initialized
 extern s8 lbl_80451330;
 // Z2AudioLib::oRandom$401

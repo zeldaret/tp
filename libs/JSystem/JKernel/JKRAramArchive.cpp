@@ -34,6 +34,9 @@ void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
 
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern u8 lbl_803CC348;                                      // JKRAramArchive::__vt
+extern JSUList<JKRFileLoader> sVolumeList__13JKRFileLoader;  // JKRFileLoader::sVolumeList
+extern u8 lbl_8039D188;                                      // "JKRAramArchive.cpp"
 
 asm JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection) {
     nofralloc

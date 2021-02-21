@@ -1,6 +1,7 @@
 #ifndef JKRARAMHEAP_H_
 #define JKRARAMHEAP_H_
 
+#include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRDisposer/JKRDisposer.h"
 #include "dolphin/types.h"
 #include "global.h"

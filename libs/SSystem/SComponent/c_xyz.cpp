@@ -11,6 +11,9 @@ void normZP__4cXyzCFv(void);
 void func_80361C24(void);
 }
 
+extern float lbl_80450AEC[4];  // array to force 2 step load, MSL_C.PPCEABI.bare.H::__f32_epsilon
+extern f32 lbl_80450AE0[4];
+
 const static f32 lbl_80455070 = 1.0f;
 const static f32 lbl_80455078 = 1.25f;
 const static f32 lbl_8045507C = 1000000.0f;

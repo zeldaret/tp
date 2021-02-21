@@ -25,6 +25,17 @@ void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
 void setSaveDate__12dFile_info_cFP10dSv_save_c(void);
 }
 
+extern u8 lbl_803BB598;
+extern u8 lbl_803A6F88;
+extern u8 lbl_803BB588;
+extern u8 lbl_803948B8;
+extern u8 lbl_803BB548;
+extern u8 lbl_803BB4A8;
+extern u8 lbl_80430188;
+extern u8 lbl_804539F8;
+extern u8 lbl_804539FC;
+extern u8 lbl_803BB498;
+
 asm dFile_info_c::dFile_info_c(JKRArchive*, u8) {
     nofralloc
 #include "d/d_file/d_file_sel_info/asm/func_80192434.s"

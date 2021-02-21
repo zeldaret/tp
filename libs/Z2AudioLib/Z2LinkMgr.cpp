@@ -20,6 +20,57 @@ void isEventBit__11dSv_event_cCFUs(void);
 void startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc(void);
 }
 
+extern u8 lbl_80450B80;
+extern u8 lbl_803CB980;
+extern u8 lbl_80451360;
+extern u8 lbl_803CB96C;
+extern u8 lbl_803C9D80;
+extern u8 lbl_803CAD10;
+extern u8 lbl_80450B44;
+extern u8 lbl_80455C98;
+extern u8 lbl_80455C9C;
+extern u8 lbl_80455CA0;
+extern u8 lbl_80455CA8;
+extern u8 lbl_80455CB0;
+extern u8 lbl_80455CB8;
+extern u8 lbl_80450AE0;
+extern u8 lbl_80455CC0;
+extern u8 lbl_80450B40;
+extern u8 lbl_80455CE0;
+extern u8 lbl_80455CC4;
+extern u8 lbl_80455CC8;
+extern u8 lbl_80455CCC;
+extern u8 lbl_80455CE0;
+extern u8 lbl_80455CD4;
+extern u8 lbl_80455CD8;
+extern u8 lbl_80455CD0;
+extern u8 lbl_80455D10;
+extern u8 lbl_80455CE8;
+extern u8 lbl_80455CEC;
+extern u8 lbl_80455CF0;
+extern u8 lbl_80455D10;
+extern u8 lbl_80455CF4;
+extern u8 lbl_80455CF8;
+extern u8 lbl_80455CFC;
+extern u8 lbl_80455D00;
+extern u8 lbl_80455D04;
+extern u8 lbl_803A7288;
+extern u8 lbl_80455D0C;
+extern u8 lbl_80455D08;
+extern u8 lbl_80455D18;
+extern u8 lbl_80455D1C;
+extern u8 lbl_803CB924;
+extern u8 lbl_803CB910;
+extern u8 lbl_803CB8F0;
+extern u8 lbl_80455D20;
+extern u8 lbl_80455D24;
+extern u8 lbl_80455D28;
+extern u8 lbl_80455D2C;
+extern u8 lbl_80455D30;
+extern u8 lbl_80455D34;
+extern u8 lbl_80455D38;
+extern u8 lbl_80455D3C;
+
 void Z2CreatureLink::setLinkGroupInfo(u8 param1) {
     return;
 }

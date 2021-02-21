@@ -17,6 +17,15 @@ void mDoRst_resetCallBack__FiPv(void);
 void read__10JUTGamePadFv(void);
 }
 
+extern JUTGamePad* m_gamePad[4];
+extern u8 lbl_80450580;
+extern u8 lbl_804514EC;
+extern u8 lbl_804514F0;
+extern u8 lbl_80451A20;
+extern u8 lbl_80451A30;
+extern u8 lbl_80451A24;
+extern u8 lbl_80451A28;
+
 // TODO: m_cpadInfo uses a bad type in a number of the NONMATCHING functions,
 // and references need to be updated to reflect its correct type.
 

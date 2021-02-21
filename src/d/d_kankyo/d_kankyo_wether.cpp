@@ -80,6 +80,77 @@ void Z2EnvSeMgr_NS_startRainSe(void);
 void Z2EnvSeMgr_NS_startStrongWindSe(void);
 }
 
+class j3dsys {
+public:
+    Mtx mtx;
+};
+
+extern j3dsys lbl_80434AC8;
+extern u8 lbl_8037A368;
+extern u8 lbl_80450D64;
+extern u8 lbl_804520E0;
+extern u8 lbl_804520E4;
+extern u8 lbl_803A9AC0;
+extern u8 lbl_803CD97C;
+extern u8 lbl_803A9AD4;
+extern u8 lbl_803A9AE8;
+extern u8 lbl_803A9B24;
+extern u8 lbl_803A9B10;
+extern u8 lbl_803A9B38;
+extern u8 lbl_803A9B4C;
+extern u8 lbl_803A9B60;
+extern u8 lbl_803A9B74;
+extern u8 lbl_803A9B88;
+extern u8 lbl_803A9AFC;
+extern u8 lbl_804520E8;
+extern u8 lbl_804520EC;
+extern u8 lbl_804520F0;
+extern u8 lbl_804520F8;
+extern u8 lbl_804520F4;
+extern u8 lbl_80452100;
+extern u8 lbl_80452104;
+extern u8 lbl_80452108;
+extern u8 lbl_8045210C;
+extern u8 lbl_80452110;
+extern u8 lbl_80452114;
+extern u8 lbl_80452118;
+extern u8 lbl_8045211C;
+extern u8 lbl_80452120;
+extern u8 lbl_80452124;
+extern u8 lbl_80452128;
+extern u8 lbl_8045212C;
+extern u8 lbl_80450EE0;
+extern u8 lbl_80452130;
+extern u8 lbl_80424944;
+extern u8 lbl_80452134;
+extern u8 lbl_80452138;
+extern u8 lbl_8045213C;
+extern u8 lbl_80452140;
+extern u8 lbl_80424938;
+extern u8 lbl_80452144;
+extern u8 lbl_80452148;
+extern u8 lbl_8045214C;
+extern u8 lbl_80452150;
+extern u8 lbl_80452154;
+extern u8 lbl_80452158;
+extern u8 lbl_8045215C;
+extern u8 lbl_80452160;
+extern u8 lbl_80452164;
+extern u8 lbl_80452168;
+extern u8 lbl_8045216C;
+extern u8 lbl_80452170;
+extern u8 lbl_80452178;
+extern u8 lbl_80452180;
+extern u8 lbl_80452188;
+extern u8 lbl_80450AE0;
+extern u8 lbl_80452190;
+extern u8 lbl_80452194;
+extern u8 lbl_80452198;
+extern u8 lbl_8045219C;
+extern u8 lbl_804521A0;
+extern u8 lbl_804521A4;
+extern u8 lbl_804521A8;
+
 extern "C" {
 // dKyw_setDrawPacketList__FP9J3DPacketi
 // dKyw_setDrawPacketList(J3DPacket*, int)

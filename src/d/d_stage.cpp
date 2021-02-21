@@ -10,7 +10,7 @@
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 
 extern "C" {
-    void fopScnM_SearchByID__FUi(void);
+void fopScnM_SearchByID__FUi(void);
 void fopCamM_Create__FisPv(void);
 char* strcpy(char*, const char*);
 int strcmp(const char*, const char*);
@@ -74,6 +74,45 @@ void stage_tgsc_data_class_NS_dtor(void);
 void stage_tgsc_data_class(void);
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
 }
+
+extern char lbl_80378A50[0x3F8];  // d_stage string literals
+extern u8 lbl_803F5784;
+extern u8 lbl_803F0000;
+extern u8 lbl_80450D64;
+extern u8 lbl_80450D65;
+extern u8 lbl_80450D66;
+extern u8 lbl_80450D68;
+extern u8 lbl_804505F0;
+extern u8 lbl_803F6094;
+extern u8 lbl_80450D6C;
+extern u8 lbl_80450D70;
+extern u8 lbl_80450D6C;
+extern u8 lbl_803A6920;
+extern u8 lbl_803A696C;
+extern u8 lbl_80450D67;
+extern u8 lbl_80451C90;
+extern u8 lbl_80450D60;
+extern u8 lbl_804307EC;
+extern u8 lbl_803A65CC;
+extern u8 lbl_803A65FC;
+extern u8 lbl_803A6620;
+extern u8 lbl_803A6638;
+extern u8 lbl_803A6644;
+extern u8 lbl_803A6650;
+extern u8 lbl_803A668C;
+extern u8 lbl_803A66BC;
+extern u8 lbl_803A67F4;
+extern u8 lbl_803A689C;
+extern u8 lbl_803A68FC;
+extern u8 lbl_80406194;
+extern u8 lbl_80451C94;
+extern u8 lbl_80451C98;
+extern u8 lbl_803F4E68;
+extern u8 lbl_80450D74;
+extern u8 lbl_803A6D94;
+extern u8 lbl_803A6AAC;
+extern u8 lbl_803A1EC8;
+extern u8 J3DLightObj;
 
 #ifdef NONMATCHING
 void dStage_nextStage_c::set(const char* param_1, s8 param_2, s16 param_3, s8 param_4, s8 param_5,

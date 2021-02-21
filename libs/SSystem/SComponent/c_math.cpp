@@ -9,6 +9,7 @@ extern s32 lbl_80451170;  // SComponent::r2
 extern s32 lbl_80451174;  // SComponent::r02
 extern s32 lbl_80451178;  // SComponent::r12
 extern s32 lbl_8045117C;  // SComponent::r22
+extern f32 lbl_80451180;
 
 extern u16 lbl_803C3778[1028];  // SComponent::atntable
 

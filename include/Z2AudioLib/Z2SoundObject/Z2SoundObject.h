@@ -5,6 +5,7 @@
 #include "Z2AudioLib/Z2SoundHandles/Z2SoundHandles.h"
 #include "Z2AudioLib/Z2SoundStarter/Z2SoundStarter.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 /* struct Z2SoundObjBase_vtable {
     void* field_0x0;

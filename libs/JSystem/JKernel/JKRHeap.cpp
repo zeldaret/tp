@@ -14,6 +14,11 @@ void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
 
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern bool lbl_804508B0;
+extern bool lbl_80451380;
+extern void* lbl_803CBF70;
+extern JKRHeap* sRootHeap__7JKRHeap;
+extern JKRHeap* sCurrentHeap__7JKRHeap;
 
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRDisposer(), mChildTree(this), mDisposerList() {

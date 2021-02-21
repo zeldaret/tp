@@ -1,5 +1,6 @@
 #include "JSystem/JKernel/JKRMemArchive/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRDvdRipper/JKRDvdRipper.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 #include "msl_c/string.h"
 
@@ -10,6 +11,8 @@ void JUTException_NS_panic_f(const char* filename, int line, const char* format,
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 }
+
+extern const char lbl_8039D160[16];  // "JKRMemArchive.cpp"
 
 JKRMemArchive::JKRMemArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, MOUNT_MEM) {

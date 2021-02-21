@@ -4,6 +4,7 @@
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 class Z2SoundObjBase;
 

@@ -29,6 +29,27 @@ void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
 void update__Q210JUTGamePad7CRumbleFs(void);
 }
 
+extern u8 lbl_803CC610;
+extern u8 lbl_804343D8;
+extern u32 _sRumbleSupported;
+extern u8 lbl_804508DC;
+extern u8 lbl_804508D8;
+extern void (*lbl_804514EC)(int, void*);  // JUTGamePad::C3ButtonReset::sCallback
+extern void* lbl_804514F0;                // JUTGamePad::C3ButtonReset::sCallbackArg
+extern u8 lbl_804508E8;
+extern u8 lbl_804508EC;
+extern u8 lbl_8043456C;
+extern u8 lbl_80456020;
+extern u8 lbl_80456018;
+extern u8 lbl_80456030;
+extern u8 lbl_80456038;
+extern u8 lbl_80456040;
+extern u8 lbl_80456048;
+extern u8 lbl_8045604C;
+extern u8 lbl_804508E4;
+extern u8 lbl_804508E0;
+extern f32 lbl_80450AE0[4];
+
 #ifdef NONMATCHING
 // TODO(erin): probably ~easy to do, i just didn't do it yet :)
 JUTGamePad::JUTGamePad(EPadPort port) : ptr_link(this) {

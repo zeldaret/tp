@@ -17,6 +17,12 @@ void func_80361D60(void);
 void __cvt_fp2unsigned(void);
 }
 
+extern u8 lbl_80450B44;
+extern u8 lbl_80450B80;
+extern u8 lbl_80451360;
+extern u8 lbl_80450AE0;
+extern u8 lbl_80450B60;
+
 asm Z2SeMgr::Z2SeMgr(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeMgr/asm/func_802AB64C.s"

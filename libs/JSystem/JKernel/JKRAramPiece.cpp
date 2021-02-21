@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAram/JKRAram.h"
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 
 extern "C" {
@@ -8,6 +9,8 @@ void DCInvalidateRange(void*, u32);
 void DCStoreRange(void*, u32);
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 }
+
+extern JSUList<JKRAMCommand> lbl_80434324;  // JKRAramPiece::sAramPieceCommandList
 
 JKRAMCommand* JKRAramPiece::prepareCommand(int direction, u32 src, u32 dst, u32 length,
                                            JKRAramBlock* block,

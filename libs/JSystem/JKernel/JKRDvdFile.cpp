@@ -5,6 +5,8 @@ extern "C" {
 void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
 }
 
+extern char lbl_8039D260[12];  // "JKRDvdFile.cpp"
+
 JKRDvdFile::JKRDvdFile() : JKRFile(), mDvdLink(this) {
     initiate();
 }

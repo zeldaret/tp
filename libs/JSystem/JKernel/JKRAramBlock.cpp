@@ -1,7 +1,7 @@
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
-#include "global.h"
-
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
+#include "global.h"
 
 JKRAramBlock::JKRAramBlock(u32 address, u32 size, u32 freeSize, u8 groupId, bool isTempMemory)
     : mBlockLink(this) {

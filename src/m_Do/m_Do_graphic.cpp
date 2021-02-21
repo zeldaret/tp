@@ -15,6 +15,17 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 
+class j3dsys {
+public:
+    Mtx mtx;
+};
+extern j3dsys lbl_80434AC8;
+extern u8 sCurrentHeap__7JKRHeap;
+extern u8 lbl_80451550;
+extern u8 lbl_80450580;
+extern u8 lbl_80450AE0;
+extern u8 lbl_803DD470;
+
 #ifdef NONMATCHING  // mr and addi swapped
 ResTIMG* createTimg(u16 width, u16 height, u32 format) {
     u32 data_offset = 32;

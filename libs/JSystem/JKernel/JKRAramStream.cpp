@@ -14,6 +14,7 @@ void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
 
 extern char lbl_8039D120[32];
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern JKRHeap* sCurrentHeap__7JKRHeap;
 
 JKRAramStream* JKRAramStream::create(long priority) {
     if (!sAramStreamObject) {

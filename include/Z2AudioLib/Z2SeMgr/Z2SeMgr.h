@@ -6,6 +6,7 @@
 #include "Z2AudioLib/Z2Param/Z2Param.h"
 #include "Z2AudioLib/Z2SeqMgr/Z2SeqMgr.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 struct Z2MultiSeObj {
     Z2MultiSeObj();

@@ -20,6 +20,8 @@ void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRip
     void);
 }
 
+extern char lbl_8039D1B0[16];  // "JKRDvdArchive.cpp"
+
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
 
 JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)

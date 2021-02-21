@@ -39,6 +39,7 @@ extern u8 lbl_80450C2C;
 extern u8 lbl_80450C34;
 extern u8 lbl_80450C90;
 extern JUTConsole* lbl_804511B8;
+extern u8 lbl_803A2EE0;
 
 extern "C" {
 // print_f__FPCce

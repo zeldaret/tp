@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRDvdArchive/JKRDvdArchive.h"
 #include "JSystem/JKernel/JKRFileFinder/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRFileLoader/JKRFileLoader.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive/JKRMemArchive.h"
 #include "dvd/dvd.h"
 #include "global.h"

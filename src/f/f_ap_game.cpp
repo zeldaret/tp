@@ -29,6 +29,7 @@ extern u8 lbl_803A35A0;
 extern u8 lbl_803F1BB0;
 extern u8 lbl_80451BC0;
 extern u8 lbl_80451BC4;
+extern u8 lbl_80450580;
 
 // __ct__11fapGm_HIO_cFv
 // fapGm_HIO_c::fapGm_HIO_c(void)

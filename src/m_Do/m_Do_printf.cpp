@@ -3,6 +3,11 @@
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 #include "os/OS.h"
 
+#define _SDA_BASE_(dummy) 0
+#define _SDA2_BASE_(dummy) 0
+
+extern u8 lbl_80450BA8;
+
 asm void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32) {
     nofralloc
 #include "m_Do/m_Do_printf/asm/func_80006798.s"

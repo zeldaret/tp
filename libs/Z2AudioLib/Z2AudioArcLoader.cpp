@@ -2,6 +2,7 @@
 
 #include "Z2AudioLib/Z2AudioArcLoader/Z2AudioArcLoader.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "Z2AudioLib/Z2FxLineMgr/Z2FxLineMgr.h"
 #include "global.h"
 
@@ -9,6 +10,12 @@ extern "C" {
 void __dl__FPv(void);
 void mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection(void);
 }
+
+extern u8 lbl_803C9CD0;
+extern u8 lbl_80450B40;
+extern JKRHeap* sCurrentHeap__7JKRHeap;
+extern u8 lbl_80450CC0;
+extern u8 lbl_803C9A78;
 
 extern "C" {
 // __ct__16Z2AudioArcLoaderFP10JAUSection

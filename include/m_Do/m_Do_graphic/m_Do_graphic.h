@@ -3,6 +3,7 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "global.h"
+#include "gx/GX.h"
 #include "mtx_vec.h"
 
 class view_class {};

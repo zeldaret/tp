@@ -123,6 +123,12 @@ extern u8 lbl_80451570;
 extern u8 lbl_80451B00;
 extern u8 lbl_80451B04;
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern JKRHeap* sRootHeap__7JKRHeap;
+extern u8 lbl_80450580;
+extern u8 lbl_80451501;
+extern u8 lbl_804508B0;
+extern u8 sSZSBufferSize__7JKRAram;
+extern u8 lbl_803EAF40;
 
 extern "C" {
 // myGetHeapTypeByString__FP7JKRHeap

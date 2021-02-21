@@ -5,6 +5,10 @@
 #include "SComponent/c_math.h"
 #include "msl_c/string.h"
 
+extern u8 lbl_80450AE0;
+extern u8 lbl_80430DB8;
+extern u8 lbl_80450768;
+
 static const f32 lbl_804551E0 = 0;
 static const f64 lbl_804551E8 = 0.5;  // 0x3fe0000000000000
 static const f64 lbl_804551F0 = 3.0;  // 0x4008000000000000

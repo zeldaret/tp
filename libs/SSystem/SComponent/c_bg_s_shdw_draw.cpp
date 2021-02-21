@@ -11,6 +11,7 @@ void __dt__8cBgS_ChkFv(void);
 void Set__8cM3dGAabFPC4cXyzPC4cXyz(void);
 }
 extern u8 lbl_803C3FC0;
+extern u8 lbl_803A7218;
 
 // __ct__13cBgS_ShdwDrawFv
 // cBgS_ShdwDraw::cBgS_ShdwDraw(void)

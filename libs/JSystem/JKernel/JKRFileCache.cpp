@@ -17,6 +17,8 @@ void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
 
 extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern char lbl_8039D158[16];                           // "/"
+extern JKRFileLoader* sCurrentVolume__13JKRFileLoader;  // JKRFileLoader::sCurrentVolume
 
 JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* param_3) {
     if (!path || *path != '/') {

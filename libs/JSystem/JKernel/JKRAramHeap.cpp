@@ -1,10 +1,14 @@
 #include "JSystem/JKernel/JKRAramHeap/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRAramBlock/JKRAramBlock.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 extern "C" {
 void __dl__FPv(void);
 void __dt__11JKRDisposerFv(void);
 }
+
+extern JSUList<JKRAramBlock> lbl_8043430C;  // JKRAramHeap::sAramList
+extern u8 lbl_803CC168;                     // JKRAramHeap::__vt
 
 JKRAramHeap::JKRAramHeap(u32 startAddress, u32 size) {
     OSInitMutex(&mMutex);

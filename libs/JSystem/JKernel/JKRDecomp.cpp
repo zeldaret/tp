@@ -1,6 +1,12 @@
 #include "JSystem/JKernel/JKRDecomp/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece/JKRAramPiece.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
+
+extern JKRDecomp* lbl_804514B0;      // JKRDecomp::sDecompObject
+extern OSMessage lbl_803CC460[8];    // JKRDecomp::sMessageBuffer
+extern OSMessageQueue lbl_803CC480;  // JKRDecomp::sMessageQueue
+extern u8 lbl_803CC4A0;              // JKRDecomp::__vt
 
 JKRDecomp* JKRDecomp::create(long priority) {
     if (!lbl_804514B0) {

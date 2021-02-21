@@ -3,6 +3,19 @@
 #include "d/d_kankyo/d_kankyo.h"
 #include "global.h"
 
+extern u8 lbl_803A953C;
+extern u8 lbl_803A987C;
+extern u8 lbl_803A9894;
+extern u8 lbl_803A9918;
+extern u8 lbl_803A9434;
+extern u8 lbl_803A94B8;
+extern u8 lbl_803A9A94;
+extern u8 lbl_803A9410;
+extern u8 lbl_803A9198;
+extern u8 lbl_803A92A8;
+extern u8 lbl_803A93C8;
+extern u8 lbl_803A8E98;
+
 extern "C" {
 // dKyd_dmpalet_getp__Fv
 // dKyd_dmpalet_getp(void)

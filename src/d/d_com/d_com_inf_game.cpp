@@ -282,6 +282,48 @@ void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc(void);
 void ct__13dComIfG_inf_cFv(void);
 }
 
+extern u8 lbl_80430188;
+extern u8 lbl_80378F38;
+extern u8 lbl_803A7288;
+extern u8 lbl_80450D64;
+extern u8 lbl_80450BC8;
+extern u8 lbl_80450604;
+extern u8 lbl_803A71B8;
+extern u8 lbl_803A71C4;
+extern u8 lbl_80451D00;
+extern u8 lbl_803A37C0;
+extern u8 lbl_80451D04;
+extern u8 lbl_803F6094;
+extern u8 lbl_80451D10;
+extern u8 lbl_80451D08;
+extern u8 lbl_803A71D0;
+extern u8 lbl_80451D18;
+extern u8 lbl_80451D1C;
+extern u8 lbl_80423FD0;
+extern u8 lbl_80451D20;
+extern u8 lbl_804061A0;
+extern u8 lbl_804061B4;
+extern u8 lbl_803AB608;
+extern u8 lbl_803AB61C;
+extern u8 lbl_803AB630;
+extern u8 lbl_803AC3E4;
+extern u8 lbl_803A7230;
+extern u8 lbl_803A7224;
+extern u8 lbl_803C3608;
+extern u8 lbl_803C36D0;
+extern u8 lbl_803A7218;
+extern u8 lbl_803C35A4;
+extern u8 lbl_803A720C;
+extern u8 lbl_803A7200;
+extern u8 lbl_803C3748;
+extern u8 lbl_803A71F4;
+extern u8 lbl_803A6D94;
+extern u8 lbl_803A6C20;
+extern u8 lbl_803A71E8;
+extern u8 lbl_803A9C48;
+extern u8 lbl_803A9C60;
+extern u8 lbl_803A3354;
+
 // memset first arg is wrong
 #ifdef NONMATCHING
 void dComIfG_play_c::ct(void) {

@@ -4,6 +4,9 @@
 #include "SComponent/c_m3d.h"
 #include "msl_c/math.h"
 
+extern f32 lbl_80450AEC[4];  // array to force 2 step load, MSL_C.PPCEABI.bare.H::__f32_epsilon
+extern f32 lbl_80451180;
+
 // __ct__8cM3dGPlaFPC4cXyzf
 cM3dGPla::cM3dGPla(const cXyz* pNormal, f32 pD) : mNormal(*pNormal), mD(pD) {}
 

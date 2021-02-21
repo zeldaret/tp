@@ -1,6 +1,8 @@
 #include "JSystem/JStudio/functionvalue.h"
 #include "msl_c/math.h"
 
+extern f32 lbl_80450AE0[4];
+
 extern "C" {
 void __cvt_fp2unsigned(void);
 }

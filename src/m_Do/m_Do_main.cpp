@@ -19,25 +19,6 @@
 #include "m_Do/m_Do_reset/m_Do_reset.h"
 #include "msl_c/string.h"
 
-extern float lbl_80451A00;
-extern float lbl_80451A04;
-extern float lbl_80451A08;
-extern u8 lbl_80451A0C;
-extern u8 lbl_80451A10;
-extern u8 lbl_80451A18;
-extern u8 lbl_803D0000;
-extern float lbl_80450B2C;
-extern float lbl_80450B1C;
-extern JKRExpHeap* sSystemHeap__7JKRHeap;
-extern JKRExpHeap* lbl_80450C2C;
-extern JKRExpHeap* lbl_80450C28;
-extern JKRExpHeap* lbl_80450C34;
-extern s8 lbl_80450B20;
-extern s8 lbl_80450B28;
-extern float lbl_80450B24;
-extern s8 lbl_80450B30;
-
-extern char lbl_803739A0[0x310];
 extern "C" {
 void cDyl_InitAsync(void);
 void CheckHeap1__9HeapCheckFv(void);
@@ -48,8 +29,6 @@ void debug__Fv(void);
 void dRes_control_c_NS_dump(void);
 void dump__11JKRAramHeapFv(void);
 void DynamicModuleControlBase_NS_dump(void);
-void fapGm_Create(void);
-void fapGm_Execute(void);
 void fopAcM_initManager(void);
 void getFreeSize__11JKRAramHeapFv(void);
 void getFreeSize__7JKRHeapCFv(void);
@@ -74,8 +53,42 @@ void clear__10JUTConsoleFv(void);
 void setMessageCount__12JUTAssertionFi(void);
 }
 
+extern float lbl_80451A00;
+extern float lbl_80451A04;
+extern float lbl_80451A08;
+extern u8 lbl_80451A0C;
+extern u8 lbl_80451A10;
+extern u8 lbl_80451A18;
+extern u8 lbl_803D0000;
+extern float lbl_80450B2C;
+extern float lbl_80450B1C;
+extern JKRExpHeap* sSystemHeap__7JKRHeap;
+extern JKRExpHeap* lbl_80450C2C;
+extern JKRExpHeap* lbl_80450C28;
+extern JKRExpHeap* lbl_80450C34;
+extern s8 lbl_80450B20;
+extern s8 lbl_80450B28;
+extern float lbl_80450B24;
+extern s8 lbl_80450B30;
+extern char lbl_803739A0[0x310];
 extern char* lbl_803A2F14[5];
 extern char* lbl_803A2F28[5];
+extern u8 lbl_803A2EF4;
+extern char lbl_803A2EE0[16];
+extern u8 lbl_80450B19;
+extern s8 lbl_80450580;
+extern u8 LOAD_COPYDATE__FPv;
+extern JUTGamePad* m_gamePad[4];
+extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
+extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
+extern u8 lbl_803EAF40[];
+extern u8 lbl_80450B34;
+extern u8 lbl_80450B00;
+extern u8 lbl_80450C80;
+extern u32 lbl_803D3420[8192];
+extern u32 lbl_80450B0C;
+extern u32 lbl_80450B08;
+extern OSThread lbl_803DB420;
 
 void version_check(void) {
     if ((!strcmp("20Apr2004", "20Apr2004")) && (!strcmp("Patch2", "Patch2"))) {

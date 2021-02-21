@@ -16,6 +16,15 @@ void Xinit__9STControlFv(void);
 void Yinit__9STControlFv(void);
 }
 
+extern u8 lbl_80451180;
+extern u8 lbl_803DD470;
+extern u8 lbl_80450DE8;
+extern u8 lbl_80450DD8;
+extern u8 lbl_80450DDC;
+extern u8 lbl_80450DE0;
+extern u8 lbl_80450DE4;
+extern u8 lbl_80450DE0;
+
 STControl::STControl(s16 param_1, s16 param_2, s16 param_3, s16 param_4, f32 param_5, f32 param_6,
                      s16 param_7, s16 param_8) {
     __vt = (STControl_vtable*)0x803a7260;

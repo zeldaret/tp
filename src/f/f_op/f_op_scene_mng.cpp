@@ -27,7 +27,7 @@ extern u8 lbl_804505B8;
 // fopScnM_SearchByID__FUi
 // fopScnM_SearchByID(unsigned int)
 // void* fopScnM_SearchByID(unsigned int id) {
-//     unsigned int tmp = id + 8; 
+//     unsigned int tmp = id + 8;
 //     return fopScnIt_Judge((fop_ScnItFunc)fpcSch_JudgeByID, (void*)tmp);
 // }
 

@@ -6,6 +6,9 @@ char* strcpy(char*, const char*);
 int strcmp(const char*, const char*);
 }
 
+extern const char lbl_8039D150[16];   // "/"
+extern const char lbl_803D2D18[256];  // MSL_C.PPCEABI.bare.H::__lower_map
+
 // todo: static initialization is working uncomment this
 // JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 

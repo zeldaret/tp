@@ -64,6 +64,64 @@ void mDoExt_restoreCurrentHeap(void);
 void Z2SeqMgr_NS_bgmNowBattle(void);
 }
 
+class j3dsys {
+public:
+    Mtx mtx;
+};
+
+extern j3dsys lbl_80434AC8;
+
+extern u8 lbl_803A9C60;
+extern u8 lbl_80452628;
+extern u8 lbl_8045262C;
+extern u8 lbl_80452630;
+extern u8 lbl_80452634;
+extern u8 lbl_80452638;
+extern u8 lbl_8045263C;
+extern u8 lbl_80452640;
+extern u8 lbl_80452644;
+extern u8 lbl_80452648;
+extern u8 lbl_8045264C;
+extern u8 lbl_80452650;
+extern u8 lbl_80452654;
+extern u8 lbl_80452658;
+extern u8 lbl_8037A770;
+extern u8 lbl_80450F58;
+extern u8 lbl_803A9C54;
+extern u8 lbl_8045265C;
+extern u8 lbl_80452660;
+extern u8 lbl_80452664;
+extern u8 lbl_803A71E8;
+extern u8 lbl_803A9C48;
+extern u8 lbl_80424B0C;
+extern u8 lbl_80450660;
+extern u8 lbl_803A9BF8;
+extern u8 lbl_803A9C18;
+extern u8 lbl_803A9C3C;
+extern u8 lbl_80452670;
+extern u8 lbl_80452668;
+extern u8 lbl_80452678;
+extern u8 lbl_80452680;
+extern u8 lbl_80450AE0;
+extern u8 lbl_80452688;
+extern u8 lbl_80450664;
+extern u8 lbl_803A9C04;
+extern u8 lbl_8045066C;
+extern u8 lbl_80452690;
+extern u8 lbl_803A9C70;
+extern u8 lbl_80452694;
+extern u8 lbl_80450AE8;
+extern u8 lbl_80450670;
+extern u8 lbl_80452698;
+extern u8 lbl_8045269C;
+extern u8 lbl_80450D64;
+extern u8 lbl_804526A8;
+extern u8 lbl_804526A0;
+extern u8 lbl_803DD470;
+extern u8 lbl_804526B0;
+extern u8 lbl_804526B4;
+extern u8 lbl_80424B00;
+
 extern "C" {
 // padLockButton__25@unnamed@d_attention_cpp@Fl
 // @unnamed@d_attention_cpp@::padLockButton(long)

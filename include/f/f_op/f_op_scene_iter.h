@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-typedef void* (*fop_ScnItFunc)(void*,void*);
+typedef void* (*fop_ScnItFunc)(void*, void*);
 
 void* fopScnIt_Judge(fop_ScnItFunc pFunc1, void* pFunc2);
 

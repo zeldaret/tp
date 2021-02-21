@@ -26,6 +26,15 @@ void orderSync__9JKRDecompFPUcPUcUlUl(void);
 void startDMA__12JKRAramPieceFP12JKRAMCommand(void);
 }
 
+extern u8 lbl_803CC158;                         // JKRAram::__vt
+extern OSMessageQueue sMessageQueue__7JKRAram;  // JKRAram::sMessageQueue
+extern bool lbl_804513FC;                       // DAT_804513fc (init global mutex)
+extern OSMutex lbl_804342E8;                    // JKernel::decompMutex (static?)
+extern u8 lbl_804342D0;                         // JKernel::@492 (global destructor chain)
+extern u8 sAramCommandList__7JKRAram;           // JKRAram::sAramCommandList
+extern u8 sSZSBufferSize__7JKRAram;             // JKRAram::sSZSBufferSize
+extern u8 sMessageBuffer__7JKRAram;             // JKRAram::sMessageBuffer
+
 // Uncomment when static initialization is working
 // JKRAram* JKRAram::sAramObject = NULL;
 // u32 JKRAram::sSZSBufferSize = 0x400;

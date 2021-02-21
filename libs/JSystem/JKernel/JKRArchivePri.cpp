@@ -1,4 +1,5 @@
 #include "JSystem/JKernel/JKRArchive/JKRArchive.h"
+#include "JSystem/JKernel/JKRHeap/JKRHeap.h"
 #include "global.h"
 #include "msl_c/string.h"
 

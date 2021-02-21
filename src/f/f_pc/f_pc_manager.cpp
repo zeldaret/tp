@@ -38,7 +38,9 @@ extern u8 lbl_80450D38;
 extern s8 lbl_80450D39;
 extern u8 lbl_80450EC4;
 extern layer_class lbl_803F4DB0;      // f_pc_manager::rootlayer$3716
-extern node_list_class lbl_803F4DDC;  // f_pc_manager::queue$3717
+extern node_list_class lbl_803F4DDC;  // f_pc_manager::queue$3717'extern u8 lbl_80450B60;
+extern JUTGamePad* m_gamePad[4];
+extern Z2SoundMgr* lbl_80450B60;  // Z2SoundMgr sInstance
 
 void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);

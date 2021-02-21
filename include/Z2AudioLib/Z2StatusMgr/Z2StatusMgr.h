@@ -2,6 +2,7 @@
 #define Z2STATUSMGR_H_
 
 #include "global.h"
+#include "mtx_vec.h"
 
 struct Z2StatusMgr {
     Z2StatusMgr(void);

@@ -19,6 +19,9 @@
 #define FLOAT_LABEL(x) (*(f32*)&x)
 #define DOUBLE_LABEL(x) (*(f64*)&x)
 
+#define _SDA_BASE_(dummy) 0
+#define _SDA2_BASE_(dummy) 0
+
 struct JUTWarn {
     JUTWarn& operator<<(const char*) { return *this; }
     JUTWarn& operator<<(long) { return *this; }
@@ -30,7 +33,6 @@ struct JUTWarn {
 #include "ar/ARQ.h"
 #include "mwcc.h"
 #include "os/OS.h"
-#include "variables.h"
 
 // hack to make functions that return comparisons as int match
 extern int __cntlzw(unsigned int);

@@ -8,6 +8,11 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "msl_c/string.h"
 
+extern u8 lbl_80451360;
+extern u8 lbl_80450B80;
+extern u8 lbl_80450B60;
+extern u8 lbl_80450B40;
+
 Z2StatusMgr::Z2StatusMgr() {
     lbl_80450B7C = this;
     this->hour = 0;

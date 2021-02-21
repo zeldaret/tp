@@ -40,6 +40,18 @@ void setFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlo
     void);
 }
 
+extern JKRHeap* sRootHeap__7JKRHeap;
+extern JKRHeap* sCurrentHeap__7JKRHeap;
+extern u8 lbl_803CBFD0;
+extern u8 lbl_8039CAF0;
+extern u8 lbl_80451398;
+extern u8 lbl_8045139C;
+extern u8 lbl_804513A0;
+extern u8 lbl_804513A4;
+extern u8 lbl_804513A8;
+extern u8 lbl_80455F98;
+extern u8 lbl_80455FA0;
+
 asm void JKRExpHeap::createRoot(int, bool) {
     nofralloc
 #include "JSystem/JKernel/JKRExpHeap/asm/func_802CEDB4.s"

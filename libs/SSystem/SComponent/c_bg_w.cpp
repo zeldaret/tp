@@ -1,5 +1,8 @@
 #include "SComponent/c_bg_w.h"
 
+extern f32 lbl_804550E8;
+extern f32 lbl_804550EC;
+
 void cBgW_BgId::Regist(int a1) {
     mId = a1;
 }

@@ -8,6 +8,8 @@ void JUTWarningConsole_f(const char*, ...);
 void resize__7JKRHeapFPvUl(void);
 }
 
+extern u8 lbl_8039CE50;
+
 JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler) {
     if (!heap) {
         heap = getRootHeap();

@@ -15,7 +15,9 @@ void ClearPi__13cBgS_PolyInfoFv(void);
 void ct__11cBgS_LinChkFv(void);
 void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz(void);
 }
+
 extern u8 lbl_803C3FA8;
+extern u8 lbl_803A78F8;
 
 // __ct__11cBgS_LinChkFv
 // cBgS_LinChk::cBgS_LinChk(void)

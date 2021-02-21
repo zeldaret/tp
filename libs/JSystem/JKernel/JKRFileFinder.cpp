@@ -7,6 +7,10 @@ extern "C" {
 void __dl__FPv(void);
 }
 
+extern u8 lbl_803CC208;
+extern u8 lbl_803CC228;
+extern u8 lbl_803CC218;
+
 JKRArcFinder::JKRArcFinder(JKRArchive* archive, s32 startIndex, u32 numEntries) : JKRFileFinder() {
     mArchive = archive;
     mIsAvailable = (s32)numEntries > 0;

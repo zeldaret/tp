@@ -20,6 +20,18 @@ void JUTWarningConsole(void);
 void searchThread__9JKRThreadFP8OSThread(void);
 }
 
+extern JKRHeap* sCurrentHeap__7JKRHeap;
+extern JKRHeap* sRootHeap__7JKRHeap;                // JKRHeap::sRootHeap
+extern void* lbl_803CC100[5];                       // JKRThreadSwitch::__vt
+extern u32 lbl_804513B4;                            // JKRThreadSwitch::sTotalCount
+extern u32 lbl_804513BC;                            // DAT_804513bc
+extern u32 lbl_804513B8;                            // JKRThreadSwitch::sTotalStart
+extern JKRThreadSwitch* lbl_804513B0;               // JKRThreadSwitch::sManager
+extern void* lbl_804513C0;                          // JKRThreadSwitch::mUserPreCallback
+extern void* lbl_804513C4;                          //  JKRThreadSwitch::mUserPostCallback
+extern JSUList<JKRThread> sThreadList__9JKRThread;  // JSUList<JKRThread> JKRThread::sThreadList
+extern char lbl_8039CFA8[1];  // 8039cfdc-0x34 "JKRThreadSwitch: currentHeap destroyed.\n"
+
 // lbl_80455FC0 JKRThread.o @934
 static const u8 lbl_80455FC0[4] = {0x42, 0xc8, 0x0, 0x0};
 // lbl_80455FC4 JKRThread.o @935

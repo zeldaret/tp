@@ -9,6 +9,9 @@
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
 #include "m_Do/m_Do_main/m_Do_main.h"
 
+#define _SDA_BASE_(dummy) 0
+#define _SDA2_BASE_(dummy) 0
+
 extern "C" {
 void __dl__FPv(void);
 void __dt__10JSUPtrListFv(void);
@@ -17,6 +20,21 @@ void changeGroupID__7JKRHeapFUc(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void func_80361C24(void);
 }
+
+extern JKRHeap* sRootHeap__7JKRHeap;     // JKRHeap::sRootHeap
+extern JKRHeap* sCurrentHeap__7JKRHeap;  // JKRHeap::sCurrentHeap
+extern u8 lbl_80450BB8;
+extern u8 lbl_80450C80;
+extern u8 lbl_803CBF38;
+extern u8 lbl_80450B40;
+extern u8 lbl_803CBF24;
+extern u8 lbl_803C9D80;
+extern u8 lbl_803CAC48;
+extern u8 lbl_803A2F4C;
+extern u8 lbl_80450B50;
+extern u8 lbl_803C9D70;
+extern u8 lbl_80450B60;
+extern u8 lbl_80450B80;
 
 void mDoAud_zelAudio_c::reset(void) {
     lbl_80450BBA = false;

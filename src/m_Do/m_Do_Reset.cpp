@@ -23,6 +23,13 @@ void VISetBlack(s32);
 void VIWaitForRetrace(void);
 }
 
+extern u8 lbl_80450BB8;
+extern char lbl_80374198[16];
+extern u8 lbl_803EAF40[];
+extern u8 lbl_80451501;
+extern void* lbl_804514F0;
+extern void (*lbl_804514EC)(int, void*);  // JUTGamePad::C3ButtonReset::sCallback
+
 void my_OSCancelAlarmAll(void) {
     return;
 }
