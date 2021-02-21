@@ -94,7 +94,7 @@ dScnPly_env_debugHIO_c:
 /* 80259538 00256478  38 A5 31 58 */	addi r5, r5, lbl_803C3158@l
 /* 8025953C 0025647C  7C A5 02 AE */	lhax r5, r5, r0
 /* 80259540 00256480  38 C0 00 05 */	li r6, 5
-/* 80259544 00256484  4B DC 57 9D */	bl fopScnM_ChangeReq
+/* 80259544 00256484  4B DC 57 9D */	bl fopScnM_ChangeReq__FP11scene_classssUs
 /* 80259548 00256488  4B F4 64 C9 */	bl dKy_getdaytime_hour
 /* 8025954C 0025648C  38 00 00 00 */	li r0, 0
 /* 80259550 00256490  2C 03 00 06 */	cmpwi r3, 6

@@ -676,7 +676,7 @@ lbl_802590E4:
 /* 8025913C 0025607C  7C 04 07 34 */	extsh r4, r0
 /* 80259140 00256080  38 A0 00 00 */	li r5, 0
 /* 80259144 00256084  38 C0 00 05 */	li r6, 5
-/* 80259148 00256088  4B DC 5B 99 */	bl fopScnM_ChangeReq
+/* 80259148 00256088  4B DC 5B 99 */	bl fopScnM_ChangeReq__FP11scene_classssUs
 /* 8025914C 0025608C  38 00 00 00 */	li r0, 0
 /* 80259150 00256090  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80259154 00256094  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

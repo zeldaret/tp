@@ -2430,7 +2430,7 @@ dScnLogo_c_NS_dvdDataLoad:
 /* 80258460 002553A0  38 80 00 09 */	li r4, 9
 /* 80258464 002553A4  38 A0 00 00 */	li r5, 0
 /* 80258468 002553A8  38 C0 00 05 */	li r6, 5
-/* 8025846C 002553AC  4B DC 68 75 */	bl fopScnM_ChangeReq
+/* 8025846C 002553AC  4B DC 68 75 */	bl fopScnM_ChangeReq__FP11scene_classssUs
 lbl_80258470:
 /* 80258470 002553B0  38 60 00 01 */	li r3, 1
 /* 80258474 002553B4  80 01 00 14 */	lwz r0, 0x14(r1)

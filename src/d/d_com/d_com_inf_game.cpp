@@ -10,6 +10,7 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
 #include "msl_c/string.h"
+#include "f/f_op/f_op_scene_mng.h"
 
 extern "C" {
 bool dComIfGp_checkMapShow(void);
@@ -280,6 +281,8 @@ void setBottleNum__24dSv_player_item_record_cFUcUc(u8, u8);
 void setCollect__20dSv_player_collect_cFiUc(int, u8);
 void setWarpItemData__14dComIfG_play_cFPCc4cXyzsScUcUc(void);
 void ct__13dComIfG_inf_cFv(void);
+void fopScnM_ReRequest__FsUl(void);
+void fopScnM_ChangeReq__FP11scene_classssUs(void);
 }
 
 extern u8 lbl_80430188;

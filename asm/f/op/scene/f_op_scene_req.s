@@ -149,8 +149,8 @@ lbl_8001F020:
 /* 8001F02C 0001BF6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001F030 0001BF70  4E 80 00 20 */	blr 
 
-.global fopScnRq_Request
-fopScnRq_Request:
+.global fopScnRq_Request__FiP11scene_classsPvsUs
+fopScnRq_Request__FiP11scene_classsPvsUs:
 /* 8001F034 0001BF74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8001F038 0001BF78  7C 08 02 A6 */	mflr r0
 /* 8001F03C 0001BF7C  90 01 00 24 */	stw r0, 0x24(r1)

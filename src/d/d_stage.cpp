@@ -5,6 +5,7 @@
 #include "f/f_op/f_op_actor_mng.h"
 #include "f/f_op/f_op_camera_mng.h"
 #include "f/f_op/f_op_scene_iter.h"
+#include "f/f_op/f_op_scene_mng.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
@@ -73,6 +74,7 @@ void set__19dStage_startStage_cFPCcScsSc(const char*, s8, s16, s8);
 void stage_tgsc_data_class_NS_dtor(void);
 void stage_tgsc_data_class(void);
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
+void fopScnM_CreateReq__FssUsUl(void);
 }
 
 extern char lbl_80378A50[0x3F8];  // d_stage string literals

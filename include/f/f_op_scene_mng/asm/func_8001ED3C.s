@@ -7,7 +7,7 @@
 /* 8001ED54 0001BC94  38 C0 00 00 */ li r6, 0
 /* 8001ED58 0001BC98  38 E0 7F FF */ li r7, 0x7fff
 /* 8001ED5C 0001BC9C  39 00 00 00 */ li r8, 0
-/* 8001ED60 0001BCA0  48 00 02 D5 */ bl fopScnRq_Request
+/* 8001ED60 0001BCA0  48 00 02 D5 */ bl fopScnRq_Request__FiP11scene_classsPvsUs
 /* 8001ED64 0001BCA4  20 63 FF FF */ subfic r3, r3, -1
 /* 8001ED68 0001BCA8  30 03 FF FF */ addic r0, r3, -1
 /* 8001ED6C 0001BCAC  7C 00 19 10 */ subfe r0, r0, r3

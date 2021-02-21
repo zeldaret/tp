@@ -32,8 +32,8 @@ lbl_804505AC:
 .global l_fopOvlpM_overlap
 l_fopOvlpM_overlap:
 	.incbin "baserom.dol", 0x3D0310, 0x8
-.global lbl_804505B8
-lbl_804505B8:
+.global l_scnRqID
+l_scnRqID:
 	.incbin "baserom.dol", 0x3D0318, 0x8
 .global lbl_804505C0
 lbl_804505C0:
