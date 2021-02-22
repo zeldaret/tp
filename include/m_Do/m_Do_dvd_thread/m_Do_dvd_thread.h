@@ -17,9 +17,7 @@ public:
     bool sync() { return field_0xc; }
 
     void destroy() {
-        if (this != NULL) {
-            this->~mDoDvdThd_command_c();
-        }
+        delete this;
     }
 };
 
