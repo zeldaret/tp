@@ -108,11 +108,12 @@ u32 fopKyM_create(s16 param_1, int param_2, cXyz* param_3, cXyz* param_4, fopKyM
     fopKyM_Create(param_1,param_5,(void*)tmp);
 }
 
-// fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i
-// fopKyM_fastCreate(s16, int, cXyz*, cXyz*, int (*)(void*))
-asm void fopKyM_fastCreate(s16, int, cXyz*, cXyz*, int (*)(void*)) {
-    nofralloc
-#include "f/f_op/f_op_kankyo_mng/asm/func_8001F818.s"
+u32 fopKyM_fastCreate(s16 param_1, int param_2, cXyz* param_3, cXyz* param_4, fopKyMCreateFunc param_5) {
+    float* tmp = createAppend(param_2,param_3,param_4);
+    if (!tmp) {
+        return 0;
+    }
+    fpcM_FastCreate(param_1,param_5,0,tmp);
 }
 
 // fopKyM_createWpillar__FPC4cXyzfi
