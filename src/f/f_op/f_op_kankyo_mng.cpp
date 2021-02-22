@@ -4,6 +4,8 @@
 #include "SComponent/c_malloc.h"
 #include "SComponent/c_lib.h"
 #include "f/f_pc/f_pc_manager.h"
+#include "f/f_pc/f_pc_stdcreate_req.h"
+#include "f/f_op/f_op_kankyo_mng.h"
 #include "global.h"
 
 // additional symbols needed for f_op_kankyo_mng.cpp
@@ -21,7 +23,6 @@ void fopKyM_Delete(void);
 void fopKyM_create(void);
 void fopKyM_createWpillar(void);
 void fopKyM_fastCreate(void);
-void fpcSCtRq_Request(void);
 void func_8001F90C(void);
 void memalignB__3cMlFiUl(void);
 void fopKyM_CreateAppend__Fv(void);
@@ -95,11 +96,8 @@ void fopKyM_Delete(void* param_1) {
     fpcM_Delete(param_1);
 }
 
-// fopKyM_Create__FsPFPv_iPv
-// fopKyM_Create(s16, int (*)(void*), void*)
-asm void fopKyM_Create(s16, int (*)(void*), void*) {
-    nofralloc
-#include "f/f_op/f_op_kankyo_mng/asm/func_8001F768.s"
+void fopKyM_Create(s16 param_1, fopKyMCreateFunc param_2, void* param_3) {
+    fpcSCtRq_Request(fpcLy_CurrentLayer(),param_1,(stdCreateFunc)param_2,0,param_3);
 }
 
 // fopKyM_create__FsiP4cXyzP4cXyzPFPv_i
