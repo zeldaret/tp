@@ -756,8 +756,11 @@ SECTIONS {
 "__vt__20J3DAnmVisibilityFull" = 0x803cf274;
 
 "__dt__7JKRFileFv" = 0x802D7B90;
-"lbl_8039CE50" = 0x8039CE50;
-"lbl_803739A0" = 0x803739A0;
+
+/* --- @stringBase labels --- */
+"lbl_8039CE50" = 0x8039CE50; /* JKRSolidHeap @stringBase0 */
+"lbl_803739A0" = 0x803739A0; /* m_Do_main    @stringBase0 */
+"lbl_8039A4A0" = 0x8039A4A0; /* DynamicLink  @stringBase0 */
 }
 FORCEACTIVE {
  getParentPane__7J2DPaneFv
@@ -3352,8 +3355,8 @@ func_80262F28
 func_80262C5C
 func_80262C0C
 do_unload__20DynamicModuleControlFv
-func_80262AFC
-func_802627E8
+do_load_async__20DynamicModuleControlFv
+do_load__20DynamicModuleControlFv
 }
 /*
 .init 80003100 - 80005600

@@ -239,7 +239,7 @@ void func_8001505C(void);
 void func_80015084(void);
 void func_800150AC(void);
 void func_80361F14(void);
-void func_803665BC(void);
+void snprintf(void);
 void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
 void mDoExt_3DlineMatSortPacket_NS_dtor(void);
 void mDoExt_3Dline_c(void);

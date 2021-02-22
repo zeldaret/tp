@@ -3,11 +3,11 @@
 
 """
 
-This script will extract literals and strings data 
-from sections located in the baserom.dol. 
+This script will extract literals and strings data
+from sections located in the baserom.dol.
 Useful when trying to match .rodata and .sdata2.
 
-Usage: 
+Usage:
 ./tools/section2cpp.py --section .rodata --string --object JKRSolidHeap.o
 
 """
@@ -137,13 +137,13 @@ def str_encoding(data):
         data.decode("utf-8")
         return "utf-8"
     except:
-        pass 
+        pass
 
     try:
         data.decode("shift_jisx0213")
         return "shift-jis"
     except:
-        pass 
+        pass
 
     return None
 
@@ -153,7 +153,7 @@ def encoding_char_list(encoding, data):
             return escape(data.decode("shift_jisx0213"))
         except:
             pass
-    return [ str(bytes([x]))[2:-1].replace("\"", "\\\"") for x in data ]    
+    return [ str(bytes([x]))[2:-1].replace("\"", "\\\"") for x in data ]
 
 def raw_string(data):
     return "".join(data)
@@ -183,8 +183,8 @@ def escape_char(v):
     elif ord(v) < 32 and ord(v) > 127:
         return "\\x" + hex(v)[2:].upper().rjust(2, '0')
     else:
-        return v        
-        
+        return v
+
 def escape(v):
     return "".join([ escape_char(x) for x in list(v) ])
 
@@ -296,12 +296,12 @@ class ObjectFile:
         last_symbol.padding = self.end - (last_symbol.addr + last_symbol.size)
 
 def find_symbols():
-    file = map_path.open('r') 
-    lines = file.readlines() 
-    
+    file = map_path.open('r')
+    lines = file.readlines()
+
     in_section = False
     last_obj = None
-    for line in lines: 
+    for line in lines:
         data = [ x.strip() for x in line.strip().split(" ") ]
         data = [ x for x in data if len(x) > 0 ]
 
@@ -323,7 +323,7 @@ def find_symbols():
 
         # remove path from object filename
         obj = obj.split("\\")[-1]
-        if last_obj != obj:  
+        if last_obj != obj:
             assert obj not in object_map
             object_map[obj] = ObjectFile(obj)
             last_obj = obj
@@ -360,7 +360,7 @@ class Literal:
         self.name = name
         self.type = type
         self.value = value
-        self.comment = comment  
+        self.comment = comment
 
     def format(self):
         return str(self.value)
@@ -380,7 +380,7 @@ class Label(Literal):
 
     def lines(self):
         return [ "", "", "// " + self.name ]
-    
+
 class Float32Literal(Literal):
     def __init__(self, name, value, comment=None):
         super().__init__(name, "float", value, comment)
@@ -440,7 +440,7 @@ class ArrayLiteral(Literal):
             lines += [ "};" ]
 
         if lines and self.comment:
-            lines[0] = lines[0].ljust(90, ' ') + " // " +  self.comment 
+            lines[0] = lines[0].ljust(90, ' ') + " // " +  self.comment
         return lines
 
 class StringLiteral(Literal):
@@ -451,20 +451,20 @@ class StringLiteral(Literal):
 
     def lines(self):
         char_list = encoding_char_list(self.encoding, self.value)
-        one_line = "static const %s %s = \"%s\";" % (self.type, self.name, raw_string(char_list))
+        one_line = "static const %s* %s = \"%s\";" % (self.type, self.name, raw_string(char_list))
 
         lines = []
         if len(one_line) < 90:
             lines += [ one_line ]
         else:
-            lines += [ "static const %s %s = " % (self.type, self.name) ]
+            lines += [ "static const %s* %s = " % (self.type, self.name) ]
             data_chunks = chunks(char_list, 16)
             for chunk in data_chunks:
                 lines += [ "    \"%s\"" % raw_string(chunk) ]
             lines[-1] += ";"
 
         if lines and self.comment:
-            lines[0] = lines[0].ljust(90, ' ') + " // " +  self.comment 
+            lines[0] = lines[0].ljust(90, ' ') + " // " +  self.comment
         return lines
 
 def output_cpp():
@@ -528,15 +528,15 @@ def output_cpp():
                     u32_data = struct.unpack('>I', data)[0]
                     s32_data = struct.unpack('>i', data)[0]
                     float_data = bytes2float32(data)
-                    
+
                     if s32_data == 0 or (s32_data >= -4096 and s32_data <= 4096):
-                        lit =   S32Literal(label, s32_data) 
+                        lit =   S32Literal(label, s32_data)
                     elif u32_data == 0 or (u32_data < 4096):
-                        lit =   U32Literal(label, u32_data) 
+                        lit =   U32Literal(label, u32_data)
                     elif float_data in float32_exact:
                         lit = FractionFloat32Literal(label, float32_exact[float_data], "%sf %s" % (float_data, hex(u32_data)))
                     elif is_nice_float32(float_data):
-                        lit = Float32Literal(label, float_data, hex(u32_data)) 
+                        lit = Float32Literal(label, float_data, hex(u32_data))
 
                 elif len(data) == 8:
                     u64_data = struct.unpack('>Q', data)[0]
@@ -544,17 +544,17 @@ def output_cpp():
                     double_data = bytes2float64(data)
 
                     if u64_data == 0x4330000000000000:
-                        lit = Float64Literal(label, double_data, "%s | u32 to float (compiler-generated)" % hex(u64_data)) 
+                        lit = Float64Literal(label, double_data, "%s | u32 to float (compiler-generated)" % hex(u64_data))
                     elif u64_data == 0x4330000080000000:
-                        lit = Float64Literal(label, double_data, "%s | s32 to float (compiler-generated)" % hex(u64_data)) 
+                        lit = Float64Literal(label, double_data, "%s | s32 to float (compiler-generated)" % hex(u64_data))
                     elif s64_data == 0 or (s64_data >= -4096 and s64_data <= 4096):
-                        lit =   S64Literal(label, s64_data) 
+                        lit =   S64Literal(label, s64_data)
                     elif u64_data == 0 or (u64_data < 4096):
-                        lit =   U64Literal(label, u64_data) 
+                        lit =   U64Literal(label, u64_data)
                     elif double_data in float64_exact:
                         lit = FractionFloat64Literal(label, float64_exact[double_data], "%s %s" % (double_data, hex(u64_data)))
                     elif is_nice_float64(double_data):
-                        lit = Float64Literal(label, double_data, hex(u64_data)) 
+                        lit = Float64Literal(label, double_data, hex(u64_data))
 
                 if not lit:
                     lit = ArrayLiteral(label, data)
@@ -563,7 +563,7 @@ def output_cpp():
             if padding:
                 padding_label = "lbl_%s" % (hex(symbol.addr + symbol.size).upper()[2:])
                 literals += [ ArrayLiteral(padding_label, padding, "padding") ]
-    
+
     for lit in literals:
         print(lit)
 

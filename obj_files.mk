@@ -492,7 +492,6 @@ TEXT_O_FILES := 						            \
             $(BUILD_DIR)/asm/d/k/d_k_wmark.o \
             $(BUILD_DIR)/asm/sdata2/d_k_wpillar.o \
             $(BUILD_DIR)/asm/d/k/d_k_wpillar.o \
-            $(BUILD_DIR)/asm/rodata/rodata_DynamicLink.o \
             $(BUILD_DIR)/asm/sdata2/DynamicLink.o \
             $(BUILD_DIR)/src/DynamicLink.o \
             $(BUILD_DIR)/libs/SSystem/SComponent/c_malloc.o \

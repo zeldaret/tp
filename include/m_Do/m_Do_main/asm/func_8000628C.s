@@ -86,7 +86,7 @@ lbl_800063A8:
 /* 800063BC 000032FC  3C 60 80 00 */	lis r3, LOAD_COPYDATE__FPv@ha
 /* 800063C0 00003300  38 63 61 4C */	addi r3, r3, LOAD_COPYDATE__FPv@l
 /* 800063C4 00003304  38 80 00 00 */	li r4, 0
-/* 800063C8 00003308  48 00 F8 AD */	bl mDoDvdThd_callback_c_NS_create
+/* 800063C8 00003308  48 00 F8 AD */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 800063CC 0000330C  48 01 26 D5 */	bl fapGm_Create
 /* 800063D0 00003310  48 01 7A 41 */	bl fopAcM_initManager
 /* 800063D4 00003314  38 00 00 00 */	li r0, 0

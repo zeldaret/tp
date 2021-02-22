@@ -15,7 +15,7 @@ void _restgpr_20(void);
 void _restgpr_28(void);
 void _savegpr_20(void);
 void _savegpr_28(void);
-void func_803665BC(void);
+void snprintf(void);
 void mDoMemCdRWm_BuildHeader(void);
 void mDoMemCdRWm_CalcCheckSum(void);
 void mDoMemCdRWm_CalcCheckSumGameData(void);
