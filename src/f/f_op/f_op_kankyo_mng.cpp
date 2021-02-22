@@ -3,6 +3,7 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "SComponent/c_malloc.h"
 #include "SComponent/c_lib.h"
+#include "f/f_pc/f_pc_manager.h"
 #include "global.h"
 
 // additional symbols needed for f_op_kankyo_mng.cpp
@@ -20,9 +21,6 @@ void fopKyM_Delete(void);
 void fopKyM_create(void);
 void fopKyM_createWpillar(void);
 void fopKyM_fastCreate(void);
-void fpcLy_CurrentLayer(void);
-void fpcM_Delete(void);
-void fpcM_FastCreate(void);
 void fpcSCtRq_Request(void);
 void func_8001F90C(void);
 void memalignB__3cMlFiUl(void);
@@ -93,11 +91,8 @@ f32* createAppend(int param_1, cXyz* param_2, cXyz* param_3) {
     return ptr;
 }
 
-// fopKyM_Delete__FPv
-// fopKyM_Delete(void*)
-asm void fopKyM_Delete(void*) {
-    nofralloc
-#include "f/f_op/f_op_kankyo_mng/asm/func_8001F748.s"
+void fopKyM_Delete(void* param_1) { 
+    fpcM_Delete(param_1);
 }
 
 // fopKyM_Create__FsPFPv_iPv
