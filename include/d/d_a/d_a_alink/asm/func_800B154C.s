@@ -87,7 +87,7 @@ lbl_800B166C:
 /* 800B1690 000AE5D0  38 61 00 08 */ addi r3, r1, 8
 /* 800B1694 000AE5D4  C0 3F 34 20 */ lfs f1, 0x3420(r31)
 /* 800B1698 000AE5D8  38 80 00 00 */ li r4, 0
-/* 800B169C 000AE5DC  4B F6 E1 E1 */ bl fopKyM_createWpillar
+/* 800B169C 000AE5DC  4B F6 E1 E1 */ bl fopKyM_createWpillar__FPC4cXyzfi
 lbl_800B16A0:
 /* 800B16A0 000AE5E0  C0 3F 33 BC */ lfs f1, 0x33bc(r31)
 /* 800B16A4 000AE5E4  C0 1F 33 B8 */ lfs f0, 0x33b8(r31)

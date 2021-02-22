@@ -90,6 +90,7 @@ void SNOW_EFF(void);
 void STAR_EFF_NS_dtor(void);
 void STAR_EFF(void);
 void Z2EnvSeMgr_NS_startNearThunderSe(void);
+void fopKyM_create__FsiP4cXyzP4cXyzPFPv_i(void);
 }
 
 class j3dsys {

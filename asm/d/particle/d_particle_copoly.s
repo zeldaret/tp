@@ -82,7 +82,7 @@ dPaPo_c_NS_checkWaterIn:
 /* 80050DB8 0004DCF8  7F 63 DB 78 */	mr r3, r27
 /* 80050DBC 0004DCFC  FC 20 E8 90 */	fmr f1, f29
 /* 80050DC0 0004DD00  38 80 00 00 */	li r4, 0
-/* 80050DC4 0004DD04  4B FC EA B9 */	bl fopKyM_createWpillar
+/* 80050DC4 0004DD04  4B FC EA B9 */	bl fopKyM_createWpillar__FPC4cXyzfi
 lbl_80050DC8:
 /* 80050DC8 0004DD08  C0 1A 00 30 */	lfs f0, 0x30(r26)
 /* 80050DCC 0004DD0C  FC 1F 00 40 */	fcmpo cr0, f31, f0

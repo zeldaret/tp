@@ -188,7 +188,7 @@ lbl_801AE1E0:
 /* 801AE204 001AB144  38 A0 00 00 */	li r5, 0
 /* 801AE208 001AB148  48 11 9C 61 */	bl Z2EnvSeMgr_NS_startFarThunderSe
 /* 801AE20C 001AB14C  7F E3 FB 78 */	mr r3, r31
-/* 801AE210 001AB150  4B E7 15 39 */	bl fopKyM_Delete
+/* 801AE210 001AB150  4B E7 15 39 */	bl fopKyM_Delete__FPv
 lbl_801AE214:
 /* 801AE214 001AB154  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801AE218 001AB158  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

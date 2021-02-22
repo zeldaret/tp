@@ -1330,6 +1330,8 @@ void Z2Creature_NS_updateAnime(void);
 void Z2SeqMgr_NS_bgmSetSwordUsing(void);
 void Z2SeqMgr_NS_taktModeMute(void);
 void Z2SeqMgr_NS_taktModeMuteOff(void);
+void fopKyM_create__FsiP4cXyzP4cXyzPFPv_i(void);
+void fopKyM_createWpillar__FPC4cXyzfi(void);
 }
 
 class j3dsys {

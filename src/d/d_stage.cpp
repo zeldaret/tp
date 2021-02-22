@@ -75,6 +75,7 @@ void stage_tgsc_data_class_NS_dtor(void);
 void stage_tgsc_data_class(void);
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
 void fopScnM_CreateReq__FssUsUl(void);
+void fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i(void);
 }
 
 extern char lbl_80378A50[0x3F8];  // d_stage string literals
