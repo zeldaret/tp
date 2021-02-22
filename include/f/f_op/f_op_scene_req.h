@@ -7,5 +7,6 @@ void fopScnRq_ReRequest(void);
 }
 
 u32 fopScnRq_Request(int,scene_class*,s16,void*,s16,u16);
+u32 fopScnRq_ReRequest(unsigned int, s16, void*);
 
 #endif

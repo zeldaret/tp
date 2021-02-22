@@ -5,9 +5,9 @@
 
 void* fopScnM_SearchByID(unsigned int id);
 int fopScnM_ChangeReq(scene_class*, s16, s16, u16);
-void fopScnM_DeleteReq(scene_class*);
+unsigned int fopScnM_DeleteReq(scene_class*);
 void fopScnM_CreateReq(s16, s16, u16, u32);
-void fopScnM_ReRequest(s16, u32) ;
+u32 fopScnM_ReRequest(s16, u32);
 void fopScnM_Management(void);
 void fopScnM_Init(void);
 

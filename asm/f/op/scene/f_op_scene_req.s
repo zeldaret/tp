@@ -205,8 +205,8 @@ lbl_8001F0E4:
 /* 8001F0F4 0001C034  38 21 00 20 */	addi r1, r1, 0x20
 /* 8001F0F8 0001C038  4E 80 00 20 */	blr 
 
-.global fopScnRq_ReRequest
-fopScnRq_ReRequest:
+.global fopScnRq_ReRequest__FUisPv
+fopScnRq_ReRequest__FUisPv:
 /* 8001F0FC 0001C03C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001F100 0001C040  7C 08 02 A6 */	mflr r0
 /* 8001F104 0001C044  90 01 00 14 */	stw r0, 0x14(r1)
