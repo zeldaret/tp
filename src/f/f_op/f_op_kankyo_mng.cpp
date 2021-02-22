@@ -100,11 +100,12 @@ void fopKyM_Create(s16 param_1, fopKyMCreateFunc param_2, void* param_3) {
     fpcSCtRq_Request(fpcLy_CurrentLayer(),param_1,(stdCreateFunc)param_2,0,param_3);
 }
 
-// fopKyM_create__FsiP4cXyzP4cXyzPFPv_i
-// fopKyM_create(s16, int, cXyz*, cXyz*, int (*)(void*))
-asm void fopKyM_create(s16, int, cXyz*, cXyz*, int (*)(void*)) {
-    nofralloc
-#include "f/f_op/f_op_kankyo_mng/asm/func_8001F7B8.s"
+u32 fopKyM_create(s16 param_1, int param_2, cXyz* param_3, cXyz* param_4, fopKyMCreateFunc param_5) {
+    float* tmp = createAppend(param_2,param_3,param_4);
+    if (!tmp) {
+        return -1;
+    }
+    fopKyM_Create(param_1,param_5,(void*)tmp);
 }
 
 // fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i
