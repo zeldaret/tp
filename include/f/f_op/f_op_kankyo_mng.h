@@ -1,8 +1,8 @@
 #ifndef F_F_OP_KANKYO_MNG_H_
 #define F_F_OP_KANKYO_MNG_H_
 
-#include "dolphin/types.h"
 #include "SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 typedef int (*fopKyMCreateFunc)(void*);
 
