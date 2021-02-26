@@ -9,7 +9,7 @@
 #include "msl_c/math.h"
 
 extern "C" {
-double func_8036CA54(double);
+double sqrt(double);
 int dKy_daynight_check(void);
 int func_8036608C(const void*, const void*, u32);
 int strcmp(const char*, const char*);

@@ -10,6 +10,7 @@
 #include "d/d_stage/d_stage.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "msl_c/math.h"
 #include "msl_c/string.h"
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
@@ -103,7 +104,7 @@ void dPa_control_c_NS_level_c_NS_getEmitter(void);
 void dPa_control_c_NS_setSimpleFoot(void);
 void dPa_control_c_NS_set_X1_(void);
 void dPath_GetPolyRoomPathVec(void);
-void dStage_getName2(void);
+const char* dStage_getName2(s16, s8);
 void daTagStream_c_NS_checkArea(void);
 void enemySearchJugge__FPvPv(void);
 void event_second_actor__FUs(void);
@@ -176,7 +177,7 @@ void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData(void);
 void fopAcM_setRoomLayer__FPvi(void);
 void fopAcM_setStageLayer__FPv(void);
 void waterCheck__11fopAcM_wt_cFPC4cXyz(void);
-void fopAc_IsActor(void);
+BOOL fopAc_IsActor(void*);
 void fopScnM_SearchByID(void);
 void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz(void);
 void fopAcM_SearchByName__FsPP10fopAc_ac_c(void);
@@ -235,7 +236,6 @@ void getFreeSize__7JKRHeapCFv(void);
 
 s32 check_itemno__Fi(int);
 int abs(int);
-void func_8036CA54(void);
 char* strcpy(char*, const char*);
 void dBgS_ObjLinChk_NS_dtor(void);
 void dBgS_GndChk_NS_dtor(void);
@@ -277,7 +277,7 @@ extern f32 lbl_80451C00;  // f_op_actor_mng::@4263, 10.0
 extern f32 lbl_80451C04;  // f_op_actor_mng::@4645, 0.0
 extern u8 lbl_80451C08;
 extern u8 lbl_80451C10;
-extern u8 lbl_80451C18;
+extern f64 lbl_80451C18;
 extern u8 lbl_80451C20;
 extern u8 lbl_80451C24;
 extern u8 lbl_80451C28;
@@ -1254,24 +1254,27 @@ s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int param_3, u8 p
 }
 
 // enemySearchJugge__FPvPv
-// enemySearchJugge(void*, void*)
-asm s32 enemySearchJugge(void*, void*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C9CC.s"
+void* enemySearchJugge(void* pActor, void* pData) {
+    if (pActor != NULL && fopAc_IsActor(pActor) &&
+        static_cast<fopAc_ac_c*>(pActor)->unk_0x496 == 2) {
+        return pActor;
+    } else {
+        return NULL;
+    }
 }
 
 // fopAcM_myRoomSearchEnemy__FSc
 // fopAcM_myRoomSearchEnemy(s8)
-asm s32 fopAcM_myRoomSearchEnemy(s8) {
-    nofralloc
+asm s32 fopAcM_myRoomSearchEnemy(s8){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001CA1C.s"
 }
 
 // fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
-// fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8)
-asm s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001CAD8.s"
+s32 fopAcM_createDisappear(const fopAc_ac_c* pActor, const cXyz* pPos, u8 param_3, u8 param_4,
+                           u8 param_5) {
+    s8 roomNo = pActor->mRoomNo;
+    return fopAcM_GetID(fopAcM_fastCreate(0x139, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
+                                          pPos, roomNo, &pActor->mAngle, NULL, 0xFF, NULL, NULL));
 }
 
 // fopAcM_setCarryNow__FP10fopAc_ac_ci
@@ -1325,16 +1328,13 @@ asm s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dK
 
 // fopAcM_effHamonSet__FPUlPC4cXyzff
 // fopAcM_effHamonSet(u32*, const cXyz*, f32, f32)
-asm s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32) {
-    nofralloc
+asm s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001D10C.s"
 }
 
 // fopAcM_riverStream__FP4cXyzPsPff
-// fopAcM_riverStream(cXyz*, s16*, f32*, f32)
-asm s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D1F4.s"
+s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32) {
+    return 0;
 }
 
 // fopAcM_carryOffRevise__FP10fopAc_ac_c
@@ -1345,17 +1345,27 @@ asm s32 fopAcM_carryOffRevise(fopAc_ac_c*) {
 }
 
 // vectle_calc__FPC10DOUBLE_POSP4cXyz
-// vectle_calc(const DOUBLE_POS*, cXyz*)
-asm void vectle_calc(const DOUBLE_POS*, cXyz*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D32C.s"
+void vectle_calc(const DOUBLE_POS* pDpos, cXyz* pOut) {
+    f64 len = sqrt(pDpos->x * pDpos->x + pDpos->y * pDpos->y + pDpos->z * pDpos->z);
+    if (DOUBLE_LABEL(/* 0.0 */ lbl_80451C18) != len) {
+        pOut->x = pDpos->x / len;
+        pOut->y = pDpos->y / len;
+        pOut->z = pDpos->z / len;
+    } else {
+        f32 tmp0 = FLOAT_LABEL(lbl_80451C04);
+        pOut->x = tmp0;
+        pOut->y = tmp0;
+        pOut->z = tmp0;
+    }
 }
 
 // get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz
-// get_vectle_calc(const cXyz*, const cXyz*, cXyz*)
-asm void get_vectle_calc(const cXyz*, const cXyz*, cXyz*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D3D4.s"
+void get_vectle_calc(const cXyz* pXyzA, const cXyz* pXyzB, cXyz* pOut) {
+    DOUBLE_POS dPos;
+    dPos.x = pXyzB->x - pXyzA->x;
+    dPos.y = pXyzB->y - pXyzA->y;
+    dPos.z = pXyzB->z - pXyzA->z;
+    vectle_calc(&dPos, pOut);
 }
 
 const Mtx lbl_80378898 = {
@@ -1372,10 +1382,9 @@ asm void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*) {
 }
 
 // fopAcM_getProcNameString__FPC10fopAc_ac_c
-// fopAcM_getProcNameString(const fopAc_ac_c*)
-asm const char* fopAcM_getProcNameString(const fopAc_ac_c*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D5A4.s"
+const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
+    const char* name = dStage_getName2(pActor->mBsTypeId, pActor->unk_0x499);
+    return name != NULL ? name : "UNKOWN";
 }
 
 // fopAcM_findObjectCB__FPC10fopAc_ac_cPv
