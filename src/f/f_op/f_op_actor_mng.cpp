@@ -6,9 +6,11 @@
 #include "SComponent/c_lib.h"
 #include "SComponent/c_malloc.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_item/d_item/d_item.h"
 #include "d/d_stage/d_stage.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "msl_c/math.h"
 #include "msl_c/string.h"
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
@@ -72,7 +74,6 @@ void cM3dGPla_NS_dtor(void);
 void cM_atan2s__Fff(void);
 void cM_rndFX__Ff(void);
 void cM_rndF__Ff(void);
-void check_itemno__Fi(void);
 void createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi(void);
 void dBgS_GndChk(void);
 void dBgS_LinChk(void);
@@ -103,7 +104,7 @@ void dPa_control_c_NS_level_c_NS_getEmitter(void);
 void dPa_control_c_NS_setSimpleFoot(void);
 void dPa_control_c_NS_set_X1_(void);
 void dPath_GetPolyRoomPathVec(void);
-void dStage_getName2(void);
+const char* dStage_getName2(s16, s8);
 void daTagStream_c_NS_checkArea(void);
 void enemySearchJugge__FPvPv(void);
 void event_second_actor__FUs(void);
@@ -176,7 +177,7 @@ void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData(void);
 void fopAcM_setRoomLayer__FPvi(void);
 void fopAcM_setStageLayer__FPv(void);
 void waterCheck__11fopAcM_wt_cFPC4cXyz(void);
-void fopAc_IsActor(void);
+BOOL fopAc_IsActor(void*);
 void fopScnM_SearchByID(void);
 void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz(void);
 void fopAcM_SearchByName__FsPP10fopAc_ac_c(void);
@@ -232,8 +233,9 @@ void normalizeZP__4cXyzFv(void);
 void onActor__10dSv_info_cFii(void);
 void vectle_calc__FPC10DOUBLE_POSP4cXyz(void);
 void getFreeSize__7JKRHeapCFv(void);
+
+s32 check_itemno__Fi(int);
 int abs(int);
-void func_8036CA54(void);
 char* strcpy(char*, const char*);
 void dBgS_ObjLinChk_NS_dtor(void);
 void dBgS_GndChk_NS_dtor(void);
@@ -275,19 +277,19 @@ extern f32 lbl_80451C00;  // f_op_actor_mng::@4263, 10.0
 extern f32 lbl_80451C04;  // f_op_actor_mng::@4645, 0.0
 extern u8 lbl_80451C08;
 extern u8 lbl_80451C10;
-extern u8 lbl_80451C18;
+extern f64 lbl_80451C18;
 extern u8 lbl_80451C20;
 extern u8 lbl_80451C24;
 extern u8 lbl_80451C28;
-extern u8 lbl_80451C2C;
-extern u8 lbl_80451C30;
-extern u8 lbl_80451C34;
-extern u8 lbl_80451C38;
-extern u8 lbl_80451C3C;
-extern u8 lbl_80451C40;
-extern u8 lbl_80451C44;
-extern u8 lbl_80451C48;
-extern u8 lbl_80451C4C;
+extern f32 lbl_80451C2C;  // 32767.0f
+extern f32 lbl_80451C30;  // 2.0f
+extern f32 lbl_80451C34;  // 8192.0f
+extern f32 lbl_80451C38;  // 1.0f
+extern f32 lbl_80451C3C;  // 0.3f
+extern f32 lbl_80451C40;  // 0.2f
+extern f32 lbl_80451C44;  // 2048.0f
+extern f32 lbl_80451C48;  // 100.0f
+extern f32 lbl_80451C4C;  // 50.0f
 extern u8 lbl_80451C50;
 extern u8 lbl_80451C54;
 extern u8 lbl_80451C58;
@@ -984,102 +986,295 @@ asm s32 fopAcM_createItemFromEnemyID(u8, const cXyz*, int, int, const csXyz*, co
 // fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, const cXyz*, f32*,
 // f32*, bool)
 asm s32 fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, const cXyz*, f32*,
-                                   f32*, bool) {
-    nofralloc
+                                   f32*, bool){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001BF64.s"
 }
 
 // fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc
-// fopAcM_createDemoItem(const cXyz*, int, int, const csXyz*, int, const cXyz*, u8)
-asm s32 fopAcM_createDemoItem(const cXyz*, int, int, const csXyz*, int, const cXyz*, u8) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C078.s"
+s32 fopAcM_createDemoItem(const cXyz* pPos, int pItemNo, int pItemBitNo, const csXyz* pRot,
+                          int param_5, const cXyz* param_6, u8 param_7) {
+    if (pItemNo == 0xFF) {
+        return -1;
+    } else {
+        // TODO: actor enum
+        return fopAcM_create(0x21d,
+                             (pItemNo & 0xFF) | (pItemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
+                             pPos, param_5, pRot, param_6, -1);
+    }
 }
 
 // fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi
-// fopAcM_createItemForBoss(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32, int)
-asm s32 fopAcM_createItemForBoss(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32, int) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C0D4.s"
+s32 fopAcM_createItemForBoss(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                             const cXyz* param_5, f32 param_6, f32 param_7, int param_8) {
+    fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(
+        fopAcM_fastCreate(0x21b, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), pPos, param_3,
+                          pRot, param_5, -1, NULL, NULL));
+    if (actor != NULL) {
+        actor->mSpeedF = param_6;
+        actor->mSpeed.y = param_7;
+    }
+    return fopAcM_GetID(actor);
 }
 
 // fopAcM_createItemForMidBoss__FPC4cXyziiPC5csXyzPC4cXyzii
-// fopAcM_createItemForMidBoss(const cXyz*, int, int, const csXyz*, const cXyz*, int, int)
-asm s32 fopAcM_createItemForMidBoss(const cXyz*, int, int, const csXyz*, const cXyz*, int, int) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C174.s"
+s32 fopAcM_createItemForMidBoss(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                                const cXyz* param_5, int param_6, int param_7) {
+    return fopAcM_createItem(pPos, param_2, param_7, param_3, &csXyz(lbl_80451160), param_5, 0x6);
 }
 
 // fopAcM_createItemForDirectGet__FPC4cXyziiPC5csXyzPC4cXyzff
-// fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32)
-asm s32 fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C1B8.s"
+void* fopAcM_createItemForDirectGet(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                                    const cXyz* param_5, f32 param_6, f32 param_7) {
+    return fopAcM_fastCreateItem(pPos, param_2, param_3, pRot, param_5, &param_6, &param_7, -1, 0x7,
+                                 NULL);
 }
 
 // fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff
-// fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32)
-asm s32 fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C1FC.s"
+void* fopAcM_createItemForSimpleDemo(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                                     const cXyz* param_5, f32 param_6, f32 param_7) {
+    return fopAcM_fastCreateItem(pPos, param_2, param_3, pRot, param_5, &param_6, &param_7, -1, 0x4,
+                                 NULL);
+}
+
+inline u32 maskShift(int val, int bits, int shift) {
+    return (val & ((1 << bits) - 1)) << shift;
+}
+
+inline u32 makeItemParams(int iNo, int p8, int unk, int p9) {
+    // iNo = ;
+    // u32 part1 = (p8 & 0xFF) << 0x8;
+    // iNo &= 0xFF;
+    // u32 part2 = (iNo);
+    // u32 part3 = (unk & 0xFF) << 0x10;
+    // u32 part4 = ((p9 & 0xF) << 0x18);
+    // return part1 | part2 | part3 | part4;
+    // u32 part2 = (p8 & 0xFF) << 0x8;
+    // u32 part2 = maskShift(p8, 8, 0x8);
+    // part2 |= maskShift(iNo, 8, 0);
+    // part2 |= maskShift(unk, 8, 0x10);
+    // part2 |= maskShift(p9, 4, 0x18);
+    // return part2;
+    return maskShift(p8, 8, 0x8) | maskShift(iNo, 8, 0) | maskShift(unk, 8, 0x10) |
+           maskShift(p9, 4, 0x18);
+}
+
+inline u32 makeItemParams2(int iNo, int p8, int unk, int p9) {
+    return makeItemParams(check_itemno(iNo), p8, unk, p9);
 }
 
 // fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi
-// fopAcM_createItem(const cXyz*, int, int, int, const csXyz*, const cXyz*, int)
-asm s32 fopAcM_createItem(const cXyz*, int, int, int, const csXyz*, const cXyz*, int) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C240.s"
+s32 fopAcM_createItem(const cXyz* pPos, int param_2, int param_3, int param_4, const csXyz* pRot,
+                      const cXyz* param_6, int param_7) {
+    if (param_2 == 0xFF) {
+        return 0xFFFFFFFF;
+    }
+    csXyz tmps(lbl_80451160);
+    if (pRot != NULL) {
+        tmps = *pRot;
+    } else {
+        tmps.mY = cM_rndFX(FLOAT_LABEL(lbl_80451C2C));
+    }
+    tmps.mZ = 0xFF;
+    u32 itemActorParams = makeItemParams(check_itemno(param_2), param_3, 0xFF, param_7);
+    switch (param_2) {
+    case RECOVERY_FAILY:
+        return fopAcM_create(0x13f, 0xFFFFFFFF, pPos, param_4, pRot, param_6, -1);
+    case KAKERA_HEART:
+    case UTAWA_HEART:
+        return fopAcM_create(0x21b, itemActorParams, pPos, param_4, pRot, param_6, -1);
+    case TRIPLE_HEART:
+        for (int i = 0; i < 2; i++) {
+            fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
+            tmps.mY = cM_rndFX(FLOAT_LABEL(lbl_80451C2C));
+        }
+    default:
+        return fopAcM_create(0x218, itemActorParams, pPos, param_4, &tmps, param_6, -1);
+    }
 }
 
 // fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz
-// fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*)
-asm s32 fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C3E0.s"
+void* fopAcM_fastCreateItem2(const cXyz* pPos, int param_2, int param_3, int param_4, int param_5,
+                             const csXyz* pRot, const cXyz* param_7) {
+    csXyz tmps(lbl_80451160);
+    if (param_2 == 0xFF) {
+        return NULL;
+    }
+    if (pRot != NULL) {
+        tmps = *pRot;
+    } else {
+        tmps.mY = cM_rndFX(FLOAT_LABEL(/* 32767.0f */ lbl_80451C2C));
+    }
+    tmps.mZ = 0xFF;
+    int tmpItemNo = check_itemno(param_2);
+    u32 itemActorParams =
+        (param_3 & 0xFF) << 0x8 | (tmpItemNo & 0xFF) | 0xFF << 0x10 | ((param_5 & 0xF) << 0x18);
+    switch (param_2) {
+    case RECOVERY_FAILY:
+        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, param_4, pRot, param_7, -1, NULL, NULL);
+    case KAKERA_HEART:
+    case UTAWA_HEART:
+        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, param_4, pRot, param_7, -1, NULL,
+                                 NULL);
+    case TRIPLE_HEART:
+        for (int i = 0; i < 2; i++) {
+            fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
+                              NULL);
+            tmps.mY = cM_rndFX(FLOAT_LABEL(lbl_80451C2C));
+        }
+    default:
+        return fopAcM_fastCreate(0x218, itemActorParams, pPos, param_4, &tmps, param_7, -1, NULL,
+                                 NULL);
+    }
+}
+
+inline void make_prm_item(u32* actorParams, u8 p1, u8 p2, u8 p3) {
+    *actorParams = (p2 << 8) | p1 | (0xFF << 0x10) | ((p3 & 0xF) << 0x18) | 0;
 }
 
 // fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i
-// fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int, int
-// (*)(void*))
-asm s32 fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int,
-                              int, createFunc) {
+#ifdef NON_MATCHING
+void* fopAcM_fastCreateItem(const cXyz* pPos, int param_2, int param_3, const csXyz* pRot,
+                            const cXyz* param_5, f32* param_6, f32* param_7, int param_8,
+                            int param_9, createFunc param_10) {
+    // regalloc: r30 -> r29, r31 -> r30, r29 -> r31
+    if (param_2 == 0xFF) {
+        return NULL;
+    }
+    csXyz tmps;
+    u32 tmpItemNo = check_itemno(param_2);
+    // u32 itemActorParams;
+    // make_prm_item(&itemActorParams, tmpItemNo, param_8, param_9);
+    u32 itemActorParams =
+        makeItemParams(tmpItemNo, param_8, 0xFF, param_9);  // uses r0 instead of r3
+    if (param_6 != NULL && isHeart(param_2) != false) {
+        *param_6 = FLOAT_LABEL(/* 2.0f */ lbl_80451C30) * *param_6;
+    }
+    switch (param_2) {
+    case RECOVERY_FAILY:
+        return fopAcM_fastCreate(0x13f, 0xFFFFFFFF, pPos, param_3, pRot, param_5, -1, NULL, NULL);
+    case KAKERA_HEART:
+    case UTAWA_HEART:
+        return fopAcM_fastCreate(0x21b, itemActorParams, pPos, param_3, pRot, param_5, -1, NULL,
+                                 NULL);
+    case TRIPLE_HEART:
+        for (int i = 0; i < 2; i++) {
+            if (pRot != NULL) {
+                tmps.mX = pRot->mX;
+                tmps.mY = pRot->mY;
+                tmps.mZ = pRot->mZ;
+            } else {
+                tmps.mX = lbl_80451160.mX;
+                tmps.mY = lbl_80451160.mY;
+                tmps.mZ = lbl_80451160.mZ;
+            }
+            tmps.mZ = 0xFF;
+            tmps.mY += (s16)cM_rndFX(FLOAT_LABEL(/* 8192.0f */ lbl_80451C34));
+            fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
+                0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+            if (actor != NULL) {
+                if (param_6 != NULL) {
+                    actor->mSpeedF = *param_6 * (FLOAT_LABEL(/* 1.0f */ lbl_80451C38) +
+                                                 cM_rndFX(FLOAT_LABEL(/* 0.3f */ lbl_80451C3C)));
+                }
+                if (param_7 != NULL) {
+                    actor->mSpeed.y = *param_7 * (FLOAT_LABEL(/* 1.0f */ lbl_80451C38) +
+                                                  cM_rndFX(FLOAT_LABEL(/* 0.2f */ lbl_80451C40)));
+                }
+            }
+        }
+    default:
+        if (pRot != NULL) {
+            tmps.mX = pRot->mX;
+            tmps.mY = pRot->mY;
+            tmps.mZ = pRot->mZ;
+        } else {
+            tmps.mX = lbl_80451160.mX;
+            tmps.mY = lbl_80451160.mY;
+            tmps.mZ = lbl_80451160.mZ;
+        }
+        tmps.mZ = 0xFF;
+        fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(fopAcM_fastCreate(
+            0x218, itemActorParams, pPos, param_3, &tmps, param_5, -1, param_10, NULL));
+        if (actor != NULL) {
+            if (param_6 != NULL) {
+                actor->mSpeedF = *param_6;
+            }
+            if (param_7 != NULL) {
+                actor->mSpeed.y = *param_7;
+            }
+        }
+        return actor;
+    }
+}
+#else
+asm void* fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int,
+                                int, createFunc) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001C5B0.s"
 }
+#endif
+
+inline void make_prm_bokkuri(u32* pActorParams, csXyz* pRot, u8 param_2, u8 param_3, u8 param_4,
+                             u8 param_5, u8 param_6) {
+    pRot->mX = (param_4 << 0x8) | (param_3 & 0xFF);
+    pRot->mZ = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
+}
 
 // fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
-// fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int)
-asm s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C870.s"
+s32 fopAcM_createBokkuri(u16 param_1, const cXyz* pPos, int param_3, int param_4, int param_5,
+                         const cXyz* param_6, int param_7, int param_8) {
+    csXyz tmps(0, 0, 0);
+    if (param_6 != NULL) {
+        tmps.mY = param_6->atan2sX_Z();
+        tmps.mY += static_cast<s16>(FLOAT_LABEL(/* 2048.0f */ lbl_80451C44) *
+                                    cM_rndFX(FLOAT_LABEL(/* 1.0f */ lbl_80451C38)));
+        param_8 = 1;
+    }
+    u32 actorParams = 0;
+    make_prm_bokkuri(&actorParams, &tmps, 6, param_3, param_4, param_7, param_8);
+    return fopAcM_create(0x2fc, param_1, actorParams, pPos, param_5, &tmps, NULL, 0xFF, NULL);
+}
+
+inline void make_prm_warp_hole(u32* actorParams, u8 p1, u8 p2, u8 p3) {
+    u32 pp1 = (p3 << 0x8);
+    u32 pp2 = (p2 << 0x10);
+    u32 pp3 = (p1 << 0x1B) | 0x170000FF;
+    *actorParams = pp2 | pp3 | pp1;
 }
 
 // fopAcM_createWarpHole__FPC4cXyzPC5csXyziUcUcUc
-// fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8)
-asm s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C95C.s"
+s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int param_3, u8 param_4, u8 param_5,
+                          u8 param_6) {
+    if (param_6 == 0xFF) {
+        param_6 = param_4;
+    }
+    u32 actorParams;
+    make_prm_warp_hole(&actorParams, param_5, param_6, param_4);
+    return fopAcM_create(0x163, actorParams, pPos, param_3, pRot, NULL, -1);
 }
 
 // enemySearchJugge__FPvPv
-// enemySearchJugge(void*, void*)
-asm s32 enemySearchJugge(void*, void*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001C9CC.s"
+void* enemySearchJugge(void* pActor, void* pData) {
+    if (pActor != NULL && fopAc_IsActor(pActor) &&
+        static_cast<fopAc_ac_c*>(pActor)->unk_0x496 == 2) {
+        return pActor;
+    } else {
+        return NULL;
+    }
 }
 
 // fopAcM_myRoomSearchEnemy__FSc
 // fopAcM_myRoomSearchEnemy(s8)
-asm s32 fopAcM_myRoomSearchEnemy(s8) {
-    nofralloc
+asm s32 fopAcM_myRoomSearchEnemy(s8){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001CA1C.s"
 }
 
 // fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
-// fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8)
-asm s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001CAD8.s"
+s32 fopAcM_createDisappear(const fopAc_ac_c* pActor, const cXyz* pPos, u8 param_3, u8 param_4,
+                           u8 param_5) {
+    s8 roomNo = pActor->mRoomNo;
+    return fopAcM_GetID(fopAcM_fastCreate(0x139, (param_5 << 0x10) | (param_3 << 0x8) | param_4,
+                                          pPos, roomNo, &pActor->mAngle, NULL, 0xFF, NULL, NULL));
 }
 
 // fopAcM_setCarryNow__FP10fopAc_ac_ci
@@ -1133,16 +1328,13 @@ asm s32 fopAcM_effSmokeSet1(u32*, u32*, const cXyz*, const csXyz*, f32, const dK
 
 // fopAcM_effHamonSet__FPUlPC4cXyzff
 // fopAcM_effHamonSet(u32*, const cXyz*, f32, f32)
-asm s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32) {
-    nofralloc
+asm s32 fopAcM_effHamonSet(u32*, const cXyz*, f32, f32){nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001D10C.s"
 }
 
 // fopAcM_riverStream__FP4cXyzPsPff
-// fopAcM_riverStream(cXyz*, s16*, f32*, f32)
-asm s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D1F4.s"
+s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32) {
+    return 0;
 }
 
 // fopAcM_carryOffRevise__FP10fopAc_ac_c
@@ -1153,17 +1345,27 @@ asm s32 fopAcM_carryOffRevise(fopAc_ac_c*) {
 }
 
 // vectle_calc__FPC10DOUBLE_POSP4cXyz
-// vectle_calc(const DOUBLE_POS*, cXyz*)
-asm void vectle_calc(const DOUBLE_POS*, cXyz*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D32C.s"
+void vectle_calc(const DOUBLE_POS* pDpos, cXyz* pOut) {
+    f64 len = sqrt(pDpos->x * pDpos->x + pDpos->y * pDpos->y + pDpos->z * pDpos->z);
+    if (DOUBLE_LABEL(/* 0.0 */ lbl_80451C18) != len) {
+        pOut->x = pDpos->x / len;
+        pOut->y = pDpos->y / len;
+        pOut->z = pDpos->z / len;
+    } else {
+        f32 tmp0 = FLOAT_LABEL(lbl_80451C04);
+        pOut->x = tmp0;
+        pOut->y = tmp0;
+        pOut->z = tmp0;
+    }
 }
 
 // get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz
-// get_vectle_calc(const cXyz*, const cXyz*, cXyz*)
-asm void get_vectle_calc(const cXyz*, const cXyz*, cXyz*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D3D4.s"
+void get_vectle_calc(const cXyz* pXyzA, const cXyz* pXyzB, cXyz* pOut) {
+    DOUBLE_POS dPos;
+    dPos.x = pXyzB->x - pXyzA->x;
+    dPos.y = pXyzB->y - pXyzA->y;
+    dPos.z = pXyzB->z - pXyzA->z;
+    vectle_calc(&dPos, pOut);
 }
 
 const Mtx lbl_80378898 = {
@@ -1180,10 +1382,9 @@ asm void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*) {
 }
 
 // fopAcM_getProcNameString__FPC10fopAc_ac_c
-// fopAcM_getProcNameString(const fopAc_ac_c*)
-asm const char* fopAcM_getProcNameString(const fopAc_ac_c*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001D5A4.s"
+const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
+    const char* name = dStage_getName2(pActor->mBsTypeId, pActor->unk_0x499);
+    return name != NULL ? name : "UNKOWN";
 }
 
 // fopAcM_findObjectCB__FPC10fopAc_ac_cPv

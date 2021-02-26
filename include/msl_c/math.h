@@ -56,6 +56,7 @@ f64 modf(f64, f64*);
 f64 pow(f64, f64);
 f64 sin(f64);
 f32 sinf(f32);
+f64 sqrt(f64);
 f64 tan(f64);
 f32 tanf(f32);
 f64 func_8036C590(f64);

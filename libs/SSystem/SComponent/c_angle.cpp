@@ -5,7 +5,7 @@
 #include "msl_c/math.h"
 
 extern "C" {
-double func_8036CA54(double);
+double sqrt(double);
 void __ct__7cSAngleFs(void);
 void cSAngle_NS_dtor(void);
 void func_80361C24(void);
@@ -216,8 +216,8 @@ void cSPolar::Val(const cXyz& xyz) {
     z = xyz.z;
     double tmp = square(z) + square(x);
     double tmp2 = square(y) + tmp;
-    tmp4 = (tmp > 0.0) ? (float)func_8036CA54(tmp) : 0.0f;
-    mRadial = (tmp2 > 0.0) ? (float)func_8036CA54(tmp2) : 0.0f;
+    tmp4 = (tmp > 0.0) ? (float)sqrt(tmp) : 0.0f;
+    mRadial = (tmp2 > 0.0) ? (float)sqrt(tmp2) : 0.0f;
     mAngle1.Val(static_cast<s16>(cM_atan2f(tmp4, y) * 10430.378f));
     mAngle2.Val(static_cast<s16>(cM_atan2f(x, z) * 10430.378f));
     this->Formal();

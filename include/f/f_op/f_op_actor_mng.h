@@ -58,6 +58,10 @@ struct DOUBLE_POS {
     double x, y, z;
 };
 
+inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
+    return pActor->mRoomNo;
+}
+
 void* fopAcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3, void* pData);
 void fopAcM_setStageLayer(void*);
 int fopAcM_setRoomLayer(void*, int);
@@ -132,15 +136,14 @@ s32 fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, co
 s32 fopAcM_createDemoItem(const cXyz*, int, int, const csXyz*, int, const cXyz*, u8);
 s32 fopAcM_createItemForBoss(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32, int);
 s32 fopAcM_createItemForMidBoss(const cXyz*, int, int, const csXyz*, const cXyz*, int, int);
-s32 fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
-s32 fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
+void* fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
+void* fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
 s32 fopAcM_createItem(const cXyz*, int, int, int, const csXyz*, const cXyz*, int);
-s32 fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*);
-s32 fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int,
-                          createFunc);
+void* fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*);
+void* fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int,
+                            createFunc);
 s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int);
 s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
-s32 enemySearchJugge(void*, void*);
 s32 fopAcM_myRoomSearchEnemy(s8);
 s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8);
 s32 fopAcM_setCarryNow(fopAc_ac_c*, int);
@@ -237,7 +240,6 @@ void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData(void);
 void fopAcM_setRoomLayer__FPvi(void);
 void fopAcM_setStageLayer__FPv(void);
 void waterCheck__11fopAcM_wt_cFPC4cXyz(void);
-void fopAc_IsActor(void);
 void fopScnM_SearchByID(void);
 void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz(void);
 void fopAcM_SearchByName__FsPP10fopAc_ac_c(void);
