@@ -132,12 +132,12 @@ s32 fopAcM_createItemFromTable(const cXyz*, int, int, int, const csXyz*, int, co
 s32 fopAcM_createDemoItem(const cXyz*, int, int, const csXyz*, int, const cXyz*, u8);
 s32 fopAcM_createItemForBoss(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32, int);
 s32 fopAcM_createItemForMidBoss(const cXyz*, int, int, const csXyz*, const cXyz*, int, int);
-s32 fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
-s32 fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
+void* fopAcM_createItemForDirectGet(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
+void* fopAcM_createItemForSimpleDemo(const cXyz*, int, int, const csXyz*, const cXyz*, f32, f32);
 s32 fopAcM_createItem(const cXyz*, int, int, int, const csXyz*, const cXyz*, int);
-s32 fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*);
-s32 fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int,
-                          createFunc);
+void* fopAcM_fastCreateItem2(const cXyz*, int, int, int, int, const csXyz*, const cXyz*);
+void* fopAcM_fastCreateItem(const cXyz*, int, int, const csXyz*, const cXyz*, f32*, f32*, int, int,
+                            createFunc);
 s32 fopAcM_createBokkuri(u16, const cXyz*, int, int, int, const cXyz*, int, int);
 s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
 s32 enemySearchJugge(void*, void*);

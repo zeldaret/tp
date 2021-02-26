@@ -1639,13 +1639,12 @@ bool isArrow(u8 item_no) {
     return is_arrow;
 }
 
-asm bool isBottleItem(u8 param1) {
-    nofralloc
+asm bool isBottleItem(u8 param1){nofralloc
 #include "d/d_item/d_item/asm/func_8009B708.s"
 }
 
-bool isHeart(u8 item_no) {
-    bool is_heart = false;
+BOOL isHeart(u8 item_no) {
+    BOOL is_heart = false;
 
     if (item_no == HEART || item_no == TRIPLE_HEART) {
         is_heart = true;

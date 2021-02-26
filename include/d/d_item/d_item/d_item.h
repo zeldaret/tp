@@ -5,6 +5,8 @@
 #include "global.h"
 
 int checkItemGet(u8, int);
+u32 check_itemno(int param1);
+BOOL isHeart(u8 item_no);
 
 extern int (*item_func_ptr[256])(void);
 extern int (*item_getcheck_func_ptr[256])(void);
