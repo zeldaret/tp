@@ -43,7 +43,6 @@ int fopOvlpM_SceneIsStart(void) {
     }
 }
 
-// 1 instruction off
 int fopOvlpM_IsOutReq(overlap_task_class* pTaskClass) {
     return (pTaskClass->field_0xc4 & 0x3F) == 2;
 }
