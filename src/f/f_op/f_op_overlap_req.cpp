@@ -50,19 +50,10 @@ int fopOvlpReq_phase_Done(overlap_request_class* pOvlpReq) {
     return 0;
 }
 
-// return line is wrong
-#ifdef NONMATCHING
-s16 fopOvlpReq_phase_IsDone(overlap_request_class* param_1) {
+s32 fopOvlpReq_phase_IsDone(overlap_request_class* param_1) {
     cReq_Done((request_base_class*)param_1);
-    param_1->field_0x2--;
-    return ((int)param_1->field_0x2 | ~-(int)param_1->field_0x2) >> 0x1F & 2;
+    return param_1->field_0x2-- <= 0 ? 2 : 0;
 }
-#else
-asm void fopOvlpReq_phase_IsDone(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E748.s"
-}
-#endif
 
 int fopOvlpReq_phase_IsWaitOfFadeout(overlap_request_class* pOvlpReq) {
     if (cReq_Is_Done((request_base_class*)(pOvlpReq->field_0x20 + 0xC4))) {
@@ -131,9 +122,23 @@ request_base_class* fopOvlpReq_Request(overlap_request_class* pOvlpReq, s16 para
     return (request_base_class*)pOvlpReq;
 }
 
-asm int fopOvlpReq_Handler(overlap_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_overlap_req/asm/func_8001E9F0.s"
+int fopOvlpReq_Handler(overlap_request_class* pOvlpReq) {
+    int phsDo = cPhs_Do(&pOvlpReq->field_0x18, pOvlpReq);
+    switch (phsDo) {
+    case 2:
+        return fopOvlpReq_Handler(pOvlpReq);
+    case 0:
+        return 0;
+    case 1:
+        return 0;
+    case 4:
+        return 4;
+    case 3:
+    case 5:
+        return 5;
+    default:
+        return 5;
+    }
 }
 
 int fopOvlpReq_Cancel(overlap_request_class* pOvlpReq) {

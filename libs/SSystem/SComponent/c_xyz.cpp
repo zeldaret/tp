@@ -171,6 +171,7 @@ inline f32 VecMagXZ(const cXyz& xyz) {
     // return cXyz(xyz.x, 0, xyz.z).getSquareMag(); // matches, but screws up data
 }
 
+// this belongs to msl_c/math.h, but can't go there currently because of data
 inline f32 sqrtf(f32 mag) {
     if (mag > FLOAT_LABEL(lbl_80455080)) {
         f64 tmpd = __frsqrte(mag);

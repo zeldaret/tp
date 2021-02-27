@@ -296,8 +296,25 @@ extern u8 lbl_80451C58;
 extern u8 lbl_80451C5C;
 extern u8 lbl_80451C60;
 extern j3dsys lbl_80434AC8;
-extern u8 lbl_80450AE0;
+extern f32 lbl_80450AE0[4];  // array is fake, to force 2 step load
 extern u8 lbl_803DD470;
+
+// this belongs to msl_c/math.h, but can't go there currently because of data
+inline f32 sqrtf(f32 mag) {
+    if (mag > FLOAT_LABEL(lbl_80451C04)) {
+        f64 tmpd = __frsqrte(mag);
+        tmpd = DOUBLE_LABEL(lbl_80451C08) * tmpd * (DOUBLE_LABEL(lbl_80451C10) - tmpd * tmpd * mag);
+        tmpd = DOUBLE_LABEL(lbl_80451C08) * tmpd * (DOUBLE_LABEL(lbl_80451C10) - tmpd * tmpd * mag);
+        return DOUBLE_LABEL(lbl_80451C08) * tmpd *
+               (DOUBLE_LABEL(lbl_80451C10) - tmpd * tmpd * mag) * mag;
+    } else if (mag < DOUBLE_LABEL(lbl_80451C18)) {
+        return /* __float_nan */ lbl_80450AE0[0];
+    } else if (fpclassify(mag) == 1) {
+        return /* __float_nan */ lbl_80450AE0[0];
+    } else {
+        return mag;
+    }
+}
 
 inline u32 fopAcM_GetID(const void* pProc) {
     return fpcM_GetID(pProc);
@@ -777,8 +794,9 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB)
 }
 
 // fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-asm f32 fopAcM_searchActorDistance(const fopAc_ac_c*, const fopAc_ac_c*){nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001A7E0.s"
+f32 fopAcM_searchActorDistance(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
+    cXyz tmp = (pActorB->mPosition - pActorA->mPosition);
+    return sqrtf(tmp.abs2());
 }
 
 // fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c
@@ -787,16 +805,17 @@ f32 fopAcM_searchActorDistance2(const fopAc_ac_c* pActorA, const fopAc_ac_c* pAc
     return tmp.abs2();
 }
 
-// fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
-asm f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c*, const fopAc_ac_c*) {
-    nofralloc
-#include "f/f_op/f_op_actor_mng/asm/func_8001A964.s"
-}
-
 // TODO: replace calls to this with .abs2XZ, needs additional float constant at the moment
 inline f32 cXyzAbs2XZ(const cXyz& ths) {
     cXyz tmp(ths.x, /* 0.0f */ lbl_80451C04, ths.z);
     return tmp.abs2();
+}
+
+// fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
+f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActorB) {
+    const cXyz& posA = fopAcM_GetPosition_p(pActorA);
+    const cXyz& posB = fopAcM_GetPosition_p(pActorB);
+    return sqrtf(cXyzAbs2XZ(posB - posA));
 }
 
 // fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
