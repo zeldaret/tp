@@ -13,7 +13,7 @@ int fopAcIt_Executor(fopAcIt_ExecutorFunc pExecFunc, void* pData) {
     } userData;
     userData.func = pExecFunc;
     userData.data = pData;
-    cLsIt_Method(&lbl_803A35E0, (cNdIt_MethodFunc)cTgIt_MethodCall, &userData);
+    return cLsIt_Method(&lbl_803A35E0, (cNdIt_MethodFunc)cTgIt_MethodCall, &userData);
 }
 
 // fopAcIt_Judge__FPFPvPv_PvPv
@@ -24,5 +24,5 @@ void* fopAcIt_Judge(fopAcIt_JudgeFunc pJudgeFunc, void* pData) {
     } userData;
     userData.func = pJudgeFunc;
     userData.data = pData;
-    cLsIt_Judge(&lbl_803A35E0, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &userData);
+    return cLsIt_Judge(&lbl_803A35E0, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &userData);
 }
