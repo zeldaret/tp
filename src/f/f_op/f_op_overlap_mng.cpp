@@ -43,17 +43,9 @@ int fopOvlpM_SceneIsStart(void) {
     }
 }
 
-// 1 instruction off
-#ifdef NONMATCHING
 int fopOvlpM_IsOutReq(overlap_task_class* pTaskClass) {
-    return pTaskClass->field_0xc4 == 2;
+    return (pTaskClass->field_0xc4 & 0x3F) == 2;
 }
-#else
-asm int fopOvlpM_IsOutReq(overlap_task_class* pTaskClass) {
-    nofralloc
-#include "f/f_op_overlap_mng/asm/func_8001E504.s"
-}
-#endif
 
 void fopOvlpM_Done(overlap_task_class* pTaskClass) {
     cReq_Done((request_base_class*)&pTaskClass->field_0xc4);
