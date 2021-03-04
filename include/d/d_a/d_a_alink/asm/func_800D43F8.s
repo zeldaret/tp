@@ -8,7 +8,7 @@
 /* 800D4414 000D1354  7C 04 00 00 */ cmpw r4, r0
 /* 800D4418 000D1358  40 82 00 60 */ bne lbl_800D4478
 /* 800D441C 000D135C  38 80 00 71 */ li r4, 0x71
-/* 800D4420 000D1360  4B FF D5 A9 */ bl daAlink_c_NS_changeCutReverseProc
+/* 800D4420 000D1360  4B FF D5 A9 */ bl changeCutReverseProc__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800D4424 000D1364  2C 03 00 00 */ cmpwi r3, 0
 /* 800D4428 000D1368  41 82 00 50 */ beq lbl_800D4478
 /* 800D442C 000D136C  A8 7F 04 DE */ lha r3, 0x4de(r31)
@@ -41,11 +41,11 @@ lbl_800D4478:
 /* 800D4494 000D13D4  48 19 C2 AD */ bl cLib_chaseF__FPfff
 lbl_800D4498:
 /* 800D4498 000D13D8  7F E3 FB 78 */ mr r3, r31
-/* 800D449C 000D13DC  4B FF CF 49 */ bl daAlink_c_NS_checkCutTurnInput
+/* 800D449C 000D13DC  4B FF CF 49 */ bl checkCutTurnInput__9daAlink_cCFv
 /* 800D44A0 000D13E0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D44A4 000D13E4  41 82 00 10 */ beq lbl_800D44B4
 /* 800D44A8 000D13E8  7F E3 FB 78 */ mr r3, r31
-/* 800D44AC 000D13EC  4B FF CF 79 */ bl daAlink_c_NS_getCutTurnDirection
+/* 800D44AC 000D13EC  4B FF CF 79 */ bl getCutTurnDirection__9daAlink_cCFv
 /* 800D44B0 000D13F0  90 7F 31 98 */ stw r3, 0x3198(r31)
 lbl_800D44B4:
 /* 800D44B4 000D13F4  80 1F 19 9C */ lwz r0, 0x199c(r31)
@@ -53,7 +53,7 @@ lbl_800D44B4:
 /* 800D44BC 000D13FC  41 82 00 14 */ beq lbl_800D44D0
 /* 800D44C0 000D1400  7F E3 FB 78 */ mr r3, r31
 /* 800D44C4 000D1404  80 9F 31 98 */ lwz r4, 0x3198(r31)
-/* 800D44C8 000D1408  48 00 00 65 */ bl daAlink_c_NS_procCutJumpLandInit
+/* 800D44C8 000D1408  48 00 00 65 */ bl procCutJumpLandInit__9daAlink_cFi
 /* 800D44CC 000D140C  48 00 00 48 */ b lbl_800D4514
 lbl_800D44D0:
 /* 800D44D0 000D1410  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)
@@ -69,7 +69,7 @@ lbl_800D44D0:
 /* 800D44F8 000D1438  7F E3 FB 78 */ mr r3, r31
 /* 800D44FC 000D143C  3C 80 00 02 */ lis r4, 0x00020003@ha
 /* 800D4500 000D1440  38 84 00 03 */ addi r4, r4, 0x00020003@l
-/* 800D4504 000D1444  4B FE AB E9 */ bl daAlink_c_NS_seStartSwordCut
+/* 800D4504 000D1444  4B FE AB E9 */ bl seStartSwordCut__9daAlink_cFUl
 lbl_800D4508:
 /* 800D4508 000D1448  80 1F 05 80 */ lwz r0, 0x580(r31)
 /* 800D450C 000D144C  60 00 00 02 */ ori r0, r0, 2

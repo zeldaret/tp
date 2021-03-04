@@ -37,10 +37,10 @@ lbl_80059E70:
 /* 80059EC0 00056E00  3C 80 80 05 */ lis r4, EF_MUD_EFF@ha
 /*.global EF_MUD_EFF*/
 /* 80059EC4 00056E04  38 84 70 38 */ addi r4, r4, EF_MUD_EFF@l
-/*.global EF_MUD_EFF_NS_dtor*/
-/* 80059EC8 00056E08  3C A0 80 05 */ lis r5, EF_MUD_EFF_NS_dtor@ha
-/*.global EF_MUD_EFF_NS_dtor*/
-/* 80059ECC 00056E0C  38 A5 6F FC */ addi r5, r5, EF_MUD_EFF_NS_dtor@l
+/*.global __dt__10EF_MUD_EFFFv*/
+/* 80059EC8 00056E08  3C A0 80 05 */ lis r5, __dt__10EF_MUD_EFFFv@ha
+/*.global __dt__10EF_MUD_EFFFv*/
+/* 80059ECC 00056E0C  38 A5 6F FC */ addi r5, r5, __dt__10EF_MUD_EFFFv@l
 /* 80059ED0 00056E10  38 C0 00 48 */ li r6, 0x48
 /* 80059ED4 00056E14  38 E0 00 64 */ li r7, 0x64
 /* 80059ED8 00056E18  48 30 7E 89 */ bl func_80361D60

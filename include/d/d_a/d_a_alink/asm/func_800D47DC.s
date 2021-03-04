@@ -11,11 +11,11 @@
 /* 800D4804 000D1744  3C 80 80 39 */ lis r4, lbl_8038DB84@ha
 /* 800D4808 000D1748  3B E4 DB 84 */ addi r31, r4, lbl_8038DB84@l
 /* 800D480C 000D174C  38 80 00 28 */ li r4, 0x28
-/* 800D4810 000D1750  4B FE D7 5D */ bl daAlink_c_NS_commonProcInit
+/* 800D4810 000D1750  4B FE D7 5D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D4814 000D1754  2C 1D 00 02 */ cmpwi r29, 2
 /* 800D4818 000D1758  40 82 00 10 */ bne lbl_800D4828
 /* 800D481C 000D175C  7F 83 E3 78 */ mr r3, r28
-/* 800D4820 000D1760  4B FF CC 05 */ bl daAlink_c_NS_getCutTurnDirection
+/* 800D4820 000D1760  4B FF CC 05 */ bl getCutTurnDirection__9daAlink_cCFv
 /* 800D4824 000D1764  7C 7D 1B 78 */ mr r29, r3
 lbl_800D4828:
 /* 800D4828 000D1768  2C 1D 00 01 */ cmpwi r29, 1
@@ -61,9 +61,9 @@ lbl_800D48AC:
 /* 800D48B0 000D17F0  D0 1C 34 80 */ stfs f0, 0x3480(r28)
 /* 800D48B4 000D17F4  7F 83 E3 78 */ mr r3, r28
 /* 800D48B8 000D17F8  38 80 00 01 */ li r4, 1
-/* 800D48BC 000D17FC  4B FF CB 75 */ bl daAlink_c_NS_resetCombo
+/* 800D48BC 000D17FC  4B FF CB 75 */ bl resetCombo__9daAlink_cFi
 /* 800D48C0 000D1800  7F 83 E3 78 */ mr r3, r28
-/* 800D48C4 000D1804  4B FE B4 ED */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800D48C4 000D1804  4B FE B4 ED */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800D48C8 000D1808  2C 03 00 00 */ cmpwi r3, 0
 /* 800D48CC 000D180C  40 82 00 18 */ bne lbl_800D48E4
 /* 800D48D0 000D1810  80 1C 05 70 */ lwz r0, 0x570(r28)
@@ -79,9 +79,9 @@ lbl_800D48E8:
 /* 800D48F0 000D1830  C0 3D 00 04 */ lfs f1, 4(r29)
 /* 800D48F4 000D1834  FC 40 F8 90 */ fmr f2, f31
 /* 800D48F8 000D1838  A8 BD 00 00 */ lha r5, 0(r29)
-/* 800D48FC 000D183C  4B FD 87 11 */ bl daAlink_c_NS_setSingleAnime
+/* 800D48FC 000D183C  4B FD 87 11 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800D4900 000D1840  7F 83 E3 78 */ mr r3, r28
-/* 800D4904 000D1844  4B FF E1 B9 */ bl daAlink_c_NS_checkCutLargeTurnState
+/* 800D4904 000D1844  4B FF E1 B9 */ bl checkCutLargeTurnState__9daAlink_cCFv
 /* 800D4908 000D1848  2C 03 00 00 */ cmpwi r3, 0
 /* 800D490C 000D184C  41 82 00 5C */ beq lbl_800D4968
 /* 800D4910 000D1850  3B A0 00 04 */ li r29, 4
@@ -91,7 +91,7 @@ lbl_800D48E8:
 /* 800D4920 000D1860  7F 83 E3 78 */ mr r3, r28
 /* 800D4924 000D1864  3C 80 00 01 */ lis r4, 0x0001009D@ha
 /* 800D4928 000D1868  38 84 00 9D */ addi r4, r4, 0x0001009D@l
-/* 800D492C 000D186C  4B FF D9 59 */ bl daAlink_c_NS_setSwordVoiceSe
+/* 800D492C 000D186C  4B FF D9 59 */ bl setSwordVoiceSe__9daAlink_cFUl
 /* 800D4930 000D1870  C0 1F 00 90 */ lfs f0, 0x90(r31)
 /* 800D4934 000D1874  D0 1C 34 78 */ stfs f0, 0x3478(r28)
 /* 800D4938 000D1878  C0 1F 00 94 */ lfs f0, 0x94(r31)
@@ -100,12 +100,12 @@ lbl_800D48E8:
 /* 800D4944 000D1884  40 82 00 14 */ bne lbl_800D4958
 /* 800D4948 000D1888  7F 83 E3 78 */ mr r3, r28
 /* 800D494C 000D188C  38 80 00 18 */ li r4, 0x18
-/* 800D4950 000D1890  4B FF CB DD */ bl daAlink_c_NS_setCutType
+/* 800D4950 000D1890  4B FF CB DD */ bl setCutType__9daAlink_cFUc
 /* 800D4954 000D1894  48 00 00 88 */ b lbl_800D49DC
 lbl_800D4958:
 /* 800D4958 000D1898  7F 83 E3 78 */ mr r3, r28
 /* 800D495C 000D189C  38 80 00 17 */ li r4, 0x17
-/* 800D4960 000D18A0  4B FF CB CD */ bl daAlink_c_NS_setCutType
+/* 800D4960 000D18A0  4B FF CB CD */ bl setCutType__9daAlink_cFUc
 /* 800D4964 000D18A4  48 00 00 78 */ b lbl_800D49DC
 lbl_800D4968:
 /* 800D4968 000D18A8  3B A0 00 03 */ li r29, 3
@@ -115,17 +115,17 @@ lbl_800D4968:
 /* 800D4978 000D18B8  7F 83 E3 78 */ mr r3, r28
 /* 800D497C 000D18BC  3C 80 00 01 */ lis r4, 0x00010051@ha
 /* 800D4980 000D18C0  38 84 00 51 */ addi r4, r4, 0x00010051@l
-/* 800D4984 000D18C4  4B FF D9 01 */ bl daAlink_c_NS_setSwordVoiceSe
+/* 800D4984 000D18C4  4B FF D9 01 */ bl setSwordVoiceSe__9daAlink_cFUl
 /* 800D4988 000D18C8  2C 1E 00 74 */ cmpwi r30, 0x74
 /* 800D498C 000D18CC  40 82 00 14 */ bne lbl_800D49A0
 /* 800D4990 000D18D0  7F 83 E3 78 */ mr r3, r28
 /* 800D4994 000D18D4  38 80 00 08 */ li r4, 8
-/* 800D4998 000D18D8  4B FF CB 95 */ bl daAlink_c_NS_setCutType
+/* 800D4998 000D18D8  4B FF CB 95 */ bl setCutType__9daAlink_cFUc
 /* 800D499C 000D18DC  48 00 00 10 */ b lbl_800D49AC
 lbl_800D49A0:
 /* 800D49A0 000D18E0  7F 83 E3 78 */ mr r3, r28
 /* 800D49A4 000D18E4  38 80 00 16 */ li r4, 0x16
-/* 800D49A8 000D18E8  4B FF CB 85 */ bl daAlink_c_NS_setCutType
+/* 800D49A8 000D18E8  4B FF CB 85 */ bl setCutType__9daAlink_cFUc
 lbl_800D49AC:
 /* 800D49AC 000D18EC  80 1C 05 7C */ lwz r0, 0x57c(r28)
 /* 800D49B0 000D18F0  54 00 02 D7 */ rlwinm. r0, r0, 0, 0xb, 0xb
@@ -165,11 +165,11 @@ lbl_800D49DC:
 /* 800D4A30 000D1970  D0 1C 33 98 */ stfs f0, 0x3398(r28)
 /* 800D4A34 000D1974  B0 9C 30 12 */ sth r4, 0x3012(r28)
 /* 800D4A38 000D1978  7F 83 E3 78 */ mr r3, r28
-/* 800D4A3C 000D197C  48 04 F7 09 */ bl daAlink_c_NS_setCutWaterDropEffect
+/* 800D4A3C 000D197C  48 04 F7 09 */ bl setCutWaterDropEffect__9daAlink_cFv
 /* 800D4A40 000D1980  7F 83 E3 78 */ mr r3, r28
 /* 800D4A44 000D1984  C0 3C 34 7C */ lfs f1, 0x347c(r28)
 /* 800D4A48 000D1988  7F A4 EB 78 */ mr r4, r29
-/* 800D4A4C 000D198C  4B FF C5 45 */ bl daAlink_c_NS_initCutTurnAt
+/* 800D4A4C 000D198C  4B FF C5 45 */ bl initCutTurnAt__9daAlink_cFfi
 /* 800D4A50 000D1990  38 60 00 01 */ li r3, 1
 /* 800D4A54 000D1994  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0
 /* 800D4A58 000D1998  CB E1 00 20 */ lfd f31, 0x20(r1)

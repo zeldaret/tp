@@ -10,7 +10,7 @@
 /* 80016480 000133C0  38 04 34 A8 */ addi r0, r4, lbl_803A34A8@l
 /* 80016484 000133C4  90 1E 00 10 */ stw r0, 0x10(r30)
 /* 80016488 000133C8  38 80 00 00 */ li r4, 0
-/* 8001648C 000133CC  4B FF F4 71 */ bl mDoDvdThd_command_c_NS_dtor
+/* 8001648C 000133CC  4B FF F4 71 */ bl __dt__19mDoDvdThd_command_cFv
 /* 80016490 000133D0  7F E0 07 35 */ extsh. r0, r31
 /* 80016494 000133D4  40 81 00 0C */ ble lbl_800164A0
 /* 80016498 000133D8  7F C3 F3 78 */ mr r3, r30

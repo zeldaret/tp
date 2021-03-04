@@ -7,18 +7,18 @@
 /* 800E7114 000E4054  80 05 04 9C */ lwz r0, 0x49c(r5)
 /* 800E7118 000E4058  54 00 04 A5 */ rlwinm. r0, r0, 0, 0x12, 0x12
 /* 800E711C 000E405C  41 82 00 0C */ beq lbl_800E7128
-/* 800E7120 000E4060  4B FC E7 CD */ bl daAlink_c_NS_checkWaitAction
+/* 800E7120 000E4060  4B FC E7 CD */ bl checkWaitAction__9daAlink_cFv
 /* 800E7124 000E4064  48 00 00 9C */ b lbl_800E71C0
 lbl_800E7128:
 /* 800E7128 000E4068  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800E712C 000E406C  28 00 00 FF */ cmplwi r0, 0xff
 /* 800E7130 000E4070  41 82 00 10 */ beq lbl_800E7140
 /* 800E7134 000E4074  38 80 00 74 */ li r4, 0x74
-/* 800E7138 000E4078  4B FD BC A5 */ bl daAlink_c_NS_procPreActionUnequipInit
+/* 800E7138 000E4078  4B FD BC A5 */ bl procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c
 /* 800E713C 000E407C  48 00 00 84 */ b lbl_800E71C0
 lbl_800E7140:
 /* 800E7140 000E4080  38 80 00 74 */ li r4, 0x74
-/* 800E7144 000E4084  4B FD AE 29 */ bl daAlink_c_NS_commonProcInit
+/* 800E7144 000E4084  4B FD AE 29 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E7148 000E4088  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E714C 000E408C  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800E7150 000E4090  80 7F 27 F4 */ lwz r3, 0x27f4(r31)
@@ -33,7 +33,7 @@ lbl_800E7140:
 /* 800E7174 000E40B4  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 800E7178 000E40B8  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 800E717C 000E40BC  38 A5 00 64 */ addi r5, r5, 0x64
-/* 800E7180 000E40C0  4B FC 5F 75 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E7180 000E40C0  4B FC 5F 75 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E7184 000E40C4  C0 02 93 24 */ lfs f0, lbl_80452D24-_SDA2_BASE_(r2)
 /* 800E7188 000E40C8  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800E718C 000E40CC  48 00 00 24 */ b lbl_800E71B0
@@ -43,7 +43,7 @@ lbl_800E7190:
 /* 800E7198 000E40D8  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 800E719C 000E40DC  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 800E71A0 000E40E0  38 A5 00 50 */ addi r5, r5, 0x50
-/* 800E71A4 000E40E4  4B FC 5F 51 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E71A4 000E40E4  4B FC 5F 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E71A8 000E40E8  C0 02 93 8C */ lfs f0, lbl_80452D8C-_SDA2_BASE_(r2)
 /* 800E71AC 000E40EC  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 lbl_800E71B0:

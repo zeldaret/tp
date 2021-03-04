@@ -77,7 +77,7 @@ lbl_80180788:
 /* 80180864 0017D7A4  38 BF 00 30 */ addi r5, r31, 0x30
 /* 80180868 0017D7A8  38 C1 00 AC */ addi r6, r1, 0xac
 /* 8018086C 0017D7AC  38 E0 40 B7 */ li r7, 0x40b7
-/* 80180870 0017D7B0  4B FE 50 51 */ bl dCamera_c_NS_lineBGCheck
+/* 80180870 0017D7B0  4B FE 50 51 */ bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80180874 0017D7B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80180878 0017D7B8  41 82 00 54 */ beq lbl_801808CC
 /* 8018087C 0017D7BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -127,7 +127,7 @@ lbl_801808CC:
 /* 80180928 0017D868  38 BF 00 3C */ addi r5, r31, 0x3c
 /* 8018092C 0017D86C  38 C1 00 AC */ addi r6, r1, 0xac
 /* 80180930 0017D870  38 E0 40 B7 */ li r7, 0x40b7
-/* 80180934 0017D874  4B FE 4F 8D */ bl dCamera_c_NS_lineBGCheck
+/* 80180934 0017D874  4B FE 4F 8D */ bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80180938 0017D878  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8018093C 0017D87C  41 82 00 54 */ beq lbl_80180990
 /* 80180940 0017D880  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

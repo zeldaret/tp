@@ -63,7 +63,7 @@
 /* 80062C44 0005FB84  7C 04 00 50 */ subf r0, r4, r0
 /* 80062C48 0005FB88  54 00 18 3E */ rotlwi r0, r0, 3
 /* 80062C4C 0005FB8C  7F E0 22 14 */ add r31, r0, r4
-/* 80062C50 0005FB90  48 13 CD B9 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 80062C50 0005FB90  48 13 CD B9 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80062C54 0005FB94  C0 02 87 E4 */ lfs f0, lbl_804521E4-_SDA2_BASE_(r2)
 /* 80062C58 0005FB98  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80062C5C 0005FB9C  40 80 00 18 */ bge lbl_80062C74

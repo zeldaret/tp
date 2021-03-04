@@ -3,7 +3,7 @@
 /* 800F389C 000F07DC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F38A0 000F07E0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F38A4 000F07E4  7C 7F 1B 78 */ mr r31, r3
-/* 800F38A8 000F07E8  4B FF A1 7D */ bl daAlink_c_NS_setSyncRidePos
+/* 800F38A8 000F07E8  4B FF A1 7D */ bl setSyncRidePos__9daAlink_cFv
 /* 800F38AC 000F07EC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 800F38B0 000F07F0  48 06 AC 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F38B4 000F07F4  54 60 06 3F */ clrlwi. r0, r3, 0x18

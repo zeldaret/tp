@@ -27,10 +27,10 @@
 /* 8005FC40 0005CB80  3C 80 80 05 */ lis r4, SNOW_EFF@ha
 /*.global SNOW_EFF*/
 /* 8005FC44 0005CB84  38 84 6D 94 */ addi r4, r4, SNOW_EFF@l
-/*.global SNOW_EFF_NS_dtor*/
-/* 8005FC48 0005CB88  3C A0 80 05 */ lis r5, SNOW_EFF_NS_dtor@ha
-/*.global SNOW_EFF_NS_dtor*/
-/* 8005FC4C 0005CB8C  38 A5 6D 58 */ addi r5, r5, SNOW_EFF_NS_dtor@l
+/*.global __dt__8SNOW_EFFFv*/
+/* 8005FC48 0005CB88  3C A0 80 05 */ lis r5, __dt__8SNOW_EFFFv@ha
+/*.global __dt__8SNOW_EFFFv*/
+/* 8005FC4C 0005CB8C  38 A5 6D 58 */ addi r5, r5, __dt__8SNOW_EFFFv@l
 /* 8005FC50 0005CB90  38 C0 00 38 */ li r6, 0x38
 /* 8005FC54 0005CB94  38 E0 01 F4 */ li r7, 0x1f4
 /* 8005FC58 0005CB98  48 30 21 09 */ bl func_80361D60

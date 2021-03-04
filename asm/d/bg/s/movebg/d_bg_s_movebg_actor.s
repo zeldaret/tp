@@ -141,7 +141,7 @@ lbl_800787A8:
 /* 80078814 00075754  C0 3F 04 EC */	lfs f1, 0x4ec(r31)
 /* 80078818 00075758  C0 5F 04 F0 */	lfs f2, 0x4f0(r31)
 /* 8007881C 0007575C  C0 7F 04 F4 */	lfs f3, 0x4f4(r31)
-/* 80078820 00075760  4B F9 46 19 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80078820 00075760  4B F9 46 19 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80078824 00075764  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80078828 00075768  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8007882C 0007576C  38 9F 05 6C */	addi r4, r31, 0x56c
@@ -255,7 +255,7 @@ lbl_80078934:
 /* 800789BC 000758FC  C0 3E 04 EC */	lfs f1, 0x4ec(r30)
 /* 800789C0 00075900  C0 5E 04 F0 */	lfs f2, 0x4f0(r30)
 /* 800789C4 00075904  C0 7E 04 F4 */	lfs f3, 0x4f4(r30)
-/* 800789C8 00075908  4B F9 44 71 */	bl mDoMtx_stack_c_NS_scaleM
+/* 800789C8 00075908  4B F9 44 71 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 800789CC 0007590C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 800789D0 00075910  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 800789D4 00075914  38 9E 05 6C */	addi r4, r30, 0x56c

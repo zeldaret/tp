@@ -13,7 +13,7 @@
 /* 80181EFC 0017EE3C  FC 40 08 90 */ fmr f2, f1
 /* 80181F00 0017EE40  C0 62 9D 08 */ lfs f3, lbl_80453708-_SDA2_BASE_(r2)
 /* 80181F04 0017EE44  C0 82 9C FC */ lfs f4, lbl_804536FC-_SDA2_BASE_(r2)
-/* 80181F08 0017EE48  4B FE 40 AD */ bl dCamera_c_NS_setView
+/* 80181F08 0017EE48  4B FE 40 AD */ bl setView__9dCamera_cFffff
 lbl_80181F0C:
 /* 80181F0C 0017EE4C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80181F10 0017EE50  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -24,14 +24,14 @@ lbl_80181F0C:
 /* 80181F24 0017EE64  2C 00 00 00 */ cmpwi r0, 0
 /* 80181F28 0017EE68  40 82 00 10 */ bne lbl_80181F38
 /* 80181F2C 0017EE6C  38 7F 02 48 */ addi r3, r31, 0x248
-/* 80181F30 0017EE70  4B FE 03 85 */ bl dCamera_c_NS_Run
+/* 80181F30 0017EE70  4B FE 03 85 */ bl Run__9dCamera_cFv
 /* 80181F34 0017EE74  48 00 00 0C */ b lbl_80181F40
 lbl_80181F38:
 /* 80181F38 0017EE78  38 7F 02 48 */ addi r3, r31, 0x248
-/* 80181F3C 0017EE7C  4B FE 0D FD */ bl dCamera_c_NS_NotRun
+/* 80181F3C 0017EE7C  4B FE 0D FD */ bl NotRun__9dCamera_cFv
 lbl_80181F40:
 /* 80181F40 0017EE80  38 7F 02 48 */ addi r3, r31, 0x248
-/* 80181F44 0017EE84  4B FE 10 F1 */ bl dCamera_c_NS_CalcTrimSize
+/* 80181F44 0017EE84  4B FE 10 F1 */ bl CalcTrimSize__9dCamera_cFv
 /* 80181F48 0017EE88  7F E3 FB 78 */ mr r3, r31
 /* 80181F4C 0017EE8C  4B FF F8 B9 */ bl store
 /* 80181F50 0017EE90  7F E3 FB 78 */ mr r3, r31

@@ -9,7 +9,7 @@
 /* 80101D14 000FEC54  80 03 05 70 */ lwz r0, 0x570(r3)
 /* 80101D18 000FEC58  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 80101D1C 000FEC5C  41 82 00 34 */ beq lbl_80101D50
-/* 80101D20 000FEC60  4B FB E0 91 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80101D20 000FEC60  4B FB E0 91 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80101D24 000FEC64  2C 03 00 00 */ cmpwi r3, 0
 /* 80101D28 000FEC68  41 82 00 18 */ beq lbl_80101D40
 /* 80101D2C 000FEC6C  3C 60 80 39 */ lis r3, lbl_8038E7F4@ha

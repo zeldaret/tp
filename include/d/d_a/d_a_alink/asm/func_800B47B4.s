@@ -3,7 +3,7 @@
 /* 800B47BC 000B16FC  90 01 00 24 */ stw r0, 0x24(r1)
 /* 800B47C0 000B1700  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 800B47C4 000B1704  7C 7F 1B 78 */ mr r31, r3
-/* 800B47C8 000B1708  48 06 14 59 */ bl daAlink_c_NS_checkEventRun
+/* 800B47C8 000B1708  48 06 14 59 */ bl checkEventRun__9daAlink_cCFv
 /* 800B47CC 000B170C  7C 60 00 34 */ cntlzw r0, r3
 /* 800B47D0 000B1710  54 03 D9 7E */ srwi r3, r0, 5
 /* 800B47D4 000B1714  54 00 DE 3F */ rlwinm. r0, r0, 0x1b, 0x18, 0x1f
@@ -16,7 +16,7 @@ lbl_800B47EC:
 /* 800B47EC 000B172C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B47F0 000B1730  41 82 00 18 */ beq lbl_800B4808
 /* 800B47F4 000B1734  7F E3 FB 78 */ mr r3, r31
-/* 800B47F8 000B1738  48 00 4A 5D */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800B47F8 000B1738  48 00 4A 5D */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800B47FC 000B173C  30 03 FF FF */ addic r0, r3, -1
 /* 800B4800 000B1740  7C 00 19 10 */ subfe r0, r0, r3
 /* 800B4804 000B1744  54 03 06 3E */ clrlwi r3, r0, 0x18
@@ -59,7 +59,7 @@ lbl_800B4884:
 /* 800B4884 000B17C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B4888 000B17C8  41 82 00 14 */ beq lbl_800B489C
 /* 800B488C 000B17CC  7F E3 FB 78 */ mr r3, r31
-/* 800B4890 000B17D0  48 03 F4 C9 */ bl daAlink_c_NS_checkFishingRodAndLureItem
+/* 800B4890 000B17D0  48 03 F4 C9 */ bl checkFishingRodAndLureItem__9daAlink_cCFv
 /* 800B4894 000B17D4  7C 60 00 34 */ cntlzw r0, r3
 /* 800B4898 000B17D8  54 03 D9 7E */ srwi r3, r0, 5
 lbl_800B489C:

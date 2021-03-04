@@ -18,7 +18,7 @@
 /* 80219060 00215FA0  7F E3 FB 78 */ mr r3, r31
 /* 80219064 00215FA4  80 9F 02 F8 */ lwz r4, 0x2f8(r31)
 /* 80219068 00215FA8  38 A0 00 05 */ li r5, 5
-/* 8021906C 00215FAC  48 00 19 5D */ bl dMeter2Draw_c_NS_setAlphaAnimeMin
+/* 8021906C 00215FAC  48 00 19 5D */ bl setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 80219070 00215FB0  80 1F 04 B8 */ lwz r0, 0x4b8(r31)
 /* 80219074 00215FB4  28 00 00 00 */ cmplwi r0, 0
 /* 80219078 00215FB8  41 82 00 1C */ beq lbl_80219094

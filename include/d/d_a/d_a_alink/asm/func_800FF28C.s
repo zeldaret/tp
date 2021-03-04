@@ -75,12 +75,12 @@ lbl_800FF3A8:
 /* 800FF3A8 000FC2E8  7F E3 FB 78 */ mr r3, r31
 /* 800FF3AC 000FC2EC  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FF3B0 000FC2F0  38 A1 00 08 */ addi r5, r1, 8
-/* 800FF3B4 000FC2F4  4B FA 2D E5 */ bl daAlink_c_NS_commonLineCheck
+/* 800FF3B4 000FC2F4  4B FA 2D E5 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FF3B8 000FC2F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FF3BC 000FC2FC  41 82 00 18 */ beq lbl_800FF3D4
 /* 800FF3C0 000FC300  7F E3 FB 78 */ mr r3, r31
 /* 800FF3C4 000FC304  38 9F 1B 5C */ addi r4, r31, 0x1b5c
-/* 800FF3C8 000FC308  4B FF EC 91 */ bl daAlink_c_NS_checkClimbCode
+/* 800FF3C8 000FC308  4B FF EC 91 */ bl checkClimbCode__9daAlink_cFR13cBgS_PolyInfo
 /* 800FF3CC 000FC30C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FF3D0 000FC310  40 82 00 20 */ bne lbl_800FF3F0
 lbl_800FF3D4:
@@ -100,12 +100,12 @@ lbl_800FF3FC:
 /* 800FF3FC 000FC33C  7F E3 FB 78 */ mr r3, r31
 /* 800FF400 000FC340  38 80 00 01 */ li r4, 1
 /* 800FF404 000FC344  38 A0 00 00 */ li r5, 0
-/* 800FF408 000FC348  4B FC 1E D5 */ bl daAlink_c_NS_deleteEquipItem
+/* 800FF408 000FC348  4B FC 1E D5 */ bl deleteEquipItem__9daAlink_cFii
 /* 800FF40C 000FC34C  38 00 00 00 */ li r0, 0
 /* 800FF410 000FC350  98 1F 2F 98 */ stb r0, 0x2f98(r31)
 /* 800FF414 000FC354  7F E3 FB 78 */ mr r3, r31
 /* 800FF418 000FC358  38 80 00 00 */ li r4, 0
-/* 800FF41C 000FC35C  48 00 00 35 */ bl daAlink_c_NS_procClimbUpStartInit
+/* 800FF41C 000FC35C  48 00 00 35 */ bl procClimbUpStartInit__9daAlink_cFi
 /* 800FF420 000FC360  38 60 00 01 */ li r3, 1
 lbl_800FF424:
 /* 800FF424 000FC364  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0

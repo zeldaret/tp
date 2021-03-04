@@ -390,7 +390,7 @@ dOvlpFd3_c:
 /* 802534C8 00250408  98 1F 01 1F */	stb r0, 0x11f(r31)
 lbl_802534CC:
 /* 802534CC 0025040C  4B F2 E1 75 */	bl dCam_getBody
-/* 802534D0 00250410  4B F0 E0 01 */	bl dCamera_c_NS_Stop
+/* 802534D0 00250410  4B F0 E0 01 */	bl Stop__9dCamera_cFv
 /* 802534D4 00250414  88 1F 01 1F */	lbz r0, 0x11f(r31)
 /* 802534D8 00250418  7C 03 0E 70 */	srawi r3, r0, 1
 /* 802534DC 0025041C  38 83 00 5A */	addi r4, r3, 0x5a
@@ -619,7 +619,7 @@ lbl_80253800:
 /* 8025382C 0025076C  C0 22 B4 68 */	lfs f1, lbl_80454E68-_SDA2_BASE_(r2)
 /* 80253830 00250770  FC 40 08 90 */	fmr f2, f1
 /* 80253834 00250774  FC 60 08 90 */	fmr f3, f1
-/* 80253838 00250778  4B DB 96 01 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80253838 00250778  4B DB 96 01 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 8025383C 0025077C  38 9F 00 E0 */	addi r4, r31, 0xe0
 /* 80253840 00250780  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80253844 00250784  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l

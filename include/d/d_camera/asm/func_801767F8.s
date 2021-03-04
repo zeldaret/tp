@@ -64,7 +64,7 @@
 /* 801768F4 00173834  7C 63 02 14 */ add r3, r3, r0
 /* 801768F8 00173838  A8 83 00 18 */ lha r4, 0x18(r3)
 /* 801768FC 0017383C  7F A3 EB 78 */ mr r3, r29
-/* 80176900 00173840  4B FF 1E 45 */ bl dCamera_c_NS_chaseCamera
+/* 80176900 00173840  4B FF 1E 45 */ bl chaseCamera__9dCamera_cFl
 /* 80176904 00173844  48 00 04 74 */ b lbl_80176D78
 lbl_80176908:
 /* 80176908 00173848  80 1D 01 74 */ lwz r0, 0x174(r29)
@@ -97,7 +97,7 @@ lbl_80176960:
 /* 80176970 001738B0  41 82 00 5C */ beq lbl_801769CC
 /* 80176974 001738B4  7F A3 EB 78 */ mr r3, r29
 /* 80176978 001738B8  80 9D 06 8C */ lwz r4, 0x68c(r29)
-/* 8017697C 001738BC  4B FE DE FD */ bl dCamera_c_NS_getParamTargetActor
+/* 8017697C 001738BC  4B FE DE FD */ bl getParamTargetActor__9dCamera_cFl
 /* 80176980 001738C0  7C 7E 1B 78 */ mr r30, r3
 /* 80176984 001738C4  38 61 00 CC */ addi r3, r1, 0xcc
 /* 80176988 001738C8  7F A4 EB 78 */ mr r4, r29

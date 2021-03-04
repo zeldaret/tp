@@ -53,7 +53,7 @@ lbl_80216030:
 /* 80216054 00212F94  3C A0 80 43 */ lis r5, lbl_8042EBC8@ha
 /* 80216058 00212F98  38 A5 EB C8 */ addi r5, r5, lbl_8042EBC8@l
 /* 8021605C 00212F9C  A8 A5 0E CC */ lha r5, 0xecc(r5)
-/* 80216060 00212FA0  48 00 4A 45 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80216060 00212FA0  48 00 4A 45 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 80216064 00212FA4  3B 40 00 00 */ li r26, 0
 /* 80216068 00212FA8  3B 80 00 00 */ li r28, 0
 /* 8021606C 00212FAC  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -141,7 +141,7 @@ lbl_80216184:
 /* 802161A0 002130E0  7F A3 EB 78 */ mr r3, r29
 /* 802161A4 002130E4  80 9D 01 E0 */ lwz r4, 0x1e0(r29)
 /* 802161A8 002130E8  38 A0 00 05 */ li r5, 5
-/* 802161AC 002130EC  48 00 48 F9 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 802161AC 002130EC  48 00 48 F9 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 802161B0 002130F0  3B 40 00 00 */ li r26, 0
 /* 802161B4 002130F4  3B C0 00 00 */ li r30, 0
 /* 802161B8 002130F8  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha

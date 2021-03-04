@@ -28,7 +28,7 @@ lbl_8010B768:
 /* 8010B788 001086C8  41 82 00 9C */ beq lbl_8010B824
 /* 8010B78C 001086CC  7F E3 FB 78 */ mr r3, r31
 /* 8010B790 001086D0  38 9F 1E 2C */ addi r4, r31, 0x1e2c
-/* 8010B794 001086D4  4B FF D0 1D */ bl daAlink_c_NS_checkHookshotStickBG
+/* 8010B794 001086D4  4B FF D0 1D */ bl checkHookshotStickBG__9daAlink_cFR13cBgS_PolyInfo
 /* 8010B798 001086D8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B79C 001086DC  41 82 00 88 */ beq lbl_8010B824
 /* 8010B7A0 001086E0  28 1E 00 00 */ cmplwi r30, 0
@@ -40,7 +40,7 @@ lbl_8010B7B4:
 /* 8010B7B4 001086F4  38 00 00 00 */ li r0, 0
 /* 8010B7B8 001086F8  B0 1F 30 26 */ sth r0, 0x3026(r31)
 /* 8010B7BC 001086FC  7F E3 FB 78 */ mr r3, r31
-/* 8010B7C0 00108700  48 00 05 D1 */ bl daAlink_c_NS_procHookshotFlyInit
+/* 8010B7C0 00108700  48 00 05 D1 */ bl procHookshotFlyInit__9daAlink_cFv
 /* 8010B7C4 00108704  48 00 00 70 */ b lbl_8010B834
 lbl_8010B7C8:
 /* 8010B7C8 00108708  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
@@ -48,7 +48,7 @@ lbl_8010B7C8:
 /* 8010B7D0 00108710  80 04 5F 1C */ lwz r0, 0x5f1c(r4)
 /* 8010B7D4 00108714  54 00 03 DF */ rlwinm. r0, r0, 0, 0xf, 0xf
 /* 8010B7D8 00108718  41 82 00 4C */ beq lbl_8010B824
-/* 8010B7DC 0010871C  4B FF D0 C5 */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010B7DC 0010871C  4B FF D0 C5 */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010B7E0 00108720  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B7E4 00108724  41 82 00 40 */ beq lbl_8010B824
 /* 8010B7E8 00108728  80 7F 28 58 */ lwz r3, 0x2858(r31)
@@ -64,13 +64,13 @@ lbl_8010B7C8:
 /* 8010B810 00108750  38 E0 00 00 */ li r7, 0
 /* 8010B814 00108754  39 00 00 00 */ li r8, 0
 /* 8010B818 00108758  39 20 00 00 */ li r9, 0
-/* 8010B81C 0010875C  4B FC DE C1 */ bl daAlink_c_NS_procCoLargeDamageInit
+/* 8010B81C 0010875C  4B FC DE C1 */ bl procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi
 /* 8010B820 00108760  48 00 00 14 */ b lbl_8010B834
 lbl_8010B824:
 /* 8010B824 00108764  7F E3 FB 78 */ mr r3, r31
 /* 8010B828 00108768  38 80 00 01 */ li r4, 1
 /* 8010B82C 0010876C  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
-/* 8010B830 00108770  4B FB B2 19 */ bl daAlink_c_NS_procFallInit
+/* 8010B830 00108770  4B FB B2 19 */ bl procFallInit__9daAlink_cFif
 lbl_8010B834:
 /* 8010B834 00108774  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8010B838 00108778  83 C1 00 08 */ lwz r30, 8(r1)

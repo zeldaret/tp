@@ -72,7 +72,7 @@ lbl_8006A164:
 /* 8006A1A4 000670E4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006A1A8 000670E8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006A1AC 000670EC  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 8006A1B0 000670F0  4B FB A1 D5 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8006A1B0 000670F0  4B FB A1 D5 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8006A1B4 000670F4  81 83 00 00 */ lwz r12, 0(r3)
 /* 8006A1B8 000670F8  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 8006A1BC 000670FC  7D 89 03 A6 */ mtctr r12

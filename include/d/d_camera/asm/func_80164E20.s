@@ -26,7 +26,7 @@ lbl_80164E80:
 /* 80164E80 00161DC0  28 1D 00 00 */ cmplwi r29, 0
 /* 80164E84 00161DC4  40 82 00 10 */ bne lbl_80164E94
 /* 80164E88 00161DC8  7F C6 F3 78 */ mr r6, r30
-/* 80164E8C 00161DCC  4B FF FE E1 */ bl dCamera_c_NS_relationalPos
+/* 80164E8C 00161DCC  4B FF FE E1 */ bl relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz
 /* 80164E90 00161DD0  48 00 02 4C */ b lbl_801650DC
 lbl_80164E94:
 /* 80164E94 00161DD4  38 61 00 B8 */ addi r3, r1, 0xb8

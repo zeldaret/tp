@@ -27,11 +27,11 @@ lbl_801204D0:
 /* 801204D4 0011D414  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 801204D8 0011D418  41 82 00 10 */ beq lbl_801204E8
 /* 801204DC 0011D41C  7C 83 23 78 */ mr r3, r4
-/* 801204E0 0011D420  48 01 D0 A9 */ bl daAlink_c_NS_procWolfGrabPutInit
+/* 801204E0 0011D420  48 01 D0 A9 */ bl procWolfGrabPutInit__9daAlink_cFv
 /* 801204E4 0011D424  48 00 00 0C */ b lbl_801204F0
 lbl_801204E8:
 /* 801204E8 0011D428  7C 83 23 78 */ mr r3, r4
-/* 801204EC 0011D42C  4B FC 62 41 */ bl daAlink_c_NS_procGrabPutInit
+/* 801204EC 0011D42C  4B FC 62 41 */ bl procGrabPutInit__9daAlink_cFv
 lbl_801204F0:
 /* 801204F0 0011D430  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801204F4 0011D434  7C 08 03 A6 */ mtlr r0

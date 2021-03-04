@@ -5,7 +5,7 @@
 /* 800E03E0 000DD320  93 C1 00 08 */ stw r30, 8(r1)
 /* 800E03E4 000DD324  7C 7E 1B 78 */ mr r30, r3
 /* 800E03E8 000DD328  7C 9F 23 78 */ mr r31, r4
-/* 800E03EC 000DD32C  48 00 00 C1 */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800E03EC 000DD32C  48 00 00 C1 */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800E03F0 000DD330  2C 03 00 00 */ cmpwi r3, 0
 /* 800E03F4 000DD334  40 82 00 34 */ bne lbl_800E0428
 /* 800E03F8 000DD338  2C 1F 00 00 */ cmpwi r31, 0

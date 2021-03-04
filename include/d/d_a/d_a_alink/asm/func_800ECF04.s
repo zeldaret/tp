@@ -6,7 +6,7 @@
 /* 800ECF18 000E9E58  7C 7E 1B 78 */ mr r30, r3
 /* 800ECF1C 000E9E5C  3B E0 00 00 */ li r31, 0
 /* 800ECF20 000E9E60  38 80 00 55 */ li r4, 0x55
-/* 800ECF24 000E9E64  4B FB F6 35 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ECF24 000E9E64  4B FB F6 35 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ECF28 000E9E68  2C 03 00 00 */ cmpwi r3, 0
 /* 800ECF2C 000E9E6C  40 82 00 10 */ bne lbl_800ECF3C
 /* 800ECF30 000E9E70  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)

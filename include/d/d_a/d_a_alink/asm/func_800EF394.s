@@ -12,7 +12,7 @@
 /* 800EF3C0 000EC300  38 80 00 00 */ li r4, 0
 /* 800EF3C4 000EC304  38 A0 40 00 */ li r5, 0x4000
 /* 800EF3C8 000EC308  38 C0 00 00 */ li r6, 0
-/* 800EF3CC 000EC30C  4B FB E7 AD */ bl daAlink_c_NS_setOldRootQuaternion
+/* 800EF3CC 000EC30C  4B FB E7 AD */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 800EF3D0 000EC310  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800EF3D4 000EC314  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800EF3D8 000EC318  38 80 C0 00 */ li r4, -16384
@@ -25,7 +25,7 @@ lbl_800EF3E4:
 /* 800EF3F0 000EC330  38 80 00 00 */ li r4, 0
 /* 800EF3F4 000EC334  38 A0 C0 00 */ li r5, -16384
 /* 800EF3F8 000EC338  38 C0 00 00 */ li r6, 0
-/* 800EF3FC 000EC33C  4B FB E7 7D */ bl daAlink_c_NS_setOldRootQuaternion
+/* 800EF3FC 000EC33C  4B FB E7 7D */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 800EF400 000EC340  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800EF404 000EC344  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800EF408 000EC348  38 80 40 00 */ li r4, 0x4000

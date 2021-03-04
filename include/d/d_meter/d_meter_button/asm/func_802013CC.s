@@ -3,9 +3,9 @@
 /* 802013D4 001FE314  90 01 00 14 */ stw r0, 0x14(r1)
 /* 802013D8 001FE318  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 802013DC 001FE31C  7C 7F 1B 78 */ mr r31, r3
-/* 802013E0 001FE320  48 00 34 09 */ bl dMeterButton_c_NS_screenInitButton
+/* 802013E0 001FE320  48 00 34 09 */ bl screenInitButton__14dMeterButton_cFv
 /* 802013E4 001FE324  7F E3 FB 78 */ mr r3, r31
-/* 802013E8 001FE328  48 00 44 4D */ bl dMeterButton_c_NS_screenInitText
+/* 802013E8 001FE328  48 00 44 4D */ bl screenInitText__14dMeterButton_cFv
 /* 802013EC 001FE32C  38 60 00 04 */ li r3, 4
 /* 802013F0 001FE330  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802013F4 001FE334  80 01 00 14 */ lwz r0, 0x14(r1)

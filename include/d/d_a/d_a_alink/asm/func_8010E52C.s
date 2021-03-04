@@ -7,7 +7,7 @@
 /* 8010E544 0010B484  80 63 00 14 */ lwz r3, 0x14(r3)
 /* 8010E548 0010B488  2C 04 00 00 */ cmpwi r4, 0
 /* 8010E54C 0010B48C  40 82 00 08 */ bne lbl_8010E554
-/* 8010E550 0010B490  4B FF FF 3D */ bl daAlink_c_NS_bottleModelCallBack
+/* 8010E550 0010B490  4B FF FF 3D */ bl bottleModelCallBack__9daAlink_cFv
 lbl_8010E554:
 /* 8010E554 0010B494  38 60 00 01 */ li r3, 1
 /* 8010E558 0010B498  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -37,7 +37,7 @@ lbl_8011F02C:
 /* 8011F038 0011BF78  41 82 00 28 */ beq lbl_8011F060
 /* 8011F03C 0011BF7C  7F C3 F3 78 */ mr r3, r30
 /* 8011F040 0011BF80  38 80 01 89 */ li r4, 0x189
-/* 8011F044 0011BF84  4B F8 DF 3D */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011F044 0011BF84  4B F8 DF 3D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011F048 0011BF88  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 8011F04C 0011BF8C  60 00 01 00 */ ori r0, r0, 0x100
 /* 8011F050 0011BF90  90 1E 31 A0 */ stw r0, 0x31a0(r30)
@@ -46,7 +46,7 @@ lbl_8011F02C:
 /* 8011F05C 0011BF9C  48 00 00 0C */ b lbl_8011F068
 lbl_8011F060:
 /* 8011F060 0011BFA0  7F C3 F3 78 */ mr r3, r30
-/* 8011F064 0011BFA4  4B FF 97 15 */ bl daAlink_c_NS_setTradeItemOutHand
+/* 8011F064 0011BFA4  4B FF 97 15 */ bl setTradeItemOutHand__9daAlink_cFv
 lbl_8011F068:
 /* 8011F068 0011BFA8  38 60 00 01 */ li r3, 1
 /* 8011F06C 0011BFAC  83 E1 00 1C */ lwz r31, 0x1c(r1)

@@ -35,7 +35,7 @@
 /* 80010858 0000D798  FC 20 F8 90 */ fmr f1, f31
 /* 8001085C 0000D79C  7F 69 DB 78 */ mr r9, r27
 /* 80010860 0000D7A0  7F 8A E3 78 */ mr r10, r28
-/* 80010864 0000D7A4  48 00 00 8D */ bl mDoExt_McaMorfSO_NS_create
+/* 80010864 0000D7A4  48 00 00 8D */ bl create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 /* 80010868 0000D7A8  7E A3 AB 78 */ mr r3, r21
 /* 8001086C 0000D7AC  CB E1 00 48 */ lfd f31, 0x48(r1)
 /* 80010870 0000D7B0  39 61 00 48 */ addi r11, r1, 0x48

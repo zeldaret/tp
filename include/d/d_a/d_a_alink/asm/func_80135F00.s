@@ -10,7 +10,7 @@
 /* 80135F24 00132E64  C0 02 93 A0 */ lfs f0, lbl_80452DA0-_SDA2_BASE_(r2)
 /* 80135F28 00132E68  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80135F2C 00132E6C  40 80 00 18 */ bge lbl_80135F44
-/* 80135F30 00132E70  4B FF F5 99 */ bl daAlink_c_NS_changeWolfHangEndProc
+/* 80135F30 00132E70  4B FF F5 99 */ bl changeWolf__9daAlink_cFvHangEndProc
 /* 80135F34 00132E74  2C 03 00 00 */ cmpwi r3, 0
 /* 80135F38 00132E78  41 82 00 0C */ beq lbl_80135F44
 /* 80135F3C 00132E7C  38 60 00 01 */ li r3, 1
@@ -55,7 +55,7 @@ lbl_80135F88:
 /* 80135FD0 00132F10  A8 1E 2F E2 */ lha r0, 0x2fe2(r30)
 /* 80135FD4 00132F14  7C 03 00 50 */ subf r0, r3, r0
 /* 80135FD8 00132F18  7C 03 07 34 */ extsh r3, r0
-/* 80135FDC 00132F1C  4B F7 D4 B9 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 80135FDC 00132F1C  4B F7 D4 B9 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 80135FE0 00132F20  2C 03 00 00 */ cmpwi r3, 0
 /* 80135FE4 00132F24  40 82 00 64 */ bne lbl_80136048
 /* 80135FE8 00132F28  38 00 00 01 */ li r0, 1
@@ -74,7 +74,7 @@ lbl_80135FF4:
 /* 80136018 00132F58  A8 1E 2F E2 */ lha r0, 0x2fe2(r30)
 /* 8013601C 00132F5C  7C 03 00 50 */ subf r0, r3, r0
 /* 80136020 00132F60  7C 03 07 34 */ extsh r3, r0
-/* 80136024 00132F64  4B F7 D4 71 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 80136024 00132F64  4B F7 D4 71 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 80136028 00132F68  2C 03 00 00 */ cmpwi r3, 0
 /* 8013602C 00132F6C  41 82 00 10 */ beq lbl_8013603C
 lbl_80136030:
@@ -84,7 +84,7 @@ lbl_80136030:
 lbl_8013603C:
 /* 8013603C 00132F7C  7F C3 F3 78 */ mr r3, r30
 /* 80136040 00132F80  38 80 00 08 */ li r4, 8
-/* 80136044 00132F84  4B FF F6 AD */ bl daAlink_c_NS_procWolfHangWallCatchInit
+/* 80136044 00132F84  4B FF F6 AD */ bl procWolfHangWallCatchInit__9daAlink_cFi
 lbl_80136048:
 /* 80136048 00132F88  38 60 00 01 */ li r3, 1
 lbl_8013604C:

@@ -30,7 +30,7 @@ lbl_802076AC:
 /* 802076C4 00204604  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 802076C8 00204608  80 9F 00 2C */ lwz r4, 0x2c(r31)
 /* 802076CC 0020460C  38 A0 00 05 */ li r5, 5
-/* 802076D0 00204610  48 01 33 D5 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 802076D0 00204610  48 01 33 D5 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_802076D4:
 /* 802076D4 00204614  80 7F 00 2C */ lwz r3, 0x2c(r31)
 /* 802076D8 00204618  48 04 E1 51 */ bl getAlphaRate__13CPaneMgrAlphaFv

@@ -18,7 +18,7 @@ lbl_800D5820:
 /* 800D5838 000D2778  4C 40 13 82 */ cror 2, 0, 2
 /* 800D583C 000D277C  40 82 00 10 */ bne lbl_800D584C
 /* 800D5840 000D2780  80 9F 28 10 */ lwz r4, 0x2810(r31)
-/* 800D5844 000D2784  48 00 00 5D */ bl daAlink_c_NS_procCutDownLandInit
+/* 800D5844 000D2784  48 00 00 5D */ bl procCutDownLandInit__9daAlink_cFP13fopEn_enemy_c
 /* 800D5848 000D2788  48 00 00 40 */ b lbl_800D5888
 lbl_800D584C:
 /* 800D584C 000D278C  38 7F 1F D0 */ addi r3, r31, 0x1fd0
@@ -35,7 +35,7 @@ lbl_800D584C:
 /* 800D5878 000D27B8  3C A0 80 39 */ lis r5, lbl_8038DD44@ha
 /* 800D587C 000D27BC  38 A5 DD 44 */ addi r5, r5, lbl_8038DD44@l
 /* 800D5880 000D27C0  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800D5884 000D27C4  4B FD 78 71 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D5884 000D27C4  4B FD 78 71 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 lbl_800D5888:
 /* 800D5888 000D27C8  38 60 00 01 */ li r3, 1
 lbl_800D588C:

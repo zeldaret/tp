@@ -25,7 +25,7 @@ lbl_80105A30:
 /* 80105A5C 0010299C  41 82 00 10 */ beq lbl_80105A6C
 /* 80105A60 001029A0  7F E3 FB 78 */ mr r3, r31
 /* 80105A64 001029A4  38 80 00 00 */ li r4, 0
-/* 80105A68 001029A8  4B FF E8 91 */ bl daAlink_c_NS_procSwimWaitInit
+/* 80105A68 001029A8  4B FF E8 91 */ bl procSwimWaitInit__9daAlink_cFi
 lbl_80105A6C:
 /* 80105A6C 001029AC  38 60 00 01 */ li r3, 1
 /* 80105A70 001029B0  83 E1 00 0C */ lwz r31, 0xc(r1)

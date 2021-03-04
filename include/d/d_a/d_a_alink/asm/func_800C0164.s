@@ -15,7 +15,7 @@ lbl_800C018C:
 /* 800C0198 000BD0D8  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 800C019C 000BD0DC  7F 63 DB 78 */ mr r3, r27
 /* 800C01A0 000BD0E0  7F 84 E3 78 */ mr r4, r28
-/* 800C01A4 000BD0E4  4B FF FF 71 */ bl daAlink_c_NS_checkGroupItem
+/* 800C01A4 000BD0E4  4B FF FF 71 */ bl checkGroupItem__9daAlink_cCFii
 /* 800C01A8 000BD0E8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C01AC 000BD0EC  41 82 00 30 */ beq lbl_800C01DC
 /* 800C01B0 000BD0F0  7F 63 DB 78 */ mr r3, r27

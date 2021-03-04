@@ -30,7 +30,7 @@ lbl_800333B4:
 /* 800333E0 00030320  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 800333E4 00030324  38 1F 00 0B */	addi r0, r31, 0xb
 /* 800333E8 00030328  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 800333EC 0003032C  48 1E A8 D9 */	bl dMeter2Info_c_NS_setHotSpringTimer
+/* 800333EC 0003032C  48 1E A8 D9 */	bl setHotSpringTimer__13dMeter2Info_cFUc
 lbl_800333F0:
 /* 800333F0 00030330  3B A0 00 00 */	li r29, 0
 /* 800333F4 00030334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha

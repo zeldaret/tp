@@ -105,7 +105,7 @@ lbl_800FA1EC:
 /* 800FA1FC 000F713C  7F A3 EB 78 */ mr r3, r29
 /* 800FA200 000F7140  38 81 00 44 */ addi r4, r1, 0x44
 /* 800FA204 000F7144  38 A1 00 38 */ addi r5, r1, 0x38
-/* 800FA208 000F7148  4B FA 7F 91 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA208 000F7148  4B FA 7F 91 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA20C 000F714C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA210 000F7150  41 82 00 E0 */ beq lbl_800FA2F0
 /* 800FA214 000F7154  7F 43 D3 78 */ mr r3, r26

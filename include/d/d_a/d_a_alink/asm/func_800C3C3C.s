@@ -6,7 +6,7 @@
 /* 800C3C50 000C0B90  7C 7F 1B 78 */ mr r31, r3
 /* 800C3C54 000C0B94  7C 9E 23 78 */ mr r30, r4
 /* 800C3C58 000C0B98  38 80 00 09 */ li r4, 9
-/* 800C3C5C 000C0B9C  4B FF F1 49 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800C3C5C 000C0B9C  4B FF F1 49 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800C3C60 000C0BA0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C3C64 000C0BA4  40 82 00 0C */ bne lbl_800C3C70
 /* 800C3C68 000C0BA8  38 60 00 00 */ li r3, 0
@@ -16,7 +16,7 @@ lbl_800C3C70:
 /* 800C3C74 000C0BB4  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 800C3C78 000C0BB8  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 800C3C7C 000C0BBC  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 800C3C80 000C0BC0  4B FE A1 95 */ bl daAlink_c_NS_setBlendMoveAnime
+/* 800C3C80 000C0BC0  4B FE A1 95 */ bl setBlendMoveAnime__9daAlink_cFf
 /* 800C3C84 000C0BC4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800C3C88 000C0BC8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C3C8C 000C0BCC  80 03 5F 18 */ lwz r0, 0x5f18(r3)

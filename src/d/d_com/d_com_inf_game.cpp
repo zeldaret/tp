@@ -19,7 +19,7 @@ BOOL isTransformLV__21dSv_player_status_b_cCFi(int);
 const char* dComIfGs_getWarpStageName(void);
 int dComIfGs_getWarpRoomNo(void);
 int dKy_daynight_check(void);
-int dStage_roomControl_c_NS_getZoneNo(int);
+int getZoneNo__20dStage_roomControl_cFi(int);
 int getTimerMode__14dComIfG_play_cFv(void);
 s16 dComIfGs_getWarpPlayerAngleY(void);
 u16 dComIfGs_getMaxLifeGauge(void);
@@ -51,43 +51,43 @@ void __dl__FPv(void);
 void __dt__8cM3dGCpsFv(void);
 void __nw__FUl(void);
 void addBottleNum__24dSv_player_item_record_cFUcs(void);
-void cBgS_ChkElm_NS_dtor(void);
+void __dt__11cBgS_ChkElmFv(void);
 void Init__11cBgS_ChkElmFv(void);
 void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla(void);
 void ChkSetInfo__13cBgS_PolyInfoCFv(void);
-void cM3dGCyl_NS_dtor(void);
+void __dt__8cM3dGCylFv(void);
 void create__10JKRExpHeapFUlP7JKRHeapb(void);
-void cSAngle_NS_dtor(void);
+void __dt__7cSAngleFv(void);
 void ct__14dComIfG_play_cFv(void);
-void daAlink_c_NS_setLastSceneMode(void);
-void dAttDraw_c_NS_ctor(void);
-void dAttDraw_c_NS_dtor(void);
-void dAttention_c_NS_dtor(void);
-void dAttList_c_NS_ctor(void);
-void dAttList_c_NS_dtor(void);
-void dCcMassS_Obj_NS_dtor(void);
-void dCcS_NS_dtor(void);
-void dComIfG_camera_info_class_NS_dtor(void);
+void setLastSceneMode__9daAlink_cFPUl(void);
+void __ct__10dAttDraw_cFv(void);
+void __dt__10dAttDraw_cFv(void);
+void __dt__12dAttention_cFv(void);
+void __ct__10dAttList_cFv(void);
+void __dt__10dAttList_cFv(void);
+void __dt__12dCcMassS_ObjFv(void);
+void __dt__4dCcSFv(void);
+void __dt__25dComIfG_camera_info_classFv(void);
 void dComIfG_changeOpeningScene(void);
 void dComIfG_get_timelayer__FPi(int*);
 void dComIfG_getOldStageRes(void);
 void dComIfG_getRoomArcName(void);
 void dComIfG_getStageRes(void);
 void dComIfG_inf_c_NS_ct(void);
-void dComIfG_inf_c_NS_dtor(void);
-void dComIfG_play_c_NS_clearItemBombNumCount(void);
-void dComIfG_play_c_NS_createParticle(void);
-void dComIfG_play_c_NS_createSimpleModel(void);
-void dComIfG_play_c_NS_deleteSimpleModel(void);
-void dComIfG_play_c_NS_dtor(void);
-void dComIfG_play_c_NS_getItemBombNumCount(void);
-void dComIfG_play_c_NS_getLayerNo_common_common(void);
-void dComIfG_play_c_NS_getLayerNo_common(void);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dComIfG_play_c_NS_itemInit(void);
-void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
-void dComIfG_play_c_NS_setStartStage(void);
-void dComIfG_play_c_NS_setTimerPtr(void);
+void __dt__13dComIfG_inf_cFv(void);
+void clearItemBombNumCount__14dComIfG_play_cFUc(void);
+void createParticle__14dComIfG_play_cFv(void);
+void createSimpleModel__14dComIfG_play_cFv(void);
+void deleteSimpleModel__14dComIfG_play_cFv(void);
+void __dt__14dComIfG_play_cFv(void);
+void getItemBombNumCount__14dComIfG_play_cFUc(void);
+void getLayerNo_common_common__14dComIfG_play_cFPCcii(void);
+void getLayerNo_common__14dComIfG_play_cFPCcii(void);
+void getLayerNo__14dComIfG_play_cFi(int);
+void itemInit__14dComIfG_play_cFv(void);
+void setItemBombNumCount__14dComIfG_play_cFUcs(u8, s16);
+void setStartStage__14dComIfG_play_cFP19dStage_startStage_c(void);
+void setTimerPtr__14dComIfG_play_cFP8dTimer_c(void);
 void dComIfG_resDelete(void);
 void dComIfG_resetToOpening(void);
 void dComIfG_resLoad_X1_(void);
@@ -165,14 +165,14 @@ void dComLbG_PhaseHandler(void);
 void __dt__12dDlst_list_cFv(void);
 void setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c(void);
 void setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj(void);
-void dDlst_window_c_NS_dtor(void);
-void dEvDtBase_c_NS_dtor(void);
-void dEvt_order_c_NS_dtor(void);
+void __dt__14dDlst_window_cFv(void);
+void __dt__11dEvDtBase_cFv(void);
+void __dt__12dEvt_order_cFv(void);
 void dKy_darkworld_stage_check(void);
 void getMapPlayerPos__10dMapInfo_nFv(void);
 void dMenuFmap_getStartStageName(void);
-void dMeter2Info_c_NS_init(void);
-void dMeter2Info_c_NS_setSaveStageName(void);
+void init__13dMeter2Info_cFv(void);
+void setSaveStageName__13dMeter2Info_cFPCc(void);
 void dPa_control_c(void);
 void deleteRes__14dRes_control_cFPCcP11dRes_info_ci(void);
 void __dt__14dRes_control_cFv(void);
@@ -185,7 +185,7 @@ void draw__15dSmplMdl_draw_cFv(void);
 void entry__15dSmplMdl_draw_cFP8J3DModeli(void);
 void removeModel__15dSmplMdl_draw_cFP12J3DModelDatai(void);
 void dSmplMdl_draw_c(void);
-void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void getStatusRoomDt__20dStage_roomControl_cFi(void);
 void dStage_roomRead_dt_c_GetReverbStage(void);
 void deleteCheck__8dTimer_cFv(void);
 void deleteRequest__8dTimer_cFv(void);
@@ -257,10 +257,10 @@ void isSwitch__13dSv_zoneBit_cCFi(void);
 void isTbox__12dSv_memBit_cCFi(void);
 void isVisitedRoom__13dSv_memory2_cFi(void);
 void init__12J3DFrameCtrlFs(void);
-void mDoExt_bckAnm_NS_dtor(void);
-void mDoExt_bpkAnm_NS_dtor(void);
-void mDoExt_brkAnm_NS_dtor(void);
-void mDoExt_btkAnm_NS_dtor(void);
+void __dt__13mDoExt_bckAnmFv(void);
+void __dt__13mDoExt_bpkAnmFv(void);
+void __dt__13mDoExt_brkAnmFv(void);
+void __dt__13mDoExt_btkAnmFv(void);
 void mDoExt_destroyExpHeap(void);
 void offOneSwitch__13dSv_zoneBit_cFi(void);
 void offSwitch__10dSv_info_cFii(void);
@@ -357,28 +357,28 @@ void dComIfGp_checkItemGet(u8 param_1, int param_2) {
 
 // itemInit__14dComIfG_play_cFv
 // dComIfG_play_c::itemInit(void)
-asm void dComIfG_play_c_NS_itemInit(void) {
+asm void itemInit__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B2C8.s"
 }
 
 // setItemBombNumCount__14dComIfG_play_cFUcs
 // dComIfG_play_c::setItemBombNumCount(unsigned char, short)
-asm void dComIfG_play_c_NS_setItemBombNumCount(u8, short) {
+asm void setItemBombNumCount__14dComIfG_play_cFUcs(u8, short) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B36C.s"
 }
 
 // getItemBombNumCount__14dComIfG_play_cFUc
 // dComIfG_play_c::getItemBombNumCount(unsigned char)
-asm void dComIfG_play_c_NS_getItemBombNumCount(void) {
+asm void getItemBombNumCount__14dComIfG_play_cFUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B384.s"
 }
 
 // clearItemBombNumCount__14dComIfG_play_cFUc
 // dComIfG_play_c::clearItemBombNumCount(unsigned char)
-asm void dComIfG_play_c_NS_clearItemBombNumCount(void) {
+asm void clearItemBombNumCount__14dComIfG_play_cFUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B394.s"
 }
@@ -393,7 +393,7 @@ u32 dComIfG_play_c::getNowVibration(void) {
 
 // setStartStage__14dComIfG_play_cFP19dStage_startStage_c
 // dComIfG_play_c::setStartStage(dStage_startStage_c*)
-asm void dComIfG_play_c_NS_setStartStage(void) {
+asm void setStartStage__14dComIfG_play_cFP19dStage_startStage_c(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B3B8.s"
 }
@@ -406,42 +406,42 @@ void dComIfG_get_timelayer(int* param1) {
 
 // getLayerNo_common_common__14dComIfG_play_cFPCcii
 // dComIfG_play_c::getLayerNo_common_common(const char*, int, int)
-asm void dComIfG_play_c_NS_getLayerNo_common_common(void) {
+asm void getLayerNo_common_common__14dComIfG_play_cFPCcii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B434.s"
 }
 
 // getLayerNo_common__14dComIfG_play_cFPCcii
 // dComIfG_play_c::getLayerNo_common(const char*, int, int)
-asm void dComIfG_play_c_NS_getLayerNo_common(void) {
+asm void getLayerNo_common__14dComIfG_play_cFPCcii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C950.s"
 }
 
 // getLayerNo__14dComIfG_play_cFi
 // dComIfG_play_c::getLayerNo(int)
-asm void dComIfG_play_c_NS_getLayerNo(int) {
+asm void getLayerNo__14dComIfG_play_cFi(int) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C97C.s"
 }
 
 // createParticle__14dComIfG_play_cFv
 // dComIfG_play_c::createParticle(void)
-asm void dComIfG_play_c_NS_createParticle(void) {
+asm void createParticle__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C9D8.s"
 }
 
 // createSimpleModel__14dComIfG_play_cFv
 // dComIfG_play_c::createSimpleModel(void)
-asm void dComIfG_play_c_NS_createSimpleModel(void) {
+asm void createSimpleModel__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CA1C.s"
 }
 
 // deleteSimpleModel__14dComIfG_play_cFv
 // dComIfG_play_c::deleteSimpleModel(void)
-asm void dComIfG_play_c_NS_deleteSimpleModel(void) {
+asm void deleteSimpleModel__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CA70.s"
 }
@@ -508,7 +508,7 @@ u8 dComIfG_play_c::getTimerType(void) {
 
 // setTimerPtr__14dComIfG_play_cFP8dTimer_c
 // dComIfG_play_c::setTimerPtr(dTimer_c*)
-asm void dComIfG_play_c_NS_setTimerPtr(void){nofralloc
+asm void setTimerPtr__14dComIfG_play_cFP8dTimer_c(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CBD4.s"
 }
 
@@ -729,7 +729,7 @@ asm void dComIfGs_onZoneSwitch(void) {
 
 // getZoneNo__20dStage_roomControl_cFi
 // dStage_roomControl_c::getZoneNo(int)
-asm int dStage_roomControl_c_NS_getZoneNo(int) {
+asm int getZoneNo__20dStage_roomControl_cFi(int) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D9B0.s"
 }
@@ -1353,63 +1353,63 @@ asm void func_8002FD18(void) {
 
 // __dt__13dComIfG_inf_cFv
 // dComIfG_inf_c::~dComIfG_inf_c(void)
-asm void dComIfG_inf_c_NS_dtor(void) {
+asm void __dt__13dComIfG_inf_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FD74.s"
 }
 
 // __dt__14dComIfG_play_cFv
 // dComIfG_play_c::~dComIfG_play_c(void)
-asm void dComIfG_play_c_NS_dtor(void) {
+asm void __dt__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FDE8.s"
 }
 
 // __dt__11cBgS_ChkElmFv
 // cBgS_ChkElm::~cBgS_ChkElm(void)
-asm void cBgS_ChkElm_NS_dtor(void) {
+asm void __dt__11cBgS_ChkElmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FEF8.s"
 }
 
 // __dt__4dCcSFv
 // dCcS::~dCcS(void)
-asm void dCcS_NS_dtor(void) {
+asm void __dt__4dCcSFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FF40.s"
 }
 
 // __dt__12dCcMassS_ObjFv
 // dCcMassS_Obj::~dCcMassS_Obj(void)
-asm void dCcMassS_Obj_NS_dtor(void) {
+asm void __dt__12dCcMassS_ObjFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800300F4.s"
 }
 
 // __dt__12dEvt_order_cFv
 // dEvt_order_c::~dEvt_order_c(void)
-asm void dEvt_order_c_NS_dtor(void) {
+asm void __dt__12dEvt_order_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030154.s"
 }
 
 // __dt__11dEvDtBase_cFv
 // dEvDtBase_c::~dEvDtBase_c(void)
-asm void dEvDtBase_c_NS_dtor(void) {
+asm void __dt__11dEvDtBase_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030190.s"
 }
 
 // __dt__14dDlst_window_cFv
 // dDlst_window_c::~dDlst_window_c(void)
-asm void dDlst_window_c_NS_dtor(void) {
+asm void __dt__14dDlst_window_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800301CC.s"
 }
 
 // __dt__25dComIfG_camera_info_classFv
 // dComIfG_camera_info_class::~dComIfG_camera_info_class(void)
-asm void dComIfG_camera_info_class_NS_dtor(void) {
+asm void __dt__25dComIfG_camera_info_classFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030208.s"
 }
@@ -1437,63 +1437,63 @@ asm dDlst_window_c::dDlst_window_c(void) {
 
 // __dt__10dAttList_cFv
 // dAttList_c::~dAttList_c(void)
-asm void dAttList_c_NS_dtor(void) {
+asm void __dt__10dAttList_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800304D0.s"
 }
 
 // __ct__10dAttList_cFv
 // dAttList_c::dAttList_c(void)
-asm void dAttList_c_NS_ctor(void) {
+asm void __ct__10dAttList_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003050C.s"
 }
 
 // __dt__7cSAngleFv
 // cSAngle::~cSAngle(void)
-asm void cSAngle_NS_dtor(void) {
+asm void __dt__7cSAngleFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030510.s"
 }
 
 // __dt__10dAttDraw_cFv
 // dAttDraw_c::~dAttDraw_c(void)
-asm void dAttDraw_c_NS_dtor(void) {
+asm void __dt__10dAttDraw_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003054C.s"
 }
 
 // __dt__13mDoExt_bckAnmFv
 // mDoExt_bckAnm::~mDoExt_bckAnm(void)
-asm void mDoExt_bckAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_bckAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800306A0.s"
 }
 
 // __dt__13mDoExt_bpkAnmFv
 // mDoExt_bpkAnm::~mDoExt_bpkAnm(void)
-asm void mDoExt_bpkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_bpkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800306F4.s"
 }
 
 // __dt__13mDoExt_brkAnmFv
 // mDoExt_brkAnm::~mDoExt_brkAnm(void)
-asm void mDoExt_brkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_brkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030748.s"
 }
 
 // __dt__13mDoExt_btkAnmFv
 // mDoExt_btkAnm::~mDoExt_btkAnm(void)
-asm void mDoExt_btkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_btkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003079C.s"
 }
 
 // __ct__10dAttDraw_cFv
 // dAttDraw_c::dAttDraw_c(void)
-asm void dAttDraw_c_NS_ctor(void) {
+asm void __ct__10dAttDraw_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800307F0.s"
 }
@@ -1591,7 +1591,7 @@ asm void func_80030DE0(void) {
 
 // __dt__8cM3dGCylFv
 // cM3dGCyl::~cM3dGCyl(void)
-asm void cM3dGCyl_NS_dtor(void) {
+asm void __dt__8cM3dGCylFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030E3C.s"
 }

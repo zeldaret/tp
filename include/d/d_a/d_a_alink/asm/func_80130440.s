@@ -6,13 +6,13 @@
 /* 80130454 0012D394  7C 7E 1B 78 */ mr r30, r3
 /* 80130458 0012D398  7C 9F 23 78 */ mr r31, r4
 /* 8013045C 0012D39C  38 80 01 12 */ li r4, 0x112
-/* 80130460 0012D3A0  4B F9 1B 0D */ bl daAlink_c_NS_commonProcInit
+/* 80130460 0012D3A0  4B F9 1B 0D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80130464 0012D3A4  7F C3 F3 78 */ mr r3, r30
 /* 80130468 0012D3A8  38 80 00 6B */ li r4, 0x6b
 /* 8013046C 0012D3AC  3C A0 80 39 */ lis r5, lbl_8038F3F0@ha
 /* 80130470 0012D3B0  38 A5 F3 F0 */ addi r5, r5, lbl_8038F3F0@l
 /* 80130474 0012D3B4  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 80130478 0012D3B8  4B FF 93 D1 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80130478 0012D3B8  4B FF 93 D1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8013047C 0012D3BC  3C 60 80 42 */ lis r3, lbl_8042561C@ha
 /* 80130480 0012D3C0  C4 03 56 1C */ lfsu f0, lbl_8042561C@l(r3)
 /* 80130484 0012D3C4  D0 1E 35 88 */ stfs f0, 0x3588(r30)

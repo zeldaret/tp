@@ -17,7 +17,7 @@
 /* 8020D3F8 0020A338  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D3FC 0020A33C  80 9F 00 34 */ lwz r4, 0x34(r31)
 /* 8020D400 0020A340  38 A0 00 05 */ li r5, 5
-/* 8020D404 0020A344  48 00 D5 C5 */ bl dMeter2Draw_c_NS_setAlphaAnimeMin
+/* 8020D404 0020A344  48 00 D5 C5 */ bl setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_8020D408:
 /* 8020D408 0020A348  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020D40C 0020A34C  80 01 00 14 */ lwz r0, 0x14(r1)

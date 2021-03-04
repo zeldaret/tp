@@ -40,7 +40,7 @@ lbl_800C7870:
 lbl_800C7884:
 /* 800C7884 000C47C4  7F C3 F3 78 */ mr r3, r30
 /* 800C7888 000C47C8  38 80 01 4D */ li r4, 0x14d
-/* 800C788C 000C47CC  4B FF B5 19 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800C788C 000C47CC  4B FF B5 19 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800C7890 000C47D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C7894 000C47D4  40 82 00 0C */ bne lbl_800C78A0
 /* 800C7898 000C47D8  38 60 00 01 */ li r3, 1
@@ -82,7 +82,7 @@ lbl_800C7918:
 /* 800C7918 000C4858  7F C3 F3 78 */ mr r3, r30
 /* 800C791C 000C485C  38 80 00 00 */ li r4, 0
 /* 800C7920 000C4860  38 A0 00 01 */ li r5, 1
-/* 800C7924 000C4864  4B FF 99 B9 */ bl daAlink_c_NS_deleteEquipItem
+/* 800C7924 000C4864  4B FF 99 B9 */ bl deleteEquipItem__9daAlink_cFii
 /* 800C7928 000C4868  80 1E 05 88 */ lwz r0, 0x588(r30)
 /* 800C792C 000C486C  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800C7930 000C4870  41 82 00 24 */ beq lbl_800C7954
@@ -102,7 +102,7 @@ lbl_800C7954:
 /* 800C7964 000C48A4  41 82 00 B8 */ beq lbl_800C7A1C
 /* 800C7968 000C48A8  7F C3 F3 78 */ mr r3, r30
 /* 800C796C 000C48AC  38 80 00 70 */ li r4, 0x70
-/* 800C7970 000C48B0  48 06 1D 09 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 800C7970 000C48B0  48 06 1D 09 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 800C7974 000C48B4  3C 60 80 42 */ lis r3, lbl_8042561C@ha
 /* 800C7978 000C48B8  C4 03 56 1C */ lfsu f0, lbl_8042561C@l(r3)
 /* 800C797C 000C48BC  D0 1E 35 88 */ stfs f0, 0x3588(r30)
@@ -163,10 +163,10 @@ lbl_800C7A1C:
 lbl_800C7A50:
 /* 800C7A50 000C4990  7F C3 F3 78 */ mr r3, r30
 /* 800C7A54 000C4994  38 80 00 FD */ li r4, 0xfd
-/* 800C7A58 000C4998  4B FE 55 29 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800C7A58 000C4998  4B FE 55 29 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800C7A5C 000C499C  7F C3 F3 78 */ mr r3, r30
 /* 800C7A60 000C49A0  38 80 00 01 */ li r4, 1
-/* 800C7A64 000C49A4  4B FF 7D 39 */ bl daAlink_c_NS_setMetamorphoseModel
+/* 800C7A64 000C49A4  4B FF 7D 39 */ bl setMetamorphoseModel__9daAlink_cFi
 /* 800C7A68 000C49A8  3C 60 80 42 */ lis r3, lbl_80425514@ha
 /* 800C7A6C 000C49AC  C4 03 55 14 */ lfsu f0, lbl_80425514@l(r3)
 /* 800C7A70 000C49B0  D0 1E 35 88 */ stfs f0, 0x3588(r30)
@@ -242,7 +242,7 @@ lbl_800C7B74:
 /* 800C7B7C 000C4ABC  7F C3 F3 78 */ mr r3, r30
 /* 800C7B80 000C4AC0  38 81 00 14 */ addi r4, r1, 0x14
 /* 800C7B84 000C4AC4  38 A1 00 08 */ addi r5, r1, 8
-/* 800C7B88 000C4AC8  4B FD A6 11 */ bl daAlink_c_NS_commonLineCheck
+/* 800C7B88 000C4AC8  4B FD A6 11 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800C7B8C 000C4ACC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C7B90 000C4AD0  41 82 00 30 */ beq lbl_800C7BC0
 /* 800C7B94 000C4AD4  38 7E 1B 5C */ addi r3, r30, 0x1b5c

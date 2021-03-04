@@ -27,7 +27,7 @@ lbl_800E4C28:
 /* 800E4C34 000E1B74  B0 1E 04 E8 */ sth r0, 0x4e8(r30)
 /* 800E4C38 000E1B78  B0 1E 04 E4 */ sth r0, 0x4e4(r30)
 /* 800E4C3C 000E1B7C  7F E3 FB 78 */ mr r3, r31
-/* 800E4C40 000E1B80  4B FF F0 B5 */ bl daAlink_c_NS_checkGrabCarryActor
+/* 800E4C40 000E1B80  4B FF F0 B5 */ bl checkGrabCarryActor__9daAlink_cFv
 /* 800E4C44 000E1B84  2C 03 00 00 */ cmpwi r3, 0
 /* 800E4C48 000E1B88  41 82 00 10 */ beq lbl_800E4C58
 /* 800E4C4C 000E1B8C  38 00 00 00 */ li r0, 0
@@ -61,7 +61,7 @@ lbl_800E4C98:
 /* 800E4CB0 000E1BF0  7F E3 FB 78 */ mr r3, r31
 /* 800E4CB4 000E1BF4  38 81 00 14 */ addi r4, r1, 0x14
 /* 800E4CB8 000E1BF8  38 BE 04 D0 */ addi r5, r30, 0x4d0
-/* 800E4CBC 000E1BFC  48 00 0E B1 */ bl daAlink_c_NS_grabLineCheck
+/* 800E4CBC 000E1BFC  48 00 0E B1 */ bl grabLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800E4CC0 000E1C00  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E4CC4 000E1C04  41 82 00 74 */ beq lbl_800E4D38
 /* 800E4CC8 000E1C08  C0 1F 1E 8C */ lfs f0, 0x1e8c(r31)
@@ -97,7 +97,7 @@ lbl_800E4D38:
 /* 800E4D38 000E1C78  38 7F 28 2C */ addi r3, r31, 0x282c
 /* 800E4D3C 000E1C7C  48 07 9F C1 */ bl clearData__16daPy_actorKeep_cFv
 /* 800E4D40 000E1C80  7F E3 FB 78 */ mr r3, r31
-/* 800E4D44 000E1C84  4B FF EF 29 */ bl daAlink_c_NS_checkGrabAnime
+/* 800E4D44 000E1C84  4B FF EF 29 */ bl checkGrabAnime__9daAlink_cCFv
 /* 800E4D48 000E1C88  2C 03 00 00 */ cmpwi r3, 0
 /* 800E4D4C 000E1C8C  40 82 00 2C */ bne lbl_800E4D78
 /* 800E4D50 000E1C90  38 60 00 00 */ li r3, 0
@@ -116,7 +116,7 @@ lbl_800E4D78:
 /* 800E4D78 000E1CB8  7F E3 FB 78 */ mr r3, r31
 /* 800E4D7C 000E1CBC  38 80 00 02 */ li r4, 2
 /* 800E4D80 000E1CC0  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E4D84 000E1CC4  4B FC 89 A1 */ bl daAlink_c_NS_resetUpperAnime
+/* 800E4D84 000E1CC4  4B FC 89 A1 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800E4D88:
 /* 800E4D88 000E1CC8  38 60 00 00 */ li r3, 0
 /* 800E4D8C 000E1CCC  38 8D 8B E0 */ addi r4, r13, 0x80451160 - 0x80458580 /*SDA HACK; original: lbl_80451160-_SDA_BASE_*/

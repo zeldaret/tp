@@ -4,7 +4,7 @@
 /* 8012665C 0012359C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80126660 001235A0  7C 7F 1B 78 */ mr r31, r3
 /* 80126664 001235A4  38 7F 00 50 */ addi r3, r31, 0x50
-/* 80126668 001235A8  4B FF F8 AD */ bl daAlink_lockCursor_c_NS_create
+/* 80126668 001235A8  4B FF F8 AD */ bl create__20daAlink_lockCursor_cFv
 /* 8012666C 001235AC  2C 03 00 00 */ cmpwi r3, 0
 /* 80126670 001235B0  40 82 00 0C */ bne lbl_8012667C
 /* 80126674 001235B4  38 60 00 00 */ li r3, 0

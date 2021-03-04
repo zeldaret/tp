@@ -6,14 +6,14 @@
 /* 801299BC 001268FC  A0 03 2F E8 */ lhz r0, 0x2fe8(r3)
 /* 801299C0 00126900  28 00 01 37 */ cmplwi r0, 0x137
 /* 801299C4 00126904  41 82 00 A8 */ beq lbl_80129A6C
-/* 801299C8 00126908  48 00 A5 29 */ bl daAlink_c_NS_checkMidnaLockJumpPoint
+/* 801299C8 00126908  48 00 A5 29 */ bl checkMidnaLockJumpPoint__9daAlink_cCFv
 /* 801299CC 0012690C  28 03 00 00 */ cmplwi r3, 0
 /* 801299D0 00126910  41 82 00 1C */ beq lbl_801299EC
 /* 801299D4 00126914  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 801299D8 00126918  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 801299DC 0012691C  40 82 00 10 */ bne lbl_801299EC
 /* 801299E0 00126920  7F E3 FB 78 */ mr r3, r31
-/* 801299E4 00126924  4B FF E2 C9 */ bl daAlink_c_NS_offWolfEyeUp
+/* 801299E4 00126924  4B FF E2 C9 */ bl offWolfEyeUp__9daAlink_cFv
 /* 801299E8 00126928  48 00 00 84 */ b lbl_80129A6C
 lbl_801299EC:
 /* 801299EC 0012692C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -27,7 +27,7 @@ lbl_801299EC:
 /* 80129A0C 0012694C  28 00 00 00 */ cmplwi r0, 0
 /* 80129A10 00126950  40 82 00 5C */ bne lbl_80129A6C
 /* 80129A14 00126954  7F E3 FB 78 */ mr r3, r31
-/* 80129A18 00126958  4B FE C2 09 */ bl daAlink_c_NS_checkEventRun
+/* 80129A18 00126958  4B FE C2 09 */ bl checkEventRun__9daAlink_cCFv
 /* 80129A1C 0012695C  2C 03 00 00 */ cmpwi r3, 0
 /* 80129A20 00126960  40 82 00 4C */ bne lbl_80129A6C
 /* 80129A24 00126964  A8 9F 30 AC */ lha r4, 0x30ac(r31)
@@ -37,18 +37,18 @@ lbl_801299EC:
 /* 80129A34 00126974  7C 04 00 00 */ cmpw r4, r0
 /* 80129A38 00126978  40 80 00 34 */ bge lbl_80129A6C
 /* 80129A3C 0012697C  7F E3 FB 78 */ mr r3, r31
-/* 80129A40 00126980  4B FF E2 B1 */ bl daAlink_c_NS_wolfSenseTrigger
+/* 80129A40 00126980  4B FF E2 B1 */ bl wolfSenseTrigger__9daAlink_cFv
 /* 80129A44 00126984  2C 03 00 00 */ cmpwi r3, 0
 /* 80129A48 00126988  41 82 00 24 */ beq lbl_80129A6C
 /* 80129A4C 0012698C  A8 1F 30 AC */ lha r0, 0x30ac(r31)
 /* 80129A50 00126990  2C 00 00 00 */ cmpwi r0, 0
 /* 80129A54 00126994  40 82 00 10 */ bne lbl_80129A64
 /* 80129A58 00126998  7F E3 FB 78 */ mr r3, r31
-/* 80129A5C 0012699C  4B FF E1 F9 */ bl daAlink_c_NS_onWolfEyeUp
+/* 80129A5C 0012699C  4B FF E1 F9 */ bl onWolfEyeUp__9daAlink_cFv
 /* 80129A60 001269A0  48 00 00 0C */ b lbl_80129A6C
 lbl_80129A64:
 /* 80129A64 001269A4  7F E3 FB 78 */ mr r3, r31
-/* 80129A68 001269A8  4B FF E2 45 */ bl daAlink_c_NS_offWolfEyeUp
+/* 80129A68 001269A8  4B FF E2 45 */ bl offWolfEyeUp__9daAlink_cFv
 lbl_80129A6C:
 /* 80129A6C 001269AC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80129A70 001269B0  80 01 00 14 */ lwz r0, 0x14(r1)

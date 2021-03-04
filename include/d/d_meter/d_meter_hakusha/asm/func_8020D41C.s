@@ -17,7 +17,7 @@
 /* 8020D45C 0020A39C  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D460 0020A3A0  80 9F 00 34 */ lwz r4, 0x34(r31)
 /* 8020D464 0020A3A4  38 A0 00 05 */ li r5, 5
-/* 8020D468 0020A3A8  48 00 D6 3D */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 8020D468 0020A3A8  48 00 D6 3D */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_8020D46C:
 /* 8020D46C 0020A3AC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020D470 0020A3B0  80 01 00 14 */ lwz r0, 0x14(r1)

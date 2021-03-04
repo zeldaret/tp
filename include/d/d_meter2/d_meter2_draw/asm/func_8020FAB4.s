@@ -220,7 +220,7 @@ lbl_8020FD0C:
 /* 8020FE08 0020CD48  90 7F 05 34 */ stw r3, 0x534(r31)
 /* 8020FE0C 0020CD4C  7F E3 FB 78 */ mr r3, r31
 /* 8020FE10 0020CD50  C0 22 AE 84 */ lfs f1, lbl_80454884-_SDA2_BASE_(r2)
-/* 8020FE14 0020CD54  48 00 3E D9 */ bl dMeter2Draw_c_NS_playPikariBckAnimation
+/* 8020FE14 0020CD54  48 00 3E D9 */ bl playPikariBckAnimation__13dMeter2Draw_cFf
 /* 8020FE18 0020CD58  3C 80 80 3A */ lis r4, lbl_803988D0@ha
 /* 8020FE1C 0020CD5C  38 84 88 D0 */ addi r4, r4, lbl_803988D0@l
 /* 8020FE20 0020CD60  38 64 00 D9 */ addi r3, r4, 0xd9
@@ -236,7 +236,7 @@ lbl_8020FD0C:
 /* 8020FE48 0020CD88  4E 80 04 21 */ bctrl
 /* 8020FE4C 0020CD8C  7F E3 FB 78 */ mr r3, r31
 /* 8020FE50 0020CD90  C0 22 AE 84 */ lfs f1, lbl_80454884-_SDA2_BASE_(r2)
-/* 8020FE54 0020CD94  48 00 3F E9 */ bl dMeter2Draw_c_NS_playPikariBpkAnimation
+/* 8020FE54 0020CD94  48 00 3F E9 */ bl playPikariBpkAnimation__13dMeter2Draw_cFf
 /* 8020FE58 0020CD98  38 60 00 6C */ li r3, 0x6c
 /* 8020FE5C 0020CD9C  48 0B ED F1 */ bl __nw__FUl
 /* 8020FE60 0020CDA0  7C 60 1B 79 */ or. r0, r3, r3
@@ -548,7 +548,7 @@ lbl_802102B0:
 /* 802102B8 0020D1F8  38 A5 00 04 */ addi r5, r5, 4
 /* 802102BC 0020D1FC  42 00 FE B0 */ bdnz lbl_8021016C
 /* 802102C0 0020D200  7F E3 FB 78 */ mr r3, r31
-/* 802102C4 0020D204  48 00 0C ED */ bl dMeter2Draw_c_NS_init
+/* 802102C4 0020D204  48 00 0C ED */ bl init__13dMeter2Draw_cFv
 /* 802102C8 0020D208  38 00 00 00 */ li r0, 0
 /* 802102CC 0020D20C  90 1F 00 A8 */ stw r0, 0xa8(r31)
 /* 802102D0 0020D210  90 1F 01 E4 */ stw r0, 0x1e4(r31)

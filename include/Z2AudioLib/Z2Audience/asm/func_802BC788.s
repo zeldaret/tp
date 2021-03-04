@@ -13,7 +13,7 @@
 /* 802BC7B8 002B96F8  38 81 00 14 */ addi r4, r1, 0x14
 /* 802BC7BC 002B96FC  38 A1 00 08 */ addi r5, r1, 8
 /* 802BC7C0 002B9700  38 C0 00 01 */ li r6, 1
-/* 802BC7C4 002B9704  48 00 00 19 */ bl Z2AudioCamera_NS_setCameraState
+/* 802BC7C4 002B9704  48 00 00 19 */ bl setCameraState__13Z2AudioCameraFPA4_CfR3Vecb
 /* 802BC7C8 002B9708  83 E1 00 4C */ lwz r31, 0x4c(r1)
 /* 802BC7CC 002B970C  80 01 00 54 */ lwz r0, 0x54(r1)
 /* 802BC7D0 002B9710  7C 08 03 A6 */ mtlr r0

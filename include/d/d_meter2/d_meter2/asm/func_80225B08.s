@@ -36,7 +36,7 @@
 /* 80225B94 00222AD4  7F E3 FB 78 */ mr r3, r31
 /* 80225B98 00222AD8  4B DF 9E 1D */ bl fopMsgM_setStageLayer
 /* 80225B9C 00222ADC  7F E3 FB 78 */ mr r3, r31
-/* 80225BA0 00222AE0  4B FF 8E 75 */ bl dMeter2_c_NS__create
+/* 80225BA0 00222AE0  4B FF 8E 75 */ bl _create__9dMeter2_cFv
 /* 80225BA4 00222AE4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80225BA8 00222AE8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80225BAC 00222AEC  7C 08 03 A6 */ mtlr r0

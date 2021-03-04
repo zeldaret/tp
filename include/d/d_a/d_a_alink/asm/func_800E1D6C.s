@@ -18,10 +18,10 @@ lbl_800E1DAC:
 /* 800E1DAC 000DECEC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1DB0 000DECF0  40 82 00 5C */ bne lbl_800E1E0C
 /* 800E1DB4 000DECF4  7F E3 FB 78 */ mr r3, r31
-/* 800E1DB8 000DECF8  4B FF F5 79 */ bl daAlink_c_NS_getCopyRodBallDisMax
+/* 800E1DB8 000DECF8  4B FF F5 79 */ bl getCopyRodBallDisMax__9daAlink_cCFv
 /* 800E1DBC 000DECFC  7F E3 FB 78 */ mr r3, r31
 /* 800E1DC0 000DED00  38 81 00 08 */ addi r4, r1, 8
-/* 800E1DC4 000DED04  4B FD D7 3D */ bl daAlink_c_NS_checkSightLine
+/* 800E1DC4 000DED04  4B FD D7 3D */ bl checkSightLine__9daAlink_cFfP4cXyz
 /* 800E1DC8 000DED08  C0 01 00 08 */ lfs f0, 8(r1)
 /* 800E1DCC 000DED0C  D0 1F 20 6C */ stfs f0, 0x206c(r31)
 /* 800E1DD0 000DED10  C0 01 00 0C */ lfs f0, 0xc(r1)
@@ -35,7 +35,7 @@ lbl_800E1DAC:
 /* 800E1DF0 000DED30  28 03 00 00 */ cmplwi r3, 0
 /* 800E1DF4 000DED34  41 82 00 10 */ beq lbl_800E1E04
 /* 800E1DF8 000DED38  38 7F 20 64 */ addi r3, r31, 0x2064
-/* 800E1DFC 000DED3C  48 04 49 15 */ bl daAlink_sight_c_NS_onLockFlg
+/* 800E1DFC 000DED3C  48 04 49 15 */ bl onLockFlg__15daAlink_sight_cFv
 /* 800E1E00 000DED40  48 00 00 0C */ b lbl_800E1E0C
 lbl_800E1E04:
 /* 800E1E04 000DED44  38 00 00 00 */ li r0, 0

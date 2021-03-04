@@ -15,7 +15,7 @@
 /* 80209DB4 00206CF4  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80209DB8 00206CF8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 80209DBC 00206CFC  80 9B 00 84 */ lwz r4, 0x84(r27)
-/* 80209DC0 00206D00  48 01 28 E5 */ bl dMeter2Info_c_NS_getStringLength
+/* 80209DC0 00206D00  48 01 28 E5 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength
 /* 80209DC4 00206D04  57 9A 10 3A */ slwi r26, r28, 2
 /* 80209DC8 00206D08  C0 42 AD 4C */ lfs f2, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80209DCC 00206D0C  7F FB D2 14 */ add r31, r27, r26

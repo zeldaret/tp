@@ -10,7 +10,7 @@
 /* 800B754C 000B448C  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
 /* 800B7550 000B4490  28 00 00 FF */ cmplwi r0, 0xff
 /* 800B7554 000B4494  41 82 00 80 */ beq lbl_800B75D4
-/* 800B7558 000B4498  48 00 1D E9 */ bl daAlink_c_NS_checkEquipAnime
+/* 800B7558 000B4498  48 00 1D E9 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800B755C 000B449C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7560 000B44A0  40 82 00 74 */ bne lbl_800B75D4
 /* 800B7564 000B44A4  3B C0 00 00 */ li r30, 0

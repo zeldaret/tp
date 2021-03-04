@@ -8,13 +8,13 @@
 /* 800E064C 000DD58C  3C C0 80 39 */ lis r6, lbl_8038E6C8@ha
 /* 800E0650 000DD590  38 C6 E6 C8 */ addi r6, r6, lbl_8038E6C8@l
 /* 800E0654 000DD594  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800E0658 000DD598  4B FC D0 99 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800E0658 000DD598  4B FC D0 99 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
 /* 800E065C 000DD59C  7F E3 FB 78 */ mr r3, r31
 /* 800E0660 000DD5A0  38 80 00 E8 */ li r4, 0xe8
 /* 800E0664 000DD5A4  38 A0 00 01 */ li r5, 1
 /* 800E0668 000DD5A8  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800E066C 000DD5AC  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800E0670 000DD5B0  4B FC EE 41 */ bl daAlink_c_NS_setFaceBck
+/* 800E0670 000DD5B0  4B FC EE 41 */ bl setFaceBck__9daAlink_cFUsiUs
 /* 800E0674 000DD5B4  38 00 00 FE */ li r0, 0xfe
 /* 800E0678 000DD5B8  98 1F 2F 97 */ stb r0, 0x2f97(r31)
 /* 800E067C 000DD5BC  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)

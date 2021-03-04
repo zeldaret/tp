@@ -530,7 +530,7 @@ dCamSetup_c:
 /* 80088890 000857D0  90 1F 01 74 */	stw r0, 0x174(r31)
 /* 80088894 000857D4  90 7F 01 78 */	stw r3, 0x178(r31)
 /* 80088898 000857D8  48 0F 8D A9 */	bl dCam_getBody
-/* 8008889C 000857DC  48 0F 81 A5 */	bl dCamera_c_NS_EventRecoverNotime
+/* 8008889C 000857DC  48 0F 81 A5 */	bl EventRecoverNotime__9dCamera_cFv
 /* 800888A0 000857E0  7F E3 FB 78 */	mr r3, r31
 /* 800888A4 000857E4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800888A8 000857E8  80 01 00 14 */	lwz r0, 0x14(r1)

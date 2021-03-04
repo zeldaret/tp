@@ -37,12 +37,12 @@ lbl_800BE32C:
 /* 800BE344 000BB284  28 00 00 38 */ cmplwi r0, 0x38
 /* 800BE348 000BB288  41 82 00 88 */ beq lbl_800BE3D0
 /* 800BE34C 000BB28C  7F E3 FB 78 */ mr r3, r31
-/* 800BE350 000BB290  4B FF FF 1D */ bl daAlink_c_NS_checkCoachGuardGame
+/* 800BE350 000BB290  4B FF FF 1D */ bl checkCoachGuardGame__9daAlink_cFv
 /* 800BE354 000BB294  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE358 000BB298  40 82 00 78 */ bne lbl_800BE3D0
 /* 800BE35C 000BB29C  38 7F 1A A0 */ addi r3, r31, 0x1aa0
 /* 800BE360 000BB2A0  38 80 00 01 */ li r4, 1
-/* 800BE364 000BB2A4  4B FE 3E 7D */ bl daAlink_c_NS_getMoveBGActorName
+/* 800BE364 000BB2A4  4B FE 3E 7D */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800BE368 000BB2A8  7C 60 07 34 */ extsh r0, r3
 /* 800BE36C 000BB2AC  2C 00 00 1C */ cmpwi r0, 0x1c
 /* 800BE370 000BB2B0  41 82 00 60 */ beq lbl_800BE3D0
@@ -70,7 +70,7 @@ lbl_800BE3B0:
 /* 800BE3C0 000BB300  38 A0 00 C9 */ li r5, 0xc9
 /* 800BE3C4 000BB304  38 C0 00 04 */ li r6, 4
 /* 800BE3C8 000BB308  38 E0 00 00 */ li r7, 0
-/* 800BE3CC 000BB30C  4B FF FB 95 */ bl daAlink_c_NS_startRestartRoom
+/* 800BE3CC 000BB30C  4B FF FB 95 */ bl startRestartRoom__9daAlink_cFUliii
 lbl_800BE3D0:
 /* 800BE3D0 000BB310  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800BE3D4 000BB314  80 01 00 14 */ lwz r0, 0x14(r1)

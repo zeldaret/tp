@@ -4,12 +4,12 @@
 /* 8012F640 0012C580  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012F644 0012C584  7C 7F 1B 78 */ mr r31, r3
 /* 8012F648 0012C588  38 80 01 0B */ li r4, 0x10b
-/* 8012F64C 0012C58C  4B F9 29 21 */ bl daAlink_c_NS_commonProcInit
+/* 8012F64C 0012C58C  4B F9 29 21 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012F650 0012C590  7F E3 FB 78 */ mr r3, r31
 /* 8012F654 0012C594  38 80 00 1A */ li r4, 0x1a
 /* 8012F658 0012C598  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
 /* 8012F65C 0012C59C  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
-/* 8012F660 0012C5A0  4B FF A1 E9 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8012F660 0012C5A0  4B FF A1 E9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8012F664 0012C5A4  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 8012F668 0012C5A8  54 00 02 53 */ rlwinm. r0, r0, 0, 9, 9
 /* 8012F66C 0012C5AC  41 82 00 20 */ beq lbl_8012F68C
@@ -39,7 +39,7 @@ lbl_8012F6A4:
 /* 8012F6C4 0012C604  D0 1F 35 90 */ stfs f0, 0x3590(r31)
 /* 8012F6C8 0012C608  7F E3 FB 78 */ mr r3, r31
 /* 8012F6CC 0012C60C  38 80 00 01 */ li r4, 1
-/* 8012F6D0 0012C610  4B FF 1A F1 */ bl daAlink_c_NS_setFootEffectProcType
+/* 8012F6D0 0012C610  4B FF 1A F1 */ bl setFootEffectProcType__9daAlink_cFi
 /* 8012F6D4 0012C614  38 60 00 01 */ li r3, 1
 /* 8012F6D8 0012C618  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8012F6DC 0012C61C  80 01 00 14 */ lwz r0, 0x14(r1)

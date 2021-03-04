@@ -85,7 +85,7 @@ lbl_802048E0:
 /* 80204928 00201868  C0 3F 02 F0 */ lfs f1, 0x2f0(r31)
 /* 8020492C 0020186C  C0 42 AD 48 */ lfs f2, lbl_80454748-_SDA2_BASE_(r2)
 /* 80204930 00201870  38 A0 00 FF */ li r5, 0xff
-/* 80204934 00201874  48 00 65 35 */ bl dMeterButton_c_NS_paneTrans
+/* 80204934 00201874  48 00 65 35 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 80204938 00201878  38 60 00 6C */ li r3, 0x6c
 /* 8020493C 0020187C  48 0C A3 11 */ bl __nw__FUl
 /* 80204940 00201880  7C 60 1B 79 */ or. r0, r3, r3
@@ -502,7 +502,7 @@ lbl_80204F20:
 /* 80204F6C 00201EAC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 80204F70 00201EB0  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80204F74 00201EB4  80 63 01 0C */ lwz r3, 0x10c(r3)
-/* 80204F78 00201EB8  48 01 6C 3D */ bl dMeter2Draw_c_NS_getCanoeFishing
+/* 80204F78 00201EB8  48 01 6C 3D */ bl getCanoeFishing__13dMeter2Draw_cFv
 /* 80204F7C 00201EBC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80204F80 00201EC0  41 82 00 08 */ beq lbl_80204F88
 /* 80204F84 00201EC4  3B 20 00 58 */ li r25, 0x58
@@ -527,7 +527,7 @@ lbl_80204F98:
 /* 80204FC8 00201F08  39 00 00 00 */ li r8, 0
 /* 80204FCC 00201F0C  39 20 00 00 */ li r9, 0
 /* 80204FD0 00201F10  39 40 00 00 */ li r10, 0
-/* 80204FD4 00201F14  48 01 7F 35 */ bl dMeter2Info_c_NS_readItemTexture
+/* 80204FD4 00201F14  48 01 7F 35 */ bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 80204FD8 00201F18  38 00 00 FF */ li r0, 0xff
 /* 80204FDC 00201F1C  98 1F 04 D9 */ stb r0, 0x4d9(r31)
 /* 80204FE0 00201F20  3B 00 00 00 */ li r24, 0
@@ -1063,7 +1063,7 @@ lbl_802057F4:
 /* 80205804 00202744  38 00 00 00 */ li r0, 0
 /* 80205808 00202748  98 1F 04 D6 */ stb r0, 0x4d6(r31)
 /* 8020580C 0020274C  7F E3 FB 78 */ mr r3, r31
-/* 80205810 00202750  48 00 04 91 */ bl dMeterButton_c_NS_updateButton
+/* 80205810 00202750  48 00 04 91 */ bl updateButton__14dMeterButton_cFv
 /* 80205814 00202754  E3 E1 02 08 */ psq_l f31, 520(r1), 0, 0
 /* 80205818 00202758  CB E1 02 00 */ lfd f31, 0x200(r1)
 /* 8020581C 0020275C  39 61 02 00 */ addi r11, r1, 0x200

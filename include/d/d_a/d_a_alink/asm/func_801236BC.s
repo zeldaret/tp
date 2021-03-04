@@ -27,7 +27,7 @@ lbl_80123710:
 /* 80123720 00120660  7C A5 F2 2E */ lhzx r5, r5, r30
 /* 80123724 00120664  38 DF 04 D0 */ addi r6, r31, 0x4d0
 /* 80123728 00120668  38 FF 04 E4 */ addi r7, r31, 0x4e4
-/* 8012372C 0012066C  4B FF CE 55 */ bl daAlink_c_NS_setEmitter
+/* 8012372C 0012066C  4B FF CE 55 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123730 00120670  7C 65 1B 79 */ or. r5, r3, r3
 /* 80123734 00120674  41 82 00 2C */ beq lbl_80123760
 /* 80123738 00120678  80 7F 06 50 */ lwz r3, 0x650(r31)

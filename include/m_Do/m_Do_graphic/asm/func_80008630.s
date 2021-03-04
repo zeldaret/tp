@@ -61,7 +61,7 @@ lbl_80008718:
 /* 80008718 00005658  C0 02 80 50 */ lfs f0, lbl_80451A50-_SDA2_BASE_(r2)
 lbl_8000871C:
 /* 8000871C 0000565C  EF E1 00 24 */ fdivs f31, f1, f0
-/* 80008720 00005660  48 06 B0 C5 */ bl dAttention_c_NS_LockonTruth
+/* 80008720 00005660  48 06 B0 C5 */ bl LockonTruth__12dAttention_cFv
 /* 80008724 00005664  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80008728 00005668  41 82 01 A8 */ beq lbl_800088D0
 /* 8000872C 0000566C  80 76 5D B4 */ lwz r3, 0x5db4(r22)

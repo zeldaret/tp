@@ -8,7 +8,7 @@
 /* 8010C84C 0010978C  7C BE 2B 78 */ mr r30, r5
 /* 8010C850 00109790  7C DF 33 78 */ mr r31, r6
 /* 8010C854 00109794  38 80 00 C7 */ li r4, 0xc7
-/* 8010C858 00109798  4B FB 57 15 */ bl daAlink_c_NS_commonProcInit
+/* 8010C858 00109798  4B FB 57 15 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010C85C 0010979C  2C 1D 00 00 */ cmpwi r29, 0
 /* 8010C860 001097A0  41 82 00 EC */ beq lbl_8010C94C
 /* 8010C864 001097A4  3C 60 80 3E */ lis r3, lbl_803DD470@ha
@@ -69,16 +69,16 @@ lbl_8010C92C:
 /* 8010C938 00109878  3C A0 80 39 */ lis r5, lbl_8038E9C0@ha
 /* 8010C93C 0010987C  38 A5 E9 C0 */ addi r5, r5, lbl_8038E9C0@l
 /* 8010C940 00109880  38 A5 00 14 */ addi r5, r5, 0x14
-/* 8010C944 00109884  4B FA 07 B1 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 8010C944 00109884  4B FA 07 B1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 8010C948 00109888  48 00 00 14 */ b lbl_8010C95C
 lbl_8010C94C:
 /* 8010C94C 0010988C  7F 83 E3 78 */ mr r3, r28
-/* 8010C950 00109890  4B FF E9 8D */ bl daAlink_c_NS_setHookshotRoofWaitAnime
+/* 8010C950 00109890  4B FF E9 8D */ bl setHookshotRoofWaitAnime__9daAlink_cFv
 /* 8010C954 00109894  38 00 00 01 */ li r0, 1
 /* 8010C958 00109898  B0 1C 30 0C */ sth r0, 0x300c(r28)
 lbl_8010C95C:
 /* 8010C95C 0010989C  7F 83 E3 78 */ mr r3, r28
-/* 8010C960 001098A0  4B FF BD 7D */ bl daAlink_c_NS_resetHookshotMode
+/* 8010C960 001098A0  4B FF BD 7D */ bl resetHookshotMode__9daAlink_cFv
 /* 8010C964 001098A4  38 00 00 01 */ li r0, 1
 /* 8010C968 001098A8  B0 1C 30 24 */ sth r0, 0x3024(r28)
 /* 8010C96C 001098AC  7F 83 E3 78 */ mr r3, r28
@@ -93,11 +93,11 @@ lbl_8010C95C:
 /* 8010C990 001098D0  B0 1C 04 DE */ sth r0, 0x4de(r28)
 /* 8010C994 001098D4  7F 83 E3 78 */ mr r3, r28
 /* 8010C998 001098D8  7F C4 F3 78 */ mr r4, r30
-/* 8010C99C 001098DC  4B FF EC A9 */ bl daAlink_c_NS_initHookshotRoofWaitActor
+/* 8010C99C 001098DC  4B FF EC A9 */ bl initHookshotRoofWaitActor__9daAlink_cFP10fopAc_ac_c
 /* 8010C9A0 001098E0  2C 1D 00 00 */ cmpwi r29, 0
 /* 8010C9A4 001098E4  41 82 00 0C */ beq lbl_8010C9B0
 /* 8010C9A8 001098E8  7F 83 E3 78 */ mr r3, r28
-/* 8010C9AC 001098EC  4B FF CE E5 */ bl daAlink_c_NS_setHookshotHangMoveBGCollect
+/* 8010C9AC 001098EC  4B FF CE E5 */ bl setHookshotHangMoveBGCollect__9daAlink_cFv
 lbl_8010C9B0:
 /* 8010C9B0 001098F0  C0 02 96 00 */ lfs f0, lbl_80453000-_SDA2_BASE_(r2)
 /* 8010C9B4 001098F4  D0 1C 2B 98 */ stfs f0, 0x2b98(r28)

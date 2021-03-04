@@ -16,7 +16,7 @@
 /* 800ECAE0 000E9A20  48 00 00 60 */ b lbl_800ECB40
 lbl_800ECAE4:
 /* 800ECAE4 000E9A24  7F C3 F3 78 */ mr r3, r30
-/* 800ECAE8 000E9A28  4B FF FF 55 */ bl daAlink_c_NS_commonInitForceRideRein
+/* 800ECAE8 000E9A28  4B FF FF 55 */ bl commonInitForceRideRein__9daAlink_cFv
 /* 800ECAEC 000E9A2C  C0 1E 04 D0 */ lfs f0, 0x4d0(r30)
 /* 800ECAF0 000E9A30  D0 1F 04 D0 */ stfs f0, 0x4d0(r31)
 /* 800ECAF4 000E9A34  C0 1E 04 D4 */ lfs f0, 0x4d4(r30)

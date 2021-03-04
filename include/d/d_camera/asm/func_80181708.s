@@ -56,7 +56,7 @@ lbl_801817DC:
 /* 801817DC 0017E71C  C0 3D 00 D0 */ lfs f1, 0xd0(r29)
 /* 801817E0 0017E720  C0 5D 00 D4 */ lfs f2, 0xd4(r29)
 /* 801817E4 0017E724  C0 7D 00 C8 */ lfs f3, 0xc8(r29)
-/* 801817E8 0017E728  4B E9 3A A5 */ bl mDoLib_clipper_NS_setup
+/* 801817E8 0017E728  4B E9 3A A5 */ bl setup__14mDoLib_clipperFffff
 /* 801817EC 0017E72C  39 61 00 20 */ addi r11, r1, 0x20
 /* 801817F0 0017E730  48 1E 0A 39 */ bl _restgpr_29
 /* 801817F4 0017E734  80 01 00 24 */ lwz r0, 0x24(r1)

@@ -23,7 +23,7 @@ lbl_800C48D4:
 /* 800C48E8 000C1828  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800C48EC 000C182C  7F C3 F3 78 */ mr r3, r30
 /* 800C48F0 000C1830  38 80 00 00 */ li r4, 0
-/* 800C48F4 000C1834  4B FF 57 DD */ bl daAlink_c_NS_checkNextAction
+/* 800C48F4 000C1834  4B FF 57 DD */ bl checkNextAction__9daAlink_cFi
 /* 800C48F8 000C1838  48 00 00 38 */ b lbl_800C4930
 lbl_800C48FC:
 /* 800C48FC 000C183C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -35,7 +35,7 @@ lbl_800C48FC:
 /* 800C4914 000C1854  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800C4918 000C1858  7F C3 F3 78 */ mr r3, r30
 /* 800C491C 000C185C  38 80 00 01 */ li r4, 1
-/* 800C4920 000C1860  4B FF 57 B1 */ bl daAlink_c_NS_checkNextAction
+/* 800C4920 000C1860  4B FF 57 B1 */ bl checkNextAction__9daAlink_cFi
 /* 800C4924 000C1864  2C 03 00 00 */ cmpwi r3, 0
 /* 800C4928 000C1868  40 82 00 08 */ bne lbl_800C4930
 /* 800C492C 000C186C  B3 FE 04 DE */ sth r31, 0x4de(r30)

@@ -19,18 +19,18 @@
 /* 801406F0 0013D630  3B C0 03 A7 */ li r30, 0x3a7
 /* 801406F4 0013D634  7F A3 EB 78 */ mr r3, r29
 /* 801406F8 0013D638  38 80 00 00 */ li r4, 0
-/* 801406FC 0013D63C  4B FF FE 55 */ bl daAlink_c_NS_changeModelDataDirectWolf
+/* 801406FC 0013D63C  4B FF FE 55 */ bl changeModelDataDirect__9daAlink_cFiWolf
 /* 80140700 0013D640  48 00 00 4C */ b lbl_8014074C
 lbl_80140704:
 /* 80140704 0013D644  3B 80 02 6A */ li r28, 0x26a
 /* 80140708 0013D648  3B E0 03 AF */ li r31, 0x3af
 /* 8014070C 0013D64C  3B C0 03 2C */ li r30, 0x32c
 /* 80140710 0013D650  7F A3 EB 78 */ mr r3, r29
-/* 80140714 0013D654  4B F7 F6 9D */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80140714 0013D654  4B F7 F6 9D */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80140718 0013D658  2C 03 00 00 */ cmpwi r3, 0
 /* 8014071C 0013D65C  41 82 00 24 */ beq lbl_80140740
 /* 80140720 0013D660  7F A3 EB 78 */ mr r3, r29
-/* 80140724 0013D664  4B FC 11 6D */ bl daAlink_c_NS_checkZoraWearMaskDraw
+/* 80140724 0013D664  4B FC 11 6D */ bl checkZoraWearMaskDraw__9daAlink_cFv
 /* 80140728 0013D668  2C 03 00 00 */ cmpwi r3, 0
 /* 8014072C 0013D66C  40 82 00 14 */ bne lbl_80140740
 /* 80140730 0013D670  80 7D 06 F0 */ lwz r3, 0x6f0(r29)
@@ -40,7 +40,7 @@ lbl_80140704:
 lbl_80140740:
 /* 80140740 0013D680  7F A3 EB 78 */ mr r3, r29
 /* 80140744 0013D684  38 80 00 00 */ li r4, 0
-/* 80140748 0013D688  4B FF FB F1 */ bl daAlink_c_NS_changeModelDataDirect
+/* 80140748 0013D688  4B FF FB F1 */ bl changeModelDataDirect__9daAlink_cFi
 lbl_8014074C:
 /* 8014074C 0013D68C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80140750 0013D690  3B 63 61 C0 */ addi r27, r3, g_dComIfG_gameInfo@l
@@ -73,7 +73,7 @@ lbl_80140794:
 /* 801407B8 0013D6F8  38 E0 00 00 */ li r7, 0
 /* 801407BC 0013D6FC  39 00 FF FF */ li r8, -1
 /* 801407C0 0013D700  39 20 00 00 */ li r9, 0
-/* 801407C4 0013D704  4B EC D0 19 */ bl mDoExt_bckAnm_NS_init
+/* 801407C4 0013D704  4B EC D0 19 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 801407C8 0013D708  38 60 04 00 */ li r3, 0x400
 /* 801407CC 0013D70C  38 80 00 20 */ li r4, 0x20
 /* 801407D0 0013D710  48 18 E5 1D */ bl __nwa__FUli

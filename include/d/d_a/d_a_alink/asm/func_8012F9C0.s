@@ -38,7 +38,7 @@
 /* 8012FA54 0012C994  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 8012FA58 0012C998  41 82 00 10 */ beq lbl_8012FA68
 /* 8012FA5C 0012C99C  7F C3 F3 78 */ mr r3, r30
-/* 8012FA60 0012C9A0  48 00 00 B9 */ bl daAlink_c_NS_procWolfSlipTurnLandInit
+/* 8012FA60 0012C9A0  48 00 00 B9 */ bl procWolfSlipTurnLandInit__9daAlink_cFv
 /* 8012FA64 0012C9A4  48 00 00 9C */ b lbl_8012FB00
 lbl_8012FA68:
 /* 8012FA68 0012C9A8  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -51,7 +51,7 @@ lbl_8012FA68:
 /* 8012FA84 0012C9C4  C0 1E 34 7C */ lfs f0, 0x347c(r30)
 /* 8012FA88 0012C9C8  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 8012FA8C 0012C9CC  7F C3 F3 78 */ mr r3, r30
-/* 8012FA90 0012C9D0  4B F8 4E 41 */ bl daAlink_c_NS_setJumpMode
+/* 8012FA90 0012C9D0  4B F8 4E 41 */ bl setJumpMode__9daAlink_cFv
 /* 8012FA94 0012C9D4  48 00 00 68 */ b lbl_8012FAFC
 lbl_8012FA98:
 /* 8012FA98 0012C9D8  28 00 00 00 */ cmplwi r0, 0
@@ -68,7 +68,7 @@ lbl_8012FA98:
 /* 8012FAC4 0012CA04  38 80 00 00 */ li r4, 0
 /* 8012FAC8 0012CA08  38 A0 80 00 */ li r5, -32768
 /* 8012FACC 0012CA0C  38 C0 00 00 */ li r6, 0
-/* 8012FAD0 0012CA10  4B F7 E0 A9 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 8012FAD0 0012CA10  4B F7 E0 A9 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 8012FAD4 0012CA14  A8 1E 04 DE */ lha r0, 0x4de(r30)
 /* 8012FAD8 0012CA18  B0 1E 04 E6 */ sth r0, 0x4e6(r30)
 /* 8012FADC 0012CA1C  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
@@ -78,7 +78,7 @@ lbl_8012FA98:
 /* 8012FAEC 0012CA2C  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
 /* 8012FAF0 0012CA30  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 8012FAF4 0012CA34  C0 25 00 C4 */ lfs f1, 0xc4(r5)
-/* 8012FAF8 0012CA38  4B FF F2 D9 */ bl daAlink_c_NS_procWolfFallInit
+/* 8012FAF8 0012CA38  4B FF F2 D9 */ bl procWolfFallInit__9daAlink_cFif
 lbl_8012FAFC:
 /* 8012FAFC 0012CA3C  38 60 00 01 */ li r3, 1
 lbl_8012FB00:

@@ -54,7 +54,7 @@ lbl_801201D8:
 /* 801201E4 0011D124  7C BF EA 2E */ lhzx r5, r31, r29
 /* 801201E8 0011D128  38 DE 04 D0 */ addi r6, r30, 0x4d0
 /* 801201EC 0011D12C  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 801201F0 0011D130  48 00 03 91 */ bl daAlink_c_NS_setEmitter
+/* 801201F0 0011D130  48 00 03 91 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 801201F4 0011D134  3B 7B 00 01 */ addi r27, r27, 1
 /* 801201F8 0011D138  2C 1B 00 06 */ cmpwi r27, 6
 /* 801201FC 0011D13C  3B BD 00 02 */ addi r29, r29, 2
@@ -72,7 +72,7 @@ lbl_80120208:
 /* 80120228 0011D168  38 A0 09 F3 */ li r5, 0x9f3
 /* 8012022C 0011D16C  38 DE 04 D0 */ addi r6, r30, 0x4d0
 /* 80120230 0011D170  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80120234 0011D174  48 00 03 4D */ bl daAlink_c_NS_setEmitter
+/* 80120234 0011D174  48 00 03 4D */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 lbl_80120238:
 /* 80120238 0011D178  A8 1E 30 12 */ lha r0, 0x3012(r30)
 /* 8012023C 0011D17C  2C 00 00 00 */ cmpwi r0, 0
@@ -102,7 +102,7 @@ lbl_80120278:
 /* 80120298 0011D1D8  48 00 01 8C */ b lbl_80120424
 lbl_8012029C:
 /* 8012029C 0011D1DC  7F C3 F3 78 */ mr r3, r30
-/* 801202A0 0011D1E0  4B FF F9 21 */ bl daAlink_c_NS_warpModelTexScroll
+/* 801202A0 0011D1E0  4B FF F9 21 */ bl warpModelTexScroll__9daAlink_cFv
 /* 801202A4 0011D1E4  2C 03 00 00 */ cmpwi r3, 0
 /* 801202A8 0011D1E8  41 82 01 18 */ beq lbl_801203C0
 /* 801202AC 0011D1EC  A8 1E 30 0C */ lha r0, 0x300c(r30)
@@ -146,11 +146,11 @@ lbl_8012029C:
 /* 80120344 0011D284  48 00 00 0C */ b lbl_80120350
 lbl_80120348:
 /* 80120348 0011D288  7F C3 F3 78 */ mr r3, r30
-/* 8012034C 0011D28C  4B FF 79 45 */ bl daAlink_c_NS_resetSpecialEvent
+/* 8012034C 0011D28C  4B FF 79 45 */ bl resetSpecialEvent__9daAlink_cFv
 lbl_80120350:
 /* 80120350 0011D290  7F C3 F3 78 */ mr r3, r30
 /* 80120354 0011D294  38 80 00 01 */ li r4, 1
-/* 80120358 0011D298  48 00 01 DD */ bl daAlink_c_NS_commonFallInit
+/* 80120358 0011D298  48 00 01 DD */ bl commonFallInit__9daAlink_cFi
 /* 8012035C 0011D29C  48 00 00 CC */ b lbl_80120428
 lbl_80120360:
 /* 80120360 0011D2A0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -161,7 +161,7 @@ lbl_80120360:
 /* 80120374 0011D2B4  48 00 00 B0 */ b lbl_80120424
 lbl_80120378:
 /* 80120378 0011D2B8  7F C3 F3 78 */ mr r3, r30
-/* 8012037C 0011D2BC  4B F9 55 71 */ bl daAlink_c_NS_checkWaitAction
+/* 8012037C 0011D2BC  4B F9 55 71 */ bl checkWaitAction__9daAlink_cFv
 /* 80120380 0011D2C0  48 00 00 A8 */ b lbl_80120428
 lbl_80120384:
 /* 80120384 0011D2C4  A8 1E 30 0E */ lha r0, 0x300e(r30)
@@ -205,7 +205,7 @@ lbl_801203C0:
 /* 80120414 0011D354  54 05 04 3E */ clrlwi r5, r0, 0x10
 /* 80120418 0011D358  38 C1 00 10 */ addi r6, r1, 0x10
 /* 8012041C 0011D35C  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80120420 0011D360  48 00 01 61 */ bl daAlink_c_NS_setEmitter
+/* 80120420 0011D360  48 00 01 61 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 lbl_80120424:
 /* 80120424 0011D364  38 60 00 01 */ li r3, 1
 lbl_80120428:

@@ -19,7 +19,7 @@
 /* 8020D350 0020A290  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D354 0020A294  80 9F 00 2C */ lwz r4, 0x2c(r31)
 /* 8020D358 0020A298  38 A0 00 05 */ li r5, 5
-/* 8020D35C 0020A29C  48 00 D7 49 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 8020D35C 0020A29C  48 00 D7 49 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_8020D360:
 /* 8020D360 0020A2A0  80 7F 00 30 */ lwz r3, 0x30(r31)
 /* 8020D364 0020A2A4  48 04 84 C5 */ bl getAlphaRate__13CPaneMgrAlphaFv
@@ -37,7 +37,7 @@ lbl_8020D360:
 /* 8020D394 0020A2D4  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020D398 0020A2D8  80 9F 00 30 */ lwz r4, 0x30(r31)
 /* 8020D39C 0020A2DC  38 A0 00 05 */ li r5, 5
-/* 8020D3A0 0020A2E0  48 00 D7 05 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 8020D3A0 0020A2E0  48 00 D7 05 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_8020D3A4:
 /* 8020D3A4 0020A2E4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020D3A8 0020A2E8  80 01 00 14 */ lwz r0, 0x14(r1)

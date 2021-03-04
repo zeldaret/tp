@@ -4,7 +4,7 @@
 /* 8013B430 00138370  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013B434 00138374  93 C1 00 08 */ stw r30, 8(r1)
 /* 8013B438 00138378  7C 7E 1B 78 */ mr r30, r3
-/* 8013B43C 0013837C  4B FE E6 45 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013B43C 0013837C  4B FE E6 45 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8013B440 00138380  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B444 00138384  41 82 00 0C */ beq lbl_8013B450
 /* 8013B448 00138388  38 60 00 01 */ li r3, 1
@@ -23,7 +23,7 @@ lbl_8013B450:
 /* 8013B478 001383B8  41 82 00 14 */ beq lbl_8013B48C
 /* 8013B47C 001383BC  7F C3 F3 78 */ mr r3, r30
 /* 8013B480 001383C0  38 80 00 00 */ li r4, 0
-/* 8013B484 001383C4  4B FE E6 C1 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B484 001383C4  4B FE E6 C1 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013B488 001383C8  48 00 00 84 */ b lbl_8013B50C
 lbl_8013B48C:
 /* 8013B48C 001383CC  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -34,7 +34,7 @@ lbl_8013B48C:
 /* 8013B4A0 001383E0  40 81 00 14 */ ble lbl_8013B4B4
 /* 8013B4A4 001383E4  7F C3 F3 78 */ mr r3, r30
 /* 8013B4A8 001383E8  38 80 00 01 */ li r4, 1
-/* 8013B4AC 001383EC  4B FE E6 99 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B4AC 001383EC  4B FE E6 99 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013B4B0 001383F0  48 00 00 5C */ b lbl_8013B50C
 lbl_8013B4B4:
 /* 8013B4B4 001383F4  A8 1E 30 0E */ lha r0, 0x300e(r30)

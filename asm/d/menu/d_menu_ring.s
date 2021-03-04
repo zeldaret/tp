@@ -647,7 +647,7 @@ lbl_801E9A24:
 /* 801E9A54 001E6994  39 00 00 00 */	li r8, 0
 /* 801E9A58 001E6998  81 29 02 58 */	lwz r9, 0x258(r9)
 /* 801E9A5C 001E699C  39 40 00 00 */	li r10, 0
-/* 801E9A60 001E69A0  48 03 34 A9 */	bl dMeter2Info_c_NS_readItemTexture
+/* 801E9A60 001E69A0  48 03 34 A9 */	bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 801E9A64 001E69A4  7C 76 1B 78 */	mr r22, r3
 /* 801E9A68 001E69A8  3A 80 00 00 */	li r20, 0
 /* 801E9A6C 001E69AC  3A 60 00 00 */	li r19, 0
@@ -682,7 +682,7 @@ lbl_801E9AB8:
 /* 801E9AD4 001E6A14  80 C7 00 9C */	lwz r6, 0x9c(r7)
 /* 801E9AD8 001E6A18  80 E7 00 A0 */	lwz r7, 0xa0(r7)
 /* 801E9ADC 001E6A1C  39 00 00 00 */	li r8, 0
-/* 801E9AE0 001E6A20  48 03 38 8D */	bl dMeter2Info_c_NS_setItemColor
+/* 801E9AE0 001E6A20  48 03 38 8D */	bl setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture
 /* 801E9AE4 001E6A24  56 A0 06 3E */	clrlwi r0, r21, 0x18
 /* 801E9AE8 001E6A28  1C 80 00 18 */	mulli r4, r0, 0x18
 /* 801E9AEC 001E6A2C  3C 60 80 3B */	lis r3, lbl_803AC5A0@ha
@@ -2109,7 +2109,7 @@ lbl_801EAF28:
 /* 801EAFEC 001E7F2C  39 01 00 08 */	addi r8, r1, 8
 /* 801EAFF0 001E7F30  C0 89 00 E0 */	lfs f4, 0xe0(r9)
 /* 801EAFF4 001E7F34  39 20 00 02 */	li r9, 2
-/* 801EAFF8 001E7F38  48 02 90 E5 */	bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 801EAFF8 001E7F38  48 02 90 E5 */	bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 801EAFFC 001E7F3C  38 61 00 24 */	addi r3, r1, 0x24
 /* 801EB000 001E7F40  38 80 FF FF */	li r4, -1
 /* 801EB004 001E7F44  48 06 8A 15 */	bl __dt__8CPaneMgrFv
@@ -2153,7 +2153,7 @@ setKanteraPos__12dMenu_Ring_cFff:
 /* 801EB084 001E7FC4  7C 08 02 A6 */	mflr r0
 /* 801EB088 001E7FC8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801EB08C 001E7FCC  80 63 00 54 */	lwz r3, 0x54(r3)
-/* 801EB090 001E7FD0  4B FC 3B 11 */	bl dKantera_icon_c_NS_setPos
+/* 801EB090 001E7FD0  4B FC 3B 11 */	bl setPos__15dKantera_icon_cFff
 /* 801EB094 001E7FD4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801EB098 001E7FD8  7C 08 03 A6 */	mtlr r0
 /* 801EB09C 001E7FDC  38 21 00 10 */	addi r1, r1, 0x10
@@ -4281,11 +4281,11 @@ lbl_801ECE98:
 /* 801ECED4 001E9E14  80 7B 00 54 */	lwz r3, 0x54(r27)
 /* 801ECED8 001E9E18  C0 22 A9 F0 */	lfs f1, lbl_804543F0-_SDA2_BASE_(r2)
 /* 801ECEDC 001E9E1C  FC 40 08 90 */	fmr f2, f1
-/* 801ECEE0 001E9E20  4B FC 1D 15 */	bl dKantera_icon_c_NS_setScale
+/* 801ECEE0 001E9E20  4B FC 1D 15 */	bl setScale__15dKantera_icon_cFff
 /* 801ECEE4 001E9E24  A0 B7 00 08 */	lhz r5, 8(r23)
 /* 801ECEE8 001E9E28  A0 97 00 06 */	lhz r4, 6(r23)
 /* 801ECEEC 001E9E2C  80 7B 00 54 */	lwz r3, 0x54(r27)
-/* 801ECEF0 001E9E30  4B FC 1D 55 */	bl dKantera_icon_c_NS_setNowGauge
+/* 801ECEF0 001E9E30  4B FC 1D 55 */	bl setNowGauge__15dKantera_icon_cFUsUs
 /* 801ECEF4 001E9E34  7C 75 F0 2E */	lwzx r3, r21, r30
 /* 801ECEF8 001E9E38  88 03 00 B2 */	lbz r0, 0xb2(r3)
 /* 801ECEFC 001E9E3C  80 7B 00 54 */	lwz r3, 0x54(r27)
@@ -4297,7 +4297,7 @@ lbl_801ECE98:
 /* 801ECF14 001E9E54  EC 20 08 28 */	fsubs f1, f0, f1
 /* 801ECF18 001E9E58  C0 02 A9 E4 */	lfs f0, lbl_804543E4-_SDA2_BASE_(r2)
 /* 801ECF1C 001E9E5C  EC 21 00 24 */	fdivs f1, f1, f0
-/* 801ECF20 001E9E60  4B FC 1C 5D */	bl dKantera_icon_c_NS_setAlphaRate
+/* 801ECF20 001E9E60  4B FC 1C 5D */	bl setAlphaRate__15dKantera_icon_cFf
 /* 801ECF24 001E9E64  80 7B 00 54 */	lwz r3, 0x54(r27)
 /* 801ECF28 001E9E68  80 63 00 04 */	lwz r3, 4(r3)
 /* 801ECF2C 001E9E6C  81 83 00 00 */	lwz r12, 0(r3)
@@ -4504,11 +4504,11 @@ lbl_801ED1E0:
 /* 801ED21C 001EA15C  80 77 00 54 */	lwz r3, 0x54(r23)
 /* 801ED220 001EA160  C0 22 A9 F0 */	lfs f1, lbl_804543F0-_SDA2_BASE_(r2)
 /* 801ED224 001EA164  FC 40 08 90 */	fmr f2, f1
-/* 801ED228 001EA168  4B FC 19 CD */	bl dKantera_icon_c_NS_setScale
+/* 801ED228 001EA168  4B FC 19 CD */	bl setScale__15dKantera_icon_cFff
 /* 801ED22C 001EA16C  A0 BF 00 08 */	lhz r5, 8(r31)
 /* 801ED230 001EA170  A0 9F 00 06 */	lhz r4, 6(r31)
 /* 801ED234 001EA174  80 77 00 54 */	lwz r3, 0x54(r23)
-/* 801ED238 001EA178  4B FC 1A 0D */	bl dKantera_icon_c_NS_setNowGauge
+/* 801ED238 001EA178  4B FC 1A 0D */	bl setNowGauge__15dKantera_icon_cFUsUs
 /* 801ED23C 001EA17C  7C 7D C8 2E */	lwzx r3, r29, r25
 /* 801ED240 001EA180  88 03 00 B2 */	lbz r0, 0xb2(r3)
 /* 801ED244 001EA184  80 77 00 54 */	lwz r3, 0x54(r23)
@@ -4520,7 +4520,7 @@ lbl_801ED1E0:
 /* 801ED25C 001EA19C  EC 20 08 28 */	fsubs f1, f0, f1
 /* 801ED260 001EA1A0  C0 02 A9 E4 */	lfs f0, lbl_804543E4-_SDA2_BASE_(r2)
 /* 801ED264 001EA1A4  EC 21 00 24 */	fdivs f1, f1, f0
-/* 801ED268 001EA1A8  4B FC 19 15 */	bl dKantera_icon_c_NS_setAlphaRate
+/* 801ED268 001EA1A8  4B FC 19 15 */	bl setAlphaRate__15dKantera_icon_cFf
 /* 801ED26C 001EA1AC  80 77 00 54 */	lwz r3, 0x54(r23)
 /* 801ED270 001EA1B0  80 63 00 04 */	lwz r3, 4(r3)
 /* 801ED274 001EA1B4  81 83 00 00 */	lwz r12, 0(r3)
@@ -5009,12 +5009,12 @@ lbl_801ED920:
 /* 801ED978 001EA8B8  88 03 00 C0 */	lbz r0, 0xc0(r3)
 /* 801ED97C 001EA8BC  28 00 00 01 */	cmplwi r0, 1
 /* 801ED980 001EA8C0  40 82 00 0C */	bne lbl_801ED98C
-/* 801ED984 001EA8C4  48 02 F0 81 */	bl dMeter2Info_c_NS_warpInProc
+/* 801ED984 001EA8C4  48 02 F0 81 */	bl warpInProc__13dMeter2Info_cFv
 /* 801ED988 001EA8C8  48 00 00 10 */	b lbl_801ED998
 lbl_801ED98C:
 /* 801ED98C 001EA8CC  28 00 00 02 */	cmplwi r0, 2
 /* 801ED990 001EA8D0  40 82 00 08 */	bne lbl_801ED998
-/* 801ED994 001EA8D4  48 02 F0 71 */	bl dMeter2Info_c_NS_warpInProc
+/* 801ED994 001EA8D4  48 02 F0 71 */	bl warpInProc__13dMeter2Info_cFv
 lbl_801ED998:
 /* 801ED998 001EA8D8  38 00 00 00 */	li r0, 0
 /* 801ED99C 001EA8DC  3C 60 80 43 */	lis r3, lbl_80430188@ha
@@ -5161,7 +5161,7 @@ lbl_801EDB68:
 /* 801EDBB0 001EAAF0  81 0A 00 6C */	lwz r8, 0x6c(r10)
 /* 801EDBB4 001EAAF4  81 29 01 F8 */	lwz r9, 0x1f8(r9)
 /* 801EDBB8 001EAAF8  81 4A 00 70 */	lwz r10, 0x70(r10)
-/* 801EDBBC 001EAAFC  48 02 F3 4D */	bl dMeter2Info_c_NS_readItemTexture
+/* 801EDBBC 001EAAFC  48 02 F3 4D */	bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 801EDBC0 001EAB00  57 C0 08 3C */	slwi r0, r30, 1
 /* 801EDBC4 001EAB04  7C 9D 02 14 */	add r4, r29, r0
 /* 801EDBC8 001EAB08  B0 64 06 86 */	sth r3, 0x686(r4)

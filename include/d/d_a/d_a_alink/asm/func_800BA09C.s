@@ -4,10 +4,10 @@
 /* 800BA0A8 000B6FE8  80 03 05 74 */ lwz r0, 0x574(r3)
 /* 800BA0AC 000B6FEC  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800BA0B0 000B6FF0  41 82 00 0C */ beq lbl_800BA0BC
-/* 800BA0B4 000B6FF4  48 06 FA 91 */ bl daAlink_c_NS_checkNextActionWolf
+/* 800BA0B4 000B6FF4  48 06 FA 91 */ bl checkNextAction__9daAlink_cFiWolf
 /* 800BA0B8 000B6FF8  48 00 00 08 */ b lbl_800BA0C0
 lbl_800BA0BC:
-/* 800BA0BC 000B6FFC  48 00 00 15 */ bl daAlink_c_NS_checkNextAction
+/* 800BA0BC 000B6FFC  48 00 00 15 */ bl checkNextAction__9daAlink_cFi
 lbl_800BA0C0:
 /* 800BA0C0 000B7000  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800BA0C4 000B7004  7C 08 03 A6 */ mtlr r0

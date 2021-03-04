@@ -602,7 +602,7 @@ lbl_80252D54:
 /* 80252D94 0024FCD4  C0 1F 01 18 */	lfs f0, 0x118(r31)
 /* 80252D98 0024FCD8  EC 41 00 2A */	fadds f2, f1, f0
 /* 80252D9C 0024FCDC  FC 60 08 90 */	fmr f3, f1
-/* 80252DA0 0024FCE0  4B DB A0 99 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80252DA0 0024FCE0  4B DB A0 99 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80252DA4 0024FCE4  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80252DA8 0024FCE8  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80252DAC 0024FCEC  A8 1F 01 14 */	lha r0, 0x114(r31)

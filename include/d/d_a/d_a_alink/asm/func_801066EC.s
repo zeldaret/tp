@@ -7,7 +7,7 @@
 /* 80106704 00103644  3C A0 80 39 */ lis r5, lbl_8038E870@ha
 /* 80106708 00103648  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 8010670C 0010364C  38 A5 00 28 */ addi r5, r5, 0x28
-/* 80106710 00103650  4B FA 69 E5 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 80106710 00103650  4B FA 69 E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 80106714 00103654  7F E3 FB 78 */ mr r3, r31
 /* 80106718 00103658  3C 80 00 02 */ lis r4, 0x00020094@ha
 /* 8010671C 0010365C  38 84 00 94 */ addi r4, r4, 0x00020094@l

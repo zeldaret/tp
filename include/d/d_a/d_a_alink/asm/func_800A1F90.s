@@ -63,27 +63,27 @@ lbl_800A206C:
 lbl_800A2080:
 /* 800A2080 0009EFC0  7F E3 FB 78 */ mr r3, r31
 /* 800A2084 0009EFC4  38 80 00 72 */ li r4, 0x72
-/* 800A2088 0009EFC8  48 08 67 85 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 800A2088 0009EFC8  48 08 67 85 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
 /* 800A208C 0009EFCC  2C 03 00 00 */ cmpwi r3, 0
 /* 800A2090 0009EFD0  40 82 00 54 */ bne lbl_800A20E4
 /* 800A2094 0009EFD4  7F E3 FB 78 */ mr r3, r31
 /* 800A2098 0009EFD8  38 80 00 54 */ li r4, 0x54
-/* 800A209C 0009EFDC  48 00 A4 BD */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A209C 0009EFDC  48 00 A4 BD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A20A0 0009EFE0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A20A4 0009EFE4  40 82 00 40 */ bne lbl_800A20E4
 /* 800A20A8 0009EFE8  7F E3 FB 78 */ mr r3, r31
 /* 800A20AC 0009EFEC  38 80 01 85 */ li r4, 0x185
-/* 800A20B0 0009EFF0  48 00 A4 A9 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A20B0 0009EFF0  48 00 A4 A9 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A20B4 0009EFF4  2C 03 00 00 */ cmpwi r3, 0
 /* 800A20B8 0009EFF8  40 82 00 2C */ bne lbl_800A20E4
 /* 800A20BC 0009EFFC  7F E3 FB 78 */ mr r3, r31
 /* 800A20C0 0009F000  38 80 00 5A */ li r4, 0x5a
-/* 800A20C4 0009F004  48 00 A4 95 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A20C4 0009F004  48 00 A4 95 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A20C8 0009F008  2C 03 00 00 */ cmpwi r3, 0
 /* 800A20CC 0009F00C  40 82 00 18 */ bne lbl_800A20E4
 /* 800A20D0 0009F010  7F E3 FB 78 */ mr r3, r31
 /* 800A20D4 0009F014  38 80 00 5B */ li r4, 0x5b
-/* 800A20D8 0009F018  48 00 A4 81 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A20D8 0009F018  48 00 A4 81 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A20DC 0009F01C  2C 03 00 00 */ cmpwi r3, 0
 /* 800A20E0 0009F020  41 82 00 08 */ beq lbl_800A20E8
 lbl_800A20E4:
@@ -95,7 +95,7 @@ lbl_800A20E8:
 /* 800A20F4 0009F034  38 C1 00 0C */ addi r6, r1, 0xc
 /* 800A20F8 0009F038  38 E1 00 0A */ addi r7, r1, 0xa
 /* 800A20FC 0009F03C  39 01 00 08 */ addi r8, r1, 8
-/* 800A2100 0009F040  4B FF F3 2D */ bl daAlink_c_NS_getNeckAimAngle
+/* 800A2100 0009F040  4B FF F3 2D */ bl getNeckAimAngle__9daAlink_cFP4cXyzPsPsPsPs
 /* 800A2104 0009F044  38 7F 31 24 */ addi r3, r31, 0x3124
 /* 800A2108 0009F048  A8 81 00 0E */ lha r4, 0xe(r1)
 /* 800A210C 0009F04C  38 A0 00 03 */ li r5, 3
@@ -112,7 +112,7 @@ lbl_800A20E8:
 /* 800A2138 0009F078  7F C4 F3 78 */ mr r4, r30
 /* 800A213C 0009F07C  A8 A1 00 0A */ lha r5, 0xa(r1)
 /* 800A2140 0009F080  A8 C1 00 08 */ lha r6, 8(r1)
-/* 800A2144 0009F084  4B FF F9 A9 */ bl daAlink_c_NS_setEyeMove
+/* 800A2144 0009F084  4B FF F9 A9 */ bl setEyeMove__9daAlink_cFP4cXyzss
 /* 800A2148 0009F088  83 E1 00 2C */ lwz r31, 0x2c(r1)
 /* 800A214C 0009F08C  83 C1 00 28 */ lwz r30, 0x28(r1)
 /* 800A2150 0009F090  80 01 00 34 */ lwz r0, 0x34(r1)

@@ -6,10 +6,10 @@
 /* 8001586C 000127AC  3C 60 80 3E */ lis r3, lbl_803DD940@ha
 /* 80015870 000127B0  3B E3 D9 40 */ addi r31, r3, lbl_803DD940@l
 /* 80015874 000127B4  38 7F 00 00 */ addi r3, r31, 0
-/*.global mDoDvdThd_NS_main*/
-/* 80015878 000127B8  3C 80 80 01 */ lis r4, mDoDvdThd_NS_main@ha
-/*.global mDoDvdThd_NS_main*/
-/* 8001587C 000127BC  38 84 57 FC */ addi r4, r4, mDoDvdThd_NS_main@l
+/*.global main__9mDoDvdThdFPv*/
+/* 80015878 000127B8  3C 80 80 01 */ lis r4, main__9mDoDvdThdFPv@ha
+/*.global main__9mDoDvdThdFPv*/
+/* 8001587C 000127BC  38 84 57 FC */ addi r4, r4, main__9mDoDvdThdFPv@l
 /* 80015880 000127C0  38 BF 13 20 */ addi r5, r31, 0x1320
 /* 80015884 000127C4  38 DF 03 20 */ addi r6, r31, 0x320
 /* 80015888 000127C8  38 E0 10 00 */ li r7, 0x1000

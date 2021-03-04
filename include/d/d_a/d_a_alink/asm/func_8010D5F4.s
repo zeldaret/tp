@@ -4,7 +4,7 @@
 /* 8010D600 0010A540  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8010D604 0010A544  7C 7F 1B 78 */ mr r31, r3
 /* 8010D608 0010A548  38 80 00 CB */ li r4, 0xcb
-/* 8010D60C 0010A54C  4B FB 49 61 */ bl daAlink_c_NS_commonProcInit
+/* 8010D60C 0010A54C  4B FB 49 61 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010D610 0010A550  7F E3 FB 78 */ mr r3, r31
 /* 8010D614 0010A554  A8 1F 30 20 */ lha r0, 0x3020(r31)
 /* 8010D618 0010A558  2C 00 00 00 */ cmpwi r0, 0
@@ -14,9 +14,9 @@
 lbl_8010D628:
 /* 8010D628 0010A568  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8010D62C 0010A56C  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010D630 0010A570  4B F9 F9 B1 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 8010D630 0010A570  4B F9 F9 B1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 8010D634 0010A574  7F E3 FB 78 */ mr r3, r31
-/* 8010D638 0010A578  4B FA 9B 31 */ bl daAlink_c_NS_setFastShotTimer
+/* 8010D638 0010A578  4B FA 9B 31 */ bl setFastShotTimer__9daAlink_cFv
 /* 8010D63C 0010A57C  7F E3 FB 78 */ mr r3, r31
 /* 8010D640 0010A580  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010D644 0010A584  C0 5F 05 34 */ lfs f2, 0x534(r31)
@@ -31,7 +31,7 @@ lbl_8010D628:
 /* 8010D668 0010A5A8  64 00 02 00 */ oris r0, r0, 0x200
 /* 8010D66C 0010A5AC  90 03 5F 1C */ stw r0, 0x5f1c(r3)
 /* 8010D670 0010A5B0  7F E3 FB 78 */ mr r3, r31
-/* 8010D674 0010A5B4  4B FF BA FD */ bl daAlink_c_NS_initHookshotReady
+/* 8010D674 0010A5B4  4B FF BA FD */ bl initHookshotReady__9daAlink_cFv
 /* 8010D678 0010A5B8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010D67C 0010A5BC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010D680 0010A5C0  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -46,7 +46,7 @@ lbl_8010D628:
 /* 8010D6A4 0010A5E4  A8 1F 30 10 */ lha r0, 0x3010(r31)
 /* 8010D6A8 0010A5E8  B0 1F 31 0C */ sth r0, 0x310c(r31)
 /* 8010D6AC 0010A5EC  7F E3 FB 78 */ mr r3, r31
-/* 8010D6B0 0010A5F0  4B FF B9 C1 */ bl daAlink_c_NS_setHookshotReadyMaterial
+/* 8010D6B0 0010A5F0  4B FF B9 C1 */ bl setHookshotReadyMaterial__9daAlink_cFv
 /* 8010D6B4 0010A5F4  38 60 00 01 */ li r3, 1
 /* 8010D6B8 0010A5F8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8010D6BC 0010A5FC  80 01 00 14 */ lwz r0, 0x14(r1)

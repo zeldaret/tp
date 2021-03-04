@@ -41,10 +41,10 @@
 /* 800302D8 0002D218  3C 80 80 03 */ lis r4, __ct__11cBgS_ChkElmFv@ha
 /*.global cBgS_ChkElm*/
 /* 800302DC 0002D21C  38 84 0D 38 */ addi r4, r4, __ct__11cBgS_ChkElmFv@l
-/*.global cBgS_ChkElm_NS_dtor*/
-/* 800302E0 0002D220  3C A0 80 03 */ lis r5, cBgS_ChkElm_NS_dtor@ha
-/*.global cBgS_ChkElm_NS_dtor*/
-/* 800302E4 0002D224  38 A5 FE F8 */ addi r5, r5, cBgS_ChkElm_NS_dtor@l
+/*.global __dt__11cBgS_ChkElmFv*/
+/* 800302E0 0002D220  3C A0 80 03 */ lis r5, __dt__11cBgS_ChkElmFv@ha
+/*.global __dt__11cBgS_ChkElmFv*/
+/* 800302E4 0002D224  38 A5 FE F8 */ addi r5, r5, __dt__11cBgS_ChkElmFv@l
 /* 800302E8 0002D228  38 C0 00 14 */ li r6, 0x14
 /* 800302EC 0002D22C  38 E0 01 00 */ li r7, 0x100
 /* 800302F0 0002D230  48 33 1A 71 */ bl func_80361D60
@@ -78,50 +78,50 @@
 /* 80030360 0002D2A0  38 03 9C 48 */ addi r0, r3, lbl_803A9C48@l
 /* 80030364 0002D2A4  90 1E 47 88 */ stw r0, 0x4788(r30)
 /* 80030368 0002D2A8  38 7E 47 A8 */ addi r3, r30, 0x47a8
-/*.global dAttDraw_c_NS_ctor*/
-/* 8003036C 0002D2AC  3C 80 80 03 */ lis r4, dAttDraw_c_NS_ctor@ha
-/*.global dAttDraw_c_NS_ctor*/
-/* 80030370 0002D2B0  38 84 07 F0 */ addi r4, r4, dAttDraw_c_NS_ctor@l
-/*.global dAttDraw_c_NS_dtor*/
-/* 80030374 0002D2B4  3C A0 80 03 */ lis r5, dAttDraw_c_NS_dtor@ha
-/*.global dAttDraw_c_NS_dtor*/
-/* 80030378 0002D2B8  38 A5 05 4C */ addi r5, r5, dAttDraw_c_NS_dtor@l
+/*.global __ct__10dAttDraw_cFv*/
+/* 8003036C 0002D2AC  3C 80 80 03 */ lis r4, __ct__10dAttDraw_cFv@ha
+/*.global __ct__10dAttDraw_cFv*/
+/* 80030370 0002D2B0  38 84 07 F0 */ addi r4, r4, __ct__10dAttDraw_cFv@l
+/*.global __dt__10dAttDraw_cFv*/
+/* 80030374 0002D2B4  3C A0 80 03 */ lis r5, __dt__10dAttDraw_cFv@ha
+/*.global __dt__10dAttDraw_cFv*/
+/* 80030378 0002D2B8  38 A5 05 4C */ addi r5, r5, __dt__10dAttDraw_cFv@l
 /* 8003037C 0002D2BC  38 C0 01 78 */ li r6, 0x178
 /* 80030380 0002D2C0  38 E0 00 02 */ li r7, 2
 /* 80030384 0002D2C4  48 33 19 DD */ bl func_80361D60
 /* 80030388 0002D2C8  38 7E 4A B8 */ addi r3, r30, 0x4ab8
-/*.global dAttList_c_NS_ctor*/
-/* 8003038C 0002D2CC  3C 80 80 03 */ lis r4, dAttList_c_NS_ctor@ha
-/*.global dAttList_c_NS_ctor*/
-/* 80030390 0002D2D0  38 84 05 0C */ addi r4, r4, dAttList_c_NS_ctor@l
-/*.global dAttList_c_NS_dtor*/
-/* 80030394 0002D2D4  3C A0 80 03 */ lis r5, dAttList_c_NS_dtor@ha
-/*.global dAttList_c_NS_dtor*/
-/* 80030398 0002D2D8  38 A5 04 D0 */ addi r5, r5, dAttList_c_NS_dtor@l
+/*.global __ct__10dAttList_cFv*/
+/* 8003038C 0002D2CC  3C 80 80 03 */ lis r4, __ct__10dAttList_cFv@ha
+/*.global __ct__10dAttList_cFv*/
+/* 80030390 0002D2D0  38 84 05 0C */ addi r4, r4, __ct__10dAttList_cFv@l
+/*.global __dt__10dAttList_cFv*/
+/* 80030394 0002D2D4  3C A0 80 03 */ lis r5, __dt__10dAttList_cFv@ha
+/*.global __dt__10dAttList_cFv*/
+/* 80030398 0002D2D8  38 A5 04 D0 */ addi r5, r5, __dt__10dAttList_cFv@l
 /* 8003039C 0002D2DC  38 C0 00 14 */ li r6, 0x14
 /* 800303A0 0002D2E0  38 E0 00 08 */ li r7, 8
 /* 800303A4 0002D2E4  48 33 19 BD */ bl func_80361D60
 /* 800303A8 0002D2E8  38 7E 4B 60 */ addi r3, r30, 0x4b60
-/*.global dAttList_c_NS_ctor*/
-/* 800303AC 0002D2EC  3C 80 80 03 */ lis r4, dAttList_c_NS_ctor@ha
-/*.global dAttList_c_NS_ctor*/
-/* 800303B0 0002D2F0  38 84 05 0C */ addi r4, r4, dAttList_c_NS_ctor@l
-/*.global dAttList_c_NS_dtor*/
-/* 800303B4 0002D2F4  3C A0 80 03 */ lis r5, dAttList_c_NS_dtor@ha
-/*.global dAttList_c_NS_dtor*/
-/* 800303B8 0002D2F8  38 A5 04 D0 */ addi r5, r5, dAttList_c_NS_dtor@l
+/*.global __ct__10dAttList_cFv*/
+/* 800303AC 0002D2EC  3C 80 80 03 */ lis r4, __ct__10dAttList_cFv@ha
+/*.global __ct__10dAttList_cFv*/
+/* 800303B0 0002D2F0  38 84 05 0C */ addi r4, r4, __ct__10dAttList_cFv@l
+/*.global __dt__10dAttList_cFv*/
+/* 800303B4 0002D2F4  3C A0 80 03 */ lis r5, __dt__10dAttList_cFv@ha
+/*.global __dt__10dAttList_cFv*/
+/* 800303B8 0002D2F8  38 A5 04 D0 */ addi r5, r5, __dt__10dAttList_cFv@l
 /* 800303BC 0002D2FC  38 C0 00 14 */ li r6, 0x14
 /* 800303C0 0002D300  38 E0 00 04 */ li r7, 4
 /* 800303C4 0002D304  48 33 19 9D */ bl func_80361D60
 /* 800303C8 0002D308  38 7E 4B B8 */ addi r3, r30, 0x4bb8
-/*.global dAttList_c_NS_ctor*/
-/* 800303CC 0002D30C  3C 80 80 03 */ lis r4, dAttList_c_NS_ctor@ha
-/*.global dAttList_c_NS_ctor*/
-/* 800303D0 0002D310  38 84 05 0C */ addi r4, r4, dAttList_c_NS_ctor@l
-/*.global dAttList_c_NS_dtor*/
-/* 800303D4 0002D314  3C A0 80 03 */ lis r5, dAttList_c_NS_dtor@ha
-/*.global dAttList_c_NS_dtor*/
-/* 800303D8 0002D318  38 A5 04 D0 */ addi r5, r5, dAttList_c_NS_dtor@l
+/*.global __ct__10dAttList_cFv*/
+/* 800303CC 0002D30C  3C 80 80 03 */ lis r4, __ct__10dAttList_cFv@ha
+/*.global __ct__10dAttList_cFv*/
+/* 800303D0 0002D310  38 84 05 0C */ addi r4, r4, __ct__10dAttList_cFv@l
+/*.global __dt__10dAttList_cFv*/
+/* 800303D4 0002D314  3C A0 80 03 */ lis r5, __dt__10dAttList_cFv@ha
+/*.global __dt__10dAttList_cFv*/
+/* 800303D8 0002D318  38 A5 04 D0 */ addi r5, r5, __dt__10dAttList_cFv@l
 /* 800303DC 0002D31C  38 C0 00 14 */ li r6, 0x14
 /* 800303E0 0002D320  38 E0 00 04 */ li r7, 4
 /* 800303E4 0002D324  48 33 19 7D */ bl func_80361D60
@@ -133,10 +133,10 @@
 /* 800303F8 0002D338  3C 80 80 03 */ lis r4, __ct__14dDlst_window_cFv@ha
 /*.global dDlst_window_c*/
 /* 800303FC 0002D33C  38 84 04 CC */ addi r4, r4, __ct__14dDlst_window_cFv@l
-/*.global dDlst_window_c_NS_dtor*/
-/* 80030400 0002D340  3C A0 80 03 */ lis r5, dDlst_window_c_NS_dtor@ha
-/*.global dDlst_window_c_NS_dtor*/
-/* 80030404 0002D344  38 A5 01 CC */ addi r5, r5, dDlst_window_c_NS_dtor@l
+/*.global __dt__14dDlst_window_cFv*/
+/* 80030400 0002D340  3C A0 80 03 */ lis r5, __dt__14dDlst_window_cFv@ha
+/*.global __dt__14dDlst_window_cFv*/
+/* 80030404 0002D344  38 A5 01 CC */ addi r5, r5, __dt__14dDlst_window_cFv@l
 /* 80030408 0002D348  38 C0 00 2C */ li r6, 0x2c
 /* 8003040C 0002D34C  38 E0 00 01 */ li r7, 1
 /* 80030410 0002D350  48 33 19 51 */ bl func_80361D60
@@ -145,10 +145,10 @@
 /* 80030418 0002D358  3C 80 80 03 */ lis r4, __ct__25dComIfG_camera_info_classFv@ha
 /*.global dComIfG_camera_info_class*/
 /* 8003041C 0002D35C  38 84 04 C8 */ addi r4, r4, __ct__25dComIfG_camera_info_classFv@l
-/*.global dComIfG_camera_info_class_NS_dtor*/
-/* 80030420 0002D360  3C A0 80 03 */ lis r5, dComIfG_camera_info_class_NS_dtor@ha
-/*.global dComIfG_camera_info_class_NS_dtor*/
-/* 80030424 0002D364  38 A5 02 08 */ addi r5, r5, dComIfG_camera_info_class_NS_dtor@l
+/*.global __dt__25dComIfG_camera_info_classFv*/
+/* 80030420 0002D360  3C A0 80 03 */ lis r5, __dt__25dComIfG_camera_info_classFv@ha
+/*.global __dt__25dComIfG_camera_info_classFv*/
+/* 80030424 0002D364  38 A5 02 08 */ addi r5, r5, __dt__25dComIfG_camera_info_classFv@l
 /* 80030428 0002D368  38 C0 00 38 */ li r6, 0x38
 /* 8003042C 0002D36C  38 E0 00 01 */ li r7, 1
 /* 80030430 0002D370  48 33 19 31 */ bl func_80361D60

@@ -10,10 +10,10 @@
 /* 80057FC0 00054F00  38 03 9B 4C */ addi r0, r3, lbl_803A9B4C@l
 /* 80057FC4 00054F04  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057FC8 00054F08  38 7E 00 14 */ addi r3, r30, 0x14
-/*.global SNOW_EFF_NS_dtor*/
-/* 80057FCC 00054F0C  3C 80 80 05 */ lis r4, SNOW_EFF_NS_dtor@ha
-/*.global SNOW_EFF_NS_dtor*/
-/* 80057FD0 00054F10  38 84 6D 58 */ addi r4, r4, SNOW_EFF_NS_dtor@l
+/*.global __dt__8SNOW_EFFFv*/
+/* 80057FCC 00054F0C  3C 80 80 05 */ lis r4, __dt__8SNOW_EFFFv@ha
+/*.global __dt__8SNOW_EFFFv*/
+/* 80057FD0 00054F10  38 84 6D 58 */ addi r4, r4, __dt__8SNOW_EFFFv@l
 /* 80057FD4 00054F14  38 A0 00 38 */ li r5, 0x38
 /* 80057FD8 00054F18  38 C0 01 F4 */ li r6, 0x1f4
 /* 80057FDC 00054F1C  48 30 9D 0D */ bl func_80361CE8

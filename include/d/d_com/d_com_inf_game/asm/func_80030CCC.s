@@ -9,10 +9,10 @@
 /* 80030CEC 0002DC2C  3C 80 80 3B */ lis r4, lbl_803AB61C@ha
 /* 80030CF0 0002DC30  38 04 B6 1C */ addi r0, r4, lbl_803AB61C@l
 /* 80030CF4 0002DC34  90 1E 14 00 */ stw r0, 0x1400(r30)
-/*.global cBgS_ChkElm_NS_dtor*/
-/* 80030CF8 0002DC38  3C 80 80 03 */ lis r4, cBgS_ChkElm_NS_dtor@ha
-/*.global cBgS_ChkElm_NS_dtor*/
-/* 80030CFC 0002DC3C  38 84 FE F8 */ addi r4, r4, cBgS_ChkElm_NS_dtor@l
+/*.global __dt__11cBgS_ChkElmFv*/
+/* 80030CF8 0002DC38  3C 80 80 03 */ lis r4, __dt__11cBgS_ChkElmFv@ha
+/*.global __dt__11cBgS_ChkElmFv*/
+/* 80030CFC 0002DC3C  38 84 FE F8 */ addi r4, r4, __dt__11cBgS_ChkElmFv@l
 /* 80030D00 0002DC40  38 A0 00 14 */ li r5, 0x14
 /* 80030D04 0002DC44  38 C0 01 00 */ li r6, 0x100
 /* 80030D08 0002DC48  48 33 0F E1 */ bl func_80361CE8

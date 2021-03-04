@@ -6,12 +6,12 @@
 /* 801019CC 000FE90C  7C 7E 1B 78 */ mr r30, r3
 /* 801019D0 000FE910  3B E0 00 00 */ li r31, 0
 /* 801019D4 000FE914  38 80 00 C9 */ li r4, 0xc9
-/* 801019D8 000FE918  4B FA AB 81 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 801019D8 000FE918  4B FA AB 81 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 801019DC 000FE91C  2C 03 00 00 */ cmpwi r3, 0
 /* 801019E0 000FE920  40 82 00 18 */ bne lbl_801019F8
 /* 801019E4 000FE924  7F C3 F3 78 */ mr r3, r30
 /* 801019E8 000FE928  38 80 00 C8 */ li r4, 0xc8
-/* 801019EC 000FE92C  4B FA AB 6D */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 801019EC 000FE92C  4B FA AB 6D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 801019F0 000FE930  2C 03 00 00 */ cmpwi r3, 0
 /* 801019F4 000FE934  41 82 00 08 */ beq lbl_801019FC
 lbl_801019F8:

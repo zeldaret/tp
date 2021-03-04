@@ -88,7 +88,7 @@ lbl_800FA434:
 /* 800FA474 000F73B4  7F C3 F3 78 */ mr r3, r30
 /* 800FA478 000F73B8  38 81 00 2C */ addi r4, r1, 0x2c
 /* 800FA47C 000F73BC  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800FA480 000F73C0  4B FA 7D 19 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA480 000F73C0  4B FA 7D 19 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA484 000F73C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA488 000F73C8  41 82 00 18 */ beq lbl_800FA4A0
 /* 800FA48C 000F73CC  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -133,7 +133,7 @@ lbl_800FA4A0:
 /* 800FA524 000F7464  7F C3 F3 78 */ mr r3, r30
 /* 800FA528 000F7468  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FA52C 000F746C  38 A1 00 08 */ addi r5, r1, 8
-/* 800FA530 000F7470  4B FA 7C 69 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA530 000F7470  4B FA 7C 69 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA534 000F7474  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA538 000F7478  40 82 00 18 */ bne lbl_800FA550
 /* 800FA53C 000F747C  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -161,7 +161,7 @@ lbl_800FA58C:
 /* 800FA58C 000F74CC  7F C3 F3 78 */ mr r3, r30
 /* 800FA590 000F74D0  7F 84 E3 78 */ mr r4, r28
 /* 800FA594 000F74D4  38 A0 00 00 */ li r5, 0
-/* 800FA598 000F74D8  4B FF FA D9 */ bl daAlink_c_NS_hangMoveBgCheck
+/* 800FA598 000F74D8  4B FF FA D9 */ bl hangMoveBgCheck__9daAlink_cFsP4cXyz
 /* 800FA59C 000F74DC  7C 60 00 34 */ cntlzw r0, r3
 /* 800FA5A0 000F74E0  54 03 DE 3E */ rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 800FA5A4 000F74E4  3C 80 80 3A */ lis r4, lbl_803A37C0@ha

@@ -4,7 +4,7 @@
 /* 8011D11C 0011A05C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011D120 0011A060  7C 7F 1B 78 */ mr r31, r3
 /* 8011D124 0011A064  38 80 01 5B */ li r4, 0x15b
-/* 8011D128 0011A068  4B FA 5C 7D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011D128 0011A068  4B FA 5C 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 8011D12C 0011A06C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011D130 0011A070  40 82 00 0C */ bne lbl_8011D13C
 /* 8011D134 0011A074  38 60 00 01 */ li r3, 1
@@ -22,27 +22,27 @@ lbl_8011D154:
 /* 8011D15C 0011A09C  40 82 00 38 */ bne lbl_8011D194
 /* 8011D160 0011A0A0  7F E3 FB 78 */ mr r3, r31
 /* 8011D164 0011A0A4  38 80 02 4E */ li r4, 0x24e
-/* 8011D168 0011A0A8  4B F9 01 D9 */ bl daAlink_c_NS_setUpperAnimeBase
+/* 8011D168 0011A0A8  4B F9 01 D9 */ bl setUpperAnimeBase__9daAlink_cFUs
 /* 8011D16C 0011A0AC  7F E3 FB 78 */ mr r3, r31
 /* 8011D170 0011A0B0  38 80 01 5B */ li r4, 0x15b
 /* 8011D174 0011A0B4  38 A0 00 01 */ li r5, 1
 /* 8011D178 0011A0B8  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8011D17C 0011A0BC  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8011D180 0011A0C0  4B F9 23 31 */ bl daAlink_c_NS_setFaceBck
+/* 8011D180 0011A0C0  4B F9 23 31 */ bl setFaceBck__9daAlink_cFUsiUs
 /* 8011D184 0011A0C4  7F E3 FB 78 */ mr r3, r31
 /* 8011D188 0011A0C8  38 80 00 8A */ li r4, 0x8a
-/* 8011D18C 0011A0CC  4B F9 29 1D */ bl daAlink_c_NS_setFacePriTexture
+/* 8011D18C 0011A0CC  4B F9 29 1D */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8011D190 0011A0D0  48 00 00 28 */ b lbl_8011D1B8
 lbl_8011D194:
 /* 8011D194 0011A0D4  7F E3 FB 78 */ mr r3, r31
 /* 8011D198 0011A0D8  38 80 00 D1 */ li r4, 0xd1
-/* 8011D19C 0011A0DC  4B F9 01 A5 */ bl daAlink_c_NS_setUpperAnimeBase
+/* 8011D19C 0011A0DC  4B F9 01 A5 */ bl setUpperAnimeBase__9daAlink_cFUs
 /* 8011D1A0 0011A0E0  7F E3 FB 78 */ mr r3, r31
 /* 8011D1A4 0011A0E4  38 80 00 D1 */ li r4, 0xd1
-/* 8011D1A8 0011A0E8  4B F9 01 99 */ bl daAlink_c_NS_setUpperAnimeBase
+/* 8011D1A8 0011A0E8  4B F9 01 99 */ bl setUpperAnimeBase__9daAlink_cFUs
 /* 8011D1AC 0011A0EC  7F E3 FB 78 */ mr r3, r31
 /* 8011D1B0 0011A0F0  38 80 00 75 */ li r4, 0x75
-/* 8011D1B4 0011A0F4  4B F9 28 F5 */ bl daAlink_c_NS_setFacePriTexture
+/* 8011D1B4 0011A0F4  4B F9 28 F5 */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 lbl_8011D1B8:
 /* 8011D1B8 0011A0F8  38 00 00 04 */ li r0, 4
 /* 8011D1BC 0011A0FC  98 1F 2F 96 */ stb r0, 0x2f96(r31)

@@ -4,7 +4,7 @@
 /* 800C381C 000C075C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C3820 000C0760  7C 7F 1B 78 */ mr r31, r3
 /* 800C3824 000C0764  38 80 00 05 */ li r4, 5
-/* 800C3828 000C0768  4B FF F5 7D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800C3828 000C0768  4B FF F5 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800C382C 000C076C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C3830 000C0770  40 82 00 0C */ bne lbl_800C383C
 /* 800C3834 000C0774  38 60 00 00 */ li r3, 0
@@ -14,7 +14,7 @@ lbl_800C383C:
 /* 800C3840 000C0780  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 800C3844 000C0784  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 800C3848 000C0788  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 800C384C 000C078C  4B FE B2 25 */ bl daAlink_c_NS_setBlendAtnMoveAnime
+/* 800C384C 000C078C  4B FE B2 25 */ bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800C3850 000C0790  38 60 00 01 */ li r3, 1
 lbl_800C3854:
 /* 800C3854 000C0794  83 E1 00 0C */ lwz r31, 0xc(r1)

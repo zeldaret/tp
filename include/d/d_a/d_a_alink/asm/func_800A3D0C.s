@@ -10,7 +10,7 @@
 /* 800A3D30 000A0C70  B0 01 00 0A */ sth r0, 0xa(r1)
 /* 800A3D34 000A0C74  38 81 00 0A */ addi r4, r1, 0xa
 /* 800A3D38 000A0C78  38 A1 00 08 */ addi r5, r1, 8
-/* 800A3D3C 000A0C7C  4B FF FF A9 */ bl daAlink_c_NS_setIdxMask
+/* 800A3D3C 000A0C7C  4B FF FF A9 */ bl setIdxMask__9daAlink_cFPUsPUs
 /* 800A3D40 000A0C80  A0 A1 00 0A */ lhz r5, 0xa(r1)
 /* 800A3D44 000A0C84  28 05 FF FF */ cmplwi r5, 0xffff
 /* 800A3D48 000A0C88  40 82 00 14 */ bne lbl_800A3D5C

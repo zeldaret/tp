@@ -39,7 +39,7 @@ void setOutputMode__10Z2AudioMgrFUl(void);
 void Z2AudioMgr_NS_gframeProcess(void);
 void Z2AudioMgr_NS_init(void);
 void Z2AudioMgr_NS_resetRecover(void);
-void Z2AudioMgr_NS_zeldaGFrameWork(void);
+void zeldaGFrameWork__10Z2AudioMgrFv(void);
 }
 
 #endif  // Z2AUDIOMGR_H_

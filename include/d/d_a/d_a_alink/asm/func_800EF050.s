@@ -4,7 +4,7 @@
 /* 800EF05C 000EBF9C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800EF060 000EBFA0  7C 7F 1B 78 */ mr r31, r3
 /* 800EF064 000EBFA4  38 80 00 00 */ li r4, 0
-/* 800EF068 000EBFA8  4B FC C2 49 */ bl daAlink_c_NS_setBodyAngleXReadyAnime
+/* 800EF068 000EBFA8  4B FC C2 49 */ bl setBodyAngleXReadyAnime__9daAlink_cFi
 /* 800EF06C 000EBFAC  80 9F 27 EC */ lwz r4, 0x27ec(r31)
 /* 800EF070 000EBFB0  28 04 00 00 */ cmplwi r4, 0
 /* 800EF074 000EBFB4  41 82 00 48 */ beq lbl_800EF0BC

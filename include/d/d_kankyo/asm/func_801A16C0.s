@@ -49,7 +49,7 @@ lbl_801A1734:
 /* 801A1778 0019E6B8  39 01 00 23 */ addi r8, r1, 0x23
 /* 801A177C 0019E6BC  39 21 00 21 */ addi r9, r1, 0x21
 /* 801A1780 0019E6C0  39 41 00 22 */ addi r10, r1, 0x22
-/* 801A1784 0019E6C4  4B FF E4 51 */ bl dScnKy_env_light_c_NS_setLight_palno_get
+/* 801A1784 0019E6C4  4B FF E4 51 */ bl setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc
 /* 801A1788 0019E6C8  88 01 00 23 */ lbz r0, 0x23(r1)
 /* 801A178C 0019E6CC  28 00 00 FF */ cmplwi r0, 0xff
 /* 801A1790 0019E6D0  40 82 00 28 */ bne lbl_801A17B8

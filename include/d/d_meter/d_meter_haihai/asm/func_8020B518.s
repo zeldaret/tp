@@ -54,7 +54,7 @@ lbl_8020B5C0:
 /* 8020B5E0 00208520  C0 02 AD B8 */ lfs f0, lbl_804547B8-_SDA2_BASE_(r2)
 /* 8020B5E4 00208524  EC 02 00 28 */ fsubs f0, f2, f0
 /* 8020B5E8 00208528  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B5EC 0020852C  48 00 05 99 */ bl dMeterHaihai_c_NS_drawHaihaiBottom
+/* 8020B5EC 0020852C  48 00 05 99 */ bl drawHaihai__14dMeterHaihai_cFUcBottom
 lbl_8020B5F0:
 /* 8020B5F0 00208530  57 E0 07 7B */ rlwinm. r0, r31, 0, 0x1d, 0x1d
 /* 8020B5F4 00208534  40 82 00 18 */ bne lbl_8020B60C
@@ -75,7 +75,7 @@ lbl_8020B60C:
 /* 8020B62C 0020856C  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020B630 00208570  C0 04 05 18 */ lfs f0, 0x518(r4)
 /* 8020B634 00208574  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B638 00208578  48 00 04 15 */ bl dMeterHaihai_c_NS_drawHaihaiRight
+/* 8020B638 00208578  48 00 04 15 */ bl drawHaihai__14dMeterHaihai_cFUcRight
 lbl_8020B63C:
 /* 8020B63C 0020857C  57 E0 07 39 */ rlwinm. r0, r31, 0, 0x1c, 0x1c
 /* 8020B640 00208580  40 82 00 18 */ bne lbl_8020B658
@@ -98,7 +98,7 @@ lbl_8020B658:
 /* 8020B680 002085C0  EC 02 00 28 */ fsubs f0, f2, f0
 /* 8020B684 002085C4  EC 1E 00 28 */ fsubs f0, f30, f0
 /* 8020B688 002085C8  EC 43 00 2A */ fadds f2, f3, f0
-/* 8020B68C 002085CC  48 00 04 5D */ bl dMeterHaihai_c_NS_drawHaihaiTop
+/* 8020B68C 002085CC  48 00 04 5D */ bl drawHaihai__14dMeterHaihai_cFUcTop
 lbl_8020B690:
 /* 8020B690 002085D0  57 E0 07 FF */ clrlwi. r0, r31, 0x1f
 /* 8020B694 002085D4  40 82 00 18 */ bne lbl_8020B6AC
@@ -119,7 +119,7 @@ lbl_8020B6AC:
 /* 8020B6CC 0020860C  EC 21 00 28 */ fsubs f1, f1, f0
 /* 8020B6D0 00208610  C0 04 05 18 */ lfs f0, 0x518(r4)
 /* 8020B6D4 00208614  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B6D8 00208618  48 00 02 D9 */ bl dMeterHaihai_c_NS_drawHaihaiLeft
+/* 8020B6D8 00208618  48 00 02 D9 */ bl drawHaihai__14dMeterHaihai_cFUcLeft
 /* 8020B6DC 0020861C  48 00 01 10 */ b lbl_8020B7EC
 lbl_8020B6E0:
 /* 8020B6E0 00208620  54 9F 06 3E */ clrlwi r31, r4, 0x18
@@ -138,7 +138,7 @@ lbl_8020B700:
 /* 8020B710 00208650  EC 3F 00 2A */ fadds f1, f31, f0
 /* 8020B714 00208654  C0 04 05 14 */ lfs f0, 0x514(r4)
 /* 8020B718 00208658  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B71C 0020865C  48 00 04 69 */ bl dMeterHaihai_c_NS_drawHaihaiBottom
+/* 8020B71C 0020865C  48 00 04 69 */ bl drawHaihai__14dMeterHaihai_cFUcBottom
 lbl_8020B720:
 /* 8020B720 00208660  57 E0 07 7B */ rlwinm. r0, r31, 0, 0x1d, 0x1d
 /* 8020B724 00208664  40 82 00 18 */ bne lbl_8020B73C
@@ -157,7 +157,7 @@ lbl_8020B73C:
 /* 8020B754 00208694  EC 21 00 2A */ fadds f1, f1, f0
 /* 8020B758 00208698  C0 04 05 18 */ lfs f0, 0x518(r4)
 /* 8020B75C 0020869C  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B760 002086A0  48 00 02 ED */ bl dMeterHaihai_c_NS_drawHaihaiRight
+/* 8020B760 002086A0  48 00 02 ED */ bl drawHaihai__14dMeterHaihai_cFUcRight
 lbl_8020B764:
 /* 8020B764 002086A4  57 E0 07 39 */ rlwinm. r0, r31, 0, 0x1c, 0x1c
 /* 8020B768 002086A8  40 82 00 18 */ bne lbl_8020B780
@@ -176,7 +176,7 @@ lbl_8020B780:
 /* 8020B798 002086D8  C0 04 05 14 */ lfs f0, 0x514(r4)
 /* 8020B79C 002086DC  EC 1E 00 28 */ fsubs f0, f30, f0
 /* 8020B7A0 002086E0  EC 42 00 2A */ fadds f2, f2, f0
-/* 8020B7A4 002086E4  48 00 03 45 */ bl dMeterHaihai_c_NS_drawHaihaiTop
+/* 8020B7A4 002086E4  48 00 03 45 */ bl drawHaihai__14dMeterHaihai_cFUcTop
 lbl_8020B7A8:
 /* 8020B7A8 002086E8  57 E0 07 FF */ clrlwi. r0, r31, 0x1f
 /* 8020B7AC 002086EC  40 82 00 18 */ bne lbl_8020B7C4
@@ -195,7 +195,7 @@ lbl_8020B7C4:
 /* 8020B7DC 0020871C  EC 21 00 28 */ fsubs f1, f1, f0
 /* 8020B7E0 00208720  C0 04 05 18 */ lfs f0, 0x518(r4)
 /* 8020B7E4 00208724  EC 5E 00 2A */ fadds f2, f30, f0
-/* 8020B7E8 00208728  48 00 01 C9 */ bl dMeterHaihai_c_NS_drawHaihaiLeft
+/* 8020B7E8 00208728  48 00 01 C9 */ bl drawHaihai__14dMeterHaihai_cFUcLeft
 lbl_8020B7EC:
 /* 8020B7EC 0020872C  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0
 /* 8020B7F0 00208730  CB E1 00 20 */ lfd f31, 0x20(r1)

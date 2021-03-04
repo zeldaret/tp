@@ -40,7 +40,7 @@ lbl_800D7860:
 /* 800D78B4 000D47F4  41 82 00 58 */ beq lbl_800D790C
 /* 800D78B8 000D47F8  3B A0 00 01 */ li r29, 1
 /* 800D78BC 000D47FC  38 7F 1A 60 */ addi r3, r31, 0x1a60
-/* 800D78C0 000D4800  4B FF FE A9 */ bl daAlink_c_NS_checkIcePolygonDamage
+/* 800D78C0 000D4800  4B FF FE A9 */ bl checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo
 /* 800D78C4 000D4804  2C 03 00 00 */ cmpwi r3, 0
 /* 800D78C8 000D4808  41 82 00 08 */ beq lbl_800D78D0
 /* 800D78CC 000D480C  63 BD 00 80 */ ori r29, r29, 0x80
@@ -69,7 +69,7 @@ lbl_800D790C:
 /* 800D7920 000D4860  28 03 00 00 */ cmplwi r3, 0
 /* 800D7924 000D4864  40 82 00 BC */ bne lbl_800D79E0
 /* 800D7928 000D4868  7F E3 FB 78 */ mr r3, r31
-/* 800D792C 000D486C  4B FD 9B 5D */ bl daAlink_c_NS_checkWaterPolygonUnder
+/* 800D792C 000D486C  4B FD 9B 5D */ bl checkWaterPolygonUnder__9daAlink_cFv
 /* 800D7930 000D4870  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7934 000D4874  41 82 00 3C */ beq lbl_800D7970
 /* 800D7938 000D4878  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -143,7 +143,7 @@ lbl_800D7A00:
 /* 800D7A34 000D4974  A8 1D 00 3C */ lha r0, 0x3c(r29)
 /* 800D7A38 000D4978  B0 1F 31 1E */ sth r0, 0x311e(r31)
 /* 800D7A3C 000D497C  7F A3 EB 78 */ mr r3, r29
-/* 800D7A40 000D4980  4B FF FD 29 */ bl daAlink_c_NS_checkIcePolygonDamage
+/* 800D7A40 000D4980  4B FF FD 29 */ bl checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo
 /* 800D7A44 000D4984  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7A48 000D4988  41 82 00 08 */ beq lbl_800D7A50
 /* 800D7A4C 000D498C  63 DE 00 80 */ ori r30, r30, 0x80

@@ -3,11 +3,11 @@
 /* 800BFD7C 000BCCBC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800BFD80 000BCCC0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800BFD84 000BCCC4  7C 7F 1B 78 */ mr r31, r3
-/* 800BFD88 000BCCC8  4B FF FB 49 */ bl daAlink_c_NS_setItemModel
+/* 800BFD88 000BCCC8  4B FF FB 49 */ bl setItemModel__9daAlink_cFv
 /* 800BFD8C 000BCCCC  2C 03 00 00 */ cmpwi r3, 0
 /* 800BFD90 000BCCD0  40 82 00 0C */ bne lbl_800BFD9C
 /* 800BFD94 000BCCD4  7F E3 FB 78 */ mr r3, r31
-/* 800BFD98 000BCCD8  4B FF FC 59 */ bl daAlink_c_NS_setItemActor
+/* 800BFD98 000BCCD8  4B FF FC 59 */ bl setItemActor__9daAlink_cFv
 lbl_800BFD9C:
 /* 800BFD9C 000BCCDC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800BFDA0 000BCCE0  80 01 00 14 */ lwz r0, 0x14(r1)

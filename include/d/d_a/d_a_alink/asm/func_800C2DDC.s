@@ -7,17 +7,17 @@
 /* 800C2DF4 000BFD34  7C 9E 23 78 */ mr r30, r4
 /* 800C2DF8 000BFD38  7C BF 2B 78 */ mr r31, r5
 /* 800C2DFC 000BFD3C  38 80 00 00 */ li r4, 0
-/* 800C2E00 000BFD40  4B FF F1 6D */ bl daAlink_c_NS_commonProcInit
+/* 800C2E00 000BFD40  4B FF F1 6D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C2E04 000BFD44  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C2E08 000BFD48  D0 1D 33 98 */ stfs f0, 0x3398(r29)
 /* 800C2E0C 000BFD4C  7F A3 EB 78 */ mr r3, r29
 /* 800C2E10 000BFD50  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 800C2E14 000BFD54  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 800C2E18 000BFD58  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 800C2E1C 000BFD5C  4B FE AF F9 */ bl daAlink_c_NS_setBlendMoveAnime
+/* 800C2E1C 000BFD5C  4B FE AF F9 */ bl setBlendMoveAnime__9daAlink_cFf
 /* 800C2E20 000BFD60  7F A3 EB 78 */ mr r3, r29
 /* 800C2E24 000BFD64  38 80 00 00 */ li r4, 0
-/* 800C2E28 000BFD68  4B FF 6A 15 */ bl daAlink_c_NS_allUnequip
+/* 800C2E28 000BFD68  4B FF 6A 15 */ bl allUnequip__9daAlink_cFi
 /* 800C2E2C 000BFD6C  38 00 00 00 */ li r0, 0
 /* 800C2E30 000BFD70  B0 1D 30 10 */ sth r0, 0x3010(r29)
 /* 800C2E34 000BFD74  28 1F 00 00 */ cmplwi r31, 0
@@ -40,7 +40,7 @@ lbl_800C2E70:
 /* 800C2E74 000BFDB4  54 00 07 FF */ clrlwi. r0, r0, 0x1f
 /* 800C2E78 000BFDB8  41 82 00 14 */ beq lbl_800C2E8C
 /* 800C2E7C 000BFDBC  7F A3 EB 78 */ mr r3, r29
-/* 800C2E80 000BFDC0  48 04 D9 C1 */ bl daAlink_c_NS_offKandelaarModel
+/* 800C2E80 000BFDC0  48 04 D9 C1 */ bl offKandelaarModel__9daAlink_cFv
 /* 800C2E84 000BFDC4  48 00 00 08 */ b lbl_800C2E8C
 lbl_800C2E88:
 /* 800C2E88 000BFDC8  B0 1D 30 0E */ sth r0, 0x300e(r29)

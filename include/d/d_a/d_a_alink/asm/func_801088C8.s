@@ -28,7 +28,7 @@ lbl_80108914:
 /* 80108928 00105868  80 03 28 04 */ lwz r0, 0x2804(r3)
 /* 8010892C 0010586C  7C 00 20 40 */ cmplw r0, r4
 /* 80108930 00105870  40 82 00 2C */ bne lbl_8010895C
-/* 80108934 00105874  48 00 00 B5 */ bl daAlink_c_NS_checkBossOctaIealRoom
+/* 80108934 00105874  48 00 00 B5 */ bl checkBossOctaIealRoom__9daAlink_cFv
 /* 80108938 00105878  2C 03 00 00 */ cmpwi r3, 0
 /* 8010893C 0010587C  40 82 00 1C */ bne lbl_80108958
 /* 80108940 00105880  2C 1E 00 AA */ cmpwi r30, 0xaa

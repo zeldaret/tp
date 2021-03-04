@@ -10,7 +10,7 @@
 /* 801102F4 0010D234  7C 00 00 34 */ cntlzw r0, r0
 /* 801102F8 0010D238  54 1E DE 3E */ rlwinm r30, r0, 0x1b, 0x18, 0x1f
 /* 801102FC 0010D23C  38 80 00 B6 */ li r4, 0xb6
-/* 80110300 0010D240  4B FB 1C 6D */ bl daAlink_c_NS_commonProcInit
+/* 80110300 0010D240  4B FB 1C 6D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80110304 0010D244  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 80110308 0010D248  28 00 00 48 */ cmplwi r0, 0x48
 /* 8011030C 0010D24C  40 82 00 A0 */ bne lbl_801103AC
@@ -22,7 +22,7 @@
 /* 80110324 0010D264  C0 42 93 D4 */ lfs f2, lbl_80452DD4-_SDA2_BASE_(r2)
 /* 80110328 0010D268  A8 A6 00 78 */ lha r5, 0x78(r6)
 /* 8011032C 0010D26C  C0 66 00 84 */ lfs f3, 0x84(r6)
-/* 80110330 0010D270  4B F9 CC DD */ bl daAlink_c_NS_setSingleAnime
+/* 80110330 0010D270  4B F9 CC DD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 80110334 0010D274  38 00 00 FE */ li r0, 0xfe
 /* 80110338 0010D278  98 1F 2F 93 */ stb r0, 0x2f93(r31)
 /* 8011033C 0010D27C  2C 1E 00 00 */ cmpwi r30, 0
@@ -54,7 +54,7 @@ lbl_80110398:
 lbl_8011039C:
 /* 8011039C 0010D2DC  7F E3 FB 78 */ mr r3, r31
 /* 801103A0 0010D2E0  7F C4 F3 78 */ mr r4, r30
-/* 801103A4 0010D2E4  48 00 A2 E5 */ bl daAlink_c_NS_setGetSubBgm
+/* 801103A4 0010D2E4  48 00 A2 E5 */ bl setGetSubBgm__9daAlink_cFi
 /* 801103A8 0010D2E8  48 00 00 20 */ b lbl_801103C8
 lbl_801103AC:
 /* 801103AC 0010D2EC  7F E3 FB 78 */ mr r3, r31
@@ -62,7 +62,7 @@ lbl_801103AC:
 /* 801103B4 0010D2F4  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 801103B8 0010D2F8  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 801103BC 0010D2FC  38 A5 00 78 */ addi r5, r5, 0x78
-/* 801103C0 0010D300  4B F9 CD 35 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 801103C0 0010D300  4B F9 CD 35 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 801103C4 0010D304  A3 DF 2F DC */ lhz r30, 0x2fdc(r31)
 lbl_801103C8:
 /* 801103C8 0010D308  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -87,7 +87,7 @@ lbl_8011040C:
 /* 80110410 0010D350  28 00 00 48 */ cmplwi r0, 0x48
 /* 80110414 0010D354  40 82 00 0C */ bne lbl_80110420
 /* 80110418 0010D358  7F E3 FB 78 */ mr r3, r31
-/* 8011041C 0010D35C  4B FA F0 C5 */ bl daAlink_c_NS_resetBasAnime
+/* 8011041C 0010D35C  4B FA F0 C5 */ bl resetBasAnime__9daAlink_cFv
 lbl_80110420:
 /* 80110420 0010D360  28 1F 00 00 */ cmplwi r31, 0
 /* 80110424 0010D364  41 82 00 0C */ beq lbl_80110430
@@ -117,13 +117,13 @@ lbl_80110434:
 lbl_8011047C:
 /* 8011047C 0010D3BC  7F E3 FB 78 */ mr r3, r31
 /* 80110480 0010D3C0  38 80 00 48 */ li r4, 0x48
-/* 80110484 0010D3C4  4B F9 F4 1D */ bl daAlink_c_NS_setFaceBasicTexture
+/* 80110484 0010D3C4  4B F9 F4 1D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 80110488 0010D3C8  7F E3 FB 78 */ mr r3, r31
 /* 8011048C 0010D3CC  38 80 01 43 */ li r4, 0x143
 /* 80110490 0010D3D0  38 A0 00 00 */ li r5, 0
 /* 80110494 0010D3D4  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 80110498 0010D3D8  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8011049C 0010D3DC  4B F9 F0 15 */ bl daAlink_c_NS_setFaceBck
+/* 8011049C 0010D3DC  4B F9 F0 15 */ bl setFaceBck__9daAlink_cFUsiUs
 /* 801104A0 0010D3E0  48 00 00 24 */ b lbl_801104C4
 lbl_801104A4:
 /* 801104A4 0010D3E4  28 00 00 6A */ cmplwi r0, 0x6a
@@ -133,7 +133,7 @@ lbl_801104A4:
 /* 801104B4 0010D3F4  38 A0 00 00 */ li r5, 0
 /* 801104B8 0010D3F8  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 801104BC 0010D3FC  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 801104C0 0010D400  4B F9 EF F1 */ bl daAlink_c_NS_setFaceBck
+/* 801104C0 0010D400  4B F9 EF F1 */ bl setFaceBck__9daAlink_cFUsiUs
 lbl_801104C4:
 /* 801104C4 0010D404  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 801104C8 0010D408  28 00 00 76 */ cmplwi r0, 0x76

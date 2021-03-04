@@ -11,13 +11,13 @@
 /* 800B69F4 000B3934  40 82 00 14 */ bne lbl_800B6A08
 lbl_800B69F8:
 /* 800B69F8 000B3938  7F E3 FB 78 */ mr r3, r31
-/* 800B69FC 000B393C  48 01 B6 B9 */ bl daAlink_c_NS_checkForceSwordSwing
+/* 800B69FC 000B393C  48 01 B6 B9 */ bl checkForceSwordSwing__9daAlink_cFv
 /* 800B6A00 000B3940  2C 03 00 00 */ cmpwi r3, 0
 /* 800B6A04 000B3944  41 82 00 14 */ beq lbl_800B6A18
 lbl_800B6A08:
 /* 800B6A08 000B3948  7F E3 FB 78 */ mr r3, r31
 /* 800B6A0C 000B394C  38 80 00 01 */ li r4, 1
-/* 800B6A10 000B3950  48 01 D8 ED */ bl daAlink_c_NS_procCutJumpInit
+/* 800B6A10 000B3950  48 01 D8 ED */ bl procCutJumpInit__9daAlink_cFi
 /* 800B6A14 000B3954  48 00 00 08 */ b lbl_800B6A1C
 lbl_800B6A18:
 /* 800B6A18 000B3958  38 60 00 00 */ li r3, 0

@@ -79,7 +79,7 @@ lbl_800A6710:
 /* 800A6754 000A3694  98 1E 2F BD */ stb r0, 0x2fbd(r30)
 lbl_800A6758:
 /* 800A6758 000A3698  7F C3 F3 78 */ mr r3, r30
-/* 800A675C 000A369C  48 06 F4 C5 */ bl daAlink_c_NS_checkEventRun
+/* 800A675C 000A369C  48 06 F4 C5 */ bl checkEventRun__9daAlink_cCFv
 /* 800A6760 000A36A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A6764 000A36A4  40 82 00 60 */ bne lbl_800A67C4
 /* 800A6768 000A36A8  88 1E 2F BD */ lbz r0, 0x2fbd(r30)

@@ -19,7 +19,7 @@
 /* 80215E88 00212DC8  7F E3 FB 78 */ mr r3, r31
 /* 80215E8C 00212DCC  80 9F 01 E0 */ lwz r4, 0x1e0(r31)
 /* 80215E90 00212DD0  38 A0 00 05 */ li r5, 5
-/* 80215E94 00212DD4  48 00 4B 35 */ bl dMeter2Draw_c_NS_setAlphaAnimeMin
+/* 80215E94 00212DD4  48 00 4B 35 */ bl setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 80215E98 00212DD8  3B 60 00 00 */ li r27, 0
 /* 80215E9C 00212DDC  3B C0 00 00 */ li r30, 0
 /* 80215EA0 00212DE0  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha

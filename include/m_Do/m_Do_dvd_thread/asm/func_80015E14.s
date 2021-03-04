@@ -43,7 +43,7 @@ lbl_80015EAC:
 /* 80015EB0 00012DF0  3C 60 80 3E */ lis r3, lbl_803DEC60@ha
 /* 80015EB4 00012DF4  38 63 EC 60 */ addi r3, r3, lbl_803DEC60@l
 /* 80015EB8 00012DF8  7F E4 FB 78 */ mr r4, r31
-/* 80015EBC 00012DFC  4B FF FB 29 */ bl mDoDvdThd_param_c_NS_addition
+/* 80015EBC 00012DFC  4B FF FB 29 */ bl addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 lbl_80015EC0:
 /* 80015EC0 00012E00  7F E3 FB 78 */ mr r3, r31
 /* 80015EC4 00012E04  39 61 00 20 */ addi r11, r1, 0x20

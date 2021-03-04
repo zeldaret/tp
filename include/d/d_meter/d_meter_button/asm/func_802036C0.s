@@ -28,9 +28,9 @@
 /* 8020372C 0020066C  41 82 00 24 */ beq lbl_80203750
 lbl_80203730:
 /* 80203730 00200670  7F E3 FB 78 */ mr r3, r31
-/* 80203734 00200674  48 00 3E 8D */ bl dMeterButton_c_NS_setAlphaButton3DAnimeMin
+/* 80203734 00200674  48 00 3E 8D */ bl setAlphaButton3DAnimeMin__14dMeterButton_cFv
 /* 80203738 00200678  7F E3 FB 78 */ mr r3, r31
-/* 8020373C 0020067C  48 00 40 05 */ bl dMeterButton_c_NS_setAlphaButton3DVAnimeMin
+/* 8020373C 0020067C  48 00 40 05 */ bl setAlphaButton3DVAnimeMin__14dMeterButton_cFv
 /* 80203740 00200680  A0 1F 04 B0 */ lhz r0, 0x4b0(r31)
 /* 80203744 00200684  54 00 07 34 */ rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 80203748 00200688  B0 1F 04 B0 */ sth r0, 0x4b0(r31)
@@ -42,15 +42,15 @@ lbl_80203750:
 /* 8020375C 0020069C  54 00 07 39 */ rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80203760 002006A0  41 82 00 18 */ beq lbl_80203778
 /* 80203764 002006A4  7F E3 FB 78 */ mr r3, r31
-/* 80203768 002006A8  48 00 3E 59 */ bl dMeterButton_c_NS_setAlphaButton3DAnimeMin
+/* 80203768 002006A8  48 00 3E 59 */ bl setAlphaButton3DAnimeMin__14dMeterButton_cFv
 /* 8020376C 002006AC  7F E3 FB 78 */ mr r3, r31
-/* 80203770 002006B0  48 00 3F D5 */ bl dMeterButton_c_NS_setAlphaButton3DVAnimeMax
+/* 80203770 002006B0  48 00 3F D5 */ bl setAlphaButton3DVAnimeMax__14dMeterButton_cFv
 /* 80203774 002006B4  48 00 00 14 */ b lbl_80203788
 lbl_80203778:
 /* 80203778 002006B8  7F E3 FB 78 */ mr r3, r31
-/* 8020377C 002006BC  48 00 3E D9 */ bl dMeterButton_c_NS_setAlphaButton3DAnimeMax
+/* 8020377C 002006BC  48 00 3E D9 */ bl setAlphaButton3DAnimeMax__14dMeterButton_cFv
 /* 80203780 002006C0  7F E3 FB 78 */ mr r3, r31
-/* 80203784 002006C4  48 00 3F BD */ bl dMeterButton_c_NS_setAlphaButton3DVAnimeMin
+/* 80203784 002006C4  48 00 3F BD */ bl setAlphaButton3DVAnimeMin__14dMeterButton_cFv
 lbl_80203788:
 /* 80203788 002006C8  A0 1F 04 B0 */ lhz r0, 0x4b0(r31)
 /* 8020378C 002006CC  60 00 00 10 */ ori r0, r0, 0x10

@@ -6,7 +6,7 @@
 extern "C" {
 void __ml__4cXyzCFf(void);
 void cM_atan2s__Fff(void);
-void cXyz_NS_dtor(void);
+void __dt__4cXyzFv(void);
 void normZP__4cXyzCFv(void);
 void func_80361C24(void);
 }

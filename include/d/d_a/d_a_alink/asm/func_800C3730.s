@@ -4,14 +4,14 @@
 /* 800C373C 000C067C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C3740 000C0680  7C 7F 1B 78 */ mr r31, r3
 /* 800C3744 000C0684  38 80 00 03 */ li r4, 3
-/* 800C3748 000C0688  48 05 DA 79 */ bl daAlink_c_NS_setFootEffectProcType
+/* 800C3748 000C0688  48 05 DA 79 */ bl setFootEffectProcType__9daAlink_cFi
 /* 800C374C 000C068C  7F E3 FB 78 */ mr r3, r31
 /* 800C3750 000C0690  38 80 00 00 */ li r4, 0
-/* 800C3754 000C0694  4B FF 69 7D */ bl daAlink_c_NS_checkNextAction
+/* 800C3754 000C0694  4B FF 69 7D */ bl checkNextAction__9daAlink_cFi
 /* 800C3758 000C0698  2C 03 00 00 */ cmpwi r3, 0
 /* 800C375C 000C069C  40 82 00 9C */ bne lbl_800C37F8
 /* 800C3760 000C06A0  7F E3 FB 78 */ mr r3, r31
-/* 800C3764 000C06A4  4B FF 32 CD */ bl daAlink_c_NS_checkFrontWallTypeAction
+/* 800C3764 000C06A4  4B FF 32 CD */ bl checkFrontWallTypeAction__9daAlink_cFv
 /* 800C3768 000C06A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C376C 000C06AC  40 82 00 8C */ bne lbl_800C37F8
 /* 800C3770 000C06B0  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -29,7 +29,7 @@
 lbl_800C37A0:
 /* 800C37A0 000C06E0  7F E3 FB 78 */ mr r3, r31
 /* 800C37A4 000C06E4  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C37A8 000C06E8  4B FE A6 6D */ bl daAlink_c_NS_setBlendMoveAnime
+/* 800C37A8 000C06E8  4B FE A6 6D */ bl setBlendMoveAnime__9daAlink_cFf
 /* 800C37AC 000C06EC  80 1F 31 74 */ lwz r0, 0x3174(r31)
 /* 800C37B0 000C06F0  2C 00 00 08 */ cmpwi r0, 8
 /* 800C37B4 000C06F4  41 82 00 44 */ beq lbl_800C37F8

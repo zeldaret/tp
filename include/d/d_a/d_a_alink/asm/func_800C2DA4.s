@@ -7,7 +7,7 @@
 /* 800C2DBC 000BFCFC  38 60 00 00 */ li r3, 0
 /* 800C2DC0 000BFD00  48 00 00 0C */ b lbl_800C2DCC
 lbl_800C2DC4:
-/* 800C2DC4 000BFD04  4B FF F1 A9 */ bl daAlink_c_NS_commonProcInit
+/* 800C2DC4 000BFD04  4B FF F1 A9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C2DC8 000BFD08  38 60 00 01 */ li r3, 1
 lbl_800C2DCC:
 /* 800C2DCC 000BFD0C  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -73,7 +73,7 @@ lbl_80116FA8:
 /* 80116FB0 00113EF0  FC 1F E0 40 */ fcmpo cr0, f31, f28
 /* 80116FB4 00113EF4  40 80 00 20 */ bge lbl_80116FD4
 /* 80116FB8 00113EF8  7F C3 F3 78 */ mr r3, r30
-/* 80116FBC 00113EFC  4B F9 C9 49 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 80116FBC 00113EFC  4B F9 C9 49 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 80116FC0 00113F00  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80116FC4 00113F04  41 82 00 10 */ beq lbl_80116FD4
 lbl_80116FC8:

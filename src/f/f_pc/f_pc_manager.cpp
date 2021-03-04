@@ -73,7 +73,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
         if (!execute__14dDvdErrorMsg_cFv()) {
             if (lbl_80450D38 != 0) {
                 dLib_time_c::startTime();
-                Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);
+                pauseAllGameSound__10Z2SoundMgrFb(lbl_80450B60, false);
                 lbl_80450D38 = 0;
             }
             cAPIGph_Painter();
@@ -95,7 +95,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
             g_dComIfG_gameInfo.getPlay().drawSimpleModel();
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
-            Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
+            pauseAllGameSound__10Z2SoundMgrFb(lbl_80450B60, true);
             m_gamePad[0]->stopPatternedRumble();
             lbl_80450D38 = 1;
         }

@@ -99,28 +99,28 @@ asm Z2Creature::Z2Creature(void) {
 
 // __dt__10Z2CreatureFv
 // Z2Creature::~Z2Creature(void)
-asm void Z2Creature_NS_dtor(void) {
+asm void __dt__10Z2CreatureFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0420.s"
 }
 
 // deleteObject__10Z2CreatureFv
 // Z2Creature::deleteObject(void)
-asm void Z2Creature_NS_deleteObject(void) {
+asm void deleteObject__10Z2CreatureFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C04E8.s"
 }
 
 // init__10Z2CreatureFP3VecP3VecUcUc
 // Z2Creature::init(Vec*, Vec*, unsigned char, unsigned char)
-asm void Z2Creature_NS_init(void) {
+asm void init__10Z2CreatureFP3VecP3VecUcUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0530.s"
 }
 
 // init__10Z2CreatureFP3VecP3VecP3VecUcUcUc
 // Z2Creature::init(Vec*, Vec*, Vec*, unsigned char, unsigned char, unsigned char)
-asm void Z2Creature_NS_init_X1_(void) {
+asm void init__10Z2CreatureFP3VecP3VecUcUc_X1_(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C05B0.s"
 }
@@ -134,21 +134,21 @@ asm void func_802C0618(void) {
 
 // initAnime__10Z2CreatureFPvbff
 // Z2Creature::initAnime(void*, bool, float, float)
-asm void Z2Creature_NS_initAnime(void) {
+asm void init__10Z2CreatureFP3VecP3VecUcUcAnime(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0628.s"
 }
 
 // framework__10Z2CreatureFUlSc
 // Z2Creature::framework(unsigned long, char)
-asm void Z2Creature_NS_framework(void) {
+asm void framework__10Z2CreatureFUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C064C.s"
 }
 
 // updateAnime__10Z2CreatureFff
 // Z2Creature::updateAnime(float, float)
-asm void Z2Creature_NS_updateAnime(void) {
+asm void updateAnime__10Z2CreatureFff(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C06D0.s"
 }
@@ -176,7 +176,7 @@ asm void func_802C087C(void) {
 
 // startCreatureVoice__10Z2CreatureF10JAISoundIDSc
 // Z2Creature::startCreatureVoice(JAISoundID, char)
-asm void Z2Creature_NS_startCreatureVoice(void) {
+asm void startCreatureVoice__10Z2CreatureF10JAISoundIDSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0A4C.s"
 }
@@ -225,7 +225,7 @@ asm void func_802C0C6C(void) {
 
 // init__17Z2CreatureCitizenFP3VecP3VecUcUc
 // Z2CreatureCitizen::init(Vec*, Vec*, unsigned char, unsigned char)
-asm void Z2CreatureCitizen_NS_init(void) {
+asm void init__17Z2CreatureCitizenFP3VecP3VecUcUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0CE4.s"
 }
@@ -239,7 +239,7 @@ asm void func_802C0D04(void) {
 
 // setMdlType__17Z2CreatureCitizenFScbb
 // Z2CreatureCitizen::setMdlType(char, bool, bool)
-asm void Z2CreatureCitizen_NS_setMdlType(void) {
+asm void setMdlType__17Z2CreatureCitizenFScbb(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0D48.s"
 }
@@ -267,7 +267,7 @@ asm void Z2CreatureEnemy(void) {
 
 // deleteObject__15Z2CreatureEnemyFv
 // Z2CreatureEnemy::deleteObject(void)
-asm void Z2CreatureEnemy_NS_deleteObject(void) {
+asm void deleteObject__15Z2CreatureEnemyFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C0FC4.s"
 }

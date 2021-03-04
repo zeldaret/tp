@@ -39,7 +39,7 @@ lbl_800D71CC:
 lbl_800D71E8:
 /* 800D71E8 000D4128  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 800D71EC 000D412C  41 82 00 08 */ beq lbl_800D71F4
-/* 800D71F0 000D4130  48 01 36 E1 */ bl daAlink_c_NS_cancelSumouMode
+/* 800D71F0 000D4130  48 01 36 E1 */ bl cancelSumouMode__9daAlink_cFv
 lbl_800D71F4:
 /* 800D71F4 000D4134  38 60 00 01 */ li r3, 1
 /* 800D71F8 000D4138  80 01 00 14 */ lwz r0, 0x14(r1)

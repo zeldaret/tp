@@ -17,7 +17,7 @@
 lbl_800B70D0:
 /* 800B70D0 000B4010  38 80 00 02 */ li r4, 2
 /* 800B70D4 000B4014  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800B70D8 000B4018  4B FF 66 4D */ bl daAlink_c_NS_resetUpperAnime
+/* 800B70D8 000B4018  4B FF 66 4D */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800B70DC 000B401C  7F E3 FB 78 */ mr r3, r31
 /* 800B70E0 000B4020  81 9F 06 28 */ lwz r12, 0x628(r31)
 /* 800B70E4 000B4024  81 8C 01 94 */ lwz r12, 0x194(r12)
@@ -26,7 +26,7 @@ lbl_800B70D0:
 /* 800B70F0 000B4030  28 03 00 00 */ cmplwi r3, 0
 /* 800B70F4 000B4034  41 82 00 10 */ beq lbl_800B7104
 /* 800B70F8 000B4038  7F E3 FB 78 */ mr r3, r31
-/* 800B70FC 000B403C  48 04 F5 1D */ bl daAlink_c_NS_checkBoardSwordTriggerAction
+/* 800B70FC 000B403C  48 04 F5 1D */ bl checkBoardSwordTriggerAction__9daAlink_cFv
 /* 800B7100 000B4040  48 00 00 54 */ b lbl_800B7154
 lbl_800B7104:
 /* 800B7104 000B4044  38 00 00 00 */ li r0, 0
@@ -41,14 +41,14 @@ lbl_800B7120:
 /* 800B7120 000B4060  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 800B7124 000B4064  41 82 00 10 */ beq lbl_800B7134
 /* 800B7128 000B4068  7F E3 FB 78 */ mr r3, r31
-/* 800B712C 000B406C  48 03 A7 69 */ bl daAlink_c_NS_procHorseCutChargeReadyInit
+/* 800B712C 000B406C  48 03 A7 69 */ bl procHorseCutChargeReadyInit__9daAlink_cFv
 /* 800B7130 000B4070  48 00 00 24 */ b lbl_800B7154
 lbl_800B7134:
 /* 800B7134 000B4074  7F E3 FB 78 */ mr r3, r31
-/* 800B7138 000B4078  48 01 DB 31 */ bl daAlink_c_NS_procCutTurnChargeInit
+/* 800B7138 000B4078  48 01 DB 31 */ bl procCutTurnChargeInit__9daAlink_cFv
 /* 800B713C 000B407C  48 00 00 18 */ b lbl_800B7154
 lbl_800B7140:
-/* 800B7140 000B4080  4B FF FD E9 */ bl daAlink_c_NS_checkItemActionInitStart
+/* 800B7140 000B4080  4B FF FD E9 */ bl checkItemActionInitStart__9daAlink_cFv
 /* 800B7144 000B4084  2C 03 FF FF */ cmpwi r3, -1
 /* 800B7148 000B4088  41 82 00 08 */ beq lbl_800B7150
 /* 800B714C 000B408C  48 00 00 08 */ b lbl_800B7154

@@ -9,7 +9,7 @@
 /* 8013A8C0 00137800  41 82 00 24 */ beq lbl_8013A8E4
 /* 8013A8C4 00137804  7F E3 FB 78 */ mr r3, r31
 /* 8013A8C8 00137808  38 80 00 02 */ li r4, 2
-/* 8013A8CC 0013780C  4B FF 3A CD */ bl daAlink_c_NS_procWolfBackJumpInit
+/* 8013A8CC 0013780C  4B FF 3A CD */ bl procWolfBackJumpInit__9daAlink_cFi
 /* 8013A8D0 00137810  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013A8D4 00137814  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013A8D8 00137818  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

@@ -1,7 +1,7 @@
 /* 8010D96C 0010A8AC  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8010D970 0010A8B0  7C 08 02 A6 */ mflr r0
 /* 8010D974 0010A8B4  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8010D978 0010A8B8  48 00 01 85 */ bl daAlink_c_NS_checkLv4BossRoom
+/* 8010D978 0010A8B8  48 00 01 85 */ bl checkLv4BossRoom__9daAlink_cFv
 /* 8010D97C 0010A8BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010D980 0010A8C0  41 82 00 14 */ beq lbl_8010D994
 /* 8010D984 0010A8C4  3C 60 80 39 */ lis r3, lbl_8038EA30@ha

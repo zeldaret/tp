@@ -22,7 +22,7 @@
 /* 80216D80 00213CC0  7F E3 FB 78 */ mr r3, r31
 /* 80216D84 00213CC4  80 9F 02 E0 */ lwz r4, 0x2e0(r31)
 /* 80216D88 00213CC8  38 A0 00 05 */ li r5, 5
-/* 80216D8C 00213CCC  48 00 3D 19 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80216D8C 00213CCC  48 00 3D 19 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80216D90:
 /* 80216D90 00213CD0  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0
 /* 80216D94 00213CD4  CB E1 00 10 */ lfd f31, 0x10(r1)

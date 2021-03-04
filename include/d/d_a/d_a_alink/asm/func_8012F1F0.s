@@ -17,7 +17,7 @@ lbl_8012F220:
 /* 8012F22C 0012C16C  41 82 00 14 */ beq lbl_8012F240
 /* 8012F230 0012C170  7F C3 F3 78 */ mr r3, r30
 /* 8012F234 0012C174  38 80 00 00 */ li r4, 0
-/* 8012F238 0012C178  4B FF A9 0D */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012F238 0012C178  4B FF A9 0D */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012F23C 0012C17C  48 00 00 20 */ b lbl_8012F25C
 lbl_8012F240:
 /* 8012F240 0012C180  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -26,7 +26,7 @@ lbl_8012F240:
 /* 8012F24C 0012C18C  40 81 00 10 */ ble lbl_8012F25C
 /* 8012F250 0012C190  7F C3 F3 78 */ mr r3, r30
 /* 8012F254 0012C194  38 80 00 01 */ li r4, 1
-/* 8012F258 0012C198  4B FF A8 ED */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012F258 0012C198  4B FF A8 ED */ bl checkNextAction__9daAlink_cFiWolf
 lbl_8012F25C:
 /* 8012F25C 0012C19C  38 60 00 01 */ li r3, 1
 /* 8012F260 0012C1A0  83 E1 00 0C */ lwz r31, 0xc(r1)

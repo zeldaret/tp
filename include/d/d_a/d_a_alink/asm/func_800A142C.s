@@ -41,7 +41,7 @@ lbl_800A149C:
 /* 800A14C0 0009E400  D0 01 00 44 */ stfs f0, 0x44(r1)
 /* 800A14C4 0009E404  7F E3 FB 78 */ mr r3, r31
 /* 800A14C8 0009E408  38 81 00 3C */ addi r4, r1, 0x3c
-/* 800A14CC 0009E40C  48 04 0F B1 */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800A14CC 0009E40C  48 04 0F B1 */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800A14D0 0009E410  38 61 00 3C */ addi r3, r1, 0x3c
 /* 800A14D4 0009E414  48 1C 5C 7D */ bl atan2sY_XZ__4cXyzCFv
 /* 800A14D8 0009E418  7C 74 1B 78 */ mr r20, r3
@@ -82,7 +82,7 @@ lbl_800A149C:
 /* 800A1564 0009E4A4  D0 01 00 38 */ stfs f0, 0x38(r1)
 /* 800A1568 0009E4A8  7F E3 FB 78 */ mr r3, r31
 /* 800A156C 0009E4AC  38 81 00 30 */ addi r4, r1, 0x30
-/* 800A1570 0009E4B0  48 04 0F 0D */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800A1570 0009E4B0  48 04 0F 0D */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800A1574 0009E4B4  38 61 00 30 */ addi r3, r1, 0x30
 /* 800A1578 0009E4B8  48 1C 5B D9 */ bl atan2sY_XZ__4cXyzCFv
 /* 800A157C 0009E4BC  7C 79 1B 78 */ mr r25, r3

@@ -225,10 +225,10 @@ lbl_8022083C:
 /* 80220848 0021D788  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 8022084C 0021D78C  80 9E 01 A8 */ lwz r4, 0x1a8(r30)
 /* 80220850 0021D790  80 BE 01 A4 */ lwz r5, 0x1a4(r30)
-/* 80220854 0021D794  4B FF 4F 8D */ bl dMeter2Draw_c_NS_drawOxygen
+/* 80220854 0021D794  4B FF 4F 8D */ bl drawOxygen__13dMeter2Draw_cFllff
 lbl_80220858:
 /* 80220858 0021D798  7F C3 F3 78 */ mr r3, r30
-/* 8022085C 0021D79C  48 00 43 51 */ bl dMeter2_c_NS_alphaAnimeOxygen
+/* 8022085C 0021D79C  48 00 43 51 */ bl alphaAnimeOxygen__9dMeter2_cFv
 /* 80220860 0021D7A0  80 1E 01 A4 */ lwz r0, 0x1a4(r30)
 /* 80220864 0021D7A4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80220868 0021D7A8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

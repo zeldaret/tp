@@ -4,17 +4,17 @@
 /* 800F6FB0 000F3EF0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F6FB4 000F3EF4  7C 7F 1B 78 */ mr r31, r3
 /* 800F6FB8 000F3EF8  38 80 00 9C */ li r4, 0x9c
-/* 800F6FBC 000F3EFC  4B FC BD E9 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800F6FBC 000F3EFC  4B FC BD E9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800F6FC0 000F3F00  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6FC4 000F3F04  40 82 00 0C */ bne lbl_800F6FD0
 /* 800F6FC8 000F3F08  38 60 00 00 */ li r3, 0
 /* 800F6FCC 000F3F0C  48 00 00 30 */ b lbl_800F6FFC
 lbl_800F6FD0:
 /* 800F6FD0 000F3F10  7F E3 FB 78 */ mr r3, r31
-/* 800F6FD4 000F3F14  4B FF D5 C9 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F6FD4 000F3F14  4B FF D5 C9 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F6FD8 000F3F18  7F E3 FB 78 */ mr r3, r31
 /* 800F6FDC 000F3F1C  38 80 00 01 */ li r4, 1
-/* 800F6FE0 000F3F20  4B FE 93 F1 */ bl daAlink_c_NS_initBoomerangUpperAnimeSpeed
+/* 800F6FE0 000F3F20  4B FE 93 F1 */ bl initBoomerangUpperAnimeSpeed__9daAlink_cFi
 /* 800F6FE4 000F3F24  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F6FE8 000F3F28  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F6FEC 000F3F2C  80 03 5F 18 */ lwz r0, 0x5f18(r3)

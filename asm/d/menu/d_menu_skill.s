@@ -598,7 +598,7 @@ _open__13dMenu_Skill_cFv:
 /* 801F7A6C 001F49AC  38 63 7D B8 */	addi r3, r3, lbl_80397DB8@l
 /* 801F7A70 001F49B0  38 80 00 00 */	li r4, 0
 /* 801F7A74 001F49B4  38 A0 00 00 */	li r5, 0
-/* 801F7A78 001F49B8  4B E1 E3 9D */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 801F7A78 001F49B8  4B E1 E3 9D */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801F7A7C 001F49BC  90 7F 00 14 */	stw r3, 0x14(r31)
 lbl_801F7A80:
 /* 801F7A80 001F49C0  80 7F 00 08 */	lwz r3, 8(r31)
@@ -2233,7 +2233,7 @@ lbl_801F92C8:
 /* 801F92D8 001F6218  7F C3 F3 78 */	mr r3, r30
 /* 801F92DC 001F621C  7F A4 EB 78 */	mr r4, r29
 /* 801F92E0 001F6220  38 C0 00 00 */	li r6, 0
-/* 801F92E4 001F6224  48 02 32 61 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801F92E4 001F6224  48 02 32 61 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801F92E8 001F6228  3B 9C 00 01 */	addi r28, r28, 1
 /* 801F92EC 001F622C  2C 1C 00 05 */	cmpwi r28, 5
 /* 801F92F0 001F6230  3B FF 00 04 */	addi r31, r31, 4
@@ -2284,7 +2284,7 @@ lbl_801F9378:
 /* 801F9388 001F62C8  7F C3 F3 78 */	mr r3, r30
 /* 801F938C 001F62CC  7F A4 EB 78 */	mr r4, r29
 /* 801F9390 001F62D0  38 C0 00 00 */	li r6, 0
-/* 801F9394 001F62D4  48 02 31 B1 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801F9394 001F62D4  48 02 31 B1 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801F9398 001F62D8  3B 9C 00 01 */	addi r28, r28, 1
 /* 801F939C 001F62DC  2C 1C 00 05 */	cmpwi r28, 5
 /* 801F93A0 001F62E0  3B FF 00 04 */	addi r31, r31, 4
@@ -2335,7 +2335,7 @@ lbl_801F9428:
 /* 801F9438 001F6378  7F C3 F3 78 */	mr r3, r30
 /* 801F943C 001F637C  7F A4 EB 78 */	mr r4, r29
 /* 801F9440 001F6380  38 C0 00 00 */	li r6, 0
-/* 801F9444 001F6384  48 02 31 01 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801F9444 001F6384  48 02 31 01 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801F9448 001F6388  3B 9C 00 01 */	addi r28, r28, 1
 /* 801F944C 001F638C  2C 1C 00 04 */	cmpwi r28, 4
 /* 801F9450 001F6390  3B FF 00 04 */	addi r31, r31, 4

@@ -4,7 +4,7 @@
 // Additional symbols needed for JAIStreamMgr
 extern "C" {
 void calc__12JAIStreamMgrFv(void);
-void JAIStreamMgr_NS_isActive(void);
+void isActive__12JAIStreamMgrCFv(void);
 void mixOut__12JAIStreamMgrFv(void);
 void JAIStreamMgr_NS_startSound(void);
 void stop__12JAIStreamMgrFv(void);

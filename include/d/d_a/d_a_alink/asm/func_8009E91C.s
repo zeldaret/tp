@@ -101,13 +101,13 @@ lbl_8009EA6C:
 /* 8009EA74 0009B9B4  2C 04 00 04 */	cmpwi r4, 4
 /* 8009EA78 0009B9B8  40 82 00 10 */	bne lbl_8009EA88
 /* 8009EA7C 0009B9BC  C0 22 92 B8 */	lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 8009EA80 0009B9C0  48 00 DC B9 */	bl daAlink_c_NS_setDoubleAnimeBlendRatio
+/* 8009EA80 0009B9C0  48 00 DC B9 */	bl setDoubleAnimeBlendRatio__9daAlink_cFf
 /* 8009EA84 0009B9C4  48 00 00 84 */	b lbl_8009EB08
 lbl_8009EA88:
 /* 8009EA88 0009B9C8  2C 04 00 05 */	cmpwi r4, 5
 /* 8009EA8C 0009B9CC  40 82 00 7C */	bne lbl_8009EB08
 /* 8009EA90 0009B9D0  C0 22 92 C0 */	lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8009EA94 0009B9D4  48 00 DC A5 */	bl daAlink_c_NS_setDoubleAnimeBlendRatio
+/* 8009EA94 0009B9D4  48 00 DC A5 */	bl setDoubleAnimeBlendRatio__9daAlink_cFf
 /* 8009EA98 0009B9D8  48 00 00 70 */	b lbl_8009EB08
 lbl_8009EA9C:
 /* 8009EA9C 0009B9DC  28 00 00 08 */	cmplwi r0, 8

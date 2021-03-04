@@ -5,11 +5,11 @@
 /* 800BAF90 000B7ED0  93 C1 00 08 */ stw r30, 8(r1)
 /* 800BAF94 000B7ED4  7C 7E 1B 78 */ mr r30, r3
 /* 800BAF98 000B7ED8  3B E0 00 00 */ li r31, 0
-/* 800BAF9C 000B7EDC  48 02 54 A5 */ bl daAlink_c_NS_checkBoomerangAnime
+/* 800BAF9C 000B7EDC  48 02 54 A5 */ bl checkBoomerangAnime__9daAlink_cCFv
 /* 800BAFA0 000B7EE0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BAFA4 000B7EE4  40 82 00 5C */ bne lbl_800BB000
 /* 800BAFA8 000B7EE8  7F C3 F3 78 */ mr r3, r30
-/* 800BAFAC 000B7EEC  48 02 65 85 */ bl daAlink_c_NS_checkCopyRodAnime
+/* 800BAFAC 000B7EEC  48 02 65 85 */ bl checkCopyRodAnime__9daAlink_cCFv
 /* 800BAFB0 000B7EF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BAFB4 000B7EF4  40 82 00 4C */ bne lbl_800BB000
 /* 800BAFB8 000B7EF8  38 60 00 00 */ li r3, 0
@@ -25,11 +25,11 @@ lbl_800BAFD8:
 /* 800BAFD8 000B7F18  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BAFDC 000B7F1C  40 82 00 24 */ bne lbl_800BB000
 /* 800BAFE0 000B7F20  7F C3 F3 78 */ mr r3, r30
-/* 800BAFE4 000B7F24  48 05 A1 01 */ bl daAlink_c_NS_checkIronBallAnime
+/* 800BAFE4 000B7F24  48 05 A1 01 */ bl checkIronBallAnime__9daAlink_cCFv
 /* 800BAFE8 000B7F28  2C 03 00 00 */ cmpwi r3, 0
 /* 800BAFEC 000B7F2C  40 82 00 14 */ bne lbl_800BB000
 /* 800BAFF0 000B7F30  7F C3 F3 78 */ mr r3, r30
-/* 800BAFF4 000B7F34  48 02 39 F5 */ bl daAlink_c_NS_checkBowAnime
+/* 800BAFF4 000B7F34  48 02 39 F5 */ bl checkBowAnime__9daAlink_cCFv
 /* 800BAFF8 000B7F38  2C 03 00 00 */ cmpwi r3, 0
 /* 800BAFFC 000B7F3C  41 82 00 08 */ beq lbl_800BB004
 lbl_800BB000:

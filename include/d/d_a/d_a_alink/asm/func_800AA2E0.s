@@ -5,22 +5,22 @@
 /* 800AA2F0 000A7230  48 2B 7E E1 */ bl _savegpr_26
 /* 800AA2F4 000A7234  7C 7F 1B 78 */ mr r31, r3
 /* 800AA2F8 000A7238  7C 9A 23 78 */ mr r26, r4
-/* 800AA2FC 000A723C  48 02 6B D1 */ bl daAlink_c_NS_checkCutDashAnime
+/* 800AA2FC 000A723C  48 02 6B D1 */ bl checkCutDashAnime__9daAlink_cCFv
 /* 800AA300 000A7240  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA304 000A7244  41 82 00 4C */ beq lbl_800AA350
 /* 800AA308 000A7248  7F E3 FB 78 */ mr r3, r31
 /* 800AA30C 000A724C  38 9F 12 2C */ addi r4, r31, 0x122c
-/* 800AA310 000A7250  48 02 6B ED */ bl daAlink_c_NS_checkCutDashEnemyHit
+/* 800AA310 000A7250  48 02 6B ED */ bl checkCutDashEnemyHit__9daAlink_cFR12dCcD_GObjInf
 /* 800AA314 000A7254  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA318 000A7258  40 82 00 2C */ bne lbl_800AA344
 /* 800AA31C 000A725C  7F E3 FB 78 */ mr r3, r31
 /* 800AA320 000A7260  38 9F 13 70 */ addi r4, r31, 0x1370
-/* 800AA324 000A7264  48 02 6B D9 */ bl daAlink_c_NS_checkCutDashEnemyHit
+/* 800AA324 000A7264  48 02 6B D9 */ bl checkCutDashEnemyHit__9daAlink_cFR12dCcD_GObjInf
 /* 800AA328 000A7268  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA32C 000A726C  40 82 00 18 */ bne lbl_800AA344
 /* 800AA330 000A7270  7F E3 FB 78 */ mr r3, r31
 /* 800AA334 000A7274  38 9F 14 B4 */ addi r4, r31, 0x14b4
-/* 800AA338 000A7278  48 02 6B C5 */ bl daAlink_c_NS_checkCutDashEnemyHit
+/* 800AA338 000A7278  48 02 6B C5 */ bl checkCutDashEnemyHit__9daAlink_cFR12dCcD_GObjInf
 /* 800AA33C 000A727C  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA340 000A7280  41 82 00 10 */ beq lbl_800AA350
 lbl_800AA344:

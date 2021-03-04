@@ -6,10 +6,10 @@
 /* 800CF02C 000CBF6C  80 03 05 80 */ lwz r0, 0x580(r3)
 /* 800CF030 000CBF70  64 00 04 00 */ oris r0, r0, 0x400
 /* 800CF034 000CBF74  90 03 05 80 */ stw r0, 0x580(r3)
-/* 800CF038 000CBF78  4B FE 59 D1 */ bl daAlink_c_NS_setTalkStatus
+/* 800CF038 000CBF78  4B FE 59 D1 */ bl setTalkStatus__9daAlink_cFv
 /* 800CF03C 000CBF7C  7F E3 FB 78 */ mr r3, r31
 /* 800CF040 000CBF80  38 80 00 01 */ li r4, 1
-/* 800CF044 000CBF84  4B FE 8B B5 */ bl daAlink_c_NS_orderTalk
+/* 800CF044 000CBF84  4B FE 8B B5 */ bl orderTalk__9daAlink_cFi
 /* 800CF048 000CBF88  2C 03 00 00 */ cmpwi r3, 0
 /* 800CF04C 000CBF8C  41 82 00 0C */ beq lbl_800CF058
 /* 800CF050 000CBF90  38 60 00 01 */ li r3, 1
@@ -19,11 +19,11 @@ lbl_800CF058:
 /* 800CF05C 000CBF9C  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 800CF060 000CBFA0  41 82 00 0C */ beq lbl_800CF06C
 /* 800CF064 000CBFA4  7F E3 FB 78 */ mr r3, r31
-/* 800CF068 000CBFA8  48 03 4F CD */ bl daAlink_c_NS_setSwimUpDownOffset
+/* 800CF068 000CBFA8  48 03 4F CD */ bl setSwimUpDownOffset__9daAlink_cFv
 lbl_800CF06C:
 /* 800CF06C 000CBFAC  7F E3 FB 78 */ mr r3, r31
 /* 800CF070 000CBFB0  38 80 00 00 */ li r4, 0
-/* 800CF074 000CBFB4  4B FF FB 65 */ bl daAlink_c_NS_checkSubjectEnd
+/* 800CF074 000CBFB4  4B FF FB 65 */ bl checkSubjectEnd__9daAlink_cFi
 /* 800CF078 000CBFB8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CF07C 000CBFBC  41 82 00 64 */ beq lbl_800CF0E0
 /* 800CF080 000CBFC0  38 00 00 38 */ li r0, 0x38
@@ -44,16 +44,16 @@ lbl_800CF06C:
 /* 800CF0BC 000CBFFC  41 82 00 14 */ beq lbl_800CF0D0
 /* 800CF0C0 000CC000  7F E3 FB 78 */ mr r3, r31
 /* 800CF0C4 000CC004  38 80 00 00 */ li r4, 0
-/* 800CF0C8 000CC008  48 06 94 65 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 800CF0C8 000CC008  48 06 94 65 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 800CF0CC 000CC00C  48 00 00 1C */ b lbl_800CF0E8
 lbl_800CF0D0:
 /* 800CF0D0 000CC010  7F E3 FB 78 */ mr r3, r31
 /* 800CF0D4 000CC014  38 80 00 00 */ li r4, 0
-/* 800CF0D8 000CC018  48 03 52 21 */ bl daAlink_c_NS_procSwimWaitInit
+/* 800CF0D8 000CC018  48 03 52 21 */ bl procSwimWaitInit__9daAlink_cFi
 /* 800CF0DC 000CC01C  48 00 00 0C */ b lbl_800CF0E8
 lbl_800CF0E0:
 /* 800CF0E0 000CC020  7F E3 FB 78 */ mr r3, r31
-/* 800CF0E4 000CC024  4B FF F7 BD */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 800CF0E4 000CC024  4B FF F7 BD */ bl setBodyAngleToCamera__9daAlink_cFv
 lbl_800CF0E8:
 /* 800CF0E8 000CC028  38 60 00 01 */ li r3, 1
 lbl_800CF0EC:

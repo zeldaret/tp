@@ -28,7 +28,7 @@ lbl_8013F504:
 lbl_8013F50C:
 /* 8013F50C 0013C44C  7F A3 EB 78 */ mr r3, r29
 /* 8013F510 0013C450  38 80 01 33 */ li r4, 0x133
-/* 8013F514 0013C454  4B F8 2A 59 */ bl daAlink_c_NS_commonProcInit
+/* 8013F514 0013C454  4B F8 2A 59 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013F518 0013C458  8B FD 2F BB */ lbz r31, 0x2fbb(r29)
 /* 8013F51C 0013C45C  2C 1E 00 00 */ cmpwi r30, 0
 /* 8013F520 0013C460  40 82 01 28 */ bne lbl_8013F648
@@ -175,10 +175,10 @@ lbl_8013F6C0:
 /* 8013F72C 0013C66C  4E 80 04 21 */ bctrl
 /* 8013F730 0013C670  7F A3 EB 78 */ mr r3, r29
 /* 8013F734 0013C674  38 80 00 6A */ li r4, 0x6a
-/* 8013F738 0013C678  4B FE 9F 41 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8013F738 0013C678  4B FE 9F 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8013F73C 0013C67C  7F A3 EB 78 */ mr r3, r29
 /* 8013F740 0013C680  38 80 00 99 */ li r4, 0x99
-/* 8013F744 0013C684  4B F7 01 5D */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8013F744 0013C684  4B F7 01 5D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8013F748 0013C688  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013F74C 0013C68C  D0 3D 33 98 */ stfs f1, 0x3398(r29)
 /* 8013F750 0013C690  D0 3D 04 FC */ stfs f1, 0x4fc(r29)

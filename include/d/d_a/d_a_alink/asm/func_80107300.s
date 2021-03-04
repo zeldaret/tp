@@ -4,24 +4,24 @@
 /* 8010730C 0010424C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80107310 00104250  7C 7F 1B 78 */ mr r31, r3
 /* 80107314 00104254  38 80 00 01 */ li r4, 1
-/* 80107318 00104258  4B FF E8 41 */ bl daAlink_c_NS_boardCommon
+/* 80107318 00104258  4B FF E8 41 */ bl boardCommon__9daAlink_cFi
 /* 8010731C 0010425C  2C 03 00 00 */ cmpwi r3, 0
 /* 80107320 00104260  41 82 00 0C */ beq lbl_8010732C
 /* 80107324 00104264  38 60 00 01 */ li r3, 1
 /* 80107328 00104268  48 00 00 94 */ b lbl_801073BC
 lbl_8010732C:
 /* 8010732C 0010426C  7F E3 FB 78 */ mr r3, r31
-/* 80107330 00104270  4B FF F2 5D */ bl daAlink_c_NS_checkNextActionBoard
+/* 80107330 00104270  4B FF F2 5D */ bl checkNextAction__9daAlink_cFiBoard
 /* 80107334 00104274  2C 03 00 00 */ cmpwi r3, 0
 /* 80107338 00104278  40 82 00 80 */ bne lbl_801073B8
 /* 8010733C 0010427C  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 80107340 00104280  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80107344 00104284  40 82 00 1C */ bne lbl_80107360
 /* 80107348 00104288  7F E3 FB 78 */ mr r3, r31
-/* 8010734C 0010428C  4B FF F3 A1 */ bl daAlink_c_NS_setBoardLandAnime
+/* 8010734C 0010428C  4B FF F3 A1 */ bl setBoardLandAnime__9daAlink_cFv
 /* 80107350 00104290  7F E3 FB 78 */ mr r3, r31
 /* 80107354 00104294  38 80 00 00 */ li r4, 0
-/* 80107358 00104298  4B FF F6 E1 */ bl daAlink_c_NS_procBoardWaitInit
+/* 80107358 00104298  4B FF F6 E1 */ bl procBoardWaitInit__9daAlink_cFP10fopAc_ac_c
 /* 8010735C 0010429C  48 00 00 5C */ b lbl_801073B8
 lbl_80107360:
 /* 80107360 001042A0  A8 1F 30 12 */ lha r0, 0x3012(r31)
@@ -43,7 +43,7 @@ lbl_80107360:
 /* 801073A0 001042E0  C0 45 00 1C */ lfs f2, 0x1c(r5)
 /* 801073A4 001042E4  A8 A5 00 14 */ lha r5, 0x14(r5)
 /* 801073A8 001042E8  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 801073AC 001042EC  4B FA 5C 61 */ bl daAlink_c_NS_setSingleAnime
+/* 801073AC 001042EC  4B FA 5C 61 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 801073B0 001042F0  38 00 00 01 */ li r0, 1
 /* 801073B4 001042F4  B0 1F 30 10 */ sth r0, 0x3010(r31)
 lbl_801073B8:

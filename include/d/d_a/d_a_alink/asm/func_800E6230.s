@@ -9,7 +9,7 @@
 /* 800E6250 000E3190  28 1F 00 00 */ cmplwi r31, 0
 /* 800E6254 000E3194  40 82 00 10 */ bne lbl_800E6264
 /* 800E6258 000E3198  38 80 00 00 */ li r4, 0
-/* 800E625C 000E319C  4B FD 3E 75 */ bl daAlink_c_NS_checkNextAction
+/* 800E625C 000E319C  4B FD 3E 75 */ bl checkNextAction__9daAlink_cFi
 /* 800E6260 000E31A0  48 00 01 04 */ b lbl_800E6364
 lbl_800E6264:
 /* 800E6264 000E31A4  7F C3 F3 78 */ mr r3, r30
@@ -35,11 +35,11 @@ lbl_800E629C:
 /* 800E62B0 000E31F0  41 82 00 14 */ beq lbl_800E62C4
 /* 800E62B4 000E31F4  7F A3 EB 78 */ mr r3, r29
 /* 800E62B8 000E31F8  38 80 00 00 */ li r4, 0
-/* 800E62BC 000E31FC  48 00 0A B1 */ bl daAlink_c_NS_procGrabReboundInit
+/* 800E62BC 000E31FC  48 00 0A B1 */ bl procGrabReboundInit__9daAlink_cFi
 /* 800E62C0 000E3200  48 00 00 A0 */ b lbl_800E6360
 lbl_800E62C4:
 /* 800E62C4 000E3204  7F A3 EB 78 */ mr r3, r29
-/* 800E62C8 000E3208  4B FF F0 E5 */ bl daAlink_c_NS_initGrabNextMode
+/* 800E62C8 000E3208  4B FF F0 E5 */ bl initGrabNextMode__9daAlink_cFv
 /* 800E62CC 000E320C  48 00 00 94 */ b lbl_800E6360
 lbl_800E62D0:
 /* 800E62D0 000E3210  A8 1D 30 0E */ lha r0, 0x300e(r29)
@@ -79,7 +79,7 @@ lbl_800E6320:
 /* 800E6350 000E3290  EC 00 20 28 */ fsubs f0, f0, f4
 /* 800E6354 000E3294  EC 03 00 24 */ fdivs f0, f3, f0
 /* 800E6358 000E3298  EC 25 00 28 */ fsubs f1, f5, f0
-/* 800E635C 000E329C  4B FF EC 4D */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E635C 000E329C  4B FF EC 4D */ bl setCarryArmAngle__9daAlink_cFff
 lbl_800E6360:
 /* 800E6360 000E32A0  38 60 00 01 */ li r3, 1
 lbl_800E6364:

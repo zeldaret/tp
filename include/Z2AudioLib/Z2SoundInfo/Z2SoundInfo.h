@@ -18,11 +18,11 @@ extern "C" {
 void getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID(void);
 void getSwBit__11Z2SoundInfoCF10JAISoundID(void);
 
-void Z2SoundInfo_NS_dtor(void);
-void Z2SoundInfo_NS_getAudibleSwFull(void);
-void Z2SoundInfo_NS_getSoundInfo_(void);
-void Z2SoundInfo_NS_getStreamFileEntry(void);
-void Z2SoundInfo_NS_getStreamFilePath(void);
+void __dt__11Z2SoundInfoFv(void);
+void getAudibleSwFull__11Z2SoundInfoF10JAISoundID(void);
+void getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound(void);
+void getStreamFileEntry__11Z2SoundInfoF10JAISoundID(void);
+void getStreamFilePath__11Z2SoundInfoF10JAISoundID(void);
 
 void func_802BB6DC(void);
 void func_802BBCBC(void);

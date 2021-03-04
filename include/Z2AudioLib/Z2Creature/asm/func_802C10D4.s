@@ -8,7 +8,7 @@
 /* 802C10F0 002BE030  38 06 00 01 */ addi r0, r6, 1
 /* 802C10F4 002BE034  98 03 00 A1 */ stb r0, 0xa1(r3)
 lbl_802C10F8:
-/* 802C10F8 002BE038  4B FF F5 55 */ bl Z2Creature_NS_framework
+/* 802C10F8 002BE038  4B FF F5 55 */ bl framework__10Z2CreatureFUlSc
 /* 802C10FC 002BE03C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802C1100 002BE040  7C 08 03 A6 */ mtlr r0
 /* 802C1104 002BE044  38 21 00 10 */ addi r1, r1, 0x10

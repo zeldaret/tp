@@ -46,7 +46,7 @@ lbl_802242D4:
 /* 80224304 00221244  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 80224308 00221248  56 E4 06 3E */ clrlwi r4, r23, 0x18
 /* 8022430C 0022124C  7F A6 EB 78 */ mr r6, r29
-/* 80224310 00221250  4B FF 68 75 */ bl dMeter2Draw_c_NS_setItemNum
+/* 80224310 00221250  4B FF 68 75 */ bl setItemNum__13dMeter2Draw_cFUcUcUc
 /* 80224314 00221254  7F 23 CB 78 */ mr r3, r25
 /* 80224318 00221258  57 E4 06 3E */ clrlwi r4, r31, 0x18
 /* 8022431C 0022125C  4B E0 FD 15 */ bl getBottleNum__24dSv_player_item_record_cCFUc

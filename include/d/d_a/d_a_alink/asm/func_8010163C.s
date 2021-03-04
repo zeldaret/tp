@@ -7,7 +7,7 @@
 /* 80101654 000FE594  83 E3 28 10 */ lwz r31, 0x2810(r3)
 /* 80101658 000FE598  38 61 00 08 */ addi r3, r1, 8
 /* 8010165C 000FE59C  7F E4 FB 78 */ mr r4, r31
-/* 80101660 000FE5A0  48 00 02 15 */ bl daObjSwHang_c_NS_getHangPos
+/* 80101660 000FE5A0  48 00 02 15 */ bl getHangPos__13daObjSwHang_cFv
 /* 80101664 000FE5A4  C0 01 00 08 */ lfs f0, 8(r1)
 /* 80101668 000FE5A8  D0 1E 04 D0 */ stfs f0, 0x4d0(r30)
 /* 8010166C 000FE5AC  C0 01 00 0C */ lfs f0, 0xc(r1)

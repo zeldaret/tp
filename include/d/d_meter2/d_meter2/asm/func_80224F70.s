@@ -24,7 +24,7 @@ lbl_80224FC0:
 /* 80224FC4 00221F04  40 82 00 F8 */ bne lbl_802250BC
 lbl_80224FC8:
 /* 80224FC8 00221F08  7F E3 FB 78 */ mr r3, r31
-/* 80224FCC 00221F0C  48 00 09 95 */ bl dMeter2_c_NS_isKeyVisible
+/* 80224FCC 00221F0C  48 00 09 95 */ bl isKeyVisible__9dMeter2_cFv
 /* 80224FD0 00221F10  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80224FD4 00221F14  41 82 00 E8 */ beq lbl_802250BC
 /* 80224FD8 00221F18  80 7F 01 24 */ lwz r3, 0x124(r31)
@@ -88,15 +88,15 @@ lbl_80225064:
 /* 802250B8 00221FF8  41 82 00 10 */ beq lbl_802250C8
 lbl_802250BC:
 /* 802250BC 00221FFC  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802250C0 00222000  4B FF 1B E9 */ bl dMeter2Draw_c_NS_setAlphaKeyAnimeMin
+/* 802250C0 00222000  4B FF 1B E9 */ bl setAlphaKeyAnimeMin__13dMeter2Draw_cFv
 /* 802250C4 00222004  48 00 00 0C */ b lbl_802250D0
 lbl_802250C8:
 /* 802250C8 00222008  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802250CC 0022200C  4B FF 1C 61 */ bl dMeter2Draw_c_NS_setAlphaKeyAnimeMax
+/* 802250CC 0022200C  4B FF 1C 61 */ bl setAlphaKeyAnimeMax__13dMeter2Draw_cFv
 lbl_802250D0:
 /* 802250D0 00222010  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 802250D4 00222014  38 80 00 00 */ li r4, 0
-/* 802250D8 00222018  4B FF 1A 51 */ bl dMeter2Draw_c_NS_setAlphaKeyChange
+/* 802250D8 00222018  4B FF 1A 51 */ bl setAlphaKeyChange__13dMeter2Draw_cFb
 /* 802250DC 0022201C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802250E0 00222020  83 C1 00 08 */ lwz r30, 8(r1)
 /* 802250E4 00222024  80 01 00 14 */ lwz r0, 0x14(r1)

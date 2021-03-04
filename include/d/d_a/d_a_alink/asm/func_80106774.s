@@ -4,7 +4,7 @@
 /* 80106780 001036C0  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 80106784 001036C4  7C 7F 1B 78 */ mr r31, r3
 /* 80106788 001036C8  38 80 00 A6 */ li r4, 0xa6
-/* 8010678C 001036CC  4B FB B7 E1 */ bl daAlink_c_NS_commonProcInit
+/* 8010678C 001036CC  4B FB B7 E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80106790 001036D0  7F E3 FB 78 */ mr r3, r31
 /* 80106794 001036D4  38 80 00 D7 */ li r4, 0xd7
 /* 80106798 001036D8  3C A0 80 39 */ lis r5, lbl_8038E11C@ha
@@ -13,21 +13,21 @@
 /* 801067A4 001036E4  C0 42 93 44 */ lfs f2, lbl_80452D44-_SDA2_BASE_(r2)
 /* 801067A8 001036E8  A8 A6 00 00 */ lha r5, 0(r6)
 /* 801067AC 001036EC  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 801067B0 001036F0  4B FA 68 5D */ bl daAlink_c_NS_setSingleAnime
+/* 801067B0 001036F0  4B FA 68 5D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 801067B4 001036F4  7F E3 FB 78 */ mr r3, r31
 /* 801067B8 001036F8  38 80 00 00 */ li r4, 0
-/* 801067BC 001036FC  4B FD BD C5 */ bl daAlink_c_NS_setHeavyBoots
+/* 801067BC 001036FC  4B FD BD C5 */ bl setHeavyBoots__9daAlink_cFi
 /* 801067C0 00103700  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 801067C4 00103704  28 00 01 03 */ cmplwi r0, 0x103
 /* 801067C8 00103708  41 82 00 18 */ beq lbl_801067E0
 /* 801067CC 0010370C  7F E3 FB 78 */ mr r3, r31
 /* 801067D0 00103710  38 80 00 01 */ li r4, 1
 /* 801067D4 00103714  38 A0 00 01 */ li r5, 1
-/* 801067D8 00103718  4B FB AB 05 */ bl daAlink_c_NS_deleteEquipItem
+/* 801067D8 00103718  4B FB AB 05 */ bl deleteEquipItem__9daAlink_cFii
 /* 801067DC 0010371C  48 00 00 0C */ b lbl_801067E8
 lbl_801067E0:
 /* 801067E0 00103720  7F E3 FB 78 */ mr r3, r31
-/* 801067E4 00103724  48 00 A0 5D */ bl daAlink_c_NS_offKandelaarModel
+/* 801067E4 00103724  48 00 A0 5D */ bl offKandelaarModel__9daAlink_cFv
 lbl_801067E8:
 /* 801067E8 00103728  7F E3 FB 78 */ mr r3, r31
 /* 801067EC 0010372C  3C 80 00 01 */ lis r4, 0x00010005@ha

@@ -13,7 +13,7 @@
 /* 801089B0 001058F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801089B4 001058F4  41 82 00 18 */ beq lbl_801089CC
 /* 801089B8 001058F8  7F C3 F3 78 */ mr r3, r30
-/* 801089BC 001058FC  48 00 00 2D */ bl daAlink_c_NS_checkBossOctaIealRoom
+/* 801089BC 001058FC  48 00 00 2D */ bl checkBossOctaIealRoom__9daAlink_cFv
 /* 801089C0 00105900  2C 03 00 00 */ cmpwi r3, 0
 /* 801089C4 00105904  41 82 00 08 */ beq lbl_801089CC
 /* 801089C8 00105908  3B E0 00 01 */ li r31, 1

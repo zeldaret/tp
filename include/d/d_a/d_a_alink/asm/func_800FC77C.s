@@ -6,7 +6,7 @@
 /* 800FC790 000F96D0  7C 7E 1B 78 */ mr r30, r3
 /* 800FC794 000F96D4  7C 9F 23 78 */ mr r31, r4
 /* 800FC798 000F96D8  38 80 00 DC */ li r4, 0xdc
-/* 800FC79C 000F96DC  4B FC 57 D1 */ bl daAlink_c_NS_commonProcInit
+/* 800FC79C 000F96DC  4B FC 57 D1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FC7A0 000F96E0  A8 1F 00 08 */ lha r0, 8(r31)
 /* 800FC7A4 000F96E4  2C 00 00 F7 */ cmpwi r0, 0xf7
 /* 800FC7A8 000F96E8  40 82 00 24 */ bne lbl_800FC7CC
@@ -14,23 +14,23 @@
 /* 800FC7B0 000F96F0  90 1E 32 CC */ stw r0, 0x32cc(r30)
 /* 800FC7B4 000F96F4  7F C3 F3 78 */ mr r3, r30
 /* 800FC7B8 000F96F8  38 80 01 72 */ li r4, 0x172
-/* 800FC7BC 000F96FC  4B FB 07 C5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800FC7BC 000F96FC  4B FB 07 C5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800FC7C0 000F9700  7F C3 F3 78 */ mr r3, r30
-/* 800FC7C4 000F9704  4B FB 81 0D */ bl daAlink_c_NS_setJumpMode
+/* 800FC7C4 000F9704  4B FB 81 0D */ bl setJumpMode__9daAlink_cFv
 /* 800FC7C8 000F9708  48 00 00 18 */ b lbl_800FC7E0
 lbl_800FC7CC:
 /* 800FC7CC 000F970C  38 00 00 00 */ li r0, 0
 /* 800FC7D0 000F9710  90 1E 32 CC */ stw r0, 0x32cc(r30)
 /* 800FC7D4 000F9714  7F C3 F3 78 */ mr r3, r30
 /* 800FC7D8 000F9718  38 80 01 69 */ li r4, 0x169
-/* 800FC7DC 000F971C  4B FB 07 A5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800FC7DC 000F971C  4B FB 07 A5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 lbl_800FC7E0:
 /* 800FC7E0 000F9720  38 00 01 69 */ li r0, 0x169
 /* 800FC7E4 000F9724  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800FC7E8 000F9728  7F C3 F3 78 */ mr r3, r30
 /* 800FC7EC 000F972C  38 80 00 01 */ li r4, 1
 /* 800FC7F0 000F9730  38 A0 00 00 */ li r5, 0
-/* 800FC7F4 000F9734  4B FC 4A E9 */ bl daAlink_c_NS_deleteEquipItem
+/* 800FC7F4 000F9734  4B FC 4A E9 */ bl deleteEquipItem__9daAlink_cFii
 /* 800FC7F8 000F9738  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FC7FC 000F973C  D0 3E 33 98 */ stfs f1, 0x3398(r30)
 /* 800FC800 000F9740  7F C3 F3 78 */ mr r3, r30
@@ -50,7 +50,7 @@ lbl_800FC7E0:
 /* 800FC838 000F9778  7F E4 FB 78 */ mr r4, r31
 /* 800FC83C 000F977C  48 06 24 7D */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800FC840 000F9780  7F C3 F3 78 */ mr r3, r30
-/* 800FC844 000F9784  4B FF FF 05 */ bl daAlink_c_NS_setBossBodyHangPos
+/* 800FC844 000F9784  4B FF FF 05 */ bl setBossBodyHangPos__9daAlink_cFv
 /* 800FC848 000F9788  80 1E 05 8C */ lwz r0, 0x58c(r30)
 /* 800FC84C 000F978C  64 00 80 00 */ oris r0, r0, 0x8000
 /* 800FC850 000F9790  90 1E 05 8C */ stw r0, 0x58c(r30)

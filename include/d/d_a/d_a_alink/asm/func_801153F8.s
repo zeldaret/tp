@@ -11,17 +11,17 @@
 /* 80115420 00112360  B0 1D 30 8E */ sth r0, 0x308e(r29)
 lbl_80115424:
 /* 80115424 00112364  7F A3 EB 78 */ mr r3, r29
-/* 80115428 00112368  4B FF FC BD */ bl daAlink_c_NS_checkIronBallAnime
+/* 80115428 00112368  4B FF FC BD */ bl checkIronBallAnime__9daAlink_cCFv
 /* 8011542C 0011236C  2C 03 00 00 */ cmpwi r3, 0
 /* 80115430 00112370  40 82 00 4C */ bne lbl_8011547C
 /* 80115434 00112374  7F A3 EB 78 */ mr r3, r29
-/* 80115438 00112378  4B FF FC D5 */ bl daAlink_c_NS_setIronBallReadyAnime
+/* 80115438 00112378  4B FF FC D5 */ bl setIronBallReadyAnime__9daAlink_cFv
 /* 8011543C 0011237C  7F A3 EB 78 */ mr r3, r29
-/* 80115440 00112380  4B FA 1D 29 */ bl daAlink_c_NS_setFastShotTimer
+/* 80115440 00112380  4B FA 1D 29 */ bl setFastShotTimer__9daAlink_cFv
 /* 80115444 00112384  83 FD 27 E0 */ lwz r31, 0x27e0(r29)
 /* 80115448 00112388  3B C0 00 01 */ li r30, 1
 /* 8011544C 0011238C  7F E3 FB 78 */ mr r3, r31
-/* 80115450 00112390  4B F5 E3 95 */ bl dAttention_c_NS_LockonTruth
+/* 80115450 00112390  4B F5 E3 95 */ bl LockonTruth__12dAttention_cFv
 /* 80115454 00112394  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80115458 00112398  40 82 00 14 */ bne lbl_8011546C
 /* 8011545C 0011239C  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -37,7 +37,7 @@ lbl_8011547C:
 /* 8011547C 001123BC  83 FD 27 E0 */ lwz r31, 0x27e0(r29)
 /* 80115480 001123C0  3B C0 00 01 */ li r30, 1
 /* 80115484 001123C4  7F E3 FB 78 */ mr r3, r31
-/* 80115488 001123C8  4B F5 E3 5D */ bl dAttention_c_NS_LockonTruth
+/* 80115488 001123C8  4B F5 E3 5D */ bl LockonTruth__12dAttention_cFv
 /* 8011548C 001123CC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80115490 001123D0  40 82 00 14 */ bne lbl_801154A4
 /* 80115494 001123D4  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -51,11 +51,11 @@ lbl_801154A4:
 /* 801154B0 001123F0  2C 00 00 00 */ cmpwi r0, 0
 /* 801154B4 001123F4  40 82 00 10 */ bne lbl_801154C4
 /* 801154B8 001123F8  7F A3 EB 78 */ mr r3, r29
-/* 801154BC 001123FC  48 00 00 29 */ bl daAlink_c_NS_procIronBallSubjectInit
+/* 801154BC 001123FC  48 00 00 29 */ bl procIronBallSubjectInit__9daAlink_cFv
 /* 801154C0 00112400  48 00 00 0C */ b lbl_801154CC
 lbl_801154C4:
 /* 801154C4 00112404  7F A3 EB 78 */ mr r3, r29
-/* 801154C8 00112408  48 00 01 25 */ bl daAlink_c_NS_procIronBallMoveInit
+/* 801154C8 00112408  48 00 01 25 */ bl procIronBallMoveInit__9daAlink_cFv
 lbl_801154CC:
 /* 801154CC 0011240C  39 61 00 20 */ addi r11, r1, 0x20
 /* 801154D0 00112410  48 24 CD 59 */ bl _restgpr_29

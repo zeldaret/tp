@@ -86,7 +86,7 @@ lbl_800063A8:
 /* 800063BC 000032FC  3C 60 80 00 */	lis r3, LOAD_COPYDATE__FPv@ha
 /* 800063C0 00003300  38 63 61 4C */	addi r3, r3, LOAD_COPYDATE__FPv@l
 /* 800063C4 00003304  38 80 00 00 */	li r4, 0
-/* 800063C8 00003308  48 00 F8 AD */	bl mDoDvdThd_callback_c_NS_create
+/* 800063C8 00003308  48 00 F8 AD */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 800063CC 0000330C  48 01 26 D5 */	bl fapGm_Create
 /* 800063D0 00003310  48 01 7A 41 */	bl fopAcM_initManager__Fv
 /* 800063D4 00003314  38 00 00 00 */	li r0, 0
@@ -117,7 +117,7 @@ lbl_8000642C:
 /* 80006430 00003370  28 00 00 00 */	cmplwi r0, 0
 /* 80006434 00003374  41 82 00 0C */	beq lbl_80006440
 /* 80006438 00003378  7F E3 FB 78 */	mr r3, r31
-/* 8000643C 0000337C  48 01 04 59 */	bl mDoMemCd_Ctrl_c_NS_update
+/* 8000643C 0000337C  48 01 04 59 */	bl update__15mDoMemCd_Ctrl_cFv
 lbl_80006440:
 /* 80006440 00003380  48 00 16 55 */	bl read__8mDoCPd_cFv
 /* 80006444 00003384  48 01 26 29 */	bl fapGm_Execute

@@ -2071,7 +2071,7 @@ lbl_800408F0:
 /* 80040918 0003D858  C0 22 84 70 */	lfs f1, lbl_80451E70-_SDA2_BASE_(r2)
 /* 8004091C 0003D85C  FC 40 08 90 */	fmr f2, f1
 /* 80040920 0003D860  C0 62 84 38 */	lfs f3, lbl_80451E38-_SDA2_BASE_(r2)
-/* 80040924 0003D864  4B FC C5 15 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80040924 0003D864  4B FC C5 15 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80040928 0003D868  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8004092C 0003D86C  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80040930 0003D870  3C 80 80 38 */	lis r4, lbl_80379C58@ha
@@ -2773,7 +2773,7 @@ drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif:
 /* 80041354 0003E294  FC 20 F8 90 */	fmr f1, f31
 /* 80041358 0003E298  C0 42 84 38 */	lfs f2, lbl_80451E38-_SDA2_BASE_(r2)
 /* 8004135C 0003E29C  FC 60 F0 90 */	fmr f3, f30
-/* 80041360 0003E2A0  4B FC BA D9 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80041360 0003E2A0  4B FC BA D9 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80041364 0003E2A4  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80041368 0003E2A8  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8004136C 0003E2AC  7F 84 E3 78 */	mr r4, r28

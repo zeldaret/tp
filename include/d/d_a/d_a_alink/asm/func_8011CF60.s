@@ -16,10 +16,10 @@
 /* 8011CF9C 00119EDC  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011CFA0 00119EE0  41 82 00 38 */ beq lbl_8011CFD8
 /* 8011CFA4 00119EE4  38 80 00 7B */ li r4, 0x7b
-/* 8011CFA8 00119EE8  48 00 C6 D1 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8011CFA8 00119EE8  48 00 C6 D1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8011CFAC 00119EEC  7F E3 FB 78 */ mr r3, r31
 /* 8011CFB0 00119EF0  38 80 00 9C */ li r4, 0x9c
-/* 8011CFB4 00119EF4  4B F9 28 ED */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8011CFB4 00119EF4  4B F9 28 ED */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8011CFB8 00119EF8  7F E3 FB 78 */ mr r3, r31
 /* 8011CFBC 00119EFC  3C 80 00 01 */ lis r4, 0x00010043@ha
 /* 8011CFC0 00119F00  38 84 00 43 */ addi r4, r4, 0x00010043@l
@@ -30,7 +30,7 @@
 /* 8011CFD4 00119F14  48 00 00 28 */ b lbl_8011CFFC
 lbl_8011CFD8:
 /* 8011CFD8 00119F18  38 80 01 16 */ li r4, 0x116
-/* 8011CFDC 00119F1C  4B F8 FF A5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011CFDC 00119F1C  4B F8 FF A5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011CFE0 00119F20  7F E3 FB 78 */ mr r3, r31
 /* 8011CFE4 00119F24  3C 80 00 01 */ lis r4, 0x00010016@ha
 /* 8011CFE8 00119F28  38 84 00 16 */ addi r4, r4, 0x00010016@l

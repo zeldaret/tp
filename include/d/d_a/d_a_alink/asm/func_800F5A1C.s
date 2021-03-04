@@ -7,7 +7,7 @@
 /* 800F5A34 000F2974  48 26 C7 A9 */ bl _savegpr_29
 /* 800F5A38 000F2978  7C 7D 1B 78 */ mr r29, r3
 /* 800F5A3C 000F297C  83 E3 28 18 */ lwz r31, 0x2818(r3)
-/* 800F5A40 000F2980  4B FF ED 99 */ bl daAlink_c_NS_canoeCommon
+/* 800F5A40 000F2980  4B FF ED 99 */ bl canoeCommon__9daAlink_cFv
 /* 800F5A44 000F2984  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5A48 000F2988  41 82 00 0C */ beq lbl_800F5A54
 /* 800F5A4C 000F298C  38 60 00 01 */ li r3, 1
@@ -15,16 +15,16 @@
 lbl_800F5A54:
 /* 800F5A54 000F2994  3B DD 20 18 */ addi r30, r29, 0x2018
 /* 800F5A58 000F2998  7F A3 EB 78 */ mr r3, r29
-/* 800F5A5C 000F299C  4B FC 3E F1 */ bl daAlink_c_NS_checkItemChangeFromButton
+/* 800F5A5C 000F299C  4B FC 3E F1 */ bl checkItemChangeFromButton__9daAlink_cFv
 /* 800F5A60 000F29A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5A64 000F29A4  40 82 02 7C */ bne lbl_800F5CE0
 /* 800F5A68 000F29A8  7F A3 EB 78 */ mr r3, r29
-/* 800F5A6C 000F29AC  4B FC 38 D5 */ bl daAlink_c_NS_checkEquipAnime
+/* 800F5A6C 000F29AC  4B FC 38 D5 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800F5A70 000F29B0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5A74 000F29B4  41 82 00 14 */ beq lbl_800F5A88
 /* 800F5A78 000F29B8  7F A3 EB 78 */ mr r3, r29
 /* 800F5A7C 000F29BC  38 80 00 00 */ li r4, 0
-/* 800F5A80 000F29C0  48 00 04 29 */ bl daAlink_c_NS_procCanoePaddlePutInit
+/* 800F5A80 000F29C0  48 00 04 29 */ bl procCanoePaddlePutInit__9daAlink_cFi
 /* 800F5A84 000F29C4  48 00 02 5C */ b lbl_800F5CE0
 lbl_800F5A88:
 /* 800F5A88 000F29C8  7F C3 F3 78 */ mr r3, r30
@@ -38,12 +38,12 @@ lbl_800F5A88:
 /* 800F5AA8 000F29E8  40 81 00 14 */ ble lbl_800F5ABC
 /* 800F5AAC 000F29EC  7F A3 EB 78 */ mr r3, r29
 /* 800F5AB0 000F29F0  80 9D 31 98 */ lwz r4, 0x3198(r29)
-/* 800F5AB4 000F29F4  4B FF FC 69 */ bl daAlink_c_NS_procCanoeRowInit
+/* 800F5AB4 000F29F4  4B FF FC 69 */ bl procCanoeRowInit__9daAlink_cFi
 /* 800F5AB8 000F29F8  48 00 02 28 */ b lbl_800F5CE0
 lbl_800F5ABC:
 /* 800F5ABC 000F29FC  7F A3 EB 78 */ mr r3, r29
 /* 800F5AC0 000F2A00  38 80 00 00 */ li r4, 0
-/* 800F5AC4 000F2A04  4B FF F7 21 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F5AC4 000F2A04  4B FF F7 21 */ bl procCanoeWaitInit__9daAlink_cFi
 /* 800F5AC8 000F2A08  48 00 02 18 */ b lbl_800F5CE0
 lbl_800F5ACC:
 /* 800F5ACC 000F2A0C  3C 60 80 39 */ lis r3, lbl_8038E610@ha
@@ -64,7 +64,7 @@ lbl_800F5B04:
 /* 800F5B04 000F2A44  7C 00 07 35 */ extsh. r0, r0
 /* 800F5B08 000F2A48  40 82 00 30 */ bne lbl_800F5B38
 /* 800F5B0C 000F2A4C  7F A3 EB 78 */ mr r3, r29
-/* 800F5B10 000F2A50  4B FF E1 09 */ bl daAlink_c_NS_getCanoeSpeedRate
+/* 800F5B10 000F2A50  4B FF E1 09 */ bl getCanoeSpeedRate__9daAlink_cCFv
 /* 800F5B14 000F2A54  EC 3F 00 72 */ fmuls f1, f31, f1
 /* 800F5B18 000F2A58  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)
 /* 800F5B1C 000F2A5C  EC 20 00 72 */ fmuls f1, f0, f1
@@ -164,7 +164,7 @@ lbl_800F5C64:
 /* 800F5C68 000F2BA8  2C 00 00 00 */ cmpwi r0, 0
 /* 800F5C6C 000F2BAC  40 82 00 18 */ bne lbl_800F5C84
 /* 800F5C70 000F2BB0  7F A3 EB 78 */ mr r3, r29
-/* 800F5C74 000F2BB4  4B FF DF A5 */ bl daAlink_c_NS_getCanoeSpeedRate
+/* 800F5C74 000F2BB4  4B FF DF A5 */ bl getCanoeSpeedRate__9daAlink_cCFv
 /* 800F5C78 000F2BB8  EC 1F 00 72 */ fmuls f0, f31, f1
 /* 800F5C7C 000F2BBC  D0 1F 14 68 */ stfs f0, 0x1468(r31)
 /* 800F5C80 000F2BC0  48 00 00 1C */ b lbl_800F5C9C

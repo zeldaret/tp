@@ -12,7 +12,7 @@
 /* 8011D220 0011A160  7F E3 FB 78 */ mr r3, r31
 /* 8011D224 0011A164  38 80 00 02 */ li r4, 2
 /* 8011D228 0011A168  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011D22C 0011A16C  4B F9 04 F9 */ bl daAlink_c_NS_resetUpperAnime
+/* 8011D22C 0011A16C  4B F9 04 F9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_8011D230:
 /* 8011D230 0011A170  A8 1F 30 0C */ lha r0, 0x300c(r31)
 /* 8011D234 0011A174  2C 00 00 00 */ cmpwi r0, 0

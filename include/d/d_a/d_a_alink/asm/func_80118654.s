@@ -23,11 +23,11 @@ lbl_80118690:
 /* 801186A8 001155E8  38 A0 00 19 */ li r5, 0x19
 /* 801186AC 001155EC  38 C0 00 02 */ li r6, 2
 /* 801186B0 001155F0  C0 82 92 C4 */ lfs f4, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 801186B4 001155F4  4B F9 43 61 */ bl daAlink_c_NS_setDoubleAnime
+/* 801186B4 001155F4  4B F9 43 61 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 /* 801186B8 001155F8  48 00 00 0C */ b lbl_801186C4
 lbl_801186BC:
 /* 801186BC 001155FC  38 80 00 B8 */ li r4, 0xb8
-/* 801186C0 00115600  4B F9 48 C1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 801186C0 00115600  4B F9 48 C1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 lbl_801186C4:
 /* 801186C4 00115604  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801186C8 00115608  7C 08 03 A6 */ mtlr r0

@@ -37,21 +37,21 @@ lbl_8013F818:
 /* 8013F850 0013C790  4B EF 57 31 */ bl setRoom__13dSv_restart_cFRC4cXyzsSc
 lbl_8013F854:
 /* 8013F854 0013C794  7F C3 F3 78 */ mr r3, r30
-/* 8013F858 0013C798  4B FD 84 39 */ bl daAlink_c_NS_resetSpecialEvent
+/* 8013F858 0013C798  4B FD 84 39 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8013F85C 0013C79C  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
 /* 8013F860 0013C7A0  C0 02 92 A4 */ lfs f0, lbl_80452CA4-_SDA2_BASE_(r2)
 /* 8013F864 0013C7A4  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8013F868 0013C7A8  40 81 00 14 */ ble lbl_8013F87C
 /* 8013F86C 0013C7AC  7F C3 F3 78 */ mr r3, r30
 /* 8013F870 0013C7B0  38 80 00 00 */ li r4, 0
-/* 8013F874 0013C7B4  4B FE A2 D1 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013F874 0013C7B4  4B FE A2 D1 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013F878 0013C7B8  48 00 00 18 */ b lbl_8013F890
 lbl_8013F87C:
 /* 8013F87C 0013C7BC  38 00 00 04 */ li r0, 4
 /* 8013F880 0013C7C0  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8013F884 0013C7C4  7F C3 F3 78 */ mr r3, r30
 /* 8013F888 0013C7C8  38 80 00 01 */ li r4, 1
-/* 8013F88C 0013C7CC  4B FF 90 81 */ bl daAlink_c_NS_procWolfSwimEndWaitInit
+/* 8013F88C 0013C7CC  4B FF 90 81 */ bl procWolfSwimEndWaitInit__9daAlink_cFi
 lbl_8013F890:
 /* 8013F890 0013C7D0  38 60 00 01 */ li r3, 1
 /* 8013F894 0013C7D4  48 00 00 60 */ b lbl_8013F8F4

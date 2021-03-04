@@ -29,7 +29,7 @@
 lbl_800C0B0C:
 /* 800C0B0C 000BDA4C  7F 83 E3 78 */ mr r3, r28
 /* 800C0B10 000BDA50  C0 3C 33 B4 */ lfs f1, 0x33b4(r28)
-/* 800C0B14 000BDA54  48 04 FC 79 */ bl daAlink_c_NS_checkWaterInKandelaarOffset
+/* 800C0B14 000BDA54  48 04 FC 79 */ bl checkWaterInKandelaarOffset__9daAlink_cFf
 /* 800C0B18 000BDA58  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0B1C 000BDA5C  40 82 02 40 */ bne lbl_800C0D5C
 lbl_800C0B20:
@@ -47,7 +47,7 @@ lbl_800C0B20:
 /* 800C0B4C 000BDA8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0B50 000BDA90  40 82 02 0C */ bne lbl_800C0D5C
 lbl_800C0B54:
-/* 800C0B54 000BDA94  4B FF F8 4D */ bl daAlink_c_NS_checkCloudSea
+/* 800C0B54 000BDA94  4B FF F8 4D */ bl checkCloudSea__9daAlink_cFv
 /* 800C0B58 000BDA98  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0B5C 000BDA9C  40 82 02 00 */ bne lbl_800C0D5C
 /* 800C0B60 000BDAA0  80 1C 31 A0 */ lwz r0, 0x31a0(r28)
@@ -59,7 +59,7 @@ lbl_800C0B54:
 lbl_800C0B78:
 /* 800C0B78 000BDAB8  7F 83 E3 78 */ mr r3, r28
 /* 800C0B7C 000BDABC  7F C4 F3 78 */ mr r4, r30
-/* 800C0B80 000BDAC0  48 04 0D 65 */ bl daAlink_c_NS_checkAcceptUseItemInWater
+/* 800C0B80 000BDAC0  48 04 0D 65 */ bl checkAcceptUseItemInWater__9daAlink_cCFUs
 /* 800C0B84 000BDAC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0B88 000BDAC8  41 82 01 D4 */ beq lbl_800C0D5C
 lbl_800C0B8C:
@@ -70,7 +70,7 @@ lbl_800C0B8C:
 /* 800C0B9C 000BDADC  41 82 01 C0 */ beq lbl_800C0D5C
 lbl_800C0BA0:
 /* 800C0BA0 000BDAE0  7F C3 F3 78 */ mr r3, r30
-/* 800C0BA4 000BDAE4  4B FF FA D5 */ bl daAlink_c_NS_checkCastleTownUseItem
+/* 800C0BA4 000BDAE4  4B FF FA D5 */ bl checkCastleTown__9daAlink_cFvUseItem
 /* 800C0BA8 000BDAE8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0BAC 000BDAEC  41 82 01 B0 */ beq lbl_800C0D5C
 /* 800C0BB0 000BDAF0  7F 83 E3 78 */ mr r3, r28
@@ -127,7 +127,7 @@ lbl_800C0C6C:
 /* 800C0C6C 000BDBAC  28 1E 00 41 */ cmplwi r30, 0x41
 /* 800C0C70 000BDBB0  41 82 00 EC */ beq lbl_800C0D5C
 lbl_800C0C74:
-/* 800C0C74 000BDBB4  4B FF F6 55 */ bl daAlink_c_NS_checkBossRoom
+/* 800C0C74 000BDBB4  4B FF F6 55 */ bl checkBossRoom__9daAlink_cFv
 /* 800C0C78 000BDBB8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0C7C 000BDBBC  41 82 00 14 */ beq lbl_800C0C90
 /* 800C0C80 000BDBC0  7F C3 F3 78 */ mr r3, r30
@@ -137,7 +137,7 @@ lbl_800C0C74:
 lbl_800C0C90:
 /* 800C0C90 000BDBD0  28 1E 00 25 */ cmplwi r30, 0x25
 /* 800C0C94 000BDBD4  40 82 00 8C */ bne lbl_800C0D20
-/* 800C0C98 000BDBD8  48 05 E1 A9 */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 800C0C98 000BDBD8  48 05 E1 A9 */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C0C9C 000BDBDC  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0CA0 000BDBE0  40 82 00 BC */ bne lbl_800C0D5C
 /* 800C0CA4 000BDBE4  3C 60 80 39 */ lis r3, lbl_80392094@ha
@@ -250,7 +250,7 @@ lbl_800C0E1C:
 /* 800C0E28 000BDD68  41 82 04 64 */ beq lbl_800C128C
 /* 800C0E2C 000BDD6C  7F 83 E3 78 */ mr r3, r28
 /* 800C0E30 000BDD70  38 80 00 48 */ li r4, 0x48
-/* 800C0E34 000BDD74  4B FF F3 D5 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C0E34 000BDD74  4B FF F3 D5 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C0E38 000BDD78  2C 03 00 02 */ cmpwi r3, 2
 /* 800C0E3C 000BDD7C  41 82 04 50 */ beq lbl_800C128C
 /* 800C0E40 000BDD80  38 60 00 08 */ li r3, 8
@@ -348,7 +348,7 @@ lbl_800C0F60:
 /* 800C0F90 000BDED0  7F 83 E3 78 */ mr r3, r28
 /* 800C0F94 000BDED4  38 81 00 38 */ addi r4, r1, 0x38
 /* 800C0F98 000BDED8  38 A1 00 2C */ addi r5, r1, 0x2c
-/* 800C0F9C 000BDEDC  4B FE 11 FD */ bl daAlink_c_NS_commonLineCheck
+/* 800C0F9C 000BDEDC  4B FE 11 FD */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800C0FA0 000BDEE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0FA4 000BDEE4  41 82 00 AC */ beq lbl_800C1050
 /* 800C0FA8 000BDEE8  C0 42 93 14 */ lfs f2, lbl_80452D14-_SDA2_BASE_(r2)
@@ -371,7 +371,7 @@ lbl_800C0F60:
 /* 800C0FEC 000BDF2C  7F 83 E3 78 */ mr r3, r28
 /* 800C0FF0 000BDF30  38 81 00 38 */ addi r4, r1, 0x38
 /* 800C0FF4 000BDF34  38 A1 00 2C */ addi r5, r1, 0x2c
-/* 800C0FF8 000BDF38  4B FE 11 A1 */ bl daAlink_c_NS_commonLineCheck
+/* 800C0FF8 000BDF38  4B FE 11 A1 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800C0FFC 000BDF3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C1000 000BDF40  41 82 00 50 */ beq lbl_800C1050
 /* 800C1004 000BDF44  C0 5C 1B 80 */ lfs f2, 0x1b80(r28)
@@ -410,7 +410,7 @@ lbl_800C1068:
 lbl_800C1080:
 /* 800C1080 000BDFC0  7F 83 E3 78 */ mr r3, r28
 /* 800C1084 000BDFC4  38 80 01 08 */ li r4, 0x108
-/* 800C1088 000BDFC8  4B FF F1 81 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C1088 000BDFC8  4B FF F1 81 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C108C 000BDFCC  2C 03 00 02 */ cmpwi r3, 2
 /* 800C1090 000BDFD0  41 82 00 78 */ beq lbl_800C1108
 /* 800C1094 000BDFD4  28 1E 00 74 */ cmplwi r30, 0x74
@@ -420,7 +420,7 @@ lbl_800C1080:
 lbl_800C10A4:
 /* 800C10A4 000BDFE4  7F 83 E3 78 */ mr r3, r28
 /* 800C10A8 000BDFE8  38 80 01 08 */ li r4, 0x108
-/* 800C10AC 000BDFEC  4B FF F1 5D */ bl daAlink_c_NS_checkItemSetButton
+/* 800C10AC 000BDFEC  4B FF F1 5D */ bl checkItemSetButton__9daAlink_cFi
 /* 800C10B0 000BDFF0  4B F6 CE 6D */ bl dComIfGp_getSelectItem
 /* 800C10B4 000BDFF4  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 800C10B8 000BDFF8  2C 00 00 5D */ cmpwi r0, 0x5d
@@ -481,7 +481,7 @@ lbl_800C1160:
 /* 800C116C 000BE0AC  41 82 00 20 */ beq lbl_800C118C
 /* 800C1170 000BE0B0  7F 83 E3 78 */ mr r3, r28
 /* 800C1174 000BE0B4  38 80 00 48 */ li r4, 0x48
-/* 800C1178 000BE0B8  4B FF F0 91 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C1178 000BE0B8  4B FF F0 91 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C117C 000BE0BC  2C 03 00 02 */ cmpwi r3, 2
 /* 800C1180 000BE0C0  41 82 00 0C */ beq lbl_800C118C
 /* 800C1184 000BE0C4  38 60 00 08 */ li r3, 8
@@ -490,7 +490,7 @@ lbl_800C118C:
 /* 800C118C 000BE0CC  28 1E 00 3E */ cmplwi r30, 0x3e
 /* 800C1190 000BE0D0  40 82 00 1C */ bne lbl_800C11AC
 /* 800C1194 000BE0D4  7F 83 E3 78 */ mr r3, r28
-/* 800C1198 000BE0D8  48 00 D2 D1 */ bl daAlink_c_NS_acceptSubjectModeChange
+/* 800C1198 000BE0D8  48 00 D2 D1 */ bl acceptSubjectModeChange__9daAlink_cFv
 /* 800C119C 000BE0DC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C11A0 000BE0E0  41 82 00 EC */ beq lbl_800C128C
 /* 800C11A4 000BE0E4  38 60 00 09 */ li r3, 9

@@ -212,7 +212,7 @@ lbl_80240B90:
 /* 80240C84 0023DBC4  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 80240C88 0023DBC8  38 80 04 D4 */	li r4, 0x4d4
 /* 80240C8C 0023DBCC  38 C0 00 00 */	li r6, 0
-/* 80240C90 0023DBD0  4B FD B8 B5 */	bl dMeter2Info_c_NS_getStringKanji
+/* 80240C90 0023DBD0  4B FD B8 B5 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 80240C94 0023DBD4  7F A3 EB 78 */	mr r3, r29
 /* 80240C98 0023DBD8  38 80 00 40 */	li r4, 0x40
 /* 80240C9C 0023DBDC  3C A0 80 3A */	lis r5, lbl_80399A20@ha
@@ -234,7 +234,7 @@ lbl_80240B90:
 /* 80240CDC 0023DC1C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 80240CE0 0023DC20  38 80 04 D5 */	li r4, 0x4d5
 /* 80240CE4 0023DC24  38 C0 00 00 */	li r6, 0
-/* 80240CE8 0023DC28  4B FD B8 5D */	bl dMeter2Info_c_NS_getStringKanji
+/* 80240CE8 0023DC28  4B FD B8 5D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 80240CEC 0023DC2C  38 A0 00 00 */	li r5, 0
 /* 80240CF0 0023DC30  98 BF 21 95 */	stb r5, 0x2195(r31)
 /* 80240CF4 0023DC34  38 C0 00 00 */	li r6, 0
@@ -2948,7 +2948,7 @@ lbl_802434F8:
 /* 8024354C 0024048C  39 01 00 08 */	addi r8, r1, 8
 /* 80243550 00240490  C0 9F 03 88 */	lfs f4, 0x388(r31)
 /* 80243554 00240494  39 20 00 05 */	li r9, 5
-/* 80243558 00240498  4B FD 0B 85 */	bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 80243558 00240498  4B FD 0B 85 */	bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 lbl_8024355C:
 /* 8024355C 0024049C  3B 18 00 01 */	addi r24, r24, 1
 /* 80243560 002404A0  2C 18 00 1E */	cmpwi r24, 0x1e

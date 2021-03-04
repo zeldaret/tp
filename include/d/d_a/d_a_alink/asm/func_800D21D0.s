@@ -7,7 +7,7 @@
 /* 800D21E8 000CF128  28 00 00 04 */ cmplwi r0, 4
 /* 800D21EC 000CF12C  40 82 00 0C */ bne lbl_800D21F8
 /* 800D21F0 000CF130  38 80 00 01 */ li r4, 1
-/* 800D21F4 000CF134  4B FF F2 3D */ bl daAlink_c_NS_resetCombo
+/* 800D21F4 000CF134  4B FF F2 3D */ bl resetCombo__9daAlink_cFi
 lbl_800D21F8:
 /* 800D21F8 000CF138  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D21FC 000CF13C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -33,7 +33,7 @@ lbl_800D2240:
 /* 800D2240 000CF180  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 800D2244 000CF184  41 82 00 28 */ beq lbl_800D226C
 /* 800D2248 000CF188  7F E3 FB 78 */ mr r3, r31
-/* 800D224C 000CF18C  48 01 F1 8D */ bl daAlink_c_NS_procHorseCutInit
+/* 800D224C 000CF18C  48 01 F1 8D */ bl procHorseCutInit__9daAlink_cFv
 /* 800D2250 000CF190  88 1F 05 69 */ lbz r0, 0x569(r31)
 /* 800D2254 000CF194  28 00 00 01 */ cmplwi r0, 1
 /* 800D2258 000CF198  40 81 00 0C */ ble lbl_800D2264

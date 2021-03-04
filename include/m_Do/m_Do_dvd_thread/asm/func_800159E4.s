@@ -13,7 +13,7 @@
 /* 80015A14 00012954  38 7E 00 30 */ addi r3, r30, 0x30
 /* 80015A18 00012958  48 32 97 05 */ bl OSUnlockMutex
 /* 80015A1C 0001295C  7F C3 F3 78 */ mr r3, r30
-/* 80015A20 00012960  4B FF FF 6D */ bl mDoDvdThd_param_c_NS_kick
+/* 80015A20 00012960  4B FF FF 6D */ bl kick__17mDoDvdThd_param_cFv
 /* 80015A24 00012964  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80015A28 00012968  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80015A2C 0001296C  80 01 00 14 */ lwz r0, 0x14(r1)

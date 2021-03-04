@@ -6,7 +6,7 @@
 /* 800DDF40 000DAE80  7C 7E 1B 78 */ mr r30, r3
 /* 800DDF44 000DAE84  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800DDF48 000DAE88  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800DDF4C 000DAE8C  4B FF F0 BD */ bl daAlink_c_NS_setUpperGuardAnime
+/* 800DDF4C 000DAE8C  4B FF F0 BD */ bl setUpperGuardAnime__9daAlink_cFf
 /* 800DDF50 000DAE90  80 1E 05 88 */ lwz r0, 0x588(r30)
 /* 800DDF54 000DAE94  64 00 08 00 */ oris r0, r0, 0x800
 /* 800DDF58 000DAE98  90 1E 05 88 */ stw r0, 0x588(r30)
@@ -17,7 +17,7 @@
 /* 800DDF6C 000DAEAC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DDF70 000DAEB0  41 82 00 30 */ beq lbl_800DDFA0
 /* 800DDF74 000DAEB4  7F C3 F3 78 */ mr r3, r30
-/* 800DDF78 000DAEB8  4B FF E7 01 */ bl daAlink_c_NS_checkGuardActionChange
+/* 800DDF78 000DAEB8  4B FF E7 01 */ bl checkGuardActionChange__9daAlink_cFv
 /* 800DDF7C 000DAEBC  2C 03 00 00 */ cmpwi r3, 0
 /* 800DDF80 000DAEC0  40 82 00 10 */ bne lbl_800DDF90
 /* 800DDF84 000DAEC4  80 1E 05 8C */ lwz r0, 0x58c(r30)
@@ -26,7 +26,7 @@
 lbl_800DDF90:
 /* 800DDF90 000DAED0  7F C3 F3 78 */ mr r3, r30
 /* 800DDF94 000DAED4  38 80 00 00 */ li r4, 0
-/* 800DDF98 000DAED8  4B FD C1 39 */ bl daAlink_c_NS_checkNextAction
+/* 800DDF98 000DAED8  4B FD C1 39 */ bl checkNextAction__9daAlink_cFi
 /* 800DDF9C 000DAEDC  48 00 00 50 */ b lbl_800DDFEC
 lbl_800DDFA0:
 /* 800DDFA0 000DAEE0  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -36,7 +36,7 @@ lbl_800DDFA0:
 /* 800DDFB0 000DAEF0  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800DDFB4 000DAEF4  40 81 00 38 */ ble lbl_800DDFEC
 /* 800DDFB8 000DAEF8  7F C3 F3 78 */ mr r3, r30
-/* 800DDFBC 000DAEFC  4B FF E6 BD */ bl daAlink_c_NS_checkGuardActionChange
+/* 800DDFBC 000DAEFC  4B FF E6 BD */ bl checkGuardActionChange__9daAlink_cFv
 /* 800DDFC0 000DAF00  2C 03 00 00 */ cmpwi r3, 0
 /* 800DDFC4 000DAF04  40 82 00 10 */ bne lbl_800DDFD4
 /* 800DDFC8 000DAF08  80 1E 05 8C */ lwz r0, 0x58c(r30)
@@ -48,7 +48,7 @@ lbl_800DDFD4:
 /* 800DDFDC 000DAF1C  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 800DDFE0 000DAF20  7F C3 F3 78 */ mr r3, r30
 /* 800DDFE4 000DAF24  38 80 00 01 */ li r4, 1
-/* 800DDFE8 000DAF28  4B FD C0 E9 */ bl daAlink_c_NS_checkNextAction
+/* 800DDFE8 000DAF28  4B FD C0 E9 */ bl checkNextAction__9daAlink_cFi
 lbl_800DDFEC:
 /* 800DDFEC 000DAF2C  38 60 00 01 */ li r3, 1
 /* 800DDFF0 000DAF30  83 E1 00 0C */ lwz r31, 0xc(r1)

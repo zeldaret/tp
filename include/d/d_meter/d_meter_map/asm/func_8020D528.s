@@ -9,7 +9,7 @@
 /* 8020D548 0020A488  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8020D54C 0020A48C  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 8020D550 0020A490  38 7F 4E C4 */ addi r3, r31, 0x4ec4
-/* 8020D554 0020A494  4B E1 6E 31 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8020D554 0020A494  4B E1 6E 31 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8020D558 0020A498  81 83 00 00 */ lwz r12, 0(r3)
 /* 8020D55C 0020A49C  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 8020D560 0020A4A0  7D 89 03 A6 */ mtctr r12

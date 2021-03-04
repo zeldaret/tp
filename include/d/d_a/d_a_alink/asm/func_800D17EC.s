@@ -11,7 +11,7 @@
 /* 800D1814 000CE754  41 82 00 F0 */ beq lbl_800D1904
 /* 800D1818 000CE758  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800D181C 000CE75C  4B FB 1E 6D */ bl GetAc__22dCcD_GAtTgCoCommonBaseFv
-/* 800D1820 000CE760  4B FF FF 69 */ bl daAlink_c_NS_notSwordHitVibActor
+/* 800D1820 000CE760  4B FF FF 69 */ bl notSwordHitVibActor__9daAlink_cFP10fopAc_ac_c
 /* 800D1824 000CE764  2C 03 00 00 */ cmpwi r3, 0
 /* 800D1828 000CE768  41 82 00 0C */ beq lbl_800D1834
 /* 800D182C 000CE76C  38 60 00 01 */ li r3, 1

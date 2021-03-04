@@ -18,7 +18,7 @@ lbl_8013F224:
 /* 8013F22C 0013C16C  40 82 00 10 */ bne lbl_8013F23C
 /* 8013F230 0013C170  48 04 24 11 */ bl dCam_getBody
 /* 8013F234 0013C174  38 80 00 03 */ li r4, 3
-/* 8013F238 0013C178  48 02 3D F1 */ bl dCamera_c_NS_SetTrimTypeForce
+/* 8013F238 0013C178  48 02 3D F1 */ bl SetTrimTypeForce__9dCamera_cFl
 lbl_8013F23C:
 /* 8013F23C 0013C17C  38 00 00 04 */ li r0, 4
 /* 8013F240 0013C180  98 1F 2F 99 */ stb r0, 0x2f99(r31)
@@ -76,7 +76,7 @@ lbl_8013F23C:
 /* 8013F310 0013C250  48 01 F9 ED */ bl clearData__16daPy_actorKeep_cFv
 lbl_8013F314:
 /* 8013F314 0013C254  7F E3 FB 78 */ mr r3, r31
-/* 8013F318 0013C258  4B FE 46 99 */ bl daAlink_c_NS_setWolfDigEffect
+/* 8013F318 0013C258  4B FE 46 99 */ bl setWolfDigEffect__9daAlink_cFv
 /* 8013F31C 0013C25C  48 00 01 70 */ b lbl_8013F48C
 lbl_8013F320:
 /* 8013F320 0013C260  7F C3 F3 78 */ mr r3, r30
@@ -91,11 +91,11 @@ lbl_8013F320:
 /* 8013F344 0013C284  3C A0 80 39 */ lis r5, lbl_8038F858@ha
 /* 8013F348 0013C288  38 A5 F8 58 */ addi r5, r5, lbl_8038F858@l
 /* 8013F34C 0013C28C  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013F350 0013C290  4B FE A4 F9 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013F350 0013C290  4B FE A4 F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8013F354 0013C294  38 00 00 01 */ li r0, 1
 /* 8013F358 0013C298  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 8013F35C 0013C29C  7F E3 FB 78 */ mr r3, r31
-/* 8013F360 0013C2A0  4B FE 46 51 */ bl daAlink_c_NS_setWolfDigEffect
+/* 8013F360 0013C2A0  4B FE 46 51 */ bl setWolfDigEffect__9daAlink_cFv
 /* 8013F364 0013C2A4  48 00 01 28 */ b lbl_8013F48C
 lbl_8013F368:
 /* 8013F368 0013C2A8  80 7F 28 10 */ lwz r3, 0x2810(r31)
@@ -114,18 +114,18 @@ lbl_8013F38C:
 /* 8013F398 0013C2D8  98 03 09 41 */ stb r0, 0x941(r3)
 lbl_8013F39C:
 /* 8013F39C 0013C2DC  7F E3 FB 78 */ mr r3, r31
-/* 8013F3A0 0013C2E0  4B FD 68 81 */ bl daAlink_c_NS_checkEventRun
+/* 8013F3A0 0013C2E0  4B FD 68 81 */ bl checkEventRun__9daAlink_cCFv
 /* 8013F3A4 0013C2E4  2C 03 00 00 */ cmpwi r3, 0
 /* 8013F3A8 0013C2E8  41 82 00 1C */ beq lbl_8013F3C4
 /* 8013F3AC 0013C2EC  A8 1F 30 14 */ lha r0, 0x3014(r31)
 /* 8013F3B0 0013C2F0  2C 00 00 00 */ cmpwi r0, 0
 /* 8013F3B4 0013C2F4  41 82 00 10 */ beq lbl_8013F3C4
 /* 8013F3B8 0013C2F8  7F E3 FB 78 */ mr r3, r31
-/* 8013F3BC 0013C2FC  4B FD 88 D5 */ bl daAlink_c_NS_resetSpecialEvent
+/* 8013F3BC 0013C2FC  4B FD 88 D5 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8013F3C0 0013C300  48 00 00 CC */ b lbl_8013F48C
 lbl_8013F3C4:
 /* 8013F3C4 0013C304  7F E3 FB 78 */ mr r3, r31
-/* 8013F3C8 0013C308  4B FE DD E1 */ bl daAlink_c_NS_procWolfWaitInit
+/* 8013F3C8 0013C308  4B FE DD E1 */ bl procWolfWaitInit__9daAlink_cFv
 /* 8013F3CC 0013C30C  48 00 00 C0 */ b lbl_8013F48C
 lbl_8013F3D0:
 /* 8013F3D0 0013C310  7F C3 F3 78 */ mr r3, r30
@@ -163,7 +163,7 @@ lbl_8013F3FC:
 /* 8013F44C 0013C38C  4E 80 04 21 */ bctrl
 lbl_8013F450:
 /* 8013F450 0013C390  7F E3 FB 78 */ mr r3, r31
-/* 8013F454 0013C394  4B FE 45 5D */ bl daAlink_c_NS_setWolfDigEffect
+/* 8013F454 0013C394  4B FE 45 5D */ bl setWolfDigEffect__9daAlink_cFv
 /* 8013F458 0013C398  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 8013F45C 0013C39C  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 8013F460 0013C3A0  41 82 00 2C */ beq lbl_8013F48C

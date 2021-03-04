@@ -3,7 +3,7 @@
 /* 800FD7B8 000FA6F8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800FD7BC 000FA6FC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800FD7C0 000FA700  7C 7F 1B 78 */ mr r31, r3
-/* 800FD7C4 000FA704  4B FF FC E5 */ bl daAlink_c_NS_setMoveBGLadderCorrect
+/* 800FD7C4 000FA704  4B FF FC E5 */ bl setMoveBGLadderCorrect__9daAlink_cFv
 /* 800FD7C8 000FA708  2C 03 00 00 */ cmpwi r3, 0
 /* 800FD7CC 000FA70C  41 82 00 0C */ beq lbl_800FD7D8
 /* 800FD7D0 000FA710  38 60 00 01 */ li r3, 1
@@ -16,12 +16,12 @@ lbl_800FD7D8:
 /* 800FD7E8 000FA728  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FD7EC 000FA72C  41 82 00 20 */ beq lbl_800FD80C
 /* 800FD7F0 000FA730  7F E3 FB 78 */ mr r3, r31
-/* 800FD7F4 000FA734  4B FF FD F1 */ bl daAlink_c_NS_checkLadderFall
+/* 800FD7F4 000FA734  4B FF FD F1 */ bl checkLadderFall__9daAlink_cFv
 /* 800FD7F8 000FA738  2C 03 00 00 */ cmpwi r3, 0
 /* 800FD7FC 000FA73C  40 82 00 10 */ bne lbl_800FD80C
 /* 800FD800 000FA740  7F E3 FB 78 */ mr r3, r31
 /* 800FD804 000FA744  38 80 00 01 */ li r4, 1
-/* 800FD808 000FA748  4B FF FA A5 */ bl daAlink_c_NS_changeLadderMoveProc
+/* 800FD808 000FA748  4B FF FA A5 */ bl changeLadderMoveProc__9daAlink_cFi
 lbl_800FD80C:
 /* 800FD80C 000FA74C  38 60 00 01 */ li r3, 1
 lbl_800FD810:

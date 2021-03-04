@@ -415,7 +415,7 @@ lbl_80258D60:
 /* 80258D60 00255CA0  7F C3 F3 78 */	mr r3, r30
 /* 80258D64 00255CA4  38 1D 00 0B */	addi r0, r29, 0xb
 /* 80258D68 00255CA8  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80258D6C 00255CAC  4B FC 4F F1 */	bl dMeter2Info_c_NS_changeWater
+/* 80258D6C 00255CAC  4B FC 4F F1 */	bl changeWater__13dMeter2Info_cFUc
 /* 80258D70 00255CB0  3B BD 00 01 */	addi r29, r29, 1
 /* 80258D74 00255CB4  2C 1D 00 04 */	cmpwi r29, 4
 /* 80258D78 00255CB8  41 80 FF E8 */	blt lbl_80258D60

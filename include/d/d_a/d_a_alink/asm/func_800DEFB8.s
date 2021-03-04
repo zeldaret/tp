@@ -8,16 +8,16 @@
 /* 800DEFD4 000DBF14  3C C0 80 39 */ lis r6, lbl_8038E658@ha
 /* 800DEFD8 000DBF18  38 C6 E6 58 */ addi r6, r6, lbl_8038E658@l
 /* 800DEFDC 000DBF1C  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800DEFE0 000DBF20  4B FC E7 11 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800DEFE0 000DBF20  4B FC E7 11 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
 /* 800DEFE4 000DBF24  7F E3 FB 78 */ mr r3, r31
 /* 800DEFE8 000DBF28  38 80 00 08 */ li r4, 8
-/* 800DEFEC 000DBF2C  4B FD 0A BD */ bl daAlink_c_NS_setFacePriTexture
+/* 800DEFEC 000DBF2C  4B FD 0A BD */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 800DEFF0 000DBF30  7F E3 FB 78 */ mr r3, r31
 /* 800DEFF4 000DBF34  38 80 00 E5 */ li r4, 0xe5
 /* 800DEFF8 000DBF38  38 A0 00 01 */ li r5, 1
 /* 800DEFFC 000DBF3C  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800DF000 000DBF40  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800DF004 000DBF44  4B FD 04 AD */ bl daAlink_c_NS_setFaceBck
+/* 800DF004 000DBF44  4B FD 04 AD */ bl setFaceBck__9daAlink_cFUsiUs
 /* 800DF008 000DBF48  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800DF00C 000DBF4C  28 00 00 4B */ cmplwi r0, 0x4b
 /* 800DF010 000DBF50  40 82 00 44 */ bne lbl_800DF054
@@ -26,7 +26,7 @@
 /* 800DF01C 000DBF5C  3C A0 80 39 */ lis r5, lbl_8038E658@ha
 /* 800DF020 000DBF60  38 A5 E6 58 */ addi r5, r5, lbl_8038E658@l
 /* 800DF024 000DBF64  C0 25 00 1C */ lfs f1, 0x1c(r5)
-/* 800DF028 000DBF68  4B FE 10 5D */ bl daAlink_c_NS_changeItemBck
+/* 800DF028 000DBF68  4B FE 10 5D */ bl changeItemBck__9daAlink_cFUsf
 /* 800DF02C 000DBF6C  38 00 00 05 */ li r0, 5
 /* 800DF030 000DBF70  98 1F 2F 97 */ stb r0, 0x2f97(r31)
 /* 800DF034 000DBF74  7F E3 FB 78 */ mr r3, r31
@@ -43,7 +43,7 @@ lbl_800DF054:
 /* 800DF05C 000DBF9C  3C A0 80 39 */ lis r5, lbl_8038E658@ha
 /* 800DF060 000DBFA0  38 A5 E6 58 */ addi r5, r5, lbl_8038E658@l
 /* 800DF064 000DBFA4  C0 25 00 1C */ lfs f1, 0x1c(r5)
-/* 800DF068 000DBFA8  4B FE 10 1D */ bl daAlink_c_NS_changeItemBck
+/* 800DF068 000DBFA8  4B FE 10 1D */ bl changeItemBck__9daAlink_cFUsf
 /* 800DF06C 000DBFAC  38 00 00 07 */ li r0, 7
 /* 800DF070 000DBFB0  98 1F 2F 97 */ stb r0, 0x2f97(r31)
 /* 800DF074 000DBFB4  7F E3 FB 78 */ mr r3, r31

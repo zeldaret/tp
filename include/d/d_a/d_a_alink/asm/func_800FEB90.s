@@ -5,7 +5,7 @@
 /* 800FEBA0 000FBAE0  93 C1 00 28 */ stw r30, 0x28(r1)
 /* 800FEBA4 000FBAE4  7C 7E 1B 78 */ mr r30, r3
 /* 800FEBA8 000FBAE8  7C BF 2B 78 */ mr r31, r5
-/* 800FEBAC 000FBAEC  4B FA 35 ED */ bl daAlink_c_NS_commonLineCheck
+/* 800FEBAC 000FBAEC  4B FA 35 ED */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FEBB0 000FBAF0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FEBB4 000FBAF4  41 82 00 A0 */ beq lbl_800FEC54
 /* 800FEBB8 000FBAF8  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -28,7 +28,7 @@
 /* 800FEBFC 000FBB3C  41 82 00 4C */ beq lbl_800FEC48
 /* 800FEC00 000FBB40  7F C3 F3 78 */ mr r3, r30
 /* 800FEC04 000FBB44  38 9E 1B 5C */ addi r4, r30, 0x1b5c
-/* 800FEC08 000FBB48  4B FF F4 51 */ bl daAlink_c_NS_checkClimbCode
+/* 800FEC08 000FBB48  4B FF F4 51 */ bl checkClimbCode__9daAlink_cFR13cBgS_PolyInfo
 /* 800FEC0C 000FBB4C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FEC10 000FBB50  40 82 00 38 */ bne lbl_800FEC48
 lbl_800FEC14:

@@ -14,7 +14,7 @@
 /* 801A51A0 001A20E0  40 82 00 94 */ bne lbl_801A5234
 /* 801A51A4 001A20E4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A51A8 001A20E8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 801A51AC 001A20EC  4B FF A8 5D */ bl dScnKy_env_light_c_NS_getDaytime
+/* 801A51AC 001A20EC  4B FF A8 5D */ bl getDaytime__18dScnKy_env_light_cFv
 /* 801A51B0 001A20F0  C0 02 A3 98 */ lfs f0, lbl_80453D98-_SDA2_BASE_(r2)
 /* 801A51B4 001A20F4  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801A51B8 001A20F8  40 81 00 2C */ ble lbl_801A51E4

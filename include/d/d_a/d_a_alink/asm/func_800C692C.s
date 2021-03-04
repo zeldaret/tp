@@ -7,7 +7,7 @@
 /* 800C6944 000C3884  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800C6948 000C3888  41 82 00 10 */ beq lbl_800C6958
 /* 800C694C 000C388C  38 80 00 00 */ li r4, 0
-/* 800C6950 000C3890  4B FE F3 7D */ bl daAlink_c_NS_checkLandAction
+/* 800C6950 000C3890  4B FE F3 7D */ bl checkLandAction__9daAlink_cFi
 /* 800C6954 000C3894  48 00 00 E0 */ b lbl_800C6A34
 lbl_800C6958:
 /* 800C6958 000C3898  C0 3F 04 FC */ lfs f1, 0x4fc(r31)
@@ -18,7 +18,7 @@ lbl_800C6958:
 /* 800C696C 000C38AC  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C6970 000C38B0  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800C6974 000C38B4  C0 25 00 84 */ lfs f1, 0x84(r5)
-/* 800C6978 000C38B8  48 00 00 D1 */ bl daAlink_c_NS_procFallInit
+/* 800C6978 000C38B8  48 00 00 D1 */ bl procFallInit__9daAlink_cFif
 /* 800C697C 000C38BC  48 00 00 B4 */ b lbl_800C6A30
 lbl_800C6980:
 /* 800C6980 000C38C0  A8 BF 04 E4 */ lha r5, 0x4e4(r31)

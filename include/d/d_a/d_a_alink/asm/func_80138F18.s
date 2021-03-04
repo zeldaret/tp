@@ -16,14 +16,14 @@
 /* 80138F54 00135E94  7F E3 FB 78 */ mr r3, r31
 /* 80138F58 00135E98  38 80 00 00 */ li r4, 0
 /* 80138F5C 00135E9C  38 A0 00 00 */ li r5, 0
-/* 80138F60 00135EA0  4B F8 83 7D */ bl daAlink_c_NS_deleteEquipItem
+/* 80138F60 00135EA0  4B F8 83 7D */ bl deleteEquipItem__9daAlink_cFii
 /* 80138F64 00135EA4  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
 /* 80138F68 00135EA8  28 00 02 DA */ cmplwi r0, 0x2da
 /* 80138F6C 00135EAC  40 82 00 14 */ bne lbl_80138F80
 /* 80138F70 00135EB0  7F E3 FB 78 */ mr r3, r31
 /* 80138F74 00135EB4  38 80 00 02 */ li r4, 2
 /* 80138F78 00135EB8  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80138F7C 00135EBC  4B F7 47 A9 */ bl daAlink_c_NS_resetUpperAnime
+/* 80138F7C 00135EBC  4B F7 47 A9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_80138F80:
 /* 80138F80 00135EC0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80138F84 00135EC4  3B C3 61 C0 */ addi r30, r3, g_dComIfG_gameInfo@l

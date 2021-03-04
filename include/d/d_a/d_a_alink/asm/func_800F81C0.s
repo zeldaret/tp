@@ -9,7 +9,7 @@
 /* 800F81E0 000F5120  7C FB 3B 78 */ mr r27, r7
 /* 800F81E4 000F5124  7D 1E 43 78 */ mr r30, r8
 /* 800F81E8 000F5128  7D 3C 4B 78 */ mr r28, r9
-/* 800F81EC 000F512C  4B FA 9F AD */ bl daAlink_c_NS_commonLineCheck
+/* 800F81EC 000F512C  4B FA 9F AD */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800F81F0 000F5130  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F81F4 000F5134  41 82 03 B0 */ beq lbl_800F85A4
 /* 800F81F8 000F5138  2C 1E 00 00 */ cmpwi r30, 0
@@ -214,7 +214,7 @@ lbl_800F8488:
 /* 800F84D4 000F5414  48 16 EC 55 */ bl atan2sX_Z__4cXyzCFv
 /* 800F84D8 000F5418  B0 79 31 1E */ sth r3, 0x311e(r25)
 /* 800F84DC 000F541C  38 79 1B 5C */ addi r3, r25, 0x1b5c
-/* 800F84E0 000F5420  4B FD F2 89 */ bl daAlink_c_NS_checkIcePolygonDamage
+/* 800F84E0 000F5420  4B FD F2 89 */ bl checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo
 /* 800F84E4 000F5424  2C 03 00 00 */ cmpwi r3, 0
 /* 800F84E8 000F5428  41 82 00 10 */ beq lbl_800F84F8
 /* 800F84EC 000F542C  88 1C 00 00 */ lbz r0, 0(r28)

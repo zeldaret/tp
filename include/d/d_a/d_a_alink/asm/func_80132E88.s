@@ -28,7 +28,7 @@
 /* 80132EF4 0012FE34  EC 02 00 32 */ fmuls f0, f2, f0
 /* 80132EF8 0012FE38  EC 01 00 28 */ fsubs f0, f1, f0
 /* 80132EFC 0012FE3C  D0 03 35 90 */ stfs f0, 0x3590(r3)
-/* 80132F00 0012FE40  4B FF E8 19 */ bl daAlink_c_NS_setWolfRopePosY
+/* 80132F00 0012FE40  4B FF E8 19 */ bl setWolfRopePosY__9daAlink_cFv
 /* 80132F04 0012FE44  7F A3 EB 78 */ mr r3, r29
 /* 80132F08 0012FE48  48 02 B5 C5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80132F0C 0012FE4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -36,7 +36,7 @@
 /* 80132F14 0012FE54  7F C3 F3 78 */ mr r3, r30
 /* 80132F18 0012FE58  38 80 00 00 */ li r4, 0
 /* 80132F1C 0012FE5C  38 A0 00 00 */ li r5, 0
-/* 80132F20 0012FE60  4B FF ED 55 */ bl daAlink_c_NS_procWolfRopeMoveInit
+/* 80132F20 0012FE60  4B FF ED 55 */ bl procWolfRopeMoveInit__9daAlink_cFii
 /* 80132F24 0012FE64  48 00 01 10 */ b lbl_80133034
 lbl_80132F28:
 /* 80132F28 0012FE68  C3 FD 00 10 */ lfs f31, 0x10(r29)
@@ -47,7 +47,7 @@ lbl_80132F28:
 /* 80132F3C 0012FE7C  41 82 00 4C */ beq lbl_80132F88
 /* 80132F40 0012FE80  7F C3 F3 78 */ mr r3, r30
 /* 80132F44 0012FE84  C0 22 92 E0 */ lfs f1, lbl_80452CE0-_SDA2_BASE_(r2)
-/* 80132F48 0012FE88  4B FF EB 25 */ bl daAlink_c_NS_wolfRopeSwingInc
+/* 80132F48 0012FE88  4B FF EB 25 */ bl wolfRopeSwingInc__9daAlink_cFf
 /* 80132F4C 0012FE8C  38 00 00 00 */ li r0, 0
 /* 80132F50 0012FE90  B0 1E 30 08 */ sth r0, 0x3008(r30)
 /* 80132F54 0012FE94  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -71,7 +71,7 @@ lbl_80132F88:
 /* 80132F98 0012FED8  41 82 00 18 */ beq lbl_80132FB0
 /* 80132F9C 0012FEDC  7F C3 F3 78 */ mr r3, r30
 /* 80132FA0 0012FEE0  C0 22 93 30 */ lfs f1, lbl_80452D30-_SDA2_BASE_(r2)
-/* 80132FA4 0012FEE4  4B FF EA C9 */ bl daAlink_c_NS_wolfRopeSwingInc
+/* 80132FA4 0012FEE4  4B FF EA C9 */ bl wolfRopeSwingInc__9daAlink_cFf
 /* 80132FA8 0012FEE8  38 00 00 00 */ li r0, 0
 /* 80132FAC 0012FEEC  B0 1E 30 08 */ sth r0, 0x3008(r30)
 lbl_80132FB0:
@@ -110,7 +110,7 @@ lbl_80133014:
 lbl_80133024:
 /* 80133024 0012FF64  7F C3 F3 78 */ mr r3, r30
 /* 80133028 0012FF68  38 80 00 00 */ li r4, 0
-/* 8013302C 0012FF6C  4B FF EA D1 */ bl daAlink_c_NS_setWolfRopeOffsetY
+/* 8013302C 0012FF6C  4B FF EA D1 */ bl setWolfRopeOffsetY__9daAlink_cFi
 /* 80133030 0012FF70  38 60 00 01 */ li r3, 1
 lbl_80133034:
 /* 80133034 0012FF74  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0

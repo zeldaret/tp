@@ -21,7 +21,7 @@
 lbl_8011161C:
 /* 8011161C 0010E55C  7F C3 F3 78 */ mr r3, r30
 /* 80111620 0010E560  38 80 00 00 */ li r4, 0
-/* 80111624 0010E564  4B FA 8A AD */ bl daAlink_c_NS_checkNextAction
+/* 80111624 0010E564  4B FA 8A AD */ bl checkNextAction__9daAlink_cFi
 /* 80111628 0010E568  48 00 00 38 */ b lbl_80111660
 lbl_8011162C:
 /* 8011162C 0010E56C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -36,7 +36,7 @@ lbl_8011162C:
 /* 80111650 0010E590  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 80111654 0010E594  7F C3 F3 78 */ mr r3, r30
 /* 80111658 0010E598  38 80 00 01 */ li r4, 1
-/* 8011165C 0010E59C  4B FA 8A 75 */ bl daAlink_c_NS_checkNextAction
+/* 8011165C 0010E59C  4B FA 8A 75 */ bl checkNextAction__9daAlink_cFi
 lbl_80111660:
 /* 80111660 0010E5A0  38 60 00 01 */ li r3, 1
 /* 80111664 0010E5A4  83 E1 00 0C */ lwz r31, 0xc(r1)

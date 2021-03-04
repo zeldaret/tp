@@ -5,7 +5,7 @@
 /* 800E8364 000E52A4  7C 7F 1B 78 */ mr r31, r3
 /* 800E8368 000E52A8  38 7F 1E 1C */ addi r3, r31, 0x1e1c
 /* 800E836C 000E52AC  38 80 00 00 */ li r4, 0
-/* 800E8370 000E52B0  4B FB 9E 71 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800E8370 000E52B0  4B FB 9E 71 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800E8374 000E52B4  7C 60 07 34 */ extsh r0, r3
 /* 800E8378 000E52B8  2C 00 00 1D */ cmpwi r0, 0x1d
 /* 800E837C 000E52BC  40 82 00 2C */ bne lbl_800E83A8
@@ -22,7 +22,7 @@
 lbl_800E83A8:
 /* 800E83A8 000E52E8  38 7F 1E 1C */ addi r3, r31, 0x1e1c
 /* 800E83AC 000E52EC  38 80 00 00 */ li r4, 0
-/* 800E83B0 000E52F0  4B FB 9E 31 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800E83B0 000E52F0  4B FB 9E 31 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800E83B4 000E52F4  7C 60 07 34 */ extsh r0, r3
 /* 800E83B8 000E52F8  2C 00 00 84 */ cmpwi r0, 0x84
 /* 800E83BC 000E52FC  40 82 00 30 */ bne lbl_800E83EC

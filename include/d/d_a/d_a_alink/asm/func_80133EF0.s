@@ -11,7 +11,7 @@
 /* 80133F18 00130E58  40 82 00 24 */ bne lbl_80133F3C
 lbl_80133F1C:
 /* 80133F1C 00130E5C  7F E3 FB 78 */ mr r3, r31
-/* 80133F20 00130E60  4B FF 5A 39 */ bl daAlink_c_NS_checkMidnaUseAbility
+/* 80133F20 00130E60  4B FF 5A 39 */ bl checkMidnaUseAbility__9daAlink_cCFv
 /* 80133F24 00130E64  2C 03 00 00 */ cmpwi r3, 0
 /* 80133F28 00130E68  40 82 00 14 */ bne lbl_80133F3C
 /* 80133F2C 00130E6C  80 6D 8A 98 */ lwz r3, lbl_80451018-_SDA_BASE_(r13)

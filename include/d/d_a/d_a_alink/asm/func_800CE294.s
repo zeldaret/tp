@@ -17,7 +17,7 @@
 /* 800CE2D4 000CB214  48 0B 33 6D */ bl dCam_getBody
 /* 800CE2D8 000CB218  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE2DC 000CB21C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
-/* 800CE2E0 000CB220  48 09 68 85 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE2E0 000CB220  48 09 68 85 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE2E4 000CB224  7C 16 18 00 */ cmpw r22, r3
 /* 800CE2E8 000CB228  41 82 00 2C */ beq lbl_800CE314
 /* 800CE2EC 000CB22C  48 0B 33 55 */ bl dCam_getBody
@@ -26,7 +26,7 @@
 /* 800CE2F8 000CB238  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE2FC 000CB23C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE300 000CB240  38 84 00 07 */ addi r4, r4, 7
-/* 800CE304 000CB244  48 09 68 61 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE304 000CB244  48 09 68 61 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE308 000CB248  7C 16 18 00 */ cmpw r22, r3
 /* 800CE30C 000CB24C  41 82 00 08 */ beq lbl_800CE314
 /* 800CE310 000CB250  3A E0 00 00 */ li r23, 0
@@ -39,7 +39,7 @@ lbl_800CE314:
 /* 800CE328 000CB268  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE32C 000CB26C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE330 000CB270  38 84 00 10 */ addi r4, r4, 0x10
-/* 800CE334 000CB274  48 09 68 31 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE334 000CB274  48 09 68 31 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE338 000CB278  7C 16 18 00 */ cmpw r22, r3
 /* 800CE33C 000CB27C  41 82 00 08 */ beq lbl_800CE344
 /* 800CE340 000CB280  3B 00 00 00 */ li r24, 0
@@ -52,7 +52,7 @@ lbl_800CE344:
 /* 800CE358 000CB298  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE35C 000CB29C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE360 000CB2A0  38 84 00 16 */ addi r4, r4, 0x16
-/* 800CE364 000CB2A4  48 09 68 01 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE364 000CB2A4  48 09 68 01 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE368 000CB2A8  7C 16 18 00 */ cmpw r22, r3
 /* 800CE36C 000CB2AC  41 82 00 08 */ beq lbl_800CE374
 /* 800CE370 000CB2B0  3B 20 00 00 */ li r25, 0
@@ -65,7 +65,7 @@ lbl_800CE374:
 /* 800CE388 000CB2C8  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE38C 000CB2CC  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE390 000CB2D0  38 84 00 1D */ addi r4, r4, 0x1d
-/* 800CE394 000CB2D4  48 09 67 D1 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE394 000CB2D4  48 09 67 D1 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE398 000CB2D8  7C 16 18 00 */ cmpw r22, r3
 /* 800CE39C 000CB2DC  41 82 00 08 */ beq lbl_800CE3A4
 /* 800CE3A0 000CB2E0  3B 60 00 00 */ li r27, 0
@@ -78,7 +78,7 @@ lbl_800CE3A4:
 /* 800CE3B8 000CB2F8  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE3BC 000CB2FC  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE3C0 000CB300  38 84 00 25 */ addi r4, r4, 0x25
-/* 800CE3C4 000CB304  48 09 67 A1 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE3C4 000CB304  48 09 67 A1 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE3C8 000CB308  7C 16 18 00 */ cmpw r22, r3
 /* 800CE3CC 000CB30C  41 82 00 08 */ beq lbl_800CE3D4
 /* 800CE3D0 000CB310  3B 80 00 00 */ li r28, 0
@@ -98,7 +98,7 @@ lbl_800CE3EC:
 /* 800CE400 000CB340  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE404 000CB344  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE408 000CB348  38 84 00 2C */ addi r4, r4, 0x2c
-/* 800CE40C 000CB34C  48 09 67 59 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE40C 000CB34C  48 09 67 59 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE410 000CB350  7C 16 18 00 */ cmpw r22, r3
 /* 800CE414 000CB354  41 82 00 08 */ beq lbl_800CE41C
 /* 800CE418 000CB358  3B C0 00 00 */ li r30, 0
@@ -111,7 +111,7 @@ lbl_800CE41C:
 /* 800CE430 000CB370  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800CE434 000CB374  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800CE438 000CB378  38 84 00 34 */ addi r4, r4, 0x34
-/* 800CE43C 000CB37C  48 09 67 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 800CE43C 000CB37C  48 09 67 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 800CE440 000CB380  7C 16 18 00 */ cmpw r22, r3
 /* 800CE444 000CB384  41 82 00 08 */ beq lbl_800CE44C
 /* 800CE448 000CB388  3B E0 00 00 */ li r31, 0

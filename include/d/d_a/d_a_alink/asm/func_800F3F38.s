@@ -15,7 +15,7 @@
 /* 800F3F70 000F0EB0  28 03 00 00 */ cmplwi r3, 0
 /* 800F3F74 000F0EB4  41 82 00 34 */ beq lbl_800F3FA8
 /* 800F3F78 000F0EB8  7F C3 F3 78 */ mr r3, r30
-/* 800F3F7C 000F0EBC  4B FC 53 C5 */ bl daAlink_c_NS_checkEquipAnime
+/* 800F3F7C 000F0EBC  4B FC 53 C5 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800F3F80 000F0EC0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F3F84 000F0EC4  40 82 00 20 */ bne lbl_800F3FA4
 /* 800F3F88 000F0EC8  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)

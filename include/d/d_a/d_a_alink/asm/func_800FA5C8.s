@@ -30,7 +30,7 @@
 /* 800FA63C 000F757C  D0 41 00 10 */ stfs f2, 0x10(r1)
 /* 800FA640 000F7580  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FA644 000F7584  38 A1 00 08 */ addi r5, r1, 8
-/* 800FA648 000F7588  4B FA 7B 51 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA648 000F7588  4B FA 7B 51 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA64C 000F758C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA650 000F7590  41 82 00 70 */ beq lbl_800FA6C0
 /* 800FA654 000F7594  3C 60 80 3A */ lis r3, lbl_803A37C0@ha

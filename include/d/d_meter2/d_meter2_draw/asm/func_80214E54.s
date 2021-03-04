@@ -16,7 +16,7 @@
 /* 80214E90 00211DD0  7F E3 FB 78 */ mr r3, r31
 /* 80214E94 00211DD4  80 9F 01 24 */ lwz r4, 0x124(r31)
 /* 80214E98 00211DD8  38 A0 00 05 */ li r5, 5
-/* 80214E9C 00211DDC  48 00 5C 09 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80214E9C 00211DDC  48 00 5C 09 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80214EA0:
 /* 80214EA0 00211DE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80214EA4 00211DE4  80 01 00 14 */ lwz r0, 0x14(r1)

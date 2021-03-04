@@ -46,7 +46,7 @@ lbl_8011139C:
 /* 801113B8 0010E2F8  38 7F 0F B8 */ addi r3, r31, 0xfb8
 /* 801113BC 0010E2FC  4B F7 2F 5D */ bl ResetAtHit__12dCcD_GObjInfFv
 /* 801113C0 0010E300  7F E3 FB 78 */ mr r3, r31
-/* 801113C4 0010E304  48 00 48 5D */ bl daAlink_c_NS_checkEventRun
+/* 801113C4 0010E304  48 00 48 5D */ bl checkEventRun__9daAlink_cCFv
 /* 801113C8 0010E308  2C 03 00 00 */ cmpwi r3, 0
 /* 801113CC 0010E30C  40 82 00 28 */ bne lbl_801113F4
 /* 801113D0 0010E310  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

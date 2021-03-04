@@ -340,13 +340,13 @@ lbl_800BEF9C:
 /* 800BEFBC 000BBEFC  38 00 00 03 */ li r0, 3
 /* 800BEFC0 000BBF00  B0 1C 06 04 */ sth r0, 0x604(r28)
 /* 800BEFC4 000BBF04  7F 83 E3 78 */ mr r3, r28
-/* 800BEFC8 000BBF08  4B FF BF B9 */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800BEFC8 000BBF08  4B FF BF B9 */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800BEFCC 000BBF0C  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEFD0 000BBF10  41 82 00 14 */ beq lbl_800BEFE4
 /* 800BEFD4 000BBF14  7F 83 E3 78 */ mr r3, r28
 /* 800BEFD8 000BBF18  38 80 00 02 */ li r4, 2
 /* 800BEFDC 000BBF1C  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800BEFE0 000BBF20  4B FE E7 45 */ bl daAlink_c_NS_resetUpperAnime
+/* 800BEFE0 000BBF20  4B FE E7 45 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800BEFE4:
 /* 800BEFE4 000BBF24  80 1C 31 74 */ lwz r0, 0x3174(r28)
 /* 800BEFE8 000BBF28  2C 00 00 05 */ cmpwi r0, 5
@@ -360,7 +360,7 @@ lbl_800BEFFC:
 /* 800BF004 000BBF44  D3 DC 06 18 */ stfs f30, 0x618(r28)
 lbl_800BF008:
 /* 800BF008 000BBF48  7F 83 E3 78 */ mr r3, r28
-/* 800BF00C 000BBF4C  4B FF F9 C9 */ bl daAlink_c_NS_getSceneExitMoveAngle
+/* 800BF00C 000BBF4C  4B FF F9 C9 */ bl getSceneExitMoveAngle__9daAlink_cFv
 /* 800BF010 000BBF50  B0 7C 06 06 */ sth r3, 0x606(r28)
 /* 800BF014 000BBF54  2C 1E 00 00 */ cmpwi r30, 0
 /* 800BF018 000BBF58  41 82 00 38 */ beq lbl_800BF050

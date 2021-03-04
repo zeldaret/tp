@@ -6,7 +6,7 @@
 /* 8014089C 0013D7DC  7C 7D 1B 78 */ mr r29, r3
 /* 801408A0 0013D7E0  7C 9E 23 78 */ mr r30, r4
 /* 801408A4 0013D7E4  7C BF 2B 78 */ mr r31, r5
-/* 801408A8 0013D7E8  4B FF F7 C9 */ bl daAlink_c_NS_loadModelDVD
+/* 801408A8 0013D7E8  4B FF F7 C9 */ bl loadModelDVD__9daAlink_cFv
 /* 801408AC 0013D7EC  2C 03 00 00 */ cmpwi r3, 0
 /* 801408B0 0013D7F0  41 82 00 BC */ beq lbl_8014096C
 /* 801408B4 0013D7F4  88 7D 2F D6 */ lbz r3, 0x2fd6(r29)
@@ -16,10 +16,10 @@
 /* 801408C4 0013D804  98 1D 2F D6 */ stb r0, 0x2fd6(r29)
 lbl_801408C8:
 /* 801408C8 0013D808  7F A3 EB 78 */ mr r3, r29
-/* 801408CC 0013D80C  4B FF F9 A9 */ bl daAlink_c_NS_loadShieldModelDVD
+/* 801408CC 0013D80C  4B FF F9 A9 */ bl loadShieldModelDVD__9daAlink_cFv
 /* 801408D0 0013D810  7F A3 EB 78 */ mr r3, r29
 /* 801408D4 0013D814  38 80 00 01 */ li r4, 1
-/* 801408D8 0013D818  4B F6 40 39 */ bl daAlink_c_NS_setSelectEquipItem
+/* 801408D8 0013D818  4B F6 40 39 */ bl setSelectEquipItem__9daAlink_cFi
 /* 801408DC 0013D81C  88 1D 2F D6 */ lbz r0, 0x2fd6(r29)
 /* 801408E0 0013D820  28 00 00 1E */ cmplwi r0, 0x1e
 /* 801408E4 0013D824  41 80 00 0C */ blt lbl_801408F0
@@ -27,7 +27,7 @@ lbl_801408C8:
 /* 801408EC 0013D82C  98 1D 2F D6 */ stb r0, 0x2fd6(r29)
 lbl_801408F0:
 /* 801408F0 0013D830  7F C3 F3 78 */ mr r3, r30
-/* 801408F4 0013D834  4B EC C4 71 */ bl mDoMtx_stack_c_NS_transS
+/* 801408F4 0013D834  4B EC C4 71 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 801408F8 0013D838  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 801408FC 0013D83C  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 80140900 0013D840  7F E4 FB 78 */ mr r4, r31
@@ -38,11 +38,11 @@ lbl_801408F0:
 /* 80140914 0013D854  38 84 00 24 */ addi r4, r4, 0x24
 /* 80140918 0013D858  48 20 5B 99 */ bl PSMTXCopy
 /* 8014091C 0013D85C  80 7D 07 BC */ lwz r3, 0x7bc(r29)
-/* 80140920 0013D860  4B EC CB 09 */ bl mDoExt_baseAnm_NS_play
+/* 80140920 0013D860  4B EC CB 09 */ bl play__14mDoExt_baseAnmFv
 /* 80140924 0013D864  80 7D 07 BC */ lwz r3, 0x7bc(r29)
 /* 80140928 0013D868  80 9D 06 4C */ lwz r4, 0x64c(r29)
 /* 8014092C 0013D86C  C0 23 00 10 */ lfs f1, 0x10(r3)
-/* 80140930 0013D870  4B EC D0 9D */ bl mDoExt_bckAnm_NS_entry
+/* 80140930 0013D870  4B EC D0 9D */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 /* 80140934 0013D874  80 7D 06 50 */ lwz r3, 0x650(r29)
 /* 80140938 0013D878  81 83 00 00 */ lwz r12, 0(r3)
 /* 8014093C 0013D87C  81 8C 00 10 */ lwz r12, 0x10(r12)
@@ -52,12 +52,12 @@ lbl_801408F0:
 /* 8014094C 0013D88C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80140950 0013D890  41 82 00 10 */ beq lbl_80140960
 /* 80140954 0013D894  7F A3 EB 78 */ mr r3, r29
-/* 80140958 0013D898  4B F6 95 F5 */ bl daAlink_c_NS_setWolfItemMatrix
+/* 80140958 0013D898  4B F6 95 F5 */ bl setWolfItemMatrix__9daAlink_cFv
 /* 8014095C 0013D89C  48 00 00 10 */ b lbl_8014096C
 lbl_80140960:
 /* 80140960 0013D8A0  7F A3 EB 78 */ mr r3, r29
 /* 80140964 0013D8A4  38 80 00 01 */ li r4, 1
-/* 80140968 0013D8A8  4B F6 8A E9 */ bl daAlink_c_NS_setItemMatrix
+/* 80140968 0013D8A8  4B F6 8A E9 */ bl setItemMatrix__9daAlink_cFi
 lbl_8014096C:
 /* 8014096C 0013D8AC  39 61 00 20 */ addi r11, r1, 0x20
 /* 80140970 0013D8B0  48 22 18 B9 */ bl _restgpr_29

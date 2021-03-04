@@ -25,7 +25,7 @@
 /* 8012FD8C 0012CCCC  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012FD90 0012CCD0  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8012FD94 0012CCD4  38 81 00 08 */ addi r4, r1, 8
-/* 8012FD98 0012CCD8  4B F8 22 41 */ bl daAlink_c_NS_getSlidePolygon
+/* 8012FD98 0012CCD8  4B F8 22 41 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 8012FD9C 0012CCDC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012FDA0 0012CCE0  41 82 00 3C */ beq lbl_8012FDDC
 /* 8012FDA4 0012CCE4  38 61 00 08 */ addi r3, r1, 8
@@ -61,12 +61,12 @@ lbl_8012FDF8:
 /* 8012FE14 0012CD54  7F C3 F3 78 */ mr r3, r30
 /* 8012FE18 0012CD58  A8 9E 04 DE */ lha r4, 0x4de(r30)
 /* 8012FE1C 0012CD5C  38 A0 00 01 */ li r5, 1
-/* 8012FE20 0012CD60  48 00 00 61 */ bl daAlink_c_NS_procWolfSlideInit
+/* 8012FE20 0012CD60  48 00 00 61 */ bl procWolfSlideInit__9daAlink_cFsi
 /* 8012FE24 0012CD64  48 00 00 34 */ b lbl_8012FE58
 lbl_8012FE28:
 /* 8012FE28 0012CD68  7F C3 F3 78 */ mr r3, r30
 /* 8012FE2C 0012CD6C  38 80 00 01 */ li r4, 1
-/* 8012FE30 0012CD70  48 00 06 11 */ bl daAlink_c_NS_procWolfSlopeStartInit
+/* 8012FE30 0012CD70  48 00 06 11 */ bl procWolfSlopeStartInit__9daAlink_cFi
 /* 8012FE34 0012CD74  48 00 00 24 */ b lbl_8012FE58
 lbl_8012FE38:
 /* 8012FE38 0012CD78  7F E3 FB 78 */ mr r3, r31

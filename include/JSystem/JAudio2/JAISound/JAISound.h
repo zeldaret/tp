@@ -149,11 +149,11 @@ void JAISoundHandle_NS_dtor(void);
 void stop__8JAISoundFUl(JAISound*, u32 fadeout);
 void stop__8JAISoundFv(JAISound*);
 
-void JAISoundID_NS___as(void);
+void __as__10JAISoundIDFRC10JAISoundID(void);
 void JAISoundID_X1_(void);
 
 void acceptsNewAudible__8JAISoundCFv(void);
-void JAISound_NS_getID(void);
+void getID__8JAISoundCFv(void);
 void JAISound_NS_newAudible(void);
 void releaseHandle__8JAISoundFv(void);
 }

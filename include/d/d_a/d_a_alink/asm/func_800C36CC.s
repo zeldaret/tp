@@ -4,7 +4,7 @@
 /* 800C36D8 000C0618  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C36DC 000C061C  7C 7F 1B 78 */ mr r31, r3
 /* 800C36E0 000C0620  38 80 00 04 */ li r4, 4
-/* 800C36E4 000C0624  4B FF F6 C1 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800C36E4 000C0624  4B FF F6 C1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800C36E8 000C0628  2C 03 00 00 */ cmpwi r3, 0
 /* 800C36EC 000C062C  40 82 00 0C */ bne lbl_800C36F8
 /* 800C36F0 000C0630  38 60 00 00 */ li r3, 0
@@ -14,10 +14,10 @@ lbl_800C36F8:
 /* 800C36FC 000C063C  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 800C3700 000C0640  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 800C3704 000C0644  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 800C3708 000C0648  4B FE A7 0D */ bl daAlink_c_NS_setBlendMoveAnime
+/* 800C3708 000C0648  4B FE A7 0D */ bl setBlendMoveAnime__9daAlink_cFf
 /* 800C370C 000C064C  7F E3 FB 78 */ mr r3, r31
 /* 800C3710 000C0650  38 80 00 03 */ li r4, 3
-/* 800C3714 000C0654  48 05 DA AD */ bl daAlink_c_NS_setFootEffectProcType
+/* 800C3714 000C0654  48 05 DA AD */ bl setFootEffectProcType__9daAlink_cFi
 /* 800C3718 000C0658  38 60 00 01 */ li r3, 1
 lbl_800C371C:
 /* 800C371C 000C065C  83 E1 00 0C */ lwz r31, 0xc(r1)

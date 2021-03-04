@@ -6,11 +6,11 @@
 /* 8012D2BC 0012A1FC  7C 7E 1B 78 */ mr r30, r3
 /* 8012D2C0 0012A200  AB E3 04 E6 */ lha r31, 0x4e6(r3)
 /* 8012D2C4 0012A204  38 80 00 00 */ li r4, 0
-/* 8012D2C8 0012A208  4B FF C8 7D */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012D2C8 0012A208  4B FF C8 7D */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012D2CC 0012A20C  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D2D0 0012A210  40 82 00 94 */ bne lbl_8012D364
 /* 8012D2D4 0012A214  7F C3 F3 78 */ mr r3, r30
-/* 8012D2D8 0012A218  4B F8 97 59 */ bl daAlink_c_NS_checkFrontWallTypeAction
+/* 8012D2D8 0012A218  4B F8 97 59 */ bl checkFrontWallTypeAction__9daAlink_cFv
 /* 8012D2DC 0012A21C  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D2E0 0012A220  40 82 00 84 */ bne lbl_8012D364
 /* 8012D2E4 0012A224  C0 42 94 78 */ lfs f2, lbl_80452E78-_SDA2_BASE_(r2)
@@ -28,9 +28,9 @@
 /* 8012D314 0012A254  D0 1E 33 F0 */ stfs f0, 0x33f0(r30)
 /* 8012D318 0012A258  7F C3 F3 78 */ mr r3, r30
 /* 8012D31C 0012A25C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8012D320 0012A260  4B FF B5 25 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8012D320 0012A260  4B FF B5 25 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8012D324 0012A264  7F C3 F3 78 */ mr r3, r30
-/* 8012D328 0012A268  4B F8 74 8D */ bl daAlink_c_NS_checkServiceWaitMode
+/* 8012D328 0012A268  4B F8 74 8D */ bl checkServiceWaitMode__9daAlink_cFv
 /* 8012D32C 0012A26C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012D330 0012A270  41 82 00 2C */ beq lbl_8012D35C
 /* 8012D334 0012A274  A8 7E 30 CA */ lha r3, 0x30ca(r30)
@@ -41,11 +41,11 @@
 /* 8012D348 0012A288  40 82 00 1C */ bne lbl_8012D364
 /* 8012D34C 0012A28C  7F C3 F3 78 */ mr r3, r30
 /* 8012D350 0012A290  38 80 00 00 */ li r4, 0
-/* 8012D354 0012A294  4B FF F8 91 */ bl daAlink_c_NS_procWolfServiceWaitInit
+/* 8012D354 0012A294  4B FF F8 91 */ bl procWolfServiceWaitInit__9daAlink_cFi
 /* 8012D358 0012A298  48 00 00 0C */ b lbl_8012D364
 lbl_8012D35C:
 /* 8012D35C 0012A29C  7F C3 F3 78 */ mr r3, r30
-/* 8012D360 0012A2A0  4B F8 64 E5 */ bl daAlink_c_NS_initServiceWaitTime
+/* 8012D360 0012A2A0  4B F8 64 E5 */ bl initServiceWaitTime__9daAlink_cFv
 lbl_8012D364:
 /* 8012D364 0012A2A4  38 60 00 01 */ li r3, 1
 /* 8012D368 0012A2A8  83 E1 00 1C */ lwz r31, 0x1c(r1)

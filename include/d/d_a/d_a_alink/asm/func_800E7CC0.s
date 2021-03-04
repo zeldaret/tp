@@ -7,10 +7,10 @@
 /* 800E7CD8 000E4C18  3B FD 1F D0 */ addi r31, r29, 0x1fd0
 /* 800E7CDC 000E4C1C  38 80 00 96 */ li r4, 0x96
 /* 800E7CE0 000E4C20  38 A0 00 02 */ li r5, 2
-/* 800E7CE4 000E4C24  48 00 01 ED */ bl daAlink_c_NS_setWallGrabStatus
+/* 800E7CE4 000E4C24  48 00 01 ED */ bl setWallGrabStatus__9daAlink_cFUcUc
 /* 800E7CE8 000E4C28  7F A3 EB 78 */ mr r3, r29
 /* 800E7CEC 000E4C2C  38 80 00 00 */ li r4, 0
-/* 800E7CF0 000E4C30  4B FC BA 45 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 800E7CF0 000E4C30  4B FC BA 45 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 800E7CF4 000E4C34  7F E3 FB 78 */ mr r3, r31
 /* 800E7CF8 000E4C38  48 07 67 D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E7CFC 000E4C3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -29,15 +29,15 @@ lbl_800E7D2C:
 /* 800E7D2C 000E4C6C  8B DD 2F A3 */ lbz r30, 0x2fa3(r29)
 /* 800E7D30 000E4C70  83 FD 28 48 */ lwz r31, 0x2848(r29)
 /* 800E7D34 000E4C74  7F A3 EB 78 */ mr r3, r29
-/* 800E7D38 000E4C78  4B FD B6 81 */ bl daAlink_c_NS_procWaitInit
+/* 800E7D38 000E4C78  4B FD B6 81 */ bl procWaitInit__9daAlink_cFv
 /* 800E7D3C 000E4C7C  7F A3 EB 78 */ mr r3, r29
 /* 800E7D40 000E4C80  38 80 01 82 */ li r4, 0x182
-/* 800E7D44 000E4C84  4B FC 47 0D */ bl daAlink_c_NS_getMainBckData
+/* 800E7D44 000E4C84  4B FC 47 0D */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800E7D48 000E4C88  A0 83 00 02 */ lhz r4, 2(r3)
 /* 800E7D4C 000E4C8C  7F A3 EB 78 */ mr r3, r29
 /* 800E7D50 000E4C90  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E7D54 000E4C94  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E7D58 000E4C98  4B FC 56 51 */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 800E7D58 000E4C98  4B FC 56 51 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
 /* 800E7D5C 000E4C9C  38 00 00 03 */ li r0, 3
 /* 800E7D60 000E4CA0  98 1D 2F 96 */ stb r0, 0x2f96(r29)
 /* 800E7D64 000E4CA4  38 00 00 09 */ li r0, 9

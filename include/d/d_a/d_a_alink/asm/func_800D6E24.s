@@ -19,7 +19,7 @@
 /* 800D6E6C 000D3DAC  38 A0 00 01 */ li r5, 1
 /* 800D6E70 000D3DB0  38 C0 00 00 */ li r6, 0
 /* 800D6E74 000D3DB4  38 E0 00 00 */ li r7, 0
-/* 800D6E78 000D3DB8  48 00 04 45 */ bl daAlink_c_NS_setDamagePoint
+/* 800D6E78 000D3DB8  48 00 04 45 */ bl setDamagePoint__9daAlink_cFiiii
 lbl_800D6E7C:
 /* 800D6E7C 000D3DBC  88 1F 2F AE */ lbz r0, 0x2fae(r31)
 /* 800D6E80 000D3DC0  60 00 00 08 */ ori r0, r0, 8

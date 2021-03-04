@@ -28,7 +28,7 @@ lbl_80026E34:
 /* 80026E60 00023DA0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80026E64 00023DA4  48 00 E2 8D */ bl putSave__10dSv_info_cFi
 /* 80026E68 00023DA8  38 6D 87 F4 */ addi r3, r13, 0x80450D74 - 0x80458580 /*SDA HACK; original: lbl_80450D74-_SDA_BASE_*/
-/* 80026E6C 00023DAC  4B FF DC 51 */ bl dStage_roomControl_c_NS_roomDzs_c_NS_remove
+/* 80026E6C 00023DAC  4B FF DC 51 */ bl remove__Q220dStage_roomControl_c9roomDzs_cFv
 /* 80026E70 00023DB0  80 6D 86 F8 */ lwz r3, m_Do_Reset_NS_mDoRst_NS_mResetData-_SDA_BASE_(r13)
 /* 80026E74 00023DB4  80 03 00 00 */ lwz r0, 0(r3)
 /* 80026E78 00023DB8  2C 00 00 00 */ cmpwi r0, 0
@@ -44,7 +44,7 @@ lbl_80026E34:
 /* 80026EA0 00023DE0  2C 03 00 00 */ cmpwi r3, 0
 /* 80026EA4 00023DE4  41 82 00 C4 */ beq lbl_80026F68
 lbl_80026EA8:
-/* 80026EA8 00023DE8  4B FF DA 01 */ bl dStage_roomControl_c_NS_destroyMemoryBlock
+/* 80026EA8 00023DE8  4B FF DA 01 */ bl destroyMemoryBlock__20dStage_roomControl_cFv
 /* 80026EAC 00023DEC  7F C3 F3 78 */ mr r3, r30
 /* 80026EB0 00023DF0  81 9E 00 00 */ lwz r12, 0(r30)
 /* 80026EB4 00023DF4  81 8C 00 BC */ lwz r12, 0xbc(r12)

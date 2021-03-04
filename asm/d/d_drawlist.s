@@ -3955,7 +3955,7 @@ lbl_800554F4:
 /* 80055548 00052488  EC 42 00 2A */	fadds f2, f2, f0
 /* 8005554C 0005248C  EF FE 07 F2 */	fmuls f31, f30, f31
 /* 80055550 00052490  FC 60 F8 90 */	fmr f3, f31
-/* 80055554 00052494  4B FB 78 E5 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80055554 00052494  4B FB 78 E5 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80055558 00052498  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8005555C 0005249C  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
 /* 80055560 000524A0  3C 80 80 3E */	lis r4, lbl_803DD470@ha
@@ -4012,7 +4012,7 @@ lbl_800555C0:
 /* 80055620 00052560  FC 20 F0 90 */	fmr f1, f30
 /* 80055624 00052564  C0 42 86 28 */	lfs f2, lbl_80452028-_SDA2_BASE_(r2)
 /* 80055628 00052568  FC 60 F8 90 */	fmr f3, f31
-/* 8005562C 0005256C  4B FB 78 0D */	bl mDoMtx_stack_c_NS_scaleM
+/* 8005562C 0005256C  4B FB 78 0D */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80055630 00052570  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 80055634 00052574  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
 /* 80055638 00052578  3C 80 80 3E */	lis r4, lbl_803DD470@ha
@@ -4816,10 +4816,10 @@ __ct__12dDlst_list_cFv:
 /* 8005614C 0005308C  3C 80 80 05 */	lis r4, mDoExt_3DlineMatSortPacket@ha
 .global mDoExt_3DlineMatSortPacket
 /* 80056150 00053090  38 84 61 C8 */	addi r4, r4, mDoExt_3DlineMatSortPacket@l
-.global mDoExt_3DlineMatSortPacket_NS_dtor
-/* 80056154 00053094  3C A0 80 01 */	lis r5, mDoExt_3DlineMatSortPacket_NS_dtor@ha
-.global mDoExt_3DlineMatSortPacket_NS_dtor
-/* 80056158 00053098  38 A5 4E 20 */	addi r5, r5, mDoExt_3DlineMatSortPacket_NS_dtor@l
+.global __dt__26mDoExt_3DlineMatSortPacketFv
+/* 80056154 00053094  3C A0 80 01 */	lis r5, __dt__26mDoExt_3DlineMatSortPacketFv@ha
+.global __dt__26mDoExt_3DlineMatSortPacketFv
+/* 80056158 00053098  38 A5 4E 20 */	addi r5, r5, __dt__26mDoExt_3DlineMatSortPacketFv@l
 /* 8005615C 0005309C  38 C0 00 14 */	li r6, 0x14
 /* 80056160 000530A0  38 E0 00 03 */	li r7, 3
 /* 80056164 000530A4  38 63 61 54 */	addi r3, r3, 0x6154
@@ -4908,8 +4908,8 @@ __dt__17dDlst_shadowTri_cFv:
 /* 80056284 000531C4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80056288 000531C8  7C 9F 23 78 */	mr r31, r4
 /* 8005628C 000531CC  41 82 00 28 */	beq lbl_800562B4
-/* 80056290 000531D0  3C 80 80 01 */	lis r4, cXyz_NS_dtor@ha
-/* 80056294 000531D4  38 84 91 84 */	addi r4, r4, cXyz_NS_dtor@l
+/* 80056290 000531D0  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
+/* 80056294 000531D4  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
 /* 80056298 000531D8  38 A0 00 0C */	li r5, 0xc
 /* 8005629C 000531DC  38 C0 00 03 */	li r6, 3
 /* 800562A0 000531E0  48 30 BA 49 */	bl func_80361CE8
@@ -4967,10 +4967,10 @@ dDlst_shadowTri_c:
 /* 8005634C 0005328C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80056350 00053290  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80056354 00053294  7C 7F 1B 78 */	mr r31, r3
-/* 80056358 00053298  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
-/* 8005635C 0005329C  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
-/* 80056360 000532A0  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
-/* 80056364 000532A4  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
+/* 80056358 00053298  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha
+/* 8005635C 0005329C  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l
+/* 80056360 000532A0  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha
+/* 80056364 000532A4  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
 /* 80056368 000532A8  38 C0 00 0C */	li r6, 0xc
 /* 8005636C 000532AC  38 E0 00 03 */	li r7, 3
 /* 80056370 000532B0  48 30 B9 F1 */	bl func_80361D60
@@ -5074,10 +5074,10 @@ lbl_800564B4:
 /* 800564C8 00053408  2C 1E 00 15 */	cmpwi r30, 0x15
 /* 800564CC 0005340C  41 80 FF E8 */	blt lbl_800564B4
 /* 800564D0 00053410  3C 7C 00 01 */	addis r3, r28, 1
-.global mDoExt_3DlineMatSortPacket_NS_dtor
-/* 800564D4 00053414  3C 80 80 01 */	lis r4, mDoExt_3DlineMatSortPacket_NS_dtor@ha
-.global mDoExt_3DlineMatSortPacket_NS_dtor
-/* 800564D8 00053418  38 84 4E 20 */	addi r4, r4, mDoExt_3DlineMatSortPacket_NS_dtor@l
+.global __dt__26mDoExt_3DlineMatSortPacketFv
+/* 800564D4 00053414  3C 80 80 01 */	lis r4, __dt__26mDoExt_3DlineMatSortPacketFv@ha
+.global __dt__26mDoExt_3DlineMatSortPacketFv
+/* 800564D8 00053418  38 84 4E 20 */	addi r4, r4, __dt__26mDoExt_3DlineMatSortPacketFv@l
 /* 800564DC 0005341C  38 A0 00 14 */	li r5, 0x14
 /* 800564E0 00053420  38 C0 00 03 */	li r6, 3
 /* 800564E4 00053424  38 63 61 54 */	addi r3, r3, 0x6154

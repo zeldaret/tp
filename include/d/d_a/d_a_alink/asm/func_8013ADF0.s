@@ -11,10 +11,10 @@
 /* 8013AE18 00137D58  3B 9E 48 48 */ addi r28, r30, 0x4848
 /* 8013AE1C 00137D5C  7F 9C 02 14 */ add r28, r28, r0
 /* 8013AE20 00137D60  38 80 01 20 */ li r4, 0x120
-/* 8013AE24 00137D64  4B F8 71 49 */ bl daAlink_c_NS_commonProcInit
+/* 8013AE24 00137D64  4B F8 71 49 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013AE28 00137D68  7F E3 FB 78 */ mr r3, r31
 /* 8013AE2C 00137D6C  88 9C 00 04 */ lbz r4, 4(r28)
-/* 8013AE30 00137D70  4B F9 66 FD */ bl daAlink_c_NS_setCutType
+/* 8013AE30 00137D70  4B F9 66 FD */ bl setCutType__9daAlink_cFUc
 /* 8013AE34 00137D74  38 00 00 00 */ li r0, 0
 /* 8013AE38 00137D78  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8013AE3C 00137D7C  2C 1D 00 02 */ cmpwi r29, 2
@@ -45,7 +45,7 @@ lbl_8013AE74:
 /* 8013AE94 00137DD4  39 00 00 03 */ li r8, 3
 /* 8013AE98 00137DD8  C0 3D 00 34 */ lfs f1, 0x34(r29)
 /* 8013AE9C 00137DDC  C0 5D 00 38 */ lfs f2, 0x38(r29)
-/* 8013AEA0 00137DE0  4B F9 66 A1 */ bl daAlink_c_NS_setCylAtParam
+/* 8013AEA0 00137DE0  4B F9 66 A1 */ bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
 /* 8013AEA4 00137DE4  C0 1D 00 10 */ lfs f0, 0x10(r29)
 /* 8013AEA8 00137DE8  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 8013AEAC 00137DEC  A8 1D 00 14 */ lha r0, 0x14(r29)
@@ -61,7 +61,7 @@ lbl_8013AEBC:
 /* 8013AED0 00137E10  39 00 00 02 */ li r8, 2
 /* 8013AED4 00137E14  C0 3D 00 34 */ lfs f1, 0x34(r29)
 /* 8013AED8 00137E18  C0 5D 00 38 */ lfs f2, 0x38(r29)
-/* 8013AEDC 00137E1C  4B F9 66 65 */ bl daAlink_c_NS_setCylAtParam
+/* 8013AEDC 00137E1C  4B F9 66 65 */ bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
 /* 8013AEE0 00137E20  C0 1D 00 28 */ lfs f0, 0x28(r29)
 /* 8013AEE4 00137E24  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 8013AEE8 00137E28  A8 1D 00 16 */ lha r0, 0x16(r29)
@@ -73,7 +73,7 @@ lbl_8013AEF4:
 /* 8013AEFC 00137E3C  C0 3D 00 04 */ lfs f1, 4(r29)
 /* 8013AF00 00137E40  A8 BD 00 00 */ lha r5, 0(r29)
 /* 8013AF04 00137E44  C0 7D 00 0C */ lfs f3, 0xc(r29)
-/* 8013AF08 00137E48  4B FE E7 FD */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8013AF08 00137E48  4B FE E7 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
 /* 8013AF0C 00137E4C  80 9F 27 EC */ lwz r4, 0x27ec(r31)
 /* 8013AF10 00137E50  28 04 00 00 */ cmplwi r4, 0
 /* 8013AF14 00137E54  41 82 00 14 */ beq lbl_8013AF28

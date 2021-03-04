@@ -23,7 +23,7 @@
 /* 800BFA48 000BC988  7F E3 FB 78 */ mr r3, r31
 /* 800BFA4C 000BC98C  38 80 00 00 */ li r4, 0
 /* 800BFA50 000BC990  38 A0 00 00 */ li r5, 0
-/* 800BFA54 000BC994  48 00 18 89 */ bl daAlink_c_NS_deleteEquipItem
+/* 800BFA54 000BC994  48 00 18 89 */ bl deleteEquipItem__9daAlink_cFii
 /* 800BFA58 000BC998  38 60 00 00 */ li r3, 0
 /* 800BFA5C 000BC99C  48 00 03 00 */ b lbl_800BFD5C
 lbl_800BFA60:
@@ -52,7 +52,7 @@ lbl_800BFA78:
 /* 800BFAB4 000BC9F4  7F E3 FB 78 */ mr r3, r31
 /* 800BFAB8 000BC9F8  38 80 00 00 */ li r4, 0
 /* 800BFABC 000BC9FC  38 A0 00 00 */ li r5, 0
-/* 800BFAC0 000BCA00  48 00 18 1D */ bl daAlink_c_NS_deleteEquipItem
+/* 800BFAC0 000BCA00  48 00 18 1D */ bl deleteEquipItem__9daAlink_cFii
 /* 800BFAC4 000BCA04  38 60 00 00 */ li r3, 0
 /* 800BFAC8 000BCA08  48 00 02 94 */ b lbl_800BFD5C
 lbl_800BFACC:
@@ -85,12 +85,12 @@ lbl_800BFAE4:
 /* 800BFB30 000BCA70  7F E3 FB 78 */ mr r3, r31
 /* 800BFB34 000BCA74  38 80 00 02 */ li r4, 2
 /* 800BFB38 000BCA78  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800BFB3C 000BCA7C  4B FE DB E9 */ bl daAlink_c_NS_resetUpperAnime
+/* 800BFB3C 000BCA7C  4B FE DB E9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800BFB40:
 /* 800BFB40 000BCA80  7F E3 FB 78 */ mr r3, r31
 /* 800BFB44 000BCA84  38 80 00 00 */ li r4, 0
 /* 800BFB48 000BCA88  38 A0 00 00 */ li r5, 0
-/* 800BFB4C 000BCA8C  48 00 17 91 */ bl daAlink_c_NS_deleteEquipItem
+/* 800BFB4C 000BCA8C  48 00 17 91 */ bl deleteEquipItem__9daAlink_cFii
 /* 800BFB50 000BCA90  38 60 00 00 */ li r3, 0
 /* 800BFB54 000BCA94  48 00 02 08 */ b lbl_800BFD5C
 lbl_800BFB58:
@@ -113,7 +113,7 @@ lbl_800BFB70:
 /* 800BFB94 000BCAD4  4B F5 A2 05 */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800BFB98 000BCAD8  90 7F 28 24 */ stw r3, 0x2824(r31)
 /* 800BFB9C 000BCADC  7F E3 FB 78 */ mr r3, r31
-/* 800BFBA0 000BCAE0  48 03 42 01 */ bl daAlink_c_NS_initFishingRodHand
+/* 800BFBA0 000BCAE0  48 03 42 01 */ bl initFishingRodHand__9daAlink_cFv
 /* 800BFBA4 000BCAE4  38 60 00 01 */ li r3, 1
 /* 800BFBA8 000BCAE8  48 00 01 B4 */ b lbl_800BFD5C
 lbl_800BFBAC:
@@ -121,7 +121,7 @@ lbl_800BFBAC:
 /* 800BFBB0 000BCAF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BFBB4 000BCAF4  41 82 00 14 */ beq lbl_800BFBC8
 /* 800BFBB8 000BCAF8  7F E3 FB 78 */ mr r3, r31
-/* 800BFBBC 000BCAFC  48 03 7B 4D */ bl daAlink_c_NS_setGroundFishingRodActor
+/* 800BFBBC 000BCAFC  48 03 7B 4D */ bl setGroundFishingRodActor__9daAlink_cFv
 /* 800BFBC0 000BCB00  38 60 00 01 */ li r3, 1
 /* 800BFBC4 000BCB04  48 00 01 98 */ b lbl_800BFD5C
 lbl_800BFBC8:
@@ -177,7 +177,7 @@ lbl_800BFC4C:
 /* 800BFC7C 000BCBBC  C0 01 00 18 */ lfs f0, 0x18(r1)
 /* 800BFC80 000BCBC0  D0 01 00 30 */ stfs f0, 0x30(r1)
 /* 800BFC84 000BCBC4  7F E3 FB 78 */ mr r3, r31
-/* 800BFC88 000BCBC8  4B FF 8C A9 */ bl daAlink_c_NS_checkReadyItem
+/* 800BFC88 000BCBC8  4B FF 8C A9 */ bl checkReadyItem__9daAlink_cFv
 /* 800BFC8C 000BCBCC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BFC90 000BCBD0  41 82 00 B8 */ beq lbl_800BFD48
 /* 800BFC94 000BCBD4  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
@@ -216,7 +216,7 @@ lbl_800BFD04:
 /* 800BFD10 000BCC50  38 03 00 01 */ addi r0, r3, 1
 /* 800BFD14 000BCC54  98 1F 2F A2 */ stb r0, 0x2fa2(r31)
 /* 800BFD18 000BCC58  7F E3 FB 78 */ mr r3, r31
-/* 800BFD1C 000BCC5C  48 02 5E 99 */ bl daAlink_c_NS_setGrabItemActor
+/* 800BFD1C 000BCC5C  48 02 5E 99 */ bl setGrabItemActor__9daAlink_cFP10fopAc_ac_c
 /* 800BFD20 000BCC60  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
 /* 800BFD24 000BCC64  38 80 FF FF */ li r4, -1
 /* 800BFD28 000BCC68  4B F6 EB 15 */ bl dComIfGp_addSelectItemNum
@@ -226,7 +226,7 @@ lbl_800BFD04:
 /* 800BFD38 000BCC78  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 800BFD3C 000BCC7C  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 800BFD40 000BCC80  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 800BFD44 000BCC84  48 02 40 79 */ bl daAlink_c_NS_setGrabUpperAnime
+/* 800BFD44 000BCC84  48 02 40 79 */ bl setGrabUpperAnime__9daAlink_cFf
 lbl_800BFD48:
 /* 800BFD48 000BCC88  38 00 00 FF */ li r0, 0xff
 /* 800BFD4C 000BCC8C  B0 1F 2F DC */ sth r0, 0x2fdc(r31)

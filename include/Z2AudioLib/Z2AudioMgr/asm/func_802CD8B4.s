@@ -6,11 +6,11 @@
 /* 802CD8C8 002CA808  38 7F 04 C4 */ addi r3, r31, 0x4c4
 /* 802CD8CC 002CA80C  4B FE 8E 51 */ bl processTime__11Z2StatusMgrFv
 /* 802CD8D0 002CA810  38 7F 0F 2C */ addi r3, r31, 0xf2c
-/* 802CD8D4 002CA814  4B FF F0 FD */ bl Z2SpeechMgr2_NS_framework
+/* 802CD8D4 002CA814  4B FF F0 FD */ bl framework__12Z2SpeechMgr2Fv
 /* 802CD8D8 002CA818  7F E3 FB 78 */ mr r3, r31
 /* 802CD8DC 002CA81C  4B FE 08 A9 */ bl processSeFramework__7Z2SeMgrFv
 /* 802CD8E0 002CA820  38 7F 03 D0 */ addi r3, r31, 0x3d0
-/* 802CD8E4 002CA824  4B FE 5A C5 */ bl Z2SeqMgr_NS_processBgmFramework
+/* 802CD8E4 002CA824  4B FE 5A C5 */ bl processBgmFramework__8Z2SeqMgrFv
 /* 802CD8E8 002CA828  38 7F 04 C4 */ addi r3, r31, 0x4c4
 /* 802CD8EC 002CA82C  4B FE 86 91 */ bl processHeartGaugeSound__11Z2StatusMgrFv
 /* 802CD8F0 002CA830  83 E1 00 0C */ lwz r31, 0xc(r1)

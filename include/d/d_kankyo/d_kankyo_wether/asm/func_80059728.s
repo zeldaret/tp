@@ -24,8 +24,8 @@
 /* 80059784 000566C4  D0 03 00 04 */ stfs f0, 4(r3)
 /* 80059788 000566C8  C0 02 87 38 */ lfs f0, lbl_80452138-_SDA2_BASE_(r2)
 /* 8005978C 000566CC  D0 03 00 08 */ stfs f0, 8(r3)
-/* 80059790 000566D0  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80059794 000566D4  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80059790 000566D0  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80059794 000566D4  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80059798 000566D8  3C A0 80 42 */ lis r5, lbl_80424938@ha
 /* 8005979C 000566DC  38 A5 49 38 */ addi r5, r5, lbl_80424938@l
 /* 800597A0 000566E0  48 30 84 85 */ bl func_80361C24
@@ -94,7 +94,7 @@ lbl_8005987C:
 /* 80059890 000567D0  2C 03 00 00 */ cmpwi r3, 0
 /* 80059894 000567D4  40 82 00 60 */ bne lbl_800598F4
 /* 80059898 000567D8  38 60 00 00 */ li r3, 0
-/* 8005989C 000567DC  4B FD 30 E1 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8005989C 000567DC  4B FD 30 E1 */ bl getLayerNo__14dComIfG_play_cFi
 /* 800598A0 000567E0  2C 03 00 03 */ cmpwi r3, 3
 /* 800598A4 000567E4  41 80 00 50 */ blt lbl_800598F4
 /* 800598A8 000567E8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
@@ -274,10 +274,10 @@ lbl_80059AD0:
 /* 80059B20 00056A60  3C 80 80 05 */ lis r4, VRKUMO_EFF@ha
 /*.global VRKUMO_EFF*/
 /* 80059B24 00056A64  38 84 6F 54 */ addi r4, r4, VRKUMO_EFF@l
-/*.global VRKUMO_EFF_NS_dtor*/
-/* 80059B28 00056A68  3C A0 80 05 */ lis r5, VRKUMO_EFF_NS_dtor@ha
-/*.global VRKUMO_EFF_NS_dtor*/
-/* 80059B2C 00056A6C  38 A5 6F 18 */ addi r5, r5, VRKUMO_EFF_NS_dtor@l
+/*.global __dt__10VRKUMO_EFFFv*/
+/* 80059B28 00056A68  3C A0 80 05 */ lis r5, __dt__10VRKUMO_EFFFv@ha
+/*.global __dt__10VRKUMO_EFFFv*/
+/* 80059B2C 00056A6C  38 A5 6F 18 */ addi r5, r5, __dt__10VRKUMO_EFFFv@l
 /* 80059B30 00056A70  38 C0 00 2C */ li r6, 0x2c
 /* 80059B34 00056A74  38 E0 00 64 */ li r7, 0x64
 /* 80059B38 00056A78  48 30 82 29 */ bl func_80361D60

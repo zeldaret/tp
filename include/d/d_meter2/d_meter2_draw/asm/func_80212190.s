@@ -155,10 +155,10 @@ lbl_80212390:
 /* 802123D0 0020F310  C0 7F 0E 84 */ lfs f3, 0xe84(r31)
 /* 802123D4 0020F314  C0 86 0E A4 */ lfs f4, 0xea4(r6)
 /* 802123D8 0020F318  38 C0 00 00 */ li r6, 0
-/* 802123DC 0020F31C  48 00 37 3D */ bl dMeter2Draw_c_NS_drawLightDrop
+/* 802123DC 0020F31C  48 00 37 3D */ bl drawLightDrop__13dMeter2Draw_cFUcUcffffUc
 /* 802123E0 0020F320  7F C3 F3 78 */ mr r3, r30
 /* 802123E4 0020F324  38 80 00 01 */ li r4, 1
-/* 802123E8 0020F328  48 00 39 BD */ bl dMeter2Draw_c_NS_setAlphaLightDropChange
+/* 802123E8 0020F328  48 00 39 BD */ bl setAlphaLightDropChange__13dMeter2Draw_cFb
 /* 802123EC 0020F32C  39 61 00 30 */ addi r11, r1, 0x30
 /* 802123F0 0020F330  48 14 FE 29 */ bl _restgpr_25
 /* 802123F4 0020F334  80 01 00 34 */ lwz r0, 0x34(r1)

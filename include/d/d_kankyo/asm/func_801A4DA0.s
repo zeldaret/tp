@@ -21,7 +21,7 @@ lbl_801A4DE8:
 /* 801A4DEC 001A1D2C  38 80 00 0B */ li r4, 0xb
 /* 801A4DF0 001A1D30  38 A0 00 00 */ li r5, 0
 /* 801A4DF4 001A1D34  7F A6 EB 78 */ mr r6, r29
-/* 801A4DF8 001A1D38  4B FF E9 CD */ bl dScnKy_env_light_c_NS_settingTevStruct
+/* 801A4DF8 001A1D38  4B FF E9 CD */ bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 lbl_801A4DFC:
 /* 801A4DFC 001A1D3C  7F A3 EB 78 */ mr r3, r29
 /* 801A4E00 001A1D40  48 00 20 9D */ bl dKy_setLight_nowroom_actor

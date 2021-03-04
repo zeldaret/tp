@@ -862,7 +862,7 @@ lbl_801FABE8:
 /* 801FAC28 001F7B68  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FAC2C 001F7B6C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FAC30 001F7B70  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 801FAC34 001F7B74  48 02 4A B9 */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 801FAC34 001F7B74  48 02 4A B9 */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_801FAC38:
 /* 801FAC38 001F7B78  38 60 00 01 */	li r3, 1
 /* 801FAC3C 001F7B7C  4B E3 34 A5 */	bl dComIfGp_setHeapLockFlag
@@ -903,7 +903,7 @@ lbl_801FAC88:
 /* 801FACC0 001F7C00  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FACC4 001F7C04  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FACC8 001F7C08  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 801FACCC 001F7C0C  48 02 4A 21 */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 801FACCC 001F7C0C  48 02 4A 21 */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_801FACD0:
 /* 801FACD0 001F7C10  38 60 00 01 */	li r3, 1
 /* 801FACD4 001F7C14  4B E3 34 0D */	bl dComIfGp_setHeapLockFlag
@@ -943,7 +943,7 @@ lbl_801FAD44:
 /* 801FAD54 001F7C94  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FAD58 001F7C98  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FAD5C 001F7C9C  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 801FAD60 001F7CA0  48 02 49 8D */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 801FAD60 001F7CA0  48 02 49 8D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_801FAD64:
 /* 801FAD64 001F7CA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801FAD68 001F7CA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -1084,7 +1084,7 @@ lbl_801FAF34:
 /* 801FAF64 001F7EA4  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FAF68 001F7EA8  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FAF6C 001F7EAC  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 801FAF70 001F7EB0  48 02 47 7D */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 801FAF70 001F7EB0  48 02 47 7D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_801FAF74:
 /* 801FAF74 001F7EB4  4B FF F0 25 */	bl dMw_DOWN_TRIGGER
 /* 801FAF78 001F7EB8  2C 03 00 00 */	cmpwi r3, 0
@@ -1352,12 +1352,12 @@ lbl_801FB324:
 /* 801FB338 001F8278  88 04 00 BF */	lbz r0, 0xbf(r4)
 /* 801FB33C 001F827C  28 00 00 01 */	cmplwi r0, 1
 /* 801FB340 001F8280  40 82 00 0C */	bne lbl_801FB34C
-/* 801FB344 001F8284  48 01 25 31 */	bl dMeterMap_c_NS_setDispPosInsideFlg_SE_On
+/* 801FB344 001F8284  48 01 25 31 */	bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 801FB348 001F8288  48 00 00 10 */	b lbl_801FB358
 lbl_801FB34C:
 /* 801FB34C 001F828C  28 00 00 00 */	cmplwi r0, 0
 /* 801FB350 001F8290  40 82 00 08 */	bne lbl_801FB358
-/* 801FB354 001F8294  48 01 25 69 */	bl dMeterMap_c_NS_setDispPosOutsideFlg_SE_On
+/* 801FB354 001F8294  48 01 25 69 */	bl setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 lbl_801FB358:
 /* 801FB358 001F8298  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 801FB35C 001F829C  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1415,7 +1415,7 @@ lbl_801FB3F0:
 /* 801FB420 001F8360  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801FB424 001F8364  28 00 00 01 */	cmplwi r0, 1
 /* 801FB428 001F8368  40 82 00 A0 */	bne lbl_801FB4C8
-/* 801FB42C 001F836C  48 01 22 25 */	bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 801FB42C 001F836C  48 01 22 25 */	bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 801FB430 001F8370  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801FB434 001F8374  41 82 00 20 */	beq lbl_801FB454
 /* 801FB438 001F8378  38 00 00 01 */	li r0, 1
@@ -1423,7 +1423,7 @@ lbl_801FB3F0:
 /* 801FB440 001F8380  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FB444 001F8384  98 03 00 BF */	stb r0, 0xbf(r3)
 /* 801FB448 001F8388  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 801FB44C 001F838C  48 01 24 29 */	bl dMeterMap_c_NS_setDispPosInsideFlg_SE_On
+/* 801FB44C 001F838C  48 01 24 29 */	bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 801FB450 001F8390  48 00 00 1C */	b lbl_801FB46C
 lbl_801FB454:
 /* 801FB454 001F8394  38 00 00 00 */	li r0, 0
@@ -1431,7 +1431,7 @@ lbl_801FB454:
 /* 801FB45C 001F839C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801FB460 001F83A0  98 03 00 BF */	stb r0, 0xbf(r3)
 /* 801FB464 001F83A4  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 801FB468 001F83A8  48 01 24 55 */	bl dMeterMap_c_NS_setDispPosOutsideFlg_SE_On
+/* 801FB468 001F83A8  48 01 24 55 */	bl setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 lbl_801FB46C:
 /* 801FB46C 001F83AC  38 00 02 00 */	li r0, 0x200
 /* 801FB470 001F83B0  3C 60 80 43 */	lis r3, lbl_80430188@ha
@@ -1468,7 +1468,7 @@ lbl_801FB4C8:
 /* 801FB4E8 001F8428  38 00 00 0C */	li r0, 0xc
 /* 801FB4EC 001F842C  98 1F 01 46 */	stb r0, 0x146(r31)
 /* 801FB4F0 001F8430  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 801FB4F4 001F8434  48 01 23 C9 */	bl dMeterMap_c_NS_setDispPosOutsideFlg_SE_On
+/* 801FB4F4 001F8434  48 01 23 C9 */	bl setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 /* 801FB4F8 001F8438  38 00 00 01 */	li r0, 1
 /* 801FB4FC 001F843C  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 801FB500 001F8440  98 03 01 7A */	stb r0, 0x17a(r3)
@@ -1489,7 +1489,7 @@ lbl_801FB4C8:
 lbl_801FB53C:
 /* 801FB53C 001F847C  28 00 00 03 */	cmplwi r0, 3
 /* 801FB540 001F8480  40 82 00 80 */	bne lbl_801FB5C0
-/* 801FB544 001F8484  48 01 21 0D */	bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 801FB544 001F8484  48 01 21 0D */	bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 801FB548 001F8488  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801FB54C 001F848C  41 82 00 18 */	beq lbl_801FB564
 /* 801FB550 001F8490  38 00 00 01 */	li r0, 1
@@ -2405,7 +2405,7 @@ lbl_801FC234:
 /* 801FC23C 001F917C  98 03 00 04 */	stb r0, 4(r3)
 /* 801FC240 001F9180  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FC244 001F9184  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 801FC248 001F9188  48 02 07 95 */	bl dMeter2Info_c_NS_resetWarpStatus
+/* 801FC248 001F9188  48 02 07 95 */	bl resetWarpStatus__13dMeter2Info_cFv
 /* 801FC24C 001F918C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801FC250 001F9190  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801FC254 001F9194  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2554,7 +2554,7 @@ lbl_801FC444:
 /* 801FC444 001F9384  90 1E 01 18 */	stw r0, 0x118(r30)
 /* 801FC448 001F9388  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801FC44C 001F938C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 801FC450 001F9390  48 02 05 8D */	bl dMeter2Info_c_NS_resetWarpStatus
+/* 801FC450 001F9390  48 02 05 8D */	bl resetWarpStatus__13dMeter2Info_cFv
 /* 801FC454 001F9394  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801FC458 001F9398  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801FC45C 001F939C  80 01 00 14 */	lwz r0, 0x14(r1)

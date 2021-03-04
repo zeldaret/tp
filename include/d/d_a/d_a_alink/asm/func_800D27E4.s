@@ -18,28 +18,28 @@
 /* 800D2828 000CF768  41 82 00 10 */ beq lbl_800D2838
 lbl_800D282C:
 /* 800D282C 000CF76C  7F E3 FB 78 */ mr r3, r31
-/* 800D2830 000CF770  48 00 3A 09 */ bl daAlink_c_NS_procCutLargeJumpChargeInit
+/* 800D2830 000CF770  48 00 3A 09 */ bl procCutLargeJumpChargeInit__9daAlink_cFv
 /* 800D2834 000CF774  48 00 00 48 */ b lbl_800D287C
 lbl_800D2838:
 /* 800D2838 000CF778  7F E3 FB 78 */ mr r3, r31
-/* 800D283C 000CF77C  48 00 01 99 */ bl daAlink_c_NS_checkDownAttackState
+/* 800D283C 000CF77C  48 00 01 99 */ bl checkDownAttackState__9daAlink_cFv
 /* 800D2840 000CF780  2C 03 00 00 */ cmpwi r3, 0
 /* 800D2844 000CF784  41 82 00 10 */ beq lbl_800D2854
 /* 800D2848 000CF788  7F E3 FB 78 */ mr r3, r31
-/* 800D284C 000CF78C  48 00 2B 7D */ bl daAlink_c_NS_procCutDownInit
+/* 800D284C 000CF78C  48 00 2B 7D */ bl procCutDownInit__9daAlink_cFv
 /* 800D2850 000CF790  48 00 00 2C */ b lbl_800D287C
 lbl_800D2854:
 /* 800D2854 000CF794  7F E3 FB 78 */ mr r3, r31
-/* 800D2858 000CF798  48 00 00 9D */ bl daAlink_c_NS_checkCutHeadState
+/* 800D2858 000CF798  48 00 00 9D */ bl checkCutHeadState__9daAlink_cFv
 /* 800D285C 000CF79C  2C 03 00 00 */ cmpwi r3, 0
 /* 800D2860 000CF7A0  41 82 00 10 */ beq lbl_800D2870
 /* 800D2864 000CF7A4  7F E3 FB 78 */ mr r3, r31
-/* 800D2868 000CF7A8  48 00 34 21 */ bl daAlink_c_NS_procCutHeadInit
+/* 800D2868 000CF7A8  48 00 34 21 */ bl procCutHeadInit__9daAlink_cFv
 /* 800D286C 000CF7AC  48 00 00 10 */ b lbl_800D287C
 lbl_800D2870:
 /* 800D2870 000CF7B0  7F E3 FB 78 */ mr r3, r31
 /* 800D2874 000CF7B4  38 80 00 00 */ li r4, 0
-/* 800D2878 000CF7B8  48 00 1A 85 */ bl daAlink_c_NS_procCutJumpInit
+/* 800D2878 000CF7B8  48 00 1A 85 */ bl procCutJumpInit__9daAlink_cFi
 lbl_800D287C:
 /* 800D287C 000CF7BC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800D2880 000CF7C0  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -53,8 +53,8 @@ lbl_80200C7C:
 /* 80200C8C 001FDBCC  90 1D 03 14 */ stw r0, 0x314(r29)
 lbl_80200C90:
 /* 80200C90 001FDBD0  38 7D 02 5C */ addi r3, r29, 0x25c
-/* 80200C94 001FDBD4  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80200C98 001FDBD8  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80200C94 001FDBD4  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80200C98 001FDBD8  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80200C9C 001FDBDC  38 A0 00 0C */ li r5, 0xc
 /* 80200CA0 001FDBE0  38 C0 00 0C */ li r6, 0xc
 /* 80200CA4 001FDBE4  48 16 10 45 */ bl func_80361CE8

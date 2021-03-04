@@ -30,7 +30,7 @@ lbl_800D7250:
 /* 800D7274 000D41B4  EC 20 07 F2 */ fmuls f1, f0, f31
 /* 800D7278 000D41B8  48 00 00 28 */ b lbl_800D72A0
 lbl_800D727C:
-/* 800D727C 000D41BC  4B FE 8B 35 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800D727C 000D41BC  4B FE 8B 35 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800D7280 000D41C0  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7284 000D41C4  41 82 00 18 */ beq lbl_800D729C
 /* 800D7288 000D41C8  2C 1F 00 00 */ cmpwi r31, 0

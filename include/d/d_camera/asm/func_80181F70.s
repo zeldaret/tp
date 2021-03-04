@@ -76,7 +76,7 @@
 /* 8018209C 0017EFDC  54 07 CF FE */ rlwinm r7, r0, 0x19, 0x1f, 0x1f
 /* 801820A0 0017EFE0  7F 68 DB 78 */ mr r8, r27
 /* 801820A4 0017EFE4  39 20 00 00 */ li r9, 0
-/* 801820A8 0017EFE8  48 13 B2 35 */ bl Z2Audience_NS_setAudioCamera
+/* 801820A8 0017EFE8  48 13 B2 35 */ bl setAudioCamera__10Z2AudienceFPA4_fR3VecR3Vecffbib
 /* 801820AC 0017EFEC  38 61 00 14 */ addi r3, r1, 0x14
 /* 801820B0 0017EFF0  4B EF 54 CD */ bl dBgS_GndChk
 /* 801820B4 0017EFF4  80 01 00 64 */ lwz r0, 0x64(r1)
@@ -145,7 +145,7 @@ lbl_8018217C:
 /* 801821A0 0017F0E0  38 BD 01 A0 */ addi r5, r29, 0x1a0
 /* 801821A4 0017F0E4  4B E8 A7 2D */ bl mDoMtx_concatProjView
 /* 801821A8 0017F0E8  7F C3 F3 78 */ mr r3, r30
-/* 801821AC 0017F0EC  4B FE 0F A9 */ bl dCamera_c_NS_Draw
+/* 801821AC 0017F0EC  4B FE 0F A9 */ bl Draw__9dCamera_cFv
 /* 801821B0 0017F0F0  38 61 00 14 */ addi r3, r1, 0x14
 /* 801821B4 0017F0F4  38 80 FF FF */ li r4, -1
 /* 801821B8 0017F0F8  4B EF 54 39 */ bl __dt__11dBgS_GndChkFv

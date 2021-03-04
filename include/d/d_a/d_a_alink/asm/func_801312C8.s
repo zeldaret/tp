@@ -46,7 +46,7 @@
 /* 8013137C 0012E2BC  41 82 00 14 */ beq lbl_80131390
 /* 80131380 0012E2C0  38 63 10 E4 */ addi r3, r3, 0x10e4
 /* 80131384 0012E2C4  48 01 43 85 */ bl getActorP__18daNpcT_ActorMngr_cFv
-/* 80131388 0012E2C8  4B FF FF 41 */ bl daObj_Sekizoa_c_NS_setWolfHowling
+/* 80131388 0012E2C8  4B FF FF 41 */ bl setWolfHowling__15daObj_Sekizoa_cFv
 /* 8013138C 0012E2CC  48 00 00 6C */ b lbl_801313F8
 lbl_80131390:
 /* 80131390 0012E2D0  38 00 00 01 */ li r0, 1

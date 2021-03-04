@@ -10,10 +10,10 @@
 /* 80057F3C 00054E7C  38 03 9B 38 */ addi r0, r3, lbl_803A9B38@l
 /* 80057F40 00054E80  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057F44 00054E84  38 7E 00 14 */ addi r3, r30, 0x14
-/*.global STAR_EFF_NS_dtor*/
-/* 80057F48 00054E88  3C 80 80 05 */ lis r4, STAR_EFF_NS_dtor@ha
-/*.global STAR_EFF_NS_dtor*/
-/* 80057F4C 00054E8C  38 84 6D C8 */ addi r4, r4, STAR_EFF_NS_dtor@l
+/*.global __dt__8STAR_EFFFv*/
+/* 80057F48 00054E88  3C 80 80 05 */ lis r4, __dt__8STAR_EFFFv@ha
+/*.global __dt__8STAR_EFFFv*/
+/* 80057F4C 00054E8C  38 84 6D C8 */ addi r4, r4, __dt__8STAR_EFFFv@l
 /* 80057F50 00054E90  38 A0 00 34 */ li r5, 0x34
 /* 80057F54 00054E94  38 C0 00 01 */ li r6, 1
 /* 80057F58 00054E98  48 30 9D 91 */ bl func_80361CE8

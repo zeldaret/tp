@@ -69,13 +69,13 @@ lbl_8013FCE4:
 lbl_8013FD28:
 /* 8013FD28 0013CC68  7F C3 F3 78 */ mr r3, r30
 /* 8013FD2C 0013CC6C  38 80 00 72 */ li r4, 0x72
-/* 8013FD30 0013CC70  4B FE 8A DD */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 8013FD30 0013CC70  4B FE 8A DD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
 /* 8013FD34 0013CC74  2C 03 00 00 */ cmpwi r3, 0
 /* 8013FD38 0013CC78  41 82 00 14 */ beq lbl_8013FD4C
 /* 8013FD3C 0013CC7C  7F C3 F3 78 */ mr r3, r30
 /* 8013FD40 0013CC80  3C 80 00 01 */ lis r4, 0x0001003E@ha
 /* 8013FD44 0013CC84  38 84 00 3E */ addi r4, r4, 0x0001003E@l
-/* 8013FD48 0013CC88  4B F7 F3 71 */ bl daAlink_c_NS_voiceStartLevel
+/* 8013FD48 0013CC88  4B F7 F3 71 */ bl voiceStartLevel__9daAlink_cFUl
 lbl_8013FD4C:
 /* 8013FD4C 0013CC8C  A8 1E 30 10 */ lha r0, 0x3010(r30)
 /* 8013FD50 0013CC90  2C 00 00 00 */ cmpwi r0, 0
@@ -99,7 +99,7 @@ lbl_8013FD60:
 /* 8013FD94 0013CCD4  98 1F 05 88 */ stb r0, 0x588(r31)
 lbl_8013FD98:
 /* 8013FD98 0013CCD8  7F C3 F3 78 */ mr r3, r30
-/* 8013FD9C 0013CCDC  4B FD 7E F5 */ bl daAlink_c_NS_resetSpecialEvent
+/* 8013FD9C 0013CCDC  4B FD 7E F5 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8013FDA0 0013CCE0  48 00 01 6C */ b lbl_8013FF0C
 lbl_8013FDA4:
 /* 8013FDA4 0013CCE4  A0 1E 28 9E */ lhz r0, 0x289e(r30)
@@ -112,7 +112,7 @@ lbl_8013FDA4:
 /* 8013FDC0 0013CD00  7C 00 18 00 */ cmpw r0, r3
 /* 8013FDC4 0013CD04  41 82 01 48 */ beq lbl_8013FF0C
 /* 8013FDC8 0013CD08  7F C3 F3 78 */ mr r3, r30
-/* 8013FDCC 0013CD0C  4B FF FB 41 */ bl daAlink_c_NS_setSmellSave
+/* 8013FDCC 0013CD0C  4B FF FB 41 */ bl setSmellSave__9daAlink_cFv
 /* 8013FDD0 0013CD10  48 00 01 3C */ b lbl_8013FF0C
 lbl_8013FDD4:
 /* 8013FDD4 0013CD14  A8 1E 30 10 */ lha r0, 0x3010(r30)
@@ -140,7 +140,7 @@ lbl_8013FE18:
 /* 8013FE24 0013CD64  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
 /* 8013FE28 0013CD68  38 A0 FF FF */ li r5, -1
 /* 8013FE2C 0013CD6C  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013FE30 0013CD70  4B FE 98 D5 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8013FE30 0013CD70  4B FE 98 D5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
 /* 8013FE34 0013CD74  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013FE38 0013CD78  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013FE3C 0013CD7C  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -173,7 +173,7 @@ lbl_8013FE78:
 /* 8013FE9C 0013CDDC  2C 00 0B BC */ cmpwi r0, 0xbbc
 /* 8013FEA0 0013CDE0  40 82 00 6C */ bne lbl_8013FF0C
 /* 8013FEA4 0013CDE4  7F C3 F3 78 */ mr r3, r30
-/* 8013FEA8 0013CDE8  4B FF FA 65 */ bl daAlink_c_NS_setSmellSave
+/* 8013FEA8 0013CDE8  4B FF FA 65 */ bl setSmellSave__9daAlink_cFv
 /* 8013FEAC 0013CDEC  48 00 00 60 */ b lbl_8013FF0C
 lbl_8013FEB0:
 /* 8013FEB0 0013CDF0  A8 7E 30 08 */ lha r3, 0x3008(r30)
@@ -189,7 +189,7 @@ lbl_8013FEC8:
 /* 8013FED4 0013CE14  41 82 00 38 */ beq lbl_8013FF0C
 /* 8013FED8 0013CE18  7F C3 F3 78 */ mr r3, r30
 /* 8013FEDC 0013CE1C  38 80 00 84 */ li r4, 0x84
-/* 8013FEE0 0013CE20  4B FE 97 99 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8013FEE0 0013CE20  4B FE 97 99 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8013FEE4 0013CE24  38 00 00 0C */ li r0, 0xc
 /* 8013FEE8 0013CE28  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8013FEEC 0013CE2C  38 00 00 01 */ li r0, 1

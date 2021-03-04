@@ -4,7 +4,7 @@
 /* 800F7280 000F41C0  39 61 00 20 */ addi r11, r1, 0x20
 /* 800F7284 000F41C4  48 26 AF 59 */ bl _savegpr_29
 /* 800F7288 000F41C8  7C 7D 1B 78 */ mr r29, r3
-/* 800F728C 000F41CC  48 01 17 8D */ bl daAlink_c_NS_checkHookshotWait
+/* 800F728C 000F41CC  48 01 17 8D */ bl checkHookshotWait__9daAlink_cCFv
 /* 800F7290 000F41D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F7294 000F41D4  41 82 00 10 */ beq lbl_800F72A4
 /* 800F7298 000F41D8  7F A3 EB 78 */ mr r3, r29
@@ -14,7 +14,7 @@ lbl_800F72A4:
 /* 800F72A4 000F41E4  AB FD 04 E6 */ lha r31, 0x4e6(r29)
 /* 800F72A8 000F41E8  AB DD 04 DE */ lha r30, 0x4de(r29)
 /* 800F72AC 000F41EC  7F A3 EB 78 */ mr r3, r29
-/* 800F72B0 000F41F0  4B FF D5 29 */ bl daAlink_c_NS_canoeCommon
+/* 800F72B0 000F41F0  4B FF D5 29 */ bl canoeCommon__9daAlink_cFv
 /* 800F72B4 000F41F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F72B8 000F41F8  41 82 00 0C */ beq lbl_800F72C4
 /* 800F72BC 000F41FC  38 60 00 01 */ li r3, 1
@@ -22,16 +22,16 @@ lbl_800F72A4:
 lbl_800F72C4:
 /* 800F72C4 000F4204  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 800F72C8 000F4208  7F A3 EB 78 */ mr r3, r29
-/* 800F72CC 000F420C  4B FF D6 59 */ bl daAlink_c_NS_checkNextActionCanoe
+/* 800F72CC 000F420C  4B FF D6 59 */ bl checkNextAction__9daAlink_cFiCanoe
 /* 800F72D0 000F4210  2C 03 00 00 */ cmpwi r3, 0
 /* 800F72D4 000F4214  40 82 00 24 */ bne lbl_800F72F8
 /* 800F72D8 000F4218  7F A3 EB 78 */ mr r3, r29
 /* 800F72DC 000F421C  7F C4 F3 78 */ mr r4, r30
-/* 800F72E0 000F4220  4B FF 7C 51 */ bl daAlink_c_NS_setRideSubjectAngle
+/* 800F72E0 000F4220  4B FF 7C 51 */ bl setRideSubjectAngle__9daAlink_cFs
 /* 800F72E4 000F4224  2C 03 00 00 */ cmpwi r3, 0
 /* 800F72E8 000F4228  41 82 00 18 */ beq lbl_800F7300
 /* 800F72EC 000F422C  7F A3 EB 78 */ mr r3, r29
-/* 800F72F0 000F4230  48 01 1A C5 */ bl daAlink_c_NS_setHookshotSight
+/* 800F72F0 000F4230  48 01 1A C5 */ bl setHookshotSight__9daAlink_cFv
 /* 800F72F4 000F4234  48 00 00 0C */ b lbl_800F7300
 lbl_800F72F8:
 /* 800F72F8 000F4238  38 00 00 00 */ li r0, 0

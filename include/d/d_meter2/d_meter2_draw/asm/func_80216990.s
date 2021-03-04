@@ -32,7 +32,7 @@ lbl_802169E4:
 /* 80216A08 00213948  7F 63 DB 78 */ mr r3, r27
 /* 80216A0C 0021394C  7C 9B E8 2E */ lwzx r4, r27, r29
 /* 80216A10 00213950  38 A0 00 05 */ li r5, 5
-/* 80216A14 00213954  48 00 40 91 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80216A14 00213954  48 00 40 91 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80216A18:
 /* 80216A18 00213958  3B 9C 00 01 */ addi r28, r28, 1
 /* 80216A1C 0021395C  2C 1C 00 03 */ cmpwi r28, 3

@@ -3,9 +3,9 @@
 /* 801047C0 00101700  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801047C4 00101704  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801047C8 00101708  7C 7F 1B 78 */ mr r31, r3
-/* 801047CC 0010170C  4B FF DC 19 */ bl daAlink_c_NS_setSpeedAndAngleSwim
+/* 801047CC 0010170C  4B FF DC 19 */ bl setSpeedAndAngleSwim__9daAlink_cFv
 /* 801047D0 00101710  7F E3 FB 78 */ mr r3, r31
-/* 801047D4 00101714  4B FF F7 35 */ bl daAlink_c_NS_checkUpSwimButtonAccept
+/* 801047D4 00101714  4B FF F7 35 */ bl checkUpSwimButtonAccept__9daAlink_cFv
 /* 801047D8 00101718  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801047DC 0010171C  41 82 00 18 */ beq lbl_801047F4
 /* 801047E0 00101720  88 1F 2F 8E */ lbz r0, 0x2f8e(r31)
@@ -15,16 +15,16 @@
 /* 801047F0 00101730  B0 1F 30 00 */ sth r0, 0x3000(r31)
 lbl_801047F4:
 /* 801047F4 00101734  7F E3 FB 78 */ mr r3, r31
-/* 801047F8 00101738  4B FF EE A1 */ bl daAlink_c_NS_setSwimMoveAnime
+/* 801047F8 00101738  4B FF EE A1 */ bl setSwimMoveAnime__9daAlink_cFv
 /* 801047FC 0010173C  7F E3 FB 78 */ mr r3, r31
-/* 80104800 00101740  4B FF E8 59 */ bl daAlink_c_NS_checkSwimUpAction
+/* 80104800 00101740  4B FF E8 59 */ bl checkSwimUpAction__9daAlink_cFv
 /* 80104804 00101744  2C 03 00 00 */ cmpwi r3, 0
 /* 80104808 00101748  41 82 00 0C */ beq lbl_80104814
 /* 8010480C 0010174C  38 60 00 01 */ li r3, 1
 /* 80104810 00101750  48 00 01 34 */ b lbl_80104944
 lbl_80104814:
 /* 80104814 00101754  7F E3 FB 78 */ mr r3, r31
-/* 80104818 00101758  4B FF E1 B1 */ bl daAlink_c_NS_checkNextActionSwim
+/* 80104818 00101758  4B FF E1 B1 */ bl checkNextAction__9daAlink_cFiSwim
 /* 8010481C 0010175C  2C 03 00 00 */ cmpwi r3, 0
 /* 80104820 00101760  41 82 00 0C */ beq lbl_8010482C
 /* 80104824 00101764  38 60 00 01 */ li r3, 1
@@ -35,28 +35,28 @@ lbl_8010482C:
 /* 80104834 00101774  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80104838 00101778  40 81 00 28 */ ble lbl_80104860
 /* 8010483C 0010177C  7F E3 FB 78 */ mr r3, r31
-/* 80104840 00101780  4B FB 21 F1 */ bl daAlink_c_NS_checkFrontWallTypeAction
+/* 80104840 00101780  4B FB 21 F1 */ bl checkFrontWallTypeAction__9daAlink_cFv
 /* 80104844 00101784  2C 03 00 00 */ cmpwi r3, 0
 /* 80104848 00101788  41 82 00 18 */ beq lbl_80104860
 /* 8010484C 0010178C  7F E3 FB 78 */ mr r3, r31
 /* 80104850 00101790  38 80 00 01 */ li r4, 1
-/* 80104854 00101794  4B FF EA 75 */ bl daAlink_c_NS_swimOutAfter
+/* 80104854 00101794  4B FF EA 75 */ bl swimOutAfter__9daAlink_cFi
 /* 80104858 00101798  38 60 00 01 */ li r3, 1
 /* 8010485C 0010179C  48 00 00 E8 */ b lbl_80104944
 lbl_80104860:
 /* 80104860 001017A0  7F E3 FB 78 */ mr r3, r31
-/* 80104864 001017A4  4B FF F6 7D */ bl daAlink_c_NS_checkSwimButtonAccept
+/* 80104864 001017A4  4B FF F6 7D */ bl checkSwimButtonAccept__9daAlink_cFv
 /* 80104868 001017A8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010486C 001017AC  41 82 00 2C */ beq lbl_80104898
 /* 80104870 001017B0  88 1F 2F 8D */ lbz r0, 0x2f8d(r31)
 /* 80104874 001017B4  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80104878 001017B8  41 82 00 20 */ beq lbl_80104898
 /* 8010487C 001017BC  7F E3 FB 78 */ mr r3, r31
-/* 80104880 001017C0  4B FF D1 39 */ bl daAlink_c_NS_getZoraSwim
+/* 80104880 001017C0  4B FF D1 39 */ bl getZoraSwim__9daAlink_cCFv
 /* 80104884 001017C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80104888 001017C8  40 82 00 10 */ bne lbl_80104898
 /* 8010488C 001017CC  7F E3 FB 78 */ mr r3, r31
-/* 80104890 001017D0  48 00 00 C9 */ bl daAlink_c_NS_procSwimDiveInit
+/* 80104890 001017D0  48 00 00 C9 */ bl procSwimDiveInit__9daAlink_cFv
 /* 80104894 001017D4  48 00 00 AC */ b lbl_80104940
 lbl_80104898:
 /* 80104898 001017D8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -77,17 +77,17 @@ lbl_80104898:
 /* 801048D4 00101814  7F E3 FB 78 */ mr r3, r31
 /* 801048D8 00101818  38 80 00 C6 */ li r4, 0xc6
 /* 801048DC 0010181C  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 801048E0 00101820  4B FA 88 15 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 801048E0 00101820  4B FA 88 15 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 801048E4 00101824  38 00 00 C6 */ li r0, 0xc6
 /* 801048E8 00101828  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 801048EC 0010182C  48 00 00 54 */ b lbl_80104940
 lbl_801048F0:
 /* 801048F0 00101830  7F E3 FB 78 */ mr r3, r31
-/* 801048F4 00101834  4B FF F6 A1 */ bl daAlink_c_NS_checkZoraSwimMove
+/* 801048F4 00101834  4B FF F6 A1 */ bl checkZoraSwimMove__9daAlink_cFv
 /* 801048F8 00101838  2C 03 00 00 */ cmpwi r3, 0
 /* 801048FC 0010183C  40 82 00 44 */ bne lbl_80104940
 /* 80104900 00101840  7F E3 FB 78 */ mr r3, r31
-/* 80104904 00101844  4B FF F6 05 */ bl daAlink_c_NS_checkUpSwimButtonAccept
+/* 80104904 00101844  4B FF F6 05 */ bl checkUpSwimButtonAccept__9daAlink_cFv
 /* 80104908 00101848  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010490C 0010184C  41 82 00 10 */ beq lbl_8010491C
 /* 80104910 00101850  88 1F 2F 8E */ lbz r0, 0x2f8e(r31)
@@ -102,7 +102,7 @@ lbl_8010491C:
 /* 80104930 00101870  40 80 00 10 */ bge lbl_80104940
 /* 80104934 00101874  7F E3 FB 78 */ mr r3, r31
 /* 80104938 00101878  38 80 00 00 */ li r4, 0
-/* 8010493C 0010187C  4B FF F9 BD */ bl daAlink_c_NS_procSwimWaitInit
+/* 8010493C 0010187C  4B FF F9 BD */ bl procSwimWaitInit__9daAlink_cFi
 lbl_80104940:
 /* 80104940 00101880  38 60 00 01 */ li r3, 1
 lbl_80104944:

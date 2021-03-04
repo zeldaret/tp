@@ -22,7 +22,7 @@ lbl_8002E878:
 /* 8002E88C 0002B7CC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002E890 0002B7D0  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8002E894 0002B7D4  7F E5 FB 78 */ mr r5, r31
-/* 8002E898 0002B7D8  4B FF CA D5 */ bl dComIfG_play_c_NS_setItemBombNumCount
+/* 8002E898 0002B7D8  4B FF CA D5 */ bl setItemBombNumCount__14dComIfG_play_cFUcs
 /* 8002E89C 0002B7DC  48 00 00 5C */ b lbl_8002E8F8
 lbl_8002E8A0:
 /* 8002E8A0 0002B7E0  28 00 00 4B */ cmplwi r0, 0x4b

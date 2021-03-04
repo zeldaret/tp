@@ -13,7 +13,7 @@
 /* 80180C48 0017DB88  D0 03 00 40 */ stfs f0, 0x40(r3)
 /* 80180C4C 0017DB8C  C0 05 00 08 */ lfs f0, 8(r5)
 /* 80180C50 0017DB90  D0 03 00 44 */ stfs f0, 0x44(r3)
-/* 80180C54 0017DB94  48 00 00 15 */ bl dCamera_c_NS_Reset_X2_
+/* 80180C54 0017DB94  48 00 00 15 */ bl Reset__9dCamera_cF4cXyz4cXyzfs_X2_
 /* 80180C58 0017DB98  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80180C5C 0017DB9C  7C 08 03 A6 */ mtlr r0
 /* 80180C60 0017DBA0  38 21 00 10 */ addi r1, r1, 0x10

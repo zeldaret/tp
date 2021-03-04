@@ -95,21 +95,21 @@ bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
 extern "C" {
 // startSound__14Z2SoundObjBaseF10JAISoundIDUlSc
 // Z2SoundObjBase::startSound(JAISoundID, unsigned long, char)
-asm void Z2SoundObjBase_NS_startSound(void) {
+asm void startSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE144.s"
 }
 
 // startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc
 // Z2SoundObjBase::startLevelSound(JAISoundID, unsigned long, char)
-asm void Z2SoundObjBase_NS_startLevelSound(void) {
+asm void startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE2D4.s"
 }
 
 // startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
 // Z2SoundObjBase::startCollisionSE(unsigned long, unsigned long, Z2SoundObjBase*)
-asm void Z2SoundObjBase_NS_startCollisionSE(void) {
+asm void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE4A4.s"
 }
@@ -226,28 +226,28 @@ asm void func_802BEBDC(void) {
 
 // initAnime__15Z2SoundObjAnimeFPvbff
 // Z2SoundObjAnime::initAnime(void*, bool, float, float)
-asm void Z2SoundObjAnime_NS_initAnime(void) {
+asm void initAnime__15Z2SoundObjAnimeFPvbff(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEBFC.s"
 }
 
 // ageSounds___15Z2SoundObjAnimeFv
 // Z2SoundObjAnime::ageSounds_(void)
-asm void Z2SoundObjAnime_NS_ageSounds_(void) {
+asm void ageSounds___15Z2SoundObjAnimeFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BED68.s"
 }
 
 // updateAnime__15Z2SoundObjAnimeFff
 // Z2SoundObjAnime::updateAnime(float, float)
-asm void Z2SoundObjAnime_NS_updateAnime(void) {
+asm void updateAnime__15Z2SoundObjAnimeFff(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEED4.s"
 }
 
 // updateSoundLifeTime___15Z2SoundObjAnimeFff
 // Z2SoundObjAnime::updateSoundLifeTime_(float, float)
-asm void Z2SoundObjAnime_NS_updateSoundLifeTime_(void) {
+asm void updateSoundLifeTime___15Z2SoundObjAnimeFff(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BF304.s"
 }

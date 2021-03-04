@@ -43,7 +43,7 @@ lbl_800E14C8:
 lbl_800E14FC:
 /* 800E14FC 000DE43C  57 C0 06 3F */ clrlwi. r0, r30, 0x18
 /* 800E1500 000DE440  40 82 00 14 */ bne lbl_800E1514
-/* 800E1504 000DE444  4B FF FF 05 */ bl daAlink_c_NS_checkForestOldCentury
+/* 800E1504 000DE444  4B FF FF 05 */ bl checkForestOldCentury__9daAlink_cFv
 /* 800E1508 000DE448  2C 03 00 00 */ cmpwi r3, 0
 /* 800E150C 000DE44C  40 82 00 08 */ bne lbl_800E1514
 /* 800E1510 000DE450  3B E0 00 00 */ li r31, 0

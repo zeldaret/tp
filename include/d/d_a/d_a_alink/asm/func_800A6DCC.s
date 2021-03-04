@@ -144,7 +144,7 @@ lbl_800A6FA8:
 /* 800A6FDC 000A3F1C  7F E3 FB 78 */ mr r3, r31
 /* 800A6FE0 000A3F20  38 81 00 24 */ addi r4, r1, 0x24
 /* 800A6FE4 000A3F24  38 A1 00 18 */ addi r5, r1, 0x18
-/* 800A6FE8 000A3F28  4B FF B1 B1 */ bl daAlink_c_NS_commonLineCheck
+/* 800A6FE8 000A3F28  4B FF B1 B1 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800A6FEC 000A3F2C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A6FF0 000A3F30  41 82 00 3C */ beq lbl_800A702C
 /* 800A6FF4 000A3F34  38 7F 1B 5C */ addi r3, r31, 0x1b5c

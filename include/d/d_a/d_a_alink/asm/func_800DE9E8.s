@@ -5,7 +5,7 @@
 /* 800DE9F8 000DB938  93 C1 00 08 */ stw r30, 8(r1)
 /* 800DE9FC 000DB93C  7C 7E 1B 78 */ mr r30, r3
 /* 800DEA00 000DB940  3B E0 00 00 */ li r31, 0
-/* 800DEA04 000DB944  4B FF FF B5 */ bl daAlink_c_NS_checkBowReadyAnime
+/* 800DEA04 000DB944  4B FF FF B5 */ bl checkBowReadyAnime__9daAlink_cCFv
 /* 800DEA08 000DB948  2C 03 00 00 */ cmpwi r3, 0
 /* 800DEA0C 000DB94C  40 82 00 10 */ bne lbl_800DEA1C
 /* 800DEA10 000DB950  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)

@@ -4,7 +4,7 @@
 /* 8011E06C 0011AFAC  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 8011E070 0011AFB0  93 C1 00 38 */ stw r30, 0x38(r1)
 /* 8011E074 0011AFB4  7C 7F 1B 78 */ mr r31, r3
-/* 8011E078 0011AFB8  4B FF A4 F5 */ bl daAlink_c_NS_setShapeAngleToTalkActor
+/* 8011E078 0011AFB8  4B FF A4 F5 */ bl setShapeAngleToTalkActor__9daAlink_cFv
 /* 8011E07C 0011AFBC  80 1F 31 98 */ lwz r0, 0x3198(r31)
 /* 8011E080 0011AFC0  2C 00 00 00 */ cmpwi r0, 0
 /* 8011E084 0011AFC4  41 82 02 10 */ beq lbl_8011E294
@@ -131,7 +131,7 @@ lbl_8011E224:
 /* 8011E234 0011B174  38 00 00 00 */ li r0, 0
 /* 8011E238 0011B178  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 8011E23C 0011B17C  7F E3 FB 78 */ mr r3, r31
-/* 8011E240 0011B180  4B FF A4 95 */ bl daAlink_c_NS_setTradeItemAnime
+/* 8011E240 0011B180  4B FF A4 95 */ bl setTradeItemAnime__9daAlink_cFv
 /* 8011E244 0011B184  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011E248 0011B188  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011E24C 0011B18C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -148,7 +148,7 @@ lbl_8011E270:
 /* 8011E270 0011B1B0  38 00 00 00 */ li r0, 0
 /* 8011E274 0011B1B4  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 8011E278 0011B1B8  7F E3 FB 78 */ mr r3, r31
-/* 8011E27C 0011B1BC  4B FF A4 59 */ bl daAlink_c_NS_setTradeItemAnime
+/* 8011E27C 0011B1BC  4B FF A4 59 */ bl setTradeItemAnime__9daAlink_cFv
 /* 8011E280 0011B1C0  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011E284 0011B1C4  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011E288 0011B1C8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -227,7 +227,7 @@ lbl_8011E380:
 /* 8011E38C 0011B2CC  41 82 00 28 */ beq lbl_8011E3B4
 /* 8011E390 0011B2D0  7F E3 FB 78 */ mr r3, r31
 /* 8011E394 0011B2D4  38 80 01 89 */ li r4, 0x189
-/* 8011E398 0011B2D8  4B F8 EB E9 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011E398 0011B2D8  4B F8 EB E9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011E39C 0011B2DC  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 8011E3A0 0011B2E0  60 00 01 00 */ ori r0, r0, 0x100
 /* 8011E3A4 0011B2E4  90 1F 31 A0 */ stw r0, 0x31a0(r31)
@@ -236,7 +236,7 @@ lbl_8011E380:
 /* 8011E3B0 0011B2F0  48 00 00 0C */ b lbl_8011E3BC
 lbl_8011E3B4:
 /* 8011E3B4 0011B2F4  7F E3 FB 78 */ mr r3, r31
-/* 8011E3B8 0011B2F8  4B FF A3 C1 */ bl daAlink_c_NS_setTradeItemOutHand
+/* 8011E3B8 0011B2F8  4B FF A3 C1 */ bl setTradeItemOutHand__9daAlink_cFv
 lbl_8011E3BC:
 /* 8011E3BC 0011B2FC  38 60 00 01 */ li r3, 1
 /* 8011E3C0 0011B300  83 E1 00 3C */ lwz r31, 0x3c(r1)

@@ -28,7 +28,7 @@
 /* 8020EDCC 0020BD0C  41 82 00 10 */ beq lbl_8020EDDC
 /* 8020EDD0 0020BD10  7F E3 FB 78 */ mr r3, r31
 /* 8020EDD4 0020BD14  80 9F 00 24 */ lwz r4, 0x24(r31)
-/* 8020EDD8 0020BD18  48 00 07 CD */ bl dMeterString_c_NS_createString
+/* 8020EDD8 0020BD18  48 00 07 CD */ bl createString__14dMeterString_cFi
 lbl_8020EDDC:
 /* 8020EDDC 0020BD1C  7F E3 FB 78 */ mr r3, r31
 /* 8020EDE0 0020BD20  83 E1 00 0C */ lwz r31, 0xc(r1)

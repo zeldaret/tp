@@ -484,7 +484,7 @@ draw__12diff_model_cFv:
 /* 800492D4 00046214  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 800492D8 00046218  80 9E 00 04 */	lwz r4, 4(r30)
 /* 800492DC 0004621C  80 84 00 04 */	lwz r4, 4(r4)
-/* 800492E0 00046220  48 15 BA C1 */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 800492E0 00046220  48 15 BA C1 */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
 /* 800492E4 00046224  88 1E 00 10 */	lbz r0, 0x10(r30)
 /* 800492E8 00046228  28 00 00 01 */	cmplwi r0, 1
 /* 800492EC 0004622C  40 82 00 34 */	bne lbl_80049320

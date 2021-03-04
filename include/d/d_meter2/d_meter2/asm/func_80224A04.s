@@ -97,15 +97,15 @@ lbl_80224B28:
 /* 80224B70 00221AB0  41 82 00 10 */ beq lbl_80224B80
 lbl_80224B74:
 /* 80224B74 00221AB4  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80224B78 00221AB8  4B FF 0B 69 */ bl dMeter2Draw_c_NS_setAlphaKanteraAnimeMin
+/* 80224B78 00221AB8  4B FF 0B 69 */ bl setAlphaKanteraAnimeMin__13dMeter2Draw_cFv
 /* 80224B7C 00221ABC  48 00 00 0C */ b lbl_80224B88
 lbl_80224B80:
 /* 80224B80 00221AC0  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80224B84 00221AC4  4B FF 0B D9 */ bl dMeter2Draw_c_NS_setAlphaKanteraAnimeMax
+/* 80224B84 00221AC4  4B FF 0B D9 */ bl setAlphaKanteraAnimeMax__13dMeter2Draw_cFv
 lbl_80224B88:
 /* 80224B88 00221AC8  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80224B8C 00221ACC  38 80 00 01 */ li r4, 1
-/* 80224B90 00221AD0  4B FF 0A 29 */ bl dMeter2Draw_c_NS_setAlphaKanteraChange
+/* 80224B90 00221AD0  4B FF 0A 29 */ bl setAlphaKanteraChange__13dMeter2Draw_cFb
 /* 80224B94 00221AD4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80224B98 00221AD8  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80224B9C 00221ADC  80 01 00 14 */ lwz r0, 0x14(r1)

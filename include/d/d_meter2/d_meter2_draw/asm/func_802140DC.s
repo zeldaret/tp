@@ -201,10 +201,10 @@ lbl_8021438C:
 lbl_802143D8:
 /* 802143D8 00211318  7F 23 CB 78 */ mr r3, r25
 /* 802143DC 0021131C  C0 3A 00 00 */ lfs f1, 0(r26)
-/* 802143E0 00211320  4B FF F9 0D */ bl dMeter2Draw_c_NS_playPikariBckAnimation
+/* 802143E0 00211320  4B FF F9 0D */ bl playPikariBckAnimation__13dMeter2Draw_cFf
 /* 802143E4 00211324  7F 23 CB 78 */ mr r3, r25
 /* 802143E8 00211328  C0 3A 00 00 */ lfs f1, 0(r26)
-/* 802143EC 0021132C  4B FF FA 51 */ bl dMeter2Draw_c_NS_playPikariBpkAnimation
+/* 802143EC 0021132C  4B FF FA 51 */ bl playPikariBpkAnimation__13dMeter2Draw_cFf
 /* 802143F0 00211330  80 79 03 9C */ lwz r3, 0x39c(r25)
 /* 802143F4 00211334  80 63 00 04 */ lwz r3, 4(r3)
 /* 802143F8 00211338  D3 63 00 D4 */ stfs f27, 0xd4(r3)

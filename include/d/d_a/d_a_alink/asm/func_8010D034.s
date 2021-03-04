@@ -4,14 +4,14 @@
 /* 8010D040 00109F80  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 8010D044 00109F84  93 C1 00 18 */ stw r30, 0x18(r1)
 /* 8010D048 00109F88  7C 7E 1B 78 */ mr r30, r3
-/* 8010D04C 00109F8C  4B FF E9 21 */ bl daAlink_c_NS_commonHookshotRoofWait
+/* 8010D04C 00109F8C  4B FF E9 21 */ bl commonHookshotRoofWait__9daAlink_cFv
 /* 8010D050 00109F90  2C 03 00 00 */ cmpwi r3, 0
 /* 8010D054 00109F94  41 82 00 0C */ beq lbl_8010D060
 /* 8010D058 00109F98  38 60 00 01 */ li r3, 1
 /* 8010D05C 00109F9C  48 00 01 00 */ b lbl_8010D15C
 lbl_8010D060:
 /* 8010D060 00109FA0  7F C3 F3 78 */ mr r3, r30
-/* 8010D064 00109FA4  4B FF B8 3D */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010D064 00109FA4  4B FF B8 3D */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010D068 00109FA8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010D06C 00109FAC  41 82 00 20 */ beq lbl_8010D08C
 /* 8010D070 00109FB0  7F C3 F3 78 */ mr r3, r30
@@ -31,7 +31,7 @@ lbl_8010D08C:
 /* 8010D0A4 00109FE4  7F C3 F3 78 */ mr r3, r30
 /* 8010D0A8 00109FE8  38 80 00 01 */ li r4, 1
 /* 8010D0AC 00109FEC  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
-/* 8010D0B0 00109FF0  4B FB 99 99 */ bl daAlink_c_NS_procFallInit
+/* 8010D0B0 00109FF0  4B FB 99 99 */ bl procFallInit__9daAlink_cFif
 /* 8010D0B4 00109FF4  48 00 00 A8 */ b lbl_8010D15C
 lbl_8010D0B8:
 /* 8010D0B8 00109FF8  3B FE 1F D0 */ addi r31, r30, 0x1fd0
@@ -43,7 +43,7 @@ lbl_8010D0B8:
 /* 8010D0D0 0010A010  38 80 00 00 */ li r4, 0
 /* 8010D0D4 0010A014  80 BE 28 58 */ lwz r5, 0x2858(r30)
 /* 8010D0D8 0010A018  38 C0 00 00 */ li r6, 0
-/* 8010D0DC 0010A01C  4B FF F7 55 */ bl daAlink_c_NS_procHookshotRoofWaitInit
+/* 8010D0DC 0010A01C  4B FF F7 55 */ bl procHookshotRoofWaitInit__9daAlink_cFiP10fopAc_ac_ci
 /* 8010D0E0 0010A020  48 00 00 7C */ b lbl_8010D15C
 lbl_8010D0E4:
 /* 8010D0E4 0010A024  7F E3 FB 78 */ mr r3, r31
@@ -53,7 +53,7 @@ lbl_8010D0E4:
 /* 8010D0F4 0010A034  41 82 00 14 */ beq lbl_8010D108
 /* 8010D0F8 0010A038  7F C3 F3 78 */ mr r3, r30
 /* 8010D0FC 0010A03C  38 80 00 01 */ li r4, 1
-/* 8010D100 0010A040  4B FD 54 81 */ bl daAlink_c_NS_setHeavyBoots
+/* 8010D100 0010A040  4B FD 54 81 */ bl setHeavyBoots__9daAlink_cFi
 /* 8010D104 0010A044  48 00 00 54 */ b lbl_8010D158
 lbl_8010D108:
 /* 8010D108 0010A048  80 1E 05 70 */ lwz r0, 0x570(r30)

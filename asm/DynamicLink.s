@@ -688,7 +688,7 @@ lbl_80262B30:
 .global callback__20DynamicModuleControlFPv
 /* 80262B34 0025FA74  38 63 27 94 */	addi r3, r3, callback__20DynamicModuleControlFPv@l
 /* 80262B38 0025FA78  7F E4 FB 78 */	mr r4, r31
-/* 80262B3C 0025FA7C  4B DB 31 39 */	bl mDoDvdThd_callback_c_NS_create
+/* 80262B3C 0025FA7C  4B DB 31 39 */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 80262B40 0025FA80  90 7F 00 28 */	stw r3, 0x28(r31)
 /* 80262B44 0025FA84  80 1F 00 28 */	lwz r0, 0x28(r31)
 /* 80262B48 0025FA88  28 00 00 00 */	cmplwi r0, 0

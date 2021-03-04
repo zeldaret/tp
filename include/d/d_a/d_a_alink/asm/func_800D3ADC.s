@@ -13,20 +13,20 @@
 /* 800D3B0C 000D0A4C  7C 00 00 34 */ cntlzw r0, r0
 /* 800D3B10 000D0A50  54 1D DE 3E */ rlwinm r29, r0, 0x1b, 0x18, 0x1f
 /* 800D3B14 000D0A54  38 80 00 23 */ li r4, 0x23
-/* 800D3B18 000D0A58  4B FE E4 55 */ bl daAlink_c_NS_commonProcInit
+/* 800D3B18 000D0A58  4B FE E4 55 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D3B1C 000D0A5C  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
 /* 800D3B20 000D0A60  28 00 01 03 */ cmplwi r0, 0x103
 /* 800D3B24 000D0A64  41 82 00 1C */ beq lbl_800D3B40
 /* 800D3B28 000D0A68  7F C3 F3 78 */ mr r3, r30
 /* 800D3B2C 000D0A6C  38 80 00 00 */ li r4, 0
 /* 800D3B30 000D0A70  38 A0 00 00 */ li r5, 0
-/* 800D3B34 000D0A74  4B FE D7 A9 */ bl daAlink_c_NS_deleteEquipItem
+/* 800D3B34 000D0A74  4B FE D7 A9 */ bl deleteEquipItem__9daAlink_cFii
 /* 800D3B38 000D0A78  7F C3 F3 78 */ mr r3, r30
-/* 800D3B3C 000D0A7C  4B FF D7 2D */ bl daAlink_c_NS_setSwordModel
+/* 800D3B3C 000D0A7C  4B FF D7 2D */ bl setSwordModel__9daAlink_cFv
 lbl_800D3B40:
 /* 800D3B40 000D0A80  7F C3 F3 78 */ mr r3, r30
 /* 800D3B44 000D0A84  38 80 00 1E */ li r4, 0x1e
-/* 800D3B48 000D0A88  4B FF D9 E5 */ bl daAlink_c_NS_setCutType
+/* 800D3B48 000D0A88  4B FF D9 E5 */ bl setCutType__9daAlink_cFUc
 /* 800D3B4C 000D0A8C  38 7F 04 94 */ addi r3, r31, 0x494
 /* 800D3B50 000D0A90  C0 03 00 30 */ lfs f0, 0x30(r3)
 /* 800D3B54 000D0A94  D0 1E 04 FC */ stfs f0, 0x4fc(r30)
@@ -49,7 +49,7 @@ lbl_800D3B94:
 /* 800D3B94 000D0AD4  7F C3 F3 78 */ mr r3, r30
 /* 800D3B98 000D0AD8  38 80 00 01 */ li r4, 1
 /* 800D3B9C 000D0ADC  38 A0 00 01 */ li r5, 1
-/* 800D3BA0 000D0AE0  4B FE 79 19 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800D3BA0 000D0AE0  4B FE 79 19 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800D3BA4 000D0AE4  2C 03 00 00 */ cmpwi r3, 0
 /* 800D3BA8 000D0AE8  41 82 00 14 */ beq lbl_800D3BBC
 /* 800D3BAC 000D0AEC  C0 3E 04 FC */ lfs f1, 0x4fc(r30)
@@ -80,7 +80,7 @@ lbl_800D3BF8:
 /* 800D3C00 000D0B40  B0 1E 30 7E */ sth r0, 0x307e(r30)
 /* 800D3C04 000D0B44  38 7F 04 94 */ addi r3, r31, 0x494
 /* 800D3C08 000D0B48  C3 E3 00 08 */ lfs f31, 8(r3)
-/* 800D3C0C 000D0B4C  4B FF D3 51 */ bl daAlink_c_NS_getSwordAtType
+/* 800D3C0C 000D0B4C  4B FF D3 51 */ bl getSwordAtType__9daAlink_cFv
 /* 800D3C10 000D0B50  7C 64 1B 78 */ mr r4, r3
 /* 800D3C14 000D0B54  7F C3 F3 78 */ mr r3, r30
 /* 800D3C18 000D0B58  38 A0 00 01 */ li r5, 1
@@ -90,7 +90,7 @@ lbl_800D3BF8:
 /* 800D3C28 000D0B68  39 3F 04 94 */ addi r9, r31, 0x494
 /* 800D3C2C 000D0B6C  C0 29 00 4C */ lfs f1, 0x4c(r9)
 /* 800D3C30 000D0B70  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
-/* 800D3C34 000D0B74  4B FF D9 0D */ bl daAlink_c_NS_setCylAtParam
+/* 800D3C34 000D0B74  4B FF D9 0D */ bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
 /* 800D3C38 000D0B78  3C 60 00 02 */ lis r3, 0x00020003@ha
 /* 800D3C3C 000D0B7C  38 03 00 03 */ addi r0, r3, 0x00020003@l
 /* 800D3C40 000D0B80  90 1E 32 CC */ stw r0, 0x32cc(r30)
@@ -101,11 +101,11 @@ lbl_800D3BF8:
 /* 800D3C54 000D0B94  FC 40 F8 90 */ fmr f2, f31
 /* 800D3C58 000D0B98  A8 BF 04 94 */ lha r5, 0x494(r31)
 /* 800D3C5C 000D0B9C  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 800D3C60 000D0BA0  4B FD 93 AD */ bl daAlink_c_NS_setSingleAnime
+/* 800D3C60 000D0BA0  4B FD 93 AD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800D3C64 000D0BA4  7F C3 F3 78 */ mr r3, r30
 /* 800D3C68 000D0BA8  3C 80 00 01 */ lis r4, 0x00010097@ha
 /* 800D3C6C 000D0BAC  38 84 00 97 */ addi r4, r4, 0x00010097@l
-/* 800D3C70 000D0BB0  4B FF E6 15 */ bl daAlink_c_NS_setSwordVoiceSe
+/* 800D3C70 000D0BB0  4B FF E6 15 */ bl setSwordVoiceSe__9daAlink_cFUl
 /* 800D3C74 000D0BB4  38 00 00 00 */ li r0, 0
 /* 800D3C78 000D0BB8  B0 1E 30 12 */ sth r0, 0x3012(r30)
 /* 800D3C7C 000D0BBC  C0 1E 04 D4 */ lfs f0, 0x4d4(r30)
@@ -116,7 +116,7 @@ lbl_800D3BF8:
 /* 800D3C90 000D0BD0  60 00 80 00 */ ori r0, r0, 0x8000
 /* 800D3C94 000D0BD4  90 03 5F 18 */ stw r0, 0x5f18(r3)
 /* 800D3C98 000D0BD8  7F C3 F3 78 */ mr r3, r30
-/* 800D3C9C 000D0BDC  48 05 04 A9 */ bl daAlink_c_NS_setCutWaterDropEffect
+/* 800D3C9C 000D0BDC  48 05 04 A9 */ bl setCutWaterDropEffect__9daAlink_cFv
 /* 800D3CA0 000D0BE0  38 00 00 01 */ li r0, 1
 /* 800D3CA4 000D0BE4  98 1E 2F D0 */ stb r0, 0x2fd0(r30)
 /* 800D3CA8 000D0BE8  38 60 00 01 */ li r3, 1

@@ -98,7 +98,7 @@ set__11dRes_info_cFPCcPCcUcP7JKRHeap:
 /* 8003A39C 000372DC  38 61 00 08 */	addi r3, r1, 8
 /* 8003A3A0 000372E0  7F C4 F3 78 */	mr r4, r30
 /* 8003A3A4 000372E4  7F E5 FB 78 */	mr r5, r31
-/* 8003A3A8 000372E8  4B FD BA 6D */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 8003A3A8 000372E8  4B FD BA 6D */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 8003A3AC 000372EC  90 7C 00 10 */	stw r3, 0x10(r28)
 /* 8003A3B0 000372F0  80 1C 00 10 */	lwz r0, 0x10(r28)
 /* 8003A3B4 000372F4  28 00 00 00 */	cmplwi r0, 0
@@ -589,7 +589,7 @@ J3DTevStage_X1_:
 /* 8003AAD4 00037A14  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003AAD8 00037A18  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8003AADC 00037A1C  7C 7F 1B 78 */	mr r31, r3
-/* 8003AAE0 00037A20  4B FD 37 B9 */	bl J3DTevStage_NS_setTevStageInfo
+/* 8003AAE0 00037A20  4B FD 37 B9 */	bl setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo
 /* 8003AAE4 00037A24  88 1F 00 07 */	lbz r0, 7(r31)
 /* 8003AAE8 00037A28  54 04 07 B6 */	rlwinm r4, r0, 0, 0x1e, 0x1b
 /* 8003AAEC 00037A2C  38 62 C9 E4 */	addi r3, r2, lbl_804563E4-_SDA2_BASE_

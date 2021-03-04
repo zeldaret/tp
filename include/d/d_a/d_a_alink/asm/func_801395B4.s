@@ -12,7 +12,7 @@
 /* 801395E0 00136520  C0 26 00 2C */ lfs f1, 0x2c(r6)
 /* 801395E4 00136524  38 C0 FF FF */ li r6, -1
 /* 801395E8 00136528  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 801395EC 0013652C  4B F7 3D ED */ bl daAlink_c_NS_setUpperAnime
+/* 801395EC 0013652C  4B F7 3D ED */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 801395F0 00136530  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801395F4 00136534  7C 08 03 A6 */ mtlr r0
 /* 801395F8 00136538  38 21 00 10 */ addi r1, r1, 0x10

@@ -7,22 +7,22 @@
 /* 800AA804 000A7744  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800AA808 000A7748  41 82 01 BC */ beq lbl_800AA9C4
 /* 800AA80C 000A774C  38 9F 10 F0 */ addi r4, r31, 0x10f0
-/* 800AA810 000A7750  48 02 6F DD */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA810 000A7750  48 02 6F DD */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA814 000A7754  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA818 000A7758  40 82 00 38 */ bne lbl_800AA850
 /* 800AA81C 000A775C  7F E3 FB 78 */ mr r3, r31
 /* 800AA820 000A7760  38 9F 08 50 */ addi r4, r31, 0x850
-/* 800AA824 000A7764  48 02 6F C9 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA824 000A7764  48 02 6F C9 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA828 000A7768  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA82C 000A776C  40 82 00 24 */ bne lbl_800AA850
 /* 800AA830 000A7770  7F E3 FB 78 */ mr r3, r31
 /* 800AA834 000A7774  38 9F 09 8C */ addi r4, r31, 0x98c
-/* 800AA838 000A7778  48 02 6F B5 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA838 000A7778  48 02 6F B5 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA83C 000A777C  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA840 000A7780  40 82 00 10 */ bne lbl_800AA850
 /* 800AA844 000A7784  7F E3 FB 78 */ mr r3, r31
 /* 800AA848 000A7788  38 9F 0A C8 */ addi r4, r31, 0xac8
-/* 800AA84C 000A778C  48 02 6F A1 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA84C 000A778C  48 02 6F A1 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 lbl_800AA850:
 /* 800AA850 000A7790  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
 /* 800AA854 000A7794  28 00 01 21 */ cmplwi r0, 0x121
@@ -127,7 +127,7 @@ lbl_800AA9B4:
 /* 800AA9BC 000A78FC  90 1F 05 70 */ stw r0, 0x570(r31)
 /* 800AA9C0 000A7900  48 00 00 08 */ b lbl_800AA9C8
 lbl_800AA9C4:
-/* 800AA9C4 000A7904  4B FF FD 51 */ bl daAlink_c_NS_resetWolfAtCollision
+/* 800AA9C4 000A7904  4B FF FD 51 */ bl resetWolfAtCollision__9daAlink_cFv
 lbl_800AA9C8:
 /* 800AA9C8 000A7908  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800AA9CC 000A790C  80 01 00 24 */ lwz r0, 0x24(r1)

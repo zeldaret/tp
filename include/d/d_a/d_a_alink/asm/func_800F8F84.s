@@ -7,7 +7,7 @@
 /* 800F8F9C 000F5EDC  A8 1F 2F E2 */ lha r0, 0x2fe2(r31)
 /* 800F8FA0 000F5EE0  7C 03 00 50 */ subf r0, r3, r0
 /* 800F8FA4 000F5EE4  7C 03 07 34 */ extsh r3, r0
-/* 800F8FA8 000F5EE8  4B FB A4 ED */ bl daAlink_c_NS_getDirectionFromAngle
+/* 800F8FA8 000F5EE8  4B FB A4 ED */ bl getDirectionFromAngle__9daAlink_cFs
 /* 800F8FAC 000F5EEC  A8 BF 04 E6 */ lha r5, 0x4e6(r31)
 /* 800F8FB0 000F5EF0  54 A0 04 38 */ rlwinm r0, r5, 0, 0x10, 0x1c
 /* 800F8FB4 000F5EF4  3C 80 80 44 */ lis r4, lbl_80439A20@ha

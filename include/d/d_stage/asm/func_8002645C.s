@@ -32,7 +32,7 @@ lbl_800264D4:
 /* 800264D4 00023414  38 6D 87 F4 */ addi r3, r13, 0x80450D74 - 0x80458580 /*SDA HACK; original: lbl_80450D74-_SDA_BASE_*/
 /* 800264D8 00023418  80 1C 00 00 */ lwz r0, 0(r28)
 /* 800264DC 0002341C  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 800264E0 00023420  4B FF E5 55 */ bl dStage_roomControl_c_NS_roomDzs_c_NS_create
+/* 800264E0 00023420  4B FF E5 55 */ bl create__Q220dStage_roomControl_c9roomDzs_cFUc
 lbl_800264E4:
 /* 800264E4 00023424  3B C0 00 00 */ li r30, 0
 /* 800264E8 00023428  48 00 00 CC */ b lbl_800265B4
@@ -40,7 +40,7 @@ lbl_800264EC:
 /* 800264EC 0002342C  38 6D 87 F4 */ addi r3, r13, 0x80450D74 - 0x80458580 /*SDA HACK; original: lbl_80450D74-_SDA_BASE_*/
 /* 800264F0 00023430  57 C4 06 3E */ clrlwi r4, r30, 0x18
 /* 800264F4 00023434  88 BF 00 0A */ lbz r5, 0xa(r31)
-/* 800264F8 00023438  4B FF E6 4D */ bl dStage_roomControl_c_NS_roomDzs_c_NS_add
+/* 800264F8 00023438  4B FF E6 4D */ bl add__Q220dStage_roomControl_c9roomDzs_cFUcUc
 /* 800264FC 0002343C  7C 7A 1B 78 */ mr r26, r3
 /* 80026500 00023440  28 03 00 00 */ cmplwi r3, 0
 /* 80026504 00023444  40 82 00 44 */ bne lbl_80026548
@@ -75,7 +75,7 @@ lbl_80026548:
 /* 80026570 000234B0  38 C0 00 04 */ li r6, 4
 /* 80026574 000234B4  4B FF FB 41 */ bl dStage_dt_c_decode
 /* 80026578 000234B8  38 60 00 00 */ li r3, 0
-/* 8002657C 000234BC  48 00 64 01 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8002657C 000234BC  48 00 64 01 */ bl getLayerNo__14dComIfG_play_cFi
 /* 80026580 000234C0  7C 65 1B 78 */ mr r5, r3
 /* 80026584 000234C4  3C 60 80 3A */ lis r3, lbl_803A65FC@ha
 /* 80026588 000234C8  38 63 65 FC */ addi r3, r3, lbl_803A65FC@l

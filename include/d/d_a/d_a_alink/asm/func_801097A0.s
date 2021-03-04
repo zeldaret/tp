@@ -4,10 +4,10 @@
 /* 801097AC 001066EC  39 61 00 20 */ addi r11, r1, 0x20
 /* 801097B0 001066F0  48 25 8A 2D */ bl _savegpr_29
 /* 801097B4 001066F4  7C 7D 1B 78 */ mr r29, r3
-/* 801097B8 001066F8  4B FF EF 25 */ bl daAlink_c_NS_resetHookshotMode
+/* 801097B8 001066F8  4B FF EF 25 */ bl resetHookshotMode__9daAlink_cFv
 /* 801097BC 001066FC  7F A3 EB 78 */ mr r3, r29
 /* 801097C0 00106700  38 80 00 00 */ li r4, 0
-/* 801097C4 00106704  4B FA D9 CD */ bl daAlink_c_NS_cancelItemUseQuake
+/* 801097C4 00106704  4B FA D9 CD */ bl cancelItemUseQuake__9daAlink_cFi
 /* 801097C8 00106708  7F A3 EB 78 */ mr r3, r29
 /* 801097CC 0010670C  3C 80 00 02 */ lis r4, 0x0002004B@ha
 /* 801097D0 00106710  38 84 00 4B */ addi r4, r4, 0x0002004B@l
@@ -24,7 +24,7 @@
 /* 801097FC 0010673C  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
 /* 80109800 00106740  A0 9D 30 A8 */ lhz r4, 0x30a8(r29)
 /* 80109804 00106744  A0 BD 30 AA */ lhz r5, 0x30aa(r29)
-/* 80109808 00106748  4B F0 60 41 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 80109808 00106748  4B F0 60 41 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 /* 8010980C 0010674C  48 00 00 64 */ b lbl_80109870
 lbl_80109810:
 /* 80109810 00106750  54 00 04 3E */ clrlwi r0, r0, 0x10
@@ -33,7 +33,7 @@ lbl_80109810:
 /* 8010981C 0010675C  83 FD 27 E0 */ lwz r31, 0x27e0(r29)
 /* 80109820 00106760  3B C0 00 01 */ li r30, 1
 /* 80109824 00106764  7F E3 FB 78 */ mr r3, r31
-/* 80109828 00106768  4B F6 9F BD */ bl dAttention_c_NS_LockonTruth
+/* 80109828 00106768  4B F6 9F BD */ bl LockonTruth__12dAttention_cFv
 /* 8010982C 0010676C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80109830 00106770  40 82 00 14 */ bne lbl_80109844
 /* 80109834 00106774  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -53,7 +53,7 @@ lbl_80109864:
 /* 80109864 001067A4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_80109868:
 /* 80109868 001067A8  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010986C 001067AC  4B FA 3B 3D */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 8010986C 001067AC  4B FA 3B 3D */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
 lbl_80109870:
 /* 80109870 001067B0  38 00 00 00 */ li r0, 0
 /* 80109874 001067B4  B0 1D 30 8E */ sth r0, 0x308e(r29)

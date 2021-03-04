@@ -7,7 +7,7 @@
 /* 80139A88 001369C8  48 22 87 51 */ bl _savegpr_28
 /* 80139A8C 001369CC  7C 7E 1B 78 */ mr r30, r3
 /* 80139A90 001369D0  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 80139A94 001369D4  4B FE FF ED */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 80139A94 001369D4  4B FE FF ED */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 80139A98 001369D8  2C 03 00 00 */ cmpwi r3, 0
 /* 80139A9C 001369DC  41 82 00 0C */ beq lbl_80139AA8
 /* 80139AA0 001369E0  38 60 00 01 */ li r3, 1
@@ -40,20 +40,20 @@ lbl_80139AEC:
 /* 80139B00 00136A40  41 82 00 20 */ beq lbl_80139B20
 /* 80139B04 00136A44  7F C3 F3 78 */ mr r3, r30
 /* 80139B08 00136A48  38 80 00 01 */ li r4, 1
-/* 80139B0C 00136A4C  4B F9 79 25 */ bl daAlink_c_NS_resetCombo
+/* 80139B0C 00136A4C  4B F9 79 25 */ bl resetCombo__9daAlink_cFi
 /* 80139B10 00136A50  7F C3 F3 78 */ mr r3, r30
 /* 80139B14 00136A54  38 80 00 00 */ li r4, 0
-/* 80139B18 00136A58  48 00 23 0D */ bl daAlink_c_NS_procWolfLockAttackInit
+/* 80139B18 00136A58  48 00 23 0D */ bl procWolfLockAttackInit__9daAlink_cFi
 /* 80139B1C 00136A5C  48 00 02 A4 */ b lbl_80139DC0
 lbl_80139B20:
 /* 80139B20 00136A60  7F C3 F3 78 */ mr r3, r30
 /* 80139B24 00136A64  38 80 00 01 */ li r4, 1
 /* 80139B28 00136A68  38 A0 00 00 */ li r5, 0
-/* 80139B2C 00136A6C  48 00 17 75 */ bl daAlink_c_NS_procWolfRollAttackInit
+/* 80139B2C 00136A6C  48 00 17 75 */ bl procWolfRollAttackInit__9daAlink_cFii
 /* 80139B30 00136A70  48 00 02 90 */ b lbl_80139DC0
 lbl_80139B34:
 /* 80139B34 00136A74  7F C3 F3 78 */ mr r3, r30
-/* 80139B38 00136A78  4B FF F8 6D */ bl daAlink_c_NS_checkWolfAttackAction
+/* 80139B38 00136A78  4B FF F8 6D */ bl checkWolfAttackAction__9daAlink_cFv
 /* 80139B3C 00136A7C  48 00 02 84 */ b lbl_80139DC0
 lbl_80139B40:
 /* 80139B40 00136A80  A8 7E 30 08 */ lha r3, 0x3008(r30)
@@ -65,11 +65,11 @@ lbl_80139B40:
 /* 80139B58 00136A98  2C 00 00 00 */ cmpwi r0, 0
 /* 80139B5C 00136A9C  40 82 01 24 */ bne lbl_80139C80
 /* 80139B60 00136AA0  7F C3 F3 78 */ mr r3, r30
-/* 80139B64 00136AA4  4B FF FC 41 */ bl daAlink_c_NS_checkWolfLockAttackChargeState
+/* 80139B64 00136AA4  4B FF FC 41 */ bl checkWolfLockAttackChargeState__9daAlink_cFv
 /* 80139B68 00136AA8  2C 03 00 00 */ cmpwi r3, 0
 /* 80139B6C 00136AAC  41 82 01 14 */ beq lbl_80139C80
 /* 80139B70 00136AB0  7F C3 F3 78 */ mr r3, r30
-/* 80139B74 00136AB4  4B FF F1 45 */ bl daAlink_c_NS_setWolfLockDomeModel
+/* 80139B74 00136AB4  4B FF F1 45 */ bl setWolfLockDomeModel__9daAlink_cFv
 /* 80139B78 00136AB8  48 00 01 08 */ b lbl_80139C80
 lbl_80139B7C:
 /* 80139B7C 00136ABC  80 1E 05 80 */ lwz r0, 0x580(r30)
@@ -146,10 +146,10 @@ lbl_80139C80:
 /* 80139C80 00136BC0  7F C3 F3 78 */ mr r3, r30
 /* 80139C84 00136BC4  3C 80 00 01 */ lis r4, 0x00010037@ha
 /* 80139C88 00136BC8  38 84 00 37 */ addi r4, r4, 0x00010037@l
-/* 80139C8C 00136BCC  4B F8 54 2D */ bl daAlink_c_NS_voiceStartLevel
+/* 80139C8C 00136BCC  4B F8 54 2D */ bl voiceStartLevel__9daAlink_cFUl
 /* 80139C90 00136BD0  3B 80 00 00 */ li r28, 0
 /* 80139C94 00136BD4  7F C3 F3 78 */ mr r3, r30
-/* 80139C98 00136BD8  4B FF D4 4D */ bl daAlink_c_NS_getWolfLieMoveAnmSpeed
+/* 80139C98 00136BD8  4B FF D4 4D */ bl getWolfLieMoveAnmSpeed__9daAlink_cFv
 /* 80139C9C 00136BDC  FF E0 08 90 */ fmr f31, f1
 /* 80139CA0 00136BE0  C0 3F 00 0C */ lfs f1, 0xc(r31)
 /* 80139CA4 00136BE4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -166,7 +166,7 @@ lbl_80139CC8:
 /* 80139CC8 00136C08  3B 80 00 01 */ li r28, 1
 lbl_80139CCC:
 /* 80139CCC 00136C0C  7F C3 F3 78 */ mr r3, r30
-/* 80139CD0 00136C10  4B FE F2 8D */ bl daAlink_c_NS_setWolfAtnMoveDirection
+/* 80139CD0 00136C10  4B FE F2 8D */ bl setWolfAtnMoveDirection__9daAlink_cFv
 /* 80139CD4 00136C14  2C 1C 00 01 */ cmpwi r28, 1
 /* 80139CD8 00136C18  41 82 00 2C */ beq lbl_80139D04
 /* 80139CDC 00136C1C  7F E3 FB 78 */ mr r3, r31
@@ -198,19 +198,19 @@ lbl_80139D30:
 /* 80139D3C 00136C7C  B0 1F 00 0A */ sth r0, 0xa(r31)
 lbl_80139D40:
 /* 80139D40 00136C80  7F C3 F3 78 */ mr r3, r30
-/* 80139D44 00136C84  4B F8 56 39 */ bl daAlink_c_NS_initBasAnime
+/* 80139D44 00136C84  4B F8 56 39 */ bl initBasAnime__9daAlink_cFv
 /* 80139D48 00136C88  48 00 00 18 */ b lbl_80139D60
 lbl_80139D4C:
 /* 80139D4C 00136C8C  2C 1C 00 00 */ cmpwi r28, 0
 /* 80139D50 00136C90  40 82 00 10 */ bne lbl_80139D60
 /* 80139D54 00136C94  7F C3 F3 78 */ mr r3, r30
 /* 80139D58 00136C98  C0 22 94 64 */ lfs f1, lbl_80452E64-_SDA2_BASE_(r2)
-/* 80139D5C 00136C9C  4B FB F1 AD */ bl daAlink_c_NS_stopHalfMoveAnime
+/* 80139D5C 00136C9C  4B FB F1 AD */ bl stopHalfMoveAnime__9daAlink_cFf
 lbl_80139D60:
 /* 80139D60 00136CA0  7F C3 F3 78 */ mr r3, r30
-/* 80139D64 00136CA4  4B FE E7 15 */ bl daAlink_c_NS_setSpeedAndAngleWolfAtn
+/* 80139D64 00136CA4  4B FE E7 15 */ bl setSpeedAndAngleWolf__9daAlink_cFvAtn
 /* 80139D68 00136CA8  7F C3 F3 78 */ mr r3, r30
-/* 80139D6C 00136CAC  4B FF D3 C1 */ bl daAlink_c_NS_getWolfLieMoveSpeed
+/* 80139D6C 00136CAC  4B FF D3 C1 */ bl getWolfLieMoveSpeed__9daAlink_cFv
 /* 80139D70 00136CB0  D0 3E 33 98 */ stfs f1, 0x3398(r30)
 /* 80139D74 00136CB4  C0 3E 33 98 */ lfs f1, 0x3398(r30)
 /* 80139D78 00136CB8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -221,7 +221,7 @@ lbl_80139D60:
 /* 80139D8C 00136CCC  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 lbl_80139D90:
 /* 80139D90 00136CD0  7F C3 F3 78 */ mr r3, r30
-/* 80139D94 00136CD4  4B F7 9B 71 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 80139D94 00136CD4  4B F7 9B 71 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 80139D98 00136CD8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80139D9C 00136CDC  41 82 00 14 */ beq lbl_80139DB0
 /* 80139DA0 00136CE0  80 1E 31 A0 */ lwz r0, 0x31a0(r30)

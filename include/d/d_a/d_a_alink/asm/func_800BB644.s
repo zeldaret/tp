@@ -16,7 +16,7 @@
 /* 800BB680 000B85C0  41 82 00 40 */ beq lbl_800BB6C0
 /* 800BB684 000B85C4  38 80 00 01 */ li r4, 1
 /* 800BB688 000B85C8  38 A0 00 01 */ li r5, 1
-/* 800BB68C 000B85CC  4B FF FE 2D */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800BB68C 000B85CC  4B FF FE 2D */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800BB690 000B85D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB694 000B85D4  41 82 00 18 */ beq lbl_800BB6AC
 /* 800BB698 000B85D8  38 7F 22 5C */ addi r3, r31, 0x225c
@@ -44,12 +44,12 @@ lbl_800BB6D0:
 /* 800BB6E4 000B8624  41 82 00 50 */ beq lbl_800BB734
 lbl_800BB6E8:
 /* 800BB6E8 000B8628  7F C3 F3 78 */ mr r3, r30
-/* 800BB6EC 000B862C  48 04 63 BD */ bl daAlink_c_NS_getSwimMaxFallSpeed
+/* 800BB6EC 000B862C  48 04 63 BD */ bl getSwimMaxFallSpeed__9daAlink_cCFv
 /* 800BB6F0 000B8630  FF E0 08 90 */ fmr f31, f1
 /* 800BB6F4 000B8634  7F C3 F3 78 */ mr r3, r30
 /* 800BB6F8 000B8638  38 80 00 01 */ li r4, 1
 /* 800BB6FC 000B863C  38 A0 00 01 */ li r5, 1
-/* 800BB700 000B8640  4B FF FD B9 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800BB700 000B8640  4B FF FD B9 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800BB704 000B8644  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB708 000B8648  41 82 00 1C */ beq lbl_800BB724
 /* 800BB70C 000B864C  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)

@@ -38,7 +38,7 @@
 /* 8000FCE0 0000CC20  FC 20 F8 90 */ fmr f1, f31
 /* 8000FCE4 0000CC24  7F 49 D3 78 */ mr r9, r26
 /* 8000FCE8 0000CC28  7F 6A DB 78 */ mr r10, r27
-/* 8000FCEC 0000CC2C  48 00 00 A9 */ bl mDoExt_McaMorf_NS_create
+/* 8000FCEC 0000CC2C  48 00 00 A9 */ bl create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
 /* 8000FCF0 0000CC30  7E 83 A3 78 */ mr r3, r20
 /* 8000FCF4 0000CC34  CB E1 00 48 */ lfd f31, 0x48(r1)
 /* 8000FCF8 0000CC38  39 61 00 48 */ addi r11, r1, 0x48

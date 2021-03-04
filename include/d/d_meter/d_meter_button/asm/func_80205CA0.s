@@ -63,11 +63,11 @@ lbl_80205D64:
 /* 80205D84 00202CC4  2C 03 00 00 */ cmpwi r3, 0
 /* 80205D88 00202CC8  40 82 00 30 */ bne lbl_80205DB8
 /* 80205D8C 00202CCC  38 60 00 00 */ li r3, 0
-/* 80205D90 00202CD0  4B E2 6B ED */ bl dComIfG_play_c_NS_getLayerNo
+/* 80205D90 00202CD0  4B E2 6B ED */ bl getLayerNo__14dComIfG_play_cFi
 /* 80205D94 00202CD4  2C 03 00 04 */ cmpwi r3, 4
 /* 80205D98 00202CD8  41 82 00 14 */ beq lbl_80205DAC
 /* 80205D9C 00202CDC  38 60 00 00 */ li r3, 0
-/* 80205DA0 00202CE0  4B E2 6B DD */ bl dComIfG_play_c_NS_getLayerNo
+/* 80205DA0 00202CE0  4B E2 6B DD */ bl getLayerNo__14dComIfG_play_cFi
 /* 80205DA4 00202CE4  2C 03 00 05 */ cmpwi r3, 5
 /* 80205DA8 00202CE8  40 82 00 10 */ bne lbl_80205DB8
 lbl_80205DAC:
@@ -123,7 +123,7 @@ lbl_80205E40:
 /* 80205E58 00202D98  C0 1D 04 E4 */ lfs f0, 0x4e4(r29)
 /* 80205E5C 00202D9C  EC 40 F0 2A */ fadds f2, f0, f30
 /* 80205E60 00202DA0  38 A0 00 FF */ li r5, 0xff
-/* 80205E64 00202DA4  48 00 50 05 */ bl dMeterButton_c_NS_paneTrans
+/* 80205E64 00202DA4  48 00 50 05 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80205E68:
 /* 80205E68 00202DA8  C0 3D 04 E8 */ lfs f1, 0x4e8(r29)
 /* 80205E6C 00202DAC  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -168,7 +168,7 @@ lbl_80205ED4:
 /* 80205F00 00202E40  EC 22 00 2A */ fadds f1, f2, f0
 /* 80205F04 00202E44  C0 5D 04 F0 */ lfs f2, 0x4f0(r29)
 /* 80205F08 00202E48  38 A0 00 FF */ li r5, 0xff
-/* 80205F0C 00202E4C  48 00 4F 5D */ bl dMeterButton_c_NS_paneTrans
+/* 80205F0C 00202E4C  48 00 4F 5D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80205F10:
 /* 80205F10 00202E50  C0 1D 04 F4 */ lfs f0, 0x4f4(r29)
 /* 80205F14 00202E54  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -217,7 +217,7 @@ lbl_80205F8C:
 /* 80205FB8 00202EF8  EC 22 00 2A */ fadds f1, f2, f0
 /* 80205FBC 00202EFC  C0 5D 04 FC */ lfs f2, 0x4fc(r29)
 /* 80205FC0 00202F00  38 A0 00 FF */ li r5, 0xff
-/* 80205FC4 00202F04  48 00 4E A5 */ bl dMeterButton_c_NS_paneTrans
+/* 80205FC4 00202F04  48 00 4E A5 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80205FC8:
 /* 80205FC8 00202F08  C0 1D 05 00 */ lfs f0, 0x500(r29)
 /* 80205FCC 00202F0C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -261,7 +261,7 @@ lbl_80206030:
 /* 8020605C 00202F9C  EC 22 00 2A */ fadds f1, f2, f0
 /* 80206060 00202FA0  C0 5D 05 08 */ lfs f2, 0x508(r29)
 /* 80206064 00202FA4  38 A0 00 FF */ li r5, 0xff
-/* 80206068 00202FA8  48 00 4E 01 */ bl dMeterButton_c_NS_paneTrans
+/* 80206068 00202FA8  48 00 4E 01 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_8020606C:
 /* 8020606C 00202FAC  C0 1D 05 0C */ lfs f0, 0x50c(r29)
 /* 80206070 00202FB0  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -305,7 +305,7 @@ lbl_802060D4:
 /* 80206100 00203040  EC 22 00 2A */ fadds f1, f2, f0
 /* 80206104 00203044  C0 5D 05 14 */ lfs f2, 0x514(r29)
 /* 80206108 00203048  38 A0 00 FF */ li r5, 0xff
-/* 8020610C 0020304C  48 00 4D 5D */ bl dMeterButton_c_NS_paneTrans
+/* 8020610C 0020304C  48 00 4D 5D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206110:
 /* 80206110 00203050  C0 1D 05 18 */ lfs f0, 0x518(r29)
 /* 80206114 00203054  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -349,7 +349,7 @@ lbl_80206178:
 /* 802061A4 002030E4  EC 22 00 2A */ fadds f1, f2, f0
 /* 802061A8 002030E8  C0 5D 05 20 */ lfs f2, 0x520(r29)
 /* 802061AC 002030EC  38 A0 00 FF */ li r5, 0xff
-/* 802061B0 002030F0  48 00 4C B9 */ bl dMeterButton_c_NS_paneTrans
+/* 802061B0 002030F0  48 00 4C B9 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_802061B4:
 /* 802061B4 002030F4  C0 1D 05 24 */ lfs f0, 0x524(r29)
 /* 802061B8 002030F8  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -393,7 +393,7 @@ lbl_8020621C:
 /* 80206248 00203188  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020624C 0020318C  C0 5D 05 2C */ lfs f2, 0x52c(r29)
 /* 80206250 00203190  38 A0 00 FF */ li r5, 0xff
-/* 80206254 00203194  48 00 4C 15 */ bl dMeterButton_c_NS_paneTrans
+/* 80206254 00203194  48 00 4C 15 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206258:
 /* 80206258 00203198  C0 1D 05 30 */ lfs f0, 0x530(r29)
 /* 8020625C 0020319C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -437,7 +437,7 @@ lbl_802062C0:
 /* 802062EC 0020322C  EC 22 00 2A */ fadds f1, f2, f0
 /* 802062F0 00203230  C0 5D 05 38 */ lfs f2, 0x538(r29)
 /* 802062F4 00203234  38 A0 00 FF */ li r5, 0xff
-/* 802062F8 00203238  48 00 4B 71 */ bl dMeterButton_c_NS_paneTrans
+/* 802062F8 00203238  48 00 4B 71 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_802062FC:
 /* 802062FC 0020323C  C0 1D 05 3C */ lfs f0, 0x53c(r29)
 /* 80206300 00203240  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -481,7 +481,7 @@ lbl_80206364:
 /* 80206390 002032D0  EC 22 00 2A */ fadds f1, f2, f0
 /* 80206394 002032D4  C0 5D 05 44 */ lfs f2, 0x544(r29)
 /* 80206398 002032D8  38 A0 00 FF */ li r5, 0xff
-/* 8020639C 002032DC  48 00 4A CD */ bl dMeterButton_c_NS_paneTrans
+/* 8020639C 002032DC  48 00 4A CD */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_802063A0:
 /* 802063A0 002032E0  C0 1D 05 48 */ lfs f0, 0x548(r29)
 /* 802063A4 002032E4  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -525,7 +525,7 @@ lbl_80206408:
 /* 80206434 00203374  EC 22 00 2A */ fadds f1, f2, f0
 /* 80206438 00203378  C0 5D 05 50 */ lfs f2, 0x550(r29)
 /* 8020643C 0020337C  38 A0 00 FF */ li r5, 0xff
-/* 80206440 00203380  48 00 4A 29 */ bl dMeterButton_c_NS_paneTrans
+/* 80206440 00203380  48 00 4A 29 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206444:
 /* 80206444 00203384  C0 1D 05 54 */ lfs f0, 0x554(r29)
 /* 80206448 00203388  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -569,7 +569,7 @@ lbl_802064AC:
 /* 802064D8 00203418  EC 22 00 2A */ fadds f1, f2, f0
 /* 802064DC 0020341C  C0 5D 05 8C */ lfs f2, 0x58c(r29)
 /* 802064E0 00203420  38 A0 00 FF */ li r5, 0xff
-/* 802064E4 00203424  48 00 49 85 */ bl dMeterButton_c_NS_paneTrans
+/* 802064E4 00203424  48 00 49 85 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_802064E8:
 /* 802064E8 00203428  C0 1D 05 90 */ lfs f0, 0x590(r29)
 /* 802064EC 0020342C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -613,7 +613,7 @@ lbl_80206550:
 /* 8020657C 002034BC  EC 22 00 2A */ fadds f1, f2, f0
 /* 80206580 002034C0  C0 5D 05 EC */ lfs f2, 0x5ec(r29)
 /* 80206584 002034C4  38 A0 00 FF */ li r5, 0xff
-/* 80206588 002034C8  48 00 48 E1 */ bl dMeterButton_c_NS_paneTrans
+/* 80206588 002034C8  48 00 48 E1 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_8020658C:
 /* 8020658C 002034CC  80 1D 00 80 */ lwz r0, 0x80(r29)
 /* 80206590 002034D0  28 00 00 00 */ cmplwi r0, 0
@@ -639,7 +639,7 @@ lbl_802065C0:
 /* 802065DC 0020351C  C0 3D 05 F4 */ lfs f1, 0x5f4(r29)
 /* 802065E0 00203520  C0 5D 05 F8 */ lfs f2, 0x5f8(r29)
 /* 802065E4 00203524  38 A0 00 FF */ li r5, 0xff
-/* 802065E8 00203528  48 00 48 81 */ bl dMeterButton_c_NS_paneTrans
+/* 802065E8 00203528  48 00 48 81 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_802065EC:
 /* 802065EC 0020352C  C0 1D 05 FC */ lfs f0, 0x5fc(r29)
 /* 802065F0 00203530  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -679,7 +679,7 @@ lbl_80206654:
 /* 80206670 002035B0  C0 3D 06 24 */ lfs f1, 0x624(r29)
 /* 80206674 002035B4  C0 5D 06 28 */ lfs f2, 0x628(r29)
 /* 80206678 002035B8  38 A0 00 FF */ li r5, 0xff
-/* 8020667C 002035BC  48 00 47 ED */ bl dMeterButton_c_NS_paneTrans
+/* 8020667C 002035BC  48 00 47 ED */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206680:
 /* 80206680 002035C0  C0 1D 06 2C */ lfs f0, 0x62c(r29)
 /* 80206684 002035C4  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -734,7 +734,7 @@ lbl_80206728:
 /* 80206738 00203678  C0 1D 06 08 */ lfs f0, 0x608(r29)
 /* 8020673C 0020367C  EC 40 10 2A */ fadds f2, f0, f2
 /* 80206740 00203680  38 A0 00 00 */ li r5, 0
-/* 80206744 00203684  48 00 47 25 */ bl dMeterButton_c_NS_paneTrans
+/* 80206744 00203684  48 00 47 25 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206748:
 /* 80206748 00203688  C0 1D 06 10 */ lfs f0, 0x610(r29)
 /* 8020674C 0020368C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -789,7 +789,7 @@ lbl_802067F0:
 /* 80206800 00203740  C0 1D 06 0C */ lfs f0, 0x60c(r29)
 /* 80206804 00203744  EC 40 10 2A */ fadds f2, f0, f2
 /* 80206808 00203748  38 A0 00 01 */ li r5, 1
-/* 8020680C 0020374C  48 00 46 5D */ bl dMeterButton_c_NS_paneTrans
+/* 8020680C 0020374C  48 00 46 5D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206810:
 /* 80206810 00203750  C0 1D 06 14 */ lfs f0, 0x614(r29)
 /* 80206814 00203754  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -857,7 +857,7 @@ lbl_802068DC:
 /* 802068F8 00203838  C0 02 AD 48 */ lfs f0, lbl_80454748-_SDA2_BASE_(r2)
 /* 802068FC 0020383C  EC 42 00 2A */ fadds f2, f2, f0
 /* 80206900 00203840  38 A0 00 FF */ li r5, 0xff
-/* 80206904 00203844  48 00 45 65 */ bl dMeterButton_c_NS_paneTrans
+/* 80206904 00203844  48 00 45 65 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_80206908:
 /* 80206908 00203848  C0 1D 06 20 */ lfs f0, 0x620(r29)
 /* 8020690C 0020384C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha

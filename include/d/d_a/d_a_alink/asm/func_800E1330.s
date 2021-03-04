@@ -1,7 +1,7 @@
 /* 800E1330 000DE270  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 800E1334 000DE274  7C 08 02 A6 */ mflr r0
 /* 800E1338 000DE278  90 01 00 14 */ stw r0, 0x14(r1)
-/* 800E133C 000DE27C  4B FF FF A5 */ bl daAlink_c_NS_checkLv6BossRoom
+/* 800E133C 000DE27C  4B FF FF A5 */ bl checkLv6BossRoom__9daAlink_cFv
 /* 800E1340 000DE280  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1344 000DE284  41 82 00 14 */ beq lbl_800E1358
 /* 800E1348 000DE288  3C 60 80 39 */ lis r3, lbl_8038EAFC@ha

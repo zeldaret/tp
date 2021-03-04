@@ -24,7 +24,7 @@ lbl_800271C8:
 /* 800271C8 00024108  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800271CC 0002410C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800271D0 00024110  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 800271D4 00024114  4B FF D1 B1 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800271D4 00024114  4B FF D1 B1 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800271D8 00024118  81 83 00 00 */ lwz r12, 0(r3)
 /* 800271DC 0002411C  81 8C 00 C4 */ lwz r12, 0xc4(r12)
 /* 800271E0 00024120  7D 89 03 A6 */ mtctr r12

@@ -22,9 +22,9 @@ lbl_800F7450:
 /* 800F7454 000F4394  B0 1F 06 04 */ sth r0, 0x604(r31)
 /* 800F7458 000F4398  7F E3 FB 78 */ mr r3, r31
 /* 800F745C 000F439C  38 80 00 A0 */ li r4, 0xa0
-/* 800F7460 000F43A0  4B FC AB 0D */ bl daAlink_c_NS_commonProcInit
+/* 800F7460 000F43A0  4B FC AB 0D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F7464 000F43A4  7F E3 FB 78 */ mr r3, r31
-/* 800F7468 000F43A8  4B FF D1 35 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F7468 000F43A8  4B FF D1 35 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F746C 000F43AC  80 7F 28 18 */ lwz r3, 0x2818(r31)
 /* 800F7470 000F43B0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F7474 000F43B4  D0 03 05 2C */ stfs f0, 0x52c(r3)
@@ -35,21 +35,21 @@ lbl_800F7450:
 /* 800F7488 000F43C8  98 03 14 42 */ stb r0, 0x1442(r3)
 /* 800F748C 000F43CC  7F E3 FB 78 */ mr r3, r31
 /* 800F7490 000F43D0  38 80 01 00 */ li r4, 0x100
-/* 800F7494 000F43D4  4B FB 4F BD */ bl daAlink_c_NS_getMainBckData
+/* 800F7494 000F43D4  4B FB 4F BD */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800F7498 000F43D8  A0 83 00 02 */ lhz r4, 2(r3)
 /* 800F749C 000F43DC  7F E3 FB 78 */ mr r3, r31
 /* 800F74A0 000F43E0  38 A0 00 02 */ li r5, 2
 /* 800F74A4 000F43E4  3C C0 80 39 */ lis r6, lbl_8038E90C@ha
 /* 800F74A8 000F43E8  38 C6 E9 0C */ addi r6, r6, lbl_8038E90C@l
-/* 800F74AC 000F43EC  4B FB 62 45 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800F74AC 000F43EC  4B FB 62 45 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
 /* 800F74B0 000F43F0  7F E3 FB 78 */ mr r3, r31
 /* 800F74B4 000F43F4  38 80 01 00 */ li r4, 0x100
-/* 800F74B8 000F43F8  4B FB 86 5D */ bl daAlink_c_NS_setFacePriAnime
+/* 800F74B8 000F43F8  4B FB 86 5D */ bl setFacePriAnime__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800F74BC 000F43FC  7F E3 FB 78 */ mr r3, r31
-/* 800F74C0 000F4400  4B FC 83 95 */ bl daAlink_c_NS_keepItemData
+/* 800F74C0 000F4400  4B FC 83 95 */ bl keepItemData__9daAlink_cFv
 /* 800F74C4 000F4404  7F E3 FB 78 */ mr r3, r31
 /* 800F74C8 000F4408  7F C4 F3 78 */ mr r4, r30
-/* 800F74CC 000F440C  48 01 71 0D */ bl daAlink_c_NS_setBottleModel
+/* 800F74CC 000F440C  48 01 71 0D */ bl setBottleModel__9daAlink_cFUs
 /* 800F74D0 000F4410  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F74D4 000F4414  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F74D8 000F4418  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

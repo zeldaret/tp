@@ -3,7 +3,7 @@
 /* 802C1FB8 002BEEF8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 802C1FBC 002BEEFC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 802C1FC0 002BEF00  7C 7F 1B 78 */ mr r31, r3
-/* 802C1FC4 002BEF04  4B FF F0 01 */ bl Z2CreatureEnemy_NS_deleteObject
+/* 802C1FC4 002BEF04  4B FF F0 01 */ bl deleteObject__15Z2CreatureEnemyFv
 /* 802C1FC8 002BEF08  38 7F 00 A4 */ addi r3, r31, 0xa4
 /* 802C1FCC 002BEF0C  4B FF C0 2D */ bl deleteObject__14Z2SoundObjBaseFv
 /* 802C1FD0 002BEF10  38 7F 00 C4 */ addi r3, r31, 0xc4

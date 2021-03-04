@@ -508,7 +508,7 @@ lbl_8001919C:
 /* 800192BC 000161FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800192C0 00016200  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800192C4 00016204  38 63 4E C4 */	addi r3, r3, 0x4ec4
-/* 800192C8 00016208  48 00 B0 BD */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800192C8 00016208  48 00 B0 BD */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800192CC 0001620C  81 83 00 00 */	lwz r12, 0(r3)
 /* 800192D0 00016210  81 8C 01 0C */	lwz r12, 0x10c(r12)
 /* 800192D4 00016214  7D 89 03 A6 */	mtctr r12
@@ -522,7 +522,7 @@ lbl_800192DC:
 /* 800192F0 00016230  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800192F4 00016234  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 800192F8 00016238  7C 84 07 74 */	extsb r4, r4
-/* 800192FC 0001623C  48 00 B0 89 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800192FC 0001623C  48 00 B0 89 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80019300 00016240  81 83 00 00 */	lwz r12, 0(r3)
 /* 80019304 00016244  81 8C 01 0C */	lwz r12, 0x10c(r12)
 /* 80019308 00016248  7D 89 03 A6 */	mtctr r12
@@ -817,7 +817,7 @@ lbl_800196E4:
 /* 8001974C 0001668C  80 9D 05 80 */	lwz r4, 0x580(r29)
 /* 80019750 00016690  80 84 00 04 */	lwz r4, 4(r4)
 /* 80019754 00016694  7F C5 F3 78 */	mr r5, r30
-/* 80019758 00016698  48 18 B6 49 */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 80019758 00016698  48 18 B6 49 */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
 /* 8001975C 0001669C  C0 1D 05 90 */	lfs f0, 0x590(r29)
 /* 80019760 000166A0  80 7D 05 84 */	lwz r3, 0x584(r29)
 /* 80019764 000166A4  D0 03 00 08 */	stfs f0, 8(r3)

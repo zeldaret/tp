@@ -66,7 +66,7 @@ getEventName__18dEvent_exception_cFv:
 /* 800464A0 000433E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800464A4 000433E4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 800464A8 000433E8  38 7F 4E C4 */	addi r3, r31, 0x4ec4
-/* 800464AC 000433EC  4B FD DE D9 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800464AC 000433EC  4B FD DE D9 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800464B0 000433F0  81 83 00 00 */	lwz r12, 0(r3)
 /* 800464B4 000433F4  81 8C 00 FC */	lwz r12, 0xfc(r12)
 /* 800464B8 000433F8  7D 89 03 A6 */	mtctr r12
@@ -218,10 +218,10 @@ __ct__16dEvent_manager_cFv:
 /* 8004669C 000435DC  3C 80 80 04 */	lis r4, dEvDtBase_c@ha
 .global dEvDtBase_c
 /* 800466A0 000435E0  38 84 66 E0 */	addi r4, r4, dEvDtBase_c@l
-.global dEvDtBase_c_NS_dtor
-/* 800466A4 000435E4  3C A0 80 03 */	lis r5, dEvDtBase_c_NS_dtor@ha
-.global dEvDtBase_c_NS_dtor
-/* 800466A8 000435E8  38 A5 01 90 */	addi r5, r5, dEvDtBase_c_NS_dtor@l
+.global __dt__11dEvDtBase_cFv
+/* 800466A4 000435E4  3C A0 80 03 */	lis r5, __dt__11dEvDtBase_cFv@ha
+.global __dt__11dEvDtBase_cFv
+/* 800466A8 000435E8  38 A5 01 90 */	addi r5, r5, __dt__11dEvDtBase_cFv@l
 /* 800466AC 000435EC  38 C0 00 24 */	li r6, 0x24
 /* 800466B0 000435F0  38 E0 00 0B */	li r7, 0xb
 /* 800466B4 000435F4  48 31 B6 AD */	bl func_80361D60
@@ -926,7 +926,7 @@ lbl_80046FE8:
 /* 80047040 00043F80  48 13 A6 01 */	bl dCam_getBody
 /* 80047044 00043F84  7C 64 1B 78 */	mr r4, r3
 /* 80047048 00043F88  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8004704C 00043F8C  48 13 AE 4D */	bl dCamera_c_NS_Center
+/* 8004704C 00043F8C  48 13 AE 4D */	bl Center__9dCamera_cFv
 /* 80047050 00043F90  C0 01 00 2C */	lfs f0, 0x2c(r1)
 /* 80047054 00043F94  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 80047058 00043F98  C0 01 00 30 */	lfs f0, 0x30(r1)
@@ -1017,7 +1017,7 @@ lbl_8004717C:
 /* 80047188 000440C8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8004718C 000440CC  40 81 00 4C */	ble lbl_800471D8
 /* 80047190 000440D0  48 13 A4 B1 */	bl dCam_getBody
-/* 80047194 000440D4  48 13 98 AD */	bl dCamera_c_NS_EventRecoverNotime
+/* 80047194 000440D4  48 13 98 AD */	bl EventRecoverNotime__9dCamera_cFv
 /* 80047198 000440D8  48 00 00 40 */	b lbl_800471D8
 lbl_8004719C:
 /* 8004719C 000440DC  88 1C 00 03 */	lbz r0, 3(r28)
@@ -1032,11 +1032,11 @@ lbl_800471B8:
 /* 800471BC 000440FC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800471C0 00044100  40 81 00 18 */	ble lbl_800471D8
 /* 800471C4 00044104  48 13 A4 7D */	bl dCam_getBody
-/* 800471C8 00044108  48 13 98 79 */	bl dCamera_c_NS_EventRecoverNotime
+/* 800471C8 00044108  48 13 98 79 */	bl EventRecoverNotime__9dCamera_cFv
 /* 800471CC 0004410C  48 00 00 0C */	b lbl_800471D8
 lbl_800471D0:
 /* 800471D0 00044110  48 13 A4 71 */	bl dCam_getBody
-/* 800471D4 00044114  48 13 98 6D */	bl dCamera_c_NS_EventRecoverNotime
+/* 800471D4 00044114  48 13 98 6D */	bl EventRecoverNotime__9dCamera_cFv
 lbl_800471D8:
 /* 800471D8 00044118  88 1C 00 00 */	lbz r0, 0(r28)
 /* 800471DC 0004411C  2C 00 00 01 */	cmpwi r0, 1

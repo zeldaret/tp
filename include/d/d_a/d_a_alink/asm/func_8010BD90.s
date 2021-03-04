@@ -4,7 +4,7 @@
 /* 8010BD9C 00108CDC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8010BDA0 00108CE0  7C 7F 1B 78 */ mr r31, r3
 /* 8010BDA4 00108CE4  38 80 00 C6 */ li r4, 0xc6
-/* 8010BDA8 00108CE8  4B FB 61 C5 */ bl daAlink_c_NS_commonProcInit
+/* 8010BDA8 00108CE8  4B FB 61 C5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010BDAC 00108CEC  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 8010BDB0 00108CF0  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8010BDB4 00108CF4  40 82 00 10 */ bne lbl_8010BDC4
@@ -19,7 +19,7 @@ lbl_8010BDC4:
 /* 8010BDD4 00108D14  40 82 00 08 */ bne lbl_8010BDDC
 /* 8010BDD8 00108D18  38 80 01 29 */ li r4, 0x129
 lbl_8010BDDC:
-/* 8010BDDC 00108D1C  4B FA 11 A5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8010BDDC 00108D1C  4B FA 11 A5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8010BDE0 00108D20  38 00 00 00 */ li r0, 0
 /* 8010BDE4 00108D24  B0 1F 05 9C */ sth r0, 0x59c(r31)
 /* 8010BDE8 00108D28  7F E3 FB 78 */ mr r3, r31
@@ -81,7 +81,7 @@ lbl_8010BDDC:
 /* 8010BEC8 00108E08  38 00 00 00 */ li r0, 0
 /* 8010BECC 00108E0C  B0 1F 30 12 */ sth r0, 0x3012(r31)
 /* 8010BED0 00108E10  7F E3 FB 78 */ mr r3, r31
-/* 8010BED4 00108E14  48 00 00 1D */ bl daAlink_c_NS_procHookshotFly
+/* 8010BED4 00108E14  48 00 00 1D */ bl procHookshotFly__9daAlink_cFv
 /* 8010BED8 00108E18  38 60 00 01 */ li r3, 1
 /* 8010BEDC 00108E1C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8010BEE0 00108E20  80 01 00 14 */ lwz r0, 0x14(r1)

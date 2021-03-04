@@ -14,13 +14,13 @@ void paneTrans__8CPaneMgrFff(void);
 void CPaneMgr_X1_(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void dComIfG_TimerDeleteRequest(void);
-void dMeter2Draw_c_NS_drawPikari_X1_(void);
-void dMeter2Info_c_NS_getString(void);
-void dMeter2Info_c_NS_resetMeterString(void);
-void dMeterString_c_NS_createString(void);
-void dMeterString_c_NS_drawPikari(void);
-void dMeterString_c_NS_isLeadByte(void);
-void dMeterString_c_NS_playBckAnimation(void);
+void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_(void);
+void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
+void resetMeterString__13dMeter2Info_cFv(void);
+void createString__14dMeterString_cFi(void);
+void drawPikari__14dMeterString_cFv(void);
+void isLeadByte__14dMeterString_cFi(void);
+void playBckAnimation__14dMeterString_cFf(void);
 void dPaneClass_showNullPane(void);
 void dTimer_createTimer(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
@@ -99,28 +99,28 @@ asm void func_8020F49C(void) {
 
 // createString__14dMeterString_cFi
 // dMeterString_c::createString(int)
-asm void dMeterString_c_NS_createString(void) {
+asm void createString__14dMeterString_cFi(void) {
     nofralloc
 #include "d/d_meter/d_meter_string/asm/func_8020F5A4.s"
 }
 
 // playBckAnimation__14dMeterString_cFf
 // dMeterString_c::playBckAnimation(float)
-asm void dMeterString_c_NS_playBckAnimation(void) {
+asm void playBckAnimation__14dMeterString_cFf(void) {
     nofralloc
 #include "d/d_meter/d_meter_string/asm/func_8020F66C.s"
 }
 
 // drawPikari__14dMeterString_cFv
 // dMeterString_c::drawPikari(void)
-asm void dMeterString_c_NS_drawPikari(void) {
+asm void drawPikari__14dMeterString_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_string/asm/func_8020F6EC.s"
 }
 
 // isLeadByte__14dMeterString_cFi
 // dMeterString_c::isLeadByte(int)
-asm void dMeterString_c_NS_isLeadByte(void) {
+asm void isLeadByte__14dMeterString_cFi(void) {
     nofralloc
 #include "d/d_meter/d_meter_string/asm/func_8020FA88.s"
 }

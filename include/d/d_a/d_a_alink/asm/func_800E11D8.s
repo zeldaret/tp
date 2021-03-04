@@ -4,7 +4,7 @@
 /* 800E11E4 000DE124  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E11E8 000DE128  7C 7F 1B 78 */ mr r31, r3
 /* 800E11EC 000DE12C  38 80 00 62 */ li r4, 0x62
-/* 800E11F0 000DE130  4B FE 1B B5 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800E11F0 000DE130  4B FE 1B B5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800E11F4 000DE134  2C 03 00 00 */ cmpwi r3, 0
 /* 800E11F8 000DE138  40 82 00 0C */ bne lbl_800E1204
 /* 800E11FC 000DE13C  38 60 00 00 */ li r3, 0
@@ -15,9 +15,9 @@ lbl_800E1204:
 /* 800E120C 000DE14C  3C A0 80 39 */ lis r5, lbl_8038E6C8@ha
 /* 800E1210 000DE150  38 A5 E6 C8 */ addi r5, r5, lbl_8038E6C8@l
 /* 800E1214 000DE154  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800E1218 000DE158  4B FC BE DD */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E1218 000DE158  4B FC BE DD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E121C 000DE15C  7F E3 FB 78 */ mr r3, r31
-/* 800E1220 000DE160  4B FF F4 11 */ bl daAlink_c_NS_setBoomerangCatchAnime
+/* 800E1220 000DE160  4B FF F4 11 */ bl setBoomerangCatchAnime__9daAlink_cFv
 /* 800E1224 000DE164  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 800E1228 000DE168  54 00 06 F2 */ rlwinm r0, r0, 0, 0x1b, 0x19
 /* 800E122C 000DE16C  90 1F 05 70 */ stw r0, 0x570(r31)

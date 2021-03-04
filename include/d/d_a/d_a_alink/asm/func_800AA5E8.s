@@ -15,7 +15,7 @@
 /* 800AA620 000A7560  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
 /* 800AA624 000A7564  28 00 00 B0 */ cmplwi r0, 0xb0
 /* 800AA628 000A7568  41 82 00 68 */ beq lbl_800AA690
-/* 800AA62C 000A756C  48 06 B5 F5 */ bl daAlink_c_NS_checkEventRun
+/* 800AA62C 000A756C  48 06 B5 F5 */ bl checkEventRun__9daAlink_cCFv
 /* 800AA630 000A7570  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA634 000A7574  41 82 00 50 */ beq lbl_800AA684
 /* 800AA638 000A7578  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

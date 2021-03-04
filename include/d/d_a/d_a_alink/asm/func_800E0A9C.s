@@ -12,10 +12,10 @@
 /* 800E0AC8 000DDA08  2C 00 00 00 */ cmpwi r0, 0
 /* 800E0ACC 000DDA0C  40 82 00 0C */ bne lbl_800E0AD8
 /* 800E0AD0 000DDA10  38 80 00 00 */ li r4, 0
-/* 800E0AD4 000DDA14  4B FD 66 BD */ bl daAlink_c_NS_cancelItemUseQuake
+/* 800E0AD4 000DDA14  4B FD 66 BD */ bl cancelItemUseQuake__9daAlink_cFi
 lbl_800E0AD8:
 /* 800E0AD8 000DDA18  7F E3 FB 78 */ mr r3, r31
-/* 800E0ADC 000DDA1C  4B FD 7E 55 */ bl daAlink_c_NS_checkReadyItem
+/* 800E0ADC 000DDA1C  4B FD 7E 55 */ bl checkReadyItem__9daAlink_cFv
 /* 800E0AE0 000DDA20  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0AE4 000DDA24  41 82 00 54 */ beq lbl_800E0B38
 /* 800E0AE8 000DDA28  7F E3 FB 78 */ mr r3, r31
@@ -37,13 +37,13 @@ lbl_800E0B20:
 /* 800E0B20 000DDA60  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0B24 000DDA64  41 82 00 14 */ beq lbl_800E0B38
 /* 800E0B28 000DDA68  7F E3 FB 78 */ mr r3, r31
-/* 800E0B2C 000DDA6C  4B FF FA BD */ bl daAlink_c_NS_setThrowBoomerangAnime
+/* 800E0B2C 000DDA6C  4B FF FA BD */ bl setThrowBoomerangAnime__9daAlink_cFv
 /* 800E0B30 000DDA70  38 60 00 01 */ li r3, 1
 /* 800E0B34 000DDA74  48 00 00 10 */ b lbl_800E0B44
 lbl_800E0B38:
 /* 800E0B38 000DDA78  7F E3 FB 78 */ mr r3, r31
 /* 800E0B3C 000DDA7C  38 80 00 00 */ li r4, 0
-/* 800E0B40 000DDA80  4B FD 66 AD */ bl daAlink_c_NS_cancelUpperItemReadyAnime
+/* 800E0B40 000DDA80  4B FD 66 AD */ bl cancelUpperItemReadyAnime__9daAlink_cFi
 lbl_800E0B44:
 /* 800E0B44 000DDA84  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E0B48 000DDA88  80 01 00 14 */ lwz r0, 0x14(r1)

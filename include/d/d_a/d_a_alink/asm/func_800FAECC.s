@@ -25,7 +25,7 @@
 /* 800FAF2C 000F7E6C  D0 1F 04 D8 */ stfs f0, 0x4d8(r31)
 /* 800FAF30 000F7E70  7F E3 FB 78 */ mr r3, r31
 /* 800FAF34 000F7E74  7F A4 EB 78 */ mr r4, r29
-/* 800FAF38 000F7E78  4B FF F9 25 */ bl daAlink_c_NS_checkHangStartSideWall
+/* 800FAF38 000F7E78  4B FF F9 25 */ bl checkHangStartSideWall__9daAlink_cFs
 /* 800FAF3C 000F7E7C  C0 5F 04 D8 */ lfs f2, 0x4d8(r31)
 /* 800FAF40 000F7E80  C0 22 93 00 */ lfs f1, lbl_80452D00-_SDA2_BASE_(r2)
 /* 800FAF44 000F7E84  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
@@ -127,7 +127,7 @@ lbl_800FB0A0:
 /* 800FB0B4 000F7FF4  7C 1D 00 50 */ subf r0, r29, r0
 /* 800FB0B8 000F7FF8  7C 05 07 34 */ extsh r5, r0
 /* 800FB0BC 000F7FFC  38 C0 00 00 */ li r6, 0
-/* 800FB0C0 000F8000  4B FB 2A B9 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 800FB0C0 000F8000  4B FB 2A B9 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 800FB0C4 000F8004  B3 BF 04 E6 */ sth r29, 0x4e6(r31)
 /* 800FB0C8 000F8008  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 800FB0CC 000F800C  B0 1F 04 DE */ sth r0, 0x4de(r31)
@@ -143,7 +143,7 @@ lbl_800FB0E4:
 lbl_800FB0F0:
 /* 800FB0F0 000F8030  7F E3 FB 78 */ mr r3, r31
 /* 800FB0F4 000F8034  38 80 00 56 */ li r4, 0x56
-/* 800FB0F8 000F8038  4B FC 6E 75 */ bl daAlink_c_NS_commonProcInit
+/* 800FB0F8 000F8038  4B FC 6E 75 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FB0FC 000F803C  80 1F 05 78 */ lwz r0, 0x578(r31)
 /* 800FB100 000F8040  54 00 04 E2 */ rlwinm r0, r0, 0, 0x13, 0x11
 /* 800FB104 000F8044  90 1F 05 78 */ stw r0, 0x578(r31)
@@ -155,7 +155,7 @@ lbl_800FB0F0:
 /* 800FB11C 000F805C  C0 45 00 08 */ lfs f2, 8(r5)
 /* 800FB120 000F8060  A8 A5 00 00 */ lha r5, 0(r5)
 /* 800FB124 000F8064  FC 60 F0 90 */ fmr f3, f30
-/* 800FB128 000F8068  4B FB 1E E5 */ bl daAlink_c_NS_setSingleAnime
+/* 800FB128 000F8068  4B FB 1E E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800FB12C 000F806C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FB130 000F8070  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800FB134 000F8074  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
@@ -172,9 +172,9 @@ lbl_800FB0F0:
 /* 800FB160 000F80A0  7D 89 03 A6 */ mtctr r12
 /* 800FB164 000F80A4  4E 80 04 21 */ bctrl
 /* 800FB168 000F80A8  7F E3 FB 78 */ mr r3, r31
-/* 800FB16C 000F80AC  4B FE 4A BD */ bl daAlink_c_NS_setBowHangAnime
+/* 800FB16C 000F80AC  4B FE 4A BD */ bl setBowHangAnime__9daAlink_cFv
 /* 800FB170 000F80B0  7F E3 FB 78 */ mr r3, r31
-/* 800FB174 000F80B4  4B FF F5 71 */ bl daAlink_c_NS_setHangGroundY
+/* 800FB174 000F80B4  4B FF F5 71 */ bl setHangGroundY__9daAlink_cFv
 /* 800FB178 000F80B8  38 60 00 01 */ li r3, 1
 lbl_800FB17C:
 /* 800FB17C 000F80BC  E3 E1 00 48 */ psq_l f31, 72(r1), 0, 0

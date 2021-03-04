@@ -26,7 +26,7 @@ lbl_80027350:
 /* 80027350 00024290  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80027354 00024294  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80027358 00024298  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 8002735C 0002429C  4B FF D0 29 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8002735C 0002429C  4B FF D0 29 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80027360 000242A0  81 83 00 00 */ lwz r12, 0(r3)
 /* 80027364 000242A4  81 8C 00 C4 */ lwz r12, 0xc4(r12)
 /* 80027368 000242A8  7D 89 03 A6 */ mtctr r12

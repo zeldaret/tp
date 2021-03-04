@@ -70,7 +70,7 @@ lbl_8020F7D8:
 /* 8020F7F4 0020C734  EF 39 00 2A */ fadds f25, f25, f0
 lbl_8020F7F8:
 /* 8020F7F8 0020C738  7F E3 FB 78 */ mr r3, r31
-/* 8020F7FC 0020C73C  48 00 02 8D */ bl dMeterString_c_NS_isLeadByte
+/* 8020F7FC 0020C73C  48 00 02 8D */ bl isLeadByte__14dMeterString_cFi
 /* 8020F800 0020C740  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020F804 0020C744  41 82 00 24 */ beq lbl_8020F828
 /* 8020F808 0020C748  7C 1B C0 AE */ lbzx r0, r27, r24
@@ -141,7 +141,7 @@ lbl_8020F8DC:
 /* 8020F8FC 0020C83C  EF BD 00 2A */ fadds f29, f29, f0
 lbl_8020F900:
 /* 8020F900 0020C840  7F E3 FB 78 */ mr r3, r31
-/* 8020F904 0020C844  48 00 01 85 */ bl dMeterString_c_NS_isLeadByte
+/* 8020F904 0020C844  48 00 01 85 */ bl isLeadByte__14dMeterString_cFi
 /* 8020F908 0020C848  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020F90C 0020C84C  41 82 00 24 */ beq lbl_8020F930
 /* 8020F910 0020C850  7C 1B C0 AE */ lbzx r0, r27, r24
@@ -209,7 +209,7 @@ lbl_8020F934:
 /* 8020FA00 0020C940  39 01 00 10 */ addi r8, r1, 0x10
 /* 8020FA04 0020C944  C0 9C 0C 18 */ lfs f4, 0xc18(r28)
 /* 8020FA08 0020C948  39 20 00 00 */ li r9, 0
-/* 8020FA0C 0020C94C  48 00 46 D1 */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 8020FA0C 0020C94C  48 00 46 D1 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 lbl_8020FA10:
 /* 8020FA10 0020C950  EF BD C0 2A */ fadds f29, f29, f24
 /* 8020FA14 0020C954  3B 5A 00 01 */ addi r26, r26, 1

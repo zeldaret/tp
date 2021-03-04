@@ -4,10 +4,10 @@
 /* 800BB2BC 000B81FC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800BB2C0 000B8200  93 C1 00 08 */ stw r30, 8(r1)
 /* 800BB2C4 000B8204  7C 7E 1B 78 */ mr r30, r3
-/* 800BB2C8 000B8208  4B FF FD BD */ bl daAlink_c_NS_getBodyAngleXAtnActor
+/* 800BB2C8 000B8208  4B FF FD BD */ bl getBodyAngleXAtnActor__9daAlink_cFi
 /* 800BB2CC 000B820C  7C 7F 1B 78 */ mr r31, r3
 /* 800BB2D0 000B8210  7F C3 F3 78 */ mr r3, r30
-/* 800BB2D4 000B8214  48 02 1B 1D */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800BB2D4 000B8214  48 02 1B 1D */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800BB2D8 000B8218  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB2DC 000B821C  41 82 00 10 */ beq lbl_800BB2EC
 /* 800BB2E0 000B8220  7F E0 07 34 */ extsh r0, r31

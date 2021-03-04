@@ -39,9 +39,9 @@ void getUsedCount__9HeapCheckCFv(void);
 void heapDisplay__9HeapCheckCFv(void);
 void JUTReport__FiiPCce(int, int, const char*, ...);
 void JUTReport__FiiiPCce(void);
-void mDoDvdThd_callback_c_NS_create(void);
+void create__20mDoDvdThd_callback_cFPFPv_PvPv(void);
 void mDoMch_HeapCheckAll(void);
-void mDoMemCd_Ctrl_c_NS_update(void);
+void update__15mDoMemCd_Ctrl_cFv(void);
 void read__8mDoCPd_cFv(void);
 void version_check__Fv(void);
 void main01__Fv(void);
@@ -554,7 +554,7 @@ void main01(void) {
         }
 
         if (lbl_80450C80) {
-            mDoMemCd_Ctrl_c_NS_update();
+            update__15mDoMemCd_Ctrl_cFv();
         }
         mDoCPd_c_NS_read();
         fapGm_Execute();

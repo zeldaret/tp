@@ -49,11 +49,11 @@ lbl_80204400:
 /* 8020441C 0020135C  41 82 00 10 */ beq lbl_8020442C
 lbl_80204420:
 /* 80204420 00201360  7F C3 F3 78 */ mr r3, r30
-/* 80204424 00201364  48 00 46 C9 */ bl dMeterButton_c_NS_setAlphaButtonABAnimeMin
+/* 80204424 00201364  48 00 46 C9 */ bl setAlphaButtonABAnimeMin__14dMeterButton_cFv
 /* 80204428 00201368  48 00 00 14 */ b lbl_8020443C
 lbl_8020442C:
 /* 8020442C 0020136C  7F C3 F3 78 */ mr r3, r30
-/* 80204430 00201370  48 00 47 55 */ bl dMeterButton_c_NS_setAlphaButtonABAnimeMax
+/* 80204430 00201370  48 00 47 55 */ bl setAlphaButtonABAnimeMax__14dMeterButton_cFv
 /* 80204434 00201374  38 60 00 01 */ li r3, 1
 /* 80204438 00201378  48 00 00 08 */ b lbl_80204440
 lbl_8020443C:

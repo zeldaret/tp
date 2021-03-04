@@ -13,7 +13,7 @@
 /* 800D1484 000CE3C4  83 FD 27 E0 */ lwz r31, 0x27e0(r29)
 /* 800D1488 000CE3C8  3B C0 00 01 */ li r30, 1
 /* 800D148C 000CE3CC  7F E3 FB 78 */ mr r3, r31
-/* 800D1490 000CE3D0  4B FA 23 55 */ bl dAttention_c_NS_LockonTruth
+/* 800D1490 000CE3D0  4B FA 23 55 */ bl LockonTruth__12dAttention_cFv
 /* 800D1494 000CE3D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D1498 000CE3D8  40 82 00 14 */ bne lbl_800D14AC
 /* 800D149C 000CE3DC  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -49,7 +49,7 @@ lbl_800D14F0:
 lbl_800D1508:
 /* 800D1508 000CE448  7F A3 EB 78 */ mr r3, r29
 /* 800D150C 000CE44C  38 80 00 01 */ li r4, 1
-/* 800D1510 000CE450  4B FF FF 21 */ bl daAlink_c_NS_resetCombo
+/* 800D1510 000CE450  4B FF FF 21 */ bl resetCombo__9daAlink_cFi
 lbl_800D1514:
 /* 800D1514 000CE454  39 61 00 20 */ addi r11, r1, 0x20
 /* 800D1518 000CE458  48 29 0D 11 */ bl _restgpr_29

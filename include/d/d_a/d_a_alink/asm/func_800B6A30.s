@@ -6,7 +6,7 @@
 /* 800B6A44 000B3984  39 61 00 50 */ addi r11, r1, 0x50
 /* 800B6A48 000B3988  48 2A B7 95 */ bl _savegpr_29
 /* 800B6A4C 000B398C  7C 7E 1B 78 */ mr r30, r3
-/* 800B6A50 000B3990  4B FF 98 6D */ bl daAlink_c_NS_setFrontWallType
+/* 800B6A50 000B3990  4B FF 98 6D */ bl setFrontWallType__9daAlink_cFv
 /* 800B6A54 000B3994  AB FE 30 78 */ lha r31, 0x3078(r30)
 /* 800B6A58 000B3998  38 00 00 00 */ li r0, 0
 /* 800B6A5C 000B399C  B0 1E 30 78 */ sth r0, 0x3078(r30)
@@ -43,11 +43,11 @@ lbl_800B6A84:
 /* 800B6AD4 000B3A14  41 82 00 14 */ beq lbl_800B6AE8
 /* 800B6AD8 000B3A18  7F C3 F3 78 */ mr r3, r30
 /* 800B6ADC 000B3A1C  38 80 00 08 */ li r4, 8
-/* 800B6AE0 000B3A20  48 07 EC 11 */ bl daAlink_c_NS_procWolfHangWallCatchInit
+/* 800B6AE0 000B3A20  48 07 EC 11 */ bl procWolfHangWallCatchInit__9daAlink_cFi
 /* 800B6AE4 000B3A24  48 00 04 24 */ b lbl_800B6F08
 lbl_800B6AE8:
 /* 800B6AE8 000B3A28  7F C3 F3 78 */ mr r3, r30
-/* 800B6AEC 000B3A2C  48 04 3F 91 */ bl daAlink_c_NS_procHangStartInit
+/* 800B6AEC 000B3A2C  48 04 3F 91 */ bl procHangStartInit__9daAlink_cFv
 /* 800B6AF0 000B3A30  48 00 04 18 */ b lbl_800B6F08
 lbl_800B6AF4:
 /* 800B6AF4 000B3A34  28 03 00 0B */ cmplwi r3, 0xb
@@ -65,7 +65,7 @@ lbl_800B6AF4:
 /* 800B6B24 000B3A64  38 C1 00 20 */ addi r6, r1, 0x20
 /* 800B6B28 000B3A68  4B FB 8E FD */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6B2C 000B3A6C  7F C3 F3 78 */ mr r3, r30
-/* 800B6B30 000B3A70  48 04 52 D5 */ bl daAlink_c_NS_procHangWallCatchInit
+/* 800B6B30 000B3A70  48 04 52 D5 */ bl procHangWallCatchInit__9daAlink_cFv
 /* 800B6B34 000B3A74  48 00 03 D4 */ b lbl_800B6F08
 lbl_800B6B38:
 /* 800B6B38 000B3A78  80 1E 05 74 */ lwz r0, 0x574(r30)
@@ -90,13 +90,13 @@ lbl_800B6B38:
 /* 800B6B84 000B3AC4  38 C1 00 14 */ addi r6, r1, 0x14
 /* 800B6B88 000B3AC8  4B FB 8E 9D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6B8C 000B3ACC  7F C3 F3 78 */ mr r3, r30
-/* 800B6B90 000B3AD0  48 04 86 FD */ bl daAlink_c_NS_setClimbStartNotGround
+/* 800B6B90 000B3AD0  48 04 86 FD */ bl setClimbStartNotGround__9daAlink_cFv
 /* 800B6B94 000B3AD4  48 00 03 74 */ b lbl_800B6F08
 lbl_800B6B98:
 /* 800B6B98 000B3AD8  28 03 00 04 */ cmplwi r3, 4
 /* 800B6B9C 000B3ADC  40 82 03 68 */ bne lbl_800B6F04
 /* 800B6BA0 000B3AE0  7F C3 F3 78 */ mr r3, r30
-/* 800B6BA4 000B3AE4  48 04 63 B5 */ bl daAlink_c_NS_getLadderUnitCount
+/* 800B6BA4 000B3AE4  48 04 63 B5 */ bl getLadderUnitCount__9daAlink_cCFv
 /* 800B6BA8 000B3AE8  38 83 FF FF */ addi r4, r3, -1
 /* 800B6BAC 000B3AEC  2C 04 00 01 */ cmpwi r4, 1
 /* 800B6BB0 000B3AF0  40 80 00 0C */ bge lbl_800B6BBC
@@ -104,11 +104,11 @@ lbl_800B6B98:
 /* 800B6BB8 000B3AF8  48 00 03 50 */ b lbl_800B6F08
 lbl_800B6BBC:
 /* 800B6BBC 000B3AFC  7F C3 F3 78 */ mr r3, r30
-/* 800B6BC0 000B3B00  48 04 66 31 */ bl daAlink_c_NS_setLadderPos
+/* 800B6BC0 000B3B00  48 04 66 31 */ bl setLadderPos__9daAlink_cFi
 /* 800B6BC4 000B3B04  7F C3 F3 78 */ mr r3, r30
 /* 800B6BC8 000B3B08  38 80 00 01 */ li r4, 1
 /* 800B6BCC 000B3B0C  38 A0 00 00 */ li r5, 0
-/* 800B6BD0 000B3B10  48 00 A7 0D */ bl daAlink_c_NS_deleteEquipItem
+/* 800B6BD0 000B3B10  48 00 A7 0D */ bl deleteEquipItem__9daAlink_cFii
 /* 800B6BD4 000B3B14  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800B6BD8 000B3B18  D0 21 00 08 */ stfs f1, 8(r1)
 /* 800B6BDC 000B3B1C  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -132,14 +132,14 @@ lbl_800B6BBC:
 /* 800B6C24 000B3B64  D0 1E 04 D4 */ stfs f0, 0x4d4(r30)
 /* 800B6C28 000B3B68  7F C3 F3 78 */ mr r3, r30
 /* 800B6C2C 000B3B6C  38 80 00 01 */ li r4, 1
-/* 800B6C30 000B3B70  48 04 6B F5 */ bl daAlink_c_NS_procLadderUpEndInit
+/* 800B6C30 000B3B70  48 04 6B F5 */ bl procLadderUpEndInit__9daAlink_cFi
 /* 800B6C34 000B3B74  48 00 00 20 */ b lbl_800B6C54
 lbl_800B6C38:
 /* 800B6C38 000B3B78  7F C3 F3 78 */ mr r3, r30
 /* 800B6C3C 000B3B7C  38 80 00 01 */ li r4, 1
 /* 800B6C40 000B3B80  38 A0 00 00 */ li r5, 0
 /* 800B6C44 000B3B84  38 DE 04 D0 */ addi r6, r30, 0x4d0
-/* 800B6C48 000B3B88  48 04 71 49 */ bl daAlink_c_NS_procLadderMoveInit
+/* 800B6C48 000B3B88  48 04 71 49 */ bl procLadderMoveInit__9daAlink_cFiiP4cXyz
 /* 800B6C4C 000B3B8C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800B6C50 000B3B90  D0 1E 1F DC */ stfs f0, 0x1fdc(r30)
 lbl_800B6C54:
@@ -147,7 +147,7 @@ lbl_800B6C54:
 /* 800B6C58 000B3B98  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
 /* 800B6C5C 000B3B9C  38 80 00 00 */ li r4, 0
 /* 800B6C60 000B3BA0  38 A0 00 23 */ li r5, 0x23
-/* 800B6C64 000B3BA4  4B F5 8B E5 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800B6C64 000B3BA4  4B F5 8B E5 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 /* 800B6C68 000B3BA8  38 60 00 01 */ li r3, 1
 /* 800B6C6C 000B3BAC  48 00 02 9C */ b lbl_800B6F08
 lbl_800B6C70:
@@ -174,13 +174,13 @@ lbl_800B6CB8:
 /* 800B6CBC 000B3BFC  28 00 00 03 */ cmplwi r0, 3
 /* 800B6CC0 000B3C00  40 82 00 10 */ bne lbl_800B6CD0
 /* 800B6CC4 000B3C04  7F C3 F3 78 */ mr r3, r30
-/* 800B6CC8 000B3C08  48 04 74 4D */ bl daAlink_c_NS_setClimbInit
+/* 800B6CC8 000B3C08  48 04 74 4D */ bl setClimbInit__9daAlink_cFv
 /* 800B6CCC 000B3C0C  48 00 02 3C */ b lbl_800B6F08
 lbl_800B6CD0:
 /* 800B6CD0 000B3C10  28 00 00 04 */ cmplwi r0, 4
 /* 800B6CD4 000B3C14  40 82 00 10 */ bne lbl_800B6CE4
 /* 800B6CD8 000B3C18  7F C3 F3 78 */ mr r3, r30
-/* 800B6CDC 000B3C1C  48 04 62 A9 */ bl daAlink_c_NS_setLadderInit
+/* 800B6CDC 000B3C1C  48 04 62 A9 */ bl setLadderInit__9daAlink_cFv
 /* 800B6CE0 000B3C20  48 00 02 28 */ b lbl_800B6F08
 lbl_800B6CE4:
 /* 800B6CE4 000B3C24  28 00 00 05 */ cmplwi r0, 5
@@ -249,14 +249,14 @@ lbl_800B6DC4:
 /* 800B6DC8 000B3D08  41 82 00 10 */ beq lbl_800B6DD8
 lbl_800B6DCC:
 /* 800B6DCC 000B3D0C  7F C3 F3 78 */ mr r3, r30
-/* 800B6DD0 000B3D10  48 04 6B FD */ bl daAlink_c_NS_procLadderDownStartInit
+/* 800B6DD0 000B3D10  48 04 6B FD */ bl procLadderDownStartInit__9daAlink_cFv
 /* 800B6DD4 000B3D14  48 00 01 34 */ b lbl_800B6F08
 lbl_800B6DD8:
 /* 800B6DD8 000B3D18  80 1E 05 7C */ lwz r0, 0x57c(r30)
 /* 800B6DDC 000B3D1C  64 00 00 40 */ oris r0, r0, 0x40
 /* 800B6DE0 000B3D20  90 1E 05 7C */ stw r0, 0x57c(r30)
 /* 800B6DE4 000B3D24  7F C3 F3 78 */ mr r3, r30
-/* 800B6DE8 000B3D28  48 00 C5 D1 */ bl daAlink_c_NS_procWaitInit
+/* 800B6DE8 000B3D28  48 00 C5 D1 */ bl procWaitInit__9daAlink_cFv
 /* 800B6DEC 000B3D2C  48 00 01 1C */ b lbl_800B6F08
 lbl_800B6DF0:
 /* 800B6DF0 000B3D30  28 03 00 00 */ cmplwi r3, 0
@@ -265,7 +265,7 @@ lbl_800B6DF0:
 /* 800B6DFC 000B3D3C  A8 1E 2F E2 */ lha r0, 0x2fe2(r30)
 /* 800B6E00 000B3D40  7C 03 00 50 */ subf r0, r3, r0
 /* 800B6E04 000B3D44  7C 03 07 34 */ extsh r3, r0
-/* 800B6E08 000B3D48  4B FF C6 8D */ bl daAlink_c_NS_getDirectionFromAngle
+/* 800B6E08 000B3D48  4B FF C6 8D */ bl getDirectionFromAngle__9daAlink_cFs
 /* 800B6E0C 000B3D4C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B6E10 000B3D50  41 82 00 0C */ beq lbl_800B6E1C
 /* 800B6E14 000B3D54  38 60 00 00 */ li r3, 0
@@ -285,11 +285,11 @@ lbl_800B6E1C:
 /* 800B6E48 000B3D88  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800B6E4C 000B3D8C  41 82 00 10 */ beq lbl_800B6E5C
 /* 800B6E50 000B3D90  7F C3 F3 78 */ mr r3, r30
-/* 800B6E54 000B3D94  48 07 85 C9 */ bl daAlink_c_NS_procWolfStepMoveInit
+/* 800B6E54 000B3D94  48 07 85 C9 */ bl procWolfStepMoveInit__9daAlink_cFv
 /* 800B6E58 000B3D98  48 00 00 B0 */ b lbl_800B6F08
 lbl_800B6E5C:
 /* 800B6E5C 000B3D9C  7F C3 F3 78 */ mr r3, r30
-/* 800B6E60 000B3DA0  48 01 06 75 */ bl daAlink_c_NS_procStepMoveInit
+/* 800B6E60 000B3DA0  48 01 06 75 */ bl procStepMoveInit__9daAlink_cFv
 /* 800B6E64 000B3DA4  48 00 00 A4 */ b lbl_800B6F08
 lbl_800B6E68:
 /* 800B6E68 000B3DA8  28 05 00 07 */ cmplwi r5, 7
@@ -318,21 +318,21 @@ lbl_800B6EB4:
 /* 800B6EBC 000B3DFC  41 82 00 14 */ beq lbl_800B6ED0
 /* 800B6EC0 000B3E00  7F C3 F3 78 */ mr r3, r30
 /* 800B6EC4 000B3E04  38 80 00 07 */ li r4, 7
-/* 800B6EC8 000B3E08  48 07 E8 29 */ bl daAlink_c_NS_procWolfHangWallCatchInit
+/* 800B6EC8 000B3E08  48 07 E8 29 */ bl procWolfHangWallCatchInit__9daAlink_cFi
 /* 800B6ECC 000B3E0C  48 00 00 3C */ b lbl_800B6F08
 lbl_800B6ED0:
 /* 800B6ED0 000B3E10  7F C3 F3 78 */ mr r3, r30
-/* 800B6ED4 000B3E14  48 07 E7 19 */ bl daAlink_c_NS_procWolfHangReadyInit
+/* 800B6ED4 000B3E14  48 07 E7 19 */ bl procWolfHangReadyInit__9daAlink_cFv
 /* 800B6ED8 000B3E18  48 00 00 30 */ b lbl_800B6F08
 lbl_800B6EDC:
 /* 800B6EDC 000B3E1C  28 05 00 07 */ cmplwi r5, 7
 /* 800B6EE0 000B3E20  40 82 00 10 */ bne lbl_800B6EF0
 /* 800B6EE4 000B3E24  7F C3 F3 78 */ mr r3, r30
-/* 800B6EE8 000B3E28  48 04 4F 1D */ bl daAlink_c_NS_procHangWallCatchInit
+/* 800B6EE8 000B3E28  48 04 4F 1D */ bl procHangWallCatchInit__9daAlink_cFv
 /* 800B6EEC 000B3E2C  48 00 00 1C */ b lbl_800B6F08
 lbl_800B6EF0:
 /* 800B6EF0 000B3E30  7F C3 F3 78 */ mr r3, r30
-/* 800B6EF4 000B3E34  48 04 52 85 */ bl daAlink_c_NS_procHangReadyInit
+/* 800B6EF4 000B3E34  48 04 52 85 */ bl procHangReadyInit__9daAlink_cFv
 /* 800B6EF8 000B3E38  48 00 00 10 */ b lbl_800B6F08
 lbl_800B6EFC:
 /* 800B6EFC 000B3E3C  38 00 00 00 */ li r0, 0

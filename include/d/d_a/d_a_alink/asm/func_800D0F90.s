@@ -12,7 +12,7 @@
 /* 800D0FBC 000CDEFC  80 1E 0F B8 */ lwz r0, 0xfb8(r30)
 /* 800D0FC0 000CDF00  60 00 00 01 */ ori r0, r0, 1
 /* 800D0FC4 000CDF04  90 1E 0F B8 */ stw r0, 0xfb8(r30)
-/* 800D0FC8 000CDF08  4B FF FF 95 */ bl daAlink_c_NS_getSwordAtType
+/* 800D0FC8 000CDF08  4B FF FF 95 */ bl getSwordAtType__9daAlink_cFv
 /* 800D0FCC 000CDF0C  90 7E 0F C8 */ stw r3, 0xfc8(r30)
 /* 800D0FD0 000CDF10  38 00 00 03 */ li r0, 3
 /* 800D0FD4 000CDF14  98 1E 10 2E */ stb r0, 0x102e(r30)

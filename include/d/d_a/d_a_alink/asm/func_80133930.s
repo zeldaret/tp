@@ -224,24 +224,24 @@ lbl_80133BDC:
 /* 80133C58 00130B98  40 81 00 14 */ ble lbl_80133C6C
 /* 80133C5C 00130B9C  7F E3 FB 78 */ mr r3, r31
 /* 80133C60 00130BA0  38 80 00 02 */ li r4, 2
-/* 80133C64 00130BA4  4B FF EA D5 */ bl daAlink_c_NS_procWolfRopeHangInit
+/* 80133C64 00130BA4  4B FF EA D5 */ bl procWolfRopeHangInit__9daAlink_cFi
 /* 80133C68 00130BA8  48 00 00 DC */ b lbl_80133D44
 lbl_80133C6C:
 /* 80133C6C 00130BAC  7F E3 FB 78 */ mr r3, r31
 /* 80133C70 00130BB0  38 80 00 03 */ li r4, 3
-/* 80133C74 00130BB4  4B FF EA C5 */ bl daAlink_c_NS_procWolfRopeHangInit
+/* 80133C74 00130BB4  4B FF EA C5 */ bl procWolfRopeHangInit__9daAlink_cFi
 /* 80133C78 00130BB8  48 00 00 CC */ b lbl_80133D44
 lbl_80133C7C:
 /* 80133C7C 00130BBC  38 7F 08 14 */ addi r3, r31, 0x814
 /* 80133C80 00130BC0  48 12 FC DD */ bl ClrCcMove__9cCcD_SttsFv
 /* 80133C84 00130BC4  7F E3 FB 78 */ mr r3, r31
-/* 80133C88 00130BC8  4B FF DA 91 */ bl daAlink_c_NS_setWolfRopePosY
+/* 80133C88 00130BC8  4B FF DA 91 */ bl setWolfRopePosY__9daAlink_cFv
 /* 80133C8C 00130BCC  7C 64 1B 78 */ mr r4, r3
 /* 80133C90 00130BD0  7F E3 FB 78 */ mr r3, r31
-/* 80133C94 00130BD4  4B FF DE 69 */ bl daAlink_c_NS_setWolfRopeOffsetY
+/* 80133C94 00130BD4  4B FF DE 69 */ bl setWolfRopeOffsetY__9daAlink_cFi
 /* 80133C98 00130BD8  7F E3 FB 78 */ mr r3, r31
 /* 80133C9C 00130BDC  38 80 00 01 */ li r4, 1
-/* 80133CA0 00130BE0  4B F9 AF 39 */ bl daAlink_c_NS_checkSubjectEnd
+/* 80133CA0 00130BE0  4B F9 AF 39 */ bl checkSubjectEnd__9daAlink_cFi
 /* 80133CA4 00130BE4  2C 03 00 00 */ cmpwi r3, 0
 /* 80133CA8 00130BE8  41 82 00 44 */ beq lbl_80133CEC
 /* 80133CAC 00130BEC  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)
@@ -260,7 +260,7 @@ lbl_80133CD8:
 lbl_80133CDC:
 /* 80133CDC 00130C1C  7F E3 FB 78 */ mr r3, r31
 /* 80133CE0 00130C20  38 A0 00 00 */ li r5, 0
-/* 80133CE4 00130C24  4B FF DF 91 */ bl daAlink_c_NS_procWolfRopeMoveInit
+/* 80133CE4 00130C24  4B FF DF 91 */ bl procWolfRopeMoveInit__9daAlink_cFii
 /* 80133CE8 00130C28  48 00 00 5C */ b lbl_80133D44
 lbl_80133CEC:
 /* 80133CEC 00130C2C  A8 7F 04 E6 */ lha r3, 0x4e6(r31)
@@ -268,7 +268,7 @@ lbl_80133CEC:
 /* 80133CF4 00130C34  7C 03 02 14 */ add r0, r3, r0
 /* 80133CF8 00130C38  B0 1F 04 E6 */ sth r0, 0x4e6(r31)
 /* 80133CFC 00130C3C  7F E3 FB 78 */ mr r3, r31
-/* 80133D00 00130C40  4B F9 AB A1 */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 80133D00 00130C40  4B F9 AB A1 */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 80133D04 00130C44  A8 7F 04 DE */ lha r3, 0x4de(r31)
 /* 80133D08 00130C48  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80133D0C 00130C4C  7C 03 00 50 */ subf r0, r3, r0

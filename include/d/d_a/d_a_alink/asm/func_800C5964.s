@@ -15,18 +15,18 @@ lbl_800C5990:
 /* 800C5998 000C28D8  90 1F 31 A0 */ stw r0, 0x31a0(r31)
 lbl_800C599C:
 /* 800C599C 000C28DC  7F E3 FB 78 */ mr r3, r31
-/* 800C59A0 000C28E0  48 00 BA 45 */ bl daAlink_c_NS_checkCutTurnInput
+/* 800C59A0 000C28E0  48 00 BA 45 */ bl checkCutTurnInput__9daAlink_cCFv
 /* 800C59A4 000C28E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C59A8 000C28E8  41 82 00 1C */ beq lbl_800C59C4
 /* 800C59AC 000C28EC  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800C59B0 000C28F0  28 00 01 03 */ cmplwi r0, 0x103
 /* 800C59B4 000C28F4  40 82 00 10 */ bne lbl_800C59C4
 /* 800C59B8 000C28F8  7F E3 FB 78 */ mr r3, r31
-/* 800C59BC 000C28FC  48 00 BA 69 */ bl daAlink_c_NS_getCutTurnDirection
+/* 800C59BC 000C28FC  48 00 BA 69 */ bl getCutTurnDirection__9daAlink_cCFv
 /* 800C59C0 000C2900  90 7F 31 98 */ stw r3, 0x3198(r31)
 lbl_800C59C4:
 /* 800C59C4 000C2904  7F E3 FB 78 */ mr r3, r31
-/* 800C59C8 000C2908  4B FF FD 39 */ bl daAlink_c_NS_backJumpSpeedDec
+/* 800C59C8 000C2908  4B FF FD 39 */ bl backJumpSpeedDec__9daAlink_cFv
 /* 800C59CC 000C290C  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 800C59D0 000C2910  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800C59D4 000C2914  41 82 00 24 */ beq lbl_800C59F8
@@ -36,7 +36,7 @@ lbl_800C59C4:
 /* 800C59E4 000C2924  41 82 00 14 */ beq lbl_800C59F8
 /* 800C59E8 000C2928  7F E3 FB 78 */ mr r3, r31
 /* 800C59EC 000C292C  80 9F 31 98 */ lwz r4, 0x3198(r31)
-/* 800C59F0 000C2930  48 00 00 65 */ bl daAlink_c_NS_procBackJumpLandInit
+/* 800C59F0 000C2930  48 00 00 65 */ bl procBackJumpLandInit__9daAlink_cFi
 /* 800C59F4 000C2934  48 00 00 40 */ b lbl_800C5A34
 lbl_800C59F8:
 /* 800C59F8 000C2938  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -53,10 +53,10 @@ lbl_800C59F8:
 /* 800C5A24 000C2964  7F E3 FB 78 */ mr r3, r31
 /* 800C5A28 000C2968  38 80 00 02 */ li r4, 2
 /* 800C5A2C 000C296C  C0 25 00 34 */ lfs f1, 0x34(r5)
-/* 800C5A30 000C2970  48 00 10 19 */ bl daAlink_c_NS_procFallInit
+/* 800C5A30 000C2970  48 00 10 19 */ bl procFallInit__9daAlink_cFif
 lbl_800C5A34:
 /* 800C5A34 000C2974  7F E3 FB 78 */ mr r3, r31
-/* 800C5A38 000C2978  4B FF 3F 15 */ bl daAlink_c_NS_checkItemChangeFromButton
+/* 800C5A38 000C2978  4B FF 3F 15 */ bl checkItemChangeFromButton__9daAlink_cFv
 /* 800C5A3C 000C297C  38 60 00 01 */ li r3, 1
 /* 800C5A40 000C2980  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800C5A44 000C2984  80 01 00 14 */ lwz r0, 0x14(r1)

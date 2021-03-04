@@ -3,11 +3,11 @@
 /* 801A56E4 001A2624  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801A56E8 001A2628  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801A56EC 001A262C  7C 7F 1B 78 */ mr r31, r3
-/* 801A56F0 001A2630  4B FF A0 99 */ bl dScnKy_env_light_c_NS_setSunpos
+/* 801A56F0 001A2630  4B FF A0 99 */ bl setSunpos__18dScnKy_env_light_cFv
 /* 801A56F4 001A2634  7F E3 FB 78 */ mr r3, r31
-/* 801A56F8 001A2638  4B FF FA 75 */ bl dScnKy_env_light_c_NS_SetBaseLight
+/* 801A56F8 001A2638  4B FF FA 75 */ bl SetBaseLight__18dScnKy_env_light_cFv
 /* 801A56FC 001A263C  7F E3 FB 78 */ mr r3, r31
-/* 801A5700 001A2640  4B FF AD 0D */ bl dScnKy_env_light_c_NS_setLight
+/* 801A5700 001A2640  4B FF AD 0D */ bl setLight__18dScnKy_env_light_cFv
 /* 801A5704 001A2644  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A5708 001A2648  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A570C 001A264C  88 03 12 C6 */ lbz r0, 0x12c6(r3)

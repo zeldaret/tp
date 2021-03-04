@@ -4,9 +4,9 @@
 /* 800E20D4 000DF014  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E20D8 000DF018  7C 7F 1B 78 */ mr r31, r3
 /* 800E20DC 000DF01C  38 80 00 65 */ li r4, 0x65
-/* 800E20E0 000DF020  4B FD FE 8D */ bl daAlink_c_NS_commonProcInit
+/* 800E20E0 000DF020  4B FD FE 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E20E4 000DF024  7F E3 FB 78 */ mr r3, r31
-/* 800E20E8 000DF028  4B FF F2 8D */ bl daAlink_c_NS_getCopyRodControllActor
+/* 800E20E8 000DF028  4B FF F2 8D */ bl getCopyRodControllActor__9daAlink_cFv
 /* 800E20EC 000DF02C  28 03 00 00 */ cmplwi r3, 0
 /* 800E20F0 000DF030  41 82 00 68 */ beq lbl_800E2158
 /* 800E20F4 000DF034  A8 83 00 08 */ lha r4, 8(r3)
@@ -24,7 +24,7 @@ lbl_800E2114:
 /* 800E211C 000DF05C  3C A0 80 39 */ lis r5, lbl_8038EAFC@ha
 /* 800E2120 000DF060  38 A5 EA FC */ addi r5, r5, lbl_8038EAFC@l
 /* 800E2124 000DF064  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800E2128 000DF068  4B FC AF CD */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E2128 000DF068  4B FC AF CD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E212C 000DF06C  C0 02 93 84 */ lfs f0, lbl_80452D84-_SDA2_BASE_(r2)
 /* 800E2130 000DF070  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800E2134 000DF074  C0 02 93 F0 */ lfs f0, lbl_80452DF0-_SDA2_BASE_(r2)
@@ -41,7 +41,7 @@ lbl_800E2158:
 /* 800E215C 000DF09C  38 80 01 78 */ li r4, 0x178
 /* 800E2160 000DF0A0  3C A0 80 39 */ lis r5, lbl_8038EAFC@ha
 /* 800E2164 000DF0A4  38 A5 EA FC */ addi r5, r5, lbl_8038EAFC@l
-/* 800E2168 000DF0A8  4B FC AF 8D */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E2168 000DF0A8  4B FC AF 8D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E216C 000DF0AC  C0 02 93 24 */ lfs f0, lbl_80452D24-_SDA2_BASE_(r2)
 /* 800E2170 000DF0B0  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800E2174 000DF0B4  C0 02 93 8C */ lfs f0, lbl_80452D8C-_SDA2_BASE_(r2)
@@ -72,7 +72,7 @@ lbl_800E2194:
 /* 800E21D4 000DF114  3C 00 00 80 */ lis r0, 0x80
 /* 800E21D8 000DF118  90 1F 12 3C */ stw r0, 0x123c(r31)
 /* 800E21DC 000DF11C  7F E3 FB 78 */ mr r3, r31
-/* 800E21E0 000DF120  4B FC 99 49 */ bl daAlink_c_NS_cancelLockAt
+/* 800E21E0 000DF120  4B FC 99 49 */ bl cancelLockAt__9daAlink_cFv
 /* 800E21E4 000DF124  38 60 00 01 */ li r3, 1
 /* 800E21E8 000DF128  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E21EC 000DF12C  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -4,15 +4,15 @@
 /* 800F38F4 000F0834  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F38F8 000F0838  7C 7F 1B 78 */ mr r31, r3
 /* 800F38FC 000F083C  38 80 00 53 */ li r4, 0x53
-/* 800F3900 000F0840  4B FC E6 6D */ bl daAlink_c_NS_commonProcInit
+/* 800F3900 000F0840  4B FC E6 6D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F3904 000F0844  7F E3 FB 78 */ mr r3, r31
 /* 800F3908 000F0848  38 80 00 02 */ li r4, 2
 /* 800F390C 000F084C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F3910 000F0850  4B FB 9E 15 */ bl daAlink_c_NS_resetUpperAnime
+/* 800F3910 000F0850  4B FB 9E 15 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800F3914 000F0854  7F E3 FB 78 */ mr r3, r31
 /* 800F3918 000F0858  38 80 00 02 */ li r4, 2
 /* 800F391C 000F085C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F3920 000F0860  4B FB A1 CD */ bl daAlink_c_NS_resetUnderAnime
+/* 800F3920 000F0860  4B FB A1 CD */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 /* 800F3924 000F0864  38 00 00 00 */ li r0, 0
 /* 800F3928 000F0868  B0 1F 30 10 */ sth r0, 0x3010(r31)
 /* 800F392C 000F086C  B0 1F 30 12 */ sth r0, 0x3012(r31)
@@ -25,17 +25,17 @@
 /* 800F3948 000F0888  38 80 00 61 */ li r4, 0x61
 /* 800F394C 000F088C  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800F3950 000F0890  C0 42 93 24 */ lfs f2, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800F3954 000F0894  4B FB 96 8D */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800F3954 000F0894  4B FB 96 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 800F3958 000F0898  38 00 00 00 */ li r0, 0
 /* 800F395C 000F089C  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800F3960 000F08A0  7F E3 FB 78 */ mr r3, r31
-/* 800F3964 000F08A4  4B FF 9E 29 */ bl daAlink_c_NS_setSyncBoarPos
+/* 800F3964 000F08A4  4B FF 9E 29 */ bl setSyncBoarPos__9daAlink_cFv
 /* 800F3968 000F08A8  38 00 00 00 */ li r0, 0
 /* 800F396C 000F08AC  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 800F3970 000F08B0  7F E3 FB 78 */ mr r3, r31
 /* 800F3974 000F08B4  38 80 00 00 */ li r4, 0
 /* 800F3978 000F08B8  38 A0 00 00 */ li r5, 0
-/* 800F397C 000F08BC  4B FC D9 61 */ bl daAlink_c_NS_deleteEquipItem
+/* 800F397C 000F08BC  4B FC D9 61 */ bl deleteEquipItem__9daAlink_cFii
 /* 800F3980 000F08C0  38 60 00 01 */ li r3, 1
 /* 800F3984 000F08C4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F3988 000F08C8  80 01 00 14 */ lwz r0, 0x14(r1)

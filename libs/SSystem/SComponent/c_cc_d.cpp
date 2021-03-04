@@ -24,7 +24,7 @@ void cross__8cM3dGCylCFPC8cM3dGSphP4cXyz(void);
 void cross__8cM3dGSphCFPC8cM3dGCylP4cXyz(void);
 void cross__8cM3dGSphCFPC8cM3dGSphP4cXyz(void);
 void cross__8cM3dGTriCFPC8cM3dGCylP3Vec(void);
-void cXyz_NS_dtor(void);
+void __dt__4cXyzFv(void);
 void func_80361C24(void);
 void PlusR__8cM3dGAabFf(void);
 void Set__10cCcD_ObjAtFRC13cCcD_SrcObjAt(void);
@@ -131,7 +131,7 @@ asm void ClrCcMove__9cCcD_SttsFv(void) {
 
 // PlusDmg__9cCcD_SttsFi
 // cCcD_Stts::PlusDmg(int)
-asm void cCcD_Stts_NS_PlusDmg(void) {
+asm void PlusDmg__9cCcD_SttsFi(void) {
     nofralloc
 #include "SComponent/c_cc_d/asm/func_80263970.s"
 }

@@ -30,7 +30,7 @@ lbl_80112690:
 /* 80112694 0010F5D4  28 00 01 9C */ cmplwi r0, 0x19c
 /* 80112698 0010F5D8  41 82 00 4C */ beq lbl_801126E4
 /* 8011269C 0010F5DC  7F E3 FB 78 */ mr r3, r31
-/* 801126A0 0010F5E0  4B FA 6C A1 */ bl daAlink_c_NS_checkEquipAnime
+/* 801126A0 0010F5E0  4B FA 6C A1 */ bl checkEquipAnime__9daAlink_cCFv
 /* 801126A4 0010F5E4  2C 03 00 00 */ cmpwi r3, 0
 /* 801126A8 0010F5E8  40 82 00 3C */ bne lbl_801126E4
 /* 801126AC 0010F5EC  80 9F 31 A0 */ lwz r4, 0x31a0(r31)
@@ -47,7 +47,7 @@ lbl_801126D4:
 /* 801126D4 0010F614  7F E3 FB 78 */ mr r3, r31
 /* 801126D8 0010F618  38 80 00 01 */ li r4, 1
 /* 801126DC 0010F61C  38 A0 00 00 */ li r5, 0
-/* 801126E0 0010F620  4B FA EB FD */ bl daAlink_c_NS_deleteEquipItem
+/* 801126E0 0010F620  4B FA EB FD */ bl deleteEquipItem__9daAlink_cFii
 lbl_801126E4:
 /* 801126E4 0010F624  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801126E8 0010F628  80 01 00 14 */ lwz r0, 0x14(r1)

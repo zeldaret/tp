@@ -8,7 +8,7 @@
 /* 802C60FC 002C303C  C0 63 00 08 */ lfs f3, 8(r3)
 /* 802C6100 002C3040  C0 83 00 0C */ lfs f4, 0xc(r3)
 /* 802C6104 002C3044  38 A0 00 00 */ li r5, 0
-/* 802C6108 002C3048  4B FF F9 AD */ bl Z2EnvSeBase_NS_startEnvSeLevel
+/* 802C6108 002C3048  4B FF F9 AD */ bl startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUlLevel
 /* 802C610C 002C304C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802C6110 002C3050  7C 08 03 A6 */ mtlr r0
 /* 802C6114 002C3054  38 21 00 10 */ addi r1, r1, 0x10

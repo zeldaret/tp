@@ -4,7 +4,7 @@
 /* 8011BB4C 00118A8C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011BB50 00118A90  7C 7F 1B 78 */ mr r31, r3
 /* 8011BB54 00118A94  38 80 01 4C */ li r4, 0x14c
-/* 8011BB58 00118A98  4B FA 72 4D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011BB58 00118A98  4B FA 72 4D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 8011BB5C 00118A9C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011BB60 00118AA0  40 82 00 0C */ bne lbl_8011BB6C
 /* 8011BB64 00118AA4  38 60 00 00 */ li r3, 0
@@ -18,7 +18,7 @@ lbl_8011BB6C:
 /* 8011BB80 00118AC0  41 82 00 14 */ beq lbl_8011BB94
 /* 8011BB84 00118AC4  7F E3 FB 78 */ mr r3, r31
 /* 8011BB88 00118AC8  38 80 00 0A */ li r4, 0xa
-/* 8011BB8C 00118ACC  48 00 DA ED */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8011BB8C 00118ACC  48 00 DA ED */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8011BB90 00118AD0  48 00 00 64 */ b lbl_8011BBF4
 lbl_8011BB94:
 /* 8011BB94 00118AD4  7F E3 FB 78 */ mr r3, r31
@@ -29,7 +29,7 @@ lbl_8011BB94:
 /* 8011BBA8 00118AE8  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011BBAC 00118AEC  38 A0 00 18 */ li r5, 0x18
 /* 8011BBB0 00118AF0  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 8011BBB4 00118AF4  48 00 DB 51 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8011BBB4 00118AF4  48 00 DB 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
 /* 8011BBB8 00118AF8  48 00 00 3C */ b lbl_8011BBF4
 lbl_8011BBBC:
 /* 8011BBBC 00118AFC  80 1F 06 0C */ lwz r0, 0x60c(r31)
@@ -37,7 +37,7 @@ lbl_8011BBBC:
 /* 8011BBC4 00118B04  41 82 00 14 */ beq lbl_8011BBD8
 /* 8011BBC8 00118B08  7F E3 FB 78 */ mr r3, r31
 /* 8011BBCC 00118B0C  38 80 00 39 */ li r4, 0x39
-/* 8011BBD0 00118B10  4B F9 13 B1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011BBD0 00118B10  4B F9 13 B1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011BBD4 00118B14  48 00 00 20 */ b lbl_8011BBF4
 lbl_8011BBD8:
 /* 8011BBD8 00118B18  7F E3 FB 78 */ mr r3, r31
@@ -46,7 +46,7 @@ lbl_8011BBD8:
 /* 8011BBE4 00118B24  38 A5 E2 10 */ addi r5, r5, lbl_8038E210@l
 /* 8011BBE8 00118B28  C0 25 00 18 */ lfs f1, 0x18(r5)
 /* 8011BBEC 00118B2C  C0 45 00 1C */ lfs f2, 0x1c(r5)
-/* 8011BBF0 00118B30  4B F9 13 F1 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 8011BBF0 00118B30  4B F9 13 F1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 lbl_8011BBF4:
 /* 8011BBF4 00118B34  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011BBF8 00118B38  D0 1F 33 98 */ stfs f0, 0x3398(r31)

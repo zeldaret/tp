@@ -31,11 +31,11 @@
 /* 801604E8 0015D428  93 7C 01 78 */ stw r27, 0x178(r28)
 /* 801604EC 0015D42C  93 5C 01 7C */ stw r26, 0x17c(r28)
 /* 801604F0 0015D430  7F 83 E3 78 */ mr r3, r28
-/* 801604F4 0015D434  48 00 18 91 */ bl dCamera_c_NS_initMonitor
+/* 801604F4 0015D434  48 00 18 91 */ bl initMonitor__9dCamera_cFv
 /* 801604F8 0015D438  7F 83 E3 78 */ mr r3, r28
-/* 801604FC 0015D43C  48 00 10 55 */ bl dCamera_c_NS_initPad
+/* 801604FC 0015D43C  48 00 10 55 */ bl initPad__9dCamera_cFv
 /* 80160500 0015D440  38 7C 02 28 */ addi r3, r28, 0x228
-/* 80160504 0015D444  48 02 1F C5 */ bl dCamForcusLine_NS_Init
+/* 80160504 0015D444  48 02 1F C5 */ bl Init__14dCamForcusLineFv
 /* 80160508 0015D448  88 0D 87 E4 */ lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 8016050C 0015D44C  7C 00 07 74 */ extsb r0, r0
 /* 80160510 0015D450  90 1C 00 04 */ stw r0, 4(r28)
@@ -112,14 +112,14 @@ lbl_80160610:
 /* 80160614 0015D554  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160618 0015D558  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 8016061C 0015D55C  38 84 00 3C */ addi r4, r4, 0x3c
-/* 80160620 0015D560  48 00 45 45 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160620 0015D560  48 00 45 45 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160624 0015D564  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160628 0015D568  90 64 C8 F8 */ stw r3, lbl_8042C8F8@l(r4)
 /* 8016062C 0015D56C  7F 83 E3 78 */ mr r3, r28
 /* 80160630 0015D570  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160634 0015D574  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160638 0015D578  38 84 00 43 */ addi r4, r4, 0x43
-/* 8016063C 0015D57C  48 00 45 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016063C 0015D57C  48 00 45 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160640 0015D580  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160644 0015D584  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160648 0015D588  90 64 00 04 */ stw r3, 4(r4)
@@ -127,7 +127,7 @@ lbl_80160610:
 /* 80160650 0015D590  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160654 0015D594  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160658 0015D598  38 84 00 49 */ addi r4, r4, 0x49
-/* 8016065C 0015D59C  48 00 45 09 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016065C 0015D59C  48 00 45 09 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160660 0015D5A0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160664 0015D5A4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160668 0015D5A8  90 64 00 08 */ stw r3, 8(r4)
@@ -135,7 +135,7 @@ lbl_80160610:
 /* 80160670 0015D5B0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160674 0015D5B4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160678 0015D5B8  38 84 00 4F */ addi r4, r4, 0x4f
-/* 8016067C 0015D5BC  48 00 44 E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016067C 0015D5BC  48 00 44 E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160680 0015D5C0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160684 0015D5C4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160688 0015D5C8  90 64 00 0C */ stw r3, 0xc(r4)
@@ -143,7 +143,7 @@ lbl_80160610:
 /* 80160690 0015D5D0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160694 0015D5D4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160698 0015D5D8  38 84 00 55 */ addi r4, r4, 0x55
-/* 8016069C 0015D5DC  48 00 44 C9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016069C 0015D5DC  48 00 44 C9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801606A0 0015D5E0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801606A4 0015D5E4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801606A8 0015D5E8  90 64 00 34 */ stw r3, 0x34(r4)
@@ -151,7 +151,7 @@ lbl_80160610:
 /* 801606B0 0015D5F0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801606B4 0015D5F4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801606B8 0015D5F8  38 84 00 5F */ addi r4, r4, 0x5f
-/* 801606BC 0015D5FC  48 00 44 A9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801606BC 0015D5FC  48 00 44 A9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801606C0 0015D600  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801606C4 0015D604  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801606C8 0015D608  90 64 00 14 */ stw r3, 0x14(r4)
@@ -159,7 +159,7 @@ lbl_80160610:
 /* 801606D0 0015D610  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801606D4 0015D614  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801606D8 0015D618  38 84 00 66 */ addi r4, r4, 0x66
-/* 801606DC 0015D61C  48 00 44 89 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801606DC 0015D61C  48 00 44 89 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801606E0 0015D620  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801606E4 0015D624  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801606E8 0015D628  90 64 00 18 */ stw r3, 0x18(r4)
@@ -167,7 +167,7 @@ lbl_80160610:
 /* 801606F0 0015D630  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801606F4 0015D634  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801606F8 0015D638  38 84 00 6C */ addi r4, r4, 0x6c
-/* 801606FC 0015D63C  48 00 44 69 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801606FC 0015D63C  48 00 44 69 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160700 0015D640  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160704 0015D644  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160708 0015D648  90 64 00 10 */ stw r3, 0x10(r4)
@@ -175,7 +175,7 @@ lbl_80160610:
 /* 80160710 0015D650  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160714 0015D654  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160718 0015D658  38 84 00 72 */ addi r4, r4, 0x72
-/* 8016071C 0015D65C  48 00 44 49 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016071C 0015D65C  48 00 44 49 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160720 0015D660  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160724 0015D664  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160728 0015D668  90 64 00 20 */ stw r3, 0x20(r4)
@@ -183,7 +183,7 @@ lbl_80160610:
 /* 80160730 0015D670  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160734 0015D674  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160738 0015D678  38 84 00 77 */ addi r4, r4, 0x77
-/* 8016073C 0015D67C  48 00 44 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016073C 0015D67C  48 00 44 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160740 0015D680  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160744 0015D684  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160748 0015D688  90 64 00 24 */ stw r3, 0x24(r4)
@@ -191,7 +191,7 @@ lbl_80160610:
 /* 80160750 0015D690  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160754 0015D694  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160758 0015D698  38 84 00 7D */ addi r4, r4, 0x7d
-/* 8016075C 0015D69C  48 00 44 09 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016075C 0015D69C  48 00 44 09 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160760 0015D6A0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160764 0015D6A4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160768 0015D6A8  90 64 00 28 */ stw r3, 0x28(r4)
@@ -199,7 +199,7 @@ lbl_80160610:
 /* 80160770 0015D6B0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160774 0015D6B4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160778 0015D6B8  38 84 00 88 */ addi r4, r4, 0x88
-/* 8016077C 0015D6BC  48 00 43 E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016077C 0015D6BC  48 00 43 E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160780 0015D6C0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160784 0015D6C4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160788 0015D6C8  90 64 00 30 */ stw r3, 0x30(r4)
@@ -207,7 +207,7 @@ lbl_80160610:
 /* 80160790 0015D6D0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160794 0015D6D4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160798 0015D6D8  38 84 00 92 */ addi r4, r4, 0x92
-/* 8016079C 0015D6DC  48 00 43 C9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016079C 0015D6DC  48 00 43 C9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801607A0 0015D6E0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801607A4 0015D6E4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801607A8 0015D6E8  90 64 00 2C */ stw r3, 0x2c(r4)
@@ -215,7 +215,7 @@ lbl_80160610:
 /* 801607B0 0015D6F0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801607B4 0015D6F4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801607B8 0015D6F8  38 84 00 9C */ addi r4, r4, 0x9c
-/* 801607BC 0015D6FC  48 00 43 A9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801607BC 0015D6FC  48 00 43 A9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801607C0 0015D700  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801607C4 0015D704  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801607C8 0015D708  90 64 00 80 */ stw r3, 0x80(r4)
@@ -223,7 +223,7 @@ lbl_80160610:
 /* 801607D0 0015D710  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801607D4 0015D714  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801607D8 0015D718  38 84 00 A6 */ addi r4, r4, 0xa6
-/* 801607DC 0015D71C  48 00 43 89 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801607DC 0015D71C  48 00 43 89 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801607E0 0015D720  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801607E4 0015D724  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801607E8 0015D728  90 64 00 7C */ stw r3, 0x7c(r4)
@@ -231,7 +231,7 @@ lbl_80160610:
 /* 801607F0 0015D730  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801607F4 0015D734  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801607F8 0015D738  38 84 00 AB */ addi r4, r4, 0xab
-/* 801607FC 0015D73C  48 00 43 69 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801607FC 0015D73C  48 00 43 69 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160800 0015D740  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160804 0015D744  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160808 0015D748  90 64 00 78 */ stw r3, 0x78(r4)
@@ -239,7 +239,7 @@ lbl_80160610:
 /* 80160810 0015D750  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160814 0015D754  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160818 0015D758  38 84 00 B6 */ addi r4, r4, 0xb6
-/* 8016081C 0015D75C  48 00 43 49 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016081C 0015D75C  48 00 43 49 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160820 0015D760  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160824 0015D764  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160828 0015D768  90 64 00 74 */ stw r3, 0x74(r4)
@@ -247,7 +247,7 @@ lbl_80160610:
 /* 80160830 0015D770  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160834 0015D774  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160838 0015D778  38 84 00 C0 */ addi r4, r4, 0xc0
-/* 8016083C 0015D77C  48 00 43 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016083C 0015D77C  48 00 43 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160840 0015D780  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160844 0015D784  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160848 0015D788  90 64 00 70 */ stw r3, 0x70(r4)
@@ -255,7 +255,7 @@ lbl_80160610:
 /* 80160850 0015D790  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160854 0015D794  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160858 0015D798  38 84 00 C8 */ addi r4, r4, 0xc8
-/* 8016085C 0015D79C  48 00 43 09 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016085C 0015D79C  48 00 43 09 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160860 0015D7A0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160864 0015D7A4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160868 0015D7A8  90 64 00 64 */ stw r3, 0x64(r4)
@@ -263,7 +263,7 @@ lbl_80160610:
 /* 80160870 0015D7B0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160874 0015D7B4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160878 0015D7B8  38 84 00 D1 */ addi r4, r4, 0xd1
-/* 8016087C 0015D7BC  48 00 42 E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016087C 0015D7BC  48 00 42 E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160880 0015D7C0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160884 0015D7C4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160888 0015D7C8  90 64 00 68 */ stw r3, 0x68(r4)
@@ -271,7 +271,7 @@ lbl_80160610:
 /* 80160890 0015D7D0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160894 0015D7D4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160898 0015D7D8  38 84 00 DA */ addi r4, r4, 0xda
-/* 8016089C 0015D7DC  48 00 42 C9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016089C 0015D7DC  48 00 42 C9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801608A0 0015D7E0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801608A4 0015D7E4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801608A8 0015D7E8  90 64 00 6C */ stw r3, 0x6c(r4)
@@ -279,7 +279,7 @@ lbl_80160610:
 /* 801608B0 0015D7F0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801608B4 0015D7F4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801608B8 0015D7F8  38 84 00 E4 */ addi r4, r4, 0xe4
-/* 801608BC 0015D7FC  48 00 42 A9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801608BC 0015D7FC  48 00 42 A9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801608C0 0015D800  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801608C4 0015D804  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801608C8 0015D808  90 64 00 84 */ stw r3, 0x84(r4)
@@ -287,7 +287,7 @@ lbl_80160610:
 /* 801608D0 0015D810  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801608D4 0015D814  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801608D8 0015D818  38 84 00 ED */ addi r4, r4, 0xed
-/* 801608DC 0015D81C  48 00 42 89 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801608DC 0015D81C  48 00 42 89 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801608E0 0015D820  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801608E4 0015D824  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801608E8 0015D828  90 64 00 38 */ stw r3, 0x38(r4)
@@ -295,7 +295,7 @@ lbl_80160610:
 /* 801608F0 0015D830  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801608F4 0015D834  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801608F8 0015D838  38 84 00 F4 */ addi r4, r4, 0xf4
-/* 801608FC 0015D83C  48 00 42 69 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801608FC 0015D83C  48 00 42 69 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160900 0015D840  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160904 0015D844  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160908 0015D848  90 64 00 3C */ stw r3, 0x3c(r4)
@@ -303,7 +303,7 @@ lbl_80160610:
 /* 80160910 0015D850  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160914 0015D854  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160918 0015D858  38 84 00 FB */ addi r4, r4, 0xfb
-/* 8016091C 0015D85C  48 00 42 49 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016091C 0015D85C  48 00 42 49 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160920 0015D860  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160924 0015D864  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160928 0015D868  90 64 00 40 */ stw r3, 0x40(r4)
@@ -311,7 +311,7 @@ lbl_80160610:
 /* 80160930 0015D870  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160934 0015D874  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160938 0015D878  38 84 01 03 */ addi r4, r4, 0x103
-/* 8016093C 0015D87C  48 00 42 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016093C 0015D87C  48 00 42 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160940 0015D880  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160944 0015D884  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160948 0015D888  90 64 00 44 */ stw r3, 0x44(r4)
@@ -319,7 +319,7 @@ lbl_80160610:
 /* 80160950 0015D890  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160954 0015D894  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160958 0015D898  38 84 01 0B */ addi r4, r4, 0x10b
-/* 8016095C 0015D89C  48 00 42 09 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016095C 0015D89C  48 00 42 09 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160960 0015D8A0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160964 0015D8A4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160968 0015D8A8  90 64 00 48 */ stw r3, 0x48(r4)
@@ -327,7 +327,7 @@ lbl_80160610:
 /* 80160970 0015D8B0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160974 0015D8B4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160978 0015D8B8  38 84 01 14 */ addi r4, r4, 0x114
-/* 8016097C 0015D8BC  48 00 41 E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016097C 0015D8BC  48 00 41 E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160980 0015D8C0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160984 0015D8C4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160988 0015D8C8  90 64 00 4C */ stw r3, 0x4c(r4)
@@ -335,7 +335,7 @@ lbl_80160610:
 /* 80160990 0015D8D0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160994 0015D8D4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160998 0015D8D8  38 84 01 1A */ addi r4, r4, 0x11a
-/* 8016099C 0015D8DC  48 00 41 C9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 8016099C 0015D8DC  48 00 41 C9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801609A0 0015D8E0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801609A4 0015D8E4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801609A8 0015D8E8  90 64 00 50 */ stw r3, 0x50(r4)
@@ -343,7 +343,7 @@ lbl_80160610:
 /* 801609B0 0015D8F0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801609B4 0015D8F4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801609B8 0015D8F8  38 84 01 21 */ addi r4, r4, 0x121
-/* 801609BC 0015D8FC  48 00 41 A9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801609BC 0015D8FC  48 00 41 A9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801609C0 0015D900  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801609C4 0015D904  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801609C8 0015D908  90 64 00 54 */ stw r3, 0x54(r4)
@@ -351,7 +351,7 @@ lbl_80160610:
 /* 801609D0 0015D910  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801609D4 0015D914  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801609D8 0015D918  38 84 01 29 */ addi r4, r4, 0x129
-/* 801609DC 0015D91C  48 00 41 89 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801609DC 0015D91C  48 00 41 89 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 801609E0 0015D920  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 801609E4 0015D924  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 801609E8 0015D928  90 64 00 58 */ stw r3, 0x58(r4)
@@ -359,7 +359,7 @@ lbl_80160610:
 /* 801609F0 0015D930  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 801609F4 0015D934  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 801609F8 0015D938  38 84 01 30 */ addi r4, r4, 0x130
-/* 801609FC 0015D93C  48 00 41 69 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 801609FC 0015D93C  48 00 41 69 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160A00 0015D940  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160A04 0015D944  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160A08 0015D948  90 64 00 5C */ stw r3, 0x5c(r4)
@@ -367,7 +367,7 @@ lbl_80160610:
 /* 80160A10 0015D950  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160A14 0015D954  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160A18 0015D958  38 84 01 37 */ addi r4, r4, 0x137
-/* 80160A1C 0015D95C  48 00 41 49 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160A1C 0015D95C  48 00 41 49 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160A20 0015D960  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160A24 0015D964  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160A28 0015D968  90 64 00 60 */ stw r3, 0x60(r4)
@@ -375,7 +375,7 @@ lbl_80160610:
 /* 80160A30 0015D970  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160A34 0015D974  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160A38 0015D978  38 84 01 3F */ addi r4, r4, 0x13f
-/* 80160A3C 0015D97C  48 00 41 29 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160A3C 0015D97C  48 00 41 29 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160A40 0015D980  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160A44 0015D984  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160A48 0015D988  90 64 00 88 */ stw r3, 0x88(r4)
@@ -383,7 +383,7 @@ lbl_80160610:
 /* 80160A50 0015D990  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160A54 0015D994  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160A58 0015D998  38 84 01 4B */ addi r4, r4, 0x14b
-/* 80160A5C 0015D99C  48 00 41 09 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160A5C 0015D99C  48 00 41 09 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160A60 0015D9A0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160A64 0015D9A4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160A68 0015D9A8  90 64 00 8C */ stw r3, 0x8c(r4)
@@ -391,7 +391,7 @@ lbl_80160610:
 /* 80160A70 0015D9B0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160A74 0015D9B4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160A78 0015D9B8  38 84 01 54 */ addi r4, r4, 0x154
-/* 80160A7C 0015D9BC  48 00 40 E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160A7C 0015D9BC  48 00 40 E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160A80 0015D9C0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160A84 0015D9C4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160A88 0015D9C8  90 64 00 90 */ stw r3, 0x90(r4)
@@ -399,7 +399,7 @@ lbl_80160610:
 /* 80160A90 0015D9D0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160A94 0015D9D4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160A98 0015D9D8  38 84 01 5C */ addi r4, r4, 0x15c
-/* 80160A9C 0015D9DC  48 00 40 C9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160A9C 0015D9DC  48 00 40 C9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160AA0 0015D9E0  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160AA4 0015D9E4  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160AA8 0015D9E8  90 64 00 94 */ stw r3, 0x94(r4)
@@ -407,7 +407,7 @@ lbl_80160610:
 /* 80160AB0 0015D9F0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160AB4 0015D9F4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160AB8 0015D9F8  38 84 01 69 */ addi r4, r4, 0x169
-/* 80160ABC 0015D9FC  48 00 40 A9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160ABC 0015D9FC  48 00 40 A9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160AC0 0015DA00  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160AC4 0015DA04  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160AC8 0015DA08  90 64 00 9C */ stw r3, 0x9c(r4)
@@ -415,7 +415,7 @@ lbl_80160610:
 /* 80160AD0 0015DA10  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160AD4 0015DA14  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160AD8 0015DA18  38 84 01 75 */ addi r4, r4, 0x175
-/* 80160ADC 0015DA1C  48 00 40 89 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160ADC 0015DA1C  48 00 40 89 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160AE0 0015DA20  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160AE4 0015DA24  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160AE8 0015DA28  90 64 00 A0 */ stw r3, 0xa0(r4)
@@ -423,7 +423,7 @@ lbl_80160610:
 /* 80160AF0 0015DA30  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160AF4 0015DA34  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160AF8 0015DA38  38 84 01 7D */ addi r4, r4, 0x17d
-/* 80160AFC 0015DA3C  48 00 40 69 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160AFC 0015DA3C  48 00 40 69 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160B00 0015DA40  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160B04 0015DA44  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160B08 0015DA48  90 64 00 98 */ stw r3, 0x98(r4)
@@ -434,7 +434,7 @@ lbl_80160610:
 /* 80160B1C 0015DA5C  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160B20 0015DA60  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160B24 0015DA64  38 84 01 88 */ addi r4, r4, 0x188
-/* 80160B28 0015DA68  48 00 40 3D */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160B28 0015DA68  48 00 40 3D */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160B2C 0015DA6C  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
 /* 80160B30 0015DA70  38 84 C8 F8 */ addi r4, r4, lbl_8042C8F8@l
 /* 80160B34 0015DA74  90 64 00 A4 */ stw r3, 0xa4(r4)
@@ -554,13 +554,13 @@ lbl_80160610:
 /* 80160CFC 0015DC3C  98 9C 09 13 */ stb r4, 0x913(r28)
 /* 80160D00 0015DC40  B0 9C 09 10 */ sth r4, 0x910(r28)
 /* 80160D04 0015DC44  7F 83 E3 78 */ mr r3, r28
-/* 80160D08 0015DC48  48 00 24 75 */ bl dCamera_c_NS_setStageMapToolData
+/* 80160D08 0015DC48  48 00 24 75 */ bl setStageMapToolData__9dCamera_cFv
 /* 80160D0C 0015DC4C  80 1C 08 18 */ lwz r0, 0x818(r28)
 /* 80160D10 0015DC50  2C 00 00 FF */ cmpwi r0, 0xff
 /* 80160D14 0015DC54  41 82 00 14 */ beq lbl_80160D28
 /* 80160D18 0015DC58  7F 83 E3 78 */ mr r3, r28
 /* 80160D1C 0015DC5C  38 9C 07 E8 */ addi r4, r28, 0x7e8
-/* 80160D20 0015DC60  48 00 3E F1 */ bl dCamera_c_NS_GetCameraTypeFromToolData
+/* 80160D20 0015DC60  48 00 3E F1 */ bl GetCameraTypeFromToolData__9dCamera_cFP24stage_camera2_data_class
 /* 80160D24 0015DC64  90 7C 06 94 */ stw r3, 0x694(r28)
 lbl_80160D28:
 /* 80160D28 0015DC68  34 7D 3E E8 */ addic. r3, r29, 0x3ee8
@@ -591,7 +591,7 @@ lbl_80160D7C:
 /* 80160D80 0015DCC0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160D84 0015DCC4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160D88 0015DCC8  38 84 01 8D */ addi r4, r4, 0x18d
-/* 80160D8C 0015DCCC  48 00 3D D9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160D8C 0015DCCC  48 00 3D D9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160D90 0015DCD0  90 7C 06 94 */ stw r3, 0x694(r28)
 /* 80160D94 0015DCD4  48 00 00 38 */ b lbl_80160DCC
 lbl_80160D98:
@@ -599,7 +599,7 @@ lbl_80160D98:
 /* 80160D9C 0015DCDC  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160DA0 0015DCE0  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160DA4 0015DCE4  38 84 01 96 */ addi r4, r4, 0x196
-/* 80160DA8 0015DCE8  48 00 3D BD */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160DA8 0015DCE8  48 00 3D BD */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160DAC 0015DCEC  90 7C 06 94 */ stw r3, 0x694(r28)
 /* 80160DB0 0015DCF0  48 00 00 1C */ b lbl_80160DCC
 lbl_80160DB4:
@@ -607,7 +607,7 @@ lbl_80160DB4:
 /* 80160DB8 0015DCF8  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160DBC 0015DCFC  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160DC0 0015DD00  38 84 00 3C */ addi r4, r4, 0x3c
-/* 80160DC4 0015DD04  48 00 3D A1 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160DC4 0015DD04  48 00 3D A1 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160DC8 0015DD08  90 7C 06 94 */ stw r3, 0x694(r28)
 lbl_80160DCC:
 /* 80160DCC 0015DD0C  3B 60 00 FF */ li r27, 0xff
@@ -615,7 +615,7 @@ lbl_80160DCC:
 /* 80160DD4 0015DD14  7F 5A 07 74 */ extsb r26, r26
 /* 80160DD8 0015DD18  38 7D 3F 8C */ addi r3, r29, 0x3f8c
 /* 80160DDC 0015DD1C  7F 44 D3 78 */ mr r4, r26
-/* 80160DE0 0015DD20  4B EC 35 A5 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80160DE0 0015DD20  4B EC 35 A5 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80160DE4 0015DD24  28 03 00 00 */ cmplwi r3, 0
 /* 80160DE8 0015DD28  41 82 00 20 */ beq lbl_80160E08
 /* 80160DEC 0015DD2C  81 83 00 00 */ lwz r12, 0(r3)
@@ -630,17 +630,17 @@ lbl_80160E08:
 /* 80160E0C 0015DD4C  38 9C 08 24 */ addi r4, r28, 0x824
 /* 80160E10 0015DD50  7F 65 DB 78 */ mr r5, r27
 /* 80160E14 0015DD54  7F 46 D3 78 */ mr r6, r26
-/* 80160E18 0015DD58  48 00 27 95 */ bl dCamera_c_NS_setRoomMapToolData
+/* 80160E18 0015DD58  48 00 27 95 */ bl setRoomMapToolData__9dCamera_cFP15dCamMapToolDatall
 /* 80160E1C 0015DD5C  7F 83 E3 78 */ mr r3, r28
-/* 80160E20 0015DD60  48 00 71 CD */ bl dCamera_c_NS_checkGroundInfo
+/* 80160E20 0015DD60  48 00 71 CD */ bl checkGroundInfo__9dCamera_cFv
 /* 80160E24 0015DD64  7F 83 E3 78 */ mr r3, r28
-/* 80160E28 0015DD68  48 00 25 19 */ bl dCamera_c_NS_setMapToolData
+/* 80160E28 0015DD68  48 00 25 19 */ bl setMapToolData__9dCamera_cFv
 /* 80160E2C 0015DD6C  80 1C 07 DC */ lwz r0, 0x7dc(r28)
 /* 80160E30 0015DD70  2C 00 00 FF */ cmpwi r0, 0xff
 /* 80160E34 0015DD74  41 82 00 18 */ beq lbl_80160E4C
 /* 80160E38 0015DD78  7F 83 E3 78 */ mr r3, r28
 /* 80160E3C 0015DD7C  38 9C 07 AC */ addi r4, r28, 0x7ac
-/* 80160E40 0015DD80  48 00 3D D1 */ bl dCamera_c_NS_GetCameraTypeFromToolData
+/* 80160E40 0015DD80  48 00 3D D1 */ bl GetCameraTypeFromToolData__9dCamera_cFP24stage_camera2_data_class
 /* 80160E44 0015DD84  90 7C 06 8C */ stw r3, 0x68c(r28)
 /* 80160E48 0015DD88  48 00 00 48 */ b lbl_80160E90
 lbl_80160E4C:
@@ -656,7 +656,7 @@ lbl_80160E4C:
 /* 80160E70 0015DDB0  3C 80 80 39 */ lis r4, lbl_80393F68@ha
 /* 80160E74 0015DDB4  38 84 3F 68 */ addi r4, r4, lbl_80393F68@l
 /* 80160E78 0015DDB8  38 84 01 9B */ addi r4, r4, 0x19b
-/* 80160E7C 0015DDBC  48 00 3C E9 */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80160E7C 0015DDBC  48 00 3C E9 */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80160E80 0015DDC0  90 7C 06 8C */ stw r3, 0x68c(r28)
 /* 80160E84 0015DDC4  48 00 00 0C */ b lbl_80160E90
 lbl_80160E88:

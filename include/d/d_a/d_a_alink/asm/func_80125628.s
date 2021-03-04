@@ -42,7 +42,7 @@ lbl_801256B4:
 /* 801256C4 00122604  38 00 00 01 */ li r0, 1
 /* 801256C8 00122608  98 1C 2F CB */ stb r0, 0x2fcb(r28)
 /* 801256CC 0012260C  7F 83 E3 78 */ mr r3, r28
-/* 801256D0 00122610  4B FF FE ED */ bl daAlink_c_NS_clearWoodShieldBurnEffect
+/* 801256D0 00122610  4B FF FE ED */ bl clearWoodShieldBurnEffect__9daAlink_cFv
 /* 801256D4 00122614  39 61 00 30 */ addi r11, r1, 0x30
 /* 801256D8 00122618  48 23 CB 4D */ bl _restgpr_28
 /* 801256DC 0012261C  80 01 00 34 */ lwz r0, 0x34(r1)

@@ -11,7 +11,7 @@
 /* 800D0F24 000CDE64  41 82 00 1C */ beq lbl_800D0F40
 /* 800D0F28 000CDE68  38 7E 00 58 */ addi r3, r30, 0x58
 /* 800D0F2C 000CDE6C  4B FB 27 5D */ bl GetAc__22dCcD_GAtTgCoCommonBaseFv
-/* 800D0F30 000CDE70  48 00 B6 19 */ bl daAlink_c_NS_checkEnemyGroup
+/* 800D0F30 000CDE70  48 00 B6 19 */ bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 800D0F34 000CDE74  2C 03 00 00 */ cmpwi r3, 0
 /* 800D0F38 000CDE78  41 82 00 08 */ beq lbl_800D0F40
 /* 800D0F3C 000CDE7C  3B E0 00 01 */ li r31, 1

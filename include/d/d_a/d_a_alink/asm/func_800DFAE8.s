@@ -9,17 +9,17 @@
 /* 800DFB08 000DCA48  48 07 F5 61 */ bl loadData__14daPy_anmHeap_cFUsIdx
 /* 800DFB0C 000DCA4C  7C 7F 1B 78 */ mr r31, r3
 /* 800DFB10 000DCA50  7F A3 EB 78 */ mr r3, r29
-/* 800DFB14 000DCA54  4B FC 41 79 */ bl daAlink_c_NS_setItemHeap
+/* 800DFB14 000DCA54  4B FC 41 79 */ bl setItemHeap__9daAlink_cFv
 /* 800DFB18 000DCA58  7C 7E 1B 78 */ mr r30, r3
 /* 800DFB1C 000DCA5C  7F A3 EB 78 */ mr r3, r29
 /* 800DFB20 000DCA60  38 80 03 14 */ li r4, 0x314
 /* 800DFB24 000DCA64  38 A0 4C 00 */ li r5, 0x4c00
-/* 800DFB28 000DCA68  4B FE 03 21 */ bl daAlink_c_NS_loadAramBmd
+/* 800DFB28 000DCA68  4B FE 03 21 */ bl loadAramBmd__9daAlink_cFUsUl
 /* 800DFB2C 000DCA6C  7C 64 1B 78 */ mr r4, r3
 /* 800DFB30 000DCA70  7F A3 EB 78 */ mr r3, r29
 /* 800DFB34 000DCA74  3C A0 00 08 */ lis r5, 8
 /* 800DFB38 000DCA78  38 C0 00 00 */ li r6, 0
-/* 800DFB3C 000DCA7C  4B FC 42 41 */ bl daAlink_c_NS_initModel
+/* 800DFB3C 000DCA7C  4B FC 42 41 */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 800DFB40 000DCA80  90 7D 07 08 */ stw r3, 0x708(r29)
 /* 800DFB44 000DCA84  38 7D 07 30 */ addi r3, r29, 0x730
 /* 800DFB48 000DCA88  7F E4 FB 78 */ mr r4, r31
@@ -29,7 +29,7 @@
 /* 800DFB58 000DCA98  38 E0 00 00 */ li r7, 0
 /* 800DFB5C 000DCA9C  39 00 FF FF */ li r8, -1
 /* 800DFB60 000DCAA0  39 20 00 00 */ li r9, 0
-/* 800DFB64 000DCAA4  4B F2 DC 79 */ bl mDoExt_bckAnm_NS_init
+/* 800DFB64 000DCAA4  4B F2 DC 79 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 800DFB68 000DCAA8  7F C3 F3 78 */ mr r3, r30
 /* 800DFB6C 000DCAAC  4B F2 F6 61 */ bl mDoExt_setCurrentHeap
 /* 800DFB70 000DCAB0  80 7D 07 44 */ lwz r3, 0x744(r29)

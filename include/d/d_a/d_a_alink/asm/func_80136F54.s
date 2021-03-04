@@ -4,12 +4,12 @@
 /* 80136F60 00133EA0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80136F64 00133EA4  7C 7F 1B 78 */ mr r31, r3
 /* 80136F68 00133EA8  38 80 01 0A */ li r4, 0x10a
-/* 80136F6C 00133EAC  4B F8 B0 01 */ bl daAlink_c_NS_commonProcInit
+/* 80136F6C 00133EAC  4B F8 B0 01 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80136F70 00133EB0  80 1F 05 8C */ lwz r0, 0x58c(r31)
 /* 80136F74 00133EB4  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80136F78 00133EB8  41 82 00 10 */ beq lbl_80136F88
 /* 80136F7C 00133EBC  7F E3 FB 78 */ mr r3, r31
-/* 80136F80 00133EC0  4B FF FF 45 */ bl daAlink_c_NS_setWolfScreamWaitAnime
+/* 80136F80 00133EC0  4B FF FF 45 */ bl setWolfScreamWaitAnime__9daAlink_cFv
 /* 80136F84 00133EC4  48 00 00 30 */ b lbl_80136FB4
 lbl_80136F88:
 /* 80136F88 00133EC8  7F E3 FB 78 */ mr r3, r31
@@ -20,7 +20,7 @@ lbl_80136F88:
 /* 80136F9C 00133EDC  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
 /* 80136FA0 00133EE0  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 80136FA4 00133EE4  C0 45 00 BC */ lfs f2, 0xbc(r5)
-/* 80136FA8 00133EE8  4B FF 27 31 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 80136FA8 00133EE8  4B FF 27 31 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 80136FAC 00133EEC  38 00 00 00 */ li r0, 0
 /* 80136FB0 00133EF0  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_80136FB4:

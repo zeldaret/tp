@@ -4,7 +4,7 @@
 /* 8013516C 001320AC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80135170 001320B0  7C 7F 1B 78 */ mr r31, r3
 /* 80135174 001320B4  38 80 01 37 */ li r4, 0x137
-/* 80135178 001320B8  4B F8 DC 2D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 80135178 001320B8  4B F8 DC 2D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 8013517C 001320BC  2C 03 00 00 */ cmpwi r3, 0
 /* 80135180 001320C0  40 82 00 0C */ bne lbl_8013518C
 /* 80135184 001320C4  38 60 00 00 */ li r3, 0
@@ -14,7 +14,7 @@ lbl_8013518C:
 /* 80135190 001320D0  3C 80 80 39 */ lis r4, lbl_8038EE28@ha
 /* 80135194 001320D4  38 84 EE 28 */ addi r4, r4, lbl_8038EE28@l
 /* 80135198 001320D8  C0 24 00 BC */ lfs f1, 0xbc(r4)
-/* 8013519C 001320DC  4B FF 36 A9 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8013519C 001320DC  4B FF 36 A9 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 801351A0 001320E0  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 801351A4 001320E4  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 801351A8 001320E8  38 00 00 04 */ li r0, 4
@@ -30,7 +30,7 @@ lbl_8013518C:
 /* 801351D0 00132110  C0 03 00 08 */ lfs f0, 8(r3)
 /* 801351D4 00132114  D0 1F 05 94 */ stfs f0, 0x594(r31)
 /* 801351D8 00132118  7F E3 FB 78 */ mr r3, r31
-/* 801351DC 0013211C  4B FF 2A D1 */ bl daAlink_c_NS_offWolfEyeUp
+/* 801351DC 0013211C  4B FF 2A D1 */ bl offWolfEyeUp__9daAlink_cFv
 /* 801351E0 00132120  38 60 00 01 */ li r3, 1
 lbl_801351E4:
 /* 801351E4 00132124  83 E1 00 0C */ lwz r31, 0xc(r1)

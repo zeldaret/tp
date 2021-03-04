@@ -62,63 +62,63 @@ asm void func_802CBCEC(void) {
 
 // setString__12Z2SpeechMgr2FPCUssUcUs
 // Z2SpeechMgr2::setString(const unsigned short*, short, unsigned char, unsigned short)
-asm void Z2SpeechMgr2_NS_setString(void) {
+asm void setString__12Z2SpeechMgr2FPCUssUcUs(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CBD88.s"
 }
 
 // setTextCount__12Z2SpeechMgr2Fs
 // Z2SpeechMgr2::setTextCount(short)
-asm void Z2SpeechMgr2_NS_setTextCount(void) {
+asm void setTextCount__12Z2SpeechMgr2Fs(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CBF60.s"
 }
 
 // speakOneWord__12Z2SpeechMgr2Fb
 // Z2SpeechMgr2::speakOneWord(bool)
-asm void Z2SpeechMgr2_NS_speakOneWord(void) {
+asm void speakOneWord__12Z2SpeechMgr2Fb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CC190.s"
 }
 
 // isNonVerbal__12Z2SpeechMgr2Fv
 // Z2SpeechMgr2::isNonVerbal(void)
-asm void Z2SpeechMgr2_NS_isNonVerbal(void) {
+asm void isNonVerbal__12Z2SpeechMgr2Fv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CC2FC.s"
 }
 
 // selectUnit__12Z2SpeechMgr2Fb
 // Z2SpeechMgr2::selectUnit(bool)
-asm void Z2SpeechMgr2_NS_selectUnit(void) {
+asm void selectUnit__12Z2SpeechMgr2Fb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CC4C0.s"
 }
 
 // selectTail__12Z2SpeechMgr2Fv
 // Z2SpeechMgr2::selectTail(void)
-asm void Z2SpeechMgr2_NS_selectTail(void) {
+asm void selectTail__12Z2SpeechMgr2Fv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CC738.s"
 }
 
 // framework__12Z2SpeechMgr2Fv
 // Z2SpeechMgr2::framework(void)
-asm void Z2SpeechMgr2_NS_framework(void) {
+asm void framework__12Z2SpeechMgr2Fv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CC9D0.s"
 }
 
 // playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
 // Z2SpeechMgr2::playOneShotVoice(unsigned char, unsigned short, Vec*, char)
-asm void Z2SpeechMgr2_NS_playOneShotVoice(void) {
+asm void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CCA18.s"
 }
 
 // isMidnaSpeak__12Z2SpeechMgr2Fv
 // Z2SpeechMgr2::isMidnaSpeak(void)
-asm void Z2SpeechMgr2_NS_isMidnaSpeak(void) {
+asm void isMidnaSpeak__12Z2SpeechMgr2Fv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CCF88.s"
 }

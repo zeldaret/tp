@@ -5,7 +5,7 @@
 /* 800E7E60 000E4DA0  7C 7F 1B 78 */ mr r31, r3
 /* 800E7E64 000E4DA4  38 80 00 96 */ li r4, 0x96
 /* 800E7E68 000E4DA8  38 A0 00 02 */ li r5, 2
-/* 800E7E6C 000E4DAC  48 00 00 65 */ bl daAlink_c_NS_setWallGrabStatus
+/* 800E7E6C 000E4DAC  48 00 00 65 */ bl setWallGrabStatus__9daAlink_cFUcUc
 /* 800E7E70 000E4DB0  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 800E7E74 000E4DB4  48 07 66 59 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E7E78 000E4DB8  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -24,7 +24,7 @@ lbl_800E7EA4:
 /* 800E7EA8 000E4DE8  D0 1F 1F 50 */ stfs f0, 0x1f50(r31)
 /* 800E7EAC 000E4DEC  7F E3 FB 78 */ mr r3, r31
 /* 800E7EB0 000E4DF0  38 80 00 00 */ li r4, 0
-/* 800E7EB4 000E4DF4  4B FD 22 1D */ bl daAlink_c_NS_checkNextAction
+/* 800E7EB4 000E4DF4  4B FD 22 1D */ bl checkNextAction__9daAlink_cFi
 lbl_800E7EB8:
 /* 800E7EB8 000E4DF8  38 60 00 01 */ li r3, 1
 /* 800E7EBC 000E4DFC  83 E1 00 0C */ lwz r31, 0xc(r1)

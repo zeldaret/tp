@@ -3,10 +3,10 @@
 /* 800C0528 000BD468  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800C052C 000BD46C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C0530 000BD470  3B E0 00 00 */ li r31, 0
-/* 800C0534 000BD474  4B FF FE B5 */ bl daAlink_c_NS_checkRoomOnly
+/* 800C0534 000BD474  4B FF FE B5 */ bl checkRoomOnly__9daAlink_cFv
 /* 800C0538 000BD478  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C053C 000BD47C  40 82 00 3C */ bne lbl_800C0578
-/* 800C0540 000BD480  4B FF FF 75 */ bl daAlink_c_NS_checkRoomSpecial
+/* 800C0540 000BD480  4B FF FF 75 */ bl checkRoomSpecial__9daAlink_cFv
 /* 800C0544 000BD484  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0548 000BD488  40 82 00 30 */ bne lbl_800C0578
 /* 800C054C 000BD48C  3C 60 80 39 */ lis r3, lbl_80392094@ha

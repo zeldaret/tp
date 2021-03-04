@@ -57,17 +57,17 @@ void init__14Z2SoundObjBaseFP3VecUc(void);
 void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool(void);
 
 void Z2SoundObjAnime(void);
-void Z2SoundObjAnime_NS_ageSounds_(void);
+void ageSounds___15Z2SoundObjAnimeFv(void);
 void Z2SoundObjAnime_NS_getSoundID(void);
-void Z2SoundObjAnime_NS_initAnime(void);
+void initAnime__15Z2SoundObjAnimeFPvbff(void);
 void Z2SoundObjAnime_NS_playsSound(void);
 void Z2SoundObjAnime_NS_startSoundInner(void);
-void Z2SoundObjAnime_NS_updateAnime(void);
-void Z2SoundObjAnime_NS_updateSoundLifeTime_(void);
+void updateAnime__15Z2SoundObjAnimeFff(void);
+void updateSoundLifeTime___15Z2SoundObjAnimeFff(void);
 
-void Z2SoundObjBase_NS_startCollisionSE(void);
-void Z2SoundObjBase_NS_startLevelSound(void);
-void Z2SoundObjBase_NS_startSound(void);
+void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase(void);
+void startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void);
+void startSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void);
 
 void Z2SoundObjSimple(void);
 void __dt__16Z2SoundObjSimpleFv(void);

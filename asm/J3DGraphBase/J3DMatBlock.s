@@ -12696,18 +12696,18 @@ lbl_80323378:
 /* 803234C4 00320404  38 03 E9 0C */	addi r0, r3, lbl_803CE90C@l
 /* 803234C8 00320408  90 1E 00 00 */	stw r0, 0(r30)
 /* 803234CC 0032040C  38 7E 00 6C */	addi r3, r30, 0x6c
-.global J3DIndTexCoordScale_NS_dtor
-/* 803234D0 00320410  3C 80 80 01 */	lis r4, J3DIndTexCoordScale_NS_dtor@ha
-.global J3DIndTexCoordScale_NS_dtor
-/* 803234D4 00320414  38 84 E0 24 */	addi r4, r4, J3DIndTexCoordScale_NS_dtor@l
+.global __dt__19J3DIndTexCoordScaleFv
+/* 803234D0 00320410  3C 80 80 01 */	lis r4, __dt__19J3DIndTexCoordScaleFv@ha
+.global __dt__19J3DIndTexCoordScaleFv
+/* 803234D4 00320414  38 84 E0 24 */	addi r4, r4, __dt__19J3DIndTexCoordScaleFv@l
 /* 803234D8 00320418  38 A0 00 04 */	li r5, 4
 /* 803234DC 0032041C  38 C0 00 04 */	li r6, 4
 /* 803234E0 00320420  48 03 E8 09 */	bl func_80361CE8
 /* 803234E4 00320424  38 7E 00 18 */	addi r3, r30, 0x18
-.global J3DIndTexMtx_NS_dtor
-/* 803234E8 00320428  3C 80 80 01 */	lis r4, J3DIndTexMtx_NS_dtor@ha
-.global J3DIndTexMtx_NS_dtor
-/* 803234EC 0032042C  38 84 E0 64 */	addi r4, r4, J3DIndTexMtx_NS_dtor@l
+.global __dt__12J3DIndTexMtxFv
+/* 803234E8 00320428  3C 80 80 01 */	lis r4, __dt__12J3DIndTexMtxFv@ha
+.global __dt__12J3DIndTexMtxFv
+/* 803234EC 0032042C  38 84 E0 64 */	addi r4, r4, __dt__12J3DIndTexMtxFv@l
 /* 803234F0 00320430  38 A0 00 1C */	li r5, 0x1c
 /* 803234F4 00320434  38 C0 00 03 */	li r6, 3
 /* 803234F8 00320438  48 03 E7 F1 */	bl func_80361CE8

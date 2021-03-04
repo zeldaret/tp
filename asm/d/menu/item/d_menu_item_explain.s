@@ -1134,21 +1134,21 @@ draw__19dMenu_ItemExplain_cFP13J2DOrthoGraphKantera:
 /* 801DB79C 001D86DC  EC 20 08 2A */	fadds f1, f0, f1
 /* 801DB7A0 001D86E0  80 7F 00 6C */	lwz r3, 0x6c(r31)
 /* 801DB7A4 001D86E4  FC 40 F8 90 */	fmr f2, f31
-/* 801DB7A8 001D86E8  4B FD 33 F9 */	bl dKantera_icon_c_NS_setPos
+/* 801DB7A8 001D86E8  4B FD 33 F9 */	bl setPos__15dKantera_icon_cFff
 /* 801DB7AC 001D86EC  80 7F 00 6C */	lwz r3, 0x6c(r31)
 /* 801DB7B0 001D86F0  C0 22 A8 C4 */	lfs f1, lbl_804542C4-_SDA2_BASE_(r2)
 /* 801DB7B4 001D86F4  FC 40 08 90 */	fmr f2, f1
-/* 801DB7B8 001D86F8  4B FD 34 3D */	bl dKantera_icon_c_NS_setScale
+/* 801DB7B8 001D86F8  4B FD 34 3D */	bl setScale__15dKantera_icon_cFff
 /* 801DB7BC 001D86FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 801DB7C0 001D8700  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 801DB7C4 001D8704  A0 A3 00 08 */	lhz r5, 8(r3)
 /* 801DB7C8 001D8708  A0 83 00 06 */	lhz r4, 6(r3)
 /* 801DB7CC 001D870C  80 7F 00 6C */	lwz r3, 0x6c(r31)
-/* 801DB7D0 001D8710  4B FD 34 75 */	bl dKantera_icon_c_NS_setNowGauge
+/* 801DB7D0 001D8710  4B FD 34 75 */	bl setNowGauge__15dKantera_icon_cFUsUs
 /* 801DB7D4 001D8714  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 801DB7D8 001D8718  48 07 A0 51 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 801DB7DC 001D871C  80 7F 00 6C */	lwz r3, 0x6c(r31)
-/* 801DB7E0 001D8720  4B FD 33 9D */	bl dKantera_icon_c_NS_setAlphaRate
+/* 801DB7E0 001D8720  4B FD 33 9D */	bl setAlphaRate__15dKantera_icon_cFf
 /* 801DB7E4 001D8724  80 7F 00 6C */	lwz r3, 0x6c(r31)
 /* 801DB7E8 001D8728  80 63 00 04 */	lwz r3, 4(r3)
 /* 801DB7EC 001D872C  81 83 00 00 */	lwz r12, 0(r3)
@@ -1251,7 +1251,7 @@ lbl_801DB918:
 /* 801DB948 001D8888  81 1F 00 7C */	lwz r8, 0x7c(r31)
 /* 801DB94C 001D888C  81 3F 00 90 */	lwz r9, 0x90(r31)
 /* 801DB950 001D8890  81 5F 00 80 */	lwz r10, 0x80(r31)
-/* 801DB954 001D8894  48 04 15 B5 */	bl dMeter2Info_c_NS_readItemTexture
+/* 801DB954 001D8894  48 04 15 B5 */	bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 801DB958 001D8898  7C 7E 1B 78 */	mr r30, r3
 /* 801DB95C 001D889C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 801DB960 001D88A0  48 07 9C 69 */	bl show__13CPaneMgrAlphaFv
@@ -1513,13 +1513,13 @@ lbl_801DBCA0:
 /* 801DBD18 001D8C58  38 80 05 18 */	li r4, 0x518
 /* 801DBD1C 001D8C5C  38 A1 00 10 */	addi r5, r1, 0x10
 /* 801DBD20 001D8C60  38 C0 00 00 */	li r6, 0
-/* 801DBD24 001D8C64  48 04 05 2D */	bl dMeter2Info_c_NS_getString
+/* 801DBD24 001D8C64  48 04 05 2D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801DBD28 001D8C68  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801DBD2C 001D8C6C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801DBD30 001D8C70  38 80 05 19 */	li r4, 0x519
 /* 801DBD34 001D8C74  38 A1 00 08 */	addi r5, r1, 8
 /* 801DBD38 001D8C78  38 C0 00 00 */	li r6, 0
-/* 801DBD3C 001D8C7C  48 04 05 15 */	bl dMeter2Info_c_NS_getString
+/* 801DBD3C 001D8C7C  48 04 05 15 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801DBD40 001D8C80  48 00 00 44 */	b lbl_801DBD84
 lbl_801DBD44:
 /* 801DBD44 001D8C84  38 00 05 1A */	li r0, 0x51a
@@ -1531,13 +1531,13 @@ lbl_801DBD44:
 /* 801DBD5C 001D8C9C  38 80 05 1B */	li r4, 0x51b
 /* 801DBD60 001D8CA0  38 A1 00 10 */	addi r5, r1, 0x10
 /* 801DBD64 001D8CA4  38 C0 00 00 */	li r6, 0
-/* 801DBD68 001D8CA8  48 04 04 E9 */	bl dMeter2Info_c_NS_getString
+/* 801DBD68 001D8CA8  48 04 04 E9 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801DBD6C 001D8CAC  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801DBD70 001D8CB0  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801DBD74 001D8CB4  38 80 05 1C */	li r4, 0x51c
 /* 801DBD78 001D8CB8  38 A1 00 08 */	addi r5, r1, 8
 /* 801DBD7C 001D8CBC  38 C0 00 00 */	li r6, 0
-/* 801DBD80 001D8CC0  48 04 04 D1 */	bl dMeter2Info_c_NS_getString
+/* 801DBD80 001D8CC0  48 04 04 D1 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 lbl_801DBD84:
 /* 801DBD84 001D8CC4  80 7F 00 9C */	lwz r3, 0x9c(r31)
 /* 801DBD88 001D8CC8  48 05 EB F5 */	bl getCharSpace__17dMsgScrn3Select_cFv
@@ -1552,7 +1552,7 @@ lbl_801DBD84:
 /* 801DBDAC 001D8CEC  FC 20 F8 90 */	fmr f1, f31
 /* 801DBDB0 001D8CF0  FC 40 F0 90 */	fmr f2, f30
 /* 801DBDB4 001D8CF4  38 A1 00 10 */	addi r5, r1, 0x10
-/* 801DBDB8 001D8CF8  48 04 0A 45 */	bl dMeter2Info_c_NS_getStringLength_X1_
+/* 801DBDB8 001D8CF8  48 04 0A 45 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_
 /* 801DBDBC 001D8CFC  FF A0 08 90 */	fmr f29, f1
 /* 801DBDC0 001D8D00  80 7F 00 9C */	lwz r3, 0x9c(r31)
 /* 801DBDC4 001D8D04  48 05 EB B9 */	bl getCharSpace__17dMsgScrn3Select_cFv
@@ -1567,7 +1567,7 @@ lbl_801DBD84:
 /* 801DBDE8 001D8D28  FC 20 F0 90 */	fmr f1, f30
 /* 801DBDEC 001D8D2C  FC 40 F8 90 */	fmr f2, f31
 /* 801DBDF0 001D8D30  38 A1 00 08 */	addi r5, r1, 8
-/* 801DBDF4 001D8D34  48 04 0A 09 */	bl dMeter2Info_c_NS_getStringLength_X1_
+/* 801DBDF4 001D8D34  48 04 0A 09 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_
 /* 801DBDF8 001D8D38  FF C0 08 90 */	fmr f30, f1
 /* 801DBDFC 001D8D3C  FC 1D F0 40 */	fcmpo cr0, f29, f30
 /* 801DBE00 001D8D40  40 80 00 0C */	bge lbl_801DBE0C

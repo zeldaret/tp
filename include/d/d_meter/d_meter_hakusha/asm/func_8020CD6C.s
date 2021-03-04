@@ -39,7 +39,7 @@
 /* 8020CE04 00209D44  C3 C1 00 2C */ lfs f30, 0x2c(r1)
 /* 8020CE08 00209D48  C3 A1 00 30 */ lfs f29, 0x30(r1)
 /* 8020CE0C 00209D4C  7F 83 E3 78 */ mr r3, r28
-/* 8020CE10 00209D50  48 00 06 71 */ bl dMeterHakusha_c_NS_getHakushaNum
+/* 8020CE10 00209D50  48 00 06 71 */ bl getHakushaNum__15dMeterHakusha_cFv
 /* 8020CE14 00209D54  C8 22 AE 18 */ lfd f1, lbl_80454818-_SDA2_BASE_(r2)
 /* 8020CE18 00209D58  6C 60 80 00 */ xoris r0, r3, 0x8000
 /* 8020CE1C 00209D5C  90 01 00 3C */ stw r0, 0x3c(r1)
@@ -229,7 +229,7 @@ lbl_8020D0A4:
 /* 8020D0B0 00209FF0  3B 5A 00 04 */ addi r26, r26, 4
 lbl_8020D0B4:
 /* 8020D0B4 00209FF4  7F 83 E3 78 */ mr r3, r28
-/* 8020D0B8 00209FF8  48 00 03 C9 */ bl dMeterHakusha_c_NS_getHakushaNum
+/* 8020D0B8 00209FF8  48 00 03 C9 */ bl getHakushaNum__15dMeterHakusha_cFv
 /* 8020D0BC 00209FFC  7C 1D 18 00 */ cmpw r29, r3
 /* 8020D0C0 0020A000  41 80 FE 3C */ blt lbl_8020CEFC
 /* 8020D0C4 0020A004  C0 1C 01 00 */ lfs f0, 0x100(r28)

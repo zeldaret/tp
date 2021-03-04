@@ -19,7 +19,7 @@
 /* 8012A378 001272B8  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8012A37C 001272BC  41 82 00 10 */ beq lbl_8012A38C
 /* 8012A380 001272C0  38 80 00 01 */ li r4, 1
-/* 8012A384 001272C4  48 00 35 3D */ bl daAlink_c_NS_procWolfDashReverseInit
+/* 8012A384 001272C4  48 00 35 3D */ bl procWolfDashReverseInit__9daAlink_cFi
 /* 8012A388 001272C8  48 00 00 80 */ b lbl_8012A408
 lbl_8012A38C:
 /* 8012A38C 001272CC  80 1F 19 9C */ lwz r0, 0x199c(r31)
@@ -32,19 +32,19 @@ lbl_8012A38C:
 /* 8012A3A8 001272E8  41 80 00 24 */ blt lbl_8012A3CC
 /* 8012A3AC 001272EC  7F E3 FB 78 */ mr r3, r31
 /* 8012A3B0 001272F0  38 80 00 00 */ li r4, 0
-/* 8012A3B4 001272F4  4B F9 79 39 */ bl daAlink_c_NS_setFrontRollCrashShock
+/* 8012A3B4 001272F4  4B F9 79 39 */ bl setFrontRollCrashShock__9daAlink_cFUc
 /* 8012A3B8 001272F8  7F E3 FB 78 */ mr r3, r31
 /* 8012A3BC 001272FC  38 80 00 00 */ li r4, 0
 /* 8012A3C0 00127300  38 A0 00 01 */ li r5, 1
-/* 8012A3C4 00127304  4B FA EB 79 */ bl daAlink_c_NS_procDamageInit
+/* 8012A3C4 00127304  4B FA EB 79 */ bl procDamageInit__9daAlink_cFP12dCcD_GObjInfi
 /* 8012A3C8 00127308  48 00 00 40 */ b lbl_8012A408
 lbl_8012A3CC:
 /* 8012A3CC 0012730C  7F E3 FB 78 */ mr r3, r31
-/* 8012A3D0 00127310  4B F9 AD 91 */ bl daAlink_c_NS_procFrontRollSuccessInit
+/* 8012A3D0 00127310  4B F9 AD 91 */ bl procFrontRollSuccessInit__9daAlink_cFv
 /* 8012A3D4 00127314  48 00 00 34 */ b lbl_8012A408
 lbl_8012A3D8:
 /* 8012A3D8 00127318  38 80 00 00 */ li r4, 0
-/* 8012A3DC 0012731C  4B F9 79 11 */ bl daAlink_c_NS_setFrontRollCrashShock
+/* 8012A3DC 0012731C  4B F9 79 11 */ bl setFrontRollCrashShock__9daAlink_cFUc
 /* 8012A3E0 00127320  7F E3 FB 78 */ mr r3, r31
 /* 8012A3E4 00127324  38 80 FF FA */ li r4, -6
 /* 8012A3E8 00127328  38 A0 00 01 */ li r5, 1
@@ -52,7 +52,7 @@ lbl_8012A3D8:
 /* 8012A3F0 00127330  38 E0 00 00 */ li r7, 0
 /* 8012A3F4 00127334  39 00 00 00 */ li r8, 0
 /* 8012A3F8 00127338  39 20 00 00 */ li r9, 0
-/* 8012A3FC 0012733C  4B FA F2 E1 */ bl daAlink_c_NS_procCoLargeDamageInit
+/* 8012A3FC 0012733C  4B FA F2 E1 */ bl procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi
 /* 8012A400 00127340  48 00 00 08 */ b lbl_8012A408
 lbl_8012A404:
 /* 8012A404 00127344  38 60 00 00 */ li r3, 0

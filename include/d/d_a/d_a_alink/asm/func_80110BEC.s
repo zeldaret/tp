@@ -7,7 +7,7 @@
 /* 80110C04 0010DB44  80 63 00 14 */ lwz r3, 0x14(r3)
 /* 80110C08 0010DB48  2C 04 00 00 */ cmpwi r4, 0
 /* 80110C0C 0010DB4C  40 82 00 08 */ bne lbl_80110C14
-/* 80110C10 0010DB50  4B FF FC DD */ bl daAlink_c_NS_kandelaarModelCallBack
+/* 80110C10 0010DB50  4B FF FC DD */ bl kandelaarModelCallBack__9daAlink_cFv
 lbl_80110C14:
 /* 80110C14 0010DB54  38 60 00 01 */ li r3, 1
 /* 80110C18 0010DB58  80 01 00 14 */ lwz r0, 0x14(r1)

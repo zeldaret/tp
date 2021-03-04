@@ -5,13 +5,13 @@
 /* 802B33B8 002B02F8  F3 E1 00 38 */ psq_st f31, 56(r1), 0, 0
 /* 802B33BC 002B02FC  93 E1 00 2C */ stw r31, 0x2c(r1)
 /* 802B33C0 002B0300  7C 7F 1B 78 */ mr r31, r3
-/* 802B33C4 002B0304  4B FF FA 79 */ bl Z2SeqMgr_NS_fanfareFramework
+/* 802B33C4 002B0304  4B FF FA 79 */ bl fanfareFramework__8Z2SeqMgrFv
 /* 802B33C8 002B0308  7F E3 FB 78 */ mr r3, r31
-/* 802B33CC 002B030C  48 00 18 05 */ bl Z2SeqMgr_NS_battleBgmFramework
+/* 802B33CC 002B030C  48 00 18 05 */ bl battleBgmFramework__8Z2SeqMgrFv
 /* 802B33D0 002B0310  7F E3 FB 78 */ mr r3, r31
-/* 802B33D4 002B0314  48 00 2A AD */ bl Z2SeqMgr_NS_mbossBgmMuteProcess
+/* 802B33D4 002B0314  48 00 2A AD */ bl mbossBgmMuteProcess__8Z2SeqMgrFv
 /* 802B33D8 002B0318  7F E3 FB 78 */ mr r3, r31
-/* 802B33DC 002B031C  48 00 25 71 */ bl Z2SeqMgr_NS_fieldBgmFramework
+/* 802B33DC 002B031C  48 00 25 71 */ bl fieldBgmFramework__8Z2SeqMgrFv
 /* 802B33E0 002B0320  80 1F 00 0C */ lwz r0, 0xc(r31)
 /* 802B33E4 002B0324  28 00 00 00 */ cmplwi r0, 0
 /* 802B33E8 002B0328  40 82 00 8C */ bne lbl_802B3474

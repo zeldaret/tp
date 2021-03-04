@@ -13,7 +13,7 @@
 /* 800E57DC 000E271C  7F E3 FB 78 */ mr r3, r31
 /* 800E57E0 000E2720  38 80 00 02 */ li r4, 2
 /* 800E57E4 000E2724  FC 20 F8 90 */ fmr f1, f31
-/* 800E57E8 000E2728  4B FC 7F 3D */ bl daAlink_c_NS_resetUpperAnime
+/* 800E57E8 000E2728  4B FC 7F 3D */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800E57EC 000E272C  38 60 00 01 */ li r3, 1
 /* 800E57F0 000E2730  48 00 00 24 */ b lbl_800E5814
 lbl_800E57F4:
@@ -23,7 +23,7 @@ lbl_800E57F4:
 /* 800E5800 000E2740  2C 03 00 00 */ cmpwi r3, 0
 /* 800E5804 000E2744  41 82 00 0C */ beq lbl_800E5810
 /* 800E5808 000E2748  7F E3 FB 78 */ mr r3, r31
-/* 800E580C 000E274C  4B FF FB ED */ bl daAlink_c_NS_setGrabItemThrow
+/* 800E580C 000E274C  4B FF FB ED */ bl setGrabItemThrow__9daAlink_cFv
 lbl_800E5810:
 /* 800E5810 000E2750  38 60 00 00 */ li r3, 0
 lbl_800E5814:

@@ -136,7 +136,7 @@ lbl_8000F460:
 /* 8000F478 0000C3B8  38 61 00 98 */ addi r3, r1, 0x98
 /* 8000F47C 0000C3BC  38 81 00 58 */ addi r4, r1, 0x58
 /* 8000F480 0000C3C0  7F C5 F3 78 */ mr r5, r30
-/* 8000F484 0000C3C4  4B FF DC 29 */ bl mDoMtx_stack_c_NS_dtor_X1_
+/* 8000F484 0000C3C4  4B FF DC 29 */ bl __dt__14mDoMtx_stack_cFv_X1_
 lbl_8000F488:
 /* 8000F488 0000C3C8  E3 E1 00 F8 */ psq_l f31, 248(r1), 0, 0
 /* 8000F48C 0000C3CC  CB E1 00 F0 */ lfd f31, 0xf0(r1)

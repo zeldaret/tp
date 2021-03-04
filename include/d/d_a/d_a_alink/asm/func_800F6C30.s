@@ -10,7 +10,7 @@
 /* 800F6C54 000F3B94  AB E3 04 E6 */ lha r31, 0x4e6(r3)
 /* 800F6C58 000F3B98  AB C3 04 DE */ lha r30, 0x4de(r3)
 /* 800F6C5C 000F3B9C  83 A3 31 90 */ lwz r29, 0x3190(r3)
-/* 800F6C60 000F3BA0  4B FF DB 79 */ bl daAlink_c_NS_canoeCommon
+/* 800F6C60 000F3BA0  4B FF DB 79 */ bl canoeCommon__9daAlink_cFv
 /* 800F6C64 000F3BA4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6C68 000F3BA8  41 82 00 0C */ beq lbl_800F6C74
 /* 800F6C6C 000F3BAC  38 60 00 01 */ li r3, 1
@@ -19,20 +19,20 @@ lbl_800F6C74:
 /* 800F6C74 000F3BB4  B3 FC 04 E6 */ sth r31, 0x4e6(r28)
 /* 800F6C78 000F3BB8  7F 83 E3 78 */ mr r3, r28
 /* 800F6C7C 000F3BBC  38 80 00 01 */ li r4, 1
-/* 800F6C80 000F3BC0  4B FD 7F 59 */ bl daAlink_c_NS_checkSubjectEnd
+/* 800F6C80 000F3BC0  4B FD 7F 59 */ bl checkSubjectEnd__9daAlink_cFi
 /* 800F6C84 000F3BC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6C88 000F3BC8  41 82 00 14 */ beq lbl_800F6C9C
 /* 800F6C8C 000F3BCC  7F 83 E3 78 */ mr r3, r28
 /* 800F6C90 000F3BD0  38 80 00 00 */ li r4, 0
-/* 800F6C94 000F3BD4  4B FF E5 51 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F6C94 000F3BD4  4B FF E5 51 */ bl procCanoeWaitInit__9daAlink_cFi
 /* 800F6C98 000F3BD8  48 00 00 5C */ b lbl_800F6CF4
 lbl_800F6C9C:
 /* 800F6C9C 000F3BDC  7F 83 E3 78 */ mr r3, r28
-/* 800F6CA0 000F3BE0  4B FC 30 8D */ bl daAlink_c_NS_checkNextActionFromButton
+/* 800F6CA0 000F3BE0  4B FC 30 8D */ bl checkNextActionFromButton__9daAlink_cFv
 /* 800F6CA4 000F3BE4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6CA8 000F3BE8  41 82 00 40 */ beq lbl_800F6CE8
 /* 800F6CAC 000F3BEC  7F 83 E3 78 */ mr r3, r28
-/* 800F6CB0 000F3BF0  4B FC 42 D1 */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800F6CB0 000F3BF0  4B FC 42 D1 */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800F6CB4 000F3BF4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6CB8 000F3BF8  41 82 00 28 */ beq lbl_800F6CE0
 /* 800F6CBC 000F3BFC  93 BC 31 90 */ stw r29, 0x3190(r28)
@@ -50,7 +50,7 @@ lbl_800F6CE0:
 lbl_800F6CE8:
 /* 800F6CE8 000F3C28  7F 83 E3 78 */ mr r3, r28
 /* 800F6CEC 000F3C2C  7F C4 F3 78 */ mr r4, r30
-/* 800F6CF0 000F3C30  4B FF 82 41 */ bl daAlink_c_NS_setRideSubjectAngle
+/* 800F6CF0 000F3C30  4B FF 82 41 */ bl setRideSubjectAngle__9daAlink_cFs
 lbl_800F6CF4:
 /* 800F6CF4 000F3C34  38 60 00 01 */ li r3, 1
 lbl_800F6CF8:

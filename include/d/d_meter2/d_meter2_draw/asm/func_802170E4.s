@@ -32,7 +32,7 @@
 /* 80217160 002140A0  C3 E4 00 EC */ lfs f31, 0xec(r4)
 /* 80217164 002140A4  C3 C4 02 D4 */ lfs f30, 0x2d4(r4)
 /* 80217168 002140A8  38 80 00 01 */ li r4, 1
-/* 8021716C 002140AC  48 00 4B 55 */ bl dMeter2Draw_c_NS_isBButtonShow
+/* 8021716C 002140AC  48 00 4B 55 */ bl isBButtonShow__13dMeter2Draw_cFb
 /* 80217170 002140B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80217174 002140B4  41 82 00 14 */ beq lbl_80217188
 /* 80217178 002140B8  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -46,7 +46,7 @@ lbl_80217188:
 /* 80217194 002140D4  7F 64 DB 78 */ mr r4, r27
 /* 80217198 002140D8  38 A0 00 01 */ li r5, 1
 /* 8021719C 002140DC  38 DA 07 62 */ addi r6, r26, 0x762
-/* 802171A0 002140E0  48 00 31 55 */ bl dMeter2Draw_c_NS_getActionString
+/* 802171A0 002140E0  48 00 31 55 */ bl getActionString__13dMeter2Draw_cFUcUcPUc
 /* 802171A4 002140E4  7C 7E 1B 78 */ mr r30, r3
 /* 802171A8 002140E8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 802171AC 002140EC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -180,7 +180,7 @@ lbl_8021736C:
 lbl_80217378:
 /* 80217378 002142B8  7F 43 D3 78 */ mr r3, r26
 /* 8021737C 002142BC  88 9A 07 6F */ lbz r4, 0x76f(r26)
-/* 80217380 002142C0  48 00 30 E9 */ bl dMeter2Draw_c_NS_changeTextureItemB
+/* 80217380 002142C0  48 00 30 E9 */ bl changeTextureItemB__13dMeter2Draw_cFUc
 /* 80217384 002142C4  48 00 00 C0 */ b lbl_80217444
 lbl_80217388:
 /* 80217388 002142C8  80 7A 00 78 */ lwz r3, 0x78(r26)
@@ -217,7 +217,7 @@ lbl_802173BC:
 /* 80217400 00214340  98 1A 07 6F */ stb r0, 0x76f(r26)
 /* 80217404 00214344  7F 43 D3 78 */ mr r3, r26
 /* 80217408 00214348  38 80 00 58 */ li r4, 0x58
-/* 8021740C 0021434C  48 00 30 5D */ bl dMeter2Draw_c_NS_changeTextureItemB
+/* 8021740C 0021434C  48 00 30 5D */ bl changeTextureItemB__13dMeter2Draw_cFUc
 /* 80217410 00214350  3B E0 00 02 */ li r31, 2
 /* 80217414 00214354  48 00 00 30 */ b lbl_80217444
 lbl_80217418:

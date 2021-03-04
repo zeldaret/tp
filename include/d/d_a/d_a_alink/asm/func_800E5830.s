@@ -9,7 +9,7 @@
 /* 800E5850 000E2790  7C 9C 23 78 */ mr r28, r4
 /* 800E5854 000E2794  7C BD 2B 78 */ mr r29, r5
 /* 800E5858 000E2798  7C DF 33 78 */ mr r31, r6
-/* 800E585C 000E279C  4B FC 4D 8D */ bl daAlink_c_NS_checkNoCollisionCorret
+/* 800E585C 000E279C  4B FC 4D 8D */ bl checkNoCollisionCorret__9daAlink_cFv
 /* 800E5860 000E27A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E5864 000E27A4  40 82 02 E8 */ bne lbl_800E5B4C
 /* 800E5868 000E27A8  7F 83 E3 78 */ mr r3, r28

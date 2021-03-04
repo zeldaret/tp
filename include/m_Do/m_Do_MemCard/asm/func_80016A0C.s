@@ -25,7 +25,7 @@
 lbl_80016A6C:
 /* 80016A6C 000139AC  7F C3 F3 78 */ mr r3, r30
 /* 80016A70 000139B0  7F E4 FB 78 */ mr r4, r31
-/* 80016A74 000139B4  48 00 08 ED */ bl mDoMemCd_Ctrl_c_NS_setCardState
+/* 80016A74 000139B4  48 00 08 ED */ bl setCardState__15mDoMemCd_Ctrl_cFl
 lbl_80016A78:
 /* 80016A78 000139B8  38 61 00 08 */ addi r3, r1, 8
 /* 80016A7C 000139BC  48 34 16 39 */ bl CARDClose
@@ -33,7 +33,7 @@ lbl_80016A78:
 lbl_80016A84:
 /* 80016A84 000139C4  7F C3 F3 78 */ mr r3, r30
 /* 80016A88 000139C8  7F E4 FB 78 */ mr r4, r31
-/* 80016A8C 000139CC  48 00 08 D5 */ bl mDoMemCd_Ctrl_c_NS_setCardState
+/* 80016A8C 000139CC  48 00 08 D5 */ bl setCardState__15mDoMemCd_Ctrl_cFl
 lbl_80016A90:
 /* 80016A90 000139D0  38 00 00 01 */ li r0, 1
 /* 80016A94 000139D4  90 1E 1F C8 */ stw r0, 0x1fc8(r30)

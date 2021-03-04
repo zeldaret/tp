@@ -6,7 +6,7 @@
 /* 8012A430 00127370  A8 03 31 00 */ lha r0, 0x3100(r3)
 /* 8012A434 00127374  2C 00 00 00 */ cmpwi r0, 0
 /* 8012A438 00127378  40 82 00 10 */ bne lbl_8012A448
-/* 8012A43C 0012737C  4B F8 94 C9 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 8012A43C 0012737C  4B F8 94 C9 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 8012A440 00127380  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012A444 00127384  41 82 00 0C */ beq lbl_8012A450
 lbl_8012A448:
@@ -15,7 +15,7 @@ lbl_8012A448:
 lbl_8012A450:
 /* 8012A450 00127390  7F E3 FB 78 */ mr r3, r31
 /* 8012A454 00127394  38 80 00 01 */ li r4, 1
-/* 8012A458 00127398  4B F7 7D 89 */ bl daAlink_c_NS_getMoveBGActorName
+/* 8012A458 00127398  4B F7 7D 89 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 8012A45C 0012739C  7C 60 07 34 */ extsh r0, r3
 /* 8012A460 001273A0  2C 00 00 30 */ cmpwi r0, 0x30
 /* 8012A464 001273A4  41 82 00 14 */ beq lbl_8012A478

@@ -4,7 +4,7 @@
 /* 8013AD00 00137C40  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013AD04 00137C44  93 C1 00 08 */ stw r30, 8(r1)
 /* 8013AD08 00137C48  7C 7E 1B 78 */ mr r30, r3
-/* 8013AD0C 00137C4C  4B FE ED 75 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013AD0C 00137C4C  4B FE ED 75 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8013AD10 00137C50  2C 03 00 00 */ cmpwi r3, 0
 /* 8013AD14 00137C54  41 82 00 0C */ beq lbl_8013AD20
 /* 8013AD18 00137C58  38 60 00 01 */ li r3, 1
@@ -20,16 +20,16 @@ lbl_8013AD20:
 /* 8013AD3C 00137C7C  C0 44 00 10 */ lfs f2, 0x10(r4)
 /* 8013AD40 00137C80  48 13 5A 01 */ bl cLib_chaseF__FPfff
 /* 8013AD44 00137C84  7F C3 F3 78 */ mr r3, r30
-/* 8013AD48 00137C88  4B F9 73 B5 */ bl daAlink_c_NS_setComboReserb
+/* 8013AD48 00137C88  4B F9 73 B5 */ bl setComboReserb__9daAlink_cFv
 /* 8013AD4C 00137C8C  7F C3 F3 78 */ mr r3, r30
-/* 8013AD50 00137C90  4B F9 79 35 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
+/* 8013AD50 00137C90  4B F9 79 35 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 8013AD54 00137C94  7F E3 FB 78 */ mr r3, r31
 /* 8013AD58 00137C98  48 02 37 75 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013AD5C 00137C9C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013AD60 00137CA0  41 82 00 14 */ beq lbl_8013AD74
 /* 8013AD64 00137CA4  7F C3 F3 78 */ mr r3, r30
 /* 8013AD68 00137CA8  38 80 00 00 */ li r4, 0
-/* 8013AD6C 00137CAC  4B FE ED D9 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013AD6C 00137CAC  4B FE ED D9 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013AD70 00137CB0  48 00 00 64 */ b lbl_8013ADD4
 lbl_8013AD74:
 /* 8013AD74 00137CB4  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -47,12 +47,12 @@ lbl_8013AD74:
 /* 8013ADA4 00137CE4  B0 1E 04 E6 */ sth r0, 0x4e6(r30)
 /* 8013ADA8 00137CE8  7F C3 F3 78 */ mr r3, r30
 /* 8013ADAC 00137CEC  38 80 00 03 */ li r4, 3
-/* 8013ADB0 00137CF0  4B FF F0 31 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 8013ADB0 00137CF0  4B FF F0 31 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 8013ADB4 00137CF4  48 00 00 24 */ b lbl_8013ADD8
 lbl_8013ADB8:
 /* 8013ADB8 00137CF8  7F C3 F3 78 */ mr r3, r30
 /* 8013ADBC 00137CFC  38 80 00 01 */ li r4, 1
-/* 8013ADC0 00137D00  4B FE ED 85 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013ADC0 00137D00  4B FE ED 85 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013ADC4 00137D04  2C 03 00 00 */ cmpwi r3, 0
 /* 8013ADC8 00137D08  41 82 00 0C */ beq lbl_8013ADD4
 /* 8013ADCC 00137D0C  38 60 00 01 */ li r3, 1

@@ -70,7 +70,7 @@ lbl_8012A134:
 /* 8012A134 00127074  7F C3 F3 78 */ mr r3, r30
 /* 8012A138 00127078  38 81 00 14 */ addi r4, r1, 0x14
 /* 8012A13C 0012707C  38 A1 00 08 */ addi r5, r1, 8
-/* 8012A140 00127080  4B F7 80 59 */ bl daAlink_c_NS_commonLineCheck
+/* 8012A140 00127080  4B F7 80 59 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 8012A144 00127084  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012A148 00127088  41 82 00 A4 */ beq lbl_8012A1EC
 /* 8012A14C 0012708C  C0 7E 04 D0 */ lfs f3, 0x4d0(r30)
@@ -110,7 +110,7 @@ lbl_8012A1CC:
 /* 8012A1CC 0012710C  7F C3 F3 78 */ mr r3, r30
 /* 8012A1D0 00127110  38 81 00 14 */ addi r4, r1, 0x14
 /* 8012A1D4 00127114  38 A1 00 08 */ addi r5, r1, 8
-/* 8012A1D8 00127118  4B F7 7F C1 */ bl daAlink_c_NS_commonLineCheck
+/* 8012A1D8 00127118  4B F7 7F C1 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 8012A1DC 0012711C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012A1E0 00127120  41 82 00 0C */ beq lbl_8012A1EC
 /* 8012A1E4 00127124  38 60 00 01 */ li r3, 1

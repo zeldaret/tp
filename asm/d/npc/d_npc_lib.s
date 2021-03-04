@@ -12,18 +12,18 @@
 /* 8025132C 0024E26C  38 03 2B 88 */	addi r0, r3, lbl_803C2B88@l
 /* 80251330 0024E270  90 1F 00 00 */	stw r0, 0(r31)
 /* 80251334 0024E274  38 7F 00 04 */	addi r3, r31, 4
-/* 80251338 0024E278  3C 80 80 01 */	lis r4, cXyz_NS_ctor@ha
-/* 8025133C 0024E27C  38 84 25 DC */	addi r4, r4, cXyz_NS_ctor@l
-/* 80251340 0024E280  3C A0 80 01 */	lis r5, cXyz_NS_dtor@ha
-/* 80251344 0024E284  38 A5 91 84 */	addi r5, r5, cXyz_NS_dtor@l
+/* 80251338 0024E278  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha
+/* 8025133C 0024E27C  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l
+/* 80251340 0024E280  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha
+/* 80251344 0024E284  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
 /* 80251348 0024E288  38 C0 00 0C */	li r6, 0xc
 /* 8025134C 0024E28C  38 E0 00 04 */	li r7, 4
 /* 80251350 0024E290  48 11 0A 11 */	bl func_80361D60
 /* 80251354 0024E294  38 7F 00 34 */	addi r3, r31, 0x34
-.global csXyz_NS_ctor
-/* 80251358 0024E298  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
-.global csXyz_NS_ctor
-/* 8025135C 0024E29C  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
+.global __ct__5csXyzFv
+/* 80251358 0024E298  3C 80 80 11 */	lis r4, __ct__5csXyzFv@ha
+.global __ct__5csXyzFv
+/* 8025135C 0024E29C  38 84 2C 80 */	addi r4, r4, __ct__5csXyzFv@l
 .global __dt__5csXyzFv
 /* 80251360 0024E2A0  3C A0 80 02 */	lis r5, __dt__5csXyzFv@ha
 .global __dt__5csXyzFv
@@ -32,10 +32,10 @@
 /* 8025136C 0024E2AC  38 E0 00 04 */	li r7, 4
 /* 80251370 0024E2B0  48 11 09 F1 */	bl func_80361D60
 /* 80251374 0024E2B4  38 7F 00 4C */	addi r3, r31, 0x4c
-.global csXyz_NS_ctor
-/* 80251378 0024E2B8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
-.global csXyz_NS_ctor
-/* 8025137C 0024E2BC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
+.global __ct__5csXyzFv
+/* 80251378 0024E2B8  3C 80 80 11 */	lis r4, __ct__5csXyzFv@ha
+.global __ct__5csXyzFv
+/* 8025137C 0024E2BC  38 84 2C 80 */	addi r4, r4, __ct__5csXyzFv@l
 .global __dt__5csXyzFv
 /* 80251380 0024E2C0  3C A0 80 02 */	lis r5, __dt__5csXyzFv@ha
 .global __dt__5csXyzFv
@@ -44,10 +44,10 @@
 /* 8025138C 0024E2CC  38 E0 00 04 */	li r7, 4
 /* 80251390 0024E2D0  48 11 09 D1 */	bl func_80361D60
 /* 80251394 0024E2D4  38 7F 00 64 */	addi r3, r31, 0x64
-.global csXyz_NS_ctor
-/* 80251398 0024E2D8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
-.global csXyz_NS_ctor
-/* 8025139C 0024E2DC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
+.global __ct__5csXyzFv
+/* 80251398 0024E2D8  3C 80 80 11 */	lis r4, __ct__5csXyzFv@ha
+.global __ct__5csXyzFv
+/* 8025139C 0024E2DC  38 84 2C 80 */	addi r4, r4, __ct__5csXyzFv@l
 .global __dt__5csXyzFv
 /* 802513A0 0024E2E0  3C A0 80 02 */	lis r5, __dt__5csXyzFv@ha
 .global __dt__5csXyzFv
@@ -56,10 +56,10 @@
 /* 802513AC 0024E2EC  38 E0 00 04 */	li r7, 4
 /* 802513B0 0024E2F0  48 11 09 B1 */	bl func_80361D60
 /* 802513B4 0024E2F4  38 7F 00 7C */	addi r3, r31, 0x7c
-.global csXyz_NS_ctor
-/* 802513B8 0024E2F8  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
-.global csXyz_NS_ctor
-/* 802513BC 0024E2FC  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
+.global __ct__5csXyzFv
+/* 802513B8 0024E2F8  3C 80 80 11 */	lis r4, __ct__5csXyzFv@ha
+.global __ct__5csXyzFv
+/* 802513BC 0024E2FC  38 84 2C 80 */	addi r4, r4, __ct__5csXyzFv@l
 .global __dt__5csXyzFv
 /* 802513C0 0024E300  3C A0 80 02 */	lis r5, __dt__5csXyzFv@ha
 .global __dt__5csXyzFv
@@ -68,10 +68,10 @@
 /* 802513CC 0024E30C  38 E0 00 04 */	li r7, 4
 /* 802513D0 0024E310  48 11 09 91 */	bl func_80361D60
 /* 802513D4 0024E314  38 7F 00 94 */	addi r3, r31, 0x94
-.global csXyz_NS_ctor
-/* 802513D8 0024E318  3C 80 80 11 */	lis r4, csXyz_NS_ctor@ha
-.global csXyz_NS_ctor
-/* 802513DC 0024E31C  38 84 2C 80 */	addi r4, r4, csXyz_NS_ctor@l
+.global __ct__5csXyzFv
+/* 802513D8 0024E318  3C 80 80 11 */	lis r4, __ct__5csXyzFv@ha
+.global __ct__5csXyzFv
+/* 802513DC 0024E31C  38 84 2C 80 */	addi r4, r4, __ct__5csXyzFv@l
 .global __dt__5csXyzFv
 /* 802513E0 0024E320  3C A0 80 02 */	lis r5, __dt__5csXyzFv@ha
 .global __dt__5csXyzFv
@@ -215,7 +215,7 @@ lbl_802515D0:
 /* 802515F8 0024E538  C0 01 00 80 */	lfs f0, 0x80(r1)
 /* 802515FC 0024E53C  D0 01 00 A4 */	stfs f0, 0xa4(r1)
 /* 80251600 0024E540  38 7A 04 D0 */	addi r3, r26, 0x4d0
-/* 80251604 0024E544  4B DB B7 61 */	bl mDoMtx_stack_c_NS_transS
+/* 80251604 0024E544  4B DB B7 61 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 80251608 0024E548  7F 83 E3 78 */	mr r3, r28
 /* 8025160C 0024E54C  38 81 00 A8 */	addi r4, r1, 0xa8
 /* 80251610 0024E550  7F 85 E3 78 */	mr r5, r28
@@ -241,7 +241,7 @@ lbl_80251630:
 /* 8025165C 0024E59C  C0 01 00 74 */	lfs f0, 0x74(r1)
 /* 80251660 0024E5A0  D0 01 00 A4 */	stfs f0, 0xa4(r1)
 /* 80251664 0024E5A4  38 7A 04 D0 */	addi r3, r26, 0x4d0
-/* 80251668 0024E5A8  4B DB B6 FD */	bl mDoMtx_stack_c_NS_transS
+/* 80251668 0024E5A8  4B DB B6 FD */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8025166C 0024E5AC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80251670 0024E5B0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80251674 0024E5B4  38 81 00 A8 */	addi r4, r1, 0xa8
@@ -263,7 +263,7 @@ lbl_80251630:
 /* 802516B4 0024E5F4  C0 01 00 68 */	lfs f0, 0x68(r1)
 /* 802516B8 0024E5F8  D0 01 00 A4 */	stfs f0, 0xa4(r1)
 /* 802516BC 0024E5FC  38 7A 04 D0 */	addi r3, r26, 0x4d0
-/* 802516C0 0024E600  4B DB B6 A5 */	bl mDoMtx_stack_c_NS_transS
+/* 802516C0 0024E600  4B DB B6 A5 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 802516C4 0024E604  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 802516C8 0024E608  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 802516CC 0024E60C  38 81 00 A8 */	addi r4, r1, 0xa8
@@ -868,13 +868,13 @@ update__16dNpcLib_lookat_cFv:
 lbl_80251F50:
 /* 80251F50 0024EE90  7E FD D2 14 */	add r23, r29, r26
 /* 80251F54 0024EE94  38 77 00 34 */	addi r3, r23, 0x34
-/* 80251F58 0024EE98  4B DB AF 45 */	bl mDoMtx_stack_c_NS_XYZrotS
+/* 80251F58 0024EE98  4B DB AF 45 */	bl XYZrotS__14mDoMtx_stack_cFRC5csXyz
 /* 80251F5C 0024EE9C  7F E3 FB 78 */	mr r3, r31
 /* 80251F60 0024EEA0  38 81 00 1C */	addi r4, r1, 0x1c
 /* 80251F64 0024EEA4  48 0F 45 4D */	bl PSMTXCopy
 /* 80251F68 0024EEA8  38 7B 00 04 */	addi r3, r27, 4
 /* 80251F6C 0024EEAC  7C 7D 1A 14 */	add r3, r29, r3
-/* 80251F70 0024EEB0  4B DB AD F5 */	bl mDoMtx_stack_c_NS_transS
+/* 80251F70 0024EEB0  4B DB AD F5 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 80251F74 0024EEB4  A8 61 00 08 */	lha r3, 8(r1)
 /* 80251F78 0024EEB8  A8 17 00 4C */	lha r0, 0x4c(r23)
 /* 80251F7C 0024EEBC  7C 03 02 14 */	add r0, r3, r0
@@ -884,7 +884,7 @@ lbl_80251F50:
 /* 80251F8C 0024EECC  7C 03 02 14 */	add r0, r3, r0
 /* 80251F90 0024EED0  B0 01 00 0A */	sth r0, 0xa(r1)
 /* 80251F94 0024EED4  38 61 00 08 */	addi r3, r1, 8
-/* 80251F98 0024EED8  4B DB AF AD */	bl mDoMtx_stack_c_NS_ZXYrotM
+/* 80251F98 0024EED8  4B DB AF AD */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 80251F9C 0024EEDC  7F E3 FB 78 */	mr r3, r31
 /* 80251FA0 0024EEE0  38 81 00 1C */	addi r4, r1, 0x1c
 /* 80251FA4 0024EEE4  7F 05 C3 78 */	mr r5, r24
@@ -1007,8 +1007,8 @@ lbl_8025208C:
 /* 80252130 0024F070  38 C0 00 04 */	li r6, 4
 /* 80252134 0024F074  48 10 FB B5 */	bl func_80361CE8
 /* 80252138 0024F078  38 7E 00 04 */	addi r3, r30, 4
-/* 8025213C 0024F07C  3C 80 80 01 */	lis r4, cXyz_NS_dtor@ha
-/* 80252140 0024F080  38 84 91 84 */	addi r4, r4, cXyz_NS_dtor@l
+/* 8025213C 0024F07C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
+/* 80252140 0024F080  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
 /* 80252144 0024F084  38 A0 00 0C */	li r5, 0xc
 /* 80252148 0024F088  38 C0 00 04 */	li r6, 4
 /* 8025214C 0024F08C  48 10 FB 9D */	bl func_80361CE8

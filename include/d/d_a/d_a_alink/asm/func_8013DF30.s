@@ -24,7 +24,7 @@ lbl_8013DF74:
 /* 8013DF88 0013AEC8  90 03 04 9C */ stw r0, 0x49c(r3)
 /* 8013DF8C 0013AECC  7F E3 FB 78 */ mr r3, r31
 /* 8013DF90 0013AED0  38 80 01 3C */ li r4, 0x13c
-/* 8013DF94 0013AED4  4B F8 3F D9 */ bl daAlink_c_NS_commonProcInit
+/* 8013DF94 0013AED4  4B F8 3F D9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013DF98 0013AED8  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8013DF9C 0013AEDC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 8013DFA0 0013AEE0  48 02 0D 19 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
@@ -34,7 +34,7 @@ lbl_8013DF74:
 /* 8013DFB0 0013AEF0  98 03 05 8D */ stb r0, 0x58d(r3)
 /* 8013DFB4 0013AEF4  7F E3 FB 78 */ mr r3, r31
 /* 8013DFB8 0013AEF8  38 80 00 8D */ li r4, 0x8d
-/* 8013DFBC 0013AEFC  4B FE B6 BD */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8013DFBC 0013AEFC  4B FE B6 BD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8013DFC0 0013AF00  38 7F 04 D0 */ addi r3, r31, 0x4d0
 /* 8013DFC4 0013AF04  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 8013DFC8 0013AF08  38 84 04 D0 */ addi r4, r4, 0x4d0
@@ -53,7 +53,7 @@ lbl_8013DF74:
 /* 8013DFFC 0013AF3C  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 8013E000 0013AF40  7F E3 FB 78 */ mr r3, r31
 /* 8013E004 0013AF44  38 80 00 00 */ li r4, 0
-/* 8013E008 0013AF48  4B FE 31 B9 */ bl daAlink_c_NS_setFootEffectProcType
+/* 8013E008 0013AF48  4B FE 31 B9 */ bl setFootEffectProcType__9daAlink_cFi
 /* 8013E00C 0013AF4C  38 00 00 60 */ li r0, 0x60
 /* 8013E010 0013AF50  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 8013E014 0013AF54  38 00 00 04 */ li r0, 4

@@ -11,10 +11,10 @@
 /* 80124E50 00121D90  28 00 00 00 */ cmplwi r0, 0
 /* 80124E54 00121D94  41 82 00 18 */ beq lbl_80124E6C
 /* 80124E58 00121D98  80 9F 00 04 */ lwz r4, 4(r31)
-/* 80124E5C 00121D9C  4B FF B9 1D */ bl daAlink_c_NS_stopDrawParticle
+/* 80124E5C 00121D9C  4B FF B9 1D */ bl stopDrawParticle__9daAlink_cFUl
 /* 80124E60 00121DA0  7F C3 F3 78 */ mr r3, r30
 /* 80124E64 00121DA4  80 9F 00 08 */ lwz r4, 8(r31)
-/* 80124E68 00121DA8  4B FF B9 11 */ bl daAlink_c_NS_stopDrawParticle
+/* 80124E68 00121DA8  4B FF B9 11 */ bl stopDrawParticle__9daAlink_cFUl
 lbl_80124E6C:
 /* 80124E6C 00121DAC  38 00 00 00 */ li r0, 0
 /* 80124E70 00121DB0  98 1F 00 00 */ stb r0, 0(r31)

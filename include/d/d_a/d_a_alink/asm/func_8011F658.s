@@ -18,10 +18,10 @@
 /* 8011F69C 0011C5DC  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 8011F6A0 0011C5E0  40 82 01 14 */ bne lbl_8011F7B4
 /* 8011F6A4 0011C5E4  38 81 00 08 */ addi r4, r1, 8
-/* 8011F6A8 0011C5E8  4B F9 29 31 */ bl daAlink_c_NS_getSlidePolygon
+/* 8011F6A8 0011C5E8  4B F9 29 31 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 8011F6AC 0011C5EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F6B0 0011C5F0  40 82 01 04 */ bne lbl_8011F7B4
-/* 8011F6B4 0011C5F4  4B FC 1D 55 */ bl daAlink_c_NS_checkForestOldCentury
+/* 8011F6B4 0011C5F4  4B FC 1D 55 */ bl checkForestOldCentury__9daAlink_cFv
 /* 8011F6B8 0011C5F8  2C 03 00 00 */ cmpwi r3, 0
 /* 8011F6BC 0011C5FC  40 82 00 F8 */ bne lbl_8011F7B4
 /* 8011F6C0 0011C600  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -39,10 +39,10 @@ lbl_8011F6EC:
 /* 8011F6EC 0011C62C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F6F0 0011C630  41 82 00 C4 */ beq lbl_8011F7B4
 lbl_8011F6F4:
-/* 8011F6F4 0011C634  4B FA 0B 91 */ bl daAlink_c_NS_checkField
+/* 8011F6F4 0011C634  4B FA 0B 91 */ bl checkField__9daAlink_cFv
 /* 8011F6F8 0011C638  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F6FC 0011C63C  40 82 00 10 */ bne lbl_8011F70C
-/* 8011F700 0011C640  4B FA 0C 59 */ bl daAlink_c_NS_checkCastleTown
+/* 8011F700 0011C640  4B FA 0C 59 */ bl checkCastleTown__9daAlink_cFv
 /* 8011F704 0011C644  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F708 0011C648  41 82 00 AC */ beq lbl_8011F7B4
 lbl_8011F70C:
@@ -67,7 +67,7 @@ lbl_8011F750:
 /* 8011F750 0011C690  28 04 00 00 */ cmplwi r4, 0
 /* 8011F754 0011C694  40 82 00 60 */ bne lbl_8011F7B4
 /* 8011F758 0011C698  7F E3 FB 78 */ mr r3, r31
-/* 8011F75C 0011C69C  4B FF 64 C5 */ bl daAlink_c_NS_checkEventRun
+/* 8011F75C 0011C69C  4B FF 64 C5 */ bl checkEventRun__9daAlink_cCFv
 /* 8011F760 0011C6A0  2C 03 00 00 */ cmpwi r3, 0
 /* 8011F764 0011C6A4  40 82 00 1C */ bne lbl_8011F780
 /* 8011F768 0011C6A8  80 6D 8A 98 */ lwz r3, lbl_80451018-_SDA_BASE_(r13)

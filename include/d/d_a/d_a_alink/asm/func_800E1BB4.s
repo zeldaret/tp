@@ -18,11 +18,11 @@ lbl_800E1BF4:
 /* 800E1BF4 000DEB34  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1BF8 000DEB38  41 82 00 10 */ beq lbl_800E1C08
 /* 800E1BFC 000DEB3C  7F E3 FB 78 */ mr r3, r31
-/* 800E1C00 000DEB40  4B FF FE DD */ bl daAlink_c_NS_checkUpperItemActionCopyRod
+/* 800E1C00 000DEB40  4B FF FE DD */ bl checkUpperItemAction__9daAlink_cFvCopyRod
 /* 800E1C04 000DEB44  48 00 00 2C */ b lbl_800E1C30
 lbl_800E1C08:
 /* 800E1C08 000DEB48  7F E3 FB 78 */ mr r3, r31
-/* 800E1C0C 000DEB4C  4B FD 6D 25 */ bl daAlink_c_NS_checkReadyItem
+/* 800E1C0C 000DEB4C  4B FD 6D 25 */ bl checkReadyItem__9daAlink_cFv
 /* 800E1C10 000DEB50  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1C14 000DEB54  41 82 00 1C */ beq lbl_800E1C30
 /* 800E1C18 000DEB58  7F E3 FB 78 */ mr r3, r31
@@ -30,7 +30,7 @@ lbl_800E1C08:
 /* 800E1C20 000DEB60  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1C24 000DEB64  41 82 00 0C */ beq lbl_800E1C30
 /* 800E1C28 000DEB68  7F E3 FB 78 */ mr r3, r31
-/* 800E1C2C 000DEB6C  4B FF FC 15 */ bl daAlink_c_NS_setCopyRodReadyAnime
+/* 800E1C2C 000DEB6C  4B FF FC 15 */ bl setCopyRodReadyAnime__9daAlink_cFv
 lbl_800E1C30:
 /* 800E1C30 000DEB70  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E1C34 000DEB74  80 01 00 14 */ lwz r0, 0x14(r1)

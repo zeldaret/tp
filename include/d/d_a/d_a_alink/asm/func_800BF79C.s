@@ -11,17 +11,17 @@
 /* 800BF7C4 000BC704  48 09 F8 A5 */ bl loadData__14daPy_anmHeap_cFUsIdx
 /* 800BF7C8 000BC708  7C 7F 1B 78 */ mr r31, r3
 /* 800BF7CC 000BC70C  7F A3 EB 78 */ mr r3, r29
-/* 800BF7D0 000BC710  4B FE 44 BD */ bl daAlink_c_NS_setItemHeap
+/* 800BF7D0 000BC710  4B FE 44 BD */ bl setItemHeap__9daAlink_cFv
 /* 800BF7D4 000BC714  7C 7E 1B 78 */ mr r30, r3
 /* 800BF7D8 000BC718  7F A3 EB 78 */ mr r3, r29
 /* 800BF7DC 000BC71C  38 80 03 1B */ li r4, 0x31b
 /* 800BF7E0 000BC720  38 A0 60 00 */ li r5, 0x6000
-/* 800BF7E4 000BC724  48 00 06 65 */ bl daAlink_c_NS_loadAramBmd
+/* 800BF7E4 000BC724  48 00 06 65 */ bl loadAramBmd__9daAlink_cFUsUl
 /* 800BF7E8 000BC728  7C 64 1B 78 */ mr r4, r3
 /* 800BF7EC 000BC72C  7F A3 EB 78 */ mr r3, r29
 /* 800BF7F0 000BC730  3C A0 00 08 */ lis r5, 8
 /* 800BF7F4 000BC734  38 C0 00 00 */ li r6, 0
-/* 800BF7F8 000BC738  4B FE 45 85 */ bl daAlink_c_NS_initModel
+/* 800BF7F8 000BC738  4B FE 45 85 */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 800BF7FC 000BC73C  90 7D 07 08 */ stw r3, 0x708(r29)
 /* 800BF800 000BC740  38 7D 07 30 */ addi r3, r29, 0x730
 /* 800BF804 000BC744  7F E4 FB 78 */ mr r4, r31
@@ -31,7 +31,7 @@
 /* 800BF814 000BC754  38 E0 00 00 */ li r7, 0
 /* 800BF818 000BC758  39 00 FF FF */ li r8, -1
 /* 800BF81C 000BC75C  39 20 00 00 */ li r9, 0
-/* 800BF820 000BC760  4B F4 DF BD */ bl mDoExt_bckAnm_NS_init
+/* 800BF820 000BC760  4B F4 DF BD */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 800BF824 000BC764  7F C3 F3 78 */ mr r3, r30
 /* 800BF828 000BC768  4B F4 F9 A5 */ bl mDoExt_setCurrentHeap
 /* 800BF82C 000BC76C  38 00 01 06 */ li r0, 0x106

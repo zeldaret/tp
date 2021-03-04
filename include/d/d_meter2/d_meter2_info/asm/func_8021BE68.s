@@ -69,7 +69,7 @@ lbl_8021BEA8:
 /* 8021BF74 00218EB4  B0 9F 00 A8 */ sth r4, 0xa8(r31)
 /* 8021BF78 00218EB8  98 9F 00 F1 */ stb r4, 0xf1(r31)
 /* 8021BF7C 00218EBC  7F E3 FB 78 */ mr r3, r31
-/* 8021BF80 00218EC0  48 00 0A 5D */ bl dMeter2Info_c_NS_resetWarpStatus
+/* 8021BF80 00218EC0  48 00 0A 5D */ bl resetWarpStatus__13dMeter2Info_cFv
 /* 8021BF84 00218EC4  38 00 00 00 */ li r0, 0
 /* 8021BF88 00218EC8  98 1F 00 C1 */ stb r0, 0xc1(r31)
 /* 8021BF8C 00218ECC  98 1F 00 C2 */ stb r0, 0xc2(r31)
@@ -87,13 +87,13 @@ lbl_8021BEA8:
 /* 8021BFBC 00218EFC  38 E0 00 00 */ li r7, 0
 /* 8021BFC0 00218F00  39 00 00 00 */ li r8, 0
 /* 8021BFC4 00218F04  39 20 00 00 */ li r9, 0
-/* 8021BFC8 00218F08  48 00 0C 45 */ bl dMeter2Info_c_NS_setWarpInfo
+/* 8021BFC8 00218F08  48 00 0C 45 */ bl setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc
 /* 8021BFCC 00218F0C  3B 80 00 00 */ li r28, 0
 lbl_8021BFD0:
 /* 8021BFD0 00218F10  7F E3 FB 78 */ mr r3, r31
 /* 8021BFD4 00218F14  38 1C 00 0B */ addi r0, r28, 0xb
 /* 8021BFD8 00218F18  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 8021BFDC 00218F1C  48 00 1D 81 */ bl dMeter2Info_c_NS_changeWater
+/* 8021BFDC 00218F1C  48 00 1D 81 */ bl changeWater__13dMeter2Info_cFUc
 /* 8021BFE0 00218F20  3B 9C 00 01 */ addi r28, r28, 1
 /* 8021BFE4 00218F24  2C 1C 00 04 */ cmpwi r28, 4
 /* 8021BFE8 00218F28  41 80 FF E8 */ blt lbl_8021BFD0
@@ -125,7 +125,7 @@ lbl_8021BFFC:
 /* 8021C04C 00218F8C  7F E3 FB 78 */ mr r3, r31
 /* 8021C050 00218F90  3C 80 80 3A */ lis r4, lbl_80399168@ha
 /* 8021C054 00218F94  38 84 91 68 */ addi r4, r4, lbl_80399168@l
-/* 8021C058 00218F98  48 00 22 39 */ bl dMeter2Info_c_NS_setSaveStageName
+/* 8021C058 00218F98  48 00 22 39 */ bl setSaveStageName__13dMeter2Info_cFPCc
 /* 8021C05C 00218F9C  3B A0 00 00 */ li r29, 0
 /* 8021C060 00218FA0  9B BF 00 DF */ stb r29, 0xdf(r31)
 /* 8021C064 00218FA4  9B BF 00 E0 */ stb r29, 0xe0(r31)

@@ -21,12 +21,12 @@
 /* 801A62C8 001A3208  3A 25 4E C4 */ addi r17, r5, 0x4ec4
 /* 801A62CC 001A320C  7E 23 8B 78 */ mr r3, r17
 /* 801A62D0 001A3210  7F 64 DB 78 */ mr r4, r27
-/* 801A62D4 001A3214  4B E7 E0 B1 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A62D4 001A3214  4B E7 E0 B1 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A62D8 001A3218  28 03 00 00 */ cmplwi r3, 0
 /* 801A62DC 001A321C  41 82 09 24 */ beq lbl_801A6C00
 /* 801A62E0 001A3220  7E 23 8B 78 */ mr r3, r17
 /* 801A62E4 001A3224  7F 64 DB 78 */ mr r4, r27
-/* 801A62E8 001A3228  4B E7 E0 9D */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A62E8 001A3228  4B E7 E0 9D */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A62EC 001A322C  81 83 00 00 */ lwz r12, 0(r3)
 /* 801A62F0 001A3230  81 8C 00 AC */ lwz r12, 0xac(r12)
 /* 801A62F4 001A3234  7D 89 03 A6 */ mtctr r12
@@ -34,7 +34,7 @@
 /* 801A62FC 001A323C  7C 72 1B 78 */ mr r18, r3
 /* 801A6300 001A3240  7E 23 8B 78 */ mr r3, r17
 /* 801A6304 001A3244  7F 64 DB 78 */ mr r4, r27
-/* 801A6308 001A3248  4B E7 E0 7D */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6308 001A3248  4B E7 E0 7D */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A630C 001A324C  81 83 00 00 */ lwz r12, 0(r3)
 /* 801A6310 001A3250  81 8C 00 B4 */ lwz r12, 0xb4(r12)
 /* 801A6314 001A3254  7D 89 03 A6 */ mtctr r12
@@ -66,7 +66,7 @@ lbl_801A6364:
 lbl_801A6370:
 /* 801A6370 001A32B0  7E 23 8B 78 */ mr r3, r17
 /* 801A6374 001A32B4  7F 64 DB 78 */ mr r4, r27
-/* 801A6378 001A32B8  4B E7 E0 0D */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6378 001A32B8  4B E7 E0 0D */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A637C 001A32BC  81 83 00 00 */ lwz r12, 0(r3)
 /* 801A6380 001A32C0  81 8C 00 AC */ lwz r12, 0xac(r12)
 /* 801A6384 001A32C4  7D 89 03 A6 */ mtctr r12

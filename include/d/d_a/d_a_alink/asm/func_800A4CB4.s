@@ -8,10 +8,10 @@
 /* 800A4CD0 000A1C10  3B 63 F9 90 */ addi r27, r3, lbl_803AF990@l
 /* 800A4CD4 000A1C14  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800A4CD8 000A1C18  D0 17 34 34 */ stfs f0, 0x3434(r23)
-/* 800A4CDC 000A1C1C  48 01 B6 35 */ bl daAlink_c_NS_checkDungeon
+/* 800A4CDC 000A1C1C  48 01 B6 35 */ bl checkDungeon__9daAlink_cFv
 /* 800A4CE0 000A1C20  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A4CE4 000A1C24  40 82 00 3C */ bne lbl_800A4D20
-/* 800A4CE8 000A1C28  48 01 B5 E1 */ bl daAlink_c_NS_checkBossRoom
+/* 800A4CE8 000A1C28  48 01 B5 E1 */ bl checkBossRoom__9daAlink_cFv
 /* 800A4CEC 000A1C2C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A4CF0 000A1C30  40 82 00 30 */ bne lbl_800A4D20
 /* 800A4CF4 000A1C34  38 60 00 25 */ li r3, 0x25
@@ -99,12 +99,12 @@ lbl_800A4DC4:
 /* 800A4E20 000A1D60  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800A4E24 000A1D64  41 82 00 10 */ beq lbl_800A4E34
 /* 800A4E28 000A1D68  7E E3 BB 78 */ mr r3, r23
-/* 800A4E2C 000A1D6C  48 08 1A FD */ bl daAlink_c_NS_changeWolf
+/* 800A4E2C 000A1D6C  48 08 1A FD */ bl changeWolf__9daAlink_cFv
 /* 800A4E30 000A1D70  48 00 00 10 */ b lbl_800A4E40
 lbl_800A4E34:
 /* 800A4E34 000A1D74  7E E3 BB 78 */ mr r3, r23
 /* 800A4E38 000A1D78  38 80 00 00 */ li r4, 0
-/* 800A4E3C 000A1D7C  48 08 21 01 */ bl daAlink_c_NS_changeLink
+/* 800A4E3C 000A1D7C  48 08 21 01 */ bl changeLink__9daAlink_cFi
 lbl_800A4E40:
 /* 800A4E40 000A1D80  38 00 0B 00 */ li r0, 0xb00
 /* 800A4E44 000A1D84  90 17 21 0C */ stw r0, 0x210c(r23)
@@ -112,7 +112,7 @@ lbl_800A4E40:
 /* 800A4E4C 000A1D8C  38 80 00 04 */ li r4, 4
 /* 800A4E50 000A1D90  48 0B 9F B1 */ bl createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE
 /* 800A4E54 000A1D94  7E E3 BB 78 */ mr r3, r23
-/* 800A4E58 000A1D98  48 09 B3 A1 */ bl daAlink_c_NS_setShieldModel
+/* 800A4E58 000A1D98  48 09 B3 A1 */ bl setShieldModel__9daAlink_cFv
 /* 800A4E5C 000A1D9C  80 17 06 60 */ lwz r0, 0x660(r23)
 /* 800A4E60 000A1DA0  90 17 06 B8 */ stw r0, 0x6b8(r23)
 /* 800A4E64 000A1DA4  80 17 06 64 */ lwz r0, 0x664(r23)
@@ -268,7 +268,7 @@ lbl_800A508C:
 /* 800A509C 000A1FDC  38 80 00 03 */ li r4, 3
 /* 800A50A0 000A1FE0  48 0B 9D 61 */ bl createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE
 /* 800A50A4 000A1FE4  7E E3 BB 78 */ mr r3, r23
-/* 800A50A8 000A1FE8  48 01 A4 39 */ bl daAlink_c_NS_resetBasAnime
+/* 800A50A8 000A1FE8  48 01 A4 39 */ bl resetBasAnime__9daAlink_cFv
 /* 800A50AC 000A1FEC  38 77 2C A8 */ addi r3, r23, 0x2ca8
 /* 800A50B0 000A1FF0  38 97 04 D0 */ addi r4, r23, 0x4d0
 /* 800A50B4 000A1FF4  38 B7 05 38 */ addi r5, r23, 0x538
@@ -339,7 +339,7 @@ lbl_800A508C:
 /* 800A51B8 000A20F8  38 00 00 FF */ li r0, 0xff
 /* 800A51BC 000A20FC  B0 17 2F DC */ sth r0, 0x2fdc(r23)
 /* 800A51C0 000A2100  7E E3 BB 78 */ mr r3, r23
-/* 800A51C4 000A2104  48 02 C1 4D */ bl daAlink_c_NS_offSwordModel
+/* 800A51C4 000A2104  48 02 C1 4D */ bl offSwordModel__9daAlink_cFv
 /* 800A51C8 000A2108  38 00 FF FF */ li r0, -1
 /* 800A51CC 000A210C  90 17 31 84 */ stw r0, 0x3184(r23)
 /* 800A51D0 000A2110  38 00 00 3F */ li r0, 0x3f
@@ -348,7 +348,7 @@ lbl_800A508C:
 /* 800A51DC 000A211C  60 00 01 00 */ ori r0, r0, 0x100
 /* 800A51E0 000A2120  90 17 05 70 */ stw r0, 0x570(r23)
 /* 800A51E4 000A2124  7E E3 BB 78 */ mr r3, r23
-/* 800A51E8 000A2128  48 05 CA AD */ bl daAlink_c_NS_offOxygenTimer
+/* 800A51E8 000A2128  48 05 CA AD */ bl offOxygenTimer__9daAlink_cFv
 /* 800A51EC 000A212C  80 17 00 B0 */ lwz r0, 0xb0(r23)
 /* 800A51F0 000A2130  54 05 A6 FE */ rlwinm r5, r0, 0x14, 0x1b, 0x1f
 /* 800A51F4 000A2134  54 04 46 3E */ srwi r4, r0, 0x18
@@ -532,7 +532,7 @@ lbl_800A53DC:
 /* 800A5478 000A23B8  48 10 23 19 */ bl dKy_plight_set
 /* 800A547C 000A23BC  7E E3 BB 78 */ mr r3, r23
 /* 800A5480 000A23C0  38 80 00 00 */ li r4, 0
-/* 800A5484 000A23C4  4B FF F4 8D */ bl daAlink_c_NS_setSelectEquipItem
+/* 800A5484 000A23C4  4B FF F4 8D */ bl setSelectEquipItem__9daAlink_cFi
 /* 800A5488 000A23C8  3C 60 80 39 */ lis r3, lbl_80392094@ha
 /* 800A548C 000A23CC  38 63 20 94 */ addi r3, r3, lbl_80392094@l
 /* 800A5490 000A23D0  38 63 01 70 */ addi r3, r3, 0x170

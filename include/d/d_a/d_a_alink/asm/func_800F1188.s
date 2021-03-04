@@ -4,7 +4,7 @@
 /* 800F1194 000EE0D4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F1198 000EE0D8  7C 7F 1B 78 */ mr r31, r3
 /* 800F119C 000EE0DC  38 80 00 3F */ li r4, 0x3f
-/* 800F11A0 000EE0E0  4B FD 0D CD */ bl daAlink_c_NS_commonProcInit
+/* 800F11A0 000EE0E0  4B FD 0D CD */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F11A4 000EE0E4  7F E3 FB 78 */ mr r3, r31
 /* 800F11A8 000EE0E8  81 9F 06 28 */ lwz r12, 0x628(r31)
 /* 800F11AC 000EE0EC  81 8C 01 88 */ lwz r12, 0x188(r12)
@@ -15,15 +15,15 @@
 /* 800F11C0 000EE100  7F E3 FB 78 */ mr r3, r31
 /* 800F11C4 000EE104  38 80 00 02 */ li r4, 2
 /* 800F11C8 000EE108  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F11CC 000EE10C  4B FB C9 21 */ bl daAlink_c_NS_resetUnderAnime
+/* 800F11CC 000EE10C  4B FB C9 21 */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 lbl_800F11D0:
 /* 800F11D0 000EE110  7F E3 FB 78 */ mr r3, r31
-/* 800F11D4 000EE114  4B FF C8 51 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F11D4 000EE114  4B FF C8 51 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F11D8 000EE118  38 00 00 00 */ li r0, 0
 /* 800F11DC 000EE11C  B0 1F 30 04 */ sth r0, 0x3004(r31)
 /* 800F11E0 000EE120  B0 1F 30 02 */ sth r0, 0x3002(r31)
 /* 800F11E4 000EE124  7F E3 FB 78 */ mr r3, r31
-/* 800F11E8 000EE128  4B FF C8 91 */ bl daAlink_c_NS_setHorseTurnAnime
+/* 800F11E8 000EE128  4B FF C8 91 */ bl setHorseTurnAnime__9daAlink_cFv
 /* 800F11EC 000EE12C  38 60 00 01 */ li r3, 1
 /* 800F11F0 000EE130  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F11F4 000EE134  80 01 00 14 */ lwz r0, 0x14(r1)

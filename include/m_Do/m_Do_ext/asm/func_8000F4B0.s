@@ -196,7 +196,7 @@ lbl_8000F79C:
 /* 8000F7A8 0000C6E8  38 61 00 78 */ addi r3, r1, 0x78
 /* 8000F7AC 0000C6EC  38 81 00 58 */ addi r4, r1, 0x58
 /* 8000F7B0 0000C6F0  7F E5 FB 78 */ mr r5, r31
-/* 8000F7B4 0000C6F4  4B FF D8 F9 */ bl mDoMtx_stack_c_NS_dtor_X1_
+/* 8000F7B4 0000C6F4  4B FF D8 F9 */ bl __dt__14mDoMtx_stack_cFv_X1_
 /* 8000F7B8 0000C6F8  C0 01 00 08 */ lfs f0, 8(r1)
 /* 8000F7BC 0000C6FC  D0 1A 00 00 */ stfs f0, 0(r26)
 /* 8000F7C0 0000C700  C0 01 00 0C */ lfs f0, 0xc(r1)
@@ -222,7 +222,7 @@ lbl_8000F79C:
 /* 8000F810 0000C750  7C 1D 00 00 */ cmpw r29, r0
 /* 8000F814 0000C754  40 82 00 0C */ bne lbl_8000F820
 /* 8000F818 0000C758  80 7C 00 0C */ lwz r3, 0xc(r28)
-/* 8000F81C 0000C75C  48 00 00 B1 */ bl mDoExt_MtxCalcOldFrame_NS_decOldFrameMorfCounter
+/* 8000F81C 0000C75C  48 00 00 B1 */ bl decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv
 lbl_8000F820:
 /* 8000F820 0000C760  E3 E1 00 D8 */ psq_l f31, 216(r1), 0, 0
 /* 8000F824 0000C764  CB E1 00 D0 */ lfd f31, 0xd0(r1)

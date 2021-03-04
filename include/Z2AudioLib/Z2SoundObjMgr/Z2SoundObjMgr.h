@@ -47,10 +47,10 @@ void setBattleInit__13Z2SoundObjMgrFv(void);
 void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs(void);
 void setGhostEnemyState__13Z2SoundObjMgrFUc(void);
 
-void Z2SoundObjMgr_NS_checkBattleFinish(void);
+void checkBattleFinish__13Z2SoundObjMgrFv(void);
 void Z2SoundObjMgr_NS_getEnemyID(void);
 void Z2SoundObjMgr_NS_removeEnemy(void);
-void Z2SoundObjMgr_NS_searchEnemy(void);
+void searchEnemy__13Z2SoundObjMgrFv(void);
 
 // Static initializer
 void func_802C01EC(void);

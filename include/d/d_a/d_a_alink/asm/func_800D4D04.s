@@ -3,14 +3,14 @@
 /* 800D4D0C 000D1C4C  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800D4D10 000D1C50  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D4D14 000D1C54  7C 7F 1B 78 */ mr r31, r3
-/* 800D4D18 000D1C58  4B FE 52 39 */ bl daAlink_c_NS_checkGroundSpecialMode
+/* 800D4D18 000D1C58  4B FE 52 39 */ bl checkGroundSpecialMode__9daAlink_cFv
 /* 800D4D1C 000D1C5C  2C 03 00 00 */ cmpwi r3, 0
 /* 800D4D20 000D1C60  41 82 00 0C */ beq lbl_800D4D2C
 /* 800D4D24 000D1C64  38 60 00 01 */ li r3, 1
 /* 800D4D28 000D1C68  48 00 00 A0 */ b lbl_800D4DC8
 lbl_800D4D2C:
 /* 800D4D2C 000D1C6C  7F E3 FB 78 */ mr r3, r31
-/* 800D4D30 000D1C70  4B FF D5 8D */ bl daAlink_c_NS_setSwordChargeVoiceSe
+/* 800D4D30 000D1C70  4B FF D5 8D */ bl setSwordChargeVoiceSe__9daAlink_cFv
 /* 800D4D34 000D1C74  3C 60 80 39 */ lis r3, lbl_8038DE8C@ha
 /* 800D4D38 000D1C78  38 63 DE 8C */ addi r3, r3, lbl_8038DE8C@l
 /* 800D4D3C 000D1C7C  A8 03 00 52 */ lha r0, 0x52(r3)
@@ -27,11 +27,11 @@ lbl_800D4D2C:
 /* 800D4D68 000D1CA8  2C 00 00 00 */ cmpwi r0, 0
 /* 800D4D6C 000D1CAC  41 82 00 10 */ beq lbl_800D4D7C
 /* 800D4D70 000D1CB0  7F E3 FB 78 */ mr r3, r31
-/* 800D4D74 000D1CB4  4B FF D6 4D */ bl daAlink_c_NS_checkCutAction
+/* 800D4D74 000D1CB4  4B FF D6 4D */ bl checkCutAction__9daAlink_cFv
 /* 800D4D78 000D1CB8  48 00 00 4C */ b lbl_800D4DC4
 lbl_800D4D7C:
 /* 800D4D7C 000D1CBC  7F E3 FB 78 */ mr r3, r31
-/* 800D4D80 000D1CC0  4B FF DE 09 */ bl daAlink_c_NS_cancelCutCharge
+/* 800D4D80 000D1CC0  4B FF DE 09 */ bl cancelCutCharge__9daAlink_cFv
 /* 800D4D84 000D1CC4  48 00 00 40 */ b lbl_800D4DC4
 lbl_800D4D88:
 /* 800D4D88 000D1CC8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
@@ -40,7 +40,7 @@ lbl_800D4D88:
 /* 800D4D94 000D1CD4  41 82 00 14 */ beq lbl_800D4DA8
 /* 800D4D98 000D1CD8  7F E3 FB 78 */ mr r3, r31
 /* 800D4D9C 000D1CDC  38 80 00 00 */ li r4, 0
-/* 800D4DA0 000D1CE0  48 00 00 3D */ bl daAlink_c_NS_procCutTurnMoveInit
+/* 800D4DA0 000D1CE0  48 00 00 3D */ bl procCutTurnMoveInit__9daAlink_cFi
 /* 800D4DA4 000D1CE4  48 00 00 20 */ b lbl_800D4DC4
 lbl_800D4DA8:
 /* 800D4DA8 000D1CE8  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)

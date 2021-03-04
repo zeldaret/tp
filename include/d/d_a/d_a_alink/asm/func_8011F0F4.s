@@ -116,14 +116,14 @@ lbl_8011F21C:
 /* 8011F2B0 0011C1F0  4B F0 7E C1 */ bl dStage_changeScene
 /* 8011F2B4 0011C1F4  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011F2B8 0011C1F8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8011F2BC 0011C1FC  48 0F D7 B5 */ bl dMeter2Info_c_NS_warpOutProc
+/* 8011F2BC 0011C1FC  48 0F D7 B5 */ bl warpOutProc__13dMeter2Info_cFv
 /* 8011F2C0 0011C200  48 00 00 18 */ b lbl_8011F2D8
 lbl_8011F2C4:
 /* 8011F2C4 0011C204  7F E3 FB 78 */ mr r3, r31
-/* 8011F2C8 0011C208  48 00 05 11 */ bl daAlink_c_NS_dungeonReturnWarp
+/* 8011F2C8 0011C208  48 00 05 11 */ bl dungeonReturnWarp__9daAlink_cFv
 /* 8011F2CC 0011C20C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011F2D0 0011C210  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8011F2D4 0011C214  48 0F D7 31 */ bl dMeter2Info_c_NS_warpInProc
+/* 8011F2D4 0011C214  48 0F D7 31 */ bl warpInProc__13dMeter2Info_cFv
 lbl_8011F2D8:
 /* 8011F2D8 0011C218  38 00 00 01 */ li r0, 1
 /* 8011F2DC 0011C21C  B0 1F 30 12 */ sth r0, 0x3012(r31)

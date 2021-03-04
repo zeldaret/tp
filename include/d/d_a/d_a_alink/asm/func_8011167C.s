@@ -20,7 +20,7 @@ lbl_801116C0:
 /* 801116C4 0010E604  B0 1F 06 04 */ sth r0, 0x604(r31)
 /* 801116C8 0010E608  7F E3 FB 78 */ mr r3, r31
 /* 801116CC 0010E60C  38 80 00 B8 */ li r4, 0xb8
-/* 801116D0 0010E610  4B FB 08 9D */ bl daAlink_c_NS_commonProcInit
+/* 801116D0 0010E610  4B FB 08 9D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801116D4 0010E614  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 801116D8 0010E618  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 801116DC 0010E61C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -32,9 +32,9 @@ lbl_801116C0:
 /* 801116F4 0010E634  3C A0 80 39 */ lis r5, lbl_8038E77C@ha
 /* 801116F8 0010E638  38 A5 E7 7C */ addi r5, r5, lbl_8038E77C@l
 /* 801116FC 0010E63C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80111700 0010E640  4B F9 B9 F5 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 80111700 0010E640  4B F9 B9 F5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 80111704 0010E644  7F E3 FB 78 */ mr r3, r31
-/* 80111708 0010E648  4B FF F8 D9 */ bl daAlink_c_NS_commonKandelaarPourInit
+/* 80111708 0010E648  4B FF F8 D9 */ bl commonKandelaarPourInit__9daAlink_cFv
 /* 8011170C 0010E64C  38 60 00 01 */ li r3, 1
 lbl_80111710:
 /* 80111710 0010E650  83 E1 00 0C */ lwz r31, 0xc(r1)

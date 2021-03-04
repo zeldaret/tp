@@ -35,7 +35,7 @@ lbl_80122C30:
 /* 80122C3C 0011FB7C  A0 BF 00 00 */ lhz r5, 0(r31)
 /* 80122C40 0011FB80  38 C1 00 5C */ addi r6, r1, 0x5c
 /* 80122C44 0011FB84  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80122C48 0011FB88  4B FF D9 39 */ bl daAlink_c_NS_setEmitter
+/* 80122C48 0011FB88  4B FF D9 39 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80122C4C 0011FB8C  28 03 00 00 */ cmplwi r3, 0
 /* 80122C50 0011FB90  41 82 00 60 */ beq lbl_80122CB0
 /* 80122C54 0011FB94  2C 1B 00 02 */ cmpwi r27, 2
@@ -88,7 +88,7 @@ lbl_80122CF4:
 /* 80122D00 0011FC40  A0 BF 00 00 */ lhz r5, 0(r31)
 /* 80122D04 0011FC44  38 C1 00 5C */ addi r6, r1, 0x5c
 /* 80122D08 0011FC48  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80122D0C 0011FC4C  4B FF D8 75 */ bl daAlink_c_NS_setEmitter
+/* 80122D0C 0011FC4C  4B FF D8 75 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80122D10 0011FC50  3B 9C 00 01 */ addi r28, r28, 1
 /* 80122D14 0011FC54  2C 1C 00 03 */ cmpwi r28, 3
 /* 80122D18 0011FC58  3B BD 00 04 */ addi r29, r29, 4
@@ -147,7 +147,7 @@ lbl_80122CF4:
 /* 80122DEC 0011FD2C  38 A5 86 82 */ addi r5, r5, 0x00008682@l
 /* 80122DF0 0011FD30  38 C1 00 5C */ addi r6, r1, 0x5c
 /* 80122DF4 0011FD34  38 E1 00 0C */ addi r7, r1, 0xc
-/* 80122DF8 0011FD38  4B FF D7 89 */ bl daAlink_c_NS_setEmitter
+/* 80122DF8 0011FD38  4B FF D7 89 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80122DFC 0011FD3C  7C 7D 1B 79 */ or. r29, r3, r3
 /* 80122E00 0011FD40  41 82 01 00 */ beq lbl_80122F00
 /* 80122E04 0011FD44  38 61 00 50 */ addi r3, r1, 0x50

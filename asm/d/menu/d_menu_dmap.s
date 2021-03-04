@@ -107,7 +107,7 @@ lbl_801B809C:
 /* 801B80A0 001B4FE0  7C 65 1B 78 */	mr r5, r3
 /* 801B80A4 001B4FE4  38 61 00 10 */	addi r3, r1, 0x10
 /* 801B80A8 001B4FE8  38 80 00 02 */	li r4, 2
-/* 801B80AC 001B4FEC  4B E5 DD 69 */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 801B80AC 001B4FEC  4B E5 DD 69 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801B80B0 001B4FF0  90 7F 0D 1C */	stw r3, 0xd1c(r31)
 /* 801B80B4 001B4FF4  48 00 00 0C */	b lbl_801B80C0
 lbl_801B80B8:
@@ -1045,7 +1045,7 @@ lbl_801B8E50:
 /* 801B8E84 001B5DC4  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B8E88 001B5DC8  7F A4 EB 78 */	mr r4, r29
 /* 801B8E8C 001B5DCC  38 C0 00 00 */	li r6, 0
-/* 801B8E90 001B5DD0  48 06 36 B5 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B8E90 001B5DD0  48 06 36 B5 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 lbl_801B8E94:
 /* 801B8E94 001B5DD4  3B DE 00 01 */	addi r30, r30, 1
 /* 801B8E98 001B5DD8  2C 1E 00 05 */	cmpwi r30, 5
@@ -1105,7 +1105,7 @@ lbl_801B8F28:
 /* 801B8F5C 001B5E9C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B8F60 001B5EA0  7F A4 EB 78 */	mr r4, r29
 /* 801B8F64 001B5EA4  38 C0 00 00 */	li r6, 0
-/* 801B8F68 001B5EA8  48 06 35 DD */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B8F68 001B5EA8  48 06 35 DD */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 lbl_801B8F6C:
 /* 801B8F6C 001B5EAC  3B DE 00 01 */	addi r30, r30, 1
 /* 801B8F70 001B5EB0  2C 1E 00 05 */	cmpwi r30, 5
@@ -1185,7 +1185,7 @@ lbl_801B9050:
 /* 801B9078 001B5FB8  7F A3 EB 78 */	mr r3, r29
 /* 801B907C 001B5FBC  7F 44 D3 78 */	mr r4, r26
 /* 801B9080 001B5FC0  38 C0 00 00 */	li r6, 0
-/* 801B9084 001B5FC4  48 06 34 C1 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B9084 001B5FC4  48 06 34 C1 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B9088 001B5FC8  3B 7B 00 01 */	addi r27, r27, 1
 /* 801B908C 001B5FCC  2C 1B 00 02 */	cmpwi r27, 2
 /* 801B9090 001B5FD0  3B DE 00 08 */	addi r30, r30, 8
@@ -2197,7 +2197,7 @@ lbl_801B9FC0:
 /* 801B9FD0 001B6F10  7C 84 02 AE */	lhax r4, r4, r0
 /* 801B9FD4 001B6F14  38 A1 00 84 */	addi r5, r1, 0x84
 /* 801B9FD8 001B6F18  38 C0 00 00 */	li r6, 0
-/* 801B9FDC 001B6F1C  48 06 22 75 */	bl dMeter2Info_c_NS_getString
+/* 801B9FDC 001B6F1C  48 06 22 75 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801B9FE0 001B6F20  38 61 00 64 */	addi r3, r1, 0x64
 /* 801B9FE4 001B6F24  7C 63 F0 2E */	lwzx r3, r3, r30
 /* 801B9FE8 001B6F28  38 80 00 10 */	li r4, 0x10
@@ -3402,7 +3402,7 @@ lbl_801BAED0:
 /* 801BB168 001B80A8  28 03 00 00 */	cmplwi r3, 0
 /* 801BB16C 001B80AC  41 82 00 54 */	beq lbl_801BB1C0
 /* 801BB170 001B80B0  C0 22 A6 30 */	lfs f1, lbl_80454030-_SDA2_BASE_(r2)
-/* 801BB174 001B80B4  48 05 0A AD */	bl dMeterHaihai_c_NS_setScale
+/* 801BB174 001B80B4  48 05 0A AD */	bl setScale__14dMeterHaihai_cFf
 /* 801BB178 001B80B8  80 7E 0D 30 */	lwz r3, 0xd30(r30)
 /* 801BB17C 001B80BC  88 9E 0D DA */	lbz r4, 0xdda(r30)
 /* 801BB180 001B80C0  C0 62 A5 E8 */	lfs f3, lbl_80453FE8-_SDA2_BASE_(r2)
@@ -3418,7 +3418,7 @@ lbl_801BAED0:
 /* 801BB1A8 001B80E8  C0 02 A6 34 */	lfs f0, lbl_80454034-_SDA2_BASE_(r2)
 /* 801BB1AC 001B80EC  EC 60 E8 2A */	fadds f3, f0, f29
 /* 801BB1B0 001B80F0  EC 80 F0 2A */	fadds f4, f0, f30
-/* 801BB1B4 001B80F4  48 05 06 61 */	bl dMeterHaihai_c_NS_drawHaihai_X1_
+/* 801BB1B4 001B80F4  48 05 06 61 */	bl drawHaihai__14dMeterHaihai_cFUc_X1_
 /* 801BB1B8 001B80F8  38 00 00 00 */	li r0, 0
 /* 801BB1BC 001B80FC  98 1E 0D DA */	stb r0, 0xdda(r30)
 lbl_801BB1C0:
@@ -4684,7 +4684,7 @@ lbl_801BC3EC:
 /* 801BC440 001B9380  39 00 00 00 */	li r8, 0
 /* 801BC444 001B9384  39 20 00 00 */	li r9, 0
 /* 801BC448 001B9388  39 40 00 00 */	li r10, 0
-/* 801BC44C 001B938C  48 06 0A BD */	bl dMeter2Info_c_NS_readItemTexture
+/* 801BC44C 001B938C  48 06 0A BD */	bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 801BC450 001B9390  48 00 00 C0 */	b lbl_801BC510
 lbl_801BC454:
 /* 801BC454 001B9394  80 7F 00 08 */	lwz r3, 8(r31)
@@ -6860,7 +6860,7 @@ isOpen__12dMenu_Dmap_cFv:
 /* 801BE384 001BB2C4  38 63 57 60 */	addi r3, r3, lbl_80395760@l
 /* 801BE388 001BB2C8  38 63 00 C6 */	addi r3, r3, 0xc6
 /* 801BE38C 001BB2CC  38 80 00 02 */	li r4, 2
-/* 801BE390 001BB2D0  4B E5 7A 85 */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 801BE390 001BB2D0  4B E5 7A 85 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801BE394 001BB2D4  90 7B 00 E0 */	stw r3, 0xe0(r27)
 lbl_801BE398:
 /* 801BE398 001BB2D8  80 7B 00 E0 */	lwz r3, 0xe0(r27)

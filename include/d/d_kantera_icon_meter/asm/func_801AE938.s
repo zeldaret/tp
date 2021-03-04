@@ -6,7 +6,7 @@
 /* 801AE94C 001AB88C  3C 80 80 3C */ lis r4, lbl_803BC228@ha
 /* 801AE950 001AB890  38 04 C2 28 */ addi r0, r4, lbl_803BC228@l
 /* 801AE954 001AB894  90 03 00 00 */ stw r0, 0(r3)
-/* 801AE958 001AB898  48 00 01 11 */ bl dKantera_icon_c_NS_initiate
+/* 801AE958 001AB898  48 00 01 11 */ bl initiate__15dKantera_icon_cFv
 /* 801AE95C 001AB89C  7F E3 FB 78 */ mr r3, r31
 /* 801AE960 001AB8A0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801AE964 001AB8A4  80 01 00 14 */ lwz r0, 0x14(r1)

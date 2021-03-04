@@ -20,7 +20,7 @@
 /* 801239FC 0012093C  7F E3 FB 78 */ mr r3, r31
 /* 80123A00 00120940  38 9F 1E 2C */ addi r4, r31, 0x1e2c
 /* 80123A04 00120944  7F C5 F3 78 */ mr r5, r30
-/* 80123A08 00120948  4B F8 C6 91 */ bl daAlink_c_NS_getGroundAngle
+/* 80123A08 00120948  4B F8 C6 91 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 80123A0C 0012094C  7C 64 1B 78 */ mr r4, r3
 /* 80123A10 00120950  38 61 00 18 */ addi r3, r1, 0x18
 /* 80123A14 00120954  7F C5 F3 78 */ mr r5, r30
@@ -106,14 +106,14 @@ lbl_80123B20:
 /* 80123B3C 00120A7C  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123B40 00120A80  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123B44 00120A84  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123B48 00120A88  4B FF CA ED */ bl daAlink_c_NS_setEmitterPolyColor
+/* 80123B48 00120A88  4B FF CA ED */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
 /* 80123B4C 00120A8C  7F E3 FB 78 */ mr r3, r31
 /* 80123B50 00120A90  38 9F 31 BC */ addi r4, r31, 0x31bc
 /* 80123B54 00120A94  38 A0 01 B0 */ li r5, 0x1b0
 /* 80123B58 00120A98  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123B5C 00120A9C  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123B60 00120AA0  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123B64 00120AA4  4B FF CA D1 */ bl daAlink_c_NS_setEmitterPolyColor
+/* 80123B64 00120AA4  4B FF CA D1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
 /* 80123B68 00120AA8  48 00 00 0C */ b lbl_80123B74
 lbl_80123B6C:
 /* 80123B6C 00120AAC  3B A0 00 00 */ li r29, 0
@@ -126,7 +126,7 @@ lbl_80123B74:
 /* 80123B84 00120AC4  7F A5 EB 78 */ mr r5, r29
 /* 80123B88 00120AC8  38 DF 37 D4 */ addi r6, r31, 0x37d4
 /* 80123B8C 00120ACC  38 E1 00 18 */ addi r7, r1, 0x18
-/* 80123B90 00120AD0  4B FF C9 F1 */ bl daAlink_c_NS_setEmitter
+/* 80123B90 00120AD0  4B FF C9 F1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 lbl_80123B94:
 /* 80123B94 00120AD4  7F E3 FB 78 */ mr r3, r31
 /* 80123B98 00120AD8  38 9F 31 C0 */ addi r4, r31, 0x31c0
@@ -134,7 +134,7 @@ lbl_80123B94:
 /* 80123BA0 00120AE0  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123BA4 00120AE4  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123BA8 00120AE8  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123BAC 00120AEC  4B FF CA 89 */ bl daAlink_c_NS_setEmitterPolyColor
+/* 80123BAC 00120AEC  4B FF CA 89 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
 /* 80123BB0 00120AF0  28 03 00 00 */ cmplwi r3, 0
 /* 80123BB4 00120AF4  41 82 00 14 */ beq lbl_80123BC8
 /* 80123BB8 00120AF8  80 1F 31 98 */ lwz r0, 0x3198(r31)

@@ -496,7 +496,7 @@ lbl_801A3EF0:
 /* 801A3F00 001A0E40  38 E1 00 28 */ addi r7, r1, 0x28
 /* 801A3F04 001A0E44  39 01 00 0C */ addi r8, r1, 0xc
 /* 801A3F08 001A0E48  39 21 00 08 */ addi r9, r1, 8
-/* 801A3F0C 001A0E4C  4B FF DE 59 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_actor
+/* 801A3F0C 001A0E4C  4B FF DE 59 */ bl settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 /* 801A3F10 001A0E50  48 00 00 C8 */ b lbl_801A3FD8
 lbl_801A3F14:
 /* 801A3F14 001A0E54  2C 1B 00 0A */ cmpwi r27, 0xa
@@ -520,7 +520,7 @@ lbl_801A3F24:
 /* 801A3F58 001A0E98  7F 24 CB 78 */ mr r4, r25
 /* 801A3F5C 001A0E9C  88 05 4E 0B */ lbz r0, 0x4e0b(r5)
 /* 801A3F60 001A0EA0  7C 05 07 74 */ extsb r5, r0
-/* 801A3F64 001A0EA4  4B E8 89 ED */ bl dComIfG_play_c_NS_getLayerNo_common
+/* 801A3F64 001A0EA4  4B E8 89 ED */ bl getLayerNo_common__14dComIfG_play_cFPCcii
 /* 801A3F68 001A0EA8  7C 65 1B 78 */ mr r5, r3
 /* 801A3F6C 001A0EAC  7F C3 F3 78 */ mr r3, r30
 /* 801A3F70 001A0EB0  7F 24 CB 78 */ mr r4, r25
@@ -534,14 +534,14 @@ lbl_801A3F24:
 /* 801A3F90 001A0ED0  40 82 00 10 */ bne lbl_801A3FA0
 /* 801A3F94 001A0ED4  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 801A3F98 001A0ED8  38 63 04 A4 */ addi r3, r3, 0x4a4
-/* 801A3F9C 001A0EDC  48 11 61 85 */ bl Z2SceneMgr_NS_load2ndDynamicWave
+/* 801A3F9C 001A0EDC  48 11 61 85 */ bl load2ndDynamicWave__10Z2SceneMgrFv
 lbl_801A3FA0:
 /* 801A3FA0 001A0EE0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A3FA4 001A0EE4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A3FA8 001A0EE8  8B C3 12 D2 */ lbz r30, 0x12d2(r3)
 /* 801A3FAC 001A0EEC  7F 43 D3 78 */ mr r3, r26
 /* 801A3FB0 001A0EF0  7F 84 E3 78 */ mr r4, r28
-/* 801A3FB4 001A0EF4  4B FF DF A5 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_player
+/* 801A3FB4 001A0EF4  4B FF DF A5 */ bl settingTevStruct_colget_player__18dScnKy_env_light_cFP12dKy_tevstr_c
 /* 801A3FB8 001A0EF8  7F 43 D3 78 */ mr r3, r26
 /* 801A3FBC 001A0EFC  7F A4 EB 78 */ mr r4, r29
 /* 801A3FC0 001A0F00  7F 85 E3 78 */ mr r5, r28
@@ -549,7 +549,7 @@ lbl_801A3FA0:
 /* 801A3FC8 001A0F08  38 E1 00 28 */ addi r7, r1, 0x28
 /* 801A3FCC 001A0F0C  39 01 00 0C */ addi r8, r1, 0xc
 /* 801A3FD0 001A0F10  39 21 00 08 */ addi r9, r1, 8
-/* 801A3FD4 001A0F14  4B FF DD 91 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_actor
+/* 801A3FD4 001A0F14  4B FF DD 91 */ bl settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 lbl_801A3FD8:
 /* 801A3FD8 001A0F18  A8 01 00 30 */ lha r0, 0x30(r1)
 /* 801A3FDC 001A0F1C  B0 1A 10 F0 */ sth r0, 0x10f0(r26)
@@ -575,7 +575,7 @@ lbl_801A3FD8:
 /* 801A402C 001A0F6C  38 C1 00 20 */ addi r6, r1, 0x20
 /* 801A4030 001A0F70  38 E1 00 18 */ addi r7, r1, 0x18
 /* 801A4034 001A0F74  7F C8 F3 78 */ mr r8, r30
-/* 801A4038 001A0F78  4B FF E0 F1 */ bl dScnKy_env_light_c_NS_settingTevStruct_plightcol_plus
+/* 801A4038 001A0F78  4B FF E0 F1 */ bl settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
 lbl_801A403C:
 /* 801A403C 001A0F7C  2C 1B 00 0A */ cmpwi r27, 0xa
 /* 801A4040 001A0F80  41 82 00 0C */ beq lbl_801A404C
@@ -656,7 +656,7 @@ lbl_801A4144:
 /* 801A4150 001A1090  38 C1 00 28 */ addi r6, r1, 0x28
 /* 801A4154 001A1094  38 E1 00 0C */ addi r7, r1, 0xc
 /* 801A4158 001A1098  39 01 00 08 */ addi r8, r1, 8
-/* 801A415C 001A109C  4B FF D1 E1 */ bl dScnKy_env_light_c_NS_setLight_bg
+/* 801A415C 001A109C  4B FF D1 E1 */ bl setLight__18dScnKy_env_light_cFv_bg
 /* 801A4160 001A10A0  57 64 1E F8 */ rlwinm r4, r27, 3, 0x1b, 0x1c
 /* 801A4164 001A10A4  38 61 00 B0 */ addi r3, r1, 0xb0
 /* 801A4168 001A10A8  7C 03 22 AE */ lhax r0, r3, r4

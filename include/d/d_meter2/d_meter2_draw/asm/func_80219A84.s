@@ -54,7 +54,7 @@
 /* 80219B58 00216A98  FF E0 08 90 */ fmr f31, f1
 /* 80219B5C 00216A9C  3B E0 00 01 */ li r31, 1
 /* 80219B60 00216AA0  7F A3 EB 78 */ mr r3, r29
-/* 80219B64 00216AA4  48 00 20 51 */ bl dMeter2Draw_c_NS_getCanoeFishing
+/* 80219B64 00216AA4  48 00 20 51 */ bl getCanoeFishing__13dMeter2Draw_cFv
 /* 80219B68 00216AA8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80219B6C 00216AAC  40 82 00 60 */ bne lbl_80219BCC
 /* 80219B70 00216AB0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

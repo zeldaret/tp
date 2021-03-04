@@ -8,7 +8,7 @@
 /* 8011C1D0 00119110  A8 03 30 08 */ lha r0, 0x3008(r3)
 /* 8011C1D4 00119114  2C 00 00 00 */ cmpwi r0, 0
 /* 8011C1D8 00119118  40 82 00 18 */ bne lbl_8011C1F0
-/* 8011C1DC 0011911C  4B FF CA 19 */ bl daAlink_c_NS_setDeadRideSyncPos
+/* 8011C1DC 0011911C  4B FF CA 19 */ bl setDeadRideSyncPos__9daAlink_cFv
 /* 8011C1E0 00119120  38 00 00 01 */ li r0, 1
 /* 8011C1E4 00119124  B0 1D 30 08 */ sth r0, 0x3008(r29)
 /* 8011C1E8 00119128  38 60 00 01 */ li r3, 1
@@ -109,7 +109,7 @@ lbl_8011C338:
 /* 8011C33C 0011927C  98 1D 2F 9D */ stb r0, 0x2f9d(r29)
 lbl_8011C340:
 /* 8011C340 00119280  7F A3 EB 78 */ mr r3, r29
-/* 8011C344 00119284  4B FF C8 B1 */ bl daAlink_c_NS_setDeadRideSyncPos
+/* 8011C344 00119284  4B FF C8 B1 */ bl setDeadRideSyncPos__9daAlink_cFv
 /* 8011C348 00119288  7F E3 FB 78 */ mr r3, r31
 /* 8011C34C 0011928C  48 04 21 81 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011C350 00119290  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -228,20 +228,20 @@ lbl_8011C4D0:
 /* 8011C4EC 0011942C  2C 1C 00 32 */ cmpwi r28, 0x32
 /* 8011C4F0 00119430  40 82 00 34 */ bne lbl_8011C524
 /* 8011C4F4 00119434  38 60 00 00 */ li r3, 0
-/* 8011C4F8 00119438  4B F1 04 85 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8011C4F8 00119438  4B F1 04 85 */ bl getLayerNo__14dComIfG_play_cFi
 /* 8011C4FC 0011943C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011C500 00119440  41 82 00 14 */ beq lbl_8011C514
 /* 8011C504 00119444  38 60 00 00 */ li r3, 0
-/* 8011C508 00119448  4B F1 04 75 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8011C508 00119448  4B F1 04 75 */ bl getLayerNo__14dComIfG_play_cFi
 /* 8011C50C 0011944C  2C 03 00 01 */ cmpwi r3, 1
 /* 8011C510 00119450  40 82 00 14 */ bne lbl_8011C524
 lbl_8011C514:
 /* 8011C514 00119454  38 60 00 00 */ li r3, 0
-/* 8011C518 00119458  4B F1 04 65 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8011C518 00119458  4B F1 04 65 */ bl getLayerNo__14dComIfG_play_cFi
 /* 8011C51C 0011945C  38 63 00 01 */ addi r3, r3, 1
 /* 8011C520 00119460  48 00 00 CC */ b lbl_8011C5EC
 lbl_8011C524:
-/* 8011C524 00119464  4B FA 3D A5 */ bl daAlink_c_NS_checkBossRoom
+/* 8011C524 00119464  4B FA 3D A5 */ bl checkBossRoom__9daAlink_cFv
 /* 8011C528 00119468  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011C52C 0011946C  41 82 00 88 */ beq lbl_8011C5B4
 /* 8011C530 00119470  2C 1C 00 32 */ cmpwi r28, 0x32
@@ -293,7 +293,7 @@ lbl_8011C5CC:
 /* 8011C5D4 00119514  38 A0 00 C9 */ li r5, 0xc9
 /* 8011C5D8 00119518  38 C0 00 00 */ li r6, 0
 /* 8011C5DC 0011951C  38 E0 00 01 */ li r7, 1
-/* 8011C5E0 00119520  4B FA 19 81 */ bl daAlink_c_NS_startRestartRoom
+/* 8011C5E0 00119520  4B FA 19 81 */ bl startRestartRoom__9daAlink_cFUliii
 /* 8011C5E4 00119524  38 60 00 01 */ li r3, 1
 /* 8011C5E8 00119528  48 00 00 2C */ b lbl_8011C614
 lbl_8011C5EC:

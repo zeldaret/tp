@@ -21,10 +21,10 @@
 /* 8021467C 002115BC  7C DE 33 78 */ mr r30, r6
 /* 80214680 002115C0  7C FF 3B 78 */ mr r31, r7
 /* 80214684 002115C4  FC 20 F0 90 */ fmr f1, f30
-/* 80214688 002115C8  4B FF F6 65 */ bl dMeter2Draw_c_NS_playPikariBckAnimation
+/* 80214688 002115C8  4B FF F6 65 */ bl playPikariBckAnimation__13dMeter2Draw_cFf
 /* 8021468C 002115CC  7F 63 DB 78 */ mr r3, r27
 /* 80214690 002115D0  FC 20 F0 90 */ fmr f1, f30
-/* 80214694 002115D4  4B FF F7 A9 */ bl dMeter2Draw_c_NS_playPikariBpkAnimation
+/* 80214694 002115D4  4B FF F7 A9 */ bl playPikariBpkAnimation__13dMeter2Draw_cFf
 /* 80214698 002115D8  80 7B 03 9C */ lwz r3, 0x39c(r27)
 /* 8021469C 002115DC  80 63 00 04 */ lwz r3, 4(r3)
 /* 802146A0 002115E0  D3 83 00 D4 */ stfs f28, 0xd4(r3)

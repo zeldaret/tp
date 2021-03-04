@@ -30,7 +30,7 @@
 /* 8010B420 00108360  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8010B424 00108364  40 81 01 3C */ ble lbl_8010B560
 /* 8010B428 00108368  A8 7E 2F E0 */ lha r3, 0x2fe0(r30)
-/* 8010B42C 0010836C  4B FA 80 69 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 8010B42C 0010836C  4B FA 80 69 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 8010B430 00108370  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
 /* 8010B434 00108374  C0 02 95 2C */ lfs f0, lbl_80452F2C-_SDA2_BASE_(r2)
 /* 8010B438 00108378  EC 00 00 72 */ fmuls f0, f0, f1
@@ -127,7 +127,7 @@ lbl_8010B578:
 /* 8010B584 001084C4  54 1D 06 3E */ clrlwi r29, r0, 0x18
 lbl_8010B588:
 /* 8010B588 001084C8  7F C3 F3 78 */ mr r3, r30
-/* 8010B58C 001084CC  48 00 A6 95 */ bl daAlink_c_NS_checkEventRun
+/* 8010B58C 001084CC  48 00 A6 95 */ bl checkEventRun__9daAlink_cCFv
 /* 8010B590 001084D0  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B594 001084D4  40 82 00 20 */ bne lbl_8010B5B4
 /* 8010B598 001084D8  38 00 00 78 */ li r0, 0x78
@@ -162,7 +162,7 @@ lbl_8010B5B4:
 lbl_8010B608:
 /* 8010B608 00108548  7F C3 F3 78 */ mr r3, r30
 /* 8010B60C 0010854C  38 80 00 00 */ li r4, 0
-/* 8010B610 00108550  4B FA BB 81 */ bl daAlink_c_NS_cancelItemUseQuake
+/* 8010B610 00108550  4B FA BB 81 */ bl cancelItemUseQuake__9daAlink_cFi
 lbl_8010B614:
 /* 8010B614 00108554  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0
 /* 8010B618 00108558  CB E1 00 50 */ lfd f31, 0x50(r1)

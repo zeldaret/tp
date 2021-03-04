@@ -22,7 +22,7 @@
 /* 8011E79C 0011B6DC  38 A0 00 1A */ li r5, 0x1a
 /* 8011E7A0 0011B6E0  38 C0 00 02 */ li r6, 2
 /* 8011E7A4 0011B6E4  C0 82 92 C4 */ lfs f4, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011E7A8 0011B6E8  4B F8 E2 6D */ bl daAlink_c_NS_setDoubleAnime
+/* 8011E7A8 0011B6E8  4B F8 E2 6D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 lbl_8011E7AC:
 /* 8011E7AC 0011B6EC  38 00 00 01 */ li r0, 1
 /* 8011E7B0 0011B6F0  B0 1E 30 0C */ sth r0, 0x300c(r30)

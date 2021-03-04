@@ -5,7 +5,7 @@
 /* 802C334C 002C028C  7C 7F 1B 78 */	mr r31, r3
 /* 802C3350 002C0290  4B FF D0 79 */	bl __ct__10Z2CreatureFv
 /* 802C3354 002C0294  38 7F 00 90 */	addi r3, r31, 0x90
-/* 802C3358 002C0298  48 00 15 91 */	bl Z2LinkSoundStarter_NS_ctor
+/* 802C3358 002C0298  48 00 15 91 */	bl __ct__18Z2LinkSoundStarterFv
 /* 802C335C 002C029C  3C 60 80 3D */	lis r3, lbl_803CB980@ha
 /* 802C3360 002C02A0  38 63 B9 80 */	addi r3, r3, lbl_803CB980@l
 /* 802C3364 002C02A4  90 7F 00 00 */	stw r3, 0(r31)

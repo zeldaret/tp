@@ -7,7 +7,7 @@
 /* 8011A22C 0011716C  93 C1 00 08 */ stw r30, 8(r1)
 /* 8011A230 00117170  7C 7F 1B 78 */ mr r31, r3
 /* 8011A234 00117174  38 80 01 46 */ li r4, 0x146
-/* 8011A238 00117178  4B FA 8B 6D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011A238 00117178  4B FA 8B 6D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 8011A23C 0011717C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011A240 00117180  40 82 00 0C */ bne lbl_8011A24C
 /* 8011A244 00117184  38 60 00 01 */ li r3, 1
@@ -18,7 +18,7 @@ lbl_8011A24C:
 /* 8011A254 00117194  41 82 00 48 */ beq lbl_8011A29C
 /* 8011A258 00117198  7F E3 FB 78 */ mr r3, r31
 /* 8011A25C 0011719C  38 80 00 0F */ li r4, 0xf
-/* 8011A260 001171A0  48 00 F4 19 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8011A260 001171A0  48 00 F4 19 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8011A264 001171A4  80 1F 06 0C */ lwz r0, 0x60c(r31)
 /* 8011A268 001171A8  2C 00 00 01 */ cmpwi r0, 1
 /* 8011A26C 001171AC  41 82 00 0C */ beq lbl_8011A278
@@ -57,7 +57,7 @@ lbl_8011A2DC:
 lbl_8011A2E0:
 /* 8011A2E0 00117220  7F E3 FB 78 */ mr r3, r31
 /* 8011A2E4 00117224  7F C4 F3 78 */ mr r4, r30
-/* 8011A2E8 00117228  4B F9 2C 99 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011A2E8 00117228  4B F9 2C 99 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011A2EC 0011722C  3C 60 80 42 */ lis r3, lbl_80425514@ha
 /* 8011A2F0 00117230  C4 03 55 14 */ lfsu f0, lbl_80425514@l(r3)
 /* 8011A2F4 00117234  D0 1F 35 88 */ stfs f0, 0x3588(r31)
@@ -104,9 +104,9 @@ lbl_8011A384:
 /* 8011A390 001172D0  7F E3 FB 78 */ mr r3, r31
 /* 8011A394 001172D4  38 80 00 00 */ li r4, 0
 /* 8011A398 001172D8  38 A0 00 00 */ li r5, 0
-/* 8011A39C 001172DC  4B FA 6F 41 */ bl daAlink_c_NS_deleteEquipItem
+/* 8011A39C 001172DC  4B FA 6F 41 */ bl deleteEquipItem__9daAlink_cFii
 /* 8011A3A0 001172E0  38 7F 04 D0 */ addi r3, r31, 0x4d0
-/* 8011A3A4 001172E4  4B EF 29 C1 */ bl mDoMtx_stack_c_NS_transS
+/* 8011A3A4 001172E4  4B EF 29 C1 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8011A3A8 001172E8  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8011A3AC 001172EC  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 8011A3B0 001172F0  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
@@ -114,7 +114,7 @@ lbl_8011A384:
 /* 8011A3B8 001172F8  C0 22 93 B4 */ lfs f1, lbl_80452DB4-_SDA2_BASE_(r2)
 /* 8011A3BC 001172FC  C0 42 95 30 */ lfs f2, lbl_80452F30-_SDA2_BASE_(r2)
 /* 8011A3C0 00117300  C0 62 92 E0 */ lfs f3, lbl_80452CE0-_SDA2_BASE_(r2)
-/* 8011A3C4 00117304  4B EF 29 D9 */ bl mDoMtx_stack_c_NS_transM
+/* 8011A3C4 00117304  4B EF 29 D9 */ bl transM__14mDoMtx_stack_cFfff
 /* 8011A3C8 00117308  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8011A3CC 0011730C  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 8011A3D0 00117310  80 9F 06 FC */ lwz r4, 0x6fc(r31)

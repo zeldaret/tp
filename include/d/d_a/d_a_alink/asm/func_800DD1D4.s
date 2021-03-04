@@ -6,10 +6,10 @@
 /* 800DD1E8 000DA128  7C 7D 1B 78 */ mr r29, r3
 /* 800DD1EC 000DA12C  7C 9C 23 78 */ mr r28, r4
 /* 800DD1F0 000DA130  38 80 00 16 */ li r4, 0x16
-/* 800DD1F4 000DA134  4B FD 01 4D */ bl daAlink_c_NS_setUpperAnimeBase
+/* 800DD1F4 000DA134  4B FD 01 4D */ bl setUpperAnimeBase__9daAlink_cFUs
 /* 800DD1F8 000DA138  7F A3 EB 78 */ mr r3, r29
 /* 800DD1FC 000DA13C  7F 84 E3 78 */ mr r4, r28
-/* 800DD200 000DA140  4B FF A2 F5 */ bl daAlink_c_NS_getDamageVec
+/* 800DD200 000DA140  4B FF A2 F5 */ bl getDamageVec__9daAlink_cFP12dCcD_GObjInf
 /* 800DD204 000DA144  7C 7F 1B 78 */ mr r31, r3
 /* 800DD208 000DA148  48 18 9F 21 */ bl atan2sX_Z__4cXyzCFv
 /* 800DD20C 000DA14C  3C 63 00 01 */ addis r3, r3, 1

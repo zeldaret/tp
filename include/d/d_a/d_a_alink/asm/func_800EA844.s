@@ -9,9 +9,9 @@
 /* 800EA864 000E77A4  28 00 00 00 */ cmplwi r0, 0
 /* 800EA868 000E77A8  40 82 00 1C */ bne lbl_800EA884
 /* 800EA86C 000E77AC  7F E3 FB 78 */ mr r3, r31
-/* 800EA870 000E77B0  48 00 00 61 */ bl daAlink_c_NS_cancelSumouMode
+/* 800EA870 000E77B0  48 00 00 61 */ bl cancelSumouMode__9daAlink_cFv
 /* 800EA874 000E77B4  7F E3 FB 78 */ mr r3, r31
-/* 800EA878 000E77B8  4B FD 8B 41 */ bl daAlink_c_NS_procWaitInit
+/* 800EA878 000E77B8  4B FD 8B 41 */ bl procWaitInit__9daAlink_cFv
 /* 800EA87C 000E77BC  38 60 00 00 */ li r3, 0
 /* 800EA880 000E77C0  48 00 00 3C */ b lbl_800EA8BC
 lbl_800EA884:
@@ -26,7 +26,7 @@ lbl_800EA884:
 /* 800EA8A4 000E77E4  40 82 00 14 */ bne lbl_800EA8B8
 lbl_800EA8A8:
 /* 800EA8A8 000E77E8  7F E3 FB 78 */ mr r3, r31
-/* 800EA8AC 000E77EC  48 00 19 61 */ bl daAlink_c_NS_procSumouWinLoseInit
+/* 800EA8AC 000E77EC  48 00 19 61 */ bl procSumouWinLoseInit__9daAlink_cFv
 /* 800EA8B0 000E77F0  38 60 00 00 */ li r3, 0
 /* 800EA8B4 000E77F4  48 00 00 08 */ b lbl_800EA8BC
 lbl_800EA8B8:

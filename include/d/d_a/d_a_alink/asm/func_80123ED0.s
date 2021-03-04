@@ -106,7 +106,7 @@ lbl_80124034:
 /* 8012404C 00120F8C  48 14 33 A9 */ bl __ct__5csXyzFsss
 /* 80124050 00120F90  38 7F 00 14 */ addi r3, r31, 0x14
 /* 80124054 00120F94  38 80 00 01 */ li r4, 1
-/* 80124058 00120F98  4B F7 E1 89 */ bl daAlink_c_NS_getMoveBGActorName
+/* 80124058 00120F98  4B F7 E1 89 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 8012405C 00120F9C  7C 60 07 34 */ extsh r0, r3
 /* 80124060 00120FA0  2C 00 00 C0 */ cmpwi r0, 0xc0
 /* 80124064 00120FA4  41 82 00 0C */ beq lbl_80124070

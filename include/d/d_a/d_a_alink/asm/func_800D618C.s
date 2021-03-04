@@ -24,7 +24,7 @@
 lbl_800D61E8:
 /* 800D61E8 000D3128  7F C3 F3 78 */ mr r3, r30
 /* 800D61EC 000D312C  38 80 00 00 */ li r4, 0
-/* 800D61F0 000D3130  4B FE 3E E1 */ bl daAlink_c_NS_checkNextAction
+/* 800D61F0 000D3130  4B FE 3E E1 */ bl checkNextAction__9daAlink_cFi
 /* 800D61F4 000D3134  48 00 00 28 */ b lbl_800D621C
 lbl_800D61F8:
 /* 800D61F8 000D3138  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -35,7 +35,7 @@ lbl_800D61F8:
 /* 800D620C 000D314C  40 81 00 10 */ ble lbl_800D621C
 /* 800D6210 000D3150  7F C3 F3 78 */ mr r3, r30
 /* 800D6214 000D3154  38 80 00 01 */ li r4, 1
-/* 800D6218 000D3158  4B FE 3E B9 */ bl daAlink_c_NS_checkNextAction
+/* 800D6218 000D3158  4B FE 3E B9 */ bl checkNextAction__9daAlink_cFi
 lbl_800D621C:
 /* 800D621C 000D315C  38 60 00 01 */ li r3, 1
 /* 800D6220 000D3160  83 E1 00 0C */ lwz r31, 0xc(r1)

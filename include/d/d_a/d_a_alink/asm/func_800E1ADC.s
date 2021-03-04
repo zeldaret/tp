@@ -10,7 +10,7 @@
 /* 800E1B00 000DEA40  B0 1F 30 18 */ sth r0, 0x3018(r31)
 lbl_800E1B04:
 /* 800E1B04 000DEA44  7F E3 FB 78 */ mr r3, r31
-/* 800E1B08 000DEA48  4B FD 6E 29 */ bl daAlink_c_NS_checkReadyItem
+/* 800E1B08 000DEA48  4B FD 6E 29 */ bl checkReadyItem__9daAlink_cFv
 /* 800E1B0C 000DEA4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1B10 000DEA50  41 82 00 84 */ beq lbl_800E1B94
 /* 800E1B14 000DEA54  7F E3 FB 78 */ mr r3, r31
@@ -33,9 +33,9 @@ lbl_800E1B44:
 /* 800E1B54 000DEA94  38 A0 00 02 */ li r5, 2
 /* 800E1B58 000DEA98  3C C0 80 39 */ lis r6, lbl_8038E6C8@ha
 /* 800E1B5C 000DEA9C  38 C6 E6 C8 */ addi r6, r6, lbl_8038E6C8@l
-/* 800E1B60 000DEAA0  4B FC BB 91 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800E1B60 000DEAA0  4B FC BB 91 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
 /* 800E1B64 000DEAA4  7F E3 FB 78 */ mr r3, r31
-/* 800E1B68 000DEAA8  4B FF F7 C9 */ bl daAlink_c_NS_getCopyRodBallDisMax
+/* 800E1B68 000DEAA8  4B FF F7 C9 */ bl getCopyRodBallDisMax__9daAlink_cCFv
 /* 800E1B6C 000DEAAC  D0 3F 34 90 */ stfs f1, 0x3490(r31)
 /* 800E1B70 000DEAB0  88 1F 20 B0 */ lbz r0, 0x20b0(r31)
 /* 800E1B74 000DEAB4  28 00 00 00 */ cmplwi r0, 0
@@ -50,7 +50,7 @@ lbl_800E1B8C:
 lbl_800E1B94:
 /* 800E1B94 000DEAD4  7F E3 FB 78 */ mr r3, r31
 /* 800E1B98 000DEAD8  38 80 00 00 */ li r4, 0
-/* 800E1B9C 000DEADC  4B FD 56 51 */ bl daAlink_c_NS_cancelUpperItemReadyAnime
+/* 800E1B9C 000DEADC  4B FD 56 51 */ bl cancelUpperItemReadyAnime__9daAlink_cFi
 lbl_800E1BA0:
 /* 800E1BA0 000DEAE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E1BA4 000DEAE4  80 01 00 14 */ lwz r0, 0x14(r1)

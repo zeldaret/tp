@@ -6,7 +6,7 @@
 /* 800CEB6C 000CBAAC  80 03 05 74 */ lwz r0, 0x574(r3)
 /* 800CEB70 000CBAB0  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800CEB74 000CBAB4  40 82 00 3C */ bne lbl_800CEBB0
-/* 800CEB78 000CBAB8  4B FF 1A 1D */ bl daAlink_c_NS_checkNotBattleStage
+/* 800CEB78 000CBAB8  4B FF 1A 1D */ bl checkNotBattleStage__9daAlink_cFv
 /* 800CEB7C 000CBABC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CEB80 000CBAC0  40 82 00 30 */ bne lbl_800CEBB0
 /* 800CEB84 000CBAC4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

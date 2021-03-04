@@ -9,14 +9,14 @@
 /* 801384A4 001353E4  3C 80 80 39 */ lis r4, lbl_8038F8B4@ha
 /* 801384A8 001353E8  38 84 F8 B4 */ addi r4, r4, lbl_8038F8B4@l
 /* 801384AC 001353EC  C0 44 00 54 */ lfs f2, 0x54(r4)
-/* 801384B0 001353F0  4B F7 B4 75 */ bl daAlink_c_NS_setNormalSpeedF
+/* 801384B0 001353F0  4B F7 B4 75 */ bl setNormalSpeedF__9daAlink_cFff
 /* 801384B4 001353F4  7F E3 FB 78 */ mr r3, r31
 /* 801384B8 001353F8  48 02 60 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801384BC 001353FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801384C0 00135400  41 82 00 14 */ beq lbl_801384D4
 /* 801384C4 00135404  7F C3 F3 78 */ mr r3, r30
 /* 801384C8 00135408  38 80 00 00 */ li r4, 0
-/* 801384CC 0013540C  48 00 00 61 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 801384CC 0013540C  48 00 00 61 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 801384D0 00135410  48 00 00 40 */ b lbl_80138510
 lbl_801384D4:
 /* 801384D4 00135414  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
@@ -30,7 +30,7 @@ lbl_801384D4:
 /* 801384F4 00135434  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801384F8 00135438  40 81 00 10 */ ble lbl_80138508
 /* 801384FC 0013543C  7F C3 F3 78 */ mr r3, r30
-/* 80138500 00135440  48 00 02 1D */ bl daAlink_c_NS_procWolfSwimMoveInit
+/* 80138500 00135440  48 00 02 1D */ bl procWolfSwimMoveInit__9daAlink_cFv
 /* 80138504 00135444  48 00 00 0C */ b lbl_80138510
 lbl_80138508:
 /* 80138508 00135448  C0 1E 33 B4 */ lfs f0, 0x33b4(r30)

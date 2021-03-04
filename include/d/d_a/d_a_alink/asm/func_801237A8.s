@@ -12,7 +12,7 @@
 /* 801237D4 00120714  38 A5 8B 9E */ addi r5, r5, 0x00008B9E@l
 /* 801237D8 00120718  38 DF 04 D0 */ addi r6, r31, 0x4d0
 /* 801237DC 0012071C  38 FF 04 E4 */ addi r7, r31, 0x4e4
-/* 801237E0 00120720  4B FF CD A1 */ bl daAlink_c_NS_setEmitter
+/* 801237E0 00120720  4B FF CD A1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 801237E4 00120724  7C 65 1B 79 */ or. r5, r3, r3
 /* 801237E8 00120728  41 82 00 18 */ beq lbl_80123800
 /* 801237EC 0012072C  80 7F 06 B8 */ lwz r3, 0x6b8(r31)
@@ -31,7 +31,7 @@ lbl_80123800:
 /* 8012381C 0012075C  48 00 00 0C */ b lbl_80123828
 lbl_80123820:
 /* 80123820 00120760  80 9F 32 94 */ lwz r4, 0x3294(r31)
-/* 80123824 00120764  4B FF CF 55 */ bl daAlink_c_NS_stopDrawParticle
+/* 80123824 00120764  4B FF CF 55 */ bl stopDrawParticle__9daAlink_cFUl
 lbl_80123828:
 /* 80123828 00120768  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 8012382C 0012076C  28 00 01 03 */ cmplwi r0, 0x103
@@ -57,7 +57,7 @@ lbl_8012386C:
 /* 80123878 001207B8  7C BC F2 2E */ lhzx r5, r28, r30
 /* 8012387C 001207BC  38 DF 04 D0 */ addi r6, r31, 0x4d0
 /* 80123880 001207C0  38 FF 04 E4 */ addi r7, r31, 0x4e4
-/* 80123884 001207C4  4B FF CC FD */ bl daAlink_c_NS_setEmitter
+/* 80123884 001207C4  4B FF CC FD */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123888 001207C8  7C 65 1B 79 */ or. r5, r3, r3
 /* 8012388C 001207CC  41 82 00 18 */ beq lbl_801238A4
 /* 80123890 001207D0  80 7F 06 B8 */ lwz r3, 0x6b8(r31)
@@ -79,7 +79,7 @@ lbl_801238C4:
 /* 801238C4 00120804  7F E3 FB 78 */ mr r3, r31
 /* 801238C8 00120808  38 1E 32 7C */ addi r0, r30, 0x327c
 /* 801238CC 0012080C  7C 9F 00 2E */ lwzx r4, r31, r0
-/* 801238D0 00120810  4B FF CE A9 */ bl daAlink_c_NS_stopDrawParticle
+/* 801238D0 00120810  4B FF CE A9 */ bl stopDrawParticle__9daAlink_cFUl
 /* 801238D4 00120814  3B 9C 00 01 */ addi r28, r28, 1
 /* 801238D8 00120818  2C 1C 00 03 */ cmpwi r28, 3
 /* 801238DC 0012081C  3B DE 00 04 */ addi r30, r30, 4

@@ -10,10 +10,10 @@
 /* 80058230 00055170  38 03 9A FC */ addi r0, r3, lbl_803A9AFC@l
 /* 80058234 00055174  90 1E 00 00 */ stw r0, 0(r30)
 /* 80058238 00055178  38 7E 00 20 */ addi r3, r30, 0x20
-/*.global VRKUMO_EFF_NS_dtor*/
-/* 8005823C 0005517C  3C 80 80 05 */ lis r4, VRKUMO_EFF_NS_dtor@ha
-/*.global VRKUMO_EFF_NS_dtor*/
-/* 80058240 00055180  38 84 6F 18 */ addi r4, r4, VRKUMO_EFF_NS_dtor@l
+/*.global __dt__10VRKUMO_EFFFv*/
+/* 8005823C 0005517C  3C 80 80 05 */ lis r4, __dt__10VRKUMO_EFFFv@ha
+/*.global __dt__10VRKUMO_EFFFv*/
+/* 80058240 00055180  38 84 6F 18 */ addi r4, r4, __dt__10VRKUMO_EFFFv@l
 /* 80058244 00055184  38 A0 00 2C */ li r5, 0x2c
 /* 80058248 00055188  38 C0 00 64 */ li r6, 0x64
 /* 8005824C 0005518C  48 30 9A 9D */ bl func_80361CE8

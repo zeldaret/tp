@@ -10,7 +10,7 @@
 /* 8011E860 0011B7A0  7C 00 F8 00 */ cmpw r0, r31
 /* 8011E864 0011B7A4  41 82 00 64 */ beq lbl_8011E8C8
 /* 8011E868 0011B7A8  7F E4 FB 78 */ mr r4, r31
-/* 8011E86C 0011B7AC  4B F8 E7 15 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011E86C 0011B7AC  4B F8 E7 15 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011E870 0011B7B0  38 00 00 0D */ li r0, 0xd
 /* 8011E874 0011B7B4  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8011E878 0011B7B8  93 FE 31 98 */ stw r31, 0x3198(r30)

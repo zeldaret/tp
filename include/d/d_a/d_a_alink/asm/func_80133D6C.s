@@ -20,7 +20,7 @@
 /* 80133DB8 00130CF8  7C 64 02 14 */ add r3, r4, r0
 /* 80133DBC 00130CFC  48 00 01 10 */ b lbl_80133ECC
 lbl_80133DC0:
-/* 80133DC0 00130D00  48 00 01 31 */ bl daAlink_c_NS_checkMidnaLockJumpPoint
+/* 80133DC0 00130D00  48 00 01 31 */ bl checkMidnaLockJumpPoint__9daAlink_cCFv
 /* 80133DC4 00130D04  38 9F 04 D0 */ addi r4, r31, 0x4d0
 /* 80133DC8 00130D08  48 21 35 D5 */ bl PSVECSquareDistance
 /* 80133DCC 00130D0C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)

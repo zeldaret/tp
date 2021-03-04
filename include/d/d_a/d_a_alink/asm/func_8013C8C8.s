@@ -4,13 +4,13 @@
 /* 8013C8D4 00139814  93 E1 00 2C */ stw r31, 0x2c(r1)
 /* 8013C8D8 00139818  7C 7F 1B 78 */ mr r31, r3
 /* 8013C8DC 0013981C  38 80 01 34 */ li r4, 0x134
-/* 8013C8E0 00139820  4B F8 56 8D */ bl daAlink_c_NS_commonProcInit
+/* 8013C8E0 00139820  4B F8 56 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013C8E4 00139824  7F E3 FB 78 */ mr r3, r31
 /* 8013C8E8 00139828  38 80 00 74 */ li r4, 0x74
-/* 8013C8EC 0013982C  4B FE CD 8D */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8013C8EC 0013982C  4B FE CD 8D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
 /* 8013C8F0 00139830  7F E3 FB 78 */ mr r3, r31
 /* 8013C8F4 00139834  38 80 00 9A */ li r4, 0x9a
-/* 8013C8F8 00139838  4B F7 2F A9 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8013C8F8 00139838  4B F7 2F A9 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8013C8FC 0013983C  3C 60 80 39 */ lis r3, lbl_8038F7A4@ha
 /* 8013C900 00139840  38 63 F7 A4 */ addi r3, r3, lbl_8038F7A4@l
 /* 8013C904 00139844  C0 03 00 28 */ lfs f0, 0x28(r3)

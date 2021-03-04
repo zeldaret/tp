@@ -9,7 +9,7 @@ void __dl__FPv(void);
 void __nw__FUl(void);
 void CPaneMgrAlpha_X1_(void);
 void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
-void dMeter2Info_c_NS_getString(void);
+void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void func_80362324(void);
 void func_80362540(void);
 void func_803664DC(void);
@@ -55,7 +55,7 @@ asm void dFile_info_c::screenSet(void) {
 #if NONMATCHING
 class JMSMesgEntry_c {};
 
-extern void dMeter2Info_c_NS_getString(u32, char*, JMSMesgEntry_c*);
+extern void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(u32, char*, JMSMesgEntry_c*);
 extern u8 DAT_804070D8;
 extern u16 DAT_804061C2;
 extern char DAT_80406374[16];
@@ -63,7 +63,7 @@ extern char DAT_803948D8;
 
 s32 dFile_info_c::setSaveData(dSv_save_c* save_file, int param_2, u8 param_3) {
     if (param_2 == 0) {
-        dMeter2Info_c_NS_getString(0x51, this->unk56, 0);
+        getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x51, this->unk56, 0);
         return -1;
     } else {
         if (!save_file->getPlayer().getPlayerInfo().getLinkName()) {
@@ -74,10 +74,10 @@ s32 dFile_info_c::setSaveData(dSv_save_c* save_file, int param_2, u8 param_3) {
                 strcpy(this->unk44, DAT_80406374);
                 strcpy(this->save_date, (char*)DAT_803948D8);
                 strcpy(this->play_time, (char*)DAT_803948D8);
-                dMeter2Info_c_NS_getString(0x4d, this->unk56, 0);
+                getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x4d, this->unk56, 0);
                 return 2;
             } else {
-                dMeter2Info_c_NS_getString(0x4d, this->unk56, 0);
+                getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x4d, this->unk56, 0);
                 return 1;
             }
         } else {

@@ -6,12 +6,12 @@
 /* 800B32C4 000B0204  80 63 27 EC */ lwz r3, 0x27ec(r3)
 /* 800B32C8 000B0208  28 03 00 00 */ cmplwi r3, 0
 /* 800B32CC 000B020C  41 82 00 3C */ beq lbl_800B3308
-/* 800B32D0 000B0210  48 02 92 79 */ bl daAlink_c_NS_checkEnemyGroup
+/* 800B32D0 000B0210  48 02 92 79 */ bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 800B32D4 000B0214  2C 03 00 00 */ cmpwi r3, 0
 /* 800B32D8 000B0218  40 82 00 60 */ bne lbl_800B3338
 /* 800B32DC 000B021C  7F E3 FB 78 */ mr r3, r31
 /* 800B32E0 000B0220  80 9F 27 EC */ lwz r4, 0x27ec(r31)
-/* 800B32E4 000B0224  48 03 4F CD */ bl daAlink_c_NS_checkGoatCatchActor
+/* 800B32E4 000B0224  48 03 4F CD */ bl checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c
 /* 800B32E8 000B0228  2C 03 00 00 */ cmpwi r3, 0
 /* 800B32EC 000B022C  40 82 00 4C */ bne lbl_800B3338
 /* 800B32F0 000B0230  80 7F 27 EC */ lwz r3, 0x27ec(r31)

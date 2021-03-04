@@ -9,7 +9,7 @@
 /* 8013D41C 0013A35C  28 1F 00 00 */ cmplwi r31, 0
 /* 8013D420 0013A360  40 82 00 10 */ bne lbl_8013D430
 /* 8013D424 0013A364  38 80 00 00 */ li r4, 0
-/* 8013D428 0013A368  4B FE C7 1D */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013D428 0013A368  4B FE C7 1D */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013D42C 0013A36C  48 00 01 44 */ b lbl_8013D570
 lbl_8013D430:
 /* 8013D430 0013A370  7F C3 F3 78 */ mr r3, r30
@@ -58,10 +58,10 @@ lbl_8013D490:
 /* 8013D4D4 0013A414  EC 42 00 28 */ fsubs f2, f2, f0
 /* 8013D4D8 0013A418  38 C0 FF FF */ li r6, -1
 /* 8013D4DC 0013A41C  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8013D4E0 0013A420  4B F6 FE F9 */ bl daAlink_c_NS_setUpperAnime
+/* 8013D4E0 0013A420  4B F6 FE F9 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 8013D4E4 0013A424  7F A3 EB 78 */ mr r3, r29
 /* 8013D4E8 0013A428  38 80 00 00 */ li r4, 0
-/* 8013D4EC 0013A42C  4B FE C6 59 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013D4EC 0013A42C  4B FE C6 59 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013D4F0 0013A430  48 00 00 7C */ b lbl_8013D56C
 lbl_8013D4F4:
 /* 8013D4F4 0013A434  C0 3E 00 10 */ lfs f1, 0x10(r30)
@@ -84,16 +84,16 @@ lbl_8013D4F4:
 /* 8013D538 0013A478  EC 42 00 28 */ fsubs f2, f2, f0
 /* 8013D53C 0013A47C  38 C0 FF FF */ li r6, -1
 /* 8013D540 0013A480  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8013D544 0013A484  4B F6 FE 95 */ bl daAlink_c_NS_setUpperAnime
+/* 8013D544 0013A484  4B F6 FE 95 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 8013D548 0013A488  7F A3 EB 78 */ mr r3, r29
 /* 8013D54C 0013A48C  38 80 00 01 */ li r4, 1
-/* 8013D550 0013A490  4B FE C5 F5 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013D550 0013A490  4B FE C5 F5 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8013D554 0013A494  2C 03 00 00 */ cmpwi r3, 0
 /* 8013D558 0013A498  40 82 00 14 */ bne lbl_8013D56C
 /* 8013D55C 0013A49C  7F A3 EB 78 */ mr r3, r29
 /* 8013D560 0013A4A0  38 80 00 02 */ li r4, 2
 /* 8013D564 0013A4A4  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8013D568 0013A4A8  4B F7 01 BD */ bl daAlink_c_NS_resetUpperAnime
+/* 8013D568 0013A4A8  4B F7 01 BD */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_8013D56C:
 /* 8013D56C 0013A4AC  38 60 00 01 */ li r3, 1
 lbl_8013D570:

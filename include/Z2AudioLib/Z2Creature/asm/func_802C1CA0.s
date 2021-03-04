@@ -23,7 +23,7 @@ lbl_802C1CD4:
 /* 802C1CF0 002BEC30  4B FE DB 95 */ bl subBgmStop__8Z2SeqMgrFv
 lbl_802C1CF4:
 /* 802C1CF4 002BEC34  7F E3 FB 78 */ mr r3, r31
-/* 802C1CF8 002BEC38  4B FF E7 F1 */ bl Z2Creature_NS_deleteObject
+/* 802C1CF8 002BEC38  4B FF E7 F1 */ bl deleteObject__10Z2CreatureFv
 /* 802C1CFC 002BEC3C  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 802C1D00 002BEC40  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 802C1D04 002BEC44  7C 08 03 A6 */ mtlr r0

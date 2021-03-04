@@ -13,7 +13,7 @@
 /* 801647E0 00161720  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801647E4 00161724  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801647E8 00161728  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 801647EC 0016172C  4B EB FB 99 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801647EC 0016172C  4B EB FB 99 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801647F0 00161730  28 03 00 00 */ cmplwi r3, 0
 /* 801647F4 00161734  41 82 00 20 */ beq lbl_80164814
 /* 801647F8 00161738  81 83 00 00 */ lwz r12, 0(r3)
@@ -32,7 +32,7 @@ lbl_80164814:
 /* 80164828 00161768  38 C0 00 00 */ li r6, 0
 /* 8016482C 0016176C  38 E0 00 FF */ li r7, 0xff
 /* 80164830 00161770  39 00 00 FF */ li r8, 0xff
-/* 80164834 00161774  4B FF B6 85 */ bl dCamMapToolData_NS_Set
+/* 80164834 00161774  4B FF B6 85 */ bl Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc
 /* 80164838 00161778  48 00 00 24 */ b lbl_8016485C
 lbl_8016483C:
 /* 8016483C 0016177C  38 60 00 FF */ li r3, 0xff

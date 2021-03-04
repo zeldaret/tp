@@ -9,7 +9,7 @@
 /* 801620A8 0015EFE8  3C 04 00 01 */ addis r0, r4, 1
 /* 801620AC 0015EFEC  28 00 FF FF */ cmplwi r0, 0xffff
 /* 801620B0 0015EFF0  41 82 01 E0 */ beq lbl_80162290
-/* 801620B4 0015EFF4  48 01 F4 4D */ bl dCamera_c_NS_GetForceLockOnActor
+/* 801620B4 0015EFF4  48 01 F4 4D */ bl GetForceLockOnActor__9dCamera_cFv
 /* 801620B8 0015EFF8  90 7E 01 9C */ stw r3, 0x19c(r30)
 /* 801620BC 0015EFFC  80 1E 01 9C */ lwz r0, 0x19c(r30)
 /* 801620C0 0015F000  28 00 00 00 */ cmplwi r0, 0
@@ -19,7 +19,7 @@
 /* 801620D0 0015F010  3B A3 56 B8 */ addi r29, r3, 0x56b8
 /* 801620D4 0015F014  3B 80 00 01 */ li r28, 1
 /* 801620D8 0015F018  7F A3 EB 78 */ mr r3, r29
-/* 801620DC 0015F01C  4B F1 17 09 */ bl dAttention_c_NS_LockonTruth
+/* 801620DC 0015F01C  4B F1 17 09 */ bl LockonTruth__12dAttention_cFv
 /* 801620E0 0015F020  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801620E4 0015F024  40 82 00 14 */ bne lbl_801620F8
 /* 801620E8 0015F028  80 1D 03 34 */ lwz r0, 0x334(r29)

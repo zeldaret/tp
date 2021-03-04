@@ -36,7 +36,7 @@ lbl_800CF214:
 /* 800CF234 000CC174  2C 03 00 00 */ cmpwi r3, 0
 /* 800CF238 000CC178  41 82 00 0C */ beq lbl_800CF244
 /* 800CF23C 000CC17C  7F E3 FB 78 */ mr r3, r31
-/* 800CF240 000CC180  4B FE EB 31 */ bl daAlink_c_NS_startPeepChange
+/* 800CF240 000CC180  4B FE EB 31 */ bl startPeepChange__9daAlink_cFv
 lbl_800CF244:
 /* 800CF244 000CC184  38 60 00 01 */ li r3, 1
 /* 800CF248 000CC188  83 E1 00 1C */ lwz r31, 0x1c(r1)

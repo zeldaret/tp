@@ -12,9 +12,9 @@
 /* 8012E308 0012B248  98 1E 2F CC */ stb r0, 0x2fcc(r30)
 lbl_8012E30C:
 /* 8012E30C 0012B24C  7F C3 F3 78 */ mr r3, r30
-/* 8012E310 0012B250  4B FF AC 4D */ bl daAlink_c_NS_setWolfAtnMoveDirection
+/* 8012E310 0012B250  4B FF AC 4D */ bl setWolfAtnMoveDirection__9daAlink_cFv
 /* 8012E314 0012B254  7F C3 F3 78 */ mr r3, r30
-/* 8012E318 0012B258  4B FF DF F1 */ bl daAlink_c_NS_checkWolfAtnDoCharge
+/* 8012E318 0012B258  4B FF DF F1 */ bl checkWolfAtnDoCharge__9daAlink_cFv
 /* 8012E31C 0012B25C  7F E3 FB 78 */ mr r3, r31
 /* 8012E320 0012B260  48 03 01 AD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012E324 0012B264  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -31,7 +31,7 @@ lbl_8012E30C:
 lbl_8012E350:
 /* 8012E350 0012B290  7F C3 F3 78 */ mr r3, r30
 /* 8012E354 0012B294  38 80 00 00 */ li r4, 0
-/* 8012E358 0012B298  4B FF B7 ED */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012E358 0012B298  4B FF B7 ED */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012E35C 0012B29C  48 00 00 20 */ b lbl_8012E37C
 lbl_8012E360:
 /* 8012E360 0012B2A0  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -40,7 +40,7 @@ lbl_8012E360:
 /* 8012E36C 0012B2AC  40 81 00 10 */ ble lbl_8012E37C
 /* 8012E370 0012B2B0  7F C3 F3 78 */ mr r3, r30
 /* 8012E374 0012B2B4  38 80 00 01 */ li r4, 1
-/* 8012E378 0012B2B8  4B FF B7 CD */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012E378 0012B2B8  4B FF B7 CD */ bl checkNextAction__9daAlink_cFiWolf
 lbl_8012E37C:
 /* 8012E37C 0012B2BC  38 60 00 01 */ li r3, 1
 /* 8012E380 0012B2C0  83 E1 00 0C */ lwz r31, 0xc(r1)

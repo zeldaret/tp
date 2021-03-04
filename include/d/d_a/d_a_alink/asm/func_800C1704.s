@@ -45,7 +45,7 @@ lbl_800C17A0:
 /* 800C17A4 000BE6E4  60 00 00 80 */ ori r0, r0, 0x80
 /* 800C17A8 000BE6E8  90 1C 05 74 */ stw r0, 0x574(r28)
 /* 800C17AC 000BE6EC  7F 83 E3 78 */ mr r3, r28
-/* 800C17B0 000BE6F0  48 05 44 71 */ bl daAlink_c_NS_checkEventRun
+/* 800C17B0 000BE6F0  48 05 44 71 */ bl checkEventRun__9daAlink_cCFv
 /* 800C17B4 000BE6F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C17B8 000BE6F8  40 82 00 30 */ bne lbl_800C17E8
 /* 800C17BC 000BE6FC  80 1C 05 8C */ lwz r0, 0x58c(r28)
@@ -137,7 +137,7 @@ lbl_800C18C8:
 /* 800C1904 000BE844  90 1C 05 74 */ stw r0, 0x574(r28)
 /* 800C1908 000BE848  7F 83 E3 78 */ mr r3, r28
 /* 800C190C 000BE84C  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800C1910 000BE850  48 05 EE 69 */ bl daAlink_c_NS_stopDrawParticle
+/* 800C1910 000BE850  48 05 EE 69 */ bl stopDrawParticle__9daAlink_cFUl
 lbl_800C1914:
 /* 800C1914 000BE854  C0 5C 34 4C */ lfs f2, 0x344c(r28)
 /* 800C1918 000BE858  80 1C 32 C8 */ lwz r0, 0x32c8(r28)
@@ -183,7 +183,7 @@ lbl_800C19A4:
 /* 800C19A8 000BE8E8  54 00 06 6E */ rlwinm r0, r0, 0, 0x19, 0x17
 /* 800C19AC 000BE8EC  90 1C 05 74 */ stw r0, 0x574(r28)
 /* 800C19B0 000BE8F0  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800C19B4 000BE8F4  48 05 ED C5 */ bl daAlink_c_NS_stopDrawParticle
+/* 800C19B4 000BE8F4  48 05 ED C5 */ bl stopDrawParticle__9daAlink_cFUl
 lbl_800C19B8:
 /* 800C19B8 000BE8F8  A0 1C 2F DC */ lhz r0, 0x2fdc(r28)
 /* 800C19BC 000BE8FC  28 00 01 03 */ cmplwi r0, 0x103
@@ -281,7 +281,7 @@ lbl_800C1A60:
 /* 800C1B0C 000BEA4C  48 1A 56 1D */ bl atan2sX_Z__4cXyzCFv
 /* 800C1B10 000BEA50  7C 7B 1B 78 */ mr r27, r3
 /* 800C1B14 000BEA54  38 7C 05 38 */ addi r3, r28, 0x538
-/* 800C1B18 000BEA58  4B F4 B2 4D */ bl mDoMtx_stack_c_NS_transS
+/* 800C1B18 000BEA58  4B F4 B2 4D */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800C1B1C 000BEA5C  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800C1B20 000BEA60  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800C1B24 000BEA64  7F 44 D3 78 */ mr r4, r26

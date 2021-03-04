@@ -7,7 +7,7 @@
 /* 800CED60 000CBCA0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800CED64 000CBCA4  80 63 5D B4 */ lwz r3, 0x5db4(r3)
 /* 800CED68 000CBCA8  7C 04 03 78 */ mr r4, r0
-/* 800CED6C 000CBCAC  4B FF FF 79 */ bl daAlink_c_NS_searchPeepObj
+/* 800CED6C 000CBCAC  4B FF FF 79 */ bl searchPeepObj__9daAlink_cFP10fopAc_ac_cPv
 /* 800CED70 000CBCB0  38 60 00 00 */ li r3, 0
 /* 800CED74 000CBCB4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800CED78 000CBCB8  7C 08 03 A6 */ mtlr r0

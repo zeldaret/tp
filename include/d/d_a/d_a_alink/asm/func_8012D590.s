@@ -9,19 +9,19 @@
 /* 8012D5B0 0012A4F0  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D5B4 0012A4F4  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8012D5B8 0012A4F8  38 81 00 08 */ addi r4, r1, 8
-/* 8012D5BC 0012A4FC  4B F8 4A 1D */ bl daAlink_c_NS_getSlidePolygon
+/* 8012D5BC 0012A4FC  4B F8 4A 1D */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 8012D5C0 0012A500  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012D5C4 0012A504  41 82 00 20 */ beq lbl_8012D5E4
 /* 8012D5C8 0012A508  7F C3 F3 78 */ mr r3, r30
 /* 8012D5CC 0012A50C  38 80 00 00 */ li r4, 0
-/* 8012D5D0 0012A510  4B FF C5 75 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012D5D0 0012A510  4B FF C5 75 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012D5D4 0012A514  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D5D8 0012A518  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D5DC 0012A51C  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8012D5E0 0012A520  48 00 02 C8 */ b lbl_8012D8A8
 lbl_8012D5E4:
 /* 8012D5E4 0012A524  7F C3 F3 78 */ mr r3, r30
-/* 8012D5E8 0012A528  4B FF A9 39 */ bl daAlink_c_NS_checkWolfSlowDash
+/* 8012D5E8 0012A528  4B FF A9 39 */ bl checkWolfSlowDash__9daAlink_cFv
 /* 8012D5EC 0012A52C  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D5F0 0012A530  41 82 00 14 */ beq lbl_8012D604
 /* 8012D5F4 0012A534  3C 60 80 39 */ lis r3, lbl_8038EE28@ha
@@ -65,7 +65,7 @@ lbl_8012D670:
 /* 8012D67C 0012A5BC  40 81 00 2C */ ble lbl_8012D6A8
 /* 8012D680 0012A5C0  7F C3 F3 78 */ mr r3, r30
 /* 8012D684 0012A5C4  38 80 00 01 */ li r4, 1
-/* 8012D688 0012A5C8  4B FF CB A1 */ bl daAlink_c_NS_checkWolfAttackReverse
+/* 8012D688 0012A5C8  4B FF CB A1 */ bl checkWolfAttackReverse__9daAlink_cFi
 /* 8012D68C 0012A5CC  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D690 0012A5D0  41 82 00 18 */ beq lbl_8012D6A8
 /* 8012D694 0012A5D4  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -89,14 +89,14 @@ lbl_8012D6C0:
 /* 8012D6D4 0012A614  2C 00 00 00 */ cmpwi r0, 0
 /* 8012D6D8 0012A618  41 82 00 1C */ beq lbl_8012D6F4
 /* 8012D6DC 0012A61C  7F C3 F3 78 */ mr r3, r30
-/* 8012D6E0 0012A620  48 00 BC C5 */ bl daAlink_c_NS_checkWolfAttackAction
+/* 8012D6E0 0012A620  48 00 BC C5 */ bl checkWolfAttackAction__9daAlink_cFv
 /* 8012D6E4 0012A624  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D6E8 0012A628  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D6EC 0012A62C  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8012D6F0 0012A630  48 00 01 B8 */ b lbl_8012D8A8
 lbl_8012D6F4:
 /* 8012D6F4 0012A634  7F C3 F3 78 */ mr r3, r30
-/* 8012D6F8 0012A638  4B FF A8 29 */ bl daAlink_c_NS_checkWolfSlowDash
+/* 8012D6F8 0012A638  4B FF A8 29 */ bl checkWolfSlowDash__9daAlink_cFv
 /* 8012D6FC 0012A63C  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D700 0012A640  41 82 00 18 */ beq lbl_8012D718
 /* 8012D704 0012A644  3C 60 80 39 */ lis r3, lbl_8038EE28@ha
@@ -121,7 +121,7 @@ lbl_8012D738:
 lbl_8012D748:
 /* 8012D748 0012A688  7F C3 F3 78 */ mr r3, r30
 /* 8012D74C 0012A68C  38 80 00 00 */ li r4, 0
-/* 8012D750 0012A690  4B FF C3 F5 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012D750 0012A690  4B FF C3 F5 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012D754 0012A694  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D758 0012A698  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D75C 0012A69C  90 01 00 18 */ stw r0, 0x18(r1)
@@ -137,14 +137,14 @@ lbl_8012D764:
 /* 8012D780 0012A6C0  2C 00 00 00 */ cmpwi r0, 0
 /* 8012D784 0012A6C4  41 82 00 1C */ beq lbl_8012D7A0
 /* 8012D788 0012A6C8  7F C3 F3 78 */ mr r3, r30
-/* 8012D78C 0012A6CC  48 00 BC 19 */ bl daAlink_c_NS_checkWolfAttackAction
+/* 8012D78C 0012A6CC  48 00 BC 19 */ bl checkWolfAttackAction__9daAlink_cFv
 /* 8012D790 0012A6D0  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D794 0012A6D4  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D798 0012A6D8  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8012D79C 0012A6DC  48 00 01 0C */ b lbl_8012D8A8
 lbl_8012D7A0:
 /* 8012D7A0 0012A6E0  7F C3 F3 78 */ mr r3, r30
-/* 8012D7A4 0012A6E4  4B FF A7 7D */ bl daAlink_c_NS_checkWolfSlowDash
+/* 8012D7A4 0012A6E4  4B FF A7 7D */ bl checkWolfSlowDash__9daAlink_cFv
 /* 8012D7A8 0012A6E8  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D7AC 0012A6EC  41 82 00 18 */ beq lbl_8012D7C4
 /* 8012D7B0 0012A6F0  3C 60 80 39 */ lis r3, lbl_8038EE28@ha
@@ -169,7 +169,7 @@ lbl_8012D7E4:
 lbl_8012D7F4:
 /* 8012D7F4 0012A734  7F C3 F3 78 */ mr r3, r30
 /* 8012D7F8 0012A738  38 80 00 01 */ li r4, 1
-/* 8012D7FC 0012A73C  4B FF C3 49 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012D7FC 0012A73C  4B FF C3 49 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012D800 0012A740  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
 /* 8012D804 0012A744  38 03 37 C0 */ addi r0, r3, lbl_803A37C0@l
 /* 8012D808 0012A748  90 01 00 18 */ stw r0, 0x18(r1)

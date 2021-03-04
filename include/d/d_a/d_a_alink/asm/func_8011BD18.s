@@ -12,7 +12,7 @@
 /* 8011BD44 00118C84  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011BD48 00118C88  40 82 00 0C */ bne lbl_8011BD54
 /* 8011BD4C 00118C8C  7F E3 FB 78 */ mr r3, r31
-/* 8011BD50 00118C90  4B FF FE C5 */ bl daAlink_c_NS_setMonkeyMoveAnime
+/* 8011BD50 00118C90  4B FF FE C5 */ bl setMonkeyMoveAnime__9daAlink_cFv
 lbl_8011BD54:
 /* 8011BD54 00118C94  38 60 00 01 */ li r3, 1
 /* 8011BD58 00118C98  83 E1 00 0C */ lwz r31, 0xc(r1)

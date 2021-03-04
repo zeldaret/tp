@@ -5,7 +5,7 @@
 /* 801018A0 000FE7E0  93 C1 00 08 */ stw r30, 8(r1)
 /* 801018A4 000FE7E4  7C 7E 1B 78 */ mr r30, r3
 /* 801018A8 000FE7E8  3B E0 00 00 */ li r31, 0
-/* 801018AC 000FE7EC  4B FB E5 05 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 801018AC 000FE7EC  4B FB E5 05 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 801018B0 000FE7F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801018B4 000FE7F4  41 82 00 14 */ beq lbl_801018C8
 /* 801018B8 000FE7F8  80 1E 05 70 */ lwz r0, 0x570(r30)

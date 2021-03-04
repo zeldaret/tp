@@ -105,7 +105,7 @@ lbl_80238DDC:
 /* 80238DEC 00235D2C  40 82 00 A0 */	bne lbl_80238E8C
 /* 80238DF0 00235D30  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 80238DF4 00235D34  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
-/* 80238DF8 00235D38  4B F6 6C 11 */	bl dScnKy_env_light_c_NS_getDaytime
+/* 80238DF8 00235D38  4B F6 6C 11 */	bl getDaytime__18dScnKy_env_light_cFv
 /* 80238DFC 00235D3C  C0 62 B1 40 */	lfs f3, lbl_80454B40-_SDA2_BASE_(r2)
 /* 80238E00 00235D40  EC 03 00 72 */	fmuls f0, f3, f1
 /* 80238E04 00235D44  FC 00 00 1E */	fctiwz f0, f0

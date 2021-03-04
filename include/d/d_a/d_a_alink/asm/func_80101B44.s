@@ -28,11 +28,11 @@ lbl_80101B98:
 /* 80101BA4 000FEAE4  28 00 00 00 */ cmplwi r0, 0
 /* 80101BA8 000FEAE8  41 82 00 8C */ beq lbl_80101C34
 /* 80101BAC 000FEAEC  7F A3 EB 78 */ mr r3, r29
-/* 80101BB0 000FEAF0  4B FB E2 01 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80101BB0 000FEAF0  4B FB E2 01 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80101BB4 000FEAF4  2C 03 00 00 */ cmpwi r3, 0
 /* 80101BB8 000FEAF8  41 82 00 10 */ beq lbl_80101BC8
 /* 80101BBC 000FEAFC  7F A3 EB 78 */ mr r3, r29
-/* 80101BC0 000FEB00  48 00 00 D5 */ bl daAlink_c_NS_offOxygenTimer
+/* 80101BC0 000FEB00  48 00 00 D5 */ bl offOxygenTimer__9daAlink_cFv
 /* 80101BC4 000FEB04  48 00 00 B8 */ b lbl_80101C7C
 lbl_80101BC8:
 /* 80101BC8 000FEB08  2C 1E 00 00 */ cmpwi r30, 0
@@ -51,11 +51,11 @@ lbl_80101BC8:
 /* 80101BFC 000FEB3C  48 00 00 80 */ b lbl_80101C7C
 lbl_80101C00:
 /* 80101C00 000FEB40  7F A3 EB 78 */ mr r3, r29
-/* 80101C04 000FEB44  48 00 00 91 */ bl daAlink_c_NS_offOxygenTimer
+/* 80101C04 000FEB44  48 00 00 91 */ bl offOxygenTimer__9daAlink_cFv
 /* 80101C08 000FEB48  48 00 00 74 */ b lbl_80101C7C
 lbl_80101C0C:
 /* 80101C0C 000FEB4C  7F A3 EB 78 */ mr r3, r29
-/* 80101C10 000FEB50  48 01 40 11 */ bl daAlink_c_NS_checkEventRun
+/* 80101C10 000FEB50  48 01 40 11 */ bl checkEventRun__9daAlink_cCFv
 /* 80101C14 000FEB54  2C 03 00 00 */ cmpwi r3, 0
 /* 80101C18 000FEB58  40 82 00 64 */ bne lbl_80101C7C
 /* 80101C1C 000FEB5C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -68,7 +68,7 @@ lbl_80101C34:
 /* 80101C34 000FEB74  2C 1E 00 00 */ cmpwi r30, 0
 /* 80101C38 000FEB78  40 82 00 44 */ bne lbl_80101C7C
 /* 80101C3C 000FEB7C  7F A3 EB 78 */ mr r3, r29
-/* 80101C40 000FEB80  4B FB E1 71 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80101C40 000FEB80  4B FB E1 71 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80101C44 000FEB84  2C 03 00 00 */ cmpwi r3, 0
 /* 80101C48 000FEB88  40 82 00 34 */ bne lbl_80101C7C
 /* 80101C4C 000FEB8C  88 7D 2F BE */ lbz r3, 0x2fbe(r29)

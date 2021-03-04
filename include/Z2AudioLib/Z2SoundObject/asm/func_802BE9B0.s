@@ -10,7 +10,7 @@
 /* 802BE9D4 002BB914  80 04 00 00 */ lwz r0, 0(r4)
 /* 802BE9D8 002BB918  90 01 00 08 */ stw r0, 8(r1)
 /* 802BE9DC 002BB91C  38 81 00 08 */ addi r4, r1, 8
-/* 802BE9E0 002BB920  4B FF F8 F5 */ bl Z2SoundObjBase_NS_startLevelSound
+/* 802BE9E0 002BB920  4B FF F8 F5 */ bl startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc
 /* 802BE9E4 002BB924  7C 7F 1B 79 */ or. r31, r3, r3
 /* 802BE9E8 002BB928  41 82 01 2C */ beq lbl_802BEB14
 /* 802BE9EC 002BB92C  80 1F 00 00 */ lwz r0, 0(r31)

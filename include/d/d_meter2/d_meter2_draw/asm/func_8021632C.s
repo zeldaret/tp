@@ -28,7 +28,7 @@ lbl_80216388:
 /* 80216394 002132D4  48 03 F2 35 */ bl show__13CPaneMgrAlphaFv
 /* 80216398 002132D8  7F E3 FB 78 */ mr r3, r31
 /* 8021639C 002132DC  7F 44 D3 78 */ mr r4, r26
-/* 802163A0 002132E0  48 00 3E FD */ bl dMeter2Draw_c_NS_getNumberTexture
+/* 802163A0 002132E0  48 00 3E FD */ bl getNumberTexture__13dMeter2Draw_cFi
 /* 802163A4 002132E4  7C 7A 1B 78 */ mr r26, r3
 /* 802163A8 002132E8  80 7F 02 D8 */ lwz r3, 0x2d8(r31)
 /* 802163AC 002132EC  80 63 00 04 */ lwz r3, 4(r3)
@@ -52,7 +52,7 @@ lbl_802163E8:
 /* 802163F0 00213330  7C 04 01 D6 */ mullw r0, r4, r0
 /* 802163F4 00213334  7F C0 F0 50 */ subf r30, r0, r30
 /* 802163F8 00213338  7F E3 FB 78 */ mr r3, r31
-/* 802163FC 0021333C  48 00 3E A1 */ bl dMeter2Draw_c_NS_getNumberTexture
+/* 802163FC 0021333C  48 00 3E A1 */ bl getNumberTexture__13dMeter2Draw_cFi
 /* 80216400 00213340  7C 7A 1B 78 */ mr r26, r3
 /* 80216404 00213344  80 7F 02 D0 */ lwz r3, 0x2d0(r31)
 /* 80216408 00213348  80 63 00 04 */ lwz r3, 4(r3)
@@ -75,7 +75,7 @@ lbl_802163E8:
 /* 8021644C 0021338C  7C 04 01 D6 */ mullw r0, r4, r0
 /* 80216450 00213390  7F C0 F0 50 */ subf r30, r0, r30
 /* 80216454 00213394  7F E3 FB 78 */ mr r3, r31
-/* 80216458 00213398  48 00 3E 45 */ bl dMeter2Draw_c_NS_getNumberTexture
+/* 80216458 00213398  48 00 3E 45 */ bl getNumberTexture__13dMeter2Draw_cFi
 /* 8021645C 0021339C  7C 7A 1B 78 */ mr r26, r3
 /* 80216460 002133A0  80 7F 02 C8 */ lwz r3, 0x2c8(r31)
 /* 80216464 002133A4  80 63 00 04 */ lwz r3, 4(r3)
@@ -95,7 +95,7 @@ lbl_802163E8:
 /* 8021649C 002133DC  4E 80 04 21 */ bctrl
 /* 802164A0 002133E0  7F E3 FB 78 */ mr r3, r31
 /* 802164A4 002133E4  7F C4 F3 78 */ mr r4, r30
-/* 802164A8 002133E8  48 00 3D F5 */ bl dMeter2Draw_c_NS_getNumberTexture
+/* 802164A8 002133E8  48 00 3D F5 */ bl getNumberTexture__13dMeter2Draw_cFi
 /* 802164AC 002133EC  7C 7A 1B 78 */ mr r26, r3
 /* 802164B0 002133F0  80 7F 02 C0 */ lwz r3, 0x2c0(r31)
 /* 802164B4 002133F4  80 63 00 04 */ lwz r3, 4(r3)

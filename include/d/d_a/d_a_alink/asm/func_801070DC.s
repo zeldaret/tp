@@ -4,7 +4,7 @@
 /* 801070E8 00104028  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 801070EC 0010402C  7C 7F 1B 78 */ mr r31, r3
 /* 801070F0 00104030  38 80 00 00 */ li r4, 0
-/* 801070F4 00104034  4B FF EA 65 */ bl daAlink_c_NS_boardCommon
+/* 801070F4 00104034  4B FF EA 65 */ bl boardCommon__9daAlink_cFi
 /* 801070F8 00104038  2C 03 00 00 */ cmpwi r3, 0
 /* 801070FC 0010403C  41 82 00 0C */ beq lbl_80107108
 /* 80107100 00104040  38 60 00 01 */ li r3, 1
@@ -36,7 +36,7 @@ lbl_80107108:
 /* 80107164 001040A4  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 80107168 001040A8  A8 A5 00 14 */ lha r5, 0x14(r5)
 /* 8010716C 001040AC  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 80107170 001040B0  4B FA 5E 9D */ bl daAlink_c_NS_setSingleAnime
+/* 80107170 001040B0  4B FA 5E 9D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 80107174 001040B4  48 00 00 8C */ b lbl_80107200
 lbl_80107178:
 /* 80107178 001040B8  A8 1F 30 0A */ lha r0, 0x300a(r31)
@@ -50,7 +50,7 @@ lbl_80107178:
 /* 80107198 001040D8  C0 02 93 78 */ lfs f0, lbl_80452D78-_SDA2_BASE_(r2)
 /* 8010719C 001040DC  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 801071A0 001040E0  7F E3 FB 78 */ mr r3, r31
-/* 801071A4 001040E4  4B FA D7 2D */ bl daAlink_c_NS_setJumpMode
+/* 801071A4 001040E4  4B FA D7 2D */ bl setJumpMode__9daAlink_cFv
 /* 801071A8 001040E8  38 00 00 01 */ li r0, 1
 /* 801071AC 001040EC  B0 1F 30 0A */ sth r0, 0x300a(r31)
 /* 801071B0 001040F0  48 00 00 50 */ b lbl_80107200
@@ -67,10 +67,10 @@ lbl_801071B4:
 /* 801071D8 00104118  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 801071DC 0010411C  40 82 00 1C */ bne lbl_801071F8
 /* 801071E0 00104120  7F E3 FB 78 */ mr r3, r31
-/* 801071E4 00104124  4B FF F5 09 */ bl daAlink_c_NS_setBoardLandAnime
+/* 801071E4 00104124  4B FF F5 09 */ bl setBoardLandAnime__9daAlink_cFv
 /* 801071E8 00104128  7F E3 FB 78 */ mr r3, r31
 /* 801071EC 0010412C  38 80 00 00 */ li r4, 0
-/* 801071F0 00104130  4B FF F8 49 */ bl daAlink_c_NS_procBoardWaitInit
+/* 801071F0 00104130  4B FF F8 49 */ bl procBoardWaitInit__9daAlink_cFP10fopAc_ac_c
 /* 801071F4 00104134  48 00 00 0C */ b lbl_80107200
 lbl_801071F8:
 /* 801071F8 00104138  A8 1F 04 E6 */ lha r0, 0x4e6(r31)

@@ -37,7 +37,7 @@
 /* 800E69A4 000E38E4  38 9D 1E 5C */ addi r4, r29, 0x1e5c
 /* 800E69A8 000E38E8  38 A1 00 08 */ addi r5, r1, 8
 /* 800E69AC 000E38EC  7F E6 FB 78 */ mr r6, r31
-/* 800E69B0 000E38F0  4B FF EE 81 */ bl daAlink_c_NS_putObjLineCheck
+/* 800E69B0 000E38F0  4B FF EE 81 */ bl putObjLineCheck__9daAlink_cFR11dBgS_LinChkP4cXyzP10fopAc_ac_c
 /* 800E69B4 000E38F4  C0 1F 04 D0 */ lfs f0, 0x4d0(r31)
 /* 800E69B8 000E38F8  D0 1D 37 C8 */ stfs f0, 0x37c8(r29)
 /* 800E69BC 000E38FC  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
@@ -56,9 +56,9 @@ lbl_800E69CC:
 /* 800E69EC 000E392C  D0 1F 05 2C */ stfs f0, 0x52c(r31)
 lbl_800E69F0:
 /* 800E69F0 000E3930  7F A3 EB 78 */ mr r3, r29
-/* 800E69F4 000E3934  4B FF E1 E1 */ bl daAlink_c_NS_freeGrabItem
+/* 800E69F4 000E3934  4B FF E1 E1 */ bl freeGrabItem__9daAlink_cFv
 /* 800E69F8 000E3938  7F A3 EB 78 */ mr r3, r29
-/* 800E69FC 000E393C  48 00 04 F1 */ bl daAlink_c_NS_procGrabStandInit
+/* 800E69FC 000E393C  48 00 04 F1 */ bl procGrabStandInit__9daAlink_cFv
 /* 800E6A00 000E3940  48 00 00 80 */ b lbl_800E6A80
 lbl_800E6A04:
 /* 800E6A04 000E3944  A8 1D 30 0E */ lha r0, 0x300e(r29)
@@ -82,7 +82,7 @@ lbl_800E6A34:
 /* 800E6A44 000E3984  EC 04 00 28 */ fsubs f0, f4, f0
 /* 800E6A48 000E3988  EC 01 00 32 */ fmuls f0, f1, f0
 /* 800E6A4C 000E398C  EC 23 00 28 */ fsubs f1, f3, f0
-/* 800E6A50 000E3990  4B FF E5 59 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E6A50 000E3990  4B FF E5 59 */ bl setCarryArmAngle__9daAlink_cFff
 /* 800E6A54 000E3994  48 00 00 2C */ b lbl_800E6A80
 lbl_800E6A58:
 /* 800E6A58 000E3998  7F A3 EB 78 */ mr r3, r29
@@ -94,7 +94,7 @@ lbl_800E6A58:
 /* 800E6A70 000E39B0  C0 04 00 58 */ lfs f0, 0x58(r4)
 /* 800E6A74 000E39B4  EC 02 00 28 */ fsubs f0, f2, f0
 /* 800E6A78 000E39B8  EC 43 00 32 */ fmuls f2, f3, f0
-/* 800E6A7C 000E39BC  4B FF E5 2D */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E6A7C 000E39BC  4B FF E5 2D */ bl setCarryArmAngle__9daAlink_cFff
 lbl_800E6A80:
 /* 800E6A80 000E39C0  38 60 00 01 */ li r3, 1
 /* 800E6A84 000E39C4  39 61 00 30 */ addi r11, r1, 0x30

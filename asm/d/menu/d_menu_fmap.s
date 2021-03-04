@@ -1278,7 +1278,7 @@ getNextStatus__12dMenu_Fmap_cFPUc:
 lbl_801C785C:
 /* 801C785C 001C479C  38 00 00 03 */	li r0, 3
 /* 801C7860 001C47A0  98 1F 03 04 */	stb r0, 0x304(r31)
-/* 801C7864 001C47A4  48 04 5D ED */	bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 801C7864 001C47A4  48 04 5D ED */	bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 801C7868 001C47A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C786C 001C47AC  41 82 00 18 */	beq lbl_801C7884
 /* 801C7870 001C47B0  38 00 00 01 */	li r0, 1
@@ -1334,7 +1334,7 @@ lbl_801C78E0:
 lbl_801C7928:
 /* 801C7928 001C4868  38 00 00 03 */	li r0, 3
 /* 801C792C 001C486C  98 1F 03 04 */	stb r0, 0x304(r31)
-/* 801C7930 001C4870  48 04 5D 21 */	bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 801C7930 001C4870  48 04 5D 21 */	bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 801C7934 001C4874  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C7938 001C4878  41 82 00 18 */	beq lbl_801C7950
 /* 801C793C 001C487C  38 00 00 01 */	li r0, 1
@@ -1386,7 +1386,7 @@ lbl_801C79D0:
 /* 801C79E0 001C4920  48 03 25 CD */	bl dMw_LEFT_TRIGGER
 /* 801C79E4 001C4924  2C 03 00 00 */	cmpwi r3, 0
 /* 801C79E8 001C4928  41 82 00 8C */	beq lbl_801C7A74
-/* 801C79EC 001C492C  48 04 5C 65 */	bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 801C79EC 001C492C  48 04 5C 65 */	bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 801C79F0 001C4930  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C79F4 001C4934  41 82 00 18 */	beq lbl_801C7A0C
 /* 801C79F8 001C4938  38 00 00 01 */	li r0, 1
@@ -2971,7 +2971,7 @@ lbl_801C9078:
 /* 801C9154 001C6094  88 E9 00 0A */	lbz r7, 0xa(r9)
 /* 801C9158 001C6098  39 00 00 00 */	li r8, 0
 /* 801C915C 001C609C  89 29 00 0B */	lbz r9, 0xb(r9)
-/* 801C9160 001C60A0  48 05 3A AD */	bl dMeter2Info_c_NS_setWarpInfo
+/* 801C9160 001C60A0  48 05 3A AD */	bl setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc
 /* 801C9164 001C60A4  88 1F 03 08 */	lbz r0, 0x308(r31)
 /* 801C9168 001C60A8  1C 00 00 1C */	mulli r0, r0, 0x1c
 /* 801C916C 001C60AC  7C 7E 00 AE */	lbzx r3, r30, r0
@@ -4878,7 +4878,7 @@ isOpen__12dMenu_Fmap_cFv:
 /* 801CAE04 001C7D44  38 63 00 26 */	addi r3, r3, 0x26
 /* 801CAE08 001C7D48  38 80 00 02 */	li r4, 2
 /* 801CAE0C 001C7D4C  80 BD 00 04 */	lwz r5, 4(r29)
-/* 801CAE10 001C7D50  4B E4 B0 05 */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 801CAE10 001C7D50  4B E4 B0 05 */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801CAE14 001C7D54  90 7D 00 1C */	stw r3, 0x1c(r29)
 lbl_801CAE18:
 /* 801CAE18 001C7D58  80 7D 00 1C */	lwz r3, 0x1c(r29)

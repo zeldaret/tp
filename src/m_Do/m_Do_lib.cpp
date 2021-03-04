@@ -10,14 +10,14 @@ extern "C" {
 void GXInitTexObjCI(void);
 void GXInitTlutObj(void);
 void calcViewFrustum__11J3DUClipperFv(void);
-void J3DUClipper_NS_dtor(void);
+void __dt__11J3DUClipperFv(void);
 void init__11J3DUClipperFv(void);
 void __dl__FPv(void);
 void _restgpr_29(void);
 void _savegpr_29(void);
 void func_80015544(void);
 void func_80361C24(void);
-void mDoLib_clipper_NS_setup(void);
+void setup__14mDoLib_clipperFffff(void);
 void mDoLib_pos2camera(void);
 void mDoLib_project(void);
 void mDoLib_setResTimgObj(void);
@@ -53,7 +53,7 @@ asm void mDoLib_setResTimgObj(void) {
 
 // setup__14mDoLib_clipperFffff
 // mDoLib_clipper::setup(f32, f32, f32, f32)
-asm void mDoLib_clipper_NS_setup(void) {
+asm void setup__14mDoLib_clipperFffff(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_8001528C.s"
 }
@@ -81,7 +81,7 @@ asm void func_80015544(void) {
 
 // __dt__11J3DUClipperFv
 // J3DUClipper::~J3DUClipper(void)
-asm void J3DUClipper_NS_dtor(void) {
+asm void __dt__11J3DUClipperFv(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_80015590.s"
 }

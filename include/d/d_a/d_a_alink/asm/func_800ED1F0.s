@@ -5,7 +5,7 @@
 /* 800ED200 000EA140  93 C1 00 08 */ stw r30, 8(r1)
 /* 800ED204 000EA144  7C 7E 1B 78 */ mr r30, r3
 /* 800ED208 000EA148  3B E0 00 00 */ li r31, 0
-/* 800ED20C 000EA14C  4B FF 17 DD */ bl daAlink_c_NS_checkBowAnime
+/* 800ED20C 000EA14C  4B FF 17 DD */ bl checkBowAnime__9daAlink_cCFv
 /* 800ED210 000EA150  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED214 000EA154  40 82 00 DC */ bne lbl_800ED2F0
 /* 800ED218 000EA158  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
@@ -28,18 +28,18 @@
 /* 800ED25C 000EA19C  40 82 00 94 */ bne lbl_800ED2F0
 lbl_800ED260:
 /* 800ED260 000EA1A0  7F C3 F3 78 */ mr r3, r30
-/* 800ED264 000EA1A4  4B FE FB 8D */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800ED264 000EA1A4  4B FE FB 8D */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800ED268 000EA1A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED26C 000EA1AC  40 82 00 84 */ bne lbl_800ED2F0
 /* 800ED270 000EA1B0  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)
 /* 800ED274 000EA1B4  28 00 02 45 */ cmplwi r0, 0x245
 /* 800ED278 000EA1B8  41 82 00 78 */ beq lbl_800ED2F0
 /* 800ED27C 000EA1BC  7F C3 F3 78 */ mr r3, r30
-/* 800ED280 000EA1C0  4B FF 6A 1D */ bl daAlink_c_NS_checkGrabAnimeAndThrow
+/* 800ED280 000EA1C0  4B FF 6A 1D */ bl checkGrabAnime__9daAlink_cCFvAndThrow
 /* 800ED284 000EA1C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED288 000EA1C8  40 82 00 68 */ bne lbl_800ED2F0
 /* 800ED28C 000EA1CC  7F C3 F3 78 */ mr r3, r30
-/* 800ED290 000EA1D0  4B FF 32 1D */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800ED290 000EA1D0  4B FF 32 1D */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800ED294 000EA1D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED298 000EA1D8  40 82 00 58 */ bne lbl_800ED2F0
 /* 800ED29C 000EA1DC  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)

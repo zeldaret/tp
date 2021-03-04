@@ -26,7 +26,7 @@
 /* 801660F0 00163030  D0 01 01 60 */ stfs f0, 0x160(r1)
 /* 801660F4 00163034  7F C3 F3 78 */ mr r3, r30
 /* 801660F8 00163038  80 9E 01 80 */ lwz r4, 0x180(r30)
-/* 801660FC 0016303C  4B FF EC 31 */ bl dCamera_c_NS_heightOf
+/* 801660FC 0016303C  4B FF EC 31 */ bl heightOf__9dCamera_cFP10fopAc_ac_c
 /* 80166100 00163040  FF E0 08 90 */ fmr f31, f1
 /* 80166104 00163044  C0 01 01 5C */ lfs f0, 0x15c(r1)
 /* 80166108 00163048  EC 00 F8 2A */ fadds f0, f0, f31
@@ -67,7 +67,7 @@
 /* 80166194 001630D4  38 A1 01 40 */ addi r5, r1, 0x140
 /* 80166198 001630D8  38 C1 01 4C */ addi r6, r1, 0x14c
 /* 8016619C 001630DC  38 E0 40 B7 */ li r7, 0x40b7
-/* 801661A0 001630E0  4B FF F8 55 */ bl dCamera_c_NS_lineBGCheck_X1_
+/* 801661A0 001630E0  4B FF F8 55 */ bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl_X1_
 /* 801661A4 001630E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801661A8 001630E8  41 82 01 84 */ beq lbl_8016632C
 /* 801661AC 001630EC  38 61 00 EC */ addi r3, r1, 0xec
@@ -185,7 +185,7 @@ lbl_8016632C:
 /* 80166340 00163280  D0 01 01 54 */ stfs f0, 0x154(r1)
 /* 80166344 00163284  7F C3 F3 78 */ mr r3, r30
 /* 80166348 00163288  38 81 01 40 */ addi r4, r1, 0x140
-/* 8016634C 0016328C  4B FF F4 A1 */ bl dCamera_c_NS_groundHeight
+/* 8016634C 0016328C  4B FF F4 A1 */ bl groundHeight__9dCamera_cFP4cXyz
 /* 80166350 00163290  EC 1F 08 2A */ fadds f0, f31, f1
 /* 80166354 00163294  D0 01 01 50 */ stfs f0, 0x150(r1)
 /* 80166358 00163298  38 61 00 BC */ addi r3, r1, 0xbc
@@ -248,7 +248,7 @@ lbl_801663B4:
 /* 80166434 00163374  38 A1 01 28 */ addi r5, r1, 0x128
 /* 80166438 00163378  38 C1 01 4C */ addi r6, r1, 0x14c
 /* 8016643C 0016337C  38 E0 40 B7 */ li r7, 0x40b7
-/* 80166440 00163380  4B FF F5 B5 */ bl dCamera_c_NS_lineBGCheck_X1_
+/* 80166440 00163380  4B FF F5 B5 */ bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl_X1_
 /* 80166444 00163384  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80166448 00163388  41 82 01 84 */ beq lbl_801665CC
 /* 8016644C 0016338C  38 61 00 98 */ addi r3, r1, 0x98
@@ -366,7 +366,7 @@ lbl_801665CC:
 /* 801665E0 00163520  D0 01 01 54 */ stfs f0, 0x154(r1)
 /* 801665E4 00163524  7F C3 F3 78 */ mr r3, r30
 /* 801665E8 00163528  38 81 01 28 */ addi r4, r1, 0x128
-/* 801665EC 0016352C  4B FF F2 01 */ bl dCamera_c_NS_groundHeight
+/* 801665EC 0016352C  4B FF F2 01 */ bl groundHeight__9dCamera_cFP4cXyz
 /* 801665F0 00163530  EC 1F 08 2A */ fadds f0, f31, f1
 /* 801665F4 00163534  D0 01 01 50 */ stfs f0, 0x150(r1)
 /* 801665F8 00163538  38 61 00 68 */ addi r3, r1, 0x68

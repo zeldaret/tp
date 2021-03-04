@@ -4,7 +4,7 @@
 /* 800FDF5C 000FAE9C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800FDF60 000FAEA0  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FDF64 000FAEA4  7C 7E 1B 78 */ mr r30, r3
-/* 800FDF68 000FAEA8  4B FF F5 41 */ bl daAlink_c_NS_setMoveBGLadderCorrect
+/* 800FDF68 000FAEA8  4B FF F5 41 */ bl setMoveBGLadderCorrect__9daAlink_cFv
 /* 800FDF6C 000FAEAC  2C 03 00 00 */ cmpwi r3, 0
 /* 800FDF70 000FAEB0  41 82 00 0C */ beq lbl_800FDF7C
 /* 800FDF74 000FAEB4  38 60 00 01 */ li r3, 1
@@ -14,7 +14,7 @@ lbl_800FDF7C:
 /* 800FDF80 000FAEC0  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800FDF84 000FAEC4  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800FDF88 000FAEC8  7F C3 F3 78 */ mr r3, r30
-/* 800FDF8C 000FAECC  4B FF F6 59 */ bl daAlink_c_NS_checkLadderFall
+/* 800FDF8C 000FAECC  4B FF F6 59 */ bl checkLadderFall__9daAlink_cFv
 /* 800FDF90 000FAED0  2C 03 00 00 */ cmpwi r3, 0
 /* 800FDF94 000FAED4  40 82 00 60 */ bne lbl_800FDFF4
 /* 800FDF98 000FAED8  7F E3 FB 78 */ mr r3, r31
@@ -23,7 +23,7 @@ lbl_800FDF7C:
 /* 800FDFA4 000FAEE4  41 82 00 14 */ beq lbl_800FDFB8
 /* 800FDFA8 000FAEE8  7F C3 F3 78 */ mr r3, r30
 /* 800FDFAC 000FAEEC  80 9E 31 98 */ lwz r4, 0x3198(r30)
-/* 800FDFB0 000FAEF0  4B FF F2 FD */ bl daAlink_c_NS_changeLadderMoveProc
+/* 800FDFB0 000FAEF0  4B FF F2 FD */ bl changeLadderMoveProc__9daAlink_cFi
 /* 800FDFB4 000FAEF4  48 00 00 40 */ b lbl_800FDFF4
 lbl_800FDFB8:
 /* 800FDFB8 000FAEF8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -31,7 +31,7 @@ lbl_800FDFB8:
 /* 800FDFC0 000FAF00  FC 01 00 00 */ fcmpu cr0, f1, f0
 /* 800FDFC4 000FAF04  41 82 00 30 */ beq lbl_800FDFF4
 /* 800FDFC8 000FAF08  7F C3 F3 78 */ mr r3, r30
-/* 800FDFCC 000FAF0C  4B FF F2 BD */ bl daAlink_c_NS_getLadderMoveAnmSpeed
+/* 800FDFCC 000FAF0C  4B FF F2 BD */ bl getLadderMoveAnmSpeed__9daAlink_cFv
 /* 800FDFD0 000FAF10  C0 5F 00 0C */ lfs f2, 0xc(r31)
 /* 800FDFD4 000FAF14  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800FDFD8 000FAF18  FC 02 00 40 */ fcmpo cr0, f2, f0
@@ -41,7 +41,7 @@ lbl_800FDFB8:
 lbl_800FDFE8:
 /* 800FDFE8 000FAF28  7F C3 F3 78 */ mr r3, r30
 /* 800FDFEC 000FAF2C  7F E4 FB 78 */ mr r4, r31
-/* 800FDFF0 000FAF30  48 00 3D 05 */ bl daAlink_c_NS_setWaterInAnmRate
+/* 800FDFF0 000FAF30  48 00 3D 05 */ bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 lbl_800FDFF4:
 /* 800FDFF4 000FAF34  38 60 00 01 */ li r3, 1
 lbl_800FDFF8:

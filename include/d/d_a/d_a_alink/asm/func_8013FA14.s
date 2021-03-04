@@ -20,18 +20,18 @@ lbl_8013FA58:
 /* 8013FA5C 0013C99C  B0 1F 06 04 */ sth r0, 0x604(r31)
 /* 8013FA60 0013C9A0  7F E3 FB 78 */ mr r3, r31
 /* 8013FA64 0013C9A4  38 80 01 39 */ li r4, 0x139
-/* 8013FA68 0013C9A8  4B F8 25 05 */ bl daAlink_c_NS_commonProcInit
+/* 8013FA68 0013C9A8  4B F8 25 05 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013FA6C 0013C9AC  7F E3 FB 78 */ mr r3, r31
 /* 8013FA70 0013C9B0  38 80 00 72 */ li r4, 0x72
 /* 8013FA74 0013C9B4  3C A0 80 39 */ lis r5, lbl_8038F858@ha
 /* 8013FA78 0013C9B8  38 A5 F8 58 */ addi r5, r5, lbl_8038F858@l
 /* 8013FA7C 0013C9BC  C0 25 00 54 */ lfs f1, 0x54(r5)
 /* 8013FA80 0013C9C0  C0 45 00 58 */ lfs f2, 0x58(r5)
-/* 8013FA84 0013C9C4  4B FE 9C 55 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 8013FA84 0013C9C4  4B FE 9C 55 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 8013FA88 0013C9C8  7F E3 FB 78 */ mr r3, r31
 /* 8013FA8C 0013C9CC  3C 80 00 01 */ lis r4, 0x0001003E@ha
 /* 8013FA90 0013C9D0  38 84 00 3E */ addi r4, r4, 0x0001003E@l
-/* 8013FA94 0013C9D4  4B F7 F6 25 */ bl daAlink_c_NS_voiceStartLevel
+/* 8013FA94 0013C9D4  4B F7 F6 25 */ bl voiceStartLevel__9daAlink_cFUl
 /* 8013FA98 0013C9D8  7F E3 FB 78 */ mr r3, r31
 /* 8013FA9C 0013C9DC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 8013FAA0 0013C9E0  4B ED AC 71 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
@@ -130,7 +130,7 @@ lbl_8013FBD8:
 /* 8013FBFC 0013CB3C  C0 03 00 08 */ lfs f0, 8(r3)
 /* 8013FC00 0013CB40  D0 1F 35 90 */ stfs f0, 0x3590(r31)
 /* 8013FC04 0013CB44  7F E3 FB 78 */ mr r3, r31
-/* 8013FC08 0013CB48  4B FE 80 4D */ bl daAlink_c_NS_onWolfEyeUp
+/* 8013FC08 0013CB48  4B FE 80 4D */ bl onWolfEyeUp__9daAlink_cFv
 /* 8013FC0C 0013CB4C  38 60 00 01 */ li r3, 1
 lbl_8013FC10:
 /* 8013FC10 0013CB50  83 E1 00 0C */ lwz r31, 0xc(r1)

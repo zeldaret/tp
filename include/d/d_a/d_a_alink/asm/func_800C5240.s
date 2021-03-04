@@ -18,7 +18,7 @@
 /* 800C5284 000C21C4  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800C5288 000C21C8  7F C3 F3 78 */ mr r3, r30
 /* 800C528C 000C21CC  38 80 00 00 */ li r4, 0
-/* 800C5290 000C21D0  4B FF 4E 41 */ bl daAlink_c_NS_checkNextAction
+/* 800C5290 000C21D0  4B FF 4E 41 */ bl checkNextAction__9daAlink_cFi
 /* 800C5294 000C21D4  48 00 00 78 */ b lbl_800C530C
 lbl_800C5298:
 /* 800C5298 000C21D8  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -34,7 +34,7 @@ lbl_800C5298:
 /* 800C52C0 000C2200  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800C52C4 000C2204  7F C3 F3 78 */ mr r3, r30
 /* 800C52C8 000C2208  38 80 00 01 */ li r4, 1
-/* 800C52CC 000C220C  4B FF 4E 05 */ bl daAlink_c_NS_checkNextAction
+/* 800C52CC 000C220C  4B FF 4E 05 */ bl checkNextAction__9daAlink_cFi
 /* 800C52D0 000C2210  48 00 00 3C */ b lbl_800C530C
 lbl_800C52D4:
 /* 800C52D4 000C2214  C0 02 93 48 */ lfs f0, lbl_80452D48-_SDA2_BASE_(r2)

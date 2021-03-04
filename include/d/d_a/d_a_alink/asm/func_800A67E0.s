@@ -29,7 +29,7 @@ lbl_800A6830:
 /* 800A6844 000A3784  38 03 37 C0 */ addi r0, r3, lbl_803A37C0@l
 /* 800A6848 000A3788  90 01 00 48 */ stw r0, 0x48(r1)
 /* 800A684C 000A378C  38 7F 04 D0 */ addi r3, r31, 0x4d0
-/* 800A6850 000A3790  4B F6 65 15 */ bl mDoMtx_stack_c_NS_transS
+/* 800A6850 000A3790  4B F6 65 15 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800A6854 000A3794  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800A6858 000A3798  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800A685C 000A379C  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
@@ -185,7 +185,7 @@ lbl_800A6A7C:
 /* 800A6A84 000A39C4  A8 BF 04 E6 */ lha r5, 0x4e6(r31)
 /* 800A6A88 000A39C8  38 05 C0 00 */ addi r0, r5, -16384
 /* 800A6A8C 000A39CC  7C 05 07 34 */ extsh r5, r0
-/* 800A6A90 000A39D0  48 00 96 09 */ bl daAlink_c_NS_getGroundAngle
+/* 800A6A90 000A39D0  48 00 96 09 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800A6A94 000A39D4  7C 60 07 34 */ extsh r0, r3
 /* 800A6A98 000A39D8  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)
 /* 800A6A9C 000A39DC  6C 00 80 00 */ xoris r0, r0, 0x8000

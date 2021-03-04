@@ -4,7 +4,7 @@
 /* 800C0684 000BD5C4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C0688 000BD5C8  93 C1 00 08 */ stw r30, 8(r1)
 /* 800C068C 000BD5CC  7C 7E 1B 78 */ mr r30, r3
-/* 800C0690 000BD5D0  4B FF FF 05 */ bl daAlink_c_NS_checkNotBattleStage
+/* 800C0690 000BD5D0  4B FF FF 05 */ bl checkNotBattleStage__9daAlink_cFv
 /* 800C0694 000BD5D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0698 000BD5D8  41 82 00 C8 */ beq lbl_800C0760
 /* 800C069C 000BD5DC  57 DF 04 3E */ clrlwi r31, r30, 0x10
@@ -17,11 +17,11 @@
 /* 800C06B8 000BD5F8  7F E0 FB 78 */ mr r0, r31
 /* 800C06BC 000BD5FC  28 00 00 27 */ cmplwi r0, 0x27
 /* 800C06C0 000BD600  40 82 00 10 */ bne lbl_800C06D0
-/* 800C06C4 000BD604  48 05 E7 7D */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 800C06C4 000BD604  48 05 E7 7D */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C06C8 000BD608  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06CC 000BD60C  40 82 00 84 */ bne lbl_800C0750
 lbl_800C06D0:
-/* 800C06D0 000BD610  4B FF FD E5 */ bl daAlink_c_NS_checkRoomSpecial
+/* 800C06D0 000BD610  4B FF FD E5 */ bl checkRoomSpecial__9daAlink_cFv
 /* 800C06D4 000BD614  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C06D8 000BD618  41 82 00 20 */ beq lbl_800C06F8
 /* 800C06DC 000BD61C  57 C0 04 3E */ clrlwi r0, r30, 0x10
@@ -42,7 +42,7 @@ lbl_800C06F8:
 /* 800C0714 000BD654  28 00 00 46 */ cmplwi r0, 0x46
 /* 800C0718 000BD658  41 82 00 38 */ beq lbl_800C0750
 lbl_800C071C:
-/* 800C071C 000BD65C  4B FF FD 31 */ bl daAlink_c_NS_checkLv2DungeonRoomSpecial
+/* 800C071C 000BD65C  4B FF FD 31 */ bl checkLv2DungeonRoomSpecial__9daAlink_cFv
 /* 800C0720 000BD660  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0724 000BD664  41 82 00 10 */ beq lbl_800C0734
 /* 800C0728 000BD668  57 C0 04 3E */ clrlwi r0, r30, 0x10

@@ -9,7 +9,7 @@
 /* 800AF7F0 000AC730  B0 C1 00 0A */ sth r6, 0xa(r1)
 /* 800AF7F4 000AC734  38 81 00 0A */ addi r4, r1, 0xa
 /* 800AF7F8 000AC738  38 A1 00 08 */ addi r5, r1, 8
-/* 800AF7FC 000AC73C  4B FF 44 E9 */ bl daAlink_c_NS_setIdxMask
+/* 800AF7FC 000AC73C  4B FF 44 E9 */ bl setIdxMask__9daAlink_cFPUsPUs
 /* 800AF800 000AC740  A0 A1 00 0A */ lhz r5, 0xa(r1)
 /* 800AF804 000AC744  28 05 FF FF */ cmplwi r5, 0xffff
 /* 800AF808 000AC748  41 82 00 20 */ beq lbl_800AF828

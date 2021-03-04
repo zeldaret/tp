@@ -7,11 +7,11 @@
 /* 8013CE04 00139D44  3B FD 1F D0 */ addi r31, r29, 0x1fd0
 /* 8013CE08 00139D48  83 C3 28 20 */ lwz r30, 0x2820(r3)
 /* 8013CE0C 00139D4C  7F C4 F3 78 */ mr r4, r30
-/* 8013CE10 00139D50  4B FF C7 F1 */ bl daAlink_c_NS_setWolfEnemyHangBitePos
+/* 8013CE10 00139D50  4B FF C7 F1 */ bl setWolfEnemyHangBitePos__9daAlink_cFP13fopEn_enemy_c
 /* 8013CE14 00139D54  2C 03 00 00 */ cmpwi r3, 0
 /* 8013CE18 00139D58  40 82 00 10 */ bne lbl_8013CE28
 /* 8013CE1C 00139D5C  7F A3 EB 78 */ mr r3, r29
-/* 8013CE20 00139D60  4B FF D9 CD */ bl daAlink_c_NS_procWolfJumpAttackKickInit
+/* 8013CE20 00139D60  4B FF D9 CD */ bl procWolfJumpAttackKickInit__9daAlink_cFv
 /* 8013CE24 00139D64  48 00 02 98 */ b lbl_8013D0BC
 lbl_8013CE28:
 /* 8013CE28 00139D68  38 7D 04 E6 */ addi r3, r29, 0x4e6
@@ -56,7 +56,7 @@ lbl_8013CE90:
 /* 8013CEBC 00139DFC  38 80 00 79 */ li r4, 0x79
 /* 8013CEC0 00139E00  C0 3D 34 78 */ lfs f1, 0x3478(r29)
 /* 8013CEC4 00139E04  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013CEC8 00139E08  4B FE C8 11 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 8013CEC8 00139E08  4B FE C8 11 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 8013CECC 00139E0C  38 00 00 00 */ li r0, 0
 /* 8013CED0 00139E10  B0 1D 30 0E */ sth r0, 0x300e(r29)
 /* 8013CED4 00139E14  38 00 00 01 */ li r0, 1
@@ -67,14 +67,14 @@ lbl_8013CEE0:
 /* 8013CEE4 00139E24  2C 00 00 00 */ cmpwi r0, 0
 /* 8013CEE8 00139E28  40 82 01 D0 */ bne lbl_8013D0B8
 /* 8013CEEC 00139E2C  7F A3 EB 78 */ mr r3, r29
-/* 8013CEF0 00139E30  4B FF D8 FD */ bl daAlink_c_NS_procWolfJumpAttackKickInit
+/* 8013CEF0 00139E30  4B FF D8 FD */ bl procWolfJumpAttackKickInit__9daAlink_cFv
 /* 8013CEF4 00139E34  48 00 01 C8 */ b lbl_8013D0BC
 lbl_8013CEF8:
 /* 8013CEF8 00139E38  A8 1D 30 08 */ lha r0, 0x3008(r29)
 /* 8013CEFC 00139E3C  2C 00 00 00 */ cmpwi r0, 0
 /* 8013CF00 00139E40  40 82 00 10 */ bne lbl_8013CF10
 /* 8013CF04 00139E44  7F A3 EB 78 */ mr r3, r29
-/* 8013CF08 00139E48  4B FF D8 E5 */ bl daAlink_c_NS_procWolfJumpAttackKickInit
+/* 8013CF08 00139E48  4B FF D8 E5 */ bl procWolfJumpAttackKickInit__9daAlink_cFv
 /* 8013CF0C 00139E4C  48 00 01 B0 */ b lbl_8013D0BC
 lbl_8013CF10:
 /* 8013CF10 00139E50  88 1D 2F 8D */ lbz r0, 0x2f8d(r29)
@@ -160,7 +160,7 @@ lbl_8013D008:
 lbl_8013D030:
 /* 8013D030 00139F70  7F A3 EB 78 */ mr r3, r29
 /* 8013D034 00139F74  7F C4 F3 78 */ mr r4, r30
-/* 8013D038 00139F78  4B FF C6 C1 */ bl daAlink_c_NS_setWolfBiteDamage
+/* 8013D038 00139F78  4B FF C6 C1 */ bl setWolfBiteDamage__9daAlink_cFP13fopEn_enemy_c
 /* 8013D03C 00139F7C  48 00 00 7C */ b lbl_8013D0B8
 lbl_8013D040:
 /* 8013D040 00139F80  7F E3 FB 78 */ mr r3, r31

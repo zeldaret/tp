@@ -127,7 +127,7 @@ lbl_800A7E70:
 /* 800A7E74 000A4DB4  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 800A7E78 000A4DB8  40 80 01 90 */ bge lbl_800A8008
 /* 800A7E7C 000A4DBC  7F E3 FB 78 */ mr r3, r31
-/* 800A7E80 000A4DC0  48 03 C0 A1 */ bl daAlink_c_NS_checkGrabRooster
+/* 800A7E80 000A4DC0  48 03 C0 A1 */ bl checkGrabRooster__9daAlink_cFv
 /* 800A7E84 000A4DC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800A7E88 000A4DC8  40 82 01 80 */ bne lbl_800A8008
 /* 800A7E8C 000A4DCC  7F C3 F3 78 */ mr r3, r30
@@ -315,7 +315,7 @@ lbl_800A80F4:
 /* 800A8110 000A5050  48 1B EE 39 */ bl normalizeZP__4cXyzFv
 /* 800A8114 000A5054  7F E3 FB 78 */ mr r3, r31
 /* 800A8118 000A5058  38 81 00 54 */ addi r4, r1, 0x54
-/* 800A811C 000A505C  4B FF F9 A1 */ bl daAlink_c_NS_checkWindWallRate
+/* 800A811C 000A505C  4B FF F9 A1 */ bl checkWindWallRate__9daAlink_cFRC4cXyz
 /* 800A8120 000A5060  C0 01 00 14 */ lfs f0, 0x14(r1)
 /* 800A8124 000A5064  EC 20 00 72 */ fmuls f1, f0, f1
 /* 800A8128 000A5068  D0 21 00 14 */ stfs f1, 0x14(r1)
@@ -359,7 +359,7 @@ lbl_800A8198:
 /* 800A81AC 000A50EC  41 82 00 1C */ beq lbl_800A81C8
 /* 800A81B0 000A50F0  7F E3 FB 78 */ mr r3, r31
 /* 800A81B4 000A50F4  38 81 00 54 */ addi r4, r1, 0x54
-/* 800A81B8 000A50F8  4B FF F9 05 */ bl daAlink_c_NS_checkWindWallRate
+/* 800A81B8 000A50F8  4B FF F9 05 */ bl checkWindWallRate__9daAlink_cFRC4cXyz
 /* 800A81BC 000A50FC  C0 01 00 14 */ lfs f0, 0x14(r1)
 /* 800A81C0 000A5100  EC 00 00 72 */ fmuls f0, f0, f1
 /* 800A81C4 000A5104  D0 01 00 14 */ stfs f0, 0x14(r1)
@@ -396,15 +396,15 @@ lbl_800A8210:
 /* 800A8234 000A5174  7F E3 FB 78 */ mr r3, r31
 /* 800A8238 000A5178  38 80 00 01 */ li r4, 1
 /* 800A823C 000A517C  38 A0 00 01 */ li r5, 1
-/* 800A8240 000A5180  48 01 32 79 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800A8240 000A5180  48 01 32 79 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800A8244 000A5184  2C 03 00 00 */ cmpwi r3, 0
 /* 800A8248 000A5188  40 82 00 4C */ bne lbl_800A8294
 /* 800A824C 000A518C  7F E3 FB 78 */ mr r3, r31
-/* 800A8250 000A5190  48 00 23 99 */ bl daAlink_c_NS_checkNoCollisionCorret
+/* 800A8250 000A5190  48 00 23 99 */ bl checkNoCollisionCorret__9daAlink_cFv
 /* 800A8254 000A5194  2C 03 00 00 */ cmpwi r3, 0
 /* 800A8258 000A5198  40 82 00 3C */ bne lbl_800A8294
 /* 800A825C 000A519C  7F E3 FB 78 */ mr r3, r31
-/* 800A8260 000A51A0  48 06 D9 C1 */ bl daAlink_c_NS_checkEventRun
+/* 800A8260 000A51A0  48 06 D9 C1 */ bl checkEventRun__9daAlink_cCFv
 /* 800A8264 000A51A4  2C 03 00 00 */ cmpwi r3, 0
 /* 800A8268 000A51A8  40 82 00 2C */ bne lbl_800A8294
 /* 800A826C 000A51AC  80 1F 31 A0 */ lwz r0, 0x31a0(r31)

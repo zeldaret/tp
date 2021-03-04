@@ -4,11 +4,11 @@
 /* 8012D3F0 0012A330  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012D3F4 0012A334  7C 7F 1B 78 */ mr r31, r3
 /* 8012D3F8 0012A338  38 80 00 00 */ li r4, 0
-/* 8012D3FC 0012A33C  4B FF C7 49 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012D3FC 0012A33C  4B FF C7 49 */ bl checkNextAction__9daAlink_cFiWolf
 /* 8012D400 0012A340  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D404 0012A344  40 82 00 58 */ bne lbl_8012D45C
 /* 8012D408 0012A348  7F E3 FB 78 */ mr r3, r31
-/* 8012D40C 0012A34C  4B F8 96 25 */ bl daAlink_c_NS_checkFrontWallTypeAction
+/* 8012D40C 0012A34C  4B F8 96 25 */ bl checkFrontWallTypeAction__9daAlink_cFv
 /* 8012D410 0012A350  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D414 0012A354  40 82 00 48 */ bne lbl_8012D45C
 /* 8012D418 0012A358  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -26,7 +26,7 @@
 lbl_8012D448:
 /* 8012D448 0012A388  7F E3 FB 78 */ mr r3, r31
 /* 8012D44C 0012A38C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8012D450 0012A390  4B FF B3 F5 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8012D450 0012A390  4B FF B3 F5 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8012D454 0012A394  A8 1F 2F EC */ lha r0, 0x2fec(r31)
 /* 8012D458 0012A398  B0 1F 30 A2 */ sth r0, 0x30a2(r31)
 lbl_8012D45C:

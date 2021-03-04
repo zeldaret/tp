@@ -18,7 +18,7 @@ lbl_800AA6DC:
 /* 800AA6F4 000A7634  A8 07 04 E6 */ lha r0, 0x4e6(r7)
 /* 800AA6F8 000A7638  7C 06 00 50 */ subf r0, r6, r0
 /* 800AA6FC 000A763C  7C 06 07 34 */ extsh r6, r0
-/* 800AA700 000A7640  48 07 B4 0D */ bl daAlink_blur_c_NS_traceBlur
+/* 800AA700 000A7640  48 07 B4 0D */ bl traceBlur__14daAlink_blur_cFPC4cXyzPC4cXyzs
 lbl_800AA704:
 /* 800AA704 000A7644  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800AA708 000A7648  7C 08 03 A6 */ mtlr r0

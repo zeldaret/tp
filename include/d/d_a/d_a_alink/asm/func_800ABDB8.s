@@ -10,7 +10,7 @@
 /* 800ABDDC 000A8D1C  4B FD 7A 55 */ bl Move__10dCcD_GSttsFv
 /* 800ABDE0 000A8D20  3B 5E 08 50 */ addi r26, r30, 0x850
 /* 800ABDE4 000A8D24  7F C3 F3 78 */ mr r3, r30
-/* 800ABDE8 000A8D28  48 02 B9 E1 */ bl daAlink_c_NS_checkMagicArmorNoDamage
+/* 800ABDE8 000A8D28  48 02 B9 E1 */ bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 800ABDEC 000A8D2C  2C 03 00 00 */ cmpwi r3, 0
 /* 800ABDF0 000A8D30  38 60 00 06 */ li r3, 6
 /* 800ABDF4 000A8D34  41 82 00 08 */ beq lbl_800ABDFC
@@ -39,7 +39,7 @@ lbl_800ABE2C:
 /* 800ABE40 000A8D80  28 00 01 9C */ cmplwi r0, 0x19c
 /* 800ABE44 000A8D84  41 82 00 20 */ beq lbl_800ABE64
 /* 800ABE48 000A8D88  7F C3 F3 78 */ mr r3, r30
-/* 800ABE4C 000A8D8C  48 03 10 B9 */ bl daAlink_c_NS_checkPlayerGuardAndAttack
+/* 800ABE4C 000A8D8C  48 03 10 B9 */ bl checkPlayerGuardAndAttack__9daAlink_cCFv
 /* 800ABE50 000A8D90  2C 03 00 00 */ cmpwi r3, 0
 /* 800ABE54 000A8D94  41 82 00 BC */ beq lbl_800ABF10
 /* 800ABE58 000A8D98  80 1E 05 8C */ lwz r0, 0x58c(r30)
@@ -122,11 +122,11 @@ lbl_800ABF58:
 /* 800ABF5C 000A8E9C  42 00 FF BC */ bdnz lbl_800ABF18
 lbl_800ABF60:
 /* 800ABF60 000A8EA0  7F C3 F3 78 */ mr r3, r30
-/* 800ABF64 000A8EA4  4B FF E6 85 */ bl daAlink_c_NS_checkNoCollisionCorret
+/* 800ABF64 000A8EA4  4B FF E6 85 */ bl checkNoCollisionCorret__9daAlink_cFv
 /* 800ABF68 000A8EA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800ABF6C 000A8EAC  41 82 00 20 */ beq lbl_800ABF8C
 /* 800ABF70 000A8EB0  7F C3 F3 78 */ mr r3, r30
-/* 800ABF74 000A8EB4  48 05 CA 0D */ bl daAlink_c_NS_checkOctaIealSpecialCollect
+/* 800ABF74 000A8EB4  48 05 CA 0D */ bl checkOctaIealSpecialCollect__9daAlink_cFv
 /* 800ABF78 000A8EB8  2C 03 00 00 */ cmpwi r3, 0
 /* 800ABF7C 000A8EBC  40 82 00 10 */ bne lbl_800ABF8C
 /* 800ABF80 000A8EC0  80 1E 05 7C */ lwz r0, 0x57c(r30)
@@ -137,11 +137,11 @@ lbl_800ABF8C:
 /* 800ABF90 000A8ED0  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800ABF94 000A8ED4  41 82 00 10 */ beq lbl_800ABFA4
 /* 800ABF98 000A8ED8  7F C3 F3 78 */ mr r3, r30
-/* 800ABF9C 000A8EDC  4B FF F8 DD */ bl daAlink_c_NS_setWolfCollisionPos
+/* 800ABF9C 000A8EDC  4B FF F8 DD */ bl setWolfCollisionPos__9daAlink_cFv
 /* 800ABFA0 000A8EE0  48 00 00 0C */ b lbl_800ABFAC
 lbl_800ABFA4:
 /* 800ABFA4 000A8EE4  7F C3 F3 78 */ mr r3, r30
-/* 800ABFA8 000A8EE8  4B FF FB DD */ bl daAlink_c_NS_setCollisionPos
+/* 800ABFA8 000A8EE8  4B FF FB DD */ bl setCollisionPos__9daAlink_cFv
 lbl_800ABFAC:
 /* 800ABFAC 000A8EEC  A8 1E 05 6C */ lha r0, 0x56c(r30)
 /* 800ABFB0 000A8EF0  2C 00 00 00 */ cmpwi r0, 0
@@ -303,7 +303,7 @@ lbl_800AC1A8:
 /* 800AC1E0 000A9120  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800AC1E4 000A9124  41 82 00 98 */ beq lbl_800AC27C
 /* 800AC1E8 000A9128  7F C3 F3 78 */ mr r3, r30
-/* 800AC1EC 000A912C  4B FF E6 01 */ bl daAlink_c_NS_setWolfAtCollision
+/* 800AC1EC 000A912C  4B FF E6 01 */ bl setWolfAtCollision__9daAlink_cFv
 /* 800AC1F0 000A9130  3B 40 00 01 */ li r26, 1
 /* 800AC1F4 000A9134  3B E0 01 3C */ li r31, 0x13c
 lbl_800AC1F8:
@@ -360,7 +360,7 @@ lbl_800AC284:
 /* 800AC2B0 000A91F0  3B FF 01 3C */ addi r31, r31, 0x13c
 /* 800AC2B4 000A91F4  41 80 FF D0 */ blt lbl_800AC284
 /* 800AC2B8 000A91F8  7F C3 F3 78 */ mr r3, r30
-/* 800AC2BC 000A91FC  4B FF E8 01 */ bl daAlink_c_NS_setAtCollision
+/* 800AC2BC 000A91FC  4B FF E8 01 */ bl setAtCollision__9daAlink_cFv
 lbl_800AC2C0:
 /* 800AC2C0 000A9200  3B 7E 08 50 */ addi r27, r30, 0x850
 /* 800AC2C4 000A9204  3B 5E 0C 04 */ addi r26, r30, 0xc04

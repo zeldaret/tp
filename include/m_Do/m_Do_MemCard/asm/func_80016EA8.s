@@ -21,7 +21,7 @@
 lbl_80016EF8:
 /* 80016EF8 00013E38  7F C3 F3 78 */ mr r3, r30
 /* 80016EFC 00013E3C  7F E4 FB 78 */ mr r4, r31
-/* 80016F00 00013E40  48 00 04 61 */ bl mDoMemCd_Ctrl_c_NS_setCardState
+/* 80016F00 00013E40  48 00 04 61 */ bl setCardState__15mDoMemCd_Ctrl_cFl
 lbl_80016F04:
 /* 80016F04 00013E44  38 00 00 01 */ li r0, 1
 /* 80016F08 00013E48  90 1E 1F C8 */ stw r0, 0x1fc8(r30)

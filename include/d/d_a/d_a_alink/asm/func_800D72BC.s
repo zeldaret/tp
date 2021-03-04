@@ -27,7 +27,7 @@
 lbl_800D7324:
 /* 800D7324 000D4264  7C A4 2B 78 */ mr r4, r5
 /* 800D7328 000D4268  7C E5 3B 78 */ mr r5, r7
-/* 800D732C 000D426C  4B FF FE DD */ bl daAlink_c_NS_damageMagnification
+/* 800D732C 000D426C  4B FF FE DD */ bl damageMagnification__9daAlink_cFii
 /* 800D7330 000D4270  C8 42 92 B0 */ lfd f2, lbl_80452CB0-_SDA2_BASE_(r2)
 /* 800D7334 000D4274  6F C0 80 00 */ xoris r0, r30, 0x8000
 /* 800D7338 000D4278  90 01 00 0C */ stw r0, 0xc(r1)
@@ -55,10 +55,10 @@ lbl_800D7388:
 /* 800D738C 000D42CC  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800D7390 000D42D0  41 82 00 0C */ beq lbl_800D739C
 /* 800D7394 000D42D4  7F A3 EB 78 */ mr r3, r29
-/* 800D7398 000D42D8  48 05 09 15 */ bl daAlink_c_NS_offWolfEyeUp
+/* 800D7398 000D42D8  48 05 09 15 */ bl offWolfEyeUp__9daAlink_cFv
 lbl_800D739C:
 /* 800D739C 000D42DC  7F A3 EB 78 */ mr r3, r29
-/* 800D73A0 000D42E0  48 00 04 29 */ bl daAlink_c_NS_checkMagicArmorNoDamage
+/* 800D73A0 000D42E0  48 00 04 29 */ bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 800D73A4 000D42E4  2C 03 00 00 */ cmpwi r3, 0
 /* 800D73A8 000D42E8  41 82 00 24 */ beq lbl_800D73CC
 /* 800D73AC 000D42EC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

@@ -4,7 +4,7 @@
 /* 80024D1C 00021C5C  39 61 00 20 */ addi r11, r1, 0x20
 /* 80024D20 00021C60  48 33 D4 BD */ bl _savegpr_29
 /* 80024D24 00021C64  7C 7D 1B 78 */ mr r29, r3
-/* 80024D28 00021C68  4B FF F6 C1 */ bl dStage_roomControl_c_NS_setStayNo
+/* 80024D28 00021C68  4B FF F6 C1 */ bl setStayNo__20dStage_roomControl_cFi
 /* 80024D2C 00021C6C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80024D30 00021C70  3B C3 61 C0 */ addi r30, r3, g_dComIfG_gameInfo@l
 /* 80024D34 00021C74  38 7E 4E 20 */ addi r3, r30, 0x4e20
@@ -22,14 +22,14 @@
 /* 80024D64 00021CA4  7C 63 E8 2E */ lwzx r3, r3, r29
 /* 80024D68 00021CA8  88 03 00 02 */ lbz r0, 2(r3)
 /* 80024D6C 00021CAC  54 03 07 BE */ clrlwi r3, r0, 0x1e
-/* 80024D70 00021CB0  48 00 00 41 */ bl dStage_roomControl_c_NS_SetTimePass
+/* 80024D70 00021CB0  48 00 00 41 */ bl SetTimePass__20dStage_roomControl_cFi
 /* 80024D74 00021CB4  80 7F 00 04 */ lwz r3, 4(r31)
 /* 80024D78 00021CB8  7C A3 E8 2E */ lwzx r5, r3, r29
 /* 80024D7C 00021CBC  38 7E 4E C4 */ addi r3, r30, 0x4ec4
 /* 80024D80 00021CC0  88 85 00 00 */ lbz r4, 0(r5)
 /* 80024D84 00021CC4  80 A5 00 04 */ lwz r5, 4(r5)
 /* 80024D88 00021CC8  38 C0 00 01 */ li r6, 1
-/* 80024D8C 00021CCC  4B FF F7 91 */ bl dStage_roomControl_c_NS_loadRoom
+/* 80024D8C 00021CCC  4B FF F7 91 */ bl loadRoom__20dStage_roomControl_cFiPUcb
 /* 80024D90 00021CD0  48 00 00 08 */ b lbl_80024D98
 lbl_80024D94:
 /* 80024D94 00021CD4  38 60 00 01 */ li r3, 1

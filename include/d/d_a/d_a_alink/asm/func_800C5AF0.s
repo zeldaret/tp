@@ -31,7 +31,7 @@ lbl_800C5B60:
 /* 800C5B60 000C2AA0  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800C5B64 000C2AA4  3B A0 00 01 */ li r29, 1
 /* 800C5B68 000C2AA8  7F C3 F3 78 */ mr r3, r30
-/* 800C5B6C 000C2AAC  4B FA DC 79 */ bl dAttention_c_NS_LockonTruth
+/* 800C5B6C 000C2AAC  4B FA DC 79 */ bl LockonTruth__12dAttention_cFv
 /* 800C5B70 000C2AB0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C5B74 000C2AB4  40 82 00 14 */ bne lbl_800C5B88
 /* 800C5B78 000C2AB8  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -47,7 +47,7 @@ lbl_800C5B88:
 lbl_800C5B9C:
 /* 800C5B9C 000C2ADC  7F E3 FB 78 */ mr r3, r31
 /* 800C5BA0 000C2AE0  38 80 00 00 */ li r4, 0
-/* 800C5BA4 000C2AE4  4B FF 45 2D */ bl daAlink_c_NS_checkNextAction
+/* 800C5BA4 000C2AE4  4B FF 45 2D */ bl checkNextAction__9daAlink_cFi
 /* 800C5BA8 000C2AE8  48 00 00 64 */ b lbl_800C5C0C
 lbl_800C5BAC:
 /* 800C5BAC 000C2AEC  C0 3D 00 10 */ lfs f1, 0x10(r29)
@@ -63,19 +63,19 @@ lbl_800C5BAC:
 /* 800C5BD4 000C2B14  2C 00 00 02 */ cmpwi r0, 2
 /* 800C5BD8 000C2B18  40 82 00 14 */ bne lbl_800C5BEC
 /* 800C5BDC 000C2B1C  7F E3 FB 78 */ mr r3, r31
-/* 800C5BE0 000C2B20  48 00 B8 05 */ bl daAlink_c_NS_checkCutTurnInput
+/* 800C5BE0 000C2B20  48 00 B8 05 */ bl checkCutTurnInput__9daAlink_cCFv
 /* 800C5BE4 000C2B24  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C5BE8 000C2B28  41 82 00 18 */ beq lbl_800C5C00
 lbl_800C5BEC:
 /* 800C5BEC 000C2B2C  7F E3 FB 78 */ mr r3, r31
 /* 800C5BF0 000C2B30  38 80 00 01 */ li r4, 1
 /* 800C5BF4 000C2B34  80 BF 31 98 */ lwz r5, 0x3198(r31)
-/* 800C5BF8 000C2B38  48 00 EB E5 */ bl daAlink_c_NS_procCutTurnInit
+/* 800C5BF8 000C2B38  48 00 EB E5 */ bl procCutTurnInit__9daAlink_cFii
 /* 800C5BFC 000C2B3C  48 00 00 14 */ b lbl_800C5C10
 lbl_800C5C00:
 /* 800C5C00 000C2B40  7F E3 FB 78 */ mr r3, r31
 /* 800C5C04 000C2B44  38 80 00 01 */ li r4, 1
-/* 800C5C08 000C2B48  4B FF 44 C9 */ bl daAlink_c_NS_checkNextAction
+/* 800C5C08 000C2B48  4B FF 44 C9 */ bl checkNextAction__9daAlink_cFi
 lbl_800C5C0C:
 /* 800C5C0C 000C2B4C  38 60 00 01 */ li r3, 1
 lbl_800C5C10:

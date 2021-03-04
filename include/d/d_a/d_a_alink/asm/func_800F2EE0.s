@@ -4,19 +4,19 @@
 /* 800F2EEC 000EFE2C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2EF0 000EFE30  7C 7F 1B 78 */ mr r31, r3
 /* 800F2EF4 000EFE34  38 80 00 4F */ li r4, 0x4f
-/* 800F2EF8 000EFE38  4B FC F0 75 */ bl daAlink_c_NS_commonProcInit
+/* 800F2EF8 000EFE38  4B FC F0 75 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F2EFC 000EFE3C  7F E3 FB 78 */ mr r3, r31
-/* 800F2F00 000EFE40  4B FF 9C 59 */ bl daAlink_c_NS_initForceRideHorse
+/* 800F2F00 000EFE40  4B FF 9C 59 */ bl initForceRideHorse__9daAlink_cFv
 /* 800F2F04 000EFE44  7F E3 FB 78 */ mr r3, r31
 /* 800F2F08 000EFE48  38 80 00 01 */ li r4, 1
 /* 800F2F0C 000EFE4C  38 A0 00 00 */ li r5, 0
-/* 800F2F10 000EFE50  4B FC E3 CD */ bl daAlink_c_NS_deleteEquipItem
+/* 800F2F10 000EFE50  4B FC E3 CD */ bl deleteEquipItem__9daAlink_cFii
 /* 800F2F14 000EFE54  7F E3 FB 78 */ mr r3, r31
 /* 800F2F18 000EFE58  38 80 00 60 */ li r4, 0x60
 /* 800F2F1C 000EFE5C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F2F20 000EFE60  4B FB A0 91 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 800F2F20 000EFE60  4B FB A0 91 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
 /* 800F2F24 000EFE64  7F E3 FB 78 */ mr r3, r31
-/* 800F2F28 000EFE68  4B FF A5 B5 */ bl daAlink_c_NS_setSyncHorsePos
+/* 800F2F28 000EFE68  4B FF A5 B5 */ bl setSyncHorsePos__9daAlink_cFv
 /* 800F2F2C 000EFE6C  38 00 00 00 */ li r0, 0
 /* 800F2F30 000EFE70  98 1F 2F AB */ stb r0, 0x2fab(r31)
 /* 800F2F34 000EFE74  B0 1F 30 10 */ sth r0, 0x3010(r31)

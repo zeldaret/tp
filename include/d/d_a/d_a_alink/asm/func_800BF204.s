@@ -17,7 +17,7 @@
 /* 800BF244 000BC184  80 84 00 28 */ lwz r4, 0x28(r4)
 /* 800BF248 000BC188  28 04 00 00 */ cmplwi r4, 0
 /* 800BF24C 000BC18C  40 82 00 0C */ bne lbl_800BF258
-/* 800BF250 000BC190  48 00 02 91 */ bl daAlink_c_NS_resetBasAnime
+/* 800BF250 000BC190  48 00 02 91 */ bl resetBasAnime__9daAlink_cFv
 /* 800BF254 000BC194  48 00 01 10 */ b lbl_800BF364
 lbl_800BF258:
 /* 800BF258 000BC198  A0 7D 30 84 */ lhz r3, 0x3084(r29)
@@ -46,7 +46,7 @@ lbl_800BF298:
 /* 800BF2B0 000BC1F0  C0 1E 00 0C */ lfs f0, 0xc(r30)
 /* 800BF2B4 000BC1F4  D0 1D 33 D4 */ stfs f0, 0x33d4(r29)
 /* 800BF2B8 000BC1F8  7F A3 EB 78 */ mr r3, r29
-/* 800BF2BC 000BC1FC  48 00 00 C1 */ bl daAlink_c_NS_initBasAnime
+/* 800BF2BC 000BC1FC  48 00 00 C1 */ bl initBasAnime__9daAlink_cFv
 /* 800BF2C0 000BC200  48 00 00 A4 */ b lbl_800BF364
 lbl_800BF2C4:
 /* 800BF2C4 000BC204  80 DF 00 0C */ lwz r6, 0xc(r31)
@@ -54,7 +54,7 @@ lbl_800BF2C4:
 /* 800BF2CC 000BC20C  3C 04 00 01 */ addis r0, r4, 1
 /* 800BF2D0 000BC210  28 00 FF FF */ cmplwi r0, 0xffff
 /* 800BF2D4 000BC214  40 82 00 0C */ bne lbl_800BF2E0
-/* 800BF2D8 000BC218  48 00 02 09 */ bl daAlink_c_NS_resetBasAnime
+/* 800BF2D8 000BC218  48 00 02 09 */ bl resetBasAnime__9daAlink_cFv
 /* 800BF2DC 000BC21C  48 00 00 88 */ b lbl_800BF364
 lbl_800BF2E0:
 /* 800BF2E0 000BC220  A0 7D 30 84 */ lhz r3, 0x3084(r29)
@@ -90,7 +90,7 @@ lbl_800BF320:
 /* 800BF354 000BC294  38 00 00 00 */ li r0, 0
 /* 800BF358 000BC298  90 1D 2D 80 */ stw r0, 0x2d80(r29)
 /* 800BF35C 000BC29C  7F A3 EB 78 */ mr r3, r29
-/* 800BF360 000BC2A0  48 00 00 1D */ bl daAlink_c_NS_initBasAnime
+/* 800BF360 000BC2A0  48 00 00 1D */ bl initBasAnime__9daAlink_cFv
 lbl_800BF364:
 /* 800BF364 000BC2A4  39 61 00 20 */ addi r11, r1, 0x20
 /* 800BF368 000BC2A8  48 2A 2E C1 */ bl _restgpr_29

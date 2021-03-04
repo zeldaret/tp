@@ -21,7 +21,7 @@
 /* 801402C4 0013D204  80 7F 06 48 */ lwz r3, 0x648(r31)
 /* 801402C8 0013D208  48 18 E3 05 */ bl freeAll__7JKRHeapFv
 /* 801402CC 0013D20C  7F E3 FB 78 */ mr r3, r31
-/* 801402D0 0013D210  4B FF FC C1 */ bl daAlink_c_NS_setShieldArcName
+/* 801402D0 0013D210  4B FF FC C1 */ bl setShieldArcName__9daAlink_cFv
 /* 801402D4 0013D214  48 00 00 4C */ b lbl_80140320
 lbl_801402D8:
 /* 801402D8 0013D218  28 00 00 01 */ cmplwi r0, 1
@@ -35,7 +35,7 @@ lbl_801402D8:
 /* 801402F8 0013D238  38 00 00 00 */ li r0, 0
 /* 801402FC 0013D23C  98 1F 2F D1 */ stb r0, 0x2fd1(r31)
 /* 80140300 0013D240  7F E3 FB 78 */ mr r3, r31
-/* 80140304 0013D244  4B FF FE F5 */ bl daAlink_c_NS_setShieldModel
+/* 80140304 0013D244  4B FF FE F5 */ bl setShieldModel__9daAlink_cFv
 /* 80140308 0013D248  48 00 00 18 */ b lbl_80140320
 lbl_8014030C:
 /* 8014030C 0013D24C  38 00 00 02 */ li r0, 2

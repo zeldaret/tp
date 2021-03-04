@@ -5,11 +5,11 @@
 /* 800C5338 000C2278  48 29 CE A5 */ bl _savegpr_29
 /* 800C533C 000C227C  7C 7E 1B 78 */ mr r30, r3
 /* 800C5340 000C2280  7C 9D 23 78 */ mr r29, r4
-/* 800C5344 000C2284  48 01 7A AD */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800C5344 000C2284  48 01 7A AD */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800C5348 000C2288  7C 7F 1B 78 */ mr r31, r3
 /* 800C534C 000C228C  7F C3 F3 78 */ mr r3, r30
 /* 800C5350 000C2290  38 80 00 11 */ li r4, 0x11
-/* 800C5354 000C2294  4B FF DA 51 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800C5354 000C2294  4B FF DA 51 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800C5358 000C2298  2C 03 00 00 */ cmpwi r3, 0
 /* 800C535C 000C229C  40 82 00 0C */ bne lbl_800C5368
 /* 800C5360 000C22A0  38 60 00 00 */ li r3, 0
@@ -37,7 +37,7 @@ lbl_800C539C:
 /* 800C53AC 000C22EC  C0 46 00 08 */ lfs f2, 8(r6)
 /* 800C53B0 000C22F0  A8 A6 00 00 */ lha r5, 0(r6)
 /* 800C53B4 000C22F4  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 800C53B8 000C22F8  4B FE 7C 55 */ bl daAlink_c_NS_setSingleAnime
+/* 800C53B8 000C22F8  4B FE 7C 55 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800C53BC 000C22FC  3C 60 80 39 */ lis r3, lbl_8038DF70@ha
 /* 800C53C0 000C2300  38 63 DF 70 */ addi r3, r3, lbl_8038DF70@l
 /* 800C53C4 000C2304  C0 03 00 28 */ lfs f0, 0x28(r3)
@@ -56,7 +56,7 @@ lbl_800C53F4:
 /* 800C53F4 000C2334  7F C3 F3 78 */ mr r3, r30
 /* 800C53F8 000C2338  38 80 00 01 */ li r4, 1
 /* 800C53FC 000C233C  38 A0 00 01 */ li r5, 1
-/* 800C5400 000C2340  4B FF 60 B9 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800C5400 000C2340  4B FF 60 B9 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800C5404 000C2344  2C 03 00 00 */ cmpwi r3, 0
 /* 800C5408 000C2348  41 82 00 14 */ beq lbl_800C541C
 /* 800C540C 000C234C  C0 3E 33 98 */ lfs f1, 0x3398(r30)
@@ -66,7 +66,7 @@ lbl_800C53F4:
 lbl_800C541C:
 /* 800C541C 000C235C  7F C3 F3 78 */ mr r3, r30
 /* 800C5420 000C2360  38 80 00 00 */ li r4, 0
-/* 800C5424 000C2364  48 05 BD 9D */ bl daAlink_c_NS_setFootEffectProcType
+/* 800C5424 000C2364  48 05 BD 9D */ bl setFootEffectProcType__9daAlink_cFi
 /* 800C5428 000C2368  38 00 00 04 */ li r0, 4
 /* 800C542C 000C236C  98 1E 2F 9D */ stb r0, 0x2f9d(r30)
 /* 800C5430 000C2370  7F C3 F3 78 */ mr r3, r30

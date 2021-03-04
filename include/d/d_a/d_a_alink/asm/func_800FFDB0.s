@@ -6,11 +6,11 @@
 /* 800FFDC4 000FCD04  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 800FFDC8 000FCD08  93 C1 00 18 */ stw r30, 0x18(r1)
 /* 800FFDCC 000FCD0C  7C 7E 1B 78 */ mr r30, r3
-/* 800FFDD0 000FCD10  4B FF E2 65 */ bl daAlink_c_NS_getClimbMoveSideAnmSpeed
+/* 800FFDD0 000FCD10  4B FF E2 65 */ bl getClimbMoveSideAnmSpeed__9daAlink_cFv
 /* 800FFDD4 000FCD14  FF E0 08 90 */ fmr f31, f1
 /* 800FFDD8 000FCD18  7F C3 F3 78 */ mr r3, r30
 /* 800FFDDC 000FCD1C  38 80 00 83 */ li r4, 0x83
-/* 800FFDE0 000FCD20  4B FC 21 8D */ bl daAlink_c_NS_commonProcInit
+/* 800FFDE0 000FCD20  4B FC 21 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FFDE4 000FCD24  88 1E 2F 98 */ lbz r0, 0x2f98(r30)
 /* 800FFDE8 000FCD28  28 00 00 03 */ cmplwi r0, 3
 /* 800FFDEC 000FCD2C  40 82 00 18 */ bne lbl_800FFE04
@@ -35,19 +35,19 @@ lbl_800FFE14:
 lbl_800FFE30:
 /* 800FFE30 000FCD70  7F C3 F3 78 */ mr r3, r30
 /* 800FFE34 000FCD74  38 80 00 A4 */ li r4, 0xa4
-/* 800FFE38 000FCD78  4B FA C7 21 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800FFE38 000FCD78  4B FA C7 21 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800FFE3C 000FCD7C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FFE40 000FCD80  40 82 00 38 */ bne lbl_800FFE78
 /* 800FFE44 000FCD84  7F C3 F3 78 */ mr r3, r30
 /* 800FFE48 000FCD88  38 80 00 A3 */ li r4, 0xa3
-/* 800FFE4C 000FCD8C  4B FA C7 0D */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800FFE4C 000FCD8C  4B FA C7 0D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800FFE50 000FCD90  2C 03 00 00 */ cmpwi r3, 0
 /* 800FFE54 000FCD94  40 82 00 24 */ bne lbl_800FFE78
 /* 800FFE58 000FCD98  7F C3 F3 78 */ mr r3, r30
 /* 800FFE5C 000FCD9C  7F E4 FB 78 */ mr r4, r31
 /* 800FFE60 000FCDA0  FC 20 F8 90 */ fmr f1, f31
 /* 800FFE64 000FCDA4  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800FFE68 000FCDA8  4B FA D1 79 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800FFE68 000FCDA8  4B FA D1 79 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 800FFE6C 000FCDAC  38 00 00 00 */ li r0, 0
 /* 800FFE70 000FCDB0  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800FFE74 000FCDB4  48 00 00 1C */ b lbl_800FFE90
@@ -57,7 +57,7 @@ lbl_800FFE78:
 /* 800FFE80 000FCDC0  38 80 00 A2 */ li r4, 0xa2
 /* 800FFE84 000FCDC4  FC 20 F8 50 */ fneg f1, f31
 /* 800FFE88 000FCDC8  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800FFE8C 000FCDCC  4B FA D1 55 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800FFE8C 000FCDCC  4B FA D1 55 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 lbl_800FFE90:
 /* 800FFE90 000FCDD0  7F C3 F3 78 */ mr r3, r30
 /* 800FFE94 000FCDD4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)

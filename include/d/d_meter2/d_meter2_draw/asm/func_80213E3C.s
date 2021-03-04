@@ -6,14 +6,14 @@
 /* 80213E50 00210D90  7C 7F 1B 78 */ mr r31, r3
 /* 80213E54 00210D94  FF E0 08 90 */ fmr f31, f1
 /* 80213E58 00210D98  80 83 05 38 */ lwz r4, 0x538(r3)
-/* 80213E5C 00210D9C  4B FF FF 11 */ bl dMeter2Draw_c_NS_setPikariBpkAnimation
+/* 80213E5C 00210D9C  4B FF FF 11 */ bl setPikariBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor
 /* 80213E60 00210DA0  80 7F 05 38 */ lwz r3, 0x538(r31)
 /* 80213E64 00210DA4  D3 E3 00 08 */ stfs f31, 8(r3)
 /* 80213E68 00210DA8  80 7F 00 80 */ lwz r3, 0x80(r31)
 /* 80213E6C 00210DAC  48 0E 58 25 */ bl animation__9J2DScreenFv
 /* 80213E70 00210DB0  7F E3 FB 78 */ mr r3, r31
 /* 80213E74 00210DB4  38 80 00 00 */ li r4, 0
-/* 80213E78 00210DB8  4B FF FE F5 */ bl dMeter2Draw_c_NS_setPikariBpkAnimation
+/* 80213E78 00210DB8  4B FF FE F5 */ bl setPikariBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor
 /* 80213E7C 00210DBC  CB E1 00 18 */ lfd f31, 0x18(r1)
 /* 80213E80 00210DC0  83 E1 00 14 */ lwz r31, 0x14(r1)
 /* 80213E84 00210DC4  80 01 00 24 */ lwz r0, 0x24(r1)

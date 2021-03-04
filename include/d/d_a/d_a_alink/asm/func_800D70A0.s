@@ -16,7 +16,7 @@
 /* 800D70DC 000D401C  41 82 00 6C */ beq lbl_800D7148
 lbl_800D70E0:
 /* 800D70E0 000D4020  7F E3 FB 78 */ mr r3, r31
-/* 800D70E4 000D4024  4B FF B2 85 */ bl daAlink_c_NS_checkCutTurnInputTrigger
+/* 800D70E4 000D4024  4B FF B2 85 */ bl checkCutTurnInput__9daAlink_cCFvTrigger
 /* 800D70E8 000D4028  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D70EC 000D402C  41 82 00 5C */ beq lbl_800D7148
 /* 800D70F0 000D4030  80 1F 05 74 */ lwz r0, 0x574(r31)
@@ -25,7 +25,7 @@ lbl_800D70E0:
 /* 800D70FC 000D403C  7F E3 FB 78 */ mr r3, r31
 /* 800D7100 000D4040  38 80 00 02 */ li r4, 2
 /* 800D7104 000D4044  38 A0 00 00 */ li r5, 0
-/* 800D7108 000D4048  48 06 41 99 */ bl daAlink_c_NS_procWolfRollAttackInit
+/* 800D7108 000D4048  48 06 41 99 */ bl procWolfRollAttackInit__9daAlink_cFii
 /* 800D710C 000D404C  48 00 00 40 */ b lbl_800D714C
 lbl_800D7110:
 /* 800D7110 000D4050  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
@@ -34,14 +34,14 @@ lbl_800D7110:
 /* 800D711C 000D405C  7F E3 FB 78 */ mr r3, r31
 /* 800D7120 000D4060  38 80 00 00 */ li r4, 0
 /* 800D7124 000D4064  38 A0 00 00 */ li r5, 0
-/* 800D7128 000D4068  4B FE A1 B5 */ bl daAlink_c_NS_deleteEquipItem
+/* 800D7128 000D4068  4B FE A1 B5 */ bl deleteEquipItem__9daAlink_cFii
 /* 800D712C 000D406C  7F E3 FB 78 */ mr r3, r31
-/* 800D7130 000D4070  4B FF A1 39 */ bl daAlink_c_NS_setSwordModel
+/* 800D7130 000D4070  4B FF A1 39 */ bl setSwordModel__9daAlink_cFv
 lbl_800D7134:
 /* 800D7134 000D4074  7F E3 FB 78 */ mr r3, r31
 /* 800D7138 000D4078  38 80 00 01 */ li r4, 1
 /* 800D713C 000D407C  38 A0 00 02 */ li r5, 2
-/* 800D7140 000D4080  4B FF D6 9D */ bl daAlink_c_NS_procCutTurnInit
+/* 800D7140 000D4080  4B FF D6 9D */ bl procCutTurnInit__9daAlink_cFii
 /* 800D7144 000D4084  48 00 00 08 */ b lbl_800D714C
 lbl_800D7148:
 /* 800D7148 000D4088  38 60 00 00 */ li r3, 0

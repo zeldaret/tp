@@ -8,7 +8,7 @@
 /* 800AC62C 000A956C  7C DD 33 78 */ mr r29, r6
 /* 800AC630 000A9570  7C FE 3B 78 */ mr r30, r7
 /* 800AC634 000A9574  7D 18 43 78 */ mr r24, r8
-/* 800AC638 000A9578  4B FF FE 19 */ bl daAlink_c_NS_getMainBckData
+/* 800AC638 000A9578  4B FF FE 19 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800AC63C 000A957C  7C 7B 1B 78 */ mr r27, r3
 /* 800AC640 000A9580  80 1C 05 70 */ lwz r0, 0x570(r28)
 /* 800AC644 000A9584  54 00 07 FA */ rlwinm r0, r0, 0, 0x1f, 0x1d
@@ -19,7 +19,7 @@
 /* 800AC658 000A9598  38 9A 1F 58 */ addi r4, r26, 0x1f58
 /* 800AC65C 000A959C  A0 BB 00 00 */ lhz r5, 0(r27)
 /* 800AC660 000A95A0  7F 06 C3 78 */ mr r6, r24
-/* 800AC664 000A95A4  4B FF 76 A9 */ bl daAlink_c_NS_getAnimeResource
+/* 800AC664 000A95A4  4B FF 76 A9 */ bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
 /* 800AC668 000A95A8  90 7F 00 00 */ stw r3, 0(r31)
 /* 800AC66C 000A95AC  80 1F 00 00 */ lwz r0, 0(r31)
 /* 800AC670 000A95B0  28 00 00 00 */ cmplwi r0, 0
@@ -46,7 +46,7 @@ lbl_800AC6B8:
 /* 800AC6B8 000A95F8  7F 83 E3 78 */ mr r3, r28
 /* 800AC6BC 000A95FC  38 9A 1F 94 */ addi r4, r26, 0x1f94
 /* 800AC6C0 000A9600  7F 06 C3 78 */ mr r6, r24
-/* 800AC6C4 000A9604  4B FF 76 49 */ bl daAlink_c_NS_getAnimeResource
+/* 800AC6C4 000A9604  4B FF 76 49 */ bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
 /* 800AC6C8 000A9608  90 7D 00 00 */ stw r3, 0(r29)
 /* 800AC6CC 000A960C  80 1D 00 00 */ lwz r0, 0(r29)
 /* 800AC6D0 000A9610  28 00 00 00 */ cmplwi r0, 0

@@ -10,10 +10,10 @@
 /* 80057CA8 00054BE8  38 03 9A C0 */ addi r0, r3, lbl_803A9AC0@l
 /* 80057CAC 00054BEC  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057CB0 00054BF0  38 7E 00 1C */ addi r3, r30, 0x1c
-/*.global EF_EVIL_EFF_NS_dtor*/
-/* 80057CB4 00054BF4  3C 80 80 05 */ lis r4, EF_EVIL_EFF_NS_dtor@ha
-/*.global EF_EVIL_EFF_NS_dtor*/
-/* 80057CB8 00054BF8  38 84 70 6C */ addi r4, r4, EF_EVIL_EFF_NS_dtor@l
+/*.global __dt__11EF_EVIL_EFFFv*/
+/* 80057CB4 00054BF4  3C 80 80 05 */ lis r4, __dt__11EF_EVIL_EFFFv@ha
+/*.global __dt__11EF_EVIL_EFFFv*/
+/* 80057CB8 00054BF8  38 84 70 6C */ addi r4, r4, __dt__11EF_EVIL_EFFFv@l
 /* 80057CBC 00054BFC  38 A0 00 44 */ li r5, 0x44
 /* 80057CC0 00054C00  38 C0 07 D0 */ li r6, 0x7d0
 /* 80057CC4 00054C04  48 30 A0 25 */ bl func_80361CE8

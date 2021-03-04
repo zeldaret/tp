@@ -9,7 +9,7 @@
 /* 8020D968 0020A8A8  3C A0 80 3C */ lis r5, lbl_803BF2F8@ha
 /* 8020D96C 0020A8AC  38 05 F2 F8 */ addi r0, r5, lbl_803BF2F8@l
 /* 8020D970 0020A8B0  90 03 00 00 */ stw r0, 0(r3)
-/* 8020D974 0020A8B4  48 00 00 79 */ bl dMeterMap_c_NS__create
+/* 8020D974 0020A8B4  48 00 00 79 */ bl _create__11dMeterMap_cFP9J2DScreen
 /* 8020D978 0020A8B8  7F E3 FB 78 */ mr r3, r31
 /* 8020D97C 0020A8BC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020D980 0020A8C0  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -4,7 +4,7 @@
 /* 801383E4 00135324  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801383E8 00135328  7C 7F 1B 78 */ mr r31, r3
 /* 801383EC 0013532C  38 80 01 27 */ li r4, 0x127
-/* 801383F0 00135330  4B F8 9B 7D */ bl daAlink_c_NS_commonProcInit
+/* 801383F0 00135330  4B F8 9B 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801383F4 00135334  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801383F8 00135338  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 801383FC 0013533C  C0 1F 33 B4 */ lfs f0, 0x33b4(r31)
@@ -20,10 +20,10 @@
 /* 80138424 00135364  38 80 00 36 */ li r4, 0x36
 /* 80138428 00135368  3C A0 80 39 */ lis r5, lbl_8038F8B4@ha
 /* 8013842C 0013536C  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
-/* 80138430 00135370  4B FF 14 19 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80138430 00135370  4B FF 14 19 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 80138434 00135374  7F E3 FB 78 */ mr r3, r31
 /* 80138438 00135378  38 80 00 8E */ li r4, 0x8e
-/* 8013843C 0013537C  4B F7 74 65 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8013843C 0013537C  4B F7 74 65 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 80138440 00135380  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80138444 00135384  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80138448 00135388  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -32,7 +32,7 @@
 /* 80138454 00135394  7F E3 FB 78 */ mr r3, r31
 /* 80138458 00135398  3C 80 00 03 */ lis r4, 0x00030023@ha
 /* 8013845C 0013539C  38 84 00 23 */ addi r4, r4, 0x00030023@l
-/* 80138460 001353A0  4B F8 6D 35 */ bl daAlink_c_NS_seStartMapInfo
+/* 80138460 001353A0  4B F8 6D 35 */ bl seStartMapInfo__9daAlink_cFUl
 /* 80138464 001353A4  38 00 00 01 */ li r0, 1
 /* 80138468 001353A8  B0 1F 30 12 */ sth r0, 0x3012(r31)
 /* 8013846C 001353AC  38 60 00 01 */ li r3, 1

@@ -21,20 +21,20 @@ void _move__6dMap_cFffif(void);
 void dMap_c(void);
 void getMapPlayerPos__10dMapInfo_nFv(void);
 void dMeter2Info_set2DVibration(void);
-void dMeterMap_c_NS__create(void);
-void dMeterMap_c_NS__delete(void);
-void dMeterMap_c_NS_checkMoveStatus(void);
-void dMeterMap_c_NS_ctrlShowMap(void);
-void dMeterMap_c_NS_getMapDispSizeTypeNo(void);
-void dMeterMap_c_NS_isDmapScreen(void);
-void dMeterMap_c_NS_isFmapScreen(void);
-void dMeterMap_c_NS_isShow(void);
-void dMeterMap_c_NS_keyCheck(void);
+void _create__11dMeterMap_cFP9J2DScreen(void);
+void _delete__11dMeterMap_cFv(void);
+void checkMoveStatus__11dMeterMap_cFv(void);
+void ctrlShowMap__11dMeterMap_cFv(void);
+void getMapDispSizeTypeNo__11dMeterMap_cFv(void);
+void isDmapScreen__11dMeterMap_cFv(void);
+void isFmapScreen__11dMeterMap_cFv(void);
+void isShow__11dMeterMap_cFUl(void);
+void keyCheck__11dMeterMap_cFv(void);
 void isExistMapPathData__8dMpath_cFv(void);
 void getStatus__12dMsgObject_cFv(void);
 void dMw_LEFT_TRIGGER(void);
 void dMw_RIGHT_TRIGGER(void);
-void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void getStatusRoomDt__20dStage_roomControl_cFi(void);
 void isDungeonItem__12dSv_memBit_cCFi(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void J2DPicture_X3_(void);
@@ -61,91 +61,91 @@ extern u8 lbl_803A7288;
 extern "C" {
 // isEnableDispMap__11dMeterMap_cFv
 // dMeterMap_c::isEnableDispMap(void)
-asm void dMeterMap_c_NS_isEnableDispMap(void) {
+asm void isEnableDispMap__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D49C.s"
 }
 
 // getMapDispSizeTypeNo__11dMeterMap_cFv
 // dMeterMap_c::getMapDispSizeTypeNo(void)
-asm void dMeterMap_c_NS_getMapDispSizeTypeNo(void) {
+asm void getMapDispSizeTypeNo__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D528.s"
 }
 
 // isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv
 // dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo(void)
-asm void dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo(void) {
+asm void isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D650.s"
 }
 
 // getMapDispEdgeBottomY_Layout__11dMeterMap_cFv
 // dMeterMap_c::getMapDispEdgeBottomY_Layout(void)
-asm void dMeterMap_c_NS_getMapDispEdgeBottomY_Layout(void) {
+asm void getMapDispEdgeBottomY_Layout__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D690.s"
 }
 
 // isEventRunCheck__11dMeterMap_cFv
 // dMeterMap_c::isEventRunCheck(void)
-asm void dMeterMap_c_NS_isEventRunCheck(void) {
+asm void isEventRunCheck__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D698.s"
 }
 
 // getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
 // dMeterMap_c::getMapDispEdgeLeftX_Layout(void)
-asm void dMeterMap_c_NS_getMapDispEdgeLeftX_Layout(void) {
+asm void getMapDispEdgeLeftX_Layout__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D72C.s"
 }
 
 // getMapDispEdgeTop__11dMeterMap_cFv
 // dMeterMap_c::getMapDispEdgeTop(void)
-asm void dMeterMap_c_NS_getMapDispEdgeTop(void) {
+asm void getMapDispEdgeTop__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D75C.s"
 }
 
 // getDispPosInside_OffsetX__11dMeterMap_cFv
 // dMeterMap_c::getDispPosInside_OffsetX(void)
-asm void dMeterMap_c_NS_getDispPosInside_OffsetX(void) {
+asm void getDispPosInside_OffsetX__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D7E4.s"
 }
 
 // getDispPosOutSide_OffsetX__11dMeterMap_cFv
 // dMeterMap_c::getDispPosOutSide_OffsetX(void)
-asm void dMeterMap_c_NS_getDispPosOutSide_OffsetX(void) {
+asm void getDispPosOutSide_OffsetX__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D7EC.s"
 }
 
 // setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 // dMeterMap_c::setDispPosInsideFlg_SE_On(void)
-asm void dMeterMap_c_NS_setDispPosInsideFlg_SE_On(void) {
+asm void setDispPosInsideFlg_SE_On__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D874.s"
 }
 
 // setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 // dMeterMap_c::setDispPosOutsideFlg_SE_On(void)
-asm void dMeterMap_c_NS_setDispPosOutsideFlg_SE_On(void) {
+asm void setDispPosOutsideFlg_SE_On__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D8BC.s"
 }
 
 // setMapAlpha__11dMeterMap_cFUc
 // dMeterMap_c::setMapAlpha(unsigned char)
-asm void dMeterMap_c_NS_setMapAlpha(void) {
+asm void setMapAlpha__11dMeterMap_cFUc(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D8F8.s"
 }
 
 // isMapOpenCheck__11dMeterMap_cFv
 // dMeterMap_c::isMapOpenCheck(void)
-asm void dMeterMap_c_NS_isMapOpenCheck(void) {
+asm void isMapOpenCheck__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D900.s"
 }
@@ -166,28 +166,28 @@ asm void func_8020D990(void) {
 
 // _create__11dMeterMap_cFP9J2DScreen
 // dMeterMap_c::_create(J2DScreen*)
-asm void dMeterMap_c_NS__create(void) {
+asm void _create__11dMeterMap_cFP9J2DScreen(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D9EC.s"
 }
 
 // _delete__11dMeterMap_cFv
 // dMeterMap_c::_delete(void)
-asm void dMeterMap_c_NS__delete(void) {
+asm void _delete__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020DC50.s"
 }
 
 // _move__11dMeterMap_cFUl
 // dMeterMap_c::_move(unsigned long)
-asm void dMeterMap_c_NS__move(void) {
+asm void _move__11dMeterMap_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020DCE4.s"
 }
 
 // _draw__11dMeterMap_cFv
 // dMeterMap_c::_draw(void)
-asm void dMeterMap_c_NS__draw(void) {
+asm void _draw__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020DF1C.s"
 }
@@ -201,49 +201,49 @@ asm void func_8020DF68(void) {
 
 // ctrlShowMap__11dMeterMap_cFv
 // dMeterMap_c::ctrlShowMap(void)
-asm void dMeterMap_c_NS_ctrlShowMap(void) {
+asm void ctrlShowMap__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E070.s"
 }
 
 // checkMoveStatus__11dMeterMap_cFv
 // dMeterMap_c::checkMoveStatus(void)
-asm void dMeterMap_c_NS_checkMoveStatus(void) {
+asm void checkMoveStatus__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E45C.s"
 }
 
 // isShow__11dMeterMap_cFUl
 // dMeterMap_c::isShow(unsigned long)
-asm void dMeterMap_c_NS_isShow(void) {
+asm void isShow__11dMeterMap_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E4C8.s"
 }
 
 // isFmapScreen__11dMeterMap_cFv
 // dMeterMap_c::isFmapScreen(void)
-asm void dMeterMap_c_NS_isFmapScreen(void) {
+asm void isFmapScreen__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E620.s"
 }
 
 // isDmapScreen__11dMeterMap_cFv
 // dMeterMap_c::isDmapScreen(void)
-asm void dMeterMap_c_NS_isDmapScreen(void) {
+asm void isDmapScreen__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E70C.s"
 }
 
 // meter_map_move__11dMeterMap_cFUl
 // dMeterMap_c::meter_map_move(unsigned long)
-asm void dMeterMap_c_NS_meter_map_move(void) {
+asm void meter_map_move__11dMeterMap_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E754.s"
 }
 
 // keyCheck__11dMeterMap_cFv
 // dMeterMap_c::keyCheck(void)
-asm void dMeterMap_c_NS_keyCheck(void) {
+asm void keyCheck__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020E9CC.s"
 }

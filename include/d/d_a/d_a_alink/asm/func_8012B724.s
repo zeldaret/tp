@@ -213,7 +213,7 @@ lbl_8012B9BC:
 /* 8012BA44 00128984  7D E3 7B 78 */ mr r3, r15
 /* 8012BA48 00128988  38 8F 1D 1C */ addi r4, r15, 0x1d1c
 /* 8012BA4C 0012898C  A8 AF 04 E6 */ lha r5, 0x4e6(r15)
-/* 8012BA50 00128990  4B F8 46 49 */ bl daAlink_c_NS_getGroundAngle
+/* 8012BA50 00128990  4B F8 46 49 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 8012BA54 00128994  7C 6E CB 2E */ sthx r3, r14, r25
 /* 8012BA58 00128998  C0 37 00 08 */ lfs f1, 8(r23)
 /* 8012BA5C 0012899C  C0 0F 04 D8 */ lfs f0, 0x4d8(r15)
@@ -261,17 +261,17 @@ lbl_8012BAF8:
 /* 8012BAF8 00128A38  42 00 00 00 */ bdnz lbl_8012BAF8
 lbl_8012BAFC:
 /* 8012BAFC 00128A3C  7D E3 7B 78 */ mr r3, r15
-/* 8012BB00 00128A40  4B F8 60 AD */ bl daAlink_c_NS_setSandShapeOffset
+/* 8012BB00 00128A40  4B F8 60 AD */ bl setSandShapeOffset__9daAlink_cFv
 /* 8012BB04 00128A44  7D E3 7B 78 */ mr r3, r15
 /* 8012BB08 00128A48  38 8F 2B A8 */ addi r4, r15, 0x2ba8
 /* 8012BB0C 00128A4C  C0 2F 2B A8 */ lfs f1, 0x2ba8(r15)
-/* 8012BB10 00128A50  4B F7 71 15 */ bl daAlink_c_NS_setMatrixOffset
+/* 8012BB10 00128A50  4B F7 71 15 */ bl setMatrixOffset__9daAlink_cFPff
 /* 8012BB14 00128A54  7D E3 7B 78 */ mr r3, r15
-/* 8012BB18 00128A58  4B F8 5C 15 */ bl daAlink_c_NS_setSandDownBgCheckWallH
+/* 8012BB18 00128A58  4B F8 5C 15 */ bl setSandDownBgCheckWallH__9daAlink_cFv
 /* 8012BB1C 00128A5C  7D E3 7B 78 */ mr r3, r15
 /* 8012BB20 00128A60  38 8F 2B 94 */ addi r4, r15, 0x2b94
 /* 8012BB24 00128A64  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8012BB28 00128A68  4B F7 70 FD */ bl daAlink_c_NS_setMatrixOffset
+/* 8012BB28 00128A68  4B F7 70 FD */ bl setMatrixOffset__9daAlink_cFPff
 /* 8012BB2C 00128A6C  3A 80 00 00 */ li r20, 0
 /* 8012BB30 00128A70  3B E0 00 00 */ li r31, 0
 /* 8012BB34 00128A74  3B C0 00 00 */ li r30, 0
@@ -301,7 +301,7 @@ lbl_8012BB78:
 /* 8012BB84 00128AC4  40 82 00 28 */ bne lbl_8012BBAC
 /* 8012BB88 00128AC8  7D E3 7B 78 */ mr r3, r15
 /* 8012BB8C 00128ACC  38 80 00 72 */ li r4, 0x72
-/* 8012BB90 00128AD0  4B FF CC 7D */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 8012BB90 00128AD0  4B FF CC 7D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
 /* 8012BB94 00128AD4  2C 03 00 00 */ cmpwi r3, 0
 /* 8012BB98 00128AD8  41 82 00 14 */ beq lbl_8012BBAC
 lbl_8012BB9C:
@@ -333,7 +333,7 @@ lbl_8012BBE4:
 /* 8012BBF4 00128B34  7E D9 E2 14 */ add r22, r25, r28
 /* 8012BBF8 00128B38  7E C6 B3 78 */ mr r6, r22
 /* 8012BBFC 00128B3C  38 E0 00 01 */ li r7, 1
-/* 8012BC00 00128B40  4B F7 70 E1 */ bl daAlink_c_NS_setLegAngle
+/* 8012BC00 00128B40  4B F7 70 E1 */ bl setLegAngle__9daAlink_cFfP18daAlink_footData_cPsPsi
 /* 8012BC04 00128B44  2C 03 00 00 */ cmpwi r3, 0
 /* 8012BC08 00128B48  40 82 00 20 */ bne lbl_8012BC28
 /* 8012BC0C 00128B4C  38 00 00 00 */ li r0, 0
@@ -400,7 +400,7 @@ lbl_8012BCA8:
 /* 8012BCEC 00128C2C  2C 00 00 00 */ cmpwi r0, 0
 /* 8012BCF0 00128C30  40 82 01 C8 */ bne lbl_8012BEB8
 /* 8012BCF4 00128C34  38 6F 04 D0 */ addi r3, r15, 0x4d0
-/* 8012BCF8 00128C38  4B EE 10 6D */ bl mDoMtx_stack_c_NS_transS
+/* 8012BCF8 00128C38  4B EE 10 6D */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8012BCFC 00128C3C  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8012BD00 00128C40  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 8012BD04 00128C44  A8 8F 04 E6 */ lha r4, 0x4e6(r15)

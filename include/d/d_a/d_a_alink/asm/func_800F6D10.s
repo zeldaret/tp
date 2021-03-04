@@ -4,16 +4,16 @@
 /* 800F6D1C 000F3C5C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F6D20 000F3C60  7C 7F 1B 78 */ mr r31, r3
 /* 800F6D24 000F3C64  38 80 00 99 */ li r4, 0x99
-/* 800F6D28 000F3C68  4B FC C0 7D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800F6D28 000F3C68  4B FC C0 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800F6D2C 000F3C6C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6D30 000F3C70  40 82 00 0C */ bne lbl_800F6D3C
 /* 800F6D34 000F3C74  38 60 00 00 */ li r3, 0
 /* 800F6D38 000F3C78  48 00 00 18 */ b lbl_800F6D50
 lbl_800F6D3C:
 /* 800F6D3C 000F3C7C  7F E3 FB 78 */ mr r3, r31
-/* 800F6D40 000F3C80  4B FF D8 5D */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F6D40 000F3C80  4B FF D8 5D */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F6D44 000F3C84  7F E3 FB 78 */ mr r3, r31
-/* 800F6D48 000F3C88  4B FE 7E 45 */ bl daAlink_c_NS_setBowOrSlingStatus
+/* 800F6D48 000F3C88  4B FE 7E 45 */ bl setBowOrSlingStatus__9daAlink_cFv
 /* 800F6D4C 000F3C8C  38 60 00 01 */ li r3, 1
 lbl_800F6D50:
 /* 800F6D50 000F3C90  83 E1 00 0C */ lwz r31, 0xc(r1)

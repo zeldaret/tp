@@ -16,12 +16,12 @@
 /* 8012FEBC 0012CDFC  7F E3 FB 78 */ mr r3, r31
 /* 8012FEC0 0012CE00  7F C4 F3 78 */ mr r4, r30
 /* 8012FEC4 0012CE04  38 A0 00 01 */ li r5, 1
-/* 8012FEC8 0012CE08  4B FF FD 71 */ bl daAlink_c_NS_procWolfSlideReadyInit
+/* 8012FEC8 0012CE08  4B FF FD 71 */ bl procWolfSlideReadyInit__9daAlink_cFsi
 /* 8012FECC 0012CE0C  48 00 00 C0 */ b lbl_8012FF8C
 lbl_8012FED0:
 /* 8012FED0 0012CE10  7F E3 FB 78 */ mr r3, r31
 /* 8012FED4 0012CE14  38 80 01 0F */ li r4, 0x10f
-/* 8012FED8 0012CE18  4B F9 20 95 */ bl daAlink_c_NS_commonProcInit
+/* 8012FED8 0012CE18  4B F9 20 95 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012FEDC 0012CE1C  38 00 00 FF */ li r0, 0xff
 /* 8012FEE0 0012CE20  98 1F 08 28 */ stb r0, 0x828(r31)
 /* 8012FEE4 0012CE24  38 00 00 08 */ li r0, 8
@@ -33,7 +33,7 @@ lbl_8012FED0:
 /* 8012FEFC 0012CE3C  38 A5 F3 F0 */ addi r5, r5, lbl_8038F3F0@l
 /* 8012FF00 0012CE40  3B C5 00 14 */ addi r30, r5, 0x14
 /* 8012FF04 0012CE44  7F C5 F3 78 */ mr r5, r30
-/* 8012FF08 0012CE48  4B FF 99 41 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8012FF08 0012CE48  4B FF 99 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8012FF0C 0012CE4C  2C 1D 00 00 */ cmpwi r29, 0
 /* 8012FF10 0012CE50  41 82 00 40 */ beq lbl_8012FF50
 /* 8012FF14 0012CE54  A8 1E 00 00 */ lha r0, 0(r30)
@@ -61,7 +61,7 @@ lbl_8012FF50:
 /* 8012FF68 0012CEA8  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 8012FF6C 0012CEAC  7F E3 FB 78 */ mr r3, r31
 /* 8012FF70 0012CEB0  38 80 00 01 */ li r4, 1
-/* 8012FF74 0012CEB4  4B FF 12 4D */ bl daAlink_c_NS_setFootEffectProcType
+/* 8012FF74 0012CEB4  4B FF 12 4D */ bl setFootEffectProcType__9daAlink_cFi
 /* 8012FF78 0012CEB8  3C 60 80 39 */ lis r3, lbl_8038F3F0@ha
 /* 8012FF7C 0012CEBC  38 63 F3 F0 */ addi r3, r3, lbl_8038F3F0@l
 /* 8012FF80 0012CEC0  C0 03 00 54 */ lfs f0, 0x54(r3)

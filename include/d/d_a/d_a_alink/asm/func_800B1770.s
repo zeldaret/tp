@@ -254,7 +254,7 @@ lbl_800B1AF0:
 /* 800B1B04 000AEA44  38 84 00 40 */ addi r4, r4, 0x40
 /* 800B1B08 000AEA48  42 00 FF E8 */ bdnz lbl_800B1AF0
 /* 800B1B0C 000AEA4C  7F E3 FB 78 */ mr r3, r31
-/* 800B1B10 000AEA50  4B FF FC 1D */ bl daAlink_c_NS_setSandDownBgCheckWallH
+/* 800B1B10 000AEA50  4B FF FC 1D */ bl setSandDownBgCheckWallH__9daAlink_cFv
 /* 800B1B14 000AEA54  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800B1B18 000AEA58  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800B1B1C 000AEA5C  7C 08 03 A6 */ mtlr r0

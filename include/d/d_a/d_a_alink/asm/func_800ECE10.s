@@ -50,14 +50,14 @@ lbl_800ECEB4:
 /* 800ECEB4 000E9DF4  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 800ECEB8 000E9DF8  41 82 00 34 */ beq lbl_800ECEEC
 /* 800ECEBC 000E9DFC  7F E3 FB 78 */ mr r3, r31
-/* 800ECEC0 000E9E00  48 00 03 31 */ bl daAlink_c_NS_checkHorseNotGrab
+/* 800ECEC0 000E9E00  48 00 03 31 */ bl checkHorseNotGrab__9daAlink_cCFv
 /* 800ECEC4 000E9E04  2C 03 00 00 */ cmpwi r3, 0
 /* 800ECEC8 000E9E08  41 82 00 0C */ beq lbl_800ECED4
 /* 800ECECC 000E9E0C  38 60 00 00 */ li r3, 0
 /* 800ECED0 000E9E10  48 00 00 20 */ b lbl_800ECEF0
 lbl_800ECED4:
 /* 800ECED4 000E9E14  7F E3 FB 78 */ mr r3, r31
-/* 800ECED8 000E9E18  4B FF FF 15 */ bl daAlink_c_NS_checkHorseReinLeftOnly
+/* 800ECED8 000E9E18  4B FF FF 15 */ bl checkHorseReinLeftOnly__9daAlink_cCFv
 /* 800ECEDC 000E9E1C  20 03 00 00 */ subfic r0, r3, 0
 /* 800ECEE0 000E9E20  7C 60 01 10 */ subfe r3, r0, r0
 /* 800ECEE4 000E9E24  38 63 00 02 */ addi r3, r3, 2

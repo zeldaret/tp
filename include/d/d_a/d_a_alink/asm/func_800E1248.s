@@ -23,15 +23,15 @@ lbl_800E1290:
 /* 800E129C 000DE1DC  7F E3 FB 78 */ mr r3, r31
 /* 800E12A0 000DE1E0  38 80 00 02 */ li r4, 2
 /* 800E12A4 000DE1E4  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800E12A8 000DE1E8  4B FC C4 7D */ bl daAlink_c_NS_resetUpperAnime
+/* 800E12A8 000DE1E8  4B FC C4 7D */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800E12AC 000DE1EC  7F E3 FB 78 */ mr r3, r31
 /* 800E12B0 000DE1F0  38 80 00 00 */ li r4, 0
-/* 800E12B4 000DE1F4  4B FD 8E 1D */ bl daAlink_c_NS_checkNextAction
+/* 800E12B4 000DE1F4  4B FD 8E 1D */ bl checkNextAction__9daAlink_cFi
 /* 800E12B8 000DE1F8  48 00 00 10 */ b lbl_800E12C8
 lbl_800E12BC:
 /* 800E12BC 000DE1FC  7F E3 FB 78 */ mr r3, r31
 /* 800E12C0 000DE200  38 80 00 01 */ li r4, 1
-/* 800E12C4 000DE204  4B FD 8E 0D */ bl daAlink_c_NS_checkNextAction
+/* 800E12C4 000DE204  4B FD 8E 0D */ bl checkNextAction__9daAlink_cFi
 lbl_800E12C8:
 /* 800E12C8 000DE208  38 60 00 01 */ li r3, 1
 /* 800E12CC 000DE20C  83 E1 00 0C */ lwz r31, 0xc(r1)

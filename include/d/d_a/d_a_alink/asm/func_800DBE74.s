@@ -15,9 +15,9 @@ lbl_800DBEA0:
 /* 800DBEA8 000D8DE8  40 82 00 18 */ bne lbl_800DBEC0
 /* 800DBEAC 000D8DEC  7F E3 FB 78 */ mr r3, r31
 /* 800DBEB0 000D8DF0  38 80 00 01 */ li r4, 1
-/* 800DBEB4 000D8DF4  4B FF B5 C5 */ bl daAlink_c_NS_setDamagePointNormal
+/* 800DBEB4 000D8DF4  4B FF B5 C5 */ bl setDamagePoint__9daAlink_cFiiiiNormal
 /* 800DBEB8 000D8DF8  7F E3 FB 78 */ mr r3, r31
-/* 800DBEBC 000D8DFC  4B FF ED C9 */ bl daAlink_c_NS_procCoPolyDamageInit
+/* 800DBEBC 000D8DFC  4B FF ED C9 */ bl procCoPolyDamageInit__9daAlink_cFv
 lbl_800DBEC0:
 /* 800DBEC0 000D8E00  38 60 00 01 */ li r3, 1
 /* 800DBEC4 000D8E04  83 E1 00 0C */ lwz r31, 0xc(r1)

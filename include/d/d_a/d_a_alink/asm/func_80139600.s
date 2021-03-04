@@ -41,7 +41,7 @@
 /* 801396A0 001365E0  EC 01 00 28 */ fsubs f0, f1, f0
 /* 801396A4 001365E4  D0 1F 04 D8 */ stfs f0, 0x4d8(r31)
 /* 801396A8 001365E8  38 9F 35 40 */ addi r4, r31, 0x3540
-/* 801396AC 001365EC  4B F6 8A ED */ bl daAlink_c_NS_commonLineCheck
+/* 801396AC 001365EC  4B F6 8A ED */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 801396B0 001365F0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801396B4 001365F4  41 82 00 24 */ beq lbl_801396D8
 /* 801396B8 001365F8  C0 01 00 08 */ lfs f0, 8(r1)

@@ -30,7 +30,7 @@
 /* 8019F570 0019C4B0  41 80 00 08 */ blt lbl_8019F578
 /* 8019F574 0019C4B4  3B A0 00 00 */ li r29, 0
 lbl_8019F578:
-/* 8019F578 0019C4B8  48 00 02 09 */ bl dStage_roomControl_c_NS_GetTimePass
+/* 8019F578 0019C4B8  48 00 02 09 */ bl GetTimePass__20dStage_roomControl_cFv
 /* 8019F57C 0019C4BC  2C 03 00 00 */ cmpwi r3, 0
 /* 8019F580 0019C4C0  41 82 01 88 */ beq lbl_8019F708
 /* 8019F584 0019C4C4  88 1E 13 0A */ lbz r0, 0x130a(r30)

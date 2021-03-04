@@ -22,7 +22,7 @@ lbl_800FB1F0:
 /* 800FB1F0 000F8130  3B C0 00 00 */ li r30, 0
 lbl_800FB1F4:
 /* 800FB1F4 000F8134  7F A3 EB 78 */ mr r3, r29
-/* 800FB1F8 000F8138  4B FF F5 95 */ bl daAlink_c_NS_changeHangEndProc
+/* 800FB1F8 000F8138  4B FF F5 95 */ bl changeHangEndProc__9daAlink_cFv
 /* 800FB1FC 000F813C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FB200 000F8140  41 82 00 0C */ beq lbl_800FB20C
 /* 800FB204 000F8144  38 60 00 01 */ li r3, 1
@@ -49,7 +49,7 @@ lbl_800FB250:
 /* 800FB250 000F8190  2C 1E 00 00 */ cmpwi r30, 0
 /* 800FB254 000F8194  41 82 00 30 */ beq lbl_800FB284
 /* 800FB258 000F8198  7F A3 EB 78 */ mr r3, r29
-/* 800FB25C 000F819C  4B FF ED A1 */ bl daAlink_c_NS_getHangDirectionFromAngle
+/* 800FB25C 000F819C  4B FF ED A1 */ bl getHangDirectionFromAngle__9daAlink_cFv
 /* 800FB260 000F81A0  7C 64 1B 78 */ mr r4, r3
 /* 800FB264 000F81A4  C0 3D 33 AC */ lfs f1, 0x33ac(r29)
 /* 800FB268 000F81A8  C0 02 92 A4 */ lfs f0, lbl_80452CA4-_SDA2_BASE_(r2)
@@ -58,7 +58,7 @@ lbl_800FB250:
 /* 800FB274 000F81B4  2C 04 00 01 */ cmpwi r4, 1
 /* 800FB278 000F81B8  41 82 00 0C */ beq lbl_800FB284
 /* 800FB27C 000F81BC  7F A3 EB 78 */ mr r3, r29
-/* 800FB280 000F81C0  48 00 00 21 */ bl daAlink_c_NS_procHangUpInit
+/* 800FB280 000F81C0  48 00 00 21 */ bl procHangUpInit__9daAlink_cFi
 lbl_800FB284:
 /* 800FB284 000F81C4  38 60 00 01 */ li r3, 1
 lbl_800FB288:

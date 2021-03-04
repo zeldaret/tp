@@ -60,7 +60,7 @@
 lbl_8020F29C:
 /* 8020F29C 0020C1DC  7F C3 F3 78 */ mr r3, r30
 /* 8020F2A0 0020C1E0  C0 3E 00 2C */ lfs f1, 0x2c(r30)
-/* 8020F2A4 0020C1E4  48 00 03 C9 */ bl dMeterString_c_NS_playBckAnimation
+/* 8020F2A4 0020C1E4  48 00 03 C9 */ bl playBckAnimation__14dMeterString_cFf
 /* 8020F2A8 0020C1E8  48 00 00 9C */ b lbl_8020F344
 lbl_8020F2AC:
 /* 8020F2AC 0020C1EC  FC 02 20 40 */ fcmpo cr0, f2, f4
@@ -150,7 +150,7 @@ lbl_8020F344:
 /* 8020F3F4 0020C334  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8020F3F8 0020C338  40 81 00 10 */ ble lbl_8020F408
 /* 8020F3FC 0020C33C  7F C3 F3 78 */ mr r3, r30
-/* 8020F400 0020C340  48 00 02 ED */ bl dMeterString_c_NS_drawPikari
+/* 8020F400 0020C340  48 00 02 ED */ bl drawPikari__14dMeterString_cFv
 /* 8020F404 0020C344  48 00 00 54 */ b lbl_8020F458
 lbl_8020F408:
 /* 8020F408 0020C348  C0 02 AE 64 */ lfs f0, lbl_80454864-_SDA2_BASE_(r2)
@@ -180,7 +180,7 @@ lbl_8020F458:
 /* 8020F464 0020C3A4  40 82 00 10 */ bne lbl_8020F474
 /* 8020F468 0020C3A8  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8020F46C 0020C3AC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8020F470 0020C3B0  48 00 D7 91 */ bl dMeter2Info_c_NS_resetMeterString
+/* 8020F470 0020C3B0  48 00 D7 91 */ bl resetMeterString__13dMeter2Info_cFv
 lbl_8020F474:
 /* 8020F474 0020C3B4  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0
 /* 8020F478 0020C3B8  CB E1 00 50 */ lfd f31, 0x50(r1)

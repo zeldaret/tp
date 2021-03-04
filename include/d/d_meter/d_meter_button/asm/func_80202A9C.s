@@ -6,7 +6,7 @@
 /* 80202AB0 001FF9F0  7C 7F 1B 78 */ mr r31, r3
 /* 80202AB4 001FF9F4  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80202AB8 001FF9F8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 80202ABC 001FF9FC  48 01 97 5D */ bl dMeter2Info_c_NS_resetFloatingMessage
+/* 80202ABC 001FF9FC  48 01 97 5D */ bl resetFloatingMessage__13dMeter2Info_cFv
 /* 80202AC0 001FFA00  48 03 57 99 */ bl getScrnDrawPtr__12dMsgObject_cFv
 /* 80202AC4 001FFA04  30 03 FF FF */ addic r0, r3, -1
 /* 80202AC8 001FFA08  7C 00 19 10 */ subfe r0, r0, r3

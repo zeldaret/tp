@@ -67,10 +67,10 @@ lbl_80222F78:
 /* 80222F78 0021FEB8  80 7E 01 20 */ lwz r3, 0x120(r30)
 /* 80222F7C 0021FEBC  28 03 00 00 */ cmplwi r3, 0
 /* 80222F80 0021FEC0  41 82 00 90 */ beq lbl_80223010
-/* 80222F84 0021FEC4  4B FE A7 D9 */ bl dMeterMap_c_NS_getMapDispEdgeTop
+/* 80222F84 0021FEC4  4B FE A7 D9 */ bl getMapDispEdgeTop__11dMeterMap_cFv
 /* 80222F88 0021FEC8  FF E0 08 90 */ fmr f31, f1
 /* 80222F8C 0021FECC  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 80222F90 0021FED0  4B FF 52 A9 */ bl dMeter2Draw_c_NS_getButtonCrossParentInitTransY
+/* 80222F90 0021FED0  4B FF 52 A9 */ bl getButtonCrossParentInitTransY__13dMeter2Draw_cFv
 /* 80222F94 0021FED4  EC 3F 08 28 */ fsubs f1, f31, f1
 /* 80222F98 0021FED8  C0 02 AF FC */ lfs f0, lbl_804549FC-_SDA2_BASE_(r2)
 /* 80222F9C 0021FEDC  EC 21 00 28 */ fsubs f1, f1, f0
@@ -155,10 +155,10 @@ lbl_802230AC:
 /* 802230B8 0021FFF8  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 802230BC 0021FFFC  FC 20 F0 90 */ fmr f1, f30
 /* 802230C0 00220000  C0 5E 01 5C */ lfs f2, 0x15c(r30)
-/* 802230C4 00220004  4B FF 51 91 */ bl dMeter2Draw_c_NS_drawButtonCross
+/* 802230C4 00220004  4B FF 51 91 */ bl drawButtonC__13dMeter2Draw_cFUcbross
 lbl_802230C8:
 /* 802230C8 00220008  7F C3 F3 78 */ mr r3, r30
-/* 802230CC 0022000C  48 00 23 F5 */ bl dMeter2_c_NS_alphaAnimeButtonCross
+/* 802230CC 0022000C  48 00 23 F5 */ bl alphaAnimeButton__9dMeter2_cFvCross
 /* 802230D0 00220010  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 802230D4 00220014  CB E1 00 30 */ lfd f31, 0x30(r1)
 /* 802230D8 00220018  E3 C1 00 28 */ psq_l f30, 40(r1), 0, 0

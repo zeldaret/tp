@@ -46,7 +46,7 @@ lbl_801253D4:
 /* 801253E0 00122320  38 A5 88 1A */ addi r5, r5, 0x0000881A@l
 /* 801253E4 00122324  38 C1 00 2C */ addi r6, r1, 0x2c
 /* 801253E8 00122328  38 FF 04 E4 */ addi r7, r31, 0x4e4
-/* 801253EC 0012232C  4B FF B1 95 */ bl daAlink_c_NS_setEmitter
+/* 801253EC 0012232C  4B FF B1 95 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 801253F0 00122330  28 03 00 00 */ cmplwi r3, 0
 /* 801253F4 00122334  41 82 00 28 */ beq lbl_8012541C
 /* 801253F8 00122338  E0 1D 00 00 */ psq_l f0, 0(r29), 0, 0
@@ -119,7 +119,7 @@ lbl_8012549C:
 /* 801254F0 00122430  41 80 FF AC */ blt lbl_8012549C
 /* 801254F4 00122434  7F E3 FB 78 */ mr r3, r31
 /* 801254F8 00122438  80 9F 32 68 */ lwz r4, 0x3268(r31)
-/* 801254FC 0012243C  4B FF B2 7D */ bl daAlink_c_NS_stopDrawParticle
+/* 801254FC 0012243C  4B FF B2 7D */ bl stopDrawParticle__9daAlink_cFUl
 /* 80125500 00122440  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 80125504 00122444  54 00 05 66 */ rlwinm r0, r0, 0, 0x15, 0x13
 /* 80125508 00122448  90 1F 05 7C */ stw r0, 0x57c(r31)

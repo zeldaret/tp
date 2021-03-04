@@ -13,7 +13,7 @@
 extern "C" {
 void __dl__FPv(void);
 void fapGm_HIO_c(void);
-void fapGm_HIO_c_NS_dtor(void);
+void __dt__11fapGm_HIO_cFv(void);
 void fopDwTg_CreateQueue(void);
 void fopOvlpM_Init(void);
 void fopScnM_Init(void);
@@ -107,7 +107,7 @@ void fapGm_Create(void) {
 extern "C" {
 // __dt__11fapGm_HIO_cFv
 // fapGm_HIO_c::~fapGm_HIO_c(void)
-asm void fapGm_HIO_c_NS_dtor(void) {
+asm void __dt__11fapGm_HIO_cFv(void) {
     nofralloc
 #include "f/f_ap_game/asm/func_80018AE0.s"
 }

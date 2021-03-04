@@ -54,7 +54,7 @@
 /* 800BD7D0 000BA710  7F E3 FB 78 */ mr r3, r31
 /* 800BD7D4 000BA714  38 81 00 84 */ addi r4, r1, 0x84
 /* 800BD7D8 000BA718  38 A1 00 78 */ addi r5, r1, 0x78
-/* 800BD7DC 000BA71C  48 02 4C D5 */ bl daAlink_c_NS_commonMagneLineCheck
+/* 800BD7DC 000BA71C  48 02 4C D5 */ bl commonMagneLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800BD7E0 000BA720  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BD7E4 000BA724  41 82 00 D4 */ beq lbl_800BD8B8
 /* 800BD7E8 000BA728  C0 1F 1D DC */ lfs f0, 0x1ddc(r31)
@@ -94,7 +94,7 @@
 /* 800BD870 000BA7B0  7F E3 FB 78 */ mr r3, r31
 /* 800BD874 000BA7B4  38 81 00 84 */ addi r4, r1, 0x84
 /* 800BD878 000BA7B8  38 A1 00 78 */ addi r5, r1, 0x78
-/* 800BD87C 000BA7BC  4B FE 49 1D */ bl daAlink_c_NS_commonLineCheck
+/* 800BD87C 000BA7BC  4B FE 49 1D */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800BD880 000BA7C0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BD884 000BA7C4  41 82 00 24 */ beq lbl_800BD8A8
 /* 800BD888 000BA7C8  38 7F 1B 5C */ addi r3, r31, 0x1b5c
@@ -136,7 +136,7 @@ lbl_800BD8B8:
 /* 800BD910 000BA850  7F E3 FB 78 */ mr r3, r31
 /* 800BD914 000BA854  38 81 00 84 */ addi r4, r1, 0x84
 /* 800BD918 000BA858  38 A1 00 78 */ addi r5, r1, 0x78
-/* 800BD91C 000BA85C  48 02 4B 95 */ bl daAlink_c_NS_commonMagneLineCheck
+/* 800BD91C 000BA85C  48 02 4B 95 */ bl commonMagneLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800BD920 000BA860  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BD924 000BA864  41 82 03 3C */ beq lbl_800BDC60
 /* 800BD928 000BA868  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -296,7 +296,7 @@ lbl_800BDB44:
 /* 800BDB58 000BAA98  7C 65 1B 78 */ mr r5, r3
 /* 800BDB5C 000BAA9C  7F E3 FB 78 */ mr r3, r31
 /* 800BDB60 000BAAA0  38 9F 1A 60 */ addi r4, r31, 0x1a60
-/* 800BDB64 000BAAA4  4B FF 25 35 */ bl daAlink_c_NS_getGroundAngle
+/* 800BDB64 000BAAA4  4B FF 25 35 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800BDB68 000BAAA8  48 00 00 08 */ b lbl_800BDB70
 lbl_800BDB6C:
 /* 800BDB6C 000BAAAC  A8 7F 2F F0 */ lha r3, 0x2ff0(r31)

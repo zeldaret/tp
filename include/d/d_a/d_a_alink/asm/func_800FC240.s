@@ -24,22 +24,22 @@
 /* 800FC29C 000F91DC  40 82 00 14 */ bne lbl_800FC2B0
 /* 800FC2A0 000F91E0  7F E3 FB 78 */ mr r3, r31
 /* 800FC2A4 000F91E4  38 80 00 01 */ li r4, 1
-/* 800FC2A8 000F91E8  48 00 31 A9 */ bl daAlink_c_NS_procClimbUpStartInit
+/* 800FC2A8 000F91E8  48 00 31 A9 */ bl procClimbUpStartInit__9daAlink_cFi
 /* 800FC2AC 000F91EC  48 00 00 20 */ b lbl_800FC2CC
 lbl_800FC2B0:
 /* 800FC2B0 000F91F0  2C 00 00 09 */ cmpwi r0, 9
 /* 800FC2B4 000F91F4  40 82 00 10 */ bne lbl_800FC2C4
 /* 800FC2B8 000F91F8  7F E3 FB 78 */ mr r3, r31
-/* 800FC2BC 000F91FC  4B FF E7 C1 */ bl daAlink_c_NS_procHangStartInit
+/* 800FC2BC 000F91FC  4B FF E7 C1 */ bl procHangStartInit__9daAlink_cFv
 /* 800FC2C0 000F9200  48 00 00 0C */ b lbl_800FC2CC
 lbl_800FC2C4:
 /* 800FC2C4 000F9204  7F E3 FB 78 */ mr r3, r31
-/* 800FC2C8 000F9208  4B FF FB 3D */ bl daAlink_c_NS_procHangWallCatchInit
+/* 800FC2C8 000F9208  4B FF FB 3D */ bl procHangWallCatchInit__9daAlink_cFv
 lbl_800FC2CC:
 /* 800FC2CC 000F920C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FC2D0 000F9210  40 82 00 0C */ bne lbl_800FC2DC
 /* 800FC2D4 000F9214  7F E3 FB 78 */ mr r3, r31
-/* 800FC2D8 000F9218  4B FC 70 E1 */ bl daAlink_c_NS_procWaitInit
+/* 800FC2D8 000F9218  4B FC 70 E1 */ bl procWaitInit__9daAlink_cFv
 lbl_800FC2DC:
 /* 800FC2DC 000F921C  38 60 00 01 */ li r3, 1
 /* 800FC2E0 000F9220  83 E1 00 0C */ lwz r31, 0xc(r1)

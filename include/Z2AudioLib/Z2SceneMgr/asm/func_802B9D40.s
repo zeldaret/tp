@@ -14,7 +14,7 @@
 /* 802B9D74 002B6CB4  7C 00 07 75 */ extsb. r0, r0
 /* 802B9D78 002B6CB8  40 82 00 0C */ bne lbl_802B9D84
 /* 802B9D7C 002B6CBC  7F E3 FB 78 */ mr r3, r31
-/* 802B9D80 002B6CC0  48 00 00 19 */ bl Z2SceneMgr_NS__load1stWaveInner_1
+/* 802B9D80 002B6CC0  48 00 00 19 */ bl _load1stWaveInner_1__10Z2SceneMgrFv
 lbl_802B9D84:
 /* 802B9D84 002B6CC4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802B9D88 002B6CC8  80 01 00 14 */ lwz r0, 0x14(r1)

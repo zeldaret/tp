@@ -15,7 +15,7 @@
 /* 8002FDAC 0002CCEC  48 02 66 E1 */ bl __dt__12dDlst_list_cFv
 /* 8002FDB0 0002CCF0  38 7E 0F 38 */ addi r3, r30, 0xf38
 /* 8002FDB4 0002CCF4  38 80 FF FF */ li r4, -1
-/* 8002FDB8 0002CCF8  48 00 00 31 */ bl dComIfG_play_c_NS_dtor
+/* 8002FDB8 0002CCF8  48 00 00 31 */ bl __dt__14dComIfG_play_cFv
 /* 8002FDBC 0002CCFC  7F E0 07 35 */ extsh. r0, r31
 /* 8002FDC0 0002CD00  40 81 00 0C */ ble lbl_8002FDCC
 /* 8002FDC4 0002CD04  7F C3 F3 78 */ mr r3, r30

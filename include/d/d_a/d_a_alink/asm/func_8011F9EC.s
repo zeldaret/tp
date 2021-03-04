@@ -114,11 +114,11 @@ lbl_8011FB44:
 /* 8011FB90 0011CAD0  48 00 00 0C */ b lbl_8011FB9C
 lbl_8011FB94:
 /* 8011FB94 0011CAD4  7F C3 F3 78 */ mr r3, r30
-/* 8011FB98 0011CAD8  4B FF FC 41 */ bl daAlink_c_NS_dungeonReturnWarp
+/* 8011FB98 0011CAD8  4B FF FC 41 */ bl dungeonReturnWarp__9daAlink_cFv
 lbl_8011FB9C:
 /* 8011FB9C 0011CADC  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011FBA0 0011CAE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8011FBA4 0011CAE4  48 0F CE 39 */ bl dMeter2Info_c_NS_resetWarpStatus
+/* 8011FBA4 0011CAE4  48 0F CE 39 */ bl resetWarpStatus__13dMeter2Info_cFv
 lbl_8011FBA8:
 /* 8011FBA8 0011CAE8  39 61 00 20 */ addi r11, r1, 0x20
 /* 8011FBAC 0011CAEC  48 24 26 7D */ bl _restgpr_29

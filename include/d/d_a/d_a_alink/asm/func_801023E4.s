@@ -40,7 +40,7 @@ lbl_80102450:
 /* 80102478 000FF3B8  40 82 00 AC */ bne lbl_80102524
 lbl_8010247C:
 /* 8010247C 000FF3BC  7F E3 FB 78 */ mr r3, r31
-/* 80102480 000FF3C0  4B FB D9 31 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80102480 000FF3C0  4B FB D9 31 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80102484 000FF3C4  2C 03 00 00 */ cmpwi r3, 0
 /* 80102488 000FF3C8  41 82 00 3C */ beq lbl_801024C4
 /* 8010248C 000FF3CC  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -72,7 +72,7 @@ lbl_801024E0:
 /* 801024E8 000FF428  40 82 00 3C */ bne lbl_80102524
 /* 801024EC 000FF42C  7F E3 FB 78 */ mr r3, r31
 /* 801024F0 000FF430  38 80 00 C1 */ li r4, 0xc1
-/* 801024F4 000FF434  4B FA A0 65 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 801024F4 000FF434  4B FA A0 65 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 801024F8 000FF438  2C 03 00 00 */ cmpwi r3, 0
 /* 801024FC 000FF43C  41 82 00 28 */ beq lbl_80102524
 /* 80102500 000FF440  A8 1F 30 D0 */ lha r0, 0x30d0(r31)
@@ -89,14 +89,14 @@ lbl_80102524:
 /* 80102528 000FF468  28 00 00 7E */ cmplwi r0, 0x7e
 /* 8010252C 000FF46C  40 82 00 1C */ bne lbl_80102548
 /* 80102530 000FF470  7F E3 FB 78 */ mr r3, r31
-/* 80102534 000FF474  48 00 64 E5 */ bl daAlink_c_NS_checkHookshotWait
+/* 80102534 000FF474  48 00 64 E5 */ bl checkHookshotWait__9daAlink_cCFv
 /* 80102538 000FF478  2C 03 00 00 */ cmpwi r3, 0
 /* 8010253C 000FF47C  40 82 00 0C */ bne lbl_80102548
 /* 80102540 000FF480  C3 E2 92 C0 */ lfs f31, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80102544 000FF484  48 00 03 4C */ b lbl_80102890
 lbl_80102548:
 /* 80102548 000FF488  7F E3 FB 78 */ mr r3, r31
-/* 8010254C 000FF48C  48 00 1A 49 */ bl daAlink_c_NS_checkZoraSwimMove
+/* 8010254C 000FF48C  48 00 1A 49 */ bl checkZoraSwimMove__9daAlink_cFv
 /* 80102550 000FF490  2C 03 00 00 */ cmpwi r3, 0
 /* 80102554 000FF494  41 82 01 28 */ beq lbl_8010267C
 /* 80102558 000FF498  AB DF 04 E6 */ lha r30, 0x4e6(r31)
@@ -122,7 +122,7 @@ lbl_80102548:
 /* 801025A8 000FF4E8  40 81 00 14 */ ble lbl_801025BC
 /* 801025AC 000FF4EC  7F E3 FB 78 */ mr r3, r31
 /* 801025B0 000FF4F0  38 80 00 00 */ li r4, 0
-/* 801025B4 000FF4F4  4B FB 11 81 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 801025B4 000FF4F4  4B FB 11 81 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 801025B8 000FF4F8  48 00 00 94 */ b lbl_8010264C
 lbl_801025BC:
 /* 801025BC 000FF4FC  C0 3F 33 AC */ lfs f1, 0x33ac(r31)
@@ -130,7 +130,7 @@ lbl_801025BC:
 /* 801025C4 000FF504  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801025C8 000FF508  40 81 00 84 */ ble lbl_8010264C
 /* 801025CC 000FF50C  7F E3 FB 78 */ mr r3, r31
-/* 801025D0 000FF510  48 01 36 51 */ bl daAlink_c_NS_checkEventRun
+/* 801025D0 000FF510  48 01 36 51 */ bl checkEventRun__9daAlink_cCFv
 /* 801025D4 000FF514  2C 03 00 00 */ cmpwi r3, 0
 /* 801025D8 000FF518  41 82 00 0C */ beq lbl_801025E4
 /* 801025DC 000FF51C  A8 9F 2F E2 */ lha r4, 0x2fe2(r31)
@@ -180,7 +180,7 @@ lbl_8010267C:
 /* 8010267C 000FF5BC  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 80102680 000FF5C0  3B A0 00 01 */ li r29, 1
 /* 80102684 000FF5C4  7F C3 F3 78 */ mr r3, r30
-/* 80102688 000FF5C8  4B F7 11 5D */ bl dAttention_c_NS_LockonTruth
+/* 80102688 000FF5C8  4B F7 11 5D */ bl LockonTruth__12dAttention_cFv
 /* 8010268C 000FF5CC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80102690 000FF5D0  40 82 00 14 */ bne lbl_801026A4
 /* 80102694 000FF5D4  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -219,7 +219,7 @@ lbl_801026F0:
 lbl_80102710:
 /* 80102710 000FF650  7F E3 FB 78 */ mr r3, r31
 /* 80102714 000FF654  38 80 00 C6 */ li r4, 0xc6
-/* 80102718 000FF658  4B FA 9E 41 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 80102718 000FF658  4B FA 9E 41 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 8010271C 000FF65C  2C 03 00 00 */ cmpwi r3, 0
 /* 80102720 000FF660  41 82 00 0C */ beq lbl_8010272C
 /* 80102724 000FF664  C0 42 92 B8 */ lfs f2, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -247,7 +247,7 @@ lbl_80102770:
 /* 80102770 000FF6B0  C3 E2 92 C0 */ lfs f31, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_80102774:
 /* 80102774 000FF6B4  7F E3 FB 78 */ mr r3, r31
-/* 80102778 000FF6B8  4B FB 11 8D */ bl daAlink_c_NS_checkZeroSpeedF
+/* 80102778 000FF6B8  4B FB 11 8D */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 8010277C 000FF6BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80102780 000FF6C0  41 82 01 10 */ beq lbl_80102890
 /* 80102784 000FF6C4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
@@ -256,7 +256,7 @@ lbl_80102774:
 lbl_80102790:
 /* 80102790 000FF6D0  7F E3 FB 78 */ mr r3, r31
 /* 80102794 000FF6D4  38 80 00 00 */ li r4, 0
-/* 80102798 000FF6D8  4B FB 0F 9D */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 80102798 000FF6D8  4B FB 0F 9D */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 8010279C 000FF6DC  C0 3F 33 AC */ lfs f1, 0x33ac(r31)
 /* 801027A0 000FF6E0  C0 02 92 A4 */ lfs f0, lbl_80452CA4-_SDA2_BASE_(r2)
 /* 801027A4 000FF6E4  FC 01 00 40 */ fcmpo cr0, f1, f0
@@ -265,7 +265,7 @@ lbl_80102790:
 /* 801027B0 000FF6F0  A8 1F 2F E2 */ lha r0, 0x2fe2(r31)
 /* 801027B4 000FF6F4  7C 03 00 50 */ subf r0, r3, r0
 /* 801027B8 000FF6F8  7C 03 07 34 */ extsh r3, r0
-/* 801027BC 000FF6FC  4B FB 0C D9 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 801027BC 000FF6FC  4B FB 0C D9 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 801027C0 000FF700  2C 03 00 01 */ cmpwi r3, 1
 /* 801027C4 000FF704  40 82 00 24 */ bne lbl_801027E8
 /* 801027C8 000FF708  A8 7F 04 DE */ lha r3, 0x4de(r31)
@@ -278,7 +278,7 @@ lbl_80102790:
 /* 801027E4 000FF724  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 lbl_801027E8:
 /* 801027E8 000FF728  7F E3 FB 78 */ mr r3, r31
-/* 801027EC 000FF72C  4B FB 11 19 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 801027EC 000FF72C  4B FB 11 19 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 801027F0 000FF730  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801027F4 000FF734  41 82 00 0C */ beq lbl_80102800
 /* 801027F8 000FF738  A8 1F 2F E2 */ lha r0, 0x2fe2(r31)
@@ -331,7 +331,7 @@ lbl_80102890:
 /* 801028A0 000FF7E0  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801028A4 000FF7E4  40 80 00 24 */ bge lbl_801028C8
 /* 801028A8 000FF7E8  7F E3 FB 78 */ mr r3, r31
-/* 801028AC 000FF7EC  4B FB D5 05 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 801028AC 000FF7EC  4B FB D5 05 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 801028B0 000FF7F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801028B4 000FF7F4  40 82 00 14 */ bne lbl_801028C8
 /* 801028B8 000FF7F8  3C 60 80 39 */ lis r3, lbl_8038ED2C@ha
@@ -345,7 +345,7 @@ lbl_801028C8:
 lbl_801028D4:
 /* 801028D4 000FF814  7F E3 FB 78 */ mr r3, r31
 /* 801028D8 000FF818  FC 20 F8 90 */ fmr f1, f31
-/* 801028DC 000FF81C  4B FB 10 49 */ bl daAlink_c_NS_setNormalSpeedF
+/* 801028DC 000FF81C  4B FB 10 49 */ bl setNormalSpeedF__9daAlink_cFff
 /* 801028E0 000FF820  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801028E4 000FF824  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801028E8 000FF828  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -355,7 +355,7 @@ lbl_801028D4:
 /* 801028F8 000FF838  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 lbl_801028FC:
 /* 801028FC 000FF83C  7F E3 FB 78 */ mr r3, r31
-/* 80102900 000FF840  48 00 16 E9 */ bl daAlink_c_NS_checkSwimNeckUpDown
+/* 80102900 000FF840  48 00 16 E9 */ bl checkSwimNeckUpDown__9daAlink_cCFv
 /* 80102904 000FF844  2C 03 00 00 */ cmpwi r3, 0
 /* 80102908 000FF848  41 82 00 98 */ beq lbl_801029A0
 /* 8010290C 000FF84C  C0 3F 04 FC */ lfs f1, 0x4fc(r31)

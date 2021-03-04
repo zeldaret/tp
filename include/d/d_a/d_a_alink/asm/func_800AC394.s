@@ -16,7 +16,7 @@
 /* 800AC3D0 000A9310  80 03 05 70 */ lwz r0, 0x570(r3)
 /* 800AC3D4 000A9314  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 800AC3D8 000A9318  41 82 00 34 */ beq lbl_800AC40C
-/* 800AC3DC 000A931C  48 01 39 D5 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800AC3DC 000A931C  48 01 39 D5 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800AC3E0 000A9320  2C 03 00 00 */ cmpwi r3, 0
 /* 800AC3E4 000A9324  41 82 00 18 */ beq lbl_800AC3FC
 /* 800AC3E8 000A9328  3C 60 80 39 */ lis r3, lbl_8038E7F4@ha

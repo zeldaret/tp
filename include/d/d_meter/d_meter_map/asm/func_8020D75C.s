@@ -25,7 +25,7 @@
 /* 8020D7BC 0020A6FC  EC 01 00 28 */ fsubs f0, f1, f0
 /* 8020D7C0 0020A700  EF E0 28 28 */ fsubs f31, f0, f5
 lbl_8020D7C4:
-/* 8020D7C4 0020A704  4B FF FE CD */ bl dMeterMap_c_NS_getMapDispEdgeBottomY_Layout
+/* 8020D7C4 0020A704  4B FF FE CD */ bl getMapDispEdgeBottomY_Layout__11dMeterMap_cFv
 /* 8020D7C8 0020A708  EC 21 F8 28 */ fsubs f1, f1, f31
 /* 8020D7CC 0020A70C  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0
 /* 8020D7D0 0020A710  CB E1 00 10 */ lfd f31, 0x10(r1)

@@ -8,7 +8,7 @@
 /* 800AC574 000A94B4  28 00 FF FF */ cmplwi r0, 0xffff
 /* 800AC578 000A94B8  40 82 00 20 */ bne lbl_800AC598
 /* 800AC57C 000A94BC  A3 C3 1F 58 */ lhz r30, 0x1f58(r3)
-/* 800AC580 000A94C0  4B FF FE D1 */ bl daAlink_c_NS_getMainBckData
+/* 800AC580 000A94C0  4B FF FE D1 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800AC584 000A94C4  A0 63 00 00 */ lhz r3, 0(r3)
 /* 800AC588 000A94C8  57 C0 04 3E */ clrlwi r0, r30, 0x10
 /* 800AC58C 000A94CC  7C 00 18 40 */ cmplw r0, r3

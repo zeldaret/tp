@@ -4,7 +4,7 @@
 /* 8000CE7C 00009DBC  C0 23 00 00 */ lfs f1, 0(r3)
 /* 8000CE80 00009DC0  C0 43 00 04 */ lfs f2, 4(r3)
 /* 8000CE84 00009DC4  C0 63 00 08 */ lfs f3, 8(r3)
-/* 8000CE88 00009DC8  4B FF FF B1 */ bl mDoMtx_stack_c_NS_scaleM
+/* 8000CE88 00009DC8  4B FF FF B1 */ bl scaleM__14mDoMtx_stack_cFfff
 /* 8000CE8C 00009DCC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000CE90 00009DD0  7C 08 03 A6 */ mtlr r0
 /* 8000CE94 00009DD4  38 21 00 10 */ addi r1, r1, 0x10

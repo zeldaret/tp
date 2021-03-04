@@ -30,7 +30,7 @@ lbl_800E78E4:
 /* 800E7900 000E4840  FC 01 00 00 */ fcmpu cr0, f1, f0
 /* 800E7904 000E4844  41 82 00 2C */ beq lbl_800E7930
 lbl_800E7908:
-/* 800E7908 000E4848  4B FD 89 C1 */ bl daAlink_c_NS_checkBossRoom
+/* 800E7908 000E4848  4B FD 89 C1 */ bl checkBossRoom__9daAlink_cFv
 /* 800E790C 000E484C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E7910 000E4850  40 82 00 1C */ bne lbl_800E792C
 /* 800E7914 000E4854  A8 1D 2F E2 */ lha r0, 0x2fe2(r29)

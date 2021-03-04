@@ -6,7 +6,7 @@
 /* 800D219C 000CF0DC  80 03 05 78 */ lwz r0, 0x578(r3)
 /* 800D21A0 000CF0E0  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800D21A4 000CF0E4  41 82 00 14 */ beq lbl_800D21B8
-/* 800D21A8 000CF0E8  48 04 3A 79 */ bl daAlink_c_NS_checkEventRun
+/* 800D21A8 000CF0E8  48 04 3A 79 */ bl checkEventRun__9daAlink_cCFv
 /* 800D21AC 000CF0EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800D21B0 000CF0F0  40 82 00 08 */ bne lbl_800D21B8
 /* 800D21B4 000CF0F4  3B E0 00 01 */ li r31, 1

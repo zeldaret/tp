@@ -14,7 +14,7 @@
 /* 8010F6CC 0010C60C  48 00 00 10 */ b lbl_8010F6DC
 lbl_8010F6D0:
 /* 8010F6D0 0010C610  38 80 00 00 */ li r4, 0
-/* 8010F6D4 0010C614  4B FF F3 F1 */ bl daAlink_c_NS_commonBottleDrink
+/* 8010F6D4 0010C614  4B FF F3 F1 */ bl commonBottleDrink__9daAlink_cFi
 /* 8010F6D8 0010C618  B0 7F 30 0E */ sth r3, 0x300e(r31)
 lbl_8010F6DC:
 /* 8010F6DC 0010C61C  38 60 00 01 */ li r3, 1

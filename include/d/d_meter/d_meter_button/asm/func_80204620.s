@@ -43,11 +43,11 @@ lbl_802046A0:
 /* 802046BC 002015FC  41 82 00 10 */ beq lbl_802046CC
 lbl_802046C0:
 /* 802046C0 00201600  7F C3 F3 78 */ mr r3, r30
-/* 802046C4 00201604  48 00 48 59 */ bl dMeterButton_c_NS_setAlphaButtonNunCAnimeMin
+/* 802046C4 00201604  48 00 48 59 */ bl setAlphaButtonNunCAnimeMin__14dMeterButton_cFv
 /* 802046C8 00201608  48 00 00 14 */ b lbl_802046DC
 lbl_802046CC:
 /* 802046CC 0020160C  7F C3 F3 78 */ mr r3, r30
-/* 802046D0 00201610  48 00 48 E5 */ bl dMeterButton_c_NS_setAlphaButtonNunCAnimeMax
+/* 802046D0 00201610  48 00 48 E5 */ bl setAlphaButtonNunCAnimeMax__14dMeterButton_cFv
 /* 802046D4 00201614  38 60 00 01 */ li r3, 1
 /* 802046D8 00201618  48 00 00 08 */ b lbl_802046E0
 lbl_802046DC:

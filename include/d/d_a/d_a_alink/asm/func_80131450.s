@@ -80,7 +80,7 @@ lbl_8013154C:
 /* 80131588 0012E4C8  FC 40 00 50 */ fneg f2, f0
 /* 8013158C 0012E4CC  C0 03 00 08 */ lfs f0, 8(r3)
 /* 80131590 0012E4D0  FC 60 00 50 */ fneg f3, f0
-/* 80131594 0012E4D4  4B ED B8 09 */ bl mDoMtx_stack_c_NS_transM
+/* 80131594 0012E4D4  4B ED B8 09 */ bl transM__14mDoMtx_stack_cFfff
 /* 80131598 0012E4D8  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8013159C 0012E4DC  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 801315A0 0012E4E0  7F C4 F3 78 */ mr r4, r30

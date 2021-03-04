@@ -8,7 +8,7 @@
 /* 800ED0F0 000EA030  7C BE 2B 78 */ mr r30, r5
 /* 800ED0F4 000EA034  3C 80 80 39 */ lis r4, lbl_8038D658@ha
 /* 800ED0F8 000EA038  3B E4 D6 58 */ addi r31, r4, lbl_8038D658@l
-/* 800ED0FC 000EA03C  4B FF FD 15 */ bl daAlink_c_NS_getReinHandType
+/* 800ED0FC 000EA03C  4B FF FD 15 */ bl getReinHandType__9daAlink_cCFv
 /* 800ED100 000EA040  2C 03 00 02 */ cmpwi r3, 2
 /* 800ED104 000EA044  40 82 00 48 */ bne lbl_800ED14C
 /* 800ED108 000EA048  7F 83 E3 78 */ mr r3, r28

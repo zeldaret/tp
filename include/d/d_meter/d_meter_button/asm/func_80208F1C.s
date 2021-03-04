@@ -29,7 +29,7 @@ lbl_80208F60:
 /* 80208F88 00205EC8  40 82 00 18 */ bne lbl_80208FA0
 /* 80208F8C 00205ECC  7F E3 FB 78 */ mr r3, r31
 /* 80208F90 00205ED0  38 80 00 14 */ li r4, 0x14
-/* 80208F94 00205ED4  48 00 19 B9 */ bl dMeterButton_c_NS_hide_button
+/* 80208F94 00205ED4  48 00 19 B9 */ bl hide_button__14dMeterButton_cFUc
 /* 80208F98 00205ED8  38 00 00 00 */ li r0, 0
 /* 80208F9C 00205EDC  98 1F 04 D4 */ stb r0, 0x4d4(r31)
 lbl_80208FA0:

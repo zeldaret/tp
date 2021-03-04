@@ -3,7 +3,7 @@
 /* 8011BA28 00118968  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8011BA2C 0011896C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011BA30 00118970  7C 7F 1B 78 */ mr r31, r3
-/* 8011BA34 00118974  4B FF C6 B9 */ bl daAlink_c_NS_getDemoLookActor
+/* 8011BA34 00118974  4B FF C6 B9 */ bl getDemoLookActor__9daAlink_cFv
 /* 8011BA38 00118978  7C 64 1B 79 */ or. r4, r3, r3
 /* 8011BA3C 0011897C  41 82 00 54 */ beq lbl_8011BA90
 /* 8011BA40 00118980  38 7F 34 E0 */ addi r3, r31, 0x34e0

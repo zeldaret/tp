@@ -77,7 +77,7 @@ void alloc__7JKRHeapFUli(void);
 void alloc__7JKRHeapFUliP7JKRHeap(void);
 void cLib_addCalc__FPfffff(void);
 void cLib_memSet__FPviUl(void);
-void dAttention_c_NS_LockonTruth(void);
+void LockonTruth__12dAttention_cFv(void);
 void dCam_getBody(void);
 void calcWipe__12dDlst_list_cFv(void);
 void draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c(void);

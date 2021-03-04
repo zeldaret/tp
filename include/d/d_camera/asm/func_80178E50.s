@@ -299,7 +299,7 @@ lbl_80179288:
 /* 801792C0 00176200  38 81 01 70 */ addi r4, r1, 0x170
 /* 801792C4 00176204  38 BA 03 FC */ addi r5, r26, 0x3fc
 /* 801792C8 00176208  38 C0 00 07 */ li r6, 7
-/* 801792CC 0017620C  4B FE C8 25 */ bl dCamera_c_NS_lineBGCheck_X2_
+/* 801792CC 0017620C  4B FE C8 25 */ bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl_X2_
 /* 801792D0 00176210  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801792D4 00176214  40 82 00 10 */ bne lbl_801792E4
 /* 801792D8 00176218  38 00 00 01 */ li r0, 1
@@ -352,7 +352,7 @@ lbl_80179370:
 /* 80179380 001762C0  7F 44 D3 78 */ mr r4, r26
 /* 80179384 001762C4  80 BA 01 80 */ lwz r5, 0x180(r26)
 /* 80179388 001762C8  38 C1 01 7C */ addi r6, r1, 0x17c
-/* 8017938C 001762CC  4B FE B9 E1 */ bl dCamera_c_NS_relationalPos
+/* 8017938C 001762CC  4B FE B9 E1 */ bl relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz
 /* 80179390 001762D0  C0 01 00 98 */ lfs f0, 0x98(r1)
 /* 80179394 001762D4  D0 01 01 34 */ stfs f0, 0x134(r1)
 /* 80179398 001762D8  C0 01 00 9C */ lfs f0, 0x9c(r1)

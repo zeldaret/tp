@@ -6,20 +6,20 @@
 /* 800F6E58 000F3D98  38 80 00 12 */ li r4, 0x12
 /* 800F6E5C 000F3D9C  4B FB C3 F5 */ bl setDoStatus__9daAlink_cFUc
 /* 800F6E60 000F3DA0  7F E3 FB 78 */ mr r3, r31
-/* 800F6E64 000F3DA4  4B FF D9 75 */ bl daAlink_c_NS_canoeCommon
+/* 800F6E64 000F3DA4  4B FF D9 75 */ bl canoeCommon__9daAlink_cFv
 /* 800F6E68 000F3DA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6E6C 000F3DAC  41 82 00 0C */ beq lbl_800F6E78
 /* 800F6E70 000F3DB0  38 60 00 01 */ li r3, 1
 /* 800F6E74 000F3DB4  48 00 00 28 */ b lbl_800F6E9C
 lbl_800F6E78:
 /* 800F6E78 000F3DB8  7F E3 FB 78 */ mr r3, r31
-/* 800F6E7C 000F3DBC  4B FE 7F A1 */ bl daAlink_c_NS_cancelBowMove
+/* 800F6E7C 000F3DBC  4B FE 7F A1 */ bl cancelBowMove__9daAlink_cFv
 /* 800F6E80 000F3DC0  7F E3 FB 78 */ mr r3, r31
-/* 800F6E84 000F3DC4  4B FF DA A1 */ bl daAlink_c_NS_checkNextActionCanoe
+/* 800F6E84 000F3DC4  4B FF DA A1 */ bl checkNextAction__9daAlink_cFiCanoe
 /* 800F6E88 000F3DC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6E8C 000F3DCC  40 82 00 0C */ bne lbl_800F6E98
 /* 800F6E90 000F3DD0  7F E3 FB 78 */ mr r3, r31
-/* 800F6E94 000F3DD4  4B FF 81 BD */ bl daAlink_c_NS_setBodyAngleRideReadyAnime
+/* 800F6E94 000F3DD4  4B FF 81 BD */ bl setBodyAngleRideReadyAnime__9daAlink_cFv
 lbl_800F6E98:
 /* 800F6E98 000F3DD8  38 60 00 01 */ li r3, 1
 lbl_800F6E9C:

@@ -445,7 +445,7 @@ lbl_80202878:
 /* 802028C4 001FF804  39 01 00 4C */ addi r8, r1, 0x4c
 /* 802028C8 001FF808  C0 9F 0E 40 */ lfs f4, 0xe40(r31)
 /* 802028CC 001FF80C  39 20 00 03 */ li r9, 3
-/* 802028D0 001FF810  48 01 18 0D */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 802028D0 001FF810  48 01 18 0D */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 802028D4 001FF814  48 00 01 7C */ b lbl_80202A50
 lbl_802028D8:
 /* 802028D8 001FF818  80 1F 0E 38 */ lwz r0, 0xe38(r31)
@@ -468,7 +468,7 @@ lbl_802028D8:
 /* 8020291C 001FF85C  39 01 00 3C */ addi r8, r1, 0x3c
 /* 80202920 001FF860  C0 9F 0E 40 */ lfs f4, 0xe40(r31)
 /* 80202924 001FF864  39 20 00 03 */ li r9, 3
-/* 80202928 001FF868  48 01 17 B5 */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 80202928 001FF868  48 01 17 B5 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 8020292C 001FF86C  48 00 01 24 */ b lbl_80202A50
 lbl_80202930:
 /* 80202930 001FF870  56 E0 06 3F */ clrlwi. r0, r23, 0x18
@@ -493,12 +493,12 @@ lbl_80202930:
 /* 8020297C 001FF8BC  39 01 00 2C */ addi r8, r1, 0x2c
 /* 80202980 001FF8C0  C0 9F 0E 58 */ lfs f4, 0xe58(r31)
 /* 80202984 001FF8C4  39 20 00 00 */ li r9, 0
-/* 80202988 001FF8C8  48 01 17 55 */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 80202988 001FF8C8  48 01 17 55 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 8020298C 001FF8CC  48 00 00 C4 */ b lbl_80202A50
 lbl_80202990:
 /* 80202990 001FF8D0  7F C3 F3 78 */ mr r3, r30
 /* 80202994 001FF8D4  7F 64 DB 78 */ mr r4, r27
-/* 80202998 001FF8D8  48 00 43 D9 */ bl dMeterButton_c_NS_isFastSet
+/* 80202998 001FF8D8  48 00 43 D9 */ bl isFastSet__14dMeterButton_cFi
 /* 8020299C 001FF8DC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 802029A0 001FF8E0  41 82 00 5C */ beq lbl_802029FC
 /* 802029A4 001FF8E4  80 1F 0E 20 */ lwz r0, 0xe20(r31)
@@ -521,7 +521,7 @@ lbl_80202990:
 /* 802029E8 001FF928  39 01 00 1C */ addi r8, r1, 0x1c
 /* 802029EC 001FF92C  C0 9F 0E 28 */ lfs f4, 0xe28(r31)
 /* 802029F0 001FF930  39 20 00 00 */ li r9, 0
-/* 802029F4 001FF934  48 01 16 E9 */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 802029F4 001FF934  48 01 16 E9 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 802029F8 001FF938  48 00 00 58 */ b lbl_80202A50
 lbl_802029FC:
 /* 802029FC 001FF93C  80 1F 0E 08 */ lwz r0, 0xe08(r31)
@@ -544,7 +544,7 @@ lbl_802029FC:
 /* 80202A40 001FF980  39 01 00 0C */ addi r8, r1, 0xc
 /* 80202A44 001FF984  C0 9F 0E 10 */ lfs f4, 0xe10(r31)
 /* 80202A48 001FF988  39 20 00 00 */ li r9, 0
-/* 80202A4C 001FF98C  48 01 16 91 */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 80202A4C 001FF98C  48 01 16 91 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 lbl_80202A50:
 /* 80202A50 001FF990  3B 7B 00 01 */ addi r27, r27, 1
 /* 80202A54 001FF994  2C 1B 00 02 */ cmpwi r27, 2

@@ -9,7 +9,7 @@
 /* 80164C30 00161B70  7C 03 03 78 */ mr r3, r0
 /* 80164C34 00161B74  48 00 00 1C */ b lbl_80164C50
 lbl_80164C38:
-/* 80164C38 00161B78  4B FF FF 2D */ bl dCamera_c_NS_GetCameraTypeFromCameraName
+/* 80164C38 00161B78  4B FF FF 2D */ bl GetCameraTypeFromCameraName__9dCamera_cFPCc
 /* 80164C3C 00161B7C  3C 80 00 01 */ lis r4, 0x0000FFFF@ha
 /* 80164C40 00161B80  38 04 FF FF */ addi r0, r4, 0x0000FFFF@l
 /* 80164C44 00161B84  7C 03 00 00 */ cmpw r3, r0

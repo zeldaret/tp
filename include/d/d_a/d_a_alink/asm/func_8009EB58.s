@@ -25,10 +25,10 @@ lbl_8009EBB0:
 /* 8009EBB0 0009BAF0  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8009EBB4 0009BAF4  40 82 00 0C */	bne lbl_8009EBC0
 /* 8009EBB8 0009BAF8  7F C3 F3 78 */	mr r3, r30
-/* 8009EBBC 0009BAFC  48 00 3E 21 */	bl daAlink_c_NS_setFootMatrix
+/* 8009EBBC 0009BAFC  48 00 3E 21 */	bl setFootMatrix__9daAlink_cFv
 lbl_8009EBC0:
 /* 8009EBC0 0009BB00  7F C3 F3 78 */	mr r3, r30
-/* 8009EBC4 0009BB04  48 00 3B 4D */	bl daAlink_c_NS_setArmMatrix
+/* 8009EBC4 0009BB04  48 00 3B 4D */	bl setArmMatrix__9daAlink_cFv
 lbl_8009EBC8:
 /* 8009EBC8 0009BB08  88 1E 2F B6 */	lbz r0, 0x2fb6(r30)
 /* 8009EBCC 0009BB0C  28 00 00 00 */	cmplwi r0, 0

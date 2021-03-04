@@ -18,7 +18,7 @@
 /* 80118A3C 0011597C  A8 FF 00 06 */ lha r7, 6(r31)
 /* 80118A40 00115980  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 80118A44 00115984  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80118A48 00115988  4B F9 39 4D */ bl daAlink_c_NS_setFrameCtrl
+/* 80118A48 00115988  4B F9 39 4D */ bl setFrameCtrl__9daAlink_cFP16daPy_frameCtrl_cUcssff
 /* 80118A4C 0011598C  93 FD 1F 2C */ stw r31, 0x1f2c(r29)
 /* 80118A50 00115990  93 FD 1F 44 */ stw r31, 0x1f44(r29)
 /* 80118A54 00115994  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
@@ -31,7 +31,7 @@
 /* 80118A70 001159B0  80 7D 20 60 */ lwz r3, 0x2060(r29)
 /* 80118A74 001159B4  38 80 00 00 */ li r4, 0
 /* 80118A78 001159B8  A0 BD 30 C6 */ lhz r5, 0x30c6(r29)
-/* 80118A7C 001159BC  4B EF 6D CD */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 80118A7C 001159BC  4B EF 6D CD */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_80118A80:
 /* 80118A80 001159C0  38 00 00 00 */ li r0, 0
 /* 80118A84 001159C4  98 1D 2F 8C */ stb r0, 0x2f8c(r29)
@@ -46,7 +46,7 @@ lbl_80118A80:
 /* 80118AA8 001159E8  D0 1E 00 38 */ stfs f0, 0x38(r30)
 /* 80118AAC 001159EC  7F A3 EB 78 */ mr r3, r29
 /* 80118AB0 001159F0  38 80 00 00 */ li r4, 0
-/* 80118AB4 001159F4  4B FA 67 51 */ bl daAlink_c_NS_setBasAnime
+/* 80118AB4 001159F4  4B FA 67 51 */ bl setBasAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDER
 lbl_80118AB8:
 /* 80118AB8 001159F8  39 61 00 20 */ addi r11, r1, 0x20
 /* 80118ABC 001159FC  48 24 97 6D */ bl _restgpr_29

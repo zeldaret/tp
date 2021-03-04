@@ -15,7 +15,7 @@ lbl_8009E7E8:
 /* 8009E7E8 0009B728  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8009E7EC 0009B72C  41 82 00 14 */	beq lbl_8009E800
 /* 8009E7F0 0009B730  7F E3 FB 78 */	mr r3, r31
-/* 8009E7F4 0009B734  48 01 C7 8D */	bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 8009E7F4 0009B734  48 01 C7 8D */	bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 8009E7F8 0009B738  2C 03 00 00 */	cmpwi r3, 0
 /* 8009E7FC 0009B73C  40 82 00 30 */	bne lbl_8009E82C
 lbl_8009E800:
@@ -27,7 +27,7 @@ lbl_8009E800:
 /* 8009E814 0009B754  28 03 00 00 */	cmplwi r3, 0
 /* 8009E818 0009B758  41 82 00 F0 */	beq lbl_8009E908
 /* 8009E81C 0009B75C  7F E3 FB 78 */	mr r3, r31
-/* 8009E820 0009B760  48 01 AA 35 */	bl daAlink_c_NS_checkNoUpperAnime
+/* 8009E820 0009B760  48 01 AA 35 */	bl checkNoUpperAnime__9daAlink_cCFv
 /* 8009E824 0009B764  2C 03 00 00 */	cmpwi r3, 0
 /* 8009E828 0009B768  40 82 00 E0 */	bne lbl_8009E908
 lbl_8009E82C:

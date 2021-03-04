@@ -4,7 +4,7 @@
 /* 801A5BE0 001A2B20  4B FF 8A B5 */ bl plight_init
 /* 801A5BE4 001A2B24  3C 60 80 43 */ lis r3, lbl_8042DD70@ha
 /* 801A5BE8 001A2B28  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
-/* 801A5BEC 001A2B2C  48 12 0D AD */ bl Z2EnvSeMgr_NS_resetScene
+/* 801A5BEC 001A2B2C  48 12 0D AD */ bl resetScene__10Z2EnvSeMgrFv
 /* 801A5BF0 001A2B30  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A5BF4 001A2B34  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A5BF8 001A2B38  80 63 0F 38 */ lwz r3, 0xf38(r3)

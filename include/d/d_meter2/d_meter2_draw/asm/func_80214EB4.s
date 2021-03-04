@@ -31,7 +31,7 @@
 /* 80214F2C 00211E6C  48 03 F5 2D */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80214F30 00211E70  7F 83 E3 78 */ mr r3, r28
 /* 80214F34 00211E74  38 80 00 01 */ li r4, 1
-/* 80214F38 00211E78  48 00 04 49 */ bl dMeter2Draw_c_NS_setAlphaMagicChange
+/* 80214F38 00211E78  48 00 04 49 */ bl setAlphaMagicChange__13dMeter2Draw_cFb
 /* 80214F3C 00211E7C  48 00 02 7C */ b lbl_802151B8
 lbl_80214F40:
 /* 80214F40 00211E80  28 00 00 01 */ cmplwi r0, 1
@@ -59,7 +59,7 @@ lbl_80214F40:
 /* 80214F98 00211ED8  48 03 F4 C1 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80214F9C 00211EDC  7F 83 E3 78 */ mr r3, r28
 /* 80214FA0 00211EE0  38 80 00 01 */ li r4, 1
-/* 80214FA4 00211EE4  48 00 06 15 */ bl dMeter2Draw_c_NS_setAlphaKanteraChange
+/* 80214FA4 00211EE4  48 00 06 15 */ bl setAlphaKanteraChange__13dMeter2Draw_cFb
 /* 80214FA8 00211EE8  48 00 02 10 */ b lbl_802151B8
 lbl_80214FAC:
 /* 80214FAC 00211EEC  28 00 00 02 */ cmplwi r0, 2
@@ -106,7 +106,7 @@ lbl_80214FAC:
 /* 80215050 00211F90  48 03 F4 09 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80215054 00211F94  7F 83 E3 78 */ mr r3, r28
 /* 80215058 00211F98  80 9C 05 3C */ lwz r4, 0x53c(r28)
-/* 8021505C 00211F9C  4B FF EE 39 */ bl dMeter2Draw_c_NS_playOxygenBpkAnimation
+/* 8021505C 00211F9C  4B FF EE 39 */ bl playOxygenBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor
 /* 80215060 00211FA0  C0 3E 05 FC */ lfs f1, 0x5fc(r30)
 /* 80215064 00211FA4  C0 02 AE 80 */ lfs f0, lbl_80454880-_SDA2_BASE_(r2)
 /* 80215068 00211FA8  FC 01 00 40 */ fcmpo cr0, f1, f0
@@ -152,7 +152,7 @@ lbl_802150A8:
 /* 80215104 00212044  48 03 F3 55 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80215108 00212048  7F 83 E3 78 */ mr r3, r28
 /* 8021510C 0021204C  80 9C 05 40 */ lwz r4, 0x540(r28)
-/* 80215110 00212050  4B FF ED 85 */ bl dMeter2Draw_c_NS_playOxygenBpkAnimation
+/* 80215110 00212050  4B FF ED 85 */ bl playOxygenBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor
 /* 80215114 00212054  C0 3E 05 FC */ lfs f1, 0x5fc(r30)
 /* 80215118 00212058  C0 02 AE 80 */ lfs f0, lbl_80454880-_SDA2_BASE_(r2)
 /* 8021511C 0021205C  FC 01 00 40 */ fcmpo cr0, f1, f0
@@ -195,7 +195,7 @@ lbl_8021515C:
 lbl_802151AC:
 /* 802151AC 002120EC  7F 83 E3 78 */ mr r3, r28
 /* 802151B0 002120F0  38 80 00 01 */ li r4, 1
-/* 802151B4 002120F4  48 00 07 3D */ bl dMeter2Draw_c_NS_setAlphaOxygenChange
+/* 802151B4 002120F4  48 00 07 3D */ bl setAlphaOxygenChange__13dMeter2Draw_cFb
 lbl_802151B8:
 /* 802151B8 002120F8  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 802151BC 002120FC  80 63 00 04 */ lwz r3, 4(r3)

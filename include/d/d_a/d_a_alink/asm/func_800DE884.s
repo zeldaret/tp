@@ -6,7 +6,7 @@
 /* 800DE898 000DB7D8  7C 7D 1B 78 */ mr r29, r3
 /* 800DE89C 000DB7DC  7C 9E 23 78 */ mr r30, r4
 /* 800DE8A0 000DB7E0  7C BF 2B 78 */ mr r31, r5
-/* 800DE8A4 000DB7E4  48 00 01 45 */ bl daAlink_c_NS_checkBowAnime
+/* 800DE8A4 000DB7E4  48 00 01 45 */ bl checkBowAnime__9daAlink_cCFv
 /* 800DE8A8 000DB7E8  2C 03 00 00 */ cmpwi r3, 0
 /* 800DE8AC 000DB7EC  41 82 00 10 */ beq lbl_800DE8BC
 /* 800DE8B0 000DB7F0  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
@@ -45,9 +45,9 @@ lbl_800DE920:
 /* 800DE920 000DB860  A8 1D 05 9E */ lha r0, 0x59e(r29)
 /* 800DE924 000DB864  7F 9C 02 14 */ add r28, r28, r0
 /* 800DE928 000DB868  38 7D 38 34 */ addi r3, r29, 0x3834
-/* 800DE92C 000DB86C  4B F2 E4 39 */ bl mDoMtx_stack_c_NS_transS
+/* 800DE92C 000DB86C  4B F2 E4 39 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800DE930 000DB870  7F A3 EB 78 */ mr r3, r29
-/* 800DE934 000DB874  48 00 3A C9 */ bl daAlink_c_NS_concatMagneBootMtx
+/* 800DE934 000DB874  48 00 3A C9 */ bl concatMagneBootMtx__9daAlink_cFv
 /* 800DE938 000DB878  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800DE93C 000DB87C  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800DE940 000DB880  A8 9D 05 9C */ lha r4, 0x59c(r29)

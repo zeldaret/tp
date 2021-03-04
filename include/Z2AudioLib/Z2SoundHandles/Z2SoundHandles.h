@@ -42,8 +42,8 @@ void initHandlesPool__14Z2SoundHandlesFUc(void);
 void stopAllSounds__14Z2SoundHandlesFUl(void);
 
 void Z2SoundHandles_NS_dtor(void);
-void Z2SoundHandles_NS_getFreeHandle(void);
-void Z2SoundHandles_NS_getLowPrioSound(void);
+void getFreeHandle__14Z2SoundHandlesFv(void);
+void getLowPrioSound__14Z2SoundHandlesF10JAISoundID(void);
 void Z2SoundHandles_NS_setPos(void);
 }
 

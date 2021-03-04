@@ -6,13 +6,13 @@
 /* 800E6D80 000E3CC0  7C 7E 1B 78 */ mr r30, r3
 /* 800E6D84 000E3CC4  7C 9F 23 78 */ mr r31, r4
 /* 800E6D88 000E3CC8  38 80 00 72 */ li r4, 0x72
-/* 800E6D8C 000E3CCC  4B FD B1 E1 */ bl daAlink_c_NS_commonProcInit
+/* 800E6D8C 000E3CCC  4B FD B1 E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E6D90 000E3CD0  7F C3 F3 78 */ mr r3, r30
 /* 800E6D94 000E3CD4  38 80 00 B4 */ li r4, 0xb4
 /* 800E6D98 000E3CD8  3C A0 80 39 */ lis r5, lbl_8038EC48@ha
 /* 800E6D9C 000E3CDC  38 A5 EC 48 */ addi r5, r5, lbl_8038EC48@l
 /* 800E6DA0 000E3CE0  38 A5 00 64 */ addi r5, r5, 0x64
-/* 800E6DA4 000E3CE4  4B FC 63 51 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E6DA4 000E3CE4  4B FC 63 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800E6DA8 000E3CE8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E6DAC 000E3CEC  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 800E6DB0 000E3CF0  93 FE 31 98 */ stw r31, 0x3198(r30)

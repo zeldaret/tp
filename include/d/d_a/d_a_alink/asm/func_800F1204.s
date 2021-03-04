@@ -7,7 +7,7 @@
 /* 800F121C 000EE15C  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 800F1220 000EE160  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800F1224 000EE164  83 E4 5D B8 */ lwz r31, 0x5db8(r4)
-/* 800F1228 000EE168  4B FF C7 FD */ bl daAlink_c_NS_setSyncRidePos
+/* 800F1228 000EE168  4B FF C7 FD */ bl setSyncRidePos__9daAlink_cFv
 /* 800F122C 000EE16C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F1230 000EE170  40 82 00 0C */ bne lbl_800F123C
 /* 800F1234 000EE174  38 60 00 01 */ li r3, 1
@@ -25,11 +25,11 @@ lbl_800F125C:
 /* 800F125C 000EE19C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F1260 000EE1A0  40 82 00 10 */ bne lbl_800F1270
 /* 800F1264 000EE1A4  7F C3 F3 78 */ mr r3, r30
-/* 800F1268 000EE1A8  4B FF F7 19 */ bl daAlink_c_NS_procHorseWaitInit
+/* 800F1268 000EE1A8  4B FF F7 19 */ bl procHorseWaitInit__9daAlink_cFv
 /* 800F126C 000EE1AC  48 00 00 0C */ b lbl_800F1278
 lbl_800F1270:
 /* 800F1270 000EE1B0  7F C3 F3 78 */ mr r3, r30
-/* 800F1274 000EE1B4  4B FF C8 05 */ bl daAlink_c_NS_setHorseTurnAnime
+/* 800F1274 000EE1B4  4B FF C8 05 */ bl setHorseTurnAnime__9daAlink_cFv
 lbl_800F1278:
 /* 800F1278 000EE1B8  38 60 00 01 */ li r3, 1
 lbl_800F127C:

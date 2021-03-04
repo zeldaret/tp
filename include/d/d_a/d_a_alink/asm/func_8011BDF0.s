@@ -16,7 +16,7 @@
 /* 8011BE2C 00118D6C  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 8011BE30 00118D70  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 8011BE34 00118D74  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 8011BE38 00118D78  4B F9 1F DD */ bl daAlink_c_NS_setBlendMoveAnime
+/* 8011BE38 00118D78  4B F9 1F DD */ bl setBlendMoveAnime__9daAlink_cFf
 lbl_8011BE3C:
 /* 8011BE3C 00118D7C  38 60 00 01 */ li r3, 1
 /* 8011BE40 00118D80  83 E1 00 0C */ lwz r31, 0xc(r1)

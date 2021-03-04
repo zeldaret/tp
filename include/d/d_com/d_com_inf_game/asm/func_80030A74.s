@@ -61,18 +61,18 @@ lbl_80030B34:
 /* 80030B58 0002DA98  90 1E 01 E0 */ stw r0, 0x1e0(r30)
 lbl_80030B5C:
 /* 80030B5C 0002DA9C  38 7E 01 88 */ addi r3, r30, 0x188
-/*.global dCcMassS_Obj_NS_dtor*/
-/* 80030B60 0002DAA0  3C 80 80 03 */ lis r4, dCcMassS_Obj_NS_dtor@ha
-/*.global dCcMassS_Obj_NS_dtor*/
-/* 80030B64 0002DAA4  38 84 00 F4 */ addi r4, r4, dCcMassS_Obj_NS_dtor@l
+/*.global __dt__12dCcMassS_ObjFv*/
+/* 80030B60 0002DAA0  3C 80 80 03 */ lis r4, __dt__12dCcMassS_ObjFv@ha
+/*.global __dt__12dCcMassS_ObjFv*/
+/* 80030B64 0002DAA4  38 84 00 F4 */ addi r4, r4, __dt__12dCcMassS_ObjFv@l
 /* 80030B68 0002DAA8  38 A0 00 20 */ li r5, 0x20
 /* 80030B6C 0002DAAC  38 C0 00 02 */ li r6, 2
 /* 80030B70 0002DAB0  48 33 11 79 */ bl func_80361CE8
 /* 80030B74 0002DAB4  38 7E 00 44 */ addi r3, r30, 0x44
-/*.global dCcMassS_Obj_NS_dtor*/
-/* 80030B78 0002DAB8  3C 80 80 03 */ lis r4, dCcMassS_Obj_NS_dtor@ha
-/*.global dCcMassS_Obj_NS_dtor*/
-/* 80030B7C 0002DABC  38 84 00 F4 */ addi r4, r4, dCcMassS_Obj_NS_dtor@l
+/*.global __dt__12dCcMassS_ObjFv*/
+/* 80030B78 0002DAB8  3C 80 80 03 */ lis r4, __dt__12dCcMassS_ObjFv@ha
+/*.global __dt__12dCcMassS_ObjFv*/
+/* 80030B7C 0002DABC  38 84 00 F4 */ addi r4, r4, __dt__12dCcMassS_ObjFv@l
 /* 80030B80 0002DAC0  38 A0 00 20 */ li r5, 0x20
 /* 80030B84 0002DAC4  38 C0 00 0A */ li r6, 0xa
 /* 80030B88 0002DAC8  48 33 11 61 */ bl func_80361CE8

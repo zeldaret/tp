@@ -7,7 +7,7 @@
 /* 80217704 00214644  7C 9C 23 78 */ mr r28, r4
 /* 80217708 00214648  38 A0 00 01 */ li r5, 1
 /* 8021770C 0021464C  38 DF 07 64 */ addi r6, r31, 0x764
-/* 80217710 00214650  48 00 2B E5 */ bl dMeter2Draw_c_NS_getActionString
+/* 80217710 00214650  48 00 2B E5 */ bl getActionString__13dMeter2Draw_cFUcUcPUc
 /* 80217714 00214654  7C 7D 1B 78 */ mr r29, r3
 /* 80217718 00214658  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021771C 0021465C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

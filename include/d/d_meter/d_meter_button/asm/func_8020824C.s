@@ -32,7 +32,7 @@ lbl_802082AC:
 /* 802082C4 00205204  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 802082C8 00205208  80 9F 00 48 */ lwz r4, 0x48(r31)
 /* 802082CC 0020520C  38 A0 00 05 */ li r5, 5
-/* 802082D0 00205210  48 01 27 D5 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 802082D0 00205210  48 01 27 D5 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_802082D4:
 /* 802082D4 00205214  80 7F 00 48 */ lwz r3, 0x48(r31)
 /* 802082D8 00205218  48 04 D5 51 */ bl getAlphaRate__13CPaneMgrAlphaFv

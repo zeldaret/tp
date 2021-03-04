@@ -290,9 +290,9 @@ setBaseMtx__8daItem_cFv_0:
 /* 8015B19C 001580DC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015B1A0 001580E0  7C 7F 1B 78 */	mr r31, r3
 /* 8015B1A4 001580E4  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 8015B1A8 001580E8  4B EB 1B BD */	bl mDoMtx_stack_c_NS_transS
+/* 8015B1A8 001580E8  4B EB 1B BD */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8015B1AC 001580EC  38 7F 04 E4 */	addi r3, r31, 0x4e4
-/* 8015B1B0 001580F0  4B EB 1D 95 */	bl mDoMtx_stack_c_NS_ZXYrotM
+/* 8015B1B0 001580F0  4B EB 1D 95 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 8015B1B4 001580F4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015B1B8 001580F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015B1BC 001580FC  7C 08 03 A6 */	mtlr r0
@@ -318,17 +318,17 @@ setBaseMtx__8daItem_cFv_1:
 /* 8015B200 00158140  C0 1F 04 F0 */	lfs f0, 0x4f0(r31)
 /* 8015B204 00158144  EF E1 00 32 */	fmuls f31, f1, f0
 /* 8015B208 00158148  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 8015B20C 0015814C  4B EB 1B 59 */	bl mDoMtx_stack_c_NS_transS
+/* 8015B20C 0015814C  4B EB 1B 59 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8015B210 00158150  C0 22 9B 50 */	lfs f1, lbl_80453550-_SDA2_BASE_(r2)
 /* 8015B214 00158154  FC 40 F8 90 */	fmr f2, f31
 /* 8015B218 00158158  FC 60 08 90 */	fmr f3, f1
-/* 8015B21C 0015815C  4B EB 1B 81 */	bl mDoMtx_stack_c_NS_transM
+/* 8015B21C 0015815C  4B EB 1B 81 */	bl transM__14mDoMtx_stack_cFfff
 /* 8015B220 00158160  38 7F 04 E4 */	addi r3, r31, 0x4e4
-/* 8015B224 00158164  4B EB 1D 21 */	bl mDoMtx_stack_c_NS_ZXYrotM
+/* 8015B224 00158164  4B EB 1D 21 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 8015B228 00158168  C0 22 9B 50 */	lfs f1, lbl_80453550-_SDA2_BASE_(r2)
 /* 8015B22C 0015816C  FC 40 F8 50 */	fneg f2, f31
 /* 8015B230 00158170  FC 60 08 90 */	fmr f3, f1
-/* 8015B234 00158174  4B EB 1B 69 */	bl mDoMtx_stack_c_NS_transM
+/* 8015B234 00158174  4B EB 1B 69 */	bl transM__14mDoMtx_stack_cFfff
 /* 8015B238 00158178  E3 E1 00 18 */	psq_l f31, 24(r1), 0, qr0
 /* 8015B23C 0015817C  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 8015B240 00158180  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -975,7 +975,7 @@ _daItem_execute__8daItem_cFv:
 /* 8015BB74 00158AB4  38 84 00 09 */	addi r4, r4, 0x00040009@l
 /* 8015BB78 00158AB8  38 A0 00 00 */	li r5, 0
 /* 8015BB7C 00158ABC  38 C0 00 00 */	li r6, 0
-/* 8015BB80 00158AC0  48 16 29 25 */	bl Z2SoundObjBase_NS_startCollisionSE
+/* 8015BB80 00158AC0  48 16 29 25 */	bl startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
 lbl_8015BB84:
 /* 8015BB84 00158AC4  88 1F 09 4A */	lbz r0, 0x94a(r31)
 /* 8015BB88 00158AC8  1C 80 00 0C */	mulli r4, r0, 0xc
@@ -1033,9 +1033,9 @@ lbl_8015BC04:
 /* 8015BC50 00158B90  D0 01 00 0C */	stfs f0, 0xc(r1)
 lbl_8015BC54:
 /* 8015BC54 00158B94  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 8015BC58 00158B98  4B EB 11 0D */	bl mDoMtx_stack_c_NS_transS
+/* 8015BC58 00158B98  4B EB 11 0D */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 8015BC5C 00158B9C  38 7F 04 E4 */	addi r3, r31, 0x4e4
-/* 8015BC60 00158BA0  4B EB 12 E5 */	bl mDoMtx_stack_c_NS_ZXYrotM
+/* 8015BC60 00158BA0  4B EB 12 E5 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 8015BC64 00158BA4  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8015BC68 00158BA8  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8015BC6C 00158BAC  7C 64 1B 78 */	mr r4, r3
@@ -2321,13 +2321,13 @@ lbl_8015CE5C:
 /* 8015CEB0 00159DF0  38 80 00 00 */	li r4, 0
 /* 8015CEB4 00159DF4  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 8015CEB8 00159DF8  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 8015CEBC 00159DFC  48 04 69 09 */	bl dScnKy_env_light_c_NS_settingTevStruct
+/* 8015CEBC 00159DFC  48 04 69 09 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 /* 8015CEC0 00159E00  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 8015CEC4 00159E04  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 8015CEC8 00159E08  80 9F 05 74 */	lwz r4, 0x574(r31)
 /* 8015CECC 00159E0C  80 84 00 04 */	lwz r4, 4(r4)
 /* 8015CED0 00159E10  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 8015CED4 00159E14  48 04 7E CD */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 8015CED4 00159E14  48 04 7E CD */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
 /* 8015CED8 00159E18  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015CEDC 00159E1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015CEE0 00159E20  7C 08 03 A6 */	mtlr r0

@@ -12,7 +12,7 @@
 /* 8020D4C8 0020A408  4E 80 04 21 */ bctrl
 /* 8020D4CC 0020A40C  7C 7F 1B 79 */ or. r31, r3, r3
 /* 8020D4D0 0020A410  41 82 00 20 */ beq lbl_8020D4F0
-/* 8020D4D4 0020A414  48 00 00 55 */ bl dMeterMap_c_NS_getMapDispSizeTypeNo
+/* 8020D4D4 0020A414  48 00 00 55 */ bl getMapDispSizeTypeNo__11dMeterMap_cFv
 /* 8020D4D8 0020A418  2C 03 00 00 */ cmpwi r3, 0
 /* 8020D4DC 0020A41C  41 82 00 14 */ beq lbl_8020D4F0
 /* 8020D4E0 0020A420  A0 1F 00 0A */ lhz r0, 0xa(r31)

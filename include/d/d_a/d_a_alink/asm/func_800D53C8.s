@@ -19,10 +19,10 @@ lbl_800D5404:
 lbl_800D540C:
 /* 800D540C 000D234C  7F E3 FB 78 */ mr r3, r31
 /* 800D5410 000D2350  38 80 00 2B */ li r4, 0x2b
-/* 800D5414 000D2354  4B FE CB 59 */ bl daAlink_c_NS_commonProcInit
+/* 800D5414 000D2354  4B FE CB 59 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D5418 000D2358  7F E3 FB 78 */ mr r3, r31
 /* 800D541C 000D235C  38 80 00 01 */ li r4, 1
-/* 800D5420 000D2360  4B FF C0 11 */ bl daAlink_c_NS_resetCombo
+/* 800D5420 000D2360  4B FF C0 11 */ bl resetCombo__9daAlink_cFi
 /* 800D5424 000D2364  38 00 00 00 */ li r0, 0
 /* 800D5428 000D2368  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800D542C 000D236C  80 9F 27 EC */ lwz r4, 0x27ec(r31)
@@ -80,7 +80,7 @@ lbl_800D54EC:
 /* 800D54F0 000D2430  38 80 00 78 */ li r4, 0x78
 /* 800D54F4 000D2434  3C A0 80 39 */ lis r5, lbl_8038DD44@ha
 /* 800D54F8 000D2438  38 A5 DD 44 */ addi r5, r5, lbl_8038DD44@l
-/* 800D54FC 000D243C  4B FD 7B F9 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D54FC 000D243C  4B FD 7B F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800D5500 000D2440  C0 21 00 28 */ lfs f1, 0x28(r1)
 /* 800D5504 000D2444  C0 02 93 00 */ lfs f0, lbl_80452D00-_SDA2_BASE_(r2)
 /* 800D5508 000D2448  EC 01 00 2A */ fadds f0, f1, f0
@@ -226,7 +226,7 @@ lbl_800D5704:
 /* 800D5704 000D2644  7F E3 FB 78 */ mr r3, r31
 /* 800D5708 000D2648  38 80 00 01 */ li r4, 1
 /* 800D570C 000D264C  38 A0 00 01 */ li r5, 1
-/* 800D5710 000D2650  4B FE 5D A9 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800D5710 000D2650  4B FE 5D A9 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800D5714 000D2654  2C 03 00 00 */ cmpwi r3, 0
 /* 800D5718 000D2658  41 82 00 14 */ beq lbl_800D572C
 /* 800D571C 000D265C  C0 3F 04 FC */ lfs f1, 0x4fc(r31)
@@ -271,10 +271,10 @@ lbl_800D57A8:
 /* 800D57A8 000D26E8  7F E3 FB 78 */ mr r3, r31
 /* 800D57AC 000D26EC  3C 80 00 01 */ lis r4, 0x00010094@ha
 /* 800D57B0 000D26F0  38 84 00 94 */ addi r4, r4, 0x00010094@l
-/* 800D57B4 000D26F4  4B FF CA D1 */ bl daAlink_c_NS_setSwordVoiceSe
+/* 800D57B4 000D26F4  4B FF CA D1 */ bl setSwordVoiceSe__9daAlink_cFUl
 /* 800D57B8 000D26F8  7F E3 FB 78 */ mr r3, r31
 /* 800D57BC 000D26FC  38 80 00 27 */ li r4, 0x27
-/* 800D57C0 000D2700  4B FF BD 6D */ bl daAlink_c_NS_setCutType
+/* 800D57C0 000D2700  4B FF BD 6D */ bl setCutType__9daAlink_cFUc
 /* 800D57C4 000D2704  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D57C8 000D2708  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D57CC 000D270C  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

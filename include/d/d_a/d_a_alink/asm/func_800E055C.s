@@ -7,7 +7,7 @@
 /* 800E0574 000DD4B4  83 E3 27 E0 */ lwz r31, 0x27e0(r3)
 /* 800E0578 000DD4B8  3B C0 00 01 */ li r30, 1
 /* 800E057C 000DD4BC  7F E3 FB 78 */ mr r3, r31
-/* 800E0580 000DD4C0  4B F9 32 65 */ bl dAttention_c_NS_LockonTruth
+/* 800E0580 000DD4C0  4B F9 32 65 */ bl LockonTruth__12dAttention_cFv
 /* 800E0584 000DD4C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0588 000DD4C8  40 82 00 14 */ bne lbl_800E059C
 /* 800E058C 000DD4CC  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -27,9 +27,9 @@ lbl_800E05BC:
 /* 800E05BC 000DD4FC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_800E05C0:
 /* 800E05C0 000DD500  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E05C4 000DD504  4B FC CD E5 */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 800E05C4 000DD504  4B FC CD E5 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
 /* 800E05C8 000DD508  7F A3 EB 78 */ mr r3, r29
-/* 800E05CC 000DD50C  4B FF FF 1D */ bl daAlink_c_NS_setBoomerangReadyQuake
+/* 800E05CC 000DD50C  4B FF FF 1D */ bl setBoomerangReadyQuake__9daAlink_cFv
 /* 800E05D0 000DD510  39 61 00 20 */ addi r11, r1, 0x20
 /* 800E05D4 000DD514  48 28 1C 55 */ bl _restgpr_29
 /* 800E05D8 000DD518  80 01 00 24 */ lwz r0, 0x24(r1)

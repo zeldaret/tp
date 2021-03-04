@@ -11,7 +11,7 @@
 /* 800CC38C 000C92CC  80 1D 05 78 */ lwz r0, 0x578(r29)
 /* 800CC390 000C92D0  54 00 03 19 */ rlwinm. r0, r0, 0, 0xc, 0xc
 /* 800CC394 000C92D4  40 82 00 20 */ bne lbl_800CC3B4
-/* 800CC398 000C92D8  4B FF 3A 19 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800CC398 000C92D8  4B FF 3A 19 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800CC39C 000C92DC  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC3A0 000C92E0  40 82 00 14 */ bne lbl_800CC3B4
 /* 800CC3A4 000C92E4  7F A3 EB 78 */ mr r3, r29
@@ -32,7 +32,7 @@ lbl_800CC3CC:
 /* 800CC3D0 000C9310  54 00 03 19 */ rlwinm. r0, r0, 0, 0xc, 0xc
 /* 800CC3D4 000C9314  40 82 03 F0 */ bne lbl_800CC7C4
 /* 800CC3D8 000C9318  7F A3 EB 78 */ mr r3, r29
-/* 800CC3DC 000C931C  4B FF 39 D5 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800CC3DC 000C931C  4B FF 39 D5 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800CC3E0 000C9320  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC3E4 000C9324  41 82 00 AC */ beq lbl_800CC490
 /* 800CC3E8 000C9328  80 7D 06 4C */ lwz r3, 0x64c(r29)

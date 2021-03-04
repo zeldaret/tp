@@ -22,7 +22,7 @@
 /* 800B1508 000AE448  41 82 00 30 */ beq lbl_800B1538
 /* 800B150C 000AE44C  7F E3 FB 78 */ mr r3, r31
 /* 800B1510 000AE450  C0 3F 33 B4 */ lfs f1, 0x33b4(r31)
-/* 800B1514 000AE454  48 05 F2 A9 */ bl daAlink_c_NS_checkWaterInKandelaar
+/* 800B1514 000AE454  48 05 F2 A9 */ bl checkWaterInKandelaar__9daAlink_cFf
 /* 800B1518 000AE458  48 00 00 20 */ b lbl_800B1538
 lbl_800B151C:
 /* 800B151C 000AE45C  80 1F 05 70 */ lwz r0, 0x570(r31)

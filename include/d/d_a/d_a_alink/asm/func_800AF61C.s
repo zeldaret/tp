@@ -9,7 +9,7 @@
 /* 800AF63C 000AC57C  B0 C1 00 0A */ sth r6, 0xa(r1)
 /* 800AF640 000AC580  38 81 00 0A */ addi r4, r1, 0xa
 /* 800AF644 000AC584  38 A1 00 08 */ addi r5, r1, 8
-/* 800AF648 000AC588  4B FF 46 9D */ bl daAlink_c_NS_setIdxMask
+/* 800AF648 000AC588  4B FF 46 9D */ bl setIdxMask__9daAlink_cFPUsPUs
 /* 800AF64C 000AC58C  A0 A1 00 0A */ lhz r5, 0xa(r1)
 /* 800AF650 000AC590  28 05 FF FF */ cmplwi r5, 0xffff
 /* 800AF654 000AC594  41 82 00 14 */ beq lbl_800AF668
@@ -49,7 +49,7 @@ lbl_800AF68C:
 /* 800AF6D0 000AC610  40 82 00 30 */ bne lbl_800AF700
 /* 800AF6D4 000AC614  7F E3 FB 78 */ mr r3, r31
 /* 800AF6D8 000AC618  38 80 00 71 */ li r4, 0x71
-/* 800AF6DC 000AC61C  48 07 91 31 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 800AF6DC 000AC61C  48 07 91 31 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
 /* 800AF6E0 000AC620  2C 03 00 00 */ cmpwi r3, 0
 /* 800AF6E4 000AC624  41 82 00 1C */ beq lbl_800AF700
 lbl_800AF6E8:
@@ -103,7 +103,7 @@ lbl_800AF778:
 /* 800AF78C 000AC6CC  40 82 00 2C */ bne lbl_800AF7B8
 /* 800AF790 000AC6D0  7F E3 FB 78 */ mr r3, r31
 /* 800AF794 000AC6D4  38 80 00 71 */ li r4, 0x71
-/* 800AF798 000AC6D8  48 07 90 75 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 800AF798 000AC6D8  48 07 90 75 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
 /* 800AF79C 000AC6DC  2C 03 00 00 */ cmpwi r3, 0
 /* 800AF7A0 000AC6E0  41 82 00 10 */ beq lbl_800AF7B0
 /* 800AF7A4 000AC6E4  C0 02 94 44 */ lfs f0, lbl_80452E44-_SDA2_BASE_(r2)

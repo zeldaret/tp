@@ -61,20 +61,20 @@ lbl_8021AFE0:
 /* 8021B064 00217FA4  38 81 00 08 */ addi r4, r1, 8
 /* 8021B068 00217FA8  7C 04 F4 2E */ lfsx f0, r4, r30
 /* 8021B06C 00217FAC  EC 42 00 2A */ fadds f2, f2, f0
-/* 8021B070 00217FB0  4B F9 3B 31 */ bl dKantera_icon_c_NS_setPos
+/* 8021B070 00217FB0  4B F9 3B 31 */ bl setPos__15dKantera_icon_cFff
 /* 8021B074 00217FB4  80 7F 00 AC */ lwz r3, 0xac(r31)
 /* 8021B078 00217FB8  C0 22 AE E4 */ lfs f1, lbl_804548E4-_SDA2_BASE_(r2)
 /* 8021B07C 00217FBC  FC 40 08 90 */ fmr f2, f1
-/* 8021B080 00217FC0  4B F9 3B 75 */ bl dKantera_icon_c_NS_setScale
+/* 8021B080 00217FC0  4B F9 3B 75 */ bl setScale__15dKantera_icon_cFff
 /* 8021B084 00217FC4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021B088 00217FC8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021B08C 00217FCC  A0 A3 00 08 */ lhz r5, 8(r3)
 /* 8021B090 00217FD0  A0 83 00 06 */ lhz r4, 6(r3)
 /* 8021B094 00217FD4  80 7F 00 AC */ lwz r3, 0xac(r31)
-/* 8021B098 00217FD8  4B F9 3B AD */ bl dKantera_icon_c_NS_setNowGauge
+/* 8021B098 00217FD8  4B F9 3B AD */ bl setNowGauge__15dKantera_icon_cFUsUs
 /* 8021B09C 00217FDC  80 7F 00 AC */ lwz r3, 0xac(r31)
 /* 8021B0A0 00217FE0  FC 20 F8 90 */ fmr f1, f31
-/* 8021B0A4 00217FE4  4B F9 3A D9 */ bl dKantera_icon_c_NS_setAlphaRate
+/* 8021B0A4 00217FE4  4B F9 3A D9 */ bl setAlphaRate__15dKantera_icon_cFf
 /* 8021B0A8 00217FE8  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 8021B0AC 00217FEC  CB E1 00 60 */ lfd f31, 0x60(r1)
 /* 8021B0B0 00217FF0  39 61 00 60 */ addi r11, r1, 0x60

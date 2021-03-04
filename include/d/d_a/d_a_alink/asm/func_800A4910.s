@@ -152,11 +152,11 @@ lbl_800A4B24:
 /* 800A4B28 000A1A68  28 00 00 00 */ cmplwi r0, 0
 /* 800A4B2C 000A1A6C  40 82 00 84 */ bne lbl_800A4BB0
 /* 800A4B30 000A1A70  7F 83 E3 78 */ mr r3, r28
-/* 800A4B34 000A1A74  48 01 B2 7D */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800A4B34 000A1A74  48 01 B2 7D */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800A4B38 000A1A78  2C 03 00 00 */ cmpwi r3, 0
 /* 800A4B3C 000A1A7C  41 82 00 64 */ beq lbl_800A4BA0
 /* 800A4B40 000A1A80  7F 83 E3 78 */ mr r3, r28
-/* 800A4B44 000A1A84  48 05 CD 4D */ bl daAlink_c_NS_checkZoraWearMaskDraw
+/* 800A4B44 000A1A84  48 05 CD 4D */ bl checkZoraWearMaskDraw__9daAlink_cFv
 /* 800A4B48 000A1A88  2C 03 00 00 */ cmpwi r3, 0
 /* 800A4B4C 000A1A8C  41 82 00 34 */ beq lbl_800A4B80
 /* 800A4B50 000A1A90  80 7C 06 F0 */ lwz r3, 0x6f0(r28)
@@ -182,9 +182,9 @@ lbl_800A4B80:
 /* 800A4B9C 000A1ADC  90 03 00 0C */ stw r0, 0xc(r3)
 lbl_800A4BA0:
 /* 800A4BA0 000A1AE0  80 7C 06 7C */ lwz r3, 0x67c(r28)
-/* 800A4BA4 000A1AE4  48 00 46 A5 */ bl daAlink_c_NS_simpleAnmPlay
+/* 800A4BA4 000A1AE4  48 00 46 A5 */ bl simpleAnmPlay__9daAlink_cFP10J3DAnmBase
 /* 800A4BA8 000A1AE8  80 7C 06 80 */ lwz r3, 0x680(r28)
-/* 800A4BAC 000A1AEC  48 00 46 9D */ bl daAlink_c_NS_simpleAnmPlay
+/* 800A4BAC 000A1AEC  48 00 46 9D */ bl simpleAnmPlay__9daAlink_cFP10J3DAnmBase
 lbl_800A4BB0:
 /* 800A4BB0 000A1AF0  39 61 00 20 */ addi r11, r1, 0x20
 /* 800A4BB4 000A1AF4  48 2B D6 71 */ bl _restgpr_28

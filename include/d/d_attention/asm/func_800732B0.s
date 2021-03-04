@@ -79,26 +79,26 @@ lbl_800733B8:
 /* 800733E4 00070324  D0 03 00 1C */ stfs f0, 0x1c(r3)
 /* 800733E8 00070328  D0 23 00 20 */ stfs f1, 0x20(r3)
 /* 800733EC 0007032C  7F A3 EB 78 */ mr r3, r29
-/* 800733F0 00070330  4B FF FC 15 */ bl dAttDraw_c_NS_alphaAnm
+/* 800733F0 00070330  4B FF FC 15 */ bl alphaAnm__10dAttDraw_cFv
 /* 800733F4 00070334  88 1D 01 75 */ lbz r0, 0x175(r29)
 /* 800733F8 00070338  28 00 00 00 */ cmplwi r0, 0
 /* 800733FC 0007033C  41 82 00 48 */ beq lbl_80073444
 /* 80073400 00070340  38 7D 01 00 */ addi r3, r29, 0x100
 /* 80073404 00070344  7F E4 FB 78 */ mr r4, r31
 /* 80073408 00070348  C0 3D 01 10 */ lfs f1, 0x110(r29)
-/* 8007340C 0007034C  4B F9 A5 C1 */ bl mDoExt_bckAnm_NS_entry
+/* 8007340C 0007034C  4B F9 A5 C1 */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 /* 80073410 00070350  C0 3D 01 2C */ lfs f1, 0x12c(r29)
 /* 80073414 00070354  38 7D 01 1C */ addi r3, r29, 0x11c
 /* 80073418 00070358  38 9F 00 58 */ addi r4, r31, 0x58
-/* 8007341C 0007035C  4B F9 A0 FD */ bl mDoExt_bpkAnm_NS_entry
+/* 8007341C 0007035C  4B F9 A0 FD */ bl entry__13mDoExt_bpkAnmFP16J3DMaterialTablef
 /* 80073420 00070360  C0 3D 01 44 */ lfs f1, 0x144(r29)
 /* 80073424 00070364  38 7D 01 34 */ addi r3, r29, 0x134
 /* 80073428 00070368  38 9F 00 58 */ addi r4, r31, 0x58
-/* 8007342C 0007036C  4B F9 A3 7D */ bl mDoExt_brkAnm_NS_entry
+/* 8007342C 0007036C  4B F9 A3 7D */ bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 80073430 00070370  C0 3D 01 5C */ lfs f1, 0x15c(r29)
 /* 80073434 00070374  38 7D 01 4C */ addi r3, r29, 0x14c
 /* 80073438 00070378  38 9F 00 58 */ addi r4, r31, 0x58
-/* 8007343C 0007037C  4B F9 A2 9D */ bl mDoExt_btkAnm_NS_entry
+/* 8007343C 0007037C  4B F9 A2 9D */ bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 80073440 00070380  48 00 00 90 */ b lbl_800734D0
 lbl_80073444:
 /* 80073444 00070384  88 1D 01 70 */ lbz r0, 0x170(r29)
@@ -107,35 +107,35 @@ lbl_80073444:
 /* 80073450 00070390  7C 7D 1A 14 */ add r3, r29, r3
 /* 80073454 00070394  7F E4 FB 78 */ mr r4, r31
 /* 80073458 00070398  C0 23 00 10 */ lfs f1, 0x10(r3)
-/* 8007345C 0007039C  4B F9 A5 71 */ bl mDoExt_bckAnm_NS_entry
+/* 8007345C 0007039C  4B F9 A5 71 */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 /* 80073460 000703A0  88 1D 01 70 */ lbz r0, 0x170(r29)
 /* 80073464 000703A4  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 80073468 000703A8  38 63 00 40 */ addi r3, r3, 0x40
 /* 8007346C 000703AC  7C 7D 1A 14 */ add r3, r29, r3
 /* 80073470 000703B0  C0 23 00 10 */ lfs f1, 0x10(r3)
 /* 80073474 000703B4  38 9F 00 58 */ addi r4, r31, 0x58
-/* 80073478 000703B8  4B F9 A0 A1 */ bl mDoExt_bpkAnm_NS_entry
+/* 80073478 000703B8  4B F9 A0 A1 */ bl entry__13mDoExt_bpkAnmFP16J3DMaterialTablef
 /* 8007347C 000703BC  88 1D 01 70 */ lbz r0, 0x170(r29)
 /* 80073480 000703C0  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 80073484 000703C4  38 63 00 70 */ addi r3, r3, 0x70
 /* 80073488 000703C8  7C 7D 1A 14 */ add r3, r29, r3
 /* 8007348C 000703CC  C0 23 00 10 */ lfs f1, 0x10(r3)
 /* 80073490 000703D0  38 9F 00 58 */ addi r4, r31, 0x58
-/* 80073494 000703D4  4B F9 A3 15 */ bl mDoExt_brkAnm_NS_entry
+/* 80073494 000703D4  4B F9 A3 15 */ bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 80073498 000703D8  88 1D 01 70 */ lbz r0, 0x170(r29)
 /* 8007349C 000703DC  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 800734A0 000703E0  38 63 00 D0 */ addi r3, r3, 0xd0
 /* 800734A4 000703E4  7C 7D 1A 14 */ add r3, r29, r3
 /* 800734A8 000703E8  C0 23 00 10 */ lfs f1, 0x10(r3)
 /* 800734AC 000703EC  38 9F 00 58 */ addi r4, r31, 0x58
-/* 800734B0 000703F0  4B F9 A2 29 */ bl mDoExt_btkAnm_NS_entry
+/* 800734B0 000703F0  4B F9 A2 29 */ bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 800734B4 000703F4  88 1D 01 70 */ lbz r0, 0x170(r29)
 /* 800734B8 000703F8  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 800734BC 000703FC  38 63 00 A0 */ addi r3, r3, 0xa0
 /* 800734C0 00070400  7C 7D 1A 14 */ add r3, r29, r3
 /* 800734C4 00070404  C0 23 00 10 */ lfs f1, 0x10(r3)
 /* 800734C8 00070408  38 9F 00 58 */ addi r4, r31, 0x58
-/* 800734CC 0007040C  4B F9 A2 DD */ bl mDoExt_brkAnm_NS_entry
+/* 800734CC 0007040C  4B F9 A2 DD */ bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 lbl_800734D0:
 /* 800734D0 00070410  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800734D4 00070414  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

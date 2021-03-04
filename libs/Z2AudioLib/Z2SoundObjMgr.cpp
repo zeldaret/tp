@@ -67,7 +67,7 @@ asm void Z2SoundObjMgr::setForceBattleArea(bool, u16, u16, u16) {
 
 // searchEnemy__13Z2SoundObjMgrFv
 // Z2SoundObjMgr::searchEnemy(void)
-asm void Z2SoundObjMgr_NS_searchEnemy(void) {
+asm void searchEnemy__13Z2SoundObjMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObjMgr/asm/func_802BF994.s"
 }
@@ -103,7 +103,7 @@ asm void Z2SoundObjMgr::setBattleInit() {
 
 // checkBattleFinish__13Z2SoundObjMgrFv
 // Z2SoundObjMgr::checkBattleFinish(void)
-asm void Z2SoundObjMgr_NS_checkBattleFinish(void) {
+asm void checkBattleFinish__13Z2SoundObjMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObjMgr/asm/func_802C0120.s"
 }

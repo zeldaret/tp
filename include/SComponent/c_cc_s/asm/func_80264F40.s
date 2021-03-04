@@ -59,8 +59,8 @@ lbl_80264FB8:
 /* 80265020 00261F60  40 82 00 28 */ bne lbl_80265048
 /* 80265024 00261F64  3C 60 80 43 */ lis r3, lbl_80430CCC@ha
 /* 80265028 00261F68  38 63 0C CC */ addi r3, r3, lbl_80430CCC@l
-/* 8026502C 00261F6C  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80265030 00261F70  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 8026502C 00261F6C  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80265030 00261F70  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80265034 00261F74  3C A0 80 43 */ lis r5, lbl_80430CC0@ha
 /* 80265038 00261F78  38 A5 0C C0 */ addi r5, r5, lbl_80430CC0@l
 /* 8026503C 00261F7C  48 0F CB E9 */ bl func_80361C24

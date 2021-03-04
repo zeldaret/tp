@@ -210,7 +210,7 @@ lbl_8020985C:
 /* 802098A4 002067E4  D0 06 02 E0 */ stfs f0, 0x2e0(r6)
 /* 802098A8 002067E8  7F 23 CB 78 */ mr r3, r25
 /* 802098AC 002067EC  88 99 04 BF */ lbz r4, 0x4bf(r25)
-/* 802098B0 002067F0  48 00 10 9D */ bl dMeterButton_c_NS_hide_button
+/* 802098B0 002067F0  48 00 10 9D */ bl hide_button__14dMeterButton_cFUc
 /* 802098B4 002067F4  48 00 02 C8 */ b lbl_80209B7C
 lbl_802098B8:
 /* 802098B8 002067F8  57 80 06 3E */ clrlwi r0, r28, 0x18
@@ -418,7 +418,7 @@ lbl_80209B7C:
 /* 80209B80 00206AC0  7F 64 DB 78 */ mr r4, r27
 /* 80209B84 00206AC4  7F 45 D3 78 */ mr r5, r26
 /* 80209B88 00206AC8  57 86 06 3E */ clrlwi r6, r28, 0x18
-/* 80209B8C 00206ACC  48 00 01 F1 */ bl dMeterButton_c_NS_getCenterPosCalc
+/* 80209B8C 00206ACC  48 00 01 F1 */ bl getCenterPosCalc__14dMeterButton_cFUcPci
 /* 80209B90 00206AD0  57 80 06 3F */ clrlwi. r0, r28, 0x18
 /* 80209B94 00206AD4  40 82 00 24 */ bne lbl_80209BB8
 /* 80209B98 00206AD8  88 19 04 BF */ lbz r0, 0x4bf(r25)

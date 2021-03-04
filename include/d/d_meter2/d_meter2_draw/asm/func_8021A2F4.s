@@ -33,7 +33,7 @@ lbl_8021A33C:
 /* 8021A370 002172B0  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A374 002172B4  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A378 002172B8  38 C1 00 1C */ addi r6, r1, 0x1c
-/* 8021A37C 002172BC  48 00 1F F5 */ bl dMeter2Info_c_NS_getStringKana
+/* 8021A37C 002172BC  48 00 1F F5 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKana
 /* 8021A380 002172C0  48 00 00 1C */ b lbl_8021A39C
 lbl_8021A384:
 /* 8021A384 002172C4  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -41,7 +41,7 @@ lbl_8021A384:
 /* 8021A38C 002172CC  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A390 002172D0  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A394 002172D4  38 C1 00 1C */ addi r6, r1, 0x1c
-/* 8021A398 002172D8  48 00 21 AD */ bl dMeter2Info_c_NS_getStringKanji
+/* 8021A398 002172D8  48 00 21 AD */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 lbl_8021A39C:
 /* 8021A39C 002172DC  28 1F 00 00 */ cmplwi r31, 0
 /* 8021A3A0 002172E0  41 82 00 A8 */ beq lbl_8021A448
@@ -70,7 +70,7 @@ lbl_8021A3C4:
 /* 8021A3F8 00217338  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A3FC 0021733C  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A400 00217340  38 C1 00 08 */ addi r6, r1, 8
-/* 8021A404 00217344  48 00 1F 6D */ bl dMeter2Info_c_NS_getStringKana
+/* 8021A404 00217344  48 00 1F 6D */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKana
 /* 8021A408 00217348  48 00 00 1C */ b lbl_8021A424
 lbl_8021A40C:
 /* 8021A40C 0021734C  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -78,7 +78,7 @@ lbl_8021A40C:
 /* 8021A414 00217354  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A418 00217358  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A41C 0021735C  38 C1 00 08 */ addi r6, r1, 8
-/* 8021A420 00217360  48 00 21 25 */ bl dMeter2Info_c_NS_getStringKanji
+/* 8021A420 00217360  48 00 21 25 */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 lbl_8021A424:
 /* 8021A424 00217364  28 1F 00 00 */ cmplwi r31, 0
 /* 8021A428 00217368  41 82 00 20 */ beq lbl_8021A448

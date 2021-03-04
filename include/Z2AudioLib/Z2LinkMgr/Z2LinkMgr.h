@@ -67,7 +67,7 @@ struct Z2LinkSoundStarter {
 };
 
 extern "C" {
-void Z2CreatureRide_NS_dtor(void);
+void __dt__14Z2CreatureRideFv(void);
 
 void func_802C5078(void);
 void func_802C57C0(void);
@@ -83,7 +83,7 @@ void func_802C56C0(void);
 void func_802C51EC(void);
 void func_802C520C(void);
 
-void Z2LinkSoundStarter_NS_ctor(void);
+void __ct__18Z2LinkSoundStarterFv(void);
 
 void Z2RideSoundStarter(void);
 }

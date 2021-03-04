@@ -7,7 +7,7 @@
 /* 800200D8 0001D018  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 800200DC 0001D01C  7F E5 FB 78 */ mr r5, r31
 /* 800200E0 0001D020  38 C0 00 00 */ li r6, 0
-/* 800200E4 0001D024  48 1F C1 6D */ bl dMeter2Info_c_NS_getString
+/* 800200E4 0001D024  48 1F C1 6D */ bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 800200E8 0001D028  7F E3 FB 78 */ mr r3, r31
 /* 800200EC 0001D02C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800200F0 0001D030  80 01 00 14 */ lwz r0, 0x14(r1)

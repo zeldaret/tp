@@ -9,10 +9,10 @@
 /* 8000CFD8 00009F18  38 03 03 00 */ addi r0, r3, 0x300
 /* 8000CFDC 00009F1C  90 0D 80 2C */ stw r0, lbl_804505AC-_SDA_BASE_(r13)
 /* 8000CFE0 00009F20  38 6D 86 98 */ addi r3, r13, 0x80450C18 - 0x80458580 /*SDA HACK; original: lbl_80450C18-_SDA_BASE_*/
-/*.global mDoMtx_stack_c_NS_dtor*/
-/* 8000CFE4 00009F24  3C 80 80 01 */ lis r4, mDoMtx_stack_c_NS_dtor@ha
-/*.global mDoMtx_stack_c_NS_dtor*/
-/* 8000CFE8 00009F28  38 84 D0 70 */ addi r4, r4, mDoMtx_stack_c_NS_dtor@l
+/*.global __dt__14mDoMtx_stack_cFv*/
+/* 8000CFE4 00009F24  3C 80 80 01 */ lis r4, __dt__14mDoMtx_stack_cFv@ha
+/*.global __dt__14mDoMtx_stack_cFv*/
+/* 8000CFE8 00009F28  38 84 D0 70 */ addi r4, r4, __dt__14mDoMtx_stack_cFv@l
 /* 8000CFEC 00009F2C  38 BF 03 30 */ addi r5, r31, 0x330
 /* 8000CFF0 00009F30  48 35 4C 35 */ bl func_80361C24
 /* 8000CFF4 00009F34  38 7F 03 48 */ addi r3, r31, 0x348
@@ -22,10 +22,10 @@
 /* 8000D004 00009F44  90 03 01 14 */ stw r0, 0x114(r3)
 /* 8000D008 00009F48  38 03 01 14 */ addi r0, r3, 0x114
 /* 8000D00C 00009F4C  90 03 01 18 */ stw r0, 0x118(r3)
-/*.global mDoMtx_quatStack_c_NS_dtor*/
-/* 8000D010 00009F50  3C 80 80 01 */ lis r4, mDoMtx_quatStack_c_NS_dtor@ha
-/*.global mDoMtx_quatStack_c_NS_dtor*/
-/* 8000D014 00009F54  38 84 D0 34 */ addi r4, r4, mDoMtx_quatStack_c_NS_dtor@l
+/*.global __dt__18mDoMtx_quatStack_cFv*/
+/* 8000D010 00009F50  3C 80 80 01 */ lis r4, __dt__18mDoMtx_quatStack_cFv@ha
+/*.global __dt__18mDoMtx_quatStack_cFv*/
+/* 8000D014 00009F54  38 84 D0 34 */ addi r4, r4, __dt__18mDoMtx_quatStack_cFv@l
 /* 8000D018 00009F58  38 BF 03 3C */ addi r5, r31, 0x33c
 /* 8000D01C 00009F5C  48 35 4C 09 */ bl func_80361C24
 /* 8000D020 00009F60  83 E1 00 0C */ lwz r31, 0xc(r1)

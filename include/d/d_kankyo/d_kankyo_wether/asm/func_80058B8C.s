@@ -80,7 +80,7 @@ lbl_80058CA0:
 /* 80058CB4 00055BF4  41 82 02 44 */ beq lbl_80058EF8
 /* 80058CB8 00055BF8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80058CBC 00055BFC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 80058CC0 00055C00  48 14 6D 49 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 80058CC0 00055C00  48 14 6D 49 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80058CC4 00055C04  C0 82 87 00 */ lfs f4, lbl_80452100-_SDA2_BASE_(r2)
 /* 80058CC8 00055C08  FC 01 20 40 */ fcmpo cr0, f1, f4
 /* 80058CCC 00055C0C  4C 41 13 82 */ cror 2, 1, 2

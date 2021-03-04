@@ -10,7 +10,7 @@
 /* 800DFC4C 000DCB8C  7F E3 FB 78 */ mr r3, r31
 /* 800DFC50 000DCB90  38 80 00 58 */ li r4, 0x58
 /* 800DFC54 000DCB94  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800DFC58 000DCB98  4B FE 04 2D */ bl daAlink_c_NS_changeItemBck
+/* 800DFC58 000DCB98  4B FE 04 2D */ bl changeItemBck__9daAlink_cFUsf
 lbl_800DFC5C:
 /* 800DFC5C 000DCB9C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800DFC60 000DCBA0  80 01 00 14 */ lwz r0, 0x14(r1)

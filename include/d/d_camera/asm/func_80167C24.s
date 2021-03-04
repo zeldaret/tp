@@ -13,7 +13,7 @@
 /* 80167C54 00164B94  C0 23 00 58 */ lfs f1, 0x58(r3)
 /* 80167C58 00164B98  A9 03 00 54 */ lha r8, 0x54(r3)
 /* 80167C5C 00164B9C  C0 42 9C E8 */ lfs f2, lbl_804536E8-_SDA2_BASE_(r2)
-/* 80167C60 00164BA0  4B FF D5 D9 */ bl dCamera_c_NS_radiusActorInSight
+/* 80167C60 00164BA0  4B FF D5 D9 */ bl radiusActorInSight__9dCamera_cFP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyzfsf
 /* 80167C64 00164BA4  FF E0 08 90 */ fmr f31, f1
 /* 80167C68 00164BA8  7F A3 EB 78 */ mr r3, r29
 /* 80167C6C 00164BAC  7F C4 F3 78 */ mr r4, r30
@@ -23,7 +23,7 @@
 /* 80167C7C 00164BBC  C0 3D 00 58 */ lfs f1, 0x58(r29)
 /* 80167C80 00164BC0  A9 1D 00 54 */ lha r8, 0x54(r29)
 /* 80167C84 00164BC4  C0 42 9C E8 */ lfs f2, lbl_804536E8-_SDA2_BASE_(r2)
-/* 80167C88 00164BC8  4B FF D5 B1 */ bl dCamera_c_NS_radiusActorInSight
+/* 80167C88 00164BC8  4B FF D5 B1 */ bl radiusActorInSight__9dCamera_cFP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyzfsf
 /* 80167C8C 00164BCC  FC 1F 08 40 */ fcmpo cr0, f31, f1
 /* 80167C90 00164BD0  40 81 00 08 */ ble lbl_80167C98
 /* 80167C94 00164BD4  FC 20 F8 90 */ fmr f1, f31

@@ -9,10 +9,10 @@
 /* 8001141C 0000E35C  3C 80 80 3A */ lis r4, lbl_803A3284@ha
 /* 80011420 0000E360  38 04 32 84 */ addi r0, r4, lbl_803A3284@l
 /* 80011424 0000E364  90 1E 00 00 */ stw r0, 0(r30)
-/* 80011428 0000E368  48 00 0D C1 */ bl mDoExt_McaMorf2_NS_stopZelAnime
+/* 80011428 0000E368  48 00 0D C1 */ bl stopZelAnime__15mDoExt_McaMorf2Fv
 /* 8001142C 0000E36C  7F C3 F3 78 */ mr r3, r30
 /* 80011430 0000E370  38 80 00 00 */ li r4, 0
-/* 80011434 0000E374  4B FF E6 B5 */ bl mDoExt_morf_c_NS_dtor
+/* 80011434 0000E374  4B FF E6 B5 */ bl __dt__13mDoExt_morf_cFv
 /* 80011438 0000E378  7F E0 07 35 */ extsh. r0, r31
 /* 8001143C 0000E37C  40 81 00 0C */ ble lbl_80011448
 /* 80011440 0000E380  7F C3 F3 78 */ mr r3, r30

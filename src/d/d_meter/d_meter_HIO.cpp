@@ -5,9 +5,9 @@
 
 extern "C" {
 void __dl__FPv(void);
-void cXyz_NS_ctor(void);
-void cXyz_NS_dtor(void);
-void dMeter_fmapHIO_c_NS_MapBlinkAnime(void);
+void __ct__4cXyzFv(void);
+void __dt__4cXyzFv(void);
+void __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv(void);
 void free__7JKRHeapFPv(void);
 void func_80361C24(void);
 void func_80361CE8(void);
@@ -297,7 +297,7 @@ asm void dMeter_fmapHIO_c(void) {
 
 // __dt__16dMeter_fmapHIO_cFv
 // dMeter_fmapHIO_c::~dMeter_fmapHIO_c(void)
-asm void dMeter_fmapHIO_c_NS_dtor(void) {
+asm void __dt__16dMeter_fmapHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200BCC.s"
 }
@@ -388,35 +388,35 @@ asm void func_80201028(void) {
 
 // __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv
 // dMeter_fmapHIO_c::MapBlinkAnime::dMeter_fmapHIO_c::MapBlinkAnime(void)
-asm void dMeter_fmapHIO_c_NS_MapBlinkAnime(void) {
+asm void __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80201070.s"
 }
 
 // __dt__18dMeter_cursorHIO_cFv
 // dMeter_cursorHIO_c::~dMeter_cursorHIO_c(void)
-asm void dMeter_cursorHIO_c_NS_dtor(void) {
+asm void __dt__18dMeter_cursorHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80201098.s"
 }
 
 // __dt__16dMeter_ringHIO_cFv
 // dMeter_ringHIO_c::~dMeter_ringHIO_c(void)
-asm void dMeter_ringHIO_c_NS_dtor(void) {
+asm void __dt__16dMeter_ringHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_802010E0.s"
 }
 
 // __dt__16dMeter_drawHIO_cFv
 // dMeter_drawHIO_c::~dMeter_drawHIO_c(void)
-asm void dMeter_drawHIO_c_NS_dtor(void) {
+asm void __dt__16dMeter_drawHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80201128.s"
 }
 
 // __dt__16dMeter_menuHIO_cFv
 // dMeter_menuHIO_c::~dMeter_menuHIO_c(void)
-asm void dMeter_menuHIO_c_NS_dtor(void) {
+asm void __dt__16dMeter_menuHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_8020123C.s"
 }

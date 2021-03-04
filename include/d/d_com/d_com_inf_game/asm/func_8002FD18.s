@@ -12,10 +12,10 @@
 /* 8002FD44 0002CC84  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002FD48 0002CC88  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002FD4C 0002CC8C  48 00 04 F9 */ bl __ct__13dComIfG_inf_cFv
-/*.global dComIfG_inf_c_NS_dtor*/
-/* 8002FD50 0002CC90  3C 80 80 03 */ lis r4, dComIfG_inf_c_NS_dtor@ha
-/*.global dComIfG_inf_c_NS_dtor*/
-/* 8002FD54 0002CC94  38 84 FD 74 */ addi r4, r4, dComIfG_inf_c_NS_dtor@l
+/*.global __dt__13dComIfG_inf_cFv*/
+/* 8002FD50 0002CC90  3C 80 80 03 */ lis r4, __dt__13dComIfG_inf_cFv@ha
+/*.global __dt__13dComIfG_inf_cFv*/
+/* 8002FD54 0002CC94  38 84 FD 74 */ addi r4, r4, __dt__13dComIfG_inf_cFv@l
 /* 8002FD58 0002CC98  3C A0 80 40 */ lis r5, lbl_804061B4@ha
 /* 8002FD5C 0002CC9C  38 A5 61 B4 */ addi r5, r5, lbl_804061B4@l
 /* 8002FD60 0002CCA0  48 33 1E C5 */ bl func_80361C24

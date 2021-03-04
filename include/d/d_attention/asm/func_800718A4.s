@@ -5,26 +5,26 @@
 /* 800718B4 0006E7F4  93 C1 00 08 */ stw r30, 8(r1)
 /* 800718B8 0006E7F8  7C 7E 1B 78 */ mr r30, r3
 /* 800718BC 0006E7FC  38 80 00 00 */ li r4, 0
-/* 800718C0 0006E800  48 00 1C 7D */ bl dAttention_c_NS_LockonTarget
+/* 800718C0 0006E800  48 00 1C 7D */ bl LockonTarget__12dAttention_cFl
 /* 800718C4 0006E804  7C 7F 1B 78 */ mr r31, r3
 /* 800718C8 0006E808  7F C3 F3 78 */ mr r3, r30
 /* 800718CC 0006E80C  38 80 FF FF */ li r4, -1
-/* 800718D0 0006E810  4B FF F9 71 */ bl dAttention_c_NS_initList
+/* 800718D0 0006E810  4B FF F9 71 */ bl initList__12dAttention_cFUl
 /* 800718D4 0006E814  7F C3 F3 78 */ mr r3, r30
-/* 800718D8 0006E818  4B FF FA F5 */ bl dAttention_c_NS_makeList
+/* 800718D8 0006E818  4B FF FA F5 */ bl makeList__12dAttention_cFv
 /* 800718DC 0006E81C  2C 03 00 00 */ cmpwi r3, 0
 /* 800718E0 0006E820  41 82 00 0C */ beq lbl_800718EC
 /* 800718E4 0006E824  7F C3 F3 78 */ mr r3, r30
-/* 800718E8 0006E828  4B FF FD D1 */ bl dAttention_c_NS_sortList
+/* 800718E8 0006E828  4B FF FD D1 */ bl sortList__12dAttention_cFv
 lbl_800718EC:
 /* 800718EC 0006E82C  38 7E 03 38 */ addi r3, r30, 0x338
-/* 800718F0 0006E830  48 00 1F 75 */ bl dAttList_c_NS_getActor
+/* 800718F0 0006E830  48 00 1F 75 */ bl getActor__10dAttList_cFv
 /* 800718F4 0006E834  7C 1F 18 40 */ cmplw r31, r3
 /* 800718F8 0006E838  41 82 00 44 */ beq lbl_8007193C
 /* 800718FC 0006E83C  28 1F 00 00 */ cmplwi r31, 0
 /* 80071900 0006E840  41 82 00 24 */ beq lbl_80071924
 /* 80071904 0006E844  38 7E 03 38 */ addi r3, r30, 0x338
-/* 80071908 0006E848  48 00 1F 5D */ bl dAttList_c_NS_getActor
+/* 80071908 0006E848  48 00 1F 5D */ bl getActor__10dAttList_cFv
 /* 8007190C 0006E84C  28 03 00 00 */ cmplwi r3, 0
 /* 80071910 0006E850  41 82 00 20 */ beq lbl_80071930
 /* 80071914 0006E854  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -42,7 +42,7 @@ lbl_80071930:
 lbl_8007193C:
 /* 8007193C 0006E87C  7F C3 F3 78 */ mr r3, r30
 /* 80071940 0006E880  38 80 00 00 */ li r4, 0
-/* 80071944 0006E884  48 00 1B F9 */ bl dAttention_c_NS_LockonTarget
+/* 80071944 0006E884  48 00 1B F9 */ bl LockonTarget__12dAttention_cFl
 /* 80071948 0006E888  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8007194C 0006E88C  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80071950 0006E890  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -32,21 +32,21 @@ lbl_801648DC:
 lbl_801648F0:
 /* 801648F0 00161830  38 66 56 B8 */ addi r3, r6, 0x56b8
 /* 801648F4 00161834  38 80 00 00 */ li r4, 0
-/* 801648F8 00161838  4B F0 EC 45 */ bl dAttention_c_NS_LockonTarget
+/* 801648F8 00161838  4B F0 EC 45 */ bl LockonTarget__12dAttention_cFl
 /* 801648FC 0016183C  48 00 00 38 */ b lbl_80164934
 lbl_80164900:
 /* 80164900 00161840  38 66 56 B8 */ addi r3, r6, 0x56b8
 /* 80164904 00161844  38 80 00 00 */ li r4, 0
-/* 80164908 00161848  4B F0 EE 2D */ bl dAttention_c_NS_ActionTarget
+/* 80164908 00161848  4B F0 EE 2D */ bl ActionTarget__12dAttention_cFl
 /* 8016490C 0016184C  48 00 00 28 */ b lbl_80164934
 lbl_80164910:
 /* 80164910 00161850  38 66 56 B8 */ addi r3, r6, 0x56b8
 /* 80164914 00161854  38 80 00 00 */ li r4, 0
-/* 80164918 00161858  4B F0 EE 75 */ bl dAttention_c_NS_CheckObjectTarget
+/* 80164918 00161858  4B F0 EE 75 */ bl CheckObjectTarget__12dAttention_cFl
 /* 8016491C 0016185C  48 00 00 18 */ b lbl_80164934
 lbl_80164920:
 /* 80164920 00161860  7C E3 3B 78 */ mr r3, r7
-/* 80164924 00161864  4B F7 CA 6D */ bl daAlink_c_NS_getCopyRodCameraActor
+/* 80164924 00161864  4B F7 CA 6D */ bl getCopyRodCameraActor__9daAlink_cFv
 /* 80164928 00161868  48 00 00 0C */ b lbl_80164934
 lbl_8016492C:
 /* 8016492C 0016186C  38 80 FF FF */ li r4, -1

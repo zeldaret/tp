@@ -21,19 +21,19 @@ void dComIfGs_setSelectItemIndex(int, u8);
 void dComIfGs_setWarpItemData_X1_(void);
 void dComIfGs_setWarpMarkFlag(void);
 void DCStoreRangeNoSync(void);
-void dMeter2Info_c_NS_changeWater(void);
-void dMeter2Info_c_NS_get2ndTexture(void);
-void dMeter2Info_c_NS_get3rdTexture(void);
-void dMeter2Info_c_NS_get4thTexture(void);
-void dMeter2Info_c_NS_init(void);
-void dMeter2Info_c_NS_resetWarpStatus(void);
-void dMeter2Info_c_NS_set1stColor(void);
-void dMeter2Info_c_NS_set2ndColor(void);
-void dMeter2Info_c_NS_set3rdColor(void);
-void dMeter2Info_c_NS_set4thColor(void);
-void dMeter2Info_c_NS_setSaveStageName(void);
-void dMeter2Info_c_NS_setWarpInfo(void);
-void dMeterMap_c_NS_isMapOpenCheck(void);
+void changeWater__13dMeter2Info_cFUc(void);
+void get2ndTexture__13dMeter2Info_cFUc(void);
+void get3rdTexture__13dMeter2Info_cFUc(void);
+void get4thTexture__13dMeter2Info_cFUc(void);
+void init__13dMeter2Info_cFv(void);
+void resetWarpStatus__13dMeter2Info_cFv(void);
+void set1stColor__13dMeter2Info_cFUcP10J2DPicture(void);
+void set2ndColor__13dMeter2Info_cFUcP10J2DPicture(void);
+void set3rdColor__13dMeter2Info_cFUcP10J2DPicture(void);
+void set4thColor__13dMeter2Info_cFUcP10J2DPicture(void);
+void setSaveStageName__13dMeter2Info_cFPCc(void);
+void setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc(void);
+void isMapOpenCheck__11dMeterMap_cFv(void);
 void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci(void);
 void __dt__10dMsgFlow_cFv(void);
 void getMsgNo__10dMsgFlow_cFv(void);
@@ -88,20 +88,20 @@ asm void dMeter2Info_c(void) {
 
 // __dt__13dMeter2Info_cFv
 // dMeter2Info_c::~dMeter2Info_c(void)
-asm void dMeter2Info_c_NS_dtor(void) {
+asm void __dt__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021BE20.s"
 }
 
 // init__13dMeter2Info_cFv
 // dMeter2Info_c::init(void)
-asm void dMeter2Info_c_NS_init(void) {
+asm void init__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021BE68.s"
 }
 
 // setFloatingMessage__13dMeter2Info_cFUssb
-asm void dMeter2Info_c_NS_setFloatingMessage(void) {
+asm void setFloatingMessage__13dMeter2Info_cFUssb(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C0E0.s"
 }
@@ -114,56 +114,56 @@ asm void func_8021C11C(void) {
 
 // isFloatingMessageVisible__13dMeter2Info_cFv
 // dMeter2Info_c::isFloatingMessageVisible(void)
-asm void dMeter2Info_c_NS_isFloatingMessageVisible(void) {
+asm void isFloatingMessageVisible__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C1DC.s"
 }
 
 // decFloatingMessageTimer__13dMeter2Info_cFv
 // dMeter2Info_c::decFloatingMessageTimer(void)
-asm void dMeter2Info_c_NS_decFloatingMessageTimer(void) {
+asm void decFloatingMessageTimer__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C1F0.s"
 }
 
 // resetFloatingMessage__13dMeter2Info_cFv
 // dMeter2Info_c::resetFloatingMessage(void)
-asm void dMeter2Info_c_NS_resetFloatingMessage(void) {
+asm void resetFloatingMessage__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C218.s"
 }
 
 // decMsgKeyWaitTimer__13dMeter2Info_cFv
 // dMeter2Info_c::decMsgKeyWaitTimer(void)
-asm void dMeter2Info_c_NS_decMsgKeyWaitTimer(void) {
+asm void decMsgKeyWaitTimer__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C238.s"
 }
 
 // getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 // dMeter2Info_c::getString(unsigned long, char*, JMSMesgEntry_c*)
-asm void dMeter2Info_c_NS_getString(void) {
+asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C250.s"
 }
 
 // getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 // dMeter2Info_c::getStringKana(unsigned long, char*, JMSMesgEntry_c*)
-asm void dMeter2Info_c_NS_getStringKana(void) {
+asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKana(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C370.s"
 }
 
 // getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 // dMeter2Info_c::getStringKanji(unsigned long, char*, JMSMesgEntry_c*)
-asm void dMeter2Info_c_NS_getStringKanji(void) {
+asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C544.s"
 }
 
 // getStringLength__13dMeter2Info_cFP10J2DTextBoxPc
 // dMeter2Info_c::getStringLength(J2DTextBox*, char*)
-asm void dMeter2Info_c_NS_getStringLength(void) {
+asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C6A4.s"
 }
@@ -177,21 +177,21 @@ asm void func_8021C7F4(void) {
 
 // getStringLength__13dMeter2Info_cFP7JUTFontffPc
 // dMeter2Info_c::getStringLength(JUTFont*, float, float, char*)
-asm void dMeter2Info_c_NS_getStringLength_X1_(void) {
+asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C7FC.s"
 }
 
 // onDirectUseItem__13dMeter2Info_cFi
 // dMeter2Info_c::onDirectUseItem(int)
-asm void dMeter2Info_c_NS_onDirectUseItem(void) {
+asm void onDirectUseItem__13dMeter2Info_cFi(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C934.s"
 }
 
 // isDirectUseItem__13dMeter2Info_cFi
 // dMeter2Info_c::isDirectUseItem(int)
-asm void dMeter2Info_c_NS_isDirectUseItem(void) {
+asm void isDirectUseItem__13dMeter2Info_cFi(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C950.s"
 }
@@ -205,28 +205,28 @@ asm void func_8021C970(void) {
 
 // resetWarpStatus__13dMeter2Info_cFv
 // dMeter2Info_c::resetWarpStatus(void)
-asm void dMeter2Info_c_NS_resetWarpStatus(void) {
+asm void resetWarpStatus__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C9DC.s"
 }
 
 // warpInProc__13dMeter2Info_cFv
 // dMeter2Info_c::warpInProc(void)
-asm void dMeter2Info_c_NS_warpInProc(void) {
+asm void warpInProc__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CA04.s"
 }
 
 // warpOutProc__13dMeter2Info_cFv
 // dMeter2Info_c::warpOutProc(void)
-asm void dMeter2Info_c_NS_warpOutProc(void) {
+asm void warpOutProc__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CA70.s"
 }
 
 // resetMeterString__13dMeter2Info_cFv
 // dMeter2Info_c::resetMeterString(void)
-asm void dMeter2Info_c_NS_resetMeterString(void) {
+asm void resetMeterString__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CC00.s"
 }
@@ -234,14 +234,14 @@ asm void dMeter2Info_c_NS_resetMeterString(void) {
 // setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc
 // dMeter2Info_c::setWarpInfo(const char*, const cXyz&, short, unsigned char, unsigned char,
 // unsigned char)
-asm void dMeter2Info_c_NS_setWarpInfo(void) {
+asm void setWarpInfo__13dMeter2Info_cFPCcRC4cXyzsUcUcUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CC0C.s"
 }
 
 // getItemType__13dMeter2Info_cFUc
 // dMeter2Info_c::getItemType(unsigned char)
-asm void dMeter2Info_c_NS_getItemType(void) {
+asm void getItemType__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CC80.s"
 }
@@ -249,97 +249,97 @@ asm void dMeter2Info_c_NS_getItemType(void) {
 // readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 // dMeter2Info_c::readItemTexture(unsigned char, void*, J2DPicture*, void*, J2DPicture*, void*,
 // J2DPicture*, void*, J2DPicture*, int)
-asm void dMeter2Info_c_NS_readItemTexture(void) {
+asm void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CF08.s"
 }
 
 // setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture
 // dMeter2Info_c::setItemColor(unsigned char, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*)
-asm void dMeter2Info_c_NS_setItemColor(void) {
+asm void setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D36C.s"
 }
 
 // get2ndTexture__13dMeter2Info_cFUc
 // dMeter2Info_c::get2ndTexture(unsigned char)
-asm void dMeter2Info_c_NS_get2ndTexture(void) {
+asm void get2ndTexture__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D44C.s"
 }
 
 // get3rdTexture__13dMeter2Info_cFUc
 // dMeter2Info_c::get3rdTexture(unsigned char)
-asm void dMeter2Info_c_NS_get3rdTexture(void) {
+asm void get3rdTexture__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D4B8.s"
 }
 
 // get4thTexture__13dMeter2Info_cFUc
 // dMeter2Info_c::get4thTexture(unsigned char)
-asm void dMeter2Info_c_NS_get4thTexture(void) {
+asm void get4thTexture__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D4FC.s"
 }
 
 // set1stColor__13dMeter2Info_cFUcP10J2DPicture
 // dMeter2Info_c::set1stColor(unsigned char, J2DPicture*)
-asm void dMeter2Info_c_NS_set1stColor(void) {
+asm void set1stColor__13dMeter2Info_cFUcP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D524.s"
 }
 
 // set2ndColor__13dMeter2Info_cFUcP10J2DPicture
 // dMeter2Info_c::set2ndColor(unsigned char, J2DPicture*)
-asm void dMeter2Info_c_NS_set2ndColor(void) {
+asm void set2ndColor__13dMeter2Info_cFUcP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D644.s"
 }
 
 // set3rdColor__13dMeter2Info_cFUcP10J2DPicture
 // dMeter2Info_c::set3rdColor(unsigned char, J2DPicture*)
-asm void dMeter2Info_c_NS_set3rdColor(void) {
+asm void set3rdColor__13dMeter2Info_cFUcP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D764.s"
 }
 
 // set4thColor__13dMeter2Info_cFUcP10J2DPicture
 // dMeter2Info_c::set4thColor(unsigned char, J2DPicture*)
-asm void dMeter2Info_c_NS_set4thColor(void) {
+asm void set4thColor__13dMeter2Info_cFUcP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021DB64.s"
 }
 
 // setHotSpringTimer__13dMeter2Info_cFUc
 // dMeter2Info_c::setHotSpringTimer(unsigned char)
-asm void dMeter2Info_c_NS_setHotSpringTimer(void) {
+asm void setHotSpringTimer__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021DCC4.s"
 }
 
 // decHotSpringTimer__13dMeter2Info_cFv
 // dMeter2Info_c::decHotSpringTimer(void)
-asm void dMeter2Info_c_NS_decHotSpringTimer(void) {
+asm void decHotSpringTimer__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021DCE0.s"
 }
 
 // changeWater__13dMeter2Info_cFUc
 // dMeter2Info_c::changeWater(unsigned char)
-asm void dMeter2Info_c_NS_changeWater(void) {
+asm void changeWater__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021DD5C.s"
 }
 
 // setMiniGameItem__13dMeter2Info_cFUc
 // dMeter2Info_c::setMiniGameItem(unsigned char)
-asm void dMeter2Info_c_NS_setMiniGameItem(void) {
+asm void setMiniGameItem__13dMeter2Info_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021DE18.s"
 }
 
 // resetMiniGameItem__13dMeter2Info_cFb
-asm void dMeter2Info_c_NS_resetMiniGameItem(void) {
+asm void resetMiniGameItem__13dMeter2Info_cFb(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E0C4.s"
 }
@@ -353,7 +353,7 @@ asm void func_8021E268(void) {
 
 // setSaveStageName__13dMeter2Info_cFPCc
 // dMeter2Info_c::setSaveStageName(const char*)
-asm void dMeter2Info_c_NS_setSaveStageName(void) {
+asm void setSaveStageName__13dMeter2Info_cFPCc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E290.s"
 }

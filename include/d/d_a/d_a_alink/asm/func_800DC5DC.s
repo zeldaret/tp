@@ -12,7 +12,7 @@
 /* 800DC608 000D9548  80 04 05 5C */ lwz r0, 0x55c(r4)
 /* 800DC60C 000D954C  54 00 02 95 */ rlwinm. r0, r0, 0, 0xa, 0xa
 /* 800DC610 000D9550  41 82 00 14 */ beq lbl_800DC624
-/* 800DC614 000D9554  4B FF 62 E1 */ bl daAlink_c_NS_checkCutHeadState
+/* 800DC614 000D9554  4B FF 62 E1 */ bl checkCutHeadState__9daAlink_cFv
 /* 800DC618 000D9558  2C 03 00 00 */ cmpwi r3, 0
 /* 800DC61C 000D955C  40 82 00 08 */ bne lbl_800DC624
 /* 800DC620 000D9560  3B E0 00 01 */ li r31, 1

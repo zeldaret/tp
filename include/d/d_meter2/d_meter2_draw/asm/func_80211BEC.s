@@ -156,10 +156,10 @@ lbl_80211E14:
 /* 80211E30 0020ED70  EC 20 08 2A */ fadds f1, f0, f1
 /* 80211E34 0020ED74  C0 06 00 2C */ lfs f0, 0x2c(r6)
 /* 80211E38 0020ED78  EC 40 10 2A */ fadds f2, f0, f2
-/* 80211E3C 0020ED7C  48 00 2B B9 */ bl dMeter2Draw_c_NS_drawLife
+/* 80211E3C 0020ED7C  48 00 2B B9 */ bl drawLife__13dMeter2Draw_cFssff
 /* 80211E40 0020ED80  7F 83 E3 78 */ mr r3, r28
 /* 80211E44 0020ED84  38 80 00 01 */ li r4, 1
-/* 80211E48 0020ED88  48 00 2D D9 */ bl dMeter2Draw_c_NS_setAlphaLifeChange
+/* 80211E48 0020ED88  48 00 2D D9 */ bl setAlphaLifeChange__13dMeter2Draw_cFb
 /* 80211E4C 0020ED8C  39 61 00 30 */ addi r11, r1, 0x30
 /* 80211E50 0020ED90  48 15 03 C9 */ bl _restgpr_25
 /* 80211E54 0020ED94  80 01 00 34 */ lwz r0, 0x34(r1)

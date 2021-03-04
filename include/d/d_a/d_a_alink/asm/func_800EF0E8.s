@@ -5,7 +5,7 @@
 /* 800EF0F8 000EC038  48 27 30 E5 */ bl _savegpr_29
 /* 800EF0FC 000EC03C  7C 7D 1B 78 */ mr r29, r3
 /* 800EF100 000EC040  7C DE 33 78 */ mr r30, r6
-/* 800EF104 000EC044  4B FB 30 95 */ bl daAlink_c_NS_commonLineCheck
+/* 800EF104 000EC044  4B FB 30 95 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800EF108 000EC048  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EF10C 000EC04C  40 82 00 0C */ bne lbl_800EF118
 /* 800EF110 000EC050  38 60 00 00 */ li r3, 0
@@ -29,7 +29,7 @@ lbl_800EF130:
 /* 800EF150 000EC090  7F A3 EB 78 */ mr r3, r29
 /* 800EF154 000EC094  38 9D 1B 5C */ addi r4, r29, 0x1b5c
 /* 800EF158 000EC098  7F C5 F3 78 */ mr r5, r30
-/* 800EF15C 000EC09C  4B FC 0F 3D */ bl daAlink_c_NS_getGroundAngle
+/* 800EF15C 000EC09C  4B FC 0F 3D */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800EF160 000EC0A0  7C 63 07 34 */ extsh r3, r3
 /* 800EF164 000EC0A4  7F E0 07 34 */ extsh r0, r31
 /* 800EF168 000EC0A8  7C 80 00 D0 */ neg r4, r0

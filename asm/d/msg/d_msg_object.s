@@ -798,7 +798,7 @@ lbl_80233600:
 lbl_80233608:
 /* 80233608 00230548  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 8023360C 0023054C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 80233610 00230550  4B FE 8C 29 */	bl dMeter2Info_c_NS_decMsgKeyWaitTimer
+/* 80233610 00230550  4B FE 8C 29 */	bl decMsgKeyWaitTimer__13dMeter2Info_cFv
 /* 80233614 00230554  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 80233618 00230558  48 07 40 1D */	bl update__Q28JMessage8TControlFv
 /* 8023361C 0023055C  98 7F 04 CA */	stb r3, 0x4ca(r31)
@@ -1006,7 +1006,7 @@ lbl_802338FC:
 /* 8023391C 0023085C  B0 05 00 08 */	sth r0, 8(r5)
 /* 80233920 00230860  80 6D 85 F0 */	lwz r3, lbl_80450B70-_SDA_BASE_(r13)
 /* 80233924 00230864  A8 81 08 12 */	lha r4, 0x812(r1)
-/* 80233928 00230868  48 09 86 39 */	bl Z2SpeechMgr2_NS_setTextCount
+/* 80233928 00230868  48 09 86 39 */	bl setTextCount__12Z2SpeechMgr2Fs
 /* 8023392C 0023086C  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 80233930 00230870  A8 03 04 0E */	lha r0, 0x40e(r3)
 /* 80233934 00230874  B0 03 04 10 */	sth r0, 0x410(r3)
@@ -3811,7 +3811,7 @@ lbl_80236118:
 /* 80236130 00233070  40 82 00 34 */	bne lbl_80236164
 /* 80236134 00233074  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80236138 00233078  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 8023613C 0023307C  4B FE 60 A1 */	bl dMeter2Info_c_NS_isFloatingMessageVisible
+/* 8023613C 0023307C  4B FE 60 A1 */	bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80236140 00233080  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236144 00233084  41 82 00 20 */	beq lbl_80236164
 /* 80236148 00233088  88 1F 04 CD */	lbz r0, 0x4cd(r31)
@@ -3821,7 +3821,7 @@ lbl_80236154:
 /* 80236154 00233094  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80236158 00233098  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 8023615C 0023309C  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 80236160 002330A0  4B FE 95 8D */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 80236160 002330A0  4B FE 95 8D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_80236164:
 /* 80236164 002330A4  88 9C 5E 8F */	lbz r4, 0x5e8f(r28)
 /* 80236168 002330A8  28 04 00 00 */	cmplwi r4, 0
@@ -4609,7 +4609,7 @@ readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c:
 /* 80236C54 00233B94  38 80 00 00 */	li r4, 0
 /* 80236C58 00233B98  38 A0 00 01 */	li r5, 1
 /* 80236C5C 00233B9C  38 C0 00 00 */	li r6, 0
-/* 80236C60 00233BA0  4B DD F5 81 */	bl mDoDvdThd_mountXArchive_c_NS_create
+/* 80236C60 00233BA0  4B DD F5 81 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80236C64 00233BA4  90 7E 00 00 */	stw r3, 0(r30)
 /* 80236C68 00233BA8  2C 1F 00 63 */	cmpwi r31, 0x63
 /* 80236C6C 00233BAC  40 82 00 08 */	bne lbl_80236C74
@@ -5695,7 +5695,7 @@ setKillMessageFlag__12dMsgObject_cFvLocal:
 /* 80237A28 00234968  98 1F 04 CD */	stb r0, 0x4cd(r31)
 /* 80237A2C 0023496C  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80237A30 00234970  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 80237A34 00234974  4B FE 47 E5 */	bl dMeter2Info_c_NS_resetFloatingMessage
+/* 80237A34 00234974  4B FE 47 E5 */	bl resetFloatingMessage__13dMeter2Info_cFv
 lbl_80237A38:
 /* 80237A38 00234978  7F E3 FB 78 */	mr r3, r31
 /* 80237A3C 0023497C  4B FF E4 81 */	bl deleteProc__12dMsgObject_cFv

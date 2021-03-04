@@ -3,12 +3,12 @@
 
 extern "C" {
 void Z2AudioCamera(void);
-void Z2AudioCamera_NS_convertAbsToRel(void);
-void Z2AudioCamera_NS_convertAbsToRel_X1_(void);
-void Z2AudioCamera_NS_init(void);
-void Z2AudioCamera_NS_isInSight(void);
-void Z2AudioCamera_NS_setCameraState(void);
-void Z2AudioCamera_NS_setCameraState_X1_(void);
+void convertAbsToRel__13Z2AudioCameraFP9Z2Audiblei(void);
+void convertAbsToRel__13Z2AudioCameraFP9Z2Audiblei_X1_(void);
+void init__13Z2AudioCameraFv(void);
+void isInSight__13Z2AudioCameraCFR3Vec(void);
+void setCameraState__13Z2AudioCameraFPA4_CfR3Vecb(void);
+void setCameraState__13Z2AudioCameraFPA4_CfR3Vecb_X1_(void);
 }
 
 #endif  // Z2AUDIOCAMER_H_

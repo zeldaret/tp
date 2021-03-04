@@ -22,7 +22,7 @@
 lbl_80137250:
 /* 80137250 00134190  7F E3 FB 78 */ mr r3, r31
 /* 80137254 00134194  38 81 00 08 */ addi r4, r1, 8
-/* 80137258 00134198  4B F7 AD 81 */ bl daAlink_c_NS_getSlidePolygon
+/* 80137258 00134198  4B F7 AD 81 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 8013725C 0013419C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80137260 001341A0  40 82 00 30 */ bne lbl_80137290
 /* 80137264 001341A4  C0 5F 33 B4 */ lfs f2, 0x33b4(r31)

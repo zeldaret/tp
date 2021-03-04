@@ -4,7 +4,7 @@
 /* 800E23B0 000DF2F0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E23B4 000DF2F4  7C 7F 1B 78 */ mr r31, r3
 /* 800E23B8 000DF2F8  80 63 07 24 */ lwz r3, 0x724(r3)
-/* 800E23BC 000DF2FC  4B FC 6E 8D */ bl daAlink_c_NS_simpleAnmPlay
+/* 800E23BC 000DF2FC  4B FC 6E 8D */ bl simpleAnmPlay__9daAlink_cFP10J3DAnmBase
 /* 800E23C0 000DF300  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 800E23C4 000DF304  48 07 C1 09 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E23C8 000DF308  54 60 06 3F */ clrlwi. r0, r3, 0x18

@@ -5,7 +5,7 @@
 /* 800BF864 000BC7A4  B0 03 30 CE */ sth r0, 0x30ce(r3)
 /* 800BF868 000BC7A8  38 80 00 00 */ li r4, 0
 /* 800BF86C 000BC7AC  38 A0 00 00 */ li r5, 0
-/* 800BF870 000BC7B0  48 00 1A 6D */ bl daAlink_c_NS_deleteEquipItem
+/* 800BF870 000BC7B0  48 00 1A 6D */ bl deleteEquipItem__9daAlink_cFii
 /* 800BF874 000BC7B4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800BF878 000BC7B8  7C 08 03 A6 */ mtlr r0
 /* 800BF87C 000BC7BC  38 21 00 10 */ addi r1, r1, 0x10

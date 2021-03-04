@@ -6,27 +6,27 @@
 /* 800ADD00 000AAC40  7C 7E 1B 78 */ mr r30, r3
 /* 800ADD04 000AAC44  3B E0 00 00 */ li r31, 0
 /* 800ADD08 000AAC48  38 80 00 11 */ li r4, 0x11
-/* 800ADD0C 000AAC4C  4B FF E8 4D */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ADD0C 000AAC4C  4B FF E8 4D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ADD10 000AAC50  2C 03 00 00 */ cmpwi r3, 0
 /* 800ADD14 000AAC54  40 82 00 54 */ bne lbl_800ADD68
 /* 800ADD18 000AAC58  7F C3 F3 78 */ mr r3, r30
 /* 800ADD1C 000AAC5C  38 80 00 08 */ li r4, 8
-/* 800ADD20 000AAC60  4B FF E8 39 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ADD20 000AAC60  4B FF E8 39 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ADD24 000AAC64  2C 03 00 00 */ cmpwi r3, 0
 /* 800ADD28 000AAC68  40 82 00 40 */ bne lbl_800ADD68
 /* 800ADD2C 000AAC6C  7F C3 F3 78 */ mr r3, r30
 /* 800ADD30 000AAC70  38 80 00 0C */ li r4, 0xc
-/* 800ADD34 000AAC74  4B FF E8 25 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ADD34 000AAC74  4B FF E8 25 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ADD38 000AAC78  2C 03 00 00 */ cmpwi r3, 0
 /* 800ADD3C 000AAC7C  40 82 00 2C */ bne lbl_800ADD68
 /* 800ADD40 000AAC80  7F C3 F3 78 */ mr r3, r30
 /* 800ADD44 000AAC84  38 80 00 09 */ li r4, 9
-/* 800ADD48 000AAC88  4B FF E8 11 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ADD48 000AAC88  4B FF E8 11 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ADD4C 000AAC8C  2C 03 00 00 */ cmpwi r3, 0
 /* 800ADD50 000AAC90  40 82 00 18 */ bne lbl_800ADD68
 /* 800ADD54 000AAC94  7F C3 F3 78 */ mr r3, r30
 /* 800ADD58 000AAC98  38 80 00 0D */ li r4, 0xd
-/* 800ADD5C 000AAC9C  4B FF E7 FD */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800ADD5C 000AAC9C  4B FF E7 FD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800ADD60 000AACA0  2C 03 00 00 */ cmpwi r3, 0
 /* 800ADD64 000AACA4  41 82 00 08 */ beq lbl_800ADD6C
 lbl_800ADD68:

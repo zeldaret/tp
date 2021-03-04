@@ -34,7 +34,7 @@
 /* 8003361C 0003055C  7C 64 1B 78 */	mr r4, r3
 /* 80033620 00030560  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80033624 00030564  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 80033628 00030568  48 1E A6 9D */	bl dMeter2Info_c_NS_setHotSpringTimer
+/* 80033628 00030568  48 1E A6 9D */	bl setHotSpringTimer__13dMeter2Info_cFUc
 lbl_8003362C:
 /* 8003362C 0003056C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80033630 00030570  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l

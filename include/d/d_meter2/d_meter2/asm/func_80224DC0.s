@@ -104,15 +104,15 @@ lbl_80224EE0:
 /* 80224F34 00221E74  41 82 00 10 */ beq lbl_80224F44
 lbl_80224F38:
 /* 80224F38 00221E78  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80224F3C 00221E7C  4B FF 19 95 */ bl dMeter2Draw_c_NS_setAlphaRupeeAnimeMin
+/* 80224F3C 00221E7C  4B FF 19 95 */ bl setAlphaRupeeAnimeMin__13dMeter2Draw_cFv
 /* 80224F40 00221E80  48 00 00 0C */ b lbl_80224F4C
 lbl_80224F44:
 /* 80224F44 00221E84  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80224F48 00221E88  4B FF 1A 49 */ bl dMeter2Draw_c_NS_setAlphaRupeeAnimeMax
+/* 80224F48 00221E88  4B FF 1A 49 */ bl setAlphaRupeeAnimeMax__13dMeter2Draw_cFv
 lbl_80224F4C:
 /* 80224F4C 00221E8C  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80224F50 00221E90  38 80 00 00 */ li r4, 0
-/* 80224F54 00221E94  4B FF 17 31 */ bl dMeter2Draw_c_NS_setAlphaRupeeChange
+/* 80224F54 00221E94  4B FF 17 31 */ bl setAlphaRupeeChange__13dMeter2Draw_cFb
 /* 80224F58 00221E98  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80224F5C 00221E9C  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80224F60 00221EA0  80 01 00 14 */ lwz r0, 0x14(r1)

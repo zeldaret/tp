@@ -12,7 +12,7 @@
 /* 80209404 00206344  28 04 00 FF */ cmplwi r4, 0xff
 /* 80209408 00206348  41 82 00 30 */ beq lbl_80209438
 /* 8020940C 0020634C  7F E3 FB 78 */ mr r3, r31
-/* 80209410 00206350  4B FF D9 61 */ bl dMeterButton_c_NS_isFastSet
+/* 80209410 00206350  4B FF D9 61 */ bl isFastSet__14dMeterButton_cFi
 /* 80209414 00206354  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80209418 00206358  41 82 00 20 */ beq lbl_80209438
 /* 8020941C 0020635C  80 7F 00 F4 */ lwz r3, 0xf4(r31)
@@ -32,7 +32,7 @@ lbl_80209438:
 /* 80209450 00206390  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80209454 00206394  80 9F 00 F4 */ lwz r4, 0xf4(r31)
 /* 80209458 00206398  38 A0 00 05 */ li r5, 5
-/* 8020945C 0020639C  48 01 16 49 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 8020945C 0020639C  48 01 16 49 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80209460:
 /* 80209460 002063A0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80209464 002063A4  80 01 00 14 */ lwz r0, 0x14(r1)

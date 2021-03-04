@@ -57,15 +57,15 @@ lbl_800E352C:
 /* 800E352C 000E046C  7F E3 FB 78 */ mr r3, r31
 /* 800E3530 000E0470  38 9F 1E 2C */ addi r4, r31, 0x1e2c
 /* 800E3534 000E0474  38 A0 00 01 */ li r5, 1
-/* 800E3538 000E0478  4B FF F2 D1 */ bl daAlink_c_NS_setMagneBootsMtx
+/* 800E3538 000E0478  4B FF F2 D1 */ bl setMagneBootsMtx__9daAlink_cFP13cBgS_PolyInfoi
 /* 800E353C 000E047C  48 00 00 20 */ b lbl_800E355C
 lbl_800E3540:
 /* 800E3540 000E0480  7F E3 FB 78 */ mr r3, r31
-/* 800E3544 000E0484  4B FF F8 81 */ bl daAlink_c_NS_cancelMagneBootsOn
+/* 800E3544 000E0484  4B FF F8 81 */ bl cancelMagneBootsOn__9daAlink_cFv
 /* 800E3548 000E0488  7F E3 FB 78 */ mr r3, r31
 /* 800E354C 000E048C  38 80 00 01 */ li r4, 1
 /* 800E3550 000E0490  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
-/* 800E3554 000E0494  4B FE 34 F5 */ bl daAlink_c_NS_procFallInit
+/* 800E3554 000E0494  4B FE 34 F5 */ bl procFallInit__9daAlink_cFif
 /* 800E3558 000E0498  48 00 01 F0 */ b lbl_800E3748
 lbl_800E355C:
 /* 800E355C 000E049C  38 7F 04 D0 */ addi r3, r31, 0x4d0
@@ -158,7 +158,7 @@ lbl_800E365C:
 /* 800E3694 000E05D4  48 1E 04 59 */ bl setMagnetized__14Z2CreatureLinkFb
 /* 800E3698 000E05D8  7F E3 FB 78 */ mr r3, r31
 /* 800E369C 000E05DC  38 80 00 00 */ li r4, 0
-/* 800E36A0 000E05E0  4B FF 77 71 */ bl daAlink_c_NS_procLandDamageInit
+/* 800E36A0 000E05E0  4B FF 77 71 */ bl procLandDamageInit__9daAlink_cFi
 /* 800E36A4 000E05E4  48 00 00 A0 */ b lbl_800E3744
 lbl_800E36A8:
 /* 800E36A8 000E05E8  80 7F 06 50 */ lwz r3, 0x650(r31)

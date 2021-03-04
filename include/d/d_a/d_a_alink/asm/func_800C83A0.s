@@ -28,7 +28,7 @@ lbl_800C83D4:
 /* 800C8408 000C5348  38 A5 EF 28 */ addi r5, r5, lbl_8038EF28@l
 /* 800C840C 000C534C  C0 25 00 14 */ lfs f1, 0x14(r5)
 /* 800C8410 000C5350  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C8414 000C5354  48 06 12 C5 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 800C8414 000C5354  48 06 12 C5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 800C8418 000C5358  48 00 00 1C */ b lbl_800C8434
 lbl_800C841C:
 /* 800C841C 000C535C  38 80 00 19 */ li r4, 0x19
@@ -36,7 +36,7 @@ lbl_800C841C:
 /* 800C8424 000C5364  38 A5 D6 BC */ addi r5, r5, lbl_8038D6BC@l
 /* 800C8428 000C5368  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 800C842C 000C536C  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C8430 000C5370  4B FE 4B B1 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800C8430 000C5370  4B FE 4B B1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 lbl_800C8434:
 /* 800C8434 000C5374  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800C8438 000C5378  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

@@ -121,7 +121,7 @@ lbl_800CBDC0:
 /* 800CBDC0 000C8D00  28 1E 00 00 */ cmplwi r30, 0
 /* 800CBDC4 000C8D04  41 82 04 80 */ beq lbl_800CC244
 /* 800CBDC8 000C8D08  7F A3 EB 78 */ mr r3, r29
-/* 800CBDCC 000C8D0C  4B FF F6 B5 */ bl daAlink_c_NS_checkSwordDraw
+/* 800CBDCC 000C8D0C  4B FF F6 B5 */ bl checkSwordDraw__9daAlink_cFv
 /* 800CBDD0 000C8D10  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBDD4 000C8D14  41 82 00 4C */ beq lbl_800CBE20
 /* 800CBDD8 000C8D18  80 1D 05 7C */ lwz r0, 0x57c(r29)
@@ -145,7 +145,7 @@ lbl_800CBDFC:
 /* 800CBE1C 000C8D5C  4B F8 A1 01 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBE20:
 /* 800CBE20 000C8D60  7F A3 EB 78 */ mr r3, r29
-/* 800CBE24 000C8D64  4B FF F7 19 */ bl daAlink_c_NS_checkShieldDraw
+/* 800CBE24 000C8D64  4B FF F7 19 */ bl checkShieldDraw__9daAlink_cFv
 /* 800CBE28 000C8D68  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBE2C 000C8D6C  41 82 00 1C */ beq lbl_800CBE48
 /* 800CBE30 000C8D70  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -161,7 +161,7 @@ lbl_800CBE48:
 /* 800CBE54 000C8D94  80 1D 05 70 */ lwz r0, 0x570(r29)
 /* 800CBE58 000C8D98  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 800CBE5C 000C8D9C  41 82 03 3C */ beq lbl_800CC198
-/* 800CBE60 000C8DA0  4B FF 45 41 */ bl daAlink_c_NS_checkCloudSea
+/* 800CBE60 000C8DA0  4B FF 45 41 */ bl checkCloudSea__9daAlink_cFv
 /* 800CBE64 000C8DA4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBE68 000C8DA8  40 82 03 30 */ bne lbl_800CC198
 /* 800CBE6C 000C8DAC  80 9F 08 94 */ lwz r4, 0x894(r31)
@@ -247,7 +247,7 @@ lbl_800CBF6C:
 /* 800CBF94 000C8ED4  48 00 01 64 */ b lbl_800CC0F8
 lbl_800CBF98:
 /* 800CBF98 000C8ED8  7F A3 EB 78 */ mr r3, r29
-/* 800CBF9C 000C8EDC  4B FF F6 5D */ bl daAlink_c_NS_checkItemDraw
+/* 800CBF9C 000C8EDC  4B FF F6 5D */ bl checkItemDraw__9daAlink_cFv
 /* 800CBFA0 000C8EE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBFA4 000C8EE4  41 82 01 54 */ beq lbl_800CC0F8
 /* 800CBFA8 000C8EE8  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
@@ -290,7 +290,7 @@ lbl_800CBFDC:
 /* 800CC034 000C8F74  48 00 00 C4 */ b lbl_800CC0F8
 lbl_800CC038:
 /* 800CC038 000C8F78  7F A3 EB 78 */ mr r3, r29
-/* 800CC03C 000C8F7C  48 03 C8 29 */ bl daAlink_c_NS_changeHookshotDrawModel
+/* 800CC03C 000C8F7C  48 03 C8 29 */ bl changeHookshotDrawModel__9daAlink_cFv
 /* 800CC040 000C8F80  7F E3 FB 78 */ mr r3, r31
 /* 800CC044 000C8F84  7F C4 F3 78 */ mr r4, r30
 /* 800CC048 000C8F88  80 BD 07 08 */ lwz r5, 0x708(r29)
@@ -300,7 +300,7 @@ lbl_800CC038:
 /* 800CC058 000C8F98  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC05C 000C8F9C  41 82 00 94 */ beq lbl_800CC0F0
 /* 800CC060 000C8FA0  7F A3 EB 78 */ mr r3, r29
-/* 800CC064 000C8FA4  48 03 C9 B5 */ bl daAlink_c_NS_checkHookshotWait
+/* 800CC064 000C8FA4  48 03 C9 B5 */ bl checkHookshotWait__9daAlink_cCFv
 /* 800CC068 000C8FA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC06C 000C8FAC  41 82 00 28 */ beq lbl_800CC094
 /* 800CC070 000C8FB0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -317,7 +317,7 @@ lbl_800CC094:
 /* 800CC098 000C8FD8  28 00 00 47 */ cmplwi r0, 0x47
 /* 800CC09C 000C8FDC  40 82 00 54 */ bne lbl_800CC0F0
 /* 800CC0A0 000C8FE0  7F A3 EB 78 */ mr r3, r29
-/* 800CC0A4 000C8FE4  48 01 0E 61 */ bl daAlink_c_NS_checkPlayerGuardAndAttack
+/* 800CC0A4 000C8FE4  48 01 0E 61 */ bl checkPlayerGuardAndAttack__9daAlink_cCFv
 /* 800CC0A8 000C8FE8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC0AC 000C8FEC  40 82 00 44 */ bne lbl_800CC0F0
 /* 800CC0B0 000C8FF0  80 1D 05 70 */ lwz r0, 0x570(r29)
@@ -338,7 +338,7 @@ lbl_800CC094:
 /* 800CC0EC 000C902C  4B F8 9E 31 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC0F0:
 /* 800CC0F0 000C9030  7F A3 EB 78 */ mr r3, r29
-/* 800CC0F4 000C9034  48 03 C7 71 */ bl daAlink_c_NS_changeHookshotDrawModel
+/* 800CC0F4 000C9034  48 03 C7 71 */ bl changeHookshotDrawModel__9daAlink_cFv
 lbl_800CC0F8:
 /* 800CC0F8 000C9038  80 1D 05 78 */ lwz r0, 0x578(r29)
 /* 800CC0FC 000C903C  54 00 07 FF */ clrlwi. r0, r0, 0x1f

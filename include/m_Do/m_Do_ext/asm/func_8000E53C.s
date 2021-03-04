@@ -15,10 +15,10 @@
 /* 8000E570 0000B4B0  3C 80 80 01 */ lis r4, mDoExt_invJntPacket@ha
 /*.global mDoExt_invJntPacket*/
 /* 8000E574 0000B4B4  38 84 E6 54 */ addi r4, r4, mDoExt_invJntPacket@l
-/*.global mDoExt_invJntPacket_NS_dtor*/
-/* 8000E578 0000B4B8  3C A0 80 01 */ lis r5, mDoExt_invJntPacket_NS_dtor@ha
-/*.global mDoExt_invJntPacket_NS_dtor*/
-/* 8000E57C 0000B4BC  38 A5 E5 F8 */ addi r5, r5, mDoExt_invJntPacket_NS_dtor@l
+/*.global __dt__19mDoExt_invJntPacketFv*/
+/* 8000E578 0000B4B8  3C A0 80 01 */ lis r5, __dt__19mDoExt_invJntPacketFv@ha
+/*.global __dt__19mDoExt_invJntPacketFv*/
+/* 8000E57C 0000B4BC  38 A5 E5 F8 */ addi r5, r5, __dt__19mDoExt_invJntPacketFv@l
 /* 8000E580 0000B4C0  38 C0 00 18 */ li r6, 0x18
 /* 8000E584 0000B4C4  7F E7 FB 78 */ mr r7, r31
 /* 8000E588 0000B4C8  48 35 39 8D */ bl func_80361F14

@@ -3,7 +3,7 @@
 /* 800CE630 000CB570  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800CE634 000CB574  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800CE638 000CB578  7C 7F 1B 78 */ mr r31, r3
-/* 800CE63C 000CB57C  4B FF FE 2D */ bl daAlink_c_NS_acceptSubjectModeChange
+/* 800CE63C 000CB57C  4B FF FE 2D */ bl acceptSubjectModeChange__9daAlink_cFv
 /* 800CE640 000CB580  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CE644 000CB584  41 82 00 CC */ beq lbl_800CE710
 /* 800CE648 000CB588  80 1F 05 80 */ lwz r0, 0x580(r31)
@@ -28,7 +28,7 @@
 /* 800CE694 000CB5D4  28 03 00 00 */ cmplwi r3, 0
 /* 800CE698 000CB5D8  41 82 00 10 */ beq lbl_800CE6A8
 /* 800CE69C 000CB5DC  7F E3 FB 78 */ mr r3, r31
-/* 800CE6A0 000CB5E0  48 02 85 4D */ bl daAlink_c_NS_procCanoeSubjectivityInit
+/* 800CE6A0 000CB5E0  48 02 85 4D */ bl procCanoeSubjectivityInit__9daAlink_cFv
 /* 800CE6A4 000CB5E4  48 00 00 70 */ b lbl_800CE714
 lbl_800CE6A8:
 /* 800CE6A8 000CB5E8  7F E3 FB 78 */ mr r3, r31
@@ -39,27 +39,27 @@ lbl_800CE6A8:
 /* 800CE6BC 000CB5FC  28 03 00 00 */ cmplwi r3, 0
 /* 800CE6C0 000CB600  41 82 00 10 */ beq lbl_800CE6D0
 /* 800CE6C4 000CB604  7F E3 FB 78 */ mr r3, r31
-/* 800CE6C8 000CB608  48 03 8D 09 */ bl daAlink_c_NS_procBoardSubjectivityInit
+/* 800CE6C8 000CB608  48 03 8D 09 */ bl procBoardSubjectivityInit__9daAlink_cFv
 /* 800CE6CC 000CB60C  48 00 00 48 */ b lbl_800CE714
 lbl_800CE6D0:
 /* 800CE6D0 000CB610  7F E3 FB 78 */ mr r3, r31
-/* 800CE6D4 000CB614  48 02 2B C1 */ bl daAlink_c_NS_procHorseSubjectivityInit
+/* 800CE6D4 000CB614  48 02 2B C1 */ bl procHorseSubjectivityInit__9daAlink_cFv
 /* 800CE6D8 000CB618  48 00 00 3C */ b lbl_800CE714
 lbl_800CE6DC:
 /* 800CE6DC 000CB61C  54 60 03 9D */ rlwinm. r0, r3, 0, 0xe, 0xe
 /* 800CE6E0 000CB620  41 82 00 10 */ beq lbl_800CE6F0
 /* 800CE6E4 000CB624  7F E3 FB 78 */ mr r3, r31
-/* 800CE6E8 000CB628  48 06 51 65 */ bl daAlink_c_NS_procWolfRopeSubjectivityInit
+/* 800CE6E8 000CB628  48 06 51 65 */ bl procWolfRopeSubjectivityInit__9daAlink_cFv
 /* 800CE6EC 000CB62C  48 00 00 28 */ b lbl_800CE714
 lbl_800CE6F0:
 /* 800CE6F0 000CB630  54 60 03 5B */ rlwinm. r0, r3, 0, 0xd, 0xd
 /* 800CE6F4 000CB634  41 82 00 10 */ beq lbl_800CE704
 /* 800CE6F8 000CB638  7F E3 FB 78 */ mr r3, r31
-/* 800CE6FC 000CB63C  48 00 08 75 */ bl daAlink_c_NS_procCoSwimSubjectivityInit
+/* 800CE6FC 000CB63C  48 00 08 75 */ bl procCoSwimSubjectivityInit__9daAlink_cFv
 /* 800CE700 000CB640  48 00 00 14 */ b lbl_800CE714
 lbl_800CE704:
 /* 800CE704 000CB644  7F E3 FB 78 */ mr r3, r31
-/* 800CE708 000CB648  48 00 06 7D */ bl daAlink_c_NS_procCoSubjectivityInit
+/* 800CE708 000CB648  48 00 06 7D */ bl procCoSubjectivityInit__9daAlink_cFv
 /* 800CE70C 000CB64C  48 00 00 08 */ b lbl_800CE714
 lbl_800CE710:
 /* 800CE710 000CB650  38 60 00 00 */ li r3, 0

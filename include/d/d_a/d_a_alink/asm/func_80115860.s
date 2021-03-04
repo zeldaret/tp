@@ -8,7 +8,7 @@
 /* 8011587C 001127BC  A0 03 2F DC */ lhz r0, 0x2fdc(r3)
 /* 80115880 001127C0  28 00 00 42 */ cmplwi r0, 0x42
 /* 80115884 001127C4  41 82 00 0C */ beq lbl_80115890
-/* 80115888 001127C8  4B FA 00 65 */ bl daAlink_c_NS_checkWaitAction
+/* 80115888 001127C8  4B FA 00 65 */ bl checkWaitAction__9daAlink_cFv
 /* 8011588C 001127CC  48 00 01 4C */ b lbl_801159D8
 lbl_80115890:
 /* 80115890 001127D0  38 00 00 04 */ li r0, 4
@@ -16,7 +16,7 @@ lbl_80115890:
 /* 80115898 001127D8  A8 1E 30 18 */ lha r0, 0x3018(r30)
 /* 8011589C 001127DC  2C 00 00 08 */ cmpwi r0, 8
 /* 801158A0 001127E0  40 82 00 0C */ bne lbl_801158AC
-/* 801158A4 001127E4  48 00 01 4D */ bl daAlink_c_NS_procIronBallReturnInit
+/* 801158A4 001127E4  48 00 01 4D */ bl procIronBallReturnInit__9daAlink_cFv
 /* 801158A8 001127E8  48 00 01 30 */ b lbl_801159D8
 lbl_801158AC:
 /* 801158AC 001127EC  2C 00 00 04 */ cmpwi r0, 4
@@ -71,7 +71,7 @@ lbl_8011593C:
 /* 8011596C 001128AC  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
 /* 80115970 001128B0  C0 25 00 34 */ lfs f1, 0x34(r5)
 /* 80115974 001128B4  C0 45 00 38 */ lfs f2, 0x38(r5)
-/* 80115978 001128B8  4B F9 76 69 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80115978 001128B8  4B F9 76 69 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 8011597C 001128BC  38 00 00 0C */ li r0, 0xc
 /* 80115980 001128C0  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 80115984 001128C4  38 00 00 04 */ li r0, 4
@@ -82,7 +82,7 @@ lbl_80115990:
 /* 80115994 001128D4  2C 00 00 07 */ cmpwi r0, 7
 /* 80115998 001128D8  40 82 00 3C */ bne lbl_801159D4
 /* 8011599C 001128DC  7F C3 F3 78 */ mr r3, r30
-/* 801159A0 001128E0  48 00 00 51 */ bl daAlink_c_NS_procIronBallReturnInit
+/* 801159A0 001128E0  48 00 00 51 */ bl procIronBallReturnInit__9daAlink_cFv
 /* 801159A4 001128E4  48 00 00 30 */ b lbl_801159D4
 lbl_801159A8:
 /* 801159A8 001128E8  A8 1E 30 0C */ lha r0, 0x300c(r30)

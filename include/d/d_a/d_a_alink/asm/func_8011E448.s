@@ -22,10 +22,10 @@ lbl_8011E494:
 /* 8011E498 0011B3D8  B0 1F 06 04 */ sth r0, 0x604(r31)
 /* 8011E49C 0011B3DC  7F E3 FB 78 */ mr r3, r31
 /* 8011E4A0 0011B3E0  38 80 00 E3 */ li r4, 0xe3
-/* 8011E4A4 0011B3E4  4B FA 3A C9 */ bl daAlink_c_NS_commonProcInit
+/* 8011E4A4 0011B3E4  4B FA 3A C9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011E4A8 0011B3E8  7F E3 FB 78 */ mr r3, r31
 /* 8011E4AC 0011B3EC  38 80 01 88 */ li r4, 0x188
-/* 8011E4B0 0011B3F0  4B F8 EA D1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011E4B0 0011B3F0  4B F8 EA D1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011E4B4 0011B3F4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011E4B8 0011B3F8  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 8011E4BC 0011B3FC  3B C0 FF FF */ li r30, -1
@@ -54,7 +54,7 @@ lbl_8011E4F0:
 /* 8011E514 0011B454  4C C6 31 82 */ crclr 6
 /* 8011E518 0011B458  4B F6 A5 65 */ bl StartEventCamera__9dCamera_cFiie
 /* 8011E51C 0011B45C  7F E3 FB 78 */ mr r3, r31
-/* 8011E520 0011B460  4B FA 13 35 */ bl daAlink_c_NS_keepItemData
+/* 8011E520 0011B460  4B FA 13 35 */ bl keepItemData__9daAlink_cFv
 /* 8011E524 0011B464  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011E528 0011B468  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E52C 0011B46C  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -62,7 +62,7 @@ lbl_8011E4F0:
 /* 8011E534 0011B474  60 00 08 00 */ ori r0, r0, 0x800
 /* 8011E538 0011B478  90 03 5F 1C */ stw r0, 0x5f1c(r3)
 /* 8011E53C 0011B47C  7F A3 EB 78 */ mr r3, r29
-/* 8011E540 0011B480  4B FF FE 99 */ bl daAlink_c_NS_checkLetterItem
+/* 8011E540 0011B480  4B FF FE 99 */ bl checkLetterItem__9daAlink_cFi
 /* 8011E544 0011B484  2C 03 00 00 */ cmpwi r3, 0
 /* 8011E548 0011B488  41 82 00 10 */ beq lbl_8011E558
 /* 8011E54C 0011B48C  38 00 00 00 */ li r0, 0

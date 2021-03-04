@@ -136,84 +136,84 @@ asm void Z2SeqMgr::menuOutBgm(void) {
 extern "C" {
 // fanfareFramework__8Z2SeqMgrFv
 // Z2SeqMgr::fanfareFramework(void)
-asm void Z2SeqMgr_NS_fanfareFramework(void) {
+asm void fanfareFramework__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B2E3C.s"
 }
 
 // stopWolfHowlSong__8Z2SeqMgrFv
 // Z2SeqMgr::stopWolfHowlSong(void)
-asm void Z2SeqMgr_NS_stopWolfHowlSong(void) {
+asm void stopWolfHowlSong__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B327C.s"
 }
 
 // setHeightVolMod__8Z2SeqMgrFbUl
 // Z2SeqMgr::setHeightVolMod(bool, unsigned long)
-asm void Z2SeqMgr_NS_setHeightVolMod(void) {
+asm void setHeightVolMod__8Z2SeqMgrFbUl(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B3318.s"
 }
 
 // setTimeProcVolMod__8Z2SeqMgrFbUl
 // Z2SeqMgr::setTimeProcVolMod(bool, unsigned long)
-asm void Z2SeqMgr_NS_setTimeProcVolMod(void) {
+asm void setTimeProcVolMod__8Z2SeqMgrFbUl(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B3398.s"
 }
 
 // processBgmFramework__8Z2SeqMgrFv
 // Z2SeqMgr::processBgmFramework(void)
-asm void Z2SeqMgr_NS_processBgmFramework(void) {
+asm void processBgmFramework__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B33A8.s"
 }
 
 // checkBgmIDPlaying__8Z2SeqMgrFUl
 // Z2SeqMgr::checkBgmIDPlaying(unsigned long)
-asm void Z2SeqMgr_NS_checkBgmIDPlaying(void) {
+asm void checkBgmIDPlaying__8Z2SeqMgrFUl(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B3EAC.s"
 }
 
 // getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei
 // Z2SeqMgr::getChildTrackVolume(JAISoundHandle*, int)
-asm void Z2SeqMgr_NS_getChildTrackVolume(void) {
+asm void getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B3F40.s"
 }
 
 // setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff
 // Z2SeqMgr::setChildTrackVolume(JAISoundHandle*, int, float, unsigned long, float, float)
-asm void Z2SeqMgr_NS_setChildTrackVolume(void) {
+asm void setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B3FEC.s"
 }
 
 // resetBattleBgmParams__8Z2SeqMgrFv
 // Z2SeqMgr::resetBattleBgmParams(void)
-asm void Z2SeqMgr_NS_resetBattleBgmParams(void) {
+asm void resetBattleBgmParams__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4128.s"
 }
 
 // setBattleBgmOff__8Z2SeqMgrFb
 // Z2SeqMgr::setBattleBgmOff(bool)
-asm void Z2SeqMgr_NS_setBattleBgmOff(void) {
+asm void setBattleBgmOff__8Z2SeqMgrFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4164.s"
 }
 
 // setBattleSearched__8Z2SeqMgrFb
 // Z2SeqMgr::setBattleSearched(bool)
-asm void Z2SeqMgr_NS_setBattleSearched(void) {
+asm void setBattleSearched__8Z2SeqMgrFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B421C.s"
 }
 
 // setBattleDistIgnore__8Z2SeqMgrFb
 // Z2SeqMgr::setBattleDistIgnore(bool)
-asm void Z2SeqMgr_NS_setBattleDistIgnore(void) {
+asm void setBattleDistIgnore__8Z2SeqMgrFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B43D0.s"
 }
@@ -227,112 +227,112 @@ asm void Z2SeqMgr::setBattleGhostMute(bool) {
 
 // setBattleDistState__8Z2SeqMgrFUc
 // Z2SeqMgr::setBattleDistState(unsigned char)
-asm void Z2SeqMgr_NS_setBattleDistState(void) {
+asm void setBattleDistState__8Z2SeqMgrFUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4498.s"
 }
 
 // setBattleSeqState__8Z2SeqMgrFUc
 // Z2SeqMgr::setBattleSeqState(unsigned char)
-asm void Z2SeqMgr_NS_setBattleSeqState(void) {
+asm void setBattleSeqState__8Z2SeqMgrFUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4844.s"
 }
 
 // setBattleLastHit__8Z2SeqMgrFUc
 // Z2SeqMgr::setBattleLastHit(unsigned char)
-asm void Z2SeqMgr_NS_setBattleLastHit(void) {
+asm void setBattleLastHit__8Z2SeqMgrFUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4AFC.s"
 }
 
 // battleBgmFramework__8Z2SeqMgrFv
 // Z2SeqMgr::battleBgmFramework(void)
-asm void Z2SeqMgr_NS_battleBgmFramework(void) {
+asm void battleBgmFramework__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4BD0.s"
 }
 
 // startBattleBgm__8Z2SeqMgrFb
 // Z2SeqMgr::startBattleBgm(bool)
-asm void Z2SeqMgr_NS_startBattleBgm(void) {
+asm void startBattleBgm__8Z2SeqMgrFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B4EB0.s"
 }
 
 // stopBattleBgm__8Z2SeqMgrFUcUc
 // Z2SeqMgr::stopBattleBgm(unsigned char, unsigned char)
-asm void Z2SeqMgr_NS_stopBattleBgm(void) {
+asm void stopBattleBgm__8Z2SeqMgrFUcUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5204.s"
 }
 
 // fieldBgmStart__8Z2SeqMgrFv
 // Z2SeqMgr::fieldBgmStart(void)
-asm void Z2SeqMgr_NS_fieldBgmStart(void) {
+asm void fieldBgmStart__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B545C.s"
 }
 
 // fieldRidingMute__8Z2SeqMgrFv
 // Z2SeqMgr::fieldRidingMute(void)
-asm void Z2SeqMgr_NS_fieldRidingMute(void) {
+asm void fieldRidingMute__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B556C.s"
 }
 
 // onFieldBgmJumpStart__8Z2SeqMgrFv
 // Z2SeqMgr::onFieldBgmJumpStart(void)
-asm void Z2SeqMgr_NS_onFieldBgmJumpStart(void) {
+asm void onFieldBgmJumpStart__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5750.s"
 }
 
 // onFieldBgmJumpEnd__8Z2SeqMgrFv
 // Z2SeqMgr::onFieldBgmJumpEnd(void)
-asm void Z2SeqMgr_NS_onFieldBgmJumpEnd(void) {
+asm void onFieldBgmJumpEnd__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B579C.s"
 }
 
 // fieldBgmFramework__8Z2SeqMgrFv
 // Z2SeqMgr::fieldBgmFramework(void)
-asm void Z2SeqMgr_NS_fieldBgmFramework(void) {
+asm void fieldBgmFramework__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B594C.s"
 }
 
 // mbossBgmMuteProcess__8Z2SeqMgrFv
 // Z2SeqMgr::mbossBgmMuteProcess(void)
-asm void Z2SeqMgr_NS_mbossBgmMuteProcess(void) {
+asm void mbossBgmMuteProcess__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5E80.s"
 }
 
 // bgmSetSwordUsing__8Z2SeqMgrFl
 // Z2SeqMgr::bgmSetSwordUsing(long)
-asm void Z2SeqMgr_NS_bgmSetSwordUsing(void) {
+asm void bgmSetSwordUsing__8Z2SeqMgrFl(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5E84.s"
 }
 
 // bgmNowBattle__8Z2SeqMgrFf
 // Z2SeqMgr::bgmNowBattle(float)
-asm void Z2SeqMgr_NS_bgmNowBattle(void) {
+asm void bgmNowBattle__8Z2SeqMgrFf(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5E88.s"
 }
 
 // taktModeMute__8Z2SeqMgrFv
 // Z2SeqMgr::taktModeMute(void)
-asm void Z2SeqMgr_NS_taktModeMute(void) {
+asm void taktModeMute__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5E8C.s"
 }
 
 // taktModeMuteOff__8Z2SeqMgrFv
 // Z2SeqMgr::taktModeMuteOff(void)
-asm void Z2SeqMgr_NS_taktModeMuteOff(void) {
+asm void taktModeMute__8Z2SeqMgrFvOff(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5ED4.s"
 }

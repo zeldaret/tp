@@ -1,7 +1,7 @@
 /* 800A660C 000A354C  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 800A6610 000A3550  7C 08 02 A6 */ mflr r0
 /* 800A6614 000A3554  90 01 00 14 */ stw r0, 0x14(r1)
-/* 800A6618 000A3558  4B FF F6 B1 */ bl daAlink_c_NS_create
+/* 800A6618 000A3558  4B FF F6 B1 */ bl create__9daAlink_cFv
 /* 800A661C 000A355C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800A6620 000A3560  7C 08 03 A6 */ mtlr r0
 /* 800A6624 000A3564  38 21 00 10 */ addi r1, r1, 0x10

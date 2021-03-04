@@ -11,7 +11,7 @@
 /* 800B3528 000B0468  83 83 27 E0 */ lwz r28, 0x27e0(r3)
 /* 800B352C 000B046C  7F F9 FB 78 */ mr r25, r31
 /* 800B3530 000B0470  7F 83 E3 78 */ mr r3, r28
-/* 800B3534 000B0474  4B FC 02 B1 */ bl dAttention_c_NS_LockonTruth
+/* 800B3534 000B0474  4B FC 02 B1 */ bl LockonTruth__12dAttention_cFv
 /* 800B3538 000B0478  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B353C 000B047C  40 82 00 14 */ bne lbl_800B3550
 /* 800B3540 000B0480  80 1C 03 34 */ lwz r0, 0x334(r28)
@@ -58,7 +58,7 @@ lbl_800B35C4:
 /* 800B35C8 000B0508  40 82 00 34 */ bne lbl_800B35FC
 /* 800B35CC 000B050C  3B 80 00 00 */ li r28, 0
 /* 800B35D0 000B0510  7F A3 EB 78 */ mr r3, r29
-/* 800B35D4 000B0514  48 00 79 AD */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800B35D4 000B0514  48 00 79 AD */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800B35D8 000B0518  2C 03 00 00 */ cmpwi r3, 0
 /* 800B35DC 000B051C  41 82 00 14 */ beq lbl_800B35F0
 /* 800B35E0 000B0520  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)

@@ -39,10 +39,10 @@ lbl_80059FB0:
 /* 8005A004 00056F44  3C 80 80 05 */ lis r4, EF_EVIL_EFF@ha
 /*.global EF_EVIL_EFF*/
 /* 8005A008 00056F48  38 84 70 A8 */ addi r4, r4, EF_EVIL_EFF@l
-/*.global EF_EVIL_EFF_NS_dtor*/
-/* 8005A00C 00056F4C  3C A0 80 05 */ lis r5, EF_EVIL_EFF_NS_dtor@ha
-/*.global EF_EVIL_EFF_NS_dtor*/
-/* 8005A010 00056F50  38 A5 70 6C */ addi r5, r5, EF_EVIL_EFF_NS_dtor@l
+/*.global __dt__11EF_EVIL_EFFFv*/
+/* 8005A00C 00056F4C  3C A0 80 05 */ lis r5, __dt__11EF_EVIL_EFFFv@ha
+/*.global __dt__11EF_EVIL_EFFFv*/
+/* 8005A010 00056F50  38 A5 70 6C */ addi r5, r5, __dt__11EF_EVIL_EFFFv@l
 /* 8005A014 00056F54  38 C0 00 44 */ li r6, 0x44
 /* 8005A018 00056F58  38 E0 07 D0 */ li r7, 0x7d0
 /* 8005A01C 00056F5C  48 30 7D 45 */ bl func_80361D60

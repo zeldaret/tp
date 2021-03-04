@@ -73,7 +73,7 @@ lbl_8022553C:
 /* 802255D0 00222510  41 82 00 58 */ beq lbl_80225628
 lbl_802255D4:
 /* 802255D4 00222514  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802255D8 00222518  4B FF 2D 61 */ bl dMeter2Draw_c_NS_setAlphaButtonCrossAnimeMin
+/* 802255D8 00222518  4B FF 2D 61 */ bl setAlphaButtonCrossAnimeMin__13dMeter2Draw_cFv
 /* 802255DC 0022251C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 802255E0 00222520  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 802255E4 00222524  A0 03 4F A0 */ lhz r0, 0x4fa0(r3)
@@ -98,12 +98,12 @@ lbl_80225628:
 /* 80225628 00222568  A0 03 00 A2 */ lhz r0, 0xa2(r3)
 /* 8022562C 0022256C  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80225630 00222570  40 82 00 10 */ bne lbl_80225640
-/* 80225634 00222574  4B FF 6B A9 */ bl dMeter2Info_c_NS_isFloatingMessageVisible
+/* 80225634 00222574  4B FF 6B A9 */ bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80225638 00222578  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8022563C 0022257C  41 82 00 24 */ beq lbl_80225660
 lbl_80225640:
 /* 80225640 00222580  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80225644 00222584  4B FF 2C F5 */ bl dMeter2Draw_c_NS_setAlphaButtonCrossAnimeMin
+/* 80225644 00222584  4B FF 2C F5 */ bl setAlphaButtonCrossAnimeMin__13dMeter2Draw_cFv
 /* 80225648 00222588  A8 7F 01 90 */ lha r3, 0x190(r31)
 /* 8022564C 0022258C  2C 03 00 05 */ cmpwi r3, 5
 /* 80225650 00222590  40 80 00 2C */ bge lbl_8022567C
@@ -112,7 +112,7 @@ lbl_80225640:
 /* 8022565C 0022259C  48 00 00 20 */ b lbl_8022567C
 lbl_80225660:
 /* 80225660 002225A0  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80225664 002225A4  4B FF 2D 45 */ bl dMeter2Draw_c_NS_setAlphaButtonCrossAnimeMax
+/* 80225664 002225A4  4B FF 2D 45 */ bl setAlphaButtonCrossAnimeMax__13dMeter2Draw_cFv
 /* 80225668 002225A8  A8 7F 01 90 */ lha r3, 0x190(r31)
 /* 8022566C 002225AC  2C 03 00 05 */ cmpwi r3, 5
 /* 80225670 002225B0  40 80 00 0C */ bge lbl_8022567C
@@ -137,7 +137,7 @@ lbl_8022567C:
 /* 802256B8 002225F8  FC 00 00 1E */ fctiwz f0, f0
 /* 802256BC 002225FC  D8 01 00 10 */ stfd f0, 0x10(r1)
 /* 802256C0 00222600  80 81 00 14 */ lwz r4, 0x14(r1)
-/* 802256C4 00222604  4B FE 82 35 */ bl dMeterMap_c_NS_setMapAlpha
+/* 802256C4 00222604  4B FE 82 35 */ bl setMapAlpha__11dMeterMap_cFUc
 lbl_802256C8:
 /* 802256C8 00222608  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 802256CC 0022260C  80 01 00 24 */ lwz r0, 0x24(r1)

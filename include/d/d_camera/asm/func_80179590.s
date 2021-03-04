@@ -133,7 +133,7 @@ lbl_80179720:
 /* 80179784 001766C4  41 82 00 14 */ beq lbl_80179798
 /* 80179788 001766C8  7F 83 E3 78 */ mr r3, r28
 /* 8017978C 001766CC  80 9C 06 8C */ lwz r4, 0x68c(r28)
-/* 80179790 001766D0  4B FE B0 E9 */ bl dCamera_c_NS_getParamTargetActor
+/* 80179790 001766D0  4B FE B0 E9 */ bl getParamTargetActor__9dCamera_cFl
 /* 80179794 001766D4  90 7C 03 F0 */ stw r3, 0x3f0(r28)
 lbl_80179798:
 /* 80179798 001766D8  38 00 00 FE */ li r0, 0xfe
@@ -503,7 +503,7 @@ lbl_80179D00:
 /* 80179D04 00176C44  7F 84 E3 78 */ mr r4, r28
 /* 80179D08 00176C48  80 BC 01 80 */ lwz r5, 0x180(r28)
 /* 80179D0C 00176C4C  38 C1 01 F0 */ addi r6, r1, 0x1f0
-/* 80179D10 00176C50  4B FE B0 5D */ bl dCamera_c_NS_relationalPos
+/* 80179D10 00176C50  4B FE B0 5D */ bl relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz
 /* 80179D14 00176C54  38 61 00 94 */ addi r3, r1, 0x94
 /* 80179D18 00176C58  38 81 00 44 */ addi r4, r1, 0x44
 /* 80179D1C 00176C5C  48 0F 7D 99 */ bl Xyz__7cSGlobeCFv
@@ -740,8 +740,8 @@ lbl_8017A044:
 /* 8017A090 00176FD0  38 6D 8A C0 */ addi r3, r13, 0x80451040 - 0x80458580 /*SDA HACK; original: lbl_80451040-_SDA_BASE_*/
 /* 8017A094 00176FD4  C0 22 9E 58 */ lfs f1, lbl_80453858-_SDA2_BASE_(r2)
 /* 8017A098 00176FD8  48 0F 6F 31 */ bl __ct__7cSAngleFf
-/* 8017A09C 00176FDC  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 8017A0A0 00176FE0  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 8017A09C 00176FDC  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 8017A0A0 00176FE0  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 8017A0A4 00176FE4  3C A0 80 43 */ lis r5, lbl_8042C9AC@ha
 /* 8017A0A8 00176FE8  38 A5 C9 AC */ addi r5, r5, lbl_8042C9AC@l
 /* 8017A0AC 00176FEC  48 1E 7B 79 */ bl func_80361C24
@@ -756,7 +756,7 @@ lbl_8017A0B8:
 /* 8017A0CC 0017700C  7C 03 00 00 */ cmpw r3, r0
 /* 8017A0D0 00177010  40 81 00 0C */ ble lbl_8017A0DC
 /* 8017A0D4 00177014  7F 83 E3 78 */ mr r3, r28
-/* 8017A0D8 00177018  4B FE B0 2D */ bl dCamera_c_NS_setUSOAngle
+/* 8017A0D8 00177018  4B FE B0 2D */ bl setUSOAngle__9dCamera_cFv
 lbl_8017A0DC:
 /* 8017A0DC 0017701C  80 1C 0A F4 */ lwz r0, 0xaf4(r28)
 /* 8017A0E0 00177020  7C 60 F2 14 */ add r3, r0, r30

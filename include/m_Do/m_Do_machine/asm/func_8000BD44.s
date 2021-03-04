@@ -226,11 +226,11 @@ lbl_8000C020:
 /* 8000C090 00008FD0  48 33 4B F5 */ bl OSGetCurrentThread
 /* 8000C094 00008FD4  48 33 5D C9 */ bl OSGetThreadPriority
 /* 8000C098 00008FD8  38 63 FF FE */ addi r3, r3, -2
-/* 8000C09C 00008FDC  48 00 97 BD */ bl mDoDvdThd_NS_create
+/* 8000C09C 00008FDC  48 00 97 BD */ bl create__9mDoDvdThdFl
 /* 8000C0A0 00008FE0  48 00 A4 FD */ bl mDoDvdErr_ThdInit
 /* 8000C0A4 00008FE4  3C 60 80 3F */ lis r3, lbl_803EAF40@ha
 /* 8000C0A8 00008FE8  38 63 AF 40 */ addi r3, r3, lbl_803EAF40@l
-/* 8000C0AC 00008FEC  48 00 A6 85 */ bl mDoMemCd_Ctrl_c_NS_ThdInit
+/* 8000C0AC 00008FEC  48 00 A6 85 */ bl ThdInit__15mDoMemCd_Ctrl_cFv
 /* 8000C0B0 00008FF0  38 60 00 01 */ li r3, 1
 /* 8000C0B4 00008FF4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8000C0B8 00008FF8  83 C1 00 08 */ lwz r30, 8(r1)

@@ -4,7 +4,7 @@
 /* 801372C0 00134200  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801372C4 00134204  7C 7F 1B 78 */ mr r31, r3
 /* 801372C8 00134208  38 80 00 00 */ li r4, 0
-/* 801372CC 0013420C  4B FF 28 79 */ bl daAlink_c_NS_checkNextActionWolf
+/* 801372CC 0013420C  4B FF 28 79 */ bl checkNextAction__9daAlink_cFiWolf
 /* 801372D0 00134210  2C 03 00 00 */ cmpwi r3, 0
 /* 801372D4 00134214  41 82 00 44 */ beq lbl_80137318
 /* 801372D8 00134218  88 1F 2F 8C */ lbz r0, 0x2f8c(r31)
@@ -21,7 +21,7 @@ lbl_801372F4:
 /* 80137300 00134240  C0 24 00 30 */ lfs f1, 0x30(r4)
 /* 80137304 00134244  38 80 00 00 */ li r4, 0
 /* 80137308 00134248  38 A0 00 28 */ li r5, 0x28
-/* 8013730C 0013424C  4B ED 85 3D */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 8013730C 0013424C  4B ED 85 3D */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_80137310:
 /* 80137310 00134250  38 60 00 01 */ li r3, 1
 /* 80137314 00134254  48 00 00 08 */ b lbl_8013731C

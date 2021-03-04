@@ -10,7 +10,7 @@
 /* 800B3408 000B0348  2C 03 00 00 */ cmpwi r3, 0
 /* 800B340C 000B034C  40 82 00 70 */ bne lbl_800B347C
 /* 800B3410 000B0350  7F E3 FB 78 */ mr r3, r31
-/* 800B3414 000B0354  48 00 5E 41 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800B3414 000B0354  48 00 5E 41 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800B3418 000B0358  2C 03 00 00 */ cmpwi r3, 0
 /* 800B341C 000B035C  40 82 00 10 */ bne lbl_800B342C
 /* 800B3420 000B0360  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
@@ -21,7 +21,7 @@ lbl_800B342C:
 /* 800B3430 000B0370  28 00 00 00 */ cmplwi r0, 0
 /* 800B3434 000B0374  40 82 00 48 */ bne lbl_800B347C
 /* 800B3438 000B0378  7F E3 FB 78 */ mr r3, r31
-/* 800B343C 000B037C  4B FF 45 15 */ bl daAlink_c_NS_checkWindSpeedOnAngle
+/* 800B343C 000B037C  4B FF 45 15 */ bl checkWindSpeedOnAngle__9daAlink_cCFv
 /* 800B3440 000B0380  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B3444 000B0384  40 82 00 38 */ bne lbl_800B347C
 /* 800B3448 000B0388  A0 1F 06 04 */ lhz r0, 0x604(r31)

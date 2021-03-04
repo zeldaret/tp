@@ -22,17 +22,17 @@ class Z2CreatureEnemy : public Z2Creature {};
 extern "C" {
 void __ct__10Z2CreatureFv(void);
 
-void Z2Creature_NS_deleteObject(void);
-void Z2Creature_NS_dtor(void);
-void Z2Creature_NS_framework(void);
-void Z2Creature_NS_init(void);
-void Z2Creature_NS_init_X1_(void);
-void Z2Creature_NS_startCreatureVoice(void);
+void deleteObject__10Z2CreatureFv(void);
+void __dt__10Z2CreatureFv(void);
+void framework__10Z2CreatureFUlSc(void);
+void init__10Z2CreatureFP3VecP3VecUcUc(void);
+void init__10Z2CreatureFP3VecP3VecUcUc_X1_(void);
+void startCreatureVoice__10Z2CreatureF10JAISoundIDSc(void);
 
-void Z2CreatureCitizen_NS_init(void);
-void Z2CreatureCitizen_NS_setMdlType(void);
+void init__17Z2CreatureCitizenFP3VecP3VecUcUc(void);
+void setMdlType__17Z2CreatureCitizenFScbb(void);
 
-void Z2CreatureEnemy_NS_deleteObject(void);
+void deleteObject__15Z2CreatureEnemyFv(void);
 
 void Z2CreatureLink_NS_startLinkSound(void);
 void Z2CreatureLink_NS_startLinkSoundLevel(void);
@@ -40,7 +40,7 @@ void deleteKantera__14Z2CreatureLinkFv(void);
 void startLinkSound__14Z2CreatureLinkF10JAISoundIDUlSc(void);
 void startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc(void);
 
-void Z2CreatureRide_NS_setLinkRiding(void);
+void setLinkRiding__14Z2CreatureRideFb(void);
 
 void func_802C1B7C(void);
 void func_802C2C84(void);

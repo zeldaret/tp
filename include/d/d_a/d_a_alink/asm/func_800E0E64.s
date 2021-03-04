@@ -6,14 +6,14 @@
 /* 800E0E78 000DDDB8  80 03 28 28 */ lwz r0, 0x2828(r3)
 /* 800E0E7C 000DDDBC  28 00 00 00 */ cmplwi r0, 0
 /* 800E0E80 000DDDC0  41 82 00 7C */ beq lbl_800E0EFC
-/* 800E0E84 000DDDC4  4B FF F6 29 */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800E0E84 000DDDC4  4B FF F6 29 */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800E0E88 000DDDC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0E8C 000DDDCC  40 82 00 70 */ bne lbl_800E0EFC
 /* 800E0E90 000DDDD0  7F E3 FB 78 */ mr r3, r31
-/* 800E0E94 000DDDD4  4B FF F2 89 */ bl daAlink_c_NS_getBoomLockMax
+/* 800E0E94 000DDDD4  4B FF F2 89 */ bl getBoomLockMax__9daAlink_cFv
 /* 800E0E98 000DDDD8  7F E3 FB 78 */ mr r3, r31
 /* 800E0E9C 000DDDDC  38 9F 37 E0 */ addi r4, r31, 0x37e0
-/* 800E0EA0 000DDDE0  4B FD E6 61 */ bl daAlink_c_NS_checkSightLine
+/* 800E0EA0 000DDDE0  4B FD E6 61 */ bl checkSightLine__9daAlink_cFfP4cXyz
 /* 800E0EA4 000DDDE4  C0 1F 37 E0 */ lfs f0, 0x37e0(r31)
 /* 800E0EA8 000DDDE8  D0 1F 20 6C */ stfs f0, 0x206c(r31)
 /* 800E0EAC 000DDDEC  C0 1F 37 E4 */ lfs f0, 0x37e4(r31)
@@ -34,9 +34,9 @@
 lbl_800E0EE8:
 /* 800E0EE8 000DDE28  7F E3 FB 78 */ mr r3, r31
 /* 800E0EEC 000DDE2C  38 80 00 10 */ li r4, 0x10
-/* 800E0EF0 000DDE30  4B FD 17 ED */ bl daAlink_c_NS_setItemActionButtonStatus
+/* 800E0EF0 000DDE30  4B FD 17 ED */ bl setItemActionButtonStatus__9daAlink_cFUc
 /* 800E0EF4 000DDE34  7F E3 FB 78 */ mr r3, r31
-/* 800E0EF8 000DDE38  4B FD 18 05 */ bl daAlink_c_NS_itemActionTrigger
+/* 800E0EF8 000DDE38  4B FD 18 05 */ bl itemActionTrigger__9daAlink_cFv
 lbl_800E0EFC:
 /* 800E0EFC 000DDE3C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E0F00 000DDE40  80 01 00 14 */ lwz r0, 0x14(r1)

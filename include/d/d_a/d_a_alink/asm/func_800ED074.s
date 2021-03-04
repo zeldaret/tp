@@ -8,7 +8,7 @@
 /* 800ED090 000E9FD0  A0 03 1F BC */ lhz r0, 0x1fbc(r3)
 /* 800ED094 000E9FD4  28 00 02 63 */ cmplwi r0, 0x263
 /* 800ED098 000E9FD8  41 82 00 1C */ beq lbl_800ED0B4
-/* 800ED09C 000E9FDC  4B FC C1 B9 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800ED09C 000E9FDC  4B FC C1 B9 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800ED0A0 000E9FE0  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED0A4 000E9FE4  40 82 00 10 */ bne lbl_800ED0B4
 /* 800ED0A8 000E9FE8  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)

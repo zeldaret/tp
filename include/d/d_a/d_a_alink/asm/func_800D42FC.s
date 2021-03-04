@@ -6,12 +6,12 @@
 /* 800D4310 000D1250  7C 7E 1B 78 */ mr r30, r3
 /* 800D4314 000D1254  7C 9F 23 78 */ mr r31, r4
 /* 800D4318 000D1258  38 80 00 26 */ li r4, 0x26
-/* 800D431C 000D125C  4B FE DC 51 */ bl daAlink_c_NS_commonProcInit
+/* 800D431C 000D125C  4B FE DC 51 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D4320 000D1260  7F C3 F3 78 */ mr r3, r30
 /* 800D4324 000D1264  38 80 00 71 */ li r4, 0x71
 /* 800D4328 000D1268  3C A0 80 39 */ lis r5, lbl_8038DB40@ha
 /* 800D432C 000D126C  38 A5 DB 40 */ addi r5, r5, lbl_8038DB40@l
-/* 800D4330 000D1270  4B FD 8D C5 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D4330 000D1270  4B FD 8D C5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800D4334 000D1274  2C 1F 00 00 */ cmpwi r31, 0
 /* 800D4338 000D1278  41 82 00 20 */ beq lbl_800D4358
 /* 800D433C 000D127C  3C 60 80 39 */ lis r3, lbl_8038DB40@ha
@@ -31,7 +31,7 @@ lbl_800D4358:
 lbl_800D4370:
 /* 800D4370 000D12B0  7F C3 F3 78 */ mr r3, r30
 /* 800D4374 000D12B4  7F E4 FB 78 */ mr r4, r31
-/* 800D4378 000D12B8  4B FF E9 01 */ bl daAlink_c_NS_setCutJumpSpeed
+/* 800D4378 000D12B8  4B FF E9 01 */ bl setCutJumpSpeed__9daAlink_cFi
 /* 800D437C 000D12BC  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 800D4380 000D12C0  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800D4384 000D12C4  7F C3 F3 78 */ mr r3, r30
@@ -43,12 +43,12 @@ lbl_800D4370:
 /* 800D439C 000D12DC  39 08 DE 8C */ addi r8, r8, lbl_8038DE8C@l
 /* 800D43A0 000D12E0  C0 28 00 74 */ lfs f1, 0x74(r8)
 /* 800D43A4 000D12E4  C0 48 00 78 */ lfs f2, 0x78(r8)
-/* 800D43A8 000D12E8  4B FF D2 E1 */ bl daAlink_c_NS_setSwordAtParam
+/* 800D43A8 000D12E8  4B FF D2 E1 */ bl setSwordAtParam__9daAlink_cF11dCcG_At_SplUcUciff
 /* 800D43AC 000D12EC  7F C3 F3 78 */ mr r3, r30
 /* 800D43B0 000D12F0  38 80 00 0A */ li r4, 0xa
-/* 800D43B4 000D12F4  4B FF D1 79 */ bl daAlink_c_NS_setCutType
+/* 800D43B4 000D12F4  4B FF D1 79 */ bl setCutType__9daAlink_cFUc
 /* 800D43B8 000D12F8  7F C3 F3 78 */ mr r3, r30
-/* 800D43BC 000D12FC  4B FF DF 49 */ bl daAlink_c_NS_setSwordComboVoice
+/* 800D43BC 000D12FC  4B FF DF 49 */ bl setSwordComboVoice__9daAlink_cFv
 /* 800D43C0 000D1300  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D43C4 000D1304  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D43C8 000D1308  80 03 5F 18 */ lwz r0, 0x5f18(r3)

@@ -21,7 +21,7 @@ lbl_800AD320:
 /* 800AD324 000AA264  A0 A3 30 AA */ lhz r5, 0x30aa(r3)
 lbl_800AD328:
 /* 800AD328 000AA268  7C C3 33 78 */ mr r3, r6
-/* 800AD32C 000AA26C  4B F6 25 1D */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800AD32C 000AA26C  4B F6 25 1D */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_800AD330:
 /* 800AD330 000AA270  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800AD334 000AA274  7C 08 03 A6 */ mtlr r0

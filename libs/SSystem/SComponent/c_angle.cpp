@@ -7,7 +7,7 @@
 extern "C" {
 double sqrt(double);
 void __ct__7cSAngleFs(void);
-void cSAngle_NS_dtor(void);
+void __dt__7cSAngleFv(void);
 void func_80361C24(void);
 float cAngle_NS_Adjust(float, float, float);
 }

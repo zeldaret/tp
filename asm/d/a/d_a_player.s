@@ -215,7 +215,7 @@ lbl_8015E794:
 /* 8015E7A4 0015B6E4  41 82 00 18 */	beq lbl_8015E7BC
 /* 8015E7A8 0015B6E8  7F A3 EB 78 */	mr r3, r29
 /* 8015E7AC 0015B6EC  7F 84 E3 78 */	mr r4, r28
-/* 8015E7B0 0015B6F0  4B F8 1B 09 */	bl daAlink_c_NS_checkBoomerangCarry
+/* 8015E7B0 0015B6F0  4B F8 1B 09 */	bl checkBoomerangCarry__9daAlink_cFP10fopAc_ac_c
 /* 8015E7B4 0015B6F4  2C 03 00 00 */	cmpwi r3, 0
 /* 8015E7B8 0015B6F8  40 82 00 A8 */	bne lbl_8015E860
 lbl_8015E7BC:
@@ -1104,7 +1104,7 @@ setSight__18daPy_sightPacket_cFv:
 /* 8015F334 0015C274  C0 22 9C 80 */	lfs f1, lbl_80453680-_SDA2_BASE_(r2)
 /* 8015F338 0015C278  FC 40 08 90 */	fmr f2, f1
 /* 8015F33C 0015C27C  FC 60 08 90 */	fmr f3, f1
-/* 8015F340 0015C280  4B EA DA F9 */	bl mDoMtx_stack_c_NS_scaleM
+/* 8015F340 0015C280  4B EA DA F9 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 8015F344 0015C284  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8015F348 0015C288  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8015F34C 0015C28C  38 9F 00 14 */	addi r4, r31, 0x14
@@ -1196,7 +1196,7 @@ checkNowWolfEyeUp__9daPy_py_cFv:
 /* 8015F458 0015C398  30 07 FF FF */	addic r0, r7, -1
 /* 8015F45C 0015C39C  7C 00 39 10 */	subfe r0, r0, r7
 /* 8015F460 0015C3A0  54 07 06 3E */	clrlwi r7, r0, 0x18
-/* 8015F464 0015C3A4  4B F5 EA FD */	bl daAlink_c_NS_startRestartRoom
+/* 8015F464 0015C3A4  4B F5 EA FD */	bl startRestartRoom__9daAlink_cFUliii
 /* 8015F468 0015C3A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F46C 0015C3AC  7C 08 03 A6 */	mtlr r0
 /* 8015F470 0015C3B0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1212,7 +1212,7 @@ checkNowWolfEyeUp__9daPy_py_cFv:
 /* 8015F498 0015C3D8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8015F49C 0015C3DC  7C E4 3B 78 */	mr r4, r7
 /* 8015F4A0 0015C3E0  7C 05 03 78 */	mr r5, r0
-/* 8015F4A4 0015C3E4  4B F8 86 49 */	bl daAlink_c_NS_setFmChainPosFromOut
+/* 8015F4A4 0015C3E4  4B F8 86 49 */	bl setFmChainPosFromOut__9daAlink_cFP10fopAc_ac_cP4cXyzi
 /* 8015F4A8 0015C3E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F4AC 0015C3EC  7C 08 03 A6 */	mtlr r0
 /* 8015F4B0 0015C3F0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1503,7 +1503,7 @@ lbl_8015F88C:
 /* 8015F8A8 0015C7E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F8AC 0015C7EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F8B0 0015C7F0  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F8B4 0015C7F4  4B F8 09 91 */	bl daAlink_c_NS_checkBoomerangChargeEnd
+/* 8015F8B4 0015C7F4  4B F8 09 91 */	bl checkBoomerangChargeEnd__9daAlink_cFv
 /* 8015F8B8 0015C7F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F8BC 0015C7FC  7C 08 03 A6 */	mtlr r0
 /* 8015F8C0 0015C800  38 21 00 10 */	addi r1, r1, 0x10
@@ -1525,7 +1525,7 @@ getThrowBoomerangActor__9daPy_py_cFv:
 /* 8015F8F4 0015C834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F8F8 0015C838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F8FC 0015C83C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F900 0015C840  4B F8 08 CD */	bl daAlink_c_NS_cancelBoomerangLock
+/* 8015F900 0015C840  4B F8 08 CD */	bl cancelBoomerangLock__9daAlink_cFP10fopAc_ac_c
 /* 8015F904 0015C844  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F908 0015C848  7C 08 03 A6 */	mtlr r0
 /* 8015F90C 0015C84C  38 21 00 10 */	addi r1, r1, 0x10
@@ -1541,7 +1541,7 @@ getThrowBoomerangActor__9daPy_py_cFv:
 /* 8015F934 0015C874  7C 04 03 78 */	mr r4, r0
 /* 8015F938 0015C878  38 A0 00 00 */	li r5, 0
 /* 8015F93C 0015C87C  38 E0 00 00 */	li r7, 0
-/* 8015F940 0015C880  4B F7 79 7D */	bl daAlink_c_NS_setDamagePoint
+/* 8015F940 0015C880  4B F7 79 7D */	bl setDamagePoint__9daAlink_cFiiii
 /* 8015F944 0015C884  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F948 0015C888  7C 08 03 A6 */	mtlr r0
 /* 8015F94C 0015C88C  38 21 00 10 */	addi r1, r1, 0x10

@@ -46,7 +46,7 @@ lbl_8020DD8C:
 /* 8020DD90 0020ACD0  7F BD 07 74 */ extsb r29, r29
 /* 8020DD94 0020ACD4  93 FE 00 14 */ stw r31, 0x14(r30)
 /* 8020DD98 0020ACD8  7F C3 F3 78 */ mr r3, r30
-/* 8020DD9C 0020ACDC  48 00 06 C1 */ bl dMeterMap_c_NS_checkMoveStatus
+/* 8020DD9C 0020ACDC  48 00 06 C1 */ bl checkMoveStatus__11dMeterMap_cFv
 /* 8020DDA0 0020ACE0  98 7E 00 2A */ stb r3, 0x2a(r30)
 /* 8020DDA4 0020ACE4  88 1E 00 2A */ lbz r0, 0x2a(r30)
 /* 8020DDA8 0020ACE8  28 00 00 01 */ cmplwi r0, 1
@@ -72,19 +72,19 @@ lbl_8020DD8C:
 /* 8020DDF8 0020AD38  40 82 00 0C */ bne lbl_8020DE04
 lbl_8020DDFC:
 /* 8020DDFC 0020AD3C  7F C3 F3 78 */ mr r3, r30
-/* 8020DE00 0020AD40  48 00 02 71 */ bl dMeterMap_c_NS_ctrlShowMap
+/* 8020DE00 0020AD40  48 00 02 71 */ bl ctrlShowMap__11dMeterMap_cFv
 lbl_8020DE04:
 /* 8020DE04 0020AD44  88 1E 00 2D */ lbz r0, 0x2d(r30)
 /* 8020DE08 0020AD48  28 00 00 00 */ cmplwi r0, 0
 /* 8020DE0C 0020AD4C  41 82 00 40 */ beq lbl_8020DE4C
 /* 8020DE10 0020AD50  7F C3 F3 78 */ mr r3, r30
-/* 8020DE14 0020AD54  4B FF F9 D1 */ bl dMeterMap_c_NS_getDispPosInside_OffsetX
+/* 8020DE14 0020AD54  4B FF F9 D1 */ bl getDispPosInside_OffsetX__11dMeterMap_cFv
 /* 8020DE18 0020AD58  7C 63 07 34 */ extsh r3, r3
 /* 8020DE1C 0020AD5C  A8 1E 00 28 */ lha r0, 0x28(r30)
 /* 8020DE20 0020AD60  7C 00 18 00 */ cmpw r0, r3
 /* 8020DE24 0020AD64  41 82 00 48 */ beq lbl_8020DE6C
 /* 8020DE28 0020AD68  7F C3 F3 78 */ mr r3, r30
-/* 8020DE2C 0020AD6C  4B FF F9 B9 */ bl dMeterMap_c_NS_getDispPosInside_OffsetX
+/* 8020DE2C 0020AD6C  4B FF F9 B9 */ bl getDispPosInside_OffsetX__11dMeterMap_cFv
 /* 8020DE30 0020AD70  7C 64 1B 78 */ mr r4, r3
 /* 8020DE34 0020AD74  38 7E 00 28 */ addi r3, r30, 0x28
 /* 8020DE38 0020AD78  38 A0 00 02 */ li r5, 2
@@ -94,7 +94,7 @@ lbl_8020DE04:
 /* 8020DE48 0020AD88  48 00 00 24 */ b lbl_8020DE6C
 lbl_8020DE4C:
 /* 8020DE4C 0020AD8C  7F C3 F3 78 */ mr r3, r30
-/* 8020DE50 0020AD90  4B FF F9 9D */ bl dMeterMap_c_NS_getDispPosOutSide_OffsetX
+/* 8020DE50 0020AD90  4B FF F9 9D */ bl getDispPosOutSide_OffsetX__11dMeterMap_cFv
 /* 8020DE54 0020AD94  7C 64 1B 78 */ mr r4, r3
 /* 8020DE58 0020AD98  38 7E 00 28 */ addi r3, r30, 0x28
 /* 8020DE5C 0020AD9C  38 A0 00 02 */ li r5, 2
@@ -111,7 +111,7 @@ lbl_8020DE6C:
 /* 8020DE84 0020ADC4  80 01 00 10 */ lwz r0, 0x10(r1)
 /* 8020DE88 0020ADC8  90 01 00 1C */ stw r0, 0x1c(r1)
 /* 8020DE8C 0020ADCC  7F C3 F3 78 */ mr r3, r30
-/* 8020DE90 0020ADD0  4B FF F8 9D */ bl dMeterMap_c_NS_getMapDispEdgeLeftX_Layout
+/* 8020DE90 0020ADD0  4B FF F8 9D */ bl getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
 /* 8020DE94 0020ADD4  A8 1E 00 28 */ lha r0, 0x28(r30)
 /* 8020DE98 0020ADD8  C8 42 AE 28 */ lfd f2, lbl_80454828-_SDA2_BASE_(r2)
 /* 8020DE9C 0020ADDC  6C 00 80 00 */ xoris r0, r0, 0x8000
@@ -123,7 +123,7 @@ lbl_8020DE6C:
 /* 8020DEB4 0020ADF4  EC 00 08 2A */ fadds f0, f0, f1
 /* 8020DEB8 0020ADF8  D0 1E 00 18 */ stfs f0, 0x18(r30)
 /* 8020DEBC 0020ADFC  7F C3 F3 78 */ mr r3, r30
-/* 8020DEC0 0020AE00  4B FF F7 D1 */ bl dMeterMap_c_NS_getMapDispEdgeBottomY_Layout
+/* 8020DEC0 0020AE00  4B FF F7 D1 */ bl getMapDispEdgeBottomY_Layout__11dMeterMap_cFv
 /* 8020DEC4 0020AE04  C0 1E 00 24 */ lfs f0, 0x24(r30)
 /* 8020DEC8 0020AE08  EC 01 00 28 */ fsubs f0, f1, f0
 /* 8020DECC 0020AE0C  D0 1E 00 1C */ stfs f0, 0x1c(r30)

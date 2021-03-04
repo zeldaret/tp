@@ -22,7 +22,7 @@ lbl_8010F740:
 /* 8010F744 0010C684  B0 1E 06 04 */ sth r0, 0x604(r30)
 /* 8010F748 0010C688  7F C3 F3 78 */ mr r3, r30
 /* 8010F74C 0010C68C  38 80 00 B4 */ li r4, 0xb4
-/* 8010F750 0010C690  4B FB 28 1D */ bl daAlink_c_NS_commonProcInit
+/* 8010F750 0010C690  4B FB 28 1D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010F754 0010C694  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8010F758 0010C698  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8010F75C 0010C69C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -34,12 +34,12 @@ lbl_8010F740:
 /* 8010F774 0010C6B4  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 8010F778 0010C6B8  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 8010F77C 0010C6BC  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8010F780 0010C6C0  4B F9 D9 75 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 8010F780 0010C6C0  4B F9 D9 75 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 8010F784 0010C6C4  7F C3 F3 78 */ mr r3, r30
-/* 8010F788 0010C6C8  4B FB 00 CD */ bl daAlink_c_NS_keepItemData
+/* 8010F788 0010C6C8  4B FB 00 CD */ bl keepItemData__9daAlink_cFv
 /* 8010F78C 0010C6CC  7F C3 F3 78 */ mr r3, r30
 /* 8010F790 0010C6D0  7F E4 FB 78 */ mr r4, r31
-/* 8010F794 0010C6D4  4B FF EE 45 */ bl daAlink_c_NS_setBottleModel
+/* 8010F794 0010C6D4  4B FF EE 45 */ bl setBottleModel__9daAlink_cFUs
 /* 8010F798 0010C6D8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010F79C 0010C6DC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010F7A0 0010C6E0  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -117,7 +117,7 @@ lbl_8010F844:
 /* 8010F8B0 0010C7F0  39 00 00 00 */ li r8, 0
 /* 8010F8B4 0010C7F4  C0 22 92 E0 */ lfs f1, lbl_80452CE0-_SDA2_BASE_(r2)
 /* 8010F8B8 0010C7F8  FC 40 08 90 */ fmr f2, f1
-/* 8010F8BC 0010C7FC  4B FC 1C 85 */ bl daAlink_c_NS_setCylAtParam
+/* 8010F8BC 0010C7FC  4B FC 1C 85 */ bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
 lbl_8010F8C0:
 /* 8010F8C0 0010C800  38 00 00 00 */ li r0, 0
 /* 8010F8C4 0010C804  B0 1E 30 10 */ sth r0, 0x3010(r30)

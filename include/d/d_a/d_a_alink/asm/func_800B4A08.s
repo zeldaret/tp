@@ -14,11 +14,11 @@ lbl_800B4A34:
 /* 800B4A38 000B1978  48 00 00 E0 */ b lbl_800B4B18
 lbl_800B4A3C:
 /* 800B4A3C 000B197C  80 9F 27 E4 */ lwz r4, 0x27e4(r31)
-/* 800B4A40 000B1980  4B FF FD 3D */ bl daAlink_c_NS_checkRequestTalkActor
+/* 800B4A40 000B1980  4B FF FD 3D */ bl checkRequestTalkActor__9daAlink_cFP10dAttList_cP10fopAc_ac_c
 /* 800B4A44 000B1984  2C 03 00 00 */ cmpwi r3, 0
 /* 800B4A48 000B1988  41 82 00 CC */ beq lbl_800B4B14
 /* 800B4A4C 000B198C  7F E3 FB 78 */ mr r3, r31
-/* 800B4A50 000B1990  4B FF FF 01 */ bl daAlink_c_NS_notTalk
+/* 800B4A50 000B1990  4B FF FF 01 */ bl notTalk__9daAlink_cFv
 /* 800B4A54 000B1994  2C 03 00 00 */ cmpwi r3, 0
 /* 800B4A58 000B1998  41 82 00 14 */ beq lbl_800B4A6C
 /* 800B4A5C 000B199C  7F E3 FB 78 */ mr r3, r31

@@ -10,27 +10,27 @@
 /* 800AAA00 000A7940  2C 04 00 00 */ cmpwi r4, 0
 /* 800AAA04 000A7944  41 82 00 5C */ beq lbl_800AAA60
 /* 800AAA08 000A7948  38 9C 12 2C */ addi r4, r28, 0x122c
-/* 800AAA0C 000A794C  48 02 6D E1 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AAA0C 000A794C  48 02 6D E1 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AAA10 000A7950  2C 03 00 00 */ cmpwi r3, 0
 /* 800AAA14 000A7954  40 82 00 4C */ bne lbl_800AAA60
 /* 800AAA18 000A7958  7F 83 E3 78 */ mr r3, r28
 /* 800AAA1C 000A795C  38 9C 13 70 */ addi r4, r28, 0x1370
-/* 800AAA20 000A7960  48 02 6D CD */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AAA20 000A7960  48 02 6D CD */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AAA24 000A7964  2C 03 00 00 */ cmpwi r3, 0
 /* 800AAA28 000A7968  40 82 00 38 */ bne lbl_800AAA60
 /* 800AAA2C 000A796C  7F 83 E3 78 */ mr r3, r28
 /* 800AAA30 000A7970  38 9C 14 B4 */ addi r4, r28, 0x14b4
-/* 800AAA34 000A7974  48 02 6D B9 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AAA34 000A7974  48 02 6D B9 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AAA38 000A7978  2C 03 00 00 */ cmpwi r3, 0
 /* 800AAA3C 000A797C  40 82 00 24 */ bne lbl_800AAA60
 /* 800AAA40 000A7980  7F 83 E3 78 */ mr r3, r28
 /* 800AAA44 000A7984  38 9C 10 F0 */ addi r4, r28, 0x10f0
-/* 800AAA48 000A7988  48 02 6D A5 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AAA48 000A7988  48 02 6D A5 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AAA4C 000A798C  2C 03 00 00 */ cmpwi r3, 0
 /* 800AAA50 000A7990  40 82 00 10 */ bne lbl_800AAA60
 /* 800AAA54 000A7994  7F 83 E3 78 */ mr r3, r28
 /* 800AAA58 000A7998  38 9C 0F B8 */ addi r4, r28, 0xfb8
-/* 800AAA5C 000A799C  48 02 6D 91 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AAA5C 000A799C  48 02 6D 91 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 lbl_800AAA60:
 /* 800AAA60 000A79A0  80 1C 05 70 */ lwz r0, 0x570(r28)
 /* 800AAA64 000A79A4  54 00 06 B0 */ rlwinm r0, r0, 0, 0x1a, 0x18

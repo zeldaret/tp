@@ -7,7 +7,7 @@
 /* 801635C4 00160504  38 C0 00 00 */ li r6, 0
 /* 801635C8 00160508  38 E0 00 FF */ li r7, 0xff
 /* 801635CC 0016050C  39 00 00 FF */ li r8, 0xff
-/* 801635D0 00160510  4B FF C8 E9 */ bl dCamMapToolData_NS_Set
+/* 801635D0 00160510  4B FF C8 E9 */ bl Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc
 /* 801635D4 00160514  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801635D8 00160518  7C 08 03 A6 */ mtlr r0
 /* 801635DC 0016051C  38 21 00 10 */ addi r1, r1, 0x10

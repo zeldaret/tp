@@ -8,7 +8,7 @@
 /* 80223118 00220058  4B DE C0 B5 */ bl mDoExt_setCurrentHeap
 /* 8022311C 0022005C  7C 7F 1B 78 */ mr r31, r3
 /* 80223120 00220060  7F C3 F3 78 */ mr r3, r30
-/* 80223124 00220064  48 00 06 B1 */ bl dMeter2_c_NS_checkSubContents
+/* 80223124 00220064  48 00 06 B1 */ bl checkSubContents__9dMeter2_cFv
 /* 80223128 00220068  80 7E 01 10 */ lwz r3, 0x110(r30)
 /* 8022312C 0022006C  28 03 00 00 */ cmplwi r3, 0
 /* 80223130 00220070  41 82 00 18 */ beq lbl_80223148
@@ -35,7 +35,7 @@ lbl_80223148:
 /* 80223180 002200C0  28 04 00 00 */ cmplwi r4, 0
 /* 80223184 002200C4  41 82 00 0C */ beq lbl_80223190
 /* 80223188 002200C8  80 7E 01 14 */ lwz r3, 0x114(r30)
-/* 8022318C 002200CC  4B FE C4 19 */ bl dMeterString_c_NS_createString
+/* 8022318C 002200CC  4B FE C4 19 */ bl createString__14dMeterString_cFi
 lbl_80223190:
 /* 80223190 002200D0  80 7E 01 14 */ lwz r3, 0x114(r30)
 /* 80223194 002200D4  80 9E 01 24 */ lwz r4, 0x124(r30)

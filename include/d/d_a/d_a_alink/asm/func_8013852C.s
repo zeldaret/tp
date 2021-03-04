@@ -19,13 +19,13 @@ lbl_80138564:
 lbl_80138570:
 /* 80138570 001354B0  7F E3 FB 78 */ mr r3, r31
 /* 80138574 001354B4  38 80 01 28 */ li r4, 0x128
-/* 80138578 001354B8  4B F8 99 F5 */ bl daAlink_c_NS_commonProcInit
+/* 80138578 001354B8  4B F8 99 F5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013857C 001354BC  2C 1E 00 00 */ cmpwi r30, 0
 /* 80138580 001354C0  41 82 00 28 */ beq lbl_801385A8
 /* 80138584 001354C4  7F E3 FB 78 */ mr r3, r31
 /* 80138588 001354C8  3C 80 00 03 */ lis r4, 0x00030022@ha
 /* 8013858C 001354CC  38 84 00 22 */ addi r4, r4, 0x00030022@l
-/* 80138590 001354D0  4B F8 6C 05 */ bl daAlink_c_NS_seStartMapInfo
+/* 80138590 001354D0  4B F8 6C 05 */ bl seStartMapInfo__9daAlink_cFUl
 /* 80138594 001354D4  38 00 00 00 */ li r0, 0
 /* 80138598 001354D8  B0 1F 30 10 */ sth r0, 0x3010(r31)
 /* 8013859C 001354DC  38 00 00 01 */ li r0, 1
@@ -50,7 +50,7 @@ lbl_801385D4:
 /* 801385DC 0013551C  C0 25 00 88 */ lfs f1, 0x88(r5)
 lbl_801385E0:
 /* 801385E0 00135520  FC 40 F8 90 */ fmr f2, f31
-/* 801385E4 00135524  4B FF 10 F5 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 801385E4 00135524  4B FF 10 F5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 801385E8 00135528  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801385EC 0013552C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801385F0 00135530  80 03 5F 18 */ lwz r0, 0x5f18(r3)

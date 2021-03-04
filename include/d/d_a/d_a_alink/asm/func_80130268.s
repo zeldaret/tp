@@ -15,7 +15,7 @@
 /* 801302A0 0012D1E0  C0 02 92 A4 */ lfs f0, lbl_80452CA4-_SDA2_BASE_(r2)
 /* 801302A4 0012D1E4  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801302A8 0012D1E8  40 81 00 CC */ ble lbl_80130374
-/* 801302AC 0012D1EC  4B FF BC FD */ bl daAlink_c_NS_checkWolfWaitSlipPolygon
+/* 801302AC 0012D1EC  4B FF BC FD */ bl checkWolfWaitSlipPolygon__9daAlink_cFv
 /* 801302B0 0012D1F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801302B4 0012D1F4  41 82 00 C0 */ beq lbl_80130374
 /* 801302B8 0012D1F8  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -33,7 +33,7 @@
 /* 801302E8 0012D228  7F E3 FB 78 */ mr r3, r31
 /* 801302EC 0012D22C  38 9F 1A 60 */ addi r4, r31, 0x1a60
 /* 801302F0 0012D230  A8 BF 2F E2 */ lha r5, 0x2fe2(r31)
-/* 801302F4 0012D234  4B F7 FD A5 */ bl daAlink_c_NS_getGroundAngle
+/* 801302F4 0012D234  4B F7 FD A5 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 801302F8 0012D238  7C 63 07 34 */ extsh r3, r3
 /* 801302FC 0012D23C  A8 1F 31 22 */ lha r0, 0x3122(r31)
 /* 80130300 0012D240  7C 00 00 D0 */ neg r0, r0
@@ -47,7 +47,7 @@
 /* 80130320 0012D260  41 80 00 20 */ blt lbl_80130340
 /* 80130324 0012D264  7F E3 FB 78 */ mr r3, r31
 /* 80130328 0012D268  38 80 00 00 */ li r4, 0
-/* 8013032C 0012D26C  48 00 01 15 */ bl daAlink_c_NS_procWolfSlopeStartInit
+/* 8013032C 0012D26C  48 00 01 15 */ bl procWolfSlopeStartInit__9daAlink_cFi
 /* 80130330 0012D270  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 80130334 0012D274  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 80130338 0012D278  90 01 00 18 */ stw r0, 0x18(r1)
@@ -58,7 +58,7 @@ lbl_80130340:
 /* 80130348 0012D288  7F E3 FB 78 */ mr r3, r31
 /* 8013034C 0012D28C  A8 9F 04 DE */ lha r4, 0x4de(r31)
 /* 80130350 0012D290  38 A0 00 00 */ li r5, 0
-/* 80130354 0012D294  4B FF F8 E5 */ bl daAlink_c_NS_procWolfSlideReadyInit
+/* 80130354 0012D294  4B FF F8 E5 */ bl procWolfSlideReadyInit__9daAlink_cFsi
 /* 80130358 0012D298  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8013035C 0012D29C  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 80130360 0012D2A0  90 01 00 18 */ stw r0, 0x18(r1)
@@ -70,11 +70,11 @@ lbl_80130368:
 lbl_80130374:
 /* 80130374 0012D2B4  7F E3 FB 78 */ mr r3, r31
 /* 80130378 0012D2B8  38 80 00 00 */ li r4, 0
-/* 8013037C 0012D2BC  4B FF 97 C9 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013037C 0012D2BC  4B FF 97 C9 */ bl checkNextAction__9daAlink_cFiWolf
 /* 80130380 0012D2C0  2C 03 00 00 */ cmpwi r3, 0
 /* 80130384 0012D2C4  40 82 00 98 */ bne lbl_8013041C
 /* 80130388 0012D2C8  7F E3 FB 78 */ mr r3, r31
-/* 8013038C 0012D2CC  4B FF BE 69 */ bl daAlink_c_NS_setWolfWaitSlip
+/* 8013038C 0012D2CC  4B FF BE 69 */ bl setWolfWaitSlip__9daAlink_cFv
 /* 80130390 0012D2D0  3C 60 80 39 */ lis r3, lbl_8038F3F0@ha
 /* 80130394 0012D2D4  38 63 F3 F0 */ addi r3, r3, lbl_8038F3F0@l
 /* 80130398 0012D2D8  C0 43 00 74 */ lfs f2, 0x74(r3)
@@ -112,7 +112,7 @@ lbl_801303F4:
 /* 8013040C 0012D34C  7F E3 FB 78 */ mr r3, r31
 /* 80130410 0012D350  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 80130414 0012D354  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 80130418 0012D358  4B F8 ED B5 */ bl daAlink_c_NS_seStartMapInfoLevel
+/* 80130418 0012D358  4B F8 ED B5 */ bl seStartMapInfo__9daAlink_cFUlLevel
 lbl_8013041C:
 /* 8013041C 0012D35C  38 60 00 01 */ li r3, 1
 lbl_80130420:

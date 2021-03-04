@@ -1067,7 +1067,7 @@ lbl_80247F1C:
 /* 80247F64 00244EA4  39 01 00 08 */	addi r8, r1, 8
 /* 80247F68 00244EA8  C0 9E 02 EC */	lfs f4, 0x2ec(r30)
 /* 80247F6C 00244EAC  39 20 00 04 */	li r9, 4
-/* 80247F70 00244EB0  4B FC C1 6D */	bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 80247F70 00244EB0  4B FC C1 6D */	bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 80247F74 00244EB4  C0 22 B3 04 */	lfs f1, lbl_80454D04-_SDA2_BASE_(r2)
 /* 80247F78 00244EB8  C0 1A 00 F8 */	lfs f0, 0xf8(r26)
 /* 80247F7C 00244EBC  FC 01 00 00 */	fcmpu cr0, f1, f0

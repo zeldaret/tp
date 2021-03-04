@@ -50,7 +50,7 @@ lbl_8013EDF0:
 lbl_8013EDF8:
 /* 8013EDF8 0013BD38  7F C3 F3 78 */ mr r3, r30
 /* 8013EDFC 0013BD3C  38 80 01 32 */ li r4, 0x132
-/* 8013EE00 0013BD40  4B F8 31 6D */ bl daAlink_c_NS_commonProcInit
+/* 8013EE00 0013BD40  4B F8 31 6D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013EE04 0013BD44  B3 FE 30 14 */ sth r31, 0x3014(r30)
 /* 8013EE08 0013BD48  80 7E 27 F4 */ lwz r3, 0x27f4(r30)
 /* 8013EE0C 0013BD4C  28 03 00 00 */ cmplwi r3, 0
@@ -209,7 +209,7 @@ lbl_8013F024:
 /* 8013F034 0013BF74  D0 1E 34 78 */ stfs f0, 0x3478(r30)
 /* 8013F038 0013BF78  48 04 26 09 */ bl dCam_getBody
 /* 8013F03C 0013BF7C  38 80 00 03 */ li r4, 3
-/* 8013F040 0013BF80  48 02 3F E9 */ bl dCamera_c_NS_SetTrimTypeForce
+/* 8013F040 0013BF80  48 02 3F E9 */ bl SetTrimTypeForce__9dCamera_cFl
 /* 8013F044 0013BF84  48 00 00 18 */ b lbl_8013F05C
 lbl_8013F048:
 /* 8013F048 0013BF88  3C 60 80 39 */ lis r3, lbl_8038F858@ha
@@ -234,7 +234,7 @@ lbl_8013F078:
 /* 8013F088 0013BFC8  C0 26 00 18 */ lfs f1, 0x18(r6)
 /* 8013F08C 0013BFCC  7F A5 EB 78 */ mr r5, r29
 /* 8013F090 0013BFD0  C0 66 00 20 */ lfs f3, 0x20(r6)
-/* 8013F094 0013BFD4  4B FE A6 71 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8013F094 0013BFD4  4B FE A6 71 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
 /* 8013F098 0013BFD8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013F09C 0013BFDC  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 8013F0A0 0013BFE0  3C 60 80 42 */ lis r3, lbl_8042561C@ha

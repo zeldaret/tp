@@ -105,7 +105,7 @@ lbl_80219F9C:
 /* 8021A024 00216F64  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 8021A028 00216F68  40 82 00 8C */ bne lbl_8021A0B4
 /* 8021A02C 00216F6C  7F 03 C3 78 */ mr r3, r24
-/* 8021A030 00216F70  48 00 1B 3D */ bl dMeter2Draw_c_NS_getFishingType
+/* 8021A030 00216F70  48 00 1B 3D */ bl getFishingType__13dMeter2Draw_cFv
 /* 8021A034 00216F74  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021A038 00216F78  41 82 00 0C */ beq lbl_8021A044
 /* 8021A03C 00216F7C  3B 80 00 00 */ li r28, 0
@@ -129,7 +129,7 @@ lbl_8021A064:
 /* 8021A078 00216FB8  54 00 07 39 */ rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8021A07C 00216FBC  40 82 00 38 */ bne lbl_8021A0B4
 /* 8021A080 00216FC0  7F 03 C3 78 */ mr r3, r24
-/* 8021A084 00216FC4  48 00 1A E9 */ bl dMeter2Draw_c_NS_getFishingType
+/* 8021A084 00216FC4  48 00 1A E9 */ bl getFishingType__13dMeter2Draw_cFv
 /* 8021A088 00216FC8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021A08C 00216FCC  41 82 00 0C */ beq lbl_8021A098
 /* 8021A090 00216FD0  3B 80 00 00 */ li r28, 0

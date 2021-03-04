@@ -5,11 +5,11 @@
 /* 801074BC 001043FC  93 C1 00 18 */ stw r30, 0x18(r1)
 /* 801074C0 00104400  7C 7E 1B 78 */ mr r30, r3
 /* 801074C4 00104404  38 80 00 AC */ li r4, 0xac
-/* 801074C8 00104408  4B FF F1 89 */ bl daAlink_c_NS_commonProcBoardInit
+/* 801074C8 00104408  4B FF F1 89 */ bl commonProcBoardInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801074CC 0010440C  3B E0 00 00 */ li r31, 0
 /* 801074D0 00104410  7F C3 F3 78 */ mr r3, r30
 /* 801074D4 00104414  38 80 00 FA */ li r4, 0xfa
-/* 801074D8 00104418  4B FA 50 81 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 801074D8 00104418  4B FA 50 81 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 801074DC 0010441C  2C 03 00 00 */ cmpwi r3, 0
 /* 801074E0 00104420  41 82 00 3C */ beq lbl_8010751C
 /* 801074E4 00104424  C0 5E 1F E0 */ lfs f2, 0x1fe0(r30)
@@ -29,11 +29,11 @@
 lbl_8010751C:
 /* 8010751C 0010445C  7F C3 F3 78 */ mr r3, r30
 /* 80107520 00104460  38 80 00 00 */ li r4, 0
-/* 80107524 00104464  4B FF F0 11 */ bl daAlink_c_NS_setCommonBoardAnime
+/* 80107524 00104464  4B FF F0 11 */ bl setCommonBoardAnime__9daAlink_cFi
 /* 80107528 00104468  7F C3 F3 78 */ mr r3, r30
 /* 8010752C 0010446C  38 80 00 01 */ li r4, 1
 /* 80107530 00104470  57 E5 06 3E */ clrlwi r5, r31, 0x18
-/* 80107534 00104474  4B FC A8 E9 */ bl daAlink_c_NS_setCutDash
+/* 80107534 00104474  4B FC A8 E9 */ bl setCutDash__9daAlink_cFii
 /* 80107538 00104478  38 00 00 00 */ li r0, 0
 /* 8010753C 0010447C  B0 1E 30 12 */ sth r0, 0x3012(r30)
 /* 80107540 00104480  38 60 00 01 */ li r3, 1

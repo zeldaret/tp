@@ -4,7 +4,7 @@
 /* 800ECA48 000E9988  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800ECA4C 000E998C  7C 7F 1B 78 */ mr r31, r3
 /* 800ECA50 000E9990  38 80 00 00 */ li r4, 0
-/* 800ECA54 000E9994  4B FF 5B 2D */ bl daAlink_c_NS_setHeavyBoots
+/* 800ECA54 000E9994  4B FF 5B 2D */ bl setHeavyBoots__9daAlink_cFi
 /* 800ECA58 000E9998  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 800ECA5C 000E999C  60 00 04 00 */ ori r0, r0, 0x400
 /* 800ECA60 000E99A0  90 1F 31 A0 */ stw r0, 0x31a0(r31)
@@ -16,7 +16,7 @@
 /* 800ECA78 000E99B8  B0 7F 30 04 */ sth r3, 0x3004(r31)
 /* 800ECA7C 000E99BC  B0 7F 30 A6 */ sth r3, 0x30a6(r31)
 /* 800ECA80 000E99C0  7F E3 FB 78 */ mr r3, r31
-/* 800ECA84 000E99C4  4B FC 6D C1 */ bl daAlink_c_NS_initServiceWaitTime
+/* 800ECA84 000E99C4  4B FC 6D C1 */ bl initServiceWaitTime__9daAlink_cFv
 /* 800ECA88 000E99C8  38 00 00 46 */ li r0, 0x46
 /* 800ECA8C 000E99CC  B0 1F 05 4E */ sth r0, 0x54e(r31)
 /* 800ECA90 000E99D0  38 00 00 01 */ li r0, 1

@@ -49,14 +49,14 @@ lbl_80204208:
 /* 80204224 00201164  41 82 00 1C */ beq lbl_80204240
 lbl_80204228:
 /* 80204228 00201168  7F C3 F3 78 */ mr r3, r30
-/* 8020422C 0020116C  48 00 45 DD */ bl dMeterButton_c_NS_setAlphaButtonReelAnimeMin
+/* 8020422C 0020116C  48 00 45 DD */ bl setAlphaButtonReelAnimeMin__14dMeterButton_cFv
 /* 80204230 00201170  A0 1E 04 B0 */ lhz r0, 0x4b0(r30)
 /* 80204234 00201174  54 00 04 7E */ clrlwi r0, r0, 0x11
 /* 80204238 00201178  B0 1E 04 B0 */ sth r0, 0x4b0(r30)
 /* 8020423C 0020117C  48 00 00 20 */ b lbl_8020425C
 lbl_80204240:
 /* 80204240 00201180  7F C3 F3 78 */ mr r3, r30
-/* 80204244 00201184  48 00 46 5D */ bl dMeterButton_c_NS_setAlphaButtonReelAnimeMax
+/* 80204244 00201184  48 00 46 5D */ bl setAlphaButtonReelAnimeMax__14dMeterButton_cFv
 /* 80204248 00201188  A0 1E 04 B0 */ lhz r0, 0x4b0(r30)
 /* 8020424C 0020118C  60 00 80 00 */ ori r0, r0, 0x8000
 /* 80204250 00201190  B0 1E 04 B0 */ sth r0, 0x4b0(r30)

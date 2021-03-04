@@ -103,10 +103,10 @@ lbl_80221210:
 /* 80221218 0021E158  40 82 00 10 */ bne lbl_80221228
 /* 8022121C 0021E15C  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80221220 0021E160  A8 9F 01 B2 */ lha r4, 0x1b2(r31)
-/* 80221224 0021E164  4B FF 58 1D */ bl dMeter2Draw_c_NS_drawKey
+/* 80221224 0021E164  4B FF 58 1D */ bl drawKey__13dMeter2Draw_cFs
 lbl_80221228:
 /* 80221228 0021E168  7F E3 FB 78 */ mr r3, r31
-/* 8022122C 0021E16C  48 00 3D 45 */ bl dMeter2_c_NS_alphaAnimeKey
+/* 8022122C 0021E16C  48 00 3D 45 */ bl alphaAnimeKey__9dMeter2_cFv
 /* 80221230 0021E170  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80221234 0021E174  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80221238 0021E178  7C 08 03 A6 */ mtlr r0

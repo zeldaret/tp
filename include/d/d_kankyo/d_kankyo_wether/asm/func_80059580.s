@@ -37,10 +37,10 @@ lbl_800595B8:
 /* 80059608 00056548  3C 80 80 05 */ lis r4, CLOUD_EFF@ha
 /*.global CLOUD_EFF*/
 /* 8005960C 0005654C  38 84 6E 74 */ addi r4, r4, CLOUD_EFF@l
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80059610 00056550  3C A0 80 05 */ lis r5, CLOUD_EFF_NS_dtor@ha
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80059614 00056554  38 A5 6E 38 */ addi r5, r5, CLOUD_EFF_NS_dtor@l
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80059610 00056550  3C A0 80 05 */ lis r5, __dt__9CLOUD_EFFFv@ha
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80059614 00056554  38 A5 6E 38 */ addi r5, r5, __dt__9CLOUD_EFFFv@l
 /* 80059618 00056558  38 C0 00 38 */ li r6, 0x38
 /* 8005961C 0005655C  38 E0 00 32 */ li r7, 0x32
 /* 80059620 00056560  48 30 87 41 */ bl func_80361D60

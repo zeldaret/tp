@@ -6,16 +6,16 @@
 /* 801016C0 000FE600  7C 7E 1B 78 */ mr r30, r3
 /* 801016C4 000FE604  7C 9F 23 78 */ mr r31, r4
 /* 801016C8 000FE608  38 80 00 8B */ li r4, 0x8b
-/* 801016CC 000FE60C  4B FC 08 A1 */ bl daAlink_c_NS_commonProcInit
+/* 801016CC 000FE60C  4B FC 08 A1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801016D0 000FE610  7F C3 F3 78 */ mr r3, r30
 /* 801016D4 000FE614  38 80 00 01 */ li r4, 1
 /* 801016D8 000FE618  38 A0 00 00 */ li r5, 0
-/* 801016DC 000FE61C  4B FB FC 01 */ bl daAlink_c_NS_deleteEquipItem
+/* 801016DC 000FE61C  4B FB FC 01 */ bl deleteEquipItem__9daAlink_cFii
 /* 801016E0 000FE620  7F C3 F3 78 */ mr r3, r30
 /* 801016E4 000FE624  38 80 00 AE */ li r4, 0xae
 /* 801016E8 000FE628  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 801016EC 000FE62C  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
-/* 801016F0 000FE630  4B FA BA 05 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 801016F0 000FE630  4B FA BA 05 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 801016F4 000FE634  7F C3 F3 78 */ mr r3, r30
 /* 801016F8 000FE638  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801016FC 000FE63C  C0 5E 05 34 */ lfs f2, 0x534(r30)
@@ -28,7 +28,7 @@
 /* 80101718 000FE658  7F E4 FB 78 */ mr r4, r31
 /* 8010171C 000FE65C  48 05 D5 9D */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80101720 000FE660  7F C3 F3 78 */ mr r3, r30
-/* 80101724 000FE664  4B FF FF 19 */ bl daAlink_c_NS_setRoofHangSwitch
+/* 80101724 000FE664  4B FF FF 19 */ bl setRoofHangSwitch__9daAlink_cFv
 /* 80101728 000FE668  A8 7F 04 E6 */ lha r3, 0x4e6(r31)
 /* 8010172C 000FE66C  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
 /* 80101730 000FE670  48 16 F6 F5 */ bl cLib_distanceAngleS__Fss
@@ -50,7 +50,7 @@ lbl_80101758:
 /* 80101768 000FE6A8  7C 05 00 50 */ subf r0, r5, r0
 /* 8010176C 000FE6AC  7C 05 07 34 */ extsh r5, r0
 /* 80101770 000FE6B0  38 C0 00 00 */ li r6, 0
-/* 80101774 000FE6B4  4B FA C4 05 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 80101774 000FE6B4  4B FA C4 05 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 80101778 000FE6B8  A8 1E 04 DE */ lha r0, 0x4de(r30)
 /* 8010177C 000FE6BC  B0 1E 04 E6 */ sth r0, 0x4e6(r30)
 /* 80101780 000FE6C0  38 00 00 50 */ li r0, 0x50

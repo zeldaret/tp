@@ -8,9 +8,9 @@
 /* 80100DC0 000FDD00  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80100DC4 000FDD04  7C 7F 1B 78 */ mr r31, r3
 /* 80100DC8 000FDD08  38 80 00 88 */ li r4, 0x88
-/* 80100DCC 000FDD0C  4B FC 11 A1 */ bl daAlink_c_NS_commonProcInit
+/* 80100DCC 000FDD0C  4B FC 11 A1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80100DD0 000FDD10  7F E3 FB 78 */ mr r3, r31
-/* 80100DD4 000FDD14  4B FF F7 F9 */ bl daAlink_c_NS_getRoofHangFMoveAnmSpeed
+/* 80100DD4 000FDD14  4B FF F7 F9 */ bl getRoofHangFMoveAnmSpeed__9daAlink_cCFv
 /* 80100DD8 000FDD18  FF E0 08 90 */ fmr f31, f1
 /* 80100DDC 000FDD1C  88 1F 2F 98 */ lbz r0, 0x2f98(r31)
 /* 80100DE0 000FDD20  28 00 00 01 */ cmplwi r0, 1
@@ -37,7 +37,7 @@ lbl_80100E2C:
 /* 80100E2C 000FDD6C  C3 C2 92 BC */ lfs f30, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 80100E30 000FDD70  7F E3 FB 78 */ mr r3, r31
 /* 80100E34 000FDD74  38 80 00 AA */ li r4, 0xaa
-/* 80100E38 000FDD78  4B FA B7 21 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 80100E38 000FDD78  4B FA B7 21 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 80100E3C 000FDD7C  2C 03 00 00 */ cmpwi r3, 0
 /* 80100E40 000FDD80  41 82 00 08 */ beq lbl_80100E48
 /* 80100E44 000FDD84  C3 DF 1F E0 */ lfs f30, 0x1fe0(r31)
@@ -48,7 +48,7 @@ lbl_80100E48:
 /* 80100E54 000FDD94  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 80100E58 000FDD98  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
 /* 80100E5C 000FDD9C  C0 45 00 2C */ lfs f2, 0x2c(r5)
-/* 80100E60 000FDDA0  4B FA C1 81 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80100E60 000FDDA0  4B FA C1 81 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 80100E64 000FDDA4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80100E68 000FDDA8  FC 1E 08 40 */ fcmpo cr0, f30, f1
 /* 80100E6C 000FDDAC  4C 41 13 82 */ cror 2, 1, 2
@@ -59,7 +59,7 @@ lbl_80100E48:
 /* 80100E80 000FDDC0  80 7F 20 60 */ lwz r3, 0x2060(r31)
 /* 80100E84 000FDDC4  38 80 00 00 */ li r4, 0
 /* 80100E88 000FDDC8  38 A0 00 23 */ li r5, 0x23
-/* 80100E8C 000FDDCC  4B F0 E9 BD */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 80100E8C 000FDDCC  4B F0 E9 BD */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_80100E90:
 /* 80100E90 000FDDD0  7F E3 FB 78 */ mr r3, r31
 /* 80100E94 000FDDD4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)

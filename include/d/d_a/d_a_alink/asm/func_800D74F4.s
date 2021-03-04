@@ -113,7 +113,7 @@ lbl_800D7684:
 lbl_800D769C:
 /* 800D769C 000D45DC  7F A3 EB 78 */ mr r3, r29
 /* 800D76A0 000D45E0  7F E4 FB 78 */ mr r4, r31
-/* 800D76A4 000D45E4  48 00 AD D9 */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800D76A4 000D45E4  48 00 AD D9 */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800D76A8 000D45E8  7F E3 FB 78 */ mr r3, r31
 /* 800D76AC 000D45EC  39 61 00 50 */ addi r11, r1, 0x50
 /* 800D76B0 000D45F0  48 28 AB 79 */ bl _restgpr_29

@@ -3,7 +3,7 @@
 /* 800F639C 000F32DC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F63A0 000F32E0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F63A4 000F32E4  7C 7F 1B 78 */ mr r31, r3
-/* 800F63A8 000F32E8  4B FF E4 31 */ bl daAlink_c_NS_canoeCommon
+/* 800F63A8 000F32E8  4B FF E4 31 */ bl canoeCommon__9daAlink_cFv
 /* 800F63AC 000F32EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F63B0 000F32F0  41 82 00 0C */ beq lbl_800F63BC
 /* 800F63B4 000F32F4  38 60 00 01 */ li r3, 1
@@ -13,14 +13,14 @@ lbl_800F63BC:
 /* 800F63C0 000F3300  2C 00 00 00 */ cmpwi r0, 0
 /* 800F63C4 000F3304  41 82 00 2C */ beq lbl_800F63F0
 /* 800F63C8 000F3308  7F E3 FB 78 */ mr r3, r31
-/* 800F63CC 000F330C  4B FC 2E 89 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800F63CC 000F330C  4B FC 2E 89 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800F63D0 000F3310  2C 03 00 00 */ cmpwi r3, 0
 /* 800F63D4 000F3314  41 82 00 78 */ beq lbl_800F644C
 /* 800F63D8 000F3318  38 00 00 00 */ li r0, 0
 /* 800F63DC 000F331C  B0 1F 30 08 */ sth r0, 0x3008(r31)
 /* 800F63E0 000F3320  7F E3 FB 78 */ mr r3, r31
 /* 800F63E4 000F3324  38 80 00 E4 */ li r4, 0xe4
-/* 800F63E8 000F3328  4B FB 6B 99 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800F63E8 000F3328  4B FB 6B 99 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800F63EC 000F332C  48 00 00 60 */ b lbl_800F644C
 lbl_800F63F0:
 /* 800F63F0 000F3330  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)
@@ -37,16 +37,16 @@ lbl_800F63F0:
 /* 800F641C 000F335C  28 00 00 00 */ cmplwi r0, 0
 /* 800F6420 000F3360  41 82 00 20 */ beq lbl_800F6440
 /* 800F6424 000F3364  7F E3 FB 78 */ mr r3, r31
-/* 800F6428 000F3368  4B FF D9 79 */ bl daAlink_c_NS_initFishingRodHand
+/* 800F6428 000F3368  4B FF D9 79 */ bl initFishingRodHand__9daAlink_cFv
 /* 800F642C 000F336C  38 00 01 05 */ li r0, 0x105
 /* 800F6430 000F3370  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800F6434 000F3374  7F E3 FB 78 */ mr r3, r31
-/* 800F6438 000F3378  48 00 00 2D */ bl daAlink_c_NS_procCanoeFishingWaitInit
+/* 800F6438 000F3378  48 00 00 2D */ bl procCanoeFishingWaitInit__9daAlink_cFv
 /* 800F643C 000F337C  48 00 00 10 */ b lbl_800F644C
 lbl_800F6440:
 /* 800F6440 000F3380  7F E3 FB 78 */ mr r3, r31
 /* 800F6444 000F3384  38 80 00 00 */ li r4, 0
-/* 800F6448 000F3388  4B FF ED 9D */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F6448 000F3388  4B FF ED 9D */ bl procCanoeWaitInit__9daAlink_cFi
 lbl_800F644C:
 /* 800F644C 000F338C  38 60 00 01 */ li r3, 1
 lbl_800F6450:

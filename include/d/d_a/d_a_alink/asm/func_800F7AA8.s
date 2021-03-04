@@ -15,10 +15,10 @@
 /* 800F7AE0 000F4A20  2C 00 00 00 */ cmpwi r0, 0
 /* 800F7AE4 000F4A24  41 82 00 0C */ beq lbl_800F7AF0
 /* 800F7AE8 000F4A28  7F C3 F3 78 */ mr r3, r30
-/* 800F7AEC 000F4A2C  4B FC 7D 99 */ bl daAlink_c_NS_returnKeepItemData
+/* 800F7AEC 000F4A2C  4B FC 7D 99 */ bl returnKeepItemData__9daAlink_cFv
 lbl_800F7AF0:
 /* 800F7AF0 000F4A30  7F C3 F3 78 */ mr r3, r30
-/* 800F7AF4 000F4A34  48 02 01 9D */ bl daAlink_c_NS_resetSpecialEvent
+/* 800F7AF4 000F4A34  48 02 01 9D */ bl resetSpecialEvent__9daAlink_cFv
 /* 800F7AF8 000F4A38  48 00 01 3C */ b lbl_800F7C34
 lbl_800F7AFC:
 /* 800F7AFC 000F4A3C  7F C3 F3 78 */ mr r3, r30
@@ -27,7 +27,7 @@ lbl_800F7AFC:
 /* 800F7B08 000F4A48  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F7B0C 000F4A4C  A8 BE 1F D8 */ lha r5, 0x1fd8(r30)
 /* 800F7B10 000F4A50  FC 60 08 90 */ fmr f3, f1
-/* 800F7B14 000F4A54  4B FB 54 F9 */ bl daAlink_c_NS_setSingleAnime
+/* 800F7B14 000F4A54  4B FB 54 F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800F7B18 000F4A58  38 00 00 01 */ li r0, 1
 /* 800F7B1C 000F4A5C  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 800F7B20 000F4A60  A8 7E 30 0E */ lha r3, 0x300e(r30)

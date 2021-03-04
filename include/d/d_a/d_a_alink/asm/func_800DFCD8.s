@@ -14,11 +14,11 @@
 /* 800DFD0C 000DCC4C  38 81 00 0C */ addi r4, r1, 0xc
 /* 800DFD10 000DCC50  38 A1 00 08 */ addi r5, r1, 8
 /* 800DFD14 000DCC54  38 C0 00 01 */ li r6, 1
-/* 800DFD18 000DCC58  4B FF E9 35 */ bl daAlink_c_NS_getArrowFlyData
+/* 800DFD18 000DCC58  4B FF E9 35 */ bl getArrowFlyData__9daAlink_cCFPfPfi
 /* 800DFD1C 000DCC5C  7F E3 FB 78 */ mr r3, r31
 /* 800DFD20 000DCC60  C0 21 00 0C */ lfs f1, 0xc(r1)
 /* 800DFD24 000DCC64  38 81 00 10 */ addi r4, r1, 0x10
-/* 800DFD28 000DCC68  4B FD F7 D9 */ bl daAlink_c_NS_checkSightLine
+/* 800DFD28 000DCC68  4B FD F7 D9 */ bl checkSightLine__9daAlink_cFfP4cXyz
 /* 800DFD2C 000DCC6C  C0 01 00 10 */ lfs f0, 0x10(r1)
 /* 800DFD30 000DCC70  D0 1F 20 6C */ stfs f0, 0x206c(r31)
 /* 800DFD34 000DCC74  C0 01 00 14 */ lfs f0, 0x14(r1)

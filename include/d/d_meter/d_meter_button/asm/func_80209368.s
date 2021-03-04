@@ -12,7 +12,7 @@
 /* 80209394 002062D4  28 04 00 FF */ cmplwi r4, 0xff
 /* 80209398 002062D8  41 82 00 0C */ beq lbl_802093A4
 /* 8020939C 002062DC  7F E3 FB 78 */ mr r3, r31
-/* 802093A0 002062E0  4B FF D9 D1 */ bl dMeterButton_c_NS_isFastSet
+/* 802093A0 002062E0  4B FF D9 D1 */ bl isFastSet__14dMeterButton_cFi
 lbl_802093A4:
 /* 802093A4 002062E4  80 7F 00 F4 */ lwz r3, 0xf4(r31)
 /* 802093A8 002062E8  C0 22 AD 48 */ lfs f1, lbl_80454748-_SDA2_BASE_(r2)

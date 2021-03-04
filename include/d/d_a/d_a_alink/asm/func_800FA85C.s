@@ -72,7 +72,7 @@ lbl_800FA96C:
 /* 800FA96C 000F78AC  7F E3 FB 78 */ mr r3, r31
 /* 800FA970 000F78B0  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FA974 000F78B4  38 A1 00 08 */ addi r5, r1, 8
-/* 800FA978 000F78B8  4B FA 78 21 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA978 000F78B8  4B FA 78 21 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA97C 000F78BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA980 000F78C0  41 82 00 48 */ beq lbl_800FA9C8
 /* 800FA984 000F78C4  7F C3 F3 78 */ mr r3, r30
@@ -96,7 +96,7 @@ lbl_800FA9C8:
 /* 800FA9C8 000F7908  7F E3 FB 78 */ mr r3, r31
 /* 800FA9CC 000F790C  38 81 00 08 */ addi r4, r1, 8
 /* 800FA9D0 000F7910  38 A1 00 14 */ addi r5, r1, 0x14
-/* 800FA9D4 000F7914  4B FA 77 C5 */ bl daAlink_c_NS_commonLineCheck
+/* 800FA9D4 000F7914  4B FA 77 C5 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FA9D8 000F7918  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FA9DC 000F791C  41 82 00 48 */ beq lbl_800FAA24
 /* 800FA9E0 000F7920  7F C3 F3 78 */ mr r3, r30

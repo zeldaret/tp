@@ -593,7 +593,7 @@ _open__14dMenu_Insect_cFv:
 /* 801D897C 001D58BC  38 63 00 10 */	addi r3, r3, 0x10
 /* 801D8980 001D58C0  38 80 00 00 */	li r4, 0
 /* 801D8984 001D58C4  38 A0 00 00 */	li r5, 0
-/* 801D8988 001D58C8  4B E3 D4 8D */	bl mDoDvdThd_mountArchive_c_NS_create
+/* 801D8988 001D58C8  4B E3 D4 8D */	bl create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap
 /* 801D898C 001D58CC  90 7F 00 14 */	stw r3, 0x14(r31)
 lbl_801D8990:
 /* 801D8990 001D58D0  80 7F 00 08 */	lwz r3, 8(r31)
@@ -934,7 +934,7 @@ lbl_801D8DEC:
 /* 801D8E84 001D5DC4  39 00 00 00 */	li r8, 0
 /* 801D8E88 001D5DC8  39 20 00 00 */	li r9, 0
 /* 801D8E8C 001D5DCC  39 40 00 00 */	li r10, 0
-/* 801D8E90 001D5DD0  48 04 40 79 */	bl dMeter2Info_c_NS_readItemTexture
+/* 801D8E90 001D5DD0  48 04 40 79 */	bl readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 /* 801D8E94 001D5DD4  80 9F 00 EC */	lwz r4, 0xec(r31)
 /* 801D8E98 001D5DD8  A0 04 00 02 */	lhz r0, 2(r4)
 /* 801D8E9C 001D5DDC  C8 42 A8 78 */	lfd f2, lbl_80454278-_SDA2_BASE_(r2)
@@ -1017,13 +1017,13 @@ lbl_801D8EDC:
 /* 801D8FCC 001D5F0C  38 80 04 BD */	li r4, 0x4bd
 /* 801D8FD0 001D5F10  38 A1 00 78 */	addi r5, r1, 0x78
 /* 801D8FD4 001D5F14  38 C0 00 00 */	li r6, 0
-/* 801D8FD8 001D5F18  48 04 32 79 */	bl dMeter2Info_c_NS_getString
+/* 801D8FD8 001D5F18  48 04 32 79 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801D8FDC 001D5F1C  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 801D8FE0 001D5F20  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801D8FE4 001D5F24  38 80 04 BE */	li r4, 0x4be
 /* 801D8FE8 001D5F28  38 A1 00 58 */	addi r5, r1, 0x58
 /* 801D8FEC 001D5F2C  38 C0 00 00 */	li r6, 0
-/* 801D8FF0 001D5F30  48 04 32 61 */	bl dMeter2Info_c_NS_getString
+/* 801D8FF0 001D5F30  48 04 32 61 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801D8FF4 001D5F34  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801D8FF8 001D5F38  48 06 19 85 */	bl getCharSpace__17dMsgScrn3Select_cFv
 /* 801D8FFC 001D5F3C  FF C0 08 90 */	fmr f30, f1
@@ -1037,7 +1037,7 @@ lbl_801D8EDC:
 /* 801D901C 001D5F5C  FC 20 F8 90 */	fmr f1, f31
 /* 801D9020 001D5F60  FC 40 F0 90 */	fmr f2, f30
 /* 801D9024 001D5F64  38 A1 00 78 */	addi r5, r1, 0x78
-/* 801D9028 001D5F68  48 04 37 D5 */	bl dMeter2Info_c_NS_getStringLength_X1_
+/* 801D9028 001D5F68  48 04 37 D5 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_
 /* 801D902C 001D5F6C  FF A0 08 90 */	fmr f29, f1
 /* 801D9030 001D5F70  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801D9034 001D5F74  48 06 19 49 */	bl getCharSpace__17dMsgScrn3Select_cFv
@@ -1052,7 +1052,7 @@ lbl_801D8EDC:
 /* 801D9058 001D5F98  FC 20 F0 90 */	fmr f1, f30
 /* 801D905C 001D5F9C  FC 40 F8 90 */	fmr f2, f31
 /* 801D9060 001D5FA0  38 A1 00 58 */	addi r5, r1, 0x58
-/* 801D9064 001D5FA4  48 04 37 99 */	bl dMeter2Info_c_NS_getStringLength_X1_
+/* 801D9064 001D5FA4  48 04 37 99 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_
 /* 801D9068 001D5FA8  FF C0 08 90 */	fmr f30, f1
 /* 801D906C 001D5FAC  FC 1D F0 40 */	fcmpo cr0, f29, f30
 /* 801D9070 001D5FB0  40 80 00 0C */	bge lbl_801D907C
@@ -2384,7 +2384,7 @@ lbl_801DA36C:
 /* 801DA37C 001D72BC  7F C3 F3 78 */	mr r3, r30
 /* 801DA380 001D72C0  7F A4 EB 78 */	mr r4, r29
 /* 801DA384 001D72C4  38 C0 00 00 */	li r6, 0
-/* 801DA388 001D72C8  48 04 21 BD */	bl dMeter2Info_c_NS_getStringKanji
+/* 801DA388 001D72C8  48 04 21 BD */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801DA38C 001D72CC  3B 9C 00 01 */	addi r28, r28, 1
 /* 801DA390 001D72D0  2C 1C 00 05 */	cmpwi r28, 5
 /* 801DA394 001D72D4  3B FF 00 04 */	addi r31, r31, 4
@@ -2435,7 +2435,7 @@ lbl_801DA41C:
 /* 801DA42C 001D736C  7F C3 F3 78 */	mr r3, r30
 /* 801DA430 001D7370  7F A4 EB 78 */	mr r4, r29
 /* 801DA434 001D7374  38 C0 00 00 */	li r6, 0
-/* 801DA438 001D7378  48 04 21 0D */	bl dMeter2Info_c_NS_getStringKanji
+/* 801DA438 001D7378  48 04 21 0D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801DA43C 001D737C  3B 9C 00 01 */	addi r28, r28, 1
 /* 801DA440 001D7380  2C 1C 00 05 */	cmpwi r28, 5
 /* 801DA444 001D7384  3B FF 00 04 */	addi r31, r31, 4

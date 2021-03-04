@@ -27,11 +27,11 @@ lbl_800E9268:
 /* 800E926C 000E61AC  54 00 04 E7 */ rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800E9270 000E61B0  41 82 00 20 */ beq lbl_800E9290
 /* 800E9274 000E61B4  7F C3 F3 78 */ mr r3, r30
-/* 800E9278 000E61B8  4B FF 9B 4D */ bl daAlink_c_NS_cancelMagneBootsOn
+/* 800E9278 000E61B8  4B FF 9B 4D */ bl cancelMagneBootsOn__9daAlink_cFv
 /* 800E927C 000E61BC  7F C3 F3 78 */ mr r3, r30
-/* 800E9280 000E61C0  48 02 EA 11 */ bl daAlink_c_NS_resetSpecialEvent
+/* 800E9280 000E61C0  48 02 EA 11 */ bl resetSpecialEvent__9daAlink_cFv
 /* 800E9284 000E61C4  7F C3 F3 78 */ mr r3, r30
-/* 800E9288 000E61C8  4B FC CD F5 */ bl daAlink_c_NS_checkAutoJumpAction
+/* 800E9288 000E61C8  4B FC CD F5 */ bl checkAutoJumpAction__9daAlink_cFv
 /* 800E928C 000E61CC  48 00 00 A0 */ b lbl_800E932C
 lbl_800E9290:
 /* 800E9290 000E61D0  A8 7E 04 E6 */ lha r3, 0x4e6(r30)
@@ -57,17 +57,17 @@ lbl_800E92BC:
 /* 800E92DC 000E621C  40 82 00 14 */ bne lbl_800E92F0
 /* 800E92E0 000E6220  7F C3 F3 78 */ mr r3, r30
 /* 800E92E4 000E6224  38 80 00 02 */ li r4, 2
-/* 800E92E8 000E6228  4B FE E1 91 */ bl daAlink_c_NS_setDamagePointNormal
+/* 800E92E8 000E6228  4B FE E1 91 */ bl setDamagePoint__9daAlink_cFiiiiNormal
 /* 800E92EC 000E622C  48 00 00 18 */ b lbl_800E9304
 lbl_800E92F0:
 /* 800E92F0 000E6230  2C 1F 01 06 */ cmpwi r31, 0x106
 /* 800E92F4 000E6234  41 82 00 10 */ beq lbl_800E9304
 /* 800E92F8 000E6238  7F C3 F3 78 */ mr r3, r30
 /* 800E92FC 000E623C  38 80 00 01 */ li r4, 1
-/* 800E9300 000E6240  4B FE E1 79 */ bl daAlink_c_NS_setDamagePointNormal
+/* 800E9300 000E6240  4B FE E1 79 */ bl setDamagePoint__9daAlink_cFiiiiNormal
 lbl_800E9304:
 /* 800E9304 000E6244  7F C3 F3 78 */ mr r3, r30
-/* 800E9308 000E6248  48 02 E9 89 */ bl daAlink_c_NS_resetSpecialEvent
+/* 800E9308 000E6248  48 02 E9 89 */ bl resetSpecialEvent__9daAlink_cFv
 lbl_800E930C:
 /* 800E930C 000E624C  7F C3 F3 78 */ mr r3, r30
 /* 800E9310 000E6250  38 80 FF FF */ li r4, -1
@@ -76,7 +76,7 @@ lbl_800E930C:
 /* 800E931C 000E625C  38 E0 00 00 */ li r7, 0
 /* 800E9320 000E6260  39 00 00 00 */ li r8, 0
 /* 800E9324 000E6264  39 20 00 00 */ li r9, 0
-/* 800E9328 000E6268  4B FF 03 B5 */ bl daAlink_c_NS_procCoLargeDamageInit
+/* 800E9328 000E6268  4B FF 03 B5 */ bl procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi
 lbl_800E932C:
 /* 800E932C 000E626C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E9330 000E6270  83 C1 00 08 */ lwz r30, 8(r1)

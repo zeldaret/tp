@@ -30,7 +30,7 @@ lbl_8025AE68:
 /* 8025AE6C 00257DAC  7C 00 C8 00 */	cmpw r0, r25
 /* 8025AE70 00257DB0  40 82 00 28 */	bne lbl_8025AE98
 /* 8025AE74 00257DB4  38 60 00 00 */	li r3, 0
-/* 8025AE78 00257DB8  4B DD 1B 05 */	bl dComIfG_play_c_NS_getLayerNo
+/* 8025AE78 00257DB8  4B DD 1B 05 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025AE7C 00257DBC  88 1C 00 01 */	lbz r0, 1(r28)
 /* 8025AE80 00257DC0  7C 00 18 00 */	cmpw r0, r3
 /* 8025AE84 00257DC4  40 82 00 14 */	bne lbl_8025AE98
@@ -53,7 +53,7 @@ lbl_8025AEAC:
 /* 8025AEBC 00257DFC  48 00 00 44 */	b lbl_8025AF00
 lbl_8025AEC0:
 /* 8025AEC0 00257E00  7F 83 E3 78 */	mr r3, r28
-/* 8025AEC4 00257E04  4B DC 9A 7D */	bl dStage_roomControl_c_NS_getArcBank
+/* 8025AEC4 00257E04  4B DC 9A 7D */	bl getArcBank__20dStage_roomControl_cFi
 /* 8025AEC8 00257E08  7F E4 FB 78 */	mr r4, r31
 /* 8025AECC 00257E0C  88 1B 00 00 */	lbz r0, 0(r27)
 /* 8025AED0 00257E10  2C 00 00 FF */	cmpwi r0, 0xff
@@ -89,7 +89,7 @@ resetArchiveBank:
 /* 8025AF2C 00257E6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8025AF30 00257E70  38 81 00 08 */	addi r4, r1, 8
 /* 8025AF34 00257E74  4B FF FE F1 */	bl getResetArchiveBank
-/* 8025AF38 00257E78  4B DC 9A 1D */	bl dStage_roomControl_c_NS_resetArchiveBank
+/* 8025AF38 00257E78  4B DC 9A 1D */	bl resetArchiveBank__20dStage_roomControl_cFi
 /* 8025AF3C 00257E7C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8025AF40 00257E80  7C 08 03 A6 */	mtlr r0
 /* 8025AF44 00257E84  38 21 00 10 */	addi r1, r1, 0x10
@@ -198,7 +198,7 @@ lbl_8025B070:
 lbl_8025B0BC:
 /* 8025B0BC 00257FFC  7F 83 E3 78 */	mr r3, r28
 /* 8025B0C0 00258000  7F 64 DB 78 */	mr r4, r27
-/* 8025B0C4 00258004  4B DC 98 49 */	bl dStage_roomControl_c_NS_setArcBank
+/* 8025B0C4 00258004  4B DC 98 49 */	bl setArcBank__20dStage_roomControl_cFiPCc
 /* 8025B0C8 00258008  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8025B0CC:
 /* 8025B0CC 0025800C  2C 1C 00 20 */	cmpwi r28, 0x20
@@ -298,7 +298,7 @@ loadDemoArchive:
 /* 8025B1FC 0025813C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B200 00258140  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8025B204 00258144  7F A4 EB 78 */	mr r4, r29
-/* 8025B208 00258148  4B DC 91 7D */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8025B208 00258148  4B DC 91 7D */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8025B20C 0025814C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8025B210 00258150  81 8C 01 40 */	lwz r12, 0x140(r12)
 /* 8025B214 00258154  7D 89 03 A6 */	mtctr r12
@@ -309,13 +309,13 @@ loadDemoArchive:
 /* 8025B228 00258168  28 1F 00 00 */	cmplwi r31, 0
 /* 8025B22C 0025816C  41 82 00 A4 */	beq lbl_8025B2D0
 /* 8025B230 00258170  7F A3 EB 78 */	mr r3, r29
-/* 8025B234 00258174  4B DD 17 49 */	bl dComIfG_play_c_NS_getLayerNo
+/* 8025B234 00258174  4B DD 17 49 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025B238 00258178  1C 03 00 03 */	mulli r0, r3, 3
 /* 8025B23C 0025817C  7F DF 00 AE */	lbzx r30, r31, r0
 /* 8025B240 00258180  2C 1E 00 FF */	cmpwi r30, 0xff
 /* 8025B244 00258184  41 82 00 8C */	beq lbl_8025B2D0
 /* 8025B248 00258188  7F A3 EB 78 */	mr r3, r29
-/* 8025B24C 0025818C  4B DD 17 31 */	bl dComIfG_play_c_NS_getLayerNo
+/* 8025B24C 0025818C  4B DD 17 31 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025B250 00258190  1C 03 00 03 */	mulli r0, r3, 3
 /* 8025B254 00258194  7C 7F 02 14 */	add r3, r31, r0
 /* 8025B258 00258198  88 C3 00 01 */	lbz r6, 1(r3)
@@ -492,7 +492,7 @@ lbl_8025B498:
 /* 8025B4B8 002583F8  38 63 02 10 */	addi r3, r3, 0x210
 /* 8025B4BC 002583FC  4B DF 04 2D */	bl allForceOnEventMove__Q213dPa_control_c7level_cFv
 /* 8025B4C0 00258400  7F C3 F3 78 */	mr r3, r30
-/* 8025B4C4 00258404  4B DD 24 ED */	bl dStage_roomControl_c_NS_getZoneNo
+/* 8025B4C4 00258404  4B DD 24 ED */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B4C8 00258408  54 64 28 34 */	slwi r4, r3, 5
 /* 8025B4CC 0025840C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025B4D0 00258410  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
@@ -500,7 +500,7 @@ lbl_8025B498:
 /* 8025B4D8 00258418  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8025B4DC 0025841C  4B DD 98 11 */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 8025B4E0 00258420  7F C3 F3 78 */	mr r3, r30
-/* 8025B4E4 00258424  4B DD 24 CD */	bl dStage_roomControl_c_NS_getZoneNo
+/* 8025B4E4 00258424  4B DD 24 CD */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B4E8 00258428  54 64 28 34 */	slwi r4, r3, 5
 /* 8025B4EC 0025842C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025B4F0 00258430  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
@@ -688,7 +688,7 @@ lbl_8025B728:
 /* 8025B778 002586B8  3B 9D 4E C4 */	addi r28, r29, 0x4ec4
 /* 8025B77C 002586BC  7F 83 E3 78 */	mr r3, r28
 /* 8025B780 002586C0  7F E4 FB 78 */	mr r4, r31
-/* 8025B784 002586C4  4B DC 8C 01 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8025B784 002586C4  4B DC 8C 01 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8025B788 002586C8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8025B78C 002586CC  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8025B790 002586D0  7D 89 03 A6 */	mtctr r12
@@ -727,14 +727,14 @@ lbl_8025B7F8:
 /* 8025B810 00258750  38 A0 00 40 */	li r5, 0x40
 /* 8025B814 00258754  4B DE 09 81 */	bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B818 00258758  7F E3 FB 78 */	mr r3, r31
-/* 8025B81C 0025875C  4B DC 8B 95 */	bl dStage_roomControl_c_NS_getMemoryBlock
+/* 8025B81C 0025875C  4B DC 8B 95 */	bl getMemoryBlock__20dStage_roomControl_cFi
 /* 8025B820 00258760  28 03 00 00 */	cmplwi r3, 0
 /* 8025B824 00258764  41 82 00 08 */	beq lbl_8025B82C
 /* 8025B828 00258768  48 07 2D A5 */	bl freeAll__7JKRHeapFv
 lbl_8025B82C:
 /* 8025B82C 0025876C  7F 83 E3 78 */	mr r3, r28
 /* 8025B830 00258770  7F E4 FB 78 */	mr r4, r31
-/* 8025B834 00258774  4B DC 8B 51 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8025B834 00258774  4B DC 8B 51 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8025B838 00258778  81 83 00 00 */	lwz r12, 0(r3)
 /* 8025B83C 0025877C  81 8C 00 08 */	lwz r12, 8(r12)
 /* 8025B840 00258780  7D 89 03 A6 */	mtctr r12
@@ -785,7 +785,7 @@ lbl_8025B888:
 /* 8025B8EC 0025882C  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B8F0 00258830  40 80 00 74 */	bge lbl_8025B964
 /* 8025B8F4 00258834  7F A3 EB 78 */	mr r3, r29
-/* 8025B8F8 00258838  4B DC 8A B9 */	bl dStage_roomControl_c_NS_getMemoryBlock
+/* 8025B8F8 00258838  4B DC 8A B9 */	bl getMemoryBlock__20dStage_roomControl_cFi
 /* 8025B8FC 0025883C  7C 7D 1B 79 */	or. r29, r3, r3
 /* 8025B900 00258840  41 82 00 18 */	beq lbl_8025B918
 /* 8025B904 00258844  48 07 44 61 */	bl getTotalUsedSize__10JKRExpHeapCFv
@@ -850,7 +850,7 @@ lbl_8025B9D0:
 lbl_8025B9DC:
 /* 8025B9DC 0025891C  83 BC 00 B0 */	lwz r29, 0xb0(r28)
 /* 8025B9E0 00258920  7F A3 EB 78 */	mr r3, r29
-/* 8025B9E4 00258924  4B DD 1F CD */	bl dStage_roomControl_c_NS_getZoneNo
+/* 8025B9E4 00258924  4B DD 1F CD */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B9E8 00258928  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B9EC 0025892C  40 80 00 20 */	bge lbl_8025BA0C
 /* 8025B9F0 00258930  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -865,7 +865,7 @@ lbl_8025BA0C:
 /* 8025BA10 00258950  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025BA14 00258954  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8025BA18 00258958  7F A4 EB 78 */	mr r4, r29
-/* 8025BA1C 0025895C  4B DC 89 69 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8025BA1C 0025895C  4B DC 89 69 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8025BA20 00258960  90 7C 01 D0 */	stw r3, 0x1d0(r28)
 /* 8025BA24 00258964  80 7C 01 D0 */	lwz r3, 0x1d0(r28)
 /* 8025BA28 00258968  9B A3 00 04 */	stb r29, 4(r3)
@@ -886,7 +886,7 @@ lbl_8025BA0C:
 lbl_8025BA64:
 /* 8025BA64 002589A4  3B C0 00 00 */	li r30, 0
 /* 8025BA68 002589A8  7F A3 EB 78 */	mr r3, r29
-/* 8025BA6C 002589AC  4B DC 89 45 */	bl dStage_roomControl_c_NS_getMemoryBlock
+/* 8025BA6C 002589AC  4B DC 89 45 */	bl getMemoryBlock__20dStage_roomControl_cFi
 /* 8025BA70 002589B0  28 03 00 00 */	cmplwi r3, 0
 /* 8025BA74 002589B4  41 82 00 0C */	beq lbl_8025BA80
 /* 8025BA78 002589B8  4B DB 37 55 */	bl mDoExt_setCurrentHeap

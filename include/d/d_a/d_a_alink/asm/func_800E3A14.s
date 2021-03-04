@@ -17,7 +17,7 @@ lbl_800E3A44:
 /* 800E3A50 000E0990  B0 1F 04 E8 */ sth r0, 0x4e8(r31)
 /* 800E3A54 000E0994  B0 1F 04 E4 */ sth r0, 0x4e4(r31)
 /* 800E3A58 000E0998  7F A3 EB 78 */ mr r3, r29
-/* 800E3A5C 000E099C  48 00 02 99 */ bl daAlink_c_NS_checkGrabCarryActor
+/* 800E3A5C 000E099C  48 00 02 99 */ bl checkGrabCarryActor__9daAlink_cFv
 /* 800E3A60 000E09A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E3A64 000E09A4  41 82 00 10 */ beq lbl_800E3A74
 /* 800E3A68 000E09A8  38 00 00 00 */ li r0, 0
@@ -26,7 +26,7 @@ lbl_800E3A44:
 lbl_800E3A74:
 /* 800E3A74 000E09B4  7F A3 EB 78 */ mr r3, r29
 /* 800E3A78 000E09B8  7F C4 F3 78 */ mr r4, r30
-/* 800E3A7C 000E09BC  48 00 21 39 */ bl daAlink_c_NS_setGrabItemActor
+/* 800E3A7C 000E09BC  48 00 21 39 */ bl setGrabItemActor__9daAlink_cFP10fopAc_ac_c
 /* 800E3A80 000E09C0  38 60 00 01 */ li r3, 1
 lbl_800E3A84:
 /* 800E3A84 000E09C4  39 61 00 20 */ addi r11, r1, 0x20

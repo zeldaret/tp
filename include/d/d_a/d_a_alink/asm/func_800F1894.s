@@ -4,31 +4,31 @@
 /* 800F18A0 000EE7E0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F18A4 000EE7E4  7C 7F 1B 78 */ mr r31, r3
 /* 800F18A8 000EE7E8  38 80 00 42 */ li r4, 0x42
-/* 800F18AC 000EE7EC  4B FD 06 C1 */ bl daAlink_c_NS_commonProcInit
+/* 800F18AC 000EE7EC  4B FD 06 C1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F18B0 000EE7F0  7F E3 FB 78 */ mr r3, r31
 /* 800F18B4 000EE7F4  38 80 00 96 */ li r4, 0x96
 /* 800F18B8 000EE7F8  38 A0 00 02 */ li r5, 2
 /* 800F18BC 000EE7FC  3C C0 80 39 */ lis r6, lbl_8038DC9C@ha
 /* 800F18C0 000EE800  38 C6 DC 9C */ addi r6, r6, lbl_8038DC9C@l
-/* 800F18C4 000EE804  4B FB BE 2D */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800F18C4 000EE804  4B FB BE 2D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
 /* 800F18C8 000EE808  7F E3 FB 78 */ mr r3, r31
 /* 800F18CC 000EE80C  38 80 00 E8 */ li r4, 0xe8
 /* 800F18D0 000EE810  38 A0 00 01 */ li r5, 1
 /* 800F18D4 000EE814  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800F18D8 000EE818  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800F18DC 000EE81C  4B FB DB D5 */ bl daAlink_c_NS_setFaceBck
+/* 800F18DC 000EE81C  4B FB DB D5 */ bl setFaceBck__9daAlink_cFUsiUs
 /* 800F18E0 000EE820  38 00 00 02 */ li r0, 2
 /* 800F18E4 000EE824  98 1F 2F 96 */ stb r0, 0x2f96(r31)
 /* 800F18E8 000EE828  7F E3 FB 78 */ mr r3, r31
 /* 800F18EC 000EE82C  38 80 00 01 */ li r4, 1
-/* 800F18F0 000EE830  4B FF D0 29 */ bl daAlink_c_NS_setSyncRide
+/* 800F18F0 000EE830  4B FF D0 29 */ bl setSyncRide__9daAlink_cFi
 /* 800F18F4 000EE834  A0 1F 1F 80 */ lhz r0, 0x1f80(r31)
 /* 800F18F8 000EE838  28 00 00 19 */ cmplwi r0, 0x19
 /* 800F18FC 000EE83C  40 82 00 14 */ bne lbl_800F1910
 /* 800F1900 000EE840  7F E3 FB 78 */ mr r3, r31
 /* 800F1904 000EE844  38 80 00 02 */ li r4, 2
 /* 800F1908 000EE848  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F190C 000EE84C  4B FB C1 E1 */ bl daAlink_c_NS_resetUnderAnime
+/* 800F190C 000EE84C  4B FB C1 E1 */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 lbl_800F1910:
 /* 800F1910 000EE850  3C 60 80 39 */ lis r3, lbl_8038DE8C@ha
 /* 800F1914 000EE854  38 63 DE 8C */ addi r3, r3, lbl_8038DE8C@l

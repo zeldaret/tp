@@ -24,7 +24,7 @@ lbl_800D2738:
 /* 800D2740 000CF680  7C 03 00 50 */ subf r0, r3, r0
 /* 800D2744 000CF684  7C 03 07 34 */ extsh r3, r0
 lbl_800D2748:
-/* 800D2748 000CF688  4B FE 0D 4D */ bl daAlink_c_NS_getDirectionFromAngle
+/* 800D2748 000CF688  4B FE 0D 4D */ bl getDirectionFromAngle__9daAlink_cFs
 lbl_800D274C:
 /* 800D274C 000CF68C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800D2750 000CF690  80 01 00 14 */ lwz r0, 0x14(r1)

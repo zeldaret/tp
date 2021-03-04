@@ -9,11 +9,11 @@
 /* 8012A248 00127188  28 00 01 25 */ cmplwi r0, 0x125
 /* 8012A24C 0012718C  41 82 00 20 */ beq lbl_8012A26C
 /* 8012A250 00127190  38 9E 10 F0 */ addi r4, r30, 0x10f0
-/* 8012A254 00127194  4B FA 76 CD */ bl daAlink_c_NS_checkAtShieldHit
+/* 8012A254 00127194  4B FA 76 CD */ bl checkAtShieldHit__9daAlink_cFR12dCcD_GObjInf
 /* 8012A258 00127198  2C 03 00 00 */ cmpwi r3, 0
 /* 8012A25C 0012719C  41 82 00 10 */ beq lbl_8012A26C
 /* 8012A260 001271A0  7F C3 F3 78 */ mr r3, r30
-/* 8012A264 001271A4  48 01 26 65 */ bl daAlink_c_NS_procWolfAttackReverseInit
+/* 8012A264 001271A4  48 01 26 65 */ bl procWolfAttackReverseInit__9daAlink_cFv
 /* 8012A268 001271A8  48 00 00 B0 */ b lbl_8012A318
 lbl_8012A26C:
 /* 8012A26C 001271AC  80 1E 05 70 */ lwz r0, 0x570(r30)
@@ -42,7 +42,7 @@ lbl_8012A2B8:
 /* 8012A2C0 00127200  40 82 00 14 */ bne lbl_8012A2D4
 /* 8012A2C4 00127204  7F C3 F3 78 */ mr r3, r30
 /* 8012A2C8 00127208  38 80 00 00 */ li r4, 0
-/* 8012A2CC 0012720C  48 00 35 F5 */ bl daAlink_c_NS_procWolfDashReverseInit
+/* 8012A2CC 0012720C  48 00 35 F5 */ bl procWolfDashReverseInit__9daAlink_cFi
 /* 8012A2D0 00127210  48 00 00 48 */ b lbl_8012A318
 lbl_8012A2D4:
 /* 8012A2D4 00127214  80 1E 05 7C */ lwz r0, 0x57c(r30)
@@ -60,7 +60,7 @@ lbl_8012A2D4:
 /* 8012A304 00127244  4B F2 1F 15 */ bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 lbl_8012A308:
 /* 8012A308 00127248  7F C3 F3 78 */ mr r3, r30
-/* 8012A30C 0012724C  48 01 25 BD */ bl daAlink_c_NS_procWolfAttackReverseInit
+/* 8012A30C 0012724C  48 01 25 BD */ bl procWolfAttackReverseInit__9daAlink_cFv
 /* 8012A310 00127250  48 00 00 08 */ b lbl_8012A318
 lbl_8012A314:
 /* 8012A314 00127254  38 60 00 00 */ li r3, 0

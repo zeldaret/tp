@@ -28,7 +28,7 @@ lbl_800D40B4:
 lbl_800D40CC:
 /* 800D40CC 000D100C  7F E3 FB 78 */ mr r3, r31
 /* 800D40D0 000D1010  38 80 00 25 */ li r4, 0x25
-/* 800D40D4 000D1014  4B FE DE 99 */ bl daAlink_c_NS_commonProcInit
+/* 800D40D4 000D1014  4B FE DE 99 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D40D8 000D1018  2C 1E 00 2F */ cmpwi r30, 0x2f
 /* 800D40DC 000D101C  40 82 00 4C */ bne lbl_800D4128
 /* 800D40E0 000D1020  7F E3 FB 78 */ mr r3, r31
@@ -36,7 +36,7 @@ lbl_800D40CC:
 /* 800D40E8 000D1028  3C A0 80 39 */ lis r5, lbl_8038DF9C@ha
 /* 800D40EC 000D102C  38 A5 DF 9C */ addi r5, r5, lbl_8038DF9C@l
 /* 800D40F0 000D1030  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800D40F4 000D1034  4B FD 90 01 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D40F4 000D1034  4B FD 90 01 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800D40F8 000D1038  38 00 00 01 */ li r0, 1
 /* 800D40FC 000D103C  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 800D4100 000D1040  3C 60 80 39 */ lis r3, lbl_8038DF9C@ha
@@ -47,7 +47,7 @@ lbl_800D40CC:
 /* 800D4114 000D1054  98 1F 2F 98 */ stb r0, 0x2f98(r31)
 /* 800D4118 000D1058  7F E3 FB 78 */ mr r3, r31
 /* 800D411C 000D105C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800D4120 000D1060  48 00 8E E9 */ bl daAlink_c_NS_setUpperGuardAnime
+/* 800D4120 000D1060  48 00 8E E9 */ bl setUpperGuardAnime__9daAlink_cFf
 /* 800D4124 000D1064  48 00 00 3C */ b lbl_800D4160
 lbl_800D4128:
 /* 800D4128 000D1068  7F E3 FB 78 */ mr r3, r31
@@ -55,7 +55,7 @@ lbl_800D4128:
 /* 800D4130 000D1070  3C A0 80 39 */ lis r5, lbl_8038DE8C@ha
 /* 800D4134 000D1074  38 A5 DE 8C */ addi r5, r5, lbl_8038DE8C@l
 /* 800D4138 000D1078  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800D413C 000D107C  4B FD 8F B9 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D413C 000D107C  4B FD 8F B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800D4140 000D1080  38 00 00 00 */ li r0, 0
 /* 800D4144 000D1084  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 800D4148 000D1088  3C 60 80 39 */ lis r3, lbl_8038DE8C@ha

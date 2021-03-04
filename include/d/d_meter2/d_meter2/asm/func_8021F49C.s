@@ -47,16 +47,16 @@ lbl_8021F548:
 /* 8021F54C 0021C48C  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 8021F550 0021C490  41 82 00 68 */ beq lbl_8021F5B8
 /* 8021F554 0021C494  7F C3 F3 78 */ mr r3, r30
-/* 8021F558 0021C498  48 00 64 A1 */ bl dMeter2_c_NS_isArrowEquip
+/* 8021F558 0021C498  48 00 64 A1 */ bl isArrowEquip__9dMeter2_cFv
 /* 8021F55C 0021C49C  2C 03 00 00 */ cmpwi r3, 0
 /* 8021F560 0021C4A0  40 82 00 14 */ bne lbl_8021F574
 /* 8021F564 0021C4A4  7F C3 F3 78 */ mr r3, r30
-/* 8021F568 0021C4A8  48 00 64 FD */ bl dMeter2_c_NS_isPachinkoEquip
+/* 8021F568 0021C4A8  48 00 64 FD */ bl isPachinkoEquip__9dMeter2_cFv
 /* 8021F56C 0021C4AC  2C 03 00 00 */ cmpwi r3, 0
 /* 8021F570 0021C4B0  41 82 00 48 */ beq lbl_8021F5B8
 lbl_8021F574:
 /* 8021F574 0021C4B4  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 8021F578 0021C4B8  4B FF BB 51 */ bl dMeter2Draw_c_NS_isButtonVisible
+/* 8021F578 0021C4B8  4B FF BB 51 */ bl isButtonVisible__13dMeter2Draw_cFv
 /* 8021F57C 0021C4BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F580 0021C4C0  41 82 00 38 */ beq lbl_8021F5B8
 /* 8021F584 0021C4C4  38 00 00 1C */ li r0, 0x1c
@@ -151,7 +151,7 @@ lbl_8021F6B0:
 /* 8021F6C0 0021C600  80 7E 01 00 */ lwz r3, 0x100(r30)
 /* 8021F6C4 0021C604  4B E0 0D 1D */ bl fopMsgM_destroyExpHeap
 /* 8021F6C8 0021C608  7F C3 F3 78 */ mr r3, r30
-/* 8021F6CC 0021C60C  48 00 00 21 */ bl dMeter2_c_NS_emphasisButtonDelete
+/* 8021F6CC 0021C60C  48 00 00 21 */ bl emphasisButtonDelete__9dMeter2_cFv
 /* 8021F6D0 0021C610  38 60 00 01 */ li r3, 1
 /* 8021F6D4 0021C614  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 8021F6D8 0021C618  83 C1 00 18 */ lwz r30, 0x18(r1)

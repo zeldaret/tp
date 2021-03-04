@@ -16,7 +16,7 @@ void __ct__9JKRThreadFP8OSThreadi(void);
 void __dt__9JKRThreadFv(void);
 void becomeCurrentHeap__7JKRHeapFv(void);
 void mDoDvdErr_Watch(void);
-void mDoDvdThd_NS_suspend(void);
+void suspend__9mDoDvdThdFv(void);
 void mDoExt_getAssertHeap(void);
 }
 

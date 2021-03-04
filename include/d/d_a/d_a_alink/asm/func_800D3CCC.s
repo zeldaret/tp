@@ -24,7 +24,7 @@ lbl_800D3D1C:
 /* 800D3D20 000D0C60  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800D3D24 000D0C64  41 82 00 10 */ beq lbl_800D3D34
 /* 800D3D28 000D0C68  7F E3 FB 78 */ mr r3, r31
-/* 800D3D2C 000D0C6C  48 00 00 AD */ bl daAlink_c_NS_procCutFinishJumpUpLandInit
+/* 800D3D2C 000D0C6C  48 00 00 AD */ bl procCutFinishJumpUpLandInit__9daAlink_cFv
 /* 800D3D30 000D0C70  48 00 00 94 */ b lbl_800D3DC4
 lbl_800D3D34:
 /* 800D3D34 000D0C74  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -41,7 +41,7 @@ lbl_800D3D34:
 /* 800D3D60 000D0CA0  7F E3 FB 78 */ mr r3, r31
 /* 800D3D64 000D0CA4  38 80 00 02 */ li r4, 2
 /* 800D3D68 000D0CA8  C0 25 00 48 */ lfs f1, 0x48(r5)
-/* 800D3D6C 000D0CAC  4B FF 2C DD */ bl daAlink_c_NS_procFallInit
+/* 800D3D6C 000D0CAC  4B FF 2C DD */ bl procFallInit__9daAlink_cFif
 /* 800D3D70 000D0CB0  48 00 00 54 */ b lbl_800D3DC4
 lbl_800D3D74:
 /* 800D3D74 000D0CB4  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)
@@ -59,7 +59,7 @@ lbl_800D3D74:
 /* 800D3DA4 000D0CE4  40 82 00 10 */ bne lbl_800D3DB4
 /* 800D3DA8 000D0CE8  7F E3 FB 78 */ mr r3, r31
 /* 800D3DAC 000D0CEC  80 9F 32 CC */ lwz r4, 0x32cc(r31)
-/* 800D3DB0 000D0CF0  4B FE B3 3D */ bl daAlink_c_NS_seStartSwordCut
+/* 800D3DB0 000D0CF0  4B FE B3 3D */ bl seStartSwordCut__9daAlink_cFUl
 lbl_800D3DB4:
 /* 800D3DB4 000D0CF4  80 1F 05 80 */ lwz r0, 0x580(r31)
 /* 800D3DB8 000D0CF8  60 00 00 02 */ ori r0, r0, 2

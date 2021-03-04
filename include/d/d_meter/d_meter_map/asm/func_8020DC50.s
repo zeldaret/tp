@@ -23,7 +23,7 @@ lbl_8020DC88:
 /* 8020DCA4 0020ABE4  7D 89 03 A6 */ mtctr r12
 /* 8020DCA8 0020ABE8  4E 80 04 21 */ bctrl
 lbl_8020DCAC:
-/* 8020DCAC 0020ABEC  4B FF F9 A5 */ bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 8020DCAC 0020ABEC  4B FF F9 A5 */ bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 8020DCB0 0020ABF0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020DCB4 0020ABF4  41 82 00 1C */ beq lbl_8020DCD0
 /* 8020DCB8 0020ABF8  88 1F 00 2D */ lbz r0, 0x2d(r31)

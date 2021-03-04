@@ -5,10 +5,10 @@
 /* 800E012C 000DD06C  F3 E1 00 18 */ psq_st f31, 24(r1), 0, 0
 /* 800E0130 000DD070  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E0134 000DD074  7C 7F 1B 78 */ mr r31, r3
-/* 800E0138 000DD078  4B FF FF 89 */ bl daAlink_c_NS_getBoomFlyMax
+/* 800E0138 000DD078  4B FF FF 89 */ bl getBoomFlyMax__9daAlink_cCFv
 /* 800E013C 000DD07C  FF E0 08 90 */ fmr f31, f1
 /* 800E0140 000DD080  7F E3 FB 78 */ mr r3, r31
-/* 800E0144 000DD084  48 00 00 5D */ bl daAlink_c_NS_checkBossBabaRoom
+/* 800E0144 000DD084  48 00 00 5D */ bl checkBossBabaRoom__9daAlink_cFv
 /* 800E0148 000DD088  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E014C 000DD08C  41 82 00 0C */ beq lbl_800E0158
 /* 800E0150 000DD090  C0 22 93 E8 */ lfs f1, lbl_80452DE8-_SDA2_BASE_(r2)

@@ -103,7 +103,7 @@ lbl_8013E958:
 /* 8013E97C 0013B8BC  3C A0 80 39 */ lis r5, lbl_8038F1A0@ha
 /* 8013E980 0013B8C0  38 A5 F1 A0 */ addi r5, r5, lbl_8038F1A0@l
 /* 8013E984 0013B8C4  C0 25 00 98 */ lfs f1, 0x98(r5)
-/* 8013E988 0013B8C8  4B FF 04 49 */ bl daAlink_c_NS_procWolfFallInit
+/* 8013E988 0013B8C8  4B FF 04 49 */ bl procWolfFallInit__9daAlink_cFif
 /* 8013E98C 0013B8CC  48 00 03 98 */ b lbl_8013ED24
 lbl_8013E990:
 /* 8013E990 0013B8D0  A8 1D 30 10 */ lha r0, 0x3010(r29)
@@ -332,7 +332,7 @@ lbl_8013ECC0:
 /* 8013ECE4 0013BC24  EF E4 00 24 */ fdivs f31, f4, f0
 lbl_8013ECE8:
 /* 8013ECE8 0013BC28  7F A3 EB 78 */ mr r3, r29
-/* 8013ECEC 0013BC2C  4B FE A9 ED */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 8013ECEC 0013BC2C  4B FE A9 ED */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 8013ECF0 0013BC30  A8 1E 00 08 */ lha r0, 8(r30)
 /* 8013ECF4 0013BC34  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)
 /* 8013ECF8 0013BC38  6C 00 80 00 */ xoris r0, r0, 0x8000

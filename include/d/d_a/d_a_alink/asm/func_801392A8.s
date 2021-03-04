@@ -7,7 +7,7 @@
 /* 801392C0 00136200  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801392C4 00136204  80 63 5D B4 */ lwz r3, 0x5db4(r3)
 /* 801392C8 00136208  7C 04 03 78 */ mr r4, r0
-/* 801392CC 0013620C  4B FF FF 19 */ bl daAlink_c_NS_searchWolfLockEnemy
+/* 801392CC 0013620C  4B FF FF 19 */ bl searchWolfLockEnemy__9daAlink_cFP10fopAc_ac_cPv
 /* 801392D0 00136210  38 60 00 00 */ li r3, 0
 /* 801392D4 00136214  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801392D8 00136218  7C 08 03 A6 */ mtlr r0

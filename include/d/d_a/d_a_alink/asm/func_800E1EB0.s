@@ -3,7 +3,7 @@
 /* 800E1EB8 000DEDF8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800E1EBC 000DEDFC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E1EC0 000DEE00  7C 7F 1B 78 */ mr r31, r3
-/* 800E1EC4 000DEE04  4B FD 54 21 */ bl daAlink_c_NS_checkItemActorPointer
+/* 800E1EC4 000DEE04  4B FD 54 21 */ bl checkItemActorPointer__9daAlink_cFv
 /* 800E1EC8 000DEE08  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1ECC 000DEE0C  40 82 00 0C */ bne lbl_800E1ED8
 /* 800E1ED0 000DEE10  38 60 00 01 */ li r3, 1
@@ -26,18 +26,18 @@ lbl_800E1EF8:
 lbl_800E1F0C:
 /* 800E1F0C 000DEE4C  7F E3 FB 78 */ mr r3, r31
 /* 800E1F10 000DEE50  38 80 00 00 */ li r4, 0
-/* 800E1F14 000DEE54  4B FD 18 21 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 800E1F14 000DEE54  4B FD 18 21 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 800E1F18 000DEE58  7F E3 FB 78 */ mr r3, r31
 /* 800E1F1C 000DEE5C  38 80 00 00 */ li r4, 0
-/* 800E1F20 000DEE60  4B FD 81 B1 */ bl daAlink_c_NS_checkNextAction
+/* 800E1F20 000DEE60  4B FD 81 B1 */ bl checkNextAction__9daAlink_cFi
 /* 800E1F24 000DEE64  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1F28 000DEE68  40 82 00 20 */ bne lbl_800E1F48
 /* 800E1F2C 000DEE6C  7F E3 FB 78 */ mr r3, r31
-/* 800E1F30 000DEE70  4B FE C9 71 */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 800E1F30 000DEE70  4B FE C9 71 */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 800E1F34 000DEE74  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1F38 000DEE78  41 82 00 18 */ beq lbl_800E1F50
 /* 800E1F3C 000DEE7C  7F E3 FB 78 */ mr r3, r31
-/* 800E1F40 000DEE80  4B FF FE 2D */ bl daAlink_c_NS_setCopyRodSight
+/* 800E1F40 000DEE80  4B FF FE 2D */ bl setCopyRodSight__9daAlink_cFv
 /* 800E1F44 000DEE84  48 00 00 0C */ b lbl_800E1F50
 lbl_800E1F48:
 /* 800E1F48 000DEE88  38 00 00 00 */ li r0, 0

@@ -119,12 +119,12 @@ lbl_802BCA3C:
 /* 802BCA70 002B99B0  80 6D 85 C4 */ lwz r3, lbl_80450B44-_SDA_BASE_(r13)
 /* 802BCA74 002B99B4  38 63 00 0C */ addi r3, r3, 0xc
 /* 802BCA78 002B99B8  EC 23 10 24 */ fdivs f1, f3, f2
-/* 802BCA7C 002B99BC  4B FF FA 55 */ bl Z2Audience3DSetting_NS_updateVolumeDist
+/* 802BCA7C 002B99BC  4B FF FA 55 */ bl updateVolumeDist__19Z2Audience3DSettingFf
 /* 802BCA80 002B99C0  48 00 00 10 */ b lbl_802BCA90
 lbl_802BCA84:
 /* 802BCA84 002B99C4  80 6D 85 C4 */ lwz r3, lbl_80450B44-_SDA_BASE_(r13)
 /* 802BCA88 002B99C8  38 63 00 0C */ addi r3, r3, 0xc
-/* 802BCA8C 002B99CC  4B FF F8 7D */ bl Z2Audience3DSetting_NS_initVolumeDist
+/* 802BCA8C 002B99CC  4B FF F8 7D */ bl init__19Z2Audience3DSettingFvVolumeDist
 lbl_802BCA90:
 /* 802BCA90 002B99D0  57 C0 06 3F */ clrlwi. r0, r30, 0x18
 /* 802BCA94 002B99D4  40 82 00 18 */ bne lbl_802BCAAC
@@ -143,7 +143,7 @@ lbl_802BCAAC:
 /* 802BCAC4 002B9A04  38 63 00 0C */ addi r3, r3, 0xc
 /* 802BCAC8 002B9A08  C0 3B 00 64 */ lfs f1, 0x64(r27)
 /* 802BCACC 002B9A0C  FC 40 08 90 */ fmr f2, f1
-/* 802BCAD0 002B9A10  4B FF FC 29 */ bl Z2Audience3DSetting_NS_updateDolbyDist
+/* 802BCAD0 002B9A10  4B FF FC 29 */ bl updateDolbyDist__19Z2Audience3DSettingFff
 /* 802BCAD4 002B9A14  48 00 00 C4 */ b lbl_802BCB98
 lbl_802BCAD8:
 /* 802BCAD8 002B9A18  3C 60 80 3A */ lis r3, lbl_8039C220@ha
@@ -193,13 +193,13 @@ lbl_802BCAD8:
 /* 802BCB88 002B9AC8  C0 5B 00 64 */ lfs f2, 0x64(r27)
 /* 802BCB8C 002B9ACC  EC 22 00 28 */ fsubs f1, f2, f0
 /* 802BCB90 002B9AD0  EC 42 00 2A */ fadds f2, f2, f0
-/* 802BCB94 002B9AD4  4B FF FB 65 */ bl Z2Audience3DSetting_NS_updateDolbyDist
+/* 802BCB94 002B9AD4  4B FF FB 65 */ bl updateDolbyDist__19Z2Audience3DSettingFff
 lbl_802BCB98:
 /* 802BCB98 002B9AD8  7F 63 DB 78 */ mr r3, r27
 /* 802BCB9C 002B9ADC  7F 84 E3 78 */ mr r4, r28
 /* 802BCBA0 002B9AE0  7F A5 EB 78 */ mr r5, r29
 /* 802BCBA4 002B9AE4  7F E6 FB 78 */ mr r6, r31
-/* 802BCBA8 002B9AE8  4B FF FC 35 */ bl Z2AudioCamera_NS_setCameraState
+/* 802BCBA8 002B9AE8  4B FF FC 35 */ bl setCameraState__13Z2AudioCameraFPA4_CfR3Vecb
 /* 802BCBAC 002B9AEC  E3 E1 00 D8 */ psq_l f31, 216(r1), 0, 0
 /* 802BCBB0 002B9AF0  CB E1 00 D0 */ lfd f31, 0xd0(r1)
 /* 802BCBB4 002B9AF4  E3 C1 00 C8 */ psq_l f30, 200(r1), 0, 0

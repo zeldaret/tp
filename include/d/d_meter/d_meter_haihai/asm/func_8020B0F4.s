@@ -6,10 +6,10 @@
 /* 8020B108 00208048  7C 7E 1B 78 */ mr r30, r3
 /* 8020B10C 0020804C  7C 9F 23 78 */ mr r31, r4
 /* 8020B110 00208050  93 E3 00 24 */ stw r31, 0x24(r3)
-/* 8020B114 00208054  48 00 0D 91 */ bl dMeterHaihai_c_NS_updateHaihai
+/* 8020B114 00208054  48 00 0D 91 */ bl updateHaihai__14dMeterHaihai_cFv
 /* 8020B118 00208058  7F C3 F3 78 */ mr r3, r30
 /* 8020B11C 0020805C  7F E4 FB 78 */ mr r4, r31
-/* 8020B120 00208060  48 00 0D 81 */ bl dMeterHaihai_c_NS_alphaAnimeHaihai
+/* 8020B120 00208060  48 00 0D 81 */ bl alphaAnimeHaihai__14dMeterHaihai_cFUl
 /* 8020B124 00208064  38 60 00 01 */ li r3, 1
 /* 8020B128 00208068  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020B12C 0020806C  83 C1 00 08 */ lwz r30, 8(r1)

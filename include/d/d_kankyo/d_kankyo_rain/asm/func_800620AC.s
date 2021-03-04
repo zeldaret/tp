@@ -102,7 +102,7 @@ lbl_800621D0:
 /* 80062234 0005F174  7C 84 07 75 */ extsb. r4, r4
 /* 80062238 0005F178  41 80 00 1C */ blt lbl_80062254
 /* 8006223C 0005F17C  38 78 4E C4 */ addi r3, r24, 0x4ec4
-/* 80062240 0005F180  4B FC 21 45 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80062240 0005F180  4B FC 21 45 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80062244 0005F184  81 83 00 00 */ lwz r12, 0(r3)
 /* 80062248 0005F188  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 8006224C 0005F18C  7D 89 03 A6 */ mtctr r12

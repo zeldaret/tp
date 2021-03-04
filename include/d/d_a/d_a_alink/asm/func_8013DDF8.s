@@ -3,24 +3,24 @@
 /* 8013DE00 0013AD40  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8013DE04 0013AD44  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013DE08 0013AD48  7C 7F 1B 78 */ mr r31, r3
-/* 8013DE0C 0013AD4C  4B FA 9B ED */ bl daAlink_c_NS_searchFmChainPos
+/* 8013DE0C 0013AD4C  4B FA 9B ED */ bl searchFmChainPos__9daAlink_cFv
 /* 8013DE10 0013AD50  98 7F 2F A3 */ stb r3, 0x2fa3(r31)
 /* 8013DE14 0013AD54  88 1F 2F A3 */ lbz r0, 0x2fa3(r31)
 /* 8013DE18 0013AD58  28 00 00 00 */ cmplwi r0, 0
 /* 8013DE1C 0013AD5C  40 82 00 10 */ bne lbl_8013DE2C
 /* 8013DE20 0013AD60  7F E3 FB 78 */ mr r3, r31
-/* 8013DE24 0013AD64  4B FE F3 85 */ bl daAlink_c_NS_procWolfWaitInit
+/* 8013DE24 0013AD64  4B FE F3 85 */ bl procWolfWaitInit__9daAlink_cFv
 /* 8013DE28 0013AD68  48 00 00 34 */ b lbl_8013DE5C
 lbl_8013DE2C:
 /* 8013DE2C 0013AD6C  7F E3 FB 78 */ mr r3, r31
 /* 8013DE30 0013AD70  38 80 01 2E */ li r4, 0x12e
-/* 8013DE34 0013AD74  4B F8 41 39 */ bl daAlink_c_NS_commonProcInit
+/* 8013DE34 0013AD74  4B F8 41 39 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013DE38 0013AD78  7F E3 FB 78 */ mr r3, r31
 /* 8013DE3C 0013AD7C  38 80 00 4E */ li r4, 0x4e
 /* 8013DE40 0013AD80  3C A0 80 39 */ lis r5, lbl_8038F95C@ha
 /* 8013DE44 0013AD84  38 A5 F9 5C */ addi r5, r5, lbl_8038F95C@l
 /* 8013DE48 0013AD88  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013DE4C 0013AD8C  4B FE B9 FD */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013DE4C 0013AD8C  4B FE B9 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8013DE50 0013AD90  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013DE54 0013AD94  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 8013DE58 0013AD98  38 60 00 01 */ li r3, 1

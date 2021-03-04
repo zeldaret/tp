@@ -11,7 +11,7 @@
 /* 800C00AC 000BCFEC  7C 64 1B 79 */ or. r4, r3, r3
 /* 800C00B0 000BCFF0  41 82 00 0C */ beq lbl_800C00BC
 /* 800C00B4 000BCFF4  38 7F 07 30 */ addi r3, r31, 0x730
-/* 800C00B8 000BCFF8  4B F4 D8 D9 */ bl mDoExt_bckAnm_NS_changeBckOnly
+/* 800C00B8 000BCFF8  4B F4 D8 D9 */ bl changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
 lbl_800C00BC:
 /* 800C00BC 000BCFFC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C00C0 000BD000  FC 1F 00 40 */ fcmpo cr0, f31, f0

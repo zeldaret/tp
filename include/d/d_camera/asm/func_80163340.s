@@ -135,7 +135,7 @@ lbl_80163530:
 /* 80163530 00160470  7F E3 FB 78 */ mr r3, r31
 /* 80163534 00160474  38 9F 07 AC */ addi r4, r31, 0x7ac
 /* 80163538 00160478  7F C6 F3 78 */ mr r6, r30
-/* 8016353C 0016047C  48 00 00 71 */ bl dCamera_c_NS_setRoomMapToolData
+/* 8016353C 0016047C  48 00 00 71 */ bl setRoomMapToolData__9dCamera_cFP15dCamMapToolDatall
 lbl_80163540:
 /* 80163540 00160480  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80163544 00160484  83 C1 00 08 */ lwz r30, 8(r1)

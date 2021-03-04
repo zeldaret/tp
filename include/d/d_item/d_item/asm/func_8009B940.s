@@ -149,14 +149,14 @@ lbl_8009BB2C:
 /* 8009BB54 00098A94  7F 23 CB 78 */	mr r3, r25
 /* 8009BB58 00098A98  56 E4 06 3E */	clrlwi r4, r23, 0x18
 /* 8009BB5C 00098A9C  7E A5 AB 78 */	mr r5, r21
-/* 8009BB60 00098AA0  4B F8 F8 0D */	bl dComIfG_play_c_NS_setItemBombNumCount
+/* 8009BB60 00098AA0  4B F8 F8 0D */	bl setItemBombNumCount__14dComIfG_play_cFUcs
 /* 8009BB64 00098AA4  38 60 00 00 */	li r3, 0
 /* 8009BB68 00098AA8  48 00 00 58 */	b lbl_8009BBC0
 lbl_8009BB6C:
 /* 8009BB6C 00098AAC  7F 23 CB 78 */	mr r3, r25
 /* 8009BB70 00098AB0  56 E4 06 3E */	clrlwi r4, r23, 0x18
 /* 8009BB74 00098AB4  7E A5 AB 78 */	mr r5, r21
-/* 8009BB78 00098AB8  4B F8 F7 F5 */	bl dComIfG_play_c_NS_setItemBombNumCount
+/* 8009BB78 00098AB8  4B F8 F7 F5 */	bl setItemBombNumCount__14dComIfG_play_cFUcs
 /* 8009BB7C 00098ABC  7F 63 DB 78 */	mr r3, r27
 /* 8009BB80 00098AC0  7E 84 A3 78 */	mr r4, r20
 /* 8009BB84 00098AC4  4B F9 85 75 */	bl getBombNum__21dSv_player_item_max_cCFUc

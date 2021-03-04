@@ -239,10 +239,10 @@ lbl_802204D4:
 /* 802204E0 0021D420  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 802204E4 0021D424  80 9F 01 A0 */ lwz r4, 0x1a0(r31)
 /* 802204E8 0021D428  80 BF 01 9C */ lwz r5, 0x19c(r31)
-/* 802204EC 0021D42C  4B FF 4F BD */ bl dMeter2Draw_c_NS_drawKantera
+/* 802204EC 0021D42C  4B FF 4F BD */ bl drawKantera__13dMeter2Draw_cFllff
 lbl_802204F0:
 /* 802204F0 0021D430  7F E3 FB 78 */ mr r3, r31
-/* 802204F4 0021D434  48 00 45 11 */ bl dMeter2_c_NS_alphaAnimeKantera
+/* 802204F4 0021D434  48 00 45 11 */ bl alphaAnimeKantera__9dMeter2_cFv
 /* 802204F8 0021D438  80 1F 01 9C */ lwz r0, 0x19c(r31)
 /* 802204FC 0021D43C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80220500 0021D440  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

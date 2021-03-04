@@ -8,12 +8,12 @@
 /* 80100A2C 000FD96C  7C BE 2B 78 */ mr r30, r5
 /* 80100A30 000FD970  7C DF 33 78 */ mr r31, r6
 /* 80100A34 000FD974  38 80 00 86 */ li r4, 0x86
-/* 80100A38 000FD978  4B FC 15 35 */ bl daAlink_c_NS_commonProcInit
+/* 80100A38 000FD978  4B FC 15 35 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80100A3C 000FD97C  7F 83 E3 78 */ mr r3, r28
 /* 80100A40 000FD980  38 80 00 AE */ li r4, 0xae
 /* 80100A44 000FD984  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 80100A48 000FD988  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
-/* 80100A4C 000FD98C  4B FA C6 A9 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 80100A4C 000FD98C  4B FA C6 A9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 80100A50 000FD990  38 7C 1E 2C */ addi r3, r28, 0x1e2c
 /* 80100A54 000FD994  7F A4 EB 78 */ mr r4, r29
 /* 80100A58 000FD998  48 16 76 F1 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
@@ -32,7 +32,7 @@
 /* 80100A8C 000FD9CC  7F 83 E3 78 */ mr r3, r28
 /* 80100A90 000FD9D0  38 80 00 01 */ li r4, 1
 /* 80100A94 000FD9D4  38 A0 00 00 */ li r5, 0
-/* 80100A98 000FD9D8  4B FC 08 45 */ bl daAlink_c_NS_deleteEquipItem
+/* 80100A98 000FD9D8  4B FC 08 45 */ bl deleteEquipItem__9daAlink_cFii
 /* 80100A9C 000FD9DC  7F 83 E3 78 */ mr r3, r28
 /* 80100AA0 000FD9E0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80100AA4 000FD9E4  C0 5C 05 34 */ lfs f2, 0x534(r28)

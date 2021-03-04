@@ -50,7 +50,7 @@ asm void seqCallback(void) {
 
 // __ct__10Z2SoundMgrFv
 // Z2SoundMgr::Z2SoundMgr(void)
-asm void Z2SoundMgr_NS_ctor(void) {
+asm void __ct__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802A9E80.s"
 }
@@ -64,21 +64,21 @@ asm void func_802A9EE8(void) {
 
 // calc__10Z2SoundMgrFv
 // Z2SoundMgr::calc(void)
-asm void Z2SoundMgr_NS_calc(void) {
+asm void calc__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA1B0.s"
 }
 
 // setIIR__10Z2SoundMgrFP8JAISoundPCs
 // Z2SoundMgr::setIIR(JAISound*, const short*)
-asm void Z2SoundMgr_NS_setIIR(void) {
+asm void setIIR__10Z2SoundMgrFP8JAISoundPCs(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA270.s"
 }
 
 // setFilterOff__10Z2SoundMgrFP8JAISound
 // Z2SoundMgr::setFilterOff(JAISound*)
-asm void Z2SoundMgr_NS_setFilterOff(void) {
+asm void setFilterOff__10Z2SoundMgrFP8JAISound(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA33C.s"
 }
@@ -92,14 +92,14 @@ asm void resetFilterAll__10Z2SoundMgrFv(void) {
 
 // mixOut__10Z2SoundMgrFv
 // Z2SoundMgr::mixOut(void)
-asm void Z2SoundMgr_NS_mixOut(void) {
+asm void mixOut__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA528.s"
 }
 
 // framework__10Z2SoundMgrFv
 // Z2SoundMgr::framework(void)
-asm void Z2SoundMgr_NS_framework(void) {
+asm void framework__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA67C.s"
 }
@@ -107,49 +107,49 @@ asm void Z2SoundMgr_NS_framework(void) {
 // pauseAllGameSound__10Z2SoundMgrFb
 // Z2SoundMgr::pauseAllGameSound(bool)
 
-asm void Z2SoundMgr_NS_pauseAllGameSound(Z2SoundMgr* p0, bool p1) {
+asm void pauseAllGameSound__10Z2SoundMgrFb(Z2SoundMgr* p0, bool p1) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA6B0.s"
 }
 
 // stopSoundID__10Z2SoundMgrF10JAISoundID
 // Z2SoundMgr::stopSoundID(JAISoundID)
-asm void Z2SoundMgr_NS_stopSoundID(void) {
+asm void stopSoundID__10Z2SoundMgrF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA7DC.s"
 }
 
 // stopSync__10Z2SoundMgrFv
 // Z2SoundMgr::stopSync(void)
-asm void Z2SoundMgr_NS_stopSync(void) {
+asm void stopSync__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA84C.s"
 }
 
 // stop__10Z2SoundMgrFv
 // Z2SoundMgr::stop(void)
-asm void Z2SoundMgr_NS_stop(void) {
+asm void stop__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA8C8.s"
 }
 
 // initParams__10Z2SoundMgrFv
 // Z2SoundMgr::initParams(void)
-asm void Z2SoundMgr_NS_initParams(void) {
+asm void initParams__10Z2SoundMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA908.s"
 }
 
 // multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf
 // Z2SoundMgr::multiVolumeSoundID(JAISoundID, float)
-asm void Z2SoundMgr_NS_multiVolumeSoundID(void) {
+asm void multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AA9E8.s"
 }
 
 // isPlayingSoundID__10Z2SoundMgrF10JAISoundID
 // Z2SoundMgr::isPlayingSoundID(JAISoundID)
-asm void Z2SoundMgr_NS_isPlayingSoundID(void) {
+asm void isPlayingSoundID__10Z2SoundMgrF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802AAAC4.s"
 }

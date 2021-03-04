@@ -4,25 +4,25 @@
 /* 800D3DE4 000D0D24  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D3DE8 000D0D28  7C 7F 1B 78 */ mr r31, r3
 /* 800D3DEC 000D0D2C  38 80 00 24 */ li r4, 0x24
-/* 800D3DF0 000D0D30  4B FE E1 7D */ bl daAlink_c_NS_commonProcInit
+/* 800D3DF0 000D0D30  4B FE E1 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D3DF4 000D0D34  7F E3 FB 78 */ mr r3, r31
-/* 800D3DF8 000D0D38  48 00 31 E9 */ bl daAlink_c_NS_checkCutLandDamage
+/* 800D3DF8 000D0D38  48 00 31 E9 */ bl checkCutLandDamage__9daAlink_cFv
 /* 800D3DFC 000D0D3C  7F E3 FB 78 */ mr r3, r31
 /* 800D3E00 000D0D40  38 80 00 6E */ li r4, 0x6e
 /* 800D3E04 000D0D44  3C A0 80 39 */ lis r5, lbl_8038DAEC@ha
 /* 800D3E08 000D0D48  38 A5 DA EC */ addi r5, r5, lbl_8038DAEC@l
 /* 800D3E0C 000D0D4C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800D3E10 000D0D50  4B FD 92 E5 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D3E10 000D0D50  4B FD 92 E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800D3E14 000D0D54  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D3E18 000D0D58  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800D3E1C 000D0D5C  7F E3 FB 78 */ mr r3, r31
 /* 800D3E20 000D0D60  38 80 00 1E */ li r4, 0x1e
-/* 800D3E24 000D0D64  4B FF D7 09 */ bl daAlink_c_NS_setCutType
+/* 800D3E24 000D0D64  4B FF D7 09 */ bl setCutType__9daAlink_cFUc
 /* 800D3E28 000D0D68  38 00 00 04 */ li r0, 4
 /* 800D3E2C 000D0D6C  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 800D3E30 000D0D70  7F E3 FB 78 */ mr r3, r31
 /* 800D3E34 000D0D74  38 80 00 02 */ li r4, 2
-/* 800D3E38 000D0D78  48 04 D3 89 */ bl daAlink_c_NS_setFootEffectProcType
+/* 800D3E38 000D0D78  48 04 D3 89 */ bl setFootEffectProcType__9daAlink_cFi
 /* 800D3E3C 000D0D7C  80 1F 05 84 */ lwz r0, 0x584(r31)
 /* 800D3E40 000D0D80  60 00 00 30 */ ori r0, r0, 0x30
 /* 800D3E44 000D0D84  90 1F 05 84 */ stw r0, 0x584(r31)
@@ -54,7 +54,7 @@ lbl_800D3E88:
 /* 800D3EA4 000D0DE4  C0 03 00 08 */ lfs f0, 8(r3)
 /* 800D3EA8 000D0DE8  D0 1F 35 90 */ stfs f0, 0x3590(r31)
 /* 800D3EAC 000D0DEC  7F E3 FB 78 */ mr r3, r31
-/* 800D3EB0 000D0DF0  4B FF ED 4D */ bl daAlink_c_NS_initCutAtnActorSearch
+/* 800D3EB0 000D0DF0  4B FF ED 4D */ bl initCutAtnActorSearch__9daAlink_cFv
 /* 800D3EB4 000D0DF4  38 60 00 01 */ li r3, 1
 /* 800D3EB8 000D0DF8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800D3EBC 000D0DFC  80 01 00 14 */ lwz r0, 0x14(r1)

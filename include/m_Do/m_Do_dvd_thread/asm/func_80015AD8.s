@@ -11,7 +11,7 @@
 lbl_80015B00:
 /* 80015B00 00012A40  7F C3 F3 78 */ mr r3, r30
 /* 80015B04 00012A44  80 81 00 08 */ lwz r4, 8(r1)
-/* 80015B08 00012A48  4B FF FF 35 */ bl mDoDvdThd_param_c_NS_cut
+/* 80015B08 00012A48  4B FF FF 35 */ bl cut__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 /* 80015B0C 00012A4C  88 0D 87 00 */ lbz r0, lbl_80450C80-_SDA_BASE_(r13)
 /* 80015B10 00012A50  28 00 00 00 */ cmplwi r0, 0
 /* 80015B14 00012A54  41 82 00 1C */ beq lbl_80015B30
@@ -26,13 +26,13 @@ lbl_80015B30:
 /* 80015B34 00012A74  4B FF FF 5D */ bl cb
 lbl_80015B38:
 /* 80015B38 00012A78  7F C3 F3 78 */ mr r3, r30
-/* 80015B3C 00012A7C  4B FF FE A1 */ bl mDoDvdThd_param_c_NS_getFirstCommand
+/* 80015B3C 00012A7C  4B FF FE A1 */ bl getFirstCommand__17mDoDvdThd_param_cFv
 /* 80015B40 00012A80  90 61 00 08 */ stw r3, 8(r1)
 /* 80015B44 00012A84  28 03 00 00 */ cmplwi r3, 0
 /* 80015B48 00012A88  40 82 FF B8 */ bne lbl_80015B00
 lbl_80015B4C:
 /* 80015B4C 00012A8C  7F C3 F3 78 */ mr r3, r30
-/* 80015B50 00012A90  4B FF FE 65 */ bl mDoDvdThd_param_c_NS_waitForKick
+/* 80015B50 00012A90  4B FF FE 65 */ bl waitForKick__17mDoDvdThd_param_cFv
 /* 80015B54 00012A94  2C 03 00 00 */ cmpwi r3, 0
 /* 80015B58 00012A98  40 82 FF E0 */ bne lbl_80015B38
 /* 80015B5C 00012A9C  83 E1 00 1C */ lwz r31, 0x1c(r1)

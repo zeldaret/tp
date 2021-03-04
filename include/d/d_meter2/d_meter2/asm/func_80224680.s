@@ -76,11 +76,11 @@ lbl_8022474C:
 /* 80224798 002216D8  54 80 07 FF */ clrlwi. r0, r4, 0x1f
 /* 8022479C 002216DC  40 82 00 68 */ bne lbl_80224804
 /* 802247A0 002216E0  7F E3 FB 78 */ mr r3, r31
-/* 802247A4 002216E4  48 00 12 C1 */ bl dMeter2_c_NS_isPachinkoEquip
+/* 802247A4 002216E4  48 00 12 C1 */ bl isPachinkoEquip__9dMeter2_cFv
 /* 802247A8 002216E8  2C 03 00 00 */ cmpwi r3, 0
 /* 802247AC 002216EC  41 82 00 58 */ beq lbl_80224804
 /* 802247B0 002216F0  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802247B4 002216F4  4B FF 69 15 */ bl dMeter2Draw_c_NS_isButtonVisible
+/* 802247B4 002216F4  4B FF 69 15 */ bl isButtonVisible__13dMeter2Draw_cFv
 /* 802247B8 002216F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 802247BC 002216FC  41 82 00 48 */ beq lbl_80224804
 /* 802247C0 00221700  88 1F 01 EB */ lbz r0, 0x1eb(r31)
@@ -107,11 +107,11 @@ lbl_80224804:
 /* 80224810 00221750  48 00 00 80 */ b lbl_80224890
 lbl_80224814:
 /* 80224814 00221754  7F E3 FB 78 */ mr r3, r31
-/* 80224818 00221758  48 00 12 4D */ bl dMeter2_c_NS_isPachinkoEquip
+/* 80224818 00221758  48 00 12 4D */ bl isPachinkoEquip__9dMeter2_cFv
 /* 8022481C 0022175C  2C 03 00 00 */ cmpwi r3, 0
 /* 80224820 00221760  41 82 00 48 */ beq lbl_80224868
 /* 80224824 00221764  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 80224828 00221768  4B FF 68 A1 */ bl dMeter2Draw_c_NS_isButtonVisible
+/* 80224828 00221768  4B FF 68 A1 */ bl isButtonVisible__13dMeter2Draw_cFv
 /* 8022482C 0022176C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80224830 00221770  41 82 00 38 */ beq lbl_80224868
 /* 80224834 00221774  38 00 00 1C */ li r0, 0x1c
@@ -151,7 +151,7 @@ lbl_80224898:
 /* 802248AC 002217EC  57 A4 06 3E */ clrlwi r4, r29, 0x18
 /* 802248B0 002217F0  88 BF 01 DB */ lbz r5, 0x1db(r31)
 /* 802248B4 002217F4  38 C0 00 32 */ li r6, 0x32
-/* 802248B8 002217F8  4B FF 62 CD */ bl dMeter2Draw_c_NS_setItemNum
+/* 802248B8 002217F8  4B FF 62 CD */ bl setItemNum__13dMeter2Draw_cFUcUcUc
 lbl_802248BC:
 /* 802248BC 002217FC  3B BD 00 01 */ addi r29, r29, 1
 /* 802248C0 00221800  2C 1D 00 02 */ cmpwi r29, 2

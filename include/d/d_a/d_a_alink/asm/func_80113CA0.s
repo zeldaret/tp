@@ -38,7 +38,7 @@ lbl_80113CF8:
 lbl_80113D2C:
 /* 80113D2C 00110C6C  7F E3 FB 78 */ mr r3, r31
 /* 80113D30 00110C70  38 80 00 00 */ li r4, 0
-/* 80113D34 00110C74  4B FF E9 C5 */ bl daAlink_c_NS_setIronBallReturn
+/* 80113D34 00110C74  4B FF E9 C5 */ bl setIronBallReturn__9daAlink_cFi
 /* 80113D38 00110C78  38 60 00 01 */ li r3, 1
 /* 80113D3C 00110C7C  48 00 00 08 */ b lbl_80113D44
 lbl_80113D40:

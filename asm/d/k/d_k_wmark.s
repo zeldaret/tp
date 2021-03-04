@@ -19,8 +19,8 @@
 /* 80261450 0025E390  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80261454 0025E394  C0 02 B5 B8 */	lfs f0, lbl_80454FB8-_SDA2_BASE_(r2)
 /* 80261458 0025E398  D0 03 00 08 */	stfs f0, 8(r3)
-/* 8026145C 0025E39C  3C 80 80 01 */	lis r4, cXyz_NS_dtor@ha
-/* 80261460 0025E3A0  38 84 91 84 */	addi r4, r4, cXyz_NS_dtor@l
+/* 8026145C 0025E39C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
+/* 80261460 0025E3A0  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
 /* 80261464 0025E3A4  3C A0 80 43 */	lis r5, lbl_80430C90@ha
 /* 80261468 0025E3A8  38 A5 0C 90 */	addi r5, r5, lbl_80430C90@l
 /* 8026146C 0025E3AC  48 10 07 B9 */	bl func_80361C24
@@ -459,13 +459,13 @@ lbl_80261A78:
 /* 80261A80 0025E9C0  38 80 00 00 */	li r4, 0
 /* 80261A84 0025E9C4  38 BF 00 DC */	addi r5, r31, 0xdc
 /* 80261A88 0025E9C8  38 DF 01 00 */	addi r6, r31, 0x100
-/* 80261A8C 0025E9CC  4B F4 1D 39 */	bl dScnKy_env_light_c_NS_settingTevStruct
+/* 80261A8C 0025E9CC  4B F4 1D 39 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 /* 80261A90 0025E9D0  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 80261A94 0025E9D4  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 80261A98 0025E9D8  80 9F 00 FC */	lwz r4, 0xfc(r31)
 /* 80261A9C 0025E9DC  80 84 00 04 */	lwz r4, 4(r4)
 /* 80261AA0 0025E9E0  38 BF 01 00 */	addi r5, r31, 0x100
-/* 80261AA4 0025E9E4  4B F4 32 FD */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 80261AA4 0025E9E4  4B F4 32 FD */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
 /* 80261AA8 0025E9E8  A8 1F 04 8E */	lha r0, 0x48e(r31)
 /* 80261AAC 0025E9EC  54 04 10 3A */	slwi r4, r0, 2
 /* 80261AB0 0025E9F0  3C 60 80 3A */	lis r3, lbl_8039A488@ha

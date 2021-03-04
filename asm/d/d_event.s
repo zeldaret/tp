@@ -85,10 +85,10 @@ __ct__14dEvt_control_cFv:
 /* 80041598 0003E4D8  3C 80 80 04 */	lis r4, dEvt_order_c@ha
 .global dEvt_order_c
 /* 8004159C 0003E4DC  38 84 15 D4 */	addi r4, r4, dEvt_order_c@l
-.global dEvt_order_c_NS_dtor
-/* 800415A0 0003E4E0  3C A0 80 03 */	lis r5, dEvt_order_c_NS_dtor@ha
-.global dEvt_order_c_NS_dtor
-/* 800415A4 0003E4E4  38 A5 01 54 */	addi r5, r5, dEvt_order_c_NS_dtor@l
+.global __dt__12dEvt_order_cFv
+/* 800415A0 0003E4E0  3C A0 80 03 */	lis r5, __dt__12dEvt_order_cFv@ha
+.global __dt__12dEvt_order_cFv
+/* 800415A4 0003E4E4  38 A5 01 54 */	addi r5, r5, __dt__12dEvt_order_cFv@l
 /* 800415A8 0003E4E8  38 C0 00 18 */	li r6, 0x18
 /* 800415AC 0003E4EC  38 E0 00 08 */	li r7, 8
 /* 800415B0 0003E4F0  48 32 07 B1 */	bl func_80361D60
@@ -1930,7 +1930,7 @@ lbl_80042ED4:
 /* 80042ED4 0003FE14  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 80042ED8 0003FE18  41 82 00 0C */	beq lbl_80042EE4
 /* 80042EDC 0003FE1C  48 13 E7 65 */	bl dCam_getBody
-/* 80042EE0 0003FE20  48 11 E5 E5 */	bl dCamera_c_NS_QuickStart
+/* 80042EE0 0003FE20  48 11 E5 E5 */	bl QuickStart__9dCamera_cFv
 lbl_80042EE4:
 /* 80042EE4 0003FE24  38 00 00 01 */	li r0, 1
 /* 80042EE8 0003FE28  98 1D 00 E5 */	stb r0, 0xe5(r29)
@@ -2421,7 +2421,7 @@ lbl_8004352C:
 /* 8004352C 0004046C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80043530 00040470  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 80043534 00040474  38 7F 4E C4 */	addi r3, r31, 0x4ec4
-/* 80043538 00040478  4B FE 0E 4D */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80043538 00040478  4B FE 0E 4D */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8004353C 0004047C  28 03 00 00 */	cmplwi r3, 0
 /* 80043540 00040480  41 82 00 58 */	beq lbl_80043598
 /* 80043544 00040484  81 83 00 00 */	lwz r12, 0(r3)

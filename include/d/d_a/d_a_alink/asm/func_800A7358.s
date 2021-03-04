@@ -13,7 +13,7 @@
 /* 800A7388 000A42C8  80 03 05 7C */ lwz r0, 0x57c(r3)
 /* 800A738C 000A42CC  54 00 05 22 */ rlwinm r0, r0, 0, 0x14, 0x11
 /* 800A7390 000A42D0  90 03 05 7C */ stw r0, 0x57c(r3)
-/* 800A7394 000A42D4  48 06 E8 8D */ bl daAlink_c_NS_checkEventRun
+/* 800A7394 000A42D4  48 06 E8 8D */ bl checkEventRun__9daAlink_cCFv
 /* 800A7398 000A42D8  2C 03 00 00 */ cmpwi r3, 0
 /* 800A739C 000A42DC  41 82 00 18 */ beq lbl_800A73B4
 /* 800A73A0 000A42E0  80 9E 05 70 */ lwz r4, 0x570(r30)
@@ -54,7 +54,7 @@ lbl_800A7418:
 /* 800A7424 000A4364  7F C3 F3 78 */ mr r3, r30
 /* 800A7428 000A4368  38 80 00 01 */ li r4, 1
 /* 800A742C 000A436C  38 A0 00 01 */ li r5, 1
-/* 800A7430 000A4370  48 01 40 89 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800A7430 000A4370  48 01 40 89 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800A7434 000A4374  2C 03 00 00 */ cmpwi r3, 0
 /* 800A7438 000A4378  40 82 00 1C */ bne lbl_800A7454
 /* 800A743C 000A437C  C0 5E 33 B4 */ lfs f2, 0x33b4(r30)
@@ -83,7 +83,7 @@ lbl_800A748C:
 /* 800A748C 000A43CC  7F C3 F3 78 */ mr r3, r30
 /* 800A7490 000A43D0  38 80 00 01 */ li r4, 1
 /* 800A7494 000A43D4  38 A0 00 01 */ li r5, 1
-/* 800A7498 000A43D8  48 01 40 21 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800A7498 000A43D8  48 01 40 21 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800A749C 000A43DC  2C 03 00 00 */ cmpwi r3, 0
 /* 800A74A0 000A43E0  41 82 00 28 */ beq lbl_800A74C8
 /* 800A74A4 000A43E4  3C 60 80 43 */ lis r3, lbl_80430CF4@ha

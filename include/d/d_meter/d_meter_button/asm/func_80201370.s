@@ -9,7 +9,7 @@
 /* 80201390 001FE2D0  3C 80 80 3C */ lis r4, lbl_803BF258@ha
 /* 80201394 001FE2D4  38 04 F2 58 */ addi r0, r4, lbl_803BF258@l
 /* 80201398 001FE2D8  90 1E 00 00 */ stw r0, 0(r30)
-/* 8020139C 001FE2DC  48 00 17 01 */ bl dMeterButton_c_NS__delete
+/* 8020139C 001FE2DC  48 00 17 01 */ bl _delete__14dMeterButton_cFv
 /* 802013A0 001FE2E0  7F E0 07 35 */ extsh. r0, r31
 /* 802013A4 001FE2E4  40 81 00 0C */ ble lbl_802013B0
 /* 802013A8 001FE2E8  7F C3 F3 78 */ mr r3, r30

@@ -259,7 +259,7 @@ lbl_80259774:
 /* 8025978C 002566CC  7F A3 EB 78 */	mr r3, r29
 /* 80259790 002566D0  4B E2 DB 41 */	bl Draw__4dCcSFv
 /* 80259794 002566D4  38 7E 47 80 */	addi r3, r30, 0x4780
-/* 80259798 002566D8  4B E1 94 3D */	bl dAttention_c_NS_Draw
+/* 80259798 002566D8  4B E1 94 3D */	bl Draw__12dAttention_cFv
 lbl_8025979C:
 /* 8025979C 002566DC  38 60 00 01 */	li r3, 1
 /* 802597A0 002566E0  39 61 00 40 */	addi r11, r1, 0x40
@@ -286,10 +286,10 @@ lbl_8025979C:
 /* 802597F4 00256734  41 82 00 24 */	beq lbl_80259818
 /* 802597F8 00256738  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 802597FC 0025673C  38 63 04 A4 */	addi r3, r3, 0x4a4
-/* 80259800 00256740  48 06 0A 95 */	bl Z2SceneMgr_NS_sceneBgmStart
+/* 80259800 00256740  48 06 0A 95 */	bl sceneBgmStart__10Z2SceneMgrFv
 /* 80259804 00256744  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80259808 00256748  38 63 04 A4 */	addi r3, r3, 0x4a4
-/* 8025980C 0025674C  48 06 09 15 */	bl Z2SceneMgr_NS_load2ndDynamicWave
+/* 8025980C 0025674C  48 06 09 15 */	bl load2ndDynamicWave__10Z2SceneMgrFv
 /* 80259810 00256750  38 00 00 00 */	li r0, 0
 /* 80259814 00256754  98 0D 86 3A */	stb r0, lbl_80450BBA-_SDA_BASE_(r13)
 lbl_80259818:
@@ -312,7 +312,7 @@ lbl_80259830:
 /* 80259854 00256794  38 7F 4E C8 */	addi r3, r31, 0x4ec8
 /* 80259858 00256798  4B DE 93 65 */	bl Step__14dEvt_control_cFv
 /* 8025985C 0025679C  38 7F 56 B8 */	addi r3, r31, 0x56b8
-/* 80259860 002567A0  4B E1 90 C5 */	bl dAttention_c_NS_Run
+/* 80259860 002567A0  4B E1 90 C5 */	bl Run__12dAttention_cFv
 lbl_80259864:
 /* 80259864 002567A4  38 60 00 01 */	li r3, 1
 lbl_80259868:
@@ -346,7 +346,7 @@ lbl_80259868:
 /* 802598D4 00256814  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 802598D8 00256818  38 7F 47 80 */	addi r3, r31, 0x4780
 /* 802598DC 0025681C  38 80 FF FF */	li r4, -1
-/* 802598E0 00256820  4B E1 6E 95 */	bl dAttention_c_NS_dtor
+/* 802598E0 00256820  4B E1 6E 95 */	bl __dt__12dAttention_cFv
 /* 802598E4 00256824  38 7F 4C 9C */	addi r3, r31, 0x4c9c
 /* 802598E8 00256828  4B E1 67 11 */	bl Remove__12dVibration_cFv
 /* 802598EC 0025682C  7F E3 FB 78 */	mr r3, r31
@@ -392,7 +392,7 @@ lbl_80259868:
 /* 8025998C 002568CC  38 00 00 00 */	li r0, 0
 /* 80259990 002568D0  90 1D 5E C8 */	stw r0, 0x5ec8(r29)
 /* 80259994 002568D4  7F E3 FB 78 */	mr r3, r31
-/* 80259998 002568D8  4B DD 30 D9 */	bl dComIfG_play_c_NS_deleteSimpleModel
+/* 80259998 002568D8  4B DD 30 D9 */	bl deleteSimpleModel__14dComIfG_play_cFv
 /* 8025999C 002568DC  4B E4 2E C9 */	bl remove__10dMdl_mng_cFv
 /* 802599A0 002568E0  3C 60 80 3E */	lis r3, lbl_803DD428@ha
 /* 802599A4 002568E4  38 63 D4 28 */	addi r3, r3, lbl_803DD428@l
@@ -485,7 +485,7 @@ resetGame__9dScnPly_cFv:
 /* 80259ADC 00256A1C  2C 00 00 0C */	cmpwi r0, 0xc
 /* 80259AE0 00256A20  40 82 00 4C */	bne lbl_80259B2C
 /* 80259AE4 00256A24  38 60 00 00 */	li r3, 0
-/* 80259AE8 00256A28  4B DC AE 6D */	bl dStage_roomControl_c_NS_resetArchiveBank
+/* 80259AE8 00256A28  4B DC AE 6D */	bl resetArchiveBank__20dStage_roomControl_cFi
 /* 80259AEC 00256A2C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80259AF0 00256A30  40 82 00 0C */	bne lbl_80259AFC
 /* 80259AF4 00256A34  38 60 00 00 */	li r3, 0
@@ -539,7 +539,7 @@ lbl_80259B2C:
 /* 80259BA8 00256AE8  40 82 00 1C */	bne lbl_80259BC4
 lbl_80259BAC:
 /* 80259BAC 00256AEC  38 60 00 00 */	li r3, 0
-/* 80259BB0 00256AF0  4B DC AD A5 */	bl dStage_roomControl_c_NS_resetArchiveBank
+/* 80259BB0 00256AF0  4B DC AD A5 */	bl resetArchiveBank__20dStage_roomControl_cFi
 /* 80259BB4 00256AF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80259BB8 00256AF8  40 82 00 0C */	bne lbl_80259BC4
 /* 80259BBC 00256AFC  38 60 00 00 */	li r3, 0
@@ -649,7 +649,7 @@ lbl_80259D14:
 /* 80259D2C 00256C6C  7F E4 FB 78 */	mr r4, r31
 /* 80259D30 00256C70  88 05 4E 0B */	lbz r0, 0x4e0b(r5)
 /* 80259D34 00256C74  7C 05 07 74 */	extsb r5, r0
-/* 80259D38 00256C78  4B DD 2C 19 */	bl dComIfG_play_c_NS_getLayerNo_common
+/* 80259D38 00256C78  4B DD 2C 19 */	bl getLayerNo_common__14dComIfG_play_cFPCcii
 /* 80259D3C 00256C7C  7C 65 1B 78 */	mr r5, r3
 /* 80259D40 00256C80  7F C3 F3 78 */	mr r3, r30
 /* 80259D44 00256C84  7F E4 FB 78 */	mr r4, r31
@@ -688,7 +688,7 @@ lbl_80259DAC:
 /* 80259DB8 00256CF8  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 80259DBC 00256CFC  38 9F 3E D6 */	addi r4, r31, 0x3ed6
 /* 80259DC0 00256D00  7F E3 FB 78 */	mr r3, r31
-/* 80259DC4 00256D04  4B DD 15 F5 */	bl dComIfG_play_c_NS_setStartStage
+/* 80259DC4 00256D04  4B DD 15 F5 */	bl setStartStage__14dComIfG_play_cFP19dStage_startStage_c
 /* 80259DC8 00256D08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80259DCC 00256D0C  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
 /* 80259DD0 00256D10  88 1E 4E 0B */	lbz r0, 0x4e0b(r30)
@@ -704,7 +704,7 @@ lbl_80259DAC:
 /* 80259DF8 00256D38  7C 04 07 74 */	extsb r4, r0
 /* 80259DFC 00256D3C  88 1E 4E 0B */	lbz r0, 0x4e0b(r30)
 /* 80259E00 00256D40  7C 05 07 74 */	extsb r5, r0
-/* 80259E04 00256D44  4B DD 16 31 */	bl dComIfG_play_c_NS_getLayerNo_common_common
+/* 80259E04 00256D44  4B DD 16 31 */	bl getLayerNo_common_common__14dComIfG_play_cFPCcii
 /* 80259E08 00256D48  2C 03 00 00 */	cmpwi r3, 0
 /* 80259E0C 00256D4C  40 80 00 14 */	bge lbl_80259E20
 /* 80259E10 00256D50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -868,7 +868,7 @@ lbl_8025A034:
 /* 8025A064 00256FA4  7C 05 07 75 */	extsb. r5, r0
 /* 8025A068 00256FA8  40 80 00 1C */	bge lbl_8025A084
 /* 8025A06C 00256FAC  7F A3 EB 78 */	mr r3, r29
-/* 8025A070 00256FB0  4B DD 28 E1 */	bl dComIfG_play_c_NS_getLayerNo_common
+/* 8025A070 00256FB0  4B DD 28 E1 */	bl getLayerNo_common__14dComIfG_play_cFPCcii
 /* 8025A074 00256FB4  2C 03 00 09 */	cmpwi r3, 9
 /* 8025A078 00256FB8  40 82 00 0C */	bne lbl_8025A084
 /* 8025A07C 00256FBC  38 00 00 09 */	li r0, 9
@@ -896,7 +896,7 @@ lbl_8025A0B8:
 /* 8025A0CC 0025700C  2C 03 00 00 */	cmpwi r3, 0
 /* 8025A0D0 00257010  40 82 00 14 */	bne lbl_8025A0E4
 /* 8025A0D4 00257014  38 60 00 00 */	li r3, 0
-/* 8025A0D8 00257018  4B DD 28 A5 */	bl dComIfG_play_c_NS_getLayerNo
+/* 8025A0D8 00257018  4B DD 28 A5 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025A0DC 0025701C  2C 03 00 0E */	cmpwi r3, 0xe
 /* 8025A0E0 00257020  41 82 00 A0 */	beq lbl_8025A180
 lbl_8025A0E4:
@@ -1195,7 +1195,7 @@ lbl_8025A4E4:
 /* 8025A538 00257478  48 00 00 84 */	b lbl_8025A5BC
 lbl_8025A53C:
 /* 8025A53C 0025747C  38 60 00 00 */	li r3, 0
-/* 8025A540 00257480  4B DD 24 3D */	bl dComIfG_play_c_NS_getLayerNo
+/* 8025A540 00257480  4B DD 24 3D */	bl getLayerNo__14dComIfG_play_cFi
 /* 8025A544 00257484  7C 7F 1B 78 */	mr r31, r3
 /* 8025A548 00257488  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025A54C 0025748C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -1248,7 +1248,7 @@ lbl_8025A5BC:
 lbl_8025A600:
 /* 8025A600 00257540  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 8025A604 00257544  38 63 04 A4 */	addi r3, r3, 0x4a4
-/* 8025A608 00257548  48 05 FA 95 */	bl Z2SceneMgr_NS_check1stDynamicWave
+/* 8025A608 00257548  48 05 FA 95 */	bl check1stDynamicWave__10Z2SceneMgrFv
 /* 8025A60C 0025754C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025A610 00257550  41 82 00 0C */	beq lbl_8025A61C
 lbl_8025A614:
@@ -1439,7 +1439,7 @@ lbl_8025A8D0:
 /* 8025A8D4 00257814  4B E4 13 45 */	bl create__7dTres_cFv
 /* 8025A8D8 00257818  4B DC C4 61 */	bl dStage_Create
 /* 8025A8DC 0025781C  7F C3 F3 78 */	mr r3, r30
-/* 8025A8E0 00257820  4B DD 21 3D */	bl dComIfG_play_c_NS_createSimpleModel
+/* 8025A8E0 00257820  4B DD 21 3D */	bl createSimpleModel__14dComIfG_play_cFv
 /* 8025A8E4 00257824  4B E4 1E C9 */	bl create__10dMdl_mng_cFv
 /* 8025A8E8 00257828  80 8D 8C 40 */	lwz r4, lbl_804511C0-_SDA_BASE_(r13)
 /* 8025A8EC 0025782C  3C 60 80 00 */	lis r3, 0x800000F8@ha

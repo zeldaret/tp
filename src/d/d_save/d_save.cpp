@@ -6,7 +6,7 @@
 #include "os/OS.h"
 
 extern "C" {
-int dStage_roomControl_c_NS_getZoneNo(int);
+int getZoneNo__20dStage_roomControl_cFi(int);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u8 dComIfGs_getBottleMax(void);
 u8 dComIfGs_getMixItemIndex(int);
@@ -19,9 +19,9 @@ void dComIfGp_setSelectItem(int);
 void dComIfGs_setKeyNum(int, u8);
 void dComIfGs_setMixItemIndex(int, u8);
 void dComIfGs_setSelectItemIndex(int, u8);
-void dMeter2Info_c_NS_getString(void);
-void dMeter2Info_c_NS_setHotSpringTimer(void);
-void dMeter2Info_c_NS_setSaveStageName(void);
+void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
+void setHotSpringTimer__13dMeter2Info_cFUc(void);
+void setSaveStageName__13dMeter2Info_cFPCc(void);
 void dSv_item_rename__FUc(void);
 void func_80361D60(void);
 void func_80362324(void);
@@ -1390,7 +1390,7 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xc0) {
         dungeon_bit.onSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneId = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if (i_no < 0xE0) {
             zones[zoneId].getZoneBit().onSwitch(i_no - 0xC0);
         } else {
@@ -1409,7 +1409,7 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xc0) {
         dungeon_bit.offSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneId = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if (i_no < 0xE0) {
             zones[zoneId].getZoneBit().offSwitch(i_no - 0xC0);
         } else {
@@ -1429,7 +1429,7 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     } else if (i_no < 0xc0) {
         value = dungeon_bit.isSwitch(i_no - 0x80);
     } else {
-        int zoneId = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneId = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if ((zoneId < 0) || (zoneId >= 0x20)) {
             value = FALSE;
         } else {
@@ -1454,7 +1454,7 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     } else if (i_no < 0xC0) {
         value = dungeon_bit.revSwitch(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if (i_no < 0xE0) {
             value = zones[zoneNo].getZoneBit().revSwitch(i_no - 0xC0);
         } else {
@@ -1475,7 +1475,7 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     } else if (i_no < 0xA0) {
         memory.getTempFlags().onItem(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if (i_no < 0xC0) {
             zones[zoneNo].getZoneBit().onItem(i_no - 0xA0);
         } else {
@@ -1495,7 +1495,7 @@ BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     } else if (i_no < 0xA0) {
         value = memory.getTempFlagsConst().isItem(i_no - 0x80);
     } else {
-        int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+        int zoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
         if (i_no < 0xC0) {
             value = zones[zoneNo].getZoneBitConst().isItem(i_no - 0xA0);
         } else {
@@ -1511,7 +1511,7 @@ void dSv_info_c::onActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+    int zoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
     zones[zoneNo].getZoneActor().on(i_id);
 }
 
@@ -1520,7 +1520,7 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+    int zoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
     zones[zoneNo].getZoneActor().off(i_id);
 }
 
@@ -1529,7 +1529,7 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
         return FALSE;
     }
 
-    int ActorZoneNo = dStage_roomControl_c_NS_getZoneNo(i_roomNo);
+    int ActorZoneNo = getZoneNo__20dStage_roomControl_cFi(i_roomNo);
     return zones[ActorZoneNo].getZoneActorConst().is(i_id);
 }
 

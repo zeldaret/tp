@@ -6,7 +6,7 @@
 /* 800EAC60 000E7BA0  7C 7F 1B 78 */ mr r31, r3
 /* 800EAC64 000E7BA4  83 C3 28 58 */ lwz r30, 0x2858(r3)
 /* 800EAC68 000E7BA8  38 80 00 CF */ li r4, 0xcf
-/* 800EAC6C 000E7BAC  4B FD 73 01 */ bl daAlink_c_NS_commonProcInit
+/* 800EAC6C 000E7BAC  4B FD 73 01 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800EAC70 000E7BB0  38 00 00 0C */ li r0, 0xc
 /* 800EAC74 000E7BB4  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 /* 800EAC78 000E7BB8  C0 02 93 B8 */ lfs f0, lbl_80452DB8-_SDA2_BASE_(r2)
@@ -25,7 +25,7 @@ lbl_800EAC94:
 lbl_800EACA8:
 /* 800EACA8 000E7BE8  7C 9E 23 78 */ mr r30, r4
 /* 800EACAC 000E7BEC  7F E3 FB 78 */ mr r3, r31
-/* 800EACB0 000E7BF0  4B FC 22 D1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800EACB0 000E7BF0  4B FC 22 D1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800EACB4 000E7BF4  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800EACB8 000E7BF8  D0 1F 33 9C */ stfs f0, 0x339c(r31)
 /* 800EACBC 000E7BFC  38 00 00 07 */ li r0, 7
@@ -49,7 +49,7 @@ lbl_800EACEC:
 lbl_800EAD00:
 /* 800EAD00 000E7C40  7C 9E 23 78 */ mr r30, r4
 /* 800EAD04 000E7C44  7F E3 FB 78 */ mr r3, r31
-/* 800EAD08 000E7C48  4B FC 22 79 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800EAD08 000E7C48  4B FC 22 79 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800EAD0C 000E7C4C  C0 02 92 BC */ lfs f0, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 800EAD10 000E7C50  D0 1F 33 9C */ stfs f0, 0x339c(r31)
 /* 800EAD14 000E7C54  38 00 00 08 */ li r0, 8
@@ -73,7 +73,7 @@ lbl_800EAD34:
 /* 800EAD58 000E7C98  B0 1F 30 0A */ sth r0, 0x300a(r31)
 /* 800EAD5C 000E7C9C  7F E3 FB 78 */ mr r3, r31
 /* 800EAD60 000E7CA0  38 80 00 05 */ li r4, 5
-/* 800EAD64 000E7CA4  48 03 64 5D */ bl daAlink_c_NS_setFootEffectProcType
+/* 800EAD64 000E7CA4  48 03 64 5D */ bl setFootEffectProcType__9daAlink_cFi
 /* 800EAD68 000E7CA8  38 60 00 01 */ li r3, 1
 /* 800EAD6C 000E7CAC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800EAD70 000E7CB0  83 C1 00 08 */ lwz r30, 8(r1)

@@ -6,12 +6,12 @@
 /* 800EDEA0 000EADE0  7C 7E 1B 78 */ mr r30, r3
 /* 800EDEA4 000EADE4  3B E0 00 00 */ li r31, 0
 /* 800EDEA8 000EADE8  38 80 00 51 */ li r4, 0x51
-/* 800EDEAC 000EADEC  4B FB E6 AD */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800EDEAC 000EADEC  4B FB E6 AD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EDEB0 000EADF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800EDEB4 000EADF4  40 82 00 18 */ bne lbl_800EDECC
 /* 800EDEB8 000EADF8  7F C3 F3 78 */ mr r3, r30
 /* 800EDEBC 000EADFC  38 80 00 52 */ li r4, 0x52
-/* 800EDEC0 000EAE00  4B FB E6 99 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800EDEC0 000EAE00  4B FB E6 99 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EDEC4 000EAE04  2C 03 00 00 */ cmpwi r3, 0
 /* 800EDEC8 000EAE08  41 82 00 08 */ beq lbl_800EDED0
 lbl_800EDECC:

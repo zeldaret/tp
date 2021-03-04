@@ -9,11 +9,11 @@
 /* 800FCFA4 000F9EE4  80 03 31 A0 */ lwz r0, 0x31a0(r3)
 /* 800FCFA8 000F9EE8  54 00 03 5B */ rlwinm. r0, r0, 0, 0xd, 0xd
 /* 800FCFAC 000F9EEC  41 82 00 84 */ beq lbl_800FD030
-/* 800FCFB0 000F9EF0  4B FF FF A9 */ bl daAlink_c_NS_getLadderUnitCount
+/* 800FCFB0 000F9EF0  4B FF FF A9 */ bl getLadderUnitCount__9daAlink_cCFv
 /* 800FCFB4 000F9EF4  7C 64 1B 78 */ mr r4, r3
 /* 800FCFB8 000F9EF8  7F E3 FB 78 */ mr r3, r31
 /* 800FCFBC 000F9EFC  38 84 FF FE */ addi r4, r4, -2
-/* 800FCFC0 000F9F00  48 00 02 31 */ bl daAlink_c_NS_setLadderPos
+/* 800FCFC0 000F9F00  48 00 02 31 */ bl setLadderPos__9daAlink_cFi
 /* 800FCFC4 000F9F04  3C 60 80 39 */ lis r3, lbl_8038ED2C@ha
 /* 800FCFC8 000F9F08  38 63 ED 2C */ addi r3, r3, lbl_8038ED2C@l
 /* 800FCFCC 000F9F0C  C0 62 95 84 */ lfs f3, lbl_80452F84-_SDA2_BASE_(r2)
@@ -33,18 +33,18 @@ lbl_800FCFE4:
 /* 800FCFFC 000F9F3C  38 80 00 01 */ li r4, 1
 /* 800FD000 000F9F40  38 A0 00 00 */ li r5, 0
 /* 800FD004 000F9F44  38 DF 04 D0 */ addi r6, r31, 0x4d0
-/* 800FD008 000F9F48  48 00 0D 89 */ bl daAlink_c_NS_procLadderMoveInit
+/* 800FD008 000F9F48  48 00 0D 89 */ bl procLadderMoveInit__9daAlink_cFiiP4cXyz
 /* 800FD00C 000F9F4C  C0 0D 81 18 */ lfs f0, lbl_80450698-_SDA_BASE_(r13)
 /* 800FD010 000F9F50  D0 1F 33 B0 */ stfs f0, 0x33b0(r31)
 /* 800FD014 000F9F54  80 7F 20 60 */ lwz r3, 0x2060(r31)
 /* 800FD018 000F9F58  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
 /* 800FD01C 000F9F5C  38 80 00 00 */ li r4, 0
 /* 800FD020 000F9F60  38 A0 00 23 */ li r5, 0x23
-/* 800FD024 000F9F64  4B F1 28 25 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800FD024 000F9F64  4B F1 28 25 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 /* 800FD028 000F9F68  38 60 00 01 */ li r3, 1
 /* 800FD02C 000F9F6C  48 00 00 08 */ b lbl_800FD034
 lbl_800FD030:
-/* 800FD030 000F9F70  48 00 06 19 */ bl daAlink_c_NS_procLadderUpStartInit
+/* 800FD030 000F9F70  48 00 06 19 */ bl procLadderUpStartInit__9daAlink_cFv
 lbl_800FD034:
 /* 800FD034 000F9F74  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800FD038 000F9F78  80 01 00 14 */ lwz r0, 0x14(r1)

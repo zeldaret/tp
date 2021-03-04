@@ -9,7 +9,7 @@
 /* 80181240 0017E180  FF C0 10 90 */ fmr f30, f2
 /* 80181244 0017E184  FF E0 18 90 */ fmr f31, f3
 /* 80181248 0017E188  38 80 00 00 */ li r4, 0
-/* 8018124C 0017E18C  48 00 00 2D */ bl dCamera_c_NS_SetBlureActor
+/* 8018124C 0017E18C  48 00 00 2D */ bl SetBlureActor__9dCamera_cFP10fopAc_ac_c
 /* 80181250 0017E190  D3 BF 07 18 */ stfs f29, 0x718(r31)
 /* 80181254 0017E194  D3 DF 07 1C */ stfs f30, 0x71c(r31)
 /* 80181258 0017E198  D3 FF 07 20 */ stfs f31, 0x720(r31)

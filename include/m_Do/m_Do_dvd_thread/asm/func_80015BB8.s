@@ -10,7 +10,7 @@
 /* 80015BDC 00012B1C  38 04 34 D8 */ addi r0, r4, lbl_803A34D8@l
 /* 80015BE0 00012B20  90 1E 00 10 */ stw r0, 0x10(r30)
 /* 80015BE4 00012B24  38 80 00 00 */ li r4, 0
-/* 80015BE8 00012B28  4B FF FD 15 */ bl mDoDvdThd_command_c_NS_dtor
+/* 80015BE8 00012B28  4B FF FD 15 */ bl __dt__19mDoDvdThd_command_cFv
 /* 80015BEC 00012B2C  7F E0 07 35 */ extsh. r0, r31
 /* 80015BF0 00012B30  40 81 00 0C */ ble lbl_80015BFC
 /* 80015BF4 00012B34  7F C3 F3 78 */ mr r3, r30

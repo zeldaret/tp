@@ -9,7 +9,7 @@
 /* 802BCDC8 002B9D08  D0 05 00 18 */ stfs f0, 0x18(r5)
 /* 802BCDCC 002B9D0C  7C A3 22 14 */ add r5, r3, r4
 /* 802BCDD0 002B9D10  98 05 00 26 */ stb r0, 0x26(r5)
-/* 802BCDD4 002B9D14  48 00 00 15 */ bl Z2SpotMic_NS_calcVolumeFactor
+/* 802BCDD4 002B9D14  48 00 00 15 */ bl calcVolumeFactor__9Z2SpotMicFi
 /* 802BCDD8 002B9D18  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802BCDDC 002B9D1C  7C 08 03 A6 */ mtlr r0
 /* 802BCDE0 002B9D20  38 21 00 10 */ addi r1, r1, 0x10

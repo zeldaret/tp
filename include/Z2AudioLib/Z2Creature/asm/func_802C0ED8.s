@@ -28,7 +28,7 @@ lbl_802C0F34:
 /* 802C0F3C 002BDE7C  7F C3 F3 78 */ mr r3, r30
 /* 802C0F40 002BDE80  38 81 00 08 */ addi r4, r1, 8
 /* 802C0F44 002BDE84  38 A0 FF FF */ li r5, -1
-/* 802C0F48 002BDE88  4B FF FB 05 */ bl Z2Creature_NS_startCreatureVoice
+/* 802C0F48 002BDE88  4B FF FB 05 */ bl startCreatureVoice__10Z2CreatureF10JAISoundIDSc
 /* 802C0F4C 002BDE8C  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 802C0F50 002BDE90  83 C1 00 18 */ lwz r30, 0x18(r1)
 /* 802C0F54 002BDE94  80 01 00 24 */ lwz r0, 0x24(r1)

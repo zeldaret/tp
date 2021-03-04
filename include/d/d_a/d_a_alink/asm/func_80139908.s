@@ -3,7 +3,7 @@
 /* 80139910 00136850  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80139914 00136854  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80139918 00136858  7C 7F 1B 78 */ mr r31, r3
-/* 8013991C 0013685C  4B FF 01 65 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013991C 0013685C  4B FF 01 65 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 80139920 00136860  2C 03 00 00 */ cmpwi r3, 0
 /* 80139924 00136864  41 82 00 0C */ beq lbl_80139930
 /* 80139928 00136868  38 60 00 01 */ li r3, 1
@@ -15,7 +15,7 @@ lbl_80139930:
 /* 8013993C 0013687C  2C 03 00 00 */ cmpwi r3, 0
 /* 80139940 00136880  40 82 00 10 */ bne lbl_80139950
 /* 80139944 00136884  7F E3 FB 78 */ mr r3, r31
-/* 80139948 00136888  4B FF FA 5D */ bl daAlink_c_NS_checkWolfAttackAction
+/* 80139948 00136888  4B FF FA 5D */ bl checkWolfAttackAction__9daAlink_cFv
 /* 8013994C 0013688C  48 00 00 60 */ b lbl_801399AC
 lbl_80139950:
 /* 80139950 00136890  80 7F 20 60 */ lwz r3, 0x2060(r31)
@@ -24,7 +24,7 @@ lbl_80139950:
 /* 8013995C 0013689C  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80139960 001368A0  40 80 00 10 */ bge lbl_80139970
 /* 80139964 001368A4  7F E3 FB 78 */ mr r3, r31
-/* 80139968 001368A8  48 00 00 5D */ bl daAlink_c_NS_procWolfRollAttackMoveInit
+/* 80139968 001368A8  48 00 00 5D */ bl procWolfRollAttackMoveInit__9daAlink_cFv
 /* 8013996C 001368AC  48 00 00 40 */ b lbl_801399AC
 lbl_80139970:
 /* 80139970 001368B0  38 7F 33 98 */ addi r3, r31, 0x3398
@@ -35,13 +35,13 @@ lbl_80139970:
 /* 80139984 001368C4  48 13 6D BD */ bl cLib_chaseF__FPfff
 /* 80139988 001368C8  7F E3 FB 78 */ mr r3, r31
 /* 8013998C 001368CC  38 80 00 00 */ li r4, 0
-/* 80139990 001368D0  4B F7 9D A5 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 80139990 001368D0  4B F7 9D A5 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 80139994 001368D4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80139998 001368D8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 8013999C 001368DC  7F E3 FB 78 */ mr r3, r31
 /* 801399A0 001368E0  3C 80 00 01 */ lis r4, 0x00010037@ha
 /* 801399A4 001368E4  38 84 00 37 */ addi r4, r4, 0x00010037@l
-/* 801399A8 001368E8  4B F8 57 11 */ bl daAlink_c_NS_voiceStartLevel
+/* 801399A8 001368E8  4B F8 57 11 */ bl voiceStartLevel__9daAlink_cFUl
 lbl_801399AC:
 /* 801399AC 001368EC  38 60 00 01 */ li r3, 1
 lbl_801399B0:

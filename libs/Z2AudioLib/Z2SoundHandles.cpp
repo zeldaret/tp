@@ -78,14 +78,14 @@ JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
 extern "C" {
 // getFreeHandle__14Z2SoundHandlesFv
 // Z2SoundHandles::getFreeHandle(void)
-asm void Z2SoundHandles_NS_getFreeHandle(void) {
+asm void getFreeHandle__14Z2SoundHandlesFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB2D8.s"
 }
 
 // getLowPrioSound__14Z2SoundHandlesF10JAISoundID
 // Z2SoundHandles::getLowPrioSound(JAISoundID)
-asm void Z2SoundHandles_NS_getLowPrioSound(void) {
+asm void getLowPrioSound__14Z2SoundHandlesF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundHandles/asm/func_802AB3D0.s"
 }

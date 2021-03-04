@@ -36,7 +36,7 @@
 /* 8013577C 001326BC  D0 7E 04 D4 */ stfs f3, 0x4d4(r30)
 /* 80135780 001326C0  D0 9E 04 D8 */ stfs f4, 0x4d8(r30)
 /* 80135784 001326C4  A8 9E 30 6E */ lha r4, 0x306e(r30)
-/* 80135788 001326C8  4B FC 50 D5 */ bl daAlink_c_NS_checkHangStartSideWall
+/* 80135788 001326C8  4B FC 50 D5 */ bl checkHangStartSideWall__9daAlink_cFs
 lbl_8013578C:
 /* 8013578C 001326CC  C0 5E 34 F4 */ lfs f2, 0x34f4(r30)
 /* 80135790 001326D0  C0 1E 34 EC */ lfs f0, 0x34ec(r30)
@@ -215,7 +215,7 @@ lbl_801359FC:
 lbl_80135A04:
 /* 80135A04 00132944  7F C3 F3 78 */ mr r3, r30
 /* 80135A08 00132948  38 80 01 05 */ li r4, 0x105
-/* 80135A0C 0013294C  4B F8 C5 61 */ bl daAlink_c_NS_commonProcInit
+/* 80135A0C 0013294C  4B F8 C5 61 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80135A10 00132950  2C 1F 00 08 */ cmpwi r31, 8
 /* 80135A14 00132954  40 82 00 30 */ bne lbl_80135A44
 /* 80135A18 00132958  2C 1D 00 06 */ cmpwi r29, 6
@@ -225,7 +225,7 @@ lbl_80135A04:
 /* 80135A28 00132968  3C A0 80 39 */ lis r5, lbl_8038F1A0@ha
 /* 80135A2C 0013296C  38 A5 F1 A0 */ addi r5, r5, lbl_8038F1A0@l
 /* 80135A30 00132970  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80135A34 00132974  4B FF 3E 15 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80135A34 00132974  4B FF 3E 15 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 80135A38 00132978  38 00 00 01 */ li r0, 1
 /* 80135A3C 0013297C  B0 1E 30 0E */ sth r0, 0x300e(r30)
 /* 80135A40 00132980  48 00 00 24 */ b lbl_80135A64
@@ -235,7 +235,7 @@ lbl_80135A44:
 /* 80135A4C 0013298C  3C A0 80 39 */ lis r5, lbl_8038F1A0@ha
 /* 80135A50 00132990  38 A5 F1 A0 */ addi r5, r5, lbl_8038F1A0@l
 /* 80135A54 00132994  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 80135A58 00132998  4B FF 3D F1 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80135A58 00132998  4B FF 3D F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 80135A5C 0013299C  38 00 00 00 */ li r0, 0
 /* 80135A60 001329A0  B0 1E 30 0E */ sth r0, 0x300e(r30)
 lbl_80135A64:
@@ -260,7 +260,7 @@ lbl_80135A64:
 /* 80135AAC 001329EC  60 00 02 00 */ ori r0, r0, 0x200
 /* 80135AB0 001329F0  90 03 5F 18 */ stw r0, 0x5f18(r3)
 /* 80135AB4 001329F4  7F C3 F3 78 */ mr r3, r30
-/* 80135AB8 001329F8  4B FF F9 A1 */ bl daAlink_c_NS_setWolfHangGroundY
+/* 80135AB8 001329F8  4B FF F9 A1 */ bl setWolfHangGroundY__9daAlink_cFv
 /* 80135ABC 001329FC  80 7E 06 50 */ lwz r3, 0x650(r30)
 /* 80135AC0 00132A00  80 63 00 84 */ lwz r3, 0x84(r3)
 /* 80135AC4 00132A04  80 63 00 0C */ lwz r3, 0xc(r3)

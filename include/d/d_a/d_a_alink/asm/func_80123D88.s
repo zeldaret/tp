@@ -23,22 +23,22 @@
 /* 80123DE0 00120D20  38 A0 0A 9F */ li r5, 0xa9f
 /* 80123DE4 00120D24  38 C1 00 08 */ addi r6, r1, 8
 /* 80123DE8 00120D28  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80123DEC 00120D2C  4B FF C7 95 */ bl daAlink_c_NS_setEmitter
+/* 80123DEC 00120D2C  4B FF C7 95 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123DF0 00120D30  7F C3 F3 78 */ mr r3, r30
 /* 80123DF4 00120D34  38 9E 32 8C */ addi r4, r30, 0x328c
 /* 80123DF8 00120D38  38 A0 0A A0 */ li r5, 0xaa0
 /* 80123DFC 00120D3C  38 C1 00 08 */ addi r6, r1, 8
 /* 80123E00 00120D40  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80123E04 00120D44  4B FF C7 7D */ bl daAlink_c_NS_setEmitter
+/* 80123E04 00120D44  4B FF C7 7D */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123E08 00120D48  3B E0 00 FF */ li r31, 0xff
 /* 80123E0C 00120D4C  48 00 00 5C */ b lbl_80123E68
 lbl_80123E10:
 /* 80123E10 00120D50  7F C3 F3 78 */ mr r3, r30
 /* 80123E14 00120D54  80 9E 32 88 */ lwz r4, 0x3288(r30)
-/* 80123E18 00120D58  4B FF C9 61 */ bl daAlink_c_NS_stopDrawParticle
+/* 80123E18 00120D58  4B FF C9 61 */ bl stopDrawParticle__9daAlink_cFUl
 /* 80123E1C 00120D5C  7F C3 F3 78 */ mr r3, r30
 /* 80123E20 00120D60  80 9E 32 8C */ lwz r4, 0x328c(r30)
-/* 80123E24 00120D64  4B FF C9 55 */ bl daAlink_c_NS_stopDrawParticle
+/* 80123E24 00120D64  4B FF C9 55 */ bl stopDrawParticle__9daAlink_cFUl
 /* 80123E28 00120D68  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80123E2C 00120D6C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80123E30 00120D70  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
@@ -74,7 +74,7 @@ lbl_80123E68:
 /* 80123E9C 00120DDC  38 A0 0B 6F */ li r5, 0xb6f
 /* 80123EA0 00120DE0  38 C1 00 08 */ addi r6, r1, 8
 /* 80123EA4 00120DE4  38 FE 04 E4 */ addi r7, r30, 0x4e4
-/* 80123EA8 00120DE8  4B FF C6 D9 */ bl daAlink_c_NS_setEmitter
+/* 80123EA8 00120DE8  4B FF C6 D9 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123EAC 00120DEC  28 03 00 00 */ cmplwi r3, 0
 /* 80123EB0 00120DF0  41 82 00 08 */ beq lbl_80123EB8
 /* 80123EB4 00120DF4  9B E3 00 BB */ stb r31, 0xbb(r3)

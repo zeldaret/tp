@@ -14,7 +14,7 @@
 /* 800DAC5C 000D7B9C  A8 FF 30 82 */ lha r7, 0x3082(r31)
 /* 800DAC60 000D7BA0  39 00 00 00 */ li r8, 0
 /* 800DAC64 000D7BA4  39 20 00 00 */ li r9, 0
-/* 800DAC68 000D7BA8  4B FF EA 75 */ bl daAlink_c_NS_procCoLargeDamageInit
+/* 800DAC68 000D7BA8  4B FF EA 75 */ bl procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi
 lbl_800DAC6C:
 /* 800DAC6C 000D7BAC  38 60 00 01 */ li r3, 1
 /* 800DAC70 000D7BB0  83 E1 00 0C */ lwz r31, 0xc(r1)

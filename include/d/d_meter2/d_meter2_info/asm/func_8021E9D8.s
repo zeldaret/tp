@@ -4,10 +4,10 @@
 /* 8021E9E4 0021B924  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8021E9E8 0021B928  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8021E9EC 0021B92C  4B FF D3 F1 */ bl dMeter2Info_c
-/*.global dMeter2Info_c_NS_dtor*/
-/* 8021E9F0 0021B930  3C 80 80 22 */ lis r4, dMeter2Info_c_NS_dtor@ha
-/*.global dMeter2Info_c_NS_dtor*/
-/* 8021E9F4 0021B934  38 84 BE 20 */ addi r4, r4, dMeter2Info_c_NS_dtor@l
+/*.global __dt__13dMeter2Info_cFv*/
+/* 8021E9F0 0021B930  3C 80 80 22 */ lis r4, __dt__13dMeter2Info_cFv@ha
+/*.global __dt__13dMeter2Info_cFv*/
+/* 8021E9F4 0021B934  38 84 BE 20 */ addi r4, r4, __dt__13dMeter2Info_cFv@l
 /* 8021E9F8 0021B938  3C A0 80 43 */ lis r5, lbl_80430178@ha
 /* 8021E9FC 0021B93C  38 A5 01 78 */ addi r5, r5, lbl_80430178@l
 /* 8021EA00 0021B940  48 14 32 25 */ bl func_80361C24

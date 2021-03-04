@@ -18,7 +18,7 @@
 /* 80102B60 000FFAA0  41 82 00 34 */ beq lbl_80102B94
 /* 80102B64 000FFAA4  38 7E 1A 60 */ addi r3, r30, 0x1a60
 /* 80102B68 000FFAA8  38 80 00 00 */ li r4, 0
-/* 80102B6C 000FFAAC  4B F9 F6 75 */ bl daAlink_c_NS_getMoveBGActorName
+/* 80102B6C 000FFAAC  4B F9 F6 75 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 80102B70 000FFAB0  7C 60 07 34 */ extsh r0, r3
 /* 80102B74 000FFAB4  2C 00 00 77 */ cmpwi r0, 0x77
 /* 80102B78 000FFAB8  40 82 00 0C */ bne lbl_80102B84
@@ -77,10 +77,10 @@ lbl_80102C24:
 /* 80102C30 000FFB70  48 00 00 1C */ b lbl_80102C4C
 lbl_80102C34:
 /* 80102C34 000FFB74  7F C3 F3 78 */ mr r3, r30
-/* 80102C38 000FFB78  4B FF ED E1 */ bl daAlink_c_NS_getSwimFrontMaxSpeed
+/* 80102C38 000FFB78  4B FF ED E1 */ bl getSwimFrontMaxSpeed__9daAlink_cCFv
 /* 80102C3C 000FFB7C  FF A0 08 90 */ fmr f29, f1
 /* 80102C40 000FFB80  7F C3 F3 78 */ mr r3, r30
-/* 80102C44 000FFB84  4B FF EE 65 */ bl daAlink_c_NS_getSwimMaxFallSpeed
+/* 80102C44 000FFB84  4B FF EE 65 */ bl getSwimMaxFallSpeed__9daAlink_cCFv
 /* 80102C48 000FFB88  FF C0 08 90 */ fmr f30, f1
 lbl_80102C4C:
 /* 80102C4C 000FFB8C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -138,15 +138,15 @@ lbl_80102CF4:
 /* 80102D08 000FFC48  D0 3E 33 98 */ stfs f1, 0x3398(r30)
 lbl_80102D0C:
 /* 80102D0C 000FFC4C  7F C3 F3 78 */ mr r3, r30
-/* 80102D10 000FFC50  4B FF EC 25 */ bl daAlink_c_NS_swimDeleteItem
+/* 80102D10 000FFC50  4B FF EC 25 */ bl swimDeleteItem__9daAlink_cFv
 /* 80102D14 000FFC54  7F C3 F3 78 */ mr r3, r30
-/* 80102D18 000FFC58  4B FB 66 29 */ bl daAlink_c_NS_checkEquipAnime
+/* 80102D18 000FFC58  4B FB 66 29 */ bl checkEquipAnime__9daAlink_cCFv
 /* 80102D1C 000FFC5C  2C 03 00 00 */ cmpwi r3, 0
 /* 80102D20 000FFC60  41 82 00 14 */ beq lbl_80102D34
 /* 80102D24 000FFC64  7F C3 F3 78 */ mr r3, r30
 /* 80102D28 000FFC68  38 80 00 02 */ li r4, 2
 /* 80102D2C 000FFC6C  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80102D30 000FFC70  4B FA A9 F5 */ bl daAlink_c_NS_resetUpperAnime
+/* 80102D30 000FFC70  4B FA A9 F5 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_80102D34:
 /* 80102D34 000FFC74  38 60 00 00 */ li r3, 0
 /* 80102D38 000FFC78  B0 7E 30 80 */ sth r3, 0x3080(r30)
@@ -174,7 +174,7 @@ lbl_80102D84:
 /* 80102D88 000FFCC8  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80102D8C 000FFCCC  41 82 01 44 */ beq lbl_80102ED0
 /* 80102D90 000FFCD0  7F C3 F3 78 */ mr r3, r30
-/* 80102D94 000FFCD4  4B FF EF 25 */ bl daAlink_c_NS_checkPossibleWaterInMode
+/* 80102D94 000FFCD4  4B FF EF 25 */ bl checkPossibleWaterInMode__9daAlink_cCFv
 /* 80102D98 000FFCD8  2C 03 00 00 */ cmpwi r3, 0
 /* 80102D9C 000FFCDC  40 82 01 34 */ bne lbl_80102ED0
 /* 80102DA0 000FFCE0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -229,11 +229,11 @@ lbl_80102E48:
 lbl_80102E58:
 /* 80102E58 000FFD98  7F C3 F3 78 */ mr r3, r30
 /* 80102E5C 000FFD9C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80102E60 000FFDA0  48 03 67 55 */ bl daAlink_c_NS_setWolfEnemyThrowUpperAnime
+/* 80102E60 000FFDA0  48 03 67 55 */ bl setWolfEnemyThrowUpperAnime__9daAlink_cFQ29daAlink_c12daAlink_WANMf
 lbl_80102E64:
 /* 80102E64 000FFDA4  7F C3 F3 78 */ mr r3, r30
 /* 80102E68 000FFDA8  38 80 00 01 */ li r4, 1
-/* 80102E6C 000FFDAC  48 03 56 C1 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 80102E6C 000FFDAC  48 03 56 C1 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 80102E70 000FFDB0  48 00 01 B0 */ b lbl_80103020
 lbl_80102E74:
 /* 80102E74 000FFDB4  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
@@ -247,19 +247,19 @@ lbl_80102E74:
 /* 80102E94 000FFDD4  7D 89 03 A6 */ mtctr r12
 /* 80102E98 000FFDD8  4E 80 04 21 */ bctrl
 /* 80102E9C 000FFDDC  7F C3 F3 78 */ mr r3, r30
-/* 80102EA0 000FFDE0  4B FB CF 11 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80102EA0 000FFDE0  4B FB CF 11 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80102EA4 000FFDE4  2C 03 00 00 */ cmpwi r3, 0
 /* 80102EA8 000FFDE8  41 82 00 0C */ beq lbl_80102EB4
 /* 80102EAC 000FFDEC  38 00 00 1E */ li r0, 0x1e
 /* 80102EB0 000FFDF0  B0 1E 30 00 */ sth r0, 0x3000(r30)
 lbl_80102EB4:
 /* 80102EB4 000FFDF4  7F C3 F3 78 */ mr r3, r30
-/* 80102EB8 000FFDF8  48 00 17 B9 */ bl daAlink_c_NS_procSwimMoveInit
+/* 80102EB8 000FFDF8  48 00 17 B9 */ bl procSwimMoveInit__9daAlink_cFv
 /* 80102EBC 000FFDFC  48 00 01 64 */ b lbl_80103020
 lbl_80102EC0:
 /* 80102EC0 000FFE00  7F C3 F3 78 */ mr r3, r30
 /* 80102EC4 000FFE04  38 80 00 01 */ li r4, 1
-/* 80102EC8 000FFE08  48 00 14 31 */ bl daAlink_c_NS_procSwimWaitInit
+/* 80102EC8 000FFE08  48 00 14 31 */ bl procSwimWaitInit__9daAlink_cFi
 /* 80102ECC 000FFE0C  48 00 01 54 */ b lbl_80103020
 lbl_80102ED0:
 /* 80102ED0 000FFE10  7F C3 F3 78 */ mr r3, r30
@@ -270,7 +270,7 @@ lbl_80102ED0:
 /* 80102EE4 000FFE24  2C 03 00 00 */ cmpwi r3, 0
 /* 80102EE8 000FFE28  40 82 00 14 */ bne lbl_80102EFC
 /* 80102EEC 000FFE2C  7F C3 F3 78 */ mr r3, r30
-/* 80102EF0 000FFE30  4B FF ED C9 */ bl daAlink_c_NS_checkPossibleWaterInMode
+/* 80102EF0 000FFE30  4B FF ED C9 */ bl checkPossibleWaterInMode__9daAlink_cCFv
 /* 80102EF4 000FFE34  2C 03 00 00 */ cmpwi r3, 0
 /* 80102EF8 000FFE38  41 82 00 18 */ beq lbl_80102F10
 lbl_80102EFC:
@@ -284,11 +284,11 @@ lbl_80102F10:
 /* 80102F14 000FFE54  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80102F18 000FFE58  41 82 00 10 */ beq lbl_80102F28
 /* 80102F1C 000FFE5C  7F C3 F3 78 */ mr r3, r30
-/* 80102F20 000FFE60  48 03 54 B9 */ bl daAlink_c_NS_procWolfSwimUpInit
+/* 80102F20 000FFE60  48 03 54 B9 */ bl procWolfSwimUpInit__9daAlink_cFv
 /* 80102F24 000FFE64  48 00 00 FC */ b lbl_80103020
 lbl_80102F28:
 /* 80102F28 000FFE68  7F C3 F3 78 */ mr r3, r30
-/* 80102F2C 000FFE6C  48 00 11 CD */ bl daAlink_c_NS_procSwimUpInit
+/* 80102F2C 000FFE6C  48 00 11 CD */ bl procSwimUpInit__9daAlink_cFv
 /* 80102F30 000FFE70  48 00 00 F0 */ b lbl_80103020
 lbl_80102F34:
 /* 80102F34 000FFE74  54 60 05 EF */ rlwinm. r0, r3, 0, 0x17, 0x17
@@ -301,7 +301,7 @@ lbl_80102F34:
 /* 80102F50 000FFE90  2C 03 00 00 */ cmpwi r3, 0
 /* 80102F54 000FFE94  40 82 00 9C */ bne lbl_80102FF0
 /* 80102F58 000FFE98  7F C3 F3 78 */ mr r3, r30
-/* 80102F5C 000FFE9C  4B FF ED 5D */ bl daAlink_c_NS_checkPossibleWaterInMode
+/* 80102F5C 000FFE9C  4B FF ED 5D */ bl checkPossibleWaterInMode__9daAlink_cCFv
 /* 80102F60 000FFEA0  2C 03 00 00 */ cmpwi r3, 0
 /* 80102F64 000FFEA4  40 82 00 8C */ bne lbl_80102FF0
 /* 80102F68 000FFEA8  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -320,26 +320,26 @@ lbl_80102F34:
 /* 80102F9C 000FFEDC  41 82 00 14 */ beq lbl_80102FB0
 /* 80102FA0 000FFEE0  7F C3 F3 78 */ mr r3, r30
 /* 80102FA4 000FFEE4  38 80 00 00 */ li r4, 0
-/* 80102FA8 000FFEE8  48 03 55 85 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 80102FA8 000FFEE8  48 03 55 85 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 80102FAC 000FFEEC  48 00 00 74 */ b lbl_80103020
 lbl_80102FB0:
 /* 80102FB0 000FFEF0  7F C3 F3 78 */ mr r3, r30
 /* 80102FB4 000FFEF4  38 80 00 00 */ li r4, 0
-/* 80102FB8 000FFEF8  48 00 13 41 */ bl daAlink_c_NS_procSwimWaitInit
+/* 80102FB8 000FFEF8  48 00 13 41 */ bl procSwimWaitInit__9daAlink_cFi
 /* 80102FBC 000FFEFC  48 00 00 64 */ b lbl_80103020
 lbl_80102FC0:
 /* 80102FC0 000FFF00  7F C3 F3 78 */ mr r3, r30
 /* 80102FC4 000FFF04  38 80 00 00 */ li r4, 0
-/* 80102FC8 000FFF08  48 00 03 01 */ bl daAlink_c_NS_swimOutAfter
+/* 80102FC8 000FFF08  48 00 03 01 */ bl swimOutAfter__9daAlink_cFi
 /* 80102FCC 000FFF0C  80 1E 05 74 */ lwz r0, 0x574(r30)
 /* 80102FD0 000FFF10  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80102FD4 000FFF14  41 82 00 10 */ beq lbl_80102FE4
 /* 80102FD8 000FFF18  7F C3 F3 78 */ mr r3, r30
-/* 80102FDC 000FFF1C  48 02 A1 CD */ bl daAlink_c_NS_procWolfWaitInit
+/* 80102FDC 000FFF1C  48 02 A1 CD */ bl procWolfWaitInit__9daAlink_cFv
 /* 80102FE0 000FFF20  48 00 00 40 */ b lbl_80103020
 lbl_80102FE4:
 /* 80102FE4 000FFF24  7F C3 F3 78 */ mr r3, r30
-/* 80102FE8 000FFF28  4B FC 03 D1 */ bl daAlink_c_NS_procWaitInit
+/* 80102FE8 000FFF28  4B FC 03 D1 */ bl procWaitInit__9daAlink_cFv
 /* 80102FEC 000FFF2C  48 00 00 34 */ b lbl_80103020
 lbl_80102FF0:
 /* 80102FF0 000FFF30  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -351,7 +351,7 @@ lbl_80102FF0:
 /* 80103008 000FFF48  28 00 01 50 */ cmplwi r0, 0x150
 /* 8010300C 000FFF4C  41 82 00 10 */ beq lbl_8010301C
 /* 80103010 000FFF50  7F C3 F3 78 */ mr r3, r30
-/* 80103014 000FFF54  48 00 03 B9 */ bl daAlink_c_NS_checkSwimOutAction
+/* 80103014 000FFF54  48 00 03 B9 */ bl checkSwimOutAction__9daAlink_cFv
 /* 80103018 000FFF58  48 00 00 08 */ b lbl_80103020
 lbl_8010301C:
 /* 8010301C 000FFF5C  38 60 00 00 */ li r3, 0

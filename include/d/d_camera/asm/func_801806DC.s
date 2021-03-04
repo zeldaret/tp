@@ -5,7 +5,7 @@
 /* 801806EC 0017D62C  7C 7F 1B 78 */ mr r31, r3
 /* 801806F0 0017D630  7C 85 23 78 */ mr r5, r4
 /* 801806F4 0017D634  38 9F 01 18 */ addi r4, r31, 0x118
-/* 801806F8 0017D638  4B FE 45 6D */ bl dCamera_c_NS_pushInfo
+/* 801806F8 0017D638  4B FE 45 6D */ bl pushInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_cs
 /* 801806FC 0017D63C  38 61 00 08 */ addi r3, r1, 8
 /* 80180700 0017D640  7F E4 FB 78 */ mr r4, r31
 /* 80180704 0017D644  80 BF 01 80 */ lwz r5, 0x180(r31)

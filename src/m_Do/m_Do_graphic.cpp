@@ -154,7 +154,7 @@ asm void drawDepth2(view_class* view_class_ptr, view_port_class* view_port_class
 // __dt__4cXyzFv
 // cXyz::~cXyz(void)
 extern "C" {  // everything gets shifted when this is an actual destructor??
-asm void cXyz_NS_dtor(void) {
+asm void __dt__4cXyzFv(void) {
     nofralloc
 #include "m_Do/m_Do_graphic/asm/func_80009184.s"
 }

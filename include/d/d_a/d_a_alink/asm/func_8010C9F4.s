@@ -13,7 +13,7 @@
 /* 8010CA24 00109964  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8010CA28 00109968  41 82 00 64 */ beq lbl_8010CA8C
 /* 8010CA2C 0010996C  38 80 00 01 */ li r4, 1
-/* 8010CA30 00109970  4B FC 21 A9 */ bl daAlink_c_NS_checkSubjectEnd
+/* 8010CA30 00109970  4B FC 21 A9 */ bl checkSubjectEnd__9daAlink_cFi
 /* 8010CA34 00109974  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CA38 00109978  41 82 00 34 */ beq lbl_8010CA6C
 /* 8010CA3C 0010997C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -35,12 +35,12 @@ lbl_8010CA6C:
 /* 8010CA78 001099B8  54 00 04 A5 */ rlwinm. r0, r0, 0, 0x12, 0x12
 /* 8010CA7C 001099BC  41 82 00 68 */ beq lbl_8010CAE4
 /* 8010CA80 001099C0  7F E3 FB 78 */ mr r3, r31
-/* 8010CA84 001099C4  4B FC 1E 1D */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 8010CA84 001099C4  4B FC 1E 1D */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 8010CA88 001099C8  48 00 00 5C */ b lbl_8010CAE4
 lbl_8010CA8C:
 /* 8010CA8C 001099CC  48 07 4B B5 */ bl dCam_getBody
 /* 8010CA90 001099D0  38 80 00 04 */ li r4, 4
-/* 8010CA94 001099D4  48 05 4A 61 */ bl dCamera_c_NS_ChangeModeOK
+/* 8010CA94 001099D4  48 05 4A 61 */ bl ChangeModeOK__9dCamera_cFl
 /* 8010CA98 001099D8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010CA9C 001099DC  41 82 00 48 */ beq lbl_8010CAE4
 /* 8010CAA0 001099E0  80 1F 05 80 */ lwz r0, 0x580(r31)
@@ -56,20 +56,20 @@ lbl_8010CA8C:
 /* 8010CAC8 00109A08  38 00 00 00 */ li r0, 0
 /* 8010CACC 00109A0C  B0 1F 31 0A */ sth r0, 0x310a(r31)
 /* 8010CAD0 00109A10  7F E3 FB 78 */ mr r3, r31
-/* 8010CAD4 00109A14  4B FC 20 21 */ bl daAlink_c_NS_setSubjectMode
+/* 8010CAD4 00109A14  4B FC 20 21 */ bl setSubjectMode__9daAlink_cFv
 /* 8010CAD8 00109A18  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 8010CADC 00109A1C  64 00 60 00 */ oris r0, r0, 0x6000
 /* 8010CAE0 00109A20  90 1F 31 A0 */ stw r0, 0x31a0(r31)
 lbl_8010CAE4:
 /* 8010CAE4 00109A24  7F E3 FB 78 */ mr r3, r31
-/* 8010CAE8 00109A28  4B FF EE 85 */ bl daAlink_c_NS_commonHookshotRoofWait
+/* 8010CAE8 00109A28  4B FF EE 85 */ bl commonHookshotRoofWait__9daAlink_cFv
 /* 8010CAEC 00109A2C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CAF0 00109A30  41 82 00 0C */ beq lbl_8010CAFC
 /* 8010CAF4 00109A34  38 60 00 01 */ li r3, 1
 /* 8010CAF8 00109A38  48 00 01 70 */ b lbl_8010CC68
 lbl_8010CAFC:
 /* 8010CAFC 00109A3C  7F E3 FB 78 */ mr r3, r31
-/* 8010CB00 00109A40  4B FF BD A1 */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010CB00 00109A40  4B FF BD A1 */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010CB04 00109A44  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CB08 00109A48  41 82 00 20 */ beq lbl_8010CB28
 /* 8010CB0C 00109A4C  7F E3 FB 78 */ mr r3, r31
@@ -89,18 +89,18 @@ lbl_8010CB28:
 /* 8010CB40 00109A80  7F E3 FB 78 */ mr r3, r31
 /* 8010CB44 00109A84  38 80 00 01 */ li r4, 1
 /* 8010CB48 00109A88  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
-/* 8010CB4C 00109A8C  4B FB 9E FD */ bl daAlink_c_NS_procFallInit
+/* 8010CB4C 00109A8C  4B FB 9E FD */ bl procFallInit__9daAlink_cFif
 /* 8010CB50 00109A90  48 00 01 18 */ b lbl_8010CC68
 lbl_8010CB54:
 /* 8010CB54 00109A94  7F E3 FB 78 */ mr r3, r31
 /* 8010CB58 00109A98  38 80 00 00 */ li r4, 0
-/* 8010CB5C 00109A9C  4B FA 6B D9 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 8010CB5C 00109A9C  4B FA 6B D9 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 8010CB60 00109AA0  A8 1F 30 0C */ lha r0, 0x300c(r31)
 /* 8010CB64 00109AA4  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CB68 00109AA8  40 82 00 B4 */ bne lbl_8010CC1C
 /* 8010CB6C 00109AAC  7F E3 FB 78 */ mr r3, r31
 /* 8010CB70 00109AB0  38 80 00 47 */ li r4, 0x47
-/* 8010CB74 00109AB4  4B FB 35 F1 */ bl daAlink_c_NS_checkSetItemTrigger
+/* 8010CB74 00109AB4  4B FB 35 F1 */ bl checkSetItemTrigger__9daAlink_cFi
 /* 8010CB78 00109AB8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CB7C 00109ABC  41 82 00 10 */ beq lbl_8010CB8C
 /* 8010CB80 00109AC0  38 00 00 01 */ li r0, 1
@@ -130,7 +130,7 @@ lbl_8010CBB0:
 /* 8010CBD8 00109B18  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CBDC 00109B1C  40 82 00 14 */ bne lbl_8010CBF0
 /* 8010CBE0 00109B20  7F E3 FB 78 */ mr r3, r31
-/* 8010CBE4 00109B24  4B FF BC BD */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010CBE4 00109B24  4B FF BC BD */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010CBE8 00109B28  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CBEC 00109B2C  41 82 00 78 */ beq lbl_8010CC64
 lbl_8010CBF0:
@@ -142,18 +142,18 @@ lbl_8010CBF0:
 /* 8010CC04 00109B44  40 81 00 60 */ ble lbl_8010CC64
 lbl_8010CC08:
 /* 8010CC08 00109B48  7F E3 FB 78 */ mr r3, r31
-/* 8010CC0C 00109B4C  4B FF E6 D1 */ bl daAlink_c_NS_setHookshotRoofWaitAnime
+/* 8010CC0C 00109B4C  4B FF E6 D1 */ bl setHookshotRoofWaitAnime__9daAlink_cFv
 /* 8010CC10 00109B50  38 00 00 01 */ li r0, 1
 /* 8010CC14 00109B54  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8010CC18 00109B58  48 00 00 4C */ b lbl_8010CC64
 lbl_8010CC1C:
 /* 8010CC1C 00109B5C  7F E3 FB 78 */ mr r3, r31
-/* 8010CC20 00109B60  4B FF BC 81 */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010CC20 00109B60  4B FF BC 81 */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010CC24 00109B64  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CC28 00109B68  40 82 00 3C */ bne lbl_8010CC64
 /* 8010CC2C 00109B6C  7F E3 FB 78 */ mr r3, r31
 /* 8010CC30 00109B70  38 80 00 47 */ li r4, 0x47
-/* 8010CC34 00109B74  4B FB 35 31 */ bl daAlink_c_NS_checkSetItemTrigger
+/* 8010CC34 00109B74  4B FB 35 31 */ bl checkSetItemTrigger__9daAlink_cFi
 /* 8010CC38 00109B78  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CC3C 00109B7C  40 82 00 10 */ bne lbl_8010CC4C
 /* 8010CC40 00109B80  A8 1F 30 12 */ lha r0, 0x3012(r31)
@@ -162,11 +162,11 @@ lbl_8010CC1C:
 lbl_8010CC4C:
 /* 8010CC4C 00109B8C  7F E3 FB 78 */ mr r3, r31
 /* 8010CC50 00109B90  80 9F 28 58 */ lwz r4, 0x2858(r31)
-/* 8010CC54 00109B94  48 00 00 2D */ bl daAlink_c_NS_procHookshotRoofShootInit
+/* 8010CC54 00109B94  48 00 00 2D */ bl procHookshotRoofShootInit__9daAlink_cFP10fopAc_ac_c
 /* 8010CC58 00109B98  48 00 00 10 */ b lbl_8010CC68
 lbl_8010CC5C:
 /* 8010CC5C 00109B9C  7F E3 FB 78 */ mr r3, r31
-/* 8010CC60 00109BA0  4B FF E7 4D */ bl daAlink_c_NS_hookshotRoofTurn
+/* 8010CC60 00109BA0  4B FF E7 4D */ bl hookshotRoofTurn__9daAlink_cFv
 lbl_8010CC64:
 /* 8010CC64 00109BA4  38 60 00 01 */ li r3, 1
 lbl_8010CC68:

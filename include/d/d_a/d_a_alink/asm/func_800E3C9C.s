@@ -5,11 +5,11 @@
 /* 800E3CAC 000E0BEC  93 C1 00 08 */ stw r30, 8(r1)
 /* 800E3CB0 000E0BF0  7C 7E 1B 78 */ mr r30, r3
 /* 800E3CB4 000E0BF4  3B E0 00 00 */ li r31, 0
-/* 800E3CB8 000E0BF8  4B FF FF B5 */ bl daAlink_c_NS_checkGrabAnime
+/* 800E3CB8 000E0BF8  4B FF FF B5 */ bl checkGrabAnime__9daAlink_cCFv
 /* 800E3CBC 000E0BFC  2C 03 00 00 */ cmpwi r3, 0
 /* 800E3CC0 000E0C00  40 82 00 14 */ bne lbl_800E3CD4
 /* 800E3CC4 000E0C04  7F C3 F3 78 */ mr r3, r30
-/* 800E3CC8 000E0C08  4B FF FF 55 */ bl daAlink_c_NS_checkGrabThrowAnime
+/* 800E3CC8 000E0C08  4B FF FF 55 */ bl checkGrabThrowAnime__9daAlink_cCFv
 /* 800E3CCC 000E0C0C  2C 03 00 00 */ cmpwi r3, 0
 /* 800E3CD0 000E0C10  41 82 00 08 */ beq lbl_800E3CD8
 lbl_800E3CD4:

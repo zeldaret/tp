@@ -19,12 +19,12 @@ void __mi__4cXyzCFRC3Vec(void);
 void __ml__4cXyzCFf(void);
 void __nw__FUl(void);
 void __pl__4cXyzCFRC3Vec(void);
-void BOSS_LIGHT_NS_dtor(void);
+void __dt__10BOSS_LIGHTFv(void);
 void BOSS_LIGHT(void);
 void GroundCross__4cBgSFP11cBgS_GndChk(void);
 void cLib_addCalc__FPfffff(void);
 void cM3d_VectorProduct2d__Fffffff(void);
-void cXyz_NS_dtor(void);
+void __dt__4cXyzFv(void);
 void checkNowWolfEyeUp__9daPy_py_cFv(void);
 void __dt__18dBgS_CamGndChk_WtrFv(void);
 void dBgS_CamGndChk_Wtr(void);
@@ -32,8 +32,8 @@ void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo(void);
 void GetPolyAtt1__4dBgSFRC13cBgS_PolyInfo(void);
 void dCam_getBody(void);
 void dComIfG_getStageRes(void);
-void dComIfG_play_c_NS_getLayerNo_common(void);
-void dComIfG_play_c_NS_getLayerNo(int);
+void getLayerNo_common__14dComIfG_play_cFPCcii(void);
+void getLayerNo__14dComIfG_play_cFi(int);
 void dComIfGp_world_dark_get(void);
 void dComIfGs_PolyDamageOff_Set(void);
 void dComIfGs_sense_type_change_Get(void);
@@ -88,10 +88,10 @@ void dKyw_wind_set(void);
 void getActor__12dMsgObject_cFv(void);
 void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
-void dScnKy_env_light_c_NS_getDarkDaytime(void);
-void dStage_roomControl_c_NS_getStatusRoomDt(void);
-void dStage_roomControl_c_NS_GetTimePass(void);
-void DUNGEON_LIGHT_NS_dtor(void);
+void getDarkDaytime__18dScnKy_env_light_cFv(void);
+void getStatusRoomDt__20dStage_roomControl_cFi(void);
+void GetTimePass__20dStage_roomControl_cFv(void);
+void __dt__13DUNGEON_LIGHTFv(void);
 void DUNGEON_LIGHT(void);
 void func_80361C24(void);
 void func_80361D60(void);
@@ -120,12 +120,12 @@ void simpleCalcMaterial__12J3DModelDataFUsPA4_f(void);
 void setEffectMtx__13J3DTexMtxInfoFPA4_f(void);
 void deleteAllParticle__14JPABaseEmitterFv(void);
 void getName__10JUTNameTabCFUs(void);
-void LIGHT_INFLUENCE_NS_dtor(void);
+void __dt__15LIGHT_INFLUENCEFv(void);
 void LIGHT_INFLUENCE(void);
 void mDoExt_adjustSolidHeap(void);
-void mDoExt_baseAnm_NS_play(void);
-void mDoExt_btkAnm_NS_entry(void);
-void mDoExt_btkAnm_NS_init(void);
+void play__14mDoExt_baseAnmFv(void);
+void entry__13mDoExt_btkAnmFP16J3DMaterialTablef(void);
+void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss(void);
 void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
 void mDoExt_J3DModel__create(void);
 void mDoExt_modelUpdateDL(void);
@@ -136,12 +136,12 @@ void mDoMtx_inverseTranspose(void);
 void mDoMtx_lookAt(void);
 void offEventBit__11dSv_event_cFUs(void);
 void SetPos__11cBgS_GndChkFPC4cXyz(void);
-void WIND_INF_ENTITY_NS_dtor(void);
+void __dt__15WIND_INF_ENTITYFv(void);
 void WIND_INF_ENTITY(void);
-void Z2EnvSeMgr_NS_dtor(void);
-void Z2EnvSeMgr_NS_resetScene(void);
+void __dt__10Z2EnvSeMgrFv(void);
+void resetScene__10Z2EnvSeMgrFv(void);
 void Z2EnvSeMgr(void);
-void Z2SceneMgr_NS_load2ndDynamicWave(void);
+void load2ndDynamicWave__10Z2SceneMgrFv(void);
 }
 
 class j3dsys {
@@ -623,7 +623,7 @@ asm void GB_MAPLE_COL_CHANGE(void) {
 
 // __dt__10BOSS_LIGHTFv
 // BOSS_LIGHT::~BOSS_LIGHT(void)
-asm void BOSS_LIGHT_NS_dtor(void) {
+asm void __dt__10BOSS_LIGHTFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F438.s"
 }
@@ -637,7 +637,7 @@ asm void BOSS_LIGHT(void) {
 
 // __dt__13DUNGEON_LIGHTFv
 // DUNGEON_LIGHT::~DUNGEON_LIGHT(void)
-asm void DUNGEON_LIGHT_NS_dtor(void) {
+asm void __dt__13DUNGEON_LIGHTFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F478.s"
 }
@@ -651,7 +651,7 @@ asm void DUNGEON_LIGHT(void) {
 
 // __dt__15WIND_INF_ENTITYFv
 // WIND_INF_ENTITY::~WIND_INF_ENTITY(void)
-asm void WIND_INF_ENTITY_NS_dtor(void) {
+asm void __dt__15WIND_INF_ENTITYFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F4B8.s"
 }
@@ -672,28 +672,28 @@ asm void LIGHT_INFLUENCE(void) {
 
 // setDaytime__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::setDaytime(void)
-asm void dScnKy_env_light_c_NS_setDaytime(void) {
+asm void setDaytime__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F4FC.s"
 }
 
 // GetTimePass__20dStage_roomControl_cFv
 // dStage_roomControl_c::GetTimePass(void)
-asm void dStage_roomControl_c_NS_GetTimePass(void) {
+asm void GetTimePass__20dStage_roomControl_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F780.s"
 }
 
 // setSunpos__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::setSunpos(void)
-asm void dScnKy_env_light_c_NS_setSunpos(void) {
+asm void setSunpos__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019F788.s"
 }
 
 // getDaytime__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::getDaytime(void)
-asm void dScnKy_env_light_c_NS_getDaytime(void) {
+asm void getDaytime__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019FA08.s"
 }
@@ -742,7 +742,7 @@ asm void func_8019FBBC(void) {
 
 // getDarkDaytime__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::getDarkDaytime(void)
-asm void dScnKy_env_light_c_NS_getDarkDaytime(void) {
+asm void getDarkDaytime__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019FBCC.s"
 }
@@ -751,7 +751,7 @@ asm void dScnKy_env_light_c_NS_getDarkDaytime(void) {
 // dScnKy_env_light_c::setLight_palno_get(unsigned char*, unsigned char*, unsigned char*, unsigned
 // char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, int*, int*,
 // float*, unsigned char*)
-asm void dScnKy_env_light_c_NS_setLight_palno_get(void) {
+asm void setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019FBD4.s"
 }
@@ -766,21 +766,21 @@ asm void dKy_calc_color_set(void) {
 
 // setLight__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::setLight(void)
-asm void dScnKy_env_light_c_NS_setLight(void) {
+asm void setLight__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A040C.s"
 }
 
 // setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 // dScnKy_env_light_c::setLight_bg(dKy_tevstr_c*, _GXColorS10*, _GXColorS10*, float*, float*)
-asm void dScnKy_env_light_c_NS_setLight_bg(void) {
+asm void setLight__18dScnKy_env_light_cFv_bg(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A133C.s"
 }
 
 // setLight_actor__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10PfPf
 // dScnKy_env_light_c::setLight_actor(dKy_tevstr_c*, _GXColorS10*, float*, float*)
-asm void dScnKy_env_light_c_NS_setLight_actor(void) {
+asm void setLight__18dScnKy_env_light_cFv_actor(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A16C0.s"
 }
@@ -788,14 +788,14 @@ asm void dScnKy_env_light_c_NS_setLight_actor(void) {
 // settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 // dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz*, dKy_tevstr_c*, _GXColorS10*,
 // _GXColorS10*, float*, float*)
-asm void dScnKy_env_light_c_NS_settingTevStruct_colget_actor(void) {
+asm void settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A1D64.s"
 }
 
 // settingTevStruct_colget_player__18dScnKy_env_light_cFP12dKy_tevstr_c
 // dScnKy_env_light_c::settingTevStruct_colget_player(dKy_tevstr_c*)
-asm void dScnKy_env_light_c_NS_settingTevStruct_colget_player(void) {
+asm void settingTevStruct_colget_player__18dScnKy_env_light_cFP12dKy_tevstr_c(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A1F58.s"
 }
@@ -810,14 +810,14 @@ asm void cLib_addCalcU8(void) {
 // settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
 // dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz*, dKy_tevstr_c*, _GXColorS10,
 // _GXColorS10, unsigned char)
-asm void dScnKy_env_light_c_NS_settingTevStruct_plightcol_plus(void) {
+asm void settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A2128.s"
 }
 
 // settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 // dScnKy_env_light_c::settingTevStruct(int, cXyz*, dKy_tevstr_c*)
-asm void dScnKy_env_light_c_NS_settingTevStruct(void) {
+asm void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A37C4.s"
 }
@@ -859,49 +859,49 @@ asm void dKy_cloudshadow_scroll(void) {
 
 // setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 // dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*)
-asm void dScnKy_env_light_c_NS_setLightTevColorType_MAJI(void) {
+asm void setLight__18dScnKy_env_light_cFvTevColorType_MAJI(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A4DA0.s"
 }
 
 // CalcTevColor__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::CalcTevColor(void)
-asm void dScnKy_env_light_c_NS_CalcTevColor(void) {
+asm void CalcTevColor__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A4E90.s"
 }
 
 // Sndpos__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::Sndpos(void)
-asm void dScnKy_env_light_c_NS_Sndpos(void) {
+asm void Sndpos__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A4F24.s"
 }
 
 // Eflight_flush_proc__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::Eflight_flush_proc(void)
-asm void dScnKy_env_light_c_NS_Eflight_flush_proc(void) {
+asm void Eflight_flush_proc__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A4F64.s"
 }
 
 // SetBaseLight__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::SetBaseLight(void)
-asm void dScnKy_env_light_c_NS_SetBaseLight(void) {
+asm void SetBaseLight__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A516C.s"
 }
 
 // exeKankyo__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::exeKankyo(void)
-asm void dScnKy_env_light_c_NS_exeKankyo(void) {
+asm void exeKankyo__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A5288.s"
 }
 
 // drawKankyo__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::drawKankyo(void)
-asm void dScnKy_env_light_c_NS_drawKankyo(void) {
+asm void drawKankyo__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A56DC.s"
 }
@@ -1659,7 +1659,7 @@ asm void func_801ACD24(void) {
 
 // __dt__18dScnKy_env_light_cFv
 // dScnKy_env_light_c::~dScnKy_env_light_c(void)
-asm void dScnKy_env_light_c_NS_dtor(void) {
+asm void __dt__18dScnKy_env_light_cFv(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801ADBBC.s"
 }

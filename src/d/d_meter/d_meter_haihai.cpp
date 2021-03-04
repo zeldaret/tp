@@ -9,15 +9,15 @@ void __dl__FPv(void);
 void __nw__FUl(void);
 void animationTransform__7J2DPaneFv(void);
 void CPaneMgr_X1_(void);
-void dMeterHaihai_c_NS_alphaAnimeHaihai(void);
-void dMeterHaihai_c_NS_drawHaihaiBottom(void);
-void dMeterHaihai_c_NS_drawHaihaiLeft(void);
-void dMeterHaihai_c_NS_drawHaihaiRight(void);
-void dMeterHaihai_c_NS_drawHaihaiTop(void);
-void dMeterHaihai_c_NS_playBckAnime(void);
-void dMeterHaihai_c_NS_playBpkAnime(void);
-void dMeterHaihai_c_NS_playBtkAnime(void);
-void dMeterHaihai_c_NS_updateHaihai(void);
+void alphaAnimeHaihai__14dMeterHaihai_cFUl(void);
+void drawHaihai__14dMeterHaihai_cFUcBottom(void);
+void drawHaihai__14dMeterHaihai_cFUcLeft(void);
+void drawHaihai__14dMeterHaihai_cFUcRight(void);
+void drawHaihai__14dMeterHaihai_cFUcTop(void);
+void playBckAnime__14dMeterHaihai_cFP18J2DAnmTransformKey(void);
+void playBpkAnime__14dMeterHaihai_cFP11J2DAnmColor(void);
+void playBtkAnime__14dMeterHaihai_cFP19J2DAnmTextureSRTKey(void);
+void updateHaihai__14dMeterHaihai_cFv(void);
 void dPaneClass_showNullPane(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
 void load__20J2DAnmLoaderDataBaseFPCv(void);
@@ -91,49 +91,49 @@ asm void func_8020B140(void) {
 
 // drawHaihai__14dMeterHaihai_cFUc
 // dMeterHaihai_c::drawHaihai(unsigned char)
-asm void dMeterHaihai_c_NS_drawHaihai(void) {
+asm void drawHaihai__14dMeterHaihai_cFUc(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B518.s"
 }
 
 // drawHaihai__14dMeterHaihai_cFUcffff
 // dMeterHaihai_c::drawHaihai(unsigned char, float, float, float, float)
-asm void dMeterHaihai_c_NS_drawHaihai_X1_(void) {
+asm void drawHaihai__14dMeterHaihai_cFUc_X1_(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B814.s"
 }
 
 // drawHaihaiLeft__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiLeft(float, float)
-asm void dMeterHaihai_c_NS_drawHaihaiLeft(void) {
+asm void drawHaihai__14dMeterHaihai_cFUcLeft(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B9B0.s"
 }
 
 // drawHaihaiRight__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiRight(float, float)
-asm void dMeterHaihai_c_NS_drawHaihaiRight(void) {
+asm void drawHaihai__14dMeterHaihai_cFUcRight(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BA4C.s"
 }
 
 // drawHaihaiTop__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiTop(float, float)
-asm void dMeterHaihai_c_NS_drawHaihaiTop(void) {
+asm void drawHaihai__14dMeterHaihai_cFUcTop(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BAE8.s"
 }
 
 // drawHaihaiBottom__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiBottom(float, float)
-asm void dMeterHaihai_c_NS_drawHaihaiBottom(void) {
+asm void drawHaihai__14dMeterHaihai_cFUcBottom(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BB84.s"
 }
 
 // setScale__14dMeterHaihai_cFf
 // dMeterHaihai_c::setScale(float)
-asm void dMeterHaihai_c_NS_setScale(void) {
+asm void setScale__14dMeterHaihai_cFf(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BC20.s"
 }
@@ -147,35 +147,35 @@ asm void func_8020BDAC(void) {
 
 // alphaAnimeHaihai__14dMeterHaihai_cFUl
 // dMeterHaihai_c::alphaAnimeHaihai(unsigned long)
-asm void dMeterHaihai_c_NS_alphaAnimeHaihai(void) {
+asm void alphaAnimeHaihai__14dMeterHaihai_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BEA0.s"
 }
 
 // updateHaihai__14dMeterHaihai_cFv
 // dMeterHaihai_c::updateHaihai(void)
-asm void dMeterHaihai_c_NS_updateHaihai(void) {
+asm void updateHaihai__14dMeterHaihai_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BEA4.s"
 }
 
 // playBckAnime__14dMeterHaihai_cFP18J2DAnmTransformKey
 // dMeterHaihai_c::playBckAnime(J2DAnmTransformKey*)
-asm void dMeterHaihai_c_NS_playBckAnime(void) {
+asm void playBckAnime__14dMeterHaihai_cFP18J2DAnmTransformKey(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BF00.s"
 }
 
 // playBtkAnime__14dMeterHaihai_cFP19J2DAnmTextureSRTKey
 // dMeterHaihai_c::playBtkAnime(J2DAnmTextureSRTKey*)
-asm void dMeterHaihai_c_NS_playBtkAnime(void) {
+asm void playBtkAnime__14dMeterHaihai_cFP19J2DAnmTextureSRTKey(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020C078.s"
 }
 
 // playBpkAnime__14dMeterHaihai_cFP11J2DAnmColor
 // dMeterHaihai_c::playBpkAnime(J2DAnmColor*)
-asm void dMeterHaihai_c_NS_playBpkAnime(void) {
+asm void playBpkAnime__14dMeterHaihai_cFP11J2DAnmColor(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020C1CC.s"
 }

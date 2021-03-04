@@ -12,7 +12,7 @@
 /* 800C4B6C 000C1AAC  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800C4B70 000C1AB0  90 01 00 24 */ stw r0, 0x24(r1)
 /* 800C4B74 000C1AB4  38 81 00 14 */ addi r4, r1, 0x14
-/* 800C4B78 000C1AB8  4B FE D4 61 */ bl daAlink_c_NS_getSlidePolygon
+/* 800C4B78 000C1AB8  4B FE D4 61 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 800C4B7C 000C1ABC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C4B80 000C1AC0  41 82 00 14 */ beq lbl_800C4B94
 /* 800C4B84 000C1AC4  38 7E 33 98 */ addi r3, r30, 0x3398
@@ -40,7 +40,7 @@ lbl_800C4BCC:
 /* 800C4BD4 000C1B14  41 82 00 10 */ beq lbl_800C4BE4
 /* 800C4BD8 000C1B18  7F C3 F3 78 */ mr r3, r30
 /* 800C4BDC 000C1B1C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C4BE0 000C1B20  48 01 84 29 */ bl daAlink_c_NS_setUpperGuardAnime
+/* 800C4BE0 000C1B20  48 01 84 29 */ bl setUpperGuardAnime__9daAlink_cFf
 lbl_800C4BE4:
 /* 800C4BE4 000C1B24  7F E3 FB 78 */ mr r3, r31
 /* 800C4BE8 000C1B28  48 09 98 E5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
@@ -74,7 +74,7 @@ lbl_800C4C18:
 lbl_800C4C54:
 /* 800C4C54 000C1B94  7F C3 F3 78 */ mr r3, r30
 /* 800C4C58 000C1B98  38 80 00 00 */ li r4, 0
-/* 800C4C5C 000C1B9C  4B FF 54 75 */ bl daAlink_c_NS_checkNextAction
+/* 800C4C5C 000C1B9C  4B FF 54 75 */ bl checkNextAction__9daAlink_cFi
 /* 800C4C60 000C1BA0  48 00 02 8C */ b lbl_800C4EEC
 lbl_800C4C64:
 /* 800C4C64 000C1BA4  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -91,7 +91,7 @@ lbl_800C4C64:
 /* 800C4C90 000C1BD0  C0 42 93 D8 */ lfs f2, lbl_80452DD8-_SDA2_BASE_(r2)
 /* 800C4C94 000C1BD4  48 1A BA AD */ bl cLib_chaseF__FPfff
 /* 800C4C98 000C1BD8  7F C3 F3 78 */ mr r3, r30
-/* 800C4C9C 000C1BDC  4B FE EC 69 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800C4C9C 000C1BDC  4B FE EC 69 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800C4CA0 000C1BE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C4CA4 000C1BE4  41 82 00 10 */ beq lbl_800C4CB4
 /* 800C4CA8 000C1BE8  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -103,12 +103,12 @@ lbl_800C4CB4:
 /* 800C4CBC 000C1BFC  41 82 00 14 */ beq lbl_800C4CD0
 /* 800C4CC0 000C1C00  7F C3 F3 78 */ mr r3, r30
 /* 800C4CC4 000C1C04  38 80 00 02 */ li r4, 2
-/* 800C4CC8 000C1C08  48 00 E8 11 */ bl daAlink_c_NS_procCutFinishInit
+/* 800C4CC8 000C1C08  48 00 E8 11 */ bl procCutFinishInit__9daAlink_cFi
 /* 800C4CCC 000C1C0C  48 00 02 20 */ b lbl_800C4EEC
 lbl_800C4CD0:
 /* 800C4CD0 000C1C10  7F C3 F3 78 */ mr r3, r30
 /* 800C4CD4 000C1C14  38 80 00 01 */ li r4, 1
-/* 800C4CD8 000C1C18  4B FF 53 F9 */ bl daAlink_c_NS_checkNextAction
+/* 800C4CD8 000C1C18  4B FF 53 F9 */ bl checkNextAction__9daAlink_cFi
 /* 800C4CDC 000C1C1C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C4CE0 000C1C20  40 82 02 0C */ bne lbl_800C4EEC
 /* 800C4CE4 000C1C24  38 7E 33 98 */ addi r3, r30, 0x3398
@@ -183,23 +183,23 @@ lbl_800C4DCC:
 /* 800C4DEC 000C1D2C  41 82 00 40 */ beq lbl_800C4E2C
 /* 800C4DF0 000C1D30  38 7E 18 B0 */ addi r3, r30, 0x18b0
 /* 800C4DF4 000C1D34  38 80 00 00 */ li r4, 0
-/* 800C4DF8 000C1D38  4B FD D3 E9 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800C4DF8 000C1D38  4B FD D3 E9 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800C4DFC 000C1D3C  7C 60 07 34 */ extsh r0, r3
 /* 800C4E00 000C1D40  2C 00 00 33 */ cmpwi r0, 0x33
 /* 800C4E04 000C1D44  41 82 00 1C */ beq lbl_800C4E20
 /* 800C4E08 000C1D48  38 7E 18 B0 */ addi r3, r30, 0x18b0
 /* 800C4E0C 000C1D4C  38 80 00 00 */ li r4, 0
-/* 800C4E10 000C1D50  4B FD D3 D1 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800C4E10 000C1D50  4B FD D3 D1 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800C4E14 000C1D54  7C 60 07 34 */ extsh r0, r3
 /* 800C4E18 000C1D58  2C 00 00 3F */ cmpwi r0, 0x3f
 /* 800C4E1C 000C1D5C  40 82 00 10 */ bne lbl_800C4E2C
 lbl_800C4E20:
 /* 800C4E20 000C1D60  7F C3 F3 78 */ mr r3, r30
-/* 800C4E24 000C1D64  48 00 03 3D */ bl daAlink_c_NS_procFrontRollSuccessInit
+/* 800C4E24 000C1D64  48 00 03 3D */ bl procFrontRollSuccessInit__9daAlink_cFv
 /* 800C4E28 000C1D68  48 00 00 C4 */ b lbl_800C4EEC
 lbl_800C4E2C:
 /* 800C4E2C 000C1D6C  7F C3 F3 78 */ mr r3, r30
-/* 800C4E30 000C1D70  48 00 00 E5 */ bl daAlink_c_NS_procFrontRollCrashInit
+/* 800C4E30 000C1D70  48 00 00 E5 */ bl procFrontRollCrashInit__9daAlink_cFv
 /* 800C4E34 000C1D74  48 00 00 B8 */ b lbl_800C4EEC
 lbl_800C4E38:
 /* 800C4E38 000C1D78  7F E3 FB 78 */ mr r3, r31
@@ -221,7 +221,7 @@ lbl_800C4E38:
 /* 800C4E78 000C1DB8  4B FA AB AD */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800C4E7C:
 /* 800C4E7C 000C1DBC  7F C3 F3 78 */ mr r3, r30
-/* 800C4E80 000C1DC0  48 00 D2 35 */ bl daAlink_c_NS_checkForceSwordSwing
+/* 800C4E80 000C1DC0  48 00 D2 35 */ bl checkForceSwordSwing__9daAlink_cFv
 /* 800C4E84 000C1DC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C4E88 000C1DC8  41 82 00 0C */ beq lbl_800C4E94
 /* 800C4E8C 000C1DCC  38 00 00 01 */ li r0, 1

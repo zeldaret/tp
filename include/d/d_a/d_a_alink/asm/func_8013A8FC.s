@@ -8,7 +8,7 @@
 /* 8013A918 00137858  7C BE 2B 78 */ mr r30, r5
 /* 8013A91C 0013785C  7C DF 33 78 */ mr r31, r6
 /* 8013A920 00137860  38 80 01 1E */ li r4, 0x11e
-/* 8013A924 00137864  4B F8 76 49 */ bl daAlink_c_NS_commonProcInit
+/* 8013A924 00137864  4B F8 76 49 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013A928 00137868  80 7D 27 EC */ lwz r3, 0x27ec(r29)
 /* 8013A92C 0013786C  28 03 00 00 */ cmplwi r3, 0
 /* 8013A930 00137870  41 82 00 24 */ beq lbl_8013A954
@@ -52,7 +52,7 @@ lbl_8013A9AC:
 /* 8013A9B4 001378F4  3C A0 80 39 */ lis r5, lbl_8038F618@ha
 /* 8013A9B8 001378F8  38 A5 F6 18 */ addi r5, r5, lbl_8038F618@l
 /* 8013A9BC 001378FC  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013A9C0 00137900  4B FE EE 89 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013A9C0 00137900  4B FE EE 89 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8013A9C4 00137904  38 00 00 01 */ li r0, 1
 /* 8013A9C8 00137908  B0 1D 30 0C */ sth r0, 0x300c(r29)
 /* 8013A9CC 0013790C  3C 60 80 42 */ lis r3, lbl_8042561C@ha
@@ -76,7 +76,7 @@ lbl_8013AA08:
 /* 8013AA10 00137950  3C A0 80 39 */ lis r5, lbl_8038F618@ha
 /* 8013AA14 00137954  38 A5 F6 18 */ addi r5, r5, lbl_8038F618@l
 /* 8013AA18 00137958  38 A5 00 14 */ addi r5, r5, 0x14
-/* 8013AA1C 0013795C  4B FE EE 2D */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013AA1C 0013795C  4B FE EE 2D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
 /* 8013AA20 00137960  38 00 00 00 */ li r0, 0
 /* 8013AA24 00137964  B0 1D 30 0C */ sth r0, 0x300c(r29)
 /* 8013AA28 00137968  3C 60 80 42 */ lis r3, lbl_8042561C@ha
@@ -95,7 +95,7 @@ lbl_8013AA54:
 /* 8013AA58 00137998  98 1D 2F 9D */ stb r0, 0x2f9d(r29)
 /* 8013AA5C 0013799C  7F A3 EB 78 */ mr r3, r29
 /* 8013AA60 001379A0  38 80 00 01 */ li r4, 1
-/* 8013AA64 001379A4  4B FE 67 5D */ bl daAlink_c_NS_setFootEffectProcType
+/* 8013AA64 001379A4  4B FE 67 5D */ bl setFootEffectProcType__9daAlink_cFi
 /* 8013AA68 001379A8  B3 FD 30 08 */ sth r31, 0x3008(r29)
 /* 8013AA6C 001379AC  C0 3D 33 98 */ lfs f1, 0x3398(r29)
 /* 8013AA70 001379B0  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)

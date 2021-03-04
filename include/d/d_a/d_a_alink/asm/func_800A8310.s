@@ -107,7 +107,7 @@ lbl_800A8498:
 /* 800A84B0 000A53F0  C0 7E 04 D8 */ lfs f3, 0x4d8(r30)
 /* 800A84B4 000A53F4  48 29 E4 35 */ bl PSMTXTrans
 /* 800A84B8 000A53F8  7F C3 F3 78 */ mr r3, r30
-/* 800A84BC 000A53FC  48 03 9F 41 */ bl daAlink_c_NS_concatMagneBootMtx
+/* 800A84BC 000A53FC  48 03 9F 41 */ bl concatMagneBootMtx__9daAlink_cFv
 /* 800A84C0 000A5400  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800A84C4 000A5404  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800A84C8 000A5408  A8 9E 31 0A */ lha r4, 0x310a(r30)

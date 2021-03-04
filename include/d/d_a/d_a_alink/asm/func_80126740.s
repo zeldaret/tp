@@ -15,12 +15,12 @@
 /* 80126778 001236B8  98 03 2F 8C */ stb r0, 0x2f8c(r3)
 /* 8012677C 001236BC  38 80 00 02 */ li r4, 2
 /* 80126780 001236C0  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 80126784 001236C4  4B F8 6F A1 */ bl daAlink_c_NS_resetUpperAnime
+/* 80126784 001236C4  4B F8 6F A1 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 80126788 001236C8  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 8012678C 001236CC  54 00 00 C2 */ rlwinm r0, r0, 0, 3, 1
 /* 80126790 001236D0  90 1F 05 74 */ stw r0, 0x574(r31)
 /* 80126794 001236D4  7F E3 FB 78 */ mr r3, r31
-/* 80126798 001236D8  4B FE A0 A9 */ bl daAlink_c_NS_offKandelaarModel
+/* 80126798 001236D8  4B FE A0 A9 */ bl offKandelaarModel__9daAlink_cFv
 /* 8012679C 001236DC  38 60 00 00 */ li r3, 0
 /* 801267A0 001236E0  7C 69 1B 78 */ mr r9, r3
 /* 801267A4 001236E4  7C 68 1B 78 */ mr r8, r3
@@ -85,7 +85,7 @@ lbl_80126818:
 /* 80126884 001237C4  98 1F 2F A9 */ stb r0, 0x2fa9(r31)
 /* 80126888 001237C8  7F E3 FB 78 */ mr r3, r31
 /* 8012688C 001237CC  38 80 00 01 */ li r4, 1
-/* 80126890 001237D0  4B FA AB A1 */ bl daAlink_c_NS_resetCombo
+/* 80126890 001237D0  4B FA AB A1 */ bl resetCombo__9daAlink_cFi
 /* 80126894 001237D4  3B C0 00 00 */ li r30, 0
 /* 80126898 001237D8  9B DF 2F 8D */ stb r30, 0x2f8d(r31)
 /* 8012689C 001237DC  9B DF 2F 8E */ stb r30, 0x2f8e(r31)
@@ -109,7 +109,7 @@ lbl_80126818:
 lbl_801268E4:
 /* 801268E4 00123824  7F E3 FB 78 */ mr r3, r31
 /* 801268E8 00123828  7F C4 F3 78 */ mr r4, r30
-/* 801268EC 0012382C  4B FF E5 3D */ bl daAlink_c_NS_clearFirePointDamageEffect
+/* 801268EC 0012382C  4B FF E5 3D */ bl clearFirePointDamageEffect__9daAlink_cFi
 /* 801268F0 00123830  3B DE 00 01 */ addi r30, r30, 1
 /* 801268F4 00123834  2C 1E 00 04 */ cmpwi r30, 4
 /* 801268F8 00123838  41 80 FF EC */ blt lbl_801268E4

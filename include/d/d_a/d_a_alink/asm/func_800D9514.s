@@ -59,7 +59,7 @@
 /* 800D95FC 000D653C  54 00 00 43 */ rlwinm. r0, r0, 0, 1, 1
 /* 800D9600 000D6540  41 82 00 0C */ beq lbl_800D960C
 /* 800D9604 000D6544  7F C3 F3 78 */ mr r3, r30
-/* 800D9608 000D6548  4B FF D8 1D */ bl daAlink_c_NS_freezeTimerDamage
+/* 800D9608 000D6548  4B FF D8 1D */ bl freezeTimerDamage__9daAlink_cFv
 lbl_800D960C:
 /* 800D960C 000D654C  7F E3 FB 78 */ mr r3, r31
 /* 800D9610 000D6550  48 08 4E BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
@@ -72,7 +72,7 @@ lbl_800D960C:
 /* 800D962C 000D656C  40 82 00 14 */ bne lbl_800D9640
 /* 800D9630 000D6570  7F C3 F3 78 */ mr r3, r30
 /* 800D9634 000D6574  38 80 00 00 */ li r4, 0
-/* 800D9638 000D6578  4B FE 0A 99 */ bl daAlink_c_NS_checkNextAction
+/* 800D9638 000D6578  4B FE 0A 99 */ bl checkNextAction__9daAlink_cFi
 /* 800D963C 000D657C  48 00 00 84 */ b lbl_800D96C0
 lbl_800D9640:
 /* 800D9640 000D6580  A8 1E 30 08 */ lha r0, 0x3008(r30)
@@ -86,7 +86,7 @@ lbl_800D9640:
 /* 800D9660 000D65A0  7D 89 03 A6 */ mtctr r12
 /* 800D9664 000D65A4  4E 80 04 21 */ bctrl
 /* 800D9668 000D65A8  7F C3 F3 78 */ mr r3, r30
-/* 800D966C 000D65AC  48 00 1F 45 */ bl daAlink_c_NS_procStEscapeInit
+/* 800D966C 000D65AC  48 00 1F 45 */ bl procStEscapeInit__9daAlink_cFv
 /* 800D9670 000D65B0  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 800D9674 000D65B4  60 00 00 08 */ ori r0, r0, 8
 /* 800D9678 000D65B8  90 1E 31 A0 */ stw r0, 0x31a0(r30)
@@ -103,7 +103,7 @@ lbl_800D9680:
 /* 800D96A0 000D65E0  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 800D96A4 000D65E4  7F C3 F3 78 */ mr r3, r30
 /* 800D96A8 000D65E8  38 80 00 01 */ li r4, 1
-/* 800D96AC 000D65EC  4B FE 0A 25 */ bl daAlink_c_NS_checkNextAction
+/* 800D96AC 000D65EC  4B FE 0A 25 */ bl checkNextAction__9daAlink_cFi
 /* 800D96B0 000D65F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800D96B4 000D65F4  40 82 00 0C */ bne lbl_800D96C0
 /* 800D96B8 000D65F8  A8 1E 30 10 */ lha r0, 0x3010(r30)

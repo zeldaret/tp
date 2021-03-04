@@ -59,7 +59,7 @@ lbl_800E32C4:
 /* 800E32FC 000E023C  7F E3 FB 78 */ mr r3, r31
 /* 800E3300 000E0240  38 81 00 38 */ addi r4, r1, 0x38
 /* 800E3304 000E0244  38 A1 00 44 */ addi r5, r1, 0x44
-/* 800E3308 000E0248  4B FF F1 A9 */ bl daAlink_c_NS_commonMagneLineCheck
+/* 800E3308 000E0248  4B FF F1 A9 */ bl commonMagneLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800E330C 000E024C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E3310 000E0250  40 82 00 18 */ bne lbl_800E3328
 /* 800E3314 000E0254  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
@@ -80,7 +80,7 @@ lbl_800E3328:
 lbl_800E334C:
 /* 800E334C 000E028C  7F E3 FB 78 */ mr r3, r31
 /* 800E3350 000E0290  38 80 00 CC */ li r4, 0xcc
-/* 800E3354 000E0294  4B FD EC 19 */ bl daAlink_c_NS_commonProcInit
+/* 800E3354 000E0294  4B FD EC 19 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E3358 000E0298  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E335C 000E029C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E3360 000E02A0  38 63 0F 38 */ addi r3, r3, 0xf38
@@ -106,7 +106,7 @@ lbl_800E334C:
 /* 800E33B0 000E02F0  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800E33B4 000E02F4  7F E3 FB 78 */ mr r3, r31
 /* 800E33B8 000E02F8  38 80 01 15 */ li r4, 0x115
-/* 800E33BC 000E02FC  4B FC 9B C5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800E33BC 000E02FC  4B FC 9B C5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800E33C0 000E0300  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
 /* 800E33C4 000E0304  28 03 01 03 */ cmplwi r3, 0x103
 /* 800E33C8 000E0308  41 82 00 24 */ beq lbl_800E33EC
@@ -116,11 +116,11 @@ lbl_800E334C:
 /* 800E33D8 000E0318  7F E3 FB 78 */ mr r3, r31
 /* 800E33DC 000E031C  38 80 00 00 */ li r4, 0
 /* 800E33E0 000E0320  38 A0 00 01 */ li r5, 1
-/* 800E33E4 000E0324  4B FD DE F9 */ bl daAlink_c_NS_deleteEquipItem
+/* 800E33E4 000E0324  4B FD DE F9 */ bl deleteEquipItem__9daAlink_cFii
 /* 800E33E8 000E0328  48 00 00 0C */ b lbl_800E33F4
 lbl_800E33EC:
 /* 800E33EC 000E032C  7F E3 FB 78 */ mr r3, r31
-/* 800E33F0 000E0330  48 02 D4 51 */ bl daAlink_c_NS_offKandelaarModel
+/* 800E33F0 000E0330  48 02 D4 51 */ bl offKandelaarModel__9daAlink_cFv
 lbl_800E33F4:
 /* 800E33F4 000E0334  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E33F8 000E0338  D0 1F 34 78 */ stfs f0, 0x3478(r31)

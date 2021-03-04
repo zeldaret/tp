@@ -4,11 +4,11 @@
 /* 800CEF7C 000CBEBC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800CEF80 000CBEC0  7C 7F 1B 78 */ mr r31, r3
 /* 800CEF84 000CBEC4  38 80 01 3F */ li r4, 0x13f
-/* 800CEF88 000CBEC8  4B FF 2F E5 */ bl daAlink_c_NS_commonProcInit
+/* 800CEF88 000CBEC8  4B FF 2F E5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800CEF8C 000CBECC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800CEF90 000CBED0  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800CEF94 000CBED4  7F E3 FB 78 */ mr r3, r31
-/* 800CEF98 000CBED8  4B FF FB 5D */ bl daAlink_c_NS_setSubjectMode
+/* 800CEF98 000CBED8  4B FF FB 5D */ bl setSubjectMode__9daAlink_cFv
 /* 800CEF9C 000CBEDC  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 800CEFA0 000CBEE0  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800CEFA4 000CBEE4  41 82 00 24 */ beq lbl_800CEFC8
@@ -18,7 +18,7 @@
 /* 800CEFB4 000CBEF4  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
 /* 800CEFB8 000CBEF8  C0 25 00 88 */ lfs f1, 0x88(r5)
 /* 800CEFBC 000CBEFC  C0 45 00 68 */ lfs f2, 0x68(r5)
-/* 800CEFC0 000CBF00  48 05 A7 19 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 800CEFC0 000CBF00  48 05 A7 19 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
 /* 800CEFC4 000CBF04  48 00 00 20 */ b lbl_800CEFE4
 lbl_800CEFC8:
 /* 800CEFC8 000CBF08  7F E3 FB 78 */ mr r3, r31
@@ -27,7 +27,7 @@ lbl_800CEFC8:
 /* 800CEFD4 000CBF14  38 A5 ED 2C */ addi r5, r5, lbl_8038ED2C@l
 /* 800CEFD8 000CBF18  C0 25 00 90 */ lfs f1, 0x90(r5)
 /* 800CEFDC 000CBF1C  C0 45 00 94 */ lfs f2, 0x94(r5)
-/* 800CEFE0 000CBF20  4B FD E0 01 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800CEFE0 000CBF20  4B FD E0 01 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 lbl_800CEFE4:
 /* 800CEFE4 000CBF24  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800CEFE8 000CBF28  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

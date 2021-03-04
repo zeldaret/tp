@@ -111,7 +111,7 @@ lbl_80206B0C:
 lbl_80206B1C:
 /* 80206B1C 00203A5C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80206B20 00203A60  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 80206B24 00203A64  48 01 56 CD */ bl dMeter2Info_c_NS_decFloatingMessageTimer
+/* 80206B24 00203A64  48 01 56 CD */ bl decFloatingMessageTimer__13dMeter2Info_cFv
 /* 80206B28 00203A68  C3 E2 AD 4C */ lfs f31, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80206B2C 00203A6C  57 E0 04 63 */ rlwinm. r0, r31, 0, 0x11, 0x11
 /* 80206B30 00203A70  40 82 00 38 */ bne lbl_80206B68
@@ -150,7 +150,7 @@ lbl_80206BA4:
 /* 80206BAC 00203AEC  40 82 00 50 */ bne lbl_80206BFC
 /* 80206BB0 00203AF0  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80206BB4 00203AF4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 80206BB8 00203AF8  48 01 56 61 */ bl dMeter2Info_c_NS_resetFloatingMessage
+/* 80206BB8 00203AF8  48 01 56 61 */ bl resetFloatingMessage__13dMeter2Info_cFv
 /* 80206BBC 00203AFC  48 00 00 40 */ b lbl_80206BFC
 lbl_80206BC0:
 /* 80206BC0 00203B00  A8 7E 04 B6 */ lha r3, 0x4b6(r30)

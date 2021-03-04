@@ -3,7 +3,7 @@
 /* 801A5B74 001A2AB4  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801A5B78 001A2AB8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A5B7C 001A2ABC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 801A5B80 001A2AC0  4B FF FB 5D */ bl dScnKy_env_light_c_NS_drawKankyo
+/* 801A5B80 001A2AC0  4B FF FB 5D */ bl drawKankyo__18dScnKy_env_light_cFv
 /* 801A5B84 001A2AC4  38 60 00 01 */ li r3, 1
 /* 801A5B88 001A2AC8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801A5B8C 001A2ACC  7C 08 03 A6 */ mtlr r0

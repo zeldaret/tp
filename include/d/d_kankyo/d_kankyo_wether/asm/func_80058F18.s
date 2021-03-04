@@ -169,10 +169,10 @@ lbl_80059140:
 /* 80059190 000560D0  3C 80 80 05 */ lis r4, HOUSI_EFF@ha
 /*.global HOUSI_EFF*/
 /* 80059194 000560D4  38 84 6E E4 */ addi r4, r4, HOUSI_EFF@l
-/*.global HOUSI_EFF_NS_dtor*/
-/* 80059198 000560D8  3C A0 80 05 */ lis r5, HOUSI_EFF_NS_dtor@ha
-/*.global HOUSI_EFF_NS_dtor*/
-/* 8005919C 000560DC  38 A5 6E A8 */ addi r5, r5, HOUSI_EFF_NS_dtor@l
+/*.global __dt__9HOUSI_EFFFv*/
+/* 80059198 000560D8  3C A0 80 05 */ lis r5, __dt__9HOUSI_EFFFv@ha
+/*.global __dt__9HOUSI_EFFFv*/
+/* 8005919C 000560DC  38 A5 6E A8 */ addi r5, r5, __dt__9HOUSI_EFFFv@l
 /* 800591A0 000560E0  38 C0 00 50 */ li r6, 0x50
 /* 800591A4 000560E4  38 E0 01 2C */ li r7, 0x12c
 /* 800591A8 000560E8  48 30 8B B9 */ bl func_80361D60

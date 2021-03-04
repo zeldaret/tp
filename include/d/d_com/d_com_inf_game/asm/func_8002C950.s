@@ -1,7 +1,7 @@
 /* 8002C950 00029890  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8002C954 00029894  7C 08 02 A6 */ mflr r0
 /* 8002C958 00029898  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8002C95C 0002989C  4B FF EA D9 */ bl dComIfG_play_c_NS_getLayerNo_common_common
+/* 8002C95C 0002989C  4B FF EA D9 */ bl getLayerNo_common_common__14dComIfG_play_cFPCcii
 /* 8002C960 000298A0  2C 03 00 00 */ cmpwi r3, 0
 /* 8002C964 000298A4  40 80 00 08 */ bge lbl_8002C96C
 /* 8002C968 000298A8  38 60 00 00 */ li r3, 0

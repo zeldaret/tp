@@ -7,7 +7,7 @@
 /* 800105E0 0000D520  7C 9D 23 78 */ mr r29, r4
 /* 800105E4 0000D524  7C BE 2B 78 */ mr r30, r5
 /* 800105E8 0000D528  7C DF 33 78 */ mr r31, r6
-/* 800105EC 0000D52C  4B FF F5 D5 */ bl mDoExt_morf_c_NS_frameUpdate
+/* 800105EC 0000D52C  4B FF F5 D5 */ bl frameUpdate__13mDoExt_morf_cFv
 /* 800105F0 0000D530  80 7C 00 4C */ lwz r3, 0x4c(r28)
 /* 800105F4 0000D534  28 03 00 00 */ cmplwi r3, 0
 /* 800105F8 0000D538  41 82 00 48 */ beq lbl_80010640
@@ -18,7 +18,7 @@
 /* 8001060C 0000D54C  41 82 00 34 */ beq lbl_80010640
 /* 80010610 0000D550  C0 3C 00 1C */ lfs f1, 0x1c(r28)
 /* 80010614 0000D554  C0 5C 00 18 */ lfs f2, 0x18(r28)
-/* 80010618 0000D558  48 2A E8 BD */ bl Z2SoundObjAnime_NS_updateAnime
+/* 80010618 0000D558  48 2A E8 BD */ bl updateAnime__15Z2SoundObjAnimeFff
 /* 8001061C 0000D55C  80 7C 00 4C */ lwz r3, 0x4c(r28)
 /* 80010620 0000D560  7F C4 F3 78 */ mr r4, r30
 /* 80010624 0000D564  7F E5 FB 78 */ mr r5, r31

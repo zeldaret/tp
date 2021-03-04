@@ -3,7 +3,7 @@
 /* 800722A8 0006F1E8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800722AC 0006F1EC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800722B0 0006F1F0  7C 7F 1B 78 */ mr r31, r3
-/* 800722B4 0006F1F4  4B FF F7 E5 */ bl dAttention_c_NS_chaseAttention
+/* 800722B4 0006F1F4  4B FF F7 E5 */ bl chaseAttention__12dAttention_cFv
 /* 800722B8 0006F1F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800722BC 0006F1FC  41 82 00 18 */ beq lbl_800722D4
 /* 800722C0 0006F200  80 1F 03 34 */ lwz r0, 0x334(r31)

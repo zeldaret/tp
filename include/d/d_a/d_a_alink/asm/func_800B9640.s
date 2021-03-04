@@ -19,7 +19,7 @@ lbl_800B9664:
 /* 800B9684 000B65C4  90 03 05 7C */ stw r0, 0x57c(r3)
 /* 800B9688 000B65C8  A0 83 2F DE */ lhz r4, 0x2fde(r3)
 /* 800B968C 000B65CC  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800B9690 000B65D0  48 00 00 15 */ bl daAlink_c_NS_itemUnequip
+/* 800B9690 000B65D0  48 00 00 15 */ bl itemUnequip__9daAlink_cFUsf
 lbl_800B9694:
 /* 800B9694 000B65D4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800B9698 000B65D8  7C 08 03 A6 */ mtlr r0

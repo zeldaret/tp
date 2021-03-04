@@ -124,7 +124,7 @@ lbl_8020C928:
 /* 8020CA28 00209968  38 A1 00 20 */ addi r5, r1, 0x20
 /* 8020CA2C 0020996C  38 C1 00 1C */ addi r6, r1, 0x1c
 /* 8020CA30 00209970  38 E1 00 18 */ addi r7, r1, 0x18
-/* 8020CA34 00209974  48 00 7B F9 */ bl dMeter2Draw_c_NS_drawPikariHakusha
+/* 8020CA34 00209974  48 00 7B F9 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUcHakusha
 /* 8020CA38 00209978  48 00 00 50 */ b lbl_8020CA88
 lbl_8020CA3C:
 /* 8020CA3C 0020997C  80 1E 04 4C */ lwz r0, 0x44c(r30)
@@ -145,14 +145,14 @@ lbl_8020CA3C:
 /* 8020CA78 002099B8  38 A1 00 10 */ addi r5, r1, 0x10
 /* 8020CA7C 002099BC  38 C1 00 0C */ addi r6, r1, 0xc
 /* 8020CA80 002099C0  38 E1 00 08 */ addi r7, r1, 8
-/* 8020CA84 002099C4  48 00 7B A9 */ bl dMeter2Draw_c_NS_drawPikariHakusha
+/* 8020CA84 002099C4  48 00 7B A9 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUcHakusha
 lbl_8020CA88:
 /* 8020CA88 002099C8  3B 7B 00 01 */ addi r27, r27, 1
 /* 8020CA8C 002099CC  3B 39 00 04 */ addi r25, r25, 4
 /* 8020CA90 002099D0  3B 18 00 0C */ addi r24, r24, 0xc
 lbl_8020CA94:
 /* 8020CA94 002099D4  7F 43 D3 78 */ mr r3, r26
-/* 8020CA98 002099D8  48 00 09 E9 */ bl dMeterHakusha_c_NS_getHakushaNum
+/* 8020CA98 002099D8  48 00 09 E9 */ bl getHakushaNum__15dMeterHakusha_cFv
 /* 8020CA9C 002099DC  7C 1B 18 00 */ cmpw r27, r3
 /* 8020CAA0 002099E0  41 80 FE 44 */ blt lbl_8020C8E4
 /* 8020CAA4 002099E4  39 61 00 60 */ addi r11, r1, 0x60

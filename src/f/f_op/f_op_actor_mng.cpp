@@ -70,7 +70,7 @@ void LineCross__4cBgSFP11cBgS_LinChk(void);
 void cLib_chaseAngleS__FPsss(void);
 void cLib_memSet__FPviUl(void);
 void cLib_targetAngleY__FPC3VecPC3Vec(void);
-void cM3dGPla_NS_dtor(void);
+void __dt__8cM3dGPlaFv(void);
 void cM_atan2s__Fff(void);
 void cM_rndFX__Ff(void);
 void cM_rndF__Ff(void);
@@ -82,15 +82,15 @@ void __dt__11dBgS_LinChkFv(void);
 void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo(void);
 void RoofChk__4dBgSFP12dBgS_RoofChk(void);
 void SplGrpChk__4dBgSFP14dBgS_SplGrpChk(void);
-void dBgS_ObjGndChk_NS_dtor(void);
+void __dt__14dBgS_ObjGndChkFv(void);
 void dBgS_ObjLinChk(void);
-void dBgS_ObjRoofChk_NS_dtor(void);
+void __dt__15dBgS_ObjRoofChkFv(void);
 void dBgS_RoofChk(void);
 void __dt__12dBgS_RoofChkFv(void);
 void Set__14dBgS_SplGrpChkFR4cXyzf(void);
 void __dt__14dBgS_SplGrpChkFv(void);
 void dBgS_WtrChk(void);
-void dBgS_WtrChk_NS_dtor(void);
+void __dt__11dBgS_WtrChkFv(void);
 void dCam_getCamera(void);
 void getEventIdx__16dEvent_manager_cFPCcUcl_X1_(void);
 void getEventIdx__16dEvent_manager_cFPCcUcl_X2_(void);
@@ -225,7 +225,7 @@ void func_8001E138(void);
 void func_80361C24(void);
 void get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz(void);
 void isHeart__FUc(void);
-void l_HIO_NS_dtor(void);
+void __dt__5l_HIOFv(void);
 s32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 size, u32 alignment);
 void mDoMtx_YrotS(void);
@@ -1466,7 +1466,7 @@ extern "C" {
 
 // __dt__8cM3dGPlaFv
 // cM3dGPla::~cM3dGPla(void)
-asm void cM3dGPla_NS_dtor(void) {
+asm void __dt__8cM3dGPlaFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001DB90.s"
 }
@@ -1521,28 +1521,28 @@ asm void func_8001DE14(void) {
 
 // __dt__11dBgS_WtrChkFv
 // dBgS_WtrChk::~dBgS_WtrChk(void)
-asm void dBgS_WtrChk_NS_dtor(void) {
+asm void __dt__11dBgS_WtrChkFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001DF30.s"
 }
 
 // __dt__15dBgS_ObjRoofChkFv
 // dBgS_ObjRoofChk::~dBgS_ObjRoofChk(void)
-asm void dBgS_ObjRoofChk_NS_dtor(void) {
+asm void __dt__15dBgS_ObjRoofChkFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001DFA8.s"
 }
 
 // __dt__14dBgS_ObjGndChkFv
 // dBgS_ObjGndChk::~dBgS_ObjGndChk(void)
-asm void dBgS_ObjGndChk_NS_dtor(void) {
+asm void __dt__14dBgS_ObjGndChkFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E020.s"
 }
 
 // __dt__5l_HIOFv
 // l_HIO::~l_HIO(void)
-asm void l_HIO_NS_dtor(void) {
+asm void __dt__5l_HIOFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E098.s"
 }

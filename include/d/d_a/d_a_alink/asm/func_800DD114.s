@@ -5,11 +5,11 @@
 /* 800DD124 000DA064  48 28 50 B5 */ bl _savegpr_28
 /* 800DD128 000DA068  7C 7C 1B 78 */ mr r28, r3
 /* 800DD12C 000DA06C  7C 9D 23 78 */ mr r29, r4
-/* 800DD130 000DA070  4B FF F8 FD */ bl daAlink_c_NS_checkWoodShieldEquipNotIronBall
+/* 800DD130 000DA070  4B FF F8 FD */ bl checkWoodShieldEquipNotIronBall__9daAlink_cCFv
 /* 800DD134 000DA074  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD138 000DA078  41 82 00 20 */ beq lbl_800DD158
 /* 800DD13C 000DA07C  7F 83 E3 78 */ mr r3, r28
-/* 800DD140 000DA080  4B FF A6 89 */ bl daAlink_c_NS_checkMagicArmorNoDamage
+/* 800DD140 000DA080  4B FF A6 89 */ bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 800DD144 000DA084  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD148 000DA088  40 82 00 10 */ bne lbl_800DD158
 /* 800DD14C 000DA08C  3B E0 00 29 */ li r31, 0x29

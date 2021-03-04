@@ -65,7 +65,7 @@ lbl_8019EB58:
 /* 8019EB9C 0019BADC  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019EBA0 0019BAE0  39 00 00 00 */ li r8, 0
 /* 8019EBA4 0019BAE4  39 20 FF FF */ li r9, -1
-/* 8019EBA8 0019BAE8  4B E6 EA 95 */ bl mDoExt_btkAnm_NS_init
+/* 8019EBA8 0019BAE8  4B E6 EA 95 */ bl init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss
 lbl_8019EBAC:
 /* 8019EBAC 0019BAEC  4B E7 06 49 */ bl mDoExt_restoreCurrentHeap
 /* 8019EBB0 0019BAF0  80 7D 0F 38 */ lwz r3, 0xf38(r29)

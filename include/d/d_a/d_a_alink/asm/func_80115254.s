@@ -8,7 +8,7 @@
 /* 80115270 001121B0  2C 03 00 00 */ cmpwi r3, 0
 /* 80115274 001121B4  40 82 00 1C */ bne lbl_80115290
 /* 80115278 001121B8  7F E3 FB 78 */ mr r3, r31
-/* 8011527C 001121BC  4B FA 36 B5 */ bl daAlink_c_NS_checkReadyItem
+/* 8011527C 001121BC  4B FA 36 B5 */ bl checkReadyItem__9daAlink_cFv
 /* 80115280 001121C0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80115284 001121C4  41 82 00 0C */ beq lbl_80115290
 /* 80115288 001121C8  38 00 00 01 */ li r0, 1
@@ -27,7 +27,7 @@ lbl_80115290:
 /* 801152B8 001121F8  2C 03 00 00 */ cmpwi r3, 0
 /* 801152BC 001121FC  41 82 00 10 */ beq lbl_801152CC
 /* 801152C0 00112200  7F E3 FB 78 */ mr r3, r31
-/* 801152C4 00112204  48 00 04 B9 */ bl daAlink_c_NS_procIronBallThrowInit
+/* 801152C4 00112204  48 00 04 B9 */ bl procIronBallThrowInit__9daAlink_cFv
 /* 801152C8 00112208  48 00 01 18 */ b lbl_801153E0
 lbl_801152CC:
 /* 801152CC 0011220C  7F C3 F3 78 */ mr r3, r30
@@ -43,18 +43,18 @@ lbl_801152CC:
 /* 801152F4 00112234  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
 /* 801152F8 00112238  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 801152FC 0011223C  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 80115300 00112240  4B F9 7C E1 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80115300 00112240  4B F9 7C E1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 lbl_80115304:
 /* 80115304 00112244  7F E3 FB 78 */ mr r3, r31
 /* 80115308 00112248  38 80 01 63 */ li r4, 0x163
-/* 8011530C 0011224C  4B F9 71 45 */ bl daAlink_c_NS_getMainBckData
+/* 8011530C 0011224C  4B F9 71 45 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 80115310 00112250  A0 83 00 02 */ lhz r4, 2(r3)
 /* 80115314 00112254  7F E3 FB 78 */ mr r3, r31
 /* 80115318 00112258  3C A0 80 39 */ lis r5, lbl_8038EA70@ha
 /* 8011531C 0011225C  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
 /* 80115320 00112260  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 80115324 00112264  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 80115328 00112268  4B F9 80 81 */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 80115328 00112268  4B F9 80 81 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
 /* 8011532C 0011226C  38 00 00 02 */ li r0, 2
 /* 80115330 00112270  B0 1F 30 18 */ sth r0, 0x3018(r31)
 /* 80115334 00112274  7F E3 FB 78 */ mr r3, r31
@@ -85,7 +85,7 @@ lbl_80115374:
 /* 80115390 001122D0  2C 03 00 00 */ cmpwi r3, 0
 /* 80115394 001122D4  41 82 00 10 */ beq lbl_801153A4
 /* 80115398 001122D8  7F E3 FB 78 */ mr r3, r31
-/* 8011539C 001122DC  48 00 03 E1 */ bl daAlink_c_NS_procIronBallThrowInit
+/* 8011539C 001122DC  48 00 03 E1 */ bl procIronBallThrowInit__9daAlink_cFv
 /* 801153A0 001122E0  48 00 00 40 */ b lbl_801153E0
 lbl_801153A4:
 /* 801153A4 001122E4  7F C3 F3 78 */ mr r3, r30
@@ -103,7 +103,7 @@ lbl_801153A4:
 lbl_801153D4:
 /* 801153D4 00112314  7F E3 FB 78 */ mr r3, r31
 /* 801153D8 00112318  38 80 00 00 */ li r4, 0
-/* 801153DC 0011231C  4B FA 1E 11 */ bl daAlink_c_NS_cancelUpperItemReadyAnime
+/* 801153DC 0011231C  4B FA 1E 11 */ bl cancelUpperItemReadyAnime__9daAlink_cFi
 lbl_801153E0:
 /* 801153E0 00112320  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801153E4 00112324  83 C1 00 08 */ lwz r30, 8(r1)

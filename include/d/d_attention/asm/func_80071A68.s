@@ -4,7 +4,7 @@
 /* 80071A74 0006E9B4  38 00 FF FF */ li r0, -1
 /* 80071A78 0006E9B8  90 03 00 04 */ stw r0, 4(r3)
 /* 80071A7C 0006E9BC  38 80 FF FF */ li r4, -1
-/* 80071A80 0006E9C0  4B FF F7 C1 */ bl dAttention_c_NS_initList
+/* 80071A80 0006E9C0  4B FF F7 C1 */ bl initList__12dAttention_cFUl
 /* 80071A84 0006E9C4  38 60 00 00 */ li r3, 0
 /* 80071A88 0006E9C8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80071A8C 0006E9CC  7C 08 03 A6 */ mtlr r0

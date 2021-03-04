@@ -7,11 +7,11 @@
 /* 800B9964 000B68A4  80 03 31 A0 */ lwz r0, 0x31a0(r3)
 /* 800B9968 000B68A8  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 800B996C 000B68AC  41 82 03 A4 */ beq lbl_800B9D10
-/* 800B9970 000B68B0  4B FF F9 D1 */ bl daAlink_c_NS_checkEquipAnime
+/* 800B9970 000B68B0  4B FF F9 D1 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800B9974 000B68B4  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9978 000B68B8  40 82 03 98 */ bne lbl_800B9D10
 /* 800B997C 000B68BC  7F C3 F3 78 */ mr r3, r30
-/* 800B9980 000B68C0  48 02 6B 2D */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800B9980 000B68C0  48 02 6B 2D */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800B9984 000B68C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9988 000B68C8  40 82 03 88 */ bne lbl_800B9D10
 /* 800B998C 000B68CC  38 60 00 00 */ li r3, 0
@@ -30,7 +30,7 @@ lbl_800B99AC:
 /* 800B99BC 000B68FC  88 1F 00 14 */ lbz r0, 0x14(r31)
 /* 800B99C0 000B6900  28 00 00 FF */ cmplwi r0, 0xff
 /* 800B99C4 000B6904  41 82 00 88 */ beq lbl_800B9A4C
-/* 800B99C8 000B6908  48 00 6B CD */ bl daAlink_c_NS_checkNotBattleStage
+/* 800B99C8 000B6908  48 00 6B CD */ bl checkNotBattleStage__9daAlink_cFv
 /* 800B99CC 000B690C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B99D0 000B6910  40 82 00 7C */ bne lbl_800B9A4C
 /* 800B99D4 000B6914  7F C3 F3 78 */ mr r3, r30
@@ -63,7 +63,7 @@ lbl_800B9A08:
 lbl_800B9A3C:
 /* 800B9A3C 000B697C  7F C3 F3 78 */ mr r3, r30
 /* 800B9A40 000B6980  38 80 00 01 */ li r4, 1
-/* 800B9A44 000B6984  4B FF F9 B1 */ bl daAlink_c_NS_swordEquip
+/* 800B9A44 000B6984  4B FF F9 B1 */ bl swordEquip__9daAlink_cFi
 /* 800B9A48 000B6988  48 00 02 C8 */ b lbl_800B9D10
 lbl_800B9A4C:
 /* 800B9A4C 000B698C  7F C3 F3 78 */ mr r3, r30
@@ -92,7 +92,7 @@ lbl_800B9A4C:
 /* 800B9AA8 000B69E8  41 82 00 14 */ beq lbl_800B9ABC
 /* 800B9AAC 000B69EC  7F C3 F3 78 */ mr r3, r30
 /* 800B9AB0 000B69F0  38 80 01 05 */ li r4, 0x105
-/* 800B9AB4 000B69F4  4B FF FB 8D */ bl daAlink_c_NS_itemEquip
+/* 800B9AB4 000B69F4  4B FF FB 8D */ bl itemEquip__9daAlink_cFUs
 /* 800B9AB8 000B69F8  48 00 02 58 */ b lbl_800B9D10
 lbl_800B9ABC:
 /* 800B9ABC 000B69FC  3B 80 00 00 */ li r28, 0
@@ -101,7 +101,7 @@ lbl_800B9ABC:
 lbl_800B9AC8:
 /* 800B9AC8 000B6A08  7F C3 F3 78 */ mr r3, r30
 /* 800B9ACC 000B6A0C  7F 84 E3 78 */ mr r4, r28
-/* 800B9AD0 000B6A10  48 00 6F CD */ bl daAlink_c_NS_checkNewItemChange
+/* 800B9AD0 000B6A10  48 00 6F CD */ bl checkNewItemChange__9daAlink_cFUc
 /* 800B9AD4 000B6A14  7C 7B 1B 79 */ or. r27, r3, r3
 /* 800B9AD8 000B6A18  41 82 00 34 */ beq lbl_800B9B0C
 /* 800B9ADC 000B6A1C  7F C3 F3 78 */ mr r3, r30
@@ -114,7 +114,7 @@ lbl_800B9AC8:
 /* 800B9AF8 000B6A38  7F C3 F3 78 */ mr r3, r30
 /* 800B9AFC 000B6A3C  7F 84 E3 78 */ mr r4, r28
 /* 800B9B00 000B6A40  7F 65 DB 78 */ mr r5, r27
-/* 800B9B04 000B6A44  48 00 6C 79 */ bl daAlink_c_NS_changeItemTriggerKeepProc
+/* 800B9B04 000B6A44  48 00 6C 79 */ bl changeItemTriggerKeepProc__9daAlink_cFUci
 /* 800B9B08 000B6A48  48 00 02 0C */ b lbl_800B9D14
 lbl_800B9B0C:
 /* 800B9B0C 000B6A4C  3B 9C 00 01 */ addi r28, r28, 1
@@ -137,7 +137,7 @@ lbl_800B9B10:
 /* 800B9B4C 000B6A8C  54 00 07 FF */ clrlwi. r0, r0, 0x1f
 /* 800B9B50 000B6A90  41 82 00 10 */ beq lbl_800B9B60
 /* 800B9B54 000B6A94  7F C3 F3 78 */ mr r3, r30
-/* 800B9B58 000B6A98  48 05 6C E9 */ bl daAlink_c_NS_offKandelaarModel
+/* 800B9B58 000B6A98  48 05 6C E9 */ bl offKandelaarModel__9daAlink_cFv
 /* 800B9B5C 000B6A9C  48 00 01 B4 */ b lbl_800B9D10
 lbl_800B9B60:
 /* 800B9B60 000B6AA0  A8 1E 30 F4 */ lha r0, 0x30f4(r30)
@@ -152,12 +152,12 @@ lbl_800B9B60:
 /* 800B9B84 000B6AC4  70 00 04 02 */ andi. r0, r0, 0x402
 /* 800B9B88 000B6AC8  40 82 00 10 */ bne lbl_800B9B98
 /* 800B9B8C 000B6ACC  7F C3 F3 78 */ mr r3, r30
-/* 800B9B90 000B6AD0  48 01 CD FD */ bl daAlink_c_NS_procSwordUnequipSpInit
+/* 800B9B90 000B6AD0  48 01 CD FD */ bl procSwordUnequipSpInit__9daAlink_cFv
 /* 800B9B94 000B6AD4  48 00 01 80 */ b lbl_800B9D14
 lbl_800B9B98:
 /* 800B9B98 000B6AD8  7F C3 F3 78 */ mr r3, r30
 /* 800B9B9C 000B6ADC  38 80 00 01 */ li r4, 1
-/* 800B9BA0 000B6AE0  4B FF FC 9D */ bl daAlink_c_NS_allUnequip
+/* 800B9BA0 000B6AE0  4B FF FC 9D */ bl allUnequip__9daAlink_cFi
 /* 800B9BA4 000B6AE4  48 00 01 6C */ b lbl_800B9D10
 lbl_800B9BA8:
 /* 800B9BA8 000B6AE8  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
@@ -174,7 +174,7 @@ lbl_800B9BA8:
 /* 800B9BD4 000B6B14  28 03 00 00 */ cmplwi r3, 0
 /* 800B9BD8 000B6B18  40 82 00 6C */ bne lbl_800B9C44
 /* 800B9BDC 000B6B1C  7F C3 F3 78 */ mr r3, r30
-/* 800B9BE0 000B6B20  4B FF F6 75 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800B9BE0 000B6B20  4B FF F6 75 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800B9BE4 000B6B24  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9BE8 000B6B28  41 82 00 5C */ beq lbl_800B9C44
 /* 800B9BEC 000B6B2C  80 1E 05 78 */ lwz r0, 0x578(r30)
@@ -197,7 +197,7 @@ lbl_800B9C1C:
 /* 800B9C24 000B6B64  41 80 FF DC */ blt lbl_800B9C00
 /* 800B9C28 000B6B68  7F C3 F3 78 */ mr r3, r30
 /* 800B9C2C 000B6B6C  38 80 00 48 */ li r4, 0x48
-/* 800B9C30 000B6B70  4B FF FA 11 */ bl daAlink_c_NS_itemEquip
+/* 800B9C30 000B6B70  4B FF FA 11 */ bl itemEquip__9daAlink_cFUs
 /* 800B9C34 000B6B74  80 1E 05 74 */ lwz r0, 0x574(r30)
 /* 800B9C38 000B6B78  60 00 00 40 */ ori r0, r0, 0x40
 /* 800B9C3C 000B6B7C  90 1E 05 74 */ stw r0, 0x574(r30)
@@ -224,7 +224,7 @@ lbl_800B9C44:
 /* 800B9C8C 000B6BCC  41 82 00 84 */ beq lbl_800B9D10
 lbl_800B9C90:
 /* 800B9C90 000B6BD0  7F C3 F3 78 */ mr r3, r30
-/* 800B9C94 000B6BD4  48 05 BF 8D */ bl daAlink_c_NS_checkEventRun
+/* 800B9C94 000B6BD4  48 05 BF 8D */ bl checkEventRun__9daAlink_cCFv
 /* 800B9C98 000B6BD8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9C9C 000B6BDC  41 82 00 2C */ beq lbl_800B9CC8
 /* 800B9CA0 000B6BE0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -250,12 +250,12 @@ lbl_800B9CC8:
 /* 800B9CEC 000B6C2C  41 82 00 24 */ beq lbl_800B9D10
 /* 800B9CF0 000B6C30  7F C3 F3 78 */ mr r3, r30
 /* 800B9CF4 000B6C34  A0 9E 2F DC */ lhz r4, 0x2fdc(r30)
-/* 800B9CF8 000B6C38  48 00 65 11 */ bl daAlink_c_NS_checkItemSetButton
+/* 800B9CF8 000B6C38  48 00 65 11 */ bl checkItemSetButton__9daAlink_cFi
 /* 800B9CFC 000B6C3C  2C 03 00 02 */ cmpwi r3, 2
 /* 800B9D00 000B6C40  40 82 00 10 */ bne lbl_800B9D10
 /* 800B9D04 000B6C44  7F C3 F3 78 */ mr r3, r30
 /* 800B9D08 000B6C48  38 80 00 01 */ li r4, 1
-/* 800B9D0C 000B6C4C  4B FF FB 31 */ bl daAlink_c_NS_allUnequip
+/* 800B9D0C 000B6C4C  4B FF FB 31 */ bl allUnequip__9daAlink_cFi
 lbl_800B9D10:
 /* 800B9D10 000B6C50  38 60 00 00 */ li r3, 0
 lbl_800B9D14:

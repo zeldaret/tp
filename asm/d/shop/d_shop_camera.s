@@ -119,10 +119,10 @@ lbl_80195DDC:
 /* 80195E54 00192D94  7C 63 02 14 */	add r3, r3, r0
 /* 80195E58 00192D98  83 E3 5D 74 */	lwz r31, 0x5d74(r3)
 /* 80195E5C 00192D9C  38 7F 02 48 */	addi r3, r31, 0x248
-/* 80195E60 00192DA0  4B FC B6 89 */	bl dCamera_c_NS_Stay
+/* 80195E60 00192DA0  4B FC B6 89 */	bl Stay__9dCamera_cFv
 /* 80195E64 00192DA4  38 7F 02 48 */	addi r3, r31, 0x248
 /* 80195E68 00192DA8  38 80 00 01 */	li r4, 1
-/* 80195E6C 00192DAC  4B FC D1 A1 */	bl dCamera_c_NS_SetTrimSize
+/* 80195E6C 00192DAC  4B FC D1 A1 */	bl SetTrimSize__9dCamera_cFl
 /* 80195E70 00192DB0  A8 1B 00 D4 */	lha r0, 0xd4(r27)
 /* 80195E74 00192DB4  2C 00 00 00 */	cmpwi r0, 0
 /* 80195E78 00192DB8  41 81 00 90 */	bgt lbl_80195F08
@@ -433,7 +433,7 @@ lbl_80196298:
 /* 801962D0 00193210  38 A1 00 10 */	addi r5, r1, 0x10
 /* 801962D4 00193214  C0 3B 00 94 */	lfs f1, 0x94(r27)
 /* 801962D8 00193218  38 C0 00 00 */	li r6, 0
-/* 801962DC 0019321C  4B FE A8 05 */	bl dCamera_c_NS_Set_X1_
+/* 801962DC 0019321C  4B FE A8 05 */	bl Set__9dCamera_cF4cXyz4cXyzfs
 /* 801962E0 00193220  38 60 00 01 */	li r3, 1
 /* 801962E4 00193224  E3 E1 00 A8 */	psq_l f31, 168(r1), 0, qr0
 /* 801962E8 00193228  CB E1 00 A0 */	lfd f31, 0xa0(r1)
@@ -476,7 +476,7 @@ Save__16ShopCam_action_cFv:
 /* 80196370 001932B0  38 00 00 02 */	li r0, 2
 /* 80196374 001932B4  B0 03 00 D8 */	sth r0, 0xd8(r3)
 /* 80196378 001932B8  4B FE B2 C9 */	bl dCam_getBody
-/* 8019637C 001932BC  4B FE A6 C5 */	bl dCamera_c_NS_EventRecoverNotime
+/* 8019637C 001932BC  4B FE A6 C5 */	bl EventRecoverNotime__9dCamera_cFv
 /* 80196380 001932C0  3C 60 80 3A */	lis r3, lbl_803A2180@ha
 /* 80196384 001932C4  38 83 21 80 */	addi r4, r3, lbl_803A2180@l
 /* 80196388 001932C8  80 64 00 00 */	lwz r3, 0(r4)
@@ -524,9 +524,9 @@ Save__16ShopCam_action_cFv:
 /* 80196430 00193370  38 A1 00 20 */	addi r5, r1, 0x20
 /* 80196434 00193374  C0 3E 00 BC */	lfs f1, 0xbc(r30)
 /* 80196438 00193378  38 C0 00 00 */	li r6, 0
-/* 8019643C 0019337C  4B FE A6 A5 */	bl dCamera_c_NS_Set_X1_
+/* 8019643C 0019337C  4B FE A6 A5 */	bl Set__9dCamera_cF4cXyz4cXyzfs
 /* 80196440 00193380  38 7F 02 48 */	addi r3, r31, 0x248
-/* 80196444 00193384  4B FC B0 A5 */	bl dCamera_c_NS_Stay
+/* 80196444 00193384  4B FC B0 A5 */	bl Stay__9dCamera_cFv
 /* 80196448 00193388  C0 1E 00 98 */	lfs f0, 0x98(r30)
 /* 8019644C 0019338C  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80196450 00193390  C0 1E 00 9C */	lfs f0, 0x9c(r30)
@@ -544,7 +544,7 @@ Save__16ShopCam_action_cFv:
 /* 80196480 001933C0  38 A1 00 08 */	addi r5, r1, 8
 /* 80196484 001933C4  C0 3E 00 BC */	lfs f1, 0xbc(r30)
 /* 80196488 001933C8  38 C0 00 00 */	li r6, 0
-/* 8019648C 001933CC  4B FE A7 15 */	bl dCamera_c_NS_Reset
+/* 8019648C 001933CC  4B FE A7 15 */	bl Reset__9dCamera_cF4cXyz4cXyzfs
 /* 80196490 001933D0  3C 60 80 3A */	lis r3, lbl_803A2180@ha
 /* 80196494 001933D4  38 83 21 80 */	addi r4, r3, lbl_803A2180@l
 /* 80196498 001933D8  80 64 00 00 */	lwz r3, 0(r4)

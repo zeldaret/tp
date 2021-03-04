@@ -13,7 +13,7 @@
 /* 800A0898 0009D7D8  41 82 00 88 */	beq lbl_800A0920
 /* 800A089C 0009D7DC  AB FD 00 08 */	lha r31, 8(r29)
 /* 800A08A0 0009D7E0  7F A3 EB 78 */	mr r3, r29
-/* 800A08A4 0009D7E4  48 03 BC A5 */	bl daAlink_c_NS_checkEnemyGroup
+/* 800A08A4 0009D7E4  48 03 BC A5 */	bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 800A08A8 0009D7E8  2C 03 00 00 */	cmpwi r3, 0
 /* 800A08AC 0009D7EC  41 82 00 24 */	beq lbl_800A08D0
 /* 800A08B0 0009D7F0  C0 1D 05 38 */	lfs f0, 0x538(r29)

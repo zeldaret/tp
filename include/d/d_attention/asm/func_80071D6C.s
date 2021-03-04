@@ -7,7 +7,7 @@
 /* 80071D84 0006ECC4  7C 9F 23 78 */ mr r31, r4
 /* 80071D88 0006ECC8  7F E3 FB 78 */ mr r3, r31
 /* 80071D8C 0006ECCC  7F C4 F3 78 */ mr r4, r30
-/* 80071D90 0006ECD0  4B FF FF 31 */ bl dAttention_c_NS_EnemyDistance
+/* 80071D90 0006ECD0  4B FF FF 31 */ bl EnemyDistance__12dAttention_cFP10fopAc_ac_c
 /* 80071D94 0006ECD4  C0 02 8C 50 */ lfs f0, lbl_80452650-_SDA2_BASE_(r2)
 /* 80071D98 0006ECD8  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80071D9C 0006ECDC  40 80 00 0C */ bge lbl_80071DA8

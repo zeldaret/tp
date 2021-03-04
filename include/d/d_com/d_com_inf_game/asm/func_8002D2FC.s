@@ -86,7 +86,7 @@ lbl_8002D430:
 /* 8002D43C 0002A37C  28 03 00 00 */ cmplwi r3, 0
 /* 8002D440 0002A380  41 82 00 0C */ beq lbl_8002D44C
 /* 8002D444 0002A384  38 81 00 08 */ addi r4, r1, 8
-/* 8002D448 0002A388  48 09 0A 01 */ bl daAlink_c_NS_setLastSceneMode
+/* 8002D448 0002A388  48 09 0A 01 */ bl setLastSceneMode__9daAlink_cFPUl
 lbl_8002D44C:
 /* 8002D44C 0002A38C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8002D450 0002A390  38 63 01 88 */ addi r3, r3, lbl_80430188@l
@@ -108,7 +108,7 @@ lbl_8002D44C:
 /* 8002D490 0002A3D0  3C 80 80 38 */ lis r4, lbl_80378F38@ha
 /* 8002D494 0002A3D4  38 84 8F 38 */ addi r4, r4, lbl_80378F38@l
 /* 8002D498 0002A3D8  38 84 01 51 */ addi r4, r4, 0x151
-/* 8002D49C 0002A3DC  48 1F 0D F5 */ bl dMeter2Info_c_NS_setSaveStageName
+/* 8002D49C 0002A3DC  48 1F 0D F5 */ bl setSaveStageName__13dMeter2Info_cFPCc
 lbl_8002D4A0:
 /* 8002D4A0 0002A3E0  2C 1E 00 02 */ cmpwi r30, 2
 /* 8002D4A4 0002A3E4  41 82 00 34 */ beq lbl_8002D4D8

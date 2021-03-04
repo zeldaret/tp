@@ -24,7 +24,7 @@ lbl_80037D34:
 /* 80037D44 00034C84  B0 1F 06 BE */	sth r0, 0x6be(r31)
 /* 80037D48 00034C88  38 7F 05 EC */	addi r3, r31, 0x5ec
 /* 80037D4C 00034C8C  38 80 00 00 */	li r4, 0
-/* 80037D50 00034C90  48 28 D4 DD */	bl Z2CreatureRide_NS_setLinkRiding
+/* 80037D50 00034C90  48 28 D4 DD */	bl setLinkRiding__14Z2CreatureRideFb
 /* 80037D54 00034C94  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80037D58 00034C98  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80037D5C 00034C9C  7C 08 03 A6 */	mtlr r0

@@ -207,14 +207,14 @@ lbl_801A557C:
 /* 801A5594 001A24D4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A5598 001A24D8  98 03 13 0B */ stb r0, 0x130b(r3)
 /* 801A559C 001A24DC  7F E3 FB 78 */ mr r3, r31
-/* 801A55A0 001A24E0  4B FF 9F 5D */ bl dScnKy_env_light_c_NS_setDaytime
+/* 801A55A0 001A24E0  4B FF 9F 5D */ bl setDaytime__18dScnKy_env_light_cFv
 /* 801A55A4 001A24E4  4B EB 4D 9D */ bl dKyw_wether_proc
 /* 801A55A8 001A24E8  7F E3 FB 78 */ mr r3, r31
-/* 801A55AC 001A24EC  4B FF F8 E5 */ bl dScnKy_env_light_c_NS_CalcTevColor
+/* 801A55AC 001A24EC  4B FF F8 E5 */ bl CalcTevColor__18dScnKy_env_light_cFv
 /* 801A55B0 001A24F0  7F E3 FB 78 */ mr r3, r31
-/* 801A55B4 001A24F4  4B FF F9 71 */ bl dScnKy_env_light_c_NS_Sndpos
+/* 801A55B4 001A24F4  4B FF F9 71 */ bl Sndpos__18dScnKy_env_light_cFv
 /* 801A55B8 001A24F8  7F E3 FB 78 */ mr r3, r31
-/* 801A55BC 001A24FC  4B FF F9 A9 */ bl dScnKy_env_light_c_NS_Eflight_flush_proc
+/* 801A55BC 001A24FC  4B FF F9 A9 */ bl Eflight_flush_proc__18dScnKy_env_light_cFv
 /* 801A55C0 001A2500  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A55C4 001A2504  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801A55C8 001A2508  80 63 5D AC */ lwz r3, 0x5dac(r3)

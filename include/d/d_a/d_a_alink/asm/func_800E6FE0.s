@@ -21,7 +21,7 @@
 lbl_800E7030:
 /* 800E7030 000E3F70  7F C3 F3 78 */ mr r3, r30
 /* 800E7034 000E3F74  38 80 00 00 */ li r4, 0
-/* 800E7038 000E3F78  4B FD 30 99 */ bl daAlink_c_NS_checkNextAction
+/* 800E7038 000E3F78  4B FD 30 99 */ bl checkNextAction__9daAlink_cFi
 /* 800E703C 000E3F7C  48 00 00 68 */ b lbl_800E70A4
 lbl_800E7040:
 /* 800E7040 000E3F80  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -33,7 +33,7 @@ lbl_800E7040:
 /* 800E7058 000E3F98  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 800E705C 000E3F9C  7F C3 F3 78 */ mr r3, r30
 /* 800E7060 000E3FA0  38 80 00 01 */ li r4, 1
-/* 800E7064 000E3FA4  4B FD 30 6D */ bl daAlink_c_NS_checkNextAction
+/* 800E7064 000E3FA4  4B FD 30 6D */ bl checkNextAction__9daAlink_cFi
 /* 800E7068 000E3FA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800E706C 000E3FAC  40 82 00 38 */ bne lbl_800E70A4
 /* 800E7070 000E3FB0  A8 1E 30 0E */ lha r0, 0x300e(r30)
@@ -48,7 +48,7 @@ lbl_800E7040:
 /* 800E7094 000E3FD4  EC 01 00 28 */ fsubs f0, f1, f0
 /* 800E7098 000E3FD8  EC 22 00 32 */ fmuls f1, f2, f0
 /* 800E709C 000E3FDC  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800E70A0 000E3FE0  4B FF DF 09 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E70A0 000E3FE0  4B FF DF 09 */ bl setCarryArmAngle__9daAlink_cFff
 lbl_800E70A4:
 /* 800E70A4 000E3FE4  38 60 00 01 */ li r3, 1
 /* 800E70A8 000E3FE8  83 E1 00 0C */ lwz r31, 0xc(r1)

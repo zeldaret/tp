@@ -5,7 +5,7 @@
 /* 800AD3B8 000AA2F8  38 A0 00 02 */ li r5, 2
 /* 800AD3BC 000AA2FC  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800AD3C0 000AA300  38 C0 FF FF */ li r6, -1
-/* 800AD3C4 000AA304  48 00 00 15 */ bl daAlink_c_NS_setUpperAnime
+/* 800AD3C4 000AA304  48 00 00 15 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 800AD3C8 000AA308  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800AD3CC 000AA30C  7C 08 03 A6 */ mtlr r0
 /* 800AD3D0 000AA310  38 21 00 10 */ addi r1, r1, 0x10

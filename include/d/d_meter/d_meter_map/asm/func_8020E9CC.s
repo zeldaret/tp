@@ -8,7 +8,7 @@
 /* 8020E9E8 0020B928  2C 03 00 00 */ cmpwi r3, 0
 /* 8020E9EC 0020B92C  41 82 01 60 */ beq lbl_8020EB4C
 /* 8020E9F0 0020B930  7F C3 F3 78 */ mr r3, r30
-/* 8020E9F4 0020B934  4B FF EC A5 */ bl dMeterMap_c_NS_isEventRunCheck
+/* 8020E9F4 0020B934  4B FF EC A5 */ bl isEventRunCheck__11dMeterMap_cFv
 /* 8020E9F8 0020B938  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020E9FC 0020B93C  40 82 01 50 */ bne lbl_8020EB4C
 /* 8020EA00 0020B940  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -25,7 +25,7 @@ lbl_8020EA1C:
 /* 8020EA28 0020B968  28 00 00 00 */ cmplwi r0, 0
 /* 8020EA2C 0020B96C  41 82 03 1C */ beq lbl_8020ED48
 /* 8020EA30 0020B970  7F C3 F3 78 */ mr r3, r30
-/* 8020EA34 0020B974  4B FF EE 89 */ bl dMeterMap_c_NS_setDispPosOutsideFlg_SE_On
+/* 8020EA34 0020B974  4B FF EE 89 */ bl setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 /* 8020EA38 0020B978  38 00 00 B9 */ li r0, 0xb9
 /* 8020EA3C 0020B97C  90 01 00 20 */ stw r0, 0x20(r1)
 /* 8020EA40 0020B980  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -50,10 +50,10 @@ lbl_8020EA78:
 /* 8020EA88 0020B9C8  A0 03 00 A2 */ lhz r0, 0xa2(r3)
 /* 8020EA8C 0020B9CC  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8020EA90 0020B9D0  40 82 00 70 */ bne lbl_8020EB00
-/* 8020EA94 0020B9D4  4B FF FB 8D */ bl dMeterMap_c_NS_isFmapScreen
+/* 8020EA94 0020B9D4  4B FF FB 8D */ bl isFmapScreen__11dMeterMap_cFv
 /* 8020EA98 0020B9D8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EA9C 0020B9DC  40 82 00 10 */ bne lbl_8020EAAC
-/* 8020EAA0 0020B9E0  4B FF FC 6D */ bl dMeterMap_c_NS_isDmapScreen
+/* 8020EAA0 0020B9E0  4B FF FC 6D */ bl isDmapScreen__11dMeterMap_cFv
 /* 8020EAA4 0020B9E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EAA8 0020B9E8  41 82 00 58 */ beq lbl_8020EB00
 lbl_8020EAAC:
@@ -80,7 +80,7 @@ lbl_8020EAAC:
 /* 8020EAFC 0020BA3C  48 00 02 4C */ b lbl_8020ED48
 lbl_8020EB00:
 /* 8020EB00 0020BA40  7F C3 F3 78 */ mr r3, r30
-/* 8020EB04 0020BA44  4B FF ED 71 */ bl dMeterMap_c_NS_setDispPosInsideFlg_SE_On
+/* 8020EB04 0020BA44  4B FF ED 71 */ bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 8020EB08 0020BA48  38 00 00 B8 */ li r0, 0xb8
 /* 8020EB0C 0020BA4C  90 01 00 18 */ stw r0, 0x18(r1)
 /* 8020EB10 0020BA50  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -103,7 +103,7 @@ lbl_8020EB4C:
 /* 8020EB50 0020BA90  2C 03 00 00 */ cmpwi r3, 0
 /* 8020EB54 0020BA94  41 82 01 F4 */ beq lbl_8020ED48
 /* 8020EB58 0020BA98  7F C3 F3 78 */ mr r3, r30
-/* 8020EB5C 0020BA9C  4B FF EB 3D */ bl dMeterMap_c_NS_isEventRunCheck
+/* 8020EB5C 0020BA9C  4B FF EB 3D */ bl isEventRunCheck__11dMeterMap_cFv
 /* 8020EB60 0020BAA0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EB64 0020BAA4  40 82 01 E4 */ bne lbl_8020ED48
 /* 8020EB68 0020BAA8  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -116,14 +116,14 @@ lbl_8020EB4C:
 lbl_8020EB84:
 /* 8020EB84 0020BAC4  28 00 00 00 */ cmplwi r0, 0
 /* 8020EB88 0020BAC8  40 82 00 E8 */ bne lbl_8020EC70
-/* 8020EB8C 0020BACC  4B FF EA C5 */ bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 8020EB8C 0020BACC  4B FF EA C5 */ bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
 /* 8020EB90 0020BAD0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EB94 0020BAD4  41 82 00 5C */ beq lbl_8020EBF0
 /* 8020EB98 0020BAD8  88 1E 00 2D */ lbz r0, 0x2d(r30)
 /* 8020EB9C 0020BADC  28 00 00 00 */ cmplwi r0, 0
 /* 8020EBA0 0020BAE0  40 82 01 A8 */ bne lbl_8020ED48
 /* 8020EBA4 0020BAE4  7F C3 F3 78 */ mr r3, r30
-/* 8020EBA8 0020BAE8  4B FF EC CD */ bl dMeterMap_c_NS_setDispPosInsideFlg_SE_On
+/* 8020EBA8 0020BAE8  4B FF EC CD */ bl setDispPosInsideFlg_SE_On__11dMeterMap_cFv
 /* 8020EBAC 0020BAEC  38 00 00 B8 */ li r0, 0xb8
 /* 8020EBB0 0020BAF0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8020EBB4 0020BAF4  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -147,10 +147,10 @@ lbl_8020EBF0:
 /* 8020EBF8 0020BB38  A0 03 00 A2 */ lhz r0, 0xa2(r3)
 /* 8020EBFC 0020BB3C  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8020EC00 0020BB40  40 82 01 48 */ bne lbl_8020ED48
-/* 8020EC04 0020BB44  4B FF FA 1D */ bl dMeterMap_c_NS_isFmapScreen
+/* 8020EC04 0020BB44  4B FF FA 1D */ bl isFmapScreen__11dMeterMap_cFv
 /* 8020EC08 0020BB48  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EC0C 0020BB4C  40 82 00 10 */ bne lbl_8020EC1C
-/* 8020EC10 0020BB50  4B FF FA FD */ bl dMeterMap_c_NS_isDmapScreen
+/* 8020EC10 0020BB50  4B FF FA FD */ bl isDmapScreen__11dMeterMap_cFv
 /* 8020EC14 0020BB54  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020EC18 0020BB58  41 82 01 30 */ beq lbl_8020ED48
 lbl_8020EC1C:
@@ -186,10 +186,10 @@ lbl_8020EC70:
 /* 8020EC8C 0020BBCC  A0 03 00 A2 */ lhz r0, 0xa2(r3)
 /* 8020EC90 0020BBD0  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8020EC94 0020BBD4  40 82 00 70 */ bne lbl_8020ED04
-/* 8020EC98 0020BBD8  4B FF F9 89 */ bl dMeterMap_c_NS_isFmapScreen
+/* 8020EC98 0020BBD8  4B FF F9 89 */ bl isFmapScreen__11dMeterMap_cFv
 /* 8020EC9C 0020BBDC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020ECA0 0020BBE0  40 82 00 10 */ bne lbl_8020ECB0
-/* 8020ECA4 0020BBE4  4B FF FA 69 */ bl dMeterMap_c_NS_isDmapScreen
+/* 8020ECA4 0020BBE4  4B FF FA 69 */ bl isDmapScreen__11dMeterMap_cFv
 /* 8020ECA8 0020BBE8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020ECAC 0020BBEC  41 82 00 58 */ beq lbl_8020ED04
 lbl_8020ECB0:
@@ -216,7 +216,7 @@ lbl_8020ECB0:
 /* 8020ED00 0020BC40  48 00 00 48 */ b lbl_8020ED48
 lbl_8020ED04:
 /* 8020ED04 0020BC44  7F C3 F3 78 */ mr r3, r30
-/* 8020ED08 0020BC48  4B FF EB B5 */ bl dMeterMap_c_NS_setDispPosOutsideFlg_SE_On
+/* 8020ED08 0020BC48  4B FF EB B5 */ bl setDispPosOutsideFlg_SE_On__11dMeterMap_cFv
 /* 8020ED0C 0020BC4C  38 00 00 B9 */ li r0, 0xb9
 /* 8020ED10 0020BC50  90 01 00 08 */ stw r0, 8(r1)
 /* 8020ED14 0020BC54  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)

@@ -10,7 +10,7 @@
 /* 80037CD4 00034C14  B0 03 06 BE */	sth r0, 0x6be(r3)
 /* 80037CD8 00034C18  38 80 00 01 */	li r4, 1
 /* 80037CDC 00034C1C  38 63 05 EC */	addi r3, r3, 0x5ec
-/* 80037CE0 00034C20  48 28 D5 4D */	bl Z2CreatureRide_NS_setLinkRiding
+/* 80037CE0 00034C20  48 28 D5 4D */	bl setLinkRiding__14Z2CreatureRideFb
 /* 80037CE4 00034C24  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80037CE8 00034C28  7C 08 03 A6 */	mtlr r0
 /* 80037CEC 00034C2C  38 21 00 10 */	addi r1, r1, 0x10

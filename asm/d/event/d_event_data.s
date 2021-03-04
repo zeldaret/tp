@@ -263,7 +263,7 @@ dEvDt_Next_Stage:
 /* 80043AAC 000409EC  48 00 00 1C */	b lbl_80043AC8
 lbl_80043AB0:
 /* 80043AB0 000409F0  38 73 4E C4 */	addi r3, r19, 0x4ec4
-/* 80043AB4 000409F4  4B FE 08 D1 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80043AB4 000409F4  4B FE 08 D1 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80043AB8 000409F8  81 83 00 00 */	lwz r12, 0(r3)
 /* 80043ABC 000409FC  81 8C 00 C4 */	lwz r12, 0xc4(r12)
 /* 80043AC0 00040A00  7D 89 03 A6 */	mtctr r12
@@ -2899,7 +2899,7 @@ lbl_80045FA8:
 /* 80045FB0 00042EF0  38 A0 00 00 */	li r5, 0
 /* 80045FB4 00042EF4  FC 20 F8 90 */	fmr f1, f31
 /* 80045FB8 00042EF8  FC 40 F0 90 */	fmr f2, f30
-/* 80045FBC 00042EFC  48 13 B1 B5 */	bl dCamera_c_NS_StartBlure
+/* 80045FBC 00042EFC  48 13 B1 B5 */	bl Start__9dCamera_cFvBlure
 lbl_80045FC0:
 /* 80045FC0 00042F00  80 7B 00 4A */	lwz r3, 0x4a(r27)
 /* 80045FC4 00042F04  2C 03 00 00 */	cmpwi r3, 0

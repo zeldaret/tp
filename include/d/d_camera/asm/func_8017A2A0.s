@@ -392,7 +392,7 @@ lbl_8017A860:
 /* 8017A864 001777A4  7F 24 CB 78 */ mr r4, r25
 /* 8017A868 001777A8  80 B9 01 80 */ lwz r5, 0x180(r25)
 /* 8017A86C 001777AC  38 C1 01 C0 */ addi r6, r1, 0x1c0
-/* 8017A870 001777B0  4B FE A4 FD */ bl dCamera_c_NS_relationalPos
+/* 8017A870 001777B0  4B FE A4 FD */ bl relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz
 /* 8017A874 001777B4  38 61 00 B8 */ addi r3, r1, 0xb8
 /* 8017A878 001777B8  38 81 00 48 */ addi r4, r1, 0x48
 /* 8017A87C 001777BC  48 0F 72 39 */ bl Xyz__7cSGlobeCFv
@@ -620,8 +620,8 @@ lbl_8017AB7C:
 /* 8017ABC8 00177B08  38 6D 8A C4 */ addi r3, r13, 0x80451044 - 0x80458580 /*SDA HACK; original: lbl_80451044-_SDA_BASE_*/
 /* 8017ABCC 00177B0C  C0 22 9E 58 */ lfs f1, lbl_80453858-_SDA2_BASE_(r2)
 /* 8017ABD0 00177B10  48 0F 63 F9 */ bl __ct__7cSAngleFf
-/* 8017ABD4 00177B14  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 8017ABD8 00177B18  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 8017ABD4 00177B14  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 8017ABD8 00177B18  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 8017ABDC 00177B1C  3C A0 80 43 */ lis r5, lbl_8042C9B8@ha
 /* 8017ABE0 00177B20  38 A5 C9 B8 */ addi r5, r5, lbl_8042C9B8@l
 /* 8017ABE4 00177B24  48 1E 70 41 */ bl func_80361C24
@@ -636,7 +636,7 @@ lbl_8017ABF0:
 /* 8017AC04 00177B44  7C 03 00 00 */ cmpw r3, r0
 /* 8017AC08 00177B48  40 81 00 0C */ ble lbl_8017AC14
 /* 8017AC0C 00177B4C  7F 23 CB 78 */ mr r3, r25
-/* 8017AC10 00177B50  4B FE A4 F5 */ bl dCamera_c_NS_setUSOAngle
+/* 8017AC10 00177B50  4B FE A4 F5 */ bl setUSOAngle__9dCamera_cFv
 lbl_8017AC14:
 /* 8017AC14 00177B54  80 19 0A F4 */ lwz r0, 0xaf4(r25)
 /* 8017AC18 00177B58  7C 60 F2 14 */ add r3, r0, r30

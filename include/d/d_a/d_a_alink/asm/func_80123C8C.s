@@ -51,7 +51,7 @@ lbl_80123D34:
 /* 80123D40 00120C80  7C BD FA 2E */ lhzx r5, r29, r31
 /* 80123D44 00120C84  38 C1 00 08 */ addi r6, r1, 8
 /* 80123D48 00120C88  38 FA 04 E4 */ addi r7, r26, 0x4e4
-/* 80123D4C 00120C8C  4B FF C8 35 */ bl daAlink_c_NS_setEmitter
+/* 80123D4C 00120C8C  4B FF C8 35 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123D50 00120C90  28 03 00 00 */ cmplwi r3, 0
 /* 80123D54 00120C94  41 82 00 08 */ beq lbl_80123D5C
 /* 80123D58 00120C98  9B 83 00 BB */ stb r28, 0xbb(r3)

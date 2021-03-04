@@ -4,7 +4,7 @@
 /* 800ECB64 000E9AA4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800ECB68 000E9AA8  93 C1 00 08 */ stw r30, 8(r1)
 /* 800ECB6C 000E9AAC  7C 7E 1B 78 */ mr r30, r3
-/* 800ECB70 000E9AB0  4B FF FE CD */ bl daAlink_c_NS_commonInitForceRideRein
+/* 800ECB70 000E9AB0  4B FF FE CD */ bl commonInitForceRideRein__9daAlink_cFv
 /* 800ECB74 000E9AB4  38 00 00 01 */ li r0, 1
 /* 800ECB78 000E9AB8  98 1E 2F AA */ stb r0, 0x2faa(r30)
 /* 800ECB7C 000E9ABC  38 7E 28 14 */ addi r3, r30, 0x2814

@@ -9,7 +9,7 @@
 /* 802C3618 002C0558  48 00 01 35 */	bl deleteKantera__14Z2CreatureLinkFv
 lbl_802C361C:
 /* 802C361C 002C055C  7F E3 FB 78 */	mr r3, r31
-/* 802C3620 002C0560  4B FF CE C9 */	bl Z2Creature_NS_deleteObject
+/* 802C3620 002C0560  4B FF CE C9 */	bl deleteObject__10Z2CreatureFv
 /* 802C3624 002C0564  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802C3628 002C0568  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802C362C 002C056C  7C 08 03 A6 */	mtlr r0

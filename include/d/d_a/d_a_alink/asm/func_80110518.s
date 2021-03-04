@@ -6,28 +6,28 @@
 /* 8011052C 0010D46C  7C 7E 1B 78 */ mr r30, r3
 /* 80110530 0010D470  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 80110534 0010D474  80 63 07 18 */ lwz r3, 0x718(r3)
-/* 80110538 0010D478  4B F9 8D 11 */ bl daAlink_c_NS_simpleAnmPlay
+/* 80110538 0010D478  4B F9 8D 11 */ bl simpleAnmPlay__9daAlink_cFP10J3DAnmBase
 /* 8011053C 0010D47C  7F E3 FB 78 */ mr r3, r31
 /* 80110540 0010D480  48 04 DF 8D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80110544 0010D484  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80110548 0010D488  41 82 00 48 */ beq lbl_80110590
 /* 8011054C 0010D48C  7F C3 F3 78 */ mr r3, r30
 /* 80110550 0010D490  80 9E 32 CC */ lwz r4, 0x32cc(r30)
-/* 80110554 0010D494  48 00 82 61 */ bl daAlink_c_NS_checkEndMessage
+/* 80110554 0010D494  48 00 82 61 */ bl checkEndMessage__9daAlink_cFUl
 /* 80110558 0010D498  2C 03 00 00 */ cmpwi r3, 0
 /* 8011055C 0010D49C  41 82 00 34 */ beq lbl_80110590
 /* 80110560 0010D4A0  7F C3 F3 78 */ mr r3, r30
-/* 80110564 0010D4A4  48 01 46 05 */ bl daAlink_c_NS_resetFairyEffect
+/* 80110564 0010D4A4  48 01 46 05 */ bl resetFairyEffect__9daAlink_cFv
 /* 80110568 0010D4A8  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
 /* 8011056C 0010D4AC  28 00 00 48 */ cmplwi r0, 0x48
 /* 80110570 0010D4B0  41 82 00 14 */ beq lbl_80110584
 /* 80110574 0010D4B4  7F C3 F3 78 */ mr r3, r30
 /* 80110578 0010D4B8  38 80 00 00 */ li r4, 0
 /* 8011057C 0010D4BC  38 A0 00 00 */ li r5, 0
-/* 80110580 0010D4C0  4B FB 0D 5D */ bl daAlink_c_NS_deleteEquipItem
+/* 80110580 0010D4C0  4B FB 0D 5D */ bl deleteEquipItem__9daAlink_cFii
 lbl_80110584:
 /* 80110584 0010D4C4  7F C3 F3 78 */ mr r3, r30
-/* 80110588 0010D4C8  48 00 77 09 */ bl daAlink_c_NS_resetSpecialEvent
+/* 80110588 0010D4C8  48 00 77 09 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8011058C 0010D4CC  48 00 00 80 */ b lbl_8011060C
 lbl_80110590:
 /* 80110590 0010D4D0  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -71,7 +71,7 @@ lbl_8011060C:
 /* 8011061C 0010D55C  41 82 00 10 */ beq lbl_8011062C
 /* 80110620 0010D560  7F C3 F3 78 */ mr r3, r30
 /* 80110624 0010D564  A0 9E 2F DC */ lhz r4, 0x2fdc(r30)
-/* 80110628 0010D568  48 00 A0 61 */ bl daAlink_c_NS_setGetSubBgm
+/* 80110628 0010D568  48 00 A0 61 */ bl setGetSubBgm__9daAlink_cFi
 lbl_8011062C:
 /* 8011062C 0010D56C  38 60 00 01 */ li r3, 1
 /* 80110630 0010D570  83 E1 00 0C */ lwz r31, 0xc(r1)

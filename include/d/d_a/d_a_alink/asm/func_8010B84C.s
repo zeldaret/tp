@@ -15,7 +15,7 @@
 /* 8010B884 001087C4  4B F6 8C 1D */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 8010B888 001087C8  FF E0 08 90 */ fmr f31, f1
 /* 8010B88C 001087CC  7F E3 FB 78 */ mr r3, r31
-/* 8010B890 001087D0  4B FF E0 01 */ bl daAlink_c_NS_setHookshotHangMoveBGCollect
+/* 8010B890 001087D0  4B FF E0 01 */ bl setHookshotHangMoveBGCollect__9daAlink_cFv
 /* 8010B894 001087D4  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B898 001087D8  41 82 00 1C */ beq lbl_8010B8B4
 /* 8010B89C 001087DC  C0 1F 05 E4 */ lfs f0, 0x5e4(r31)
@@ -26,7 +26,7 @@
 /* 8010B8B0 001087F0  40 81 00 10 */ ble lbl_8010B8C0
 lbl_8010B8B4:
 /* 8010B8B4 001087F4  7F E3 FB 78 */ mr r3, r31
-/* 8010B8B8 001087F8  4B FF FE 69 */ bl daAlink_c_NS_checkNextHookPoint
+/* 8010B8B8 001087F8  4B FF FE 69 */ bl checkNextHookPoint__9daAlink_cFv
 /* 8010B8BC 001087FC  48 00 00 94 */ b lbl_8010B950
 lbl_8010B8C0:
 /* 8010B8C0 00108800  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
@@ -38,12 +38,12 @@ lbl_8010B8C0:
 /* 8010B8D8 00108818  40 82 00 14 */ bne lbl_8010B8EC
 lbl_8010B8DC:
 /* 8010B8DC 0010881C  7F E3 FB 78 */ mr r3, r31
-/* 8010B8E0 00108820  4B FF D1 39 */ bl daAlink_c_NS_checkHookshotWait
+/* 8010B8E0 00108820  4B FF D1 39 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010B8E4 00108824  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B8E8 00108828  41 82 00 64 */ beq lbl_8010B94C
 lbl_8010B8EC:
 /* 8010B8EC 0010882C  7F E3 FB 78 */ mr r3, r31
-/* 8010B8F0 00108830  4B FF CF B1 */ bl daAlink_c_NS_checkHookshotRoofLv7Boss
+/* 8010B8F0 00108830  4B FF CF B1 */ bl checkHookshotRoofLv7Boss__9daAlink_cFv
 /* 8010B8F4 00108834  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B8F8 00108838  41 82 00 10 */ beq lbl_8010B908
 /* 8010B8FC 0010883C  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -52,7 +52,7 @@ lbl_8010B8EC:
 lbl_8010B908:
 /* 8010B908 00108848  7F E3 FB 78 */ mr r3, r31
 /* 8010B90C 0010884C  38 80 00 45 */ li r4, 0x45
-/* 8010B910 00108850  4B FB 48 55 */ bl daAlink_c_NS_checkSetItemTrigger
+/* 8010B910 00108850  4B FB 48 55 */ bl checkSetItemTrigger__9daAlink_cFi
 /* 8010B914 00108854  2C 03 00 00 */ cmpwi r3, 0
 /* 8010B918 00108858  41 82 00 34 */ beq lbl_8010B94C
 /* 8010B91C 0010885C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -62,12 +62,12 @@ lbl_8010B908:
 /* 8010B92C 0010886C  41 82 00 14 */ beq lbl_8010B940
 /* 8010B930 00108870  7F E3 FB 78 */ mr r3, r31
 /* 8010B934 00108874  80 9F 28 58 */ lwz r4, 0x2858(r31)
-/* 8010B938 00108878  48 00 16 35 */ bl daAlink_c_NS_procHookshotRoofBootsInit
+/* 8010B938 00108878  48 00 16 35 */ bl procHookshotRoofBootsInit__9daAlink_cFP10fopAc_ac_c
 /* 8010B93C 0010887C  48 00 00 14 */ b lbl_8010B950
 lbl_8010B940:
 /* 8010B940 00108880  7F E3 FB 78 */ mr r3, r31
 /* 8010B944 00108884  38 80 00 01 */ li r4, 1
-/* 8010B948 00108888  4B FD 6C 39 */ bl daAlink_c_NS_setHeavyBoots
+/* 8010B948 00108888  4B FD 6C 39 */ bl setHeavyBoots__9daAlink_cFi
 lbl_8010B94C:
 /* 8010B94C 0010888C  38 60 00 00 */ li r3, 0
 lbl_8010B950:

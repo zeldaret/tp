@@ -7,7 +7,7 @@
 /* 800C6F30 000C3E70  7C 7F 1B 78 */ mr r31, r3
 /* 800C6F34 000C3E74  FF E0 08 90 */ fmr f31, f1
 /* 800C6F38 000C3E78  38 80 00 19 */ li r4, 0x19
-/* 800C6F3C 000C3E7C  4B FF B0 31 */ bl daAlink_c_NS_commonProcInit
+/* 800C6F3C 000C3E7C  4B FF B0 31 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C6F40 000C3E80  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C6F44 000C3E84  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800C6F48 000C3E88  7F E3 FB 78 */ mr r3, r31
@@ -15,9 +15,9 @@
 /* 800C6F50 000C3E90  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C6F54 000C3E94  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800C6F58 000C3E98  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800C6F5C 000C3E9C  4B FE 61 99 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800C6F5C 000C3E9C  4B FE 61 99 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800C6F60 000C3EA0  7F E3 FB 78 */ mr r3, r31
-/* 800C6F64 000C3EA4  48 01 CF BD */ bl daAlink_c_NS_checkGrabRooster
+/* 800C6F64 000C3EA4  48 01 CF BD */ bl checkGrabRooster__9daAlink_cFv
 /* 800C6F68 000C3EA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C6F6C 000C3EAC  41 82 00 10 */ beq lbl_800C6F7C
 /* 800C6F70 000C3EB0  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)
@@ -36,7 +36,7 @@ lbl_800C6F98:
 /* 800C6F9C 000C3EDC  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 800C6FA0 000C3EE0  7F E3 FB 78 */ mr r3, r31
 /* 800C6FA4 000C3EE4  38 80 00 04 */ li r4, 4
-/* 800C6FA8 000C3EE8  48 05 A2 19 */ bl daAlink_c_NS_setFootEffectProcType
+/* 800C6FA8 000C3EE8  48 05 A2 19 */ bl setFootEffectProcType__9daAlink_cFi
 /* 800C6FAC 000C3EEC  80 1F 05 84 */ lwz r0, 0x584(r31)
 /* 800C6FB0 000C3EF0  60 00 00 30 */ ori r0, r0, 0x30
 /* 800C6FB4 000C3EF4  90 1F 05 84 */ stw r0, 0x584(r31)

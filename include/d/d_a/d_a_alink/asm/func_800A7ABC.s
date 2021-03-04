@@ -32,7 +32,7 @@
 /* 800A7B38 000A4A78  7F C3 F3 78 */ mr r3, r30
 /* 800A7B3C 000A4A7C  38 81 00 30 */ addi r4, r1, 0x30
 /* 800A7B40 000A4A80  38 A1 00 24 */ addi r5, r1, 0x24
-/* 800A7B44 000A4A84  4B FF A6 55 */ bl daAlink_c_NS_commonLineCheck
+/* 800A7B44 000A4A84  4B FF A6 55 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800A7B48 000A4A88  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A7B4C 000A4A8C  41 82 01 48 */ beq lbl_800A7C94
 /* 800A7B50 000A4A90  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

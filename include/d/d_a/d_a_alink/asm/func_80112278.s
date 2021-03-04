@@ -4,7 +4,7 @@
 /* 80112284 0010F1C4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80112288 0010F1C8  7C 7F 1B 78 */ mr r31, r3
 /* 8011228C 0010F1CC  38 80 00 BC */ li r4, 0xbc
-/* 80112290 0010F1D0  4B FB 0B 15 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 80112290 0010F1D0  4B FB 0B 15 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 80112294 0010F1D4  2C 03 00 00 */ cmpwi r3, 0
 /* 80112298 0010F1D8  40 82 00 0C */ bne lbl_801122A4
 /* 8011229C 0010F1DC  38 60 00 00 */ li r3, 0
@@ -12,7 +12,7 @@
 lbl_801122A4:
 /* 801122A4 0010F1E4  7F E3 FB 78 */ mr r3, r31
 /* 801122A8 0010F1E8  38 80 01 12 */ li r4, 0x112
-/* 801122AC 0010F1EC  4B F9 AC D5 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 801122AC 0010F1EC  4B F9 AC D5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /*.global daAlink_searchHawk*/
 /* 801122B0 0010F1F0  3C 60 80 11 */ lis r3, daAlink_searchHawk@ha
 /*.global daAlink_searchHawk*/
@@ -30,7 +30,7 @@ lbl_801122D0:
 /* 801122DC 0010F21C  7F E3 FB 78 */ mr r3, r31
 /* 801122E0 0010F220  38 80 00 00 */ li r4, 0
 /* 801122E4 0010F224  38 A0 00 01 */ li r5, 1
-/* 801122E8 0010F228  4B FA EF F5 */ bl daAlink_c_NS_deleteEquipItem
+/* 801122E8 0010F228  4B FA EF F5 */ bl deleteEquipItem__9daAlink_cFii
 /* 801122EC 0010F22C  38 60 00 01 */ li r3, 1
 lbl_801122F0:
 /* 801122F0 0010F230  83 E1 00 0C */ lwz r31, 0xc(r1)

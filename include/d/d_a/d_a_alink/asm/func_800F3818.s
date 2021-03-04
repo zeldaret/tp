@@ -4,7 +4,7 @@
 /* 800F3824 000F0764  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F3828 000F0768  7C 7F 1B 78 */ mr r31, r3
 /* 800F382C 000F076C  38 80 00 52 */ li r4, 0x52
-/* 800F3830 000F0770  4B FC F5 75 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800F3830 000F0770  4B FC F5 75 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
 /* 800F3834 000F0774  2C 03 00 00 */ cmpwi r3, 0
 /* 800F3838 000F0778  40 82 00 0C */ bne lbl_800F3844
 /* 800F383C 000F077C  38 60 00 00 */ li r3, 0
@@ -16,15 +16,15 @@ lbl_800F3844:
 /* 800F3850 000F0790  7F E3 FB 78 */ mr r3, r31
 /* 800F3854 000F0794  38 80 00 00 */ li r4, 0
 /* 800F3858 000F0798  38 A0 00 00 */ li r5, 0
-/* 800F385C 000F079C  4B FC DA 81 */ bl daAlink_c_NS_deleteEquipItem
+/* 800F385C 000F079C  4B FC DA 81 */ bl deleteEquipItem__9daAlink_cFii
 /* 800F3860 000F07A0  7F E3 FB 78 */ mr r3, r31
-/* 800F3864 000F07A4  4B FD DA 05 */ bl daAlink_c_NS_setSwordModel
+/* 800F3864 000F07A4  4B FD DA 05 */ bl setSwordModel__9daAlink_cFv
 lbl_800F3868:
 /* 800F3868 000F07A8  7F E3 FB 78 */ mr r3, r31
 /* 800F386C 000F07AC  38 80 01 99 */ li r4, 0x199
-/* 800F3870 000F07B0  4B FB 97 11 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800F3870 000F07B0  4B FB 97 11 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800F3874 000F07B4  7F E3 FB 78 */ mr r3, r31
-/* 800F3878 000F07B8  4B FF A1 AD */ bl daAlink_c_NS_setSyncRidePos
+/* 800F3878 000F07B8  4B FF A1 AD */ bl setSyncRidePos__9daAlink_cFv
 /* 800F387C 000F07BC  38 60 00 01 */ li r3, 1
 lbl_800F3880:
 /* 800F3880 000F07C0  83 E1 00 0C */ lwz r31, 0xc(r1)

@@ -14,7 +14,7 @@
 /* 8001FD68 0001CCA8  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8001FD6C 0001CCAC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8001FD70 0001CCB0  80 63 00 1C */ lwz r3, 0x1c(r3)
-/* 8001FD74 0001CCB4  48 1F F9 79 */ bl dMeter2_c_NS_emphasisButtonDelete
+/* 8001FD74 0001CCB4  48 1F F9 79 */ bl emphasisButtonDelete__9dMeter2_cFv
 lbl_8001FD78:
 /* 8001FD78 0001CCB8  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
 /* 8001FD7C 0001CCBC  28 00 00 00 */ cmplwi r0, 0

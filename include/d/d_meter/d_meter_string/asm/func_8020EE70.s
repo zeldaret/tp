@@ -181,7 +181,7 @@ lbl_8020F014:
 /* 8020F124 0020C064  38 00 00 FF */ li r0, 0xff
 /* 8020F128 0020C068  98 1F 00 3C */ stb r0, 0x3c(r31)
 /* 8020F12C 0020C06C  7F E3 FB 78 */ mr r3, r31
-/* 8020F130 0020C070  48 00 05 3D */ bl dMeterString_c_NS_playBckAnimation
+/* 8020F130 0020C070  48 00 05 3D */ bl playBckAnimation__14dMeterString_cFf
 /* 8020F134 0020C074  38 60 00 04 */ li r3, 4
 lbl_8020F138:
 /* 8020F138 0020C078  83 E1 00 0C */ lwz r31, 0xc(r1)

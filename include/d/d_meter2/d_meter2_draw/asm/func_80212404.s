@@ -174,18 +174,18 @@ lbl_80212678:
 /* 80212690 0020F5D0  A0 03 00 04 */ lhz r0, 4(r3)
 /* 80212694 0020F5D4  7F E3 FB 78 */ mr r3, r31
 /* 80212698 0020F5D8  7C 04 07 34 */ extsh r4, r0
-/* 8021269C 0020F5DC  48 00 3C 91 */ bl dMeter2Draw_c_NS_drawRupee
+/* 8021269C 0020F5DC  48 00 3C 91 */ bl drawRupee__13dMeter2Draw_cFs
 /* 802126A0 0020F5E0  7F E3 FB 78 */ mr r3, r31
 /* 802126A4 0020F5E4  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 802126A8 0020F5E8  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 802126AC 0020F5EC  88 84 09 74 */ lbz r4, 0x974(r4)
-/* 802126B0 0020F5F0  48 00 43 91 */ bl dMeter2Draw_c_NS_drawKey
+/* 802126B0 0020F5F0  48 00 43 91 */ bl drawKey__13dMeter2Draw_cFs
 /* 802126B4 0020F5F4  7F E3 FB 78 */ mr r3, r31
 /* 802126B8 0020F5F8  38 80 00 01 */ li r4, 1
-/* 802126BC 0020F5FC  48 00 3F C9 */ bl dMeter2Draw_c_NS_setAlphaRupeeChange
+/* 802126BC 0020F5FC  48 00 3F C9 */ bl setAlphaRupeeChange__13dMeter2Draw_cFb
 /* 802126C0 0020F600  7F E3 FB 78 */ mr r3, r31
 /* 802126C4 0020F604  38 80 00 01 */ li r4, 1
-/* 802126C8 0020F608  48 00 44 61 */ bl dMeter2Draw_c_NS_setAlphaKeyChange
+/* 802126C8 0020F608  48 00 44 61 */ bl setAlphaKeyChange__13dMeter2Draw_cFb
 /* 802126CC 0020F60C  39 61 00 20 */ addi r11, r1, 0x20
 /* 802126D0 0020F610  48 14 FB 4D */ bl _restgpr_26
 /* 802126D4 0020F614  80 01 00 24 */ lwz r0, 0x24(r1)

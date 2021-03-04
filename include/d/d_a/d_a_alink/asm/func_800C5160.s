@@ -9,20 +9,20 @@
 /* 800C5180 000C20C0  7C 00 00 34 */ cntlzw r0, r0
 /* 800C5184 000C20C4  54 1F DE 3E */ rlwinm r31, r0, 0x1b, 0x18, 0x1f
 /* 800C5188 000C20C8  38 80 00 10 */ li r4, 0x10
-/* 800C518C 000C20CC  4B FF CD E1 */ bl daAlink_c_NS_commonProcInit
+/* 800C518C 000C20CC  4B FF CD E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C5190 000C20D0  7F C3 F3 78 */ mr r3, r30
 /* 800C5194 000C20D4  38 80 00 25 */ li r4, 0x25
 /* 800C5198 000C20D8  3C A0 80 39 */ lis r5, lbl_8038D7BC@ha
 /* 800C519C 000C20DC  38 A5 D7 BC */ addi r5, r5, lbl_8038D7BC@l
 /* 800C51A0 000C20E0  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800C51A4 000C20E4  4B FE 7F 51 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800C51A4 000C20E4  4B FE 7F 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
 /* 800C51A8 000C20E8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C51AC 000C20EC  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 800C51B0 000C20F0  2C 1F 00 00 */ cmpwi r31, 0
 /* 800C51B4 000C20F4  40 82 00 20 */ bne lbl_800C51D4
 /* 800C51B8 000C20F8  7F C3 F3 78 */ mr r3, r30
 /* 800C51BC 000C20FC  88 9E 2F A4 */ lbz r4, 0x2fa4(r30)
-/* 800C51C0 000C2100  4B FF CB 2D */ bl daAlink_c_NS_setFrontRollCrashShock
+/* 800C51C0 000C2100  4B FF CB 2D */ bl setFrontRollCrashShock__9daAlink_cFUc
 /* 800C51C4 000C2104  80 1E 05 80 */ lwz r0, 0x580(r30)
 /* 800C51C8 000C2108  60 00 20 00 */ ori r0, r0, 0x2000
 /* 800C51CC 000C210C  90 1E 05 80 */ stw r0, 0x580(r30)
@@ -44,7 +44,7 @@ lbl_800C51E4:
 /* 800C5204 000C2144  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800C5208 000C2148  7F C3 F3 78 */ mr r3, r30
 /* 800C520C 000C214C  38 80 00 01 */ li r4, 1
-/* 800C5210 000C2150  48 05 BF B1 */ bl daAlink_c_NS_setFootEffectProcType
+/* 800C5210 000C2150  48 05 BF B1 */ bl setFootEffectProcType__9daAlink_cFi
 /* 800C5214 000C2154  A8 7E 04 E6 */ lha r3, 0x4e6(r30)
 /* 800C5218 000C2158  3C 63 00 01 */ addis r3, r3, 1
 /* 800C521C 000C215C  38 03 80 00 */ addi r0, r3, -32768

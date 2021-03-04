@@ -11,7 +11,7 @@
 /* 800F5ED0 000F2E10  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800F5ED4 000F2E14  28 00 01 0B */ cmplwi r0, 0x10b
 /* 800F5ED8 000F2E18  40 82 00 44 */ bne lbl_800F5F1C
-/* 800F5EDC 000F2E1C  4B FC 34 65 */ bl daAlink_c_NS_checkEquipAnime
+/* 800F5EDC 000F2E1C  4B FC 34 65 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800F5EE0 000F2E20  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5EE4 000F2E24  41 82 00 38 */ beq lbl_800F5F1C
 /* 800F5EE8 000F2E28  A0 7F 2F DE */ lhz r3, 0x2fde(r31)
@@ -25,12 +25,12 @@
 /* 800F5F08 000F2E48  98 1F 2F 92 */ stb r0, 0x2f92(r31)
 /* 800F5F0C 000F2E4C  7F E3 FB 78 */ mr r3, r31
 /* 800F5F10 000F2E50  38 80 00 00 */ li r4, 0
-/* 800F5F14 000F2E54  4B FF F2 D1 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F5F14 000F2E54  4B FF F2 D1 */ bl procCanoeWaitInit__9daAlink_cFi
 /* 800F5F18 000F2E58  48 00 00 BC */ b lbl_800F5FD4
 lbl_800F5F1C:
 /* 800F5F1C 000F2E5C  7F E3 FB 78 */ mr r3, r31
 /* 800F5F20 000F2E60  38 80 00 92 */ li r4, 0x92
-/* 800F5F24 000F2E64  4B FC C0 49 */ bl daAlink_c_NS_commonProcInit
+/* 800F5F24 000F2E64  4B FC C0 49 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F5F28 000F2E68  7F E3 FB 78 */ mr r3, r31
 /* 800F5F2C 000F2E6C  38 80 00 DF */ li r4, 0xdf
 /* 800F5F30 000F2E70  A8 1F 30 12 */ lha r0, 0x3012(r31)
@@ -51,7 +51,7 @@ lbl_800F5F5C:
 /* 800F5F64 000F2EA4  C0 46 00 08 */ lfs f2, 8(r6)
 /* 800F5F68 000F2EA8  A8 A6 00 00 */ lha r5, 0(r6)
 /* 800F5F6C 000F2EAC  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 800F5F70 000F2EB0  4B FB 70 9D */ bl daAlink_c_NS_setSingleAnime
+/* 800F5F70 000F2EB0  4B FB 70 9D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800F5F74 000F2EB4  A8 1F 30 12 */ lha r0, 0x3012(r31)
 /* 800F5F78 000F2EB8  2C 00 00 01 */ cmpwi r0, 1
 /* 800F5F7C 000F2EBC  40 82 00 14 */ bne lbl_800F5F90
@@ -62,7 +62,7 @@ lbl_800F5F5C:
 lbl_800F5F90:
 /* 800F5F90 000F2ED0  B3 DF 30 0E */ sth r30, 0x300e(r31)
 /* 800F5F94 000F2ED4  7F E3 FB 78 */ mr r3, r31
-/* 800F5F98 000F2ED8  4B FF E6 05 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F5F98 000F2ED8  4B FF E6 05 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F5F9C 000F2EDC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F5FA0 000F2EE0  80 7F 28 18 */ lwz r3, 0x2818(r31)
 /* 800F5FA4 000F2EE4  D0 03 14 68 */ stfs f0, 0x1468(r3)

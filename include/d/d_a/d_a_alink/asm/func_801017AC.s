@@ -10,10 +10,10 @@
 /* 801017D0 000FE710  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 801017D4 000FE714  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 801017D8 000FE718  C0 25 00 70 */ lfs f1, 0x70(r5)
-/* 801017DC 000FE71C  4B FC 52 6D */ bl daAlink_c_NS_procFallInit
+/* 801017DC 000FE71C  4B FC 52 6D */ bl procFallInit__9daAlink_cFif
 /* 801017E0 000FE720  48 00 00 80 */ b lbl_80101860
 lbl_801017E4:
-/* 801017E4 000FE724  4B FF FE 59 */ bl daAlink_c_NS_setRoofHangSwitch
+/* 801017E4 000FE724  4B FF FE 59 */ bl setRoofHangSwitch__9daAlink_cFv
 /* 801017E8 000FE728  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 801017EC 000FE72C  48 05 CC E1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801017F0 000FE730  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -24,7 +24,7 @@ lbl_801017E4:
 /* 80101804 000FE744  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
 /* 80101808 000FE748  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 8010180C 000FE74C  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 80101810 000FE750  4B FA B7 D1 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80101810 000FE750  4B FA B7 D1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
 /* 80101814 000FE754  38 00 00 01 */ li r0, 1
 /* 80101818 000FE758  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8010181C 000FE75C  48 00 00 40 */ b lbl_8010185C
@@ -43,7 +43,7 @@ lbl_80101820:
 /* 8010184C 000FE78C  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 80101850 000FE790  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 80101854 000FE794  C0 25 00 70 */ lfs f1, 0x70(r5)
-/* 80101858 000FE798  4B FC 51 F1 */ bl daAlink_c_NS_procFallInit
+/* 80101858 000FE798  4B FC 51 F1 */ bl procFallInit__9daAlink_cFif
 lbl_8010185C:
 /* 8010185C 000FE79C  38 60 00 01 */ li r3, 1
 lbl_80101860:

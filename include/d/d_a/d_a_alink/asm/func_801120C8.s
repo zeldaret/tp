@@ -45,16 +45,16 @@ lbl_8011216C:
 /* 8011216C 0010F0AC  7C 00 07 35 */ extsh. r0, r0
 /* 80112170 0010F0B0  40 82 00 2C */ bne lbl_8011219C
 /* 80112174 0010F0B4  7F E3 FB 78 */ mr r3, r31
-/* 80112178 0010F0B8  48 00 5B 19 */ bl daAlink_c_NS_resetSpecialEvent
+/* 80112178 0010F0B8  48 00 5B 19 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8011217C 0010F0BC  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 80112180 0010F0C0  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80112184 0010F0C4  41 82 00 10 */ beq lbl_80112194
 /* 80112188 0010F0C8  7F E3 FB 78 */ mr r3, r31
-/* 8011218C 0010F0CC  48 01 B0 1D */ bl daAlink_c_NS_procWolfWaitInit
+/* 8011218C 0010F0CC  48 01 B0 1D */ bl procWolfWaitInit__9daAlink_cFv
 /* 80112190 0010F0D0  48 00 00 0C */ b lbl_8011219C
 lbl_80112194:
 /* 80112194 0010F0D4  7F E3 FB 78 */ mr r3, r31
-/* 80112198 0010F0D8  4B FB 12 21 */ bl daAlink_c_NS_procWaitInit
+/* 80112198 0010F0D8  4B FB 12 21 */ bl procWaitInit__9daAlink_cFv
 lbl_8011219C:
 /* 8011219C 0010F0DC  38 60 00 01 */ li r3, 1
 /* 801121A0 0010F0E0  83 E1 00 0C */ lwz r31, 0xc(r1)

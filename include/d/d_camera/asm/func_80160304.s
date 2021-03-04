@@ -80,10 +80,10 @@ lbl_80160410:
 /* 80160428 0015D368  90 1E 02 28 */ stw r0, 0x228(r30)
 lbl_8016042C:
 /* 8016042C 0015D36C  38 7E 00 D0 */ addi r3, r30, 0xd0
-/*.global dCamera_c_NS_dCamInfo_c_NS_dtor*/
-/* 80160430 0015D370  3C 80 80 18 */ lis r4, dCamera_c_NS_dCamInfo_c_NS_dtor@ha
-/*.global dCamera_c_NS_dCamInfo_c_NS_dtor*/
-/* 80160434 0015D374  38 84 29 20 */ addi r4, r4, dCamera_c_NS_dCamInfo_c_NS_dtor@l
+/*.global __dt__Q29dCamera_c10dCamInfo_cFv*/
+/* 80160430 0015D370  3C 80 80 18 */ lis r4, __dt__Q29dCamera_c10dCamInfo_cFv@ha
+/*.global __dt__Q29dCamera_c10dCamInfo_cFv*/
+/* 80160434 0015D374  38 84 29 20 */ addi r4, r4, __dt__Q29dCamera_c10dCamInfo_cFv@l
 /* 80160438 0015D378  38 A0 00 20 */ li r5, 0x20
 /* 8016043C 0015D37C  38 C0 00 02 */ li r6, 2
 /* 80160440 0015D380  48 20 18 A9 */ bl func_80361CE8

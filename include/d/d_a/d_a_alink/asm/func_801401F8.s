@@ -19,7 +19,7 @@
 /* 80140240 0013D180  7F C3 F3 78 */ mr r3, r30
 /* 80140244 0013D184  3C A0 00 08 */ lis r5, 8
 /* 80140248 0013D188  38 C0 00 00 */ li r6, 0
-/* 8014024C 0013D18C  4B F6 3B 31 */ bl daAlink_c_NS_initModel
+/* 8014024C 0013D18C  4B F6 3B 31 */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 80140250 0013D190  90 7E 06 78 */ stw r3, 0x678(r30)
 /* 80140254 0013D194  7F E3 FB 78 */ mr r3, r31
 /* 80140258 0013D198  4B EC EF 75 */ bl mDoExt_setCurrentHeap

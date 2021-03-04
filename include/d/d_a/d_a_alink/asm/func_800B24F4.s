@@ -5,7 +5,7 @@
 /* 800B2504 000AF444  93 C1 00 08 */ stw r30, 8(r1)
 /* 800B2508 000AF448  7C 7E 1B 78 */ mr r30, r3
 /* 800B250C 000AF44C  7C 9F 23 78 */ mr r31, r4
-/* 800B2510 000AF450  48 06 37 11 */ bl daAlink_c_NS_checkEventRun
+/* 800B2510 000AF450  48 06 37 11 */ bl checkEventRun__9daAlink_cCFv
 /* 800B2514 000AF454  2C 03 00 00 */ cmpwi r3, 0
 /* 800B2518 000AF458  40 82 00 10 */ bne lbl_800B2528
 /* 800B251C 000AF45C  88 1E 05 6A */ lbz r0, 0x56a(r30)

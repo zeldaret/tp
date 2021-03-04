@@ -105,7 +105,7 @@ lbl_8005A724:
 /* 8005A738 00057678  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8005A73C 0005767C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8005A740 00057680  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 8005A744 00057684  4B FC 9C 41 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8005A744 00057684  4B FC 9C 41 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A748 00057688  81 83 00 00 */ lwz r12, 0(r3)
 /* 8005A74C 0005768C  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 8005A750 00057690  7D 89 03 A6 */ mtctr r12
@@ -125,13 +125,13 @@ lbl_8005A774:
 /* 8005A780 000576C0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8005A784 000576C4  3B E3 4E C4 */ addi r31, r3, 0x4ec4
 /* 8005A788 000576C8  7F E3 FB 78 */ mr r3, r31
-/* 8005A78C 000576CC  4B FC 9B F9 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8005A78C 000576CC  4B FC 9B F9 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A790 000576D0  28 03 00 00 */ cmplwi r3, 0
 /* 8005A794 000576D4  41 82 00 58 */ beq lbl_8005A7EC
 /* 8005A798 000576D8  88 8D 87 E4 */ lbz r4, lbl_80450D64-_SDA_BASE_(r13)
 /* 8005A79C 000576DC  7C 84 07 74 */ extsb r4, r4
 /* 8005A7A0 000576E0  7F E3 FB 78 */ mr r3, r31
-/* 8005A7A4 000576E4  4B FC 9B E1 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8005A7A4 000576E4  4B FC 9B E1 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A7A8 000576E8  81 83 00 00 */ lwz r12, 0(r3)
 /* 8005A7AC 000576EC  81 8C 01 40 */ lwz r12, 0x140(r12)
 /* 8005A7B0 000576F0  7D 89 03 A6 */ mtctr r12
@@ -140,7 +140,7 @@ lbl_8005A774:
 /* 8005A7BC 000576FC  41 82 00 30 */ beq lbl_8005A7EC
 /* 8005A7C0 00057700  83 23 00 04 */ lwz r25, 4(r3)
 /* 8005A7C4 00057704  38 60 00 00 */ li r3, 0
-/* 8005A7C8 00057708  4B FD 21 B5 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8005A7C8 00057708  4B FD 21 B5 */ bl getLayerNo__14dComIfG_play_cFi
 /* 8005A7CC 0005770C  1C 03 00 03 */ mulli r0, r3, 3
 /* 8005A7D0 00057710  7C 79 02 14 */ add r3, r25, r0
 /* 8005A7D4 00057714  88 03 00 02 */ lbz r0, 2(r3)
@@ -209,13 +209,13 @@ lbl_8005A8AC:
 /* 8005A8AC 000577EC  88 8D 87 E4 */ lbz r4, lbl_80450D64-_SDA_BASE_(r13)
 /* 8005A8B0 000577F0  7C 84 07 74 */ extsb r4, r4
 /* 8005A8B4 000577F4  7F E3 FB 78 */ mr r3, r31
-/* 8005A8B8 000577F8  4B FC 9A CD */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8005A8B8 000577F8  4B FC 9A CD */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A8BC 000577FC  28 03 00 00 */ cmplwi r3, 0
 /* 8005A8C0 00057800  41 82 00 44 */ beq lbl_8005A904
 /* 8005A8C4 00057804  88 8D 87 E4 */ lbz r4, lbl_80450D64-_SDA_BASE_(r13)
 /* 8005A8C8 00057808  7C 84 07 74 */ extsb r4, r4
 /* 8005A8CC 0005780C  7F E3 FB 78 */ mr r3, r31
-/* 8005A8D0 00057810  4B FC 9A B5 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8005A8D0 00057810  4B FC 9A B5 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8005A8D4 00057814  81 83 00 00 */ lwz r12, 0(r3)
 /* 8005A8D8 00057818  81 8C 01 40 */ lwz r12, 0x140(r12)
 /* 8005A8DC 0005781C  7D 89 03 A6 */ mtctr r12
@@ -285,7 +285,7 @@ lbl_8005A9B4:
 /* 8005A9B4 000578F4  3C 60 80 43 */ lis r3, lbl_8042DD70@ha
 /* 8005A9B8 000578F8  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
 /* 8005A9BC 000578FC  38 81 00 18 */ addi r4, r1, 0x18
-/* 8005A9C0 00057900  48 26 D6 09 */ bl Z2EnvSeMgr_NS_setWindDirection
+/* 8005A9C0 00057900  48 26 D6 09 */ bl setWindDirection__10Z2EnvSeMgrFP3Vec
 /* 8005A9C4 00057904  C0 02 87 18 */ lfs f0, lbl_80452118-_SDA2_BASE_(r2)
 /* 8005A9C8 00057908  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 8005A9CC 0005790C  4C 40 13 82 */ cror 2, 0, 2
@@ -307,7 +307,7 @@ lbl_8005A9F8:
 /* 8005AA04 00057944  7C 64 1B 78 */ mr r4, r3
 /* 8005AA08 00057948  3C 60 80 43 */ lis r3, lbl_8042DD70@ha
 /* 8005AA0C 0005794C  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
-/* 8005AA10 00057950  48 26 D5 FD */ bl Z2EnvSeMgr_NS_startStrongWindSe
+/* 8005AA10 00057950  48 26 D5 FD */ bl startStrongWindSe__10Z2EnvSeMgrFSc
 lbl_8005AA14:
 /* 8005AA14 00057954  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8005AA18 00057958  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l

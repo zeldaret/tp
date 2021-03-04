@@ -22,7 +22,7 @@
 /* 800A3F54 000A0E94  7F A3 EB 78 */ mr r3, r29
 /* 800A3F58 000A0E98  3C A0 00 08 */ lis r5, 8
 /* 800A3F5C 000A0E9C  7F E6 FB 78 */ mr r6, r31
-/* 800A3F60 000A0EA0  4B FF FE 1D */ bl daAlink_c_NS_initModel
+/* 800A3F60 000A0EA0  4B FF FE 1D */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 800A3F64 000A0EA4  90 7E 00 00 */ stw r3, 0(r30)
 /* 800A3F68 000A0EA8  80 1E 00 00 */ lwz r0, 0(r30)
 /* 800A3F6C 000A0EAC  28 00 00 00 */ cmplwi r0, 0

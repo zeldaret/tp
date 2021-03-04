@@ -84,7 +84,7 @@ lbl_800F5830:
 lbl_800F5844:
 /* 800F5844 000F2784  7F 83 E3 78 */ mr r3, r28
 /* 800F5848 000F2788  7F E4 FB 78 */ mr r4, r31
-/* 800F584C 000F278C  48 00 04 B9 */ bl daAlink_c_NS_procCanoePaddleShiftInit
+/* 800F584C 000F278C  48 00 04 B9 */ bl procCanoePaddleShiftInit__9daAlink_cFi
 /* 800F5850 000F2790  48 00 01 AC */ b lbl_800F59FC
 lbl_800F5854:
 /* 800F5854 000F2794  20 00 00 02 */ subfic r0, r0, 2
@@ -106,7 +106,7 @@ lbl_800F587C:
 lbl_800F5890:
 /* 800F5890 000F27D0  7F 83 E3 78 */ mr r3, r28
 /* 800F5894 000F27D4  7F E4 FB 78 */ mr r4, r31
-/* 800F5898 000F27D8  48 00 04 6D */ bl daAlink_c_NS_procCanoePaddleShiftInit
+/* 800F5898 000F27D8  48 00 04 6D */ bl procCanoePaddleShiftInit__9daAlink_cFi
 /* 800F589C 000F27DC  48 00 01 60 */ b lbl_800F59FC
 lbl_800F58A0:
 /* 800F58A0 000F27E0  2C 1D FF FD */ cmpwi r29, -3
@@ -115,11 +115,11 @@ lbl_800F58A0:
 /* 800F58AC 000F27EC  2C 00 00 01 */ cmpwi r0, 1
 /* 800F58B0 000F27F0  40 82 00 10 */ bne lbl_800F58C0
 /* 800F58B4 000F27F4  38 80 00 DB */ li r4, 0xdb
-/* 800F58B8 000F27F8  48 00 04 4D */ bl daAlink_c_NS_procCanoePaddleShiftInit
+/* 800F58B8 000F27F8  48 00 04 4D */ bl procCanoePaddleShiftInit__9daAlink_cFi
 /* 800F58BC 000F27FC  48 00 01 40 */ b lbl_800F59FC
 lbl_800F58C0:
 /* 800F58C0 000F2800  38 80 00 DC */ li r4, 0xdc
-/* 800F58C4 000F2804  48 00 04 41 */ bl daAlink_c_NS_procCanoePaddleShiftInit
+/* 800F58C4 000F2804  48 00 04 41 */ bl procCanoePaddleShiftInit__9daAlink_cFi
 /* 800F58C8 000F2808  48 00 01 34 */ b lbl_800F59FC
 lbl_800F58CC:
 /* 800F58CC 000F280C  2C 1D FF FE */ cmpwi r29, -2
@@ -140,7 +140,7 @@ lbl_800F58F8:
 lbl_800F58FC:
 /* 800F58FC 000F283C  7F 83 E3 78 */ mr r3, r28
 /* 800F5900 000F2840  38 80 00 90 */ li r4, 0x90
-/* 800F5904 000F2844  4B FC C6 69 */ bl daAlink_c_NS_commonProcInit
+/* 800F5904 000F2844  4B FC C6 69 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F5908 000F2848  3C 60 80 39 */ lis r3, lbl_8038E610@ha
 /* 800F590C 000F284C  38 63 E6 10 */ addi r3, r3, lbl_8038E610@l
 /* 800F5910 000F2850  C3 E3 00 1C */ lfs f31, 0x1c(r3)
@@ -173,7 +173,7 @@ lbl_800F5970:
 /* 800F5970 000F28B0  38 00 00 00 */ li r0, 0
 /* 800F5974 000F28B4  B0 1C 30 0E */ sth r0, 0x300e(r28)
 /* 800F5978 000F28B8  7F 83 E3 78 */ mr r3, r28
-/* 800F597C 000F28BC  4B FF E2 9D */ bl daAlink_c_NS_getCanoeSpeedRate
+/* 800F597C 000F28BC  4B FF E2 9D */ bl getCanoeSpeedRate__9daAlink_cCFv
 /* 800F5980 000F28C0  EC 3F 00 72 */ fmuls f1, f31, f1
 /* 800F5984 000F28C4  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)
 /* 800F5988 000F28C8  EC 20 00 72 */ fmuls f1, f0, f1
@@ -205,9 +205,9 @@ lbl_800F59D4:
 /* 800F59E0 000F2920  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F59E4 000F2924  38 A0 00 23 */ li r5, 0x23
 /* 800F59E8 000F2928  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800F59EC 000F292C  4B FB 76 21 */ bl daAlink_c_NS_setSingleAnime
+/* 800F59EC 000F292C  4B FB 76 21 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800F59F0 000F2930  7F 83 E3 78 */ mr r3, r28
-/* 800F59F4 000F2934  4B FF EB A9 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F59F4 000F2934  4B FF EB A9 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F59F8 000F2938  38 60 00 01 */ li r3, 1
 lbl_800F59FC:
 /* 800F59FC 000F293C  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0

@@ -87,7 +87,7 @@ lbl_800DC9E8:
 /* 800DC9F4 000D9934  28 00 00 00 */ cmplwi r0, 0
 /* 800DC9F8 000D9938  40 82 00 1C */ bne lbl_800DCA14
 /* 800DC9FC 000D993C  7F A3 EB 78 */ mr r3, r29
-/* 800DCA00 000D9940  4B FF AD C9 */ bl daAlink_c_NS_checkMagicArmorNoDamage
+/* 800DCA00 000D9940  4B FF AD C9 */ bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 800DCA04 000D9944  2C 03 00 00 */ cmpwi r3, 0
 /* 800DCA08 000D9948  40 82 00 0C */ bne lbl_800DCA14
 /* 800DCA0C 000D994C  38 00 00 78 */ li r0, 0x78

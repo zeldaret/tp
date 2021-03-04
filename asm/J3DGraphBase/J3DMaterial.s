@@ -557,10 +557,10 @@ createIndBlock__11J3DMaterialFi:
 /* 80315ED8 00312E18  3C 80 80 01 */	lis r4, J3DIndTexMtx@ha
 .global J3DIndTexMtx
 /* 80315EDC 00312E1C  38 84 E0 F0 */	addi r4, r4, J3DIndTexMtx@l
-.global J3DIndTexMtx_NS_dtor
-/* 80315EE0 00312E20  3C A0 80 01 */	lis r5, J3DIndTexMtx_NS_dtor@ha
-.global J3DIndTexMtx_NS_dtor
-/* 80315EE4 00312E24  38 A5 E0 64 */	addi r5, r5, J3DIndTexMtx_NS_dtor@l
+.global __dt__12J3DIndTexMtxFv
+/* 80315EE0 00312E20  3C A0 80 01 */	lis r5, __dt__12J3DIndTexMtxFv@ha
+.global __dt__12J3DIndTexMtxFv
+/* 80315EE4 00312E24  38 A5 E0 64 */	addi r5, r5, __dt__12J3DIndTexMtxFv@l
 /* 80315EE8 00312E28  38 C0 00 1C */	li r6, 0x1c
 /* 80315EEC 00312E2C  38 E0 00 03 */	li r7, 3
 /* 80315EF0 00312E30  48 04 BE 71 */	bl func_80361D60
@@ -569,10 +569,10 @@ createIndBlock__11J3DMaterialFi:
 /* 80315EF8 00312E38  3C 80 80 01 */	lis r4, J3DIndTexCoordScale@ha
 .global J3DIndTexCoordScale
 /* 80315EFC 00312E3C  38 84 E0 E4 */	addi r4, r4, J3DIndTexCoordScale@l
-.global J3DIndTexCoordScale_NS_dtor
-/* 80315F00 00312E40  3C A0 80 01 */	lis r5, J3DIndTexCoordScale_NS_dtor@ha
-.global J3DIndTexCoordScale_NS_dtor
-/* 80315F04 00312E44  38 A5 E0 24 */	addi r5, r5, J3DIndTexCoordScale_NS_dtor@l
+.global __dt__19J3DIndTexCoordScaleFv
+/* 80315F00 00312E40  3C A0 80 01 */	lis r5, __dt__19J3DIndTexCoordScaleFv@ha
+.global __dt__19J3DIndTexCoordScaleFv
+/* 80315F04 00312E44  38 A5 E0 24 */	addi r5, r5, __dt__19J3DIndTexCoordScaleFv@l
 /* 80315F08 00312E48  38 C0 00 04 */	li r6, 4
 /* 80315F0C 00312E4C  38 E0 00 04 */	li r7, 4
 /* 80315F10 00312E50  48 04 BE 51 */	bl func_80361D60

@@ -13,12 +13,12 @@
 /* 801A6C88 001A3BC8  7F C3 F3 78 */ mr r3, r30
 /* 801A6C8C 001A3BCC  7F BF 07 74 */ extsb r31, r29
 /* 801A6C90 001A3BD0  7F E4 FB 78 */ mr r4, r31
-/* 801A6C94 001A3BD4  4B E7 D6 F1 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6C94 001A3BD4  4B E7 D6 F1 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A6C98 001A3BD8  28 03 00 00 */ cmplwi r3, 0
 /* 801A6C9C 001A3BDC  41 82 00 90 */ beq lbl_801A6D2C
 /* 801A6CA0 001A3BE0  7F C3 F3 78 */ mr r3, r30
 /* 801A6CA4 001A3BE4  7F E4 FB 78 */ mr r4, r31
-/* 801A6CA8 001A3BE8  4B E7 D6 DD */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6CA8 001A3BE8  4B E7 D6 DD */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A6CAC 001A3BEC  81 83 00 00 */ lwz r12, 0(r3)
 /* 801A6CB0 001A3BF0  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 801A6CB4 001A3BF4  7D 89 03 A6 */ mtctr r12

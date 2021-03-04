@@ -18,12 +18,12 @@
 lbl_800AD938:
 /* 800AD938 000AA878  38 80 00 00 */ li r4, 0
 /* 800AD93C 000AA87C  38 A0 00 23 */ li r5, 0x23
-/* 800AD940 000AA880  4B F6 1F 09 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800AD940 000AA880  4B F6 1F 09 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 /* 800AD944 000AA884  48 00 00 10 */ b lbl_800AD954
 lbl_800AD948:
 /* 800AD948 000AA888  38 80 00 10 */ li r4, 0x10
 /* 800AD94C 000AA88C  38 A0 00 23 */ li r5, 0x23
-/* 800AD950 000AA890  4B F6 1E F9 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800AD950 000AA890  4B F6 1E F9 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_800AD954:
 /* 800AD954 000AA894  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800AD958 000AA898  7C 08 03 A6 */ mtlr r0

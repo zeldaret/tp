@@ -19,12 +19,12 @@ lbl_8010340C:
 /* 80103410 00100350  C3 E3 00 60 */ lfs f31, 0x60(r3)
 lbl_80103414:
 /* 80103414 00100354  7F C3 F3 78 */ mr r3, r30
-/* 80103418 00100358  4B FF FF 81 */ bl daAlink_c_NS_checkSwimFall
+/* 80103418 00100358  4B FF FF 81 */ bl checkSwimFall__9daAlink_cFv
 /* 8010341C 0010035C  2C 03 00 00 */ cmpwi r3, 0
 /* 80103420 00100360  41 82 01 CC */ beq lbl_801035EC
 /* 80103424 00100364  7F C3 F3 78 */ mr r3, r30
 /* 80103428 00100368  38 80 00 01 */ li r4, 1
-/* 8010342C 0010036C  4B FF FE 9D */ bl daAlink_c_NS_swimOutAfter
+/* 8010342C 0010036C  4B FF FE 9D */ bl swimOutAfter__9daAlink_cFi
 /* 80103430 00100370  3C 60 80 44 */ lis r3, lbl_80439A20@ha
 /* 80103434 00100374  38 83 9A 20 */ addi r4, r3, lbl_80439A20@l
 /* 80103438 00100378  A8 1E 04 DE */ lha r0, 0x4de(r30)
@@ -132,7 +132,7 @@ lbl_801035A4:
 /* 801035A8 001004E8  38 80 00 02 */ li r4, 2
 /* 801035AC 001004EC  38 BF 1A 50 */ addi r5, r31, 0x1a50
 /* 801035B0 001004F0  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 801035B4 001004F4  48 02 B8 1D */ bl daAlink_c_NS_procWolfFallInit
+/* 801035B4 001004F4  48 02 B8 1D */ bl procWolfFallInit__9daAlink_cFif
 /* 801035B8 001004F8  48 00 00 C0 */ b lbl_80103678
 lbl_801035BC:
 /* 801035BC 001004FC  C0 1E 33 98 */ lfs f0, 0x3398(r30)
@@ -146,7 +146,7 @@ lbl_801035D4:
 /* 801035D8 00100518  38 80 00 02 */ li r4, 2
 /* 801035DC 0010051C  38 BF 0A 10 */ addi r5, r31, 0xa10
 /* 801035E0 00100520  C0 25 00 70 */ lfs f1, 0x70(r5)
-/* 801035E4 00100524  4B FC 34 65 */ bl daAlink_c_NS_procFallInit
+/* 801035E4 00100524  4B FC 34 65 */ bl procFallInit__9daAlink_cFif
 /* 801035E8 00100528  48 00 00 90 */ b lbl_80103678
 lbl_801035EC:
 /* 801035EC 0010052C  80 1E 05 70 */ lwz r0, 0x570(r30)
@@ -165,10 +165,10 @@ lbl_80103618:
 /* 8010361C 0010055C  D0 1E 04 D4 */ stfs f0, 0x4d4(r30)
 /* 80103620 00100560  7F C3 F3 78 */ mr r3, r30
 /* 80103624 00100564  38 80 00 01 */ li r4, 1
-/* 80103628 00100568  4B FF FC A1 */ bl daAlink_c_NS_swimOutAfter
+/* 80103628 00100568  4B FF FC A1 */ bl swimOutAfter__9daAlink_cFi
 /* 8010362C 0010056C  7F C3 F3 78 */ mr r3, r30
 /* 80103630 00100570  38 80 00 00 */ li r4, 0
-/* 80103634 00100574  4B FB 6A 69 */ bl daAlink_c_NS_commonCheckNextAction
+/* 80103634 00100574  4B FB 6A 69 */ bl commonCheckNextAction__9daAlink_cFi
 /* 80103638 00100578  48 00 00 40 */ b lbl_80103678
 lbl_8010363C:
 /* 8010363C 0010057C  7F C3 F3 78 */ mr r3, r30

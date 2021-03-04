@@ -46,7 +46,7 @@
 /* 802140A4 00210FE4  39 01 00 08 */ addi r8, r1, 8
 /* 802140A8 00210FE8  FC 80 F8 90 */ fmr f4, f31
 /* 802140AC 00210FEC  7F E9 FB 78 */ mr r9, r31
-/* 802140B0 00210FF0  48 00 00 2D */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 802140B0 00210FF0  48 00 00 2D */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
 /* 802140B4 00210FF4  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 802140B8 00210FF8  CB E1 00 60 */ lfd f31, 0x60(r1)
 /* 802140BC 00210FFC  E3 C1 00 58 */ psq_l f30, 88(r1), 0, 0

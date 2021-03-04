@@ -61,7 +61,7 @@ lbl_800E997C:
 /* 800E997C 000E68BC  7F C3 F3 78 */ mr r3, r30
 /* 800E9980 000E68C0  38 80 00 01 */ li r4, 1
 /* 800E9984 000E68C4  38 A0 00 00 */ li r5, 0
-/* 800E9988 000E68C8  4B FD 79 55 */ bl daAlink_c_NS_deleteEquipItem
+/* 800E9988 000E68C8  4B FD 79 55 */ bl deleteEquipItem__9daAlink_cFii
 /* 800E998C 000E68CC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E9990 000E68D0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E9994 000E68D4  38 63 4E C8 */ addi r3, r3, 0x4ec8
@@ -83,7 +83,7 @@ lbl_800E99BC:
 lbl_800E99D0:
 /* 800E99D0 000E6910  7F C3 F3 78 */ mr r3, r30
 /* 800E99D4 000E6914  38 80 00 C0 */ li r4, 0xc0
-/* 800E99D8 000E6918  4B FD 85 95 */ bl daAlink_c_NS_commonProcInit
+/* 800E99D8 000E6918  4B FD 85 95 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E99DC 000E691C  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 800E99E0 000E6920  7F E4 FB 78 */ mr r4, r31
 /* 800E99E4 000E6924  48 07 52 D5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
@@ -147,7 +147,7 @@ lbl_800E9AA4:
 /* 800E9AB8 000E69F8  98 1E 2F 98 */ stb r0, 0x2f98(r30)
 /* 800E9ABC 000E69FC  7F C3 F3 78 */ mr r3, r30
 /* 800E9AC0 000E6A00  38 80 01 1B */ li r4, 0x11b
-/* 800E9AC4 000E6A04  4B FC 34 BD */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800E9AC4 000E6A04  4B FC 34 BD */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800E9AC8 000E6A08  A8 1F 00 08 */ lha r0, 8(r31)
 /* 800E9ACC 000E6A0C  2C 00 00 21 */ cmpwi r0, 0x21
 /* 800E9AD0 000E6A10  40 82 00 14 */ bne lbl_800E9AE4
@@ -182,7 +182,7 @@ lbl_800E9B08:
 /* 800E9B38 000E6A78  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800E9B3C 000E6A7C  7F C3 F3 78 */ mr r3, r30
 /* 800E9B40 000E6A80  38 80 00 01 */ li r4, 1
-/* 800E9B44 000E6A84  48 03 76 7D */ bl daAlink_c_NS_setFootEffectProcType
+/* 800E9B44 000E6A84  48 03 76 7D */ bl setFootEffectProcType__9daAlink_cFi
 /* 800E9B48 000E6A88  38 00 00 60 */ li r0, 0x60
 /* 800E9B4C 000E6A8C  98 1E 2F 9D */ stb r0, 0x2f9d(r30)
 /* 800E9B50 000E6A90  3C 60 80 42 */ lis r3, lbl_80425544@ha

@@ -7,13 +7,13 @@
 /* 801393BC 001362FC  28 00 00 04 */ cmplwi r0, 4
 /* 801393C0 00136300  40 82 00 0C */ bne lbl_801393CC
 /* 801393C4 00136304  38 80 00 01 */ li r4, 1
-/* 801393C8 00136308  4B F9 80 69 */ bl daAlink_c_NS_resetCombo
+/* 801393C8 00136308  4B F9 80 69 */ bl resetCombo__9daAlink_cFi
 lbl_801393CC:
 /* 801393CC 0013630C  88 7F 05 69 */ lbz r3, 0x569(r31)
 /* 801393D0 00136310  38 03 00 01 */ addi r0, r3, 1
 /* 801393D4 00136314  98 1F 05 69 */ stb r0, 0x569(r31)
 /* 801393D8 00136318  7F E3 FB 78 */ mr r3, r31
-/* 801393DC 0013631C  4B F9 93 11 */ bl daAlink_c_NS_getCutDirection
+/* 801393DC 0013631C  4B F9 93 11 */ bl getCutDirection__9daAlink_cFv
 /* 801393E0 00136320  7C 64 1B 78 */ mr r4, r3
 /* 801393E4 00136324  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 801393E8 00136328  54 00 02 53 */ rlwinm. r0, r0, 0, 9, 9
@@ -22,7 +22,7 @@ lbl_801393CC:
 /* 801393F4 00136334  98 1F 05 69 */ stb r0, 0x569(r31)
 /* 801393F8 00136338  7F E3 FB 78 */ mr r3, r31
 /* 801393FC 0013633C  38 80 00 00 */ li r4, 0
-/* 80139400 00136340  48 00 09 E1 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 80139400 00136340  48 00 09 E1 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139404 00136344  48 00 01 9C */ b lbl_801395A0
 lbl_80139408:
 /* 80139408 00136348  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -35,7 +35,7 @@ lbl_80139408:
 /* 80139424 00136364  40 82 00 14 */ bne lbl_80139438
 /* 80139428 00136368  7F E3 FB 78 */ mr r3, r31
 /* 8013942C 0013636C  38 80 00 02 */ li r4, 2
-/* 80139430 00136370  48 00 19 C1 */ bl daAlink_c_NS_procWolfWaitAttackInit
+/* 80139430 00136370  48 00 19 C1 */ bl procWolfWaitAttackInit__9daAlink_cFi
 /* 80139434 00136374  48 00 01 6C */ b lbl_801395A0
 lbl_80139438:
 /* 80139438 00136378  2C 04 00 00 */ cmpwi r4, 0
@@ -45,13 +45,13 @@ lbl_80139438:
 lbl_80139448:
 /* 80139448 00136388  7F E3 FB 78 */ mr r3, r31
 /* 8013944C 0013638C  38 80 00 00 */ li r4, 0
-/* 80139450 00136390  48 00 09 91 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 80139450 00136390  48 00 09 91 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139454 00136394  48 00 01 4C */ b lbl_801395A0
 lbl_80139458:
 /* 80139458 00136398  7F E3 FB 78 */ mr r3, r31
 /* 8013945C 0013639C  38 80 00 01 */ li r4, 1
 /* 80139460 001363A0  38 A0 00 00 */ li r5, 0
-/* 80139464 001363A4  48 00 1E 3D */ bl daAlink_c_NS_procWolfRollAttackInit
+/* 80139464 001363A4  48 00 1E 3D */ bl procWolfRollAttackInit__9daAlink_cFii
 /* 80139468 001363A8  48 00 01 38 */ b lbl_801395A0
 lbl_8013946C:
 /* 8013946C 001363AC  2C 04 00 03 */ cmpwi r4, 3
@@ -61,12 +61,12 @@ lbl_8013946C:
 lbl_8013947C:
 /* 8013947C 001363BC  7F E3 FB 78 */ mr r3, r31
 /* 80139480 001363C0  38 80 00 02 */ li r4, 2
-/* 80139484 001363C4  48 00 19 6D */ bl daAlink_c_NS_procWolfWaitAttackInit
+/* 80139484 001363C4  48 00 19 6D */ bl procWolfWaitAttackInit__9daAlink_cFi
 /* 80139488 001363C8  48 00 01 18 */ b lbl_801395A0
 lbl_8013948C:
 /* 8013948C 001363CC  7F E3 FB 78 */ mr r3, r31
 /* 80139490 001363D0  38 80 00 02 */ li r4, 2
-/* 80139494 001363D4  48 00 09 4D */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 80139494 001363D4  48 00 09 4D */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139498 001363D8  48 00 01 08 */ b lbl_801395A0
 lbl_8013949C:
 /* 8013949C 001363DC  88 1F 05 69 */ lbz r0, 0x569(r31)
@@ -82,12 +82,12 @@ lbl_8013949C:
 lbl_801394C4:
 /* 801394C4 00136404  7F E3 FB 78 */ mr r3, r31
 /* 801394C8 00136408  38 80 00 02 */ li r4, 2
-/* 801394CC 0013640C  48 00 19 25 */ bl daAlink_c_NS_procWolfWaitAttackInit
+/* 801394CC 0013640C  48 00 19 25 */ bl procWolfWaitAttackInit__9daAlink_cFi
 /* 801394D0 00136410  48 00 00 D0 */ b lbl_801395A0
 lbl_801394D4:
 /* 801394D4 00136414  7F E3 FB 78 */ mr r3, r31
 /* 801394D8 00136418  38 80 00 00 */ li r4, 0
-/* 801394DC 0013641C  48 00 09 05 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 801394DC 0013641C  48 00 09 05 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 801394E0 00136420  48 00 00 C0 */ b lbl_801395A0
 lbl_801394E4:
 /* 801394E4 00136424  2C 04 00 02 */ cmpwi r4, 2
@@ -95,7 +95,7 @@ lbl_801394E4:
 /* 801394EC 0013642C  7F E3 FB 78 */ mr r3, r31
 /* 801394F0 00136430  38 80 00 00 */ li r4, 0
 /* 801394F4 00136434  38 A0 00 00 */ li r5, 0
-/* 801394F8 00136438  48 00 1D A9 */ bl daAlink_c_NS_procWolfRollAttackInit
+/* 801394F8 00136438  48 00 1D A9 */ bl procWolfRollAttackInit__9daAlink_cFii
 /* 801394FC 0013643C  48 00 00 A4 */ b lbl_801395A0
 lbl_80139500:
 /* 80139500 00136440  2C 04 00 03 */ cmpwi r4, 3
@@ -103,19 +103,19 @@ lbl_80139500:
 /* 80139508 00136448  7F E3 FB 78 */ mr r3, r31
 /* 8013950C 0013644C  38 80 00 01 */ li r4, 1
 /* 80139510 00136450  38 A0 00 00 */ li r5, 0
-/* 80139514 00136454  48 00 1D 8D */ bl daAlink_c_NS_procWolfRollAttackInit
+/* 80139514 00136454  48 00 1D 8D */ bl procWolfRollAttackInit__9daAlink_cFii
 /* 80139518 00136458  48 00 00 88 */ b lbl_801395A0
 lbl_8013951C:
 /* 8013951C 0013645C  2C 04 00 00 */ cmpwi r4, 0
 /* 80139520 00136460  40 82 00 14 */ bne lbl_80139534
 /* 80139524 00136464  7F E3 FB 78 */ mr r3, r31
 /* 80139528 00136468  38 80 00 00 */ li r4, 0
-/* 8013952C 0013646C  48 00 08 B5 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 8013952C 0013646C  48 00 08 B5 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139530 00136470  48 00 00 70 */ b lbl_801395A0
 lbl_80139534:
 /* 80139534 00136474  7F E3 FB 78 */ mr r3, r31
 /* 80139538 00136478  38 80 00 02 */ li r4, 2
-/* 8013953C 0013647C  48 00 08 A5 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 8013953C 0013647C  48 00 08 A5 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139540 00136480  48 00 00 60 */ b lbl_801395A0
 lbl_80139544:
 /* 80139544 00136484  28 00 00 02 */ cmplwi r0, 2
@@ -125,7 +125,7 @@ lbl_80139544:
 /* 80139554 00136494  3C 80 80 39 */ lis r4, lbl_80391E78@ha
 /* 80139558 00136498  38 84 1E 78 */ addi r4, r4, lbl_80391E78@l
 /* 8013955C 0013649C  7C 84 00 2E */ lwzx r4, r4, r0
-/* 80139560 001364A0  48 00 18 91 */ bl daAlink_c_NS_procWolfWaitAttackInit
+/* 80139560 001364A0  48 00 18 91 */ bl procWolfWaitAttackInit__9daAlink_cFi
 /* 80139564 001364A4  48 00 00 3C */ b lbl_801395A0
 lbl_80139568:
 /* 80139568 001364A8  28 00 00 01 */ cmplwi r0, 1
@@ -134,7 +134,7 @@ lbl_80139568:
 /* 80139574 001364B4  40 82 00 14 */ bne lbl_80139588
 /* 80139578 001364B8  7F E3 FB 78 */ mr r3, r31
 /* 8013957C 001364BC  38 80 00 00 */ li r4, 0
-/* 80139580 001364C0  48 00 08 61 */ bl daAlink_c_NS_procWolfJumpAttackInit
+/* 80139580 001364C0  48 00 08 61 */ bl procWolfJumpAttackInit__9daAlink_cFi
 /* 80139584 001364C4  48 00 00 1C */ b lbl_801395A0
 lbl_80139588:
 /* 80139588 001364C8  7F E3 FB 78 */ mr r3, r31
@@ -142,7 +142,7 @@ lbl_80139588:
 /* 80139590 001364D0  3C 80 80 39 */ lis r4, lbl_80391E8C@ha
 /* 80139594 001364D4  38 84 1E 8C */ addi r4, r4, lbl_80391E8C@l
 /* 80139598 001364D8  7C 84 00 2E */ lwzx r4, r4, r0
-/* 8013959C 001364DC  48 00 18 55 */ bl daAlink_c_NS_procWolfWaitAttackInit
+/* 8013959C 001364DC  48 00 18 55 */ bl procWolfWaitAttackInit__9daAlink_cFi
 lbl_801395A0:
 /* 801395A0 001364E0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801395A4 001364E4  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -14,7 +14,7 @@
 /* 800F773C 000F467C  4B F2 26 5D */ bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 800F7740 000F4680  90 7F 28 24 */ stw r3, 0x2824(r31)
 /* 800F7744 000F4684  7F E3 FB 78 */ mr r3, r31
-/* 800F7748 000F4688  4B FF C6 59 */ bl daAlink_c_NS_initFishingRodHand
+/* 800F7748 000F4688  4B FF C6 59 */ bl initFishingRodHand__9daAlink_cFv
 /* 800F774C 000F468C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F7750 000F4690  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800F7754 000F4694  7C 08 03 A6 */ mtlr r0

@@ -42,10 +42,10 @@ lbl_80059420:
 /* 80059474 000563B4  3C 80 80 05 */ lis r4, EF_ODOUR_EFF@ha
 /*.global EF_ODOUR_EFF*/
 /* 80059478 000563B8  38 84 6F C8 */ addi r4, r4, EF_ODOUR_EFF@l
-/*.global EF_ODOUR_EFF_NS_dtor*/
-/* 8005947C 000563BC  3C A0 80 05 */ lis r5, EF_ODOUR_EFF_NS_dtor@ha
-/*.global EF_ODOUR_EFF_NS_dtor*/
-/* 80059480 000563C0  38 A5 6F 8C */ addi r5, r5, EF_ODOUR_EFF_NS_dtor@l
+/*.global __dt__12EF_ODOUR_EFFFv*/
+/* 8005947C 000563BC  3C A0 80 05 */ lis r5, __dt__12EF_ODOUR_EFFFv@ha
+/*.global __dt__12EF_ODOUR_EFFFv*/
+/* 80059480 000563C0  38 A5 6F 8C */ addi r5, r5, __dt__12EF_ODOUR_EFFFv@l
 /* 80059484 000563C4  38 C0 00 30 */ li r6, 0x30
 /* 80059488 000563C8  38 E0 07 D0 */ li r7, 0x7d0
 /* 8005948C 000563CC  48 30 88 D5 */ bl func_80361D60

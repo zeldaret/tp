@@ -12,7 +12,7 @@
 /* 80138C70 00135BB0  7F C3 F3 78 */ mr r3, r30
 /* 80138C74 00135BB4  38 80 00 02 */ li r4, 2
 /* 80138C78 00135BB8  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80138C7C 00135BBC  4B F7 4A A9 */ bl daAlink_c_NS_resetUpperAnime
+/* 80138C7C 00135BBC  4B F7 4A A9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 80138C80 00135BC0  48 00 00 20 */ b lbl_80138CA0
 lbl_80138C84:
 /* 80138C84 00135BC4  7F E3 FB 78 */ mr r3, r31
@@ -21,7 +21,7 @@ lbl_80138C84:
 /* 80138C90 00135BD0  2C 03 00 00 */ cmpwi r3, 0
 /* 80138C94 00135BD4  41 82 00 0C */ beq lbl_80138CA0
 /* 80138C98 00135BD8  7F C3 F3 78 */ mr r3, r30
-/* 80138C9C 00135BDC  4B FF FF 69 */ bl daAlink_c_NS_resetWolfEnemyBiteAll
+/* 80138C9C 00135BDC  4B FF FF 69 */ bl resetWolfEnemyBiteAll__9daAlink_cFv
 lbl_80138CA0:
 /* 80138CA0 00135BE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80138CA4 00135BE4  83 C1 00 08 */ lwz r30, 8(r1)

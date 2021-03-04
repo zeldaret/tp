@@ -155,7 +155,7 @@ lbl_802B5424:
 /* 802B5428 002B2368  98 1F 00 BE */ stb r0, 0xbe(r31)
 /* 802B542C 002B236C  7F E3 FB 78 */ mr r3, r31
 /* 802B5430 002B2370  38 80 00 00 */ li r4, 0
-/* 802B5434 002B2374  4B FF EF 9D */ bl Z2SeqMgr_NS_setBattleDistIgnore
+/* 802B5434 002B2374  4B FF EF 9D */ bl setBattleDistIgnore__8Z2SeqMgrFb
 /* 802B5438 002B2378  38 60 00 00 */ li r3, 0
 /* 802B543C 002B237C  88 1F 00 D0 */ lbz r0, 0xd0(r31)
 /* 802B5440 002B2380  50 60 2E B4 */ rlwimi r0, r3, 5, 0x1a, 0x1a

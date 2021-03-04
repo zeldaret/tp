@@ -233,7 +233,7 @@ asm void Z2CreatureLink::setResumeAttack(bool) {
 extern "C" {
 // __ct__18Z2LinkSoundStarterFv
 // Z2LinkSoundStarter::Z2LinkSoundStarter(void)
-asm void Z2LinkSoundStarter_NS_ctor(void) {
+asm void __ct__18Z2LinkSoundStarterFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C48E8.s"
 }
@@ -262,7 +262,7 @@ asm void func_802C5078(void) {
 
 // __dt__14Z2CreatureRideFv
 // Z2CreatureRide::~Z2CreatureRide(void)
-asm void Z2CreatureRide_NS_dtor(void) {
+asm void __dt__14Z2CreatureRideFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C5114.s"
 }
@@ -283,7 +283,7 @@ asm void func_802C520C(void) {
 
 // setLinkRiding__14Z2CreatureRideFb
 // Z2CreatureRide::setLinkRiding(bool)
-asm void Z2CreatureRide_NS_setLinkRiding(void) {
+asm void setLinkRiding__14Z2CreatureRideFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C522C.s"
 }

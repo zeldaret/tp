@@ -61,20 +61,20 @@ lbl_80223EAC:
 /* 80223EE8 00220E28  7F 03 C3 78 */ mr r3, r24
 /* 80223EEC 00220E2C  56 E4 06 3E */ clrlwi r4, r23, 0x18
 /* 80223EF0 00220E30  54 05 06 3E */ clrlwi r5, r0, 0x18
-/* 80223EF4 00220E34  4B E0 74 79 */ bl dComIfG_play_c_NS_setItemBombNumCount
+/* 80223EF4 00220E34  4B E0 74 79 */ bl setItemBombNumCount__14dComIfG_play_cFUcs
 lbl_80223EF8:
 /* 80223EF8 00220E38  7F 03 C3 78 */ mr r3, r24
 /* 80223EFC 00220E3C  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80223F00 00220E40  4B E0 74 85 */ bl dComIfG_play_c_NS_getItemBombNumCount
+/* 80223F00 00220E40  4B E0 74 85 */ bl getItemBombNumCount__14dComIfG_play_cFUc
 /* 80223F04 00220E44  7C 60 07 35 */ extsh. r0, r3
 /* 80223F08 00220E48  40 80 00 10 */ bge lbl_80223F18
 /* 80223F0C 00220E4C  7F 03 C3 78 */ mr r3, r24
 /* 80223F10 00220E50  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80223F14 00220E54  4B E0 74 81 */ bl dComIfG_play_c_NS_clearItemBombNumCount
+/* 80223F14 00220E54  4B E0 74 81 */ bl clearItemBombNumCount__14dComIfG_play_cFUc
 lbl_80223F18:
 /* 80223F18 00220E58  7F 03 C3 78 */ mr r3, r24
 /* 80223F1C 00220E5C  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80223F20 00220E60  4B E0 74 65 */ bl dComIfG_play_c_NS_getItemBombNumCount
+/* 80223F20 00220E60  4B E0 74 65 */ bl getItemBombNumCount__14dComIfG_play_cFUc
 /* 80223F24 00220E64  7C 60 07 35 */ extsh. r0, r3
 /* 80223F28 00220E68  40 82 00 40 */ bne lbl_80223F68
 /* 80223F2C 00220E6C  7F 43 D3 78 */ mr r3, r26
@@ -95,7 +95,7 @@ lbl_80223F18:
 lbl_80223F68:
 /* 80223F68 00220EA8  7F 03 C3 78 */ mr r3, r24
 /* 80223F6C 00220EAC  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80223F70 00220EB0  4B E0 74 15 */ bl dComIfG_play_c_NS_getItemBombNumCount
+/* 80223F70 00220EB0  4B E0 74 15 */ bl getItemBombNumCount__14dComIfG_play_cFUc
 /* 80223F74 00220EB4  7C 73 1B 78 */ mr r19, r3
 /* 80223F78 00220EB8  7F 43 D3 78 */ mr r3, r26
 /* 80223F7C 00220EBC  56 E4 06 3E */ clrlwi r4, r23, 0x18
@@ -105,7 +105,7 @@ lbl_80223F68:
 /* 80223F8C 00220ECC  7C 16 07 34 */ extsh r22, r0
 /* 80223F90 00220ED0  7F 03 C3 78 */ mr r3, r24
 /* 80223F94 00220ED4  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80223F98 00220ED8  4B E0 73 FD */ bl dComIfG_play_c_NS_clearItemBombNumCount
+/* 80223F98 00220ED8  4B E0 73 FD */ bl clearItemBombNumCount__14dComIfG_play_cFUc
 /* 80223F9C 00220EDC  7E C0 07 35 */ extsh. r0, r22
 /* 80223FA0 00220EE0  40 80 00 08 */ bge lbl_80223FA8
 /* 80223FA4 00220EE4  3A C0 00 00 */ li r22, 0
@@ -208,7 +208,7 @@ lbl_802240D4:
 /* 80224100 00221040  80 75 01 0C */ lwz r3, 0x10c(r21)
 /* 80224104 00221044  56 44 06 3E */ clrlwi r4, r18, 0x18
 /* 80224108 00221048  7E C6 B3 78 */ mr r6, r22
-/* 8022410C 0022104C  4B FF 6A 79 */ bl dMeter2Draw_c_NS_setItemNum
+/* 8022410C 0022104C  4B FF 6A 79 */ bl setItemNum__13dMeter2Draw_cFUcUcUc
 lbl_80224110:
 /* 80224110 00221050  3A 52 00 01 */ addi r18, r18, 1
 /* 80224114 00221054  2C 12 00 02 */ cmpwi r18, 2
@@ -225,12 +225,12 @@ lbl_80224120:
 lbl_8022413C:
 /* 8022413C 0022107C  7F 03 C3 78 */ mr r3, r24
 /* 80224140 00221080  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80224144 00221084  4B E0 72 41 */ bl dComIfG_play_c_NS_getItemBombNumCount
+/* 80224144 00221084  4B E0 72 41 */ bl getItemBombNumCount__14dComIfG_play_cFUc
 /* 80224148 00221088  7C 60 07 35 */ extsh. r0, r3
 /* 8022414C 0022108C  41 82 00 10 */ beq lbl_8022415C
 /* 80224150 00221090  7F 03 C3 78 */ mr r3, r24
 /* 80224154 00221094  56 E4 06 3E */ clrlwi r4, r23, 0x18
-/* 80224158 00221098  4B E0 72 3D */ bl dComIfG_play_c_NS_clearItemBombNumCount
+/* 80224158 00221098  4B E0 72 3D */ bl clearItemBombNumCount__14dComIfG_play_cFUc
 lbl_8022415C:
 /* 8022415C 0022109C  7F 43 D3 78 */ mr r3, r26
 /* 80224160 002210A0  56 E4 06 3E */ clrlwi r4, r23, 0x18
@@ -280,7 +280,7 @@ lbl_802241D0:
 /* 80224204 00221144  80 75 01 0C */ lwz r3, 0x10c(r21)
 /* 80224208 00221148  56 44 06 3E */ clrlwi r4, r18, 0x18
 /* 8022420C 0022114C  7E C6 B3 78 */ mr r6, r22
-/* 80224210 00221150  4B FF 69 75 */ bl dMeter2Draw_c_NS_setItemNum
+/* 80224210 00221150  4B FF 69 75 */ bl setItemNum__13dMeter2Draw_cFUcUcUc
 lbl_80224214:
 /* 80224214 00221154  3A 94 00 01 */ addi r20, r20, 1
 /* 80224218 00221158  2C 14 00 03 */ cmpwi r20, 3

@@ -42,7 +42,7 @@ lbl_801A1398:
 /* 801A13DC 0019E31C  39 01 00 23 */ addi r8, r1, 0x23
 /* 801A13E0 0019E320  39 21 00 21 */ addi r9, r1, 0x21
 /* 801A13E4 0019E324  39 41 00 22 */ addi r10, r1, 0x22
-/* 801A13E8 0019E328  4B FF E7 ED */ bl dScnKy_env_light_c_NS_setLight_palno_get
+/* 801A13E8 0019E328  4B FF E7 ED */ bl setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc
 /* 801A13EC 0019E32C  88 01 00 23 */ lbz r0, 0x23(r1)
 /* 801A13F0 0019E330  28 00 00 FF */ cmplwi r0, 0xff
 /* 801A13F4 0019E334  40 82 00 38 */ bne lbl_801A142C

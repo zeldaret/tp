@@ -121,7 +121,7 @@ extern cXyz lbl_80430D0C;  // SComponent::cXyz::BaseX
 extern cXyz lbl_80430D24;  // SComponent::cXyz::BaseY
 
 extern "C" {  // needed for inline asm
-void cXyz_NS_dtor(void);
+void __dt__4cXyzFv(void);
 }
 
 #endif

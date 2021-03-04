@@ -18,10 +18,10 @@ void __nw__FUli(void);
 void __pl__4cXyzCFRC3Vec(void);
 void cLib_addCalc__FPfffff(void);
 void cloud_shadow_move(void);
-void cXyz_NS_ctor(void);
-void cXyz_NS_dtor(void);
+void __ct__4cXyzFv(void);
+void __dt__4cXyzFv(void);
 void dComIfG_getStageRes(void);
-void dComIfG_play_c_NS_getLayerNo(int);
+void getLayerNo__14dComIfG_play_cFi(int);
 void dComIfGp_getReverb(void);
 void dKy_darkworld_check(void);
 void dKy_get_dayofweek(void);
@@ -66,18 +66,18 @@ void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_lev
 void drawCloudShadow(void);
 void drawVrkumo(void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
-void dScnKy_env_light_c_NS_getDaytime(void);
-void dStage_roomControl_c_NS_getStatusRoomDt(void);
+void getDaytime__18dScnKy_env_light_cFv(void);
+void getStatusRoomDt__20dStage_roomControl_cFi(void);
 void func_80361C24(void);
 void func_80361D60(void);
 void entryImm__13J3DDrawBufferFP9J3DPacketUs(void);
 void normZP__4cXyzCFv(void);
 void squal_proc(void);
 void vrkumo_move(void);
-void Z2EnvSeMgr_NS_initStrongWindSe(void);
-void Z2EnvSeMgr_NS_setWindDirection(void);
-void Z2EnvSeMgr_NS_startRainSe(void);
-void Z2EnvSeMgr_NS_startStrongWindSe(void);
+void initStrongWindSe__10Z2EnvSeMgrFv(void);
+void setWindDirection__10Z2EnvSeMgrFP3Vec(void);
+void startRainSe__10Z2EnvSeMgrFlSc(void);
+void startStrongWindSe__10Z2EnvSeMgrFSc(void);
 }
 
 class j3dsys {
@@ -196,7 +196,7 @@ asm void func_80056C98(void) {
 
 // __dt__8RAIN_EFFFv
 // RAIN_EFF::~RAIN_EFF(void)
-asm void RAIN_EFF_NS_dtor(void) {
+asm void __dt__8RAIN_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056CD0.s"
 }
@@ -217,7 +217,7 @@ asm void func_80056D10(void) {
 
 // __dt__8SNOW_EFFFv
 // SNOW_EFF::~SNOW_EFF(void)
-asm void SNOW_EFF_NS_dtor(void) {
+asm void __dt__8SNOW_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056D58.s"
 }
@@ -238,7 +238,7 @@ asm void func_80056D98(void) {
 
 // __dt__8STAR_EFFFv
 // STAR_EFF::~STAR_EFF(void)
-asm void STAR_EFF_NS_dtor(void) {
+asm void __dt__8STAR_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056DC8.s"
 }
@@ -259,7 +259,7 @@ asm void func_80056E08(void) {
 
 // __dt__9CLOUD_EFFFv
 // CLOUD_EFF::~CLOUD_EFF(void)
-asm void CLOUD_EFF_NS_dtor(void) {
+asm void __dt__9CLOUD_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056E38.s"
 }
@@ -280,7 +280,7 @@ asm void func_80056E78(void) {
 
 // __dt__9HOUSI_EFFFv
 // HOUSI_EFF::~HOUSI_EFF(void)
-asm void HOUSI_EFF_NS_dtor(void) {
+asm void __dt__9HOUSI_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056EA8.s"
 }
@@ -301,7 +301,7 @@ asm void func_80056EE8(void) {
 
 // __dt__10VRKUMO_EFFFv
 // VRKUMO_EFF::~VRKUMO_EFF(void)
-asm void VRKUMO_EFF_NS_dtor(void) {
+asm void __dt__10VRKUMO_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056F18.s"
 }
@@ -322,7 +322,7 @@ asm void func_80056F58(void) {
 
 // __dt__12EF_ODOUR_EFFFv
 // EF_ODOUR_EFF::~EF_ODOUR_EFF(void)
-asm void EF_ODOUR_EFF_NS_dtor(void) {
+asm void __dt__12EF_ODOUR_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056F8C.s"
 }
@@ -343,7 +343,7 @@ asm void func_80056FCC(void) {
 
 // __dt__10EF_MUD_EFFFv
 // EF_MUD_EFF::~EF_MUD_EFF(void)
-asm void EF_MUD_EFF_NS_dtor(void) {
+asm void __dt__10EF_MUD_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_80056FFC.s"
 }
@@ -364,7 +364,7 @@ asm void func_8005703C(void) {
 
 // __dt__11EF_EVIL_EFFFv
 // EF_EVIL_EFF::~EF_EVIL_EFF(void)
-asm void EF_EVIL_EFF_NS_dtor(void) {
+asm void __dt__11EF_EVIL_EFFFv(void) {
     nofralloc
 #include "d/d_kankyo/d_kankyo_wether/asm/func_8005706C.s"
 }

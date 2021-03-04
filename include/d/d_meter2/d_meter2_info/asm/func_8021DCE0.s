@@ -19,7 +19,7 @@ lbl_8021DD00:
 /* 8021DD24 0021AC64  7F A3 EB 78 */ mr r3, r29
 /* 8021DD28 0021AC68  38 1E 00 0B */ addi r0, r30, 0xb
 /* 8021DD2C 0021AC6C  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 8021DD30 0021AC70  48 00 00 2D */ bl dMeter2Info_c_NS_changeWater
+/* 8021DD30 0021AC70  48 00 00 2D */ bl changeWater__13dMeter2Info_cFUc
 lbl_8021DD34:
 /* 8021DD34 0021AC74  3B DE 00 01 */ addi r30, r30, 1
 /* 8021DD38 0021AC78  2C 1E 00 04 */ cmpwi r30, 4

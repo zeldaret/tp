@@ -48,9 +48,9 @@ lbl_800CE7D4:
 /* 800CE7D8 000CB718  D0 01 00 40 */ stfs f0, 0x40(r1)
 lbl_800CE7DC:
 /* 800CE7DC 000CB71C  38 61 00 2C */ addi r3, r1, 0x2c
-/* 800CE7E0 000CB720  4B F3 E5 85 */ bl mDoMtx_stack_c_NS_transS
+/* 800CE7E0 000CB720  4B F3 E5 85 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800CE7E4 000CB724  7F C3 F3 78 */ mr r3, r30
-/* 800CE7E8 000CB728  48 01 3C 15 */ bl daAlink_c_NS_concatMagneBootMtx
+/* 800CE7E8 000CB728  48 01 3C 15 */ bl concatMagneBootMtx__9daAlink_cFv
 /* 800CE7EC 000CB72C  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800CE7F0 000CB730  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800CE7F4 000CB734  7F E4 FB 78 */ mr r4, r31
@@ -65,7 +65,7 @@ lbl_800CE7DC:
 /* 800CE818 000CB758  7F C3 F3 78 */ mr r3, r30
 /* 800CE81C 000CB75C  38 81 00 2C */ addi r4, r1, 0x2c
 /* 800CE820 000CB760  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800CE824 000CB764  4B FD 39 75 */ bl daAlink_c_NS_commonLineCheck
+/* 800CE824 000CB764  4B FD 39 75 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800CE828 000CB768  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CE82C 000CB76C  41 82 00 58 */ beq lbl_800CE884
 /* 800CE830 000CB770  38 61 00 08 */ addi r3, r1, 8
@@ -80,7 +80,7 @@ lbl_800CE7DC:
 /* 800CE854 000CB794  D0 01 00 1C */ stfs f0, 0x1c(r1)
 /* 800CE858 000CB798  7F C3 F3 78 */ mr r3, r30
 /* 800CE85C 000CB79C  38 81 00 14 */ addi r4, r1, 0x14
-/* 800CE860 000CB7A0  48 01 3C 1D */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800CE860 000CB7A0  48 01 3C 1D */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800CE864 000CB7A4  C0 3E 04 D0 */ lfs f1, 0x4d0(r30)
 /* 800CE868 000CB7A8  C0 01 00 14 */ lfs f0, 0x14(r1)
 /* 800CE86C 000CB7AC  EC 01 00 28 */ fsubs f0, f1, f0

@@ -3,7 +3,7 @@
 /* 800EF458 000EC398  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800EF45C 000EC39C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800EF460 000EC3A0  7C 7F 1B 78 */ mr r31, r3
-/* 800EF464 000EC3A4  4B FF 48 39 */ bl daAlink_c_NS_checkGrabAnimeAndThrow
+/* 800EF464 000EC3A4  4B FF 48 39 */ bl checkGrabAnime__9daAlink_cCFvAndThrow
 /* 800EF468 000EC3A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF46C 000EC3AC  41 82 00 10 */ beq lbl_800EF47C
 /* 800EF470 000EC3B0  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
@@ -11,26 +11,26 @@
 /* 800EF478 000EC3B8  40 82 00 1C */ bne lbl_800EF494
 lbl_800EF47C:
 /* 800EF47C 000EC3BC  7F E3 FB 78 */ mr r3, r31
-/* 800EF480 000EC3C0  4B FC A8 AD */ bl daAlink_c_NS_checkNextActionFromButton
+/* 800EF480 000EC3C0  4B FC A8 AD */ bl checkNextActionFromButton__9daAlink_cFv
 /* 800EF484 000EC3C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF488 000EC3C8  41 82 00 0C */ beq lbl_800EF494
 /* 800EF48C 000EC3CC  38 60 00 01 */ li r3, 1
 /* 800EF490 000EC3D0  48 00 00 F4 */ b lbl_800EF584
 lbl_800EF494:
 /* 800EF494 000EC3D4  7F E3 FB 78 */ mr r3, r31
-/* 800EF498 000EC3D8  4B FE F5 51 */ bl daAlink_c_NS_checkBowAnime
+/* 800EF498 000EC3D8  4B FE F5 51 */ bl checkBowAnime__9daAlink_cCFv
 /* 800EF49C 000EC3DC  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF4A0 000EC3E0  41 82 00 10 */ beq lbl_800EF4B0
 /* 800EF4A4 000EC3E4  7F E3 FB 78 */ mr r3, r31
-/* 800EF4A8 000EC3E8  4B FF 03 6D */ bl daAlink_c_NS_checkNextActionBow
+/* 800EF4A8 000EC3E8  4B FF 03 6D */ bl checkNextAction__9daAlink_cFiBow
 /* 800EF4AC 000EC3EC  48 00 00 D8 */ b lbl_800EF584
 lbl_800EF4B0:
 /* 800EF4B0 000EC3F0  7F E3 FB 78 */ mr r3, r31
-/* 800EF4B4 000EC3F4  4B FF 0F 8D */ bl daAlink_c_NS_checkBoomerangAnime
+/* 800EF4B4 000EC3F4  4B FF 0F 8D */ bl checkBoomerangAnime__9daAlink_cCFv
 /* 800EF4B8 000EC3F8  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF4BC 000EC3FC  41 82 00 10 */ beq lbl_800EF4CC
 /* 800EF4C0 000EC400  7F E3 FB 78 */ mr r3, r31
-/* 800EF4C4 000EC404  4B FF 17 21 */ bl daAlink_c_NS_checkNextActionBoomerang
+/* 800EF4C4 000EC404  4B FF 17 21 */ bl checkNextAction__9daAlink_cFiBoomerang
 /* 800EF4C8 000EC408  48 00 00 BC */ b lbl_800EF584
 lbl_800EF4CC:
 /* 800EF4CC 000EC40C  38 60 00 00 */ li r3, 0
@@ -46,22 +46,22 @@ lbl_800EF4EC:
 /* 800EF4EC 000EC42C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EF4F0 000EC430  41 82 00 10 */ beq lbl_800EF500
 /* 800EF4F4 000EC434  7F E3 FB 78 */ mr r3, r31
-/* 800EF4F8 000EC438  48 01 A0 D1 */ bl daAlink_c_NS_checkNextActionHookshot
+/* 800EF4F8 000EC438  48 01 A0 D1 */ bl checkNextAction__9daAlink_cFiHookshot
 /* 800EF4FC 000EC43C  48 00 00 88 */ b lbl_800EF584
 lbl_800EF500:
 /* 800EF500 000EC440  7F E3 FB 78 */ mr r3, r31
-/* 800EF504 000EC444  4B FF 47 99 */ bl daAlink_c_NS_checkGrabAnimeAndThrow
+/* 800EF504 000EC444  4B FF 47 99 */ bl checkGrabAnime__9daAlink_cCFvAndThrow
 /* 800EF508 000EC448  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF50C 000EC44C  41 82 00 10 */ beq lbl_800EF51C
 /* 800EF510 000EC450  7F E3 FB 78 */ mr r3, r31
-/* 800EF514 000EC454  48 00 2E 21 */ bl daAlink_c_NS_procHorseGrabMoveInit
+/* 800EF514 000EC454  48 00 2E 21 */ bl procHorseGrabMoveInit__9daAlink_cFv
 /* 800EF518 000EC458  48 00 00 6C */ b lbl_800EF584
 lbl_800EF51C:
 /* 800EF51C 000EC45C  A0 9F 2F E8 */ lhz r4, 0x2fe8(r31)
 /* 800EF520 000EC460  28 04 00 4D */ cmplwi r4, 0x4d
 /* 800EF524 000EC464  40 82 00 10 */ bne lbl_800EF534
 /* 800EF528 000EC468  7F E3 FB 78 */ mr r3, r31
-/* 800EF52C 000EC46C  48 00 38 59 */ bl daAlink_c_NS_procHorseComebackInit
+/* 800EF52C 000EC46C  48 00 38 59 */ bl procHorseComebackInit__9daAlink_cFv
 /* 800EF530 000EC470  48 00 00 54 */ b lbl_800EF584
 lbl_800EF534:
 /* 800EF534 000EC474  28 04 00 3E */ cmplwi r4, 0x3e
@@ -86,7 +86,7 @@ lbl_800EF574:
 /* 800EF578 000EC4B8  48 00 00 0C */ b lbl_800EF584
 lbl_800EF57C:
 /* 800EF57C 000EC4BC  7F E3 FB 78 */ mr r3, r31
-/* 800EF580 000EC4C0  48 00 14 01 */ bl daAlink_c_NS_procHorseWaitInit
+/* 800EF580 000EC4C0  48 00 14 01 */ bl procHorseWaitInit__9daAlink_cFv
 lbl_800EF584:
 /* 800EF584 000EC4C4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800EF588 000EC4C8  80 01 00 14 */ lwz r0, 0x14(r1)

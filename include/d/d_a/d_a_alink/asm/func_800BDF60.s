@@ -30,7 +30,7 @@ lbl_800BDFC4:
 /* 800BDFD0 000BAF10  20 00 00 04 */ subfic r0, r0, 4
 /* 800BDFD4 000BAF14  7C 00 00 34 */ cntlzw r0, r0
 /* 800BDFD8 000BAF18  54 05 DE 3E */ rlwinm r5, r0, 0x1b, 0x18, 0x1f
-/* 800BDFDC 000BAF1C  48 05 AB 59 */ bl daAlink_c_NS_checkRestartDead
+/* 800BDFDC 000BAF1C  48 05 AB 59 */ bl checkRestartDead__9daAlink_cFii
 /* 800BDFE0 000BAF20  2C 03 00 00 */ cmpwi r3, 0
 /* 800BDFE4 000BAF24  40 82 02 64 */ bne lbl_800BE248
 /* 800BDFE8 000BAF28  80 1C 05 70 */ lwz r0, 0x570(r28)
@@ -53,7 +53,7 @@ lbl_800BE00C:
 /* 800BE028 000BAF68  2C 00 00 0E */ cmpwi r0, 0xe
 /* 800BE02C 000BAF6C  40 82 01 14 */ bne lbl_800BE140
 lbl_800BE030:
-/* 800BE030 000BAF70  48 05 AA A1 */ bl daAlink_c_NS_checkFinalBattle
+/* 800BE030 000BAF70  48 05 AA A1 */ bl checkFinalBattle__9daAlink_cFv
 /* 800BE034 000BAF74  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE038 000BAF78  40 82 01 08 */ bne lbl_800BE140
 /* 800BE03C 000BAF7C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -148,7 +148,7 @@ lbl_800BE144:
 /* 800BE174 000BB0B4  28 03 00 00 */ cmplwi r3, 0
 /* 800BE178 000BB0B8  40 82 00 14 */ bne lbl_800BE18C
 /* 800BE17C 000BB0BC  7F 83 E3 78 */ mr r3, r28
-/* 800BE180 000BB0C0  48 04 79 91 */ bl daAlink_c_NS_checkBoardRestart
+/* 800BE180 000BB0C0  48 04 79 91 */ bl checkBoardRestart__9daAlink_cFv
 /* 800BE184 000BB0C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BE188 000BB0C8  41 82 00 10 */ beq lbl_800BE198
 lbl_800BE18C:
@@ -161,7 +161,7 @@ lbl_800BE198:
 /* 800BE1A0 000BB0E0  40 82 00 24 */ bne lbl_800BE1C4
 /* 800BE1A4 000BB0E4  2C 1F 00 02 */ cmpwi r31, 2
 /* 800BE1A8 000BB0E8  40 82 00 24 */ bne lbl_800BE1CC
-/* 800BE1AC 000BB0EC  48 05 A9 25 */ bl daAlink_c_NS_checkFinalBattle
+/* 800BE1AC 000BB0EC  48 05 A9 25 */ bl checkFinalBattle__9daAlink_cFv
 /* 800BE1B0 000BB0F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE1B4 000BB0F4  40 82 00 18 */ bne lbl_800BE1CC
 /* 800BE1B8 000BB0F8  80 01 00 08 */ lwz r0, 8(r1)
@@ -174,7 +174,7 @@ lbl_800BE1CC:
 /* 800BE1CC 000BB10C  7F 83 E3 78 */ mr r3, r28
 /* 800BE1D0 000BB110  7F C4 F3 78 */ mr r4, r30
 /* 800BE1D4 000BB114  38 A1 00 08 */ addi r5, r1, 8
-/* 800BE1D8 000BB118  4B FF FC 49 */ bl daAlink_c_NS_setLastSceneDamage
+/* 800BE1D8 000BB118  4B FF FC 49 */ bl setLastSceneDamage__9daAlink_cFiPUl
 /* 800BE1DC 000BB11C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800BE1E0 000BB120  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BE1E4 000BB124  88 03 0D B4 */ lbz r0, 0xdb4(r3)

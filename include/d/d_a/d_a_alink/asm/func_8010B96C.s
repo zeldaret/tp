@@ -3,7 +3,7 @@
 /* 8010B974 001088B4  90 01 00 44 */ stw r0, 0x44(r1)
 /* 8010B978 001088B8  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 8010B97C 001088BC  7C 7F 1B 78 */ mr r31, r3
-/* 8010B980 001088C0  4B FA 8F 51 */ bl daAlink_c_NS_setJumpMode
+/* 8010B980 001088C0  4B FA 8F 51 */ bl setJumpMode__9daAlink_cFv
 /* 8010B984 001088C4  A8 1F 30 10 */ lha r0, 0x3010(r31)
 /* 8010B988 001088C8  2C 00 00 00 */ cmpwi r0, 0
 /* 8010B98C 001088CC  41 82 00 30 */ beq lbl_8010B9BC
@@ -17,14 +17,14 @@
 /* 8010B9AC 001088EC  40 82 00 10 */ bne lbl_8010B9BC
 lbl_8010B9B0:
 /* 8010B9B0 001088F0  7F E3 FB 78 */ mr r3, r31
-/* 8010B9B4 001088F4  4B FF FD 6D */ bl daAlink_c_NS_checkNextHookPoint
+/* 8010B9B4 001088F4  4B FF FD 6D */ bl checkNextHookPoint__9daAlink_cFv
 /* 8010B9B8 001088F8  48 00 00 A0 */ b lbl_8010BA58
 lbl_8010B9BC:
 /* 8010B9BC 001088FC  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 8010B9C0 00108900  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8010B9C4 00108904  41 82 00 10 */ beq lbl_8010B9D4
 /* 8010B9C8 00108908  7F E3 FB 78 */ mr r3, r31
-/* 8010B9CC 0010890C  4B FF FD 55 */ bl daAlink_c_NS_checkNextHookPoint
+/* 8010B9CC 0010890C  4B FF FD 55 */ bl checkNextHookPoint__9daAlink_cFv
 /* 8010B9D0 00108910  48 00 00 88 */ b lbl_8010BA58
 lbl_8010B9D4:
 /* 8010B9D4 00108914  38 61 00 14 */ addi r3, r1, 0x14
@@ -54,11 +54,11 @@ lbl_8010B9D4:
 /* 8010BA34 00108974  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010BA38 00108978  41 82 00 10 */ beq lbl_8010BA48
 /* 8010BA3C 0010897C  7F E3 FB 78 */ mr r3, r31
-/* 8010BA40 00108980  4B FF FC E1 */ bl daAlink_c_NS_checkNextHookPoint
+/* 8010BA40 00108980  4B FF FC E1 */ bl checkNextHookPoint__9daAlink_cFv
 /* 8010BA44 00108984  48 00 00 14 */ b lbl_8010BA58
 lbl_8010BA48:
 /* 8010BA48 00108988  7F E3 FB 78 */ mr r3, r31
-/* 8010BA4C 0010898C  4B FF FE 01 */ bl daAlink_c_NS_checkLandHookshotHang
+/* 8010BA4C 0010898C  4B FF FE 01 */ bl checkLandHookshotHang__9daAlink_cFv
 /* 8010BA50 00108990  30 03 FF FF */ addic r0, r3, -1
 /* 8010BA54 00108994  7C 60 19 10 */ subfe r3, r0, r3
 lbl_8010BA58:

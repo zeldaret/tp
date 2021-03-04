@@ -9,7 +9,7 @@
 /* 8011D4F4 0011A434  41 82 00 18 */ beq lbl_8011D50C
 /* 8011D4F8 0011A438  7F E3 FB 78 */ mr r3, r31
 /* 8011D4FC 0011A43C  38 80 01 22 */ li r4, 0x122
-/* 8011D500 0011A440  4B F8 FA 81 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011D500 0011A440  4B F8 FA 81 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011D504 0011A444  38 00 00 01 */ li r0, 1
 /* 8011D508 0011A448  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_8011D50C:

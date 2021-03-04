@@ -14,9 +14,9 @@
 /* 80109AE0 00106A20  54 00 02 D7 */ rlwinm. r0, r0, 0, 0xb, 0xb
 /* 80109AE4 00106A24  41 82 00 2C */ beq lbl_80109B10
 /* 80109AE8 00106A28  38 7E 04 D0 */ addi r3, r30, 0x4d0
-/* 80109AEC 00106A2C  4B F0 32 79 */ bl mDoMtx_stack_c_NS_transS
+/* 80109AEC 00106A2C  4B F0 32 79 */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 80109AF0 00106A30  38 7E 04 E4 */ addi r3, r30, 0x4e4
-/* 80109AF4 00106A34  4B F0 34 51 */ bl mDoMtx_stack_c_NS_ZXYrotM
+/* 80109AF4 00106A34  4B F0 34 51 */ bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 80109AF8 00106A38  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 80109AFC 00106A3C  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 80109B00 00106A40  38 9F 37 F8 */ addi r4, r31, 0x37f8
@@ -38,7 +38,7 @@ lbl_80109B1C:
 /* 80109B38 00106A78  41 82 00 2C */ beq lbl_80109B64
 /* 80109B3C 00106A7C  7F E3 FB 78 */ mr r3, r31
 /* 80109B40 00106A80  38 9F 1E 2C */ addi r4, r31, 0x1e2c
-/* 80109B44 00106A84  4B FF EC 6D */ bl daAlink_c_NS_checkHookshotStickBG
+/* 80109B44 00106A84  4B FF EC 6D */ bl checkHookshotStickBG__9daAlink_cFR13cBgS_PolyInfo
 /* 80109B48 00106A88  2C 03 00 00 */ cmpwi r3, 0
 /* 80109B4C 00106A8C  41 82 00 18 */ beq lbl_80109B64
 /* 80109B50 00106A90  28 1E 00 00 */ cmplwi r30, 0

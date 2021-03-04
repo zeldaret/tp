@@ -25,17 +25,17 @@
 /* 800EF8E4 000EC824  40 82 00 14 */ bne lbl_800EF8F8
 lbl_800EF8E8:
 /* 800EF8E8 000EC828  7F A3 EB 78 */ mr r3, r29
-/* 800EF8EC 000EC82C  4B FF D6 19 */ bl daAlink_c_NS_checkHorseLieAnime
+/* 800EF8EC 000EC82C  4B FF D6 19 */ bl checkHorseLieAnime__9daAlink_cCFv
 /* 800EF8F0 000EC830  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF8F4 000EC834  41 82 00 3C */ beq lbl_800EF930
 lbl_800EF8F8:
 /* 800EF8F8 000EC838  7F A3 EB 78 */ mr r3, r29
 /* 800EF8FC 000EC83C  38 80 00 02 */ li r4, 2
 /* 800EF900 000EC840  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800EF904 000EC844  4B FB DE 21 */ bl daAlink_c_NS_resetUpperAnime
+/* 800EF904 000EC844  4B FB DE 21 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800EF908 000EC848  7F A3 EB 78 */ mr r3, r29
 /* 800EF90C 000EC84C  38 80 00 00 */ li r4, 0
-/* 800EF910 000EC850  4B FD 5E 95 */ bl daAlink_c_NS_procBackJumpInit
+/* 800EF910 000EC850  4B FD 5E 95 */ bl procBackJumpInit__9daAlink_cFi
 /* 800EF914 000EC854  C0 3D 04 D4 */ lfs f1, 0x4d4(r29)
 /* 800EF918 000EC858  3C 60 80 39 */ lis r3, lbl_8038D82C@ha
 /* 800EF91C 000EC85C  38 63 D8 2C */ addi r3, r3, lbl_8038D82C@l
@@ -46,7 +46,7 @@ lbl_800EF8F8:
 lbl_800EF930:
 /* 800EF930 000EC870  7F A3 EB 78 */ mr r3, r29
 /* 800EF934 000EC874  7F C4 F3 78 */ mr r4, r30
-/* 800EF938 000EC878  48 00 0A 55 */ bl daAlink_c_NS_procHorseGetOffInit
+/* 800EF938 000EC878  48 00 0A 55 */ bl procHorseGetOffInit__9daAlink_cFi
 /* 800EF93C 000EC87C  48 00 00 08 */ b lbl_800EF944
 lbl_800EF940:
 /* 800EF940 000EC880  38 60 00 00 */ li r3, 0

@@ -36,7 +36,7 @@ lbl_80104B0C:
 /* 80104B24 00101A64  3C 80 80 39 */ lis r4, lbl_8038ED2C@ha
 /* 80104B28 00101A68  38 84 ED 2C */ addi r4, r4, lbl_8038ED2C@l
 /* 80104B2C 00101A6C  C0 44 00 80 */ lfs f2, 0x80(r4)
-/* 80104B30 00101A70  4B FA ED F5 */ bl daAlink_c_NS_setNormalSpeedF
+/* 80104B30 00101A70  4B FA ED F5 */ bl setNormalSpeedF__9daAlink_cFff
 /* 80104B34 00101A74  C0 3F 34 7C */ lfs f1, 0x347c(r31)
 /* 80104B38 00101A78  C0 1E 00 10 */ lfs f0, 0x10(r30)
 /* 80104B3C 00101A7C  EC 01 00 32 */ fmuls f0, f1, f0
@@ -101,9 +101,9 @@ lbl_80104C0C:
 /* 80104C18 00101B58  7C 04 07 34 */ extsh r4, r0
 /* 80104C1C 00101B5C  38 A0 00 00 */ li r5, 0
 /* 80104C20 00101B60  38 C0 00 00 */ li r6, 0
-/* 80104C24 00101B64  4B FA 8F 55 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 80104C24 00101B64  4B FA 8F 55 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 80104C28 00101B68  7F E3 FB 78 */ mr r3, r31
-/* 80104C2C 00101B6C  4B FF FA 45 */ bl daAlink_c_NS_procSwimMoveInit
+/* 80104C2C 00101B6C  4B FF FA 45 */ bl procSwimMoveInit__9daAlink_cFv
 /* 80104C30 00101B70  48 00 00 08 */ b lbl_80104C38
 lbl_80104C34:
 /* 80104C34 00101B74  38 60 00 01 */ li r3, 1

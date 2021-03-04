@@ -16,7 +16,7 @@
 /* 800DC250 000D9190  38 A0 00 C9 */ li r5, 0xc9
 /* 800DC254 000D9194  80 DF 31 98 */ lwz r6, 0x3198(r31)
 /* 800DC258 000D9198  38 E0 00 01 */ li r7, 1
-/* 800DC25C 000D919C  4B FE 1D 05 */ bl daAlink_c_NS_startRestartRoom
+/* 800DC25C 000D919C  4B FE 1D 05 */ bl startRestartRoom__9daAlink_cFUliii
 lbl_800DC260:
 /* 800DC260 000D91A0  38 60 00 01 */ li r3, 1
 /* 800DC264 000D91A4  83 E1 00 0C */ lwz r31, 0xc(r1)

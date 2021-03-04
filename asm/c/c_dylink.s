@@ -269,7 +269,7 @@ cDyl_InitAsync:
 .global cDyl_InitCallback
 /* 80018778 000156B8  38 63 86 88 */	addi r3, r3, cDyl_InitCallback@l
 /* 8001877C 000156BC  38 80 00 00 */	li r4, 0
-/* 80018780 000156C0  4B FF D4 F5 */	bl mDoDvdThd_callback_c_NS_create
+/* 80018780 000156C0  4B FF D4 F5 */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 80018784 000156C4  90 6D 87 30 */	stw r3, lbl_80450CB0-_SDA_BASE_(r13)
 /* 80018788 000156C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8001878C 000156CC  7C 08 03 A6 */	mtlr r0

@@ -25,14 +25,14 @@ lbl_800A39F8:
 /* 800A3A14 000A0954  40 82 00 14 */ bne lbl_800A3A28
 /* 800A3A18 000A0958  38 9C 2B A4 */ addi r4, r28, 0x2ba4
 /* 800A3A1C 000A095C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800A3A20 000A0960  4B FF F2 05 */ bl daAlink_c_NS_setMatrixOffset
+/* 800A3A20 000A0960  4B FF F2 05 */ bl setMatrixOffset__9daAlink_cFPff
 /* 800A3A24 000A0964  48 00 02 48 */ b lbl_800A3C6C
 lbl_800A3A28:
 /* 800A3A28 000A0968  3B E1 00 24 */ addi r31, r1, 0x24
 /* 800A3A2C 000A096C  3B C1 00 0C */ addi r30, r1, 0xc
 /* 800A3A30 000A0970  3B A1 00 10 */ addi r29, r1, 0x10
 /* 800A3A34 000A0974  38 7C 04 D0 */ addi r3, r28, 0x4d0
-/* 800A3A38 000A0978  4B F6 93 2D */ bl mDoMtx_stack_c_NS_transS
+/* 800A3A38 000A0978  4B F6 93 2D */ bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 800A3A3C 000A097C  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800A3A40 000A0980  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800A3A44 000A0984  A8 9C 04 E6 */ lha r4, 0x4e6(r28)
@@ -86,7 +86,7 @@ lbl_800A3A74:
 /* 800A3B00 000A0A40  A8 BC 04 E6 */ lha r5, 0x4e6(r28)
 /* 800A3B04 000A0A44  38 05 C0 00 */ addi r0, r5, -16384
 /* 800A3B08 000A0A48  7C 05 07 34 */ extsh r5, r0
-/* 800A3B0C 000A0A4C  48 00 C5 8D */ bl daAlink_c_NS_getGroundAngle
+/* 800A3B0C 000A0A4C  48 00 C5 8D */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800A3B10 000A0A50  B0 7E 00 00 */ sth r3, 0(r30)
 /* 800A3B14 000A0A54  48 00 00 20 */ b lbl_800A3B34
 lbl_800A3B18:
@@ -132,7 +132,7 @@ lbl_800A3B90:
 /* 800A3BA0 000A0AE0  7C 25 04 2E */ lfsx f1, r5, r0
 /* 800A3BA4 000A0AE4  C0 1C 04 D4 */ lfs f0, 0x4d4(r28)
 /* 800A3BA8 000A0AE8  EC 21 00 28 */ fsubs f1, f1, f0
-/* 800A3BAC 000A0AEC  4B FF F0 79 */ bl daAlink_c_NS_setMatrixOffset
+/* 800A3BAC 000A0AEC  4B FF F0 79 */ bl setMatrixOffset__9daAlink_cFPff
 /* 800A3BB0 000A0AF0  3B 1C 2A 4C */ addi r24, r28, 0x2a4c
 /* 800A3BB4 000A0AF4  3B 21 00 0C */ addi r25, r1, 0xc
 /* 800A3BB8 000A0AF8  3B 40 00 00 */ li r26, 0
@@ -151,7 +151,7 @@ lbl_800A3BC8:
 /* 800A3BE8 000A0B28  38 A1 00 0A */ addi r5, r1, 0xa
 /* 800A3BEC 000A0B2C  38 C1 00 08 */ addi r6, r1, 8
 /* 800A3BF0 000A0B30  38 E0 00 00 */ li r7, 0
-/* 800A3BF4 000A0B34  4B FF F0 ED */ bl daAlink_c_NS_setLegAngle
+/* 800A3BF4 000A0B34  4B FF F0 ED */ bl setLegAngle__9daAlink_cFfP18daAlink_footData_cPsPsi
 /* 800A3BF8 000A0B38  2C 03 00 00 */ cmpwi r3, 0
 /* 800A3BFC 000A0B3C  40 82 00 10 */ bne lbl_800A3C0C
 lbl_800A3C00:

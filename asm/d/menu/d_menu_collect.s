@@ -765,7 +765,7 @@ screenSet__17dMenu_Collect2D_cFv:
 /* 801B080C 001AD74C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B0810 001AD750  38 80 03 E1 */	li r4, 0x3e1
 /* 801B0814 001AD754  38 C0 00 00 */	li r6, 0
-/* 801B0818 001AD758  48 06 BD 2D */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B0818 001AD758  48 06 BD 2D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B081C 001AD75C  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 801B0820 001AD760  3C 80 5F 74 */	lis r4, 0x5F743030@ha
 /* 801B0824 001AD764  38 C4 30 30 */	addi r6, r4, 0x5F743030@l
@@ -850,7 +850,7 @@ lbl_801B0860:
 /* 801B095C 001AD89C  7F 43 D3 78 */	mr r3, r26
 /* 801B0960 001AD8A0  38 80 00 60 */	li r4, 0x60
 /* 801B0964 001AD8A4  38 C0 00 00 */	li r6, 0
-/* 801B0968 001AD8A8  48 06 BB DD */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B0968 001AD8A8  48 06 BB DD */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B096C 001AD8AC  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 801B0970 001AD8B0  80 BC 00 00 */	lwz r5, 0(r28)
 /* 801B0974 001AD8B4  80 DC 00 04 */	lwz r6, 4(r28)
@@ -863,7 +863,7 @@ lbl_801B0860:
 /* 801B0990 001AD8D0  7F 43 D3 78 */	mr r3, r26
 /* 801B0994 001AD8D4  38 80 00 5F */	li r4, 0x5f
 /* 801B0998 001AD8D8  38 C0 00 00 */	li r6, 0
-/* 801B099C 001AD8DC  48 06 BB A9 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B099C 001AD8DC  48 06 BB A9 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B09A0 001AD8E0  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 801B09A4 001AD8E4  7C D9 AA 14 */	add r6, r25, r21
 /* 801B09A8 001AD8E8  80 A6 00 00 */	lwz r5, 0(r6)
@@ -6831,7 +6831,7 @@ lbl_801B6058:
 /* 801B6080 001B2FC0  7F A3 EB 78 */	mr r3, r29
 /* 801B6084 001B2FC4  7F 64 DB 78 */	mr r4, r27
 /* 801B6088 001B2FC8  38 C0 00 00 */	li r6, 0
-/* 801B608C 001B2FCC  48 06 64 B9 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B608C 001B2FCC  48 06 64 B9 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B6090 001B2FD0  3B 5A 00 01 */	addi r26, r26, 1
 /* 801B6094 001B2FD4  2C 1A 00 05 */	cmpwi r26, 5
 /* 801B6098 001B2FD8  3B DE 00 08 */	addi r30, r30, 8
@@ -6903,7 +6903,7 @@ lbl_801B615C:
 /* 801B6184 001B30C4  7F A3 EB 78 */	mr r3, r29
 /* 801B6188 001B30C8  7F 64 DB 78 */	mr r4, r27
 /* 801B618C 001B30CC  38 C0 00 00 */	li r6, 0
-/* 801B6190 001B30D0  48 06 63 B5 */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B6190 001B30D0  48 06 63 B5 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B6194 001B30D4  3B 5A 00 01 */	addi r26, r26, 1
 /* 801B6198 001B30D8  2C 1A 00 05 */	cmpwi r26, 5
 /* 801B619C 001B30DC  3B DE 00 08 */	addi r30, r30, 8
@@ -6963,7 +6963,7 @@ lbl_801B622C:
 /* 801B625C 001B319C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B6260 001B31A0  7F E4 FB 78 */	mr r4, r31
 /* 801B6264 001B31A4  38 C0 00 00 */	li r6, 0
-/* 801B6268 001B31A8  48 06 62 DD */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B6268 001B31A8  48 06 62 DD */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B626C 001B31AC  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 801B6270 001B31B0  3C 80 5F 6E */	lis r4, 0x5F6E3035@ha
 /* 801B6274 001B31B4  38 C4 30 35 */	addi r6, r4, 0x5F6E3035@l
@@ -6979,7 +6979,7 @@ lbl_801B622C:
 /* 801B629C 001B31DC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B62A0 001B31E0  7F E4 FB 78 */	mr r4, r31
 /* 801B62A4 001B31E4  38 C0 00 00 */	li r6, 0
-/* 801B62A8 001B31E8  48 06 62 9D */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B62A8 001B31E8  48 06 62 9D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B62AC 001B31EC  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 801B62B0 001B31F0  3C 80 5F 6E */	lis r4, 0x5F6E3036@ha
 /* 801B62B4 001B31F4  38 C4 30 36 */	addi r6, r4, 0x5F6E3036@l
@@ -6995,7 +6995,7 @@ lbl_801B622C:
 /* 801B62DC 001B321C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B62E0 001B3220  7F E4 FB 78 */	mr r4, r31
 /* 801B62E4 001B3224  38 C0 00 00 */	li r6, 0
-/* 801B62E8 001B3228  48 06 62 5D */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B62E8 001B3228  48 06 62 5D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 /* 801B62EC 001B322C  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 801B62F0 001B3230  3C 80 5F 6E */	lis r4, 0x5F6E3037@ha
 /* 801B62F4 001B3234  38 C4 30 37 */	addi r6, r4, 0x5F6E3037@l
@@ -7011,7 +7011,7 @@ lbl_801B622C:
 /* 801B631C 001B325C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 801B6320 001B3260  7F E4 FB 78 */	mr r4, r31
 /* 801B6324 001B3264  38 C0 00 00 */	li r6, 0
-/* 801B6328 001B3268  48 06 62 1D */	bl dMeter2Info_c_NS_getStringKanji
+/* 801B6328 001B3268  48 06 62 1D */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji
 lbl_801B632C:
 /* 801B632C 001B326C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801B6330 001B3270  83 C1 00 08 */	lwz r30, 8(r1)
@@ -7207,7 +7207,7 @@ _create__17dMenu_Collect3D_cFv:
 /* 801B65EC 001B352C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 801B65F0 001B3530  28 03 00 00 */	cmplwi r3, 0
 /* 801B65F4 001B3534  41 82 00 08 */	beq lbl_801B65FC
-/* 801B65F8 001B3538  4B F8 A0 B1 */	bl daAlink_c_NS_initStatusWindow
+/* 801B65F8 001B3538  4B F8 A0 B1 */	bl initStatusWindow__9daAlink_cFv
 lbl_801B65FC:
 /* 801B65FC 001B353C  48 00 0F 09 */	bl getMaskMdlVisible__17dMenu_Collect3D_cFv
 /* 801B6600 001B3540  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -7262,7 +7262,7 @@ _delete__17dMenu_Collect3D_cFv:
 /* 801B66A8 001B35E8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 801B66AC 001B35EC  28 03 00 00 */	cmplwi r3, 0
 /* 801B66B0 001B35F0  41 82 00 08 */	beq lbl_801B66B8
-/* 801B66B4 001B35F4  4B F8 A4 15 */	bl daAlink_c_NS_resetStatusWindow
+/* 801B66B4 001B35F4  4B F8 A4 15 */	bl resetStatusWindow__9daAlink_cFv
 lbl_801B66B8:
 /* 801B66B8 001B35F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801B66BC 001B35FC  7C 08 03 A6 */	mtlr r0
@@ -7345,7 +7345,7 @@ lbl_801B67C0:
 /* 801B67D0 001B3710  41 82 00 10 */	beq lbl_801B67E0
 /* 801B67D4 001B3714  38 81 00 44 */	addi r4, r1, 0x44
 /* 801B67D8 001B3718  A8 BF 03 D8 */	lha r5, 0x3d8(r31)
-/* 801B67DC 001B371C  4B F8 A0 AD */	bl daAlink_c_NS_statusWindowExecute
+/* 801B67DC 001B371C  4B F8 A0 AD */	bl statusWindowExecute__9daAlink_cFPC4cXyzs
 lbl_801B67E0:
 /* 801B67E0 001B3720  80 1F 00 18 */	lwz r0, 0x18(r31)
 /* 801B67E4 001B3724  28 00 00 00 */	cmplwi r0, 0
@@ -7473,7 +7473,7 @@ draw__17dMenu_Collect3D_cFv:
 /* 801B69A4 001B38E4  80 64 5D B4 */	lwz r3, 0x5db4(r4)
 /* 801B69A8 001B38E8  28 03 00 00 */	cmplwi r3, 0
 /* 801B69AC 001B38EC  41 82 00 08 */	beq lbl_801B69B4
-/* 801B69B0 001B38F0  4B F8 9F D5 */	bl daAlink_c_NS_statusWindowDraw
+/* 801B69B0 001B38F0  4B F8 9F D5 */	bl statusWindowDraw__9daAlink_cFv
 lbl_801B69B4:
 /* 801B69B4 001B38F4  80 1E 00 18 */	lwz r0, 0x18(r30)
 /* 801B69B8 001B38F8  28 00 00 00 */	cmplwi r0, 0
@@ -7483,13 +7483,13 @@ lbl_801B69B4:
 /* 801B69C8 001B3908  38 80 00 0D */	li r4, 0xd
 /* 801B69CC 001B390C  38 BE 03 B0 */	addi r5, r30, 0x3b0
 /* 801B69D0 001B3910  38 DE 00 28 */	addi r6, r30, 0x28
-/* 801B69D4 001B3914  4B FE CD F1 */	bl dScnKy_env_light_c_NS_settingTevStruct
+/* 801B69D4 001B3914  4B FE CD F1 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 /* 801B69D8 001B3918  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 801B69DC 001B391C  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 801B69E0 001B3920  80 9E 00 18 */	lwz r4, 0x18(r30)
 /* 801B69E4 001B3924  80 84 00 04 */	lwz r4, 4(r4)
 /* 801B69E8 001B3928  38 BE 00 28 */	addi r5, r30, 0x28
-/* 801B69EC 001B392C  4B FE E3 B5 */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 801B69EC 001B392C  4B FE E3 B5 */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
 /* 801B69F0 001B3930  7F C3 F3 78 */	mr r3, r30
 /* 801B69F4 001B3934  48 00 05 BD */	bl animeEntry__17dMenu_Collect3D_cFv
 /* 801B69F8 001B3938  80 7E 00 18 */	lwz r3, 0x18(r30)
@@ -7678,7 +7678,7 @@ lbl_801B6C40:
 /* 801B6C60 001B3BA0  38 E0 00 00 */	li r7, 0
 /* 801B6C64 001B3BA4  39 00 FF FF */	li r8, -1
 /* 801B6C68 001B3BA8  39 20 00 00 */	li r9, 0
-/* 801B6C6C 001B3BAC  4B E5 6B 71 */	bl mDoExt_bckAnm_NS_init
+/* 801B6C6C 001B3BAC  4B E5 6B 71 */	bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 801B6C70 001B3BB0  2C 03 00 00 */	cmpwi r3, 0
 /* 801B6C74 001B3BB4  40 82 00 08 */	bne lbl_801B6C7C
 /* 801B6C78 001B3BB8  48 00 00 A0 */	b lbl_801B6D18
@@ -7721,7 +7721,7 @@ lbl_801B6CE4:
 /* 801B6D04 001B3C44  C0 22 A5 2C */	lfs f1, lbl_80453F2C-_SDA2_BASE_(r2)
 /* 801B6D08 001B3C48  39 00 00 00 */	li r8, 0
 /* 801B6D0C 001B3C4C  39 20 FF FF */	li r9, -1
-/* 801B6D10 001B3C50  4B E5 69 FD */	bl mDoExt_brkAnm_NS_init
+/* 801B6D10 001B3C50  4B E5 69 FD */	bl init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss
 /* 801B6D14 001B3C54  2C 03 00 00 */	cmpwi r3, 0
 lbl_801B6D18:
 /* 801B6D18 001B3C58  39 61 00 30 */	addi r11, r1, 0x30
@@ -7862,7 +7862,7 @@ lbl_801B6EFC:
 /* 801B6F00 001B3E40  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 801B6F04 001B3E44  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 801B6F08 001B3E48  80 7F 00 20 */	lwz r3, 0x20(r31)
-/* 801B6F0C 001B3E4C  4B E5 65 1D */	bl mDoExt_baseAnm_NS_play
+/* 801B6F0C 001B3E4C  4B E5 65 1D */	bl play__14mDoExt_baseAnmFv
 lbl_801B6F10:
 /* 801B6F10 001B3E50  80 1F 00 1C */	lwz r0, 0x1c(r31)
 /* 801B6F14 001B3E54  28 00 00 00 */	cmplwi r0, 0
@@ -7899,7 +7899,7 @@ lbl_801B6F88:
 /* 801B6F8C 001B3ECC  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801B6F90 001B3ED0  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 801B6F94 001B3ED4  80 7F 00 1C */	lwz r3, 0x1c(r31)
-/* 801B6F98 001B3ED8  4B E5 64 91 */	bl mDoExt_baseAnm_NS_play
+/* 801B6F98 001B3ED8  4B E5 64 91 */	bl play__14mDoExt_baseAnmFv
 lbl_801B6F9C:
 /* 801B6F9C 001B3EDC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 801B6FA0 001B3EE0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -7921,7 +7921,7 @@ animeEntry__17dMenu_Collect3D_cFv:
 /* 801B6FD4 001B3F14  80 84 00 04 */	lwz r4, 4(r4)
 /* 801B6FD8 001B3F18  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 801B6FDC 001B3F1C  38 84 00 58 */	addi r4, r4, 0x58
-/* 801B6FE0 001B3F20  4B E5 67 C9 */	bl mDoExt_brkAnm_NS_entry
+/* 801B6FE0 001B3F20  4B E5 67 C9 */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 lbl_801B6FE4:
 /* 801B6FE4 001B3F24  80 7F 00 1C */	lwz r3, 0x1c(r31)
 /* 801B6FE8 001B3F28  28 03 00 00 */	cmplwi r3, 0
@@ -7929,7 +7929,7 @@ lbl_801B6FE4:
 /* 801B6FF0 001B3F30  80 9F 00 18 */	lwz r4, 0x18(r31)
 /* 801B6FF4 001B3F34  80 84 00 04 */	lwz r4, 4(r4)
 /* 801B6FF8 001B3F38  C0 23 00 10 */	lfs f1, 0x10(r3)
-/* 801B6FFC 001B3F3C  4B E5 69 D1 */	bl mDoExt_bckAnm_NS_entry
+/* 801B6FFC 001B3F3C  4B E5 69 D1 */	bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 lbl_801B7000:
 /* 801B7000 001B3F40  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801B7004 001B3F44  80 01 00 14 */	lwz r0, 0x14(r1)

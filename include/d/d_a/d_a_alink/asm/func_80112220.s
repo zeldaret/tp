@@ -13,7 +13,7 @@
 /* 80112250 0010F190  80 9F 31 84 */ lwz r4, 0x3184(r31)
 /* 80112254 0010F194  4B F3 5F 29 */ bl cutEnd__16dEvent_manager_cFi
 /* 80112258 0010F198  7F E3 FB 78 */ mr r3, r31
-/* 8011225C 0010F19C  48 00 00 1D */ bl daAlink_c_NS_procHawkSubjectInit
+/* 8011225C 0010F19C  48 00 00 1D */ bl procHawkSubjectInit__9daAlink_cFv
 lbl_80112260:
 /* 80112260 0010F1A0  38 60 00 01 */ li r3, 1
 /* 80112264 0010F1A4  83 E1 00 0C */ lwz r31, 0xc(r1)

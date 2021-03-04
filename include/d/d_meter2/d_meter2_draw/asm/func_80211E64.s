@@ -177,10 +177,10 @@ lbl_802120CC:
 /* 80212108 0020F048  EC 20 F8 2A */ fadds f1, f0, f31
 /* 8021210C 0020F04C  C0 06 00 50 */ lfs f0, 0x50(r6)
 /* 80212110 0020F050  EC 40 F0 2A */ fadds f2, f0, f30
-/* 80212114 0020F054  48 00 31 7D */ bl dMeter2Draw_c_NS_drawMagic
+/* 80212114 0020F054  48 00 31 7D */ bl drawMagic__13dMeter2Draw_cFssff
 /* 80212118 0020F058  7F E3 FB 78 */ mr r3, r31
 /* 8021211C 0020F05C  38 80 00 01 */ li r4, 1
-/* 80212120 0020F060  48 00 32 61 */ bl dMeter2Draw_c_NS_setAlphaMagicChange
+/* 80212120 0020F060  48 00 32 61 */ bl setAlphaMagicChange__13dMeter2Draw_cFb
 /* 80212124 0020F064  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 80212128 0020F068  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8021212C 0020F06C  A0 A4 00 08 */ lhz r5, 8(r4)
@@ -194,10 +194,10 @@ lbl_802120CC:
 /* 8021214C 0020F08C  C0 06 00 64 */ lfs f0, 0x64(r6)
 /* 80212150 0020F090  EC 00 F0 2A */ fadds f0, f0, f30
 /* 80212154 0020F094  EC 42 00 2A */ fadds f2, f2, f0
-/* 80212158 0020F098  48 00 33 51 */ bl dMeter2Draw_c_NS_drawKantera
+/* 80212158 0020F098  48 00 33 51 */ bl drawKantera__13dMeter2Draw_cFllff
 /* 8021215C 0020F09C  7F E3 FB 78 */ mr r3, r31
 /* 80212160 0020F0A0  38 80 00 01 */ li r4, 1
-/* 80212164 0020F0A4  48 00 34 55 */ bl dMeter2Draw_c_NS_setAlphaKanteraChange
+/* 80212164 0020F0A4  48 00 34 55 */ bl setAlphaKanteraChange__13dMeter2Draw_cFb
 /* 80212168 0020F0A8  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0
 /* 8021216C 0020F0AC  CB E1 00 20 */ lfd f31, 0x20(r1)
 /* 80212170 0020F0B0  E3 C1 00 18 */ psq_l f30, 24(r1), 0, 0
