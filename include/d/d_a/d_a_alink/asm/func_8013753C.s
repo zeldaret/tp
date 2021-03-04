@@ -10,7 +10,7 @@
 /* 80137560 001344A0  2C 00 00 00 */ cmpwi r0, 0
 /* 80137564 001344A4  41 82 00 24 */ beq lbl_80137588
 /* 80137568 001344A8  7F E3 FB 78 */ mr r3, r31
-/* 8013756C 001344AC  48 02 6F 61 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013756C 001344AC  48 02 6F 61 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80137570 001344B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80137574 001344B4  41 82 00 A4 */ beq lbl_80137618
 /* 80137578 001344B8  7F C3 F3 78 */ mr r3, r30
@@ -32,7 +32,7 @@ lbl_801375A8:
 /* 801375B0 001344F0  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801375B4 001344F4  40 81 00 3C */ ble lbl_801375F0
 /* 801375B8 001344F8  7F E3 FB 78 */ mr r3, r31
-/* 801375BC 001344FC  48 02 6F 11 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801375BC 001344FC  48 02 6F 11 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801375C0 00134500  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801375C4 00134504  40 82 00 1C */ bne lbl_801375E0
 /* 801375C8 00134508  C0 3F 00 10 */ lfs f1, 0x10(r31)

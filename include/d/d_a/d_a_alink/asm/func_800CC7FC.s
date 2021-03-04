@@ -32,7 +32,7 @@ lbl_800CC854:
 /* 800CC870 000C97B0  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC874 000C97B4  40 82 00 0C */ bne lbl_800CC880
 /* 800CC878 000C97B8  38 7C 20 64 */ addi r3, r28, 0x2064
-/* 800CC87C 000C97BC  48 09 2A 81 */ bl daPy_sightPacket_c_NS_setSight
+/* 800CC87C 000C97BC  48 09 2A 81 */ bl setSight__18daPy_sightPacket_cFv
 lbl_800CC880:
 /* 800CC880 000C97C0  80 1C 05 74 */ lwz r0, 0x574(r28)
 /* 800CC884 000C97C4  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
@@ -42,7 +42,7 @@ lbl_800CC880:
 /* 800CC894 000C97D4  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 800CC898 000C97D8  38 63 02 10 */ addi r3, r3, 0x210
 /* 800CC89C 000C97DC  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800CC8A0 000C97E0  4B F7 F0 79 */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 800CC8A0 000C97E0  4B F7 F0 79 */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 800CC8A4 000C97E4  7C 7B 1B 79 */ or. r27, r3, r3
 /* 800CC8A8 000C97E8  41 82 00 48 */ beq lbl_800CC8F0
 /* 800CC8AC 000C97EC  7F 83 E3 78 */ mr r3, r28
@@ -109,7 +109,7 @@ lbl_800CC960:
 /* 800CC988 000C98C8  41 82 00 14 */ beq lbl_800CC99C
 /* 800CC98C 000C98CC  38 80 00 00 */ li r4, 0
 /* 800CC990 000C98D0  38 BC 04 64 */ addi r5, r28, 0x464
-/* 800CC994 000C98D4  48 25 E8 65 */ bl J3DAnmTevRegKey_NS_getTevColorReg
+/* 800CC994 000C98D4  48 25 E8 65 */ bl getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10
 /* 800CC998 000C98D8  48 00 03 A8 */ b lbl_800CCD40
 lbl_800CC99C:
 /* 800CC99C 000C98DC  A0 1C 2F E8 */ lhz r0, 0x2fe8(r28)
@@ -372,12 +372,12 @@ lbl_800CCD40:
 /* 800CCD74 000C9CB4  80 63 00 04 */ lwz r3, 4(r3)
 /* 800CCD78 000C9CB8  38 63 00 58 */ addi r3, r3, 0x58
 /* 800CCD7C 000C9CBC  80 9C 06 7C */ lwz r4, 0x67c(r28)
-/* 800CCD80 000C9CC0  48 26 2B 01 */ bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 800CCD80 000C9CC0  48 26 2B 01 */ bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 800CCD84 000C9CC4  80 7C 06 58 */ lwz r3, 0x658(r28)
 /* 800CCD88 000C9CC8  80 63 00 04 */ lwz r3, 4(r3)
 /* 800CCD8C 000C9CCC  38 63 00 58 */ addi r3, r3, 0x58
 /* 800CCD90 000C9CD0  80 9C 06 80 */ lwz r4, 0x680(r28)
-/* 800CCD94 000C9CD4  48 26 2A ED */ bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 800CCD94 000C9CD4  48 26 2A ED */ bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_800CCD98:
 /* 800CCD98 000C9CD8  2C 1D 00 00 */ cmpwi r29, 0
 /* 800CCD9C 000C9CDC  41 82 00 14 */ beq lbl_800CCDB0
@@ -401,12 +401,12 @@ lbl_800CCDC8:
 /* 800CCDDC 000C9D1C  80 63 00 04 */ lwz r3, 4(r3)
 /* 800CCDE0 000C9D20  38 63 00 58 */ addi r3, r3, 0x58
 /* 800CCDE4 000C9D24  80 9C 06 7C */ lwz r4, 0x67c(r28)
-/* 800CCDE8 000C9D28  48 26 30 89 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 800CCDE8 000C9D28  48 26 30 89 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 800CCDEC 000C9D2C  80 7C 06 58 */ lwz r3, 0x658(r28)
 /* 800CCDF0 000C9D30  80 63 00 04 */ lwz r3, 4(r3)
 /* 800CCDF4 000C9D34  38 63 00 58 */ addi r3, r3, 0x58
 /* 800CCDF8 000C9D38  80 9C 06 80 */ lwz r4, 0x680(r28)
-/* 800CCDFC 000C9D3C  48 26 30 75 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 800CCDFC 000C9D3C  48 26 30 75 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_800CCE00:
 /* 800CCE00 000C9D40  7F 83 E3 78 */ mr r3, r28
 /* 800CCE04 000C9D44  38 9C 32 A0 */ addi r4, r28, 0x32a0
@@ -499,7 +499,7 @@ lbl_800CCF3C:
 /* 800CCF44 000C9E84  80 63 00 04 */ lwz r3, 4(r3)
 /* 800CCF48 000C9E88  38 63 00 58 */ addi r3, r3, 0x58
 /* 800CCF4C 000C9E8C  80 9C 07 18 */ lwz r4, 0x718(r28)
-/* 800CCF50 000C9E90  48 26 2D 75 */ bl J3DMaterialTable_NS_entryTexMtxAnimator
+/* 800CCF50 000C9E90  48 26 2D 75 */ bl entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 lbl_800CCF54:
 /* 800CCF54 000C9E94  7F 83 E3 78 */ mr r3, r28
 /* 800CCF58 000C9E98  80 9C 07 08 */ lwz r4, 0x708(r28)
@@ -716,7 +716,7 @@ lbl_800CD24C:
 /* 800CD250 000CA190  4B FF E2 ED */ bl daAlink_c_NS_checkShieldDraw
 /* 800CD254 000CA194  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CD258 000CA198  41 82 00 84 */ beq lbl_800CD2DC
-/* 800CD25C 000CA19C  48 09 21 69 */ bl daPy_py_c_NS_checkWoodShieldEquip
+/* 800CD25C 000CA19C  48 09 21 69 */ bl checkWoodShieldEquip__9daPy_py_cFv
 /* 800CD260 000CA1A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800CD264 000CA1A4  41 82 00 4C */ beq lbl_800CD2B0
 /* 800CD268 000CA1A8  88 7C 2F CB */ lbz r3, 0x2fcb(r28)
@@ -807,7 +807,7 @@ lbl_800CD38C:
 /* 800CD3A0 000CA2E0  2C 1E 00 00 */ cmpwi r30, 0
 /* 800CD3A4 000CA2E4  40 82 02 30 */ bne lbl_800CD5D4
 /* 800CD3A8 000CA2E8  A0 7C 2F DC */ lhz r3, 0x2fdc(r28)
-/* 800CD3AC 000CA2EC  48 09 18 0D */ bl daPy_py_c_NS_checkHookshotItem
+/* 800CD3AC 000CA2EC  48 09 18 0D */ bl checkHookshotItem__9daPy_py_cFi
 /* 800CD3B0 000CA2F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800CD3B4 000CA2F4  41 82 01 FC */ beq lbl_800CD5B0
 /* 800CD3B8 000CA2F8  38 7C 37 E0 */ addi r3, r28, 0x37e0
@@ -964,7 +964,7 @@ lbl_800CD5BC:
 /* 800CD5C4 000CA504  80 63 5F 88 */ lwz r3, 0x5f88(r3)
 /* 800CD5C8 000CA508  80 9C 07 70 */ lwz r4, 0x770(r28)
 /* 800CD5CC 000CA50C  38 A0 00 00 */ li r5, 0
-/* 800CD5D0 000CA510  48 25 7E BD */ bl J3DDrawBuffer_NS_entryImm
+/* 800CD5D0 000CA510  48 25 7E BD */ bl entryImm__13J3DDrawBufferFP9J3DPacketUs
 lbl_800CD5D4:
 /* 800CD5D4 000CA514  80 7C 05 78 */ lwz r3, 0x578(r28)
 /* 800CD5D8 000CA518  54 60 07 FF */ clrlwi. r0, r3, 0x1f
@@ -1012,7 +1012,7 @@ lbl_800CD670:
 /* 800CD674 000CA5B4  38 63 02 10 */ addi r3, r3, 0x210
 /* 800CD678 000CA5B8  38 1F 32 28 */ addi r0, r31, 0x3228
 /* 800CD67C 000CA5BC  7C 9C 00 2E */ lwzx r4, r28, r0
-/* 800CD680 000CA5C0  4B F7 E2 99 */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 800CD680 000CA5C0  4B F7 E2 99 */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 800CD684 000CA5C4  28 03 00 00 */ cmplwi r3, 0
 /* 800CD688 000CA5C8  41 82 00 20 */ beq lbl_800CD6A8
 /* 800CD68C 000CA5CC  38 00 00 05 */ li r0, 5
@@ -1075,7 +1075,7 @@ lbl_800CD748:
 /* 800CD760 000CA6A0  80 84 5F 84 */ lwz r4, 0x5f84(r4)
 /* 800CD764 000CA6A4  38 BC 21 F0 */ addi r5, r28, 0x21f0
 /* 800CD768 000CA6A8  38 DC 24 F8 */ addi r6, r28, 0x24f8
-/* 800CD76C 000CA6AC  4B F8 8E 81 */ bl dDlst_list_c_NS_entryZSortXluDrawList
+/* 800CD76C 000CA6AC  4B F8 8E 81 */ bl entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz
 lbl_800CD770:
 /* 800CD770 000CA6B0  38 60 00 01 */ li r3, 1
 lbl_800CD774:

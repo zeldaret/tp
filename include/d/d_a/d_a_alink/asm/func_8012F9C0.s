@@ -31,7 +31,7 @@
 /* 8012FA38 0012C978  EC 00 00 72 */ fmuls f0, f0, f1
 /* 8012FA3C 0012C97C  D0 1E 35 90 */ stfs f0, 0x3590(r30)
 /* 8012FA40 0012C980  7F E3 FB 78 */ mr r3, r31
-/* 8012FA44 0012C984  48 02 EA 89 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012FA44 0012C984  48 02 EA 89 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012FA48 0012C988  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012FA4C 0012C98C  41 82 00 1C */ beq lbl_8012FA68
 /* 8012FA50 0012C990  80 1E 19 9C */ lwz r0, 0x199c(r30)

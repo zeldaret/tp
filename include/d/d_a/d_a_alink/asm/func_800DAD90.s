@@ -4,7 +4,7 @@
 /* 800DAD9C 000D7CDC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DADA0 000D7CE0  7C 7F 1B 78 */ mr r31, r3
 /* 800DADA4 000D7CE4  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800DADA8 000D7CE8  48 08 37 25 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DADA8 000D7CE8  48 08 37 25 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DADAC 000D7CEC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DADB0 000D7CF0  41 82 00 14 */ beq lbl_800DADC4
 /* 800DADB4 000D7CF4  7F E3 FB 78 */ mr r3, r31

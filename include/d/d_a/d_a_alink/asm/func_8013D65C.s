@@ -36,7 +36,7 @@
 /* 8013D6E8 0013A628  4B FA 74 ED */ bl daAlink_c_NS_freeGrabItem
 lbl_8013D6EC:
 /* 8013D6EC 0013A62C  7F A3 EB 78 */ mr r3, r29
-/* 8013D6F0 0013A630  48 02 0D DD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013D6F0 0013A630  48 02 0D DD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013D6F4 0013A634  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013D6F8 0013A638  41 82 00 38 */ beq lbl_8013D730
 /* 8013D6FC 0013A63C  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -46,7 +46,7 @@ lbl_8013D6EC:
 /* 8013D70C 0013A64C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013D710 0013A650  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8013D714 0013A654  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8013D718 0013A658  4B F0 AA 65 */ bl dEvent_manager_c_NS_cutEnd
+/* 8013D718 0013A658  4B F0 AA 65 */ bl cutEnd__16dEvent_manager_cFi
 /* 8013D71C 0013A65C  48 00 00 E0 */ b lbl_8013D7FC
 lbl_8013D720:
 /* 8013D720 0013A660  7F E3 FB 78 */ mr r3, r31
@@ -72,7 +72,7 @@ lbl_8013D750:
 /* 8013D768 0013A6A8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013D76C 0013A6AC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8013D770 0013A6B0  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8013D774 0013A6B4  4B F0 AA 09 */ bl dEvent_manager_c_NS_cutEnd
+/* 8013D774 0013A6B4  4B F0 AA 09 */ bl cutEnd__16dEvent_manager_cFi
 /* 8013D778 0013A6B8  38 60 00 01 */ li r3, 1
 /* 8013D77C 0013A6BC  48 00 00 84 */ b lbl_8013D800
 lbl_8013D780:

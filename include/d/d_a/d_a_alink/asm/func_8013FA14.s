@@ -10,7 +10,7 @@
 /* 8013FA38 0013C978  38 A0 00 00 */ li r5, 0
 /* 8013FA3C 0013C97C  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8013FA40 0013C980  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8013FA44 0013C984  4B F0 37 29 */ bl dEvt_control_c_NS_compulsory
+/* 8013FA44 0013C984  4B F0 37 29 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 8013FA48 0013C988  2C 03 00 00 */ cmpwi r3, 0
 /* 8013FA4C 0013C98C  40 82 00 0C */ bne lbl_8013FA58
 /* 8013FA50 0013C990  38 60 00 00 */ li r3, 0
@@ -60,7 +60,7 @@ lbl_8013FA58:
 /* 8013FAFC 0013CA3C  D0 1F 04 D8 */ stfs f0, 0x4d8(r31)
 /* 8013FB00 0013CA40  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8013FB04 0013CA44  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013FB08 0013CA48  48 01 F1 B1 */ bl daPy_actorKeep_c_NS_setData
+/* 8013FB08 0013CA48  48 01 F1 B1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013FB0C 0013CA4C  38 00 00 01 */ li r0, 1
 /* 8013FB10 0013CA50  80 7F 27 F4 */ lwz r3, 0x27f4(r31)
 /* 8013FB14 0013CA54  98 03 05 88 */ stb r0, 0x588(r3)

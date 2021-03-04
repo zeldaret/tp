@@ -24,7 +24,7 @@
 /* 800E1978 000DE8B8  64 00 00 04 */ oris r0, r0, 4
 /* 800E197C 000DE8BC  90 1F 05 7C */ stw r0, 0x57c(r31)
 /* 800E1980 000DE8C0  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800E1984 000DE8C4  48 07 D3 79 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E1984 000DE8C4  48 07 D3 79 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800E1988:
 /* 800E1988 000DE8C8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E198C 000DE8CC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

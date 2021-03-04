@@ -13,7 +13,7 @@ lbl_8002642C:
 /* 8002642C 0002336C  7F E3 FB 78 */ mr r3, r31
 /* 80026430 00023370  38 81 00 09 */ addi r4, r1, 9
 /* 80026434 00023374  38 A1 00 08 */ addi r5, r1, 8
-/* 80026438 00023378  48 01 93 D9 */ bl dMpath_c_NS_setPointer
+/* 80026438 00023378  48 01 93 D9 */ bl setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc
 /* 8002643C 0002337C  93 FE 00 08 */ stw r31, 8(r30)
 /* 80026440 00023380  38 60 00 01 */ li r3, 1
 lbl_80026444:

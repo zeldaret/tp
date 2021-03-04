@@ -15,8 +15,8 @@ dBgS_GrpPassChk:
 /* 80077BBC 00074AFC  90 03 00 04 */	stw r0, 4(r3)
 /* 80077BC0 00074B00  4E 80 00 20 */	blr 
 
-.global dBgS_GrpPassChk_NS_dtor
-dBgS_GrpPassChk_NS_dtor:
+.global __dt__15dBgS_GrpPassChkFv
+__dt__15dBgS_GrpPassChkFv:
 /* 80077BC4 00074B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80077BC8 00074B08  7C 08 02 A6 */	mflr r0
 /* 80077BCC 00074B0C  90 01 00 14 */	stw r0, 0x14(r1)

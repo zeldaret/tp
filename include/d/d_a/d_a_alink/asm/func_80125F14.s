@@ -10,7 +10,7 @@
 /* 80125F38 00122E78  3C 84 00 02 */ addis r4, r4, 2
 /* 80125F3C 00122E7C  38 A0 00 80 */ li r5, 0x80
 /* 80125F40 00122E80  38 84 C2 F8 */ addi r4, r4, -15624
-/* 80125F44 00122E84  4B F1 62 A1 */ bl dRes_control_c_NS_getResInfo
+/* 80125F44 00122E84  4B F1 62 A1 */ bl getResInfo__14dRes_control_cFPCcP11dRes_info_ci
 /* 80125F48 00122E88  83 E3 00 14 */ lwz r31, 0x14(r3)
 /* 80125F4C 00122E8C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80125F50 00122E90  D0 1E 00 2C */ stfs f0, 0x2c(r30)
@@ -36,7 +36,7 @@ lbl_80125F90:
 /* 80125F98 00122ED8  38 84 01 7F */ addi r4, r4, 0x17f
 /* 80125F9C 00122EDC  3C A0 00 10 */ lis r5, 0x10
 /* 80125FA0 00122EE0  7F E6 FB 78 */ mr r6, r31
-/* 80125FA4 00122EE4  48 1D 26 A5 */ bl J2DScreen_NS_setPriority
+/* 80125FA4 00122EE4  48 1D 26 A5 */ bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 80125FA8 00122EE8  80 7E 00 08 */ lwz r3, 8(r30)
 /* 80125FAC 00122EEC  48 12 F1 3D */ bl dPaneClass_showNullPane
 /* 80125FB0 00122EF0  3C 60 80 39 */ lis r3, lbl_80392094@ha
@@ -44,7 +44,7 @@ lbl_80125F90:
 /* 80125FB8 00122EF8  38 63 01 9D */ addi r3, r3, 0x19d
 /* 80125FBC 00122EFC  7F E4 FB 78 */ mr r4, r31
 /* 80125FC0 00122F00  48 1A E2 B1 */ bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80125FC4 00122F04  48 1E 2A A9 */ bl J2DAnmLoaderDataBase_NS_load
+/* 80125FC4 00122F04  48 1E 2A A9 */ bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80125FC8 00122F08  90 7E 00 24 */ stw r3, 0x24(r30)
 /* 80125FCC 00122F0C  80 1E 00 24 */ lwz r0, 0x24(r30)
 /* 80125FD0 00122F10  28 00 00 00 */ cmplwi r0, 0
@@ -57,7 +57,7 @@ lbl_80125FE0:
 /* 80125FE8 00122F28  38 63 01 BB */ addi r3, r3, 0x1bb
 /* 80125FEC 00122F2C  7F E4 FB 78 */ mr r4, r31
 /* 80125FF0 00122F30  48 1A E2 81 */ bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80125FF4 00122F34  48 1E 2A 79 */ bl J2DAnmLoaderDataBase_NS_load
+/* 80125FF4 00122F34  48 1E 2A 79 */ bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80125FF8 00122F38  90 7E 00 28 */ stw r3, 0x28(r30)
 /* 80125FFC 00122F3C  80 1E 00 28 */ lwz r0, 0x28(r30)
 /* 80126000 00122F40  28 00 00 00 */ cmplwi r0, 0
@@ -70,7 +70,7 @@ lbl_80126010:
 /* 80126018 00122F58  38 63 01 D9 */ addi r3, r3, 0x1d9
 /* 8012601C 00122F5C  7F E4 FB 78 */ mr r4, r31
 /* 80126020 00122F60  48 1A E2 51 */ bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80126024 00122F64  48 1E 2A 49 */ bl J2DAnmLoaderDataBase_NS_load
+/* 80126024 00122F64  48 1E 2A 49 */ bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80126028 00122F68  90 7E 00 1C */ stw r3, 0x1c(r30)
 /* 8012602C 00122F6C  80 1E 00 1C */ lwz r0, 0x1c(r30)
 /* 80126030 00122F70  28 00 00 00 */ cmplwi r0, 0
@@ -83,7 +83,7 @@ lbl_80126040:
 /* 80126048 00122F88  38 63 01 FA */ addi r3, r3, 0x1fa
 /* 8012604C 00122F8C  7F E4 FB 78 */ mr r4, r31
 /* 80126050 00122F90  48 1A E2 21 */ bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80126054 00122F94  48 1E 2A 19 */ bl J2DAnmLoaderDataBase_NS_load
+/* 80126054 00122F94  48 1E 2A 19 */ bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80126058 00122F98  90 7E 00 20 */ stw r3, 0x20(r30)
 /* 8012605C 00122F9C  80 1E 00 20 */ lwz r0, 0x20(r30)
 /* 80126060 00122FA0  28 00 00 00 */ cmplwi r0, 0
@@ -257,7 +257,7 @@ lbl_80126070:
 /* 801262FC 0012323C  80 7E 00 20 */ lwz r3, 0x20(r30)
 /* 80126300 00123240  D0 03 00 08 */ stfs f0, 8(r3)
 /* 80126304 00123244  80 7E 00 08 */ lwz r3, 8(r30)
-/* 80126308 00123248  48 1D 33 89 */ bl J2DScreen_NS_animation
+/* 80126308 00123248  48 1D 33 89 */ bl animation__9J2DScreenFv
 /* 8012630C 0012324C  3C 60 6E 5F */ lis r3, 0x6E5F3433@ha
 /* 80126310 00123250  38 03 34 33 */ addi r0, r3, 0x6E5F3433@l
 /* 80126314 00123254  38 80 00 00 */ li r4, 0

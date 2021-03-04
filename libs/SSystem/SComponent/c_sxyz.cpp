@@ -4,7 +4,7 @@
 
 extern "C" {
 void __ct__5csXyzFsss(void);
-void csXyz_NS_dtor(void);
+void __dt__5csXyzFv(void);
 void func_80361C24(void);
 }
 

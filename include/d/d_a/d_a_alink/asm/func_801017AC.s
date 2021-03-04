@@ -15,7 +15,7 @@
 lbl_801017E4:
 /* 801017E4 000FE724  4B FF FE 59 */ bl daAlink_c_NS_setRoofHangSwitch
 /* 801017E8 000FE728  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 801017EC 000FE72C  48 05 CC E1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801017EC 000FE72C  48 05 CC E1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801017F0 000FE730  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801017F4 000FE734  41 82 00 2C */ beq lbl_80101820
 /* 801017F8 000FE738  7F E3 FB 78 */ mr r3, r31

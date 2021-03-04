@@ -14,7 +14,7 @@ lbl_80101334:
 /* 80101338 000FE278  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8010133C 000FE27C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 80101340 000FE280  7F E3 FB 78 */ mr r3, r31
-/* 80101344 000FE284  48 05 D1 89 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80101344 000FE284  48 05 D1 89 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80101348 000FE288  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010134C 000FE28C  41 82 00 10 */ beq lbl_8010135C
 /* 80101350 000FE290  7F C3 F3 78 */ mr r3, r30

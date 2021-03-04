@@ -36,8 +36,8 @@ lbl_80325900:
 /* 80325908 00322848  41 80 FF DC */	blt lbl_803258E4
 /* 8032590C 0032284C  4E 80 00 20 */	blr 
 
-.global J3DShapeTable_NS_initShapeNodes
-J3DShapeTable_NS_initShapeNodes:
+.global initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData
+initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData:
 /* 80325910 00322850  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80325914 00322854  7C 08 02 A6 */	mflr r0
 /* 80325918 00322858  90 01 00 24 */	stw r0, 0x24(r1)
@@ -55,7 +55,7 @@ lbl_8032593C:
 /* 80325944 00322884  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80325948 00322888  93 83 00 50 */	stw r28, 0x50(r3)
 /* 8032594C 0032288C  93 A3 00 4C */	stw r29, 0x4c(r3)
-/* 80325950 00322890  4B FE F9 11 */	bl J3DShape_NS_makeVcdVatCmd
+/* 80325950 00322890  4B FE F9 11 */	bl makeVcdVatCmd__8J3DShapeFv
 /* 80325954 00322894  3B DE 00 01 */	addi r30, r30, 1
 lbl_80325958:
 /* 80325958 00322898  57 C0 04 3E */	clrlwi r0, r30, 0x10
@@ -68,8 +68,8 @@ lbl_80325958:
 /* 80325974 003228B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80325978 003228B8  4E 80 00 20 */	blr 
 
-.global J3DShapeTable_NS_sortVcdVatCmd
-J3DShapeTable_NS_sortVcdVatCmd:
+.global sortVcdVatCmd__13J3DShapeTableFv
+sortVcdVatCmd__13J3DShapeTableFv:
 /* 8032597C 003228BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80325980 003228C0  7C 08 02 A6 */	mflr r0
 /* 80325984 003228C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -89,7 +89,7 @@ lbl_803259B0:
 /* 803259B4 003228F4  7C 7E 20 2E */	lwzx r3, r30, r4
 /* 803259B8 003228F8  57 5D 13 BA */	rlwinm r29, r26, 2, 0xe, 0x1d
 /* 803259BC 003228FC  7C 84 E8 2E */	lwzx r4, r4, r29
-/* 803259C0 00322900  4B FE F5 9D */	bl J3DShape_NS_isSameVcdVatCmd
+/* 803259C0 00322900  4B FE F5 9D */	bl isSameVcdVatCmd__8J3DShapeFP8J3DShape
 /* 803259C4 00322904  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 803259C8 00322908  41 82 00 18 */	beq lbl_803259E0
 /* 803259CC 0032290C  80 99 00 08 */	lwz r4, 8(r25)

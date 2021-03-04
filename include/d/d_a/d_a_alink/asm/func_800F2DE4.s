@@ -7,7 +7,7 @@
 /* 800F2DFC 000EFD3C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800F2E00 000EFD40  4B FF AC 25 */ bl daAlink_c_NS_setSyncRidePos
 /* 800F2E04 000EFD44  7F E3 FB 78 */ mr r3, r31
-/* 800F2E08 000EFD48  48 06 B6 C5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F2E08 000EFD48  48 06 B6 C5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F2E0C 000EFD4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F2E10 000EFD50  41 82 00 18 */ beq lbl_800F2E28
 /* 800F2E14 000EFD54  38 00 00 13 */ li r0, 0x13
@@ -48,7 +48,7 @@ lbl_800F2E74:
 lbl_800F2E94:
 /* 800F2E94 000EFDD4  7F E3 FB 78 */ mr r3, r31
 /* 800F2E98 000EFDD8  C0 22 93 78 */ lfs f1, lbl_80452D78-_SDA2_BASE_(r2)
-/* 800F2E9C 000EFDDC  48 23 55 91 */ bl J3DFrameCtrl_NS_checkPass
+/* 800F2E9C 000EFDDC  48 23 55 91 */ bl checkPass__12J3DFrameCtrlFf
 /* 800F2EA0 000EFDE0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2EA4 000EFDE4  41 82 00 20 */ beq lbl_800F2EC4
 /* 800F2EA8 000EFDE8  7F C3 F3 78 */ mr r3, r30

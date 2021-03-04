@@ -9,7 +9,7 @@
 /* 8013B984 001388C4  4B F8 65 E9 */ bl daAlink_c_NS_commonProcInit
 /* 8013B988 001388C8  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 8013B98C 001388CC  7F E4 FB 78 */ mr r4, r31
-/* 8013B990 001388D0  48 02 33 29 */ bl daPy_actorKeep_c_NS_setData
+/* 8013B990 001388D0  48 02 33 29 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013B994 001388D4  7F C3 F3 78 */ mr r3, r30
 /* 8013B998 001388D8  38 80 00 64 */ li r4, 0x64
 /* 8013B99C 001388DC  3C A0 80 39 */ lis r5, lbl_8038F658@ha
@@ -46,7 +46,7 @@
 /* 8013BA18 00138958  38 80 00 02 */ li r4, 2
 /* 8013BA1C 0013895C  38 A0 00 0F */ li r5, 0xf
 /* 8013BA20 00138960  38 C1 00 08 */ addi r6, r1, 8
-/* 8013BA24 00138964  4B F3 40 01 */ bl dVibration_c_NS_StartShock
+/* 8013BA24 00138964  4B F3 40 01 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8013BA28 00138968  38 60 00 01 */ li r3, 1
 /* 8013BA2C 0013896C  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 8013BA30 00138970  83 C1 00 18 */ lwz r30, 0x18(r1)

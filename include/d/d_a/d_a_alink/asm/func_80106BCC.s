@@ -13,7 +13,7 @@
 /* 80106BFC 00103B3C  48 00 02 70 */ b lbl_80106E6C
 lbl_80106C00:
 /* 80106C00 00103B40  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 80106C04 00103B44  48 05 78 C9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80106C04 00103B44  48 05 78 C9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80106C08 00103B48  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80106C0C 00103B4C  41 82 00 24 */ beq lbl_80106C30
 /* 80106C10 00103B50  7F E3 FB 78 */ mr r3, r31
@@ -59,7 +59,7 @@ lbl_80106C78:
 /* 80106CA8 00103BE8  4B FC B5 DD */ bl daAlink_c_NS_setSwordVoiceSe
 lbl_80106CAC:
 /* 80106CAC 00103BEC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 80106CB0 00103BF0  48 05 78 1D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80106CB0 00103BF0  48 05 78 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80106CB4 00103BF4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80106CB8 00103BF8  40 82 00 10 */ bne lbl_80106CC8
 /* 80106CBC 00103BFC  38 00 00 01 */ li r0, 1

@@ -4,7 +4,7 @@
 /* 80138C10 00135B50  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80138C14 00135B54  7C 7F 1B 78 */ mr r31, r3
 /* 80138C18 00135B58  38 7F 28 1C */ addi r3, r31, 0x281c
-/* 80138C1C 00135B5C  48 02 60 E1 */ bl daPy_actorKeep_c_NS_clearData
+/* 80138C1C 00135B5C  48 02 60 E1 */ bl clearData__16daPy_actorKeep_cFv
 /* 80138C20 00135B60  80 7F 05 78 */ lwz r3, 0x578(r31)
 /* 80138C24 00135B64  38 00 FF A7 */ li r0, -89
 /* 80138C28 00135B68  7C 60 00 38 */ and r0, r3, r0

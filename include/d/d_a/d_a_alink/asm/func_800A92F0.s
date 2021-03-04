@@ -44,7 +44,7 @@ lbl_800A9388:
 /* 800A9394 000A62D4  38 BE 34 A4 */ addi r5, r30, 0x34a4
 /* 800A9398 000A62D8  48 29 DA B5 */ bl PSMTXMultVecSR
 lbl_800A939C:
-/* 800A939C 000A62DC  48 0B 5F FD */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800A939C 000A62DC  48 0B 5F FD */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800A93A0 000A62E0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A93A4 000A62E4  41 82 00 1C */ beq lbl_800A93C0
 /* 800A93A8 000A62E8  80 7E 06 B8 */ lwz r3, 0x6b8(r30)

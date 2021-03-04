@@ -9,9 +9,9 @@
 extern "C" {
 void GXInitTexObjCI(void);
 void GXInitTlutObj(void);
-void J3DUClipper_NS_calcViewFrustum(void);
+void calcViewFrustum__11J3DUClipperFv(void);
 void J3DUClipper_NS_dtor(void);
-void J3DUClipper_NS_init(void);
+void init__11J3DUClipperFv(void);
 void __dl__FPv(void);
 void _restgpr_29(void);
 void _savegpr_29(void);

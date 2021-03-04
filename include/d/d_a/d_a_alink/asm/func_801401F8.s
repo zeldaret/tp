@@ -5,7 +5,7 @@
 /* 80140208 0013D148  93 C1 00 08 */ stw r30, 8(r1)
 /* 8014020C 0013D14C  7C 7E 1B 78 */ mr r30, r3
 /* 80140210 0013D150  38 7E 21 04 */ addi r3, r30, 0x2104
-/* 80140214 0013D154  48 01 EF 55 */ bl daPy_anmHeap_c_NS_setAnimeHeap
+/* 80140214 0013D154  48 01 EF 55 */ bl setAnimeHeap__14daPy_anmHeap_cFv
 /* 80140218 0013D158  7C 7F 1B 78 */ mr r31, r3
 /* 8014021C 0013D15C  80 7E 06 44 */ lwz r3, 0x644(r30)
 /* 80140220 0013D160  38 80 00 03 */ li r4, 3
@@ -14,7 +14,7 @@
 /* 8014022C 0013D16C  3C A5 00 02 */ addis r5, r5, 2
 /* 80140230 0013D170  38 C0 00 80 */ li r6, 0x80
 /* 80140234 0013D174  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 80140238 0013D178  4B EF C0 B5 */ bl dRes_control_c_NS_getRes
+/* 80140238 0013D178  4B EF C0 B5 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8014023C 0013D17C  7C 64 1B 78 */ mr r4, r3
 /* 80140240 0013D180  7F C3 F3 78 */ mr r3, r30
 /* 80140244 0013D184  3C A0 00 08 */ lis r5, 8

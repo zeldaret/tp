@@ -578,7 +578,7 @@ lbl_80252CF8:
 /* 80252D38 0024FC78  38 83 02 3C */	addi r4, r3, 0x23c
 /* 80252D3C 0024FC7C  38 A3 02 40 */	addi r5, r3, 0x240
 /* 80252D40 0024FC80  38 DF 00 D8 */	addi r6, r31, 0xd8
-/* 80252D44 0024FC84  4B E0 3A 51 */	bl dDlst_list_c_NS_set
+/* 80252D44 0024FC84  4B E0 3A 51 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 80252D48 0024FC88  38 00 00 01 */	li r0, 1
 /* 80252D4C 0024FC8C  98 1F 01 1C */	stb r0, 0x11c(r31)
 /* 80252D50 0024FC90  48 00 00 98 */	b lbl_80252DE8
@@ -619,7 +619,7 @@ lbl_80252D54:
 /* 80252DD8 0024FD18  38 83 02 3C */	addi r4, r3, 0x23c
 /* 80252DDC 0024FD1C  38 A3 02 40 */	addi r5, r3, 0x240
 /* 80252DE0 0024FD20  38 DF 00 DC */	addi r6, r31, 0xdc
-/* 80252DE4 0024FD24  4B E0 39 B1 */	bl dDlst_list_c_NS_set
+/* 80252DE4 0024FD24  4B E0 39 B1 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_80252DE8:
 /* 80252DE8 0024FD28  38 00 00 00 */	li r0, 0
 /* 80252DEC 0024FD2C  98 0D 86 64 */	stb r0, lbl_80450BE4-_SDA_BASE_(r13)

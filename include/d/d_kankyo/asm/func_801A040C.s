@@ -53,7 +53,7 @@ lbl_801A04A4:
 /* 801A04D8 0019D418  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801A04DC 0019D41C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 801A04E0 0019D420  38 81 00 74 */ addi r4, r1, 0x74
-/* 801A04E4 0019D424  4B ED 3F BD */ bl cBgS_NS_GroundCross
+/* 801A04E4 0019D424  4B ED 3F BD */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 801A04E8 0019D428  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A04EC 0019D42C  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A04F0 0019D430  38 63 12 58 */ addi r3, r3, 0x1258
@@ -64,7 +64,7 @@ lbl_801A04A4:
 /* 801A0504 0019D444  48 0C F4 79 */ bl cLib_addCalc__FPfffff
 /* 801A0508 0019D448  38 61 00 74 */ addi r3, r1, 0x74
 /* 801A050C 0019D44C  38 80 FF FF */ li r4, -1
-/* 801A0510 0019D450  4B ED 75 89 */ bl dBgS_CamGndChk_Wtr_NS_dtor
+/* 801A0510 0019D450  4B ED 75 89 */ bl __dt__18dBgS_CamGndChk_WtrFv
 /* 801A0514 0019D454  48 00 00 0C */ b lbl_801A0520
 lbl_801A0518:
 /* 801A0518 0019D458  C0 02 A2 0C */ lfs f0, lbl_80453C0C-_SDA2_BASE_(r2)
@@ -195,7 +195,7 @@ lbl_801A06EC:
 /* 801A06F4 0019D634  3A 31 00 08 */ addi r17, r17, 8
 /* 801A06F8 0019D638  3A 73 00 03 */ addi r19, r19, 3
 /* 801A06FC 0019D63C  41 80 FF 64 */ blt lbl_801A0660
-/* 801A0700 0019D640  4B FB ED 25 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A0700 0019D640  4B FB ED 25 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A0704 0019D644  2C 03 00 00 */ cmpwi r3, 0
 /* 801A0708 0019D648  41 82 00 14 */ beq lbl_801A071C
 /* 801A070C 0019D64C  38 6F 11 00 */ addi r3, r15, 0x1100
@@ -273,7 +273,7 @@ lbl_801A0808:
 /* 801A0824 0019D764  C0 62 A2 48 */ lfs f3, lbl_80453C48-_SDA2_BASE_(r2)
 /* 801A0828 0019D768  4B FF CE 65 */ bl kankyo_color_ratio_set
 /* 801A082C 0019D76C  98 6F 12 F8 */ stb r3, 0x12f8(r15)
-/* 801A0830 0019D770  4B FB EB F5 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A0830 0019D770  4B FB EB F5 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A0834 0019D774  2C 03 00 00 */ cmpwi r3, 0
 /* 801A0838 0019D778  41 82 00 0C */ beq lbl_801A0844
 /* 801A083C 0019D77C  38 00 00 FF */ li r0, 0xff
@@ -305,7 +305,7 @@ lbl_801A0864:
 /* 801A089C 0019D7DC  39 01 00 48 */ addi r8, r1, 0x48
 /* 801A08A0 0019D7E0  C0 72 12 00 */ lfs f3, 0x1200(r18)
 /* 801A08A4 0019D7E4  4B FF FA 9D */ bl dKy_calc_color_set
-/* 801A08A8 0019D7E8  4B FB EB 7D */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A08A8 0019D7E8  4B FB EB 7D */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A08AC 0019D7EC  2C 03 00 00 */ cmpwi r3, 0
 /* 801A08B0 0019D7F0  41 82 00 14 */ beq lbl_801A08C4
 /* 801A08B4 0019D7F4  38 00 00 00 */ li r0, 0
@@ -366,7 +366,7 @@ lbl_801A08C4:
 /* 801A098C 0019D8CC  C1 0E 11 F4 */ lfs f8, 0x11f4(r14)
 /* 801A0990 0019D8D0  4B FF CE 11 */ bl float_kankyo_color_ratio_set
 /* 801A0994 0019D8D4  D0 2F 11 E8 */ stfs f1, 0x11e8(r15)
-/* 801A0998 0019D8D8  4B FB EA 8D */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A0998 0019D8D8  4B FB EA 8D */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A099C 0019D8DC  2C 03 00 00 */ cmpwi r3, 0
 /* 801A09A0 0019D8E0  41 82 00 20 */ beq lbl_801A09C0
 /* 801A09A4 0019D8E4  38 00 00 00 */ li r0, 0
@@ -381,7 +381,7 @@ lbl_801A09C0:
 /* 801A09C4 0019D904  8A 76 00 30 */ lbz r19, 0x30(r22)
 /* 801A09C8 0019D908  8A 57 00 30 */ lbz r18, 0x30(r23)
 /* 801A09CC 0019D90C  8A 35 00 30 */ lbz r17, 0x30(r21)
-/* 801A09D0 0019D910  4B FB EA 55 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A09D0 0019D910  4B FB EA 55 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A09D4 0019D914  2C 03 00 00 */ cmpwi r3, 0
 /* 801A09D8 0019D918  41 82 00 14 */ beq lbl_801A09EC
 /* 801A09DC 0019D91C  3A 20 00 03 */ li r17, 3
@@ -972,7 +972,7 @@ lbl_801A0E88:
 /* 801A12B0 0019E1F0  C0 62 A2 48 */ lfs f3, lbl_80453C48-_SDA2_BASE_(r2)
 /* 801A12B4 0019E1F4  4B FF C3 D9 */ bl kankyo_color_ratio_set
 /* 801A12B8 0019E1F8  B0 6F 10 EE */ sth r3, 0x10ee(r15)
-/* 801A12BC 0019E1FC  4B FB E1 69 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A12BC 0019E1FC  4B FB E1 69 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A12C0 0019E200  2C 03 00 00 */ cmpwi r3, 0
 /* 801A12C4 0019E204  41 82 00 50 */ beq lbl_801A1314
 /* 801A12C8 0019E208  38 00 00 00 */ li r0, 0

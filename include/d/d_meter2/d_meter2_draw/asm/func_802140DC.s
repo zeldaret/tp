@@ -125,7 +125,7 @@ lbl_802142AC:
 /* 802142BC 002111FC  41 82 00 34 */ beq lbl_802142F0
 /* 802142C0 00211200  28 00 00 05 */ cmplwi r0, 5
 /* 802142C4 00211204  41 82 00 2C */ beq lbl_802142F0
-/* 802142C8 00211208  48 02 3F 65 */ bl dMsgObject_c_NS_getStatus
+/* 802142C8 00211208  48 02 3F 65 */ bl getStatus__12dMsgObject_cFv
 /* 802142CC 0021120C  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802142D0 00211210  20 60 00 01 */ subfic r3, r0, 1
 /* 802142D4 00211214  30 03 FF FF */ addic r0, r3, -1
@@ -335,7 +335,7 @@ lbl_802145D0:
 /* 802145DC 0021151C  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 802145E0 00211520  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 802145E4 00211524  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 802145E8 00211528  48 0E 48 ED */ bl J2DScreen_NS_draw
+/* 802145E8 00211528  48 0E 48 ED */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_802145EC:
 /* 802145EC 0021152C  E3 E1 00 98 */ psq_l f31, 152(r1), 0, 0
 /* 802145F0 00211530  CB E1 00 90 */ lfd f31, 0x90(r1)

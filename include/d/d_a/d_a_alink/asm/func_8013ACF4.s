@@ -24,7 +24,7 @@ lbl_8013AD20:
 /* 8013AD4C 00137C8C  7F C3 F3 78 */ mr r3, r30
 /* 8013AD50 00137C90  4B F9 79 35 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
 /* 8013AD54 00137C94  7F E3 FB 78 */ mr r3, r31
-/* 8013AD58 00137C98  48 02 37 75 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013AD58 00137C98  48 02 37 75 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013AD5C 00137C9C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013AD60 00137CA0  41 82 00 14 */ beq lbl_8013AD74
 /* 8013AD64 00137CA4  7F C3 F3 78 */ mr r3, r30

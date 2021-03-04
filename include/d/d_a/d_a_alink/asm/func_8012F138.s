@@ -37,7 +37,7 @@
 /* 8012F1C8 0012C108  38 80 00 01 */ li r4, 1
 /* 8012F1CC 0012C10C  38 A0 00 0F */ li r5, 0xf
 /* 8012F1D0 0012C110  38 C1 00 08 */ addi r6, r1, 8
-/* 8012F1D4 0012C114  4B F4 08 51 */ bl dVibration_c_NS_StartShock
+/* 8012F1D4 0012C114  4B F4 08 51 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8012F1D8 0012C118  38 60 00 01 */ li r3, 1
 /* 8012F1DC 0012C11C  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 8012F1E0 0012C120  80 01 00 24 */ lwz r0, 0x24(r1)

@@ -202,7 +202,7 @@ lbl_80129E04:
 /* 80129E04 00126D44  28 04 00 00 */ cmplwi r4, 0
 /* 80129E08 00126D48  41 82 00 20 */ beq lbl_80129E28
 /* 80129E0C 00126D4C  38 7D 28 0C */ addi r3, r29, 0x280c
-/* 80129E10 00126D50  48 03 4E A9 */ bl daPy_actorKeep_c_NS_setData
+/* 80129E10 00126D50  48 03 4E A9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80129E14 00126D54  7F A3 EB 78 */ mr r3, r29
 /* 80129E18 00126D58  38 80 00 00 */ li r4, 0
 /* 80129E1C 00126D5C  38 A0 00 01 */ li r5, 1

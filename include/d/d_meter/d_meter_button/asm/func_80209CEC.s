@@ -27,9 +27,9 @@
 /* 80209D54 00206C94  98 03 00 B0 */ stb r0, 0xb0(r3)
 lbl_80209D58:
 /* 80209D58 00206C98  80 7F 00 D8 */ lwz r3, 0xd8(r31)
-/* 80209D5C 00206C9C  48 04 B8 AD */ bl CPaneMgrAlpha_NS_hide
+/* 80209D5C 00206C9C  48 04 B8 AD */ bl hide__13CPaneMgrAlphaFv
 /* 80209D60 00206CA0  80 7F 00 E0 */ lwz r3, 0xe0(r31)
-/* 80209D64 00206CA4  48 04 B8 A5 */ bl CPaneMgrAlpha_NS_hide
+/* 80209D64 00206CA4  48 04 B8 A5 */ bl hide__13CPaneMgrAlphaFv
 /* 80209D68 00206CA8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80209D6C 00206CAC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80209D70 00206CB0  7C 08 03 A6 */ mtlr r0

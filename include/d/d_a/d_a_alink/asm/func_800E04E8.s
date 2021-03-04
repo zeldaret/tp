@@ -14,7 +14,7 @@
 /* 800E051C 000DD45C  38 80 00 01 */ li r4, 1
 /* 800E0520 000DD460  38 A0 00 01 */ li r5, 1
 /* 800E0524 000DD464  38 C1 00 08 */ addi r6, r1, 8
-/* 800E0528 000DD468  4B F8 F5 E9 */ bl dVibration_c_NS_StartQuake
+/* 800E0528 000DD468  4B F8 F5 E9 */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800E052C 000DD46C  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 800E0530 000DD470  60 00 00 04 */ ori r0, r0, 4
 /* 800E0534 000DD474  90 1F 05 7C */ stw r0, 0x57c(r31)

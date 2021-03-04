@@ -14,7 +14,7 @@
 /* 800DB174 000D80B4  38 A0 00 00 */ li r5, 0
 /* 800DB178 000D80B8  3C C0 00 01 */ lis r6, 0x0000FFEF@ha
 /* 800DB17C 000D80BC  38 C6 FF EF */ addi r6, r6, 0x0000FFEF@l
-/* 800DB180 000D80C0  4B F6 7F ED */ bl dEvt_control_c_NS_compulsory
+/* 800DB180 000D80C0  4B F6 7F ED */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800DB184 000D80C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800DB188 000D80C8  40 82 00 0C */ bne lbl_800DB194
 /* 800DB18C 000D80CC  38 60 00 00 */ li r3, 0
@@ -30,7 +30,7 @@ lbl_800DB194:
 /* 800DB1B0 000D80F0  28 03 00 00 */ cmplwi r3, 0
 /* 800DB1B4 000D80F4  41 82 00 0C */ beq lbl_800DB1C0
 /* 800DB1B8 000D80F8  38 63 07 40 */ addi r3, r3, 0x740
-/* 800DB1BC 000D80FC  48 08 3B 41 */ bl daPy_actorKeep_c_NS_clearData
+/* 800DB1BC 000D80FC  48 08 3B 41 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800DB1C0:
 /* 800DB1C0 000D8100  28 1F 00 00 */ cmplwi r31, 0
 /* 800DB1C4 000D8104  41 82 00 10 */ beq lbl_800DB1D4

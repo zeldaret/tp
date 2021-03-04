@@ -8,7 +8,7 @@
 /* 8013DC78 0013ABB8  2C 00 00 00 */ cmpwi r0, 0
 /* 8013DC7C 0013ABBC  41 82 00 BC */ beq lbl_8013DD38
 /* 8013DC80 0013ABC0  38 7F 28 54 */ addi r3, r31, 0x2854
-/* 8013DC84 0013ABC4  48 02 0F C5 */ bl daPy_actorKeep_c_NS_setActor
+/* 8013DC84 0013ABC4  48 02 0F C5 */ bl setActor__16daPy_actorKeep_cFv
 /* 8013DC88 0013ABC8  80 7F 28 58 */ lwz r3, 0x2858(r31)
 /* 8013DC8C 0013ABCC  28 03 00 00 */ cmplwi r3, 0
 /* 8013DC90 0013ABD0  41 82 00 10 */ beq lbl_8013DCA0

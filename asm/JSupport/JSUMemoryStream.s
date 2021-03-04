@@ -3,8 +3,8 @@
 .section .text, "ax" # 802dc520
 
 
-.global JSUMemoryInputStream_NS_setBuffer
-JSUMemoryInputStream_NS_setBuffer:
+.global setBuffer__20JSUMemoryInputStreamFPCvl
+setBuffer__20JSUMemoryInputStreamFPCvl:
 /* 802DC520 002D9460  90 83 00 08 */	stw r4, 8(r3)
 /* 802DC524 002D9464  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 802DC528 002D9468  38 00 00 00 */	li r0, 0

@@ -39,7 +39,7 @@ lbl_800D4AEC:
 /* 800D4B04 000D1A44  98 1F 2F 92 */ stb r0, 0x2f92(r31)
 lbl_800D4B08:
 /* 800D4B08 000D1A48  7F A3 EB 78 */ mr r3, r29
-/* 800D4B0C 000D1A4C  48 08 99 C1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D4B0C 000D1A4C  48 08 99 C1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D4B10 000D1A50  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D4B14 000D1A54  41 82 00 80 */ beq lbl_800D4B94
 /* 800D4B18 000D1A58  A8 1F 30 08 */ lha r0, 0x3008(r31)
@@ -67,7 +67,7 @@ lbl_800D4B58:
 /* 800D4B68 000D1AA8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D4B6C 000D1AAC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800D4B70 000D1AB0  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 800D4B74 000D1AB4  4B F7 36 09 */ bl dEvent_manager_c_NS_cutEnd
+/* 800D4B74 000D1AB4  4B F7 36 09 */ bl cutEnd__16dEvent_manager_cFi
 /* 800D4B78 000D1AB8  48 00 00 D4 */ b lbl_800D4C4C
 lbl_800D4B7C:
 /* 800D4B7C 000D1ABC  38 00 00 03 */ li r0, 3

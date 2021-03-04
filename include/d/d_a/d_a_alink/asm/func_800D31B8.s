@@ -62,7 +62,7 @@ lbl_800D32A0:
 /* 800D32A0 000D01E0  B0 7E 30 0A */ sth r3, 0x300a(r30)
 lbl_800D32A4:
 /* 800D32A4 000D01E4  7F E3 FB 78 */ mr r3, r31
-/* 800D32A8 000D01E8  48 08 B2 25 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D32A8 000D01E8  48 08 B2 25 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D32AC 000D01EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D32B0 000D01F0  41 82 00 4C */ beq lbl_800D32FC
 /* 800D32B4 000D01F4  7F C3 F3 78 */ mr r3, r30
@@ -78,7 +78,7 @@ lbl_800D32D4:
 /* 800D32D8 000D0218  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D32DC 000D021C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800D32E0 000D0220  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800D32E4 000D0224  4B F7 4E 99 */ bl dEvent_manager_c_NS_cutEnd
+/* 800D32E4 000D0224  4B F7 4E 99 */ bl cutEnd__16dEvent_manager_cFi
 /* 800D32E8 000D0228  48 00 01 D4 */ b lbl_800D34BC
 lbl_800D32EC:
 /* 800D32EC 000D022C  7F C3 F3 78 */ mr r3, r30

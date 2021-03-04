@@ -84,7 +84,7 @@ lbl_8017E038:
 /* 8017E0EC 0017B02C  38 61 00 E4 */ addi r3, r1, 0xe4
 /* 8017E0F0 0017B030  7F E4 FB 78 */ mr r4, r31
 /* 8017E0F4 0017B034  80 BF 01 80 */ lwz r5, 0x180(r31)
-/* 8017E0F8 0017B038  4B F1 96 25 */ bl dCamera_c_NS_attentionPos
+/* 8017E0F8 0017B038  4B F1 96 25 */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 8017E0FC 0017B03C  C0 01 00 E4 */ lfs f0, 0xe4(r1)
 /* 8017E100 0017B040  D0 01 01 2C */ stfs f0, 0x12c(r1)
 /* 8017E104 0017B044  C0 01 00 E8 */ lfs f0, 0xe8(r1)
@@ -109,7 +109,7 @@ lbl_8017E14C:
 /* 8017E14C 0017B08C  38 61 00 D8 */ addi r3, r1, 0xd8
 /* 8017E150 0017B090  7F E4 FB 78 */ mr r4, r31
 /* 8017E154 0017B094  80 BF 01 80 */ lwz r5, 0x180(r31)
-/* 8017E158 0017B098  4B F1 95 C5 */ bl dCamera_c_NS_attentionPos
+/* 8017E158 0017B098  4B F1 95 C5 */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 8017E15C 0017B09C  38 61 00 CC */ addi r3, r1, 0xcc
 /* 8017E160 0017B0A0  38 9F 03 EC */ addi r4, r31, 0x3ec
 /* 8017E164 0017B0A4  38 A1 00 D8 */ addi r5, r1, 0xd8
@@ -226,7 +226,7 @@ lbl_8017E2BC:
 /* 8017E2F8 0017B238  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8017E2FC 0017B23C  38 81 01 7C */ addi r4, r1, 0x17c
 /* 8017E300 0017B240  38 A1 01 38 */ addi r5, r1, 0x138
-/* 8017E304 0017B244  4B EF 64 41 */ bl cBgS_NS_GetTriPla
+/* 8017E304 0017B244  4B EF 64 41 */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 8017E308 0017B248  C0 01 01 98 */ lfs f0, 0x198(r1)
 /* 8017E30C 0017B24C  D0 01 01 14 */ stfs f0, 0x114(r1)
 /* 8017E310 0017B250  C0 01 01 9C */ lfs f0, 0x19c(r1)
@@ -397,7 +397,7 @@ lbl_8017E530:
 /* 8017E55C 0017B49C  D0 1F 04 04 */ stfs f0, 0x404(r31)
 /* 8017E560 0017B4A0  38 61 01 68 */ addi r3, r1, 0x168
 /* 8017E564 0017B4A4  38 80 FF FF */ li r4, -1
-/* 8017E568 0017B4A8  4B EF 98 99 */ bl dBgS_CamLinChk_NS_dtor
+/* 8017E568 0017B4A8  4B EF 98 99 */ bl __dt__14dBgS_CamLinChkFv
 /* 8017E56C 0017B4AC  3C 60 80 3A */ lis r3, lbl_803A78F8@ha
 /* 8017E570 0017B4B0  38 03 78 F8 */ addi r0, r3, lbl_803A78F8@l
 /* 8017E574 0017B4B4  90 01 01 64 */ stw r0, 0x164(r1)

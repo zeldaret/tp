@@ -35,7 +35,7 @@
 /* 8018188C 0017E7CC  48 0E F7 0D */ bl __ct__7cSAngleFs
 /* 80181890 0017E7D0  C3 FB 00 D0 */ lfs f31, 0xd0(r27)
 /* 80181894 0017E7D4  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
-/* 80181898 0017E7D8  4B EB 78 91 */ bl dDemo_object_c_NS_getActiveCamera
+/* 80181898 0017E7D8  4B EB 78 91 */ bl getActiveCamera__14dDemo_object_cFv
 /* 8018189C 0017E7DC  7C 7F 1B 79 */ or. r31, r3, r3
 /* 801818A0 0017E7E0  41 82 00 C8 */ beq lbl_80181968
 /* 801818A4 0017E7E4  80 1E 51 84 */ lwz r0, 0x5184(r30)

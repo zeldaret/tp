@@ -73,7 +73,7 @@ lbl_800EE720:
 /* 800EE760 000EB6A0  4B FF ED 59 */ bl daAlink_c_NS_changeBoarRunRide
 lbl_800EE764:
 /* 800EE764 000EB6A4  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 800EE768 000EB6A8  48 06 FD 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800EE768 000EB6A8  48 06 FD 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800EE76C 000EB6AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EE770 000EB6B0  41 82 00 10 */ beq lbl_800EE780
 /* 800EE774 000EB6B4  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
@@ -101,7 +101,7 @@ lbl_800EE7B8:
 /* 800EE7C0 000EB700  40 82 00 24 */ bne lbl_800EE7E4
 /* 800EE7C4 000EB704  38 7E 1F D0 */ addi r3, r30, 0x1fd0
 /* 800EE7C8 000EB708  C0 22 93 30 */ lfs f1, lbl_80452D30-_SDA2_BASE_(r2)
-/* 800EE7CC 000EB70C  48 23 9C 61 */ bl J3DFrameCtrl_NS_checkPass
+/* 800EE7CC 000EB70C  48 23 9C 61 */ bl checkPass__12J3DFrameCtrlFf
 /* 800EE7D0 000EB710  2C 03 00 00 */ cmpwi r3, 0
 /* 800EE7D4 000EB714  41 82 00 34 */ beq lbl_800EE808
 /* 800EE7D8 000EB718  7F C3 F3 78 */ mr r3, r30

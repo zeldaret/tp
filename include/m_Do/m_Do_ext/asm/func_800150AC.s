@@ -29,7 +29,7 @@ lbl_80015118:
 /* 80015118 00012058  80 6D 90 74 */ lwz r3, lbl_804515F4-_SDA_BASE_(r13)
 /* 8001511C 0001205C  38 63 00 18 */ addi r3, r3, 0x18
 lbl_80015120:
-/* 80015120 00012060  48 31 9E 9D */ bl J3DMtxCalcCalcTransformMaya_NS_calcTransform
+/* 80015120 00012060  48 31 9E 9D */ bl calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 /* 80015124 00012064  83 E1 00 2C */ lwz r31, 0x2c(r1)
 /* 80015128 00012068  83 C1 00 28 */ lwz r30, 0x28(r1)
 /* 8001512C 0001206C  80 01 00 34 */ lwz r0, 0x34(r1)

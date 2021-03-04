@@ -14,7 +14,7 @@ J2DPrint_print_alpha_va:
 /* 802F4308 002F1248  7C 9D 23 78 */	mr r29, r4
 /* 802F430C 002F124C  7C BE 2B 78 */	mr r30, r5
 /* 802F4310 002F1250  7C DF 33 78 */	mr r31, r6
-/* 802F4314 002F1254  48 00 16 39 */	bl J2DPrint_NS_initchar
+/* 802F4314 002F1254  48 00 16 39 */	bl initchar__8J2DPrintFv
 /* 802F4318 002F1258  80 6D 90 00 */	lwz r3, lbl_80451580-_SDA_BASE_(r13)
 /* 802F431C 002F125C  80 8D 90 08 */	lwz r4, lbl_80451588-_SDA_BASE_(r13)
 /* 802F4320 002F1260  7F C5 F3 78 */	mr r5, r30
@@ -40,7 +40,7 @@ lbl_802F4354:
 /* 802F4368 002F12A8  39 01 00 08 */	addi r8, r1, 8
 /* 802F436C 002F12AC  7F A9 EB 78 */	mr r9, r29
 /* 802F4370 002F12B0  39 40 00 01 */	li r10, 1
-/* 802F4374 002F12B4  48 00 07 D9 */	bl J2DPrint_NS_parse
+/* 802F4374 002F12B4  48 00 07 D9 */	bl parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
 /* 802F4378 002F12B8  C0 21 00 08 */	lfs f1, 8(r1)
 lbl_802F437C:
 /* 802F437C 002F12BC  39 61 00 20 */	addi r11, r1, 0x20
@@ -80,7 +80,7 @@ J2DPrint:
 /* 802F43F8 002F1338  38 E1 00 0C */	addi r7, r1, 0xc
 /* 802F43FC 002F133C  39 01 00 08 */	addi r8, r1, 8
 /* 802F4400 002F1340  39 20 00 00 */	li r9, 0
-/* 802F4404 002F1344  48 00 00 65 */	bl J2DPrint_NS_private_initiate
+/* 802F4404 002F1344  48 00 00 65 */	bl private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
 /* 802F4408 002F1348  7F E3 FB 78 */	mr r3, r31
 /* 802F440C 002F134C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802F4410 002F1350  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -88,8 +88,8 @@ J2DPrint:
 /* 802F4418 002F1358  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F441C 002F135C  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_dtor
-J2DPrint_NS_dtor:
+.global __dt__8J2DPrintFv
+__dt__8J2DPrintFv:
 /* 802F4420 002F1360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F4424 002F1364  7C 08 02 A6 */	mflr r0
 /* 802F4428 002F1368  90 01 00 14 */	stw r0, 0x14(r1)
@@ -110,8 +110,8 @@ lbl_802F4450:
 /* 802F4460 002F13A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F4464 002F13A4  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_private_initiate
-J2DPrint_NS_private_initiate:
+.global private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
+private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb:
 /* 802F4468 002F13A8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802F446C 002F13AC  7C 08 02 A6 */	mflr r0
 /* 802F4470 002F13B0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -134,7 +134,7 @@ J2DPrint_NS_private_initiate:
 /* 802F44B4 002F13F4  28 00 00 00 */	cmplwi r0, 0
 /* 802F44B8 002F13F8  40 82 00 0C */	bne lbl_802F44C4
 /* 802F44BC 002F13FC  38 60 04 00 */	li r3, 0x400
-/* 802F44C0 002F1400  48 00 01 99 */	bl J2DPrint_NS_setBuffer
+/* 802F44C0 002F1400  48 00 01 99 */	bl setBuffer__8J2DPrintFUl
 lbl_802F44C4:
 /* 802F44C4 002F1404  93 3C 00 04 */	stw r25, 4(r28)
 /* 802F44C8 002F1408  D3 DC 00 48 */	stfs f30, 0x48(r28)
@@ -167,7 +167,7 @@ lbl_802F4520:
 /* 802F4528 002F1468  7F 83 E3 78 */	mr r3, r28
 /* 802F452C 002F146C  C0 22 C7 C8 */	lfs f1, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F4530 002F1470  FC 40 08 90 */	fmr f2, f1
-/* 802F4534 002F1474  48 00 02 29 */	bl J2DPrint_NS_locate
+/* 802F4534 002F1474  48 00 02 29 */	bl locate__8J2DPrintFff
 /* 802F4538 002F1478  88 1A 00 00 */	lbz r0, 0(r26)
 /* 802F453C 002F147C  98 1C 00 40 */	stb r0, 0x40(r28)
 /* 802F4540 002F1480  88 1A 00 01 */	lbz r0, 1(r26)
@@ -218,7 +218,7 @@ lbl_802F45E8:
 /* 802F45EC 002F152C  28 00 00 00 */	cmplwi r0, 0
 /* 802F45F0 002F1530  41 82 00 38 */	beq lbl_802F4628
 /* 802F45F4 002F1534  7F 83 E3 78 */	mr r3, r28
-/* 802F45F8 002F1538  48 00 00 CD */	bl J2DPrint_NS_setFontSize
+/* 802F45F8 002F1538  48 00 00 CD */	bl setFontSize__8J2DPrintFv
 /* 802F45FC 002F153C  80 1C 00 3C */	lwz r0, 0x3c(r28)
 /* 802F4600 002F1540  90 01 00 08 */	stw r0, 8(r1)
 /* 802F4604 002F1544  80 1C 00 38 */	lwz r0, 0x38(r28)
@@ -232,7 +232,7 @@ lbl_802F45E8:
 /* 802F4624 002F1564  4E 80 04 21 */	bctrl 
 lbl_802F4628:
 /* 802F4628 002F1568  7F 83 E3 78 */	mr r3, r28
-/* 802F462C 002F156C  48 00 13 21 */	bl J2DPrint_NS_initchar
+/* 802F462C 002F156C  48 00 13 21 */	bl initchar__8J2DPrintFv
 /* 802F4630 002F1570  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 802F4634 002F1574  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 802F4638 002F1578  E3 C1 00 48 */	psq_l f30, 72(r1), 0, qr0
@@ -244,8 +244,8 @@ lbl_802F4628:
 /* 802F4650 002F1590  38 21 00 60 */	addi r1, r1, 0x60
 /* 802F4654 002F1594  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_setBuffer
-J2DPrint_NS_setBuffer:
+.global setBuffer__8J2DPrintFUl
+setBuffer__8J2DPrintFUl:
 /* 802F4658 002F1598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F465C 002F159C  7C 08 02 A6 */	mflr r0
 /* 802F4660 002F15A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -275,8 +275,8 @@ lbl_802F4688:
 /* 802F46BC 002F15FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F46C0 002F1600  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_setFontSize
-J2DPrint_NS_setFontSize:
+.global setFontSize__8J2DPrintFv
+setFontSize__8J2DPrintFv:
 /* 802F46C4 002F1604  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F46C8 002F1608  7C 08 02 A6 */	mflr r0
 /* 802F46CC 002F160C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -317,8 +317,8 @@ lbl_802F4748:
 /* 802F4754 002F1694  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F4758 002F1698  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_locate
-J2DPrint_NS_locate:
+.global locate__8J2DPrintFff
+locate__8J2DPrintFff:
 /* 802F475C 002F169C  D0 23 00 24 */	stfs f1, 0x24(r3)
 /* 802F4760 002F16A0  D0 43 00 28 */	stfs f2, 0x28(r3)
 /* 802F4764 002F16A4  D0 23 00 2C */	stfs f1, 0x2c(r3)
@@ -327,8 +327,8 @@ J2DPrint_NS_locate:
 /* 802F4770 002F16B0  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 802F4774 002F16B4  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_print
-J2DPrint_NS_print:
+.global print__8J2DPrintFffUcPCce
+print__8J2DPrintFffUcPCce:
 /* 802F4778 002F16B8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 802F477C 002F16BC  7C 08 02 A6 */	mflr r0
 /* 802F4780 002F16C0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -356,7 +356,7 @@ lbl_802F47BC:
 /* 802F47D4 002F1714  91 21 00 20 */	stw r9, 0x20(r1)
 /* 802F47D8 002F1718  91 41 00 24 */	stw r10, 0x24(r1)
 /* 802F47DC 002F171C  7F A3 EB 78 */	mr r3, r29
-/* 802F47E0 002F1720  4B FF FF 7D */	bl J2DPrint_NS_locate
+/* 802F47E0 002F1720  4B FF FF 7D */	bl locate__8J2DPrintFff
 /* 802F47E4 002F1724  38 C1 00 68 */	addi r6, r1, 0x68
 /* 802F47E8 002F1728  3C 00 03 02 */	lis r0, 0x302
 /* 802F47EC 002F172C  90 01 00 68 */	stw r0, 0x68(r1)
@@ -375,8 +375,8 @@ lbl_802F47BC:
 /* 802F4820 002F1760  38 21 00 90 */	addi r1, r1, 0x90
 /* 802F4824 002F1764  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_printReturn
-J2DPrint_NS_printReturn:
+.global print__8J2DPrintFffUcPCceReturn
+print__8J2DPrintFffUcPCceReturn:
 /* 802F4828 002F1768  94 21 FD 50 */	stwu r1, -0x2b0(r1)
 /* 802F482C 002F176C  7C 08 02 A6 */	mflr r0
 /* 802F4830 002F1770  90 01 02 B4 */	stw r0, 0x2b4(r1)
@@ -406,7 +406,7 @@ J2DPrint_NS_printReturn:
 /* 802F4890 002F17D0  80 03 00 04 */	lwz r0, 4(r3)
 /* 802F4894 002F17D4  28 00 00 00 */	cmplwi r0, 0
 /* 802F4898 002F17D8  41 82 02 6C */	beq lbl_802F4B04
-/* 802F489C 002F17DC  48 00 10 B1 */	bl J2DPrint_NS_initchar
+/* 802F489C 002F17DC  48 00 10 B1 */	bl initchar__8J2DPrintFv
 /* 802F48A0 002F17E0  C0 1A 00 2C */	lfs f0, 0x2c(r26)
 /* 802F48A4 002F17E4  D0 1A 00 24 */	stfs f0, 0x24(r26)
 /* 802F48A8 002F17E8  C0 1A 00 30 */	lfs f0, 0x30(r26)
@@ -432,7 +432,7 @@ lbl_802F48D4:
 /* 802F48F4 002F1834  39 01 00 08 */	addi r8, r1, 8
 /* 802F48F8 002F1838  7F A9 EB 78 */	mr r9, r29
 /* 802F48FC 002F183C  39 40 00 00 */	li r10, 0
-/* 802F4900 002F1840  48 00 02 4D */	bl J2DPrint_NS_parse
+/* 802F4900 002F1840  48 00 02 4D */	bl parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
 /* 802F4904 002F1844  FF 60 08 90 */	fmr f27, f1
 /* 802F4908 002F1848  80 7A 00 04 */	lwz r3, 4(r26)
 /* 802F490C 002F184C  81 83 00 00 */	lwz r12, 0(r3)
@@ -549,7 +549,7 @@ lbl_802F4AA0:
 /* 802F4AA4 002F19E4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 802F4AA8 002F19E8  40 82 FF 64 */	bne lbl_802F4A0C
 /* 802F4AAC 002F19EC  7F 43 D3 78 */	mr r3, r26
-/* 802F4AB0 002F19F0  48 00 0E 9D */	bl J2DPrint_NS_initchar
+/* 802F4AB0 002F19F0  48 00 0E 9D */	bl initchar__8J2DPrintFv
 /* 802F4AB4 002F19F4  C0 1A 00 2C */	lfs f0, 0x2c(r26)
 /* 802F4AB8 002F19F8  EC 00 E8 2A */	fadds f0, f0, f29
 /* 802F4ABC 002F19FC  D0 1A 00 2C */	stfs f0, 0x2c(r26)
@@ -569,7 +569,7 @@ lbl_802F4AA0:
 /* 802F4AF4 002F1A34  39 01 00 08 */	addi r8, r1, 8
 /* 802F4AF8 002F1A38  7F A9 EB 78 */	mr r9, r29
 /* 802F4AFC 002F1A3C  39 40 00 01 */	li r10, 1
-/* 802F4B00 002F1A40  48 00 00 4D */	bl J2DPrint_NS_parse
+/* 802F4B00 002F1A40  48 00 00 4D */	bl parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
 lbl_802F4B04:
 /* 802F4B04 002F1A44  E3 E1 02 A8 */	psq_l f31, 680(r1), 0, qr0
 /* 802F4B08 002F1A48  CB E1 02 A0 */	lfd f31, 0x2a0(r1)
@@ -590,8 +590,8 @@ lbl_802F4B04:
 /* 802F4B44 002F1A84  38 21 02 B0 */	addi r1, r1, 0x2b0
 /* 802F4B48 002F1A88  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_parse
-J2DPrint_NS_parse:
+.global parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
+parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb:
 /* 802F4B4C 002F1A8C  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 802F4B50 002F1A90  7C 08 02 A6 */	mflr r0
 /* 802F4B54 002F1A94  90 01 01 24 */	stw r0, 0x124(r1)
@@ -723,7 +723,7 @@ lbl_802F4D18:
 /* 802F4D30 002F1C70  7E 83 A3 78 */	mr r3, r20
 /* 802F4D34 002F1C74  38 81 00 08 */	addi r4, r1, 8
 /* 802F4D38 002F1C78  7F 25 CB 78 */	mr r5, r25
-/* 802F4D3C 002F1C7C  48 00 06 D5 */	bl J2DPrint_NS_doEscapeCode
+/* 802F4D3C 002F1C7C  48 00 06 D5 */	bl doEscapeCode__8J2DPrintFPPCUcUc
 /* 802F4D40 002F1C80  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 802F4D44 002F1C84  28 00 48 4D */	cmplwi r0, 0x484d
 /* 802F4D48 002F1C88  40 82 00 4C */	bne lbl_802F4D94
@@ -754,7 +754,7 @@ lbl_802F4D94:
 lbl_802F4DA4:
 /* 802F4DA4 002F1CE4  7E 83 A3 78 */	mr r3, r20
 /* 802F4DA8 002F1CE8  7F A4 EB 78 */	mr r4, r29
-/* 802F4DAC 002F1CEC  48 00 05 3D */	bl J2DPrint_NS_doCtrlCode
+/* 802F4DAC 002F1CEC  48 00 05 3D */	bl doCtrlCode__8J2DPrintFi
 /* 802F4DB0 002F1CF0  3B 60 00 00 */	li r27, 0
 /* 802F4DB4 002F1CF4  2C 1D 00 0A */	cmpwi r29, 0xa
 /* 802F4DB8 002F1CF8  40 82 03 48 */	bne lbl_802F5100
@@ -1112,8 +1112,8 @@ lbl_802F5280:
 /* 802F52E0 002F2220  38 21 01 20 */	addi r1, r1, 0x120
 /* 802F52E4 002F2224  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_doCtrlCode
-J2DPrint_NS_doCtrlCode:
+.global doCtrlCode__8J2DPrintFi
+doCtrlCode__8J2DPrintFi:
 /* 802F52E8 002F2228  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F52EC 002F222C  38 04 FF F8 */	addi r0, r4, -8
 /* 802F52F0 002F2230  28 00 00 17 */	cmplwi r0, 0x17
@@ -1190,8 +1190,8 @@ lbl_802F5408:
 /* 802F5408 002F2348  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F540C 002F234C  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_doEscapeCode
-J2DPrint_NS_doEscapeCode:
+.global doEscapeCode__8J2DPrintFPPCUcUc
+doEscapeCode__8J2DPrintFPPCUcUc:
 /* 802F5410 002F2350  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802F5414 002F2354  7C 08 02 A6 */	mflr r0
 /* 802F5418 002F2358  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1308,7 +1308,7 @@ lbl_802F5598:
 /* 802F55A0 002F24E0  C0 22 C7 EC */	lfs f1, lbl_804561EC-_SDA2_BASE_(r2)
 /* 802F55A4 002F24E4  C0 42 C7 C8 */	lfs f2, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F55A8 002F24E8  38 A0 00 0A */	li r5, 0xa
-/* 802F55AC 002F24EC  48 00 05 19 */	bl J2DPrint_NS_getNumberF32
+/* 802F55AC 002F24EC  48 00 05 19 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F55B0 002F24F0  C0 1A 00 30 */	lfs f0, 0x30(r26)
 /* 802F55B4 002F24F4  EC 00 08 28 */	fsubs f0, f0, f1
 /* 802F55B8 002F24F8  D0 1A 00 30 */	stfs f0, 0x30(r26)
@@ -1319,7 +1319,7 @@ lbl_802F55C0:
 /* 802F55C8 002F2508  C0 22 C7 EC */	lfs f1, lbl_804561EC-_SDA2_BASE_(r2)
 /* 802F55CC 002F250C  C0 42 C7 C8 */	lfs f2, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F55D0 002F2510  38 A0 00 0A */	li r5, 0xa
-/* 802F55D4 002F2514  48 00 04 F1 */	bl J2DPrint_NS_getNumberF32
+/* 802F55D4 002F2514  48 00 04 F1 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F55D8 002F2518  C0 1A 00 30 */	lfs f0, 0x30(r26)
 /* 802F55DC 002F251C  EC 00 08 2A */	fadds f0, f0, f1
 /* 802F55E0 002F2520  D0 1A 00 30 */	stfs f0, 0x30(r26)
@@ -1330,7 +1330,7 @@ lbl_802F55E8:
 /* 802F55F0 002F2530  C0 22 C7 EC */	lfs f1, lbl_804561EC-_SDA2_BASE_(r2)
 /* 802F55F4 002F2534  C0 42 C7 C8 */	lfs f2, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F55F8 002F2538  38 A0 00 0A */	li r5, 0xa
-/* 802F55FC 002F253C  48 00 04 C9 */	bl J2DPrint_NS_getNumberF32
+/* 802F55FC 002F253C  48 00 04 C9 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5600 002F2540  C0 1A 00 2C */	lfs f0, 0x2c(r26)
 /* 802F5604 002F2544  EC 00 08 28 */	fsubs f0, f0, f1
 /* 802F5608 002F2548  D0 1A 00 2C */	stfs f0, 0x2c(r26)
@@ -1341,7 +1341,7 @@ lbl_802F5610:
 /* 802F5618 002F2558  C0 22 C7 EC */	lfs f1, lbl_804561EC-_SDA2_BASE_(r2)
 /* 802F561C 002F255C  C0 42 C7 C8 */	lfs f2, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F5620 002F2560  38 A0 00 0A */	li r5, 0xa
-/* 802F5624 002F2564  48 00 04 A1 */	bl J2DPrint_NS_getNumberF32
+/* 802F5624 002F2564  48 00 04 A1 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5628 002F2568  C0 1A 00 2C */	lfs f0, 0x2c(r26)
 /* 802F562C 002F256C  EC 00 08 2A */	fadds f0, f0, f1
 /* 802F5630 002F2570  D0 1A 00 2C */	stfs f0, 0x2c(r26)
@@ -1364,7 +1364,7 @@ lbl_802F5660:
 /* 802F5668 002F25A8  7F 64 DB 78 */	mr r4, r27
 /* 802F566C 002F25AC  7C A6 2B 78 */	mr r6, r5
 /* 802F5670 002F25B0  38 E0 00 0A */	li r7, 0xa
-/* 802F5674 002F25B4  48 00 03 4D */	bl J2DPrint_NS_getNumberS32
+/* 802F5674 002F25B4  48 00 03 4D */	bl getNumberS32__8J2DPrintFPPCUclli
 /* 802F5678 002F25B8  2C 03 00 00 */	cmpwi r3, 0
 /* 802F567C 002F25BC  40 81 02 B4 */	ble lbl_802F5930
 /* 802F5680 002F25C0  B0 7A 00 20 */	sth r3, 0x20(r26)
@@ -1375,7 +1375,7 @@ lbl_802F5688:
 /* 802F5690 002F25D0  80 BA 00 40 */	lwz r5, 0x40(r26)
 /* 802F5694 002F25D4  80 DA 00 08 */	lwz r6, 8(r26)
 /* 802F5698 002F25D8  38 E0 00 10 */	li r7, 0x10
-/* 802F569C 002F25DC  48 00 03 25 */	bl J2DPrint_NS_getNumberS32
+/* 802F569C 002F25DC  48 00 03 25 */	bl getNumberS32__8J2DPrintFPPCUclli
 /* 802F56A0 002F25E0  90 61 00 24 */	stw r3, 0x24(r1)
 /* 802F56A4 002F25E4  88 01 00 24 */	lbz r0, 0x24(r1)
 /* 802F56A8 002F25E8  98 1A 00 08 */	stb r0, 8(r26)
@@ -1423,7 +1423,7 @@ lbl_802F5740:
 /* 802F5748 002F2688  80 BA 00 44 */	lwz r5, 0x44(r26)
 /* 802F574C 002F268C  80 DA 00 0C */	lwz r6, 0xc(r26)
 /* 802F5750 002F2690  38 E0 00 10 */	li r7, 0x10
-/* 802F5754 002F2694  48 00 02 6D */	bl J2DPrint_NS_getNumberS32
+/* 802F5754 002F2694  48 00 02 6D */	bl getNumberS32__8J2DPrintFPPCUclli
 /* 802F5758 002F2698  90 61 00 18 */	stw r3, 0x18(r1)
 /* 802F575C 002F269C  88 01 00 18 */	lbz r0, 0x18(r1)
 /* 802F5760 002F26A0  98 1A 00 0C */	stb r0, 0xc(r26)
@@ -1471,7 +1471,7 @@ lbl_802F57F8:
 /* 802F5800 002F2740  C0 3A 00 50 */	lfs f1, 0x50(r26)
 /* 802F5804 002F2744  C0 5A 00 18 */	lfs f2, 0x18(r26)
 /* 802F5808 002F2748  38 A0 00 0A */	li r5, 0xa
-/* 802F580C 002F274C  48 00 02 B9 */	bl J2DPrint_NS_getNumberF32
+/* 802F580C 002F274C  48 00 02 B9 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5810 002F2750  C0 02 C7 C8 */	lfs f0, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F5814 002F2754  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802F5818 002F2758  4C 41 13 82 */	cror 2, 1, 2
@@ -1484,7 +1484,7 @@ lbl_802F5828:
 /* 802F5830 002F2770  C0 3A 00 54 */	lfs f1, 0x54(r26)
 /* 802F5834 002F2774  C0 5A 00 1C */	lfs f2, 0x1c(r26)
 /* 802F5838 002F2778  38 A0 00 0A */	li r5, 0xa
-/* 802F583C 002F277C  48 00 02 89 */	bl J2DPrint_NS_getNumberF32
+/* 802F583C 002F277C  48 00 02 89 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5840 002F2780  C0 02 C7 C8 */	lfs f0, lbl_804561C8-_SDA2_BASE_(r2)
 /* 802F5844 002F2784  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802F5848 002F2788  4C 41 13 82 */	cror 2, 1, 2
@@ -1497,7 +1497,7 @@ lbl_802F5858:
 /* 802F5860 002F27A0  C0 3A 00 48 */	lfs f1, 0x48(r26)
 /* 802F5864 002F27A4  C0 5A 00 10 */	lfs f2, 0x10(r26)
 /* 802F5868 002F27A8  38 A0 00 0A */	li r5, 0xa
-/* 802F586C 002F27AC  48 00 02 59 */	bl J2DPrint_NS_getNumberF32
+/* 802F586C 002F27AC  48 00 02 59 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5870 002F27B0  D0 3A 00 10 */	stfs f1, 0x10(r26)
 /* 802F5874 002F27B4  48 00 00 BC */	b lbl_802F5930
 lbl_802F5878:
@@ -1506,7 +1506,7 @@ lbl_802F5878:
 /* 802F5880 002F27C0  C0 3A 00 4C */	lfs f1, 0x4c(r26)
 /* 802F5884 002F27C4  C0 5A 00 14 */	lfs f2, 0x14(r26)
 /* 802F5888 002F27C8  38 A0 00 0A */	li r5, 0xa
-/* 802F588C 002F27CC  48 00 02 39 */	bl J2DPrint_NS_getNumberF32
+/* 802F588C 002F27CC  48 00 02 39 */	bl getNumberF32__8J2DPrintFPPCUcffi
 /* 802F5890 002F27D0  D0 3A 00 14 */	stfs f1, 0x14(r26)
 /* 802F5894 002F27D4  48 00 00 9C */	b lbl_802F5930
 lbl_802F5898:
@@ -1516,7 +1516,7 @@ lbl_802F5898:
 /* 802F58A4 002F27E4  7C C0 00 34 */	cntlzw r0, r6
 /* 802F58A8 002F27E8  54 05 DE 3E */	rlwinm r5, r0, 0x1b, 0x18, 0x1f
 /* 802F58AC 002F27EC  38 E0 00 0A */	li r7, 0xa
-/* 802F58B0 002F27F0  48 00 01 11 */	bl J2DPrint_NS_getNumberS32
+/* 802F58B0 002F27F0  48 00 01 11 */	bl getNumberS32__8J2DPrintFPPCUclli
 /* 802F58B4 002F27F4  7C 60 00 34 */	cntlzw r0, r3
 /* 802F58B8 002F27F8  54 00 DE 3E */	rlwinm r0, r0, 0x1b, 0x18, 0x1f
 /* 802F58BC 002F27FC  7C 00 00 34 */	cntlzw r0, r0
@@ -1560,8 +1560,8 @@ lbl_802F5934:
 /* 802F5944 002F2884  38 21 00 50 */	addi r1, r1, 0x50
 /* 802F5948 002F2888  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_initchar
-J2DPrint_NS_initchar:
+.global initchar__8J2DPrintFv
+initchar__8J2DPrintFv:
 /* 802F594C 002F288C  88 03 00 40 */	lbz r0, 0x40(r3)
 /* 802F5950 002F2890  98 03 00 08 */	stb r0, 8(r3)
 /* 802F5954 002F2894  88 03 00 41 */	lbz r0, 0x41(r3)
@@ -1592,8 +1592,8 @@ J2DPrint_NS_initchar:
 /* 802F59B8 002F28F8  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 802F59BC 002F28FC  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_getNumberS32
-J2DPrint_NS_getNumberS32:
+.global getNumberS32__8J2DPrintFPPCUclli
+getNumberS32__8J2DPrintFPPCUclli:
 /* 802F59C0 002F2900  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F59C4 002F2904  7C 08 02 A6 */	mflr r0
 /* 802F59C8 002F2908  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1667,8 +1667,8 @@ lbl_802F5AAC:
 /* 802F5ABC 002F29FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F5AC0 002F2A00  4E 80 00 20 */	blr 
 
-.global J2DPrint_NS_getNumberF32
-J2DPrint_NS_getNumberF32:
+.global getNumberF32__8J2DPrintFPPCUcffi
+getNumberF32__8J2DPrintFPPCUcffi:
 /* 802F5AC4 002F2A04  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F5AC8 002F2A08  7C 08 02 A6 */	mflr r0
 /* 802F5ACC 002F2A0C  90 01 00 44 */	stw r0, 0x44(r1)

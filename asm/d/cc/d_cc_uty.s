@@ -112,7 +112,7 @@ getHitId:
 /* 800874F4 00084434  7C 08 02 A6 */	mflr r0
 /* 800874F8 00084438  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800874FC 0008443C  88 63 00 74 */	lbz r3, 0x74(r3)
-/* 80087500 00084440  4B FF D0 B1 */	bl dCcD_GObjInf_NS_getHitSeID
+/* 80087500 00084440  4B FF D0 B1 */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 80087504 00084444  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80087508 00084448  7C 08 03 A6 */	mtlr r0
 /* 8008750C 0008444C  38 21 00 10 */	addi r1, r1, 0x10
@@ -840,7 +840,7 @@ lbl_80087E9C:
 /* 80087EB4 00084DF4  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80087EB8 00084DF8  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80087EBC 00084DFC  40 82 00 40 */	bne lbl_80087EFC
-/* 80087EC0 00084E00  48 0D 74 D9 */	bl daPy_py_c_NS_checkMasterSwordEquip
+/* 80087EC0 00084E00  48 0D 74 D9 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80087EC4 00084E04  2C 03 00 00 */	cmpwi r3, 0
 /* 80087EC8 00084E08  41 82 00 10 */	beq lbl_80087ED8
 /* 80087ECC 00084E0C  A0 1C 00 1C */	lhz r0, 0x1c(r28)

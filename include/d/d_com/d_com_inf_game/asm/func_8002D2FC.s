@@ -32,7 +32,7 @@ lbl_8002D350:
 /* 8002D374 0002A2B4  88 03 04 E2 */ lbz r0, 0x4e2(r3)
 /* 8002D378 0002A2B8  7C 15 07 74 */ extsb r21, r0
 /* 8002D37C 0002A2BC  38 61 00 0C */ addi r3, r1, 0xc
-/* 8002D380 0002A2C0  48 01 1A DD */ bl dMapInfo_n_NS_getMapPlayerPos
+/* 8002D380 0002A2C0  48 01 1A DD */ bl getMapPlayerPos__10dMapInfo_nFv
 /* 8002D384 0002A2C4  C0 01 00 0C */ lfs f0, 0xc(r1)
 /* 8002D388 0002A2C8  D0 01 00 18 */ stfs f0, 0x18(r1)
 /* 8002D38C 0002A2CC  C0 01 00 10 */ lfs f0, 0x10(r1)

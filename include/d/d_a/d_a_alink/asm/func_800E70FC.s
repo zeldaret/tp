@@ -49,7 +49,7 @@ lbl_800E7190:
 lbl_800E71B0:
 /* 800E71B0 000E40F0  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800E71B4 000E40F4  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E71B8 000E40F8  48 07 7B 01 */ bl daPy_actorKeep_c_NS_setData
+/* 800E71B8 000E40F8  48 07 7B 01 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800E71BC 000E40FC  38 60 00 01 */ li r3, 1
 lbl_800E71C0:
 /* 800E71C0 000E4100  83 E1 00 0C */ lwz r31, 0xc(r1)

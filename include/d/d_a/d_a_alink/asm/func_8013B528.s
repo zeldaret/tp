@@ -177,7 +177,7 @@ lbl_8013B7A4:
 /* 8013B7A8 001386E8  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8013B7AC 001386EC  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8013B7B0 001386F0  80 9F 27 EC */ lwz r4, 0x27ec(r31)
-/* 8013B7B4 001386F4  48 02 35 05 */ bl daPy_actorKeep_c_NS_setData
+/* 8013B7B4 001386F4  48 02 35 05 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013B7B8 001386F8  7F E3 FB 78 */ mr r3, r31
 /* 8013B7BC 001386FC  3C 80 00 01 */ lis r4, 0x000100BE@ha
 /* 8013B7C0 00138700  38 84 00 BE */ addi r4, r4, 0x000100BE@l

@@ -11,7 +11,7 @@
 /* 801384AC 001353EC  C0 44 00 54 */ lfs f2, 0x54(r4)
 /* 801384B0 001353F0  4B F7 B4 75 */ bl daAlink_c_NS_setNormalSpeedF
 /* 801384B4 001353F4  7F E3 FB 78 */ mr r3, r31
-/* 801384B8 001353F8  48 02 60 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801384B8 001353F8  48 02 60 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801384BC 001353FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801384C0 00135400  41 82 00 14 */ beq lbl_801384D4
 /* 801384C4 00135404  7F C3 F3 78 */ mr r3, r30

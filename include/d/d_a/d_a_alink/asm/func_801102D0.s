@@ -106,7 +106,7 @@ lbl_80110434:
 /* 80110450 0010D390  39 1F 31 94 */ addi r8, r31, 0x3194
 /* 80110454 0010D394  39 20 00 00 */ li r9, 0
 /* 80110458 0010D398  4C C6 31 82 */ crclr 6
-/* 8011045C 0010D39C  4B F7 86 21 */ bl dCamera_c_NS_StartEventCamera
+/* 8011045C 0010D39C  4B F7 86 21 */ bl StartEventCamera__9dCamera_cFiie
 /* 80110460 0010D3A0  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 80110464 0010D3A4  28 00 00 73 */ cmplwi r0, 0x73
 /* 80110468 0010D3A8  41 82 00 14 */ beq lbl_8011047C

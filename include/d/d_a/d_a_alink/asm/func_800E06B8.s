@@ -69,7 +69,7 @@ lbl_800E0784:
 /* 800E07C0 000DD700  98 1D 2F 96 */ stb r0, 0x2f96(r29)
 lbl_800E07C4:
 /* 800E07C4 000DD704  38 7D 28 24 */ addi r3, r29, 0x2824
-/* 800E07C8 000DD708  48 07 E5 35 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E07C8 000DD708  48 07 E5 35 */ bl clearData__16daPy_actorKeep_cFv
 /* 800E07CC 000DD70C  38 00 00 FF */ li r0, 0xff
 /* 800E07D0 000DD710  B0 1D 2F DC */ sth r0, 0x2fdc(r29)
 /* 800E07D4 000DD714  98 1D 2F 94 */ stb r0, 0x2f94(r29)

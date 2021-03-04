@@ -33,7 +33,7 @@ lbl_80261478:
 /* 80261484 0025E3C4  7F C3 F3 78 */	mr r3, r30
 /* 80261488 0025E3C8  3C 80 80 3A */	lis r4, lbl_803A1EC8@ha
 /* 8026148C 0025E3CC  38 84 1E C8 */	addi r4, r4, lbl_803A1EC8@l
-/* 80261490 0025E3D0  48 0C 42 35 */	bl J3DLightInfo_NS___as
+/* 80261490 0025E3D0  48 0C 42 35 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 80261494 0025E3D4  38 7E 00 74 */	addi r3, r30, 0x74
 .global J3DLightObj
 /* 80261498 0025E3D8  3C 80 80 02 */	lis r4, J3DLightObj@ha
@@ -79,7 +79,7 @@ lbl_802614F4:
 /* 80261524 0025E464  3C A5 00 02 */	addis r5, r5, 2
 /* 80261528 0025E468  38 C0 00 80 */	li r6, 0x80
 /* 8026152C 0025E46C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80261530 0025E470  4B DD AD BD */	bl dRes_control_c_NS_getRes
+/* 80261530 0025E470  4B DD AD BD */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80261534 0025E474  3C 80 00 08 */	lis r4, 8
 /* 80261538 0025E478  3C A0 11 00 */	lis r5, 0x11000084@ha
 /* 8026153C 0025E47C  38 A5 00 84 */	addi r5, r5, 0x11000084@l
@@ -117,7 +117,7 @@ lbl_80261574:
 /* 802615B0 0025E4F0  D0 04 00 20 */	stfs f0, 0x20(r4)
 lbl_802615B4:
 /* 802615B4 0025E4F4  7F E3 FB 78 */	mr r3, r31
-/* 802615B8 0025E4F8  48 00 01 0D */	bl dkWmark_c_NS_setMatrix
+/* 802615B8 0025E4F8  48 00 01 0D */	bl setMatrix__9dkWmark_cFv
 /* 802615BC 0025E4FC  2C 03 00 00 */	cmpwi r3, 0
 /* 802615C0 0025E500  40 82 00 0C */	bne lbl_802615CC
 /* 802615C4 0025E504  38 60 00 05 */	li r3, 5
@@ -157,8 +157,8 @@ lbl_80261628:
 /* 80261638 0025E578  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026163C 0025E57C  4E 80 00 20 */	blr 
 
-.global dkWmark_c_NS_dtor
-dkWmark_c_NS_dtor:
+.global __dt__9dkWmark_cFv
+__dt__9dkWmark_cFv:
 /* 80261640 0025E580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80261644 0025E584  7C 08 02 A6 */	mflr r0
 /* 80261648 0025E588  90 01 00 14 */	stw r0, 0x14(r1)
@@ -188,15 +188,15 @@ lbl_80261680:
 /* 802616A0 0025E5E0  7C 08 02 A6 */	mflr r0
 /* 802616A4 0025E5E4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802616A8 0025E5E8  38 80 FF FF */	li r4, -1
-/* 802616AC 0025E5EC  4B FF FF 95 */	bl dkWmark_c_NS_dtor
+/* 802616AC 0025E5EC  4B FF FF 95 */	bl __dt__9dkWmark_cFv
 /* 802616B0 0025E5F0  38 60 00 01 */	li r3, 1
 /* 802616B4 0025E5F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802616B8 0025E5F8  7C 08 03 A6 */	mtlr r0
 /* 802616BC 0025E5FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802616C0 0025E600  4E 80 00 20 */	blr 
 
-.global dkWmark_c_NS_setMatrix
-dkWmark_c_NS_setMatrix:
+.global setMatrix__9dkWmark_cFv
+setMatrix__9dkWmark_cFv:
 /* 802616C4 0025E604  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802616C8 0025E608  7C 08 02 A6 */	mflr r0
 /* 802616CC 0025E60C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -231,7 +231,7 @@ dkWmark_c_NS_setMatrix:
 /* 80261740 0025E680  3B E4 00 14 */	addi r31, r4, 0x14
 /* 80261744 0025E684  7F E4 FB 78 */	mr r4, r31
 /* 80261748 0025E688  38 A1 00 24 */	addi r5, r1, 0x24
-/* 8026174C 0025E68C  4B E1 2F F9 */	bl cBgS_NS_GetTriPla
+/* 8026174C 0025E68C  4B E1 2F F9 */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 80261750 0025E690  38 61 00 24 */	addi r3, r1, 0x24
 /* 80261754 0025E694  48 00 59 D5 */	bl atan2sX_Z__4cXyzCFv
 /* 80261758 0025E698  A8 1D 04 8A */	lha r0, 0x48a(r29)
@@ -352,7 +352,7 @@ lbl_80261870:
 /* 802618FC 0025E83C  48 0E 4B B5 */	bl PSMTXCopy
 /* 80261900 0025E840  7F C3 F3 78 */	mr r3, r30
 /* 80261904 0025E844  7F E4 FB 78 */	mr r4, r31
-/* 80261908 0025E848  4B E1 31 B5 */	bl dBgS_NS_ChkMoveBG
+/* 80261908 0025E848  4B E1 31 B5 */	bl ChkMoveBG__4dBgSFRC13cBgS_PolyInfo
 /* 8026190C 0025E84C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80261910 0025E850  41 82 00 10 */	beq lbl_80261920
 /* 80261914 0025E854  38 00 00 01 */	li r0, 1
@@ -414,7 +414,7 @@ lbl_802619C0:
 /* 802619D8 0025E918  2C 00 00 01 */	cmpwi r0, 1
 /* 802619DC 0025E91C  40 82 00 24 */	bne lbl_80261A00
 /* 802619E0 0025E920  7F E3 FB 78 */	mr r3, r31
-/* 802619E4 0025E924  4B FF FC E1 */	bl dkWmark_c_NS_setMatrix
+/* 802619E4 0025E924  4B FF FC E1 */	bl setMatrix__9dkWmark_cFv
 /* 802619E8 0025E928  2C 03 00 00 */	cmpwi r3, 0
 /* 802619EC 0025E92C  40 82 00 14 */	bne lbl_80261A00
 lbl_802619F0:
@@ -448,7 +448,7 @@ lbl_80261A00:
 /* 80261A58 0025E998  3C 80 80 43 */	lis r4, lbl_80434AC8@ha
 /* 80261A5C 0025E99C  38 84 4A C8 */	addi r4, r4, lbl_80434AC8@l
 /* 80261A60 0025E9A0  38 A1 00 0C */	addi r5, r1, 0xc
-/* 80261A64 0025E9A4  48 01 1E 99 */	bl J3DUClipper_NS_clip
+/* 80261A64 0025E9A4  48 01 1E 99 */	bl clip__11J3DUClipperCFPA4_Cf3Vecf
 /* 80261A68 0025E9A8  2C 03 00 00 */	cmpwi r3, 0
 /* 80261A6C 0025E9AC  41 82 00 0C */	beq lbl_80261A78
 /* 80261A70 0025E9B0  38 60 00 01 */	li r3, 1

@@ -12,7 +12,7 @@
 /* 8020BED0 00208E10  80 9F 00 14 */ lwz r4, 0x14(r31)
 /* 8020BED4 00208E14  48 00 02 F9 */ bl dMeterHaihai_c_NS_playBpkAnime
 /* 8020BED8 00208E18  80 7F 00 04 */ lwz r3, 4(r31)
-/* 8020BEDC 00208E1C  48 0E D7 B5 */ bl J2DScreen_NS_animation
+/* 8020BEDC 00208E1C  48 0E D7 B5 */ bl animation__9J2DScreenFv
 /* 8020BEE0 00208E20  7F E3 FB 78 */ mr r3, r31
 /* 8020BEE4 00208E24  C0 22 AD F0 */ lfs f1, lbl_804547F0-_SDA2_BASE_(r2)
 /* 8020BEE8 00208E28  4B FF FD 39 */ bl dMeterHaihai_c_NS_setScale

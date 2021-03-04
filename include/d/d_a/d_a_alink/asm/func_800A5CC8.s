@@ -262,7 +262,7 @@ lbl_800A6080:
 /* 800A6088 000A2FC8  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800A608C 000A2FCC  3B 64 0F 38 */ addi r27, r4, 0xf38
 /* 800A6090 000A2FD0  7F 64 DB 78 */ mr r4, r27
-/* 800A6094 000A2FD4  4B FD 0A 19 */ bl dBgS_Acch_NS_CrrPos
+/* 800A6094 000A2FD4  4B FD 0A 19 */ bl CrrPos__9dBgS_AcchFR4dBgS
 /* 800A6098 000A2FD8  3B 00 00 00 */ li r24, 0
 /* 800A609C 000A2FDC  C0 22 93 A4 */ lfs f1, lbl_80452DA4-_SDA2_BASE_(r2)
 /* 800A60A0 000A2FE0  C0 1F 1A 08 */ lfs f0, 0x1a08(r31)
@@ -272,7 +272,7 @@ lbl_800A6080:
 /* 800A60B0 000A2FF0  40 82 00 18 */ bne lbl_800A60C8
 /* 800A60B4 000A2FF4  7F 63 DB 78 */ mr r3, r27
 /* 800A60B8 000A2FF8  38 9F 1A 60 */ addi r4, r31, 0x1a60
-/* 800A60BC 000A2FFC  4B FC EA 01 */ bl dBgS_NS_ChkMoveBG
+/* 800A60BC 000A2FFC  4B FC EA 01 */ bl ChkMoveBG__4dBgSFRC13cBgS_PolyInfo
 /* 800A60C0 000A3000  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A60C4 000A3004  41 82 01 14 */ beq lbl_800A61D8
 lbl_800A60C8:
@@ -338,10 +338,10 @@ lbl_800A6168:
 /* 800A6184 000A30C4  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800A6188 000A30C8  41 80 00 50 */ blt lbl_800A61D8
 lbl_800A618C:
-/* 800A618C 000A30CC  48 0B 95 0D */ bl daPy_py_c_NS_checkCarryStartLightBallA
+/* 800A618C 000A30CC  48 0B 95 0D */ bl checkCarryStartLightBallA__9daPy_py_cFv
 /* 800A6190 000A30D0  28 03 00 00 */ cmplwi r3, 0
 /* 800A6194 000A30D4  40 82 00 10 */ bne lbl_800A61A4
-/* 800A6198 000A30D8  48 0B 95 99 */ bl daPy_py_c_NS_checkCarryStartLightBallB
+/* 800A6198 000A30D8  48 0B 95 99 */ bl checkCarryStartLightBallB__9daPy_py_cFv
 /* 800A619C 000A30DC  28 03 00 00 */ cmplwi r3, 0
 /* 800A61A0 000A30E0  41 82 00 1C */ beq lbl_800A61BC
 lbl_800A61A4:
@@ -369,7 +369,7 @@ lbl_800A61E0:
 /* 800A61E4 000A3124  41 82 00 10 */ beq lbl_800A61F4
 /* 800A61E8 000A3128  38 7B 3F 90 */ addi r3, r27, 0x3f90
 /* 800A61EC 000A312C  7F 04 C3 78 */ mr r4, r24
-/* 800A61F0 000A3130  4B F9 D5 05 */ bl dEvt_control_c_NS_setPtD
+/* 800A61F0 000A3130  4B F9 D5 05 */ bl setPtD__14dEvt_control_cFPv
 lbl_800A61F4:
 /* 800A61F4 000A3134  38 00 00 00 */ li r0, 0
 /* 800A61F8 000A3138  90 0D 8A 4C */ stw r0, lbl_80450FCC-_SDA_BASE_(r13)
@@ -388,10 +388,10 @@ lbl_800A61F4:
 /* 800A622C 000A316C  C0 1F 04 D8 */ lfs f0, 0x4d8(r31)
 /* 800A6230 000A3170  D0 1F 37 88 */ stfs f0, 0x3788(r31)
 /* 800A6234 000A3174  38 7F 19 70 */ addi r3, r31, 0x1970
-/* 800A6238 000A3178  4B FD 11 99 */ bl dBgS_Acch_NS_ClrGndThinCellingOff
+/* 800A6238 000A3178  4B FD 11 99 */ bl ClrGndThinCellingOff__9dBgS_AcchFv
 /* 800A623C 000A317C  7F 63 DB 78 */ mr r3, r27
 /* 800A6240 000A3180  38 9F 1A 60 */ addi r4, r31, 0x1a60
-/* 800A6244 000A3184  4B FC EE BD */ bl dBgS_NS_GetRoomId
+/* 800A6244 000A3184  4B FC EE BD */ bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 800A6248 000A3188  38 03 00 01 */ addi r0, r3, 1
 /* 800A624C 000A318C  98 1F 04 E2 */ stb r0, 0x4e2(r31)
 /* 800A6250 000A3190  7F E3 FB 78 */ mr r3, r31
@@ -522,10 +522,10 @@ lbl_800A6400:
 /* 800A6428 000A3368  38 80 00 02 */ li r4, 2
 /* 800A642C 000A336C  48 21 D3 4D */ bl setKanteraState__14Z2CreatureLinkFUc
 lbl_800A6430:
-/* 800A6430 000A3370  48 0B 92 69 */ bl daPy_py_c_NS_checkCarryStartLightBallA
+/* 800A6430 000A3370  48 0B 92 69 */ bl checkCarryStartLightBallA__9daPy_py_cFv
 /* 800A6434 000A3374  28 03 00 00 */ cmplwi r3, 0
 /* 800A6438 000A3378  40 82 00 10 */ bne lbl_800A6448
-/* 800A643C 000A337C  48 0B 92 F5 */ bl daPy_py_c_NS_checkCarryStartLightBallB
+/* 800A643C 000A337C  48 0B 92 F5 */ bl checkCarryStartLightBallB__9daPy_py_cFv
 /* 800A6440 000A3380  28 03 00 00 */ cmplwi r3, 0
 /* 800A6444 000A3384  41 82 00 34 */ beq lbl_800A6478
 lbl_800A6448:

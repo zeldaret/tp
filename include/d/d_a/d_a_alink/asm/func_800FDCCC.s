@@ -12,7 +12,7 @@
 lbl_800FDCF8:
 /* 800FDCF8 000FAC38  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800FDCFC 000FAC3C  7F E3 FB 78 */ mr r3, r31
-/* 800FDD00 000FAC40  48 06 07 CD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FDD00 000FAC40  48 06 07 CD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FDD04 000FAC44  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FDD08 000FAC48  41 82 00 14 */ beq lbl_800FDD1C
 /* 800FDD0C 000FAC4C  7F C3 F3 78 */ mr r3, r30

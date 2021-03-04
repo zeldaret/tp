@@ -10,7 +10,7 @@
 /* 801116A0 0010E5E0  38 A0 00 00 */ li r5, 0
 /* 801116A4 0010E5E4  3C C0 00 01 */ lis r6, 0x0000FBFF@ha
 /* 801116A8 0010E5E8  38 C6 FB FF */ addi r6, r6, 0x0000FBFF@l
-/* 801116AC 0010E5EC  4B F3 1A C1 */ bl dEvt_control_c_NS_compulsory
+/* 801116AC 0010E5EC  4B F3 1A C1 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 801116B0 0010E5F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801116B4 0010E5F4  40 82 00 0C */ bne lbl_801116C0
 /* 801116B8 0010E5F8  38 60 00 00 */ li r3, 0

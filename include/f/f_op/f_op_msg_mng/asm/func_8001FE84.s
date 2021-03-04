@@ -51,12 +51,12 @@ lbl_8001FEF8:
 /* 8001FF44 0001CE84  38 00 00 00 */ li r0, 0
 /* 8001FF48 0001CE88  90 1F 00 DC */ stw r0, 0xdc(r31)
 /* 8001FF4C 0001CE8C  38 60 00 00 */ li r3, 0
-/* 8001FF50 0001CE90  48 21 7B 25 */ bl dMsgObject_c_NS_setTalkPartner
+/* 8001FF50 0001CE90  48 21 7B 25 */ bl setTalkPartner__12dMsgObject_cFP10fopAc_ac_c
 /* 8001FF54 0001CE94  7F E3 FB 78 */ mr r3, r31
 /* 8001FF58 0001CE98  7F A4 EB 78 */ mr r4, r29
 /* 8001FF5C 0001CE9C  7F C5 F3 78 */ mr r5, r30
 /* 8001FF60 0001CEA0  38 C0 00 00 */ li r6, 0
-/* 8001FF64 0001CEA4  48 21 3D A1 */ bl dMsgObject_c_NS_setMessageIndex
+/* 8001FF64 0001CEA4  48 21 3D A1 */ bl setMessageIndex__12dMsgObject_cFUlUlb
 /* 8001FF68 0001CEA8  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
 /* 8001FF6C 0001CEAC  48 00 00 40 */ b lbl_8001FFAC
 lbl_8001FF70:

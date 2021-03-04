@@ -49,8 +49,8 @@ JUTFader:
 /* 802E55D4 002E2514  38 21 00 30 */	addi r1, r1, 0x30
 /* 802E55D8 002E2518  4E 80 00 20 */	blr 
 
-.global JUTFader_NS_control
-JUTFader_NS_control:
+.global control__8JUTFaderFv
+control__8JUTFaderFv:
 /* 802E55DC 002E251C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E55E0 002E2520  7C 08 02 A6 */	mflr r0
 /* 802E55E4 002E2524  90 01 00 14 */	stw r0, 0x14(r1)
@@ -143,7 +143,7 @@ lbl_802E56CC:
 /* 802E5724 002E2664  38 A1 00 0C */	addi r5, r1, 0xc
 /* 802E5728 002E2668  38 C1 00 10 */	addi r6, r1, 0x10
 /* 802E572C 002E266C  38 E1 00 14 */	addi r7, r1, 0x14
-/* 802E5730 002E2670  48 00 39 E9 */	bl J2DGrafContext_NS_setColor
+/* 802E5730 002E2670  48 00 39 E9 */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 802E5734 002E2674  38 61 00 1C */	addi r3, r1, 0x1c
 /* 802E5738 002E2678  38 9F 00 10 */	addi r4, r31, 0x10
 /* 802E573C 002E267C  48 00 3B 25 */	bl J2DGrafContext_NS_fillBox
@@ -187,8 +187,8 @@ lbl_802E57C8:
 /* 802E57C8 002E2708  7C A3 2B 78 */	mr r3, r5
 /* 802E57CC 002E270C  4E 80 00 20 */	blr 
 
-.global JUTFader_NS_setStatus
-JUTFader_NS_setStatus:
+.global setStatus__8JUTFaderFQ28JUTFader7EStatusi
+setStatus__8JUTFaderFQ28JUTFader7EStatusi:
 /* 802E57D0 002E2710  2C 04 00 01 */	cmpwi r4, 1
 /* 802E57D4 002E2714  41 82 00 3C */	beq lbl_802E5810
 /* 802E57D8 002E2718  4C 80 00 20 */	bgelr 

@@ -20,7 +20,7 @@
 /* 800A495C 000A189C  90 1C 06 BC */ stw r0, 0x6bc(r28)
 /* 800A4960 000A18A0  48 00 00 48 */ b lbl_800A49A8
 lbl_800A4964:
-/* 800A4964 000A18A4  48 0B AA 35 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800A4964 000A18A4  48 0B AA 35 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800A4968 000A18A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800A496C 000A18AC  41 82 00 18 */ beq lbl_800A4984
 /* 800A4970 000A18B0  80 1C 06 68 */ lwz r0, 0x668(r28)
@@ -134,7 +134,7 @@ lbl_800A4AD0:
 /* 800A4AEC 000A1A2C  90 03 00 0C */ stw r0, 0xc(r3)
 /* 800A4AF0 000A1A30  48 00 00 34 */ b lbl_800A4B24
 lbl_800A4AF4:
-/* 800A4AF4 000A1A34  48 0B A8 A5 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800A4AF4 000A1A34  48 0B A8 A5 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800A4AF8 000A1A38  2C 03 00 00 */ cmpwi r3, 0
 /* 800A4AFC 000A1A3C  41 82 00 18 */ beq lbl_800A4B14
 /* 800A4B00 000A1A40  80 1C 06 68 */ lwz r0, 0x668(r28)

@@ -57,7 +57,7 @@ lbl_800C5544:
 /* 800C5558 000C2498  48 01 7A B1 */ bl daAlink_c_NS_setUpperGuardAnime
 lbl_800C555C:
 /* 800C555C 000C249C  7F A3 EB 78 */ mr r3, r29
-/* 800C5560 000C24A0  48 09 8F 6D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C5560 000C24A0  48 09 8F 6D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C5564 000C24A4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C5568 000C24A8  41 82 00 74 */ beq lbl_800C55DC
 /* 800C556C 000C24AC  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -67,7 +67,7 @@ lbl_800C555C:
 /* 800C557C 000C24BC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C5580 000C24C0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800C5584 000C24C4  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 800C5588 000C24C8  4B F8 2B F5 */ bl dEvent_manager_c_NS_cutEnd
+/* 800C5588 000C24C8  4B F8 2B F5 */ bl cutEnd__16dEvent_manager_cFi
 /* 800C558C 000C24CC  48 00 01 4C */ b lbl_800C56D8
 lbl_800C5590:
 /* 800C5590 000C24D0  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
@@ -131,7 +131,7 @@ lbl_800C561C:
 lbl_800C5668:
 /* 800C5668 000C25A8  7F A3 EB 78 */ mr r3, r29
 /* 800C566C 000C25AC  C0 22 93 C8 */ lfs f1, lbl_80452DC8-_SDA2_BASE_(r2)
-/* 800C5670 000C25B0  48 26 2D BD */ bl J3DFrameCtrl_NS_checkPass
+/* 800C5670 000C25B0  48 26 2D BD */ bl checkPass__12J3DFrameCtrlFf
 /* 800C5674 000C25B4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C5678 000C25B8  41 82 00 34 */ beq lbl_800C56AC
 /* 800C567C 000C25BC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -145,7 +145,7 @@ lbl_800C5668:
 /* 800C569C 000C25DC  38 80 00 01 */ li r4, 1
 /* 800C56A0 000C25E0  38 A0 00 01 */ li r5, 1
 /* 800C56A4 000C25E4  38 C1 00 08 */ addi r6, r1, 8
-/* 800C56A8 000C25E8  4B FA A3 7D */ bl dVibration_c_NS_StartShock
+/* 800C56A8 000C25E8  4B FA A3 7D */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800C56AC:
 /* 800C56AC 000C25EC  C0 3D 00 10 */ lfs f1, 0x10(r29)
 /* 800C56B0 000C25F0  C0 02 93 C0 */ lfs f0, lbl_80452DC0-_SDA2_BASE_(r2)

@@ -15,7 +15,7 @@
 /* 8028D574 0028A4B4  38 04 5A 68 */	addi r0, r4, lbl_803C5A68@l
 /* 8028D578 0028A4B8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028D57C 0028A4BC  38 80 00 00 */	li r4, 0
-/* 8028D580 0028A4C0  4B FF 7F 09 */	bl JStudio_NS_TCreateObject_NS_dtor
+/* 8028D580 0028A4C0  4B FF 7F 09 */	bl __dt__Q27JStudio13TCreateObjectFv
 /* 8028D584 0028A4C4  7F E0 07 35 */	extsh. r0, r31
 /* 8028D588 0028A4C8  40 81 00 0C */	ble lbl_8028D594
 /* 8028D58C 0028A4CC  7F C3 F3 78 */	mr r3, r30
@@ -42,10 +42,10 @@ lbl_8028D594:
 /* 8028D5DC 0028A51C  41 82 00 08 */	beq lbl_8028D5E4
 /* 8028D5E0 0028A520  48 00 00 10 */	b lbl_8028D5F0
 lbl_8028D5E4:
-.global JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_
-/* 8028D5E4 0028A524  3C 60 80 29 */	lis r3, JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_@ha
-.global JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_
-/* 8028D5E8 0028A528  39 83 D6 24 */	addi r12, r3, JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_@l
+.global createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject
+/* 8028D5E4 0028A524  3C 60 80 29 */	lis r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@ha
+.global createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject
+/* 8028D5E8 0028A528  39 83 D6 24 */	addi r12, r3, createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject@l
 /* 8028D5EC 0028A52C  48 00 00 0C */	b lbl_8028D5F8
 lbl_8028D5F0:
 /* 8028D5F0 0028A530  38 60 00 00 */	li r3, 0
@@ -63,8 +63,8 @@ lbl_8028D610:
 /* 8028D618 0028A558  7C 08 03 A6 */	mtlr r0
 /* 8028D61C 0028A55C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028D620 0028A560  4E 80 00 20 */	blr 
-.global JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_
-JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_:
+.global createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject
+createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject:
 /* 8028D624 0028A564  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028D628 0028A568  7C 08 02 A6 */	mflr r0
 /* 8028D62C 0028A56C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -77,7 +77,7 @@ JStudio_JAudio2_NS_TCreateObject_NS_createObject_JAI_SOUND_:
 /* 8028D648 0028A588  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8028D64C 0028A58C  41 82 00 10 */	beq lbl_8028D65C
 /* 8028D650 0028A590  7F C4 F3 78 */	mr r4, r30
-/* 8028D654 0028A594  48 00 01 D5 */	bl JStudio_JAudio2_NS_TAdaptor_sound
+/* 8028D654 0028A594  48 00 01 D5 */	bl __ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject
 /* 8028D658 0028A598  7C 7F 1B 78 */	mr r31, r3
 lbl_8028D65C:
 /* 8028D65C 0028A59C  28 1F 00 00 */	cmplwi r31, 0
@@ -94,7 +94,7 @@ lbl_8028D66C:
 /* 8028D684 0028A5C4  41 82 00 14 */	beq lbl_8028D698
 /* 8028D688 0028A5C8  7F A4 EB 78 */	mr r4, r29
 /* 8028D68C 0028A5CC  7F E5 FB 78 */	mr r5, r31
-/* 8028D690 0028A5D0  4B FF A5 0D */	bl JStudio_NS_TObject_sound
+/* 8028D690 0028A5D0  4B FF A5 0D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_sound
 /* 8028D694 0028A5D4  7C 7E 1B 78 */	mr r30, r3
 lbl_8028D698:
 /* 8028D698 0028A5D8  28 1E 00 00 */	cmplwi r30, 0

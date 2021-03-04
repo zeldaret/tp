@@ -327,7 +327,7 @@ lbl_802216A0:
 /* 802216EC 0021E62C  40 80 00 08 */ bge lbl_802216F4
 /* 802216F0 0021E630  D3 FB 01 44 */ stfs f31, 0x144(r27)
 lbl_802216F4:
-/* 802216F4 0021E634  48 01 6B 39 */ bl dMsgObject_c_NS_getStatus
+/* 802216F4 0021E634  48 01 6B 39 */ bl getStatus__12dMsgObject_cFv
 /* 802216F8 0021E638  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802216FC 0021E63C  20 60 00 01 */ subfic r3, r0, 1
 /* 80221700 0021E640  30 03 FF FF */ addic r0, r3, -1
@@ -336,7 +336,7 @@ lbl_802216F4:
 /* 8022170C 0021E64C  54 00 06 3E */ clrlwi r0, r0, 0x18
 /* 80221710 0021E650  7C 03 00 40 */ cmplw r3, r0
 /* 80221714 0021E654  41 82 00 20 */ beq lbl_80221734
-/* 80221718 0021E658  48 01 6B 15 */ bl dMsgObject_c_NS_getStatus
+/* 80221718 0021E658  48 01 6B 15 */ bl getStatus__12dMsgObject_cFv
 /* 8022171C 0021E65C  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 80221720 0021E660  20 60 00 01 */ subfic r3, r0, 1
 /* 80221724 0021E664  30 03 FF FF */ addic r0, r3, -1

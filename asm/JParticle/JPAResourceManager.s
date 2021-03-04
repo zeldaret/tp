@@ -28,8 +28,8 @@ JPAResourceManager:
 /* 80273E60 00270DA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80273E64 00270DA4  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_getResource
-JPAResourceManager_NS_getResource:
+.global getResource__18JPAResourceManagerCFUs
+getResource__18JPAResourceManagerCFUs:
 /* 80273E68 00270DA8  38 E0 00 00 */	li r7, 0
 /* 80273E6C 00270DAC  A0 C3 00 0E */	lhz r6, 0xe(r3)
 /* 80273E70 00270DB0  80 A3 00 04 */	lwz r5, 4(r3)
@@ -49,8 +49,8 @@ lbl_80273E94:
 /* 80273EA0 00270DE0  38 60 00 00 */	li r3, 0
 /* 80273EA4 00270DE4  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_checkUserIndexDuplication
-JPAResourceManager_NS_checkUserIndexDuplication:
+.global checkUserIndexDuplication__18JPAResourceManagerCFUs
+checkUserIndexDuplication__18JPAResourceManagerCFUs:
 /* 80273EA8 00270DE8  38 A0 00 00 */	li r5, 0
 /* 80273EAC 00270DEC  A0 E3 00 0E */	lhz r7, 0xe(r3)
 /* 80273EB0 00270DF0  80 C3 00 04 */	lwz r6, 4(r3)
@@ -72,8 +72,8 @@ lbl_80273EE4:
 /* 80273EE4 00270E24  38 60 00 00 */	li r3, 0
 /* 80273EE8 00270E28  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_swapTexture
-JPAResourceManager_NS_swapTexture:
+.global swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
+swapTexture__18JPAResourceManagerFPC7ResTIMGPCc:
 /* 80273EEC 00270E2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80273EF0 00270E30  7C 08 02 A6 */	mflr r0
 /* 80273EF4 00270E34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -101,7 +101,7 @@ lbl_80273F1C:
 /* 80273F48 00270E88  83 C3 00 20 */	lwz r30, 0x20(r3)
 /* 80273F4C 00270E8C  7F 64 DB 78 */	mr r4, r27
 /* 80273F50 00270E90  38 A0 00 00 */	li r5, 0
-/* 80273F54 00270E94  48 06 A3 55 */	bl JUTTexture_NS_storeTIMG
+/* 80273F54 00270E94  48 06 A3 55 */	bl storeTIMG__10JUTTextureFPC7ResTIMGUc
 /* 80273F58 00270E98  48 00 00 18 */	b lbl_80273F70
 lbl_80273F5C:
 /* 80273F5C 00270E9C  3B BD 00 01 */	addi r29, r29, 1
@@ -119,8 +119,8 @@ lbl_80273F70:
 /* 80273F84 00270EC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80273F88 00270EC8  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_registRes
-JPAResourceManager_NS_registRes:
+.global registRes__18JPAResourceManagerFP11JPAResource
+registRes__18JPAResourceManagerFP11JPAResource:
 /* 80273F8C 00270ECC  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80273F90 00270ED0  A0 03 00 0E */	lhz r0, 0xe(r3)
 /* 80273F94 00270ED4  54 00 10 3A */	slwi r0, r0, 2
@@ -130,8 +130,8 @@ JPAResourceManager_NS_registRes:
 /* 80273FA4 00270EE4  B0 03 00 0E */	sth r0, 0xe(r3)
 /* 80273FA8 00270EE8  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_registTex
-JPAResourceManager_NS_registTex:
+.global registTex__18JPAResourceManagerFP10JPATexture
+registTex__18JPAResourceManagerFP10JPATexture:
 /* 80273FAC 00270EEC  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80273FB0 00270EF0  A0 03 00 12 */	lhz r0, 0x12(r3)
 /* 80273FB4 00270EF4  54 00 10 3A */	slwi r0, r0, 2
@@ -141,14 +141,14 @@ JPAResourceManager_NS_registTex:
 /* 80273FC4 00270F04  B0 03 00 12 */	sth r0, 0x12(r3)
 /* 80273FC8 00270F08  4E 80 00 20 */	blr 
 
-.global JPAResourceManager_NS_getResUserWork
-JPAResourceManager_NS_getResUserWork:
+.global getResUserWork__18JPAResourceManagerCFUs
+getResUserWork__18JPAResourceManagerCFUs:
 /* 80273FCC 00270F0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80273FD0 00270F10  7C 08 02 A6 */	mflr r0
 /* 80273FD4 00270F14  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80273FD8 00270F18  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80273FDC 00270F1C  3B E0 00 00 */	li r31, 0
-/* 80273FE0 00270F20  4B FF FE 89 */	bl JPAResourceManager_NS_getResource
+/* 80273FE0 00270F20  4B FF FE 89 */	bl getResource__18JPAResourceManagerCFUs
 /* 80273FE4 00270F24  28 03 00 00 */	cmplwi r3, 0
 /* 80273FE8 00270F28  41 82 00 10 */	beq lbl_80273FF8
 /* 80273FEC 00270F2C  80 63 00 2C */	lwz r3, 0x2c(r3)

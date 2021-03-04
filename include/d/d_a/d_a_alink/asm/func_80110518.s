@@ -8,7 +8,7 @@
 /* 80110534 0010D474  80 63 07 18 */ lwz r3, 0x718(r3)
 /* 80110538 0010D478  4B F9 8D 11 */ bl daAlink_c_NS_simpleAnmPlay
 /* 8011053C 0010D47C  7F E3 FB 78 */ mr r3, r31
-/* 80110540 0010D480  48 04 DF 8D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80110540 0010D480  48 04 DF 8D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80110544 0010D484  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80110548 0010D488  41 82 00 48 */ beq lbl_80110590
 /* 8011054C 0010D48C  7F C3 F3 78 */ mr r3, r30
@@ -66,7 +66,7 @@ lbl_801105CC:
 lbl_8011060C:
 /* 8011060C 0010D54C  7F E3 FB 78 */ mr r3, r31
 /* 80110610 0010D550  C0 22 93 7C */ lfs f1, lbl_80452D7C-_SDA2_BASE_(r2)
-/* 80110614 0010D554  48 21 7E 19 */ bl J3DFrameCtrl_NS_checkPass
+/* 80110614 0010D554  48 21 7E 19 */ bl checkPass__12J3DFrameCtrlFf
 /* 80110618 0010D558  2C 03 00 00 */ cmpwi r3, 0
 /* 8011061C 0010D55C  41 82 00 10 */ beq lbl_8011062C
 /* 80110620 0010D560  7F C3 F3 78 */ mr r3, r30

@@ -10,8 +10,8 @@ JPAKeyBlock:
 /* 8027D738 0027A678  90 03 00 04 */	stw r0, 4(r3)
 /* 8027D73C 0027A67C  4E 80 00 20 */	blr 
 
-.global JPAKeyBlock_NS_calc
-JPAKeyBlock_NS_calc:
+.global calc__11JPAKeyBlockFf
+calc__11JPAKeyBlockFf:
 /* 8027D740 0027A680  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027D744 0027A684  7C 08 02 A6 */	mflr r0
 /* 8027D748 0027A688  90 01 00 24 */	stw r0, 0x24(r1)

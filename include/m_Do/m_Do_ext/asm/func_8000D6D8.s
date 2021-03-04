@@ -6,7 +6,7 @@
 /* 8000D6EC 0000A62C  D0 23 00 08 */ stfs f1, 8(r3)
 /* 8000D6F0 0000A630  7C 83 23 78 */ mr r3, r4
 /* 8000D6F4 0000A634  80 85 00 14 */ lwz r4, 0x14(r5)
-/* 8000D6F8 0000A638  48 32 25 CD */ bl J3DMaterialTable_NS_entryTexMtxAnimator
+/* 8000D6F8 0000A638  48 32 25 CD */ bl entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 /* 8000D6FC 0000A63C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000D700 0000A640  7C 08 03 A6 */ mtlr r0
 /* 8000D704 0000A644  38 21 00 10 */ addi r1, r1, 0x10

@@ -10,7 +10,7 @@
 /* 8012D010 00129F50  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D014 00129F54  40 82 00 20 */ bne lbl_8012D034
 /* 8012D018 00129F58  7F E3 FB 78 */ mr r3, r31
-/* 8012D01C 00129F5C  48 03 14 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012D01C 00129F5C  48 03 14 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012D020 00129F60  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012D024 00129F64  41 82 00 10 */ beq lbl_8012D034
 /* 8012D028 00129F68  7F C3 F3 78 */ mr r3, r30

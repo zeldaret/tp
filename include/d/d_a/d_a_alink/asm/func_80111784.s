@@ -18,7 +18,7 @@
 /* 801117C8 0010E708  3C A5 00 02 */ addis r5, r5, 2
 /* 801117CC 0010E70C  38 C0 00 80 */ li r6, 0x80
 /* 801117D0 0010E710  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 801117D4 0010E714  4B F2 AB 19 */ bl dRes_control_c_NS_getRes
+/* 801117D4 0010E714  4B F2 AB 19 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 801117D8 0010E718  3C 80 00 08 */ lis r4, 8
 /* 801117DC 0010E71C  3C A0 11 00 */ lis r5, 0x11000084@ha
 /* 801117E0 0010E720  38 A5 00 84 */ addi r5, r5, 0x11000084@l

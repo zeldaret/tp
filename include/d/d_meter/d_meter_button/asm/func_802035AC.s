@@ -8,7 +8,7 @@
 /* 802035C8 00200508  7C BD 2B 78 */ mr r29, r5
 /* 802035CC 0020050C  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 802035D0 00200510  40 82 00 A0 */ bne lbl_80203670
-/* 802035D4 00200514  48 03 4C 59 */ bl dMsgObject_c_NS_getStatus
+/* 802035D4 00200514  48 03 4C 59 */ bl getStatus__12dMsgObject_cFv
 /* 802035D8 00200518  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802035DC 0020051C  20 60 00 01 */ subfic r3, r0, 1
 /* 802035E0 00200520  30 03 FF FF */ addic r0, r3, -1

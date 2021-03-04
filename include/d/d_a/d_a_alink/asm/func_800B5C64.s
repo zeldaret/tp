@@ -20,7 +20,7 @@ lbl_800B5C90:
 /* 800B5CAC 000B2BEC  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800B5CB0 000B2BF0  38 A0 00 0F */ li r5, 0xf
 /* 800B5CB4 000B2BF4  38 C1 00 08 */ addi r6, r1, 8
-/* 800B5CB8 000B2BF8  4B FB 9D 6D */ bl dVibration_c_NS_StartShock
+/* 800B5CB8 000B2BF8  4B FB 9D 6D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B5CBC 000B2BFC  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 800B5CC0 000B2C00  7C 08 03 A6 */ mtlr r0
 /* 800B5CC4 000B2C04  38 21 00 20 */ addi r1, r1, 0x20

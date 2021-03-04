@@ -79,7 +79,7 @@ lbl_800E885C:
 /* 800E8878 000E57B8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E887C 000E57BC  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E8880 000E57C0  A0 9F 1E 1E */ lhz r4, 0x1e1e(r31)
-/* 800E8884 000E57C4  4B F8 BD 95 */ bl cBgS_NS_GetActorPointer
+/* 800E8884 000E57C4  4B F8 BD 95 */ bl GetActorPointer__4cBgSCFi
 /* 800E8888 000E57C8  7C 7E 1B 78 */ mr r30, r3
 /* 800E888C 000E57CC  7F E4 FB 78 */ mr r4, r31
 /* 800E8890 000E57D0  4B F3 1E 81 */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c

@@ -600,7 +600,7 @@ lbl_80253798:
 /* 802537E4 00250724  38 83 02 3C */	addi r4, r3, 0x23c
 /* 802537E8 00250728  38 A3 02 40 */	addi r5, r3, 0x240
 /* 802537EC 0025072C  38 DF 00 D8 */	addi r6, r31, 0xd8
-/* 802537F0 00250730  4B E0 2F A5 */	bl dDlst_list_c_NS_set
+/* 802537F0 00250730  4B E0 2F A5 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 802537F4 00250734  38 00 00 01 */	li r0, 1
 /* 802537F8 00250738  98 1F 01 1C */	stb r0, 0x11c(r31)
 /* 802537FC 0025073C  48 00 00 6C */	b lbl_80253868
@@ -630,7 +630,7 @@ lbl_80253800:
 /* 80253858 00250798  38 83 02 3C */	addi r4, r3, 0x23c
 /* 8025385C 0025079C  38 A3 02 40 */	addi r5, r3, 0x240
 /* 80253860 002507A0  38 DF 00 DC */	addi r6, r31, 0xdc
-/* 80253864 002507A4  4B E0 2F 31 */	bl dDlst_list_c_NS_set
+/* 80253864 002507A4  4B E0 2F 31 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_80253868:
 /* 80253868 002507A8  38 60 00 01 */	li r3, 1
 /* 8025386C 002507AC  83 E1 00 0C */	lwz r31, 0xc(r1)

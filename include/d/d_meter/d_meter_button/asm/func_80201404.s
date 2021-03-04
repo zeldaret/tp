@@ -37,7 +37,7 @@
 /* 80201494 001FE3D4  4B E3 35 29 */ bl isEventBit__11dSv_event_cCFUs
 /* 80201498 001FE3D8  2C 03 00 00 */ cmpwi r3, 0
 /* 8020149C 001FE3DC  41 82 00 24 */ beq lbl_802014C0
-/* 802014A0 001FE3E0  48 03 6D 8D */ bl dMsgObject_c_NS_getStatus
+/* 802014A0 001FE3E0  48 03 6D 8D */ bl getStatus__12dMsgObject_cFv
 /* 802014A4 001FE3E4  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802014A8 001FE3E8  20 60 00 01 */ subfic r3, r0, 1
 /* 802014AC 001FE3EC  30 03 FF FF */ addic r0, r3, -1

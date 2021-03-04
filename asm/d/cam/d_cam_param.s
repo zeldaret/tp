@@ -3,8 +3,8 @@
 .section .text, "ax" # 8008813c
 
 
-.global dCamMath_NS_rationalBezierRatio
-dCamMath_NS_rationalBezierRatio:
+.global rationalBezierRatio__8dCamMathFff
+rationalBezierRatio__8dCamMathFff:
 /* 8008813C 0008507C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80088140 00085080  7C 08 02 A6 */	mflr r0
 /* 80088144 00085084  90 01 00 54 */	stw r0, 0x54(r1)
@@ -96,8 +96,8 @@ lbl_80088254:
 /* 8008827C 000851BC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80088280 000851C0  4E 80 00 20 */	blr 
 
-.global dCamMath_NS_zoomFovy
-dCamMath_NS_zoomFovy:
+.global zoomFovy__8dCamMathFff
+zoomFovy__8dCamMathFff:
 /* 80088284 000851C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80088288 000851C8  7C 08 02 A6 */	mflr r0
 /* 8008828C 000851CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -122,8 +122,8 @@ dCamMath_NS_zoomFovy:
 /* 800882D8 00085218  38 21 00 20 */	addi r1, r1, 0x20
 /* 800882DC 0008521C  4E 80 00 20 */	blr 
 
-.global cDegree_NS_dtor
-cDegree_NS_dtor:
+.global __dt__7cDegreeFv
+__dt__7cDegreeFv:
 /* 800882E0 00085220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800882E4 00085224  7C 08 02 A6 */	mflr r0
 /* 800882E8 00085228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -141,8 +141,8 @@ lbl_80088304:
 /* 80088314 00085254  38 21 00 10 */	addi r1, r1, 0x10
 /* 80088318 00085258  4E 80 00 20 */	blr 
 
-.global dCamMath_NS_xyzRotateX
-dCamMath_NS_xyzRotateX:
+.global xyzRotateX__8dCamMathFR4cXyz7cSAngle
+xyzRotateX__8dCamMathFR4cXyz7cSAngle:
 /* 8008831C 0008525C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80088320 00085260  7C 08 02 A6 */	mflr r0
 /* 80088324 00085264  90 01 00 54 */	stw r0, 0x54(r1)
@@ -170,8 +170,8 @@ dCamMath_NS_xyzRotateX:
 /* 8008837C 000852BC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80088380 000852C0  4E 80 00 20 */	blr 
 
-.global dCamMath_NS_xyzRotateY
-dCamMath_NS_xyzRotateY:
+.global xyzRotateY__8dCamMathFR4cXyz7cSAngle
+xyzRotateY__8dCamMathFR4cXyz7cSAngle:
 /* 80088384 000852C4  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80088388 000852C8  7C 08 02 A6 */	mflr r0
 /* 8008838C 000852CC  90 01 00 54 */	stw r0, 0x54(r1)
@@ -199,8 +199,8 @@ dCamMath_NS_xyzRotateY:
 /* 800883E4 00085324  38 21 00 50 */	addi r1, r1, 0x50
 /* 800883E8 00085328  4E 80 00 20 */	blr 
 
-.global dCamMath_NS_xyzHorizontalDistance
-dCamMath_NS_xyzHorizontalDistance:
+.global xyzHorizontalDistance__8dCamMathFR4cXyzR4cXyz
+xyzHorizontalDistance__8dCamMathFR4cXyzR4cXyz:
 /* 800883EC 0008532C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800883F0 00085330  7C 08 02 A6 */	mflr r0
 /* 800883F4 00085334  90 01 00 14 */	stw r0, 0x14(r1)
@@ -233,8 +233,8 @@ dCstick_c:
 /* 80088454 00085394  90 03 00 08 */	stw r0, 8(r3)
 /* 80088458 00085398  4E 80 00 20 */	blr 
 
-.global dCstick_c_NS_Shift
-dCstick_c_NS_Shift:
+.global Shift__9dCstick_cFUl
+Shift__9dCstick_cFUl:
 /* 8008845C 0008539C  38 60 00 00 */	li r3, 0
 /* 80088460 000853A0  4E 80 00 20 */	blr 
 
@@ -296,14 +296,14 @@ dCamParam_c:
 /* 8008852C 0008546C  3C A5 00 02 */	addis r5, r5, 2
 /* 80088530 00085470  38 C0 00 80 */	li r6, 0x80
 /* 80088534 00085474  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80088538 00085478  4B FB 3E 45 */	bl dRes_control_c_NS_getRes_X1_
+/* 80088538 00085478  4B FB 3E 45 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
 /* 8008853C 0008547C  38 03 00 08 */	addi r0, r3, 8
 /* 80088540 00085480  90 1E 00 08 */	stw r0, 8(r30)
 /* 80088544 00085484  80 03 00 04 */	lwz r0, 4(r3)
 /* 80088548 00085488  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8008854C 0008548C  7F C3 F3 78 */	mr r3, r30
 /* 80088550 00085490  7F E4 FB 78 */	mr r4, r31
-/* 80088554 00085494  48 00 00 81 */	bl dCamParam_c_NS_Change
+/* 80088554 00085494  48 00 00 81 */	bl Change__11dCamParam_cFl
 /* 80088558 00085498  38 00 00 FF */	li r0, 0xff
 /* 8008855C 0008549C  98 1E 00 00 */	stb r0, 0(r30)
 /* 80088560 000854A0  98 1E 00 01 */	stb r0, 1(r30)
@@ -318,8 +318,8 @@ dCamParam_c:
 /* 80088584 000854C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80088588 000854C8  4E 80 00 20 */	blr 
 
-.global dCamParam_c_NS_dtor
-dCamParam_c_NS_dtor:
+.global __dt__11dCamParam_cFv
+__dt__11dCamParam_cFv:
 /* 8008858C 000854CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80088590 000854D0  7C 08 02 A6 */	mflr r0
 /* 80088594 000854D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -340,8 +340,8 @@ lbl_800885BC:
 /* 800885CC 0008550C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800885D0 00085510  4E 80 00 20 */	blr 
 
-.global dCamParam_c_NS_Change
-dCamParam_c_NS_Change:
+.global Change__11dCamParam_cFl
+Change__11dCamParam_cFl:
 /* 800885D4 00085514  2C 04 00 00 */	cmpwi r4, 0
 /* 800885D8 00085518  41 80 00 30 */	blt lbl_80088608
 /* 800885DC 0008551C  80 03 00 0C */	lwz r0, 0xc(r3)
@@ -363,8 +363,8 @@ lbl_80088608:
 /* 80088618 00085558  38 60 00 00 */	li r3, 0
 /* 8008861C 0008555C  4E 80 00 20 */	blr 
 
-.global dCamParam_c_NS_SearchStyle
-dCamParam_c_NS_SearchStyle:
+.global SearchStyle__11dCamParam_cFUl
+SearchStyle__11dCamParam_cFUl:
 /* 80088620 00085560  38 E0 FF FF */	li r7, -1
 /* 80088624 00085564  39 00 00 00 */	li r8, 0
 /* 80088628 00085568  38 A0 00 00 */	li r5, 0
@@ -538,8 +538,8 @@ dCamSetup_c:
 /* 800888B0 000857F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800888B4 000857F4  4E 80 00 20 */	blr 
 
-.global dCamSetup_c_NS_dtor
-dCamSetup_c_NS_dtor:
+.global __dt__11dCamSetup_cFv
+__dt__11dCamSetup_cFv:
 /* 800888B8 000857F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800888BC 000857FC  7C 08 02 A6 */	mflr r0
 /* 800888C0 00085800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -567,8 +567,8 @@ lbl_80088900:
 /* 80088910 00085850  38 21 00 10 */	addi r1, r1, 0x10
 /* 80088914 00085854  4E 80 00 20 */	blr 
 
-.global dCamSetup_c_NS_CheckLatitudeRange
-dCamSetup_c_NS_CheckLatitudeRange:
+.global CheckLatitudeRange__11dCamSetup_cFPs
+CheckLatitudeRange__11dCamSetup_cFPs:
 /* 80088918 00085858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8008891C 0008585C  C0 22 8E B4 */	lfs f1, lbl_804528B4-_SDA2_BASE_(r2)
 /* 80088920 00085860  C0 03 00 60 */	lfs f0, 0x60(r3)
@@ -601,8 +601,8 @@ lbl_80088980:
 /* 80088980 000858C0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80088984 000858C4  4E 80 00 20 */	blr 
 
-.global dCamSetup_c_NS_PlayerHideDist
-dCamSetup_c_NS_PlayerHideDist:
+.global PlayerHideDist__11dCamSetup_cFv
+PlayerHideDist__11dCamSetup_cFv:
 /* 80088988 000858C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8008898C 000858CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80088990 000858D0  80 84 5D B4 */	lwz r4, 0x5db4(r4)

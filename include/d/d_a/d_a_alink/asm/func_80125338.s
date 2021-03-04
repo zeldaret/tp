@@ -112,7 +112,7 @@ lbl_8012549C:
 /* 801254D4 00122414  39 20 00 00 */ li r9, 0
 /* 801254D8 00122418  39 40 00 FF */ li r10, 0xff
 /* 801254DC 0012241C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 801254E0 00122420  4B F2 75 B1 */ bl dPa_control_c_NS_set
+/* 801254E0 00122420  4B F2 75 B1 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 801254E4 00122424  3B 9C 00 01 */ addi r28, r28, 1
 /* 801254E8 00122428  2C 1C 00 02 */ cmpwi r28, 2
 /* 801254EC 0012242C  3B DE 00 02 */ addi r30, r30, 2

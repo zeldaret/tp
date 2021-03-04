@@ -15,30 +15,30 @@
 /* 800AF654 000AC594  41 82 00 14 */ beq lbl_800AF668
 /* 800AF658 000AC598  38 7F 21 18 */ addi r3, r31, 0x2118
 /* 800AF65C 000AC59C  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800AF660 000AC5A0  48 0A FA B9 */ bl daPy_anmHeap_c_NS_loadDataDemoRID
+/* 800AF660 000AC5A0  48 0A FA B9 */ bl loadData__14daPy_anmHeap_cFUsDemoRID
 /* 800AF664 000AC5A4  48 00 00 28 */ b lbl_800AF68C
 lbl_800AF668:
 /* 800AF668 000AC5A8  2C 1E 00 00 */ cmpwi r30, 0
 /* 800AF66C 000AC5AC  41 82 00 14 */ beq lbl_800AF680
 /* 800AF670 000AC5B0  38 7F 21 18 */ addi r3, r31, 0x2118
 /* 800AF674 000AC5B4  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800AF678 000AC5B8  48 0A FA 59 */ bl daPy_anmHeap_c_NS_loadDataPriIdx
+/* 800AF678 000AC5B8  48 0A FA 59 */ bl loadData__14daPy_anmHeap_cFUsPriIdx
 /* 800AF67C 000AC5BC  48 00 00 10 */ b lbl_800AF68C
 lbl_800AF680:
 /* 800AF680 000AC5C0  38 7F 21 18 */ addi r3, r31, 0x2118
 /* 800AF684 000AC5C4  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800AF688 000AC5C8  48 0A F9 E1 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 800AF688 000AC5C8  48 0A F9 E1 */ bl loadData__14daPy_anmHeap_cFUsIdx
 lbl_800AF68C:
 /* 800AF68C 000AC5CC  28 03 00 00 */ cmplwi r3, 0
 /* 800AF690 000AC5D0  41 82 00 E8 */ beq lbl_800AF778
 /* 800AF694 000AC5D4  90 7F 21 54 */ stw r3, 0x2154(r31)
 /* 800AF698 000AC5D8  80 7F 21 54 */ lwz r3, 0x2154(r31)
 /* 800AF69C 000AC5DC  80 9F 06 C0 */ lwz r4, 0x6c0(r31)
-/* 800AF6A0 000AC5E0  48 27 B9 FD */ bl J3DAnmTexPattern_NS_searchUpdateMaterialID_X1_
+/* 800AF6A0 000AC5E0  48 27 B9 FD */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_
 /* 800AF6A4 000AC5E4  80 7F 06 C0 */ lwz r3, 0x6c0(r31)
 /* 800AF6A8 000AC5E8  38 63 00 58 */ addi r3, r3, 0x58
 /* 800AF6AC 000AC5EC  80 9F 21 54 */ lwz r4, 0x2154(r31)
-/* 800AF6B0 000AC5F0  48 28 05 19 */ bl J3DMaterialTable_NS_entryTexNoAnimator
+/* 800AF6B0 000AC5F0  48 28 05 19 */ bl entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern
 /* 800AF6B4 000AC5F4  A0 01 00 0A */ lhz r0, 0xa(r1)
 /* 800AF6B8 000AC5F8  28 00 FF FF */ cmplwi r0, 0xffff
 /* 800AF6BC 000AC5FC  40 82 00 98 */ bne lbl_800AF754

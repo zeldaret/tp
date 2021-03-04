@@ -169,8 +169,8 @@
 /* 80030468 0002D3A8  3C 80 80 04 */ lis r4, __ct__11dRes_info_cFv@ha
 /*.global dRes_info_c*/
 /* 8003046C 0002D3AC  38 84 A2 60 */ addi r4, r4, __ct__11dRes_info_cFv@l
-/* 80030470 0002D3B0  3C A0 80 04 */ lis r5, dRes_info_c_NS_dtor@ha
-/* 80030474 0002D3B4  38 A5 A2 80 */ addi r5, r5, dRes_info_c_NS_dtor@l
+/* 80030470 0002D3B0  3C A0 80 04 */ lis r5, __dt__11dRes_info_cFv@ha
+/* 80030474 0002D3B4  38 A5 A2 80 */ addi r5, r5, __dt__11dRes_info_cFv@l
 /* 80030478 0002D3B8  38 C0 00 24 */ li r6, 0x24
 /* 8003047C 0002D3BC  38 E0 00 80 */ li r7, 0x80
 /* 80030480 0002D3C0  48 33 18 E1 */ bl func_80361D60
@@ -179,8 +179,8 @@
 /* 80030488 0002D3C8  3C 80 80 04 */ lis r4, __ct__11dRes_info_cFv@ha
 /*.global dRes_info_c*/
 /* 8003048C 0002D3CC  38 84 A2 60 */ addi r4, r4, __ct__11dRes_info_cFv@l
-/* 80030490 0002D3D0  3C A0 80 04 */ lis r5, dRes_info_c_NS_dtor@ha
-/* 80030494 0002D3D4  38 A5 A2 80 */ addi r5, r5, dRes_info_c_NS_dtor@l
+/* 80030490 0002D3D0  3C A0 80 04 */ lis r5, __dt__11dRes_info_cFv@ha
+/* 80030494 0002D3D4  38 A5 A2 80 */ addi r5, r5, __dt__11dRes_info_cFv@l
 /* 80030498 0002D3D8  38 C0 00 24 */ li r6, 0x24
 /* 8003049C 0002D3DC  38 E0 00 40 */ li r7, 0x40
 /* 800304A0 0002D3E0  48 33 18 C1 */ bl func_80361D60

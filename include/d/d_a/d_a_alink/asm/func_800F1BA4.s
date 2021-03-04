@@ -13,7 +13,7 @@
 /* 800F1BD4 000EEB14  48 00 01 2C */ b lbl_800F1D00
 lbl_800F1BD8:
 /* 800F1BD8 000EEB18  7F E3 FB 78 */ mr r3, r31
-/* 800F1BDC 000EEB1C  48 06 C8 F1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F1BDC 000EEB1C  48 06 C8 F1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F1BE0 000EEB20  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F1BE4 000EEB24  41 82 00 24 */ beq lbl_800F1C08
 /* 800F1BE8 000EEB28  7F C3 F3 78 */ mr r3, r30

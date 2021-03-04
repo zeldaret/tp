@@ -68,7 +68,7 @@ lbl_800E8218:
 /* 800E824C 000E518C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8250 000E5190  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E8254 000E5194  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 800E8258 000E5198  4B F8 C2 49 */ bl cBgS_NS_GroundCross
+/* 800E8258 000E5198  4B F8 C2 49 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800E825C 000E519C  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 800E8260 000E51A0  EC 21 00 28 */ fsubs f1, f1, f0
 /* 800E8264 000E51A4  C0 0D 81 14 */ lfs f0, lbl_80450694-_SDA_BASE_(r13)

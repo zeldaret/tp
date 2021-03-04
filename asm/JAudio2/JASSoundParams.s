@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029e3b0
 
 
-.global JASSoundParams_NS_clamp
-JASSoundParams_NS_clamp:
+.global clamp__14JASSoundParamsFv
+clamp__14JASSoundParamsFv:
 /* 8029E3B0 0029B2F0  C0 23 00 00 */	lfs f1, 0(r3)
 /* 8029E3B4 0029B2F4  C0 02 BD 60 */	lfs f0, lbl_80455760-_SDA2_BASE_(r2)
 /* 8029E3B8 0029B2F8  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -66,8 +66,8 @@ lbl_8029E468:
 /* 8029E474 0029B3B4  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 8029E478 0029B3B8  4E 80 00 20 */	blr 
 
-.global JASSoundParams_NS_combine
-JASSoundParams_NS_combine:
+.global combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams
+combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams:
 /* 8029E47C 0029B3BC  C0 24 00 00 */	lfs f1, 0(r4)
 /* 8029E480 0029B3C0  C0 05 00 00 */	lfs f0, 0(r5)
 /* 8029E484 0029B3C4  EC 01 00 32 */	fmuls f0, f1, f0

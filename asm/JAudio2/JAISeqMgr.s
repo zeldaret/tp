@@ -150,8 +150,8 @@ lbl_802A1934:
 /* 802A1A00 0029E940  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1A04 0029E944  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_freeDeadSeq_
-JAISeqMgr_NS_freeDeadSeq_:
+.global freeDeadSeq___9JAISeqMgrFv
+freeDeadSeq___9JAISeqMgrFv:
 /* 802A1A08 0029E948  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A1A0C 0029E94C  7C 08 02 A6 */	mflr r0
 /* 802A1A10 0029E950  90 01 00 24 */	stw r0, 0x24(r1)
@@ -177,7 +177,7 @@ lbl_802A1A28:
 /* 802A1A5C 0029E99C  41 82 00 10 */	beq lbl_802A1A6C
 /* 802A1A60 0029E9A0  38 7F 00 A8 */	addi r3, r31, 0xa8
 /* 802A1A64 0029E9A4  38 80 FF FF */	li r4, -1
-/* 802A1A68 0029E9A8  4B FE F8 B5 */	bl JASTrack_NS_dtor
+/* 802A1A68 0029E9A8  4B FE F8 B5 */	bl __dt__8JASTrackFv
 lbl_802A1A6C:
 /* 802A1A6C 0029E9AC  34 1F 00 98 */	addic. r0, r31, 0x98
 /* 802A1A70 0029E9B0  41 82 00 10 */	beq lbl_802A1A80
@@ -207,7 +207,7 @@ lbl_802A1ABC:
 /* 802A1AC0 0029EA00  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 /* 802A1AC4 0029EA04  7F E4 FB 78 */	mr r4, r31
 /* 802A1AC8 0029EA08  38 A0 03 AC */	li r5, 0x3ac
-/* 802A1ACC 0029EA0C  4B FE EE C9 */	bl JASGenericMemPool_NS_free
+/* 802A1ACC 0029EA0C  4B FE EE C9 */	bl free__17JASGenericMemPoolFPvUl
 lbl_802A1AD0:
 /* 802A1AD0 0029EA10  7F C4 F3 78 */	mr r4, r30
 lbl_802A1AD4:
@@ -230,7 +230,7 @@ JASMemPool_NS_dtor_X2_:
 /* 802A1B0C 0029EA4C  7C 9F 23 78 */	mr r31, r4
 /* 802A1B10 0029EA50  41 82 00 1C */	beq lbl_802A1B2C
 /* 802A1B14 0029EA54  38 80 00 00 */	li r4, 0
-/* 802A1B18 0029EA58  4B FE ED 49 */	bl JASGenericMemPool_NS_dtor
+/* 802A1B18 0029EA58  4B FE ED 49 */	bl __dt__17JASGenericMemPoolFv
 /* 802A1B1C 0029EA5C  7F E0 07 35 */	extsh. r0, r31
 /* 802A1B20 0029EA60  40 81 00 0C */	ble lbl_802A1B2C
 /* 802A1B24 0029EA64  7F C3 F3 78 */	mr r3, r30
@@ -295,7 +295,7 @@ lbl_802A1BB8:
 /* 802A1BF4 0029EB34  48 00 00 84 */	b lbl_802A1C78
 lbl_802A1BF8:
 /* 802A1BF8 0029EB38  7F 23 CB 78 */	mr r3, r25
-/* 802A1BFC 0029EB3C  48 00 03 5D */	bl JAISeqMgr_NS_beginStartSeq_
+/* 802A1BFC 0029EB3C  48 00 03 5D */	bl beginStartSeq___9JAISeqMgrFv
 /* 802A1C00 0029EB40  7C 7D 1B 79 */	or. r29, r3, r3
 /* 802A1C04 0029EB44  41 82 00 70 */	beq lbl_802A1C74
 /* 802A1C08 0029EB48  80 1A 00 00 */	lwz r0, 0(r26)
@@ -309,7 +309,7 @@ lbl_802A1BF8:
 /* 802A1C28 0029EB68  7F 23 CB 78 */	mr r3, r25
 /* 802A1C2C 0029EB6C  7F A4 EB 78 */	mr r4, r29
 /* 802A1C30 0029EB70  7F 65 DB 78 */	mr r5, r27
-/* 802A1C34 0029EB74  48 00 03 B5 */	bl JAISeqMgr_NS_endStartSeq_
+/* 802A1C34 0029EB74  48 00 03 B5 */	bl endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle
 /* 802A1C38 0029EB78  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A1C3C 0029EB7C  41 82 00 38 */	beq lbl_802A1C74
 /* 802A1C40 0029EB80  28 1E 00 00 */	cmplwi r30, 0
@@ -336,8 +336,8 @@ lbl_802A1C78:
 /* 802A1C88 0029EBC8  38 21 00 40 */	addi r1, r1, 0x40
 /* 802A1C8C 0029EBCC  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_calc
-JAISeqMgr_NS_calc:
+.global calc__9JAISeqMgrFv
+calc__9JAISeqMgrFv:
 /* 802A1C90 0029EBD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1C94 0029EBD4  7C 08 02 A6 */	mflr r0
 /* 802A1C98 0029EBD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -428,13 +428,13 @@ lbl_802A1DBC:
 /* 802A1DC4 0029ED04  48 00 00 10 */	b lbl_802A1DD4
 lbl_802A1DC8:
 /* 802A1DC8 0029ED08  80 7F 00 00 */	lwz r3, 0(r31)
-/* 802A1DCC 0029ED0C  4B FF F2 C1 */	bl JAISeq_NS_JAISeqMgr_calc_
+/* 802A1DCC 0029ED0C  4B FF F2 C1 */	bl JAISeqMgr_calc___6JAISeqFv
 /* 802A1DD0 0029ED10  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_802A1DD4:
 /* 802A1DD4 0029ED14  28 1F 00 00 */	cmplwi r31, 0
 /* 802A1DD8 0029ED18  40 82 FF F0 */	bne lbl_802A1DC8
 /* 802A1DDC 0029ED1C  7F C3 F3 78 */	mr r3, r30
-/* 802A1DE0 0029ED20  4B FF FC 29 */	bl JAISeqMgr_NS_freeDeadSeq_
+/* 802A1DE0 0029ED20  4B FF FC 29 */	bl freeDeadSeq___9JAISeqMgrFv
 /* 802A1DE4 0029ED24  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802A1DE8 0029ED28  83 C1 00 08 */	lwz r30, 8(r1)
 /* 802A1DEC 0029ED2C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -442,8 +442,8 @@ lbl_802A1DD4:
 /* 802A1DF4 0029ED34  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1DF8 0029ED38  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_stop
-JAISeqMgr_NS_stop:
+.global stop__9JAISeqMgrFv
+stop__9JAISeqMgrFv:
 /* 802A1DFC 0029ED3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1E00 0029ED40  7C 08 02 A6 */	mflr r0
 /* 802A1E04 0029ED44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -463,8 +463,8 @@ lbl_802A1E20:
 /* 802A1E34 0029ED74  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1E38 0029ED78  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_stop_X1_
-JAISeqMgr_NS_stop_X1_:
+.global stop__9JAISeqMgrFv_X1_
+stop__9JAISeqMgrFv_X1_:
 /* 802A1E3C 0029ED7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1E40 0029ED80  7C 08 02 A6 */	mflr r0
 /* 802A1E44 0029ED84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,8 +488,8 @@ lbl_802A1E6C:
 /* 802A1E84 0029EDC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1E88 0029EDC8  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_stopSoundID
-JAISeqMgr_NS_stopSoundID:
+.global stop__9JAISeqMgrFvSoundID
+stop__9JAISeqMgrFvSoundID:
 /* 802A1E8C 0029EDCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A1E90 0029EDD0  7C 08 02 A6 */	mflr r0
 /* 802A1E94 0029EDD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -523,8 +523,8 @@ lbl_802A1EE4:
 /* 802A1EF4 0029EE34  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A1EF8 0029EE38  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_mixOut
-JAISeqMgr_NS_mixOut:
+.global mixOut__9JAISeqMgrFv
+mixOut__9JAISeqMgrFv:
 /* 802A1EFC 0029EE3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A1F00 0029EE40  7C 08 02 A6 */	mflr r0
 /* 802A1F04 0029EE44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -539,7 +539,7 @@ lbl_802A1F1C:
 /* 802A1F24 0029EE64  80 7F 00 00 */	lwz r3, 0(r31)
 /* 802A1F28 0029EE68  38 9E 00 14 */	addi r4, r30, 0x14
 /* 802A1F2C 0029EE6C  38 A1 00 08 */	addi r5, r1, 8
-/* 802A1F30 0029EE70  4B FF F5 CD */	bl JAISeq_NS_JAISeqMgr_mixOut_
+/* 802A1F30 0029EE70  4B FF F5 CD */	bl JAISeqMgr_mixOut___6JAISeqFRC14JASSoundParams16JAISoundActivity
 /* 802A1F34 0029EE74  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_802A1F38:
 /* 802A1F38 0029EE78  28 1F 00 00 */	cmplwi r31, 0
@@ -551,8 +551,8 @@ lbl_802A1F38:
 /* 802A1F50 0029EE90  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A1F54 0029EE94  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_beginStartSeq_
-JAISeqMgr_NS_beginStartSeq_:
+.global beginStartSeq___9JAISeqMgrFv
+beginStartSeq___9JAISeqMgrFv:
 /* 802A1F58 0029EE98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1F5C 0029EE9C  7C 08 02 A6 */	mflr r0
 /* 802A1F60 0029EEA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -579,7 +579,7 @@ lbl_802A1FA8:
 /* 802A1FA8 0029EEE8  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A1FAC 0029EEEC  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 /* 802A1FB0 0029EEF0  38 80 03 AC */	li r4, 0x3ac
-/* 802A1FB4 0029EEF4  4B FE E9 95 */	bl JASGenericMemPool_NS_alloc
+/* 802A1FB4 0029EEF4  4B FE E9 95 */	bl alloc__17JASGenericMemPoolFUl
 /* 802A1FB8 0029EEF8  7C 60 1B 79 */	or. r0, r3, r3
 /* 802A1FBC 0029EEFC  41 82 00 14 */	beq lbl_802A1FD0
 /* 802A1FC0 0029EF00  7F E4 FB 78 */	mr r4, r31
@@ -594,8 +594,8 @@ lbl_802A1FD0:
 /* 802A1FE0 0029EF20  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1FE4 0029EF24  4E 80 00 20 */	blr 
 
-.global JAISeqMgr_NS_endStartSeq_
-JAISeqMgr_NS_endStartSeq_:
+.global endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle
+endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle:
 /* 802A1FE8 0029EF28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1FEC 0029EF2C  7C 08 02 A6 */	mflr r0
 /* 802A1FF0 0029EF30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -618,7 +618,7 @@ lbl_802A2024:
 /* 802A2030 0029EF70  41 82 00 10 */	beq lbl_802A2040
 /* 802A2034 0029EF74  7F E3 FB 78 */	mr r3, r31
 /* 802A2038 0029EF78  7F C4 F3 78 */	mr r4, r30
-/* 802A203C 0029EF7C  48 00 01 81 */	bl JAISound_NS_attachHandle
+/* 802A203C 0029EF7C  48 00 01 81 */	bl attachHandle__8JAISoundFP14JAISoundHandle
 lbl_802A2040:
 /* 802A2040 0029EF80  38 60 00 01 */	li r3, 1
 /* 802A2044 0029EF84  48 00 00 94 */	b lbl_802A20D8
@@ -632,7 +632,7 @@ lbl_802A2048:
 /* 802A2060 0029EFA0  41 82 00 10 */	beq lbl_802A2070
 /* 802A2064 0029EFA4  38 7F 00 A8 */	addi r3, r31, 0xa8
 /* 802A2068 0029EFA8  38 80 FF FF */	li r4, -1
-/* 802A206C 0029EFAC  4B FE F2 B1 */	bl JASTrack_NS_dtor
+/* 802A206C 0029EFAC  4B FE F2 B1 */	bl __dt__8JASTrackFv
 lbl_802A2070:
 /* 802A2070 0029EFB0  34 1F 00 98 */	addic. r0, r31, 0x98
 /* 802A2074 0029EFB4  41 82 00 10 */	beq lbl_802A2084
@@ -662,7 +662,7 @@ lbl_802A20C0:
 /* 802A20C4 0029F004  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 /* 802A20C8 0029F008  7F E4 FB 78 */	mr r4, r31
 /* 802A20CC 0029F00C  38 A0 03 AC */	li r5, 0x3ac
-/* 802A20D0 0029F010  4B FE E8 C5 */	bl JASGenericMemPool_NS_free
+/* 802A20D0 0029F010  4B FE E8 C5 */	bl free__17JASGenericMemPoolFPvUl
 lbl_802A20D4:
 /* 802A20D4 0029F014  38 60 00 00 */	li r3, 0
 lbl_802A20D8:
@@ -691,7 +691,7 @@ lbl_802A20D8:
 lbl_802A2130:
 /* 802A2130 0029F070  7F C3 F3 78 */	mr r3, r30
 /* 802A2134 0029F074  38 80 00 00 */	li r4, 0
-/* 802A2138 0029F078  4B FF F6 3D */	bl JAISeqDataUser_NS_dtor
+/* 802A2138 0029F078  4B FF F6 3D */	bl __dt__14JAISeqDataUserFv
 /* 802A213C 0029F07C  28 1E 00 00 */	cmplwi r30, 0
 /* 802A2140 0029F080  41 82 00 18 */	beq lbl_802A2158
 /* 802A2144 0029F084  80 0D 85 E8 */	lwz r0, lbl_80450B68-_SDA_BASE_(r13)

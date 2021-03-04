@@ -91,7 +91,7 @@ lbl_800DE3F8:
 /* 800DE4E0 000DB420  4B FF EB 29 */ bl daAlink_c_NS_setUpperGuardAnime
 lbl_800DE4E4:
 /* 800DE4E4 000DB424  7F A3 EB 78 */ mr r3, r29
-/* 800DE4E8 000DB428  48 07 FF E5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DE4E8 000DB428  48 07 FF E5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DE4EC 000DB42C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DE4F0 000DB430  41 82 00 50 */ beq lbl_800DE540
 /* 800DE4F4 000DB434  83 FE 27 E0 */ lwz r31, 0x27e0(r30)
@@ -157,7 +157,7 @@ lbl_800DE594:
 lbl_800DE5D4:
 /* 800DE5D4 000DB514  7F A3 EB 78 */ mr r3, r29
 /* 800DE5D8 000DB518  C0 22 93 C8 */ lfs f1, lbl_80452DC8-_SDA2_BASE_(r2)
-/* 800DE5DC 000DB51C  48 24 9E 51 */ bl J3DFrameCtrl_NS_checkPass
+/* 800DE5DC 000DB51C  48 24 9E 51 */ bl checkPass__12J3DFrameCtrlFf
 /* 800DE5E0 000DB520  2C 03 00 00 */ cmpwi r3, 0
 /* 800DE5E4 000DB524  41 82 00 34 */ beq lbl_800DE618
 /* 800DE5E8 000DB528  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -171,7 +171,7 @@ lbl_800DE5D4:
 /* 800DE608 000DB548  38 80 00 01 */ li r4, 1
 /* 800DE60C 000DB54C  38 A0 00 01 */ li r5, 1
 /* 800DE610 000DB550  38 C1 00 08 */ addi r6, r1, 8
-/* 800DE614 000DB554  4B F9 14 11 */ bl dVibration_c_NS_StartShock
+/* 800DE614 000DB554  4B F9 14 11 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800DE618:
 /* 800DE618 000DB558  7F E3 FB 78 */ mr r3, r31
 /* 800DE61C 000DB55C  48 28 6A B5 */ bl abs

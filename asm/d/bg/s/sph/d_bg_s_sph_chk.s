@@ -31,10 +31,10 @@ dBgS_SphChk:
 /* 80078A70 000759B0  38 03 00 30 */	addi r0, r3, 0x30
 /* 80078A74 000759B4  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 80078A78 000759B8  38 7F 00 38 */	addi r3, r31, 0x38
-/* 80078A7C 000759BC  4B FF EA E5 */	bl dBgS_Chk_NS_GetPolyPassChkInfo
+/* 80078A7C 000759BC  4B FF EA E5 */	bl GetPolyPassChkInfo__8dBgS_ChkFv
 /* 80078A80 000759C0  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 80078A84 000759C4  38 7F 00 38 */	addi r3, r31, 0x38
-/* 80078A88 000759C8  4B FF EA DD */	bl dBgS_Chk_NS_GetGrpPassChkInfo
+/* 80078A88 000759C8  4B FF EA DD */	bl GetGrpPassChkInfo__8dBgS_ChkFv
 /* 80078A8C 000759CC  90 7F 00 28 */	stw r3, 0x28(r31)
 /* 80078A90 000759D0  38 00 FF FF */	li r0, -1
 /* 80078A94 000759D4  90 1F 00 2C */	stw r0, 0x2c(r31)
@@ -49,8 +49,8 @@ dBgS_SphChk:
 /* 80078AB8 000759F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078ABC 000759FC  4E 80 00 20 */	blr 
 
-.global dBgS_SphChk_NS_dtor
-dBgS_SphChk_NS_dtor:
+.global __dt__11dBgS_SphChkFv
+__dt__11dBgS_SphChkFv:
 /* 80078AC0 00075A00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078AC4 00075A04  7C 08 02 A6 */	mflr r0
 /* 80078AC8 00075A08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -72,7 +72,7 @@ dBgS_SphChk_NS_dtor:
 /* 80078B08 00075A48  90 1E 00 48 */	stw r0, 0x48(r30)
 /* 80078B0C 00075A4C  38 7E 00 38 */	addi r3, r30, 0x38
 /* 80078B10 00075A50  38 80 00 00 */	li r4, 0
-/* 80078B14 00075A54  4B FF E9 D5 */	bl dBgS_Chk_NS_dtor
+/* 80078B14 00075A54  4B FF E9 D5 */	bl __dt__8dBgS_ChkFv
 /* 80078B18 00075A58  38 7E 00 24 */	addi r3, r30, 0x24
 /* 80078B1C 00075A5C  38 80 00 00 */	li r4, 0
 /* 80078B20 00075A60  48 1E F0 51 */	bl __dt__8cBgS_ChkFv
@@ -98,11 +98,11 @@ lbl_80078B54:
 /* 80078B68 00075AA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078B6C 00075AAC  4E 80 00 20 */	blr 
 /* 80078B70 00075AB0  38 63 FF EC */	addi r3, r3, -20
-/* 80078B74 00075AB4  4B FF FF 4C */	b dBgS_SphChk_NS_dtor
+/* 80078B74 00075AB4  4B FF FF 4C */	b __dt__11dBgS_SphChkFv
 /* 80078B78 00075AB8  38 63 FF DC */	addi r3, r3, -36
-/* 80078B7C 00075ABC  4B FF FF 44 */	b dBgS_SphChk_NS_dtor
+/* 80078B7C 00075ABC  4B FF FF 44 */	b __dt__11dBgS_SphChkFv
 /* 80078B80 00075AC0  38 63 FF B8 */	addi r3, r3, -72
-/* 80078B84 00075AC4  4B FF FF 3C */	b dBgS_SphChk_NS_dtor
+/* 80078B84 00075AC4  4B FF FF 3C */	b __dt__11dBgS_SphChkFv
 /* 80078B88 00075AC8  38 63 FF C8 */	addi r3, r3, -56
-/* 80078B8C 00075ACC  4B FF FF 34 */	b dBgS_SphChk_NS_dtor
+/* 80078B8C 00075ACC  4B FF FF 34 */	b __dt__11dBgS_SphChkFv
 

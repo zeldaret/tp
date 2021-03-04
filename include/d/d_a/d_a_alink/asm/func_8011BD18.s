@@ -7,7 +7,7 @@
 /* 8011BD30 00118C70  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011BD34 00118C74  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011BD38 00118C78  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011BD3C 00118C7C  4B F2 C4 41 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011BD3C 00118C7C  4B F2 C4 41 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011BD40 00118C80  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 8011BD44 00118C84  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011BD48 00118C88  40 82 00 0C */ bne lbl_8011BD54

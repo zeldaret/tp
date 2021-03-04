@@ -47,12 +47,12 @@ lbl_802BEC94:
 /* 802BECAC 002BBBEC  C0 22 C1 50 */ lfs f1, lbl_80455B50-_SDA2_BASE_(r2)
 /* 802BECB0 002BBBF0  D0 3F 00 2C */ stfs f1, 0x2c(r31)
 /* 802BECB4 002BBBF4  80 7F 00 20 */ lwz r3, 0x20(r31)
-/* 802BECB8 002BBBF8  4B FE 82 B9 */ bl JAUSoundAnimation_NS_getStartSoundIndex
+/* 802BECB8 002BBBF8  4B FE 82 B9 */ bl getStartSoundIndex__17JAUSoundAnimationCFf
 /* 802BECBC 002BBBFC  90 7F 00 34 */ stw r3, 0x34(r31)
 /* 802BECC0 002BBC00  D3 DF 00 30 */ stfs f30, 0x30(r31)
 /* 802BECC4 002BBC04  80 7F 00 20 */ lwz r3, 0x20(r31)
 /* 802BECC8 002BBC08  FC 20 F0 90 */ fmr f1, f30
-/* 802BECCC 002BBC0C  4B FE 83 79 */ bl JAUSoundAnimation_NS_getEndSoundIndex
+/* 802BECCC 002BBC0C  4B FE 83 79 */ bl getEndSoundIndex__17JAUSoundAnimationCFf
 /* 802BECD0 002BBC10  90 7F 00 38 */ stw r3, 0x38(r31)
 /* 802BECD4 002BBC14  48 00 00 38 */ b lbl_802BED0C
 lbl_802BECD8:
@@ -62,18 +62,18 @@ lbl_802BECD8:
 /* 802BECE4 002BBC24  D3 DF 00 2C */ stfs f30, 0x2c(r31)
 /* 802BECE8 002BBC28  80 7F 00 20 */ lwz r3, 0x20(r31)
 /* 802BECEC 002BBC2C  FC 20 F0 90 */ fmr f1, f30
-/* 802BECF0 002BBC30  4B FE 82 81 */ bl JAUSoundAnimation_NS_getStartSoundIndex
+/* 802BECF0 002BBC30  4B FE 82 81 */ bl getStartSoundIndex__17JAUSoundAnimationCFf
 /* 802BECF4 002BBC34  90 7F 00 34 */ stw r3, 0x34(r31)
 /* 802BECF8 002BBC38  C0 22 C1 50 */ lfs f1, lbl_80455B50-_SDA2_BASE_(r2)
 /* 802BECFC 002BBC3C  D0 3F 00 30 */ stfs f1, 0x30(r31)
 /* 802BED00 002BBC40  80 7F 00 20 */ lwz r3, 0x20(r31)
-/* 802BED04 002BBC44  4B FE 83 41 */ bl JAUSoundAnimation_NS_getEndSoundIndex
+/* 802BED04 002BBC44  4B FE 83 41 */ bl getEndSoundIndex__17JAUSoundAnimationCFf
 /* 802BED08 002BBC48  90 7F 00 38 */ stw r3, 0x38(r31)
 lbl_802BED0C:
 /* 802BED0C 002BBC4C  D3 FF 00 28 */ stfs f31, 0x28(r31)
 /* 802BED10 002BBC50  80 7F 00 20 */ lwz r3, 0x20(r31)
 /* 802BED14 002BBC54  FC 20 F8 90 */ fmr f1, f31
-/* 802BED18 002BBC58  4B FE 82 59 */ bl JAUSoundAnimation_NS_getStartSoundIndex
+/* 802BED18 002BBC58  4B FE 82 59 */ bl getStartSoundIndex__17JAUSoundAnimationCFf
 /* 802BED1C 002BBC5C  90 7F 00 40 */ stw r3, 0x40(r31)
 /* 802BED20 002BBC60  88 1F 00 44 */ lbz r0, 0x44(r31)
 /* 802BED24 002BBC64  28 00 00 00 */ cmplwi r0, 0

@@ -6,7 +6,7 @@
 /* 800C84E4 000C5424  7C 7E 1B 78 */ mr r30, r3
 /* 800C84E8 000C5428  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800C84EC 000C542C  7F E3 FB 78 */ mr r3, r31
-/* 800C84F0 000C5430  48 09 5F DD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C84F0 000C5430  48 09 5F DD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C84F4 000C5434  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C84F8 000C5438  41 82 00 14 */ beq lbl_800C850C
 /* 800C84FC 000C543C  7F C3 F3 78 */ mr r3, r30

@@ -13,7 +13,7 @@
 /* 800E8384 000E52C4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8388 000E52C8  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E838C 000E52CC  A0 9F 1E 1E */ lhz r4, 0x1e1e(r31)
-/* 800E8390 000E52D0  4B F8 C2 89 */ bl cBgS_NS_GetActorPointer
+/* 800E8390 000E52D0  4B F8 C2 89 */ bl GetActorPointer__4cBgSCFi
 /* 800E8394 000E52D4  38 80 00 04 */ li r4, 4
 /* 800E8398 000E52D8  38 A0 00 18 */ li r5, 0x18
 /* 800E839C 000E52DC  48 05 97 31 */ bl daObj_NS_PrmAbstract

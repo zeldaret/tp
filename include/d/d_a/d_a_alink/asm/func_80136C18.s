@@ -34,7 +34,7 @@ lbl_80136C5C:
 /* 80136C98 00133BD8  38 80 00 05 */ li r4, 5
 /* 80136C9C 00133BDC  38 A0 00 1F */ li r5, 0x1f
 /* 80136CA0 00133BE0  38 C1 00 14 */ addi r6, r1, 0x14
-/* 80136CA4 00133BE4  4B F3 8D 81 */ bl dVibration_c_NS_StartShock
+/* 80136CA4 00133BE4  4B F3 8D 81 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80136CA8 00133BE8  48 00 00 68 */ b lbl_80136D10
 lbl_80136CAC:
 /* 80136CAC 00133BEC  3C 80 80 39 */ lis r4, lbl_8038F374@ha
@@ -62,7 +62,7 @@ lbl_80136CE0:
 /* 80136D00 00133C40  38 80 00 04 */ li r4, 4
 /* 80136D04 00133C44  38 A0 00 1F */ li r5, 0x1f
 /* 80136D08 00133C48  38 C1 00 08 */ addi r6, r1, 8
-/* 80136D0C 00133C4C  4B F3 8D 19 */ bl dVibration_c_NS_StartShock
+/* 80136D0C 00133C4C  4B F3 8D 19 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_80136D10:
 /* 80136D10 00133C50  7F E3 FB 78 */ mr r3, r31
 /* 80136D14 00133C54  38 80 01 09 */ li r4, 0x109

@@ -71,7 +71,7 @@ lbl_800DD984:
 /* 800DD994 000DA8D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD998 000DA8D8  41 82 00 58 */ beq lbl_800DD9F0
 /* 800DD99C 000DA8DC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800DD9A0 000DA8E0  48 08 0B 2D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DD9A0 000DA8E0  48 08 0B 2D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DD9A4 000DA8E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DD9A8 000DA8E8  41 82 00 48 */ beq lbl_800DD9F0
 /* 800DD9AC 000DA8EC  38 00 00 00 */ li r0, 0

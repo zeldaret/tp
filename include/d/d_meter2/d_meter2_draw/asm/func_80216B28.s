@@ -72,7 +72,7 @@ lbl_80216C14:
 /* 80216C20 00213B60  C0 1B 07 E4 */ lfs f0, 0x7e4(r27)
 /* 80216C24 00213B64  EC 01 00 32 */ fmuls f0, f1, f0
 /* 80216C28 00213B68  EC 22 00 32 */ fmuls f1, f2, f0
-/* 80216C2C 00213B6C  48 03 EB A5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80216C2C 00213B6C  48 03 EB A5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_80216C30:
 /* 80216C30 00213B70  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 80216C34 00213B74  40 82 00 1C */ bne lbl_80216C50
@@ -95,7 +95,7 @@ lbl_80216C58:
 /* 80216C70 00213BB0  EC 01 00 32 */ fmuls f0, f1, f0
 /* 80216C74 00213BB4  EC 02 00 32 */ fmuls f0, f2, f0
 /* 80216C78 00213BB8  EC 23 00 32 */ fmuls f1, f3, f0
-/* 80216C7C 00213BBC  48 03 EB 55 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80216C7C 00213BBC  48 03 EB 55 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80216C80 00213BC0  3B BD 00 01 */ addi r29, r29, 1
 /* 80216C84 00213BC4  2C 1D 00 05 */ cmpwi r29, 5
 /* 80216C88 00213BC8  3B 9C 00 04 */ addi r28, r28, 4

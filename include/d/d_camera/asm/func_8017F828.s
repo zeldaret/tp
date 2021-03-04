@@ -257,7 +257,7 @@ lbl_8017FC0C:
 /* 8017FC18 0017CB58  38 84 03 37 */ addi r4, r4, 0x337
 /* 8017FC1C 0017CB5C  38 A0 00 00 */ li r5, 0
 /* 8017FC20 0017CB60  38 C0 00 00 */ li r6, 0
-/* 8017FC24 0017CB64  4B EC 7E F9 */ bl dEvent_manager_c_NS_getMyStaffId
+/* 8017FC24 0017CB64  4B EC 7E F9 */ bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 8017FC28 0017CB68  2C 03 00 00 */ cmpwi r3, 0
 /* 8017FC2C 0017CB6C  40 80 00 0C */ bge lbl_8017FC38
 /* 8017FC30 0017CB70  38 60 00 00 */ li r3, 0
@@ -281,7 +281,7 @@ lbl_8017FC60:
 /* 8017FC70 0017CBB0  38 C0 00 22 */ li r6, 0x22
 /* 8017FC74 0017CBB4  38 E0 00 00 */ li r7, 0
 /* 8017FC78 0017CBB8  39 00 00 00 */ li r8, 0
-/* 8017FC7C 0017CBBC  4B EC 81 95 */ bl dEvent_manager_c_NS_getMyActIdx
+/* 8017FC7C 0017CBBC  4B EC 81 95 */ bl getMyActIdx__16dEvent_manager_cFiPCPCciii
 /* 8017FC80 0017CBC0  7C 7F 1B 78 */ mr r31, r3
 /* 8017FC84 0017CBC4  80 BD 04 F4 */ lwz r5, 0x4f4(r29)
 /* 8017FC88 0017CBC8  3C 80 80 43 */ lis r4, lbl_8042C8F8@ha
@@ -335,7 +335,7 @@ lbl_8017FD1C:
 lbl_8017FD40:
 /* 8017FD40 0017CC80  7F C3 F3 78 */ mr r3, r30
 /* 8017FD44 0017CC84  80 9D 04 EC */ lwz r4, 0x4ec(r29)
-/* 8017FD48 0017CC88  4B EC 80 05 */ bl dEvent_manager_c_NS_getIsAddvance
+/* 8017FD48 0017CC88  4B EC 80 05 */ bl getIsAddvance__16dEvent_manager_cFi
 /* 8017FD4C 0017CC8C  2C 03 00 00 */ cmpwi r3, 0
 /* 8017FD50 0017CC90  41 82 00 E4 */ beq lbl_8017FE34
 /* 8017FD54 0017CC94  38 00 00 00 */ li r0, 0
@@ -480,7 +480,7 @@ lbl_8017FF40:
 /* 8017FF44 0017CE84  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8017FF48 0017CE88  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8017FF4C 0017CE8C  80 9D 04 EC */ lwz r4, 0x4ec(r29)
-/* 8017FF50 0017CE90  4B EC 82 2D */ bl dEvent_manager_c_NS_cutEnd
+/* 8017FF50 0017CE90  4B EC 82 2D */ bl cutEnd__16dEvent_manager_cFi
 /* 8017FF54 0017CE94  38 60 00 00 */ li r3, 0
 /* 8017FF58 0017CE98  48 00 05 9C */ b lbl_801804F4
 lbl_8017FF5C:
@@ -492,7 +492,7 @@ lbl_8017FF5C:
 /* 8017FF70 0017CEB0  3C A0 80 39 */ lis r5, lbl_80393F68@ha
 /* 8017FF74 0017CEB4  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 8017FF78 0017CEB8  38 A5 03 3E */ addi r5, r5, 0x33e
-/* 8017FF7C 0017CEBC  4B F0 8E 15 */ bl dCamera_c_NS_getEvFloatData
+/* 8017FF7C 0017CEBC  4B F0 8E 15 */ bl getEvFloatData__9dCamera_cFPfPc
 /* 8017FF80 0017CEC0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8017FF84 0017CEC4  41 82 00 88 */ beq lbl_8018000C
 /* 8017FF88 0017CEC8  C0 1D 00 5C */ lfs f0, 0x5c(r29)
@@ -535,7 +535,7 @@ lbl_8018000C:
 /* 80180018 0017CF58  38 C5 3F 68 */ addi r6, r5, lbl_80393F68@l
 /* 8018001C 0017CF5C  38 A6 03 47 */ addi r5, r6, 0x347
 /* 80180020 0017CF60  38 C6 03 4C */ addi r6, r6, 0x34c
-/* 80180024 0017CF64  4B F0 93 19 */ bl dCamera_c_NS_getEvStringData
+/* 80180024 0017CF64  4B F0 93 19 */ bl getEvStringData__9dCamera_cFPcPcPc
 /* 80180028 0017CF68  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8018002C 0017CF6C  41 82 00 98 */ beq lbl_801800C4
 /* 80180030 0017CF70  80 61 00 78 */ lwz r3, 0x78(r1)
@@ -617,7 +617,7 @@ lbl_80180124:
 /* 80180130 0017D070  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 80180134 0017D074  38 A5 03 54 */ addi r5, r5, 0x354
 /* 80180138 0017D078  38 C0 00 00 */ li r6, 0
-/* 8018013C 0017D07C  4B F0 8F 51 */ bl dCamera_c_NS_getEvIntData_X1_
+/* 8018013C 0017D07C  4B F0 8F 51 */ bl getEvIntData__9dCamera_cFPiPc_X1_
 /* 80180140 0017D080  80 01 00 10 */ lwz r0, 0x10(r1)
 /* 80180144 0017D084  B0 1D 01 14 */ sth r0, 0x114(r29)
 /* 80180148 0017D088  7F A3 EB 78 */ mr r3, r29
@@ -626,7 +626,7 @@ lbl_80180124:
 /* 80180154 0017D094  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 80180158 0017D098  38 A5 03 5C */ addi r5, r5, 0x35c
 /* 8018015C 0017D09C  38 C0 00 00 */ li r6, 0
-/* 80180160 0017D0A0  4B F0 8F 2D */ bl dCamera_c_NS_getEvIntData_X1_
+/* 80180160 0017D0A0  4B F0 8F 2D */ bl getEvIntData__9dCamera_cFPiPc_X1_
 /* 80180164 0017D0A4  80 01 00 10 */ lwz r0, 0x10(r1)
 /* 80180168 0017D0A8  2C 00 00 00 */ cmpwi r0, 0
 /* 8018016C 0017D0AC  41 82 00 10 */ beq lbl_8018017C
@@ -644,13 +644,13 @@ lbl_8018017C:
 /* 80180198 0017D0D8  40 82 00 08 */ bne lbl_801801A0
 /* 8018019C 0017D0DC  38 C0 00 03 */ li r6, 3
 lbl_801801A0:
-/* 801801A0 0017D0E0  4B F0 8E ED */ bl dCamera_c_NS_getEvIntData_X1_
+/* 801801A0 0017D0E0  4B F0 8E ED */ bl getEvIntData__9dCamera_cFPiPc_X1_
 /* 801801A4 0017D0E4  7F A3 EB 78 */ mr r3, r29
 /* 801801A8 0017D0E8  38 81 00 10 */ addi r4, r1, 0x10
 /* 801801AC 0017D0EC  3C A0 80 39 */ lis r5, lbl_80393F68@ha
 /* 801801B0 0017D0F0  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 801801B4 0017D0F4  38 A5 03 6F */ addi r5, r5, 0x36f
-/* 801801B8 0017D0F8  4B F0 8A F9 */ bl dCamera_c_NS_getEvIntData
+/* 801801B8 0017D0F8  4B F0 8A F9 */ bl getEvIntData__9dCamera_cFPiPc
 /* 801801BC 0017D0FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801801C0 0017D100  41 82 00 4C */ beq lbl_8018020C
 /* 801801C4 0017D104  80 01 00 10 */ lwz r0, 0x10(r1)
@@ -679,7 +679,7 @@ lbl_8018020C:
 /* 80180214 0017D154  3C A0 80 39 */ lis r5, lbl_80393F68@ha
 /* 80180218 0017D158  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 8018021C 0017D15C  38 A5 03 77 */ addi r5, r5, 0x377
-/* 80180220 0017D160  4B F0 8A 91 */ bl dCamera_c_NS_getEvIntData
+/* 80180220 0017D160  4B F0 8A 91 */ bl getEvIntData__9dCamera_cFPiPc
 /* 80180224 0017D164  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80180228 0017D168  41 82 00 44 */ beq lbl_8018026C
 /* 8018022C 0017D16C  80 01 00 10 */ lwz r0, 0x10(r1)
@@ -710,7 +710,7 @@ lbl_8018026C:
 /* 80180284 0017D1C4  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 80180288 0017D1C8  38 A5 03 7F */ addi r5, r5, 0x37f
 /* 8018028C 0017D1CC  38 C0 00 00 */ li r6, 0
-/* 80180290 0017D1D0  4B F0 8D FD */ bl dCamera_c_NS_getEvIntData_X1_
+/* 80180290 0017D1D0  4B F0 8D FD */ bl getEvIntData__9dCamera_cFPiPc_X1_
 /* 80180294 0017D1D4  80 01 00 0C */ lwz r0, 0xc(r1)
 /* 80180298 0017D1D8  2C 00 00 00 */ cmpwi r0, 0
 /* 8018029C 0017D1DC  41 82 00 20 */ beq lbl_801802BC
@@ -728,7 +728,7 @@ lbl_801802BC:
 /* 801802C8 0017D208  38 A5 3F 68 */ addi r5, r5, lbl_80393F68@l
 /* 801802CC 0017D20C  38 A5 03 8A */ addi r5, r5, 0x38a
 /* 801802D0 0017D210  38 C0 00 00 */ li r6, 0
-/* 801802D4 0017D214  4B F0 8D B9 */ bl dCamera_c_NS_getEvIntData_X1_
+/* 801802D4 0017D214  4B F0 8D B9 */ bl getEvIntData__9dCamera_cFPiPc_X1_
 /* 801802D8 0017D218  88 1D 01 58 */ lbz r0, 0x158(r29)
 /* 801802DC 0017D21C  28 00 00 00 */ cmplwi r0, 0
 /* 801802E0 0017D220  41 82 00 1C */ beq lbl_801802FC
@@ -803,7 +803,7 @@ lbl_80180394:
 /* 801803CC 0017D30C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801803D0 0017D310  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 801803D4 0017D314  80 9D 04 EC */ lwz r4, 0x4ec(r29)
-/* 801803D8 0017D318  4B EC 7D A5 */ bl dEvent_manager_c_NS_cutEnd
+/* 801803D8 0017D318  4B EC 7D A5 */ bl cutEnd__16dEvent_manager_cFi
 /* 801803DC 0017D31C  80 7D 05 D4 */ lwz r3, 0x5d4(r29)
 /* 801803E0 0017D320  28 03 00 00 */ cmplwi r3, 0
 /* 801803E4 0017D324  41 82 00 58 */ beq lbl_8018043C
@@ -847,7 +847,7 @@ lbl_80180444:
 /* 80180460 0017D3A0  38 61 00 24 */ addi r3, r1, 0x24
 /* 80180464 0017D3A4  7F A4 EB 78 */ mr r4, r29
 /* 80180468 0017D3A8  80 BD 01 80 */ lwz r5, 0x180(r29)
-/* 8018046C 0017D3AC  4B F1 72 B1 */ bl dCamera_c_NS_attentionPos
+/* 8018046C 0017D3AC  4B F1 72 B1 */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 80180470 0017D3B0  C0 01 00 24 */ lfs f0, 0x24(r1)
 /* 80180474 0017D3B4  D0 01 00 6C */ stfs f0, 0x6c(r1)
 /* 80180478 0017D3B8  C0 01 00 28 */ lfs f0, 0x28(r1)

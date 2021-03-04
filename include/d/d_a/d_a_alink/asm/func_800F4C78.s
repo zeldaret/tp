@@ -36,7 +36,7 @@ lbl_800F4CC4:
 /* 800F4CF4 000F1C34  4B FC C5 E9 */ bl daAlink_c_NS_deleteEquipItem
 /* 800F4CF8 000F1C38  38 7D 28 14 */ addi r3, r29, 0x2814
 /* 800F4CFC 000F1C3C  7F C4 F3 78 */ mr r4, r30
-/* 800F4D00 000F1C40  48 06 9F B9 */ bl daPy_actorKeep_c_NS_setData
+/* 800F4D00 000F1C40  48 06 9F B9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800F4D04 000F1C44  7F A3 EB 78 */ mr r3, r29
 /* 800F4D08 000F1C48  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F4D0C 000F1C4C  C0 5D 05 34 */ lfs f2, 0x534(r29)

@@ -24,9 +24,9 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
-bool dDvdErrorMsg_c_NS_execute(void);
-bool dShutdownErrorMsg_c_NS_execute(void);
-void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
+bool execute__14dDvdErrorMsg_cFv(void);
+bool execute__19dShutdownErrorMsg_cFv(void);
+void peekData__13dDlst_peekZ_cFv(dDlst_peekZ_c*);
 void fpcDw_Execute(base_process_class* pProc);
 void fpcDw_Handler(void*, void*);
 base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
@@ -64,13 +64,13 @@ BOOL fpcM_IsCreating(u32 pID) {
 
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
     MtxInit();
-    dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.getdlstPeekZ());
-    if (!dShutdownErrorMsg_c_NS_execute()) {
+    peekData__13dDlst_peekZ_cFv(&g_dComIfG_gameInfo.getdlstPeekZ());
+    if (!execute__19dShutdownErrorMsg_cFv()) {
         if (lbl_80450D39 == 0) {
             lbl_80450D38 = 0;
             lbl_80450D39 = 1;
         }
-        if (!dDvdErrorMsg_c_NS_execute()) {
+        if (!execute__14dDvdErrorMsg_cFv()) {
             if (lbl_80450D38 != 0) {
                 dLib_time_c::startTime();
                 Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);

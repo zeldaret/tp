@@ -37,7 +37,7 @@ lbl_8011ACA4:
 /* 8011ACA8 00117BE8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011ACAC 00117BEC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011ACB0 00117BF0  80 9C 31 84 */ lwz r4, 0x3184(r28)
-/* 8011ACB4 00117BF4  4B F2 D4 C9 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011ACB4 00117BF4  4B F2 D4 C9 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011ACB8 00117BF8  38 60 00 01 */ li r3, 1
 /* 8011ACBC 00117BFC  48 00 07 1C */ b lbl_8011B3D8
 lbl_8011ACC0:
@@ -138,7 +138,7 @@ lbl_8011AE0C:
 /* 8011AE20 00117D60  40 82 00 54 */ bne lbl_8011AE74
 /* 8011AE24 00117D64  28 1D 00 00 */ cmplwi r29, 0
 /* 8011AE28 00117D68  41 82 00 4C */ beq lbl_8011AE74
-/* 8011AE2C 00117D6C  4B F1 CC 31 */ bl daItemBase_c_NS_getItemNo
+/* 8011AE2C 00117D6C  4B F1 CC 31 */ bl getItemNo__12daItemBase_cFv
 /* 8011AE30 00117D70  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011AE34 00117D74  B0 1C 30 0C */ sth r0, 0x300c(r28)
 /* 8011AE38 00117D78  80 1C 05 74 */ lwz r0, 0x574(r28)
@@ -224,13 +224,13 @@ lbl_8011AF58:
 /* 8011AF5C 00117E9C  41 82 00 1C */ beq lbl_8011AF78
 /* 8011AF60 00117EA0  38 7C 28 0C */ addi r3, r28, 0x280c
 /* 8011AF64 00117EA4  7F A4 EB 78 */ mr r4, r29
-/* 8011AF68 00117EA8  48 04 3D 51 */ bl daPy_actorKeep_c_NS_setData
+/* 8011AF68 00117EA8  48 04 3D 51 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8011AF6C 00117EAC  7F A3 EB 78 */ mr r3, r29
-/* 8011AF70 00117EB0  4B F1 CB 05 */ bl daItemBase_c_NS_show
+/* 8011AF70 00117EB0  4B F1 CB 05 */ bl show__12daItemBase_cFv
 /* 8011AF74 00117EB4  3B 60 00 00 */ li r27, 0
 lbl_8011AF78:
 /* 8011AF78 00117EB8  7F C3 F3 78 */ mr r3, r30
-/* 8011AF7C 00117EBC  48 04 35 51 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011AF7C 00117EBC  48 04 35 51 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011AF80 00117EC0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011AF84 00117EC4  41 82 00 70 */ beq lbl_8011AFF4
 /* 8011AF88 00117EC8  38 00 00 01 */ li r0, 1
@@ -260,7 +260,7 @@ lbl_8011AFC8:
 /* 8011AFE0 00117F20  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011AFE4 00117F24  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011AFE8 00117F28  80 9C 31 84 */ lwz r4, 0x3184(r28)
-/* 8011AFEC 00117F2C  4B F2 D1 91 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011AFEC 00117F2C  4B F2 D1 91 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011AFF0 00117F30  48 00 03 E4 */ b lbl_8011B3D4
 lbl_8011AFF4:
 /* 8011AFF4 00117F34  A8 1C 30 0A */ lha r0, 0x300a(r28)
@@ -276,7 +276,7 @@ lbl_8011AFF4:
 /* 8011B01C 00117F5C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011B020 00117F60  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011B024 00117F64  80 9C 31 84 */ lwz r4, 0x3184(r28)
-/* 8011B028 00117F68  4B F2 D1 55 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011B028 00117F68  4B F2 D1 55 */ bl cutEnd__16dEvent_manager_cFi
 lbl_8011B02C:
 /* 8011B02C 00117F6C  A8 7C 30 0A */ lha r3, 0x300a(r28)
 /* 8011B030 00117F70  2C 03 00 00 */ cmpwi r3, 0
@@ -299,7 +299,7 @@ lbl_8011B02C:
 /* 8011B074 00117FB4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011B078 00117FB8  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011B07C 00117FBC  80 9C 31 84 */ lwz r4, 0x3184(r28)
-/* 8011B080 00117FC0  4B F2 D0 FD */ bl dEvent_manager_c_NS_cutEnd
+/* 8011B080 00117FC0  4B F2 D0 FD */ bl cutEnd__16dEvent_manager_cFi
 /* 8011B084 00117FC4  48 00 00 60 */ b lbl_8011B0E4
 lbl_8011B088:
 /* 8011B088 00117FC8  A8 1C 04 DE */ lha r0, 0x4de(r28)
@@ -479,9 +479,9 @@ lbl_8011B304:
 /* 8011B308 00118248  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011B30C 0011824C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011B310 00118250  80 9C 31 84 */ lwz r4, 0x3184(r28)
-/* 8011B314 00118254  4B F2 CE 69 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011B314 00118254  4B F2 CE 69 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011B318 00118258  7F A3 EB 78 */ mr r3, r29
-/* 8011B31C 0011825C  4B F1 C7 C9 */ bl daItemBase_c_NS_dead
+/* 8011B31C 0011825C  4B F1 C7 C9 */ bl dead__12daItemBase_cFv
 /* 8011B320 00118260  38 00 00 01 */ li r0, 1
 /* 8011B324 00118264  90 1C 31 98 */ stw r0, 0x3198(r28)
 /* 8011B328 00118268  38 00 00 0C */ li r0, 0xc
@@ -530,7 +530,7 @@ lbl_8011B3BC:
 /* 8011B3C4 00118304  28 1D 00 00 */ cmplwi r29, 0
 /* 8011B3C8 00118308  41 82 00 0C */ beq lbl_8011B3D4
 /* 8011B3CC 0011830C  7F A3 EB 78 */ mr r3, r29
-/* 8011B3D0 00118310  4B F1 C6 95 */ bl daItemBase_c_NS_hide
+/* 8011B3D0 00118310  4B F1 C6 95 */ bl hide__12daItemBase_cFv
 lbl_8011B3D4:
 /* 8011B3D4 00118314  38 60 00 01 */ li r3, 1
 lbl_8011B3D8:

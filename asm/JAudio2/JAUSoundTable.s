@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a7114
 
 
-.global JAUSoundTable_NS_init
-JAUSoundTable_NS_init:
+.global init__13JAUSoundTableFPCv
+init__13JAUSoundTableFPCv:
 /* 802A7114 002A4054  28 04 00 00 */	cmplwi r4, 0
 /* 802A7118 002A4058  41 82 00 38 */	beq lbl_802A7150
 /* 802A711C 002A405C  90 83 00 00 */	stw r4, 0(r3)
@@ -27,8 +27,8 @@ lbl_802A7150:
 /* 802A7158 002A4098  90 03 00 04 */	stw r0, 4(r3)
 /* 802A715C 002A409C  4E 80 00 20 */	blr 
 
-.global JAUSoundTable_NS_getTypeID
-JAUSoundTable_NS_getTypeID:
+.global getTypeID__13JAUSoundTableCF10JAISoundID
+getTypeID__13JAUSoundTableCF10JAISoundID:
 /* 802A7160 002A40A0  80 A4 00 00 */	lwz r5, 0(r4)
 /* 802A7164 002A40A4  3C 05 00 01 */	addis r0, r5, 1
 /* 802A7168 002A40A8  28 00 FF FF */	cmplwi r0, 0xffff
@@ -121,8 +121,8 @@ lbl_802A727C:
 /* 802A7284 002A41C4  88 63 00 08 */	lbz r3, 8(r3)
 /* 802A7288 002A41C8  4E 80 00 20 */	blr 
 
-.global JAUSoundTable_NS_getData
-JAUSoundTable_NS_getData:
+.global getData__13JAUSoundTableCF10JAISoundID
+getData__13JAUSoundTableCF10JAISoundID:
 /* 802A728C 002A41CC  80 A4 00 00 */	lwz r5, 0(r4)
 /* 802A7290 002A41D0  3C 05 00 01 */	addis r0, r5, 1
 /* 802A7294 002A41D4  28 00 FF FF */	cmplwi r0, 0xffff
@@ -224,8 +224,8 @@ lbl_802A73C8:
 /* 802A73CC 002A430C  7C 60 22 14 */	add r3, r0, r4
 /* 802A73D0 002A4310  4E 80 00 20 */	blr 
 
-.global JAUSoundNameTable_NS_init
-JAUSoundNameTable_NS_init:
+.global init__17JAUSoundNameTableFPCv
+init__17JAUSoundNameTableFPCv:
 /* 802A73D4 002A4314  28 04 00 00 */	cmplwi r4, 0
 /* 802A73D8 002A4318  41 82 00 38 */	beq lbl_802A7410
 /* 802A73DC 002A431C  90 83 00 00 */	stw r4, 0(r3)

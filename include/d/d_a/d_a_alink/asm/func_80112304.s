@@ -24,7 +24,7 @@ lbl_8011234C:
 /* 8011235C 0010F29C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80112360 0010F2A0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 80112364 0010F2A4  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 80112368 0010F2A8  4B F3 5E 15 */ bl dEvent_manager_c_NS_cutEnd
+/* 80112368 0010F2A8  4B F3 5E 15 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011236C 0010F2AC  48 00 00 B4 */ b lbl_80112420
 lbl_80112370:
 /* 80112370 0010F2B0  83 FE 28 10 */ lwz r31, 0x2810(r30)
@@ -45,7 +45,7 @@ lbl_80112370:
 /* 801123AC 0010F2EC  60 00 00 01 */ ori r0, r0, 1
 /* 801123B0 0010F2F0  B0 1F 06 BE */ sth r0, 0x6be(r31)
 /* 801123B4 0010F2F4  38 7E 28 0C */ addi r3, r30, 0x280c
-/* 801123B8 0010F2F8  48 04 C9 45 */ bl daPy_actorKeep_c_NS_clearData
+/* 801123B8 0010F2F8  48 04 C9 45 */ bl clearData__16daPy_actorKeep_cFv
 /* 801123BC 0010F2FC  48 00 00 64 */ b lbl_80112420
 lbl_801123C0:
 /* 801123C0 0010F300  7F C3 F3 78 */ mr r3, r30

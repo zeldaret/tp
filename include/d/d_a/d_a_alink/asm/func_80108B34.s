@@ -6,7 +6,7 @@
 /* 80108B48 00105A88  7C 7E 1B 78 */ mr r30, r3
 /* 80108B4C 00105A8C  38 7E 21 D8 */ addi r3, r30, 0x21d8
 /* 80108B50 00105A90  38 80 01 7E */ li r4, 0x17e
-/* 80108B54 00105A94  48 05 65 15 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 80108B54 00105A94  48 05 65 15 */ bl loadData__14daPy_anmHeap_cFUsIdx
 /* 80108B58 00105A98  7C 7D 1B 78 */ mr r29, r3
 /* 80108B5C 00105A9C  7F C3 F3 78 */ mr r3, r30
 /* 80108B60 00105AA0  4B F9 B1 2D */ bl daAlink_c_NS_setItemHeap

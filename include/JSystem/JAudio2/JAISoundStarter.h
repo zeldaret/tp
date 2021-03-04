@@ -2,8 +2,8 @@
 #define JAISOUNDSTARTER_H_
 
 extern "C" {
-void JAISoundStarter_NS_ctor(void);
-void JAISoundStarter_NS_dtor(void);
+void __ct__15JAISoundStarterFb(void);
+void __dt__15JAISoundStarterFv(void);
 void JAISoundStarter_NS_startLevelSound(void);
 }
 

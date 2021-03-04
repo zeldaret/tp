@@ -10,7 +10,7 @@ JASSeqCtrl:
 /* 802938C4 00290804  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802938C8 00290808  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802938CC 0029080C  7C 7F 1B 78 */	mr r31, r3
-/* 802938D0 00290810  48 00 28 39 */	bl JASSeqReader_NS_init
+/* 802938D0 00290810  48 00 28 39 */	bl init__12JASSeqReaderFv
 /* 802938D4 00290814  38 0D 8C B8 */	addi r0, r13, lbl_80451238-_SDA_BASE_
 /* 802938D8 00290818  90 1F 00 3C */	stw r0, 0x3c(r31)
 /* 802938DC 0029081C  38 00 00 00 */	li r0, 0
@@ -24,7 +24,7 @@ JASSeqCtrl:
 /* 802938FC 0029083C  90 1F 00 54 */	stw r0, 0x54(r31)
 /* 80293900 00290840  90 1F 00 58 */	stw r0, 0x58(r31)
 /* 80293904 00290844  7F E3 FB 78 */	mr r3, r31
-/* 80293908 00290848  48 00 28 01 */	bl JASSeqReader_NS_init
+/* 80293908 00290848  48 00 28 01 */	bl init__12JASSeqReaderFv
 /* 8029390C 0029084C  7F E3 FB 78 */	mr r3, r31
 /* 80293910 00290850  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80293914 00290854  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -32,14 +32,14 @@ JASSeqCtrl:
 /* 8029391C 0029085C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80293920 00290860  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_init
-JASSeqCtrl_NS_init:
+.global init__10JASSeqCtrlFv
+init__10JASSeqCtrlFv:
 /* 80293924 00290864  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80293928 00290868  7C 08 02 A6 */	mflr r0
 /* 8029392C 0029086C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80293930 00290870  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80293934 00290874  7C 7F 1B 78 */	mr r31, r3
-/* 80293938 00290878  48 00 27 D1 */	bl JASSeqReader_NS_init
+/* 80293938 00290878  48 00 27 D1 */	bl init__12JASSeqReaderFv
 /* 8029393C 0029087C  38 0D 8C B8 */	addi r0, r13, lbl_80451238-_SDA_BASE_
 /* 80293940 00290880  90 1F 00 3C */	stw r0, 0x3c(r31)
 /* 80293944 00290884  38 00 00 00 */	li r0, 0
@@ -58,8 +58,8 @@ JASSeqCtrl_NS_init:
 /* 80293978 002908B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029397C 002908BC  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_start
-JASSeqCtrl_NS_start:
+.global start__10JASSeqCtrlFPvUl
+start__10JASSeqCtrlFPvUl:
 /* 80293980 002908C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80293984 002908C4  7C 08 02 A6 */	mflr r0
 /* 80293988 002908C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -67,7 +67,7 @@ JASSeqCtrl_NS_start:
 /* 80293990 002908D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80293994 002908D4  7C 7E 1B 78 */	mr r30, r3
 /* 80293998 002908D8  7C BF 2B 78 */	mr r31, r5
-/* 8029399C 002908DC  48 00 27 AD */	bl JASSeqReader_NS_init_X1_
+/* 8029399C 002908DC  48 00 27 AD */	bl init__12JASSeqReaderFv_X1_
 /* 802939A0 002908E0  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802939A4 002908E4  7C 00 FA 14 */	add r0, r0, r31
 /* 802939A8 002908E8  90 1E 00 04 */	stw r0, 4(r30)
@@ -78,8 +78,8 @@ JASSeqCtrl_NS_start:
 /* 802939BC 002908FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802939C0 00290900  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_tickProc
-JASSeqCtrl_NS_tickProc:
+.global tickProc__10JASSeqCtrlFP8JASTrack
+tickProc__10JASSeqCtrlFP8JASTrack:
 /* 802939C4 00290904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802939C8 00290908  7C 08 02 A6 */	mflr r0
 /* 802939CC 0029090C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -94,15 +94,15 @@ JASSeqCtrl_NS_tickProc:
 /* 802939F0 00290930  48 00 00 B4 */	b lbl_80293AA4
 lbl_802939F4:
 /* 802939F4 00290934  38 80 00 06 */	li r4, 6
-/* 802939F8 00290938  48 00 00 C5 */	bl JASSeqCtrl_NS_interrupt
+/* 802939F8 00290938  48 00 00 C5 */	bl interrupt__10JASSeqCtrlFQ210JASSeqCtrl8IntrType
 /* 802939FC 0029093C  7F C3 F3 78 */	mr r3, r30
-/* 80293A00 00290940  48 00 01 E9 */	bl JASSeqCtrl_NS_timerProcess
+/* 80293A00 00290940  48 00 01 E9 */	bl timerProcess__10JASSeqCtrlFv
 /* 80293A04 00290944  88 1E 00 51 */	lbz r0, 0x51(r30)
 /* 80293A08 00290948  28 00 00 00 */	cmplwi r0, 0
 /* 80293A0C 0029094C  41 82 00 28 */	beq lbl_80293A34
 /* 80293A10 00290950  7F E3 FB 78 */	mr r3, r31
 /* 80293A14 00290954  38 80 00 00 */	li r4, 0
-/* 80293A18 00290958  4B FF E8 09 */	bl JASTrack_NS_checkNoteStop
+/* 80293A18 00290958  4B FF E8 09 */	bl checkNoteStop__8JASTrackCFUl
 /* 80293A1C 0029095C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80293A20 00290960  40 82 00 0C */	bne lbl_80293A2C
 /* 80293A24 00290964  38 60 00 00 */	li r3, 0
@@ -118,7 +118,7 @@ lbl_80293A34:
 /* 80293A44 00290984  90 1E 00 40 */	stw r0, 0x40(r30)
 lbl_80293A48:
 /* 80293A48 00290988  7F C3 F3 78 */	mr r3, r30
-/* 80293A4C 0029098C  48 00 01 2D */	bl JASSeqCtrl_NS_checkIntr
+/* 80293A4C 0029098C  48 00 01 2D */	bl checkIntr__10JASSeqCtrlFv
 /* 80293A50 00290990  48 00 00 2C */	b lbl_80293A7C
 lbl_80293A54:
 /* 80293A54 00290994  80 7E 00 3C */	lwz r3, 0x3c(r30)
@@ -152,8 +152,8 @@ lbl_80293AA4:
 /* 80293AB4 002909F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80293AB8 002909F8  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_interrupt
-JASSeqCtrl_NS_interrupt:
+.global interrupt__10JASSeqCtrlFQ210JASSeqCtrl8IntrType
+interrupt__10JASSeqCtrlFQ210JASSeqCtrl8IntrType:
 /* 80293ABC 002909FC  A0 A3 00 4E */	lhz r5, 0x4e(r3)
 /* 80293AC0 00290A00  38 00 00 01 */	li r0, 1
 /* 80293AC4 00290A04  7C 04 20 30 */	slw r4, r0, r4
@@ -164,22 +164,22 @@ JASSeqCtrl_NS_interrupt:
 /* 80293AD8 00290A18  B0 03 00 4C */	sth r0, 0x4c(r3)
 /* 80293ADC 00290A1C  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_setIntrMask
-JASSeqCtrl_NS_setIntrMask:
+.global setIntrMask__10JASSeqCtrlFUl
+setIntrMask__10JASSeqCtrlFUl:
 /* 80293AE0 00290A20  A0 03 00 4E */	lhz r0, 0x4e(r3)
 /* 80293AE4 00290A24  7C 00 23 78 */	or r0, r0, r4
 /* 80293AE8 00290A28  B0 03 00 4E */	sth r0, 0x4e(r3)
 /* 80293AEC 00290A2C  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_clrIntrMask
-JASSeqCtrl_NS_clrIntrMask:
+.global clrIntrMask__10JASSeqCtrlFUl
+clrIntrMask__10JASSeqCtrlFUl:
 /* 80293AF0 00290A30  A0 03 00 4E */	lhz r0, 0x4e(r3)
 /* 80293AF4 00290A34  7C 00 20 78 */	andc r0, r0, r4
 /* 80293AF8 00290A38  B0 03 00 4E */	sth r0, 0x4e(r3)
 /* 80293AFC 00290A3C  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_retIntr
-JASSeqCtrl_NS_retIntr:
+.global retIntr__10JASSeqCtrlFv
+retIntr__10JASSeqCtrlFv:
 /* 80293B00 00290A40  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 80293B04 00290A44  28 00 00 00 */	cmplwi r0, 0
 /* 80293B08 00290A48  40 82 00 0C */	bne lbl_80293B14
@@ -192,8 +192,8 @@ lbl_80293B14:
 /* 80293B20 00290A60  38 60 00 01 */	li r3, 1
 /* 80293B24 00290A64  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_findIntr
-JASSeqCtrl_NS_findIntr:
+.global findIntr__10JASSeqCtrlFv
+findIntr__10JASSeqCtrlFv:
 /* 80293B28 00290A68  A0 83 00 4E */	lhz r4, 0x4e(r3)
 /* 80293B2C 00290A6C  A0 03 00 4C */	lhz r0, 0x4c(r3)
 /* 80293B30 00290A70  7C 84 00 38 */	and r4, r4, r0
@@ -218,8 +218,8 @@ lbl_80293B68:
 /* 80293B70 00290AB0  38 60 FF FF */	li r3, -1
 /* 80293B74 00290AB4  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_checkIntr
-JASSeqCtrl_NS_checkIntr:
+.global checkIntr__10JASSeqCtrlFv
+checkIntr__10JASSeqCtrlFv:
 /* 80293B78 00290AB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80293B7C 00290ABC  7C 08 02 A6 */	mflr r0
 /* 80293B80 00290AC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,7 +228,7 @@ JASSeqCtrl_NS_checkIntr:
 /* 80293B8C 00290ACC  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 80293B90 00290AD0  28 00 00 00 */	cmplwi r0, 0
 /* 80293B94 00290AD4  40 82 00 40 */	bne lbl_80293BD4
-/* 80293B98 00290AD8  4B FF FF 91 */	bl JASSeqCtrl_NS_findIntr
+/* 80293B98 00290AD8  4B FF FF 91 */	bl findIntr__10JASSeqCtrlFv
 /* 80293B9C 00290ADC  2C 03 00 00 */	cmpwi r3, 0
 /* 80293BA0 00290AE0  41 80 00 34 */	blt lbl_80293BD4
 /* 80293BA4 00290AE4  80 9F 00 48 */	lwz r4, 0x48(r31)
@@ -250,8 +250,8 @@ lbl_80293BD4:
 /* 80293BE0 00290B20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80293BE4 00290B24  4E 80 00 20 */	blr 
 
-.global JASSeqCtrl_NS_timerProcess
-JASSeqCtrl_NS_timerProcess:
+.global timerProcess__10JASSeqCtrlFv
+timerProcess__10JASSeqCtrlFv:
 /* 80293BE8 00290B28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80293BEC 00290B2C  7C 08 02 A6 */	mflr r0
 /* 80293BF0 00290B30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -266,7 +266,7 @@ JASSeqCtrl_NS_timerProcess:
 /* 80293C14 00290B54  28 00 00 00 */	cmplwi r0, 0
 /* 80293C18 00290B58  40 82 00 40 */	bne lbl_80293C58
 /* 80293C1C 00290B5C  38 80 00 05 */	li r4, 5
-/* 80293C20 00290B60  4B FF FE 9D */	bl JASSeqCtrl_NS_interrupt
+/* 80293C20 00290B60  4B FF FE 9D */	bl interrupt__10JASSeqCtrlFQ210JASSeqCtrl8IntrType
 /* 80293C24 00290B64  88 7F 00 50 */	lbz r3, 0x50(r31)
 /* 80293C28 00290B68  28 03 00 00 */	cmplwi r3, 0
 /* 80293C2C 00290B6C  41 82 00 24 */	beq lbl_80293C50
@@ -294,10 +294,10 @@ lbl_80293C58:
 /* 80293C7C 00290BBC  38 03 76 50 */	addi r0, r3, lbl_803C7650@l
 /* 80293C80 00290BC0  90 0D 8C B8 */	stw r0, lbl_80451238-_SDA_BASE_(r13)
 /* 80293C84 00290BC4  38 6D 8C B8 */	addi r3, r13, lbl_80451238-_SDA_BASE_
-.global JASSeqParser_NS_dtor
-/* 80293C88 00290BC8  3C 80 80 29 */	lis r4, JASSeqParser_NS_dtor@ha
-.global JASSeqParser_NS_dtor
-/* 80293C8C 00290BCC  38 84 3C AC */	addi r4, r4, JASSeqParser_NS_dtor@l
+.global __dt__12JASSeqParserFv
+/* 80293C88 00290BC8  3C 80 80 29 */	lis r4, __dt__12JASSeqParserFv@ha
+.global __dt__12JASSeqParserFv
+/* 80293C8C 00290BCC  38 84 3C AC */	addi r4, r4, __dt__12JASSeqParserFv@l
 /* 80293C90 00290BD0  3C A0 80 43 */	lis r5, lbl_80431B18@ha
 /* 80293C94 00290BD4  38 A5 1B 18 */	addi r5, r5, lbl_80431B18@l
 /* 80293C98 00290BD8  48 0C DF 8D */	bl func_80361C24
@@ -305,8 +305,8 @@ lbl_80293C58:
 /* 80293CA0 00290BE0  7C 08 03 A6 */	mtlr r0
 /* 80293CA4 00290BE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80293CA8 00290BE8  4E 80 00 20 */	blr 
-.global JASSeqParser_NS_dtor
-JASSeqParser_NS_dtor:
+.global __dt__12JASSeqParserFv
+__dt__12JASSeqParserFv:
 /* 80293CAC 00290BEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80293CB0 00290BF0  7C 08 02 A6 */	mflr r0
 /* 80293CB4 00290BF4  90 01 00 14 */	stw r0, 0x14(r1)

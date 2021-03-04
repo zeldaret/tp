@@ -16,7 +16,7 @@
 /* 800FC114 000F9054  48 00 00 50 */ b lbl_800FC164
 lbl_800FC118:
 /* 800FC118 000F9058  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800FC11C 000F905C  48 06 23 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FC11C 000F905C  48 06 23 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FC120 000F9060  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FC124 000F9064  41 82 00 3C */ beq lbl_800FC160
 /* 800FC128 000F9068  7F E3 FB 78 */ mr r3, r31

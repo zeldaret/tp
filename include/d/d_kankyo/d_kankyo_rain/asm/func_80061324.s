@@ -46,7 +46,7 @@ lbl_80061398:
 /* 800613C4 0005E304  3C A5 00 02 */ addis r5, r5, 2
 /* 800613C8 0005E308  38 C0 00 80 */ li r6, 0x80
 /* 800613CC 0005E30C  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800613D0 0005E310  4B FD AF 1D */ bl dRes_control_c_NS_getRes
+/* 800613D0 0005E310  4B FD AF 1D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800613D4 0005E314  80 9F 0E A4 */ lwz r4, 0xea4(r31)
 /* 800613D8 0005E318  90 64 00 10 */ stw r3, 0x10(r4)
 /* 800613DC 0005E31C  C0 02 88 14 */ lfs f0, lbl_80452214-_SDA2_BASE_(r2)

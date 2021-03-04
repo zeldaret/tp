@@ -60,7 +60,7 @@
 /* 800D67AC 000D36EC  38 80 00 03 */ li r4, 3
 /* 800D67B0 000D36F0  38 A0 00 1F */ li r5, 0x1f
 /* 800D67B4 000D36F4  38 C1 00 08 */ addi r6, r1, 8
-/* 800D67B8 000D36F8  4B F9 92 6D */ bl dVibration_c_NS_StartShock
+/* 800D67B8 000D36F8  4B F9 92 6D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800D67BC 000D36FC  7F C3 F3 78 */ mr r3, r30
 /* 800D67C0 000D3700  48 04 CC 75 */ bl daAlink_c_NS_setCutLargeJumpLandEffect
 /* 800D67C4 000D3704  7F C3 F3 78 */ mr r3, r30

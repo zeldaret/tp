@@ -3,16 +3,16 @@
 .section .text, "ax" # 80273778
 
 
-.global J3DUClipper_NS_init
-J3DUClipper_NS_init:
+.global init__11J3DUClipperFv
+init__11J3DUClipperFv:
 /* 80273778 002706B8  C0 02 B8 78 */	lfs f0, lbl_80455278-_SDA2_BASE_(r2)
 /* 8027377C 002706BC  D0 03 00 54 */	stfs f0, 0x54(r3)
 /* 80273780 002706C0  C0 02 B8 7C */	lfs f0, lbl_8045527C-_SDA2_BASE_(r2)
 /* 80273784 002706C4  D0 03 00 58 */	stfs f0, 0x58(r3)
 /* 80273788 002706C8  4E 80 00 20 */	blr 
 
-.global J3DUClipper_NS_calcViewFrustum
-J3DUClipper_NS_calcViewFrustum:
+.global calcViewFrustum__11J3DUClipperFv
+calcViewFrustum__11J3DUClipperFv:
 /* 8027378C 002706CC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80273790 002706D0  7C 08 02 A6 */	mflr r0
 /* 80273794 002706D4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -106,8 +106,8 @@ J3DUClipper_NS_calcViewFrustum:
 /* 802738F4 00270834  38 21 00 40 */	addi r1, r1, 0x40
 /* 802738F8 00270838  4E 80 00 20 */	blr 
 
-.global J3DUClipper_NS_clip
-J3DUClipper_NS_clip:
+.global clip__11J3DUClipperCFPA4_Cf3Vecf
+clip__11J3DUClipperCFPA4_Cf3Vecf:
 /* 802738FC 0027083C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80273900 00270840  7C 08 02 A6 */	mflr r0
 /* 80273904 00270844  90 01 00 34 */	stw r0, 0x34(r1)
@@ -197,8 +197,8 @@ lbl_80273A28:
 /* 80273A3C 0027097C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80273A40 00270980  4E 80 00 20 */	blr 
 
-.global J3DUClipper_NS_clip_X1_
-J3DUClipper_NS_clip_X1_:
+.global clip__11J3DUClipperCFPA4_Cf3Vecf_X1_
+clip__11J3DUClipperCFPA4_Cf3Vecf_X1_:
 /* 80273A44 00270984  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80273A48 00270988  7C 08 02 A6 */	mflr r0
 /* 80273A4C 0027098C  90 01 01 94 */	stw r0, 0x194(r1)

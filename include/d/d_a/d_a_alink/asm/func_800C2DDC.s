@@ -24,7 +24,7 @@
 /* 800C2E38 000BFD78  41 82 00 50 */ beq lbl_800C2E88
 /* 800C2E3C 000BFD7C  38 7D 28 0C */ addi r3, r29, 0x280c
 /* 800C2E40 000BFD80  7F E4 FB 78 */ mr r4, r31
-/* 800C2E44 000BFD84  48 09 BE 75 */ bl daPy_actorKeep_c_NS_setData
+/* 800C2E44 000BFD84  48 09 BE 75 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800C2E48 000BFD88  38 60 00 01 */ li r3, 1
 /* 800C2E4C 000BFD8C  B0 7D 30 0E */ sth r3, 0x300e(r29)
 /* 800C2E50 000BFD90  A8 1F 00 08 */ lha r0, 8(r31)

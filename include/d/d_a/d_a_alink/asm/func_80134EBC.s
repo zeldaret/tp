@@ -66,7 +66,7 @@ lbl_80134F80:
 /* 80134FAC 00131EEC  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80134FB0 00131EF0  40 80 00 6C */ bge lbl_8013501C
 /* 80134FB4 00131EF4  7F C3 F3 78 */ mr r3, r30
-/* 80134FB8 00131EF8  48 02 95 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80134FB8 00131EF8  48 02 95 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80134FBC 00131EFC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80134FC0 00131F00  41 82 00 14 */ beq lbl_80134FD4
 /* 80134FC4 00131F04  7F E3 FB 78 */ mr r3, r31

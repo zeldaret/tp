@@ -52,7 +52,7 @@ lbl_8020E804:
 /* 8020E818 0020B758  88 03 4F AD */ lbz r0, 0x4fad(r3)
 /* 8020E81C 0020B75C  28 00 00 00 */ cmplwi r0, 0
 /* 8020E820 0020B760  40 82 00 C4 */ bne lbl_8020E8E4
-/* 8020E824 0020B764  48 02 9A 09 */ bl dMsgObject_c_NS_getStatus
+/* 8020E824 0020B764  48 02 9A 09 */ bl getStatus__12dMsgObject_cFv
 /* 8020E828 0020B768  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8020E82C 0020B76C  20 60 00 01 */ subfic r3, r0, 1
 /* 8020E830 0020B770  30 03 FF FF */ addic r0, r3, -1
@@ -111,7 +111,7 @@ lbl_8020E8E4:
 /* 8020E8F8 0020B838  88 03 4F AD */ lbz r0, 0x4fad(r3)
 /* 8020E8FC 0020B83C  28 00 00 00 */ cmplwi r0, 0
 /* 8020E900 0020B840  40 82 00 B8 */ bne lbl_8020E9B8
-/* 8020E904 0020B844  48 02 99 29 */ bl dMsgObject_c_NS_getStatus
+/* 8020E904 0020B844  48 02 99 29 */ bl getStatus__12dMsgObject_cFv
 /* 8020E908 0020B848  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8020E90C 0020B84C  20 60 00 01 */ subfic r3, r0, 1
 /* 8020E910 0020B850  30 03 FF FF */ addic r0, r3, -1

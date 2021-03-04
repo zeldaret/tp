@@ -3,7 +3,7 @@
 /* 8000A594 000074D4  90 01 00 44 */ stw r0, 0x44(r1)
 /* 8000A598 000074D8  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 8000A59C 000074DC  38 61 00 08 */ addi r3, r1, 8
-/* 8000A5A0 000074E0  48 1A D0 49 */ bl dMenu_Collect3D_c_NS_setupItem3D
+/* 8000A5A0 000074E0  48 1A D0 49 */ bl setupItem3D__17dMenu_Collect3D_cFPA4_f
 /* 8000A5A4 000074E4  4B FF FF 61 */ bl setLight__Fv
 /* 8000A5A8 000074E8  38 61 00 08 */ addi r3, r1, 8
 /* 8000A5AC 000074EC  3C 80 80 43 */ lis r4, lbl_80434AC8@ha
@@ -15,14 +15,14 @@
 /* 8000A5C4 00007504  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8000A5C8 00007508  3B E3 5F 64 */ addi r31, r3, 0x5f64
 /* 8000A5CC 0000750C  7F E3 FB 78 */ mr r3, r31
-/* 8000A5D0 00007510  48 04 C1 7D */ bl dDlst_list_c_NS_drawOpaListItem3d
+/* 8000A5D0 00007510  48 04 C1 7D */ bl drawOpaListItem3d__12dDlst_list_cFv
 /* 8000A5D4 00007514  7F E3 FB 78 */ mr r3, r31
-/* 8000A5D8 00007518  48 04 C1 99 */ bl dDlst_list_c_NS_drawXluListItem3d
+/* 8000A5D8 00007518  48 04 C1 99 */ bl drawXluListItem3d__12dDlst_list_cFv
 /* 8000A5DC 0000751C  38 60 00 00 */ li r3, 0
 /* 8000A5E0 00007520  48 35 5F F1 */ bl GXSetClipMode
 /* 8000A5E4 00007524  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 8000A5E8 00007528  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
-/* 8000A5EC 0000752C  48 30 61 51 */ bl J3DSys_NS_reinitGX
+/* 8000A5EC 0000752C  48 30 61 51 */ bl reinitGX__6J3DSysFv
 /* 8000A5F0 00007530  83 E1 00 3C */ lwz r31, 0x3c(r1)
 /* 8000A5F4 00007534  80 01 00 44 */ lwz r0, 0x44(r1)
 /* 8000A5F8 00007538  7C 08 03 A6 */ mtlr r0

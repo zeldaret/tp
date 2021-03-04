@@ -33,8 +33,8 @@ lbl_80245794:
 /* 802457BC 002426FC  42 00 FF D8 */	bdnz lbl_80245794
 /* 802457C0 00242700  4E 80 00 20 */	blr 
 
-.global dMsgScrnLight_HIO_c_NS_updateColor
-dMsgScrnLight_HIO_c_NS_updateColor:
+.global updateColor__19dMsgScrnLight_HIO_cFUc
+updateColor__19dMsgScrnLight_HIO_cFUc:
 /* 802457C4 00242704  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 802457C8 00242708  2C 00 00 02 */	cmpwi r0, 2
 /* 802457CC 0024270C  41 82 00 7C */	beq lbl_80245848
@@ -163,7 +163,7 @@ lbl_8024597C:
 /* 80245984 002428C4  98 0D 8B 58 */	stb r0, lbl_804510D8-_SDA_BASE_(r13)
 /* 80245988 002428C8  3C A0 80 43 */	lis r5, lbl_804306D4@ha
 /* 8024598C 002428CC  38 65 06 D4 */	addi r3, r5, lbl_804306D4@l
-/* 80245990 002428D0  4B FF FE 35 */	bl dMsgScrnLight_HIO_c_NS_updateColor
+/* 80245990 002428D0  4B FF FE 35 */	bl updateColor__19dMsgScrnLight_HIO_cFUc
 /* 80245994 002428D4  38 60 01 18 */	li r3, 0x118
 /* 80245998 002428D8  48 08 92 B5 */	bl __nw__FUl
 /* 8024599C 002428DC  7C 60 1B 79 */	or. r0, r3, r3
@@ -179,7 +179,7 @@ lbl_802459AC:
 /* 802459C0 00242900  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
 /* 802459C4 00242904  3B C6 61 C0 */	addi r30, r6, g_dComIfG_gameInfo@l
 /* 802459C8 00242908  80 DE 5D 30 */	lwz r6, 0x5d30(r30)
-/* 802459CC 0024290C  48 0B 2C 7D */	bl J2DScreen_NS_setPriority
+/* 802459CC 0024290C  48 0B 2C 7D */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 802459D0 00242910  80 7F 00 04 */	lwz r3, 4(r31)
 /* 802459D4 00242914  48 00 F7 15 */	bl dPaneClass_showNullPane
 /* 802459D8 00242918  38 60 00 04 */	li r3, 4
@@ -199,7 +199,7 @@ lbl_802459AC:
 /* 80245A10 00242950  38 64 00 24 */	addi r3, r4, 0x24
 /* 80245A14 00242954  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
 /* 80245A18 00242958  48 08 E8 59 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80245A1C 0024295C  48 0C 30 51 */	bl J2DAnmLoaderDataBase_NS_load
+/* 80245A1C 0024295C  48 0C 30 51 */	bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80245A20 00242960  90 7F 00 08 */	stw r3, 8(r31)
 /* 80245A24 00242964  C0 02 B2 D8 */	lfs f0, lbl_80454CD8-_SDA2_BASE_(r2)
 /* 80245A28 00242968  D0 1F 00 14 */	stfs f0, 0x14(r31)
@@ -208,7 +208,7 @@ lbl_802459AC:
 /* 80245A34 00242974  38 64 00 48 */	addi r3, r4, 0x48
 /* 80245A38 00242978  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
 /* 80245A3C 0024297C  48 08 E8 35 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80245A40 00242980  48 0C 30 2D */	bl J2DAnmLoaderDataBase_NS_load
+/* 80245A40 00242980  48 0C 30 2D */	bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80245A44 00242984  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 80245A48 00242988  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 80245A4C 0024298C  80 9F 00 04 */	lwz r4, 4(r31)
@@ -328,8 +328,8 @@ lbl_80245BE8:
 /* 80245BFC 00242B3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80245C00 00242B40  4E 80 00 20 */	blr 
 
-.global dMsgScrnLight_c_NS_draw
-dMsgScrnLight_c_NS_draw:
+.global draw__15dMsgScrnLight_cFPffffffUc
+draw__15dMsgScrnLight_cFPffffffUc:
 /* 80245C04 00242B44  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80245C08 00242B48  7C 08 02 A6 */	mflr r0
 /* 80245C0C 00242B4C  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -384,7 +384,7 @@ dMsgScrnLight_c_NS_draw:
 /* 80245CD0 00242C10  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245CD4 00242C14  38 81 00 74 */	addi r4, r1, 0x74
 /* 80245CD8 00242C18  38 A1 00 6C */	addi r5, r1, 0x6c
-/* 80245CDC 00242C1C  48 00 E7 7D */	bl CPaneMgr_NS_setBlackWhite
+/* 80245CDC 00242C1C  48 00 E7 7D */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245CE0 00242C20  48 00 01 EC */	b lbl_80245ECC
 lbl_80245CE4:
 /* 80245CE4 00242C24  80 7E 00 10 */	lwz r3, 0x10(r30)
@@ -398,7 +398,7 @@ lbl_80245CE4:
 /* 80245D04 00242C44  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245D08 00242C48  38 81 00 64 */	addi r4, r1, 0x64
 /* 80245D0C 00242C4C  38 A1 00 5C */	addi r5, r1, 0x5c
-/* 80245D10 00242C50  48 00 E7 49 */	bl CPaneMgr_NS_setBlackWhite
+/* 80245D10 00242C50  48 00 E7 49 */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245D14 00242C54  48 00 01 B8 */	b lbl_80245ECC
 lbl_80245D18:
 /* 80245D18 00242C58  88 1E 00 20 */	lbz r0, 0x20(r30)
@@ -426,7 +426,7 @@ lbl_80245D18:
 /* 80245D70 00242CB0  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245D74 00242CB4  38 81 00 54 */	addi r4, r1, 0x54
 /* 80245D78 00242CB8  38 A1 00 4C */	addi r5, r1, 0x4c
-/* 80245D7C 00242CBC  48 00 E6 DD */	bl CPaneMgr_NS_setBlackWhite
+/* 80245D7C 00242CBC  48 00 E6 DD */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245D80 00242CC0  48 00 01 4C */	b lbl_80245ECC
 lbl_80245D84:
 /* 80245D84 00242CC4  28 00 00 02 */	cmplwi r0, 2
@@ -451,7 +451,7 @@ lbl_80245D84:
 /* 80245DD0 00242D10  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245DD4 00242D14  38 81 00 44 */	addi r4, r1, 0x44
 /* 80245DD8 00242D18  38 A1 00 3C */	addi r5, r1, 0x3c
-/* 80245DDC 00242D1C  48 00 E6 7D */	bl CPaneMgr_NS_setBlackWhite
+/* 80245DDC 00242D1C  48 00 E6 7D */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245DE0 00242D20  48 00 00 EC */	b lbl_80245ECC
 lbl_80245DE4:
 /* 80245DE4 00242D24  28 00 00 01 */	cmplwi r0, 1
@@ -476,7 +476,7 @@ lbl_80245DE4:
 /* 80245E30 00242D70  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245E34 00242D74  38 81 00 34 */	addi r4, r1, 0x34
 /* 80245E38 00242D78  38 A1 00 2C */	addi r5, r1, 0x2c
-/* 80245E3C 00242D7C  48 00 E6 1D */	bl CPaneMgr_NS_setBlackWhite
+/* 80245E3C 00242D7C  48 00 E6 1D */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245E40 00242D80  48 00 00 8C */	b lbl_80245ECC
 lbl_80245E44:
 /* 80245E44 00242D84  28 00 00 04 */	cmplwi r0, 4
@@ -499,7 +499,7 @@ lbl_80245E44:
 /* 80245E88 00242DC8  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245E8C 00242DCC  38 81 00 24 */	addi r4, r1, 0x24
 /* 80245E90 00242DD0  38 A1 00 1C */	addi r5, r1, 0x1c
-/* 80245E94 00242DD4  48 00 E5 C5 */	bl CPaneMgr_NS_setBlackWhite
+/* 80245E94 00242DD4  48 00 E5 C5 */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80245E98 00242DD8  48 00 00 34 */	b lbl_80245ECC
 lbl_80245E9C:
 /* 80245E9C 00242DDC  80 7E 00 10 */	lwz r3, 0x10(r30)
@@ -513,7 +513,7 @@ lbl_80245E9C:
 /* 80245EBC 00242DFC  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80245EC0 00242E00  38 81 00 14 */	addi r4, r1, 0x14
 /* 80245EC4 00242E04  38 A1 00 0C */	addi r5, r1, 0xc
-/* 80245EC8 00242E08  48 00 E5 91 */	bl CPaneMgr_NS_setBlackWhite
+/* 80245EC8 00242E08  48 00 E5 91 */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 lbl_80245ECC:
 /* 80245ECC 00242E0C  88 1E 00 22 */	lbz r0, 0x22(r30)
 /* 80245ED0 00242E10  28 00 00 00 */	cmplwi r0, 0
@@ -549,7 +549,7 @@ lbl_80245F34:
 /* 80245F40 00242E80  FC 60 E8 90 */	fmr f3, f29
 /* 80245F44 00242E84  FC 80 F0 90 */	fmr f4, f30
 /* 80245F48 00242E88  FC A0 F8 90 */	fmr f5, f31
-/* 80245F4C 00242E8C  48 00 01 91 */	bl dMsgScrnLight_c_NS_drawCommon
+/* 80245F4C 00242E8C  48 00 01 91 */	bl draw__15dMsgScrnLight_cFPffffffUcCommon
 /* 80245F50 00242E90  E3 E1 00 D8 */	psq_l f31, 216(r1), 0, qr0
 /* 80245F54 00242E94  CB E1 00 D0 */	lfd f31, 0xd0(r1)
 /* 80245F58 00242E98  E3 C1 00 C8 */	psq_l f30, 200(r1), 0, qr0
@@ -567,8 +567,8 @@ lbl_80245F34:
 /* 80245F88 00242EC8  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80245F8C 00242ECC  4E 80 00 20 */	blr 
 
-.global dMsgScrnLight_c_NS_draw_X1_
-dMsgScrnLight_c_NS_draw_X1_:
+.global draw__15dMsgScrnLight_cFPffffffUc_X1_
+draw__15dMsgScrnLight_cFPffffffUc_X1_:
 /* 80245F90 00242ED0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80245F94 00242ED4  7C 08 02 A6 */	mflr r0
 /* 80245F98 00242ED8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -601,7 +601,7 @@ dMsgScrnLight_c_NS_draw_X1_:
 /* 80246004 00242F44  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 80246008 00242F48  38 81 00 0C */	addi r4, r1, 0xc
 /* 8024600C 00242F4C  38 A1 00 08 */	addi r5, r1, 8
-/* 80246010 00242F50  48 00 E4 49 */	bl CPaneMgr_NS_setBlackWhite
+/* 80246010 00242F50  48 00 E4 49 */	bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80246014 00242F54  88 1E 00 22 */	lbz r0, 0x22(r30)
 /* 80246018 00242F58  28 00 00 00 */	cmplwi r0, 0
 /* 8024601C 00242F5C  41 82 00 5C */	beq lbl_80246078
@@ -635,7 +635,7 @@ lbl_80246078:
 /* 80246084 00242FC4  FC 60 E0 90 */	fmr f3, f28
 /* 80246088 00242FC8  FC 80 E8 90 */	fmr f4, f29
 /* 8024608C 00242FCC  FC A0 F0 90 */	fmr f5, f30
-/* 80246090 00242FD0  48 00 00 4D */	bl dMsgScrnLight_c_NS_drawCommon
+/* 80246090 00242FD0  48 00 00 4D */	bl draw__15dMsgScrnLight_cFPffffffUcCommon
 /* 80246094 00242FD4  E3 E1 00 78 */	psq_l f31, 120(r1), 0, qr0
 /* 80246098 00242FD8  CB E1 00 70 */	lfd f31, 0x70(r1)
 /* 8024609C 00242FDC  E3 C1 00 68 */	psq_l f30, 104(r1), 0, qr0
@@ -655,8 +655,8 @@ lbl_80246078:
 /* 802460D4 00243014  38 21 00 80 */	addi r1, r1, 0x80
 /* 802460D8 00243018  4E 80 00 20 */	blr 
 
-.global dMsgScrnLight_c_NS_drawCommon
-dMsgScrnLight_c_NS_drawCommon:
+.global draw__15dMsgScrnLight_cFPffffffUcCommon
+draw__15dMsgScrnLight_cFPffffffUcCommon:
 /* 802460DC 0024301C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802460E0 00243020  7C 08 02 A6 */	mflr r0
 /* 802460E4 00243024  90 01 00 74 */	stw r0, 0x74(r1)
@@ -689,7 +689,7 @@ dMsgScrnLight_c_NS_drawCommon:
 /* 80246150 00243090  7D 89 03 A6 */	mtctr r12
 /* 80246154 00243094  4E 80 04 21 */	bctrl 
 /* 80246158 00243098  80 7E 00 10 */	lwz r3, 0x10(r30)
-/* 8024615C 0024309C  48 00 F6 CD */	bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8024615C 0024309C  48 00 F6 CD */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80246160 002430A0  FF E0 08 90 */	fmr f31, f1
 /* 80246164 002430A4  88 1E 00 21 */	lbz r0, 0x21(r30)
 /* 80246168 002430A8  28 00 00 03 */	cmplwi r0, 3
@@ -731,7 +731,7 @@ lbl_802461A0:
 lbl_802461EC:
 /* 802461EC 0024312C  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 802461F0 00243130  EC 3F 07 B2 */	fmuls f1, f31, f30
-/* 802461F4 00243134  48 00 F5 DD */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802461F4 00243134  48 00 F5 DD */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802461F8 00243138  48 00 00 50 */	b lbl_80246248
 lbl_802461FC:
 /* 802461FC 0024313C  88 1E 00 22 */	lbz r0, 0x22(r30)
@@ -767,7 +767,7 @@ lbl_80246248:
 /* 80246270 002431B0  80 63 00 04 */	lwz r3, 4(r3)
 /* 80246274 002431B4  48 0B 1D 59 */	bl animationTransform__7J2DPaneFv
 /* 80246278 002431B8  80 7E 00 04 */	lwz r3, 4(r30)
-/* 8024627C 002431BC  48 0B 34 15 */	bl J2DScreen_NS_animation
+/* 8024627C 002431BC  48 0B 34 15 */	bl animation__9J2DScreenFv
 lbl_80246280:
 /* 80246280 002431C0  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 80246284 002431C4  80 63 00 04 */	lwz r3, 4(r3)
@@ -793,13 +793,13 @@ lbl_80246280:
 /* 802462D4 00243214  C0 22 B2 D8 */	lfs f1, lbl_80454CD8-_SDA2_BASE_(r2)
 /* 802462D8 00243218  FC 40 08 90 */	fmr f2, f1
 /* 802462DC 0024321C  7F E4 FB 78 */	mr r4, r31
-/* 802462E0 00243220  48 0B 2B F5 */	bl J2DScreen_NS_draw
+/* 802462E0 00243220  48 0B 2B F5 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 802462E4 00243224  C0 02 B2 DC */	lfs f0, lbl_80454CDC-_SDA2_BASE_(r2)
 /* 802462E8 00243228  FC 00 F0 00 */	fcmpu cr0, f0, f30
 /* 802462EC 0024322C  41 82 00 10 */	beq lbl_802462FC
 /* 802462F0 00243230  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 802462F4 00243234  FC 20 F8 90 */	fmr f1, f31
-/* 802462F8 00243238  48 00 F4 D9 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802462F8 00243238  48 00 F4 D9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_802462FC:
 /* 802462FC 0024323C  D3 DE 00 1C */	stfs f30, 0x1c(r30)
 /* 80246300 00243240  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
@@ -820,8 +820,8 @@ lbl_802462FC:
 /* 8024633C 0024327C  7C 08 03 A6 */	mtlr r0
 /* 80246340 00243280  38 21 00 70 */	addi r1, r1, 0x70
 /* 80246344 00243284  4E 80 00 20 */	blr 
-.global dMsgScrnLight_HIO_c_NS_dtor
-dMsgScrnLight_HIO_c_NS_dtor:
+.global __dt__19dMsgScrnLight_HIO_cFv
+__dt__19dMsgScrnLight_HIO_cFv:
 /* 80246348 00243288  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024634C 0024328C  7C 08 02 A6 */	mflr r0
 /* 80246350 00243290  90 01 00 14 */	stw r0, 0x14(r1)
@@ -847,10 +847,10 @@ lbl_80246378:
 /* 8024639C 002432DC  3C 60 80 43 */	lis r3, lbl_804306D4@ha
 /* 802463A0 002432E0  38 63 06 D4 */	addi r3, r3, lbl_804306D4@l
 /* 802463A4 002432E4  4B FF F3 B9 */	bl dMsgScrnLight_HIO_c
-.global dMsgScrnLight_HIO_c_NS_dtor
-/* 802463A8 002432E8  3C 80 80 24 */	lis r4, dMsgScrnLight_HIO_c_NS_dtor@ha
-.global dMsgScrnLight_HIO_c_NS_dtor
-/* 802463AC 002432EC  38 84 63 48 */	addi r4, r4, dMsgScrnLight_HIO_c_NS_dtor@l
+.global __dt__19dMsgScrnLight_HIO_cFv
+/* 802463A8 002432E8  3C 80 80 24 */	lis r4, __dt__19dMsgScrnLight_HIO_cFv@ha
+.global __dt__19dMsgScrnLight_HIO_cFv
+/* 802463AC 002432EC  38 84 63 48 */	addi r4, r4, __dt__19dMsgScrnLight_HIO_cFv@l
 /* 802463B0 002432F0  3C A0 80 43 */	lis r5, lbl_804306C8@ha
 /* 802463B4 002432F4  38 A5 06 C8 */	addi r5, r5, lbl_804306C8@l
 /* 802463B8 002432F8  48 11 B8 6D */	bl func_80361C24

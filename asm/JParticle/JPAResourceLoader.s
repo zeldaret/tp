@@ -14,7 +14,7 @@ JPAResourceLoader:
 /* 8027D8B8 0027A7F8  3C 06 CD D3 */	addis r0, r6, 0xcdd3
 /* 8027D8BC 0027A7FC  28 00 31 30 */	cmplwi r0, 0x3130
 /* 8027D8C0 0027A800  40 82 00 08 */	bne lbl_8027D8C8
-/* 8027D8C4 0027A804  48 00 00 1D */	bl JPAResourceLoader_NS_load_jpc
+/* 8027D8C4 0027A804  48 00 00 1D */	bl load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager
 lbl_8027D8C8:
 /* 8027D8C8 0027A808  7F E3 FB 78 */	mr r3, r31
 /* 8027D8CC 0027A80C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -23,8 +23,8 @@ lbl_8027D8C8:
 /* 8027D8D8 0027A818  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D8DC 0027A81C  4E 80 00 20 */	blr 
 
-.global JPAResourceLoader_NS_load_jpc
-JPAResourceLoader_NS_load_jpc:
+.global load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager
+load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager:
 /* 8027D8E0 0027A820  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8027D8E4 0027A824  7C 08 02 A6 */	mflr r0
 /* 8027D8E8 0027A828  90 01 00 44 */	stw r0, 0x44(r1)
@@ -258,10 +258,10 @@ lbl_8027DC04:
 /* 8027DC0C 0027AB4C  41 80 FD F8 */	blt lbl_8027DA04
 /* 8027DC10 0027AB50  7F E3 FB 78 */	mr r3, r31
 /* 8027DC14 0027AB54  7F C4 F3 78 */	mr r4, r30
-/* 8027DC18 0027AB58  4B FF 64 69 */	bl JPAResource_NS_init
+/* 8027DC18 0027AB58  4B FF 64 69 */	bl init__11JPAResourceFP7JKRHeap
 /* 8027DC1C 0027AB5C  7F A3 EB 78 */	mr r3, r29
 /* 8027DC20 0027AB60  7F E4 FB 78 */	mr r4, r31
-/* 8027DC24 0027AB64  4B FF 63 69 */	bl JPAResourceManager_NS_registRes
+/* 8027DC24 0027AB64  4B FF 63 69 */	bl registRes__18JPAResourceManagerFP11JPAResource
 /* 8027DC28 0027AB68  3A B5 00 01 */	addi r21, r21, 1
 lbl_8027DC2C:
 /* 8027DC2C 0027AB6C  7C 15 90 00 */	cmpw r21, r18
@@ -284,7 +284,7 @@ lbl_8027DC44:
 /* 8027DC6C 0027ABAC  7C 64 1B 78 */	mr r4, r3
 lbl_8027DC70:
 /* 8027DC70 0027ABB0  7F A3 EB 78 */	mr r3, r29
-/* 8027DC74 0027ABB4  4B FF 63 39 */	bl JPAResourceManager_NS_registTex
+/* 8027DC74 0027ABB4  4B FF 63 39 */	bl registTex__18JPAResourceManagerFP10JPATexture
 /* 8027DC78 0027ABB8  7E 94 B2 14 */	add r20, r20, r22
 /* 8027DC7C 0027ABBC  3A B5 00 01 */	addi r21, r21, 1
 lbl_8027DC80:

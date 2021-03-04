@@ -11,7 +11,7 @@
 /* 800E5EF0 000E2E30  48 00 00 CC */ b lbl_800E5FBC
 lbl_800E5EF4:
 /* 800E5EF4 000E2E34  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800E5EF8 000E2E38  48 07 85 D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E5EF8 000E2E38  48 07 85 D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E5EFC 000E2E3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E5F00 000E2E40  41 82 00 58 */ beq lbl_800E5F58
 /* 800E5F04 000E2E44  80 1F 31 98 */ lwz r0, 0x3198(r31)

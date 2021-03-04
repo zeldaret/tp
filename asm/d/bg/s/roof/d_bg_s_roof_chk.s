@@ -25,10 +25,10 @@ dBgS_RoofChk:
 /* 80079038 00075F78  38 03 00 24 */	addi r0, r3, 0x24
 /* 8007903C 00075F7C  90 1F 00 34 */	stw r0, 0x34(r31)
 /* 80079040 00075F80  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80079044 00075F84  4B FF E5 1D */	bl dBgS_Chk_NS_GetPolyPassChkInfo
+/* 80079044 00075F84  4B FF E5 1D */	bl GetPolyPassChkInfo__8dBgS_ChkFv
 /* 80079048 00075F88  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 8007904C 00075F8C  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80079050 00075F90  4B FF E5 15 */	bl dBgS_Chk_NS_GetGrpPassChkInfo
+/* 80079050 00075F90  4B FF E5 15 */	bl GetGrpPassChkInfo__8dBgS_ChkFv
 /* 80079054 00075F94  90 7F 00 14 */	stw r3, 0x14(r31)
 /* 80079058 00075F98  C0 02 8C F0 */	lfs f0, lbl_804526F0-_SDA2_BASE_(r2)
 /* 8007905C 00075F9C  D0 1F 00 3C */	stfs f0, 0x3c(r31)
@@ -45,8 +45,8 @@ dBgS_RoofChk:
 /* 80079088 00075FC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8007908C 00075FCC  4E 80 00 20 */	blr 
 
-.global dBgS_RoofChk_NS_dtor
-dBgS_RoofChk_NS_dtor:
+.global __dt__12dBgS_RoofChkFv
+__dt__12dBgS_RoofChkFv:
 /* 80079090 00075FD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80079094 00075FD4  7C 08 02 A6 */	mflr r0
 /* 80079098 00075FD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -66,7 +66,7 @@ dBgS_RoofChk_NS_dtor:
 /* 800790D0 00076010  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 800790D4 00076014  38 7E 00 24 */	addi r3, r30, 0x24
 /* 800790D8 00076018  38 80 00 00 */	li r4, 0
-/* 800790DC 0007601C  4B FF E4 0D */	bl dBgS_Chk_NS_dtor
+/* 800790DC 0007601C  4B FF E4 0D */	bl __dt__8dBgS_ChkFv
 /* 800790E0 00076020  38 7E 00 10 */	addi r3, r30, 0x10
 /* 800790E4 00076024  38 80 00 00 */	li r4, 0
 /* 800790E8 00076028  48 1E EA 89 */	bl __dt__8cBgS_ChkFv
@@ -86,8 +86,8 @@ lbl_80079108:
 /* 8007911C 0007605C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80079120 00076060  4E 80 00 20 */	blr 
 
-.global dBgS_RoofChk_NS_Init
-dBgS_RoofChk_NS_Init:
+.global Init__12dBgS_RoofChkFv
+Init__12dBgS_RoofChkFv:
 /* 80079124 00076064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80079128 00076068  7C 08 02 A6 */	mflr r0
 /* 8007912C 0007606C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -99,9 +99,9 @@ dBgS_RoofChk_NS_Init:
 /* 80079144 00076084  38 21 00 10 */	addi r1, r1, 0x10
 /* 80079148 00076088  4E 80 00 20 */	blr 
 /* 8007914C 0007608C  38 63 FF F0 */	addi r3, r3, -16
-/* 80079150 00076090  4B FF FF 40 */	b dBgS_RoofChk_NS_dtor
+/* 80079150 00076090  4B FF FF 40 */	b __dt__12dBgS_RoofChkFv
 /* 80079154 00076094  38 63 FF CC */	addi r3, r3, -52
-/* 80079158 00076098  4B FF FF 38 */	b dBgS_RoofChk_NS_dtor
+/* 80079158 00076098  4B FF FF 38 */	b __dt__12dBgS_RoofChkFv
 /* 8007915C 0007609C  38 63 FF DC */	addi r3, r3, -36
-/* 80079160 000760A0  4B FF FF 30 */	b dBgS_RoofChk_NS_dtor
+/* 80079160 000760A0  4B FF FF 30 */	b __dt__12dBgS_RoofChkFv
 

@@ -7,7 +7,7 @@
 /* 8010B65C 0010859C  7C 9F 23 79 */ or. r31, r4, r4
 /* 8010B660 001085A0  41 82 00 98 */ beq lbl_8010B6F8
 /* 8010B664 001085A4  38 7E 28 54 */ addi r3, r30, 0x2854
-/* 8010B668 001085A8  48 05 36 51 */ bl daPy_actorKeep_c_NS_setData
+/* 8010B668 001085A8  48 05 36 51 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010B66C 001085AC  38 61 00 08 */ addi r3, r1, 8
 /* 8010B670 001085B0  38 9E 38 04 */ addi r4, r30, 0x3804
 /* 8010B674 001085B4  38 BF 04 D0 */ addi r5, r31, 0x4d0
@@ -45,7 +45,7 @@
 /* 8010B6F4 00108634  48 00 00 14 */ b lbl_8010B708
 lbl_8010B6F8:
 /* 8010B6F8 00108638  38 7E 28 54 */ addi r3, r30, 0x2854
-/* 8010B6FC 0010863C  48 05 36 01 */ bl daPy_actorKeep_c_NS_clearData
+/* 8010B6FC 0010863C  48 05 36 01 */ bl clearData__16daPy_actorKeep_cFv
 /* 8010B700 00108640  38 00 00 00 */ li r0, 0
 /* 8010B704 00108644  B0 1E 30 10 */ sth r0, 0x3010(r30)
 lbl_8010B708:

@@ -46,7 +46,7 @@ lbl_80135B60:
 /* 80135BA0 00132AE0  4B F8 95 F5 */ bl daAlink_c_NS_seStartMapInfo
 lbl_80135BA4:
 /* 80135BA4 00132AE4  7F C3 F3 78 */ mr r3, r30
-/* 80135BA8 00132AE8  48 02 89 25 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80135BA8 00132AE8  48 02 89 25 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80135BAC 00132AEC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80135BB0 00132AF0  41 82 00 C8 */ beq lbl_80135C78
 /* 80135BB4 00132AF4  A8 1F 30 0E */ lha r0, 0x300e(r31)

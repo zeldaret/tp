@@ -25,7 +25,7 @@ lbl_800C33FC:
 /* 800C3410 000C0350  28 00 00 01 */ cmplwi r0, 1
 /* 800C3414 000C0354  40 82 00 2C */ bne lbl_800C3440
 /* 800C3418 000C0358  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 800C341C 000C035C  48 09 B0 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C341C 000C035C  48 09 B0 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C3420 000C0360  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C3424 000C0364  40 82 00 1C */ bne lbl_800C3440
 /* 800C3428 000C0368  7F C3 F3 78 */ mr r3, r30

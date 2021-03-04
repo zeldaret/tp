@@ -14,7 +14,7 @@ lbl_80027014:
 /* 80027018 00023F58  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002701C 00023F5C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 80027020 00023F60  38 84 00 14 */ addi r4, r4, 0x14
-/* 80027024 00023F64  48 04 E0 DD */ bl dBgS_NS_GetRoomId
+/* 80027024 00023F64  48 04 E0 DD */ bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 80027028 00023F68  7C 64 1B 78 */ mr r4, r3
 lbl_8002702C:
 /* 8002702C 00023F6C  2C 04 00 00 */ cmpwi r4, 0

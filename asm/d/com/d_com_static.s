@@ -3,8 +3,8 @@
 .section .text, "ax" # 80030f14
 
 
-.global daSus_c_NS_data_c_NS_set
-daSus_c_NS_data_c_NS_set:
+.global set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc
+set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc:
 /* 80030F14 0002DE54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80030F18 0002DE58  7C 08 02 A6 */	mflr r0
 /* 80030F1C 0002DE5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -35,7 +35,7 @@ daSus_c_NS_data_c_NS_set:
 /* 80030F80 0002DEC0  30 04 FF FF */	addic r0, r4, -1
 /* 80030F84 0002DEC4  7C 00 21 10 */	subfe r0, r0, r4
 /* 80030F88 0002DEC8  98 03 00 01 */	stb r0, 1(r3)
-/* 80030F8C 0002DECC  48 00 00 41 */	bl daSus_c_NS_data_c_NS_isSwitch
+/* 80030F8C 0002DECC  48 00 00 41 */	bl isSwitch__Q27daSus_c6data_cFv
 /* 80030F90 0002DED0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80030F94 0002DED4  7C 00 00 34 */	cntlzw r0, r0
 /* 80030F98 0002DED8  54 00 DE 3E */	rlwinm r0, r0, 0x1b, 0x18, 0x1f
@@ -48,15 +48,15 @@ daSus_c_NS_data_c_NS_set:
 /* 80030FB4 0002DEF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80030FB8 0002DEF8  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_data_c_NS_reset
-daSus_c_NS_data_c_NS_reset:
+.global reset__Q27daSus_c6data_cFv
+reset__Q27daSus_c6data_cFv:
 /* 80030FBC 0002DEFC  38 00 FF FF */	li r0, -1
 /* 80030FC0 0002DF00  98 03 00 00 */	stb r0, 0(r3)
 /* 80030FC4 0002DF04  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 80030FC8 0002DF08  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_data_c_NS_isSwitch
-daSus_c_NS_data_c_NS_isSwitch:
+.global isSwitch__Q27daSus_c6data_cFv
+isSwitch__Q27daSus_c6data_cFv:
 /* 80030FCC 0002DF0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80030FD0 0002DF10  7C 08 02 A6 */	mflr r0
 /* 80030FD4 0002DF14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -87,8 +87,8 @@ lbl_80031028:
 /* 80031030 0002DF70  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031034 0002DF74  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_data_c_NS_check
-daSus_c_NS_data_c_NS_check:
+.global check__Q27daSus_c6data_cFRC4cXyz
+check__Q27daSus_c6data_cFRC4cXyz:
 /* 80031038 0002DF78  88 03 00 03 */	lbz r0, 3(r3)
 /* 8003103C 0002DF7C  28 00 00 00 */	cmplwi r0, 0
 /* 80031040 0002DF80  41 82 00 0C */	beq lbl_8003104C
@@ -128,8 +128,8 @@ lbl_800310C0:
 /* 800310C0 0002E000  38 60 00 00 */	li r3, 0
 /* 800310C4 0002E004  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_data_c_NS_check_X1_
-daSus_c_NS_data_c_NS_check_X1_:
+.global check__Q27daSus_c6data_cFRC4cXyz_X1_
+check__Q27daSus_c6data_cFRC4cXyz_X1_:
 /* 800310C8 0002E008  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800310CC 0002E00C  7C 08 02 A6 */	mflr r0
 /* 800310D0 0002E010  90 01 00 24 */	stw r0, 0x24(r1)
@@ -145,7 +145,7 @@ daSus_c_NS_data_c_NS_check_X1_:
 lbl_800310F8:
 /* 800310F8 0002E038  3B E0 00 80 */	li r31, 0x80
 /* 800310FC 0002E03C  38 9E 04 A8 */	addi r4, r30, 0x4a8
-/* 80031100 0002E040  4B FF FF 39 */	bl daSus_c_NS_data_c_NS_check
+/* 80031100 0002E040  4B FF FF 39 */	bl check__Q27daSus_c6data_cFRC4cXyz
 /* 80031104 0002E044  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80031108 0002E048  41 82 00 0C */	beq lbl_80031114
 /* 8003110C 0002E04C  63 E0 00 01 */	ori r0, r31, 1
@@ -153,7 +153,7 @@ lbl_800310F8:
 lbl_80031114:
 /* 80031114 0002E054  7F A3 EB 78 */	mr r3, r29
 /* 80031118 0002E058  38 9E 04 D0 */	addi r4, r30, 0x4d0
-/* 8003111C 0002E05C  4B FF FF 1D */	bl daSus_c_NS_data_c_NS_check
+/* 8003111C 0002E05C  4B FF FF 1D */	bl check__Q27daSus_c6data_cFRC4cXyz
 /* 80031120 0002E060  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80031124 0002E064  41 82 00 10 */	beq lbl_80031134
 /* 80031128 0002E068  63 E0 00 02 */	ori r0, r31, 2
@@ -169,14 +169,14 @@ lbl_80031138:
 /* 80031148 0002E088  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003114C 0002E08C  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_data_c_NS_execute
-daSus_c_NS_data_c_NS_execute:
+.global execute__Q27daSus_c6data_cFv
+execute__Q27daSus_c6data_cFv:
 /* 80031150 0002E090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031154 0002E094  7C 08 02 A6 */	mflr r0
 /* 80031158 0002E098  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003115C 0002E09C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80031160 0002E0A0  7C 7F 1B 78 */	mr r31, r3
-/* 80031164 0002E0A4  4B FF FE 69 */	bl daSus_c_NS_data_c_NS_isSwitch
+/* 80031164 0002E0A4  4B FF FE 69 */	bl isSwitch__Q27daSus_c6data_cFv
 /* 80031168 0002E0A8  54 64 06 3E */	clrlwi r4, r3, 0x18
 /* 8003116C 0002E0AC  88 1F 00 03 */	lbz r0, 3(r31)
 /* 80031170 0002E0B0  7C 04 00 40 */	cmplw r4, r0
@@ -189,8 +189,8 @@ lbl_8003117C:
 /* 80031188 0002E0C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003118C 0002E0CC  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_room_c_NS_add
-daSus_c_NS_room_c_NS_add:
+.global add__Q27daSus_c6room_cFPQ27daSus_c6data_c
+add__Q27daSus_c6room_cFPQ27daSus_c6data_c:
 /* 80031190 0002E0D0  80 A3 00 00 */	lwz r5, 0(r3)
 /* 80031194 0002E0D4  28 05 00 00 */	cmplwi r5, 0
 /* 80031198 0002E0D8  40 82 00 14 */	bne lbl_800311AC
@@ -230,7 +230,7 @@ lbl_800311EC:
 /* 8003120C 0002E14C  7C 7F 1B 78 */	mr r31, r3
 /* 80031210 0002E150  48 00 00 0C */	b lbl_8003121C
 lbl_80031214:
-/* 80031214 0002E154  4B FF FD A9 */	bl daSus_c_NS_data_c_NS_reset
+/* 80031214 0002E154  4B FF FD A9 */	bl reset__Q27daSus_c6data_cFv
 /* 80031218 0002E158  90 7F 00 00 */	stw r3, 0(r31)
 lbl_8003121C:
 /* 8003121C 0002E15C  80 7F 00 00 */	lwz r3, 0(r31)
@@ -273,14 +273,14 @@ lbl_80031290:
 /* 800312A8 0002E1E8  7D 66 5B 78 */	mr r6, r11
 /* 800312AC 0002E1EC  7D 47 53 78 */	mr r7, r10
 /* 800312B0 0002E1F0  7C 08 03 78 */	mr r8, r0
-/* 800312B4 0002E1F4  4B FF FC 61 */	bl daSus_c_NS_data_c_NS_set
+/* 800312B4 0002E1F4  4B FF FC 61 */	bl set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc
 /* 800312B8 0002E1F8  7F E0 07 74 */	extsb r0, r31
 /* 800312BC 0002E1FC  54 04 10 3A */	slwi r4, r0, 2
 /* 800312C0 0002E200  3C 60 80 42 */	lis r3, lbl_8042447C@ha
 /* 800312C4 0002E204  38 03 44 7C */	addi r0, r3, lbl_8042447C@l
 /* 800312C8 0002E208  7C 60 22 14 */	add r3, r0, r4
 /* 800312CC 0002E20C  7F C4 F3 78 */	mr r4, r30
-/* 800312D0 0002E210  4B FF FE C1 */	bl daSus_c_NS_room_c_NS_add
+/* 800312D0 0002E210  4B FF FE C1 */	bl add__Q27daSus_c6room_cFPQ27daSus_c6data_c
 /* 800312D4 0002E214  7F A3 07 34 */	extsh r3, r29
 /* 800312D8 0002E218  38 63 00 01 */	addi r3, r3, 1
 /* 800312DC 0002E21C  54 60 D8 08 */	slwi r0, r3, 0x1b
@@ -312,14 +312,14 @@ lbl_80031320:
 /* 80031338 0002E278  7D 66 5B 78 */	mr r6, r11
 /* 8003133C 0002E27C  7D 47 53 78 */	mr r7, r10
 /* 80031340 0002E280  7C 08 03 78 */	mr r8, r0
-/* 80031344 0002E284  4B FF FB D1 */	bl daSus_c_NS_data_c_NS_set
+/* 80031344 0002E284  4B FF FB D1 */	bl set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc
 /* 80031348 0002E288  7F E0 07 74 */	extsb r0, r31
 /* 8003134C 0002E28C  54 04 10 3A */	slwi r4, r0, 2
 /* 80031350 0002E290  3C 60 80 42 */	lis r3, lbl_8042447C@ha
 /* 80031354 0002E294  38 03 44 7C */	addi r0, r3, lbl_8042447C@l
 /* 80031358 0002E298  7C 60 22 14 */	add r3, r0, r4
 /* 8003135C 0002E29C  7F C4 F3 78 */	mr r4, r30
-/* 80031360 0002E2A0  4B FF FE 31 */	bl daSus_c_NS_room_c_NS_add
+/* 80031360 0002E2A0  4B FF FE 31 */	bl add__Q27daSus_c6room_cFPQ27daSus_c6data_c
 /* 80031364 0002E2A4  7F A3 07 34 */	extsh r3, r29
 /* 80031368 0002E2A8  38 63 00 01 */	addi r3, r3, 1
 /* 8003136C 0002E2AC  54 60 D8 08 */	slwi r0, r3, 0x1b
@@ -346,8 +346,8 @@ lbl_800313A4:
 /* 800313B4 0002E2F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 800313B8 0002E2F8  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_reset
-daSus_c_NS_reset:
+.global reset__7daSus_cFv
+reset__7daSus_cFv:
 /* 800313BC 0002E2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800313C0 0002E300  7C 08 02 A6 */	mflr r0
 /* 800313C4 0002E304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -359,7 +359,7 @@ daSus_c_NS_reset:
 /* 800313DC 0002E31C  3B C0 00 00 */	li r30, 0
 lbl_800313E0:
 /* 800313E0 0002E320  7F E3 FB 78 */	mr r3, r31
-/* 800313E4 0002E324  4B FF FB D9 */	bl daSus_c_NS_data_c_NS_reset
+/* 800313E4 0002E324  4B FF FB D9 */	bl reset__Q27daSus_c6data_cFv
 /* 800313E8 0002E328  3B DE 00 01 */	addi r30, r30, 1
 /* 800313EC 0002E32C  2C 1E 00 20 */	cmpwi r30, 0x20
 /* 800313F0 0002E330  3B FF 00 24 */	addi r31, r31, 0x24
@@ -381,8 +381,8 @@ lbl_80031410:
 /* 8003142C 0002E36C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031430 0002E370  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_check
-daSus_c_NS_check:
+.global check__7daSus_cFScRC4cXyz
+check__7daSus_cFScRC4cXyz:
 /* 80031434 0002E374  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80031438 0002E378  7C 08 02 A6 */	mflr r0
 /* 8003143C 0002E37C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -407,7 +407,7 @@ lbl_80031464:
 /* 80031484 0002E3C4  41 82 00 20 */	beq lbl_800314A4
 /* 80031488 0002E3C8  7F C3 F3 78 */	mr r3, r30
 /* 8003148C 0002E3CC  7F 84 E3 78 */	mr r4, r28
-/* 80031490 0002E3D0  4B FF FB A9 */	bl daSus_c_NS_data_c_NS_check
+/* 80031490 0002E3D0  4B FF FB A9 */	bl check__Q27daSus_c6data_cFRC4cXyz
 /* 80031494 0002E3D4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80031498 0002E3D8  41 82 00 0C */	beq lbl_800314A4
 /* 8003149C 0002E3DC  38 60 00 01 */	li r3, 1
@@ -428,8 +428,8 @@ lbl_800314BC:
 /* 800314CC 0002E40C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800314D0 0002E410  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_check_X1_
-daSus_c_NS_check_X1_:
+.global check__7daSus_cFScRC4cXyz_X1_
+check__7daSus_cFScRC4cXyz_X1_:
 /* 800314D4 0002E414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800314D8 0002E418  7C 08 02 A6 */	mflr r0
 /* 800314DC 0002E41C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -457,7 +457,7 @@ lbl_8003151C:
 /* 80031530 0002E470  40 82 00 14 */	bne lbl_80031544
 /* 80031534 0002E474  7F C3 F3 78 */	mr r3, r30
 /* 80031538 0002E478  7F E4 FB 78 */	mr r4, r31
-/* 8003153C 0002E47C  4B FF FB 8D */	bl daSus_c_NS_data_c_NS_check_X1_
+/* 8003153C 0002E47C  4B FF FB 8D */	bl check__Q27daSus_c6data_cFRC4cXyz_X1_
 /* 80031540 0002E480  7F BD 1B 78 */	or r29, r29, r3
 lbl_80031544:
 /* 80031544 0002E484  3B DE 00 24 */	addi r30, r30, 0x24
@@ -488,8 +488,8 @@ lbl_8003158C:
 /* 8003159C 0002E4DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 800315A0 0002E4E0  4E 80 00 20 */	blr 
 
-.global daSus_c_NS_execute
-daSus_c_NS_execute:
+.global execute__7daSus_cFv
+execute__7daSus_cFv:
 /* 800315A4 0002E4E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800315A8 0002E4E8  7C 08 02 A6 */	mflr r0
 /* 800315AC 0002E4EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -505,7 +505,7 @@ lbl_800315CC:
 /* 800315D0 0002E510  7C 00 07 75 */	extsb. r0, r0
 /* 800315D4 0002E514  41 80 00 0C */	blt lbl_800315E0
 /* 800315D8 0002E518  7F E3 FB 78 */	mr r3, r31
-/* 800315DC 0002E51C  4B FF FB 75 */	bl daSus_c_NS_data_c_NS_execute
+/* 800315DC 0002E51C  4B FF FB 75 */	bl execute__Q27daSus_c6data_cFv
 lbl_800315E0:
 /* 800315E0 0002E520  3B FF 00 24 */	addi r31, r31, 0x24
 /* 800315E4 0002E524  3B DE 00 01 */	addi r30, r30, 1
@@ -702,8 +702,8 @@ daNpcKakashi_getSuccessCount:
 /* 800318AC 0002E7EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800318B0 0002E7F0  4E 80 00 20 */	blr 
 
-.global daTagStream_c_NS_checkArea
-daTagStream_c_NS_checkArea:
+.global checkArea__13daTagStream_cFPC4cXyz
+checkArea__13daTagStream_cFPC4cXyz:
 /* 800318B4 0002E7F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800318B8 0002E7F8  7C 08 02 A6 */	mflr r0
 /* 800318BC 0002E7FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -745,8 +745,8 @@ lbl_80031938:
 /* 80031944 0002E884  38 21 00 20 */	addi r1, r1, 0x20
 /* 80031948 0002E888  4E 80 00 20 */	blr 
 
-.global daMirror_c_NS_entry
-daMirror_c_NS_entry:
+.global entry__10daMirror_cFP8J3DModel
+entry__10daMirror_cFP8J3DModel:
 /* 8003194C 0002E88C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031950 0002E890  7C 08 02 A6 */	mflr r0
 /* 80031954 0002E894  90 01 00 14 */	stw r0, 0x14(r1)
@@ -851,8 +851,8 @@ lbl_80031A68:
 /* 80031AC8 0002EA08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031ACC 0002EA0C  4E 80 00 20 */	blr 
 
-.global daMP_c_NS_daMP_c_THPPlayerPlay
-daMP_c_NS_daMP_c_THPPlayerPlay:
+.global daMP_c_THPPlayerPlay__6daMP_cFv
+daMP_c_THPPlayerPlay__6daMP_cFv:
 /* 80031AD0 0002EA10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031AD4 0002EA14  7C 08 02 A6 */	mflr r0
 /* 80031AD8 0002EA18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -888,8 +888,8 @@ lbl_80031B14:
 /* 80031B48 0002EA88  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031B4C 0002EA8C  4E 80 00 20 */	blr 
 
-.global daTagMagne_c_NS_checkMagnetCode
-daTagMagne_c_NS_checkMagnetCode:
+.global checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo
+checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo:
 /* 80031B50 0002EA90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031B54 0002EA94  7C 08 02 A6 */	mflr r0
 /* 80031B58 0002EA98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -904,26 +904,26 @@ lbl_80031B78:
 /* 80031B78 0002EAB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80031B7C 0002EABC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80031B80 0002EAC0  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80031B84 0002EAC4  48 04 31 89 */	bl dBgS_NS_GetMagnetCode
+/* 80031B84 0002EAC4  48 04 31 89 */	bl GetMagnetCode__4dBgSFRC13cBgS_PolyInfo
 /* 80031B88 0002EAC8  7C 7F 1B 78 */	mr r31, r3
 /* 80031B8C 0002EACC  2C 1F 00 01 */	cmpwi r31, 1
 /* 80031B90 0002EAD0  40 82 00 14 */	bne lbl_80031BA4
 /* 80031B94 0002EAD4  80 6D 88 3C */	lwz r3, lbl_80450DBC-_SDA_BASE_(r13)
-/* 80031B98 0002EAD8  48 00 00 5D */	bl daTagMagne_c_NS_checkMagneA
+/* 80031B98 0002EAD8  48 00 00 5D */	bl checkMagneA__12daTagMagne_cFv
 /* 80031B9C 0002EADC  2C 03 00 00 */	cmpwi r3, 0
 /* 80031BA0 0002EAE0  40 82 00 34 */	bne lbl_80031BD4
 lbl_80031BA4:
 /* 80031BA4 0002EAE4  2C 1F 00 02 */	cmpwi r31, 2
 /* 80031BA8 0002EAE8  40 82 00 14 */	bne lbl_80031BBC
 /* 80031BAC 0002EAEC  80 6D 88 3C */	lwz r3, lbl_80450DBC-_SDA_BASE_(r13)
-/* 80031BB0 0002EAF0  48 00 00 99 */	bl daTagMagne_c_NS_checkMagneB
+/* 80031BB0 0002EAF0  48 00 00 99 */	bl checkMagneB__12daTagMagne_cFv
 /* 80031BB4 0002EAF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80031BB8 0002EAF8  40 82 00 1C */	bne lbl_80031BD4
 lbl_80031BBC:
 /* 80031BBC 0002EAFC  2C 1F 00 03 */	cmpwi r31, 3
 /* 80031BC0 0002EB00  40 82 00 1C */	bne lbl_80031BDC
 /* 80031BC4 0002EB04  80 6D 88 3C */	lwz r3, lbl_80450DBC-_SDA_BASE_(r13)
-/* 80031BC8 0002EB08  48 00 00 D5 */	bl daTagMagne_c_NS_checkMagneC
+/* 80031BC8 0002EB08  48 00 00 D5 */	bl checkMagneC__12daTagMagne_cFv
 /* 80031BCC 0002EB0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80031BD0 0002EB10  41 82 00 0C */	beq lbl_80031BDC
 lbl_80031BD4:
@@ -938,8 +938,8 @@ lbl_80031BE0:
 /* 80031BEC 0002EB2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031BF0 0002EB30  4E 80 00 20 */	blr 
 
-.global daTagMagne_c_NS_checkMagneA
-daTagMagne_c_NS_checkMagneA:
+.global checkMagneA__12daTagMagne_cFv
+checkMagneA__12daTagMagne_cFv:
 /* 80031BF4 0002EB34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031BF8 0002EB38  7C 08 02 A6 */	mflr r0
 /* 80031BFC 0002EB3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -965,8 +965,8 @@ lbl_80031C38:
 /* 80031C40 0002EB80  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031C44 0002EB84  4E 80 00 20 */	blr 
 
-.global daTagMagne_c_NS_checkMagneB
-daTagMagne_c_NS_checkMagneB:
+.global checkMagneB__12daTagMagne_cFv
+checkMagneB__12daTagMagne_cFv:
 /* 80031C48 0002EB88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031C4C 0002EB8C  7C 08 02 A6 */	mflr r0
 /* 80031C50 0002EB90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -992,8 +992,8 @@ lbl_80031C8C:
 /* 80031C94 0002EBD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031C98 0002EBD8  4E 80 00 20 */	blr 
 
-.global daTagMagne_c_NS_checkMagneC
-daTagMagne_c_NS_checkMagneC:
+.global checkMagneC__12daTagMagne_cFv
+checkMagneC__12daTagMagne_cFv:
 /* 80031C9C 0002EBDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031CA0 0002EBE0  7C 08 02 A6 */	mflr r0
 /* 80031CA4 0002EBE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1019,19 +1019,19 @@ lbl_80031CE0:
 /* 80031CE8 0002EC28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031CEC 0002EC2C  4E 80 00 20 */	blr 
 
-.global daTagMist_c_NS_getPlayerNo
-daTagMist_c_NS_getPlayerNo:
+.global getPlayerNo__11daTagMist_cFv
+getPlayerNo__11daTagMist_cFv:
 /* 80031CF0 0002EC30  88 6D 88 40 */	lbz r3, lbl_80450DC0-_SDA_BASE_(r13)
 /* 80031CF4 0002EC34  4E 80 00 20 */	blr 
 
-.global daObjCarry_c_NS_clrSaveFlag
-daObjCarry_c_NS_clrSaveFlag:
+.global clrSaveFlag__12daObjCarry_cFv
+clrSaveFlag__12daObjCarry_cFv:
 /* 80031CF8 0002EC38  38 00 00 00 */	li r0, 0
 /* 80031CFC 0002EC3C  98 0D 88 41 */	stb r0, lbl_80450DC1-_SDA_BASE_(r13)
 /* 80031D00 0002EC40  4E 80 00 20 */	blr 
 
-.global daObjCarry_c_NS_setSaveFlag
-daObjCarry_c_NS_setSaveFlag:
+.global setSaveFlag__12daObjCarry_cFv
+setSaveFlag__12daObjCarry_cFv:
 /* 80031D04 0002EC44  38 00 00 01 */	li r0, 1
 /* 80031D08 0002EC48  98 0D 88 41 */	stb r0, lbl_80450DC1-_SDA_BASE_(r13)
 /* 80031D0C 0002EC4C  4E 80 00 20 */	blr 
@@ -1087,14 +1087,14 @@ daObjCarry_c_NS_setSaveFlag:
 /* 80031DD4 0002ED14  3C 60 80 42 */	lis r3, lbl_80423FF0@ha
 /* 80031DD8 0002ED18  3B E3 3F F0 */	addi r31, r3, lbl_80423FF0@l
 /* 80031DDC 0002ED1C  38 7F 00 0C */	addi r3, r31, 0xc
-.global daSus_c_NS_data_c
-/* 80031DE0 0002ED20  3C 80 80 03 */	lis r4, daSus_c_NS_data_c@ha
-.global daSus_c_NS_data_c
-/* 80031DE4 0002ED24  38 84 1F 64 */	addi r4, r4, daSus_c_NS_data_c@l
-.global daSus_c_NS_data_c_NS_dtor
-/* 80031DE8 0002ED28  3C A0 80 03 */	lis r5, daSus_c_NS_data_c_NS_dtor@ha
-.global daSus_c_NS_data_c_NS_dtor
-/* 80031DEC 0002ED2C  38 A5 1F 28 */	addi r5, r5, daSus_c_NS_data_c_NS_dtor@l
+.global __ct__Q27daSus_c6data_cFv
+/* 80031DE0 0002ED20  3C 80 80 03 */	lis r4, __ct__Q27daSus_c6data_cFv@ha
+.global __ct__Q27daSus_c6data_cFv
+/* 80031DE4 0002ED24  38 84 1F 64 */	addi r4, r4, __ct__Q27daSus_c6data_cFv@l
+.global __dt__Q27daSus_c6data_cFv
+/* 80031DE8 0002ED28  3C A0 80 03 */	lis r5, __dt__Q27daSus_c6data_cFv@ha
+.global __dt__Q27daSus_c6data_cFv
+/* 80031DEC 0002ED2C  38 A5 1F 28 */	addi r5, r5, __dt__Q27daSus_c6data_cFv@l
 /* 80031DF0 0002ED30  38 C0 00 24 */	li r6, 0x24
 /* 80031DF4 0002ED34  38 E0 00 20 */	li r7, 0x20
 /* 80031DF8 0002ED38  48 32 FF 69 */	bl func_80361D60
@@ -1106,10 +1106,10 @@ daObjCarry_c_NS_setSaveFlag:
 /* 80031E08 0002ED48  38 BF 00 00 */	addi r5, r31, 0
 /* 80031E0C 0002ED4C  48 32 FE 19 */	bl func_80361C24
 /* 80031E10 0002ED50  38 7F 04 8C */	addi r3, r31, 0x48c
-.global daSus_c_NS_room_c
-/* 80031E14 0002ED54  3C 80 80 03 */	lis r4, daSus_c_NS_room_c@ha
-.global daSus_c_NS_room_c
-/* 80031E18 0002ED58  38 84 1E E4 */	addi r4, r4, daSus_c_NS_room_c@l
+.global __ct__Q27daSus_c6room_cFv
+/* 80031E14 0002ED54  3C 80 80 03 */	lis r4, __ct__Q27daSus_c6room_cFv@ha
+.global __ct__Q27daSus_c6room_cFv
+/* 80031E18 0002ED58  38 84 1E E4 */	addi r4, r4, __ct__Q27daSus_c6room_cFv@l
 /* 80031E1C 0002ED5C  38 A0 00 00 */	li r5, 0
 /* 80031E20 0002ED60  38 C0 00 04 */	li r6, 4
 /* 80031E24 0002ED64  38 E0 00 40 */	li r7, 0x40
@@ -1164,8 +1164,8 @@ __arraydtor_4479:
 /* 80031ED8 0002EE18  7C 08 03 A6 */	mtlr r0
 /* 80031EDC 0002EE1C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031EE0 0002EE20  4E 80 00 20 */	blr 
-.global daSus_c_NS_room_c
-daSus_c_NS_room_c:
+.global __ct__Q27daSus_c6room_cFv
+__ct__Q27daSus_c6room_cFv:
 /* 80031EE4 0002EE24  38 00 00 00 */	li r0, 0
 /* 80031EE8 0002EE28  90 03 00 00 */	stw r0, 0(r3)
 /* 80031EEC 0002EE2C  4E 80 00 20 */	blr 
@@ -1176,10 +1176,10 @@ __arraydtor_3839:
 /* 80031EF8 0002EE38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80031EFC 0002EE3C  3C 60 80 42 */	lis r3, lbl_80423FFC@ha
 /* 80031F00 0002EE40  38 63 3F FC */	addi r3, r3, lbl_80423FFC@l
-.global daSus_c_NS_data_c_NS_dtor
-/* 80031F04 0002EE44  3C 80 80 03 */	lis r4, daSus_c_NS_data_c_NS_dtor@ha
-.global daSus_c_NS_data_c_NS_dtor
-/* 80031F08 0002EE48  38 84 1F 28 */	addi r4, r4, daSus_c_NS_data_c_NS_dtor@l
+.global __dt__Q27daSus_c6data_cFv
+/* 80031F04 0002EE44  3C 80 80 03 */	lis r4, __dt__Q27daSus_c6data_cFv@ha
+.global __dt__Q27daSus_c6data_cFv
+/* 80031F08 0002EE48  38 84 1F 28 */	addi r4, r4, __dt__Q27daSus_c6data_cFv@l
 /* 80031F0C 0002EE4C  38 A0 00 24 */	li r5, 0x24
 /* 80031F10 0002EE50  38 C0 00 20 */	li r6, 0x20
 /* 80031F14 0002EE54  48 32 FD D5 */	bl func_80361CE8
@@ -1187,8 +1187,8 @@ __arraydtor_3839:
 /* 80031F1C 0002EE5C  7C 08 03 A6 */	mtlr r0
 /* 80031F20 0002EE60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031F24 0002EE64  4E 80 00 20 */	blr 
-.global daSus_c_NS_data_c_NS_dtor
-daSus_c_NS_data_c_NS_dtor:
+.global __dt__Q27daSus_c6data_cFv
+__dt__Q27daSus_c6data_cFv:
 /* 80031F28 0002EE68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031F2C 0002EE6C  7C 08 02 A6 */	mflr r0
 /* 80031F30 0002EE70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1205,14 +1205,14 @@ lbl_80031F4C:
 /* 80031F58 0002EE98  7C 08 03 A6 */	mtlr r0
 /* 80031F5C 0002EE9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031F60 0002EEA0  4E 80 00 20 */	blr 
-.global daSus_c_NS_data_c
-daSus_c_NS_data_c:
+.global __ct__Q27daSus_c6data_cFv
+__ct__Q27daSus_c6data_cFv:
 /* 80031F64 0002EEA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031F68 0002EEA8  7C 08 02 A6 */	mflr r0
 /* 80031F6C 0002EEAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80031F70 0002EEB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80031F74 0002EEB4  7C 7F 1B 78 */	mr r31, r3
-/* 80031F78 0002EEB8  4B FF F0 45 */	bl daSus_c_NS_data_c_NS_reset
+/* 80031F78 0002EEB8  4B FF F0 45 */	bl reset__Q27daSus_c6data_cFv
 /* 80031F7C 0002EEBC  7F E3 FB 78 */	mr r3, r31
 /* 80031F80 0002EEC0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80031F84 0002EEC4  80 01 00 14 */	lwz r0, 0x14(r1)

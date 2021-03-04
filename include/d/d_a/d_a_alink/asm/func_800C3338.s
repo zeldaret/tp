@@ -10,7 +10,7 @@
 /* 800C335C 000C029C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C3360 000C02A0  40 82 00 3C */ bne lbl_800C339C
 /* 800C3364 000C02A4  7F E3 FB 78 */ mr r3, r31
-/* 800C3368 000C02A8  48 09 B1 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C3368 000C02A8  48 09 B1 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C336C 000C02AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C3370 000C02B0  41 82 00 14 */ beq lbl_800C3384
 /* 800C3374 000C02B4  7F C3 F3 78 */ mr r3, r30

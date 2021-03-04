@@ -32,7 +32,7 @@ lbl_80118728:
 /* 80118748 00115688  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011874C 0011568C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80118750 00115690  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 80118754 00115694  4B F2 AF 99 */ bl dEvt_control_c_NS_setPtI_Id
+/* 80118754 00115694  4B F2 AF 99 */ bl setPtI__14dEvt_control_cFPv_Id
 lbl_80118758:
 /* 80118758 00115698  7F E3 FB 78 */ mr r3, r31
 /* 8011875C 0011569C  4B FA 70 F9 */ bl daAlink_c_NS_keepItemData

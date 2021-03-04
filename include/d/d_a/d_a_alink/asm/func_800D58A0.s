@@ -70,7 +70,7 @@ lbl_800D5968:
 /* 800D59B0 000D28F0  38 E1 00 08 */ addi r7, r1, 8
 /* 800D59B4 000D28F4  39 00 00 00 */ li r8, 0
 /* 800D59B8 000D28F8  39 20 00 00 */ li r9, 0
-/* 800D59BC 000D28FC  4B F7 68 5D */ bl dPa_control_c_NS_setHitMark
+/* 800D59BC 000D28FC  4B F7 68 5D */ bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 lbl_800D59C0:
 /* 800D59C0 000D2900  3B C0 00 20 */ li r30, 0x20
 /* 800D59C4 000D2904  3C 60 80 39 */ lis r3, lbl_8038DD44@ha
@@ -88,7 +88,7 @@ lbl_800D59C0:
 /* 800D59F4 000D2934  38 80 00 04 */ li r4, 4
 /* 800D59F8 000D2938  38 A0 00 1F */ li r5, 0x1f
 /* 800D59FC 000D293C  38 C1 00 28 */ addi r6, r1, 0x28
-/* 800D5A00 000D2940  4B F9 A0 25 */ bl dVibration_c_NS_StartShock
+/* 800D5A00 000D2940  4B F9 A0 25 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800D5A04 000D2944  48 00 00 20 */ b lbl_800D5A24
 lbl_800D5A08:
 /* 800D5A08 000D2948  8B DF 2F A5 */ lbz r30, 0x2fa5(r31)

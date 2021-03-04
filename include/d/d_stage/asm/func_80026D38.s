@@ -10,7 +10,7 @@
 /* 80026D5C 00023C9C  3B E4 61 C0 */ addi r31, r4, g_dComIfG_gameInfo@l
 /* 80026D60 00023CA0  38 9F 4E 20 */ addi r4, r31, 0x4e20
 /* 80026D64 00023CA4  4B FF FD F5 */ bl dStage_dt_c_stageLoader
-/* 80026D68 00023CA8  48 00 A8 3D */ bl daSus_c_NS_execute
+/* 80026D68 00023CA8  48 00 A8 3D */ bl execute__7daSus_cFv
 /* 80026D6C 00023CAC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80026D70 00023CB0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80026D74 00023CB4  88 03 4E 0A */ lbz r0, 0x4e0a(r3)
@@ -42,7 +42,7 @@ lbl_80026D84:
 /* 80026DD8 00023D18  4B FF CF BD */ bl fpcSCtRq_Request
 lbl_80026DDC:
 /* 80026DDC 00023D1C  38 7F 4F F8 */ addi r3, r31, 0x4ff8
-/* 80026DE0 00023D20  48 01 F9 31 */ bl dEvent_manager_c_NS_create
+/* 80026DE0 00023D20  48 01 F9 31 */ bl create__16dEvent_manager_cFv
 /* 80026DE4 00023D24  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80026DE8 00023D28  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80026DEC 00023D2C  7C 08 03 A6 */ mtlr r0

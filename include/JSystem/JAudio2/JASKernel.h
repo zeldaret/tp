@@ -2,7 +2,7 @@
 #define JASKERNEL_H_
 
 extern "C" {
-void JASKernel_NS_getAramHeap(void);
+void getAramHeap__9JASKernelFv(void);
 }
 
 #endif  // JASKERNEL_H_

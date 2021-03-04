@@ -34,7 +34,7 @@
 /* 80115190 001120D0  54 00 00 3C */ rlwinm r0, r0, 0, 0, 0x1e
 /* 80115194 001120D4  90 1E 0F B8 */ stw r0, 0xfb8(r30)
 /* 80115198 001120D8  38 7E 0F B8 */ addi r3, r30, 0xfb8
-/* 8011519C 001120DC  4B F6 F1 7D */ bl dCcD_GObjInf_NS_ResetAtHit
+/* 8011519C 001120DC  4B F6 F1 7D */ bl ResetAtHit__12dCcD_GObjInfFv
 /* 801151A0 001120E0  38 00 00 02 */ li r0, 2
 /* 801151A4 001120E4  98 1E 0F CC */ stb r0, 0xfcc(r30)
 /* 801151A8 001120E8  38 00 00 0A */ li r0, 0xa

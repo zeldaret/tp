@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e9c90
 
 
-.global J2DTexMtx_NS_load
-J2DTexMtx_NS_load:
+.global load__9J2DTexMtxFUl
+load__9J2DTexMtxFUl:
 /* 802E9C90 002E6BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E9C94 002E6BD4  7C 08 02 A6 */	mflr r0
 /* 802E9C98 002E6BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -19,8 +19,8 @@ J2DTexMtx_NS_load:
 /* 802E9CBC 002E6BFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E9CC0 002E6C00  4E 80 00 20 */	blr 
 
-.global J2DTexMtx_NS_calc
-J2DTexMtx_NS_calc:
+.global calc__9J2DTexMtxFv
+calc__9J2DTexMtxFv:
 /* 802E9CC4 002E6C04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E9CC8 002E6C08  7C 08 02 A6 */	mflr r0
 /* 802E9CCC 002E6C0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -36,22 +36,22 @@ J2DTexMtx_NS_calc:
 /* 802E9CF4 002E6C34  38 83 00 10 */	addi r4, r3, 0x10
 /* 802E9CF8 002E6C38  38 A1 00 08 */	addi r5, r1, 8
 /* 802E9CFC 002E6C3C  38 C3 00 24 */	addi r6, r3, 0x24
-/* 802E9D00 002E6C40  48 00 00 2D */	bl J2DTexMtx_NS_getTextureMtx
+/* 802E9D00 002E6C40  48 00 00 2D */	bl getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
 /* 802E9D04 002E6C44  48 00 00 18 */	b lbl_802E9D1C
 lbl_802E9D08:
 /* 802E9D08 002E6C48  28 00 00 01 */	cmplwi r0, 1
 /* 802E9D0C 002E6C4C  40 82 00 10 */	bne lbl_802E9D1C
 /* 802E9D10 002E6C50  38 83 00 10 */	addi r4, r3, 0x10
 /* 802E9D14 002E6C54  38 A3 00 24 */	addi r5, r3, 0x24
-/* 802E9D18 002E6C58  48 00 01 A5 */	bl J2DTexMtx_NS_getTextureMtxMaya
+/* 802E9D18 002E6C58  48 00 01 A5 */	bl getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya
 lbl_802E9D1C:
 /* 802E9D1C 002E6C5C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802E9D20 002E6C60  7C 08 03 A6 */	mtlr r0
 /* 802E9D24 002E6C64  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E9D28 002E6C68  4E 80 00 20 */	blr 
 
-.global J2DTexMtx_NS_getTextureMtx
-J2DTexMtx_NS_getTextureMtx:
+.global getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
+getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f:
 /* 802E9D2C 002E6C6C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802E9D30 002E6C70  7C 08 02 A6 */	mflr r0
 /* 802E9D34 002E6C74  90 01 00 44 */	stw r0, 0x44(r1)
@@ -153,8 +153,8 @@ J2DTexMtx_NS_getTextureMtx:
 /* 802E9EB4 002E6DF4  38 21 00 40 */	addi r1, r1, 0x40
 /* 802E9EB8 002E6DF8  4E 80 00 20 */	blr 
 
-.global J2DTexMtx_NS_getTextureMtxMaya
-J2DTexMtx_NS_getTextureMtxMaya:
+.global getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya
+getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya:
 /* 802E9EBC 002E6DFC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E9EC0 002E6E00  7C 08 02 A6 */	mflr r0
 /* 802E9EC4 002E6E04  90 01 00 34 */	stw r0, 0x34(r1)
@@ -254,8 +254,8 @@ J2DTexMtx_NS_getTextureMtxMaya:
 /* 802EA03C 002E6F7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802EA040 002E6F80  4E 80 00 20 */	blr 
 
-.global J2DIndTevStage_NS_load
-J2DIndTevStage_NS_load:
+.global load__14J2DIndTevStageFUc
+load__14J2DIndTevStageFUc:
 /* 802EA044 002E6F84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EA048 002E6F88  7C 08 02 A6 */	mflr r0
 /* 802EA04C 002E6F8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -278,8 +278,8 @@ J2DIndTevStage_NS_load:
 /* 802EA090 002E6FD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EA094 002E6FD4  4E 80 00 20 */	blr 
 
-.global J2DIndTexMtx_NS_load
-J2DIndTexMtx_NS_load:
+.global load__12J2DIndTexMtxFUc
+load__12J2DIndTexMtxFUc:
 /* 802EA098 002E6FD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EA09C 002E6FDC  7C 08 02 A6 */	mflr r0
 /* 802EA0A0 002E6FE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -294,8 +294,8 @@ J2DIndTexMtx_NS_load:
 /* 802EA0C4 002E7004  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EA0C8 002E7008  4E 80 00 20 */	blr 
 
-.global J2DIndTexCoordScale_NS_load
-J2DIndTexCoordScale_NS_load:
+.global load__19J2DIndTexCoordScaleFUc
+load__19J2DIndTexCoordScaleFUc:
 /* 802EA0CC 002E700C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EA0D0 002E7010  7C 08 02 A6 */	mflr r0
 /* 802EA0D4 002E7014  90 01 00 14 */	stw r0, 0x14(r1)
@@ -309,8 +309,8 @@ J2DIndTexCoordScale_NS_load:
 /* 802EA0F4 002E7034  38 21 00 10 */	addi r1, r1, 0x10
 /* 802EA0F8 002E7038  4E 80 00 20 */	blr 
 
-.global J2DIndTexOrder_NS_load
-J2DIndTexOrder_NS_load:
+.global load__14J2DIndTexOrderFUc
+load__14J2DIndTexOrderFUc:
 /* 802EA0FC 002E703C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802EA100 002E7040  7C 08 02 A6 */	mflr r0
 /* 802EA104 002E7044  90 01 00 14 */	stw r0, 0x14(r1)

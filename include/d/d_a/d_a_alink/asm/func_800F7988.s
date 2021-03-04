@@ -10,7 +10,7 @@
 /* 800F79AC 000F48EC  38 A0 00 00 */ li r5, 0
 /* 800F79B0 000F48F0  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800F79B4 000F48F4  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800F79B8 000F48F8  4B F4 B7 B5 */ bl dEvt_control_c_NS_compulsory
+/* 800F79B8 000F48F8  4B F4 B7 B5 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800F79BC 000F48FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F79C0 000F4900  40 82 00 0C */ bne lbl_800F79CC
 /* 800F79C4 000F4904  38 60 00 00 */ li r3, 0
@@ -31,7 +31,7 @@ lbl_800F79CC:
 /* 800F79FC 000F493C  88 1F 2F 9C */ lbz r0, 0x2f9c(r31)
 /* 800F7A00 000F4940  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800F7A04 000F4944  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800F7A08 000F4948  48 06 70 19 */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800F7A08 000F4948  48 06 70 19 */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800F7A0C 000F494C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F7A10 000F4950  41 82 00 20 */ beq lbl_800F7A30
 /* 800F7A14 000F4954  38 00 00 00 */ li r0, 0

@@ -15,7 +15,7 @@
 /* 800F5EE0 000F2E20  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5EE4 000F2E24  41 82 00 38 */ beq lbl_800F5F1C
 /* 800F5EE8 000F2E28  A0 7F 2F DE */ lhz r3, 0x2fde(r31)
-/* 800F5EEC 000F2E2C  48 06 8C A5 */ bl daPy_py_c_NS_checkBowItem
+/* 800F5EEC 000F2E2C  48 06 8C A5 */ bl checkBowItem__9daPy_py_cFi
 /* 800F5EF0 000F2E30  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5EF4 000F2E34  41 82 00 28 */ beq lbl_800F5F1C
 /* 800F5EF8 000F2E38  38 00 00 FF */ li r0, 0xff
@@ -75,7 +75,7 @@ lbl_800F5F90:
 /* 800F5FC0 000F2F00  80 03 14 64 */ lwz r0, 0x1464(r3)
 /* 800F5FC4 000F2F04  90 1F 28 24 */ stw r0, 0x2824(r31)
 /* 800F5FC8 000F2F08  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800F5FCC 000F2F0C  48 06 8C 7D */ bl daPy_actorKeep_c_NS_setActor
+/* 800F5FCC 000F2F0C  48 06 8C 7D */ bl setActor__16daPy_actorKeep_cFv
 lbl_800F5FD0:
 /* 800F5FD0 000F2F10  38 60 00 01 */ li r3, 1
 lbl_800F5FD4:

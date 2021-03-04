@@ -70,7 +70,7 @@ lbl_800C17E8:
 /* 800C1804 000BE744  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 800C1808 000BE748  38 63 02 10 */ addi r3, r3, 0x210
 /* 800C180C 000BE74C  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800C1810 000BE750  4B F8 A1 09 */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 800C1810 000BE750  4B F8 A1 09 */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 800C1814 000BE754  28 03 00 00 */ cmplwi r3, 0
 /* 800C1818 000BE758  41 82 00 28 */ beq lbl_800C1840
 /* 800C181C 000BE75C  80 03 00 EC */ lwz r0, 0xec(r3)
@@ -104,7 +104,7 @@ lbl_800C1840:
 /* 800C1884 000BE7C4  39 3C 04 E4 */ addi r9, r28, 0x4e4
 /* 800C1888 000BE7C8  39 40 00 00 */ li r10, 0
 /* 800C188C 000BE7CC  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800C1890 000BE7D0  4B F8 BC 3D */ bl dPa_control_c_NS_set_X1_
+/* 800C1890 000BE7D0  4B F8 BC 3D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_
 /* 800C1894 000BE7D4  90 7C 31 C4 */ stw r3, 0x31c4(r28)
 /* 800C1898 000BE7D8  3C 60 00 02 */ lis r3, 0x00020058@ha
 /* 800C189C 000BE7DC  38 03 00 58 */ addi r0, r3, 0x00020058@l

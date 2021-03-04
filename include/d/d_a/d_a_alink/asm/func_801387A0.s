@@ -28,7 +28,7 @@ lbl_801387F0:
 /* 80138804 00135744  48 00 00 F4 */ b lbl_801388F8
 lbl_80138808:
 /* 80138808 00135748  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8013880C 0013574C  48 02 5C C1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013880C 0013574C  48 02 5C C1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80138810 00135750  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80138814 00135754  41 82 00 8C */ beq lbl_801388A0
 /* 80138818 00135758  7F E3 FB 78 */ mr r3, r31

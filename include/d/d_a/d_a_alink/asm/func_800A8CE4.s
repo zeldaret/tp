@@ -240,7 +240,7 @@ lbl_800A905C:
 /* 800A9064 000A5FA4  48 00 01 BC */ b lbl_800A9220
 lbl_800A9068:
 /* 800A9068 000A5FA8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800A906C 000A5FAC  48 0B 54 61 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800A906C 000A5FAC  48 0B 54 61 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800A9070 000A5FB0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A9074 000A5FB4  41 82 00 4C */ beq lbl_800A90C0
 /* 800A9078 000A5FB8  7F E3 FB 78 */ mr r3, r31

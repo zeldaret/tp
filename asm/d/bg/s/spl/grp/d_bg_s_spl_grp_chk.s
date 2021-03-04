@@ -3,8 +3,8 @@
 .section .text, "ax" # 80078b90
 
 
-.global dBgS_SplGrpChk_NS_Set
-dBgS_SplGrpChk_NS_Set:
+.global Set__14dBgS_SplGrpChkFR4cXyzf
+Set__14dBgS_SplGrpChkFR4cXyzf:
 /* 80078B90 00075AD0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80078B94 00075AD4  D0 03 00 3C */	stfs f0, 0x3c(r3)
 /* 80078B98 00075AD8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -36,10 +36,10 @@ dBgS_SplGrpChk:
 /* 80078BF4 00075B34  38 03 00 24 */	addi r0, r3, 0x24
 /* 80078BF8 00075B38  90 1F 00 34 */	stw r0, 0x34(r31)
 /* 80078BFC 00075B3C  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80078C00 00075B40  4B FF E9 61 */	bl dBgS_Chk_NS_GetPolyPassChkInfo
+/* 80078C00 00075B40  4B FF E9 61 */	bl GetPolyPassChkInfo__8dBgS_ChkFv
 /* 80078C04 00075B44  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80078C08 00075B48  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80078C0C 00075B4C  4B FF E9 59 */	bl dBgS_Chk_NS_GetGrpPassChkInfo
+/* 80078C0C 00075B4C  4B FF E9 59 */	bl GetGrpPassChkInfo__8dBgS_ChkFv
 /* 80078C10 00075B50  90 7F 00 14 */	stw r3, 0x14(r31)
 /* 80078C14 00075B54  80 1F 00 38 */	lwz r0, 0x38(r31)
 /* 80078C18 00075B58  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
@@ -67,8 +67,8 @@ dBgS_SplGrpChk:
 /* 80078C70 00075BB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078C74 00075BB4  4E 80 00 20 */	blr 
 
-.global dBgS_SplGrpChk_NS_dtor
-dBgS_SplGrpChk_NS_dtor:
+.global __dt__14dBgS_SplGrpChkFv
+__dt__14dBgS_SplGrpChkFv:
 /* 80078C78 00075BB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078C7C 00075BBC  7C 08 02 A6 */	mflr r0
 /* 80078C80 00075BC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -88,7 +88,7 @@ dBgS_SplGrpChk_NS_dtor:
 /* 80078CB8 00075BF8  90 1E 00 34 */	stw r0, 0x34(r30)
 /* 80078CBC 00075BFC  38 7E 00 24 */	addi r3, r30, 0x24
 /* 80078CC0 00075C00  38 80 00 00 */	li r4, 0
-/* 80078CC4 00075C04  4B FF E8 25 */	bl dBgS_Chk_NS_dtor
+/* 80078CC4 00075C04  4B FF E8 25 */	bl __dt__8dBgS_ChkFv
 /* 80078CC8 00075C08  38 7E 00 10 */	addi r3, r30, 0x10
 /* 80078CCC 00075C0C  38 80 00 00 */	li r4, 0
 /* 80078CD0 00075C10  48 1E EE A1 */	bl __dt__8cBgS_ChkFv
@@ -108,8 +108,8 @@ lbl_80078CF0:
 /* 80078D04 00075C44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078D08 00075C48  4E 80 00 20 */	blr 
 
-.global dBgS_SplGrpChk_NS_Init
-dBgS_SplGrpChk_NS_Init:
+.global Init__14dBgS_SplGrpChkFv
+Init__14dBgS_SplGrpChkFv:
 /* 80078D0C 00075C4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078D10 00075C50  7C 08 02 A6 */	mflr r0
 /* 80078D14 00075C54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -127,9 +127,9 @@ dBgS_SplGrpChk_NS_Init:
 /* 80078D44 00075C84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078D48 00075C88  4E 80 00 20 */	blr 
 /* 80078D4C 00075C8C  38 63 FF F0 */	addi r3, r3, -16
-/* 80078D50 00075C90  4B FF FF 28 */	b dBgS_SplGrpChk_NS_dtor
+/* 80078D50 00075C90  4B FF FF 28 */	b __dt__14dBgS_SplGrpChkFv
 /* 80078D54 00075C94  38 63 FF CC */	addi r3, r3, -52
-/* 80078D58 00075C98  4B FF FF 20 */	b dBgS_SplGrpChk_NS_dtor
+/* 80078D58 00075C98  4B FF FF 20 */	b __dt__14dBgS_SplGrpChkFv
 /* 80078D5C 00075C9C  38 63 FF DC */	addi r3, r3, -36
-/* 80078D60 00075CA0  4B FF FF 18 */	b dBgS_SplGrpChk_NS_dtor
+/* 80078D60 00075CA0  4B FF FF 18 */	b __dt__14dBgS_SplGrpChkFv
 

@@ -306,7 +306,7 @@ lbl_802F6C14:
 /* 802F6C64 002F3BA4  38 81 00 08 */ addi r4, r1, 8
 /* 802F6C68 002F3BA8  4B FF 24 59 */ bl J2DGrafContext_NS_scissor
 /* 802F6C6C 002F3BAC  38 61 00 18 */ addi r3, r1, 0x18
-/* 802F6C70 002F3BB0  4B FF 21 B1 */ bl J2DGrafContext_NS_setScissor
+/* 802F6C70 002F3BB0  4B FF 21 B1 */ bl setScissor__14J2DGrafContextFv
 lbl_802F6C74:
 /* 802F6C74 002F3BB4  88 7B 00 B1 */ lbz r3, 0xb1(r27)
 /* 802F6C78 002F3BB8  48 06 5D 0D */ bl GXSetCullMode

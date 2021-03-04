@@ -12,7 +12,7 @@
 /* 800DBF04 000D8E44  38 A0 00 00 */ li r5, 0
 /* 800DBF08 000D8E48  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800DBF0C 000D8E4C  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800DBF10 000D8E50  4B F6 72 5D */ bl dEvt_control_c_NS_compulsory
+/* 800DBF10 000D8E50  4B F6 72 5D */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800DBF14 000D8E54  2C 03 00 00 */ cmpwi r3, 0
 /* 800DBF18 000D8E58  40 82 00 0C */ bne lbl_800DBF24
 /* 800DBF1C 000D8E5C  38 60 00 00 */ li r3, 0
@@ -161,7 +161,7 @@ lbl_800DC0C0:
 /* 800DC134 000D9074  39 20 00 00 */ li r9, 0
 /* 800DC138 000D9078  39 40 00 FF */ li r10, 0xff
 /* 800DC13C 000D907C  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800DC140 000D9080  4B F7 09 51 */ bl dPa_control_c_NS_set
+/* 800DC140 000D9080  4B F7 09 51 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 800DC144 000D9084  80 7F 5D 3C */ lwz r3, 0x5d3c(r31)
 /* 800DC148 000D9088  38 80 00 00 */ li r4, 0
 /* 800DC14C 000D908C  90 81 00 08 */ stw r4, 8(r1)
@@ -179,7 +179,7 @@ lbl_800DC0C0:
 /* 800DC17C 000D90BC  39 20 00 00 */ li r9, 0
 /* 800DC180 000D90C0  39 40 00 FF */ li r10, 0xff
 /* 800DC184 000D90C4  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800DC188 000D90C8  4B F7 09 09 */ bl dPa_control_c_NS_set
+/* 800DC188 000D90C8  4B F7 09 09 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 800DC18C 000D90CC  38 00 00 04 */ li r0, 4
 /* 800DC190 000D90D0  90 1E 32 CC */ stw r0, 0x32cc(r30)
 /* 800DC194 000D90D4  38 00 00 08 */ li r0, 8
@@ -209,7 +209,7 @@ lbl_800DC1CC:
 /* 800DC1E8 000D9128  39 1E 31 94 */ addi r8, r30, 0x3194
 /* 800DC1EC 000D912C  39 20 00 00 */ li r9, 0
 /* 800DC1F0 000D9130  4C C6 31 82 */ crclr 6
-/* 800DC1F4 000D9134  4B FA C8 89 */ bl dCamera_c_NS_StartEventCamera
+/* 800DC1F4 000D9134  4B FA C8 89 */ bl StartEventCamera__9dCamera_cFiie
 /* 800DC1F8 000D9138  38 60 00 01 */ li r3, 1
 lbl_800DC1FC:
 /* 800DC1FC 000D913C  39 61 00 40 */ addi r11, r1, 0x40

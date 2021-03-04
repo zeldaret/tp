@@ -14,7 +14,7 @@ lbl_800C67C4:
 /* 800C67C8 000C3708  2C 00 00 00 */ cmpwi r0, 0
 /* 800C67CC 000C370C  40 82 00 40 */ bne lbl_800C680C
 /* 800C67D0 000C3710  7C 83 23 78 */ mr r3, r4
-/* 800C67D4 000C3714  48 09 7C F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C67D4 000C3714  48 09 7C F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C67D8 000C3718  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C67DC 000C371C  41 82 00 5C */ beq lbl_800C6838
 /* 800C67E0 000C3720  7F E3 FB 78 */ mr r3, r31

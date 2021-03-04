@@ -13,19 +13,19 @@
 /* 802CD828 002CA768  28 00 00 00 */ cmplwi r0, 0
 /* 802CD82C 002CA76C  41 82 00 0C */ beq lbl_802CD838
 /* 802CD830 002CA770  38 7E 00 08 */ addi r3, r30, 8
-/* 802CD834 002CA774  4B FC 2C B1 */ bl JASHeap_NS_free
+/* 802CD834 002CA774  4B FC 2C B1 */ bl free__7JASHeapFv
 lbl_802CD838:
 /* 802CD838 002CA778  38 7E 00 08 */ addi r3, r30, 8
-/*.global JASHeap_NS_dtor*/
-/* 802CD83C 002CA77C  3C 80 80 29 */ lis r4, JASHeap_NS_dtor@ha
-/*.global JASHeap_NS_dtor*/
-/* 802CD840 002CA780  38 84 0B 54 */ addi r4, r4, JASHeap_NS_dtor@l
+/*.global __dt__7JASHeapFv*/
+/* 802CD83C 002CA77C  3C 80 80 29 */ lis r4, __dt__7JASHeapFv@ha
+/*.global __dt__7JASHeapFv*/
+/* 802CD840 002CA780  38 84 0B 54 */ addi r4, r4, __dt__7JASHeapFv@l
 /* 802CD844 002CA784  38 A0 00 44 */ li r5, 0x44
 /* 802CD848 002CA788  38 C0 00 01 */ li r6, 1
 /* 802CD84C 002CA78C  48 09 44 9D */ bl func_80361CE8
 /* 802CD850 002CA790  7F C3 F3 78 */ mr r3, r30
 /* 802CD854 002CA794  38 80 00 00 */ li r4, 0
-/* 802CD858 002CA798  4B FD 62 C9 */ bl JAIStreamAramMgr_NS_dtor
+/* 802CD858 002CA798  4B FD 62 C9 */ bl __dt__16JAIStreamAramMgrFv
 /* 802CD85C 002CA79C  7F E0 07 35 */ extsh. r0, r31
 /* 802CD860 002CA7A0  40 81 00 0C */ ble lbl_802CD86C
 /* 802CD864 002CA7A4  7F C3 F3 78 */ mr r3, r30

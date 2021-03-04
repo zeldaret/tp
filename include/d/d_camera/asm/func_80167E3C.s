@@ -7,7 +7,7 @@
 /* 80167E54 00164D94  38 61 00 34 */ addi r3, r1, 0x34
 /* 80167E58 00164D98  7C A4 2B 78 */ mr r4, r5
 /* 80167E5C 00164D9C  80 A5 01 80 */ lwz r5, 0x180(r5)
-/* 80167E60 00164DA0  4B F2 F8 BD */ bl dCamera_c_NS_attentionPos
+/* 80167E60 00164DA0  4B F2 F8 BD */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 80167E64 00164DA4  C0 01 00 34 */ lfs f0, 0x34(r1)
 /* 80167E68 00164DA8  D0 01 00 40 */ stfs f0, 0x40(r1)
 /* 80167E6C 00164DAC  C0 01 00 38 */ lfs f0, 0x38(r1)

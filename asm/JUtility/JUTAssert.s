@@ -3,12 +3,12 @@
 .section .text, "ax" # 802e495c
 
 
-.global JUTAssertion_NS_create
-JUTAssertion_NS_create:
+.global create__12JUTAssertionFv
+create__12JUTAssertionFv:
 /* 802E495C 002E189C  4E 80 00 20 */	blr 
 
-.global JUTAssertion_NS_flush_subroutine
-JUTAssertion_NS_flush_subroutine:
+.global flush_subroutine__12JUTAssertionFv
+flush_subroutine__12JUTAssertionFv:
 /* 802E4960 002E18A0  80 6D 8F B0 */	lwz r3, lbl_80451530-_SDA_BASE_(r13)
 /* 802E4964 002E18A4  28 03 00 00 */	cmplwi r3, 0
 /* 802E4968 002E18A8  40 82 00 0C */	bne lbl_802E4974
@@ -27,13 +27,13 @@ lbl_802E4988:
 /* 802E4994 002E18D4  38 60 00 00 */	li r3, 0
 /* 802E4998 002E18D8  4E 80 00 20 */	blr 
 
-.global JUTAssertion_NS_flushMessage
-JUTAssertion_NS_flushMessage:
+.global flushMessage__12JUTAssertionFv
+flushMessage__12JUTAssertionFv:
 /* 802E499C 002E18DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E49A0 002E18E0  7C 08 02 A6 */	mflr r0
 /* 802E49A4 002E18E4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802E49A8 002E18E8  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 802E49AC 002E18EC  4B FF FF B5 */	bl JUTAssertion_NS_flush_subroutine
+/* 802E49AC 002E18EC  4B FF FF B5 */	bl flush_subroutine__12JUTAssertionFv
 /* 802E49B0 002E18F0  28 03 00 00 */	cmplwi r3, 0
 /* 802E49B4 002E18F4  41 82 00 8C */	beq lbl_802E4A40
 /* 802E49B8 002E18F8  88 0D 83 78 */	lbz r0, lbl_804508F8-_SDA_BASE_(r13)
@@ -52,24 +52,24 @@ JUTAssertion_NS_flushMessage:
 /* 802E49EC 002E192C  90 01 00 10 */	stw r0, 0x10(r1)
 /* 802E49F0 002E1930  7F E3 FB 78 */	mr r3, r31
 /* 802E49F4 002E1934  38 81 00 10 */	addi r4, r1, 0x10
-/* 802E49F8 002E1938  4B FF FD A1 */	bl JUTDirectPrint_NS_setCharColor
+/* 802E49F8 002E1938  4B FF FD A1 */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor
 /* 802E49FC 002E193C  7F E3 FB 78 */	mr r3, r31
 /* 802E4A00 002E1940  38 80 00 10 */	li r4, 0x10
 /* 802E4A04 002E1944  38 A0 00 10 */	li r5, 0x10
 /* 802E4A08 002E1948  3C C0 80 43 */	lis r6, lbl_80434870@ha
 /* 802E4A0C 002E194C  38 C6 48 70 */	addi r6, r6, lbl_80434870@l
-/* 802E4A10 002E1950  4B FF FC C9 */	bl JUTDirectPrint_NS_drawString
+/* 802E4A10 002E1950  4B FF FC C9 */	bl drawString__14JUTDirectPrintFUsUsPc
 /* 802E4A14 002E1954  7F E3 FB 78 */	mr r3, r31
 /* 802E4A18 002E1958  38 80 00 10 */	li r4, 0x10
 /* 802E4A1C 002E195C  38 A0 00 18 */	li r5, 0x18
 /* 802E4A20 002E1960  3C C0 80 43 */	lis r6, lbl_804348B0@ha
 /* 802E4A24 002E1964  38 C6 48 B0 */	addi r6, r6, lbl_804348B0@l
-/* 802E4A28 002E1968  4B FF FC B1 */	bl JUTDirectPrint_NS_drawString
+/* 802E4A28 002E1968  4B FF FC B1 */	bl drawString__14JUTDirectPrintFUsUsPc
 /* 802E4A2C 002E196C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E4A30 002E1970  90 01 00 08 */	stw r0, 8(r1)
 /* 802E4A34 002E1974  7F E3 FB 78 */	mr r3, r31
 /* 802E4A38 002E1978  38 81 00 08 */	addi r4, r1, 8
-/* 802E4A3C 002E197C  4B FF FD 5D */	bl JUTDirectPrint_NS_setCharColor
+/* 802E4A3C 002E197C  4B FF FD 5D */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor
 lbl_802E4A40:
 /* 802E4A40 002E1980  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802E4A44 002E1984  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -77,8 +77,8 @@ lbl_802E4A40:
 /* 802E4A4C 002E198C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E4A50 002E1990  4E 80 00 20 */	blr 
 
-.global JUTAssertion_NS_flushMessage_dbPrint
-JUTAssertion_NS_flushMessage_dbPrint:
+.global flushMessage__12JUTAssertionFv_dbPrint
+flushMessage__12JUTAssertionFv_dbPrint:
 /* 802E4A54 002E1994  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802E4A58 002E1998  7C 08 02 A6 */	mflr r0
 /* 802E4A5C 002E199C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -86,7 +86,7 @@ JUTAssertion_NS_flushMessage_dbPrint:
 /* 802E4A64 002E19A4  F3 E1 00 48 */	psq_st f31, 72(r1), 0, qr0
 /* 802E4A68 002E19A8  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 802E4A6C 002E19AC  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 802E4A70 002E19B0  4B FF FE F1 */	bl JUTAssertion_NS_flush_subroutine
+/* 802E4A70 002E19B0  4B FF FE F1 */	bl flush_subroutine__12JUTAssertionFv
 /* 802E4A74 002E19B4  28 03 00 00 */	cmplwi r3, 0
 /* 802E4A78 002E19B8  41 82 01 9C */	beq lbl_802E4C14
 /* 802E4A7C 002E19BC  88 0D 83 78 */	lbz r0, lbl_804508F8-_SDA_BASE_(r13)
@@ -201,8 +201,8 @@ lbl_802E4C14:
 /* 802E4C2C 002E1B6C  38 21 00 50 */	addi r1, r1, 0x50
 /* 802E4C30 002E1B70  4E 80 00 20 */	blr 
 
-.global JUTAssertion_NS_setVisible
-JUTAssertion_NS_setVisible:
+.global setVisible__12JUTAssertionFb
+setVisible__12JUTAssertionFb:
 /* 802E4C34 002E1B74  98 6D 83 78 */	stb r3, lbl_804508F8-_SDA_BASE_(r13)
 /* 802E4C38 002E1B78  4E 80 00 20 */	blr 
 

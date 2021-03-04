@@ -64,7 +64,7 @@ lbl_80059490:
 /* 800594BC 000563FC  3C A5 00 02 */ addis r5, r5, 2
 /* 800594C0 00056400  38 C0 00 80 */ li r6, 0x80
 /* 800594C4 00056404  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800594C8 00056408  4B FE 2E 25 */ bl dRes_control_c_NS_getRes
+/* 800594C8 00056408  4B FE 2E 25 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800594CC 0005640C  80 9E 0F 28 */ lwz r4, 0xf28(r30)
 /* 800594D0 00056410  90 64 00 10 */ stw r3, 0x10(r4)
 /* 800594D4 00056414  48 01 24 11 */ bl dKyr_odour_init

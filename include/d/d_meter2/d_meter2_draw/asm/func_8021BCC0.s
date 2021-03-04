@@ -17,7 +17,7 @@ lbl_8021BCF4:
 /* 8021BCFC 00218C3C  88 04 00 BD */ lbz r0, 0xbd(r4)
 /* 8021BD00 00218C40  28 00 00 00 */ cmplwi r0, 0
 /* 8021BD04 00218C44  40 82 00 A8 */ bne lbl_8021BDAC
-/* 8021BD08 00218C48  48 01 B3 E1 */ bl dMsgObject_c_NS_isHowlMessage
+/* 8021BD08 00218C48  48 01 B3 E1 */ bl isHowlMessage__12dMsgObject_cFv
 /* 8021BD0C 00218C4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021BD10 00218C50  40 82 00 9C */ bne lbl_8021BDAC
 /* 8021BD14 00218C54  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

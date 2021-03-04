@@ -8,7 +8,7 @@
 /* 80288E48 00285D88  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80288E4C 00285D8C  38 61 00 0C */	addi r3, r1, 0xc
 /* 80288E50 00285D90  38 81 00 20 */	addi r4, r1, 0x20
-/* 80288E54 00285D94  48 00 0B 69 */	bl JStudio_NS_stb_NS_data_NS_TParse_TSequence_NS_getData
+/* 80288E54 00285D94  48 00 0B 69 */	bl getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData
 /* 80288E58 00285D98  88 01 00 20 */	lbz r0, 0x20(r1)
 /* 80288E5C 00285D9C  80 A1 00 24 */	lwz r5, 0x24(r1)
 /* 80288E60 00285DA0  80 61 00 28 */	lwz r3, 0x28(r1)
@@ -67,7 +67,7 @@ lbl_80288F10:
 /* 80288F10 00285E50  90 61 00 08 */	stw r3, 8(r1)
 /* 80288F14 00285E54  38 61 00 08 */	addi r3, r1, 8
 /* 80288F18 00285E58  38 81 00 10 */	addi r4, r1, 0x10
-/* 80288F1C 00285E5C  48 00 0A ED */	bl JStudio_NS_stb_NS_data_NS_TParse_TParagraph_NS_getData
+/* 80288F1C 00285E5C  48 00 0A ED */	bl getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData
 /* 80288F20 00285E60  80 81 00 10 */	lwz r4, 0x10(r1)
 /* 80288F24 00285E64  28 04 00 FF */	cmplwi r4, 0xff
 /* 80288F28 00285E68  41 81 00 18 */	bgt lbl_80288F40

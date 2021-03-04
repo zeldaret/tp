@@ -6,7 +6,7 @@
 /* 800DE7E8 000DB728  7C 7D 1B 78 */ mr r29, r3
 /* 800DE7EC 000DB72C  38 7D 21 D8 */ addi r3, r29, 0x21d8
 /* 800DE7F0 000DB730  38 80 01 F9 */ li r4, 0x1f9
-/* 800DE7F4 000DB734  48 08 08 75 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 800DE7F4 000DB734  48 08 08 75 */ bl loadData__14daPy_anmHeap_cFUsIdx
 /* 800DE7F8 000DB738  7C 7F 1B 78 */ mr r31, r3
 /* 800DE7FC 000DB73C  7F A3 EB 78 */ mr r3, r29
 /* 800DE800 000DB740  4B FC 54 8D */ bl daAlink_c_NS_setItemHeap

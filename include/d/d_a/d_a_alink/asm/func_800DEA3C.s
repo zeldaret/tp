@@ -33,7 +33,7 @@ lbl_800DEA88:
 /* 800DEAB8 000DB9F8  4B F3 B3 4D */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 800DEABC 000DB9FC  7C 64 1B 78 */ mr r4, r3
 /* 800DEAC0 000DBA00  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800DEAC4 000DBA04  48 08 01 F5 */ bl daPy_actorKeep_c_NS_setData
+/* 800DEAC4 000DBA04  48 08 01 F5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_800DEAC8:
 /* 800DEAC8 000DBA08  38 00 00 00 */ li r0, 0
 /* 800DEACC 000DBA0C  B0 1F 30 18 */ sth r0, 0x3018(r31)

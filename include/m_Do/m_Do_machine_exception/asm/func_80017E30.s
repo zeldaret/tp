@@ -59,12 +59,12 @@
 /* 80017F18 00014E58  41 82 00 08 */ beq lbl_80017F20
 /* 80017F1C 00014E5C  48 2B B2 FD */ bl dump__11JKRAramHeapFv
 lbl_80017F20:
-/* 80017F20 00014E60  48 24 A5 51 */ bl DynamicModuleControlBase_NS_dump
+/* 80017F20 00014E60  48 24 A5 51 */ bl dump__24DynamicModuleControlBaseFv
 /* 80017F24 00014E64  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80017F28 00014E68  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80017F2C 00014E6C  3C 63 00 02 */ addis r3, r3, 2
 /* 80017F30 00014E70  38 63 C2 F8 */ addi r3, r3, -15624
-/* 80017F34 00014E74  48 02 47 05 */ bl dRes_control_c_NS_dump
+/* 80017F34 00014E74  48 02 47 05 */ bl dump__14dRes_control_cFv
 /* 80017F38 00014E78  7F E3 FB 78 */ mr r3, r31
 /* 80017F3C 00014E7C  81 9F 00 00 */ lwz r12, 0(r31)
 /* 80017F40 00014E80  81 8C 00 18 */ lwz r12, 0x18(r12)

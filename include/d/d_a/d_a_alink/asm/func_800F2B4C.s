@@ -10,7 +10,7 @@
 /* 800F2B70 000EFAB0  38 A0 00 00 */ li r5, 0
 /* 800F2B74 000EFAB4  3C C0 00 01 */ lis r6, 0x0000FBFF@ha
 /* 800F2B78 000EFAB8  38 C6 FB FF */ addi r6, r6, 0x0000FBFF@l
-/* 800F2B7C 000EFABC  4B F5 05 F1 */ bl dEvt_control_c_NS_compulsory
+/* 800F2B7C 000EFABC  4B F5 05 F1 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800F2B80 000EFAC0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2B84 000EFAC4  40 82 00 0C */ bne lbl_800F2B90
 /* 800F2B88 000EFAC8  38 60 00 00 */ li r3, 0

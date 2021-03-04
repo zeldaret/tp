@@ -3,13 +3,13 @@
 .section .text, "ax" # 8028fefc
 
 
-.global JASDvd_NS_getThreadPointer
-JASDvd_NS_getThreadPointer:
+.global getThreadPointer__6JASDvdFv
+getThreadPointer__6JASDvdFv:
 /* 8028FEFC 0028CE3C  80 6D 8C 88 */	lwz r3, lbl_80451208-_SDA_BASE_(r13)
 /* 8028FF00 0028CE40  4E 80 00 20 */	blr 
 
-.global JASDvd_NS_createThread
-JASDvd_NS_createThread:
+.global createThread__6JASDvdFliUl
+createThread__6JASDvdFliUl:
 /* 8028FF04 0028CE44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028FF08 0028CE48  7C 08 02 A6 */	mflr r0
 /* 8028FF0C 0028CE4C  90 01 00 24 */	stw r0, 0x24(r1)

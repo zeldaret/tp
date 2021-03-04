@@ -17,8 +17,8 @@
 /* 8001DE4C 0001AD8C  54 00 00 C2 */ rlwinm r0, r0, 0, 3, 1
 /* 8001DE50 0001AD90  90 03 00 4C */ stw r0, 0x4c(r3)
 /* 8001DE54 0001AD94  48 05 A1 09 */ bl dBgS_ObjLinChk
-/* 8001DE58 0001AD98  3C 80 80 07 */ lis r4, dBgS_ObjLinChk_NS_dtor@ha
-/* 8001DE5C 0001AD9C  38 84 7F B8 */ addi r4, r4, dBgS_ObjLinChk_NS_dtor@l
+/* 8001DE58 0001AD98  3C 80 80 07 */ lis r4, __dt__14dBgS_ObjLinChkFv@ha
+/* 8001DE5C 0001AD9C  38 84 7F B8 */ addi r4, r4, __dt__14dBgS_ObjLinChkFv@l
 /* 8001DE60 0001ADA0  38 BF 00 3C */ addi r5, r31, 0x3c
 /* 8001DE64 0001ADA4  48 34 3D C1 */ bl func_80361C24
 /* 8001DE68 0001ADA8  3B DF 00 C4 */ addi r30, r31, 0xc4

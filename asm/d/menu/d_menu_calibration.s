@@ -23,8 +23,8 @@ lbl_801AED94:
 /* 801AEDA4 001ABCE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AEDA8 001ABCE8  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS__move
-dMenu_Calibration_c_NS__move:
+.global _move__19dMenu_Calibration_cFv
+_move__19dMenu_Calibration_cFv:
 /* 801AEDAC 001ABCEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AEDB0 001ABCF0  7C 08 02 A6 */	mflr r0
 /* 801AEDB4 001ABCF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -51,7 +51,7 @@ dMenu_Calibration_c_NS__move:
 lbl_801AEE08:
 /* 801AEE08 001ABD48  7F C3 F3 78 */	mr r3, r30
 /* 801AEE0C 001ABD4C  38 80 00 00 */	li r4, 0
-/* 801AEE10 001ABD50  48 00 0B F1 */	bl dMenu_Calibration_c_NS_setHIO
+/* 801AEE10 001ABD50  48 00 0B F1 */	bl setHIO__19dMenu_Calibration_cFb
 /* 801AEE14 001ABD54  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801AEE18 001ABD58  83 C1 00 08 */	lwz r30, 8(r1)
 /* 801AEE1C 001ABD5C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -59,8 +59,8 @@ lbl_801AEE08:
 /* 801AEE24 001ABD64  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AEE28 001ABD68  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS__draw
-dMenu_Calibration_c_NS__draw:
+.global _draw__19dMenu_Calibration_cFv
+_draw__19dMenu_Calibration_cFv:
 /* 801AEE2C 001ABD6C  4E 80 00 20 */	blr 
 /* 801AEE30 001ABD70  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801AEE34 001ABD74  7C 08 02 A6 */	mflr r0
@@ -70,16 +70,16 @@ dMenu_Calibration_c_NS__draw:
 /* 801AEE44 001ABD84  38 00 00 00 */	li r0, 0
 /* 801AEE48 001ABD88  B0 03 00 FA */	sth r0, 0xfa(r3)
 /* 801AEE4C 001ABD8C  38 80 00 00 */	li r4, 0
-/* 801AEE50 001ABD90  48 00 08 E9 */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AEE50 001ABD90  48 00 08 E9 */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AEE54 001ABD94  7F E3 FB 78 */	mr r3, r31
 /* 801AEE58 001ABD98  38 80 00 00 */	li r4, 0
-/* 801AEE5C 001ABD9C  48 00 09 8D */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AEE5C 001ABD9C  48 00 09 8D */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AEE60 001ABDA0  7F E3 FB 78 */	mr r3, r31
 /* 801AEE64 001ABDA4  38 80 04 D8 */	li r4, 0x4d8
-/* 801AEE68 001ABDA8  48 00 0A 31 */	bl dMenu_Calibration_c_NS_setStepString
+/* 801AEE68 001ABDA8  48 00 0A 31 */	bl setStepString__19dMenu_Calibration_cFUs
 /* 801AEE6C 001ABDAC  7F E3 FB 78 */	mr r3, r31
 /* 801AEE70 001ABDB0  38 80 04 DD */	li r4, 0x4dd
-/* 801AEE74 001ABDB4  48 00 0A D5 */	bl dMenu_Calibration_c_NS_setExplainString
+/* 801AEE74 001ABDB4  48 00 0A D5 */	bl setExplainString__19dMenu_Calibration_cFUs
 /* 801AEE78 001ABDB8  80 1F 00 E8 */	lwz r0, 0xe8(r31)
 /* 801AEE7C 001ABDBC  54 00 18 38 */	slwi r0, r0, 3
 /* 801AEE80 001ABDC0  7C 9F 02 14 */	add r4, r31, r0
@@ -115,7 +115,7 @@ lbl_801AEED0:
 /* 801AEEE8 001ABE28  80 A4 00 04 */	lwz r5, 4(r4)
 /* 801AEEEC 001ABE2C  38 C0 00 00 */	li r6, 0
 /* 801AEEF0 001ABE30  38 E0 00 00 */	li r7, 0
-/* 801AEEF4 001ABE34  48 0A 5F C9 */	bl CPaneMgr_NS_getGlobalVtxCenter
+/* 801AEEF4 001ABE34  48 0A 5F C9 */	bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
 /* 801AEEF8 001ABE38  80 61 00 10 */	lwz r3, 0x10(r1)
 /* 801AEEFC 001ABE3C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AEF00 001ABE40  90 61 00 1C */	stw r3, 0x1c(r1)
@@ -131,12 +131,12 @@ lbl_801AEED0:
 /* 801AEF28 001ABE68  C0 21 00 1C */	lfs f1, 0x1c(r1)
 /* 801AEF2C 001ABE6C  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 801AEF30 001ABE70  38 A0 00 00 */	li r5, 0
-/* 801AEF34 001ABE74  4B FE 61 C1 */	bl dSelect_cursor_c_NS_setPos
+/* 801AEF34 001ABE74  4B FE 61 C1 */	bl setPos__16dSelect_cursor_cFffP7J2DPaneb
 /* 801AEF38 001ABE78  38 00 00 00 */	li r0, 0
 /* 801AEF3C 001ABE7C  B0 1F 00 FC */	sth r0, 0xfc(r31)
 /* 801AEF40 001ABE80  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 801AEF44 001ABE84  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AEF48 001ABE88  48 0A 68 89 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AEF48 001ABE88  48 0A 68 89 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AEF4C 001ABE8C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 801AEF50 001ABE90  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 801AEF54 001ABE94  7C 08 03 A6 */	mtlr r0
@@ -160,16 +160,16 @@ lbl_801AEED0:
 /* 801AEF9C 001ABEDC  41 80 00 50 */	blt lbl_801AEFEC
 /* 801AEFA0 001ABEE0  80 7F 00 58 */	lwz r3, 0x58(r31)
 /* 801AEFA4 001ABEE4  C0 22 A5 14 */	lfs f1, lbl_80453F14-_SDA2_BASE_(r2)
-/* 801AEFA8 001ABEE8  48 0A 68 29 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AEFA8 001ABEE8  48 0A 68 29 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AEFAC 001ABEEC  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 801AEFB0 001ABEF0  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AEFB4 001ABEF4  48 0A 68 1D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AEFB4 001ABEF4  48 0A 68 1D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AEFB8 001ABEF8  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AEFBC 001ABEFC  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AEFC0 001ABF00  48 0A 68 11 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AEFC0 001ABF00  48 0A 68 11 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AEFC4 001ABF04  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AEFC8 001ABF08  C0 22 A5 14 */	lfs f1, lbl_80453F14-_SDA2_BASE_(r2)
-/* 801AEFCC 001ABF0C  4B FE 62 D5 */	bl dSelect_cursor_c_NS_setAlphaRate
+/* 801AEFCC 001ABF0C  4B FE 62 D5 */	bl setAlphaRate__16dSelect_cursor_cFf
 /* 801AEFD0 001ABF10  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AEFD4 001ABF14  88 03 00 B4 */	lbz r0, 0xb4(r3)
 /* 801AEFD8 001ABF18  60 00 00 01 */	ori r0, r0, 1
@@ -193,22 +193,22 @@ lbl_801AEFEC:
 /* 801AF01C 001ABF5C  EF E1 00 24 */	fdivs f31, f1, f0
 /* 801AF020 001ABF60  80 7F 00 58 */	lwz r3, 0x58(r31)
 /* 801AF024 001ABF64  FC 20 F8 90 */	fmr f1, f31
-/* 801AF028 001ABF68  48 0A 67 A9 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF028 001ABF68  48 0A 67 A9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF02C 001ABF6C  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 801AF030 001ABF70  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF034 001ABF74  48 0A 67 9D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF034 001ABF74  48 0A 67 9D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF038 001ABF78  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AF03C 001ABF7C  FC 20 F8 90 */	fmr f1, f31
-/* 801AF040 001ABF80  4B FE 62 61 */	bl dSelect_cursor_c_NS_setAlphaRate
+/* 801AF040 001ABF80  4B FE 62 61 */	bl setAlphaRate__16dSelect_cursor_cFf
 /* 801AF044 001ABF84  80 7F 00 5C */	lwz r3, 0x5c(r31)
-/* 801AF048 001ABF88  48 0A 67 E1 */	bl CPaneMgrAlpha_NS_getAlphaRate
+/* 801AF048 001ABF88  48 0A 67 E1 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 801AF04C 001ABF8C  C0 02 A5 10 */	lfs f0, lbl_80453F10-_SDA2_BASE_(r2)
 /* 801AF050 001ABF90  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 801AF054 001ABF94  41 82 00 14 */	beq lbl_801AF068
 /* 801AF058 001ABF98  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AF05C 001ABF9C  C0 02 A5 14 */	lfs f0, lbl_80453F14-_SDA2_BASE_(r2)
 /* 801AF060 001ABFA0  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 801AF064 001ABFA4  48 0A 67 6D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF064 001ABFA4  48 0A 67 6D */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_801AF068:
 /* 801AF068 001ABFA8  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 801AF06C 001ABFAC  CB E1 00 20 */	lfd f31, 0x20(r1)
@@ -223,10 +223,10 @@ lbl_801AF068:
 /* 801AF090 001ABFD0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AF094 001ABFD4  7C 7F 1B 78 */	mr r31, r3
 /* 801AF098 001ABFD8  38 80 04 08 */	li r4, 0x408
-/* 801AF09C 001ABFDC  48 00 06 9D */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AF09C 001ABFDC  48 00 06 9D */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AF0A0 001ABFE0  7F E3 FB 78 */	mr r3, r31
 /* 801AF0A4 001ABFE4  38 80 05 61 */	li r4, 0x561
-/* 801AF0A8 001ABFE8  48 00 07 41 */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AF0A8 001ABFE8  48 00 07 41 */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AF0AC 001ABFEC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801AF0B0 001ABFF0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AF0B4 001ABFF4  7C 08 03 A6 */	mtlr r0
@@ -292,16 +292,16 @@ lbl_801AF178:
 /* 801AF19C 001AC0DC  38 00 00 00 */	li r0, 0
 /* 801AF1A0 001AC0E0  B0 03 00 FA */	sth r0, 0xfa(r3)
 /* 801AF1A4 001AC0E4  38 80 00 00 */	li r4, 0
-/* 801AF1A8 001AC0E8  48 00 05 91 */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AF1A8 001AC0E8  48 00 05 91 */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AF1AC 001AC0EC  7F E3 FB 78 */	mr r3, r31
 /* 801AF1B0 001AC0F0  38 80 00 00 */	li r4, 0
-/* 801AF1B4 001AC0F4  48 00 06 35 */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AF1B4 001AC0F4  48 00 06 35 */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AF1B8 001AC0F8  7F E3 FB 78 */	mr r3, r31
 /* 801AF1BC 001AC0FC  38 80 04 DA */	li r4, 0x4da
-/* 801AF1C0 001AC100  48 00 06 D9 */	bl dMenu_Calibration_c_NS_setStepString
+/* 801AF1C0 001AC100  48 00 06 D9 */	bl setStepString__19dMenu_Calibration_cFUs
 /* 801AF1C4 001AC104  7F E3 FB 78 */	mr r3, r31
 /* 801AF1C8 001AC108  38 80 04 D9 */	li r4, 0x4d9
-/* 801AF1CC 001AC10C  48 00 07 7D */	bl dMenu_Calibration_c_NS_setExplainString
+/* 801AF1CC 001AC10C  48 00 07 7D */	bl setExplainString__19dMenu_Calibration_cFUs
 /* 801AF1D0 001AC110  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AF1D4 001AC114  88 03 00 B4 */	lbz r0, 0xb4(r3)
 /* 801AF1D8 001AC118  54 00 06 3C */	rlwinm r0, r0, 0, 0x18, 0x1e
@@ -331,25 +331,25 @@ lbl_801AF178:
 /* 801AF238 001AC178  41 80 00 64 */	blt lbl_801AF29C
 /* 801AF23C 001AC17C  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AF240 001AC180  C0 22 A5 14 */	lfs f1, lbl_80453F14-_SDA2_BASE_(r2)
-/* 801AF244 001AC184  48 0A 65 8D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF244 001AC184  48 0A 65 8D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF248 001AC188  80 7F 00 58 */	lwz r3, 0x58(r31)
 /* 801AF24C 001AC18C  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF250 001AC190  48 0A 65 81 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF250 001AC190  48 0A 65 81 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF254 001AC194  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 801AF258 001AC198  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF25C 001AC19C  48 0A 65 75 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF25C 001AC19C  48 0A 65 75 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF260 001AC1A0  80 7F 00 60 */	lwz r3, 0x60(r31)
 /* 801AF264 001AC1A4  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF268 001AC1A8  48 0A 65 69 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF268 001AC1A8  48 0A 65 69 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF26C 001AC1AC  80 7F 00 90 */	lwz r3, 0x90(r31)
 /* 801AF270 001AC1B0  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF274 001AC1B4  48 0A 65 5D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF274 001AC1B4  48 0A 65 5D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF278 001AC1B8  88 1F 00 FF */	lbz r0, 0xff(r31)
 /* 801AF27C 001AC1BC  28 00 00 00 */	cmplwi r0, 0
 /* 801AF280 001AC1C0  40 82 00 10 */	bne lbl_801AF290
 /* 801AF284 001AC1C4  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AF288 001AC1C8  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF28C 001AC1CC  4B FE 60 15 */	bl dSelect_cursor_c_NS_setAlphaRate
+/* 801AF28C 001AC1CC  4B FE 60 15 */	bl setAlphaRate__16dSelect_cursor_cFf
 lbl_801AF290:
 /* 801AF290 001AC1D0  38 00 00 03 */	li r0, 3
 /* 801AF294 001AC1D4  98 1F 01 00 */	stb r0, 0x100(r31)
@@ -370,9 +370,9 @@ lbl_801AF29C:
 /* 801AF2CC 001AC20C  EF C1 00 24 */	fdivs f30, f1, f0
 /* 801AF2D0 001AC210  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AF2D4 001AC214  FC 20 F0 90 */	fmr f1, f30
-/* 801AF2D8 001AC218  48 0A 64 F9 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF2D8 001AC218  48 0A 64 F9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF2DC 001AC21C  80 7F 00 58 */	lwz r3, 0x58(r31)
-/* 801AF2E0 001AC220  48 0A 65 49 */	bl CPaneMgrAlpha_NS_getAlphaRate
+/* 801AF2E0 001AC220  48 0A 65 49 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 801AF2E4 001AC224  C0 02 A5 10 */	lfs f0, lbl_80453F10-_SDA2_BASE_(r2)
 /* 801AF2E8 001AC228  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 801AF2EC 001AC22C  41 82 00 24 */	beq lbl_801AF310
@@ -380,13 +380,13 @@ lbl_801AF29C:
 /* 801AF2F4 001AC234  C0 02 A5 14 */	lfs f0, lbl_80453F14-_SDA2_BASE_(r2)
 /* 801AF2F8 001AC238  EF E0 F0 28 */	fsubs f31, f0, f30
 /* 801AF2FC 001AC23C  FC 20 F8 90 */	fmr f1, f31
-/* 801AF300 001AC240  48 0A 64 D1 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF300 001AC240  48 0A 64 D1 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF304 001AC244  80 7F 00 7C */	lwz r3, 0x7c(r31)
 /* 801AF308 001AC248  FC 20 F8 90 */	fmr f1, f31
-/* 801AF30C 001AC24C  48 0A 64 C5 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF30C 001AC24C  48 0A 64 C5 */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_801AF310:
 /* 801AF310 001AC250  80 7F 00 60 */	lwz r3, 0x60(r31)
-/* 801AF314 001AC254  48 0A 65 15 */	bl CPaneMgrAlpha_NS_getAlphaRate
+/* 801AF314 001AC254  48 0A 65 15 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 801AF318 001AC258  C0 02 A5 10 */	lfs f0, lbl_80453F10-_SDA2_BASE_(r2)
 /* 801AF31C 001AC25C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 801AF320 001AC260  41 82 00 24 */	beq lbl_801AF344
@@ -394,17 +394,17 @@ lbl_801AF310:
 /* 801AF328 001AC268  C0 02 A5 14 */	lfs f0, lbl_80453F14-_SDA2_BASE_(r2)
 /* 801AF32C 001AC26C  EF E0 F0 28 */	fsubs f31, f0, f30
 /* 801AF330 001AC270  FC 20 F8 90 */	fmr f1, f31
-/* 801AF334 001AC274  48 0A 64 9D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF334 001AC274  48 0A 64 9D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF338 001AC278  80 7F 00 90 */	lwz r3, 0x90(r31)
 /* 801AF33C 001AC27C  FC 20 F8 90 */	fmr f1, f31
-/* 801AF340 001AC280  48 0A 64 91 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF340 001AC280  48 0A 64 91 */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_801AF344:
 /* 801AF344 001AC284  88 1F 00 FF */	lbz r0, 0xff(r31)
 /* 801AF348 001AC288  28 00 00 00 */	cmplwi r0, 0
 /* 801AF34C 001AC28C  40 82 00 10 */	bne lbl_801AF35C
 /* 801AF350 001AC290  80 7F 00 A8 */	lwz r3, 0xa8(r31)
 /* 801AF354 001AC294  FC 20 F0 90 */	fmr f1, f30
-/* 801AF358 001AC298  4B FE 5F 49 */	bl dSelect_cursor_c_NS_setAlphaRate
+/* 801AF358 001AC298  4B FE 5F 49 */	bl setAlphaRate__16dSelect_cursor_cFf
 lbl_801AF35C:
 /* 801AF35C 001AC29C  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 801AF360 001AC2A0  CB E1 00 30 */	lfd f31, 0x30(r1)
@@ -421,10 +421,10 @@ lbl_801AF35C:
 /* 801AF38C 001AC2CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AF390 001AC2D0  7C 7F 1B 78 */	mr r31, r3
 /* 801AF394 001AC2D4  38 80 04 08 */	li r4, 0x408
-/* 801AF398 001AC2D8  48 00 03 A1 */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AF398 001AC2D8  48 00 03 A1 */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AF39C 001AC2DC  7F E3 FB 78 */	mr r3, r31
 /* 801AF3A0 001AC2E0  38 80 03 F9 */	li r4, 0x3f9
-/* 801AF3A4 001AC2E4  48 00 04 45 */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AF3A4 001AC2E4  48 00 04 45 */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AF3A8 001AC2E8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801AF3AC 001AC2EC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AF3B0 001AC2F0  7C 08 03 A6 */	mtlr r0
@@ -491,21 +491,21 @@ lbl_801AF478:
 /* 801AF49C 001AC3DC  38 00 00 00 */	li r0, 0
 /* 801AF4A0 001AC3E0  B0 03 00 FA */	sth r0, 0xfa(r3)
 /* 801AF4A4 001AC3E4  38 80 00 00 */	li r4, 0
-/* 801AF4A8 001AC3E8  48 00 02 91 */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AF4A8 001AC3E8  48 00 02 91 */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AF4AC 001AC3EC  7F E3 FB 78 */	mr r3, r31
 /* 801AF4B0 001AC3F0  38 80 00 00 */	li r4, 0
-/* 801AF4B4 001AC3F4  48 00 03 35 */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AF4B4 001AC3F4  48 00 03 35 */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AF4B8 001AC3F8  7F E3 FB 78 */	mr r3, r31
 /* 801AF4BC 001AC3FC  38 80 04 DC */	li r4, 0x4dc
-/* 801AF4C0 001AC400  48 00 03 D9 */	bl dMenu_Calibration_c_NS_setStepString
+/* 801AF4C0 001AC400  48 00 03 D9 */	bl setStepString__19dMenu_Calibration_cFUs
 /* 801AF4C4 001AC404  7F E3 FB 78 */	mr r3, r31
 /* 801AF4C8 001AC408  38 80 04 DB */	li r4, 0x4db
-/* 801AF4CC 001AC40C  48 00 04 7D */	bl dMenu_Calibration_c_NS_setExplainString
+/* 801AF4CC 001AC40C  48 00 04 7D */	bl setExplainString__19dMenu_Calibration_cFUs
 /* 801AF4D0 001AC410  38 00 00 00 */	li r0, 0
 /* 801AF4D4 001AC414  B0 1F 00 FC */	sth r0, 0xfc(r31)
 /* 801AF4D8 001AC418  80 7F 00 90 */	lwz r3, 0x90(r31)
 /* 801AF4DC 001AC41C  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF4E0 001AC420  48 0A 62 F1 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF4E0 001AC420  48 0A 62 F1 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF4E4 001AC424  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801AF4E8 001AC428  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AF4EC 001AC42C  7C 08 03 A6 */	mtlr r0
@@ -529,13 +529,13 @@ lbl_801AF478:
 /* 801AF534 001AC474  41 80 00 34 */	blt lbl_801AF568
 /* 801AF538 001AC478  80 7F 00 60 */	lwz r3, 0x60(r31)
 /* 801AF53C 001AC47C  C0 22 A5 14 */	lfs f1, lbl_80453F14-_SDA2_BASE_(r2)
-/* 801AF540 001AC480  48 0A 62 91 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF540 001AC480  48 0A 62 91 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF544 001AC484  80 7F 00 90 */	lwz r3, 0x90(r31)
 /* 801AF548 001AC488  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF54C 001AC48C  48 0A 62 85 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF54C 001AC48C  48 0A 62 85 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF550 001AC490  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AF554 001AC494  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF558 001AC498  48 0A 62 79 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF558 001AC498  48 0A 62 79 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF55C 001AC49C  38 00 00 05 */	li r0, 5
 /* 801AF560 001AC4A0  98 1F 01 00 */	stb r0, 0x100(r31)
 /* 801AF564 001AC4A4  48 00 00 74 */	b lbl_801AF5D8
@@ -555,19 +555,19 @@ lbl_801AF568:
 /* 801AF598 001AC4D8  EF E1 00 24 */	fdivs f31, f1, f0
 /* 801AF59C 001AC4DC  80 7F 00 60 */	lwz r3, 0x60(r31)
 /* 801AF5A0 001AC4E0  FC 20 F8 90 */	fmr f1, f31
-/* 801AF5A4 001AC4E4  48 0A 62 2D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF5A4 001AC4E4  48 0A 62 2D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF5A8 001AC4E8  80 7F 00 90 */	lwz r3, 0x90(r31)
 /* 801AF5AC 001AC4EC  C0 22 A5 10 */	lfs f1, lbl_80453F10-_SDA2_BASE_(r2)
-/* 801AF5B0 001AC4F0  48 0A 62 21 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF5B0 001AC4F0  48 0A 62 21 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AF5B4 001AC4F4  80 7F 00 5C */	lwz r3, 0x5c(r31)
-/* 801AF5B8 001AC4F8  48 0A 62 71 */	bl CPaneMgrAlpha_NS_getAlphaRate
+/* 801AF5B8 001AC4F8  48 0A 62 71 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 801AF5BC 001AC4FC  C0 02 A5 10 */	lfs f0, lbl_80453F10-_SDA2_BASE_(r2)
 /* 801AF5C0 001AC500  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 801AF5C4 001AC504  41 82 00 14 */	beq lbl_801AF5D8
 /* 801AF5C8 001AC508  80 7F 00 5C */	lwz r3, 0x5c(r31)
 /* 801AF5CC 001AC50C  C0 02 A5 14 */	lfs f0, lbl_80453F14-_SDA2_BASE_(r2)
 /* 801AF5D0 001AC510  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 801AF5D4 001AC514  48 0A 61 FD */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AF5D4 001AC514  48 0A 61 FD */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_801AF5D8:
 /* 801AF5D8 001AC518  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 801AF5DC 001AC51C  CB E1 00 20 */	lfd f31, 0x20(r1)
@@ -582,10 +582,10 @@ lbl_801AF5D8:
 /* 801AF600 001AC540  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AF604 001AC544  7C 7F 1B 78 */	mr r31, r3
 /* 801AF608 001AC548  38 80 05 62 */	li r4, 0x562
-/* 801AF60C 001AC54C  48 00 01 2D */	bl dMenu_Calibration_c_NS_setAButtonString
+/* 801AF60C 001AC54C  48 00 01 2D */	bl setAButtonString__19dMenu_Calibration_cFUs
 /* 801AF610 001AC550  7F E3 FB 78 */	mr r3, r31
 /* 801AF614 001AC554  38 80 03 F9 */	li r4, 0x3f9
-/* 801AF618 001AC558  48 00 01 D1 */	bl dMenu_Calibration_c_NS_setBButtonString
+/* 801AF618 001AC558  48 00 01 D1 */	bl setBButtonString__19dMenu_Calibration_cFUs
 /* 801AF61C 001AC55C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801AF620 001AC560  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AF624 001AC564  7C 08 03 A6 */	mtlr r0
@@ -620,7 +620,7 @@ lbl_801AF5D8:
 /* 801AF698 001AC5D8  48 0F C2 ED */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 801AF69C 001AC5DC  48 06 F3 35 */	bl dMeter2Info_set2DVibration
 /* 801AF6A0 001AC5E0  7F E3 FB 78 */	mr r3, r31
-/* 801AF6A4 001AC5E4  48 00 00 6D */	bl dMenu_Calibration_c_NS_setCalibrationValue
+/* 801AF6A4 001AC5E4  48 00 00 6D */	bl setCalibrationValue__19dMenu_Calibration_cFv
 /* 801AF6A8 001AC5E8  48 00 00 54 */	b lbl_801AF6FC
 lbl_801AF6AC:
 /* 801AF6AC 001AC5EC  54 60 05 AD */	rlwinm. r0, r3, 0, 0x16, 0x16
@@ -650,8 +650,8 @@ lbl_801AF6FC:
 /* 801AF708 001AC648  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AF70C 001AC64C  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setCalibrationValue
-dMenu_Calibration_c_NS_setCalibrationValue:
+.global setCalibrationValue__19dMenu_Calibration_cFv
+setCalibrationValue__19dMenu_Calibration_cFv:
 /* 801AF710 001AC650  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 801AF714 001AC654  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
 /* 801AF718 001AC658  80 83 00 E8 */	lwz r4, 0xe8(r3)
@@ -663,8 +663,8 @@ dMenu_Calibration_c_NS_setCalibrationValue:
 /* 801AF730 001AC670  B0 03 00 F6 */	sth r0, 0xf6(r3)
 /* 801AF734 001AC674  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setAButtonString
-dMenu_Calibration_c_NS_setAButtonString:
+.global setAButtonString__19dMenu_Calibration_cFUs
+setAButtonString__19dMenu_Calibration_cFUs:
 /* 801AF738 001AC678  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AF73C 001AC67C  7C 08 02 A6 */	mflr r0
 /* 801AF740 001AC680  90 01 00 24 */	stw r0, 0x24(r1)
@@ -680,7 +680,7 @@ dMenu_Calibration_c_NS_setAButtonString:
 lbl_801AF768:
 /* 801AF768 001AC6A8  38 1F 00 14 */	addi r0, r31, 0x14
 /* 801AF76C 001AC6AC  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF770 001AC6B0  48 15 0E E9 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF770 001AC6B0  48 15 0E E9 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF774 001AC6B4  7F C4 F3 78 */	mr r4, r30
 /* 801AF778 001AC6B8  48 1B 93 B5 */	bl strcpy
 /* 801AF77C 001AC6BC  3B BD 00 01 */	addi r29, r29, 1
@@ -696,7 +696,7 @@ lbl_801AF790:
 lbl_801AF7A0:
 /* 801AF7A0 001AC6E0  38 1F 00 14 */	addi r0, r31, 0x14
 /* 801AF7A4 001AC6E4  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF7A8 001AC6E8  48 15 0E B1 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF7A8 001AC6E8  48 15 0E B1 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF7AC 001AC6EC  7C 65 1B 78 */	mr r5, r3
 /* 801AF7B0 001AC6F0  7F C3 F3 78 */	mr r3, r30
 /* 801AF7B4 001AC6F4  7F A4 EB 78 */	mr r4, r29
@@ -714,8 +714,8 @@ lbl_801AF7D0:
 /* 801AF7E0 001AC720  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AF7E4 001AC724  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setBButtonString
-dMenu_Calibration_c_NS_setBButtonString:
+.global setBButtonString__19dMenu_Calibration_cFUs
+setBButtonString__19dMenu_Calibration_cFUs:
 /* 801AF7E8 001AC728  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AF7EC 001AC72C  7C 08 02 A6 */	mflr r0
 /* 801AF7F0 001AC730  90 01 00 24 */	stw r0, 0x24(r1)
@@ -731,7 +731,7 @@ dMenu_Calibration_c_NS_setBButtonString:
 lbl_801AF818:
 /* 801AF818 001AC758  38 1F 00 28 */	addi r0, r31, 0x28
 /* 801AF81C 001AC75C  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF820 001AC760  48 15 0E 39 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF820 001AC760  48 15 0E 39 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF824 001AC764  7F C4 F3 78 */	mr r4, r30
 /* 801AF828 001AC768  48 1B 93 05 */	bl strcpy
 /* 801AF82C 001AC76C  3B BD 00 01 */	addi r29, r29, 1
@@ -747,7 +747,7 @@ lbl_801AF840:
 lbl_801AF850:
 /* 801AF850 001AC790  38 1F 00 28 */	addi r0, r31, 0x28
 /* 801AF854 001AC794  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF858 001AC798  48 15 0E 01 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF858 001AC798  48 15 0E 01 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF85C 001AC79C  7C 65 1B 78 */	mr r5, r3
 /* 801AF860 001AC7A0  7F C3 F3 78 */	mr r3, r30
 /* 801AF864 001AC7A4  7F A4 EB 78 */	mr r4, r29
@@ -765,8 +765,8 @@ lbl_801AF880:
 /* 801AF890 001AC7D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AF894 001AC7D4  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setStepString
-dMenu_Calibration_c_NS_setStepString:
+.global setStepString__19dMenu_Calibration_cFUs
+setStepString__19dMenu_Calibration_cFUs:
 /* 801AF898 001AC7D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AF89C 001AC7DC  7C 08 02 A6 */	mflr r0
 /* 801AF8A0 001AC7E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -782,7 +782,7 @@ dMenu_Calibration_c_NS_setStepString:
 lbl_801AF8C8:
 /* 801AF8C8 001AC808  38 1F 00 48 */	addi r0, r31, 0x48
 /* 801AF8CC 001AC80C  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF8D0 001AC810  48 15 0D 89 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF8D0 001AC810  48 15 0D 89 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF8D4 001AC814  7F C4 F3 78 */	mr r4, r30
 /* 801AF8D8 001AC818  48 1B 92 55 */	bl strcpy
 /* 801AF8DC 001AC81C  3B BD 00 01 */	addi r29, r29, 1
@@ -798,7 +798,7 @@ lbl_801AF8F0:
 lbl_801AF900:
 /* 801AF900 001AC840  38 1F 00 48 */	addi r0, r31, 0x48
 /* 801AF904 001AC844  7C 7B 00 2E */	lwzx r3, r27, r0
-/* 801AF908 001AC848  48 15 0D 51 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF908 001AC848  48 15 0D 51 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF90C 001AC84C  7C 65 1B 78 */	mr r5, r3
 /* 801AF910 001AC850  7F C3 F3 78 */	mr r3, r30
 /* 801AF914 001AC854  7F A4 EB 78 */	mr r4, r29
@@ -816,8 +816,8 @@ lbl_801AF930:
 /* 801AF940 001AC880  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AF944 001AC884  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setExplainString
-dMenu_Calibration_c_NS_setExplainString:
+.global setExplainString__19dMenu_Calibration_cFUs
+setExplainString__19dMenu_Calibration_cFUs:
 /* 801AF948 001AC888  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801AF94C 001AC88C  7C 08 02 A6 */	mflr r0
 /* 801AF950 001AC890  90 01 00 24 */	stw r0, 0x24(r1)
@@ -833,7 +833,7 @@ dMenu_Calibration_c_NS_setExplainString:
 lbl_801AF978:
 /* 801AF978 001AC8B8  38 1F 00 3C */	addi r0, r31, 0x3c
 /* 801AF97C 001AC8BC  7C 7C 00 2E */	lwzx r3, r28, r0
-/* 801AF980 001AC8C0  48 15 0C D9 */	bl J2DTextBox_NS_getStringPtr
+/* 801AF980 001AC8C0  48 15 0C D9 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801AF984 001AC8C4  7F C4 F3 78 */	mr r4, r30
 /* 801AF988 001AC8C8  48 1B 91 A5 */	bl strcpy
 /* 801AF98C 001AC8CC  3B BD 00 01 */	addi r29, r29, 1
@@ -869,8 +869,8 @@ lbl_801AF9E8:
 /* 801AF9F8 001AC938  38 21 00 20 */	addi r1, r1, 0x20
 /* 801AF9FC 001AC93C  4E 80 00 20 */	blr 
 
-.global dMenu_Calibration_c_NS_setHIO
-dMenu_Calibration_c_NS_setHIO:
+.global setHIO__19dMenu_Calibration_cFb
+setHIO__19dMenu_Calibration_cFb:
 /* 801AFA00 001AC940  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AFA04 001AC944  7C 08 02 A6 */	mflr r0
 /* 801AFA08 001AC948  90 01 00 14 */	stw r0, 0x14(r1)
@@ -924,7 +924,7 @@ lbl_801AFAAC:
 /* 801AFABC 001AC9FC  38 84 EB C8 */	addi r4, r4, lbl_8042EBC8@l
 /* 801AFAC0 001ACA00  C0 24 06 60 */	lfs f1, 0x660(r4)
 /* 801AFAC4 001ACA04  C0 44 06 64 */	lfs f2, 0x664(r4)
-/* 801AFAC8 001ACA08  48 0A 4A E9 */	bl CPaneMgr_NS_paneTrans
+/* 801AFAC8 001ACA08  48 0A 4A E9 */	bl paneTrans__8CPaneMgrFff
 /* 801AFACC 001ACA0C  3C 60 80 43 */	lis r3, lbl_8042EBC8@ha
 /* 801AFAD0 001ACA10  38 63 EB C8 */	addi r3, r3, lbl_8042EBC8@l
 /* 801AFAD4 001ACA14  C0 03 06 68 */	lfs f0, 0x668(r3)
@@ -944,7 +944,7 @@ lbl_801AFAF8:
 /* 801AFB08 001ACA48  38 84 EB C8 */	addi r4, r4, lbl_8042EBC8@l
 /* 801AFB0C 001ACA4C  C0 24 06 6C */	lfs f1, 0x66c(r4)
 /* 801AFB10 001ACA50  C0 44 06 70 */	lfs f2, 0x670(r4)
-/* 801AFB14 001ACA54  48 0A 4A 9D */	bl CPaneMgr_NS_paneTrans
+/* 801AFB14 001ACA54  48 0A 4A 9D */	bl paneTrans__8CPaneMgrFff
 /* 801AFB18 001ACA58  3C 60 80 43 */	lis r3, lbl_8042EBC8@ha
 /* 801AFB1C 001ACA5C  38 63 EB C8 */	addi r3, r3, lbl_8042EBC8@l
 /* 801AFB20 001ACA60  C0 03 06 74 */	lfs f0, 0x674(r3)
@@ -964,7 +964,7 @@ lbl_801AFB44:
 /* 801AFB54 001ACA94  38 84 EB C8 */	addi r4, r4, lbl_8042EBC8@l
 /* 801AFB58 001ACA98  C0 24 06 78 */	lfs f1, 0x678(r4)
 /* 801AFB5C 001ACA9C  C0 44 06 7C */	lfs f2, 0x67c(r4)
-/* 801AFB60 001ACAA0  48 0A 4A 51 */	bl CPaneMgr_NS_paneTrans
+/* 801AFB60 001ACAA0  48 0A 4A 51 */	bl paneTrans__8CPaneMgrFff
 /* 801AFB64 001ACAA4  3C 60 80 43 */	lis r3, lbl_8042EBC8@ha
 /* 801AFB68 001ACAA8  38 63 EB C8 */	addi r3, r3, lbl_8042EBC8@l
 /* 801AFB6C 001ACAAC  C0 03 06 80 */	lfs f0, 0x680(r3)
@@ -984,7 +984,7 @@ lbl_801AFB90:
 /* 801AFBA0 001ACAE0  38 84 EB C8 */	addi r4, r4, lbl_8042EBC8@l
 /* 801AFBA4 001ACAE4  C0 24 06 84 */	lfs f1, 0x684(r4)
 /* 801AFBA8 001ACAE8  C0 44 06 88 */	lfs f2, 0x688(r4)
-/* 801AFBAC 001ACAEC  48 0A 4A 05 */	bl CPaneMgr_NS_paneTrans
+/* 801AFBAC 001ACAEC  48 0A 4A 05 */	bl paneTrans__8CPaneMgrFff
 /* 801AFBB0 001ACAF0  3C 60 80 43 */	lis r3, lbl_8042EBC8@ha
 /* 801AFBB4 001ACAF4  38 63 EB C8 */	addi r3, r3, lbl_8042EBC8@l
 /* 801AFBB8 001ACAF8  C0 03 06 8C */	lfs f0, 0x68c(r3)
@@ -1006,7 +1006,7 @@ lbl_801AFBDC:
 /* 801AFBF4 001ACB34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801AFBF8 001ACB38  7C 08 02 A6 */	mflr r0
 /* 801AFBFC 001ACB3C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801AFC00 001ACB40  4B FF F2 2D */	bl dMenu_Calibration_c_NS__draw
+/* 801AFC00 001ACB40  4B FF F2 2D */	bl _draw__19dMenu_Calibration_cFv
 /* 801AFC04 001ACB44  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801AFC08 001ACB48  7C 08 03 A6 */	mtlr r0
 /* 801AFC0C 001ACB4C  38 21 00 10 */	addi r1, r1, 0x10

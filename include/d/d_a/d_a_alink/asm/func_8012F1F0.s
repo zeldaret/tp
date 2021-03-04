@@ -12,7 +12,7 @@
 /* 8012F21C 0012C15C  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 lbl_8012F220:
 /* 8012F220 0012C160  7F E3 FB 78 */ mr r3, r31
-/* 8012F224 0012C164  48 02 F2 A9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012F224 0012C164  48 02 F2 A9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012F228 0012C168  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012F22C 0012C16C  41 82 00 14 */ beq lbl_8012F240
 /* 8012F230 0012C170  7F C3 F3 78 */ mr r3, r30

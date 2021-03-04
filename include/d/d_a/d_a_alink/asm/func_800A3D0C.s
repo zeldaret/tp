@@ -16,12 +16,12 @@
 /* 800A3D48 000A0C88  40 82 00 14 */ bne lbl_800A3D5C
 /* 800A3D4C 000A0C8C  7F E3 FB 78 */ mr r3, r31
 /* 800A3D50 000A0C90  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800A3D54 000A0C94  48 0B B3 15 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 800A3D54 000A0C94  48 0B B3 15 */ bl loadData__14daPy_anmHeap_cFUsIdx
 /* 800A3D58 000A0C98  48 00 00 10 */ b lbl_800A3D68
 lbl_800A3D5C:
 /* 800A3D5C 000A0C9C  7F E3 FB 78 */ mr r3, r31
 /* 800A3D60 000A0CA0  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800A3D64 000A0CA4  48 0B B3 B5 */ bl daPy_anmHeap_c_NS_loadDataDemoRID
+/* 800A3D64 000A0CA4  48 0B B3 B5 */ bl loadData__14daPy_anmHeap_cFUsDemoRID
 lbl_800A3D68:
 /* 800A3D68 000A0CA8  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800A3D6C 000A0CAC  80 01 00 24 */ lwz r0, 0x24(r1)

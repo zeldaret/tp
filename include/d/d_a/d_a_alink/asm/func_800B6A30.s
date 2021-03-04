@@ -37,7 +37,7 @@ lbl_800B6A84:
 /* 800B6ABC 000B39FC  38 80 00 02 */ li r4, 2
 /* 800B6AC0 000B3A00  38 A0 00 01 */ li r5, 1
 /* 800B6AC4 000B3A04  38 C1 00 2C */ addi r6, r1, 0x2c
-/* 800B6AC8 000B3A08  4B FB 8F 5D */ bl dVibration_c_NS_StartShock
+/* 800B6AC8 000B3A08  4B FB 8F 5D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6ACC 000B3A0C  80 1E 05 74 */ lwz r0, 0x574(r30)
 /* 800B6AD0 000B3A10  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800B6AD4 000B3A14  41 82 00 14 */ beq lbl_800B6AE8
@@ -63,7 +63,7 @@ lbl_800B6AF4:
 /* 800B6B1C 000B3A5C  38 80 00 02 */ li r4, 2
 /* 800B6B20 000B3A60  38 A0 00 01 */ li r5, 1
 /* 800B6B24 000B3A64  38 C1 00 20 */ addi r6, r1, 0x20
-/* 800B6B28 000B3A68  4B FB 8E FD */ bl dVibration_c_NS_StartShock
+/* 800B6B28 000B3A68  4B FB 8E FD */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6B2C 000B3A6C  7F C3 F3 78 */ mr r3, r30
 /* 800B6B30 000B3A70  48 04 52 D5 */ bl daAlink_c_NS_procHangWallCatchInit
 /* 800B6B34 000B3A74  48 00 03 D4 */ b lbl_800B6F08
@@ -88,7 +88,7 @@ lbl_800B6B38:
 /* 800B6B7C 000B3ABC  38 80 00 02 */ li r4, 2
 /* 800B6B80 000B3AC0  38 A0 00 01 */ li r5, 1
 /* 800B6B84 000B3AC4  38 C1 00 14 */ addi r6, r1, 0x14
-/* 800B6B88 000B3AC8  4B FB 8E 9D */ bl dVibration_c_NS_StartShock
+/* 800B6B88 000B3AC8  4B FB 8E 9D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6B8C 000B3ACC  7F C3 F3 78 */ mr r3, r30
 /* 800B6B90 000B3AD0  48 04 86 FD */ bl daAlink_c_NS_setClimbStartNotGround
 /* 800B6B94 000B3AD4  48 00 03 74 */ b lbl_800B6F08
@@ -120,7 +120,7 @@ lbl_800B6BBC:
 /* 800B6BF4 000B3B34  38 80 00 02 */ li r4, 2
 /* 800B6BF8 000B3B38  38 A0 00 01 */ li r5, 1
 /* 800B6BFC 000B3B3C  38 C1 00 08 */ addi r6, r1, 8
-/* 800B6C00 000B3B40  4B FB 8E 25 */ bl dVibration_c_NS_StartShock
+/* 800B6C00 000B3B40  4B FB 8E 25 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800B6C04 000B3B44  C0 0D 81 18 */ lfs f0, lbl_80450698-_SDA_BASE_(r13)
 /* 800B6C08 000B3B48  D0 1E 33 B0 */ stfs f0, 0x33b0(r30)
 /* 800B6C0C 000B3B4C  C0 5E 04 D4 */ lfs f2, 0x4d4(r30)

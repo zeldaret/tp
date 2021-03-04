@@ -9,8 +9,8 @@ public:
 };
 
 extern "C" {
-void JAISoundHandles_NS_getFreeHandle(void);
-void JAISoundHandles_NS_getHandleSoundID(void);
+void getFreeHandle__15JAISoundHandlesFv(void);
+void getHandleSoundID__15JAISoundHandlesF10JAISoundID(void);
 }
 
 #endif  // JAISOUNDHANDLES_H_

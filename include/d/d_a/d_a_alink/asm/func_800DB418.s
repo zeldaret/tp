@@ -38,7 +38,7 @@ lbl_800DB47C:
 /* 800DB4A8 000D83E8  38 80 00 05 */ li r4, 5
 /* 800DB4AC 000D83EC  38 A0 00 01 */ li r5, 1
 /* 800DB4B0 000D83F0  38 C1 00 08 */ addi r6, r1, 8
-/* 800DB4B4 000D83F4  4B F9 46 5D */ bl dVibration_c_NS_StartQuake
+/* 800DB4B4 000D83F4  4B F9 46 5D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800DB4B8 000D83F8  A8 7F 30 0E */ lha r3, 0x300e(r31)
 /* 800DB4BC 000D83FC  38 03 FF FF */ addi r0, r3, -1
 /* 800DB4C0 000D8400  B0 1F 30 0E */ sth r0, 0x300e(r31)
@@ -62,7 +62,7 @@ lbl_800DB4F0:
 /* 800DB4FC 000D843C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800DB500 000D8440  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800DB504 000D8444  38 80 00 1F */ li r4, 0x1f
-/* 800DB508 000D8448  4B F9 48 8D */ bl dVibration_c_NS_StopQuake
+/* 800DB508 000D8448  4B F9 48 8D */ bl StopQuake__12dVibration_cFi
 /* 800DB50C 000D844C  80 7F 31 A0 */ lwz r3, 0x31a0(r31)
 /* 800DB510 000D8450  54 60 07 BD */ rlwinm. r0, r3, 0, 0x1e, 0x1e
 /* 800DB514 000D8454  40 82 00 10 */ bne lbl_800DB524

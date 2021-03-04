@@ -85,7 +85,7 @@ lbl_800ED450:
 /* 800ED454 000EA394  54 00 07 BF */ clrlwi. r0, r0, 0x1e
 /* 800ED458 000EA398  41 82 00 0C */ beq lbl_800ED464
 /* 800ED45C 000EA39C  80 7F 05 70 */ lwz r3, 0x570(r31)
-/* 800ED460 000EA3A0  48 23 A7 F9 */ bl J3DModel_NS_calcWeightEnvelopeMtx
+/* 800ED460 000EA3A0  48 23 A7 F9 */ bl calcWeightEnvelopeMtx__8J3DModelFv
 lbl_800ED464:
 /* 800ED464 000EA3A4  7F C3 F3 78 */ mr r3, r30
 /* 800ED468 000EA3A8  4B FF F9 A9 */ bl daAlink_c_NS_getReinHandType

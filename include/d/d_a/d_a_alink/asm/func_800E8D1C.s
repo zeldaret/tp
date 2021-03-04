@@ -48,7 +48,7 @@ lbl_800E8DBC:
 /* 800E8DCC 000E5D0C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8DD0 000E5D10  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E8DD4 000E5D14  A0 9F 1E 1E */ lhz r4, 0x1e1e(r31)
-/* 800E8DD8 000E5D18  4B F8 B8 41 */ bl cBgS_NS_GetActorPointer
+/* 800E8DD8 000E5D18  4B F8 B8 41 */ bl GetActorPointer__4cBgSCFi
 /* 800E8DDC 000E5D1C  7C 7E 1B 78 */ mr r30, r3
 /* 800E8DE0 000E5D20  7F E4 FB 78 */ mr r4, r31
 /* 800E8DE4 000E5D24  4B F3 19 2D */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c

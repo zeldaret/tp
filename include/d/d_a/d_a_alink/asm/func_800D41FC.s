@@ -34,7 +34,7 @@ lbl_800D4264:
 /* 800D4278 000D11B8  48 00 8D 91 */ bl daAlink_c_NS_setUpperGuardAnime
 lbl_800D427C:
 /* 800D427C 000D11BC  7F E3 FB 78 */ mr r3, r31
-/* 800D4280 000D11C0  48 08 A2 4D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D4280 000D11C0  48 08 A2 4D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D4284 000D11C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D4288 000D11C8  41 82 00 1C */ beq lbl_800D42A4
 /* 800D428C 000D11CC  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

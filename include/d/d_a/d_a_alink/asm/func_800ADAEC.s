@@ -21,7 +21,7 @@
 /* 800ADB3C 000AAA7C  38 63 1F D0 */ addi r3, r3, 0x1fd0
 /* 800ADB40 000AAA80  7C 7F 1A 14 */ add r3, r31, r3
 /* 800ADB44 000AAA84  38 80 00 00 */ li r4, 0
-/* 800ADB48 000AAA88  48 27 A8 B5 */ bl J3DFrameCtrl_NS_init
+/* 800ADB48 000AAA88  48 27 A8 B5 */ bl init__12J3DFrameCtrlFs
 /* 800ADB4C 000AAA8C  7F E3 FB 78 */ mr r3, r31
 /* 800ADB50 000AAA90  FC 20 F8 90 */ fmr f1, f31
 /* 800ADB54 000AAA94  4B FF FD A1 */ bl daAlink_c_NS_setUnderAnimeMorf

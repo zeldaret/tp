@@ -1,7 +1,7 @@
 #include "JSystem/J2DGraph/J2DPane.h"
 
 extern "C" {
-s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+s32 read__14JSUInputStreamFPvl(JSUInputStream*, u8*, u32);
 void __ct__10JSUPtrLinkFPv(void);
 void __dl__FPv(void);
 void __dt__10JSUPtrLinkFv(void);
@@ -11,7 +11,7 @@ void getParentPane__7J2DPaneFv(void);
 void GXSetCullMode(void);
 void initiate__10JSUPtrListFv(void);
 void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink(void);
-void JSURandomInputStream_NS_seek(JSURandomInputStream*, u32, u32);
+void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom(JSURandomInputStream*, u32, u32);
 }
 
 J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {

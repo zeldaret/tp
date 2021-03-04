@@ -12,7 +12,7 @@
 /* 8000D578 0000A4B8  7D 3F 4B 78 */ mr r31, r9
 /* 8000D57C 0000A4BC  90 A3 00 14 */ stw r5, 0x14(r3)
 /* 8000D580 0000A4C0  80 63 00 14 */ lwz r3, 0x14(r3)
-/* 8000D584 0000A4C4  48 31 DA 81 */ bl J3DAnmTexPattern_NS_searchUpdateMaterialID
+/* 8000D584 0000A4C4  48 31 DA 81 */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable
 /* 8000D588 0000A4C8  2C 1C 00 00 */ cmpwi r28, 0
 /* 8000D58C 0000A4CC  41 82 00 3C */ beq lbl_8000D5C8
 /* 8000D590 0000A4D0  2C 1D 00 00 */ cmpwi r29, 0

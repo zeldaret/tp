@@ -669,7 +669,7 @@ JPADynamicsBlock:
 /* 8027BB24 00278A64  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027BB28 00278A68  7C 7F 1B 78 */	mr r31, r3
 /* 8027BB2C 00278A6C  90 83 00 00 */	stw r4, 0(r3)
-/* 8027BB30 00278A70  48 00 00 1D */	bl JPADynamicsBlock_NS_init
+/* 8027BB30 00278A70  48 00 00 1D */	bl init__16JPADynamicsBlockFv
 /* 8027BB34 00278A74  7F E3 FB 78 */	mr r3, r31
 /* 8027BB38 00278A78  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8027BB3C 00278A7C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -677,8 +677,8 @@ JPADynamicsBlock:
 /* 8027BB44 00278A84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027BB48 00278A88  4E 80 00 20 */	blr 
 
-.global JPADynamicsBlock_NS_init
-JPADynamicsBlock_NS_init:
+.global init__16JPADynamicsBlockFv
+init__16JPADynamicsBlockFv:
 /* 8027BB4C 00278A8C  80 83 00 00 */	lwz r4, 0(r3)
 /* 8027BB50 00278A90  80 04 00 08 */	lwz r0, 8(r4)
 /* 8027BB54 00278A94  54 00 C7 7E */	rlwinm r0, r0, 0x18, 0x1d, 0x1f
@@ -733,8 +733,8 @@ JPADynamicsBlock_NS_init:
 /* 8027BBE0 00278B20  90 03 00 04 */	stw r0, 4(r3)
 /* 8027BBE4 00278B24  4E 80 00 20 */	blr 
 
-.global JPADynamicsBlock_NS_create
-JPADynamicsBlock_NS_create:
+.global create__16JPADynamicsBlockFP18JPAEmitterWorkData
+create__16JPADynamicsBlockFP18JPAEmitterWorkData:
 /* 8027BBE8 00278B28  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8027BBEC 00278B2C  7C 08 02 A6 */	mflr r0
 /* 8027BBF0 00278B30  90 01 00 34 */	stw r0, 0x34(r1)
@@ -830,7 +830,7 @@ lbl_8027BD40:
 /* 8027BD44 00278C84  48 00 00 18 */	b lbl_8027BD5C
 lbl_8027BD48:
 /* 8027BD48 00278C88  80 7F 00 00 */	lwz r3, 0(r31)
-/* 8027BD4C 00278C8C  48 00 2C F5 */	bl JPABaseEmitter_NS_createParticle
+/* 8027BD4C 00278C8C  48 00 2C F5 */	bl createParticle__14JPABaseEmitterFv
 /* 8027BD50 00278C90  28 03 00 00 */	cmplwi r3, 0
 /* 8027BD54 00278C94  41 82 00 10 */	beq lbl_8027BD64
 /* 8027BD58 00278C98  3B DE FF FF */	addi r30, r30, -1

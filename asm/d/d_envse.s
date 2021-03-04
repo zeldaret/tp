@@ -146,8 +146,8 @@ lbl_80182FAC:
 /* 80182FD0 0017FF10  38 21 00 70 */	addi r1, r1, 0x70
 /* 80182FD4 0017FF14  4E 80 00 20 */	blr 
 
-.global dEnvSe_c_NS_execute_common
-dEnvSe_c_NS_execute_common:
+.global execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
+execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc:
 /* 80182FD8 0017FF18  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80182FDC 0017FF1C  7C 08 02 A6 */	mflr r0
 /* 80182FE0 0017FF20  90 01 00 74 */	stw r0, 0x74(r1)
@@ -476,8 +476,8 @@ lbl_80183460:
 /* 80183478 001803B8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018347C 001803BC  4E 80 00 20 */	blr 
 
-.global dEnvSe_c_NS_execute
-dEnvSe_c_NS_execute:
+.global execute__8dEnvSe_cFv
+execute__8dEnvSe_cFv:
 /* 80183480 001803C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80183484 001803C4  7C 08 02 A6 */	mflr r0
 /* 80183488 001803C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -514,7 +514,7 @@ lbl_801834E4:
 /* 801834FC 0018043C  7F 83 E3 78 */	mr r3, r28
 /* 80183500 00180440  38 BC 00 FC */	addi r5, r28, 0xfc
 /* 80183504 00180444  38 C0 00 01 */	li r6, 1
-/* 80183508 00180448  4B FF FA D1 */	bl dEnvSe_c_NS_execute_common
+/* 80183508 00180448  4B FF FA D1 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 8018350C 0018044C  7F A3 EB 78 */	mr r3, r29
 /* 80183510 00180450  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80183514 00180454  81 8C 00 EC */	lwz r12, 0xec(r12)
@@ -524,7 +524,7 @@ lbl_801834E4:
 /* 80183524 00180464  7F 83 E3 78 */	mr r3, r28
 /* 80183528 00180468  38 BC 00 FD */	addi r5, r28, 0xfd
 /* 8018352C 0018046C  38 C0 00 01 */	li r6, 1
-/* 80183530 00180470  4B FF FA A9 */	bl dEnvSe_c_NS_execute_common
+/* 80183530 00180470  4B FF FA A9 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 80183534 00180474  3B BF 4E 20 */	addi r29, r31, 0x4e20
 /* 80183538 00180478  7F A3 EB 78 */	mr r3, r29
 /* 8018353C 0018047C  81 9D 00 00 */	lwz r12, 0(r29)
@@ -535,7 +535,7 @@ lbl_801834E4:
 /* 80183550 00180490  7F 83 E3 78 */	mr r3, r28
 /* 80183554 00180494  38 BC 00 FE */	addi r5, r28, 0xfe
 /* 80183558 00180498  38 C0 00 00 */	li r6, 0
-/* 8018355C 0018049C  4B FF FA 7D */	bl dEnvSe_c_NS_execute_common
+/* 8018355C 0018049C  4B FF FA 7D */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 80183560 001804A0  7F A3 EB 78 */	mr r3, r29
 /* 80183564 001804A4  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80183568 001804A8  81 8C 00 EC */	lwz r12, 0xec(r12)
@@ -545,7 +545,7 @@ lbl_801834E4:
 /* 80183578 001804B8  7F 83 E3 78 */	mr r3, r28
 /* 8018357C 001804BC  38 BC 00 FF */	addi r5, r28, 0xff
 /* 80183580 001804C0  38 C0 00 00 */	li r6, 0
-/* 80183584 001804C4  4B FF FA 55 */	bl dEnvSe_c_NS_execute_common
+/* 80183584 001804C4  4B FF FA 55 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 lbl_80183588:
 /* 80183588 001804C8  39 61 00 20 */	addi r11, r1, 0x20
 /* 8018358C 001804CC  48 1D EC 99 */	bl _restgpr_28
@@ -556,7 +556,7 @@ lbl_80183588:
 /* 801835A0 001804E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801835A4 001804E4  7C 08 02 A6 */	mflr r0
 /* 801835A8 001804E8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801835AC 001804EC  4B FF FE D5 */	bl dEnvSe_c_NS_execute
+/* 801835AC 001804EC  4B FF FE D5 */	bl execute__8dEnvSe_cFv
 /* 801835B0 001804F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801835B4 001804F4  7C 08 03 A6 */	mtlr r0
 /* 801835B8 001804F8  38 21 00 10 */	addi r1, r1, 0x10

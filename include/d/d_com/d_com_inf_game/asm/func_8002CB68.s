@@ -4,7 +4,7 @@
 /* 8002CB74 00029AB4  80 63 4E 08 */ lwz r3, 0x4e08(r3)
 /* 8002CB78 00029AB8  28 03 00 00 */ cmplwi r3, 0
 /* 8002CB7C 00029ABC  41 82 00 08 */ beq lbl_8002CB84
-/* 8002CB80 00029AC0  48 01 C3 3D */ bl dSmplMdl_draw_c_NS_entry
+/* 8002CB80 00029AC0  48 01 C3 3D */ bl entry__15dSmplMdl_draw_cFP8J3DModeli
 lbl_8002CB84:
 /* 8002CB84 00029AC4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002CB88 00029AC8  7C 08 03 A6 */ mtlr r0

@@ -25,7 +25,7 @@
 /* 8010FFB8 0010CEF8  38 80 00 01 */ li r4, 1
 /* 8010FFBC 0010CEFC  38 A0 00 01 */ li r5, 1
 /* 8010FFC0 0010CF00  38 C1 00 08 */ addi r6, r1, 8
-/* 8010FFC4 0010CF04  4B F5 FA 61 */ bl dVibration_c_NS_StartShock
+/* 8010FFC4 0010CF04  4B F5 FA 61 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8010FFC8 0010CF08  38 00 00 01 */ li r0, 1
 /* 8010FFCC 0010CF0C  B0 1E 30 0E */ sth r0, 0x300e(r30)
 lbl_8010FFD0:
@@ -105,7 +105,7 @@ lbl_801100C4:
 /* 801100E4 0010D024  4E 80 04 21 */ bctrl
 /* 801100E8 0010D028  48 00 00 68 */ b lbl_80110150
 lbl_801100EC:
-/* 801100EC 0010D02C  48 04 EA 55 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 801100EC 0010D02C  48 04 EA 55 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 801100F0 0010D030  2C 03 00 00 */ cmpwi r3, 0
 /* 801100F4 0010D034  41 82 00 24 */ beq lbl_80110118
 /* 801100F8 0010D038  7F C3 F3 78 */ mr r3, r30
@@ -200,7 +200,7 @@ lbl_8011021C:
 /* 80110240 0010D180  4B F0 B0 F5 */ bl fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs
 lbl_80110244:
 /* 80110244 0010D184  7F E3 FB 78 */ mr r3, r31
-/* 80110248 0010D188  48 04 E2 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80110248 0010D188  48 04 E2 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011024C 0010D18C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80110250 0010D190  41 82 00 30 */ beq lbl_80110280
 /* 80110254 0010D194  A8 1E 30 0C */ lha r0, 0x300c(r30)

@@ -42,7 +42,7 @@ lbl_800C8434:
 /* 800C8438 000C5378  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C843C 000C537C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800C8440 000C5380  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 800C8444 000C5384  4B F7 FD 39 */ bl dEvent_manager_c_NS_cutEnd
+/* 800C8444 000C5384  4B F7 FD 39 */ bl cutEnd__16dEvent_manager_cFi
 lbl_800C8448:
 /* 800C8448 000C5388  38 60 00 01 */ li r3, 1
 /* 800C844C 000C538C  83 E1 00 0C */ lwz r31, 0xc(r1)

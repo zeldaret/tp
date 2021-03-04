@@ -77,7 +77,7 @@ lbl_80108EC0:
 /* 80108EC4 00105E04  98 1F 20 68 */ stb r0, 0x2068(r31)
 lbl_80108EC8:
 /* 80108EC8 00105E08  38 7F 28 4C */ addi r3, r31, 0x284c
-/* 80108ECC 00105E0C  48 05 5E 31 */ bl daPy_actorKeep_c_NS_clearData
+/* 80108ECC 00105E0C  48 05 5E 31 */ bl clearData__16daPy_actorKeep_cFv
 /* 80108ED0 00105E10  C0 02 92 BC */ lfs f0, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 80108ED4 00105E14  D0 1F 34 94 */ stfs f0, 0x3494(r31)
 /* 80108ED8 00105E18  83 E1 00 1C */ lwz r31, 0x1c(r1)

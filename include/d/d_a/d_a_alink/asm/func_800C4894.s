@@ -16,7 +16,7 @@
 /* 800C48D0 000C1810  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 lbl_800C48D4:
 /* 800C48D4 000C1814  7F E3 FB 78 */ mr r3, r31
-/* 800C48D8 000C1818  48 09 9B F5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C48D8 000C1818  48 09 9B F5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C48DC 000C181C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C48E0 000C1820  41 82 00 1C */ beq lbl_800C48FC
 /* 800C48E4 000C1824  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

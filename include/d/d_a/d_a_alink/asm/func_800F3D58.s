@@ -6,7 +6,7 @@
 /* 800F3D6C 000F0CAC  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
 /* 800F3D70 000F0CB0  28 03 01 05 */ cmplwi r3, 0x105
 /* 800F3D74 000F0CB4  41 82 00 10 */ beq lbl_800F3D84
-/* 800F3D78 000F0CB8  48 06 AC A9 */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800F3D78 000F0CB8  48 06 AC A9 */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800F3D7C 000F0CBC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F3D80 000F0CC0  41 82 00 08 */ beq lbl_800F3D88
 lbl_800F3D84:

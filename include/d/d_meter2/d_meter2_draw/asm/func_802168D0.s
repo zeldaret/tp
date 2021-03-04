@@ -25,12 +25,12 @@
 lbl_80216930:
 /* 80216930 00213870  3B BF 02 B4 */ addi r29, r31, 0x2b4
 /* 80216934 00213874  7C 7B E8 2E */ lwzx r3, r27, r29
-/* 80216938 00213878  48 03 EE F1 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80216938 00213878  48 03 EE F1 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 8021693C 0021387C  FC 1F 08 00 */ fcmpu cr0, f31, f1
 /* 80216940 00213880  41 82 00 20 */ beq lbl_80216960
 /* 80216944 00213884  7C 7B E8 2E */ lwzx r3, r27, r29
 /* 80216948 00213888  7C 3E FC 2E */ lfsx f1, r30, r31
-/* 8021694C 0021388C  48 03 EE 85 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8021694C 0021388C  48 03 EE 85 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80216950 00213890  7F 63 DB 78 */ mr r3, r27
 /* 80216954 00213894  7C 9B E8 2E */ lwzx r4, r27, r29
 /* 80216958 00213898  38 A0 00 05 */ li r5, 5

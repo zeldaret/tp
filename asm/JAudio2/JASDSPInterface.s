@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029d958
 
 
-.global JASDsp_NS_boot
-JASDsp_NS_boot:
+.global boot__6JASDspFPFPv_v
+boot__6JASDspFPFPv_v:
 /* 8029D958 0029A898  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D95C 0029A89C  7C 08 02 A6 */	mflr r0
 /* 8029D960 0029A8A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -27,8 +27,8 @@ lbl_8029D994:
 /* 8029D99C 0029A8DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D9A0 0029A8E0  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_releaseHalt
-JASDsp_NS_releaseHalt:
+.global releaseHalt__6JASDspFUl
+releaseHalt__6JASDspFUl:
 /* 8029D9A4 0029A8E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9A8 0029A8E8  7C 08 02 A6 */	mflr r0
 /* 8029D9AC 0029A8EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -38,8 +38,8 @@ JASDsp_NS_releaseHalt:
 /* 8029D9BC 0029A8FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D9C0 0029A900  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_finishWork
-JASDsp_NS_finishWork:
+.global finishWork__6JASDspFUs
+finishWork__6JASDspFUs:
 /* 8029D9C4 0029A904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9C8 0029A908  7C 08 02 A6 */	mflr r0
 /* 8029D9CC 0029A90C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -49,8 +49,8 @@ JASDsp_NS_finishWork:
 /* 8029D9DC 0029A91C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D9E0 0029A920  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_syncFrame
-JASDsp_NS_syncFrame:
+.global syncFrame__6JASDspFUlUlUl
+syncFrame__6JASDspFUlUlUl:
 /* 8029D9E4 0029A924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9E8 0029A928  7C 08 02 A6 */	mflr r0
 /* 8029D9EC 0029A92C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -60,8 +60,8 @@ JASDsp_NS_syncFrame:
 /* 8029D9FC 0029A93C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DA00 0029A940  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_setDSPMixerLevel
-JASDsp_NS_setDSPMixerLevel:
+.global setDSPMixerLevel__6JASDspFf
+setDSPMixerLevel__6JASDspFf:
 /* 8029DA04 0029A944  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DA08 0029A948  7C 08 02 A6 */	mflr r0
 /* 8029DA0C 0029A94C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -74,20 +74,20 @@ JASDsp_NS_setDSPMixerLevel:
 /* 8029DA28 0029A968  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DA2C 0029A96C  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_getDSPMixerLevel
-JASDsp_NS_getDSPMixerLevel:
+.global getDSPMixerLevel__6JASDspFv
+getDSPMixerLevel__6JASDspFv:
 /* 8029DA30 0029A970  C0 2D 8D 70 */	lfs f1, lbl_804512F0-_SDA_BASE_(r13)
 /* 8029DA34 0029A974  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_getDSPHandle
-JASDsp_NS_getDSPHandle:
+.global getDSPHandle__6JASDspFi
+getDSPHandle__6JASDspFi:
 /* 8029DA38 0029A978  80 8D 8D 68 */	lwz r4, lbl_804512E8-_SDA_BASE_(r13)
 /* 8029DA3C 0029A97C  1C 03 01 80 */	mulli r0, r3, 0x180
 /* 8029DA40 0029A980  7C 64 02 14 */	add r3, r4, r0
 /* 8029DA44 0029A984  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_setFilterTable
-JASDsp_NS_setFilterTable:
+.global setFilterTable__6JASDspFPsPsUl
+setFilterTable__6JASDspFPsPsUl:
 /* 8029DA48 0029A988  7C A9 03 A6 */	mtctr r5
 /* 8029DA4C 0029A98C  28 05 00 00 */	cmplwi r5, 0
 /* 8029DA50 0029A990  4C 81 00 20 */	blelr 
@@ -99,8 +99,8 @@ lbl_8029DA54:
 /* 8029DA64 0029A9A4  42 00 FF F0 */	bdnz lbl_8029DA54
 /* 8029DA68 0029A9A8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_flushBuffer
-JASDsp_NS_flushBuffer:
+.global flushBuffer__6JASDspFv
+flushBuffer__6JASDspFv:
 /* 8029DA6C 0029A9AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DA70 0029A9B0  7C 08 02 A6 */	mflr r0
 /* 8029DA74 0029A9B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -115,8 +115,8 @@ JASDsp_NS_flushBuffer:
 /* 8029DA98 0029A9D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DA9C 0029A9DC  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_invalChannelAll
-JASDsp_NS_invalChannelAll:
+.global invalChannelAll__6JASDspFv
+invalChannelAll__6JASDspFv:
 /* 8029DAA0 0029A9E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DAA4 0029A9E4  7C 08 02 A6 */	mflr r0
 /* 8029DAA8 0029A9E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -128,8 +128,8 @@ JASDsp_NS_invalChannelAll:
 /* 8029DAC0 0029AA00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DAC4 0029AA04  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_initBuffer
-JASDsp_NS_initBuffer:
+.global initBuffer__6JASDspFv
+initBuffer__6JASDspFv:
 /* 8029DAC8 0029AA08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DACC 0029AA0C  7C 08 02 A6 */	mflr r0
 /* 8029DAD0 0029AA10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -146,17 +146,17 @@ JASDsp_NS_initBuffer:
 /* 8029DAFC 0029AA3C  90 6D 8D 6C */	stw r3, lbl_804512EC-_SDA_BASE_(r13)
 /* 8029DB00 0029AA40  80 6D 8D 68 */	lwz r3, lbl_804512E8-_SDA_BASE_(r13)
 /* 8029DB04 0029AA44  38 80 60 00 */	li r4, 0x6000
-/* 8029DB08 0029AA48  4B FF 19 79 */	bl JASCalc_NS_bzero
+/* 8029DB08 0029AA48  4B FF 19 79 */	bl bzero__7JASCalcFPvUl
 /* 8029DB0C 0029AA4C  80 6D 8D 6C */	lwz r3, lbl_804512EC-_SDA_BASE_(r13)
 /* 8029DB10 0029AA50  38 80 00 80 */	li r4, 0x80
-/* 8029DB14 0029AA54  4B FF 19 6D */	bl JASCalc_NS_bzero
+/* 8029DB14 0029AA54  4B FF 19 6D */	bl bzero__7JASCalcFPvUl
 /* 8029DB18 0029AA58  3B E0 00 00 */	li r31, 0
 /* 8029DB1C 0029AA5C  48 00 00 18 */	b lbl_8029DB34
 lbl_8029DB20:
 /* 8029DB20 0029AA60  7F E3 FB 78 */	mr r3, r31
 /* 8029DB24 0029AA64  38 80 00 00 */	li r4, 0
 /* 8029DB28 0029AA68  38 A0 00 00 */	li r5, 0
-/* 8029DB2C 0029AA6C  48 00 00 4D */	bl JASDsp_NS_setFXLine
+/* 8029DB2C 0029AA6C  48 00 00 4D */	bl setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_
 /* 8029DB30 0029AA70  3B FF 00 01 */	addi r31, r31, 1
 lbl_8029DB34:
 /* 8029DB34 0029AA74  57 E0 06 3E */	clrlwi r0, r31, 0x18
@@ -170,15 +170,15 @@ lbl_8029DB34:
 /* 8029DB54 0029AA94  38 C6 B3 60 */	addi r6, r6, lbl_8039B360@l
 /* 8029DB58 0029AA98  80 ED 8D 6C */	lwz r7, lbl_804512EC-_SDA_BASE_(r13)
 /* 8029DB5C 0029AA9C  48 00 0A 05 */	bl DsetupTable
-/* 8029DB60 0029AAA0  4B FF FF 0D */	bl JASDsp_NS_flushBuffer
+/* 8029DB60 0029AAA0  4B FF FF 0D */	bl flushBuffer__6JASDspFv
 /* 8029DB64 0029AAA4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029DB68 0029AAA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029DB6C 0029AAAC  7C 08 03 A6 */	mtlr r0
 /* 8029DB70 0029AAB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DB74 0029AAB4  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_setFXLine
-JASDsp_NS_setFXLine:
+.global setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_
+setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_:
 /* 8029DB78 0029AAB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029DB7C 0029AABC  7C 08 02 A6 */	mflr r0
 /* 8029DB80 0029AAC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -214,7 +214,7 @@ JASDsp_NS_setFXLine:
 /* 8029DBF8 0029AB38  38 7F 00 10 */	addi r3, r31, 0x10
 /* 8029DBFC 0029AB3C  38 9E 00 10 */	addi r4, r30, 0x10
 /* 8029DC00 0029AB40  38 A0 00 08 */	li r5, 8
-/* 8029DC04 0029AB44  4B FF FE 45 */	bl JASDsp_NS_setFilterTable
+/* 8029DC04 0029AB44  4B FF FE 45 */	bl setFilterTable__6JASDspFPsPsUl
 lbl_8029DC08:
 /* 8029DC08 0029AB48  28 1D 00 00 */	cmplwi r29, 0
 /* 8029DC0C 0029AB4C  41 82 00 34 */	beq lbl_8029DC40
@@ -225,7 +225,7 @@ lbl_8029DC08:
 /* 8029DC20 0029AB60  93 BF 00 04 */	stw r29, 4(r31)
 /* 8029DC24 0029AB64  7F A3 EB 78 */	mr r3, r29
 /* 8029DC28 0029AB68  7F 84 E3 78 */	mr r4, r28
-/* 8029DC2C 0029AB6C  4B FF 18 55 */	bl JASCalc_NS_bzero
+/* 8029DC2C 0029AB6C  4B FF 18 55 */	bl bzero__7JASCalcFPvUl
 /* 8029DC30 0029AB70  7F A3 EB 78 */	mr r3, r29
 /* 8029DC34 0029AB74  7F 84 E3 78 */	mr r4, r28
 /* 8029DC38 0029AB78  48 09 D9 75 */	bl DCFlushRange
@@ -261,8 +261,8 @@ lbl_8029DC74:
 /* 8029DC9C 0029ABDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029DCA0 0029ABE0  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_init
-JASDsp_NS_TChannel_NS_init:
+.global init__Q26JASDsp8TChannelFv
+init__Q26JASDsp8TChannelFv:
 /* 8029DCA4 0029ABE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DCA8 0029ABE8  7C 08 02 A6 */	mflr r0
 /* 8029DCAC 0029ABEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -273,14 +273,14 @@ JASDsp_NS_TChannel_NS_init:
 /* 8029DCC0 0029AC00  B0 03 00 00 */	sth r0, 0(r3)
 /* 8029DCC4 0029AC04  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 8029DCC8 0029AC08  90 03 00 68 */	stw r0, 0x68(r3)
-/* 8029DCCC 0029AC0C  48 00 02 E5 */	bl JASDsp_NS_TChannel_NS_initFilter
+/* 8029DCCC 0029AC0C  48 00 02 E5 */	bl init__Q26JASDsp8TChannelFvFilter
 /* 8029DCD0 0029AC10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029DCD4 0029AC14  7C 08 03 A6 */	mtlr r0
 /* 8029DCD8 0029AC18  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DCDC 0029AC1C  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_playStart
-JASDsp_NS_TChannel_NS_playStart:
+.global playStart__Q26JASDsp8TChannelFv
+playStart__Q26JASDsp8TChannelFv:
 /* 8029DCE0 0029AC20  38 A0 00 00 */	li r5, 0
 /* 8029DCE4 0029AC24  90 A3 01 0C */	stw r5, 0x10c(r3)
 /* 8029DCE8 0029AC28  B0 A3 00 60 */	sth r5, 0x60(r3)
@@ -309,41 +309,41 @@ lbl_8029DD28:
 /* 8029DD3C 0029AC7C  B0 03 00 00 */	sth r0, 0(r3)
 /* 8029DD40 0029AC80  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_playStop
-JASDsp_NS_TChannel_NS_playStop:
+.global playStop__Q26JASDsp8TChannelFv
+playStop__Q26JASDsp8TChannelFv:
 /* 8029DD44 0029AC84  38 00 00 00 */	li r0, 0
 /* 8029DD48 0029AC88  B0 03 00 00 */	sth r0, 0(r3)
 /* 8029DD4C 0029AC8C  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_replyFinishRequest
-JASDsp_NS_TChannel_NS_replyFinishRequest:
+.global replyFinishRequest__Q26JASDsp8TChannelFv
+replyFinishRequest__Q26JASDsp8TChannelFv:
 /* 8029DD50 0029AC90  38 00 00 00 */	li r0, 0
 /* 8029DD54 0029AC94  B0 03 00 02 */	sth r0, 2(r3)
 /* 8029DD58 0029AC98  B0 03 00 00 */	sth r0, 0(r3)
 /* 8029DD5C 0029AC9C  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_forceStop
-JASDsp_NS_TChannel_NS_forceStop:
+.global forceStop__Q26JASDsp8TChannelFv
+forceStop__Q26JASDsp8TChannelFv:
 /* 8029DD60 0029ACA0  38 00 00 01 */	li r0, 1
 /* 8029DD64 0029ACA4  B0 03 01 0A */	sth r0, 0x10a(r3)
 /* 8029DD68 0029ACA8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_isActive
-JASDsp_NS_TChannel_NS_isActive:
+.global isActive__Q26JASDsp8TChannelCFv
+isActive__Q26JASDsp8TChannelCFv:
 /* 8029DD6C 0029ACAC  A0 63 00 00 */	lhz r3, 0(r3)
 /* 8029DD70 0029ACB0  30 03 FF FF */	addic r0, r3, -1
 /* 8029DD74 0029ACB4  7C 60 19 10 */	subfe r3, r0, r3
 /* 8029DD78 0029ACB8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_isFinish
-JASDsp_NS_TChannel_NS_isFinish:
+.global isFinish__Q26JASDsp8TChannelCFv
+isFinish__Q26JASDsp8TChannelCFv:
 /* 8029DD7C 0029ACBC  A0 63 00 02 */	lhz r3, 2(r3)
 /* 8029DD80 0029ACC0  30 03 FF FF */	addic r0, r3, -1
 /* 8029DD84 0029ACC4  7C 60 19 10 */	subfe r3, r0, r3
 /* 8029DD88 0029ACC8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setWaveInfo
-JASDsp_NS_TChannel_NS_setWaveInfo:
+.global setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl
+setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl:
 /* 8029DD8C 0029ACCC  90 A3 01 18 */	stw r5, 0x118(r3)
 /* 8029DD90 0029ACD0  88 E4 00 00 */	lbz r7, 0(r4)
 /* 8029DD94 0029ACD4  38 A2 BD 4C */	addi r5, r2, lbl_8045574C-_SDA2_BASE_
@@ -425,8 +425,8 @@ lbl_8029DE98:
 /* 8029DEA4 0029ADE4  42 00 FF F4 */	bdnz lbl_8029DE98
 /* 8029DEA8 0029ADE8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setOscInfo
-JASDsp_NS_TChannel_NS_setOscInfo:
+.global setOscInfo__Q26JASDsp8TChannelFUl
+setOscInfo__Q26JASDsp8TChannelFUl:
 /* 8029DEAC 0029ADEC  38 00 00 00 */	li r0, 0
 /* 8029DEB0 0029ADF0  90 03 01 18 */	stw r0, 0x118(r3)
 /* 8029DEB4 0029ADF4  38 00 00 10 */	li r0, 0x10
@@ -434,8 +434,8 @@ JASDsp_NS_TChannel_NS_setOscInfo:
 /* 8029DEBC 0029ADFC  B0 83 01 00 */	sth r4, 0x100(r3)
 /* 8029DEC0 0029AE00  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_initAutoMixer
-JASDsp_NS_TChannel_NS_initAutoMixer:
+.global init__Q26JASDsp8TChannelFvAutoMixer
+init__Q26JASDsp8TChannelFvAutoMixer:
 /* 8029DEC4 0029AE04  A0 03 00 58 */	lhz r0, 0x58(r3)
 /* 8029DEC8 0029AE08  28 00 00 00 */	cmplwi r0, 0
 /* 8029DECC 0029AE0C  41 82 00 10 */	beq lbl_8029DEDC
@@ -449,8 +449,8 @@ lbl_8029DEDC:
 /* 8029DEE8 0029AE28  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 8029DEEC 0029AE2C  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setAutoMixer
-JASDsp_NS_TChannel_NS_setAutoMixer:
+.global setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc
+setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc:
 /* 8029DEF0 0029AE30  54 C0 06 3E */	clrlwi r0, r6, 0x18
 /* 8029DEF4 0029AE34  50 A0 44 2E */	rlwimi r0, r5, 8, 0x10, 0x17
 /* 8029DEF8 0029AE38  B0 03 00 50 */	sth r0, 0x50(r3)
@@ -463,8 +463,8 @@ JASDsp_NS_TChannel_NS_setAutoMixer:
 /* 8029DF14 0029AE54  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 8029DF18 0029AE58  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setPitch
-JASDsp_NS_TChannel_NS_setPitch:
+.global setPitch__Q26JASDsp8TChannelFUs
+setPitch__Q26JASDsp8TChannelFUs:
 /* 8029DF1C 0029AE5C  54 80 04 3E */	clrlwi r0, r4, 0x10
 /* 8029DF20 0029AE60  28 00 7F FF */	cmplwi r0, 0x7fff
 /* 8029DF24 0029AE64  41 80 00 08 */	blt lbl_8029DF2C
@@ -473,8 +473,8 @@ lbl_8029DF2C:
 /* 8029DF2C 0029AE6C  B0 83 00 04 */	sth r4, 4(r3)
 /* 8029DF30 0029AE70  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setMixerInitVolume
-JASDsp_NS_TChannel_NS_setMixerInitVolume:
+.global setMixerInitVolume__Q26JASDsp8TChannelFUcs
+setMixerInitVolume__Q26JASDsp8TChannelFUcs:
 /* 8029DF34 0029AE74  54 84 1D 78 */	rlwinm r4, r4, 3, 0x15, 0x1c
 /* 8029DF38 0029AE78  38 84 00 10 */	addi r4, r4, 0x10
 /* 8029DF3C 0029AE7C  7C 83 22 14 */	add r4, r3, r4
@@ -484,8 +484,8 @@ JASDsp_NS_TChannel_NS_setMixerInitVolume:
 /* 8029DF4C 0029AE8C  B0 04 00 06 */	sth r0, 6(r4)
 /* 8029DF50 0029AE90  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setMixerVolume
-JASDsp_NS_TChannel_NS_setMixerVolume:
+.global setMixerVolume__Q26JASDsp8TChannelFUcs
+setMixerVolume__Q26JASDsp8TChannelFUcs:
 /* 8029DF54 0029AE94  A0 03 01 0A */	lhz r0, 0x10a(r3)
 /* 8029DF58 0029AE98  28 00 00 00 */	cmplwi r0, 0
 /* 8029DF5C 0029AE9C  4C 82 00 20 */	bnelr 
@@ -498,14 +498,14 @@ JASDsp_NS_TChannel_NS_setMixerVolume:
 /* 8029DF78 0029AEB8  B0 04 00 06 */	sth r0, 6(r4)
 /* 8029DF7C 0029AEBC  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setPauseFlag
-JASDsp_NS_TChannel_NS_setPauseFlag:
+.global setPauseFlag__Q26JASDsp8TChannelFUc
+setPauseFlag__Q26JASDsp8TChannelFUc:
 /* 8029DF80 0029AEC0  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8029DF84 0029AEC4  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 8029DF88 0029AEC8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_flush
-JASDsp_NS_TChannel_NS_flush:
+.global flush__Q26JASDsp8TChannelFv
+flush__Q26JASDsp8TChannelFv:
 /* 8029DF8C 0029AECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029DF90 0029AED0  7C 08 02 A6 */	mflr r0
 /* 8029DF94 0029AED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -516,8 +516,8 @@ JASDsp_NS_TChannel_NS_flush:
 /* 8029DFA8 0029AEE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DFAC 0029AEEC  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_initFilter
-JASDsp_NS_TChannel_NS_initFilter:
+.global init__Q26JASDsp8TChannelFvFilter
+init__Q26JASDsp8TChannelFvFilter:
 /* 8029DFB0 0029AEF0  38 80 00 00 */	li r4, 0
 /* 8029DFB4 0029AEF4  7C 85 23 78 */	mr r5, r4
 /* 8029DFB8 0029AEF8  38 00 00 08 */	li r0, 8
@@ -544,8 +544,8 @@ lbl_8029DFE8:
 /* 8029E004 0029AF44  B0 03 01 50 */	sth r0, 0x150(r3)
 /* 8029E008 0029AF48  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setFilterMode
-JASDsp_NS_TChannel_NS_setFilterMode:
+.global setFilterMode__Q26JASDsp8TChannelFUs
+setFilterMode__Q26JASDsp8TChannelFUs:
 /* 8029E00C 0029AF4C  54 85 06 B5 */	rlwinm. r5, r4, 0, 0x1a, 0x1a
 /* 8029E010 0029AF50  54 80 06 FE */	clrlwi r0, r4, 0x1b
 /* 8029E014 0029AF54  41 82 00 14 */	beq lbl_8029E028
@@ -563,39 +563,39 @@ lbl_8029E034:
 /* 8029E03C 0029AF7C  B0 03 01 08 */	sth r0, 0x108(r3)
 /* 8029E040 0029AF80  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setIIRFilterParam
-JASDsp_NS_TChannel_NS_setIIRFilterParam:
+.global setIIRFilterParam__Q26JASDsp8TChannelFPs
+setIIRFilterParam__Q26JASDsp8TChannelFPs:
 /* 8029E044 0029AF84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E048 0029AF88  7C 08 02 A6 */	mflr r0
 /* 8029E04C 0029AF8C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029E050 0029AF90  38 A0 00 08 */	li r5, 8
 /* 8029E054 0029AF94  38 63 01 48 */	addi r3, r3, 0x148
-/* 8029E058 0029AF98  4B FF F9 F1 */	bl JASDsp_NS_setFilterTable
+/* 8029E058 0029AF98  4B FF F9 F1 */	bl setFilterTable__6JASDspFPsPsUl
 /* 8029E05C 0029AF9C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E060 0029AFA0  7C 08 03 A6 */	mtlr r0
 /* 8029E064 0029AFA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029E068 0029AFA8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setFIR8FilterParam
-JASDsp_NS_TChannel_NS_setFIR8FilterParam:
+.global setFIR8FilterParam__Q26JASDsp8TChannelFPs
+setFIR8FilterParam__Q26JASDsp8TChannelFPs:
 /* 8029E06C 0029AFAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E070 0029AFB0  7C 08 02 A6 */	mflr r0
 /* 8029E074 0029AFB4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029E078 0029AFB8  38 A0 00 08 */	li r5, 8
 /* 8029E07C 0029AFBC  38 63 01 20 */	addi r3, r3, 0x120
-/* 8029E080 0029AFC0  4B FF F9 C9 */	bl JASDsp_NS_setFilterTable
+/* 8029E080 0029AFC0  4B FF F9 C9 */	bl setFilterTable__6JASDspFPsPsUl
 /* 8029E084 0029AFC4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E088 0029AFC8  7C 08 03 A6 */	mtlr r0
 /* 8029E08C 0029AFCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029E090 0029AFD0  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setDistFilter
-JASDsp_NS_TChannel_NS_setDistFilter:
+.global setDistFilter__Q26JASDsp8TChannelFs
+setDistFilter__Q26JASDsp8TChannelFs:
 /* 8029E094 0029AFD4  B0 83 01 50 */	sth r4, 0x150(r3)
 /* 8029E098 0029AFD8  4E 80 00 20 */	blr 
 
-.global JASDsp_NS_TChannel_NS_setBusConnect
-JASDsp_NS_TChannel_NS_setBusConnect:
+.global setBusConnect__Q26JASDsp8TChannelFUcUc
+setBusConnect__Q26JASDsp8TChannelFUcUc:
 /* 8029E09C 0029AFDC  54 A0 0D FC */	rlwinm r0, r5, 1, 0x17, 0x1e
 /* 8029E0A0 0029AFE0  3C A0 80 3A */	lis r5, lbl_8039B8A0@ha
 /* 8029E0A4 0029AFE4  38 A5 B8 A0 */	addi r5, r5, lbl_8039B8A0@l
@@ -621,7 +621,7 @@ DSP_CreateMap2:
 lbl_8029E0E8:
 /* 8029E0E8 0029B028  57 FF 0C 3C */	rlwinm r31, r31, 1, 0x10, 0x1e
 /* 8029E0EC 0029B02C  7F C3 F3 78 */	mr r3, r30
-/* 8029E0F0 0029B030  4B FF FC 7D */	bl JASDsp_NS_TChannel_NS_isActive
+/* 8029E0F0 0029B030  4B FF FC 7D */	bl isActive__Q26JASDsp8TChannelCFv
 /* 8029E0F4 0029B034  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029E0F8 0029B038  41 82 00 0C */	beq lbl_8029E104
 /* 8029E0FC 0029B03C  63 E0 00 01 */	ori r0, r31, 1

@@ -30,7 +30,7 @@ lbl_801AEAC4:
 /* 801AEAD4 001ABA14  3C C0 80 40 */ lis r6, g_dComIfG_gameInfo@ha
 /* 801AEAD8 001ABA18  38 C6 61 C0 */ addi r6, r6, g_dComIfG_gameInfo@l
 /* 801AEADC 001ABA1C  80 C6 5D 30 */ lwz r6, 0x5d30(r6)
-/* 801AEAE0 001ABA20  48 14 9B 69 */ bl J2DScreen_NS_setPriority
+/* 801AEAE0 001ABA20  48 14 9B 69 */ bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 801AEAE4 001ABA24  7F C3 F3 78 */ mr r3, r30
 /* 801AEAE8 001ABA28  48 0A 66 01 */ bl dPaneClass_showNullPane
 /* 801AEAEC 001ABA2C  80 7F 00 04 */ lwz r3, 4(r31)

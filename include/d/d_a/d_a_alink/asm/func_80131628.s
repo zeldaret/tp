@@ -19,7 +19,7 @@ lbl_8013166C:
 /* 8013166C 0012E5AC  28 04 00 00 */ cmplwi r4, 0
 /* 80131670 0012E5B0  41 82 00 1C */ beq lbl_8013168C
 /* 80131674 0012E5B4  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 80131678 0012E5B8  48 02 D6 41 */ bl daPy_actorKeep_c_NS_setData
+/* 80131678 0012E5B8  48 02 D6 41 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013167C 0012E5BC  7F E3 FB 78 */ mr r3, r31
 /* 80131680 0012E5C0  38 80 00 04 */ li r4, 4
 /* 80131684 0012E5C4  48 00 10 B5 */ bl daAlink_c_NS_procWolfRopeHangInit

@@ -33,7 +33,7 @@ lbl_80138BDC:
 /* 80138BE0 00135B20  7C 00 2B 78 */ or r0, r0, r5
 /* 80138BE4 00135B24  90 03 05 78 */ stw r0, 0x578(r3)
 /* 80138BE8 00135B28  38 63 28 1C */ addi r3, r3, 0x281c
-/* 80138BEC 00135B2C  48 02 60 CD */ bl daPy_actorKeep_c_NS_setData
+/* 80138BEC 00135B2C  48 02 60 CD */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80138BF0 00135B30  38 60 00 01 */ li r3, 1
 lbl_80138BF4:
 /* 80138BF4 00135B34  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -78,7 +78,7 @@ lbl_802C07C8:
 /* 802C0848 002BD788  38 63 00 48 */ addi r3, r3, 0x48
 /* 802C084C 002BD78C  FC 20 F8 90 */ fmr f1, f31
 /* 802C0850 002BD790  38 80 00 00 */ li r4, 0
-/* 802C0854 002BD794  4B FE 25 B9 */ bl JAISoundParamsMove_NS_movePitch
+/* 802C0854 002BD794  4B FE 25 B9 */ bl movePitch__18JAISoundParamsMoveFfUl
 lbl_802C0858:
 /* 802C0858 002BD798  7F E3 FB 78 */ mr r3, r31
 lbl_802C085C:

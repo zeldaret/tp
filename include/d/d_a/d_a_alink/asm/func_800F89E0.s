@@ -13,7 +13,7 @@
 /* 800F8A10 000F5950  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F8A14 000F5954  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800F8A18 000F5958  38 9F 1D 5C */ addi r4, r31, 0x1d5c
-/* 800F8A1C 000F595C  4B F7 CA 81 */ bl dBgS_NS_RoofChk
+/* 800F8A1C 000F595C  4B F7 CA 81 */ bl RoofChk__4dBgSFP12dBgS_RoofChk
 /* 800F8A20 000F5960  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 800F8A24 000F5964  EC 21 00 28 */ fsubs f1, f1, f0
 /* 800F8A28 000F5968  C0 1F 05 98 */ lfs f0, 0x598(r31)

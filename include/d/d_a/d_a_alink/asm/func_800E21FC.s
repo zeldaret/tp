@@ -8,7 +8,7 @@
 /* 800E2218 000DF158  38 00 00 00 */ li r0, 0
 /* 800E221C 000DF15C  B0 03 30 0C */ sth r0, 0x300c(r3)
 /* 800E2220 000DF160  7F E3 FB 78 */ mr r3, r31
-/* 800E2224 000DF164  48 07 C2 A9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E2224 000DF164  48 07 C2 A9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E2228 000DF168  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E222C 000DF16C  41 82 00 1C */ beq lbl_800E2248
 /* 800E2230 000DF170  7F C3 F3 78 */ mr r3, r30

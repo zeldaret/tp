@@ -17,7 +17,7 @@
 /* 800E1288 000DE1C8  60 00 00 04 */ ori r0, r0, 4
 /* 800E128C 000DE1CC  90 1F 31 A0 */ stw r0, 0x31a0(r31)
 lbl_800E1290:
-/* 800E1290 000DE1D0  48 07 D2 3D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E1290 000DE1D0  48 07 D2 3D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E1294 000DE1D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1298 000DE1D8  41 82 00 24 */ beq lbl_800E12BC
 /* 800E129C 000DE1DC  7F E3 FB 78 */ mr r3, r31

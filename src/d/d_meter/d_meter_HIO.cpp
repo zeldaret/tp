@@ -12,7 +12,7 @@ void free__7JKRHeapFPv(void);
 void func_80361C24(void);
 void func_80361CE8(void);
 void func_80361D60(void);
-void JUtility_NS_TColor(void);
+void __ct__Q28JUtility6TColorFv(void);
 }
 
 // additional symbols needed for d_meter_HIO.cpp

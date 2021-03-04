@@ -137,7 +137,7 @@ lbl_80124D5C:
 /* 80124DB4 00121CF4  39 20 00 00 */ li r9, 0
 /* 80124DB8 00121CF8  39 40 00 FF */ li r10, 0xff
 /* 80124DBC 00121CFC  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 80124DC0 00121D00  4B F2 7C D1 */ bl dPa_control_c_NS_set
+/* 80124DC0 00121D00  4B F2 7C D1 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80124DC4 00121D04  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 80124DC8 00121D08  38 80 00 00 */ li r4, 0
 /* 80124DCC 00121D0C  90 81 00 08 */ stw r4, 8(r1)
@@ -154,7 +154,7 @@ lbl_80124D5C:
 /* 80124DF8 00121D38  39 20 00 00 */ li r9, 0
 /* 80124DFC 00121D3C  39 40 00 FF */ li r10, 0xff
 /* 80124E00 00121D40  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 80124E04 00121D44  4B F2 7C 8D */ bl dPa_control_c_NS_set
+/* 80124E04 00121D44  4B F2 7C 8D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80124E08 00121D48  38 00 00 01 */ li r0, 1
 /* 80124E0C 00121D4C  B0 1F 27 CE */ sth r0, 0x27ce(r31)
 lbl_80124E10:

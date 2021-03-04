@@ -8,7 +8,7 @@
 /* 80118A14 00115954  38 7D 1F 58 */ addi r3, r29, 0x1f58
 /* 80118A18 00115958  7C A4 2B 78 */ mr r4, r5
 /* 80118A1C 0011595C  38 A0 00 00 */ li r5, 0
-/* 80118A20 00115960  48 04 66 F9 */ bl daPy_anmHeap_c_NS_loadDataDemoRID
+/* 80118A20 00115960  48 04 66 F9 */ bl loadData__14daPy_anmHeap_cFUsDemoRID
 /* 80118A24 00115964  7C 7F 1B 79 */ or. r31, r3, r3
 /* 80118A28 00115968  41 82 00 90 */ beq lbl_80118AB8
 /* 80118A2C 0011596C  7F A3 EB 78 */ mr r3, r29
@@ -23,11 +23,11 @@
 /* 80118A50 00115990  93 FD 1F 44 */ stw r31, 0x1f44(r29)
 /* 80118A54 00115994  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
 /* 80118A58 00115998  88 9D 04 98 */ lbz r4, 0x498(r29)
-/* 80118A5C 0011599C  4B F2 06 2D */ bl dDemo_object_c_NS_getActor
+/* 80118A5C 0011599C  4B F2 06 2D */ bl getActor__14dDemo_object_cFUc
 /* 80118A60 001159A0  A0 03 00 04 */ lhz r0, 4(r3)
 /* 80118A64 001159A4  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 80118A68 001159A8  41 82 00 18 */ beq lbl_80118A80
-/* 80118A6C 001159AC  4B F1 F7 31 */ bl dDemo_actor_c_NS_getPrm_Morf
+/* 80118A6C 001159AC  4B F1 F7 31 */ bl getPrm_Morf__13dDemo_actor_cFv
 /* 80118A70 001159B0  80 7D 20 60 */ lwz r3, 0x2060(r29)
 /* 80118A74 001159B4  38 80 00 00 */ li r4, 0
 /* 80118A78 001159B8  A0 BD 30 C6 */ lhz r5, 0x30c6(r29)

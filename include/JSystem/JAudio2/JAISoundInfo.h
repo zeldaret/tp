@@ -3,7 +3,7 @@
 
 extern "C" {
 void JAISoundInfo(void);
-void JAISoundInfo_NS_dtor(void);
+void __dt__12JAISoundInfoFv(void);
 }
 
 #endif  // JAISOUNDINFO_H_

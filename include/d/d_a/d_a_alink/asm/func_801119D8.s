@@ -6,7 +6,7 @@
 /* 801119EC 0010E92C  7C 7E 1B 78 */ mr r30, r3
 /* 801119F0 0010E930  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 801119F4 0010E934  7F E3 FB 78 */ mr r3, r31
-/* 801119F8 0010E938  48 04 CA D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801119F8 0010E938  48 04 CA D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801119FC 0010E93C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80111A00 0010E940  41 82 00 24 */ beq lbl_80111A24
 /* 80111A04 0010E944  7F C3 F3 78 */ mr r3, r30

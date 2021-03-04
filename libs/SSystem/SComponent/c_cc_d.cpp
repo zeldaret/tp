@@ -5,9 +5,9 @@
 
 extern "C" {
 void __dl__FPv(void);
-void cCcD_CpsAttr_NS_dtor(void);
-void cCcD_CylAttr_NS_dtor(void);
-void cCcD_SphAttr_NS_dtor(void);
+void __dt__12cCcD_CpsAttrFv(void);
+void __dt__12cCcD_CylAttrFv(void);
+void __dt__12cCcD_SphAttrFv(void);
 void ClearForMinMax__8cM3dGAabFv(void);
 void cM3d_Cross_CpsCps__FRC8cM3dGCpsRC8cM3dGCpsP3Vec(void);
 void cM3d_Cross_CpsCyl__FRC8cM3dGCpsRC8cM3dGCylP3Vec(void);

@@ -11,7 +11,7 @@
 lbl_80025980:
 /* 80025980 000228C0  88 7C 00 04 */ lbz r3, 4(r28)
 /* 80025984 000228C4  38 9F 00 0C */ addi r4, r31, 0xc
-/* 80025988 000228C8  48 00 BA AD */ bl daSus_c_NS_check
+/* 80025988 000228C8  48 00 BA AD */ bl check__7daSus_cFScRC4cXyz
 /* 8002598C 000228CC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80025990 000228D0  40 82 00 78 */ bne lbl_80025A08
 /* 80025994 000228D4  4B FF 41 15 */ bl fopAcM_CreateAppend__Fv

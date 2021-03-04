@@ -57,7 +57,7 @@ lbl_800F2058:
 /* 800F2104 000EF044  38 00 00 00 */ li r0, 0
 /* 800F2108 000EF048  B0 1F 05 9E */ sth r0, 0x59e(r31)
 /* 800F210C 000EF04C  7F C3 F3 78 */ mr r3, r30
-/* 800F2110 000EF050  48 06 C3 BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F2110 000EF050  48 06 C3 BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F2114 000EF054  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F2118 000EF058  41 82 00 1C */ beq lbl_800F2134
 /* 800F211C 000EF05C  7F E3 FB 78 */ mr r3, r31

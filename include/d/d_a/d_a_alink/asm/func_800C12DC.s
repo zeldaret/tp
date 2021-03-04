@@ -102,7 +102,7 @@ lbl_800C1404:
 /* 800C1450 000BE390  38 84 1C 48 */ addi r4, r4, lbl_803F1C48@l
 /* 800C1454 000BE394  38 84 00 14 */ addi r4, r4, 0x14
 /* 800C1458 000BE398  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800C145C 000BE39C  4B FB 32 E9 */ bl cBgS_NS_GetTriPla
+/* 800C145C 000BE39C  4B FB 32 E9 */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 800C1460 000BE3A0  38 61 00 14 */ addi r3, r1, 0x14
 /* 800C1464 000BE3A4  38 81 00 20 */ addi r4, r1, 0x20
 /* 800C1468 000BE3A8  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
@@ -138,7 +138,7 @@ lbl_800C14C0:
 /* 800C14D8 000BE418  98 1F 2D 74 */ stb r0, 0x2d74(r31)
 /* 800C14DC 000BE41C  48 00 00 18 */ b lbl_800C14F4
 lbl_800C14E0:
-/* 800C14E0 000BE420  48 09 D6 D9 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800C14E0 000BE420  48 09 D6 D9 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800C14E4 000BE424  2C 03 00 00 */ cmpwi r3, 0
 /* 800C14E8 000BE428  41 82 00 0C */ beq lbl_800C14F4
 /* 800C14EC 000BE42C  7F E3 FB 78 */ mr r3, r31
@@ -164,7 +164,7 @@ lbl_800C1518:
 /* 800C1530 000BE470  40 82 00 88 */ bne lbl_800C15B8
 lbl_800C1534:
 /* 800C1534 000BE474  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800C1538 000BE478  48 09 D6 81 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800C1538 000BE478  48 09 D6 81 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800C153C 000BE47C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C1540 000BE480  41 82 00 2C */ beq lbl_800C156C
 /* 800C1544 000BE484  38 60 00 00 */ li r3, 0
@@ -210,10 +210,10 @@ lbl_800C15C8:
 /* 800C15CC 000BE50C  28 03 00 00 */ cmplwi r3, 0
 /* 800C15D0 000BE510  41 82 00 0C */ beq lbl_800C15DC
 /* 800C15D4 000BE514  38 63 07 40 */ addi r3, r3, 0x740
-/* 800C15D8 000BE518  48 09 D7 25 */ bl daPy_actorKeep_c_NS_clearData
+/* 800C15D8 000BE518  48 09 D7 25 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800C15DC:
 /* 800C15DC 000BE51C  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800C15E0 000BE520  48 09 D7 1D */ bl daPy_actorKeep_c_NS_clearData
+/* 800C15E0 000BE520  48 09 D7 1D */ bl clearData__16daPy_actorKeep_cFv
 /* 800C15E4 000BE524  38 00 00 FF */ li r0, 0xff
 /* 800C15E8 000BE528  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800C15EC 000BE52C  38 00 00 00 */ li r0, 0

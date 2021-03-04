@@ -11,10 +11,10 @@
 /* 802675B4 002644F4  A0 01 00 0C */ lhz r0, 0xc(r1)
 /* 802675B8 002644F8  B0 0D 8B E4 */ sth r0, lbl_80451164-_SDA_BASE_(r13)
 /* 802675BC 002644FC  38 6D 8B E0 */ addi r3, r13, 0x80451160 - 0x80458580 /*SDA HACK; original: lbl_80451160-_SDA_BASE_*/
-/*.global csXyz_NS_dtor*/
-/* 802675C0 00264500  3C 80 80 02 */ lis r4, csXyz_NS_dtor@ha
-/*.global csXyz_NS_dtor*/
-/* 802675C4 00264504  38 84 8B D0 */ addi r4, r4, csXyz_NS_dtor@l
+/*.global __dt__5csXyzFv*/
+/* 802675C0 00264500  3C 80 80 02 */ lis r4, __dt__5csXyzFv@ha
+/*.global __dt__5csXyzFv*/
+/* 802675C4 00264504  38 84 8B D0 */ addi r4, r4, __dt__5csXyzFv@l
 /* 802675C8 00264508  3C A0 80 43 */ lis r5, lbl_80430DA8@ha
 /* 802675CC 0026450C  38 A5 0D A8 */ addi r5, r5, lbl_80430DA8@l
 /* 802675D0 00264510  48 0F A6 55 */ bl func_80361C24

@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028f2e8
 
 
-.global JASCalc_NS_imixcopy
-JASCalc_NS_imixcopy:
+.global imixcopy__7JASCalcFPCsPCsPsUl
+imixcopy__7JASCalcFPCsPCsPsUl:
 /* 8028F2E8 0028C228  7C C9 03 A6 */	mtctr r6
 /* 8028F2EC 0028C22C  28 06 00 00 */	cmplwi r6, 0
 /* 8028F2F0 0028C230  4D 82 00 20 */	beqlr 
@@ -19,8 +19,8 @@ lbl_8028F2F4:
 /* 8028F310 0028C250  42 00 FF E4 */	bdnz lbl_8028F2F4
 /* 8028F314 0028C254  4E 80 00 20 */	blr 
 
-.global JASCalc_NS_bcopyfast
-JASCalc_NS_bcopyfast:
+.global bcopyfast__7JASCalcFPCvPvUl
+bcopyfast__7JASCalcFPCvPvUl:
 /* 8028F318 0028C258  54 A0 E1 3F */	rlwinm. r0, r5, 0x1c, 4, 0x1f
 /* 8028F31C 0028C25C  7C 09 03 A6 */	mtctr r0
 /* 8028F320 0028C260  4D 82 00 20 */	beqlr 
@@ -38,8 +38,8 @@ lbl_8028F324:
 /* 8028F34C 0028C28C  42 00 FF D8 */	bdnz lbl_8028F324
 /* 8028F350 0028C290  4E 80 00 20 */	blr 
 
-.global JASCalc_NS_bcopy
-JASCalc_NS_bcopy:
+.global bcopy__7JASCalcFPCvPvUl
+bcopy__7JASCalcFPCvPvUl:
 /* 8028F354 0028C294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028F358 0028C298  7C 08 02 A6 */	mflr r0
 /* 8028F35C 0028C29C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -51,7 +51,7 @@ JASCalc_NS_bcopy:
 /* 8028F374 0028C2B4  40 82 00 14 */	bne lbl_8028F388
 /* 8028F378 0028C2B8  54 A0 07 3F */	clrlwi. r0, r5, 0x1c
 /* 8028F37C 0028C2BC  40 82 00 0C */	bne lbl_8028F388
-/* 8028F380 0028C2C0  4B FF FF 99 */	bl JASCalc_NS_bcopyfast
+/* 8028F380 0028C2C0  4B FF FF 99 */	bl bcopyfast__7JASCalcFPCvPvUl
 /* 8028F384 0028C2C4  48 00 00 C0 */	b lbl_8028F444
 lbl_8028F388:
 /* 8028F388 0028C2C8  7C 07 30 40 */	cmplw r7, r6
@@ -115,8 +115,8 @@ lbl_8028F444:
 /* 8028F44C 0028C38C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028F450 0028C390  4E 80 00 20 */	blr 
 
-.global JASCalc_NS_bzerofast
-JASCalc_NS_bzerofast:
+.global bzerofast__7JASCalcFPvUl
+bzerofast__7JASCalcFPvUl:
 /* 8028F454 0028C394  54 84 E1 3F */	rlwinm. r4, r4, 0x1c, 4, 0x1f
 /* 8028F458 0028C398  38 00 00 00 */	li r0, 0
 /* 8028F45C 0028C39C  7C 89 03 A6 */	mtctr r4
@@ -130,8 +130,8 @@ lbl_8028F464:
 /* 8028F478 0028C3B8  42 00 FF EC */	bdnz lbl_8028F464
 /* 8028F47C 0028C3BC  4E 80 00 20 */	blr 
 
-.global JASCalc_NS_bzero
-JASCalc_NS_bzero:
+.global bzero__7JASCalcFPvUl
+bzero__7JASCalcFPvUl:
 /* 8028F480 0028C3C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028F484 0028C3C4  7C 08 02 A6 */	mflr r0
 /* 8028F488 0028C3C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -148,7 +148,7 @@ lbl_8028F4A8:
 /* 8028F4B0 0028C3F0  40 82 00 14 */	bne lbl_8028F4C4
 /* 8028F4B4 0028C3F4  28 05 00 00 */	cmplwi r5, 0
 /* 8028F4B8 0028C3F8  40 82 00 0C */	bne lbl_8028F4C4
-/* 8028F4BC 0028C3FC  4B FF FF 99 */	bl JASCalc_NS_bzerofast
+/* 8028F4BC 0028C3FC  4B FF FF 99 */	bl bzerofast__7JASCalcFPvUl
 /* 8028F4C0 0028C400  48 00 00 A8 */	b lbl_8028F568
 lbl_8028F4C4:
 /* 8028F4C4 0028C404  28 04 00 10 */	cmplwi r4, 0x10
@@ -206,8 +206,8 @@ lbl_8028F568:
 /* 8028F570 0028C4B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028F574 0028C4B4  4E 80 00 20 */	blr 
 
-.global JASCalc_NS_pow2
-JASCalc_NS_pow2:
+.global pow2__7JASCalcFf
+pow2__7JASCalcFf:
 /* 8028F578 0028C4B8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8028F57C 0028C4BC  38 80 00 00 */	li r4, 0
 /* 8028F580 0028C4C0  C0 02 BB 68 */	lfs f0, lbl_80455568-_SDA2_BASE_(r2)

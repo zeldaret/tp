@@ -29,13 +29,13 @@
 /* 800E1AA0 000DE9E0  38 80 00 01 */ li r4, 1
 /* 800E1AA4 000DE9E4  38 A0 00 01 */ li r5, 1
 /* 800E1AA8 000DE9E8  38 C1 00 08 */ addi r6, r1, 8
-/* 800E1AAC 000DE9EC  4B F8 DF 79 */ bl dVibration_c_NS_StartShock
+/* 800E1AAC 000DE9EC  4B F8 DF 79 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800E1AB0 000DE9F0  48 00 00 08 */ b lbl_800E1AB8
 lbl_800E1AB4:
 /* 800E1AB4 000DE9F4  3B E0 00 00 */ li r31, 0
 lbl_800E1AB8:
 /* 800E1AB8 000DE9F8  38 7E 28 3C */ addi r3, r30, 0x283c
-/* 800E1ABC 000DE9FC  48 07 D2 41 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E1ABC 000DE9FC  48 07 D2 41 */ bl clearData__16daPy_actorKeep_cFv
 /* 800E1AC0 000DEA00  7F E3 FB 78 */ mr r3, r31
 /* 800E1AC4 000DEA04  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800E1AC8 000DEA08  83 C1 00 18 */ lwz r30, 0x18(r1)

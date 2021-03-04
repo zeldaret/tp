@@ -39,7 +39,7 @@
 /* 8013BD2C 00138C6C  38 80 00 01 */ li r4, 1
 /* 8013BD30 00138C70  38 A0 00 0F */ li r5, 0xf
 /* 8013BD34 00138C74  38 C1 00 08 */ addi r6, r1, 8
-/* 8013BD38 00138C78  4B F3 3C ED */ bl dVibration_c_NS_StartShock
+/* 8013BD38 00138C78  4B F3 3C ED */ bl StartShock__12dVibration_cFii4cXyz
 /* 8013BD3C 00138C7C  38 60 00 01 */ li r3, 1
 /* 8013BD40 00138C80  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 8013BD44 00138C84  80 01 00 24 */ lwz r0, 0x24(r1)

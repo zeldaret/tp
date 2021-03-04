@@ -121,7 +121,7 @@ lbl_800FABD4:
 /* 800FAC34 000F7B74  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FAC38 000F7B78  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800FAC3C 000F7B7C  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 800FAC40 000F7B80  4B F7 98 61 */ bl cBgS_NS_GroundCross
+/* 800FAC40 000F7B80  4B F7 98 61 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800FAC44 000F7B84  D0 21 00 28 */ stfs f1, 0x28(r1)
 /* 800FAC48 000F7B88  FC 20 08 18 */ frsp f1, f1
 /* 800FAC4C 000F7B8C  C0 1F 34 F0 */ lfs f0, 0x34f0(r31)

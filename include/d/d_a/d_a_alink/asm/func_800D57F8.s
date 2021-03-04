@@ -22,7 +22,7 @@ lbl_800D5820:
 /* 800D5848 000D2788  48 00 00 40 */ b lbl_800D5888
 lbl_800D584C:
 /* 800D584C 000D278C  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800D5850 000D2790  48 08 8C 7D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D5850 000D2790  48 08 8C 7D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D5854 000D2794  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D5858 000D2798  41 82 00 30 */ beq lbl_800D5888
 /* 800D585C 000D279C  A8 1F 30 0C */ lha r0, 0x300c(r31)

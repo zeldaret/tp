@@ -12,7 +12,7 @@
 /* 801239DC 0012091C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801239E0 00120920  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 801239E4 00120924  38 9F 1E 2C */ addi r4, r31, 0x1e2c
-/* 801239E8 00120928  4B F5 0C 79 */ bl cBgS_NS_ChkPolySafe
+/* 801239E8 00120928  4B F5 0C 79 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 801239EC 0012092C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801239F0 00120930  41 82 01 D8 */ beq lbl_80123BC8
 /* 801239F4 00120934  C3 E2 92 C4 */ lfs f31, lbl_80452CC4-_SDA2_BASE_(r2)
@@ -81,19 +81,19 @@ lbl_80123AA8:
 /* 80123ADC 00120A1C  39 1F 01 0C */ addi r8, r31, 0x10c
 /* 80123AE0 00120A20  39 21 00 18 */ addi r9, r1, 0x18
 /* 80123AE4 00120A24  39 40 00 00 */ li r10, 0
-/* 80123AE8 00120A28  4B F2 9B BD */ bl dPa_control_c_NS_setPoly_X1_
+/* 80123AE8 00120A28  4B F2 9B BD */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfPoly_X1_
 /* 80123AEC 00120A2C  90 7F 32 CC */ stw r3, 0x32cc(r31)
 /* 80123AF0 00120A30  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 80123AF4 00120A34  38 63 02 10 */ addi r3, r3, 0x210
 /* 80123AF8 00120A38  80 9F 32 CC */ lwz r4, 0x32cc(r31)
-/* 80123AFC 00120A3C  4B F2 7E 1D */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 80123AFC 00120A3C  4B F2 7E 1D */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 80123B00 00120A40  28 03 00 00 */ cmplwi r3, 0
 /* 80123B04 00120A44  41 82 00 70 */ beq lbl_80123B74
 /* 80123B08 00120A48  D3 C3 00 38 */ stfs f30, 0x38(r3)
 /* 80123B0C 00120A4C  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 80123B10 00120A50  38 63 02 10 */ addi r3, r3, 0x210
 /* 80123B14 00120A54  80 9F 32 CC */ lwz r4, 0x32cc(r31)
-/* 80123B18 00120A58  4B F2 7D 9D */ bl dPa_control_c_NS_level_c_NS_forceOnEventMove
+/* 80123B18 00120A58  4B F2 7D 9D */ bl forceOnEventMove__Q213dPa_control_c7level_cFUl
 /* 80123B1C 00120A5C  48 00 00 58 */ b lbl_80123B74
 lbl_80123B20:
 /* 80123B20 00120A60  2C 00 00 07 */ cmpwi r0, 7

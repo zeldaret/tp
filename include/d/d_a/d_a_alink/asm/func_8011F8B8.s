@@ -37,7 +37,7 @@ lbl_8011F934:
 /* 8011F940 0011C880  38 80 00 00 */ li r4, 0
 /* 8011F944 0011C884  38 A0 00 CA */ li r5, 0xca
 /* 8011F948 0011C888  38 C0 00 00 */ li r6, 0
-/* 8011F94C 0011C88C  48 03 F0 C1 */ bl daPy_py_c_NS_setParamData
+/* 8011F94C 0011C88C  48 03 F0 C1 */ bl setParamData__9daPy_py_cFiiii
 /* 8011F950 0011C890  7C 67 1B 78 */ mr r7, r3
 /* 8011F954 0011C894  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011F958 0011C898  38 A3 01 88 */ addi r5, r3, lbl_80430188@l

@@ -111,7 +111,7 @@ lbl_8011A8F4:
 /* 8011A928 00117868  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011A92C 0011786C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011A930 00117870  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 8011A934 00117874  4B F2 8D B9 */ bl dEvt_control_c_NS_setPtI_Id
+/* 8011A934 00117874  4B F2 8D B9 */ bl setPtI__14dEvt_control_cFPv_Id
 lbl_8011A938:
 /* 8011A938 00117878  B3 9D 30 0C */ sth r28, 0x300c(r29)
 /* 8011A93C 0011787C  48 00 00 2C */ b lbl_8011A968
@@ -120,7 +120,7 @@ lbl_8011A940:
 /* 8011A944 00117884  4B F0 12 01 */ bl fopAcM_getItemEventPartner__FPC10fopAc_ac_c
 /* 8011A948 00117888  28 03 00 00 */ cmplwi r3, 0
 /* 8011A94C 0011788C  41 82 00 14 */ beq lbl_8011A960
-/* 8011A950 00117890  4B F1 D1 0D */ bl daItemBase_c_NS_getItemNo
+/* 8011A950 00117890  4B F1 D1 0D */ bl getItemNo__12daItemBase_cFv
 /* 8011A954 00117894  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011A958 00117898  B0 1D 30 0C */ sth r0, 0x300c(r29)
 /* 8011A95C 0011789C  48 00 00 0C */ b lbl_8011A968

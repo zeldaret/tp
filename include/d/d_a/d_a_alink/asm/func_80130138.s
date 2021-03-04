@@ -10,7 +10,7 @@
 /* 8013015C 0012D09C  C0 42 93 24 */ lfs f2, lbl_80452D24-_SDA2_BASE_(r2)
 /* 80130160 0012D0A0  48 14 05 E1 */ bl cLib_chaseF__FPfff
 /* 80130164 0012D0A4  7F E3 FB 78 */ mr r3, r31
-/* 80130168 0012D0A8  48 02 E3 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80130168 0012D0A8  48 02 E3 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013016C 0012D0AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80130170 0012D0B0  41 82 00 1C */ beq lbl_8013018C
 /* 80130174 0012D0B4  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

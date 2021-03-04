@@ -18,7 +18,7 @@ lbl_8013B450:
 /* 8013B464 001383A4  C0 44 00 10 */ lfs f2, 0x10(r4)
 /* 8013B468 001383A8  48 13 52 D9 */ bl cLib_chaseF__FPfff
 /* 8013B46C 001383AC  7F E3 FB 78 */ mr r3, r31
-/* 8013B470 001383B0  48 02 30 5D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013B470 001383B0  48 02 30 5D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013B474 001383B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013B478 001383B8  41 82 00 14 */ beq lbl_8013B48C
 /* 8013B47C 001383BC  7F C3 F3 78 */ mr r3, r30

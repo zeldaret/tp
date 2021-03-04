@@ -36,10 +36,10 @@ JPAEmitterManager:
 /* 8027DD0C 0027AC4C  3C 80 80 28 */	lis r4, JPABaseEmitter@ha
 .global JPABaseEmitter
 /* 8027DD10 0027AC50  38 84 E6 4C */	addi r4, r4, JPABaseEmitter@l
-.global JPABaseEmitter_NS_dtor
-/* 8027DD14 0027AC54  3C A0 80 28 */	lis r5, JPABaseEmitter_NS_dtor@ha
-.global JPABaseEmitter_NS_dtor
-/* 8027DD18 0027AC58  38 A5 E5 EC */	addi r5, r5, JPABaseEmitter_NS_dtor@l
+.global __dt__14JPABaseEmitterFv
+/* 8027DD14 0027AC54  3C A0 80 28 */	lis r5, __dt__14JPABaseEmitterFv@ha
+.global __dt__14JPABaseEmitterFv
+/* 8027DD18 0027AC58  38 A5 E5 EC */	addi r5, r5, __dt__14JPABaseEmitterFv@l
 /* 8027DD1C 0027AC5C  38 C0 01 14 */	li r6, 0x114
 /* 8027DD20 0027AC60  7F 87 E3 78 */	mr r7, r28
 /* 8027DD24 0027AC64  48 0E 41 F1 */	bl func_80361F14
@@ -179,7 +179,7 @@ JPAEmitterManager_NS_createSimpleEmitterID:
 /* 8027DEEC 0027AE2C  54 E0 15 BA */	rlwinm r0, r7, 2, 0x16, 0x1d
 /* 8027DEF0 0027AE30  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8027DEF4 0027AE34  7C A4 2B 78 */	mr r4, r5
-/* 8027DEF8 0027AE38  4B FF 5F 71 */	bl JPAResourceManager_NS_getResource
+/* 8027DEF8 0027AE38  4B FF 5F 71 */	bl getResource__18JPAResourceManagerCFUs
 /* 8027DEFC 0027AE3C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8027DF00 0027AE40  41 82 00 84 */	beq lbl_8027DF84
 /* 8027DF04 0027AE44  80 18 00 0C */	lwz r0, 0xc(r24)
@@ -199,7 +199,7 @@ JPAEmitterManager_NS_createSimpleEmitterID:
 /* 8027DF3C 0027AE7C  7F E3 FB 78 */	mr r3, r31
 /* 8027DF40 0027AE80  7F 04 C3 78 */	mr r4, r24
 /* 8027DF44 0027AE84  7F C5 F3 78 */	mr r5, r30
-/* 8027DF48 0027AE88  48 00 07 A5 */	bl JPABaseEmitter_NS_init
+/* 8027DF48 0027AE88  48 00 07 A5 */	bl init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource
 /* 8027DF4C 0027AE8C  38 18 00 10 */	addi r0, r24, 0x10
 /* 8027DF50 0027AE90  90 1F 00 E0 */	stw r0, 0xe0(r31)
 /* 8027DF54 0027AE94  93 9F 00 EC */	stw r28, 0xec(r31)
@@ -224,8 +224,8 @@ lbl_8027DF88:
 /* 8027DF98 0027AED8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8027DF9C 0027AEDC  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_calc
-JPAEmitterManager_NS_calc:
+.global calc__17JPAEmitterManagerFUc
+calc__17JPAEmitterManagerFUc:
 /* 8027DFA0 0027AEE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027DFA4 0027AEE4  7C 08 02 A6 */	mflr r0
 /* 8027DFA8 0027AEE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -243,7 +243,7 @@ lbl_8027DFCC:
 /* 8027DFD4 0027AF14  80 7E 00 E8 */	lwz r3, 0xe8(r30)
 /* 8027DFD8 0027AF18  80 9D 00 20 */	lwz r4, 0x20(r29)
 /* 8027DFDC 0027AF1C  7F C5 F3 78 */	mr r5, r30
-/* 8027DFE0 0027AF20  4B FF 76 09 */	bl JPAResource_NS_calc
+/* 8027DFE0 0027AF20  4B FF 76 09 */	bl calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
 /* 8027DFE4 0027AF24  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8027DFE8 0027AF28  41 82 00 1C */	beq lbl_8027E004
 /* 8027DFEC 0027AF2C  80 1E 00 F4 */	lwz r0, 0xf4(r30)
@@ -251,7 +251,7 @@ lbl_8027DFCC:
 /* 8027DFF4 0027AF34  40 82 00 10 */	bne lbl_8027E004
 /* 8027DFF8 0027AF38  7F A3 EB 78 */	mr r3, r29
 /* 8027DFFC 0027AF3C  7F C4 F3 78 */	mr r4, r30
-/* 8027E000 0027AF40  48 00 02 D9 */	bl JPAEmitterManager_NS_forceDeleteEmitter
+/* 8027E000 0027AF40  48 00 02 D9 */	bl forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 lbl_8027E004:
 /* 8027E004 0027AF44  7F E3 FB 78 */	mr r3, r31
 lbl_8027E008:
@@ -264,8 +264,8 @@ lbl_8027E008:
 /* 8027E020 0027AF60  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027E024 0027AF64  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_draw
-JPAEmitterManager_NS_draw:
+.global draw__17JPAEmitterManagerFPC11JPADrawInfoUc
+draw__17JPAEmitterManagerFPC11JPADrawInfoUc:
 /* 8027E028 0027AF68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027E02C 0027AF6C  7C 08 02 A6 */	mflr r0
 /* 8027E030 0027AF70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -283,7 +283,7 @@ JPAEmitterManager_NS_draw:
 /* 8027E060 0027AFA0  38 84 01 B4 */	addi r4, r4, 0x1b4
 /* 8027E064 0027AFA4  48 0C 84 4D */	bl PSMTXCopy
 /* 8027E068 0027AFA8  7F A3 EB 78 */	mr r3, r29
-/* 8027E06C 0027AFAC  48 00 03 89 */	bl JPAEmitterManager_NS_calcYBBCam
+/* 8027E06C 0027AFAC  48 00 03 89 */	bl calc__17JPAEmitterManagerFUcYBBCam
 /* 8027E070 0027AFB0  38 60 00 00 */	li r3, 0
 /* 8027E074 0027AFB4  38 80 00 00 */	li r4, 0
 /* 8027E078 0027AFB8  38 A0 00 00 */	li r5, 0
@@ -383,7 +383,7 @@ lbl_8027E1C8:
 /* 8027E1EC 0027B12C  90 03 00 08 */	stw r0, 8(r3)
 /* 8027E1F0 0027B130  80 65 00 E8 */	lwz r3, 0xe8(r5)
 /* 8027E1F4 0027B134  80 9D 00 20 */	lwz r4, 0x20(r29)
-/* 8027E1F8 0027B138  4B FF 78 9D */	bl JPAResource_NS_draw
+/* 8027E1F8 0027B138  4B FF 78 9D */	bl draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
 lbl_8027E1FC:
 /* 8027E1FC 0027B13C  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_8027E200:
@@ -396,8 +396,8 @@ lbl_8027E200:
 /* 8027E218 0027B158  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027E21C 0027B15C  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_forceDeleteAllEmitter
-JPAEmitterManager_NS_forceDeleteAllEmitter:
+.global forceDeleteAllEmitter__17JPAEmitterManagerFv
+forceDeleteAllEmitter__17JPAEmitterManagerFv:
 /* 8027E220 0027B160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E224 0027B164  7C 08 02 A6 */	mflr r0
 /* 8027E228 0027B168  90 01 00 14 */	stw r0, 0x14(r1)
@@ -409,7 +409,7 @@ JPAEmitterManager_NS_forceDeleteAllEmitter:
 lbl_8027E240:
 /* 8027E240 0027B180  7F C3 F3 78 */	mr r3, r30
 /* 8027E244 0027B184  7F E4 FB 78 */	mr r4, r31
-/* 8027E248 0027B188  48 00 00 31 */	bl JPAEmitterManager_NS_forceDeleteGroupEmitter
+/* 8027E248 0027B188  48 00 00 31 */	bl forceDeleteGroupEmitter__17JPAEmitterManagerFUc
 /* 8027E24C 0027B18C  3B FF 00 01 */	addi r31, r31, 1
 lbl_8027E250:
 /* 8027E250 0027B190  57 E3 06 3E */	clrlwi r3, r31, 0x18
@@ -423,8 +423,8 @@ lbl_8027E250:
 /* 8027E270 0027B1B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E274 0027B1B4  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_forceDeleteGroupEmitter
-JPAEmitterManager_NS_forceDeleteGroupEmitter:
+.global forceDeleteGroupEmitter__17JPAEmitterManagerFUc
+forceDeleteGroupEmitter__17JPAEmitterManagerFUc:
 /* 8027E278 0027B1B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E27C 0027B1BC  7C 08 02 A6 */	mflr r0
 /* 8027E280 0027B1C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -438,7 +438,7 @@ lbl_8027E29C:
 /* 8027E29C 0027B1DC  80 63 00 04 */	lwz r3, 4(r3)
 /* 8027E2A0 0027B1E0  80 83 00 00 */	lwz r4, 0(r3)
 /* 8027E2A4 0027B1E4  7F C3 F3 78 */	mr r3, r30
-/* 8027E2A8 0027B1E8  48 00 00 31 */	bl JPAEmitterManager_NS_forceDeleteEmitter
+/* 8027E2A8 0027B1E8  48 00 00 31 */	bl forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 lbl_8027E2AC:
 /* 8027E2AC 0027B1EC  80 1E 00 00 */	lwz r0, 0(r30)
 /* 8027E2B0 0027B1F0  7C 7F 02 14 */	add r3, r31, r0
@@ -452,8 +452,8 @@ lbl_8027E2AC:
 /* 8027E2D0 0027B210  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E2D4 0027B214  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_forceDeleteEmitter
-JPAEmitterManager_NS_forceDeleteEmitter:
+.global forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
+forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter:
 /* 8027E2D8 0027B218  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E2DC 0027B21C  7C 08 02 A6 */	mflr r0
 /* 8027E2E0 0027B220  90 01 00 14 */	stw r0, 0x14(r1)
@@ -462,7 +462,7 @@ JPAEmitterManager_NS_forceDeleteEmitter:
 /* 8027E2EC 0027B22C  7C 7E 1B 78 */	mr r30, r3
 /* 8027E2F0 0027B230  7C 9F 23 78 */	mr r31, r4
 /* 8027E2F4 0027B234  7F E3 FB 78 */	mr r3, r31
-/* 8027E2F8 0027B238  48 00 09 69 */	bl JPABaseEmitter_NS_deleteAllParticle
+/* 8027E2F8 0027B238  48 00 09 69 */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 8027E2FC 0027B23C  80 1F 00 F4 */	lwz r0, 0xf4(r31)
 /* 8027E300 0027B240  60 00 03 00 */	ori r0, r0, 0x300
 /* 8027E304 0027B244  90 1F 00 F4 */	stw r0, 0xf4(r31)
@@ -482,15 +482,15 @@ JPAEmitterManager_NS_forceDeleteEmitter:
 /* 8027E33C 0027B27C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E340 0027B280  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_entryResourceManager
-JPAEmitterManager_NS_entryResourceManager:
+.global entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
+entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc:
 /* 8027E344 0027B284  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8027E348 0027B288  54 A0 15 BA */	rlwinm r0, r5, 2, 0x16, 0x1d
 /* 8027E34C 0027B28C  7C 83 01 2E */	stwx r4, r3, r0
 /* 8027E350 0027B290  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_clearResourceManager
-JPAEmitterManager_NS_clearResourceManager:
+.global clearResourceManager__17JPAEmitterManagerFUc
+clearResourceManager__17JPAEmitterManagerFUc:
 /* 8027E354 0027B294  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027E358 0027B298  7C 08 02 A6 */	mflr r0
 /* 8027E35C 0027B29C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -514,7 +514,7 @@ lbl_8027E390:
 /* 8027E39C 0027B2DC  7C 1F 00 40 */	cmplw r31, r0
 /* 8027E3A0 0027B2E0  40 82 00 0C */	bne lbl_8027E3AC
 /* 8027E3A4 0027B2E4  7F 63 DB 78 */	mr r3, r27
-/* 8027E3A8 0027B2E8  4B FF FF 31 */	bl JPAEmitterManager_NS_forceDeleteEmitter
+/* 8027E3A8 0027B2E8  4B FF FF 31 */	bl forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 lbl_8027E3AC:
 /* 8027E3AC 0027B2EC  7F C3 F3 78 */	mr r3, r30
 lbl_8027E3B0:
@@ -537,8 +537,8 @@ lbl_8027E3BC:
 /* 8027E3EC 0027B32C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027E3F0 0027B330  4E 80 00 20 */	blr 
 
-.global JPAEmitterManager_NS_calcYBBCam
-JPAEmitterManager_NS_calcYBBCam:
+.global calc__17JPAEmitterManagerFUcYBBCam
+calc__17JPAEmitterManagerFUcYBBCam:
 /* 8027E3F4 0027B334  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027E3F8 0027B338  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 8027E3FC 0027B33C  C0 24 01 A8 */	lfs f1, 0x1a8(r4)
@@ -678,8 +678,8 @@ lbl_8027E5D0:
 /* 8027E5E0 0027B520  7C 08 03 A6 */	mtlr r0
 /* 8027E5E4 0027B524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E5E8 0027B528  4E 80 00 20 */	blr 
-.global JPABaseEmitter_NS_dtor
-JPABaseEmitter_NS_dtor:
+.global __dt__14JPABaseEmitterFv
+__dt__14JPABaseEmitterFv:
 /* 8027E5EC 0027B52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E5F0 0027B530  7C 08 02 A6 */	mflr r0
 /* 8027E5F4 0027B534  90 01 00 14 */	stw r0, 0x14(r1)

@@ -67,7 +67,7 @@
 /* 8017DA84 0017A9C4  40 82 00 6C */ bne lbl_8017DAF0
 /* 8017DA88 0017A9C8  38 7D 0A EC */ addi r3, r29, 0xaec
 /* 8017DA8C 0017A9CC  7F C4 F3 78 */ mr r4, r30
-/* 8017DA90 0017A9D0  4B F0 AB 45 */ bl dCamParam_c_NS_Change
+/* 8017DA90 0017A9D0  4B F0 AB 45 */ bl Change__11dCamParam_cFl
 /* 8017DA94 0017A9D4  48 00 00 5C */ b lbl_8017DAF0
 lbl_8017DA98:
 /* 8017DA98 0017A9D8  38 00 00 FF */ li r0, 0xff
@@ -91,7 +91,7 @@ lbl_8017DA98:
 /* 8017DAE0 0017AA20  40 82 00 10 */ bne lbl_8017DAF0
 /* 8017DAE4 0017AA24  38 7D 0A EC */ addi r3, r29, 0xaec
 /* 8017DAE8 0017AA28  7F C4 F3 78 */ mr r4, r30
-/* 8017DAEC 0017AA2C  4B F0 AA E9 */ bl dCamParam_c_NS_Change
+/* 8017DAEC 0017AA2C  4B F0 AA E9 */ bl Change__11dCamParam_cFl
 lbl_8017DAF0:
 /* 8017DAF0 0017AA30  80 1D 07 D8 */ lwz r0, 0x7d8(r29)
 /* 8017DAF4 0017AA34  2C 00 00 FF */ cmpwi r0, 0xff
@@ -250,7 +250,7 @@ lbl_8017DD38:
 /* 8017DD38 0017AC78  C0 02 9F 04 */ lfs f0, lbl_80453904-_SDA2_BASE_(r2)
 /* 8017DD3C 0017AC7C  EC 20 00 72 */ fmuls f1, f0, f1
 /* 8017DD40 0017AC80  FC 40 F8 90 */ fmr f2, f31
-/* 8017DD44 0017AC84  4B F0 A3 F9 */ bl dCamMath_NS_rationalBezierRatio
+/* 8017DD44 0017AC84  4B F0 A3 F9 */ bl rationalBezierRatio__8dCamMathFff
 /* 8017DD48 0017AC88  FF 80 08 90 */ fmr f28, f1
 lbl_8017DD4C:
 /* 8017DD4C 0017AC8C  C0 3D 01 C0 */ lfs f1, 0x1c0(r29)
@@ -271,7 +271,7 @@ lbl_8017DD80:
 /* 8017DD80 0017ACC0  C0 02 9F 04 */ lfs f0, lbl_80453904-_SDA2_BASE_(r2)
 /* 8017DD84 0017ACC4  EC 20 00 72 */ fmuls f1, f0, f1
 /* 8017DD88 0017ACC8  FC 40 F8 90 */ fmr f2, f31
-/* 8017DD8C 0017ACCC  4B F0 A3 B1 */ bl dCamMath_NS_rationalBezierRatio
+/* 8017DD8C 0017ACCC  4B F0 A3 B1 */ bl rationalBezierRatio__8dCamMathFff
 lbl_8017DD90:
 /* 8017DD90 0017ACD0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8017DD94 0017ACD4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

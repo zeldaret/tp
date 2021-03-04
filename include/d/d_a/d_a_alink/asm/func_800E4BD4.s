@@ -76,7 +76,7 @@ lbl_800E4C98:
 /* 800E4CEC 000E1C2C  7F A3 EB 78 */ mr r3, r29
 /* 800E4CF0 000E1C30  38 9F 1E 70 */ addi r4, r31, 0x1e70
 /* 800E4CF4 000E1C34  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800E4CF8 000E1C38  4B F8 FA 4D */ bl cBgS_NS_GetTriPla
+/* 800E4CF8 000E1C38  4B F8 FA 4D */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 800E4CFC 000E1C3C  C0 21 00 24 */ lfs f1, 0x24(r1)
 /* 800E4D00 000E1C40  48 18 35 11 */ bl cBgW_CheckBWall
 /* 800E4D04 000E1C44  54 60 06 3F */ clrlwi. r0, r3, 0x18
@@ -95,7 +95,7 @@ lbl_800E4D2C:
 /* 800E4D34 000E1C74  90 01 00 30 */ stw r0, 0x30(r1)
 lbl_800E4D38:
 /* 800E4D38 000E1C78  38 7F 28 2C */ addi r3, r31, 0x282c
-/* 800E4D3C 000E1C7C  48 07 9F C1 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E4D3C 000E1C7C  48 07 9F C1 */ bl clearData__16daPy_actorKeep_cFv
 /* 800E4D40 000E1C80  7F E3 FB 78 */ mr r3, r31
 /* 800E4D44 000E1C84  4B FF EF 29 */ bl daAlink_c_NS_checkGrabAnime
 /* 800E4D48 000E1C88  2C 03 00 00 */ cmpwi r3, 0

@@ -112,7 +112,7 @@ lbl_802B4620:
 /* 802B4624 002B1564  38 80 00 1E */ li r4, 0x1e
 /* 802B4628 002B1568  4B FE DE B5 */ bl stop__8JAISoundFUl
 /* 802B462C 002B156C  80 7E 00 04 */ lwz r3, 4(r30)
-/* 802B4630 002B1570  4B FE DB 71 */ bl JAISound_NS_releaseHandle
+/* 802B4630 002B1570  4B FE DB 71 */ bl releaseHandle__8JAISoundFv
 lbl_802B4634:
 /* 802B4634 002B1574  80 6D 85 C8 */ lwz r3, lbl_80450B48-_SDA_BASE_(r13)
 /* 802B4638 002B1578  48 00 BB AD */ bl isTwilightBattle__13Z2SoundObjMgrFv

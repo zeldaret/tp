@@ -3,9 +3,9 @@
 
 extern "C" {
 void JAU_JAIInitializer(void);
-void JAU_JAIInitializer_NS_initJAInterface(void);
+void initJAInterface__18JAU_JAIInitializerFv(void);
 void JAU_JASInitializer(void);
-void JAU_JASInitializer_NS_initJASystem(void);
+void initJASystem__18JAU_JASInitializerFP12JKRSolidHeap(void);
 }
 
 #endif  // JAU_H_

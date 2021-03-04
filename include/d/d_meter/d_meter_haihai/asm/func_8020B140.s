@@ -127,7 +127,7 @@ lbl_8020B2A0:
 /* 8020B31C 0020825C  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8020B320 00208260  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8020B324 00208264  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 8020B328 00208268  48 0E DB AD */ bl J2DScreen_NS_draw
+/* 8020B328 00208268  48 0E DB AD */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_8020B32C:
 /* 8020B32C 0020826C  57 E0 07 7B */ rlwinm. r0, r31, 0, 0x1d, 0x1d
 /* 8020B330 00208270  40 82 00 0C */ bne lbl_8020B33C
@@ -168,7 +168,7 @@ lbl_8020B33C:
 /* 8020B3B8 002082F8  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8020B3BC 002082FC  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8020B3C0 00208300  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 8020B3C4 00208304  48 0E DB 11 */ bl J2DScreen_NS_draw
+/* 8020B3C4 00208304  48 0E DB 11 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_8020B3C8:
 /* 8020B3C8 00208308  57 E0 07 39 */ rlwinm. r0, r31, 0, 0x1c, 0x1c
 /* 8020B3CC 0020830C  40 82 00 0C */ bne lbl_8020B3D8
@@ -209,7 +209,7 @@ lbl_8020B3D8:
 /* 8020B454 00208394  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8020B458 00208398  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8020B45C 0020839C  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 8020B460 002083A0  48 0E DA 75 */ bl J2DScreen_NS_draw
+/* 8020B460 002083A0  48 0E DA 75 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_8020B464:
 /* 8020B464 002083A4  57 E0 07 FF */ clrlwi. r0, r31, 0x1f
 /* 8020B468 002083A8  40 82 00 0C */ bne lbl_8020B474
@@ -250,7 +250,7 @@ lbl_8020B474:
 /* 8020B4F0 00208430  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8020B4F4 00208434  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8020B4F8 00208438  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 8020B4FC 0020843C  48 0E D9 D9 */ bl J2DScreen_NS_draw
+/* 8020B4FC 0020843C  48 0E D9 D9 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_8020B500:
 /* 8020B500 00208440  39 61 00 30 */ addi r11, r1, 0x30
 /* 8020B504 00208444  48 15 6D 25 */ bl _restgpr_29

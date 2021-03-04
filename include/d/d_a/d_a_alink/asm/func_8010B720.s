@@ -23,7 +23,7 @@ lbl_8010B768:
 /* 8010B774 001086B4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010B778 001086B8  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8010B77C 001086BC  38 9F 1E 2C */ addi r4, r31, 0x1e2c
-/* 8010B780 001086C0  4B F6 8E E1 */ bl cBgS_NS_ChkPolySafe
+/* 8010B780 001086C0  4B F6 8E E1 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 8010B784 001086C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010B788 001086C8  41 82 00 9C */ beq lbl_8010B824
 /* 8010B78C 001086CC  7F E3 FB 78 */ mr r3, r31

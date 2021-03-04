@@ -3,8 +3,8 @@
 .section .text, "ax" # 801adf58
 
 
-.global dThunder_c_NS_createHeap
-dThunder_c_NS_createHeap:
+.global createHeap__10dThunder_cFv
+createHeap__10dThunder_cFv:
 /* 801ADF58 001AAE98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ADF5C 001AAE9C  7C 08 02 A6 */	mflr r0
 /* 801ADF60 001AAEA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -31,8 +31,8 @@ lbl_801ADFA0:
 /* 801ADFAC 001AAEEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801ADFB0 001AAEF0  4E 80 00 20 */	blr 
 
-.global dThunder_c_NS_adjustHeap
-dThunder_c_NS_adjustHeap:
+.global adjustHeap__10dThunder_cFv
+adjustHeap__10dThunder_cFv:
 /* 801ADFB4 001AAEF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801ADFB8 001AAEF8  7C 08 02 A6 */	mflr r0
 /* 801ADFBC 001AAEFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -151,7 +151,7 @@ lbl_801AE094:
 /* 801AE174 001AB0B4  80 63 00 04 */	lwz r3, 4(r3)
 /* 801AE178 001AB0B8  38 63 00 58 */	addi r3, r3, 0x58
 /* 801AE17C 001AB0BC  80 9F 01 1C */	lwz r4, 0x11c(r31)
-/* 801AE180 001AB0C0  48 18 17 01 */	bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 801AE180 001AB0C0  48 18 17 01 */	bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 801AE184 001AB0C4  38 60 00 01 */	li r3, 1
 /* 801AE188 001AB0C8  83 E1 00 4C */	lwz r31, 0x4c(r1)
 /* 801AE18C 001AB0CC  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -325,17 +325,17 @@ lbl_801AE3E4:
 /* 801AE408 001AB348  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AE40C 001AB34C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801AE410 001AB350  7C 7F 1B 78 */	mr r31, r3
-/* 801AE414 001AB354  4B FF FB 45 */	bl dThunder_c_NS_createHeap
+/* 801AE414 001AB354  4B FF FB 45 */	bl createHeap__10dThunder_cFv
 /* 801AE418 001AB358  2C 03 00 00 */	cmpwi r3, 0
 /* 801AE41C 001AB35C  40 82 00 0C */	bne lbl_801AE428
 /* 801AE420 001AB360  38 60 00 05 */	li r3, 5
 /* 801AE424 001AB364  48 00 00 1C */	b lbl_801AE440
 lbl_801AE428:
 /* 801AE428 001AB368  7F E3 FB 78 */	mr r3, r31
-/* 801AE42C 001AB36C  48 00 00 2D */	bl dThunder_c_NS_create
+/* 801AE42C 001AB36C  48 00 00 2D */	bl create__10dThunder_cFv
 /* 801AE430 001AB370  7C 7E 1B 78 */	mr r30, r3
 /* 801AE434 001AB374  7F E3 FB 78 */	mr r3, r31
-/* 801AE438 001AB378  4B FF FB 7D */	bl dThunder_c_NS_adjustHeap
+/* 801AE438 001AB378  4B FF FB 7D */	bl adjustHeap__10dThunder_cFv
 /* 801AE43C 001AB37C  7F C3 F3 78 */	mr r3, r30
 lbl_801AE440:
 /* 801AE440 001AB380  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -345,8 +345,8 @@ lbl_801AE440:
 /* 801AE450 001AB390  38 21 00 10 */	addi r1, r1, 0x10
 /* 801AE454 001AB394  4E 80 00 20 */	blr 
 
-.global dThunder_c_NS_create
-dThunder_c_NS_create:
+.global create__10dThunder_cFv
+create__10dThunder_cFv:
 /* 801AE458 001AB398  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 801AE45C 001AB39C  7C 08 02 A6 */	mflr r0
 /* 801AE460 001AB3A0  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -376,7 +376,7 @@ dThunder_c_NS_create:
 /* 801AE4C0 001AB400  90 1C 01 08 */	stw r0, 0x108(r28)
 /* 801AE4C4 001AB404  7F 63 DB 78 */	mr r3, r27
 /* 801AE4C8 001AB408  38 80 00 00 */	li r4, 0
-/* 801AE4CC 001AB40C  48 17 9F 31 */	bl J3DFrameCtrl_NS_init
+/* 801AE4CC 001AB40C  48 17 9F 31 */	bl init__12J3DFrameCtrlFs
 /* 801AE4D0 001AB410  38 00 00 00 */	li r0, 0
 /* 801AE4D4 001AB414  90 1B 00 14 */	stw r0, 0x14(r27)
 /* 801AE4D8 001AB418  3B 7C 01 20 */	addi r27, r28, 0x120
@@ -385,7 +385,7 @@ dThunder_c_NS_create:
 /* 801AE4E4 001AB424  90 1C 01 20 */	stw r0, 0x120(r28)
 /* 801AE4E8 001AB428  7F 63 DB 78 */	mr r3, r27
 /* 801AE4EC 001AB42C  38 80 00 00 */	li r4, 0
-/* 801AE4F0 001AB430  48 17 9F 0D */	bl J3DFrameCtrl_NS_init
+/* 801AE4F0 001AB430  48 17 9F 0D */	bl init__12J3DFrameCtrlFs
 /* 801AE4F4 001AB434  38 00 00 00 */	li r0, 0
 /* 801AE4F8 001AB438  90 1B 00 14 */	stw r0, 0x14(r27)
 lbl_801AE4FC:
@@ -402,7 +402,7 @@ lbl_801AE4FC:
 /* 801AE524 001AB464  3C A5 00 02 */	addis r5, r5, 2
 /* 801AE528 001AB468  38 C0 00 80 */	li r6, 0x80
 /* 801AE52C 001AB46C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 801AE530 001AB470  4B E8 DD BD */	bl dRes_control_c_NS_getRes
+/* 801AE530 001AB470  4B E8 DD BD */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 801AE534 001AB474  7C 7B 1B 78 */	mr r27, r3
 /* 801AE538 001AB478  48 00 00 2C */	b lbl_801AE564
 lbl_801AE53C:
@@ -414,7 +414,7 @@ lbl_801AE53C:
 /* 801AE550 001AB490  3C A5 00 02 */	addis r5, r5, 2
 /* 801AE554 001AB494  38 C0 00 80 */	li r6, 0x80
 /* 801AE558 001AB498  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 801AE55C 001AB49C  4B E8 DD 91 */	bl dRes_control_c_NS_getRes
+/* 801AE55C 001AB49C  4B E8 DD 91 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 801AE560 001AB4A0  7C 7B 1B 78 */	mr r27, r3
 lbl_801AE564:
 /* 801AE564 001AB4A4  7F 63 DB 78 */	mr r3, r27
@@ -436,7 +436,7 @@ lbl_801AE58C:
 /* 801AE5A0 001AB4E0  3C A5 00 02 */	addis r5, r5, 2
 /* 801AE5A4 001AB4E4  38 C0 00 80 */	li r6, 0x80
 /* 801AE5A8 001AB4E8  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 801AE5AC 001AB4EC  4B E8 DD 41 */	bl dRes_control_c_NS_getRes
+/* 801AE5AC 001AB4EC  4B E8 DD 41 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 801AE5B0 001AB4F0  7C 65 1B 78 */	mr r5, r3
 /* 801AE5B4 001AB4F4  38 7D 01 08 */	addi r3, r29, 0x108
 /* 801AE5B8 001AB4F8  38 9B 00 58 */	addi r4, r27, 0x58

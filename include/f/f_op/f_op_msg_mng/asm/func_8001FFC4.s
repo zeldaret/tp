@@ -4,7 +4,7 @@
 /* 8001FFD0 0001CF10  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 8001FFD4 0001CF14  93 C1 00 18 */ stw r30, 0x18(r1)
 /* 8001FFD8 0001CF18  7C 7E 1B 78 */ mr r30, r3
-/* 8001FFDC 0001CF1C  48 21 80 BD */ bl dMsgObject_c_NS_endFlowGroup
+/* 8001FFDC 0001CF1C  48 21 80 BD */ bl endFlowGroup__12dMsgObject_cFv
 /* 8001FFE0 0001CF20  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8001FFE4 0001CF24  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 8001FFE8 0001CF28  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
@@ -53,7 +53,7 @@ lbl_80020038:
 /* 8002008C 0001CFCC  90 03 00 DC */ stw r0, 0xdc(r3)
 /* 80020090 0001CFD0  7F C4 F3 78 */ mr r4, r30
 /* 80020094 0001CFD4  38 A0 00 00 */ li r5, 0
-/* 80020098 0001CFD8  48 21 3D D9 */ bl dMsgObject_c_NS_setMessageIndexDemo
+/* 80020098 0001CFD8  48 21 3D D9 */ bl setMessageIndex__12dMsgObject_cFUlUlbDemo
 /* 8002009C 0001CFDC  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
 /* 800200A0 0001CFE0  48 00 00 08 */ b lbl_800200A8
 lbl_800200A4:

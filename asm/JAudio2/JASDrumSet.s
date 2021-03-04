@@ -41,8 +41,8 @@ lbl_80298358:
 /* 80298368 002952A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029836C 002952AC  4E 80 00 20 */	blr 
 
-.global JASDrumSet_NS_newPercArray
-JASDrumSet_NS_newPercArray:
+.global newPercArray__10JASDrumSetFUcP7JKRHeap
+newPercArray__10JASDrumSetFUcP7JKRHeap:
 /* 80298370 002952B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298374 002952B4  7C 08 02 A6 */	mflr r0
 /* 80298378 002952B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -60,7 +60,7 @@ JASDrumSet_NS_newPercArray:
 /* 802983A8 002952E8  80 7F 00 04 */	lwz r3, 4(r31)
 /* 802983AC 002952EC  88 1F 00 08 */	lbz r0, 8(r31)
 /* 802983B0 002952F0  54 04 10 3A */	slwi r4, r0, 2
-/* 802983B4 002952F4  4B FF 70 CD */	bl JASCalc_NS_bzero
+/* 802983B4 002952F4  4B FF 70 CD */	bl bzero__7JASCalcFPvUl
 lbl_802983B8:
 /* 802983B8 002952F8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802983BC 002952FC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -130,15 +130,15 @@ lbl_80298474:
 /* 802984AC 002953EC  38 60 00 01 */	li r3, 1
 /* 802984B0 002953F0  4E 80 00 20 */	blr 
 
-.global JASDrumSet_NS_setPerc
-JASDrumSet_NS_setPerc:
+.global setPerc__10JASDrumSetFiPQ210JASDrumSet5TPerc
+setPerc__10JASDrumSetFiPQ210JASDrumSet5TPerc:
 /* 802984B4 002953F4  80 63 00 04 */	lwz r3, 4(r3)
 /* 802984B8 002953F8  54 80 10 3A */	slwi r0, r4, 2
 /* 802984BC 002953FC  7C A3 01 2E */	stwx r5, r3, r0
 /* 802984C0 00295400  4E 80 00 20 */	blr 
 
-.global JASDrumSet_NS_TPerc
-JASDrumSet_NS_TPerc:
+.global __ct__Q210JASDrumSet5TPercFv
+__ct__Q210JASDrumSet5TPercFv:
 /* 802984C4 00295404  C0 02 BC 48 */	lfs f0, lbl_80455648-_SDA2_BASE_(r2)
 /* 802984C8 00295408  D0 03 00 00 */	stfs f0, 0(r3)
 /* 802984CC 0029540C  D0 03 00 04 */	stfs f0, 4(r3)
@@ -148,8 +148,8 @@ JASDrumSet_NS_TPerc:
 /* 802984DC 0029541C  B0 03 00 0C */	sth r0, 0xc(r3)
 /* 802984E0 00295420  4E 80 00 20 */	blr 
 
-.global JASDrumSet_NS_TPerc_NS_setRelease
-JASDrumSet_NS_TPerc_NS_setRelease:
+.global setRelease__Q210JASDrumSet5TPercFUl
+setRelease__Q210JASDrumSet5TPercFUl:
 /* 802984E4 00295424  B0 83 00 0C */	sth r4, 0xc(r3)
 /* 802984E8 00295428  4E 80 00 20 */	blr 
 /* 802984EC 0029542C  3C 60 50 45 */	lis r3, 0x50455243@ha

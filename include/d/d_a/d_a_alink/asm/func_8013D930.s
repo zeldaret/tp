@@ -82,7 +82,7 @@ lbl_8013DA60:
 lbl_8013DA68:
 /* 8013DA68 0013A9A8  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8013DA6C 0013A9AC  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013DA70 0013A9B0  48 02 12 49 */ bl daPy_actorKeep_c_NS_setData
+/* 8013DA70 0013A9B0  48 02 12 49 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013DA74 0013A9B4  38 60 00 01 */ li r3, 1
 /* 8013DA78 0013A9B8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8013DA7C 0013A9BC  80 01 00 14 */ lwz r0, 0x14(r1)

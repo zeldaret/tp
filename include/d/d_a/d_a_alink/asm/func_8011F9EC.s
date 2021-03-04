@@ -20,7 +20,7 @@
 /* 8011FA38 0011C978  38 A0 00 00 */ li r5, 0
 /* 8011FA3C 0011C97C  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8011FA40 0011C980  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8011FA44 0011C984  4B F2 37 29 */ bl dEvt_control_c_NS_compulsory
+/* 8011FA44 0011C984  4B F2 37 29 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 8011FA48 0011C988  2C 03 00 00 */ cmpwi r3, 0
 /* 8011FA4C 0011C98C  41 82 01 50 */ beq lbl_8011FB9C
 lbl_8011FA50:

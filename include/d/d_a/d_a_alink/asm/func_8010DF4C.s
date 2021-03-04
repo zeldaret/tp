@@ -327,7 +327,7 @@ lbl_8010E410:
 /* 8010E410 0010B350  2C 00 00 F8 */ cmpwi r0, 0xf8
 /* 8010E414 0010B354  40 82 00 14 */ bne lbl_8010E428
 /* 8010E418 0010B358  7F 83 E3 78 */ mr r3, r28
-/* 8010E41C 0010B35C  48 05 00 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8010E41C 0010B35C  48 05 00 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010E420 0010B360  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010E424 0010B364  40 82 00 18 */ bne lbl_8010E43C
 lbl_8010E428:

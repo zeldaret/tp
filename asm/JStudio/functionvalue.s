@@ -560,7 +560,7 @@ lbl_80283D88:
 /* 80283DDC 00280D1C  41 82 00 10 */	beq lbl_80283DEC
 /* 80283DE0 00280D20  38 7E 00 04 */	addi r3, r30, 4
 /* 80283DE4 00280D24  38 80 00 00 */	li r4, 0
-/* 80283DE8 00280D28  48 05 8F 15 */	bl JGadget_NS_TVector_pointer_void_NS_dtor
+/* 80283DE8 00280D28  48 05 8F 15 */	bl __dt__Q27JGadget20TVector_pointer_voidFv
 lbl_80283DEC:
 /* 80283DEC 00280D2C  7F C3 F3 78 */	mr r3, r30
 /* 80283DF0 00280D30  38 80 00 00 */	li r4, 0

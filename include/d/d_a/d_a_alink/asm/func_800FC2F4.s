@@ -15,7 +15,7 @@ lbl_800FC324:
 /* 800FC328 000F9268  4B FC 5C 45 */ bl daAlink_c_NS_commonProcInit
 /* 800FC32C 000F926C  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800FC330 000F9270  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800FC334 000F9274  48 06 29 85 */ bl daPy_actorKeep_c_NS_setData
+/* 800FC334 000F9274  48 06 29 85 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800FC338 000F9278  7F E3 FB 78 */ mr r3, r31
 /* 800FC33C 000F927C  38 80 00 91 */ li r4, 0x91
 /* 800FC340 000F9280  3C A0 80 39 */ lis r5, lbl_8038E164@ha

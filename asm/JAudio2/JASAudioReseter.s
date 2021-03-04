@@ -15,7 +15,7 @@ JASAudioReseter:
 /* 8029D0D0 0029A010  38 00 00 01 */	li r0, 1
 /* 8029D0D4 0029A014  90 1F 00 08 */	stw r0, 8(r31)
 /* 8029D0D8 0029A018  98 7F 00 0C */	stb r3, 0xc(r31)
-/* 8029D0DC 0029A01C  48 00 10 7D */	bl JASDriver_NS_getDSPLevel
+/* 8029D0DC 0029A01C  48 00 10 7D */	bl getDSPLevel__9JASDriverFv
 /* 8029D0E0 0029A020  D0 3F 00 04 */	stfs f1, 4(r31)
 /* 8029D0E4 0029A024  7F E3 FB 78 */	mr r3, r31
 /* 8029D0E8 0029A028  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -24,8 +24,8 @@ JASAudioReseter:
 /* 8029D0F4 0029A034  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D0F8 0029A038  4E 80 00 20 */	blr 
 
-.global JASAudioReseter_NS_dtor
-JASAudioReseter_NS_dtor:
+.global __dt__15JASAudioReseterFv
+__dt__15JASAudioReseterFv:
 /* 8029D0FC 0029A03C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D100 0029A040  7C 08 02 A6 */	mflr r0
 /* 8029D104 0029A044  90 01 00 14 */	stw r0, 0x14(r1)
@@ -43,8 +43,8 @@ lbl_8029D120:
 /* 8029D130 0029A070  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D134 0029A074  4E 80 00 20 */	blr 
 
-.global JASAudioReseter_NS_start
-JASAudioReseter_NS_start:
+.global start__15JASAudioReseterFUlb
+start__15JASAudioReseterFUlb:
 /* 8029D138 0029A078  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029D13C 0029A07C  7C 08 02 A6 */	mflr r0
 /* 8029D140 0029A080  90 01 00 24 */	stw r0, 0x24(r1)
@@ -61,12 +61,12 @@ lbl_8029D168:
 /* 8029D168 0029A0A8  98 BE 00 0C */	stb r5, 0xc(r30)
 /* 8029D16C 0029A0AC  48 0A 05 89 */	bl __RAS_OSDisableInterrupts_begin 
 /* 8029D170 0029A0B0  90 61 00 08 */	stw r3, 8(r1)
-.global JASAudioReseter_NS_callback
-/* 8029D174 0029A0B4  3C 60 80 2A */	lis r3, JASAudioReseter_NS_callback@ha
-.global JASAudioReseter_NS_callback
-/* 8029D178 0029A0B8  38 63 D2 D4 */	addi r3, r3, JASAudioReseter_NS_callback@l
+.global callback__15JASAudioReseterFPv
+/* 8029D174 0029A0B4  3C 60 80 2A */	lis r3, callback__15JASAudioReseterFPv@ha
+.global callback__15JASAudioReseterFPv
+/* 8029D178 0029A0B8  38 63 D2 D4 */	addi r3, r3, callback__15JASAudioReseterFPv@l
 /* 8029D17C 0029A0BC  7F C4 F3 78 */	mr r4, r30
-/* 8029D180 0029A0C0  48 00 10 C1 */	bl JASDriver_NS_registerDspSyncCallback
+/* 8029D180 0029A0C0  48 00 10 C1 */	bl registerDspSyncCallback__9JASDriverFPFPv_lPv
 /* 8029D184 0029A0C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029D188 0029A0C8  40 82 00 14 */	bne lbl_8029D19C
 /* 8029D18C 0029A0CC  80 61 00 08 */	lwz r3, 8(r1)
@@ -74,7 +74,7 @@ lbl_8029D168:
 /* 8029D194 0029A0D4  38 60 00 00 */	li r3, 0
 /* 8029D198 0029A0D8  48 00 00 24 */	b lbl_8029D1BC
 lbl_8029D19C:
-/* 8029D19C 0029A0DC  48 00 0F BD */	bl JASDriver_NS_getDSPLevel
+/* 8029D19C 0029A0DC  48 00 0F BD */	bl getDSPLevel__9JASDriverFv
 /* 8029D1A0 0029A0E0  D0 3E 00 04 */	stfs f1, 4(r30)
 /* 8029D1A4 0029A0E4  93 FE 00 00 */	stw r31, 0(r30)
 /* 8029D1A8 0029A0E8  38 00 00 00 */	li r0, 0
@@ -90,25 +90,25 @@ lbl_8029D1BC:
 /* 8029D1CC 0029A10C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029D1D0 0029A110  4E 80 00 20 */	blr 
 
-.global JASAudioReseter_NS_resume
-JASAudioReseter_NS_resume:
+.global resume__15JASAudioReseterFv
+resume__15JASAudioReseterFv:
 /* 8029D1D4 0029A114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D1D8 0029A118  7C 08 02 A6 */	mflr r0
 /* 8029D1DC 0029A11C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029D1E0 0029A120  C0 23 00 04 */	lfs f1, 4(r3)
-/* 8029D1E4 0029A124  48 00 0F 4D */	bl JASDriver_NS_setDSPLevel
+/* 8029D1E4 0029A124  48 00 0F 4D */	bl setDSPLevel__9JASDriverFf
 /* 8029D1E8 0029A128  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029D1EC 0029A12C  7C 08 03 A6 */	mtlr r0
 /* 8029D1F0 0029A130  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D1F4 0029A134  4E 80 00 20 */	blr 
 
-.global JASAudioReseter_NS_checkDone
-JASAudioReseter_NS_checkDone:
+.global checkDone__15JASAudioReseterCFv
+checkDone__15JASAudioReseterCFv:
 /* 8029D1F8 0029A138  80 63 00 08 */	lwz r3, 8(r3)
 /* 8029D1FC 0029A13C  4E 80 00 20 */	blr 
 
-.global JASAudioReseter_NS_calc
-JASAudioReseter_NS_calc:
+.global calc__15JASAudioReseterFv
+calc__15JASAudioReseterFv:
 /* 8029D200 0029A140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029D204 0029A144  7C 08 02 A6 */	mflr r0
 /* 8029D208 0029A148  90 01 00 24 */	stw r0, 0x24(r1)
@@ -121,11 +121,11 @@ JASAudioReseter_NS_calc:
 /* 8029D224 0029A164  3B E0 00 00 */	li r31, 0
 lbl_8029D228:
 /* 8029D228 0029A168  7F E3 FB 78 */	mr r3, r31
-/* 8029D22C 0029A16C  48 00 07 1D */	bl JASDSPChannel_NS_getHandle
+/* 8029D22C 0029A16C  48 00 07 1D */	bl getHandle__13JASDSPChannelFUl
 /* 8029D230 0029A170  80 03 00 00 */	lwz r0, 0(r3)
 /* 8029D234 0029A174  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8029D238 0029A178  40 82 00 08 */	bne lbl_8029D240
-/* 8029D23C 0029A17C  48 00 01 05 */	bl JASDSPChannel_NS_drop
+/* 8029D23C 0029A17C  48 00 01 05 */	bl drop__13JASDSPChannelFv
 lbl_8029D240:
 /* 8029D240 0029A180  3B FF 00 01 */	addi r31, r31, 1
 /* 8029D244 0029A184  28 1F 00 40 */	cmplwi r31, 0x40
@@ -134,7 +134,7 @@ lbl_8029D240:
 /* 8029D250 0029A190  28 00 00 00 */	cmplwi r0, 0
 /* 8029D254 0029A194  41 82 00 0C */	beq lbl_8029D260
 /* 8029D258 0029A198  80 6D 86 0C */	lwz r3, lbl_80450B8C-_SDA_BASE_(r13)
-/* 8029D25C 0029A19C  4B FF FB 65 */	bl JASAudioThread_NS_stop
+/* 8029D25C 0029A19C  4B FF FB 65 */	bl stop__14JASAudioThreadFv
 lbl_8029D260:
 /* 8029D260 0029A1A0  38 00 00 01 */	li r0, 1
 /* 8029D264 0029A1A4  90 1E 00 08 */	stw r0, 8(r30)
@@ -144,7 +144,7 @@ lbl_8029D270:
 /* 8029D270 0029A1B0  38 03 FF FF */	addi r0, r3, -1
 /* 8029D274 0029A1B4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8029D278 0029A1B8  83 FE 00 00 */	lwz r31, 0(r30)
-/* 8029D27C 0029A1BC  48 00 0E DD */	bl JASDriver_NS_getDSPLevel
+/* 8029D27C 0029A1BC  48 00 0E DD */	bl getDSPLevel__9JASDriverFv
 /* 8029D280 0029A1C0  C8 42 BD 40 */	lfd f2, lbl_80455740-_SDA2_BASE_(r2)
 /* 8029D284 0029A1C4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029D288 0029A1C8  3C 60 43 30 */	lis r3, 0x4330
@@ -158,7 +158,7 @@ lbl_8029D270:
 /* 8029D2A8 0029A1E8  C8 01 00 10 */	lfd f0, 0x10(r1)
 /* 8029D2AC 0029A1EC  EC 00 10 28 */	fsubs f0, f0, f2
 /* 8029D2B0 0029A1F0  EC 21 00 24 */	fdivs f1, f1, f0
-/* 8029D2B4 0029A1F4  48 00 0E 7D */	bl JASDriver_NS_setDSPLevel
+/* 8029D2B4 0029A1F4  48 00 0E 7D */	bl setDSPLevel__9JASDriverFf
 /* 8029D2B8 0029A1F8  38 60 00 00 */	li r3, 0
 lbl_8029D2BC:
 /* 8029D2BC 0029A1FC  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -167,12 +167,12 @@ lbl_8029D2BC:
 /* 8029D2C8 0029A208  7C 08 03 A6 */	mtlr r0
 /* 8029D2CC 0029A20C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029D2D0 0029A210  4E 80 00 20 */	blr 
-.global JASAudioReseter_NS_callback
-JASAudioReseter_NS_callback:
+.global callback__15JASAudioReseterFPv
+callback__15JASAudioReseterFPv:
 /* 8029D2D4 0029A214  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D2D8 0029A218  7C 08 02 A6 */	mflr r0
 /* 8029D2DC 0029A21C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8029D2E0 0029A220  4B FF FF 21 */	bl JASAudioReseter_NS_calc
+/* 8029D2E0 0029A220  4B FF FF 21 */	bl calc__15JASAudioReseterFv
 /* 8029D2E4 0029A224  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029D2E8 0029A228  7C 08 03 A6 */	mtlr r0
 /* 8029D2EC 0029A22C  38 21 00 10 */	addi r1, r1, 0x10

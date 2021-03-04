@@ -29,7 +29,7 @@ lbl_8001F940:
 /* 8001F978 0001C8B8  39 21 00 20 */ addi r9, r1, 0x20
 /* 8001F97C 0001C8BC  39 40 00 FF */ li r10, 0xff
 /* 8001F980 0001C8C0  C0 22 82 68 */ lfs f1, lbl_80451C68-_SDA2_BASE_(r2)
-/* 8001F984 0001C8C4  48 02 D1 0D */ bl dPa_control_c_NS_set
+/* 8001F984 0001C8C4  48 02 D1 0D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8001F988 0001C8C8  3B BD 00 01 */ addi r29, r29, 1
 /* 8001F98C 0001C8CC  2C 1D 00 02 */ cmpwi r29, 2
 /* 8001F990 0001C8D0  3B FF 00 02 */ addi r31, r31, 2

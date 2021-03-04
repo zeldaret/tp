@@ -102,7 +102,7 @@ lbl_801A1470:
 /* 801A14C0 0019E400  3A 10 00 08 */ addi r16, r16, 8
 /* 801A14C4 0019E404  3A 31 00 03 */ addi r17, r17, 3
 /* 801A14C8 0019E408  41 80 FF A8 */ blt lbl_801A1470
-/* 801A14CC 0019E40C  4B FB DF 59 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A14CC 0019E40C  4B FB DF 59 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A14D0 0019E410  2C 03 00 00 */ cmpwi r3, 0
 /* 801A14D4 0019E414  41 82 00 0C */ beq lbl_801A14E0
 /* 801A14D8 0019E418  7F 83 E3 78 */ mr r3, r28
@@ -138,7 +138,7 @@ lbl_801A1504:
 /* 801A1548 0019E488  39 01 00 40 */ addi r8, r1, 0x40
 /* 801A154C 0019E48C  C0 7F 12 00 */ lfs f3, 0x1200(r31)
 /* 801A1550 0019E490  4B FF ED F1 */ bl dKy_calc_color_set
-/* 801A1554 0019E494  4B FB DE D1 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1554 0019E494  4B FB DE D1 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1558 0019E498  2C 03 00 00 */ cmpwi r3, 0
 /* 801A155C 0019E49C  41 82 00 14 */ beq lbl_801A1570
 /* 801A1560 0019E4A0  38 00 00 00 */ li r0, 0
@@ -214,7 +214,7 @@ lbl_801A1570:
 /* 801A1674 0019E5B4  C1 10 11 F4 */ lfs f8, 0x11f4(r16)
 /* 801A1678 0019E5B8  4B FF C1 29 */ bl float_kankyo_color_ratio_set
 /* 801A167C 0019E5BC  D0 37 00 00 */ stfs f1, 0(r23)
-/* 801A1680 0019E5C0  4B FB DD A5 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1680 0019E5C0  4B FB DD A5 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1684 0019E5C4  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1688 0019E5C8  41 82 00 20 */ beq lbl_801A16A8
 /* 801A168C 0019E5CC  38 00 00 00 */ li r0, 0

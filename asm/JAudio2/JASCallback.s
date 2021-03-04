@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028ffa8
 
 
-.global JASCallbackMgr_NS_regist
-JASCallbackMgr_NS_regist:
+.global regist__14JASCallbackMgrFPFPv_lPv
+regist__14JASCallbackMgrFPFPv_lPv:
 /* 8028FFA8 0028CEE8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028FFAC 0028CEEC  7C 08 02 A6 */	mflr r0
 /* 8028FFB0 0028CEF0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -43,8 +43,8 @@ lbl_80290018:
 /* 80290028 0028CF68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029002C 0028CF6C  4E 80 00 20 */	blr 
 
-.global JASCallbackMgr_NS_reject
-JASCallbackMgr_NS_reject:
+.global reject__14JASCallbackMgrFPFPv_lPv
+reject__14JASCallbackMgrFPFPv_lPv:
 /* 80290030 0028CF70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80290034 0028CF74  7C 08 02 A6 */	mflr r0
 /* 80290038 0028CF78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -85,8 +85,8 @@ lbl_80290098:
 /* 802900BC 0028CFFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802900C0 0028D000  4E 80 00 20 */	blr 
 
-.global JASCallbackMgr_NS_callback
-JASCallbackMgr_NS_callback:
+.global callback__14JASCallbackMgrFv
+callback__14JASCallbackMgrFv:
 /* 802900C4 0028D004  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802900C8 0028D008  7C 08 02 A6 */	mflr r0
 /* 802900CC 0028D00C  90 01 00 24 */	stw r0, 0x24(r1)

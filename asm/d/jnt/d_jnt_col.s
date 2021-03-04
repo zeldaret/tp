@@ -11,8 +11,8 @@ dJntCol_c:
 /* 80035C98 00032BD8  90 03 00 08 */	stw r0, 8(r3)
 /* 80035C9C 00032BDC  4E 80 00 20 */	blr 
 
-.global dJntCol_c_NS_init
-dJntCol_c_NS_init:
+.global init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli
+init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli:
 /* 80035CA0 00032BE0  90 A3 00 00 */	stw r5, 0(r3)
 /* 80035CA4 00032BE4  90 C3 00 04 */	stw r6, 4(r3)
 /* 80035CA8 00032BE8  90 E3 00 08 */	stw r7, 8(r3)
@@ -25,8 +25,8 @@ lbl_80035CC0:
 /* 80035CC0 00032C00  38 60 00 01 */	li r3, 1
 /* 80035CC4 00032C04  4E 80 00 20 */	blr 
 
-.global dJntCol_c_NS_setNowLine
-dJntCol_c_NS_setNowLine:
+.global setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz
+setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz:
 /* 80035CC8 00032C08  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80035CCC 00032C0C  7C 08 02 A6 */	mflr r0
 /* 80035CD0 00032C10  90 01 00 64 */	stw r0, 0x64(r1)
@@ -94,8 +94,8 @@ lbl_80035D30:
 /* 80035DC0 00032D00  38 21 00 60 */	addi r1, r1, 0x60
 /* 80035DC4 00032D04  4E 80 00 20 */	blr 
 
-.global dJntCol_c_NS_searchNearPos
-dJntCol_c_NS_searchNearPos:
+.global searchNearPos__9dJntCol_cCFPC8cM3dGLinPC4cXyzP4cXyzi
+searchNearPos__9dJntCol_cCFPC8cM3dGLinPC4cXyzP4cXyzi:
 /* 80035DC8 00032D08  94 21 FD 50 */	stwu r1, -0x2b0(r1)
 /* 80035DCC 00032D0C  7C 08 02 A6 */	mflr r0
 /* 80035DD0 00032D10  90 01 02 B4 */	stw r0, 0x2b4(r1)
@@ -1012,13 +1012,13 @@ lbl_80036AD4:
 /* 80036B18 00033A58  90 01 00 38 */	stw r0, 0x38(r1)
 /* 80036B1C 00033A5C  38 61 00 20 */	addi r3, r1, 0x20
 /* 80036B20 00033A60  38 C1 00 14 */	addi r6, r1, 0x14
-/* 80036B24 00033A64  4B FF F1 A5 */	bl dJntCol_c_NS_setNowLine
+/* 80036B24 00033A64  4B FF F1 A5 */	bl setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz
 /* 80036B28 00033A68  7F 83 E3 78 */	mr r3, r28
 /* 80036B2C 00033A6C  38 81 00 20 */	addi r4, r1, 0x20
 /* 80036B30 00033A70  7F E5 FB 78 */	mr r5, r31
 /* 80036B34 00033A74  38 C1 00 08 */	addi r6, r1, 8
 /* 80036B38 00033A78  38 E0 00 00 */	li r7, 0
-/* 80036B3C 00033A7C  4B FF F2 8D */	bl dJntCol_c_NS_searchNearPos
+/* 80036B3C 00033A7C  4B FF F2 8D */	bl searchNearPos__9dJntCol_cCFPC8cM3dGLinPC4cXyzP4cXyzi
 /* 80036B40 00033A80  2C 03 00 00 */	cmpwi r3, 0
 /* 80036B44 00033A84  40 80 00 18 */	bge lbl_80036B5C
 /* 80036B48 00033A88  3C 60 80 3A */	lis r3, lbl_803A78F8@ha
@@ -1090,8 +1090,8 @@ lbl_80036C2C:
 /* 80036C3C 00033B7C  38 21 00 50 */	addi r1, r1, 0x50
 /* 80036C40 00033B80  4E 80 00 20 */	blr 
 
-.global dJntCol_c_NS_getHitmarkPosAndAngle
-dJntCol_c_NS_getHitmarkPosAndAngle:
+.global getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi
+getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi:
 /* 80036C44 00033B84  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 80036C48 00033B88  7C 08 02 A6 */	mflr r0
 /* 80036C4C 00033B8C  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1109,13 +1109,13 @@ dJntCol_c_NS_getHitmarkPosAndAngle:
 /* 80036C7C 00033BBC  90 01 00 9C */	stw r0, 0x9c(r1)
 /* 80036C80 00033BC0  38 61 00 84 */	addi r3, r1, 0x84
 /* 80036C84 00033BC4  38 C1 00 78 */	addi r6, r1, 0x78
-/* 80036C88 00033BC8  4B FF F0 41 */	bl dJntCol_c_NS_setNowLine
+/* 80036C88 00033BC8  4B FF F0 41 */	bl setNowLine__9dJntCol_cFP8cM3dGLinPC4cXyzPC5csXyzP4cXyz
 /* 80036C8C 00033BCC  7F 63 DB 78 */	mr r3, r27
 /* 80036C90 00033BD0  38 81 00 84 */	addi r4, r1, 0x84
 /* 80036C94 00033BD4  7F E5 FB 78 */	mr r5, r31
 /* 80036C98 00033BD8  7F 86 E3 78 */	mr r6, r28
 /* 80036C9C 00033BDC  7F C7 F3 78 */	mr r7, r30
-/* 80036CA0 00033BE0  4B FF F1 29 */	bl dJntCol_c_NS_searchNearPos
+/* 80036CA0 00033BE0  4B FF F1 29 */	bl searchNearPos__9dJntCol_cCFPC8cM3dGLinPC4cXyzP4cXyzi
 /* 80036CA4 00033BE4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80036CA8 00033BE8  40 80 00 18 */	bge lbl_80036CC0
 /* 80036CAC 00033BEC  3C 60 80 3A */	lis r3, lbl_803A78F8@ha

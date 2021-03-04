@@ -26,7 +26,7 @@
 /* 80101710 000FE650  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 80101714 000FE654  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 80101718 000FE658  7F E4 FB 78 */ mr r4, r31
-/* 8010171C 000FE65C  48 05 D5 9D */ bl daPy_actorKeep_c_NS_setData
+/* 8010171C 000FE65C  48 05 D5 9D */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80101720 000FE660  7F C3 F3 78 */ mr r3, r30
 /* 80101724 000FE664  4B FF FF 19 */ bl daAlink_c_NS_setRoofHangSwitch
 /* 80101728 000FE668  A8 7F 04 E6 */ lha r3, 0x4e6(r31)

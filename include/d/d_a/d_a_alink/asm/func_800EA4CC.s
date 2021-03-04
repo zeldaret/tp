@@ -7,7 +7,7 @@
 /* 800EA4E4 000E7424  93 C1 00 28 */ stw r30, 0x28(r1)
 /* 800EA4E8 000E7428  7C 7F 1B 78 */ mr r31, r3
 /* 800EA4EC 000E742C  38 7F 28 54 */ addi r3, r31, 0x2854
-/* 800EA4F0 000E7430  48 07 47 59 */ bl daPy_actorKeep_c_NS_setActor
+/* 800EA4F0 000E7430  48 07 47 59 */ bl setActor__16daPy_actorKeep_cFv
 /* 800EA4F4 000E7434  80 1F 28 58 */ lwz r0, 0x2858(r31)
 /* 800EA4F8 000E7438  28 00 00 00 */ cmplwi r0, 0
 /* 800EA4FC 000E743C  41 82 00 10 */ beq lbl_800EA50C

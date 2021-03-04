@@ -20,7 +20,7 @@
 /* 800BDFAC 000BAEEC  38 A0 00 00 */ li r5, 0
 /* 800BDFB0 000BAEF0  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800BDFB4 000BAEF4  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800BDFB8 000BAEF8  4B F8 51 B5 */ bl dEvt_control_c_NS_compulsory
+/* 800BDFB8 000BAEF8  4B F8 51 B5 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800BDFBC 000BAEFC  2C 03 00 00 */ cmpwi r3, 0
 /* 800BDFC0 000BAF00  41 82 02 90 */ beq lbl_800BE250
 lbl_800BDFC4:
@@ -182,7 +182,7 @@ lbl_800BE1CC:
 /* 800BE1EC 000BB12C  7F E4 FB 78 */ mr r4, r31
 /* 800BE1F0 000BB130  7F A5 EB 78 */ mr r5, r29
 /* 800BE1F4 000BB134  38 C0 00 00 */ li r6, 0
-/* 800BE1F8 000BB138  48 0A 08 15 */ bl daPy_py_c_NS_setParamData
+/* 800BE1F8 000BB138  48 0A 08 15 */ bl setParamData__9daPy_py_cFiiii
 /* 800BE1FC 000BB13C  80 81 00 08 */ lwz r4, 8(r1)
 /* 800BE200 000BB140  38 A0 00 00 */ li r5, 0
 /* 800BE204 000BB144  4B F6 92 AD */ bl dStage_restartRoom

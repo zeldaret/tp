@@ -14,8 +14,8 @@ lbl_802A2D40:
 /* 802A2D48 0029FC88  90 03 00 00 */	stw r0, 0(r3)
 /* 802A2D4C 0029FC8C  4E 80 00 20 */	blr 
 
-.global JAISoundInfo_NS_dtor
-JAISoundInfo_NS_dtor:
+.global __dt__12JAISoundInfoFv
+__dt__12JAISoundInfoFv:
 /* 802A2D50 0029FC90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A2D54 0029FC94  7C 08 02 A6 */	mflr r0
 /* 802A2D58 0029FC98  90 01 00 14 */	stw r0, 0x14(r1)

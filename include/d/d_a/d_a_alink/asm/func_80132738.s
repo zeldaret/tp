@@ -76,7 +76,7 @@ lbl_801327E8:
 /* 80132850 0012F790  38 80 00 02 */ li r4, 2
 /* 80132854 0012F794  38 A0 00 0F */ li r5, 0xf
 /* 80132858 0012F798  38 C1 00 08 */ addi r6, r1, 8
-/* 8013285C 0012F79C  4B F3 D1 C9 */ bl dVibration_c_NS_StartShock
+/* 8013285C 0012F79C  4B F3 D1 C9 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_80132860:
 /* 80132860 0012F7A0  93 BF 31 98 */ stw r29, 0x3198(r31)
 /* 80132864 0012F7A4  7F E3 FB 78 */ mr r3, r31

@@ -99,7 +99,7 @@
 /* 800702E0 0006D220  3B BD C2 F8 */ addi r29, r29, -15624
 /* 800702E4 0006D224  7F A5 EB 78 */ mr r5, r29
 /* 800702E8 0006D228  38 C0 00 80 */ li r6, 0x80
-/* 800702EC 0006D22C  4B FC C0 01 */ bl dRes_control_c_NS_getRes
+/* 800702EC 0006D22C  4B FC C0 01 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800702F0 0006D230  7C 7B 1B 78 */ mr r27, r3
 /* 800702F4 0006D234  3C 60 80 38 */ lis r3, lbl_8037A770@ha
 /* 800702F8 0006D238  38 63 A7 70 */ addi r3, r3, lbl_8037A770@l
@@ -107,7 +107,7 @@
 /* 80070300 0006D240  38 80 00 26 */ li r4, 0x26
 /* 80070304 0006D244  7F A5 EB 78 */ mr r5, r29
 /* 80070308 0006D248  38 C0 00 80 */ li r6, 0x80
-/* 8007030C 0006D24C  4B FC BF E1 */ bl dRes_control_c_NS_getRes
+/* 8007030C 0006D24C  4B FC BF E1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070310 0006D250  7C 7A 1B 78 */ mr r26, r3
 /* 80070314 0006D254  3B 20 00 00 */ li r25, 0
 /* 80070318 0006D258  3B C0 00 00 */ li r30, 0
@@ -131,7 +131,7 @@ lbl_80070328:
 /* 8007035C 0006D29C  38 80 00 11 */ li r4, 0x11
 /* 80070360 0006D2A0  7F A5 EB 78 */ mr r5, r29
 /* 80070364 0006D2A4  38 C0 00 80 */ li r6, 0x80
-/* 80070368 0006D2A8  4B FC BF 85 */ bl dRes_control_c_NS_getRes
+/* 80070368 0006D2A8  4B FC BF 85 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8007036C 0006D2AC  7C 64 1B 78 */ mr r4, r3
 /* 80070370 0006D2B0  38 7E 00 30 */ addi r3, r30, 0x30
 /* 80070374 0006D2B4  7C 7F 1A 14 */ add r3, r31, r3
@@ -146,7 +146,7 @@ lbl_80070328:
 /* 80070398 0006D2D8  38 80 00 2B */ li r4, 0x2b
 /* 8007039C 0006D2DC  7F A5 EB 78 */ mr r5, r29
 /* 800703A0 0006D2E0  38 C0 00 80 */ li r6, 0x80
-/* 800703A4 0006D2E4  4B FC BF 49 */ bl dRes_control_c_NS_getRes
+/* 800703A4 0006D2E4  4B FC BF 49 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800703A8 0006D2E8  7C 65 1B 78 */ mr r5, r3
 /* 800703AC 0006D2EC  38 7E 00 68 */ addi r3, r30, 0x68
 /* 800703B0 0006D2F0  7C 7F 1A 14 */ add r3, r31, r3
@@ -161,7 +161,7 @@ lbl_80070328:
 /* 800703D4 0006D314  38 80 00 37 */ li r4, 0x37
 /* 800703D8 0006D318  7F A5 EB 78 */ mr r5, r29
 /* 800703DC 0006D31C  38 C0 00 80 */ li r6, 0x80
-/* 800703E0 0006D320  4B FC BF 0D */ bl dRes_control_c_NS_getRes
+/* 800703E0 0006D320  4B FC BF 0D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800703E4 0006D324  7C 65 1B 78 */ mr r5, r3
 /* 800703E8 0006D328  38 7E 00 98 */ addi r3, r30, 0x98
 /* 800703EC 0006D32C  7C 7F 1A 14 */ add r3, r31, r3
@@ -176,7 +176,7 @@ lbl_80070328:
 /* 80070410 0006D350  38 80 00 3F */ li r4, 0x3f
 /* 80070414 0006D354  7F A5 EB 78 */ mr r5, r29
 /* 80070418 0006D358  38 C0 00 80 */ li r6, 0x80
-/* 8007041C 0006D35C  4B FC BE D1 */ bl dRes_control_c_NS_getRes
+/* 8007041C 0006D35C  4B FC BE D1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070420 0006D360  7C 65 1B 78 */ mr r5, r3
 /* 80070424 0006D364  38 7E 00 F8 */ addi r3, r30, 0xf8
 /* 80070428 0006D368  7C 7F 1A 14 */ add r3, r31, r3
@@ -191,7 +191,7 @@ lbl_80070328:
 /* 8007044C 0006D38C  38 80 00 38 */ li r4, 0x38
 /* 80070450 0006D390  7F A5 EB 78 */ mr r5, r29
 /* 80070454 0006D394  38 C0 00 80 */ li r6, 0x80
-/* 80070458 0006D398  4B FC BE 95 */ bl dRes_control_c_NS_getRes
+/* 80070458 0006D398  4B FC BE 95 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8007045C 0006D39C  7C 65 1B 78 */ mr r5, r3
 /* 80070460 0006D3A0  38 7E 00 C8 */ addi r3, r30, 0xc8
 /* 80070464 0006D3A4  7C 7F 1A 14 */ add r3, r31, r3
@@ -206,7 +206,7 @@ lbl_80070328:
 /* 80070488 0006D3C8  38 80 00 10 */ li r4, 0x10
 /* 8007048C 0006D3CC  7F A5 EB 78 */ mr r5, r29
 /* 80070490 0006D3D0  38 C0 00 80 */ li r6, 0x80
-/* 80070494 0006D3D4  4B FC BE 59 */ bl dRes_control_c_NS_getRes
+/* 80070494 0006D3D4  4B FC BE 59 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070498 0006D3D8  7C 64 1B 78 */ mr r4, r3
 /* 8007049C 0006D3DC  38 7E 00 4C */ addi r3, r30, 0x4c
 /* 800704A0 0006D3E0  7C 7F 1A 14 */ add r3, r31, r3
@@ -221,7 +221,7 @@ lbl_80070328:
 /* 800704C4 0006D404  38 80 00 2A */ li r4, 0x2a
 /* 800704C8 0006D408  7F A5 EB 78 */ mr r5, r29
 /* 800704CC 0006D40C  38 C0 00 80 */ li r6, 0x80
-/* 800704D0 0006D410  4B FC BE 1D */ bl dRes_control_c_NS_getRes
+/* 800704D0 0006D410  4B FC BE 1D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800704D4 0006D414  7C 65 1B 78 */ mr r5, r3
 /* 800704D8 0006D418  38 7E 00 80 */ addi r3, r30, 0x80
 /* 800704DC 0006D41C  7C 7F 1A 14 */ add r3, r31, r3
@@ -236,7 +236,7 @@ lbl_80070328:
 /* 80070500 0006D440  38 80 00 35 */ li r4, 0x35
 /* 80070504 0006D444  7F A5 EB 78 */ mr r5, r29
 /* 80070508 0006D448  38 C0 00 80 */ li r6, 0x80
-/* 8007050C 0006D44C  4B FC BD E1 */ bl dRes_control_c_NS_getRes
+/* 8007050C 0006D44C  4B FC BD E1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070510 0006D450  7C 65 1B 78 */ mr r5, r3
 /* 80070514 0006D454  38 7E 00 B0 */ addi r3, r30, 0xb0
 /* 80070518 0006D458  7C 7F 1A 14 */ add r3, r31, r3
@@ -251,7 +251,7 @@ lbl_80070328:
 /* 8007053C 0006D47C  38 80 00 3E */ li r4, 0x3e
 /* 80070540 0006D480  7F A5 EB 78 */ mr r5, r29
 /* 80070544 0006D484  38 C0 00 80 */ li r6, 0x80
-/* 80070548 0006D488  4B FC BD A5 */ bl dRes_control_c_NS_getRes
+/* 80070548 0006D488  4B FC BD A5 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8007054C 0006D48C  7C 65 1B 78 */ mr r5, r3
 /* 80070550 0006D490  38 7E 01 10 */ addi r3, r30, 0x110
 /* 80070554 0006D494  7C 7F 1A 14 */ add r3, r31, r3
@@ -266,7 +266,7 @@ lbl_80070328:
 /* 80070578 0006D4B8  38 80 00 36 */ li r4, 0x36
 /* 8007057C 0006D4BC  7F A5 EB 78 */ mr r5, r29
 /* 80070580 0006D4C0  38 C0 00 80 */ li r6, 0x80
-/* 80070584 0006D4C4  4B FC BD 69 */ bl dRes_control_c_NS_getRes
+/* 80070584 0006D4C4  4B FC BD 69 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070588 0006D4C8  7C 65 1B 78 */ mr r5, r3
 /* 8007058C 0006D4CC  38 7E 00 E0 */ addi r3, r30, 0xe0
 /* 80070590 0006D4D0  7C 7F 1A 14 */ add r3, r31, r3
@@ -281,7 +281,7 @@ lbl_80070328:
 /* 800705B4 0006D4F4  38 80 00 0C */ li r4, 0xc
 /* 800705B8 0006D4F8  7F A5 EB 78 */ mr r5, r29
 /* 800705BC 0006D4FC  38 C0 00 80 */ li r6, 0x80
-/* 800705C0 0006D500  4B FC BD 2D */ bl dRes_control_c_NS_getRes
+/* 800705C0 0006D500  4B FC BD 2D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800705C4 0006D504  7C 64 1B 78 */ mr r4, r3
 /* 800705C8 0006D508  38 7E 01 28 */ addi r3, r30, 0x128
 /* 800705CC 0006D50C  7C 7F 1A 14 */ add r3, r31, r3
@@ -296,7 +296,7 @@ lbl_80070328:
 /* 800705F0 0006D530  38 80 00 29 */ li r4, 0x29
 /* 800705F4 0006D534  7F A5 EB 78 */ mr r5, r29
 /* 800705F8 0006D538  38 C0 00 80 */ li r6, 0x80
-/* 800705FC 0006D53C  4B FC BC F1 */ bl dRes_control_c_NS_getRes
+/* 800705FC 0006D53C  4B FC BC F1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070600 0006D540  7C 65 1B 78 */ mr r5, r3
 /* 80070604 0006D544  38 7E 01 44 */ addi r3, r30, 0x144
 /* 80070608 0006D548  7C 7F 1A 14 */ add r3, r31, r3
@@ -311,7 +311,7 @@ lbl_80070328:
 /* 8007062C 0006D56C  38 80 00 32 */ li r4, 0x32
 /* 80070630 0006D570  7F A5 EB 78 */ mr r5, r29
 /* 80070634 0006D574  38 C0 00 80 */ li r6, 0x80
-/* 80070638 0006D578  4B FC BC B5 */ bl dRes_control_c_NS_getRes
+/* 80070638 0006D578  4B FC BC B5 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8007063C 0006D57C  7C 65 1B 78 */ mr r5, r3
 /* 80070640 0006D580  38 7E 01 5C */ addi r3, r30, 0x15c
 /* 80070644 0006D584  7C 7F 1A 14 */ add r3, r31, r3
@@ -326,7 +326,7 @@ lbl_80070328:
 /* 80070668 0006D5A8  38 80 00 3D */ li r4, 0x3d
 /* 8007066C 0006D5AC  7F A5 EB 78 */ mr r5, r29
 /* 80070670 0006D5B0  38 C0 00 80 */ li r6, 0x80
-/* 80070674 0006D5B4  4B FC BC 79 */ bl dRes_control_c_NS_getRes
+/* 80070674 0006D5B4  4B FC BC 79 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80070678 0006D5B8  7C 65 1B 78 */ mr r5, r3
 /* 8007067C 0006D5BC  38 7E 01 74 */ addi r3, r30, 0x174
 /* 80070680 0006D5C0  7C 7F 1A 14 */ add r3, r31, r3

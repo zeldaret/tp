@@ -13,7 +13,7 @@
 /* 800DDF5C 000DAE9C  38 00 00 04 */ li r0, 4
 /* 800DDF60 000DAEA0  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800DDF64 000DAEA4  7F E3 FB 78 */ mr r3, r31
-/* 800DDF68 000DAEA8  48 08 05 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DDF68 000DAEA8  48 08 05 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DDF6C 000DAEAC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DDF70 000DAEB0  41 82 00 30 */ beq lbl_800DDFA0
 /* 800DDF74 000DAEB4  7F C3 F3 78 */ mr r3, r30

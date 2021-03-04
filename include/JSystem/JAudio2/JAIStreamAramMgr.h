@@ -2,7 +2,7 @@
 #define JAISTREAMARAMMGR_H_
 
 extern "C" {
-void JAIStreamAramMgr_NS_dtor(void);
+void __dt__16JAIStreamAramMgrFv(void);
 }
 
 #endif  // JAISTREAMARAMMGR_H_

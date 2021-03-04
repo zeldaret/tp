@@ -4,7 +4,7 @@
 /* 8013A8AC 001377EC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013A8B0 001377F0  7C 7F 1B 78 */ mr r31, r3
 /* 8013A8B4 001377F4  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8013A8B8 001377F8  48 02 3C 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013A8B8 001377F8  48 02 3C 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013A8BC 001377FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013A8C0 00137800  41 82 00 24 */ beq lbl_8013A8E4
 /* 8013A8C4 00137804  7F E3 FB 78 */ mr r3, r31

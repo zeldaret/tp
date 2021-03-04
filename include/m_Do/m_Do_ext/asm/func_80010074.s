@@ -70,7 +70,7 @@ lbl_80010168:
 /* 80010174 0000D0B4  7F A6 EB 78 */ mr r6, r29
 /* 80010178 0000D0B8  48 32 97 01 */ bl JMAEulerToQuat
 /* 8001017C 0000D0BC  7F C3 F3 78 */ mr r3, r30
-/* 80010180 0000D0C0  48 31 EE 3D */ bl J3DMtxCalcCalcTransformMaya_NS_calcTransform
+/* 80010180 0000D0C0  48 31 EE 3D */ bl calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 /* 80010184 0000D0C4  48 00 01 B0 */ b lbl_80010334
 lbl_80010188:
 /* 80010188 0000D0C8  C0 3C 00 28 */ lfs f1, 0x28(r28)
@@ -103,7 +103,7 @@ lbl_800101E0:
 /* 800101EC 0000D12C  7F A6 EB 78 */ mr r6, r29
 /* 800101F0 0000D130  48 32 96 89 */ bl JMAEulerToQuat
 /* 800101F4 0000D134  7F C3 F3 78 */ mr r3, r30
-/* 800101F8 0000D138  48 31 ED C5 */ bl J3DMtxCalcCalcTransformMaya_NS_calcTransform
+/* 800101F8 0000D138  48 31 ED C5 */ bl calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 /* 800101FC 0000D13C  48 00 01 38 */ b lbl_80010334
 lbl_80010200:
 /* 80010200 0000D140  88 1C 00 52 */ lbz r0, 0x52(r28)

@@ -15,7 +15,7 @@ lbl_8012DA8C:
 /* 8012DA90 0012A9D0  54 03 07 BD */ rlwinm. r3, r0, 0, 0x1e, 0x1e
 /* 8012DA94 0012A9D4  40 82 00 4C */ bne lbl_8012DAE0
 /* 8012DA98 0012A9D8  7F C3 F3 78 */ mr r3, r30
-/* 8012DA9C 0012A9DC  48 03 0A 31 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012DA9C 0012A9DC  48 03 0A 31 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012DAA0 0012A9E0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012DAA4 0012A9E4  41 82 00 14 */ beq lbl_8012DAB8
 /* 8012DAA8 0012A9E8  7F E3 FB 78 */ mr r3, r31

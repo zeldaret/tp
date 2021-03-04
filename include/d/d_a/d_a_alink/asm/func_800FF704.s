@@ -46,7 +46,7 @@ lbl_800FF730:
 /* 800FF7B4 000FC6F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800FF7B8 000FC6F8  40 82 00 44 */ bne lbl_800FF7FC
 /* 800FF7BC 000FC6FC  7F E3 FB 78 */ mr r3, r31
-/* 800FF7C0 000FC700  48 05 ED 0D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FF7C0 000FC700  48 05 ED 0D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FF7C4 000FC704  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FF7C8 000FC708  40 82 00 24 */ bne lbl_800FF7EC
 /* 800FF7CC 000FC70C  C0 3E 33 AC */ lfs f1, 0x33ac(r30)

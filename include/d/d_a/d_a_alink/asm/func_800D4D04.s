@@ -35,7 +35,7 @@ lbl_800D4D7C:
 /* 800D4D84 000D1CC4  48 00 00 40 */ b lbl_800D4DC4
 lbl_800D4D88:
 /* 800D4D88 000D1CC8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800D4D8C 000D1CCC  48 08 97 41 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D4D8C 000D1CCC  48 08 97 41 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D4D90 000D1CD0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D4D94 000D1CD4  41 82 00 14 */ beq lbl_800D4DA8
 /* 800D4D98 000D1CD8  7F E3 FB 78 */ mr r3, r31

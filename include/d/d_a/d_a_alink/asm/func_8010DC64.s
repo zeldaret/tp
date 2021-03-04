@@ -26,7 +26,7 @@ lbl_8010DCBC:
 /* 8010DCC4 0010AC04  4B FB 42 A9 */ bl daAlink_c_NS_commonProcInit
 /* 8010DCC8 0010AC08  38 7E 28 14 */ addi r3, r30, 0x2814
 /* 8010DCCC 0010AC0C  7F E4 FB 78 */ mr r4, r31
-/* 8010DCD0 0010AC10  48 05 0F E9 */ bl daPy_actorKeep_c_NS_setData
+/* 8010DCD0 0010AC10  48 05 0F E9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010DCD4 0010AC14  7F C3 F3 78 */ mr r3, r30
 /* 8010DCD8 0010AC18  38 80 00 D7 */ li r4, 0xd7
 /* 8010DCDC 0010AC1C  3C A0 80 39 */ lis r5, lbl_8038E11C@ha

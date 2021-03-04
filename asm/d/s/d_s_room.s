@@ -145,7 +145,7 @@ lbl_8025AFC0:
 /* 8025AFF4 00257F34  7F 63 DB 78 */	mr r3, r27
 /* 8025AFF8 00257F38  7F A4 EB 78 */	mr r4, r29
 /* 8025AFFC 00257F3C  38 A0 00 80 */	li r5, 0x80
-/* 8025B000 00257F40  4B DE 11 61 */	bl dRes_control_c_NS_syncRes
+/* 8025B000 00257F40  4B DE 11 61 */	bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B004 00257F44  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B008 00257F48  40 80 00 5C */	bge lbl_8025B064
 /* 8025B00C 00257F4C  4B DB 3D E1 */	bl mDoExt_getArchiveHeap
@@ -157,7 +157,7 @@ lbl_8025AFC0:
 /* 8025B024 00257F64  38 C6 A3 88 */	addi r6, r6, lbl_8039A388@l
 /* 8025B028 00257F68  38 C6 00 06 */	addi r6, r6, 6
 /* 8025B02C 00257F6C  38 E0 00 00 */	li r7, 0
-/* 8025B030 00257F70  4B DE 10 49 */	bl dRes_control_c_NS_setRes
+/* 8025B030 00257F70  4B DE 10 49 */	bl setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap
 /* 8025B034 00257F74  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B038 00257F78  40 82 00 24 */	bne lbl_8025B05C
 /* 8025B03C 00257F7C  3C 60 80 3A */	lis r3, lbl_8039A388@ha
@@ -185,7 +185,7 @@ lbl_8025B070:
 /* 8025B088 00257FC8  38 C6 A3 88 */	addi r6, r6, lbl_8039A388@l
 /* 8025B08C 00257FCC  38 C6 00 06 */	addi r6, r6, 6
 /* 8025B090 00257FD0  38 E0 00 00 */	li r7, 0
-/* 8025B094 00257FD4  4B DE 0F E5 */	bl dRes_control_c_NS_setRes
+/* 8025B094 00257FD4  4B DE 0F E5 */	bl setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap
 /* 8025B098 00257FD8  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B09C 00257FDC  40 82 00 20 */	bne lbl_8025B0BC
 /* 8025B0A0 00257FE0  3C 60 80 3A */	lis r3, lbl_8039A388@ha
@@ -339,7 +339,7 @@ loadDemoArchive:
 /* 8025B2A0 002581E0  38 E0 00 00 */	li r7, 0
 /* 8025B2A4 002581E4  39 00 00 00 */	li r8, 0
 /* 8025B2A8 002581E8  38 84 C2 F8 */	addi r4, r4, -15624
-/* 8025B2AC 002581EC  4B DE 0D CD */	bl dRes_control_c_NS_setRes
+/* 8025B2AC 002581EC  4B DE 0D CD */	bl setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap
 /* 8025B2B0 002581F0  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B2B4 002581F4  40 82 00 14 */	bne lbl_8025B2C8
 /* 8025B2B8 002581F8  38 00 00 00 */	li r0, 0
@@ -426,7 +426,7 @@ lbl_8025B3B4:
 /* 8025B3CC 0025830C  3C 84 00 02 */	addis r4, r4, 2
 /* 8025B3D0 00258310  38 A0 00 80 */	li r5, 0x80
 /* 8025B3D4 00258314  38 84 C2 F8 */	addi r4, r4, -15624
-/* 8025B3D8 00258318  4B DE 0D 89 */	bl dRes_control_c_NS_syncRes
+/* 8025B3D8 00258318  4B DE 0D 89 */	bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B3DC 0025831C  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B3E0 00258320  41 80 00 10 */	blt lbl_8025B3F0
 /* 8025B3E4 00258324  40 81 00 0C */	ble lbl_8025B3F0
@@ -445,10 +445,10 @@ lbl_8025B3F0:
 /* 8025B414 00258354  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B418 00258358  3B E3 4F F8 */	addi r31, r3, 0x4ff8
 /* 8025B41C 0025835C  7F E3 FB 78 */	mr r3, r31
-/* 8025B420 00258360  4B DE B4 69 */	bl dEvent_manager_c_NS_demoInit
+/* 8025B420 00258360  4B DE B4 69 */	bl demoInit__16dEvent_manager_cFv
 /* 8025B424 00258364  7F E3 FB 78 */	mr r3, r31
 /* 8025B428 00258368  7F C4 F3 78 */	mr r4, r30
-/* 8025B42C 0025836C  4B DE B4 D9 */	bl dEvent_manager_c_NS_roomInit
+/* 8025B42C 0025836C  4B DE B4 D9 */	bl roomInit__16dEvent_manager_cFi
 /* 8025B430 00258370  80 7D 01 CC */	lwz r3, 0x1cc(r29)
 /* 8025B434 00258374  80 9D 01 D0 */	lwz r4, 0x1d0(r29)
 /* 8025B438 00258378  7F C5 F3 78 */	mr r5, r30
@@ -490,7 +490,7 @@ lbl_8025B498:
 /* 8025B4B0 002583F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B4B4 002583F4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8025B4B8 002583F8  38 63 02 10 */	addi r3, r3, 0x210
-/* 8025B4BC 002583FC  4B DF 04 2D */	bl dPa_control_c_NS_level_c_NS_allForceOnEventMove
+/* 8025B4BC 002583FC  4B DF 04 2D */	bl allForceOnEventMove__Q213dPa_control_c7level_cFv
 /* 8025B4C0 00258400  7F C3 F3 78 */	mr r3, r30
 /* 8025B4C4 00258404  4B DD 24 ED */	bl dStage_roomControl_c_NS_getZoneNo
 /* 8025B4C8 00258408  54 64 28 34 */	slwi r4, r3, 5
@@ -527,7 +527,7 @@ lbl_8025B518:
 /* 8025B538 00258478  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B53C 0025847C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 8025B540 00258480  38 63 02 10 */	addi r3, r3, 0x210
-/* 8025B544 00258484  4B DF 03 A5 */	bl dPa_control_c_NS_level_c_NS_allForceOnEventMove
+/* 8025B544 00258484  4B DF 03 A5 */	bl allForceOnEventMove__Q213dPa_control_c7level_cFv
 lbl_8025B548:
 /* 8025B548 00258488  38 60 00 01 */	li r3, 1
 lbl_8025B54C:
@@ -725,7 +725,7 @@ lbl_8025B7F8:
 /* 8025B808 00258748  3C 84 00 02 */	addis r4, r4, 2
 /* 8025B80C 0025874C  38 84 D4 F8 */	addi r4, r4, -11016
 /* 8025B810 00258750  38 A0 00 40 */	li r5, 0x40
-/* 8025B814 00258754  4B DE 09 81 */	bl dRes_control_c_NS_deleteRes
+/* 8025B814 00258754  4B DE 09 81 */	bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B818 00258758  7F E3 FB 78 */	mr r3, r31
 /* 8025B81C 0025875C  4B DC 8B 95 */	bl dStage_roomControl_c_NS_getMemoryBlock
 /* 8025B820 00258760  28 03 00 00 */	cmplwi r3, 0
@@ -741,7 +741,7 @@ lbl_8025B82C:
 /* 8025B844 00258784  4E 80 04 21 */	bctrl 
 /* 8025B848 00258788  38 7D 4F F8 */	addi r3, r29, 0x4ff8
 /* 8025B84C 0025878C  7F E4 FB 78 */	mr r4, r31
-/* 8025B850 00258790  4B DE B1 9D */	bl dEvent_manager_c_NS_roomFinish
+/* 8025B850 00258790  4B DE B1 9D */	bl roomFinish__16dEvent_manager_cFi
 /* 8025B854 00258794  38 60 00 01 */	li r3, 1
 /* 8025B858 00258798  39 61 00 20 */	addi r11, r1, 0x20
 /* 8025B85C 0025879C  48 10 69 C9 */	bl _restgpr_28
@@ -781,7 +781,7 @@ lbl_8025B888:
 /* 8025B8DC 0025881C  38 9E D4 F8 */	addi r4, r30, -11016
 /* 8025B8E0 00258820  38 A0 00 40 */	li r5, 0x40
 /* 8025B8E4 00258824  3B DE C2 F8 */	addi r30, r30, -15624
-/* 8025B8E8 00258828  4B DE 08 79 */	bl dRes_control_c_NS_syncRes
+/* 8025B8E8 00258828  4B DE 08 79 */	bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B8EC 0025882C  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B8F0 00258830  40 80 00 74 */	bge lbl_8025B964
 /* 8025B8F4 00258834  7F A3 EB 78 */	mr r3, r29
@@ -809,7 +809,7 @@ lbl_8025B944:
 /* 8025B944 00258884  7F C3 F3 78 */	mr r3, r30
 /* 8025B948 00258888  7F E4 FB 78 */	mr r4, r31
 /* 8025B94C 0025888C  7F A5 EB 78 */	mr r5, r29
-/* 8025B950 00258890  4B DE 0C 6D */	bl dRes_control_c_NS_setStageRes
+/* 8025B950 00258890  4B DE 0C 6D */	bl setStageRes__14dRes_control_cFPCcP7JKRHeap
 /* 8025B954 00258894  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B958 00258898  40 82 00 0C */	bne lbl_8025B964
 /* 8025B95C 0025889C  38 60 00 05 */	li r3, 5
@@ -838,7 +838,7 @@ lbl_8025B968:
 /* 8025B9B0 002588F0  3B C4 D4 F8 */	addi r30, r4, -11016
 /* 8025B9B4 002588F4  7F C4 F3 78 */	mr r4, r30
 /* 8025B9B8 002588F8  38 A0 00 40 */	li r5, 0x40
-/* 8025B9BC 002588FC  4B DE 07 A5 */	bl dRes_control_c_NS_syncRes
+/* 8025B9BC 002588FC  4B DE 07 A5 */	bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B9C0 00258900  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B9C4 00258904  40 80 00 0C */	bge lbl_8025B9D0
 /* 8025B9C8 00258908  38 60 00 05 */	li r3, 5
@@ -859,7 +859,7 @@ lbl_8025B9DC:
 /* 8025B9FC 0025893C  4B DD 97 A9 */	bl createZone__10dSv_info_cFi
 /* 8025BA00 00258940  7C 64 1B 78 */	mr r4, r3
 /* 8025BA04 00258944  7F A3 EB 78 */	mr r3, r29
-/* 8025BA08 00258948  48 00 00 A5 */	bl dStage_roomControl_c_NS_setZoneNo
+/* 8025BA08 00258948  48 00 00 A5 */	bl setZoneNo__20dStage_roomControl_cFii
 lbl_8025BA0C:
 /* 8025BA0C 0025894C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025BA10 00258950  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -875,7 +875,7 @@ lbl_8025BA0C:
 /* 8025BA38 00258978  38 84 00 42 */	addi r4, r4, 0x42
 /* 8025BA3C 0025897C  7F C5 F3 78 */	mr r5, r30
 /* 8025BA40 00258980  38 C0 00 40 */	li r6, 0x40
-/* 8025BA44 00258984  4B DE 09 39 */	bl dRes_control_c_NS_getRes_X1_
+/* 8025BA44 00258984  4B DE 09 39 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
 /* 8025BA48 00258988  90 7C 01 CC */	stw r3, 0x1cc(r28)
 /* 8025BA4C 0025898C  80 7C 01 CC */	lwz r3, 0x1cc(r28)
 /* 8025BA50 00258990  28 03 00 00 */	cmplwi r3, 0
@@ -906,8 +906,8 @@ lbl_8025BA94:
 /* 8025BAA4 002589E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025BAA8 002589E8  4E 80 00 20 */	blr 
 
-.global dStage_roomControl_c_NS_setZoneNo
-dStage_roomControl_c_NS_setZoneNo:
+.global setZoneNo__20dStage_roomControl_cFii
+setZoneNo__20dStage_roomControl_cFii:
 /* 8025BAAC 002589EC  3C A0 80 3F */	lis r5, lbl_803F6094@ha
 /* 8025BAB0 002589F0  38 A5 60 94 */	addi r5, r5, lbl_803F6094@l
 /* 8025BAB4 002589F4  1C 03 04 04 */	mulli r0, r3, 0x404

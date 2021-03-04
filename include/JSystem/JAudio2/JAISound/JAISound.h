@@ -152,10 +152,10 @@ void stop__8JAISoundFv(JAISound*);
 void JAISoundID_NS___as(void);
 void JAISoundID_X1_(void);
 
-void JAISound_NS_acceptsNewAudible(void);
+void acceptsNewAudible__8JAISoundCFv(void);
 void JAISound_NS_getID(void);
 void JAISound_NS_newAudible(void);
-void JAISound_NS_releaseHandle(void);
+void releaseHandle__8JAISoundFv(void);
 }
 
 #endif

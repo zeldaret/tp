@@ -10,7 +10,7 @@
 /* 800C5724 000C2664  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C5728 000C2668  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800C572C 000C266C  38 9F 1A 60 */ addi r4, r31, 0x1a60
-/* 800C5730 000C2670  4B FA EF 31 */ bl cBgS_NS_ChkPolySafe
+/* 800C5730 000C2670  4B FA EF 31 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 800C5734 000C2674  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C5738 000C2678  41 82 00 58 */ beq lbl_800C5790
 /* 800C573C 000C267C  38 7F 1A 60 */ addi r3, r31, 0x1a60

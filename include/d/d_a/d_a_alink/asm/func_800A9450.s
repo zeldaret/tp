@@ -81,7 +81,7 @@ lbl_800A9574:
 /* 800A957C 000A64BC  38 80 00 03 */ li r4, 3
 /* 800A9580 000A64C0  48 00 00 1C */ b lbl_800A959C
 lbl_800A9584:
-/* 800A9584 000A64C4  48 0B 5E 15 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800A9584 000A64C4  48 0B 5E 15 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800A9588 000A64C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800A958C 000A64CC  41 82 00 0C */ beq lbl_800A9598
 /* 800A9590 000A64D0  38 80 00 02 */ li r4, 2
@@ -462,7 +462,7 @@ lbl_800A9AA0:
 /* 800A9B10 000A6A50  48 00 02 2C */ b lbl_800A9D3C
 lbl_800A9B14:
 /* 800A9B14 000A6A54  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800A9B18 000A6A58  48 0B 4F 71 */ bl daPy_py_c_NS_checkBottleItem
+/* 800A9B18 000A6A58  48 0B 4F 71 */ bl checkBottleItem__9daPy_py_cFi
 /* 800A9B1C 000A6A5C  2C 03 00 00 */ cmpwi r3, 0
 /* 800A9B20 000A6A60  41 82 00 A4 */ beq lbl_800A9BC4
 /* 800A9B24 000A6A64  80 7F 06 50 */ lwz r3, 0x650(r31)
@@ -553,7 +553,7 @@ lbl_800A9C4C:
 /* 800A9C70 000A6BB0  48 00 00 CC */ b lbl_800A9D3C
 lbl_800A9C74:
 /* 800A9C74 000A6BB4  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800A9C78 000A6BB8  48 0B 4F 41 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800A9C78 000A6BB8  48 0B 4F 41 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800A9C7C 000A6BBC  2C 03 00 00 */ cmpwi r3, 0
 /* 800A9C80 000A6BC0  41 82 00 10 */ beq lbl_800A9C90
 /* 800A9C84 000A6BC4  7F E3 FB 78 */ mr r3, r31

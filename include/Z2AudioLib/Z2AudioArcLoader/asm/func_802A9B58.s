@@ -14,7 +14,7 @@
 /* 802A9B8C 002A6ACC  38 04 9A 78 */ addi r0, r4, lbl_803C9A78@l
 /* 802A9B90 002A6AD0  90 1E 00 00 */ stw r0, 0(r30)
 /* 802A9B94 002A6AD4  38 80 00 00 */ li r4, 0
-/* 802A9B98 002A6AD8  4B FF A6 C9 */ bl JAUAudioArcInterpreter_NS_dtor
+/* 802A9B98 002A6AD8  4B FF A6 C9 */ bl __dt__22JAUAudioArcInterpreterFv
 lbl_802A9B9C:
 /* 802A9B9C 002A6ADC  7F E0 07 35 */ extsh. r0, r31
 /* 802A9BA0 002A6AE0  40 81 00 0C */ ble lbl_802A9BAC

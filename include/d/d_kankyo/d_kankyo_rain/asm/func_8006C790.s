@@ -13,7 +13,7 @@
 /* 8006C7C0 00069700  3C A5 00 02 */ addis r5, r5, 2
 /* 8006C7C4 00069704  38 C0 00 80 */ li r6, 0x80
 /* 8006C7C8 00069708  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 8006C7CC 0006970C  4B FC FB 21 */ bl dRes_control_c_NS_getRes
+/* 8006C7CC 0006970C  4B FC FB 21 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8006C7D0 00069710  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8006C7D4 00069714  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8006C7D8 00069718  80 84 10 4C */ lwz r4, 0x104c(r4)

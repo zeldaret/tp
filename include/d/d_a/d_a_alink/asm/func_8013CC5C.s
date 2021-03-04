@@ -14,7 +14,7 @@ lbl_8013CC88:
 /* 8013CC8C 00139BCC  38 00 00 05 */ li r0, 5
 /* 8013CC90 00139BD0  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8013CC94 00139BD4  7F E3 FB 78 */ mr r3, r31
-/* 8013CC98 00139BD8  48 02 18 35 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013CC98 00139BD8  48 02 18 35 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013CC9C 00139BDC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013CCA0 00139BE0  41 82 00 14 */ beq lbl_8013CCB4
 /* 8013CCA4 00139BE4  7F C3 F3 78 */ mr r3, r30

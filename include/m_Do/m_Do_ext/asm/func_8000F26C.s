@@ -26,7 +26,7 @@
 /* 8000F2D0 0000C210  7D 89 03 A6 */ mtctr r12
 /* 8000F2D4 0000C214  4E 80 04 21 */ bctrl
 /* 8000F2D8 0000C218  38 61 00 78 */ addi r3, r1, 0x78
-/* 8000F2DC 0000C21C  48 31 FC E1 */ bl J3DMtxCalcCalcTransformMaya_NS_calcTransform
+/* 8000F2DC 0000C21C  48 31 FC E1 */ bl calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 /* 8000F2E0 0000C220  48 00 01 A8 */ b lbl_8000F488
 lbl_8000F2E4:
 /* 8000F2E4 0000C224  80 7B 00 08 */ lwz r3, 8(r27)

@@ -6,7 +6,7 @@
 /* 800C6FF8 000C3F38  7C 7E 1B 78 */ mr r30, r3
 /* 800C6FFC 000C3F3C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800C7000 000C3F40  7F E3 FB 78 */ mr r3, r31
-/* 800C7004 000C3F44  48 09 74 C9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C7004 000C3F44  48 09 74 C9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C7008 000C3F48  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C700C 000C3F4C  41 82 00 14 */ beq lbl_800C7020
 /* 800C7010 000C3F50  7F C3 F3 78 */ mr r3, r30
@@ -27,7 +27,7 @@ lbl_800C7020:
 lbl_800C7048:
 /* 800C7048 000C3F88  7F E3 FB 78 */ mr r3, r31
 /* 800C704C 000C3F8C  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800C7050 000C3F90  48 26 13 DD */ bl J3DFrameCtrl_NS_checkPass
+/* 800C7050 000C3F90  48 26 13 DD */ bl checkPass__12J3DFrameCtrlFf
 /* 800C7054 000C3F94  2C 03 00 00 */ cmpwi r3, 0
 /* 800C7058 000C3F98  41 82 00 84 */ beq lbl_800C70DC
 /* 800C705C 000C3F9C  7F C3 F3 78 */ mr r3, r30
@@ -65,7 +65,7 @@ lbl_800C70B0:
 /* 800C70CC 000C400C  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800C70D0 000C4010  38 A0 00 0F */ li r5, 0xf
 /* 800C70D4 000C4014  38 C1 00 08 */ addi r6, r1, 8
-/* 800C70D8 000C4018  4B FA 89 4D */ bl dVibration_c_NS_StartShock
+/* 800C70D8 000C4018  4B FA 89 4D */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800C70DC:
 /* 800C70DC 000C401C  38 60 00 01 */ li r3, 1
 /* 800C70E0 000C4020  83 E1 00 1C */ lwz r31, 0x1c(r1)

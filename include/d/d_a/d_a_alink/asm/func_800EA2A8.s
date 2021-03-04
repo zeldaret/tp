@@ -15,7 +15,7 @@ lbl_800EA2D8:
 /* 800EA2DC 000E721C  4B FD 7C 91 */ bl daAlink_c_NS_commonProcInit
 /* 800EA2E0 000E7220  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800EA2E4 000E7224  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800EA2E8 000E7228  48 07 49 D1 */ bl daPy_actorKeep_c_NS_setData
+/* 800EA2E8 000E7228  48 07 49 D1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800EA2EC 000E722C  7F E3 FB 78 */ mr r3, r31
 /* 800EA2F0 000E7230  38 80 01 23 */ li r4, 0x123
 /* 800EA2F4 000E7234  4B FC 2C 8D */ bl daAlink_c_NS_setSingleAnimeBase

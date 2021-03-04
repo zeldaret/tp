@@ -12,7 +12,7 @@
 /* 800FC26C 000F91AC  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 800FC270 000F91B0  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 800FC274 000F91B4  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800FC278 000F91B8  48 06 22 55 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FC278 000F91B8  48 06 22 55 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FC27C 000F91BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FC280 000F91C0  41 82 00 5C */ beq lbl_800FC2DC
 /* 800FC284 000F91C4  A8 1F 30 0C */ lha r0, 0x300c(r31)

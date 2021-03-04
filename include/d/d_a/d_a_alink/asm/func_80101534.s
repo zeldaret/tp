@@ -12,7 +12,7 @@
 lbl_80101560:
 /* 80101560 000FE4A0  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 80101564 000FE4A4  7F E3 FB 78 */ mr r3, r31
-/* 80101568 000FE4A8  48 05 CF 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80101568 000FE4A8  48 05 CF 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010156C 000FE4AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80101570 000FE4B0  41 82 00 60 */ beq lbl_801015D0
 /* 80101574 000FE4B4  A8 1E 30 08 */ lha r0, 0x3008(r30)

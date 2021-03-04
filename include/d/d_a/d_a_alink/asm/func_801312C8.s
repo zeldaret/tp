@@ -5,47 +5,47 @@
 /* 801312D8 0012E218  28 00 00 00 */ cmplwi r0, 0
 /* 801312DC 0012E21C  41 82 01 14 */ beq lbl_801313F0
 /* 801312E0 0012E220  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 801312E4 0012E224  48 01 44 25 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 801312E4 0012E224  48 01 44 25 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 801312E8 0012E228  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 801312EC 0012E22C  28 00 00 00 */ cmplwi r0, 0
 /* 801312F0 0012E230  41 82 00 F4 */ beq lbl_801313E4
 /* 801312F4 0012E234  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 801312F8 0012E238  48 01 44 11 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 801312F8 0012E238  48 01 44 11 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 801312FC 0012E23C  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131300 0012E240  28 00 00 00 */ cmplwi r0, 0
 /* 80131304 0012E244  41 82 00 D4 */ beq lbl_801313D8
 /* 80131308 0012E248  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 8013130C 0012E24C  48 01 43 FD */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 8013130C 0012E24C  48 01 43 FD */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131310 0012E250  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131314 0012E254  28 00 00 00 */ cmplwi r0, 0
 /* 80131318 0012E258  41 82 00 B4 */ beq lbl_801313CC
 /* 8013131C 0012E25C  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 80131320 0012E260  48 01 43 E9 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 80131320 0012E260  48 01 43 E9 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131324 0012E264  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131328 0012E268  28 00 00 00 */ cmplwi r0, 0
 /* 8013132C 0012E26C  41 82 00 94 */ beq lbl_801313C0
 /* 80131330 0012E270  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 80131334 0012E274  48 01 43 D5 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 80131334 0012E274  48 01 43 D5 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131338 0012E278  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 8013133C 0012E27C  28 00 00 00 */ cmplwi r0, 0
 /* 80131340 0012E280  41 82 00 74 */ beq lbl_801313B4
 /* 80131344 0012E284  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 80131348 0012E288  48 01 43 C1 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 80131348 0012E288  48 01 43 C1 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 8013134C 0012E28C  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131350 0012E290  28 00 00 00 */ cmplwi r0, 0
 /* 80131354 0012E294  41 82 00 54 */ beq lbl_801313A8
 /* 80131358 0012E298  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 8013135C 0012E29C  48 01 43 AD */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 8013135C 0012E29C  48 01 43 AD */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131360 0012E2A0  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131364 0012E2A4  28 00 00 00 */ cmplwi r0, 0
 /* 80131368 0012E2A8  41 82 00 34 */ beq lbl_8013139C
 /* 8013136C 0012E2AC  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 80131370 0012E2B0  48 01 43 99 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 80131370 0012E2B0  48 01 43 99 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131374 0012E2B4  88 03 10 C8 */ lbz r0, 0x10c8(r3)
 /* 80131378 0012E2B8  28 00 00 00 */ cmplwi r0, 0
 /* 8013137C 0012E2BC  41 82 00 14 */ beq lbl_80131390
 /* 80131380 0012E2C0  38 63 10 E4 */ addi r3, r3, 0x10e4
-/* 80131384 0012E2C4  48 01 43 85 */ bl daNpcT_ActorMngr_c_NS_getActorP
+/* 80131384 0012E2C4  48 01 43 85 */ bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80131388 0012E2C8  4B FF FF 41 */ bl daObj_Sekizoa_c_NS_setWolfHowling
 /* 8013138C 0012E2CC  48 00 00 6C */ b lbl_801313F8
 lbl_80131390:

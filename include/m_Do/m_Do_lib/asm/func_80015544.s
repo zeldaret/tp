@@ -5,7 +5,7 @@
 /* 80015554 00012494  38 03 34 98 */ addi r0, r3, lbl_803A3498@l
 /* 80015558 00012498  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
 /* 8001555C 0001249C  94 03 D8 E4 */ stwu r0, lbl_803DD8E4@l(r3)
-/* 80015560 000124A0  48 25 E2 19 */ bl J3DUClipper_NS_init
+/* 80015560 000124A0  48 25 E2 19 */ bl init__11J3DUClipperFv
 /* 80015564 000124A4  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
 /* 80015568 000124A8  38 63 D8 E4 */ addi r3, r3, lbl_803DD8E4@l
 /*.global J3DUClipper_NS_dtor*/

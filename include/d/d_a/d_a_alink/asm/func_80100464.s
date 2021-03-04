@@ -12,7 +12,7 @@ lbl_8010048C:
 /* 8010048C 000FD3CC  38 00 00 02 */ li r0, 2
 /* 80100490 000FD3D0  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 /* 80100494 000FD3D4  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 80100498 000FD3D8  48 05 E0 35 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80100498 000FD3D8  48 05 E0 35 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010049C 000FD3DC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801004A0 000FD3E0  41 82 01 14 */ beq lbl_801005B4
 /* 801004A4 000FD3E4  A8 7F 04 E6 */ lha r3, 0x4e6(r31)
@@ -61,7 +61,7 @@ lbl_8010048C:
 /* 80100550 000FD490  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80100554 000FD494  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 80100558 000FD498  38 9F 1D 5C */ addi r4, r31, 0x1d5c
-/* 8010055C 000FD49C  4B F7 4F 41 */ bl dBgS_NS_RoofChk
+/* 8010055C 000FD49C  4B F7 4F 41 */ bl RoofChk__4dBgSFP12dBgS_RoofChk
 /* 80100560 000FD4A0  D0 21 00 0C */ stfs f1, 0xc(r1)
 /* 80100564 000FD4A4  FC 60 08 18 */ frsp f3, f1
 /* 80100568 000FD4A8  C0 42 95 94 */ lfs f2, lbl_80452F94-_SDA2_BASE_(r2)

@@ -38,7 +38,7 @@ lbl_8001B16C:
 /* 8001B17C 000180BC  7C E6 3B 78 */ mr r6, r7
 /* 8001B180 000180C0  38 E0 01 4F */ li r7, 0x14f
 /* 8001B184 000180C4  39 40 FF FF */ li r10, -1
-/* 8001B188 000180C8  48 02 64 E1 */ bl dEvt_control_c_NS_order
+/* 8001B188 000180C8  48 02 64 E1 */ bl order__14dEvt_control_cFUsUsUsUsPvPvsUc
 lbl_8001B18C:
 /* 8001B18C 000180CC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001B190 000180D0  7C 08 03 A6 */ mtlr r0

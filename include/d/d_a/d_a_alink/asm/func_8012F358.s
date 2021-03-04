@@ -32,7 +32,7 @@ lbl_8012F3A4:
 /* 8012F3CC 0012C30C  48 00 00 34 */ b lbl_8012F400
 lbl_8012F3D0:
 /* 8012F3D0 0012C310  7F C3 F3 78 */ mr r3, r30
-/* 8012F3D4 0012C314  48 02 F0 F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012F3D4 0012C314  48 02 F0 F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012F3D8 0012C318  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012F3DC 0012C31C  41 82 00 24 */ beq lbl_8012F400
 /* 8012F3E0 0012C320  7F A3 EB 78 */ mr r3, r29

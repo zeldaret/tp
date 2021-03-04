@@ -19,7 +19,7 @@ lbl_801391A0:
 /* 801391A8 001360E8  7C 05 00 40 */ cmplw r5, r0
 /* 801391AC 001360EC  40 82 00 14 */ bne lbl_801391C0
 /* 801391B0 001360F0  38 66 07 C4 */ addi r3, r6, 0x7c4
-/* 801391B4 001360F4  48 02 5B 49 */ bl daPy_actorKeep_c_NS_clearData
+/* 801391B4 001360F4  48 02 5B 49 */ bl clearData__16daPy_actorKeep_cFv
 /* 801391B8 001360F8  38 60 00 01 */ li r3, 1
 /* 801391BC 001360FC  48 00 00 10 */ b lbl_801391CC
 lbl_801391C0:

@@ -18,7 +18,7 @@
 /* 8021F7F4 0021C734  28 00 00 00 */ cmplwi r0, 0
 /* 8021F7F8 0021C738  41 82 00 14 */ beq lbl_8021F80C
 /* 8021F7FC 0021C73C  80 64 5D BC */ lwz r3, 0x5dbc(r4)
-/* 8021F800 0021C740  48 01 79 E5 */ bl dMsgObject_c_NS_isPlaceMessage
+/* 8021F800 0021C740  48 01 79 E5 */ bl isPlaceMessage__12dMsgObject_cFv
 /* 8021F804 0021C744  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F808 0021C748  41 82 00 14 */ beq lbl_8021F81C
 lbl_8021F80C:
@@ -54,7 +54,7 @@ lbl_8021F84C:
 /* 8021F878 0021C7B8  88 03 5E 8F */ lbz r0, 0x5e8f(r3)
 /* 8021F87C 0021C7BC  28 00 00 06 */ cmplwi r0, 6
 /* 8021F880 0021C7C0  41 82 00 5C */ beq lbl_8021F8DC
-/* 8021F884 0021C7C4  48 01 89 A9 */ bl dMsgObject_c_NS_getStatus
+/* 8021F884 0021C7C4  48 01 89 A9 */ bl getStatus__12dMsgObject_cFv
 /* 8021F888 0021C7C8  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8021F88C 0021C7CC  20 60 00 01 */ subfic r3, r0, 1
 /* 8021F890 0021C7D0  30 03 FF FF */ addic r0, r3, -1
@@ -85,7 +85,7 @@ lbl_8021F8DC:
 /* 8021F8F0 0021C830  80 1F 01 24 */ lwz r0, 0x124(r31)
 /* 8021F8F4 0021C834  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8021F8F8 0021C838  40 82 00 5C */ bne lbl_8021F954
-/* 8021F8FC 0021C83C  48 01 89 31 */ bl dMsgObject_c_NS_getStatus
+/* 8021F8FC 0021C83C  48 01 89 31 */ bl getStatus__12dMsgObject_cFv
 /* 8021F900 0021C840  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8021F904 0021C844  20 60 00 01 */ subfic r3, r0, 1
 /* 8021F908 0021C848  30 03 FF FF */ addic r0, r3, -1

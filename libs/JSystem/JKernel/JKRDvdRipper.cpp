@@ -17,7 +17,7 @@ void decompSZS_subroutine__FPUcPUc(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void isErrorRetry__12JKRDvdRipperFv(void);
 void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 void nextSrcData__FPUc(void);

@@ -4,13 +4,13 @@
 /* 800C0120 000BD060  2C 04 01 07 */ cmpwi r4, 0x107
 /* 800C0124 000BD064  40 82 00 10 */ bne lbl_800C0134
 /* 800C0128 000BD068  7C A3 2B 78 */ mr r3, r5
-/* 800C012C 000BD06C  48 09 E9 AD */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 800C012C 000BD06C  48 09 E9 AD */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 800C0130 000BD070  48 00 00 24 */ b lbl_800C0154
 lbl_800C0134:
 /* 800C0134 000BD074  2C 04 01 08 */ cmpwi r4, 0x108
 /* 800C0138 000BD078  40 82 00 10 */ bne lbl_800C0148
 /* 800C013C 000BD07C  7C A3 2B 78 */ mr r3, r5
-/* 800C0140 000BD080  48 09 E8 E1 */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800C0140 000BD080  48 09 E8 E1 */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800C0144 000BD084  48 00 00 10 */ b lbl_800C0154
 lbl_800C0148:
 /* 800C0148 000BD088  7C 04 28 50 */ subf r0, r4, r5

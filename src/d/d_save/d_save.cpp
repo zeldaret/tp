@@ -13,8 +13,8 @@ u8 dComIfGs_getMixItemIndex(int);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __ct__12dSv_memory_cFv(void);
 void __ct__13dSv_memory2_cFv(void);
-void daObjCarry_c_NS_clrSaveFlag(void);
-void daObjCarry_c_NS_setSaveFlag(void);
+void clrSaveFlag__12daObjCarry_cFv(void);
+void setSaveFlag__12daObjCarry_cFv(void);
 void dComIfGp_setSelectItem(int);
 void dComIfGs_setKeyNum(int, u8);
 void dComIfGs_setMixItemIndex(int, u8);
@@ -1157,11 +1157,11 @@ bool dSv_danBit_c::init(s8 i_stage) {
             unk28[i] = 0xFFFF;
         }
 
-        daObjCarry_c_NS_clrSaveFlag();
+        clrSaveFlag__12daObjCarry_cFv();
         return true;
 
     } else {
-        daObjCarry_c_NS_setSaveFlag();
+        setSaveFlag__12daObjCarry_cFv();
         return false;
     }
 }

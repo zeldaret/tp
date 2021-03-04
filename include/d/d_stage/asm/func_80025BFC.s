@@ -11,7 +11,7 @@
 lbl_80025C24:
 /* 80025C24 00022B64  88 7C 00 04 */ lbz r3, 4(r28)
 /* 80025C28 00022B68  38 9F 00 0C */ addi r4, r31, 0xc
-/* 80025C2C 00022B6C  48 00 B8 09 */ bl daSus_c_NS_check
+/* 80025C2C 00022B6C  48 00 B8 09 */ bl check__7daSus_cFScRC4cXyz
 /* 80025C30 00022B70  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80025C34 00022B74  40 82 00 78 */ bne lbl_80025CAC
 /* 80025C38 00022B78  4B FF 3E 71 */ bl fopAcM_CreateAppend__Fv

@@ -27,7 +27,7 @@ void firstSrcData__Fv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl(void);
 void JSUFileInputStream_ct(void);
-void JSUInputStream_NS_dtor(void);
+void __dt__14JSUInputStreamFv(void);
 void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
 void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);
 void nextSrcData__FPUc(void);

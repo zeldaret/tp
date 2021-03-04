@@ -3,12 +3,12 @@
 #include "JSystem/JKernel/JKRExpHeap/JKRExpHeap.h"
 #include "global.h"
 extern "C" {
-s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
+s32 read__14JSUInputStreamFPvl(JSUInputStream*, u8*, u32);
 void alloc__7JKRHeapFUli(void);
 void alloc__7JKRHeapFUliP7JKRHeap(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
-void JSURandomInputStream_NS_seek(JSURandomInputStream*, u32, u32);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom(JSURandomInputStream*, u32, u32);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
 }
 
@@ -100,11 +100,11 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        JUTException_NS_panic_f("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
+        panic_f__12JUTExceptionFPCciPCce("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
     }
 
     if (buffer) {
-        JSURandomInputStream_NS_seek((JSURandomInputStream*)command->mStream, offset, 0);
+        seek__20JSURandomInputStreamFl17JSUStreamSeekFrom((JSURandomInputStream*)command->mStream, offset, 0);
         while (dstSize != 0) {
             u32 length;
             if (dstSize > size) {
@@ -114,7 +114,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             }
 
             s32 readLength =
-                JSUInputStream_NS_read((JSUInputStream*)command->mStream, buffer, length);
+                read__14JSUInputStreamFPvl((JSUInputStream*)command->mStream, buffer, length);
             if (readLength == 0) {
                 writtenLength = 0;
                 break;

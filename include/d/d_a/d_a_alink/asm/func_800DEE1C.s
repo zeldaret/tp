@@ -31,7 +31,7 @@ lbl_800DEE68:
 /* 800DEE90 000DBDD0  28 00 00 0C */ cmplwi r0, 0xc
 /* 800DEE94 000DBDD4  40 82 00 14 */ bne lbl_800DEEA8
 /* 800DEE98 000DBDD8  38 7D 20 48 */ addi r3, r29, 0x2048
-/* 800DEE9C 000DBDDC  48 07 F6 31 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DEE9C 000DBDDC  48 07 F6 31 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DEEA0 000DBDE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DEEA4 000DBDE4  41 82 00 1C */ beq lbl_800DEEC0
 lbl_800DEEA8:

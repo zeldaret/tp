@@ -779,7 +779,7 @@ lbl_800E4A7C:
 /* 800E4AAC 000E19EC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E4AB0 000E19F0  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E4AB4 000E19F4  38 9F 1E CC */ addi r4, r31, 0x1ecc
-/* 800E4AB8 000E19F8  4B F8 F9 E9 */ bl cBgS_NS_GroundCross
+/* 800E4AB8 000E19F8  4B F8 F9 E9 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800E4ABC 000E19FC  C0 1E 04 D4 */ lfs f0, 0x4d4(r30)
 /* 800E4AC0 000E1A00  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800E4AC4 000E1A04  40 81 00 1C */ ble lbl_800E4AE0

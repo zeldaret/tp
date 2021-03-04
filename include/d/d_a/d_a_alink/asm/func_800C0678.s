@@ -11,7 +11,7 @@
 /* 800C06A0 000BD5E0  28 1F 00 48 */ cmplwi r31, 0x48
 /* 800C06A4 000BD5E4  41 82 00 AC */ beq lbl_800C0750
 /* 800C06A8 000BD5E8  7F E3 FB 78 */ mr r3, r31
-/* 800C06AC 000BD5EC  48 09 E5 2D */ bl daPy_py_c_NS_checkTradeItem
+/* 800C06AC 000BD5EC  48 09 E5 2D */ bl checkTradeItem__9daPy_py_cFi
 /* 800C06B0 000BD5F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06B4 000BD5F4  40 82 00 9C */ bne lbl_800C0750
 /* 800C06B8 000BD5F8  7F E0 FB 78 */ mr r0, r31
@@ -28,7 +28,7 @@ lbl_800C06D0:
 /* 800C06E0 000BD620  28 00 00 60 */ cmplwi r0, 0x60
 /* 800C06E4 000BD624  41 82 00 6C */ beq lbl_800C0750
 /* 800C06E8 000BD628  7F E3 FB 78 */ mr r3, r31
-/* 800C06EC 000BD62C  48 09 E5 3D */ bl daPy_py_c_NS_checkDungeonWarpItem
+/* 800C06EC 000BD62C  48 09 E5 3D */ bl checkDungeonWarpItem__9daPy_py_cFi
 /* 800C06F0 000BD630  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06F4 000BD634  40 82 00 5C */ bne lbl_800C0750
 lbl_800C06F8:
@@ -50,7 +50,7 @@ lbl_800C071C:
 /* 800C0730 000BD670  41 82 00 20 */ beq lbl_800C0750
 lbl_800C0734:
 /* 800C0734 000BD674  7F E3 FB 78 */ mr r3, r31
-/* 800C0738 000BD678  48 09 E3 51 */ bl daPy_py_c_NS_checkBottleItem
+/* 800C0738 000BD678  48 09 E3 51 */ bl checkBottleItem__9daPy_py_cFi
 /* 800C073C 000BD67C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0740 000BD680  41 82 00 18 */ beq lbl_800C0758
 /* 800C0744 000BD684  57 C0 04 3E */ clrlwi r0, r30, 0x10

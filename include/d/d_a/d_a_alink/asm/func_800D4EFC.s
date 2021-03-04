@@ -117,7 +117,7 @@ lbl_800D509C:
 /* 800D50A8 000D1FE8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D50AC 000D1FEC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800D50B0 000D1FF0  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 800D50B4 000D1FF4  4B F7 30 C9 */ bl dEvent_manager_c_NS_cutEnd
+/* 800D50B4 000D1FF4  4B F7 30 C9 */ bl cutEnd__16dEvent_manager_cFi
 /* 800D50B8 000D1FF8  48 00 02 E4 */ b lbl_800D539C
 lbl_800D50BC:
 /* 800D50BC 000D1FFC  A8 1F 30 0C */ lha r0, 0x300c(r31)

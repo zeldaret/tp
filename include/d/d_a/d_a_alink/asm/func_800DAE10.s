@@ -29,7 +29,7 @@
 /* 800DAE80 000D7DC0  38 80 00 06 */ li r4, 6
 /* 800DAE84 000D7DC4  38 A0 00 1F */ li r5, 0x1f
 /* 800DAE88 000D7DC8  38 C1 00 2C */ addi r6, r1, 0x2c
-/* 800DAE8C 000D7DCC  4B F9 4B 99 */ bl dVibration_c_NS_StartShock
+/* 800DAE8C 000D7DCC  4B F9 4B 99 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800DAE90 000D7DD0  48 00 00 FC */ b lbl_800DAF8C
 lbl_800DAE94:
 /* 800DAE94 000D7DD4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -43,7 +43,7 @@ lbl_800DAE94:
 /* 800DAEB4 000D7DF4  38 80 00 02 */ li r4, 2
 /* 800DAEB8 000D7DF8  38 A0 00 0F */ li r5, 0xf
 /* 800DAEBC 000D7DFC  38 C1 00 20 */ addi r6, r1, 0x20
-/* 800DAEC0 000D7E00  4B F9 4B 65 */ bl dVibration_c_NS_StartShock
+/* 800DAEC0 000D7E00  4B F9 4B 65 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800DAEC4 000D7E04  48 00 00 C8 */ b lbl_800DAF8C
 lbl_800DAEC8:
 /* 800DAEC8 000D7E08  2C 1F 00 01 */ cmpwi r31, 1
@@ -71,7 +71,7 @@ lbl_800DAEE8:
 /* 800DAF1C 000D7E5C  38 80 00 04 */ li r4, 4
 /* 800DAF20 000D7E60  38 A0 00 1F */ li r5, 0x1f
 /* 800DAF24 000D7E64  38 C1 00 14 */ addi r6, r1, 0x14
-/* 800DAF28 000D7E68  4B F9 4A FD */ bl dVibration_c_NS_StartShock
+/* 800DAF28 000D7E68  4B F9 4A FD */ bl StartShock__12dVibration_cFii4cXyz
 /* 800DAF2C 000D7E6C  48 00 00 60 */ b lbl_800DAF8C
 lbl_800DAF30:
 /* 800DAF30 000D7E70  48 03 AC F1 */ bl daAlink_c_NS_checkEventRun
@@ -97,7 +97,7 @@ lbl_800DAF48:
 /* 800DAF7C 000D7EBC  38 80 00 05 */ li r4, 5
 /* 800DAF80 000D7EC0  38 A0 00 1F */ li r5, 0x1f
 /* 800DAF84 000D7EC4  38 C1 00 08 */ addi r6, r1, 8
-/* 800DAF88 000D7EC8  4B F9 4A 9D */ bl dVibration_c_NS_StartShock
+/* 800DAF88 000D7EC8  4B F9 4A 9D */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800DAF8C:
 /* 800DAF8C 000D7ECC  7F C3 F3 78 */ mr r3, r30
 /* 800DAF90 000D7ED0  38 80 00 34 */ li r4, 0x34

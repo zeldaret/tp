@@ -25,7 +25,7 @@
 /* 800DBCF8 000D8C38  38 80 00 05 */ li r4, 5
 /* 800DBCFC 000D8C3C  38 A0 00 01 */ li r5, 1
 /* 800DBD00 000D8C40  38 C1 00 08 */ addi r6, r1, 8
-/* 800DBD04 000D8C44  4B F9 3E 0D */ bl dVibration_c_NS_StartQuake
+/* 800DBD04 000D8C44  4B F9 3E 0D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800DBD08 000D8C48  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800DBD0C 000D8C4C  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 800DBD10 000D8C50  7C 08 03 A6 */ mtlr r0

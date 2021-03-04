@@ -36,7 +36,7 @@ lbl_800AC40C:
 /* 800AC418 000A9358  7F E6 FB 78 */ mr r6, r31
 /* 800AC41C 000A935C  FC 20 F0 90 */ fmr f1, f30
 /* 800AC420 000A9360  FC 40 F8 90 */ fmr f2, f31
-/* 800AC424 000A9364  48 0B 21 21 */ bl daPy_frameCtrl_c_NS_setFrameCtrl
+/* 800AC424 000A9364  48 0B 21 21 */ bl setFrameCtrl__16daPy_frameCtrl_cFUcssff
 /* 800AC428 000A9368  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 800AC42C 000A936C  CB E1 00 30 */ lfd f31, 0x30(r1)
 /* 800AC430 000A9370  E3 C1 00 28 */ psq_l f30, 40(r1), 0, 0

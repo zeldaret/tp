@@ -15,12 +15,12 @@ JUTDirectPrint:
 /* 802E4204 002E1144  38 80 00 00 */	li r4, 0
 /* 802E4208 002E1148  38 A0 00 00 */	li r5, 0
 /* 802E420C 002E114C  38 C0 00 00 */	li r6, 0
-/* 802E4210 002E1150  48 00 03 5D */	bl JUTDirectPrint_NS_changeFrameBuffer
+/* 802E4210 002E1150  48 00 03 5D */	bl changeFrameBuffer__14JUTDirectPrintFPvUsUs
 /* 802E4214 002E1154  7F E3 FB 78 */	mr r3, r31
 /* 802E4218 002E1158  38 80 00 FF */	li r4, 0xff
 /* 802E421C 002E115C  38 A0 00 FF */	li r5, 0xff
 /* 802E4220 002E1160  38 C0 00 FF */	li r6, 0xff
-/* 802E4224 002E1164  48 00 05 A5 */	bl JUTDirectPrint_NS_setCharColor_X1_
+/* 802E4224 002E1164  48 00 05 A5 */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
 /* 802E4228 002E1168  7F E3 FB 78 */	mr r3, r31
 /* 802E422C 002E116C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802E4230 002E1170  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -28,8 +28,8 @@ JUTDirectPrint:
 /* 802E4238 002E1178  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E423C 002E117C  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_start
-JUTDirectPrint_NS_start:
+.global start__14JUTDirectPrintFv
+start__14JUTDirectPrintFv:
 /* 802E4240 002E1180  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E4244 002E1184  7C 08 02 A6 */	mflr r0
 /* 802E4248 002E1188  90 01 00 14 */	stw r0, 0x14(r1)
@@ -51,8 +51,8 @@ lbl_802E4274:
 /* 802E4280 002E11C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E4284 002E11C4  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_erase
-JUTDirectPrint_NS_erase:
+.global erase__14JUTDirectPrintFiiii
+erase__14JUTDirectPrintFiiii:
 /* 802E4288 002E11C8  80 03 00 00 */	lwz r0, 0(r3)
 /* 802E428C 002E11CC  28 00 00 00 */	cmplwi r0, 0
 /* 802E4290 002E11D0  4D 82 00 20 */	beqlr 
@@ -97,8 +97,8 @@ lbl_802E4310:
 /* 802E4314 002E1254  41 80 FF D0 */	blt lbl_802E42E4
 /* 802E4318 002E1258  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_drawChar
-JUTDirectPrint_NS_drawChar:
+.global drawChar__14JUTDirectPrintFiii
+drawChar__14JUTDirectPrintFiii:
 /* 802E431C 002E125C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E4320 002E1260  7C 08 02 A6 */	mflr r0
 /* 802E4324 002E1264  90 01 00 24 */	stw r0, 0x24(r1)
@@ -273,8 +273,8 @@ lbl_802E4534:
 /* 802E4564 002E14A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E4568 002E14A8  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_changeFrameBuffer
-JUTDirectPrint_NS_changeFrameBuffer:
+.global changeFrameBuffer__14JUTDirectPrintFPvUsUs
+changeFrameBuffer__14JUTDirectPrintFPvUsUs:
 /* 802E456C 002E14AC  90 83 00 00 */	stw r4, 0(r3)
 /* 802E4570 002E14B0  90 83 00 14 */	stw r4, 0x14(r3)
 /* 802E4574 002E14B4  B0 A3 00 04 */	sth r5, 4(r3)
@@ -322,7 +322,7 @@ printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb:
 /* 802E4610 002E1550  38 1E 00 02 */	addi r0, r30, 2
 /* 802E4614 002E1554  1C C0 00 06 */	mulli r6, r0, 6
 /* 802E4618 002E1558  38 E0 00 0D */	li r7, 0xd
-/* 802E461C 002E155C  4B FF FC 6D */	bl JUTDirectPrint_NS_erase
+/* 802E461C 002E155C  4B FF FC 6D */	bl erase__14JUTDirectPrintFiiii
 lbl_802E4620:
 /* 802E4620 002E1560  3B 81 00 08 */	addi r28, r1, 8
 /* 802E4624 002E1564  57 5F 04 3E */	clrlwi r31, r26, 0x10
@@ -358,7 +358,7 @@ lbl_802E4688:
 /* 802E4690 002E15D0  7F 23 CB 78 */	mr r3, r25
 /* 802E4694 002E15D4  57 44 04 3E */	clrlwi r4, r26, 0x10
 /* 802E4698 002E15D8  57 65 04 3E */	clrlwi r5, r27, 0x10
-/* 802E469C 002E15DC  4B FF FC 81 */	bl JUTDirectPrint_NS_drawChar
+/* 802E469C 002E15DC  4B FF FC 81 */	bl drawChar__14JUTDirectPrintFiii
 lbl_802E46A0:
 /* 802E46A0 002E15E0  3B 5A 00 06 */	addi r26, r26, 6
 lbl_802E46A4:
@@ -379,8 +379,8 @@ lbl_802E46C0:
 /* 802E46D0 002E1610  38 21 01 30 */	addi r1, r1, 0x130
 /* 802E46D4 002E1614  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_drawString
-JUTDirectPrint_NS_drawString:
+.global drawString__14JUTDirectPrintFUsUsPc
+drawString__14JUTDirectPrintFUsUsPc:
 /* 802E46D8 002E1618  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E46DC 002E161C  7C 08 02 A6 */	mflr r0
 /* 802E46E0 002E1620  90 01 00 14 */	stw r0, 0x14(r1)
@@ -388,14 +388,14 @@ JUTDirectPrint_NS_drawString:
 /* 802E46E8 002E1628  3C C0 80 3A */	lis r6, lbl_8039D9A0@ha
 /* 802E46EC 002E162C  38 C6 D9 A0 */	addi r6, r6, lbl_8039D9A0@l
 /* 802E46F0 002E1630  4C C6 31 82 */	crclr 6
-/* 802E46F4 002E1634  48 00 00 15 */	bl JUTDirectPrint_NS_drawString_f
+/* 802E46F4 002E1634  48 00 00 15 */	bl drawString__14JUTDirectPrintFUsUsPc_f
 /* 802E46F8 002E1638  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E46FC 002E163C  7C 08 03 A6 */	mtlr r0
 /* 802E4700 002E1640  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E4704 002E1644  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_drawString_f
-JUTDirectPrint_NS_drawString_f:
+.global drawString__14JUTDirectPrintFUsUsPc_f
+drawString__14JUTDirectPrintFUsUsPc_f:
 /* 802E4708 002E1648  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802E470C 002E164C  7C 08 02 A6 */	mflr r0
 /* 802E4710 002E1650  90 01 00 84 */	stw r0, 0x84(r1)
@@ -435,8 +435,8 @@ lbl_802E4788:
 /* 802E4790 002E16D0  38 21 00 80 */	addi r1, r1, 0x80
 /* 802E4794 002E16D4  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_setCharColor
-JUTDirectPrint_NS_setCharColor:
+.global setCharColor__14JUTDirectPrintFQ28JUtility6TColor
+setCharColor__14JUTDirectPrintFQ28JUtility6TColor:
 /* 802E4798 002E16D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E479C 002E16DC  7C 08 02 A6 */	mflr r0
 /* 802E47A0 002E16E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -444,14 +444,14 @@ JUTDirectPrint_NS_setCharColor:
 /* 802E47A8 002E16E8  88 84 00 00 */	lbz r4, 0(r4)
 /* 802E47AC 002E16EC  88 A6 00 01 */	lbz r5, 1(r6)
 /* 802E47B0 002E16F0  88 C6 00 02 */	lbz r6, 2(r6)
-/* 802E47B4 002E16F4  48 00 00 15 */	bl JUTDirectPrint_NS_setCharColor_X1_
+/* 802E47B4 002E16F4  48 00 00 15 */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
 /* 802E47B8 002E16F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E47BC 002E16FC  7C 08 03 A6 */	mtlr r0
 /* 802E47C0 002E1700  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E47C4 002E1704  4E 80 00 20 */	blr 
 
-.global JUTDirectPrint_NS_setCharColor_X1_
-JUTDirectPrint_NS_setCharColor_X1_:
+.global setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
+setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_:
 /* 802E47C8 002E1708  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802E47CC 002E170C  98 83 00 18 */	stb r4, 0x18(r3)
 /* 802E47D0 002E1710  98 A3 00 19 */	stb r5, 0x19(r3)

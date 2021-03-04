@@ -47,7 +47,7 @@ lbl_800DDC50:
 /* 800DDC54 000DAB94  2C 00 00 00 */ cmpwi r0, 0
 /* 800DDC58 000DAB98  40 82 00 4C */ bne lbl_800DDCA4
 /* 800DDC5C 000DAB9C  38 7E 15 F8 */ addi r3, r30, 0x15f8
-/* 800DDC60 000DABA0  4B FA 66 61 */ bl dCcD_GObjInf_NS_ChkAtHit
+/* 800DDC60 000DABA0  4B FA 66 61 */ bl ChkAtHit__12dCcD_GObjInfFv
 /* 800DDC64 000DABA4  28 03 00 00 */ cmplwi r3, 0
 /* 800DDC68 000DABA8  41 82 00 3C */ beq lbl_800DDCA4
 /* 800DDC6C 000DABAC  38 00 00 01 */ li r0, 1
@@ -63,7 +63,7 @@ lbl_800DDC50:
 /* 800DDC94 000DABD4  38 80 00 03 */ li r4, 3
 /* 800DDC98 000DABD8  38 A0 00 01 */ li r5, 1
 /* 800DDC9C 000DABDC  38 C1 00 08 */ addi r6, r1, 8
-/* 800DDCA0 000DABE0  4B F9 1D 85 */ bl dVibration_c_NS_StartShock
+/* 800DDCA0 000DABE0  4B F9 1D 85 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_800DDCA4:
 /* 800DDCA4 000DABE4  A8 1E 30 12 */ lha r0, 0x3012(r30)
 /* 800DDCA8 000DABE8  2C 00 00 00 */ cmpwi r0, 0
@@ -78,7 +78,7 @@ lbl_800DDCA4:
 /* 800DDCCC 000DAC0C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800DDCD0 000DAC10  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800DDCD4 000DAC14  38 9E 1B 5C */ addi r4, r30, 0x1b5c
-/* 800DDCD8 000DAC18  4B F9 71 29 */ bl dBgS_NS_GetWallCode
+/* 800DDCD8 000DAC18  4B F9 71 29 */ bl GetWallCode__4dBgSFRC13cBgS_PolyInfo
 /* 800DDCDC 000DAC1C  2C 03 00 07 */ cmpwi r3, 7
 /* 800DDCE0 000DAC20  41 82 00 38 */ beq lbl_800DDD18
 /* 800DDCE4 000DAC24  38 7E 1B 5C */ addi r3, r30, 0x1b5c
@@ -111,7 +111,7 @@ lbl_800DDD40:
 /* 800DDD48 000DAC88  4B FD 55 09 */ bl setDoStatus__9daAlink_cFUc
 lbl_800DDD4C:
 /* 800DDD4C 000DAC8C  7F E3 FB 78 */ mr r3, r31
-/* 800DDD50 000DAC90  48 08 07 7D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DDD50 000DAC90  48 08 07 7D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DDD54 000DAC94  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DDD58 000DAC98  41 82 00 38 */ beq lbl_800DDD90
 /* 800DDD5C 000DAC9C  80 1E 06 14 */ lwz r0, 0x614(r30)
@@ -121,7 +121,7 @@ lbl_800DDD4C:
 /* 800DDD6C 000DACAC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800DDD70 000DACB0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800DDD74 000DACB4  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800DDD78 000DACB8  4B F6 A4 05 */ bl dEvent_manager_c_NS_cutEnd
+/* 800DDD78 000DACB8  4B F6 A4 05 */ bl cutEnd__16dEvent_manager_cFi
 /* 800DDD7C 000DACBC  48 00 00 C0 */ b lbl_800DDE3C
 lbl_800DDD80:
 /* 800DDD80 000DACC0  7F C3 F3 78 */ mr r3, r30

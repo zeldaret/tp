@@ -3,8 +3,8 @@
 .section .text, "ax" # 80271cd0
 
 
-.global JFWSystem_NS_firstInit
-JFWSystem_NS_firstInit:
+.global firstInit__9JFWSystemFv
+firstInit__9JFWSystemFv:
 /* 80271CD0 0026EC10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80271CD4 0026EC14  7C 08 02 A6 */	mflr r0
 /* 80271CD8 0026EC18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -24,8 +24,8 @@ JFWSystem_NS_firstInit:
 /* 80271D10 0026EC50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80271D14 0026EC54  4E 80 00 20 */	blr 
 
-.global JFWSystem_NS_init
-JFWSystem_NS_init:
+.global init__9JFWSystemFv
+init__9JFWSystemFv:
 /* 80271D18 0026EC58  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80271D1C 0026EC5C  7C 08 02 A6 */	mflr r0
 /* 80271D20 0026EC60  90 01 00 34 */	stw r0, 0x34(r1)
@@ -36,7 +36,7 @@ JFWSystem_NS_init:
 /* 80271D34 0026EC74  80 0D 8C 20 */	lwz r0, lbl_804511A0-_SDA_BASE_(r13)
 /* 80271D38 0026EC78  28 00 00 00 */	cmplwi r0, 0
 /* 80271D3C 0026EC7C  40 82 00 08 */	bne lbl_80271D44
-/* 80271D40 0026EC80  4B FF FF 91 */	bl JFWSystem_NS_firstInit
+/* 80271D40 0026EC80  4B FF FF 91 */	bl firstInit__9JFWSystemFv
 lbl_80271D44:
 /* 80271D44 0026EC84  38 00 00 01 */	li r0, 1
 /* 80271D48 0026EC88  98 0D 8C 3C */	stb r0, lbl_804511BC-_SDA_BASE_(r13)
@@ -59,7 +59,7 @@ lbl_80271D44:
 lbl_80271D8C:
 /* 80271D8C 0026ECCC  93 ED 8C 28 */	stw r31, lbl_804511A8-_SDA_BASE_(r13)
 /* 80271D90 0026ECD0  80 6D 82 14 */	lwz r3, lbl_80450794-_SDA_BASE_(r13)
-/* 80271D94 0026ECD4  48 07 2E C1 */	bl JUTVideo_NS_createManager
+/* 80271D94 0026ECD4  48 07 2E C1 */	bl createManager__8JUTVideoFPC16_GXRenderModeObj
 /* 80271D98 0026ECD8  83 ED 81 F8 */	lwz r31, lbl_80450778-_SDA_BASE_(r13)
 /* 80271D9C 0026ECDC  38 60 00 1C */	li r3, 0x1c
 /* 80271DA0 0026ECE0  48 05 CE AD */	bl __nw__FUl
@@ -69,11 +69,11 @@ lbl_80271D8C:
 /* 80271DB0 0026ECF0  48 06 CD A9 */	bl JUTGraphFifo
 lbl_80271DB4:
 /* 80271DB4 0026ECF4  48 06 EA E5 */	bl init__10JUTGamePadFv
-/* 80271DB8 0026ECF8  48 07 24 89 */	bl JUTDirectPrint_NS_start
+/* 80271DB8 0026ECF8  48 07 24 89 */	bl start__14JUTDirectPrintFv
 /* 80271DBC 0026ECFC  7C 7E 1B 78 */	mr r30, r3
-/* 80271DC0 0026ED00  48 07 2B 9D */	bl JUTAssertion_NS_create
+/* 80271DC0 0026ED00  48 07 2B 9D */	bl create__12JUTAssertionFv
 /* 80271DC4 0026ED04  7F C3 F3 78 */	mr r3, r30
-/* 80271DC8 0026ED08  48 07 00 79 */	bl JUTException_NS_create
+/* 80271DC8 0026ED08  48 07 00 79 */	bl create__12JUTExceptionFP14JUTDirectPrint
 /* 80271DCC 0026ED0C  38 60 00 70 */	li r3, 0x70
 /* 80271DD0 0026ED10  48 05 CE 7D */	bl __nw__FUl
 /* 80271DD4 0026ED14  7C 60 1B 79 */	or. r0, r3, r3
@@ -86,17 +86,17 @@ lbl_80271DEC:
 /* 80271DEC 0026ED2C  90 0D 8C 30 */	stw r0, lbl_804511B0-_SDA_BASE_(r13)
 /* 80271DF0 0026ED30  38 60 00 00 */	li r3, 0
 /* 80271DF4 0026ED34  38 80 00 00 */	li r4, 0
-/* 80271DF8 0026ED38  48 06 E3 99 */	bl JUTDbPrint_NS_start
+/* 80271DF8 0026ED38  48 06 E3 99 */	bl start__10JUTDbPrintFP7JUTFontP7JKRHeap
 /* 80271DFC 0026ED3C  90 6D 8C 2C */	stw r3, lbl_804511AC-_SDA_BASE_(r13)
 /* 80271E00 0026ED40  80 8D 8C 30 */	lwz r4, lbl_804511B0-_SDA_BASE_(r13)
-/* 80271E04 0026ED44  48 06 E4 01 */	bl JUTDbPrint_NS_changeFont
+/* 80271E04 0026ED44  48 06 E4 01 */	bl changeFont__10JUTDbPrintFP7JUTFont
 /* 80271E08 0026ED48  38 60 00 00 */	li r3, 0
-/* 80271E0C 0026ED4C  48 07 63 E9 */	bl JUTConsoleManager_NS_createManager
+/* 80271E0C 0026ED4C  48 07 63 E9 */	bl createManager__17JUTConsoleManagerFP7JKRHeap
 /* 80271E10 0026ED50  90 6D 8C 34 */	stw r3, lbl_804511B4-_SDA_BASE_(r13)
 /* 80271E14 0026ED54  38 60 00 3C */	li r3, 0x3c
 /* 80271E18 0026ED58  38 80 00 C8 */	li r4, 0xc8
 /* 80271E1C 0026ED5C  38 A0 00 00 */	li r5, 0
-/* 80271E20 0026ED60  48 07 55 35 */	bl JUTConsole_NS_create
+/* 80271E20 0026ED60  48 07 55 35 */	bl create__10JUTConsoleFUiUiP7JKRHeap
 /* 80271E24 0026ED64  7C 7F 1B 78 */	mr r31, r3
 /* 80271E28 0026ED68  93 ED 8C 38 */	stw r31, lbl_804511B8-_SDA_BASE_(r13)
 /* 80271E2C 0026ED6C  83 CD 8C 30 */	lwz r30, lbl_804511B0-_SDA_BASE_(r13)
@@ -226,7 +226,7 @@ lbl_80271FE0:
 /* 80272010 0026EF50  38 A0 00 04 */	li r5, 4
 /* 80272014 0026EF54  48 05 C4 C1 */	bl alloc__7JKRHeapFUli
 /* 80272018 0026EF58  80 8D 82 18 */	lwz r4, lbl_80450798-_SDA_BASE_(r13)
-/* 8027201C 0026EF5C  48 07 1F D1 */	bl JUTException_NS_createConsole
+/* 8027201C 0026EF5C  48 07 1F D1 */	bl create__12JUTExceptionFP14JUTDirectPrintConsole
 /* 80272020 0026EF60  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 80272024 0026EF64  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80272028 0026EF68  83 E1 00 1C */	lwz r31, 0x1c(r1)

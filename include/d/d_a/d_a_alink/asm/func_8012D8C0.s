@@ -65,7 +65,7 @@ lbl_8012D990:
 /* 8012D9B0 0012A8F0  38 80 00 05 */ li r4, 5
 /* 8012D9B4 0012A8F4  38 A0 00 0F */ li r5, 0xf
 /* 8012D9B8 0012A8F8  38 C1 00 14 */ addi r6, r1, 0x14
-/* 8012D9BC 0012A8FC  4B F4 20 69 */ bl dVibration_c_NS_StartShock
+/* 8012D9BC 0012A8FC  4B F4 20 69 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8012D9C0 0012A900  C0 1F 04 D0 */ lfs f0, 0x4d0(r31)
 /* 8012D9C4 0012A904  D0 01 00 08 */ stfs f0, 8(r1)
 /* 8012D9C8 0012A908  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)

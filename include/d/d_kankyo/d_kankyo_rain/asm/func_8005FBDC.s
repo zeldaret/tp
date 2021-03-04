@@ -49,7 +49,7 @@ lbl_8005FC5C:
 /* 8005FC88 0005CBC8  3C A5 00 02 */ addis r5, r5, 2
 /* 8005FC8C 0005CBCC  38 C0 00 80 */ li r6, 0x80
 /* 8005FC90 0005CBD0  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 8005FC94 0005CBD4  4B FD C6 59 */ bl dRes_control_c_NS_getRes
+/* 8005FC94 0005CBD4  4B FD C6 59 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8005FC98 0005CBD8  80 9F 0E 94 */ lwz r4, 0xe94(r31)
 /* 8005FC9C 0005CBDC  90 64 00 10 */ stw r3, 0x10(r4)
 /* 8005FCA0 0005CBE0  38 60 00 00 */ li r3, 0

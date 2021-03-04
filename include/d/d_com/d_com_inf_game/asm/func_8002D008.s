@@ -15,7 +15,7 @@ lbl_8002D030:
 /* 8002D03C 00029F7C  3C 84 00 02 */ addis r4, r4, 2
 /* 8002D040 00029F80  38 A0 00 80 */ li r5, 0x80
 /* 8002D044 00029F84  38 84 C2 F8 */ addi r4, r4, -15624
-/* 8002D048 00029F88  48 00 F1 4D */ bl dRes_control_c_NS_deleteRes
+/* 8002D048 00029F88  48 00 F1 4D */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8002D04C 00029F8C  38 00 00 00 */ li r0, 0
 /* 8002D050 00029F90  90 1F 00 04 */ stw r0, 4(r31)
 /* 8002D054 00029F94  38 60 00 01 */ li r3, 1

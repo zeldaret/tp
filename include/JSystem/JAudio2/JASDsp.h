@@ -2,7 +2,7 @@
 #define JASDSP_H_
 
 extern "C" {
-void JASDsp_NS_setFXLine(void);
+void setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_(void);
 }
 
 #endif  // JASDSP_H_

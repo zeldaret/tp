@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2f6c
 
 
-.global JAISoundStarter_NS_ctor
-JAISoundStarter_NS_ctor:
+.global __ct__15JAISoundStarterFb
+__ct__15JAISoundStarterFb:
 /* 802A2F6C 0029FEAC  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A2F70 0029FEB0  41 82 00 08 */	beq lbl_802A2F78
 /* 802A2F74 0029FEB4  90 6D 85 F8 */	stw r3, lbl_80450B78-_SDA_BASE_(r13)
@@ -14,8 +14,8 @@ lbl_802A2F78:
 /* 802A2F80 0029FEC0  90 03 00 00 */	stw r0, 0(r3)
 /* 802A2F84 0029FEC4  4E 80 00 20 */	blr 
 
-.global JAISoundStarter_NS_dtor
-JAISoundStarter_NS_dtor:
+.global __dt__15JAISoundStarterFv
+__dt__15JAISoundStarterFv:
 /* 802A2F88 0029FEC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A2F8C 0029FECC  7C 08 02 A6 */	mflr r0
 /* 802A2F90 0029FED0  90 01 00 14 */	stw r0, 0x14(r1)

@@ -38,7 +38,7 @@ lbl_800FFA18:
 /* 800FFA2C 000FC96C  2C 00 00 00 */ cmpwi r0, 0
 /* 800FFA30 000FC970  40 82 00 48 */ bne lbl_800FFA78
 /* 800FFA34 000FC974  7F E3 FB 78 */ mr r3, r31
-/* 800FFA38 000FC978  48 05 EA 95 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FFA38 000FC978  48 05 EA 95 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FFA3C 000FC97C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FFA40 000FC980  40 82 00 24 */ bne lbl_800FFA64
 /* 800FFA44 000FC984  C0 3E 33 AC */ lfs f1, 0x33ac(r30)

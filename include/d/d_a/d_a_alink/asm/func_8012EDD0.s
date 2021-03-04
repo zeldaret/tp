@@ -41,7 +41,7 @@ lbl_8012EE38:
 /* 8012EE68 0012BDA8  38 80 00 06 */ li r4, 6
 /* 8012EE6C 0012BDAC  38 A0 00 1F */ li r5, 0x1f
 /* 8012EE70 0012BDB0  38 C1 00 08 */ addi r6, r1, 8
-/* 8012EE74 0012BDB4  4B F4 0B B1 */ bl dVibration_c_NS_StartShock
+/* 8012EE74 0012BDB4  4B F4 0B B1 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8012EE78 0012BDB8  7F C3 F3 78 */ mr r3, r30
 /* 8012EE7C 0012BDBC  80 9E 31 8C */ lwz r4, 0x318c(r30)
 /* 8012EE80 0012BDC0  4B FA 85 F9 */ bl daAlink_c_NS_setDamagePointNormal

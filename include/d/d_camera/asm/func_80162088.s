@@ -48,11 +48,11 @@ lbl_801620F8:
 /* 80162140 0015F080  38 61 00 30 */ addi r3, r1, 0x30
 /* 80162144 0015F084  7F C4 F3 78 */ mr r4, r30
 /* 80162148 0015F088  80 BE 01 9C */ lwz r5, 0x19c(r30)
-/* 8016214C 0015F08C  4B F3 56 11 */ bl dCamera_c_NS_positionOf
+/* 8016214C 0015F08C  4B F3 56 11 */ bl positionOf__9dCamera_cFP10fopAc_ac_c
 /* 80162150 0015F090  38 61 00 24 */ addi r3, r1, 0x24
 /* 80162154 0015F094  7F C4 F3 78 */ mr r4, r30
 /* 80162158 0015F098  80 BE 01 80 */ lwz r5, 0x180(r30)
-/* 8016215C 0015F09C  4B F3 56 01 */ bl dCamera_c_NS_positionOf
+/* 8016215C 0015F09C  4B F3 56 01 */ bl positionOf__9dCamera_cFP10fopAc_ac_c
 /* 80162160 0015F0A0  38 61 00 18 */ addi r3, r1, 0x18
 /* 80162164 0015F0A4  38 81 00 30 */ addi r4, r1, 0x30
 /* 80162168 0015F0A8  38 A1 00 24 */ addi r5, r1, 0x24

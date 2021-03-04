@@ -14,7 +14,7 @@
 /* 80138DF4 00135D34  3B FF C2 F8 */ addi r31, r31, -15624
 /* 80138DF8 00135D38  7F E5 FB 78 */ mr r5, r31
 /* 80138DFC 00135D3C  38 C0 00 80 */ li r6, 0x80
-/* 80138E00 00135D40  4B F0 34 ED */ bl dRes_control_c_NS_getRes
+/* 80138E00 00135D40  4B F0 34 ED */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80138E04 00135D44  7C 64 1B 78 */ mr r4, r3
 /* 80138E08 00135D48  7F A3 EB 78 */ mr r3, r29
 /* 80138E0C 00135D4C  3C A0 00 08 */ lis r5, 8
@@ -25,12 +25,12 @@
 /* 80138E20 00135D60  38 80 00 49 */ li r4, 0x49
 /* 80138E24 00135D64  7F E5 FB 78 */ mr r5, r31
 /* 80138E28 00135D68  38 C0 00 80 */ li r6, 0x80
-/* 80138E2C 00135D6C  4B F0 34 C1 */ bl dRes_control_c_NS_getRes
+/* 80138E2C 00135D6C  4B F0 34 C1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80138E30 00135D70  90 7D 07 18 */ stw r3, 0x718(r29)
 /* 80138E34 00135D74  80 7D 07 08 */ lwz r3, 0x708(r29)
 /* 80138E38 00135D78  80 83 00 04 */ lwz r4, 4(r3)
 /* 80138E3C 00135D7C  80 7D 07 18 */ lwz r3, 0x718(r29)
-/* 80138E40 00135D80  48 1F 23 95 */ bl J3DAnmTextureSRTKey_NS_searchUpdateMaterialID_X1_
+/* 80138E40 00135D80  48 1F 23 95 */ bl searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_
 /* 80138E44 00135D84  38 60 00 20 */ li r3, 0x20
 /* 80138E48 00135D88  48 19 5E 05 */ bl __nw__FUl
 /* 80138E4C 00135D8C  7C 60 1B 79 */ or. r0, r3, r3
@@ -69,7 +69,7 @@ lbl_80138E5C:
 /* 80138ECC 00135E0C  38 7D 2F 38 */ addi r3, r29, 0x2f38
 /* 80138ED0 00135E10  38 9D 37 EC */ addi r4, r29, 0x37ec
 /* 80138ED4 00135E14  38 BD 37 F8 */ addi r5, r29, 0x37f8
-/* 80138ED8 00135E18  4B F1 67 E1 */ bl dPa_hermiteEcallBack_c_NS_setOldPosP
+/* 80138ED8 00135E18  4B F1 67 E1 */ bl setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz
 /* 80138EDC 00135E1C  38 00 00 00 */ li r0, 0
 /* 80138EE0 00135E20  90 1D 32 D4 */ stw r0, 0x32d4(r29)
 /* 80138EE4 00135E24  80 7D 07 6C */ lwz r3, 0x76c(r29)

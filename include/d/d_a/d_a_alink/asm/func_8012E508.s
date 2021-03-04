@@ -24,7 +24,7 @@ lbl_8012E560:
 /* 8012E560 0012B4A0  7F E3 FB 78 */ mr r3, r31
 /* 8012E564 0012B4A4  4B F9 71 9D */ bl daAlink_c_NS_backJumpSpeedDec
 /* 8012E568 0012B4A8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8012E56C 0012B4AC  48 02 FF 61 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012E56C 0012B4AC  48 02 FF 61 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012E570 0012B4B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012E574 0012B4B4  41 82 00 24 */ beq lbl_8012E598
 /* 8012E578 0012B4B8  80 1F 19 9C */ lwz r0, 0x199c(r31)

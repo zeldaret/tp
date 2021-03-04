@@ -14,7 +14,7 @@
 /* 8005CC90 00059BD0  3B DE C2 F8 */ addi r30, r30, -15624
 /* 8005CC94 00059BD4  7F C5 F3 78 */ mr r5, r30
 /* 8005CC98 00059BD8  38 C0 00 80 */ li r6, 0x80
-/* 8005CC9C 00059BDC  4B FD F6 51 */ bl dRes_control_c_NS_getRes
+/* 8005CC9C 00059BDC  4B FD F6 51 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8005CCA0 00059BE0  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8005CCA4 00059BE4  3B E4 CA 54 */ addi r31, r4, lbl_8042CA54@l
 /* 8005CCA8 00059BE8  80 9F 0E 84 */ lwz r4, 0xe84(r31)
@@ -25,7 +25,7 @@
 /* 8005CCBC 00059BFC  38 80 00 57 */ li r4, 0x57
 /* 8005CCC0 00059C00  7F C5 F3 78 */ mr r5, r30
 /* 8005CCC4 00059C04  38 C0 00 80 */ li r6, 0x80
-/* 8005CCC8 00059C08  4B FD F6 25 */ bl dRes_control_c_NS_getRes
+/* 8005CCC8 00059C08  4B FD F6 25 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8005CCCC 00059C0C  80 9F 0E 84 */ lwz r4, 0xe84(r31)
 /* 8005CCD0 00059C10  90 64 00 14 */ stw r3, 0x14(r4)
 /* 8005CCD4 00059C14  80 7F 0E 84 */ lwz r3, 0xe84(r31)

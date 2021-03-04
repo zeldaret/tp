@@ -2,11 +2,11 @@
 #define JASTRACK_H_
 
 extern "C" {
-void JASTrack_NS_openChild(void);
-void JASTrack_NS_readPort(void);
-void JASTrack_NS_setFIR(void);
-void JASTrack_NS_setIIR(void);
-void JASTrack_NS_writePort(void);
+void openChild__8JASTrackFUl(void);
+void readPort__8JASTrackFUl(void);
+void setFIR__8JASTrackFPCs(void);
+void setIIR__8JASTrackFPCs(void);
+void writePort__8JASTrackFUlUs(void);
 }
 
 #endif  // JASTRACK_H_

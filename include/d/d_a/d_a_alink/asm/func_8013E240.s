@@ -7,7 +7,7 @@
 /* 8013E258 0013B198  4B F8 3D 15 */ bl daAlink_c_NS_commonProcInit
 /* 8013E25C 0013B19C  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8013E260 0013B1A0  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 8013E264 0013B1A4  48 02 0A 55 */ bl daPy_actorKeep_c_NS_setData
+/* 8013E264 0013B1A4  48 02 0A 55 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013E268 0013B1A8  7F E3 FB 78 */ mr r3, r31
 /* 8013E26C 0013B1AC  38 80 00 50 */ li r4, 0x50
 /* 8013E270 0013B1B0  3C A0 80 39 */ lis r5, lbl_8038F578@ha

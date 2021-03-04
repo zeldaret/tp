@@ -32,7 +32,7 @@ lbl_800F778C:
 /* 800F77D8 000F4718  38 00 00 01 */ li r0, 1
 /* 800F77DC 000F471C  B0 1F 30 18 */ sth r0, 0x3018(r31)
 /* 800F77E0 000F4720  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800F77E4 000F4724  48 06 72 3D */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800F77E4 000F4724  48 06 72 3D */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800F77E8 000F4728  2C 03 00 00 */ cmpwi r3, 0
 /* 800F77EC 000F472C  41 82 00 10 */ beq lbl_800F77FC
 /* 800F77F0 000F4730  80 1F 05 78 */ lwz r0, 0x578(r31)

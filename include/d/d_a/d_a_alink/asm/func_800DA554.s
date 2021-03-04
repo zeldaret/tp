@@ -73,7 +73,7 @@ lbl_800DA64C:
 /* 800DA668 000D75A8  98 1E 2F 93 */ stb r0, 0x2f93(r30)
 lbl_800DA66C:
 /* 800DA66C 000D75AC  7F E3 FB 78 */ mr r3, r31
-/* 800DA670 000D75B0  48 08 3E 5D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DA670 000D75B0  48 08 3E 5D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DA674 000D75B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DA678 000D75B8  41 82 00 68 */ beq lbl_800DA6E0
 /* 800DA67C 000D75BC  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -97,7 +97,7 @@ lbl_800DA6B8:
 /* 800DA6BC 000D75FC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800DA6C0 000D7600  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800DA6C4 000D7604  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800DA6C8 000D7608  4B F6 DA B5 */ bl dEvent_manager_c_NS_cutEnd
+/* 800DA6C8 000D7608  4B F6 DA B5 */ bl cutEnd__16dEvent_manager_cFi
 /* 800DA6CC 000D760C  48 00 01 44 */ b lbl_800DA810
 lbl_800DA6D0:
 /* 800DA6D0 000D7610  7F C3 F3 78 */ mr r3, r30
@@ -127,7 +127,7 @@ lbl_800DA71C:
 /* 800DA724 000D7664  41 82 00 40 */ beq lbl_800DA764
 /* 800DA728 000D7668  7F E3 FB 78 */ mr r3, r31
 /* 800DA72C 000D766C  C0 22 93 C0 */ lfs f1, lbl_80452DC0-_SDA2_BASE_(r2)
-/* 800DA730 000D7670  48 24 DC FD */ bl J3DFrameCtrl_NS_checkPass
+/* 800DA730 000D7670  48 24 DC FD */ bl checkPass__12J3DFrameCtrlFf
 /* 800DA734 000D7674  2C 03 00 00 */ cmpwi r3, 0
 /* 800DA738 000D7678  41 82 00 2C */ beq lbl_800DA764
 /* 800DA73C 000D767C  7F C3 F3 78 */ mr r3, r30
@@ -147,7 +147,7 @@ lbl_800DA764:
 /* 800DA770 000D76B0  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 800DA774 000D76B4  64 00 04 00 */ oris r0, r0, 0x400
 /* 800DA778 000D76B8  90 1E 31 A0 */ stw r0, 0x31a0(r30)
-/* 800DA77C 000D76BC  48 15 DA B1 */ bl dMsgObject_c_NS_getStatus
+/* 800DA77C 000D76BC  48 15 DA B1 */ bl getStatus__12dMsgObject_cFv
 /* 800DA780 000D76C0  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 800DA784 000D76C4  20 60 00 01 */ subfic r3, r0, 1
 /* 800DA788 000D76C8  30 03 FF FF */ addic r0, r3, -1
@@ -163,7 +163,7 @@ lbl_800DA764:
 /* 800DA7B0 000D76F0  D0 03 00 08 */ stfs f0, 8(r3)
 /* 800DA7B4 000D76F4  48 00 00 5C */ b lbl_800DA810
 lbl_800DA7B8:
-/* 800DA7B8 000D76F8  48 15 DA 75 */ bl dMsgObject_c_NS_getStatus
+/* 800DA7B8 000D76F8  48 15 DA 75 */ bl getStatus__12dMsgObject_cFv
 /* 800DA7BC 000D76FC  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 800DA7C0 000D7700  20 60 00 01 */ subfic r3, r0, 1
 /* 800DA7C4 000D7704  30 03 FF FF */ addic r0, r3, -1

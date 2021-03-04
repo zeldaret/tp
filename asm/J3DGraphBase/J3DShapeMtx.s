@@ -3,8 +3,8 @@
 .section .text, "ax" # 803130a8
 
 
-.global J3DShapeMtx_NS_resetMtxLoadCache
-J3DShapeMtx_NS_resetMtxLoadCache:
+.global resetMtxLoadCache__11J3DShapeMtxFv
+resetMtxLoadCache__11J3DShapeMtxFv:
 /* 803130A8 0030FFE8  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 803130AC 0030FFEC  38 03 FF FF */	addi r0, r3, 0x0000FFFF@l
 /* 803130B0 0030FFF0  3C 60 80 43 */	lis r3, lbl_80434C80@ha
@@ -54,7 +54,7 @@ J3DShapeMtx_NS_resetMtxLoadCache:
 /* 80313160 003100A0  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
 /* 80313164 003100A4  7F C4 F3 78 */	mr r4, r30
 /* 80313168 003100A8  7F E5 FB 78 */	mr r5, r31
-/* 8031316C 003100AC  4B FF CD 79 */	bl J3DSys_NS_loadNrmMtxIndx
+/* 8031316C 003100AC  4B FF CD 79 */	bl loadNrmMtxIndx__6J3DSysCFiUs
 /* 80313170 003100B0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80313174 003100B4  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80313178 003100B8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -68,7 +68,7 @@ J3DShapeMtx_NS_resetMtxLoadCache:
 /* 80313198 003100D8  7C 9F 23 78 */	mr r31, r4
 /* 8031319C 003100DC  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 803131A0 003100E0  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 803131A4 003100E4  4B FF CD 1D */	bl J3DSys_NS_loadPosMtxIndx
+/* 803131A4 003100E4  4B FF CD 1D */	bl loadPosMtxIndx__6J3DSysCFiUs
 /* 803131A8 003100E8  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 803131AC 003100EC  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
 /* 803131B0 003100F0  80 63 00 40 */	lwz r3, 0x40(r3)
@@ -103,8 +103,8 @@ J3DShapeMtx_NS_resetMtxLoadCache:
 /* 80313224 00310164  38 21 00 10 */	addi r1, r1, 0x10
 /* 80313228 00310168  4E 80 00 20 */	blr 
 
-.global J3DDifferedTexMtx_NS_loadExecute
-J3DDifferedTexMtx_NS_loadExecute:
+.global loadExecute__17J3DDifferedTexMtxFPA4_Cf
+loadExecute__17J3DDifferedTexMtxFPA4_Cf:
 /* 8031322C 0031016C  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 80313230 00310170  7C 08 02 A6 */	mflr r0
 /* 80313234 00310174  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -536,7 +536,7 @@ lbl_80313810:
 /* 80313874 003107B4  28 00 00 00 */	cmplwi r0, 0
 /* 80313878 003107B8  41 82 00 0C */	beq lbl_80313884
 /* 8031387C 003107BC  38 61 00 08 */	addi r3, r1, 8
-/* 80313880 003107C0  4B FF F9 AD */	bl J3DDifferedTexMtx_NS_loadExecute
+/* 80313880 003107C0  4B FF F9 AD */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_80313884:
 /* 80313884 003107C4  38 61 00 08 */	addi r3, r1, 8
 /* 80313888 003107C8  1C 9E 00 03 */	mulli r4, r30, 3
@@ -577,7 +577,7 @@ lbl_80313884:
 /* 80313914 00310854  28 00 00 00 */	cmplwi r0, 0
 /* 80313918 00310858  41 82 00 0C */	beq lbl_80313924
 /* 8031391C 0031085C  38 61 00 08 */	addi r3, r1, 8
-/* 80313920 00310860  4B FF F9 0D */	bl J3DDifferedTexMtx_NS_loadExecute
+/* 80313920 00310860  4B FF F9 0D */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_80313924:
 /* 80313924 00310864  80 7F 00 40 */	lwz r3, 0x40(r31)
 /* 80313928 00310868  80 63 00 30 */	lwz r3, 0x30(r3)
@@ -617,7 +617,7 @@ lbl_80313924:
 /* 803139B0 003108F0  28 00 00 00 */	cmplwi r0, 0
 /* 803139B4 003108F4  41 82 00 0C */	beq lbl_803139C0
 /* 803139B8 003108F8  38 61 00 08 */	addi r3, r1, 8
-/* 803139BC 003108FC  4B FF F8 71 */	bl J3DDifferedTexMtx_NS_loadExecute
+/* 803139BC 003108FC  4B FF F8 71 */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_803139C0:
 /* 803139C0 00310900  38 61 00 08 */	addi r3, r1, 8
 /* 803139C4 00310904  1F DE 00 03 */	mulli r30, r30, 3
@@ -661,7 +661,7 @@ lbl_803139FC:
 /* 80313A58 00310998  38 A1 00 08 */	addi r5, r1, 8
 /* 80313A5C 0031099C  48 03 2A 89 */	bl PSMTXConcat
 /* 80313A60 003109A0  38 61 00 08 */	addi r3, r1, 8
-/* 80313A64 003109A4  4B FF F7 C9 */	bl J3DDifferedTexMtx_NS_loadExecute
+/* 80313A64 003109A4  4B FF F7 C9 */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_80313A68:
 /* 80313A68 003109A8  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 80313A6C 003109AC  3B E3 4A C8 */	addi r31, r3, lbl_80434AC8@l
@@ -721,7 +721,7 @@ lbl_80313AB0:
 /* 80313B40 00310A80  28 00 00 00 */	cmplwi r0, 0
 /* 80313B44 00310A84  41 82 00 0C */	beq lbl_80313B50
 /* 80313B48 00310A88  38 61 00 08 */	addi r3, r1, 8
-/* 80313B4C 00310A8C  4B FF F6 E1 */	bl J3DDifferedTexMtx_NS_loadExecute
+/* 80313B4C 00310A8C  4B FF F6 E1 */	bl loadExecute__17J3DDifferedTexMtxFPA4_Cf
 lbl_80313B50:
 /* 80313B50 00310A90  38 61 00 08 */	addi r3, r1, 8
 /* 80313B54 00310A94  1C 9E 00 03 */	mulli r4, r30, 3

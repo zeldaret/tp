@@ -12,7 +12,7 @@
 /* 8000D668 0000A5A8  7D 3F 4B 78 */ mr r31, r9
 /* 8000D66C 0000A5AC  90 A3 00 14 */ stw r5, 0x14(r3)
 /* 8000D670 0000A5B0  80 63 00 14 */ lwz r3, 0x14(r3)
-/* 8000D674 0000A5B4  48 31 DA 4D */ bl J3DAnmTextureSRTKey_NS_searchUpdateMaterialID
+/* 8000D674 0000A5B4  48 31 DA 4D */ bl searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable
 /* 8000D678 0000A5B8  2C 1C 00 00 */ cmpwi r28, 0
 /* 8000D67C 0000A5BC  41 82 00 3C */ beq lbl_8000D6B8
 /* 8000D680 0000A5C0  2C 1D 00 00 */ cmpwi r29, 0

@@ -3,7 +3,7 @@
 /* 800E3888 000E07C8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800E388C 000E07CC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E3890 000E07D0  7C 7F 1B 78 */ mr r31, r3
-/* 800E3894 000E07D4  48 07 BE 05 */ bl daPy_py_c_NS_checkCarryStartLightBallA
+/* 800E3894 000E07D4  48 07 BE 05 */ bl checkCarryStartLightBallA__9daPy_py_cFv
 /* 800E3898 000E07D8  28 03 00 00 */ cmplwi r3, 0
 /* 800E389C 000E07DC  41 82 00 14 */ beq lbl_800E38B0
 /* 800E38A0 000E07E0  7F E3 FB 78 */ mr r3, r31
@@ -11,7 +11,7 @@
 /* 800E38A8 000E07E8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E38AC 000E07EC  40 82 00 20 */ bne lbl_800E38CC
 lbl_800E38B0:
-/* 800E38B0 000E07F0  48 07 BE 81 */ bl daPy_py_c_NS_checkCarryStartLightBallB
+/* 800E38B0 000E07F0  48 07 BE 81 */ bl checkCarryStartLightBallB__9daPy_py_cFv
 /* 800E38B4 000E07F4  28 03 00 00 */ cmplwi r3, 0
 /* 800E38B8 000E07F8  41 82 00 1C */ beq lbl_800E38D4
 /* 800E38BC 000E07FC  7F E3 FB 78 */ mr r3, r31

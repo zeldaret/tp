@@ -22,7 +22,7 @@
 /* 800BF554 000BC494  C0 1D 37 E8 */ lfs f0, 0x37e8(r29)
 /* 800BF558 000BC498  D0 01 00 34 */ stfs f0, 0x34(r1)
 /* 800BF55C 000BC49C  A0 7D 2F DC */ lhz r3, 0x2fdc(r29)
-/* 800BF560 000BC4A0  48 09 F6 59 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800BF560 000BC4A0  48 09 F6 59 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800BF564 000BC4A4  2C 03 00 00 */ cmpwi r3, 0
 /* 800BF568 000BC4A8  40 82 00 10 */ bne lbl_800BF578
 /* 800BF56C 000BC4AC  A0 7D 2F DC */ lhz r3, 0x2fdc(r29)
@@ -32,7 +32,7 @@ lbl_800BF578:
 /* 800BF578 000BC4B8  3B E1 00 2C */ addi r31, r1, 0x2c
 /* 800BF57C 000BC4BC  48 00 00 20 */ b lbl_800BF59C
 lbl_800BF580:
-/* 800BF580 000BC4C0  48 09 F6 11 */ bl daPy_py_c_NS_checkBowItem
+/* 800BF580 000BC4C0  48 09 F6 11 */ bl checkBowItem__9daPy_py_cFi
 /* 800BF584 000BC4C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800BF588 000BC4C8  41 82 00 14 */ beq lbl_800BF59C
 /* 800BF58C 000BC4CC  80 7D 28 28 */ lwz r3, 0x2828(r29)
@@ -83,19 +83,19 @@ lbl_800BF608:
 /* 800BF638 000BC578  C0 01 00 1C */ lfs f0, 0x1c(r1)
 /* 800BF63C 000BC57C  D0 1E 00 08 */ stfs f0, 8(r30)
 /* 800BF640 000BC580  A0 7D 2F DC */ lhz r3, 0x2fdc(r29)
-/* 800BF644 000BC584  48 09 F5 75 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800BF644 000BC584  48 09 F5 75 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800BF648 000BC588  2C 03 00 00 */ cmpwi r3, 0
 /* 800BF64C 000BC58C  41 82 00 84 */ beq lbl_800BF6D0
 /* 800BF650 000BC590  38 7D 1B B8 */ addi r3, r29, 0x1bb8
 /* 800BF654 000BC594  38 9D 38 34 */ addi r4, r29, 0x3834
 /* 800BF658 000BC598  38 BD 37 E0 */ addi r5, r29, 0x37e0
 /* 800BF65C 000BC59C  7F A6 EB 78 */ mr r6, r29
-/* 800BF660 000BC5A0  4B FB 87 05 */ bl dBgS_LinChk_NS_Set
+/* 800BF660 000BC5A0  4B FB 87 05 */ bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800BF664 000BC5A4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800BF668 000BC5A8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BF66C 000BC5AC  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BF670 000BC5B0  38 9D 1B B8 */ addi r4, r29, 0x1bb8
-/* 800BF674 000BC5B4  4B FB 4D 41 */ bl cBgS_NS_LineCross
+/* 800BF674 000BC5B4  4B FB 4D 41 */ bl LineCross__4cBgSFP11cBgS_LinChk
 /* 800BF678 000BC5B8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BF67C 000BC5BC  41 82 00 30 */ beq lbl_800BF6AC
 /* 800BF680 000BC5C0  C0 1D 1B E8 */ lfs f0, 0x1be8(r29)
@@ -151,12 +151,12 @@ lbl_800BF728:
 /* 800BF72C 000BC66C  7F E4 FB 78 */ mr r4, r31
 /* 800BF730 000BC670  7F C5 F3 78 */ mr r5, r30
 /* 800BF734 000BC674  7F A6 EB 78 */ mr r6, r29
-/* 800BF738 000BC678  4B FB 86 2D */ bl dBgS_LinChk_NS_Set
+/* 800BF738 000BC678  4B FB 86 2D */ bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800BF73C 000BC67C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800BF740 000BC680  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BF744 000BC684  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BF748 000BC688  7F 84 E3 78 */ mr r4, r28
-/* 800BF74C 000BC68C  4B FB 4C 69 */ bl cBgS_NS_LineCross
+/* 800BF74C 000BC68C  4B FB 4C 69 */ bl LineCross__4cBgSFP11cBgS_LinChk
 /* 800BF750 000BC690  54 63 06 3F */ clrlwi. r3, r3, 0x18
 /* 800BF754 000BC694  41 82 00 28 */ beq lbl_800BF77C
 /* 800BF758 000BC698  C0 1C 00 30 */ lfs f0, 0x30(r28)

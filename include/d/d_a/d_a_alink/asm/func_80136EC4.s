@@ -28,7 +28,7 @@
 /* 80136F30 00133E70  38 80 00 05 */ li r4, 5
 /* 80136F34 00133E74  38 A0 00 01 */ li r5, 1
 /* 80136F38 00133E78  38 C1 00 08 */ addi r6, r1, 8
-/* 80136F3C 00133E7C  4B F3 8B D5 */ bl dVibration_c_NS_StartQuake
+/* 80136F3C 00133E7C  4B F3 8B D5 */ bl StartQuake__12dVibration_cFii4cXyz
 /* 80136F40 00133E80  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 80136F44 00133E84  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 80136F48 00133E88  7C 08 03 A6 */ mtlr r0

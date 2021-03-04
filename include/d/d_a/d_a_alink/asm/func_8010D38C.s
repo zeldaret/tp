@@ -121,7 +121,7 @@ lbl_8010D52C:
 lbl_8010D550:
 /* 8010D550 0010A490  3B DF 1F D0 */ addi r30, r31, 0x1fd0
 /* 8010D554 0010A494  7F C3 F3 78 */ mr r3, r30
-/* 8010D558 0010A498  48 05 0F 75 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8010D558 0010A498  48 05 0F 75 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010D55C 0010A49C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010D560 0010A4A0  40 82 00 38 */ bne lbl_8010D598
 /* 8010D564 0010A4A4  C0 3F 33 AC */ lfs f1, 0x33ac(r31)

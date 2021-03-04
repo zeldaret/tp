@@ -20,10 +20,10 @@ void dMeterHaihai_c_NS_playBtkAnime(void);
 void dMeterHaihai_c_NS_updateHaihai(void);
 void dPaneClass_showNullPane(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
-void J2DAnmLoaderDataBase_NS_load(void);
-void J2DScreen_NS_animation(void);
-void J2DScreen_NS_draw(void);
-void J2DScreen_NS_setPriority(void);
+void load__20J2DAnmLoaderDataBaseFPCv(void);
+void animation__9J2DScreenFv(void);
+void draw__9J2DScreenFffPC14J2DGrafContext(void);
+void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 void rotate__7J2DPaneFff13J2DRotateAxisf(void);
 }
 

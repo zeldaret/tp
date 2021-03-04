@@ -22,7 +22,7 @@ lbl_801122A4:
 /* 801122C0 0010F200  7C 64 1B 79 */ or. r4, r3, r3
 /* 801122C4 0010F204  41 82 00 0C */ beq lbl_801122D0
 /* 801122C8 0010F208  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 801122CC 0010F20C  48 04 C9 ED */ bl daPy_actorKeep_c_NS_setData
+/* 801122CC 0010F20C  48 04 C9 ED */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_801122D0:
 /* 801122D0 0010F210  38 00 00 00 */ li r0, 0
 /* 801122D4 0010F214  B0 1F 30 0C */ sth r0, 0x300c(r31)

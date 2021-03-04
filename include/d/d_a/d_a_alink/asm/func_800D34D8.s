@@ -207,11 +207,11 @@ lbl_800D3774:
 /* 800D37C4 000D0704  4B F9 FD 79 */ bl dAttention_c_NS_LockonTarget
 /* 800D37C8 000D0708  7C 64 1B 78 */ mr r4, r3
 /* 800D37CC 000D070C  38 7C 28 0C */ addi r3, r28, 0x280c
-/* 800D37D0 000D0710  48 08 B4 E9 */ bl daPy_actorKeep_c_NS_setData
+/* 800D37D0 000D0710  48 08 B4 E9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800D37D4 000D0714  48 00 00 0C */ b lbl_800D37E0
 lbl_800D37D8:
 /* 800D37D8 000D0718  38 7C 28 0C */ addi r3, r28, 0x280c
-/* 800D37DC 000D071C  48 08 B5 21 */ bl daPy_actorKeep_c_NS_clearData
+/* 800D37DC 000D071C  48 08 B5 21 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800D37E0:
 /* 800D37E0 000D0720  88 1C 05 68 */ lbz r0, 0x568(r28)
 /* 800D37E4 000D0724  28 00 00 1A */ cmplwi r0, 0x1a

@@ -62,7 +62,7 @@
 /* 800D9608 000D6548  4B FF D8 1D */ bl daAlink_c_NS_freezeTimerDamage
 lbl_800D960C:
 /* 800D960C 000D654C  7F E3 FB 78 */ mr r3, r31
-/* 800D9610 000D6550  48 08 4E BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D9610 000D6550  48 08 4E BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D9614 000D6554  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D9618 000D6558  41 82 00 68 */ beq lbl_800D9680
 /* 800D961C 000D655C  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

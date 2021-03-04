@@ -230,7 +230,7 @@ lbl_800B9C90:
 /* 800B9CA0 000B6BE0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800B9CA4 000B6BE4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B9CA8 000B6BE8  38 63 4F F8 */ addi r3, r3, 0x4ff8
-/* 800B9CAC 000B6BEC  4B F8 E7 3D */ bl dEvent_manager_c_NS_getRunEventName
+/* 800B9CAC 000B6BEC  4B F8 E7 3D */ bl getRunEventName__16dEvent_manager_cFv
 /* 800B9CB0 000B6BF0  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800B9CB4 000B6BF4  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800B9CB8 000B6BF8  38 84 04 87 */ addi r4, r4, 0x487
@@ -241,7 +241,7 @@ lbl_800B9CC8:
 /* 800B9CC8 000B6C08  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800B9CCC 000B6C0C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B9CD0 000B6C10  38 63 4F F8 */ addi r3, r3, 0x4ff8
-/* 800B9CD4 000B6C14  4B F8 E7 15 */ bl dEvent_manager_c_NS_getRunEventName
+/* 800B9CD4 000B6C14  4B F8 E7 15 */ bl getRunEventName__16dEvent_manager_cFv
 /* 800B9CD8 000B6C18  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800B9CDC 000B6C1C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800B9CE0 000B6C20  38 84 04 8D */ addi r4, r4, 0x48d

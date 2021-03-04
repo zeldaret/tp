@@ -15,7 +15,7 @@ void copyMemory__7JKRHeapFPvPvUl(void);
 void DCInvalidateRange(void*, u32);
 void fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii(void);
 void free__7JKRHeapFPv(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 }
@@ -288,14 +288,14 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
         const char* file = lbl_8039D1B0;           // "JKRDvdArchive.cpp"
         const char* format = lbl_8039D1B0 + 0x12;  // "%s"
         const char* arg1 = lbl_8039D1B0 + 0x15;    // "Sorry, not applied for SZP archive.\n"
-        JUTException_NS_panic_f(file, 0x289, format, arg1);
+        panic_f__12JUTExceptionFPCciPCce(file, 0x289, format, arg1);
     }
 
     default: {
         const char* file = lbl_8039D1B0;           // "JKRDvdArchive.cpp"
         const char* format = lbl_8039D1B0 + 0x12;  // "%s"
         const char* arg1 = lbl_8039D1B0 + 0x3A;    // "??? bad sequence\n"
-        JUTException_NS_panic_f(file, 0x28d, format, arg1);
+        panic_f__12JUTExceptionFPCciPCce(file, 0x28d, format, arg1);
         return 0;
     }
     }
@@ -359,14 +359,14 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
         const char* file = lbl_8039D1B0;           // "JKRDvdArchive.cpp"
         const char* format = lbl_8039D1B0 + 0x12;  // "%s"
         const char* arg1 = lbl_8039D1B0 + 0x4c;    // "Sorry, not applied SZP archive.\n"
-        JUTException_NS_panic_f(file, 0x2f2, format, arg1);
+        panic_f__12JUTExceptionFPCciPCce(file, 0x2f2, format, arg1);
     }
 
     default: {
         const char* file = lbl_8039D1B0;           // "JKRDvdArchive.cpp"
         const char* format = lbl_8039D1B0 + 0x12;  // "%s"
         const char* arg1 = lbl_8039D1B0 + 0x3A;    // "??? bad sequence\n"
-        JUTException_NS_panic_f(file, 0x2f6, format, arg1);
+        panic_f__12JUTExceptionFPCciPCce(file, 0x2f6, format, arg1);
         return 0;
     }
     }

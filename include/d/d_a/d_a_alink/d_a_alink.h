@@ -275,7 +275,7 @@ void tgHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfP12dCcD_GObjInf(fopAc
                                                                            dCcD_GObjInf*,
                                                                            dCcD_GObjInf*);
 void coHitCallback__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*);
-void J3DMaterialAnm_NS_calc(void);
+void calc__14J3DMaterialAnmCFP11J3DMaterial(void);
 void mDoMtx_stack_c_NS_transM(float, float, float);
 void daAlink_c_NS_concatMagneBootInvMtx(void);
 void mDoMtx_ZXYrotM(void);

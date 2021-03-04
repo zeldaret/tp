@@ -83,7 +83,7 @@ lbl_800EE014:
 /* 800EE028 000EAF68  40 82 00 24 */ bne lbl_800EE04C
 lbl_800EE02C:
 /* 800EE02C 000EAF6C  38 7D 20 00 */ addi r3, r29, 0x2000
-/* 800EE030 000EAF70  48 07 04 9D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800EE030 000EAF70  48 07 04 9D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800EE034 000EAF74  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EE038 000EAF78  41 82 00 14 */ beq lbl_800EE04C
 /* 800EE03C 000EAF7C  7F A3 EB 78 */ mr r3, r29
@@ -371,7 +371,7 @@ lbl_800EE408:
 lbl_800EE45C:
 /* 800EE45C 000EB39C  3B 80 00 01 */ li r28, 1
 /* 800EE460 000EB3A0  38 7D 1F D0 */ addi r3, r29, 0x1fd0
-/* 800EE464 000EB3A4  48 07 00 69 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800EE464 000EB3A4  48 07 00 69 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800EE468 000EB3A8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EE46C 000EB3AC  40 82 00 50 */ bne lbl_800EE4BC
 /* 800EE470 000EB3B0  3B C0 00 00 */ li r30, 0

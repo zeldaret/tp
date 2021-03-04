@@ -44,7 +44,7 @@ lbl_80123E10:
 /* 80123E30 00120D70  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 80123E34 00120D74  38 63 02 10 */ addi r3, r3, 0x210
 /* 80123E38 00120D78  80 9E 32 90 */ lwz r4, 0x3290(r30)
-/* 80123E3C 00120D7C  4B F2 7A DD */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 80123E3C 00120D7C  4B F2 7A DD */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 80123E40 00120D80  28 03 00 00 */ cmplwi r3, 0
 /* 80123E44 00120D84  41 82 00 20 */ beq lbl_80123E64
 /* 80123E48 00120D88  88 63 00 BB */ lbz r3, 0xbb(r3)

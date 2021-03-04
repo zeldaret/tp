@@ -9,10 +9,10 @@
 /* 8002FD94 0002CCD4  3C 7E 00 02 */ addis r3, r30, 2
 /* 8002FD98 0002CCD8  38 80 FF FF */ li r4, -1
 /* 8002FD9C 0002CCDC  38 63 C2 F8 */ addi r3, r3, -15624
-/* 8002FDA0 0002CCE0  48 00 C2 11 */ bl dRes_control_c_NS_dtor
+/* 8002FDA0 0002CCE0  48 00 C2 11 */ bl __dt__14dRes_control_cFv
 /* 8002FDA4 0002CCE4  38 7E 5F 64 */ addi r3, r30, 0x5f64
 /* 8002FDA8 0002CCE8  38 80 FF FF */ li r4, -1
-/* 8002FDAC 0002CCEC  48 02 66 E1 */ bl dDlst_list_c_NS_dtor
+/* 8002FDAC 0002CCEC  48 02 66 E1 */ bl __dt__12dDlst_list_cFv
 /* 8002FDB0 0002CCF0  38 7E 0F 38 */ addi r3, r30, 0xf38
 /* 8002FDB4 0002CCF4  38 80 FF FF */ li r4, -1
 /* 8002FDB8 0002CCF8  48 00 00 31 */ bl dComIfG_play_c_NS_dtor

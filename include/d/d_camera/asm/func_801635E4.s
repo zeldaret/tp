@@ -12,7 +12,7 @@
 /* 80163610 00160550  38 61 00 08 */ addi r3, r1, 8
 /* 80163614 00160554  7F 44 D3 78 */ mr r4, r26
 /* 80163618 00160558  80 BA 01 80 */ lwz r5, 0x180(r26)
-/* 8016361C 0016055C  4B F3 41 41 */ bl dCamera_c_NS_positionOf
+/* 8016361C 0016055C  4B F3 41 41 */ bl positionOf__9dCamera_cFP10fopAc_ac_c
 /* 80163620 00160560  C0 01 00 08 */ lfs f0, 8(r1)
 /* 80163624 00160564  D0 01 00 14 */ stfs f0, 0x14(r1)
 /* 80163628 00160568  C0 21 00 0C */ lfs f1, 0xc(r1)
@@ -341,7 +341,7 @@ lbl_80163AAC:
 lbl_80163AB0:
 /* 80163AB0 001609F0  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 80163AB4 001609F4  41 82 00 0C */ beq lbl_80163AC0
-/* 80163AB8 001609F8  4B FF BE 19 */ bl daPy_py_c_NS_getThrowBoomerangActor
+/* 80163AB8 001609F8  4B FF BE 19 */ bl getThrowBoomerangActor__9daPy_py_cFv
 /* 80163ABC 001609FC  48 00 00 08 */ b lbl_80163AC4
 lbl_80163AC0:
 /* 80163AC0 00160A00  38 60 00 00 */ li r3, 0

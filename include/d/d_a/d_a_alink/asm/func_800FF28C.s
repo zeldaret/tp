@@ -21,7 +21,7 @@
 /* 800FF2DC 000FC21C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FF2E0 000FC220  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800FF2E4 000FC224  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 800FF2E8 000FC228  4B F7 51 B9 */ bl cBgS_NS_GroundCross
+/* 800FF2E8 000FC228  4B F7 51 B9 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800FF2EC 000FC22C  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 800FF2F0 000FC230  C0 5F 05 98 */ lfs f2, 0x598(r31)
 /* 800FF2F4 000FC234  EC 00 10 28 */ fsubs f0, f0, f2

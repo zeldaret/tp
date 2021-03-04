@@ -20,8 +20,8 @@ J3DDeformData:
 /* 8032E228 0032B168  90 03 00 24 */	stw r0, 0x24(r3)
 /* 8032E22C 0032B16C  4E 80 00 20 */	blr 
 
-.global J3DDeformData_NS_offAllFlag
-J3DDeformData_NS_offAllFlag:
+.global offAllFlag__13J3DDeformDataFUl
+offAllFlag__13J3DDeformDataFUl:
 /* 8032E230 0032B170  38 E0 00 00 */	li r7, 0
 /* 8032E234 0032B174  7C 86 20 F8 */	nor r6, r4, r4
 /* 8032E238 0032B178  48 00 00 28 */	b lbl_8032E260
@@ -42,20 +42,20 @@ lbl_8032E260:
 /* 8032E26C 0032B1AC  41 80 FF D0 */	blt lbl_8032E23C
 /* 8032E270 0032B1B0  4E 80 00 20 */	blr 
 
-.global J3DDeformData_NS_deform
-J3DDeformData_NS_deform:
+.global deform__13J3DDeformDataFP8J3DModel
+deform__13J3DDeformDataFP8J3DModel:
 /* 8032E274 0032B1B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032E278 0032B1B8  7C 08 02 A6 */	mflr r0
 /* 8032E27C 0032B1BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032E280 0032B1C0  38 84 00 88 */	addi r4, r4, 0x88
-/* 8032E284 0032B1C4  48 00 00 15 */	bl J3DDeformData_NS_deform_X1_
+/* 8032E284 0032B1C4  48 00 00 15 */	bl deform__13J3DDeformDataFP8J3DModel_X1_
 /* 8032E288 0032B1C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8032E28C 0032B1CC  7C 08 03 A6 */	mtlr r0
 /* 8032E290 0032B1D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032E294 0032B1D4  4E 80 00 20 */	blr 
 
-.global J3DDeformData_NS_deform_X1_
-J3DDeformData_NS_deform_X1_:
+.global deform__13J3DDeformDataFP8J3DModel_X1_
+deform__13J3DDeformDataFP8J3DModel_X1_:
 /* 8032E298 0032B1D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032E29C 0032B1DC  7C 08 02 A6 */	mflr r0
 /* 8032E2A0 0032B1E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -81,7 +81,7 @@ lbl_8032E2DC:
 /* 8032E2EC 0032B22C  7C 64 00 2E */	lwzx r3, r4, r0
 /* 8032E2F0 0032B230  7F E4 FB 78 */	mr r4, r31
 /* 8032E2F4 0032B234  7F C5 F3 78 */	mr r5, r30
-/* 8032E2F8 0032B238  48 00 00 C5 */	bl J3DDeformer_NS_deform
+/* 8032E2F8 0032B238  48 00 00 C5 */	bl deform__11J3DDeformerFP15J3DVertexBufferUs
 /* 8032E2FC 0032B23C  3B DE 00 01 */	addi r30, r30, 1
 lbl_8032E300:
 /* 8032E300 0032B240  57 C3 04 3E */	clrlwi r3, r30, 0x10
@@ -110,8 +110,8 @@ lbl_8032E300:
 /* 8032E35C 0032B29C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032E360 0032B2A0  4E 80 00 20 */	blr 
 
-.global J3DDeformData_NS_setAnm
-J3DDeformData_NS_setAnm:
+.global setAnm__13J3DDeformDataFP13J3DAnmCluster
+setAnm__13J3DDeformDataFP13J3DAnmCluster:
 /* 8032E364 0032B2A4  38 E0 00 00 */	li r7, 0
 /* 8032E368 0032B2A8  48 00 00 20 */	b lbl_8032E388
 lbl_8032E36C:
@@ -140,8 +140,8 @@ J3DDeformer:
 /* 8032E3B4 0032B2F4  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8032E3B8 0032B2F8  4E 80 00 20 */	blr 
 
-.global J3DDeformer_NS_deform
-J3DDeformer_NS_deform:
+.global deform__11J3DDeformerFP15J3DVertexBufferUs
+deform__11J3DDeformerFP15J3DVertexBufferUs:
 /* 8032E3BC 0032B2FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032E3C0 0032B300  7C 08 02 A6 */	mflr r0
 /* 8032E3C4 0032B304  90 01 00 24 */	stw r0, 0x24(r1)
@@ -197,7 +197,7 @@ lbl_8032E46C:
 /* 8032E47C 0032B3BC  7F A4 EB 78 */	mr r4, r29
 /* 8032E480 0032B3C0  7F C5 F3 78 */	mr r5, r30
 /* 8032E484 0032B3C4  80 DC 00 08 */	lwz r6, 8(r28)
-/* 8032E488 0032B3C8  48 00 06 2D */	bl J3DDeformer_NS_deform_X1_
+/* 8032E488 0032B3C8  48 00 06 2D */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_X1_
 lbl_8032E48C:
 /* 8032E48C 0032B3CC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8032E490 0032B3D0  48 03 3D 8D */	bl _restgpr_26
@@ -206,8 +206,8 @@ lbl_8032E48C:
 /* 8032E49C 0032B3DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032E4A0 0032B3E0  4E 80 00 20 */	blr 
 
-.global J3DDeformer_NS_deform_VtxPosF32
-J3DDeformer_NS_deform_VtxPosF32:
+.global deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32
+deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32:
 /* 8032E4A4 0032B3E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032E4A8 0032B3E8  7C 08 02 A6 */	mflr r0
 /* 8032E4AC 0032B3EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -305,8 +305,8 @@ lbl_8032E5E8:
 /* 8032E604 0032B544  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032E608 0032B548  4E 80 00 20 */	blr 
 
-.global J3DDeformer_NS_deform_VtxNrmF32
-J3DDeformer_NS_deform_VtxNrmF32:
+.global deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32
+deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32:
 /* 8032E60C 0032B54C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8032E610 0032B550  7C 08 02 A6 */	mflr r0
 /* 8032E614 0032B554  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -632,8 +632,8 @@ lbl_8032EA68:
 /* 8032EAAC 0032B9EC  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8032EAB0 0032B9F0  4E 80 00 20 */	blr 
 
-.global J3DDeformer_NS_deform_X1_
-J3DDeformer_NS_deform_X1_:
+.global deform__11J3DDeformerFP15J3DVertexBufferUs_X1_
+deform__11J3DDeformerFP15J3DVertexBufferUs_X1_:
 /* 8032EAB4 0032B9F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032EAB8 0032B9F8  7C 08 02 A6 */	mflr r0
 /* 8032EABC 0032B9FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -677,13 +677,13 @@ lbl_8032EB30:
 /* 8032EB4C 0032BA8C  7F A3 EB 78 */	mr r3, r29
 /* 8032EB50 0032BA90  A0 9C 00 10 */	lhz r4, 0x10(r28)
 /* 8032EB54 0032BA94  7F E5 FB 78 */	mr r5, r31
-/* 8032EB58 0032BA98  48 00 00 75 */	bl J3DDeformer_NS_normalizeWeight
+/* 8032EB58 0032BA98  48 00 00 75 */	bl normalizeWeight__11J3DDeformerFiPf
 /* 8032EB5C 0032BA9C  7F A3 EB 78 */	mr r3, r29
 /* 8032EB60 0032BAA0  7F C4 F3 78 */	mr r4, r30
 /* 8032EB64 0032BAA4  7F 85 E3 78 */	mr r5, r28
 /* 8032EB68 0032BAA8  7F 66 DB 78 */	mr r6, r27
 /* 8032EB6C 0032BAAC  7F E7 FB 78 */	mr r7, r31
-/* 8032EB70 0032BAB0  4B FF F9 35 */	bl J3DDeformer_NS_deform_VtxPosF32
+/* 8032EB70 0032BAB0  4B FF F9 35 */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32
 /* 8032EB74 0032BAB4  80 1D 00 10 */	lwz r0, 0x10(r29)
 /* 8032EB78 0032BAB8  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8032EB7C 0032BABC  41 82 00 38 */	beq lbl_8032EBB4
@@ -699,7 +699,7 @@ lbl_8032EB30:
 /* 8032EBA4 0032BAE4  7F 85 E3 78 */	mr r5, r28
 /* 8032EBA8 0032BAE8  7F 66 DB 78 */	mr r6, r27
 /* 8032EBAC 0032BAEC  7F E7 FB 78 */	mr r7, r31
-/* 8032EBB0 0032BAF0  4B FF FA 5D */	bl J3DDeformer_NS_deform_VtxNrmF32
+/* 8032EBB0 0032BAF0  4B FF FA 5D */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32
 lbl_8032EBB4:
 /* 8032EBB4 0032BAF4  39 61 00 20 */	addi r11, r1, 0x20
 /* 8032EBB8 0032BAF8  48 03 36 69 */	bl _restgpr_27
@@ -708,8 +708,8 @@ lbl_8032EBB4:
 /* 8032EBC4 0032BB04  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032EBC8 0032BB08  4E 80 00 20 */	blr 
 
-.global J3DDeformer_NS_normalizeWeight
-J3DDeformer_NS_normalizeWeight:
+.global normalizeWeight__11J3DDeformerFiPf
+normalizeWeight__11J3DDeformerFiPf:
 /* 8032EBCC 0032BB0C  C0 22 CA 7C */	lfs f1, lbl_8045647C-_SDA2_BASE_(r2)
 /* 8032EBD0 0032BB10  38 60 00 00 */	li r3, 0
 /* 8032EBD4 0032BB14  48 00 00 14 */	b lbl_8032EBE8

@@ -19,7 +19,7 @@ lbl_801204B4:
 /* 801204B8 0011D3F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801204BC 0011D3FC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 801204C0 0011D400  80 84 31 84 */ lwz r4, 0x3184(r4)
-/* 801204C4 0011D404  4B F2 7C B9 */ bl dEvent_manager_c_NS_cutEnd
+/* 801204C4 0011D404  4B F2 7C B9 */ bl cutEnd__16dEvent_manager_cFi
 /* 801204C8 0011D408  38 60 00 01 */ li r3, 1
 /* 801204CC 0011D40C  48 00 00 24 */ b lbl_801204F0
 lbl_801204D0:

@@ -92,7 +92,7 @@ lbl_800A563C:
 /* 800A5678 000A25B8  41 82 00 24 */ beq lbl_800A569C
 /* 800A567C 000A25BC  28 03 00 48 */ cmplwi r3, 0x48
 /* 800A5680 000A25C0  41 82 00 1C */ beq lbl_800A569C
-/* 800A5684 000A25C4  48 0B 95 35 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800A5684 000A25C4  48 0B 95 35 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800A5688 000A25C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800A568C 000A25CC  40 82 00 10 */ bne lbl_800A569C
 lbl_800A5690:

@@ -3,13 +3,13 @@
 
 // Additional symbols needed for JAIStreamMgr
 extern "C" {
-void JAIStreamMgr_NS_calc(void);
+void calc__12JAIStreamMgrFv(void);
 void JAIStreamMgr_NS_isActive(void);
-void JAIStreamMgr_NS_mixOut(void);
+void mixOut__12JAIStreamMgrFv(void);
 void JAIStreamMgr_NS_startSound(void);
-void JAIStreamMgr_NS_stop(void);
-void JAIStreamMgr_NS_stop_X1_(void);
-void JAIStreamMgr_NS_stopSoundID(void);
+void stop__12JAIStreamMgrFv(void);
+void stop__12JAIStreamMgrFv_X1_(void);
+void stop__12JAIStreamMgrFvSoundID(void);
 }
 
 #endif  // JAISTREAMMGR_H_

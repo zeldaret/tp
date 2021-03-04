@@ -12,7 +12,7 @@
 /* 8000D738 0000A678  7D 3F 4B 78 */ mr r31, r9
 /* 8000D73C 0000A67C  90 A3 00 14 */ stw r5, 0x14(r3)
 /* 8000D740 0000A680  80 63 00 14 */ lwz r3, 0x14(r3)
-/* 8000D744 0000A684  48 31 E0 3D */ bl J3DAnmTevRegKey_NS_searchUpdateMaterialID
+/* 8000D744 0000A684  48 31 E0 3D */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable
 /* 8000D748 0000A688  2C 1C 00 00 */ cmpwi r28, 0
 /* 8000D74C 0000A68C  41 82 00 3C */ beq lbl_8000D788
 /* 8000D750 0000A690  2C 1D 00 00 */ cmpwi r29, 0

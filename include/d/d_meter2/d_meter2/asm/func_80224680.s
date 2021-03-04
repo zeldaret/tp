@@ -6,7 +6,7 @@
 /* 80224694 002215D4  7C 7F 1B 78 */ mr r31, r3
 /* 80224698 002215D8  3C 60 80 43 */ lis r3, lbl_8042E86C@ha
 /* 8022469C 002215DC  38 63 E8 6C */ addi r3, r3, lbl_8042E86C@l
-/* 802246A0 002215E0  4B FD 57 85 */ bl dMw_HIO_c_NS_getPachinkoFlag
+/* 802246A0 002215E0  4B FD 57 85 */ bl getPachinkoFlag__9dMw_HIO_cFv
 /* 802246A4 002215E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 802246A8 002215E8  41 82 00 40 */ beq lbl_802246E8
 /* 802246AC 002215EC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

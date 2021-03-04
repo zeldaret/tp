@@ -38,7 +38,7 @@ lbl_80124FE8:
 /* 80125030 00121F70  38 C1 00 18 */ addi r6, r1, 0x18
 /* 80125034 00121F74  38 E1 00 08 */ addi r7, r1, 8
 /* 80125038 00121F78  39 00 00 00 */ li r8, 0
-/* 8012503C 00121F7C  4B F1 1C 09 */ bl dJntCol_c_NS_getHitmarkPosAndAngle
+/* 8012503C 00121F7C  4B F1 1C 09 */ bl getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi
 /* 80125040 00121F80  2C 03 FF FF */ cmpwi r3, -1
 /* 80125044 00121F84  41 82 00 CC */ beq lbl_80125110
 /* 80125048 00121F88  80 1E 05 74 */ lwz r0, 0x574(r30)

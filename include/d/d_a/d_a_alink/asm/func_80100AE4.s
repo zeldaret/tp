@@ -22,7 +22,7 @@ lbl_80100B28:
 /* 80100B30 000FDA70  2C 00 00 00 */ cmpwi r0, 0
 /* 80100B34 000FDA74  40 82 00 48 */ bne lbl_80100B7C
 /* 80100B38 000FDA78  7F E3 FB 78 */ mr r3, r31
-/* 80100B3C 000FDA7C  48 05 D9 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80100B3C 000FDA7C  48 05 D9 91 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80100B40 000FDA80  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80100B44 000FDA84  40 82 00 2C */ bne lbl_80100B70
 /* 80100B48 000FDA88  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
@@ -41,7 +41,7 @@ lbl_80100B70:
 /* 80100B78 000FDAB8  48 00 00 20 */ b lbl_80100B98
 lbl_80100B7C:
 /* 80100B7C 000FDABC  7F E3 FB 78 */ mr r3, r31
-/* 80100B80 000FDAC0  48 05 D9 4D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80100B80 000FDAC0  48 05 D9 4D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80100B84 000FDAC4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80100B88 000FDAC8  41 82 00 10 */ beq lbl_80100B98
 /* 80100B8C 000FDACC  7F C3 F3 78 */ mr r3, r30

@@ -46,7 +46,7 @@
 /* 8011F88C 0011C7CC  38 80 00 00 */ li r4, 0
 /* 8011F890 0011C7D0  38 A0 00 CA */ li r5, 0xca
 /* 8011F894 0011C7D4  38 C0 00 00 */ li r6, 0
-/* 8011F898 0011C7D8  48 03 F1 75 */ bl daPy_py_c_NS_setParamData
+/* 8011F898 0011C7D8  48 03 F1 75 */ bl setParamData__9daPy_py_cFiiii
 /* 8011F89C 0011C7DC  90 7F 00 14 */ stw r3, 0x14(r31)
 /* 8011F8A0 0011C7E0  39 61 00 40 */ addi r11, r1, 0x40
 /* 8011F8A4 0011C7E4  48 24 29 85 */ bl _restgpr_29

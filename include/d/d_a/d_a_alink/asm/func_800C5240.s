@@ -11,7 +11,7 @@
 /* 800C5268 000C21A8  64 00 08 00 */ oris r0, r0, 0x800
 /* 800C526C 000C21AC  90 03 05 88 */ stw r0, 0x588(r3)
 /* 800C5270 000C21B0  7F E3 FB 78 */ mr r3, r31
-/* 800C5274 000C21B4  48 09 92 59 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C5274 000C21B4  48 09 92 59 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C5278 000C21B8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C527C 000C21BC  41 82 00 1C */ beq lbl_800C5298
 /* 800C5280 000C21C0  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

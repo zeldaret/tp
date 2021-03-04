@@ -8,13 +8,13 @@ int strcmp(const char*, const char*);
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
-void CPaneMgr_NS_getGlobalVtxCenter(void);
-void CPaneMgr_NS_paneTrans(void);
+void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter(void);
+void paneTrans__8CPaneMgrFff(void);
 void CPaneMgr_X1_(void);
-void CPaneMgrAlpha_NS_getAlphaRate(void);
-void CPaneMgrAlpha_NS_hide(void);
-void CPaneMgrAlpha_NS_setAlphaRate(void);
-void CPaneMgrAlpha_NS_show(void);
+void getAlphaRate__13CPaneMgrAlphaFv(void);
+void hide__13CPaneMgrAlphaFv(void);
+void setAlphaRate__13CPaneMgrAlphaFf(void);
+void show__13CPaneMgrAlphaFv(void);
 void dComIfG_play_c_NS_getLayerNo(int);
 void dMeter2Draw_c_NS_drawPikariHakusha(void);
 void dMeter2Draw_c_NS_setAlphaAnimeMax(void);
@@ -27,8 +27,8 @@ void dMeterHakusha_c_NS_setAlphaHakushaAnimeMax(void);
 void dMeterHakusha_c_NS_setAlphaHakushaAnimeMin(void);
 void dMeterHakusha_c_NS_updateHakusha(void);
 void dPaneClass_showNullPane(void);
-void J2DScreen_NS_draw(void);
-void J2DScreen_NS_setPriority(void);
+void draw__9J2DScreenFffPC14J2DGrafContext(void);
+void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 }
 
 // additional symbols needed for d_meter_hakusha.cpp

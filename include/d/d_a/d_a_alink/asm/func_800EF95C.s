@@ -25,7 +25,7 @@ lbl_800EF9A8:
 lbl_800EF9B8:
 /* 800EF9B8 000EC8F8  38 7A 28 14 */ addi r3, r26, 0x2814
 /* 800EF9BC 000EC8FC  80 9A 27 F4 */ lwz r4, 0x27f4(r26)
-/* 800EF9C0 000EC900  48 06 F2 F9 */ bl daPy_actorKeep_c_NS_setData
+/* 800EF9C0 000EC900  48 06 F2 F9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800EF9C4 000EC904  83 DA 27 F4 */ lwz r30, 0x27f4(r26)
 /* 800EF9C8 000EC908  A8 1E 00 08 */ lha r0, 8(r30)
 /* 800EF9CC 000EC90C  2C 00 00 EE */ cmpwi r0, 0xee

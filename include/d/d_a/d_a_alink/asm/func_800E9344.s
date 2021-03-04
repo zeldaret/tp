@@ -49,7 +49,7 @@ lbl_800E938C:
 /* 800E93F4 000E6334  7C 64 1B 79 */ or. r4, r3, r3
 /* 800E93F8 000E6338  41 82 00 0C */ beq lbl_800E9404
 /* 800E93FC 000E633C  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 800E9400 000E6340  48 07 58 B9 */ bl daPy_actorKeep_c_NS_setData
+/* 800E9400 000E6340  48 07 58 B9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_800E9404:
 /* 800E9404 000E6344  38 00 00 00 */ li r0, 0
 /* 800E9408 000E6348  B0 1F 30 0E */ sth r0, 0x300e(r31)

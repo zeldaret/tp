@@ -13,7 +13,7 @@ COutFontSet_c:
 /* 80225BCC 00222B0C  3C 80 80 3C */	lis r4, lbl_803BFDE8@ha
 /* 80225BD0 00222B10  38 04 FD E8 */	addi r0, r4, lbl_803BFDE8@l
 /* 80225BD4 00222B14  90 03 00 00 */	stw r0, 0(r3)
-/* 80225BD8 00222B18  48 00 00 65 */	bl COutFontSet_c_NS_initialize
+/* 80225BD8 00222B18  48 00 00 65 */	bl initialize__13COutFontSet_cFv
 /* 80225BDC 00222B1C  7F E3 FB 78 */	mr r3, r31
 /* 80225BE0 00222B20  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80225BE4 00222B24  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -40,8 +40,8 @@ lbl_80225C24:
 /* 80225C34 00222B74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80225C38 00222B78  4E 80 00 20 */	blr 
 
-.global COutFontSet_c_NS_initialize
-COutFontSet_c_NS_initialize:
+.global initialize__13COutFontSet_cFv
+initialize__13COutFontSet_cFv:
 /* 80225C3C 00222B7C  38 00 00 00 */	li r0, 0
 /* 80225C40 00222B80  90 03 00 04 */	stw r0, 4(r3)
 /* 80225C44 00222B84  C0 02 B0 10 */	lfs f0, lbl_80454A10-_SDA2_BASE_(r2)
@@ -56,8 +56,8 @@ COutFontSet_c_NS_initialize:
 /* 80225C68 00222BA8  98 03 00 1D */	stb r0, 0x1d(r3)
 /* 80225C6C 00222BAC  4E 80 00 20 */	blr 
 
-.global COutFontSet_c_NS_drawFont
-COutFontSet_c_NS_drawFont:
+.global drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc
+drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc:
 /* 80225C70 00222BB0  90 83 00 04 */	stw r4, 4(r3)
 /* 80225C74 00222BB4  D0 23 00 08 */	stfs f1, 8(r3)
 /* 80225C78 00222BB8  D0 43 00 0C */	stfs f2, 0xc(r3)
@@ -231,7 +231,7 @@ lbl_80225ED0:
 /* 80225ED8 00222E18  83 5E 5C D0 */	lwz r26, 0x5cd0(r30)
 /* 80225EDC 00222E1C  7F E3 FB 78 */	mr r3, r31
 /* 80225EE0 00222E20  7F A4 EB 78 */	mr r4, r29
-/* 80225EE4 00222E24  48 00 26 4D */	bl COutFont_c_NS_getBtiName
+/* 80225EE4 00222E24  48 00 26 4D */	bl getBtiName__10COutFont_cFi
 /* 80225EE8 00222E28  7C 65 1B 78 */	mr r5, r3
 /* 80225EEC 00222E2C  7F 43 D3 78 */	mr r3, r26
 /* 80225EF0 00222E30  3C 80 54 49 */	lis r4, 0x54494D47@ha
@@ -246,7 +246,7 @@ lbl_80225F10:
 /* 80225F10 00222E50  83 5E 5D 30 */	lwz r26, 0x5d30(r30)
 /* 80225F14 00222E54  7F E3 FB 78 */	mr r3, r31
 /* 80225F18 00222E58  7F A4 EB 78 */	mr r4, r29
-/* 80225F1C 00222E5C  48 00 26 15 */	bl COutFont_c_NS_getBtiName
+/* 80225F1C 00222E5C  48 00 26 15 */	bl getBtiName__10COutFont_cFi
 /* 80225F20 00222E60  7C 65 1B 78 */	mr r5, r3
 /* 80225F24 00222E64  7F 43 D3 78 */	mr r3, r26
 /* 80225F28 00222E68  3C 80 54 49 */	lis r4, 0x54494D47@ha
@@ -1138,8 +1138,8 @@ lbl_80226CC8:
 /* 80226CF0 00223C30  38 21 02 10 */	addi r1, r1, 0x210
 /* 80226CF4 00223C34  4E 80 00 20 */	blr 
 
-.global COutFont_c_NS_initialize
-COutFont_c_NS_initialize:
+.global initialize__10COutFont_cFv
+initialize__10COutFont_cFv:
 /* 80226CF8 00223C38  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80226CFC 00223C3C  7C 08 02 A6 */	mflr r0
 /* 80226D00 00223C40  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1151,7 +1151,7 @@ COutFont_c_NS_initialize:
 lbl_80226D18:
 /* 80226D18 00223C58  38 1F 00 04 */	addi r0, r31, 4
 /* 80226D1C 00223C5C  7C 7D 00 2E */	lwzx r3, r29, r0
-/* 80226D20 00223C60  4B FF EF 1D */	bl COutFontSet_c_NS_initialize
+/* 80226D20 00223C60  4B FF EF 1D */	bl initialize__13COutFontSet_cFv
 /* 80226D24 00223C64  3B DE 00 01 */	addi r30, r30, 1
 /* 80226D28 00223C68  2C 1E 00 23 */	cmpwi r30, 0x23
 /* 80226D2C 00223C6C  3B FF 00 04 */	addi r31, r31, 4
@@ -1178,7 +1178,7 @@ lbl_80226D6C:
 /* 80226D7C 00223CBC  40 82 00 14 */	bne lbl_80226D90
 /* 80226D80 00223CC0  7C 63 42 14 */	add r3, r3, r8
 /* 80226D84 00223CC4  80 63 00 04 */	lwz r3, 4(r3)
-/* 80226D88 00223CC8  4B FF EE E9 */	bl COutFontSet_c_NS_drawFont
+/* 80226D88 00223CC8  4B FF EE E9 */	bl drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc
 /* 80226D8C 00223CCC  48 00 00 0C */	b lbl_80226D98
 lbl_80226D90:
 /* 80226D90 00223CD0  39 08 00 04 */	addi r8, r8, 4
@@ -1657,7 +1657,7 @@ lbl_802274D8:
 /* 802274D8 00224418  7F 43 D3 78 */	mr r3, r26
 /* 802274DC 0022441C  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 802274E0 00224420  7C BA C2 AE */	lhax r5, r26, r24
-/* 802274E4 00224424  48 00 0F AD */	bl COutFont_c_NS_setBlendAnime
+/* 802274E4 00224424  48 00 0F AD */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_802274E8:
 /* 802274E8 00224428  7C 1A C2 AE */	lhax r0, r26, r24
 /* 802274EC 0022442C  2C 00 00 14 */	cmpwi r0, 0x14
@@ -1739,7 +1739,7 @@ lbl_8022760C:
 /* 8022760C 0022454C  7F 43 D3 78 */	mr r3, r26
 /* 80227610 00224550  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 80227614 00224554  7C BA 32 AE */	lhax r5, r26, r6
-/* 80227618 00224558  48 00 0E 79 */	bl COutFont_c_NS_setBlendAnime
+/* 80227618 00224558  48 00 0E 79 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_8022761C:
 /* 8022761C 0022455C  7C 7A E8 2E */	lwzx r3, r26, r29
 /* 80227620 00224560  FC 20 F8 90 */	fmr f1, f31
@@ -1772,7 +1772,7 @@ lbl_80227688:
 /* 80227688 002245C8  7F 43 D3 78 */	mr r3, r26
 /* 8022768C 002245CC  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 80227690 002245D0  7C BA 32 AE */	lhax r5, r26, r6
-/* 80227694 002245D4  48 00 0D FD */	bl COutFont_c_NS_setBlendAnime
+/* 80227694 002245D4  48 00 0D FD */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_80227698:
 /* 80227698 002245D8  7C 7A E8 2E */	lwzx r3, r26, r29
 /* 8022769C 002245DC  FC 20 F8 90 */	fmr f1, f31
@@ -1805,7 +1805,7 @@ lbl_80227704:
 /* 80227704 00224644  7F 43 D3 78 */	mr r3, r26
 /* 80227708 00224648  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 8022770C 0022464C  7C BA 32 AE */	lhax r5, r26, r6
-/* 80227710 00224650  48 00 0D 81 */	bl COutFont_c_NS_setBlendAnime
+/* 80227710 00224650  48 00 0D 81 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_80227714:
 /* 80227714 00224654  7C 7A E8 2E */	lwzx r3, r26, r29
 /* 80227718 00224658  FC 20 F8 90 */	fmr f1, f31
@@ -1838,7 +1838,7 @@ lbl_80227780:
 /* 80227780 002246C0  7F 43 D3 78 */	mr r3, r26
 /* 80227784 002246C4  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 80227788 002246C8  7C BA 32 AE */	lhax r5, r26, r6
-/* 8022778C 002246CC  48 00 0D 05 */	bl COutFont_c_NS_setBlendAnime
+/* 8022778C 002246CC  48 00 0D 05 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_80227790:
 /* 80227790 002246D0  7C 7A E8 2E */	lwzx r3, r26, r29
 /* 80227794 002246D4  FC 20 F8 90 */	fmr f1, f31
@@ -1871,7 +1871,7 @@ lbl_802277FC:
 /* 802277FC 0022473C  7F 43 D3 78 */	mr r3, r26
 /* 80227800 00224740  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 80227804 00224744  7C BA C2 AE */	lhax r5, r26, r24
-/* 80227808 00224748  48 00 0C 89 */	bl COutFont_c_NS_setBlendAnime
+/* 80227808 00224748  48 00 0C 89 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_8022780C:
 /* 8022780C 0022474C  7C 1A C2 AE */	lhax r0, r26, r24
 /* 80227810 00224750  2C 00 00 14 */	cmpwi r0, 0x14
@@ -1921,7 +1921,7 @@ lbl_802278B8:
 /* 802278B8 002247F8  7F 43 D3 78 */	mr r3, r26
 /* 802278BC 002247FC  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 802278C0 00224800  7C BA C2 AE */	lhax r5, r26, r24
-/* 802278C4 00224804  48 00 0B CD */	bl COutFont_c_NS_setBlendAnime
+/* 802278C4 00224804  48 00 0B CD */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_802278C8:
 /* 802278C8 00224808  7C 1A C2 AE */	lhax r0, r26, r24
 /* 802278CC 0022480C  2C 00 00 14 */	cmpwi r0, 0x14
@@ -2419,7 +2419,7 @@ lbl_80228064:
 /* 80228064 00224FA4  7F 43 D3 78 */	mr r3, r26
 /* 80228068 00224FA8  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 8022806C 00224FAC  7C BA 32 AE */	lhax r5, r26, r6
-/* 80228070 00224FB0  48 00 04 21 */	bl COutFont_c_NS_setBlendAnime
+/* 80228070 00224FB0  48 00 04 21 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_80228074:
 /* 80228074 00224FB4  38 60 00 00 */	li r3, 0
 /* 80228078 00224FB8  98 61 00 38 */	stb r3, 0x38(r1)
@@ -2507,7 +2507,7 @@ lbl_802281BC:
 /* 802281BC 002250FC  7F 43 D3 78 */	mr r3, r26
 /* 802281C0 00225100  7C 9A E8 2E */	lwzx r4, r26, r29
 /* 802281C4 00225104  7C BA 32 AE */	lhax r5, r26, r6
-/* 802281C8 00225108  48 00 02 C9 */	bl COutFont_c_NS_setBlendAnime
+/* 802281C8 00225108  48 00 02 C9 */	bl setBlendAnime__10COutFont_cFP10J2DPictures
 lbl_802281CC:
 /* 802281CC 0022510C  7C 7A E8 2E */	lwzx r3, r26, r29
 /* 802281D0 00225110  FC 20 F8 90 */	fmr f1, f31
@@ -2694,8 +2694,8 @@ lbl_80228484:
 /* 80228488 002253C8  42 00 FF DC */	bdnz lbl_80228464
 /* 8022848C 002253CC  4E 80 00 20 */	blr 
 
-.global COutFont_c_NS_setBlendAnime
-COutFont_c_NS_setBlendAnime:
+.global setBlendAnime__10COutFont_cFP10J2DPictures
+setBlendAnime__10COutFont_cFP10J2DPictures:
 /* 80228490 002253D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228494 002253D4  7C 08 02 A6 */	mflr r0
 /* 80228498 002253D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2739,8 +2739,8 @@ lbl_8022851C:
 /* 80228528 00225468  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022852C 0022546C  4E 80 00 20 */	blr 
 
-.global COutFont_c_NS_getBtiName
-COutFont_c_NS_getBtiName:
+.global getBtiName__10COutFont_cFi
+getBtiName__10COutFont_cFi:
 /* 80228530 00225470  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228534 00225474  7C 08 02 A6 */	mflr r0
 /* 80228538 00225478  90 01 00 14 */	stw r0, 0x14(r1)

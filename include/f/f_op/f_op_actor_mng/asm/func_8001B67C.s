@@ -50,7 +50,7 @@ lbl_8001B720:
 /* 8001B728 00018668  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8001B72C 0001866C  7F 44 D3 78 */ mr r4, r26
 /* 8001B730 00018670  7F 65 DB 78 */ mr r5, r27
-/* 8001B734 00018674  48 02 CA C1 */ bl dEvent_manager_c_NS_getEventPrio
+/* 8001B734 00018674  48 02 CA C1 */ bl getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs
 /* 8001B738 00018678  54 60 04 3F */ clrlwi. r0, r3, 0x10
 /* 8001B73C 0001867C  41 82 00 0C */ beq lbl_8001B748
 /* 8001B740 00018680  7C 19 03 78 */ mr r25, r0
@@ -61,7 +61,7 @@ lbl_8001B748:
 /* 8001B750 00018690  41 82 00 1C */ beq lbl_8001B76C
 /* 8001B754 00018694  7F 83 E3 78 */ mr r3, r28
 /* 8001B758 00018698  7F 04 C3 78 */ mr r4, r24
-/* 8001B75C 0001869C  48 02 7D A5 */ bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 8001B75C 0001869C  48 02 7D A5 */ bl searchMapEventData__14dEvt_control_cFUcl
 /* 8001B760 000186A0  28 03 00 00 */ cmplwi r3, 0
 /* 8001B764 000186A4  41 82 00 08 */ beq lbl_8001B76C
 /* 8001B768 000186A8  8B 23 00 06 */ lbz r25, 6(r3)
@@ -77,7 +77,7 @@ lbl_8001B76C:
 /* 8001B78C 000186CC  7F A7 EB 78 */ mr r7, r29
 /* 8001B790 000186D0  7F 48 D3 78 */ mr r8, r26
 /* 8001B794 000186D4  7F 6A DB 78 */ mr r10, r27
-/* 8001B798 000186D8  48 02 5E D1 */ bl dEvt_control_c_NS_order
+/* 8001B798 000186D8  48 02 5E D1 */ bl order__14dEvt_control_cFUsUsUsUsPvPvsUc
 lbl_8001B79C:
 /* 8001B79C 000186DC  39 61 00 30 */ addi r11, r1, 0x30
 /* 8001B7A0 000186E0  48 34 6A 75 */ bl _restgpr_24

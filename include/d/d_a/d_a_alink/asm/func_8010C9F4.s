@@ -119,7 +119,7 @@ lbl_8010CB8C:
 lbl_8010CBB0:
 /* 8010CBB0 00109AF0  3B DF 1F D0 */ addi r30, r31, 0x1fd0
 /* 8010CBB4 00109AF4  7F C3 F3 78 */ mr r3, r30
-/* 8010CBB8 00109AF8  48 05 19 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8010CBB8 00109AF8  48 05 19 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010CBBC 00109AFC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010CBC0 00109B00  40 82 00 48 */ bne lbl_8010CC08
 /* 8010CBC4 00109B04  C0 3F 33 AC */ lfs f1, 0x33ac(r31)

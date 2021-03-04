@@ -6,7 +6,7 @@
 /* 8012E850 0012B790  7C 7E 1B 78 */ mr r30, r3
 /* 8012E854 0012B794  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 8012E858 0012B798  7F E3 FB 78 */ mr r3, r31
-/* 8012E85C 0012B79C  48 02 FC 71 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012E85C 0012B79C  48 02 FC 71 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012E860 0012B7A0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012E864 0012B7A4  41 82 00 30 */ beq lbl_8012E894
 /* 8012E868 0012B7A8  88 1E 2F 8E */ lbz r0, 0x2f8e(r30)

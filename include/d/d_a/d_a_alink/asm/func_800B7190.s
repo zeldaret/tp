@@ -17,7 +17,7 @@ lbl_800B71BC:
 /* 800B71CC 000B410C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B71D0 000B4110  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800B71D4 000B4114  38 80 00 1F */ li r4, 0x1f
-/* 800B71D8 000B4118  4B FB 8B BD */ bl dVibration_c_NS_StopQuake
+/* 800B71D8 000B4118  4B FB 8B BD */ bl StopQuake__12dVibration_cFi
 lbl_800B71DC:
 /* 800B71DC 000B411C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800B71E0 000B4120  7C 08 03 A6 */ mtlr r0

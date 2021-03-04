@@ -196,7 +196,7 @@ lbl_8011313C:
 /* 80113168 001100A8  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8011316C 001100AC  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 80113170 001100B0  38 84 0F 38 */ addi r4, r4, 0xf38
-/* 80113174 001100B4  4B F6 39 39 */ bl dBgS_Acch_NS_CrrPos
+/* 80113174 001100B4  4B F6 39 39 */ bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80113178 001100B8  80 7F 07 78 */ lwz r3, 0x778(r31)
 /* 8011317C 001100BC  80 03 00 2C */ lwz r0, 0x2c(r3)
 /* 80113180 001100C0  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a

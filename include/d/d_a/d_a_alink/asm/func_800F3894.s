@@ -5,14 +5,14 @@
 /* 800F38A4 000F07E4  7C 7F 1B 78 */ mr r31, r3
 /* 800F38A8 000F07E8  4B FF A1 7D */ bl daAlink_c_NS_setSyncRidePos
 /* 800F38AC 000F07EC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800F38B0 000F07F0  48 06 AC 1D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F38B0 000F07F0  48 06 AC 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F38B4 000F07F4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F38B8 000F07F8  41 82 00 18 */ beq lbl_800F38D0
 /* 800F38BC 000F07FC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F38C0 000F0800  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F38C4 000F0804  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800F38C8 000F0808  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 800F38CC 000F080C  4B F5 48 B1 */ bl dEvent_manager_c_NS_cutEnd
+/* 800F38CC 000F080C  4B F5 48 B1 */ bl cutEnd__16dEvent_manager_cFi
 lbl_800F38D0:
 /* 800F38D0 000F0810  38 60 00 01 */ li r3, 1
 /* 800F38D4 000F0814  83 E1 00 0C */ lwz r31, 0xc(r1)

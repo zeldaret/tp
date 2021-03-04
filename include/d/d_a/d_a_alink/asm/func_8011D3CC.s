@@ -23,7 +23,7 @@ lbl_8011D40C:
 /* 8011D41C 0011A35C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011D420 0011A360  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011D424 0011A364  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011D428 0011A368  4B F2 AD 55 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011D428 0011A368  4B F2 AD 55 */ bl cutEnd__16dEvent_manager_cFi
 lbl_8011D42C:
 /* 8011D42C 0011A36C  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 8011D430 0011A370  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6

@@ -8,7 +8,7 @@
 /* 80209268 002061A8  54 80 10 3A */ slwi r0, r4, 2
 /* 8020926C 002061AC  7F FD 02 14 */ add r31, r29, r0
 /* 80209270 002061B0  80 7F 00 78 */ lwz r3, 0x78(r31)
-/* 80209274 002061B4  48 04 C5 B5 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80209274 002061B4  48 04 C5 B5 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80209278 002061B8  C0 02 AD 48 */ lfs f0, lbl_80454748-_SDA2_BASE_(r2)
 /* 8020927C 002061BC  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80209280 002061C0  41 82 00 28 */ beq lbl_802092A8
@@ -17,7 +17,7 @@
 /* 8020928C 002061CC  4B FF DA E5 */ bl dMeterButton_c_NS_isFastSet
 /* 80209290 002061D0  80 7F 00 78 */ lwz r3, 0x78(r31)
 /* 80209294 002061D4  C0 22 AD 48 */ lfs f1, lbl_80454748-_SDA2_BASE_(r2)
-/* 80209298 002061D8  48 04 C5 39 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80209298 002061D8  48 04 C5 39 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 8020929C 002061DC  38 00 00 00 */ li r0, 0
 /* 802092A0 002061E0  80 7F 00 78 */ lwz r3, 0x78(r31)
 /* 802092A4 002061E4  B0 03 00 16 */ sth r0, 0x16(r3)

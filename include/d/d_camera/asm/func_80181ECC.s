@@ -5,7 +5,7 @@
 /* 80181EDC 0017EE1C  7C 7F 1B 78 */ mr r31, r3
 /* 80181EE0 0017EE20  4B FF F7 85 */ bl preparation
 /* 80181EE4 0017EE24  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
-/* 80181EE8 0017EE28  4B EB 72 41 */ bl dDemo_object_c_NS_getActiveCamera
+/* 80181EE8 0017EE28  4B EB 72 41 */ bl getActiveCamera__14dDemo_object_cFv
 /* 80181EEC 0017EE2C  28 03 00 00 */ cmplwi r3, 0
 /* 80181EF0 0017EE30  41 82 00 1C */ beq lbl_80181F0C
 /* 80181EF4 0017EE34  38 7F 02 48 */ addi r3, r31, 0x248

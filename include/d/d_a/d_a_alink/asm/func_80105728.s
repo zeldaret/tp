@@ -57,7 +57,7 @@
 /* 80105808 00102748  48 00 00 80 */ b lbl_80105888
 lbl_8010580C:
 /* 8010580C 0010274C  7F E3 FB 78 */ mr r3, r31
-/* 80105810 00102750  48 05 8C BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80105810 00102750  48 05 8C BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80105814 00102754  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80105818 00102758  41 82 00 24 */ beq lbl_8010583C
 /* 8010581C 0010275C  7F C3 F3 78 */ mr r3, r30

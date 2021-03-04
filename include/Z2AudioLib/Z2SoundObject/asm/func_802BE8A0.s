@@ -51,7 +51,7 @@
 /* 802BE968 002BB8A8  80 7F 00 00 */ lwz r3, 0(r31)
 /* 802BE96C 002BB8AC  38 63 00 48 */ addi r3, r3, 0x48
 /* 802BE970 002BB8B0  38 80 00 00 */ li r4, 0
-/* 802BE974 002BB8B4  4B FE 44 99 */ bl JAISoundParamsMove_NS_movePitch
+/* 802BE974 002BB8B4  4B FE 44 99 */ bl movePitch__18JAISoundParamsMoveFfUl
 /* 802BE978 002BB8B8  80 7F 00 00 */ lwz r3, 0(r31)
 /* 802BE97C 002BB8BC  38 63 00 48 */ addi r3, r3, 0x48
 /* 802BE980 002BB8C0  FC 20 F8 90 */ fmr f1, f31

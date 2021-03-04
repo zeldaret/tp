@@ -20,7 +20,7 @@ lbl_800E3AD0:
 /* 800E3AE4 000E0A24  41 82 00 18 */ beq lbl_800E3AFC
 /* 800E3AE8 000E0A28  2C 1F 00 00 */ cmpwi r31, 0
 /* 800E3AEC 000E0A2C  41 82 00 C4 */ beq lbl_800E3BB0
-/* 800E3AF0 000E0A30  48 07 B0 C9 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800E3AF0 000E0A30  48 07 B0 C9 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800E3AF4 000E0A34  2C 03 00 00 */ cmpwi r3, 0
 /* 800E3AF8 000E0A38  41 82 00 B8 */ beq lbl_800E3BB0
 lbl_800E3AFC:

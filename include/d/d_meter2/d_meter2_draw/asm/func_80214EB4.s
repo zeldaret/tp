@@ -12,7 +12,7 @@
 /* 80214EE0 00211E20  54 9D 15 BA */ rlwinm r29, r4, 2, 0x16, 0x1d
 /* 80214EE4 00211E24  7F DC EA 14 */ add r30, r28, r29
 /* 80214EE8 00211E28  C0 3E 05 FC */ lfs f1, 0x5fc(r30)
-/* 80214EEC 00211E2C  48 04 08 E5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80214EEC 00211E2C  48 04 08 E5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80214EF0 00211E30  57 60 06 3F */ clrlwi. r0, r27, 0x18
 /* 80214EF4 00211E34  40 82 00 4C */ bne lbl_80214F40
 /* 80214EF8 00211E38  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
@@ -28,7 +28,7 @@
 /* 80214F20 00211E60  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 80214F24 00211E64  38 81 00 58 */ addi r4, r1, 0x58
 /* 80214F28 00211E68  38 A1 00 54 */ addi r5, r1, 0x54
-/* 80214F2C 00211E6C  48 03 F5 2D */ bl CPaneMgr_NS_setBlackWhite
+/* 80214F2C 00211E6C  48 03 F5 2D */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80214F30 00211E70  7F 83 E3 78 */ mr r3, r28
 /* 80214F34 00211E74  38 80 00 01 */ li r4, 1
 /* 80214F38 00211E78  48 00 04 49 */ bl dMeter2Draw_c_NS_setAlphaMagicChange
@@ -56,7 +56,7 @@ lbl_80214F40:
 /* 80214F8C 00211ECC  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 80214F90 00211ED0  38 81 00 4C */ addi r4, r1, 0x4c
 /* 80214F94 00211ED4  38 A1 00 44 */ addi r5, r1, 0x44
-/* 80214F98 00211ED8  48 03 F4 C1 */ bl CPaneMgr_NS_setBlackWhite
+/* 80214F98 00211ED8  48 03 F4 C1 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80214F9C 00211EDC  7F 83 E3 78 */ mr r3, r28
 /* 80214FA0 00211EE0  38 80 00 01 */ li r4, 1
 /* 80214FA4 00211EE4  48 00 06 15 */ bl dMeter2Draw_c_NS_setAlphaKanteraChange
@@ -103,7 +103,7 @@ lbl_80214FAC:
 /* 80215044 00211F84  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 80215048 00211F88  38 81 00 3C */ addi r4, r1, 0x3c
 /* 8021504C 00211F8C  38 A1 00 34 */ addi r5, r1, 0x34
-/* 80215050 00211F90  48 03 F4 09 */ bl CPaneMgr_NS_setBlackWhite
+/* 80215050 00211F90  48 03 F4 09 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80215054 00211F94  7F 83 E3 78 */ mr r3, r28
 /* 80215058 00211F98  80 9C 05 3C */ lwz r4, 0x53c(r28)
 /* 8021505C 00211F9C  4B FF EE 39 */ bl dMeter2Draw_c_NS_playOxygenBpkAnimation
@@ -149,7 +149,7 @@ lbl_802150A8:
 /* 802150F8 00212038  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 802150FC 0021203C  38 81 00 28 */ addi r4, r1, 0x28
 /* 80215100 00212040  38 A1 00 20 */ addi r5, r1, 0x20
-/* 80215104 00212044  48 03 F3 55 */ bl CPaneMgr_NS_setBlackWhite
+/* 80215104 00212044  48 03 F3 55 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 /* 80215108 00212048  7F 83 E3 78 */ mr r3, r28
 /* 8021510C 0021204C  80 9C 05 40 */ lwz r4, 0x540(r28)
 /* 80215110 00212050  4B FF ED 85 */ bl dMeter2Draw_c_NS_playOxygenBpkAnimation
@@ -191,7 +191,7 @@ lbl_8021515C:
 /* 8021519C 002120DC  80 7C 01 D8 */ lwz r3, 0x1d8(r28)
 /* 802151A0 002120E0  38 81 00 14 */ addi r4, r1, 0x14
 /* 802151A4 002120E4  38 A1 00 0C */ addi r5, r1, 0xc
-/* 802151A8 002120E8  48 03 F2 B1 */ bl CPaneMgr_NS_setBlackWhite
+/* 802151A8 002120E8  48 03 F2 B1 */ bl setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor
 lbl_802151AC:
 /* 802151AC 002120EC  7F 83 E3 78 */ mr r3, r28
 /* 802151B0 002120F0  38 80 00 01 */ li r4, 1
@@ -239,12 +239,12 @@ lbl_802151B8:
 /* 80215254 00212194  7C 9C EA 14 */ add r4, r28, r29
 /* 80215258 00212198  C0 24 05 E4 */ lfs f1, 0x5e4(r4)
 /* 8021525C 0021219C  C0 44 05 F0 */ lfs f2, 0x5f0(r4)
-/* 80215260 002121A0  48 03 F3 51 */ bl CPaneMgr_NS_paneTrans
+/* 80215260 002121A0  48 03 F3 51 */ bl paneTrans__8CPaneMgrFff
 /* 80215264 002121A4  80 7C 00 7C */ lwz r3, 0x7c(r28)
 /* 80215268 002121A8  C0 22 AE 80 */ lfs f1, lbl_80454880-_SDA2_BASE_(r2)
 /* 8021526C 002121AC  FC 40 08 90 */ fmr f2, f1
 /* 80215270 002121B0  7F E4 FB 78 */ mr r4, r31
-/* 80215274 002121B4  48 0E 3C 61 */ bl J2DScreen_NS_draw
+/* 80215274 002121B4  48 0E 3C 61 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80215278 002121B8  39 61 00 90 */ addi r11, r1, 0x90
 /* 8021527C 002121BC  48 14 CF A5 */ bl _restgpr_27
 /* 80215280 002121C0  80 01 00 94 */ lwz r0, 0x94(r1)

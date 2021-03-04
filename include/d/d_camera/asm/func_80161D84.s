@@ -8,7 +8,7 @@
 /* 80161DA0 0015ECE0  41 82 00 2C */ beq lbl_80161DCC
 /* 80161DA4 0015ECE4  38 61 00 08 */ addi r3, r1, 8
 /* 80161DA8 0015ECE8  7F E4 FB 78 */ mr r4, r31
-/* 80161DAC 0015ECEC  4B F3 59 B1 */ bl dCamera_c_NS_positionOf
+/* 80161DAC 0015ECEC  4B F3 59 B1 */ bl positionOf__9dCamera_cFP10fopAc_ac_c
 /* 80161DB0 0015ECF0  C0 01 00 08 */ lfs f0, 8(r1)
 /* 80161DB4 0015ECF4  D0 1F 02 A0 */ stfs f0, 0x2a0(r31)
 /* 80161DB8 0015ECF8  C0 01 00 0C */ lfs f0, 0xc(r1)

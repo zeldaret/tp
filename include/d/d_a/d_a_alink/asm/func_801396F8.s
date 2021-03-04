@@ -24,7 +24,7 @@
 /* 80139754 00136694  3D 00 80 42 */ lis r8, lbl_804256F8@ha
 /* 80139758 00136698  39 08 56 F8 */ addi r8, r8, lbl_804256F8@l
 /* 8013975C 0013669C  39 20 00 00 */ li r9, 0
-/* 80139760 001366A0  4B F1 2A B9 */ bl dPa_control_c_NS_setHitMark
+/* 80139760 001366A0  4B F1 2A B9 */ bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 /* 80139764 001366A4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80139768 001366A8  D0 21 00 08 */ stfs f1, 8(r1)
 /* 8013976C 001366AC  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -36,7 +36,7 @@
 /* 80139784 001366C4  38 80 00 03 */ li r4, 3
 /* 80139788 001366C8  38 A0 00 1F */ li r5, 0x1f
 /* 8013978C 001366CC  38 C1 00 08 */ addi r6, r1, 8
-/* 80139790 001366D0  4B F3 62 95 */ bl dVibration_c_NS_StartShock
+/* 80139790 001366D0  4B F3 62 95 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80139794 001366D4  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 80139798 001366D8  7C 08 03 A6 */ mtlr r0
 /* 8013979C 001366DC  38 21 00 20 */ addi r1, r1, 0x20

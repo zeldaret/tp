@@ -17,14 +17,14 @@ lbl_8011A464:
 /* 8011A468 001173A8  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 lbl_8011A46C:
 /* 8011A46C 001173AC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011A470 001173B0  48 04 40 5D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011A470 001173B0  48 04 40 5D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011A474 001173B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011A478 001173B8  41 82 00 30 */ beq lbl_8011A4A8
 /* 8011A47C 001173BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011A480 001173C0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011A484 001173C4  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011A488 001173C8  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011A48C 001173CC  4B F2 DC F1 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011A48C 001173CC  4B F2 DC F1 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011A490 001173D0  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 8011A494 001173D4  54 00 07 B8 */ rlwinm r0, r0, 0, 0x1e, 0x1c
 /* 8011A498 001173D8  90 1F 19 9C */ stw r0, 0x199c(r31)

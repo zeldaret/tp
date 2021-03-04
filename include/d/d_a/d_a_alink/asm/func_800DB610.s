@@ -9,7 +9,7 @@
 /* 800DB630 000D8570  64 00 08 00 */ oris r0, r0, 0x800
 /* 800DB634 000D8574  90 03 05 88 */ stw r0, 0x588(r3)
 /* 800DB638 000D8578  7F E3 FB 78 */ mr r3, r31
-/* 800DB63C 000D857C  48 08 2E 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DB63C 000D857C  48 08 2E 91 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DB640 000D8580  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DB644 000D8584  41 82 00 14 */ beq lbl_800DB658
 /* 800DB648 000D8588  7F C3 F3 78 */ mr r3, r30

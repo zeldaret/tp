@@ -154,7 +154,7 @@ lbl_8010B5B4:
 /* 8010B5E8 00108528  38 80 00 01 */ li r4, 1
 /* 8010B5EC 0010852C  38 A0 00 01 */ li r5, 1
 /* 8010B5F0 00108530  38 C1 00 08 */ addi r6, r1, 8
-/* 8010B5F4 00108534  4B F6 45 1D */ bl dVibration_c_NS_StartQuake
+/* 8010B5F4 00108534  4B F6 45 1D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 8010B5F8 00108538  80 1E 05 7C */ lwz r0, 0x57c(r30)
 /* 8010B5FC 0010853C  60 00 00 04 */ ori r0, r0, 4
 /* 8010B600 00108540  90 1E 05 7C */ stw r0, 0x57c(r30)

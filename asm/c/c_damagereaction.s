@@ -115,8 +115,8 @@ lbl_80018318:
 /* 8001831C 0001525C  7C 08 03 A6 */	mtlr r0
 /* 80018320 00015260  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018324 00015264  4E 80 00 20 */	blr 
-.global JPTraceParticleCallBack4_NS_dtor
-JPTraceParticleCallBack4_NS_dtor:
+.global __dt__24JPTraceParticleCallBack4Fv
+__dt__24JPTraceParticleCallBack4Fv:
 /* 80018328 00015268  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001832C 0001526C  7C 08 02 A6 */	mflr r0
 /* 80018330 00015270  90 01 00 14 */	stw r0, 0x14(r1)
@@ -129,7 +129,7 @@ JPTraceParticleCallBack4_NS_dtor:
 /* 8001834C 0001528C  38 04 35 68 */	addi r0, r4, lbl_803A3568@l
 /* 80018350 00015290  90 1E 00 00 */	stw r0, 0(r30)
 /* 80018354 00015294  38 80 00 00 */	li r4, 0
-/* 80018358 00015298  48 26 6C 4D */	bl JPAParticleCallBack_NS_dtor
+/* 80018358 00015298  48 26 6C 4D */	bl __dt__19JPAParticleCallBackFv
 /* 8001835C 0001529C  7F E0 07 35 */	extsh. r0, r31
 /* 80018360 000152A0  40 81 00 0C */	ble lbl_8001836C
 /* 80018364 000152A4  7F C3 F3 78 */	mr r3, r30
@@ -152,10 +152,10 @@ lbl_8001836C:
 /* 800183A4 000152E4  38 03 35 68 */	addi r0, r3, lbl_803A3568@l
 /* 800183A8 000152E8  90 0D 87 24 */	stw r0, lbl_80450CA4-_SDA_BASE_(r13)
 /* 800183AC 000152EC  38 6D 87 24 */	addi r3, r13, lbl_80450CA4-_SDA_BASE_
-.global JPTraceParticleCallBack4_NS_dtor
-/* 800183B0 000152F0  3C 80 80 02 */	lis r4, JPTraceParticleCallBack4_NS_dtor@ha
-.global JPTraceParticleCallBack4_NS_dtor
-/* 800183B4 000152F4  38 84 83 28 */	addi r4, r4, JPTraceParticleCallBack4_NS_dtor@l
+.global __dt__24JPTraceParticleCallBack4Fv
+/* 800183B0 000152F0  3C 80 80 02 */	lis r4, __dt__24JPTraceParticleCallBack4Fv@ha
+.global __dt__24JPTraceParticleCallBack4Fv
+/* 800183B4 000152F4  38 84 83 28 */	addi r4, r4, __dt__24JPTraceParticleCallBack4Fv@l
 /* 800183B8 000152F8  3C A0 80 3F */	lis r5, lbl_803F0F40@ha
 /* 800183BC 000152FC  38 A5 0F 40 */	addi r5, r5, lbl_803F0F40@l
 /* 800183C0 00015300  48 34 98 65 */	bl func_80361C24

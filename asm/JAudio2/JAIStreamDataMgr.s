@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a3ad8
 
 
-.global JAIStreamDataMgr_NS_dtor
-JAIStreamDataMgr_NS_dtor:
+.global __dt__16JAIStreamDataMgrFv
+__dt__16JAIStreamDataMgrFv:
 /* 802A3AD8 002A0A18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A3ADC 002A0A1C  7C 08 02 A6 */	mflr r0
 /* 802A3AE0 002A0A20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,8 +25,8 @@ lbl_802A3B08:
 /* 802A3B18 002A0A58  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A3B1C 002A0A5C  4E 80 00 20 */	blr 
 
-.global JAIStreamAramMgr_NS_dtor
-JAIStreamAramMgr_NS_dtor:
+.global __dt__16JAIStreamAramMgrFv
+__dt__16JAIStreamAramMgrFv:
 /* 802A3B20 002A0A60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A3B24 002A0A64  7C 08 02 A6 */	mflr r0
 /* 802A3B28 002A0A68  90 01 00 14 */	stw r0, 0x14(r1)

@@ -13,7 +13,7 @@
 /* 8002CF2C 00029E6C  38 E0 00 00 */ li r7, 0
 /* 8002CF30 00029E70  81 08 00 04 */ lwz r8, 4(r8)
 /* 8002CF34 00029E74  38 84 C2 F8 */ addi r4, r4, -15624
-/* 8002CF38 00029E78  48 00 F1 41 */ bl dRes_control_c_NS_setRes
+/* 8002CF38 00029E78  48 00 F1 41 */ bl setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap
 /* 8002CF3C 00029E7C  2C 03 00 00 */ cmpwi r3, 0
 /* 8002CF40 00029E80  38 60 00 02 */ li r3, 2
 /* 8002CF44 00029E84  40 82 00 08 */ bne lbl_8002CF4C

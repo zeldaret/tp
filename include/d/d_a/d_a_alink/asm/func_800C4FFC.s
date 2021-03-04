@@ -9,7 +9,7 @@
 /* 800C501C 000C1F5C  54 03 07 BD */ rlwinm. r3, r0, 0, 0x1e, 0x1e
 /* 800C5020 000C1F60  40 82 00 90 */ bne lbl_800C50B0
 /* 800C5024 000C1F64  7F C3 F3 78 */ mr r3, r30
-/* 800C5028 000C1F68  48 09 94 A5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C5028 000C1F68  48 09 94 A5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C502C 000C1F6C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C5030 000C1F70  41 82 00 14 */ beq lbl_800C5044
 /* 800C5034 000C1F74  7F E3 FB 78 */ mr r3, r31

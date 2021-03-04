@@ -41,7 +41,7 @@ lbl_800F6900:
 /* 800F6904 000F3844  28 00 01 7C */ cmplwi r0, 0x17c
 /* 800F6908 000F3848  40 82 00 34 */ bne lbl_800F693C
 /* 800F690C 000F384C  38 7F 20 48 */ addi r3, r31, 0x2048
-/* 800F6910 000F3850  48 06 7B BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F6910 000F3850  48 06 7B BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F6914 000F3854  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F6918 000F3858  41 82 00 A4 */ beq lbl_800F69BC
 /* 800F691C 000F385C  7F E3 FB 78 */ mr r3, r31

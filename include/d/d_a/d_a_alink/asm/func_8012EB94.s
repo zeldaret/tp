@@ -105,7 +105,7 @@ lbl_8012ECD4:
 /* 8012ED1C 0012BC5C  48 00 00 98 */ b lbl_8012EDB4
 lbl_8012ED20:
 /* 8012ED20 0012BC60  7F C3 F3 78 */ mr r3, r30
-/* 8012ED24 0012BC64  48 02 F7 A9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012ED24 0012BC64  48 02 F7 A9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012ED28 0012BC68  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012ED2C 0012BC6C  41 82 00 88 */ beq lbl_8012EDB4
 /* 8012ED30 0012BC70  38 00 00 0C */ li r0, 0xc

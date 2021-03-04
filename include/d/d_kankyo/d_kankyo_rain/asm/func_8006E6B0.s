@@ -37,7 +37,7 @@ lbl_8006E714:
 /* 8006E73C 0006B67C  41 82 09 EC */ beq lbl_8006F128
 /* 8006E740 0006B680  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 8006E744 0006B684  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
-/* 8006E748 0006B688  48 2A 1F F5 */ bl J3DSys_NS_reinitGX
+/* 8006E748 0006B688  48 2A 1F F5 */ bl reinitGX__6J3DSysFv
 /* 8006E74C 0006B68C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006E750 0006B690  3B A3 61 C0 */ addi r29, r3, g_dComIfG_gameInfo@l
 /* 8006E754 0006B694  80 7D 61 B0 */ lwz r3, 0x61b0(r29)
@@ -195,7 +195,7 @@ lbl_8006E774:
 /* 8006E9B0 0006B8F0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006E9B4 0006B8F4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006E9B8 0006B8F8  38 63 4B 88 */ addi r3, r3, 0x4b88
-/* 8006E9BC 0006B8FC  48 01 6C D5 */ bl dCcMassS_Mng_NS_Prepare
+/* 8006E9BC 0006B8FC  48 01 6C D5 */ bl Prepare__12dCcMassS_MngFv
 /* 8006E9C0 0006B900  3B 60 00 00 */ li r27, 0
 /* 8006E9C4 0006B904  3A E0 00 00 */ li r23, 0
 /* 8006E9C8 0006B908  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -488,7 +488,7 @@ lbl_8006EDCC:
 /* 8006EDE8 0006BD28  EC 20 08 28 */ fsubs f1, f0, f1
 /* 8006EDEC 0006BD2C  C0 02 88 90 */ lfs f0, lbl_80452290-_SDA2_BASE_(r2)
 /* 8006EDF0 0006BD30  EF A1 00 24 */ fdivs f29, f1, f0
-/* 8006EDF4 0006BD34  48 0F 06 31 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 8006EDF4 0006BD34  48 0F 06 31 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8006EDF8 0006BD38  2C 03 00 00 */ cmpwi r3, 0
 /* 8006EDFC 0006BD3C  41 82 00 50 */ beq lbl_8006EE4C
 /* 8006EE00 0006BD40  EC 1D F8 28 */ fsubs f0, f29, f31
@@ -692,7 +692,7 @@ lbl_8006F0F4:
 /* 8006F104 0006C044  90 0D 90 50 */ stw r0, lbl_804515D0-_SDA_BASE_(r13)
 /* 8006F108 0006C048  38 60 00 00 */ li r3, 0
 /* 8006F10C 0006C04C  48 2F 14 C5 */ bl GXSetClipMode
-/* 8006F110 0006C050  48 0F 03 15 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 8006F110 0006C050  48 0F 03 15 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8006F114 0006C054  2C 03 00 00 */ cmpwi r3, 0
 /* 8006F118 0006C058  40 82 00 10 */ bne lbl_8006F128
 /* 8006F11C 0006C05C  7F 03 C3 78 */ mr r3, r24

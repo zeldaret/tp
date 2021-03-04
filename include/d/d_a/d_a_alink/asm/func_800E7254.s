@@ -28,7 +28,7 @@ lbl_800E729C:
 /* 800E72B8 000E41F8  38 A0 00 00 */ li r5, 0
 /* 800E72BC 000E41FC  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800E72C0 000E4200  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800E72C4 000E4204  4B F5 BE A9 */ bl dEvt_control_c_NS_compulsory
+/* 800E72C4 000E4204  4B F5 BE A9 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800E72C8 000E4208  2C 03 00 00 */ cmpwi r3, 0
 /* 800E72CC 000E420C  40 82 00 10 */ bne lbl_800E72DC
 /* 800E72D0 000E4210  7F E3 FB 78 */ mr r3, r31
@@ -40,7 +40,7 @@ lbl_800E72DC:
 /* 800E72E4 000E4224  4B FD AC 89 */ bl daAlink_c_NS_commonProcInit
 /* 800E72E8 000E4228  38 7F 28 2C */ addi r3, r31, 0x282c
 /* 800E72EC 000E422C  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800E72F0 000E4230  48 07 79 C9 */ bl daPy_actorKeep_c_NS_setData
+/* 800E72F0 000E4230  48 07 79 C9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800E72F4 000E4234  7F E3 FB 78 */ mr r3, r31
 /* 800E72F8 000E4238  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 800E72FC 000E423C  4B F3 37 99 */ bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c

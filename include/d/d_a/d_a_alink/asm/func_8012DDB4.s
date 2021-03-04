@@ -55,7 +55,7 @@ lbl_8012DE54:
 /* 8012DE7C 0012ADBC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012DE80 0012ADC0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012DE84 0012ADC4  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8012DE88 0012ADC8  4B F1 A2 F5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8012DE88 0012ADC8  4B F1 A2 F5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8012DE8C 0012ADCC  48 00 00 20 */ b lbl_8012DEAC
 lbl_8012DE90:
 /* 8012DE90 0012ADD0  7F C3 F3 78 */ mr r3, r30

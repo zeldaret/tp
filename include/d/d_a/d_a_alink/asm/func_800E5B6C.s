@@ -5,12 +5,12 @@
 /* 800E5B7C 000E2ABC  7C 7F 1B 78 */ mr r31, r3
 /* 800E5B80 000E2AC0  38 7F 1E 5C */ addi r3, r31, 0x1e5c
 /* 800E5B84 000E2AC4  80 DF 28 30 */ lwz r6, 0x2830(r31)
-/* 800E5B88 000E2AC8  4B F9 21 DD */ bl dBgS_LinChk_NS_Set
+/* 800E5B88 000E2AC8  4B F9 21 DD */ bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800E5B8C 000E2ACC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E5B90 000E2AD0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E5B94 000E2AD4  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E5B98 000E2AD8  38 9F 1E 5C */ addi r4, r31, 0x1e5c
-/* 800E5B9C 000E2ADC  4B F8 E8 19 */ bl cBgS_NS_LineCross
+/* 800E5B9C 000E2ADC  4B F8 E8 19 */ bl LineCross__4cBgSFP11cBgS_LinChk
 /* 800E5BA0 000E2AE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E5BA4 000E2AE4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800E5BA8 000E2AE8  7C 08 03 A6 */ mtlr r0

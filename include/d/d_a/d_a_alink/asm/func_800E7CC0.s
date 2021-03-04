@@ -12,7 +12,7 @@
 /* 800E7CEC 000E4C2C  38 80 00 00 */ li r4, 0
 /* 800E7CF0 000E4C30  4B FC BA 45 */ bl daAlink_c_NS_setShapeAngleToAtnActor
 /* 800E7CF4 000E4C34  7F E3 FB 78 */ mr r3, r31
-/* 800E7CF8 000E4C38  48 07 67 D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E7CF8 000E4C38  48 07 67 D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E7CFC 000E4C3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E7D00 000E4C40  40 82 00 2C */ bne lbl_800E7D2C
 /* 800E7D04 000E4C44  C0 3D 33 AC */ lfs f1, 0x33ac(r29)
@@ -47,7 +47,7 @@ lbl_800E7D2C:
 /* 800E7D74 000E4CB4  9B DD 2F A3 */ stb r30, 0x2fa3(r29)
 /* 800E7D78 000E4CB8  38 7D 28 44 */ addi r3, r29, 0x2844
 /* 800E7D7C 000E4CBC  7F E4 FB 78 */ mr r4, r31
-/* 800E7D80 000E4CC0  48 07 6F 39 */ bl daPy_actorKeep_c_NS_setData
+/* 800E7D80 000E4CC0  48 07 6F 39 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800E7D84 000E4CC4  48 00 00 38 */ b lbl_800E7DBC
 lbl_800E7D88:
 /* 800E7D88 000E4CC8  C0 3F 00 10 */ lfs f1, 0x10(r31)

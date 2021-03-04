@@ -17,7 +17,7 @@ lbl_800F16BC:
 /* 800F16C4 000EE604  7F E3 FB 78 */ mr r3, r31
 /* 800F16C8 000EE608  4B FE 0F BD */ bl daAlink_c_NS_checkCutTurnCharge_X1_
 /* 800F16CC 000EE60C  7F C3 F3 78 */ mr r3, r30
-/* 800F16D0 000EE610  48 06 CD FD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F16D0 000EE610  48 06 CD FD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F16D4 000EE614  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F16D8 000EE618  41 82 00 4C */ beq lbl_800F1724
 /* 800F16DC 000EE61C  80 1F 05 78 */ lwz r0, 0x578(r31)

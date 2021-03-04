@@ -3,8 +3,8 @@
 .section .text, "ax" # 80326214
 
 
-.global J3DMtxBuffer_NS_initialize
-J3DMtxBuffer_NS_initialize:
+.global initialize__12J3DMtxBufferFv
+initialize__12J3DMtxBufferFv:
 /* 80326214 00323154  38 80 00 00 */	li r4, 0
 /* 80326218 00323158  90 83 00 00 */	stw r4, 0(r3)
 /* 8032621C 0032315C  90 83 00 04 */	stw r4, 4(r3)
@@ -23,8 +23,8 @@ J3DMtxBuffer_NS_initialize:
 /* 80326250 00323190  90 83 00 34 */	stw r4, 0x34(r3)
 /* 80326254 00323194  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_create
-J3DMtxBuffer_NS_create:
+.global create__12J3DMtxBufferFP12J3DModelDataUl
+create__12J3DMtxBufferFP12J3DModelDataUl:
 /* 80326258 00323198  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032625C 0032319C  7C 08 02 A6 */	mflr r0
 /* 80326260 003231A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -36,14 +36,14 @@ J3DMtxBuffer_NS_create:
 /* 80326278 003231B8  93 C3 00 2C */	stw r30, 0x2c(r3)
 /* 8032627C 003231BC  38 1D 00 10 */	addi r0, r29, 0x10
 /* 80326280 003231C0  90 03 00 00 */	stw r0, 0(r3)
-/* 80326284 003231C4  48 00 00 E1 */	bl J3DMtxBuffer_NS_createAnmMtx
+/* 80326284 003231C4  48 00 00 E1 */	bl create__12J3DMtxBufferFP12J3DModelDataUlAnmMtx
 /* 80326288 003231C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8032628C 003231CC  41 82 00 08 */	beq lbl_80326294
 /* 80326290 003231D0  48 00 00 BC */	b lbl_8032634C
 lbl_80326294:
 /* 80326294 003231D4  7F 83 E3 78 */	mr r3, r28
 /* 80326298 003231D8  7F A4 EB 78 */	mr r4, r29
-/* 8032629C 003231DC  48 00 01 55 */	bl J3DMtxBuffer_NS_createWeightEnvelopeMtx
+/* 8032629C 003231DC  48 00 01 55 */	bl create__12J3DMtxBufferFP12J3DModelDataUlWeightEnvelopeMtx
 /* 803262A0 003231E0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803262A4 003231E4  41 82 00 08 */	beq lbl_803262AC
 /* 803262A8 003231E8  48 00 00 A4 */	b lbl_8032634C
@@ -52,7 +52,7 @@ lbl_803262AC:
 /* 803262B0 003231F0  54 60 C7 FF */	rlwinm. r0, r3, 0x18, 0x1f, 0x1f
 /* 803262B4 003231F4  41 82 00 10 */	beq lbl_803262C4
 /* 803262B8 003231F8  7F 83 E3 78 */	mr r3, r28
-/* 803262BC 003231FC  48 00 01 D1 */	bl J3DMtxBuffer_NS_setNoUseDrawMtx
+/* 803262BC 003231FC  48 00 01 D1 */	bl setNoUseDrawMtx__12J3DMtxBufferFv
 /* 803262C0 00323200  48 00 00 44 */	b lbl_80326304
 lbl_803262C4:
 /* 803262C4 00323204  54 60 06 F6 */	rlwinm r0, r3, 0, 0x1b, 0x1b
@@ -64,14 +64,14 @@ lbl_803262C4:
 /* 803262DC 0032321C  48 00 00 14 */	b lbl_803262F0
 lbl_803262E0:
 /* 803262E0 00323220  7F 83 E3 78 */	mr r3, r28
-/* 803262E4 00323224  48 00 01 A9 */	bl J3DMtxBuffer_NS_setNoUseDrawMtx
+/* 803262E4 00323224  48 00 01 A9 */	bl setNoUseDrawMtx__12J3DMtxBufferFv
 /* 803262E8 00323228  7C 7F 1B 78 */	mr r31, r3
 /* 803262EC 0032322C  48 00 00 18 */	b lbl_80326304
 lbl_803262F0:
 /* 803262F0 00323230  7F 83 E3 78 */	mr r3, r28
 /* 803262F4 00323234  7F A4 EB 78 */	mr r4, r29
 /* 803262F8 00323238  7F C5 F3 78 */	mr r5, r30
-/* 803262FC 0032323C  48 00 01 BD */	bl J3DMtxBuffer_NS_createDoubleDrawMtx
+/* 803262FC 0032323C  48 00 01 BD */	bl create__12J3DMtxBufferFP12J3DModelDataUlDoubleDrawMtx
 /* 80326300 00323240  7C 7F 1B 78 */	mr r31, r3
 lbl_80326304:
 /* 80326304 00323244  2C 1F 00 00 */	cmpwi r31, 0
@@ -89,7 +89,7 @@ lbl_8032632C:
 /* 8032632C 0032326C  7F 83 E3 78 */	mr r3, r28
 /* 80326330 00323270  7F A4 EB 78 */	mr r4, r29
 /* 80326334 00323274  7F C5 F3 78 */	mr r5, r30
-/* 80326338 00323278  48 00 03 2D */	bl J3DMtxBuffer_NS_createBumpMtxArray
+/* 80326338 00323278  48 00 03 2D */	bl create__12J3DMtxBufferFP12J3DModelDataUlBumpMtxArray
 /* 8032633C 0032327C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80326340 00323280  41 82 00 08 */	beq lbl_80326348
 /* 80326344 00323284  48 00 00 08 */	b lbl_8032634C
@@ -103,8 +103,8 @@ lbl_8032634C:
 /* 8032635C 0032329C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80326360 003232A0  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_createAnmMtx
-J3DMtxBuffer_NS_createAnmMtx:
+.global create__12J3DMtxBufferFP12J3DModelDataUlAnmMtx
+create__12J3DMtxBufferFP12J3DModelDataUlAnmMtx:
 /* 80326364 003232A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80326368 003232A8  7C 08 02 A6 */	mflr r0
 /* 8032636C 003232AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -144,8 +144,8 @@ lbl_803263D8:
 /* 803263E8 00323328  38 21 00 10 */	addi r1, r1, 0x10
 /* 803263EC 0032332C  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_createWeightEnvelopeMtx
-J3DMtxBuffer_NS_createWeightEnvelopeMtx:
+.global create__12J3DMtxBufferFP12J3DModelDataUlWeightEnvelopeMtx
+create__12J3DMtxBufferFP12J3DModelDataUlWeightEnvelopeMtx:
 /* 803263F0 00323330  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803263F4 00323334  7C 08 02 A6 */	mflr r0
 /* 803263F8 00323338  90 01 00 14 */	stw r0, 0x14(r1)
@@ -190,8 +190,8 @@ lbl_80326474:
 /* 80326484 003233C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80326488 003233C8  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_setNoUseDrawMtx
-J3DMtxBuffer_NS_setNoUseDrawMtx:
+.global setNoUseDrawMtx__12J3DMtxBufferFv
+setNoUseDrawMtx__12J3DMtxBufferFv:
 /* 8032648C 003233CC  38 0D 83 F0 */	addi r0, r13, lbl_80450970-_SDA_BASE_
 /* 80326490 003233D0  90 03 00 18 */	stw r0, 0x18(r3)
 /* 80326494 003233D4  90 03 00 14 */	stw r0, 0x14(r3)
@@ -204,8 +204,8 @@ J3DMtxBuffer_NS_setNoUseDrawMtx:
 /* 803264B0 003233F0  38 60 00 00 */	li r3, 0
 /* 803264B4 003233F4  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_createDoubleDrawMtx
-J3DMtxBuffer_NS_createDoubleDrawMtx:
+.global create__12J3DMtxBufferFP12J3DModelDataUlDoubleDrawMtx
+create__12J3DMtxBufferFP12J3DModelDataUlDoubleDrawMtx:
 /* 803264B8 003233F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803264BC 003233FC  7C 08 02 A6 */	mflr r0
 /* 803264C0 00323400  90 01 00 34 */	stw r0, 0x34(r1)
@@ -330,8 +330,8 @@ lbl_8032664C:
 /* 8032665C 0032359C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80326660 003235A0  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_createBumpMtxArray
-J3DMtxBuffer_NS_createBumpMtxArray:
+.global create__12J3DMtxBufferFP12J3DModelDataUlBumpMtxArray
+create__12J3DMtxBufferFP12J3DModelDataUlBumpMtxArray:
 /* 80326664 003235A4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80326668 003235A8  7C 08 02 A6 */	mflr r0
 /* 8032666C 003235AC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -361,7 +361,7 @@ lbl_803266A4:
 /* 803266C8 00323608  28 00 00 01 */	cmplwi r0, 1
 /* 803266CC 0032360C  40 82 00 14 */	bne lbl_803266E0
 /* 803266D0 00323610  80 75 00 08 */	lwz r3, 8(r21)
-/* 803266D4 00323614  4B FE E7 55 */	bl J3DShape_NS_countBumpMtxNum
+/* 803266D4 00323614  4B FE E7 55 */	bl countBumpMtxNum__8J3DShapeCFv
 /* 803266D8 00323618  7E 73 1A 14 */	add r19, r19, r3
 /* 803266DC 0032361C  3B BD 00 01 */	addi r29, r29, 1
 lbl_803266E0:
@@ -509,8 +509,8 @@ lbl_803268BC:
 /* 803268CC 0032380C  38 21 00 40 */	addi r1, r1, 0x40
 /* 803268D0 00323810  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_calcWeightEnvelopeMtx
-J3DMtxBuffer_NS_calcWeightEnvelopeMtx:
+.global calcWeightEnvelopeMtx__12J3DMtxBufferFv
+calcWeightEnvelopeMtx__12J3DMtxBufferFv:
 /* 803268D4 00323814  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 803268D8 00323818  7C 08 02 A6 */	mflr r0
 /* 803268DC 0032381C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -641,8 +641,8 @@ lbl_80326A7C:
 /* 80326AC4 00323A04  38 21 00 70 */	addi r1, r1, 0x70
 /* 80326AC8 00323A08  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_calcDrawMtx
-J3DMtxBuffer_NS_calcDrawMtx:
+.global calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
+calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf:
 /* 80326ACC 00323A0C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80326AD0 00323A10  7C 08 02 A6 */	mflr r0
 /* 80326AD4 00323A14  90 01 00 54 */	stw r0, 0x54(r1)
@@ -813,8 +813,8 @@ lbl_80326D24:
 /* 80326D34 00323C74  38 21 00 50 */	addi r1, r1, 0x50
 /* 80326D38 00323C78  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_calcNrmMtx
-J3DMtxBuffer_NS_calcNrmMtx:
+.global calcNrmMtx__12J3DMtxBufferFv
+calcNrmMtx__12J3DMtxBufferFv:
 /* 80326D3C 00323C7C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80326D40 00323C80  7C 08 02 A6 */	mflr r0
 /* 80326D44 00323C84  90 01 00 24 */	stw r0, 0x24(r1)
@@ -931,8 +931,8 @@ lbl_80326ECC:
 /* 80326EE8 00323E28  38 21 00 20 */	addi r1, r1, 0x20
 /* 80326EEC 00323E2C  4E 80 00 20 */	blr 
 
-.global J3DMtxBuffer_NS_calcBBoardMtx
-J3DMtxBuffer_NS_calcBBoardMtx:
+.global calcBBoardMtx__12J3DMtxBufferFv
+calcBBoardMtx__12J3DMtxBufferFv:
 /* 80326EF0 00323E30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80326EF4 00323E34  7C 08 02 A6 */	mflr r0
 /* 80326EF8 00323E38  90 01 00 24 */	stw r0, 0x24(r1)

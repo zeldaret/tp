@@ -16,7 +16,7 @@ lbl_800F1980:
 /* 800F1984 000EE8C4  4B FE 09 39 */ bl daAlink_c_NS_setSwordChargeVoiceSe
 /* 800F1988 000EE8C8  3B E0 00 00 */ li r31, 0
 /* 800F198C 000EE8CC  7F A3 EB 78 */ mr r3, r29
-/* 800F1990 000EE8D0  48 06 CB 3D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F1990 000EE8D0  48 06 CB 3D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F1994 000EE8D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F1998 000EE8D8  41 82 00 B0 */ beq lbl_800F1A48
 /* 800F199C 000EE8DC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

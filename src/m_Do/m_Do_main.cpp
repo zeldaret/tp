@@ -26,9 +26,9 @@ void create__12JKRSolidHeapFUlP7JKRHeapb(void);
 void create__8mDoCPd_cFv(void);
 void dComIfG_inf_c_NS_ct(void);
 void debug__Fv(void);
-void dRes_control_c_NS_dump(void);
+void dump__14dRes_control_cFv(void);
 void dump__11JKRAramHeapFv(void);
-void DynamicModuleControlBase_NS_dump(void);
+void dump__24DynamicModuleControlBaseFv(void);
 void fopAcM_initManager(void);
 void getFreeSize__11JKRAramHeapFv(void);
 void getFreeSize__7JKRHeapCFv(void);
@@ -370,8 +370,8 @@ void Debug_console(u32 controller_pad_no) {
                     sAramObject__7JKRAram->getAramHeap()->dump();
                 }
 
-                DynamicModuleControlBase_NS_dump();
-                dRes_control_c_NS_dump();
+                dump__24DynamicModuleControlBaseFv();
+                dump__14dRes_control_cFv();
             }
 
             if (tmp5 & 2) {

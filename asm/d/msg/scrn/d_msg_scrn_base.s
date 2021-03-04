@@ -16,7 +16,7 @@ dMsgScrnBase_c:
 /* 8023C0FC 0023903C  3C 80 80 3C */	lis r4, lbl_803C0D58@ha
 /* 8023C100 00239040  38 04 0D 58 */	addi r0, r4, lbl_803C0D58@l
 /* 8023C104 00239044  90 03 00 00 */	stw r0, 0(r3)
-/* 8023C108 00239048  48 00 00 65 */	bl dMsgScrnBase_c_NS_init
+/* 8023C108 00239048  48 00 00 65 */	bl init__14dMsgScrnBase_cFv
 /* 8023C10C 0023904C  7F E3 FB 78 */	mr r3, r31
 /* 8023C110 00239050  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8023C114 00239054  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -24,8 +24,8 @@ dMsgScrnBase_c:
 /* 8023C11C 0023905C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C120 00239060  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_dtor
-dMsgScrnBase_c_NS_dtor:
+.global __dt__14dMsgScrnBase_cFv
+__dt__14dMsgScrnBase_cFv:
 /* 8023C124 00239064  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C128 00239068  7C 08 02 A6 */	mflr r0
 /* 8023C12C 0023906C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -46,8 +46,8 @@ lbl_8023C154:
 /* 8023C164 002390A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C168 002390A8  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_init
-dMsgScrnBase_c_NS_init:
+.global init__14dMsgScrnBase_cFv
+init__14dMsgScrnBase_cFv:
 /* 8023C16C 002390AC  38 A0 00 00 */	li r5, 0
 /* 8023C170 002390B0  90 A3 00 04 */	stw r5, 4(r3)
 /* 8023C174 002390B4  90 A3 00 08 */	stw r5, 8(r3)
@@ -111,7 +111,7 @@ lbl_8023C1FC:
 /* 8023C254 00239194  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 8023C258 00239198  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8023C25C 0023919C  38 A3 01 B8 */	addi r5, r3, 0x1b8
-/* 8023C260 002391A0  4B E1 A5 35 */	bl dDlst_list_c_NS_set
+/* 8023C260 002391A0  4B E1 A5 35 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_8023C264:
 /* 8023C264 002391A4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023C268 002391A8  7C 08 03 A6 */	mtlr r0
@@ -135,7 +135,7 @@ lbl_8023C264:
 /* 8023C2B0 002391F0  C0 22 B1 A8 */	lfs f1, lbl_80454BA8-_SDA2_BASE_(r2)
 /* 8023C2B4 002391F4  FC 40 08 90 */	fmr f2, f1
 /* 8023C2B8 002391F8  7F E4 FB 78 */	mr r4, r31
-/* 8023C2BC 002391FC  48 0B CC 19 */	bl J2DScreen_NS_draw
+/* 8023C2BC 002391FC  48 0B CC 19 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 8023C2C0 00239200  7F C3 F3 78 */	mr r3, r30
 /* 8023C2C4 00239204  81 9E 00 00 */	lwz r12, 0(r30)
 /* 8023C2C8 00239208  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -158,14 +158,14 @@ lbl_8023C264:
 /* 8023C30C 0023924C  C0 22 B1 A8 */	lfs f1, lbl_80454BA8-_SDA2_BASE_(r2)
 /* 8023C310 00239250  FC 40 08 90 */	fmr f2, f1
 /* 8023C314 00239254  C0 62 B1 AC */	lfs f3, lbl_80454BAC-_SDA2_BASE_(r2)
-/* 8023C318 00239258  48 00 00 15 */	bl dMsgScrnBase_c_NS_drawOutFont
+/* 8023C318 00239258  48 00 00 15 */	bl drawOutFont__14dMsgScrnBase_cFfff
 /* 8023C31C 0023925C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023C320 00239260  7C 08 03 A6 */	mtlr r0
 /* 8023C324 00239264  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C328 00239268  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_drawOutFont
-dMsgScrnBase_c_NS_drawOutFont:
+.global drawOutFont__14dMsgScrnBase_cFfff
+drawOutFont__14dMsgScrnBase_cFfff:
 /* 8023C32C 0023926C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C330 00239270  7C 08 02 A6 */	mflr r0
 /* 8023C334 00239274  90 01 00 14 */	stw r0, 0x14(r1)
@@ -180,8 +180,8 @@ dMsgScrnBase_c_NS_drawOutFont:
 /* 8023C358 00239298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023C35C 0023929C  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_setString
-dMsgScrnBase_c_NS_setString:
+.global setString__14dMsgScrnBase_cFPcPc
+setString__14dMsgScrnBase_cFPcPc:
 /* 8023C360 002392A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023C364 002392A4  7C 08 02 A6 */	mflr r0
 /* 8023C368 002392A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -200,13 +200,13 @@ lbl_8023C388:
 /* 8023C398 002392D8  2C 1E 00 00 */	cmpwi r30, 0
 /* 8023C39C 002392DC  40 82 00 18 */	bne lbl_8023C3B4
 /* 8023C3A0 002392E0  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023C3A4 002392E4  48 0C 42 B5 */	bl J2DTextBox_NS_getStringPtr
+/* 8023C3A4 002392E4  48 0C 42 B5 */	bl getStringPtr__10J2DTextBoxCFv
 /* 8023C3A8 002392E8  7F 84 E3 78 */	mr r4, r28
 /* 8023C3AC 002392EC  48 12 C7 81 */	bl strcpy
 /* 8023C3B0 002392F0  48 00 00 14 */	b lbl_8023C3C4
 lbl_8023C3B4:
 /* 8023C3B4 002392F4  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023C3B8 002392F8  48 0C 42 A1 */	bl J2DTextBox_NS_getStringPtr
+/* 8023C3B8 002392F8  48 0C 42 A1 */	bl getStringPtr__10J2DTextBoxCFv
 /* 8023C3BC 002392FC  7F A4 EB 78 */	mr r4, r29
 /* 8023C3C0 00239300  48 12 C7 6D */	bl strcpy
 lbl_8023C3C4:
@@ -221,8 +221,8 @@ lbl_8023C3C4:
 /* 8023C3E4 00239324  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023C3E8 00239328  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_setRubyString
-dMsgScrnBase_c_NS_setRubyString:
+.global setRubyString__14dMsgScrnBase_cFPc
+setRubyString__14dMsgScrnBase_cFPc:
 /* 8023C3EC 0023932C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8023C3F0 00239330  7C 08 02 A6 */	mflr r0
 /* 8023C3F4 00239334  90 01 00 24 */	stw r0, 0x24(r1)
@@ -238,7 +238,7 @@ lbl_8023C410:
 /* 8023C418 00239358  28 03 00 00 */	cmplwi r3, 0
 /* 8023C41C 0023935C  41 82 00 14 */	beq lbl_8023C430
 /* 8023C420 00239360  80 63 00 04 */	lwz r3, 4(r3)
-/* 8023C424 00239364  48 0C 42 35 */	bl J2DTextBox_NS_getStringPtr
+/* 8023C424 00239364  48 0C 42 35 */	bl getStringPtr__10J2DTextBoxCFv
 /* 8023C428 00239368  7F A4 EB 78 */	mr r4, r29
 /* 8023C42C 0023936C  48 12 C7 01 */	bl strcpy
 lbl_8023C430:
@@ -257,7 +257,7 @@ lbl_8023C430:
 /* 8023C460 002393A0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8023C464 002393A4  80 63 00 08 */	lwz r3, 8(r3)
 /* 8023C468 002393A8  FC 40 08 90 */	fmr f2, f1
-/* 8023C46C 002393AC  48 01 81 CD */	bl CPaneMgr_NS_paneScale
+/* 8023C46C 002393AC  48 01 81 CD */	bl paneScale__8CPaneMgrFff
 /* 8023C470 002393B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023C474 002393B4  7C 08 03 A6 */	mtlr r0
 /* 8023C478 002393B8  38 21 00 10 */	addi r1, r1, 0x10
@@ -266,7 +266,7 @@ lbl_8023C430:
 /* 8023C484 002393C4  7C 08 02 A6 */	mflr r0
 /* 8023C488 002393C8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8023C48C 002393CC  80 63 00 08 */	lwz r3, 8(r3)
-/* 8023C490 002393D0  48 01 81 21 */	bl CPaneMgr_NS_paneTrans
+/* 8023C490 002393D0  48 01 81 21 */	bl paneTrans__8CPaneMgrFff
 /* 8023C494 002393D4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023C498 002393D8  7C 08 03 A6 */	mtlr r0
 /* 8023C49C 002393DC  38 21 00 10 */	addi r1, r1, 0x10
@@ -284,7 +284,7 @@ lbl_8023C430:
 /* 8023C4CC 0023940C  4E 80 04 21 */	bctrl 
 /* 8023C4D0 00239410  80 7F 00 08 */	lwz r3, 8(r31)
 /* 8023C4D4 00239414  FC 20 F8 90 */	fmr f1, f31
-/* 8023C4D8 00239418  48 01 92 F9 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8023C4D8 00239418  48 01 92 F9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 8023C4DC 0023941C  CB E1 00 18 */	lfd f31, 0x18(r1)
 /* 8023C4E0 00239420  83 E1 00 14 */	lwz r31, 0x14(r1)
 /* 8023C4E4 00239424  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -307,13 +307,13 @@ lbl_8023C51C:
 /* 8023C524 00239464  28 03 00 00 */	cmplwi r3, 0
 /* 8023C528 00239468  41 82 00 0C */	beq lbl_8023C534
 /* 8023C52C 0023946C  FC 20 F8 90 */	fmr f1, f31
-/* 8023C530 00239470  48 01 92 A1 */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8023C530 00239470  48 01 92 A1 */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_8023C534:
 /* 8023C534 00239474  80 7E 00 28 */	lwz r3, 0x28(r30)
 /* 8023C538 00239478  28 03 00 00 */	cmplwi r3, 0
 /* 8023C53C 0023947C  41 82 00 0C */	beq lbl_8023C548
 /* 8023C540 00239480  FC 20 F8 90 */	fmr f1, f31
-/* 8023C544 00239484  48 01 92 8D */	bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8023C544 00239484  48 01 92 8D */	bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_8023C548:
 /* 8023C548 00239488  3B BD 00 01 */	addi r29, r29, 1
 /* 8023C54C 0023948C  2C 1D 00 07 */	cmpwi r29, 7
@@ -327,12 +327,12 @@ lbl_8023C548:
 /* 8023C56C 002394AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023C570 002394B0  4E 80 00 20 */	blr 
 
-.global dMsgScrnBase_c_NS_isTalkNow
-dMsgScrnBase_c_NS_isTalkNow:
+.global isTalkNow__14dMsgScrnBase_cFv
+isTalkNow__14dMsgScrnBase_cFv:
 /* 8023C574 002394B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C578 002394B8  7C 08 02 A6 */	mflr r0
 /* 8023C57C 002394BC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8023C580 002394C0  4B FF BC AD */	bl dMsgObject_c_NS_getStatus
+/* 8023C580 002394C0  4B FF BC AD */	bl getStatus__12dMsgObject_cFv
 /* 8023C584 002394C4  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 8023C588 002394C8  38 03 FF FB */	addi r0, r3, -5
 /* 8023C58C 002394CC  28 00 00 13 */	cmplwi r0, 0x13

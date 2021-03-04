@@ -12,7 +12,7 @@
 /* 800FAE40 000F7D80  48 00 00 74 */ b lbl_800FAEB4
 lbl_800FAE44:
 /* 800FAE44 000F7D84  7F E3 FB 78 */ mr r3, r31
-/* 800FAE48 000F7D88  48 06 36 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FAE48 000F7D88  48 06 36 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FAE4C 000F7D8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FAE50 000F7D90  41 82 00 10 */ beq lbl_800FAE60
 /* 800FAE54 000F7D94  7F C3 F3 78 */ mr r3, r30

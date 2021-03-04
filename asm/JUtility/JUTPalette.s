@@ -3,8 +3,8 @@
 .section .text, "ax" # 802de890
 
 
-.global JUTPalette_NS_storeTLUT
-JUTPalette_NS_storeTLUT:
+.global storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
+storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT:
 /* 802DE890 002DB7D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE894 002DB7D4  7C 08 02 A6 */	mflr r0
 /* 802DE898 002DB7D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -42,8 +42,8 @@ lbl_802DE8CC:
 /* 802DE914 002DB854  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE918 002DB858  4E 80 00 20 */	blr 
 
-.global JUTPalette_NS_storeTLUT_X1_
-JUTPalette_NS_storeTLUT_X1_:
+.global storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT_X1_
+storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT_X1_:
 /* 802DE91C 002DB85C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE920 002DB860  7C 08 02 A6 */	mflr r0
 /* 802DE924 002DB864  90 01 00 14 */	stw r0, 0x14(r1)
@@ -61,8 +61,8 @@ JUTPalette_NS_storeTLUT_X1_:
 /* 802DE954 002DB894  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE958 002DB898  4E 80 00 20 */	blr 
 
-.global JUTPalette_NS_load
-JUTPalette_NS_load:
+.global load__10JUTPaletteFv
+load__10JUTPaletteFv:
 /* 802DE95C 002DB89C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE960 002DB8A0  7C 08 02 A6 */	mflr r0
 /* 802DE964 002DB8A4  90 01 00 14 */	stw r0, 0x14(r1)

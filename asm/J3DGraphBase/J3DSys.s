@@ -62,8 +62,8 @@ lbl_8030FE8C:
 /* 8030FEB8 0030CDF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030FEBC 0030CDFC  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_loadPosMtxIndx
-J3DSys_NS_loadPosMtxIndx:
+.global loadPosMtxIndx__6J3DSysCFiUs
+loadPosMtxIndx__6J3DSysCFiUs:
 /* 8030FEC0 0030CE00  38 00 00 20 */	li r0, 0x20
 /* 8030FEC4 0030CE04  3C 60 CC 01 */	lis r3, 0xCC008000@ha
 /* 8030FEC8 0030CE08  98 03 80 00 */	stb r0, 0xCC008000@l(r3)
@@ -74,8 +74,8 @@ J3DSys_NS_loadPosMtxIndx:
 /* 8030FEDC 0030CE1C  B0 03 80 00 */	sth r0, -0x8000(r3)
 /* 8030FEE0 0030CE20  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_loadNrmMtxIndx
-J3DSys_NS_loadNrmMtxIndx:
+.global loadNrmMtxIndx__6J3DSysCFiUs
+loadNrmMtxIndx__6J3DSysCFiUs:
 /* 8030FEE4 0030CE24  38 00 00 28 */	li r0, 0x28
 /* 8030FEE8 0030CE28  3C C0 CC 01 */	lis r6, 0xCC008000@ha
 /* 8030FEEC 0030CE2C  98 06 80 00 */	stb r0, 0xCC008000@l(r6)
@@ -87,8 +87,8 @@ J3DSys_NS_loadNrmMtxIndx:
 /* 8030FF04 0030CE44  B0 06 80 00 */	sth r0, -0x8000(r6)
 /* 8030FF08 0030CE48  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_setTexCacheRegion
-J3DSys_NS_setTexCacheRegion:
+.global setTexCacheRegion__6J3DSysF15_GXTexCacheSize
+setTexCacheRegion__6J3DSysF15_GXTexCacheSize:
 /* 8030FF0C 0030CE4C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8030FF10 0030CE50  7C 08 02 A6 */	mflr r0
 /* 8030FF14 0030CE54  90 01 00 54 */	stw r0, 0x54(r1)
@@ -206,8 +206,8 @@ lbl_803100A4:
 /* 803100B4 0030CFF4  38 21 00 50 */	addi r1, r1, 0x50
 /* 803100B8 0030CFF8  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_drawInit
-J3DSys_NS_drawInit:
+.global drawInit__6J3DSysFv
+drawInit__6J3DSysFv:
 /* 803100BC 0030CFFC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 803100C0 0030D000  7C 08 02 A6 */	mflr r0
 /* 803100C4 0030D004  90 01 00 54 */	stw r0, 0x54(r1)
@@ -319,7 +319,7 @@ J3DSys_NS_drawInit:
 /* 8031026C 0030D1AC  38 60 00 00 */	li r3, 0
 /* 80310270 0030D1B0  48 04 EE 65 */	bl GXSetNumIndStages
 /* 80310274 0030D1B4  7F E3 FB 78 */	mr r3, r31
-/* 80310278 0030D1B8  48 00 07 21 */	bl J3DSys_NS_reinitTexture
+/* 80310278 0030D1B8  48 00 07 21 */	bl reinitTexture__6J3DSysFv
 /* 8031027C 0030D1BC  38 60 00 00 */	li r3, 0
 /* 80310280 0030D1C0  38 80 00 FF */	li r4, 0xff
 /* 80310284 0030D1C4  38 A0 00 FF */	li r5, 0xff
@@ -635,7 +635,7 @@ lbl_803106DC:
 /* 80310714 0030D654  7C 75 E3 A6 */	mtspr 0x395, r3
 /* 80310718 0030D658  7F E3 FB 78 */	mr r3, r31
 /* 8031071C 0030D65C  38 80 00 00 */	li r4, 0
-/* 80310720 0030D660  4B FF F7 ED */	bl J3DSys_NS_setTexCacheRegion
+/* 80310720 0030D660  4B FF F7 ED */	bl setTexCacheRegion__6J3DSysF15_GXTexCacheSize
 /* 80310724 0030D664  39 61 00 50 */	addi r11, r1, 0x50
 /* 80310728 0030D668  48 05 1A FD */	bl _restgpr_28
 /* 8031072C 0030D66C  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -643,26 +643,26 @@ lbl_803106DC:
 /* 80310734 0030D674  38 21 00 50 */	addi r1, r1, 0x50
 /* 80310738 0030D678  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitGX
-J3DSys_NS_reinitGX:
+.global reinitGX__6J3DSysFv
+reinitGX__6J3DSysFv:
 /* 8031073C 0030D67C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80310740 0030D680  7C 08 02 A6 */	mflr r0
 /* 80310744 0030D684  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80310748 0030D688  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8031074C 0030D68C  7C 7F 1B 78 */	mr r31, r3
-/* 80310750 0030D690  48 00 00 4D */	bl J3DSys_NS_reinitGenMode
+/* 80310750 0030D690  48 00 00 4D */	bl reinitGenMode__6J3DSysFv
 /* 80310754 0030D694  7F E3 FB 78 */	mr r3, r31
-/* 80310758 0030D698  48 00 00 91 */	bl J3DSys_NS_reinitLighting
+/* 80310758 0030D698  48 00 00 91 */	bl reinitLighting__6J3DSysFv
 /* 8031075C 0030D69C  7F E3 FB 78 */	mr r3, r31
-/* 80310760 0030D6A0  48 00 01 35 */	bl J3DSys_NS_reinitTransform
+/* 80310760 0030D6A0  48 00 01 35 */	bl reinitTransform__6J3DSysFv
 /* 80310764 0030D6A4  7F E3 FB 78 */	mr r3, r31
-/* 80310768 0030D6A8  48 00 02 31 */	bl J3DSys_NS_reinitTexture
+/* 80310768 0030D6A8  48 00 02 31 */	bl reinitTexture__6J3DSysFv
 /* 8031076C 0030D6AC  7F E3 FB 78 */	mr r3, r31
-/* 80310770 0030D6B0  48 00 02 CD */	bl J3DSys_NS_reinitTevStages
+/* 80310770 0030D6B0  48 00 02 CD */	bl reinitTevStages__6J3DSysFv
 /* 80310774 0030D6B4  7F E3 FB 78 */	mr r3, r31
-/* 80310778 0030D6B8  48 00 05 CD */	bl J3DSys_NS_reinitIndStages
+/* 80310778 0030D6B8  48 00 05 CD */	bl reinitIndStages__6J3DSysFv
 /* 8031077C 0030D6BC  7F E3 FB 78 */	mr r3, r31
-/* 80310780 0030D6C0  48 00 06 BD */	bl J3DSys_NS_reinitPixelProc
+/* 80310780 0030D6C0  48 00 06 BD */	bl reinitPixelProc__6J3DSysFv
 /* 80310784 0030D6C4  48 04 B7 49 */	bl GXFlush
 /* 80310788 0030D6C8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8031078C 0030D6CC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -670,8 +670,8 @@ J3DSys_NS_reinitGX:
 /* 80310794 0030D6D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80310798 0030D6D8  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitGenMode
-J3DSys_NS_reinitGenMode:
+.global reinitGenMode__6J3DSysFv
+reinitGenMode__6J3DSysFv:
 /* 8031079C 0030D6DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803107A0 0030D6E0  7C 08 02 A6 */	mflr r0
 /* 803107A4 0030D6E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -692,8 +692,8 @@ J3DSys_NS_reinitGenMode:
 /* 803107E0 0030D720  38 21 00 10 */	addi r1, r1, 0x10
 /* 803107E4 0030D724  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitLighting
-J3DSys_NS_reinitLighting:
+.global reinitLighting__6J3DSysFv
+reinitLighting__6J3DSysFv:
 /* 803107E8 0030D728  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803107EC 0030D72C  7C 08 02 A6 */	mflr r0
 /* 803107F0 0030D730  90 01 00 24 */	stw r0, 0x24(r1)
@@ -738,8 +738,8 @@ J3DSys_NS_reinitLighting:
 /* 8031088C 0030D7CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80310890 0030D7D0  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitTransform
-J3DSys_NS_reinitTransform:
+.global reinitTransform__6J3DSysFv
+reinitTransform__6J3DSysFv:
 /* 80310894 0030D7D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80310898 0030D7D8  7C 08 02 A6 */	mflr r0
 /* 8031089C 0030D7DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -806,8 +806,8 @@ J3DSys_NS_reinitTransform:
 /* 80310990 0030D8D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80310994 0030D8D4  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitTexture
-J3DSys_NS_reinitTexture:
+.global reinitTexture__6J3DSysFv
+reinitTexture__6J3DSysFv:
 /* 80310998 0030D8D8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8031099C 0030D8DC  7C 08 02 A6 */	mflr r0
 /* 803109A0 0030D8E0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -850,8 +850,8 @@ J3DSys_NS_reinitTexture:
 /* 80310A34 0030D974  38 21 00 30 */	addi r1, r1, 0x30
 /* 80310A38 0030D978  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitTevStages
-J3DSys_NS_reinitTevStages:
+.global reinitTevStages__6J3DSysFv
+reinitTevStages__6J3DSysFv:
 /* 80310A3C 0030D97C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80310A40 0030D980  7C 08 02 A6 */	mflr r0
 /* 80310A44 0030D984  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1048,8 +1048,8 @@ lbl_80310C1C:
 /* 80310D3C 0030DC7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80310D40 0030DC80  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitIndStages
-J3DSys_NS_reinitIndStages:
+.global reinitIndStages__6J3DSysFv
+reinitIndStages__6J3DSysFv:
 /* 80310D44 0030DC84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80310D48 0030DC88  7C 08 02 A6 */	mflr r0
 /* 80310D4C 0030DC8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1114,8 +1114,8 @@ lbl_80310D58:
 /* 80310E34 0030DD74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80310E38 0030DD78  4E 80 00 20 */	blr 
 
-.global J3DSys_NS_reinitPixelProc
-J3DSys_NS_reinitPixelProc:
+.global reinitPixelProc__6J3DSysFv
+reinitPixelProc__6J3DSysFv:
 /* 80310E3C 0030DD7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80310E40 0030DD80  7C 08 02 A6 */	mflr r0
 /* 80310E44 0030DD84  90 01 00 14 */	stw r0, 0x14(r1)

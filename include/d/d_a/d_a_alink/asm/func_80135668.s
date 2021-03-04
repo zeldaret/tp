@@ -12,7 +12,7 @@
 /* 80135694 001325D4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80135698 001325D8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 8013569C 001325DC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 801356A0 001325E0  48 02 8E 2D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801356A0 001325E0  48 02 8E 2D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801356A4 001325E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801356A8 001325E8  41 82 00 30 */ beq lbl_801356D8
 /* 801356AC 001325EC  A8 1F 30 0C */ lha r0, 0x300c(r31)

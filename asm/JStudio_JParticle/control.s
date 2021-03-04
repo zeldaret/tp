@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028e3a0
 
 
-.global JStudio_JParticle_NS_TCreateObject_NS_dtor
-JStudio_JParticle_NS_TCreateObject_NS_dtor:
+.global __dt__Q217JStudio_JParticle13TCreateObjectFv
+__dt__Q217JStudio_JParticle13TCreateObjectFv:
 /* 8028E3A0 0028B2E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028E3A4 0028B2E4  7C 08 02 A6 */	mflr r0
 /* 8028E3A8 0028B2E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ JStudio_JParticle_NS_TCreateObject_NS_dtor:
 /* 8028E3C4 0028B304  38 04 5A D8 */	addi r0, r4, lbl_803C5AD8@l
 /* 8028E3C8 0028B308  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E3CC 0028B30C  38 80 00 00 */	li r4, 0
-/* 8028E3D0 0028B310  4B FF 70 B9 */	bl JStudio_NS_TCreateObject_NS_dtor
+/* 8028E3D0 0028B310  4B FF 70 B9 */	bl __dt__Q27JStudio13TCreateObjectFv
 /* 8028E3D4 0028B314  7F E0 07 35 */	extsh. r0, r31
 /* 8028E3D8 0028B318  40 81 00 0C */	ble lbl_8028E3E4
 /* 8028E3DC 0028B31C  7F C3 F3 78 */	mr r3, r30
@@ -44,10 +44,10 @@ lbl_8028E3E4:
 /* 8028E42C 0028B36C  41 82 00 08 */	beq lbl_8028E434
 /* 8028E430 0028B370  48 00 00 10 */	b lbl_8028E440
 lbl_8028E434:
-.global JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_
-/* 8028E434 0028B374  3C 60 80 29 */	lis r3, JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_@ha
-.global JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_
-/* 8028E438 0028B378  39 83 E5 08 */	addi r12, r3, JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_@l
+.global createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject
+/* 8028E434 0028B374  3C 60 80 29 */	lis r3, createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject@ha
+.global createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject
+/* 8028E438 0028B378  39 83 E5 08 */	addi r12, r3, createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject@l
 /* 8028E43C 0028B37C  48 00 00 0C */	b lbl_8028E448
 lbl_8028E440:
 /* 8028E440 0028B380  38 60 00 00 */	li r3, 0
@@ -97,13 +97,13 @@ lbl_8028E460:
 /* 8028E4E8 0028B428  7C 08 02 A6 */	mflr r0
 /* 8028E4EC 0028B42C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028E4F0 0028B430  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 8028E4F4 0028B434  4B FE FD E5 */	bl JPAEmitterManager_NS_forceDeleteEmitter
+/* 8028E4F4 0028B434  4B FE FD E5 */	bl forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 /* 8028E4F8 0028B438  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028E4FC 0028B43C  7C 08 03 A6 */	mtlr r0
 /* 8028E500 0028B440  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028E504 0028B444  4E 80 00 20 */	blr 
-.global JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_
-JStudio_JParticle_NS_TCreateObject_NS_createObject_JPA_PARTICLE_:
+.global createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject
+createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject:
 /* 8028E508 0028B448  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028E50C 0028B44C  7C 08 02 A6 */	mflr r0
 /* 8028E510 0028B450  90 01 00 24 */	stw r0, 0x24(r1)

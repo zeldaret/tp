@@ -90,10 +90,10 @@ lbl_800C20A4:
 /* 800C20B0 000BEFF0  40 82 00 0C */ bne lbl_800C20BC
 lbl_800C20B4:
 /* 800C20B4 000BEFF4  7C 83 23 78 */ mr r3, r4
-/* 800C20B8 000BEFF8  4B F7 5A 2D */ bl daItemBase_c_NS_dead
+/* 800C20B8 000BEFF8  4B F7 5A 2D */ bl dead__12daItemBase_cFv
 lbl_800C20BC:
 /* 800C20BC 000BEFFC  38 79 28 0C */ addi r3, r25, 0x280c
-/* 800C20C0 000BF000  48 09 CC 3D */ bl daPy_actorKeep_c_NS_clearData
+/* 800C20C0 000BF000  48 09 CC 3D */ bl clearData__16daPy_actorKeep_cFv
 /* 800C20C4 000BF004  A0 19 2F E8 */ lhz r0, 0x2fe8(r25)
 /* 800C20C8 000BF008  28 00 00 B5 */ cmplwi r0, 0xb5
 /* 800C20CC 000BF00C  40 82 01 84 */ bne lbl_800C2250
@@ -132,7 +132,7 @@ lbl_800C2134:
 /* 800C2144 000BF084  54 00 03 14 */ rlwinm r0, r0, 0, 0xc, 0xa
 /* 800C2148 000BF088  90 03 04 9C */ stw r0, 0x49c(r3)
 /* 800C214C 000BF08C  38 79 28 54 */ addi r3, r25, 0x2854
-/* 800C2150 000BF090  48 09 CB AD */ bl daPy_actorKeep_c_NS_clearData
+/* 800C2150 000BF090  48 09 CB AD */ bl clearData__16daPy_actorKeep_cFv
 /* 800C2154 000BF094  48 00 00 FC */ b lbl_800C2250
 lbl_800C2158:
 /* 800C2158 000BF098  28 05 01 36 */ cmplwi r5, 0x136
@@ -197,7 +197,7 @@ lbl_800C2228:
 /* 800C222C 000BF16C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C2230 000BF170  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800C2234 000BF174  38 80 00 1F */ li r4, 0x1f
-/* 800C2238 000BF178  4B FA DB 5D */ bl dVibration_c_NS_StopQuake
+/* 800C2238 000BF178  4B FA DB 5D */ bl StopQuake__12dVibration_cFi
 /* 800C223C 000BF17C  48 00 00 14 */ b lbl_800C2250
 lbl_800C2240:
 /* 800C2240 000BF180  28 00 00 1F */ cmplwi r0, 0x1f
@@ -214,7 +214,7 @@ lbl_800C2264:
 /* 800C2264 000BF1A4  38 00 00 00 */ li r0, 0
 /* 800C2268 000BF1A8  98 19 2F A3 */ stb r0, 0x2fa3(r25)
 /* 800C226C 000BF1AC  38 79 28 44 */ addi r3, r25, 0x2844
-/* 800C2270 000BF1B0  48 09 CA 8D */ bl daPy_actorKeep_c_NS_clearData
+/* 800C2270 000BF1B0  48 09 CA 8D */ bl clearData__16daPy_actorKeep_cFv
 lbl_800C2274:
 /* 800C2274 000BF1B4  A0 19 2F E8 */ lhz r0, 0x2fe8(r25)
 /* 800C2278 000BF1B8  20 00 00 A2 */ subfic r0, r0, 0xa2
@@ -359,7 +359,7 @@ lbl_800C2474:
 /* 800C2478 000BF3B8  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800C247C 000BF3BC  41 82 00 20 */ beq lbl_800C249C
 /* 800C2480 000BF3C0  A0 79 2F DC */ lhz r3, 0x2fdc(r25)
-/* 800C2484 000BF3C4  48 09 C7 35 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800C2484 000BF3C4  48 09 C7 35 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800C2488 000BF3C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C248C 000BF3CC  41 82 00 10 */ beq lbl_800C249C
 /* 800C2490 000BF3D0  80 19 31 A0 */ lwz r0, 0x31a0(r25)
@@ -603,7 +603,7 @@ lbl_800C2770:
 lbl_800C27F4:
 /* 800C27F4 000BF734  38 7A 07 C4 */ addi r3, r26, 0x7c4
 /* 800C27F8 000BF738  7C 79 1A 14 */ add r3, r25, r3
-/* 800C27FC 000BF73C  48 09 C5 01 */ bl daPy_actorKeep_c_NS_clearData
+/* 800C27FC 000BF73C  48 09 C5 01 */ bl clearData__16daPy_actorKeep_cFv
 /* 800C2800 000BF740  3B FF 00 01 */ addi r31, r31, 1
 /* 800C2804 000BF744  3B 5A 00 08 */ addi r26, r26, 8
 lbl_800C2808:
@@ -691,7 +691,7 @@ lbl_800C2900:
 /* 800C291C 000BF85C  4B FE AE 09 */ bl daAlink_c_NS_resetUpperAnime
 lbl_800C2920:
 /* 800C2920 000BF860  A0 79 2F DC */ lhz r3, 0x2fdc(r25)
-/* 800C2924 000BF864  48 09 C1 25 */ bl daPy_py_c_NS_checkBombItem
+/* 800C2924 000BF864  48 09 C1 25 */ bl checkBombItem__9daPy_py_cFi
 /* 800C2928 000BF868  2C 03 00 00 */ cmpwi r3, 0
 /* 800C292C 000BF86C  41 82 00 0C */ beq lbl_800C2938
 /* 800C2930 000BF870  38 00 00 FF */ li r0, 0xff
@@ -989,7 +989,7 @@ lbl_800C2D38:
 /* 800C2D50 000BFC90  54 00 03 9D */ rlwinm. r0, r0, 0, 0xe, 0xe
 /* 800C2D54 000BFC94  40 82 00 38 */ bne lbl_800C2D8C
 /* 800C2D58 000BFC98  38 79 28 0C */ addi r3, r25, 0x280c
-/* 800C2D5C 000BFC9C  48 09 BF A1 */ bl daPy_actorKeep_c_NS_clearData
+/* 800C2D5C 000BFC9C  48 09 BF A1 */ bl clearData__16daPy_actorKeep_cFv
 /* 800C2D60 000BFCA0  A8 1A 00 08 */ lha r0, 8(r26)
 /* 800C2D64 000BFCA4  2C 00 02 BE */ cmpwi r0, 0x2be
 /* 800C2D68 000BFCA8  40 82 00 14 */ bne lbl_800C2D7C

@@ -36,7 +36,7 @@ lbl_8001B440:
 /* 8001B448 00018388  7F 84 E3 78 */ mr r4, r28
 /* 8001B44C 0001838C  7D 05 43 78 */ mr r5, r8
 /* 8001B450 00018390  38 C0 00 FF */ li r6, 0xff
-/* 8001B454 00018394  48 02 C3 05 */ bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 8001B454 00018394  48 02 C3 05 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
 /* 8001B458 00018398  7C 79 1B 78 */ mr r25, r3
 /* 8001B45C 0001839C  7F 20 07 35 */ extsh. r0, r25
 /* 8001B460 000183A0  40 80 00 0C */ bge lbl_8001B46C
@@ -46,7 +46,7 @@ lbl_8001B46C:
 /* 8001B46C 000183AC  7F 43 D3 78 */ mr r3, r26
 /* 8001B470 000183B0  7F 84 E3 78 */ mr r4, r28
 /* 8001B474 000183B4  7F 25 CB 78 */ mr r5, r25
-/* 8001B478 000183B8  48 02 CD 7D */ bl dEvent_manager_c_NS_getEventPrio
+/* 8001B478 000183B8  48 02 CD 7D */ bl getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs
 /* 8001B47C 000183BC  54 7A 04 3F */ clrlwi. r26, r3, 0x10
 /* 8001B480 000183C0  40 82 00 08 */ bne lbl_8001B488
 /* 8001B484 000183C4  3B 40 00 FF */ li r26, 0xff
@@ -67,7 +67,7 @@ lbl_8001B494:
 /* 8001B4B8 000183F8  7F A7 EB 78 */ mr r7, r29
 /* 8001B4BC 000183FC  7F 88 E3 78 */ mr r8, r28
 /* 8001B4C0 00018400  7F 2A CB 78 */ mr r10, r25
-/* 8001B4C4 00018404  48 02 61 A5 */ bl dEvt_control_c_NS_order
+/* 8001B4C4 00018404  48 02 61 A5 */ bl order__14dEvt_control_cFUsUsUsUsPvPvsUc
 lbl_8001B4C8:
 /* 8001B4C8 00018408  39 61 00 30 */ addi r11, r1, 0x30
 /* 8001B4CC 0001840C  48 34 6D 4D */ bl _restgpr_25

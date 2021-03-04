@@ -37,7 +37,7 @@ lbl_800DEB6C:
 /* 800DEB6C 000DBAAC  4B F3 B1 11 */ bl fopAcM_delete__FP10fopAc_ac_c
 lbl_800DEB70:
 /* 800DEB70 000DBAB0  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800DEB74 000DBAB4  48 08 01 89 */ bl daPy_actorKeep_c_NS_clearData
+/* 800DEB74 000DBAB4  48 08 01 89 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800DEB78:
 /* 800DEB78 000DBAB8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800DEB7C 000DBABC  80 01 00 14 */ lwz r0, 0x14(r1)

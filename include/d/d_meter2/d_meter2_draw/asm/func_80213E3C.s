@@ -10,7 +10,7 @@
 /* 80213E60 00210DA0  80 7F 05 38 */ lwz r3, 0x538(r31)
 /* 80213E64 00210DA4  D3 E3 00 08 */ stfs f31, 8(r3)
 /* 80213E68 00210DA8  80 7F 00 80 */ lwz r3, 0x80(r31)
-/* 80213E6C 00210DAC  48 0E 58 25 */ bl J2DScreen_NS_animation
+/* 80213E6C 00210DAC  48 0E 58 25 */ bl animation__9J2DScreenFv
 /* 80213E70 00210DB0  7F E3 FB 78 */ mr r3, r31
 /* 80213E74 00210DB4  38 80 00 00 */ li r4, 0
 /* 80213E78 00210DB8  4B FF FE F5 */ bl dMeter2Draw_c_NS_setPikariBpkAnimation

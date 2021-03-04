@@ -4,7 +4,7 @@
 /* 80101940 000FE880  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80101944 000FE884  7C 7F 1B 78 */ mr r31, r3
 /* 80101948 000FE888  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
-/* 8010194C 000FE88C  48 05 D2 6D */ bl daPy_py_c_NS_checkHookshotItem
+/* 8010194C 000FE88C  48 05 D2 6D */ bl checkHookshotItem__9daPy_py_cFi
 /* 80101950 000FE890  2C 03 00 00 */ cmpwi r3, 0
 /* 80101954 000FE894  40 82 00 3C */ bne lbl_80101990
 /* 80101958 000FE898  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)

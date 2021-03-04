@@ -33,7 +33,7 @@ lbl_800FBC0C:
 /* 800FBC40 000F8B80  C0 66 00 34 */ lfs f3, 0x34(r6)
 /* 800FBC44 000F8B84  4B FB 13 C9 */ bl daAlink_c_NS_setSingleAnime
 /* 800FBC48 000F8B88  A0 7E 2F DC */ lhz r3, 0x2fdc(r30)
-/* 800FBC4C 000F8B8C  48 06 2F 45 */ bl daPy_py_c_NS_checkBowItem
+/* 800FBC4C 000F8B8C  48 06 2F 45 */ bl checkBowItem__9daPy_py_cFi
 /* 800FBC50 000F8B90  2C 03 00 00 */ cmpwi r3, 0
 /* 800FBC54 000F8B94  41 82 00 0C */ beq lbl_800FBC60
 /* 800FBC58 000F8B98  C0 1E 1F E0 */ lfs f0, 0x1fe0(r30)

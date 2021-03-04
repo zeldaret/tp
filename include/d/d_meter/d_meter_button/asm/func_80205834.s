@@ -24,7 +24,7 @@ lbl_80205874:
 /* 8020588C 002027CC  3C C0 80 40 */ lis r6, g_dComIfG_gameInfo@ha
 /* 80205890 002027D0  38 C6 61 C0 */ addi r6, r6, g_dComIfG_gameInfo@l
 /* 80205894 002027D4  80 C6 5C 70 */ lwz r6, 0x5c70(r6)
-/* 80205898 002027D8  48 0F 2D B1 */ bl J2DScreen_NS_setPriority
+/* 80205898 002027D8  48 0F 2D B1 */ bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 8020589C 002027DC  80 7F 00 10 */ lwz r3, 0x10(r31)
 /* 802058A0 002027E0  48 04 F8 49 */ bl dPaneClass_showNullPane
 /* 802058A4 002027E4  38 60 00 6C */ li r3, 0x6c
@@ -43,7 +43,7 @@ lbl_802058D4:
 /* 802058D4 00202814  90 1F 00 D8 */ stw r0, 0xd8(r31)
 /* 802058D8 00202818  80 7F 00 D8 */ lwz r3, 0xd8(r31)
 /* 802058DC 0020281C  C0 22 AD 48 */ lfs f1, lbl_80454748-_SDA2_BASE_(r2)
-/* 802058E0 00202820  48 04 FE F1 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802058E0 00202820  48 04 FE F1 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802058E4 00202824  80 7F 00 10 */ lwz r3, 0x10(r31)
 /* 802058E8 00202828  3C 80 6E 75 */ lis r4, 0x6E756C6C@ha
 /* 802058EC 0020282C  38 C4 6C 6C */ addi r6, r4, 0x6E756C6C@l
@@ -120,7 +120,7 @@ lbl_802059E8:
 /* 80205A00 00202940  3C C0 80 40 */ lis r6, g_dComIfG_gameInfo@ha
 /* 80205A04 00202944  38 C6 61 C0 */ addi r6, r6, g_dComIfG_gameInfo@l
 /* 80205A08 00202948  80 C6 5C E4 */ lwz r6, 0x5ce4(r6)
-/* 80205A0C 0020294C  48 0F 2C 3D */ bl J2DScreen_NS_setPriority
+/* 80205A0C 0020294C  48 0F 2C 3D */ bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 80205A10 00202950  80 7F 00 14 */ lwz r3, 0x14(r31)
 /* 80205A14 00202954  48 04 F6 D5 */ bl dPaneClass_showNullPane
 /* 80205A18 00202958  38 60 00 6C */ li r3, 0x6c
@@ -226,7 +226,7 @@ lbl_80205B68:
 /* 80205B98 00202AD8  38 80 02 00 */ li r4, 0x200
 /* 80205B9C 00202ADC  38 BC 00 21 */ addi r5, r28, 0x21
 /* 80205BA0 00202AE0  4C C6 31 82 */ crclr 6
-/* 80205BA4 00202AE4  48 0F AB A9 */ bl J2DTextBox_NS_setString_X1_
+/* 80205BA4 00202AE4  48 0F AB A9 */ bl setString__10J2DTextBoxFPCce_X1_
 /* 80205BA8 00202AE8  80 7A 00 EC */ lwz r3, 0xec(r26)
 /* 80205BAC 00202AEC  28 03 00 00 */ cmplwi r3, 0
 /* 80205BB0 00202AF0  41 82 00 50 */ beq lbl_80205C00
@@ -245,7 +245,7 @@ lbl_80205B68:
 /* 80205BE4 00202B24  38 A5 80 E8 */ addi r5, r5, lbl_803980E8@l
 /* 80205BE8 00202B28  38 A5 00 21 */ addi r5, r5, 0x21
 /* 80205BEC 00202B2C  4C C6 31 82 */ crclr 6
-/* 80205BF0 00202B30  48 0F AB 5D */ bl J2DTextBox_NS_setString_X1_
+/* 80205BF0 00202B30  48 0F AB 5D */ bl setString__10J2DTextBoxFPCce_X1_
 /* 80205BF4 00202B34  80 7A 00 EC */ lwz r3, 0xec(r26)
 /* 80205BF8 00202B38  80 63 00 04 */ lwz r3, 4(r3)
 /* 80205BFC 00202B3C  D3 C3 01 18 */ stfs f30, 0x118(r3)

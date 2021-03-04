@@ -23,7 +23,7 @@
 /* 80117D50 00114C90  41 82 00 10 */ beq lbl_80117D60
 /* 80117D54 00114C94  80 63 00 04 */ lwz r3, 4(r3)
 /* 80117D58 00114C98  38 63 00 58 */ addi r3, r3, 0x58
-/* 80117D5C 00114C9C  48 21 7B 25 */ bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 80117D5C 00114C9C  48 21 7B 25 */ bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_80117D60:
 /* 80117D60 00114CA0  38 00 00 00 */ li r0, 0
 /* 80117D64 00114CA4  90 1C 06 F8 */ stw r0, 0x6f8(r28)

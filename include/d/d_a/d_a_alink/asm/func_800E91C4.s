@@ -12,7 +12,7 @@
 /* 800E91F0 000E6130  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E91F4 000E6134  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E91F8 000E6138  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 800E91FC 000E613C  4B F5 92 6D */ bl dEvt_control_c_NS_reset
+/* 800E91FC 000E613C  4B F5 92 6D */ bl reset__14dEvt_control_cFv
 lbl_800E9200:
 /* 800E9200 000E6140  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800E9204 000E6144  7C 08 03 A6 */ mtlr r0

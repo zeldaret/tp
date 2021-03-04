@@ -86,21 +86,21 @@ lbl_8000BE50:
 lbl_8000BE84:
 /* 8000BE84 00008DC4  80 0D 80 20 */ lwz r0, lbl_804505A0-_SDA_BASE_(r13)
 /* 8000BE88 00008DC8  90 0D 82 14 */ stw r0, lbl_80450794-_SDA_BASE_(r13)
-/* 8000BE8C 00008DCC  48 26 5E 45 */ bl JFWSystem_NS_firstInit
+/* 8000BE8C 00008DCC  48 26 5E 45 */ bl firstInit__9JFWSystemFv
 /* 8000BE90 00008DD0  38 60 18 00 */ li r3, 0x1800
 /* 8000BE94 00008DD4  80 8D 8D F8 */ lwz r4, sRootHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 8000BE98 00008DD8  48 00 2E 55 */ bl mDoExt_createDbPrintHeap
 /* 8000BE9C 00008DDC  7C 64 1B 78 */ mr r4, r3
 /* 8000BEA0 00008DE0  38 60 00 00 */ li r3, 0
-/* 8000BEA4 00008DE4  48 2D 42 ED */ bl JUTDbPrint_NS_start
+/* 8000BEA4 00008DE4  48 2D 42 ED */ bl start__10JUTDbPrintFP7JUTFontP7JKRHeap
 /* 8000BEA8 00008DE8  80 6D 8D F8 */ lwz r3, sRootHeap__7JKRHeap-_SDA_BASE_(r13)
 /* 8000BEAC 00008DEC  48 00 2E 15 */ bl mDoExt_createAssertHeap
-/* 8000BEB0 00008DF0  48 26 5E 69 */ bl JFWSystem_NS_init
+/* 8000BEB0 00008DF0  48 26 5E 69 */ bl init__9JFWSystemFv
 /* 8000BEB4 00008DF4  88 0D 80 00 */ lbz r0, lbl_80450580-_SDA_BASE_(r13)
 /* 8000BEB8 00008DF8  7C 00 07 75 */ extsb. r0, r0
 /* 8000BEBC 00008DFC  40 82 00 18 */ bne lbl_8000BED4
 /* 8000BEC0 00008E00  38 60 00 00 */ li r3, 0
-/* 8000BEC4 00008E04  48 2D 8D 71 */ bl JUTAssertion_NS_setVisible
+/* 8000BEC4 00008E04  48 2D 8D 71 */ bl setVisible__12JUTAssertionFb
 /* 8000BEC8 00008E08  38 00 00 00 */ li r0, 0
 /* 8000BECC 00008E0C  80 6D 8F 48 */ lwz r3, lbl_804514C8-_SDA_BASE_(r13)
 /* 8000BED0 00008E10  98 03 00 0C */ stb r0, 0xc(r3)
@@ -201,17 +201,17 @@ lbl_8000C020:
 /* 8000C03C 00008F7C  3C 60 80 37 */ lis r3, lbl_80373DE8@ha
 /* 8000C040 00008F80  38 63 3D E8 */ addi r3, r3, lbl_80373DE8@l
 /* 8000C044 00008F84  38 63 02 B6 */ addi r3, r3, 0x2b6
-/* 8000C048 00008F88  48 2D 7A C5 */ bl JUTException_NS_appendMapFile
+/* 8000C048 00008F88  48 2D 7A C5 */ bl appendMapFile__12JUTExceptionFPCc
 /*.global myExceptionCallback*/
 /* 8000C04C 00008F8C  3C 60 80 01 */ lis r3, myExceptionCallback@ha
 /*.global myExceptionCallback*/
 /* 8000C050 00008F90  38 63 B7 C8 */ addi r3, r3, myExceptionCallback@l
-/* 8000C054 00008F94  48 2D 7A 99 */ bl JUTException_NS_setPreUserCallback
+/* 8000C054 00008F94  48 2D 7A 99 */ bl setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
 /*.global fault_callback_scroll*/
 /* 8000C058 00008F98  3C 60 80 01 */ lis r3, fault_callback_scroll@ha
 /*.global fault_callback_scroll*/
 /* 8000C05C 00008F9C  38 63 B9 5C */ addi r3, r3, fault_callback_scroll@l
-/* 8000C060 00008FA0  48 2D 7A 9D */ bl JUTException_NS_setPostUserCallback
+/* 8000C060 00008FA0  48 2D 7A 9D */ bl setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
 /* 8000C064 00008FA4  48 00 2D 1D */ bl mDoExt_getZeldaHeap
 /* 8000C068 00008FA8  48 25 71 B9 */ bl init__3cMlFP7JKRHeap
 /* 8000C06C 00008FAC  38 60 00 64 */ li r3, 0x64

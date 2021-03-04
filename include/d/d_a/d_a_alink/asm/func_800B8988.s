@@ -310,7 +310,7 @@ lbl_800B8DC4:
 /* 800B8DC8 000B5D08  48 01 95 F9 */ bl daAlink_c_NS_checkCutAction
 /* 800B8DCC 000B5D0C  48 00 02 2C */ b lbl_800B8FF8
 lbl_800B8DD0:
-/* 800B8DD0 000B5D10  48 0A 5C 51 */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800B8DD0 000B5D10  48 0A 5C 51 */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800B8DD4 000B5D14  2C 03 00 00 */ cmpwi r3, 0
 /* 800B8DD8 000B5D18  41 82 00 28 */ beq lbl_800B8E00
 /* 800B8DDC 000B5D1C  80 1F 19 9C */ lwz r0, 0x199c(r31)
@@ -358,7 +358,7 @@ lbl_800B8E54:
 /* 800B8E78 000B5DB8  28 03 00 00 */ cmplwi r3, 0
 /* 800B8E7C 000B5DBC  41 82 00 24 */ beq lbl_800B8EA0
 /* 800B8E80 000B5DC0  38 63 07 40 */ addi r3, r3, 0x740
-/* 800B8E84 000B5DC4  48 0A 5E 79 */ bl daPy_actorKeep_c_NS_clearData
+/* 800B8E84 000B5DC4  48 0A 5E 79 */ bl clearData__16daPy_actorKeep_cFv
 /* 800B8E88 000B5DC8  7F E3 FB 78 */ mr r3, r31
 /* 800B8E8C 000B5DCC  38 80 00 02 */ li r4, 2
 /* 800B8E90 000B5DD0  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
@@ -367,7 +367,7 @@ lbl_800B8E54:
 /* 800B8E9C 000B5DDC  48 00 01 5C */ b lbl_800B8FF8
 lbl_800B8EA0:
 /* 800B8EA0 000B5DE0  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800B8EA4 000B5DE4  48 0A 5B 7D */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800B8EA4 000B5DE4  48 0A 5B 7D */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800B8EA8 000B5DE8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B8EAC 000B5DEC  41 82 00 1C */ beq lbl_800B8EC8
 /* 800B8EB0 000B5DF0  C0 3F 33 B4 */ lfs f1, 0x33b4(r31)

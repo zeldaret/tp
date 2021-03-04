@@ -271,7 +271,7 @@ lbl_800BBB6C:
 /* 800BBBA8 000B8AE8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BBBAC 000B8AEC  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BBBB0 000B8AF0  38 9D 1D 08 */ addi r4, r29, 0x1d08
-/* 800BBBB4 000B8AF4  4B FB 88 ED */ bl cBgS_NS_GroundCross
+/* 800BBBB4 000B8AF4  4B FB 88 ED */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800BBBB8 000B8AF8  C0 5D 04 D4 */ lfs f2, 0x4d4(r29)
 /* 800BBBBC 000B8AFC  FC 02 08 40 */ fcmpo cr0, f2, f1
 /* 800BBBC0 000B8B00  40 80 00 24 */ bge lbl_800BBBE4

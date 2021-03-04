@@ -14,7 +14,7 @@
 lbl_8013F940:
 /* 8013F940 0013C880  A8 1F 30 12 */ lha r0, 0x3012(r31)
 /* 8013F944 0013C884  54 03 06 3E */ clrlwi r3, r0, 0x18
-/* 8013F948 0013C888  48 0F 8A C9 */ bl dMsgObject_c_NS_setSmellType
+/* 8013F948 0013C888  48 0F 8A C9 */ bl setSmellType__12dMsgObject_cFUc
 /* 8013F94C 0013C88C  A8 1F 30 12 */ lha r0, 0x3012(r31)
 /* 8013F950 0013C890  2C 00 00 B5 */ cmpwi r0, 0xb5
 /* 8013F954 0013C894  40 82 00 1C */ bne lbl_8013F970

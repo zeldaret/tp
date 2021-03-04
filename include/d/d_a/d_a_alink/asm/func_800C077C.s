@@ -197,7 +197,7 @@ lbl_800C09F8:
 /* 800C0A34 000BD974  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0A38 000BD978  40 82 00 28 */ bne lbl_800C0A60
 /* 800C0A3C 000BD97C  A0 7C 2F DE */ lhz r3, 0x2fde(r28)
-/* 800C0A40 000BD980  48 09 E1 79 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800C0A40 000BD980  48 09 E1 79 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800C0A44 000BD984  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0A48 000BD988  40 82 00 18 */ bne lbl_800C0A60
 /* 800C0A4C 000BD98C  A0 1C 2F DE */ lhz r0, 0x2fde(r28)

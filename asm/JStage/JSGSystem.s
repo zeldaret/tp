@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280e90
 
 
-.global JStage_NS_TSystem_NS_dtor
-JStage_NS_TSystem_NS_dtor:
+.global __dt__Q26JStage7TSystemFv
+__dt__Q26JStage7TSystemFv:
 /* 80280E90 0027DDD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280E94 0027DDD4  7C 08 02 A6 */	mflr r0
 /* 80280E98 0027DDD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ JStage_NS_TSystem_NS_dtor:
 /* 80280EB4 0027DDF4  38 04 48 28 */	addi r0, r4, lbl_803C4828@l
 /* 80280EB8 0027DDF8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280EBC 0027DDFC  38 80 00 00 */	li r4, 0
-/* 80280EC0 0027DE00  4B FF FF 15 */	bl JStage_NS_TObject_NS_dtor
+/* 80280EC0 0027DE00  4B FF FF 15 */	bl __dt__Q26JStage7TObjectFv
 /* 80280EC4 0027DE04  7F E0 07 35 */	extsh. r0, r31
 /* 80280EC8 0027DE08  40 81 00 0C */	ble lbl_80280ED4
 /* 80280ECC 0027DE0C  7F C3 F3 78 */	mr r3, r30

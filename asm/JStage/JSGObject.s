@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280dd4
 
 
-.global JStage_NS_TObject_NS_dtor
-JStage_NS_TObject_NS_dtor:
+.global __dt__Q26JStage7TObjectFv
+__dt__Q26JStage7TObjectFv:
 /* 80280DD4 0027DD14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280DD8 0027DD18  7C 08 02 A6 */	mflr r0
 /* 80280DDC 0027DD1C  90 01 00 14 */	stw r0, 0x14(r1)

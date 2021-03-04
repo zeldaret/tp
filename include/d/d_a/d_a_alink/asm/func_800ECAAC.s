@@ -31,7 +31,7 @@ lbl_800ECAE4:
 /* 800ECB18 000E9A58  98 1E 2F AA */ stb r0, 0x2faa(r30)
 /* 800ECB1C 000E9A5C  38 7E 28 14 */ addi r3, r30, 0x2814
 /* 800ECB20 000E9A60  7F E4 FB 78 */ mr r4, r31
-/* 800ECB24 000E9A64  48 07 21 95 */ bl daPy_actorKeep_c_NS_setData
+/* 800ECB24 000E9A64  48 07 21 95 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800ECB28 000E9A68  3C 60 80 42 */ lis r3, lbl_804255A4@ha
 /* 800ECB2C 000E9A6C  38 03 55 A4 */ addi r0, r3, lbl_804255A4@l
 /* 800ECB30 000E9A70  90 1E 38 4C */ stw r0, 0x384c(r30)

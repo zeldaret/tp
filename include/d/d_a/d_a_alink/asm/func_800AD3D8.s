@@ -197,7 +197,7 @@ lbl_800AD690:
 /* 800AD698 000AA5D8  38 00 00 00 */ li r0, 0
 /* 800AD69C 000AA5DC  98 1A 2F A3 */ stb r0, 0x2fa3(r26)
 /* 800AD6A0 000AA5E0  38 7A 28 44 */ addi r3, r26, 0x2844
-/* 800AD6A4 000AA5E4  48 0B 16 59 */ bl daPy_actorKeep_c_NS_clearData
+/* 800AD6A4 000AA5E4  48 0B 16 59 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800AD6A8:
 /* 800AD6A8 000AA5E8  80 1A 05 70 */ lwz r0, 0x570(r26)
 /* 800AD6AC 000AA5EC  54 00 02 0C */ rlwinm r0, r0, 0, 8, 6

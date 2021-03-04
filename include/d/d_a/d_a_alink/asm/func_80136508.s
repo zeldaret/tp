@@ -20,7 +20,7 @@
 /* 80136554 00133494  4B FA 08 D1 */ bl daAlink_c_NS_freezeTimerDamage
 lbl_80136558:
 /* 80136558 00133498  7F E3 FB 78 */ mr r3, r31
-/* 8013655C 0013349C  48 02 7F 71 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013655C 0013349C  48 02 7F 71 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136560 001334A0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136564 001334A4  41 82 00 70 */ beq lbl_801365D4
 /* 80136568 001334A8  A8 1E 04 E6 */ lha r0, 0x4e6(r30)

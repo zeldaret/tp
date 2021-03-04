@@ -3,8 +3,8 @@
 .section .text, "ax" # 80334130
 
 
-.global J3DClusterLoaderDataBase_NS_load
-J3DClusterLoaderDataBase_NS_load:
+.global load__24J3DClusterLoaderDataBaseFPCv
+load__24J3DClusterLoaderDataBaseFPCv:
 /* 80334130 00331070  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80334134 00331074  7C 08 02 A6 */	mflr r0
 /* 80334138 00331078  90 01 00 24 */	stw r0, 0x24(r1)
@@ -22,11 +22,11 @@ J3DClusterLoaderDataBase_NS_load:
 /* 80334168 003310A8  48 00 00 65 */	bl J3DClusterLoader_v15
 /* 8033416C 003310AC  38 61 00 08 */	addi r3, r1, 8
 /* 80334170 003310B0  7F E4 FB 78 */	mr r4, r31
-/* 80334174 003310B4  48 00 00 D1 */	bl J3DClusterLoader_v15_NS_load
+/* 80334174 003310B4  48 00 00 D1 */	bl load__20J3DClusterLoader_v15FPCv
 /* 80334178 003310B8  7C 7F 1B 78 */	mr r31, r3
 /* 8033417C 003310BC  38 61 00 08 */	addi r3, r1, 8
 /* 80334180 003310C0  38 80 FF FF */	li r4, -1
-/* 80334184 003310C4  48 00 00 65 */	bl J3DClusterLoader_v15_NS_dtor
+/* 80334184 003310C4  48 00 00 65 */	bl __dt__20J3DClusterLoader_v15Fv
 /* 80334188 003310C8  7F E3 FB 78 */	mr r3, r31
 /* 8033418C 003310CC  48 00 00 2C */	b lbl_803341B8
 lbl_80334190:
@@ -58,8 +58,8 @@ J3DClusterLoader_v15:
 /* 803341E0 00331120  90 03 00 00 */	stw r0, 0(r3)
 /* 803341E4 00331124  4E 80 00 20 */	blr 
 
-.global J3DClusterLoader_v15_NS_dtor
-J3DClusterLoader_v15_NS_dtor:
+.global __dt__20J3DClusterLoader_v15Fv
+__dt__20J3DClusterLoader_v15Fv:
 /* 803341E8 00331128  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803341EC 0033112C  7C 08 02 A6 */	mflr r0
 /* 803341F0 00331130  90 01 00 14 */	stw r0, 0x14(r1)
@@ -86,8 +86,8 @@ lbl_8033422C:
 /* 8033423C 0033117C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80334240 00331180  4E 80 00 20 */	blr 
 
-.global J3DClusterLoader_v15_NS_load
-J3DClusterLoader_v15_NS_load:
+.global load__20J3DClusterLoader_v15FPCv
+load__20J3DClusterLoader_v15FPCv:
 /* 80334244 00331184  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80334248 00331188  7C 08 02 A6 */	mflr r0
 /* 8033424C 0033118C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -119,7 +119,7 @@ lbl_8033429C:
 lbl_803342AC:
 /* 803342AC 003311EC  7F 43 D3 78 */	mr r3, r26
 /* 803342B0 003311F0  7F 84 E3 78 */	mr r4, r28
-/* 803342B4 003311F4  48 00 00 45 */	bl J3DClusterLoader_v15_NS_readCluster
+/* 803342B4 003311F4  48 00 00 45 */	bl readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock
 /* 803342B8 003311F8  48 00 00 10 */	b lbl_803342C8
 lbl_803342BC:
 /* 803342BC 003311FC  7F C3 F3 78 */	mr r3, r30
@@ -140,8 +140,8 @@ lbl_803342D4:
 /* 803342F0 00331230  38 21 00 20 */	addi r1, r1, 0x20
 /* 803342F4 00331234  4E 80 00 20 */	blr 
 
-.global J3DClusterLoader_v15_NS_readCluster
-J3DClusterLoader_v15_NS_readCluster:
+.global readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock
+readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock:
 /* 803342F8 00331238  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803342FC 0033123C  7C 08 02 A6 */	mflr r0
 /* 80334300 00331240  90 01 00 34 */	stw r0, 0x34(r1)

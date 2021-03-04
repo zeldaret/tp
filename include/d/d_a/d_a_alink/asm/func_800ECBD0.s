@@ -103,7 +103,7 @@ lbl_800ECD24:
 /* 800ECD4C 000E9C8C  41 82 00 0C */ beq lbl_800ECD58
 lbl_800ECD50:
 /* 800ECD50 000E9C90  38 7F 28 14 */ addi r3, r31, 0x2814
-/* 800ECD54 000E9C94  48 07 1F A9 */ bl daPy_actorKeep_c_NS_clearData
+/* 800ECD54 000E9C94  48 07 1F A9 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800ECD58:
 /* 800ECD58 000E9C98  38 60 00 00 */ li r3, 0
 /* 800ECD5C 000E9C9C  98 7F 2F AA */ stb r3, 0x2faa(r31)

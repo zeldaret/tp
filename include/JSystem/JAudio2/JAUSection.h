@@ -2,7 +2,7 @@
 #define JAUSECTION_H_
 
 extern "C" {
-void JAUSection_NS_finishBuild(void);
+void finishBuild__10JAUSectionFv(void);
 }
 
 #endif  // JAUSECTION_H_

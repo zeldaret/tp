@@ -7,7 +7,7 @@
 extern "C" {
 void DCInvalidateRange(void*, u32);
 void findFromRoot__7JKRHeapFPv(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 }
@@ -226,7 +226,7 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
         const char* file = lbl_8039D160;               // "JKRMemArchive.cpp"
         const char* format = lbl_8039D160 + 0x12;      // "%s"
         const char* arg1 = lbl_8039D160 + 0x12 + 0x3;  // "??? bad sequence\n"
-        JUTException_NS_panic_f(file, 0x2d3, format, arg1);
+        panic_f__12JUTExceptionFPCciPCce(file, 0x2d3, format, arg1);
     } break;
     }
 

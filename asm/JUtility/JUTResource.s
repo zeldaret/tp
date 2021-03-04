@@ -3,8 +3,8 @@
 .section .text, "ax" # 802de078
 
 
-.global JUTResReference_NS_getResource
-JUTResReference_NS_getResource:
+.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive
+getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive:
 /* 802DE078 002DAFB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE07C 002DAFBC  7C 08 02 A6 */	mflr r0
 /* 802DE080 002DAFC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -17,15 +17,15 @@ JUTResReference_NS_getResource:
 /* 802DE09C 002DAFDC  7F A3 EB 78 */	mr r3, r29
 /* 802DE0A0 002DAFE0  7F 84 E3 78 */	mr r4, r28
 /* 802DE0A4 002DAFE4  38 A0 00 01 */	li r5, 1
-/* 802DE0A8 002DAFE8  4B FF E1 F1 */	bl JSUInputStream_NS_read
+/* 802DE0A8 002DAFE8  4B FF E1 F1 */	bl read__14JSUInputStreamFPvl
 /* 802DE0AC 002DAFEC  7F A3 EB 78 */	mr r3, r29
 /* 802DE0B0 002DAFF0  38 9C 00 01 */	addi r4, r28, 1
 /* 802DE0B4 002DAFF4  38 A0 00 01 */	li r5, 1
-/* 802DE0B8 002DAFF8  4B FF E1 E1 */	bl JSUInputStream_NS_read
+/* 802DE0B8 002DAFF8  4B FF E1 E1 */	bl read__14JSUInputStreamFPvl
 /* 802DE0BC 002DAFFC  7F A3 EB 78 */	mr r3, r29
 /* 802DE0C0 002DB000  38 9C 00 02 */	addi r4, r28, 2
 /* 802DE0C4 002DB004  88 BC 00 01 */	lbz r5, 1(r28)
-/* 802DE0C8 002DB008  4B FF E1 D1 */	bl JSUInputStream_NS_read
+/* 802DE0C8 002DB008  4B FF E1 D1 */	bl read__14JSUInputStreamFPvl
 /* 802DE0CC 002DB00C  88 1C 00 00 */	lbz r0, 0(r28)
 /* 802DE0D0 002DB010  28 00 00 02 */	cmplwi r0, 2
 /* 802DE0D4 002DB014  41 82 00 14 */	beq lbl_802DE0E8
@@ -42,7 +42,7 @@ lbl_802DE0F8:
 /* 802DE0F8 002DB038  7F 83 E3 78 */	mr r3, r28
 /* 802DE0FC 002DB03C  7F C4 F3 78 */	mr r4, r30
 /* 802DE100 002DB040  7F E5 FB 78 */	mr r5, r31
-/* 802DE104 002DB044  48 00 00 B9 */	bl JUTResReference_NS_getResource_X2_
+/* 802DE104 002DB044  48 00 00 B9 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
 /* 802DE108 002DB048  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE10C 002DB04C  48 08 41 19 */	bl _restgpr_28
 /* 802DE110 002DB050  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -50,8 +50,8 @@ lbl_802DE0F8:
 /* 802DE118 002DB058  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE11C 002DB05C  4E 80 00 20 */	blr 
 
-.global JUTResReference_NS_getResource_X1_
-JUTResReference_NS_getResource_X1_:
+.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_:
 /* 802DE120 002DB060  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE124 002DB064  7C 08 02 A6 */	mflr r0
 /* 802DE128 002DB068  90 01 00 24 */	stw r0, 0x24(r1)
@@ -87,7 +87,7 @@ lbl_802DE194:
 /* 802DE194 002DB0D4  7F A3 EB 78 */	mr r3, r29
 /* 802DE198 002DB0D8  7F C4 F3 78 */	mr r4, r30
 /* 802DE19C 002DB0DC  7F E5 FB 78 */	mr r5, r31
-/* 802DE1A0 002DB0E0  48 00 00 1D */	bl JUTResReference_NS_getResource_X2_
+/* 802DE1A0 002DB0E0  48 00 00 1D */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
 /* 802DE1A4 002DB0E4  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE1A8 002DB0E8  48 08 40 81 */	bl _restgpr_29
 /* 802DE1AC 002DB0EC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -95,8 +95,8 @@ lbl_802DE194:
 /* 802DE1B4 002DB0F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE1B8 002DB0F8  4E 80 00 20 */	blr 
 
-.global JUTResReference_NS_getResource_X2_
-JUTResReference_NS_getResource_X2_:
+.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
+getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_:
 /* 802DE1BC 002DB0FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE1C0 002DB100  7C 08 02 A6 */	mflr r0
 /* 802DE1C4 002DB104  90 01 00 14 */	stw r0, 0x14(r1)

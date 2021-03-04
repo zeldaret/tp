@@ -90,14 +90,14 @@ J2DOrthoGraph_X1_:
 /* 802E97AC 002E66EC  38 21 00 60 */	addi r1, r1, 0x60
 /* 802E97B0 002E66F0  4E 80 00 20 */	blr 
 
-.global J2DOrthoGraph_NS_setPort
-J2DOrthoGraph_NS_setPort:
+.global setPort__13J2DOrthoGraphFv
+setPort__13J2DOrthoGraphFv:
 /* 802E97B4 002E66F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E97B8 002E66F8  7C 08 02 A6 */	mflr r0
 /* 802E97BC 002E66FC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E97C0 002E6700  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802E97C4 002E6704  7C 7F 1B 78 */	mr r31, r3
-/* 802E97C8 002E6708  4B FF F3 ED */	bl J2DGrafContext_NS_setPort
+/* 802E97C8 002E6708  4B FF F3 ED */	bl setPort__14J2DGrafContextFv
 /* 802E97CC 002E670C  38 7F 00 40 */	addi r3, r31, 0x40
 /* 802E97D0 002E6710  C0 3F 00 C0 */	lfs f1, 0xc0(r31)
 /* 802E97D4 002E6714  C0 5F 00 C8 */	lfs f2, 0xc8(r31)
@@ -252,7 +252,7 @@ J2DDrawLine:
 /* 802E99E8 002E6928  4B FF FC 89 */	bl J2DOrthoGraph
 /* 802E99EC 002E692C  38 61 00 3C */	addi r3, r1, 0x3c
 /* 802E99F0 002E6930  57 E4 06 3E */	clrlwi r4, r31, 0x18
-/* 802E99F4 002E6934  4B FF F8 41 */	bl J2DGrafContext_NS_setLineWidth
+/* 802E99F4 002E6934  4B FF F8 41 */	bl setLineWidth__14J2DGrafContextFUc
 /* 802E99F8 002E6938  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802E99FC 002E693C  90 01 00 18 */	stw r0, 0x18(r1)
 /* 802E9A00 002E6940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -264,7 +264,7 @@ J2DDrawLine:
 /* 802E9A18 002E6958  38 A1 00 0C */	addi r5, r1, 0xc
 /* 802E9A1C 002E695C  38 C1 00 10 */	addi r6, r1, 0x10
 /* 802E9A20 002E6960  38 E1 00 14 */	addi r7, r1, 0x14
-/* 802E9A24 002E6964  4B FF F6 F5 */	bl J2DGrafContext_NS_setColor
+/* 802E9A24 002E6964  4B FF F6 F5 */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 802E9A28 002E6968  D3 81 00 34 */	stfs f28, 0x34(r1)
 /* 802E9A2C 002E696C  D3 A1 00 38 */	stfs f29, 0x38(r1)
 /* 802E9A30 002E6970  80 61 00 34 */	lwz r3, 0x34(r1)
@@ -348,7 +348,7 @@ J2DFillBox_X1_:
 /* 802E9B50 002E6A90  38 A1 00 0C */	addi r5, r1, 0xc
 /* 802E9B54 002E6A94  38 C1 00 10 */	addi r6, r1, 0x10
 /* 802E9B58 002E6A98  38 E1 00 14 */	addi r7, r1, 0x14
-/* 802E9B5C 002E6A9C  4B FF F5 BD */	bl J2DGrafContext_NS_setColor
+/* 802E9B5C 002E6A9C  4B FF F5 BD */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 802E9B60 002E6AA0  38 61 00 1C */	addi r3, r1, 0x1c
 /* 802E9B64 002E6AA4  7F C4 F3 78 */	mr r4, r30
 /* 802E9B68 002E6AA8  4B FF F6 F9 */	bl J2DGrafContext_NS_fillBox
@@ -410,10 +410,10 @@ J2DDrawFrame_X1_:
 /* 802E9C30 002E6B70  38 A1 00 0C */	addi r5, r1, 0xc
 /* 802E9C34 002E6B74  38 C1 00 10 */	addi r6, r1, 0x10
 /* 802E9C38 002E6B78  38 E1 00 14 */	addi r7, r1, 0x14
-/* 802E9C3C 002E6B7C  4B FF F4 DD */	bl J2DGrafContext_NS_setColor
+/* 802E9C3C 002E6B7C  4B FF F4 DD */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 802E9C40 002E6B80  38 61 00 1C */	addi r3, r1, 0x1c
 /* 802E9C44 002E6B84  7F E4 FB 78 */	mr r4, r31
-/* 802E9C48 002E6B88  4B FF F5 ED */	bl J2DGrafContext_NS_setLineWidth
+/* 802E9C48 002E6B88  4B FF F5 ED */	bl setLineWidth__14J2DGrafContextFUc
 /* 802E9C4C 002E6B8C  38 61 00 1C */	addi r3, r1, 0x1c
 /* 802E9C50 002E6B90  7F A4 EB 78 */	mr r4, r29
 /* 802E9C54 002E6B94  4B FF F7 15 */	bl J2DGrafContext_NS_drawFrame

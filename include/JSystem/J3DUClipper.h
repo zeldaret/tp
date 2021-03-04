@@ -25,8 +25,8 @@ public:
 extern J3DUClipper lbl_803DD8E4;
 
 extern "C" {
-u32 J3DUClipper_NS_clip(const J3DUClipper*, const Mtx, Vec*, f32);
-u32 J3DUClipper_NS_clip_X1_(const J3DUClipper*, const Mtx, Vec*, Vec*);
+u32 clip__11J3DUClipperCFPA4_Cf3Vecf(const J3DUClipper*, const Mtx, Vec*, f32);
+u32 clip__11J3DUClipperCFPA4_Cf3Vecf_X1_(const J3DUClipper*, const Mtx, Vec*, Vec*);
 }
 
 #endif

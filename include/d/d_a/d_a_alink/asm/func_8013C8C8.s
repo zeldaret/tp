@@ -32,7 +32,7 @@
 /* 8013C944 00139884  38 80 00 05 */ li r4, 5
 /* 8013C948 00139888  38 A0 00 0F */ li r5, 0xf
 /* 8013C94C 0013988C  38 C1 00 14 */ addi r6, r1, 0x14
-/* 8013C950 00139890  4B F3 30 D5 */ bl dVibration_c_NS_StartShock
+/* 8013C950 00139890  4B F3 30 D5 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8013C954 00139894  C0 1F 04 D0 */ lfs f0, 0x4d0(r31)
 /* 8013C958 00139898  D0 01 00 08 */ stfs f0, 8(r1)
 /* 8013C95C 0013989C  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)

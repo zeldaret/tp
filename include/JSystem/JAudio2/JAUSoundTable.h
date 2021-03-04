@@ -2,8 +2,8 @@
 #define JAUSOUNDTABLE_H_
 
 extern "C" {
-void JAUSoundTable_NS_getData(void);
-void JAUSoundTable_NS_getTypeID(void);
+void getData__13JAUSoundTableCF10JAISoundID(void);
+void getTypeID__13JAUSoundTableCF10JAISoundID(void);
 }
 
 #endif  // JAUSOUNDTABLE_H_

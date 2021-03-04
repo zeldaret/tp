@@ -18,7 +18,7 @@ lbl_80100284:
 /* 80100298 000FD1D8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010029C 000FD1DC  40 82 01 2C */ bne lbl_801003C8
 /* 801002A0 000FD1E0  7F E3 FB 78 */ mr r3, r31
-/* 801002A4 000FD1E4  48 05 E2 29 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801002A4 000FD1E4  48 05 E2 29 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801002A8 000FD1E8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801002AC 000FD1EC  41 82 00 BC */ beq lbl_80100368
 /* 801002B0 000FD1F0  7F C3 F3 78 */ mr r3, r30

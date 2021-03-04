@@ -26,8 +26,8 @@ lbl_802E016C:
 /* 802E0188 002DD0C8  98 03 00 0C */	stb r0, 0xc(r3)
 /* 802E018C 002DD0CC  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_start
-JUTDbPrint_NS_start:
+.global start__10JUTDbPrintFP7JUTFontP7JKRHeap
+start__10JUTDbPrintFP7JUTFontP7JKRHeap:
 /* 802E0190 002DD0D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E0194 002DD0D4  7C 08 02 A6 */	mflr r0
 /* 802E0198 002DD0D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -61,8 +61,8 @@ lbl_802E01E8:
 /* 802E01FC 002DD13C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E0200 002DD140  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_changeFont
-JUTDbPrint_NS_changeFont:
+.global changeFont__10JUTDbPrintFP7JUTFont
+changeFont__10JUTDbPrintFP7JUTFont:
 /* 802E0204 002DD144  80 03 00 04 */	lwz r0, 4(r3)
 /* 802E0208 002DD148  28 04 00 00 */	cmplwi r4, 0
 /* 802E020C 002DD14C  41 82 00 08 */	beq lbl_802E0214
@@ -71,8 +71,8 @@ lbl_802E0214:
 /* 802E0214 002DD154  7C 03 03 78 */	mr r3, r0
 /* 802E0218 002DD158  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_enter
-JUTDbPrint_NS_enter:
+.global enter__10JUTDbPrintFiiiPCci
+enter__10JUTDbPrintFiiiPCci:
 /* 802E021C 002DD15C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E0220 002DD160  7C 08 02 A6 */	mflr r0
 /* 802E0224 002DD164  90 01 00 34 */	stw r0, 0x34(r1)
@@ -109,8 +109,8 @@ lbl_802E028C:
 /* 802E029C 002DD1DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 802E02A0 002DD1E0  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_flush
-JUTDbPrint_NS_flush:
+.global flush__10JUTDbPrintFv
+flush__10JUTDbPrintFv:
 /* 802E02A4 002DD1E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E02A8 002DD1E8  7C 08 02 A6 */	mflr r0
 /* 802E02AC 002DD1EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -120,14 +120,14 @@ JUTDbPrint_NS_flush:
 /* 802E02BC 002DD1FC  A0 C4 00 04 */	lhz r6, 4(r4)
 /* 802E02C0 002DD200  38 80 00 00 */	li r4, 0
 /* 802E02C4 002DD204  38 A0 00 00 */	li r5, 0
-/* 802E02C8 002DD208  48 00 00 15 */	bl JUTDbPrint_NS_flush_X1_
+/* 802E02C8 002DD208  48 00 00 15 */	bl flush__10JUTDbPrintFv_X1_
 /* 802E02CC 002DD20C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E02D0 002DD210  7C 08 03 A6 */	mtlr r0
 /* 802E02D4 002DD214  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E02D8 002DD218  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_flush_X1_
-JUTDbPrint_NS_flush_X1_:
+.global flush__10JUTDbPrintFv_X1_
+flush__10JUTDbPrintFv_X1_:
 /* 802E02DC 002DD21C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 802E02E0 002DD220  7C 08 02 A6 */	mflr r0
 /* 802E02E4 002DD224  90 01 01 14 */	stw r0, 0x114(r1)
@@ -168,7 +168,7 @@ JUTDbPrint_NS_flush_X1_:
 /* 802E0370 002DD2B0  C0 C2 C6 0C */	lfs f6, lbl_8045600C-_SDA2_BASE_(r2)
 /* 802E0374 002DD2B4  48 00 93 5D */	bl J2DOrthoGraph_X1_
 /* 802E0378 002DD2B8  38 61 00 0C */	addi r3, r1, 0xc
-/* 802E037C 002DD2BC  48 00 94 39 */	bl J2DOrthoGraph_NS_setPort
+/* 802E037C 002DD2BC  48 00 94 39 */	bl setPort__13J2DOrthoGraphFv
 /* 802E0380 002DD2C0  80 7C 00 04 */	lwz r3, 4(r28)
 /* 802E0384 002DD2C4  81 83 00 00 */	lwz r12, 0(r3)
 /* 802E0388 002DD2C8  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -189,7 +189,7 @@ lbl_802E03AC:
 /* 802E03C0 002DD300  A8 BE 00 06 */	lha r5, 6(r30)
 /* 802E03C4 002DD304  A8 DE 00 0A */	lha r6, 0xa(r30)
 /* 802E03C8 002DD308  38 FE 00 0C */	addi r7, r30, 0xc
-/* 802E03CC 002DD30C  48 00 00 75 */	bl JUTDbPrint_NS_drawString
+/* 802E03CC 002DD30C  48 00 00 75 */	bl drawString__10JUTDbPrintFiiiPCUc
 lbl_802E03D0:
 /* 802E03D0 002DD310  A8 7E 00 08 */	lha r3, 8(r30)
 /* 802E03D4 002DD314  38 03 FF FF */	addi r0, r3, -1
@@ -223,8 +223,8 @@ lbl_802E0428:
 /* 802E0438 002DD378  38 21 01 10 */	addi r1, r1, 0x110
 /* 802E043C 002DD37C  4E 80 00 20 */	blr 
 
-.global JUTDbPrint_NS_drawString
-JUTDbPrint_NS_drawString:
+.global drawString__10JUTDbPrintFiiiPCUc
+drawString__10JUTDbPrintFiiiPCUc:
 /* 802E0440 002DD380  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802E0444 002DD384  7C 08 02 A6 */	mflr r0
 /* 802E0448 002DD388  90 01 00 54 */	stw r0, 0x54(r1)
@@ -335,7 +335,7 @@ lbl_802E0570:
 /* 802E05DC 002DD51C  40 80 00 08 */	bge lbl_802E05E4
 /* 802E05E0 002DD520  7C 08 03 78 */	mr r8, r0
 lbl_802E05E4:
-/* 802E05E4 002DD524  4B FF FC 39 */	bl JUTDbPrint_NS_enter
+/* 802E05E4 002DD524  4B FF FC 39 */	bl enter__10JUTDbPrintFiiiPCci
 lbl_802E05E8:
 /* 802E05E8 002DD528  83 E1 01 7C */	lwz r31, 0x17c(r1)
 /* 802E05EC 002DD52C  83 C1 01 78 */	lwz r30, 0x178(r1)
@@ -396,7 +396,7 @@ lbl_802E0644:
 /* 802E06B8 002DD5F8  40 80 00 08 */	bge lbl_802E06C0
 /* 802E06BC 002DD5FC  7C 08 03 78 */	mr r8, r0
 lbl_802E06C0:
-/* 802E06C0 002DD600  4B FF FB 5D */	bl JUTDbPrint_NS_enter
+/* 802E06C0 002DD600  4B FF FB 5D */	bl enter__10JUTDbPrintFiiiPCci
 lbl_802E06C4:
 /* 802E06C4 002DD604  39 61 01 90 */	addi r11, r1, 0x190
 /* 802E06C8 002DD608  48 08 1B 61 */	bl _restgpr_29

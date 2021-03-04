@@ -4,7 +4,7 @@
 /* 800DFC7C 000DCBBC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DFC80 000DCBC0  7C 7F 1B 78 */ mr r31, r3
 /* 800DFC84 000DCBC4  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
-/* 800DFC88 000DCBC8  48 07 EF 09 */ bl daPy_py_c_NS_checkBowItem
+/* 800DFC88 000DCBC8  48 07 EF 09 */ bl checkBowItem__9daPy_py_cFi
 /* 800DFC8C 000DCBCC  2C 03 00 00 */ cmpwi r3, 0
 /* 800DFC90 000DCBD0  41 82 00 18 */ beq lbl_800DFCA8
 /* 800DFC94 000DCBD4  7F E3 FB 78 */ mr r3, r31

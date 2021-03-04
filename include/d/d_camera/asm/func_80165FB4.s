@@ -32,13 +32,13 @@
 /* 80166030 00162F70  FC 80 F8 90 */ fmr f4, f31
 /* 80166034 00162F74  C0 BF 00 10 */ lfs f5, 0x10(r31)
 /* 80166038 00162F78  C0 DF 00 14 */ lfs f6, 0x14(r31)
-/* 8016603C 00162F7C  4B EE BA 85 */ bl dDlst_window_c_NS_setViewPort
+/* 8016603C 00162F7C  4B EE BA 85 */ bl setViewPort__14dDlst_window_cFffffff
 /* 80166040 00162F80  7F E3 FB 78 */ mr r3, r31
 /* 80166044 00162F84  FC 20 E0 90 */ fmr f1, f28
 /* 80166048 00162F88  FC 40 E8 90 */ fmr f2, f29
 /* 8016604C 00162F8C  FC 60 F0 90 */ fmr f3, f30
 /* 80166050 00162F90  FC 80 F8 90 */ fmr f4, f31
-/* 80166054 00162F94  4B EE BA 89 */ bl dDlst_window_c_NS_setScissor
+/* 80166054 00162F94  4B EE BA 89 */ bl setScissor__14dDlst_window_cFffff
 /* 80166058 00162F98  E3 E1 00 48 */ psq_l f31, 72(r1), 0, 0
 /* 8016605C 00162F9C  CB E1 00 40 */ lfd f31, 0x40(r1)
 /* 80166060 00162FA0  E3 C1 00 38 */ psq_l f30, 56(r1), 0, 0

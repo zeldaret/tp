@@ -14,7 +14,7 @@
 /* 8011902C 00115F6C  3C A5 00 02 */ addis r5, r5, 2
 /* 80119030 00115F70  38 C0 00 80 */ li r6, 0x80
 /* 80119034 00115F74  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 80119038 00115F78  4B F2 33 C9 */ bl dRes_control_c_NS_getIDRes
+/* 80119038 00115F78  4B F2 33 C9 */ bl getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci
 /* 8011903C 00115F7C  7C 64 1B 79 */ or. r4, r3, r3
 /* 80119040 00115F80  41 82 00 4C */ beq lbl_8011908C
 /* 80119044 00115F84  80 1F 00 14 */ lwz r0, 0x14(r31)

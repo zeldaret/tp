@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029eff4
 
 
-.global JAIAudience_NS_dtor
-JAIAudience_NS_dtor:
+.global __dt__11JAIAudienceFv
+__dt__11JAIAudienceFv:
 /* 8029EFF4 0029BF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EFF8 0029BF38  7C 08 02 A6 */	mflr r0
 /* 8029EFFC 0029BF3C  90 01 00 14 */	stw r0, 0x14(r1)

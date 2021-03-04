@@ -22,7 +22,7 @@ lbl_80024988:
 /* 800249A4 000218E4  7F 83 E3 78 */ mr r3, r28
 /* 800249A8 000218E8  7F C4 F3 78 */ mr r4, r30
 /* 800249AC 000218EC  38 A0 00 80 */ li r5, 0x80
-/* 800249B0 000218F0  48 01 77 B1 */ bl dRes_control_c_NS_syncRes
+/* 800249B0 000218F0  48 01 77 B1 */ bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 800249B4 000218F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800249B8 000218F8  40 80 00 24 */ bge lbl_800249DC
 /* 800249BC 000218FC  3C 60 80 38 */ lis r3, lbl_80378A50@ha
@@ -41,7 +41,7 @@ lbl_800249E8:
 /* 800249E8 00021928  7F 83 E3 78 */ mr r3, r28
 /* 800249EC 0002192C  7F C4 F3 78 */ mr r4, r30
 /* 800249F0 00021930  38 A0 00 80 */ li r5, 0x80
-/* 800249F4 00021934  48 01 77 A1 */ bl dRes_control_c_NS_deleteRes
+/* 800249F4 00021934  48 01 77 A1 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 800249F8 00021938  7F A3 EB 78 */ mr r3, r29
 /* 800249FC 0002193C  3C 80 80 38 */ lis r4, lbl_80378A50@ha
 /* 80024A00 00021940  38 84 8A 50 */ addi r4, r4, lbl_80378A50@l

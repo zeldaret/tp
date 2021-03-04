@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028a5f0
 
 
-.global JStudio_JStage_NS_TAdaptor_actor
-JStudio_JStage_NS_TAdaptor_actor:
+.global __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor
+__ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor:
 /* 8028A5F0 00287530  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028A5F4 00287534  7C 08 02 A6 */	mflr r0
 /* 8028A5F8 00287538  90 01 00 24 */	stw r0, 0x24(r1)
@@ -26,10 +26,10 @@ JStudio_JStage_NS_TAdaptor_actor:
 /* 8028A638 00287578  3C 80 80 3C */	lis r4, lbl_803C55A0@ha
 /* 8028A63C 0028757C  38 04 55 A0 */	addi r0, r4, lbl_803C55A0@l
 /* 8028A640 00287580  90 1D 00 00 */	stw r0, 0(r29)
-.global JStudio_NS_TVariableValue
-/* 8028A644 00287584  3C 80 80 29 */	lis r4, JStudio_NS_TVariableValue@ha
-.global JStudio_NS_TVariableValue
-/* 8028A648 00287588  38 84 B5 68 */	addi r4, r4, JStudio_NS_TVariableValue@l
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028A644 00287584  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028A648 00287588  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l
 /* 8028A64C 0028758C  38 A0 00 00 */	li r5, 0
 /* 8028A650 00287590  38 C0 00 14 */	li r6, 0x14
 /* 8028A654 00287594  38 E0 00 0E */	li r7, 0xe
@@ -73,7 +73,7 @@ JStudio_JStage_NS_TAdaptor_actor:
 /* 8028A6EC 0028762C  4E 80 04 21 */	bctrl 
 /* 8028A6F0 00287630  7F C3 F3 78 */	mr r3, r30
 /* 8028A6F4 00287634  38 80 00 00 */	li r4, 0
-/* 8028A6F8 00287638  4B FF C1 B9 */	bl JStudio_NS_TAdaptor_actor_NS_dtor
+/* 8028A6F8 00287638  4B FF C1 B9 */	bl __dt__Q27JStudio14TAdaptor_actorFv
 /* 8028A6FC 0028763C  7F E0 07 35 */	extsh. r0, r31
 /* 8028A700 00287640  40 81 00 0C */	ble lbl_8028A70C
 /* 8028A704 00287644  7F C3 F3 78 */	mr r3, r30
@@ -151,14 +151,14 @@ lbl_8028A7A4:
 /* 8028A800 00287740  7F C3 F3 78 */	mr r3, r30
 /* 8028A804 00287744  80 9E 00 04 */	lwz r4, 4(r30)
 /* 8028A808 00287748  80 84 00 14 */	lwz r4, 0x14(r4)
-/* 8028A80C 0028774C  48 00 06 C1 */	bl JStudio_JStage_NS_TAdaptor_actor_NS_getJSG_SRT_
+/* 8028A80C 0028774C  48 00 06 C1 */	bl getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl
 /* 8028A810 00287750  3C 60 80 43 */	lis r3, lbl_804311A0@ha
 /* 8028A814 00287754  38 03 11 A0 */	addi r0, r3, lbl_804311A0@l
 /* 8028A818 00287758  7C 1B 03 78 */	mr r27, r0
-.global JStudio_NS_TVariableValue_NS_update_immediate_
-/* 8028A81C 0028775C  3C 60 80 28 */	lis r3, JStudio_NS_TVariableValue_NS_update_immediate_@ha
-.global JStudio_NS_TVariableValue_NS_update_immediate_
-/* 8028A820 00287760  3B A3 5E B8 */	addi r29, r3, JStudio_NS_TVariableValue_NS_update_immediate_@l
+.global update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_
+/* 8028A81C 0028775C  3C 60 80 28 */	lis r3, update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_@ha
+.global update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_
+/* 8028A820 00287760  3B A3 5E B8 */	addi r29, r3, update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_@l
 /* 8028A824 00287764  3B 80 00 00 */	li r28, 0
 /* 8028A828 00287768  48 00 00 34 */	b lbl_8028A85C
 lbl_8028A82C:
@@ -181,10 +181,10 @@ lbl_8028A85C:
 /* 8028A868 002877A8  3C 60 80 43 */	lis r3, lbl_80431204@ha
 /* 8028A86C 002877AC  38 03 12 04 */	addi r0, r3, lbl_80431204@l
 /* 8028A870 002877B0  7C 1B 03 78 */	mr r27, r0
-.global JStudio_NS_TVariableValue_NS_update_immediate_
-/* 8028A874 002877B4  3C 60 80 28 */	lis r3, JStudio_NS_TVariableValue_NS_update_immediate_@ha
-.global JStudio_NS_TVariableValue_NS_update_immediate_
-/* 8028A878 002877B8  3B 83 5E B8 */	addi r28, r3, JStudio_NS_TVariableValue_NS_update_immediate_@l
+.global update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_
+/* 8028A874 002877B4  3C 60 80 28 */	lis r3, update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_@ha
+.global update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_
+/* 8028A878 002877B8  3B 83 5E B8 */	addi r28, r3, update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor_immediate_@l
 /* 8028A87C 002877BC  3B A0 00 00 */	li r29, 0
 /* 8028A880 002877C0  48 00 00 34 */	b lbl_8028A8B4
 lbl_8028A884:
@@ -238,7 +238,7 @@ lbl_8028A8B4:
 /* 8028A93C 0028787C  7C 7F 1B 78 */	mr r31, r3
 /* 8028A940 00287880  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028A944 00287884  80 84 00 14 */	lwz r4, 0x14(r4)
-/* 8028A948 00287888  48 00 03 F1 */	bl JStudio_JStage_NS_TAdaptor_actor_NS_setJSG_SRT_
+/* 8028A948 00287888  48 00 03 F1 */	bl setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl
 /* 8028A94C 0028788C  80 7F 01 2C */	lwz r3, 0x12c(r31)
 /* 8028A950 00287890  81 83 00 00 */	lwz r12, 0(r3)
 /* 8028A954 00287894  81 8C 00 14 */	lwz r12, 0x14(r12)
@@ -253,7 +253,7 @@ lbl_8028A8B4:
 /* 8028A978 002878B8  7C 08 02 A6 */	mflr r0
 /* 8028A97C 002878BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028A980 002878C0  38 63 01 28 */	addi r3, r3, 0x128
-/* 8028A984 002878C4  4B FF FA ED */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_data_
+/* 8028A984 002878C4  4B FF FA ED */	bl adaptor_object_data___Q214JStudio_JStage16TAdaptor_object_FPCvUlPCvUl
 /* 8028A988 002878C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028A98C 002878CC  7C 08 03 A6 */	mtlr r0
 /* 8028A990 002878D0  38 21 00 10 */	addi r1, r1, 0x10
@@ -345,7 +345,7 @@ lbl_8028A8B4:
 lbl_8028AAE8:
 /* 8028AAE8 00287A28  38 7F 01 28 */	addi r3, r31, 0x128
 /* 8028AAEC 00287A2C  7C A4 2B 78 */	mr r4, r5
-/* 8028AAF0 00287A30  4B FF F9 CD */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_findJSGObject_
+/* 8028AAF0 00287A30  4B FF F9 CD */	bl adaptor_object_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCc
 /* 8028AAF4 00287A34  90 7F 01 3C */	stw r3, 0x13c(r31)
 lbl_8028AAF8:
 /* 8028AAF8 00287A38  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -367,7 +367,7 @@ lbl_8028AAF8:
 lbl_8028AB38:
 /* 8028AB38 00287A78  38 7F 01 28 */	addi r3, r31, 0x128
 /* 8028AB3C 00287A7C  80 9F 01 3C */	lwz r4, 0x13c(r31)
-/* 8028AB40 00287A80  4B FF F9 CD */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_findJSGObjectNode_
+/* 8028AB40 00287A80  4B FF F9 CD */	bl adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc
 /* 8028AB44 00287A84  90 7F 01 40 */	stw r3, 0x140(r31)
 /* 8028AB48 00287A88  48 00 00 0C */	b lbl_8028AB54
 lbl_8028AB4C:
@@ -433,7 +433,7 @@ lbl_8028ABE0:
 lbl_8028AC24:
 /* 8028AC24 00287B64  38 7F 01 28 */	addi r3, r31, 0x128
 /* 8028AC28 00287B68  7C A4 2B 78 */	mr r4, r5
-/* 8028AC2C 00287B6C  4B FF F8 91 */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_findJSGObject_
+/* 8028AC2C 00287B6C  4B FF F8 91 */	bl adaptor_object_findJSGObject___Q214JStudio_JStage16TAdaptor_object_FPCc
 /* 8028AC30 00287B70  90 7F 01 48 */	stw r3, 0x148(r31)
 lbl_8028AC34:
 /* 8028AC34 00287B74  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -455,7 +455,7 @@ lbl_8028AC34:
 lbl_8028AC74:
 /* 8028AC74 00287BB4  38 7F 01 28 */	addi r3, r31, 0x128
 /* 8028AC78 00287BB8  80 9F 01 3C */	lwz r4, 0x13c(r31)
-/* 8028AC7C 00287BBC  4B FF F8 91 */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_findJSGObjectNode_
+/* 8028AC7C 00287BBC  4B FF F8 91 */	bl adaptor_object_findJSGObjectNode___Q214JStudio_JStage16TAdaptor_object_FPCQ26JStage7TObjectPCc
 /* 8028AC80 00287BC0  90 7F 01 4C */	stw r3, 0x14c(r31)
 /* 8028AC84 00287BC4  48 00 00 0C */	b lbl_8028AC90
 lbl_8028AC88:
@@ -512,8 +512,8 @@ lbl_8028AD28:
 /* 8028AD30 00287C70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028AD34 00287C74  4E 80 00 20 */	blr 
 
-.global JStudio_JStage_NS_TAdaptor_actor_NS_setJSG_SRT_
-JStudio_JStage_NS_TAdaptor_actor_NS_setJSG_SRT_:
+.global setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl
+setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl:
 /* 8028AD38 00287C78  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8028AD3C 00287C7C  7C 08 02 A6 */	mflr r0
 /* 8028AD40 00287C80  90 01 00 94 */	stw r0, 0x94(r1)
@@ -524,17 +524,17 @@ JStudio_JStage_NS_TAdaptor_actor_NS_setJSG_SRT_:
 /* 8028AD54 00287C94  38 81 00 5C */	addi r4, r1, 0x5c
 /* 8028AD58 00287C98  3C A0 80 3A */	lis r5, lbl_8039AA68@ha
 /* 8028AD5C 00287C9C  38 A5 AA 68 */	addi r5, r5, lbl_8039AA68@l
-/* 8028AD60 00287CA0  4B FF B5 15 */	bl JStudio_NS_TAdaptor_NS_adaptor_getVariableValue_Vec
+/* 8028AD60 00287CA0  4B FF B5 15 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD64 00287CA4  7F E3 FB 78 */	mr r3, r31
 /* 8028AD68 00287CA8  38 81 00 68 */	addi r4, r1, 0x68
 /* 8028AD6C 00287CAC  3C A0 80 3A */	lis r5, lbl_8039AA74@ha
 /* 8028AD70 00287CB0  38 A5 AA 74 */	addi r5, r5, lbl_8039AA74@l
-/* 8028AD74 00287CB4  4B FF B5 01 */	bl JStudio_NS_TAdaptor_NS_adaptor_getVariableValue_Vec
+/* 8028AD74 00287CB4  4B FF B5 01 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD78 00287CB8  7F E3 FB 78 */	mr r3, r31
 /* 8028AD7C 00287CBC  38 81 00 74 */	addi r4, r1, 0x74
 /* 8028AD80 00287CC0  3C A0 80 3A */	lis r5, lbl_8039AA80@ha
 /* 8028AD84 00287CC4  38 A5 AA 80 */	addi r5, r5, lbl_8039AA80@l
-/* 8028AD88 00287CC8  4B FF B4 ED */	bl JStudio_NS_TAdaptor_NS_adaptor_getVariableValue_Vec
+/* 8028AD88 00287CC8  4B FF B4 ED */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD8C 00287CCC  88 1F 01 44 */	lbz r0, 0x144(r31)
 /* 8028AD90 00287CD0  28 00 00 00 */	cmplwi r0, 0
 /* 8028AD94 00287CD4  40 82 00 6C */	bne lbl_8028AE00
@@ -580,7 +580,7 @@ lbl_8028AE20:
 /* 8028AE24 00287D64  7F C4 F3 78 */	mr r4, r30
 /* 8028AE28 00287D68  80 BF 01 3C */	lwz r5, 0x13c(r31)
 /* 8028AE2C 00287D6C  80 DF 01 40 */	lwz r6, 0x140(r31)
-/* 8028AE30 00287D70  4B FF F3 C9 */	bl JStudio_JStage_NS_transform_toGlobalFromLocal
+/* 8028AE30 00287D70  4B FF F3 C9 */	bl transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 /* 8028AE34 00287D74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8028AE38 00287D78  40 82 00 0C */	bne lbl_8028AE44
 /* 8028AE3C 00287D7C  38 00 00 00 */	li r0, 0
@@ -590,7 +590,7 @@ lbl_8028AE44:
 /* 8028AE48 00287D88  38 81 00 44 */	addi r4, r1, 0x44
 /* 8028AE4C 00287D8C  38 A1 00 38 */	addi r5, r1, 0x38
 /* 8028AE50 00287D90  38 C1 00 08 */	addi r6, r1, 8
-/* 8028AE54 00287D94  4B FF AD 79 */	bl JStudio_NS_math_NS_getFromTransformation_SRxyzT
+/* 8028AE54 00287D94  4B FF AD 79 */	bl getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
 /* 8028AE58 00287D98  38 00 00 01 */	li r0, 1
 lbl_8028AE5C:
 /* 8028AE5C 00287D9C  54 00 06 3F */	clrlwi. r0, r0, 0x18
@@ -624,8 +624,8 @@ lbl_8028AEB4:
 /* 8028AEC4 00287E04  38 21 00 90 */	addi r1, r1, 0x90
 /* 8028AEC8 00287E08  4E 80 00 20 */	blr 
 
-.global JStudio_JStage_NS_TAdaptor_actor_NS_getJSG_SRT_
-JStudio_JStage_NS_TAdaptor_actor_NS_getJSG_SRT_:
+.global getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl
+getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl:
 /* 8028AECC 00287E0C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8028AED0 00287E10  7C 08 02 A6 */	mflr r0
 /* 8028AED4 00287E14  90 01 00 94 */	stw r0, 0x94(r1)
@@ -697,7 +697,7 @@ lbl_8028AFC8:
 /* 8028AFCC 00287F0C  7F E4 FB 78 */	mr r4, r31
 /* 8028AFD0 00287F10  80 BD 01 3C */	lwz r5, 0x13c(r29)
 /* 8028AFD4 00287F14  80 DD 01 40 */	lwz r6, 0x140(r29)
-/* 8028AFD8 00287F18  4B FF F3 51 */	bl JStudio_JStage_NS_transform_toLocalFromGlobal
+/* 8028AFD8 00287F18  4B FF F3 51 */	bl transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
 /* 8028AFDC 00287F1C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8028AFE0 00287F20  40 82 00 0C */	bne lbl_8028AFEC
 /* 8028AFE4 00287F24  38 00 00 00 */	li r0, 0
@@ -707,7 +707,7 @@ lbl_8028AFEC:
 /* 8028AFF0 00287F30  38 81 00 44 */	addi r4, r1, 0x44
 /* 8028AFF4 00287F34  38 A1 00 38 */	addi r5, r1, 0x38
 /* 8028AFF8 00287F38  38 C1 00 08 */	addi r6, r1, 8
-/* 8028AFFC 00287F3C  4B FF AB D1 */	bl JStudio_NS_math_NS_getFromTransformation_SRxyzT
+/* 8028AFFC 00287F3C  4B FF AB D1 */	bl getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
 /* 8028B000 00287F40  38 00 00 01 */	li r0, 1
 lbl_8028B004:
 /* 8028B004 00287F44  54 00 06 3F */	clrlwi. r0, r0, 0x18
@@ -718,17 +718,17 @@ lbl_8028B010:
 /* 8028B014 00287F54  3C 80 80 3A */	lis r4, lbl_8039AA68@ha
 /* 8028B018 00287F58  38 84 AA 68 */	addi r4, r4, lbl_8039AA68@l
 /* 8028B01C 00287F5C  7F E5 FB 78 */	mr r5, r31
-/* 8028B020 00287F60  4B FF B1 E5 */	bl JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_Vec
+/* 8028B020 00287F60  4B FF B1 E5 */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_Vec
 /* 8028B024 00287F64  7F A3 EB 78 */	mr r3, r29
 /* 8028B028 00287F68  3C 80 80 3A */	lis r4, lbl_8039AA74@ha
 /* 8028B02C 00287F6C  38 84 AA 74 */	addi r4, r4, lbl_8039AA74@l
 /* 8028B030 00287F70  38 BF 00 0C */	addi r5, r31, 0xc
-/* 8028B034 00287F74  4B FF B1 D1 */	bl JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_Vec
+/* 8028B034 00287F74  4B FF B1 D1 */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_Vec
 /* 8028B038 00287F78  7F A3 EB 78 */	mr r3, r29
 /* 8028B03C 00287F7C  3C 80 80 3A */	lis r4, lbl_8039AA80@ha
 /* 8028B040 00287F80  38 84 AA 80 */	addi r4, r4, lbl_8039AA80@l
 /* 8028B044 00287F84  38 BF 00 18 */	addi r5, r31, 0x18
-/* 8028B048 00287F88  4B FF B1 BD */	bl JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_Vec
+/* 8028B048 00287F88  4B FF B1 BD */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_Vec
 lbl_8028B04C:
 /* 8028B04C 00287F8C  39 61 00 90 */	addi r11, r1, 0x90
 /* 8028B050 00287F90  48 0D 71 D9 */	bl _restgpr_29
@@ -792,8 +792,8 @@ lbl_8028B0FC:
 /* 8028B12C 0028806C  7C 08 03 A6 */	mtlr r0
 /* 8028B130 00288070  38 21 00 40 */	addi r1, r1, 0x40
 /* 8028B134 00288074  4E 80 00 20 */	blr 
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor:
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv:
 /* 8028B138 00288078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028B13C 0028807C  7C 08 02 A6 */	mflr r0
 /* 8028B140 00288080  90 01 00 14 */	stw r0, 0x14(r1)
@@ -806,7 +806,7 @@ JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor:
 /* 8028B15C 0028809C  38 04 57 B4 */	addi r0, r4, lbl_803C57B4@l
 /* 8028B160 002880A0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028B164 002880A4  38 80 00 00 */	li r4, 0
-/* 8028B168 002880A8  4B FF AC A5 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B168 002880A8  4B FF AC A5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B16C 002880AC  7F E0 07 35 */	extsh. r0, r31
 /* 8028B170 002880B0  40 81 00 0C */	ble lbl_8028B17C
 /* 8028B174 002880B4  7F C3 F3 78 */	mr r3, r30
@@ -869,7 +869,7 @@ lbl_8028B17C:
 /* 8028B24C 0028818C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8028B250 00288190  38 61 00 34 */	addi r3, r1, 0x34
 /* 8028B254 00288194  38 80 00 00 */	li r4, 0
-/* 8028B258 00288198  4B FF AB B5 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B258 00288198  4B FF AB B5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B25C 0028819C  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028B260 002881A0  39 03 56 40 */	addi r8, r3, lbl_803C5640@l
 /* 8028B264 002881A4  91 01 00 14 */	stw r8, 0x14(r1)
@@ -910,7 +910,7 @@ lbl_8028B17C:
 /* 8028B2E8 00288228  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028B2EC 0028822C  38 61 00 14 */	addi r3, r1, 0x14
 /* 8028B2F0 00288230  38 80 00 00 */	li r4, 0
-/* 8028B2F4 00288234  4B FF AB 19 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B2F4 00288234  4B FF AB 19 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B2F8 00288238  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028B2FC 0028823C  3B 83 56 40 */	addi r28, r3, lbl_803C5640@l
 /* 8028B300 00288240  93 81 00 B4 */	stw r28, 0xb4(r1)
@@ -952,17 +952,17 @@ lbl_8028B17C:
 /* 8028B390 002882D0  90 A3 00 24 */	stw r5, 0x24(r3)
 /* 8028B394 002882D4  90 83 00 28 */	stw r4, 0x28(r3)
 /* 8028B398 002882D8  90 03 00 2C */	stw r0, 0x2c(r3)
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B39C 002882DC  3C 80 80 29 */	lis r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@ha
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B3A0 002882E0  38 84 B1 38 */	addi r4, r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@l
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B39C 002882DC  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B3A0 002882E0  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
 /* 8028B3A4 002882E4  38 BF 00 58 */	addi r5, r31, 0x58
 /* 8028B3A8 002882E8  48 0D 68 7D */	bl func_80361C24
 /* 8028B3AC 002882EC  38 1E 00 84 */	addi r0, r30, 0x84
 /* 8028B3B0 002882F0  90 01 00 B4 */	stw r0, 0xb4(r1)
 /* 8028B3B4 002882F4  38 61 00 B4 */	addi r3, r1, 0xb4
 /* 8028B3B8 002882F8  38 80 00 00 */	li r4, 0
-/* 8028B3BC 002882FC  4B FF AA 51 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B3BC 002882FC  4B FF AA 51 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B3C0 00288300  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028B3C4 00288304  3B 63 56 40 */	addi r27, r3, lbl_803C5640@l
 /* 8028B3C8 00288308  93 61 00 84 */	stw r27, 0x84(r1)
@@ -1005,17 +1005,17 @@ lbl_8028B17C:
 /* 8028B45C 0028839C  90 83 00 58 */	stw r4, 0x58(r3)
 /* 8028B460 002883A0  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 8028B464 002883A4  38 63 00 30 */	addi r3, r3, 0x30
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B468 002883A8  3C 80 80 29 */	lis r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@ha
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B46C 002883AC  38 84 B1 38 */	addi r4, r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@l
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B468 002883A8  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B46C 002883AC  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
 /* 8028B470 002883B0  38 BF 00 64 */	addi r5, r31, 0x64
 /* 8028B474 002883B4  48 0D 67 B1 */	bl func_80361C24
 /* 8028B478 002883B8  7F 80 E3 78 */	mr r0, r28
 /* 8028B47C 002883BC  90 01 00 84 */	stw r0, 0x84(r1)
 /* 8028B480 002883C0  38 61 00 84 */	addi r3, r1, 0x84
 /* 8028B484 002883C4  38 80 00 00 */	li r4, 0
-/* 8028B488 002883C8  4B FF A9 85 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B488 002883C8  4B FF A9 85 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B48C 002883CC  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028B490 002883D0  39 23 56 40 */	addi r9, r3, lbl_803C5640@l
 /* 8028B494 002883D4  91 21 00 54 */	stw r9, 0x54(r1)
@@ -1056,25 +1056,25 @@ lbl_8028B17C:
 /* 8028B520 00288460  90 83 00 88 */	stw r4, 0x88(r3)
 /* 8028B524 00288464  90 03 00 8C */	stw r0, 0x8c(r3)
 /* 8028B528 00288468  38 63 00 60 */	addi r3, r3, 0x60
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B52C 0028846C  3C 80 80 29 */	lis r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@ha
-.global JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor
-/* 8028B530 00288470  38 84 B1 38 */	addi r4, r4, JStudio_JStage_NS_TAdaptor_actor_NS_TVVOutput_ANIMATION_FRAME__NS_dtor@l
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B52C 0028846C  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+.global __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+/* 8028B530 00288470  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
 /* 8028B534 00288474  38 BF 00 70 */	addi r5, r31, 0x70
 /* 8028B538 00288478  48 0D 66 ED */	bl func_80361C24
 /* 8028B53C 0028847C  7F 80 E3 78 */	mr r0, r28
 /* 8028B540 00288480  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8028B544 00288484  38 61 00 54 */	addi r3, r1, 0x54
 /* 8028B548 00288488  38 80 00 00 */	li r4, 0
-/* 8028B54C 0028848C  4B FF A8 C1 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B54C 0028848C  4B FF A8 C1 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B550 00288490  39 61 01 00 */	addi r11, r1, 0x100
 /* 8028B554 00288494  48 0D 6C CD */	bl _restgpr_27
 /* 8028B558 00288498  80 01 01 04 */	lwz r0, 0x104(r1)
 /* 8028B55C 0028849C  7C 08 03 A6 */	mtlr r0
 /* 8028B560 002884A0  38 21 01 00 */	addi r1, r1, 0x100
 /* 8028B564 002884A4  4E 80 00 20 */	blr 
-.global JStudio_NS_TVariableValue
-JStudio_NS_TVariableValue:
+.global __ct__Q27JStudio14TVariableValueFv
+__ct__Q27JStudio14TVariableValueFv:
 /* 8028B568 002884A8  38 00 00 00 */	li r0, 0
 /* 8028B56C 002884AC  90 03 00 04 */	stw r0, 4(r3)
 /* 8028B570 002884B0  90 03 00 08 */	stw r0, 8(r3)
@@ -1095,7 +1095,7 @@ JStudio_JStage_NS_TVariableValueOutput_object__NS_dtor:
 /* 8028B5A4 002884E4  38 04 58 64 */	addi r0, r4, lbl_803C5864@l
 /* 8028B5A8 002884E8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028B5AC 002884EC  38 80 00 00 */	li r4, 0
-/* 8028B5B0 002884F0  4B FF A8 5D */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028B5B0 002884F0  4B FF A8 5D */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028B5B4 002884F4  7F E0 07 35 */	extsh. r0, r31
 /* 8028B5B8 002884F8  40 81 00 0C */	ble lbl_8028B5C4
 /* 8028B5BC 002884FC  7F C3 F3 78 */	mr r3, r30

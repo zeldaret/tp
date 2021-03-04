@@ -338,7 +338,7 @@ lbl_800B5748:
 /* 800B574C 000B268C  48 00 3B F5 */ bl daAlink_c_NS_checkEquipAnime
 /* 800B5750 000B2690  2C 03 00 00 */ cmpwi r3, 0
 /* 800B5754 000B2694  40 82 01 78 */ bne lbl_800B58CC
-/* 800B5758 000B2698  48 0A 9C 41 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800B5758 000B2698  48 0A 9C 41 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800B575C 000B269C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B5760 000B26A0  41 82 01 6C */ beq lbl_800B58CC
 /* 800B5764 000B26A4  7F C3 F3 78 */ mr r3, r30

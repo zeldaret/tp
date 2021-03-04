@@ -9,7 +9,7 @@
 /* 800B73B0 000B42F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800B73B4 000B42F4  41 82 00 60 */ beq lbl_800B7414
 /* 800B73B8 000B42F8  7F E3 FB 78 */ mr r3, r31
-/* 800B73BC 000B42FC  48 0A 71 11 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800B73BC 000B42FC  48 0A 71 11 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800B73C0 000B4300  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B73C4 000B4304  41 82 00 18 */ beq lbl_800B73DC
 /* 800B73C8 000B4308  7F C3 F3 78 */ mr r3, r30

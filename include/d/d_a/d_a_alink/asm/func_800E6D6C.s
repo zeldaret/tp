@@ -31,7 +31,7 @@ lbl_800E6DC0:
 /* 800E6DE0 000E3D20  38 80 00 01 */ li r4, 1
 /* 800E6DE4 000E3D24  38 A0 00 0F */ li r5, 0xf
 /* 800E6DE8 000E3D28  38 C1 00 08 */ addi r6, r1, 8
-/* 800E6DEC 000E3D2C  4B F8 8C 39 */ bl dVibration_c_NS_StartShock
+/* 800E6DEC 000E3D2C  4B F8 8C 39 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800E6DF0 000E3D30  38 60 00 01 */ li r3, 1
 /* 800E6DF4 000E3D34  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800E6DF8 000E3D38  83 C1 00 18 */ lwz r30, 0x18(r1)

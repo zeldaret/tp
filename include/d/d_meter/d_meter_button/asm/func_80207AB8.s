@@ -4,7 +4,7 @@
 /* 80207AC4 00204A04  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 80207AC8 00204A08  7C 7F 1B 78 */ mr r31, r3
 /* 80207ACC 00204A0C  80 63 00 34 */ lwz r3, 0x34(r3)
-/* 80207AD0 00204A10  48 04 DD 59 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80207AD0 00204A10  48 04 DD 59 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80207AD4 00204A14  C0 02 AD 4C */ lfs f0, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80207AD8 00204A18  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80207ADC 00204A1C  41 82 00 B4 */ beq lbl_80207B90
@@ -15,7 +15,7 @@
 /* 80207AF0 00204A30  41 82 00 20 */ beq lbl_80207B10
 /* 80207AF4 00204A34  80 7F 00 34 */ lwz r3, 0x34(r31)
 /* 80207AF8 00204A38  FC 20 00 90 */ fmr f1, f0
-/* 80207AFC 00204A3C  48 04 DC D5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80207AFC 00204A3C  48 04 DC D5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80207B00 00204A40  38 00 00 05 */ li r0, 5
 /* 80207B04 00204A44  80 7F 00 34 */ lwz r3, 0x34(r31)
 /* 80207B08 00204A48  B0 03 00 16 */ sth r0, 0x16(r3)
@@ -23,7 +23,7 @@
 lbl_80207B10:
 /* 80207B10 00204A50  80 7F 00 34 */ lwz r3, 0x34(r31)
 /* 80207B14 00204A54  FC 20 00 90 */ fmr f1, f0
-/* 80207B18 00204A58  48 04 DC B9 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80207B18 00204A58  48 04 DC B9 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80207B1C 00204A5C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80207B20 00204A60  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 80207B24 00204A64  80 63 00 1C */ lwz r3, 0x1c(r3)
@@ -33,7 +33,7 @@ lbl_80207B10:
 /* 80207B34 00204A74  48 01 2F 71 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
 lbl_80207B38:
 /* 80207B38 00204A78  80 7F 00 34 */ lwz r3, 0x34(r31)
-/* 80207B3C 00204A7C  48 04 DC ED */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80207B3C 00204A7C  48 04 DC ED */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80207B40 00204A80  C0 42 AD 4C */ lfs f2, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80207B44 00204A84  FC 02 08 00 */ fcmpu cr0, f2, f1
 /* 80207B48 00204A88  40 82 00 48 */ bne lbl_80207B90

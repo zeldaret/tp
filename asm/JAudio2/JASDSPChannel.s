@@ -17,22 +17,22 @@ JASDSPChannel:
 /* 8029D318 0029A258  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8029D31C 0029A25C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_free
-JASDSPChannel_NS_free:
+.global free__13JASDSPChannelFv
+free__13JASDSPChannelFv:
 /* 8029D320 0029A260  38 00 00 00 */	li r0, 0
 /* 8029D324 0029A264  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8029D328 0029A268  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8029D32C 0029A26C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_start
-JASDSPChannel_NS_start:
+.global start__13JASDSPChannelFv
+start__13JASDSPChannelFv:
 /* 8029D330 0029A270  80 03 00 08 */	lwz r0, 8(r3)
 /* 8029D334 0029A274  60 00 00 01 */	ori r0, r0, 1
 /* 8029D338 0029A278  90 03 00 08 */	stw r0, 8(r3)
 /* 8029D33C 0029A27C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_drop
-JASDSPChannel_NS_drop:
+.global drop__13JASDSPChannelFv
+drop__13JASDSPChannelFv:
 /* 8029D340 0029A280  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D344 0029A284  7C 08 02 A6 */	mflr r0
 /* 8029D348 0029A288  90 01 00 14 */	stw r0, 0x14(r1)
@@ -70,8 +70,8 @@ lbl_8029D3B4:
 /* 8029D3C0 0029A300  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D3C4 0029A304  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_initAll
-JASDSPChannel_NS_initAll:
+.global initAll__13JASDSPChannelFv
+initAll__13JASDSPChannelFv:
 /* 8029D3C8 0029A308  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D3CC 0029A30C  7C 08 02 A6 */	mflr r0
 /* 8029D3D0 0029A310  90 01 00 14 */	stw r0, 0x14(r1)
@@ -94,7 +94,7 @@ JASDSPChannel_NS_initAll:
 /* 8029D40C 0029A34C  3B E0 00 00 */	li r31, 0
 lbl_8029D410:
 /* 8029D410 0029A350  7F C3 F3 78 */	mr r3, r30
-/* 8029D414 0029A354  48 00 06 25 */	bl JASDsp_NS_getDSPHandle
+/* 8029D414 0029A354  48 00 06 25 */	bl getDSPHandle__6JASDspFi
 /* 8029D418 0029A358  80 8D 8D 60 */	lwz r4, lbl_804512E0-_SDA_BASE_(r13)
 /* 8029D41C 0029A35C  38 1F 00 18 */	addi r0, r31, 0x18
 /* 8029D420 0029A360  7C 64 01 2E */	stwx r3, r4, r0
@@ -109,8 +109,8 @@ lbl_8029D410:
 /* 8029D444 0029A384  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D448 0029A388  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_alloc
-JASDSPChannel_NS_alloc:
+.global alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
+alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
 /* 8029D44C 0029A38C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029D450 0029A390  7C 08 02 A6 */	mflr r0
 /* 8029D454 0029A394  90 01 00 24 */	stw r0, 0x24(r1)
@@ -120,13 +120,13 @@ JASDSPChannel_NS_alloc:
 /* 8029D464 0029A3A4  7C 9D 23 78 */	mr r29, r4
 /* 8029D468 0029A3A8  7C BE 2B 78 */	mr r30, r5
 /* 8029D46C 0029A3AC  54 63 06 3E */	clrlwi r3, r3, 0x18
-/* 8029D470 0029A3B0  48 00 00 D1 */	bl JASDSPChannel_NS_getLowestChannel
+/* 8029D470 0029A3B0  48 00 00 D1 */	bl getLowestChannel__13JASDSPChannelFi
 /* 8029D474 0029A3B4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8029D478 0029A3B8  40 82 00 0C */	bne lbl_8029D484
 /* 8029D47C 0029A3BC  38 60 00 00 */	li r3, 0
 /* 8029D480 0029A3C0  48 00 00 24 */	b lbl_8029D4A4
 lbl_8029D484:
-/* 8029D484 0029A3C4  4B FF FE BD */	bl JASDSPChannel_NS_drop
+/* 8029D484 0029A3C4  4B FF FE BD */	bl drop__13JASDSPChannelFv
 /* 8029D488 0029A3C8  57 80 06 3E */	clrlwi r0, r28, 0x18
 /* 8029D48C 0029A3CC  B0 1F 00 04 */	sth r0, 4(r31)
 /* 8029D490 0029A3D0  38 00 00 00 */	li r0, 0
@@ -142,8 +142,8 @@ lbl_8029D4A4:
 /* 8029D4B4 0029A3F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029D4B8 0029A3F8  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_allocForce
-JASDSPChannel_NS_allocForce:
+.global alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPvForce
+alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPvForce:
 /* 8029D4BC 0029A3FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029D4C0 0029A400  7C 08 02 A6 */	mflr r0
 /* 8029D4C4 0029A404  90 01 00 24 */	stw r0, 0x24(r1)
@@ -153,7 +153,7 @@ JASDSPChannel_NS_allocForce:
 /* 8029D4D4 0029A414  7C 9D 23 78 */	mr r29, r4
 /* 8029D4D8 0029A418  7C BE 2B 78 */	mr r30, r5
 /* 8029D4DC 0029A41C  54 63 06 3E */	clrlwi r3, r3, 0x18
-/* 8029D4E0 0029A420  48 00 00 61 */	bl JASDSPChannel_NS_getLowestChannel
+/* 8029D4E0 0029A420  48 00 00 61 */	bl getLowestChannel__13JASDSPChannelFi
 /* 8029D4E4 0029A424  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8029D4E8 0029A428  40 82 00 0C */	bne lbl_8029D4F4
 /* 8029D4EC 0029A42C  38 60 00 00 */	li r3, 0
@@ -161,7 +161,7 @@ JASDSPChannel_NS_allocForce:
 lbl_8029D4F4:
 /* 8029D4F4 0029A434  38 00 00 01 */	li r0, 1
 /* 8029D4F8 0029A438  90 1F 00 00 */	stw r0, 0(r31)
-/* 8029D4FC 0029A43C  4B FF FE 45 */	bl JASDSPChannel_NS_drop
+/* 8029D4FC 0029A43C  4B FF FE 45 */	bl drop__13JASDSPChannelFv
 /* 8029D500 0029A440  57 80 06 3E */	clrlwi r0, r28, 0x18
 /* 8029D504 0029A444  B0 1F 00 04 */	sth r0, 4(r31)
 /* 8029D508 0029A448  38 00 00 00 */	li r0, 0
@@ -177,14 +177,14 @@ lbl_8029D51C:
 /* 8029D52C 0029A46C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029D530 0029A470  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_setPriority
-JASDSPChannel_NS_setPriority:
+.global setPriority__13JASDSPChannelFUc
+setPriority__13JASDSPChannelFUc:
 /* 8029D534 0029A474  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8029D538 0029A478  B0 03 00 04 */	sth r0, 4(r3)
 /* 8029D53C 0029A47C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_getLowestChannel
-JASDSPChannel_NS_getLowestChannel:
+.global getLowestChannel__13JASDSPChannelFi
+getLowestChannel__13JASDSPChannelFi:
 /* 8029D540 0029A480  38 C0 00 FF */	li r6, 0xff
 /* 8029D544 0029A484  38 E0 FF FF */	li r7, -1
 /* 8029D548 0029A488  39 00 00 00 */	li r8, 0
@@ -227,8 +227,8 @@ lbl_8029D5C4:
 /* 8029D5C8 0029A508  7C 65 02 14 */	add r3, r5, r0
 /* 8029D5CC 0029A50C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_getLowestActiveChannel
-JASDSPChannel_NS_getLowestActiveChannel:
+.global getLowestActiveChannel__13JASDSPChannelFv
+getLowestActiveChannel__13JASDSPChannelFv:
 /* 8029D5D0 0029A510  38 A0 00 FF */	li r5, 0xff
 /* 8029D5D4 0029A514  38 C0 FF FF */	li r6, -1
 /* 8029D5D8 0029A518  38 E0 00 00 */	li r7, 0
@@ -269,15 +269,15 @@ lbl_8029D650:
 /* 8029D654 0029A594  7C 64 02 14 */	add r3, r4, r0
 /* 8029D658 0029A598  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_updateProc
-JASDSPChannel_NS_updateProc:
+.global updateProc__13JASDSPChannelFv
+updateProc__13JASDSPChannelFv:
 /* 8029D65C 0029A59C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D660 0029A5A0  7C 08 02 A6 */	mflr r0
 /* 8029D664 0029A5A4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029D668 0029A5A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029D66C 0029A5AC  7C 7F 1B 78 */	mr r31, r3
 /* 8029D670 0029A5B0  80 63 00 18 */	lwz r3, 0x18(r3)
-/* 8029D674 0029A5B4  48 00 07 09 */	bl JASDsp_NS_TChannel_NS_isFinish
+/* 8029D674 0029A5B4  48 00 07 09 */	bl isFinish__Q26JASDsp8TChannelCFv
 /* 8029D678 0029A5B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029D67C 0029A5BC  41 82 00 70 */	beq lbl_8029D6EC
 /* 8029D680 0029A5C0  80 1F 00 08 */	lwz r0, 8(r31)
@@ -306,9 +306,9 @@ lbl_8029D6D0:
 /* 8029D6D0 0029A610  38 00 00 01 */	li r0, 1
 /* 8029D6D4 0029A614  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029D6D8 0029A618  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D6DC 0029A61C  48 00 06 75 */	bl JASDsp_NS_TChannel_NS_replyFinishRequest
+/* 8029D6DC 0029A61C  48 00 06 75 */	bl replyFinishRequest__Q26JASDsp8TChannelFv
 /* 8029D6E0 0029A620  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D6E4 0029A624  48 00 08 A9 */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D6E4 0029A624  48 00 08 A9 */	bl flush__Q26JASDsp8TChannelFv
 /* 8029D6E8 0029A628  48 00 01 A0 */	b lbl_8029D888
 lbl_8029D6EC:
 /* 8029D6EC 0029A62C  80 7F 00 08 */	lwz r3, 8(r31)
@@ -317,9 +317,9 @@ lbl_8029D6EC:
 /* 8029D6F8 0029A638  54 60 07 FA */	rlwinm r0, r3, 0, 0x1f, 0x1d
 /* 8029D6FC 0029A63C  90 1F 00 08 */	stw r0, 8(r31)
 /* 8029D700 0029A640  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D704 0029A644  48 00 06 5D */	bl JASDsp_NS_TChannel_NS_forceStop
+/* 8029D704 0029A644  48 00 06 5D */	bl forceStop__Q26JASDsp8TChannelFv
 /* 8029D708 0029A648  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D70C 0029A64C  48 00 08 81 */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D70C 0029A64C  48 00 08 81 */	bl flush__Q26JASDsp8TChannelFv
 /* 8029D710 0029A650  48 00 01 78 */	b lbl_8029D888
 lbl_8029D714:
 /* 8029D714 0029A654  80 9F 00 00 */	lwz r4, 0(r31)
@@ -334,7 +334,7 @@ lbl_8029D714:
 /* 8029D738 0029A678  38 00 00 00 */	li r0, 0
 /* 8029D73C 0029A67C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029D740 0029A680  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D744 0029A684  48 00 05 61 */	bl JASDsp_NS_TChannel_NS_init
+/* 8029D744 0029A684  48 00 05 61 */	bl init__Q26JASDsp8TChannelFv
 /* 8029D748 0029A688  81 9F 00 10 */	lwz r12, 0x10(r31)
 /* 8029D74C 0029A68C  28 0C 00 00 */	cmplwi r12, 0
 /* 8029D750 0029A690  41 82 00 1C */	beq lbl_8029D76C
@@ -369,13 +369,13 @@ lbl_8029D7A8:
 /* 8029D7B4 0029A6F4  B0 1F 00 04 */	sth r0, 4(r31)
 lbl_8029D7B8:
 /* 8029D7B8 0029A6F8  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D7BC 0029A6FC  48 00 07 D1 */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D7BC 0029A6FC  48 00 07 D1 */	bl flush__Q26JASDsp8TChannelFv
 /* 8029D7C0 0029A700  48 00 00 C8 */	b lbl_8029D888
 lbl_8029D7C4:
 /* 8029D7C4 0029A704  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D7C8 0029A708  48 00 05 19 */	bl JASDsp_NS_TChannel_NS_playStart
+/* 8029D7C8 0029A708  48 00 05 19 */	bl playStart__Q26JASDsp8TChannelFv
 /* 8029D7CC 0029A70C  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D7D0 0029A710  48 00 07 BD */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D7D0 0029A710  48 00 07 BD */	bl flush__Q26JASDsp8TChannelFv
 /* 8029D7D4 0029A714  48 00 00 B4 */	b lbl_8029D888
 lbl_8029D7D8:
 /* 8029D7D8 0029A718  2C 04 00 01 */	cmpwi r4, 1
@@ -416,9 +416,9 @@ lbl_8029D848:
 /* 8029D854 0029A794  B0 1F 00 04 */	sth r0, 4(r31)
 lbl_8029D858:
 /* 8029D858 0029A798  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D85C 0029A79C  48 00 04 E9 */	bl JASDsp_NS_TChannel_NS_playStop
+/* 8029D85C 0029A79C  48 00 04 E9 */	bl playStop__Q26JASDsp8TChannelFv
 /* 8029D860 0029A7A0  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D864 0029A7A4  48 00 07 29 */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D864 0029A7A4  48 00 07 29 */	bl flush__Q26JASDsp8TChannelFv
 /* 8029D868 0029A7A8  48 00 00 20 */	b lbl_8029D888
 lbl_8029D86C:
 /* 8029D86C 0029A7AC  80 7F 00 0C */	lwz r3, 0xc(r31)
@@ -427,7 +427,7 @@ lbl_8029D86C:
 /* 8029D878 0029A7B8  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8029D87C 0029A7BC  41 82 00 0C */	beq lbl_8029D888
 /* 8029D880 0029A7C0  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 8029D884 0029A7C4  48 00 07 09 */	bl JASDsp_NS_TChannel_NS_flush
+/* 8029D884 0029A7C4  48 00 07 09 */	bl flush__Q26JASDsp8TChannelFv
 lbl_8029D888:
 /* 8029D888 0029A7C8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029D88C 0029A7CC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -435,8 +435,8 @@ lbl_8029D888:
 /* 8029D894 0029A7D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D898 0029A7D8  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_updateAll
-JASDSPChannel_NS_updateAll:
+.global updateAll__13JASDSPChannelFv
+updateAll__13JASDSPChannelFv:
 /* 8029D89C 0029A7DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D8A0 0029A7E0  7C 08 02 A6 */	mflr r0
 /* 8029D8A4 0029A7E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,17 +451,17 @@ lbl_8029D8B8:
 /* 8029D8C4 0029A804  41 82 00 10 */	beq lbl_8029D8D4
 /* 8029D8C8 0029A808  38 1E FF FF */	addi r0, r30, -1
 /* 8029D8CC 0029A80C  54 03 E1 3E */	srwi r3, r0, 4
-/* 8029D8D0 0029A810  48 00 00 D5 */	bl JASDsp_NS_releaseHalt
+/* 8029D8D0 0029A810  48 00 00 D5 */	bl releaseHalt__6JASDspFUl
 lbl_8029D8D4:
 /* 8029D8D4 0029A814  80 0D 8D 60 */	lwz r0, lbl_804512E0-_SDA_BASE_(r13)
 /* 8029D8D8 0029A818  7C 60 FA 14 */	add r3, r0, r31
-/* 8029D8DC 0029A81C  4B FF FD 81 */	bl JASDSPChannel_NS_updateProc
+/* 8029D8DC 0029A81C  4B FF FD 81 */	bl updateProc__13JASDSPChannelFv
 /* 8029D8E0 0029A820  3B DE 00 01 */	addi r30, r30, 1
 /* 8029D8E4 0029A824  28 1E 00 40 */	cmplwi r30, 0x40
 /* 8029D8E8 0029A828  3B FF 00 1C */	addi r31, r31, 0x1c
 /* 8029D8EC 0029A82C  41 80 FF CC */	blt lbl_8029D8B8
 /* 8029D8F0 0029A830  38 60 00 03 */	li r3, 3
-/* 8029D8F4 0029A834  48 00 00 B1 */	bl JASDsp_NS_releaseHalt
+/* 8029D8F4 0029A834  48 00 00 B1 */	bl releaseHalt__6JASDspFUl
 /* 8029D8F8 0029A838  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029D8FC 0029A83C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8029D900 0029A840  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -469,18 +469,18 @@ lbl_8029D8D4:
 /* 8029D908 0029A848  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D90C 0029A84C  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_killActiveChannel
-JASDSPChannel_NS_killActiveChannel:
+.global killActiveChannel__13JASDSPChannelFv
+killActiveChannel__13JASDSPChannelFv:
 /* 8029D910 0029A850  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D914 0029A854  7C 08 02 A6 */	mflr r0
 /* 8029D918 0029A858  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8029D91C 0029A85C  4B FF FC B5 */	bl JASDSPChannel_NS_getLowestActiveChannel
+/* 8029D91C 0029A85C  4B FF FC B5 */	bl getLowestActiveChannel__13JASDSPChannelFv
 /* 8029D920 0029A860  28 03 00 00 */	cmplwi r3, 0
 /* 8029D924 0029A864  40 82 00 0C */	bne lbl_8029D930
 /* 8029D928 0029A868  38 60 00 00 */	li r3, 0
 /* 8029D92C 0029A86C  48 00 00 0C */	b lbl_8029D938
 lbl_8029D930:
-/* 8029D930 0029A870  4B FF FA 11 */	bl JASDSPChannel_NS_drop
+/* 8029D930 0029A870  4B FF FA 11 */	bl drop__13JASDSPChannelFv
 /* 8029D934 0029A874  38 60 00 01 */	li r3, 1
 lbl_8029D938:
 /* 8029D938 0029A878  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -488,8 +488,8 @@ lbl_8029D938:
 /* 8029D940 0029A880  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029D944 0029A884  4E 80 00 20 */	blr 
 
-.global JASDSPChannel_NS_getHandle
-JASDSPChannel_NS_getHandle:
+.global getHandle__13JASDSPChannelFUl
+getHandle__13JASDSPChannelFUl:
 /* 8029D948 0029A888  80 8D 8D 60 */	lwz r4, lbl_804512E0-_SDA_BASE_(r13)
 /* 8029D94C 0029A88C  1C 03 00 1C */	mulli r0, r3, 0x1c
 /* 8029D950 0029A890  7C 64 02 14 */	add r3, r4, r0

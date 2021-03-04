@@ -73,8 +73,8 @@ lbl_801452C4:
 /* 801452D4 00142214  38 21 00 20 */	addi r1, r1, 0x20
 /* 801452D8 00142218  4E 80 00 20 */	blr 
 
-.global daNocrm_c_NS_execute
-daNocrm_c_NS_execute:
+.global execute__9daNocrm_cFv
+execute__9daNocrm_cFv:
 /* 801452DC 0014221C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801452E0 00142220  7C 08 02 A6 */	mflr r0
 /* 801452E4 00142224  90 01 00 44 */	stw r0, 0x44(r1)
@@ -174,7 +174,7 @@ lbl_80145444:
 /* 80145444 00142384  38 80 00 01 */	li r4, 1
 lbl_80145448:
 /* 80145448 00142388  7F E3 FB 78 */	mr r3, r31
-/* 8014544C 0014238C  48 00 00 BD */	bl daNocrm_c_NS_getRoomNo
+/* 8014544C 0014238C  48 00 00 BD */	bl getRoomNo__9daNocrm_cFi
 /* 80145450 00142390  4B FF FD 9D */	bl isLoadRoom
 /* 80145454 00142394  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80145458 00142398  41 82 00 14 */	beq lbl_8014546C
@@ -229,8 +229,8 @@ lbl_801454F0:
 /* 80145500 00142440  38 21 00 40 */	addi r1, r1, 0x40
 /* 80145504 00142444  4E 80 00 20 */	blr 
 
-.global daNocrm_c_NS_getRoomNo
-daNocrm_c_NS_getRoomNo:
+.global getRoomNo__9daNocrm_cFi
+getRoomNo__9daNocrm_cFi:
 /* 80145508 00142448  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8014550C 0014244C  7C 08 02 A6 */	mflr r0
 /* 80145510 00142450  90 01 00 34 */	stw r0, 0x34(r1)
@@ -264,7 +264,7 @@ lbl_80145540:
 /* 80145578 001424B8  3C 80 80 3F */	lis r4, lbl_803F1CC4@ha
 /* 8014557C 001424BC  38 84 1C C4 */	addi r4, r4, lbl_803F1CC4@l
 /* 80145580 001424C0  38 84 00 14 */	addi r4, r4, 0x14
-/* 80145584 001424C4  4B F2 FB 7D */	bl dBgS_NS_GetRoomId
+/* 80145584 001424C4  4B F2 FB 7D */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 80145588 001424C8  98 7F 05 C8 */	stb r3, 0x5c8(r31)
 lbl_8014558C:
 /* 8014558C 001424CC  88 7F 05 C8 */	lbz r3, 0x5c8(r31)
@@ -284,7 +284,7 @@ lbl_8014558C:
 /* 801455C4 00142504  40 82 00 1C */	bne lbl_801455E0
 /* 801455C8 00142508  28 1F 00 00 */	cmplwi r31, 0
 /* 801455CC 0014250C  41 82 00 08 */	beq lbl_801455D4
-/* 801455D0 00142510  4B ED 35 95 */	bl fopAc_ac_c_NS_ctor
+/* 801455D0 00142510  4B ED 35 95 */	bl __ct__10fopAc_ac_cFv
 lbl_801455D4:
 /* 801455D4 00142514  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 801455D8 00142518  60 00 00 08 */	ori r0, r0, 8
@@ -348,7 +348,7 @@ lbl_80145690:
 /* 801456AC 001425EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801456B0 001425F0  7C 08 02 A6 */	mflr r0
 /* 801456B4 001425F4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801456B8 001425F8  4B FF FC 25 */	bl daNocrm_c_NS_execute
+/* 801456B8 001425F8  4B FF FC 25 */	bl execute__9daNocrm_cFv
 /* 801456BC 001425FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801456C0 00142600  7C 08 03 A6 */	mtlr r0
 /* 801456C4 00142604  38 21 00 10 */	addi r1, r1, 0x10

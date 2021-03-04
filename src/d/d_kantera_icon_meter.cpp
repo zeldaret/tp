@@ -8,11 +8,11 @@ void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
 void CPaneMgr_X1_(void);
-void CPaneMgrAlpha_NS_setAlphaRate(void);
+void setAlphaRate__13CPaneMgrAlphaFf(void);
 void dKantera_icon_c_NS_initiate(void);
 void dPaneClass_showNullPane(void);
-void J2DScreen_NS_draw(void);
-void J2DScreen_NS_setPriority(void);
+void draw__9J2DScreenFffPC14J2DGrafContext(void);
+void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 }
 
 // additional symbols needed for d_kantera_icon_meter.cpp

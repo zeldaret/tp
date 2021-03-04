@@ -45,11 +45,11 @@ lbl_80115AD0:
 /* 80115B4C 00112A8C  38 80 00 03 */ li r4, 3
 /* 80115B50 00112A90  38 A0 00 01 */ li r5, 1
 /* 80115B54 00112A94  38 C1 00 08 */ addi r6, r1, 8
-/* 80115B58 00112A98  4B F5 9E CD */ bl dVibration_c_NS_StartShock
+/* 80115B58 00112A98  4B F5 9E CD */ bl StartShock__12dVibration_cFii4cXyz
 /* 80115B5C 00112A9C  48 00 00 A8 */ b lbl_80115C04
 lbl_80115B60:
 /* 80115B60 00112AA0  7F C3 F3 78 */ mr r3, r30
-/* 80115B64 00112AA4  48 04 89 69 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80115B64 00112AA4  48 04 89 69 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80115B68 00112AA8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80115B6C 00112AAC  41 82 00 34 */ beq lbl_80115BA0
 /* 80115B70 00112AB0  A8 1F 30 18 */ lha r0, 0x3018(r31)

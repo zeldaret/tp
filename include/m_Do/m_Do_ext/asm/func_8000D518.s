@@ -6,7 +6,7 @@
 /* 8000D52C 0000A46C  D0 23 00 08 */ stfs f1, 8(r3)
 /* 8000D530 0000A470  7C 83 23 78 */ mr r3, r4
 /* 8000D534 0000A474  80 85 00 14 */ lwz r4, 0x14(r5)
-/* 8000D538 0000A478  48 32 25 BD */ bl J3DMaterialTable_NS_entryMatColorAnimator
+/* 8000D538 0000A478  48 32 25 BD */ bl entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor
 /* 8000D53C 0000A47C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000D540 0000A480  7C 08 03 A6 */ mtlr r0
 /* 8000D544 0000A484  38 21 00 10 */ addi r1, r1, 0x10

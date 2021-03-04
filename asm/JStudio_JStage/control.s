@@ -15,7 +15,7 @@
 /* 80289B24 00286A64  38 04 57 20 */	addi r0, r4, lbl_803C5720@l
 /* 80289B28 00286A68  90 1E 00 00 */	stw r0, 0(r30)
 /* 80289B2C 00286A6C  38 80 00 00 */	li r4, 0
-/* 80289B30 00286A70  4B FF B9 59 */	bl JStudio_NS_TCreateObject_NS_dtor
+/* 80289B30 00286A70  4B FF B9 59 */	bl __dt__Q27JStudio13TCreateObjectFv
 /* 80289B34 00286A74  7F E0 07 35 */	extsh. r0, r31
 /* 80289B38 00286A78  40 81 00 0C */	ble lbl_80289B44
 /* 80289B3C 00286A7C  7F C3 F3 78 */	mr r3, r30
@@ -164,7 +164,7 @@ JStudio_JStage_NS__unnamed_control_cpp__NS_createObject_JSG_:
 /* 80289D10 00286C50  41 82 00 14 */	beq lbl_80289D24
 /* 80289D14 00286C54  7F A4 EB 78 */	mr r4, r29
 /* 80289D18 00286C58  7F C5 F3 78 */	mr r5, r30
-/* 80289D1C 00286C5C  48 00 08 D5 */	bl JStudio_JStage_NS_TAdaptor_actor
+/* 80289D1C 00286C5C  48 00 08 D5 */	bl __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor
 /* 80289D20 00286C60  7C 7F 1B 78 */	mr r31, r3
 lbl_80289D24:
 /* 80289D24 00286C64  28 1F 00 00 */	cmplwi r31, 0
@@ -179,7 +179,7 @@ lbl_80289D34:
 /* 80289D44 00286C84  41 82 00 14 */	beq lbl_80289D58
 /* 80289D48 00286C88  7F 84 E3 78 */	mr r4, r28
 /* 80289D4C 00286C8C  7F E5 FB 78 */	mr r5, r31
-/* 80289D50 00286C90  4B FF CB C1 */	bl JStudio_NS_TObject_actor
+/* 80289D50 00286C90  4B FF CB C1 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_actor
 /* 80289D54 00286C94  7C 7E 1B 78 */	mr r30, r3
 lbl_80289D58:
 /* 80289D58 00286C98  28 1E 00 00 */	cmplwi r30, 0
@@ -240,7 +240,7 @@ JStudio_JStage_NS__unnamed_control_cpp__NS_createObject_JSG__X1_:
 /* 80289E14 00286D54  41 82 00 14 */	beq lbl_80289E28
 /* 80289E18 00286D58  7F A4 EB 78 */	mr r4, r29
 /* 80289E1C 00286D5C  7F C5 F3 78 */	mr r5, r30
-/* 80289E20 00286D60  48 00 1A 81 */	bl JStudio_JStage_NS_TAdaptor_camera
+/* 80289E20 00286D60  48 00 1A 81 */	bl __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera
 /* 80289E24 00286D64  7C 7F 1B 78 */	mr r31, r3
 lbl_80289E28:
 /* 80289E28 00286D68  28 1F 00 00 */	cmplwi r31, 0
@@ -255,7 +255,7 @@ lbl_80289E38:
 /* 80289E48 00286D88  41 82 00 14 */	beq lbl_80289E5C
 /* 80289E4C 00286D8C  7F 84 E3 78 */	mr r4, r28
 /* 80289E50 00286D90  7F E5 FB 78 */	mr r5, r31
-/* 80289E54 00286D94  4B FF D0 29 */	bl JStudio_NS_TObject_camera
+/* 80289E54 00286D94  4B FF D0 29 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_camera
 /* 80289E58 00286D98  7C 7E 1B 78 */	mr r30, r3
 lbl_80289E5C:
 /* 80289E5C 00286D9C  28 1E 00 00 */	cmplwi r30, 0
@@ -316,7 +316,7 @@ JStudio_JStage_NS__unnamed_control_cpp__NS_createObject_JSG__X2_:
 /* 80289F18 00286E58  41 82 00 14 */	beq lbl_80289F2C
 /* 80289F1C 00286E5C  7F A4 EB 78 */	mr r4, r29
 /* 80289F20 00286E60  7F C5 F3 78 */	mr r5, r30
-/* 80289F24 00286E64  48 00 16 ED */	bl JStudio_JStage_NS_TAdaptor_ambientLight
+/* 80289F24 00286E64  48 00 16 ED */	bl __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight
 /* 80289F28 00286E68  7C 7F 1B 78 */	mr r31, r3
 lbl_80289F2C:
 /* 80289F2C 00286E6C  28 1F 00 00 */	cmplwi r31, 0
@@ -331,7 +331,7 @@ lbl_80289F3C:
 /* 80289F4C 00286E8C  41 82 00 14 */	beq lbl_80289F60
 /* 80289F50 00286E90  7F 84 E3 78 */	mr r4, r28
 /* 80289F54 00286E94  7F E5 FB 78 */	mr r5, r31
-/* 80289F58 00286E98  4B FF CD A5 */	bl JStudio_NS_TObject_ambientLight
+/* 80289F58 00286E98  4B FF CD A5 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_ambientLight
 /* 80289F5C 00286E9C  7C 7E 1B 78 */	mr r30, r3
 lbl_80289F60:
 /* 80289F60 00286EA0  28 1E 00 00 */	cmplwi r30, 0
@@ -392,7 +392,7 @@ JStudio_JStage_NS__unnamed_control_cpp__NS_createObject_JSG__X3_:
 /* 8028A01C 00286F5C  41 82 00 14 */	beq lbl_8028A030
 /* 8028A020 00286F60  7F A4 EB 78 */	mr r4, r29
 /* 8028A024 00286F64  7F C5 F3 78 */	mr r5, r30
-/* 8028A028 00286F68  48 00 2B 29 */	bl JStudio_JStage_NS_TAdaptor_light
+/* 8028A028 00286F68  48 00 2B 29 */	bl __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight
 /* 8028A02C 00286F6C  7C 7F 1B 78 */	mr r31, r3
 lbl_8028A030:
 /* 8028A030 00286F70  28 1F 00 00 */	cmplwi r31, 0
@@ -407,7 +407,7 @@ lbl_8028A040:
 /* 8028A050 00286F90  41 82 00 14 */	beq lbl_8028A064
 /* 8028A054 00286F94  7F 84 E3 78 */	mr r4, r28
 /* 8028A058 00286F98  7F E5 FB 78 */	mr r5, r31
-/* 8028A05C 00286F9C  4B FF D3 0D */	bl JStudio_NS_TObject_light
+/* 8028A05C 00286F9C  4B FF D3 0D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_light
 /* 8028A060 00286FA0  7C 7E 1B 78 */	mr r30, r3
 lbl_8028A064:
 /* 8028A064 00286FA4  28 1E 00 00 */	cmplwi r30, 0
@@ -468,7 +468,7 @@ JStudio_JStage_NS__unnamed_control_cpp__NS_createObject_JSG__X4_:
 /* 8028A120 00287060  41 82 00 14 */	beq lbl_8028A134
 /* 8028A124 00287064  7F A4 EB 78 */	mr r4, r29
 /* 8028A128 00287068  7F C5 F3 78 */	mr r5, r30
-/* 8028A12C 0028706C  48 00 24 49 */	bl JStudio_JStage_NS_TAdaptor_fog
+/* 8028A12C 0028706C  48 00 24 49 */	bl __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog
 /* 8028A130 00287070  7C 7F 1B 78 */	mr r31, r3
 lbl_8028A134:
 /* 8028A134 00287074  28 1F 00 00 */	cmplwi r31, 0
@@ -483,7 +483,7 @@ lbl_8028A144:
 /* 8028A154 00287094  41 82 00 14 */	beq lbl_8028A168
 /* 8028A158 00287098  7F 84 E3 78 */	mr r4, r28
 /* 8028A15C 0028709C  7F E5 FB 78 */	mr r5, r31
-/* 8028A160 002870A0  4B FF D0 7D */	bl JStudio_NS_TObject_fog
+/* 8028A160 002870A0  4B FF D0 7D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_fog
 /* 8028A164 002870A4  7C 7E 1B 78 */	mr r30, r3
 lbl_8028A168:
 /* 8028A168 002870A8  28 1E 00 00 */	cmplwi r30, 0

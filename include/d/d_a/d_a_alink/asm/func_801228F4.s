@@ -10,7 +10,7 @@
 /* 80122918 0011F858  7C 7F 1B 78 */ mr r31, r3
 /* 8012291C 0011F85C  3C 60 80 39 */ lis r3, lbl_8038D658@ha
 /* 80122920 0011F860  3B 63 D6 58 */ addi r27, r3, lbl_8038D658@l
-/* 80122924 0011F864  48 03 CA 75 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 80122924 0011F864  48 03 CA 75 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80122928 0011F868  7C 7C 1B 79 */ or. r28, r3, r3
 /* 8012292C 0011F86C  41 82 00 0C */ beq lbl_80122938
 /* 80122930 0011F870  C3 DB 24 E0 */ lfs f30, 0x24e0(r27)
@@ -144,7 +144,7 @@ lbl_80122B08:
 /* 80122B10 0011FA50  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 80122B14 0011FA54  38 63 02 10 */ addi r3, r3, 0x210
 /* 80122B18 0011FA58  80 9F 32 1C */ lwz r4, 0x321c(r31)
-/* 80122B1C 0011FA5C  4B F2 8D FD */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 80122B1C 0011FA5C  4B F2 8D FD */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 80122B20 0011FA60  28 03 00 00 */ cmplwi r3, 0
 /* 80122B24 0011FA64  41 82 00 58 */ beq lbl_80122B7C
 /* 80122B28 0011FA68  8B 63 00 BB */ lbz r27, 0xbb(r3)

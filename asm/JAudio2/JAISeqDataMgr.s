@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a1774
 
 
-.global JAISeqDataUser_NS_dtor
-JAISeqDataUser_NS_dtor:
+.global __dt__14JAISeqDataUserFv
+__dt__14JAISeqDataUserFv:
 /* 802A1774 0029E6B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1778 0029E6B8  7C 08 02 A6 */	mflr r0
 /* 802A177C 0029E6BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,8 +25,8 @@ lbl_802A17A4:
 /* 802A17B4 0029E6F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A17B8 0029E6F8  4E 80 00 20 */	blr 
 
-.global JAISeqDataMgr_NS_dtor
-JAISeqDataMgr_NS_dtor:
+.global __dt__13JAISeqDataMgrFv
+__dt__13JAISeqDataMgrFv:
 /* 802A17BC 0029E6FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A17C0 0029E700  7C 08 02 A6 */	mflr r0
 /* 802A17C4 0029E704  90 01 00 14 */	stw r0, 0x14(r1)

@@ -70,7 +70,7 @@ void Z2SoundObjBase_NS_startLevelSound(void);
 void Z2SoundObjBase_NS_startSound(void);
 
 void Z2SoundObjSimple(void);
-void Z2SoundObjSimple_NS_dtor(void);
+void __dt__16Z2SoundObjSimpleFv(void);
 
 void Z2DopplerSoundObjBase(void);
 

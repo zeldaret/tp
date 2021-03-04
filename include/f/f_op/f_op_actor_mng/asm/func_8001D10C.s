@@ -36,12 +36,12 @@ lbl_8001D150:
 /* 8001D190 0001A0D0  39 20 00 00 */ li r9, 0
 /* 8001D194 0001A0D4  39 41 00 20 */ addi r10, r1, 0x20
 /* 8001D198 0001A0D8  C0 22 82 38 */ lfs f1, lbl_80451C38(r2)
-/* 8001D19C 0001A0DC  48 03 03 31 */ bl dPa_control_c_NS_set_X1_
+/* 8001D19C 0001A0DC  48 03 03 31 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_
 /* 8001D1A0 0001A0E0  90 7B 00 00 */ stw r3, 0(r27)
 /* 8001D1A4 0001A0E4  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 8001D1A8 0001A0E8  38 63 02 10 */ addi r3, r3, 0x210
 /* 8001D1AC 0001A0EC  80 9B 00 00 */ lwz r4, 0(r27)
-/* 8001D1B0 0001A0F0  48 02 E7 69 */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 8001D1B0 0001A0F0  48 02 E7 69 */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 8001D1B4 0001A0F4  28 03 00 00 */ cmplwi r3, 0
 /* 8001D1B8 0001A0F8  41 82 00 08 */ beq lbl_8001D1C0
 /* 8001D1BC 0001A0FC  D3 E3 00 28 */ stfs f31, 0x28(r3)

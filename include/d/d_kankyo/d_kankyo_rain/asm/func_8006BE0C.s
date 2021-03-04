@@ -22,7 +22,7 @@
 lbl_8006BE60:
 /* 8006BE60 00068DA0  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 8006BE64 00068DA4  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
-/* 8006BE68 00068DA8  48 2A 48 D5 */ bl J3DSys_NS_reinitGX
+/* 8006BE68 00068DA8  48 2A 48 D5 */ bl reinitGX__6J3DSysFv
 /* 8006BE6C 00068DAC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006BE70 00068DB0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006BE74 00068DB4  80 63 61 B0 */ lwz r3, 0x61b0(r3)

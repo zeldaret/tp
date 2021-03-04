@@ -38,7 +38,7 @@ lbl_80134E1C:
 /* 80134E44 00131D84  41 82 00 10 */ beq lbl_80134E54
 /* 80134E48 00131D88  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 80134E4C 00131D8C  7F E4 FB 78 */ mr r4, r31
-/* 80134E50 00131D90  48 02 9E 69 */ bl daPy_actorKeep_c_NS_setData
+/* 80134E50 00131D90  48 02 9E 69 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_80134E54:
 /* 80134E54 00131D94  38 00 00 78 */ li r0, 0x78
 /* 80134E58 00131D98  98 1E 2F 9D */ stb r0, 0x2f9d(r30)
@@ -58,7 +58,7 @@ lbl_80134E54:
 /* 80134E90 00131DD0  38 80 00 02 */ li r4, 2
 /* 80134E94 00131DD4  38 A0 00 0F */ li r5, 0xf
 /* 80134E98 00131DD8  38 C1 00 08 */ addi r6, r1, 8
-/* 80134E9C 00131DDC  4B F3 AB 89 */ bl dVibration_c_NS_StartShock
+/* 80134E9C 00131DDC  4B F3 AB 89 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80134EA0 00131DE0  38 60 00 01 */ li r3, 1
 /* 80134EA4 00131DE4  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 80134EA8 00131DE8  83 C1 00 18 */ lwz r30, 0x18(r1)

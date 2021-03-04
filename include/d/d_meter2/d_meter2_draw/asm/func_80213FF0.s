@@ -20,7 +20,7 @@
 /* 8021403C 00210F7C  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80214040 00210F80  38 C0 00 00 */ li r6, 0
 /* 80214044 00210F84  38 E0 00 00 */ li r7, 0
-/* 80214048 00210F88  48 04 0E 75 */ bl CPaneMgr_NS_getGlobalVtxCenter
+/* 80214048 00210F88  48 04 0E 75 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
 /* 8021404C 00210F8C  80 61 00 18 */ lwz r3, 0x18(r1)
 /* 80214050 00210F90  80 01 00 1C */ lwz r0, 0x1c(r1)
 /* 80214054 00210F94  90 61 00 24 */ stw r3, 0x24(r1)

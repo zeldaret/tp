@@ -3,8 +3,8 @@
 .section .text, "ax" # 80018b64
 
 
-.global fopAc_ac_c_NS_ctor
-fopAc_ac_c_NS_ctor:
+.global __ct__10fopAc_ac_cFv
+__ct__10fopAc_ac_cFv:
 /* 80018B64 00015AA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018B68 00015AA8  7C 08 02 A6 */	mflr r0
 /* 80018B6C 00015AAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ fopAc_ac_c_NS_ctor:
 /* 80018B88 00015AC8  7F E3 FB 78 */	mr r3, r31
 /* 80018B8C 00015ACC  3C 80 80 3A */	lis r4, lbl_803A1EC8@ha
 /* 80018B90 00015AD0  38 84 1E C8 */	addi r4, r4, lbl_803A1EC8@l
-/* 80018B94 00015AD4  48 30 CB 31 */	bl J3DLightInfo_NS___as
+/* 80018B94 00015AD4  48 30 CB 31 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 80018B98 00015AD8  38 7F 00 74 */	addi r3, r31, 0x74
 .global J3DLightObj
 /* 80018B9C 00015ADC  3C 80 80 02 */	lis r4, J3DLightObj@ha
@@ -34,8 +34,8 @@ fopAc_ac_c_NS_ctor:
 /* 80018BC4 00015B04  7C 08 03 A6 */	mtlr r0
 /* 80018BC8 00015B08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018BCC 00015B0C  4E 80 00 20 */	blr 
-.global csXyz_NS_dtor
-csXyz_NS_dtor:
+.global __dt__5csXyzFv
+__dt__5csXyzFv:
 /* 80018BD0 00015B10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018BD4 00015B14  7C 08 02 A6 */	mflr r0
 /* 80018BD8 00015B18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -61,7 +61,7 @@ J3DLightObj:
 /* 80018C1C 00015B5C  7C 7F 1B 78 */	mr r31, r3
 /* 80018C20 00015B60  3C 80 80 3A */	lis r4, lbl_803A1EC8@ha
 /* 80018C24 00015B64  38 84 1E C8 */	addi r4, r4, lbl_803A1EC8@l
-/* 80018C28 00015B68  48 30 CA 9D */	bl J3DLightInfo_NS___as
+/* 80018C28 00015B68  48 30 CA 9D */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 80018C2C 00015B6C  7F E3 FB 78 */	mr r3, r31
 /* 80018C30 00015B70  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80018C34 00015B74  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -88,8 +88,8 @@ lbl_80018C74:
 /* 80018C84 00015BC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018C88 00015BC8  4E 80 00 20 */	blr 
 
-.global fopAc_ac_c_NS_dtor
-fopAc_ac_c_NS_dtor:
+.global __dt__10fopAc_ac_cFv
+__dt__10fopAc_ac_cFv:
 /* 80018C8C 00015BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018C90 00015BD0  7C 08 02 A6 */	mflr r0
 /* 80018C94 00015BD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -141,7 +141,7 @@ fopAc_IsActor:
 /* 80018D38 00015C78  40 82 00 84 */	bne lbl_80018DBC
 /* 80018D3C 00015C7C  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 80018D40 00015C80  7F E4 FB 78 */	mr r4, r31
-/* 80018D44 00015C84  48 02 A2 65 */	bl dEvt_control_c_NS_moveApproval
+/* 80018D44 00015C84  48 02 A2 65 */	bl moveApproval__14dEvt_control_cFPv
 /* 80018D48 00015C88  2C 03 00 02 */	cmpwi r3, 2
 /* 80018D4C 00015C8C  41 82 00 2C */	beq lbl_80018D78
 /* 80018D50 00015C90  80 7F 04 9C */	lwz r3, 0x49c(r31)
@@ -201,14 +201,14 @@ lbl_80018DBC:
 /* 80018E18 00015D58  88 04 00 04 */	lbz r0, 4(r4)
 /* 80018E1C 00015D5C  28 00 00 00 */	cmplwi r0, 0
 /* 80018E20 00015D60  40 82 01 3C */	bne lbl_80018F5C
-/* 80018E24 00015D64  48 01 86 B1 */	bl daSus_c_NS_check_X1_
+/* 80018E24 00015D64  48 01 86 B1 */	bl check__7daSus_cFScRC4cXyz_X1_
 /* 80018E28 00015D68  38 7F 00 F4 */	addi r3, r31, 0xf4
-/* 80018E2C 00015D6C  48 02 A6 A1 */	bl dEvt_info_c_NS_beforeProc
+/* 80018E2C 00015D6C  48 02 A6 A1 */	bl beforeProc__11dEvt_info_cFv
 /* 80018E30 00015D70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80018E34 00015D74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80018E38 00015D78  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 80018E3C 00015D7C  7F E4 FB 78 */	mr r4, r31
-/* 80018E40 00015D80  48 02 A1 69 */	bl dEvt_control_c_NS_moveApproval
+/* 80018E40 00015D80  48 02 A1 69 */	bl moveApproval__14dEvt_control_cFPv
 /* 80018E44 00015D84  80 1F 04 9C */	lwz r0, 0x49c(r31)
 /* 80018E48 00015D88  54 00 00 80 */	rlwinm r0, r0, 0, 2, 0
 /* 80018E4C 00015D8C  90 1F 04 9C */	stw r0, 0x49c(r31)
@@ -335,11 +335,11 @@ lbl_80018FB0:
 /* 80019010 00015F50  48 00 11 29 */	bl fopAcM_DeleteHeap__FP10fopAc_ac_c
 /* 80019014 00015F54  80 6D 88 A0 */	lwz r3, lbl_80450E20-_SDA_BASE_(r13)
 /* 80019018 00015F58  88 9F 04 98 */	lbz r4, 0x498(r31)
-/* 8001901C 00015F5C  48 02 00 6D */	bl dDemo_object_c_NS_getActor
+/* 8001901C 00015F5C  48 02 00 6D */	bl getActor__14dDemo_object_cFUc
 /* 80019020 00015F60  28 03 00 00 */	cmplwi r3, 0
 /* 80019024 00015F64  41 82 00 0C */	beq lbl_80019030
 /* 80019028 00015F68  38 80 00 00 */	li r4, 0
-/* 8001902C 00015F6C  48 01 F1 31 */	bl dDemo_actor_c_NS_setActor
+/* 8001902C 00015F6C  48 01 F1 31 */	bl setActor__13dDemo_actor_cFP10fopAc_ac_c
 lbl_80019030:
 /* 80019030 00015F70  7F C3 F3 78 */	mr r3, r30
 /* 80019034 00015F74  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -609,7 +609,7 @@ lbl_800193E4:
 /* 80019434 00016374  3B FF C2 F8 */	addi r31, r31, -15624
 /* 80019438 00016378  7F E5 FB 78 */	mr r5, r31
 /* 8001943C 0001637C  38 C0 00 80 */	li r6, 0x80
-/* 80019440 00016380  48 02 2E AD */	bl dRes_control_c_NS_getRes
+/* 80019440 00016380  48 02 2E AD */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80019444 00016384  3C 80 00 08 */	lis r4, 8
 /* 80019448 00016388  3C A0 11 00 */	lis r5, 0x11000284@ha
 /* 8001944C 0001638C  38 A5 02 84 */	addi r5, r5, 0x11000284@l
@@ -633,23 +633,23 @@ lbl_8001946C:
 /* 80019490 000163D0  38 80 00 49 */	li r4, 0x49
 /* 80019494 000163D4  7F E5 FB 78 */	mr r5, r31
 /* 80019498 000163D8  38 C0 00 80 */	li r6, 0x80
-/* 8001949C 000163DC  48 02 2E 51 */	bl dRes_control_c_NS_getRes
+/* 8001949C 000163DC  48 02 2E 51 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800194A0 000163E0  90 7E 05 84 */	stw r3, 0x584(r30)
 /* 800194A4 000163E4  80 7E 05 80 */	lwz r3, 0x580(r30)
 /* 800194A8 000163E8  80 83 00 04 */	lwz r4, 4(r3)
 /* 800194AC 000163EC  80 7E 05 84 */	lwz r3, 0x584(r30)
-/* 800194B0 000163F0  48 31 1D 25 */	bl J3DAnmTextureSRTKey_NS_searchUpdateMaterialID_X1_
+/* 800194B0 000163F0  48 31 1D 25 */	bl searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_
 /* 800194B4 000163F4  3C 60 80 38 */	lis r3, lbl_80378878@ha
 /* 800194B8 000163F8  38 63 88 78 */	addi r3, r3, lbl_80378878@l
 /* 800194BC 000163FC  38 80 00 41 */	li r4, 0x41
 /* 800194C0 00016400  7F E5 FB 78 */	mr r5, r31
 /* 800194C4 00016404  38 C0 00 80 */	li r6, 0x80
-/* 800194C8 00016408  48 02 2E 25 */	bl dRes_control_c_NS_getRes
+/* 800194C8 00016408  48 02 2E 25 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800194CC 0001640C  90 7E 05 88 */	stw r3, 0x588(r30)
 /* 800194D0 00016410  80 7E 05 80 */	lwz r3, 0x580(r30)
 /* 800194D4 00016414  80 83 00 04 */	lwz r4, 4(r3)
 /* 800194D8 00016418  80 7E 05 88 */	lwz r3, 0x588(r30)
-/* 800194DC 0001641C  48 31 23 A1 */	bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 800194DC 0001641C  48 31 23 A1 */	bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
 /* 800194E0 00016420  38 60 00 01 */	li r3, 1
 lbl_800194E4:
 /* 800194E4 00016424  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -659,8 +659,8 @@ lbl_800194E4:
 /* 800194F4 00016434  38 21 00 10 */	addi r1, r1, 0x10
 /* 800194F8 00016438  4E 80 00 20 */	blr 
 
-.global fopEn_enemy_c_NS_checkBallModelDraw
-fopEn_enemy_c_NS_checkBallModelDraw:
+.global checkBallModelDraw__13fopEn_enemy_cFv
+checkBallModelDraw__13fopEn_enemy_cFv:
 /* 800194FC 0001643C  38 80 00 00 */	li r4, 0
 /* 80019500 00016440  A0 63 05 8E */	lhz r3, 0x58e(r3)
 /* 80019504 00016444  54 60 07 FF */	clrlwi. r0, r3, 0x1f
@@ -706,7 +706,7 @@ lbl_80019518:
 /* 800195A0 000164E0  D0 1E 05 90 */	stfs f0, 0x590(r30)
 lbl_800195A4:
 /* 800195A4 000164E4  7F C3 F3 78 */	mr r3, r30
-/* 800195A8 000164E8  4B FF FF 55 */	bl fopEn_enemy_c_NS_checkBallModelDraw
+/* 800195A8 000164E8  4B FF FF 55 */	bl checkBallModelDraw__13fopEn_enemy_cFv
 /* 800195AC 000164EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800195B0 000164F0  41 82 00 D8 */	beq lbl_80019688
 /* 800195B4 000164F4  80 7E 05 80 */	lwz r3, 0x580(r30)
@@ -739,7 +739,7 @@ lbl_800195A4:
 /* 80019620 00016560  39 20 00 00 */	li r9, 0
 /* 80019624 00016564  39 40 00 00 */	li r10, 0
 /* 80019628 00016568  C0 22 81 E0 */	lfs f1, lbl_80451BE0-_SDA2_BASE_(r2)
-/* 8001962C 0001656C  48 03 3E A1 */	bl dPa_control_c_NS_set_X1_
+/* 8001962C 0001656C  48 03 3E A1 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_
 /* 80019630 00016570  90 7E 05 94 */	stw r3, 0x594(r30)
 /* 80019634 00016574  80 7D 5D 3C */	lwz r3, 0x5d3c(r29)
 /* 80019638 00016578  38 00 00 FF */	li r0, 0xff
@@ -760,7 +760,7 @@ lbl_800195A4:
 /* 80019674 000165B4  39 20 00 00 */	li r9, 0
 /* 80019678 000165B8  39 40 00 00 */	li r10, 0
 /* 8001967C 000165BC  C0 22 81 E0 */	lfs f1, lbl_80451BE0-_SDA2_BASE_(r2)
-/* 80019680 000165C0  48 03 3E 4D */	bl dPa_control_c_NS_set_X1_
+/* 80019680 000165C0  48 03 3E 4D */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_
 /* 80019684 000165C4  90 7E 05 98 */	stw r3, 0x598(r30)
 lbl_80019688:
 /* 80019688 000165C8  39 61 00 40 */	addi r11, r1, 0x40
@@ -780,7 +780,7 @@ lbl_80019688:
 /* 800196C0 00016600  28 04 00 00 */	cmplwi r4, 0
 /* 800196C4 00016604  41 82 00 E0 */	beq lbl_800197A4
 /* 800196C8 00016608  3B E4 00 18 */	addi r31, r4, 0x18
-/* 800196CC 0001660C  4B FF FE 31 */	bl fopEn_enemy_c_NS_checkBallModelDraw
+/* 800196CC 0001660C  4B FF FE 31 */	bl checkBallModelDraw__13fopEn_enemy_cFv
 /* 800196D0 00016610  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800196D4 00016614  41 82 00 0C */	beq lbl_800196E0
 /* 800196D8 00016618  C0 22 81 E0 */	lfs f1, lbl_80451BE0-_SDA2_BASE_(r2)
@@ -825,7 +825,7 @@ lbl_800196E4:
 /* 8001976C 000166AC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80019770 000166B0  38 63 00 58 */	addi r3, r3, 0x58
 /* 80019774 000166B4  80 9D 05 84 */	lwz r4, 0x584(r29)
-/* 80019778 000166B8  48 31 65 4D */	bl J3DMaterialTable_NS_entryTexMtxAnimator
+/* 80019778 000166B8  48 31 65 4D */	bl entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 /* 8001977C 000166BC  C0 1D 05 90 */	lfs f0, 0x590(r29)
 /* 80019780 000166C0  80 7D 05 88 */	lwz r3, 0x588(r29)
 /* 80019784 000166C4  D0 03 00 08 */	stfs f0, 8(r3)
@@ -833,7 +833,7 @@ lbl_800196E4:
 /* 8001978C 000166CC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80019790 000166D0  38 63 00 58 */	addi r3, r3, 0x58
 /* 80019794 000166D4  80 9D 05 88 */	lwz r4, 0x588(r29)
-/* 80019798 000166D8  48 31 66 D9 */	bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 80019798 000166D8  48 31 66 D9 */	bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 8001979C 000166DC  80 7D 05 80 */	lwz r3, 0x580(r29)
 /* 800197A0 000166E0  4B FF 45 25 */	bl mDoExt_modelUpdateDL
 lbl_800197A4:

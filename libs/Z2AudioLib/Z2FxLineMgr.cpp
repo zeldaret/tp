@@ -7,8 +7,8 @@
 
 extern "C" {
 class JSUInputStream;
-s32 JSUInputStream_NS_read(JSUInputStream*, u8*, u32);
-void JSUInputStream_NS_dtor(void);
+s32 read__14JSUInputStreamFPvl(JSUInputStream*, u8*, u32);
+void __dt__14JSUInputStreamFv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void getResource__10JKRArchiveFUs(void);
 void countResource__10JKRArchiveCFv(void);

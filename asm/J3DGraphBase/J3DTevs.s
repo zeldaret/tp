@@ -3,8 +3,8 @@
 .section .text, "ax" # 80323590
 
 
-.global J3DLightObj_NS_load
-J3DLightObj_NS_load:
+.global load__11J3DLightObjCFUl
+load__11J3DLightObjCFUl:
 /* 80323590 003204D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80323594 003204D4  7C 08 02 A6 */	mflr r0
 /* 80323598 003204D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -223,8 +223,8 @@ lbl_803238AC:
 /* 803238BC 003207FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803238C0 00320800  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_load
-J3DTexMtx_NS_load:
+.global load__9J3DTexMtxCFUl
+load__9J3DTexMtxCFUl:
 /* 803238C4 00320804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803238C8 00320808  7C 08 02 A6 */	mflr r0
 /* 803238CC 0032080C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -233,29 +233,29 @@ J3DTexMtx_NS_load:
 /* 803238D8 00320818  80 05 00 34 */	lwz r0, 0x34(r5)
 /* 803238DC 0032081C  54 00 00 43 */	rlwinm. r0, r0, 0, 1, 1
 /* 803238E0 00320820  41 82 00 0C */	beq lbl_803238EC
-/* 803238E4 00320824  48 00 0A D9 */	bl J3DTexMtx_NS_loadPostTexMtx
+/* 803238E4 00320824  48 00 0A D9 */	bl load__9J3DTexMtxCFUlPostTexMtx
 /* 803238E8 00320828  48 00 00 08 */	b lbl_803238F0
 lbl_803238EC:
-/* 803238EC 0032082C  48 00 0A 6D */	bl J3DTexMtx_NS_loadTexMtx
+/* 803238EC 0032082C  48 00 0A 6D */	bl load__9J3DTexMtxCFUlTexMtx
 lbl_803238F0:
 /* 803238F0 00320830  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803238F4 00320834  7C 08 03 A6 */	mtlr r0
 /* 803238F8 00320838  38 21 00 10 */	addi r1, r1, 0x10
 /* 803238FC 0032083C  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_calc
-J3DTexMtx_NS_calc:
+.global calc__9J3DTexMtxFPA4_Cf
+calc__9J3DTexMtxFPA4_Cf:
 /* 80323900 00320840  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80323904 00320844  7C 08 02 A6 */	mflr r0
 /* 80323908 00320848  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8032390C 0032084C  48 00 00 15 */	bl J3DTexMtx_NS_calcTexMtx
+/* 8032390C 0032084C  48 00 00 15 */	bl calc__9J3DTexMtxFPA4_CfTexMtx
 /* 80323910 00320850  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80323914 00320854  7C 08 03 A6 */	mtlr r0
 /* 80323918 00320858  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032391C 0032085C  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_calcTexMtx
-J3DTexMtx_NS_calcTexMtx:
+.global calc__9J3DTexMtxFPA4_CfTexMtx
+calc__9J3DTexMtxFPA4_CfTexMtx:
 /* 80323920 00320860  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80323924 00320864  7C 08 02 A6 */	mflr r0
 /* 80323928 00320868  90 01 00 94 */	stw r0, 0x94(r1)
@@ -461,8 +461,8 @@ lbl_80323BF4:
 /* 80323C04 00320B44  38 21 00 90 */	addi r1, r1, 0x90
 /* 80323C08 00320B48  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_calcPostTexMtx
-J3DTexMtx_NS_calcPostTexMtx:
+.global calc__9J3DTexMtxFPA4_CfPostTexMtx
+calc__9J3DTexMtxFPA4_CfPostTexMtx:
 /* 80323C0C 00320B4C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80323C10 00320B50  7C 08 02 A6 */	mflr r0
 /* 80323C14 00320B54  90 01 00 94 */	stw r0, 0x94(r1)
@@ -994,8 +994,8 @@ lbl_80324324:
 /* 80324350 00321290  41 80 FF D4 */	blt lbl_80324324
 /* 80324354 00321294  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_loadTexMtx
-J3DTexMtx_NS_loadTexMtx:
+.global load__9J3DTexMtxCFUlTexMtx
+load__9J3DTexMtxCFUlTexMtx:
 /* 80324358 00321298  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032435C 0032129C  7C 08 02 A6 */	mflr r0
 /* 80324360 003212A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1023,8 +1023,8 @@ lbl_80324390:
 /* 803243B4 003212F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 803243B8 003212F8  4E 80 00 20 */	blr 
 
-.global J3DTexMtx_NS_loadPostTexMtx
-J3DTexMtx_NS_loadPostTexMtx:
+.global load__9J3DTexMtxCFUlPostTexMtx
+load__9J3DTexMtxCFUlPostTexMtx:
 /* 803243BC 003212FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803243C0 00321300  7C 08 02 A6 */	mflr r0
 /* 803243C4 00321304  90 01 00 14 */	stw r0, 0x14(r1)

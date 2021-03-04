@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280a48
 
 
-.global JStage_NS_TActor_NS_dtor
-JStage_NS_TActor_NS_dtor:
+.global __dt__Q26JStage6TActorFv
+__dt__Q26JStage6TActorFv:
 /* 80280A48 0027D988  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280A4C 0027D98C  7C 08 02 A6 */	mflr r0
 /* 80280A50 0027D990  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ JStage_NS_TActor_NS_dtor:
 /* 80280A6C 0027D9AC  38 04 45 A8 */	addi r0, r4, lbl_803C45A8@l
 /* 80280A70 0027D9B0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280A74 0027D9B4  38 80 00 00 */	li r4, 0
-/* 80280A78 0027D9B8  48 00 03 5D */	bl JStage_NS_TObject_NS_dtor
+/* 80280A78 0027D9B8  48 00 03 5D */	bl __dt__Q26JStage7TObjectFv
 /* 80280A7C 0027D9BC  7F E0 07 35 */	extsh. r0, r31
 /* 80280A80 0027D9C0  40 81 00 0C */	ble lbl_80280A8C
 /* 80280A84 0027D9C4  7F C3 F3 78 */	mr r3, r30

@@ -15,7 +15,7 @@
 /* 80130738 0012D678  38 A0 00 00 */ li r5, 0
 /* 8013073C 0012D67C  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 80130740 0012D680  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 80130744 0012D684  4B F1 2A 29 */ bl dEvt_control_c_NS_compulsory
+/* 80130744 0012D684  4B F1 2A 29 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 80130748 0012D688  2C 03 00 00 */ cmpwi r3, 0
 /* 8013074C 0012D68C  40 82 00 0C */ bne lbl_80130758
 /* 80130750 0012D690  38 60 00 00 */ li r3, 0
@@ -280,7 +280,7 @@ lbl_80130B00:
 /* 80130B08 0012DA48  7F E5 FB 78 */ mr r5, r31
 /* 80130B0C 0012DA4C  38 C0 00 00 */ li r6, 0
 /* 80130B10 0012DA50  4C C6 31 82 */ crclr 6
-/* 80130B14 0012DA54  4B F5 7F 69 */ bl dCamera_c_NS_StartEventCamera
+/* 80130B14 0012DA54  4B F5 7F 69 */ bl StartEventCamera__9dCamera_cFiie
 /* 80130B18 0012DA58  38 80 00 00 */ li r4, 0
 /* 80130B1C 0012DA5C  B0 9E 30 0A */ sth r4, 0x300a(r30)
 /* 80130B20 0012DA60  38 60 FF FF */ li r3, -1
@@ -306,11 +306,11 @@ lbl_80130B00:
 /* 80130B68 0012DAA8  4B EE 8C 91 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80130B6C 0012DAAC  7C 64 1B 78 */ mr r4, r3
 /* 80130B70 0012DAB0  38 7E 28 0C */ addi r3, r30, 0x280c
-/* 80130B74 0012DAB4  48 02 E1 45 */ bl daPy_actorKeep_c_NS_setData
+/* 80130B74 0012DAB4  48 02 E1 45 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80130B78 0012DAB8  48 00 00 0C */ b lbl_80130B84
 lbl_80130B7C:
 /* 80130B7C 0012DABC  38 7E 28 0C */ addi r3, r30, 0x280c
-/* 80130B80 0012DAC0  48 02 E1 7D */ bl daPy_actorKeep_c_NS_clearData
+/* 80130B80 0012DAC0  48 02 E1 7D */ bl clearData__16daPy_actorKeep_cFv
 lbl_80130B84:
 /* 80130B84 0012DAC4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80130B88 0012DAC8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

@@ -16,7 +16,7 @@
 /* 800A22BC 0009F1FC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800A22C0 0009F200  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800A22C4 0009F204  A0 9F 1A 62 */ lhz r4, 0x1a62(r31)
-/* 800A22C8 0009F208  4B FD 23 51 */ bl cBgS_NS_GetActorPointer
+/* 800A22C8 0009F208  4B FD 23 51 */ bl GetActorPointer__4cBgSCFi
 /* 800A22CC 0009F20C  48 00 00 08 */ b lbl_800A22D4
 lbl_800A22D0:
 /* 800A22D0 0009F210  38 60 00 00 */ li r3, 0

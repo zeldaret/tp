@@ -33,7 +33,7 @@ lbl_8011BA90:
 /* 8011BA94 001189D4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011BA98 001189D8  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011BA9C 001189DC  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011BAA0 001189E0  4B F2 C6 DD */ bl dEvent_manager_c_NS_cutEnd
+/* 8011BAA0 001189E0  4B F2 C6 DD */ bl cutEnd__16dEvent_manager_cFi
 /* 8011BAA4 001189E4  38 60 00 01 */ li r3, 1
 /* 8011BAA8 001189E8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8011BAAC 001189EC  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -29,8 +29,8 @@ JASSimpleWaveBank:
 /* 80298CE8 00295C28  7C 08 03 A6 */	mtlr r0
 /* 80298CEC 00295C2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80298CF0 00295C30  4E 80 00 20 */	blr 
-.global JASSimpleWaveBank_NS_dtor
-JASSimpleWaveBank_NS_dtor:
+.global __dt__17JASSimpleWaveBankFv
+__dt__17JASSimpleWaveBankFv:
 /* 80298CF4 00295C34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298CF8 00295C38  7C 08 02 A6 */	mflr r0
 /* 80298CFC 00295C3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -45,14 +45,14 @@ JASSimpleWaveBank_NS_dtor:
 /* 80298D20 00295C60  38 03 00 18 */	addi r0, r3, 0x18
 /* 80298D24 00295C64  90 1E 00 04 */	stw r0, 4(r30)
 /* 80298D28 00295C68  80 7E 00 78 */	lwz r3, 0x78(r30)
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298D2C 00295C6C  3C 80 80 2A */	lis r4, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@ha
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298D30 00295C70  38 84 8D 84 */	addi r4, r4, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@l
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298D2C 00295C6C  3C 80 80 2A */	lis r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298D30 00295C70  38 84 8D 84 */	addi r4, r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
 /* 80298D34 00295C74  48 0C 8F 39 */	bl func_80361C6C
 /* 80298D38 00295C78  38 7E 00 04 */	addi r3, r30, 4
 /* 80298D3C 00295C7C  38 80 00 00 */	li r4, 0
-/* 80298D40 00295C80  48 00 14 75 */	bl JASWaveArc_NS_dtor
+/* 80298D40 00295C80  48 00 14 75 */	bl __dt__10JASWaveArcFv
 /* 80298D44 00295C84  28 1E 00 00 */	cmplwi r30, 0
 /* 80298D48 00295C88  41 82 00 10 */	beq lbl_80298D58
 /* 80298D4C 00295C8C  3C 60 80 3C */	lis r3, lbl_803C7780@ha
@@ -71,8 +71,8 @@ lbl_80298D68:
 /* 80298D78 00295CB8  7C 08 03 A6 */	mtlr r0
 /* 80298D7C 00295CBC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80298D80 00295CC0  4E 80 00 20 */	blr 
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-JASSimpleWaveBank_NS_TWaveHandle_NS_dtor:
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+__dt__Q217JASSimpleWaveBank11TWaveHandleFv:
 /* 80298D84 00295CC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298D88 00295CC8  7C 08 02 A6 */	mflr r0
 /* 80298D8C 00295CCC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -99,8 +99,8 @@ lbl_80298DC8:
 /* 80298DD8 00295D18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80298DDC 00295D1C  4E 80 00 20 */	blr 
 
-.global JASSimpleWaveBank_NS_setWaveTableSize
-JASSimpleWaveBank_NS_setWaveTableSize:
+.global setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap
+setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap:
 /* 80298DE0 00295D20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80298DE4 00295D24  7C 08 02 A6 */	mflr r0
 /* 80298DE8 00295D28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -110,24 +110,24 @@ JASSimpleWaveBank_NS_setWaveTableSize:
 /* 80298DF8 00295D38  7C 9E 23 78 */	mr r30, r4
 /* 80298DFC 00295D3C  7C BF 2B 78 */	mr r31, r5
 /* 80298E00 00295D40  80 63 00 78 */	lwz r3, 0x78(r3)
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298E04 00295D44  3C 80 80 2A */	lis r4, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@ha
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298E08 00295D48  38 84 8D 84 */	addi r4, r4, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@l
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E04 00295D44  3C 80 80 2A */	lis r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E08 00295D48  38 84 8D 84 */	addi r4, r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
 /* 80298E0C 00295D4C  48 0C 8E 61 */	bl func_80361C6C
 /* 80298E10 00295D50  1C 7E 00 2C */	mulli r3, r30, 0x2c
 /* 80298E14 00295D54  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298E18 00295D58  7F E4 FB 78 */	mr r4, r31
 /* 80298E1C 00295D5C  38 A0 00 00 */	li r5, 0
 /* 80298E20 00295D60  48 03 5E F1 */	bl __nwa__FUlP7JKRHeapi
-.global JASSimpleWaveBank_NS_TWaveHandle
-/* 80298E24 00295D64  3C 80 80 2A */	lis r4, JASSimpleWaveBank_NS_TWaveHandle@ha
-.global JASSimpleWaveBank_NS_TWaveHandle
-/* 80298E28 00295D68  38 84 8F 5C */	addi r4, r4, JASSimpleWaveBank_NS_TWaveHandle@l
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298E2C 00295D6C  3C A0 80 2A */	lis r5, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@ha
-.global JASSimpleWaveBank_NS_TWaveHandle_NS_dtor
-/* 80298E30 00295D70  38 A5 8D 84 */	addi r5, r5, JASSimpleWaveBank_NS_TWaveHandle_NS_dtor@l
+.global __ct__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E24 00295D64  3C 80 80 2A */	lis r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+.global __ct__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E28 00295D68  38 84 8F 5C */	addi r4, r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@l
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E2C 00295D6C  3C A0 80 2A */	lis r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+.global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+/* 80298E30 00295D70  38 A5 8D 84 */	addi r5, r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
 /* 80298E34 00295D74  38 C0 00 2C */	li r6, 0x2c
 /* 80298E38 00295D78  7F C7 F3 78 */	mr r7, r30
 /* 80298E3C 00295D7C  48 0C 90 D9 */	bl func_80361F14
@@ -150,8 +150,8 @@ lbl_80298E74:
 /* 80298E7C 00295DBC  7C 63 02 14 */	add r3, r3, r0
 /* 80298E80 00295DC0  4E 80 00 20 */	blr 
 
-.global JASSimpleWaveBank_NS_setWaveInfo
-JASSimpleWaveBank_NS_setWaveInfo:
+.global setWaveInfo__17JASSimpleWaveBankFUlRC11JASWaveInfo
+setWaveInfo__17JASSimpleWaveBankFUlRC11JASWaveInfo:
 /* 80298E84 00295DC4  80 03 00 78 */	lwz r0, 0x78(r3)
 /* 80298E88 00295DC8  1C C4 00 2C */	mulli r6, r4, 0x2c
 /* 80298E8C 00295DCC  38 86 00 04 */	addi r4, r6, 4
@@ -208,8 +208,8 @@ lbl_80298F50:
 /* 80298F50 00295E90  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80298F54 00295E94  7C 64 02 14 */	add r3, r4, r0
 /* 80298F58 00295E98  4E 80 00 20 */	blr 
-.global JASSimpleWaveBank_NS_TWaveHandle
-JASSimpleWaveBank_NS_TWaveHandle:
+.global __ct__Q217JASSimpleWaveBank11TWaveHandleFv
+__ct__Q217JASSimpleWaveBank11TWaveHandleFv:
 /* 80298F5C 00295E9C  3C 80 80 3C */	lis r4, lbl_803C7754@ha
 /* 80298F60 00295EA0  38 04 77 54 */	addi r0, r4, lbl_803C7754@l
 /* 80298F64 00295EA4  90 03 00 00 */	stw r0, 0(r3)
@@ -230,6 +230,6 @@ JASSimpleWaveBank_NS_TWaveHandle:
 /* 80298FA0 00295EE0  4E 80 00 20 */	blr 
 /* 80298FA4 00295EE4  4E 80 00 20 */	blr 
 /* 80298FA8 00295EE8  38 63 FF FC */	addi r3, r3, -4
-.global JASSimpleWaveBank_NS_dtor
-/* 80298FAC 00295EEC  4B FF FD 48 */	b JASSimpleWaveBank_NS_dtor
+.global __dt__17JASSimpleWaveBankFv
+/* 80298FAC 00295EEC  4B FF FD 48 */	b __dt__17JASSimpleWaveBankFv
 

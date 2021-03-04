@@ -4,7 +4,7 @@
 /* 800BF8DC 000BC81C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800BF8E0 000BC820  7C 7F 1B 78 */ mr r31, r3
 /* 800BF8E4 000BC824  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
-/* 800BF8E8 000BC828  48 09 F2 A9 */ bl daPy_py_c_NS_checkBowItem
+/* 800BF8E8 000BC828  48 09 F2 A9 */ bl checkBowItem__9daPy_py_cFi
 /* 800BF8EC 000BC82C  2C 03 00 00 */ cmpwi r3, 0
 /* 800BF8F0 000BC830  41 82 00 14 */ beq lbl_800BF904
 /* 800BF8F4 000BC834  7F E3 FB 78 */ mr r3, r31
@@ -44,7 +44,7 @@ lbl_800BF958:
 /* 800BF96C 000BC8AC  48 00 00 70 */ b lbl_800BF9DC
 lbl_800BF970:
 /* 800BF970 000BC8B0  7C 83 23 78 */ mr r3, r4
-/* 800BF974 000BC8B4  48 09 F2 45 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800BF974 000BC8B4  48 09 F2 45 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800BF978 000BC8B8  2C 03 00 00 */ cmpwi r3, 0
 /* 800BF97C 000BC8BC  41 82 00 14 */ beq lbl_800BF990
 /* 800BF980 000BC8C0  7F E3 FB 78 */ mr r3, r31

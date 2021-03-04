@@ -47,7 +47,7 @@ lbl_800B7FDC:
 /* 800B8038 000B4F78  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B803C 000B4F7C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800B8040 000B4F80  80 9E 01 00 */ lwz r4, 0x100(r30)
-/* 800B8044 000B4F84  4B F8 E7 BD */ bl dEvent_manager_c_NS_setObjectArchive
+/* 800B8044 000B4F84  4B F8 E7 BD */ bl setObjectArchive__16dEvent_manager_cFPc
 lbl_800B8048:
 /* 800B8048 000B4F88  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800B804C 000B4F8C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -56,7 +56,7 @@ lbl_800B8048:
 /* 800B8058 000B4F98  80 BE 05 70 */ lwz r5, 0x570(r30)
 /* 800B805C 000B4F9C  7C A5 F8 2E */ lwzx r5, r5, r31
 /* 800B8060 000B4FA0  38 C0 00 FF */ li r6, 0xff
-/* 800B8064 000B4FA4  4B F8 F6 F5 */ bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 800B8064 000B4FA4  4B F8 F6 F5 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
 /* 800B8068 000B4FA8  B0 7E 0E 1C */ sth r3, 0xe1c(r30)
 /* 800B806C 000B4FAC  7F C3 F3 78 */ mr r3, r30
 /* 800B8070 000B4FB0  A8 9E 0E 1C */ lha r4, 0xe1c(r30)

@@ -8,7 +8,7 @@
 /* 802037D4 00200714  7C BF 2B 78 */ mr r31, r5
 /* 802037D8 00200718  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 802037DC 0020071C  40 82 00 4C */ bne lbl_80203828
-/* 802037E0 00200720  48 03 4A 4D */ bl dMsgObject_c_NS_getStatus
+/* 802037E0 00200720  48 03 4A 4D */ bl getStatus__12dMsgObject_cFv
 /* 802037E4 00200724  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802037E8 00200728  20 60 00 01 */ subfic r3, r0, 1
 /* 802037EC 0020072C  30 03 FF FF */ addic r0, r3, -1

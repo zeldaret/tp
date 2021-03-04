@@ -47,7 +47,7 @@ lbl_80135D14:
 /* 80135D88 00132CC8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80135D8C 00132CCC  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 80135D90 00132CD0  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 80135D94 00132CD4  4B F3 E7 0D */ bl cBgS_NS_GroundCross
+/* 80135D94 00132CD4  4B F3 E7 0D */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 80135D98 00132CD8  D0 21 00 24 */ stfs f1, 0x24(r1)
 /* 80135D9C 00132CDC  C0 02 93 A4 */ lfs f0, lbl_80452DA4-_SDA2_BASE_(r2)
 /* 80135DA0 00132CE0  FC 40 08 18 */ frsp f2, f1

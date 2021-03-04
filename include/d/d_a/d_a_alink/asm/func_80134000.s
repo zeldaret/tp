@@ -40,7 +40,7 @@
 /* 8013409C 00130FDC  C0 02 92 E0 */ lfs f0, lbl_80452CE0-_SDA2_BASE_(r2)
 /* 801340A0 00130FE0  D0 1E 34 80 */ stfs f0, 0x3480(r30)
 /* 801340A4 00130FE4  38 7E 28 0C */ addi r3, r30, 0x280c
-/* 801340A8 00130FE8  48 02 AC 55 */ bl daPy_actorKeep_c_NS_clearData
+/* 801340A8 00130FE8  48 02 AC 55 */ bl clearData__16daPy_actorKeep_cFv
 /* 801340AC 00130FEC  38 00 00 00 */ li r0, 0
 /* 801340B0 00130FF0  B0 1E 30 0A */ sth r0, 0x300a(r30)
 /* 801340B4 00130FF4  38 00 00 01 */ li r0, 1
@@ -156,7 +156,7 @@ lbl_80134214:
 /* 8013423C 0013117C  D0 1E 37 D0 */ stfs f0, 0x37d0(r30)
 /* 80134240 00131180  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 80134244 00131184  7F E4 FB 78 */ mr r4, r31
-/* 80134248 00131188  48 02 AA 71 */ bl daPy_actorKeep_c_NS_setData
+/* 80134248 00131188  48 02 AA 71 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8013424C 0013118C  38 00 00 01 */ li r0, 1
 /* 80134250 00131190  98 1F 05 6B */ stb r0, 0x56b(r31)
 /* 80134254 00131194  A8 1F 04 E8 */ lha r0, 0x4e8(r31)

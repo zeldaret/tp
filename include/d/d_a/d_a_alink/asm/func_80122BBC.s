@@ -95,7 +95,7 @@ lbl_80122CF4:
 /* 80122D1C 0011FC5C  3B FF 00 02 */ addi r31, r31, 2
 /* 80122D20 0011FC60  41 80 FF D4 */ blt lbl_80122CF4
 /* 80122D24 0011FC64  A0 7E 2F DC */ lhz r3, 0x2fdc(r30)
-/* 80122D28 0011FC68  48 03 BE 91 */ bl daPy_py_c_NS_checkHookshotItem
+/* 80122D28 0011FC68  48 03 BE 91 */ bl checkHookshotItem__9daPy_py_cFi
 /* 80122D2C 0011FC6C  2C 03 00 00 */ cmpwi r3, 0
 /* 80122D30 0011FC70  41 82 01 D0 */ beq lbl_80122F00
 /* 80122D34 0011FC74  A8 1E 30 1A */ lha r0, 0x301a(r30)

@@ -99,7 +99,7 @@ lbl_800D41B4:
 /* 800D41D0 000D1110  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800D41D4 000D1114  38 A0 00 1F */ li r5, 0x1f
 /* 800D41D8 000D1118  38 C1 00 08 */ addi r6, r1, 8
-/* 800D41DC 000D111C  4B F9 B8 49 */ bl dVibration_c_NS_StartShock
+/* 800D41DC 000D111C  4B F9 B8 49 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800D41E0 000D1120  38 60 00 01 */ li r3, 1
 lbl_800D41E4:
 /* 800D41E4 000D1124  83 E1 00 2C */ lwz r31, 0x2c(r1)

@@ -17,7 +17,7 @@ lbl_800F61B4:
 /* 800F61C4 000F3104  41 82 01 24 */ beq lbl_800F62E8
 /* 800F61C8 000F3108  3B DF 1F D0 */ addi r30, r31, 0x1fd0
 /* 800F61CC 000F310C  7F C3 F3 78 */ mr r3, r30
-/* 800F61D0 000F3110  48 06 82 FD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F61D0 000F3110  48 06 82 FD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F61D4 000F3114  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F61D8 000F3118  41 82 00 94 */ beq lbl_800F626C
 /* 800F61DC 000F311C  7F E3 FB 78 */ mr r3, r31
@@ -72,7 +72,7 @@ lbl_800F626C:
 /* 800F6290 000F31D0  80 7F 28 18 */ lwz r3, 0x2818(r31)
 /* 800F6294 000F31D4  90 03 14 64 */ stw r0, 0x1464(r3)
 /* 800F6298 000F31D8  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800F629C 000F31DC  48 06 8A 61 */ bl daPy_actorKeep_c_NS_clearData
+/* 800F629C 000F31DC  48 06 8A 61 */ bl clearData__16daPy_actorKeep_cFv
 /* 800F62A0 000F31E0  7F E3 FB 78 */ mr r3, r31
 /* 800F62A4 000F31E4  38 80 00 00 */ li r4, 0
 /* 800F62A8 000F31E8  38 A0 00 00 */ li r5, 0
@@ -95,7 +95,7 @@ lbl_800F62D0:
 /* 800F62E4 000F3224  48 00 00 24 */ b lbl_800F6308
 lbl_800F62E8:
 /* 800F62E8 000F3228  38 7F 20 18 */ addi r3, r31, 0x2018
-/* 800F62EC 000F322C  48 06 81 E1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F62EC 000F322C  48 06 81 E1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F62F0 000F3230  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F62F4 000F3234  41 82 00 10 */ beq lbl_800F6304
 /* 800F62F8 000F3238  7F E3 FB 78 */ mr r3, r31

@@ -14,7 +14,7 @@
 /* 8019D900 0019A840  D0 01 00 20 */ stfs f0, 0x20(r1)
 /* 8019D904 0019A844  D0 01 00 24 */ stfs f0, 0x24(r1)
 /* 8019D908 0019A848  D0 01 00 28 */ stfs f0, 0x28(r1)
-/* 8019D90C 0019A84C  4B FC 1B 19 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 8019D90C 0019A84C  4B FC 1B 19 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8019D910 0019A850  2C 03 00 00 */ cmpwi r3, 0
 /* 8019D914 0019A854  41 82 00 8C */ beq lbl_8019D9A0
 /* 8019D918 0019A858  38 00 00 01 */ li r0, 1
@@ -43,7 +43,7 @@
 /* 8019D974 0019A8B4  39 21 00 20 */ addi r9, r1, 0x20
 /* 8019D978 0019A8B8  39 40 00 FF */ li r10, 0xff
 /* 8019D97C 0019A8BC  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
-/* 8019D980 0019A8C0  4B EA F1 11 */ bl dPa_control_c_NS_set
+/* 8019D980 0019A8C0  4B EA F1 11 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_8019D984:
 /* 8019D984 0019A8C4  38 7F 0F 40 */ addi r3, r31, 0xf40
 /* 8019D988 0019A8C8  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
@@ -78,7 +78,7 @@ lbl_8019D9A0:
 /* 8019D9F8 0019A938  39 00 00 00 */ li r8, 0
 /* 8019D9FC 0019A93C  39 21 00 20 */ addi r9, r1, 0x20
 /* 8019DA00 0019A940  39 40 00 FF */ li r10, 0xff
-/* 8019DA04 0019A944  4B EA F0 8D */ bl dPa_control_c_NS_set
+/* 8019DA04 0019A944  4B EA F0 8D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_8019DA08:
 /* 8019DA08 0019A948  38 7F 0F 40 */ addi r3, r31, 0xf40
 /* 8019DA0C 0019A94C  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
@@ -123,7 +123,7 @@ lbl_8019DA4C:
 /* 8019DA9C 0019A9DC  39 20 00 00 */ li r9, 0
 /* 8019DAA0 0019A9E0  39 40 00 FF */ li r10, 0xff
 /* 8019DAA4 0019A9E4  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
-/* 8019DAA8 0019A9E8  4B EA EF E9 */ bl dPa_control_c_NS_set
+/* 8019DAA8 0019A9E8  4B EA EF E9 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8019DAAC 0019A9EC  90 7F 0F 44 */ stw r3, 0xf44(r31)
 /* 8019DAB0 0019A9F0  80 7D 5D 3C */ lwz r3, 0x5d3c(r29)
 /* 8019DAB4 0019A9F4  38 80 00 00 */ li r4, 0
@@ -141,7 +141,7 @@ lbl_8019DA4C:
 /* 8019DAE4 0019AA24  39 21 00 20 */ addi r9, r1, 0x20
 /* 8019DAE8 0019AA28  39 40 00 FF */ li r10, 0xff
 /* 8019DAEC 0019AA2C  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
-/* 8019DAF0 0019AA30  4B EA EF A1 */ bl dPa_control_c_NS_set
+/* 8019DAF0 0019AA30  4B EA EF A1 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8019DAF4 0019AA34  90 7F 0F 48 */ stw r3, 0xf48(r31)
 /* 8019DAF8 0019AA38  80 7D 5D 3C */ lwz r3, 0x5d3c(r29)
 /* 8019DAFC 0019AA3C  38 80 00 00 */ li r4, 0
@@ -159,7 +159,7 @@ lbl_8019DA4C:
 /* 8019DB2C 0019AA6C  39 21 00 20 */ addi r9, r1, 0x20
 /* 8019DB30 0019AA70  39 40 00 FF */ li r10, 0xff
 /* 8019DB34 0019AA74  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
-/* 8019DB38 0019AA78  4B EA EF 59 */ bl dPa_control_c_NS_set
+/* 8019DB38 0019AA78  4B EA EF 59 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8019DB3C 0019AA7C  90 7F 0F 4C */ stw r3, 0xf4c(r31)
 /* 8019DB40 0019AA80  88 7F 0F 3C */ lbz r3, 0xf3c(r31)
 /* 8019DB44 0019AA84  38 03 00 01 */ addi r0, r3, 1
@@ -238,7 +238,7 @@ lbl_8019DC54:
 /* 8019DC54 0019AB94  80 7F 0F 44 */ lwz r3, 0xf44(r31)
 /* 8019DC58 0019AB98  28 03 00 00 */ cmplwi r3, 0
 /* 8019DC5C 0019AB9C  41 82 00 40 */ beq lbl_8019DC9C
-/* 8019DC60 0019ABA0  48 0E 10 01 */ bl JPABaseEmitter_NS_deleteAllParticle
+/* 8019DC60 0019ABA0  48 0E 10 01 */ bl deleteAllParticle__14JPABaseEmitterFv
 /* 8019DC64 0019ABA4  80 7F 0F 44 */ lwz r3, 0xf44(r31)
 /* 8019DC68 0019ABA8  80 03 00 F4 */ lwz r0, 0xf4(r3)
 /* 8019DC6C 0019ABAC  60 00 00 01 */ ori r0, r0, 1
@@ -257,7 +257,7 @@ lbl_8019DC9C:
 /* 8019DC9C 0019ABDC  80 7F 0F 48 */ lwz r3, 0xf48(r31)
 /* 8019DCA0 0019ABE0  28 03 00 00 */ cmplwi r3, 0
 /* 8019DCA4 0019ABE4  41 82 00 40 */ beq lbl_8019DCE4
-/* 8019DCA8 0019ABE8  48 0E 0F B9 */ bl JPABaseEmitter_NS_deleteAllParticle
+/* 8019DCA8 0019ABE8  48 0E 0F B9 */ bl deleteAllParticle__14JPABaseEmitterFv
 /* 8019DCAC 0019ABEC  80 7F 0F 48 */ lwz r3, 0xf48(r31)
 /* 8019DCB0 0019ABF0  80 03 00 F4 */ lwz r0, 0xf4(r3)
 /* 8019DCB4 0019ABF4  60 00 00 01 */ ori r0, r0, 1
@@ -276,7 +276,7 @@ lbl_8019DCE4:
 /* 8019DCE4 0019AC24  80 7F 0F 4C */ lwz r3, 0xf4c(r31)
 /* 8019DCE8 0019AC28  28 03 00 00 */ cmplwi r3, 0
 /* 8019DCEC 0019AC2C  41 82 00 40 */ beq lbl_8019DD2C
-/* 8019DCF0 0019AC30  48 0E 0F 71 */ bl JPABaseEmitter_NS_deleteAllParticle
+/* 8019DCF0 0019AC30  48 0E 0F 71 */ bl deleteAllParticle__14JPABaseEmitterFv
 /* 8019DCF4 0019AC34  80 7F 0F 4C */ lwz r3, 0xf4c(r31)
 /* 8019DCF8 0019AC38  80 03 00 F4 */ lwz r0, 0xf4(r3)
 /* 8019DCFC 0019AC3C  60 00 00 01 */ ori r0, r0, 1

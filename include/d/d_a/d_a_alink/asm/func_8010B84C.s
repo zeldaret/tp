@@ -12,7 +12,7 @@
 /* 8010B878 001087B8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010B87C 001087BC  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8010B880 001087C0  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 8010B884 001087C4  4B F6 8C 1D */ bl cBgS_NS_GroundCross
+/* 8010B884 001087C4  4B F6 8C 1D */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 8010B888 001087C8  FF E0 08 90 */ fmr f31, f1
 /* 8010B88C 001087CC  7F E3 FB 78 */ mr r3, r31
 /* 8010B890 001087D0  4B FF E0 01 */ bl daAlink_c_NS_setHookshotHangMoveBGCollect

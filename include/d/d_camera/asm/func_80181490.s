@@ -14,7 +14,7 @@
 /* 801814C4 0017E404  38 80 00 02 */ li r4, 2
 /* 801814C8 0017E408  38 A0 00 01 */ li r5, 1
 /* 801814CC 0017E40C  38 C1 00 08 */ addi r6, r1, 8
-/* 801814D0 0017E410  4B EE E5 55 */ bl dVibration_c_NS_StartShock
+/* 801814D0 0017E410  4B EE E5 55 */ bl StartShock__12dVibration_cFii4cXyz
 /* 801814D4 0017E414  7F E3 FB 78 */ mr r3, r31
 /* 801814D8 0017E418  38 80 00 37 */ li r4, 0x37
 /* 801814DC 0017E41C  80 BF 01 80 */ lwz r5, 0x180(r31)

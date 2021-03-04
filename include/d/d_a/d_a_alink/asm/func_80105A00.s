@@ -20,7 +20,7 @@ lbl_80105A30:
 /* 80105A48 00102988  38 00 00 07 */ li r0, 7
 /* 80105A4C 0010298C  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 /* 80105A50 00102990  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 80105A54 00102994  48 05 8A 79 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80105A54 00102994  48 05 8A 79 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80105A58 00102998  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80105A5C 0010299C  41 82 00 10 */ beq lbl_80105A6C
 /* 80105A60 001029A0  7F E3 FB 78 */ mr r3, r31

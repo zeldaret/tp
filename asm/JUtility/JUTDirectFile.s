@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e8730
 
 
-.global JUTDirectFile_NS_fetch32byte
-JUTDirectFile_NS_fetch32byte:
+.global fetch32byte__13JUTDirectFileFv
+fetch32byte__13JUTDirectFileFv:
 /* 802E8730 002E5670  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E8734 002E5674  7C 08 02 A6 */	mflr r0
 /* 802E8738 002E5678  90 01 00 24 */	stw r0, 0x24(r1)
@@ -72,8 +72,8 @@ JUTDirectFile:
 /* 802E8814 002E5754  98 83 08 30 */	stb r4, 0x830(r3)
 /* 802E8818 002E5758  4E 80 00 20 */	blr 
 
-.global JUTDirectFile_NS_dtor
-JUTDirectFile_NS_dtor:
+.global __dt__13JUTDirectFileFv
+__dt__13JUTDirectFileFv:
 /* 802E881C 002E575C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E8820 002E5760  7C 08 02 A6 */	mflr r0
 /* 802E8824 002E5764  90 01 00 14 */	stw r0, 0x14(r1)
@@ -93,8 +93,8 @@ lbl_802E8848:
 /* 802E8858 002E5798  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E885C 002E579C  4E 80 00 20 */	blr 
 
-.global JUTDirectFile_NS_fopen
-JUTDirectFile_NS_fopen:
+.global fopen__13JUTDirectFileFPCc
+fopen__13JUTDirectFileFPCc:
 /* 802E8860 002E57A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E8864 002E57A4  7C 08 02 A6 */	mflr r0
 /* 802E8868 002E57A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -138,8 +138,8 @@ lbl_802E88E4:
 /* 802E88F4 002E5834  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E88F8 002E5838  4E 80 00 20 */	blr 
 
-.global JUTDirectFile_NS_fclose
-JUTDirectFile_NS_fclose:
+.global fclose__13JUTDirectFileFv
+fclose__13JUTDirectFileFv:
 /* 802E88FC 002E583C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E8900 002E5840  7C 08 02 A6 */	mflr r0
 /* 802E8904 002E5844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -165,8 +165,8 @@ lbl_802E8940:
 /* 802E8950 002E5890  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E8954 002E5894  4E 80 00 20 */	blr 
 
-.global JUTDirectFile_NS_fgets
-JUTDirectFile_NS_fgets:
+.global fgets__13JUTDirectFileFPvi
+fgets__13JUTDirectFileFPvi:
 /* 802E8958 002E5898  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E895C 002E589C  7C 08 02 A6 */	mflr r0
 /* 802E8960 002E58A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -211,7 +211,7 @@ lbl_802E89E0:
 /* 802E89E4 002E5924  28 00 00 00 */	cmplwi r0, 0
 /* 802E89E8 002E5928  40 82 00 1C */	bne lbl_802E8A04
 /* 802E89EC 002E592C  7F 83 E3 78 */	mr r3, r28
-/* 802E89F0 002E5930  4B FF FD 41 */	bl JUTDirectFile_NS_fetch32byte
+/* 802E89F0 002E5930  4B FF FD 41 */	bl fetch32byte__13JUTDirectFileFv
 /* 802E89F4 002E5934  2C 03 00 00 */	cmpwi r3, 0
 /* 802E89F8 002E5938  40 80 00 0C */	bge lbl_802E8A04
 /* 802E89FC 002E593C  38 60 FF FF */	li r3, -1

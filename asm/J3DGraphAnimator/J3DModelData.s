@@ -3,8 +3,8 @@
 .section .text, "ax" # 80325d88
 
 
-.global J3DModelData_NS_clear
-J3DModelData_NS_clear:
+.global clear__12J3DModelDataFv
+clear__12J3DModelDataFv:
 /* 80325D88 00322CC8  38 00 00 00 */	li r0, 0
 /* 80325D8C 00322CCC  90 03 00 04 */	stw r0, 4(r3)
 /* 80325D90 00322CD0  90 03 00 08 */	stw r0, 8(r3)
@@ -36,7 +36,7 @@ J3DModelData:
 /* 80325DEC 00322D2C  38 7F 00 88 */	addi r3, r31, 0x88
 /* 80325DF0 00322D30  4B FE B1 09 */	bl J3DVertexData
 /* 80325DF4 00322D34  7F E3 FB 78 */	mr r3, r31
-/* 80325DF8 00322D38  4B FF FF 91 */	bl J3DModelData_NS_clear
+/* 80325DF8 00322D38  4B FF FF 91 */	bl clear__12J3DModelDataFv
 /* 80325DFC 00322D3C  7F E3 FB 78 */	mr r3, r31
 /* 80325E00 00322D40  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80325E04 00322D44  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -44,8 +44,8 @@ J3DModelData:
 /* 80325E0C 00322D4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80325E10 00322D50  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_newSharedDisplayList
-J3DModelData_NS_newSharedDisplayList:
+.global newSharedDisplayList__12J3DModelDataFUl
+newSharedDisplayList__12J3DModelDataFUl:
 /* 80325E14 00322D54  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80325E18 00322D58  7C 08 02 A6 */	mflr r0
 /* 80325E1C 00322D5C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -63,10 +63,10 @@ lbl_80325E3C:
 /* 80325E48 00322D88  57 80 13 BA */	rlwinm r0, r28, 2, 0xe, 0x1d
 /* 80325E4C 00322D8C  7F A3 00 2E */	lwzx r29, r3, r0
 /* 80325E50 00322D90  7F A3 EB 78 */	mr r3, r29
-/* 80325E54 00322D94  4B FF 04 3D */	bl J3DMaterial_NS_countDLSize
+/* 80325E54 00322D94  4B FF 04 3D */	bl countDLSize__11J3DMaterialFv
 /* 80325E58 00322D98  7C 64 1B 78 */	mr r4, r3
 /* 80325E5C 00322D9C  7F A3 EB 78 */	mr r3, r29
-/* 80325E60 00322DA0  4B FF 10 C5 */	bl J3DMaterial_NS_newSingleSharedDisplayList
+/* 80325E60 00322DA0  4B FF 10 C5 */	bl newSingleSharedDisplayList__11J3DMaterialFUl
 /* 80325E64 00322DA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80325E68 00322DA8  41 82 00 34 */	beq lbl_80325E9C
 /* 80325E6C 00322DAC  48 00 00 44 */	b lbl_80325EB0
@@ -75,10 +75,10 @@ lbl_80325E70:
 /* 80325E74 00322DB4  57 80 13 BA */	rlwinm r0, r28, 2, 0xe, 0x1d
 /* 80325E78 00322DB8  7F A3 00 2E */	lwzx r29, r3, r0
 /* 80325E7C 00322DBC  7F A3 EB 78 */	mr r3, r29
-/* 80325E80 00322DC0  4B FF 04 11 */	bl J3DMaterial_NS_countDLSize
+/* 80325E80 00322DC0  4B FF 04 11 */	bl countDLSize__11J3DMaterialFv
 /* 80325E84 00322DC4  7C 64 1B 78 */	mr r4, r3
 /* 80325E88 00322DC8  7F A3 EB 78 */	mr r3, r29
-/* 80325E8C 00322DCC  4B FF 10 05 */	bl J3DMaterial_NS_newSharedDisplayList
+/* 80325E8C 00322DCC  4B FF 10 05 */	bl newSharedDisplayList__11J3DMaterialFUl
 /* 80325E90 00322DD0  2C 03 00 00 */	cmpwi r3, 0
 /* 80325E94 00322DD4  41 82 00 08 */	beq lbl_80325E9C
 /* 80325E98 00322DD8  48 00 00 18 */	b lbl_80325EB0
@@ -97,8 +97,8 @@ lbl_80325EB0:
 /* 80325EC0 00322E00  38 21 00 20 */	addi r1, r1, 0x20
 /* 80325EC4 00322E04  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_indexToPtr
-J3DModelData_NS_indexToPtr:
+.global indexToPtr__12J3DModelDataFv
+indexToPtr__12J3DModelDataFv:
 /* 80325EC8 00322E08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80325ECC 00322E0C  7C 08 02 A6 */	mflr r0
 /* 80325ED0 00322E10  90 01 00 34 */	stw r0, 0x34(r1)
@@ -154,8 +154,8 @@ lbl_80325F5C:
 /* 80325F8C 00322ECC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80325F90 00322ED0  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_makeSharedDL
-J3DModelData_NS_makeSharedDL:
+.global makeSharedDL__12J3DModelDataFv
+makeSharedDL__12J3DModelDataFv:
 /* 80325F94 00322ED4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80325F98 00322ED8  7C 08 02 A6 */	mflr r0
 /* 80325F9C 00322EDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -189,8 +189,8 @@ lbl_80325FE8:
 /* 80326004 00322F44  38 21 00 20 */	addi r1, r1, 0x20
 /* 80326008 00322F48  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_simpleCalcMaterial
-J3DModelData_NS_simpleCalcMaterial:
+.global simpleCalcMaterial__12J3DModelDataFUsPA4_f
+simpleCalcMaterial__12J3DModelDataFUsPA4_f:
 /* 8032600C 00322F4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80326010 00322F50  7C 08 02 A6 */	mflr r0
 /* 80326014 00322F54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -199,7 +199,7 @@ J3DModelData_NS_simpleCalcMaterial:
 /* 80326020 00322F60  7C 7F 1B 78 */	mr r31, r3
 /* 80326024 00322F64  7C 9E 23 78 */	mr r30, r4
 /* 80326028 00322F68  7C BD 2B 78 */	mr r29, r5
-/* 8032602C 00322F6C  48 00 00 CD */	bl J3DModelData_NS_syncJ3DSysFlags
+/* 8032602C 00322F6C  48 00 00 CD */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 80326030 00322F70  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 80326034 00322F74  57 C0 13 BA */	rlwinm r0, r30, 2, 0xe, 0x1d
 /* 80326038 00322F78  7C 63 00 2E */	lwzx r3, r3, r0
@@ -247,8 +247,8 @@ lbl_803260AC:
 /* 803260C4 00323004  38 21 00 20 */	addi r1, r1, 0x20
 /* 803260C8 00323008  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_syncJ3DSysPointers
-J3DModelData_NS_syncJ3DSysPointers:
+.global syncJ3DSysPointers__12J3DModelDataCFv
+syncJ3DSysPointers__12J3DModelDataCFv:
 /* 803260CC 0032300C  80 03 00 6C */	lwz r0, 0x6c(r3)
 /* 803260D0 00323010  3C 80 80 43 */	lis r4, lbl_80434AC8@ha
 /* 803260D4 00323014  38 84 4A C8 */	addi r4, r4, lbl_80434AC8@l
@@ -261,8 +261,8 @@ J3DModelData_NS_syncJ3DSysPointers:
 /* 803260F0 00323030  90 04 01 14 */	stw r0, 0x114(r4)
 /* 803260F4 00323034  4E 80 00 20 */	blr 
 
-.global J3DModelData_NS_syncJ3DSysFlags
-J3DModelData_NS_syncJ3DSysFlags:
+.global syncJ3DSysFlags__12J3DModelDataCFv
+syncJ3DSysFlags__12J3DModelDataCFv:
 /* 803260F8 00323038  80 03 00 08 */	lwz r0, 8(r3)
 /* 803260FC 0032303C  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80326100 00323040  41 82 00 1C */	beq lbl_8032611C
@@ -317,7 +317,7 @@ lbl_80326164:
 lbl_803261BC:
 /* 803261BC 003230FC  38 7E 00 58 */	addi r3, r30, 0x58
 /* 803261C0 00323100  38 80 FF FF */	li r4, -1
-/* 803261C4 00323104  48 00 94 41 */	bl J3DMaterialTable_NS_dtor
+/* 803261C4 00323104  48 00 94 41 */	bl __dt__16J3DMaterialTableFv
 /* 803261C8 00323108  34 1E 00 10 */	addic. r0, r30, 0x10
 /* 803261CC 0032310C  41 82 00 1C */	beq lbl_803261E8
 /* 803261D0 00323110  3C 60 80 3D */	lis r3, lbl_803CECF4@ha
@@ -325,7 +325,7 @@ lbl_803261BC:
 /* 803261D8 00323118  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 803261DC 0032311C  38 7E 00 44 */	addi r3, r30, 0x44
 /* 803261E0 00323120  38 80 FF FF */	li r4, -1
-/* 803261E4 00323124  4B FE B4 11 */	bl J3DDrawMtxData_NS_dtor
+/* 803261E4 00323124  4B FE B4 11 */	bl __dt__14J3DDrawMtxDataFv
 lbl_803261E8:
 /* 803261E8 00323128  7F E0 07 35 */	extsh. r0, r31
 /* 803261EC 0032312C  40 81 00 0C */	ble lbl_803261F8

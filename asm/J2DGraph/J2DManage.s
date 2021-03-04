@@ -3,8 +3,8 @@
 .section .text, "ax" # 8030ce18
 
 
-.global J2DDataManage_NS_get
-J2DDataManage_NS_get:
+.global get__13J2DDataManageFPCc
+get__13J2DDataManageFPCc:
 /* 8030CE18 00309D58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030CE1C 00309D5C  7C 08 02 A6 */	mflr r0
 /* 8030CE20 00309D60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -35,8 +35,8 @@ lbl_8030CE64:
 /* 8030CE74 00309DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030CE78 00309DB8  4E 80 00 20 */	blr 
 
-.global J2DDataManage_NS_get_X1_
-J2DDataManage_NS_get_X1_:
+.global get__13J2DDataManageFPCc_X1_
+get__13J2DDataManageFPCc_X1_:
 /* 8030CE7C 00309DBC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8030CE80 00309DC0  7C 08 02 A6 */	mflr r0
 /* 8030CE84 00309DC4  90 01 01 24 */	stw r0, 0x124(r1)
@@ -53,7 +53,7 @@ J2DDataManage_NS_get_X1_:
 /* 8030CEB0 00309DF0  7F C3 F3 78 */	mr r3, r30
 /* 8030CEB4 00309DF4  38 81 00 08 */	addi r4, r1, 8
 /* 8030CEB8 00309DF8  38 A0 00 01 */	li r5, 1
-/* 8030CEBC 00309DFC  4B FC F3 DD */	bl JSUInputStream_NS_read
+/* 8030CEBC 00309DFC  4B FC F3 DD */	bl read__14JSUInputStreamFPvl
 /* 8030CEC0 00309E00  8B E1 00 08 */	lbz r31, 8(r1)
 /* 8030CEC4 00309E04  28 1F 00 00 */	cmplwi r31, 0
 /* 8030CEC8 00309E08  40 82 00 0C */	bne lbl_8030CED4
@@ -63,12 +63,12 @@ lbl_8030CED4:
 /* 8030CED4 00309E14  7F C3 F3 78 */	mr r3, r30
 /* 8030CED8 00309E18  38 81 00 0C */	addi r4, r1, 0xc
 /* 8030CEDC 00309E1C  7F E5 FB 78 */	mr r5, r31
-/* 8030CEE0 00309E20  4B FC F3 B9 */	bl JSUInputStream_NS_read
+/* 8030CEE0 00309E20  4B FC F3 B9 */	bl read__14JSUInputStreamFPvl
 /* 8030CEE4 00309E24  38 00 00 00 */	li r0, 0
 /* 8030CEE8 00309E28  38 81 00 0C */	addi r4, r1, 0xc
 /* 8030CEEC 00309E2C  7C 04 F9 AE */	stbx r0, r4, r31
 /* 8030CEF0 00309E30  7F A3 EB 78 */	mr r3, r29
-/* 8030CEF4 00309E34  4B FF FF 25 */	bl J2DDataManage_NS_get
+/* 8030CEF4 00309E34  4B FF FF 25 */	bl get__13J2DDataManageFPCc
 lbl_8030CEF8:
 /* 8030CEF8 00309E38  39 61 01 20 */	addi r11, r1, 0x120
 /* 8030CEFC 00309E3C  48 05 53 2D */	bl _restgpr_29
@@ -77,8 +77,8 @@ lbl_8030CEF8:
 /* 8030CF08 00309E48  38 21 01 20 */	addi r1, r1, 0x120
 /* 8030CF0C 00309E4C  4E 80 00 20 */	blr 
 
-.global J2DResReference_NS_getResReference
-J2DResReference_NS_getResReference:
+.global getResReference__15J2DResReferenceCFUs
+getResReference__15J2DResReferenceCFUs:
 /* 8030CF10 00309E50  A0 A3 00 00 */	lhz r5, 0(r3)
 /* 8030CF14 00309E54  54 80 04 3E */	clrlwi r0, r4, 0x10
 /* 8030CF18 00309E58  7C 05 00 40 */	cmplw r5, r0
@@ -95,12 +95,12 @@ lbl_8030CF30:
 /* 8030CF3C 00309E7C  7C 63 02 14 */	add r3, r3, r0
 /* 8030CF40 00309E80  4E 80 00 20 */	blr 
 
-.global J2DResReference_NS_getName
-J2DResReference_NS_getName:
+.global getName__15J2DResReferenceCFUs
+getName__15J2DResReferenceCFUs:
 /* 8030CF44 00309E84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030CF48 00309E88  7C 08 02 A6 */	mflr r0
 /* 8030CF4C 00309E8C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8030CF50 00309E90  4B FF FF C1 */	bl J2DResReference_NS_getResReference
+/* 8030CF50 00309E90  4B FF FF C1 */	bl getResReference__15J2DResReferenceCFUs
 /* 8030CF54 00309E94  28 03 00 00 */	cmplwi r3, 0
 /* 8030CF58 00309E98  40 82 00 14 */	bne lbl_8030CF6C
 /* 8030CF5C 00309E9C  38 00 00 00 */	li r0, 0

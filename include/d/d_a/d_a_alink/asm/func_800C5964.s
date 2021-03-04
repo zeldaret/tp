@@ -31,7 +31,7 @@ lbl_800C59C4:
 /* 800C59D0 000C2910  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800C59D4 000C2914  41 82 00 24 */ beq lbl_800C59F8
 /* 800C59D8 000C2918  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800C59DC 000C291C  48 09 8A F1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800C59DC 000C291C  48 09 8A F1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800C59E0 000C2920  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C59E4 000C2924  41 82 00 14 */ beq lbl_800C59F8
 /* 800C59E8 000C2928  7F E3 FB 78 */ mr r3, r31

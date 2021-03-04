@@ -16,7 +16,7 @@ lbl_800F4DB0:
 /* 800F4DBC 000F1CFC  38 BF 04 D0 */ addi r5, r31, 0x4d0
 /* 800F4DC0 000F1D00  48 25 1F AD */ bl PSMTXMultVec
 /* 800F4DC4 000F1D04  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800F4DC8 000F1D08  48 06 97 05 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F4DC8 000F1D08  48 06 97 05 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F4DCC 000F1D0C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F4DD0 000F1D10  41 82 00 10 */ beq lbl_800F4DE0
 /* 800F4DD4 000F1D14  7F E3 FB 78 */ mr r3, r31

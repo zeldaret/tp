@@ -40,7 +40,7 @@ lbl_80069580:
 /* 800695A4 000664E4  40 81 0A B4 */ ble lbl_8006A058
 /* 800695A8 000664E8  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 800695AC 000664EC  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
-/* 800695B0 000664F0  48 2A 71 8D */ bl J3DSys_NS_reinitGX
+/* 800695B0 000664F0  48 2A 71 8D */ bl reinitGX__6J3DSysFv
 /* 800695B4 000664F4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800695B8 000664F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800695BC 000664FC  80 63 61 B0 */ lwz r3, 0x61b0(r3)

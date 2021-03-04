@@ -12,7 +12,7 @@
 /* 80026E24 00023D64  3C 84 00 02 */ addis r4, r4, 2
 /* 80026E28 00023D68  38 A0 00 80 */ li r5, 0x80
 /* 80026E2C 00023D6C  38 84 C2 F8 */ addi r4, r4, -15624
-/* 80026E30 00023D70  48 01 53 65 */ bl dRes_control_c_NS_deleteRes
+/* 80026E30 00023D70  48 01 53 65 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 lbl_80026E34:
 /* 80026E34 00023D74  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80026E38 00023D78  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
@@ -62,7 +62,7 @@ lbl_80026EA8:
 /* 80026EE4 00023E24  3C 84 00 02 */ addis r4, r4, 2
 /* 80026EE8 00023E28  38 84 D4 F8 */ addi r4, r4, -11016
 /* 80026EEC 00023E2C  38 A0 00 40 */ li r5, 0x40
-/* 80026EF0 00023E30  48 01 52 F5 */ bl dRes_control_c_NS_getResInfo
+/* 80026EF0 00023E30  48 01 52 F5 */ bl getResInfo__14dRes_control_cFPCcP11dRes_info_ci
 /* 80026EF4 00023E34  38 00 00 58 */ li r0, 0x58
 /* 80026EF8 00023E38  98 03 00 00 */ stb r0, 0(r3)
 /* 80026EFC 00023E3C  7F C3 F3 78 */ mr r3, r30
@@ -81,13 +81,13 @@ lbl_80026F14:
 /* 80026F2C 00023E6C  3B A4 D4 F8 */ addi r29, r4, -11016
 /* 80026F30 00023E70  7F A4 EB 78 */ mr r4, r29
 /* 80026F34 00023E74  38 A0 00 40 */ li r5, 0x40
-/* 80026F38 00023E78  48 01 52 5D */ bl dRes_control_c_NS_deleteRes
+/* 80026F38 00023E78  48 01 52 5D */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 80026F3C 00023E7C  3C 60 80 38 */ lis r3, lbl_80378A50@ha
 /* 80026F40 00023E80  38 63 8A 50 */ addi r3, r3, lbl_80378A50@l
 /* 80026F44 00023E84  38 63 00 E3 */ addi r3, r3, 0xe3
 /* 80026F48 00023E88  7F A4 EB 78 */ mr r4, r29
 /* 80026F4C 00023E8C  38 A0 00 40 */ li r5, 0x40
-/* 80026F50 00023E90  48 01 52 45 */ bl dRes_control_c_NS_deleteRes
+/* 80026F50 00023E90  48 01 52 45 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 80026F54 00023E94  7F C3 F3 78 */ mr r3, r30
 /* 80026F58 00023E98  81 9E 00 00 */ lwz r12, 0(r30)
 /* 80026F5C 00023E9C  81 8C 01 34 */ lwz r12, 0x134(r12)
@@ -103,15 +103,15 @@ lbl_80026F68:
 /* 80026F80 00023EC0  3B BD C2 F8 */ addi r29, r29, -15624
 /* 80026F84 00023EC4  7F A4 EB 78 */ mr r4, r29
 /* 80026F88 00023EC8  38 A0 00 80 */ li r5, 0x80
-/* 80026F8C 00023ECC  48 01 52 09 */ bl dRes_control_c_NS_deleteRes
+/* 80026F8C 00023ECC  48 01 52 09 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 80026F90 00023ED0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80026F94 00023ED4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80026F98 00023ED8  80 63 5D 88 */ lwz r3, 0x5d88(r3)
 /* 80026F9C 00023EDC  7F A4 EB 78 */ mr r4, r29
 /* 80026FA0 00023EE0  38 A0 00 80 */ li r5, 0x80
-/* 80026FA4 00023EE4  48 01 51 F1 */ bl dRes_control_c_NS_deleteRes
+/* 80026FA4 00023EE4  48 01 51 F1 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 80026FA8 00023EE8  38 7F 4F F8 */ addi r3, r31, 0x4ff8
-/* 80026FAC 00023EEC  48 01 FC 61 */ bl dEvent_manager_c_NS_remove
+/* 80026FAC 00023EEC  48 01 FC 61 */ bl remove__16dEvent_manager_cFv
 /* 80026FB0 00023EF0  7F C3 F3 78 */ mr r3, r30
 /* 80026FB4 00023EF4  81 9E 00 00 */ lwz r12, 0(r30)
 /* 80026FB8 00023EF8  81 8C 00 08 */ lwz r12, 8(r12)

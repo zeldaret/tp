@@ -9,7 +9,7 @@
 /* 80136E04 00133D44  2C 00 00 00 */ cmpwi r0, 0
 /* 80136E08 00133D48  41 82 00 4C */ beq lbl_80136E54
 /* 80136E0C 00133D4C  7F E3 FB 78 */ mr r3, r31
-/* 80136E10 00133D50  48 02 76 BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80136E10 00133D50  48 02 76 BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136E14 00133D54  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136E18 00133D58  41 82 00 14 */ beq lbl_80136E2C
 /* 80136E1C 00133D5C  7F C3 F3 78 */ mr r3, r30
@@ -29,7 +29,7 @@ lbl_80136E2C:
 /* 80136E50 00133D90  48 00 00 58 */ b lbl_80136EA8
 lbl_80136E54:
 /* 80136E54 00133D94  7F E3 FB 78 */ mr r3, r31
-/* 80136E58 00133D98  48 02 76 75 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80136E58 00133D98  48 02 76 75 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136E5C 00133D9C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136E60 00133DA0  41 82 00 48 */ beq lbl_80136EA8
 /* 80136E64 00133DA4  A8 7E 30 08 */ lha r3, 0x3008(r30)

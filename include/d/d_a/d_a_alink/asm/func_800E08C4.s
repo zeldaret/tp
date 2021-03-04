@@ -90,7 +90,7 @@ lbl_800E09F8:
 /* 800E0A14 000DD954  80 1F 28 38 */ lwz r0, 0x2838(r31)
 /* 800E0A18 000DD958  90 1F 28 28 */ stw r0, 0x2828(r31)
 /* 800E0A1C 000DD95C  38 7F 28 34 */ addi r3, r31, 0x2834
-/* 800E0A20 000DD960  48 07 E2 DD */ bl daPy_actorKeep_c_NS_clearData
+/* 800E0A20 000DD960  48 07 E2 DD */ bl clearData__16daPy_actorKeep_cFv
 /* 800E0A24 000DD964  38 00 00 40 */ li r0, 0x40
 /* 800E0A28 000DD968  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800E0A2C 000DD96C  38 00 00 02 */ li r0, 2
@@ -109,12 +109,12 @@ lbl_800E09F8:
 /* 800E0A60 000DD9A0  38 80 00 01 */ li r4, 1
 /* 800E0A64 000DD9A4  38 A0 00 01 */ li r5, 1
 /* 800E0A68 000DD9A8  38 C1 00 08 */ addi r6, r1, 8
-/* 800E0A6C 000DD9AC  4B F8 EF B9 */ bl dVibration_c_NS_StartShock
+/* 800E0A6C 000DD9AC  4B F8 EF B9 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800E0A70 000DD9B0  38 60 00 01 */ li r3, 1
 /* 800E0A74 000DD9B4  48 00 00 10 */ b lbl_800E0A84
 lbl_800E0A78:
 /* 800E0A78 000DD9B8  38 7F 28 34 */ addi r3, r31, 0x2834
-/* 800E0A7C 000DD9BC  48 07 E2 81 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E0A7C 000DD9BC  48 07 E2 81 */ bl clearData__16daPy_actorKeep_cFv
 /* 800E0A80 000DD9C0  38 60 00 00 */ li r3, 0
 lbl_800E0A84:
 /* 800E0A84 000DD9C4  83 E1 00 1C */ lwz r31, 0x1c(r1)

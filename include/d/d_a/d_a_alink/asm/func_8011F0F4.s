@@ -72,7 +72,7 @@ lbl_8011F1B4:
 /* 8011F204 0011C144  39 00 00 00 */ li r8, 0
 /* 8011F208 0011C148  39 20 00 00 */ li r9, 0
 /* 8011F20C 0011C14C  39 40 00 FF */ li r10, 0xff
-/* 8011F210 0011C150  4B F2 D8 81 */ bl dPa_control_c_NS_set
+/* 8011F210 0011C150  4B F2 D8 81 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8011F214 0011C154  38 00 00 01 */ li r0, 1
 /* 8011F218 0011C158  B0 1F 30 10 */ sth r0, 0x3010(r31)
 lbl_8011F21C:

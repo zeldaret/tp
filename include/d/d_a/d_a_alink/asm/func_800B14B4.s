@@ -13,7 +13,7 @@
 /* 800B14E4 000AE424  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B14E8 000AE428  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800B14EC 000AE42C  38 9F 1A F0 */ addi r4, r31, 0x1af0
-/* 800B14F0 000AE430  4B FC 39 61 */ bl dBgS_NS_GetPolyAtt0
+/* 800B14F0 000AE430  4B FC 39 61 */ bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 800B14F4 000AE434  98 7F 2F BC */ stb r3, 0x2fbc(r31)
 /* 800B14F8 000AE438  C0 1F 1B 3C */ lfs f0, 0x1b3c(r31)
 /* 800B14FC 000AE43C  D0 1F 33 B4 */ stfs f0, 0x33b4(r31)

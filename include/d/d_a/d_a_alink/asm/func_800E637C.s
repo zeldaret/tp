@@ -11,7 +11,7 @@
 /* 800E63A4 000E32E4  48 00 00 34 */ b lbl_800E63D8
 lbl_800E63A8:
 /* 800E63A8 000E32E8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800E63AC 000E32EC  48 07 81 21 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E63AC 000E32EC  48 07 81 21 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E63B0 000E32F0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E63B4 000E32F4  41 82 00 24 */ beq lbl_800E63D8
 /* 800E63B8 000E32F8  A8 7F 30 08 */ lha r3, 0x3008(r31)

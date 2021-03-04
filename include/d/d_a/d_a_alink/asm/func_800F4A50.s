@@ -11,7 +11,7 @@
 /* 800F4A78 000F19B8  4B FE DB 09 */ bl daAlink_c_NS_setHeavyBoots
 /* 800F4A7C 000F19BC  38 7E 28 14 */ addi r3, r30, 0x2814
 /* 800F4A80 000F19C0  80 9E 27 F4 */ lwz r4, 0x27f4(r30)
-/* 800F4A84 000F19C4  48 06 A2 35 */ bl daPy_actorKeep_c_NS_setData
+/* 800F4A84 000F19C4  48 06 A2 35 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800F4A88 000F19C8  7F C3 F3 78 */ mr r3, r30
 /* 800F4A8C 000F19CC  38 80 00 00 */ li r4, 0
 /* 800F4A90 000F19D0  38 A0 00 00 */ li r5, 0

@@ -28,14 +28,14 @@ lbl_800E6644:
 /* 800E6658 000E3598  48 18 A0 E9 */ bl cLib_chaseF__FPfff
 /* 800E665C 000E359C  7F E3 FB 78 */ mr r3, r31
 /* 800E6660 000E35A0  C0 3E 34 3C */ lfs f1, 0x343c(r30)
-/* 800E6664 000E35A4  48 24 1D C9 */ bl J3DFrameCtrl_NS_checkPass
+/* 800E6664 000E35A4  48 24 1D C9 */ bl checkPass__12J3DFrameCtrlFf
 /* 800E6668 000E35A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800E666C 000E35AC  41 82 00 0C */ beq lbl_800E6678
 /* 800E6670 000E35B0  7F C3 F3 78 */ mr r3, r30
 /* 800E6674 000E35B4  4B FF ED 85 */ bl daAlink_c_NS_setGrabItemThrow
 lbl_800E6678:
 /* 800E6678 000E35B8  7F E3 FB 78 */ mr r3, r31
-/* 800E667C 000E35BC  48 07 7E 51 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E667C 000E35BC  48 07 7E 51 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E6680 000E35C0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E6684 000E35C4  41 82 00 34 */ beq lbl_800E66B8
 /* 800E6688 000E35C8  80 1E 31 98 */ lwz r0, 0x3198(r30)

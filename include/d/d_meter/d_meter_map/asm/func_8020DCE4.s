@@ -103,7 +103,7 @@ lbl_8020DE4C:
 /* 8020DE68 0020ADA8  48 06 26 D9 */ bl cLib_addCalcAngleS__FPsssss
 lbl_8020DE6C:
 /* 8020DE6C 0020ADAC  38 61 00 08 */ addi r3, r1, 8
-/* 8020DE70 0020ADB0  4B E3 0F ED */ bl dMapInfo_n_NS_getMapPlayerPos
+/* 8020DE70 0020ADB0  4B E3 0F ED */ bl getMapPlayerPos__10dMapInfo_nFv
 /* 8020DE74 0020ADB4  80 61 00 08 */ lwz r3, 8(r1)
 /* 8020DE78 0020ADB8  80 01 00 0C */ lwz r0, 0xc(r1)
 /* 8020DE7C 0020ADBC  90 61 00 14 */ stw r3, 0x14(r1)
@@ -132,7 +132,7 @@ lbl_8020DE6C:
 /* 8020DED8 0020AE18  C0 41 00 1C */ lfs f2, 0x1c(r1)
 /* 8020DEDC 0020AE1C  7F A4 EB 78 */ mr r4, r29
 /* 8020DEE0 0020AE20  C0 61 00 18 */ lfs f3, 0x18(r1)
-/* 8020DEE4 0020AE24  4B E1 C4 49 */ bl dMap_c_NS__move
+/* 8020DEE4 0020AE24  4B E1 C4 49 */ bl _move__6dMap_cFffif
 /* 8020DEE8 0020AE28  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8020DEEC 0020AE2C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8020DEF0 0020AE30  88 63 4F AD */ lbz r3, 0x4fad(r3)

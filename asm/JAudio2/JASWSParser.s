@@ -3,8 +3,8 @@
 .section .text, "ax" # 80298fb0
 
 
-.global JASWSParser_NS_getGroupCount
-JASWSParser_NS_getGroupCount:
+.global getGroupCount__11JASWSParserFPCv
+getGroupCount__11JASWSParserFPCv:
 /* 80298FB0 00295EF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298FB4 00295EF4  7C 08 02 A6 */	mflr r0
 /* 80298FB8 00295EF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16,8 +16,8 @@ JASWSParser_NS_getGroupCount:
 /* 80298FD0 00295F10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80298FD4 00295F14  4E 80 00 20 */	blr 
 
-.global JASWSParser_NS_createWaveBank
-JASWSParser_NS_createWaveBank:
+.global createWaveBank__11JASWSParserFPCvP7JKRHeap
+createWaveBank__11JASWSParserFPCvP7JKRHeap:
 /* 80298FD8 00295F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298FDC 00295F1C  7C 08 02 A6 */	mflr r0
 /* 80298FE0 00295F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,17 +25,17 @@ JASWSParser_NS_createWaveBank:
 /* 80298FE8 00295F28  93 C1 00 08 */	stw r30, 8(r1)
 /* 80298FEC 00295F2C  7C 7E 1B 78 */	mr r30, r3
 /* 80298FF0 00295F30  7C 9F 23 78 */	mr r31, r4
-/* 80298FF4 00295F34  4B FF FF BD */	bl JASWSParser_NS_getGroupCount
+/* 80298FF4 00295F34  4B FF FF BD */	bl getGroupCount__11JASWSParserFPCv
 /* 80298FF8 00295F38  28 03 00 01 */	cmplwi r3, 1
 /* 80298FFC 00295F3C  40 82 00 14 */	bne lbl_80299010
 /* 80299000 00295F40  7F C3 F3 78 */	mr r3, r30
 /* 80299004 00295F44  7F E4 FB 78 */	mr r4, r31
-/* 80299008 00295F48  48 00 02 5D */	bl JASWSParser_NS_createSimpleWaveBank
+/* 80299008 00295F48  48 00 02 5D */	bl createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap
 /* 8029900C 00295F4C  48 00 00 10 */	b lbl_8029901C
 lbl_80299010:
 /* 80299010 00295F50  7F C3 F3 78 */	mr r3, r30
 /* 80299014 00295F54  7F E4 FB 78 */	mr r4, r31
-/* 80299018 00295F58  48 00 00 1D */	bl JASWSParser_NS_createBasicWaveBank
+/* 80299018 00295F58  48 00 00 1D */	bl createBasicWaveBank__11JASWSParserFPCvP7JKRHeap
 lbl_8029901C:
 /* 8029901C 00295F5C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80299020 00295F60  83 C1 00 08 */	lwz r30, 8(r1)
@@ -44,8 +44,8 @@ lbl_8029901C:
 /* 8029902C 00295F6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80299030 00295F70  4E 80 00 20 */	blr 
 
-.global JASWSParser_NS_createBasicWaveBank
-JASWSParser_NS_createBasicWaveBank:
+.global createBasicWaveBank__11JASWSParserFPCvP7JKRHeap
+createBasicWaveBank__11JASWSParserFPCvP7JKRHeap:
 /* 80299034 00295F74  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80299038 00295F78  7C 08 02 A6 */	mflr r0
 /* 8029903C 00295F7C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -81,11 +81,11 @@ lbl_80299098:
 /* 802990A8 00295FE8  7F 83 E3 78 */	mr r3, r28
 /* 802990AC 00295FEC  80 9E 00 08 */	lwz r4, 8(r30)
 /* 802990B0 00295FF0  7E C5 B3 78 */	mr r5, r22
-/* 802990B4 00295FF4  4B FF F5 B1 */	bl JASBasicWaveBank_NS_setGroupCount
+/* 802990B4 00295FF4  4B FF F5 B1 */	bl setGroupCount__16JASBasicWaveBankFUlP7JKRHeap
 /* 802990B8 00295FF8  7F 83 E3 78 */	mr r3, r28
 /* 802990BC 00295FFC  80 9A 00 0C */	lwz r4, 0xc(r26)
 /* 802990C0 00296000  7E C5 B3 78 */	mr r5, r22
-/* 802990C4 00296004  4B FF F6 4D */	bl JASBasicWaveBank_NS_setWaveTableSize
+/* 802990C4 00296004  4B FF F6 4D */	bl setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap
 /* 802990C8 00296008  3B 20 00 00 */	li r25, 0
 /* 802990CC 0029600C  3A A0 00 00 */	li r21, 0
 /* 802990D0 00296010  48 00 01 54 */	b lbl_80299224
@@ -101,7 +101,7 @@ lbl_802990D4:
 /* 802990F4 00296034  7C 7F 1B 78 */	mr r31, r3
 /* 802990F8 00296038  7F 83 E3 78 */	mr r3, r28
 /* 802990FC 0029603C  7F 24 CB 78 */	mr r4, r25
-/* 80299100 00296040  4B FF F5 41 */	bl JASBasicWaveBank_NS_getWaveGroup
+/* 80299100 00296040  4B FF F5 41 */	bl getWaveGroup__16JASBasicWaveBankFUl
 /* 80299104 00296044  7C 78 1B 78 */	mr r24, r3
 /* 80299108 00296048  7F 43 D3 78 */	mr r3, r26
 /* 8029910C 0029604C  80 9A 00 10 */	lwz r4, 0x10(r26)
@@ -115,7 +115,7 @@ lbl_802990D4:
 /* 8029912C 0029606C  7F 03 C3 78 */	mr r3, r24
 /* 80299130 00296070  80 9F 00 04 */	lwz r4, 4(r31)
 /* 80299134 00296074  7E C5 B3 78 */	mr r5, r22
-/* 80299138 00296078  4B FF F9 4D */	bl JASBasicWaveBank_NS_TWaveGroup_NS_setWaveCount
+/* 80299138 00296078  4B FF F9 4D */	bl setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap
 /* 8029913C 0029607C  3A E0 00 00 */	li r23, 0
 /* 80299140 00296080  3A 80 00 00 */	li r20, 0
 /* 80299144 00296084  48 00 00 C0 */	b lbl_80299204
@@ -164,7 +164,7 @@ lbl_80299148:
 /* 802991EC 0029612C  7F 04 C3 78 */	mr r4, r24
 /* 802991F0 00296130  7E E5 BB 78 */	mr r5, r23
 /* 802991F4 00296134  38 E1 00 08 */	addi r7, r1, 8
-/* 802991F8 00296138  4B FF F7 19 */	bl JASBasicWaveBank_NS_setWaveInfo
+/* 802991F8 00296138  4B FF F7 19 */	bl setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo
 /* 802991FC 0029613C  3A F7 00 01 */	addi r23, r23, 1
 /* 80299200 00296140  3A 94 00 04 */	addi r20, r20, 4
 lbl_80299204:
@@ -173,7 +173,7 @@ lbl_80299204:
 /* 8029920C 0029614C  41 80 FF 3C */	blt lbl_80299148
 /* 80299210 00296150  7F 03 C3 78 */	mr r3, r24
 /* 80299214 00296154  7F 64 DB 78 */	mr r4, r27
-/* 80299218 00296158  48 00 14 F5 */	bl JASWaveArc_NS_setFileName
+/* 80299218 00296158  48 00 14 F5 */	bl setFileName__10JASWaveArcFPCc
 /* 8029921C 0029615C  3B 39 00 01 */	addi r25, r25, 1
 /* 80299220 00296160  3A B5 00 04 */	addi r21, r21, 4
 lbl_80299224:
@@ -195,8 +195,8 @@ lbl_8029924C:
 /* 8029925C 0029619C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80299260 002961A0  4E 80 00 20 */	blr 
 
-.global JASWSParser_NS_createSimpleWaveBank
-JASWSParser_NS_createSimpleWaveBank:
+.global createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap
+createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap:
 /* 80299264 002961A4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80299268 002961A8  7C 08 02 A6 */	mflr r0
 /* 8029926C 002961AC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -275,7 +275,7 @@ lbl_80299368:
 /* 80299374 002962B4  7F A3 EB 78 */	mr r3, r29
 /* 80299378 002962B8  38 9A 00 01 */	addi r4, r26, 1
 /* 8029937C 002962BC  7F 25 CB 78 */	mr r5, r25
-/* 80299380 002962C0  4B FF FA 61 */	bl JASSimpleWaveBank_NS_setWaveTableSize
+/* 80299380 002962C0  4B FF FA 61 */	bl setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap
 /* 80299384 002962C4  3B 40 00 00 */	li r26, 0
 /* 80299388 002962C8  3B 00 00 00 */	li r24, 0
 /* 8029938C 002962CC  48 00 00 B8 */	b lbl_80299444
@@ -322,7 +322,7 @@ lbl_80299390:
 /* 8029942C 0029636C  54 04 04 3E */	clrlwi r4, r0, 0x10
 /* 80299430 00296370  7F A3 EB 78 */	mr r3, r29
 /* 80299434 00296374  38 A1 00 08 */	addi r5, r1, 8
-/* 80299438 00296378  4B FF FA 4D */	bl JASSimpleWaveBank_NS_setWaveInfo
+/* 80299438 00296378  4B FF FA 4D */	bl setWaveInfo__17JASSimpleWaveBankFUlRC11JASWaveInfo
 /* 8029943C 0029637C  3B 5A 00 01 */	addi r26, r26, 1
 /* 80299440 00296380  3B 18 00 04 */	addi r24, r24, 4
 lbl_80299444:
@@ -331,7 +331,7 @@ lbl_80299444:
 /* 8029944C 0029638C  41 80 FF 44 */	blt lbl_80299390
 /* 80299450 00296390  38 7D 00 04 */	addi r3, r29, 4
 /* 80299454 00296394  7F 84 E3 78 */	mr r4, r28
-/* 80299458 00296398  48 00 12 B5 */	bl JASWaveArc_NS_setFileName
+/* 80299458 00296398  48 00 12 B5 */	bl setFileName__10JASWaveArcFPCc
 /* 8029945C 0029639C  7F 23 CB 78 */	mr r3, r25
 /* 80299460 002963A0  48 03 52 CD */	bl getFreeSize__7JKRHeapCFv
 /* 80299464 002963A4  7C 63 F0 50 */	subf r3, r3, r30

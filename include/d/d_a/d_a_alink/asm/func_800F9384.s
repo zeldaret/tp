@@ -44,7 +44,7 @@
 /* 800F9430 000F6370  38 00 00 04 */ li r0, 4
 /* 800F9434 000F6374  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800F9438 000F6378  7F E3 FB 78 */ mr r3, r31
-/* 800F943C 000F637C  48 06 50 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F943C 000F637C  48 06 50 91 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F9440 000F6380  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F9444 000F6384  41 82 00 14 */ beq lbl_800F9458
 /* 800F9448 000F6388  7F C3 F3 78 */ mr r3, r30

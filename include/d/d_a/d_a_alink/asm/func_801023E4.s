@@ -30,7 +30,7 @@ lbl_80102450:
 /* 80102450 000FF390  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80102454 000FF394  41 82 00 28 */ beq lbl_8010247C
 /* 80102458 000FF398  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 8010245C 000FF39C  48 05 C7 5D */ bl daPy_py_c_NS_checkHookshotItem
+/* 8010245C 000FF39C  48 05 C7 5D */ bl checkHookshotItem__9daPy_py_cFi
 /* 80102460 000FF3A0  2C 03 00 00 */ cmpwi r3, 0
 /* 80102464 000FF3A4  41 82 00 C0 */ beq lbl_80102524
 /* 80102468 000FF3A8  A8 7F 30 1A */ lha r3, 0x301a(r31)

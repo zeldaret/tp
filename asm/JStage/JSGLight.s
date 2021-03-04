@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280d28
 
 
-.global JStage_NS_TLight_NS_dtor
-JStage_NS_TLight_NS_dtor:
+.global __dt__Q26JStage6TLightFv
+__dt__Q26JStage6TLightFv:
 /* 80280D28 0027DC68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280D2C 0027DC6C  7C 08 02 A6 */	mflr r0
 /* 80280D30 0027DC70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ JStage_NS_TLight_NS_dtor:
 /* 80280D4C 0027DC8C  38 04 47 78 */	addi r0, r4, lbl_803C4778@l
 /* 80280D50 0027DC90  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280D54 0027DC94  38 80 00 00 */	li r4, 0
-/* 80280D58 0027DC98  48 00 00 7D */	bl JStage_NS_TObject_NS_dtor
+/* 80280D58 0027DC98  48 00 00 7D */	bl __dt__Q26JStage7TObjectFv
 /* 80280D5C 0027DC9C  7F E0 07 35 */	extsh. r0, r31
 /* 80280D60 0027DCA0  40 81 00 0C */	ble lbl_80280D6C
 /* 80280D64 0027DCA4  7F C3 F3 78 */	mr r3, r30

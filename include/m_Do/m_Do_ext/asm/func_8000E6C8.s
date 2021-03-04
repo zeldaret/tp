@@ -31,7 +31,7 @@ lbl_8000E708:
 /* 8000E73C 0000B67C  80 9E 5F A8 */ lwz r4, 0x5fa8(r30)
 /* 8000E740 0000B680  7F E5 FB 78 */ mr r5, r31
 /* 8000E744 0000B684  38 C1 00 08 */ addi r6, r1, 8
-/* 8000E748 0000B688  48 04 7E A5 */ bl dDlst_list_c_NS_entryZSortXluDrawList
+/* 8000E748 0000B688  48 04 7E A5 */ bl entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz
 /* 8000E74C 0000B68C  3B FF 00 18 */ addi r31, r31, 0x18
 /* 8000E750 0000B690  3B 7B 00 01 */ addi r27, r27, 1
 lbl_8000E754:
@@ -51,7 +51,7 @@ lbl_8000E77C:
 /* 8000E780 0000B6C0  80 9E 5F A8 */ lwz r4, 0x5fa8(r30)
 /* 8000E784 0000B6C4  7F E5 FB 78 */ mr r5, r31
 /* 8000E788 0000B6C8  7F 46 D3 78 */ mr r6, r26
-/* 8000E78C 0000B6CC  48 04 7E 61 */ bl dDlst_list_c_NS_entryZSortXluDrawList
+/* 8000E78C 0000B6CC  48 04 7E 61 */ bl entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz
 /* 8000E790 0000B6D0  3B FF 00 18 */ addi r31, r31, 0x18
 /* 8000E794 0000B6D4  3B 7B 00 01 */ addi r27, r27, 1
 lbl_8000E798:

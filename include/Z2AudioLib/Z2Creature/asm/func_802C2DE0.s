@@ -26,7 +26,7 @@ lbl_802C2E34:
 /* 802C2E34 002BFD74  80 63 00 00 */ lwz r3, 0(r3)
 /* 802C2E38 002BFD78  38 63 00 48 */ addi r3, r3, 0x48
 /* 802C2E3C 002BFD7C  38 80 00 00 */ li r4, 0
-/* 802C2E40 002BFD80  4B FD FF CD */ bl JAISoundParamsMove_NS_movePitch
+/* 802C2E40 002BFD80  4B FD FF CD */ bl movePitch__18JAISoundParamsMoveFfUl
 lbl_802C2E44:
 /* 802C2E44 002BFD84  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802C2E48 002BFD88  7C 08 03 A6 */ mtlr r0

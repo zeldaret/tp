@@ -137,7 +137,7 @@ lbl_800DF284:
 /* 800DF2C0 000DC200  38 80 00 01 */ li r4, 1
 /* 800DF2C4 000DC204  38 A0 00 01 */ li r5, 1
 /* 800DF2C8 000DC208  38 C1 00 28 */ addi r6, r1, 0x28
-/* 800DF2CC 000DC20C  4B F9 07 59 */ bl dVibration_c_NS_StartShock
+/* 800DF2CC 000DC20C  4B F9 07 59 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800DF2D0 000DC210  7F E3 FB 78 */ mr r3, r31
 /* 800DF2D4 000DC214  3C 80 00 02 */ lis r4, 0x000200B0@ha
 /* 800DF2D8 000DC218  38 84 00 B0 */ addi r4, r4, 0x000200B0@l
@@ -197,7 +197,7 @@ lbl_800DF380:
 /* 800DF39C 000DC2DC  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800DF3A0 000DC2E0  38 A0 00 01 */ li r5, 1
 /* 800DF3A4 000DC2E4  38 C1 00 1C */ addi r6, r1, 0x1c
-/* 800DF3A8 000DC2E8  4B F9 06 7D */ bl dVibration_c_NS_StartShock
+/* 800DF3A8 000DC2E8  4B F9 06 7D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800DF3AC 000DC2EC  7F E3 FB 78 */ mr r3, r31
 /* 800DF3B0 000DC2F0  7F A4 EB 78 */ mr r4, r29
 /* 800DF3B4 000DC2F4  81 9F 06 28 */ lwz r12, 0x628(r31)
@@ -217,7 +217,7 @@ lbl_800DF3DC:
 /* 800DF3E8 000DC328  38 03 FF FF */ addi r0, r3, -1
 /* 800DF3EC 000DC32C  B0 04 5D F4 */ sth r0, 0x5df4(r4)
 /* 800DF3F0 000DC330  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800DF3F4 000DC334  48 07 F9 09 */ bl daPy_actorKeep_c_NS_clearData
+/* 800DF3F4 000DC334  48 07 F9 09 */ bl clearData__16daPy_actorKeep_cFv
 /* 800DF3F8 000DC338  80 1F 05 80 */ lwz r0, 0x580(r31)
 /* 800DF3FC 000DC33C  64 00 20 00 */ oris r0, r0, 0x2000
 /* 800DF400 000DC340  90 1F 05 80 */ stw r0, 0x580(r31)
@@ -254,7 +254,7 @@ lbl_800DF468:
 /* 800DF46C 000DC3AC  28 00 00 09 */ cmplwi r0, 9
 /* 800DF470 000DC3B0  40 82 00 A8 */ bne lbl_800DF518
 /* 800DF474 000DC3B4  7F C3 F3 78 */ mr r3, r30
-/* 800DF478 000DC3B8  48 07 F0 55 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DF478 000DC3B8  48 07 F0 55 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DF47C 000DC3BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DF480 000DC3C0  41 82 02 AC */ beq lbl_800DF72C
 /* 800DF484 000DC3C4  7F E3 FB 78 */ mr r3, r31
@@ -289,7 +289,7 @@ lbl_800DF468:
 /* 800DF4F8 000DC438  38 80 00 01 */ li r4, 1
 /* 800DF4FC 000DC43C  38 A0 00 01 */ li r5, 1
 /* 800DF500 000DC440  38 C1 00 10 */ addi r6, r1, 0x10
-/* 800DF504 000DC444  4B F9 06 0D */ bl dVibration_c_NS_StartQuake
+/* 800DF504 000DC444  4B F9 06 0D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800DF508 000DC448  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 800DF50C 000DC44C  60 00 00 04 */ ori r0, r0, 4
 /* 800DF510 000DC450  90 1F 05 7C */ stw r0, 0x57c(r31)
@@ -399,7 +399,7 @@ lbl_800DF670:
 /* 800DF684 000DC5C4  98 1F 2F 96 */ stb r0, 0x2f96(r31)
 lbl_800DF688:
 /* 800DF688 000DC5C8  38 7F 20 48 */ addi r3, r31, 0x2048
-/* 800DF68C 000DC5CC  48 07 EE 41 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DF68C 000DC5CC  48 07 EE 41 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DF690 000DC5D0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DF694 000DC5D4  41 82 00 44 */ beq lbl_800DF6D8
 /* 800DF698 000DC5D8  7F E3 FB 78 */ mr r3, r31
@@ -420,7 +420,7 @@ lbl_800DF688:
 /* 800DF6D4 000DC614  48 00 00 AC */ b lbl_800DF780
 lbl_800DF6D8:
 /* 800DF6D8 000DC618  38 7F 20 48 */ addi r3, r31, 0x2048
-/* 800DF6DC 000DC61C  48 07 ED F1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DF6DC 000DC61C  48 07 ED F1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DF6E0 000DC620  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DF6E4 000DC624  40 82 00 2C */ bne lbl_800DF710
 /* 800DF6E8 000DC628  C0 3F 20 58 */ lfs f1, 0x2058(r31)

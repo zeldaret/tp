@@ -15,7 +15,7 @@
 /* 8002F7D4 0002C714  4B FF D4 09 */ bl getTimerPtr__14dComIfG_play_cFv
 /* 8002F7D8 0002C718  28 03 00 00 */ cmplwi r3, 0
 /* 8002F7DC 0002C71C  41 82 00 10 */ beq lbl_8002F7EC
-/* 8002F7E0 0002C720  48 22 E2 01 */ bl dTimer_c_NS_deleteRequest
+/* 8002F7E0 0002C720  48 22 E2 01 */ bl deleteRequest__8dTimer_cFv
 /* 8002F7E4 0002C724  38 60 00 01 */ li r3, 1
 /* 8002F7E8 0002C728  48 00 00 10 */ b lbl_8002F7F8
 lbl_8002F7EC:

@@ -489,7 +489,7 @@ lbl_80228B70:
 /* 80228C1C 00225B5C  98 1F 05 DC */	stb r0, 0x5dc(r31)
 /* 80228C20 00225B60  98 1F 05 DD */	stb r0, 0x5dd(r31)
 /* 80228C24 00225B64  7F E3 FB 78 */	mr r3, r31
-/* 80228C28 00225B68  48 00 0B E9 */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 80228C28 00225B68  48 00 0B E9 */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 80228C2C 00225B6C  38 00 00 00 */	li r0, 0
 /* 80228C30 00225B70  98 1F 12 49 */	stb r0, 0x1249(r31)
 /* 80228C34 00225B74  98 1F 12 4A */	stb r0, 0x124a(r31)
@@ -508,9 +508,9 @@ lbl_80228B70:
 /* 80228C68 00225BA8  98 1F 12 51 */	stb r0, 0x1251(r31)
 /* 80228C6C 00225BAC  98 1F 12 52 */	stb r0, 0x1252(r31)
 /* 80228C70 00225BB0  7F E3 FB 78 */	mr r3, r31
-/* 80228C74 00225BB4  48 00 0B 3D */	bl jmessage_tReference_NS_resetCharactor
+/* 80228C74 00225BB4  48 00 0B 3D */	bl resetCharactor__19jmessage_tReferenceFv
 /* 80228C78 00225BB8  7F E3 FB 78 */	mr r3, r31
-/* 80228C7C 00225BBC  48 00 0A C9 */	bl jmessage_tReference_NS_resetWord
+/* 80228C7C 00225BBC  48 00 0A C9 */	bl resetWord__19jmessage_tReferenceFv
 /* 80228C80 00225BC0  38 00 00 00 */	li r0, 0
 /* 80228C84 00225BC4  98 1F 12 74 */	stb r0, 0x1274(r31)
 /* 80228C88 00225BC8  98 1F 12 75 */	stb r0, 0x1275(r31)
@@ -541,7 +541,7 @@ lbl_80228B70:
 /* 80228CEC 00225C2C  90 1E 00 08 */	stw r0, 8(r30)
 /* 80228CF0 00225C30  7F C3 F3 78 */	mr r3, r30
 /* 80228CF4 00225C34  38 80 00 00 */	li r4, 0
-/* 80228CF8 00225C38  48 07 EE 01 */	bl JMessage_NS_TReference_NS_dtor
+/* 80228CF8 00225C38  48 07 EE 01 */	bl __dt__Q28JMessage10TReferenceFv
 /* 80228CFC 00225C3C  7F E0 07 35 */	extsh. r0, r31
 /* 80228D00 00225C40  40 81 00 0C */	ble lbl_80228D0C
 /* 80228D04 00225C44  7F C3 F3 78 */	mr r3, r30
@@ -555,8 +555,8 @@ lbl_80228D0C:
 /* 80228D20 00225C60  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228D24 00225C64  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_calcDistance
-jmessage_tReference_NS_calcDistance:
+.global calcDistance__19jmessage_tReferenceFv
+calcDistance__19jmessage_tReferenceFv:
 /* 80228D28 00225C68  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80228D2C 00225C6C  7C 08 02 A6 */	mflr r0
 /* 80228D30 00225C70  90 01 00 34 */	stw r0, 0x34(r1)
@@ -608,35 +608,35 @@ lbl_80228DCC:
 /* 80228DD8 00225D18  38 21 00 30 */	addi r1, r1, 0x30
 /* 80228DDC 00225D1C  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_getLineMax
-jmessage_tReference_NS_getLineMax:
+.global getLineMax__19jmessage_tReferenceFv
+getLineMax__19jmessage_tReferenceFv:
 /* 80228DE0 00225D20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228DE4 00225D24  7C 08 02 A6 */	mflr r0
 /* 80228DE8 00225D28  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80228DEC 00225D2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80228DF0 00225D30  7C 7F 1B 78 */	mr r31, r3
-/* 80228DF4 00225D34  48 00 00 79 */	bl jmessage_tReference_NS_isKanban
+/* 80228DF4 00225D34  48 00 00 79 */	bl isKanban__19jmessage_tReferenceFv
 /* 80228DF8 00225D38  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80228DFC 00225D3C  41 82 00 0C */	beq lbl_80228E08
 /* 80228E00 00225D40  38 00 00 07 */	li r0, 7
 /* 80228E04 00225D44  48 00 00 50 */	b lbl_80228E54
 lbl_80228E08:
 /* 80228E08 00225D48  7F E3 FB 78 */	mr r3, r31
-/* 80228E0C 00225D4C  48 00 01 31 */	bl jmessage_tReference_NS_isBook
+/* 80228E0C 00225D4C  48 00 01 31 */	bl isBook__19jmessage_tReferenceFv
 /* 80228E10 00225D50  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80228E14 00225D54  41 82 00 0C */	beq lbl_80228E20
 /* 80228E18 00225D58  38 00 00 09 */	li r0, 9
 /* 80228E1C 00225D5C  48 00 00 38 */	b lbl_80228E54
 lbl_80228E20:
 /* 80228E20 00225D60  7F E3 FB 78 */	mr r3, r31
-/* 80228E24 00225D64  48 00 01 4D */	bl jmessage_tReference_NS_isStaffRoll
+/* 80228E24 00225D64  48 00 01 4D */	bl isStaffRoll__19jmessage_tReferenceFv
 /* 80228E28 00225D68  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80228E2C 00225D6C  41 82 00 0C */	beq lbl_80228E38
 /* 80228E30 00225D70  38 00 00 0A */	li r0, 0xa
 /* 80228E34 00225D74  48 00 00 20 */	b lbl_80228E54
 lbl_80228E38:
 /* 80228E38 00225D78  7F E3 FB 78 */	mr r3, r31
-/* 80228E3C 00225D7C  48 00 00 CD */	bl jmessage_tReference_NS_isSaveSeq
+/* 80228E3C 00225D7C  48 00 00 CD */	bl isSaveSeq__19jmessage_tReferenceFv
 /* 80228E40 00225D80  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80228E44 00225D84  41 82 00 0C */	beq lbl_80228E50
 /* 80228E48 00225D88  38 00 00 06 */	li r0, 6
@@ -651,8 +651,8 @@ lbl_80228E54:
 /* 80228E64 00225DA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228E68 00225DA8  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isKanban
-jmessage_tReference_NS_isKanban:
+.global isKanban__19jmessage_tReferenceFv
+isKanban__19jmessage_tReferenceFv:
 /* 80228E6C 00225DAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228E70 00225DB0  7C 08 02 A6 */	mflr r0
 /* 80228E74 00225DB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -662,15 +662,15 @@ jmessage_tReference_NS_isKanban:
 /* 80228E84 00225DC4  38 60 00 00 */	li r3, 0
 /* 80228E88 00225DC8  48 00 00 08 */	b lbl_80228E90
 lbl_80228E8C:
-/* 80228E8C 00225DCC  48 00 E2 31 */	bl dMsgObject_c_NS_isKanbanMessage
+/* 80228E8C 00225DCC  48 00 E2 31 */	bl isKanbanMessage__12dMsgObject_cFv
 lbl_80228E90:
 /* 80228E90 00225DD0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228E94 00225DD4  7C 08 03 A6 */	mtlr r0
 /* 80228E98 00225DD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228E9C 00225DDC  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isPlaceName
-jmessage_tReference_NS_isPlaceName:
+.global isPlaceName__19jmessage_tReferenceFv
+isPlaceName__19jmessage_tReferenceFv:
 /* 80228EA0 00225DE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228EA4 00225DE4  7C 08 02 A6 */	mflr r0
 /* 80228EA8 00225DE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -680,15 +680,15 @@ jmessage_tReference_NS_isPlaceName:
 /* 80228EB8 00225DF8  38 60 00 00 */	li r3, 0
 /* 80228EBC 00225DFC  48 00 00 08 */	b lbl_80228EC4
 lbl_80228EC0:
-/* 80228EC0 00225E00  48 00 E3 25 */	bl dMsgObject_c_NS_isPlaceMessage
+/* 80228EC0 00225E00  48 00 E3 25 */	bl isPlaceMessage__12dMsgObject_cFv
 lbl_80228EC4:
 /* 80228EC4 00225E04  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228EC8 00225E08  7C 08 03 A6 */	mtlr r0
 /* 80228ECC 00225E0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228ED0 00225E10  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isBossName
-jmessage_tReference_NS_isBossName:
+.global isBossName__19jmessage_tReferenceFv
+isBossName__19jmessage_tReferenceFv:
 /* 80228ED4 00225E14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228ED8 00225E18  7C 08 02 A6 */	mflr r0
 /* 80228EDC 00225E1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -698,15 +698,15 @@ jmessage_tReference_NS_isBossName:
 /* 80228EEC 00225E2C  38 60 00 00 */	li r3, 0
 /* 80228EF0 00225E30  48 00 00 08 */	b lbl_80228EF8
 lbl_80228EF4:
-/* 80228EF4 00225E34  48 00 E3 05 */	bl dMsgObject_c_NS_isBossMessage
+/* 80228EF4 00225E34  48 00 E3 05 */	bl isBossMessage__12dMsgObject_cFv
 lbl_80228EF8:
 /* 80228EF8 00225E38  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228EFC 00225E3C  7C 08 03 A6 */	mtlr r0
 /* 80228F00 00225E40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228F04 00225E44  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isSaveSeq
-jmessage_tReference_NS_isSaveSeq:
+.global isSaveSeq__19jmessage_tReferenceFv
+isSaveSeq__19jmessage_tReferenceFv:
 /* 80228F08 00225E48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228F0C 00225E4C  7C 08 02 A6 */	mflr r0
 /* 80228F10 00225E50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -716,15 +716,15 @@ jmessage_tReference_NS_isSaveSeq:
 /* 80228F20 00225E60  38 60 00 00 */	li r3, 0
 /* 80228F24 00225E64  48 00 00 08 */	b lbl_80228F2C
 lbl_80228F28:
-/* 80228F28 00225E68  48 00 E3 01 */	bl dMsgObject_c_NS_isSaveMessage
+/* 80228F28 00225E68  48 00 E3 01 */	bl isSaveMessage__12dMsgObject_cFv
 lbl_80228F2C:
 /* 80228F2C 00225E6C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228F30 00225E70  7C 08 03 A6 */	mtlr r0
 /* 80228F34 00225E74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228F38 00225E78  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isBook
-jmessage_tReference_NS_isBook:
+.global isBook__19jmessage_tReferenceFv
+isBook__19jmessage_tReferenceFv:
 /* 80228F3C 00225E7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228F40 00225E80  7C 08 02 A6 */	mflr r0
 /* 80228F44 00225E84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -734,15 +734,15 @@ jmessage_tReference_NS_isBook:
 /* 80228F54 00225E94  38 60 00 00 */	li r3, 0
 /* 80228F58 00225E98  48 00 00 08 */	b lbl_80228F60
 lbl_80228F5C:
-/* 80228F5C 00225E9C  48 00 E2 B1 */	bl dMsgObject_c_NS_isBookMessage
+/* 80228F5C 00225E9C  48 00 E2 B1 */	bl isBookMessage__12dMsgObject_cFv
 lbl_80228F60:
 /* 80228F60 00225EA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228F64 00225EA4  7C 08 03 A6 */	mtlr r0
 /* 80228F68 00225EA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228F6C 00225EAC  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isStaffRoll
-jmessage_tReference_NS_isStaffRoll:
+.global isStaffRoll__19jmessage_tReferenceFv
+isStaffRoll__19jmessage_tReferenceFv:
 /* 80228F70 00225EB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228F74 00225EB4  7C 08 02 A6 */	mflr r0
 /* 80228F78 00225EB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -752,15 +752,15 @@ jmessage_tReference_NS_isStaffRoll:
 /* 80228F88 00225EC8  38 60 00 00 */	li r3, 0
 /* 80228F8C 00225ECC  48 00 00 08 */	b lbl_80228F94
 lbl_80228F90:
-/* 80228F90 00225ED0  48 00 E2 85 */	bl dMsgObject_c_NS_isStaffMessage
+/* 80228F90 00225ED0  48 00 E2 85 */	bl isStaffMessage__12dMsgObject_cFv
 lbl_80228F94:
 /* 80228F94 00225ED4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228F98 00225ED8  7C 08 03 A6 */	mtlr r0
 /* 80228F9C 00225EDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228FA0 00225EE0  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isHowl
-jmessage_tReference_NS_isHowl:
+.global isHowl__19jmessage_tReferenceFv
+isHowl__19jmessage_tReferenceFv:
 /* 80228FA4 00225EE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228FA8 00225EE8  7C 08 02 A6 */	mflr r0
 /* 80228FAC 00225EEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -770,15 +770,15 @@ jmessage_tReference_NS_isHowl:
 /* 80228FBC 00225EFC  38 60 00 00 */	li r3, 0
 /* 80228FC0 00225F00  48 00 00 08 */	b lbl_80228FC8
 lbl_80228FC4:
-/* 80228FC4 00225F04  48 00 E1 25 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80228FC4 00225F04  48 00 E1 25 */	bl isHowlMessage__12dMsgObject_cFv
 lbl_80228FC8:
 /* 80228FC8 00225F08  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80228FCC 00225F0C  7C 08 03 A6 */	mtlr r0
 /* 80228FD0 00225F10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80228FD4 00225F14  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isMidona
-jmessage_tReference_NS_isMidona:
+.global isMidona__19jmessage_tReferenceFv
+isMidona__19jmessage_tReferenceFv:
 /* 80228FD8 00225F18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80228FDC 00225F1C  7C 08 02 A6 */	mflr r0
 /* 80228FE0 00225F20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -788,15 +788,15 @@ jmessage_tReference_NS_isMidona:
 /* 80228FF0 00225F30  38 60 00 00 */	li r3, 0
 /* 80228FF4 00225F34  48 00 00 08 */	b lbl_80228FFC
 lbl_80228FF8:
-/* 80228FF8 00225F38  48 00 E1 05 */	bl dMsgObject_c_NS_isMidonaMessage
+/* 80228FF8 00225F38  48 00 E1 05 */	bl isMidonaMessage__12dMsgObject_cFv
 lbl_80228FFC:
 /* 80228FFC 00225F3C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80229000 00225F40  7C 08 03 A6 */	mtlr r0
 /* 80229004 00225F44  38 21 00 10 */	addi r1, r1, 0x10
 /* 80229008 00225F48  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_resetReference
-jmessage_tReference_NS_resetReference:
+.global resetReference__19jmessage_tReferenceFv
+resetReference__19jmessage_tReferenceFv:
 /* 8022900C 00225F4C  38 00 00 00 */	li r0, 0
 /* 80229010 00225F50  B0 03 05 D6 */	sth r0, 0x5d6(r3)
 /* 80229014 00225F54  98 03 12 4C */	stb r0, 0x124c(r3)
@@ -808,8 +808,8 @@ jmessage_tReference_NS_resetReference:
 /* 8022902C 00225F6C  98 03 12 43 */	stb r0, 0x1243(r3)
 /* 80229030 00225F70  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_pageSend
-jmessage_tReference_NS_pageSend:
+.global pageSend__19jmessage_tReferenceFv
+pageSend__19jmessage_tReferenceFv:
 /* 80229034 00225F74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80229038 00225F78  A8 83 05 D2 */	lha r4, 0x5d2(r3)
 /* 8022903C 00225F7C  38 04 00 01 */	addi r0, r4, 1
@@ -892,8 +892,8 @@ lbl_80229158:
 /* 80229160 002260A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80229164 002260A4  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_selectMessage
-jmessage_tReference_NS_selectMessage:
+.global selectMessage__19jmessage_tReferenceFv
+selectMessage__19jmessage_tReferenceFv:
 /* 80229168 002260A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8022916C 002260AC  7C 08 02 A6 */	mflr r0
 /* 80229170 002260B0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1016,7 +1016,7 @@ lbl_80229314:
 /* 80229334 00226274  98 1F 12 44 */	stb r0, 0x1244(r31)
 /* 80229338 00226278  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
 /* 8022933C 0022627C  80 63 01 1C */	lwz r3, 0x11c(r3)
-/* 80229340 00226280  48 00 38 A9 */	bl jmessage_tSequenceProcessor_NS_calcStringLength
+/* 80229340 00226280  48 00 38 A9 */	bl calcStringLength__27jmessage_tSequenceProcessorFv
 /* 80229344 00226284  38 00 00 63 */	li r0, 0x63
 /* 80229348 00226288  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8022934C 0022628C  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -1038,7 +1038,7 @@ lbl_8022937C:
 /* 80229388 002262C8  98 1F 12 44 */	stb r0, 0x1244(r31)
 /* 8022938C 002262CC  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
 /* 80229390 002262D0  80 63 01 1C */	lwz r3, 0x11c(r3)
-/* 80229394 002262D4  48 00 38 55 */	bl jmessage_tSequenceProcessor_NS_calcStringLength
+/* 80229394 002262D4  48 00 38 55 */	bl calcStringLength__27jmessage_tSequenceProcessorFv
 /* 80229398 002262D8  38 00 00 63 */	li r0, 0x63
 /* 8022939C 002262DC  90 01 00 10 */	stw r0, 0x10(r1)
 /* 802293A0 002262E0  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -1065,7 +1065,7 @@ lbl_802293D0:
 /* 802293F0 00226330  98 1F 12 44 */	stb r0, 0x1244(r31)
 /* 802293F4 00226334  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
 /* 802293F8 00226338  80 63 01 1C */	lwz r3, 0x11c(r3)
-/* 802293FC 0022633C  48 00 37 ED */	bl jmessage_tSequenceProcessor_NS_calcStringLength
+/* 802293FC 0022633C  48 00 37 ED */	bl calcStringLength__27jmessage_tSequenceProcessorFv
 /* 80229400 00226340  38 00 00 63 */	li r0, 0x63
 /* 80229404 00226344  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80229408 00226348  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -1090,7 +1090,7 @@ lbl_80229438:
 /* 80229450 00226390  98 1F 12 44 */	stb r0, 0x1244(r31)
 /* 80229454 00226394  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
 /* 80229458 00226398  80 63 01 1C */	lwz r3, 0x11c(r3)
-/* 8022945C 0022639C  48 00 37 8D */	bl jmessage_tSequenceProcessor_NS_calcStringLength
+/* 8022945C 0022639C  48 00 37 8D */	bl calcStringLength__27jmessage_tSequenceProcessorFv
 /* 80229460 002263A0  38 00 00 63 */	li r0, 0x63
 /* 80229464 002263A4  90 01 00 08 */	stw r0, 8(r1)
 /* 80229468 002263A8  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -1111,8 +1111,8 @@ lbl_80229494:
 /* 802294A0 002263E0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802294A4 002263E4  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_inputNumber
-jmessage_tReference_NS_inputNumber:
+.global inputNumber__19jmessage_tReferenceFv
+inputNumber__19jmessage_tReferenceFv:
 /* 802294A8 002263E8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802294AC 002263EC  7C 08 02 A6 */	mflr r0
 /* 802294B0 002263F0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1286,7 +1286,7 @@ lbl_802296C4:
 lbl_80229704:
 /* 80229704 00226644  7F 83 E3 78 */	mr r3, r28
 /* 80229708 00226648  7F A4 07 34 */	extsh r4, r29
-/* 8022970C 0022664C  48 00 02 A1 */	bl jmessage_tReference_NS_decideOutFontRupeeColor
+/* 8022970C 0022664C  48 00 02 A1 */	bl decideOutFontRupeeColor__19jmessage_tReferenceFi
 /* 80229710 00226650  80 7C 05 C0 */	lwz r3, 0x5c0(r28)
 /* 80229714 00226654  B3 A3 01 74 */	sth r29, 0x174(r3)
 /* 80229718 00226658  39 61 00 30 */	addi r11, r1, 0x30
@@ -1296,16 +1296,16 @@ lbl_80229704:
 /* 80229728 00226668  38 21 00 30 */	addi r1, r1, 0x30
 /* 8022972C 0022666C  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_getWord
-jmessage_tReference_NS_getWord:
+.global getWord__19jmessage_tReferenceFi
+getWord__19jmessage_tReferenceFi:
 /* 80229730 00226670  7C 60 1B 78 */	mr r0, r3
 /* 80229734 00226674  1C 64 00 64 */	mulli r3, r4, 0x64
 /* 80229738 00226678  38 63 06 34 */	addi r3, r3, 0x634
 /* 8022973C 0022667C  7C 60 1A 14 */	add r3, r0, r3
 /* 80229740 00226680  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_resetWord
-jmessage_tReference_NS_resetWord:
+.global resetWord__19jmessage_tReferenceFv
+resetWord__19jmessage_tReferenceFv:
 /* 80229744 00226684  38 80 00 00 */	li r4, 0
 /* 80229748 00226688  7C 85 23 78 */	mr r5, r4
 /* 8022974C 0022668C  38 00 00 0A */	li r0, 0xa
@@ -1317,8 +1317,8 @@ lbl_80229754:
 /* 80229760 002266A0  42 00 FF F4 */	bdnz lbl_80229754
 /* 80229764 002266A4  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_setCharactor
-jmessage_tReference_NS_setCharactor:
+.global setCharactor__19jmessage_tReferenceFUs
+setCharactor__19jmessage_tReferenceFUs:
 /* 80229768 002266A8  A8 03 04 0C */	lha r0, 0x40c(r3)
 /* 8022976C 002266AC  54 00 08 3C */	slwi r0, r0, 1
 /* 80229770 002266B0  7C A3 02 14 */	add r5, r3, r0
@@ -1328,8 +1328,8 @@ jmessage_tReference_NS_setCharactor:
 /* 80229780 002266C0  B0 03 04 0C */	sth r0, 0x40c(r3)
 /* 80229784 002266C4  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_addCharactor
-jmessage_tReference_NS_addCharactor:
+.global addCharactor__19jmessage_tReferenceFUs
+addCharactor__19jmessage_tReferenceFUs:
 /* 80229788 002266C8  54 86 04 3E */	clrlwi r6, r4, 0x10
 /* 8022978C 002266CC  A8 A3 04 0E */	lha r5, 0x40e(r3)
 /* 80229790 002266D0  54 A0 08 3C */	slwi r0, r5, 1
@@ -1341,8 +1341,8 @@ jmessage_tReference_NS_addCharactor:
 /* 802297A8 002266E8  B0 03 04 0E */	sth r0, 0x40e(r3)
 /* 802297AC 002266EC  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_resetCharactor
-jmessage_tReference_NS_resetCharactor:
+.global resetCharactor__19jmessage_tReferenceFv
+resetCharactor__19jmessage_tReferenceFv:
 /* 802297B0 002266F0  38 80 00 00 */	li r4, 0
 /* 802297B4 002266F4  7C 85 23 78 */	mr r5, r4
 /* 802297B8 002266F8  38 00 02 00 */	li r0, 0x200
@@ -1358,8 +1358,8 @@ lbl_802297C0:
 /* 802297DC 0022671C  B0 03 04 10 */	sth r0, 0x410(r3)
 /* 802297E0 00226720  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_shiftCharCountBuffer
-jmessage_tReference_NS_shiftCharCountBuffer:
+.global shiftCharCountBuffer__19jmessage_tReferenceFv
+shiftCharCountBuffer__19jmessage_tReferenceFv:
 /* 802297E4 00226724  38 A0 00 1E */	li r5, 0x1e
 /* 802297E8 00226728  38 00 00 1E */	li r0, 0x1e
 /* 802297EC 0022672C  7C 09 03 A6 */	mtctr r0
@@ -1373,8 +1373,8 @@ lbl_802297F0:
 /* 80229808 00226748  98 03 12 53 */	stb r0, 0x1253(r3)
 /* 8022980C 0022674C  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_resetCharCountBuffer
-jmessage_tReference_NS_resetCharCountBuffer:
+.global resetCharCountBuffer__19jmessage_tReferenceFv
+resetCharCountBuffer__19jmessage_tReferenceFv:
 /* 80229810 00226750  38 A0 00 00 */	li r5, 0
 /* 80229814 00226754  38 80 00 00 */	li r4, 0
 /* 80229818 00226758  38 00 00 1F */	li r0, 0x1f
@@ -1391,8 +1391,8 @@ lbl_80229820:
 /* 80229840 00226780  98 03 05 DD */	stb r0, 0x5dd(r3)
 /* 80229844 00226784  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_allsetCharCountBuffer
-jmessage_tReference_NS_allsetCharCountBuffer:
+.global allsetCharCountBuffer__19jmessage_tReferenceFv
+allsetCharCountBuffer__19jmessage_tReferenceFv:
 /* 80229848 00226788  38 A0 00 00 */	li r5, 0
 /* 8022984C 0022678C  38 00 00 1F */	li r0, 0x1f
 /* 80229850 00226790  7C 09 03 A6 */	mtctr r0
@@ -1404,8 +1404,8 @@ lbl_80229854:
 /* 80229864 002267A4  42 00 FF F0 */	bdnz lbl_80229854
 /* 80229868 002267A8  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isCharSend
-jmessage_tReference_NS_isCharSend:
+.global isCharSend__19jmessage_tReferenceFv
+isCharSend__19jmessage_tReferenceFv:
 /* 8022986C 002267AC  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 80229870 002267B0  28 00 00 08 */	cmplwi r0, 8
 /* 80229874 002267B4  40 82 00 18 */	bne lbl_8022988C
@@ -1439,8 +1439,8 @@ lbl_802298D4:
 /* 802298D4 00226814  38 60 00 01 */	li r3, 1
 /* 802298D8 00226818  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isLightSend
-jmessage_tReference_NS_isLightSend:
+.global isLightSend__19jmessage_tReferenceFv
+isLightSend__19jmessage_tReferenceFv:
 /* 802298DC 0022681C  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 802298E0 00226820  28 00 00 08 */	cmplwi r0, 8
 /* 802298E4 00226824  40 82 00 18 */	bne lbl_802298FC
@@ -1474,8 +1474,8 @@ lbl_80229944:
 /* 80229944 00226884  38 60 00 01 */	li r3, 1
 /* 80229948 00226888  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_isLightEnd
-jmessage_tReference_NS_isLightEnd:
+.global isLightEnd__19jmessage_tReferenceFv
+isLightEnd__19jmessage_tReferenceFv:
 /* 8022994C 0022688C  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 80229950 00226890  28 00 00 08 */	cmplwi r0, 8
 /* 80229954 00226894  40 82 00 14 */	bne lbl_80229968
@@ -1505,8 +1505,8 @@ lbl_802299A4:
 /* 802299A4 002268E4  38 60 00 00 */	li r3, 0
 /* 802299A8 002268E8  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_decideOutFontRupeeColor
-jmessage_tReference_NS_decideOutFontRupeeColor:
+.global decideOutFontRupeeColor__19jmessage_tReferenceFi
+decideOutFontRupeeColor__19jmessage_tReferenceFi:
 /* 802299AC 002268EC  80 A3 05 C0 */	lwz r5, 0x5c0(r3)
 /* 802299B0 002268F0  A8 05 01 7C */	lha r0, 0x17c(r5)
 /* 802299B4 002268F4  A8 A5 01 7A */	lha r5, 0x17a(r5)
@@ -1533,7 +1533,7 @@ jmessage_tControl:
 /* 802299F4 00226934  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802299F8 00226938  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802299FC 0022693C  7C 7F 1B 78 */	mr r31, r3
-/* 80229A00 00226940  48 07 DB 49 */	bl JMessage_NS_TControl
+/* 80229A00 00226940  48 07 DB 49 */	bl __ct__Q28JMessage8TControlFv
 /* 80229A04 00226944  3C 60 80 3A */	lis r3, lbl_803A7928@ha
 /* 80229A08 00226948  38 03 79 28 */	addi r0, r3, lbl_803A7928@l
 /* 80229A0C 0022694C  90 1F 00 00 */	stw r0, 0(r31)
@@ -1552,13 +1552,13 @@ jmessage_tMeasureProcessor:
 /* 80229A34 00226974  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80229A38 00226978  93 C1 00 08 */	stw r30, 8(r1)
 /* 80229A3C 0022697C  7C 7E 1B 78 */	mr r30, r3
-/* 80229A40 00226980  48 07 F0 45 */	bl JMessage_NS_TRenderingProcessor
+/* 80229A40 00226980  48 07 F0 45 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
 /* 80229A44 00226984  3C 60 80 3C */	lis r3, lbl_803C0A94@ha
 /* 80229A48 00226988  38 03 0A 94 */	addi r0, r3, lbl_803C0A94@l
 /* 80229A4C 0022698C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80229A50 00226990  83 FE 00 04 */	lwz r31, 4(r30)
 /* 80229A54 00226994  7F E3 FB 78 */	mr r3, r31
-/* 80229A58 00226998  4B FF FD 59 */	bl jmessage_tReference_NS_resetCharactor
+/* 80229A58 00226998  4B FF FD 59 */	bl resetCharactor__19jmessage_tReferenceFv
 /* 80229A5C 0022699C  C0 02 B0 64 */	lfs f0, lbl_80454A64-_SDA2_BASE_(r2)
 /* 80229A60 002269A0  D0 1E 00 38 */	stfs f0, 0x38(r30)
 /* 80229A64 002269A4  38 00 00 00 */	li r0, 0
@@ -1572,7 +1572,7 @@ jmessage_tMeasureProcessor:
 /* 80229A84 002269C4  98 1E 00 47 */	stb r0, 0x47(r30)
 /* 80229A88 002269C8  98 1E 00 49 */	stb r0, 0x49(r30)
 /* 80229A8C 002269CC  7F E3 FB 78 */	mr r3, r31
-/* 80229A90 002269D0  4B FF F3 51 */	bl jmessage_tReference_NS_getLineMax
+/* 80229A90 002269D0  4B FF F3 51 */	bl getLineMax__19jmessage_tReferenceFv
 /* 80229A94 002269D4  98 7E 00 4A */	stb r3, 0x4a(r30)
 /* 80229A98 002269D8  38 00 00 00 */	li r0, 0
 /* 80229A9C 002269DC  98 1E 00 4B */	stb r0, 0x4b(r30)
@@ -1596,7 +1596,7 @@ jmessage_tMeasureProcessor:
 /* 80229AE4 00226A24  7C 9A 23 78 */	mr r26, r4
 /* 80229AE8 00226A28  83 83 00 04 */	lwz r28, 4(r3)
 /* 80229AEC 00226A2C  7F 83 E3 78 */	mr r3, r28
-/* 80229AF0 00226A30  4B FF FC C1 */	bl jmessage_tReference_NS_resetCharactor
+/* 80229AF0 00226A30  4B FF FC C1 */	bl resetCharactor__19jmessage_tReferenceFv
 /* 80229AF4 00226A34  3B C0 00 00 */	li r30, 0
 /* 80229AF8 00226A38  93 DC 05 B8 */	stw r30, 0x5b8(r28)
 /* 80229AFC 00226A3C  C0 02 B0 64 */	lfs f0, lbl_80454A64-_SDA2_BASE_(r2)
@@ -1623,15 +1623,15 @@ lbl_80229B24:
 /* 80229B4C 00226A8C  38 18 05 E0 */	addi r0, r24, 0x5e0
 /* 80229B50 00226A90  7C 7C 03 2E */	sthx r3, r28, r0
 /* 80229B54 00226A94  7F 83 E3 78 */	mr r3, r28
-/* 80229B58 00226A98  4B FF F3 49 */	bl jmessage_tReference_NS_isPlaceName
+/* 80229B58 00226A98  4B FF F3 49 */	bl isPlaceName__19jmessage_tReferenceFv
 /* 80229B5C 00226A9C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80229B60 00226AA0  40 82 00 30 */	bne lbl_80229B90
 /* 80229B64 00226AA4  7F 83 E3 78 */	mr r3, r28
-/* 80229B68 00226AA8  4B FF F4 09 */	bl jmessage_tReference_NS_isStaffRoll
+/* 80229B68 00226AA8  4B FF F4 09 */	bl isStaffRoll__19jmessage_tReferenceFv
 /* 80229B6C 00226AAC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80229B70 00226AB0  40 82 00 20 */	bne lbl_80229B90
 /* 80229B74 00226AB4  7F 83 E3 78 */	mr r3, r28
-/* 80229B78 00226AB8  4B FF F3 5D */	bl jmessage_tReference_NS_isBossName
+/* 80229B78 00226AB8  4B FF F3 5D */	bl isBossName__19jmessage_tReferenceFv
 /* 80229B7C 00226ABC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80229B80 00226AC0  40 82 00 10 */	bne lbl_80229B90
 /* 80229B84 00226AC4  88 1C 12 46 */	lbz r0, 0x1246(r28)
@@ -1688,10 +1688,10 @@ lbl_80229BF0:
 /* 80229C3C 00226B7C  98 19 00 47 */	stb r0, 0x47(r25)
 /* 80229C40 00226B80  98 19 00 49 */	stb r0, 0x49(r25)
 /* 80229C44 00226B84  7F 83 E3 78 */	mr r3, r28
-/* 80229C48 00226B88  4B FF F1 99 */	bl jmessage_tReference_NS_getLineMax
+/* 80229C48 00226B88  4B FF F1 99 */	bl getLineMax__19jmessage_tReferenceFv
 /* 80229C4C 00226B8C  98 79 00 4A */	stb r3, 0x4a(r25)
 /* 80229C50 00226B90  7F 83 E3 78 */	mr r3, r28
-/* 80229C54 00226B94  4B FF FA F1 */	bl jmessage_tReference_NS_resetWord
+/* 80229C54 00226B94  4B FF FA F1 */	bl resetWord__19jmessage_tReferenceFv
 /* 80229C58 00226B98  38 00 00 00 */	li r0, 0
 /* 80229C5C 00226B9C  98 19 00 4B */	stb r0, 0x4b(r25)
 /* 80229C60 00226BA0  80 7C 05 C0 */	lwz r3, 0x5c0(r28)
@@ -1699,7 +1699,7 @@ lbl_80229BF0:
 /* 80229C68 00226BA8  88 1C 12 74 */	lbz r0, 0x1274(r28)
 /* 80229C6C 00226BAC  28 00 00 00 */	cmplwi r0, 0
 /* 80229C70 00226BB0  40 82 00 08 */	bne lbl_80229C78
-/* 80229C74 00226BB4  48 00 D9 9D */	bl dMsgObject_c_NS_resetSelectBomBag
+/* 80229C74 00226BB4  48 00 D9 9D */	bl resetSelectBomBag__12dMsgObject_cFv
 lbl_80229C78:
 /* 80229C78 00226BB8  C0 22 B0 64 */	lfs f1, lbl_80454A64-_SDA2_BASE_(r2)
 /* 80229C7C 00226BBC  C0 1C 04 54 */	lfs f0, 0x454(r28)
@@ -1707,7 +1707,7 @@ lbl_80229C78:
 /* 80229C84 00226BC4  41 82 00 10 */	beq lbl_80229C94
 /* 80229C88 00226BC8  7F 23 CB 78 */	mr r3, r25
 /* 80229C8C 00226BCC  C0 39 00 38 */	lfs f1, 0x38(r25)
-/* 80229C90 00226BD0  48 00 14 21 */	bl jmessage_tMeasureProcessor_NS_do_scale
+/* 80229C90 00226BD0  48 00 14 21 */	bl do_scale__26jmessage_tMeasureProcessorFf
 lbl_80229C94:
 /* 80229C94 00226BD4  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 80229C98 00226BD8  CB E1 00 30 */	lfd f31, 0x30(r1)
@@ -1766,7 +1766,7 @@ lbl_80229D5C:
 /* 80229D60 00226CA0  B0 1F 05 D4 */	sth r0, 0x5d4(r31)
 /* 80229D64 00226CA4  7F C3 F3 78 */	mr r3, r30
 /* 80229D68 00226CA8  A8 9E 00 3E */	lha r4, 0x3e(r30)
-/* 80229D6C 00226CAC  48 00 16 81 */	bl jmessage_tMeasureProcessor_NS_do_pageType
+/* 80229D6C 00226CAC  48 00 16 81 */	bl do_pageType__26jmessage_tMeasureProcessorFi
 /* 80229D70 00226CB0  38 A1 00 04 */	addi r5, r1, 4
 /* 80229D74 00226CB4  38 9F 00 08 */	addi r4, r31, 8
 /* 80229D78 00226CB8  38 00 00 80 */	li r0, 0x80
@@ -1860,7 +1860,7 @@ lbl_80229E9C:
 /* 80229EC0 00226E00  4B FF E9 79 */	bl changeKataToHira
 /* 80229EC4 00226E04  7C 64 1B 78 */	mr r4, r3
 /* 80229EC8 00226E08  7F C3 F3 78 */	mr r3, r30
-/* 80229ECC 00226E0C  4B FF F8 9D */	bl jmessage_tReference_NS_setCharactor
+/* 80229ECC 00226E0C  4B FF F8 9D */	bl setCharactor__19jmessage_tReferenceFUs
 /* 80229ED0 00226E10  48 00 00 38 */	b lbl_80229F08
 lbl_80229ED4:
 /* 80229ED4 00226E14  3C 60 00 01 */	lis r3, 0x00008800@ha
@@ -1875,7 +1875,7 @@ lbl_80229ED4:
 /* 80229EF8 00226E38  4B FF E9 41 */	bl changeKataToHira
 /* 80229EFC 00226E3C  7C 64 1B 78 */	mr r4, r3
 /* 80229F00 00226E40  7F C3 F3 78 */	mr r3, r30
-/* 80229F04 00226E44  4B FF F8 65 */	bl jmessage_tReference_NS_setCharactor
+/* 80229F04 00226E44  4B FF F8 65 */	bl setCharactor__19jmessage_tReferenceFUs
 lbl_80229F08:
 /* 80229F08 00226E48  2C 1D 00 0A */	cmpwi r29, 0xa
 /* 80229F0C 00226E4C  40 82 01 58 */	bne lbl_8022A064
@@ -1933,7 +1933,7 @@ lbl_80229F78:
 /* 80229FD0 00226F10  88 1C 00 4A */	lbz r0, 0x4a(r28)
 /* 80229FD4 00226F14  7C 00 07 74 */	extsb r0, r0
 /* 80229FD8 00226F18  7C 84 00 50 */	subf r4, r4, r0
-/* 80229FDC 00226F1C  48 00 14 11 */	bl jmessage_tMeasureProcessor_NS_do_pageType
+/* 80229FDC 00226F1C  48 00 14 11 */	bl do_pageType__26jmessage_tMeasureProcessorFi
 /* 80229FE0 00226F20  88 1C 00 46 */	lbz r0, 0x46(r28)
 /* 80229FE4 00226F24  28 00 00 00 */	cmplwi r0, 0
 /* 80229FE8 00226F28  40 82 00 10 */	bne lbl_80229FF8
@@ -1944,7 +1944,7 @@ lbl_80229FF8:
 /* 80229FF8 00226F38  38 00 00 00 */	li r0, 0
 /* 80229FFC 00226F3C  B0 1C 00 3E */	sth r0, 0x3e(r28)
 /* 8022A000 00226F40  7F C3 F3 78 */	mr r3, r30
-/* 8022A004 00226F44  4B FF ED DD */	bl jmessage_tReference_NS_getLineMax
+/* 8022A004 00226F44  4B FF ED DD */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022A008 00226F48  98 7C 00 4A */	stb r3, 0x4a(r28)
 /* 8022A00C 00226F4C  38 00 00 00 */	li r0, 0
 /* 8022A010 00226F50  98 1C 00 49 */	stb r0, 0x49(r28)
@@ -2180,14 +2180,14 @@ lbl_8022A34C:
 /* 8022A374 002272B4  EC 20 08 28 */	fsubs f1, f0, f1
 /* 8022A378 002272B8  C0 02 B0 7C */	lfs f0, lbl_80454A7C-_SDA2_BASE_(r2)
 /* 8022A37C 002272BC  EC 21 00 24 */	fdivs f1, f1, f0
-/* 8022A380 002272C0  48 00 0D 31 */	bl jmessage_tMeasureProcessor_NS_do_scale
+/* 8022A380 002272C0  48 00 0D 31 */	bl do_scale__26jmessage_tMeasureProcessorFf
 /* 8022A384 002272C4  38 60 00 01 */	li r3, 1
 /* 8022A388 002272C8  48 00 0D 10 */	b lbl_8022B098
 lbl_8022A38C:
 /* 8022A38C 002272CC  7F E3 FB 78 */	mr r3, r31
 /* 8022A390 002272D0  7F A4 EB 78 */	mr r4, r29
 /* 8022A394 002272D4  7C C5 33 78 */	mr r5, r6
-/* 8022A398 002272D8  48 00 10 C1 */	bl jmessage_tMeasureProcessor_NS_do_rubyset
+/* 8022A398 002272D8  48 00 10 C1 */	bl do_rubyset__26jmessage_tMeasureProcessorFPCvUl
 /* 8022A39C 002272DC  88 9F 00 46 */	lbz r4, 0x46(r31)
 /* 8022A3A0 002272E0  28 04 00 00 */	cmplwi r4, 0
 /* 8022A3A4 002272E4  41 82 00 74 */	beq lbl_8022A418
@@ -2251,7 +2251,7 @@ lbl_8022A420:
 /* 8022A480 002273C0  48 13 C0 5D */	bl func_803664DC
 /* 8022A484 002273C4  7F E3 FB 78 */	mr r3, r31
 /* 8022A488 002273C8  38 81 00 0C */	addi r4, r1, 0xc
-/* 8022A48C 002273CC  48 00 10 55 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A48C 002273CC  48 00 10 55 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A490 002273D0  38 60 00 01 */	li r3, 1
 /* 8022A494 002273D4  48 00 0C 04 */	b lbl_8022B098
 /* 8022A498 002273D8  38 61 00 08 */	addi r3, r1, 8
@@ -2269,7 +2269,7 @@ lbl_8022A420:
 /* 8022A4C8 00227408  48 13 C0 15 */	bl func_803664DC
 /* 8022A4CC 0022740C  7F E3 FB 78 */	mr r3, r31
 /* 8022A4D0 00227410  38 81 00 08 */	addi r4, r1, 8
-/* 8022A4D4 00227414  48 00 10 0D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A4D4 00227414  48 00 10 0D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A4D8 00227418  38 60 00 01 */	li r3, 1
 /* 8022A4DC 0022741C  48 00 0B BC */	b lbl_8022B098
 /* 8022A4E0 00227420  A0 1D 00 00 */	lhz r0, 0(r29)
@@ -2298,7 +2298,7 @@ lbl_8022A524:
 /* 8022A534 00227474  48 13 E5 F9 */	bl strcpy
 /* 8022A538 00227478  7F E3 FB 78 */	mr r3, r31
 /* 8022A53C 0022747C  38 81 01 64 */	addi r4, r1, 0x164
-/* 8022A540 00227480  48 00 0F A1 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A540 00227480  48 00 0F A1 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A544 00227484  38 60 00 01 */	li r3, 1
 /* 8022A548 00227488  48 00 0B 50 */	b lbl_8022B098
 /* 8022A54C 0022748C  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2314,7 +2314,7 @@ lbl_8022A560:
 /* 8022A570 002274B0  48 13 E5 BD */	bl strcpy
 /* 8022A574 002274B4  7F E3 FB 78 */	mr r3, r31
 /* 8022A578 002274B8  38 81 01 00 */	addi r4, r1, 0x100
-/* 8022A57C 002274BC  48 00 0F 65 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A57C 002274BC  48 00 0F 65 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A580 002274C0  38 60 00 01 */	li r3, 1
 /* 8022A584 002274C4  48 00 0B 14 */	b lbl_8022B098
 /* 8022A588 002274C8  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2323,10 +2323,10 @@ lbl_8022A560:
 /* 8022A594 002274D4  38 00 00 00 */	li r0, 0
 /* 8022A598 002274D8  98 1F 00 49 */	stb r0, 0x49(r31)
 lbl_8022A59C:
-/* 8022A59C 002274DC  48 00 DF 79 */	bl dMsgObject_c_NS_getWord
+/* 8022A59C 002274DC  48 00 DF 79 */	bl getWord__12dMsgObject_cFv
 /* 8022A5A0 002274E0  7C 64 1B 78 */	mr r4, r3
 /* 8022A5A4 002274E4  7F E3 FB 78 */	mr r3, r31
-/* 8022A5A8 002274E8  48 07 D6 51 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A5A8 002274E8  48 07 D6 51 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A5AC 002274EC  38 60 00 01 */	li r3, 1
 /* 8022A5B0 002274F0  48 00 0A E8 */	b lbl_8022B098
 /* 8022A5B4 002274F4  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2336,10 +2336,10 @@ lbl_8022A59C:
 /* 8022A5C4 00227504  98 1F 00 49 */	stb r0, 0x49(r31)
 lbl_8022A5C8:
 /* 8022A5C8 00227508  80 7E 05 C0 */	lwz r3, 0x5c0(r30)
-/* 8022A5CC 0022750C  48 00 CD 01 */	bl dMsgObject_c_NS_getSmellName
+/* 8022A5CC 0022750C  48 00 CD 01 */	bl getSmellName__12dMsgObject_cFv
 /* 8022A5D0 00227510  7C 64 1B 78 */	mr r4, r3
 /* 8022A5D4 00227514  7F E3 FB 78 */	mr r3, r31
-/* 8022A5D8 00227518  48 07 D6 21 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A5D8 00227518  48 07 D6 21 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A5DC 0022751C  38 60 00 01 */	li r3, 1
 /* 8022A5E0 00227520  48 00 0A B8 */	b lbl_8022B098
 /* 8022A5E4 00227524  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2349,10 +2349,10 @@ lbl_8022A5C8:
 /* 8022A5F4 00227534  98 1F 00 49 */	stb r0, 0x49(r31)
 lbl_8022A5F8:
 /* 8022A5F8 00227538  80 7E 05 C0 */	lwz r3, 0x5c0(r30)
-/* 8022A5FC 0022753C  48 00 CD 39 */	bl dMsgObject_c_NS_getPortalName
+/* 8022A5FC 0022753C  48 00 CD 39 */	bl getPortalName__12dMsgObject_cFv
 /* 8022A600 00227540  7C 64 1B 78 */	mr r4, r3
 /* 8022A604 00227544  7F E3 FB 78 */	mr r3, r31
-/* 8022A608 00227548  48 07 D5 F1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A608 00227548  48 07 D5 F1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A60C 0022754C  38 60 00 01 */	li r3, 1
 /* 8022A610 00227550  48 00 0A 88 */	b lbl_8022B098
 /* 8022A614 00227554  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2368,10 +2368,10 @@ lbl_8022A628:
 /* 8022A638 00227578  38 00 00 01 */	li r0, 1
 /* 8022A63C 0022757C  98 1E 12 75 */	stb r0, 0x1275(r30)
 lbl_8022A640:
-/* 8022A640 00227580  48 00 CD 4D */	bl dMsgObject_c_NS_getBombName
+/* 8022A640 00227580  48 00 CD 4D */	bl getBombName__12dMsgObject_cFv
 /* 8022A644 00227584  7C 64 1B 78 */	mr r4, r3
 /* 8022A648 00227588  7F E3 FB 78 */	mr r3, r31
-/* 8022A64C 0022758C  48 07 D5 AD */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A64C 0022758C  48 07 D5 AD */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A650 00227590  38 60 00 01 */	li r3, 1
 /* 8022A654 00227594  48 00 0A 44 */	b lbl_8022B098
 /* 8022A658 00227598  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2381,10 +2381,10 @@ lbl_8022A640:
 /* 8022A668 002275A8  98 1F 00 49 */	stb r0, 0x49(r31)
 lbl_8022A66C:
 /* 8022A66C 002275AC  80 7E 05 C0 */	lwz r3, 0x5c0(r30)
-/* 8022A670 002275B0  48 00 CD AD */	bl dMsgObject_c_NS_getInsectName
+/* 8022A670 002275B0  48 00 CD AD */	bl getInsectName__12dMsgObject_cFv
 /* 8022A674 002275B4  7C 64 1B 78 */	mr r4, r3
 /* 8022A678 002275B8  7F E3 FB 78 */	mr r3, r31
-/* 8022A67C 002275BC  48 07 D5 7D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A67C 002275BC  48 07 D5 7D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A680 002275C0  38 60 00 01 */	li r3, 1
 /* 8022A684 002275C4  48 00 0A 14 */	b lbl_8022B098
 /* 8022A688 002275C8  88 1F 00 49 */	lbz r0, 0x49(r31)
@@ -2394,10 +2394,10 @@ lbl_8022A66C:
 /* 8022A698 002275D8  98 1F 00 49 */	stb r0, 0x49(r31)
 lbl_8022A69C:
 /* 8022A69C 002275DC  80 7E 05 C0 */	lwz r3, 0x5c0(r30)
-/* 8022A6A0 002275E0  48 00 CD D9 */	bl dMsgObject_c_NS_getLetterName
+/* 8022A6A0 002275E0  48 00 CD D9 */	bl getLetterName__12dMsgObject_cFv
 /* 8022A6A4 002275E4  7C 64 1B 78 */	mr r4, r3
 /* 8022A6A8 002275E8  7F E3 FB 78 */	mr r3, r31
-/* 8022A6AC 002275EC  48 07 D5 4D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A6AC 002275EC  48 07 D5 4D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A6B0 002275F0  38 60 00 01 */	li r3, 1
 /* 8022A6B4 002275F4  48 00 09 E4 */	b lbl_8022B098
 /* 8022A6B8 002275F8  88 1F 00 46 */	lbz r0, 0x46(r31)
@@ -2415,11 +2415,11 @@ lbl_8022A69C:
 /* 8022A6E8 00227628  98 83 11 CA */	stb r4, 0x11ca(r3)
 /* 8022A6EC 0022762C  7F E3 FB 78 */	mr r3, r31
 /* 8022A6F0 00227630  A8 9F 00 3E */	lha r4, 0x3e(r31)
-/* 8022A6F4 00227634  48 00 0C F9 */	bl jmessage_tMeasureProcessor_NS_do_pageType
+/* 8022A6F4 00227634  48 00 0C F9 */	bl do_pageType__26jmessage_tMeasureProcessorFi
 /* 8022A6F8 00227638  38 00 00 00 */	li r0, 0
 /* 8022A6FC 0022763C  B0 1F 00 3E */	sth r0, 0x3e(r31)
 /* 8022A700 00227640  7F C3 F3 78 */	mr r3, r30
-/* 8022A704 00227644  4B FF E6 DD */	bl jmessage_tReference_NS_getLineMax
+/* 8022A704 00227644  4B FF E6 DD */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022A708 00227648  98 7F 00 4A */	stb r3, 0x4a(r31)
 /* 8022A70C 0022764C  38 00 00 00 */	li r0, 0
 /* 8022A710 00227650  98 1F 00 49 */	stb r0, 0x49(r31)
@@ -2466,11 +2466,11 @@ lbl_8022A748:
 /* 8022A7A8 002276E8  98 83 11 CA */	stb r4, 0x11ca(r3)
 /* 8022A7AC 002276EC  7F E3 FB 78 */	mr r3, r31
 /* 8022A7B0 002276F0  A8 9F 00 3E */	lha r4, 0x3e(r31)
-/* 8022A7B4 002276F4  48 00 0C 39 */	bl jmessage_tMeasureProcessor_NS_do_pageType
+/* 8022A7B4 002276F4  48 00 0C 39 */	bl do_pageType__26jmessage_tMeasureProcessorFi
 /* 8022A7B8 002276F8  38 00 00 00 */	li r0, 0
 /* 8022A7BC 002276FC  B0 1F 00 3E */	sth r0, 0x3e(r31)
 /* 8022A7C0 00227700  7F C3 F3 78 */	mr r3, r30
-/* 8022A7C4 00227704  4B FF E6 1D */	bl jmessage_tReference_NS_getLineMax
+/* 8022A7C4 00227704  4B FF E6 1D */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022A7C8 00227708  98 7F 00 4A */	stb r3, 0x4a(r31)
 /* 8022A7CC 0022770C  38 00 00 00 */	li r0, 0
 /* 8022A7D0 00227710  98 1F 00 49 */	stb r0, 0x49(r31)
@@ -2516,7 +2516,7 @@ lbl_8022A848:
 /* 8022A860 002277A0  98 83 12 1A */	stb r4, 0x121a(r3)
 /* 8022A864 002277A4  7F E3 FB 78 */	mr r3, r31
 /* 8022A868 002277A8  38 80 00 00 */	li r4, 0
-/* 8022A86C 002277AC  48 00 09 21 */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022A86C 002277AC  48 00 09 21 */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022A870 002277B0  38 60 00 01 */	li r3, 1
 /* 8022A874 002277B4  48 00 08 24 */	b lbl_8022B098
 /* 8022A878 002277B8  38 00 00 01 */	li r0, 1
@@ -2531,19 +2531,19 @@ lbl_8022A848:
 /* 8022A89C 002277DC  4E 80 04 21 */	bctrl 
 /* 8022A8A0 002277E0  7F E3 FB 78 */	mr r3, r31
 /* 8022A8A4 002277E4  80 9E 05 C4 */	lwz r4, 0x5c4(r30)
-/* 8022A8A8 002277E8  48 07 D3 51 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022A8A8 002277E8  48 07 D3 51 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022A8AC 002277EC  38 60 00 01 */	li r3, 1
 /* 8022A8B0 002277F0  48 00 07 E8 */	b lbl_8022B098
 /* 8022A8B4 002277F4  7F E3 FB 78 */	mr r3, r31
-/* 8022A8B8 002277F8  48 00 0B 9D */	bl jmessage_tMeasureProcessor_NS_do_name1
+/* 8022A8B8 002277F8  48 00 0B 9D */	bl do_name1__26jmessage_tMeasureProcessorFv
 /* 8022A8BC 002277FC  38 60 00 01 */	li r3, 1
 /* 8022A8C0 00227800  48 00 07 D8 */	b lbl_8022B098
 /* 8022A8C4 00227804  7F E3 FB 78 */	mr r3, r31
-/* 8022A8C8 00227808  48 00 08 C5 */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022A8C8 00227808  48 00 08 C5 */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022A8CC 0022780C  38 60 00 01 */	li r3, 1
 /* 8022A8D0 00227810  48 00 07 C8 */	b lbl_8022B098
 /* 8022A8D4 00227814  7F E3 FB 78 */	mr r3, r31
-/* 8022A8D8 00227818  48 00 08 B5 */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022A8D8 00227818  48 00 08 B5 */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022A8DC 0022781C  88 1E 12 74 */	lbz r0, 0x1274(r30)
 /* 8022A8E0 00227820  28 00 00 00 */	cmplwi r0, 0
 /* 8022A8E4 00227824  40 82 00 18 */	bne lbl_8022A8FC
@@ -2551,7 +2551,7 @@ lbl_8022A848:
 /* 8022A8EC 0022782C  88 9D 00 00 */	lbz r4, 0(r29)
 /* 8022A8F0 00227830  38 04 FF FF */	addi r0, r4, -1
 /* 8022A8F4 00227834  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 8022A8F8 00227838  48 00 CC ED */	bl dMsgObject_c_NS_addSelectBomBag
+/* 8022A8F8 00227838  48 00 CC ED */	bl addSelectBomBag__12dMsgObject_cFUc
 lbl_8022A8FC:
 /* 8022A8FC 0022783C  38 60 00 01 */	li r3, 1
 /* 8022A900 00227840  48 00 07 98 */	b lbl_8022B098
@@ -2559,7 +2559,7 @@ lbl_8022A8FC:
 lbl_8022A908:
 /* 8022A908 00227848  7F E3 FB 78 */	mr r3, r31
 /* 8022A90C 0022784C  38 80 00 00 */	li r4, 0
-/* 8022A910 00227850  48 00 08 7D */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022A910 00227850  48 00 08 7D */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022A914 00227854  3B BD 00 01 */	addi r29, r29, 1
 /* 8022A918 00227858  2C 1D 00 04 */	cmpwi r29, 4
 /* 8022A91C 0022785C  41 80 FF EC */	blt lbl_8022A908
@@ -2568,30 +2568,30 @@ lbl_8022A908:
 /* 8022A928 00227868  38 60 00 01 */	li r3, 1
 /* 8022A92C 0022786C  48 00 07 6C */	b lbl_8022B098
 /* 8022A930 00227870  80 7E 05 C0 */	lwz r3, 0x5c0(r30)
-/* 8022A934 00227874  48 00 CB 9D */	bl dMsgObject_c_NS_getSelectBombNum
+/* 8022A934 00227874  48 00 CB 9D */	bl getSelectBombNum__12dMsgObject_cFv
 /* 8022A938 00227878  7C 60 1B 78 */	mr r0, r3
 /* 8022A93C 0022787C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022A940 00227880  38 80 00 07 */	li r4, 7
 /* 8022A944 00227884  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8022A948 00227888  38 C1 00 D8 */	addi r6, r1, 0xd8
 /* 8022A94C 0022788C  38 E0 00 01 */	li r7, 1
-/* 8022A950 00227890  48 00 E3 9D */	bl dMsgUnit_c_NS_setTag
+/* 8022A950 00227890  48 00 E3 9D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022A954 00227894  7F E3 FB 78 */	mr r3, r31
 /* 8022A958 00227898  38 81 00 D8 */	addi r4, r1, 0xd8
-/* 8022A95C 0022789C  48 00 0B 85 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A95C 0022789C  48 00 0B 85 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A960 002278A0  38 60 00 01 */	li r3, 1
 /* 8022A964 002278A4  48 00 07 34 */	b lbl_8022B098
-/* 8022A968 002278A8  48 00 DC 79 */	bl dMsgObject_c_NS_getSelectBombPrice
+/* 8022A968 002278A8  48 00 DC 79 */	bl getSelectBombPrice__12dMsgObject_cFv
 /* 8022A96C 002278AC  7C 60 1B 78 */	mr r0, r3
 /* 8022A970 002278B0  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022A974 002278B4  38 80 00 01 */	li r4, 1
 /* 8022A978 002278B8  7C 05 07 34 */	extsh r5, r0
 /* 8022A97C 002278BC  38 C1 00 B0 */	addi r6, r1, 0xb0
 /* 8022A980 002278C0  38 E0 00 01 */	li r7, 1
-/* 8022A984 002278C4  48 00 E3 69 */	bl dMsgUnit_c_NS_setTag
+/* 8022A984 002278C4  48 00 E3 69 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022A988 002278C8  7F E3 FB 78 */	mr r3, r31
 /* 8022A98C 002278CC  38 81 00 B0 */	addi r4, r1, 0xb0
-/* 8022A990 002278D0  48 00 0B 51 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A990 002278D0  48 00 0B 51 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A994 002278D4  38 60 00 01 */	li r3, 1
 /* 8022A998 002278D8  48 00 07 00 */	b lbl_8022B098
 /* 8022A99C 002278DC  38 80 00 70 */	li r4, 0x70
@@ -2616,10 +2616,10 @@ lbl_8022A9C4:
 /* 8022A9E0 00227920  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8022A9E4 00227924  38 C1 00 88 */	addi r6, r1, 0x88
 /* 8022A9E8 00227928  38 E0 00 01 */	li r7, 1
-/* 8022A9EC 0022792C  48 00 E3 01 */	bl dMsgUnit_c_NS_setTag
+/* 8022A9EC 0022792C  48 00 E3 01 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022A9F0 00227930  7F E3 FB 78 */	mr r3, r31
 /* 8022A9F4 00227934  38 81 00 88 */	addi r4, r1, 0x88
-/* 8022A9F8 00227938  48 00 0A E9 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022A9F8 00227938  48 00 0A E9 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022A9FC 0022793C  38 60 00 01 */	li r3, 1
 /* 8022AA00 00227940  48 00 06 98 */	b lbl_8022B098
 /* 8022AA04 00227944  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -2629,10 +2629,10 @@ lbl_8022A9C4:
 /* 8022AA14 00227954  38 80 00 00 */	li r4, 0
 /* 8022AA18 00227958  38 C1 00 60 */	addi r6, r1, 0x60
 /* 8022AA1C 0022795C  38 E0 00 01 */	li r7, 1
-/* 8022AA20 00227960  48 00 E2 CD */	bl dMsgUnit_c_NS_setTag
+/* 8022AA20 00227960  48 00 E2 CD */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AA24 00227964  7F E3 FB 78 */	mr r3, r31
 /* 8022AA28 00227968  38 81 00 60 */	addi r4, r1, 0x60
-/* 8022AA2C 0022796C  48 00 0A B5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AA2C 0022796C  48 00 0A B5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AA30 00227970  38 60 00 01 */	li r3, 1
 /* 8022AA34 00227974  48 00 06 64 */	b lbl_8022B098
 lbl_8022AA38:
@@ -2652,21 +2652,21 @@ lbl_8022AA40:
 /* 8022AA68 002279A8  4B FF DB 65 */	bl changeCodeToChar
 /* 8022AA6C 002279AC  7C 64 1B 78 */	mr r4, r3
 /* 8022AA70 002279B0  7F E3 FB 78 */	mr r3, r31
-/* 8022AA74 002279B4  48 00 0A 6D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AA74 002279B4  48 00 0A 6D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AA78 002279B8  38 60 00 01 */	li r3, 1
 /* 8022AA7C 002279BC  48 00 06 1C */	b lbl_8022B098
 /* 8022AA80 002279C0  38 60 00 5C */	li r3, 0x5c
 /* 8022AA84 002279C4  4B FF DB 49 */	bl changeCodeToChar
 /* 8022AA88 002279C8  7C 64 1B 78 */	mr r4, r3
 /* 8022AA8C 002279CC  7F E3 FB 78 */	mr r3, r31
-/* 8022AA90 002279D0  48 00 0A 51 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AA90 002279D0  48 00 0A 51 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AA94 002279D4  38 60 00 01 */	li r3, 1
 /* 8022AA98 002279D8  48 00 06 00 */	b lbl_8022B098
 /* 8022AA9C 002279DC  38 60 00 40 */	li r3, 0x40
 /* 8022AAA0 002279E0  4B FF DB 2D */	bl changeCodeToChar
 /* 8022AAA4 002279E4  7C 64 1B 78 */	mr r4, r3
 /* 8022AAA8 002279E8  7F E3 FB 78 */	mr r3, r31
-/* 8022AAAC 002279EC  48 00 0A 35 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AAAC 002279EC  48 00 0A 35 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AAB0 002279F0  38 60 00 01 */	li r3, 1
 /* 8022AAB4 002279F4  48 00 05 E4 */	b lbl_8022B098
 /* 8022AAB8 002279F8  3C 60 00 01 */	lis r3, 0x000081F2@ha
@@ -2674,7 +2674,7 @@ lbl_8022AA40:
 /* 8022AAC0 00227A00  4B FF DB 0D */	bl changeCodeToChar
 /* 8022AAC4 00227A04  7C 64 1B 78 */	mr r4, r3
 /* 8022AAC8 00227A08  7F E3 FB 78 */	mr r3, r31
-/* 8022AACC 00227A0C  48 00 0A 15 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AACC 00227A0C  48 00 0A 15 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AAD0 00227A10  38 60 00 01 */	li r3, 1
 /* 8022AAD4 00227A14  48 00 05 C4 */	b lbl_8022B098
 /* 8022AAD8 00227A18  3C 60 00 01 */	lis r3, 0x000081F3@ha
@@ -2682,7 +2682,7 @@ lbl_8022AA40:
 /* 8022AAE0 00227A20  4B FF DA ED */	bl changeCodeToChar
 /* 8022AAE4 00227A24  7C 64 1B 78 */	mr r4, r3
 /* 8022AAE8 00227A28  7F E3 FB 78 */	mr r3, r31
-/* 8022AAEC 00227A2C  48 00 09 F5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AAEC 00227A2C  48 00 09 F5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AAF0 00227A30  38 60 00 01 */	li r3, 1
 /* 8022AAF4 00227A34  48 00 05 A4 */	b lbl_8022B098
 /* 8022AAF8 00227A38  3C 60 00 01 */	lis r3, 0x000081E3@ha
@@ -2690,7 +2690,7 @@ lbl_8022AA40:
 /* 8022AB00 00227A40  4B FF DA CD */	bl changeCodeToChar
 /* 8022AB04 00227A44  7C 64 1B 78 */	mr r4, r3
 /* 8022AB08 00227A48  7F E3 FB 78 */	mr r3, r31
-/* 8022AB0C 00227A4C  48 00 09 D5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AB0C 00227A4C  48 00 09 D5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AB10 00227A50  38 60 00 01 */	li r3, 1
 /* 8022AB14 00227A54  48 00 05 84 */	b lbl_8022B098
 /* 8022AB18 00227A58  3C 60 00 01 */	lis r3, 0x0000876C@ha
@@ -2698,7 +2698,7 @@ lbl_8022AA40:
 /* 8022AB20 00227A60  4B FF DA AD */	bl changeCodeToChar
 /* 8022AB24 00227A64  7C 64 1B 78 */	mr r4, r3
 /* 8022AB28 00227A68  7F E3 FB 78 */	mr r3, r31
-/* 8022AB2C 00227A6C  48 00 09 B5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AB2C 00227A6C  48 00 09 B5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AB30 00227A70  38 60 00 01 */	li r3, 1
 /* 8022AB34 00227A74  48 00 05 64 */	b lbl_8022B098
 /* 8022AB38 00227A78  3C 60 00 01 */	lis r3, 0x00008766@ha
@@ -2706,7 +2706,7 @@ lbl_8022AA40:
 /* 8022AB40 00227A80  4B FF DA 8D */	bl changeCodeToChar
 /* 8022AB44 00227A84  7C 64 1B 78 */	mr r4, r3
 /* 8022AB48 00227A88  7F E3 FB 78 */	mr r3, r31
-/* 8022AB4C 00227A8C  48 00 09 95 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AB4C 00227A8C  48 00 09 95 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AB50 00227A90  38 60 00 01 */	li r3, 1
 /* 8022AB54 00227A94  48 00 05 44 */	b lbl_8022B098
 /* 8022AB58 00227A98  3C 60 00 01 */	lis r3, 0x00008765@ha
@@ -2714,7 +2714,7 @@ lbl_8022AA40:
 /* 8022AB60 00227AA0  4B FF DA 6D */	bl changeCodeToChar
 /* 8022AB64 00227AA4  7C 64 1B 78 */	mr r4, r3
 /* 8022AB68 00227AA8  7F E3 FB 78 */	mr r3, r31
-/* 8022AB6C 00227AAC  48 00 09 75 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AB6C 00227AAC  48 00 09 75 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AB70 00227AB0  38 60 00 01 */	li r3, 1
 /* 8022AB74 00227AB4  48 00 05 24 */	b lbl_8022B098
 /* 8022AB78 00227AB8  3C 60 00 01 */	lis r3, 0x00008767@ha
@@ -2722,7 +2722,7 @@ lbl_8022AA40:
 /* 8022AB80 00227AC0  4B FF DA 4D */	bl changeCodeToChar
 /* 8022AB84 00227AC4  7C 64 1B 78 */	mr r4, r3
 /* 8022AB88 00227AC8  7F E3 FB 78 */	mr r3, r31
-/* 8022AB8C 00227ACC  48 00 09 55 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AB8C 00227ACC  48 00 09 55 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AB90 00227AD0  38 60 00 01 */	li r3, 1
 /* 8022AB94 00227AD4  48 00 05 04 */	b lbl_8022B098
 /* 8022AB98 00227AD8  3C 60 00 01 */	lis r3, 0x00008768@ha
@@ -2730,7 +2730,7 @@ lbl_8022AA40:
 /* 8022ABA0 00227AE0  4B FF DA 2D */	bl changeCodeToChar
 /* 8022ABA4 00227AE4  7C 64 1B 78 */	mr r4, r3
 /* 8022ABA8 00227AE8  7F E3 FB 78 */	mr r3, r31
-/* 8022ABAC 00227AEC  48 00 09 35 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022ABAC 00227AEC  48 00 09 35 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022ABB0 00227AF0  38 60 00 01 */	li r3, 1
 /* 8022ABB4 00227AF4  48 00 04 E4 */	b lbl_8022B098
 /* 8022ABB8 00227AF8  3C 60 00 01 */	lis r3, 0x00008769@ha
@@ -2738,7 +2738,7 @@ lbl_8022AA40:
 /* 8022ABC0 00227B00  4B FF DA 0D */	bl changeCodeToChar
 /* 8022ABC4 00227B04  7C 64 1B 78 */	mr r4, r3
 /* 8022ABC8 00227B08  7F E3 FB 78 */	mr r3, r31
-/* 8022ABCC 00227B0C  48 00 09 15 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022ABCC 00227B0C  48 00 09 15 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022ABD0 00227B10  38 60 00 01 */	li r3, 1
 /* 8022ABD4 00227B14  48 00 04 C4 */	b lbl_8022B098
 /* 8022ABD8 00227B18  3C 60 00 01 */	lis r3, 0x0000876A@ha
@@ -2746,7 +2746,7 @@ lbl_8022AA40:
 /* 8022ABE0 00227B20  4B FF D9 ED */	bl changeCodeToChar
 /* 8022ABE4 00227B24  7C 64 1B 78 */	mr r4, r3
 /* 8022ABE8 00227B28  7F E3 FB 78 */	mr r3, r31
-/* 8022ABEC 00227B2C  48 00 08 F5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022ABEC 00227B2C  48 00 08 F5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022ABF0 00227B30  38 60 00 01 */	li r3, 1
 /* 8022ABF4 00227B34  48 00 04 A4 */	b lbl_8022B098
 /* 8022ABF8 00227B38  3C 60 00 01 */	lis r3, 0x0000876B@ha
@@ -2754,7 +2754,7 @@ lbl_8022AA40:
 /* 8022AC00 00227B40  4B FF D9 CD */	bl changeCodeToChar
 /* 8022AC04 00227B44  7C 64 1B 78 */	mr r4, r3
 /* 8022AC08 00227B48  7F E3 FB 78 */	mr r3, r31
-/* 8022AC0C 00227B4C  48 00 08 D5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AC0C 00227B4C  48 00 08 D5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AC10 00227B50  38 60 00 01 */	li r3, 1
 /* 8022AC14 00227B54  48 00 04 84 */	b lbl_8022B098
 lbl_8022AC18:
@@ -2780,7 +2780,7 @@ lbl_8022AC20:
 /* 8022AC60 00227BA0  80 A5 00 88 */	lwz r5, 0x88(r5)
 /* 8022AC64 00227BA4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AC68 00227BA8  38 E0 00 01 */	li r7, 1
-/* 8022AC6C 00227BAC  48 00 E0 81 */	bl dMsgUnit_c_NS_setTag
+/* 8022AC6C 00227BAC  48 00 E0 81 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AC70 00227BB0  48 00 02 A8 */	b lbl_8022AF18
 lbl_8022AC74:
 /* 8022AC74 00227BB4  54 00 06 3E */	clrlwi r0, r0, 0x18
@@ -2793,7 +2793,7 @@ lbl_8022AC74:
 /* 8022AC90 00227BD0  38 80 00 04 */	li r4, 4
 /* 8022AC94 00227BD4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AC98 00227BD8  38 E0 00 01 */	li r7, 1
-/* 8022AC9C 00227BDC  48 00 E0 51 */	bl dMsgUnit_c_NS_setTag
+/* 8022AC9C 00227BDC  48 00 E0 51 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022ACA0 00227BE0  48 00 02 78 */	b lbl_8022AF18
 lbl_8022ACA4:
 /* 8022ACA4 00227BE4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
@@ -2803,7 +2803,7 @@ lbl_8022ACA4:
 /* 8022ACB4 00227BF4  80 A5 00 84 */	lwz r5, 0x84(r5)
 /* 8022ACB8 00227BF8  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022ACBC 00227BFC  38 E0 00 01 */	li r7, 1
-/* 8022ACC0 00227C00  48 00 E0 2D */	bl dMsgUnit_c_NS_setTag
+/* 8022ACC0 00227C00  48 00 E0 2D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022ACC4 00227C04  48 00 02 54 */	b lbl_8022AF18
 /* 8022ACC8 00227C08  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022ACCC 00227C0C  38 80 00 00 */	li r4, 0
@@ -2812,7 +2812,7 @@ lbl_8022ACA4:
 /* 8022ACD8 00227C18  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 8022ACDC 00227C1C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022ACE0 00227C20  38 E0 00 01 */	li r7, 1
-/* 8022ACE4 00227C24  48 00 E0 09 */	bl dMsgUnit_c_NS_setTag
+/* 8022ACE4 00227C24  48 00 E0 09 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022ACE8 00227C28  48 00 02 30 */	b lbl_8022AF18
 /* 8022ACEC 00227C2C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022ACF0 00227C30  38 80 00 01 */	li r4, 1
@@ -2821,7 +2821,7 @@ lbl_8022ACA4:
 /* 8022ACFC 00227C3C  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 8022AD00 00227C40  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AD04 00227C44  38 E0 00 01 */	li r7, 1
-/* 8022AD08 00227C48  48 00 DF E5 */	bl dMsgUnit_c_NS_setTag
+/* 8022AD08 00227C48  48 00 DF E5 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AD0C 00227C4C  48 00 02 0C */	b lbl_8022AF18
 /* 8022AD10 00227C50  80 1D 00 00 */	lwz r0, 0(r29)
 /* 8022AD14 00227C54  7C 1D 07 34 */	extsh r29, r0
@@ -2834,7 +2834,7 @@ lbl_8022ACA4:
 /* 8022AD30 00227C70  38 80 00 0A */	li r4, 0xa
 /* 8022AD34 00227C74  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AD38 00227C78  38 E0 00 01 */	li r7, 1
-/* 8022AD3C 00227C7C  48 00 DF B1 */	bl dMsgUnit_c_NS_setTag
+/* 8022AD3C 00227C7C  48 00 DF B1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AD40 00227C80  48 00 01 D8 */	b lbl_8022AF18
 /* 8022AD44 00227C84  4B FF 3A 11 */	bl dMeter2Info_getNewLetterNum
 /* 8022AD48 00227C88  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -2842,7 +2842,7 @@ lbl_8022ACA4:
 /* 8022AD50 00227C90  38 80 00 0B */	li r4, 0xb
 /* 8022AD54 00227C94  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AD58 00227C98  38 E0 00 01 */	li r7, 1
-/* 8022AD5C 00227C9C  48 00 DF 91 */	bl dMsgUnit_c_NS_setTag
+/* 8022AD5C 00227C9C  48 00 DF 91 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AD60 00227CA0  48 00 01 B8 */	b lbl_8022AF18
 /* 8022AD64 00227CA4  4B FF DD 69 */	bl getPohNum
 /* 8022AD68 00227CA8  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -2850,7 +2850,7 @@ lbl_8022ACA4:
 /* 8022AD70 00227CB0  38 80 00 0C */	li r4, 0xc
 /* 8022AD74 00227CB4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AD78 00227CB8  38 E0 00 01 */	li r7, 1
-/* 8022AD7C 00227CBC  48 00 DF 71 */	bl dMsgUnit_c_NS_setTag
+/* 8022AD7C 00227CBC  48 00 DF 71 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AD80 00227CC0  48 00 01 98 */	b lbl_8022AF18
 /* 8022AD84 00227CC4  88 1D 00 00 */	lbz r0, 0(r29)
 /* 8022AD88 00227CC8  28 00 00 00 */	cmplwi r0, 0
@@ -2868,7 +2868,7 @@ lbl_8022ADAC:
 /* 8022ADB0 00227CF0  38 80 00 0D */	li r4, 0xd
 /* 8022ADB4 00227CF4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022ADB8 00227CF8  38 E0 00 01 */	li r7, 1
-/* 8022ADBC 00227CFC  48 00 DF 31 */	bl dMsgUnit_c_NS_setTag
+/* 8022ADBC 00227CFC  48 00 DF 31 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022ADC0 00227D00  48 00 01 58 */	b lbl_8022AF18
 /* 8022ADC4 00227D04  88 1D 00 00 */	lbz r0, 0(r29)
 /* 8022ADC8 00227D08  28 00 00 00 */	cmplwi r0, 0
@@ -2885,14 +2885,14 @@ lbl_8022ADE8:
 /* 8022ADEC 00227D2C  38 80 00 02 */	li r4, 2
 /* 8022ADF0 00227D30  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022ADF4 00227D34  38 E0 00 01 */	li r7, 1
-/* 8022ADF8 00227D38  48 00 DE F5 */	bl dMsgUnit_c_NS_setTag
+/* 8022ADF8 00227D38  48 00 DE F5 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022ADFC 00227D3C  48 00 01 1C */	b lbl_8022AF18
 /* 8022AE00 00227D40  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AE04 00227D44  38 80 00 03 */	li r4, 3
 /* 8022AE08 00227D48  38 A0 00 00 */	li r5, 0
 /* 8022AE0C 00227D4C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AE10 00227D50  38 E0 00 01 */	li r7, 1
-/* 8022AE14 00227D54  48 00 DE D9 */	bl dMsgUnit_c_NS_setTag
+/* 8022AE14 00227D54  48 00 DE D9 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AE18 00227D58  48 00 01 00 */	b lbl_8022AF18
 /* 8022AE1C 00227D5C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AE20 00227D60  3C 80 00 01 */	lis r4, 1
@@ -2901,7 +2901,7 @@ lbl_8022ADE8:
 /* 8022AE2C 00227D6C  88 A5 5E A1 */	lbz r5, 0x5ea1(r5)
 /* 8022AE30 00227D70  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AE34 00227D74  38 E0 00 01 */	li r7, 1
-/* 8022AE38 00227D78  48 00 DE B5 */	bl dMsgUnit_c_NS_setTag
+/* 8022AE38 00227D78  48 00 DE B5 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AE3C 00227D7C  48 00 00 DC */	b lbl_8022AF18
 /* 8022AE40 00227D80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022AE44 00227D84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -2916,7 +2916,7 @@ lbl_8022ADE8:
 /* 8022AE68 00227DA8  20 A0 00 14 */	subfic r5, r0, 0x14
 /* 8022AE6C 00227DAC  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AE70 00227DB0  38 E0 00 01 */	li r7, 1
-/* 8022AE74 00227DB4  48 00 DE 79 */	bl dMsgUnit_c_NS_setTag
+/* 8022AE74 00227DB4  48 00 DE 79 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AE78 00227DB8  48 00 00 A0 */	b lbl_8022AF18
 /* 8022AE7C 00227DBC  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AE80 00227DC0  38 80 00 09 */	li r4, 9
@@ -2925,7 +2925,7 @@ lbl_8022ADE8:
 /* 8022AE8C 00227DCC  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 8022AE90 00227DD0  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AE94 00227DD4  38 E0 00 01 */	li r7, 1
-/* 8022AE98 00227DD8  48 00 DE 55 */	bl dMsgUnit_c_NS_setTag
+/* 8022AE98 00227DD8  48 00 DE 55 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AE9C 00227DDC  48 00 00 7C */	b lbl_8022AF18
 /* 8022AEA0 00227DE0  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AEA4 00227DE4  38 80 00 0E */	li r4, 0xe
@@ -2934,7 +2934,7 @@ lbl_8022ADE8:
 /* 8022AEB0 00227DF0  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 8022AEB4 00227DF4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AEB8 00227DF8  38 E0 00 01 */	li r7, 1
-/* 8022AEBC 00227DFC  48 00 DE 31 */	bl dMsgUnit_c_NS_setTag
+/* 8022AEBC 00227DFC  48 00 DE 31 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AEC0 00227E00  48 00 00 58 */	b lbl_8022AF18
 /* 8022AEC4 00227E04  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AEC8 00227E08  3C 80 00 01 */	lis r4, 0x00010001@ha
@@ -2944,7 +2944,7 @@ lbl_8022ADE8:
 /* 8022AED8 00227E18  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 8022AEDC 00227E1C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AEE0 00227E20  38 E0 00 01 */	li r7, 1
-/* 8022AEE4 00227E24  48 00 DE 09 */	bl dMsgUnit_c_NS_setTag
+/* 8022AEE4 00227E24  48 00 DE 09 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AEE8 00227E28  48 00 00 30 */	b lbl_8022AF18
 /* 8022AEEC 00227E2C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022AEF0 00227E30  38 80 00 08 */	li r4, 8
@@ -2953,7 +2953,7 @@ lbl_8022ADE8:
 /* 8022AEFC 00227E3C  88 A5 00 BC */	lbz r5, 0xbc(r5)
 /* 8022AF00 00227E40  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8022AF04 00227E44  38 E0 00 01 */	li r7, 1
-/* 8022AF08 00227E48  48 00 DD E5 */	bl dMsgUnit_c_NS_setTag
+/* 8022AF08 00227E48  48 00 DD E5 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022AF0C 00227E4C  48 00 00 0C */	b lbl_8022AF18
 lbl_8022AF10:
 /* 8022AF10 00227E50  38 60 00 00 */	li r3, 0
@@ -2961,7 +2961,7 @@ lbl_8022AF10:
 lbl_8022AF18:
 /* 8022AF18 00227E58  7F E3 FB 78 */	mr r3, r31
 /* 8022AF1C 00227E5C  38 81 00 38 */	addi r4, r1, 0x38
-/* 8022AF20 00227E60  48 00 05 C1 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AF20 00227E60  48 00 05 C1 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AF24 00227E64  38 60 00 01 */	li r3, 1
 /* 8022AF28 00227E68  48 00 01 70 */	b lbl_8022B098
 lbl_8022AF2C:
@@ -2975,71 +2975,71 @@ lbl_8022AF2C:
 /* 8022AF48 00227E88  7C 09 03 A6 */	mtctr r0
 /* 8022AF4C 00227E8C  4E 80 04 20 */	bctr 
 /* 8022AF50 00227E90  38 81 00 10 */	addi r4, r1, 0x10
-/* 8022AF54 00227E94  48 00 05 8D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AF54 00227E94  48 00 05 8D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AF58 00227E98  38 60 00 01 */	li r3, 1
 /* 8022AF5C 00227E9C  48 00 01 3C */	b lbl_8022B098
 /* 8022AF60 00227EA0  38 81 00 10 */	addi r4, r1, 0x10
-/* 8022AF64 00227EA4  48 00 05 7D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AF64 00227EA4  48 00 05 7D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AF68 00227EA8  38 60 00 01 */	li r3, 1
 /* 8022AF6C 00227EAC  48 00 01 2C */	b lbl_8022B098
 /* 8022AF70 00227EB0  38 60 00 B2 */	li r3, 0xb2
 /* 8022AF74 00227EB4  4B FF D6 59 */	bl changeCodeToChar
 /* 8022AF78 00227EB8  7C 64 1B 78 */	mr r4, r3
 /* 8022AF7C 00227EBC  7F E3 FB 78 */	mr r3, r31
-/* 8022AF80 00227EC0  48 00 05 61 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AF80 00227EC0  48 00 05 61 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AF84 00227EC4  38 60 00 01 */	li r3, 1
 /* 8022AF88 00227EC8  48 00 01 10 */	b lbl_8022B098
 /* 8022AF8C 00227ECC  38 60 00 B3 */	li r3, 0xb3
 /* 8022AF90 00227ED0  4B FF D6 3D */	bl changeCodeToChar
 /* 8022AF94 00227ED4  7C 64 1B 78 */	mr r4, r3
 /* 8022AF98 00227ED8  7F E3 FB 78 */	mr r3, r31
-/* 8022AF9C 00227EDC  48 00 05 45 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AF9C 00227EDC  48 00 05 45 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AFA0 00227EE0  38 60 00 01 */	li r3, 1
 /* 8022AFA4 00227EE4  48 00 00 F4 */	b lbl_8022B098
 /* 8022AFA8 00227EE8  38 60 00 B1 */	li r3, 0xb1
 /* 8022AFAC 00227EEC  4B FF D6 21 */	bl changeCodeToChar
 /* 8022AFB0 00227EF0  7C 64 1B 78 */	mr r4, r3
 /* 8022AFB4 00227EF4  7F E3 FB 78 */	mr r3, r31
-/* 8022AFB8 00227EF8  48 00 05 29 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AFB8 00227EF8  48 00 05 29 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AFBC 00227EFC  38 60 00 01 */	li r3, 1
 /* 8022AFC0 00227F00  48 00 00 D8 */	b lbl_8022B098
 /* 8022AFC4 00227F04  38 60 00 89 */	li r3, 0x89
 /* 8022AFC8 00227F08  4B FF D6 05 */	bl changeCodeToChar
 /* 8022AFCC 00227F0C  7C 64 1B 78 */	mr r4, r3
 /* 8022AFD0 00227F10  7F E3 FB 78 */	mr r3, r31
-/* 8022AFD4 00227F14  48 00 05 0D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AFD4 00227F14  48 00 05 0D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AFD8 00227F18  38 60 00 01 */	li r3, 1
 /* 8022AFDC 00227F1C  48 00 00 BC */	b lbl_8022B098
 /* 8022AFE0 00227F20  38 60 00 B9 */	li r3, 0xb9
 /* 8022AFE4 00227F24  4B FF D5 E9 */	bl changeCodeToChar
 /* 8022AFE8 00227F28  7C 64 1B 78 */	mr r4, r3
 /* 8022AFEC 00227F2C  7F E3 FB 78 */	mr r3, r31
-/* 8022AFF0 00227F30  48 00 04 F1 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022AFF0 00227F30  48 00 04 F1 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022AFF4 00227F34  38 60 00 01 */	li r3, 1
 /* 8022AFF8 00227F38  48 00 00 A0 */	b lbl_8022B098
 /* 8022AFFC 00227F3C  38 60 00 BC */	li r3, 0xbc
 /* 8022B000 00227F40  4B FF D5 CD */	bl changeCodeToChar
 /* 8022B004 00227F44  7C 64 1B 78 */	mr r4, r3
 /* 8022B008 00227F48  7F E3 FB 78 */	mr r3, r31
-/* 8022B00C 00227F4C  48 00 04 D5 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022B00C 00227F4C  48 00 04 D5 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022B010 00227F50  38 60 00 01 */	li r3, 1
 /* 8022B014 00227F54  48 00 00 84 */	b lbl_8022B098
 /* 8022B018 00227F58  38 60 00 BD */	li r3, 0xbd
 /* 8022B01C 00227F5C  4B FF D5 B1 */	bl changeCodeToChar
 /* 8022B020 00227F60  7C 64 1B 78 */	mr r4, r3
 /* 8022B024 00227F64  7F E3 FB 78 */	mr r3, r31
-/* 8022B028 00227F68  48 00 04 B9 */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022B028 00227F68  48 00 04 B9 */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022B02C 00227F6C  38 60 00 01 */	li r3, 1
 /* 8022B030 00227F70  48 00 00 68 */	b lbl_8022B098
 /* 8022B034 00227F74  38 60 00 BE */	li r3, 0xbe
 /* 8022B038 00227F78  4B FF D5 95 */	bl changeCodeToChar
 /* 8022B03C 00227F7C  7C 64 1B 78 */	mr r4, r3
 /* 8022B040 00227F80  7F E3 FB 78 */	mr r3, r31
-/* 8022B044 00227F84  48 00 04 9D */	bl jmessage_tMeasureProcessor_NS_push_word
+/* 8022B044 00227F84  48 00 04 9D */	bl push_word__26jmessage_tMeasureProcessorFPc
 /* 8022B048 00227F88  38 60 00 01 */	li r3, 1
 /* 8022B04C 00227F8C  48 00 00 4C */	b lbl_8022B098
 /* 8022B050 00227F90  7F E3 FB 78 */	mr r3, r31
-/* 8022B054 00227F94  48 00 01 39 */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022B054 00227F94  48 00 01 39 */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022B058 00227F98  38 60 00 01 */	li r3, 1
 /* 8022B05C 00227F9C  48 00 00 3C */	b lbl_8022B098
 lbl_8022B060:
@@ -3049,7 +3049,7 @@ lbl_8022B060:
 /* 8022B06C 00227FAC  2C 00 00 15 */	cmpwi r0, 0x15
 /* 8022B070 00227FB0  40 80 00 24 */	bge lbl_8022B094
 /* 8022B074 00227FB4  7F E3 FB 78 */	mr r3, r31
-/* 8022B078 00227FB8  48 00 01 15 */	bl jmessage_tMeasureProcessor_NS_do_space
+/* 8022B078 00227FB8  48 00 01 15 */	bl do_space__26jmessage_tMeasureProcessorFUl
 /* 8022B07C 00227FBC  38 60 00 01 */	li r3, 1
 /* 8022B080 00227FC0  48 00 00 18 */	b lbl_8022B098
 lbl_8022B084:
@@ -3067,8 +3067,8 @@ lbl_8022B098:
 /* 8022B0A8 00227FE8  38 21 01 E0 */	addi r1, r1, 0x1e0
 /* 8022B0AC 00227FEC  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_do_scale
-jmessage_tMeasureProcessor_NS_do_scale:
+.global do_scale__26jmessage_tMeasureProcessorFf
+do_scale__26jmessage_tMeasureProcessorFf:
 /* 8022B0B0 00227FF0  80 C3 00 04 */	lwz r6, 4(r3)
 /* 8022B0B4 00227FF4  C0 06 04 54 */	lfs f0, 0x454(r6)
 /* 8022B0B8 00227FF8  EC 01 00 32 */	fmuls f0, f1, f0
@@ -3128,8 +3128,8 @@ lbl_8022B150:
 /* 8022B184 002280C4  98 03 11 F2 */	stb r0, 0x11f2(r3)
 /* 8022B188 002280C8  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_do_space
-jmessage_tMeasureProcessor_NS_do_space:
+.global do_space__26jmessage_tMeasureProcessorFUl
+do_space__26jmessage_tMeasureProcessorFUl:
 /* 8022B18C 002280CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022B190 002280D0  7C 08 02 A6 */	mflr r0
 /* 8022B194 002280D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3214,7 +3214,7 @@ lbl_8022B1F8:
 lbl_8022B2C8:
 /* 8022B2C8 00228208  7F E3 FB 78 */	mr r3, r31
 /* 8022B2CC 0022820C  7C C4 33 78 */	mr r4, r6
-/* 8022B2D0 00228210  4B FF E4 99 */	bl jmessage_tReference_NS_setCharactor
+/* 8022B2D0 00228210  4B FF E4 99 */	bl setCharactor__19jmessage_tReferenceFUs
 /* 8022B2D4 00228214  48 00 00 98 */	b lbl_8022B36C
 lbl_8022B2D8:
 /* 8022B2D8 00228218  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -3238,18 +3238,18 @@ lbl_8022B304:
 lbl_8022B318:
 /* 8022B318 00228258  7F E3 FB 78 */	mr r3, r31
 /* 8022B31C 0022825C  7C C4 33 78 */	mr r4, r6
-/* 8022B320 00228260  4B FF E4 49 */	bl jmessage_tReference_NS_setCharactor
+/* 8022B320 00228260  4B FF E4 49 */	bl setCharactor__19jmessage_tReferenceFUs
 /* 8022B324 00228264  48 00 00 48 */	b lbl_8022B36C
 lbl_8022B328:
 /* 8022B328 00228268  7F E3 FB 78 */	mr r3, r31
 /* 8022B32C 0022826C  7C C4 33 78 */	mr r4, r6
-/* 8022B330 00228270  4B FF E4 39 */	bl jmessage_tReference_NS_setCharactor
+/* 8022B330 00228270  4B FF E4 39 */	bl setCharactor__19jmessage_tReferenceFUs
 /* 8022B334 00228274  48 00 00 38 */	b lbl_8022B36C
 lbl_8022B338:
 /* 8022B338 00228278  7F E3 FB 78 */	mr r3, r31
 /* 8022B33C 0022827C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8022B340 00228280  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 8022B344 00228284  4B FF E4 25 */	bl jmessage_tReference_NS_setCharactor
+/* 8022B344 00228284  4B FF E4 25 */	bl setCharactor__19jmessage_tReferenceFUs
 /* 8022B348 00228288  48 00 00 24 */	b lbl_8022B36C
 lbl_8022B34C:
 /* 8022B34C 0022828C  2C 04 00 0C */	cmpwi r4, 0xc
@@ -3260,7 +3260,7 @@ lbl_8022B34C:
 lbl_8022B360:
 /* 8022B360 002282A0  7F E3 FB 78 */	mr r3, r31
 /* 8022B364 002282A4  7C C4 33 78 */	mr r4, r6
-/* 8022B368 002282A8  4B FF E4 01 */	bl jmessage_tReference_NS_setCharactor
+/* 8022B368 002282A8  4B FF E4 01 */	bl setCharactor__19jmessage_tReferenceFUs
 lbl_8022B36C:
 /* 8022B36C 002282AC  88 1E 00 49 */	lbz r0, 0x49(r30)
 /* 8022B370 002282B0  7C 00 07 75 */	extsb. r0, r0
@@ -3297,8 +3297,8 @@ lbl_8022B3CC:
 /* 8022B3E4 00228324  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022B3E8 00228328  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_do_pageType
-jmessage_tMeasureProcessor_NS_do_pageType:
+.global do_pageType__26jmessage_tMeasureProcessorFi
+do_pageType__26jmessage_tMeasureProcessorFi:
 /* 8022B3EC 0022832C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8022B3F0 00228330  2C 04 00 01 */	cmpwi r4, 1
 /* 8022B3F4 00228334  40 82 00 24 */	bne lbl_8022B418
@@ -3328,12 +3328,12 @@ lbl_8022B440:
 /* 8022B44C 0022838C  98 03 11 F2 */	stb r0, 0x11f2(r3)
 /* 8022B450 00228390  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_do_name1
-jmessage_tMeasureProcessor_NS_do_name1:
+.global do_name1__26jmessage_tMeasureProcessorFv
+do_name1__26jmessage_tMeasureProcessorFv:
 /* 8022B454 00228394  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_do_rubyset
-jmessage_tMeasureProcessor_NS_do_rubyset:
+.global do_rubyset__26jmessage_tMeasureProcessorFPCvUl
+do_rubyset__26jmessage_tMeasureProcessorFPCvUl:
 /* 8022B458 00228398  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022B45C 0022839C  7C 08 02 A6 */	mflr r0
 /* 8022B460 002283A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3360,7 +3360,7 @@ lbl_8022B490:
 /* 8022B4B0 002283F0  4B FF D3 89 */	bl changeKataToHira
 /* 8022B4B4 002283F4  7C 64 1B 78 */	mr r4, r3
 /* 8022B4B8 002283F8  7F A3 EB 78 */	mr r3, r29
-/* 8022B4BC 002283FC  4B FF E2 AD */	bl jmessage_tReference_NS_setCharactor
+/* 8022B4BC 002283FC  4B FF E2 AD */	bl setCharactor__19jmessage_tReferenceFUs
 lbl_8022B4C0:
 /* 8022B4C0 00228400  7C 1E F8 00 */	cmpw r30, r31
 /* 8022B4C4 00228404  41 80 FF CC */	blt lbl_8022B490
@@ -3372,8 +3372,8 @@ lbl_8022B4C8:
 /* 8022B4D8 00228418  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022B4DC 0022841C  4E 80 00 20 */	blr 
 
-.global jmessage_tMeasureProcessor_NS_push_word
-jmessage_tMeasureProcessor_NS_push_word:
+.global push_word__26jmessage_tMeasureProcessorFPc
+push_word__26jmessage_tMeasureProcessorFPc:
 /* 8022B4E0 00228420  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022B4E4 00228424  7C 08 02 A6 */	mflr r0
 /* 8022B4E8 00228428  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3385,16 +3385,16 @@ jmessage_tMeasureProcessor_NS_push_word:
 /* 8022B500 00228440  7F E3 FB 78 */	mr r3, r31
 /* 8022B504 00228444  88 9D 00 4B */	lbz r4, 0x4b(r29)
 /* 8022B508 00228448  7C 84 07 74 */	extsb r4, r4
-/* 8022B50C 0022844C  4B FF E2 25 */	bl jmessage_tReference_NS_getWord
+/* 8022B50C 0022844C  4B FF E2 25 */	bl getWord__19jmessage_tReferenceFi
 /* 8022B510 00228450  7F C4 F3 78 */	mr r4, r30
 /* 8022B514 00228454  48 13 D6 19 */	bl strcpy
 /* 8022B518 00228458  7F E3 FB 78 */	mr r3, r31
 /* 8022B51C 0022845C  88 9D 00 4B */	lbz r4, 0x4b(r29)
 /* 8022B520 00228460  7C 84 07 74 */	extsb r4, r4
-/* 8022B524 00228464  4B FF E2 0D */	bl jmessage_tReference_NS_getWord
+/* 8022B524 00228464  4B FF E2 0D */	bl getWord__19jmessage_tReferenceFi
 /* 8022B528 00228468  7C 64 1B 78 */	mr r4, r3
 /* 8022B52C 0022846C  7F A3 EB 78 */	mr r3, r29
-/* 8022B530 00228470  48 07 C6 C9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022B530 00228470  48 07 C6 C9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022B534 00228474  88 7D 00 4B */	lbz r3, 0x4b(r29)
 /* 8022B538 00228478  38 03 00 01 */	addi r0, r3, 1
 /* 8022B53C 0022847C  98 1D 00 4B */	stb r0, 0x4b(r29)
@@ -3414,7 +3414,7 @@ jmessage_tSequenceProcessor:
 /* 8022B568 002284A8  93 C1 00 08 */	stw r30, 8(r1)
 /* 8022B56C 002284AC  7C 7E 1B 78 */	mr r30, r3
 /* 8022B570 002284B0  7C 9F 23 78 */	mr r31, r4
-/* 8022B574 002284B4  48 07 CE 01 */	bl JMessage_NS_TSequenceProcessor
+/* 8022B574 002284B4  48 07 CE 01 */	bl __ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl
 /* 8022B578 002284B8  3C 60 80 3C */	lis r3, lbl_803C0A3C@ha
 /* 8022B57C 002284BC  38 03 0A 3C */	addi r0, r3, lbl_803C0A3C@l
 /* 8022B580 002284C0  90 1E 00 00 */	stw r0, 0(r30)
@@ -3458,7 +3458,7 @@ jmessage_tSequenceProcessor:
 /* 8022B618 00228558  38 04 0A 94 */	addi r0, r4, lbl_803C0A94@l
 /* 8022B61C 0022855C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8022B620 00228560  38 80 00 00 */	li r4, 0
-/* 8022B624 00228564  48 07 D4 9D */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 8022B624 00228564  48 07 D4 9D */	bl __dt__Q28JMessage19TRenderingProcessorFv
 /* 8022B628 00228568  7F E0 07 35 */	extsh. r0, r31
 /* 8022B62C 0022856C  40 81 00 0C */	ble lbl_8022B638
 /* 8022B630 00228570  7F C3 F3 78 */	mr r3, r30
@@ -3520,7 +3520,7 @@ lbl_8022B6B0:
 /* 8022B704 00228644  B0 7F 06 30 */	sth r3, 0x630(r31)
 /* 8022B708 00228648  B0 7F 06 32 */	sth r3, 0x632(r31)
 /* 8022B70C 0022864C  7F E3 FB 78 */	mr r3, r31
-/* 8022B710 00228650  4B FF D6 19 */	bl jmessage_tReference_NS_calcDistance
+/* 8022B710 00228650  4B FF D6 19 */	bl calcDistance__19jmessage_tReferenceFv
 /* 8022B714 00228654  88 1D 00 10 */	lbz r0, 0x10(r29)
 /* 8022B718 00228658  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022B71C 0022865C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -3545,11 +3545,11 @@ lbl_8022B758:
 lbl_8022B760:
 /* 8022B760 002286A0  88 1D 00 09 */	lbz r0, 9(r29)
 /* 8022B764 002286A4  98 1F 12 46 */	stb r0, 0x1246(r31)
-/* 8022B768 002286A8  48 00 CD 99 */	bl dMsgObject_c_NS_getMsgOutputType
+/* 8022B768 002286A8  48 00 CD 99 */	bl getMsgOutputType__12dMsgObject_cFv
 /* 8022B76C 002286AC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022B770 002286B0  28 00 00 FF */	cmplwi r0, 0xff
 /* 8022B774 002286B4  41 82 00 10 */	beq lbl_8022B784
-/* 8022B778 002286B8  48 00 CD 89 */	bl dMsgObject_c_NS_getMsgOutputType
+/* 8022B778 002286B8  48 00 CD 89 */	bl getMsgOutputType__12dMsgObject_cFv
 /* 8022B77C 002286BC  98 7F 12 47 */	stb r3, 0x1247(r31)
 /* 8022B780 002286C0  48 00 00 0C */	b lbl_8022B78C
 lbl_8022B784:
@@ -3574,16 +3574,16 @@ lbl_8022B78C:
 /* 8022B7C8 00228708  4B E0 91 C5 */	bl onEventBit__11dSv_event_cFUs
 lbl_8022B7CC:
 /* 8022B7CC 0022870C  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022B7D0 00228710  48 00 A8 D1 */	bl dMsgObject_c_NS_talkStartInit
+/* 8022B7D0 00228710  48 00 A8 D1 */	bl talkStartInit__12dMsgObject_cFv
 /* 8022B7D4 00228714  80 1C 00 08 */	lwz r0, 8(r28)
 /* 8022B7D8 00228718  90 1C 00 54 */	stw r0, 0x54(r28)
 /* 8022B7DC 0022871C  93 DC 00 58 */	stw r30, 0x58(r28)
 /* 8022B7E0 00228720  38 00 00 00 */	li r0, 0
 /* 8022B7E4 00228724  90 1C 00 5C */	stw r0, 0x5c(r28)
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 8022B7E8 00228728  3C 60 80 2B */	lis r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 8022B7EC 0022872C  38 03 82 8C */	addi r0, r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 8022B7E8 00228728  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 8022B7EC 0022872C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
 /* 8022B7F0 00228730  90 1C 00 70 */	stw r0, 0x70(r28)
 /* 8022B7F4 00228734  38 7C 00 4C */	addi r3, r28, 0x4c
 /* 8022B7F8 00228738  7F C4 F3 78 */	mr r4, r30
@@ -3607,14 +3607,14 @@ lbl_8022B7CC:
 /* 8022B840 00228780  4E 80 04 21 */	bctrl 
 /* 8022B844 00228784  38 7C 00 4C */	addi r3, r28, 0x4c
 /* 8022B848 00228788  38 80 00 00 */	li r4, 0
-/* 8022B84C 0022878C  48 07 D2 D5 */	bl JMessage_NS_TRenderingProcessor_NS_process
+/* 8022B84C 0022878C  48 07 D2 D5 */	bl process__Q28JMessage19TRenderingProcessorFPCc
 /* 8022B850 00228790  88 1F 12 75 */	lbz r0, 0x1275(r31)
 /* 8022B854 00228794  28 00 00 00 */	cmplwi r0, 0
 /* 8022B858 00228798  41 82 00 14 */	beq lbl_8022B86C
 /* 8022B85C 0022879C  38 00 00 00 */	li r0, 0
 /* 8022B860 002287A0  98 1F 12 75 */	stb r0, 0x1275(r31)
 /* 8022B864 002287A4  7F 83 E3 78 */	mr r3, r28
-/* 8022B868 002287A8  48 00 13 81 */	bl jmessage_tSequenceProcessor_NS_calcStringLength
+/* 8022B868 002287A8  48 00 13 81 */	bl calcStringLength__27jmessage_tSequenceProcessorFv
 lbl_8022B86C:
 /* 8022B86C 002287AC  C0 1F 05 A8 */	lfs f0, 0x5a8(r31)
 /* 8022B870 002287B0  FC 40 00 90 */	fmr f2, f0
@@ -3635,11 +3635,11 @@ lbl_8022B894:
 /* 8022B8A4 002287E4  40 81 00 08 */	ble lbl_8022B8AC
 /* 8022B8A8 002287E8  D0 5F 04 48 */	stfs f2, 0x448(r31)
 lbl_8022B8AC:
-/* 8022B8AC 002287EC  48 00 CC 55 */	bl dMsgObject_c_NS_getMsgOutputType
+/* 8022B8AC 002287EC  48 00 CC 55 */	bl getMsgOutputType__12dMsgObject_cFv
 /* 8022B8B0 002287F0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022B8B4 002287F4  28 00 00 FF */	cmplwi r0, 0xff
 /* 8022B8B8 002287F8  41 82 00 10 */	beq lbl_8022B8C8
-/* 8022B8BC 002287FC  48 00 CC 45 */	bl dMsgObject_c_NS_getMsgOutputType
+/* 8022B8BC 002287FC  48 00 CC 45 */	bl getMsgOutputType__12dMsgObject_cFv
 /* 8022B8C0 00228800  98 7C 00 AE */	stb r3, 0xae(r28)
 /* 8022B8C4 00228804  48 00 00 0C */	b lbl_8022B8D0
 lbl_8022B8C8:
@@ -3733,7 +3733,7 @@ lbl_8022B9D0:
 /* 8022BA10 00228950  D0 1F 04 60 */	stfs f0, 0x460(r31)
 lbl_8022BA14:
 /* 8022BA14 00228954  7F E3 FB 78 */	mr r3, r31
-/* 8022BA18 00228958  4B FF D5 F5 */	bl jmessage_tReference_NS_resetReference
+/* 8022BA18 00228958  4B FF D5 F5 */	bl resetReference__19jmessage_tReferenceFv
 /* 8022BA1C 0022895C  38 00 00 00 */	li r0, 0
 /* 8022BA20 00228960  98 1C 00 B5 */	stb r0, 0xb5(r28)
 /* 8022BA24 00228964  39 61 00 20 */	addi r11, r1, 0x20
@@ -3749,10 +3749,10 @@ lbl_8022BA14:
 /* 8022BA4C 0022898C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8022BA50 00228990  7C 7E 1B 78 */	mr r30, r3
 /* 8022BA54 00228994  83 E3 00 04 */	lwz r31, 4(r3)
-/* 8022BA58 00228998  48 00 CB 1D */	bl dMsgObject_c_NS_getSelectWordFlag
+/* 8022BA58 00228998  48 00 CB 1D */	bl getSelectWord__12dMsgObject_cFiFlag
 /* 8022BA5C 0022899C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BA60 002289A0  41 82 00 24 */	beq lbl_8022BA84
-/* 8022BA64 002289A4  48 00 CB 11 */	bl dMsgObject_c_NS_getSelectWordFlag
+/* 8022BA64 002289A4  48 00 CB 11 */	bl getSelectWord__12dMsgObject_cFiFlag
 /* 8022BA68 002289A8  98 7F 12 42 */	stb r3, 0x1242(r31)
 /* 8022BA6C 002289AC  38 60 00 00 */	li r3, 0
 /* 8022BA70 002289B0  98 7F 12 43 */	stb r3, 0x1243(r31)
@@ -3783,7 +3783,7 @@ lbl_8022BABC:
 /* 8022BAC8 00228A08  28 00 00 00 */	cmplwi r0, 0
 /* 8022BACC 00228A0C  40 82 00 20 */	bne lbl_8022BAEC
 /* 8022BAD0 00228A10  7F E3 FB 78 */	mr r3, r31
-/* 8022BAD4 00228A14  4B FF D5 05 */	bl jmessage_tReference_NS_isMidona
+/* 8022BAD4 00228A14  4B FF D5 05 */	bl isMidona__19jmessage_tReferenceFv
 /* 8022BAD8 00228A18  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BADC 00228A1C  40 82 00 3C */	bne lbl_8022BB18
 /* 8022BAE0 00228A20  38 00 00 03 */	li r0, 3
@@ -3822,7 +3822,7 @@ lbl_8022BB48:
 /* 8022BB4C 00228A8C  28 00 00 00 */	cmplwi r0, 0
 /* 8022BB50 00228A90  41 82 00 0C */	beq lbl_8022BB5C
 /* 8022BB54 00228A94  7F E3 FB 78 */	mr r3, r31
-/* 8022BB58 00228A98  4B FF DC F1 */	bl jmessage_tReference_NS_allsetCharCountBuffer
+/* 8022BB58 00228A98  4B FF DC F1 */	bl allsetCharCountBuffer__19jmessage_tReferenceFv
 lbl_8022BB5C:
 /* 8022BB5C 00228A9C  38 00 00 FF */	li r0, 0xff
 /* 8022BB60 00228AA0  98 1F 05 DC */	stb r0, 0x5dc(r31)
@@ -3896,27 +3896,27 @@ lbl_8022BC50:
 /* 8022BC54 00228B94  48 00 03 74 */	b lbl_8022BFC8
 lbl_8022BC58:
 /* 8022BC58 00228B98  7F E3 FB 78 */	mr r3, r31
-/* 8022BC5C 00228B9C  4B FF D2 11 */	bl jmessage_tReference_NS_isKanban
+/* 8022BC5C 00228B9C  4B FF D2 11 */	bl isKanban__19jmessage_tReferenceFv
 /* 8022BC60 00228BA0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BC64 00228BA4  40 82 00 54 */	bne lbl_8022BCB8
 /* 8022BC68 00228BA8  7F E3 FB 78 */	mr r3, r31
-/* 8022BC6C 00228BAC  4B FF D2 35 */	bl jmessage_tReference_NS_isPlaceName
+/* 8022BC6C 00228BAC  4B FF D2 35 */	bl isPlaceName__19jmessage_tReferenceFv
 /* 8022BC70 00228BB0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BC74 00228BB4  40 82 00 44 */	bne lbl_8022BCB8
 /* 8022BC78 00228BB8  7F E3 FB 78 */	mr r3, r31
-/* 8022BC7C 00228BBC  4B FF D2 F5 */	bl jmessage_tReference_NS_isStaffRoll
+/* 8022BC7C 00228BBC  4B FF D2 F5 */	bl isStaffRoll__19jmessage_tReferenceFv
 /* 8022BC80 00228BC0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BC84 00228BC4  40 82 00 34 */	bne lbl_8022BCB8
 /* 8022BC88 00228BC8  7F E3 FB 78 */	mr r3, r31
-/* 8022BC8C 00228BCC  4B FF D2 49 */	bl jmessage_tReference_NS_isBossName
+/* 8022BC8C 00228BCC  4B FF D2 49 */	bl isBossName__19jmessage_tReferenceFv
 /* 8022BC90 00228BD0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BC94 00228BD4  40 82 00 24 */	bne lbl_8022BCB8
 /* 8022BC98 00228BD8  7F E3 FB 78 */	mr r3, r31
-/* 8022BC9C 00228BDC  4B FF D2 6D */	bl jmessage_tReference_NS_isSaveSeq
+/* 8022BC9C 00228BDC  4B FF D2 6D */	bl isSaveSeq__19jmessage_tReferenceFv
 /* 8022BCA0 00228BE0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BCA4 00228BE4  40 82 00 14 */	bne lbl_8022BCB8
 /* 8022BCA8 00228BE8  7F E3 FB 78 */	mr r3, r31
-/* 8022BCAC 00228BEC  4B FF D2 F9 */	bl jmessage_tReference_NS_isHowl
+/* 8022BCAC 00228BEC  4B FF D2 F9 */	bl isHowl__19jmessage_tReferenceFv
 /* 8022BCB0 00228BF0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BCB4 00228BF4  41 82 00 AC */	beq lbl_8022BD60
 lbl_8022BCB8:
@@ -3968,7 +3968,7 @@ lbl_8022BD48:
 /* 8022BD5C 00228C9C  48 00 02 68 */	b lbl_8022BFC4
 lbl_8022BD60:
 /* 8022BD60 00228CA0  7F E3 FB 78 */	mr r3, r31
-/* 8022BD64 00228CA4  4B FF D1 D9 */	bl jmessage_tReference_NS_isBook
+/* 8022BD64 00228CA4  4B FF D1 D9 */	bl isBook__19jmessage_tReferenceFv
 /* 8022BD68 00228CA8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BD6C 00228CAC  41 82 00 8C */	beq lbl_8022BDF8
 /* 8022BD70 00228CB0  80 7F 05 BC */	lwz r3, 0x5bc(r31)
@@ -4021,7 +4021,7 @@ lbl_8022BDF8:
 /* 8022BE1C 00228D5C  40 82 00 14 */	bne lbl_8022BE30
 lbl_8022BE20:
 /* 8022BE20 00228D60  7F E3 FB 78 */	mr r3, r31
-/* 8022BE24 00228D64  4B FF D1 B5 */	bl jmessage_tReference_NS_isMidona
+/* 8022BE24 00228D64  4B FF D1 B5 */	bl isMidona__19jmessage_tReferenceFv
 /* 8022BE28 00228D68  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BE2C 00228D6C  40 82 00 24 */	bne lbl_8022BE50
 lbl_8022BE30:
@@ -4030,7 +4030,7 @@ lbl_8022BE30:
 /* 8022BE38 00228D78  28 00 00 02 */	cmplwi r0, 2
 /* 8022BE3C 00228D7C  40 82 01 88 */	bne lbl_8022BFC4
 /* 8022BE40 00228D80  7F E3 FB 78 */	mr r3, r31
-/* 8022BE44 00228D84  4B FF D1 95 */	bl jmessage_tReference_NS_isMidona
+/* 8022BE44 00228D84  4B FF D1 95 */	bl isMidona__19jmessage_tReferenceFv
 /* 8022BE48 00228D88  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022BE4C 00228D8C  41 82 01 78 */	beq lbl_8022BFC4
 lbl_8022BE50:
@@ -4181,7 +4181,7 @@ lbl_8022C034:
 /* 8022C058 00228F98  4B FF C7 E1 */	bl changeKataToHira
 /* 8022C05C 00228F9C  7C 64 1B 78 */	mr r4, r3
 /* 8022C060 00228FA0  7F E3 FB 78 */	mr r3, r31
-/* 8022C064 00228FA4  4B FF D7 25 */	bl jmessage_tReference_NS_addCharactor
+/* 8022C064 00228FA4  4B FF D7 25 */	bl addCharactor__19jmessage_tReferenceFUs
 /* 8022C068 00228FA8  48 00 00 38 */	b lbl_8022C0A0
 lbl_8022C06C:
 /* 8022C06C 00228FAC  3C 60 00 01 */	lis r3, 0x00008800@ha
@@ -4196,7 +4196,7 @@ lbl_8022C06C:
 /* 8022C090 00228FD0  4B FF C7 A9 */	bl changeKataToHira
 /* 8022C094 00228FD4  7C 64 1B 78 */	mr r4, r3
 /* 8022C098 00228FD8  7F E3 FB 78 */	mr r3, r31
-/* 8022C09C 00228FDC  4B FF D6 ED */	bl jmessage_tReference_NS_addCharactor
+/* 8022C09C 00228FDC  4B FF D6 ED */	bl addCharactor__19jmessage_tReferenceFUs
 lbl_8022C0A0:
 /* 8022C0A0 00228FE0  88 7F 05 DC */	lbz r3, 0x5dc(r31)
 /* 8022C0A4 00228FE4  38 03 00 01 */	addi r0, r3, 1
@@ -4207,7 +4207,7 @@ lbl_8022C0AC:
 /* 8022C0B4 00228FF4  41 82 00 44 */	beq lbl_8022C0F8
 /* 8022C0B8 00228FF8  38 61 00 08 */	addi r3, r1, 8
 /* 8022C0BC 00228FFC  7F E4 FB 78 */	mr r4, r31
-/* 8022C0C0 00229000  48 00 69 61 */	bl jmessage_tReference_NS_getActorPos
+/* 8022C0C0 00229000  48 00 69 61 */	bl getActorPos__19jmessage_tReferenceFv
 /* 8022C0C4 00229004  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8022C0C8 00229008  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8022C0CC 0022900C  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -4218,7 +4218,7 @@ lbl_8022C0AC:
 /* 8022C0E0 00229020  88 9D 00 B4 */	lbz r4, 0xb4(r29)
 /* 8022C0E4 00229024  88 BD 00 B3 */	lbz r5, 0xb3(r29)
 /* 8022C0E8 00229028  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8022C0EC 0022902C  48 00 0A 25 */	bl jmessage_tSequenceProcessor_NS_messageSePlay
+/* 8022C0EC 0022902C  48 00 0A 25 */	bl messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz
 /* 8022C0F0 00229030  38 00 00 00 */	li r0, 0
 /* 8022C0F4 00229034  98 1D 00 B3 */	stb r0, 0xb3(r29)
 lbl_8022C0F8:
@@ -4317,7 +4317,7 @@ lbl_8022C234:
 lbl_8022C244:
 /* 8022C244 00229184  38 61 00 08 */	addi r3, r1, 8
 /* 8022C248 00229188  7F E4 FB 78 */	mr r4, r31
-/* 8022C24C 0022918C  48 00 67 D5 */	bl jmessage_tReference_NS_getActorPos
+/* 8022C24C 0022918C  48 00 67 D5 */	bl getActorPos__19jmessage_tReferenceFv
 /* 8022C250 00229190  C0 01 00 08 */	lfs f0, 8(r1)
 /* 8022C254 00229194  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8022C258 00229198  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -4328,7 +4328,7 @@ lbl_8022C244:
 /* 8022C26C 002291AC  88 9C 00 B4 */	lbz r4, 0xb4(r28)
 /* 8022C270 002291B0  57 A5 06 3E */	clrlwi r5, r29, 0x18
 /* 8022C274 002291B4  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8022C278 002291B8  48 00 08 99 */	bl jmessage_tSequenceProcessor_NS_messageSePlay
+/* 8022C278 002291B8  48 00 08 99 */	bl messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz
 /* 8022C27C 002291BC  38 60 00 01 */	li r3, 1
 /* 8022C280 002291C0  48 00 06 64 */	b lbl_8022C8E4
 lbl_8022C284:
@@ -4367,7 +4367,7 @@ lbl_8022C2F0:
 /* 8022C2F0 00229230  7F 83 E3 78 */	mr r3, r28
 /* 8022C2F4 00229234  7F C4 F3 78 */	mr r4, r30
 /* 8022C2F8 00229238  7C C5 33 78 */	mr r5, r6
-/* 8022C2FC 0022923C  48 00 07 29 */	bl jmessage_tSequenceProcessor_NS_do_rubyset
+/* 8022C2FC 0022923C  48 00 07 29 */	bl do_rubyset__27jmessage_tSequenceProcessorFPCvUl
 /* 8022C300 00229240  38 60 00 01 */	li r3, 1
 /* 8022C304 00229244  48 00 05 E0 */	b lbl_8022C8E4
 lbl_8022C308:
@@ -4380,54 +4380,54 @@ lbl_8022C308:
 /* 8022C320 00229260  7C 09 03 A6 */	mtctr r0
 /* 8022C324 00229264  4E 80 04 20 */	bctr 
 /* 8022C328 00229268  7F 83 E3 78 */	mr r3, r28
-/* 8022C32C 0022926C  48 00 07 81 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C32C 0022926C  48 00 07 81 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C330 00229270  38 60 00 01 */	li r3, 1
 /* 8022C334 00229274  48 00 05 B0 */	b lbl_8022C8E4
-/* 8022C338 00229278  48 00 C1 DD */	bl dMsgObject_c_NS_getWord
+/* 8022C338 00229278  48 00 C1 DD */	bl getWord__12dMsgObject_cFv
 /* 8022C33C 0022927C  7C 64 1B 78 */	mr r4, r3
 /* 8022C340 00229280  7F 83 E3 78 */	mr r3, r28
-/* 8022C344 00229284  48 07 B8 B5 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C344 00229284  48 07 B8 B5 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C348 00229288  38 60 00 01 */	li r3, 1
 /* 8022C34C 0022928C  48 00 05 98 */	b lbl_8022C8E4
 /* 8022C350 00229290  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C354 00229294  48 00 AF 79 */	bl dMsgObject_c_NS_getSmellName
+/* 8022C354 00229294  48 00 AF 79 */	bl getSmellName__12dMsgObject_cFv
 /* 8022C358 00229298  7C 64 1B 78 */	mr r4, r3
 /* 8022C35C 0022929C  7F 83 E3 78 */	mr r3, r28
-/* 8022C360 002292A0  48 07 B8 99 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C360 002292A0  48 07 B8 99 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C364 002292A4  38 60 00 01 */	li r3, 1
 /* 8022C368 002292A8  48 00 05 7C */	b lbl_8022C8E4
 /* 8022C36C 002292AC  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C370 002292B0  48 00 AF C5 */	bl dMsgObject_c_NS_getPortalName
+/* 8022C370 002292B0  48 00 AF C5 */	bl getPortalName__12dMsgObject_cFv
 /* 8022C374 002292B4  7C 64 1B 78 */	mr r4, r3
 /* 8022C378 002292B8  7F 83 E3 78 */	mr r3, r28
-/* 8022C37C 002292BC  48 07 B8 7D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C37C 002292BC  48 07 B8 7D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C380 002292C0  38 60 00 01 */	li r3, 1
 /* 8022C384 002292C4  48 00 05 60 */	b lbl_8022C8E4
 /* 8022C388 002292C8  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C38C 002292CC  48 00 B0 01 */	bl dMsgObject_c_NS_getBombName
+/* 8022C38C 002292CC  48 00 B0 01 */	bl getBombName__12dMsgObject_cFv
 /* 8022C390 002292D0  7C 64 1B 78 */	mr r4, r3
 /* 8022C394 002292D4  7F 83 E3 78 */	mr r3, r28
-/* 8022C398 002292D8  48 07 B8 61 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C398 002292D8  48 07 B8 61 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C39C 002292DC  38 60 00 01 */	li r3, 1
 /* 8022C3A0 002292E0  48 00 05 44 */	b lbl_8022C8E4
 /* 8022C3A4 002292E4  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C3A8 002292E8  48 00 B0 75 */	bl dMsgObject_c_NS_getInsectName
+/* 8022C3A8 002292E8  48 00 B0 75 */	bl getInsectName__12dMsgObject_cFv
 /* 8022C3AC 002292EC  7C 64 1B 78 */	mr r4, r3
 /* 8022C3B0 002292F0  7F 83 E3 78 */	mr r3, r28
-/* 8022C3B4 002292F4  48 07 B8 45 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C3B4 002292F4  48 07 B8 45 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C3B8 002292F8  38 60 00 01 */	li r3, 1
 /* 8022C3BC 002292FC  48 00 05 28 */	b lbl_8022C8E4
 /* 8022C3C0 00229300  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C3C4 00229304  48 00 B0 B5 */	bl dMsgObject_c_NS_getLetterName
+/* 8022C3C4 00229304  48 00 B0 B5 */	bl getLetterName__12dMsgObject_cFv
 /* 8022C3C8 00229308  7C 64 1B 78 */	mr r4, r3
 /* 8022C3CC 0022930C  7F 83 E3 78 */	mr r3, r28
-/* 8022C3D0 00229310  48 07 B8 29 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C3D0 00229310  48 07 B8 29 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C3D4 00229314  38 60 00 01 */	li r3, 1
 /* 8022C3D8 00229318  48 00 05 0C */	b lbl_8022C8E4
 /* 8022C3DC 0022931C  38 60 00 01 */	li r3, 1
 /* 8022C3E0 00229320  48 00 05 04 */	b lbl_8022C8E4
 /* 8022C3E4 00229324  7F 83 E3 78 */	mr r3, r28
-/* 8022C3E8 00229328  48 00 06 C5 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C3E8 00229328  48 00 06 C5 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C3EC 0022932C  38 60 00 01 */	li r3, 1
 /* 8022C3F0 00229330  48 00 04 F4 */	b lbl_8022C8E4
 /* 8022C3F4 00229334  38 00 00 01 */	li r0, 1
@@ -4631,21 +4631,21 @@ lbl_8022C6A8:
 /* 8022C6CC 0022960C  4E 80 04 21 */	bctrl 
 /* 8022C6D0 00229610  7F 83 E3 78 */	mr r3, r28
 /* 8022C6D4 00229614  80 9F 05 C4 */	lwz r4, 0x5c4(r31)
-/* 8022C6D8 00229618  48 07 B5 21 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022C6D8 00229618  48 07 B5 21 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022C6DC 0022961C  38 60 00 01 */	li r3, 1
 /* 8022C6E0 00229620  48 00 02 04 */	b lbl_8022C8E4
 /* 8022C6E4 00229624  7F 83 E3 78 */	mr r3, r28
-/* 8022C6E8 00229628  48 00 02 1D */	bl jmessage_tSequenceProcessor_NS_do_name1
+/* 8022C6E8 00229628  48 00 02 1D */	bl do_name1__27jmessage_tSequenceProcessorFv
 /* 8022C6EC 0022962C  38 60 00 01 */	li r3, 1
 /* 8022C6F0 00229630  48 00 01 F4 */	b lbl_8022C8E4
 /* 8022C6F4 00229634  7F 83 E3 78 */	mr r3, r28
 /* 8022C6F8 00229638  7F A4 EB 78 */	mr r4, r29
-/* 8022C6FC 0022963C  48 00 02 0D */	bl jmessage_tSequenceProcessor_NS_do_space
+/* 8022C6FC 0022963C  48 00 02 0D */	bl do_space__27jmessage_tSequenceProcessorFUl
 /* 8022C700 00229640  38 60 00 01 */	li r3, 1
 /* 8022C704 00229644  48 00 01 E0 */	b lbl_8022C8E4
 /* 8022C708 00229648  7F E3 FB 78 */	mr r3, r31
 /* 8022C70C 0022964C  38 80 00 00 */	li r4, 0
-/* 8022C710 00229650  4B FF D2 9D */	bl jmessage_tReference_NS_decideOutFontRupeeColor
+/* 8022C710 00229650  4B FF D2 9D */	bl decideOutFontRupeeColor__19jmessage_tReferenceFi
 /* 8022C714 00229654  80 9F 05 C0 */	lwz r4, 0x5c0(r31)
 /* 8022C718 00229658  38 60 00 00 */	li r3, 0
 /* 8022C71C 0022965C  B0 64 01 74 */	sth r3, 0x174(r4)
@@ -4672,44 +4672,44 @@ lbl_8022C75C:
 /* 8022C76C 002296AC  38 60 00 01 */	li r3, 1
 /* 8022C770 002296B0  48 00 01 74 */	b lbl_8022C8E4
 /* 8022C774 002296B4  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022C778 002296B8  48 00 AD 59 */	bl dMsgObject_c_NS_getSelectBombNum
+/* 8022C778 002296B8  48 00 AD 59 */	bl getSelectBombNum__12dMsgObject_cFv
 /* 8022C77C 002296BC  7C 60 1B 78 */	mr r0, r3
 /* 8022C780 002296C0  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022C784 002296C4  38 80 00 07 */	li r4, 7
 /* 8022C788 002296C8  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8022C78C 002296CC  38 C1 00 48 */	addi r6, r1, 0x48
 /* 8022C790 002296D0  38 E0 00 01 */	li r7, 1
-/* 8022C794 002296D4  48 00 C5 59 */	bl dMsgUnit_c_NS_setTag
+/* 8022C794 002296D4  48 00 C5 59 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022C798 002296D8  7F E3 FB 78 */	mr r3, r31
 /* 8022C79C 002296DC  88 9C 00 B5 */	lbz r4, 0xb5(r28)
 /* 8022C7A0 002296E0  7C 84 07 74 */	extsb r4, r4
-/* 8022C7A4 002296E4  4B FF CF 8D */	bl jmessage_tReference_NS_getWord
+/* 8022C7A4 002296E4  4B FF CF 8D */	bl getWord__19jmessage_tReferenceFi
 /* 8022C7A8 002296E8  38 81 00 48 */	addi r4, r1, 0x48
 /* 8022C7AC 002296EC  48 13 C3 81 */	bl strcpy
 /* 8022C7B0 002296F0  7F 83 E3 78 */	mr r3, r28
-/* 8022C7B4 002296F4  48 00 02 F9 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C7B4 002296F4  48 00 02 F9 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C7B8 002296F8  38 60 00 01 */	li r3, 1
 /* 8022C7BC 002296FC  48 00 01 28 */	b lbl_8022C8E4
-/* 8022C7C0 00229700  48 00 BE 21 */	bl dMsgObject_c_NS_getSelectBombPrice
+/* 8022C7C0 00229700  48 00 BE 21 */	bl getSelectBombPrice__12dMsgObject_cFv
 /* 8022C7C4 00229704  7C 60 1B 78 */	mr r0, r3
 /* 8022C7C8 00229708  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022C7CC 0022970C  38 80 00 01 */	li r4, 1
 /* 8022C7D0 00229710  7C 05 07 34 */	extsh r5, r0
 /* 8022C7D4 00229714  38 C1 00 20 */	addi r6, r1, 0x20
 /* 8022C7D8 00229718  38 E0 00 01 */	li r7, 1
-/* 8022C7DC 0022971C  48 00 C5 11 */	bl dMsgUnit_c_NS_setTag
+/* 8022C7DC 0022971C  48 00 C5 11 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022C7E0 00229720  7F E3 FB 78 */	mr r3, r31
 /* 8022C7E4 00229724  88 9C 00 B5 */	lbz r4, 0xb5(r28)
 /* 8022C7E8 00229728  7C 84 07 74 */	extsb r4, r4
-/* 8022C7EC 0022972C  4B FF CF 45 */	bl jmessage_tReference_NS_getWord
+/* 8022C7EC 0022972C  4B FF CF 45 */	bl getWord__19jmessage_tReferenceFi
 /* 8022C7F0 00229730  38 81 00 20 */	addi r4, r1, 0x20
 /* 8022C7F4 00229734  48 13 C3 39 */	bl strcpy
 /* 8022C7F8 00229738  7F 83 E3 78 */	mr r3, r28
-/* 8022C7FC 0022973C  48 00 02 B1 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C7FC 0022973C  48 00 02 B1 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C800 00229740  38 60 00 01 */	li r3, 1
 /* 8022C804 00229744  48 00 00 E0 */	b lbl_8022C8E4
 /* 8022C808 00229748  7F 83 E3 78 */	mr r3, r28
-/* 8022C80C 0022974C  48 00 02 A1 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C80C 0022974C  48 00 02 A1 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C810 00229750  38 60 00 01 */	li r3, 1
 /* 8022C814 00229754  48 00 00 D0 */	b lbl_8022C8E4
 lbl_8022C818:
@@ -4721,7 +4721,7 @@ lbl_8022C818:
 /* 8022C82C 0022976C  48 00 00 14 */	b lbl_8022C840
 lbl_8022C830:
 /* 8022C830 00229770  7F 83 E3 78 */	mr r3, r28
-/* 8022C834 00229774  48 00 02 79 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C834 00229774  48 00 02 79 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C838 00229778  38 60 00 01 */	li r3, 1
 /* 8022C83C 0022977C  48 00 00 A8 */	b lbl_8022C8E4
 lbl_8022C840:
@@ -4733,7 +4733,7 @@ lbl_8022C840:
 /* 8022C854 00229794  48 00 00 14 */	b lbl_8022C868
 lbl_8022C858:
 /* 8022C858 00229798  7F 83 E3 78 */	mr r3, r28
-/* 8022C85C 0022979C  48 00 02 51 */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C85C 0022979C  48 00 02 51 */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C860 002297A0  38 60 00 01 */	li r3, 1
 /* 8022C864 002297A4  48 00 00 80 */	b lbl_8022C8E4
 lbl_8022C868:
@@ -4749,13 +4749,13 @@ lbl_8022C880:
 /* 8022C888 002297C8  48 00 00 14 */	b lbl_8022C89C
 lbl_8022C88C:
 /* 8022C88C 002297CC  7F 83 E3 78 */	mr r3, r28
-/* 8022C890 002297D0  48 00 02 1D */	bl jmessage_tSequenceProcessor_NS_push_word
+/* 8022C890 002297D0  48 00 02 1D */	bl push_word__27jmessage_tSequenceProcessorFv
 /* 8022C894 002297D4  38 60 00 01 */	li r3, 1
 /* 8022C898 002297D8  48 00 00 4C */	b lbl_8022C8E4
 lbl_8022C89C:
 /* 8022C89C 002297DC  7F 83 E3 78 */	mr r3, r28
 /* 8022C8A0 002297E0  7F A4 EB 78 */	mr r4, r29
-/* 8022C8A4 002297E4  48 00 00 65 */	bl jmessage_tSequenceProcessor_NS_do_space
+/* 8022C8A4 002297E4  48 00 00 65 */	bl do_space__27jmessage_tSequenceProcessorFUl
 /* 8022C8A8 002297E8  38 60 00 01 */	li r3, 1
 /* 8022C8AC 002297EC  48 00 00 38 */	b lbl_8022C8E4
 lbl_8022C8B0:
@@ -4766,7 +4766,7 @@ lbl_8022C8B0:
 /* 8022C8C0 00229800  40 80 00 20 */	bge lbl_8022C8E0
 /* 8022C8C4 00229804  7F 83 E3 78 */	mr r3, r28
 /* 8022C8C8 00229808  7F A4 EB 78 */	mr r4, r29
-/* 8022C8CC 0022980C  48 00 00 3D */	bl jmessage_tSequenceProcessor_NS_do_space
+/* 8022C8CC 0022980C  48 00 00 3D */	bl do_space__27jmessage_tSequenceProcessorFUl
 /* 8022C8D0 00229810  38 60 00 01 */	li r3, 1
 /* 8022C8D4 00229814  48 00 00 10 */	b lbl_8022C8E4
 lbl_8022C8D8:
@@ -4784,12 +4784,12 @@ lbl_8022C8E4:
 /* 8022C8FC 0022983C  38 60 00 01 */	li r3, 1
 /* 8022C900 00229840  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_do_name1
-jmessage_tSequenceProcessor_NS_do_name1:
+.global do_name1__27jmessage_tSequenceProcessorFv
+do_name1__27jmessage_tSequenceProcessorFv:
 /* 8022C904 00229844  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_do_space
-jmessage_tSequenceProcessor_NS_do_space:
+.global do_space__27jmessage_tSequenceProcessorFUl
+do_space__27jmessage_tSequenceProcessorFUl:
 /* 8022C908 00229848  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022C90C 0022984C  7C 08 02 A6 */	mflr r0
 /* 8022C910 00229850  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4857,15 +4857,15 @@ jmessage_tSequenceProcessor_NS_do_space:
 lbl_8022CA08:
 /* 8022CA08 00229948  7C C3 33 78 */	mr r3, r6
 /* 8022CA0C 0022994C  7C E4 3B 78 */	mr r4, r7
-/* 8022CA10 00229950  4B FF CD 79 */	bl jmessage_tReference_NS_addCharactor
+/* 8022CA10 00229950  4B FF CD 79 */	bl addCharactor__19jmessage_tReferenceFUs
 lbl_8022CA14:
 /* 8022CA14 00229954  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8022CA18 00229958  7C 08 03 A6 */	mtlr r0
 /* 8022CA1C 0022995C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022CA20 00229960  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_do_rubyset
-jmessage_tSequenceProcessor_NS_do_rubyset:
+.global do_rubyset__27jmessage_tSequenceProcessorFPCvUl
+do_rubyset__27jmessage_tSequenceProcessorFPCvUl:
 /* 8022CA24 00229964  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022CA28 00229968  7C 08 02 A6 */	mflr r0
 /* 8022CA2C 0022996C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4892,7 +4892,7 @@ lbl_8022CA5C:
 /* 8022CA7C 002299BC  4B FF BD BD */	bl changeKataToHira
 /* 8022CA80 002299C0  7C 64 1B 78 */	mr r4, r3
 /* 8022CA84 002299C4  7F A3 EB 78 */	mr r3, r29
-/* 8022CA88 002299C8  4B FF CD 01 */	bl jmessage_tReference_NS_addCharactor
+/* 8022CA88 002299C8  4B FF CD 01 */	bl addCharactor__19jmessage_tReferenceFUs
 lbl_8022CA8C:
 /* 8022CA8C 002299CC  7C 1E F8 00 */	cmpw r30, r31
 /* 8022CA90 002299D0  41 80 FF CC */	blt lbl_8022CA5C
@@ -4904,8 +4904,8 @@ lbl_8022CA94:
 /* 8022CAA4 002299E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022CAA8 002299E8  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_push_word
-jmessage_tSequenceProcessor_NS_push_word:
+.global push_word__27jmessage_tSequenceProcessorFv
+push_word__27jmessage_tSequenceProcessorFv:
 /* 8022CAAC 002299EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022CAB0 002299F0  7C 08 02 A6 */	mflr r0
 /* 8022CAB4 002299F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4916,10 +4916,10 @@ jmessage_tSequenceProcessor_NS_push_word:
 /* 8022CAC8 00229A08  7F E3 FB 78 */	mr r3, r31
 /* 8022CACC 00229A0C  88 9E 00 B5 */	lbz r4, 0xb5(r30)
 /* 8022CAD0 00229A10  7C 84 07 74 */	extsb r4, r4
-/* 8022CAD4 00229A14  4B FF CC 5D */	bl jmessage_tReference_NS_getWord
+/* 8022CAD4 00229A14  4B FF CC 5D */	bl getWord__19jmessage_tReferenceFi
 /* 8022CAD8 00229A18  7C 64 1B 78 */	mr r4, r3
 /* 8022CADC 00229A1C  7F C3 F3 78 */	mr r3, r30
-/* 8022CAE0 00229A20  48 07 B1 19 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022CAE0 00229A20  48 07 B1 19 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022CAE4 00229A24  88 7E 00 B5 */	lbz r3, 0xb5(r30)
 /* 8022CAE8 00229A28  38 03 00 01 */	addi r0, r3, 1
 /* 8022CAEC 00229A2C  98 1E 00 B5 */	stb r0, 0xb5(r30)
@@ -4932,8 +4932,8 @@ jmessage_tSequenceProcessor_NS_push_word:
 /* 8022CB08 00229A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022CB0C 00229A4C  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_messageSePlay
-jmessage_tSequenceProcessor_NS_messageSePlay:
+.global messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz
+messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz:
 /* 8022CB10 00229A50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022CB14 00229A54  7C 08 02 A6 */	mflr r0
 /* 8022CB18 00229A58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4993,8 +4993,8 @@ lbl_8022CBCC:
 /* 8022CBE0 00229B20  4E 80 00 20 */	blr 
 /* 8022CBE4 00229B24  4E 80 00 20 */	blr 
 
-.global jmessage_tSequenceProcessor_NS_calcStringLength
-jmessage_tSequenceProcessor_NS_calcStringLength:
+.global calcStringLength__27jmessage_tSequenceProcessorFv
+calcStringLength__27jmessage_tSequenceProcessorFv:
 /* 8022CBE8 00229B28  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022CBEC 00229B2C  7C 08 02 A6 */	mflr r0
 /* 8022CBF0 00229B30  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5011,10 +5011,10 @@ jmessage_tSequenceProcessor_NS_calcStringLength:
 /* 8022CC1C 00229B5C  93 C3 00 58 */	stw r30, 0x58(r3)
 /* 8022CC20 00229B60  38 00 00 00 */	li r0, 0
 /* 8022CC24 00229B64  90 03 00 5C */	stw r0, 0x5c(r3)
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 8022CC28 00229B68  3C 60 80 2B */	lis r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 8022CC2C 00229B6C  38 03 82 8C */	addi r0, r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 8022CC28 00229B68  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 8022CC2C 00229B6C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
 /* 8022CC30 00229B70  90 1C 00 70 */	stw r0, 0x70(r28)
 /* 8022CC34 00229B74  38 7C 00 4C */	addi r3, r28, 0x4c
 /* 8022CC38 00229B78  7F C4 F3 78 */	mr r4, r30
@@ -5038,7 +5038,7 @@ jmessage_tSequenceProcessor_NS_calcStringLength:
 /* 8022CC80 00229BC0  4E 80 04 21 */	bctrl 
 /* 8022CC84 00229BC4  38 7C 00 4C */	addi r3, r28, 0x4c
 /* 8022CC88 00229BC8  38 80 00 00 */	li r4, 0
-/* 8022CC8C 00229BCC  48 07 BE 95 */	bl JMessage_NS_TRenderingProcessor_NS_process
+/* 8022CC8C 00229BCC  48 07 BE 95 */	bl process__Q28JMessage19TRenderingProcessorFPCc
 /* 8022CC90 00229BD0  38 00 00 00 */	li r0, 0
 /* 8022CC94 00229BD4  98 1D 12 74 */	stb r0, 0x1274(r29)
 /* 8022CC98 00229BD8  39 61 00 20 */	addi r11, r1, 0x20
@@ -5055,7 +5055,7 @@ jmessage_tRenderingProcessor:
 /* 8022CCB8 00229BF8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8022CCBC 00229BFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022CCC0 00229C00  7C 7F 1B 78 */	mr r31, r3
-/* 8022CCC4 00229C04  48 07 BD C1 */	bl JMessage_NS_TRenderingProcessor
+/* 8022CCC4 00229C04  48 07 BD C1 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
 /* 8022CCC8 00229C08  3C 60 80 3C */	lis r3, lbl_803C09FC@ha
 /* 8022CCCC 00229C0C  38 03 09 FC */	addi r0, r3, lbl_803C09FC@l
 /* 8022CCD0 00229C10  90 1F 00 00 */	stw r0, 0(r31)
@@ -5174,7 +5174,7 @@ lbl_8022CE4C:
 /* 8022CE88 00229DC8  D0 1E 00 4C */	stfs f0, 0x4c(r30)
 /* 8022CE8C 00229DCC  98 7E 01 51 */	stb r3, 0x151(r30)
 /* 8022CE90 00229DD0  80 7E 00 38 */	lwz r3, 0x38(r30)
-/* 8022CE94 00229DD4  4B FF 9E 65 */	bl COutFont_c_NS_initialize
+/* 8022CE94 00229DD4  4B FF 9E 65 */	bl initialize__10COutFont_cFv
 /* 8022CE98 00229DD8  38 60 00 00 */	li r3, 0
 /* 8022CE9C 00229DDC  C0 02 B0 60 */	lfs f0, lbl_80454A60-_SDA2_BASE_(r2)
 /* 8022CEA0 00229DE0  38 00 00 28 */	li r0, 0x28
@@ -5226,17 +5226,17 @@ lbl_8022CF10:
 /* 8022CF50 00229E90  41 82 00 10 */	beq lbl_8022CF60
 /* 8022CF54 00229E94  7F C3 F3 78 */	mr r3, r30
 /* 8022CF58 00229E98  C0 3E 00 44 */	lfs f1, 0x44(r30)
-/* 8022CF5C 00229E9C  48 00 19 05 */	bl jmessage_tRenderingProcessor_NS_do_scale
+/* 8022CF5C 00229E9C  48 00 19 05 */	bl do_scale__28jmessage_tRenderingProcessorFf
 lbl_8022CF60:
 /* 8022CF60 00229EA0  7F C3 F3 78 */	mr r3, r30
 /* 8022CF64 00229EA4  88 9F 12 4A */	lbz r4, 0x124a(r31)
-/* 8022CF68 00229EA8  48 00 18 65 */	bl jmessage_tRenderingProcessor_NS_do_color
+/* 8022CF68 00229EA8  48 00 18 65 */	bl do_color__28jmessage_tRenderingProcessorFUc
 /* 8022CF6C 00229EAC  38 00 00 00 */	li r0, 0
 /* 8022CF70 00229EB0  98 1F 05 DD */	stb r0, 0x5dd(r31)
 /* 8022CF74 00229EB4  7F C3 F3 78 */	mr r3, r30
-/* 8022CF78 00229EB8  48 00 12 05 */	bl jmessage_tRenderingProcessor_NS_do_widthcenter
+/* 8022CF78 00229EB8  48 00 12 05 */	bl do_widthcenter__28jmessage_tRenderingProcessorFv
 /* 8022CF7C 00229EBC  7F C3 F3 78 */	mr r3, r30
-/* 8022CF80 00229EC0  48 00 13 99 */	bl jmessage_tRenderingProcessor_NS_do_heightcenter
+/* 8022CF80 00229EC0  48 00 13 99 */	bl do_heightcenter__28jmessage_tRenderingProcessorFv
 /* 8022CF84 00229EC4  A0 1F 06 30 */	lhz r0, 0x630(r31)
 /* 8022CF88 00229EC8  B0 1E 01 3C */	sth r0, 0x13c(r30)
 /* 8022CF8C 00229ECC  A0 1E 01 3C */	lhz r0, 0x13c(r30)
@@ -5251,7 +5251,7 @@ lbl_8022CF60:
 /* 8022CFB0 00229EF0  EC 20 08 28 */	fsubs f1, f0, f1
 /* 8022CFB4 00229EF4  C0 02 B0 7C */	lfs f0, lbl_80454A7C-_SDA2_BASE_(r2)
 /* 8022CFB8 00229EF8  EC 21 00 24 */	fdivs f1, f1, f0
-/* 8022CFBC 00229EFC  48 00 18 A5 */	bl jmessage_tRenderingProcessor_NS_do_scale
+/* 8022CFBC 00229EFC  48 00 18 A5 */	bl do_scale__28jmessage_tRenderingProcessorFf
 lbl_8022CFC0:
 /* 8022CFC0 00229F00  39 61 00 30 */	addi r11, r1, 0x30
 /* 8022CFC4 00229F04  48 13 52 59 */	bl _restgpr_26
@@ -5265,7 +5265,7 @@ lbl_8022CFC0:
 /* 8022CFE4 00229F24  39 61 00 E0 */	addi r11, r1, 0xe0
 /* 8022CFE8 00229F28  48 13 51 F5 */	bl _savegpr_29
 /* 8022CFEC 00229F2C  83 C3 00 04 */	lwz r30, 4(r3)
-/* 8022CFF0 00229F30  48 00 B5 85 */	bl dMsgObject_c_NS_getSelectWordFlag
+/* 8022CFF0 00229F30  48 00 B5 85 */	bl getSelectWord__12dMsgObject_cFiFlag
 /* 8022CFF4 00229F34  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022CFF8 00229F38  41 82 00 7C */	beq lbl_8022D074
 /* 8022CFFC 00229F3C  3B A0 00 00 */	li r29, 0
@@ -5273,7 +5273,7 @@ lbl_8022CFC0:
 /* 8022D004 00229F44  48 00 00 60 */	b lbl_8022D064
 lbl_8022D008:
 /* 8022D008 00229F48  7F A3 EB 78 */	mr r3, r29
-/* 8022D00C 00229F4C  48 00 B5 1D */	bl dMsgObject_c_NS_getSelectWord
+/* 8022D00C 00229F4C  48 00 B5 1D */	bl getSelectWord__12dMsgObject_cFi
 /* 8022D010 00229F50  7C 64 1B 78 */	mr r4, r3
 /* 8022D014 00229F54  38 61 00 08 */	addi r3, r1, 8
 /* 8022D018 00229F58  48 13 BB 15 */	bl strcpy
@@ -5298,7 +5298,7 @@ lbl_8022D05C:
 /* 8022D05C 00229F9C  3B BD 00 01 */	addi r29, r29, 1
 /* 8022D060 00229FA0  3B FF 00 32 */	addi r31, r31, 0x32
 lbl_8022D064:
-/* 8022D064 00229FA4  48 00 B5 11 */	bl dMsgObject_c_NS_getSelectWordFlag
+/* 8022D064 00229FA4  48 00 B5 11 */	bl getSelectWord__12dMsgObject_cFiFlag
 /* 8022D068 00229FA8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022D06C 00229FAC  7C 1D 00 00 */	cmpw r29, r0
 /* 8022D070 00229FB0  41 80 FF 98 */	blt lbl_8022D008
@@ -5385,7 +5385,7 @@ lbl_8022D18C:
 /* 8022D194 0022A0D4  38 A0 00 01 */	li r5, 1
 /* 8022D198 0022A0D8  38 C0 00 01 */	li r6, 1
 /* 8022D19C 0022A0DC  38 E0 00 00 */	li r7, 0
-/* 8022D1A0 0022A0E0  48 00 1D 61 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022D1A0 0022A0E0  48 00 1D 61 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022D1A4 0022A0E4  C0 42 B0 60 */	lfs f2, lbl_80454A60-_SDA2_BASE_(r2)
 /* 8022D1A8 0022A0E8  D0 5C 01 2C */	stfs f2, 0x12c(r28)
 /* 8022D1AC 0022A0EC  88 7C 01 4E */	lbz r3, 0x14e(r28)
@@ -5398,22 +5398,22 @@ lbl_8022D18C:
 /* 8022D1C8 0022A108  7F 83 E3 78 */	mr r3, r28
 /* 8022D1CC 0022A10C  38 81 00 18 */	addi r4, r1, 0x18
 /* 8022D1D0 0022A110  C0 3E 04 50 */	lfs f1, 0x450(r30)
-/* 8022D1D4 0022A114  48 00 21 B1 */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022D1D4 0022A114  48 00 21 B1 */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 /* 8022D1D8 0022A118  48 00 00 24 */	b lbl_8022D1FC
 lbl_8022D1DC:
 /* 8022D1DC 0022A11C  7F 83 E3 78 */	mr r3, r28
 /* 8022D1E0 0022A120  38 81 00 18 */	addi r4, r1, 0x18
 /* 8022D1E4 0022A124  38 BE 0E 1C */	addi r5, r30, 0xe1c
 /* 8022D1E8 0022A128  C0 3E 04 3C */	lfs f1, 0x43c(r30)
-/* 8022D1EC 0022A12C  48 00 21 99 */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022D1EC 0022A12C  48 00 21 99 */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 /* 8022D1F0 0022A130  88 7E 05 DD */	lbz r3, 0x5dd(r30)
 /* 8022D1F4 0022A134  38 03 00 01 */	addi r0, r3, 1
 /* 8022D1F8 0022A138  98 1E 05 DD */	stb r0, 0x5dd(r30)
 lbl_8022D1FC:
 /* 8022D1FC 0022A13C  7F 83 E3 78 */	mr r3, r28
-/* 8022D200 0022A140  48 00 0F 7D */	bl jmessage_tRenderingProcessor_NS_do_widthcenter
+/* 8022D200 0022A140  48 00 0F 7D */	bl do_widthcenter__28jmessage_tRenderingProcessorFv
 /* 8022D204 0022A144  7F 83 E3 78 */	mr r3, r28
-/* 8022D208 0022A148  48 00 11 11 */	bl jmessage_tRenderingProcessor_NS_do_heightcenter
+/* 8022D208 0022A148  48 00 11 11 */	bl do_heightcenter__28jmessage_tRenderingProcessorFv
 /* 8022D20C 0022A14C  48 00 05 18 */	b lbl_8022D724
 lbl_8022D210:
 /* 8022D210 0022A150  88 1C 01 87 */	lbz r0, 0x187(r28)
@@ -5636,7 +5636,7 @@ lbl_8022D510:
 /* 8022D564 0022A4A4  EC 44 00 2A */	fadds f2, f4, f0
 /* 8022D568 0022A4A8  FC 80 18 90 */	fmr f4, f3
 /* 8022D56C 0022A4AC  C0 A2 B0 64 */	lfs f5, lbl_80454A64-_SDA2_BASE_(r2)
-/* 8022D570 0022A4B0  48 00 22 15 */	bl jmessage_tRenderingProcessor_NS_getCharInfo
+/* 8022D570 0022A4B0  48 00 22 15 */	bl getCharInfo__28jmessage_tRenderingProcessorFfffff
 lbl_8022D574:
 /* 8022D574 0022A4B4  C3 FE 04 38 */	lfs f31, 0x438(r30)
 /* 8022D578 0022A4B8  C3 DE 04 20 */	lfs f30, 0x420(r30)
@@ -5730,7 +5730,7 @@ lbl_8022D678:
 /* 8022D6D0 0022A610  EC 42 00 28 */	fsubs f2, f2, f0
 /* 8022D6D4 0022A614  C0 1E 04 4C */	lfs f0, 0x44c(r30)
 /* 8022D6D8 0022A618  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8022D6DC 0022A61C  48 00 1C A9 */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022D6DC 0022A61C  48 00 1C A9 */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 /* 8022D6E0 0022A620  48 00 00 2C */	b lbl_8022D70C
 lbl_8022D6E4:
 /* 8022D6E4 0022A624  7F 83 E3 78 */	mr r3, r28
@@ -5742,14 +5742,14 @@ lbl_8022D6E4:
 /* 8022D6FC 0022A63C  EC 42 00 28 */	fsubs f2, f2, f0
 /* 8022D700 0022A640  C0 1E 04 38 */	lfs f0, 0x438(r30)
 /* 8022D704 0022A644  EC 42 00 28 */	fsubs f2, f2, f0
-/* 8022D708 0022A648  48 00 1C 7D */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022D708 0022A648  48 00 1C 7D */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 lbl_8022D70C:
 /* 8022D70C 0022A64C  7F 83 E3 78 */	mr r3, r28
 /* 8022D710 0022A650  38 81 00 18 */	addi r4, r1, 0x18
 /* 8022D714 0022A654  38 A0 00 01 */	li r5, 1
 /* 8022D718 0022A658  38 C0 00 01 */	li r6, 1
 /* 8022D71C 0022A65C  38 E0 00 00 */	li r7, 0
-/* 8022D720 0022A660  48 00 17 E1 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022D720 0022A660  48 00 17 E1 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 lbl_8022D724:
 /* 8022D724 0022A664  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 8022D728 0022A668  CB E1 00 60 */	lfd f31, 0x60(r1)
@@ -5823,7 +5823,7 @@ lbl_8022D810:
 /* 8022D820 0022A760  48 00 00 64 */	b lbl_8022D884
 lbl_8022D824:
 /* 8022D824 0022A764  88 85 00 00 */	lbz r4, 0(r5)
-/* 8022D828 0022A768  48 00 0F A5 */	bl jmessage_tRenderingProcessor_NS_do_color
+/* 8022D828 0022A768  48 00 0F A5 */	bl do_color__28jmessage_tRenderingProcessorFUc
 /* 8022D82C 0022A76C  38 60 00 01 */	li r3, 1
 /* 8022D830 0022A770  48 00 08 E4 */	b lbl_8022E114
 lbl_8022D834:
@@ -5838,14 +5838,14 @@ lbl_8022D834:
 /* 8022D854 0022A794  EC 20 08 28 */	fsubs f1, f0, f1
 /* 8022D858 0022A798  C0 02 B0 7C */	lfs f0, lbl_80454A7C-_SDA2_BASE_(r2)
 /* 8022D85C 0022A79C  EC 21 00 24 */	fdivs f1, f1, f0
-/* 8022D860 0022A7A0  48 00 10 01 */	bl jmessage_tRenderingProcessor_NS_do_scale
+/* 8022D860 0022A7A0  48 00 10 01 */	bl do_scale__28jmessage_tRenderingProcessorFf
 /* 8022D864 0022A7A4  38 60 00 01 */	li r3, 1
 /* 8022D868 0022A7A8  48 00 08 AC */	b lbl_8022E114
 lbl_8022D86C:
 /* 8022D86C 0022A7AC  7F C3 F3 78 */	mr r3, r30
 /* 8022D870 0022A7B0  7C A4 2B 78 */	mr r4, r5
 /* 8022D874 0022A7B4  7C C5 33 78 */	mr r5, r6
-/* 8022D878 0022A7B8  48 00 18 D1 */	bl jmessage_tRenderingProcessor_NS_do_rubyset
+/* 8022D878 0022A7B8  48 00 18 D1 */	bl do_rubyset__28jmessage_tRenderingProcessorFPCvUl
 /* 8022D87C 0022A7BC  38 60 00 01 */	li r3, 1
 /* 8022D880 0022A7C0  48 00 08 94 */	b lbl_8022E114
 lbl_8022D884:
@@ -5858,60 +5858,60 @@ lbl_8022D884:
 /* 8022D89C 0022A7DC  7C 09 03 A6 */	mtctr r0
 /* 8022D8A0 0022A7E0  4E 80 04 20 */	bctr 
 /* 8022D8A4 0022A7E4  7F C3 F3 78 */	mr r3, r30
-/* 8022D8A8 0022A7E8  48 00 1E 8D */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022D8A8 0022A7E8  48 00 1E 8D */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022D8AC 0022A7EC  38 60 00 01 */	li r3, 1
 /* 8022D8B0 0022A7F0  48 00 08 64 */	b lbl_8022E114
-/* 8022D8B4 0022A7F4  48 00 AC 61 */	bl dMsgObject_c_NS_getWord
+/* 8022D8B4 0022A7F4  48 00 AC 61 */	bl getWord__12dMsgObject_cFv
 /* 8022D8B8 0022A7F8  7C 64 1B 78 */	mr r4, r3
 /* 8022D8BC 0022A7FC  7F C3 F3 78 */	mr r3, r30
-/* 8022D8C0 0022A800  48 07 A3 39 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
-/* 8022D8C4 0022A804  48 00 AC B1 */	bl dMsgObject_c_NS_getSelectWordFlag
+/* 8022D8C0 0022A800  48 07 A3 39 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
+/* 8022D8C4 0022A804  48 00 AC B1 */	bl getSelectWord__12dMsgObject_cFiFlag
 /* 8022D8C8 0022A808  98 7E 01 51 */	stb r3, 0x151(r30)
 /* 8022D8CC 0022A80C  38 60 00 01 */	li r3, 1
 /* 8022D8D0 0022A810  48 00 08 44 */	b lbl_8022E114
 /* 8022D8D4 0022A814  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022D8D8 0022A818  48 00 99 F5 */	bl dMsgObject_c_NS_getSmellName
+/* 8022D8D8 0022A818  48 00 99 F5 */	bl getSmellName__12dMsgObject_cFv
 /* 8022D8DC 0022A81C  7C 64 1B 78 */	mr r4, r3
 /* 8022D8E0 0022A820  7F C3 F3 78 */	mr r3, r30
-/* 8022D8E4 0022A824  48 07 A3 15 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022D8E4 0022A824  48 07 A3 15 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022D8E8 0022A828  38 60 00 01 */	li r3, 1
 /* 8022D8EC 0022A82C  48 00 08 28 */	b lbl_8022E114
 /* 8022D8F0 0022A830  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022D8F4 0022A834  48 00 9A 41 */	bl dMsgObject_c_NS_getPortalName
+/* 8022D8F4 0022A834  48 00 9A 41 */	bl getPortalName__12dMsgObject_cFv
 /* 8022D8F8 0022A838  7C 64 1B 78 */	mr r4, r3
 /* 8022D8FC 0022A83C  7F C3 F3 78 */	mr r3, r30
-/* 8022D900 0022A840  48 07 A2 F9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022D900 0022A840  48 07 A2 F9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022D904 0022A844  38 60 00 01 */	li r3, 1
 /* 8022D908 0022A848  48 00 08 0C */	b lbl_8022E114
 /* 8022D90C 0022A84C  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022D910 0022A850  48 00 9A 7D */	bl dMsgObject_c_NS_getBombName
+/* 8022D910 0022A850  48 00 9A 7D */	bl getBombName__12dMsgObject_cFv
 /* 8022D914 0022A854  7C 64 1B 78 */	mr r4, r3
 /* 8022D918 0022A858  7F C3 F3 78 */	mr r3, r30
-/* 8022D91C 0022A85C  48 07 A2 DD */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022D91C 0022A85C  48 07 A2 DD */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022D920 0022A860  38 60 00 01 */	li r3, 1
 /* 8022D924 0022A864  48 00 07 F0 */	b lbl_8022E114
 /* 8022D928 0022A868  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022D92C 0022A86C  48 00 9A F1 */	bl dMsgObject_c_NS_getInsectName
+/* 8022D92C 0022A86C  48 00 9A F1 */	bl getInsectName__12dMsgObject_cFv
 /* 8022D930 0022A870  7C 64 1B 78 */	mr r4, r3
 /* 8022D934 0022A874  7F C3 F3 78 */	mr r3, r30
-/* 8022D938 0022A878  48 07 A2 C1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022D938 0022A878  48 07 A2 C1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022D93C 0022A87C  38 60 00 01 */	li r3, 1
 /* 8022D940 0022A880  48 00 07 D4 */	b lbl_8022E114
 /* 8022D944 0022A884  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022D948 0022A888  48 00 9B 31 */	bl dMsgObject_c_NS_getLetterName
+/* 8022D948 0022A888  48 00 9B 31 */	bl getLetterName__12dMsgObject_cFv
 /* 8022D94C 0022A88C  7C 64 1B 78 */	mr r4, r3
 /* 8022D950 0022A890  7F C3 F3 78 */	mr r3, r30
-/* 8022D954 0022A894  48 07 A2 A5 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022D954 0022A894  48 07 A2 A5 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022D958 0022A898  38 60 00 01 */	li r3, 1
 /* 8022D95C 0022A89C  48 00 07 B8 */	b lbl_8022E114
 /* 8022D960 0022A8A0  7F C3 F3 78 */	mr r3, r30
 /* 8022D964 0022A8A4  A0 05 00 00 */	lhz r0, 0(r5)
 /* 8022D968 0022A8A8  7C 04 07 34 */	extsh r4, r0
-/* 8022D96C 0022A8AC  48 00 0F F5 */	bl jmessage_tRenderingProcessor_NS_do_linedown
+/* 8022D96C 0022A8AC  48 00 0F F5 */	bl do_linedown__28jmessage_tRenderingProcessorFs
 /* 8022D970 0022A8B0  38 60 00 01 */	li r3, 1
 /* 8022D974 0022A8B4  48 00 07 A0 */	b lbl_8022E114
 /* 8022D978 0022A8B8  7F C3 F3 78 */	mr r3, r30
-/* 8022D97C 0022A8BC  48 00 1D B9 */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022D97C 0022A8BC  48 00 1D B9 */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022D980 0022A8C0  38 60 00 01 */	li r3, 1
 /* 8022D984 0022A8C4  48 00 07 90 */	b lbl_8022E114
 /* 8022D988 0022A8C8  88 1E 01 4E */	lbz r0, 0x14e(r30)
@@ -5933,15 +5933,15 @@ lbl_8022D99C:
 /* 8022D9C4 0022A904  7F C3 F3 78 */	mr r3, r30
 /* 8022D9C8 0022A908  88 9E 01 4E */	lbz r4, 0x14e(r30)
 /* 8022D9CC 0022A90C  38 84 FF FF */	addi r4, r4, -1
-/* 8022D9D0 0022A910  48 00 08 91 */	bl jmessage_tRenderingProcessor_NS_do_selwidthcenter
+/* 8022D9D0 0022A910  48 00 08 91 */	bl do_selwidthcenter__28jmessage_tRenderingProcessorFi
 /* 8022D9D4 0022A914  38 60 00 01 */	li r3, 1
 /* 8022D9D8 0022A918  48 00 07 3C */	b lbl_8022E114
 /* 8022D9DC 0022A91C  7F C3 F3 78 */	mr r3, r30
-/* 8022D9E0 0022A920  48 00 13 31 */	bl jmessage_tRenderingProcessor_NS_do_arrow2
+/* 8022D9E0 0022A920  48 00 13 31 */	bl do_arrow2__28jmessage_tRenderingProcessorFv
 /* 8022D9E4 0022A924  38 60 00 01 */	li r3, 1
 /* 8022D9E8 0022A928  48 00 07 2C */	b lbl_8022E114
 /* 8022D9EC 0022A92C  7F C3 F3 78 */	mr r3, r30
-/* 8022D9F0 0022A930  48 00 13 21 */	bl jmessage_tRenderingProcessor_NS_do_arrow2
+/* 8022D9F0 0022A930  48 00 13 21 */	bl do_arrow2__28jmessage_tRenderingProcessorFv
 /* 8022D9F4 0022A934  38 60 00 01 */	li r3, 1
 /* 8022D9F8 0022A938  48 00 07 1C */	b lbl_8022E114
 /* 8022D9FC 0022A93C  7F C3 F3 78 */	mr r3, r30
@@ -5952,153 +5952,153 @@ lbl_8022D99C:
 /* 8022DA10 0022A950  4E 80 04 21 */	bctrl 
 /* 8022DA14 0022A954  7F C3 F3 78 */	mr r3, r30
 /* 8022DA18 0022A958  80 9F 05 C4 */	lwz r4, 0x5c4(r31)
-/* 8022DA1C 0022A95C  48 07 A1 DD */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022DA1C 0022A95C  48 07 A1 DD */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022DA20 0022A960  38 60 00 01 */	li r3, 1
 /* 8022DA24 0022A964  48 00 06 F0 */	b lbl_8022E114
 /* 8022DA28 0022A968  7F C3 F3 78 */	mr r3, r30
-/* 8022DA2C 0022A96C  48 00 1B 11 */	bl jmessage_tRenderingProcessor_NS_do_name1
+/* 8022DA2C 0022A96C  48 00 1B 11 */	bl do_name1__28jmessage_tRenderingProcessorFv
 /* 8022DA30 0022A970  38 60 00 01 */	li r3, 1
 /* 8022DA34 0022A974  48 00 06 E0 */	b lbl_8022E114
 /* 8022DA38 0022A978  7F C3 F3 78 */	mr r3, r30
 /* 8022DA3C 0022A97C  38 80 00 00 */	li r4, 0
 /* 8022DA40 0022A980  38 A0 00 00 */	li r5, 0
-/* 8022DA44 0022A984  48 00 10 A1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DA44 0022A984  48 00 10 A1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DA48 0022A988  38 60 00 01 */	li r3, 1
 /* 8022DA4C 0022A98C  48 00 06 C8 */	b lbl_8022E114
 /* 8022DA50 0022A990  7F C3 F3 78 */	mr r3, r30
 /* 8022DA54 0022A994  38 80 00 01 */	li r4, 1
 /* 8022DA58 0022A998  38 A0 00 00 */	li r5, 0
-/* 8022DA5C 0022A99C  48 00 10 89 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DA5C 0022A99C  48 00 10 89 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DA60 0022A9A0  38 60 00 01 */	li r3, 1
 /* 8022DA64 0022A9A4  48 00 06 B0 */	b lbl_8022E114
 /* 8022DA68 0022A9A8  7F C3 F3 78 */	mr r3, r30
 /* 8022DA6C 0022A9AC  38 80 00 02 */	li r4, 2
 /* 8022DA70 0022A9B0  38 A0 00 00 */	li r5, 0
-/* 8022DA74 0022A9B4  48 00 10 71 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DA74 0022A9B4  48 00 10 71 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DA78 0022A9B8  38 60 00 01 */	li r3, 1
 /* 8022DA7C 0022A9BC  48 00 06 98 */	b lbl_8022E114
 /* 8022DA80 0022A9C0  7F C3 F3 78 */	mr r3, r30
 /* 8022DA84 0022A9C4  38 80 00 03 */	li r4, 3
 /* 8022DA88 0022A9C8  38 A0 00 00 */	li r5, 0
-/* 8022DA8C 0022A9CC  48 00 10 59 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DA8C 0022A9CC  48 00 10 59 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DA90 0022A9D0  38 60 00 01 */	li r3, 1
 /* 8022DA94 0022A9D4  48 00 06 80 */	b lbl_8022E114
 /* 8022DA98 0022A9D8  7F C3 F3 78 */	mr r3, r30
 /* 8022DA9C 0022A9DC  38 80 00 04 */	li r4, 4
 /* 8022DAA0 0022A9E0  38 A0 00 00 */	li r5, 0
-/* 8022DAA4 0022A9E4  48 00 10 41 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DAA4 0022A9E4  48 00 10 41 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DAA8 0022A9E8  38 60 00 01 */	li r3, 1
 /* 8022DAAC 0022A9EC  48 00 06 68 */	b lbl_8022E114
 /* 8022DAB0 0022A9F0  7F C3 F3 78 */	mr r3, r30
 /* 8022DAB4 0022A9F4  38 80 00 05 */	li r4, 5
 /* 8022DAB8 0022A9F8  38 A0 00 00 */	li r5, 0
-/* 8022DABC 0022A9FC  48 00 10 29 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DABC 0022A9FC  48 00 10 29 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DAC0 0022AA00  38 60 00 01 */	li r3, 1
 /* 8022DAC4 0022AA04  48 00 06 50 */	b lbl_8022E114
 /* 8022DAC8 0022AA08  7F C3 F3 78 */	mr r3, r30
 /* 8022DACC 0022AA0C  38 80 00 06 */	li r4, 6
 /* 8022DAD0 0022AA10  38 A0 00 00 */	li r5, 0
-/* 8022DAD4 0022AA14  48 00 10 11 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DAD4 0022AA14  48 00 10 11 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DAD8 0022AA18  38 60 00 01 */	li r3, 1
 /* 8022DADC 0022AA1C  48 00 06 38 */	b lbl_8022E114
 /* 8022DAE0 0022AA20  7F C3 F3 78 */	mr r3, r30
 /* 8022DAE4 0022AA24  38 80 00 07 */	li r4, 7
 /* 8022DAE8 0022AA28  38 A0 00 00 */	li r5, 0
-/* 8022DAEC 0022AA2C  48 00 0F F9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DAEC 0022AA2C  48 00 0F F9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DAF0 0022AA30  38 60 00 01 */	li r3, 1
 /* 8022DAF4 0022AA34  48 00 06 20 */	b lbl_8022E114
 /* 8022DAF8 0022AA38  7F C3 F3 78 */	mr r3, r30
 /* 8022DAFC 0022AA3C  38 80 00 08 */	li r4, 8
 /* 8022DB00 0022AA40  38 A0 00 00 */	li r5, 0
-/* 8022DB04 0022AA44  48 00 0F E1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB04 0022AA44  48 00 0F E1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB08 0022AA48  38 60 00 01 */	li r3, 1
 /* 8022DB0C 0022AA4C  48 00 06 08 */	b lbl_8022E114
 /* 8022DB10 0022AA50  7F C3 F3 78 */	mr r3, r30
 /* 8022DB14 0022AA54  38 80 00 09 */	li r4, 9
 /* 8022DB18 0022AA58  38 A0 00 00 */	li r5, 0
-/* 8022DB1C 0022AA5C  48 00 0F C9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB1C 0022AA5C  48 00 0F C9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB20 0022AA60  38 60 00 01 */	li r3, 1
 /* 8022DB24 0022AA64  48 00 05 F0 */	b lbl_8022E114
 /* 8022DB28 0022AA68  7F C3 F3 78 */	mr r3, r30
 /* 8022DB2C 0022AA6C  38 80 00 0A */	li r4, 0xa
 /* 8022DB30 0022AA70  38 A0 00 00 */	li r5, 0
-/* 8022DB34 0022AA74  48 00 0F B1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB34 0022AA74  48 00 0F B1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB38 0022AA78  38 60 00 01 */	li r3, 1
 /* 8022DB3C 0022AA7C  48 00 05 D8 */	b lbl_8022E114
 /* 8022DB40 0022AA80  7F C3 F3 78 */	mr r3, r30
 /* 8022DB44 0022AA84  38 80 00 0B */	li r4, 0xb
 /* 8022DB48 0022AA88  38 A0 00 00 */	li r5, 0
-/* 8022DB4C 0022AA8C  48 00 0F 99 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB4C 0022AA8C  48 00 0F 99 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB50 0022AA90  38 60 00 01 */	li r3, 1
 /* 8022DB54 0022AA94  48 00 05 C0 */	b lbl_8022E114
 /* 8022DB58 0022AA98  7F C3 F3 78 */	mr r3, r30
 /* 8022DB5C 0022AA9C  38 80 00 0C */	li r4, 0xc
 /* 8022DB60 0022AAA0  38 A0 00 00 */	li r5, 0
-/* 8022DB64 0022AAA4  48 00 0F 81 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB64 0022AAA4  48 00 0F 81 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB68 0022AAA8  38 60 00 01 */	li r3, 1
 /* 8022DB6C 0022AAAC  48 00 05 A8 */	b lbl_8022E114
 /* 8022DB70 0022AAB0  7F C3 F3 78 */	mr r3, r30
 /* 8022DB74 0022AAB4  38 80 00 0D */	li r4, 0xd
 /* 8022DB78 0022AAB8  38 A0 00 00 */	li r5, 0
-/* 8022DB7C 0022AABC  48 00 0F 69 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB7C 0022AABC  48 00 0F 69 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB80 0022AAC0  38 60 00 01 */	li r3, 1
 /* 8022DB84 0022AAC4  48 00 05 90 */	b lbl_8022E114
 /* 8022DB88 0022AAC8  7F C3 F3 78 */	mr r3, r30
 /* 8022DB8C 0022AACC  38 80 00 0E */	li r4, 0xe
 /* 8022DB90 0022AAD0  38 A0 00 00 */	li r5, 0
-/* 8022DB94 0022AAD4  48 00 0F 51 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DB94 0022AAD4  48 00 0F 51 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DB98 0022AAD8  38 60 00 01 */	li r3, 1
 /* 8022DB9C 0022AADC  48 00 05 78 */	b lbl_8022E114
 /* 8022DBA0 0022AAE0  7F C3 F3 78 */	mr r3, r30
 /* 8022DBA4 0022AAE4  38 80 00 0F */	li r4, 0xf
 /* 8022DBA8 0022AAE8  38 A0 00 00 */	li r5, 0
-/* 8022DBAC 0022AAEC  48 00 0F 39 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DBAC 0022AAEC  48 00 0F 39 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DBB0 0022AAF0  38 60 00 01 */	li r3, 1
 /* 8022DBB4 0022AAF4  48 00 05 60 */	b lbl_8022E114
 /* 8022DBB8 0022AAF8  7F C3 F3 78 */	mr r3, r30
 /* 8022DBBC 0022AAFC  38 80 00 10 */	li r4, 0x10
 /* 8022DBC0 0022AB00  38 A0 00 00 */	li r5, 0
-/* 8022DBC4 0022AB04  48 00 0F 21 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DBC4 0022AB04  48 00 0F 21 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DBC8 0022AB08  38 60 00 01 */	li r3, 1
 /* 8022DBCC 0022AB0C  48 00 05 48 */	b lbl_8022E114
 /* 8022DBD0 0022AB10  7F C3 F3 78 */	mr r3, r30
 /* 8022DBD4 0022AB14  38 80 00 11 */	li r4, 0x11
 /* 8022DBD8 0022AB18  38 A0 00 00 */	li r5, 0
-/* 8022DBDC 0022AB1C  48 00 0F 09 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DBDC 0022AB1C  48 00 0F 09 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DBE0 0022AB20  38 60 00 01 */	li r3, 1
 /* 8022DBE4 0022AB24  48 00 05 30 */	b lbl_8022E114
 /* 8022DBE8 0022AB28  7F C3 F3 78 */	mr r3, r30
 /* 8022DBEC 0022AB2C  38 80 00 12 */	li r4, 0x12
 /* 8022DBF0 0022AB30  38 A0 00 00 */	li r5, 0
-/* 8022DBF4 0022AB34  48 00 0E F1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DBF4 0022AB34  48 00 0E F1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DBF8 0022AB38  38 60 00 01 */	li r3, 1
 /* 8022DBFC 0022AB3C  48 00 05 18 */	b lbl_8022E114
 /* 8022DC00 0022AB40  7F C3 F3 78 */	mr r3, r30
 /* 8022DC04 0022AB44  38 80 00 13 */	li r4, 0x13
 /* 8022DC08 0022AB48  38 A0 00 00 */	li r5, 0
-/* 8022DC0C 0022AB4C  48 00 0E D9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC0C 0022AB4C  48 00 0E D9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DC10 0022AB50  38 60 00 01 */	li r3, 1
 /* 8022DC14 0022AB54  48 00 05 00 */	b lbl_8022E114
 /* 8022DC18 0022AB58  7F C3 F3 78 */	mr r3, r30
 /* 8022DC1C 0022AB5C  38 80 00 14 */	li r4, 0x14
 /* 8022DC20 0022AB60  38 A0 00 00 */	li r5, 0
-/* 8022DC24 0022AB64  48 00 0E C1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC24 0022AB64  48 00 0E C1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DC28 0022AB68  38 60 00 01 */	li r3, 1
 /* 8022DC2C 0022AB6C  48 00 04 E8 */	b lbl_8022E114
 /* 8022DC30 0022AB70  7F C3 F3 78 */	mr r3, r30
 /* 8022DC34 0022AB74  38 80 00 15 */	li r4, 0x15
 /* 8022DC38 0022AB78  38 A0 00 00 */	li r5, 0
-/* 8022DC3C 0022AB7C  48 00 0E A9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC3C 0022AB7C  48 00 0E A9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DC40 0022AB80  38 60 00 01 */	li r3, 1
 /* 8022DC44 0022AB84  48 00 04 D0 */	b lbl_8022E114
 /* 8022DC48 0022AB88  7F C3 F3 78 */	mr r3, r30
 /* 8022DC4C 0022AB8C  38 80 00 1E */	li r4, 0x1e
 /* 8022DC50 0022AB90  38 A0 00 00 */	li r5, 0
-/* 8022DC54 0022AB94  48 00 0E 91 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC54 0022AB94  48 00 0E 91 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DC58 0022AB98  7F C3 F3 78 */	mr r3, r30
 /* 8022DC5C 0022AB9C  80 9F 05 C0 */	lwz r4, 0x5c0(r31)
 /* 8022DC60 0022ABA0  A8 84 01 74 */	lha r4, 0x174(r4)
-/* 8022DC64 0022ABA4  48 00 18 DD */	bl jmessage_tRenderingProcessor_NS_do_numset
+/* 8022DC64 0022ABA4  48 00 18 DD */	bl do_numset__28jmessage_tRenderingProcessorFs
 /* 8022DC68 0022ABA8  38 60 00 01 */	li r3, 1
 /* 8022DC6C 0022ABAC  48 00 04 A8 */	b lbl_8022E114
 /* 8022DC70 0022ABB0  38 60 00 01 */	li r3, 1
@@ -6106,110 +6106,110 @@ lbl_8022D99C:
 /* 8022DC78 0022ABB8  7F C3 F3 78 */	mr r3, r30
 /* 8022DC7C 0022ABBC  38 80 00 17 */	li r4, 0x17
 /* 8022DC80 0022ABC0  38 A0 00 00 */	li r5, 0
-/* 8022DC84 0022ABC4  48 00 0E 61 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC84 0022ABC4  48 00 0E 61 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DC88 0022ABC8  38 60 00 01 */	li r3, 1
 /* 8022DC8C 0022ABCC  48 00 04 88 */	b lbl_8022E114
 /* 8022DC90 0022ABD0  7F C3 F3 78 */	mr r3, r30
 /* 8022DC94 0022ABD4  38 80 00 18 */	li r4, 0x18
 /* 8022DC98 0022ABD8  38 A0 00 00 */	li r5, 0
-/* 8022DC9C 0022ABDC  48 00 0E 49 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DC9C 0022ABDC  48 00 0E 49 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DCA0 0022ABE0  38 60 00 01 */	li r3, 1
 /* 8022DCA4 0022ABE4  48 00 04 70 */	b lbl_8022E114
 /* 8022DCA8 0022ABE8  7F C3 F3 78 */	mr r3, r30
 /* 8022DCAC 0022ABEC  38 80 00 19 */	li r4, 0x19
 /* 8022DCB0 0022ABF0  38 A0 00 00 */	li r5, 0
-/* 8022DCB4 0022ABF4  48 00 0E 31 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DCB4 0022ABF4  48 00 0E 31 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DCB8 0022ABF8  38 60 00 01 */	li r3, 1
 /* 8022DCBC 0022ABFC  48 00 04 58 */	b lbl_8022E114
-/* 8022DCC0 0022AC00  48 00 A9 79 */	bl dMsgObject_c_NS_getItemEquipButton
+/* 8022DCC0 0022AC00  48 00 A9 79 */	bl getItemEquipButton__12dMsgObject_cFv
 /* 8022DCC4 0022AC04  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022DCC8 0022AC08  40 82 00 18 */	bne lbl_8022DCE0
 /* 8022DCCC 0022AC0C  7F C3 F3 78 */	mr r3, r30
 /* 8022DCD0 0022AC10  38 80 00 05 */	li r4, 5
 /* 8022DCD4 0022AC14  38 A0 00 00 */	li r5, 0
-/* 8022DCD8 0022AC18  48 00 0E 0D */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DCD8 0022AC18  48 00 0E 0D */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DCDC 0022AC1C  48 00 00 14 */	b lbl_8022DCF0
 lbl_8022DCE0:
 /* 8022DCE0 0022AC20  7F C3 F3 78 */	mr r3, r30
 /* 8022DCE4 0022AC24  38 80 00 06 */	li r4, 6
 /* 8022DCE8 0022AC28  38 A0 00 00 */	li r5, 0
-/* 8022DCEC 0022AC2C  48 00 0D F9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DCEC 0022AC2C  48 00 0D F9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022DCF0:
 /* 8022DCF0 0022AC30  38 60 00 01 */	li r3, 1
 /* 8022DCF4 0022AC34  48 00 04 20 */	b lbl_8022E114
-/* 8022DCF8 0022AC38  48 00 A9 41 */	bl dMsgObject_c_NS_getItemEquipButton
+/* 8022DCF8 0022AC38  48 00 A9 41 */	bl getItemEquipButton__12dMsgObject_cFv
 /* 8022DCFC 0022AC3C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022DD00 0022AC40  40 82 00 18 */	bne lbl_8022DD18
 /* 8022DD04 0022AC44  7F C3 F3 78 */	mr r3, r30
 /* 8022DD08 0022AC48  38 80 00 06 */	li r4, 6
 /* 8022DD0C 0022AC4C  38 A0 00 00 */	li r5, 0
-/* 8022DD10 0022AC50  48 00 0D D5 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DD10 0022AC50  48 00 0D D5 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DD14 0022AC54  48 00 00 14 */	b lbl_8022DD28
 lbl_8022DD18:
 /* 8022DD18 0022AC58  7F C3 F3 78 */	mr r3, r30
 /* 8022DD1C 0022AC5C  38 80 00 05 */	li r4, 5
 /* 8022DD20 0022AC60  38 A0 00 00 */	li r5, 0
-/* 8022DD24 0022AC64  48 00 0D C1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DD24 0022AC64  48 00 0D C1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022DD28:
 /* 8022DD28 0022AC68  38 60 00 01 */	li r3, 1
 /* 8022DD2C 0022AC6C  48 00 03 E8 */	b lbl_8022E114
 /* 8022DD30 0022AC70  7F C3 F3 78 */	mr r3, r30
 /* 8022DD34 0022AC74  38 80 00 29 */	li r4, 0x29
 /* 8022DD38 0022AC78  38 A0 00 00 */	li r5, 0
-/* 8022DD3C 0022AC7C  48 00 0D A9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DD3C 0022AC7C  48 00 0D A9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DD40 0022AC80  38 60 00 01 */	li r3, 1
 /* 8022DD44 0022AC84  48 00 03 D0 */	b lbl_8022E114
 /* 8022DD48 0022AC88  7F C3 F3 78 */	mr r3, r30
 /* 8022DD4C 0022AC8C  38 80 00 1B */	li r4, 0x1b
 /* 8022DD50 0022AC90  38 A0 00 00 */	li r5, 0
-/* 8022DD54 0022AC94  48 00 0D 91 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DD54 0022AC94  48 00 0D 91 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DD58 0022AC98  38 60 00 01 */	li r3, 1
 /* 8022DD5C 0022AC9C  48 00 03 B8 */	b lbl_8022E114
 /* 8022DD60 0022ACA0  7F C3 F3 78 */	mr r3, r30
 /* 8022DD64 0022ACA4  38 80 00 1C */	li r4, 0x1c
 /* 8022DD68 0022ACA8  38 A0 00 00 */	li r5, 0
-/* 8022DD6C 0022ACAC  48 00 0D 79 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DD6C 0022ACAC  48 00 0D 79 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DD70 0022ACB0  38 60 00 01 */	li r3, 1
 /* 8022DD74 0022ACB4  48 00 03 A0 */	b lbl_8022E114
 /* 8022DD78 0022ACB8  80 7F 05 C0 */	lwz r3, 0x5c0(r31)
-/* 8022DD7C 0022ACBC  48 00 97 55 */	bl dMsgObject_c_NS_getSelectBombNum
+/* 8022DD7C 0022ACBC  48 00 97 55 */	bl getSelectBombNum__12dMsgObject_cFv
 /* 8022DD80 0022ACC0  7C 60 1B 78 */	mr r0, r3
 /* 8022DD84 0022ACC4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022DD88 0022ACC8  38 80 00 07 */	li r4, 7
 /* 8022DD8C 0022ACCC  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8022DD90 0022ACD0  38 C1 00 30 */	addi r6, r1, 0x30
 /* 8022DD94 0022ACD4  38 E0 00 01 */	li r7, 1
-/* 8022DD98 0022ACD8  48 00 AF 55 */	bl dMsgUnit_c_NS_setTag
+/* 8022DD98 0022ACD8  48 00 AF 55 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022DD9C 0022ACDC  7F E3 FB 78 */	mr r3, r31
 /* 8022DDA0 0022ACE0  88 9E 01 4F */	lbz r4, 0x14f(r30)
 /* 8022DDA4 0022ACE4  7C 84 07 74 */	extsb r4, r4
-/* 8022DDA8 0022ACE8  4B FF B9 89 */	bl jmessage_tReference_NS_getWord
+/* 8022DDA8 0022ACE8  4B FF B9 89 */	bl getWord__19jmessage_tReferenceFi
 /* 8022DDAC 0022ACEC  38 81 00 30 */	addi r4, r1, 0x30
 /* 8022DDB0 0022ACF0  48 13 AD 7D */	bl strcpy
 /* 8022DDB4 0022ACF4  7F C3 F3 78 */	mr r3, r30
-/* 8022DDB8 0022ACF8  48 00 19 7D */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DDB8 0022ACF8  48 00 19 7D */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DDBC 0022ACFC  38 60 00 01 */	li r3, 1
 /* 8022DDC0 0022AD00  48 00 03 54 */	b lbl_8022E114
-/* 8022DDC4 0022AD04  48 00 A8 1D */	bl dMsgObject_c_NS_getSelectBombPrice
+/* 8022DDC4 0022AD04  48 00 A8 1D */	bl getSelectBombPrice__12dMsgObject_cFv
 /* 8022DDC8 0022AD08  7C 60 1B 78 */	mr r0, r3
 /* 8022DDCC 0022AD0C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8022DDD0 0022AD10  38 80 00 01 */	li r4, 1
 /* 8022DDD4 0022AD14  7C 05 07 34 */	extsh r5, r0
 /* 8022DDD8 0022AD18  38 C1 00 08 */	addi r6, r1, 8
 /* 8022DDDC 0022AD1C  38 E0 00 01 */	li r7, 1
-/* 8022DDE0 0022AD20  48 00 AF 0D */	bl dMsgUnit_c_NS_setTag
+/* 8022DDE0 0022AD20  48 00 AF 0D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8022DDE4 0022AD24  7F E3 FB 78 */	mr r3, r31
 /* 8022DDE8 0022AD28  88 9E 01 4F */	lbz r4, 0x14f(r30)
 /* 8022DDEC 0022AD2C  7C 84 07 74 */	extsb r4, r4
-/* 8022DDF0 0022AD30  4B FF B9 41 */	bl jmessage_tReference_NS_getWord
+/* 8022DDF0 0022AD30  4B FF B9 41 */	bl getWord__19jmessage_tReferenceFi
 /* 8022DDF4 0022AD34  38 81 00 08 */	addi r4, r1, 8
 /* 8022DDF8 0022AD38  48 13 AD 35 */	bl strcpy
 /* 8022DDFC 0022AD3C  7F C3 F3 78 */	mr r3, r30
-/* 8022DE00 0022AD40  48 00 19 35 */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DE00 0022AD40  48 00 19 35 */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DE04 0022AD44  38 60 00 01 */	li r3, 1
 /* 8022DE08 0022AD48  48 00 03 0C */	b lbl_8022E114
 /* 8022DE0C 0022AD4C  7F C3 F3 78 */	mr r3, r30
-/* 8022DE10 0022AD50  48 00 19 25 */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DE10 0022AD50  48 00 19 25 */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DE14 0022AD54  38 60 00 01 */	li r3, 1
 /* 8022DE18 0022AD58  48 00 02 FC */	b lbl_8022E114
 /* 8022DE1C 0022AD5C  38 60 00 01 */	li r3, 1
@@ -6223,7 +6223,7 @@ lbl_8022DE24:
 /* 8022DE38 0022AD78  48 00 00 14 */	b lbl_8022DE4C
 lbl_8022DE3C:
 /* 8022DE3C 0022AD7C  7F C3 F3 78 */	mr r3, r30
-/* 8022DE40 0022AD80  48 00 18 F5 */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DE40 0022AD80  48 00 18 F5 */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DE44 0022AD84  38 60 00 01 */	li r3, 1
 /* 8022DE48 0022AD88  48 00 02 CC */	b lbl_8022E114
 lbl_8022DE4C:
@@ -6235,7 +6235,7 @@ lbl_8022DE4C:
 /* 8022DE60 0022ADA0  48 00 00 14 */	b lbl_8022DE74
 lbl_8022DE64:
 /* 8022DE64 0022ADA4  7F C3 F3 78 */	mr r3, r30
-/* 8022DE68 0022ADA8  48 00 18 CD */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DE68 0022ADA8  48 00 18 CD */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DE6C 0022ADAC  38 60 00 01 */	li r3, 1
 /* 8022DE70 0022ADB0  48 00 02 A4 */	b lbl_8022E114
 lbl_8022DE74:
@@ -6252,21 +6252,21 @@ lbl_8022DE90:
 /* 8022DE98 0022ADD8  48 00 00 2C */	b lbl_8022DEC4
 lbl_8022DE9C:
 /* 8022DE9C 0022ADDC  7F C3 F3 78 */	mr r3, r30
-/* 8022DEA0 0022ADE0  48 00 18 95 */	bl jmessage_tRenderingProcessor_NS_push_word
+/* 8022DEA0 0022ADE0  48 00 18 95 */	bl push_word__28jmessage_tRenderingProcessorFv
 /* 8022DEA4 0022ADE4  38 60 00 01 */	li r3, 1
 /* 8022DEA8 0022ADE8  48 00 02 6C */	b lbl_8022E114
 lbl_8022DEAC:
 /* 8022DEAC 0022ADEC  7F C3 F3 78 */	mr r3, r30
 /* 8022DEB0 0022ADF0  38 80 00 2A */	li r4, 0x2a
 /* 8022DEB4 0022ADF4  38 A0 00 00 */	li r5, 0
-/* 8022DEB8 0022ADF8  48 00 0C 2D */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DEB8 0022ADF8  48 00 0C 2D */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DEBC 0022ADFC  38 60 00 01 */	li r3, 1
 /* 8022DEC0 0022AE00  48 00 02 54 */	b lbl_8022E114
 lbl_8022DEC4:
 /* 8022DEC4 0022AE04  7F C3 F3 78 */	mr r3, r30
 /* 8022DEC8 0022AE08  38 80 00 2B */	li r4, 0x2b
 /* 8022DECC 0022AE0C  38 A0 00 00 */	li r5, 0
-/* 8022DED0 0022AE10  48 00 0C 15 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DED0 0022AE10  48 00 0C 15 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DED4 0022AE14  38 60 00 01 */	li r3, 1
 /* 8022DED8 0022AE18  48 00 02 3C */	b lbl_8022E114
 lbl_8022DEDC:
@@ -6282,79 +6282,79 @@ lbl_8022DEDC:
 /* 8022DF00 0022AE40  7F C3 F3 78 */	mr r3, r30
 /* 8022DF04 0022AE44  38 80 00 00 */	li r4, 0
 /* 8022DF08 0022AE48  38 A0 00 00 */	li r5, 0
-/* 8022DF0C 0022AE4C  48 00 0B D9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF0C 0022AE4C  48 00 0B D9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF10 0022AE50  38 60 00 01 */	li r3, 1
 /* 8022DF14 0022AE54  48 00 02 00 */	b lbl_8022E114
 /* 8022DF18 0022AE58  7F C3 F3 78 */	mr r3, r30
 /* 8022DF1C 0022AE5C  38 80 00 33 */	li r4, 0x33
 /* 8022DF20 0022AE60  38 A0 00 00 */	li r5, 0
-/* 8022DF24 0022AE64  48 00 0B C1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF24 0022AE64  48 00 0B C1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF28 0022AE68  38 60 00 01 */	li r3, 1
 /* 8022DF2C 0022AE6C  48 00 01 E8 */	b lbl_8022E114
 /* 8022DF30 0022AE70  7F C3 F3 78 */	mr r3, r30
 /* 8022DF34 0022AE74  38 80 00 34 */	li r4, 0x34
 /* 8022DF38 0022AE78  38 A0 00 00 */	li r5, 0
-/* 8022DF3C 0022AE7C  48 00 0B A9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF3C 0022AE7C  48 00 0B A9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF40 0022AE80  38 60 00 01 */	li r3, 1
 /* 8022DF44 0022AE84  48 00 01 D0 */	b lbl_8022E114
 /* 8022DF48 0022AE88  7F C3 F3 78 */	mr r3, r30
 /* 8022DF4C 0022AE8C  38 80 00 35 */	li r4, 0x35
 /* 8022DF50 0022AE90  38 A0 00 00 */	li r5, 0
-/* 8022DF54 0022AE94  48 00 0B 91 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF54 0022AE94  48 00 0B 91 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF58 0022AE98  38 60 00 01 */	li r3, 1
 /* 8022DF5C 0022AE9C  48 00 01 B8 */	b lbl_8022E114
 /* 8022DF60 0022AEA0  7F C3 F3 78 */	mr r3, r30
 /* 8022DF64 0022AEA4  38 80 00 36 */	li r4, 0x36
 /* 8022DF68 0022AEA8  38 A0 00 00 */	li r5, 0
-/* 8022DF6C 0022AEAC  48 00 0B 79 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF6C 0022AEAC  48 00 0B 79 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF70 0022AEB0  38 60 00 01 */	li r3, 1
 /* 8022DF74 0022AEB4  48 00 01 A0 */	b lbl_8022E114
 /* 8022DF78 0022AEB8  7F C3 F3 78 */	mr r3, r30
 /* 8022DF7C 0022AEBC  38 80 00 3F */	li r4, 0x3f
 /* 8022DF80 0022AEC0  38 A0 00 00 */	li r5, 0
-/* 8022DF84 0022AEC4  48 00 0B 61 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF84 0022AEC4  48 00 0B 61 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DF88 0022AEC8  38 60 00 01 */	li r3, 1
 /* 8022DF8C 0022AECC  48 00 01 88 */	b lbl_8022E114
 /* 8022DF90 0022AED0  7F C3 F3 78 */	mr r3, r30
 /* 8022DF94 0022AED4  38 80 00 40 */	li r4, 0x40
 /* 8022DF98 0022AED8  38 A0 00 00 */	li r5, 0
-/* 8022DF9C 0022AEDC  48 00 0B 49 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DF9C 0022AEDC  48 00 0B 49 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DFA0 0022AEE0  38 60 00 01 */	li r3, 1
 /* 8022DFA4 0022AEE4  48 00 01 70 */	b lbl_8022E114
 /* 8022DFA8 0022AEE8  7F C3 F3 78 */	mr r3, r30
 /* 8022DFAC 0022AEEC  38 80 00 32 */	li r4, 0x32
 /* 8022DFB0 0022AEF0  38 A0 00 00 */	li r5, 0
-/* 8022DFB4 0022AEF4  48 00 0B 31 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DFB4 0022AEF4  48 00 0B 31 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DFB8 0022AEF8  38 60 00 01 */	li r3, 1
 /* 8022DFBC 0022AEFC  48 00 01 58 */	b lbl_8022E114
 /* 8022DFC0 0022AF00  7F C3 F3 78 */	mr r3, r30
 /* 8022DFC4 0022AF04  38 80 00 31 */	li r4, 0x31
 /* 8022DFC8 0022AF08  38 A0 00 00 */	li r5, 0
-/* 8022DFCC 0022AF0C  48 00 0B 19 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DFCC 0022AF0C  48 00 0B 19 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DFD0 0022AF10  38 60 00 01 */	li r3, 1
 /* 8022DFD4 0022AF14  48 00 01 40 */	b lbl_8022E114
 /* 8022DFD8 0022AF18  7F C3 F3 78 */	mr r3, r30
 /* 8022DFDC 0022AF1C  38 80 00 41 */	li r4, 0x41
 /* 8022DFE0 0022AF20  38 A0 00 00 */	li r5, 0
-/* 8022DFE4 0022AF24  48 00 0B 01 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DFE4 0022AF24  48 00 0B 01 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022DFE8 0022AF28  38 60 00 01 */	li r3, 1
 /* 8022DFEC 0022AF2C  48 00 01 28 */	b lbl_8022E114
 /* 8022DFF0 0022AF30  7F C3 F3 78 */	mr r3, r30
 /* 8022DFF4 0022AF34  38 80 00 42 */	li r4, 0x42
 /* 8022DFF8 0022AF38  38 A0 00 00 */	li r5, 0
-/* 8022DFFC 0022AF3C  48 00 0A E9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022DFFC 0022AF3C  48 00 0A E9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E000 0022AF40  38 60 00 01 */	li r3, 1
 /* 8022E004 0022AF44  48 00 01 10 */	b lbl_8022E114
 /* 8022E008 0022AF48  7F C3 F3 78 */	mr r3, r30
 /* 8022E00C 0022AF4C  38 80 00 43 */	li r4, 0x43
 /* 8022E010 0022AF50  38 A0 00 00 */	li r5, 0
-/* 8022E014 0022AF54  48 00 0A D1 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E014 0022AF54  48 00 0A D1 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E018 0022AF58  38 60 00 01 */	li r3, 1
 /* 8022E01C 0022AF5C  48 00 00 F8 */	b lbl_8022E114
 /* 8022E020 0022AF60  7F C3 F3 78 */	mr r3, r30
 /* 8022E024 0022AF64  38 80 00 44 */	li r4, 0x44
 /* 8022E028 0022AF68  38 A0 00 00 */	li r5, 0
-/* 8022E02C 0022AF6C  48 00 0A B9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E02C 0022AF6C  48 00 0A B9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E030 0022AF70  38 60 00 01 */	li r3, 1
 /* 8022E034 0022AF74  48 00 00 E0 */	b lbl_8022E114
 /* 8022E038 0022AF78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -6365,50 +6365,50 @@ lbl_8022DEDC:
 /* 8022E04C 0022AF8C  7F C3 F3 78 */	mr r3, r30
 /* 8022E050 0022AF90  38 80 00 09 */	li r4, 9
 /* 8022E054 0022AF94  38 A0 00 00 */	li r5, 0
-/* 8022E058 0022AF98  48 00 0A 8D */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E058 0022AF98  48 00 0A 8D */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E05C 0022AF9C  48 00 00 14 */	b lbl_8022E070
 lbl_8022E060:
 /* 8022E060 0022AFA0  7F C3 F3 78 */	mr r3, r30
 /* 8022E064 0022AFA4  38 80 00 2C */	li r4, 0x2c
 /* 8022E068 0022AFA8  38 A0 00 00 */	li r5, 0
-/* 8022E06C 0022AFAC  48 00 0A 79 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E06C 0022AFAC  48 00 0A 79 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022E070:
 /* 8022E070 0022AFB0  38 60 00 01 */	li r3, 1
 /* 8022E074 0022AFB4  48 00 00 A0 */	b lbl_8022E114
 /* 8022E078 0022AFB8  7F C3 F3 78 */	mr r3, r30
 /* 8022E07C 0022AFBC  38 80 00 45 */	li r4, 0x45
 /* 8022E080 0022AFC0  38 A0 00 00 */	li r5, 0
-/* 8022E084 0022AFC4  48 00 0A 61 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E084 0022AFC4  48 00 0A 61 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E088 0022AFC8  38 60 00 01 */	li r3, 1
 /* 8022E08C 0022AFCC  48 00 00 88 */	b lbl_8022E114
 /* 8022E090 0022AFD0  7F C3 F3 78 */	mr r3, r30
 /* 8022E094 0022AFD4  38 80 00 2D */	li r4, 0x2d
 /* 8022E098 0022AFD8  38 A0 00 00 */	li r5, 0
-/* 8022E09C 0022AFDC  48 00 0A 49 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E09C 0022AFDC  48 00 0A 49 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E0A0 0022AFE0  38 60 00 01 */	li r3, 1
 /* 8022E0A4 0022AFE4  48 00 00 70 */	b lbl_8022E114
 /* 8022E0A8 0022AFE8  7F C3 F3 78 */	mr r3, r30
 /* 8022E0AC 0022AFEC  38 80 00 2C */	li r4, 0x2c
 /* 8022E0B0 0022AFF0  38 A0 00 00 */	li r5, 0
-/* 8022E0B4 0022AFF4  48 00 0A 31 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E0B4 0022AFF4  48 00 0A 31 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E0B8 0022AFF8  38 60 00 01 */	li r3, 1
 /* 8022E0BC 0022AFFC  48 00 00 58 */	b lbl_8022E114
 /* 8022E0C0 0022B000  7F C3 F3 78 */	mr r3, r30
 /* 8022E0C4 0022B004  38 80 00 3E */	li r4, 0x3e
 /* 8022E0C8 0022B008  38 A0 00 00 */	li r5, 0
-/* 8022E0CC 0022B00C  48 00 0A 19 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E0CC 0022B00C  48 00 0A 19 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E0D0 0022B010  38 60 00 01 */	li r3, 1
 /* 8022E0D4 0022B014  48 00 00 40 */	b lbl_8022E114
 /* 8022E0D8 0022B018  7F C3 F3 78 */	mr r3, r30
 /* 8022E0DC 0022B01C  38 80 00 02 */	li r4, 2
 /* 8022E0E0 0022B020  38 A0 00 00 */	li r5, 0
-/* 8022E0E4 0022B024  48 00 0A 01 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E0E4 0022B024  48 00 0A 01 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E0E8 0022B028  38 60 00 01 */	li r3, 1
 /* 8022E0EC 0022B02C  48 00 00 28 */	b lbl_8022E114
 /* 8022E0F0 0022B030  7F C3 F3 78 */	mr r3, r30
 /* 8022E0F4 0022B034  38 80 00 07 */	li r4, 7
 /* 8022E0F8 0022B038  38 A0 00 00 */	li r5, 0
-/* 8022E0FC 0022B03C  48 00 09 E9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022E0FC 0022B03C  48 00 09 E9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022E100 0022B040  38 60 00 01 */	li r3, 1
 /* 8022E104 0022B044  48 00 00 10 */	b lbl_8022E114
 /* 8022E108 0022B048  38 60 00 01 */	li r3, 1
@@ -6423,8 +6423,8 @@ lbl_8022E114:
 /* 8022E124 0022B064  38 21 00 70 */	addi r1, r1, 0x70
 /* 8022E128 0022B068  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_resetRendering
-jmessage_tRenderingProcessor_NS_resetRendering:
+.global resetRendering__28jmessage_tRenderingProcessorFv
+resetRendering__28jmessage_tRenderingProcessorFv:
 /* 8022E12C 0022B06C  80 03 00 3C */	lwz r0, 0x3c(r3)
 /* 8022E130 0022B070  28 00 00 00 */	cmplwi r0, 0
 /* 8022E134 0022B074  4D 82 00 20 */	beqlr 
@@ -6447,8 +6447,8 @@ lbl_8022E14C:
 /* 8022E174 0022B0B4  B0 03 00 00 */	sth r0, 0(r3)
 /* 8022E178 0022B0B8  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_widthcenter
-jmessage_tRenderingProcessor_NS_do_widthcenter:
+.global do_widthcenter__28jmessage_tRenderingProcessorFv
+do_widthcenter__28jmessage_tRenderingProcessorFv:
 /* 8022E17C 0022B0BC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022E180 0022B0C0  7C 08 02 A6 */	mflr r0
 /* 8022E184 0022B0C4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6472,7 +6472,7 @@ jmessage_tRenderingProcessor_NS_do_widthcenter:
 /* 8022E1CC 0022B10C  48 00 00 78 */	b lbl_8022E244
 lbl_8022E1D0:
 /* 8022E1D0 0022B110  C3 E6 04 2C */	lfs f31, 0x42c(r6)
-/* 8022E1D4 0022B114  48 00 0C F9 */	bl jmessage_tRenderingProcessor_NS_getLineLength
+/* 8022E1D4 0022B114  48 00 0C F9 */	bl getLineLength__28jmessage_tRenderingProcessorFi
 /* 8022E1D8 0022B118  EC 1F 08 28 */	fsubs f0, f31, f1
 /* 8022E1DC 0022B11C  C0 22 B0 5C */	lfs f1, lbl_80454A5C-_SDA2_BASE_(r2)
 /* 8022E1E0 0022B120  EC 00 00 72 */	fmuls f0, f0, f1
@@ -6496,7 +6496,7 @@ lbl_8022E1D0:
 /* 8022E228 0022B168  38 A0 00 00 */	li r5, 0
 /* 8022E22C 0022B16C  38 C0 00 01 */	li r6, 1
 /* 8022E230 0022B170  38 E0 00 01 */	li r7, 1
-/* 8022E234 0022B174  48 00 0C CD */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E234 0022B174  48 00 0C CD */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E238 0022B178  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 8022E23C 0022B17C  EC 00 F8 2A */	fadds f0, f0, f31
 /* 8022E240 0022B180  D0 1F 00 48 */	stfs f0, 0x48(r31)
@@ -6509,8 +6509,8 @@ lbl_8022E244:
 /* 8022E258 0022B198  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022E25C 0022B19C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_selwidthcenter
-jmessage_tRenderingProcessor_NS_do_selwidthcenter:
+.global do_selwidthcenter__28jmessage_tRenderingProcessorFi
+do_selwidthcenter__28jmessage_tRenderingProcessorFi:
 /* 8022E260 0022B1A0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022E264 0022B1A4  7C 08 02 A6 */	mflr r0
 /* 8022E268 0022B1A8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6546,7 +6546,7 @@ jmessage_tRenderingProcessor_NS_do_selwidthcenter:
 /* 8022E2E0 0022B220  38 A0 00 00 */	li r5, 0
 /* 8022E2E4 0022B224  38 C0 00 01 */	li r6, 1
 /* 8022E2E8 0022B228  38 E0 00 00 */	li r7, 0
-/* 8022E2EC 0022B22C  48 00 0C 15 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E2EC 0022B22C  48 00 0C 15 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E2F0 0022B230  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 8022E2F4 0022B234  EC 00 F8 2A */	fadds f0, f0, f31
 /* 8022E2F8 0022B238  D0 1F 00 48 */	stfs f0, 0x48(r31)
@@ -6559,8 +6559,8 @@ lbl_8022E2FC:
 /* 8022E310 0022B250  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022E314 0022B254  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_heightcenter
-jmessage_tRenderingProcessor_NS_do_heightcenter:
+.global do_heightcenter__28jmessage_tRenderingProcessorFv
+do_heightcenter__28jmessage_tRenderingProcessorFv:
 /* 8022E318 0022B258  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8022E31C 0022B25C  7C 08 02 A6 */	mflr r0
 /* 8022E320 0022B260  90 01 00 64 */	stw r0, 0x64(r1)
@@ -6583,7 +6583,7 @@ jmessage_tRenderingProcessor_NS_do_heightcenter:
 /* 8022E364 0022B2A4  C3 DF 04 24 */	lfs f30, 0x424(r31)
 /* 8022E368 0022B2A8  C3 BF 04 30 */	lfs f29, 0x430(r31)
 /* 8022E36C 0022B2AC  7F E3 FB 78 */	mr r3, r31
-/* 8022E370 0022B2B0  4B FF AA 71 */	bl jmessage_tReference_NS_getLineMax
+/* 8022E370 0022B2B0  4B FF AA 71 */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022E374 0022B2B4  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8022E378 0022B2B8  38 03 FF FF */	addi r0, r3, -1
 /* 8022E37C 0022B2BC  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
@@ -6619,13 +6619,13 @@ lbl_8022E3B4:
 /* 8022E3EC 0022B32C  8B A4 11 A2 */	lbz r29, 0x11a2(r4)
 /* 8022E3F0 0022B330  7F BD 07 74 */	extsb r29, r29
 /* 8022E3F4 0022B334  7F E3 FB 78 */	mr r3, r31
-/* 8022E3F8 0022B338  4B FF A9 E9 */	bl jmessage_tReference_NS_getLineMax
+/* 8022E3F8 0022B338  4B FF A9 E9 */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022E3FC 0022B33C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022E400 0022B340  7C 1D 00 00 */	cmpw r29, r0
 /* 8022E404 0022B344  41 82 02 E0 */	beq lbl_8022E6E4
 /* 8022E408 0022B348  C3 BF 04 34 */	lfs f29, 0x434(r31)
 /* 8022E40C 0022B34C  7F E3 FB 78 */	mr r3, r31
-/* 8022E410 0022B350  4B FF A9 D1 */	bl jmessage_tReference_NS_getLineMax
+/* 8022E410 0022B350  4B FF A9 D1 */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022E414 0022B354  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022E418 0022B358  7C 1D 00 50 */	subf r0, r29, r0
 /* 8022E41C 0022B35C  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
@@ -6649,7 +6649,7 @@ lbl_8022E3B4:
 /* 8022E464 0022B3A4  40 82 02 80 */	bne lbl_8022E6E4
 /* 8022E468 0022B3A8  C3 BF 04 34 */	lfs f29, 0x434(r31)
 /* 8022E46C 0022B3AC  7F E3 FB 78 */	mr r3, r31
-/* 8022E470 0022B3B0  4B FF A9 71 */	bl jmessage_tReference_NS_getLineMax
+/* 8022E470 0022B3B0  4B FF A9 71 */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022E474 0022B3B4  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022E478 0022B3B8  7C 1D 00 50 */	subf r0, r29, r0
 /* 8022E47C 0022B3BC  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
@@ -6696,7 +6696,7 @@ lbl_8022E4D4:
 /* 8022E51C 0022B45C  7F BD 07 74 */	extsb r29, r29
 /* 8022E520 0022B460  C3 BF 04 34 */	lfs f29, 0x434(r31)
 /* 8022E524 0022B464  7F E3 FB 78 */	mr r3, r31
-/* 8022E528 0022B468  4B FF A8 B9 */	bl jmessage_tReference_NS_getLineMax
+/* 8022E528 0022B468  4B FF A8 B9 */	bl getLineMax__19jmessage_tReferenceFv
 /* 8022E52C 0022B46C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8022E530 0022B470  7C 1D 00 50 */	subf r0, r29, r0
 /* 8022E534 0022B474  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
@@ -6839,7 +6839,7 @@ lbl_8022E6F8:
 /* 8022E740 0022B680  38 A0 00 00 */	li r5, 0
 /* 8022E744 0022B684  38 C0 00 01 */	li r6, 1
 /* 8022E748 0022B688  38 E0 00 01 */	li r7, 1
-/* 8022E74C 0022B68C  48 00 07 B5 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E74C 0022B68C  48 00 07 B5 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E750 0022B690  88 7E 01 4E */	lbz r3, 0x14e(r30)
 /* 8022E754 0022B694  28 03 00 00 */	cmplwi r3, 0
 /* 8022E758 0022B698  41 82 00 2C */	beq lbl_8022E784
@@ -6851,7 +6851,7 @@ lbl_8022E6F8:
 /* 8022E770 0022B6B0  38 81 00 08 */	addi r4, r1, 8
 /* 8022E774 0022B6B4  C0 3F 04 50 */	lfs f1, 0x450(r31)
 /* 8022E778 0022B6B8  C0 42 B0 60 */	lfs f2, lbl_80454A60-_SDA2_BASE_(r2)
-/* 8022E77C 0022B6BC  48 00 0C 09 */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022E77C 0022B6BC  48 00 0C 09 */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 /* 8022E780 0022B6C0  48 00 00 1C */	b lbl_8022E79C
 lbl_8022E784:
 /* 8022E784 0022B6C4  7F C3 F3 78 */	mr r3, r30
@@ -6859,7 +6859,7 @@ lbl_8022E784:
 /* 8022E78C 0022B6CC  38 BF 0E 1C */	addi r5, r31, 0xe1c
 /* 8022E790 0022B6D0  C0 3F 04 3C */	lfs f1, 0x43c(r31)
 /* 8022E794 0022B6D4  C0 42 B0 60 */	lfs f2, lbl_80454A60-_SDA2_BASE_(r2)
-/* 8022E798 0022B6D8  48 00 0B ED */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022E798 0022B6D8  48 00 0B ED */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 lbl_8022E79C:
 /* 8022E79C 0022B6DC  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8022E7A0 0022B6E0  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -6874,8 +6874,8 @@ lbl_8022E79C:
 /* 8022E7C4 0022B704  38 21 00 60 */	addi r1, r1, 0x60
 /* 8022E7C8 0022B708  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_color
-jmessage_tRenderingProcessor_NS_do_color:
+.global do_color__28jmessage_tRenderingProcessorFUc
+do_color__28jmessage_tRenderingProcessorFUc:
 /* 8022E7CC 0022B70C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022E7D0 0022B710  7C 08 02 A6 */	mflr r0
 /* 8022E7D4 0022B714  90 01 00 44 */	stw r0, 0x44(r1)
@@ -6906,7 +6906,7 @@ jmessage_tRenderingProcessor_NS_do_color:
 /* 8022E838 0022B778  38 A0 00 00 */	li r5, 0
 /* 8022E83C 0022B77C  38 C0 00 00 */	li r6, 0
 /* 8022E840 0022B780  38 E0 00 00 */	li r7, 0
-/* 8022E844 0022B784  48 00 06 BD */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E844 0022B784  48 00 06 BD */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E848 0022B788  39 61 00 40 */	addi r11, r1, 0x40
 /* 8022E84C 0022B78C  48 13 39 DD */	bl _restgpr_29
 /* 8022E850 0022B790  80 01 00 44 */	lwz r0, 0x44(r1)
@@ -6914,8 +6914,8 @@ jmessage_tRenderingProcessor_NS_do_color:
 /* 8022E858 0022B798  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022E85C 0022B79C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_scale
-jmessage_tRenderingProcessor_NS_do_scale:
+.global do_scale__28jmessage_tRenderingProcessorFf
+do_scale__28jmessage_tRenderingProcessorFf:
 /* 8022E860 0022B7A0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8022E864 0022B7A4  7C 08 02 A6 */	mflr r0
 /* 8022E868 0022B7A8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -6958,7 +6958,7 @@ jmessage_tRenderingProcessor_NS_do_scale:
 /* 8022E8FC 0022B83C  B0 1C 01 40 */	sth r0, 0x140(r28)
 /* 8022E900 0022B840  7F A4 EB 78 */	mr r4, r29
 /* 8022E904 0022B844  38 A0 00 01 */	li r5, 1
-/* 8022E908 0022B848  48 00 00 B9 */	bl jmessage_tRenderingProcessor_NS_do_transY
+/* 8022E908 0022B848  48 00 00 B9 */	bl do_transY__28jmessage_tRenderingProcessorFsb
 /* 8022E90C 0022B84C  B3 BC 01 3E */	sth r29, 0x13e(r28)
 lbl_8022E910:
 /* 8022E910 0022B850  38 61 00 08 */	addi r3, r1, 8
@@ -6974,7 +6974,7 @@ lbl_8022E910:
 /* 8022E938 0022B878  38 A0 00 00 */	li r5, 0
 /* 8022E93C 0022B87C  38 C0 00 01 */	li r6, 1
 /* 8022E940 0022B880  38 E0 00 00 */	li r7, 0
-/* 8022E944 0022B884  48 00 05 BD */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E944 0022B884  48 00 05 BD */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E948 0022B888  39 61 00 50 */	addi r11, r1, 0x50
 /* 8022E94C 0022B88C  48 13 38 D9 */	bl _restgpr_28
 /* 8022E950 0022B890  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -6982,8 +6982,8 @@ lbl_8022E910:
 /* 8022E958 0022B898  38 21 00 50 */	addi r1, r1, 0x50
 /* 8022E95C 0022B89C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_linedown
-jmessage_tRenderingProcessor_NS_do_linedown:
+.global do_linedown__28jmessage_tRenderingProcessorFs
+do_linedown__28jmessage_tRenderingProcessorFs:
 /* 8022E960 0022B8A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022E964 0022B8A4  7C 08 02 A6 */	mflr r0
 /* 8022E968 0022B8A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7002,15 +7002,15 @@ jmessage_tRenderingProcessor_NS_do_linedown:
 /* 8022E99C 0022B8DC  38 A0 00 00 */	li r5, 0
 /* 8022E9A0 0022B8E0  38 C0 00 01 */	li r6, 1
 /* 8022E9A4 0022B8E4  38 E0 00 00 */	li r7, 0
-/* 8022E9A8 0022B8E8  48 00 05 59 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022E9A8 0022B8E8  48 00 05 59 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022E9AC 0022B8EC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8022E9B0 0022B8F0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8022E9B4 0022B8F4  7C 08 03 A6 */	mtlr r0
 /* 8022E9B8 0022B8F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022E9BC 0022B8FC  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_transY
-jmessage_tRenderingProcessor_NS_do_transY:
+.global do_transY__28jmessage_tRenderingProcessorFsb
+do_transY__28jmessage_tRenderingProcessorFsb:
 /* 8022E9C0 0022B900  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022E9C4 0022B904  7C 08 02 A6 */	mflr r0
 /* 8022E9C8 0022B908  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7072,14 +7072,14 @@ lbl_8022EA6C:
 /* 8022EAA0 0022B9E0  38 A0 00 00 */	li r5, 0
 /* 8022EAA4 0022B9E4  38 C0 00 01 */	li r6, 1
 /* 8022EAA8 0022B9E8  38 E0 00 01 */	li r7, 1
-/* 8022EAAC 0022B9EC  48 00 04 55 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022EAAC 0022B9EC  48 00 04 55 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022EAB0 0022B9F0  80 DF 00 04 */	lwz r6, 4(r31)
 /* 8022EAB4 0022B9F4  7F E3 FB 78 */	mr r3, r31
 /* 8022EAB8 0022B9F8  38 81 00 08 */	addi r4, r1, 8
 /* 8022EABC 0022B9FC  38 A6 0E 1C */	addi r5, r6, 0xe1c
 /* 8022EAC0 0022BA00  C0 26 04 3C */	lfs f1, 0x43c(r6)
 /* 8022EAC4 0022BA04  C0 42 B0 60 */	lfs f2, lbl_80454A60-_SDA2_BASE_(r2)
-/* 8022EAC8 0022BA08  48 00 08 BD */	bl jmessage_tRenderingProcessor_NS_do_rubystrcat
+/* 8022EAC8 0022BA08  48 00 08 BD */	bl do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
 lbl_8022EACC:
 /* 8022EACC 0022BA0C  39 61 00 40 */	addi r11, r1, 0x40
 /* 8022EAD0 0022BA10  48 13 37 59 */	bl _restgpr_29
@@ -7088,8 +7088,8 @@ lbl_8022EACC:
 /* 8022EADC 0022BA1C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8022EAE0 0022BA20  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_outfont
-jmessage_tRenderingProcessor_NS_do_outfont:
+.global do_outfont__28jmessage_tRenderingProcessorFUcUl
+do_outfont__28jmessage_tRenderingProcessorFUcUl:
 /* 8022EAE4 0022BA24  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8022EAE8 0022BA28  7C 08 02 A6 */	mflr r0
 /* 8022EAEC 0022BA2C  90 01 00 84 */	stw r0, 0x84(r1)
@@ -7183,7 +7183,7 @@ lbl_8022EBC4:
 /* 8022EC40 0022BB80  EC 42 00 2A */	fadds f2, f2, f0
 /* 8022EC44 0022BB84  FC 80 18 90 */	fmr f4, f3
 /* 8022EC48 0022BB88  C0 A2 B0 64 */	lfs f5, lbl_80454A64-_SDA2_BASE_(r2)
-/* 8022EC4C 0022BB8C  48 00 0B 39 */	bl jmessage_tRenderingProcessor_NS_getCharInfo
+/* 8022EC4C 0022BB8C  48 00 0B 39 */	bl getCharInfo__28jmessage_tRenderingProcessorFfffff
 lbl_8022EC50:
 /* 8022EC50 0022BB90  C0 42 B0 5C */	lfs f2, lbl_80454A5C-_SDA2_BASE_(r2)
 /* 8022EC54 0022BB94  C0 3F 00 44 */	lfs f1, 0x44(r31)
@@ -7218,7 +7218,7 @@ lbl_8022EC50:
 /* 8022ECC8 0022BC08  38 A0 00 00 */	li r5, 0
 /* 8022ECCC 0022BC0C  38 C0 00 01 */	li r6, 1
 /* 8022ECD0 0022BC10  38 E0 00 00 */	li r7, 0
-/* 8022ECD4 0022BC14  48 00 02 2D */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022ECD4 0022BC14  48 00 02 2D */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022ECD8 0022BC18  E3 E1 00 78 */	psq_l f31, 120(r1), 0, qr0
 /* 8022ECDC 0022BC1C  CB E1 00 70 */	lfd f31, 0x70(r1)
 /* 8022ECE0 0022BC20  E3 C1 00 68 */	psq_l f30, 104(r1), 0, qr0
@@ -7234,8 +7234,8 @@ lbl_8022EC50:
 /* 8022ED08 0022BC48  38 21 00 80 */	addi r1, r1, 0x80
 /* 8022ED0C 0022BC4C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_arrow2
-jmessage_tRenderingProcessor_NS_do_arrow2:
+.global do_arrow2__28jmessage_tRenderingProcessorFv
+do_arrow2__28jmessage_tRenderingProcessorFv:
 /* 8022ED10 0022BC50  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8022ED14 0022BC54  7C 08 02 A6 */	mflr r0
 /* 8022ED18 0022BC58  90 01 00 54 */	stw r0, 0x54(r1)
@@ -7336,7 +7336,7 @@ lbl_8022EE1C:
 /* 8022EE90 0022BDD0  38 A0 00 00 */	li r5, 0
 /* 8022EE94 0022BDD4  38 C0 00 01 */	li r6, 1
 /* 8022EE98 0022BDD8  38 E0 00 00 */	li r7, 0
-/* 8022EE9C 0022BDDC  48 00 00 65 */	bl jmessage_tRenderingProcessor_NS_do_strcat
+/* 8022EE9C 0022BDDC  48 00 00 65 */	bl do_strcat__28jmessage_tRenderingProcessorFPcbbb
 /* 8022EEA0 0022BDE0  88 7F 01 4D */	lbz r3, 0x14d(r31)
 /* 8022EEA4 0022BDE4  38 03 00 01 */	addi r0, r3, 1
 /* 8022EEA8 0022BDE8  98 1F 01 4D */	stb r0, 0x14d(r31)
@@ -7349,8 +7349,8 @@ lbl_8022EE1C:
 /* 8022EEC4 0022BE04  38 21 00 50 */	addi r1, r1, 0x50
 /* 8022EEC8 0022BE08  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_getLineLength
-jmessage_tRenderingProcessor_NS_getLineLength:
+.global getLineLength__28jmessage_tRenderingProcessorFi
+getLineLength__28jmessage_tRenderingProcessorFi:
 /* 8022EECC 0022BE0C  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8022EED0 0022BE10  A8 05 05 CC */	lha r0, 0x5cc(r5)
 /* 8022EED4 0022BE14  7C 04 02 14 */	add r0, r4, r0
@@ -7365,8 +7365,8 @@ jmessage_tRenderingProcessor_NS_getLineLength:
 /* 8022EEF8 0022BE38  EC 22 00 2A */	fadds f1, f2, f0
 /* 8022EEFC 0022BE3C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_strcat
-jmessage_tRenderingProcessor_NS_do_strcat:
+.global do_strcat__28jmessage_tRenderingProcessorFPcbbb
+do_strcat__28jmessage_tRenderingProcessorFPcbbb:
 /* 8022EF00 0022BE40  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8022EF04 0022BE44  7C 08 02 A6 */	mflr r0
 /* 8022EF08 0022BE48  90 01 00 54 */	stw r0, 0x54(r1)
@@ -7379,7 +7379,7 @@ jmessage_tRenderingProcessor_NS_do_strcat:
 /* 8022EF24 0022BE64  7C FB 3B 78 */	mr r27, r7
 /* 8022EF28 0022BE68  83 E3 00 04 */	lwz r31, 4(r3)
 /* 8022EF2C 0022BE6C  7F E3 FB 78 */	mr r3, r31
-/* 8022EF30 0022BE70  4B FF A9 3D */	bl jmessage_tReference_NS_isCharSend
+/* 8022EF30 0022BE70  4B FF A9 3D */	bl isCharSend__19jmessage_tReferenceFv
 /* 8022EF34 0022BE74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022EF38 0022BE78  40 82 00 0C */	bne lbl_8022EF44
 /* 8022EF3C 0022BE7C  57 40 06 3F */	clrlwi. r0, r26, 0x18
@@ -7525,8 +7525,8 @@ lbl_8022F130:
 /* 8022F140 0022C080  38 21 00 50 */	addi r1, r1, 0x50
 /* 8022F144 0022C084  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_rubyset
-jmessage_tRenderingProcessor_NS_do_rubyset:
+.global do_rubyset__28jmessage_tRenderingProcessorFPCvUl
+do_rubyset__28jmessage_tRenderingProcessorFPCvUl:
 /* 8022F148 0022C088  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8022F14C 0022C08C  7C 08 02 A6 */	mflr r0
 /* 8022F150 0022C090  90 01 00 74 */	stw r0, 0x74(r1)
@@ -7676,8 +7676,8 @@ lbl_8022F35C:
 /* 8022F37C 0022C2BC  38 21 00 70 */	addi r1, r1, 0x70
 /* 8022F380 0022C2C0  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_rubystrcat
-jmessage_tRenderingProcessor_NS_do_rubystrcat:
+.global do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff
+do_rubystrcat__28jmessage_tRenderingProcessorFPcPcff:
 /* 8022F384 0022C2C4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8022F388 0022C2C8  7C 08 02 A6 */	mflr r0
 /* 8022F38C 0022C2CC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -7693,7 +7693,7 @@ jmessage_tRenderingProcessor_NS_do_rubystrcat:
 /* 8022F3B4 0022C2F4  FF E0 08 90 */	fmr f31, f1
 /* 8022F3B8 0022C2F8  FF C0 10 90 */	fmr f30, f2
 /* 8022F3BC 0022C2FC  80 63 00 04 */	lwz r3, 4(r3)
-/* 8022F3C0 0022C300  4B FF A4 AD */	bl jmessage_tReference_NS_isCharSend
+/* 8022F3C0 0022C300  4B FF A4 AD */	bl isCharSend__19jmessage_tReferenceFv
 /* 8022F3C4 0022C304  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022F3C8 0022C308  41 82 01 4C */	beq lbl_8022F514
 /* 8022F3CC 0022C30C  C0 02 B0 60 */	lfs f0, lbl_80454A60-_SDA2_BASE_(r2)
@@ -7793,12 +7793,12 @@ lbl_8022F514:
 /* 8022F534 0022C474  38 21 00 70 */	addi r1, r1, 0x70
 /* 8022F538 0022C478  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_name1
-jmessage_tRenderingProcessor_NS_do_name1:
+.global do_name1__28jmessage_tRenderingProcessorFv
+do_name1__28jmessage_tRenderingProcessorFv:
 /* 8022F53C 0022C47C  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_do_numset
-jmessage_tRenderingProcessor_NS_do_numset:
+.global do_numset__28jmessage_tRenderingProcessorFs
+do_numset__28jmessage_tRenderingProcessorFs:
 /* 8022F540 0022C480  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8022F544 0022C484  7C 08 02 A6 */	mflr r0
 /* 8022F548 0022C488  90 01 00 24 */	stw r0, 0x24(r1)
@@ -7827,7 +7827,7 @@ lbl_8022F578:
 /* 8022F59C 0022C4DC  7F A3 EB 78 */	mr r3, r29
 /* 8022F5A0 0022C4E0  3C A0 FF 00 */	lis r5, 0xFF0000FF@ha
 /* 8022F5A4 0022C4E4  38 A5 00 FF */	addi r5, r5, 0xFF0000FF@l
-/* 8022F5A8 0022C4E8  4B FF F5 3D */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F5A8 0022C4E8  4B FF F5 3D */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022F5AC 0022C4EC  48 00 00 24 */	b lbl_8022F5D0
 lbl_8022F5B0:
 /* 8022F5B0 0022C4F0  7F C3 07 34 */	extsh r3, r30
@@ -7837,7 +7837,7 @@ lbl_8022F5B0:
 /* 8022F5C0 0022C500  7C 64 1B 78 */	mr r4, r3
 /* 8022F5C4 0022C504  7F A3 EB 78 */	mr r3, r29
 /* 8022F5C8 0022C508  38 A0 00 00 */	li r5, 0
-/* 8022F5CC 0022C50C  4B FF F5 19 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F5CC 0022C50C  4B FF F5 19 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022F5D0:
 /* 8022F5D0 0022C510  88 1F 12 4F */	lbz r0, 0x124f(r31)
 /* 8022F5D4 0022C514  28 00 00 02 */	cmplwi r0, 2
@@ -7854,7 +7854,7 @@ lbl_8022F5D0:
 /* 8022F600 0022C540  7F A3 EB 78 */	mr r3, r29
 /* 8022F604 0022C544  3C A0 FF 00 */	lis r5, 0xFF0000FF@ha
 /* 8022F608 0022C548  38 A5 00 FF */	addi r5, r5, 0xFF0000FF@l
-/* 8022F60C 0022C54C  4B FF F4 D9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F60C 0022C54C  4B FF F4 D9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022F610 0022C550  48 00 00 34 */	b lbl_8022F644
 lbl_8022F614:
 /* 8022F614 0022C554  7F C4 07 34 */	extsh r4, r30
@@ -7868,7 +7868,7 @@ lbl_8022F614:
 /* 8022F634 0022C574  7C 64 1B 78 */	mr r4, r3
 /* 8022F638 0022C578  7F A3 EB 78 */	mr r3, r29
 /* 8022F63C 0022C57C  38 A0 00 00 */	li r5, 0
-/* 8022F640 0022C580  4B FF F4 A5 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F640 0022C580  4B FF F4 A5 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022F644:
 /* 8022F644 0022C584  88 1F 12 4F */	lbz r0, 0x124f(r31)
 /* 8022F648 0022C588  28 00 00 01 */	cmplwi r0, 1
@@ -7885,7 +7885,7 @@ lbl_8022F644:
 /* 8022F674 0022C5B4  7F A3 EB 78 */	mr r3, r29
 /* 8022F678 0022C5B8  3C A0 FF 00 */	lis r5, 0xFF0000FF@ha
 /* 8022F67C 0022C5BC  38 A5 00 FF */	addi r5, r5, 0xFF0000FF@l
-/* 8022F680 0022C5C0  4B FF F4 65 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F680 0022C5C0  4B FF F4 65 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022F684 0022C5C4  48 00 00 34 */	b lbl_8022F6B8
 lbl_8022F688:
 /* 8022F688 0022C5C8  7F C4 07 34 */	extsh r4, r30
@@ -7899,7 +7899,7 @@ lbl_8022F688:
 /* 8022F6A8 0022C5E8  7C 64 1B 78 */	mr r4, r3
 /* 8022F6AC 0022C5EC  7F A3 EB 78 */	mr r3, r29
 /* 8022F6B0 0022C5F0  38 A0 00 00 */	li r5, 0
-/* 8022F6B4 0022C5F4  4B FF F4 31 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F6B4 0022C5F4  4B FF F4 31 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022F6B8:
 /* 8022F6B8 0022C5F8  88 1F 12 4F */	lbz r0, 0x124f(r31)
 /* 8022F6BC 0022C5FC  28 00 00 00 */	cmplwi r0, 0
@@ -7914,7 +7914,7 @@ lbl_8022F6B8:
 /* 8022F6E0 0022C620  7F A3 EB 78 */	mr r3, r29
 /* 8022F6E4 0022C624  3C A0 FF 00 */	lis r5, 0xFF0000FF@ha
 /* 8022F6E8 0022C628  38 A5 00 FF */	addi r5, r5, 0xFF0000FF@l
-/* 8022F6EC 0022C62C  4B FF F3 F9 */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F6EC 0022C62C  4B FF F3 F9 */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 /* 8022F6F0 0022C630  48 00 00 2C */	b lbl_8022F71C
 lbl_8022F6F4:
 /* 8022F6F4 0022C634  7F C4 07 34 */	extsh r4, r30
@@ -7926,7 +7926,7 @@ lbl_8022F6F4:
 /* 8022F70C 0022C64C  7C 64 1B 78 */	mr r4, r3
 /* 8022F710 0022C650  7F A3 EB 78 */	mr r3, r29
 /* 8022F714 0022C654  38 A0 00 00 */	li r5, 0
-/* 8022F718 0022C658  4B FF F3 CD */	bl jmessage_tRenderingProcessor_NS_do_outfont
+/* 8022F718 0022C658  4B FF F3 CD */	bl do_outfont__28jmessage_tRenderingProcessorFUcUl
 lbl_8022F71C:
 /* 8022F71C 0022C65C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8022F720 0022C660  48 13 2B 09 */	bl _restgpr_29
@@ -7935,8 +7935,8 @@ lbl_8022F71C:
 /* 8022F72C 0022C66C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022F730 0022C670  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_push_word
-jmessage_tRenderingProcessor_NS_push_word:
+.global push_word__28jmessage_tRenderingProcessorFv
+push_word__28jmessage_tRenderingProcessorFv:
 /* 8022F734 0022C674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022F738 0022C678  7C 08 02 A6 */	mflr r0
 /* 8022F73C 0022C67C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7945,10 +7945,10 @@ jmessage_tRenderingProcessor_NS_push_word:
 /* 8022F748 0022C688  80 63 00 04 */	lwz r3, 4(r3)
 /* 8022F74C 0022C68C  88 9F 01 4F */	lbz r4, 0x14f(r31)
 /* 8022F750 0022C690  7C 84 07 74 */	extsb r4, r4
-/* 8022F754 0022C694  4B FF 9F DD */	bl jmessage_tReference_NS_getWord
+/* 8022F754 0022C694  4B FF 9F DD */	bl getWord__19jmessage_tReferenceFi
 /* 8022F758 0022C698  7C 64 1B 78 */	mr r4, r3
 /* 8022F75C 0022C69C  7F E3 FB 78 */	mr r3, r31
-/* 8022F760 0022C6A0  48 07 84 99 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022F760 0022C6A0  48 07 84 99 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022F764 0022C6A4  88 7F 01 4F */	lbz r3, 0x14f(r31)
 /* 8022F768 0022C6A8  38 03 00 01 */	addi r0, r3, 1
 /* 8022F76C 0022C6AC  98 1F 01 4F */	stb r0, 0x14f(r31)
@@ -7958,8 +7958,8 @@ jmessage_tRenderingProcessor_NS_push_word:
 /* 8022F77C 0022C6BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022F780 0022C6C0  4E 80 00 20 */	blr 
 
-.global jmessage_tRenderingProcessor_NS_getCharInfo
-jmessage_tRenderingProcessor_NS_getCharInfo:
+.global getCharInfo__28jmessage_tRenderingProcessorFfffff
+getCharInfo__28jmessage_tRenderingProcessorFfffff:
 /* 8022F784 0022C6C4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8022F788 0022C6C8  7C 08 02 A6 */	mflr r0
 /* 8022F78C 0022C6CC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -7975,7 +7975,7 @@ jmessage_tRenderingProcessor_NS_getCharInfo:
 /* 8022F7B4 0022C6F4  FF E0 28 90 */	fmr f31, f5
 /* 8022F7B8 0022C6F8  83 E3 00 04 */	lwz r31, 4(r3)
 /* 8022F7BC 0022C6FC  7F E3 FB 78 */	mr r3, r31
-/* 8022F7C0 0022C700  4B FF A1 1D */	bl jmessage_tReference_NS_isLightSend
+/* 8022F7C0 0022C700  4B FF A1 1D */	bl isLightSend__19jmessage_tReferenceFv
 /* 8022F7C4 0022C704  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8022F7C8 0022C708  41 82 00 D8 */	beq lbl_8022F8A0
 /* 8022F7CC 0022C70C  80 9E 00 3C */	lwz r4, 0x3c(r30)
@@ -8073,7 +8073,7 @@ lbl_8022F914:
 /* 8022F924 0022C864  38 63 00 04 */	addi r3, r3, 4
 /* 8022F928 0022C868  42 00 FF EC */	bdnz lbl_8022F914
 /* 8022F92C 0022C86C  7F E3 FB 78 */	mr r3, r31
-/* 8022F930 0022C870  48 00 01 05 */	bl jmessage_string_tReference_NS_resetCharactor
+/* 8022F930 0022C870  48 00 01 05 */	bl resetCharactor__26jmessage_string_tReferenceFv
 /* 8022F934 0022C874  7F E3 FB 78 */	mr r3, r31
 /* 8022F938 0022C878  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8022F93C 0022C87C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -8092,7 +8092,7 @@ lbl_8022F914:
 /* 8022F970 0022C8B0  38 04 09 EC */	addi r0, r4, lbl_803C09EC@l
 /* 8022F974 0022C8B4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8022F978 0022C8B8  38 80 00 00 */	li r4, 0
-/* 8022F97C 0022C8BC  48 07 81 7D */	bl JMessage_NS_TReference_NS_dtor
+/* 8022F97C 0022C8BC  48 07 81 7D */	bl __dt__Q28JMessage10TReferenceFv
 /* 8022F980 0022C8C0  7F E0 07 35 */	extsh. r0, r31
 /* 8022F984 0022C8C4  40 81 00 0C */	ble lbl_8022F990
 /* 8022F988 0022C8C8  7F C3 F3 78 */	mr r3, r30
@@ -8106,8 +8106,8 @@ lbl_8022F990:
 /* 8022F9A4 0022C8E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022F9A8 0022C8E8  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_init
-jmessage_string_tReference_NS_init:
+.global init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
+init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc:
 /* 8022F9AC 0022C8EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8022F9B0 0022C8F0  7C 08 02 A6 */	mflr r0
 /* 8022F9B4 0022C8F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -8137,27 +8137,27 @@ lbl_8022F9F8:
 /* 8022FA0C 0022C94C  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8022FA10 0022C950  28 03 00 00 */	cmplwi r3, 0
 /* 8022FA14 0022C954  41 82 00 08 */	beq lbl_8022FA1C
-/* 8022FA18 0022C958  4B FF 72 E1 */	bl COutFont_c_NS_initialize
+/* 8022FA18 0022C958  4B FF 72 E1 */	bl initialize__10COutFont_cFv
 lbl_8022FA1C:
 /* 8022FA1C 0022C95C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8022FA20 0022C960  7C 08 03 A6 */	mtlr r0
 /* 8022FA24 0022C964  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022FA28 0022C968  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_setCharactor
-jmessage_string_tReference_NS_setCharactor:
+.global setCharactor__26jmessage_string_tReferenceFUs
+setCharactor__26jmessage_string_tReferenceFUs:
 /* 8022FA2C 0022C96C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_addCharactor
-jmessage_string_tReference_NS_addCharactor:
+.global addCharactor__26jmessage_string_tReferenceFUs
+addCharactor__26jmessage_string_tReferenceFUs:
 /* 8022FA30 0022C970  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_resetCharactor
-jmessage_string_tReference_NS_resetCharactor:
+.global resetCharactor__26jmessage_string_tReferenceFv
+resetCharactor__26jmessage_string_tReferenceFv:
 /* 8022FA34 0022C974  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_getLineLength
-jmessage_string_tReference_NS_getLineLength:
+.global getLineLength__26jmessage_string_tReferenceFi
+getLineLength__26jmessage_string_tReferenceFi:
 /* 8022FA38 0022C978  2C 04 00 00 */	cmpwi r4, 0
 /* 8022FA3C 0022C97C  40 80 00 0C */	bge lbl_8022FA48
 /* 8022FA40 0022C980  C0 22 B0 60 */	lfs f1, lbl_80454A60-_SDA2_BASE_(r2)
@@ -8174,8 +8174,8 @@ lbl_8022FA64:
 /* 8022FA64 0022C9A4  C0 22 B0 60 */	lfs f1, lbl_80454A60-_SDA2_BASE_(r2)
 /* 8022FA68 0022C9A8  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_addLineLength
-jmessage_string_tReference_NS_addLineLength:
+.global addLineLength__26jmessage_string_tReferenceFif
+addLineLength__26jmessage_string_tReferenceFif:
 /* 8022FA6C 0022C9AC  2C 04 00 00 */	cmpwi r4, 0
 /* 8022FA70 0022C9B0  4D 80 00 20 */	bltlr 
 /* 8022FA74 0022C9B4  88 03 00 82 */	lbz r0, 0x82(r3)
@@ -8188,8 +8188,8 @@ jmessage_string_tReference_NS_addLineLength:
 /* 8022FA90 0022C9D0  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 8022FA94 0022C9D4  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_getOutfontLength
-jmessage_string_tReference_NS_getOutfontLength:
+.global getOutfontLength__26jmessage_string_tReferenceFi
+getOutfontLength__26jmessage_string_tReferenceFi:
 /* 8022FA98 0022C9D8  2C 04 00 00 */	cmpwi r4, 0
 /* 8022FA9C 0022C9DC  40 80 00 0C */	bge lbl_8022FAA8
 /* 8022FAA0 0022C9E0  C0 22 B0 60 */	lfs f1, lbl_80454A60-_SDA2_BASE_(r2)
@@ -8206,8 +8206,8 @@ lbl_8022FAC4:
 /* 8022FAC4 0022CA04  C0 22 B0 60 */	lfs f1, lbl_80454A60-_SDA2_BASE_(r2)
 /* 8022FAC8 0022CA08  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_setOutfontLength
-jmessage_string_tReference_NS_setOutfontLength:
+.global setOutfontLength__26jmessage_string_tReferenceFif
+setOutfontLength__26jmessage_string_tReferenceFif:
 /* 8022FACC 0022CA0C  2C 04 00 00 */	cmpwi r4, 0
 /* 8022FAD0 0022CA10  4D 80 00 20 */	bltlr 
 /* 8022FAD4 0022CA14  88 03 00 82 */	lbz r0, 0x82(r3)
@@ -8218,8 +8218,8 @@ jmessage_string_tReference_NS_setOutfontLength:
 /* 8022FAE8 0022CA28  D0 23 00 48 */	stfs f1, 0x48(r3)
 /* 8022FAEC 0022CA2C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_clearOutfontLength
-jmessage_string_tReference_NS_clearOutfontLength:
+.global clearOutfontLength__26jmessage_string_tReferenceFi
+clearOutfontLength__26jmessage_string_tReferenceFi:
 /* 8022FAF0 0022CA30  2C 04 00 00 */	cmpwi r4, 0
 /* 8022FAF4 0022CA34  4D 80 00 20 */	bltlr 
 /* 8022FAF8 0022CA38  88 03 00 82 */	lbz r0, 0x82(r3)
@@ -8234,8 +8234,8 @@ jmessage_string_tReference_NS_clearOutfontLength:
 /* 8022FB1C 0022CA5C  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 8022FB20 0022CA60  4E 80 00 20 */	blr 
 
-.global jmessage_string_tReference_NS_getLineCountNowPage
-jmessage_string_tReference_NS_getLineCountNowPage:
+.global getLineCountNowPage__26jmessage_string_tReferenceFv
+getLineCountNowPage__26jmessage_string_tReferenceFv:
 /* 8022FB24 0022CA64  38 A0 FF FF */	li r5, -1
 /* 8022FB28 0022CA68  88 03 00 83 */	lbz r0, 0x83(r3)
 /* 8022FB2C 0022CA6C  88 83 00 82 */	lbz r4, 0x82(r3)
@@ -8259,7 +8259,7 @@ jmessage_string_tControl:
 /* 8022FB64 0022CAA4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8022FB68 0022CAA8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022FB6C 0022CAAC  7C 7F 1B 78 */	mr r31, r3
-/* 8022FB70 0022CAB0  48 07 79 D9 */	bl JMessage_NS_TControl
+/* 8022FB70 0022CAB0  48 07 79 D9 */	bl __ct__Q28JMessage8TControlFv
 /* 8022FB74 0022CAB4  3C 60 80 3C */	lis r3, lbl_803C09E0@ha
 /* 8022FB78 0022CAB8  38 03 09 E0 */	addi r0, r3, lbl_803C09E0@l
 /* 8022FB7C 0022CABC  90 1F 00 00 */	stw r0, 0(r31)
@@ -8277,14 +8277,14 @@ jmessage_string_tMeasureProcessor:
 /* 8022FBA0 0022CAE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8022FBA4 0022CAE4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022FBA8 0022CAE8  7C 7F 1B 78 */	mr r31, r3
-/* 8022FBAC 0022CAEC  48 07 8E D9 */	bl JMessage_NS_TRenderingProcessor
+/* 8022FBAC 0022CAEC  48 07 8E D9 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
 /* 8022FBB0 0022CAF0  3C 60 80 3C */	lis r3, lbl_803C09A0@ha
 /* 8022FBB4 0022CAF4  38 03 09 A0 */	addi r0, r3, lbl_803C09A0@l
 /* 8022FBB8 0022CAF8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8022FBBC 0022CAFC  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8022FBC0 0022CB00  90 1F 00 38 */	stw r0, 0x38(r31)
 /* 8022FBC4 0022CB04  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FBC8 0022CB08  4B FF FE 6D */	bl jmessage_string_tReference_NS_resetCharactor
+/* 8022FBC8 0022CB08  4B FF FE 6D */	bl resetCharactor__26jmessage_string_tReferenceFv
 /* 8022FBCC 0022CB0C  7F E3 FB 78 */	mr r3, r31
 /* 8022FBD0 0022CB10  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8022FBD4 0022CB14  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -8298,7 +8298,7 @@ jmessage_string_tMeasureProcessor:
 /* 8022FBF4 0022CB34  80 83 00 38 */	lwz r4, 0x38(r3)
 /* 8022FBF8 0022CB38  B0 04 00 80 */	sth r0, 0x80(r4)
 /* 8022FBFC 0022CB3C  80 63 00 38 */	lwz r3, 0x38(r3)
-/* 8022FC00 0022CB40  4B FF FE 35 */	bl jmessage_string_tReference_NS_resetCharactor
+/* 8022FC00 0022CB40  4B FF FE 35 */	bl resetCharactor__26jmessage_string_tReferenceFv
 /* 8022FC04 0022CB44  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8022FC08 0022CB48  7C 08 03 A6 */	mtlr r0
 /* 8022FC0C 0022CB4C  38 21 00 10 */	addi r1, r1, 0x10
@@ -8346,7 +8346,7 @@ lbl_8022FC84:
 /* 8022FCA8 0022CBE8  4B FF 8B 91 */	bl changeKataToHira
 /* 8022FCAC 0022CBEC  7C 64 1B 78 */	mr r4, r3
 /* 8022FCB0 0022CBF0  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FCB4 0022CBF4  4B FF FD 79 */	bl jmessage_string_tReference_NS_setCharactor
+/* 8022FCB4 0022CBF4  4B FF FD 79 */	bl setCharactor__26jmessage_string_tReferenceFUs
 /* 8022FCB8 0022CBF8  48 00 00 38 */	b lbl_8022FCF0
 lbl_8022FCBC:
 /* 8022FCBC 0022CBFC  3C 60 00 01 */	lis r3, 0x00008800@ha
@@ -8361,7 +8361,7 @@ lbl_8022FCBC:
 /* 8022FCE0 0022CC20  4B FF 8B 59 */	bl changeKataToHira
 /* 8022FCE4 0022CC24  7C 64 1B 78 */	mr r4, r3
 /* 8022FCE8 0022CC28  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FCEC 0022CC2C  4B FF FD 41 */	bl jmessage_string_tReference_NS_setCharactor
+/* 8022FCEC 0022CC2C  4B FF FD 41 */	bl setCharactor__26jmessage_string_tReferenceFUs
 lbl_8022FCF0:
 /* 8022FCF0 0022CC30  80 9F 00 38 */	lwz r4, 0x38(r31)
 /* 8022FCF4 0022CC34  80 64 00 08 */	lwz r3, 8(r4)
@@ -8410,16 +8410,16 @@ lbl_8022FD2C:
 /* 8022FD94 0022CCD4  EC 1F 00 32 */	fmuls f0, f31, f0
 /* 8022FD98 0022CCD8  EF DE 00 2A */	fadds f30, f30, f0
 /* 8022FD9C 0022CCDC  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FDA0 0022CCE0  4B FF FD 85 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8022FDA0 0022CCE0  4B FF FD 85 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 8022FDA4 0022CCE4  7C 64 07 34 */	extsh r4, r3
 /* 8022FDA8 0022CCE8  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 8022FDAC 0022CCEC  FC 20 F0 90 */	fmr f1, f30
-/* 8022FDB0 0022CCF0  4B FF FC BD */	bl jmessage_string_tReference_NS_addLineLength
+/* 8022FDB0 0022CCF0  4B FF FC BD */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 8022FDB4 0022CCF4  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FDB8 0022CCF8  4B FF FD 6D */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8022FDB8 0022CCF8  4B FF FD 6D */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 8022FDBC 0022CCFC  7C 64 07 34 */	extsh r4, r3
 /* 8022FDC0 0022CD00  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8022FDC4 0022CD04  4B FF FD 2D */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 8022FDC4 0022CD04  4B FF FD 2D */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 lbl_8022FDC8:
 /* 8022FDC8 0022CD08  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 8022FDCC 0022CD0C  CB E1 00 40 */	lfd f31, 0x40(r1)
@@ -8492,7 +8492,7 @@ lbl_8022FEC0:
 /* 8022FEC0 0022CE00  7F E3 FB 78 */	mr r3, r31
 /* 8022FEC4 0022CE04  7C A4 2B 78 */	mr r4, r5
 /* 8022FEC8 0022CE08  7C C5 33 78 */	mr r5, r6
-/* 8022FECC 0022CE0C  48 00 0A C1 */	bl jmessage_string_tMeasureProcessor_NS_do_rubyset
+/* 8022FECC 0022CE0C  48 00 0A C1 */	bl do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl
 /* 8022FED0 0022CE10  48 00 0A 90 */	b lbl_80230960
 lbl_8022FED4:
 /* 8022FED4 0022CE14  28 04 00 3F */	cmplwi r4, 0x3f
@@ -8507,58 +8507,58 @@ lbl_8022FED4:
 /* 8022FEF8 0022CE38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FEFC 0022CE3C  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8022FF00 0022CE40  7F E3 FB 78 */	mr r3, r31
-/* 8022FF04 0022CE44  48 07 7C F5 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF04 0022CE44  48 07 7C F5 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF08 0022CE48  48 00 0A 58 */	b lbl_80230960
 /* 8022FF0C 0022CE4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FF10 0022CE50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FF14 0022CE54  38 83 01 C5 */	addi r4, r3, 0x1c5
 /* 8022FF18 0022CE58  7F E3 FB 78 */	mr r3, r31
-/* 8022FF1C 0022CE5C  48 07 7C DD */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF1C 0022CE5C  48 07 7C DD */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF20 0022CE60  48 00 0A 40 */	b lbl_80230960
-/* 8022FF24 0022CE64  48 00 85 F1 */	bl dMsgObject_c_NS_getWord
+/* 8022FF24 0022CE64  48 00 85 F1 */	bl getWord__12dMsgObject_cFv
 /* 8022FF28 0022CE68  7C 64 1B 78 */	mr r4, r3
 /* 8022FF2C 0022CE6C  7F E3 FB 78 */	mr r3, r31
-/* 8022FF30 0022CE70  48 07 7C C9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF30 0022CE70  48 07 7C C9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF34 0022CE74  48 00 0A 2C */	b lbl_80230960
 /* 8022FF38 0022CE78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FF3C 0022CE7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FF40 0022CE80  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8022FF44 0022CE84  48 00 73 89 */	bl dMsgObject_c_NS_getSmellName
+/* 8022FF44 0022CE84  48 00 73 89 */	bl getSmellName__12dMsgObject_cFv
 /* 8022FF48 0022CE88  7C 64 1B 78 */	mr r4, r3
 /* 8022FF4C 0022CE8C  7F E3 FB 78 */	mr r3, r31
-/* 8022FF50 0022CE90  48 07 7C A9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF50 0022CE90  48 07 7C A9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF54 0022CE94  48 00 0A 0C */	b lbl_80230960
 /* 8022FF58 0022CE98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FF5C 0022CE9C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FF60 0022CEA0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8022FF64 0022CEA4  48 00 73 D1 */	bl dMsgObject_c_NS_getPortalName
+/* 8022FF64 0022CEA4  48 00 73 D1 */	bl getPortalName__12dMsgObject_cFv
 /* 8022FF68 0022CEA8  7C 64 1B 78 */	mr r4, r3
 /* 8022FF6C 0022CEAC  7F E3 FB 78 */	mr r3, r31
-/* 8022FF70 0022CEB0  48 07 7C 89 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF70 0022CEB0  48 07 7C 89 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF74 0022CEB4  48 00 09 EC */	b lbl_80230960
 /* 8022FF78 0022CEB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FF7C 0022CEBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FF80 0022CEC0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8022FF84 0022CEC4  48 00 74 09 */	bl dMsgObject_c_NS_getBombName
+/* 8022FF84 0022CEC4  48 00 74 09 */	bl getBombName__12dMsgObject_cFv
 /* 8022FF88 0022CEC8  7C 64 1B 78 */	mr r4, r3
 /* 8022FF8C 0022CECC  7F E3 FB 78 */	mr r3, r31
-/* 8022FF90 0022CED0  48 07 7C 69 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FF90 0022CED0  48 07 7C 69 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FF94 0022CED4  48 00 09 CC */	b lbl_80230960
 /* 8022FF98 0022CED8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FF9C 0022CEDC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FFA0 0022CEE0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8022FFA4 0022CEE4  48 00 74 79 */	bl dMsgObject_c_NS_getInsectName
+/* 8022FFA4 0022CEE4  48 00 74 79 */	bl getInsectName__12dMsgObject_cFv
 /* 8022FFA8 0022CEE8  7C 64 1B 78 */	mr r4, r3
 /* 8022FFAC 0022CEEC  7F E3 FB 78 */	mr r3, r31
-/* 8022FFB0 0022CEF0  48 07 7C 49 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FFB0 0022CEF0  48 07 7C 49 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FFB4 0022CEF4  48 00 09 AC */	b lbl_80230960
 /* 8022FFB8 0022CEF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8022FFBC 0022CEFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8022FFC0 0022CF00  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8022FFC4 0022CF04  48 00 74 B5 */	bl dMsgObject_c_NS_getLetterName
+/* 8022FFC4 0022CF04  48 00 74 B5 */	bl getLetterName__12dMsgObject_cFv
 /* 8022FFC8 0022CF08  7C 64 1B 78 */	mr r4, r3
 /* 8022FFCC 0022CF0C  7F E3 FB 78 */	mr r3, r31
-/* 8022FFD0 0022CF10  48 07 7C 29 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8022FFD0 0022CF10  48 07 7C 29 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8022FFD4 0022CF14  48 00 09 8C */	b lbl_80230960
 /* 8022FFD8 0022CF18  38 61 00 0C */	addi r3, r1, 0xc
 /* 8022FFDC 0022CF1C  3C 80 80 3A */	lis r4, lbl_80399610@ha
@@ -8573,7 +8573,7 @@ lbl_8022FED4:
 /* 80230000 0022CF40  48 13 64 DD */	bl func_803664DC
 /* 80230004 0022CF44  7F E3 FB 78 */	mr r3, r31
 /* 80230008 0022CF48  38 81 00 0C */	addi r4, r1, 0xc
-/* 8023000C 0022CF4C  48 07 7B ED */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8023000C 0022CF4C  48 07 7B ED */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230010 0022CF50  48 00 09 50 */	b lbl_80230960
 /* 80230014 0022CF54  38 61 00 08 */	addi r3, r1, 8
 /* 80230018 0022CF58  3C 80 80 3A */	lis r4, lbl_80399610@ha
@@ -8590,40 +8590,40 @@ lbl_8022FED4:
 /* 80230044 0022CF84  48 13 64 99 */	bl func_803664DC
 /* 80230048 0022CF88  7F E3 FB 78 */	mr r3, r31
 /* 8023004C 0022CF8C  38 81 00 08 */	addi r4, r1, 8
-/* 80230050 0022CF90  48 07 7B A9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230050 0022CF90  48 07 7B A9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230054 0022CF94  48 00 09 0C */	b lbl_80230960
 /* 80230058 0022CF98  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8023005C 0022CF9C  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 80230060 0022CFA0  4B FF F9 CD */	bl jmessage_string_tReference_NS_setCharactor
+/* 80230060 0022CFA0  4B FF F9 CD */	bl setCharactor__26jmessage_string_tReferenceFUs
 /* 80230064 0022CFA4  EF DF F0 2A */	fadds f30, f31, f30
 /* 80230068 0022CFA8  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8023006C 0022CFAC  4B FF FA B9 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8023006C 0022CFAC  4B FF FA B9 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230070 0022CFB0  7C 64 07 34 */	extsh r4, r3
 /* 80230074 0022CFB4  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230078 0022CFB8  FC 20 F0 90 */	fmr f1, f30
-/* 8023007C 0022CFBC  4B FF F9 F1 */	bl jmessage_string_tReference_NS_addLineLength
+/* 8023007C 0022CFBC  4B FF F9 F1 */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 80230080 0022CFC0  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230084 0022CFC4  4B FF FA A1 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230084 0022CFC4  4B FF FA A1 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230088 0022CFC8  7C 64 07 34 */	extsh r4, r3
 /* 8023008C 0022CFCC  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230090 0022CFD0  FC 20 F0 90 */	fmr f1, f30
-/* 80230094 0022CFD4  4B FF FA 39 */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 80230094 0022CFD4  4B FF FA 39 */	bl setOutfontLength__26jmessage_string_tReferenceFif
 /* 80230098 0022CFD8  48 00 08 C8 */	b lbl_80230960
 /* 8023009C 0022CFDC  3B C0 00 00 */	li r30, 0
 /* 802300A0 0022CFE0  EF FF F0 2A */	fadds f31, f31, f30
 lbl_802300A4:
 /* 802300A4 0022CFE4  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802300A8 0022CFE8  4B FF FA 7D */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802300A8 0022CFE8  4B FF FA 7D */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802300AC 0022CFEC  7C 64 07 34 */	extsh r4, r3
 /* 802300B0 0022CFF0  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 802300B4 0022CFF4  FC 20 F8 90 */	fmr f1, f31
-/* 802300B8 0022CFF8  4B FF F9 B5 */	bl jmessage_string_tReference_NS_addLineLength
+/* 802300B8 0022CFF8  4B FF F9 B5 */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 802300BC 0022CFFC  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802300C0 0022D000  4B FF FA 65 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802300C0 0022D000  4B FF FA 65 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802300C4 0022D004  7C 64 07 34 */	extsh r4, r3
 /* 802300C8 0022D008  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 802300CC 0022D00C  FC 20 F8 90 */	fmr f1, f31
-/* 802300D0 0022D010  4B FF F9 FD */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 802300D0 0022D010  4B FF F9 FD */	bl setOutfontLength__26jmessage_string_tReferenceFif
 /* 802300D4 0022D014  3B DE 00 01 */	addi r30, r30, 1
 /* 802300D8 0022D018  2C 1E 00 04 */	cmpwi r30, 4
 /* 802300DC 0022D01C  41 80 FF C8 */	blt lbl_802300A4
@@ -8631,39 +8631,39 @@ lbl_802300A4:
 /* 802300E4 0022D024  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802300E8 0022D028  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802300EC 0022D02C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802300F0 0022D030  48 00 73 E1 */	bl dMsgObject_c_NS_getSelectBombNum
+/* 802300F0 0022D030  48 00 73 E1 */	bl getSelectBombNum__12dMsgObject_cFv
 /* 802300F4 0022D034  7C 60 1B 78 */	mr r0, r3
 /* 802300F8 0022D038  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802300FC 0022D03C  38 80 00 07 */	li r4, 7
 /* 80230100 0022D040  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 80230104 0022D044  38 C1 00 D8 */	addi r6, r1, 0xd8
 /* 80230108 0022D048  38 E0 00 01 */	li r7, 1
-/* 8023010C 0022D04C  48 00 8B E1 */	bl dMsgUnit_c_NS_setTag
+/* 8023010C 0022D04C  48 00 8B E1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230110 0022D050  7F E3 FB 78 */	mr r3, r31
 /* 80230114 0022D054  38 81 00 D8 */	addi r4, r1, 0xd8
-/* 80230118 0022D058  48 07 7A E1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230118 0022D058  48 07 7A E1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023011C 0022D05C  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230120 0022D060  4B FF FA 05 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230120 0022D060  4B FF FA 05 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230124 0022D064  7C 64 07 34 */	extsh r4, r3
 /* 80230128 0022D068  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8023012C 0022D06C  4B FF F9 C5 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 8023012C 0022D06C  4B FF F9 C5 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 80230130 0022D070  48 00 08 30 */	b lbl_80230960
-/* 80230134 0022D074  48 00 84 AD */	bl dMsgObject_c_NS_getSelectBombPrice
+/* 80230134 0022D074  48 00 84 AD */	bl getSelectBombPrice__12dMsgObject_cFv
 /* 80230138 0022D078  7C 60 1B 78 */	mr r0, r3
 /* 8023013C 0022D07C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80230140 0022D080  38 80 00 01 */	li r4, 1
 /* 80230144 0022D084  7C 05 07 34 */	extsh r5, r0
 /* 80230148 0022D088  38 C1 00 B0 */	addi r6, r1, 0xb0
 /* 8023014C 0022D08C  38 E0 00 01 */	li r7, 1
-/* 80230150 0022D090  48 00 8B 9D */	bl dMsgUnit_c_NS_setTag
+/* 80230150 0022D090  48 00 8B 9D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230154 0022D094  7F E3 FB 78 */	mr r3, r31
 /* 80230158 0022D098  38 81 00 B0 */	addi r4, r1, 0xb0
-/* 8023015C 0022D09C  48 07 7A 9D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8023015C 0022D09C  48 07 7A 9D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230160 0022D0A0  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230164 0022D0A4  4B FF F9 C1 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230164 0022D0A4  4B FF F9 C1 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230168 0022D0A8  7C 64 07 34 */	extsh r4, r3
 /* 8023016C 0022D0AC  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230170 0022D0B0  4B FF F9 81 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 80230170 0022D0B0  4B FF F9 81 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 80230174 0022D0B4  48 00 07 EC */	b lbl_80230960
 /* 80230178 0022D0B8  38 80 00 70 */	li r4, 0x70
 /* 8023017C 0022D0BC  88 05 00 00 */	lbz r0, 0(r5)
@@ -8687,15 +8687,15 @@ lbl_802301A0:
 /* 802301BC 0022D0FC  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 802301C0 0022D100  38 C1 00 88 */	addi r6, r1, 0x88
 /* 802301C4 0022D104  38 E0 00 01 */	li r7, 1
-/* 802301C8 0022D108  48 00 8B 25 */	bl dMsgUnit_c_NS_setTag
+/* 802301C8 0022D108  48 00 8B 25 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802301CC 0022D10C  7F E3 FB 78 */	mr r3, r31
 /* 802301D0 0022D110  38 81 00 88 */	addi r4, r1, 0x88
-/* 802301D4 0022D114  48 07 7A 25 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802301D4 0022D114  48 07 7A 25 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802301D8 0022D118  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802301DC 0022D11C  4B FF F9 49 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802301DC 0022D11C  4B FF F9 49 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802301E0 0022D120  7C 64 07 34 */	extsh r4, r3
 /* 802301E4 0022D124  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802301E8 0022D128  4B FF F9 09 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 802301E8 0022D128  4B FF F9 09 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 802301EC 0022D12C  48 00 07 74 */	b lbl_80230960
 /* 802301F0 0022D130  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802301F4 0022D134  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -8704,15 +8704,15 @@ lbl_802301A0:
 /* 80230200 0022D140  38 80 00 00 */	li r4, 0
 /* 80230204 0022D144  38 C1 00 60 */	addi r6, r1, 0x60
 /* 80230208 0022D148  38 E0 00 01 */	li r7, 1
-/* 8023020C 0022D14C  48 00 8A E1 */	bl dMsgUnit_c_NS_setTag
+/* 8023020C 0022D14C  48 00 8A E1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230210 0022D150  7F E3 FB 78 */	mr r3, r31
 /* 80230214 0022D154  38 81 00 60 */	addi r4, r1, 0x60
-/* 80230218 0022D158  48 07 79 E1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230218 0022D158  48 07 79 E1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023021C 0022D15C  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230220 0022D160  4B FF F9 05 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230220 0022D160  4B FF F9 05 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230224 0022D164  7C 64 07 34 */	extsh r4, r3
 /* 80230228 0022D168  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8023022C 0022D16C  4B FF F8 C5 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 8023022C 0022D16C  4B FF F8 C5 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 80230230 0022D170  48 00 07 30 */	b lbl_80230960
 lbl_80230234:
 /* 80230234 0022D174  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -8728,102 +8728,102 @@ lbl_80230234:
 /* 8023025C 0022D19C  4B FF 83 71 */	bl changeCodeToChar
 /* 80230260 0022D1A0  7C 64 1B 78 */	mr r4, r3
 /* 80230264 0022D1A4  7F E3 FB 78 */	mr r3, r31
-/* 80230268 0022D1A8  48 07 79 91 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230268 0022D1A8  48 07 79 91 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023026C 0022D1AC  48 00 01 64 */	b lbl_802303D0
 /* 80230270 0022D1B0  38 60 00 5C */	li r3, 0x5c
 /* 80230274 0022D1B4  4B FF 83 59 */	bl changeCodeToChar
 /* 80230278 0022D1B8  7C 64 1B 78 */	mr r4, r3
 /* 8023027C 0022D1BC  7F E3 FB 78 */	mr r3, r31
-/* 80230280 0022D1C0  48 07 79 79 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230280 0022D1C0  48 07 79 79 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230284 0022D1C4  48 00 01 4C */	b lbl_802303D0
 /* 80230288 0022D1C8  38 60 00 40 */	li r3, 0x40
 /* 8023028C 0022D1CC  4B FF 83 41 */	bl changeCodeToChar
 /* 80230290 0022D1D0  7C 64 1B 78 */	mr r4, r3
 /* 80230294 0022D1D4  7F E3 FB 78 */	mr r3, r31
-/* 80230298 0022D1D8  48 07 79 61 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230298 0022D1D8  48 07 79 61 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023029C 0022D1DC  48 00 01 34 */	b lbl_802303D0
 /* 802302A0 0022D1E0  3C 60 00 01 */	lis r3, 0x000081F2@ha
 /* 802302A4 0022D1E4  38 63 81 F2 */	addi r3, r3, 0x000081F2@l
 /* 802302A8 0022D1E8  4B FF 83 25 */	bl changeCodeToChar
 /* 802302AC 0022D1EC  7C 64 1B 78 */	mr r4, r3
 /* 802302B0 0022D1F0  7F E3 FB 78 */	mr r3, r31
-/* 802302B4 0022D1F4  48 07 79 45 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802302B4 0022D1F4  48 07 79 45 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802302B8 0022D1F8  48 00 01 18 */	b lbl_802303D0
 /* 802302BC 0022D1FC  3C 60 00 01 */	lis r3, 0x000081F3@ha
 /* 802302C0 0022D200  38 63 81 F3 */	addi r3, r3, 0x000081F3@l
 /* 802302C4 0022D204  4B FF 83 09 */	bl changeCodeToChar
 /* 802302C8 0022D208  7C 64 1B 78 */	mr r4, r3
 /* 802302CC 0022D20C  7F E3 FB 78 */	mr r3, r31
-/* 802302D0 0022D210  48 07 79 29 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802302D0 0022D210  48 07 79 29 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802302D4 0022D214  48 00 00 FC */	b lbl_802303D0
 /* 802302D8 0022D218  3C 60 00 01 */	lis r3, 0x000081E3@ha
 /* 802302DC 0022D21C  38 63 81 E3 */	addi r3, r3, 0x000081E3@l
 /* 802302E0 0022D220  4B FF 82 ED */	bl changeCodeToChar
 /* 802302E4 0022D224  7C 64 1B 78 */	mr r4, r3
 /* 802302E8 0022D228  7F E3 FB 78 */	mr r3, r31
-/* 802302EC 0022D22C  48 07 79 0D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802302EC 0022D22C  48 07 79 0D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802302F0 0022D230  48 00 00 E0 */	b lbl_802303D0
 /* 802302F4 0022D234  3C 60 00 01 */	lis r3, 0x0000876C@ha
 /* 802302F8 0022D238  38 63 87 6C */	addi r3, r3, 0x0000876C@l
 /* 802302FC 0022D23C  4B FF 82 D1 */	bl changeCodeToChar
 /* 80230300 0022D240  7C 64 1B 78 */	mr r4, r3
 /* 80230304 0022D244  7F E3 FB 78 */	mr r3, r31
-/* 80230308 0022D248  48 07 78 F1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230308 0022D248  48 07 78 F1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023030C 0022D24C  48 00 00 C4 */	b lbl_802303D0
 /* 80230310 0022D250  3C 60 00 01 */	lis r3, 0x00008766@ha
 /* 80230314 0022D254  38 63 87 66 */	addi r3, r3, 0x00008766@l
 /* 80230318 0022D258  4B FF 82 B5 */	bl changeCodeToChar
 /* 8023031C 0022D25C  7C 64 1B 78 */	mr r4, r3
 /* 80230320 0022D260  7F E3 FB 78 */	mr r3, r31
-/* 80230324 0022D264  48 07 78 D5 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230324 0022D264  48 07 78 D5 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230328 0022D268  48 00 00 A8 */	b lbl_802303D0
 /* 8023032C 0022D26C  3C 60 00 01 */	lis r3, 0x00008765@ha
 /* 80230330 0022D270  38 63 87 65 */	addi r3, r3, 0x00008765@l
 /* 80230334 0022D274  4B FF 82 99 */	bl changeCodeToChar
 /* 80230338 0022D278  7C 64 1B 78 */	mr r4, r3
 /* 8023033C 0022D27C  7F E3 FB 78 */	mr r3, r31
-/* 80230340 0022D280  48 07 78 B9 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230340 0022D280  48 07 78 B9 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230344 0022D284  48 00 00 8C */	b lbl_802303D0
 /* 80230348 0022D288  3C 60 00 01 */	lis r3, 0x00008767@ha
 /* 8023034C 0022D28C  38 63 87 67 */	addi r3, r3, 0x00008767@l
 /* 80230350 0022D290  4B FF 82 7D */	bl changeCodeToChar
 /* 80230354 0022D294  7C 64 1B 78 */	mr r4, r3
 /* 80230358 0022D298  7F E3 FB 78 */	mr r3, r31
-/* 8023035C 0022D29C  48 07 78 9D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 8023035C 0022D29C  48 07 78 9D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230360 0022D2A0  48 00 00 70 */	b lbl_802303D0
 /* 80230364 0022D2A4  3C 60 00 01 */	lis r3, 0x00008768@ha
 /* 80230368 0022D2A8  38 63 87 68 */	addi r3, r3, 0x00008768@l
 /* 8023036C 0022D2AC  4B FF 82 61 */	bl changeCodeToChar
 /* 80230370 0022D2B0  7C 64 1B 78 */	mr r4, r3
 /* 80230374 0022D2B4  7F E3 FB 78 */	mr r3, r31
-/* 80230378 0022D2B8  48 07 78 81 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230378 0022D2B8  48 07 78 81 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023037C 0022D2BC  48 00 00 54 */	b lbl_802303D0
 /* 80230380 0022D2C0  3C 60 00 01 */	lis r3, 0x00008769@ha
 /* 80230384 0022D2C4  38 63 87 69 */	addi r3, r3, 0x00008769@l
 /* 80230388 0022D2C8  4B FF 82 45 */	bl changeCodeToChar
 /* 8023038C 0022D2CC  7C 64 1B 78 */	mr r4, r3
 /* 80230390 0022D2D0  7F E3 FB 78 */	mr r3, r31
-/* 80230394 0022D2D4  48 07 78 65 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230394 0022D2D4  48 07 78 65 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230398 0022D2D8  48 00 00 38 */	b lbl_802303D0
 /* 8023039C 0022D2DC  3C 60 00 01 */	lis r3, 0x0000876A@ha
 /* 802303A0 0022D2E0  38 63 87 6A */	addi r3, r3, 0x0000876A@l
 /* 802303A4 0022D2E4  4B FF 82 29 */	bl changeCodeToChar
 /* 802303A8 0022D2E8  7C 64 1B 78 */	mr r4, r3
 /* 802303AC 0022D2EC  7F E3 FB 78 */	mr r3, r31
-/* 802303B0 0022D2F0  48 07 78 49 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802303B0 0022D2F0  48 07 78 49 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802303B4 0022D2F4  48 00 00 1C */	b lbl_802303D0
 /* 802303B8 0022D2F8  3C 60 00 01 */	lis r3, 0x0000876B@ha
 /* 802303BC 0022D2FC  38 63 87 6B */	addi r3, r3, 0x0000876B@l
 /* 802303C0 0022D300  4B FF 82 0D */	bl changeCodeToChar
 /* 802303C4 0022D304  7C 64 1B 78 */	mr r4, r3
 /* 802303C8 0022D308  7F E3 FB 78 */	mr r3, r31
-/* 802303CC 0022D30C  48 07 78 2D */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802303CC 0022D30C  48 07 78 2D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 lbl_802303D0:
 /* 802303D0 0022D310  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802303D4 0022D314  4B FF F7 51 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802303D4 0022D314  4B FF F7 51 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802303D8 0022D318  7C 64 07 34 */	extsh r4, r3
 /* 802303DC 0022D31C  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802303E0 0022D320  4B FF F7 11 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 802303E0 0022D320  4B FF F7 11 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 802303E4 0022D324  48 00 05 7C */	b lbl_80230960
 lbl_802303E8:
 /* 802303E8 0022D328  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -8845,7 +8845,7 @@ lbl_802303E8:
 /* 80230428 0022D368  80 A5 00 88 */	lwz r5, 0x88(r5)
 /* 8023042C 0022D36C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230430 0022D370  38 E0 00 01 */	li r7, 1
-/* 80230434 0022D374  48 00 88 B9 */	bl dMsgUnit_c_NS_setTag
+/* 80230434 0022D374  48 00 88 B9 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230438 0022D378  48 00 02 B0 */	b lbl_802306E8
 lbl_8023043C:
 /* 8023043C 0022D37C  54 00 06 3E */	clrlwi r0, r0, 0x18
@@ -8858,7 +8858,7 @@ lbl_8023043C:
 /* 80230458 0022D398  38 80 00 04 */	li r4, 4
 /* 8023045C 0022D39C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230460 0022D3A0  38 E0 00 01 */	li r7, 1
-/* 80230464 0022D3A4  48 00 88 89 */	bl dMsgUnit_c_NS_setTag
+/* 80230464 0022D3A4  48 00 88 89 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230468 0022D3A8  48 00 02 80 */	b lbl_802306E8
 lbl_8023046C:
 /* 8023046C 0022D3AC  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
@@ -8868,7 +8868,7 @@ lbl_8023046C:
 /* 8023047C 0022D3BC  80 A5 00 84 */	lwz r5, 0x84(r5)
 /* 80230480 0022D3C0  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230484 0022D3C4  38 E0 00 01 */	li r7, 1
-/* 80230488 0022D3C8  48 00 88 65 */	bl dMsgUnit_c_NS_setTag
+/* 80230488 0022D3C8  48 00 88 65 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8023048C 0022D3CC  48 00 02 5C */	b lbl_802306E8
 /* 80230490 0022D3D0  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80230494 0022D3D4  38 80 00 00 */	li r4, 0
@@ -8877,7 +8877,7 @@ lbl_8023046C:
 /* 802304A0 0022D3E0  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 802304A4 0022D3E4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802304A8 0022D3E8  38 E0 00 01 */	li r7, 1
-/* 802304AC 0022D3EC  48 00 88 41 */	bl dMsgUnit_c_NS_setTag
+/* 802304AC 0022D3EC  48 00 88 41 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802304B0 0022D3F0  48 00 02 38 */	b lbl_802306E8
 /* 802304B4 0022D3F4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802304B8 0022D3F8  38 80 00 01 */	li r4, 1
@@ -8886,7 +8886,7 @@ lbl_8023046C:
 /* 802304C4 0022D404  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 802304C8 0022D408  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802304CC 0022D40C  38 E0 00 01 */	li r7, 1
-/* 802304D0 0022D410  48 00 88 1D */	bl dMsgUnit_c_NS_setTag
+/* 802304D0 0022D410  48 00 88 1D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802304D4 0022D414  48 00 02 14 */	b lbl_802306E8
 /* 802304D8 0022D418  80 05 00 00 */	lwz r0, 0(r5)
 /* 802304DC 0022D41C  7C 1E 07 34 */	extsh r30, r0
@@ -8901,7 +8901,7 @@ lbl_8023046C:
 /* 80230500 0022D440  38 80 00 0A */	li r4, 0xa
 /* 80230504 0022D444  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230508 0022D448  38 E0 00 01 */	li r7, 1
-/* 8023050C 0022D44C  48 00 87 E1 */	bl dMsgUnit_c_NS_setTag
+/* 8023050C 0022D44C  48 00 87 E1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230510 0022D450  48 00 01 D8 */	b lbl_802306E8
 /* 80230514 0022D454  4B FE E2 41 */	bl dMeter2Info_getNewLetterNum
 /* 80230518 0022D458  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -8909,7 +8909,7 @@ lbl_8023046C:
 /* 80230520 0022D460  38 80 00 0B */	li r4, 0xb
 /* 80230524 0022D464  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230528 0022D468  38 E0 00 01 */	li r7, 1
-/* 8023052C 0022D46C  48 00 87 C1 */	bl dMsgUnit_c_NS_setTag
+/* 8023052C 0022D46C  48 00 87 C1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230530 0022D470  48 00 01 B8 */	b lbl_802306E8
 /* 80230534 0022D474  4B FF 85 99 */	bl getPohNum
 /* 80230538 0022D478  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -8917,7 +8917,7 @@ lbl_8023046C:
 /* 80230540 0022D480  38 80 00 0C */	li r4, 0xc
 /* 80230544 0022D484  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230548 0022D488  38 E0 00 01 */	li r7, 1
-/* 8023054C 0022D48C  48 00 87 A1 */	bl dMsgUnit_c_NS_setTag
+/* 8023054C 0022D48C  48 00 87 A1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230550 0022D490  48 00 01 98 */	b lbl_802306E8
 /* 80230554 0022D494  88 05 00 00 */	lbz r0, 0(r5)
 /* 80230558 0022D498  28 00 00 00 */	cmplwi r0, 0
@@ -8935,7 +8935,7 @@ lbl_8023057C:
 /* 80230580 0022D4C0  38 80 00 0D */	li r4, 0xd
 /* 80230584 0022D4C4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230588 0022D4C8  38 E0 00 01 */	li r7, 1
-/* 8023058C 0022D4CC  48 00 87 61 */	bl dMsgUnit_c_NS_setTag
+/* 8023058C 0022D4CC  48 00 87 61 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230590 0022D4D0  48 00 01 58 */	b lbl_802306E8
 /* 80230594 0022D4D4  88 05 00 00 */	lbz r0, 0(r5)
 /* 80230598 0022D4D8  28 00 00 00 */	cmplwi r0, 0
@@ -8952,14 +8952,14 @@ lbl_802305B8:
 /* 802305BC 0022D4FC  38 80 00 02 */	li r4, 2
 /* 802305C0 0022D500  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802305C4 0022D504  38 E0 00 01 */	li r7, 1
-/* 802305C8 0022D508  48 00 87 25 */	bl dMsgUnit_c_NS_setTag
+/* 802305C8 0022D508  48 00 87 25 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802305CC 0022D50C  48 00 01 1C */	b lbl_802306E8
 /* 802305D0 0022D510  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802305D4 0022D514  38 80 00 03 */	li r4, 3
 /* 802305D8 0022D518  38 A0 00 00 */	li r5, 0
 /* 802305DC 0022D51C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802305E0 0022D520  38 E0 00 01 */	li r7, 1
-/* 802305E4 0022D524  48 00 87 09 */	bl dMsgUnit_c_NS_setTag
+/* 802305E4 0022D524  48 00 87 09 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802305E8 0022D528  48 00 01 00 */	b lbl_802306E8
 /* 802305EC 0022D52C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802305F0 0022D530  3C 80 00 01 */	lis r4, 1
@@ -8968,7 +8968,7 @@ lbl_802305B8:
 /* 802305FC 0022D53C  88 A5 5E A1 */	lbz r5, 0x5ea1(r5)
 /* 80230600 0022D540  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230604 0022D544  38 E0 00 01 */	li r7, 1
-/* 80230608 0022D548  48 00 86 E5 */	bl dMsgUnit_c_NS_setTag
+/* 80230608 0022D548  48 00 86 E5 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8023060C 0022D54C  48 00 00 DC */	b lbl_802306E8
 /* 80230610 0022D550  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80230614 0022D554  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -8983,7 +8983,7 @@ lbl_802305B8:
 /* 80230638 0022D578  20 A0 00 14 */	subfic r5, r0, 0x14
 /* 8023063C 0022D57C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230640 0022D580  38 E0 00 01 */	li r7, 1
-/* 80230644 0022D584  48 00 86 A9 */	bl dMsgUnit_c_NS_setTag
+/* 80230644 0022D584  48 00 86 A9 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230648 0022D588  48 00 00 A0 */	b lbl_802306E8
 /* 8023064C 0022D58C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80230650 0022D590  38 80 00 09 */	li r4, 9
@@ -8992,7 +8992,7 @@ lbl_802305B8:
 /* 8023065C 0022D59C  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 80230660 0022D5A0  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230664 0022D5A4  38 E0 00 01 */	li r7, 1
-/* 80230668 0022D5A8  48 00 86 85 */	bl dMsgUnit_c_NS_setTag
+/* 80230668 0022D5A8  48 00 86 85 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8023066C 0022D5AC  48 00 00 7C */	b lbl_802306E8
 /* 80230670 0022D5B0  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80230674 0022D5B4  38 80 00 0E */	li r4, 0xe
@@ -9001,7 +9001,7 @@ lbl_802305B8:
 /* 80230680 0022D5C0  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 80230684 0022D5C4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80230688 0022D5C8  38 E0 00 01 */	li r7, 1
-/* 8023068C 0022D5CC  48 00 86 61 */	bl dMsgUnit_c_NS_setTag
+/* 8023068C 0022D5CC  48 00 86 61 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80230690 0022D5D0  48 00 00 58 */	b lbl_802306E8
 /* 80230694 0022D5D4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80230698 0022D5D8  3C 80 00 01 */	lis r4, 0x00010001@ha
@@ -9011,7 +9011,7 @@ lbl_802305B8:
 /* 802306A8 0022D5E8  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 802306AC 0022D5EC  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802306B0 0022D5F0  38 E0 00 01 */	li r7, 1
-/* 802306B4 0022D5F4  48 00 86 39 */	bl dMsgUnit_c_NS_setTag
+/* 802306B4 0022D5F4  48 00 86 39 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802306B8 0022D5F8  48 00 00 30 */	b lbl_802306E8
 /* 802306BC 0022D5FC  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802306C0 0022D600  38 80 00 08 */	li r4, 8
@@ -9020,7 +9020,7 @@ lbl_802305B8:
 /* 802306CC 0022D60C  88 A5 00 BC */	lbz r5, 0xbc(r5)
 /* 802306D0 0022D610  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802306D4 0022D614  38 E0 00 01 */	li r7, 1
-/* 802306D8 0022D618  48 00 86 15 */	bl dMsgUnit_c_NS_setTag
+/* 802306D8 0022D618  48 00 86 15 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802306DC 0022D61C  48 00 00 0C */	b lbl_802306E8
 lbl_802306E0:
 /* 802306E0 0022D620  38 60 00 00 */	li r3, 0
@@ -9028,12 +9028,12 @@ lbl_802306E0:
 lbl_802306E8:
 /* 802306E8 0022D628  7F E3 FB 78 */	mr r3, r31
 /* 802306EC 0022D62C  38 81 00 38 */	addi r4, r1, 0x38
-/* 802306F0 0022D630  48 07 75 09 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802306F0 0022D630  48 07 75 09 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802306F4 0022D634  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802306F8 0022D638  4B FF F4 2D */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802306F8 0022D638  4B FF F4 2D */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802306FC 0022D63C  7C 64 07 34 */	extsh r4, r3
 /* 80230700 0022D640  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230704 0022D644  4B FF F3 ED */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 80230704 0022D644  4B FF F3 ED */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 80230708 0022D648  48 00 02 58 */	b lbl_80230960
 lbl_8023070C:
 /* 8023070C 0022D64C  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -9047,78 +9047,78 @@ lbl_8023070C:
 /* 8023072C 0022D66C  4E 80 04 20 */	bctr 
 /* 80230730 0022D670  7F E3 FB 78 */	mr r3, r31
 /* 80230734 0022D674  38 81 00 10 */	addi r4, r1, 0x10
-/* 80230738 0022D678  48 07 74 C1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230738 0022D678  48 07 74 C1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023073C 0022D67C  48 00 01 04 */	b lbl_80230840
 /* 80230740 0022D680  7F E3 FB 78 */	mr r3, r31
 /* 80230744 0022D684  38 81 00 10 */	addi r4, r1, 0x10
-/* 80230748 0022D688  48 07 74 B1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230748 0022D688  48 07 74 B1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023074C 0022D68C  48 00 00 F4 */	b lbl_80230840
 /* 80230750 0022D690  38 60 00 B2 */	li r3, 0xb2
 /* 80230754 0022D694  4B FF 7E 79 */	bl changeCodeToChar
 /* 80230758 0022D698  7C 64 1B 78 */	mr r4, r3
 /* 8023075C 0022D69C  7F E3 FB 78 */	mr r3, r31
-/* 80230760 0022D6A0  48 07 74 99 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230760 0022D6A0  48 07 74 99 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230764 0022D6A4  48 00 00 DC */	b lbl_80230840
 /* 80230768 0022D6A8  38 60 00 B3 */	li r3, 0xb3
 /* 8023076C 0022D6AC  4B FF 7E 61 */	bl changeCodeToChar
 /* 80230770 0022D6B0  7C 64 1B 78 */	mr r4, r3
 /* 80230774 0022D6B4  7F E3 FB 78 */	mr r3, r31
-/* 80230778 0022D6B8  48 07 74 81 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230778 0022D6B8  48 07 74 81 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023077C 0022D6BC  48 00 00 C4 */	b lbl_80230840
 /* 80230780 0022D6C0  38 60 00 B1 */	li r3, 0xb1
 /* 80230784 0022D6C4  4B FF 7E 49 */	bl changeCodeToChar
 /* 80230788 0022D6C8  7C 64 1B 78 */	mr r4, r3
 /* 8023078C 0022D6CC  7F E3 FB 78 */	mr r3, r31
-/* 80230790 0022D6D0  48 07 74 69 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230790 0022D6D0  48 07 74 69 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 80230794 0022D6D4  48 00 00 AC */	b lbl_80230840
 /* 80230798 0022D6D8  38 60 00 89 */	li r3, 0x89
 /* 8023079C 0022D6DC  4B FF 7E 31 */	bl changeCodeToChar
 /* 802307A0 0022D6E0  7C 64 1B 78 */	mr r4, r3
 /* 802307A4 0022D6E4  7F E3 FB 78 */	mr r3, r31
-/* 802307A8 0022D6E8  48 07 74 51 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802307A8 0022D6E8  48 07 74 51 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802307AC 0022D6EC  48 00 00 94 */	b lbl_80230840
 /* 802307B0 0022D6F0  38 60 00 B9 */	li r3, 0xb9
 /* 802307B4 0022D6F4  4B FF 7E 19 */	bl changeCodeToChar
 /* 802307B8 0022D6F8  7C 64 1B 78 */	mr r4, r3
 /* 802307BC 0022D6FC  7F E3 FB 78 */	mr r3, r31
-/* 802307C0 0022D700  48 07 74 39 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802307C0 0022D700  48 07 74 39 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802307C4 0022D704  48 00 00 7C */	b lbl_80230840
 /* 802307C8 0022D708  38 60 00 BC */	li r3, 0xbc
 /* 802307CC 0022D70C  4B FF 7E 01 */	bl changeCodeToChar
 /* 802307D0 0022D710  7C 64 1B 78 */	mr r4, r3
 /* 802307D4 0022D714  7F E3 FB 78 */	mr r3, r31
-/* 802307D8 0022D718  48 07 74 21 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802307D8 0022D718  48 07 74 21 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802307DC 0022D71C  48 00 00 64 */	b lbl_80230840
 /* 802307E0 0022D720  38 60 00 BD */	li r3, 0xbd
 /* 802307E4 0022D724  4B FF 7D E9 */	bl changeCodeToChar
 /* 802307E8 0022D728  7C 64 1B 78 */	mr r4, r3
 /* 802307EC 0022D72C  7F E3 FB 78 */	mr r3, r31
-/* 802307F0 0022D730  48 07 74 09 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802307F0 0022D730  48 07 74 09 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802307F4 0022D734  48 00 00 4C */	b lbl_80230840
 /* 802307F8 0022D738  38 60 00 BE */	li r3, 0xbe
 /* 802307FC 0022D73C  4B FF 7D D1 */	bl changeCodeToChar
 /* 80230800 0022D740  7C 64 1B 78 */	mr r4, r3
 /* 80230804 0022D744  7F E3 FB 78 */	mr r3, r31
-/* 80230808 0022D748  48 07 73 F1 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 80230808 0022D748  48 07 73 F1 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 8023080C 0022D74C  48 00 00 34 */	b lbl_80230840
 /* 80230810 0022D750  EF FF F0 2A */	fadds f31, f31, f30
-/* 80230814 0022D754  4B FF F3 11 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230814 0022D754  4B FF F3 11 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230818 0022D758  7C 64 07 34 */	extsh r4, r3
 /* 8023081C 0022D75C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230820 0022D760  FC 20 F8 90 */	fmr f1, f31
-/* 80230824 0022D764  4B FF F2 49 */	bl jmessage_string_tReference_NS_addLineLength
+/* 80230824 0022D764  4B FF F2 49 */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 80230828 0022D768  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8023082C 0022D76C  4B FF F2 F9 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8023082C 0022D76C  4B FF F2 F9 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230830 0022D770  7C 64 07 34 */	extsh r4, r3
 /* 80230834 0022D774  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230838 0022D778  FC 20 F8 90 */	fmr f1, f31
-/* 8023083C 0022D77C  4B FF F2 91 */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 8023083C 0022D77C  4B FF F2 91 */	bl setOutfontLength__26jmessage_string_tReferenceFif
 lbl_80230840:
 /* 80230840 0022D780  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230844 0022D784  4B FF F2 E1 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230844 0022D784  4B FF F2 E1 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230848 0022D788  7C 64 07 34 */	extsh r4, r3
 /* 8023084C 0022D78C  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230850 0022D790  4B FF F2 A1 */	bl jmessage_string_tReference_NS_clearOutfontLength
+/* 80230850 0022D790  4B FF F2 A1 */	bl clearOutfontLength__26jmessage_string_tReferenceFi
 /* 80230854 0022D794  48 00 01 0C */	b lbl_80230960
 lbl_80230858:
 /* 80230858 0022D798  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -9142,56 +9142,56 @@ lbl_80230890:
 lbl_80230898:
 /* 80230898 0022D7D8  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8023089C 0022D7DC  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 802308A0 0022D7E0  4B FF F1 8D */	bl jmessage_string_tReference_NS_setCharactor
+/* 802308A0 0022D7E0  4B FF F1 8D */	bl setCharactor__26jmessage_string_tReferenceFUs
 /* 802308A4 0022D7E4  EF FF F0 2A */	fadds f31, f31, f30
 /* 802308A8 0022D7E8  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802308AC 0022D7EC  4B FF F2 79 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802308AC 0022D7EC  4B FF F2 79 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802308B0 0022D7F0  7C 64 07 34 */	extsh r4, r3
 /* 802308B4 0022D7F4  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 802308B8 0022D7F8  FC 20 F8 90 */	fmr f1, f31
-/* 802308BC 0022D7FC  4B FF F1 B1 */	bl jmessage_string_tReference_NS_addLineLength
+/* 802308BC 0022D7FC  4B FF F1 B1 */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 802308C0 0022D800  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802308C4 0022D804  4B FF F2 61 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802308C4 0022D804  4B FF F2 61 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802308C8 0022D808  7C 64 07 34 */	extsh r4, r3
 /* 802308CC 0022D80C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 802308D0 0022D810  FC 20 F8 90 */	fmr f1, f31
-/* 802308D4 0022D814  4B FF F1 F9 */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 802308D4 0022D814  4B FF F1 F9 */	bl setOutfontLength__26jmessage_string_tReferenceFif
 /* 802308D8 0022D818  48 00 00 88 */	b lbl_80230960
 lbl_802308DC:
 /* 802308DC 0022D81C  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 802308E0 0022D820  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 802308E4 0022D824  4B FF F1 49 */	bl jmessage_string_tReference_NS_setCharactor
+/* 802308E4 0022D824  4B FF F1 49 */	bl setCharactor__26jmessage_string_tReferenceFUs
 /* 802308E8 0022D828  EF FF F0 2A */	fadds f31, f31, f30
 /* 802308EC 0022D82C  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 802308F0 0022D830  4B FF F2 35 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 802308F0 0022D830  4B FF F2 35 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 802308F4 0022D834  7C 64 07 34 */	extsh r4, r3
 /* 802308F8 0022D838  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 802308FC 0022D83C  FC 20 F8 90 */	fmr f1, f31
-/* 80230900 0022D840  4B FF F1 6D */	bl jmessage_string_tReference_NS_addLineLength
+/* 80230900 0022D840  4B FF F1 6D */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 80230904 0022D844  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230908 0022D848  4B FF F2 1D */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230908 0022D848  4B FF F2 1D */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 8023090C 0022D84C  7C 64 07 34 */	extsh r4, r3
 /* 80230910 0022D850  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230914 0022D854  FC 20 F8 90 */	fmr f1, f31
-/* 80230918 0022D858  4B FF F1 B5 */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 80230918 0022D858  4B FF F1 B5 */	bl setOutfontLength__26jmessage_string_tReferenceFif
 /* 8023091C 0022D85C  48 00 00 44 */	b lbl_80230960
 lbl_80230920:
 /* 80230920 0022D860  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 80230924 0022D864  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 80230928 0022D868  4B FF F1 05 */	bl jmessage_string_tReference_NS_setCharactor
+/* 80230928 0022D868  4B FF F1 05 */	bl setCharactor__26jmessage_string_tReferenceFUs
 /* 8023092C 0022D86C  EF FF F0 2A */	fadds f31, f31, f30
 /* 80230930 0022D870  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230934 0022D874  4B FF F1 F1 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80230934 0022D874  4B FF F1 F1 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230938 0022D878  7C 64 07 34 */	extsh r4, r3
 /* 8023093C 0022D87C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230940 0022D880  FC 20 F8 90 */	fmr f1, f31
-/* 80230944 0022D884  4B FF F1 29 */	bl jmessage_string_tReference_NS_addLineLength
+/* 80230944 0022D884  4B FF F1 29 */	bl addLineLength__26jmessage_string_tReferenceFif
 /* 80230948 0022D888  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 8023094C 0022D88C  4B FF F1 D9 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8023094C 0022D88C  4B FF F1 D9 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80230950 0022D890  7C 64 07 34 */	extsh r4, r3
 /* 80230954 0022D894  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230958 0022D898  FC 20 F8 90 */	fmr f1, f31
-/* 8023095C 0022D89C  4B FF F1 71 */	bl jmessage_string_tReference_NS_setOutfontLength
+/* 8023095C 0022D89C  4B FF F1 71 */	bl setOutfontLength__26jmessage_string_tReferenceFif
 lbl_80230960:
 /* 80230960 0022D8A0  38 60 00 01 */	li r3, 1
 lbl_80230964:
@@ -9206,8 +9206,8 @@ lbl_80230964:
 /* 80230984 0022D8C4  38 21 01 30 */	addi r1, r1, 0x130
 /* 80230988 0022D8C8  4E 80 00 20 */	blr 
 
-.global jmessage_string_tMeasureProcessor_NS_do_rubyset
-jmessage_string_tMeasureProcessor_NS_do_rubyset:
+.global do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl
+do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl:
 /* 8023098C 0022D8CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80230990 0022D8D0  7C 08 02 A6 */	mflr r0
 /* 80230994 0022D8D4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -9231,7 +9231,7 @@ lbl_802309B8:
 /* 802309D8 0022D918  4B FF 7E 61 */	bl changeKataToHira
 /* 802309DC 0022D91C  7C 64 1B 78 */	mr r4, r3
 /* 802309E0 0022D920  80 7C 00 38 */	lwz r3, 0x38(r28)
-/* 802309E4 0022D924  4B FF F0 49 */	bl jmessage_string_tReference_NS_setCharactor
+/* 802309E4 0022D924  4B FF F0 49 */	bl setCharactor__26jmessage_string_tReferenceFUs
 lbl_802309E8:
 /* 802309E8 0022D928  7C 1E F8 00 */	cmpw r30, r31
 /* 802309EC 0022D92C  41 80 FF CC */	blt lbl_802309B8
@@ -9251,7 +9251,7 @@ jmessage_string_tSequenceProcessor:
 /* 80230A18 0022D958  93 C1 00 08 */	stw r30, 8(r1)
 /* 80230A1C 0022D95C  7C 7E 1B 78 */	mr r30, r3
 /* 80230A20 0022D960  7C 9F 23 78 */	mr r31, r4
-/* 80230A24 0022D964  48 07 79 51 */	bl JMessage_NS_TSequenceProcessor
+/* 80230A24 0022D964  48 07 79 51 */	bl __ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl
 /* 80230A28 0022D968  3C 60 80 3C */	lis r3, lbl_803C0948@ha
 /* 80230A2C 0022D96C  38 03 09 48 */	addi r0, r3, lbl_803C0948@l
 /* 80230A30 0022D970  90 1E 00 00 */	stw r0, 0(r30)
@@ -9277,7 +9277,7 @@ jmessage_string_tSequenceProcessor:
 /* 80230A80 0022D9C0  38 04 09 A0 */	addi r0, r4, lbl_803C09A0@l
 /* 80230A84 0022D9C4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80230A88 0022D9C8  38 80 00 00 */	li r4, 0
-/* 80230A8C 0022D9CC  48 07 80 35 */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 80230A8C 0022D9CC  48 07 80 35 */	bl __dt__Q28JMessage19TRenderingProcessorFv
 /* 80230A90 0022D9D0  7F E0 07 35 */	extsh. r0, r31
 /* 80230A94 0022D9D4  40 81 00 0C */	ble lbl_80230AA0
 /* 80230A98 0022D9D8  7F C3 F3 78 */	mr r3, r30
@@ -9306,10 +9306,10 @@ lbl_80230AA0:
 /* 80230AF0 0022DA30  93 E3 00 58 */	stw r31, 0x58(r3)
 /* 80230AF4 0022DA34  38 00 00 00 */	li r0, 0
 /* 80230AF8 0022DA38  90 03 00 5C */	stw r0, 0x5c(r3)
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 80230AFC 0022DA3C  3C 60 80 2B */	lis r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@ha
-.global JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_
-/* 80230B00 0022DA40  38 03 82 8C */	addi r0, r3, JMessage_NS_TProcessor_NS_process_onCharacterEnd_normal_@l
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 80230AFC 0022DA3C  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+.global process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+/* 80230B00 0022DA40  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
 /* 80230B04 0022DA44  90 1D 00 70 */	stw r0, 0x70(r29)
 /* 80230B08 0022DA48  38 7D 00 4C */	addi r3, r29, 0x4c
 /* 80230B0C 0022DA4C  7F E4 FB 78 */	mr r4, r31
@@ -9333,7 +9333,7 @@ lbl_80230AA0:
 /* 80230B54 0022DA94  4E 80 04 21 */	bctrl 
 /* 80230B58 0022DA98  38 7D 00 4C */	addi r3, r29, 0x4c
 /* 80230B5C 0022DA9C  38 80 00 00 */	li r4, 0
-/* 80230B60 0022DAA0  48 07 7F C1 */	bl JMessage_NS_TRenderingProcessor_NS_process
+/* 80230B60 0022DAA0  48 07 7F C1 */	bl process__Q28JMessage19TRenderingProcessorFPCc
 /* 80230B64 0022DAA4  39 61 00 20 */	addi r11, r1, 0x20
 /* 80230B68 0022DAA8  48 13 16 C1 */	bl _restgpr_29
 /* 80230B6C 0022DAAC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -9370,7 +9370,7 @@ jmessage_string_tRenderingProcessor:
 /* 80230BD0 0022DB10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80230BD4 0022DB14  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80230BD8 0022DB18  7C 7F 1B 78 */	mr r31, r3
-/* 80230BDC 0022DB1C  48 07 7E A9 */	bl JMessage_NS_TRenderingProcessor
+/* 80230BDC 0022DB1C  48 07 7E A9 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
 /* 80230BE0 0022DB20  3C 60 80 3C */	lis r3, lbl_803C0908@ha
 /* 80230BE4 0022DB24  38 03 09 08 */	addi r0, r3, lbl_803C0908@l
 /* 80230BE8 0022DB28  90 1F 00 00 */	stw r0, 0(r31)
@@ -9388,8 +9388,8 @@ jmessage_string_tRenderingProcessor:
 /* 80230C18 0022DB58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80230C1C 0022DB5C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
-jmessage_string_tRenderingProcessor_NS_getLineCountNowPage:
+.global getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
+getLineCountNowPage__35jmessage_string_tRenderingProcessorFv:
 /* 80230C20 0022DB60  38 C0 FF FF */	li r6, -1
 /* 80230C24 0022DB64  80 83 00 38 */	lwz r4, 0x38(r3)
 /* 80230C28 0022DB68  88 A4 00 82 */	lbz r5, 0x82(r4)
@@ -9433,9 +9433,9 @@ lbl_80230C54:
 /* 80230CBC 0022DBFC  7D 89 03 A6 */	mtctr r12
 /* 80230CC0 0022DC00  4E 80 04 21 */	bctrl 
 /* 80230CC4 0022DC04  7F E3 FB 78 */	mr r3, r31
-/* 80230CC8 0022DC08  48 00 10 A9 */	bl jmessage_string_tRenderingProcessor_NS_do_widthcenter
+/* 80230CC8 0022DC08  48 00 10 A9 */	bl do_widthcenter__35jmessage_string_tRenderingProcessorFv
 /* 80230CCC 0022DC0C  7F E3 FB 78 */	mr r3, r31
-/* 80230CD0 0022DC10  48 00 12 21 */	bl jmessage_string_tRenderingProcessor_NS_do_heightcenter
+/* 80230CD0 0022DC10  48 00 12 21 */	bl do_heightcenter__35jmessage_string_tRenderingProcessorFv
 /* 80230CD4 0022DC14  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80230CD8 0022DC18  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80230CDC 0022DC1C  7C 08 03 A6 */	mtlr r0
@@ -9450,7 +9450,7 @@ lbl_80230C54:
 /* 80230D00 0022DC40  80 63 00 08 */	lwz r3, 8(r3)
 /* 80230D04 0022DC44  28 03 00 00 */	cmplwi r3, 0
 /* 80230D08 0022DC48  41 82 00 10 */	beq lbl_80230D18
-/* 80230D0C 0022DC4C  48 0C F9 4D */	bl J2DTextBox_NS_getStringPtr
+/* 80230D0C 0022DC4C  48 0C F9 4D */	bl getStringPtr__10J2DTextBoxCFv
 /* 80230D10 0022DC50  38 9F 00 54 */	addi r4, r31, 0x54
 /* 80230D14 0022DC54  48 13 7E 19 */	bl strcpy
 lbl_80230D18:
@@ -9458,7 +9458,7 @@ lbl_80230D18:
 /* 80230D1C 0022DC5C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80230D20 0022DC60  28 03 00 00 */	cmplwi r3, 0
 /* 80230D24 0022DC64  41 82 00 10 */	beq lbl_80230D34
-/* 80230D28 0022DC68  48 0C F9 31 */	bl J2DTextBox_NS_getStringPtr
+/* 80230D28 0022DC68  48 0C F9 31 */	bl getStringPtr__10J2DTextBoxCFv
 /* 80230D2C 0022DC6C  38 9F 02 54 */	addi r4, r31, 0x254
 /* 80230D30 0022DC70  48 13 7D FD */	bl strcpy
 lbl_80230D34:
@@ -9505,7 +9505,7 @@ lbl_80230DA4:
 /* 80230DC8 0022DD08  4B FF 7A 71 */	bl changeKataToHira
 /* 80230DCC 0022DD0C  7C 64 1B 78 */	mr r4, r3
 /* 80230DD0 0022DD10  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230DD4 0022DD14  4B FF EC 5D */	bl jmessage_string_tReference_NS_addCharactor
+/* 80230DD4 0022DD14  4B FF EC 5D */	bl addCharactor__26jmessage_string_tReferenceFUs
 /* 80230DD8 0022DD18  48 00 00 38 */	b lbl_80230E10
 lbl_80230DDC:
 /* 80230DDC 0022DD1C  3C 60 00 01 */	lis r3, 0x00008800@ha
@@ -9520,7 +9520,7 @@ lbl_80230DDC:
 /* 80230E00 0022DD40  4B FF 7A 39 */	bl changeKataToHira
 /* 80230E04 0022DD44  7C 64 1B 78 */	mr r4, r3
 /* 80230E08 0022DD48  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80230E0C 0022DD4C  4B FF EC 25 */	bl jmessage_string_tReference_NS_addCharactor
+/* 80230E0C 0022DD4C  4B FF EC 25 */	bl addCharactor__26jmessage_string_tReferenceFUs
 lbl_80230E10:
 /* 80230E10 0022DD50  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80230E14 0022DD54  80 63 00 08 */	lwz r3, 8(r3)
@@ -9551,10 +9551,10 @@ lbl_80230E64:
 /* 80230E68 0022DDA8  40 82 00 60 */	bne lbl_80230EC8
 /* 80230E6C 0022DDAC  7F E3 FB 78 */	mr r3, r31
 /* 80230E70 0022DDB0  38 81 00 0C */	addi r4, r1, 0xc
-/* 80230E74 0022DDB4  48 00 11 D1 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80230E74 0022DDB4  48 00 11 D1 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 80230E78 0022DDB8  7F E3 FB 78 */	mr r3, r31
 /* 80230E7C 0022DDBC  38 81 00 0C */	addi r4, r1, 0xc
-/* 80230E80 0022DDC0  48 00 13 E1 */	bl jmessage_string_tRenderingProcessor_NS_do_rubystrcat
+/* 80230E80 0022DDC0  48 00 13 E1 */	bl do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
 /* 80230E84 0022DDC4  A8 7F 05 52 */	lha r3, 0x552(r31)
 /* 80230E88 0022DDC8  38 03 00 01 */	addi r0, r3, 1
 /* 80230E8C 0022DDCC  B0 1F 05 52 */	sth r0, 0x552(r31)
@@ -9571,7 +9571,7 @@ lbl_80230E64:
 /* 80230EB8 0022DDF8  D0 1F 00 50 */	stfs f0, 0x50(r31)
 lbl_80230EBC:
 /* 80230EBC 0022DDFC  7F E3 FB 78 */	mr r3, r31
-/* 80230EC0 0022DE00  48 00 0E B1 */	bl jmessage_string_tRenderingProcessor_NS_do_widthcenter
+/* 80230EC0 0022DE00  48 00 0E B1 */	bl do_widthcenter__35jmessage_string_tRenderingProcessorFv
 /* 80230EC4 0022DE04  48 00 02 24 */	b lbl_802310E8
 lbl_80230EC8:
 /* 80230EC8 0022DE08  7F C3 F3 78 */	mr r3, r30
@@ -9645,7 +9645,7 @@ lbl_80230EC8:
 /* 80230FD8 0022DF18  48 13 55 E5 */	bl func_803665BC
 /* 80230FDC 0022DF1C  7F E3 FB 78 */	mr r3, r31
 /* 80230FE0 0022DF20  38 81 00 10 */	addi r4, r1, 0x10
-/* 80230FE4 0022DF24  48 00 12 7D */	bl jmessage_string_tRenderingProcessor_NS_do_rubystrcat
+/* 80230FE4 0022DF24  48 00 12 7D */	bl do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
 /* 80230FE8 0022DF28  48 00 00 54 */	b lbl_8023103C
 lbl_80230FEC:
 /* 80230FEC 0022DF2C  C0 02 B0 78 */	lfs f0, lbl_80454A78-_SDA2_BASE_(r2)
@@ -9665,7 +9665,7 @@ lbl_80230FEC:
 /* 80231024 0022DF64  48 13 55 99 */	bl func_803665BC
 /* 80231028 0022DF68  7F E3 FB 78 */	mr r3, r31
 /* 8023102C 0022DF6C  38 81 00 10 */	addi r4, r1, 0x10
-/* 80231030 0022DF70  48 00 12 31 */	bl jmessage_string_tRenderingProcessor_NS_do_rubystrcat
+/* 80231030 0022DF70  48 00 12 31 */	bl do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
 /* 80231034 0022DF74  48 00 00 08 */	b lbl_8023103C
 lbl_80231038:
 /* 80231038 0022DF78  C3 C2 B0 60 */	lfs f30, lbl_80454A60-_SDA2_BASE_(r2)
@@ -9711,11 +9711,11 @@ lbl_80231094:
 lbl_802310D0:
 /* 802310D0 0022E010  7F E3 FB 78 */	mr r3, r31
 /* 802310D4 0022E014  38 9F 04 54 */	addi r4, r31, 0x454
-/* 802310D8 0022E018  48 00 11 89 */	bl jmessage_string_tRenderingProcessor_NS_do_rubystrcat
+/* 802310D8 0022E018  48 00 11 89 */	bl do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
 lbl_802310DC:
 /* 802310DC 0022E01C  7F E3 FB 78 */	mr r3, r31
 /* 802310E0 0022E020  38 81 00 0C */	addi r4, r1, 0xc
-/* 802310E4 0022E024  48 00 0F 61 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 802310E4 0022E024  48 00 0F 61 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 lbl_802310E8:
 /* 802310E8 0022E028  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 802310EC 0022E02C  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -9776,7 +9776,7 @@ lbl_802311A8:
 /* 802311B8 0022E0F8  48 00 0B 9C */	b lbl_80231D54
 lbl_802311BC:
 /* 802311BC 0022E0FC  88 85 00 00 */	lbz r4, 0(r5)
-/* 802311C0 0022E100  48 00 13 AD */	bl jmessage_string_tRenderingProcessor_NS_do_color
+/* 802311C0 0022E100  48 00 13 AD */	bl do_color__35jmessage_string_tRenderingProcessorFUc
 /* 802311C4 0022E104  48 00 0B 90 */	b lbl_80231D54
 lbl_802311C8:
 /* 802311C8 0022E108  A0 05 00 00 */	lhz r0, 0(r5)
@@ -9788,13 +9788,13 @@ lbl_802311C8:
 /* 802311E0 0022E120  EC 20 08 28 */	fsubs f1, f0, f1
 /* 802311E4 0022E124  C0 02 B0 7C */	lfs f0, lbl_80454A7C-_SDA2_BASE_(r2)
 /* 802311E8 0022E128  EC 21 00 24 */	fdivs f1, f1, f0
-/* 802311EC 0022E12C  48 00 14 15 */	bl jmessage_string_tRenderingProcessor_NS_do_scale
+/* 802311EC 0022E12C  48 00 14 15 */	bl do_scale__35jmessage_string_tRenderingProcessorFf
 /* 802311F0 0022E130  48 00 0B 64 */	b lbl_80231D54
 lbl_802311F4:
 /* 802311F4 0022E134  7F E3 FB 78 */	mr r3, r31
 /* 802311F8 0022E138  7C A4 2B 78 */	mr r4, r5
 /* 802311FC 0022E13C  7C C5 33 78 */	mr r5, r6
-/* 80231200 0022E140  48 00 0E B1 */	bl jmessage_string_tRenderingProcessor_NS_do_rubyset
+/* 80231200 0022E140  48 00 0E B1 */	bl do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl
 /* 80231204 0022E144  48 00 0B 50 */	b lbl_80231D54
 lbl_80231208:
 /* 80231208 0022E148  28 04 00 3F */	cmplwi r4, 0x3f
@@ -9808,61 +9808,61 @@ lbl_80231208:
 /* 80231228 0022E168  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8023122C 0022E16C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80231230 0022E170  38 84 01 B4 */	addi r4, r4, 0x1b4
-/* 80231234 0022E174  48 00 15 89 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231234 0022E174  48 00 15 89 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231238 0022E178  48 00 0B 1C */	b lbl_80231D54
 /* 8023123C 0022E17C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80231240 0022E180  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80231244 0022E184  38 84 01 C5 */	addi r4, r4, 0x1c5
-/* 80231248 0022E188  48 00 15 75 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231248 0022E188  48 00 15 75 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023124C 0022E18C  48 00 0B 08 */	b lbl_80231D54
-/* 80231250 0022E190  48 00 72 C5 */	bl dMsgObject_c_NS_getWord
+/* 80231250 0022E190  48 00 72 C5 */	bl getWord__12dMsgObject_cFv
 /* 80231254 0022E194  7C 64 1B 78 */	mr r4, r3
 /* 80231258 0022E198  7F E3 FB 78 */	mr r3, r31
-/* 8023125C 0022E19C  48 00 15 61 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 8023125C 0022E19C  48 00 15 61 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231260 0022E1A0  48 00 0A F4 */	b lbl_80231D54
 /* 80231264 0022E1A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80231268 0022E1A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023126C 0022E1AC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80231270 0022E1B0  48 00 60 5D */	bl dMsgObject_c_NS_getSmellName
+/* 80231270 0022E1B0  48 00 60 5D */	bl getSmellName__12dMsgObject_cFv
 /* 80231274 0022E1B4  7C 64 1B 78 */	mr r4, r3
 /* 80231278 0022E1B8  7F E3 FB 78 */	mr r3, r31
-/* 8023127C 0022E1BC  48 00 15 41 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 8023127C 0022E1BC  48 00 15 41 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231280 0022E1C0  48 00 0A D4 */	b lbl_80231D54
 /* 80231284 0022E1C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80231288 0022E1C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023128C 0022E1CC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80231290 0022E1D0  48 00 60 A5 */	bl dMsgObject_c_NS_getPortalName
+/* 80231290 0022E1D0  48 00 60 A5 */	bl getPortalName__12dMsgObject_cFv
 /* 80231294 0022E1D4  7C 64 1B 78 */	mr r4, r3
 /* 80231298 0022E1D8  7F E3 FB 78 */	mr r3, r31
-/* 8023129C 0022E1DC  48 00 15 21 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 8023129C 0022E1DC  48 00 15 21 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802312A0 0022E1E0  48 00 0A B4 */	b lbl_80231D54
 /* 802312A4 0022E1E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802312A8 0022E1E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802312AC 0022E1EC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802312B0 0022E1F0  48 00 60 DD */	bl dMsgObject_c_NS_getBombName
+/* 802312B0 0022E1F0  48 00 60 DD */	bl getBombName__12dMsgObject_cFv
 /* 802312B4 0022E1F4  7C 64 1B 78 */	mr r4, r3
 /* 802312B8 0022E1F8  7F E3 FB 78 */	mr r3, r31
-/* 802312BC 0022E1FC  48 00 15 01 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802312BC 0022E1FC  48 00 15 01 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802312C0 0022E200  48 00 0A 94 */	b lbl_80231D54
 /* 802312C4 0022E204  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802312C8 0022E208  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802312CC 0022E20C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802312D0 0022E210  48 00 61 4D */	bl dMsgObject_c_NS_getInsectName
+/* 802312D0 0022E210  48 00 61 4D */	bl getInsectName__12dMsgObject_cFv
 /* 802312D4 0022E214  7C 64 1B 78 */	mr r4, r3
 /* 802312D8 0022E218  7F E3 FB 78 */	mr r3, r31
-/* 802312DC 0022E21C  48 00 14 E1 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802312DC 0022E21C  48 00 14 E1 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802312E0 0022E220  48 00 0A 74 */	b lbl_80231D54
 /* 802312E4 0022E224  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802312E8 0022E228  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802312EC 0022E22C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802312F0 0022E230  48 00 61 89 */	bl dMsgObject_c_NS_getLetterName
+/* 802312F0 0022E230  48 00 61 89 */	bl getLetterName__12dMsgObject_cFv
 /* 802312F4 0022E234  7C 64 1B 78 */	mr r4, r3
 /* 802312F8 0022E238  7F E3 FB 78 */	mr r3, r31
-/* 802312FC 0022E23C  48 00 14 C1 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802312FC 0022E23C  48 00 14 C1 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231300 0022E240  48 00 0A 54 */	b lbl_80231D54
 /* 80231304 0022E244  A0 05 00 00 */	lhz r0, 0(r5)
 /* 80231308 0022E248  7C 04 07 34 */	extsh r4, r0
-/* 8023130C 0022E24C  48 00 13 85 */	bl jmessage_string_tRenderingProcessor_NS_do_linedown
+/* 8023130C 0022E24C  48 00 13 85 */	bl do_linedown__35jmessage_string_tRenderingProcessorFs
 /* 80231310 0022E250  48 00 0A 44 */	b lbl_80231D54
 /* 80231314 0022E254  38 61 00 0C */	addi r3, r1, 0xc
 /* 80231318 0022E258  3C 80 80 3A */	lis r4, lbl_80399610@ha
@@ -9877,7 +9877,7 @@ lbl_80231208:
 /* 8023133C 0022E27C  48 13 51 A1 */	bl func_803664DC
 /* 80231340 0022E280  7F E3 FB 78 */	mr r3, r31
 /* 80231344 0022E284  38 81 00 0C */	addi r4, r1, 0xc
-/* 80231348 0022E288  48 00 14 75 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231348 0022E288  48 00 14 75 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023134C 0022E28C  48 00 0A 08 */	b lbl_80231D54
 /* 80231350 0022E290  38 61 00 08 */	addi r3, r1, 8
 /* 80231354 0022E294  3C 80 80 3A */	lis r4, lbl_80399610@ha
@@ -9894,151 +9894,151 @@ lbl_80231208:
 /* 80231380 0022E2C0  48 13 51 5D */	bl func_803664DC
 /* 80231384 0022E2C4  7F E3 FB 78 */	mr r3, r31
 /* 80231388 0022E2C8  38 81 00 08 */	addi r4, r1, 8
-/* 8023138C 0022E2CC  48 00 14 31 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 8023138C 0022E2CC  48 00 14 31 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231390 0022E2D0  48 00 09 C4 */	b lbl_80231D54
 /* 80231394 0022E2D4  38 80 00 00 */	li r4, 0
-/* 80231398 0022E2D8  48 00 0F 35 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231398 0022E2D8  48 00 0F 35 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023139C 0022E2DC  48 00 09 B8 */	b lbl_80231D54
 /* 802313A0 0022E2E0  38 80 00 01 */	li r4, 1
-/* 802313A4 0022E2E4  48 00 0F 29 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313A4 0022E2E4  48 00 0F 29 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313A8 0022E2E8  48 00 09 AC */	b lbl_80231D54
 /* 802313AC 0022E2EC  38 80 00 02 */	li r4, 2
-/* 802313B0 0022E2F0  48 00 0F 1D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313B0 0022E2F0  48 00 0F 1D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313B4 0022E2F4  48 00 09 A0 */	b lbl_80231D54
 /* 802313B8 0022E2F8  38 80 00 03 */	li r4, 3
-/* 802313BC 0022E2FC  48 00 0F 11 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313BC 0022E2FC  48 00 0F 11 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313C0 0022E300  48 00 09 94 */	b lbl_80231D54
 /* 802313C4 0022E304  38 80 00 04 */	li r4, 4
-/* 802313C8 0022E308  48 00 0F 05 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313C8 0022E308  48 00 0F 05 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313CC 0022E30C  48 00 09 88 */	b lbl_80231D54
 /* 802313D0 0022E310  38 80 00 05 */	li r4, 5
-/* 802313D4 0022E314  48 00 0E F9 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313D4 0022E314  48 00 0E F9 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313D8 0022E318  48 00 09 7C */	b lbl_80231D54
 /* 802313DC 0022E31C  38 80 00 06 */	li r4, 6
-/* 802313E0 0022E320  48 00 0E ED */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313E0 0022E320  48 00 0E ED */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313E4 0022E324  48 00 09 70 */	b lbl_80231D54
 /* 802313E8 0022E328  38 80 00 07 */	li r4, 7
-/* 802313EC 0022E32C  48 00 0E E1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313EC 0022E32C  48 00 0E E1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313F0 0022E330  48 00 09 64 */	b lbl_80231D54
 /* 802313F4 0022E334  38 80 00 08 */	li r4, 8
-/* 802313F8 0022E338  48 00 0E D5 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802313F8 0022E338  48 00 0E D5 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802313FC 0022E33C  48 00 09 58 */	b lbl_80231D54
 /* 80231400 0022E340  38 80 00 09 */	li r4, 9
-/* 80231404 0022E344  48 00 0E C9 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231404 0022E344  48 00 0E C9 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231408 0022E348  48 00 09 4C */	b lbl_80231D54
 /* 8023140C 0022E34C  38 80 00 0A */	li r4, 0xa
-/* 80231410 0022E350  48 00 0E BD */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231410 0022E350  48 00 0E BD */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231414 0022E354  48 00 09 40 */	b lbl_80231D54
 /* 80231418 0022E358  38 80 00 0B */	li r4, 0xb
-/* 8023141C 0022E35C  48 00 0E B1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 8023141C 0022E35C  48 00 0E B1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231420 0022E360  48 00 09 34 */	b lbl_80231D54
 /* 80231424 0022E364  38 80 00 0C */	li r4, 0xc
-/* 80231428 0022E368  48 00 0E A5 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231428 0022E368  48 00 0E A5 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023142C 0022E36C  48 00 09 28 */	b lbl_80231D54
 /* 80231430 0022E370  38 80 00 0D */	li r4, 0xd
-/* 80231434 0022E374  48 00 0E 99 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231434 0022E374  48 00 0E 99 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231438 0022E378  48 00 09 1C */	b lbl_80231D54
 /* 8023143C 0022E37C  38 80 00 0E */	li r4, 0xe
-/* 80231440 0022E380  48 00 0E 8D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231440 0022E380  48 00 0E 8D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231444 0022E384  48 00 09 10 */	b lbl_80231D54
 /* 80231448 0022E388  38 80 00 0F */	li r4, 0xf
-/* 8023144C 0022E38C  48 00 0E 81 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 8023144C 0022E38C  48 00 0E 81 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231450 0022E390  48 00 09 04 */	b lbl_80231D54
 /* 80231454 0022E394  38 80 00 10 */	li r4, 0x10
-/* 80231458 0022E398  48 00 0E 75 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231458 0022E398  48 00 0E 75 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023145C 0022E39C  48 00 08 F8 */	b lbl_80231D54
 /* 80231460 0022E3A0  38 80 00 11 */	li r4, 0x11
-/* 80231464 0022E3A4  48 00 0E 69 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231464 0022E3A4  48 00 0E 69 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231468 0022E3A8  48 00 08 EC */	b lbl_80231D54
 /* 8023146C 0022E3AC  38 80 00 12 */	li r4, 0x12
-/* 80231470 0022E3B0  48 00 0E 5D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231470 0022E3B0  48 00 0E 5D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231474 0022E3B4  48 00 08 E0 */	b lbl_80231D54
 /* 80231478 0022E3B8  38 80 00 13 */	li r4, 0x13
-/* 8023147C 0022E3BC  48 00 0E 51 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 8023147C 0022E3BC  48 00 0E 51 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231480 0022E3C0  48 00 08 D4 */	b lbl_80231D54
 /* 80231484 0022E3C4  38 80 00 14 */	li r4, 0x14
-/* 80231488 0022E3C8  48 00 0E 45 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231488 0022E3C8  48 00 0E 45 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023148C 0022E3CC  48 00 08 C8 */	b lbl_80231D54
 /* 80231490 0022E3D0  38 80 00 15 */	li r4, 0x15
-/* 80231494 0022E3D4  48 00 0E 39 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231494 0022E3D4  48 00 0E 39 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231498 0022E3D8  48 00 08 BC */	b lbl_80231D54
 /* 8023149C 0022E3DC  38 80 00 1E */	li r4, 0x1e
-/* 802314A0 0022E3E0  48 00 0E 2D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802314A0 0022E3E0  48 00 0E 2D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802314A4 0022E3E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802314A8 0022E3E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802314AC 0022E3EC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 802314B0 0022E3F0  A8 83 01 74 */	lha r4, 0x174(r3)
 /* 802314B4 0022E3F4  7F E3 FB 78 */	mr r3, r31
-/* 802314B8 0022E3F8  48 00 12 2D */	bl jmessage_string_tRenderingProcessor_NS_do_numset
+/* 802314B8 0022E3F8  48 00 12 2D */	bl do_numset__35jmessage_string_tRenderingProcessorFs
 /* 802314BC 0022E3FC  48 00 08 98 */	b lbl_80231D54
 /* 802314C0 0022E400  38 80 00 17 */	li r4, 0x17
-/* 802314C4 0022E404  48 00 0E 09 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802314C4 0022E404  48 00 0E 09 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802314C8 0022E408  48 00 08 8C */	b lbl_80231D54
 /* 802314CC 0022E40C  38 80 00 18 */	li r4, 0x18
-/* 802314D0 0022E410  48 00 0D FD */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802314D0 0022E410  48 00 0D FD */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802314D4 0022E414  48 00 08 80 */	b lbl_80231D54
 /* 802314D8 0022E418  38 80 00 19 */	li r4, 0x19
-/* 802314DC 0022E41C  48 00 0D F1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802314DC 0022E41C  48 00 0D F1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802314E0 0022E420  48 00 08 74 */	b lbl_80231D54
-/* 802314E4 0022E424  48 00 71 55 */	bl dMsgObject_c_NS_getItemEquipButton
+/* 802314E4 0022E424  48 00 71 55 */	bl getItemEquipButton__12dMsgObject_cFv
 /* 802314E8 0022E428  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802314EC 0022E42C  40 82 00 14 */	bne lbl_80231500
 /* 802314F0 0022E430  7F E3 FB 78 */	mr r3, r31
 /* 802314F4 0022E434  38 80 00 05 */	li r4, 5
-/* 802314F8 0022E438  48 00 0D D5 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802314F8 0022E438  48 00 0D D5 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802314FC 0022E43C  48 00 08 58 */	b lbl_80231D54
 lbl_80231500:
 /* 80231500 0022E440  7F E3 FB 78 */	mr r3, r31
 /* 80231504 0022E444  38 80 00 06 */	li r4, 6
-/* 80231508 0022E448  48 00 0D C5 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231508 0022E448  48 00 0D C5 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023150C 0022E44C  48 00 08 48 */	b lbl_80231D54
-/* 80231510 0022E450  48 00 71 29 */	bl dMsgObject_c_NS_getItemEquipButton
+/* 80231510 0022E450  48 00 71 29 */	bl getItemEquipButton__12dMsgObject_cFv
 /* 80231514 0022E454  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80231518 0022E458  40 82 00 14 */	bne lbl_8023152C
 /* 8023151C 0022E45C  7F E3 FB 78 */	mr r3, r31
 /* 80231520 0022E460  38 80 00 06 */	li r4, 6
-/* 80231524 0022E464  48 00 0D A9 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231524 0022E464  48 00 0D A9 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231528 0022E468  48 00 08 2C */	b lbl_80231D54
 lbl_8023152C:
 /* 8023152C 0022E46C  7F E3 FB 78 */	mr r3, r31
 /* 80231530 0022E470  38 80 00 05 */	li r4, 5
-/* 80231534 0022E474  48 00 0D 99 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231534 0022E474  48 00 0D 99 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231538 0022E478  48 00 08 1C */	b lbl_80231D54
 /* 8023153C 0022E47C  38 80 00 29 */	li r4, 0x29
-/* 80231540 0022E480  48 00 0D 8D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231540 0022E480  48 00 0D 8D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231544 0022E484  48 00 08 10 */	b lbl_80231D54
 /* 80231548 0022E488  38 80 00 1B */	li r4, 0x1b
-/* 8023154C 0022E48C  48 00 0D 81 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 8023154C 0022E48C  48 00 0D 81 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231550 0022E490  48 00 08 04 */	b lbl_80231D54
 /* 80231554 0022E494  38 80 00 1C */	li r4, 0x1c
-/* 80231558 0022E498  48 00 0D 75 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231558 0022E498  48 00 0D 75 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023155C 0022E49C  48 00 07 F8 */	b lbl_80231D54
 /* 80231560 0022E4A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80231564 0022E4A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80231568 0022E4A8  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8023156C 0022E4AC  48 00 5F 65 */	bl dMsgObject_c_NS_getSelectBombNum
+/* 8023156C 0022E4AC  48 00 5F 65 */	bl getSelectBombNum__12dMsgObject_cFv
 /* 80231570 0022E4B0  7C 60 1B 78 */	mr r0, r3
 /* 80231574 0022E4B4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231578 0022E4B8  38 80 00 07 */	li r4, 7
 /* 8023157C 0022E4BC  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 80231580 0022E4C0  38 C1 00 D8 */	addi r6, r1, 0xd8
 /* 80231584 0022E4C4  38 E0 00 01 */	li r7, 1
-/* 80231588 0022E4C8  48 00 77 65 */	bl dMsgUnit_c_NS_setTag
+/* 80231588 0022E4C8  48 00 77 65 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 8023158C 0022E4CC  7F E3 FB 78 */	mr r3, r31
 /* 80231590 0022E4D0  38 81 00 D8 */	addi r4, r1, 0xd8
-/* 80231594 0022E4D4  48 00 12 29 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231594 0022E4D4  48 00 12 29 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231598 0022E4D8  48 00 07 BC */	b lbl_80231D54
-/* 8023159C 0022E4DC  48 00 70 45 */	bl dMsgObject_c_NS_getSelectBombPrice
+/* 8023159C 0022E4DC  48 00 70 45 */	bl getSelectBombPrice__12dMsgObject_cFv
 /* 802315A0 0022E4E0  7C 60 1B 78 */	mr r0, r3
 /* 802315A4 0022E4E4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802315A8 0022E4E8  38 80 00 01 */	li r4, 1
 /* 802315AC 0022E4EC  7C 05 07 34 */	extsh r5, r0
 /* 802315B0 0022E4F0  38 C1 00 B0 */	addi r6, r1, 0xb0
 /* 802315B4 0022E4F4  38 E0 00 01 */	li r7, 1
-/* 802315B8 0022E4F8  48 00 77 35 */	bl dMsgUnit_c_NS_setTag
+/* 802315B8 0022E4F8  48 00 77 35 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802315BC 0022E4FC  7F E3 FB 78 */	mr r3, r31
 /* 802315C0 0022E500  38 81 00 B0 */	addi r4, r1, 0xb0
-/* 802315C4 0022E504  48 00 11 F9 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802315C4 0022E504  48 00 11 F9 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802315C8 0022E508  48 00 07 8C */	b lbl_80231D54
 /* 802315CC 0022E50C  38 80 00 70 */	li r4, 0x70
 /* 802315D0 0022E510  88 05 00 00 */	lbz r0, 0(r5)
@@ -10062,10 +10062,10 @@ lbl_802315F4:
 /* 80231610 0022E550  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 80231614 0022E554  38 C1 00 88 */	addi r6, r1, 0x88
 /* 80231618 0022E558  38 E0 00 01 */	li r7, 1
-/* 8023161C 0022E55C  48 00 76 D1 */	bl dMsgUnit_c_NS_setTag
+/* 8023161C 0022E55C  48 00 76 D1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231620 0022E560  7F E3 FB 78 */	mr r3, r31
 /* 80231624 0022E564  38 81 00 88 */	addi r4, r1, 0x88
-/* 80231628 0022E568  48 00 11 95 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231628 0022E568  48 00 11 95 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023162C 0022E56C  48 00 07 28 */	b lbl_80231D54
 /* 80231630 0022E570  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80231634 0022E574  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -10074,10 +10074,10 @@ lbl_802315F4:
 /* 80231640 0022E580  38 80 00 00 */	li r4, 0
 /* 80231644 0022E584  38 C1 00 60 */	addi r6, r1, 0x60
 /* 80231648 0022E588  38 E0 00 01 */	li r7, 1
-/* 8023164C 0022E58C  48 00 76 A1 */	bl dMsgUnit_c_NS_setTag
+/* 8023164C 0022E58C  48 00 76 A1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231650 0022E590  7F E3 FB 78 */	mr r3, r31
 /* 80231654 0022E594  38 81 00 60 */	addi r4, r1, 0x60
-/* 80231658 0022E598  48 00 11 65 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231658 0022E598  48 00 11 65 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023165C 0022E59C  48 00 06 F8 */	b lbl_80231D54
 lbl_80231660:
 /* 80231660 0022E5A0  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -10093,96 +10093,96 @@ lbl_80231660:
 /* 80231688 0022E5C8  4B FF 6F 45 */	bl changeCodeToChar
 /* 8023168C 0022E5CC  7C 64 1B 78 */	mr r4, r3
 /* 80231690 0022E5D0  7F E3 FB 78 */	mr r3, r31
-/* 80231694 0022E5D4  48 00 11 29 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231694 0022E5D4  48 00 11 29 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231698 0022E5D8  48 00 06 BC */	b lbl_80231D54
 /* 8023169C 0022E5DC  38 60 00 5C */	li r3, 0x5c
 /* 802316A0 0022E5E0  4B FF 6F 2D */	bl changeCodeToChar
 /* 802316A4 0022E5E4  7C 64 1B 78 */	mr r4, r3
 /* 802316A8 0022E5E8  7F E3 FB 78 */	mr r3, r31
-/* 802316AC 0022E5EC  48 00 11 11 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802316AC 0022E5EC  48 00 11 11 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802316B0 0022E5F0  48 00 06 A4 */	b lbl_80231D54
 /* 802316B4 0022E5F4  38 60 00 40 */	li r3, 0x40
 /* 802316B8 0022E5F8  4B FF 6F 15 */	bl changeCodeToChar
 /* 802316BC 0022E5FC  7C 64 1B 78 */	mr r4, r3
 /* 802316C0 0022E600  7F E3 FB 78 */	mr r3, r31
-/* 802316C4 0022E604  48 00 10 F9 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802316C4 0022E604  48 00 10 F9 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802316C8 0022E608  48 00 06 8C */	b lbl_80231D54
 /* 802316CC 0022E60C  3C 60 00 01 */	lis r3, 0x000081F2@ha
 /* 802316D0 0022E610  38 63 81 F2 */	addi r3, r3, 0x000081F2@l
 /* 802316D4 0022E614  4B FF 6E F9 */	bl changeCodeToChar
 /* 802316D8 0022E618  7C 64 1B 78 */	mr r4, r3
 /* 802316DC 0022E61C  7F E3 FB 78 */	mr r3, r31
-/* 802316E0 0022E620  48 00 10 DD */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802316E0 0022E620  48 00 10 DD */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802316E4 0022E624  48 00 06 70 */	b lbl_80231D54
 /* 802316E8 0022E628  3C 60 00 01 */	lis r3, 0x000081F3@ha
 /* 802316EC 0022E62C  38 63 81 F3 */	addi r3, r3, 0x000081F3@l
 /* 802316F0 0022E630  4B FF 6E DD */	bl changeCodeToChar
 /* 802316F4 0022E634  7C 64 1B 78 */	mr r4, r3
 /* 802316F8 0022E638  7F E3 FB 78 */	mr r3, r31
-/* 802316FC 0022E63C  48 00 10 C1 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802316FC 0022E63C  48 00 10 C1 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231700 0022E640  48 00 06 54 */	b lbl_80231D54
 /* 80231704 0022E644  3C 60 00 01 */	lis r3, 0x000081E3@ha
 /* 80231708 0022E648  38 63 81 E3 */	addi r3, r3, 0x000081E3@l
 /* 8023170C 0022E64C  4B FF 6E C1 */	bl changeCodeToChar
 /* 80231710 0022E650  7C 64 1B 78 */	mr r4, r3
 /* 80231714 0022E654  7F E3 FB 78 */	mr r3, r31
-/* 80231718 0022E658  48 00 10 A5 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231718 0022E658  48 00 10 A5 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023171C 0022E65C  48 00 06 38 */	b lbl_80231D54
 /* 80231720 0022E660  3C 60 00 01 */	lis r3, 0x0000876C@ha
 /* 80231724 0022E664  38 63 87 6C */	addi r3, r3, 0x0000876C@l
 /* 80231728 0022E668  4B FF 6E A5 */	bl changeCodeToChar
 /* 8023172C 0022E66C  7C 64 1B 78 */	mr r4, r3
 /* 80231730 0022E670  7F E3 FB 78 */	mr r3, r31
-/* 80231734 0022E674  48 00 10 89 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231734 0022E674  48 00 10 89 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231738 0022E678  48 00 06 1C */	b lbl_80231D54
 /* 8023173C 0022E67C  3C 60 00 01 */	lis r3, 0x00008766@ha
 /* 80231740 0022E680  38 63 87 66 */	addi r3, r3, 0x00008766@l
 /* 80231744 0022E684  4B FF 6E 89 */	bl changeCodeToChar
 /* 80231748 0022E688  7C 64 1B 78 */	mr r4, r3
 /* 8023174C 0022E68C  7F E3 FB 78 */	mr r3, r31
-/* 80231750 0022E690  48 00 10 6D */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231750 0022E690  48 00 10 6D */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231754 0022E694  48 00 06 00 */	b lbl_80231D54
 /* 80231758 0022E698  3C 60 00 01 */	lis r3, 0x00008765@ha
 /* 8023175C 0022E69C  38 63 87 65 */	addi r3, r3, 0x00008765@l
 /* 80231760 0022E6A0  4B FF 6E 6D */	bl changeCodeToChar
 /* 80231764 0022E6A4  7C 64 1B 78 */	mr r4, r3
 /* 80231768 0022E6A8  7F E3 FB 78 */	mr r3, r31
-/* 8023176C 0022E6AC  48 00 10 51 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 8023176C 0022E6AC  48 00 10 51 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231770 0022E6B0  48 00 05 E4 */	b lbl_80231D54
 /* 80231774 0022E6B4  3C 60 00 01 */	lis r3, 0x00008767@ha
 /* 80231778 0022E6B8  38 63 87 67 */	addi r3, r3, 0x00008767@l
 /* 8023177C 0022E6BC  4B FF 6E 51 */	bl changeCodeToChar
 /* 80231780 0022E6C0  7C 64 1B 78 */	mr r4, r3
 /* 80231784 0022E6C4  7F E3 FB 78 */	mr r3, r31
-/* 80231788 0022E6C8  48 00 10 35 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231788 0022E6C8  48 00 10 35 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 8023178C 0022E6CC  48 00 05 C8 */	b lbl_80231D54
 /* 80231790 0022E6D0  3C 60 00 01 */	lis r3, 0x00008768@ha
 /* 80231794 0022E6D4  38 63 87 68 */	addi r3, r3, 0x00008768@l
 /* 80231798 0022E6D8  4B FF 6E 35 */	bl changeCodeToChar
 /* 8023179C 0022E6DC  7C 64 1B 78 */	mr r4, r3
 /* 802317A0 0022E6E0  7F E3 FB 78 */	mr r3, r31
-/* 802317A4 0022E6E4  48 00 10 19 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802317A4 0022E6E4  48 00 10 19 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802317A8 0022E6E8  48 00 05 AC */	b lbl_80231D54
 /* 802317AC 0022E6EC  3C 60 00 01 */	lis r3, 0x00008769@ha
 /* 802317B0 0022E6F0  38 63 87 69 */	addi r3, r3, 0x00008769@l
 /* 802317B4 0022E6F4  4B FF 6E 19 */	bl changeCodeToChar
 /* 802317B8 0022E6F8  7C 64 1B 78 */	mr r4, r3
 /* 802317BC 0022E6FC  7F E3 FB 78 */	mr r3, r31
-/* 802317C0 0022E700  48 00 0F FD */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802317C0 0022E700  48 00 0F FD */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802317C4 0022E704  48 00 05 90 */	b lbl_80231D54
 /* 802317C8 0022E708  3C 60 00 01 */	lis r3, 0x0000876A@ha
 /* 802317CC 0022E70C  38 63 87 6A */	addi r3, r3, 0x0000876A@l
 /* 802317D0 0022E710  4B FF 6D FD */	bl changeCodeToChar
 /* 802317D4 0022E714  7C 64 1B 78 */	mr r4, r3
 /* 802317D8 0022E718  7F E3 FB 78 */	mr r3, r31
-/* 802317DC 0022E71C  48 00 0F E1 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802317DC 0022E71C  48 00 0F E1 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802317E0 0022E720  48 00 05 74 */	b lbl_80231D54
 /* 802317E4 0022E724  3C 60 00 01 */	lis r3, 0x0000876B@ha
 /* 802317E8 0022E728  38 63 87 6B */	addi r3, r3, 0x0000876B@l
 /* 802317EC 0022E72C  4B FF 6D E1 */	bl changeCodeToChar
 /* 802317F0 0022E730  7C 64 1B 78 */	mr r4, r3
 /* 802317F4 0022E734  7F E3 FB 78 */	mr r3, r31
-/* 802317F8 0022E738  48 00 0F C5 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 802317F8 0022E738  48 00 0F C5 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 802317FC 0022E73C  48 00 05 58 */	b lbl_80231D54
 lbl_80231800:
 /* 80231800 0022E740  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -10204,7 +10204,7 @@ lbl_80231800:
 /* 80231840 0022E780  80 A5 00 88 */	lwz r5, 0x88(r5)
 /* 80231844 0022E784  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231848 0022E788  38 E0 00 01 */	li r7, 1
-/* 8023184C 0022E78C  48 00 74 A1 */	bl dMsgUnit_c_NS_setTag
+/* 8023184C 0022E78C  48 00 74 A1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231850 0022E790  48 00 02 B0 */	b lbl_80231B00
 lbl_80231854:
 /* 80231854 0022E794  54 00 06 3E */	clrlwi r0, r0, 0x18
@@ -10217,7 +10217,7 @@ lbl_80231854:
 /* 80231870 0022E7B0  38 80 00 04 */	li r4, 4
 /* 80231874 0022E7B4  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231878 0022E7B8  38 E0 00 01 */	li r7, 1
-/* 8023187C 0022E7BC  48 00 74 71 */	bl dMsgUnit_c_NS_setTag
+/* 8023187C 0022E7BC  48 00 74 71 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231880 0022E7C0  48 00 02 80 */	b lbl_80231B00
 lbl_80231884:
 /* 80231884 0022E7C4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
@@ -10227,7 +10227,7 @@ lbl_80231884:
 /* 80231894 0022E7D4  80 A5 00 84 */	lwz r5, 0x84(r5)
 /* 80231898 0022E7D8  38 C1 00 38 */	addi r6, r1, 0x38
 /* 8023189C 0022E7DC  38 E0 00 01 */	li r7, 1
-/* 802318A0 0022E7E0  48 00 74 4D */	bl dMsgUnit_c_NS_setTag
+/* 802318A0 0022E7E0  48 00 74 4D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802318A4 0022E7E4  48 00 02 5C */	b lbl_80231B00
 /* 802318A8 0022E7E8  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802318AC 0022E7EC  38 80 00 00 */	li r4, 0
@@ -10236,7 +10236,7 @@ lbl_80231884:
 /* 802318B8 0022E7F8  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 802318BC 0022E7FC  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802318C0 0022E800  38 E0 00 01 */	li r7, 1
-/* 802318C4 0022E804  48 00 74 29 */	bl dMsgUnit_c_NS_setTag
+/* 802318C4 0022E804  48 00 74 29 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802318C8 0022E808  48 00 02 38 */	b lbl_80231B00
 /* 802318CC 0022E80C  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802318D0 0022E810  38 80 00 01 */	li r4, 1
@@ -10245,7 +10245,7 @@ lbl_80231884:
 /* 802318DC 0022E81C  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 802318E0 0022E820  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802318E4 0022E824  38 E0 00 01 */	li r7, 1
-/* 802318E8 0022E828  48 00 74 05 */	bl dMsgUnit_c_NS_setTag
+/* 802318E8 0022E828  48 00 74 05 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802318EC 0022E82C  48 00 02 14 */	b lbl_80231B00
 /* 802318F0 0022E830  80 05 00 00 */	lwz r0, 0(r5)
 /* 802318F4 0022E834  7C 1E 07 34 */	extsh r30, r0
@@ -10260,7 +10260,7 @@ lbl_80231884:
 /* 80231918 0022E858  38 80 00 0A */	li r4, 0xa
 /* 8023191C 0022E85C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231920 0022E860  38 E0 00 01 */	li r7, 1
-/* 80231924 0022E864  48 00 73 C9 */	bl dMsgUnit_c_NS_setTag
+/* 80231924 0022E864  48 00 73 C9 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231928 0022E868  48 00 01 D8 */	b lbl_80231B00
 /* 8023192C 0022E86C  4B FE CE 29 */	bl dMeter2Info_getNewLetterNum
 /* 80231930 0022E870  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -10268,7 +10268,7 @@ lbl_80231884:
 /* 80231938 0022E878  38 80 00 0B */	li r4, 0xb
 /* 8023193C 0022E87C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231940 0022E880  38 E0 00 01 */	li r7, 1
-/* 80231944 0022E884  48 00 73 A9 */	bl dMsgUnit_c_NS_setTag
+/* 80231944 0022E884  48 00 73 A9 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231948 0022E888  48 00 01 B8 */	b lbl_80231B00
 /* 8023194C 0022E88C  4B FF 71 81 */	bl getPohNum
 /* 80231950 0022E890  54 65 06 3E */	clrlwi r5, r3, 0x18
@@ -10276,7 +10276,7 @@ lbl_80231884:
 /* 80231958 0022E898  38 80 00 0C */	li r4, 0xc
 /* 8023195C 0022E89C  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231960 0022E8A0  38 E0 00 01 */	li r7, 1
-/* 80231964 0022E8A4  48 00 73 89 */	bl dMsgUnit_c_NS_setTag
+/* 80231964 0022E8A4  48 00 73 89 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231968 0022E8A8  48 00 01 98 */	b lbl_80231B00
 /* 8023196C 0022E8AC  88 05 00 00 */	lbz r0, 0(r5)
 /* 80231970 0022E8B0  28 00 00 00 */	cmplwi r0, 0
@@ -10294,7 +10294,7 @@ lbl_80231994:
 /* 80231998 0022E8D8  38 80 00 0D */	li r4, 0xd
 /* 8023199C 0022E8DC  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802319A0 0022E8E0  38 E0 00 01 */	li r7, 1
-/* 802319A4 0022E8E4  48 00 73 49 */	bl dMsgUnit_c_NS_setTag
+/* 802319A4 0022E8E4  48 00 73 49 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802319A8 0022E8E8  48 00 01 58 */	b lbl_80231B00
 /* 802319AC 0022E8EC  88 05 00 00 */	lbz r0, 0(r5)
 /* 802319B0 0022E8F0  28 00 00 00 */	cmplwi r0, 0
@@ -10311,14 +10311,14 @@ lbl_802319D0:
 /* 802319D4 0022E914  38 80 00 02 */	li r4, 2
 /* 802319D8 0022E918  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802319DC 0022E91C  38 E0 00 01 */	li r7, 1
-/* 802319E0 0022E920  48 00 73 0D */	bl dMsgUnit_c_NS_setTag
+/* 802319E0 0022E920  48 00 73 0D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 802319E4 0022E924  48 00 01 1C */	b lbl_80231B00
 /* 802319E8 0022E928  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 802319EC 0022E92C  38 80 00 03 */	li r4, 3
 /* 802319F0 0022E930  38 A0 00 00 */	li r5, 0
 /* 802319F4 0022E934  38 C1 00 38 */	addi r6, r1, 0x38
 /* 802319F8 0022E938  38 E0 00 01 */	li r7, 1
-/* 802319FC 0022E93C  48 00 72 F1 */	bl dMsgUnit_c_NS_setTag
+/* 802319FC 0022E93C  48 00 72 F1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231A00 0022E940  48 00 01 00 */	b lbl_80231B00
 /* 80231A04 0022E944  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231A08 0022E948  3C 80 00 01 */	lis r4, 1
@@ -10327,7 +10327,7 @@ lbl_802319D0:
 /* 80231A14 0022E954  88 A5 5E A1 */	lbz r5, 0x5ea1(r5)
 /* 80231A18 0022E958  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231A1C 0022E95C  38 E0 00 01 */	li r7, 1
-/* 80231A20 0022E960  48 00 72 CD */	bl dMsgUnit_c_NS_setTag
+/* 80231A20 0022E960  48 00 72 CD */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231A24 0022E964  48 00 00 DC */	b lbl_80231B00
 /* 80231A28 0022E968  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80231A2C 0022E96C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -10342,7 +10342,7 @@ lbl_802319D0:
 /* 80231A50 0022E990  20 A0 00 14 */	subfic r5, r0, 0x14
 /* 80231A54 0022E994  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231A58 0022E998  38 E0 00 01 */	li r7, 1
-/* 80231A5C 0022E99C  48 00 72 91 */	bl dMsgUnit_c_NS_setTag
+/* 80231A5C 0022E99C  48 00 72 91 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231A60 0022E9A0  48 00 00 A0 */	b lbl_80231B00
 /* 80231A64 0022E9A4  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231A68 0022E9A8  38 80 00 09 */	li r4, 9
@@ -10351,7 +10351,7 @@ lbl_802319D0:
 /* 80231A74 0022E9B4  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 80231A78 0022E9B8  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231A7C 0022E9BC  38 E0 00 01 */	li r7, 1
-/* 80231A80 0022E9C0  48 00 72 6D */	bl dMsgUnit_c_NS_setTag
+/* 80231A80 0022E9C0  48 00 72 6D */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231A84 0022E9C4  48 00 00 7C */	b lbl_80231B00
 /* 80231A88 0022E9C8  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231A8C 0022E9CC  38 80 00 0E */	li r4, 0xe
@@ -10360,7 +10360,7 @@ lbl_802319D0:
 /* 80231A98 0022E9D8  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 80231A9C 0022E9DC  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231AA0 0022E9E0  38 E0 00 01 */	li r7, 1
-/* 80231AA4 0022E9E4  48 00 72 49 */	bl dMsgUnit_c_NS_setTag
+/* 80231AA4 0022E9E4  48 00 72 49 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231AA8 0022E9E8  48 00 00 58 */	b lbl_80231B00
 /* 80231AAC 0022E9EC  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231AB0 0022E9F0  3C 80 00 01 */	lis r4, 0x00010001@ha
@@ -10370,7 +10370,7 @@ lbl_802319D0:
 /* 80231AC0 0022EA00  80 A5 5E 0C */	lwz r5, 0x5e0c(r5)
 /* 80231AC4 0022EA04  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231AC8 0022EA08  38 E0 00 01 */	li r7, 1
-/* 80231ACC 0022EA0C  48 00 72 21 */	bl dMsgUnit_c_NS_setTag
+/* 80231ACC 0022EA0C  48 00 72 21 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231AD0 0022EA10  48 00 00 30 */	b lbl_80231B00
 /* 80231AD4 0022EA14  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 80231AD8 0022EA18  38 80 00 08 */	li r4, 8
@@ -10379,7 +10379,7 @@ lbl_802319D0:
 /* 80231AE4 0022EA24  88 A5 00 BC */	lbz r5, 0xbc(r5)
 /* 80231AE8 0022EA28  38 C1 00 38 */	addi r6, r1, 0x38
 /* 80231AEC 0022EA2C  38 E0 00 01 */	li r7, 1
-/* 80231AF0 0022EA30  48 00 71 FD */	bl dMsgUnit_c_NS_setTag
+/* 80231AF0 0022EA30  48 00 71 FD */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80231AF4 0022EA34  48 00 00 0C */	b lbl_80231B00
 lbl_80231AF8:
 /* 80231AF8 0022EA38  38 60 00 00 */	li r3, 0
@@ -10387,7 +10387,7 @@ lbl_80231AF8:
 lbl_80231B00:
 /* 80231B00 0022EA40  7F E3 FB 78 */	mr r3, r31
 /* 80231B04 0022EA44  38 81 00 38 */	addi r4, r1, 0x38
-/* 80231B08 0022EA48  48 00 0C B5 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B08 0022EA48  48 00 0C B5 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B0C 0022EA4C  48 00 02 48 */	b lbl_80231D54
 lbl_80231B10:
 /* 80231B10 0022EA50  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -10400,64 +10400,64 @@ lbl_80231B10:
 /* 80231B2C 0022EA6C  7C 09 03 A6 */	mtctr r0
 /* 80231B30 0022EA70  4E 80 04 20 */	bctr 
 /* 80231B34 0022EA74  38 81 00 10 */	addi r4, r1, 0x10
-/* 80231B38 0022EA78  48 00 0C 85 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B38 0022EA78  48 00 0C 85 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B3C 0022EA7C  48 00 02 18 */	b lbl_80231D54
 /* 80231B40 0022EA80  38 81 00 10 */	addi r4, r1, 0x10
-/* 80231B44 0022EA84  48 00 0C 79 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B44 0022EA84  48 00 0C 79 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B48 0022EA88  48 00 02 0C */	b lbl_80231D54
 /* 80231B4C 0022EA8C  38 60 00 B2 */	li r3, 0xb2
 /* 80231B50 0022EA90  4B FF 6A 7D */	bl changeCodeToChar
 /* 80231B54 0022EA94  7C 64 1B 78 */	mr r4, r3
 /* 80231B58 0022EA98  7F E3 FB 78 */	mr r3, r31
-/* 80231B5C 0022EA9C  48 00 0C 61 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B5C 0022EA9C  48 00 0C 61 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B60 0022EAA0  48 00 01 F4 */	b lbl_80231D54
 /* 80231B64 0022EAA4  38 60 00 B3 */	li r3, 0xb3
 /* 80231B68 0022EAA8  4B FF 6A 65 */	bl changeCodeToChar
 /* 80231B6C 0022EAAC  7C 64 1B 78 */	mr r4, r3
 /* 80231B70 0022EAB0  7F E3 FB 78 */	mr r3, r31
-/* 80231B74 0022EAB4  48 00 0C 49 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B74 0022EAB4  48 00 0C 49 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B78 0022EAB8  48 00 01 DC */	b lbl_80231D54
 /* 80231B7C 0022EABC  38 60 00 B1 */	li r3, 0xb1
 /* 80231B80 0022EAC0  4B FF 6A 4D */	bl changeCodeToChar
 /* 80231B84 0022EAC4  7C 64 1B 78 */	mr r4, r3
 /* 80231B88 0022EAC8  7F E3 FB 78 */	mr r3, r31
-/* 80231B8C 0022EACC  48 00 0C 31 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231B8C 0022EACC  48 00 0C 31 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231B90 0022EAD0  48 00 01 C4 */	b lbl_80231D54
 /* 80231B94 0022EAD4  38 60 00 89 */	li r3, 0x89
 /* 80231B98 0022EAD8  4B FF 6A 35 */	bl changeCodeToChar
 /* 80231B9C 0022EADC  7C 64 1B 78 */	mr r4, r3
 /* 80231BA0 0022EAE0  7F E3 FB 78 */	mr r3, r31
-/* 80231BA4 0022EAE4  48 00 0C 19 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231BA4 0022EAE4  48 00 0C 19 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231BA8 0022EAE8  48 00 01 AC */	b lbl_80231D54
 /* 80231BAC 0022EAEC  38 60 00 B9 */	li r3, 0xb9
 /* 80231BB0 0022EAF0  4B FF 6A 1D */	bl changeCodeToChar
 /* 80231BB4 0022EAF4  7C 64 1B 78 */	mr r4, r3
 /* 80231BB8 0022EAF8  7F E3 FB 78 */	mr r3, r31
-/* 80231BBC 0022EAFC  48 00 0C 01 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231BBC 0022EAFC  48 00 0C 01 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231BC0 0022EB00  48 00 01 94 */	b lbl_80231D54
 /* 80231BC4 0022EB04  38 60 00 BC */	li r3, 0xbc
 /* 80231BC8 0022EB08  4B FF 6A 05 */	bl changeCodeToChar
 /* 80231BCC 0022EB0C  7C 64 1B 78 */	mr r4, r3
 /* 80231BD0 0022EB10  7F E3 FB 78 */	mr r3, r31
-/* 80231BD4 0022EB14  48 00 0B E9 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231BD4 0022EB14  48 00 0B E9 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231BD8 0022EB18  48 00 01 7C */	b lbl_80231D54
 /* 80231BDC 0022EB1C  38 60 00 BD */	li r3, 0xbd
 /* 80231BE0 0022EB20  4B FF 69 ED */	bl changeCodeToChar
 /* 80231BE4 0022EB24  7C 64 1B 78 */	mr r4, r3
 /* 80231BE8 0022EB28  7F E3 FB 78 */	mr r3, r31
-/* 80231BEC 0022EB2C  48 00 0B D1 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231BEC 0022EB2C  48 00 0B D1 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231BF0 0022EB30  48 00 01 64 */	b lbl_80231D54
 /* 80231BF4 0022EB34  38 60 00 BE */	li r3, 0xbe
 /* 80231BF8 0022EB38  4B FF 69 D5 */	bl changeCodeToChar
 /* 80231BFC 0022EB3C  7C 64 1B 78 */	mr r4, r3
 /* 80231C00 0022EB40  7F E3 FB 78 */	mr r3, r31
-/* 80231C04 0022EB44  48 00 0B B9 */	bl jmessage_string_tRenderingProcessor_NS_push_word
+/* 80231C04 0022EB44  48 00 0B B9 */	bl push_word__35jmessage_string_tRenderingProcessorFPCc
 /* 80231C08 0022EB48  48 00 01 4C */	b lbl_80231D54
 /* 80231C0C 0022EB4C  38 80 00 2A */	li r4, 0x2a
-/* 80231C10 0022EB50  48 00 06 BD */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C10 0022EB50  48 00 06 BD */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C14 0022EB54  48 00 01 40 */	b lbl_80231D54
 /* 80231C18 0022EB58  38 80 00 2B */	li r4, 0x2b
-/* 80231C1C 0022EB5C  48 00 06 B1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C1C 0022EB5C  48 00 06 B1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C20 0022EB60  48 00 01 34 */	b lbl_80231D54
 lbl_80231C24:
 /* 80231C24 0022EB64  54 80 04 0E */	rlwinm r0, r4, 0, 0x10, 7
@@ -10470,43 +10470,43 @@ lbl_80231C24:
 /* 80231C40 0022EB80  7C 09 03 A6 */	mtctr r0
 /* 80231C44 0022EB84  4E 80 04 20 */	bctr 
 /* 80231C48 0022EB88  38 80 00 00 */	li r4, 0
-/* 80231C4C 0022EB8C  48 00 06 81 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C4C 0022EB8C  48 00 06 81 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C50 0022EB90  48 00 01 04 */	b lbl_80231D54
 /* 80231C54 0022EB94  38 80 00 33 */	li r4, 0x33
-/* 80231C58 0022EB98  48 00 06 75 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C58 0022EB98  48 00 06 75 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C5C 0022EB9C  48 00 00 F8 */	b lbl_80231D54
 /* 80231C60 0022EBA0  38 80 00 34 */	li r4, 0x34
-/* 80231C64 0022EBA4  48 00 06 69 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C64 0022EBA4  48 00 06 69 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C68 0022EBA8  48 00 00 EC */	b lbl_80231D54
 /* 80231C6C 0022EBAC  38 80 00 35 */	li r4, 0x35
-/* 80231C70 0022EBB0  48 00 06 5D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C70 0022EBB0  48 00 06 5D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C74 0022EBB4  48 00 00 E0 */	b lbl_80231D54
 /* 80231C78 0022EBB8  38 80 00 36 */	li r4, 0x36
-/* 80231C7C 0022EBBC  48 00 06 51 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C7C 0022EBBC  48 00 06 51 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C80 0022EBC0  48 00 00 D4 */	b lbl_80231D54
 /* 80231C84 0022EBC4  38 80 00 3F */	li r4, 0x3f
-/* 80231C88 0022EBC8  48 00 06 45 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C88 0022EBC8  48 00 06 45 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C8C 0022EBCC  48 00 00 C8 */	b lbl_80231D54
 /* 80231C90 0022EBD0  38 80 00 40 */	li r4, 0x40
-/* 80231C94 0022EBD4  48 00 06 39 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231C94 0022EBD4  48 00 06 39 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231C98 0022EBD8  48 00 00 BC */	b lbl_80231D54
 /* 80231C9C 0022EBDC  38 80 00 32 */	li r4, 0x32
-/* 80231CA0 0022EBE0  48 00 06 2D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CA0 0022EBE0  48 00 06 2D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CA4 0022EBE4  48 00 00 B0 */	b lbl_80231D54
 /* 80231CA8 0022EBE8  38 80 00 31 */	li r4, 0x31
-/* 80231CAC 0022EBEC  48 00 06 21 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CAC 0022EBEC  48 00 06 21 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CB0 0022EBF0  48 00 00 A4 */	b lbl_80231D54
 /* 80231CB4 0022EBF4  38 80 00 41 */	li r4, 0x41
-/* 80231CB8 0022EBF8  48 00 06 15 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CB8 0022EBF8  48 00 06 15 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CBC 0022EBFC  48 00 00 98 */	b lbl_80231D54
 /* 80231CC0 0022EC00  38 80 00 42 */	li r4, 0x42
-/* 80231CC4 0022EC04  48 00 06 09 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CC4 0022EC04  48 00 06 09 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CC8 0022EC08  48 00 00 8C */	b lbl_80231D54
 /* 80231CCC 0022EC0C  38 80 00 43 */	li r4, 0x43
-/* 80231CD0 0022EC10  48 00 05 FD */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CD0 0022EC10  48 00 05 FD */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CD4 0022EC14  48 00 00 80 */	b lbl_80231D54
 /* 80231CD8 0022EC18  38 80 00 44 */	li r4, 0x44
-/* 80231CDC 0022EC1C  48 00 05 F1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CDC 0022EC1C  48 00 05 F1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231CE0 0022EC20  48 00 00 74 */	b lbl_80231D54
 /* 80231CE4 0022EC24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80231CE8 0022EC28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
@@ -10514,29 +10514,29 @@ lbl_80231C24:
 /* 80231CF0 0022EC30  28 00 00 00 */	cmplwi r0, 0
 /* 80231CF4 0022EC34  40 82 00 10 */	bne lbl_80231D04
 /* 80231CF8 0022EC38  38 80 00 09 */	li r4, 9
-/* 80231CFC 0022EC3C  48 00 05 D1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231CFC 0022EC3C  48 00 05 D1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D00 0022EC40  48 00 00 54 */	b lbl_80231D54
 lbl_80231D04:
 /* 80231D04 0022EC44  38 80 00 2C */	li r4, 0x2c
-/* 80231D08 0022EC48  48 00 05 C5 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D08 0022EC48  48 00 05 C5 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D0C 0022EC4C  48 00 00 48 */	b lbl_80231D54
 /* 80231D10 0022EC50  38 80 00 45 */	li r4, 0x45
-/* 80231D14 0022EC54  48 00 05 B9 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D14 0022EC54  48 00 05 B9 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D18 0022EC58  48 00 00 3C */	b lbl_80231D54
 /* 80231D1C 0022EC5C  38 80 00 2D */	li r4, 0x2d
-/* 80231D20 0022EC60  48 00 05 AD */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D20 0022EC60  48 00 05 AD */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D24 0022EC64  48 00 00 30 */	b lbl_80231D54
 /* 80231D28 0022EC68  38 80 00 2C */	li r4, 0x2c
-/* 80231D2C 0022EC6C  48 00 05 A1 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D2C 0022EC6C  48 00 05 A1 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D30 0022EC70  48 00 00 24 */	b lbl_80231D54
 /* 80231D34 0022EC74  38 80 00 3E */	li r4, 0x3e
-/* 80231D38 0022EC78  48 00 05 95 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D38 0022EC78  48 00 05 95 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D3C 0022EC7C  48 00 00 18 */	b lbl_80231D54
 /* 80231D40 0022EC80  38 80 00 02 */	li r4, 2
-/* 80231D44 0022EC84  48 00 05 89 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D44 0022EC84  48 00 05 89 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80231D48 0022EC88  48 00 00 0C */	b lbl_80231D54
 /* 80231D4C 0022EC8C  38 80 00 07 */	li r4, 7
-/* 80231D50 0022EC90  48 00 05 7D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80231D50 0022EC90  48 00 05 7D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 lbl_80231D54:
 /* 80231D54 0022EC94  38 60 00 01 */	li r3, 1
 lbl_80231D58:
@@ -10547,8 +10547,8 @@ lbl_80231D58:
 /* 80231D68 0022ECA8  38 21 01 10 */	addi r1, r1, 0x110
 /* 80231D6C 0022ECAC  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_widthcenter
-jmessage_string_tRenderingProcessor_NS_do_widthcenter:
+.global do_widthcenter__35jmessage_string_tRenderingProcessorFv
+do_widthcenter__35jmessage_string_tRenderingProcessorFv:
 /* 80231D70 0022ECB0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80231D74 0022ECB4  7C 08 02 A6 */	mflr r0
 /* 80231D78 0022ECB8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -10556,7 +10556,7 @@ jmessage_string_tRenderingProcessor_NS_do_widthcenter:
 /* 80231D80 0022ECC0  F3 E1 00 38 */	psq_st f31, 56(r1), 0, qr0
 /* 80231D84 0022ECC4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80231D88 0022ECC8  7C 7F 1B 78 */	mr r31, r3
-/* 80231D8C 0022ECCC  4B FF EE 95 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 80231D8C 0022ECCC  4B FF EE 95 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 80231D90 0022ECD0  7C 60 07 35 */	extsh. r0, r3
 /* 80231D94 0022ECD4  41 80 01 40 */	blt lbl_80231ED4
 /* 80231D98 0022ECD8  80 7F 00 38 */	lwz r3, 0x38(r31)
@@ -10574,10 +10574,10 @@ lbl_80231DC0:
 /* 80231DC4 0022ED04  C0 04 00 20 */	lfs f0, 0x20(r4)
 /* 80231DC8 0022ED08  EF E1 00 28 */	fsubs f31, f1, f0
 /* 80231DCC 0022ED0C  7F E3 FB 78 */	mr r3, r31
-/* 80231DD0 0022ED10  4B FF EE 51 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 80231DD0 0022ED10  4B FF EE 51 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 80231DD4 0022ED14  7C 64 07 34 */	extsh r4, r3
 /* 80231DD8 0022ED18  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80231DDC 0022ED1C  4B FF DC 5D */	bl jmessage_string_tReference_NS_getLineLength
+/* 80231DDC 0022ED1C  4B FF DC 5D */	bl getLineLength__26jmessage_string_tReferenceFi
 /* 80231DE0 0022ED20  C0 42 B0 5C */	lfs f2, lbl_80454A5C-_SDA2_BASE_(r2)
 /* 80231DE4 0022ED24  C0 02 B0 64 */	lfs f0, lbl_80454A64-_SDA2_BASE_(r2)
 /* 80231DE8 0022ED28  EC 00 07 F2 */	fmuls f0, f0, f31
@@ -10590,10 +10590,10 @@ lbl_80231DC0:
 /* 80231E04 0022ED44  54 00 F7 BF */	rlwinm. r0, r0, 0x1e, 0x1e, 0x1f
 /* 80231E08 0022ED48  40 82 00 4C */	bne lbl_80231E54
 /* 80231E0C 0022ED4C  7F E3 FB 78 */	mr r3, r31
-/* 80231E10 0022ED50  4B FF EE 11 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 80231E10 0022ED50  4B FF EE 11 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 80231E14 0022ED54  7C 64 07 34 */	extsh r4, r3
 /* 80231E18 0022ED58  80 7F 00 38 */	lwz r3, 0x38(r31)
-/* 80231E1C 0022ED5C  4B FF DC 7D */	bl jmessage_string_tReference_NS_getOutfontLength
+/* 80231E1C 0022ED5C  4B FF DC 7D */	bl getOutfontLength__26jmessage_string_tReferenceFi
 /* 80231E20 0022ED60  FC 00 08 1E */	fctiwz f0, f1
 /* 80231E24 0022ED64  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 80231E28 0022ED68  80 C1 00 1C */	lwz r6, 0x1c(r1)
@@ -10606,7 +10606,7 @@ lbl_80231DC0:
 /* 80231E44 0022ED84  48 13 47 79 */	bl func_803665BC
 /* 80231E48 0022ED88  7F E3 FB 78 */	mr r3, r31
 /* 80231E4C 0022ED8C  38 81 00 08 */	addi r4, r1, 8
-/* 80231E50 0022ED90  48 00 01 F5 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80231E50 0022ED90  48 00 01 F5 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 lbl_80231E54:
 /* 80231E54 0022ED94  C0 02 B0 64 */	lfs f0, lbl_80454A64-_SDA2_BASE_(r2)
 /* 80231E58 0022ED98  FC 1F 00 40 */	fcmpo cr0, f31, f0
@@ -10639,7 +10639,7 @@ lbl_80231E54:
 /* 80231EC4 0022EE04  48 13 46 F9 */	bl func_803665BC
 /* 80231EC8 0022EE08  7F E3 FB 78 */	mr r3, r31
 /* 80231ECC 0022EE0C  38 81 00 08 */	addi r4, r1, 8
-/* 80231ED0 0022EE10  48 00 01 75 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80231ED0 0022EE10  48 00 01 75 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 lbl_80231ED4:
 /* 80231ED4 0022EE14  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 80231ED8 0022EE18  CB E1 00 30 */	lfd f31, 0x30(r1)
@@ -10649,8 +10649,8 @@ lbl_80231ED4:
 /* 80231EE8 0022EE28  38 21 00 40 */	addi r1, r1, 0x40
 /* 80231EEC 0022EE2C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_heightcenter
-jmessage_string_tRenderingProcessor_NS_do_heightcenter:
+.global do_heightcenter__35jmessage_string_tRenderingProcessorFv
+do_heightcenter__35jmessage_string_tRenderingProcessorFv:
 /* 80231EF0 0022EE30  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80231EF4 0022EE34  7C 08 02 A6 */	mflr r0
 /* 80231EF8 0022EE38  90 01 00 64 */	stw r0, 0x64(r1)
@@ -10663,7 +10663,7 @@ jmessage_string_tRenderingProcessor_NS_do_heightcenter:
 /* 80231F14 0022EE54  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80231F18 0022EE58  7C 7F 1B 78 */	mr r31, r3
 /* 80231F1C 0022EE5C  80 63 00 38 */	lwz r3, 0x38(r3)
-/* 80231F20 0022EE60  4B FF DC 05 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80231F20 0022EE60  4B FF DC 05 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80231F24 0022EE64  7C 60 07 35 */	extsh. r0, r3
 /* 80231F28 0022EE68  41 80 00 F0 */	blt lbl_80232018
 /* 80231F2C 0022EE6C  80 7F 00 38 */	lwz r3, 0x38(r31)
@@ -10682,7 +10682,7 @@ lbl_80231F54:
 /* 80231F5C 0022EE9C  EF E1 00 28 */	fsubs f31, f1, f0
 /* 80231F60 0022EEA0  C3 A4 01 20 */	lfs f29, 0x120(r4)
 /* 80231F64 0022EEA4  C3 C4 01 18 */	lfs f30, 0x118(r4)
-/* 80231F68 0022EEA8  4B FF DB BD */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 80231F68 0022EEA8  4B FF DB BD */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80231F6C 0022EEAC  7C 60 07 34 */	extsh r0, r3
 /* 80231F70 0022EEB0  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
 /* 80231F74 0022EEB4  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -10722,10 +10722,10 @@ lbl_80231F54:
 /* 80231FFC 0022EF3C  48 13 45 C1 */	bl func_803665BC
 /* 80232000 0022EF40  7F E3 FB 78 */	mr r3, r31
 /* 80232004 0022EF44  38 81 00 08 */	addi r4, r1, 8
-/* 80232008 0022EF48  48 00 00 3D */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80232008 0022EF48  48 00 00 3D */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 8023200C 0022EF4C  7F E3 FB 78 */	mr r3, r31
 /* 80232010 0022EF50  38 81 00 08 */	addi r4, r1, 8
-/* 80232014 0022EF54  48 00 02 4D */	bl jmessage_string_tRenderingProcessor_NS_do_rubystrcat
+/* 80232014 0022EF54  48 00 02 4D */	bl do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
 lbl_80232018:
 /* 80232018 0022EF58  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8023201C 0022EF5C  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -10739,8 +10739,8 @@ lbl_80232018:
 /* 8023203C 0022EF7C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80232040 0022EF80  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_strcat
-jmessage_string_tRenderingProcessor_NS_do_strcat:
+.global do_strcat__35jmessage_string_tRenderingProcessorFPc
+do_strcat__35jmessage_string_tRenderingProcessorFPc:
 /* 80232044 0022EF84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80232048 0022EF88  7C 08 02 A6 */	mflr r0
 /* 8023204C 0022EF8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10748,7 +10748,7 @@ jmessage_string_tRenderingProcessor_NS_do_strcat:
 /* 80232054 0022EF94  93 C1 00 08 */	stw r30, 8(r1)
 /* 80232058 0022EF98  7C 7E 1B 78 */	mr r30, r3
 /* 8023205C 0022EF9C  7C 9F 23 78 */	mr r31, r4
-/* 80232060 0022EFA0  4B FF EB C1 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 80232060 0022EFA0  4B FF EB C1 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 80232064 0022EFA4  7C 60 07 35 */	extsh. r0, r3
 /* 80232068 0022EFA8  41 80 00 30 */	blt lbl_80232098
 /* 8023206C 0022EFAC  7F E3 FB 78 */	mr r3, r31
@@ -10770,8 +10770,8 @@ lbl_80232098:
 /* 802320A8 0022EFE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802320AC 0022EFEC  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_rubyset
-jmessage_string_tRenderingProcessor_NS_do_rubyset:
+.global do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl
+do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl:
 /* 802320B0 0022EFF0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802320B4 0022EFF4  7C 08 02 A6 */	mflr r0
 /* 802320B8 0022EFF8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -10786,7 +10786,7 @@ jmessage_string_tRenderingProcessor_NS_do_rubyset:
 /* 802320DC 0022F01C  7C 7B 1B 78 */	mr r27, r3
 /* 802320E0 0022F020  7C 9C 23 78 */	mr r28, r4
 /* 802320E4 0022F024  7C B8 2B 78 */	mr r24, r5
-/* 802320E8 0022F028  4B FF EB 39 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 802320E8 0022F028  4B FF EB 39 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 802320EC 0022F02C  7C 60 07 35 */	extsh. r0, r3
 /* 802320F0 0022F030  41 80 01 40 */	blt lbl_80232230
 /* 802320F4 0022F034  80 7B 00 38 */	lwz r3, 0x38(r27)
@@ -10859,7 +10859,7 @@ lbl_80232140:
 /* 802321FC 0022F13C  4B FF 66 3D */	bl changeKataToHira
 /* 80232200 0022F140  7C 64 1B 78 */	mr r4, r3
 /* 80232204 0022F144  80 7B 00 38 */	lwz r3, 0x38(r27)
-/* 80232208 0022F148  4B FF D8 29 */	bl jmessage_string_tReference_NS_addCharactor
+/* 80232208 0022F148  4B FF D8 29 */	bl addCharactor__26jmessage_string_tReferenceFUs
 lbl_8023220C:
 /* 8023220C 0022F14C  7C 1D F0 00 */	cmpw r29, r30
 /* 80232210 0022F150  41 80 FF 30 */	blt lbl_80232140
@@ -10884,8 +10884,8 @@ lbl_80232230:
 /* 80232258 0022F198  38 21 00 70 */	addi r1, r1, 0x70
 /* 8023225C 0022F19C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_rubystrcat
-jmessage_string_tRenderingProcessor_NS_do_rubystrcat:
+.global do_rubystrcat__35jmessage_string_tRenderingProcessorFPc
+do_rubystrcat__35jmessage_string_tRenderingProcessorFPc:
 /* 80232260 0022F1A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80232264 0022F1A4  7C 08 02 A6 */	mflr r0
 /* 80232268 0022F1A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -10893,7 +10893,7 @@ jmessage_string_tRenderingProcessor_NS_do_rubystrcat:
 /* 80232270 0022F1B0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80232274 0022F1B4  7C 7E 1B 78 */	mr r30, r3
 /* 80232278 0022F1B8  7C 9F 23 78 */	mr r31, r4
-/* 8023227C 0022F1BC  4B FF E9 A5 */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 8023227C 0022F1BC  4B FF E9 A5 */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 80232280 0022F1C0  7C 60 07 35 */	extsh. r0, r3
 /* 80232284 0022F1C4  41 80 00 30 */	blt lbl_802322B4
 /* 80232288 0022F1C8  7F E3 FB 78 */	mr r3, r31
@@ -10915,8 +10915,8 @@ lbl_802322B4:
 /* 802322C4 0022F204  38 21 00 10 */	addi r1, r1, 0x10
 /* 802322C8 0022F208  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_outfont
-jmessage_string_tRenderingProcessor_NS_do_outfont:
+.global do_outfont__35jmessage_string_tRenderingProcessorFUc
+do_outfont__35jmessage_string_tRenderingProcessorFUc:
 /* 802322CC 0022F20C  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 802322D0 0022F210  7C 08 02 A6 */	mflr r0
 /* 802322D4 0022F214  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -10985,10 +10985,10 @@ lbl_802323A0:
 /* 802323C8 0022F308  C0 03 00 20 */	lfs f0, 0x20(r3)
 /* 802323CC 0022F30C  EF 81 00 28 */	fsubs f28, f1, f0
 /* 802323D0 0022F310  7F C3 F3 78 */	mr r3, r30
-/* 802323D4 0022F314  4B FF E8 4D */	bl jmessage_string_tRenderingProcessor_NS_getLineCountNowPage
+/* 802323D4 0022F314  4B FF E8 4D */	bl getLineCountNowPage__35jmessage_string_tRenderingProcessorFv
 /* 802323D8 0022F318  7C 64 07 34 */	extsh r4, r3
 /* 802323DC 0022F31C  80 7E 00 38 */	lwz r3, 0x38(r30)
-/* 802323E0 0022F320  4B FF D6 59 */	bl jmessage_string_tReference_NS_getLineLength
+/* 802323E0 0022F320  4B FF D6 59 */	bl getLineLength__26jmessage_string_tReferenceFi
 /* 802323E4 0022F324  C0 42 B0 5C */	lfs f2, lbl_80454A5C-_SDA2_BASE_(r2)
 /* 802323E8 0022F328  EC 1C 08 28 */	fsubs f0, f28, f1
 /* 802323EC 0022F32C  EC 00 00 B2 */	fmuls f0, f0, f2
@@ -11004,7 +11004,7 @@ lbl_802323F4:
 /* 80232410 0022F350  EF 81 00 28 */	fsubs f28, f1, f0
 /* 80232414 0022F354  C3 44 01 20 */	lfs f26, 0x120(r4)
 /* 80232418 0022F358  C3 64 01 18 */	lfs f27, 0x118(r4)
-/* 8023241C 0022F35C  4B FF D7 09 */	bl jmessage_string_tReference_NS_getLineCountNowPage
+/* 8023241C 0022F35C  4B FF D7 09 */	bl getLineCountNowPage__26jmessage_string_tReferenceFv
 /* 80232420 0022F360  7C 60 07 34 */	extsh r0, r3
 /* 80232424 0022F364  C8 22 B0 70 */	lfd f1, lbl_80454A70-_SDA2_BASE_(r2)
 /* 80232428 0022F368  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -11065,11 +11065,11 @@ lbl_802324B0:
 /* 802324FC 0022F43C  48 13 40 C1 */	bl func_803665BC
 /* 80232500 0022F440  7F C3 F3 78 */	mr r3, r30
 /* 80232504 0022F444  38 81 00 08 */	addi r4, r1, 8
-/* 80232508 0022F448  4B FF FB 3D */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80232508 0022F448  4B FF FB 3D */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 8023250C 0022F44C  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 80232510 0022F450  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 80232514 0022F454  38 84 FF FF */	addi r4, r4, 0x0000FFFF@l
-/* 80232518 0022F458  4B FF D5 19 */	bl jmessage_string_tReference_NS_addCharactor
+/* 80232518 0022F458  4B FF D5 19 */	bl addCharactor__26jmessage_string_tReferenceFUs
 lbl_8023251C:
 /* 8023251C 0022F45C  E3 E1 00 A8 */	psq_l f31, 168(r1), 0, qr0
 /* 80232520 0022F460  CB E1 00 A0 */	lfd f31, 0xa0(r1)
@@ -11092,8 +11092,8 @@ lbl_8023251C:
 /* 80232564 0022F4A4  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80232568 0022F4A8  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_color
-jmessage_string_tRenderingProcessor_NS_do_color:
+.global do_color__35jmessage_string_tRenderingProcessorFUc
+do_color__35jmessage_string_tRenderingProcessorFUc:
 /* 8023256C 0022F4AC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80232570 0022F4B0  7C 08 02 A6 */	mflr r0
 /* 80232574 0022F4B4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -11126,7 +11126,7 @@ lbl_802325C0:
 /* 802325D8 0022F518  48 13 3F 05 */	bl func_803664DC
 /* 802325DC 0022F51C  7F A3 EB 78 */	mr r3, r29
 /* 802325E0 0022F520  38 81 00 08 */	addi r4, r1, 8
-/* 802325E4 0022F524  4B FF FA 61 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 802325E4 0022F524  4B FF FA 61 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 802325E8 0022F528  39 61 00 40 */	addi r11, r1, 0x40
 /* 802325EC 0022F52C  48 12 FC 3D */	bl _restgpr_29
 /* 802325F0 0022F530  80 01 00 44 */	lwz r0, 0x44(r1)
@@ -11134,8 +11134,8 @@ lbl_802325C0:
 /* 802325F8 0022F538  38 21 00 40 */	addi r1, r1, 0x40
 /* 802325FC 0022F53C  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_scale
-jmessage_string_tRenderingProcessor_NS_do_scale:
+.global do_scale__35jmessage_string_tRenderingProcessorFf
+do_scale__35jmessage_string_tRenderingProcessorFf:
 /* 80232600 0022F540  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80232604 0022F544  7C 08 02 A6 */	mflr r0
 /* 80232608 0022F548  90 01 00 44 */	stw r0, 0x44(r1)
@@ -11166,15 +11166,15 @@ jmessage_string_tRenderingProcessor_NS_do_scale:
 /* 8023266C 0022F5AC  48 13 3E 71 */	bl func_803664DC
 /* 80232670 0022F5B0  7F E3 FB 78 */	mr r3, r31
 /* 80232674 0022F5B4  38 81 00 08 */	addi r4, r1, 8
-/* 80232678 0022F5B8  4B FF F9 CD */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 80232678 0022F5B8  4B FF F9 CD */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 8023267C 0022F5BC  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80232680 0022F5C0  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80232684 0022F5C4  7C 08 03 A6 */	mtlr r0
 /* 80232688 0022F5C8  38 21 00 40 */	addi r1, r1, 0x40
 /* 8023268C 0022F5CC  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_linedown
-jmessage_string_tRenderingProcessor_NS_do_linedown:
+.global do_linedown__35jmessage_string_tRenderingProcessorFs
+do_linedown__35jmessage_string_tRenderingProcessorFs:
 /* 80232690 0022F5D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80232694 0022F5D4  7C 08 02 A6 */	mflr r0
 /* 80232698 0022F5D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -11190,15 +11190,15 @@ jmessage_string_tRenderingProcessor_NS_do_linedown:
 /* 802326C0 0022F600  48 13 3E 1D */	bl func_803664DC
 /* 802326C4 0022F604  7F E3 FB 78 */	mr r3, r31
 /* 802326C8 0022F608  38 81 00 08 */	addi r4, r1, 8
-/* 802326CC 0022F60C  4B FF F9 79 */	bl jmessage_string_tRenderingProcessor_NS_do_strcat
+/* 802326CC 0022F60C  4B FF F9 79 */	bl do_strcat__35jmessage_string_tRenderingProcessorFPc
 /* 802326D0 0022F610  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802326D4 0022F614  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802326D8 0022F618  7C 08 03 A6 */	mtlr r0
 /* 802326DC 0022F61C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802326E0 0022F620  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_do_numset
-jmessage_string_tRenderingProcessor_NS_do_numset:
+.global do_numset__35jmessage_string_tRenderingProcessorFs
+do_numset__35jmessage_string_tRenderingProcessorFs:
 /* 802326E4 0022F624  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802326E8 0022F628  7C 08 02 A6 */	mflr r0
 /* 802326EC 0022F62C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11220,7 +11220,7 @@ lbl_80232718:
 /* 80232724 0022F664  4B FF 63 31 */	bl getOutFontNumberType
 /* 80232728 0022F668  7C 64 1B 78 */	mr r4, r3
 /* 8023272C 0022F66C  7F C3 F3 78 */	mr r3, r30
-/* 80232730 0022F670  4B FF FB 9D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80232730 0022F670  4B FF FB 9D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80232734 0022F674  38 60 03 E8 */	li r3, 0x3e8
 /* 80232738 0022F678  7C 1F 1B D6 */	divw r0, r31, r3
 /* 8023273C 0022F67C  7C 00 19 D6 */	mullw r0, r0, r3
@@ -11230,7 +11230,7 @@ lbl_80232718:
 /* 8023274C 0022F68C  4B FF 63 09 */	bl getOutFontNumberType
 /* 80232750 0022F690  7C 64 1B 78 */	mr r4, r3
 /* 80232754 0022F694  7F C3 F3 78 */	mr r3, r30
-/* 80232758 0022F698  4B FF FB 75 */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80232758 0022F698  4B FF FB 75 */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 8023275C 0022F69C  38 60 00 64 */	li r3, 0x64
 /* 80232760 0022F6A0  7C 1F 1B D6 */	divw r0, r31, r3
 /* 80232764 0022F6A4  7C 00 19 D6 */	mullw r0, r0, r3
@@ -11240,7 +11240,7 @@ lbl_80232718:
 /* 80232774 0022F6B4  4B FF 62 E1 */	bl getOutFontNumberType
 /* 80232778 0022F6B8  7C 64 1B 78 */	mr r4, r3
 /* 8023277C 0022F6BC  7F C3 F3 78 */	mr r3, r30
-/* 80232780 0022F6C0  4B FF FB 4D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 80232780 0022F6C0  4B FF FB 4D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 80232784 0022F6C4  38 60 00 0A */	li r3, 0xa
 /* 80232788 0022F6C8  7C 1F 1B D6 */	divw r0, r31, r3
 /* 8023278C 0022F6CC  7C 00 19 D6 */	mullw r0, r0, r3
@@ -11248,7 +11248,7 @@ lbl_80232718:
 /* 80232794 0022F6D4  4B FF 62 C1 */	bl getOutFontNumberType
 /* 80232798 0022F6D8  7C 64 1B 78 */	mr r4, r3
 /* 8023279C 0022F6DC  7F C3 F3 78 */	mr r3, r30
-/* 802327A0 0022F6E0  4B FF FB 2D */	bl jmessage_string_tRenderingProcessor_NS_do_outfont
+/* 802327A0 0022F6E0  4B FF FB 2D */	bl do_outfont__35jmessage_string_tRenderingProcessorFUc
 /* 802327A4 0022F6E4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802327A8 0022F6E8  83 C1 00 08 */	lwz r30, 8(r1)
 /* 802327AC 0022F6EC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -11256,8 +11256,8 @@ lbl_80232718:
 /* 802327B4 0022F6F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802327B8 0022F6F8  4E 80 00 20 */	blr 
 
-.global jmessage_string_tRenderingProcessor_NS_push_word
-jmessage_string_tRenderingProcessor_NS_push_word:
+.global push_word__35jmessage_string_tRenderingProcessorFPCc
+push_word__35jmessage_string_tRenderingProcessorFPCc:
 /* 802327BC 0022F6FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802327C0 0022F700  7C 08 02 A6 */	mflr r0
 /* 802327C4 0022F704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11267,7 +11267,7 @@ jmessage_string_tRenderingProcessor_NS_push_word:
 /* 802327D4 0022F714  48 13 63 59 */	bl strcpy
 /* 802327D8 0022F718  7F E3 FB 78 */	mr r3, r31
 /* 802327DC 0022F71C  38 9F 04 86 */	addi r4, r31, 0x486
-/* 802327E0 0022F720  48 07 54 19 */	bl JMessage_NS_TProcessor_NS_stack_pushCurrent
+/* 802327E0 0022F720  48 07 54 19 */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802327E4 0022F724  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802327E8 0022F728  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802327EC 0022F72C  7C 08 03 A6 */	mtlr r0
@@ -11285,7 +11285,7 @@ jmessage_string_tRenderingProcessor_NS_push_word:
 /* 8023281C 0022F75C  38 04 09 08 */	addi r0, r4, lbl_803C0908@l
 /* 80232820 0022F760  90 1E 00 00 */	stw r0, 0(r30)
 /* 80232824 0022F764  38 80 00 00 */	li r4, 0
-/* 80232828 0022F768  48 07 62 99 */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 80232828 0022F768  48 07 62 99 */	bl __dt__Q28JMessage19TRenderingProcessorFv
 /* 8023282C 0022F76C  7F E0 07 35 */	extsh. r0, r31
 /* 80232830 0022F770  40 81 00 0C */	ble lbl_8023283C
 /* 80232834 0022F774  7F C3 F3 78 */	mr r3, r30
@@ -11316,11 +11316,11 @@ lbl_8023283C:
 /* 80232894 0022F7D4  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 80232898 0022F7D8  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 8023289C 0022F7DC  38 80 00 00 */	li r4, 0
-/* 802328A0 0022F7E0  48 07 62 21 */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 802328A0 0022F7E0  48 07 62 21 */	bl __dt__Q28JMessage19TRenderingProcessorFv
 lbl_802328A4:
 /* 802328A4 0022F7E4  7F C3 F3 78 */	mr r3, r30
 /* 802328A8 0022F7E8  38 80 00 00 */	li r4, 0
-/* 802328AC 0022F7EC  48 07 5B 0D */	bl JMessage_NS_TSequenceProcessor_NS_dtor
+/* 802328AC 0022F7EC  48 07 5B 0D */	bl __dt__Q28JMessage18TSequenceProcessorFv
 /* 802328B0 0022F7F0  7F E0 07 35 */	extsh. r0, r31
 /* 802328B4 0022F7F4  40 81 00 0C */	ble lbl_802328C0
 /* 802328B8 0022F7F8  7F C3 F3 78 */	mr r3, r30
@@ -11345,7 +11345,7 @@ lbl_802328C0:
 /* 80232900 0022F840  38 04 09 E0 */	addi r0, r4, lbl_803C09E0@l
 /* 80232904 0022F844  90 1E 00 00 */	stw r0, 0(r30)
 /* 80232908 0022F848  38 80 00 00 */	li r4, 0
-/* 8023290C 0022F84C  48 07 4C 81 */	bl JMessage_NS_TControl_NS_dtor
+/* 8023290C 0022F84C  48 07 4C 81 */	bl __dt__Q28JMessage8TControlFv
 /* 80232910 0022F850  7F E0 07 35 */	extsh. r0, r31
 /* 80232914 0022F854  40 81 00 0C */	ble lbl_80232920
 /* 80232918 0022F858  7F C3 F3 78 */	mr r3, r30
@@ -11370,7 +11370,7 @@ lbl_80232920:
 /* 80232960 0022F8A0  38 04 09 FC */	addi r0, r4, lbl_803C09FC@l
 /* 80232964 0022F8A4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80232968 0022F8A8  38 80 00 00 */	li r4, 0
-/* 8023296C 0022F8AC  48 07 61 55 */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 8023296C 0022F8AC  48 07 61 55 */	bl __dt__Q28JMessage19TRenderingProcessorFv
 /* 80232970 0022F8B0  7F E0 07 35 */	extsh. r0, r31
 /* 80232974 0022F8B4  40 81 00 0C */	ble lbl_80232980
 /* 80232978 0022F8B8  7F C3 F3 78 */	mr r3, r30
@@ -11401,11 +11401,11 @@ lbl_80232980:
 /* 802329D8 0022F918  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 802329DC 0022F91C  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 802329E0 0022F920  38 80 00 00 */	li r4, 0
-/* 802329E4 0022F924  48 07 60 DD */	bl JMessage_NS_TRenderingProcessor_NS_dtor
+/* 802329E4 0022F924  48 07 60 DD */	bl __dt__Q28JMessage19TRenderingProcessorFv
 lbl_802329E8:
 /* 802329E8 0022F928  7F C3 F3 78 */	mr r3, r30
 /* 802329EC 0022F92C  38 80 00 00 */	li r4, 0
-/* 802329F0 0022F930  48 07 59 C9 */	bl JMessage_NS_TSequenceProcessor_NS_dtor
+/* 802329F0 0022F930  48 07 59 C9 */	bl __dt__Q28JMessage18TSequenceProcessorFv
 /* 802329F4 0022F934  7F E0 07 35 */	extsh. r0, r31
 /* 802329F8 0022F938  40 81 00 0C */	ble lbl_80232A04
 /* 802329FC 0022F93C  7F C3 F3 78 */	mr r3, r30
@@ -11419,8 +11419,8 @@ lbl_80232A04:
 /* 80232A18 0022F958  38 21 00 10 */	addi r1, r1, 0x10
 /* 80232A1C 0022F95C  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_getActorPos
-jmessage_tReference_NS_getActorPos:
+.global getActorPos__19jmessage_tReferenceFv
+getActorPos__19jmessage_tReferenceFv:
 /* 80232A20 0022F960  C0 04 04 14 */	lfs f0, 0x414(r4)
 /* 80232A24 0022F964  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80232A28 0022F968  C0 04 04 18 */	lfs f0, 0x418(r4)

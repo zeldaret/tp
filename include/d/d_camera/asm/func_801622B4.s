@@ -140,7 +140,7 @@ lbl_80162478:
 /* 801624B8 0015F3F8  4B FF F2 F9 */ bl dCamera_c_NS_updatePad
 /* 801624BC 0015F3FC  38 7F 0A 70 */ addi r3, r31, 0xa70
 /* 801624C0 0015F400  80 9F 01 7C */ lwz r4, 0x17c(r31)
-/* 801624C4 0015F404  4B F2 5F 99 */ bl dCstick_c_NS_Shift
+/* 801624C4 0015F404  4B F2 5F 99 */ bl Shift__9dCstick_cFUl
 lbl_801624C8:
 /* 801624C8 0015F408  88 1E 4F AD */ lbz r0, 0x4fad(r30)
 /* 801624CC 0015F40C  28 00 00 00 */ cmplwi r0, 0
@@ -258,7 +258,7 @@ lbl_80162618:
 /* 8016266C 0015F5AC  93 3F 06 7C */ stw r25, 0x67c(r31)
 /* 80162670 0015F5B0  38 7F 0A EC */ addi r3, r31, 0xaec
 /* 80162674 0015F5B4  80 9F 06 7C */ lwz r4, 0x67c(r31)
-/* 80162678 0015F5B8  4B F2 5F 5D */ bl dCamParam_c_NS_Change
+/* 80162678 0015F5B8  4B F2 5F 5D */ bl Change__11dCamParam_cFl
 /* 8016267C 0015F5BC  80 1F 06 0C */ lwz r0, 0x60c(r31)
 /* 80162680 0015F5C0  60 00 02 00 */ ori r0, r0, 0x200
 /* 80162684 0015F5C4  90 1F 06 0C */ stw r0, 0x60c(r31)
@@ -679,7 +679,7 @@ lbl_80162C78:
 /* 80162C80 0015FBC0  90 1D 5D 7C */ stw r0, 0x5d7c(r29)
 lbl_80162C84:
 /* 80162C84 0015FBC4  38 7F 09 70 */ addi r3, r31, 0x970
-/* 80162C88 0015FBC8  4B F2 5D 01 */ bl dCamSetup_c_NS_PlayerHideDist
+/* 80162C88 0015FBC8  4B F2 5D 01 */ bl PlayerHideDist__11dCamSetup_cFv
 /* 80162C8C 0015FBCC  C0 1F 00 28 */ lfs f0, 0x28(r31)
 /* 80162C90 0015FBD0  FC 00 08 40 */ fcmpo cr0, f0, f1
 /* 80162C94 0015FBD4  40 80 00 34 */ bge lbl_80162CC8

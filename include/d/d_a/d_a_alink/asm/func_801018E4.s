@@ -8,7 +8,7 @@
 /* 80101900 000FE840  41 82 00 18 */ beq lbl_80101918
 /* 80101904 000FE844  28 03 00 71 */ cmplwi r3, 0x71
 /* 80101908 000FE848  41 82 00 10 */ beq lbl_80101918
-/* 8010190C 000FE84C  48 05 D2 AD */ bl daPy_py_c_NS_checkHookshotItem
+/* 8010190C 000FE84C  48 05 D2 AD */ bl checkHookshotItem__9daPy_py_cFi
 /* 80101910 000FE850  2C 03 00 00 */ cmpwi r3, 0
 /* 80101914 000FE854  41 82 00 08 */ beq lbl_8010191C
 lbl_80101918:

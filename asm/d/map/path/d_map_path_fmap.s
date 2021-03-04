@@ -3,8 +3,8 @@
 .section .text, "ax" # 8003d790
 
 
-.global fmpTresTypeGroupDataList_c_NS_addTypeGroupData
-fmpTresTypeGroupDataList_c_NS_addTypeGroupData:
+.global addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s
+addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s:
 /* 8003D790 0003A6D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003D794 0003A6D4  7C 08 02 A6 */	mflr r0
 /* 8003D798 0003A6D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -43,8 +43,8 @@ lbl_8003D7FC:
 /* 8003D810 0003A750  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003D814 0003A754  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_room_data_c_NS_isArrival
-dMenu_Fmap_room_data_c_NS_isArrival:
+.global isArrival__22dMenu_Fmap_room_data_cFv
+isArrival__22dMenu_Fmap_room_data_cFv:
 /* 8003D818 0003A758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D81C 0003A75C  7C 08 02 A6 */	mflr r0
 /* 8003D820 0003A760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -66,8 +66,8 @@ dMenu_Fmap_room_data_c_NS_isArrival:
 /* 8003D860 0003A7A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D864 0003A7A4  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_room_data_c_NS_buildTresTypeGroup
-dMenu_Fmap_room_data_c_NS_buildTresTypeGroup:
+.global buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii
+buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii:
 /* 8003D868 0003A7A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003D86C 0003A7AC  7C 08 02 A6 */	mflr r0
 /* 8003D870 0003A7B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -92,10 +92,10 @@ dMenu_Fmap_room_data_c_NS_buildTresTypeGroup:
 /* 8003D8B8 0003A7F8  3C 80 80 04 */	lis r4, fmpTresTypeGroupDataList_c@ha
 .global fmpTresTypeGroupDataList_c
 /* 8003D8BC 0003A7FC  38 84 EC 90 */	addi r4, r4, fmpTresTypeGroupDataList_c@l
-.global fmpTresTypeGroupDataList_c_NS_dtor
-/* 8003D8C0 0003A800  3C A0 80 04 */	lis r5, fmpTresTypeGroupDataList_c_NS_dtor@ha
-.global fmpTresTypeGroupDataList_c_NS_dtor
-/* 8003D8C4 0003A804  38 A5 EB 10 */	addi r5, r5, fmpTresTypeGroupDataList_c_NS_dtor@l
+.global __dt__26fmpTresTypeGroupDataList_cFv
+/* 8003D8C0 0003A800  3C A0 80 04 */	lis r5, __dt__26fmpTresTypeGroupDataList_cFv@ha
+.global __dt__26fmpTresTypeGroupDataList_cFv
+/* 8003D8C4 0003A804  38 A5 EB 10 */	addi r5, r5, __dt__26fmpTresTypeGroupDataList_cFv@l
 /* 8003D8C8 0003A808  38 C0 00 08 */	li r6, 8
 /* 8003D8CC 0003A80C  38 E0 00 11 */	li r7, 0x11
 /* 8003D8D0 0003A810  48 32 44 91 */	bl func_80361D60
@@ -107,13 +107,13 @@ lbl_8003D8D8:
 lbl_8003D8E0:
 /* 8003D8E0 0003A820  9B 9D 00 01 */	stb r28, 1(r29)
 /* 8003D8E4 0003A824  88 7D 00 11 */	lbz r3, 0x11(r29)
-/* 8003D8E8 0003A828  48 05 EB C9 */	bl dTres_c_NS_getTypeToTypeGroupNo
+/* 8003D8E8 0003A828  48 05 EB C9 */	bl getTypeToTypeGroupNo__7dTres_cFUc
 /* 8003D8EC 0003A82C  7C 64 1B 78 */	mr r4, r3
 /* 8003D8F0 0003A830  80 7B 00 04 */	lwz r3, 4(r27)
 /* 8003D8F4 0003A834  54 80 1D 78 */	rlwinm r0, r4, 3, 0x15, 0x1c
 /* 8003D8F8 0003A838  7C 63 02 14 */	add r3, r3, r0
 /* 8003D8FC 0003A83C  7F A5 EB 78 */	mr r5, r29
-/* 8003D900 0003A840  4B FF FE 91 */	bl fmpTresTypeGroupDataList_c_NS_addTypeGroupData
+/* 8003D900 0003A840  4B FF FE 91 */	bl addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s
 /* 8003D904 0003A844  3B BD 00 14 */	addi r29, r29, 0x14
 /* 8003D908 0003A848  3B FF 00 01 */	addi r31, r31, 1
 lbl_8003D90C:
@@ -127,8 +127,8 @@ lbl_8003D914:
 /* 8003D924 0003A864  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003D928 0003A868  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_room_data_c_NS_buildFmapRoomData
-dMenu_Fmap_room_data_c_NS_buildFmapRoomData:
+.global buildFmapRoomData__22dMenu_Fmap_room_data_cFiiffff
+buildFmapRoomData__22dMenu_Fmap_room_data_cFiiffff:
 /* 8003D92C 0003A86C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003D930 0003A870  7C 08 02 A6 */	mflr r0
 /* 8003D934 0003A874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -136,15 +136,15 @@ dMenu_Fmap_room_data_c_NS_buildFmapRoomData:
 /* 8003D93C 0003A87C  80 03 00 00 */	lwz r0, 0(r3)
 /* 8003D940 0003A880  28 00 00 00 */	cmplwi r0, 0
 /* 8003D944 0003A884  41 82 00 08 */	beq lbl_8003D94C
-/* 8003D948 0003A888  4B FF FF 21 */	bl dMenu_Fmap_room_data_c_NS_buildTresTypeGroup
+/* 8003D948 0003A888  4B FF FF 21 */	bl buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii
 lbl_8003D94C:
 /* 8003D94C 0003A88C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003D950 0003A890  7C 08 03 A6 */	mtlr r0
 /* 8003D954 0003A894  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003D958 0003A898  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_stage_data_c_NS_isArrival
-dMenu_Fmap_stage_data_c_NS_isArrival:
+.global isArrival__23dMenu_Fmap_stage_data_cFv
+isArrival__23dMenu_Fmap_stage_data_cFv:
 /* 8003D95C 0003A89C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003D960 0003A8A0  7C 08 02 A6 */	mflr r0
 /* 8003D964 0003A8A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -180,8 +180,8 @@ lbl_8003D9BC:
 /* 8003D9D0 0003A910  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003D9D4 0003A914  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_stage_data_c_NS_buildFmapStageData
-dMenu_Fmap_stage_data_c_NS_buildFmapStageData:
+.global buildFmapStageData__23dMenu_Fmap_stage_data_cFiff
+buildFmapStageData__23dMenu_Fmap_stage_data_cFiff:
 /* 8003D9D8 0003A918  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8003D9DC 0003A91C  7C 08 02 A6 */	mflr r0
 /* 8003D9E0 0003A920  90 01 00 84 */	stw r0, 0x84(r1)
@@ -221,7 +221,7 @@ lbl_8003DA54:
 /* 8003DA64 0003A9A4  FC 40 D8 90 */	fmr f2, f27
 /* 8003DA68 0003A9A8  C0 7C 00 14 */	lfs f3, 0x14(r28)
 /* 8003DA6C 0003A9AC  C0 9C 00 18 */	lfs f4, 0x18(r28)
-/* 8003DA70 0003A9B0  4B FF FE BD */	bl dMenu_Fmap_room_data_c_NS_buildFmapRoomData
+/* 8003DA70 0003A9B0  4B FF FE BD */	bl buildFmapRoomData__22dMenu_Fmap_room_data_cFiiffff
 /* 8003DA74 0003A9B4  80 7F 00 00 */	lwz r3, 0(r31)
 /* 8003DA78 0003A9B8  80 63 00 04 */	lwz r3, 4(r3)
 /* 8003DA7C 0003A9BC  C0 03 00 00 */	lfs f0, 0(r3)
@@ -283,8 +283,8 @@ lbl_8003DAFC:
 /* 8003DB40 0003AA80  38 21 00 80 */	addi r1, r1, 0x80
 /* 8003DB44 0003AA84  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_region_data_c_NS_getMenuFmapStageData
-dMenu_Fmap_region_data_c_NS_getMenuFmapStageData:
+.global getMenuFmapStageData__24dMenu_Fmap_region_data_cFi
+getMenuFmapStageData__24dMenu_Fmap_region_data_cFi:
 /* 8003DB48 0003AA88  80 63 00 00 */	lwz r3, 0(r3)
 /* 8003DB4C 0003AA8C  38 A0 00 00 */	li r5, 0
 /* 8003DB50 0003AA90  48 00 00 0C */	b lbl_8003DB5C
@@ -298,8 +298,8 @@ lbl_8003DB5C:
 /* 8003DB68 0003AAA8  41 80 FF EC */	blt lbl_8003DB54
 /* 8003DB6C 0003AAAC  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_region_data_c_NS_getPointStagePathInnerNo
-dMenu_Fmap_region_data_c_NS_getPointStagePathInnerNo:
+.global getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi
+getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi:
 /* 8003DB70 0003AAB0  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8003DB74 0003AAB4  7C 08 02 A6 */	mflr r0
 /* 8003DB78 0003AAB8  90 01 01 04 */	stw r0, 0x104(r1)
@@ -344,7 +344,7 @@ lbl_8003DC08:
 /* 8003DC0C 0003AB4C  7C 00 A8 00 */	cmpw r0, r21
 /* 8003DC10 0003AB50  41 82 00 14 */	beq lbl_8003DC24
 /* 8003DC14 0003AB54  7F 03 C3 78 */	mr r3, r24
-/* 8003DC18 0003AB58  4B FF FD 45 */	bl dMenu_Fmap_stage_data_c_NS_isArrival
+/* 8003DC18 0003AB58  4B FF FD 45 */	bl isArrival__23dMenu_Fmap_stage_data_cFv
 /* 8003DC1C 0003AB5C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003DC20 0003AB60  41 82 02 30 */	beq lbl_8003DE50
 lbl_8003DC24:
@@ -544,8 +544,8 @@ lbl_8003DE9C:
 /* 8003DED8 0003AE18  38 21 01 00 */	addi r1, r1, 0x100
 /* 8003DEDC 0003AE1C  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_region_data_c_NS_buildFmapRegionData
-dMenu_Fmap_region_data_c_NS_buildFmapRegionData:
+.global buildFmapRegionData__24dMenu_Fmap_region_data_cFi
+buildFmapRegionData__24dMenu_Fmap_region_data_cFi:
 /* 8003DEE0 0003AE20  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8003DEE4 0003AE24  7C 08 02 A6 */	mflr r0
 /* 8003DEE8 0003AE28  90 01 00 64 */	stw r0, 0x64(r1)
@@ -575,7 +575,7 @@ lbl_8003DF40:
 /* 8003DF44 0003AE84  7F C4 F3 78 */	mr r4, r30
 /* 8003DF48 0003AE88  C0 3D 00 08 */	lfs f1, 8(r29)
 /* 8003DF4C 0003AE8C  C0 5D 00 0C */	lfs f2, 0xc(r29)
-/* 8003DF50 0003AE90  4B FF FA 89 */	bl dMenu_Fmap_stage_data_c_NS_buildFmapStageData
+/* 8003DF50 0003AE90  4B FF FA 89 */	bl buildFmapStageData__23dMenu_Fmap_stage_data_cFiff
 /* 8003DF54 0003AE94  C0 1F 00 1C */	lfs f0, 0x1c(r31)
 /* 8003DF58 0003AE98  C0 3F 00 14 */	lfs f1, 0x14(r31)
 /* 8003DF5C 0003AE9C  EC 60 08 2A */	fadds f3, f0, f1
@@ -637,20 +637,20 @@ lbl_8003DFEC:
 /* 8003E020 0003AF60  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003E024 0003AF64  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_world_data_c_NS_create
-dMenu_Fmap_world_data_c_NS_create:
+.global create__23dMenu_Fmap_world_data_cFP24dMenu_Fmap_region_data_c
+create__23dMenu_Fmap_world_data_cFP24dMenu_Fmap_region_data_c:
 /* 8003E028 0003AF68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E02C 0003AF6C  7C 08 02 A6 */	mflr r0
 /* 8003E030 0003AF70  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003E034 0003AF74  90 83 00 00 */	stw r4, 0(r3)
-/* 8003E038 0003AF78  48 00 00 15 */	bl dMenu_Fmap_world_data_c_NS_buildFmapWorldData
+/* 8003E038 0003AF78  48 00 00 15 */	bl buildFmapWorldData__23dMenu_Fmap_world_data_cFv
 /* 8003E03C 0003AF7C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003E040 0003AF80  7C 08 03 A6 */	mtlr r0
 /* 8003E044 0003AF84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E048 0003AF88  4E 80 00 20 */	blr 
 
-.global dMenu_Fmap_world_data_c_NS_buildFmapWorldData
-dMenu_Fmap_world_data_c_NS_buildFmapWorldData:
+.global buildFmapWorldData__23dMenu_Fmap_world_data_cFv
+buildFmapWorldData__23dMenu_Fmap_world_data_cFv:
 /* 8003E04C 0003AF8C  3C 80 80 45 */	lis r4, lbl_80450AE8@ha
 /* 8003E050 0003AF90  C0 04 0A E8 */	lfs f0, lbl_80450AE8@l(r4)
 /* 8003E054 0003AF94  FC 60 00 90 */	fmr f3, f0
@@ -710,8 +710,8 @@ lbl_8003E10C:
 /* 8003E10C 0003B04C  7C A3 2B 78 */	mr r3, r5
 /* 8003E110 0003B050  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_init
-dMenuFmapIconPointer_c_NS_init:
+.global init__22dMenuFmapIconPointer_cFP24dMenu_Fmap_region_data_cP23dMenu_Fmap_stage_data_cUcii
+init__22dMenuFmapIconPointer_cFP24dMenu_Fmap_region_data_cP23dMenu_Fmap_stage_data_cUcii:
 /* 8003E114 0003B054  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003E118 0003B058  7C 08 02 A6 */	mflr r0
 /* 8003E11C 0003B05C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -740,7 +740,7 @@ lbl_8003E168:
 /* 8003E174 0003B0B4  93 7A 00 10 */	stw r27, 0x10(r26)
 /* 8003E178 0003B0B8  93 9A 00 14 */	stw r28, 0x14(r26)
 /* 8003E17C 0003B0BC  7F A3 EB 78 */	mr r3, r29
-/* 8003E180 0003B0C0  48 05 E3 1D */	bl dTres_c_NS_getTypeGroupNoToType
+/* 8003E180 0003B0C0  48 05 E3 1D */	bl getTypeGroupNoToType__7dTres_cFUc
 /* 8003E184 0003B0C4  98 7A 00 31 */	stb r3, 0x31(r26)
 /* 8003E188 0003B0C8  9B BA 00 30 */	stb r29, 0x30(r26)
 /* 8003E18C 0003B0CC  93 DA 00 04 */	stw r30, 4(r26)
@@ -748,7 +748,7 @@ lbl_8003E168:
 /* 8003E194 0003B0D4  38 00 00 00 */	li r0, 0
 /* 8003E198 0003B0D8  90 1A 00 00 */	stw r0, 0(r26)
 /* 8003E19C 0003B0DC  7F 43 D3 78 */	mr r3, r26
-/* 8003E1A0 0003B0E0  48 00 01 B1 */	bl dMenuFmapIconPointer_c_NS_getFirstRoomData
+/* 8003E1A0 0003B0E0  48 00 01 B1 */	bl getFirstRoomData__22dMenuFmapIconPointer_cFv
 /* 8003E1A4 0003B0E4  38 60 00 01 */	li r3, 1
 lbl_8003E1A8:
 /* 8003E1A8 0003B0E8  39 61 00 20 */	addi r11, r1, 0x20
@@ -758,8 +758,8 @@ lbl_8003E1A8:
 /* 8003E1B8 0003B0F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003E1BC 0003B0FC  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getFirstData
-dMenuFmapIconPointer_c_NS_getFirstData:
+.global getFirstData__22dMenuFmapIconPointer_cFv
+getFirstData__22dMenuFmapIconPointer_cFv:
 /* 8003E1C0 0003B100  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E1C4 0003B104  7C 08 02 A6 */	mflr r0
 /* 8003E1C8 0003B108  90 01 00 14 */	stw r0, 0x14(r1)
@@ -775,7 +775,7 @@ dMenuFmapIconPointer_c_NS_getFirstData:
 /* 8003E1F0 0003B130  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E1F4 0003B134  40 82 00 1C */	bne lbl_8003E210
 /* 8003E1F8 0003B138  88 7E 00 30 */	lbz r3, 0x30(r30)
-/* 8003E1FC 0003B13C  48 05 E1 65 */	bl dTres_c_NS_getFirstData
+/* 8003E1FC 0003B13C  48 05 E1 65 */	bl getFirstData__7dTres_cFUc
 /* 8003E200 0003B140  90 7E 00 28 */	stw r3, 0x28(r30)
 /* 8003E204 0003B144  80 1E 00 28 */	lwz r0, 0x28(r30)
 /* 8003E208 0003B148  90 1E 00 2C */	stw r0, 0x2c(r30)
@@ -828,8 +828,8 @@ lbl_8003E2A0:
 /* 8003E2B4 0003B1F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E2B8 0003B1F8  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getData
-dMenuFmapIconPointer_c_NS_getData:
+.global getData__22dMenuFmapIconPointer_cFv
+getData__22dMenuFmapIconPointer_cFv:
 /* 8003E2BC 0003B1FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E2C0 0003B200  7C 08 02 A6 */	mflr r0
 /* 8003E2C4 0003B204  90 01 00 14 */	stw r0, 0x14(r1)
@@ -870,22 +870,22 @@ lbl_8003E334:
 /* 8003E348 0003B288  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E34C 0003B28C  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getFirstRoomData
-dMenuFmapIconPointer_c_NS_getFirstRoomData:
+.global getFirstRoomData__22dMenuFmapIconPointer_cFv
+getFirstRoomData__22dMenuFmapIconPointer_cFv:
 /* 8003E350 0003B290  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E354 0003B294  7C 08 02 A6 */	mflr r0
 /* 8003E358 0003B298  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003E35C 0003B29C  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 8003E360 0003B2A0  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 8003E364 0003B2A4  90 03 00 18 */	stw r0, 0x18(r3)
-/* 8003E368 0003B2A8  4B FF FE 59 */	bl dMenuFmapIconPointer_c_NS_getFirstData
+/* 8003E368 0003B2A8  4B FF FE 59 */	bl getFirstData__22dMenuFmapIconPointer_cFv
 /* 8003E36C 0003B2AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003E370 0003B2B0  7C 08 03 A6 */	mtlr r0
 /* 8003E374 0003B2B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E378 0003B2B8  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getNextRoomData
-dMenuFmapIconPointer_c_NS_getNextRoomData:
+.global getNextRoomData__22dMenuFmapIconPointer_cFv
+getNextRoomData__22dMenuFmapIconPointer_cFv:
 /* 8003E37C 0003B2BC  38 A0 00 00 */	li r5, 0
 /* 8003E380 0003B2C0  80 83 00 18 */	lwz r4, 0x18(r3)
 /* 8003E384 0003B2C4  80 04 00 08 */	lwz r0, 8(r4)
@@ -898,8 +898,8 @@ lbl_8003E39C:
 /* 8003E39C 0003B2DC  7C A3 2B 78 */	mr r3, r5
 /* 8003E3A0 0003B2E0  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getNextStageData
-dMenuFmapIconPointer_c_NS_getNextStageData:
+.global getNextStageData__22dMenuFmapIconPointer_cFv
+getNextStageData__22dMenuFmapIconPointer_cFv:
 /* 8003E3A4 0003B2E4  38 A0 00 00 */	li r5, 0
 /* 8003E3A8 0003B2E8  80 83 00 00 */	lwz r4, 0(r3)
 /* 8003E3AC 0003B2EC  38 04 00 01 */	addi r0, r4, 1
@@ -915,8 +915,8 @@ lbl_8003E3D0:
 /* 8003E3D0 0003B310  7C A3 2B 78 */	mr r3, r5
 /* 8003E3D4 0003B314  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getNextData
-dMenuFmapIconPointer_c_NS_getNextData:
+.global getNextData__22dMenuFmapIconPointer_cFv
+getNextData__22dMenuFmapIconPointer_cFv:
 /* 8003E3D8 0003B318  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E3DC 0003B31C  7C 08 02 A6 */	mflr r0
 /* 8003E3E0 0003B320  90 01 00 14 */	stw r0, 0x14(r1)
@@ -934,7 +934,7 @@ dMenuFmapIconPointer_c_NS_getNextData:
 /* 8003E410 0003B350  80 7E 00 28 */	lwz r3, 0x28(r30)
 /* 8003E414 0003B354  28 03 00 00 */	cmplwi r3, 0
 /* 8003E418 0003B358  41 82 00 5C */	beq lbl_8003E474
-/* 8003E41C 0003B35C  48 05 DF 81 */	bl dTres_c_NS_getNextData
+/* 8003E41C 0003B35C  48 05 DF 81 */	bl getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c
 /* 8003E420 0003B360  90 7E 00 28 */	stw r3, 0x28(r30)
 /* 8003E424 0003B364  80 1E 00 28 */	lwz r0, 0x28(r30)
 /* 8003E428 0003B368  28 00 00 00 */	cmplwi r0, 0
@@ -966,8 +966,8 @@ lbl_8003E474:
 /* 8003E488 0003B3C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E48C 0003B3CC  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_nextData
-dMenuFmapIconPointer_c_NS_nextData:
+.global nextData__22dMenuFmapIconPointer_cFv
+nextData__22dMenuFmapIconPointer_cFv:
 /* 8003E490 0003B3D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003E494 0003B3D4  7C 08 02 A6 */	mflr r0
 /* 8003E498 0003B3D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -975,26 +975,26 @@ dMenuFmapIconPointer_c_NS_nextData:
 /* 8003E4A0 0003B3E0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8003E4A4 0003B3E4  7C 7E 1B 78 */	mr r30, r3
 /* 8003E4A8 0003B3E8  3B E0 00 00 */	li r31, 0
-/* 8003E4AC 0003B3EC  4B FF FF 2D */	bl dMenuFmapIconPointer_c_NS_getNextData
+/* 8003E4AC 0003B3EC  4B FF FF 2D */	bl getNextData__22dMenuFmapIconPointer_cFv
 /* 8003E4B0 0003B3F0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E4B4 0003B3F4  41 82 00 40 */	beq lbl_8003E4F4
 /* 8003E4B8 0003B3F8  7F C3 F3 78 */	mr r3, r30
-/* 8003E4BC 0003B3FC  4B FF FE C1 */	bl dMenuFmapIconPointer_c_NS_getNextRoomData
+/* 8003E4BC 0003B3FC  4B FF FE C1 */	bl getNextRoomData__22dMenuFmapIconPointer_cFv
 /* 8003E4C0 0003B400  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E4C4 0003B404  41 82 00 28 */	beq lbl_8003E4EC
 /* 8003E4C8 0003B408  7F C3 F3 78 */	mr r3, r30
-/* 8003E4CC 0003B40C  4B FF FE D9 */	bl dMenuFmapIconPointer_c_NS_getNextStageData
+/* 8003E4CC 0003B40C  4B FF FE D9 */	bl getNextStageData__22dMenuFmapIconPointer_cFv
 /* 8003E4D0 0003B410  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E4D4 0003B414  41 82 00 0C */	beq lbl_8003E4E0
 /* 8003E4D8 0003B418  3B E0 00 01 */	li r31, 1
 /* 8003E4DC 0003B41C  48 00 00 18 */	b lbl_8003E4F4
 lbl_8003E4E0:
 /* 8003E4E0 0003B420  7F C3 F3 78 */	mr r3, r30
-/* 8003E4E4 0003B424  4B FF FE 6D */	bl dMenuFmapIconPointer_c_NS_getFirstRoomData
+/* 8003E4E4 0003B424  4B FF FE 6D */	bl getFirstRoomData__22dMenuFmapIconPointer_cFv
 /* 8003E4E8 0003B428  48 00 00 0C */	b lbl_8003E4F4
 lbl_8003E4EC:
 /* 8003E4EC 0003B42C  7F C3 F3 78 */	mr r3, r30
-/* 8003E4F0 0003B430  4B FF FC D1 */	bl dMenuFmapIconPointer_c_NS_getFirstData
+/* 8003E4F0 0003B430  4B FF FC D1 */	bl getFirstData__22dMenuFmapIconPointer_cFv
 lbl_8003E4F4:
 /* 8003E4F4 0003B434  7F E3 FB 78 */	mr r3, r31
 /* 8003E4F8 0003B438  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1004,8 +1004,8 @@ lbl_8003E4F4:
 /* 8003E508 0003B448  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003E50C 0003B44C  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconPointer_c_NS_getValidData
-dMenuFmapIconPointer_c_NS_getValidData:
+.global getValidData__22dMenuFmapIconPointer_cFv
+getValidData__22dMenuFmapIconPointer_cFv:
 /* 8003E510 0003B450  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003E514 0003B454  7C 08 02 A6 */	mflr r0
 /* 8003E518 0003B458  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1015,12 +1015,12 @@ dMenuFmapIconPointer_c_NS_getValidData:
 /* 8003E528 0003B468  3B C0 00 00 */	li r30, 0
 lbl_8003E52C:
 /* 8003E52C 0003B46C  7F A3 EB 78 */	mr r3, r29
-/* 8003E530 0003B470  4B FF FD 8D */	bl dMenuFmapIconPointer_c_NS_getData
+/* 8003E530 0003B470  4B FF FD 8D */	bl getData__22dMenuFmapIconPointer_cFv
 /* 8003E534 0003B474  7C 7F 1B 78 */	mr r31, r3
 /* 8003E538 0003B478  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E53C 0003B47C  40 82 00 10 */	bne lbl_8003E54C
 /* 8003E540 0003B480  7F A3 EB 78 */	mr r3, r29
-/* 8003E544 0003B484  4B FF FF 4D */	bl dMenuFmapIconPointer_c_NS_nextData
+/* 8003E544 0003B484  4B FF FF 4D */	bl nextData__22dMenuFmapIconPointer_cFv
 /* 8003E548 0003B488  7C 7E 1B 78 */	mr r30, r3
 lbl_8003E54C:
 /* 8003E54C 0003B48C  57 C0 06 3F */	clrlwi. r0, r30, 0x18
@@ -1036,8 +1036,8 @@ lbl_8003E55C:
 /* 8003E570 0003B4B0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003E574 0003B4B4  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconDisp_c_NS_getPosition
-dMenuFmapIconDisp_c_NS_getPosition:
+.global getPosition__19dMenuFmapIconDisp_cFPiPiPfPfPPCQ27dTres_c6data_s
+getPosition__19dMenuFmapIconDisp_cFPiPiPfPfPPCQ27dTres_c6data_s:
 /* 8003E578 0003B4B8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8003E57C 0003B4BC  7C 08 02 A6 */	mflr r0
 /* 8003E580 0003B4C0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1141,8 +1141,8 @@ lbl_8003E6BC:
 /* 8003E6E0 0003B620  38 21 00 40 */	addi r1, r1, 0x40
 /* 8003E6E4 0003B624  4E 80 00 20 */	blr 
 
-.global dMenuFmapIconDisp_c_NS_isDrawDisp
-dMenuFmapIconDisp_c_NS_isDrawDisp:
+.global isDrawDisp__19dMenuFmapIconDisp_cFv
+isDrawDisp__19dMenuFmapIconDisp_cFv:
 /* 8003E6E8 0003B628  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003E6EC 0003B62C  7C 08 02 A6 */	mflr r0
 /* 8003E6F0 0003B630  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1173,7 +1173,7 @@ lbl_8003E718:
 lbl_8003E750:
 /* 8003E750 0003B690  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8003E754 0003B694  40 82 00 14 */	bne lbl_8003E768
-/* 8003E758 0003B698  4B FF F0 C1 */	bl dMenu_Fmap_room_data_c_NS_isArrival
+/* 8003E758 0003B698  4B FF F0 C1 */	bl isArrival__22dMenu_Fmap_room_data_cFv
 /* 8003E75C 0003B69C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E760 0003B6A0  40 82 00 08 */	bne lbl_8003E768
 /* 8003E764 0003B6A4  3B E0 00 00 */	li r31, 0
@@ -1433,8 +1433,8 @@ lbl_8003EAF8:
 /* 8003EB04 0003BA44  7C 08 03 A6 */	mtlr r0
 /* 8003EB08 0003BA48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EB0C 0003BA4C  4E 80 00 20 */	blr 
-.global fmpTresTypeGroupDataList_c_NS_dtor
-fmpTresTypeGroupDataList_c_NS_dtor:
+.global __dt__26fmpTresTypeGroupDataList_cFv
+__dt__26fmpTresTypeGroupDataList_cFv:
 /* 8003EB10 0003BA50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003EB14 0003BA54  7C 08 02 A6 */	mflr r0
 /* 8003EB18 0003BA58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1447,7 +1447,7 @@ fmpTresTypeGroupDataList_c_NS_dtor:
 /* 8003EB34 0003BA74  28 03 00 00 */	cmplwi r3, 0
 /* 8003EB38 0003BA78  41 82 00 0C */	beq lbl_8003EB44
 /* 8003EB3C 0003BA7C  38 80 00 01 */	li r4, 1
-/* 8003EB40 0003BA80  48 00 00 31 */	bl fmpTresTypeGroupData_c_NS_dtor
+/* 8003EB40 0003BA80  48 00 00 31 */	bl __dt__22fmpTresTypeGroupData_cFv
 lbl_8003EB44:
 /* 8003EB44 0003BA84  7F E0 07 35 */	extsh. r0, r31
 /* 8003EB48 0003BA88  40 81 00 0C */	ble lbl_8003EB54
@@ -1462,8 +1462,8 @@ lbl_8003EB54:
 /* 8003EB68 0003BAA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003EB6C 0003BAAC  4E 80 00 20 */	blr 
 
-.global fmpTresTypeGroupData_c_NS_dtor
-fmpTresTypeGroupData_c_NS_dtor:
+.global __dt__22fmpTresTypeGroupData_cFv
+__dt__22fmpTresTypeGroupData_cFv:
 /* 8003EB70 0003BAB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003EB74 0003BAB4  7C 08 02 A6 */	mflr r0
 /* 8003EB78 0003BAB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1508,7 +1508,7 @@ fmpTresTypeGroupData_c_NS_dtor:
 /* 8003EC14 0003BB54  28 03 00 00 */	cmplwi r3, 0
 /* 8003EC18 0003BB58  41 82 00 0C */	beq lbl_8003EC24
 /* 8003EC1C 0003BB5C  38 80 00 01 */	li r4, 1
-/* 8003EC20 0003BB60  4B FF FF 51 */	bl fmpTresTypeGroupData_c_NS_dtor
+/* 8003EC20 0003BB60  4B FF FF 51 */	bl __dt__22fmpTresTypeGroupData_cFv
 lbl_8003EC24:
 /* 8003EC24 0003BB64  7F 03 C3 78 */	mr r3, r24
 /* 8003EC28 0003BB68  48 29 01 15 */	bl __dl__FPv

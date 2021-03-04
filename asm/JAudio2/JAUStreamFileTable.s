@@ -9,8 +9,8 @@ JAUStreamFileTable:
 /* 802A7424 002A4364  90 03 00 00 */	stw r0, 0(r3)
 /* 802A7428 002A4368  4E 80 00 20 */	blr 
 
-.global JAUStreamFileTable_NS_init
-JAUStreamFileTable_NS_init:
+.global init__18JAUStreamFileTableFPCv
+init__18JAUStreamFileTableFPCv:
 /* 802A742C 002A436C  28 04 00 00 */	cmplwi r4, 0
 /* 802A7430 002A4370  40 82 00 10 */	bne lbl_802A7440
 /* 802A7434 002A4374  38 00 00 00 */	li r0, 0
@@ -32,14 +32,14 @@ lbl_802A7440:
 /* 802A7470 002A43B0  90 83 00 00 */	stw r4, 0(r3)
 /* 802A7474 002A43B4  4E 80 00 20 */	blr 
 
-.global JAUStreamFileTable_NS_getNumFiles
-JAUStreamFileTable_NS_getNumFiles:
+.global getNumFiles__18JAUStreamFileTableCFv
+getNumFiles__18JAUStreamFileTableCFv:
 /* 802A7478 002A43B8  80 63 00 00 */	lwz r3, 0(r3)
 /* 802A747C 002A43BC  80 63 00 04 */	lwz r3, 4(r3)
 /* 802A7480 002A43C0  4E 80 00 20 */	blr 
 
-.global JAUStreamFileTable_NS_getFilePath
-JAUStreamFileTable_NS_getFilePath:
+.global getFilePath__18JAUStreamFileTableCFi
+getFilePath__18JAUStreamFileTableCFi:
 /* 802A7484 002A43C4  80 A3 00 00 */	lwz r5, 0(r3)
 /* 802A7488 002A43C8  28 05 00 00 */	cmplwi r5, 0
 /* 802A748C 002A43CC  40 82 00 0C */	bne lbl_802A7498
@@ -56,7 +56,7 @@ lbl_802A7498:
 /* 802A74B4 002A43F4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802A74B8 002A43F8  A0 84 00 02 */	lhz r4, 2(r4)
 /* 802A74BC 002A43FC  38 63 00 04 */	addi r3, r3, 4
-/* 802A74C0 002A4400  4B FF FF C5 */	bl JAUStreamFileTable_NS_getFilePath
+/* 802A74C0 002A4400  4B FF FF C5 */	bl getFilePath__18JAUStreamFileTableCFi
 /* 802A74C4 002A4404  28 03 00 00 */	cmplwi r3, 0
 /* 802A74C8 002A4408  40 82 00 0C */	bne lbl_802A74D4
 /* 802A74CC 002A440C  38 60 FF FF */	li r3, -1
@@ -80,7 +80,7 @@ lbl_802A74D8:
 /* 802A750C 002A444C  38 04 9B 50 */	addi r0, r4, lbl_803C9B50@l
 /* 802A7510 002A4450  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A7514 002A4454  38 80 00 00 */	li r4, 0
-/* 802A7518 002A4458  4B FF C5 C1 */	bl JAIStreamDataMgr_NS_dtor
+/* 802A7518 002A4458  4B FF C5 C1 */	bl __dt__16JAIStreamDataMgrFv
 /* 802A751C 002A445C  7F E0 07 35 */	extsh. r0, r31
 /* 802A7520 002A4460  40 81 00 0C */	ble lbl_802A752C
 /* 802A7524 002A4464  7F C3 F3 78 */	mr r3, r30

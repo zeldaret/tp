@@ -98,7 +98,7 @@ lbl_800BEC34:
 /* 800BEC54 000BBB94  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BEC58 000BBB98  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BEC5C 000BBB9C  38 9C 1A 60 */ addi r4, r28, 0x1a60
-/* 800BEC60 000BBBA0  4B FB 60 0D */ bl dBgS_NS_GetHorseNoEntry
+/* 800BEC60 000BBBA0  4B FB 60 0D */ bl GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo
 /* 800BEC64 000BBBA4  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEC68 000BBBA8  41 82 00 0C */ beq lbl_800BEC74
 /* 800BEC6C 000BBBAC  38 60 00 00 */ li r3, 0
@@ -264,7 +264,7 @@ lbl_800BEE5C:
 /* 800BEEA0 000BBDE0  38 A0 00 00 */ li r5, 0
 /* 800BEEA4 000BBDE4  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800BEEA8 000BBDE8  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800BEEAC 000BBDEC  4B F8 42 C1 */ bl dEvt_control_c_NS_compulsory
+/* 800BEEAC 000BBDEC  4B F8 42 C1 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800BEEB0 000BBDF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEEB4 000BBDF4  41 82 01 A4 */ beq lbl_800BF058
 lbl_800BEEB8:
@@ -323,7 +323,7 @@ lbl_800BEF58:
 /* 800BEF7C 000BBEBC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BEF80 000BBEC0  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BEF84 000BBEC4  38 9C 1A 60 */ addi r4, r28, 0x1a60
-/* 800BEF88 000BBEC8  4B FB 60 59 */ bl dBgS_NS_GetRoomPathId
+/* 800BEF88 000BBEC8  4B FB 60 59 */ bl GetRoomPathId__4dBgSFRC13cBgS_PolyInfo
 /* 800BEF8C 000BBECC  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF90 000BBED0  7C 04 07 74 */ extsb r4, r0
 /* 800BEF94 000BBED4  4B F9 28 59 */ bl dPath_GetRoomPath

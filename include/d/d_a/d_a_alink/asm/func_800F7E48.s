@@ -51,7 +51,7 @@
 /* 800F7F10 000F4E50  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F7F14 000F4E54  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800F7F18 000F4E58  38 9F 1B 5C */ addi r4, r31, 0x1b5c
-/* 800F7F1C 000F4E5C  4B F7 CE E5 */ bl dBgS_NS_GetWallCode
+/* 800F7F1C 000F4E5C  4B F7 CE E5 */ bl GetWallCode__4dBgSFRC13cBgS_PolyInfo
 /* 800F7F20 000F4E60  2C 03 00 06 */ cmpwi r3, 6
 /* 800F7F24 000F4E64  40 82 00 68 */ bne lbl_800F7F8C
 lbl_800F7F28:

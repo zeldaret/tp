@@ -12,7 +12,7 @@
 /* 8011E474 0011B3B4  38 A0 00 00 */ li r5, 0
 /* 8011E478 0011B3B8  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8011E47C 0011B3BC  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8011E480 0011B3C0  4B F2 4C ED */ bl dEvt_control_c_NS_compulsory
+/* 8011E480 0011B3C0  4B F2 4C ED */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 8011E484 0011B3C4  2C 03 00 00 */ cmpwi r3, 0
 /* 8011E488 0011B3C8  40 82 00 0C */ bne lbl_8011E494
 /* 8011E48C 0011B3CC  38 60 00 00 */ li r3, 0
@@ -52,7 +52,7 @@ lbl_8011E4F0:
 /* 8011E50C 0011B44C  39 1F 31 94 */ addi r8, r31, 0x3194
 /* 8011E510 0011B450  39 20 00 00 */ li r9, 0
 /* 8011E514 0011B454  4C C6 31 82 */ crclr 6
-/* 8011E518 0011B458  4B F6 A5 65 */ bl dCamera_c_NS_StartEventCamera
+/* 8011E518 0011B458  4B F6 A5 65 */ bl StartEventCamera__9dCamera_cFiie
 /* 8011E51C 0011B45C  7F E3 FB 78 */ mr r3, r31
 /* 8011E520 0011B460  4B FA 13 35 */ bl daAlink_c_NS_keepItemData
 /* 8011E524 0011B464  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

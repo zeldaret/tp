@@ -18,7 +18,7 @@
 /* 8006D958 0006A898  3B DE C2 F8 */ addi r30, r30, -15624
 /* 8006D95C 0006A89C  7F C5 F3 78 */ mr r5, r30
 /* 8006D960 0006A8A0  38 C0 00 80 */ li r6, 0x80
-/* 8006D964 0006A8A4  4B FC E9 89 */ bl dRes_control_c_NS_getRes
+/* 8006D964 0006A8A4  4B FC E9 89 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8006D968 0006A8A8  80 9F 10 58 */ lwz r4, 0x1058(r31)
 /* 8006D96C 0006A8AC  90 64 00 14 */ stw r3, 0x14(r4)
 /* 8006D970 0006A8B0  3C 60 80 38 */ lis r3, lbl_8037A578@ha
@@ -37,7 +37,7 @@
 /* 8006D9A4 0006A8E4  38 80 00 53 */ li r4, 0x53
 /* 8006D9A8 0006A8E8  7F C5 F3 78 */ mr r5, r30
 /* 8006D9AC 0006A8EC  38 C0 00 80 */ li r6, 0x80
-/* 8006D9B0 0006A8F0  4B FC E9 3D */ bl dRes_control_c_NS_getRes
+/* 8006D9B0 0006A8F0  4B FC E9 3D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8006D9B4 0006A8F4  80 9F 10 58 */ lwz r4, 0x1058(r31)
 /* 8006D9B8 0006A8F8  90 64 00 18 */ stw r3, 0x18(r4)
 lbl_8006D9BC:

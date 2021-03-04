@@ -42,7 +42,7 @@ lbl_8013C82C:
 /* 8013C83C 0013977C  C0 82 92 B8 */ lfs f4, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8013C840 00139780  48 13 31 3D */ bl cLib_addCalc__FPfffff
 /* 8013C844 00139784  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8013C848 00139788  48 02 1C 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013C848 00139788  48 02 1C 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013C84C 0013978C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013C850 00139790  41 82 00 60 */ beq lbl_8013C8B0
 /* 8013C854 00139794  88 1F 2F B1 */ lbz r0, 0x2fb1(r31)

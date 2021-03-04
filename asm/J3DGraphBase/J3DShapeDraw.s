@@ -3,8 +3,8 @@
 .section .text, "ax" # 80314924
 
 
-.global J3DShapeDraw_NS_countVertex
-J3DShapeDraw_NS_countVertex:
+.global countVertex__12J3DShapeDrawFUl
+countVertex__12J3DShapeDrawFUl:
 /* 80314924 00311864  38 A0 00 00 */	li r5, 0
 /* 80314928 00311868  80 C3 00 08 */	lwz r6, 8(r3)
 /* 8031492C 0031186C  7C C7 33 78 */	mr r7, r6
@@ -30,8 +30,8 @@ lbl_8031496C:
 /* 8031496C 003118AC  7C A3 2B 78 */	mr r3, r5
 /* 80314970 003118B0  4E 80 00 20 */	blr 
 
-.global J3DShapeDraw_NS_addTexMtxIndexInDL
-J3DShapeDraw_NS_addTexMtxIndexInDL:
+.global addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl
+addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl:
 /* 80314974 003118B4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80314978 003118B8  7C 08 02 A6 */	mflr r0
 /* 8031497C 003118BC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -41,7 +41,7 @@ J3DShapeDraw_NS_addTexMtxIndexInDL:
 /* 8031498C 003118CC  7C 9A 23 78 */	mr r26, r4
 /* 80314990 003118D0  7C BB 2B 78 */	mr r27, r5
 /* 80314994 003118D4  7C DC 33 78 */	mr r28, r6
-/* 80314998 003118D8  4B FF FF 8D */	bl J3DShapeDraw_NS_countVertex
+/* 80314998 003118D8  4B FF FF 8D */	bl countVertex__12J3DShapeDrawFUl
 /* 8031499C 003118DC  80 99 00 04 */	lwz r4, 4(r25)
 /* 803149A0 003118E0  38 03 00 1F */	addi r0, r3, 0x1f
 /* 803149A4 003118E4  7C 04 02 14 */	add r0, r4, r0
@@ -132,8 +132,8 @@ J3DShapeDraw:
 /* 80314ACC 00311A0C  90 A3 00 04 */	stw r5, 4(r3)
 /* 80314AD0 00311A10  4E 80 00 20 */	blr 
 
-.global J3DShapeDraw_NS_draw
-J3DShapeDraw_NS_draw:
+.global draw__12J3DShapeDrawCFv
+draw__12J3DShapeDrawCFv:
 /* 80314AD4 00311A14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80314AD8 00311A18  7C 08 02 A6 */	mflr r0
 /* 80314ADC 00311A1C  90 01 00 14 */	stw r0, 0x14(r1)

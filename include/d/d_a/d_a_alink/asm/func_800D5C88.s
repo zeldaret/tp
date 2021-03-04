@@ -51,7 +51,7 @@ lbl_800D5CD4:
 /* 800D5D48 000D2C88  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 800D5D4C 000D2C8C  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800D5D50 000D2C90  7F C4 F3 78 */ mr r4, r30
-/* 800D5D54 000D2C94  48 08 8F 65 */ bl daPy_actorKeep_c_NS_setData
+/* 800D5D54 000D2C94  48 08 8F 65 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800D5D58 000D2C98  48 00 00 40 */ b lbl_800D5D98
 lbl_800D5D5C:
 /* 800D5D5C 000D2C9C  3C 60 80 44 */ lis r3, lbl_80439A20@ha
@@ -68,7 +68,7 @@ lbl_800D5D5C:
 /* 800D5D88 000D2CC8  EC 01 00 B2 */ fmuls f0, f1, f2
 /* 800D5D8C 000D2CCC  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 800D5D90 000D2CD0  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 800D5D94 000D2CD4  48 08 8F 69 */ bl daPy_actorKeep_c_NS_clearData
+/* 800D5D94 000D2CD4  48 08 8F 69 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800D5D98:
 /* 800D5D98 000D2CD8  3C 60 80 39 */ lis r3, lbl_8038DDB8@ha
 /* 800D5D9C 000D2CDC  38 63 DD B8 */ addi r3, r3, lbl_8038DDB8@l

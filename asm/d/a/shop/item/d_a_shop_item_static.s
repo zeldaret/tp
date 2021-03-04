@@ -3,13 +3,13 @@
 .section .text, "ax" # 80037c14
 
 
-.global daShopItem_c_NS_getRotateP
-daShopItem_c_NS_getRotateP:
+.global getRotateP__12daShopItem_cFv
+getRotateP__12daShopItem_cFv:
 /* 80037C14 00034B54  38 63 04 DC */	addi r3, r3, 0x4dc
 /* 80037C18 00034B58  4E 80 00 20 */	blr 
 
-.global daShopItem_c_NS_getPosP
-daShopItem_c_NS_getPosP:
+.global getPosP__12daShopItem_cFv
+getPosP__12daShopItem_cFv:
 /* 80037C1C 00034B5C  38 63 04 D0 */	addi r3, r3, 0x4d0
 /* 80037C20 00034B60  4E 80 00 20 */	blr 
 /* 80037C24 00034B64  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -29,7 +29,7 @@ daShopItem_c_NS_getPosP:
 /* 80037C5C 00034B9C  A9 0A 00 0A */	lha r8, 0xa(r10)
 /* 80037C60 00034BA0  A9 2A 00 0C */	lha r9, 0xc(r10)
 /* 80037C64 00034BA4  A9 4A 00 0E */	lha r10, 0xe(r10)
-/* 80037C68 00034BA8  48 10 CA F5 */	bl daItemBase_c_NS_CreateItemHeap
+/* 80037C68 00034BA8  48 10 CA F5 */	bl CreateItemHeap__12daItemBase_cFPCcsssssss
 /* 80037C6C 00034BAC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80037C70 00034BB0  7C 08 03 A6 */	mtlr r0
 /* 80037C74 00034BB4  38 21 00 10 */	addi r1, r1, 0x10

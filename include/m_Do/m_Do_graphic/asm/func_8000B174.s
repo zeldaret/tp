@@ -11,7 +11,7 @@
 /* 8000B19C 000080DC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8000B1A0 000080E0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8000B1A4 000080E4  38 63 5F 64 */ addi r3, r3, 0x5f64
-/* 8000B1A8 000080E8  48 04 B1 E9 */ bl dDlst_list_c_NS_init
+/* 8000B1A8 000080E8  48 04 B1 E9 */ bl init__12dDlst_list_cFv
 /* 8000B1AC 000080EC  7F E3 FB 78 */ mr r3, r31
 /* 8000B1B0 000080F0  48 00 3E DD */ bl mDoExt_adjustSolidHeap
 /* 8000B1B4 000080F4  48 00 40 41 */ bl mDoExt_restoreCurrentHeap

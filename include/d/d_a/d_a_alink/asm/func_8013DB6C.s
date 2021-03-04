@@ -37,14 +37,14 @@ lbl_8013DBD4:
 /* 8013DBEC 0013AB2C  7C 64 1B 79 */ or. r4, r3, r3
 /* 8013DBF0 0013AB30  41 82 00 0C */ beq lbl_8013DBFC
 /* 8013DBF4 0013AB34  38 7E 28 0C */ addi r3, r30, 0x280c
-/* 8013DBF8 0013AB38  48 02 10 C1 */ bl daPy_actorKeep_c_NS_setData
+/* 8013DBF8 0013AB38  48 02 10 C1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_8013DBFC:
 /* 8013DBFC 0013AB3C  3B E0 00 86 */ li r31, 0x86
 lbl_8013DC00:
 /* 8013DC00 0013AB40  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013DC04 0013AB44  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013DC08 0013AB48  38 63 4F F8 */ addi r3, r3, 0x4ff8
-/* 8013DC0C 0013AB4C  4B F0 AC 21 */ bl dEvent_manager_c_NS_checkStartDemo
+/* 8013DC0C 0013AB4C  4B F0 AC 21 */ bl checkStartDemo__16dEvent_manager_cFv
 /* 8013DC10 0013AB50  2C 03 00 00 */ cmpwi r3, 0
 /* 8013DC14 0013AB54  40 82 00 20 */ bne lbl_8013DC34
 /* 8013DC18 0013AB58  7F C3 F3 78 */ mr r3, r30

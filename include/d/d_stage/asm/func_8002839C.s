@@ -14,7 +14,7 @@
 /* 800283D0 00025310  7F E3 FB 78 */ mr r3, r31
 /* 800283D4 00025314  3C 80 80 3A */ lis r4, lbl_803A1EC8@ha
 /* 800283D8 00025318  38 84 1E C8 */ addi r4, r4, lbl_803A1EC8@l
-/* 800283DC 0002531C  48 2F D2 E9 */ bl J3DLightInfo_NS___as
+/* 800283DC 0002531C  48 2F D2 E9 */ bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 800283E0 00025320  38 7F 00 74 */ addi r3, r31, 0x74
 /*.global J3DLightObj*/
 /* 800283E4 00025324  3C 80 80 02 */ lis r4, J3DLightObj@ha

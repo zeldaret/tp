@@ -28,7 +28,7 @@
 /* 800D4464 000D13A4  38 80 00 05 */ li r4, 5
 /* 800D4468 000D13A8  38 A0 00 1F */ li r5, 0x1f
 /* 800D446C 000D13AC  38 C1 00 08 */ addi r6, r1, 8
-/* 800D4470 000D13B0  4B F9 B5 B5 */ bl dVibration_c_NS_StartShock
+/* 800D4470 000D13B0  4B F9 B5 B5 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800D4474 000D13B4  48 00 00 24 */ b lbl_800D4498
 lbl_800D4478:
 /* 800D4478 000D13B8  A8 7F 04 DE */ lha r3, 0x4de(r31)

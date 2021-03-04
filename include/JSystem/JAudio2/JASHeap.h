@@ -2,10 +2,10 @@
 #define JASHEAP_H_
 
 extern "C" {
-void JASHeap_NS_alloc(void);
-void JASHeap_NS___defctor(void);
-void JASHeap_NS_dtor(void);
-void JASHeap_NS_free(void);
+void alloc__7JASHeapFP7JASHeapUl(void);
+void __defctor__7JASHeapFv(void);
+void __dt__7JASHeapFv(void);
+void free__7JASHeapFv(void);
 }
 
 #endif  // JASHEAP_H_

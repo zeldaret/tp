@@ -18,14 +18,14 @@
 /* 800BB368 000B82A8  3B DE C2 F8 */ addi r30, r30, -15624
 /* 800BB36C 000B82AC  7F C5 F3 78 */ mr r5, r30
 /* 800BB370 000B82B0  38 C0 00 80 */ li r6, 0x80
-/* 800BB374 000B82B4  4B F8 10 09 */ bl dRes_control_c_NS_getRes_X1_
+/* 800BB374 000B82B4  4B F8 10 09 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
 /* 800BB378 000B82B8  90 7B 06 7C */ stw r3, 0x67c(r27)
 /* 800BB37C 000B82BC  80 7B 06 7C */ lwz r3, 0x67c(r27)
 /* 800BB380 000B82C0  7F E4 FB 78 */ mr r4, r31
-/* 800BB384 000B82C4  48 27 04 F9 */ bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 800BB384 000B82C4  48 27 04 F9 */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
 /* 800BB388 000B82C8  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800BB38C 000B82CC  80 9B 06 7C */ lwz r4, 0x67c(r27)
-/* 800BB390 000B82D0  48 27 4A E1 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 800BB390 000B82D0  48 27 4A E1 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 800BB394 000B82D4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800BB398 000B82D8  80 7B 06 7C */ lwz r3, 0x67c(r27)
 /* 800BB39C 000B82DC  D0 03 00 08 */ stfs f0, 8(r3)
@@ -37,14 +37,14 @@
 /* 800BB3B4 000B82F4  7C 84 E8 2E */ lwzx r4, r4, r29
 /* 800BB3B8 000B82F8  7F C5 F3 78 */ mr r5, r30
 /* 800BB3BC 000B82FC  38 C0 00 80 */ li r6, 0x80
-/* 800BB3C0 000B8300  4B F8 0F BD */ bl dRes_control_c_NS_getRes_X1_
+/* 800BB3C0 000B8300  4B F8 0F BD */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
 /* 800BB3C4 000B8304  90 7B 06 80 */ stw r3, 0x680(r27)
 /* 800BB3C8 000B8308  80 7B 06 80 */ lwz r3, 0x680(r27)
 /* 800BB3CC 000B830C  7F E4 FB 78 */ mr r4, r31
-/* 800BB3D0 000B8310  48 27 04 AD */ bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 800BB3D0 000B8310  48 27 04 AD */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
 /* 800BB3D4 000B8314  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800BB3D8 000B8318  80 9B 06 80 */ lwz r4, 0x680(r27)
-/* 800BB3DC 000B831C  48 27 4A 95 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 800BB3DC 000B831C  48 27 4A 95 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 800BB3E0 000B8320  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800BB3E4 000B8324  80 7B 06 80 */ lwz r3, 0x680(r27)
 /* 800BB3E8 000B8328  D0 03 00 08 */ stfs f0, 8(r3)

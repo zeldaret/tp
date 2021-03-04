@@ -9,7 +9,7 @@
 /* 800DB080 000D7FC0  2C 00 00 00 */ cmpwi r0, 0
 /* 800DB084 000D7FC4  41 82 00 58 */ beq lbl_800DB0DC
 /* 800DB088 000D7FC8  7F E3 FB 78 */ mr r3, r31
-/* 800DB08C 000D7FCC  48 08 34 41 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DB08C 000D7FCC  48 08 34 41 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DB090 000D7FD0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DB094 000D7FD4  41 82 00 14 */ beq lbl_800DB0A8
 /* 800DB098 000D7FD8  7F C3 F3 78 */ mr r3, r30
@@ -32,7 +32,7 @@ lbl_800DB0A8:
 /* 800DB0D8 000D8018  48 00 00 4C */ b lbl_800DB124
 lbl_800DB0DC:
 /* 800DB0DC 000D801C  7F E3 FB 78 */ mr r3, r31
-/* 800DB0E0 000D8020  48 08 33 ED */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DB0E0 000D8020  48 08 33 ED */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DB0E4 000D8024  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DB0E8 000D8028  41 82 00 3C */ beq lbl_800DB124
 /* 800DB0EC 000D802C  A8 7E 30 08 */ lha r3, 0x3008(r30)

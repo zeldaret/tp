@@ -8,16 +8,16 @@ public:
 
 extern "C" {
 void JAISeMgr_NS_dtor(void);
-void JAISeMgr_NS_calc(void);
-void JAISeMgr_NS_getNumActiveSe(void);
-void JAISeMgr_NS_initParams(void);
-void JAISeMgr_NS_mixOut(void);
-void JAISeMgr_NS_setAudience(void);
-void JAISeMgr_NS_setCategoryArrangement(void);
-void JAISeMgr_NS_setSeqDataMgr(void);
+void calc__8JAISeMgrFv(void);
+void getNumActiveSe__8JAISeMgrCFv(void);
+void initParams__8JAISeMgrFv(void);
+void mixOut__8JAISeMgrFv(void);
+void setAudience__8JAISeMgrFP11JAIAudience(void);
+void setCategoryArrangement__8JAISeMgrFRC24JAISeCategoryArrangement(void);
+void setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr(void);
 void JAISeMgr_NS_startSound(void);
-void JAISeMgr_NS_stop(void);
-void JAISeMgr_NS_stopSoundID(void);
+void stop__8JAISeMgrFv(void);
+void stop__8JAISeMgrFvSoundID(void);
 }
 
 #endif  // JAI_SE_MGR_H_

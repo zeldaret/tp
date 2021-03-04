@@ -18,8 +18,8 @@ JASOscillator:
 /* 8029BEBC 00298DFC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8029BEC0 00298E00  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_initStart
-JASOscillator_NS_initStart:
+.global initStart__13JASOscillatorFPCQ213JASOscillator4Data
+initStart__13JASOscillatorFPCQ213JASOscillator4Data:
 /* 8029BEC4 00298E04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029BEC8 00298E08  90 83 00 00 */	stw r4, 0(r3)
 /* 8029BECC 00298E0C  C0 02 BC F8 */	lfs f0, lbl_804556F8-_SDA2_BASE_(r2)
@@ -65,8 +65,8 @@ lbl_8029BF60:
 /* 8029BF60 00298EA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029BF64 00298EA4  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_incCounter
-JASOscillator_NS_incCounter:
+.global incCounter__13JASOscillatorFf
+incCounter__13JASOscillatorFf:
 /* 8029BF68 00298EA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029BF6C 00298EAC  7C 08 02 A6 */	mflr r0
 /* 8029BF70 00298EB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -88,15 +88,15 @@ lbl_8029BF9C:
 /* 8029BFA8 00298EE8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8029BFAC 00298EEC  EC 02 00 2A */	fadds f0, f2, f0
 /* 8029BFB0 00298EF0  D0 03 00 04 */	stfs f0, 4(r3)
-/* 8029BFB4 00298EF4  48 00 01 2D */	bl JASOscillator_NS_update
+/* 8029BFB4 00298EF4  48 00 01 2D */	bl update__13JASOscillatorFv
 lbl_8029BFB8:
 /* 8029BFB8 00298EF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029BFBC 00298EFC  7C 08 03 A6 */	mtlr r0
 /* 8029BFC0 00298F00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029BFC4 00298F04  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_getValue
-JASOscillator_NS_getValue:
+.global getValue__13JASOscillatorCFv
+getValue__13JASOscillatorCFv:
 /* 8029BFC8 00298F08  80 83 00 00 */	lwz r4, 0(r3)
 /* 8029BFCC 00298F0C  C0 44 00 14 */	lfs f2, 0x14(r4)
 /* 8029BFD0 00298F10  C0 23 00 08 */	lfs f1, 8(r3)
@@ -105,8 +105,8 @@ JASOscillator_NS_getValue:
 /* 8029BFDC 00298F1C  EC 22 00 2A */	fadds f1, f2, f0
 /* 8029BFE0 00298F20  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_release
-JASOscillator_NS_release:
+.global release__13JASOscillatorFv
+release__13JASOscillatorFv:
 /* 8029BFE4 00298F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029BFE8 00298F28  7C 08 02 A6 */	mflr r0
 /* 8029BFEC 00298F2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -136,7 +136,7 @@ lbl_8029C018:
 /* 8029C048 00298F88  98 03 00 18 */	stb r0, 0x18(r3)
 /* 8029C04C 00298F8C  38 00 00 04 */	li r0, 4
 /* 8029C050 00298F90  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 8029C054 00298F94  48 00 00 8D */	bl JASOscillator_NS_update
+/* 8029C054 00298F94  48 00 00 8D */	bl update__13JASOscillatorFv
 /* 8029C058 00298F98  48 00 00 78 */	b lbl_8029C0D0
 lbl_8029C05C:
 /* 8029C05C 00298F9C  80 05 00 08 */	lwz r0, 8(r5)
@@ -168,15 +168,15 @@ lbl_8029C05C:
 lbl_8029C0C4:
 /* 8029C0C4 00299004  38 00 00 03 */	li r0, 3
 /* 8029C0C8 00299008  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 8029C0CC 0029900C  48 00 00 15 */	bl JASOscillator_NS_update
+/* 8029C0CC 0029900C  48 00 00 15 */	bl update__13JASOscillatorFv
 lbl_8029C0D0:
 /* 8029C0D0 00299010  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029C0D4 00299014  7C 08 03 A6 */	mtlr r0
 /* 8029C0D8 00299018  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029C0DC 0029901C  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_update
-JASOscillator_NS_update:
+.global update__13JASOscillatorFv
+update__13JASOscillatorFv:
 /* 8029C0E0 00299020  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029C0E4 00299024  7C 08 02 A6 */	mflr r0
 /* 8029C0E8 00299028  90 01 00 14 */	stw r0, 0x14(r1)
@@ -199,7 +199,7 @@ JASOscillator_NS_update:
 /* 8029C12C 0029906C  90 01 00 08 */	stw r0, 8(r1)
 /* 8029C130 00299070  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8029C134 00299074  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8029C138 00299078  48 00 01 89 */	bl JASOscillator_NS_updateCurrentValue
+/* 8029C138 00299078  48 00 01 89 */	bl update__13JASOscillatorFvCurrentValue
 /* 8029C13C 0029907C  48 00 01 74 */	b lbl_8029C2B0
 lbl_8029C140:
 /* 8029C140 00299080  C0 03 00 10 */	lfs f0, 0x10(r3)
@@ -303,15 +303,15 @@ lbl_8029C258:
 /* 8029C2A0 002991E0  90 01 00 08 */	stw r0, 8(r1)
 /* 8029C2A4 002991E4  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8029C2A8 002991E8  EC 20 10 28 */	fsubs f1, f0, f2
-/* 8029C2AC 002991EC  48 00 00 15 */	bl JASOscillator_NS_updateCurrentValue
+/* 8029C2AC 002991EC  48 00 00 15 */	bl update__13JASOscillatorFvCurrentValue
 lbl_8029C2B0:
 /* 8029C2B0 002991F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029C2B4 002991F4  7C 08 03 A6 */	mtlr r0
 /* 8029C2B8 002991F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029C2BC 002991FC  4E 80 00 20 */	blr 
 
-.global JASOscillator_NS_updateCurrentValue
-JASOscillator_NS_updateCurrentValue:
+.global update__13JASOscillatorFvCurrentValue
+update__13JASOscillatorFvCurrentValue:
 /* 8029C2C0 00299200  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8029C2C4 00299204  7C 08 02 A6 */	mflr r0
 /* 8029C2C8 00299208  90 01 00 34 */	stw r0, 0x34(r1)

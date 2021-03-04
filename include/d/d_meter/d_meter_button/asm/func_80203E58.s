@@ -8,7 +8,7 @@
 /* 80203E74 00200DB4  7C BD 2B 78 */ mr r29, r5
 /* 80203E78 00200DB8  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 80203E7C 00200DBC  40 82 00 94 */ bne lbl_80203F10
-/* 80203E80 00200DC0  48 03 43 AD */ bl dMsgObject_c_NS_getStatus
+/* 80203E80 00200DC0  48 03 43 AD */ bl getStatus__12dMsgObject_cFv
 /* 80203E84 00200DC4  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 80203E88 00200DC8  20 60 00 01 */ subfic r3, r0, 1
 /* 80203E8C 00200DCC  30 03 FF FF */ addic r0, r3, -1

@@ -599,7 +599,7 @@ lbl_80063F40:
 /* 80063F68 00060EA8  C2 E2 88 9C */ lfs f23, lbl_8045229C-_SDA2_BASE_(r2)
 /* 80063F6C 00060EAC  34 78 40 C0 */ addic. r3, r24, 0x40c0
 /* 80063F70 00060EB0  41 82 00 24 */ beq lbl_80063F94
-/* 80063F74 00060EB4  4B FE 44 75 */ bl dEvent_manager_c_NS_getRunEventName
+/* 80063F74 00060EB4  4B FE 44 75 */ bl getRunEventName__16dEvent_manager_cFv
 /* 80063F78 00060EB8  3C 80 80 38 */ lis r4, lbl_8037A578@ha
 /* 80063F7C 00060EBC  38 84 A5 78 */ addi r4, r4, lbl_8037A578@l
 /* 80063F80 00060EC0  38 84 00 6C */ addi r4, r4, 0x6c

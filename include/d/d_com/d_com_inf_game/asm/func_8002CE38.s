@@ -8,7 +8,7 @@
 /* 8002CE54 00029D94  3C 84 00 02 */ addis r4, r4, 2
 /* 8002CE58 00029D98  38 A0 00 80 */ li r5, 0x80
 /* 8002CE5C 00029D9C  38 84 C2 F8 */ addi r4, r4, -15624
-/* 8002CE60 00029DA0  48 00 F3 01 */ bl dRes_control_c_NS_syncRes
+/* 8002CE60 00029DA0  48 00 F3 01 */ bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8002CE64 00029DA4  2C 03 00 00 */ cmpwi r3, 0
 /* 8002CE68 00029DA8  40 80 00 24 */ bge lbl_8002CE8C
 /* 8002CE6C 00029DAC  3C 60 80 38 */ lis r3, lbl_80378F38@ha

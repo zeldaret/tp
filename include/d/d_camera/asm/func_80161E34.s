@@ -8,7 +8,7 @@
 /* 80161E50 0015ED90  41 82 02 24 */ beq lbl_80162074
 /* 80161E54 0015ED94  38 61 00 30 */ addi r3, r1, 0x30
 /* 80161E58 0015ED98  7F E4 FB 78 */ mr r4, r31
-/* 80161E5C 0015ED9C  4B F3 59 01 */ bl dCamera_c_NS_positionOf
+/* 80161E5C 0015ED9C  4B F3 59 01 */ bl positionOf__9dCamera_cFP10fopAc_ac_c
 /* 80161E60 0015EDA0  C0 01 00 30 */ lfs f0, 0x30(r1)
 /* 80161E64 0015EDA4  D0 01 00 3C */ stfs f0, 0x3c(r1)
 /* 80161E68 0015EDA8  C0 01 00 34 */ lfs f0, 0x34(r1)
@@ -36,7 +36,7 @@
 /* 80161EC0 0015EE00  38 DF 02 A0 */ addi r6, r31, 0x2a0
 /* 80161EC4 0015EE04  38 E0 00 00 */ li r7, 0
 /* 80161EC8 0015EE08  39 00 00 00 */ li r8, 0
-/* 80161ECC 0015EE0C  4B F1 3A 91 */ bl dBgS_NS_MoveBgMatrixCrrPos
+/* 80161ECC 0015EE0C  4B F1 3A 91 */ bl Move__4dBgSFvBgMatrixCrrPos
 lbl_80161ED0:
 /* 80161ED0 0015EE10  80 1F 06 0C */ lwz r0, 0x60c(r31)
 /* 80161ED4 0015EE14  54 00 03 DF */ rlwinm. r0, r0, 0, 0xf, 0xf
@@ -122,7 +122,7 @@ lbl_80161FE0:
 lbl_80161FF4:
 /* 80161FF4 0015EF34  38 61 00 3C */ addi r3, r1, 0x3c
 /* 80161FF8 0015EF38  38 9F 02 A0 */ addi r4, r31, 0x2a0
-/* 80161FFC 0015EF3C  4B F2 63 F1 */ bl dCamMath_NS_xyzHorizontalDistance
+/* 80161FFC 0015EF3C  4B F2 63 F1 */ bl xyzHorizontalDistance__8dCamMathFR4cXyzR4cXyz
 lbl_80162000:
 /* 80162000 0015EF40  C0 1F 02 AC */ lfs f0, 0x2ac(r31)
 /* 80162004 0015EF44  EC 01 00 28 */ fsubs f0, f1, f0

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802850ac
 
 
-.global JStudio_NS_fvb_NS_data_NS_TParse_TParagraph_NS_getData
-JStudio_NS_fvb_NS_data_NS_TParse_TParagraph_NS_getData:
+.global getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData
+getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData:
 /* 802850AC 00281FEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802850B0 00281FF0  7C 08 02 A6 */	mflr r0
 /* 802850B4 00281FF4  90 01 00 14 */	stw r0, 0x14(r1)

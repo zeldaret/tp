@@ -38,7 +38,7 @@ lbl_800B6FA8:
 /* 800B6FAC 000B3EEC  48 02 B1 1D */ bl daAlink_c_NS_procCopyRodSwingInit
 /* 800B6FB0 000B3EF0  48 00 00 CC */ b lbl_800B707C
 lbl_800B6FB4:
-/* 800B6FB4 000B3EF4  48 0A 7A 6D */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800B6FB4 000B3EF4  48 0A 7A 6D */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800B6FB8 000B3EF8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B6FBC 000B3EFC  41 82 00 18 */ beq lbl_800B6FD4
 /* 800B6FC0 000B3F00  80 1F 05 84 */ lwz r0, 0x584(r31)
@@ -75,7 +75,7 @@ lbl_800B7018:
 /* 800B7030 000B3F70  48 05 A4 11 */ bl daAlink_c_NS_procKandelaarSwingInit
 /* 800B7034 000B3F74  48 00 00 48 */ b lbl_800B707C
 lbl_800B7038:
-/* 800B7038 000B3F78  48 0A 7B 81 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800B7038 000B3F78  48 0A 7B 81 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800B703C 000B3F7C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7040 000B3F80  41 82 00 38 */ beq lbl_800B7078
 /* 800B7044 000B3F84  38 60 00 00 */ li r3, 0

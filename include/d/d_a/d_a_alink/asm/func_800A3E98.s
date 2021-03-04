@@ -12,7 +12,7 @@
 /* 800A3EC4 000A0E04  3C A5 00 02 */ addis r5, r5, 2
 /* 800A3EC8 000A0E08  38 C0 00 80 */ li r6, 0x80
 /* 800A3ECC 000A0E0C  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800A3ED0 000A0E10  4B F9 84 1D */ bl dRes_control_c_NS_getRes
+/* 800A3ED0 000A0E10  4B F9 84 1D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800A3ED4 000A0E14  7C 64 1B 78 */ mr r4, r3
 /* 800A3ED8 000A0E18  7F C3 F3 78 */ mr r3, r30
 /* 800A3EDC 000A0E1C  38 A0 00 00 */ li r5, 0

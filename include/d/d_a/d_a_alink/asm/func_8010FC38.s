@@ -40,7 +40,7 @@ lbl_8010FCA0:
 /* 8010FCCC 0010CC0C  41 82 00 14 */ beq lbl_8010FCE0
 /* 8010FCD0 0010CC10  38 7D 28 0C */ addi r3, r29, 0x280c
 /* 8010FCD4 0010CC14  7F E4 FB 78 */ mr r4, r31
-/* 8010FCD8 0010CC18  48 04 EF E1 */ bl daPy_actorKeep_c_NS_setData
+/* 8010FCD8 0010CC18  48 04 EF E1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010FCDC 0010CC1C  48 00 00 1C */ b lbl_8010FCF8
 lbl_8010FCE0:
 /* 8010FCE0 0010CC20  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -112,7 +112,7 @@ lbl_8010FD90:
 /* 8010FDC8 0010CD08  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 8010FDCC 0010CD0C  38 63 02 10 */ addi r3, r3, 0x210
 /* 8010FDD0 0010CD10  80 9D 31 C4 */ lwz r4, 0x31c4(r29)
-/* 8010FDD4 0010CD14  4B F3 BB 45 */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 8010FDD4 0010CD14  4B F3 BB 45 */ bl get__Q213dPa_control_c7level_cFUlEmitter
 /* 8010FDD8 0010CD18  28 03 00 00 */ cmplwi r3, 0
 /* 8010FDDC 0010CD1C  41 82 00 10 */ beq lbl_8010FDEC
 /* 8010FDE0 0010CD20  80 03 00 F4 */ lwz r0, 0xf4(r3)

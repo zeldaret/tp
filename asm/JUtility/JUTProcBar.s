@@ -27,10 +27,10 @@ JUTProcBar:
 /* 802E58D4 002E2814  90 03 00 58 */	stw r0, 0x58(r3)
 /* 802E58D8 002E2818  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 802E58DC 002E281C  38 7F 00 64 */	addi r3, r31, 0x64
-.global JUTProcBar_NS_CTime
-/* 802E58E0 002E2820  3C 80 80 2E */	lis r4, JUTProcBar_NS_CTime@ha
-.global JUTProcBar_NS_CTime
-/* 802E58E4 002E2824  38 84 73 40 */	addi r4, r4, JUTProcBar_NS_CTime@l
+.global __ct__Q210JUTProcBar5CTimeFv
+/* 802E58E0 002E2820  3C 80 80 2E */	lis r4, __ct__Q210JUTProcBar5CTimeFv@ha
+.global __ct__Q210JUTProcBar5CTimeFv
+/* 802E58E4 002E2824  38 84 73 40 */	addi r4, r4, __ct__Q210JUTProcBar5CTimeFv@l
 /* 802E58E8 002E2828  38 A0 00 00 */	li r5, 0
 /* 802E58EC 002E282C  38 C0 00 14 */	li r6, 0x14
 /* 802E58F0 002E2830  38 E0 00 08 */	li r7, 8
@@ -79,8 +79,8 @@ lbl_802E5970:
 /* 802E5994 002E28D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E5998 002E28D8  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_dtor
-JUTProcBar_NS_dtor:
+.global __dt__10JUTProcBarFv
+__dt__10JUTProcBarFv:
 /* 802E599C 002E28DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E59A0 002E28E0  7C 08 02 A6 */	mflr r0
 /* 802E59A4 002E28E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -100,8 +100,8 @@ lbl_802E59C8:
 /* 802E59D8 002E2918  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E59DC 002E291C  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_create
-JUTProcBar_NS_create:
+.global create__10JUTProcBarFv
+create__10JUTProcBarFv:
 /* 802E59E0 002E2920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E59E4 002E2924  7C 08 02 A6 */	mflr r0
 /* 802E59E8 002E2928  90 01 00 14 */	stw r0, 0x14(r1)
@@ -123,8 +123,8 @@ lbl_802E5A14:
 /* 802E5A20 002E2960  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E5A24 002E2964  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_destroy
-JUTProcBar_NS_destroy:
+.global destroy__10JUTProcBarFv
+destroy__10JUTProcBarFv:
 /* 802E5A28 002E2968  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E5A2C 002E296C  7C 08 02 A6 */	mflr r0
 /* 802E5A30 002E2970  90 01 00 14 */	stw r0, 0x14(r1)
@@ -132,7 +132,7 @@ JUTProcBar_NS_destroy:
 /* 802E5A38 002E2978  28 03 00 00 */	cmplwi r3, 0
 /* 802E5A3C 002E297C  41 82 00 0C */	beq lbl_802E5A48
 /* 802E5A40 002E2980  38 80 00 01 */	li r4, 1
-/* 802E5A44 002E2984  4B FF FF 59 */	bl JUTProcBar_NS_dtor
+/* 802E5A44 002E2984  4B FF FF 59 */	bl __dt__10JUTProcBarFv
 lbl_802E5A48:
 /* 802E5A48 002E2988  38 00 00 00 */	li r0, 0
 /* 802E5A4C 002E298C  90 0D 8F D8 */	stw r0, lbl_80451558-_SDA_BASE_(r13)
@@ -141,8 +141,8 @@ lbl_802E5A48:
 /* 802E5A58 002E2998  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E5A5C 002E299C  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_clear
-JUTProcBar_NS_clear:
+.global clear__10JUTProcBarFv
+clear__10JUTProcBarFv:
 /* 802E5A60 002E29A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E5A64 002E29A4  7C 08 02 A6 */	mflr r0
 /* 802E5A68 002E29A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -196,8 +196,8 @@ JUTProcBar_NS_clear:
 /* 802E5B28 002E2A68  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E5B2C 002E2A6C  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_bar_subroutine
-JUTProcBar_NS_bar_subroutine:
+.global bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
+bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor:
 /* 802E5B30 002E2A70  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802E5B34 002E2A74  7C 08 02 A6 */	mflr r0
 /* 802E5B38 002E2A78  90 01 00 54 */	stw r0, 0x54(r1)
@@ -302,8 +302,8 @@ lbl_802E5CAC:
 /* 802E5CBC 002E2BFC  38 21 00 50 */	addi r1, r1, 0x50
 /* 802E5CC0 002E2C00  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_adjustMeterLength
-JUTProcBar_NS_adjustMeterLength:
+.global adjustMeterLength__10JUTProcBarFUlPfffPi
+adjustMeterLength__10JUTProcBarFUlPfffPi:
 /* 802E5CC4 002E2C04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E5CC8 002E2C08  39 00 00 00 */	li r8, 0
 /* 802E5CCC 002E2C0C  C0 05 00 00 */	lfs f0, 0(r5)
@@ -393,24 +393,24 @@ lbl_802E5DFC:
 /* 802E5E00 002E2D40  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E5E04 002E2D44  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_draw
-JUTProcBar_NS_draw:
+.global draw__10JUTProcBarFv
+draw__10JUTProcBarFv:
 /* 802E5E08 002E2D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E5E0C 002E2D4C  7C 08 02 A6 */	mflr r0
 /* 802E5E10 002E2D50  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E5E14 002E2D54  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802E5E18 002E2D58  7C 7F 1B 78 */	mr r31, r3
-/* 802E5E1C 002E2D5C  48 00 00 21 */	bl JUTProcBar_NS_drawProcessBar
+/* 802E5E1C 002E2D5C  48 00 00 21 */	bl draw__10JUTProcBarFvProcessBar
 /* 802E5E20 002E2D60  7F E3 FB 78 */	mr r3, r31
-/* 802E5E24 002E2D64  48 00 11 7D */	bl JUTProcBar_NS_drawHeapBar
+/* 802E5E24 002E2D64  48 00 11 7D */	bl draw__10JUTProcBarFvHeapBar
 /* 802E5E28 002E2D68  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802E5E2C 002E2D6C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E5E30 002E2D70  7C 08 03 A6 */	mtlr r0
 /* 802E5E34 002E2D74  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E5E38 002E2D78  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_drawProcessBar
-JUTProcBar_NS_drawProcessBar:
+.global draw__10JUTProcBarFvProcessBar
+draw__10JUTProcBarFvProcessBar:
 /* 802E5E3C 002E2D7C  94 21 FE 90 */	stwu r1, -0x170(r1)
 /* 802E5E40 002E2D80  7C 08 02 A6 */	mflr r0
 /* 802E5E44 002E2D84  90 01 01 74 */	stw r0, 0x174(r1)
@@ -447,7 +447,7 @@ lbl_802E5EAC:
 /* 802E5EB8 002E2DF8  C0 22 C7 10 */	lfs f1, lbl_80456110-_SDA2_BASE_(r2)
 /* 802E5EBC 002E2DFC  C0 42 C6 DC */	lfs f2, lbl_804560DC-_SDA2_BASE_(r2)
 /* 802E5EC0 002E2E00  38 CD 8F DC */	addi r6, r13, lbl_8045155C-_SDA_BASE_
-/* 802E5EC4 002E2E04  4B FF FE 01 */	bl JUTProcBar_NS_adjustMeterLength
+/* 802E5EC4 002E2E04  4B FF FE 01 */	bl adjustMeterLength__10JUTProcBarFUlPfffPi
 /* 802E5EC8 002E2E08  C0 22 C6 F0 */	lfs f1, lbl_804560F0-_SDA2_BASE_(r2)
 /* 802E5ECC 002E2E0C  C0 0D 83 80 */	lfs f0, lbl_80450900-_SDA_BASE_(r13)
 /* 802E5ED0 002E2E10  EC 01 00 32 */	fmuls f0, f1, f0
@@ -768,7 +768,7 @@ lbl_802E6314:
 /* 802E6394 002E32D4  7F A8 EB 78 */	mr r8, r29
 /* 802E6398 002E32D8  81 3F 00 18 */	lwz r9, 0x18(r31)
 /* 802E639C 002E32DC  81 5F 00 1C */	lwz r10, 0x1c(r31)
-/* 802E63A0 002E32E0  4B FF F7 91 */	bl JUTProcBar_NS_bar_subroutine
+/* 802E63A0 002E32E0  4B FF F7 91 */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 /* 802E63A4 002E32E4  80 1F 01 14 */	lwz r0, 0x114(r31)
 /* 802E63A8 002E32E8  54 00 08 3C */	slwi r0, r0, 1
 /* 802E63AC 002E32EC  7E F7 02 14 */	add r23, r23, r0
@@ -800,7 +800,7 @@ lbl_802E6314:
 /* 802E6414 002E3354  7F A8 EB 78 */	mr r8, r29
 /* 802E6418 002E3358  81 3F 00 2C */	lwz r9, 0x2c(r31)
 /* 802E641C 002E335C  81 5F 00 30 */	lwz r10, 0x30(r31)
-/* 802E6420 002E3360  4B FF F7 11 */	bl JUTProcBar_NS_bar_subroutine
+/* 802E6420 002E3360  4B FF F7 11 */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 /* 802E6424 002E3364  80 1F 01 14 */	lwz r0, 0x114(r31)
 /* 802E6428 002E3368  54 00 08 3C */	slwi r0, r0, 1
 /* 802E642C 002E336C  7E F7 02 14 */	add r23, r23, r0
@@ -833,7 +833,7 @@ lbl_802E6314:
 /* 802E6498 002E33D8  7F A8 EB 78 */	mr r8, r29
 /* 802E649C 002E33DC  81 3F 00 04 */	lwz r9, 4(r31)
 /* 802E64A0 002E33E0  81 5F 00 08 */	lwz r10, 8(r31)
-/* 802E64A4 002E33E4  4B FF F6 8D */	bl JUTProcBar_NS_bar_subroutine
+/* 802E64A4 002E33E4  4B FF F6 8D */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 /* 802E64A8 002E33E8  48 00 02 2C */	b lbl_802E66D4
 lbl_802E64AC:
 /* 802E64AC 002E33EC  80 7F 01 1C */	lwz r3, 0x11c(r31)
@@ -867,7 +867,7 @@ lbl_802E64AC:
 /* 802E651C 002E345C  7F A8 EB 78 */	mr r8, r29
 /* 802E6520 002E3460  7F C9 F3 78 */	mr r9, r30
 /* 802E6524 002E3464  39 40 FF FF */	li r10, -1
-/* 802E6528 002E3468  4B FF F6 09 */	bl JUTProcBar_NS_bar_subroutine
+/* 802E6528 002E3468  4B FF F6 09 */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 /* 802E652C 002E346C  38 60 00 00 */	li r3, 0
 /* 802E6530 002E3470  98 61 00 70 */	stb r3, 0x70(r1)
 /* 802E6534 002E3474  38 00 00 FF */	li r0, 0xff
@@ -942,7 +942,7 @@ lbl_802E64AC:
 /* 802E6648 002E3588  7F A8 EB 78 */	mr r8, r29
 /* 802E664C 002E358C  81 3F 00 2C */	lwz r9, 0x2c(r31)
 /* 802E6650 002E3590  39 40 FF FF */	li r10, -1
-/* 802E6654 002E3594  4B FF F4 DD */	bl JUTProcBar_NS_bar_subroutine
+/* 802E6654 002E3594  4B FF F4 DD */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 /* 802E6658 002E3598  80 1F 01 14 */	lwz r0, 0x114(r31)
 /* 802E665C 002E359C  54 00 08 3C */	slwi r0, r0, 1
 /* 802E6660 002E35A0  7E D6 02 14 */	add r22, r22, r0
@@ -973,7 +973,7 @@ lbl_802E64AC:
 /* 802E66C4 002E3604  7F A8 EB 78 */	mr r8, r29
 /* 802E66C8 002E3608  81 3F 00 04 */	lwz r9, 4(r31)
 /* 802E66CC 002E360C  39 40 FF FF */	li r10, -1
-/* 802E66D0 002E3610  4B FF F4 61 */	bl JUTProcBar_NS_bar_subroutine
+/* 802E66D0 002E3610  4B FF F4 61 */	bl bar_subroutine__10JUTProcBarFiiiiiiiQ28JUtility6TColorQ28JUtility6TColor
 lbl_802E66D4:
 /* 802E66D4 002E3614  3A A0 00 01 */	li r21, 1
 /* 802E66D8 002E3618  CB E2 C6 E8 */	lfd f31, lbl_804560E8-_SDA2_BASE_(r2)
@@ -1086,7 +1086,7 @@ lbl_802E6858:
 /* 802E6860 002E37A0  C0 22 C7 10 */	lfs f1, lbl_80456110-_SDA2_BASE_(r2)
 /* 802E6864 002E37A4  C0 42 C6 DC */	lfs f2, lbl_804560DC-_SDA2_BASE_(r2)
 /* 802E6868 002E37A8  38 CD 8F E4 */	addi r6, r13, lbl_80451564-_SDA_BASE_
-/* 802E686C 002E37AC  4B FF F4 59 */	bl JUTProcBar_NS_adjustMeterLength
+/* 802E686C 002E37AC  4B FF F4 59 */	bl adjustMeterLength__10JUTProcBarFUlPfffPi
 /* 802E6870 002E37B0  C0 22 C6 F0 */	lfs f1, lbl_804560F0-_SDA2_BASE_(r2)
 /* 802E6874 002E37B4  C0 0D 83 84 */	lfs f0, lbl_80450904-_SDA_BASE_(r13)
 /* 802E6878 002E37B8  EC 01 00 32 */	fmuls f0, f1, f0
@@ -1569,8 +1569,8 @@ heapBar:
 /* 802E6F98 002E3ED8  38 21 00 70 */	addi r1, r1, 0x70
 /* 802E6F9C 002E3EDC  4E 80 00 20 */	blr 
 
-.global JUTProcBar_NS_drawHeapBar
-JUTProcBar_NS_drawHeapBar:
+.global draw__10JUTProcBarFvHeapBar
+draw__10JUTProcBarFvHeapBar:
 /* 802E6FA0 002E3EE0  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 802E6FA4 002E3EE4  7C 08 02 A6 */	mflr r0
 /* 802E6FA8 002E3EE8  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -1806,8 +1806,8 @@ lbl_802E7328:
 /* 802E7334 002E4274  7C 08 03 A6 */	mtlr r0
 /* 802E7338 002E4278  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 802E733C 002E427C  4E 80 00 20 */	blr 
-.global JUTProcBar_NS_CTime
-JUTProcBar_NS_CTime:
+.global __ct__Q210JUTProcBar5CTimeFv
+__ct__Q210JUTProcBar5CTimeFv:
 /* 802E7340 002E4280  38 00 00 00 */	li r0, 0
 /* 802E7344 002E4284  90 03 00 04 */	stw r0, 4(r3)
 /* 802E7348 002E4288  90 03 00 08 */	stw r0, 8(r3)

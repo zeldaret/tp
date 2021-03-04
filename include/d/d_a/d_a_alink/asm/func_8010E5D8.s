@@ -30,7 +30,7 @@
 /* 8010E64C 0010B58C  90 7C 07 24 */ stw r3, 0x724(r28)
 /* 8010E650 0010B590  57 BF 04 3E */ clrlwi r31, r29, 0x10
 /* 8010E654 0010B594  7F E3 FB 78 */ mr r3, r31
-/* 8010E658 0010B598  48 05 04 81 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 8010E658 0010B598  48 05 04 81 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 8010E65C 0010B59C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E660 0010B5A0  40 82 00 18 */ bne lbl_8010E678
 /* 8010E664 0010B5A4  7F 83 E3 78 */ mr r3, r28
@@ -180,7 +180,7 @@ lbl_8010E858:
 /* 8010E880 0010B7C0  B0 1C 30 1A */ sth r0, 0x301a(r28)
 lbl_8010E884:
 /* 8010E884 0010B7C4  7F E3 FB 78 */ mr r3, r31
-/* 8010E888 0010B7C8  48 05 02 51 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 8010E888 0010B7C8  48 05 02 51 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 8010E88C 0010B7CC  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E890 0010B7D0  41 82 00 10 */ beq lbl_8010E8A0
 /* 8010E894 0010B7D4  57 A0 04 3E */ clrlwi r0, r29, 0x10
@@ -188,7 +188,7 @@ lbl_8010E884:
 /* 8010E89C 0010B7DC  40 82 00 14 */ bne lbl_8010E8B0
 lbl_8010E8A0:
 /* 8010E8A0 0010B7E0  7F E3 FB 78 */ mr r3, r31
-/* 8010E8A4 0010B7E4  48 05 02 9D */ bl daPy_py_c_NS_checkOilBottleItem
+/* 8010E8A4 0010B7E4  48 05 02 9D */ bl checkOilBottleItem__9daPy_py_cFi
 /* 8010E8A8 0010B7E8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E8AC 0010B7EC  41 82 01 88 */ beq lbl_8010EA34
 lbl_8010E8B0:
@@ -232,7 +232,7 @@ lbl_8010E924:
 /* 8010E930 0010B870  48 00 01 7C */ b lbl_8010EAAC
 lbl_8010E934:
 /* 8010E934 0010B874  7F E3 FB 78 */ mr r3, r31
-/* 8010E938 0010B878  48 05 02 09 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 8010E938 0010B878  48 05 02 09 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 8010E93C 0010B87C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E940 0010B880  41 82 00 14 */ beq lbl_8010E954
 /* 8010E944 0010B884  C0 02 93 24 */ lfs f0, lbl_80452D24-_SDA2_BASE_(r2)
@@ -307,7 +307,7 @@ lbl_8010EA10:
 /* 8010EA30 0010B970  48 00 00 7C */ b lbl_8010EAAC
 lbl_8010EA34:
 /* 8010EA34 0010B974  7F E3 FB 78 */ mr r3, r31
-/* 8010EA38 0010B978  48 05 01 31 */ bl daPy_py_c_NS_checkOpenBottleItem
+/* 8010EA38 0010B978  48 05 01 31 */ bl checkOpenBottleItem__9daPy_py_cFi
 /* 8010EA3C 0010B97C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010EA40 0010B980  41 82 00 48 */ beq lbl_8010EA88
 /* 8010EA44 0010B984  57 A0 04 3E */ clrlwi r0, r29, 0x10

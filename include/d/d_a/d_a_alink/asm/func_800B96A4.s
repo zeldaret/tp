@@ -17,7 +17,7 @@
 /* 800B96E4 000B6624  28 1E 00 44 */ cmplwi r30, 0x44
 /* 800B96E8 000B6628  41 82 00 14 */ beq lbl_800B96FC
 /* 800B96EC 000B662C  7F C3 F3 78 */ mr r3, r30
-/* 800B96F0 000B6630  48 0A 53 99 */ bl daPy_py_c_NS_checkBottleItem
+/* 800B96F0 000B6630  48 0A 53 99 */ bl checkBottleItem__9daPy_py_cFi
 /* 800B96F4 000B6634  2C 03 00 00 */ cmpwi r3, 0
 /* 800B96F8 000B6638  41 82 00 18 */ beq lbl_800B9710
 lbl_800B96FC:

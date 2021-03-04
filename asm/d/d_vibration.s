@@ -83,8 +83,8 @@ lbl_8006F23C:
 /* 8006F260 0006C1A0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8006F264 0006C1A4  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_Run
-dVibration_c_NS_Run:
+.global Run__12dVibration_cFv
+Run__12dVibration_cFv:
 /* 8006F268 0006C1A8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8006F26C 0006C1AC  7C 08 02 A6 */	mflr r0
 /* 8006F270 0006C1B0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -626,8 +626,8 @@ lbl_8006F9FC:
 /* 8006FA1C 0006C95C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8006FA20 0006C960  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_StartShock
-dVibration_c_NS_StartShock:
+.global StartShock__12dVibration_cFii4cXyz
+StartShock__12dVibration_cFii4cXyz:
 /* 8006FA24 0006C964  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006FA28 0006C968  7C 08 02 A6 */	mflr r0
 /* 8006FA2C 0006C96C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -690,8 +690,8 @@ lbl_8006FAF4:
 /* 8006FB08 0006CA48  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006FB0C 0006CA4C  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_StartQuake
-dVibration_c_NS_StartQuake:
+.global StartQuake__12dVibration_cFii4cXyz
+StartQuake__12dVibration_cFii4cXyz:
 /* 8006FB10 0006CA50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006FB14 0006CA54  7C 08 02 A6 */	mflr r0
 /* 8006FB18 0006CA58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -758,8 +758,8 @@ lbl_8006FBF0:
 /* 8006FC04 0006CB44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006FC08 0006CB48  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_StartQuake_X1_
-dVibration_c_NS_StartQuake_X1_:
+.global StartQuake__12dVibration_cFii4cXyz_X1_
+StartQuake__12dVibration_cFii4cXyz_X1_:
 /* 8006FC0C 0006CB4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006FC10 0006CB50  7C 08 02 A6 */	mflr r0
 /* 8006FC14 0006CB54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -861,8 +861,8 @@ lbl_8006FD78:
 /* 8006FD8C 0006CCCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006FD90 0006CCD0  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_StopQuake
-dVibration_c_NS_StopQuake:
+.global StopQuake__12dVibration_cFi
+StopQuake__12dVibration_cFi:
 /* 8006FD94 0006CCD4  38 A0 00 00 */	li r5, 0
 /* 8006FD98 0006CCD8  54 80 06 7D */	rlwinm. r0, r4, 0, 0x19, 0x1e
 /* 8006FD9C 0006CCDC  41 82 00 38 */	beq lbl_8006FDD4
@@ -894,8 +894,8 @@ lbl_8006FDF8:
 /* 8006FDF8 0006CD38  7C A3 2B 78 */	mr r3, r5
 /* 8006FDFC 0006CD3C  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_Kill
-dVibration_c_NS_Kill:
+.global Kill__12dVibration_cFv
+Kill__12dVibration_cFv:
 /* 8006FE00 0006CD40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006FE04 0006CD44  7C 08 02 A6 */	mflr r0
 /* 8006FE08 0006CD48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -913,7 +913,7 @@ dVibration_c_NS_Kill:
 /* 8006FE38 0006CD78  38 80 00 01 */	li r4, 1
 /* 8006FE3C 0006CD7C  48 27 18 51 */	bl stopMotor__Q210JUTGamePad7CRumbleFib
 /* 8006FE40 0006CD80  7F E3 FB 78 */	mr r3, r31
-/* 8006FE44 0006CD84  48 00 00 41 */	bl dVibration_c_NS_setDefault
+/* 8006FE44 0006CD84  48 00 00 41 */	bl setDefault__12dVibration_cFv
 /* 8006FE48 0006CD88  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8006FE4C 0006CD8C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8006FE50 0006CD90  7C 08 03 A6 */	mtlr r0
@@ -932,8 +932,8 @@ lbl_8006FE7C:
 /* 8006FE7C 0006CDBC  7C 83 23 78 */	mr r3, r4
 /* 8006FE80 0006CDC0  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_setDefault
-dVibration_c_NS_setDefault:
+.global setDefault__12dVibration_cFv
+setDefault__12dVibration_cFv:
 /* 8006FE84 0006CDC4  38 00 FF FF */	li r0, -1
 /* 8006FE88 0006CDC8  90 03 00 54 */	stw r0, 0x54(r3)
 /* 8006FE8C 0006CDCC  90 03 00 04 */	stw r0, 4(r3)
@@ -967,24 +967,24 @@ dVibration_c_NS_setDefault:
 /* 8006FEFC 0006CE3C  90 83 00 88 */	stw r4, 0x88(r3)
 /* 8006FF00 0006CE40  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_Init
-dVibration_c_NS_Init:
+.global Init__12dVibration_cFv
+Init__12dVibration_cFv:
 /* 8006FF04 0006CE44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006FF08 0006CE48  7C 08 02 A6 */	mflr r0
 /* 8006FF0C 0006CE4C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8006FF10 0006CE50  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8006FF14 0006CE54  7C 7F 1B 78 */	mr r31, r3
-/* 8006FF18 0006CE58  4B FF FE E9 */	bl dVibration_c_NS_Kill
+/* 8006FF18 0006CE58  4B FF FE E9 */	bl Kill__12dVibration_cFv
 /* 8006FF1C 0006CE5C  7F E3 FB 78 */	mr r3, r31
-/* 8006FF20 0006CE60  4B FF FF 65 */	bl dVibration_c_NS_setDefault
+/* 8006FF20 0006CE60  4B FF FF 65 */	bl setDefault__12dVibration_cFv
 /* 8006FF24 0006CE64  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8006FF28 0006CE68  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8006FF2C 0006CE6C  7C 08 03 A6 */	mtlr r0
 /* 8006FF30 0006CE70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006FF34 0006CE74  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_Pause
-dVibration_c_NS_Pause:
+.global Pause__12dVibration_cFv
+Pause__12dVibration_cFv:
 /* 8006FF38 0006CE78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006FF3C 0006CE7C  7C 08 02 A6 */	mflr r0
 /* 8006FF40 0006CE80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1039,12 +1039,12 @@ lbl_8006FFE4:
 /* 8006FFF0 0006CF30  38 21 00 10 */	addi r1, r1, 0x10
 /* 8006FFF4 0006CF34  4E 80 00 20 */	blr 
 
-.global dVibration_c_NS_Remove
-dVibration_c_NS_Remove:
+.global Remove__12dVibration_cFv
+Remove__12dVibration_cFv:
 /* 8006FFF8 0006CF38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8006FFFC 0006CF3C  7C 08 02 A6 */	mflr r0
 /* 80070000 0006CF40  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80070004 0006CF44  4B FF FD FD */	bl dVibration_c_NS_Kill
+/* 80070004 0006CF44  4B FF FD FD */	bl Kill__12dVibration_cFv
 /* 80070008 0006CF48  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8007000C 0006CF4C  7C 08 03 A6 */	mtlr r0
 /* 80070010 0006CF50  38 21 00 10 */	addi r1, r1, 0x10

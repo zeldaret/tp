@@ -48,7 +48,7 @@ lbl_800FC7E0:
 /* 800FC830 000F9770  B0 1E 30 80 */ sth r0, 0x3080(r30)
 /* 800FC834 000F9774  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 800FC838 000F9778  7F E4 FB 78 */ mr r4, r31
-/* 800FC83C 000F977C  48 06 24 7D */ bl daPy_actorKeep_c_NS_setData
+/* 800FC83C 000F977C  48 06 24 7D */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800FC840 000F9780  7F C3 F3 78 */ mr r3, r30
 /* 800FC844 000F9784  4B FF FF 05 */ bl daAlink_c_NS_setBossBodyHangPos
 /* 800FC848 000F9788  80 1E 05 8C */ lwz r0, 0x58c(r30)

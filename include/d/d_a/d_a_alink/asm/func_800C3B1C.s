@@ -53,7 +53,7 @@ lbl_800C3BB8:
 /* 800C3BE0 000C0B20  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C3BE4 000C0B24  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800C3BE8 000C0B28  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800C3BEC 000C0B2C  4B F8 45 91 */ bl dEvent_manager_c_NS_cutEnd
+/* 800C3BEC 000C0B2C  4B F8 45 91 */ bl cutEnd__16dEvent_manager_cFi
 /* 800C3BF0 000C0B30  48 00 00 30 */ b lbl_800C3C20
 lbl_800C3BF4:
 /* 800C3BF4 000C0B34  7F C3 F3 78 */ mr r3, r30

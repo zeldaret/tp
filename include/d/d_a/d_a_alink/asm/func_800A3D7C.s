@@ -24,7 +24,7 @@ lbl_800A3DD4:
 /* 800A3DD4 000A0D14  2C 1F 00 00 */ cmpwi r31, 0
 /* 800A3DD8 000A0D18  41 82 00 14 */ beq lbl_800A3DEC
 /* 800A3DDC 000A0D1C  7F 83 E3 78 */ mr r3, r28
-/* 800A3DE0 000A0D20  4B F9 6D 51 */ bl dRes_info_c_NS_onWarpMaterial
+/* 800A3DE0 000A0D20  4B F9 6D 51 */ bl onWarpMaterial__11dRes_info_cFP12J3DModelData
 /* 800A3DE4 000A0D24  67 DE 02 00 */ oris r30, r30, 0x200
 /* 800A3DE8 000A0D28  63 DE 04 00 */ ori r30, r30, 0x400
 lbl_800A3DEC:
@@ -37,7 +37,7 @@ lbl_800A3DEC:
 /* 800A3E04 000A0D44  2C 1F 00 00 */ cmpwi r31, 0
 /* 800A3E08 000A0D48  41 82 00 0C */ beq lbl_800A3E14
 /* 800A3E0C 000A0D4C  7F 83 E3 78 */ mr r3, r28
-/* 800A3E10 000A0D50  4B F9 6E 0D */ bl dRes_info_c_NS_offWarpMaterial
+/* 800A3E10 000A0D50  4B F9 6E 0D */ bl offWarpMaterial__11dRes_info_cFP12J3DModelData
 lbl_800A3E14:
 /* 800A3E14 000A0D54  7F C3 F3 78 */ mr r3, r30
 /* 800A3E18 000A0D58  39 61 00 20 */ addi r11, r1, 0x20

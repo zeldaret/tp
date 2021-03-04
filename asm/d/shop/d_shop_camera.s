@@ -8,7 +8,7 @@
 /* 80195CA4 00192BE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80195CA8 00192BE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80195CAC 00192BEC  7C 7F 1B 78 */	mr r31, r3
-/* 80195CB0 00192BF0  48 00 06 5D */	bl ShopCam_action_c_NS_Save
+/* 80195CB0 00192BF0  48 00 06 5D */	bl Save__16ShopCam_action_cFv
 /* 80195CB4 00192BF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80195CB8 00192BF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80195CBC 00192BFC  80 63 5D AC */	lwz r3, 0x5dac(r3)
@@ -446,8 +446,8 @@ lbl_80196298:
 /* 80196304 00193244  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80196308 00193248  4E 80 00 20 */	blr 
 
-.global ShopCam_action_c_NS_Save
-ShopCam_action_c_NS_Save:
+.global Save__16ShopCam_action_cFv
+Save__16ShopCam_action_cFv:
 /* 8019630C 0019324C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80196310 00193250  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80196314 00193254  80 84 5D 74 */	lwz r4, 0x5d74(r4)
@@ -593,8 +593,8 @@ lbl_80196530:
 /* 8019653C 0019347C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80196540 00193480  4E 80 00 20 */	blr 
 
-.global ShopCam_action_c_NS_setCamDataIdx
-ShopCam_action_c_NS_setCamDataIdx:
+.global setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
+setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz:
 /* 80196544 00193484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80196548 00193488  7C 08 02 A6 */	mflr r0
 /* 8019654C 0019348C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -640,14 +640,14 @@ lbl_8019657C:
 /* 801965E8 00193528  D0 03 00 74 */	stfs f0, 0x74(r3)
 /* 801965EC 0019352C  C0 09 00 08 */	lfs f0, 8(r9)
 /* 801965F0 00193530  D0 03 00 78 */	stfs f0, 0x78(r3)
-/* 801965F4 00193534  48 00 00 E1 */	bl ShopCam_action_c_NS__debugSetCamera
+/* 801965F4 00193534  48 00 00 E1 */	bl _debugSetCamera__16ShopCam_action_cFv
 /* 801965F8 00193538  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801965FC 0019353C  7C 08 03 A6 */	mtlr r0
 /* 80196600 00193540  38 21 00 10 */	addi r1, r1, 0x10
 /* 80196604 00193544  4E 80 00 20 */	blr 
 
-.global ShopCam_action_c_NS_setCamDataIdx2
-ShopCam_action_c_NS_setCamDataIdx2:
+.global setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz2
+setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz2:
 /* 80196608 00193548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019660C 0019354C  7C 08 02 A6 */	mflr r0
 /* 80196610 00193550  90 01 00 14 */	stw r0, 0x14(r1)
@@ -695,14 +695,14 @@ lbl_80196648:
 /* 801966B4 001935F4  D0 03 00 74 */	stfs f0, 0x74(r3)
 /* 801966B8 001935F8  C0 0B 00 08 */	lfs f0, 8(r11)
 /* 801966BC 001935FC  D0 03 00 78 */	stfs f0, 0x78(r3)
-/* 801966C0 00193600  48 00 00 15 */	bl ShopCam_action_c_NS__debugSetCamera
+/* 801966C0 00193600  48 00 00 15 */	bl _debugSetCamera__16ShopCam_action_cFv
 /* 801966C4 00193604  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801966C8 00193608  7C 08 03 A6 */	mtlr r0
 /* 801966CC 0019360C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801966D0 00193610  4E 80 00 20 */	blr 
 
-.global ShopCam_action_c_NS__debugSetCamera
-ShopCam_action_c_NS__debugSetCamera:
+.global _debugSetCamera__16ShopCam_action_cFv
+_debugSetCamera__16ShopCam_action_cFv:
 /* 801966D4 00193614  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801966D8 00193618  7C 08 02 A6 */	mflr r0
 /* 801966DC 0019361C  90 01 00 54 */	stw r0, 0x54(r1)
@@ -830,8 +830,8 @@ lbl_801968A4:
 /* 801968B0 001937F0  38 21 00 50 */	addi r1, r1, 0x50
 /* 801968B4 001937F4  4E 80 00 20 */	blr 
 
-.global ShopCam_action_c_NS_setMasterCamCtrPos
-ShopCam_action_c_NS_setMasterCamCtrPos:
+.global setMasterCamCtrPos__16ShopCam_action_cFP4cXyz
+setMasterCamCtrPos__16ShopCam_action_cFP4cXyz:
 /* 801968B8 001937F8  28 04 00 00 */	cmplwi r4, 0
 /* 801968BC 001937FC  40 82 00 24 */	bne lbl_801968E0
 /* 801968C0 00193800  80 83 00 18 */	lwz r4, 0x18(r3)

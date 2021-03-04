@@ -34,7 +34,7 @@ lbl_8012D21C:
 /* 8012D220 0012A160  2C 00 00 00 */ cmpwi r0, 0
 /* 8012D224 0012A164  41 82 00 14 */ beq lbl_8012D238
 /* 8012D228 0012A168  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8012D22C 0012A16C  48 03 12 A1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012D22C 0012A16C  48 03 12 A1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012D230 0012A170  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012D234 0012A174  40 82 00 1C */ bne lbl_8012D250
 lbl_8012D238:

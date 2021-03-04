@@ -13,7 +13,7 @@
 /* 8011EAA8 0011B9E8  C0 03 37 D0 */ lfs f0, 0x37d0(r3)
 /* 8011EAAC 0011B9EC  D0 03 04 D8 */ stfs f0, 0x4d8(r3)
 /* 8011EAB0 0011B9F0  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011EAB4 0011B9F4  48 03 FA 19 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011EAB4 0011B9F4  48 03 FA 19 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011EAB8 0011B9F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011EABC 0011B9FC  41 82 00 14 */ beq lbl_8011EAD0
 /* 8011EAC0 0011BA00  7F E3 FB 78 */ mr r3, r31

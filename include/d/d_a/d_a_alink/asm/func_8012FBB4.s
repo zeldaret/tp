@@ -8,7 +8,7 @@
 /* 8012FBD0 0012CB10  38 00 00 05 */ li r0, 5
 /* 8012FBD4 0012CB14  98 03 2F 99 */ stb r0, 0x2f99(r3)
 /* 8012FBD8 0012CB18  7F E3 FB 78 */ mr r3, r31
-/* 8012FBDC 0012CB1C  48 02 E8 F1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012FBDC 0012CB1C  48 02 E8 F1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012FBE0 0012CB20  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012FBE4 0012CB24  41 82 00 14 */ beq lbl_8012FBF8
 /* 8012FBE8 0012CB28  7F C3 F3 78 */ mr r3, r30

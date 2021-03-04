@@ -57,7 +57,7 @@ lbl_8012A2D4:
 /* 8012A2F8 00127238  38 FE 31 66 */ addi r7, r30, 0x3166
 /* 8012A2FC 0012723C  39 00 00 00 */ li r8, 0
 /* 8012A300 00127240  39 20 00 00 */ li r9, 0
-/* 8012A304 00127244  4B F2 1F 15 */ bl dPa_control_c_NS_setHitMark
+/* 8012A304 00127244  4B F2 1F 15 */ bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 lbl_8012A308:
 /* 8012A308 00127248  7F C3 F3 78 */ mr r3, r30
 /* 8012A30C 0012724C  48 01 25 BD */ bl daAlink_c_NS_procWolfAttackReverseInit

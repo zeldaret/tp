@@ -12,7 +12,7 @@
 /* 800F7430 000F4370  38 A0 00 00 */ li r5, 0
 /* 800F7434 000F4374  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800F7438 000F4378  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800F743C 000F437C  4B F4 BD 31 */ bl dEvt_control_c_NS_compulsory
+/* 800F743C 000F437C  4B F4 BD 31 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800F7440 000F4380  2C 03 00 00 */ cmpwi r3, 0
 /* 800F7444 000F4384  40 82 00 0C */ bne lbl_800F7450
 /* 800F7448 000F4388  38 60 00 00 */ li r3, 0
@@ -74,7 +74,7 @@ lbl_800F7500:
 /* 800F751C 000F445C  39 1F 31 9C */ addi r8, r31, 0x319c
 /* 800F7520 000F4460  39 20 00 00 */ li r9, 0
 /* 800F7524 000F4464  4C C6 31 82 */ crclr 6
-/* 800F7528 000F4468  4B F9 15 55 */ bl dCamera_c_NS_StartEventCamera
+/* 800F7528 000F4468  4B F9 15 55 */ bl StartEventCamera__9dCamera_cFiie
 /* 800F752C 000F446C  38 00 00 00 */ li r0, 0
 /* 800F7530 000F4470  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 800F7534 000F4474  38 60 00 01 */ li r3, 1

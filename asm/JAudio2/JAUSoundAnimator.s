@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a6f70
 
 
-.global JAUSoundAnimation_NS_getStartSoundIndex
-JAUSoundAnimation_NS_getStartSoundIndex:
+.global getStartSoundIndex__17JAUSoundAnimationCFf
+getStartSoundIndex__17JAUSoundAnimationCFf:
 /* 802A6F70 002A3EB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802A6F74 002A3EB4  7C 08 02 A6 */	mflr r0
 /* 802A6F78 002A3EB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -66,8 +66,8 @@ lbl_802A7020:
 /* 802A703C 002A3F7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802A7040 002A3F80  4E 80 00 20 */	blr 
 
-.global JAUSoundAnimation_NS_getEndSoundIndex
-JAUSoundAnimation_NS_getEndSoundIndex:
+.global getEndSoundIndex__17JAUSoundAnimationCFf
+getEndSoundIndex__17JAUSoundAnimationCFf:
 /* 802A7044 002A3F84  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802A7048 002A3F88  7C 08 02 A6 */	mflr r0
 /* 802A704C 002A3F8C  90 01 00 34 */	stw r0, 0x34(r1)

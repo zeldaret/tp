@@ -15,7 +15,7 @@
 /* 8002F764 0002C6A4  4B FF D4 79 */ bl getTimerPtr__14dComIfG_play_cFv
 /* 8002F768 0002C6A8  28 03 00 00 */ cmplwi r3, 0
 /* 8002F76C 0002C6AC  41 82 00 0C */ beq lbl_8002F778
-/* 8002F770 0002C6B0  48 22 DD B5 */ bl dTimer_c_NS_deleteCheck
+/* 8002F770 0002C6B0  48 22 DD B5 */ bl deleteCheck__8dTimer_cFv
 /* 8002F774 0002C6B4  48 00 00 10 */ b lbl_8002F784
 lbl_8002F778:
 /* 8002F778 0002C6B8  38 60 00 00 */ li r3, 0

@@ -52,7 +52,7 @@ lbl_8013B8C8:
 /* 8013B8D0 00138810  48 00 00 78 */ b lbl_8013B948
 lbl_8013B8D4:
 /* 8013B8D4 00138814  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 8013B8D8 00138818  48 02 2B F5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013B8D8 00138818  48 02 2B F5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013B8DC 0013881C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013B8E0 00138820  41 82 00 3C */ beq lbl_8013B91C
 /* 8013B8E4 00138824  7F C3 F3 78 */ mr r3, r30

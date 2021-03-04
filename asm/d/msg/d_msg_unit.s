@@ -9,8 +9,8 @@ dMsgUnit_c:
 /* 80238C98 00235BD8  38 04 0B F0 */	addi r0, r4, lbl_803C0BF0@l
 /* 80238C9C 00235BDC  90 03 00 00 */	stw r0, 0(r3)
 /* 80238CA0 00235BE0  4E 80 00 20 */	blr 
-.global dMsgUnit_c_NS_dtor
-dMsgUnit_c_NS_dtor:
+.global __dt__10dMsgUnit_cFv
+__dt__10dMsgUnit_cFv:
 /* 80238CA4 00235BE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238CA8 00235BE8  7C 08 02 A6 */	mflr r0
 /* 80238CAC 00235BEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -31,8 +31,8 @@ lbl_80238CD4:
 /* 80238CE4 00235C24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238CE8 00235C28  4E 80 00 20 */	blr 
 
-.global dMsgUnit_c_NS_setTag
-dMsgUnit_c_NS_setTag:
+.global setTag__10dMsgUnit_cFiiPcb
+setTag__10dMsgUnit_cFiiPcb:
 /* 80238CEC 00235C2C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80238CF0 00235C30  7C 08 02 A6 */	mflr r0
 /* 80238CF4 00235C34  90 01 00 74 */	stw r0, 0x74(r1)
@@ -254,7 +254,7 @@ lbl_80238FF4:
 /* 80239010 00235F50  38 A0 00 00 */	li r5, 0
 /* 80239014 00235F54  38 C1 00 1C */	addi r6, r1, 0x1c
 /* 80239018 00235F58  38 E0 00 00 */	li r7, 0
-/* 8023901C 00235F5C  4B FF FC D1 */	bl dMsgUnit_c_NS_setTag
+/* 8023901C 00235F5C  4B FF FC D1 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80239020 00235F60  7F C3 F3 78 */	mr r3, r30
 /* 80239024 00235F64  38 81 00 1C */	addi r4, r1, 0x1c
 /* 80239028 00235F68  48 12 FA 95 */	bl strcat
@@ -269,7 +269,7 @@ lbl_8023902C:
 /* 80239048 00235F88  7F A5 EB 78 */	mr r5, r29
 /* 8023904C 00235F8C  38 C1 00 08 */	addi r6, r1, 8
 /* 80239050 00235F90  38 E0 00 00 */	li r7, 0
-/* 80239054 00235F94  4B FF FC 99 */	bl dMsgUnit_c_NS_setTag
+/* 80239054 00235F94  4B FF FC 99 */	bl setTag__10dMsgUnit_cFiiPcb
 /* 80239058 00235F98  7F C3 F3 78 */	mr r3, r30
 /* 8023905C 00235F9C  38 81 00 08 */	addi r4, r1, 8
 /* 80239060 00235FA0  48 12 FA 5D */	bl strcat
@@ -285,10 +285,10 @@ lbl_80239064:
 /* 80239084 00235FC4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80239088 00235FC8  38 6D 8B 50 */	addi r3, r13, lbl_804510D0-_SDA_BASE_
 /* 8023908C 00235FCC  4B FF FC 09 */	bl dMsgUnit_c
-.global dMsgUnit_c_NS_dtor
-/* 80239090 00235FD0  3C 80 80 24 */	lis r4, dMsgUnit_c_NS_dtor@ha
-.global dMsgUnit_c_NS_dtor
-/* 80239094 00235FD4  38 84 8C A4 */	addi r4, r4, dMsgUnit_c_NS_dtor@l
+.global __dt__10dMsgUnit_cFv
+/* 80239090 00235FD0  3C 80 80 24 */	lis r4, __dt__10dMsgUnit_cFv@ha
+.global __dt__10dMsgUnit_cFv
+/* 80239094 00235FD4  38 84 8C A4 */	addi r4, r4, __dt__10dMsgUnit_cFv@l
 /* 80239098 00235FD8  3C A0 80 43 */	lis r5, lbl_804306B8@ha
 /* 8023909C 00235FDC  38 A5 06 B8 */	addi r5, r5, lbl_804306B8@l
 /* 802390A0 00235FE0  48 12 8B 85 */	bl func_80361C24

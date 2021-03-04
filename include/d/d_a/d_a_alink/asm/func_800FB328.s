@@ -34,7 +34,7 @@ lbl_800FB3A4:
 /* 800FB3A8 000F82E8  48 00 00 7C */ b lbl_800FB424
 lbl_800FB3AC:
 /* 800FB3AC 000F82EC  7F E3 FB 78 */ mr r3, r31
-/* 800FB3B0 000F82F0  48 06 31 1D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FB3B0 000F82F0  48 06 31 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FB3B4 000F82F4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FB3B8 000F82F8  40 82 00 1C */ bne lbl_800FB3D4
 /* 800FB3BC 000F82FC  C0 3F 00 10 */ lfs f1, 0x10(r31)

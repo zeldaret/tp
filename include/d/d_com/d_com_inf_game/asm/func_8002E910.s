@@ -19,7 +19,7 @@ lbl_8002E944:
 /* 8002E954 0002B894  7D 25 4B 78 */ mr r5, r9
 /* 8002E958 0002B898  7C 06 03 78 */ mr r6, r0
 /* 8002E95C 0002B89C  EC 43 20 28 */ fsubs f2, f3, f4
-/* 8002E960 0002B8A0  48 02 73 15 */ bl dDlst_shadowControl_c_NS_setReal
+/* 8002E960 0002B8A0  48 02 73 15 */ bl setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c
 lbl_8002E964:
 /* 8002E964 0002B8A4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002E968 0002B8A8  7C 08 03 A6 */ mtlr r0

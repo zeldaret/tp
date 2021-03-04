@@ -153,7 +153,7 @@ lbl_80106950:
 /* 801069A8 001038E8  D0 1F 34 DC */ stfs f0, 0x34dc(r31)
 /* 801069AC 001038EC  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 801069B0 001038F0  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 801069B4 001038F4  48 05 83 05 */ bl daPy_actorKeep_c_NS_setData
+/* 801069B4 001038F4  48 05 83 05 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 801069B8 001038F8  38 60 00 01 */ li r3, 1
 /* 801069BC 001038FC  83 E1 00 3C */ lwz r31, 0x3c(r1)
 /* 801069C0 00103900  80 01 00 44 */ lwz r0, 0x44(r1)

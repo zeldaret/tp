@@ -27,7 +27,7 @@
 /* 801600E4 0015D024  38 80 00 64 */ li r4, 0x64
 /* 801600E8 0015D028  38 A0 00 64 */ li r5, 0x64
 /* 801600EC 0015D02C  38 C0 00 64 */ li r6, 0x64
-/* 801600F0 0015D030  4B EF 3B ED */ bl cM_rnd_c_NS_init
+/* 801600F0 0015D030  4B EF 3B ED */ bl init__8cM_rnd_cFiii
 /* 801600F4 0015D034  3B 5E 02 D0 */ addi r26, r30, 0x2d0
 /* 801600F8 0015D038  7F 43 D3 78 */ mr r3, r26
 /* 801600FC 0015D03C  4B F1 74 81 */ bl dBgS_GndChk
@@ -59,7 +59,7 @@
 /* 80160164 0015D0A4  38 7E 05 D8 */ addi r3, r30, 0x5d8
 /* 80160168 0015D0A8  38 80 00 00 */ li r4, 0
 /* 8016016C 0015D0AC  38 A0 00 00 */ li r5, 0
-/* 80160170 0015D0B0  4B F3 77 09 */ bl d2DBSplinePath_NS_Init
+/* 80160170 0015D0B0  4B F3 77 09 */ bl Init__14d2DBSplinePathFll
 /* 80160174 0015D0B4  38 7E 06 14 */ addi r3, r30, 0x614
 /*.global dCamera_c_NS__class_3665d_camera_cpp*/
 /* 80160178 0015D0B8  3C 80 80 16 */ lis r4, dCamera_c_NS__class_3665d_camera_cpp@ha

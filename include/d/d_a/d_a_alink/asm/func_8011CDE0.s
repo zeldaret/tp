@@ -89,7 +89,7 @@ lbl_8011CF08:
 /* 8011CF24 00119E64  39 1F 31 94 */ addi r8, r31, 0x3194
 /* 8011CF28 00119E68  39 20 00 00 */ li r9, 0
 /* 8011CF2C 00119E6C  4C C6 31 82 */ crclr 6
-/* 8011CF30 00119E70  4B F6 BB 4D */ bl dCamera_c_NS_StartEventCamera
+/* 8011CF30 00119E70  4B F6 BB 4D */ bl StartEventCamera__9dCamera_cFiie
 /* 8011CF34 00119E74  38 00 00 3C */ li r0, 0x3c
 /* 8011CF38 00119E78  B0 1F 30 08 */ sth r0, 0x3008(r31)
 /* 8011CF3C 00119E7C  38 00 00 00 */ li r0, 0

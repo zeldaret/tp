@@ -28,8 +28,8 @@ J3DJointFactory:
 /* 803371C8 00334108  38 21 00 10 */	addi r1, r1, 0x10
 /* 803371CC 0033410C  4E 80 00 20 */	blr 
 
-.global J3DJointFactory_NS_create
-J3DJointFactory_NS_create:
+.global create__15J3DJointFactoryFi
+create__15J3DJointFactoryFi:
 /* 803371D0 00334110  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803371D4 00334114  7C 08 02 A6 */	mflr r0
 /* 803371D8 00334118  90 01 00 14 */	stw r0, 0x14(r1)

@@ -23,7 +23,7 @@ lbl_8001FAB0:
 /* 8001FAC0 0001CA00  28 00 00 00 */ cmplwi r0, 0
 /* 8001FAC4 0001CA04  41 82 00 0C */ beq lbl_8001FAD0
 /* 8001FAC8 0001CA08  7F 43 D3 78 */ mr r3, r26
-/* 8001FACC 0001CA0C  48 21 87 A1 */ bl dMsgObject_c_NS_setTalkActor
+/* 8001FACC 0001CA0C  48 21 87 A1 */ bl setTalkActor__12dMsgObject_cFP10fopAc_ac_c
 lbl_8001FAD0:
 /* 8001FAD0 0001CA10  28 1C 00 00 */ cmplwi r28, 0
 /* 8001FAD4 0001CA14  41 82 00 0C */ beq lbl_8001FAE0

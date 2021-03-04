@@ -3,8 +3,8 @@
 
 // Additional symbols needed for JAISoundStatus
 extern "C" {
-void JAISoundStatus__NS_lockWhenPrepared(void);
-void JAISoundStatus__NS_unlockIfLocked(void);
+void lockWhenPrepared__15JAISoundStatus_Fv(void);
+void unlockIfLocked__15JAISoundStatus_Fv(void);
 }
 
 #endif  // JAISOUNDSTATUS_H_

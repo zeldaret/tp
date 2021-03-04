@@ -2,7 +2,7 @@
 /* 8021B0CC 0021800C  7C 08 02 A6 */ mflr r0
 /* 8021B0D0 00218010  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8021B0D4 00218014  80 63 02 F8 */ lwz r3, 0x2f8(r3)
-/* 8021B0D8 00218018  48 03 A7 51 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8021B0D8 00218018  48 03 A7 51 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 8021B0DC 0021801C  C0 02 AE 80 */ lfs f0, lbl_80454880-_SDA2_BASE_(r2)
 /* 8021B0E0 00218020  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 8021B0E4 00218024  7C 00 00 26 */ mfcr r0

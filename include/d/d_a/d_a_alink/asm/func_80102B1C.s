@@ -188,7 +188,7 @@ lbl_80102D84:
 /* 80102DC0 000FFD00  38 80 00 02 */ li r4, 2
 /* 80102DC4 000FFD04  38 A0 00 01 */ li r5, 1
 /* 80102DC8 000FFD08  38 C1 00 08 */ addi r6, r1, 8
-/* 80102DCC 000FFD0C  4B F6 CC 59 */ bl dVibration_c_NS_StartShock
+/* 80102DCC 000FFD0C  4B F6 CC 59 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80102DD0 000FFD10  EC 1C F8 2A */ fadds f0, f28, f31
 /* 80102DD4 000FFD14  D0 1E 04 D4 */ stfs f0, 0x4d4(r30)
 /* 80102DD8 000FFD18  C0 22 94 AC */ lfs f1, lbl_80452EAC-_SDA2_BASE_(r2)

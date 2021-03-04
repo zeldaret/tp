@@ -69,7 +69,7 @@ lbl_800E997C:
 /* 800E999C 000E68DC  38 A0 00 00 */ li r5, 0
 /* 800E99A0 000E68E0  3C C0 00 01 */ lis r6, 0x0000FFEF@ha
 /* 800E99A4 000E68E4  38 C6 FF EF */ addi r6, r6, 0x0000FFEF@l
-/* 800E99A8 000E68E8  4B F5 97 C5 */ bl dEvt_control_c_NS_compulsory
+/* 800E99A8 000E68E8  4B F5 97 C5 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800E99AC 000E68EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800E99B0 000E68F0  40 82 00 0C */ bne lbl_800E99BC
 /* 800E99B4 000E68F4  38 60 00 00 */ li r3, 0
@@ -86,7 +86,7 @@ lbl_800E99D0:
 /* 800E99D8 000E6918  4B FD 85 95 */ bl daAlink_c_NS_commonProcInit
 /* 800E99DC 000E691C  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 800E99E0 000E6920  7F E4 FB 78 */ mr r4, r31
-/* 800E99E4 000E6924  48 07 52 D5 */ bl daPy_actorKeep_c_NS_setData
+/* 800E99E4 000E6924  48 07 52 D5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800E99E8 000E6928  38 00 00 00 */ li r0, 0
 /* 800E99EC 000E692C  B0 1E 30 10 */ sth r0, 0x3010(r30)
 /* 800E99F0 000E6930  88 1E 05 6A */ lbz r0, 0x56a(r30)

@@ -4,7 +4,7 @@
 /* 800D08BC 000CD7FC  38 00 00 2B */ li r0, 0x2b
 /* 800D08C0 000CD800  98 03 05 6A */ stb r0, 0x56a(r3)
 /* 800D08C4 000CD804  38 63 28 54 */ addi r3, r3, 0x2854
-/* 800D08C8 000CD808  48 08 E3 F1 */ bl daPy_actorKeep_c_NS_setData
+/* 800D08C8 000CD808  48 08 E3 F1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800D08CC 000CD80C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800D08D0 000CD810  7C 08 03 A6 */ mtlr r0
 /* 800D08D4 000CD814  38 21 00 10 */ addi r1, r1, 0x10

@@ -82,7 +82,7 @@ lbl_80121124:
 /* 80121130 0011E070  38 C1 00 10 */ addi r6, r1, 0x10
 /* 80121134 0011E074  38 E1 00 08 */ addi r7, r1, 8
 /* 80121138 0011E078  39 01 00 0C */ addi r8, r1, 0xc
-/* 8012113C 0011E07C  4B F2 BE 55 */ bl dPa_control_c_NS_getPolyColor
+/* 8012113C 0011E07C  4B F2 BE 55 */ bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 80121140 0011E080  88 61 00 08 */ lbz r3, 8(r1)
 /* 80121144 0011E084  88 1B 00 BB */ lbz r0, 0xbb(r27)
 /* 80121148 0011E088  7C 03 00 40 */ cmplw r3, r0

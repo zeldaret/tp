@@ -40,7 +40,7 @@ lbl_80104270:
 /* 8010427C 001011BC  48 00 00 60 */ b lbl_801042DC
 lbl_80104280:
 /* 80104280 001011C0  7F E3 FB 78 */ mr r3, r31
-/* 80104284 001011C4  48 05 A2 49 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80104284 001011C4  48 05 A2 49 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80104288 001011C8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010428C 001011CC  41 82 00 14 */ beq lbl_801042A0
 /* 80104290 001011D0  7F C3 F3 78 */ mr r3, r30

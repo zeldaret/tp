@@ -3,8 +3,8 @@
 .section .text, "ax" # 803157a0
 
 
-.global J3DMaterial_NS_createColorBlock
-J3DMaterial_NS_createColorBlock:
+.global createColorBlock__11J3DMaterialFUl
+createColorBlock__11J3DMaterialFUl:
 /* 803157A0 003126E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803157A4 003126E4  7C 08 02 A6 */	mflr r0
 /* 803157A8 003126E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -54,7 +54,7 @@ lbl_803157E8:
 /* 80315840 00312780  38 E0 00 04 */	li r7, 4
 /* 80315844 00312784  48 04 C5 1D */	bl func_80361D60
 /* 80315848 00312788  7F E3 FB 78 */	mr r3, r31
-/* 8031584C 0031278C  48 00 1C 31 */	bl J3DColorBlockLightOff_NS_initialize
+/* 8031584C 0031278C  48 00 1C 31 */	bl initialize__21J3DColorBlockLightOffFv
 lbl_80315850:
 /* 80315850 00312790  7F E5 FB 78 */	mr r5, r31
 /* 80315854 00312794  48 00 01 30 */	b lbl_80315984
@@ -97,7 +97,7 @@ lbl_80315858:
 /* 803158CC 0031280C  38 E0 00 04 */	li r7, 4
 /* 803158D0 00312810  48 04 C4 91 */	bl func_80361D60
 /* 803158D4 00312814  7F E3 FB 78 */	mr r3, r31
-/* 803158D8 00312818  48 00 1C A9 */	bl J3DColorBlockLightOn_NS_initialize
+/* 803158D8 00312818  48 00 1C A9 */	bl initialize__20J3DColorBlockLightOnFv
 lbl_803158DC:
 /* 803158DC 0031281C  7F E5 FB 78 */	mr r5, r31
 /* 803158E0 00312820  48 00 00 A4 */	b lbl_80315984
@@ -132,7 +132,7 @@ lbl_803158E4:
 /* 80315940 00312880  38 E0 00 04 */	li r7, 4
 /* 80315944 00312884  48 04 C4 1D */	bl func_80361D60
 /* 80315948 00312888  7F E3 FB 78 */	mr r3, r31
-/* 8031594C 0031288C  48 00 1B 31 */	bl J3DColorBlockLightOff_NS_initialize
+/* 8031594C 0031288C  48 00 1B 31 */	bl initialize__21J3DColorBlockLightOffFv
 /* 80315950 00312890  3C 60 80 3D */	lis r3, lbl_803CE708@ha
 /* 80315954 00312894  38 03 E7 08 */	addi r0, r3, lbl_803CE708@l
 /* 80315958 00312898  90 1E 00 00 */	stw r0, 0(r30)
@@ -146,7 +146,7 @@ lbl_803158E4:
 /* 80315970 003128B0  38 E0 00 02 */	li r7, 2
 /* 80315974 003128B4  48 04 C3 ED */	bl func_80361D60
 /* 80315978 003128B8  7F C3 F3 78 */	mr r3, r30
-/* 8031597C 003128BC  48 00 1B 61 */	bl J3DColorBlockAmbientOn_NS_initialize
+/* 8031597C 003128BC  48 00 1B 61 */	bl initialize__22J3DColorBlockAmbientOnFv
 lbl_80315980:
 /* 80315980 003128C0  7F E5 FB 78 */	mr r5, r31
 lbl_80315984:
@@ -158,8 +158,8 @@ lbl_80315984:
 /* 80315998 003128D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8031599C 003128DC  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_createTexGenBlock
-J3DMaterial_NS_createTexGenBlock:
+.global createTexGenBlock__11J3DMaterialFUl
+createTexGenBlock__11J3DMaterialFUl:
 /* 803159A0 003128E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803159A4 003128E4  7C 08 02 A6 */	mflr r0
 /* 803159A8 003128E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -194,7 +194,7 @@ lbl_803159D0:
 /* 80315A10 00312950  38 E0 00 08 */	li r7, 8
 /* 80315A14 00312954  48 04 C3 4D */	bl func_80361D60
 /* 80315A18 00312958  7F E3 FB 78 */	mr r3, r31
-/* 80315A1C 0031295C  48 00 1C 29 */	bl J3DTexGenBlockPatched_NS_initialize
+/* 80315A1C 0031295C  48 00 1C 29 */	bl initialize__21J3DTexGenBlockPatchedFv
 /* 80315A20 00312960  3C 60 80 3D */	lis r3, lbl_803CE5A0@ha
 /* 80315A24 00312964  38 03 E5 A0 */	addi r0, r3, lbl_803CE5A0@l
 /* 80315A28 00312968  90 1E 00 00 */	stw r0, 0(r30)
@@ -208,7 +208,7 @@ lbl_803159D0:
 /* 80315A48 00312988  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80315A4C 0031298C  D0 1E 00 68 */	stfs f0, 0x68(r30)
 /* 80315A50 00312990  7F C3 F3 78 */	mr r3, r30
-/* 80315A54 00312994  48 00 1C 21 */	bl J3DTexGenBlock4_NS_initialize
+/* 80315A54 00312994  48 00 1C 21 */	bl initialize__15J3DTexGenBlock4Fv
 lbl_80315A58:
 /* 80315A58 00312998  7F E3 FB 78 */	mr r3, r31
 /* 80315A5C 0031299C  48 00 00 90 */	b lbl_80315AEC
@@ -234,7 +234,7 @@ lbl_80315A60:
 /* 80315AA0 003129E0  38 E0 00 08 */	li r7, 8
 /* 80315AA4 003129E4  48 04 C2 BD */	bl func_80361D60
 /* 80315AA8 003129E8  7F C3 F3 78 */	mr r3, r30
-/* 80315AAC 003129EC  48 00 1B 99 */	bl J3DTexGenBlockPatched_NS_initialize
+/* 80315AAC 003129EC  48 00 1B 99 */	bl initialize__21J3DTexGenBlockPatchedFv
 /* 80315AB0 003129F0  3C 60 80 3D */	lis r3, lbl_803CE534@ha
 /* 80315AB4 003129F4  38 03 E5 34 */	addi r0, r3, lbl_803CE534@l
 /* 80315AB8 003129F8  90 1F 00 00 */	stw r0, 0(r31)
@@ -248,7 +248,7 @@ lbl_80315A60:
 /* 80315AD8 00312A18  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80315ADC 00312A1C  D0 1F 00 68 */	stfs f0, 0x68(r31)
 /* 80315AE0 00312A20  7F E3 FB 78 */	mr r3, r31
-/* 80315AE4 00312A24  48 00 1B C1 */	bl J3DTexGenBlockBasic_NS_initialize
+/* 80315AE4 00312A24  48 00 1B C1 */	bl initialize__19J3DTexGenBlockBasicFv
 lbl_80315AE8:
 /* 80315AE8 00312A28  7F E3 FB 78 */	mr r3, r31
 lbl_80315AEC:
@@ -259,8 +259,8 @@ lbl_80315AEC:
 /* 80315AFC 00312A3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80315B00 00312A40  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_createTevBlock
-J3DMaterial_NS_createTevBlock:
+.global createTevBlock__11J3DMaterialFi
+createTevBlock__11J3DMaterialFi:
 /* 80315B04 00312A44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80315B08 00312A48  7C 08 02 A6 */	mflr r0
 /* 80315B0C 00312A4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -304,7 +304,7 @@ J3DMaterial_NS_createTevBlock:
 /* 80315B94 00312AD4  38 E0 00 01 */	li r7, 1
 /* 80315B98 00312AD8  48 04 C1 C9 */	bl func_80361D60
 /* 80315B9C 00312ADC  7F E3 FB 78 */	mr r3, r31
-/* 80315BA0 00312AE0  48 00 1C 49 */	bl J3DTevBlock1_NS_initialize
+/* 80315BA0 00312AE0  48 00 1C 49 */	bl initialize__12J3DTevBlock1Fv
 lbl_80315BA4:
 /* 80315BA4 00312AE4  7F E0 FB 78 */	mr r0, r31
 /* 80315BA8 00312AE8  48 00 02 B8 */	b lbl_80315E60
@@ -374,7 +374,7 @@ lbl_80315BAC:
 /* 80315C7C 00312BBC  38 E0 00 02 */	li r7, 2
 /* 80315C80 00312BC0  48 04 C0 E1 */	bl func_80361D60
 /* 80315C84 00312BC4  7F E3 FB 78 */	mr r3, r31
-/* 80315C88 00312BC8  48 00 1B 89 */	bl J3DTevBlock2_NS_initialize
+/* 80315C88 00312BC8  48 00 1B 89 */	bl initialize__12J3DTevBlock2Fv
 lbl_80315C8C:
 /* 80315C8C 00312BCC  7F E0 FB 78 */	mr r0, r31
 /* 80315C90 00312BD0  48 00 01 D0 */	b lbl_80315E60
@@ -444,7 +444,7 @@ lbl_80315C94:
 /* 80315D64 00312CA4  38 E0 00 04 */	li r7, 4
 /* 80315D68 00312CA8  48 04 BF F9 */	bl func_80361D60
 /* 80315D6C 00312CAC  7F E3 FB 78 */	mr r3, r31
-/* 80315D70 00312CB0  48 00 1B 7D */	bl J3DTevBlock4_NS_initialize
+/* 80315D70 00312CB0  48 00 1B 7D */	bl initialize__12J3DTevBlock4Fv
 lbl_80315D74:
 /* 80315D74 00312CB4  7F E0 FB 78 */	mr r0, r31
 /* 80315D78 00312CB8  48 00 00 E8 */	b lbl_80315E60
@@ -514,7 +514,7 @@ lbl_80315D7C:
 /* 80315E4C 00312D8C  38 E0 00 10 */	li r7, 0x10
 /* 80315E50 00312D90  48 04 BF 11 */	bl func_80361D60
 /* 80315E54 00312D94  7F E3 FB 78 */	mr r3, r31
-/* 80315E58 00312D98  48 00 1B A9 */	bl J3DTevBlock16_NS_initialize
+/* 80315E58 00312D98  48 00 1B A9 */	bl initialize__13J3DTevBlock16Fv
 lbl_80315E5C:
 /* 80315E5C 00312D9C  7F E0 FB 78 */	mr r0, r31
 lbl_80315E60:
@@ -525,8 +525,8 @@ lbl_80315E60:
 /* 80315E70 00312DB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80315E74 00312DB4  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_createIndBlock
-J3DMaterial_NS_createIndBlock:
+.global createIndBlock__11J3DMaterialFi
+createIndBlock__11J3DMaterialFi:
 /* 80315E78 00312DB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80315E7C 00312DBC  7C 08 02 A6 */	mflr r0
 /* 80315E80 00312DC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -577,7 +577,7 @@ J3DMaterial_NS_createIndBlock:
 /* 80315F0C 00312E4C  38 E0 00 04 */	li r7, 4
 /* 80315F10 00312E50  48 04 BE 51 */	bl func_80361D60
 /* 80315F14 00312E54  7F E3 FB 78 */	mr r3, r31
-/* 80315F18 00312E58  48 00 1C 11 */	bl J3DIndBlockFull_NS_initialize
+/* 80315F18 00312E58  48 00 1C 11 */	bl initialize__15J3DIndBlockFullFv
 lbl_80315F1C:
 /* 80315F1C 00312E5C  7F E3 FB 78 */	mr r3, r31
 /* 80315F20 00312E60  48 00 00 2C */	b lbl_80315F4C
@@ -599,8 +599,8 @@ lbl_80315F4C:
 /* 80315F58 00312E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80315F5C 00312E9C  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_createPEBlock
-J3DMaterial_NS_createPEBlock:
+.global createPEBlock__11J3DMaterialFUlUl
+createPEBlock__11J3DMaterialFUlUl:
 /* 80315F60 00312EA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80315F64 00312EA4  7C 08 02 A6 */	mflr r0
 /* 80315F68 00312EA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -666,7 +666,7 @@ lbl_80316018:
 /* 8031604C 00312F8C  38 7F 00 04 */	addi r3, r31, 4
 /* 80316050 00312F90  3C 80 80 3A */	lis r4, lbl_803A1FBC@ha
 /* 80316054 00312F94  38 84 1F BC */	addi r4, r4, lbl_803A1FBC@l
-/* 80316058 00312F98  48 00 F7 A9 */	bl J3DFogInfo_NS___as
+/* 80316058 00312F98  48 00 F7 A9 */	bl __as__10J3DFogInfoFRC10J3DFogInfo
 /* 8031605C 00312F9C  A0 02 C9 FA */	lhz r0, lbl_804563FA-_SDA2_BASE_(r2)
 /* 80316060 00312FA0  B0 1F 00 30 */	sth r0, 0x30(r31)
 /* 80316064 00312FA4  38 00 00 00 */	li r0, 0
@@ -677,7 +677,7 @@ lbl_80316018:
 /* 80316078 00312FB8  A0 02 C9 FC */	lhz r0, lbl_804563FC-_SDA2_BASE_(r2)
 /* 8031607C 00312FBC  B0 1F 00 38 */	sth r0, 0x38(r31)
 /* 80316080 00312FC0  7F E3 FB 78 */	mr r3, r31
-/* 80316084 00312FC4  48 00 1A D5 */	bl J3DPEBlockFull_NS_initialize
+/* 80316084 00312FC4  48 00 1A D5 */	bl initialize__14J3DPEBlockFullFv
 /* 80316088 00312FC8  48 00 00 60 */	b lbl_803160E8
 lbl_8031608C:
 /* 8031608C 00312FCC  3C 03 E0 00 */	addis r0, r3, 0xe000
@@ -702,7 +702,7 @@ lbl_8031608C:
 /* 803160D8 00313018  90 1F 00 08 */	stw r0, 8(r31)
 /* 803160DC 0031301C  A0 02 C9 FC */	lhz r0, lbl_804563FC-_SDA2_BASE_(r2)
 /* 803160E0 00313020  B0 1F 00 0C */	sth r0, 0xc(r31)
-/* 803160E4 00313024  48 00 1A 51 */	bl J3DPEBlockFogOff_NS_initialize
+/* 803160E4 00313024  48 00 1A 51 */	bl initialize__16J3DPEBlockFogOffFv
 lbl_803160E8:
 /* 803160E8 00313028  7F E3 FB 78 */	mr r3, r31
 lbl_803160EC:
@@ -712,8 +712,8 @@ lbl_803160EC:
 /* 803160F8 00313038  38 21 00 10 */	addi r1, r1, 0x10
 /* 803160FC 0031303C  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcSizeColorBlock
-J3DMaterial_NS_calcSizeColorBlock:
+.global calcSizeColorBlock__11J3DMaterialFUl
+calcSizeColorBlock__11J3DMaterialFUl:
 /* 80316100 00313040  38 A0 00 00 */	li r5, 0
 /* 80316104 00313044  2C 03 00 00 */	cmpwi r3, 0
 /* 80316108 00313048  41 82 00 2C */	beq lbl_80316134
@@ -740,8 +740,8 @@ lbl_80316148:
 /* 80316148 00313088  7C A3 2B 78 */	mr r3, r5
 /* 8031614C 0031308C  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcSizeTexGenBlock
-J3DMaterial_NS_calcSizeTexGenBlock:
+.global calcSizeTexGenBlock__11J3DMaterialFUl
+calcSizeTexGenBlock__11J3DMaterialFUl:
 /* 80316150 00313090  3C 00 08 00 */	lis r0, 0x800
 /* 80316154 00313094  7C 03 00 00 */	cmpw r3, r0
 /* 80316158 00313098  41 82 00 14 */	beq lbl_8031616C
@@ -756,8 +756,8 @@ lbl_80316174:
 /* 80316174 003130B4  38 60 00 6C */	li r3, 0x6c
 /* 80316178 003130B8  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcSizeTevBlock
-J3DMaterial_NS_calcSizeTevBlock:
+.global calcSizeTevBlock__11J3DMaterialFi
+calcSizeTevBlock__11J3DMaterialFi:
 /* 8031617C 003130BC  38 00 00 00 */	li r0, 0
 /* 80316180 003130C0  2C 03 00 01 */	cmpwi r3, 1
 /* 80316184 003130C4  41 81 00 0C */	bgt lbl_80316190
@@ -781,16 +781,16 @@ lbl_803161BC:
 /* 803161BC 003130FC  7C 03 03 78 */	mr r3, r0
 /* 803161C0 00313100  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcSizeIndBlock
-J3DMaterial_NS_calcSizeIndBlock:
+.global calcSizeIndBlock__11J3DMaterialFi
+calcSizeIndBlock__11J3DMaterialFi:
 /* 803161C4 00313104  2C 03 00 00 */	cmpwi r3, 0
 /* 803161C8 00313108  38 60 00 04 */	li r3, 4
 /* 803161CC 0031310C  4D 82 00 20 */	beqlr 
 /* 803161D0 00313110  38 60 00 7C */	li r3, 0x7c
 /* 803161D4 00313114  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcSizePEBlock
-J3DMaterial_NS_calcSizePEBlock:
+.global calcSizePEBlock__11J3DMaterialFUlUl
+calcSizePEBlock__11J3DMaterialFUlUl:
 /* 803161D8 00313118  38 A0 00 00 */	li r5, 0
 /* 803161DC 0031311C  28 03 00 00 */	cmplwi r3, 0
 /* 803161E0 00313120  40 82 00 34 */	bne lbl_80316214
@@ -823,8 +823,8 @@ lbl_80316238:
 /* 80316238 00313178  7C A3 2B 78 */	mr r3, r5
 /* 8031623C 0031317C  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_initialize
-J3DMaterial_NS_initialize:
+.global initialize__11J3DMaterialFv
+initialize__11J3DMaterialFv:
 /* 80316240 00313180  38 A0 00 00 */	li r5, 0
 /* 80316244 00313184  90 A3 00 08 */	stw r5, 8(r3)
 /* 80316248 00313188  90 A3 00 04 */	stw r5, 4(r3)
@@ -846,8 +846,8 @@ J3DMaterial_NS_initialize:
 /* 80316288 003131C8  90 A3 00 48 */	stw r5, 0x48(r3)
 /* 8031628C 003131CC  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_countDLSize
-J3DMaterial_NS_countDLSize:
+.global countDLSize__11J3DMaterialFv
+countDLSize__11J3DMaterialFv:
 /* 80316290 003131D0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80316294 003131D4  7C 08 02 A6 */	mflr r0
 /* 80316298 003131D8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -894,8 +894,8 @@ J3DMaterial_NS_countDLSize:
 /* 8031633C 0031327C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80316340 00313280  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_makeDisplayList_private
-J3DMaterial_NS_makeDisplayList_private:
+.global makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj
+makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj:
 /* 80316344 00313284  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80316348 00313288  7C 08 02 A6 */	mflr r0
 /* 8031634C 0031328C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -904,7 +904,7 @@ J3DMaterial_NS_makeDisplayList_private:
 /* 80316358 00313298  7C 7E 1B 78 */	mr r30, r3
 /* 8031635C 0031329C  7C 9F 23 78 */	mr r31, r4
 /* 80316360 003132A0  7F E3 FB 78 */	mr r3, r31
-/* 80316364 003132A4  4B FF C2 E1 */	bl J3DDisplayListObj_NS_beginDL
+/* 80316364 003132A4  4B FF C2 E1 */	bl beginDL__17J3DDisplayListObjFv
 /* 80316368 003132A8  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8031636C 003132AC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80316370 003132B0  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -1072,7 +1072,7 @@ J3DMaterial_NS_makeDisplayList_private:
 /* 803165F8 00313538  90 05 00 08 */	stw r0, 8(r5)
 /* 803165FC 0031353C  98 64 00 00 */	stb r3, 0(r4)
 /* 80316600 00313540  7F E3 FB 78 */	mr r3, r31
-/* 80316604 00313544  4B FF C0 95 */	bl J3DDisplayListObj_NS_endDL
+/* 80316604 00313544  4B FF C0 95 */	bl endDL__17J3DDisplayListObjFv
 /* 80316608 00313548  39 61 00 20 */	addi r11, r1, 0x20
 /* 8031660C 0031354C  48 04 BC 11 */	bl _restgpr_26
 /* 80316610 00313550  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1092,7 +1092,7 @@ J3DMaterial_NS_makeDisplayList_private:
 /* 80316648 00313588  90 05 00 34 */	stw r0, 0x34(r5)
 /* 8031664C 0031358C  80 84 00 3C */	lwz r4, 0x3c(r4)
 /* 80316650 00313590  80 84 00 20 */	lwz r4, 0x20(r4)
-/* 80316654 00313594  4B FF FC F1 */	bl J3DMaterial_NS_makeDisplayList_private
+/* 80316654 00313594  4B FF FC F1 */	bl makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj
 lbl_80316658:
 /* 80316658 00313598  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8031665C 0031359C  7C 08 03 A6 */	mtlr r0
@@ -1102,7 +1102,7 @@ lbl_80316658:
 /* 8031666C 003135AC  7C 08 02 A6 */	mflr r0
 /* 80316670 003135B0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80316674 003135B4  80 83 00 48 */	lwz r4, 0x48(r3)
-/* 80316678 003135B8  4B FF FC CD */	bl J3DMaterial_NS_makeDisplayList_private
+/* 80316678 003135B8  4B FF FC CD */	bl makeDisplayList_private__11J3DMaterialFP17J3DDisplayListObj
 /* 8031667C 003135BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80316680 003135C0  7C 08 03 A6 */	mtlr r0
 /* 80316684 003135C4  38 21 00 10 */	addi r1, r1, 0x10
@@ -1141,7 +1141,7 @@ lbl_803166CC:
 /* 80316704 00313644  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80316708 00313648  40 82 00 24 */	bne lbl_8031672C
 /* 8031670C 0031364C  80 7F 00 48 */	lwz r3, 0x48(r31)
-/* 80316710 00313650  4B FF BF 09 */	bl J3DDisplayListObj_NS_callDL
+/* 80316710 00313650  4B FF BF 09 */	bl callDL__17J3DDisplayListObjCFv
 /* 80316714 00313654  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 80316718 00313658  81 83 00 00 */	lwz r12, 0(r3)
 /* 8031671C 0031365C  81 8C 00 5C */	lwz r12, 0x5c(r12)
@@ -1167,7 +1167,7 @@ lbl_8031672C:
 /* 80316768 003136A8  90 03 00 34 */	stw r0, 0x34(r3)
 /* 8031676C 003136AC  80 7F 00 3C */	lwz r3, 0x3c(r31)
 /* 80316770 003136B0  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 80316774 003136B4  4B FF BF 81 */	bl J3DDisplayListObj_NS_beginPatch
+/* 80316774 003136B4  4B FF BF 81 */	bl beginPatch__17J3DDisplayListObjFv
 /* 80316778 003136B8  80 7E 00 2C */	lwz r3, 0x2c(r30)
 /* 8031677C 003136BC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80316780 003136C0  81 8C 00 28 */	lwz r12, 0x28(r12)
@@ -1185,7 +1185,7 @@ lbl_8031672C:
 /* 803167B0 003136F0  4E 80 04 21 */	bctrl 
 /* 803167B4 003136F4  80 7F 00 3C */	lwz r3, 0x3c(r31)
 /* 803167B8 003136F8  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 803167BC 003136FC  4B FF BF 59 */	bl J3DDisplayListObj_NS_endPatch
+/* 803167BC 003136FC  4B FF BF 59 */	bl endPatch__17J3DDisplayListObjFv
 /* 803167C0 00313700  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 803167C4 00313704  83 C1 00 08 */	lwz r30, 8(r1)
 /* 803167C8 00313708  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1206,7 +1206,7 @@ lbl_8031672C:
 /* 80316804 00313744  80 04 00 20 */	lwz r0, 0x20(r4)
 /* 80316808 00313748  28 00 00 00 */	cmplwi r0, 0
 /* 8031680C 0031374C  41 82 01 B8 */	beq lbl_803169C4
-/* 80316810 00313750  4B FF C2 15 */	bl J3DMatPacket_NS_beginDiff
+/* 80316810 00313750  4B FF C2 15 */	bl beginDiff__12J3DMatPacketFv
 /* 80316814 00313754  80 7D 00 2C */	lwz r3, 0x2c(r29)
 /* 80316818 00313758  7F C4 F3 78 */	mr r4, r30
 /* 8031681C 0031375C  81 83 00 00 */	lwz r12, 0(r3)
@@ -1315,7 +1315,7 @@ lbl_8031698C:
 /* 803169B4 003138F4  7D 89 03 A6 */	mtctr r12
 /* 803169B8 003138F8  4E 80 04 21 */	bctrl 
 /* 803169BC 003138FC  80 7F 00 3C */	lwz r3, 0x3c(r31)
-/* 803169C0 00313900  4B FF C0 8D */	bl J3DMatPacket_NS_endDiff
+/* 803169C0 00313900  4B FF C0 8D */	bl endDiff__12J3DMatPacketFv
 lbl_803169C4:
 /* 803169C4 00313904  39 61 00 20 */	addi r11, r1, 0x20
 /* 803169C8 00313908  48 04 B8 59 */	bl _restgpr_27
@@ -1347,9 +1347,9 @@ lbl_80316A1C:
 /* 80316A2C 0031396C  4E 80 04 21 */	bctrl 
 lbl_80316A30:
 /* 80316A30 00313970  7F E3 FB 78 */	mr r3, r31
-/* 80316A34 00313974  48 00 00 95 */	bl J3DMaterial_NS_calcCurrentMtx
+/* 80316A34 00313974  48 00 00 95 */	bl calcCurrentMtx__11J3DMaterialFv
 /* 80316A38 00313978  7F E3 FB 78 */	mr r3, r31
-/* 80316A3C 0031397C  48 00 00 75 */	bl J3DMaterial_NS_setCurrentMtx
+/* 80316A3C 0031397C  48 00 00 75 */	bl setCurrentMtx__11J3DMaterialFv
 /* 80316A40 00313980  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80316A44 00313984  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80316A48 00313988  7C 08 03 A6 */	mtlr r0
@@ -1381,8 +1381,8 @@ lbl_80316AA0:
 /* 80316AA8 003139E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80316AAC 003139EC  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_setCurrentMtx
-J3DMaterial_NS_setCurrentMtx:
+.global setCurrentMtx__11J3DMaterialFv
+setCurrentMtx__11J3DMaterialFv:
 /* 80316AB0 003139F0  80 83 00 08 */	lwz r4, 8(r3)
 /* 80316AB4 003139F4  80 03 00 40 */	lwz r0, 0x40(r3)
 /* 80316AB8 003139F8  90 04 00 40 */	stw r0, 0x40(r4)
@@ -1390,8 +1390,8 @@ J3DMaterial_NS_setCurrentMtx:
 /* 80316AC0 00313A00  90 04 00 44 */	stw r0, 0x44(r4)
 /* 80316AC4 00313A04  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_calcCurrentMtx
-J3DMaterial_NS_calcCurrentMtx:
+.global calcCurrentMtx__11J3DMaterialFv
+calcCurrentMtx__11J3DMaterialFv:
 /* 80316AC8 00313A08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80316ACC 00313A0C  7C 08 02 A6 */	mflr r0
 /* 80316AD0 00313A10  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1563,8 +1563,8 @@ lbl_80316D50:
 /* 80316D60 00313CA0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80316D64 00313CA4  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_copy
-J3DMaterial_NS_copy:
+.global copy__11J3DMaterialFP11J3DMaterial
+copy__11J3DMaterialFP11J3DMaterial:
 /* 80316D68 00313CA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316D6C 00313CAC  7C 08 02 A6 */	mflr r0
 /* 80316D70 00313CB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1626,7 +1626,7 @@ J3DMaterial_NS_copy:
 /* 80316E50 00313D90  38 00 00 00 */	li r0, 0
 /* 80316E54 00313D94  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 80316E58 00313D98  80 83 00 38 */	lwz r4, 0x38(r3)
-/* 80316E5C 00313D9C  4B FF FF 0D */	bl J3DMaterial_NS_copy
+/* 80316E5C 00313D9C  4B FF FF 0D */	bl copy__11J3DMaterialFP11J3DMaterial
 lbl_80316E60:
 /* 80316E60 00313DA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80316E64 00313DA4  7C 08 03 A6 */	mtlr r0
@@ -1641,8 +1641,8 @@ lbl_80316E60:
 /* 80316E88 00313DC8  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 80316E8C 00313DCC  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_newSharedDisplayList
-J3DMaterial_NS_newSharedDisplayList:
+.global newSharedDisplayList__11J3DMaterialFUl
+newSharedDisplayList__11J3DMaterialFUl:
 /* 80316E90 00313DD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316E94 00313DD4  7C 08 02 A6 */	mflr r0
 /* 80316E98 00313DD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1671,7 +1671,7 @@ lbl_80316EDC:
 /* 80316EF0 00313E30  48 00 00 1C */	b lbl_80316F0C
 lbl_80316EF4:
 /* 80316EF4 00313E34  7F E4 FB 78 */	mr r4, r31
-/* 80316EF8 00313E38  4B FF B5 91 */	bl J3DDisplayListObj_NS_newDisplayList
+/* 80316EF8 00313E38  4B FF B5 91 */	bl newDisplayList__17J3DDisplayListObjFUl
 /* 80316EFC 00313E3C  2C 03 00 00 */	cmpwi r3, 0
 /* 80316F00 00313E40  41 82 00 08 */	beq lbl_80316F08
 /* 80316F04 00313E44  48 00 00 08 */	b lbl_80316F0C
@@ -1685,8 +1685,8 @@ lbl_80316F0C:
 /* 80316F1C 00313E5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80316F20 00313E60  4E 80 00 20 */	blr 
 
-.global J3DMaterial_NS_newSingleSharedDisplayList
-J3DMaterial_NS_newSingleSharedDisplayList:
+.global newSingleSharedDisplayList__11J3DMaterialFUl
+newSingleSharedDisplayList__11J3DMaterialFUl:
 /* 80316F24 00313E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316F28 00313E68  7C 08 02 A6 */	mflr r0
 /* 80316F2C 00313E6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1715,7 +1715,7 @@ lbl_80316F70:
 /* 80316F84 00313EC4  48 00 00 1C */	b lbl_80316FA0
 lbl_80316F88:
 /* 80316F88 00313EC8  7F E4 FB 78 */	mr r4, r31
-/* 80316F8C 00313ECC  4B FF B5 7D */	bl J3DDisplayListObj_NS_newSingleDisplayList
+/* 80316F8C 00313ECC  4B FF B5 7D */	bl newSingleDisplayList__17J3DDisplayListObjFUl
 /* 80316F90 00313ED0  2C 03 00 00 */	cmpwi r3, 0
 /* 80316F94 00313ED4  41 82 00 08 */	beq lbl_80316F9C
 /* 80316F98 00313ED8  48 00 00 08 */	b lbl_80316FA0
@@ -1729,12 +1729,12 @@ lbl_80316FA0:
 /* 80316FB0 00313EF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80316FB4 00313EF4  4E 80 00 20 */	blr 
 
-.global J3DPatchedMaterial_NS_initialize
-J3DPatchedMaterial_NS_initialize:
+.global initialize__18J3DPatchedMaterialFv
+initialize__18J3DPatchedMaterialFv:
 /* 80316FB8 00313EF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316FBC 00313EFC  7C 08 02 A6 */	mflr r0
 /* 80316FC0 00313F00  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80316FC4 00313F04  4B FF F2 7D */	bl J3DMaterial_NS_initialize
+/* 80316FC4 00313F04  4B FF F2 7D */	bl initialize__11J3DMaterialFv
 /* 80316FC8 00313F08  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80316FCC 00313F0C  7C 08 03 A6 */	mtlr r0
 /* 80316FD0 00313F10  38 21 00 10 */	addi r1, r1, 0x10
@@ -1759,7 +1759,7 @@ J3DPatchedMaterial_NS_initialize:
 /* 8031701C 00313F5C  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80317020 00313F60  40 82 00 0C */	bne lbl_8031702C
 /* 80317024 00313F64  80 63 00 48 */	lwz r3, 0x48(r3)
-/* 80317028 00313F68  4B FF B5 F1 */	bl J3DDisplayListObj_NS_callDL
+/* 80317028 00313F68  4B FF B5 F1 */	bl callDL__17J3DDisplayListObjCFv
 lbl_8031702C:
 /* 8031702C 00313F6C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80317030 00313F70  7C 08 03 A6 */	mtlr r0
@@ -1768,12 +1768,12 @@ lbl_8031702C:
 /* 8031703C 00313F7C  4E 80 00 20 */	blr 
 /* 80317040 00313F80  4E 80 00 20 */	blr 
 
-.global J3DLockedMaterial_NS_initialize
-J3DLockedMaterial_NS_initialize:
+.global initialize__17J3DLockedMaterialFv
+initialize__17J3DLockedMaterialFv:
 /* 80317044 00313F84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80317048 00313F88  7C 08 02 A6 */	mflr r0
 /* 8031704C 00313F8C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80317050 00313F90  4B FF F1 F1 */	bl J3DMaterial_NS_initialize
+/* 80317050 00313F90  4B FF F1 F1 */	bl initialize__11J3DMaterialFv
 /* 80317054 00313F94  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80317058 00313F98  7C 08 03 A6 */	mtlr r0
 /* 8031705C 00313F9C  38 21 00 10 */	addi r1, r1, 0x10
@@ -1798,7 +1798,7 @@ J3DLockedMaterial_NS_initialize:
 /* 803170A8 00313FE8  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 803170AC 00313FEC  40 82 00 0C */	bne lbl_803170B8
 /* 803170B0 00313FF0  80 63 00 48 */	lwz r3, 0x48(r3)
-/* 803170B4 00313FF4  4B FF B5 65 */	bl J3DDisplayListObj_NS_callDL
+/* 803170B4 00313FF4  4B FF B5 65 */	bl callDL__17J3DDisplayListObjCFv
 lbl_803170B8:
 /* 803170B8 00313FF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803170BC 00313FFC  7C 08 03 A6 */	mtlr r0

@@ -35,7 +35,7 @@ lbl_800D540C:
 /* 800D5448 000D2388  C0 04 05 70 */ lfs f0, 0x570(r4)
 /* 800D544C 000D238C  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 800D5450 000D2390  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 800D5454 000D2394  48 08 98 65 */ bl daPy_actorKeep_c_NS_setData
+/* 800D5454 000D2394  48 08 98 65 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800D5458 000D2398  80 7F 27 EC */ lwz r3, 0x27ec(r31)
 /* 800D545C 000D239C  A8 03 00 08 */ lha r0, 8(r3)
 /* 800D5460 000D23A0  2C 00 02 0E */ cmpwi r0, 0x20e
@@ -63,7 +63,7 @@ lbl_800D5474:
 /* 800D54B4 000D23F4  D0 61 00 28 */ stfs f3, 0x28(r1)
 /* 800D54B8 000D23F8  D0 81 00 2C */ stfs f4, 0x2c(r1)
 /* 800D54BC 000D23FC  38 7F 28 0C */ addi r3, r31, 0x280c
-/* 800D54C0 000D2400  48 08 98 3D */ bl daPy_actorKeep_c_NS_clearData
+/* 800D54C0 000D2400  48 08 98 3D */ bl clearData__16daPy_actorKeep_cFv
 lbl_800D54C4:
 /* 800D54C4 000D2404  A8 1F 30 0E */ lha r0, 0x300e(r31)
 /* 800D54C8 000D2408  2C 00 00 00 */ cmpwi r0, 0

@@ -10,7 +10,7 @@
 /* 8012D074 00129FB4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012D078 00129FB8  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012D07C 00129FBC  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8012D080 00129FC0  4B F1 B0 FD */ bl dEvent_manager_c_NS_cutEnd
+/* 8012D080 00129FC0  4B F1 B0 FD */ bl cutEnd__16dEvent_manager_cFi
 /* 8012D084 00129FC4  7F E3 FB 78 */ mr r3, r31
 /* 8012D088 00129FC8  4B F9 63 31 */ bl daAlink_c_NS_procWaitInit
 /* 8012D08C 00129FCC  48 00 00 64 */ b lbl_8012D0F0

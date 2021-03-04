@@ -21,7 +21,7 @@
 /* 80025794 000226D4  3C 84 00 02 */ addis r4, r4, 2
 /* 80025798 000226D8  38 84 D4 F8 */ addi r4, r4, -11016
 /* 8002579C 000226DC  38 A0 00 40 */ li r5, 0x40
-/* 800257A0 000226E0  48 01 69 F5 */ bl dRes_control_c_NS_deleteRes
+/* 800257A0 000226E0  48 01 69 F5 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 800257A4 000226E4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800257A8 000226E8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800257AC 000226EC  85 83 4E 20 */ lwzu r12, 0x4e20(r3)
@@ -42,7 +42,7 @@ lbl_800257BC:
 /* 800257E4 00022724  48 00 F8 D9 */ bl getSave__10dSv_info_cFi
 /* 800257E8 00022728  3C 60 80 43 */ lis r3, lbl_804307EC@ha
 /* 800257EC 0002272C  38 63 07 EC */ addi r3, r3, lbl_804307EC@l
-/* 800257F0 00022730  48 23 6A 09 */ bl dSvBit_HIO_c_NS_init
+/* 800257F0 00022730  48 23 6A 09 */ bl init__12dSvBit_HIO_cFv
 /* 800257F4 00022734  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800257F8 00022738  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800257FC 0002273C  38 63 09 78 */ addi r3, r3, 0x978

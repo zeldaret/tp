@@ -87,7 +87,7 @@
 /* 80214784 002116C4  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 80214788 002116C8  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 8021478C 002116CC  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 80214790 002116D0  48 0E 47 45 */ bl J2DScreen_NS_draw
+/* 80214790 002116D0  48 0E 47 45 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80214794 002116D4  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 80214798 002116D8  CB E1 00 60 */ lfd f31, 0x60(r1)
 /* 8021479C 002116DC  E3 C1 00 58 */ psq_l f30, 88(r1), 0, 0

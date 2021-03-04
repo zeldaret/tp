@@ -9,7 +9,7 @@
 /* 8013DE90 0013ADD0  38 A0 00 02 */ li r5, 2
 /* 8013DE94 0013ADD4  4B FA A0 3D */ bl daAlink_c_NS_setWallGrabStatus
 /* 8013DE98 0013ADD8  7F E3 FB 78 */ mr r3, r31
-/* 8013DE9C 0013ADDC  48 02 06 31 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013DE9C 0013ADDC  48 02 06 31 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013DEA0 0013ADE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013DEA4 0013ADE4  40 82 00 2C */ bne lbl_8013DED0
 /* 8013DEA8 0013ADE8  C0 3D 33 AC */ lfs f1, 0x33ac(r29)
@@ -39,7 +39,7 @@ lbl_8013DED0:
 /* 8013DF04 0013AE44  9B DD 2F A3 */ stb r30, 0x2fa3(r29)
 /* 8013DF08 0013AE48  38 7D 28 44 */ addi r3, r29, 0x2844
 /* 8013DF0C 0013AE4C  7F E4 FB 78 */ mr r4, r31
-/* 8013DF10 0013AE50  48 02 0D A9 */ bl daPy_actorKeep_c_NS_setData
+/* 8013DF10 0013AE50  48 02 0D A9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_8013DF14:
 /* 8013DF14 0013AE54  38 60 00 01 */ li r3, 1
 /* 8013DF18 0013AE58  39 61 00 20 */ addi r11, r1, 0x20

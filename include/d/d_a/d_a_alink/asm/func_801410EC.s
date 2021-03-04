@@ -3,7 +3,7 @@
 /* 801410F4 0013E034  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801410F8 0013E038  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801410FC 0013E03C  7C 7F 1B 78 */ mr r31, r3
-/* 80141100 0013E040  48 01 DB FD */ bl daPy_actorKeep_c_NS_clearData
+/* 80141100 0013E040  48 01 DB FD */ bl clearData__16daPy_actorKeep_cFv
 /* 80141104 0013E044  7F E3 FB 78 */ mr r3, r31
 /* 80141108 0013E048  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8014110C 0013E04C  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -22,7 +22,7 @@ lbl_802AFBC4:
 /* 802AFBE4 002ACB24  4E 80 04 21 */	bctrl 
 /* 802AFBE8 002ACB28  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 802AFBEC 002ACB2C  38 63 00 1C */	addi r3, r3, 0x1c
-/* 802AFBF0 002ACB30  4B FF 26 31 */	bl JAISoundStatus__NS_lockWhenPrepared
+/* 802AFBF0 002ACB30  4B FF 26 31 */	bl lockWhenPrepared__15JAISoundStatus_Fv
 /* 802AFBF4 002ACB34  3C 60 02 00 */	lis r3, 0x02000038@ha
 /* 802AFBF8 002ACB38  38 03 00 38 */	addi r0, r3, 0x02000038@l
 /* 802AFBFC 002ACB3C  7C 1E 00 00 */	cmpw r30, r0

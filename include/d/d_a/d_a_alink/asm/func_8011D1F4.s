@@ -4,7 +4,7 @@
 /* 8011D200 0011A140  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011D204 0011A144  7C 7F 1B 78 */ mr r31, r3
 /* 8011D208 0011A148  38 7F 20 48 */ addi r3, r31, 0x2048
-/* 8011D20C 0011A14C  48 04 12 C1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011D20C 0011A14C  48 04 12 C1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011D210 0011A150  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011D214 0011A154  41 82 00 1C */ beq lbl_8011D230
 /* 8011D218 0011A158  38 00 00 01 */ li r0, 1
@@ -21,7 +21,7 @@ lbl_8011D230:
 /* 8011D240 0011A180  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011D244 0011A184  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011D248 0011A188  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011D24C 0011A18C  4B F2 AF 31 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011D24C 0011A18C  4B F2 AF 31 */ bl cutEnd__16dEvent_manager_cFi
 lbl_8011D250:
 /* 8011D250 0011A190  38 60 00 01 */ li r3, 1
 /* 8011D254 0011A194  83 E1 00 0C */ lwz r31, 0xc(r1)

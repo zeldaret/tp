@@ -80,7 +80,7 @@ lbl_80135298:
 /* 80135324 00132264  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80135328 00132268  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8013532C 0013226C  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 80135330 00132270  4B F3 F1 71 */ bl cBgS_NS_GroundCross
+/* 80135330 00132270  4B F3 F1 71 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 80135334 00132274  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 80135338 00132278  EC 01 00 28 */ fsubs f0, f1, f0
 /* 8013533C 0013227C  FC 00 02 10 */ fabs f0, f0

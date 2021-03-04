@@ -20,7 +20,7 @@ lbl_8012E6B4:
 /* 8012E6CC 0012B60C  4B FF DC 3D */ bl daAlink_c_NS_checkWolfAtnDoCharge
 lbl_8012E6D0:
 /* 8012E6D0 0012B610  7F E3 FB 78 */ mr r3, r31
-/* 8012E6D4 0012B614  48 02 FD F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012E6D4 0012B614  48 02 FD F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012E6D8 0012B618  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012E6DC 0012B61C  41 82 00 38 */ beq lbl_8012E714
 /* 8012E6E0 0012B620  80 1E 06 14 */ lwz r0, 0x614(r30)
@@ -30,7 +30,7 @@ lbl_8012E6D0:
 /* 8012E6F0 0012B630  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012E6F4 0012B634  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012E6F8 0012B638  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8012E6FC 0012B63C  4B F1 9A 81 */ bl dEvent_manager_c_NS_cutEnd
+/* 8012E6FC 0012B63C  4B F1 9A 81 */ bl cutEnd__16dEvent_manager_cFi
 /* 8012E700 0012B640  48 00 00 38 */ b lbl_8012E738
 lbl_8012E704:
 /* 8012E704 0012B644  7F C3 F3 78 */ mr r3, r30

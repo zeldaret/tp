@@ -132,7 +132,7 @@ cDyl_Unlink:
 /* 80018598 000154D8  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8001859C 000154DC  28 03 00 00 */	cmplwi r3, 0
 /* 800185A0 000154E0  41 82 00 0C */	beq lbl_800185AC
-/* 800185A4 000154E4  48 24 9D C1 */	bl DynamicModuleControlBase_NS_unlink
+/* 800185A4 000154E4  48 24 9D C1 */	bl unlink__24DynamicModuleControlBaseFv
 /* 800185A8 000154E8  48 00 00 08 */	b lbl_800185B0
 lbl_800185AC:
 /* 800185AC 000154EC  38 60 00 00 */	li r3, 0
@@ -172,11 +172,11 @@ lbl_8001860C:
 /* 8001861C 0001555C  28 1F 00 00 */	cmplwi r31, 0
 /* 80018620 00015560  41 82 00 50 */	beq lbl_80018670
 /* 80018624 00015564  7F E3 FB 78 */	mr r3, r31
-/* 80018628 00015568  48 24 9D C5 */	bl DynamicModuleControlBase_NS_load_async
+/* 80018628 00015568  48 24 9D C5 */	bl load_async__24DynamicModuleControlBaseFv
 /* 8001862C 0001556C  2C 03 00 00 */	cmpwi r3, 0
 /* 80018630 00015570  41 82 00 38 */	beq lbl_80018668
 /* 80018634 00015574  7F E3 FB 78 */	mr r3, r31
-/* 80018638 00015578  48 24 9C 99 */	bl DynamicModuleControlBase_NS_link
+/* 80018638 00015578  48 24 9C 99 */	bl link__24DynamicModuleControlBaseFv
 /* 8001863C 0001557C  2C 03 00 00 */	cmpwi r3, 0
 /* 80018640 00015580  41 82 00 0C */	beq lbl_8001864C
 /* 80018644 00015584  38 60 00 04 */	li r3, 4
@@ -215,7 +215,7 @@ cDyl_InitCallback:
 /* 800186B0 000155F0  38 A0 00 00 */	li r5, 0
 /* 800186B4 000155F4  48 2B C3 01 */	bl mount__12JKRFileCacheFPCcP7JKRHeapPCc
 /* 800186B8 000155F8  7C 7F 1B 78 */	mr r31, r3
-/* 800186BC 000155FC  48 24 A0 A1 */	bl DynamicModuleControl_NS_initialize
+/* 800186BC 000155FC  48 24 A0 A1 */	bl initialize__20DynamicModuleControlFv
 /* 800186C0 00015600  3C 60 80 37 */	lis r3, lbl_80375DE8@ha
 /* 800186C4 00015604  38 63 5D E8 */	addi r3, r3, lbl_80375DE8@l
 /* 800186C8 00015608  38 63 2A 58 */	addi r3, r3, 0x2a58
@@ -236,7 +236,7 @@ cDyl_InitCallback:
 /* 80018704 00015644  38 84 2A 7E */	addi r4, r4, 0x2a7e
 /* 80018708 00015648  48 24 9F 59 */	bl DynamicModuleControl
 /* 8001870C 0001564C  38 61 00 08 */	addi r3, r1, 8
-/* 80018710 00015650  48 24 9B C1 */	bl DynamicModuleControlBase_NS_link
+/* 80018710 00015650  48 24 9B C1 */	bl link__24DynamicModuleControlBaseFv
 /* 80018714 00015654  38 00 00 01 */	li r0, 1
 /* 80018718 00015658  90 0D 87 2C */	stw r0, lbl_80450CAC-_SDA_BASE_(r13)
 /* 8001871C 0001565C  38 60 00 09 */	li r3, 9
@@ -249,7 +249,7 @@ cDyl_InitCallback:
 /* 80018738 00015678  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001873C 0001567C  38 61 00 08 */	addi r3, r1, 8
 /* 80018740 00015680  38 80 00 00 */	li r4, 0
-/* 80018744 00015684  48 24 9A 89 */	bl DynamicModuleControlBase_NS_dtor
+/* 80018744 00015684  48 24 9A 89 */	bl __dt__24DynamicModuleControlBaseFv
 /* 80018748 00015688  38 60 00 01 */	li r3, 1
 /* 8001874C 0001568C  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80018750 00015690  83 C1 00 38 */	lwz r30, 0x38(r1)
@@ -329,8 +329,8 @@ lbl_80018830:
 /* 80018844 00015784  38 60 00 00 */	li r3, 0
 /* 80018848 00015788  4E 80 00 20 */	blr 
 
-.global cDylPhs_NS_Link
-cDylPhs_NS_Link:
+.global Link__7cDylPhsFP30request_of_phase_process_classs
+Link__7cDylPhsFP30request_of_phase_process_classs:
 /* 8001884C 0001578C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018850 00015790  7C 08 02 A6 */	mflr r0
 /* 80018854 00015794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -351,8 +351,8 @@ lbl_80018880:
 /* 80018888 000157C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001888C 000157CC  4E 80 00 20 */	blr 
 
-.global cDylPhs_NS_Unlink
-cDylPhs_NS_Unlink:
+.global Unlink__7cDylPhsFP30request_of_phase_process_classs
+Unlink__7cDylPhsFP30request_of_phase_process_classs:
 /* 80018890 000157D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018894 000157D4  7C 08 02 A6 */	mflr r0
 /* 80018898 000157D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -388,7 +388,7 @@ lbl_800188C8:
 /* 80018908 00015848  38 04 34 C0 */	addi r0, r4, lbl_803C34C0@l
 /* 8001890C 0001584C  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 80018910 00015850  38 80 00 00 */	li r4, 0
-/* 80018914 00015854  48 24 98 B9 */	bl DynamicModuleControlBase_NS_dtor
+/* 80018914 00015854  48 24 98 B9 */	bl __dt__24DynamicModuleControlBaseFv
 /* 80018918 00015858  7F E0 07 35 */	extsh. r0, r31
 /* 8001891C 0001585C  40 81 00 0C */	ble lbl_80018928
 /* 80018920 00015860  7F C3 F3 78 */	mr r3, r30

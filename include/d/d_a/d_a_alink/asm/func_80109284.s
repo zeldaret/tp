@@ -32,7 +32,7 @@ lbl_801092B4:
 /* 801092FC 0010623C  C0 02 92 BC */ lfs f0, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 80109300 00106240  D0 1F 34 94 */ stfs f0, 0x3494(r31)
 /* 80109304 00106244  38 7F 28 4C */ addi r3, r31, 0x284c
-/* 80109308 00106248  48 05 59 F5 */ bl daPy_actorKeep_c_NS_clearData
+/* 80109308 00106248  48 05 59 F5 */ bl clearData__16daPy_actorKeep_cFv
 /* 8010930C 0010624C  7F E3 FB 78 */ mr r3, r31
 /* 80109310 00106250  4B FA 28 19 */ bl daAlink_c_NS_cancelLockAt
 /* 80109314 00106254  38 00 00 00 */ li r0, 0
@@ -116,7 +116,7 @@ lbl_80109400:
 /* 8010942C 0010636C  38 80 00 01 */ li r4, 1
 /* 80109430 00106370  38 A0 00 01 */ li r5, 1
 /* 80109434 00106374  38 C1 00 08 */ addi r6, r1, 8
-/* 80109438 00106378  4B F6 66 D9 */ bl dVibration_c_NS_StartQuake
+/* 80109438 00106378  4B F6 66 D9 */ bl StartQuake__12dVibration_cFii4cXyz
 /* 8010943C 0010637C  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 80109440 00106380  60 00 00 04 */ ori r0, r0, 4
 /* 80109444 00106384  90 1F 05 7C */ stw r0, 0x57c(r31)

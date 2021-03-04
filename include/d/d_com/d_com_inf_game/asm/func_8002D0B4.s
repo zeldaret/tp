@@ -31,7 +31,7 @@
 /* 8002D12C 0002A06C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8002D130 0002A070  7F A4 EB 78 */ mr r4, r29
 /* 8002D134 0002A074  38 A1 00 08 */ addi r5, r1, 8
-/* 8002D138 0002A078  48 04 76 0D */ bl cBgS_NS_GetTriPla
+/* 8002D138 0002A078  48 04 76 0D */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 8002D13C 0002A07C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D140 0002A080  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002D144 0002A084  38 63 61 C0 */ addi r3, r3, 0x61c0
@@ -42,7 +42,7 @@
 /* 8002D158 0002A098  7F C6 F3 78 */ mr r6, r30
 /* 8002D15C 0002A09C  FC 60 F8 90 */ fmr f3, f31
 /* 8002D160 0002A0A0  7F E7 FB 78 */ mr r7, r31
-/* 8002D164 0002A0A4  48 02 8E 21 */ bl dDlst_shadowControl_c_NS_setSimple
+/* 8002D164 0002A0A4  48 02 8E 21 */ bl setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj
 /* 8002D168 0002A0A8  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8002D16C 0002A0AC  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8002D170 0002A0B0  90 01 00 18 */ stw r0, 0x18(r1)

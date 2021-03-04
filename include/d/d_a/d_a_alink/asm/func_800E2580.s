@@ -31,7 +31,7 @@ lbl_800E25F0:
 /* 800E25F4 000DF534  54 00 03 5B */ rlwinm. r0, r0, 0, 0xd, 0xd
 /* 800E25F8 000DF538  41 82 00 24 */ beq lbl_800E261C
 /* 800E25FC 000DF53C  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800E2600 000DF540  48 07 C5 B9 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800E2600 000DF540  48 07 C5 B9 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800E2604 000DF544  2C 03 00 00 */ cmpwi r3, 0
 /* 800E2608 000DF548  40 82 00 14 */ bne lbl_800E261C
 /* 800E260C 000DF54C  7F E3 FB 78 */ mr r3, r31

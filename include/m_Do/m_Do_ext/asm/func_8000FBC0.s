@@ -29,7 +29,7 @@ lbl_8000FC28:
 /* 8000FC2C 0000CB6C  48 26 0B 15 */ bl cLib_chaseF__FPfff
 lbl_8000FC30:
 /* 8000FC30 0000CB70  38 7F 00 0C */ addi r3, r31, 0xc
-/* 8000FC34 0000CB74  48 31 8D 99 */ bl J3DFrameCtrl_NS_update
+/* 8000FC34 0000CB74  48 31 8D 99 */ bl update__12J3DFrameCtrlFv
 /* 8000FC38 0000CB78  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8000FC3C 0000CB7C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000FC40 0000CB80  7C 08 03 A6 */ mtlr r0

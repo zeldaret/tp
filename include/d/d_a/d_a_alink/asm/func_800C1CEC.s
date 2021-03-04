@@ -16,7 +16,7 @@
 /* 800C1D28 000BEC68  38 80 00 05 */ li r4, 5
 /* 800C1D2C 000BEC6C  38 A0 00 0F */ li r5, 0xf
 /* 800C1D30 000BEC70  38 C1 00 18 */ addi r6, r1, 0x18
-/* 800C1D34 000BEC74  4B FA DC F1 */ bl dVibration_c_NS_StartShock
+/* 800C1D34 000BEC74  4B FA DC F1 */ bl StartShock__12dVibration_cFii4cXyz
 /* 800C1D38 000BEC78  3C 60 00 02 */ lis r3, 0x00020016@ha
 /* 800C1D3C 000BEC7C  38 03 00 16 */ addi r0, r3, 0x00020016@l
 /* 800C1D40 000BEC80  90 01 00 08 */ stw r0, 8(r1)

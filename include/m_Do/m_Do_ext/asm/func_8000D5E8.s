@@ -14,7 +14,7 @@
 /* 8000D61C 0000A55C  D0 03 00 08 */ stfs f0, 8(r3)
 /* 8000D620 0000A560  7C 83 23 78 */ mr r3, r4
 /* 8000D624 0000A564  80 86 00 14 */ lwz r4, 0x14(r6)
-/* 8000D628 0000A568  48 32 25 A1 */ bl J3DMaterialTable_NS_entryTexNoAnimator
+/* 8000D628 0000A568  48 32 25 A1 */ bl entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern
 /* 8000D62C 0000A56C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000D630 0000A570  7C 08 03 A6 */ mtlr r0
 /* 8000D634 0000A574  38 21 00 10 */ addi r1, r1, 0x10

@@ -47,7 +47,7 @@
 lbl_800E69CC:
 /* 800E69CC 000E390C  3B DD 1F D0 */ addi r30, r29, 0x1fd0
 /* 800E69D0 000E3910  7F C3 F3 78 */ mr r3, r30
-/* 800E69D4 000E3914  48 07 7A F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E69D4 000E3914  48 07 7A F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E69D8 000E3918  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E69DC 000E391C  41 82 00 28 */ beq lbl_800E6A04
 /* 800E69E0 000E3920  28 1F 00 00 */ cmplwi r31, 0

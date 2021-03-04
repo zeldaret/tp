@@ -253,7 +253,7 @@ lbl_800F0120:
 /* 800F0178 000ED0B8  90 1D 17 4C */ stw r0, 0x174c(r29)
 lbl_800F017C:
 /* 800F017C 000ED0BC  7F E3 FB 78 */ mr r3, r31
-/* 800F0180 000ED0C0  48 06 E3 4D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F0180 000ED0C0  48 06 E3 4D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F0184 000ED0C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F0188 000ED0C8  41 82 01 E8 */ beq lbl_800F0370
 /* 800F018C 000ED0CC  80 7C 20 60 */ lwz r3, 0x2060(r28)

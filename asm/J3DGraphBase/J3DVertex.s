@@ -40,8 +40,8 @@ lbl_80310F4C:
 /* 80310F70 0030DEB0  90 03 00 58 */	stw r0, 0x58(r3)
 /* 80310F74 0030DEB4  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_setVertexData
-J3DVertexBuffer_NS_setVertexData:
+.global setVertexData__15J3DVertexBufferFP13J3DVertexData
+setVertexData__15J3DVertexBufferFP13J3DVertexData:
 /* 80310F78 0030DEB8  90 83 00 00 */	stw r4, 0(r3)
 /* 80310F7C 0030DEBC  80 04 00 18 */	lwz r0, 0x18(r4)
 /* 80310F80 0030DEC0  90 03 00 04 */	stw r0, 4(r3)
@@ -67,8 +67,8 @@ J3DVertexBuffer_NS_setVertexData:
 /* 80310FD0 0030DF10  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80310FD4 0030DF14  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_init
-J3DVertexBuffer_NS_init:
+.global init__15J3DVertexBufferFv
+init__15J3DVertexBufferFv:
 /* 80310FD8 0030DF18  38 00 00 00 */	li r0, 0
 /* 80310FDC 0030DF1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80310FE0 0030DF20  90 03 00 08 */	stw r0, 8(r3)
@@ -92,8 +92,8 @@ J3DVertexBuffer_NS_init:
 /* 80311028 0030DF68  90 03 00 34 */	stw r0, 0x34(r3)
 /* 8031102C 0030DF6C  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_dtor
-J3DVertexBuffer_NS_dtor:
+.global __dt__15J3DVertexBufferFv
+__dt__15J3DVertexBufferFv:
 /* 80311030 0030DF70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80311034 0030DF74  7C 08 02 A6 */	mflr r0
 /* 80311038 0030DF78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -111,8 +111,8 @@ lbl_80311054:
 /* 80311064 0030DFA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80311068 0030DFA8  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_setArray
-J3DVertexBuffer_NS_setArray:
+.global setArray__15J3DVertexBufferCFv
+setArray__15J3DVertexBufferCFv:
 /* 8031106C 0030DFAC  80 03 00 2C */	lwz r0, 0x2c(r3)
 /* 80311070 0030DFB0  3C 80 80 43 */	lis r4, lbl_80434AC8@ha
 /* 80311074 0030DFB4  38 84 4A C8 */	addi r4, r4, lbl_80434AC8@l
@@ -123,8 +123,8 @@ J3DVertexBuffer_NS_setArray:
 /* 80311088 0030DFC8  90 04 01 14 */	stw r0, 0x114(r4)
 /* 8031108C 0030DFCC  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_copyLocalVtxPosArray
-J3DVertexBuffer_NS_copyLocalVtxPosArray:
+.global copyLocalVtxPosArray__15J3DVertexBufferFUl
+copyLocalVtxPosArray__15J3DVertexBufferFUl:
 /* 80311090 0030DFD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80311094 0030DFD4  7C 08 02 A6 */	mflr r0
 /* 80311098 0030DFD8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -204,8 +204,8 @@ lbl_80311198:
 /* 803111A8 0030E0E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 803111AC 0030E0EC  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_copyLocalVtxNrmArray
-J3DVertexBuffer_NS_copyLocalVtxNrmArray:
+.global copyLocalVtxNrmArray__15J3DVertexBufferFUl
+copyLocalVtxNrmArray__15J3DVertexBufferFUl:
 /* 803111B0 0030E0F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803111B4 0030E0F4  7C 08 02 A6 */	mflr r0
 /* 803111B8 0030E0F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -285,8 +285,8 @@ lbl_803112B8:
 /* 803112C8 0030E208  38 21 00 20 */	addi r1, r1, 0x20
 /* 803112CC 0030E20C  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_copyLocalVtxArray
-J3DVertexBuffer_NS_copyLocalVtxArray:
+.global copyLocalVtxArray__15J3DVertexBufferFUl
+copyLocalVtxArray__15J3DVertexBufferFUl:
 /* 803112D0 0030E210  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803112D4 0030E214  7C 08 02 A6 */	mflr r0
 /* 803112D8 0030E218  90 01 00 44 */	stw r0, 0x44(r1)
@@ -309,7 +309,7 @@ lbl_803112FC:
 /* 80311318 0030E258  41 82 00 68 */	beq lbl_80311380
 /* 8031131C 0030E25C  7F C3 F3 78 */	mr r3, r30
 /* 80311320 0030E260  7F E4 FB 78 */	mr r4, r31
-/* 80311324 0030E264  4B FF FD 6D */	bl J3DVertexBuffer_NS_copyLocalVtxPosArray
+/* 80311324 0030E264  4B FF FD 6D */	bl copyLocalVtxPosArray__15J3DVertexBufferFUl
 /* 80311328 0030E268  7C 7A 1B 79 */	or. r26, r3, r3
 /* 8031132C 0030E26C  41 82 00 64 */	beq lbl_80311390
 /* 80311330 0030E270  3B 20 00 00 */	li r25, 0
@@ -355,7 +355,7 @@ lbl_803113A0:
 /* 803113B8 0030E2F8  41 82 00 94 */	beq lbl_8031144C
 /* 803113BC 0030E2FC  7F C3 F3 78 */	mr r3, r30
 /* 803113C0 0030E300  7F E4 FB 78 */	mr r4, r31
-/* 803113C4 0030E304  4B FF FD ED */	bl J3DVertexBuffer_NS_copyLocalVtxNrmArray
+/* 803113C4 0030E304  4B FF FD ED */	bl copyLocalVtxNrmArray__15J3DVertexBufferFUl
 /* 803113C8 0030E308  7C 79 1B 79 */	or. r25, r3, r3
 /* 803113CC 0030E30C  41 82 00 90 */	beq lbl_8031145C
 /* 803113D0 0030E310  3B 00 00 00 */	li r24, 0
@@ -409,8 +409,8 @@ lbl_80311460:
 /* 80311470 0030E3B0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80311474 0030E3B4  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_allocTransformedVtxPosArray
-J3DVertexBuffer_NS_allocTransformedVtxPosArray:
+.global allocTransformedVtxPosArray__15J3DVertexBufferFv
+allocTransformedVtxPosArray__15J3DVertexBufferFv:
 /* 80311478 0030E3B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8031147C 0030E3BC  7C 08 02 A6 */	mflr r0
 /* 80311480 0030E3C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -462,8 +462,8 @@ lbl_80311514:
 /* 80311524 0030E464  38 21 00 20 */	addi r1, r1, 0x20
 /* 80311528 0030E468  4E 80 00 20 */	blr 
 
-.global J3DVertexBuffer_NS_allocTransformedVtxNrmArray
-J3DVertexBuffer_NS_allocTransformedVtxNrmArray:
+.global allocTransformedVtxNrmArray__15J3DVertexBufferFv
+allocTransformedVtxNrmArray__15J3DVertexBufferFv:
 /* 8031152C 0030E46C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80311530 0030E470  7C 08 02 A6 */	mflr r0
 /* 80311534 0030E474  90 01 00 24 */	stw r0, 0x24(r1)
@@ -523,8 +523,8 @@ J3DDrawMtxData:
 /* 803115EC 0030E52C  90 03 00 08 */	stw r0, 8(r3)
 /* 803115F0 0030E530  4E 80 00 20 */	blr 
 
-.global J3DDrawMtxData_NS_dtor
-J3DDrawMtxData_NS_dtor:
+.global __dt__14J3DDrawMtxDataFv
+__dt__14J3DDrawMtxDataFv:
 /* 803115F4 0030E534  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803115F8 0030E538  7C 08 02 A6 */	mflr r0
 /* 803115FC 0030E53C  90 01 00 14 */	stw r0, 0x14(r1)

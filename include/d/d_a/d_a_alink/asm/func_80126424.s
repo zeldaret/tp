@@ -28,7 +28,7 @@ lbl_8012647C:
 /* 80126488 001233C8  80 7F 00 1C */ lwz r3, 0x1c(r31)
 /* 8012648C 001233CC  D0 03 00 08 */ stfs f0, 8(r3)
 /* 80126490 001233D0  80 7F 00 08 */ lwz r3, 8(r31)
-/* 80126494 001233D4  48 1D 31 FD */ bl J2DScreen_NS_animation
+/* 80126494 001233D4  48 1D 31 FD */ bl animation__9J2DScreenFv
 /* 80126498 001233D8  80 7F 00 0C */ lwz r3, 0xc(r31)
 /* 8012649C 001233DC  C0 02 92 AC */ lfs f0, lbl_80452CAC-_SDA2_BASE_(r2)
 /* 801264A0 001233E0  D0 03 00 CC */ stfs f0, 0xcc(r3)
@@ -131,7 +131,7 @@ lbl_8012660C:
 /* 80126618 00123558  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8012661C 0012355C  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 80126620 00123560  80 84 5F 50 */ lwz r4, 0x5f50(r4)
-/* 80126624 00123564  48 1D 28 B1 */ bl J2DScreen_NS_draw
+/* 80126624 00123564  48 1D 28 B1 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_80126628:
 /* 80126628 00123568  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 8012662C 0012356C  CB E1 00 30 */ lfd f31, 0x30(r1)

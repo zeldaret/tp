@@ -16,10 +16,10 @@
 /* 802C25B4 002BF4F4  38 7F 01 04 */ addi r3, r31, 0x104
 /* 802C25B8 002BF4F8  3C 80 80 2C */ lis r4, Z2SoundObjSimple@ha
 /* 802C25BC 002BF4FC  38 84 E8 44 */ addi r4, r4, Z2SoundObjSimple@l
-/*.global Z2SoundObjSimple_NS_dtor*/
-/* 802C25C0 002BF500  3C A0 80 16 */ lis r5, Z2SoundObjSimple_NS_dtor@ha
-/*.global Z2SoundObjSimple_NS_dtor*/
-/* 802C25C4 002BF504  38 A5 BA 3C */ addi r5, r5, Z2SoundObjSimple_NS_dtor@l
+/*.global __dt__16Z2SoundObjSimpleFv*/
+/* 802C25C0 002BF500  3C A0 80 16 */ lis r5, __dt__16Z2SoundObjSimpleFv@ha
+/*.global __dt__16Z2SoundObjSimpleFv*/
+/* 802C25C4 002BF504  38 A5 BA 3C */ addi r5, r5, __dt__16Z2SoundObjSimpleFv@l
 /* 802C25C8 002BF508  38 C0 00 20 */ li r6, 0x20
 /* 802C25CC 002BF50C  38 E0 00 08 */ li r7, 8
 /* 802C25D0 002BF510  48 09 F7 91 */ bl func_80361D60

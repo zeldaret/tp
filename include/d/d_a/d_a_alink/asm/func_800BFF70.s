@@ -10,10 +10,10 @@
 /* 800BFF94 000BCED4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800BFF98 000BCED8  D0 03 00 08 */ stfs f0, 8(r3)
 /* 800BFF9C 000BCEDC  7F E4 FB 78 */ mr r4, r31
-/* 800BFFA0 000BCEE0  48 26 B8 DD */ bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 800BFFA0 000BCEE0  48 26 B8 DD */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
 /* 800BFFA4 000BCEE4  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800BFFA8 000BCEE8  7F C4 F3 78 */ mr r4, r30
-/* 800BFFAC 000BCEEC  48 26 FE C5 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 800BFFAC 000BCEEC  48 26 FE C5 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 800BFFB0 000BCEF0  7F C3 F3 78 */ mr r3, r30
 /* 800BFFB4 000BCEF4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800BFFB8 000BCEF8  83 C1 00 08 */ lwz r30, 8(r1)

@@ -22,7 +22,7 @@
 /* 8021AFCC 00217F0C  FC 00 F8 00 */ fcmpu cr0, f0, f31
 /* 8021AFD0 00217F10  40 82 00 10 */ bne lbl_8021AFE0
 /* 8021AFD4 00217F14  7F E3 FB 78 */ mr r3, r31
-/* 8021AFD8 00217F18  48 03 A8 51 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8021AFD8 00217F18  48 03 A8 51 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 8021AFDC 00217F1C  FF E0 08 90 */ fmr f31, f1
 lbl_8021AFE0:
 /* 8021AFE0 00217F20  38 61 00 24 */ addi r3, r1, 0x24

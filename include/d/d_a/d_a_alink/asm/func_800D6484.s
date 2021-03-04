@@ -26,7 +26,7 @@ lbl_800D64DC:
 /* 800D64E0 000D3420  2C 00 00 00 */ cmpwi r0, 0
 /* 800D64E4 000D3424  40 82 01 0C */ bne lbl_800D65F0
 /* 800D64E8 000D3428  7F E3 FB 78 */ mr r3, r31
-/* 800D64EC 000D342C  48 08 7F E1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D64EC 000D342C  48 08 7F E1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D64F0 000D3430  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D64F4 000D3434  41 82 00 40 */ beq lbl_800D6534
 /* 800D64F8 000D3438  38 00 00 0C */ li r0, 0xc

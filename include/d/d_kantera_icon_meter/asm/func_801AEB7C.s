@@ -2,7 +2,7 @@
 /* 801AEB80 001ABAC0  7C 08 02 A6 */ mflr r0
 /* 801AEB84 001ABAC4  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801AEB88 001ABAC8  80 63 00 08 */ lwz r3, 8(r3)
-/* 801AEB8C 001ABACC  48 0A 6C 45 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 801AEB8C 001ABACC  48 0A 6C 45 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801AEB90 001ABAD0  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801AEB94 001ABAD4  7C 08 03 A6 */ mtlr r0
 /* 801AEB98 001ABAD8  38 21 00 10 */ addi r1, r1, 0x10

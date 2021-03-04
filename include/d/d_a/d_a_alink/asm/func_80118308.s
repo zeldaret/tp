@@ -133,7 +133,7 @@ lbl_80118488:
 /* 801184EC 0011542C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801184F0 00115430  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 801184F4 00115434  38 9D 1D 08 */ addi r4, r29, 0x1d08
-/* 801184F8 00115438  4B F5 BF A9 */ bl cBgS_NS_GroundCross
+/* 801184F8 00115438  4B F5 BF A9 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 801184FC 0011543C  C0 1D 04 D4 */ lfs f0, 0x4d4(r29)
 /* 80118500 00115440  EC 21 00 28 */ fsubs f1, f1, f0
 /* 80118504 00115444  C0 0D 81 14 */ lfs f0, lbl_80450694-_SDA_BASE_(r13)

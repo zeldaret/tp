@@ -26,7 +26,7 @@
 /* 801812E4 0017E224  38 61 00 08 */ addi r3, r1, 8
 /* 801812E8 0017E228  7F E4 FB 78 */ mr r4, r31
 /* 801812EC 0017E22C  80 BF 07 10 */ lwz r5, 0x710(r31)
-/* 801812F0 0017E230  4B F1 64 9D */ bl dCamera_c_NS_eyePos
+/* 801812F0 0017E230  4B F1 64 9D */ bl eyePos__9dCamera_cFP10fopAc_ac_c
 /* 801812F4 0017E234  C0 01 00 08 */ lfs f0, 8(r1)
 /* 801812F8 0017E238  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 801812FC 0017E23C  C0 01 00 0C */ lfs f0, 0xc(r1)

@@ -22,19 +22,19 @@ dScope_c:
 /* 801936C8 00190608  38 03 B6 B4 */	addi r0, r3, lbl_803BB6B4@l
 /* 801936CC 0019060C  90 1D 00 00 */	stw r0, 0(r29)
 /* 801936D0 00190610  38 7D 00 48 */	addi r3, r29, 0x48
-.global JUtility_NS_TColor
-/* 801936D4 00190614  3C 80 80 19 */	lis r4, JUtility_NS_TColor@ha
-.global JUtility_NS_TColor
-/* 801936D8 00190618  38 84 39 60 */	addi r4, r4, JUtility_NS_TColor@l
+.global __ct__Q28JUtility6TColorFv
+/* 801936D4 00190614  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
+.global __ct__Q28JUtility6TColorFv
+/* 801936D8 00190618  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 801936DC 0019061C  38 A0 00 00 */	li r5, 0
 /* 801936E0 00190620  38 C0 00 04 */	li r6, 4
 /* 801936E4 00190624  38 E0 00 02 */	li r7, 2
 /* 801936E8 00190628  48 1C E6 79 */	bl func_80361D60
 /* 801936EC 0019062C  38 7D 00 50 */	addi r3, r29, 0x50
-.global JUtility_NS_TColor
-/* 801936F0 00190630  3C 80 80 19 */	lis r4, JUtility_NS_TColor@ha
-.global JUtility_NS_TColor
-/* 801936F4 00190634  38 84 39 60 */	addi r4, r4, JUtility_NS_TColor@l
+.global __ct__Q28JUtility6TColorFv
+/* 801936F0 00190630  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
+.global __ct__Q28JUtility6TColorFv
+/* 801936F4 00190634  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 801936F8 00190638  38 A0 00 00 */	li r5, 0
 /* 801936FC 0019063C  38 C0 00 04 */	li r6, 4
 /* 80193700 00190640  38 E0 00 02 */	li r7, 2
@@ -194,8 +194,8 @@ lbl_801938A8:
 /* 80193954 00190894  7C 08 03 A6 */	mtlr r0
 /* 80193958 00190898  38 21 00 50 */	addi r1, r1, 0x50
 /* 8019395C 0019089C  4E 80 00 20 */	blr 
-.global JUtility_NS_TColor
-JUtility_NS_TColor:
+.global __ct__Q28JUtility6TColorFv
+__ct__Q28JUtility6TColorFv:
 /* 80193960 001908A0  38 00 FF FF */	li r0, -1
 /* 80193964 001908A4  90 03 00 00 */	stw r0, 0(r3)
 /* 80193968 001908A8  4E 80 00 20 */	blr 

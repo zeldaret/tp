@@ -3,8 +3,8 @@
 .section .text, "ax" # 802621cc
 
 
-.global DynamicModuleControlBase_NS_dtor
-DynamicModuleControlBase_NS_dtor:
+.global __dt__24DynamicModuleControlBaseFv
+__dt__24DynamicModuleControlBaseFv:
 /* 802621CC 0025F10C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802621D0 0025F110  7C 08 02 A6 */	mflr r0
 /* 802621D4 0025F114  90 01 00 14 */	stw r0, 0x14(r1)
@@ -16,7 +16,7 @@ DynamicModuleControlBase_NS_dtor:
 /* 802621EC 0025F12C  3C 80 80 3C */	lis r4, lbl_803C34F4@ha
 /* 802621F0 0025F130  38 04 34 F4 */	addi r0, r4, lbl_803C34F4@l
 /* 802621F4 0025F134  90 1E 00 0C */	stw r0, 0xc(r30)
-/* 802621F8 0025F138  48 00 02 35 */	bl DynamicModuleControlBase_NS_force_unlink
+/* 802621F8 0025F138  48 00 02 35 */	bl force_unlink__24DynamicModuleControlBaseFv
 /* 802621FC 0025F13C  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80262200 0025F140  28 03 00 00 */	cmplwi r3, 0
 /* 80262204 0025F144  41 82 00 0C */	beq lbl_80262210
@@ -81,8 +81,8 @@ lbl_802622C8:
 /* 802622C8 0025F208  90 6D 8B BC */	stw r3, lbl_8045113C-_SDA_BASE_(r13)
 /* 802622CC 0025F20C  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase_NS_link
-DynamicModuleControlBase_NS_link:
+.global link__24DynamicModuleControlBaseFv
+link__24DynamicModuleControlBaseFv:
 /* 802622D0 0025F210  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802622D4 0025F214  7C 08 02 A6 */	mflr r0
 /* 802622D8 0025F218  90 01 00 14 */	stw r0, 0x14(r1)
@@ -125,8 +125,8 @@ lbl_80262350:
 /* 8026235C 0025F29C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80262360 0025F2A0  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase_NS_unlink
-DynamicModuleControlBase_NS_unlink:
+.global unlink__24DynamicModuleControlBaseFv
+unlink__24DynamicModuleControlBaseFv:
 /* 80262364 0025F2A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262368 0025F2A8  7C 08 02 A6 */	mflr r0
 /* 8026236C 0025F2AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -164,8 +164,8 @@ lbl_802623D4:
 /* 802623E4 0025F324  38 21 00 10 */	addi r1, r1, 0x10
 /* 802623E8 0025F328  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase_NS_load_async
-DynamicModuleControlBase_NS_load_async:
+.global load_async__24DynamicModuleControlBaseFv
+load_async__24DynamicModuleControlBaseFv:
 /* 802623EC 0025F32C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802623F0 0025F330  7C 08 02 A6 */	mflr r0
 /* 802623F4 0025F334  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,8 +185,8 @@ lbl_8026241C:
 /* 80262424 0025F364  38 21 00 10 */	addi r1, r1, 0x10
 /* 80262428 0025F368  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase_NS_force_unlink
-DynamicModuleControlBase_NS_force_unlink:
+.global force_unlink__24DynamicModuleControlBaseFv
+force_unlink__24DynamicModuleControlBaseFv:
 /* 8026242C 0025F36C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262430 0025F370  7C 08 02 A6 */	mflr r0
 /* 80262434 0025F374  90 01 00 14 */	stw r0, 0x14(r1)
@@ -206,8 +206,8 @@ lbl_8026245C:
 /* 80262468 0025F3A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8026246C 0025F3AC  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase_NS_dump
-DynamicModuleControlBase_NS_dump:
+.global dump__24DynamicModuleControlBaseFv
+dump__24DynamicModuleControlBaseFv:
 /* 80262470 0025F3B0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80262474 0025F3B4  7C 08 02 A6 */	mflr r0
 /* 80262478 0025F3B8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -374,8 +374,8 @@ DynamicModuleControl:
 /* 802626C8 0025F608  38 21 00 10 */	addi r1, r1, 0x10
 /* 802626CC 0025F60C  4E 80 00 20 */	blr 
 
-.global DynamicModuleControl_NS_mountCallback
-DynamicModuleControl_NS_mountCallback:
+.global mountCallback__20DynamicModuleControlFPv
+mountCallback__20DynamicModuleControlFPv:
 /* 802626D0 0025F610  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802626D4 0025F614  7C 08 02 A6 */	mflr r0
 /* 802626D8 0025F618  90 01 00 14 */	stw r0, 0x14(r1)
@@ -413,8 +413,8 @@ lbl_80262744:
 /* 80262754 0025F694  38 21 00 10 */	addi r1, r1, 0x10
 /* 80262758 0025F698  4E 80 00 20 */	blr 
 
-.global DynamicModuleControl_NS_initialize
-DynamicModuleControl_NS_initialize:
+.global initialize__20DynamicModuleControlFv
+initialize__20DynamicModuleControlFv:
 /* 8026275C 0025F69C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262760 0025F6A0  7C 08 02 A6 */	mflr r0
 /* 80262764 0025F6A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -423,14 +423,14 @@ DynamicModuleControl_NS_initialize:
 /* 80262770 0025F6B0  90 0D 8B C0 */	stw r0, lbl_80451140-_SDA_BASE_(r13)
 /* 80262774 0025F6B4  90 0D 8B C4 */	stw r0, lbl_80451144-_SDA_BASE_(r13)
 /* 80262778 0025F6B8  38 60 00 00 */	li r3, 0
-/* 8026277C 0025F6BC  4B FF FF 55 */	bl DynamicModuleControl_NS_mountCallback
+/* 8026277C 0025F6BC  4B FF FF 55 */	bl mountCallback__20DynamicModuleControlFPv
 /* 80262780 0025F6C0  38 60 00 01 */	li r3, 1
 /* 80262784 0025F6C4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80262788 0025F6C8  7C 08 03 A6 */	mtlr r0
 /* 8026278C 0025F6CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80262790 0025F6D0  4E 80 00 20 */	blr 
-.global DynamicModuleControl_NS_callback
-DynamicModuleControl_NS_callback:
+.global callback__20DynamicModuleControlFPv
+callback__20DynamicModuleControlFPv:
 /* 80262794 0025F6D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262798 0025F6D8  7C 08 02 A6 */	mflr r0
 /* 8026279C 0025F6DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -683,10 +683,10 @@ lbl_80262AE4:
 /* 80262B28 0025FA68  38 60 00 01 */	li r3, 1
 /* 80262B2C 0025FA6C  48 00 00 84 */	b lbl_80262BB0
 lbl_80262B30:
-.global DynamicModuleControl_NS_callback
-/* 80262B30 0025FA70  3C 60 80 26 */	lis r3, DynamicModuleControl_NS_callback@ha
-.global DynamicModuleControl_NS_callback
-/* 80262B34 0025FA74  38 63 27 94 */	addi r3, r3, DynamicModuleControl_NS_callback@l
+.global callback__20DynamicModuleControlFPv
+/* 80262B30 0025FA70  3C 60 80 26 */	lis r3, callback__20DynamicModuleControlFPv@ha
+.global callback__20DynamicModuleControlFPv
+/* 80262B34 0025FA74  38 63 27 94 */	addi r3, r3, callback__20DynamicModuleControlFPv@l
 /* 80262B38 0025FA78  7F E4 FB 78 */	mr r4, r31
 /* 80262B3C 0025FA7C  4B DB 31 39 */	bl mDoDvdThd_callback_c_NS_create
 /* 80262B40 0025FA80  90 7F 00 28 */	stw r3, 0x28(r31)

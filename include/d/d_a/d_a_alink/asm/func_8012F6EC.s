@@ -23,7 +23,7 @@ lbl_8012F734:
 lbl_8012F740:
 /* 8012F740 0012C680  48 14 10 01 */ bl cLib_chaseF__FPfff
 /* 8012F744 0012C684  7F C3 F3 78 */ mr r3, r30
-/* 8012F748 0012C688  48 02 ED 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012F748 0012C688  48 02 ED 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012F74C 0012C68C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012F750 0012C690  41 82 00 98 */ beq lbl_8012F7E8
 /* 8012F754 0012C694  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
