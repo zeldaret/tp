@@ -15,7 +15,7 @@
 /* 8001F2F8 0001C238  40 82 00 0C */ bne lbl_8001F304
 lbl_8001F2FC:
 /* 8001F2FC 0001C23C  80 64 00 D8 */ lwz r3, 0xd8(r4)
-/* 8001F300 0001C240  48 00 31 61 */ bl fpcMtd_Execute
+/* 8001F300 0001C240  48 00 31 61 */ bl fpcMtd_Execute__FP20process_method_classPv
 lbl_8001F304:
 /* 8001F304 0001C244  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001F308 0001C248  7C 08 03 A6 */ mtlr r0

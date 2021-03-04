@@ -8,8 +8,6 @@ extern s32 lbl_80450D30;
 
 typedef s32 (*cNdIt_MethodFuncFunc)(cNdIt_MethodFunc);
 
-extern "C" {
-
 s32 fpcDw_Execute(base_process_class* pProc) {
     if (!fpcPause_IsEnable(pProc, 2)) {
         layer_class* curLay;
@@ -36,5 +34,4 @@ s32 fpcDw_Handler(cNdIt_MethodFuncFunc param_1, cNdIt_MethodFunc param_2) {
     ret = param_1(param_2);
     cAPIGph_AfterOfDraw();
     return ret;
-}
 }

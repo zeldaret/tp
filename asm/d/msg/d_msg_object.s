@@ -3328,7 +3328,7 @@ lbl_80235A58:
 .global dMsgObject_searchSSItem
 /* 80235A60 002329A0  38 63 2A 44 */	addi r3, r3, dMsgObject_searchSSItem@l
 /* 80235A64 002329A4  7F 84 E3 78 */	mr r4, r28
-/* 80235A68 002329A8  4B DE B8 D1 */	bl fpcEx_Search
+/* 80235A68 002329A8  4B DE B8 D1 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_80235A6C:
 /* 80235A6C 002329AC  38 00 00 00 */	li r0, 0
 /* 80235A70 002329B0  98 1E 00 BD */	stb r0, 0xbd(r30)

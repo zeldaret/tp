@@ -2,6 +2,7 @@
 
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_op/f_op_scene_iter.h"
+#include "f/f_pc/f_pc_stdcreate_req.h"
 #include "global.h"
 
 // additional symbols needed for f_op_msg_mng.cpp
@@ -43,9 +44,8 @@ void fopMsgM_setStageLayer(void);
 void fopMsgM_valueIncrease(void);
 void fopScnM_SearchByID(void);
 void fop_Timer_create(void);
-void fpcEx_SearchByID(void);
-void fpcM_Delete(void);
-void fpcSCtRq_Request(void);
+void fpcEx_SearchByID__FUi(void);
+void fpcM_Delete__FPv(void);
 void func_80020158(void);
 void func_800202CC(void);
 void func_80020338(void);

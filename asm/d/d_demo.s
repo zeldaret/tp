@@ -240,10 +240,10 @@ getActor__13dDemo_actor_cFv:
 /* 80038130 00035070  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80038134 00035074  80 03 00 58 */	lwz r0, 0x58(r3)
 /* 80038138 00035078  90 01 00 08 */	stw r0, 8(r1)
-.global fpcSch_JudgeByID
-/* 8003813C 0003507C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80038140 00035080  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 8003813C 0003507C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80038140 00035080  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80038144 00035084  38 81 00 08 */	addi r4, r1, 8
 /* 80038148 00035088  4B FE 16 B1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8003814C 0003508C  80 01 00 14 */	lwz r0, 0x14(r1)

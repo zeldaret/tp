@@ -45,10 +45,10 @@ lbl_800836B4:
 /* 800836B8 000805F8  28 00 00 00 */	cmplwi r0, 0
 /* 800836BC 000805FC  40 82 00 30 */	bne lbl_800836EC
 /* 800836C0 00080600  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 800836C4 00080604  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 800836C8 00080608  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 800836C4 00080604  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 800836C8 00080608  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 800836CC 0008060C  38 81 00 08 */	addi r4, r1, 8
 /* 800836D0 00080610  4B F9 61 29 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800836D4 00080614  90 7F 00 10 */	stw r3, 0x10(r31)

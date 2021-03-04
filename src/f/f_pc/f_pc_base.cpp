@@ -21,15 +21,13 @@ extern s32 lbl_80450D04;  // f_pc_base::t_type
 extern s8 lbl_80450D08;
 extern s32 lbl_80450D0C;  // f_pc_base::process_id
 extern s8 lbl_80450D10;
-extern s32 lbl_80450D00;  // f_pc_base::g_fpcBs_type
+extern int lbl_80450D00;  // f_pc_base::g_fpcBs_type
 
-extern "C" {
-
-BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2) {
+BOOL fpcBs_Is_JustOfType(int pType1, int pType2) {
     return checkEqual(pType1, pType2);
 }
 
-s32 fpcBs_MakeOfType(s32* pType) {
+s32 fpcBs_MakeOfType(int* pType) {
     if (lbl_80450D08 == 0) {
         lbl_80450D04 = 0x9130000;
         lbl_80450D08 = 1;
@@ -83,7 +81,7 @@ s32 fpcBs_Delete(base_process_class* pProc) {
     return deleteResult;
 }
 
-base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData) {
+base_process_class* fpcBs_Create(s16 pProcTypeID, unsigned int pProcID, void* pData) {
     process_profile_definition* procProfDef;
     base_process_class* procClass;
     u32 size;
@@ -135,5 +133,4 @@ s32 fpcBs_SubCreate(base_process_class* pProc) {
         pProc->mUnk2 = 5;
         return cPhs_ERROR_e;
     }
-}
 }

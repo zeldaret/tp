@@ -13,12 +13,9 @@ typedef struct layer_management_tag_class {
     u16 mNodeListIdx;
 } layer_management_tag_class;
 
-extern "C" {
-
 s32 fpcLyTg_QueueTo(layer_management_tag_class* pTag);
 s32 fpcLyTg_ToQueue(layer_management_tag_class* pTag, u32 layerID, u16 listID, u16 listPrio);
 s32 fpcLyTg_Move(layer_management_tag_class*, u32, u16, u16);
 s32 fpcLyTg_Init(layer_management_tag_class*, u32, void*);
-};
 
 #endif

@@ -62,10 +62,10 @@ getCurrentPos__15dShopItemCtrl_cFi:
 /* 801969D4 00193914  28 00 FF FF */	cmplwi r0, 0xffff
 /* 801969D8 00193918  41 82 00 38 */	beq lbl_80196A10
 /* 801969DC 0019391C  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 801969E0 00193920  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 801969E4 00193924  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 801969E0 00193920  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 801969E4 00193924  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 801969E8 00193928  38 81 00 08 */	addi r4, r1, 8
 /* 801969EC 0019392C  4B E8 2E 0D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801969F0 00193930  28 03 00 00 */	cmplwi r3, 0
@@ -106,10 +106,10 @@ isHomePos__15dShopItemCtrl_cFi:
 /* 80196A6C 001939AC  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196A70 001939B0  41 82 00 68 */	beq lbl_80196AD8
 /* 80196A74 001939B4  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 80196A78 001939B8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196A7C 001939BC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196A78 001939B8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196A7C 001939BC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196A80 001939C0  38 81 00 08 */	addi r4, r1, 8
 /* 80196A84 001939C4  4B E8 2D 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196A88 001939C8  7C 7F 1B 79 */	or. r31, r3, r3
@@ -159,10 +159,10 @@ lbl_80196B14:
 /* 80196B20 00193A60  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196B24 00193A64  41 82 00 58 */	beq lbl_80196B7C
 /* 80196B28 00193A68  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 80196B2C 00193A6C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196B30 00193A70  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196B2C 00193A6C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196B30 00193A70  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196B34 00193A74  38 81 00 08 */	addi r4, r1, 8
 /* 80196B38 00193A78  4B E8 2C C1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196B3C 00193A7C  7C 7E 1B 79 */	or. r30, r3, r3
@@ -215,10 +215,10 @@ lbl_80196BD4:
 /* 80196BE0 00193B20  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196BE4 00193B24  41 82 04 8C */	beq lbl_80197070
 /* 80196BE8 00193B28  90 61 00 18 */	stw r3, 0x18(r1)
-.global fpcSch_JudgeByID
-/* 80196BEC 00193B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196BF0 00193B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196BEC 00193B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196BF0 00193B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196BF4 00193B34  38 81 00 18 */	addi r4, r1, 0x18
 /* 80196BF8 00193B38  4B E8 2C 01 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196BFC 00193B3C  7C 7F 1B 79 */	or. r31, r3, r3

@@ -6,7 +6,7 @@
 #include "f/f_pc/f_pc_layer.h"
 #include "global.h"
 
-typedef s32 (*fstCreateFunc)(void*, void*);
+typedef int (*fstCreateFunc)(void*, void*);
 
 typedef struct fast_create_request {
     /* 0x00 */ create_request mBase;
@@ -14,13 +14,10 @@ typedef struct fast_create_request {
     /* 0x4C */ void* mpFastCreateData;
 } fast_create_request;  // Size: 0x50
 
-extern "C" {
-
 s32 fpcFCtRq_Do(fast_create_request* pFstCreateReq);
 s32 fpcFCtRq_Delete(fast_create_request*);
 base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
                                      fstCreateFunc pFastCreateFunc, void* pFastCreateData,
                                      void* pData);
-};
 
 #endif

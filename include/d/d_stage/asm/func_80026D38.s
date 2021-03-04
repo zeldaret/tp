@@ -33,13 +33,13 @@ lbl_80026D84:
 /* 80026DB4 00023CF4  38 A0 00 00 */ li r5, 0
 /* 80026DB8 00023CF8  38 C0 00 00 */ li r6, 0
 /* 80026DBC 00023CFC  38 E0 00 00 */ li r7, 0
-/* 80026DC0 00023D00  4B FF CF D5 */ bl fpcSCtRq_Request
+/* 80026DC0 00023D00  4B FF CF D5 */ bl fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv
 /* 80026DC4 00023D04  4B FF A9 31 */ bl fpcLy_CurrentLayer
 /* 80026DC8 00023D08  38 80 02 DB */ li r4, 0x2db
 /* 80026DCC 00023D0C  38 A0 00 00 */ li r5, 0
 /* 80026DD0 00023D10  38 C0 00 00 */ li r6, 0
 /* 80026DD4 00023D14  38 E0 00 00 */ li r7, 0
-/* 80026DD8 00023D18  4B FF CF BD */ bl fpcSCtRq_Request
+/* 80026DD8 00023D18  4B FF CF BD */ bl fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv
 lbl_80026DDC:
 /* 80026DDC 00023D1C  38 7F 4F F8 */ addi r3, r31, 0x4ff8
 /* 80026DE0 00023D20  48 01 F9 31 */ bl create__16dEvent_manager_cFv

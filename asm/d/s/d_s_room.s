@@ -231,7 +231,7 @@ objectDeleteJugge:
 /* 8025B12C 0025806C  48 00 00 10 */	b lbl_8025B13C
 lbl_8025B130:
 /* 8025B130 00258070  7F E3 FB 78 */	mr r3, r31
-/* 8025B134 00258074  4B DC 6F E5 */	bl fpcM_Delete
+/* 8025B134 00258074  4B DC 6F E5 */	bl fpcM_Delete__FPv
 lbl_8025B138:
 /* 8025B138 00258078  38 60 00 00 */	li r3, 0
 lbl_8025B13C:
@@ -245,7 +245,7 @@ deleteJugge:
 /* 8025B150 00258090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025B154 00258094  7C 08 02 A6 */	mflr r0
 /* 8025B158 00258098  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8025B15C 0025809C  4B DC 6F BD */	bl fpcM_Delete
+/* 8025B15C 0025809C  4B DC 6F BD */	bl fpcM_Delete__FPv
 /* 8025B160 002580A0  38 60 00 00 */	li r3, 0
 /* 8025B164 002580A4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8025B168 002580A8  7C 08 03 A6 */	mtlr r0
@@ -273,7 +273,7 @@ isCreating:
 .global isCreatingCallback
 /* 8025B1A8 002580E8  38 63 B1 74 */	addi r3, r3, isCreatingCallback@l
 /* 8025B1AC 002580EC  38 81 00 08 */	addi r4, r1, 8
-/* 8025B1B0 002580F0  4B DC 58 55 */	bl fpcCtIt_Judge
+/* 8025B1B0 002580F0  4B DC 58 55 */	bl fpcCtIt_Judge__FPFPvPv_PvPv
 /* 8025B1B4 002580F4  30 03 FF FF */	addic r0, r3, -1
 /* 8025B1B8 002580F8  7C 00 19 10 */	subfe r0, r0, r3
 /* 8025B1BC 002580FC  54 03 06 3E */	clrlwi r3, r0, 0x18
@@ -465,7 +465,7 @@ lbl_8025B45C:
 /* 8025B460 002583A0  41 82 00 B8 */	beq lbl_8025B518
 /* 8025B464 002583A4  80 6D 87 C0 */	lwz r3, lbl_80450D40-_SDA_BASE_(r13)
 /* 8025B468 002583A8  80 9D 00 B4 */	lwz r4, 0xb4(r29)
-/* 8025B46C 002583AC  4B DC 51 E1 */	bl fpcBs_Is_JustOfType
+/* 8025B46C 002583AC  4B DC 51 E1 */	bl fpcBs_Is_JustOfType__Fii
 /* 8025B470 002583B0  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B474 002583B4  41 82 00 0C */	beq lbl_8025B480
 /* 8025B478 002583B8  80 7D 00 C8 */	lwz r3, 0xc8(r29)
@@ -485,7 +485,7 @@ lbl_8025B498:
 .global deleteJugge
 /* 8025B4A0 002583E0  38 84 B1 50 */	addi r4, r4, deleteJugge@l
 /* 8025B4A4 002583E4  38 A0 00 00 */	li r5, 0
-/* 8025B4A8 002583E8  4B DC 67 81 */	bl fpcLyIt_Judge
+/* 8025B4A8 002583E8  4B DC 67 81 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
 /* 8025B4AC 002583EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025B4B0 002583F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B4B4 002583F4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
@@ -522,7 +522,7 @@ lbl_8025B518:
 .global objectDeleteJugge
 /* 8025B528 00258468  38 84 B0 F0 */	addi r4, r4, objectDeleteJugge@l
 /* 8025B52C 0025846C  38 A0 00 00 */	li r5, 0
-/* 8025B530 00258470  4B DC 66 F9 */	bl fpcLyIt_Judge
+/* 8025B530 00258470  4B DC 66 F9 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
 /* 8025B534 00258474  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025B538 00258478  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025B53C 0025847C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
@@ -586,7 +586,7 @@ lbl_8025B5D8:
 /* 8025B614 00258554  40 82 00 44 */	bne lbl_8025B658
 /* 8025B618 00258558  80 6D 87 C0 */	lwz r3, lbl_80450D40-_SDA_BASE_(r13)
 /* 8025B61C 0025855C  80 9F 00 B4 */	lwz r4, 0xb4(r31)
-/* 8025B620 00258560  4B DC 50 2D */	bl fpcBs_Is_JustOfType
+/* 8025B620 00258560  4B DC 50 2D */	bl fpcBs_Is_JustOfType__Fii
 /* 8025B624 00258564  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B628 00258568  41 82 00 0C */	beq lbl_8025B634
 /* 8025B62C 0025856C  80 7F 00 C8 */	lwz r3, 0xc8(r31)

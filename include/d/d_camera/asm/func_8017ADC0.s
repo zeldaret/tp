@@ -248,10 +248,10 @@ lbl_8017B17C:
 /* 8017B184 001780C4  40 82 00 B0 */ bne lbl_8017B234
 /* 8017B188 001780C8  38 00 00 F4 */ li r0, 0xf4
 /* 8017B18C 001780CC  B0 01 00 0C */ sth r0, 0xc(r1)
-/*.global fpcSch_JudgeForPName*/
-/* 8017B190 001780D0  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName@ha
-/*.global fpcSch_JudgeForPName*/
-/* 8017B194 001780D4  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName@l
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B190 001780D0  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName__FPvPv@ha
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B194 001780D4  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
 /* 8017B198 001780D8  38 81 00 0C */ addi r4, r1, 0xc
 /* 8017B19C 001780DC  4B E9 E6 5D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8017B1A0 001780E0  28 03 00 00 */ cmplwi r3, 0
@@ -433,10 +433,10 @@ lbl_8017B414:
 /* 8017B44C 0017838C  41 82 00 24 */ beq lbl_8017B470
 /* 8017B450 00178390  38 00 02 7B */ li r0, 0x27b
 /* 8017B454 00178394  B0 01 00 0A */ sth r0, 0xa(r1)
-/*.global fpcSch_JudgeForPName*/
-/* 8017B458 00178398  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName@ha
-/*.global fpcSch_JudgeForPName*/
-/* 8017B45C 0017839C  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName@l
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B458 00178398  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName__FPvPv@ha
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B45C 0017839C  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
 /* 8017B460 001783A0  38 81 00 0A */ addi r4, r1, 0xa
 /* 8017B464 001783A4  4B E9 E3 95 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8017B468 001783A8  90 7F 04 7C */ stw r3, 0x47c(r31)
@@ -450,10 +450,10 @@ lbl_8017B470:
 /* 8017B484 001783C4  41 82 00 20 */ beq lbl_8017B4A4
 /* 8017B488 001783C8  38 00 02 7C */ li r0, 0x27c
 /* 8017B48C 001783CC  B0 01 00 08 */ sth r0, 8(r1)
-/*.global fpcSch_JudgeForPName*/
-/* 8017B490 001783D0  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName@ha
-/*.global fpcSch_JudgeForPName*/
-/* 8017B494 001783D4  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName@l
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B490 001783D0  3C 60 80 02 */ lis r3, fpcSch_JudgeForPName__FPvPv@ha
+/*.global fpcSch_JudgeForPName__FPvPv*/
+/* 8017B494 001783D4  38 63 35 78 */ addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
 /* 8017B498 001783D8  38 81 00 08 */ addi r4, r1, 8
 /* 8017B49C 001783DC  4B E9 E3 5D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8017B4A0 001783E0  90 7F 04 7C */ stw r3, 0x47c(r31)

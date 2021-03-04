@@ -35,17 +35,19 @@ typedef struct base_process_class {
     /* 0xB4 */ u32 mSubType;
 } base_process_class;  // Size: 0xB8
 
-extern "C" {
-
-BOOL fpcBs_Is_JustOfType(s32 pType1, s32 pType2);
-s32 fpcBs_MakeOfType(s32* pType);
+BOOL fpcBs_Is_JustOfType(int pType1, int pType2);
+s32 fpcBs_MakeOfType(int* pType);
 s32 fpcBs_MakeOfId(void);
 s32 fpcBs_Execute(base_process_class* pProc);
 void fpcBs_DeleteAppend(base_process_class* pProc);
 s32 fpcBs_IsDelete(base_process_class* pProc);
 s32 fpcBs_Delete(base_process_class* pProc);
-base_process_class* fpcBs_Create(s16 pProcTypeID, u32 pProcID, void* pData);
+base_process_class* fpcBs_Create(s16 pProcTypeID, unsigned int pProcID, void* pData);
 s32 fpcBs_SubCreate(base_process_class* pProc);
-};
+
+extern "C" {
+void fpcBs_MakeOfType__FPi(void);
+void fpcBs_Is_JustOfType__Fii(void);
+}
 
 #endif

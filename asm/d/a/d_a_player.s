@@ -595,10 +595,10 @@ setActor__16daPy_actorKeep_cFv:
 /* 8015EC64 0015BBA4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015EC68 0015BBA8  41 82 00 34 */	beq lbl_8015EC9C
 /* 8015EC6C 0015BBAC  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 8015EC70 0015BBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 8015EC74 0015BBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 8015EC70 0015BBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 8015EC74 0015BBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 8015EC78 0015BBB8  38 81 00 08 */	addi r4, r1, 8
 /* 8015EC7C 0015BBBC  4B EB AB 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8015EC80 0015BBC0  90 7F 00 04 */	stw r3, 4(r31)

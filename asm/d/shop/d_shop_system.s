@@ -2413,7 +2413,7 @@ lbl_801992B0:
 /* 80199314 00196254  90 7D 0D 90 */	stw r3, 0xd90(r29)
 lbl_80199318:
 /* 80199318 00196258  80 7D 0D 90 */	lwz r3, 0xd90(r29)
-/* 8019931C 0019625C  4B E8 80 81 */	bl fpcEx_IsExist
+/* 8019931C 0019625C  4B E8 80 81 */	bl fpcEx_IsExist__FUi
 /* 80199320 00196260  2C 03 00 00 */	cmpwi r3, 0
 /* 80199324 00196264  41 82 00 1C */	beq lbl_80199340
 /* 80199328 00196268  38 00 00 01 */	li r0, 1
@@ -3224,7 +3224,7 @@ lbl_80199E80:
 /* 80199EE4 00196E24  90 7D 0D 90 */	stw r3, 0xd90(r29)
 lbl_80199EE8:
 /* 80199EE8 00196E28  80 7D 0D 90 */	lwz r3, 0xd90(r29)
-/* 80199EEC 00196E2C  4B E8 74 B1 */	bl fpcEx_IsExist
+/* 80199EEC 00196E2C  4B E8 74 B1 */	bl fpcEx_IsExist__FUi
 /* 80199EF0 00196E30  2C 03 00 00 */	cmpwi r3, 0
 /* 80199EF4 00196E34  41 82 00 30 */	beq lbl_80199F24
 /* 80199EF8 00196E38  7F A3 EB 78 */	mr r3, r29
@@ -3669,10 +3669,10 @@ lbl_8019A524:
 /* 8019A52C 0019746C  7C 63 02 14 */	add r3, r3, r0
 /* 8019A530 00197470  80 03 0E 4C */	lwz r0, 0xe4c(r3)
 /* 8019A534 00197474  90 01 00 08 */	stw r0, 8(r1)
-.global fpcSch_JudgeByID
-/* 8019A538 00197478  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 8019A53C 0019747C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 8019A538 00197478  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 8019A53C 0019747C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 8019A540 00197480  38 81 00 08 */	addi r4, r1, 8
 /* 8019A544 00197484  4B E7 F2 B5 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8019A548 00197488  28 03 00 00 */	cmplwi r3, 0
@@ -3744,7 +3744,7 @@ lbl_8019A614:
 .global dShopSystem_searchItemActor
 /* 8019A620 00197560  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor@l
 /* 8019A624 00197564  7F C4 F3 78 */	mr r4, r30
-/* 8019A628 00197568  4B E8 6D 11 */	bl fpcEx_Search
+/* 8019A628 00197568  4B E8 6D 11 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A62C:
 /* 8019A62C 0019756C  80 0D 8A E4 */	lwz r0, lbl_80451064-_SDA_BASE_(r13)
 /* 8019A630 00197570  2C 00 00 02 */	cmpwi r0, 2
@@ -3754,7 +3754,7 @@ lbl_8019A62C:
 .global dShopSystem_searchCameraActor
 /* 8019A63C 0019757C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor@l
 /* 8019A640 00197580  7F C4 F3 78 */	mr r4, r30
-/* 8019A644 00197584  4B E8 6C F5 */	bl fpcEx_Search
+/* 8019A644 00197584  4B E8 6C F5 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A648:
 /* 8019A648 00197588  38 60 00 00 */	li r3, 0
 /* 8019A64C 0019758C  48 00 04 94 */	b lbl_8019AAE0

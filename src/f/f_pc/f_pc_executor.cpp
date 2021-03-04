@@ -6,27 +6,23 @@
 #include "f/f_pc/f_pc_line_iter.h"
 #include "f/f_pc/f_pc_node.h"
 #include "f/f_pc/f_pc_searcher.h"
+#include "f/f_pc/f_pc_pause.h"
 
 // g_fpcNd_type
 extern s32 lbl_80450D40;
 
-extern "C" {
-
-extern s32 fpcPause_IsEnable(base_process_class* pProc, s32);
-
-base_process_class* fpcEx_Search(void* pFunc, void* pUserData) {
-    return (base_process_class*)fpcLyIt_AllJudge((cNdIt_MethodFunc)pFunc, pUserData);
+base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData) {
+    return (base_process_class*)fpcLyIt_AllJudge(pFunc, pUserData);
 }
 
-base_process_class* fpcEx_SearchByID(u32 id) {
+base_process_class* fpcEx_SearchByID(unsigned int id) {
     if (id + 2 <= 1)
         return NULL;
 
     return fpcEx_Search(fpcSch_JudgeByID, &id);
-    ;
 }
 
-BOOL fpcEx_IsExist(s32 id) {
+BOOL fpcEx_IsExist(unsigned int id) {
     return fpcEx_SearchByID(id) != NULL ? 1 : 0;
 }
 
@@ -82,5 +78,4 @@ s32 fpcEx_ToExecuteQ(base_process_class* pProc) {
 
 void fpcEx_Handler(cNdIt_MethodFunc pFunc) {
     fpcLnIt_Queue(pFunc);
-}
 }

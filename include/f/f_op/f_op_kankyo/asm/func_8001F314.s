@@ -6,7 +6,7 @@
 /* 8001F328 0001C268  7C 7E 1B 78 */ mr r30, r3
 /* 8001F32C 0001C26C  80 63 00 D8 */ lwz r3, 0xd8(r3)
 /* 8001F330 0001C270  7F C4 F3 78 */ mr r4, r30
-/* 8001F334 0001C274  48 00 31 51 */ bl fpcMtd_IsDelete
+/* 8001F334 0001C274  48 00 31 51 */ bl fpcMtd_IsDelete__FP20process_method_classPv
 /* 8001F338 0001C278  7C 7F 1B 78 */ mr r31, r3
 /* 8001F33C 0001C27C  2C 1F 00 01 */ cmpwi r31, 1
 /* 8001F340 0001C280  40 82 00 0C */ bne lbl_8001F34C

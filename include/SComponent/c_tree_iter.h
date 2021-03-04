@@ -6,10 +6,7 @@
 #include "SComponent/c_tree.h"
 #include "global.h"
 
-extern "C" {
-
 int cTrIt_Method(node_lists_tree_class* pTree, cNdIt_MethodFunc pJudgeFunc, void* pUserData);
 void* cTrIt_Judge(node_lists_tree_class* pTree, cNdIt_JudgeFunc pJudgeFunc, void* pUserData);
-};
 
 #endif

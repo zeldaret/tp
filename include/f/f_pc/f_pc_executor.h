@@ -4,17 +4,19 @@
 
 #include "SComponent/c_node_iter.h"
 #include "f/f_pc/f_pc_base.h"
+#include "f/f_pc/f_pc_layer_iter.h"
 
-extern "C" {
-
-base_process_class* fpcEx_Search(void* pFunc, void* pUserData);
-base_process_class* fpcEx_SearchByID(u32 id);
-BOOL fpcEx_IsExist(s32 id);
+base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData);
+base_process_class* fpcEx_SearchByID(unsigned int id);
+BOOL fpcEx_IsExist(unsigned int id);
 s32 fpcEx_ToLineQ(base_process_class* pProc);
 s32 fpcEx_ExecuteQTo(base_process_class* pProc);
 s32 fpcEx_Execute(base_process_class* pProc);
 s32 fpcEx_ToExecuteQ(base_process_class* pProc);
 void fpcEx_Handler(cNdIt_MethodFunc pFunc);
-};
+
+extern "C" {
+void fpcEx_IsExist__FUi(void);
+}
 
 #endif

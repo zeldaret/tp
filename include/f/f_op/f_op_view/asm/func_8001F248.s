@@ -8,7 +8,7 @@
 /* 8001F264 0001C1A4  88 03 00 28 */ lbz r0, 0x28(r3)
 /* 8001F268 0001C1A8  98 04 00 C4 */ stb r0, 0xc4(r4)
 /* 8001F26C 0001C1AC  80 64 00 C0 */ lwz r3, 0xc0(r4)
-/* 8001F270 0001C1B0  48 00 32 5D */ bl fpcMtd_Create
+/* 8001F270 0001C1B0  48 00 32 5D */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001F274 0001C1B4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001F278 0001C1B8  7C 08 03 A6 */ mtlr r0
 /* 8001F27C 0001C1BC  38 21 00 10 */ addi r1, r1, 0x10

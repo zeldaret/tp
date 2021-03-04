@@ -22,8 +22,6 @@ typedef struct layer_class {
     } counts;
 } layer_class;
 
-extern "C" {
-
 void fpcLy_SetCurrentLayer(layer_class* pLayer);
 layer_class* fpcLy_CurrentLayer(void);
 layer_class* fpcLy_RootLayer(void);
@@ -52,6 +50,5 @@ void fpcLy_Create(layer_class* pLayer, struct process_node_class* pPcNode, node_
                   s32 listNum);
 
 s32 fpcLy_Delete(layer_class* pLayer);
-};
 
 #endif

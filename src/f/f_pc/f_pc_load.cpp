@@ -9,22 +9,24 @@ extern s32 cDyl_IsLinked(s16 procName);
 extern s32 cDyl_Unlink(s16 procName);
 extern s32 cDyl_LinkASync(s16 procName);
 
-BOOL fpcLd_Use(u16 procName) {
+}
+
+BOOL fpcLd_Use(s16 procName) {
     if (fpcLd_IsLoaded(procName) == TRUE && fpcLd_Load(procName) == cPhs_COMPLEATE_e)
         return TRUE;
     return FALSE;
 }
 
-s32 fpcLd_IsLoaded(u16 procName) {
-    return cDyl_IsLinked(procName);
+s32 fpcLd_IsLoaded(s16 procName) {
+    return cDyl_IsLinked((int)procName);
 }
 
-void fpcLd_Free(u16 procName) {
-    cDyl_Unlink(procName);
+void fpcLd_Free(s16 procName) {
+    cDyl_Unlink((int)procName);
 }
 
-s32 fpcLd_Load(u16 procName) {
-    s32 phase = cDyl_LinkASync(procName);
+s32 fpcLd_Load(s16 procName) {
+    s32 phase = cDyl_LinkASync((int)procName);
 
     switch (phase) {
     case cPhs_COMPLEATE_e:
@@ -34,5 +36,4 @@ s32 fpcLd_Load(u16 procName) {
     default:
         return cPhs_ERROR_e;
     }
-}
 }

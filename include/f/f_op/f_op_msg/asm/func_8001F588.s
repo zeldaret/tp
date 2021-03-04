@@ -9,7 +9,7 @@
 /* 8001F5A8 0001C4E8  40 82 00 70 */ bne lbl_8001F618
 /* 8001F5AC 0001C4EC  83 C3 00 10 */ lwz r30, 0x10(r3)
 /* 8001F5B0 0001C4F0  38 6D 87 70 */ la r3, lbl_80450CF0(r13)
-/* 8001F5B4 0001C4F4  48 00 10 A9 */ bl fpcBs_MakeOfType
+/* 8001F5B4 0001C4F4  48 00 10 A9 */ bl fpcBs_MakeOfType__FPi
 /* 8001F5B8 0001C4F8  90 7F 00 C0 */ stw r3, 0xc0(r31)
 /* 8001F5BC 0001C4FC  80 1E 00 24 */ lwz r0, 0x24(r30)
 /* 8001F5C0 0001C500  90 1F 00 D8 */ stw r0, 0xd8(r31)
@@ -37,12 +37,12 @@
 lbl_8001F618:
 /* 8001F618 0001C558  80 7F 00 D8 */ lwz r3, 0xd8(r31)
 /* 8001F61C 0001C55C  7F E4 FB 78 */ mr r4, r31
-/* 8001F620 0001C560  48 00 2E AD */ bl fpcMtd_Create
+/* 8001F620 0001C560  48 00 2E AD */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001F624 0001C564  7C 7E 1B 78 */ mr r30, r3
 /* 8001F628 0001C568  2C 1E 00 04 */ cmpwi r30, 4
 /* 8001F62C 0001C56C  40 82 00 18 */ bne lbl_8001F644
 /* 8001F630 0001C570  7F E3 FB 78 */ mr r3, r31
-/* 8001F634 0001C574  48 00 23 CD */ bl fpcLf_GetPriority
+/* 8001F634 0001C574  48 00 23 CD */ bl fpcLf_GetPriority__FPC14leafdraw_class
 /* 8001F638 0001C578  7C 64 07 34 */ extsh r4, r3
 /* 8001F63C 0001C57C  38 7F 00 C4 */ addi r3, r31, 0xc4
 /* 8001F640 0001C580  48 00 0E 6D */ bl fopDwTg_ToDrawQ

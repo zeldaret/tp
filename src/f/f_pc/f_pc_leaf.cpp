@@ -2,11 +2,9 @@
 #include "dolphin/types.h"
 
 // f_pc_leaf::g_fpcLf_type
-extern s32 lbl_80450D30;
+extern int lbl_80450D30;
 
-extern "C" {
-
-s32 fpcLf_GetPriority(leafdraw_class* pLeaf) {
+s32 fpcLf_GetPriority(const leafdraw_class* pLeaf) {
     return fpcDwPi_Get(&pLeaf->mDwPi);
 }
 
@@ -47,5 +45,4 @@ s32 fpcLf_Create(leafdraw_class* pLeaf) {
         pLeaf->mbUnk0 = 0;
     }
     return fpcMtd_Create(&pLeaf->mpDrawMtd->mBase, pLeaf);
-}
 }

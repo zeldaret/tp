@@ -3,7 +3,7 @@
 /* 8001EB8C 0001BACC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8001EB90 0001BAD0  7C 64 1B 78 */ mr r4, r3
 /* 8001EB94 0001BAD4  80 63 01 AC */ lwz r3, 0x1ac(r3)
-/* 8001EB98 0001BAD8  48 00 38 ED */ bl fpcMtd_IsDelete
+/* 8001EB98 0001BAD8  48 00 38 ED */ bl fpcMtd_IsDelete__FP20process_method_classPv
 /* 8001EB9C 0001BADC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001EBA0 0001BAE0  7C 08 03 A6 */ mtlr r0
 /* 8001EBA4 0001BAE4  38 21 00 10 */ addi r1, r1, 0x10

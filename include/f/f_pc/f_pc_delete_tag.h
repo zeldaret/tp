@@ -14,13 +14,10 @@ typedef struct delete_tag_class {
     s16 mTimer;
 } delete_tag_class;
 
-extern "C" {
-
 BOOL fpcDtTg_IsEmpty(void);
 void fpcDtTg_ToDeleteQ(delete_tag_class* pTag);
 void fpcDtTg_DeleteQTo(delete_tag_class* pTag);
 s32 fpcDtTg_Do(delete_tag_class* pTag, delete_tag_func pFunc);
 s32 fpcDtTg_Init(delete_tag_class* pTag, void* pUserData);
-};
 
 #endif

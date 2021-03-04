@@ -18,7 +18,7 @@
 lbl_8001E460:
 /* 8001E460 0001B3A0  80 7F 00 C0 */ lwz r3, 0xc0(r31)
 /* 8001E464 0001B3A4  7F E4 FB 78 */ mr r4, r31
-/* 8001E468 0001B3A8  48 00 40 65 */ bl fpcMtd_Create
+/* 8001E468 0001B3A8  48 00 40 65 */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001E46C 0001B3AC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8001E470 0001B3B0  83 C1 00 08 */ lwz r30, 8(r1)
 /* 8001E474 0001B3B4  80 01 00 14 */ lwz r0, 0x14(r1)

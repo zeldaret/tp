@@ -122,7 +122,7 @@ fopAc_IsActor:
 /* 80018CEC 00015C2C  7C 64 1B 78 */	mr r4, r3
 /* 80018CF0 00015C30  80 6D 87 38 */	lwz r3, lbl_80450CB8-_SDA_BASE_(r13)
 /* 80018CF4 00015C34  80 84 00 C0 */	lwz r4, 0xc0(r4)
-/* 80018CF8 00015C38  48 00 79 55 */	bl fpcBs_Is_JustOfType
+/* 80018CF8 00015C38  48 00 79 55 */	bl fpcBs_Is_JustOfType__Fii
 /* 80018CFC 00015C3C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80018D00 00015C40  7C 08 03 A6 */	mtlr r0
 /* 80018D04 00015C44  38 21 00 10 */	addi r1, r1, 0x10
@@ -163,7 +163,7 @@ lbl_80018D78:
 /* 80018D8C 00015CCC  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 /* 80018D90 00015CD0  80 7F 00 EC */	lwz r3, 0xec(r31)
 /* 80018D94 00015CD4  7F E4 FB 78 */	mr r4, r31
-/* 80018D98 00015CD8  48 00 8C 8D */	bl fpcLf_DrawMethod
+/* 80018D98 00015CD8  48 00 8C 8D */	bl fpcLf_DrawMethod__FP21leafdraw_method_classPv
 /* 80018D9C 00015CDC  7C 7E 1B 78 */	mr r30, r3
 /* 80018DA0 00015CE0  48 00 00 10 */	b lbl_80018DB0
 lbl_80018DA4:
@@ -249,7 +249,7 @@ lbl_80018E8C:
 /* 80018ED4 00015E14  98 1F 04 CF */	stb r0, 0x4cf(r31)
 /* 80018ED8 00015E18  80 7F 00 EC */	lwz r3, 0xec(r31)
 /* 80018EDC 00015E1C  7F E4 FB 78 */	mr r4, r31
-/* 80018EE0 00015E20  48 00 95 81 */	bl fpcMtd_Execute
+/* 80018EE0 00015E20  48 00 95 81 */	bl fpcMtd_Execute__FP20process_method_classPv
 /* 80018EE4 00015E24  7C 7E 1B 78 */	mr r30, r3
 /* 80018EE8 00015E28  48 00 00 2C */	b lbl_80018F14
 lbl_80018EEC:
@@ -301,7 +301,7 @@ lbl_80018F5C:
 /* 80018F8C 00015ECC  7C 7F 1B 78 */	mr r31, r3
 /* 80018F90 00015ED0  80 63 00 EC */	lwz r3, 0xec(r3)
 /* 80018F94 00015ED4  7F E4 FB 78 */	mr r4, r31
-/* 80018F98 00015ED8  48 00 94 ED */	bl fpcMtd_IsDelete
+/* 80018F98 00015ED8  48 00 94 ED */	bl fpcMtd_IsDelete__FP20process_method_classPv
 /* 80018F9C 00015EDC  7C 7E 1B 78 */	mr r30, r3
 /* 80018FA0 00015EE0  2C 1E 00 01 */	cmpwi r30, 1
 /* 80018FA4 00015EE4  40 82 00 0C */	bne lbl_80018FB0
@@ -323,7 +323,7 @@ lbl_80018FB0:
 /* 80018FE0 00015F20  7C 7F 1B 78 */	mr r31, r3
 /* 80018FE4 00015F24  80 63 00 EC */	lwz r3, 0xec(r3)
 /* 80018FE8 00015F28  7F E4 FB 78 */	mr r4, r31
-/* 80018FEC 00015F2C  48 00 94 BD */	bl fpcMtd_Delete
+/* 80018FEC 00015F2C  48 00 94 BD */	bl fpcMtd_Delete__FP20process_method_classPv
 /* 80018FF0 00015F30  7C 7E 1B 78 */	mr r30, r3
 /* 80018FF4 00015F34  2C 1E 00 01 */	cmpwi r30, 1
 /* 80018FF8 00015F38  40 82 00 38 */	bne lbl_80019030
@@ -359,7 +359,7 @@ lbl_80019030:
 /* 8001906C 00015FAC  40 82 03 30 */	bne lbl_8001939C
 /* 80019070 00015FB0  83 C3 00 10 */	lwz r30, 0x10(r3)
 /* 80019074 00015FB4  38 6D 87 38 */	addi r3, r13, lbl_80450CB8-_SDA_BASE_
-/* 80019078 00015FB8  48 00 75 E5 */	bl fpcBs_MakeOfType
+/* 80019078 00015FB8  48 00 75 E5 */	bl fpcBs_MakeOfType__FPi
 /* 8001907C 00015FBC  90 7F 00 C0 */	stw r3, 0xc0(r31)
 /* 80019080 00015FC0  80 1E 00 24 */	lwz r0, 0x24(r30)
 /* 80019084 00015FC4  90 1F 00 EC */	stw r0, 0xec(r31)
@@ -567,12 +567,12 @@ lbl_80019360:
 lbl_8001939C:
 /* 8001939C 000162DC  80 7F 00 EC */	lwz r3, 0xec(r31)
 /* 800193A0 000162E0  7F E4 FB 78 */	mr r4, r31
-/* 800193A4 000162E4  48 00 91 29 */	bl fpcMtd_Create
+/* 800193A4 000162E4  48 00 91 29 */	bl fpcMtd_Create__FP20process_method_classPv
 /* 800193A8 000162E8  7C 7E 1B 78 */	mr r30, r3
 /* 800193AC 000162EC  2C 1E 00 04 */	cmpwi r30, 4
 /* 800193B0 000162F0  40 82 00 1C */	bne lbl_800193CC
 /* 800193B4 000162F4  7F E3 FB 78 */	mr r3, r31
-/* 800193B8 000162F8  48 00 86 49 */	bl fpcLf_GetPriority
+/* 800193B8 000162F8  48 00 86 49 */	bl fpcLf_GetPriority__FPC14leafdraw_class
 /* 800193BC 000162FC  7C 64 07 34 */	extsh r4, r3
 /* 800193C0 00016300  38 7F 00 D8 */	addi r3, r31, 0xd8
 /* 800193C4 00016304  48 00 70 E9 */	bl fopDwTg_ToDrawQ

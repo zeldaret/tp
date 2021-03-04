@@ -7131,7 +7131,7 @@ lbl_8014BE10:
 .global srchActor__8daNpcT_cFPvPv
 /* 8014BE64 00148DA4  38 63 7F D4 */	addi r3, r3, srchActor__8daNpcT_cFPvPv@l
 /* 8014BE68 00148DA8  7F 64 DB 78 */	mr r4, r27
-/* 8014BE6C 00148DAC  4B ED 54 CD */	bl fpcEx_Search
+/* 8014BE6C 00148DAC  4B ED 54 CD */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8014BE70 00148DB0  3B 80 00 00 */	li r28, 0
 /* 8014BE74 00148DB4  3B E0 00 00 */	li r31, 0
 /* 8014BE78 00148DB8  3C 60 80 42 */	lis r3, lbl_80425708@ha
@@ -7181,7 +7181,7 @@ lbl_8014BEB4:
 .global srchActor__8daNpcT_cFPvPv
 /* 8014BF18 00148E58  38 63 7F D4 */	addi r3, r3, srchActor__8daNpcT_cFPvPv@l
 /* 8014BF1C 00148E5C  7C C4 33 78 */	mr r4, r6
-/* 8014BF20 00148E60  4B ED 54 19 */	bl fpcEx_Search
+/* 8014BF20 00148E60  4B ED 54 19 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8014BF24 00148E64  38 80 00 00 */	li r4, 0
 /* 8014BF28 00148E68  80 0D 8A 5C */	lwz r0, lbl_80450FDC-_SDA_BASE_(r13)
 /* 8014BF2C 00148E6C  3C 60 80 42 */	lis r3, lbl_80425708@ha
@@ -7233,7 +7233,7 @@ lbl_8014BF98:
 /* 8014BFD0 00148F10  3C 60 80 14 */	lis r3, srchActor__8daNpcT_cFPvPv@ha
 .global srchActor__8daNpcT_cFPvPv
 /* 8014BFD4 00148F14  38 63 7F D4 */	addi r3, r3, srchActor__8daNpcT_cFPvPv@l
-/* 8014BFD8 00148F18  4B ED 53 61 */	bl fpcEx_Search
+/* 8014BFD8 00148F18  4B ED 53 61 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8014BFDC 00148F1C  38 80 00 00 */	li r4, 0
 /* 8014BFE0 00148F20  80 0D 8A 5C */	lwz r0, lbl_80450FDC-_SDA_BASE_(r13)
 /* 8014BFE4 00148F24  3C 60 80 42 */	lis r3, lbl_80425708@ha
@@ -16349,7 +16349,7 @@ lbl_8015421C:
 .global srchActor__8daNpcF_cFPvPv
 /* 801542D4 00151214  38 63 26 E8 */	addi r3, r3, srchActor__8daNpcF_cFPvPv@l
 /* 801542D8 00151218  7C C4 33 78 */	mr r4, r6
-/* 801542DC 0015121C  4B EC D0 5D */	bl fpcEx_Search
+/* 801542DC 0015121C  4B EC D0 5D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 801542E0 00151220  38 80 00 00 */	li r4, 0
 /* 801542E4 00151224  80 0D 8A 70 */	lwz r0, lbl_80450FF0-_SDA_BASE_(r13)
 /* 801542E8 00151228  3C 60 80 42 */	lis r3, lbl_804257E8@ha
@@ -16490,7 +16490,7 @@ lbl_801544E4:
 /* 801544E8 00151428  90 0D 8A 70 */	stw r0, lbl_80450FF0-_SDA_BASE_(r13)
 /* 801544EC 0015142C  7F 43 D3 78 */	mr r3, r26
 /* 801544F0 00151430  7F 04 C3 78 */	mr r4, r24
-/* 801544F4 00151434  4B EC CE 45 */	bl fpcEx_Search
+/* 801544F4 00151434  4B EC CE 45 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 801544F8 00151438  3A 80 00 00 */	li r20, 0
 /* 801544FC 0015143C  3B 40 00 00 */	li r26, 0
 /* 80154500 00151440  3C 60 80 42 */	lis r3, lbl_804257E8@ha

@@ -20,6 +20,9 @@
 #include "f/f_pc/f_pc_pause.h"
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
+#include "f/f_pc/f_pc_draw.h"
+#include "f/f_pc/f_pc_fstcreate_req.h"
+#include "f/f_pc/f_pc_create_iter.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
@@ -27,11 +30,6 @@ extern "C" {
 bool execute__14dDvdErrorMsg_cFv(void);
 bool execute__19dShutdownErrorMsg_cFv(void);
 void peekData__13dDlst_peekZ_cFv(dDlst_peekZ_c*);
-void fpcDw_Execute(base_process_class* pProc);
-void fpcDw_Handler(void*, void*);
-base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
-                                     FastCreateReqFunc param_3, void* param_4, void* pData);
-void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
 }
 
 extern u8 lbl_80450D38;
@@ -46,8 +44,8 @@ void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);
 }
 
-s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc) {
-    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), pFunc, NULL);
+s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
+    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (cNdIt_MethodFunc)pFunc, NULL);
 }
 
 void fpcM_Execute(void* pProc) {
@@ -88,7 +86,7 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
                 pFunc1();
             }
             fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
-            fpcDw_Handler((void*)fpcM_DrawIterater, fpcM_Draw);
+            fpcDw_Handler((cNdIt_MethodFuncFunc)fpcM_DrawIterater, (cNdIt_MethodFunc)fpcM_Draw);
             if (pFunc2) {
                 pFunc2();
             }
@@ -109,7 +107,7 @@ void fpcM_Init(void) {
 
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
                                     void* pData) {
-    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, param_2, param_3, pData);
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3, pData);
 }
 
 s32 fpcM_IsPause(void* pProc, u8 param_2) {
@@ -124,7 +122,7 @@ void fpcM_PauseDisable(void* pProc, u8 param_2) {
     fpcPause_Disable((process_node_class*)pProc, param_2 & 0xFF);
 }
 
-void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData) {
+void* fpcM_JudgeInLayer(u32 pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
     layer_class* layer = fpcLy_Layer(pLayerID);
     if (layer != NULL) {
         void* ret = fpcCtIt_JudgeInLayer(pLayerID, pFunc, pUserData);

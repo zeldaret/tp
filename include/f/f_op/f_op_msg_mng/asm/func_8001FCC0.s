@@ -21,7 +21,7 @@ lbl_8001FD04:
 /* 8001FD0C 0001CC4C  7F C5 F3 78 */ mr r5, r30
 /* 8001FD10 0001CC50  38 C0 00 00 */ li r6, 0
 /* 8001FD14 0001CC54  7F E7 FB 78 */ mr r7, r31
-/* 8001FD18 0001CC58  48 00 40 7D */ bl fpcSCtRq_Request
+/* 8001FD18 0001CC58  48 00 40 7D */ bl fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv
 lbl_8001FD1C:
 /* 8001FD1C 0001CC5C  39 61 00 20 */ addi r11, r1, 0x20
 /* 8001FD20 0001CC60  48 34 25 09 */ bl _restgpr_29

@@ -13,8 +13,6 @@ extern node_list_class lbl_803A39A0;
 // g_fpcNd_type
 extern s32 lbl_80450D40;
 
-extern "C" {
-
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
 void fpcLd_Free(s16 procName);
@@ -109,5 +107,4 @@ s32 fpcDt_Delete(base_process_class* pProc) {
     } else {
         return 1;
     }
-}
 }

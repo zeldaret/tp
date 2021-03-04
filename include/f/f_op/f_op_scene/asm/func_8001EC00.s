@@ -22,7 +22,7 @@
 lbl_8001EC54:
 /* 8001EC54 0001BB94  80 7F 01 AC */ lwz r3, 0x1ac(r31)
 /* 8001EC58 0001BB98  7F E4 FB 78 */ mr r4, r31
-/* 8001EC5C 0001BB9C  48 00 38 71 */ bl fpcMtd_Create
+/* 8001EC5C 0001BB9C  48 00 38 71 */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001EC60 0001BBA0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8001EC64 0001BBA4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001EC68 0001BBA8  7C 08 03 A6 */ mtlr r0

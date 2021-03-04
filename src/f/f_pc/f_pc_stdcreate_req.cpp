@@ -11,8 +11,6 @@ extern create_request_method_class lbl_803A3AF0;
 // f_pc_stdcreate_req::method$2262
 extern cPhs__Handler lbl_803A3AFC[7];
 
-extern "C" {
-
 extern s32 fpcLd_Load(s16);
 extern s32 fpcLd_Free(s16);
 
@@ -109,5 +107,4 @@ s32 fpcSCtRq_Request(layer_class* param_1, s16 pProcName, stdCreateFunc param_3,
             return request->mBase.mBsPcId;
         }
     }
-}
 }

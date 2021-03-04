@@ -2,7 +2,6 @@
 #include "SComponent/c_list.h"
 #include "global.h"
 
-extern "C" {
 void cLs_Init(node_list_class* pList) {
     pList->mpHead = NULL;
     pList->mpTail = NULL;
@@ -61,4 +60,3 @@ node_class* cLs_GetFirst(node_list_class* pList) {
 void cLs_Create(node_list_class* pList) {
     cLs_Init(pList);
 }
-};

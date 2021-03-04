@@ -18,8 +18,6 @@ typedef struct process_priority_class {
     process_priority_queue_info mInfoCurr;
 } process_priority_class;
 
-extern "C" {
-
 s32 fpcPi_IsInQueue(process_priority_class* pPi);
 s32 fpcPi_QueueTo(process_priority_class* pPi);
 s32 fpcPi_ToQueue(process_priority_class* pPi);
@@ -29,6 +27,5 @@ s32 fpcPi_IsNormal(u32 layer, u16 listID, u16 priority);
 s32 fpcPi_Change(process_priority_class* pPi, u32 layer, u16 listID, u16 priority);
 s32 fpcPi_Handler(void);
 s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, u32 layer, u16 listID, u16 priority);
-};
 
 #endif

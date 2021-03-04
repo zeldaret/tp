@@ -10,12 +10,11 @@ typedef struct layer_iter {
     void* mpUserData;
 } layer_iter;
 
-extern "C" {
+typedef void *(*fpcLyIt_JudgeFunc)(void*, void*);
 
 s32 fpcLyIt_OnlyHere(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData);
 s32 fpcLyIt_OnlyHereLY(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData);
-void* fpcLyIt_Judge(layer_class* pLayer, cNdIt_MethodFunc pFunc, void* pUserData);
-void* fpcLyIt_AllJudge(cNdIt_MethodFunc pFunc, void* pUserData);
-};
+void* fpcLyIt_Judge(layer_class* pLayer, fpcLyIt_JudgeFunc pFunc, void* pUserData);
+void* fpcLyIt_AllJudge(fpcLyIt_JudgeFunc pFunc, void* pUserData);
 
 #endif

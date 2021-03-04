@@ -51,7 +51,7 @@ lbl_80145278:
 /* 80145290 001421D0  88 03 01 D4 */	lbz r0, 0x1d4(r3)
 /* 80145294 001421D4  7C 00 07 75 */	extsb. r0, r0
 /* 80145298 001421D8  40 80 00 10 */	bge lbl_801452A8
-/* 8014529C 001421DC  4B ED D3 C1 */	bl fpcNd_IsDeleteTiming
+/* 8014529C 001421DC  4B ED D3 C1 */	bl fpcNd_IsDeleteTiming__FP18process_node_class
 /* 801452A0 001421E0  2C 03 00 00 */	cmpwi r3, 0
 /* 801452A4 001421E4  40 82 00 0C */	bne lbl_801452B0
 lbl_801452A8:

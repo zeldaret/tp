@@ -6,7 +6,7 @@
 /* 8001EBC0 0001BB00  7C 7F 1B 78 */ mr r31, r3
 /* 8001EBC4 0001BB04  80 63 01 AC */ lwz r3, 0x1ac(r3)
 /* 8001EBC8 0001BB08  7F E4 FB 78 */ mr r4, r31
-/* 8001EBCC 0001BB0C  48 00 38 DD */ bl fpcMtd_Delete
+/* 8001EBCC 0001BB0C  48 00 38 DD */ bl fpcMtd_Delete__FP20process_method_classPv
 /* 8001EBD0 0001BB10  7C 7E 1B 78 */ mr r30, r3
 /* 8001EBD4 0001BB14  2C 1E 00 01 */ cmpwi r30, 1
 /* 8001EBD8 0001BB18  40 82 00 0C */ bne lbl_8001EBE4

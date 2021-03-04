@@ -1871,7 +1871,7 @@ lbl_801597A8:
 .global s_sub1
 /* 801597F4 00156734  38 63 97 08 */	addi r3, r3, s_sub1@l
 /* 801597F8 00156738  7F E4 FB 78 */	mr r4, r31
-/* 801597FC 0015673C  4B EC 7B 3D */	bl fpcEx_Search
+/* 801597FC 0015673C  4B EC 7B 3D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80159800 00156740  80 6D 8A 84 */	lwz r3, lbl_80451004-_SDA_BASE_(r13)
 /* 80159804 00156744  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80159808 00156748  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2718,7 +2718,7 @@ lbl_8015A3A8:
 .global s_sub
 /* 8015A3AC 001572EC  38 63 A2 C4 */	addi r3, r3, s_sub@l
 /* 8015A3B0 001572F0  7F E4 FB 78 */	mr r4, r31
-/* 8015A3B4 001572F4  4B EC 6F 85 */	bl fpcEx_Search
+/* 8015A3B4 001572F4  4B EC 6F 85 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8015A3B8 001572F8  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8015A3BC 001572FC  28 00 00 00 */	cmplwi r0, 0
 /* 8015A3C0 00157300  41 82 00 0C */	beq lbl_8015A3CC

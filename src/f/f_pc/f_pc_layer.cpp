@@ -16,8 +16,6 @@ extern node_list_class lbl_803A39DC;
 // f_pc_layer::l_fpcLy_Crear
 extern layer_class lbl_803A39B0;
 
-extern "C" {
-
 void fpcLy_CancelQTo(process_method_tag_class* pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
@@ -148,5 +146,4 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
     cTr_Create(&pLayer->mNodeListTree, (pLayer->mNodeListTree).mpLists,
                (pLayer->mNodeListTree).mNumLists);
     fpcLy_Regist(pLayer);
-}
 }
