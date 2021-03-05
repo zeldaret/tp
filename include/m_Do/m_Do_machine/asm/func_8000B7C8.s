@@ -47,16 +47,16 @@ lbl_8000B828:
 lbl_8000B87C:
 /* 8000B87C 000087BC  38 61 00 08 */ addi r3, r1, 8
 /* 8000B880 000087C0  38 81 00 0C */ addi r4, r1, 0xc
-/* 8000B884 000087C4  4B FF FE E5 */ bl exceptionReadPad
+/* 8000B884 000087C4  4B FF FE E5 */ bl exceptionReadPad__FPUlPUl
 /* 8000B888 000087C8  80 61 00 08 */ lwz r3, 8(r1)
 /* 8000B88C 000087CC  80 81 00 0C */ lwz r4, 0xc(r1)
-/* 8000B890 000087D0  4B FF FD FD */ bl developKeyCheck
+/* 8000B890 000087D0  4B FF FD FD */ bl developKeyCheck__FUlUl
 /* 8000B894 000087D4  38 60 00 1E */ li r3, 0x1e
 /* 8000B898 000087D8  48 2D 80 E9 */ bl waitTime__12JUTExceptionFl
 /* 8000B89C 000087DC  88 0D 8F 81 */ lbz r0, lbl_80451501-_SDA_BASE_(r13)
 /* 8000B8A0 000087E0  28 00 00 00 */ cmplwi r0, 0
 /* 8000B8A4 000087E4  41 82 00 08 */ beq lbl_8000B8AC
-/* 8000B8A8 000087E8  4B FF FE F1 */ bl exceptionRestart
+/* 8000B8A8 000087E8  4B FF FE F1 */ bl exceptionRestart__Fv
 lbl_8000B8AC:
 /* 8000B8AC 000087EC  88 0D 80 00 */ lbz r0, lbl_80450580-_SDA_BASE_(r13)
 /* 8000B8B0 000087F0  7C 00 07 75 */ extsb. r0, r0

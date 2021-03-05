@@ -164,13 +164,13 @@ lbl_800FCA94:
 /* 800FCAB8 000F99F8  7F A3 EB 78 */ mr r3, r29
 /* 800FCABC 000F99FC  38 80 01 77 */ li r4, 0x177
 /* 800FCAC0 000F9A00  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800FCAC4 000F9A04  4B FB 04 ED */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800FCAC4 000F9A04  4B FB 04 ED */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800FCAC8 000F9A08  48 00 00 14 */ b lbl_800FCADC
 lbl_800FCACC:
 /* 800FCACC 000F9A0C  7F A3 EB 78 */ mr r3, r29
 /* 800FCAD0 000F9A10  38 80 01 6E */ li r4, 0x16e
 /* 800FCAD4 000F9A14  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800FCAD8 000F9A18  4B FB 04 D9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800FCAD8 000F9A18  4B FB 04 D9 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_800FCADC:
 /* 800FCADC 000F9A1C  38 00 01 6E */ li r0, 0x16e
 /* 800FCAE0 000F9A20  90 1D 31 98 */ stw r0, 0x3198(r29)
@@ -228,7 +228,7 @@ lbl_800FCB8C:
 /* 800FCBA0 000F9AE0  3C A0 80 39 */ lis r5, lbl_8038DE8C@ha
 /* 800FCBA4 000F9AE4  38 A5 DE 8C */ addi r5, r5, lbl_8038DE8C@l
 /* 800FCBA8 000F9AE8  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 800FCBAC 000F9AEC  4B FB 05 49 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FCBAC 000F9AEC  4B FB 05 49 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FCBB0 000F9AF0  48 00 00 1C */ b lbl_800FCBCC
 lbl_800FCBB4:
 /* 800FCBB4 000F9AF4  7F A3 EB 78 */ mr r3, r29
@@ -236,7 +236,7 @@ lbl_800FCBB4:
 /* 800FCBBC 000F9AFC  3C A0 80 39 */ lis r5, lbl_8038DE8C@ha
 /* 800FCBC0 000F9B00  38 A5 DE 8C */ addi r5, r5, lbl_8038DE8C@l
 /* 800FCBC4 000F9B04  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 800FCBC8 000F9B08  4B FB 05 2D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FCBC8 000F9B08  4B FB 05 2D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_800FCBCC:
 /* 800FCBCC 000F9B0C  38 00 01 6C */ li r0, 0x16c
 /* 800FCBD0 000F9B10  90 1D 31 98 */ stw r0, 0x3198(r29)

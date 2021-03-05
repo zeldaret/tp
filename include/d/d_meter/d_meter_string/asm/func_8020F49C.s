@@ -62,7 +62,7 @@ lbl_8020F570:
 /* 8020F57C 0020C4BC  28 00 00 00 */ cmplwi r0, 0
 /* 8020F580 0020C4C0  41 82 00 0C */ beq lbl_8020F58C
 /* 8020F584 0020C4C4  38 60 00 09 */ li r3, 9
-/* 8020F588 0020C4C8  4B E2 02 15 */ bl dComIfG_TimerDeleteRequest
+/* 8020F588 0020C4C8  4B E2 02 15 */ bl dComIfG_TimerDeleteRequest__Fi
 lbl_8020F58C:
 /* 8020F58C 0020C4CC  38 60 00 01 */ li r3, 1
 /* 8020F590 0020C4D0  83 E1 00 0C */ lwz r31, 0xc(r1)

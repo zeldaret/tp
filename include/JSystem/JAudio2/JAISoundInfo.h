@@ -2,7 +2,7 @@
 #define JAISOUNDINFO_H_
 
 extern "C" {
-void JAISoundInfo(void);
+void __ct__12JAISoundInfoFb(void);
 void __dt__12JAISoundInfoFv(void);
 }
 

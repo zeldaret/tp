@@ -44,7 +44,7 @@ lbl_800F255C:
 /* 800F255C 000EF49C  7F E3 FB 78 */ mr r3, r31
 /* 800F2560 000EF4A0  4B FF C8 39 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2564 000EF4A4  7F E3 FB 78 */ mr r3, r31
-/* 800F2568 000EF4A8  4B FF CE E9 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F2568 000EF4A8  4B FF CE E9 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F256C 000EF4AC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2570 000EF4B0  40 82 00 24 */ bne lbl_800F2594
 /* 800F2574 000EF4B4  7F E3 FB 78 */ mr r3, r31

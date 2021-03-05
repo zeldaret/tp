@@ -2,8 +2,8 @@
 
 .section .text, "ax" # 8001ee34
 
-.global fopScnRq_phase_ClearOverlap
-fopScnRq_phase_ClearOverlap:
+.global fopScnRq_phase_ClearOverlap__FP19scene_request_class
+fopScnRq_phase_ClearOverlap__FP19scene_request_class:
 /* 8001EE34 0001BD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EE38 0001BD78  7C 08 02 A6 */	mflr r0
 /* 8001EE3C 0001BD7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -69,8 +69,8 @@ lbl_8001EF08:
 /* 8001EF1C 0001BE5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001EF20 0001BE60  4E 80 00 20 */	blr 
 
-.global fopScnRq_Execute
-fopScnRq_Execute:
+.global fopScnRq_Execute__FP19scene_request_class
+fopScnRq_Execute__FP19scene_request_class:
 /* 8001EF24 0001BE64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EF28 0001BE68  7C 08 02 A6 */	mflr r0
 /* 8001EF2C 0001BE6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -84,7 +84,7 @@ fopScnRq_Execute:
 /* 8001EF4C 0001BE8C  48 00 00 0C */	b lbl_8001EF58
 lbl_8001EF50:
 /* 8001EF50 0001BE90  7F E3 FB 78 */	mr r3, r31
-/* 8001EF54 0001BE94  4B FF FF D1 */	bl fopScnRq_Execute
+/* 8001EF54 0001BE94  4B FF FF D1 */	bl fopScnRq_Execute__FP19scene_request_class
 lbl_8001EF58:
 /* 8001EF58 0001BE98  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8001EF5C 0001BE9C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -128,8 +128,8 @@ lbl_8001EFE0:
 /* 8001EFE8 0001BF28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001EFEC 0001BF2C  4E 80 00 20 */	blr 
 
-.global fopScnRq_FadeRequest
-fopScnRq_FadeRequest:
+.global fopScnRq_FadeRequest__FsUs
+fopScnRq_FadeRequest__FsUs:
 /* 8001EFF0 0001BF30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001EFF4 0001BF34  7C 08 02 A6 */	mflr r0
 /* 8001EFF8 0001BF38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -184,7 +184,7 @@ lbl_8001F09C:
 /* 8001F0A8 0001BFE8  3B BF 00 30 */	addi r29, r31, 0x30
 /* 8001F0AC 0001BFEC  7F 43 D3 78 */	mr r3, r26
 /* 8001F0B0 0001BFF0  7F 64 DB 78 */	mr r4, r27
-/* 8001F0B4 0001BFF4  4B FF FF 3D */	bl fopScnRq_FadeRequest
+/* 8001F0B4 0001BFF4  4B FF FF 3D */	bl fopScnRq_FadeRequest__FsUs
 /* 8001F0B8 0001BFF8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8001F0BC 0001BFFC  40 82 00 14 */	bne lbl_8001F0D0
 /* 8001F0C0 0001C000  7F 83 E3 78 */	mr r3, r28
@@ -216,8 +216,8 @@ fopScnRq_ReRequest__FUisPv:
 /* 8001F114 0001C054  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001F118 0001C058  4E 80 00 20 */	blr 
 
-.global fopScnRq_Handler
-fopScnRq_Handler:
+.global fopScnRq_Handler__Fv
+fopScnRq_Handler__Fv:
 /* 8001F11C 0001C05C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001F120 0001C060  7C 08 02 A6 */	mflr r0
 /* 8001F124 0001C064  90 01 00 14 */	stw r0, 0x14(r1)

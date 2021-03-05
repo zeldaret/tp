@@ -68,7 +68,7 @@ lbl_800F2C30:
 /* 800F2C48 000EFB88  3C C0 80 39 */ lis r6, lbl_8038E77C@ha
 /* 800F2C4C 000EFB8C  38 C6 E7 7C */ addi r6, r6, lbl_8038E77C@l
 /* 800F2C50 000EFB90  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800F2C54 000EFB94  4B FB AA 9D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800F2C54 000EFB94  4B FB AA 9D */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F2C58 000EFB98  7F E3 FB 78 */ mr r3, r31
 /* 800F2C5C 000EFB9C  48 01 E3 85 */ bl commonKandelaarPourInit__9daAlink_cFv
 /* 800F2C60 000EFBA0  38 60 00 01 */ li r3, 1

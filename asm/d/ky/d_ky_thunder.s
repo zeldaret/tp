@@ -15,7 +15,7 @@ createHeap__10dThunder_cFv:
 /* 801ADF74 001AAEB4  40 82 00 28 */	bne lbl_801ADF9C
 /* 801ADF78 001AAEB8  38 60 00 00 */	li r3, 0
 /* 801ADF7C 001AAEBC  38 80 00 20 */	li r4, 0x20
-/* 801ADF80 001AAEC0  4B E6 10 C5 */	bl mDoExt_createSolidHeapFromGameToCurrent_X1_
+/* 801ADF80 001AAEC0  4B E6 10 C5 */	bl mDoExt_createSolidHeapFromGameToCurrent__FUlUl
 /* 801ADF84 001AAEC4  90 7F 00 F8 */	stw r3, 0xf8(r31)
 /* 801ADF88 001AAEC8  80 1F 00 F8 */	lwz r0, 0xf8(r31)
 /* 801ADF8C 001AAECC  28 00 00 00 */	cmplwi r0, 0
@@ -38,9 +38,9 @@ adjustHeap__10dThunder_cFv:
 /* 801ADFBC 001AAEFC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801ADFC0 001AAF00  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801ADFC4 001AAF04  7C 7F 1B 78 */	mr r31, r3
-/* 801ADFC8 001AAF08  4B E6 12 2D */	bl mDoExt_restoreCurrentHeap
+/* 801ADFC8 001AAF08  4B E6 12 2D */	bl mDoExt_restoreCurrentHeap__Fv
 /* 801ADFCC 001AAF0C  80 7F 00 F8 */	lwz r3, 0xf8(r31)
-/* 801ADFD0 001AAF10  4B E6 10 BD */	bl mDoExt_adjustSolidHeap
+/* 801ADFD0 001AAF10  4B E6 10 BD */	bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 /* 801ADFD4 001AAF14  2C 03 00 00 */	cmpwi r3, 0
 /* 801ADFD8 001AAF18  41 80 00 14 */	blt lbl_801ADFEC
 /* 801ADFDC 001AAF1C  80 7F 00 F8 */	lwz r3, 0xf8(r31)
@@ -101,21 +101,21 @@ lbl_801AE094:
 /* 801AE0AC 001AAFEC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 801AE0B0 001AAFF0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 801AE0B4 001AAFF4  A8 9F 01 68 */	lha r4, 0x168(r31)
-/* 801AE0B8 001AAFF8  4B E5 E3 7D */	bl mDoMtx_YrotM
+/* 801AE0B8 001AAFF8  4B E5 E3 7D */	bl mDoMtx_YrotM__FPA4_fs
 /* 801AE0BC 001AAFFC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 801AE0C0 001AB000  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 801AE0C4 001AB004  C0 1F 01 5C */	lfs f0, 0x15c(r31)
 /* 801AE0C8 001AB008  FC 00 00 1E */	fctiwz f0, f0
 /* 801AE0CC 001AB00C  D8 01 00 38 */	stfd f0, 0x38(r1)
 /* 801AE0D0 001AB010  80 81 00 3C */	lwz r4, 0x3c(r1)
-/* 801AE0D4 001AB014  4B E5 E3 F9 */	bl mDoMtx_ZrotM
+/* 801AE0D4 001AB014  4B E5 E3 F9 */	bl mDoMtx_ZrotM__FPA4_fs
 /* 801AE0D8 001AB018  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 801AE0DC 001AB01C  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 801AE0E0 001AB020  C0 1F 01 5C */	lfs f0, 0x15c(r31)
 /* 801AE0E4 001AB024  FC 00 00 1E */	fctiwz f0, f0
 /* 801AE0E8 001AB028  D8 01 00 40 */	stfd f0, 0x40(r1)
 /* 801AE0EC 001AB02C  80 81 00 44 */	lwz r4, 0x44(r1)
-/* 801AE0F0 001AB030  4B E5 E2 AD */	bl mDoMtx_XrotM
+/* 801AE0F0 001AB030  4B E5 E2 AD */	bl mDoMtx_XrotM__FPA4_fs
 /* 801AE0F4 001AB034  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 801AE0F8 001AB038  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 801AE0FC 001AB03C  38 81 00 08 */	addi r4, r1, 8
@@ -146,7 +146,7 @@ lbl_801AE094:
 /* 801AE160 001AB0A0  80 04 5F 84 */	lwz r0, 0x5f84(r4)
 /* 801AE164 001AB0A4  90 03 00 4C */	stw r0, 0x4c(r3)
 /* 801AE168 001AB0A8  80 7F 00 FC */	lwz r3, 0xfc(r31)
-/* 801AE16C 001AB0AC  4B E5 FB 59 */	bl mDoExt_modelUpdateDL
+/* 801AE16C 001AB0AC  4B E5 FB 59 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 801AE170 001AB0B0  80 7F 00 FC */	lwz r3, 0xfc(r31)
 /* 801AE174 001AB0B4  80 63 00 04 */	lwz r3, 4(r3)
 /* 801AE178 001AB0B8  38 63 00 58 */	addi r3, r3, 0x58
@@ -292,7 +292,7 @@ lbl_801AE358:
 /* 801AE38C 001AB2CC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801AE390 001AB2D0  41 82 00 54 */	beq lbl_801AE3E4
 /* 801AE394 001AB2D4  80 7F 00 F8 */	lwz r3, 0xf8(r31)
-/* 801AE398 001AB2D8  4B E6 0D F5 */	bl mDoExt_destroySolidHeap
+/* 801AE398 001AB2D8  4B E6 0D F5 */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 /* 801AE39C 001AB2DC  34 1F 00 FC */	addic. r0, r31, 0xfc
 /* 801AE3A0 001AB2E0  41 82 00 44 */	beq lbl_801AE3E4
 /* 801AE3A4 001AB2E4  34 1F 01 20 */	addic. r0, r31, 0x120
@@ -420,7 +420,7 @@ lbl_801AE564:
 /* 801AE564 001AB4A4  7F 63 DB 78 */	mr r3, r27
 /* 801AE568 001AB4A8  3C 80 00 08 */	lis r4, 8
 /* 801AE56C 001AB4AC  3C A0 01 00 */	lis r5, 0x100
-/* 801AE570 001AB4B0  4B E6 66 E5 */	bl mDoExt_J3DModel__create
+/* 801AE570 001AB4B0  4B E6 66 E5 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 801AE574 001AB4B4  90 7D 00 FC */	stw r3, 0xfc(r29)
 /* 801AE578 001AB4B8  80 1D 00 FC */	lwz r0, 0xfc(r29)
 /* 801AE57C 001AB4BC  28 00 00 00 */	cmplwi r0, 0
@@ -545,7 +545,7 @@ lbl_801AE71C:
 /* 801AE738 001AB678  38 7E 00 D8 */	addi r3, r30, 0xd8
 /* 801AE73C 001AB67C  38 9E 00 E4 */	addi r4, r30, 0xe4
 /* 801AE740 001AB680  38 A1 00 20 */	addi r5, r1, 0x20
-/* 801AE744 001AB684  4B EA D0 1D */	bl dKyr_get_vectle_calc
+/* 801AE744 001AB684  4B EA D0 1D */	bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 801AE748 001AB688  C0 21 00 20 */	lfs f1, 0x20(r1)
 /* 801AE74C 001AB68C  EC 61 00 72 */	fmuls f3, f1, f1
 /* 801AE750 001AB690  C0 41 00 28 */	lfs f2, 0x28(r1)

@@ -28,7 +28,7 @@ lbl_800F0D1C:
 /* 800F0D4C 000EDC8C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0D50 000EDC90  40 82 00 2C */ bne lbl_800F0D7C
 /* 800F0D54 000EDC94  7F C3 F3 78 */ mr r3, r30
-/* 800F0D58 000EDC98  4B FE 16 11 */ bl checkCutTurnInput__9daAlink_cCFvTrigger
+/* 800F0D58 000EDC98  4B FE 16 11 */ bl checkCutTurnInputTrigger__9daAlink_cFv
 /* 800F0D5C 000EDC9C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F0D60 000EDCA0  41 82 00 1C */ beq lbl_800F0D7C
 /* 800F0D64 000EDCA4  80 1F 17 4C */ lwz r0, 0x174c(r31)
@@ -137,7 +137,7 @@ lbl_800F0ED0:
 /* 800F0ED4 000EDE14  4B FF CB A5 */ bl setHorseTurnAnime__9daAlink_cFv
 lbl_800F0ED8:
 /* 800F0ED8 000EDE18  7F C3 F3 78 */ mr r3, r30
-/* 800F0EDC 000EDE1C  4B FF E7 D5 */ bl checkHorseGetOff__9daAlink_cFvAndSetDoStatus
+/* 800F0EDC 000EDE1C  4B FF E7 D5 */ bl checkHorseGetOffAndSetDoStatus__9daAlink_cFv
 /* 800F0EE0 000EDE20  7C 7D 1B 78 */ mr r29, r3
 /* 800F0EE4 000EDE24  7F C3 F3 78 */ mr r3, r30
 /* 800F0EE8 000EDE28  38 80 00 01 */ li r4, 1
@@ -148,7 +148,7 @@ lbl_800F0ED8:
 /* 800F0EFC 000EDE3C  48 00 01 4C */ b lbl_800F1048
 lbl_800F0F00:
 /* 800F0F00 000EDE40  7F C3 F3 78 */ mr r3, r30
-/* 800F0F04 000EDE44  4B FF E5 4D */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F0F04 000EDE44  4B FF E5 4D */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F0F08 000EDE48  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0F0C 000EDE4C  41 82 00 0C */ beq lbl_800F0F18
 /* 800F0F10 000EDE50  38 60 00 01 */ li r3, 1

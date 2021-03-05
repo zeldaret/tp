@@ -121,7 +121,7 @@ lbl_80162EE8:
 /* 80162F04 0015FE44  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 80162F08 0015FE48  40 81 00 24 */ ble lbl_80162F2C
 /* 80162F0C 0015FE4C  38 60 00 01 */ li r3, 1
-/* 80162F10 0015FE50  48 04 83 61 */ bl dKy_camera_water_in_status_set
+/* 80162F10 0015FE50  48 04 83 61 */ bl dKy_camera_water_in_status_set__FUc
 /* 80162F14 0015FE54  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80162F18 0015FE58  38 63 04 C4 */ addi r3, r3, 0x4c4
 /* 80162F1C 0015FE5C  C0 1E 00 40 */ lfs f0, 0x40(r30)
@@ -130,7 +130,7 @@ lbl_80162EE8:
 /* 80162F28 0015FE68  48 00 00 1C */ b lbl_80162F44
 lbl_80162F2C:
 /* 80162F2C 0015FE6C  38 60 00 00 */ li r3, 0
-/* 80162F30 0015FE70  48 04 83 41 */ bl dKy_camera_water_in_status_set
+/* 80162F30 0015FE70  48 04 83 41 */ bl dKy_camera_water_in_status_set__FUc
 /* 80162F34 0015FE74  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80162F38 0015FE78  38 63 04 C4 */ addi r3, r3, 0x4c4
 /* 80162F3C 0015FE7C  C0 22 9C A0 */ lfs f1, lbl_804536A0-_SDA2_BASE_(r2)

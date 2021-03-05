@@ -14,7 +14,7 @@
 /* 80136E18 00133D58  41 82 00 14 */ beq lbl_80136E2C
 /* 80136E1C 00133D5C  7F C3 F3 78 */ mr r3, r30
 /* 80136E20 00133D60  38 80 00 00 */ li r4, 0
-/* 80136E24 00133D64  4B FF 2D 21 */ bl checkNextAction__9daAlink_cFiWolf
+/* 80136E24 00133D64  4B FF 2D 21 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136E28 00133D68  48 00 00 80 */ b lbl_80136EA8
 lbl_80136E2C:
 /* 80136E2C 00133D6C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -25,7 +25,7 @@ lbl_80136E2C:
 /* 80136E40 00133D80  40 81 00 68 */ ble lbl_80136EA8
 /* 80136E44 00133D84  7F C3 F3 78 */ mr r3, r30
 /* 80136E48 00133D88  38 80 00 01 */ li r4, 1
-/* 80136E4C 00133D8C  4B FF 2C F9 */ bl checkNextAction__9daAlink_cFiWolf
+/* 80136E4C 00133D8C  4B FF 2C F9 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136E50 00133D90  48 00 00 58 */ b lbl_80136EA8
 lbl_80136E54:
 /* 80136E54 00133D94  7F E3 FB 78 */ mr r3, r31
@@ -44,7 +44,7 @@ lbl_80136E7C:
 /* 80136E84 00133DC4  3C A0 80 39 */ lis r5, lbl_8038F374@ha
 /* 80136E88 00133DC8  38 A5 F3 74 */ addi r5, r5, lbl_8038F374@l
 /* 80136E8C 00133DCC  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80136E90 00133DD0  4B FF 29 B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80136E90 00133DD0  4B FF 29 B9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80136E94 00133DD4  7F C3 F3 78 */ mr r3, r30
 /* 80136E98 00133DD8  38 80 00 96 */ li r4, 0x96
 /* 80136E9C 00133DDC  4B F7 8A 05 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

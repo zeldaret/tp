@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a4ad0
 
 
-.global JAU_JASInitializer
-JAU_JASInitializer:
+.global __ct__18JAU_JASInitializerFv
+__ct__18JAU_JASInitializerFv:
 /* 802A4AD0 002A1A10  38 A0 00 00 */	li r5, 0
 /* 802A4AD4 002A1A14  90 A3 00 00 */	stw r5, 0(r3)
 /* 802A4AD8 002A1A18  90 A3 00 04 */	stw r5, 4(r3)
@@ -69,7 +69,7 @@ lbl_802A4B98:
 /* 802A4BB0 002A1AF0  40 82 00 34 */	bne lbl_802A4BE4
 /* 802A4BB4 002A1AF4  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 802A4BB8 002A1AF8  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
-/* 802A4BBC 002A1AFC  4B FE BC 8D */	bl JASGenericMemPool
+/* 802A4BBC 002A1AFC  4B FE BC 8D */	bl __ct__17JASGenericMemPoolFv
 /* 802A4BC0 002A1B00  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 802A4BC4 002A1B04  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
 .global JASMemPool_MultiThreaded_NS_dtor
@@ -99,7 +99,7 @@ lbl_802A4BE4:
 /* 802A4C1C 002A1B5C  40 82 00 34 */	bne lbl_802A4C50
 /* 802A4C20 002A1B60  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 802A4C24 002A1B64  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
-/* 802A4C28 002A1B68  4B FE BC 21 */	bl JASGenericMemPool
+/* 802A4C28 002A1B68  4B FE BC 21 */	bl __ct__17JASGenericMemPoolFv
 /* 802A4C2C 002A1B6C  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 802A4C30 002A1B70  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
 .global JASMemPool_MultiThreaded_NS_dtor_X1_
@@ -180,8 +180,8 @@ lbl_802A4D24:
 /* 802A4D34 002A1C74  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A4D38 002A1C78  4E 80 00 20 */	blr 
 
-.global JAU_JAIInitializer
-JAU_JAIInitializer:
+.global __ct__18JAU_JAIInitializerFv
+__ct__18JAU_JAIInitializerFv:
 /* 802A4D3C 002A1C7C  38 00 00 64 */	li r0, 0x64
 /* 802A4D40 002A1C80  90 03 00 00 */	stw r0, 0(r3)
 /* 802A4D44 002A1C84  38 00 00 04 */	li r0, 4
@@ -210,7 +210,7 @@ initJAInterface__18JAU_JAIInitializerFv:
 /* 802A4D94 002A1CD4  40 82 00 30 */	bne lbl_802A4DC4
 /* 802A4D98 002A1CD8  3C 60 80 43 */	lis r3, lbl_804340FC@ha
 /* 802A4D9C 002A1CDC  38 63 40 FC */	addi r3, r3, lbl_804340FC@l
-/* 802A4DA0 002A1CE0  4B FE BA A9 */	bl JASGenericMemPool
+/* 802A4DA0 002A1CE0  4B FE BA A9 */	bl __ct__17JASGenericMemPoolFv
 /* 802A4DA4 002A1CE4  3C 60 80 43 */	lis r3, lbl_804340FC@ha
 /* 802A4DA8 002A1CE8  38 63 40 FC */	addi r3, r3, lbl_804340FC@l
 .global JASMemPool_NS_dtor_X3_
@@ -233,7 +233,7 @@ lbl_802A4DC4:
 /* 802A4DE4 002A1D24  40 82 00 30 */	bne lbl_802A4E14
 /* 802A4DE8 002A1D28  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A4DEC 002A1D2C  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
-/* 802A4DF0 002A1D30  4B FE BA 59 */	bl JASGenericMemPool
+/* 802A4DF0 002A1D30  4B FE BA 59 */	bl __ct__17JASGenericMemPoolFv
 /* 802A4DF4 002A1D34  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A4DF8 002A1D38  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 .global JASMemPool_NS_dtor_X2_
@@ -256,7 +256,7 @@ lbl_802A4E14:
 /* 802A4E34 002A1D74  40 82 00 30 */	bne lbl_802A4E64
 /* 802A4E38 002A1D78  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 802A4E3C 002A1D7C  38 63 40 84 */	addi r3, r3, lbl_80434084@l
-/* 802A4E40 002A1D80  4B FE BA 09 */	bl JASGenericMemPool
+/* 802A4E40 002A1D80  4B FE BA 09 */	bl __ct__17JASGenericMemPoolFv
 /* 802A4E44 002A1D84  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 802A4E48 002A1D88  38 63 40 84 */	addi r3, r3, lbl_80434084@l
 .global JASMemPool_NS_dtor
@@ -279,7 +279,7 @@ lbl_802A4E64:
 /* 802A4E84 002A1DC4  40 82 00 30 */	bne lbl_802A4EB4
 /* 802A4E88 002A1DC8  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A4E8C 002A1DCC  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
-/* 802A4E90 002A1DD0  4B FE B9 B9 */	bl JASGenericMemPool
+/* 802A4E90 002A1DD0  4B FE B9 B9 */	bl __ct__17JASGenericMemPoolFv
 /* 802A4E94 002A1DD4  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A4E98 002A1DD8  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
 .global JASMemPool_NS_dtor_X1_

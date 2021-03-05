@@ -13,7 +13,7 @@
 /* 80100A40 000FD980  38 80 00 AE */ li r4, 0xae
 /* 80100A44 000FD984  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 80100A48 000FD988  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
-/* 80100A4C 000FD98C  4B FA C6 A9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 80100A4C 000FD98C  4B FA C6 A9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 80100A50 000FD990  38 7C 1E 2C */ addi r3, r28, 0x1e2c
 /* 80100A54 000FD994  7F A4 EB 78 */ mr r4, r29
 /* 80100A58 000FD998  48 16 76 F1 */ bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo

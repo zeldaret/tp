@@ -68,7 +68,7 @@ lbl_80129C2C:
 /* 80129C34 00126B74  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80129C38 00126B78  41 82 00 10 */ beq lbl_80129C48
 /* 80129C3C 00126B7C  7F A3 EB 78 */ mr r3, r29
-/* 80129C40 00126B80  4B FF E8 39 */ bl setSpeedAndAngleWolf__9daAlink_cFvAtn
+/* 80129C40 00126B80  4B FF E8 39 */ bl setSpeedAndAngleWolfAtn__9daAlink_cFv
 /* 80129C44 00126B84  48 00 00 0C */ b lbl_80129C50
 lbl_80129C48:
 /* 80129C48 00126B88  7F A3 EB 78 */ mr r3, r29

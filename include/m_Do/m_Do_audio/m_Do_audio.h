@@ -61,7 +61,7 @@ void __dt__12Z2MultiSeObjFv(void);
 void Z2MultiSeObj_NS_dtor(void);
 void JAISoundHandle_NS_dtor(void);
 void __dt__15JASAudioReseterFv(void);
-void func_80361CE8(void);
+void __destroy_arr(void);
 void __dt__14JAISeqDataUserFv(void);
 void __dt__12JAISoundInfoFv(void);
 void __dt__16JAIStreamDataMgrFv(void);

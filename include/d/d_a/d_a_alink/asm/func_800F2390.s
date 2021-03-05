@@ -44,7 +44,7 @@ lbl_800F23FC:
 /* 800F2430 000EF370  48 00 00 0C */ b lbl_800F243C
 lbl_800F2434:
 /* 800F2434 000EF374  7F E3 FB 78 */ mr r3, r31
-/* 800F2438 000EF378  4B FF D0 19 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F2438 000EF378  4B FF D0 19 */ bl checkNextActionHorse__9daAlink_cFv
 lbl_800F243C:
 /* 800F243C 000EF37C  38 60 00 01 */ li r3, 1
 lbl_800F2440:

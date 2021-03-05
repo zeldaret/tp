@@ -54,8 +54,8 @@ getCurrentDir__16JASWaveArcLoaderFv:
 /* 8029A134 00297074  38 63 77 E0 */	addi r3, r3, lbl_803C77E0@l
 /* 8029A138 00297078  4E 80 00 20 */	blr 
 
-.global JASWaveArc
-JASWaveArc:
+.global __ct__10JASWaveArcFv
+__ct__10JASWaveArcFv:
 /* 8029A13C 0029707C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A140 00297080  7C 08 02 A6 */	mflr r0
 /* 8029A144 00297084  90 01 00 14 */	stw r0, 0x14(r1)
@@ -69,7 +69,7 @@ JASWaveArc:
 /* 8029A164 002970A4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029A168 002970A8  7F E4 FB 78 */	mr r4, r31
 /* 8029A16C 002970AC  38 64 00 04 */	addi r3, r4, 4
-/* 8029A170 002970B0  4B FF 5F D1 */	bl JASHeap
+/* 8029A170 002970B0  4B FF 5F D1 */	bl __ct__7JASHeapFP11JASDisposer
 /* 8029A174 002970B4  38 60 00 00 */	li r3, 0
 /* 8029A178 002970B8  90 7F 00 48 */	stw r3, 0x48(r31)
 /* 8029A17C 002970BC  90 7F 00 4C */	stw r3, 0x4c(r31)
@@ -367,8 +367,8 @@ lbl_8029A568:
 /* 8029A578 002974B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029A57C 002974BC  4E 80 00 20 */	blr 
 
-.global load__10JASWaveArcFP7JASHeapTail
-load__10JASWaveArcFP7JASHeapTail:
+.global loadTail__10JASWaveArcFP7JASHeap
+loadTail__10JASWaveArcFP7JASHeap:
 /* 8029A580 002974C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029A584 002974C4  7C 08 02 A6 */	mflr r0
 /* 8029A588 002974C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -401,7 +401,7 @@ lbl_8029A5E8:
 /* 8029A5E8 00297528  38 7E 00 04 */	addi r3, r30, 4
 /* 8029A5EC 0029752C  7F E4 FB 78 */	mr r4, r31
 /* 8029A5F0 00297530  80 BE 00 54 */	lwz r5, 0x54(r30)
-/* 8029A5F4 00297534  4B FF 5E 01 */	bl alloc__7JASHeapFP7JASHeapUlTail
+/* 8029A5F4 00297534  4B FF 5E 01 */	bl allocTail__7JASHeapFP7JASHeapUl
 /* 8029A5F8 00297538  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029A5FC 0029753C  40 82 00 14 */	bne lbl_8029A610
 /* 8029A600 00297540  80 61 00 08 */	lwz r3, 8(r1)

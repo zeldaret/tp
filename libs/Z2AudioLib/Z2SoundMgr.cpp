@@ -17,7 +17,7 @@
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
 extern "C" {
-void func_803664DC(void);
+void sprintf(void);
 }
 
 // additional symbols needed for Z2SoundMgr.cpp
@@ -42,8 +42,8 @@ extern u8 lbl_8039ABB8;
 
 extern "C" {
 // seqCallback__FP8JASTrackUs
-// seqCallback(JASTrack*, unsigned short)
-asm void seqCallback(void) {
+// seqCallback__FP8JASTrackUs(JASTrack*, unsigned short)
+asm void seqCallback__FP8JASTrackUs(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundMgr/asm/func_802A9BC8.s"
 }

@@ -3,14 +3,14 @@
 .section .text, "ax" # 80249c20
 
 
-.global dMsgString_c
-dMsgString_c:
+.global __ct__12dMsgString_cFv
+__ct__12dMsgString_cFv:
 /* 80249C20 00246B60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80249C24 00246B64  7C 08 02 A6 */	mflr r0
 /* 80249C28 00246B68  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80249C2C 00246B6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80249C30 00246B70  7C 7F 1B 78 */	mr r31, r3
-/* 80249C34 00246B74  4B FF F7 81 */	bl dMsgStringBase_c
+/* 80249C34 00246B74  4B FF F7 81 */	bl __ct__16dMsgStringBase_cFv
 /* 80249C38 00246B78  3C 60 80 3C */	lis r3, lbl_803C1498@ha
 /* 80249C3C 00246B7C  38 03 14 98 */	addi r0, r3, lbl_803C1498@l
 /* 80249C40 00246B80  90 1F 00 00 */	stw r0, 0(r31)
@@ -21,7 +21,7 @@ dMsgString_c:
 /* 80249C54 00246B94  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249C58 00246B98  41 82 00 10 */	beq lbl_80249C68
 /* 80249C5C 00246B9C  88 9F 00 28 */	lbz r4, 0x28(r31)
-/* 80249C60 00246BA0  4B FD C0 35 */	bl COutFont_c
+/* 80249C60 00246BA0  4B FD C0 35 */	bl __ct__10COutFont_cFUc
 /* 80249C64 00246BA4  7C 60 1B 78 */	mr r0, r3
 lbl_80249C68:
 /* 80249C68 00246BA8  90 1F 00 24 */	stw r0, 0x24(r31)
@@ -39,8 +39,8 @@ lbl_80249C68:
 /* 80249C98 00246BD8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80249C9C 00246BDC  4E 80 00 20 */	blr 
 
-.global dMsgString_c_X1_
-dMsgString_c_X1_:
+.global __ct__12dMsgString_cFUc
+__ct__12dMsgString_cFUc:
 /* 80249CA0 00246BE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80249CA4 00246BE4  7C 08 02 A6 */	mflr r0
 /* 80249CA8 00246BE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -48,7 +48,7 @@ dMsgString_c_X1_:
 /* 80249CB0 00246BF0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80249CB4 00246BF4  7C 7E 1B 78 */	mr r30, r3
 /* 80249CB8 00246BF8  7C 9F 23 78 */	mr r31, r4
-/* 80249CBC 00246BFC  4B FF F6 F9 */	bl dMsgStringBase_c
+/* 80249CBC 00246BFC  4B FF F6 F9 */	bl __ct__16dMsgStringBase_cFv
 /* 80249CC0 00246C00  3C 60 80 3C */	lis r3, lbl_803C1498@ha
 /* 80249CC4 00246C04  38 03 14 98 */	addi r0, r3, lbl_803C1498@l
 /* 80249CC8 00246C08  90 1E 00 00 */	stw r0, 0(r30)
@@ -58,7 +58,7 @@ dMsgString_c_X1_:
 /* 80249CD8 00246C18  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249CDC 00246C1C  41 82 00 10 */	beq lbl_80249CEC
 /* 80249CE0 00246C20  88 9E 00 28 */	lbz r4, 0x28(r30)
-/* 80249CE4 00246C24  4B FD BF B1 */	bl COutFont_c
+/* 80249CE4 00246C24  4B FD BF B1 */	bl __ct__10COutFont_cFUc
 /* 80249CE8 00246C28  7C 60 1B 78 */	mr r0, r3
 lbl_80249CEC:
 /* 80249CEC 00246C2C  90 1E 00 24 */	stw r0, 0x24(r30)

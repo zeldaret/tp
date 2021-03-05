@@ -18,7 +18,7 @@ createManager__8JUTVideoFPC16_GXRenderModeObj:
 /* 802E4C7C 002E1BBC  7C 60 1B 79 */	or. r0, r3, r3
 /* 802E4C80 002E1BC0  41 82 00 10 */	beq lbl_802E4C90
 /* 802E4C84 002E1BC4  7F E4 FB 78 */	mr r4, r31
-/* 802E4C88 002E1BC8  48 00 00 6D */	bl JUTVideo
+/* 802E4C88 002E1BC8  48 00 00 6D */	bl __ct__8JUTVideoFPC16_GXRenderModeObj
 /* 802E4C8C 002E1BCC  7C 60 1B 78 */	mr r0, r3
 lbl_802E4C90:
 /* 802E4C90 002E1BD0  90 0D 8F B8 */	stw r0, lbl_80451538-_SDA_BASE_(r13)
@@ -53,8 +53,8 @@ lbl_802E4CE4:
 /* 802E4CEC 002E1C2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E4CF0 002E1C30  4E 80 00 20 */	blr 
 
-.global JUTVideo
-JUTVideo:
+.global __ct__8JUTVideoFPC16_GXRenderModeObj
+__ct__8JUTVideoFPC16_GXRenderModeObj:
 /* 802E4CF4 002E1C34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E4CF8 002E1C38  7C 08 02 A6 */	mflr r0
 /* 802E4CFC 002E1C3C  90 01 00 14 */	stw r0, 0x14(r1)

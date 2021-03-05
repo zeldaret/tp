@@ -3,8 +3,8 @@
 .section .text, "ax" # 80337178
 
 
-.global J3DJointFactory
-J3DJointFactory:
+.global __ct__15J3DJointFactoryFRC13J3DJointBlock
+__ct__15J3DJointFactoryFRC13J3DJointBlock:
 /* 80337178 003340B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033717C 003340BC  7C 08 02 A6 */	mflr r0
 /* 80337180 003340C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -41,7 +41,7 @@ create__15J3DJointFactoryFi:
 /* 803371F0 00334130  4B F9 7A 5D */	bl __nw__FUl
 /* 803371F4 00334134  7C 64 1B 79 */	or. r4, r3, r3
 /* 803371F8 00334138  41 82 00 0C */	beq lbl_80337204
-/* 803371FC 0033413C  4B FF 7F 75 */	bl J3DJoint
+/* 803371FC 0033413C  4B FF 7F 75 */	bl __ct__8J3DJointFv
 /* 80337200 00334140  7C 64 1B 78 */	mr r4, r3
 lbl_80337204:
 /* 80337204 00334144  B3 C4 00 14 */	sth r30, 0x14(r4)

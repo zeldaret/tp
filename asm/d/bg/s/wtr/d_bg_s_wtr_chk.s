@@ -3,14 +3,14 @@
 .section .text, "ax" # 80079164
 
 
-.global dBgS_WtrChk
-dBgS_WtrChk:
+.global __ct__11dBgS_WtrChkFv
+__ct__11dBgS_WtrChkFv:
 /* 80079164 000760A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80079168 000760A8  7C 08 02 A6 */	mflr r0
 /* 8007916C 000760AC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80079170 000760B0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80079174 000760B4  7C 7F 1B 78 */	mr r31, r3
-/* 80079178 000760B8  4B FF FA 39 */	bl dBgS_SplGrpChk
+/* 80079178 000760B8  4B FF FA 39 */	bl __ct__14dBgS_SplGrpChkFv
 /* 8007917C 000760BC  3C 60 80 3A */	lis r3, lbl_803A37FC@ha
 /* 80079180 000760C0  38 63 37 FC */	addi r3, r3, lbl_803A37FC@l
 /* 80079184 000760C4  90 7F 00 0C */	stw r3, 0xc(r31)

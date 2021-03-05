@@ -5,7 +5,7 @@
 /* 80120788 0011D6C8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012078C 0011D6CC  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 80120790 0011D6D0  38 63 02 10 */ addi r3, r3, 0x210
-/* 80120794 0011D6D4  4B F2 B1 85 */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 80120794 0011D6D4  4B F2 B1 85 */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80120798 0011D6D8  28 03 00 00 */ cmplwi r3, 0
 /* 8012079C 0011D6DC  41 82 00 10 */ beq lbl_801207AC
 /* 801207A0 0011D6E0  80 03 00 F4 */ lwz r0, 0xf4(r3)

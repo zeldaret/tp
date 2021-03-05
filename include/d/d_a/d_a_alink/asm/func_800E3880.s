@@ -7,7 +7,7 @@
 /* 800E3898 000E07D8  28 03 00 00 */ cmplwi r3, 0
 /* 800E389C 000E07DC  41 82 00 14 */ beq lbl_800E38B0
 /* 800E38A0 000E07E0  7F E3 FB 78 */ mr r3, r31
-/* 800E38A4 000E07E4  4B FF FF 8D */ bl daAlink_checkLightBallA
+/* 800E38A4 000E07E4  4B FF FF 8D */ bl daAlink_checkLightBallA__FP10fopAc_ac_c
 /* 800E38A8 000E07E8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E38AC 000E07EC  40 82 00 20 */ bne lbl_800E38CC
 lbl_800E38B0:
@@ -15,7 +15,7 @@ lbl_800E38B0:
 /* 800E38B4 000E07F4  28 03 00 00 */ cmplwi r3, 0
 /* 800E38B8 000E07F8  41 82 00 1C */ beq lbl_800E38D4
 /* 800E38BC 000E07FC  7F E3 FB 78 */ mr r3, r31
-/* 800E38C0 000E0800  4B FF FF 99 */ bl daAlink_checkLightBallB
+/* 800E38C0 000E0800  4B FF FF 99 */ bl daAlink_checkLightBallB__FP10fopAc_ac_c
 /* 800E38C4 000E0804  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E38C8 000E0808  41 82 00 0C */ beq lbl_800E38D4
 lbl_800E38CC:

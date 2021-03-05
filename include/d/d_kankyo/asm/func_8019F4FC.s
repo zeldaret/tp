@@ -13,7 +13,7 @@
 /* 8019F52C 0019C46C  88 1E 12 FB */ lbz r0, 0x12fb(r30)
 /* 8019F530 0019C470  28 00 00 00 */ cmplwi r0, 0
 /* 8019F534 0019C474  40 82 01 D4 */ bne lbl_8019F708
-/* 8019F538 0019C478  48 00 D0 45 */ bl dKy_darkworld_check
+/* 8019F538 0019C478  48 00 D0 45 */ bl dKy_darkworld_check__Fv
 /* 8019F53C 0019C47C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8019F540 0019C480  40 82 01 6C */ bne lbl_8019F6AC
 /* 8019F544 0019C484  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -109,7 +109,7 @@ lbl_8019F660:
 /* 8019F698 0019C5D8  A0 7E 12 BE */ lhz r3, 0x12be(r30)
 /* 8019F69C 0019C5DC  38 03 00 01 */ addi r0, r3, 1
 /* 8019F6A0 0019C5E0  B0 1E 12 BE */ sth r0, 0x12be(r30)
-/* 8019F6A4 0019C5E4  48 00 E6 5D */ bl dKankyo_DayProc
+/* 8019F6A4 0019C5E4  48 00 E6 5D */ bl dKankyo_DayProc__Fv
 /* 8019F6A8 0019C5E8  48 00 00 60 */ b lbl_8019F708
 lbl_8019F6AC:
 /* 8019F6AC 0019C5EC  C0 3E 12 50 */ lfs f1, 0x1250(r30)
@@ -147,13 +147,13 @@ lbl_8019F708:
 lbl_8019F724:
 /* 8019F724 0019C664  C0 1E 12 44 */ lfs f0, 0x1244(r30)
 /* 8019F728 0019C668  D0 1F 00 34 */ stfs f0, 0x34(r31)
-/* 8019F72C 0019C66C  48 00 02 E5 */ bl dKy_getdaytime_hour
+/* 8019F72C 0019C66C  48 00 02 E5 */ bl dKy_getdaytime_hour__Fv
 /* 8019F730 0019C670  80 8D 8D E8 */ lwz r4, lbl_80451368-_SDA_BASE_(r13)
 /* 8019F734 0019C674  98 64 04 C4 */ stb r3, 0x4c4(r4)
-/* 8019F738 0019C678  48 00 03 05 */ bl dKy_getdaytime_minute
+/* 8019F738 0019C678  48 00 03 05 */ bl dKy_getdaytime_minute__Fv
 /* 8019F73C 0019C67C  80 8D 8D E8 */ lwz r4, lbl_80451368-_SDA_BASE_(r13)
 /* 8019F740 0019C680  98 64 04 C5 */ stb r3, 0x4c5(r4)
-/* 8019F744 0019C684  48 00 93 F5 */ bl dKy_get_dayofweek
+/* 8019F744 0019C684  48 00 93 F5 */ bl dKy_get_dayofweek__Fv
 /* 8019F748 0019C688  80 8D 8D E8 */ lwz r4, lbl_80451368-_SDA_BASE_(r13)
 /* 8019F74C 0019C68C  98 64 04 C6 */ stb r3, 0x4c6(r4)
 /* 8019F750 0019C690  A0 1E 12 BE */ lhz r0, 0x12be(r30)

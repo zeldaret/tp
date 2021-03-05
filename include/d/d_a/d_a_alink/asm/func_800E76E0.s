@@ -89,7 +89,7 @@ lbl_800E77D0:
 /* 800E7830 000E4770  41 82 00 1C */ beq lbl_800E784C
 /* 800E7834 000E4774  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
 /* 800E7838 000E4778  38 80 FF FF */ li r4, -1
-/* 800E783C 000E477C  4B F4 70 01 */ bl dComIfGp_addSelectItemNum
+/* 800E783C 000E477C  4B F4 70 01 */ bl dComIfGp_addSelectItemNum__Fis
 /* 800E7840 000E4780  88 7F 2F CF */ lbz r3, 0x2fcf(r31)
 /* 800E7844 000E4784  38 03 00 01 */ addi r0, r3, 1
 /* 800E7848 000E4788  98 1F 2F CF */ stb r0, 0x2fcf(r31)

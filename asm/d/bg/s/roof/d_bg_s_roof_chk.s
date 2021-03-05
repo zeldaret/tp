@@ -3,8 +3,8 @@
 .section .text, "ax" # 80078ff4
 
 
-.global dBgS_RoofChk
-dBgS_RoofChk:
+.global __ct__12dBgS_RoofChkFv
+__ct__12dBgS_RoofChkFv:
 /* 80078FF4 00075F34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078FF8 00075F38  7C 08 02 A6 */	mflr r0
 /* 80078FFC 00075F3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14,7 +14,7 @@ dBgS_RoofChk:
 /* 8007900C 00075F4C  38 7F 00 10 */	addi r3, r31, 0x10
 /* 80079010 00075F50  48 1E EB 3D */	bl __ct__8cBgS_ChkFv
 /* 80079014 00075F54  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80079018 00075F58  4B FF E4 85 */	bl dBgS_Chk
+/* 80079018 00075F58  4B FF E4 85 */	bl __ct__8dBgS_ChkFv
 /* 8007901C 00075F5C  3C 60 80 3B */	lis r3, lbl_803ABA50@ha
 /* 80079020 00075F60  38 63 BA 50 */	addi r3, r3, lbl_803ABA50@l
 /* 80079024 00075F64  90 7F 00 0C */	stw r3, 0xc(r31)

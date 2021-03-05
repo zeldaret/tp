@@ -140,7 +140,7 @@ bool Z2SoundObjMgr::isTwilightBattle() {
 extern "C" {
 // __sinit_Z2SoundObjMgr_cpp
 //
-asm void func_802C01EC(void) {
+asm void __sinit_Z2SoundObjMgr_cpp(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObjMgr/asm/func_802C01EC.s"
 }

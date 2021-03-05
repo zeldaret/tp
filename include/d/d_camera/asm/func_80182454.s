@@ -5,7 +5,7 @@
 /* 80182464 0017F3A4  38 65 02 40 */ addi r3, r5, 0x240
 /* 80182468 0017F3A8  3C 80 80 3C */ lis r4, lbl_803BA6D8@ha
 /* 8018246C 0017F3AC  38 84 A6 D8 */ addi r4, r4, lbl_803BA6D8@l
-/* 80182470 0017F3B0  4B EA D6 B1 */ bl dComLbG_PhaseHandler
+/* 80182470 0017F3B0  4B EA D6 B1 */ bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 /* 80182474 0017F3B4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80182478 0017F3B8  7C 08 03 A6 */ mtlr r0
 /* 8018247C 0017F3BC  38 21 00 10 */ addi r1, r1, 0x10

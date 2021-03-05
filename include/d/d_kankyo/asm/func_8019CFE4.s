@@ -15,11 +15,11 @@
 /* 8019D01C 00199F5C  38 9E 00 D8 */ addi r4, r30, 0xd8
 /* 8019D020 00199F60  38 A1 00 0A */ addi r5, r1, 0xa
 /* 8019D024 00199F64  38 C1 00 08 */ addi r6, r1, 8
-/* 8019D028 00199F68  4B FF FE 35 */ bl dKy_pos2_get_angle
+/* 8019D028 00199F68  4B FF FE 35 */ bl dKy_pos2_get_angle__FP4cXyzP4cXyzPsPs
 /* 8019D02C 00199F6C  38 7E 00 E4 */ addi r3, r30, 0xe4
 /* 8019D030 00199F70  38 9E 00 D8 */ addi r4, r30, 0xd8
 /* 8019D034 00199F74  38 A1 00 0C */ addi r5, r1, 0xc
-/* 8019D038 00199F78  4B EB E7 29 */ bl dKyr_get_vectle_calc
+/* 8019D038 00199F78  4B EB E7 29 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8019D03C 00199F7C  C0 3E 00 D8 */ lfs f1, 0xd8(r30)
 /* 8019D040 00199F80  C0 42 A1 F4 */ lfs f2, lbl_80453BF4-_SDA2_BASE_(r2)
 /* 8019D044 00199F84  C0 01 00 0C */ lfs f0, 0xc(r1)

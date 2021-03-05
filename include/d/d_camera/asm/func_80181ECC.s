@@ -3,7 +3,7 @@
 /* 80181ED4 0017EE14  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80181ED8 0017EE18  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80181EDC 0017EE1C  7C 7F 1B 78 */ mr r31, r3
-/* 80181EE0 0017EE20  4B FF F7 85 */ bl preparation
+/* 80181EE0 0017EE20  4B FF F7 85 */ bl preparation__FP20camera_process_class
 /* 80181EE4 0017EE24  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
 /* 80181EE8 0017EE28  4B EB 72 41 */ bl getActiveCamera__14dDemo_object_cFv
 /* 80181EEC 0017EE2C  28 03 00 00 */ cmplwi r3, 0
@@ -35,7 +35,7 @@ lbl_80181F40:
 /* 80181F48 0017EE88  7F E3 FB 78 */ mr r3, r31
 /* 80181F4C 0017EE8C  4B FF F8 B9 */ bl store
 /* 80181F50 0017EE90  7F E3 FB 78 */ mr r3, r31
-/* 80181F54 0017EE94  4B FF F7 B5 */ bl view_setup
+/* 80181F54 0017EE94  4B FF F7 B5 */ bl view_setup__FP20camera_process_class
 /* 80181F58 0017EE98  38 60 00 01 */ li r3, 1
 /* 80181F5C 0017EE9C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80181F60 0017EEA0  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -15,7 +15,7 @@
 /* 8010CFA4 00109EE4  38 80 01 35 */ li r4, 0x135
 lbl_8010CFA8:
 /* 8010CFA8 00109EE8  C0 22 93 14 */ lfs f1, lbl_80452D14-_SDA2_BASE_(r2)
-/* 8010CFAC 00109EEC  4B FA 00 05 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 8010CFAC 00109EEC  4B FA 00 05 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 8010CFB0 00109EF0  7F C3 F3 78 */ mr r3, r30
 /* 8010CFB4 00109EF4  4B FF B7 29 */ bl resetHookshotMode__9daAlink_cFv
 /* 8010CFB8 00109EF8  38 00 00 01 */ li r0, 1

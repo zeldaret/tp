@@ -582,7 +582,7 @@ extern "C" {
 
 // __sinit_J2DPane_cpp
 //
-asm void func_802F847C(void) {
+asm void __sinit_J2DPane_cpp(void) {
     nofralloc
 #include "JSystem/J2DGraph/J2DPane/asm/func_802F847C.s"
 }

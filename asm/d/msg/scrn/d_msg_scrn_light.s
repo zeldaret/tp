@@ -3,8 +3,8 @@
 .section .text, "ax" # 8024575c
 
 
-.global dMsgScrnLight_HIO_c
-dMsgScrnLight_HIO_c:
+.global __ct__19dMsgScrnLight_HIO_cFv
+__ct__19dMsgScrnLight_HIO_cFv:
 /* 8024575C 0024269C  3C 80 80 3C */	lis r4, lbl_803C12A4@ha
 /* 80245760 002426A0  38 04 12 A4 */	addi r0, r4, lbl_803C12A4@l
 /* 80245764 002426A4  90 03 00 00 */	stw r0, 0(r3)
@@ -137,8 +137,8 @@ lbl_80245904:
 /* 8024592C 0024286C  42 00 FF D8 */	bdnz lbl_80245904
 /* 80245930 00242870  4E 80 00 20 */	blr 
 
-.global dMsgScrnLight_c
-dMsgScrnLight_c:
+.global __ct__15dMsgScrnLight_cFUcUc
+__ct__15dMsgScrnLight_cFUcUc:
 /* 80245934 00242874  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80245938 00242878  7C 08 02 A6 */	mflr r0
 /* 8024593C 0024287C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -181,7 +181,7 @@ lbl_802459AC:
 /* 802459C8 00242908  80 DE 5D 30 */	lwz r6, 0x5d30(r30)
 /* 802459CC 0024290C  48 0B 2C 7D */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 802459D0 00242910  80 7F 00 04 */	lwz r3, 4(r31)
-/* 802459D4 00242914  48 00 F7 15 */	bl dPaneClass_showNullPane
+/* 802459D4 00242914  48 00 F7 15 */	bl dPaneClass_showNullPane__FP9J2DScreen
 /* 802459D8 00242918  38 60 00 04 */	li r3, 4
 /* 802459DC 0024291C  64 63 00 04 */	oris r3, r3, 4
 /* 802459E0 00242920  7C 72 E3 A6 */	mtspr 0x392, r3
@@ -228,7 +228,7 @@ lbl_802459AC:
 /* 80245A84 002429C4  38 A0 6D 6F */	li r5, 0x6d6f
 /* 80245A88 002429C8  38 E0 00 00 */	li r7, 0
 /* 80245A8C 002429CC  39 00 00 00 */	li r8, 0
-/* 80245A90 002429D0  48 00 DE F5 */	bl CPaneMgr_X1_
+/* 80245A90 002429D0  48 00 DE F5 */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 80245A94 002429D4  7C 60 1B 78 */	mr r0, r3
 lbl_80245A98:
 /* 80245A98 002429D8  90 1F 00 10 */	stw r0, 0x10(r31)
@@ -549,7 +549,7 @@ lbl_80245F34:
 /* 80245F40 00242E80  FC 60 E8 90 */	fmr f3, f29
 /* 80245F44 00242E84  FC 80 F0 90 */	fmr f4, f30
 /* 80245F48 00242E88  FC A0 F8 90 */	fmr f5, f31
-/* 80245F4C 00242E8C  48 00 01 91 */	bl draw__15dMsgScrnLight_cFPffffffUcCommon
+/* 80245F4C 00242E8C  48 00 01 91 */	bl drawCommon__15dMsgScrnLight_cFfffff
 /* 80245F50 00242E90  E3 E1 00 D8 */	psq_l f31, 216(r1), 0, qr0
 /* 80245F54 00242E94  CB E1 00 D0 */	lfd f31, 0xd0(r1)
 /* 80245F58 00242E98  E3 C1 00 C8 */	psq_l f30, 200(r1), 0, qr0
@@ -567,8 +567,8 @@ lbl_80245F34:
 /* 80245F88 00242EC8  38 21 00 E0 */	addi r1, r1, 0xe0
 /* 80245F8C 00242ECC  4E 80 00 20 */	blr 
 
-.global draw__15dMsgScrnLight_cFPffffffUc_X1_
-draw__15dMsgScrnLight_cFPffffffUc_X1_:
+.global draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor
+draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor:
 /* 80245F90 00242ED0  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80245F94 00242ED4  7C 08 02 A6 */	mflr r0
 /* 80245F98 00242ED8  90 01 00 84 */	stw r0, 0x84(r1)
@@ -635,7 +635,7 @@ lbl_80246078:
 /* 80246084 00242FC4  FC 60 E0 90 */	fmr f3, f28
 /* 80246088 00242FC8  FC 80 E8 90 */	fmr f4, f29
 /* 8024608C 00242FCC  FC A0 F0 90 */	fmr f5, f30
-/* 80246090 00242FD0  48 00 00 4D */	bl draw__15dMsgScrnLight_cFPffffffUcCommon
+/* 80246090 00242FD0  48 00 00 4D */	bl drawCommon__15dMsgScrnLight_cFfffff
 /* 80246094 00242FD4  E3 E1 00 78 */	psq_l f31, 120(r1), 0, qr0
 /* 80246098 00242FD8  CB E1 00 70 */	lfd f31, 0x70(r1)
 /* 8024609C 00242FDC  E3 C1 00 68 */	psq_l f30, 104(r1), 0, qr0
@@ -655,8 +655,8 @@ lbl_80246078:
 /* 802460D4 00243014  38 21 00 80 */	addi r1, r1, 0x80
 /* 802460D8 00243018  4E 80 00 20 */	blr 
 
-.global draw__15dMsgScrnLight_cFPffffffUcCommon
-draw__15dMsgScrnLight_cFPffffffUcCommon:
+.global drawCommon__15dMsgScrnLight_cFfffff
+drawCommon__15dMsgScrnLight_cFfffff:
 /* 802460DC 0024301C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802460E0 00243020  7C 08 02 A6 */	mflr r0
 /* 802460E4 00243024  90 01 00 74 */	stw r0, 0x74(r1)
@@ -846,7 +846,7 @@ lbl_80246378:
 /* 80246398 002432D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8024639C 002432DC  3C 60 80 43 */	lis r3, lbl_804306D4@ha
 /* 802463A0 002432E0  38 63 06 D4 */	addi r3, r3, lbl_804306D4@l
-/* 802463A4 002432E4  4B FF F3 B9 */	bl dMsgScrnLight_HIO_c
+/* 802463A4 002432E4  4B FF F3 B9 */	bl __ct__19dMsgScrnLight_HIO_cFv
 .global __dt__19dMsgScrnLight_HIO_cFv
 /* 802463A8 002432E8  3C 80 80 24 */	lis r4, __dt__19dMsgScrnLight_HIO_cFv@ha
 .global __dt__19dMsgScrnLight_HIO_cFv

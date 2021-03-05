@@ -184,7 +184,7 @@ lbl_80117F68:
 /* 80117F94 00114ED4  1C 00 00 38 */ mulli r0, r0, 0x38
 /* 80117F98 00114ED8  7C 63 02 14 */ add r3, r3, r0
 /* 80117F9C 00114EDC  80 63 5D 74 */ lwz r3, 0x5d74(r3)
-/* 80117FA0 00114EE0  48 06 96 75 */ bl dCam_getControledAngleY
+/* 80117FA0 00114EE0  48 06 96 75 */ bl dCam_getControledAngleY__FP12camera_class
 /* 80117FA4 00114EE4  A8 1C 2F E0 */ lha r0, 0x2fe0(r28)
 /* 80117FA8 00114EE8  7C 00 1A 14 */ add r0, r0, r3
 /* 80117FAC 00114EEC  B0 1C 2F E2 */ sth r0, 0x2fe2(r28)

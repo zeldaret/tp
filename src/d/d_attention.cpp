@@ -28,7 +28,7 @@ void __dt__10dAttDraw_cFv(void);
 void setAlphaAnm__10dAttDraw_cFUcUc(void);
 void setAnm__10dAttDraw_cFUcf(void);
 void initList__12dAttention_cFUl(void);
-void LockonTarget__12dAttention_cFlPId(void);
+void LockonTargetPId__12dAttention_cFl(void);
 void LockonTruth__12dAttention_cFv(void);
 void lockSoundStart__12dAttention_cFUl(void);
 void SelectAttention__12dAttention_cFP10fopAc_ac_c(void);
@@ -44,10 +44,10 @@ void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
 void fopAcIt_Executor(void);
 void fopAcM_searchActorDistance(void);
 void func_80361C24(void);
-void func_80361D60(void);
+void __construct_array(void);
 void Inv__7cSAngleCFv(void);
 void isSwitch__12dSv_danBit_cCFi(void);
-void mDoExt_adjustSolidHeap(void);
+void mDoExt_adjustSolidHeap__FP12JKRSolidHeap(void);
 void play__14mDoExt_baseAnmFv(void);
 void entry__13mDoExt_bckAnmFP12J3DModelDataf(void);
 void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb(void);
@@ -57,10 +57,10 @@ void entry__13mDoExt_brkAnmFP16J3DMaterialTablef(void);
 void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss(void);
 void entry__13mDoExt_btkAnmFP16J3DMaterialTablef(void);
 void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss(void);
-void mDoExt_createSolidHeapFromGameToCurrent_X1_(void);
-void mDoExt_J3DModel__create(void);
-void mDoExt_modelUpdateDL(void);
-void mDoExt_restoreCurrentHeap(void);
+void mDoExt_createSolidHeapFromGameToCurrent__FUlUl(void);
+void mDoExt_J3DModel__create__FP12J3DModelDataUlUl(void);
+void mDoExt_modelUpdateDL__FP8J3DModel(void);
+void mDoExt_restoreCurrentHeap__Fv(void);
 void bgmNowBattle__8Z2SeqMgrFf(void);
 }
 
@@ -132,7 +132,7 @@ asm void _unnamed_d_attention_cpp__NS_padLockButton(void) {
 
 // __ct__11dAttParam_cFl
 // dAttParam_c::dAttParam_c(long)
-asm void dAttParam_c(void) {
+asm void __ct__11dAttParam_cFl(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070038.s"
 }
@@ -146,21 +146,21 @@ asm void __dt__11dAttParam_cFv(void) {
 
 // __ct__15dAttDrawParam_cFv
 // dAttDrawParam_c::dAttDrawParam_c(void)
-asm void dAttDrawParam_c(void) {
+asm void __ct__15dAttDrawParam_cFv(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070158.s"
 }
 
 // execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo
 // dAttDraw_CallBack_c::execute(unsigned short, J3DTransformInfo*)
-asm void func_80070178(void) {
+asm void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070178.s"
 }
 
 // __ct__12dAttention_cFP10fopAc_ac_cUl
 // dAttention_c::dAttention_c(fopAc_ac_c*, unsigned long)
-asm void dAttention_c(void) {
+asm void __ct__12dAttention_cFP10fopAc_ac_cUl(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070198.s"
 }
@@ -201,36 +201,36 @@ asm void chkAttMask__12dAttention_cFUlUl(void) {
 }
 
 // check_event_condition__FUlUs
-// check_event_condition(unsigned long, unsigned short)
-asm void check_event_condition(void) {
+// check_event_condition__FUlUs(unsigned long, unsigned short)
+asm void check_event_condition__FUlUs(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070AC0.s"
 }
 
 // check_flontofplayer__FUlss
-// check_flontofplayer(unsigned long, short, short)
-asm void check_flontofplayer(void) {
+// check_flontofplayer__FUlss(unsigned long, short, short)
+asm void check_flontofplayer__FUlss(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070B2C.s"
 }
 
 // distace_weight__Ffsf
-// distace_weight(float, short, float)
-asm void distace_weight(void) {
+// distace_weight__Ffsf(float, short, float)
+asm void distace_weight__Ffsf(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070BF4.s"
 }
 
 // distace_angle_adjust__Ffsf
-// distace_angle_adjust(float, short, float)
-asm void distace_angle_adjust(void) {
+// distace_angle_adjust__Ffsf(float, short, float)
+asm void distace_angle_adjust__Ffsf(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070C40.s"
 }
 
 // check_distace__FP4cXyzsP4cXyzffff
-// check_distace(cXyz*, short, cXyz*, float, float, float, float)
-asm void check_distace(void) {
+// check_distace__FP4cXyzsP4cXyzffff(cXyz*, short, cXyz*, float, float, float, float)
+asm void check_distace__FP4cXyzsP4cXyzffff(void) {
     nofralloc
 #include "d/d_attention/asm/func_80070CA0.s"
 }
@@ -257,8 +257,8 @@ asm void initList__12dAttention_cFUl(void) {
 }
 
 // select_attention__FP10fopAc_ac_cPv
-// select_attention(fopAc_ac_c*, void*)
-asm void select_attention(void) {
+// select_attention__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void select_attention__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_attention/asm/func_8007138C.s"
 }
@@ -334,8 +334,8 @@ asm void EnemyDistance__12dAttention_cFP10fopAc_ac_c(void) {
 }
 
 // sound_attention__FP10fopAc_ac_cPv
-// sound_attention(fopAc_ac_c*, void*)
-asm void sound_attention(void) {
+// sound_attention__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void sound_attention__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_attention/asm/func_80071D6C.s"
 }
@@ -440,7 +440,7 @@ asm void alphaAnm__10dAttDraw_cFv(void) {
 
 // setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
 // J3DTevBlock::setTevKColor(unsigned long, const J3DGXColor*)
-asm void func_800732AC(void) {
+asm void setTevKColor__11J3DTevBlockFUlPC10J3DGXColor(void) {
     nofralloc
 #include "d/d_attention/asm/func_800732AC.s"
 }
@@ -467,7 +467,7 @@ asm void LockonReleaseDistanse__12dAttention_cFv(void) {
 
 // LockonTargetPId__12dAttention_cFl
 // dAttention_c::LockonTargetPId(long)
-asm void LockonTarget__12dAttention_cFlPId(void) {
+asm void LockonTargetPId__12dAttention_cFl(void) {
     nofralloc
 #include "d/d_attention/asm/func_800736CC.s"
 }
@@ -530,7 +530,7 @@ asm void convPId__10dAttHint_cFUi(void) {
 
 // request__10dAttHint_cFP10fopAc_ac_ci
 // dAttHint_c::request(fopAc_ac_c*, int)
-asm void func_800738FC(void) {
+asm void request__10dAttHint_cFP10fopAc_ac_ci(void) {
     nofralloc
 #include "d/d_attention/asm/func_800738FC.s"
 }
@@ -572,7 +572,7 @@ asm void proc__11dAttCatch_cFv(void) {
 
 // request__11dAttCatch_cFP10fopAc_ac_cUcfffsi
 // dAttCatch_c::request(fopAc_ac_c*, unsigned char, float, float, float, short, int)
-asm void func_80073A08(void) {
+asm void request__11dAttCatch_cFP10fopAc_ac_cUcfffsi(void) {
     nofralloc
 #include "d/d_attention/asm/func_80073A08.s"
 }
@@ -600,7 +600,7 @@ asm void proc__10dAttLook_cFv(void) {
 
 // request__10dAttLook_cFP10fopAc_ac_cfffsi
 // dAttLook_c::request(fopAc_ac_c*, float, float, float, short, int)
-asm void func_80073D08(void) {
+asm void request__10dAttLook_cFP10fopAc_ac_cfffsi(void) {
     nofralloc
 #include "d/d_attention/asm/func_80073D08.s"
 }
@@ -613,7 +613,7 @@ asm void __dt__15dAttDrawParam_cFv(void) {
 }
 
 // __sinit_d_attention_cpp
-asm void func_8007400C(void) {
+asm void __sinit_d_attention_cpp(void) {
     nofralloc
 #include "d/d_attention/asm/func_8007400C.s"
 }

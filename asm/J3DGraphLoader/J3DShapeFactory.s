@@ -3,8 +3,8 @@
 .section .text, "ax" # 80337350
 
 
-.global J3DShapeFactory
-J3DShapeFactory:
+.global __ct__15J3DShapeFactoryFRC13J3DShapeBlock
+__ct__15J3DShapeFactoryFRC13J3DShapeBlock:
 /* 80337350 00334290  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80337354 00334294  7C 08 02 A6 */	mflr r0
 /* 80337358 00334298  90 01 00 14 */	stw r0, 0x14(r1)
@@ -380,7 +380,7 @@ newShapeDraw__15J3DShapeFactoryCFii:
 /* 803378A8 003347E8  80 1F 00 04 */	lwz r0, 4(r31)
 /* 803378AC 003347EC  7C 84 02 14 */	add r4, r4, r0
 /* 803378B0 003347F0  80 BF 00 00 */	lwz r5, 0(r31)
-/* 803378B4 003347F4  4B FD D2 09 */	bl J3DShapeDraw
+/* 803378B4 003347F4  4B FD D2 09 */	bl __ct__12J3DShapeDrawFPCUcUl
 /* 803378B8 003347F8  7C 60 1B 78 */	mr r0, r3
 lbl_803378BC:
 /* 803378BC 003347FC  7C 03 03 78 */	mr r3, r0
@@ -450,7 +450,7 @@ lbl_80337994:
 /* 80337998 003348D8  7F 84 E3 78 */	mr r4, r28
 /* 8033799C 003348DC  7F 65 DB 78 */	mr r5, r27
 /* 803379A0 003348E0  7F A6 EB 78 */	mr r6, r29
-/* 803379A4 003348E4  48 00 00 45 */	bl calcSize__15J3DShapeFactoryFiUlShapeMtx
+/* 803379A4 003348E4  48 00 00 45 */	bl calcSizeShapeMtx__15J3DShapeFactoryCFUlii
 /* 803379A8 003348E8  7F FF 1A 14 */	add r31, r31, r3
 /* 803379AC 003348EC  3B FF 00 0C */	addi r31, r31, 0xc
 /* 803379B0 003348F0  3B BD 00 01 */	addi r29, r29, 1
@@ -465,15 +465,15 @@ lbl_803379B4:
 /* 803379D0 00334910  38 21 00 20 */	addi r1, r1, 0x20
 /* 803379D4 00334914  4E 80 00 20 */	blr 
 
-.global calcSize__15J3DShapeFactoryFiUlVcdVatCmdBuffer
-calcSize__15J3DShapeFactoryFiUlVcdVatCmdBuffer:
+.global calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl
+calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl:
 /* 803379D8 00334918  1C 64 00 C0 */	mulli r3, r4, 0xc0
 /* 803379DC 0033491C  38 03 00 1F */	addi r0, r3, 0x1f
 /* 803379E0 00334920  54 03 00 34 */	rlwinm r3, r0, 0, 0, 0x1a
 /* 803379E4 00334924  4E 80 00 20 */	blr 
 
-.global calcSize__15J3DShapeFactoryFiUlShapeMtx
-calcSize__15J3DShapeFactoryFiUlShapeMtx:
+.global calcSizeShapeMtx__15J3DShapeFactoryCFUlii
+calcSizeShapeMtx__15J3DShapeFactoryCFUlii:
 /* 803379E8 00334928  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803379EC 0033492C  7C 08 02 A6 */	mflr r0
 /* 803379F0 00334930  90 01 00 14 */	stw r0, 0x14(r1)

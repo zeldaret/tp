@@ -4,7 +4,7 @@
 /* 8012D3F0 0012A330  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012D3F4 0012A334  7C 7F 1B 78 */ mr r31, r3
 /* 8012D3F8 0012A338  38 80 00 00 */ li r4, 0
-/* 8012D3FC 0012A33C  4B FF C7 49 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012D3FC 0012A33C  4B FF C7 49 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012D400 0012A340  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D404 0012A344  40 82 00 58 */ bne lbl_8012D45C
 /* 8012D408 0012A348  7F E3 FB 78 */ mr r3, r31

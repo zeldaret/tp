@@ -88,17 +88,17 @@ buildTresTypeGroup__22dMenu_Fmap_room_data_cFiii:
 /* 8003D8AC 0003A7EC  48 29 13 A1 */	bl __nw__FUl
 /* 8003D8B0 0003A7F0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8003D8B4 0003A7F4  41 82 00 20 */	beq lbl_8003D8D4
-.global fmpTresTypeGroupDataList_c
-/* 8003D8B8 0003A7F8  3C 80 80 04 */	lis r4, fmpTresTypeGroupDataList_c@ha
-.global fmpTresTypeGroupDataList_c
-/* 8003D8BC 0003A7FC  38 84 EC 90 */	addi r4, r4, fmpTresTypeGroupDataList_c@l
+.global __ct__26fmpTresTypeGroupDataList_cFv
+/* 8003D8B8 0003A7F8  3C 80 80 04 */	lis r4, __ct__26fmpTresTypeGroupDataList_cFv@ha
+.global __ct__26fmpTresTypeGroupDataList_cFv
+/* 8003D8BC 0003A7FC  38 84 EC 90 */	addi r4, r4, __ct__26fmpTresTypeGroupDataList_cFv@l
 .global __dt__26fmpTresTypeGroupDataList_cFv
 /* 8003D8C0 0003A800  3C A0 80 04 */	lis r5, __dt__26fmpTresTypeGroupDataList_cFv@ha
 .global __dt__26fmpTresTypeGroupDataList_cFv
 /* 8003D8C4 0003A804  38 A5 EB 10 */	addi r5, r5, __dt__26fmpTresTypeGroupDataList_cFv@l
 /* 8003D8C8 0003A808  38 C0 00 08 */	li r6, 8
 /* 8003D8CC 0003A80C  38 E0 00 11 */	li r7, 0x11
-/* 8003D8D0 0003A810  48 32 44 91 */	bl func_80361D60
+/* 8003D8D0 0003A810  48 32 44 91 */	bl __construct_array
 lbl_8003D8D4:
 /* 8003D8D4 0003A814  93 FB 00 04 */	stw r31, 4(r27)
 lbl_8003D8D8:
@@ -1229,14 +1229,14 @@ lbl_8003E7FC:
 /* 8003E81C 0003B75C  28 04 00 80 */	cmplwi r4, 0x80
 /* 8003E820 0003B760  40 80 02 D4 */	bge lbl_8003EAF4
 /* 8003E824 0003B764  7F C3 F3 78 */	mr r3, r30
-/* 8003E828 0003B768  4B FE EF 19 */	bl dComIfGs_isStageSwitch
+/* 8003E828 0003B768  4B FE EF 19 */	bl dComIfGs_isStageSwitch__Fii
 /* 8003E82C 0003B76C  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E830 0003B770  41 82 02 C4 */	beq lbl_8003EAF4
 lbl_8003E834:
 /* 8003E834 0003B774  3B 80 00 01 */	li r28, 1
 /* 8003E838 0003B778  48 00 02 BC */	b lbl_8003EAF4
 /* 8003E83C 0003B77C  3B A0 00 00 */	li r29, 0
-/* 8003E840 0003B780  4B FF 05 A1 */	bl dComIfGp_isLightDropMapVisible
+/* 8003E840 0003B780  4B FF 05 A1 */	bl dComIfGp_isLightDropMapVisible__Fv
 /* 8003E844 0003B784  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003E848 0003B788  41 82 00 6C */	beq lbl_8003E8B4
 /* 8003E84C 0003B78C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1276,7 +1276,7 @@ lbl_8003E8B4:
 /* 8003E8C4 0003B804  28 04 00 FF */	cmplwi r4, 0xff
 /* 8003E8C8 0003B808  41 82 02 2C */	beq lbl_8003EAF4
 /* 8003E8CC 0003B80C  7F C3 F3 78 */	mr r3, r30
-/* 8003E8D0 0003B810  4B FE EC C9 */	bl dComIfGs_isStageTbox
+/* 8003E8D0 0003B810  4B FE EC C9 */	bl dComIfGs_isStageTbox__Fii
 /* 8003E8D4 0003B814  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E8D8 0003B818  40 82 02 1C */	bne lbl_8003EAF4
 /* 8003E8DC 0003B81C  3B 80 00 01 */	li r28, 1
@@ -1337,7 +1337,7 @@ lbl_8003E994:
 /* 8003E9A4 0003B8E4  41 82 00 18 */	beq lbl_8003E9BC
 /* 8003E9A8 0003B8E8  41 82 01 4C */	beq lbl_8003EAF4
 /* 8003E9AC 0003B8EC  7F C3 F3 78 */	mr r3, r30
-/* 8003E9B0 0003B8F0  4B FE EB E9 */	bl dComIfGs_isStageTbox
+/* 8003E9B0 0003B8F0  4B FE EB E9 */	bl dComIfGs_isStageTbox__Fii
 /* 8003E9B4 0003B8F4  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E9B8 0003B8F8  40 82 01 3C */	bne lbl_8003EAF4
 lbl_8003E9BC:
@@ -1349,7 +1349,7 @@ lbl_8003E9BC:
 /* 8003E9D0 0003B910  28 04 00 80 */	cmplwi r4, 0x80
 /* 8003E9D4 0003B914  40 80 01 20 */	bge lbl_8003EAF4
 /* 8003E9D8 0003B918  7F C3 F3 78 */	mr r3, r30
-/* 8003E9DC 0003B91C  4B FE ED 65 */	bl dComIfGs_isStageSwitch
+/* 8003E9DC 0003B91C  4B FE ED 65 */	bl dComIfGs_isStageSwitch__Fii
 /* 8003E9E0 0003B920  2C 03 00 00 */	cmpwi r3, 0
 /* 8003E9E4 0003B924  41 82 01 10 */	beq lbl_8003EAF4
 lbl_8003E9E8:
@@ -1373,7 +1373,7 @@ lbl_8003EA20:
 /* 8003EA28 0003B968  28 04 00 80 */	cmplwi r4, 0x80
 /* 8003EA2C 0003B96C  40 80 00 C8 */	bge lbl_8003EAF4
 /* 8003EA30 0003B970  7F C3 F3 78 */	mr r3, r30
-/* 8003EA34 0003B974  4B FE ED 0D */	bl dComIfGs_isStageSwitch
+/* 8003EA34 0003B974  4B FE ED 0D */	bl dComIfGs_isStageSwitch__Fii
 /* 8003EA38 0003B978  30 03 FF FF */	addic r0, r3, -1
 /* 8003EA3C 0003B97C  7F 80 19 10 */	subfe r28, r0, r3
 /* 8003EA40 0003B980  48 00 00 B4 */	b lbl_8003EAF4
@@ -1383,7 +1383,7 @@ lbl_8003EA20:
 /* 8003EA50 0003B990  28 04 00 FF */	cmplwi r4, 0xff
 /* 8003EA54 0003B994  41 82 00 A0 */	beq lbl_8003EAF4
 /* 8003EA58 0003B998  7F C3 F3 78 */	mr r3, r30
-/* 8003EA5C 0003B99C  4B FE EB 3D */	bl dComIfGs_isStageTbox
+/* 8003EA5C 0003B99C  4B FE EB 3D */	bl dComIfGs_isStageTbox__Fii
 /* 8003EA60 0003B9A0  2C 03 00 00 */	cmpwi r3, 0
 /* 8003EA64 0003B9A4  41 82 00 90 */	beq lbl_8003EAF4
 /* 8003EA68 0003B9A8  3B 80 00 01 */	li r28, 1
@@ -1419,7 +1419,7 @@ lbl_8003EAC4:
 /* 8003EAD8 0003BA18  28 04 00 80 */	cmplwi r4, 0x80
 /* 8003EADC 0003BA1C  40 80 00 18 */	bge lbl_8003EAF4
 /* 8003EAE0 0003BA20  7F C3 F3 78 */	mr r3, r30
-/* 8003EAE4 0003BA24  4B FE EC 5D */	bl dComIfGs_isStageSwitch
+/* 8003EAE4 0003BA24  4B FE EC 5D */	bl dComIfGs_isStageSwitch__Fii
 /* 8003EAE8 0003BA28  2C 03 00 00 */	cmpwi r3, 0
 /* 8003EAEC 0003BA2C  41 82 00 08 */	beq lbl_8003EAF4
 lbl_8003EAF0:
@@ -1546,8 +1546,8 @@ lbl_8003EC74:
 /* 8003EC84 0003BBC4  7C 08 03 A6 */	mtlr r0
 /* 8003EC88 0003BBC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003EC8C 0003BBCC  4E 80 00 20 */	blr 
-.global fmpTresTypeGroupDataList_c
-fmpTresTypeGroupDataList_c:
+.global __ct__26fmpTresTypeGroupDataList_cFv
+__ct__26fmpTresTypeGroupDataList_cFv:
 /* 8003EC90 0003BBD0  38 00 00 00 */	li r0, 0
 /* 8003EC94 0003BBD4  90 03 00 00 */	stw r0, 0(r3)
 /* 8003EC98 0003BBD8  90 03 00 04 */	stw r0, 4(r3)

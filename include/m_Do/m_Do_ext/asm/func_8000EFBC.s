@@ -7,7 +7,7 @@
 /* 8000EFD4 0000BF14  38 6D 86 C0 */ addi r3, r13, 0x80450C40 - 0x80458580 /*SDA HACK; original: lbl_80450C40-_SDA_BASE_*/
 /* 8000EFD8 0000BF18  7C E4 3B 78 */ mr r4, r7
 /* 8000EFDC 0000BF1C  7C 05 03 78 */ mr r5, r0
-/* 8000EFE0 0000BF20  4B FF FF 89 */ bl mDoExt_createSolidHeapToCurrent
+/* 8000EFE0 0000BF20  4B FF FF 89 */ bl mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl
 /* 8000EFE4 0000BF24  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000EFE8 0000BF28  7C 08 03 A6 */ mtlr r0
 /* 8000EFEC 0000BF2C  38 21 00 10 */ addi r1, r1, 0x10

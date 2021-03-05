@@ -21,7 +21,7 @@ lbl_8009EFB0:
 lbl_8009EFC8:
 /* 8009EFC8 0009BF08  7F C3 F3 78 */	mr r3, r30
 /* 8009EFCC 0009BF0C  7F E4 FB 78 */	mr r4, r31
-/* 8009EFD0 0009BF10  48 08 BC FD */	bl changeWolf__9daAlink_cFvBlendRate
+/* 8009EFD0 0009BF10  48 08 BC FD */	bl changeWolfBlendRate__9daAlink_cFi
 lbl_8009EFD4:
 /* 8009EFD4 0009BF14  38 60 00 01 */	li r3, 1
 /* 8009EFD8 0009BF18  83 E1 00 0C */	lwz r31, 0xc(r1)

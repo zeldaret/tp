@@ -3,8 +3,8 @@
 .section .text, "ax" # 80197098
 
 
-.global dShopSystem_searchItemActor
-dShopSystem_searchItemActor:
+.global dShopSystem_searchItemActor__FPvPv
+dShopSystem_searchItemActor__FPvPv:
 /* 80197098 00193FD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019709C 00193FDC  7C 08 02 A6 */	mflr r0
 /* 801970A0 00193FE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12,7 +12,7 @@ dShopSystem_searchItemActor:
 /* 801970A8 00193FE8  48 1C B1 2D */	bl _savegpr_27
 /* 801970AC 00193FEC  7C 7D 1B 78 */	mr r29, r3
 /* 801970B0 00193FF0  7C 9B 23 78 */	mr r27, r4
-/* 801970B4 00193FF4  4B E8 1C 2D */	bl fopAc_IsActor
+/* 801970B4 00193FF4  4B E8 1C 2D */	bl fopAc_IsActor__FPv
 /* 801970B8 00193FF8  2C 03 00 00 */	cmpwi r3, 0
 /* 801970BC 00193FFC  41 82 01 98 */	beq lbl_80197254
 /* 801970C0 00194000  A8 1D 00 08 */	lha r0, 8(r29)
@@ -129,8 +129,8 @@ lbl_80197254:
 /* 80197264 001941A4  7C 08 03 A6 */	mtlr r0
 /* 80197268 001941A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019726C 001941AC  4E 80 00 20 */	blr 
-.global dShopSystem_searchCameraActor
-dShopSystem_searchCameraActor:
+.global dShopSystem_searchCameraActor__FPvPv
+dShopSystem_searchCameraActor__FPvPv:
 /* 80197270 001941B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80197274 001941B4  7C 08 02 A6 */	mflr r0
 /* 80197278 001941B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -138,7 +138,7 @@ dShopSystem_searchCameraActor:
 /* 80197280 001941C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80197284 001941C4  7C 7E 1B 78 */	mr r30, r3
 /* 80197288 001941C8  7C 9F 23 78 */	mr r31, r4
-/* 8019728C 001941CC  4B E8 1A 55 */	bl fopAc_IsActor
+/* 8019728C 001941CC  4B E8 1A 55 */	bl fopAc_IsActor__FPv
 /* 80197290 001941D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80197294 001941D4  41 82 00 88 */	beq lbl_8019731C
 /* 80197298 001941D8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -253,7 +253,7 @@ lbl_80197414:
 /* 80197430 00194370  38 80 00 01 */	li r4, 1
 /* 80197434 00194374  C0 22 A1 08 */	lfs f1, lbl_80453B08-_SDA2_BASE_(r2)
 /* 80197438 00194378  38 A0 00 00 */	li r5, 0
-/* 8019743C 0019437C  4B FF CD E5 */	bl dSelect_cursor_c
+/* 8019743C 0019437C  4B FF CD E5 */	bl __ct__16dSelect_cursor_cFUcfP10JKRArchive
 /* 80197440 00194380  7C 60 1B 78 */	mr r0, r3
 lbl_80197444:
 /* 80197444 00194384  90 1F 0E 44 */	stw r0, 0xe44(r31)
@@ -1394,10 +1394,10 @@ moveCursor__13dShopSystem_cFiUc:
 /* 80198458 00195398  80 03 0F 60 */	lwz r0, 0xf60(r3)
 /* 8019845C 0019539C  2C 00 00 00 */	cmpwi r0, 0
 /* 80198460 001953A0  41 80 00 0C */	blt lbl_8019846C
-/* 80198464 001953A4  48 00 00 25 */	bl moveCursor__13dShopSystem_cFiUc0
+/* 80198464 001953A4  48 00 00 25 */	bl moveCursor0__13dShopSystem_cFiUc
 /* 80198468 001953A8  48 00 00 08 */	b lbl_80198470
 lbl_8019846C:
-/* 8019846C 001953AC  48 00 02 9D */	bl moveCursor__13dShopSystem_cFiUc1
+/* 8019846C 001953AC  48 00 02 9D */	bl moveCursor1__13dShopSystem_cFiUc
 lbl_80198470:
 /* 80198470 001953B0  B0 7F 0F 6C */	sth r3, 0xf6c(r31)
 /* 80198474 001953B4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1406,8 +1406,8 @@ lbl_80198470:
 /* 80198480 001953C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80198484 001953C4  4E 80 00 20 */	blr 
 
-.global moveCursor__13dShopSystem_cFiUc0
-moveCursor__13dShopSystem_cFiUc0:
+.global moveCursor0__13dShopSystem_cFiUc
+moveCursor0__13dShopSystem_cFiUc:
 /* 80198488 001953C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019848C 001953CC  7C 08 02 A6 */	mflr r0
 /* 80198490 001953D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1584,8 +1584,8 @@ lbl_801986F0:
 /* 80198700 00195640  38 21 00 20 */	addi r1, r1, 0x20
 /* 80198704 00195644  4E 80 00 20 */	blr 
 
-.global moveCursor__13dShopSystem_cFiUc1
-moveCursor__13dShopSystem_cFiUc1:
+.global moveCursor1__13dShopSystem_cFiUc
+moveCursor1__13dShopSystem_cFiUc:
 /* 80198708 00195648  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019870C 0019564C  7C 08 02 A6 */	mflr r0
 /* 80198710 00195650  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2285,7 +2285,7 @@ lbl_80199104:
 /* 80199128 00196068  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8019912C 0019606C  38 61 00 24 */	addi r3, r1, 0x24
 /* 80199130 00196070  38 81 00 18 */	addi r4, r1, 0x18
-/* 80199134 00196074  4B E7 C1 DD */	bl mDoLib_project
+/* 80199134 00196074  4B E7 C1 DD */	bl mDoLib_project__FP3VecP3Vec
 /* 80199138 00196078  C0 21 00 1C */	lfs f1, 0x1c(r1)
 /* 8019913C 0019607C  3C 60 80 43 */	lis r3, lbl_80430110@ha
 /* 80199140 00196080  38 63 01 10 */	addi r3, r3, lbl_80430110@l
@@ -2764,7 +2764,7 @@ lbl_801997EC:
 /* 80199838 00196778  38 80 00 08 */	li r4, 8
 /* 8019983C 0019677C  4B FF DD 85 */	bl onFlag__13dShopSystem_cFi
 lbl_80199840:
-/* 80199840 00196780  48 08 51 95 */	bl dMeter2Info_set2DVibrationM
+/* 80199840 00196780  48 08 51 95 */	bl dMeter2Info_set2DVibrationM__Fv
 /* 80199844 00196784  7F 83 E3 78 */	mr r3, r28
 /* 80199848 00196788  38 80 00 06 */	li r4, 6
 /* 8019984C 0019678C  48 00 0A F9 */	bl setSeq__13dShopSystem_cFUc
@@ -2860,7 +2860,7 @@ lbl_8019995C:
 /* 80199988 001968C8  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8019998C 001968CC  38 61 00 28 */	addi r3, r1, 0x28
 /* 80199990 001968D0  38 81 00 1C */	addi r4, r1, 0x1c
-/* 80199994 001968D4  4B E7 B9 7D */	bl mDoLib_project
+/* 80199994 001968D4  4B E7 B9 7D */	bl mDoLib_project__FP3VecP3Vec
 /* 80199998 001968D8  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 8019999C 001968DC  28 00 00 07 */	cmplwi r0, 7
 /* 801999A0 001968E0  40 82 00 30 */	bne lbl_801999D0
@@ -2918,7 +2918,7 @@ lbl_80199A00:
 /* 80199A60 001969A0  D0 01 00 40 */	stfs f0, 0x40(r1)
 /* 80199A64 001969A4  38 61 00 38 */	addi r3, r1, 0x38
 /* 80199A68 001969A8  38 81 00 20 */	addi r4, r1, 0x20
-/* 80199A6C 001969AC  4B E7 B8 A5 */	bl mDoLib_project
+/* 80199A6C 001969AC  4B E7 B8 A5 */	bl mDoLib_project__FP3VecP3Vec
 /* 80199A70 001969B0  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
 /* 80199A74 001969B4  28 00 00 07 */	cmplwi r0, 7
 /* 80199A78 001969B8  40 82 00 30 */	bne lbl_80199AA8
@@ -2956,7 +2956,7 @@ lbl_80199AC0:
 /* 80199AF0 00196A30  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 80199AF4 00196A34  38 61 00 44 */	addi r3, r1, 0x44
 /* 80199AF8 00196A38  38 81 00 2C */	addi r4, r1, 0x2c
-/* 80199AFC 00196A3C  4B E7 B8 15 */	bl mDoLib_project
+/* 80199AFC 00196A3C  4B E7 B8 15 */	bl mDoLib_project__FP3VecP3Vec
 /* 80199B00 00196A40  88 1F 0F 6F */	lbz r0, 0xf6f(r31)
 /* 80199B04 00196A44  28 00 00 07 */	cmplwi r0, 7
 /* 80199B08 00196A48  40 82 00 30 */	bne lbl_80199B38
@@ -3231,7 +3231,7 @@ lbl_80199EE8:
 /* 80199EFC 00196E3C  38 80 00 08 */	li r4, 8
 /* 80199F00 00196E40  4B FF D6 DD */	bl offFlag__13dShopSystem_cFi
 /* 80199F04 00196E44  7F A3 EB 78 */	mr r3, r29
-/* 80199F08 00196E48  48 00 05 ED */	bl setSoldOut__13dShopSystem_cFvItemHide
+/* 80199F08 00196E48  48 00 05 ED */	bl setSoldOutItemHide__13dShopSystem_cFv
 /* 80199F0C 00196E4C  38 00 00 01 */	li r0, 1
 /* 80199F10 00196E50  B0 1D 0E 30 */	sth r0, 0xe30(r29)
 /* 80199F14 00196E54  7F A3 EB 78 */	mr r3, r29
@@ -3403,7 +3403,7 @@ lbl_8019A144:
 /* 8019A178 001970B8  3C C0 80 3C */	lis r6, lbl_803BB974@ha
 /* 8019A17C 001970BC  38 06 B9 74 */	addi r0, r6, lbl_803BB974@l
 /* 8019A180 001970C0  7D 80 3A 14 */	add r12, r0, r7
-/* 8019A184 001970C4  48 1C 7F 01 */	bl func_80362084
+/* 8019A184 001970C4  48 1C 7F 01 */	bl __ptmf_scall
 /* 8019A188 001970C8  60 00 00 00 */	nop 
 /* 8019A18C 001970CC  7C 7E 1B 78 */	mr r30, r3
 /* 8019A190 001970D0  88 7F 0F 72 */	lbz r3, 0xf72(r31)
@@ -3415,7 +3415,7 @@ lbl_8019A1A4:
 /* 8019A1A4 001970E4  88 1F 0F 7A */	lbz r0, 0xf7a(r31)
 /* 8019A1A8 001970E8  28 00 00 00 */	cmplwi r0, 0
 /* 8019A1AC 001970EC  41 82 00 10 */	beq lbl_8019A1BC
-/* 8019A1B0 001970F0  48 08 48 21 */	bl dMeter2Info_set2DVibration
+/* 8019A1B0 001970F0  48 08 48 21 */	bl dMeter2Info_set2DVibration__Fv
 /* 8019A1B4 001970F4  38 00 00 00 */	li r0, 0
 /* 8019A1B8 001970F8  98 1F 0F 7A */	stb r0, 0xf7a(r31)
 lbl_8019A1BC:
@@ -3649,8 +3649,8 @@ lbl_8019A4DC:
 /* 8019A4EC 0019742C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019A4F0 00197430  4E 80 00 20 */	blr 
 
-.global setSoldOut__13dShopSystem_cFvItemHide
-setSoldOut__13dShopSystem_cFvItemHide:
+.global setSoldOutItemHide__13dShopSystem_cFv
+setSoldOutItemHide__13dShopSystem_cFv:
 /* 8019A4F4 00197434  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019A4F8 00197438  7C 08 02 A6 */	mflr r0
 /* 8019A4FC 0019743C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3739,20 +3739,20 @@ searchItemActor__13dShopSystem_cFv:
 lbl_8019A614:
 /* 8019A614 00197554  7C 03 20 00 */	cmpw r3, r4
 /* 8019A618 00197558  40 80 00 14 */	bge lbl_8019A62C
-.global dShopSystem_searchItemActor
-/* 8019A61C 0019755C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor@ha
-.global dShopSystem_searchItemActor
-/* 8019A620 00197560  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor@l
+.global dShopSystem_searchItemActor__FPvPv
+/* 8019A61C 0019755C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor__FPvPv@ha
+.global dShopSystem_searchItemActor__FPvPv
+/* 8019A620 00197560  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor__FPvPv@l
 /* 8019A624 00197564  7F C4 F3 78 */	mr r4, r30
 /* 8019A628 00197568  4B E8 6D 11 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A62C:
 /* 8019A62C 0019756C  80 0D 8A E4 */	lwz r0, lbl_80451064-_SDA_BASE_(r13)
 /* 8019A630 00197570  2C 00 00 02 */	cmpwi r0, 2
 /* 8019A634 00197574  40 80 00 14 */	bge lbl_8019A648
-.global dShopSystem_searchCameraActor
-/* 8019A638 00197578  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor@ha
-.global dShopSystem_searchCameraActor
-/* 8019A63C 0019757C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor@l
+.global dShopSystem_searchCameraActor__FPvPv
+/* 8019A638 00197578  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor__FPvPv@ha
+.global dShopSystem_searchCameraActor__FPvPv
+/* 8019A63C 0019757C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor__FPvPv@l
 /* 8019A640 00197580  7F C4 F3 78 */	mr r4, r30
 /* 8019A644 00197584  4B E8 6C F5 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A648:
@@ -3963,7 +3963,7 @@ lbl_8019A8F0:
 /* 8019A934 00197874  81 0A 00 0C */	lwz r8, 0xc(r10)
 /* 8019A938 00197878  81 2A 00 10 */	lwz r9, 0x10(r10)
 /* 8019A93C 0019787C  81 4A 00 14 */	lwz r10, 0x14(r10)
-/* 8019A940 00197880  4B FF BC C9 */	bl setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz2
+/* 8019A940 00197880  4B FF BC C9 */	bl setCamDataIdx2__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
 /* 8019A944 00197884  88 1E 0F 77 */	lbz r0, 0xf77(r30)
 /* 8019A948 00197888  28 00 00 08 */	cmplwi r0, 8
 /* 8019A94C 0019788C  40 82 00 28 */	bne lbl_8019A974

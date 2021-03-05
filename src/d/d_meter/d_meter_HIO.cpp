@@ -10,8 +10,8 @@ void __dt__4cXyzFv(void);
 void __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv(void);
 void free__7JKRHeapFPv(void);
 void func_80361C24(void);
-void func_80361CE8(void);
-void func_80361D60(void);
+void __destroy_arr(void);
+void __construct_array(void);
 void __ct__Q28JUtility6TColorFv(void);
 }
 
@@ -192,105 +192,105 @@ extern u8 lbl_80454668;
 extern "C" {
 // __ct__16dMeter_menuHIO_cFv
 // dMeter_menuHIO_c::dMeter_menuHIO_c(void)
-asm void dMeter_menuHIO_c(void) {
+asm void __ct__16dMeter_menuHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE330.s"
 }
 
 // __ct__23dMeter_drawCollectHIO_cFv
 // dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c(void)
-asm void dMeter_drawCollectHIO_c(void) {
+asm void __ct__23dMeter_drawCollectHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE348.s"
 }
 
 // __ct__22dMeter_drawOptionHIO_cFv
 // dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c(void)
-asm void dMeter_drawOptionHIO_c(void) {
+asm void __ct__22dMeter_drawOptionHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE4EC.s"
 }
 
 // __ct__22dMeter_drawLetterHIO_cFv
 // dMeter_drawLetterHIO_c::dMeter_drawLetterHIO_c(void)
-asm void dMeter_drawLetterHIO_c(void) {
+asm void __ct__22dMeter_drawLetterHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE5CC.s"
 }
 
 // __ct__23dMeter_drawFishingHIO_cFv
 // dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c(void)
-asm void dMeter_drawFishingHIO_c(void) {
+asm void __ct__23dMeter_drawFishingHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE730.s"
 }
 
 // __ct__22dMeter_drawInsectHIO_cFv
 // dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c(void)
-asm void dMeter_drawInsectHIO_c(void) {
+asm void __ct__22dMeter_drawInsectHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE8DC.s"
 }
 
 // __ct__27dMeter_drawCalibrationHIO_cFv
 // dMeter_drawCalibrationHIO_c::dMeter_drawCalibrationHIO_c(void)
-asm void dMeter_drawCalibrationHIO_c(void) {
+asm void __ct__27dMeter_drawCalibrationHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE954.s"
 }
 
 // __ct__21dMeter_drawSkillHIO_cFv
 // dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c(void)
-asm void dMeter_drawSkillHIO_c(void) {
+asm void __ct__21dMeter_drawSkillHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FE990.s"
 }
 
 // __ct__25dMeter_drawEmpButtonHIO_cFv
 // dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c(void)
-asm void dMeter_drawEmpButtonHIO_c(void) {
+asm void __ct__25dMeter_drawEmpButtonHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FEAF0.s"
 }
 
 // __ct__24dMeter_drawMiniGameHIO_cFv
 // dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c(void)
-asm void dMeter_drawMiniGameHIO_c(void) {
+asm void __ct__24dMeter_drawMiniGameHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FEFF0.s"
 }
 
 // __ct__25dMeter_drawLightDropHIO_cFv
 // dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c(void)
-asm void dMeter_drawLightDropHIO_c(void) {
+asm void __ct__25dMeter_drawLightDropHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FF31C.s"
 }
 
 // __ct__16dMeter_drawHIO_cFv
 // dMeter_drawHIO_c::dMeter_drawHIO_c(void)
-asm void dMeter_drawHIO_c(void) {
+asm void __ct__16dMeter_drawHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_801FF5B8.s"
 }
 
 // __ct__16dMeter_ringHIO_cFv
 // dMeter_ringHIO_c::dMeter_ringHIO_c(void)
-asm void dMeter_ringHIO_c(void) {
+asm void __ct__16dMeter_ringHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_802001AC.s"
 }
 
 // __ct__19dMeter_mapIconHIO_cFv
 // dMeter_mapIconHIO_c::dMeter_mapIconHIO_c(void)
-asm void dMeter_mapIconHIO_c(void) {
+asm void __ct__19dMeter_mapIconHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_802004B4.s"
 }
 
 // __ct__16dMeter_fmapHIO_cFv
 // dMeter_fmapHIO_c::dMeter_fmapHIO_c(void)
-asm void dMeter_fmapHIO_c(void) {
+asm void __ct__16dMeter_fmapHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_802006C8.s"
 }
@@ -304,84 +304,84 @@ asm void __dt__16dMeter_fmapHIO_cFv(void) {
 
 // __ct__18dMeter_cursorHIO_cFv
 // dMeter_cursorHIO_c::dMeter_cursorHIO_c(void)
-asm void dMeter_cursorHIO_c(void) {
+asm void __ct__18dMeter_cursorHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200CD4.s"
 }
 
 // __dt__25dMeter_drawLightDropHIO_cFv
 // dMeter_drawLightDropHIO_c::~dMeter_drawLightDropHIO_c(void)
-asm void func_80200D58(void) {
+asm void __dt__25dMeter_drawLightDropHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200D58.s"
 }
 
 // __dt__25dMeter_drawEmpButtonHIO_cFv
 // dMeter_drawEmpButtonHIO_c::~dMeter_drawEmpButtonHIO_c(void)
-asm void func_80200DA0(void) {
+asm void __dt__25dMeter_drawEmpButtonHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200DA0.s"
 }
 
 // __dt__24dMeter_drawMiniGameHIO_cFv
 // dMeter_drawMiniGameHIO_c::~dMeter_drawMiniGameHIO_c(void)
-asm void func_80200DE8(void) {
+asm void __dt__24dMeter_drawMiniGameHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200DE8.s"
 }
 
 // __dt__21dMeter_drawSkillHIO_cFv
 // dMeter_drawSkillHIO_c::~dMeter_drawSkillHIO_c(void)
-asm void func_80200E30(void) {
+asm void __dt__21dMeter_drawSkillHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200E30.s"
 }
 
 // __dt__27dMeter_drawCalibrationHIO_cFv
 // dMeter_drawCalibrationHIO_c::~dMeter_drawCalibrationHIO_c(void)
-asm void func_80200E78(void) {
+asm void __dt__27dMeter_drawCalibrationHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200E78.s"
 }
 
 // __dt__22dMeter_drawInsectHIO_cFv
 // dMeter_drawInsectHIO_c::~dMeter_drawInsectHIO_c(void)
-asm void func_80200EC0(void) {
+asm void __dt__22dMeter_drawInsectHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200EC0.s"
 }
 
 // __dt__23dMeter_drawFishingHIO_cFv
 // dMeter_drawFishingHIO_c::~dMeter_drawFishingHIO_c(void)
-asm void func_80200F08(void) {
+asm void __dt__23dMeter_drawFishingHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200F08.s"
 }
 
 // __dt__22dMeter_drawLetterHIO_cFv
 // dMeter_drawLetterHIO_c::~dMeter_drawLetterHIO_c(void)
-asm void func_80200F50(void) {
+asm void __dt__22dMeter_drawLetterHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200F50.s"
 }
 
 // __dt__22dMeter_drawOptionHIO_cFv
 // dMeter_drawOptionHIO_c::~dMeter_drawOptionHIO_c(void)
-asm void func_80200F98(void) {
+asm void __dt__22dMeter_drawOptionHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200F98.s"
 }
 
 // __dt__23dMeter_drawCollectHIO_cFv
 // dMeter_drawCollectHIO_c::~dMeter_drawCollectHIO_c(void)
-asm void func_80200FE0(void) {
+asm void __dt__23dMeter_drawCollectHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80200FE0.s"
 }
 
 // __dt__19dMeter_mapIconHIO_cFv
 // dMeter_mapIconHIO_c::~dMeter_mapIconHIO_c(void)
-asm void func_80201028(void) {
+asm void __dt__19dMeter_mapIconHIO_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80201028.s"
 }
@@ -423,7 +423,7 @@ asm void __dt__16dMeter_menuHIO_cFv(void) {
 
 // __sinit_d_meter_HIO_cpp
 //
-asm void func_80201284(void) {
+asm void __sinit_d_meter_HIO_cpp(void) {
     nofralloc
 #include "d/d_meter/d_meter_HIO/asm/func_80201284.s"
 }

@@ -91,7 +91,7 @@ lbl_8013C520:
 /* 8013C52C 0013946C  41 82 00 34 */ beq lbl_8013C560
 /* 8013C530 00139470  7F E3 FB 78 */ mr r3, r31
 /* 8013C534 00139474  38 80 00 50 */ li r4, 0x50
-/* 8013C538 00139478  4B FE C2 D5 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 8013C538 00139478  4B FE C2 D5 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013C53C 0013947C  2C 03 00 00 */ cmpwi r3, 0
 /* 8013C540 00139480  41 82 00 20 */ beq lbl_8013C560
 /* 8013C544 00139484  7F E3 FB 78 */ mr r3, r31
@@ -100,7 +100,7 @@ lbl_8013C520:
 /* 8013C550 00139490  38 A5 F5 78 */ addi r5, r5, lbl_8038F578@l
 /* 8013C554 00139494  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 8013C558 00139498  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 8013C55C 0013949C  4B FE D1 7D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8013C55C 0013949C  4B FE D1 7D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_8013C560:
 /* 8013C560 001394A0  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 8013C564 001394A4  54 03 06 B5 */ rlwinm. r3, r0, 0, 0x1a, 0x1a

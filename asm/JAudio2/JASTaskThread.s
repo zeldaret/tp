@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028f6c4
 
 
-.global JASTaskThread
-JASTaskThread:
+.global __ct__13JASTaskThreadFiiUl
+__ct__13JASTaskThreadFiiUl:
 /* 8028F6C4 0028C604  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028F6C8 0028C608  7C 08 02 A6 */	mflr r0
 /* 8028F6CC 0028C60C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -231,8 +231,8 @@ lbl_8028F9D4:
 /* 8028F9E4 0028C924  38 21 00 30 */	addi r1, r1, 0x30
 /* 8028F9E8 0028C928  4E 80 00 20 */	blr 
 
-.global allocCallStack__13JASTaskThreadFPFPv_vPCvUl_X1_
-allocCallStack__13JASTaskThreadFPFPv_vPCvUl_X1_:
+.global allocCallStack__13JASTaskThreadFPFPv_vPv
+allocCallStack__13JASTaskThreadFPFPv_vPv:
 /* 8028F9EC 0028C92C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028F9F0 0028C930  7C 08 02 A6 */	mflr r0
 /* 8028F9F4 0028C934  90 01 00 24 */	stw r0, 0x24(r1)
@@ -409,15 +409,15 @@ lbl_8028FC3C:
 /* 8028FC4C 0028CB8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028FC50 0028CB90  4E 80 00 20 */	blr 
 
-.global sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl_X1_
-sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl_X1_:
+.global sendCmdMsg__13JASTaskThreadFPFPv_vPv
+sendCmdMsg__13JASTaskThreadFPFPv_vPv:
 /* 8028FC54 0028CB94  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028FC58 0028CB98  7C 08 02 A6 */	mflr r0
 /* 8028FC5C 0028CB9C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8028FC60 0028CBA0  39 61 00 20 */	addi r11, r1, 0x20
 /* 8028FC64 0028CBA4  48 0D 25 75 */	bl _savegpr_28
 /* 8028FC68 0028CBA8  7C 7D 1B 78 */	mr r29, r3
-/* 8028FC6C 0028CBAC  4B FF FD 81 */	bl allocCallStack__13JASTaskThreadFPFPv_vPCvUl_X1_
+/* 8028FC6C 0028CBAC  4B FF FD 81 */	bl allocCallStack__13JASTaskThreadFPFPv_vPv
 /* 8028FC70 0028CBB0  7C 7C 1B 79 */	or. r28, r3, r3
 /* 8028FC74 0028CBB4  40 82 00 0C */	bne lbl_8028FC80
 /* 8028FC78 0028CBB8  38 60 00 00 */	li r3, 0

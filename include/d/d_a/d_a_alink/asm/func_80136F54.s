@@ -20,7 +20,7 @@ lbl_80136F88:
 /* 80136F9C 00133EDC  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
 /* 80136FA0 00133EE0  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 80136FA4 00133EE4  C0 45 00 BC */ lfs f2, 0xbc(r5)
-/* 80136FA8 00133EE8  4B FF 27 31 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80136FA8 00133EE8  4B FF 27 31 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80136FAC 00133EEC  38 00 00 00 */ li r0, 0
 /* 80136FB0 00133EF0  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_80136FB4:

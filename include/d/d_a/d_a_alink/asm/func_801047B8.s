@@ -24,7 +24,7 @@ lbl_801047F4:
 /* 80104810 00101750  48 00 01 34 */ b lbl_80104944
 lbl_80104814:
 /* 80104814 00101754  7F E3 FB 78 */ mr r3, r31
-/* 80104818 00101758  4B FF E1 B1 */ bl checkNextAction__9daAlink_cFiSwim
+/* 80104818 00101758  4B FF E1 B1 */ bl checkNextActionSwim__9daAlink_cFv
 /* 8010481C 0010175C  2C 03 00 00 */ cmpwi r3, 0
 /* 80104820 00101760  41 82 00 0C */ beq lbl_8010482C
 /* 80104824 00101764  38 60 00 01 */ li r3, 1
@@ -77,7 +77,7 @@ lbl_80104898:
 /* 801048D4 00101814  7F E3 FB 78 */ mr r3, r31
 /* 801048D8 00101818  38 80 00 C6 */ li r4, 0xc6
 /* 801048DC 0010181C  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 801048E0 00101820  4B FA 88 15 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 801048E0 00101820  4B FA 88 15 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 801048E4 00101824  38 00 00 C6 */ li r0, 0xc6
 /* 801048E8 00101828  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 801048EC 0010182C  48 00 00 54 */ b lbl_80104940

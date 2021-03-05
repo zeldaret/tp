@@ -55,7 +55,7 @@ lbl_800F7A30:
 /* 800F7A58 000F4998  4B FC 87 B1 */ bl checkItemSetButton__9daAlink_cFi
 /* 800F7A5C 000F499C  98 7F 2F 9C */ stb r3, 0x2f9c(r31)
 /* 800F7A60 000F49A0  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
-/* 800F7A64 000F49A4  4B F3 64 B9 */ bl dComIfGp_getSelectItem
+/* 800F7A64 000F49A4  4B F3 64 B9 */ bl dComIfGp_getSelectItem__Fi
 /* 800F7A68 000F49A8  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 800F7A6C 000F49AC  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800F7A70 000F49B0  7F E3 FB 78 */ mr r3, r31

@@ -12,7 +12,7 @@
 /* 800EA420 000E7360  48 00 00 98 */ b lbl_800EA4B8
 lbl_800EA424:
 /* 800EA424 000E7364  38 80 00 C2 */ li r4, 0xc2
-/* 800EA428 000E7368  4B FD 89 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800EA428 000E7368  4B FD 89 7D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800EA42C 000E736C  2C 03 00 00 */ cmpwi r3, 0
 /* 800EA430 000E7370  40 82 00 0C */ bne lbl_800EA43C
 /* 800EA434 000E7374  38 60 00 00 */ li r3, 0

@@ -10,7 +10,7 @@
 lbl_8002CEE0:
 /* 8002CEE0 00029E20  3C 80 80 3A */ lis r4, lbl_803A71B8@ha
 /* 8002CEE4 00029E24  38 84 71 B8 */ addi r4, r4, lbl_803A71B8@l
-/* 8002CEE8 00029E28  48 00 2C 39 */ bl dComLbG_PhaseHandler
+/* 8002CEE8 00029E28  48 00 2C 39 */ bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 lbl_8002CEEC:
 /* 8002CEEC 00029E2C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002CEF0 00029E30  7C 08 03 A6 */ mtlr r0

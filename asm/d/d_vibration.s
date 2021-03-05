@@ -212,7 +212,7 @@ lbl_8006F404:
 /* 8006F420 0006C360  7C 00 1B 78 */	or r0, r0, r3
 /* 8006F424 0006C364  90 01 00 08 */	stw r0, 8(r1)
 /* 8006F428 0006C368  83 DF 00 14 */	lwz r30, 0x14(r31)
-/* 8006F42C 0006C36C  48 13 D1 51 */	bl dKy_darkworld_check
+/* 8006F42C 0006C36C  48 13 D1 51 */	bl dKy_darkworld_check__Fv
 /* 8006F430 0006C370  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8006F434 0006C374  41 82 00 08 */	beq lbl_8006F43C
 /* 8006F438 0006C378  57 DE 07 32 */	rlwinm r30, r30, 0, 0x1c, 0x19
@@ -228,12 +228,12 @@ lbl_8006F43C:
 /* 8006F45C 0006C39C  38 61 00 3C */	addi r3, r1, 0x3c
 /* 8006F460 0006C3A0  38 9F 00 18 */	addi r4, r31, 0x18
 /* 8006F464 0006C3A4  48 1F 78 81 */	bl norm__4cXyzCFv
-/* 8006F468 0006C3A8  48 11 21 D9 */	bl dCam_getBody
+/* 8006F468 0006C3A8  48 11 21 D9 */	bl dCam_getBody__Fv
 /* 8006F46C 0006C3AC  7F A4 EB 78 */	mr r4, r29
 /* 8006F470 0006C3B0  38 A1 00 08 */	addi r5, r1, 8
 /* 8006F474 0006C3B4  7F C6 F3 78 */	mr r6, r30
 /* 8006F478 0006C3B8  38 E1 00 3C */	addi r7, r1, 0x3c
-/* 8006F47C 0006C3BC  48 11 1B 85 */	bl Start__9dCamera_cFvShake
+/* 8006F47C 0006C3BC  48 11 1B 85 */	bl StartShake__9dCamera_cFlPUcl4cXyz
 /* 8006F480 0006C3C0  48 00 01 BC */	b lbl_8006F63C
 lbl_8006F484:
 /* 8006F484 0006C3C4  83 DF 00 34 */	lwz r30, 0x34(r31)
@@ -249,7 +249,7 @@ lbl_8006F484:
 /* 8006F4AC 0006C3EC  7C 00 1B 78 */	or r0, r0, r3
 /* 8006F4B0 0006C3F0  90 01 00 08 */	stw r0, 8(r1)
 /* 8006F4B4 0006C3F4  83 BF 00 3C */	lwz r29, 0x3c(r31)
-/* 8006F4B8 0006C3F8  48 13 D0 C5 */	bl dKy_darkworld_check
+/* 8006F4B8 0006C3F8  48 13 D0 C5 */	bl dKy_darkworld_check__Fv
 /* 8006F4BC 0006C3FC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8006F4C0 0006C400  41 82 00 08 */	beq lbl_8006F4C8
 /* 8006F4C4 0006C404  57 BD 07 32 */	rlwinm r29, r29, 0, 0x1c, 0x19
@@ -265,12 +265,12 @@ lbl_8006F4C8:
 /* 8006F4E8 0006C428  38 61 00 30 */	addi r3, r1, 0x30
 /* 8006F4EC 0006C42C  38 9F 00 40 */	addi r4, r31, 0x40
 /* 8006F4F0 0006C430  48 1F 77 F5 */	bl norm__4cXyzCFv
-/* 8006F4F4 0006C434  48 11 21 4D */	bl dCam_getBody
+/* 8006F4F4 0006C434  48 11 21 4D */	bl dCam_getBody__Fv
 /* 8006F4F8 0006C438  7F C4 F3 78 */	mr r4, r30
 /* 8006F4FC 0006C43C  38 A1 00 08 */	addi r5, r1, 8
 /* 8006F500 0006C440  7F A6 EB 78 */	mr r6, r29
 /* 8006F504 0006C444  38 E1 00 30 */	addi r7, r1, 0x30
-/* 8006F508 0006C448  48 11 1A F9 */	bl Start__9dCamera_cFvShake
+/* 8006F508 0006C448  48 11 1A F9 */	bl StartShake__9dCamera_cFlPUcl4cXyz
 /* 8006F50C 0006C44C  48 00 01 30 */	b lbl_8006F63C
 lbl_8006F510:
 /* 8006F510 0006C450  80 7F 00 08 */	lwz r3, 8(r31)
@@ -304,7 +304,7 @@ lbl_8006F568:
 /* 8006F57C 0006C4BC  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 8006F580 0006C4C0  80 1F 00 3C */	lwz r0, 0x3c(r31)
 /* 8006F584 0006C4C4  7C 7D 03 78 */	or r29, r3, r0
-/* 8006F588 0006C4C8  48 13 CF F5 */	bl dKy_darkworld_check
+/* 8006F588 0006C4C8  48 13 CF F5 */	bl dKy_darkworld_check__Fv
 /* 8006F58C 0006C4CC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8006F590 0006C4D0  41 82 00 08 */	beq lbl_8006F598
 /* 8006F594 0006C4D4  57 BD 07 32 */	rlwinm r29, r29, 0, 0x1c, 0x19
@@ -330,12 +330,12 @@ lbl_8006F598:
 /* 8006F5E0 0006C520  38 61 00 0C */	addi r3, r1, 0xc
 /* 8006F5E4 0006C524  38 81 00 18 */	addi r4, r1, 0x18
 /* 8006F5E8 0006C528  48 1F 76 FD */	bl norm__4cXyzCFv
-/* 8006F5EC 0006C52C  48 11 20 55 */	bl dCam_getBody
+/* 8006F5EC 0006C52C  48 11 20 55 */	bl dCam_getBody__Fv
 /* 8006F5F0 0006C530  7F C4 F3 78 */	mr r4, r30
 /* 8006F5F4 0006C534  38 A1 00 08 */	addi r5, r1, 8
 /* 8006F5F8 0006C538  7F A6 EB 78 */	mr r6, r29
 /* 8006F5FC 0006C53C  38 E1 00 0C */	addi r7, r1, 0xc
-/* 8006F600 0006C540  48 11 1A 01 */	bl Start__9dCamera_cFvShake
+/* 8006F600 0006C540  48 11 1A 01 */	bl StartShake__9dCamera_cFlPUcl4cXyz
 lbl_8006F604:
 /* 8006F604 0006C544  38 00 00 00 */	li r0, 0
 /* 8006F608 0006C548  90 1F 00 4C */	stw r0, 0x4c(r31)
@@ -350,8 +350,8 @@ lbl_8006F614:
 /* 8006F628 0006C568  88 03 02 2F */	lbz r0, 0x22f(r3)
 /* 8006F62C 0006C56C  2C 00 00 47 */	cmpwi r0, 0x47
 /* 8006F630 0006C570  40 82 00 0C */	bne lbl_8006F63C
-/* 8006F634 0006C574  48 11 20 0D */	bl dCam_getBody
-/* 8006F638 0006C578  48 11 1B 21 */	bl Stop__9dCamera_cFvShake
+/* 8006F634 0006C574  48 11 20 0D */	bl dCam_getBody__Fv
+/* 8006F638 0006C578  48 11 1B 21 */	bl StopShake__9dCamera_cFv
 lbl_8006F63C:
 /* 8006F63C 0006C57C  80 1F 00 50 */	lwz r0, 0x50(r31)
 /* 8006F640 0006C580  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -451,7 +451,7 @@ lbl_8006F750:
 /* 8006F78C 0006C6CC  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F790 0006C6D0  38 A0 00 00 */	li r5, 0
 /* 8006F794 0006C6D4  38 C0 00 3C */	li r6, 0x3c
-/* 8006F798 0006C6D8  48 27 21 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
+/* 8006F798 0006C6D8  48 27 21 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl
 /* 8006F79C 0006C6DC  48 00 01 3C */	b lbl_8006F8D8
 lbl_8006F7A0:
 /* 8006F7A0 0006C6E0  83 BF 00 78 */	lwz r29, 0x78(r31)
@@ -477,7 +477,7 @@ lbl_8006F7A0:
 /* 8006F7F0 0006C730  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F7F4 0006C734  38 A0 00 01 */	li r5, 1
 /* 8006F7F8 0006C738  38 C0 00 3C */	li r6, 0x3c
-/* 8006F7FC 0006C73C  48 27 20 D1 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
+/* 8006F7FC 0006C73C  48 27 20 D1 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl
 /* 8006F800 0006C740  48 00 00 D8 */	b lbl_8006F8D8
 lbl_8006F804:
 /* 8006F804 0006C744  80 1F 00 58 */	lwz r0, 0x58(r31)
@@ -518,7 +518,7 @@ lbl_8006F84C:
 /* 8006F88C 0006C7CC  38 63 00 68 */	addi r3, r3, 0x68
 /* 8006F890 0006C7D0  38 A0 00 00 */	li r5, 0
 /* 8006F894 0006C7D4  38 C0 00 3C */	li r6, 0x3c
-/* 8006F898 0006C7D8  48 27 20 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvlUl
+/* 8006F898 0006C7D8  48 27 20 35 */	bl startPatternedRumble__Q210JUTGamePad7CRumbleFPvQ310JUTGamePad7CRumble7ERumbleUl
 /* 8006F89C 0006C7DC  48 00 00 3C */	b lbl_8006F8D8
 lbl_8006F8A0:
 /* 8006F8A0 0006C7E0  3C 60 80 3E */	lis r3, m_gamePad@ha
@@ -758,8 +758,8 @@ lbl_8006FBF0:
 /* 8006FC04 0006CB44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8006FC08 0006CB48  4E 80 00 20 */	blr 
 
-.global StartQuake__12dVibration_cFii4cXyz_X1_
-StartQuake__12dVibration_cFii4cXyz_X1_:
+.global StartQuake__12dVibration_cFPCUcii4cXyz
+StartQuake__12dVibration_cFPCUcii4cXyz:
 /* 8006FC0C 0006CB4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8006FC10 0006CB50  7C 08 02 A6 */	mflr r0
 /* 8006FC14 0006CB54  90 01 00 24 */	stw r0, 0x24(r1)

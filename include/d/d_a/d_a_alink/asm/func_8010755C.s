@@ -13,7 +13,7 @@ lbl_80107588:
 /* 80107588 001044C8  7F E3 FB 78 */ mr r3, r31
 /* 8010758C 001044CC  4B FC B0 F9 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 80107590 001044D0  7F E3 FB 78 */ mr r3, r31
-/* 80107594 001044D4  4B FF EF F9 */ bl checkNextAction__9daAlink_cFiBoard
+/* 80107594 001044D4  4B FF EF F9 */ bl checkNextActionBoard__9daAlink_cFv
 /* 80107598 001044D8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010759C 001044DC  40 82 00 20 */ bne lbl_801075BC
 /* 801075A0 001044E0  7F E3 FB 78 */ mr r3, r31

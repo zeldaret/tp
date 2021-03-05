@@ -167,17 +167,17 @@ createShapePacket__8J3DModelFP12J3DModelData:
 /* 8032732C 0032426C  1C 7D 00 3C */	mulli r3, r29, 0x3c
 /* 80327330 00324270  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327334 00324274  4B FA 79 91 */	bl __nwa__FUl
-.global J3DShapePacket
-/* 80327338 00324278  3C 80 80 31 */	lis r4, J3DShapePacket@ha
-.global J3DShapePacket
-/* 8032733C 0032427C  38 84 2B 20 */	addi r4, r4, J3DShapePacket@l
+.global __ct__14J3DShapePacketFv
+/* 80327338 00324278  3C 80 80 31 */	lis r4, __ct__14J3DShapePacketFv@ha
+.global __ct__14J3DShapePacketFv
+/* 8032733C 0032427C  38 84 2B 20 */	addi r4, r4, __ct__14J3DShapePacketFv@l
 .global __dt__14J3DShapePacketFv
 /* 80327340 00324280  3C A0 80 31 */	lis r5, __dt__14J3DShapePacketFv@ha
 .global __dt__14J3DShapePacketFv
 /* 80327344 00324284  38 A5 2B 74 */	addi r5, r5, __dt__14J3DShapePacketFv@l
 /* 80327348 00324288  38 C0 00 3C */	li r6, 0x3c
 /* 8032734C 0032428C  7F A7 EB 78 */	mr r7, r29
-/* 80327350 00324290  48 03 AB C5 */	bl func_80361F14
+/* 80327350 00324290  48 03 AB C5 */	bl __construct_new_array
 /* 80327354 00324294  90 7E 00 C4 */	stw r3, 0xc4(r30)
 /* 80327358 00324298  80 1E 00 C4 */	lwz r0, 0xc4(r30)
 /* 8032735C 0032429C  28 00 00 00 */	cmplwi r0, 0
@@ -231,17 +231,17 @@ createMatPacket__8J3DModelFP12J3DModelDataUl:
 /* 803273FC 0032433C  54 03 32 B2 */	rlwinm r3, r0, 6, 0xa, 0x19
 /* 80327400 00324340  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327404 00324344  4B FA 78 C1 */	bl __nwa__FUl
-.global J3DMatPacket
-/* 80327408 00324348  3C 80 80 31 */	lis r4, J3DMatPacket@ha
-.global J3DMatPacket
-/* 8032740C 0032434C  38 84 29 48 */	addi r4, r4, J3DMatPacket@l
+.global __ct__12J3DMatPacketFv
+/* 80327408 00324348  3C 80 80 31 */	lis r4, __ct__12J3DMatPacketFv@ha
+.global __ct__12J3DMatPacketFv
+/* 8032740C 0032434C  38 84 29 48 */	addi r4, r4, __ct__12J3DMatPacketFv@l
 .global __dt__12J3DMatPacketFv
 /* 80327410 00324350  3C A0 80 31 */	lis r5, __dt__12J3DMatPacketFv@ha
 .global __dt__12J3DMatPacketFv
 /* 80327414 00324354  38 A5 29 A4 */	addi r5, r5, __dt__12J3DMatPacketFv@l
 /* 80327418 00324358  38 C0 00 40 */	li r6, 0x40
 /* 8032741C 0032435C  7E E7 BB 78 */	mr r7, r23
-/* 80327420 00324360  48 03 AA F5 */	bl func_80361F14
+/* 80327420 00324360  48 03 AA F5 */	bl __construct_new_array
 /* 80327424 00324364  90 78 00 C0 */	stw r3, 0xc0(r24)
 /* 80327428 00324368  80 18 00 C0 */	lwz r0, 0xc0(r24)
 /* 8032742C 0032436C  28 00 00 00 */	cmplwi r0, 0
@@ -1091,7 +1091,7 @@ lbl_80327F14:
 /* 80327FDC 00324F1C  38 9F 00 18 */	addi r4, r31, 0x18
 /* 80327FE0 00324F20  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80327FE4 00324F24  38 DF 00 54 */	addi r6, r31, 0x54
-/* 80327FE8 00324F28  4B FF F0 61 */	bl J3DCalcViewBaseMtx
+/* 80327FE8 00324F28  4B FF F0 61 */	bl J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f
 /* 80327FEC 00324F2C  48 00 01 88 */	b lbl_80328174
 lbl_80327FF0:
 /* 80327FF0 00324F30  38 60 00 00 */	li r3, 0
@@ -1112,7 +1112,7 @@ lbl_8032800C:
 /* 80328028 00324F68  38 9F 00 18 */	addi r4, r31, 0x18
 /* 8032802C 00324F6C  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80328030 00324F70  38 DF 00 54 */	addi r6, r31, 0x54
-/* 80328034 00324F74  4B FF F0 15 */	bl J3DCalcViewBaseMtx
+/* 80328034 00324F74  4B FF F0 15 */	bl J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f
 /* 80328038 00324F78  48 00 01 3C */	b lbl_80328174
 lbl_8032803C:
 /* 8032803C 00324F7C  28 05 00 00 */	cmplwi r5, 0

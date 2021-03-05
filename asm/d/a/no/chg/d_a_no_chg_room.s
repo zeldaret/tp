@@ -3,8 +3,8 @@
 .section .text, "ax" # 801451ec
 
 
-.global isLoadRoom
-isLoadRoom:
+.global isLoadRoom__Fi
+isLoadRoom__Fi:
 /* 801451EC 0014212C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801451F0 00142130  7C 08 02 A6 */	mflr r0
 /* 801451F4 00142134  90 01 00 24 */	stw r0, 0x24(r1)
@@ -175,7 +175,7 @@ lbl_80145444:
 lbl_80145448:
 /* 80145448 00142388  7F E3 FB 78 */	mr r3, r31
 /* 8014544C 0014238C  48 00 00 BD */	bl getRoomNo__9daNocrm_cFi
-/* 80145450 00142390  4B FF FD 9D */	bl isLoadRoom
+/* 80145450 00142390  4B FF FD 9D */	bl isLoadRoom__Fi
 /* 80145454 00142394  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80145458 00142398  41 82 00 14 */	beq lbl_8014546C
 /* 8014545C 0014239C  38 00 00 00 */	li r0, 0
@@ -313,7 +313,7 @@ lbl_80145614:
 /* 8014562C 0014256C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80145630 00142570  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80145634 00142574  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
-/* 80145638 00142578  4B EC 6D FD */	bl mDoMtx_YrotM
+/* 80145638 00142578  4B EC 6D FD */	bl mDoMtx_YrotM__FPA4_fs
 /* 8014563C 0014257C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80145640 00142580  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80145644 00142584  38 9F 05 68 */	addi r4, r31, 0x568

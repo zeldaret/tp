@@ -2,7 +2,7 @@
 #define Z2FXLINEMGR_H_
 
 extern "C" {
-void Z2FxLineMgr(void);
+void __ct__11Z2FxLineMgrFv(void);
 void initDataArc__11Z2FxLineMgrFP10JKRArchiveP7JKRHeap(void);
 void setFxForceOff__11Z2FxLineMgrFb(void);
 void setLine__11Z2FxLineMgrFP14Z2FxLineConfigbb(void);

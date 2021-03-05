@@ -4,7 +4,7 @@
 /* 800D782C 000D476C  39 61 00 30 */ addi r11, r1, 0x30
 /* 800D7830 000D4770  48 28 A9 A9 */ bl _savegpr_28
 /* 800D7834 000D4774  7C 7F 1B 78 */ mr r31, r3
-/* 800D7838 000D4778  4B F5 81 CD */ bl dComIfGs_PolyDamageOff_Check
+/* 800D7838 000D4778  4B F5 81 CD */ bl dComIfGs_PolyDamageOff_Check__Fv
 /* 800D783C 000D477C  7C 60 07 75 */ extsb. r0, r3
 /* 800D7840 000D4780  41 82 00 0C */ beq lbl_800D784C
 /* 800D7844 000D4784  38 60 00 00 */ li r3, 0
@@ -35,7 +35,7 @@ lbl_800D7860:
 /* 800D78A0 000D47E0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D78A4 000D47E4  41 82 00 68 */ beq lbl_800D790C
 /* 800D78A8 000D47E8  38 7F 1A 60 */ addi r3, r31, 0x1a60
-/* 800D78AC 000D47EC  48 0D 3C F1 */ bl dKy_pol_argument_get
+/* 800D78AC 000D47EC  48 0D 3C F1 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D78B0 000D47F0  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D78B4 000D47F4  41 82 00 58 */ beq lbl_800D790C
 /* 800D78B8 000D47F8  3B A0 00 01 */ li r29, 1
@@ -80,7 +80,7 @@ lbl_800D790C:
 /* 800D794C 000D488C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D7950 000D4890  41 82 00 20 */ beq lbl_800D7970
 /* 800D7954 000D4894  38 7F 1A F0 */ addi r3, r31, 0x1af0
-/* 800D7958 000D4898  48 0D 3C 45 */ bl dKy_pol_argument_get
+/* 800D7958 000D4898  48 0D 3C 45 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D795C 000D489C  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D7960 000D48A0  40 82 00 78 */ bne lbl_800D79D8
 /* 800D7964 000D48A4  88 1F 2F BC */ lbz r0, 0x2fbc(r31)
@@ -136,7 +136,7 @@ lbl_800D7A00:
 /* 800D7A18 000D4958  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D7A1C 000D495C  41 82 00 50 */ beq lbl_800D7A6C
 /* 800D7A20 000D4960  7F A3 EB 78 */ mr r3, r29
-/* 800D7A24 000D4964  48 0D 3B 79 */ bl dKy_pol_argument_get
+/* 800D7A24 000D4964  48 0D 3B 79 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D7A28 000D4968  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D7A2C 000D496C  41 82 00 40 */ beq lbl_800D7A6C
 /* 800D7A30 000D4970  3B C0 00 03 */ li r30, 3
@@ -149,7 +149,7 @@ lbl_800D7A00:
 /* 800D7A4C 000D498C  63 DE 00 80 */ ori r30, r30, 0x80
 lbl_800D7A50:
 /* 800D7A50 000D4990  7F A3 EB 78 */ mr r3, r29
-/* 800D7A54 000D4994  48 0D 3B 49 */ bl dKy_pol_argument_get
+/* 800D7A54 000D4994  48 0D 3B 49 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D7A58 000D4998  54 60 06 B5 */ rlwinm. r0, r3, 0, 0x1a, 0x1a
 /* 800D7A5C 000D499C  41 82 00 08 */ beq lbl_800D7A64
 /* 800D7A60 000D49A0  63 DE 00 40 */ ori r30, r30, 0x40

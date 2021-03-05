@@ -3,7 +3,7 @@
 /* 8019CB14 00199A54  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8019CB18 00199A58  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8019CB1C 00199A5C  7C 7F 1B 78 */ mr r31, r3
-/* 8019CB20 00199A60  4B FF F8 85 */ bl dKy_sense_pat_get
+/* 8019CB20 00199A60  4B FF F8 85 */ bl dKy_sense_pat_get__Fv
 /* 8019CB24 00199A64  28 03 00 0F */ cmplwi r3, 0xf
 /* 8019CB28 00199A68  41 81 01 A0 */ bgt lbl_8019CCC8
 /* 8019CB2C 00199A6C  3C 80 80 3C */ lis r4, lbl_803BBEBC@ha

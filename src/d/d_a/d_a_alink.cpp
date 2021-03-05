@@ -19,24 +19,24 @@
 
 extern "C" {
 BOOL checkMagicArmorHeavy__9daAlink_cCFv(void);
-bool dComIfGp_checkMapShow(void);
-BOOL dComIfGp_isLightDropMapVisible(void);
+bool dComIfGp_checkMapShow__Fv(void);
+BOOL dComIfGp_isLightDropMapVisible__Fv(void);
 char* strcpy(char*, const char*);
-const char* dComIfGs_getWarpStageName(void);
+const char* dComIfGs_getWarpStageName__Fv(void);
 int abs(int);
 int checkItemGet__FUci(u8, int);
 int checkMagicArmorWearAbility__9daAlink_cCFv(void);
-int dComIfGs_getWarpRoomNo(void);
+int dComIfGs_getWarpRoomNo__Fv(void);
 int strcmp(const char*, const char*);
-s16 dComIfGs_getWarpPlayerAngleY(void);
-u16 dComIfGs_getLife(void);
-u16 dComIfGs_getMaxLifeGauge(void);
-u16 dComIfGs_getRupee(void);
-u32 dEv_noFinishSkipProc(void);
+s16 dComIfGs_getWarpPlayerAngleY__Fv(void);
+u16 dComIfGs_getLife__Fv(void);
+u16 dComIfGs_getMaxLifeGauge__Fv(void);
+u16 dComIfGs_getRupee__Fv(void);
+u32 dEv_noFinishSkipProc__FPvi(void);
 u32 strlen(const char*);
-u8 dComIfGp_getDoStatus(void);
-u8 dComIfGp_getRStatus(void);
-u8 dComIfGs_getBottleMax(void);
+u8 dComIfGp_getDoStatus__Fv(void);
+u8 dComIfGp_getRStatus__Fv(void);
+u8 dComIfGs_getBottleMax__Fv(void);
 void __ct__13cBgS_PolyInfoFv(void);
 void __ct__13Z2WolfHowlMgrFv(void);
 void __ct__14Z2CreatureLinkFv(void);
@@ -86,7 +86,7 @@ void cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf(void);
 void cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec(void);
 void __ct__8cM3dGPlaFv(void);
 void __dt__8cM3dGPlaFv(void);
-void cMtx_multVec(void);
+void cMtx_multVec__FPA4_CfPC3VecP3Vec(void);
 void create__10JKRExpHeapFUlP7JKRHeapb(void);
 void crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz(void);
 void __ct__5csXyzFv(void);
@@ -95,9 +95,9 @@ void __as__4cXyzFRC4cXyz(void);
 void abs__4cXyzCFv(void);
 void __ct__4cXyzFv(void);
 void __dt__4cXyzFv(void);
-void cXyz_X1_(void);
-void cXyz_X2_(void);
-void d_GameOver_Create(void);
+void __ct__4cXyzFRC4cXyz(void);
+void __ct__4cXyzFfff(void);
+void d_GameOver_Create__FUc(void);
 void copyBlur__14daAlink_blur_cFPC4cXyzPC4cXyzPC4cXyz(void);
 void initBlur__14daAlink_blur_cFfiPC4cXyzPC4cXyzPC4cXyz(void);
 void traceBlur__14daAlink_blur_cFPC4cXyzPC4cXyzs(void);
@@ -115,7 +115,7 @@ void changeHookshotDrawModel__9daAlink_cFv(void);
 void changeItemTriggerKeepProc__9daAlink_cFUci(void);
 void changeLink__9daAlink_cFi(void);
 void changeModelDataDirect__9daAlink_cFi(void);
-void changeModelDataDirect__9daAlink_cFiWolf(void);
+void changeModelDataDirectWolf__9daAlink_cFi(void);
 void changeWolf__9daAlink_cFv(void);
 void checkAcceptUseItemInWater__9daAlink_cCFUs(void);
 void checkAcceptWarp__9daAlink_cFv(void);
@@ -133,7 +133,7 @@ void checkBossRoom__9daAlink_cFv(void);
 void checkBowAndSlingItem__9daAlink_cFi(void);
 void checkBowGrabLeftHand__9daAlink_cCFv(void);
 void checkCanoeJumpRide__9daAlink_cFv(void);
-void checkCastleTown__9daAlink_cFvUseItem(void);
+void checkCastleTownUseItem__9daAlink_cFUs(void);
 void checkCaughtEscapeCutTurn__9daAlink_cFv(void);
 void checkChainEmphasys__9daAlink_cFv(void);
 void checkClimbCode__9daAlink_cFR13cBgS_PolyInfo(void);
@@ -155,7 +155,7 @@ void checkCutFinishJumpUp__9daAlink_cFv(void);
 void checkCutHeadState__9daAlink_cFv(void);
 void checkCutLandDamage__9daAlink_cFv(void);
 void checkCutTurnInput__9daAlink_cCFv(void);
-void checkCutTurnInput__9daAlink_cCFvTrigger(void);
+void checkCutTurnInputTrigger__9daAlink_cFv(void);
 void checkCutTypeNoBlur__9daAlink_cCFv(void);
 void checkDamageAction__9daAlink_cFv(void);
 void checkDeadAction__9daAlink_cFi(void);
@@ -174,7 +174,7 @@ void checkFmChainGrabAnime__9daAlink_cCFv(void);
 void checkForceSwordSwing__9daAlink_cFv(void);
 void checkGoatCatchActor__9daAlink_cFP10fopAc_ac_c(void);
 void checkGrabAnime__9daAlink_cCFv(void);
-void checkGrabAnime__9daAlink_cCFvAndThrow(void);
+void checkGrabAnimeAndThrow__9daAlink_cCFv(void);
 void checkGrabCarryActor__9daAlink_cFv(void);
 void checkGrabLineCheck__9daAlink_cFv(void);
 void checkGrabRooster__9daAlink_cFv(void);
@@ -205,14 +205,14 @@ void checkMidnaLockJumpPoint__9daAlink_cCFv(void);
 void checkModeFlg__9daAlink_cCFUl(void);
 void checkNewItemChange__9daAlink_cFUc(void);
 void checkNextAction__9daAlink_cFi(void);
-void checkNextAction__9daAlink_cFiBoomerang(void);
-void checkNextAction__9daAlink_cFiBow(void);
-void checkNextAction__9daAlink_cFiCopyRod(void);
-void checkNextAction__9daAlink_cFiGrab(void);
-void checkNextAction__9daAlink_cFiHookshot(void);
-void checkNextAction__9daAlink_cFiIronBall(void);
-void checkNextAction__9daAlink_cFiWolf(void);
-void checkNextAction__9daAlink_cFiWolfFromLie(void);
+void checkNextActionBoomerang__9daAlink_cFv(void);
+void checkNextActionBow__9daAlink_cFv(void);
+void checkNextActionCopyRod__9daAlink_cFv(void);
+void checkNextActionGrab__9daAlink_cFv(void);
+void checkNextActionHookshot__9daAlink_cFv(void);
+void checkNextActionIronBall__9daAlink_cFv(void);
+void checkNextActionWolf__9daAlink_cFi(void);
+void checkNextActionWolfFromLie__9daAlink_cFv(void);
 void checkNoCollisionCorret__9daAlink_cFv(void);
 void checkNoLandDamageSlidePolygon__9daAlink_cFv(void);
 void checkNotAutoJumpStage__9daAlink_cFv(void);
@@ -224,7 +224,7 @@ void checkOxygenTimer__9daAlink_cFv(void);
 void checkPlayerGuardAndAttack__9daAlink_cCFv(void);
 void checkPossibleWaterInMode__9daAlink_cCFv(void);
 void checkReinRide__9daAlink_cCFv(void);
-void checkReinRide__9daAlink_cCFvBgCheck(void);
+void checkReinRideBgCheck__9daAlink_cFv(void);
 void checkRestartDead__9daAlink_cFii(void);
 void checkRestHPAnime__9daAlink_cFv(void);
 void checkRideOn__9daAlink_cCFv(void);
@@ -247,14 +247,14 @@ void checkSwordEquipAnime__9daAlink_cCFv(void);
 void checkSwordTwirlAnime__9daAlink_cCFv(void);
 void checkUnderMove1BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM(void);
 void checkUpperGuardAnime__9daAlink_cCFv(void);
-void checkUpperItemAction__9daAlink_cFvBoomerang(void);
-void checkUpperItemAction__9daAlink_cFvBoomerangFly(void);
-void checkUpperItemAction__9daAlink_cFvBow(void);
-void checkUpperItemAction__9daAlink_cFvBowFly(void);
-void checkUpperItemAction__9daAlink_cFvCopyRod(void);
-void checkUpperItemAction__9daAlink_cFvCopyRodFly(void);
-void checkUpperItemAction__9daAlink_cFvHookshot(void);
-void checkUpperItemAction__9daAlink_cFvIronBall(void);
+void checkUpperItemActionBoomerang__9daAlink_cFv(void);
+void checkUpperItemActionBoomerangFly__9daAlink_cFv(void);
+void checkUpperItemActionBow__9daAlink_cFv(void);
+void checkUpperItemActionBowFly__9daAlink_cFv(void);
+void checkUpperItemActionCopyRod__9daAlink_cFv(void);
+void checkUpperItemActionCopyRodFly__9daAlink_cFv(void);
+void checkUpperItemActionHookshot__9daAlink_cFv(void);
+void checkUpperItemActionIronBall__9daAlink_cFv(void);
 void checkWaitAction__9daAlink_cFv(void);
 void checkWarpStart__9daAlink_cFv(void);
 void checkWaterInKandelaar__9daAlink_cFf(void);
@@ -684,7 +684,7 @@ void setCutTurnEffect__9daAlink_cFv(void);
 void setCutWaterDropEffect__9daAlink_cFv(void);
 void setDamagePoint__9daAlink_cFiiii(void);
 void setDemoData__9daAlink_cFv(void);
-void setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf(void);
+void setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif(void);
 void setEffect__9daAlink_cFv(void);
 void setElecDamageEffect__9daAlink_cFv(void);
 void setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz(void);
@@ -721,7 +721,7 @@ void setLadderInit__9daAlink_cFv(void);
 void setLadderPos__9daAlink_cFi(void);
 void setLadderPosInit__9daAlink_cFv(void);
 void setLandDamagePoint__9daAlink_cFi(void);
-void setLight__9daAlink_cFvningSwordEffect(void);
+void setLightningSwordEffect__9daAlink_cFv(void);
 void setMagneBootsEffect__9daAlink_cFv(void);
 void setMagneBootsMtx__9daAlink_cFP13cBgS_PolyInfoi(void);
 void setMatrix__9daAlink_cFv(void);
@@ -736,11 +736,11 @@ void setShieldArcName__9daAlink_cFv(void);
 void setShieldGuard__9daAlink_cFv(void);
 void setShieldModel__9daAlink_cFv(void);
 void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf(void);
-void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf(void);
-void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase(void);
-void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseMorf(void);
-void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed(void);
-void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam(void);
+void setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf(void);
+void setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM(void);
+void setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf(void);
+void setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff(void);
+void setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c(void);
 void setSlingModel__9daAlink_cFv(void);
 void setSmallGuard__9daAlink_cFP12dCcD_GObjInf(void);
 void setSumouEffect__9daAlink_cFv(void);
@@ -754,11 +754,11 @@ void setSwordVoiceSe__9daAlink_cFUl(void);
 void setThrowBoomerangAnime__9daAlink_cFv(void);
 void setTiredVoice__9daAlink_cFP16daPy_frameCtrl_c(void);
 void setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf(void);
-void setUpperAnimeBase__9daAlink_cFUsMorf(void);
+void setUpperAnimeBaseMorf__9daAlink_cFUsf(void);
 void setUpperGuardAnime__9daAlink_cFf(void);
 void setWallGrabStatus__9daAlink_cFUcUc(void);
 void setWaterDropEffect__9daAlink_cFv(void);
-void setWaterfallEffect__9daAlink_cFPC4cXyzPUl_X1_(void);
+void setWaterfallEffect__9daAlink_cFv(void);
 void setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf(void);
 void setWaterY__9daAlink_cFv(void);
 void setWolfAnmVoice__9daAlink_cFv(void);
@@ -792,9 +792,9 @@ void wolfBgCheck__9daAlink_cFv(void);
 void wolfClawTrigger__9daAlink_cFv(void);
 void wolfFootBgCheck__9daAlink_cFv(void);
 void wolfSideBgCheck__9daAlink_cFs(void);
-void daAlink_c(void);
-void daAlink_checkLightBallA(void);
-void daAlink_checkLightBallB(void);
+void __ct__9daAlink_cFv(void);
+void daAlink_checkLightBallA__FP10fopAc_ac_c(void);
+void daAlink_checkLightBallB__FP10fopAc_ac_c(void);
 void daAlink_coHitCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(void);
 void __ct__18daAlink_footData_cFv(void);
 void __dt__18daAlink_footData_cFv(void);
@@ -802,17 +802,17 @@ void daAlink_headModelCallBack__FP8J3DJointi(void);
 void update__20daAlink_lockCursor_cFv(void);
 void offSetFlg__16daAlink_matAnm_cFv(void);
 void daAlink_modelCallBack__FP8J3DJointi(void);
-void daAlink_searchBoar(void);
-void daAlink_searchCanoe(void);
-void daAlink_searchCoach(void);
-void daAlink_searchLightBall(void);
-void daAlink_searchPortal(void);
-void daAlink_searchTagKandelaar(void);
+void daAlink_searchBoar__FP10fopAc_ac_cPv(void);
+void daAlink_searchCanoe__FP10fopAc_ac_cPv(void);
+void daAlink_searchCoach__FP10fopAc_ac_cPv(void);
+void daAlink_searchLightBall__FP10fopAc_ac_cPv(void);
+void daAlink_searchPortal__FP10fopAc_ac_cPv(void);
+void daAlink_searchTagKandelaar__FP10fopAc_ac_cPv(void);
 void create__15daAlink_sight_cFv(void);
 void onLockFlg__15daAlink_sight_cFv(void);
 void daAlink_tgHitCallback__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(void);
 void daAlink_wolfModelCallBack__FP8J3DJointi(void);
-void daAlinkHIO_c(void);
+void __ct__12daAlinkHIO_cFv(void);
 void setControllActorData__8daCrod_cFv(void);
 void dead__12daItemBase_cFv(void);
 void getItemNo__12daItemBase_cFv(void);
@@ -820,7 +820,7 @@ void hide__12daItemBase_cFv(void);
 void show__12daItemBase_cFv(void);
 void checkMidnaTired__9daMidna_cFv(void);
 void entry__10daMirror_cFP8J3DModel(void);
-void daNpcF_getPlayerInfoFromPlayerList(void);
+void daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz(void);
 void getActorP__18daNpcT_ActorMngr_cFv(void);
 void daObj_NS_PrmAbstract(void);
 void setWolfHowling__15daObj_Sekizoa_cFv(void);
@@ -828,14 +828,14 @@ void getHangPos__13daObjSwHang_cFv(void);
 void clearData__16daPy_actorKeep_cFv(void);
 void setActor__16daPy_actorKeep_cFv(void);
 void setData__16daPy_actorKeep_cFP10fopAc_ac_c(void);
-void daPy_addCalcShort(void);
+void daPy_addCalcShort__FPsssss(void);
 void __defctor__14daPy_anmHeap_cFv(void);
 void createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE(void);
 void __ct__14daPy_anmHeap_cFUl(void);
 void __dt__14daPy_anmHeap_cFv(void);
-void loadData__14daPy_anmHeap_cFUsDemoRID(void);
-void loadData__14daPy_anmHeap_cFUsIdx(void);
-void loadData__14daPy_anmHeap_cFUsPriIdx(void);
+void loadDataDemoRID__14daPy_anmHeap_cFUsUs(void);
+void loadDataIdx__14daPy_anmHeap_cFUs(void);
+void loadDataPriIdx__14daPy_anmHeap_cFUs(void);
 void mallocBuffer__14daPy_anmHeap_cFv(void);
 void setAnimeHeap__14daPy_anmHeap_cFv(void);
 void setSpecialDemoType__11daPy_demo_cFv(void);
@@ -881,7 +881,7 @@ void onNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2(void);
 void setParamData__9daPy_py_cFiiii(void);
 void draw__18daPy_sightPacket_cFv(void);
 void setSight__18daPy_sightPacket_cFv(void);
-void setSight__18daPy_sightPacket_cFvImage(void);
+void setSightImage__18daPy_sightPacket_cFP7ResTIMG(void);
 void checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo(void);
 void getPlayerNo__11daTagMist_cFv(void);
 void convPId__11dAttCatch_cFUi(void);
@@ -896,27 +896,27 @@ void ClrGroundHit__9dBgS_AcchFv(void);
 void CrrPos__9dBgS_AcchFR4dBgS(void);
 void __dt__9dBgS_AcchFv(void);
 void OnWallSort__9dBgS_AcchFv(void);
-void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz_X1_(void);
+void Set__9dBgS_AcchFP10fopAc_ac_ciP12dBgS_AcchCir(void);
 void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz(void);
-void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyzGndThinCellingOff(void);
-void dBgS_Acch(void);
+void SetGndThinCellingOff__9dBgS_AcchFv(void);
+void __ct__9dBgS_AcchFv(void);
 void __dt__12dBgS_AcchCirFv(void);
 void SetWall__12dBgS_AcchCirFff(void);
 void SetWallR__12dBgS_AcchCirFf(void);
-void dBgS_AcchCir(void);
+void __ct__12dBgS_AcchCirFv(void);
 void __dt__16dBgS_ArrowLinChkFv(void);
-void dBgS_ArrowLinChk(void);
+void __ct__16dBgS_ArrowLinChkFv(void);
 void __dt__20dBgS_BoomerangLinChkFv(void);
-void dBgS_BoomerangLinChk(void);
-void dBgS_CheckBGroundPoly(void);
-void dBgS_CheckBWallPoly(void);
-void dBgS_GetNY(void);
+void __ct__20dBgS_BoomerangLinChkFv(void);
+void dBgS_CheckBGroundPoly__FRC13cBgS_PolyInfo(void);
+void dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo(void);
+void dBgS_GetNY__FRC13cBgS_PolyInfo(void);
 void __dt__11dBgS_GndChkFv(void);
-void dBgS_GndChk(void);
+void __ct__11dBgS_GndChkFv(void);
 void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c(void);
 void __dt__15dBgS_LinkLinChkFv(void);
-void dBgS_LinkLinChk(void);
-void ChkMoveBG__4dBgSFRC13cBgS_PolyInfo_NoDABg(void);
+void __ct__15dBgS_LinkLinChkFv(void);
+void ChkMoveBG_NoDABg__4dBgSFRC13cBgS_PolyInfo(void);
 void ChkMoveBG__4dBgSFRC13cBgS_PolyInfo(void);
 void ChkPolyHSStick__4dBgSFRC13cBgS_PolyInfo(void);
 void GetExitId__4dBgSFRC13cBgS_PolyInfo(void);
@@ -933,18 +933,18 @@ void GetRoomId__4dBgSFRC13cBgS_PolyInfo(void);
 void GetRoomPathId__4dBgSFRC13cBgS_PolyInfo(void);
 void GetSpecialCode__4dBgSFRC13cBgS_PolyInfo(void);
 void GetWallCode__4dBgSFRC13cBgS_PolyInfo(void);
-void Move__4dBgSFvBgCrrPos(void);
-void Move__4dBgSFvBgTransPos(void);
+void MoveBgCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyzbb(void);
+void MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz(void);
 void PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel(void);
 void RoofChk__4dBgSFP12dBgS_RoofChk(void);
 void __dt__14dBgS_ObjLinChkFv(void);
-void dBgS_ObjLinChk(void);
+void __ct__14dBgS_ObjLinChkFv(void);
 void __dt__12dBgS_RoofChkFv(void);
 void SetPos__12dBgS_RoofChkFRC4cXyz(void);
-void dBgS_RoofChk(void);
+void __ct__12dBgS_RoofChkFv(void);
 void __dt__15dBgS_RopeLinChkFv(void);
-void dBgS_RopeLinChk(void);
-void dCam_getControledAngleY(void);
+void __ct__15dBgS_RopeLinChkFv(void);
+void dCam_getControledAngleY__FP12camera_class(void);
 void ChangeModeOK__9dCamera_cFl(void);
 void EndEventCamera__9dCamera_cFi(void);
 void GetCameraTypeFromCameraName__9dCamera_cFPCc(void);
@@ -954,12 +954,12 @@ void StartEventCamera__9dCamera_cFiie(void);
 void Stop__9dCamera_cFv(void);
 void __dt__8dCcD_CpsFv(void);
 void Set__8dCcD_CpsFRC11dCcD_SrcCps(void);
-void dCcD_Cps(void);
+void __ct__8dCcD_CpsFv(void);
 void __dt__8dCcD_CylFv(void);
 void MoveCAt__8dCcD_CylFR4cXyz(void);
 void Set__8dCcD_CylFRC11dCcD_SrcCyl(void);
 void StartCAt__8dCcD_CylFR4cXyz(void);
-void dCcD_Cyl(void);
+void __ct__8dCcD_CylFv(void);
 void GetAc__22dCcD_GAtTgCoCommonBaseFv(void);
 void ChkAtHit__12dCcD_GObjInfFv(void);
 void ChkCoHit__12dCcD_GObjInfFv(void);
@@ -969,51 +969,51 @@ void __dt__12dCcD_GObjInfFv(void);
 void GetAtHitGObj__12dCcD_GObjInfFv(void);
 void getHitSeID__12dCcD_GObjInfFUci(void);
 void GetTgHitGObj__12dCcD_GObjInfFv(void);
-void GetTgHitObj__12dCcD_GObjInfFvSe(void);
+void GetTgHitObjSe__12dCcD_GObjInfFv(void);
 void ResetAtHit__12dCcD_GObjInfFv(void);
 void ResetCoHit__12dCcD_GObjInfFv(void);
 void ResetTgHit__12dCcD_GObjInfFv(void);
 void Move__10dCcD_GSttsFv(void);
-void dCcD_GStts(void);
+void __ct__10dCcD_GSttsFv(void);
 void MoveCAt__8dCcD_SphFR4cXyz(void);
 void Set__8dCcD_SphFRC11dCcD_SrcSph(void);
 void StartCAt__8dCcD_SphFR4cXyz(void);
 void Init__9dCcD_SttsFiiP10fopAc_ac_c(void);
 void Set__12dCcMassS_MngFP8cCcD_ObjUc(void);
 void getLayerNo__14dComIfG_play_cFi(int);
-void dComIfG_resDelete(void);
-void dComIfG_resLoad_X1_(void);
-void dComIfGd_setShadow(void);
-void dComIfGp_addSelectItemNum(void);
-void dComIfGp_att_getCatghTarget(void);
+void dComIfG_resDelete__FP30request_of_phase_process_classPCc(void);
+void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void);
+void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void);
+void dComIfGp_addSelectItemNum__Fis(void);
+void dComIfGp_att_getCatghTarget__Fv(void);
 void dComIfGp_checkItemGet__FUci(void);
-void dComIfGp_checkPlayerStatus0(void);
-void dComIfGp_checkPlayerStatus1(void);
-void dComIfGp_event_chkEventFlag(void);
-void dComIfGp_event_runCheck(void);
-void dComIfGp_evmng_getMyStaffId(void);
-void dComIfGp_evmng_startCheck(void);
-void dComIfGp_getEvent(void);
-void dComIfGp_getEventManager(void);
-void dComIfGp_getHorseActor(void);
-void dComIfGp_getPlayerCameraID(void);
-void dComIfGp_getReverb(void);
-void dComIfGp_getSelectItem(void);
-void dComIfGp_getSelectItemNum(void);
-void dComIfGp_getStage(void);
-void dComIfGp_setBottleStatus(void);
+void dComIfGp_checkPlayerStatus0__FiUl(void);
+void dComIfGp_checkPlayerStatus1__FiUl(void);
+void dComIfGp_event_chkEventFlag__FUs(void);
+void dComIfGp_event_runCheck__Fv(void);
+void dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci(void);
+void dComIfGp_evmng_startCheck__FPCc(void);
+void dComIfGp_getEvent__Fv(void);
+void dComIfGp_getEventManager__Fv(void);
+void dComIfGp_getHorseActor__Fv(void);
+void dComIfGp_getPlayerCameraID__Fi(void);
+void dComIfGp_getReverb__Fi(void);
+void dComIfGp_getSelectItem__Fi(void);
+void dComIfGp_getSelectItemNum__Fi(void);
+void dComIfGp_getStage__Fv(void);
+void dComIfGp_setBottleStatus__FUcUc(void);
 void dComIfGp_setItemRupeeCount__Fl(long);
-void dComIfGp_setNextStage(void);
-void dComIfGp_setSelectItemNum(void);
-void dComIfGp_TargetWarpPt_get(void);
-void dComIfGp_TargetWarpPt_set(void);
-void dComIfGp_TransportWarp_check(void);
-void dComIfGs_getWarpPlayerPos(void);
-bool dComIfGs_isEventBit(u16);
-void dComIfGs_isOneZoneSwitch(void);
-void dComIfGs_PolyDamageOff_Check(void);
-void dComIfGs_setSelectEquipClothes(u8);
-void dComIfGs_Wolf_Change_Check(void);
+void dComIfGp_setNextStage__FPCcsScScfUliScsii(void);
+void dComIfGp_setSelectItemNum__Fis(void);
+void dComIfGp_TargetWarpPt_get__Fv(void);
+void dComIfGp_TargetWarpPt_set__FUc(void);
+void dComIfGp_TransportWarp_check__Fv(void);
+void dComIfGs_getWarpPlayerPos__Fv(void);
+bool dComIfGs_isEventBit__FUs(u16);
+void dComIfGs_isOneZoneSwitch__Fii(void);
+void dComIfGs_PolyDamageOff_Check__Fv(void);
+void dComIfGs_setSelectEquipClothes__FUc(u8);
+void dComIfGs_Wolf_Change_Check__Fv(void);
 void getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc(void);
 void getPrm_Morf__13dDemo_actor_cFv(void);
 void setBranchId__7dDemo_cFUss(void);
@@ -1024,7 +1024,7 @@ void addReal__21dDlst_shadowControl_cFUlP8J3DModel(void);
 void setStartDemo__18dEvent_exception_cFi(void);
 void checkStartDemo__16dEvent_manager_cFv(void);
 void cutEnd__16dEvent_manager_cFi(void);
-void getEventIdx__16dEvent_manager_cFPCcUcl_X2_(void);
+void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc(void);
 void getGoal__16dEvent_manager_cFv(void);
 void getMyNowCutName__16dEvent_manager_cFi(void);
 void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci(void);
@@ -1033,14 +1033,14 @@ void getRunEventName__16dEvent_manager_cFv(void);
 void orderStartDemo__16dEvent_manager_cFv(void);
 void setGoal__16dEvent_manager_cFP4cXyz(void);
 void setObjectArchive__16dEvent_manager_cFPc(void);
-void startCheck__16dEvent_manager_cFsOld(void);
+void startCheckOld__16dEvent_manager_cFPCc(void);
 void compulsory__14dEvt_control_cFPvPCcUs(void);
 void convPId__14dEvt_control_cFUi(void);
 void isOrderOK__14dEvt_control_cFv(void);
-void reset__14dEvt_control_cFv_X1_(void);
+void reset__14dEvt_control_cFPv(void);
 void reset__14dEvt_control_cFv(void);
 void setPtD__14dEvt_control_cFPv(void);
-void setPtI__14dEvt_control_cFPv_Id(void);
+void setPtI_Id__14dEvt_control_cFUi(void);
 void setSkipProc__14dEvt_control_cFPvPFPvi_ii(void);
 void checkCommandCatch__11dEvt_info_cFv(void);
 void checkCommandDoor__11dEvt_info_cFv(void);
@@ -1050,76 +1050,76 @@ void entry__8dEyeHL_cFP12J3DModelDataPCc(void);
 void remove__8dEyeHL_cFv(void);
 void getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi(void);
 void init__9dJntCol_cFP10fopAc_ac_cPC13dJntColData_cP8J3DModeli(void);
-void dJntCol_c(void);
-void dKy_GxFog_tevstr_set(void);
-void dKy_Itemgetcol_chg_on(void);
-void dKy_plight_cut(void);
-void dKy_plight_set(void);
-void dKy_pol_argument_get(void);
-void dKy_pol_efftype_get(void);
-void dKy_pol_sound_get(void);
-void dKy_setLight_again(void);
-void dKy_shadow_mode_reset(void);
-void dKy_shadow_mode_set(void);
-void dKy_SordFlush_set(void);
-void dKy_Sound_set(void);
-void dKy_TeachWind_existence_chk(void);
-void dKy_withwarp_capture_check(void);
-void dKy_WolfEyeLight_set(void);
+void __ct__9dJntCol_cFv(void);
+void dKy_GxFog_tevstr_set__FP12dKy_tevstr_c(void);
+void dKy_Itemgetcol_chg_on__Fv(void);
+void dKy_plight_cut__FP15LIGHT_INFLUENCE(void);
+void dKy_plight_set__FP15LIGHT_INFLUENCE(void);
+void dKy_pol_argument_get__FPC13cBgS_PolyInfo(void);
+void dKy_pol_efftype_get__FPC13cBgS_PolyInfo(void);
+void dKy_pol_sound_get__FPC13cBgS_PolyInfo(void);
+void dKy_setLight_again__Fv(void);
+void dKy_shadow_mode_reset__FUc(void);
+void dKy_shadow_mode_set__FUc(void);
+void dKy_SordFlush_set__F4cXyzi(void);
+void dKy_Sound_set__F4cXyziUii(void);
+void dKy_TeachWind_existence_chk__Fv(void);
+void dKy_withwarp_capture_check__Fv(void);
+void dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc(void);
 void onDirectUseItem__13dMeter2Info_cFi(void);
 void resetWarpStatus__13dMeter2Info_cFv(void);
 void setFloatingMessage__13dMeter2Info_cFUssb(void);
 void warpInProc__13dMeter2Info_cFv(void);
 void warpOutProc__13dMeter2Info_cFv(void);
-void dMeter2Info_offUseButton(void);
-void dMeter2Info_setFloatingMessage(void);
-void dMeter2Info_setShield(void);
+void dMeter2Info_offUseButton__Fi(void);
+void dMeter2Info_setFloatingMessage__FUssb(void);
+void dMeter2Info_setShield__FUcb(void);
 void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci(void);
 void __dt__10dMsgFlow_cFv(void);
 void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c(void);
-void dMsgFlow_c(void);
+void __ct__10dMsgFlow_cFv(void);
 void getStatus__12dMsgObject_cFv(void);
 void isHowlHearingMode__12dMsgObject_cFv(void);
 void onMsgSend__12dMsgObject_cFv(void);
 void setSmellType__12dMsgObject_cFUc(void);
 void getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf(void);
 void forceOnEventMove__Q213dPa_control_c7level_cFUl(void);
-void get__Q213dPa_control_c7level_cFUlEmitter(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_(void);
+void getEmitter__Q213dPa_control_c7level_cFUl(void);
+void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
 void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
 void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfPoly_X1_(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfPoly(void);
+void setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(void);
+void setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(void);
 void setWaterRipple__13dPa_control_cFPUlR13cBgS_PolyInfoPC4cXyzfPC12dKy_tevstr_cPC4cXyzSc(void);
 void setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz(void);
-void dPaneClass_showNullPane(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void init__7dPaPo_cFP9dBgS_Acchff(void);
-void setEffect__7dPaPo_cFPUliPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzScPUcPUcCenter(void);
+void setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff(void);
 void clearFourAllID__8dPaPoF_cFv(void);
 void setEffectFour__8dPaPoF_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff(void);
-void dPath_GetRoomPath(void);
+void dPath_GetRoomPath__Fii(void);
 void getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci(void);
-void getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_(void);
+void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci(void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
 void getResInfo__14dRes_control_cFPCcP11dRes_info_ci(void);
 void loaderBasicBmd__11dRes_info_cFUlPv(void);
 void offWarpMaterial__11dRes_info_cFP12J3DModelData(void);
 void onWarpMaterial__11dRes_info_cFP12J3DModelData(void);
-void set__11dRes_info_cFPCcPCcUcP7JKRHeapWarpSRT(void);
-void setLight__18dScnKy_env_light_cFvTevColorType_MAJI(void);
+void setWarpSRT__11dRes_info_cFP12J3DModelDataRC4cXyzff(void);
+void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c(void);
 void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c(void);
-void dStage_changeScene(void);
-void dStage_changeSceneExitId(void);
-void dStage_restartRoom(void);
-void dStage_RoomCheck(void);
-void dStage_stagInfo_GetSaveTbl(void);
+void dStage_changeScene__FifUlScsi(void);
+void dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(void);
+void dStage_restartRoom__FUlUli(void);
+void dStage_RoomCheck__FP11cBgS_GndChk(void);
+void dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class(void);
 void StartQuake__12dVibration_cFii4cXyz(void);
 void StartShock__12dVibration_cFii4cXyz(void);
 void StopQuake__12dVibration_cFi(void);
 void execItemGet__FUc(void);
 void __ct__10fopAc_ac_cFv(void);
 void __dt__10fopAc_ac_cFv(void);
-void fopAc_IsActor(void);
+void fopAc_IsActor__FPv(void);
 void fopAcIt_Executor(void);
 void fopAcM_cancelCarryNow(void);
 void fopAcM_create_X1_(void);
@@ -1132,12 +1132,12 @@ void fopAcM_fastCreate(void);
 void fopAcM_gc_c_NS_gndCheck(void);
 void fopAcM_getEventPartner(void);
 void fopAcM_getItemEventPartner(void);
-void fopAcM_GetName(void);
+void fopAcM_GetName__FPv(void);
 void fopAcM_getPolygonAngle_X1_(void);
 void fopAcM_getWaterStream(void);
 void fopAcM_getWaterY(void);
 void fopAcM_lc_c_NS_lineCheck(void);
-void fopAcM_onSwitch(void);
+void fopAcM_onSwitch__FPC10fopAc_ac_ci(void);
 void fopAcM_orderCatchEvent(void);
 void fopAcM_orderDoorEvent(void);
 void fopAcM_orderOtherEvent_X1_(void);
@@ -1155,15 +1155,15 @@ void fopAcM_setStageLayer(void);
 void fopAcM_wt_c_NS_waterCheck(void);
 void fopKyM_create(void);
 void fopKyM_createWpillar(void);
-void fopMsgM_messageSet_X1_(void);
-void fopMsgM_SearchByID(void);
+void fopMsgM_messageSet__FUlUl(void);
+void fopMsgM_SearchByID__FUi(void);
 void fpoAcM_relativePos(void);
 void freeAll__7JKRHeapFv(void);
 void func_80361C24(void);
-void func_80361D60(void);
-void func_80361F14(void);
-void func_80362018(void);
-void func_80362084(void);
+void __construct_array(void);
+void __construct_new_array(void);
+void __ptmf_test(void);
+void __ptmf_scall(void);
 void fopOvlpM_IsPeek__Fv(void);
 void __cvt_fp2unsigned(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
@@ -1201,15 +1201,15 @@ void draw__9J2DScreenFffPC14J2DGrafContext(void);
 void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag(void);
 void getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10(void);
-void searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_(void);
-void searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_(void);
-void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_(void);
+void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData(void);
+void searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData(void);
+void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData(void);
 void entryImm__13J3DDrawBufferFP9J3DPacketUs(void);
 void checkPass__12J3DFrameCtrlFf(void);
 void init__12J3DFrameCtrlFs(void);
-void J3DGXColorS10(void);
+void __ct__13J3DGXColorS10Fv(void);
 void __dt__14J3DMatColorAnmFv(void);
-void J3DMatColorAnm(void);
+void __ct__14J3DMatColorAnmFv(void);
 void initialize__14J3DMaterialAnmFv(void);
 void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey(void);
 void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey(void);
@@ -1224,43 +1224,43 @@ void setDeformData__8J3DModelFP13J3DDeformDataUl(void);
 void loadPreDrawSetting__8J3DShapeCFv(void);
 void reinitGX__6J3DSysFv(void);
 void __dt__14J3DTevColorAnmFv(void);
-void J3DTevColorAnm(void);
+void __ct__14J3DTevColorAnmFv(void);
 void __dt__15J3DTevKColorAnmFv(void);
-void J3DTevKColorAnm(void);
+void __ct__15J3DTevKColorAnmFv(void);
 void __dt__12J3DTexMtxAnmFv(void);
-void J3DTexMtxAnm(void);
+void __ct__12J3DTexMtxAnmFv(void);
 void __dt__11J3DTexNoAnmFv(void);
-void J3DTexNoAnm(void);
+void __ct__11J3DTexNoAnmFv(void);
 void __dt__18JPAEmitterCallBackFv(void);
 void __dt__19JPAParticleCallBackFv(void);
 void JPASetRMtxTVecfromMtx(void);
 void getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData(void);
-void mDoAud_seStartLevel(void);
-void mDoAud_setLinkGroupInfo(void);
-void mDoAud_setLinkHp(void);
+void mDoAud_seStartLevel__FUlPC3VecUlSc(void);
+void mDoAud_setLinkGroupInfo__FUc(void);
+void mDoAud_setLinkHp__Fll(void);
 void __dt__19mDoExt_AnmRatioPackFv(void);
-void mDoExt_AnmRatioPack(void);
+void __ct__19mDoExt_AnmRatioPackFv(void);
 void play__14mDoExt_baseAnmFv(void);
 void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform(void);
 void entry__13mDoExt_bckAnmFP12J3DModelDataf(void);
 void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb(void);
 void init__13mDoExt_blkAnmFP13J3DDeformDataP13J3DAnmClusteriifss(void);
-void mDoExt_destroyExpHeap(void);
-void mDoExt_J3DModel__create(void);
-void mDoExt_modelEntryDL(void);
+void mDoExt_destroyExpHeap__FP10JKRExpHeap(void);
+void mDoExt_J3DModel__create__FP12J3DModelDataUlUl(void);
+void mDoExt_modelEntryDL__FP8J3DModel(void);
 void getAnm__25mDoExt_MtxCalcAnmBlendTblFi(void);
 void initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs(void);
-void mDoLib_pos2camera(void);
-void mDoLib_project(void);
-void mDoMtx_MtxToRot(void);
-void transM__14mDoMtx_stack_cFfff_X1_(void);
+void mDoLib_pos2camera__FP3VecP3Vec(void);
+void mDoLib_project__FP3VecP3Vec(void);
+void mDoMtx_MtxToRot__FPA4_CfP5csXyz(void);
+void transM__14mDoMtx_stack_cFRC4cXyz(void);
 void ZXYrotM__14mDoMtx_stack_cFRC5csXyz(void);
 void ZXYrotS__14mDoMtx_stack_cFRC5csXyz(void);
-void mDoMtx_XrotM(void);
-void mDoMtx_XrotS(void);
-void mDoMtx_YrotS(void);
-void mDoMtx_ZrotS(void);
-void mDoMtx_ZXYrotS(void);
+void mDoMtx_XrotM__FPA4_fs(void);
+void mDoMtx_XrotS__FPA4_fs(void);
+void mDoMtx_YrotS__FPA4_fs(void);
+void mDoMtx_ZrotS__FPA4_fs(void);
+void mDoMtx_ZXYrotS__FPA4_fsss(void);
 void midnaTalkTrigger__9daAlink_cCFv(void);
 void normalize__4cXyzFv(void);
 void normalizeZP__4cXyzFv(void);
@@ -1325,11 +1325,11 @@ void startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc(void);
 void startLinkVoiceLevel__14Z2CreatureLinkF10JAISoundIDSc(void);
 void startWolfHowlSound__13Z2WolfHowlMgrFffbf(void);
 void swordSwingTrigger__9daAlink_cFv(void);
-void init__10Z2CreatureFP3VecP3VecUcUcAnime(void);
+void initAnime__10Z2CreatureFPvbff(void);
 void updateAnime__10Z2CreatureFff(void);
 void bgmSetSwordUsing__8Z2SeqMgrFl(void);
 void taktModeMute__8Z2SeqMgrFv(void);
-void taktModeMute__8Z2SeqMgrFvOff(void);
+void taktModeMuteOff__8Z2SeqMgrFv(void);
 void fopKyM_create__FsiP4cXyzP4cXyzPFPv_i(void);
 void fopKyM_createWpillar__FPC4cXyzfi(void);
 }
@@ -2172,7 +2172,7 @@ asm void setNeckAngle__9daAlink_cFv(void) {
 
 // getStickAngleFromPlayerShape__9daAlink_cCFPs
 // daAlink_c::getStickAngleFromPlayerShape(const short*)
-asm void func_800A2160(void) {
+asm void getStickAngleFromPlayerShape__9daAlink_cCFPs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A2160.s"
 }
@@ -2277,14 +2277,14 @@ asm void initModel__9daAlink_cFP12J3DModelDataUlUl(void) {
 
 // initModel__9daAlink_cFUsUl
 // daAlink_c::initModel(unsigned short, unsigned long)
-asm void initModel__9daAlink_cFP12J3DModelDataUlUl_X1_(void) {
+asm void initModel__9daAlink_cFUsUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A3E30.s"
 }
 
 // initModelEnv__9daAlink_cFUsUl
 // daAlink_c::initModelEnv(unsigned short, unsigned long)
-asm void initModel__9daAlink_cFP12J3DModelDataUlUlEnv(void) {
+asm void initModelEnv__9daAlink_cFUsUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A3E98.s"
 }
@@ -2312,14 +2312,14 @@ asm void createHeap__9daAlink_cFv(void) {
 
 // __dt__14J3DMaterialAnmFv
 // J3DMaterialAnm::~J3DMaterialAnm(void)
-asm void func_800A4820(void) {
+asm void __dt__14J3DMaterialAnmFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A4820.s"
 }
 
 // daAlink_createHeap__FP10fopAc_ac_c
-// daAlink_createHeap(fopAc_ac_c*)
-asm void daAlink_createHeap(void) {
+// daAlink_createHeap__FP10fopAc_ac_c(fopAc_ac_c*)
+asm void daAlink_createHeap__FP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A48F0.s"
 }
@@ -2375,7 +2375,7 @@ asm void create__9daAlink_cFv(void) {
 
 // daAlink_Create__FP10fopAc_ac_c
 // daAlink_Create(fopAc_ac_c*)
-asm void func_800A660C(void) {
+asm void daAlink_Create__FP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A660C.s"
 }
@@ -2431,7 +2431,7 @@ asm void checkWindSpeedOnAngle__9daAlink_cCFv(void) {
 
 // checkWindSpeedOnAngleAnime__9daAlink_cCFi
 // daAlink_c::checkWindSpeedOnAngleAnime(const int)
-asm void checkWindSpeedOnAngle__9daAlink_cCFvAnime(void) {
+asm void checkWindSpeedOnAngleAnime__9daAlink_cCFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A79EC.s"
 }
@@ -2466,7 +2466,7 @@ asm void setBodyPartPos__9daAlink_cFv(void) {
 
 // setRollJump__9daAlink_cFffs
 // daAlink_c::setRollJump(float, float, short)
-asm void func_800A87D8(void) {
+asm void setRollJump__9daAlink_cFffs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800A87D8.s"
 }
@@ -2605,14 +2605,14 @@ asm void setCollision__9daAlink_cFv(void) {
 
 // getBaseAnimeFrame__9daAlink_cCFv
 // daAlink_c::getBaseAnimeFrame(const void)
-asm void func_800AC328(void) {
+asm void getBaseAnimeFrame__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AC328.s"
 }
 
 // setAnimeFrame__9daAlink_cFf
 // daAlink_c::setAnimeFrame(float)
-asm void func_800AC378(void) {
+asm void setAnimeFrame__9daAlink_cFf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AC378.s"
 }
@@ -2683,13 +2683,13 @@ asm void setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM(void) {
 }
 
 // setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
-asm void setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf(void) {
+asm void setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800ACFB0.s"
 }
 
 // setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
-asm void setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed(void) {
+asm void setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800ACFE0.s"
 }
@@ -2701,7 +2701,7 @@ asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf(void) {
 }
 
 // setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam(void) {
+asm void setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AD0F4.s"
 }
@@ -2736,14 +2736,14 @@ asm void setUpperAnimeBase__9daAlink_cFUs(void) {
 
 // setUpperAnimeBaseMorf__9daAlink_cFUsf
 // daAlink_c::setUpperAnimeBaseMorf(unsigned short, float)
-asm void setUpperAnimeBase__9daAlink_cFUsMorf(void) {
+asm void setUpperAnimeBaseMorf__9daAlink_cFUsf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AD374.s"
 }
 
 // setUpperAnimeBaseSpeed__9daAlink_cFUsff
 // daAlink_c::setUpperAnimeBaseSpeed(unsigned short, float, float)
-asm void setUpperAnimeBase__9daAlink_cFUsSpeed(void) {
+asm void setUpperAnimeBaseSpeed__9daAlink_cFUsff(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AD3A8.s"
 }
@@ -2755,7 +2755,7 @@ asm void setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf(void) {
 }
 
 // setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
-asm void setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam(void) {
+asm void setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AD6F0.s"
 }
@@ -2780,7 +2780,7 @@ asm void setUnderAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERffsf(void) {
 }
 
 // setUnderAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERPC16daAlinkHIO_anm_c
-asm void setUnderAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERffsfParam(void) {
+asm void setUnderAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERPC16daAlinkHIO_anm_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800ADAB8.s"
 }
@@ -3054,20 +3054,20 @@ asm void checkSlope__9daAlink_cCFv(void) {
 
 // setPlayerPosAndAngle__9daAlink_cFPC4cXyzsi
 // daAlink_c::setPlayerPosAndAngle(const cXyz*, short, int)
-asm void func_800B221C(void) {
+asm void setPlayerPosAndAngle__9daAlink_cFPC4cXyzsi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B221C.s"
 }
 
 // setPlayerPosAndAngle__9daAlink_cFPC4cXyzPC5csXyz
 // daAlink_c::setPlayerPosAndAngle(const cXyz*, const csXyz*)
-asm void func_800B23FC(void) {
+asm void setPlayerPosAndAngle__9daAlink_cFPC4cXyzPC5csXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B23FC.s"
 }
 
 // setPlayerPosAndAngle__9daAlink_cFPA4_f
-asm void func_800B24F4(void){nofralloc
+asm void setPlayerPosAndAngle__9daAlink_cFPA4_f(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B24F4.s"
 }
 
@@ -3273,21 +3273,21 @@ asm void setJumpMode__9daAlink_cFv(void) {
 
 // getMetamorphoseNearDis__9daAlink_cCFv
 // daAlink_c::getMetamorphoseNearDis(const void)
-asm void func_800B4908(void) {
+asm void getMetamorphoseNearDis__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B4908.s"
 }
 
 // getMetamorphoseFarDis__9daAlink_cCFv
 // daAlink_c::getMetamorphoseFarDis(const void)
-asm void func_800B4918(void) {
+asm void getMetamorphoseFarDis__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B4918.s"
 }
 
 // getMetamorphoseFarAngle__9daAlink_cCFv
 // daAlink_c::getMetamorphoseFarAngle(const void)
-asm void func_800B4928(void) {
+asm void getMetamorphoseFarAngle__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B4928.s"
 }
@@ -3482,15 +3482,15 @@ asm void orderTalk__9daAlink_cFi(void) {
 }
 
 // daAlink_searchBouDoor__FP10fopAc_ac_cPv
-// daAlink_searchBouDoor(fopAc_ac_c*, void*)
-asm void daAlink_searchBouDoor(void) {
+// daAlink_searchBouDoor__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchBouDoor__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B7D4C.s"
 }
 
 // daAlink_searchKolin__FP10fopAc_ac_cPv
-// daAlink_searchKolin(fopAc_ac_c*, void*)
-asm void daAlink_searchKolin(void) {
+// daAlink_searchKolin__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchKolin__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800B7F84.s"
 }
@@ -3679,7 +3679,7 @@ asm void setItemAction__9daAlink_cFv(void) {
 
 // checkNextActionFromCrouch__9daAlink_cFi
 // daAlink_c::checkNextActionFromCrouch(int)
-asm void checkNextAction__9daAlink_cFiFromCrouch(void) {
+asm void checkNextActionFromCrouch__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BAF08.s"
 }
@@ -3748,7 +3748,7 @@ asm void checkHeavyStateOn__9daAlink_cFii(void) {
 
 // setOutPower__9daAlink_cFfsi
 // daAlink_c::setOutPower(float, short, int)
-asm void func_800BB560(void) {
+asm void setOutPower__9daAlink_cFfsi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BB560.s"
 }
@@ -3863,7 +3863,7 @@ asm void checkSceneChange__9daAlink_cFi(void) {
 
 // voiceStart__9daAlink_cFUl
 // daAlink_c::voiceStart(unsigned long)
-asm void func_800BF084(void) {
+asm void voiceStart__9daAlink_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BF084.s"
 }
@@ -3884,14 +3884,14 @@ asm void seStartSwordCut__9daAlink_cFUl(void) {
 
 // seStartOnlyReverb__9daAlink_cFUl
 // daAlink_c::seStartOnlyReverb(unsigned long)
-asm void func_800BF124(void) {
+asm void seStartOnlyReverb__9daAlink_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BF124.s"
 }
 
 // seStartOnlyReverbLevel__9daAlink_cFUl
 // daAlink_c::seStartOnlyReverbLevel(unsigned long)
-asm void func_800BF15C(void) {
+asm void seStartOnlyReverbLevel__9daAlink_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BF15C.s"
 }
@@ -3905,7 +3905,7 @@ asm void seStartMapInfo__9daAlink_cFUl(void) {
 
 // seStartMapInfoLevel__9daAlink_cFUl
 // daAlink_c::seStartMapInfoLevel(unsigned long)
-asm void seStartMapInfo__9daAlink_cFUlLevel(void) {
+asm void seStartMapInfoLevel__9daAlink_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BF1CC.s"
 }
@@ -4028,21 +4028,21 @@ asm void loadAram__9daAlink_cFUsUl(void) {
 
 // loadAramItemBrk__9daAlink_cFUsP8J3DModel
 // daAlink_c::loadAramItemBrk(unsigned short, J3DModel*)
-asm void loadAram__9daAlink_cFUsUlItemBrk(void) {
+asm void loadAramItemBrk__9daAlink_cFUsP8J3DModel(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BFF70.s"
 }
 
 // loadAramItemBtk__9daAlink_cFUsP8J3DModel
 // daAlink_c::loadAramItemBtk(unsigned short, J3DModel*)
-asm void loadAram__9daAlink_cFUsUlItemBtk(void) {
+asm void loadAramItemBtk__9daAlink_cFUsP8J3DModel(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800BFFCC.s"
 }
 
 // loadAramItemBtp__9daAlink_cFUsP8J3DModel
 // daAlink_c::loadAramItemBtp(unsigned short, J3DModel*)
-asm void loadAram__9daAlink_cFUsUlItemBtp(void) {
+asm void loadAramItemBtp__9daAlink_cFUsP8J3DModel(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C0028.s"
 }
@@ -4175,7 +4175,7 @@ asm void checkNotAutoJumpStage__9daAlink_cFv(void) {
 
 // checkCastleTownUseItem__9daAlink_cFUs
 // daAlink_c::checkCastleTownUseItem(unsigned short)
-asm void checkCastleTown__9daAlink_cFvUseItem(void) {
+asm void checkCastleTownUseItem__9daAlink_cFUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C0678.s"
 }
@@ -4217,7 +4217,7 @@ asm void setFrontRollCrashShock__9daAlink_cFUc(void) {
 
 // getModelJointMtx__9daAlink_cFUs
 // daAlink_c::getModelJointMtx(unsigned short)
-asm void func_800C1DAC(void) {
+asm void getModelJointMtx__9daAlink_cFUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C1DAC.s"
 }
@@ -4244,7 +4244,7 @@ asm void commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC(void) {
 }
 
 // commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
-asm void commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc(void) {
+asm void commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C2DA4.s"
 }
@@ -4258,7 +4258,7 @@ asm void procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c(void) {
 
 // procPreActionUnequip__9daAlink_cFv
 // daAlink_c::procPreActionUnequip(void)
-asm void func_800C2EAC(void) {
+asm void procPreActionUnequip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C2EAC.s"
 }
@@ -4272,7 +4272,7 @@ asm void procServiceWaitInit__9daAlink_cFv(void) {
 
 // procServiceWait__9daAlink_cFv
 // daAlink_c::procServiceWait(void)
-asm void func_800C30F0(void) {
+asm void procServiceWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C30F0.s"
 }
@@ -4286,7 +4286,7 @@ asm void procTiredWaitInit__9daAlink_cFv(void) {
 
 // procTiredWait__9daAlink_cFv
 // daAlink_c::procTiredWait(void)
-asm void func_800C3338(void) {
+asm void procTiredWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3338.s"
 }
@@ -4300,7 +4300,7 @@ asm void procWaitInit__9daAlink_cFv(void) {
 
 // procWait__9daAlink_cFv
 // daAlink_c::procWait(void)
-asm void func_800C3504(void) {
+asm void procWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3504.s"
 }
@@ -4314,7 +4314,7 @@ asm void procMoveInit__9daAlink_cFv(void) {
 
 // procMove__9daAlink_cFv
 // daAlink_c::procMove(void)
-asm void func_800C3730(void) {
+asm void procMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3730.s"
 }
@@ -4328,7 +4328,7 @@ asm void procAtnMoveInit__9daAlink_cFv(void) {
 
 // procAtnMove__9daAlink_cFv
 // daAlink_c::procAtnMove(void)
-asm void func_800C3868(void) {
+asm void procAtnMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3868.s"
 }
@@ -4342,7 +4342,7 @@ asm void procAtnActorWaitInit__9daAlink_cFv(void) {
 
 // procAtnActorWait__9daAlink_cFv
 // daAlink_c::procAtnActorWait(void)
-asm void func_800C397C(void) {
+asm void procAtnActorWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C397C.s"
 }
@@ -4356,7 +4356,7 @@ asm void procAtnActorMoveInit__9daAlink_cFv(void) {
 
 // procAtnActorMove__9daAlink_cFv
 // daAlink_c::procAtnActorMove(void)
-asm void func_800C3A44(void) {
+asm void procAtnActorMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3A44.s"
 }
@@ -4370,7 +4370,7 @@ asm void procWaitTurnInit__9daAlink_cFv(void) {
 
 // procWaitTurn__9daAlink_cFv
 // daAlink_c::procWaitTurn(void)
-asm void func_800C3B1C(void) {
+asm void procWaitTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3B1C.s"
 }
@@ -4384,7 +4384,7 @@ asm void procMoveTurnInit__9daAlink_cFi(void) {
 
 // procMoveTurn__9daAlink_cFv
 // daAlink_c::procMoveTurn(void)
-asm void func_800C3D38(void) {
+asm void procMoveTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3D38.s"
 }
@@ -4398,7 +4398,7 @@ asm void procSideStepInit__9daAlink_cFi(void) {
 
 // procSideStep__9daAlink_cFv
 // daAlink_c::procSideStep(void)
-asm void func_800C3F60(void) {
+asm void procSideStep__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C3F60.s"
 }
@@ -4412,7 +4412,7 @@ asm void procSideStepLandInit__9daAlink_cFv(void) {
 
 // procSideStepLand__9daAlink_cFv
 // daAlink_c::procSideStepLand(void)
-asm void func_800C4278(void) {
+asm void procSideStepLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C4278.s"
 }
@@ -4426,7 +4426,7 @@ asm void procSlideInit__9daAlink_cFs(void) {
 
 // procSlide__9daAlink_cFv
 // daAlink_c::procSlide(void)
-asm void func_800C4514(void) {
+asm void procSlide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C4514.s"
 }
@@ -4440,7 +4440,7 @@ asm void procSlideLandInit__9daAlink_cFi(void) {
 
 // procSlideLand__9daAlink_cFv
 // daAlink_c::procSlideLand(void)
-asm void func_800C4894(void) {
+asm void procSlideLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C4894.s"
 }
@@ -4454,7 +4454,7 @@ asm void procFrontRollInit__9daAlink_cFv(void) {
 
 // procFrontRoll__9daAlink_cFv
 // daAlink_c::procFrontRoll(void)
-asm void func_800C4B40(void) {
+asm void procFrontRoll__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C4B40.s"
 }
@@ -4468,7 +4468,7 @@ asm void procFrontRollCrashInit__9daAlink_cFv(void) {
 
 // procFrontRollCrash__9daAlink_cFv
 // daAlink_c::procFrontRollCrash(void)
-asm void func_800C4FFC(void) {
+asm void procFrontRollCrash__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C4FFC.s"
 }
@@ -4482,7 +4482,7 @@ asm void procFrontRollSuccessInit__9daAlink_cFv(void) {
 
 // procFrontRollSuccess__9daAlink_cFv
 // daAlink_c::procFrontRollSuccess(void)
-asm void func_800C5240(void) {
+asm void procFrontRollSuccess__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C5240.s"
 }
@@ -4496,7 +4496,7 @@ asm void procSideRollInit__9daAlink_cFi(void) {
 
 // procSideRoll__9daAlink_cFv
 // daAlink_c::procSideRoll(void)
-asm void func_800C5484(void) {
+asm void procSideRoll__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C5484.s"
 }
@@ -4517,7 +4517,7 @@ asm void procBackJumpInit__9daAlink_cFi(void) {
 
 // procBackJump__9daAlink_cFv
 // daAlink_c::procBackJump(void)
-asm void func_800C5964(void) {
+asm void procBackJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C5964.s"
 }
@@ -4531,7 +4531,7 @@ asm void procBackJumpLandInit__9daAlink_cFi(void) {
 
 // procBackJumpLand__9daAlink_cFv
 // daAlink_c::procBackJumpLand(void)
-asm void func_800C5AF0(void) {
+asm void procBackJumpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C5AF0.s"
 }
@@ -4545,7 +4545,7 @@ asm void procSlipInit__9daAlink_cFv(void) {
 
 // procSlip__9daAlink_cFv
 // daAlink_c::procSlip(void)
-asm void func_800C5CA4(void) {
+asm void procSlip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C5CA4.s"
 }
@@ -4559,7 +4559,7 @@ asm void procAutoJumpInit__9daAlink_cFi(void) {
 
 // procAutoJump__9daAlink_cFv
 // daAlink_c::procAutoJump(void)
-asm void func_800C61EC(void) {
+asm void procAutoJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C61EC.s"
 }
@@ -4573,7 +4573,7 @@ asm void procDiveJumpInit__9daAlink_cFv(void) {
 
 // procDiveJump__9daAlink_cFv
 // daAlink_c::procDiveJump(void)
-asm void func_800C6798(void) {
+asm void procDiveJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C6798.s"
 }
@@ -4587,7 +4587,7 @@ asm void procRollJumpInit__9daAlink_cFv(void) {
 
 // procRollJump__9daAlink_cFv
 // daAlink_c::procRollJump(void)
-asm void func_800C692C(void) {
+asm void procRollJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C692C.s"
 }
@@ -4601,7 +4601,7 @@ asm void procFallInit__9daAlink_cFif(void) {
 
 // procFall__9daAlink_cFv
 // daAlink_c::procFall(void)
-asm void func_800C6D20(void) {
+asm void procFall__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C6D20.s"
 }
@@ -4615,7 +4615,7 @@ asm void procLandInit__9daAlink_cFf(void) {
 
 // procLand__9daAlink_cFv
 // daAlink_c::procLand(void)
-asm void func_800C6FE4(void) {
+asm void procLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C6FE4.s"
 }
@@ -4629,7 +4629,7 @@ asm void procSmallJumpInit__9daAlink_cFi(void) {
 
 // procSmallJump__9daAlink_cFv
 // daAlink_c::procSmallJump(void)
-asm void func_800C72D4(void) {
+asm void procSmallJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C72D4.s"
 }
@@ -4643,21 +4643,21 @@ asm void procStepMoveInit__9daAlink_cFv(void) {
 
 // procStepMove__9daAlink_cFv
 // daAlink_c::procStepMove(void)
-asm void func_800C755C(void) {
+asm void procStepMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C755C.s"
 }
 
 // procCrouchInit__9daAlink_cFv
 // daAlink_c::procCrouchInit(void)
-asm void func_800C7690(void) {
+asm void procCrouchInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C7690.s"
 }
 
 // procCrouch__9daAlink_cFv
 // daAlink_c::procCrouch(void)
-asm void func_800C76F8(void) {
+asm void procCrouch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C76F8.s"
 }
@@ -4671,21 +4671,21 @@ asm void procCoMetamorphoseInit__9daAlink_cFv(void) {
 
 // procCoMetamorphose__9daAlink_cFv
 // daAlink_c::procCoMetamorphose(void)
-asm void func_800C7C64(void) {
+asm void procCoMetamorphose__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C7C64.s"
 }
 
 // procCoMetamorphoseOnlyInit__9daAlink_cFv
 // daAlink_c::procCoMetamorphoseOnlyInit(void)
-asm void func_800C82E8(void) {
+asm void procCoMetamorphoseOnlyInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C82E8.s"
 }
 
 // procCoMetamorphoseOnly__9daAlink_cFv
 // daAlink_c::procCoMetamorphoseOnly(void)
-asm void func_800C83A0(void) {
+asm void procCoMetamorphoseOnly__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C83A0.s"
 }
@@ -4699,7 +4699,7 @@ asm void procFloorDownReboundInit__9daAlink_cFv(void) {
 
 // procFloorDownRebound__9daAlink_cFv
 // daAlink_c::procFloorDownRebound(void)
-asm void func_800C84D0(void) {
+asm void procFloorDownRebound__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C84D0.s"
 }
@@ -4713,7 +4713,7 @@ asm void procGoronRideWaitInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procGoronRideWait__9daAlink_cFv
 // daAlink_c::procGoronRideWait(void)
-asm void func_800C85D8(void) {
+asm void procGoronRideWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800C85D8.s"
 }
@@ -4727,7 +4727,7 @@ asm void execute__9daAlink_cFv(void) {
 
 // daAlink_Execute__FP9daAlink_c
 // daAlink_Execute(daAlink_c*)
-asm void func_800CAFA8(void) {
+asm void daAlink_Execute__FP9daAlink_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CAFA8.s"
 }
@@ -4762,14 +4762,14 @@ asm void checkItemDraw__9daAlink_cFv(void) {
 
 // initShadowScaleLight__9daAlink_cFv
 // daAlink_c::initShadowScaleLight(void)
-asm void func_800CB694(void) {
+asm void initShadowScaleLight__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CB694.s"
 }
 
 // moveShadowScaleLight__9daAlink_cFv
 // daAlink_c::moveShadowScaleLight(void)
-asm void func_800CBA38(void) {
+asm void moveShadowScaleLight__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CBA38.s"
 }
@@ -4825,7 +4825,7 @@ asm void draw__9daAlink_cFv(void) {
 
 // daAlink_Draw__FP9daAlink_c
 // daAlink_Draw(daAlink_c*)
-asm void func_800CD78C(void) {
+asm void daAlink_Draw__FP9daAlink_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CD78C.s"
 }
@@ -4839,7 +4839,7 @@ asm void __dt__9daAlink_cFv(void) {
 
 // daAlink_Delete__FP9daAlink_c
 // daAlink_Delete(daAlink_c*)
-asm void func_800CE208(void) {
+asm void daAlink_Delete__FP9daAlink_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CE208.s"
 }
@@ -4908,8 +4908,8 @@ asm void searchPeepObj__9daAlink_cFP10fopAc_ac_cPv(void) {
 }
 
 // daAlink_searchPeepObj__FP10fopAc_ac_cPv
-// daAlink_searchPeepObj(fopAc_ac_c*, void*)
-asm void daAlink_searchPeepObj(void) {
+// daAlink_searchPeepObj__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchPeepObj__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CED48.s"
 }
@@ -4923,7 +4923,7 @@ asm void procCoSubjectivityInit__9daAlink_cFv(void) {
 
 // procCoSubjectivity__9daAlink_cFv
 // daAlink_c::procCoSubjectivity(void)
-asm void func_800CEE08(void) {
+asm void procCoSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CEE08.s"
 }
@@ -4937,7 +4937,7 @@ asm void procCoSwimSubjectivityInit__9daAlink_cFv(void) {
 
 // procCoSwimSubjectivity__9daAlink_cFv
 // daAlink_c::procCoSwimSubjectivity(void)
-asm void func_800CF018(void) {
+asm void procCoSwimSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF018.s"
 }
@@ -4951,91 +4951,91 @@ asm void procCoPeepSubjectivityInit__9daAlink_cFv(void) {
 
 // procCoPeepSubjectivity__9daAlink_cFv
 // daAlink_c::procCoPeepSubjectivity(void)
-asm void func_800CF1B8(void) {
+asm void procCoPeepSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF1B8.s"
 }
 
 // checkBoardRide__9daAlink_cCFv
 // daAlink_c::checkBoardRide(const void)
-asm void func_800CF25C(void) {
+asm void checkBoardRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF25C.s"
 }
 
 // checkCanoeRide__9daAlink_cCFv
 // daAlink_c::checkCanoeRide(const void)
-asm void func_800CF270(void) {
+asm void checkCanoeRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF270.s"
 }
 
 // checkHorseRide__9daAlink_cCFv
 // daAlink_c::checkHorseRide(const void)
-asm void func_800CF284(void) {
+asm void checkHorseRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF284.s"
 }
 
 // getLeftItemMatrix__9daAlink_cFv
 // daAlink_c::getLeftItemMatrix(void)
-asm void func_800CF298(void) {
+asm void getLeftItemMatrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF298.s"
 }
 
 // checkBoarRide__9daAlink_cCFv
 // daAlink_c::checkBoarRide(const void)
-asm void func_800CF2B4(void) {
+asm void checkBoarRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF2B4.s"
 }
 
 // checkSpinnerRide__9daAlink_cCFv
 // daAlink_c::checkSpinnerRide(const void)
-asm void func_800CF2C8(void) {
+asm void checkSpinnerRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF2C8.s"
 }
 
 // getLeftHandMatrix__9daAlink_cFv
 // daAlink_c::getLeftHandMatrix(void)
-asm void func_800CF2DC(void) {
+asm void getLeftHandMatrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF2DC.s"
 }
 
 // getRightHandMatrix__9daAlink_cFv
 // daAlink_c::getRightHandMatrix(void)
-asm void func_800CF2F8(void) {
+asm void getRightHandMatrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF2F8.s"
 }
 
 // onSceneChangeArea__9daAlink_cFUcUcP10fopAc_ac_c
 // daAlink_c::onSceneChangeArea(unsigned char, unsigned char, fopAc_ac_c*)
-asm void func_800CF314(void) {
+asm void onSceneChangeArea__9daAlink_cFUcUcP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF314.s"
 }
 
 // getRightItemMatrix__9daAlink_cFv
 // daAlink_c::getRightItemMatrix(void)
-asm void func_800CF328(void) {
+asm void getRightItemMatrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF328.s"
 }
 
 // checkPlayerNoDraw__9daAlink_cFv
 // daAlink_c::checkPlayerNoDraw(void)
-asm void func_800CF344(void) {
+asm void checkPlayerNoDraw__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF344.s"
 }
 
 // __ct__9daAlink_cFv
 // daAlink_c::daAlink_c(void)
-asm void daAlink_c(void) {
+asm void __ct__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CF380.s"
 }
@@ -5075,28 +5075,28 @@ asm void __ct__18daAlink_footData_cFv(void) {
 
 // __dt__29dAlink_bottleWaterPcallBack_cFv
 // dAlink_bottleWaterPcallBack_c::~dAlink_bottleWaterPcallBack_c(void)
-asm void func_800CFCF8(void) {
+asm void __dt__29dAlink_bottleWaterPcallBack_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFCF8.s"
 }
 
 // __dt__14daAlink_blur_cFv
 // daAlink_blur_c::~daAlink_blur_c(void)
-asm void func_800CFD58(void) {
+asm void __dt__14daAlink_blur_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFD58.s"
 }
 
 // __dt__15daAlink_sight_cFv
 // daAlink_sight_c::~daAlink_sight_c(void)
-asm void func_800CFDF4(void) {
+asm void __dt__15daAlink_sight_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFDF4.s"
 }
 
 // __dt__20daAlink_lockCursor_cFv
 // daAlink_lockCursor_c::~daAlink_lockCursor_c(void)
-asm void func_800CFE68(void) {
+asm void __dt__20daAlink_lockCursor_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFE68.s"
 }
@@ -5109,23 +5109,23 @@ asm void checkRideOn__9daAlink_cCFv(void) {
 }
 
 // dComIfGp_att_getCatghTarget__Fv
-// dComIfGp_att_getCatghTarget(void)
-asm void dComIfGp_att_getCatghTarget(void) {
+// dComIfGp_att_getCatghTarget__Fv(void)
+asm void dComIfGp_att_getCatghTarget__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFEC4.s"
 }
 
 // mDoAud_setLinkHp__Fll
-// mDoAud_setLinkHp(long, long)
-asm void mDoAud_setLinkHp(void){nofralloc
+// mDoAud_setLinkHp__Fll(long, long)
+asm void mDoAud_setLinkHp__Fll(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFEF4.s"
 }
 
-u16 dComIfGs_getLife(void) {
+u16 dComIfGs_getLife__Fv(void) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getLife();
 }
 
-u8 dComIfGp_getRStatus(void) {
+u8 dComIfGp_getRStatus__Fv(void) {
     return g_dComIfG_gameInfo.getPlay().getRStatus();
 }
 
@@ -5141,7 +5141,7 @@ void dComIfGp_setItemLifeCount(float amount, u8 unk) {
 }
 
 // cMtx_multVec__FPA4_CfPC3VecP3Vec
-asm void cMtx_multVec(void) {
+asm void cMtx_multVec__FPA4_CfPC3VecP3Vec(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800CFFC0.s"
 }
@@ -5174,15 +5174,15 @@ asm void checkSmallUpperGuardAnime__9daAlink_cCFv(void) {
 }
 
 // dComIfGp_evmng_startCheck__FPCc
-// dComIfGp_evmng_startCheck(const char*)
-asm void dComIfGp_evmng_startCheck(void) {
+// dComIfGp_evmng_startCheck__FPCc(const char*)
+asm void dComIfGp_evmng_startCheck__FPCc(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D005C.s"
 }
 
 // mDoAud_setLinkGroupInfo__FUc
-// mDoAud_setLinkGroupInfo(unsigned char)
-asm void mDoAud_setLinkGroupInfo(void) {
+// mDoAud_setLinkGroupInfo__FUc(unsigned char)
+asm void mDoAud_setLinkGroupInfo__FUc(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D008C.s"
 }
@@ -5256,672 +5256,672 @@ asm void checkModeFlg__9daAlink_cCFUl(void) {
 
 // getShieldChangeWaitTimer__9daAlink_cCFv
 // daAlink_c::getShieldChangeWaitTimer(const void)
-asm void func_800D0198(void) {
+asm void getShieldChangeWaitTimer__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0198.s"
 }
 
 // getClothesChangeWaitTimer__9daAlink_cCFv
 // daAlink_c::getClothesChangeWaitTimer(const void)
-asm void func_800D01A0(void) {
+asm void getClothesChangeWaitTimer__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D01A0.s"
 }
 
 // checkHorseStart__9daAlink_cFv
 // daAlink_c::checkHorseStart(void)
-asm void func_800D01A8(void) {
+asm void checkHorseStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D01A8.s"
 }
 
 // checkCutTurnCharge__9daAlink_cCFv
 // daAlink_c::checkCutTurnCharge(const void)
-asm void func_800D01E0(void) {
+asm void checkCutTurnCharge__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D01E0.s"
 }
 
 // checkAcceptDungeonWarpAlink__9daAlink_cFi
 // daAlink_c::checkAcceptDungeonWarpAlink(int)
-asm void func_800D0208(void) {
+asm void checkAcceptDungeonWarpAlink__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0208.s"
 }
 
 // getSpinnerActor__9daAlink_cFv
 // daAlink_c::getSpinnerActor(void)
-asm void func_800D0228(void) {
+asm void getSpinnerActor__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0228.s"
 }
 
 // getSumouCounter__9daAlink_cCFv
 // daAlink_c::getSumouCounter(const void)
-asm void func_800D0274(void) {
+asm void getSumouCounter__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0274.s"
 }
 
 // checkSumouWithstand__9daAlink_cCFv
 // daAlink_c::checkSumouWithstand(const void)
-asm void func_800D027C(void) {
+asm void checkSumouWithstand__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D027C.s"
 }
 
 // setMidnaMsgNum__9daAlink_cFP10fopAc_ac_cUs
 // daAlink_c::setMidnaMsgNum(fopAc_ac_c*, unsigned short)
-asm void func_800D0284(void) {
+asm void setMidnaMsgNum__9daAlink_cFP10fopAc_ac_cUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0284.s"
 }
 
 // getModelMtx__9daAlink_cFv
 // daAlink_c::getModelMtx(void)
-asm void func_800D0290(void) {
+asm void getModelMtx__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0290.s"
 }
 
 // getInvMtx__9daAlink_cFv
 // daAlink_c::getInvMtx(void)
-asm void func_800D029C(void) {
+asm void getInvMtx__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D029C.s"
 }
 
 // getLinkBackBone1Matrix__9daAlink_cFv
 // daAlink_c::getLinkBackBone1Matrix(void)
-asm void func_800D02A4(void) {
+asm void getLinkBackBone1Matrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D02A4.s"
 }
 
 // getWolfMouthMatrix__9daAlink_cFv
 // daAlink_c::getWolfMouthMatrix(void)
-asm void func_800D02B8(void) {
+asm void getWolfMouthMatrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D02B8.s"
 }
 
 // getWolfBackbone2Matrix__9daAlink_cFv
 // daAlink_c::getWolfBackbone2Matrix(void)
-asm void func_800D02CC(void) {
+asm void getWolfBackbone2Matrix__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D02CC.s"
 }
 
 // getBottleMtx__9daAlink_cFv
 // daAlink_c::getBottleMtx(void)
-asm void func_800D02E0(void) {
+asm void getBottleMtx__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D02E0.s"
 }
 
 // getHeadMtx__9daAlink_cFv
 // daAlink_c::getHeadMtx(void)
-asm void func_800D0334(void) {
+asm void getHeadMtx__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0334.s"
 }
 
 // getGroundY__9daAlink_cFv
 // daAlink_c::getGroundY(void)
-asm void func_800D0350(void) {
+asm void getGroundY__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0350.s"
 }
 
 // getBaseAnimeFrameRate__9daAlink_cCFv
 // daAlink_c::getBaseAnimeFrameRate(const void)
-asm void func_800D0358(void) {
+asm void getBaseAnimeFrameRate__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0358.s"
 }
 
 // getAtnActorID__9daAlink_cCFv
 // daAlink_c::getAtnActorID(const void)
-asm void func_800D0360(void) {
+asm void getAtnActorID__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0360.s"
 }
 
 // getItemID__9daAlink_cCFv
 // daAlink_c::getItemID(const void)
-asm void func_800D0368(void) {
+asm void getItemID__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0368.s"
 }
 
 // getGrabActorID__9daAlink_cCFv
 // daAlink_c::getGrabActorID(const void)
-asm void func_800D0370(void) {
+asm void getGrabActorID__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0370.s"
 }
 
 // setForcePutPos__9daAlink_cFRC4cXyz
 // daAlink_c::setForcePutPos(const cXyz&)
-asm void func_800D038C(void) {
+asm void setForcePutPos__9daAlink_cFRC4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D038C.s"
 }
 
 // checkPlayerFly__9daAlink_cCFv
 // daAlink_c::checkPlayerFly(const void)
-asm void func_800D03B4(void) {
+asm void checkPlayerFly__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D03B4.s"
 }
 
 // checkFrontRoll__9daAlink_cCFv
 // daAlink_c::checkFrontRoll(const void)
-asm void func_800D03C8(void) {
+asm void checkFrontRoll__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D03C8.s"
 }
 
 // checkWolfDash__9daAlink_cCFv
 // daAlink_c::checkWolfDash(const void)
-asm void func_800D03DC(void) {
+asm void checkWolfDash__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D03DC.s"
 }
 
 // checkAutoJump__9daAlink_cCFv
 // daAlink_c::checkAutoJump(const void)
-asm void func_800D03F0(void) {
+asm void checkAutoJump__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D03F0.s"
 }
 
 // checkSideStep__9daAlink_cCFv
 // daAlink_c::checkSideStep(const void)
-asm void func_800D0414(void) {
+asm void checkSideStep__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0414.s"
 }
 
 // checkWolfTriggerJump__9daAlink_cCFv
 // daAlink_c::checkWolfTriggerJump(const void)
-asm void func_800D0444(void) {
+asm void checkWolfTriggerJump__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0444.s"
 }
 
 // checkGuardBreakMode__9daAlink_cCFv
 // daAlink_c::checkGuardBreakMode(const void)
-asm void func_800D0468(void) {
+asm void checkGuardBreakMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0468.s"
 }
 
 // checkLv3Slide__9daAlink_cCFv
 // daAlink_c::checkLv3Slide(const void)
-asm void func_800D047C(void) {
+asm void checkLv3Slide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D047C.s"
 }
 
 // checkWolfHowlDemoMode__9daAlink_cCFv
 // daAlink_c::checkWolfHowlDemoMode(const void)
-asm void func_800D04A4(void) {
+asm void checkWolfHowlDemoMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D04A4.s"
 }
 
 // checkElecDamage__9daAlink_cCFv
 // daAlink_c::checkElecDamage(const void)
-asm void func_800D04B8(void) {
+asm void checkElecDamage__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D04B8.s"
 }
 
 // checkEmptyBottleSwing__9daAlink_cCFv
 // daAlink_c::checkEmptyBottleSwing(const void)
-asm void func_800D04CC(void) {
+asm void checkEmptyBottleSwing__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D04CC.s"
 }
 
 // checkBottleSwingMode__9daAlink_cCFv
 // daAlink_c::checkBottleSwingMode(const void)
-asm void func_800D04F4(void) {
+asm void checkBottleSwingMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D04F4.s"
 }
 
 // checkHawkWait__9daAlink_cCFv
 // daAlink_c::checkHawkWait(const void)
-asm void func_800D0508(void) {
+asm void checkHawkWait__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0508.s"
 }
 
 // checkGoatThrow__9daAlink_cCFv
 // daAlink_c::checkGoatThrow(const void)
-asm void func_800D051C(void) {
+asm void checkGoatThrow__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D051C.s"
 }
 
 // checkGoatThrowAfter__9daAlink_cCFv
 // daAlink_c::checkGoatThrowAfter(const void)
-asm void func_800D0544(void) {
+asm void checkGoatThrowAfter__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0544.s"
 }
 
 // checkWolfTagLockJump__9daAlink_cCFv
 // daAlink_c::checkWolfTagLockJump(const void)
-asm void func_800D0570(void) {
+asm void checkWolfTagLockJump__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0570.s"
 }
 
 // checkWolfTagLockJumpLand__9daAlink_cCFv
 // daAlink_c::checkWolfTagLockJumpLand(const void)
-asm void func_800D0598(void) {
+asm void checkWolfTagLockJumpLand__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0598.s"
 }
 
 // checkWolfRopeHang__9daAlink_cCFv
 // daAlink_c::checkWolfRopeHang(const void)
-asm void func_800D05AC(void) {
+asm void checkWolfRopeHang__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D05AC.s"
 }
 
 // checkRollJump__9daAlink_cCFv
 // daAlink_c::checkRollJump(const void)
-asm void func_800D05C0(void) {
+asm void checkRollJump__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D05C0.s"
 }
 
 // checkGoronRideWait__9daAlink_cCFv
 // daAlink_c::checkGoronRideWait(const void)
-asm void func_800D05D4(void) {
+asm void checkGoronRideWait__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D05D4.s"
 }
 
 // checkWolfChain__9daAlink_cCFv
 // daAlink_c::checkWolfChain(const void)
-asm void func_800D05E8(void) {
+asm void checkWolfChain__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D05E8.s"
 }
 
 // checkWolfWait__9daAlink_cCFv
 // daAlink_c::checkWolfWait(const void)
-asm void func_800D05FC(void) {
+asm void checkWolfWait__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D05FC.s"
 }
 
 // checkWolfJumpAttack__9daAlink_cCFv
 // daAlink_c::checkWolfJumpAttack(const void)
-asm void func_800D0610(void) {
+asm void checkWolfJumpAttack__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0610.s"
 }
 
 // checkWolfRSit__9daAlink_cCFv
 // daAlink_c::checkWolfRSit(const void)
-asm void func_800D0624(void) {
+asm void checkWolfRSit__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0624.s"
 }
 
 // checkBottleDrinkEnd__9daAlink_cCFv
 // daAlink_c::checkBottleDrinkEnd(const void)
-asm void func_800D0638(void) {
+asm void checkBottleDrinkEnd__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0638.s"
 }
 
 // checkWolfDig__9daAlink_cCFv
 // daAlink_c::checkWolfDig(const void)
-asm void func_800D0660(void) {
+asm void checkWolfDig__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0660.s"
 }
 
 // checkCutCharge__9daAlink_cCFv
 // daAlink_c::checkCutCharge(const void)
-asm void func_800D0674(void) {
+asm void checkCutCharge__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0674.s"
 }
 
 // checkCutLargeJumpCharge__9daAlink_cCFv
 // daAlink_c::checkCutLargeJumpCharge(const void)
-asm void func_800D0688(void) {
+asm void checkCutLargeJumpCharge__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0688.s"
 }
 
 // checkComboCutTurn__9daAlink_cCFv
 // daAlink_c::checkComboCutTurn(const void)
-asm void func_800D06B0(void) {
+asm void checkComboCutTurn__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D06B0.s"
 }
 
 // checkClimbMove__9daAlink_cCFv
 // daAlink_c::checkClimbMove(const void)
-asm void func_800D06D8(void) {
+asm void checkClimbMove__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D06D8.s"
 }
 
 // checkGrassWhistle__9daAlink_cCFv
 // daAlink_c::checkGrassWhistle(const void)
-asm void func_800D0704(void) {
+asm void checkGrassWhistle__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0704.s"
 }
 
 // checkBoarRun__9daAlink_cCFv
 // daAlink_c::checkBoarRun(const void)
-asm void func_800D0718(void) {
+asm void checkBoarRun__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0718.s"
 }
 
 // checkHorseRideNotReady__9daAlink_cCFv
 // daAlink_c::checkHorseRideNotReady(const void)
-asm void func_800D072C(void) {
+asm void checkHorseRideNotReady__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D072C.s"
 }
 
 // getSearchBallScale__9daAlink_cCFv
 // daAlink_c::getSearchBallScale(const void)
-asm void func_800D0794(void) {
+asm void getSearchBallScale__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0794.s"
 }
 
 // checkFastShotTime__9daAlink_cFv
 // daAlink_c::checkFastShotTime(void)
-asm void func_800D079C(void) {
+asm void checkFastShotTime__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D079C.s"
 }
 
 // checkCutJumpCancelTurn__9daAlink_cCFv
 // daAlink_c::checkCutJumpCancelTurn(const void)
-asm void func_800D07A4(void) {
+asm void checkCutJumpCancelTurn__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D07A4.s"
 }
 
 // checkSingleBoarBattleSecondBowReady__9daAlink_cCFv
 // daAlink_c::checkSingleBoarBattleSecondBowReady(const void)
-asm void func_800D07D4(void) {
+asm void checkSingleBoarBattleSecondBowReady__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D07D4.s"
 }
 
 // cancelDungeonWarpReadyNeck__9daAlink_cFv
 // daAlink_c::cancelDungeonWarpReadyNeck(void)
-asm void func_800D07FC(void) {
+asm void cancelDungeonWarpReadyNeck__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D07FC.s"
 }
 
 // onSceneChangeAreaJump__9daAlink_cFUcUcP10fopAc_ac_c
 // daAlink_c::onSceneChangeAreaJump(unsigned char, unsigned char, fopAc_ac_c*)
-asm void func_800D0818(void) {
+asm void onSceneChangeAreaJump__9daAlink_cFUcUcP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0818.s"
 }
 
 // onSceneChangeDead__9daAlink_cFUci
 // daAlink_c::onSceneChangeDead(unsigned char, int)
-asm void func_800D0830(void) {
+asm void onSceneChangeDead__9daAlink_cFUci(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0830.s"
 }
 
 // checkNoEquipItem__9daAlink_cCFv
 // daAlink_c::checkNoEquipItem(const void)
-asm void func_800D084C(void) {
+asm void checkNoEquipItem__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D084C.s"
 }
 
 // getBoardCutTurnOffsetAngleY__9daAlink_cCFv
 // daAlink_c::getBoardCutTurnOffsetAngleY(const void)
-asm void func_800D0860(void) {
+asm void getBoardCutTurnOffsetAngleY__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0860.s"
 }
 
 // getMagneBootsTopVec__9daAlink_cFv
 // daAlink_c::getMagneBootsTopVec(void)
-asm void func_800D087C(void) {
+asm void getMagneBootsTopVec__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D087C.s"
 }
 
 // setCargoCarry__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::setCargoCarry(fopAc_ac_c*)
-asm void func_800D0884(void) {
+asm void setCargoCarry__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0884.s"
 }
 
 // setGoronSideMove__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::setGoronSideMove(fopAc_ac_c*)
-asm void func_800D08B0(void) {
+asm void setGoronSideMove__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D08B0.s"
 }
 
 // setSumouReady__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::setSumouReady(fopAc_ac_c*)
-asm void func_800D08DC(void) {
+asm void setSumouReady__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D08DC.s"
 }
 
 // setSumouPushBackDirection__9daAlink_cFs
 // daAlink_c::setSumouPushBackDirection(short)
-asm void func_800D091C(void) {
+asm void setSumouPushBackDirection__9daAlink_cFs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D091C.s"
 }
 
 // setSumouLoseHeadUp__9daAlink_cFv
 // daAlink_c::setSumouLoseHeadUp(void)
-asm void func_800D0930(void) {
+asm void setSumouLoseHeadUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0930.s"
 }
 
 // checkPriActorOwn__9daAlink_cCFPC10fopAc_ac_c
 // daAlink_c::checkPriActorOwn(const fopAc_ac_c*)
-asm void func_800D0948(void) {
+asm void checkPriActorOwn__9daAlink_cCFPC10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0948.s"
 }
 
 // checkWolfEnemyBiteAllOwn__9daAlink_cCFPC10fopAc_ac_c
 // daAlink_c::checkWolfEnemyBiteAllOwn(const fopAc_ac_c*)
-asm void func_800D095C(void) {
+asm void checkWolfEnemyBiteAllOwn__9daAlink_cCFPC10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D095C.s"
 }
 
 // setWolfEnemyHangBiteAngle__9daAlink_cFs
 // daAlink_c::setWolfEnemyHangBiteAngle(short)
-asm void func_800D0970(void) {
+asm void setWolfEnemyHangBiteAngle__9daAlink_cFs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0970.s"
 }
 
 // setSumouGraspCancelCount__9daAlink_cFi
 // daAlink_c::setSumouGraspCancelCount(int)
-asm void func_800D0984(void) {
+asm void setSumouGraspCancelCount__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0984.s"
 }
 
 // checkItemSwordEquip__9daAlink_cCFv
 // daAlink_c::checkItemSwordEquip(const void)
-asm void func_800D0998(void) {
+asm void checkItemSwordEquip__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0998.s"
 }
 
 // getSinkShapeOffset__9daAlink_cCFv
 // daAlink_c::getSinkShapeOffset(const void)
-asm void func_800D09AC(void) {
+asm void getSinkShapeOffset__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09AC.s"
 }
 
 // checkSinkDead__9daAlink_cCFv
 // daAlink_c::checkSinkDead(const void)
-asm void func_800D09B4(void) {
+asm void checkSinkDead__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09B4.s"
 }
 
 // checkCutJumpMode__9daAlink_cCFv
 // daAlink_c::checkCutJumpMode(const void)
-asm void func_800D09C8(void) {
+asm void checkCutJumpMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09C8.s"
 }
 
 // getGiantPuzzleAimAngle__9daAlink_cCFv
 // daAlink_c::getGiantPuzzleAimAngle(const void)
-asm void func_800D09DC(void) {
+asm void getGiantPuzzleAimAngle__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09DC.s"
 }
 
 // getSwordChangeWaitTimer__9daAlink_cCFv
 // daAlink_c::getSwordChangeWaitTimer(const void)
-asm void func_800D09E4(void) {
+asm void getSwordChangeWaitTimer__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09E4.s"
 }
 
 // checkMetamorphose__9daAlink_cCFv
 // daAlink_c::checkMetamorphose(const void)
-asm void func_800D09EC(void) {
+asm void checkMetamorphose__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D09EC.s"
 }
 
 // checkWolfDownAttackPullOut__9daAlink_cCFv
 // daAlink_c::checkWolfDownAttackPullOut(const void)
-asm void func_800D0A14(void) {
+asm void checkWolfDownAttackPullOut__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A14.s"
 }
 
 // getMidnaAtnPos__9daAlink_cCFv
 // daAlink_c::getMidnaAtnPos(const void)
-asm void func_800D0A28(void) {
+asm void getMidnaAtnPos__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A28.s"
 }
 
 // checkCopyRodEquip__9daAlink_cCFv
 // daAlink_c::checkCopyRodEquip(const void)
-asm void func_800D0A30(void) {
+asm void checkCopyRodEquip__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A30.s"
 }
 
 // checkCanoeFishingGetLeft__9daAlink_cCFv
 // daAlink_c::checkCanoeFishingGetLeft(const void)
-asm void func_800D0A44(void) {
+asm void checkCanoeFishingGetLeft__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A44.s"
 }
 
 // checkCanoeFishingGetRight__9daAlink_cCFv
 // daAlink_c::checkCanoeFishingGetRight(const void)
-asm void func_800D0A6C(void) {
+asm void checkCanoeFishingGetRight__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A6C.s"
 }
 
 // checkBeeChildDrink__9daAlink_cCFv
 // daAlink_c::checkBeeChildDrink(const void)
-asm void func_800D0A94(void) {
+asm void checkBeeChildDrink__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A94.s"
 }
 
 // getWolfHowlMgrP__9daAlink_cFv
 // daAlink_c::getWolfHowlMgrP(void)
-asm void func_800D0A9C(void) {
+asm void getWolfHowlMgrP__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0A9C.s"
 }
 
 // checkWolfHowlSuccessAnime__9daAlink_cCFv
 // daAlink_c::checkWolfHowlSuccessAnime(const void)
-asm void func_800D0AA4(void) {
+asm void checkWolfHowlSuccessAnime__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0AA4.s"
 }
 
 // checkOctaIealHang__9daAlink_cCFv
 // daAlink_c::checkOctaIealHang(const void)
-asm void func_800D0AC8(void) {
+asm void checkOctaIealHang__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0AC8.s"
 }
 
 // cancelOctaIealHang__9daAlink_cFv
 // daAlink_c::cancelOctaIealHang(void)
-asm void func_800D0AF0(void) {
+asm void cancelOctaIealHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0AF0.s"
 }
 
 // cancelDragonHangBackJump__9daAlink_cFv
 // daAlink_c::cancelDragonHangBackJump(void)
-asm void func_800D0B08(void) {
+asm void cancelDragonHangBackJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0B08.s"
 }
 
 // setOctaIealWildHang__9daAlink_cFv
 // daAlink_c::setOctaIealWildHang(void)
-asm void func_800D0B20(void) {
+asm void setOctaIealWildHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0B20.s"
 }
 
 // checkDragonHangRide__9daAlink_cCFv
 // daAlink_c::checkDragonHangRide(const void)
-asm void func_800D0B38(void) {
+asm void checkDragonHangRide__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0B38.s"
 }
 
 // playerStartCollisionSE__9daAlink_cFUlUl
 // daAlink_c::playerStartCollisionSE(unsigned long, unsigned long)
-asm void func_800D0B60(void) {
+asm void playerStartCollisionSE__9daAlink_cFUlUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0B60.s"
 }
 
 // __dt__16daAlink_matAnm_cFv
 // daAlink_matAnm_c::~daAlink_matAnm_c(void)
-asm void func_800D0B8C(void) {
+asm void __dt__16daAlink_matAnm_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0B8C.s"
 }
@@ -5934,14 +5934,14 @@ asm void __dt__12dBgS_ObjAcchFv(void) {
 }
 
 // __dt__Q29daAlink_c14hsChainShape_cFv
-asm void func_800D0CDC(void) {
+asm void __dt__Q29daAlink_c14hsChainShape_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0CDC.s"
 }
 
 // daAlink_searchNightStalker__FP10fopAc_ac_cPv
-// daAlink_searchNightStalker(fopAc_ac_c*, void*)
-asm void daAlink_searchNightStalker(void) {
+// daAlink_searchNightStalker__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchNightStalker__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D0D38.s"
 }
@@ -6172,7 +6172,7 @@ asm void setSwordComboVoice__9daAlink_cFv(void) {
 
 // checkCutTurnInputTrigger__9daAlink_cFv
 // daAlink_c::checkCutTurnInputTrigger(void)
-asm void checkCutTurnInput__9daAlink_cCFvTrigger(void) {
+asm void checkCutTurnInputTrigger__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D2368.s"
 }
@@ -6277,7 +6277,7 @@ asm void procCutNormalInit__9daAlink_cFi(void) {
 
 // procCutNormal__9daAlink_cFv
 // daAlink_c::procCutNormal(void)
-asm void func_800D31B8(void) {
+asm void procCutNormal__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D31B8.s"
 }
@@ -6291,7 +6291,7 @@ asm void procCutFinishInit__9daAlink_cFi(void) {
 
 // procCutFinish__9daAlink_cFv
 // daAlink_c::procCutFinish(void)
-asm void func_800D382C(void) {
+asm void procCutFinish__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D382C.s"
 }
@@ -6305,7 +6305,7 @@ asm void procCutFinishJumpUpInit__9daAlink_cFv(void) {
 
 // procCutFinishJumpUp__9daAlink_cFv
 // daAlink_c::procCutFinishJumpUp(void)
-asm void func_800D3CCC(void) {
+asm void procCutFinishJumpUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D3CCC.s"
 }
@@ -6319,7 +6319,7 @@ asm void procCutFinishJumpUpLandInit__9daAlink_cFv(void) {
 
 // procCutFinishJumpUpLand__9daAlink_cFv
 // daAlink_c::procCutFinishJumpUpLand(void)
-asm void func_800D3ECC(void) {
+asm void procCutFinishJumpUpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D3ECC.s"
 }
@@ -6332,7 +6332,7 @@ asm void procCutReverseInit__9daAlink_cFQ29daAlink_c11daAlink_ANM(void) {
 
 // procCutReverse__9daAlink_cFv
 // daAlink_c::procCutReverse(void)
-asm void func_800D41FC(void) {
+asm void procCutReverse__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D41FC.s"
 }
@@ -6346,7 +6346,7 @@ asm void procCutJumpInit__9daAlink_cFi(void) {
 
 // procCutJump__9daAlink_cFv
 // daAlink_c::procCutJump(void)
-asm void func_800D43F8(void) {
+asm void procCutJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D43F8.s"
 }
@@ -6360,7 +6360,7 @@ asm void procCutJumpLandInit__9daAlink_cFi(void) {
 
 // procCutJumpLand__9daAlink_cFv
 // daAlink_c::procCutJumpLand(void)
-asm void func_800D4684(void) {
+asm void procCutJumpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D4684.s"
 }
@@ -6374,7 +6374,7 @@ asm void procCutTurnInit__9daAlink_cFii(void) {
 
 // procCutTurn__9daAlink_cFv
 // daAlink_c::procCutTurn(void)
-asm void func_800D4A74(void) {
+asm void procCutTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D4A74.s"
 }
@@ -6388,7 +6388,7 @@ asm void procCutTurnChargeInit__9daAlink_cFv(void) {
 
 // procCutTurnCharge__9daAlink_cFv
 // daAlink_c::procCutTurnCharge(void)
-asm void func_800D4D04(void) {
+asm void procCutTurnCharge__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D4D04.s"
 }
@@ -6402,7 +6402,7 @@ asm void procCutTurnMoveInit__9daAlink_cFi(void) {
 
 // procCutTurnMove__9daAlink_cFv
 // daAlink_c::procCutTurnMove(void)
-asm void func_800D4EFC(void) {
+asm void procCutTurnMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D4EFC.s"
 }
@@ -6416,7 +6416,7 @@ asm void procCutDownInit__9daAlink_cFv(void) {
 
 // procCutDown__9daAlink_cFv
 // daAlink_c::procCutDown(void)
-asm void func_800D57F8(void) {
+asm void procCutDown__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D57F8.s"
 }
@@ -6430,7 +6430,7 @@ asm void procCutDownLandInit__9daAlink_cFP13fopEn_enemy_c(void) {
 
 // procCutDownLand__9daAlink_cFv
 // daAlink_c::procCutDownLand(void)
-asm void func_800D5ADC(void) {
+asm void procCutDownLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D5ADC.s"
 }
@@ -6444,7 +6444,7 @@ asm void procCutHeadInit__9daAlink_cFv(void) {
 
 // procCutHead__9daAlink_cFv
 // daAlink_c::procCutHead(void)
-asm void func_800D5FC8(void) {
+asm void procCutHead__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D5FC8.s"
 }
@@ -6458,7 +6458,7 @@ asm void procCutHeadLandInit__9daAlink_cFv(void) {
 
 // procCutHeadLand__9daAlink_cFv
 // daAlink_c::procCutHeadLand(void)
-asm void func_800D618C(void) {
+asm void procCutHeadLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D618C.s"
 }
@@ -6472,7 +6472,7 @@ asm void procCutLargeJumpChargeInit__9daAlink_cFv(void) {
 
 // procCutLargeJumpCharge__9daAlink_cFv
 // daAlink_c::procCutLargeJumpCharge(void)
-asm void func_800D62A0(void) {
+asm void procCutLargeJumpCharge__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D62A0.s"
 }
@@ -6486,7 +6486,7 @@ asm void procCutLargeJumpInit__9daAlink_cFv(void) {
 
 // procCutLargeJump__9daAlink_cFv
 // daAlink_c::procCutLargeJump(void)
-asm void func_800D6484(void) {
+asm void procCutLargeJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6484.s"
 }
@@ -6500,7 +6500,7 @@ asm void procCutLargeJumpLandInit__9daAlink_cFi(void) {
 
 // procCutLargeJumpLand__9daAlink_cFv
 // daAlink_c::procCutLargeJumpLand(void)
-asm void func_800D67FC(void) {
+asm void procCutLargeJumpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D67FC.s"
 }
@@ -6514,28 +6514,28 @@ asm void procSwordUnequipSpInit__9daAlink_cFv(void) {
 
 // procSwordUnequipSp__9daAlink_cFv
 // daAlink_c::procSwordUnequipSp(void)
-asm void func_800D6A38(void) {
+asm void procSwordUnequipSp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6A38.s"
 }
 
 // getFreezeR__9daAlink_cCFv
 // daAlink_c::getFreezeR(const void)
-asm void func_800D6D94(void) {
+asm void getFreezeR__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6D94.s"
 }
 
 // getFreezeG__9daAlink_cCFv
 // daAlink_c::getFreezeG(const void)
-asm void func_800D6DA4(void) {
+asm void getFreezeG__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6DA4.s"
 }
 
 // getFreezeB__9daAlink_cCFv
 // daAlink_c::getFreezeB(const void)
-asm void func_800D6DB4(void) {
+asm void getFreezeB__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6DB4.s"
 }
@@ -6549,7 +6549,7 @@ asm void checkMiddleBossGoronRoom__9daAlink_cFv(void) {
 
 // setDkCaught__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::setDkCaught(fopAc_ac_c*)
-asm void func_800D6DF0(void) {
+asm void setDkCaught__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6DF0.s"
 }
@@ -6563,7 +6563,7 @@ asm void freezeTimerDamage__9daAlink_cFv(void) {
 
 // onPressedDamage__9daAlink_cFRC4cXyzs
 // daAlink_c::onPressedDamage(const cXyz&, short)
-asm void func_800D6F00(void) {
+asm void onPressedDamage__9daAlink_cFRC4cXyzs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D6F00.s"
 }
@@ -6591,7 +6591,7 @@ asm void checkCaughtEscapeCutTurn__9daAlink_cFv(void) {
 
 // setThrowDamage__9daAlink_cFsffiii
 // daAlink_c::setThrowDamage(short, float, float, int, int, int)
-asm void func_800D7160(void) {
+asm void setThrowDamage__9daAlink_cFsffiii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D7160.s"
 }
@@ -6612,7 +6612,7 @@ asm void setDamagePoint__9daAlink_cFiiii(void) {
 
 // setDamagePointNormal__9daAlink_cFi
 // daAlink_c::setDamagePointNormal(int)
-asm void setDamagePoint__9daAlink_cFiiiiNormal(void) {
+asm void setDamagePointNormal__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D7478.s"
 }
@@ -6703,7 +6703,7 @@ asm void procDamageInit__9daAlink_cFP12dCcD_GObjInfi(void) {
 
 // procDamage__9daAlink_cFv
 // daAlink_c::procDamage(void)
-asm void func_800D9514(void) {
+asm void procDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D9514.s"
 }
@@ -6717,7 +6717,7 @@ asm void procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi(void) {
 
 // procCoLargeDamage__9daAlink_cFv
 // daAlink_c::procCoLargeDamage(void)
-asm void func_800D9E88(void) {
+asm void procCoLargeDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800D9E88.s"
 }
@@ -6731,7 +6731,7 @@ asm void procLargeDamageUpInit__9daAlink_cFiiss(void) {
 
 // procLargeDamageUp__9daAlink_cFv
 // daAlink_c::procLargeDamageUp(void)
-asm void func_800DA554(void) {
+asm void procLargeDamageUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DA554.s"
 }
@@ -6745,7 +6745,7 @@ asm void procCoLargeDamageWallInit__9daAlink_cFiiss(void) {
 
 // procCoLargeDamageWall__9daAlink_cFv
 // daAlink_c::procCoLargeDamageWall(void)
-asm void func_800DAC28(void) {
+asm void procCoLargeDamageWall__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DAC28.s"
 }
@@ -6759,7 +6759,7 @@ asm void procCoPolyDamageInit__9daAlink_cFv(void) {
 
 // procCoPolyDamage__9daAlink_cFv
 // daAlink_c::procCoPolyDamage(void)
-asm void func_800DAD90(void) {
+asm void procCoPolyDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DAD90.s"
 }
@@ -6773,7 +6773,7 @@ asm void procLandDamageInit__9daAlink_cFi(void) {
 
 // procLandDamage__9daAlink_cFv
 // daAlink_c::procLandDamage(void)
-asm void func_800DB060(void) {
+asm void procLandDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DB060.s"
 }
@@ -6787,7 +6787,7 @@ asm void procCoElecDamageInit__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfi(void) {
 
 // procCoElecDamage__9daAlink_cFv
 // daAlink_c::procCoElecDamage(void)
-asm void func_800DB418(void) {
+asm void procCoElecDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DB418.s"
 }
@@ -6801,7 +6801,7 @@ asm void procStEscapeInit__9daAlink_cFv(void) {
 
 // procStEscape__9daAlink_cFv
 // daAlink_c::procStEscape(void)
-asm void func_800DB610(void) {
+asm void procStEscape__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DB610.s"
 }
@@ -6815,7 +6815,7 @@ asm void procDkCaughtInit__9daAlink_cFUi(void) {
 
 // procDkCaught__9daAlink_cFv
 // daAlink_c::procDkCaught(void)
-asm void func_800DB860(void) {
+asm void procDkCaught__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DB860.s"
 }
@@ -6836,7 +6836,7 @@ asm void procScreamWaitInit__9daAlink_cFv(void) {
 
 // procScreamWait__9daAlink_cFv
 // daAlink_c::procScreamWait(void)
-asm void func_800DBDA4(void) {
+asm void procScreamWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DBDA4.s"
 }
@@ -6850,7 +6850,7 @@ asm void procCoSandWallHitInit__9daAlink_cFv(void) {
 
 // procCoSandWallHit__9daAlink_cFv
 // daAlink_c::procCoSandWallHit(void)
-asm void func_800DBE74(void) {
+asm void procCoSandWallHit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DBE74.s"
 }
@@ -6864,7 +6864,7 @@ asm void procCoLavaReturnInit__9daAlink_cFi(void) {
 
 // procCoLavaReturn__9daAlink_cFv
 // daAlink_c::procCoLavaReturn(void)
-asm void func_800DC214(void) {
+asm void procCoLavaReturn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DC214.s"
 }
@@ -6878,7 +6878,7 @@ asm void procCoSwimFreezeReturnInit__9daAlink_cFv(void) {
 
 // procCoSwimFreezeReturn__9daAlink_cFv
 // daAlink_c::procCoSwimFreezeReturn(void)
-asm void func_800DC474(void) {
+asm void procCoSwimFreezeReturn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DC474.s"
 }
@@ -6920,7 +6920,7 @@ asm void stickArrowIncrement__9daAlink_cFi(void) {
 
 // setArrowShieldActor__9daAlink_cFP10fopAc_ac_ci
 // daAlink_c::setArrowShieldActor(fopAc_ac_c*, int)
-asm void func_800DC8C4(void) {
+asm void setArrowShieldActor__9daAlink_cFP10fopAc_ac_ci(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DC8C4.s"
 }
@@ -6934,14 +6934,14 @@ asm void checkWoodShieldEquipNotIronBall__9daAlink_cCFv(void) {
 
 // getArrowShieldOffset__9daAlink_cCFPC4cXyzPC5csXyzP4cXyzP4cXyz
 // daAlink_c::getArrowShieldOffset(const cXyz*, const csXyz*, cXyz*, cXyz*)
-asm void func_800DCA80(void) {
+asm void getArrowShieldOffset__9daAlink_cCFPC4cXyzPC5csXyzP4cXyzP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DCA80.s"
 }
 
 // setArrowShieldPos__9daAlink_cCFP4cXyzP5csXyzPC4cXyzPC4cXyz
 // daAlink_c::setArrowShieldPos(const cXyz*, csXyz*, const cXyz*, const cXyz*)
-asm void func_800DCD74(void) {
+asm void setArrowShieldPos__9daAlink_cCFP4cXyzP5csXyzPC4cXyzPC4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DCD74.s"
 }
@@ -6955,7 +6955,7 @@ asm void checkUpperGuardAnime__9daAlink_cCFv(void) {
 
 // checkPlayerGuard__9daAlink_cCFv
 // daAlink_c::checkPlayerGuard(const void)
-asm void func_800DCE6C(void) {
+asm void checkPlayerGuard__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DCE6C.s"
 }
@@ -7011,7 +7011,7 @@ asm void procGuardSlipInit__9daAlink_cFiP12dCcD_GObjInf(void) {
 
 // procGuardSlip__9daAlink_cFv
 // daAlink_c::procGuardSlip(void)
-asm void func_800DD894(void) {
+asm void procGuardSlip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DD894.s"
 }
@@ -7025,7 +7025,7 @@ asm void procGuardAttackInit__9daAlink_cFv(void) {
 
 // procGuardAttack__9daAlink_cFv
 // daAlink_c::procGuardAttack(void)
-asm void func_800DDBA8(void) {
+asm void procGuardAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DDBA8.s"
 }
@@ -7039,7 +7039,7 @@ asm void procGuardBreakInit__9daAlink_cFv(void) {
 
 // procGuardBreak__9daAlink_cFv
 // daAlink_c::procGuardBreak(void)
-asm void func_800DDF2C(void) {
+asm void procGuardBreak__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DDF2C.s"
 }
@@ -7053,7 +7053,7 @@ asm void procTurnMoveInit__9daAlink_cFi(void) {
 
 // procTurnMove__9daAlink_cFv
 // daAlink_c::procTurnMove(void)
-asm void func_800DE380(void) {
+asm void procTurnMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE380.s"
 }
@@ -7067,28 +7067,28 @@ asm void getArrowFlyData__9daAlink_cCFPfPfi(void) {
 
 // getArrowIncAtR__9daAlink_cCFv
 // daAlink_c::getArrowIncAtR(const void)
-asm void func_800DE740(void) {
+asm void getArrowIncAtR__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE740.s"
 }
 
 // getBombArrowFlyExplodeTime__9daAlink_cCFv
 // daAlink_c::getBombArrowFlyExplodeTime(const void)
-asm void func_800DE750(void) {
+asm void getBombArrowFlyExplodeTime__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE750.s"
 }
 
 // getArrowIncAtMaxStart__9daAlink_cCFv
 // daAlink_c::getArrowIncAtMaxStart(const void)
-asm void func_800DE760(void) {
+asm void getArrowIncAtMaxStart__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE760.s"
 }
 
 // getArrowIncAtMax__9daAlink_cCFv
 // daAlink_c::getArrowIncAtMax(const void)
-asm void func_800DE770(void) {
+asm void getArrowIncAtMax__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE770.s"
 }
@@ -7116,7 +7116,7 @@ asm void checkBowCameraArrowPosP__9daAlink_cFPsPs(void) {
 
 // checkArrowChargeEnd__9daAlink_cCFv
 // daAlink_c::checkArrowChargeEnd(const void)
-asm void func_800DE990(void) {
+asm void checkArrowChargeEnd__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DE990.s"
 }
@@ -7193,21 +7193,21 @@ asm void setBowReloadAnime__9daAlink_cFv(void) {
 
 // checkUpperItemActionBow__9daAlink_cFv
 // daAlink_c::checkUpperItemActionBow(void)
-asm void checkUpperItemAction__9daAlink_cFvBow(void) {
+asm void checkUpperItemActionBow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DF0BC.s"
 }
 
 // checkUpperItemActionBowFly__9daAlink_cFv
 // daAlink_c::checkUpperItemActionBowFly(void)
-asm void checkUpperItemAction__9daAlink_cFvBowFly(void) {
+asm void checkUpperItemActionBowFly__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DF798.s"
 }
 
 // checkNextActionBow__9daAlink_cFv
 // daAlink_c::checkNextActionBow(void)
-asm void checkNextAction__9daAlink_cFiBow(void) {
+asm void checkNextActionBow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DF814.s"
 }
@@ -7256,7 +7256,7 @@ asm void procBowSubjectInit__9daAlink_cFv(void) {
 
 // procBowSubject__9daAlink_cFv
 // daAlink_c::procBowSubject(void)
-asm void func_800DFDDC(void) {
+asm void procBowSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DFDDC.s"
 }
@@ -7270,28 +7270,28 @@ asm void procBowMoveInit__9daAlink_cFv(void) {
 
 // procBowMove__9daAlink_cFv
 // daAlink_c::procBowMove(void)
-asm void func_800DFEC0(void) {
+asm void procBowMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DFEC0.s"
 }
 
 // checkBoomerangLockAccept__9daAlink_cFv
 // daAlink_c::checkBoomerangLockAccept(void)
-asm void func_800DFFE0(void) {
+asm void checkBoomerangLockAccept__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800DFFE0.s"
 }
 
 // getBoomSpeed__9daAlink_cFv
 // daAlink_c::getBoomSpeed(void)
-asm void func_800E0010(void) {
+asm void getBoomSpeed__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0010.s"
 }
 
 // getBoomCatchSpeed__9daAlink_cCFv
 // daAlink_c::getBoomCatchSpeed(const void)
-asm void func_800E00B0(void) {
+asm void getBoomCatchSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E00B0.s"
 }
@@ -7312,7 +7312,7 @@ asm void getBoomLockMax__9daAlink_cFv(void) {
 
 // getBoomBgThroughTime__9daAlink_cCFv
 // daAlink_c::getBoomBgThroughTime(const void)
-asm void func_800E0190(void) {
+asm void getBoomBgThroughTime__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0190.s"
 }
@@ -7410,28 +7410,28 @@ asm void throwBoomerang__9daAlink_cFv(void) {
 
 // returnBoomerang__9daAlink_cFi
 // daAlink_c::returnBoomerang(int)
-asm void func_800E08C4(void) {
+asm void returnBoomerang__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E08C4.s"
 }
 
 // checkUpperItemActionBoomerang__9daAlink_cFv
 // daAlink_c::checkUpperItemActionBoomerang(void)
-asm void checkUpperItemAction__9daAlink_cFvBoomerang(void) {
+asm void checkUpperItemActionBoomerang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0A9C.s"
 }
 
 // checkUpperItemActionBoomerangFly__9daAlink_cFv
 // daAlink_c::checkUpperItemActionBoomerangFly(void)
-asm void checkUpperItemAction__9daAlink_cFvBoomerangFly(void) {
+asm void checkUpperItemActionBoomerangFly__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0B58.s"
 }
 
 // checkNextActionBoomerang__9daAlink_cFv
 // daAlink_c::checkNextActionBoomerang(void)
-asm void checkNextAction__9daAlink_cFiBoomerang(void) {
+asm void checkNextActionBoomerang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0BE4.s"
 }
@@ -7459,7 +7459,7 @@ asm void procBoomerangSubjectInit__9daAlink_cFv(void) {
 
 // procBoomerangSubject__9daAlink_cFv
 // daAlink_c::procBoomerangSubject(void)
-asm void func_800E0FA0(void) {
+asm void procBoomerangSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E0FA0.s"
 }
@@ -7473,7 +7473,7 @@ asm void procBoomerangMoveInit__9daAlink_cFv(void) {
 
 // procBoomerangMove__9daAlink_cFv
 // daAlink_c::procBoomerangMove(void)
-asm void func_800E10F4(void) {
+asm void procBoomerangMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E10F4.s"
 }
@@ -7487,7 +7487,7 @@ asm void procBoomerangCatchInit__9daAlink_cFv(void) {
 
 // procBoomerangCatch__9daAlink_cFv
 // daAlink_c::procBoomerangCatch(void)
-asm void func_800E1248(void) {
+asm void procBoomerangCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1248.s"
 }
@@ -7501,14 +7501,14 @@ asm void checkLv6BossRoom__9daAlink_cFv(void) {
 
 // getCopyRodBallSpeed__9daAlink_cCFv
 // daAlink_c::getCopyRodBallSpeed(const void)
-asm void func_800E1310(void) {
+asm void getCopyRodBallSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1310.s"
 }
 
 // getCopyRodBallReturnSpeed__9daAlink_cCFv
 // daAlink_c::getCopyRodBallReturnSpeed(const void)
-asm void func_800E1320(void) {
+asm void getCopyRodBallReturnSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1320.s"
 }
@@ -7550,7 +7550,7 @@ asm void checkForestOldCentury__9daAlink_cFv(void) {
 
 // checkCopyRodTopUse__9daAlink_cFv
 // daAlink_c::checkCopyRodTopUse(void)
-asm void func_800E145C(void) {
+asm void checkCopyRodTopUse__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E145C.s"
 }
@@ -7599,28 +7599,28 @@ asm void throwCopyRod__9daAlink_cFv(void) {
 
 // returnCopyRod__9daAlink_cFv
 // daAlink_c::returnCopyRod(void)
-asm void func_800E1A30(void) {
+asm void returnCopyRod__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1A30.s"
 }
 
 // checkUpperItemActionCopyRod__9daAlink_cFv
 // daAlink_c::checkUpperItemActionCopyRod(void)
-asm void checkUpperItemAction__9daAlink_cFvCopyRod(void) {
+asm void checkUpperItemActionCopyRod__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1ADC.s"
 }
 
 // checkUpperItemActionCopyRodFly__9daAlink_cFv
 // daAlink_c::checkUpperItemActionCopyRodFly(void)
-asm void checkUpperItemAction__9daAlink_cFvCopyRodFly(void) {
+asm void checkUpperItemActionCopyRodFly__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1BB4.s"
 }
 
 // checkNextActionCopyRod__9daAlink_cFv
 // daAlink_c::checkNextActionCopyRod(void)
-asm void checkNextAction__9daAlink_cFiCopyRod(void) {
+asm void checkNextActionCopyRod__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1C44.s"
 }
@@ -7641,7 +7641,7 @@ asm void procCopyRodSubjectInit__9daAlink_cFv(void) {
 
 // procCopyRodSubject__9daAlink_cFv
 // daAlink_c::procCopyRodSubject(void)
-asm void func_800E1EB0(void) {
+asm void procCopyRodSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1EB0.s"
 }
@@ -7655,7 +7655,7 @@ asm void procCopyRodMoveInit__9daAlink_cFv(void) {
 
 // procCopyRodMove__9daAlink_cFv
 // daAlink_c::procCopyRodMove(void)
-asm void func_800E1FFC(void) {
+asm void procCopyRodMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E1FFC.s"
 }
@@ -7669,21 +7669,21 @@ asm void procCopyRodSwingInit__9daAlink_cFv(void) {
 
 // procCopyRodSwing__9daAlink_cFv
 // daAlink_c::procCopyRodSwing(void)
-asm void func_800E21FC(void) {
+asm void procCopyRodSwing__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E21FC.s"
 }
 
 // procCopyRodReviveInit__9daAlink_cFv
 // daAlink_c::procCopyRodReviveInit(void)
-asm void func_800E2308(void) {
+asm void procCopyRodReviveInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E2308.s"
 }
 
 // procCopyRodRevive__9daAlink_cFv
 // daAlink_c::procCopyRodRevive(void)
-asm void func_800E23A4(void) {
+asm void procCopyRodRevive__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E23A4.s"
 }
@@ -7767,7 +7767,7 @@ asm void procBootsEquipInit__9daAlink_cFv(void) {
 
 // procBootsEquip__9daAlink_cFv
 // daAlink_c::procBootsEquip(void)
-asm void func_800E30DC(void) {
+asm void procBootsEquip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E30DC.s"
 }
@@ -7781,119 +7781,119 @@ asm void procMagneBootsFlyInit__9daAlink_cFv(void) {
 
 // procMagneBootsFly__9daAlink_cFv
 // daAlink_c::procMagneBootsFly(void)
-asm void func_800E3454(void) {
+asm void procMagneBootsFly__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3454.s"
 }
 
 // getBombExplodeTime__9daAlink_cCFv
 // daAlink_c::getBombExplodeTime(const void)
-asm void func_800E3760(void) {
+asm void getBombExplodeTime__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3760.s"
 }
 
 // getBombGravity__9daAlink_cCFv
 // daAlink_c::getBombGravity(const void)
-asm void func_800E3770(void) {
+asm void getBombGravity__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3770.s"
 }
 
 // getBombMaxFallSpeed__9daAlink_cCFv
 // daAlink_c::getBombMaxFallSpeed(const void)
-asm void func_800E3780(void) {
+asm void getBombMaxFallSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3780.s"
 }
 
 // getBombBoundRate__9daAlink_cCFv
 // daAlink_c::getBombBoundRate(const void)
-asm void func_800E3790(void) {
+asm void getBombBoundRate__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3790.s"
 }
 
 // getBombStopSpeedY__9daAlink_cCFv
 // daAlink_c::getBombStopSpeedY(const void)
-asm void func_800E37A0(void) {
+asm void getBombStopSpeedY__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37A0.s"
 }
 
 // getBombMaxSpeedY__9daAlink_cCFv
 // daAlink_c::getBombMaxSpeedY(const void)
-asm void func_800E37B0(void) {
+asm void getBombMaxSpeedY__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37B0.s"
 }
 
 // getBombEffScale__9daAlink_cCFv
 // daAlink_c::getBombEffScale(const void)
-asm void func_800E37C0(void) {
+asm void getBombEffScale__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37C0.s"
 }
 
 // getBombAtR__9daAlink_cCFv
 // daAlink_c::getBombAtR(const void)
-asm void func_800E37D0(void) {
+asm void getBombAtR__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37D0.s"
 }
 
 // getEnemyBombColorR__9daAlink_cCFv
 // daAlink_c::getEnemyBombColorR(const void)
-asm void func_800E37E0(void) {
+asm void getEnemyBombColorR__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37E0.s"
 }
 
 // getBombWaterGravity__9daAlink_cCFv
 // daAlink_c::getBombWaterGravity(const void)
-asm void func_800E37F0(void) {
+asm void getBombWaterGravity__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E37F0.s"
 }
 
 // getBombWaterMaxFallSpeed__9daAlink_cCFv
 // daAlink_c::getBombWaterMaxFallSpeed(const void)
-asm void func_800E3800(void) {
+asm void getBombWaterMaxFallSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3800.s"
 }
 
 // getBombExplodeWaterEffectLimit__9daAlink_cCFv
 // daAlink_c::getBombExplodeWaterEffectLimit(const void)
-asm void func_800E3810(void) {
+asm void getBombExplodeWaterEffectLimit__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3810.s"
 }
 
 // getBombInsectLimitAngle__9daAlink_cCFv
 // daAlink_c::getBombInsectLimitAngle(const void)
-asm void func_800E3820(void) {
+asm void getBombInsectLimitAngle__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3820.s"
 }
 
 // daAlink_checkLightBallA__FP10fopAc_ac_c
-// daAlink_checkLightBallA(fopAc_ac_c*)
-asm void daAlink_checkLightBallA(void) {
+// daAlink_checkLightBallA__FP10fopAc_ac_c(fopAc_ac_c*)
+asm void daAlink_checkLightBallA__FP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3830.s"
 }
 
 // daAlink_checkLightBallB__FP10fopAc_ac_c
-// daAlink_checkLightBallB(fopAc_ac_c*)
-asm void daAlink_checkLightBallB(void) {
+// daAlink_checkLightBallB__FP10fopAc_ac_c(fopAc_ac_c*)
+asm void daAlink_checkLightBallB__FP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3858.s"
 }
 
 // daAlink_searchLightBall__FP10fopAc_ac_cPv
-// daAlink_searchLightBall(fopAc_ac_c*, void*)
-asm void daAlink_searchLightBall(void) {
+// daAlink_searchLightBall__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchLightBall__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3880.s"
 }
@@ -7907,21 +7907,21 @@ asm void checkGrabLineCheck__9daAlink_cFv(void) {
 
 // setGrabCollisionOffset__9daAlink_cFffP13cBgS_PolyInfo
 // daAlink_c::setGrabCollisionOffset(float, float, cBgS_PolyInfo*)
-asm void func_800E3994(void) {
+asm void setGrabCollisionOffset__9daAlink_cFffP13cBgS_PolyInfo(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3994.s"
 }
 
 // exchangeGrabActor__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::exchangeGrabActor(fopAc_ac_c*)
-asm void func_800E3A14(void) {
+asm void exchangeGrabActor__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3A14.s"
 }
 
 // setForceGrab__9daAlink_cFP10fopAc_ac_cii
 // daAlink_c::setForceGrab(fopAc_ac_c*, int, int)
-asm void func_800E3A9C(void) {
+asm void setForceGrab__9daAlink_cFP10fopAc_ac_cii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3A9C.s"
 }
@@ -7949,7 +7949,7 @@ asm void checkGrabAnime__9daAlink_cCFv(void) {
 
 // checkGrabAnimeAndThrow__9daAlink_cCFv
 // daAlink_c::checkGrabAnimeAndThrow(const void)
-asm void checkGrabAnime__9daAlink_cCFvAndThrow(void) {
+asm void checkGrabAnimeAndThrow__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E3C9C.s"
 }
@@ -8033,7 +8033,7 @@ asm void checkGrabNotThrow__9daAlink_cFv(void) {
 
 // checkNextActionGrab__9daAlink_cFv
 // daAlink_c::checkNextActionGrab(void)
-asm void checkNextAction__9daAlink_cFiGrab(void) {
+asm void checkNextActionGrab__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E5170.s"
 }
@@ -8089,7 +8089,7 @@ asm void procGrabReadyInit__9daAlink_cFv(void) {
 
 // procGrabReady__9daAlink_cFv
 // daAlink_c::procGrabReady(void)
-asm void func_800E5EC8(void) {
+asm void procGrabReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E5EC8.s"
 }
@@ -8103,14 +8103,14 @@ asm void procGrabUpInit__9daAlink_cFv(void) {
 
 // procGrabUp__9daAlink_cFv
 // daAlink_c::procGrabUp(void)
-asm void func_800E6230(void) {
+asm void procGrabUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E6230.s"
 }
 
 // procGrabMiss__9daAlink_cFv
 // daAlink_c::procGrabMiss(void)
-asm void func_800E637C(void) {
+asm void procGrabMiss__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E637C.s"
 }
@@ -8124,7 +8124,7 @@ asm void procGrabThrowInit__9daAlink_cFi(void) {
 
 // procGrabThrow__9daAlink_cFv
 // daAlink_c::procGrabThrow(void)
-asm void func_800E65F8(void) {
+asm void procGrabThrow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E65F8.s"
 }
@@ -8138,7 +8138,7 @@ asm void procGrabPutInit__9daAlink_cFv(void) {
 
 // procGrabPut__9daAlink_cFv
 // daAlink_c::procGrabPut(void)
-asm void func_800E6914(void) {
+asm void procGrabPut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E6914.s"
 }
@@ -8152,7 +8152,7 @@ asm void procGrabWaitInit__9daAlink_cFv(void) {
 
 // procGrabWait__9daAlink_cFv
 // daAlink_c::procGrabWait(void)
-asm void func_800E6C34(void) {
+asm void procGrabWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E6C34.s"
 }
@@ -8166,7 +8166,7 @@ asm void procGrabReboundInit__9daAlink_cFi(void) {
 
 // procGrabRebound__9daAlink_cFv
 // daAlink_c::procGrabRebound(void)
-asm void func_800E6E0C(void) {
+asm void procGrabRebound__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E6E0C.s"
 }
@@ -8180,7 +8180,7 @@ asm void procGrabStandInit__9daAlink_cFv(void) {
 
 // procGrabStand__9daAlink_cFv
 // daAlink_c::procGrabStand(void)
-asm void func_800E6FE0(void) {
+asm void procGrabStand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E6FE0.s"
 }
@@ -8201,7 +8201,7 @@ asm void procInsectCatchInit__9daAlink_cFv(void) {
 
 // procInsectCatch__9daAlink_cFv
 // daAlink_c::procInsectCatch(void)
-asm void func_800E71D4(void) {
+asm void procInsectCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E71D4.s"
 }
@@ -8215,7 +8215,7 @@ asm void procPickUpInit__9daAlink_cFv(void) {
 
 // procPickUp__9daAlink_cFv
 // daAlink_c::procPickUp(void)
-asm void func_800E7460(void) {
+asm void procPickUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E7460.s"
 }
@@ -8229,7 +8229,7 @@ asm void procPickPutInit__9daAlink_cFi(void) {
 
 // procPickPut__9daAlink_cFv
 // daAlink_c::procPickPut(void)
-asm void func_800E76E0(void) {
+asm void procPickPut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E76E0.s"
 }
@@ -8271,7 +8271,7 @@ asm void setFmChainPosFromOut__9daAlink_cFP10fopAc_ac_cP4cXyzi(void) {
 
 // checkChainBlockPushPull__9daAlink_cFv
 // daAlink_c::checkChainBlockPushPull(void)
-asm void func_800E7BD0(void) {
+asm void checkChainBlockPushPull__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E7BD0.s"
 }
@@ -8285,7 +8285,7 @@ asm void procFmChainUpInit__9daAlink_cFv(void) {
 
 // procFmChainUp__9daAlink_cFv
 // daAlink_c::procFmChainUp(void)
-asm void func_800E7CC0(void) {
+asm void procFmChainUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E7CC0.s"
 }
@@ -8299,7 +8299,7 @@ asm void procFmChainStrongPullInit__9daAlink_cFv(void) {
 
 // procFmChainStrongPull__9daAlink_cFv
 // daAlink_c::procFmChainStrongPull(void)
-asm void func_800E7E50(void) {
+asm void procFmChainStrongPull__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E7E50.s"
 }
@@ -8396,7 +8396,7 @@ asm void procCoPushPullWaitInit__9daAlink_cFi(void) {
 
 // procCoPushPullWait__9daAlink_cFv
 // daAlink_c::procCoPushPullWait(void)
-asm void func_800E857C(void) {
+asm void procCoPushPullWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E857C.s"
 }
@@ -8410,7 +8410,7 @@ asm void procCoPushMoveInit__9daAlink_cFii(void) {
 
 // procCoPushMove__9daAlink_cFv
 // daAlink_c::procCoPushMove(void)
-asm void func_800E89F0(void) {
+asm void procCoPushMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E89F0.s"
 }
@@ -8424,21 +8424,21 @@ asm void procPullMoveInit__9daAlink_cFi(void) {
 
 // procPullMove__9daAlink_cFv
 // daAlink_c::procPullMove(void)
-asm void func_800E8F44(void) {
+asm void procPullMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E8F44.s"
 }
 
 // daAlink_searchGoat__FP10fopAc_ac_cPv
-// daAlink_searchGoat(fopAc_ac_c*, void*)
-asm void daAlink_searchGoat(void) {
+// daAlink_searchGoat__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchGoat__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E91B0.s"
 }
 
 // cancelGoronThrowEvent__9daAlink_cFv
 // daAlink_c::cancelGoronThrowEvent(void)
-asm void func_800E91C4(void) {
+asm void cancelGoronThrowEvent__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E91C4.s"
 }
@@ -8459,7 +8459,7 @@ asm void procGoatMoveInit__9daAlink_cFv(void) {
 
 // procGoatMove__9daAlink_cFv
 // daAlink_c::procGoatMove(void)
-asm void func_800E9434(void) {
+asm void procGoatMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E9434.s"
 }
@@ -8473,7 +8473,7 @@ asm void procGoatCatchInit__9daAlink_cFP10fopAc_ac_cf(void) {
 
 // procGoatCatch__9daAlink_cFv
 // daAlink_c::procGoatCatch(void)
-asm void func_800E9BD0(void) {
+asm void procGoatCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800E9BD0.s"
 }
@@ -8487,7 +8487,7 @@ asm void procGoatStrokeInit__9daAlink_cFv(void) {
 
 // procGoatStroke__9daAlink_cFv
 // daAlink_c::procGoatStroke(void)
-asm void func_800EA3AC(void) {
+asm void procGoatStroke__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EA3AC.s"
 }
@@ -8501,7 +8501,7 @@ asm void procGoronMoveInit__9daAlink_cFv(void) {
 
 // procGoronMove__9daAlink_cFv
 // daAlink_c::procGoronMove(void)
-asm void func_800EA4CC(void) {
+asm void procGoronMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EA4CC.s"
 }
@@ -8543,7 +8543,7 @@ asm void procSumouReadyInit__9daAlink_cFv(void) {
 
 // procSumouReady__9daAlink_cFv
 // daAlink_c::procSumouReady(void)
-asm void func_800EAA28(void) {
+asm void procSumouReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EAA28.s"
 }
@@ -8557,7 +8557,7 @@ asm void procSumouMoveInit__9daAlink_cFv(void) {
 
 // procSumouMove__9daAlink_cFv
 // daAlink_c::procSumouMove(void)
-asm void func_800EAD84(void) {
+asm void procSumouMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EAD84.s"
 }
@@ -8571,7 +8571,7 @@ asm void procSumouSideMoveInit__9daAlink_cFv(void) {
 
 // procSumouSideMove__9daAlink_cFv
 // daAlink_c::procSumouSideMove(void)
-asm void func_800EB2BC(void) {
+asm void procSumouSideMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EB2BC.s"
 }
@@ -8585,7 +8585,7 @@ asm void procSumouActionInit__9daAlink_cFiii(void) {
 
 // procSumouAction__9daAlink_cFv
 // daAlink_c::procSumouAction(void)
-asm void func_800EBCE0(void) {
+asm void procSumouAction__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EBCE0.s"
 }
@@ -8599,7 +8599,7 @@ asm void procSumouStaggerInit__9daAlink_cFv(void) {
 
 // procSumouStagger__9daAlink_cFv
 // daAlink_c::procSumouStagger(void)
-asm void func_800EC170(void) {
+asm void procSumouStagger__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC170.s"
 }
@@ -8613,35 +8613,35 @@ asm void procSumouWinLoseInit__9daAlink_cFv(void) {
 
 // procSumouWinLose__9daAlink_cFv
 // daAlink_c::procSumouWinLose(void)
-asm void func_800EC3D8(void) {
+asm void procSumouWinLose__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC3D8.s"
 }
 
 // procSumouShikoInit__9daAlink_cFv
 // daAlink_c::procSumouShikoInit(void)
-asm void func_800EC538(void) {
+asm void procSumouShikoInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC538.s"
 }
 
 // procSumouShiko__9daAlink_cFv
 // daAlink_c::procSumouShiko(void)
-asm void func_800EC5F4(void) {
+asm void procSumouShiko__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC5F4.s"
 }
 
 // daAlink_searchBoar__FP10fopAc_ac_cPv
-// daAlink_searchBoar(fopAc_ac_c*, void*)
-asm void daAlink_searchBoar(void) {
+// daAlink_searchBoar__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchBoar__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC724.s"
 }
 
 // daAlink_searchCoach__FP10fopAc_ac_cPv
-// daAlink_searchCoach(fopAc_ac_c*, void*)
-asm void daAlink_searchCoach(void) {
+// daAlink_searchCoach__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchCoach__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC758.s"
 }
@@ -8683,7 +8683,7 @@ asm void getReinRideDirection__9daAlink_cFv(void) {
 
 // checkReinRideBgCheck__9daAlink_cFv
 // daAlink_c::checkReinRideBgCheck(void)
-asm void checkReinRide__9daAlink_cCFvBgCheck(void) {
+asm void checkReinRideBgCheck__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EC8F8.s"
 }
@@ -8753,7 +8753,7 @@ asm void checkHorseLieAnime__9daAlink_cCFv(void) {
 
 // checkHorseSubjectivity__9daAlink_cCFv
 // daAlink_c::checkHorseSubjectivity(const void)
-asm void func_800ECF5C(void) {
+asm void checkHorseSubjectivity__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800ECF5C.s"
 }
@@ -8781,7 +8781,7 @@ asm void checkHorseNoUpperAnime__9daAlink_cCFv(void) {
 
 // getHorseReinHandPos__9daAlink_cFP4cXyzP4cXyz
 // daAlink_c::getHorseReinHandPos(cXyz*, cXyz*)
-asm void func_800ED0D4(void) {
+asm void getHorseReinHandPos__9daAlink_cFP4cXyzP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800ED0D4.s"
 }
@@ -8962,7 +8962,7 @@ asm void horseGetOffEnd__9daAlink_cFv(void) {
 
 // checkNextActionHorse__9daAlink_cFv
 // daAlink_c::checkNextActionHorse(void)
-asm void checkNextAction__9daAlink_cFiHorse(void) {
+asm void checkNextActionHorse__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EF450.s"
 }
@@ -8976,7 +8976,7 @@ asm void checkHorseGetOff__9daAlink_cFv(void) {
 
 // checkHorseGetOffAndSetDoStatus__9daAlink_cFv
 // daAlink_c::checkHorseGetOffAndSetDoStatus(void)
-asm void checkHorseGetOff__9daAlink_cFvAndSetDoStatus(void) {
+asm void checkHorseGetOffAndSetDoStatus__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EF6B0.s"
 }
@@ -8997,7 +8997,7 @@ asm void procHorseRideInit__9daAlink_cFv(void) {
 
 // procHorseRide__9daAlink_cFv
 // daAlink_c::procHorseRide(void)
-asm void func_800EFDC4(void) {
+asm void procHorseRide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800EFDC4.s"
 }
@@ -9011,7 +9011,7 @@ asm void procHorseGetOffInit__9daAlink_cFi(void) {
 
 // procHorseGetOff__9daAlink_cFv
 // daAlink_c::procHorseGetOff(void)
-asm void func_800F0620(void) {
+asm void procHorseGetOff__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F0620.s"
 }
@@ -9025,7 +9025,7 @@ asm void procHorseWaitInit__9daAlink_cFv(void) {
 
 // procHorseWait__9daAlink_cFv
 // daAlink_c::procHorseWait(void)
-asm void func_800F0AA4(void) {
+asm void procHorseWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F0AA4.s"
 }
@@ -9039,7 +9039,7 @@ asm void procHorseTurnInit__9daAlink_cFv(void) {
 
 // procHorseTurn__9daAlink_cFv
 // daAlink_c::procHorseTurn(void)
-asm void func_800F0CE4(void) {
+asm void procHorseTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F0CE4.s"
 }
@@ -9053,7 +9053,7 @@ asm void procHorseJumpInit__9daAlink_cFv(void) {
 
 // procHorseJump__9daAlink_cFv
 // daAlink_c::procHorseJump(void)
-asm void func_800F10F8(void) {
+asm void procHorseJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F10F8.s"
 }
@@ -9067,7 +9067,7 @@ asm void procHorseLandInit__9daAlink_cFv(void) {
 
 // procHorseLand__9daAlink_cFv
 // daAlink_c::procHorseLand(void)
-asm void func_800F1204(void) {
+asm void procHorseLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F1204.s"
 }
@@ -9081,7 +9081,7 @@ asm void procHorseSubjectivityInit__9daAlink_cFv(void) {
 
 // procHorseSubjectivity__9daAlink_cFv
 // daAlink_c::procHorseSubjectivity(void)
-asm void func_800F12F8(void) {
+asm void procHorseSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F12F8.s"
 }
@@ -9095,7 +9095,7 @@ asm void procHorseCutInit__9daAlink_cFv(void) {
 
 // procHorseCut__9daAlink_cFv
 // daAlink_c::procHorseCut(void)
-asm void func_800F1688(void) {
+asm void procHorseCut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F1688.s"
 }
@@ -9109,7 +9109,7 @@ asm void procHorseCutChargeReadyInit__9daAlink_cFv(void) {
 
 // procHorseCutChargeReady__9daAlink_cFv
 // daAlink_c::procHorseCutChargeReady(void)
-asm void func_800F194C(void) {
+asm void procHorseCutChargeReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F194C.s"
 }
@@ -9123,7 +9123,7 @@ asm void procHorseCutTurnInit__9daAlink_cFv(void) {
 
 // procHorseCutTurn__9daAlink_cFv
 // daAlink_c::procHorseCutTurn(void)
-asm void func_800F1BA4(void) {
+asm void procHorseCutTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F1BA4.s"
 }
@@ -9137,7 +9137,7 @@ asm void procHorseDamageInit__9daAlink_cFP12dCcD_GObjInf(void) {
 
 // procHorseDamage__9daAlink_cFv
 // daAlink_c::procHorseDamage(void)
-asm void func_800F2028(void) {
+asm void procHorseDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2028.s"
 }
@@ -9151,7 +9151,7 @@ asm void procHorseBowSubjectInit__9daAlink_cFv(void) {
 
 // procHorseBowSubject__9daAlink_cFv
 // daAlink_c::procHorseBowSubject(void)
-asm void func_800F21B4(void) {
+asm void procHorseBowSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F21B4.s"
 }
@@ -9165,7 +9165,7 @@ asm void procHorseBowMoveInit__9daAlink_cFv(void) {
 
 // procHorseBowMove__9daAlink_cFv
 // daAlink_c::procHorseBowMove(void)
-asm void func_800F22A8(void) {
+asm void procHorseBowMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F22A8.s"
 }
@@ -9179,7 +9179,7 @@ asm void procHorseGrabMoveInit__9daAlink_cFv(void) {
 
 // procHorseGrabMove__9daAlink_cFv
 // daAlink_c::procHorseGrabMove(void)
-asm void func_800F2390(void) {
+asm void procHorseGrabMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2390.s"
 }
@@ -9193,7 +9193,7 @@ asm void procHorseBoomerangSubjectInit__9daAlink_cFv(void) {
 
 // procHorseBoomerangSubject__9daAlink_cFv
 // daAlink_c::procHorseBoomerangSubject(void)
-asm void func_800F24C8(void) {
+asm void procHorseBoomerangSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F24C8.s"
 }
@@ -9207,7 +9207,7 @@ asm void procHorseBoomerangMoveInit__9daAlink_cFv(void) {
 
 // procHorseBoomerangMove__9daAlink_cFv
 // daAlink_c::procHorseBoomerangMove(void)
-asm void func_800F2628(void) {
+asm void procHorseBoomerangMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2628.s"
 }
@@ -9221,7 +9221,7 @@ asm void procHorseHookshotSubjectInit__9daAlink_cFv(void) {
 
 // procHorseHookshotSubject__9daAlink_cFv
 // daAlink_c::procHorseHookshotSubject(void)
-asm void func_800F2770(void) {
+asm void procHorseHookshotSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2770.s"
 }
@@ -9235,7 +9235,7 @@ asm void procHorseHookshotMoveInit__9daAlink_cFv(void) {
 
 // procHorseHookshotMove__9daAlink_cFv
 // daAlink_c::procHorseHookshotMove(void)
-asm void func_800F2898(void) {
+asm void procHorseHookshotMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2898.s"
 }
@@ -9249,7 +9249,7 @@ asm void procHorseBottleDrinkInit__9daAlink_cFUs(void) {
 
 // procHorseBottleDrink__9daAlink_cFv
 // daAlink_c::procHorseBottleDrink(void)
-asm void func_800F2AD8(void) {
+asm void procHorseBottleDrink__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2AD8.s"
 }
@@ -9263,7 +9263,7 @@ asm void procHorseKandelaarPourInit__9daAlink_cFv(void) {
 
 // procHorseKandelaarPour__9daAlink_cFv
 // daAlink_c::procHorseKandelaarPour(void)
-asm void func_800F2C78(void) {
+asm void procHorseKandelaarPour__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2C78.s"
 }
@@ -9277,7 +9277,7 @@ asm void procHorseComebackInit__9daAlink_cFv(void) {
 
 // procHorseComeback__9daAlink_cFv
 // daAlink_c::procHorseComeback(void)
-asm void func_800F2DE4(void) {
+asm void procHorseComeback__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2DE4.s"
 }
@@ -9291,7 +9291,7 @@ asm void procHorseRunInit__9daAlink_cFv(void) {
 
 // procHorseRun__9daAlink_cFv
 // daAlink_c::procHorseRun(void)
-asm void func_800F2F98(void) {
+asm void procHorseRun__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F2F98.s"
 }
@@ -9305,35 +9305,35 @@ asm void procHorseHangInit__9daAlink_cFP12dCcD_GObjInfi(void) {
 
 // procHorseHang__9daAlink_cFv
 // daAlink_c::procHorseHang(void)
-asm void func_800F3580(void) {
+asm void procHorseHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3580.s"
 }
 
 // procHorseGetKeyInit__9daAlink_cFv
 // daAlink_c::procHorseGetKeyInit(void)
-asm void func_800F36E4(void) {
+asm void procHorseGetKeyInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F36E4.s"
 }
 
 // procHorseGetKey__9daAlink_cFv
 // daAlink_c::procHorseGetKey(void)
-asm void func_800F3754(void) {
+asm void procHorseGetKey__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3754.s"
 }
 
 // procHorseLookDownInit__9daAlink_cFv
 // daAlink_c::procHorseLookDownInit(void)
-asm void func_800F3818(void) {
+asm void procHorseLookDownInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3818.s"
 }
 
 // procHorseLookDown__9daAlink_cFv
 // daAlink_c::procHorseLookDown(void)
-asm void func_800F3894(void) {
+asm void procHorseLookDown__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3894.s"
 }
@@ -9347,7 +9347,7 @@ asm void procBoarRunInit__9daAlink_cFv(void) {
 
 // procBoarRun__9daAlink_cFv
 // daAlink_c::procBoarRun(void)
-asm void func_800F3998(void) {
+asm void procBoarRun__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3998.s"
 }
@@ -9361,14 +9361,14 @@ asm void getCanoeMaxSpeed__9daAlink_cCFv(void) {
 
 // getCanoeBackMaxSpeed__9daAlink_cCFv
 // daAlink_c::getCanoeBackMaxSpeed(const void)
-asm void func_800F3BDC(void) {
+asm void getCanoeBackMaxSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3BDC.s"
 }
 
 // getCanoeCres__9daAlink_cCFv
 // daAlink_c::getCanoeCres(const void)
-asm void func_800F3BEC(void) {
+asm void getCanoeCres__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3BEC.s"
 }
@@ -9382,7 +9382,7 @@ asm void getCanoeSpeedRate__9daAlink_cCFv(void) {
 
 // getCanoeMaxRotSpeed__9daAlink_cCFv
 // daAlink_c::getCanoeMaxRotSpeed(const void)
-asm void func_800F3C44(void) {
+asm void getCanoeMaxRotSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3C44.s"
 }
@@ -9395,8 +9395,8 @@ asm void getCanoeLocalPaddleTop__9daAlink_cFv(void) {
 }
 
 // daAlink_searchCanoe__FP10fopAc_ac_cPv
-// daAlink_searchCanoe(fopAc_ac_c*, void*)
-asm void daAlink_searchCanoe(void) {
+// daAlink_searchCanoe__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchCanoe__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3CD8.s"
 }
@@ -9431,21 +9431,21 @@ asm void getCanoePaddleMatrix__9daAlink_cFv(void) {
 
 // checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c
 // daAlink_c::checkFishingRodGrab(const fopAc_ac_c*)
-asm void func_800F3E4C(void) {
+asm void checkFishingRodGrab__9daAlink_cCFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3E4C.s"
 }
 
 // checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c
 // daAlink_c::checkCanoePaddleGrab(const fopAc_ac_c*)
-asm void func_800F3EB8(void) {
+asm void checkCanoePaddleGrab__9daAlink_cCFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3EB8.s"
 }
 
 // checkCanoeFishingRodGrabOrPut__9daAlink_cCFv
 // daAlink_c::checkCanoeFishingRodGrabOrPut(const void)
-asm void func_800F3F38(void) {
+asm void checkCanoeFishingRodGrabOrPut__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F3F38.s"
 }
@@ -9508,7 +9508,7 @@ asm void canoeCommon__9daAlink_cFv(void) {
 
 // checkNextActionCanoe__9daAlink_cFv
 // daAlink_c::checkNextActionCanoe(void)
-asm void checkNextAction__9daAlink_cFiCanoe(void) {
+asm void checkNextActionCanoe__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F4924.s"
 }
@@ -9522,7 +9522,7 @@ asm void procCanoeRideInit__9daAlink_cFv(void) {
 
 // procCanoeRide__9daAlink_cFv
 // daAlink_c::procCanoeRide(void)
-asm void func_800F4B90(void) {
+asm void procCanoeRide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F4B90.s"
 }
@@ -9536,7 +9536,7 @@ asm void procCanoeJumpRideInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procCanoeJumpRide__9daAlink_cFv
 // daAlink_c::procCanoeJumpRide(void)
-asm void func_800F4D84(void) {
+asm void procCanoeJumpRide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F4D84.s"
 }
@@ -9550,7 +9550,7 @@ asm void procCanoeGetOffInit__9daAlink_cFv(void) {
 
 // procCanoeGetOff__9daAlink_cFv
 // daAlink_c::procCanoeGetOff(void)
-asm void func_800F5048(void) {
+asm void procCanoeGetOff__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F5048.s"
 }
@@ -9564,7 +9564,7 @@ asm void procCanoeWaitInit__9daAlink_cFi(void) {
 
 // procCanoeWait__9daAlink_cFv
 // daAlink_c::procCanoeWait(void)
-asm void func_800F542C(void) {
+asm void procCanoeWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F542C.s"
 }
@@ -9578,7 +9578,7 @@ asm void procCanoeRowInit__9daAlink_cFi(void) {
 
 // procCanoeRow__9daAlink_cFv
 // daAlink_c::procCanoeRow(void)
-asm void func_800F5A1C(void) {
+asm void procCanoeRow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F5A1C.s"
 }
@@ -9592,7 +9592,7 @@ asm void procCanoePaddleShiftInit__9daAlink_cFi(void) {
 
 // procCanoePaddleShift__9daAlink_cFv
 // daAlink_c::procCanoePaddleShift(void)
-asm void func_800F5DB8(void) {
+asm void procCanoePaddleShift__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F5DB8.s"
 }
@@ -9606,7 +9606,7 @@ asm void procCanoePaddlePutInit__9daAlink_cFi(void) {
 
 // procCanoePaddlePut__9daAlink_cFv
 // daAlink_c::procCanoePaddlePut(void)
-asm void func_800F5FEC(void) {
+asm void procCanoePaddlePut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F5FEC.s"
 }
@@ -9620,7 +9620,7 @@ asm void procCanoePaddleGrabInit__9daAlink_cFv(void) {
 
 // procCanoePaddleGrab__9daAlink_cFv
 // daAlink_c::procCanoePaddleGrab(void)
-asm void func_800F6188(void) {
+asm void procCanoePaddleGrab__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6188.s"
 }
@@ -9634,7 +9634,7 @@ asm void procCanoeRodGrabInit__9daAlink_cFv(void) {
 
 // procCanoeRodGrab__9daAlink_cFv
 // daAlink_c::procCanoeRodGrab(void)
-asm void func_800F6394(void) {
+asm void procCanoeRodGrab__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6394.s"
 }
@@ -9648,7 +9648,7 @@ asm void procCanoeFishingWaitInit__9daAlink_cFv(void) {
 
 // procCanoeFishingWait__9daAlink_cFv
 // daAlink_c::procCanoeFishingWait(void)
-asm void func_800F659C(void) {
+asm void procCanoeFishingWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F659C.s"
 }
@@ -9662,7 +9662,7 @@ asm void procCanoeFishingReelInit__9daAlink_cFv(void) {
 
 // procCanoeFishingReel__9daAlink_cFv
 // daAlink_c::procCanoeFishingReel(void)
-asm void func_800F6874(void) {
+asm void procCanoeFishingReel__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6874.s"
 }
@@ -9676,7 +9676,7 @@ asm void procCanoeFishingGetInit__9daAlink_cFv(void) {
 
 // procCanoeFishingGet__9daAlink_cFv
 // daAlink_c::procCanoeFishingGet(void)
-asm void func_800F6A70(void) {
+asm void procCanoeFishingGet__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6A70.s"
 }
@@ -9690,7 +9690,7 @@ asm void procCanoeSubjectivityInit__9daAlink_cFv(void) {
 
 // procCanoeSubjectivity__9daAlink_cFv
 // daAlink_c::procCanoeSubjectivity(void)
-asm void func_800F6C30(void) {
+asm void procCanoeSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6C30.s"
 }
@@ -9704,7 +9704,7 @@ asm void procCanoeBowSubjectInit__9daAlink_cFv(void) {
 
 // procCanoeBowSubject__9daAlink_cFv
 // daAlink_c::procCanoeBowSubject(void)
-asm void func_800F6D64(void) {
+asm void procCanoeBowSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6D64.s"
 }
@@ -9718,7 +9718,7 @@ asm void procCanoeBowMoveInit__9daAlink_cFv(void) {
 
 // procCanoeBowMove__9daAlink_cFv
 // daAlink_c::procCanoeBowMove(void)
-asm void func_800F6E44(void) {
+asm void procCanoeBowMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6E44.s"
 }
@@ -9732,7 +9732,7 @@ asm void procCanoeGrabMoveInit__9daAlink_cFv(void) {
 
 // procCanoeGrabMove__9daAlink_cFv
 // daAlink_c::procCanoeGrabMove(void)
-asm void func_800F6EFC(void) {
+asm void procCanoeGrabMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F6EFC.s"
 }
@@ -9746,7 +9746,7 @@ asm void procCanoeBoomerangSubjectInit__9daAlink_cFv(void) {
 
 // procCanoeBoomerangSubject__9daAlink_cFv
 // daAlink_c::procCanoeBoomerangSubject(void)
-asm void func_800F7010(void) {
+asm void procCanoeBoomerangSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7010.s"
 }
@@ -9760,7 +9760,7 @@ asm void procCanoeBoomerangMoveInit__9daAlink_cFv(void) {
 
 // procCanoeBoomerangMove__9daAlink_cFv
 // daAlink_c::procCanoeBoomerangMove(void)
-asm void func_800F715C(void) {
+asm void procCanoeBoomerangMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F715C.s"
 }
@@ -9774,7 +9774,7 @@ asm void procCanoeHookshotSubjectInit__9daAlink_cFv(void) {
 
 // procCanoeHookshotSubject__9daAlink_cFv
 // daAlink_c::procCanoeHookshotSubject(void)
-asm void func_800F7274(void) {
+asm void procCanoeHookshotSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7274.s"
 }
@@ -9788,7 +9788,7 @@ asm void procCanoeHookshotMoveInit__9daAlink_cFv(void) {
 
 // procCanoeHookshotMove__9daAlink_cFv
 // daAlink_c::procCanoeHookshotMove(void)
-asm void func_800F7388(void) {
+asm void procCanoeHookshotMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7388.s"
 }
@@ -9802,7 +9802,7 @@ asm void procCanoeBottleDrinkInit__9daAlink_cFUs(void) {
 
 // procCanoeBottleDrink__9daAlink_cFv
 // daAlink_c::procCanoeBottleDrink(void)
-asm void func_800F7550(void) {
+asm void procCanoeBottleDrink__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7550.s"
 }
@@ -9816,7 +9816,7 @@ asm void procCanoeKandelaarPourInit__9daAlink_cFv(void) {
 
 // procCanoeKandelaarPour__9daAlink_cFv
 // daAlink_c::procCanoeKandelaarPour(void)
-asm void func_800F7684(void) {
+asm void procCanoeKandelaarPour__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7684.s"
 }
@@ -9837,7 +9837,7 @@ asm void procFishingCastInit__9daAlink_cFv(void) {
 
 // procFishingCast__9daAlink_cFv
 // daAlink_c::procFishingCast(void)
-asm void func_800F7814(void) {
+asm void procFishingCast__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7814.s"
 }
@@ -9851,7 +9851,7 @@ asm void procFishingFoodInit__9daAlink_cFv(void) {
 
 // procFishingFood__9daAlink_cFv
 // daAlink_c::procFishingFood(void)
-asm void func_800F7AA8(void) {
+asm void procFishingFood__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F7AA8.s"
 }
@@ -9921,7 +9921,7 @@ asm void checkNotCrawlStand__9daAlink_cFP4cXyz(void) {
 
 // checkNotCrawlStand__9daAlink_cFP4cXyzP4cXyz
 // daAlink_c::checkNotCrawlStand(cXyz*, cXyz*)
-asm void checkNotCrawlStand__9daAlink_cFP4cXyz_X1_(void) {
+asm void checkNotCrawlStand__9daAlink_cFP4cXyzP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F8A50.s"
 }
@@ -9970,7 +9970,7 @@ asm void procCrawlStartInit__9daAlink_cFv(void) {
 
 // procCrawlStart__9daAlink_cFv
 // daAlink_c::procCrawlStart(void)
-asm void func_800F9384(void) {
+asm void procCrawlStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F9384.s"
 }
@@ -9984,7 +9984,7 @@ asm void procCrawlMoveInit__9daAlink_cFss(void) {
 
 // procCrawlMove__9daAlink_cFv
 // daAlink_c::procCrawlMove(void)
-asm void func_800F95B8(void) {
+asm void procCrawlMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F95B8.s"
 }
@@ -9998,7 +9998,7 @@ asm void procCrawlAutoMoveInit__9daAlink_cFiP4cXyz(void) {
 
 // procCrawlAutoMove__9daAlink_cFv
 // daAlink_c::procCrawlAutoMove(void)
-asm void func_800F9ABC(void) {
+asm void procCrawlAutoMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F9ABC.s"
 }
@@ -10012,7 +10012,7 @@ asm void procCrawlEndInit__9daAlink_cFiss(void) {
 
 // procCrawlEnd__9daAlink_cFv
 // daAlink_c::procCrawlEnd(void)
-asm void func_800F9F30(void) {
+asm void procCrawlEnd__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800F9F30.s"
 }
@@ -10082,7 +10082,7 @@ asm void procHangStartInit__9daAlink_cFv(void) {
 
 // procHangStart__9daAlink_cFv
 // daAlink_c::procHangStart(void)
-asm void func_800FAE14(void) {
+asm void procHangStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FAE14.s"
 }
@@ -10096,7 +10096,7 @@ asm void procHangFallStartInit__9daAlink_cFP8cM3dGPla(void) {
 
 // procHangFallStart__9daAlink_cFv
 // daAlink_c::procHangFallStart(void)
-asm void func_800FB1A4(void) {
+asm void procHangFallStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FB1A4.s"
 }
@@ -10110,7 +10110,7 @@ asm void procHangUpInit__9daAlink_cFi(void) {
 
 // procHangUp__9daAlink_cFv
 // daAlink_c::procHangUp(void)
-asm void func_800FB328(void) {
+asm void procHangUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FB328.s"
 }
@@ -10124,7 +10124,7 @@ asm void procHangWaitInit__9daAlink_cFv(void) {
 
 // procHangWait__9daAlink_cFv
 // daAlink_c::procHangWait(void)
-asm void func_800FB544(void) {
+asm void procHangWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FB544.s"
 }
@@ -10138,7 +10138,7 @@ asm void procHangMoveInit__9daAlink_cFi(void) {
 
 // procHangMove__9daAlink_cFv
 // daAlink_c::procHangMove(void)
-asm void func_800FB790(void) {
+asm void procHangMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FB790.s"
 }
@@ -10152,7 +10152,7 @@ asm void procHangClimbInit__9daAlink_cFf(void) {
 
 // procHangClimb__9daAlink_cFv
 // daAlink_c::procHangClimb(void)
-asm void func_800FBCD4(void) {
+asm void procHangClimb__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FBCD4.s"
 }
@@ -10166,7 +10166,7 @@ asm void procHangWallCatchInit__9daAlink_cFv(void) {
 
 // procHangWallCatch__9daAlink_cFv
 // daAlink_c::procHangWallCatch(void)
-asm void func_800FC0D8(void) {
+asm void procHangWallCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FC0D8.s"
 }
@@ -10180,7 +10180,7 @@ asm void procHangReadyInit__9daAlink_cFv(void) {
 
 // procHangReady__9daAlink_cFv
 // daAlink_c::procHangReady(void)
-asm void func_800FC240(void) {
+asm void procHangReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FC240.s"
 }
@@ -10194,14 +10194,14 @@ asm void procHangLeverDownInit__9daAlink_cFv(void) {
 
 // procHangLeverDown__9daAlink_cFv
 // daAlink_c::procHangLeverDown(void)
-asm void func_800FC390(void) {
+asm void procHangLeverDown__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FC390.s"
 }
 
 // changeDragonActor__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::changeDragonActor(fopAc_ac_c*)
-asm void func_800FC568(void) {
+asm void changeDragonActor__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FC568.s"
 }
@@ -10236,7 +10236,7 @@ asm void procBossBodyHangInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procBossBodyHang__9daAlink_cFv
 // daAlink_c::procBossBodyHang(void)
-asm void func_800FC870(void) {
+asm void procBossBodyHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FC870.s"
 }
@@ -10306,7 +10306,7 @@ asm void procLadderUpStartInit__9daAlink_cFv(void) {
 
 // procLadderUpStart__9daAlink_cFv
 // daAlink_c::procLadderUpStart(void)
-asm void func_800FD7B0(void) {
+asm void procLadderUpStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FD7B0.s"
 }
@@ -10320,7 +10320,7 @@ asm void procLadderUpEndInit__9daAlink_cFi(void) {
 
 // procLadderUpEnd__9daAlink_cFv
 // daAlink_c::procLadderUpEnd(void)
-asm void func_800FD8E8(void) {
+asm void procLadderUpEnd__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FD8E8.s"
 }
@@ -10334,7 +10334,7 @@ asm void procLadderDownStartInit__9daAlink_cFv(void) {
 
 // procLadderDownStart__9daAlink_cFv
 // daAlink_c::procLadderDownStart(void)
-asm void func_800FDB74(void) {
+asm void procLadderDownStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FDB74.s"
 }
@@ -10348,7 +10348,7 @@ asm void procLadderDownEndInit__9daAlink_cFi(void) {
 
 // procLadderDownEnd__9daAlink_cFv
 // daAlink_c::procLadderDownEnd(void)
-asm void func_800FDCCC(void) {
+asm void procLadderDownEnd__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FDCCC.s"
 }
@@ -10362,7 +10362,7 @@ asm void procLadderMoveInit__9daAlink_cFiiP4cXyz(void) {
 
 // procLadderMove__9daAlink_cFv
 // daAlink_c::procLadderMove(void)
-asm void func_800FDF50(void) {
+asm void procLadderMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FDF50.s"
 }
@@ -10481,7 +10481,7 @@ asm void procClimbUpStartInit__9daAlink_cFi(void) {
 
 // procClimbUpStart__9daAlink_cFv
 // daAlink_c::procClimbUpStart(void)
-asm void func_800FF704(void) {
+asm void procClimbUpStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FF704.s"
 }
@@ -10495,7 +10495,7 @@ asm void procClimbDownStartInit__9daAlink_cFs(void) {
 
 // procClimbDownStart__9daAlink_cFv
 // daAlink_c::procClimbDownStart(void)
-asm void func_800FF9A8(void) {
+asm void procClimbDownStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FF9A8.s"
 }
@@ -10509,7 +10509,7 @@ asm void procClimbMoveUpDownInit__9daAlink_cFi(void) {
 
 // procClimbMoveUpDown__9daAlink_cFv
 // daAlink_c::procClimbMoveUpDown(void)
-asm void func_800FFC58(void) {
+asm void procClimbMoveUpDown__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FFC58.s"
 }
@@ -10523,7 +10523,7 @@ asm void procClimbMoveSideInit__9daAlink_cFv(void) {
 
 // procClimbMoveSide__9daAlink_cFv
 // daAlink_c::procClimbMoveSide(void)
-asm void func_800FFF4C(void) {
+asm void procClimbMoveSide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800FFF4C.s"
 }
@@ -10537,7 +10537,7 @@ asm void procClimbWaitInit__9daAlink_cFii(void) {
 
 // procClimbWait__9daAlink_cFv
 // daAlink_c::procClimbWait(void)
-asm void func_80100258(void) {
+asm void procClimbWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80100258.s"
 }
@@ -10551,7 +10551,7 @@ asm void procClimbToRoofInit__9daAlink_cFv(void) {
 
 // procClimbToRoof__9daAlink_cFv
 // daAlink_c::procClimbToRoof(void)
-asm void func_80100464(void) {
+asm void procClimbToRoof__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80100464.s"
 }
@@ -10593,7 +10593,7 @@ asm void commonRoofHangProc__9daAlink_cFv(void) {
 
 // checkNextActionRoofHang__9daAlink_cFv
 // daAlink_c::checkNextActionRoofHang(void)
-asm void checkNextAction__9daAlink_cFiRoofHang(void) {
+asm void checkNextActionRoofHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801008EC.s"
 }
@@ -10607,7 +10607,7 @@ asm void procRoofHangStartInit__9daAlink_cFRC13cBgS_PolyInfoRC4cXyzi(void) {
 
 // procRoofHangStart__9daAlink_cFv
 // daAlink_c::procRoofHangStart(void)
-asm void func_80100AE4(void) {
+asm void procRoofHangStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80100AE4.s"
 }
@@ -10621,7 +10621,7 @@ asm void procRoofHangWaitInit__9daAlink_cFi(void) {
 
 // procRoofHangWait__9daAlink_cFv
 // daAlink_c::procRoofHangWait(void)
-asm void func_80100D38(void) {
+asm void procRoofHangWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80100D38.s"
 }
@@ -10635,7 +10635,7 @@ asm void procRoofHangFrontMoveInit__9daAlink_cFv(void) {
 
 // procRoofHangFrontMove__9daAlink_cFv
 // daAlink_c::procRoofHangFrontMove(void)
-asm void func_80100EEC(void) {
+asm void procRoofHangFrontMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80100EEC.s"
 }
@@ -10649,7 +10649,7 @@ asm void procRoofHangSideMoveInit__9daAlink_cFv(void) {
 
 // procRoofHangSideMove__9daAlink_cFv
 // daAlink_c::procRoofHangSideMove(void)
-asm void func_80101308(void) {
+asm void procRoofHangSideMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80101308.s"
 }
@@ -10663,7 +10663,7 @@ asm void procRoofHangTurnInit__9daAlink_cFv(void) {
 
 // procRoofHangTurn__9daAlink_cFv
 // daAlink_c::procRoofHangTurn(void)
-asm void func_80101534(void) {
+asm void procRoofHangTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80101534.s"
 }
@@ -10684,7 +10684,7 @@ asm void procRoofSwitchHangInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procRoofSwitchHang__9daAlink_cFv
 // daAlink_c::procRoofSwitchHang(void)
-asm void func_801017AC(void) {
+asm void procRoofSwitchHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801017AC.s"
 }
@@ -10782,7 +10782,7 @@ asm void setSpeedAndAngleSwim__9daAlink_cFv(void) {
 
 // checkNextActionSwim__9daAlink_cFv
 // daAlink_c::checkNextActionSwim(void)
-asm void checkNextAction__9daAlink_cFiSwim(void) {
+asm void checkNextActionSwim__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801029C8.s"
 }
@@ -10880,7 +10880,7 @@ asm void procSwimUpInit__9daAlink_cFv(void) {
 
 // procSwimUp__9daAlink_cFv
 // daAlink_c::procSwimUp(void)
-asm void func_801041E8(void) {
+asm void procSwimUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801041E8.s"
 }
@@ -10894,7 +10894,7 @@ asm void procSwimWaitInit__9daAlink_cFi(void) {
 
 // procSwimWait__9daAlink_cFv
 // daAlink_c::procSwimWait(void)
-asm void func_801044B4(void) {
+asm void procSwimWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801044B4.s"
 }
@@ -10908,7 +10908,7 @@ asm void procSwimMoveInit__9daAlink_cFv(void) {
 
 // procSwimMove__9daAlink_cFv
 // daAlink_c::procSwimMove(void)
-asm void func_801047B8(void) {
+asm void procSwimMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801047B8.s"
 }
@@ -10922,7 +10922,7 @@ asm void procSwimDiveInit__9daAlink_cFv(void) {
 
 // procSwimDive__9daAlink_cFv
 // daAlink_c::procSwimDive(void)
-asm void func_80104AA0(void) {
+asm void procSwimDive__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80104AA0.s"
 }
@@ -10936,7 +10936,7 @@ asm void procSwimHookshotSubjectInit__9daAlink_cFv(void) {
 
 // procSwimHookshotSubject__9daAlink_cFv
 // daAlink_c::procSwimHookshotSubject(void)
-asm void func_80104D7C(void) {
+asm void procSwimHookshotSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80104D7C.s"
 }
@@ -10950,7 +10950,7 @@ asm void procSwimHookshotMoveInit__9daAlink_cFv(void) {
 
 // procSwimHookshotMove__9daAlink_cFv
 // daAlink_c::procSwimHookshotMove(void)
-asm void func_80104FC4(void) {
+asm void procSwimHookshotMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80104FC4.s"
 }
@@ -10964,7 +10964,7 @@ asm void procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf(void) {
 
 // procSwimDamage__9daAlink_cFv
 // daAlink_c::procSwimDamage(void)
-asm void func_80105728(void) {
+asm void procSwimDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80105728.s"
 }
@@ -10978,14 +10978,14 @@ asm void procOctaIealSpitInit__9daAlink_cFv(void) {
 
 // procOctaIealSpit__9daAlink_cFv
 // daAlink_c::procOctaIealSpit(void)
-asm void func_80105A00(void) {
+asm void procOctaIealSpit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80105A00.s"
 }
 
 // daAlink_searchIceLeaf__FP10fopAc_ac_cPv
-// daAlink_searchIceLeaf(fopAc_ac_c*, void*)
-asm void daAlink_searchIceLeaf(void) {
+// daAlink_searchIceLeaf__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchIceLeaf__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80105A84.s"
 }
@@ -10999,7 +10999,7 @@ asm void checkSnowCode__9daAlink_cCFv(void) {
 
 // checkSnowCodePolygon__9daAlink_cFR13cBgS_PolyInfo
 // daAlink_c::checkSnowCodePolygon(cBgS_PolyInfo&)
-asm void checkSnowCode__9daAlink_cCFvPolygon(void) {
+asm void checkSnowCodePolygon__9daAlink_cFR13cBgS_PolyInfo(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80105ABC.s"
 }
@@ -11027,7 +11027,7 @@ asm void setCommonBoardAnime__9daAlink_cFi(void) {
 
 // checkNextActionBoard__9daAlink_cFv
 // daAlink_c::checkNextActionBoard(void)
-asm void checkNextAction__9daAlink_cFiBoard(void) {
+asm void checkNextActionBoard__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010658C.s"
 }
@@ -11068,7 +11068,7 @@ asm void procBoardRideInit__9daAlink_cFv(void) {
 
 // procBoardRide__9daAlink_cFv
 // daAlink_c::procBoardRide(void)
-asm void func_801069D0(void) {
+asm void procBoardRide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801069D0.s"
 }
@@ -11082,7 +11082,7 @@ asm void procBoardWaitInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procBoardWait__9daAlink_cFv
 // daAlink_c::procBoardWait(void)
-asm void func_80106BCC(void) {
+asm void procBoardWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80106BCC.s"
 }
@@ -11096,7 +11096,7 @@ asm void procBoardRowInit__9daAlink_cFv(void) {
 
 // procBoardRow__9daAlink_cFv
 // daAlink_c::procBoardRow(void)
-asm void func_80106F00(void) {
+asm void procBoardRow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80106F00.s"
 }
@@ -11110,7 +11110,7 @@ asm void procBoardTurnInit__9daAlink_cFv(void) {
 
 // procBoardTurn__9daAlink_cFv
 // daAlink_c::procBoardTurn(void)
-asm void func_801070DC(void) {
+asm void procBoardTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801070DC.s"
 }
@@ -11124,7 +11124,7 @@ asm void procBoardJumpInit__9daAlink_cFfi(void) {
 
 // procBoardJump__9daAlink_cFv
 // daAlink_c::procBoardJump(void)
-asm void func_80107300(void) {
+asm void procBoardJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80107300.s"
 }
@@ -11138,7 +11138,7 @@ asm void procBoardSubjectivityInit__9daAlink_cFv(void) {
 
 // procBoardSubjectivity__9daAlink_cFv
 // daAlink_c::procBoardSubjectivity(void)
-asm void func_80107418(void) {
+asm void procBoardSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80107418.s"
 }
@@ -11152,7 +11152,7 @@ asm void procBoardCutInit__9daAlink_cFv(void) {
 
 // procBoardCut__9daAlink_cFv
 // daAlink_c::procBoardCut(void)
-asm void func_8010755C(void) {
+asm void procBoardCut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010755C.s"
 }
@@ -11166,13 +11166,13 @@ asm void procBoardCutTurnInit__9daAlink_cFv(void) {
 
 // procBoardCutTurn__9daAlink_cFv
 // daAlink_c::procBoardCutTurn(void)
-asm void func_80107744(void) {
+asm void procBoardCutTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80107744.s"
 }
 
 // draw__Q29daAlink_c14hsChainShape_cFv
-asm void func_80107900(void) {
+asm void draw__Q29daAlink_c14hsChainShape_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80107900.s"
 }
@@ -11185,29 +11185,29 @@ asm void hookshotAtHitCallBack__9daAlink_cFP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_G
 }
 
 // daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf
-// daAlink_hookshotAtHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*)
-asm void daAlink_hookshotAtHitCallBack(void) {
+// daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*)
+asm void daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010859C.s"
 }
 
 // getHookshotTopPos__9daAlink_cFv
 // daAlink_c::getHookshotTopPos(void)
-asm void func_801085BC(void) {
+asm void getHookshotTopPos__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801085BC.s"
 }
 
 // checkHookshotReturnMode__9daAlink_cCFv
 // daAlink_c::checkHookshotReturnMode(const void)
-asm void func_80108600(void) {
+asm void checkHookshotReturnMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80108600.s"
 }
 
 // checkHookshotShootReturnMode__9daAlink_cCFv
 // daAlink_c::checkHookshotShootReturnMode(const void)
-asm void func_80108668(void) {
+asm void checkHookshotShootReturnMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80108668.s"
 }
@@ -11221,7 +11221,7 @@ asm void resetHookshotMode__9daAlink_cFv(void) {
 
 // setEnemyBombHookshot__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::setEnemyBombHookshot(fopAc_ac_c*)
-asm void func_8010871C(void) {
+asm void setEnemyBombHookshot__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010871C.s"
 }
@@ -11298,7 +11298,7 @@ asm void setHookshotCatchNow__9daAlink_cFv(void) {
 
 // setHookshotCarryOffset__9daAlink_cFUiPC4cXyz
 // daAlink_c::setHookshotCarryOffset(unsigned int, const cXyz*)
-asm void func_80108A90(void) {
+asm void setHookshotCarryOffset__9daAlink_cFUiPC4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80108A90.s"
 }
@@ -11368,14 +11368,14 @@ asm void setHookshotReadyAnime__9daAlink_cFv(void) {
 
 // checkUpperItemActionHookshot__9daAlink_cFv
 // daAlink_c::checkUpperItemActionHookshot(void)
-asm void checkUpperItemAction__9daAlink_cFvHookshot(void) {
+asm void checkUpperItemActionHookshot__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80109284.s"
 }
 
 // checkNextActionHookshot__9daAlink_cFv
 // daAlink_c::checkNextActionHookshot(void)
-asm void checkNextAction__9daAlink_cFiHookshot(void) {
+asm void checkNextActionHookshot__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801095C8.s"
 }
@@ -11473,7 +11473,7 @@ asm void procHookshotSubjectInit__9daAlink_cFv(void) {
 
 // procHookshotSubject__9daAlink_cFv
 // daAlink_c::procHookshotSubject(void)
-asm void func_8010BB48(void) {
+asm void procHookshotSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010BB48.s"
 }
@@ -11487,7 +11487,7 @@ asm void procHookshotMoveInit__9daAlink_cFv(void) {
 
 // procHookshotMove__9daAlink_cFv
 // daAlink_c::procHookshotMove(void)
-asm void func_8010BCA4(void) {
+asm void procHookshotMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010BCA4.s"
 }
@@ -11515,7 +11515,7 @@ asm void procHookshotRoofWaitInit__9daAlink_cFiP10fopAc_ac_ci(void) {
 
 // procHookshotRoofWait__9daAlink_cFv
 // daAlink_c::procHookshotRoofWait(void)
-asm void func_8010C9F4(void) {
+asm void procHookshotRoofWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010C9F4.s"
 }
@@ -11529,7 +11529,7 @@ asm void procHookshotRoofShootInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procHookshotRoofShoot__9daAlink_cFv
 // daAlink_c::procHookshotRoofShoot(void)
-asm void func_8010CD60(void) {
+asm void procHookshotRoofShoot__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010CD60.s"
 }
@@ -11543,7 +11543,7 @@ asm void procHookshotRoofBootsInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procHookshotRoofBoots__9daAlink_cFv
 // daAlink_c::procHookshotRoofBoots(void)
-asm void func_8010D034(void) {
+asm void procHookshotRoofBoots__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D034.s"
 }
@@ -11557,7 +11557,7 @@ asm void procHookshotWallWaitInit__9daAlink_cFisi(void) {
 
 // procHookshotWallWait__9daAlink_cFv
 // daAlink_c::procHookshotWallWait(void)
-asm void func_8010D38C(void) {
+asm void procHookshotWallWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D38C.s"
 }
@@ -11571,28 +11571,28 @@ asm void procHookshotWallShootInit__9daAlink_cFv(void) {
 
 // procHookshotWallShoot__9daAlink_cFv
 // daAlink_c::procHookshotWallShoot(void)
-asm void func_8010D6CC(void) {
+asm void procHookshotWallShoot__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D6CC.s"
 }
 
 // getSpinnerGravity__9daAlink_cCFv
 // daAlink_c::getSpinnerGravity(const void)
-asm void func_8010D93C(void) {
+asm void getSpinnerGravity__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D93C.s"
 }
 
 // getSpinnerMaxFallSpeed__9daAlink_cCFv
 // daAlink_c::getSpinnerMaxFallSpeed(const void)
-asm void func_8010D94C(void) {
+asm void getSpinnerMaxFallSpeed__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D94C.s"
 }
 
 // getSpinnerJumpRate__9daAlink_cCFv
 // daAlink_c::getSpinnerJumpRate(const void)
-asm void func_8010D95C(void) {
+asm void getSpinnerJumpRate__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D95C.s"
 }
@@ -11613,49 +11613,49 @@ asm void getSpinnerRideSpeedF__9daAlink_cFv(void) {
 
 // getSpinnerRideDecSpeedMax__9daAlink_cCFv
 // daAlink_c::getSpinnerRideDecSpeedMax(const void)
-asm void func_8010D9F4(void) {
+asm void getSpinnerRideDecSpeedMax__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010D9F4.s"
 }
 
 // getSpinnerRideDecSpeedMin__9daAlink_cCFv
 // daAlink_c::getSpinnerRideDecSpeedMin(const void)
-asm void func_8010DA04(void) {
+asm void getSpinnerRideDecSpeedMin__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA04.s"
 }
 
 // getSpinnerRideDecSpeedRate__9daAlink_cCFv
 // daAlink_c::getSpinnerRideDecSpeedRate(const void)
-asm void func_8010DA14(void) {
+asm void getSpinnerRideDecSpeedRate__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA14.s"
 }
 
 // getSpinnerRideRotAngleMax__9daAlink_cCFv
 // daAlink_c::getSpinnerRideRotAngleMax(const void)
-asm void func_8010DA24(void) {
+asm void getSpinnerRideRotAngleMax__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA24.s"
 }
 
 // getSpinnerRideRotAngleMin__9daAlink_cCFv
 // daAlink_c::getSpinnerRideRotAngleMin(const void)
-asm void func_8010DA34(void) {
+asm void getSpinnerRideRotAngleMin__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA34.s"
 }
 
 // onSpinnerPathForceRemove__9daAlink_cFv
 // daAlink_c::onSpinnerPathForceRemove(void)
-asm void func_8010DA44(void) {
+asm void onSpinnerPathForceRemove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA44.s"
 }
 
 // checkSpinnerPathMove__9daAlink_cFv
 // daAlink_c::checkSpinnerPathMove(void)
-asm void func_8010DA98(void) {
+asm void checkSpinnerPathMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DA98.s"
 }
@@ -11669,7 +11669,7 @@ asm void checkLv4BossRoom__9daAlink_cFv(void) {
 
 // checkSpinnerTriggerAttack__9daAlink_cFv
 // daAlink_c::checkSpinnerTriggerAttack(void)
-asm void func_8010DB28(void) {
+asm void checkSpinnerTriggerAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DB28.s"
 }
@@ -11690,7 +11690,7 @@ asm void procSpinnerReadyInit__9daAlink_cFv(void) {
 
 // procSpinnerReady__9daAlink_cFv
 // daAlink_c::procSpinnerReady(void)
-asm void func_8010DDCC(void) {
+asm void procSpinnerReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DDCC.s"
 }
@@ -11711,7 +11711,7 @@ asm void procSpinnerWaitInit__9daAlink_cFv(void) {
 
 // procSpinnerWait__9daAlink_cFv
 // daAlink_c::procSpinnerWait(void)
-asm void func_8010DF4C(void) {
+asm void procSpinnerWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010DF4C.s"
 }
@@ -11724,15 +11724,15 @@ asm void bottleModelCallBack__9daAlink_cFv(void) {
 }
 
 // daAlink_bottleModelCallBack__FP8J3DJointi
-// daAlink_bottleModelCallBack(J3DJoint*, int)
-asm void daAlink_bottleModelCallBack(void) {
+// daAlink_bottleModelCallBack__FP8J3DJointi(J3DJoint*, int)
+asm void daAlink_bottleModelCallBack__FP8J3DJointi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010E52C.s"
 }
 
 // getBottleOpenAppearItem__9daAlink_cCFv
 // daAlink_c::getBottleOpenAppearItem(const void)
-asm void func_8010E568(void) {
+asm void getBottleOpenAppearItem__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010E568.s"
 }
@@ -11774,7 +11774,7 @@ asm void procBottleDrinkInit__9daAlink_cFUs(void) {
 
 // procBottleDrink__9daAlink_cFv
 // daAlink_c::procBottleDrink(void)
-asm void func_8010F698(void) {
+asm void procBottleDrink__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010F698.s"
 }
@@ -11788,7 +11788,7 @@ asm void procBottleOpenInit__9daAlink_cFUs(void) {
 
 // procBottleOpen__9daAlink_cFv
 // daAlink_c::procBottleOpen(void)
-asm void func_8010F8E4(void) {
+asm void procBottleOpen__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010F8E4.s"
 }
@@ -11802,7 +11802,7 @@ asm void procBottleSwingInit__9daAlink_cFP10fopAc_ac_ci(void) {
 
 // procBottleSwing__9daAlink_cFv
 // daAlink_c::procBottleSwing(void)
-asm void func_8010FF58(void) {
+asm void procBottleSwing__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010FF58.s"
 }
@@ -11816,34 +11816,34 @@ asm void procBottleGetInit__9daAlink_cFi(void) {
 
 // procBottleGet__9daAlink_cFv
 // daAlink_c::procBottleGet(void)
-asm void func_80110518(void) {
+asm void procBottleGet__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110518.s"
 }
 
 // Insect_Release__9dInsect_cFv
 // dInsect_c::Insect_Release(void)
-asm void func_80110648(void) {
+asm void Insect_Release__9dInsect_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110648.s"
 }
 
 // daAlink_searchTagKandelaar__FP10fopAc_ac_cPv
-// daAlink_searchTagKandelaar(fopAc_ac_c*, void*)
-asm void daAlink_searchTagKandelaar(void) {
+// daAlink_searchTagKandelaar__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchTagKandelaar__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110654.s"
 }
 
 // daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv
-// daAlink_searchTagKtOnFire(fopAc_ac_c*, void*)
-asm void daAlink_searchTagKtOnFire(void) {
+// daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchTagKtOnFire__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110668.s"
 }
 
 // setKandelaarMtx__9daAlink_cFPA4_fii
-asm void func_801106E8(void) {
+asm void setKandelaarMtx__9daAlink_cFPA4_fii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801106E8.s"
 }
@@ -11871,14 +11871,14 @@ asm void offKandelaarModel__9daAlink_cFv(void) {
 
 // checkUseKandelaar__9daAlink_cFi
 // daAlink_c::checkUseKandelaar(int)
-asm void func_8011087C(void) {
+asm void checkUseKandelaar__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011087C.s"
 }
 
 // checkKandelaarSwing__9daAlink_cCFi
 // daAlink_c::checkKandelaarSwing(const int)
-asm void func_801108B4(void) {
+asm void checkKandelaarSwing__9daAlink_cCFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801108B4.s"
 }
@@ -11891,15 +11891,15 @@ asm void kandelaarModelCallBack__9daAlink_cFv(void) {
 }
 
 // daAlink_kandelaarModelCallBack__FP8J3DJointi
-// daAlink_kandelaarModelCallBack(J3DJoint*, int)
-asm void daAlink_kandelaarModelCallBack(void) {
+// daAlink_kandelaarModelCallBack__FP8J3DJointi(J3DJoint*, int)
+asm void daAlink_kandelaarModelCallBack__FP8J3DJointi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110BEC.s"
 }
 
 // getKandelaarFlamePos__9daAlink_cFv
 // daAlink_c::getKandelaarFlamePos(void)
-asm void func_80110C28(void) {
+asm void getKandelaarFlamePos__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110C28.s"
 }
@@ -11920,7 +11920,7 @@ asm void preKandelaarDraw__9daAlink_cFv(void) {
 
 // setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10
 // J3DTevBlock::setTevColor(unsigned long, const J3DGXColorS10*)
-asm void func_80110E80(void) {
+asm void setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80110E80.s"
 }
@@ -11969,7 +11969,7 @@ asm void procKandelaarSwingInit__9daAlink_cFv(void) {
 
 // procKandelaarSwing__9daAlink_cFv
 // daAlink_c::procKandelaarSwing(void)
-asm void func_801115CC(void) {
+asm void procKandelaarSwing__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801115CC.s"
 }
@@ -11983,21 +11983,21 @@ asm void procKandelaarPourInit__9daAlink_cFv(void) {
 
 // procKandelaarPour__9daAlink_cFv
 // daAlink_c::procKandelaarPour(void)
-asm void func_80111724(void) {
+asm void procKandelaarPour__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80111724.s"
 }
 
 // daAlink_searchWhistle__FP10fopAc_ac_cPv
-// daAlink_searchWhistle(fopAc_ac_c*, void*)
-asm void daAlink_searchWhistle(void) {
+// daAlink_searchWhistle__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchWhistle__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011174C.s"
 }
 
 // daAlink_searchHawk__FP10fopAc_ac_cPv
-// daAlink_searchHawk(fopAc_ac_c*, void*)
-asm void daAlink_searchHawk(void) {
+// daAlink_searchHawk__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchHawk__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80111770.s"
 }
@@ -12025,7 +12025,7 @@ asm void procGrassWhistleGetInit__9daAlink_cFv(void) {
 
 // procGrassWhistleGet__9daAlink_cFv
 // daAlink_c::procGrassWhistleGet(void)
-asm void func_801119D8(void) {
+asm void procGrassWhistleGet__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801119D8.s"
 }
@@ -12039,7 +12039,7 @@ asm void procGrassWhistleWaitInit__9daAlink_cFiiisP4cXyz(void) {
 
 // procGrassWhistleWait__9daAlink_cFv
 // daAlink_c::procGrassWhistleWait(void)
-asm void func_80111CA4(void) {
+asm void procGrassWhistleWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80111CA4.s"
 }
@@ -12053,21 +12053,21 @@ asm void procCoHorseCallWaitInit__9daAlink_cFi(void) {
 
 // procCoHorseCallWait__9daAlink_cFv
 // daAlink_c::procCoHorseCallWait(void)
-asm void func_801120C8(void) {
+asm void procCoHorseCallWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801120C8.s"
 }
 
 // procHawkCatchInit__9daAlink_cFv
 // daAlink_c::procHawkCatchInit(void)
-asm void func_801121B4(void) {
+asm void procHawkCatchInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801121B4.s"
 }
 
 // procHawkCatch__9daAlink_cFv
 // daAlink_c::procHawkCatch(void)
-asm void func_80112220(void) {
+asm void procHawkCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80112220.s"
 }
@@ -12081,21 +12081,21 @@ asm void procHawkSubjectInit__9daAlink_cFv(void) {
 
 // procHawkSubject__9daAlink_cFv
 // daAlink_c::procHawkSubject(void)
-asm void func_80112304(void) {
+asm void procHawkSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80112304.s"
 }
 
 // getIronBallCenterPos__9daAlink_cFv
 // daAlink_c::getIronBallCenterPos(void)
-asm void func_8011243C(void) {
+asm void getIronBallCenterPos__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011243C.s"
 }
 
 // getIronBallBgHit__9daAlink_cCFv
 // daAlink_c::getIronBallBgHit(const void)
-asm void func_80112458(void) {
+asm void getIronBallBgHit__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80112458.s"
 }
@@ -12116,14 +12116,14 @@ asm void checkIronBallThrowReturnMode__9daAlink_cCFv(void) {
 
 // checkIronBallReturn__9daAlink_cCFv
 // daAlink_c::checkIronBallReturn(const void)
-asm void func_801124FC(void) {
+asm void checkIronBallReturn__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801124FC.s"
 }
 
 // checkIronBallGroundStop__9daAlink_cCFv
 // daAlink_c::checkIronBallGroundStop(const void)
-asm void func_80112524(void) {
+asm void checkIronBallGroundStop__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80112524.s"
 }
@@ -12221,14 +12221,14 @@ asm void setIronBallBaseAnime__9daAlink_cFv(void) {
 
 // checkUpperItemActionIronBall__9daAlink_cFv
 // daAlink_c::checkUpperItemActionIronBall(void)
-asm void checkUpperItemAction__9daAlink_cFvIronBall(void) {
+asm void checkUpperItemActionIronBall__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115254.s"
 }
 
 // checkNextActionIronBall__9daAlink_cFv
 // daAlink_c::checkNextActionIronBall(void)
-asm void checkNextAction__9daAlink_cFiIronBall(void) {
+asm void checkNextActionIronBall__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801153F8.s"
 }
@@ -12242,7 +12242,7 @@ asm void procIronBallSubjectInit__9daAlink_cFv(void) {
 
 // procIronBallSubject__9daAlink_cFv
 // daAlink_c::procIronBallSubject(void)
-asm void func_80115564(void) {
+asm void procIronBallSubject__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115564.s"
 }
@@ -12256,7 +12256,7 @@ asm void procIronBallMoveInit__9daAlink_cFv(void) {
 
 // procIronBallMove__9daAlink_cFv
 // daAlink_c::procIronBallMove(void)
-asm void func_80115674(void) {
+asm void procIronBallMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115674.s"
 }
@@ -12270,7 +12270,7 @@ asm void procIronBallThrowInit__9daAlink_cFv(void) {
 
 // procIronBallThrow__9daAlink_cFv
 // daAlink_c::procIronBallThrow(void)
-asm void func_80115860(void) {
+asm void procIronBallThrow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115860.s"
 }
@@ -12284,7 +12284,7 @@ asm void procIronBallReturnInit__9daAlink_cFv(void) {
 
 // procIronBallReturn__9daAlink_cFv
 // daAlink_c::procIronBallReturn(void)
-asm void func_80115AA0(void) {
+asm void procIronBallReturn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115AA0.s"
 }
@@ -12298,14 +12298,14 @@ asm void checkEventRun__9daAlink_cCFv(void) {
 
 // createNpcTks__9daAlink_cFP4cXyziUl
 // daAlink_c::createNpcTks(cXyz*, int, unsigned long)
-asm void create__9daAlink_cFvNpcTks(void) {
+asm void createNpcTks__9daAlink_cFP4cXyziUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115C50.s"
 }
 
 // checkSetNpcTks__9daAlink_cFP4cXyzii
 // daAlink_c::checkSetNpcTks(cXyz*, int, int)
-asm void func_80115D08(void) {
+asm void checkSetNpcTks__9daAlink_cFP4cXyzii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80115D08.s"
 }
@@ -12535,15 +12535,15 @@ asm void setStickAnmData__9daAlink_cFP10J3DAnmBaseiiUsi(void) {
 }
 
 // daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi
-// daAlink_c_getDemoIDData(dDemo_actor_c*, int*, int*, int*, unsigned short*, int*, int*)
-asm void daAlink_c_getDemoIDData(void) {
+// daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi(dDemo_actor_c*, int*, int*, int*, unsigned short*, int*, int*)
+asm void daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80119464.s"
 }
 
 // procDemoCommon__9daAlink_cFv
 // daAlink_c::procDemoCommon(void)
-asm void func_801195C0(void) {
+asm void procDemoCommon__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801195C0.s"
 }
@@ -12557,7 +12557,7 @@ asm void procCoToolDemoInit__9daAlink_cFv(void) {
 
 // procCoToolDemo__9daAlink_cFv
 // daAlink_c::procCoToolDemo(void)
-asm void func_801196D8(void) {
+asm void procCoToolDemo__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801196D8.s"
 }
@@ -12571,35 +12571,35 @@ asm void procCoTalkInit__9daAlink_cFv(void) {
 
 // procCoTalk__9daAlink_cFv
 // daAlink_c::procCoTalk(void)
-asm void func_80119F64(void) {
+asm void procCoTalk__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80119F64.s"
 }
 
 // procCoOpenTreasureInit__9daAlink_cFv
 // daAlink_c::procCoOpenTreasureInit(void)
-asm void func_8011A214(void) {
+asm void procCoOpenTreasureInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011A214.s"
 }
 
 // procCoOpenTreasure__9daAlink_cFv
 // daAlink_c::procCoOpenTreasure(void)
-asm void func_8011A42C(void) {
+asm void procCoOpenTreasure__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011A42C.s"
 }
 
 // procCoUnequipInit__9daAlink_cFv
 // daAlink_c::procCoUnequipInit(void)
-asm void func_8011A4C0(void) {
+asm void procCoUnequipInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011A4C0.s"
 }
 
 // procCoUnequip__9daAlink_cFv
 // daAlink_c::procCoUnequip(void)
-asm void func_8011A5CC(void) {
+asm void procCoUnequip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011A5CC.s"
 }
@@ -12613,7 +12613,7 @@ asm void setGetSubBgm__9daAlink_cFi(void) {
 
 // checkTreasureRupeeReturn__9daAlink_cCFi
 // daAlink_c::checkTreasureRupeeReturn(const int)
-asm void func_8011A6FC(void) {
+asm void checkTreasureRupeeReturn__9daAlink_cCFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011A6FC.s"
 }
@@ -12627,35 +12627,35 @@ asm void procCoGetItemInit__9daAlink_cFv(void) {
 
 // procCoGetItem__9daAlink_cFv
 // daAlink_c::procCoGetItem(void)
-asm void func_8011AC28(void) {
+asm void procCoGetItem__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011AC28.s"
 }
 
 // procCoTurnBackInit__9daAlink_cFv
 // daAlink_c::procCoTurnBackInit(void)
-asm void func_8011B3F0(void) {
+asm void procCoTurnBackInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011B3F0.s"
 }
 
 // procCoTurnBack__9daAlink_cFv
 // daAlink_c::procCoTurnBack(void)
-asm void func_8011B46C(void) {
+asm void procCoTurnBack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011B46C.s"
 }
 
 // procDoorOpenInit__9daAlink_cFv
 // daAlink_c::procDoorOpenInit(void)
-asm void func_8011B57C(void) {
+asm void procDoorOpenInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011B57C.s"
 }
 
 // procDoorOpen__9daAlink_cFv
 // daAlink_c::procDoorOpen(void)
-asm void func_8011B71C(void) {
+asm void procDoorOpen__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011B71C.s"
 }
@@ -12669,21 +12669,21 @@ asm void procCoLookWaitInit__9daAlink_cFv(void) {
 
 // procCoLookWait__9daAlink_cFv
 // daAlink_c::procCoLookWait(void)
-asm void func_8011BA20(void) {
+asm void procCoLookWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BA20.s"
 }
 
 // procCoDemoPushPullWaitInit__9daAlink_cFv
 // daAlink_c::procCoDemoPushPullWaitInit(void)
-asm void func_8011BABC(void) {
+asm void procCoDemoPushPullWaitInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BABC.s"
 }
 
 // procCoDemoPushMoveInit__9daAlink_cFv
 // daAlink_c::procCoDemoPushMoveInit(void)
-asm void func_8011BB40(void) {
+asm void procCoDemoPushMoveInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BB40.s"
 }
@@ -12697,28 +12697,28 @@ asm void setMonkeyMoveAnime__9daAlink_cFv(void) {
 
 // procMonkeyMoveInit__9daAlink_cFv
 // daAlink_c::procMonkeyMoveInit(void)
-asm void func_8011BC74(void) {
+asm void procMonkeyMoveInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BC74.s"
 }
 
 // procMonkeyMove__9daAlink_cFv
 // daAlink_c::procMonkeyMove(void)
-asm void func_8011BD18(void) {
+asm void procMonkeyMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BD18.s"
 }
 
 // procDemoBoomerangCatchInit__9daAlink_cFv
 // daAlink_c::procDemoBoomerangCatchInit(void)
-asm void func_8011BD6C(void) {
+asm void procDemoBoomerangCatchInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BD6C.s"
 }
 
 // procDemoBoomerangCatch__9daAlink_cFv
 // daAlink_c::procDemoBoomerangCatch(void)
-asm void func_8011BDF0(void) {
+asm void procDemoBoomerangCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011BDF0.s"
 }
@@ -12732,154 +12732,154 @@ asm void procCoDeadInit__9daAlink_cFi(void) {
 
 // procCoDead__9daAlink_cFv
 // daAlink_c::procCoDead(void)
-asm void func_8011C1B4(void) {
+asm void procCoDead__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C1B4.s"
 }
 
 // procCoLookAroundInit__9daAlink_cFv
 // daAlink_c::procCoLookAroundInit(void)
-asm void func_8011C62C(void) {
+asm void procCoLookAroundInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C62C.s"
 }
 
 // procCoLookAround__9daAlink_cFv
 // daAlink_c::procCoLookAround(void)
-asm void func_8011C760(void) {
+asm void procCoLookAround__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C760.s"
 }
 
 // procBossAtnWaitInit__9daAlink_cFv
 // daAlink_c::procBossAtnWaitInit(void)
-asm void func_8011C81C(void) {
+asm void procBossAtnWaitInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C81C.s"
 }
 
 // procCoQuakeWaitInit__9daAlink_cFv
 // daAlink_c::procCoQuakeWaitInit(void)
-asm void func_8011C890(void) {
+asm void procCoQuakeWaitInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C890.s"
 }
 
 // procCoCaughtInit__9daAlink_cFv
 // daAlink_c::procCoCaughtInit(void)
-asm void func_8011C904(void) {
+asm void procCoCaughtInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C904.s"
 }
 
 // procLookUpInit__9daAlink_cFv
 // daAlink_c::procLookUpInit(void)
-asm void func_8011C9D0(void) {
+asm void procLookUpInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011C9D0.s"
 }
 
 // procLookUp__9daAlink_cFv
 // daAlink_c::procLookUp(void)
-asm void func_8011CA4C(void) {
+asm void procLookUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CA4C.s"
 }
 
 // procLookUpToGetItemInit__9daAlink_cFv
 // daAlink_c::procLookUpToGetItemInit(void)
-asm void func_8011CA98(void) {
+asm void procLookUpToGetItemInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CA98.s"
 }
 
 // procLookUpToGetItem__9daAlink_cFv
 // daAlink_c::procLookUpToGetItem(void)
-asm void func_8011CB20(void) {
+asm void procLookUpToGetItem__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CB20.s"
 }
 
 // procHandPatInit__9daAlink_cFv
 // daAlink_c::procHandPatInit(void)
-asm void func_8011CBD4(void) {
+asm void procHandPatInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CBD4.s"
 }
 
 // procHandPat__9daAlink_cFv
 // daAlink_c::procHandPat(void)
-asm void func_8011CCA8(void) {
+asm void procHandPat__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CCA8.s"
 }
 
 // procCoFogDeadInit__9daAlink_cFv
 // daAlink_c::procCoFogDeadInit(void)
-asm void func_8011CDE0(void) {
+asm void procCoFogDeadInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CDE0.s"
 }
 
 // procCoFogDead__9daAlink_cFv
 // daAlink_c::procCoFogDead(void)
-asm void func_8011CF60(void) {
+asm void procCoFogDead__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011CF60.s"
 }
 
 // procWolfSmellWaitInit__9daAlink_cFv
 // daAlink_c::procWolfSmellWaitInit(void)
-asm void func_8011D0A0(void) {
+asm void procWolfSmellWaitInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D0A0.s"
 }
 
 // procCoNodInit__9daAlink_cFv
 // daAlink_c::procCoNodInit(void)
-asm void func_8011D110(void) {
+asm void procCoNodInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D110.s"
 }
 
 // procCoNod__9daAlink_cFv
 // daAlink_c::procCoNod(void)
-asm void func_8011D1F4(void) {
+asm void procCoNod__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D1F4.s"
 }
 
 // procCoEyeAwayInit__9daAlink_cFv
 // daAlink_c::procCoEyeAwayInit(void)
-asm void func_8011D268(void) {
+asm void procCoEyeAwayInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D268.s"
 }
 
 // procCoGlareInit__9daAlink_cFv
 // daAlink_c::procCoGlareInit(void)
-asm void func_8011D304(void) {
+asm void procCoGlareInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D304.s"
 }
 
 // procCoGlare__9daAlink_cFv
 // daAlink_c::procCoGlare(void)
-asm void func_8011D3CC(void) {
+asm void procCoGlare__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D3CC.s"
 }
 
 // procGoatStopReadyInit__9daAlink_cFv
 // daAlink_c::procGoatStopReadyInit(void)
-asm void func_8011D474(void) {
+asm void procGoatStopReadyInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D474.s"
 }
 
 // procGoatStopReady__9daAlink_cFv
 // daAlink_c::procGoatStopReady(void)
-asm void func_8011D4D4(void) {
+asm void procGoatStopReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D4D4.s"
 }
@@ -12893,77 +12893,77 @@ asm void procCoGetReadySitInit__9daAlink_cFv(void) {
 
 // procCoGetReadySit__9daAlink_cFv
 // daAlink_c::procCoGetReadySit(void)
-asm void func_8011D64C(void) {
+asm void procCoGetReadySit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D64C.s"
 }
 
 // procCoTwGateInit__9daAlink_cFv
 // daAlink_c::procCoTwGateInit(void)
-asm void func_8011D6D0(void) {
+asm void procCoTwGateInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D6D0.s"
 }
 
 // procCoTwGate__9daAlink_cFv
 // daAlink_c::procCoTwGate(void)
-asm void func_8011D7D4(void) {
+asm void procCoTwGate__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D7D4.s"
 }
 
 // procWolfSnowEscapeInit__9daAlink_cFv
 // daAlink_c::procWolfSnowEscapeInit(void)
-asm void func_8011D82C(void) {
+asm void procWolfSnowEscapeInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D82C.s"
 }
 
 // procWolfSnowEscape__9daAlink_cFv
 // daAlink_c::procWolfSnowEscape(void)
-asm void func_8011D8F8(void) {
+asm void procWolfSnowEscape__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011D8F8.s"
 }
 
 // procZoraMoveInit__9daAlink_cFv
 // daAlink_c::procZoraMoveInit(void)
-asm void func_8011DB04(void) {
+asm void procZoraMoveInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011DB04.s"
 }
 
 // procZoraMove__9daAlink_cFv
 // daAlink_c::procZoraMove(void)
-asm void func_8011DB9C(void) {
+asm void procZoraMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011DB9C.s"
 }
 
 // procLookAroundTurnInit__9daAlink_cFv
 // daAlink_c::procLookAroundTurnInit(void)
-asm void func_8011DDD4(void) {
+asm void procLookAroundTurnInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011DDD4.s"
 }
 
 // procLookAroundTurn__9daAlink_cFv
 // daAlink_c::procLookAroundTurn(void)
-asm void func_8011DED8(void) {
+asm void procLookAroundTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011DED8.s"
 }
 
 // procTradeItemOutInit__9daAlink_cFv
 // daAlink_c::procTradeItemOutInit(void)
-asm void func_8011DF68(void) {
+asm void procTradeItemOutInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011DF68.s"
 }
 
 // procTradeItemOut__9daAlink_cFv
 // daAlink_c::procTradeItemOut(void)
-asm void func_8011E060(void) {
+asm void procTradeItemOut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E060.s"
 }
@@ -12984,21 +12984,21 @@ asm void procNotUseItemInit__9daAlink_cFi(void) {
 
 // procNotUseItem__9daAlink_cFv
 // daAlink_c::procNotUseItem(void)
-asm void func_8011E57C(void) {
+asm void procNotUseItem__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E57C.s"
 }
 
 // procSwordReadyInit__9daAlink_cFv
 // daAlink_c::procSwordReadyInit(void)
-asm void func_8011E6E0(void) {
+asm void procSwordReadyInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E6E0.s"
 }
 
 // procSwordReady__9daAlink_cFv
 // daAlink_c::procSwordReady(void)
-asm void func_8011E748(void) {
+asm void procSwordReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E748.s"
 }
@@ -13012,70 +13012,70 @@ asm void setSwordPushAnime__9daAlink_cFv(void) {
 
 // procSwordPushInit__9daAlink_cFv
 // daAlink_c::procSwordPushInit(void)
-asm void func_8011E8E0(void) {
+asm void procSwordPushInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E8E0.s"
 }
 
 // procSwordPush__9daAlink_cFv
 // daAlink_c::procSwordPush(void)
-asm void func_8011E960(void) {
+asm void procSwordPush__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E960.s"
 }
 
 // procGanonFinishInit__9daAlink_cFv
 // daAlink_c::procGanonFinishInit(void)
-asm void func_8011E9F8(void) {
+asm void procGanonFinishInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011E9F8.s"
 }
 
 // procGanonFinish__9daAlink_cFv
 // daAlink_c::procGanonFinish(void)
-asm void func_8011EA78(void) {
+asm void procGanonFinish__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EA78.s"
 }
 
 // procCutFastReadyInit__9daAlink_cFv
 // daAlink_c::procCutFastReadyInit(void)
-asm void func_8011EAE8(void) {
+asm void procCutFastReadyInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EAE8.s"
 }
 
 // procCutFastReady__9daAlink_cFv
 // daAlink_c::procCutFastReady(void)
-asm void func_8011EB8C(void) {
+asm void procCutFastReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EB8C.s"
 }
 
 // procMasterSwordStickInit__9daAlink_cFv
 // daAlink_c::procMasterSwordStickInit(void)
-asm void func_8011EBDC(void) {
+asm void procMasterSwordStickInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EBDC.s"
 }
 
 // procMasterSwordStick__9daAlink_cFv
 // daAlink_c::procMasterSwordStick(void)
-asm void func_8011EC60(void) {
+asm void procMasterSwordStick__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EC60.s"
 }
 
 // procMasterSwordPullInit__9daAlink_cFv
 // daAlink_c::procMasterSwordPullInit(void)
-asm void func_8011ED18(void) {
+asm void procMasterSwordPullInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011ED18.s"
 }
 
 // procMasterSwordPull__9daAlink_cFv
 // daAlink_c::procMasterSwordPull(void)
-asm void func_8011ED8C(void) {
+asm void procMasterSwordPull__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011ED8C.s"
 }
@@ -13096,21 +13096,21 @@ asm void procDungeonWarpReadyInit__9daAlink_cFv(void) {
 
 // procDungeonWarpReady__9daAlink_cFv
 // daAlink_c::procDungeonWarpReady(void)
-asm void func_8011EFB8(void) {
+asm void procDungeonWarpReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011EFB8.s"
 }
 
 // procDungeonWarpInit__9daAlink_cFv
 // daAlink_c::procDungeonWarpInit(void)
-asm void func_8011F084(void) {
+asm void procDungeonWarpInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011F084.s"
 }
 
 // procDungeonWarp__9daAlink_cFv
 // daAlink_c::procDungeonWarp(void)
-asm void func_8011F0F4(void) {
+asm void procDungeonWarp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011F0F4.s"
 }
@@ -13124,14 +13124,14 @@ asm void procDungeonWarpSceneStartInit__9daAlink_cFv(void) {
 
 // procDungeonWarpSceneStart__9daAlink_cFv
 // daAlink_c::procDungeonWarpSceneStart(void)
-asm void func_8011F460(void) {
+asm void procDungeonWarpSceneStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011F460.s"
 }
 
 // daAlink_searchPortal__FP10fopAc_ac_cPv
-// daAlink_searchPortal(fopAc_ac_c*, void*)
-asm void daAlink_searchPortal(void) {
+// daAlink_searchPortal__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchPortal__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011F5D4.s"
 }
@@ -13152,7 +13152,7 @@ asm void dungeonReturnWarp__9daAlink_cFv(void) {
 
 // skipPortalObjWarp__9daAlink_cFv
 // daAlink_c::skipPortalObjWarp(void)
-asm void func_8011F8B8(void) {
+asm void skipPortalObjWarp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8011F8B8.s"
 }
@@ -13180,14 +13180,14 @@ asm void procCoWarpInit__9daAlink_cFii(void) {
 
 // procCoWarp__9daAlink_cFv
 // daAlink_c::procCoWarp(void)
-asm void func_80120124(void) {
+asm void procCoWarp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120124.s"
 }
 
 // commonWaitTurnInit__9daAlink_cFv
 // daAlink_c::commonWaitTurnInit(void)
-asm void func_80120440(void) {
+asm void commonWaitTurnInit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120440.s"
 }
@@ -13223,14 +13223,14 @@ asm void setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz(void) {
 // setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 // daAlink_c::setEmitterPolyColor(unsigned long*, unsigned short, cBgS_PolyInfo&, const cXyz*, const
 // csXyz*)
-asm void setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor(void) {
+asm void setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120634.s"
 }
 
 // setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 // daAlink_c::setEmitterColor(unsigned long*, unsigned short, const cXyz*, const csXyz*)
-asm void setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzColor(void) {
+asm void setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801206C4.s"
 }
@@ -13244,42 +13244,42 @@ asm void stopDrawParticle__9daAlink_cFUl(void) {
 
 // setEffectFrontRollParam__9daAlink_cFv
 // daAlink_c::setEffectFrontRollParam(void)
-asm void func_801207BC(void) {
+asm void setEffectFrontRollParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801207BC.s"
 }
 
 // setEffectSlipParam__9daAlink_cFv
 // daAlink_c::setEffectSlipParam(void)
-asm void func_80120880(void) {
+asm void setEffectSlipParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120880.s"
 }
 
 // setEffectRunParam__9daAlink_cFv
 // daAlink_c::setEffectRunParam(void)
-asm void func_80120B00(void) {
+asm void setEffectRunParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120B00.s"
 }
 
 // setEffectSmallLandParam__9daAlink_cFv
 // daAlink_c::setEffectSmallLandParam(void)
-asm void func_80120DB0(void) {
+asm void setEffectSmallLandParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80120DB0.s"
 }
 
 // setEffectLandParam__9daAlink_cFv
 // daAlink_c::setEffectLandParam(void)
-asm void func_80121000(void) {
+asm void setEffectLandParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80121000.s"
 }
 
 // setEffectSumouParam__9daAlink_cFv
 // daAlink_c::setEffectSumouParam(void)
-asm void func_80121004(void) {
+asm void setEffectSumouParam__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80121004.s"
 }
@@ -13328,7 +13328,7 @@ asm void setWaterfallEffect__9daAlink_cFPC4cXyzPUl(void) {
 
 // setWaterfallEffect__9daAlink_cFv
 // daAlink_c::setWaterfallEffect(void)
-asm void setWaterfallEffect__9daAlink_cFPC4cXyzPUl_X1_(void) {
+asm void setWaterfallEffect__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80122654.s"
 }
@@ -13391,7 +13391,7 @@ asm void setBootsLightEffect__9daAlink_cFv(void) {
 
 // setLightningSwordEffect__9daAlink_cFv
 // daAlink_c::setLightningSwordEffect(void)
-asm void setLight__9daAlink_cFvningSwordEffect(void) {
+asm void setLightningSwordEffect__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801237A8.s"
 }
@@ -13489,7 +13489,7 @@ asm void setRunSplash__9daAlink_cFv(void) {
 
 // execute__29dAlink_bottleWaterPcallBack_cFP14JPABaseEmitterP15JPABaseParticle
 // dAlink_bottleWaterPcallBack_c::execute(JPABaseEmitter*, JPABaseParticle*)
-asm void func_80124A2C(void) {
+asm void execute__29dAlink_bottleWaterPcallBack_cFP14JPABaseEmitterP15JPABaseParticle(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80124A2C.s"
 }
@@ -13572,8 +13572,8 @@ asm void initBlur__14daAlink_blur_cFfiPC4cXyzPC4cXyzPC4cXyz(void) {
 }
 
 // setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz
-// setBezierPos(const cXyz*, const cXyz*, const cXyz*, const cXyz*, float, cXyz*)
-asm void setBezierPos(void) {
+// setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz(const cXyz*, const cXyz*, const cXyz*, const cXyz*, float, cXyz*)
+asm void setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80125778.s"
 }
@@ -13594,7 +13594,7 @@ asm void traceBlur__14daAlink_blur_cFPC4cXyzPC4cXyzs(void) {
 
 // draw__14daAlink_blur_cFv
 // daAlink_blur_c::draw(void)
-asm void func_80125BF4(void) {
+asm void draw__14daAlink_blur_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80125BF4.s"
 }
@@ -13608,14 +13608,14 @@ asm void create__20daAlink_lockCursor_cFv(void) {
 
 // setAnimation__7J2DPaneFP15J2DAnmTevRegKey
 // J2DPane::setAnimation(J2DAnmTevRegKey*)
-asm void func_80126350(void) {
+asm void setAnimation__7J2DPaneFP15J2DAnmTevRegKey(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80126350.s"
 }
 
 // setAnimation__7J2DPaneFP11J2DAnmColor
 // J2DPane::setAnimation(J2DAnmColor*)
-asm void func_80126354(void) {
+asm void setAnimation__7J2DPaneFP11J2DAnmColor(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80126354.s"
 }
@@ -13629,7 +13629,7 @@ asm void update__20daAlink_lockCursor_cFv(void) {
 
 // draw__20daAlink_lockCursor_cFv
 // daAlink_lockCursor_c::draw(void)
-asm void func_80126424(void) {
+asm void draw__20daAlink_lockCursor_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80126424.s"
 }
@@ -13643,7 +13643,7 @@ asm void create__15daAlink_sight_cFv(void) {
 
 // draw__15daAlink_sight_cFv
 // daAlink_sight_c::draw(void)
-asm void func_801266C0(void) {
+asm void draw__15daAlink_sight_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801266C0.s"
 }
@@ -13755,7 +13755,7 @@ asm void setSpeedAndAngleWolf__9daAlink_cFv(void) {
 
 // setSpeedAndAngleWolfAtn__9daAlink_cFv
 // daAlink_c::setSpeedAndAngleWolfAtn(void)
-asm void setSpeedAndAngleWolf__9daAlink_cFvAtn(void) {
+asm void setSpeedAndAngleWolfAtn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80128478.s"
 }
@@ -13768,7 +13768,7 @@ asm void checkWolfAtnWait__9daAlink_cFv(void) {
 }
 
 // checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
-asm void checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf(void) {
+asm void checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012880C.s"
 }
@@ -13809,37 +13809,37 @@ asm void setBlendWolfAtnBackMoveAnime__9daAlink_cFf(void) {
 }
 
 // setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
-asm void setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf(void) {
+asm void setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012948C.s"
 }
 
 // setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase(void) {
+asm void setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80129678.s"
 }
 
 // setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseMorf(void) {
+asm void setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801296A8.s"
 }
 
 // setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed(void) {
+asm void setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801296D8.s"
 }
 
 // setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf(void) {
+asm void setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80129704.s"
 }
 
 // setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-asm void setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam(void) {
+asm void setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80129848.s"
 }
@@ -13874,7 +13874,7 @@ asm void checkWolfGroundSpecialMode__9daAlink_cFv(void) {
 
 // checkNextActionWolf__9daAlink_cFi
 // daAlink_c::checkNextActionWolf(int)
-asm void checkNextAction__9daAlink_cFiWolf(void) {
+asm void checkNextActionWolf__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80129B44.s"
 }
@@ -13916,7 +13916,7 @@ asm void wolfBgCheck__9daAlink_cFv(void) {
 
 // changeWolfBlendRate__9daAlink_cFi
 // daAlink_c::changeWolfBlendRate(int)
-asm void changeWolf__9daAlink_cFvBlendRate(void) {
+asm void changeWolfBlendRate__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012ACCC.s"
 }
@@ -13979,7 +13979,7 @@ asm void procWolfServiceWaitInit__9daAlink_cFi(void) {
 
 // procWolfServiceWait__9daAlink_cFv
 // daAlink_c::procWolfServiceWait(void)
-asm void func_8012CD28(void) {
+asm void procWolfServiceWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012CD28.s"
 }
@@ -13993,7 +13993,7 @@ asm void procWolfTiredWaitInit__9daAlink_cFv(void) {
 
 // procWolfTiredWait__9daAlink_cFv
 // daAlink_c::procWolfTiredWait(void)
-asm void func_8012CFEC(void) {
+asm void procWolfTiredWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012CFEC.s"
 }
@@ -14007,7 +14007,7 @@ asm void procWolfMidnaRideShockInit__9daAlink_cFv(void) {
 
 // procWolfMidnaRideShock__9daAlink_cFv
 // daAlink_c::procWolfMidnaRideShock(void)
-asm void func_8012D104(void) {
+asm void procWolfMidnaRideShock__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012D104.s"
 }
@@ -14021,7 +14021,7 @@ asm void procWolfWaitInit__9daAlink_cFv(void) {
 
 // procWolfWait__9daAlink_cFv
 // daAlink_c::procWolfWait(void)
-asm void func_8012D2A8(void) {
+asm void procWolfWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012D2A8.s"
 }
@@ -14035,7 +14035,7 @@ asm void procWolfMoveInit__9daAlink_cFv(void) {
 
 // procWolfMove__9daAlink_cFv
 // daAlink_c::procWolfMove(void)
-asm void func_8012D3E4(void) {
+asm void procWolfMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012D3E4.s"
 }
@@ -14049,7 +14049,7 @@ asm void procWolfDashInit__9daAlink_cFv(void) {
 
 // procWolfDash__9daAlink_cFv
 // daAlink_c::procWolfDash(void)
-asm void func_8012D590(void) {
+asm void procWolfDash__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012D590.s"
 }
@@ -14063,7 +14063,7 @@ asm void procWolfDashReverseInit__9daAlink_cFi(void) {
 
 // procWolfDashReverse__9daAlink_cFv
 // daAlink_c::procWolfDashReverse(void)
-asm void func_8012DA5C(void) {
+asm void procWolfDashReverse__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012DA5C.s"
 }
@@ -14077,7 +14077,7 @@ asm void procWolfAtnActorMoveInit__9daAlink_cFv(void) {
 
 // procWolfAtnActorMove__9daAlink_cFv
 // daAlink_c::procWolfAtnActorMove(void)
-asm void func_8012DC44(void) {
+asm void procWolfAtnActorMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012DC44.s"
 }
@@ -14091,7 +14091,7 @@ asm void procWolfWaitTurnInit__9daAlink_cFv(void) {
 
 // procWolfWaitTurn__9daAlink_cFv
 // daAlink_c::procWolfWaitTurn(void)
-asm void func_8012DDB4(void) {
+asm void procWolfWaitTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012DDB4.s"
 }
@@ -14105,7 +14105,7 @@ asm void procWolfSideStepInit__9daAlink_cFi(void) {
 
 // procWolfSideStep__9daAlink_cFv
 // daAlink_c::procWolfSideStep(void)
-asm void func_8012E0AC(void) {
+asm void procWolfSideStep__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012E0AC.s"
 }
@@ -14119,7 +14119,7 @@ asm void procWolfSideStepLandInit__9daAlink_cFs(void) {
 
 // procWolfSideStepLand__9daAlink_cFv
 // daAlink_c::procWolfSideStepLand(void)
-asm void func_8012E2DC(void) {
+asm void procWolfSideStepLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012E2DC.s"
 }
@@ -14133,7 +14133,7 @@ asm void procWolfBackJumpInit__9daAlink_cFi(void) {
 
 // procWolfBackJump__9daAlink_cFv
 // daAlink_c::procWolfBackJump(void)
-asm void func_8012E508(void) {
+asm void procWolfBackJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012E508.s"
 }
@@ -14147,7 +14147,7 @@ asm void procWolfBackJumpLandInit__9daAlink_cFss(void) {
 
 // procWolfBackJumpLand__9daAlink_cFv
 // daAlink_c::procWolfBackJumpLand(void)
-asm void func_8012E684(void) {
+asm void procWolfBackJumpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012E684.s"
 }
@@ -14161,7 +14161,7 @@ asm void procWolfHowlInit__9daAlink_cFi(void) {
 
 // procWolfHowl__9daAlink_cFv
 // daAlink_c::procWolfHowl(void)
-asm void func_8012E83C(void) {
+asm void procWolfHowl__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012E83C.s"
 }
@@ -14175,7 +14175,7 @@ asm void procWolfAutoJumpInit__9daAlink_cFi(void) {
 
 // procWolfAutoJump__9daAlink_cFv
 // daAlink_c::procWolfAutoJump(void)
-asm void func_8012EB94(void) {
+asm void procWolfAutoJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012EB94.s"
 }
@@ -14189,7 +14189,7 @@ asm void procWolfFallInit__9daAlink_cFif(void) {
 
 // procWolfFall__9daAlink_cFv
 // daAlink_c::procWolfFall(void)
-asm void func_8012EFB8(void) {
+asm void procWolfFall__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012EFB8.s"
 }
@@ -14203,7 +14203,7 @@ asm void procWolfLandInit__9daAlink_cFv(void) {
 
 // procWolfLand__9daAlink_cFv
 // daAlink_c::procWolfLand(void)
-asm void func_8012F1F0(void) {
+asm void procWolfLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012F1F0.s"
 }
@@ -14217,7 +14217,7 @@ asm void procWolfSitInit__9daAlink_cFi(void) {
 
 // procWolfSit__9daAlink_cFv
 // daAlink_c::procWolfSit(void)
-asm void func_8012F358(void) {
+asm void procWolfSit__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012F358.s"
 }
@@ -14231,7 +14231,7 @@ asm void procWolfStepMoveInit__9daAlink_cFv(void) {
 
 // procWolfStepMove__9daAlink_cFv
 // daAlink_c::procWolfStepMove(void)
-asm void func_8012F500(void) {
+asm void procWolfStepMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012F500.s"
 }
@@ -14245,7 +14245,7 @@ asm void procWolfSlipInit__9daAlink_cFv(void) {
 
 // procWolfSlip__9daAlink_cFv
 // daAlink_c::procWolfSlip(void)
-asm void func_8012F6EC(void) {
+asm void procWolfSlip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012F6EC.s"
 }
@@ -14259,7 +14259,7 @@ asm void procWolfSlipTurnInit__9daAlink_cFi(void) {
 
 // procWolfSlipTurn__9daAlink_cFv
 // daAlink_c::procWolfSlipTurn(void)
-asm void func_8012F9C0(void) {
+asm void procWolfSlipTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012F9C0.s"
 }
@@ -14273,7 +14273,7 @@ asm void procWolfSlipTurnLandInit__9daAlink_cFv(void) {
 
 // procWolfSlipTurnLand__9daAlink_cFv
 // daAlink_c::procWolfSlipTurnLand(void)
-asm void func_8012FBB4(void) {
+asm void procWolfSlipTurnLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012FBB4.s"
 }
@@ -14287,7 +14287,7 @@ asm void procWolfSlideReadyInit__9daAlink_cFsi(void) {
 
 // procWolfSlideReady__9daAlink_cFv
 // daAlink_c::procWolfSlideReady(void)
-asm void func_8012FD2C(void) {
+asm void procWolfSlideReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012FD2C.s"
 }
@@ -14301,7 +14301,7 @@ asm void procWolfSlideInit__9daAlink_cFsi(void) {
 
 // procWolfSlide__9daAlink_cFv
 // daAlink_c::procWolfSlide(void)
-asm void func_8012FFA4(void) {
+asm void procWolfSlide__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012FFA4.s"
 }
@@ -14315,7 +14315,7 @@ asm void procWolfSlideLandInit__9daAlink_cFv(void) {
 
 // procWolfSlideLand__9daAlink_cFv
 // daAlink_c::procWolfSlideLand(void)
-asm void func_80130138(void) {
+asm void procWolfSlideLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80130138.s"
 }
@@ -14329,7 +14329,7 @@ asm void procWolfWaitSlipInit__9daAlink_cFv(void) {
 
 // procWolfWaitSlip__9daAlink_cFv
 // daAlink_c::procWolfWaitSlip(void)
-asm void func_80130268(void) {
+asm void procWolfWaitSlip__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80130268.s"
 }
@@ -14343,21 +14343,21 @@ asm void procWolfSlopeStartInit__9daAlink_cFi(void) {
 
 // procWolfSlopeStart__9daAlink_cFv
 // daAlink_c::procWolfSlopeStart(void)
-asm void func_801304D4(void) {
+asm void procWolfSlopeStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801304D4.s"
 }
 
 // daAlink_searchGoldWolf__FP10fopAc_ac_cPv
-// daAlink_searchGoldWolf(fopAc_ac_c*, void*)
-asm void daAlink_searchGoldWolf(void) {
+// daAlink_searchGoldWolf__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchGoldWolf__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013056C.s"
 }
 
 // daAlink_searchWolfHowl__FP10fopAc_ac_cPv
-// daAlink_searchWolfHowl(fopAc_ac_c*, void*)
-asm void daAlink_searchWolfHowl(void) {
+// daAlink_searchWolfHowl__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchWolfHowl__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80130580.s"
 }
@@ -14378,7 +14378,7 @@ asm void procWolfHowlDemoInit__9daAlink_cFv(void) {
 
 // procWolfHowlDemo__9daAlink_cFv
 // daAlink_c::procWolfHowlDemo(void)
-asm void func_80130BC4(void) {
+asm void procWolfHowlDemo__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80130BC4.s"
 }
@@ -14392,7 +14392,7 @@ asm void setWolfHowling__15daObj_Sekizoa_cFv(void) {
 
 // checkWolfRope__9daAlink_cFv
 // daAlink_c::checkWolfRope(void)
-asm void func_80131408(void) {
+asm void checkWolfRope__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80131408.s"
 }
@@ -14462,7 +14462,7 @@ asm void procWolfRopeMoveInit__9daAlink_cFii(void) {
 
 // procWolfRopeMove__9daAlink_cFv
 // daAlink_c::procWolfRopeMove(void)
-asm void func_80131DA0(void) {
+asm void procWolfRopeMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80131DA0.s"
 }
@@ -14476,7 +14476,7 @@ asm void procWolfRopeHangInit__9daAlink_cFi(void) {
 
 // procWolfRopeHang__9daAlink_cFv
 // daAlink_c::procWolfRopeHang(void)
-asm void func_80132914(void) {
+asm void procWolfRopeHang__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80132914.s"
 }
@@ -14490,7 +14490,7 @@ asm void procWolfRopeTurnInit__9daAlink_cFv(void) {
 
 // procWolfRopeTurn__9daAlink_cFv
 // daAlink_c::procWolfRopeTurn(void)
-asm void func_80132E88(void) {
+asm void procWolfRopeTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80132E88.s"
 }
@@ -14504,7 +14504,7 @@ asm void procWolfRopeStaggerInit__9daAlink_cFi(void) {
 
 // procWolfRopeStagger__9daAlink_cFv
 // daAlink_c::procWolfRopeStagger(void)
-asm void func_80133164(void) {
+asm void procWolfRopeStagger__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80133164.s"
 }
@@ -14518,14 +14518,14 @@ asm void procWolfRopeSubjectivityInit__9daAlink_cFv(void) {
 
 // procWolfRopeSubjectivity__9daAlink_cFv
 // daAlink_c::procWolfRopeSubjectivity(void)
-asm void func_80133930(void) {
+asm void procWolfRopeSubjectivity__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80133930.s"
 }
 
 // getWolfTagJumpTime__9daAlink_cCFv
 // daAlink_c::getWolfTagJumpTime(const void)
-asm void func_80133D6C(void) {
+asm void getWolfTagJumpTime__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80133D6C.s"
 }
@@ -14546,7 +14546,7 @@ asm void procWolfTagJumpInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procWolfTagJump__9daAlink_cFv
 // daAlink_c::procWolfTagJump(void)
-asm void func_80134838(void) {
+asm void procWolfTagJump__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80134838.s"
 }
@@ -14560,21 +14560,21 @@ asm void procWolfTagJumpLandInit__9daAlink_cFP10fopAc_ac_c(void) {
 
 // procWolfTagJumpLand__9daAlink_cFv
 // daAlink_c::procWolfTagJumpLand(void)
-asm void func_80134EBC(void) {
+asm void procWolfTagJumpLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80134EBC.s"
 }
 
 // daAlink_searchGiant__FP10fopAc_ac_cPv
-// daAlink_searchGiant(fopAc_ac_c*, void*)
-asm void daAlink_searchGiant(void) {
+// daAlink_searchGiant__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchGiant__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80135050.s"
 }
 
 // daAlink_searchGiantTalk__FP10fopAc_ac_cPv
-// daAlink_searchGiantTalk(fopAc_ac_c*, void*)
-asm void daAlink_searchGiantTalk(void) {
+// daAlink_searchGiantTalk__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchGiantTalk__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801350A4.s"
 }
@@ -14588,7 +14588,7 @@ asm void procWolfGiantPuzzleInit__9daAlink_cFv(void) {
 
 // procWolfGiantPuzzle__9daAlink_cFv
 // daAlink_c::procWolfGiantPuzzle(void)
-asm void func_801351F8(void) {
+asm void procWolfGiantPuzzle__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801351F8.s"
 }
@@ -14602,7 +14602,7 @@ asm void setWolfHangGroundY__9daAlink_cFv(void) {
 
 // changeWolfHangEndProc__9daAlink_cFv
 // daAlink_c::changeWolfHangEndProc(void)
-asm void changeWolf__9daAlink_cFvHangEndProc(void) {
+asm void changeWolfHangEndProc__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801354C8.s"
 }
@@ -14616,7 +14616,7 @@ asm void procWolfHangReadyInit__9daAlink_cFv(void) {
 
 // procWolfHangReady__9daAlink_cFv
 // daAlink_c::procWolfHangReady(void)
-asm void func_80135668(void) {
+asm void procWolfHangReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80135668.s"
 }
@@ -14630,7 +14630,7 @@ asm void procWolfHangWallCatchInit__9daAlink_cFi(void) {
 
 // procWolfHangWallCatch__9daAlink_cFv
 // daAlink_c::procWolfHangWallCatch(void)
-asm void func_80135AF4(void) {
+asm void procWolfHangWallCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80135AF4.s"
 }
@@ -14644,7 +14644,7 @@ asm void procWolfHangFallStartInit__9daAlink_cFP8cM3dGPla(void) {
 
 // procWolfHangFallStart__9daAlink_cFv
 // daAlink_c::procWolfHangFallStart(void)
-asm void func_80135F00(void) {
+asm void procWolfHangFallStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80135F00.s"
 }
@@ -14665,7 +14665,7 @@ asm void procWolfDamageInit__9daAlink_cFP12dCcD_GObjInf(void) {
 
 // procWolfDamage__9daAlink_cFv
 // daAlink_c::procWolfDamage(void)
-asm void func_80136508(void) {
+asm void procWolfDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80136508.s"
 }
@@ -14679,7 +14679,7 @@ asm void procWolfLargeDamageUpInit__9daAlink_cFiiss(void) {
 
 // procWolfLargeDamageUp__9daAlink_cFv
 // daAlink_c::procWolfLargeDamageUp(void)
-asm void func_801369E4(void) {
+asm void procWolfLargeDamageUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801369E4.s"
 }
@@ -14693,7 +14693,7 @@ asm void procWolfLandDamageInit__9daAlink_cFi(void) {
 
 // procWolfLandDamage__9daAlink_cFv
 // daAlink_c::procWolfLandDamage(void)
-asm void func_80136DE4(void) {
+asm void procWolfLandDamage__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80136DE4.s"
 }
@@ -14714,7 +14714,7 @@ asm void procWolfScreamWaitInit__9daAlink_cFv(void) {
 
 // procWolfScreamWait__9daAlink_cFv
 // daAlink_c::procWolfScreamWait(void)
-asm void func_80136FF8(void) {
+asm void procWolfScreamWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80136FF8.s"
 }
@@ -14735,7 +14735,7 @@ asm void getWolfLieMoveSpeed__9daAlink_cFv(void) {
 
 // checkMidnaDisappearMode__9daAlink_cCFv
 // daAlink_c::checkMidnaDisappearMode(const void)
-asm void func_801371A0(void) {
+asm void checkMidnaDisappearMode__9daAlink_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801371A0.s"
 }
@@ -14749,7 +14749,7 @@ asm void checkWolfLieContinue__9daAlink_cFi(void) {
 
 // checkNextActionWolfFromLie__9daAlink_cFv
 // daAlink_c::checkNextActionWolfFromLie(void)
-asm void checkNextAction__9daAlink_cFiWolfFromLie(void) {
+asm void checkNextActionWolfFromLie__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801372B4.s"
 }
@@ -14777,7 +14777,7 @@ asm void procWolfLieStartInit__9daAlink_cFi(void) {
 
 // procWolfLieStart__9daAlink_cFv
 // daAlink_c::procWolfLieStart(void)
-asm void func_8013753C(void) {
+asm void procWolfLieStart__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013753C.s"
 }
@@ -14791,7 +14791,7 @@ asm void procWolfLieMoveInit__9daAlink_cFi(void) {
 
 // procWolfLieMove__9daAlink_cFv
 // daAlink_c::procWolfLieMove(void)
-asm void func_801377F0(void) {
+asm void procWolfLieMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801377F0.s"
 }
@@ -14805,14 +14805,14 @@ asm void procWolfLieAutoMoveInit__9daAlink_cFiP4cXyz(void) {
 
 // procWolfLieAutoMove__9daAlink_cFv
 // daAlink_c::procWolfLieAutoMove(void)
-asm void func_80137D4C(void) {
+asm void procWolfLieAutoMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80137D4C.s"
 }
 
 // setSpeedAndAngleSwimWolf__9daAlink_cFv
 // daAlink_c::setSpeedAndAngleSwimWolf(void)
-asm void setSpeedAndAngleSwim__9daAlink_cFvWolf(void) {
+asm void setSpeedAndAngleSwimWolf__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80138000.s"
 }
@@ -14826,7 +14826,7 @@ asm void getWolfSwimMoveAnmSpeed__9daAlink_cFv(void) {
 
 // decideDoStatusSwimWolf__9daAlink_cFv
 // daAlink_c::decideDoStatusSwimWolf(void)
-asm void decideDoStatus__9daAlink_cFvSwimWolf(void) {
+asm void decideDoStatusSwimWolf__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801381F8.s"
 }
@@ -14840,7 +14840,7 @@ asm void procWolfSwimUpInit__9daAlink_cFv(void) {
 
 // procWolfSwimUp__9daAlink_cFv
 // daAlink_c::procWolfSwimUp(void)
-asm void func_80138484(void) {
+asm void procWolfSwimUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80138484.s"
 }
@@ -14854,7 +14854,7 @@ asm void procWolfSwimWaitInit__9daAlink_cFi(void) {
 
 // procWolfSwimWait__9daAlink_cFv
 // daAlink_c::procWolfSwimWait(void)
-asm void func_80138644(void) {
+asm void procWolfSwimWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80138644.s"
 }
@@ -14868,7 +14868,7 @@ asm void procWolfSwimMoveInit__9daAlink_cFv(void) {
 
 // procWolfSwimMove__9daAlink_cFv
 // daAlink_c::procWolfSwimMove(void)
-asm void func_801387A0(void) {
+asm void procWolfSwimMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801387A0.s"
 }
@@ -14882,13 +14882,13 @@ asm void procWolfSwimEndWaitInit__9daAlink_cFi(void) {
 
 // procWolfSwimEndWait__9daAlink_cFv
 // daAlink_c::procWolfSwimEndWait(void)
-asm void func_80138A18(void) {
+asm void procWolfSwimEndWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80138A18.s"
 }
 
 // onWolfEnemyBiteAll__9daAlink_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2
-asm void func_80138B6C(void) {
+asm void onWolfEnemyBiteAll__9daAlink_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80138B6C.s"
 }
@@ -14937,21 +14937,21 @@ asm void checkWolfLockData__9daAlink_cFv(void) {
 
 // checkWolfLock__9daAlink_cCFP10fopAc_ac_c
 // daAlink_c::checkWolfLock(const fopAc_ac_c*)
-asm void func_8013911C(void) {
+asm void checkWolfLock__9daAlink_cCFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013911C.s"
 }
 
 // cancelWolfLock__9daAlink_cFP10fopAc_ac_c
 // daAlink_c::cancelWolfLock(fopAc_ac_c*)
-asm void func_8013916C(void) {
+asm void cancelWolfLock__9daAlink_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013916C.s"
 }
 
 // getWolfLockActorEnd__9daAlink_cFv
 // daAlink_c::getWolfLockActorEnd(void)
-asm void func_801391DC(void) {
+asm void getWolfLockActorEnd__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801391DC.s"
 }
@@ -14964,8 +14964,8 @@ asm void searchWolfLockEnemy__9daAlink_cFP10fopAc_ac_cPv(void) {
 }
 
 // daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv
-// daAlink_searchWolfLockEnemy(fopAc_ac_c*, void*)
-asm void daAlink_searchWolfLockEnemy(void) {
+// daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801392A8.s"
 }
@@ -15020,7 +15020,7 @@ asm void procWolfRollAttackChargeInit__9daAlink_cFv(void) {
 
 // procWolfRollAttackCharge__9daAlink_cFv
 // daAlink_c::procWolfRollAttackCharge(void)
-asm void func_80139908(void) {
+asm void procWolfRollAttackCharge__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80139908.s"
 }
@@ -15034,7 +15034,7 @@ asm void procWolfRollAttackMoveInit__9daAlink_cFv(void) {
 
 // procWolfRollAttackMove__9daAlink_cFv
 // daAlink_c::procWolfRollAttackMove(void)
-asm void func_80139A70(void) {
+asm void procWolfRollAttackMove__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80139A70.s"
 }
@@ -15048,7 +15048,7 @@ asm void procWolfJumpAttackInit__9daAlink_cFi(void) {
 
 // procWolfJumpAttack__9daAlink_cFv
 // daAlink_c::procWolfJumpAttack(void)
-asm void func_8013A4F8(void) {
+asm void procWolfJumpAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013A4F8.s"
 }
@@ -15062,7 +15062,7 @@ asm void procWolfJumpAttackKickInit__9daAlink_cFv(void) {
 
 // procWolfJumpAttackKick__9daAlink_cFv
 // daAlink_c::procWolfJumpAttackKick(void)
-asm void func_8013A8A0(void) {
+asm void procWolfJumpAttackKick__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013A8A0.s"
 }
@@ -15076,7 +15076,7 @@ asm void procWolfJumpAttackSlideLandInit__9daAlink_cFiii(void) {
 
 // procWolfJumpAttackSlideLand__9daAlink_cFv
 // daAlink_c::procWolfJumpAttackSlideLand(void)
-asm void func_8013AAC4(void) {
+asm void procWolfJumpAttackSlideLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013AAC4.s"
 }
@@ -15090,7 +15090,7 @@ asm void procWolfJumpAttackNormalLandInit__9daAlink_cFi(void) {
 
 // procWolfJumpAttackNormalLand__9daAlink_cFv
 // daAlink_c::procWolfJumpAttackNormalLand(void)
-asm void func_8013ACF4(void) {
+asm void procWolfJumpAttackNormalLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013ACF4.s"
 }
@@ -15104,7 +15104,7 @@ asm void procWolfWaitAttackInit__9daAlink_cFi(void) {
 
 // procWolfWaitAttack__9daAlink_cFv
 // daAlink_c::procWolfWaitAttack(void)
-asm void func_8013AFC0(void) {
+asm void procWolfWaitAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013AFC0.s"
 }
@@ -15118,7 +15118,7 @@ asm void procWolfRollAttackInit__9daAlink_cFii(void) {
 
 // procWolfRollAttack__9daAlink_cFv
 // daAlink_c::procWolfRollAttack(void)
-asm void func_8013B424(void) {
+asm void procWolfRollAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013B424.s"
 }
@@ -15132,7 +15132,7 @@ asm void procWolfDownAttackInit__9daAlink_cFv(void) {
 
 // procWolfDownAttack__9daAlink_cFv
 // daAlink_c::procWolfDownAttack(void)
-asm void func_8013B808(void) {
+asm void procWolfDownAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013B808.s"
 }
@@ -15146,7 +15146,7 @@ asm void procWolfDownAtLandInit__9daAlink_cFP13fopEn_enemy_c(void) {
 
 // procWolfDownAtLand__9daAlink_cFv
 // daAlink_c::procWolfDownAtLand(void)
-asm void func_8013BA44(void) {
+asm void procWolfDownAtLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013BA44.s"
 }
@@ -15160,7 +15160,7 @@ asm void procWolfDownAtMissLandInit__9daAlink_cFv(void) {
 
 // procWolfDownAtMissLand__9daAlink_cFv
 // daAlink_c::procWolfDownAtMissLand(void)
-asm void func_8013BD54(void) {
+asm void procWolfDownAtMissLand__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013BD54.s"
 }
@@ -15174,7 +15174,7 @@ asm void procWolfLockAttackInit__9daAlink_cFi(void) {
 
 // procWolfLockAttack__9daAlink_cFv
 // daAlink_c::procWolfLockAttack(void)
-asm void func_8013C3E4(void) {
+asm void procWolfLockAttack__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013C3E4.s"
 }
@@ -15188,7 +15188,7 @@ asm void procWolfLockAttackTurnInit__9daAlink_cFi(void) {
 
 // procWolfLockAttackTurn__9daAlink_cFv
 // daAlink_c::procWolfLockAttackTurn(void)
-asm void func_8013C7A4(void) {
+asm void procWolfLockAttackTurn__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013C7A4.s"
 }
@@ -15202,7 +15202,7 @@ asm void procWolfAttackReverseInit__9daAlink_cFv(void) {
 
 // procWolfAttackReverse__9daAlink_cFv
 // daAlink_c::procWolfAttackReverse(void)
-asm void func_8013C9EC(void) {
+asm void procWolfAttackReverse__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013C9EC.s"
 }
@@ -15216,7 +15216,7 @@ asm void procWolfEnemyThrowInit__9daAlink_cFi(void) {
 
 // procWolfEnemyThrow__9daAlink_cFv
 // daAlink_c::procWolfEnemyThrow(void)
-asm void func_8013CC5C(void) {
+asm void procWolfEnemyThrow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013CC5C.s"
 }
@@ -15230,7 +15230,7 @@ asm void procWolfEnemyHangBiteInit__9daAlink_cFv(void) {
 
 // procWolfEnemyHangBite__9daAlink_cFv
 // daAlink_c::procWolfEnemyHangBite(void)
-asm void func_8013CDEC(void) {
+asm void procWolfEnemyHangBite__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013CDEC.s"
 }
@@ -15244,7 +15244,7 @@ asm void procWolfGrabUpInit__9daAlink_cFv(void) {
 
 // procWolfGrabUp__9daAlink_cFv
 // daAlink_c::procWolfGrabUp(void)
-asm void func_8013D3FC(void) {
+asm void procWolfGrabUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013D3FC.s"
 }
@@ -15258,7 +15258,7 @@ asm void procWolfGrabPutInit__9daAlink_cFv(void) {
 
 // procWolfGrabPut__9daAlink_cFv
 // daAlink_c::procWolfGrabPut(void)
-asm void func_8013D65C(void) {
+asm void procWolfGrabPut__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013D65C.s"
 }
@@ -15272,7 +15272,7 @@ asm void procWolfGrabThrowInit__9daAlink_cFv(void) {
 
 // procWolfGrabThrow__9daAlink_cFv
 // daAlink_c::procWolfGrabThrow(void)
-asm void func_8013D86C(void) {
+asm void procWolfGrabThrow__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013D86C.s"
 }
@@ -15286,14 +15286,14 @@ asm void procWolfPushInit__9daAlink_cFv(void) {
 
 // procWolfPush__9daAlink_cFv
 // daAlink_c::procWolfPush(void)
-asm void func_8013DA8C(void) {
+asm void procWolfPush__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013DA8C.s"
 }
 
 // daAlink_searchEnemyCargo__FP10fopAc_ac_cPv
-// daAlink_searchEnemyCargo(fopAc_ac_c*, void*)
-asm void daAlink_searchEnemyCargo(void) {
+// daAlink_searchEnemyCargo__FP10fopAc_ac_cPv(fopAc_ac_c*, void*)
+asm void daAlink_searchEnemyCargo__FP10fopAc_ac_cPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013DB58.s"
 }
@@ -15307,7 +15307,7 @@ asm void procWolfCargoCarryInit__9daAlink_cFv(void) {
 
 // procWolfCargoCarry__9daAlink_cFv
 // daAlink_c::procWolfCargoCarry(void)
-asm void func_8013DC5C(void) {
+asm void procWolfCargoCarry__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013DC5C.s"
 }
@@ -15321,7 +15321,7 @@ asm void procWolfChainUpInit__9daAlink_cFv(void) {
 
 // procWolfChainUp__9daAlink_cFv
 // daAlink_c::procWolfChainUp(void)
-asm void func_8013DE70(void) {
+asm void procWolfChainUp__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013DE70.s"
 }
@@ -15335,7 +15335,7 @@ asm void procWolfGanonCatchInit__9daAlink_cFv(void) {
 
 // procWolfGanonCatch__9daAlink_cFv
 // daAlink_c::procWolfGanonCatch(void)
-asm void func_8013E034(void) {
+asm void procWolfGanonCatch__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013E034.s"
 }
@@ -15349,7 +15349,7 @@ asm void procWolfChainReadyInit__9daAlink_cFv(void) {
 
 // procWolfChainReady__9daAlink_cFv
 // daAlink_c::procWolfChainReady(void)
-asm void func_8013E2A8(void) {
+asm void procWolfChainReady__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013E2A8.s"
 }
@@ -15363,7 +15363,7 @@ asm void procWolfChainWaitInit__9daAlink_cFv(void) {
 
 // procWolfChainWait__9daAlink_cFv
 // daAlink_c::procWolfChainWait(void)
-asm void func_8013E80C(void) {
+asm void procWolfChainWait__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013E80C.s"
 }
@@ -15377,7 +15377,7 @@ asm void procWolfDigInit__9daAlink_cFv(void) {
 
 // procWolfDig__9daAlink_cFv
 // daAlink_c::procWolfDig(void)
-asm void func_8013F1F0(void) {
+asm void procWolfDig__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013F1F0.s"
 }
@@ -15391,7 +15391,7 @@ asm void procWolfDigThroughInit__9daAlink_cFi(void) {
 
 // procWolfDigThrough__9daAlink_cFv
 // daAlink_c::procWolfDigThrough(void)
-asm void func_8013F7C4(void) {
+asm void procWolfDigThrough__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013F7C4.s"
 }
@@ -15412,7 +15412,7 @@ asm void procWolfGetSmellInit__9daAlink_cFv(void) {
 
 // procWolfGetSmell__9daAlink_cFv
 // daAlink_c::procWolfGetSmell(void)
-asm void func_8013FC24(void) {
+asm void procWolfGetSmell__9daAlink_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8013FC24.s"
 }
@@ -15440,7 +15440,7 @@ asm void setOriginalHeap__9daAlink_cFPP10JKRExpHeapUl(void) {
 
 // setClothesChange__9daAlink_cFi
 // daAlink_c::setClothesChange(int)
-asm void func_80140038(void) {
+asm void setClothesChange__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140038.s"
 }
@@ -15481,7 +15481,7 @@ asm void changeModelDataDirect__9daAlink_cFi(void) {
 
 // changeModelDataDirectWolf__9daAlink_cFi
 // daAlink_c::changeModelDataDirectWolf(int)
-asm void changeModelDataDirect__9daAlink_cFiWolf(void) {
+asm void changeModelDataDirectWolf__9daAlink_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140550.s"
 }
@@ -15516,7 +15516,7 @@ asm void resetStatusWindow__9daAlink_cFv(void) {
 
 // __ct__12daAlinkHIO_cFv
 // daAlinkHIO_c::daAlinkHIO_c(void)
-asm void daAlinkHIO_c(void) {
+asm void __ct__12daAlinkHIO_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140B88.s"
 }
@@ -15537,21 +15537,21 @@ asm void __dt__16daAlinkHIO_cut_cFv(void) {
 
 // __dt__12daAlinkHIO_cFv
 // daAlinkHIO_c::~daAlinkHIO_c(void)
-asm void func_80140C10(void) {
+asm void __dt__12daAlinkHIO_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140C10.s"
 }
 
 // __dt__8dEyeHL_cFv
 // dEyeHL_c::~dEyeHL_c(void)
-asm void func_80140C80(void) {
+asm void __dt__8dEyeHL_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140C80.s"
 }
 
 // __dt__18daPy_sightPacket_cFv
 // daPy_sightPacket_c::~daPy_sightPacket_c(void)
-asm void func_80140CDC(void) {
+asm void __dt__18daPy_sightPacket_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140CDC.s"
 }
@@ -15585,7 +15585,7 @@ asm void __dt__19mDoExt_AnmRatioPackFv(void) {
 
 // __ct__19mDoExt_AnmRatioPackFv
 // mDoExt_AnmRatioPack::mDoExt_AnmRatioPack(void)
-asm void mDoExt_AnmRatioPack(void) {
+asm void __ct__19mDoExt_AnmRatioPackFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140E2C.s"
 }
@@ -15613,21 +15613,21 @@ asm void __dt__13dBgS_LinkAcchFv(void) {
 
 // __ct__8dCcD_CpsFv
 // dCcD_Cps::dCcD_Cps(void)
-asm void dCcD_Cps(void) {
+asm void __ct__8dCcD_CpsFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80140FA0.s"
 }
 
 // __ct__8dCcD_CylFv
 // dCcD_Cyl::dCcD_Cyl(void)
-asm void dCcD_Cyl(void) {
+asm void __ct__8dCcD_CylFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141020.s"
 }
 
 // __dt__9cCcD_SttsFv
 // cCcD_Stts::~cCcD_Stts(void)
-asm void func_801410A4(void) {
+asm void __dt__9cCcD_SttsFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801410A4.s"
 }
@@ -15652,8 +15652,8 @@ asm void offNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0(void) {
 }
 
 // mDoAud_seStartLevel__FUlPC3VecUlSc
-// mDoAud_seStartLevel(unsigned long, const Vec*, unsigned long, char)
-asm void mDoAud_seStartLevel(void) {
+// mDoAud_seStartLevel__FUlPC3VecUlSc(unsigned long, const Vec*, unsigned long, char)
+asm void mDoAud_seStartLevel__FUlPC3VecUlSc(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014113C.s"
 }
@@ -15665,8 +15665,8 @@ asm void checkEndResetFlg2__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG2(void) {
 }
 
 // dComIfGp_setBottleStatus__FUcUc
-// dComIfGp_setBottleStatus(unsigned char, unsigned char)
-asm void dComIfGp_setBottleStatus(void) {
+// dComIfGp_setBottleStatus__FUcUc(unsigned char, unsigned char)
+asm void dComIfGp_setBottleStatus__FUcUc(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014119C.s"
 }
@@ -15713,8 +15713,8 @@ asm void checkShieldGet__9daPy_py_cFv(void) {
 }
 
 // fopAcM_onSwitch__FPC10fopAc_ac_ci
-// fopAcM_onSwitch(const fopAc_ac_c*, int)
-asm void fopAcM_onSwitch(void) {
+// fopAcM_onSwitch__FPC10fopAc_ac_ci(const fopAc_ac_c*, int)
+asm void fopAcM_onSwitch__FPC10fopAc_ac_ci(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141230.s"
 }
@@ -15724,15 +15724,15 @@ int dComIfGs_isItemFirstBit(u8 i_no) {
 }
 
 // dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class
-// dStage_stagInfo_GetSaveTbl(stage_stag_info_class*)
-asm void dStage_stagInfo_GetSaveTbl(void) {
+// dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class(stage_stag_info_class*)
+asm void dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141294.s"
 }
 
 // dComIfGp_getStage__Fv
-// dComIfGp_getStage(void)
-asm void dComIfGp_getStage(void) {
+// dComIfGp_getStage__Fv(void)
+asm void dComIfGp_getStage__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801412A0.s"
 }
@@ -15745,8 +15745,8 @@ asm void checkEquipHeavyBoots__9daPy_py_cCFv(void) {
 }
 
 // fopAcM_GetName__FPv
-// fopAcM_GetName(void*)
-asm void fopAcM_GetName(void) {
+// fopAcM_GetName__FPv(void*)
+asm void fopAcM_GetName__FPv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801412BC.s"
 }
@@ -15765,22 +15765,22 @@ asm void isOrderOK__14dEvt_control_cFv(void) {
 }
 
 // dComIfGp_getEvent__Fv
-// dComIfGp_getEvent(void)
-asm void dComIfGp_getEvent(void) {
+// dComIfGp_getEvent__Fv(void)
+asm void dComIfGp_getEvent__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801412F8.s"
 }
 
 // dComIfGp_checkPlayerStatus0__FiUl
-// dComIfGp_checkPlayerStatus0(int, unsigned long)
-asm void dComIfGp_checkPlayerStatus0(void) {
+// dComIfGp_checkPlayerStatus0__FiUl(int, unsigned long)
+asm void dComIfGp_checkPlayerStatus0__FiUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141308.s"
 }
 
 // dComIfGp_checkPlayerStatus1__FiUl
-// dComIfGp_checkPlayerStatus1(int, unsigned long)
-asm void dComIfGp_checkPlayerStatus1(void) {
+// dComIfGp_checkPlayerStatus1__FiUl(int, unsigned long)
+asm void dComIfGp_checkPlayerStatus1__FiUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141324.s"
 }
@@ -15792,8 +15792,8 @@ asm void checkEndResetFlg1__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG1(void) {
 }
 
 // dComIfGp_getEventManager__Fv
-// dComIfGp_getEventManager(void)
-asm void dComIfGp_getEventManager(void) {
+// dComIfGp_getEventManager__Fv(void)
+asm void dComIfGp_getEventManager__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014134C.s"
 }
@@ -15825,8 +15825,8 @@ asm void checkCommandCatch__11dEvt_info_cFv(void) {
 }
 
 // dComIfGs_isEventBit__FUs
-// dComIfGs_isEventBit(unsigned short)
-asm bool dComIfGs_isEventBit(u16) {
+// dComIfGs_isEventBit__FUs(unsigned short)
+asm bool dComIfGs_isEventBit__FUs(u16) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014139C.s"
 }
@@ -15865,15 +15865,15 @@ asm void checkNoResetFlg0__9daPy_py_cCFQ29daPy_py_c9daPy_FLG0(void) {
 }
 
 // dComIfGp_getPlayerCameraID__Fi
-// dComIfGp_getPlayerCameraID(int)
-asm void dComIfGp_getPlayerCameraID(void) {
+// dComIfGp_getPlayerCameraID__Fi(int)
+asm void dComIfGp_getPlayerCameraID__Fi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014141C.s"
 }
 
 // dComIfGp_event_chkEventFlag__FUs
-// dComIfGp_event_chkEventFlag(unsigned short)
-asm void dComIfGp_event_chkEventFlag(void) {
+// dComIfGp_event_chkEventFlag__FUs(unsigned short)
+asm void dComIfGp_event_chkEventFlag__FUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141438.s"
 }
@@ -15886,15 +15886,15 @@ asm void checkCommandDoor__11dEvt_info_cFv(void) {
 }
 
 // dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci
-// dComIfGp_evmng_getMyStaffId(const char*, fopAc_ac_c*, int)
-asm void dComIfGp_evmng_getMyStaffId(void) {
+// dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci(const char*, fopAc_ac_c*, int)
+asm void dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141464.s"
 }
 
 // dComIfGp_event_runCheck__Fv
-// dComIfGp_event_runCheck(void)
-asm void dComIfGp_event_runCheck(void) {
+// dComIfGp_event_runCheck__Fv(void)
+asm void dComIfGp_event_runCheck__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801414A4.s"
 }
@@ -15913,8 +15913,8 @@ asm void checkMagneBootsOn__9daPy_py_cCFv(void) {
 }
 
 // dComIfGp_getHorseActor__Fv
-// dComIfGp_getHorseActor(void)
-asm void dComIfGp_getHorseActor(void) {
+// dComIfGp_getHorseActor__Fv(void)
+asm void dComIfGp_getHorseActor__Fv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801414D8.s"
 }
@@ -15934,1082 +15934,1082 @@ asm void checkEndResetFlg0__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG0(void) {
 
 // getMidnaAtnPos__9daPy_py_cCFv
 // daPy_py_c::getMidnaAtnPos(const void)
-asm void func_80141500(void) {
+asm void getMidnaAtnPos__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141500.s"
 }
 
 // setMidnaMsgNum__9daPy_py_cFP10fopAc_ac_cUs
 // daPy_py_c::setMidnaMsgNum(fopAc_ac_c*, unsigned short)
-asm void func_80141508(void) {
+asm void setMidnaMsgNum__9daPy_py_cFP10fopAc_ac_cUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141508.s"
 }
 
 // getModelMtx__9daPy_py_cFv
 // daPy_py_c::getModelMtx(void)
-asm void func_8014150C(void) {
+asm void getModelMtx__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014150C.s"
 }
 
 // getInvMtx__9daPy_py_cFv
 // daPy_py_c::getInvMtx(void)
-asm void func_80141514(void) {
+asm void getInvMtx__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141514.s"
 }
 
 // getShadowTalkAtnPos__9daPy_py_cFv
 // daPy_py_c::getShadowTalkAtnPos(void)
-asm void func_8014151C(void) {
+asm void getShadowTalkAtnPos__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014151C.s"
 }
 
 // getLeftItemMatrix__9daPy_py_cFv
 // daPy_py_c::getLeftItemMatrix(void)
-asm void func_80141524(void) {
+asm void getLeftItemMatrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141524.s"
 }
 
 // getRightItemMatrix__9daPy_py_cFv
 // daPy_py_c::getRightItemMatrix(void)
-asm void func_8014152C(void) {
+asm void getRightItemMatrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014152C.s"
 }
 
 // getLeftHandMatrix__9daPy_py_cFv
 // daPy_py_c::getLeftHandMatrix(void)
-asm void func_80141534(void) {
+asm void getLeftHandMatrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141534.s"
 }
 
 // getRightHandMatrix__9daPy_py_cFv
 // daPy_py_c::getRightHandMatrix(void)
-asm void func_8014153C(void) {
+asm void getRightHandMatrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014153C.s"
 }
 
 // getLinkBackBone1Matrix__9daPy_py_cFv
 // daPy_py_c::getLinkBackBone1Matrix(void)
-asm void func_80141544(void) {
+asm void getLinkBackBone1Matrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141544.s"
 }
 
 // getWolfMouthMatrix__9daPy_py_cFv
 // daPy_py_c::getWolfMouthMatrix(void)
-asm void func_8014154C(void) {
+asm void getWolfMouthMatrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014154C.s"
 }
 
 // getWolfBackbone2Matrix__9daPy_py_cFv
 // daPy_py_c::getWolfBackbone2Matrix(void)
-asm void func_80141554(void) {
+asm void getWolfBackbone2Matrix__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141554.s"
 }
 
 // getBottleMtx__9daPy_py_cFv
 // daPy_py_c::getBottleMtx(void)
-asm void func_8014155C(void) {
+asm void getBottleMtx__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014155C.s"
 }
 
 // checkPlayerGuard__9daPy_py_cCFv
 // daPy_py_c::checkPlayerGuard(const void)
-asm void func_80141564(void) {
+asm void checkPlayerGuard__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141564.s"
 }
 
 // checkAutoJump__9daPy_py_cCFv
 // daPy_py_c::checkAutoJump(const void)
-asm void func_8014156C(void) {
+asm void checkAutoJump__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014156C.s"
 }
 
 // checkSideStep__9daPy_py_cCFv
 // daPy_py_c::checkSideStep(const void)
-asm void func_80141574(void) {
+asm void checkSideStep__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141574.s"
 }
 
 // checkWolfTriggerJump__9daPy_py_cCFv
 // daPy_py_c::checkWolfTriggerJump(const void)
-asm void func_8014157C(void) {
+asm void checkWolfTriggerJump__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014157C.s"
 }
 
 // checkGuardBreakMode__9daPy_py_cCFv
 // daPy_py_c::checkGuardBreakMode(const void)
-asm void func_80141584(void) {
+asm void checkGuardBreakMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141584.s"
 }
 
 // checkLv3Slide__9daPy_py_cCFv
 // daPy_py_c::checkLv3Slide(const void)
-asm void func_8014158C(void) {
+asm void checkLv3Slide__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014158C.s"
 }
 
 // checkWolfHowlDemoMode__9daPy_py_cCFv
 // daPy_py_c::checkWolfHowlDemoMode(const void)
-asm void func_80141594(void) {
+asm void checkWolfHowlDemoMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141594.s"
 }
 
 // checkChainBlockPushPull__9daPy_py_cFv
 // daPy_py_c::checkChainBlockPushPull(void)
-asm void func_8014159C(void) {
+asm void checkChainBlockPushPull__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014159C.s"
 }
 
 // checkElecDamage__9daPy_py_cCFv
 // daPy_py_c::checkElecDamage(const void)
-asm void func_801415A4(void) {
+asm void checkElecDamage__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415A4.s"
 }
 
 // checkEmptyBottleSwing__9daPy_py_cCFv
 // daPy_py_c::checkEmptyBottleSwing(const void)
-asm void func_801415AC(void) {
+asm void checkEmptyBottleSwing__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415AC.s"
 }
 
 // checkBottleSwingMode__9daPy_py_cCFv
 // daPy_py_c::checkBottleSwingMode(const void)
-asm void func_801415B4(void) {
+asm void checkBottleSwingMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415B4.s"
 }
 
 // checkHawkWait__9daPy_py_cCFv
 // daPy_py_c::checkHawkWait(const void)
-asm void func_801415BC(void) {
+asm void checkHawkWait__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415BC.s"
 }
 
 // checkGoatThrow__9daPy_py_cCFv
 // daPy_py_c::checkGoatThrow(const void)
-asm void func_801415C4(void) {
+asm void checkGoatThrow__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415C4.s"
 }
 
 // checkGoatThrowAfter__9daPy_py_cCFv
 // daPy_py_c::checkGoatThrowAfter(const void)
-asm void func_801415CC(void) {
+asm void checkGoatThrowAfter__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415CC.s"
 }
 
 // checkWolfTagLockJump__9daPy_py_cCFv
 // daPy_py_c::checkWolfTagLockJump(const void)
-asm void func_801415D4(void) {
+asm void checkWolfTagLockJump__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415D4.s"
 }
 
 // checkWolfTagLockJumpLand__9daPy_py_cCFv
 // daPy_py_c::checkWolfTagLockJumpLand(const void)
-asm void func_801415DC(void) {
+asm void checkWolfTagLockJumpLand__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415DC.s"
 }
 
 // checkWolfRope__9daPy_py_cFv
 // daPy_py_c::checkWolfRope(void)
-asm void func_801415E4(void) {
+asm void checkWolfRope__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415E4.s"
 }
 
 // checkWolfRopeHang__9daPy_py_cCFv
 // daPy_py_c::checkWolfRopeHang(const void)
-asm void func_801415EC(void) {
+asm void checkWolfRopeHang__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415EC.s"
 }
 
 // checkRollJump__9daPy_py_cCFv
 // daPy_py_c::checkRollJump(const void)
-asm void func_801415F4(void) {
+asm void checkRollJump__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415F4.s"
 }
 
 // checkGoronRideWait__9daPy_py_cCFv
 // daPy_py_c::checkGoronRideWait(const void)
-asm void func_801415FC(void) {
+asm void checkGoronRideWait__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801415FC.s"
 }
 
 // checkWolfChain__9daPy_py_cCFv
 // daPy_py_c::checkWolfChain(const void)
-asm void func_80141604(void) {
+asm void checkWolfChain__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141604.s"
 }
 
 // checkWolfWait__9daPy_py_cCFv
 // daPy_py_c::checkWolfWait(const void)
-asm void func_8014160C(void) {
+asm void checkWolfWait__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014160C.s"
 }
 
 // checkWolfJumpAttack__9daPy_py_cCFv
 // daPy_py_c::checkWolfJumpAttack(const void)
-asm void func_80141614(void) {
+asm void checkWolfJumpAttack__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141614.s"
 }
 
 // checkWolfRSit__9daPy_py_cCFv
 // daPy_py_c::checkWolfRSit(const void)
-asm void func_8014161C(void) {
+asm void checkWolfRSit__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014161C.s"
 }
 
 // checkBubbleFly__9daPy_py_cCFv
 // daPy_py_c::checkBubbleFly(const void)
-asm void func_80141624(void) {
+asm void checkBubbleFly__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141624.s"
 }
 
 // checkBottleDrinkEnd__9daPy_py_cCFv
 // daPy_py_c::checkBottleDrinkEnd(const void)
-asm void func_8014162C(void) {
+asm void checkBottleDrinkEnd__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014162C.s"
 }
 
 // checkWolfDig__9daPy_py_cCFv
 // daPy_py_c::checkWolfDig(const void)
-asm void func_80141634(void) {
+asm void checkWolfDig__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141634.s"
 }
 
 // checkCutCharge__9daPy_py_cCFv
 // daPy_py_c::checkCutCharge(const void)
-asm void func_8014163C(void) {
+asm void checkCutCharge__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014163C.s"
 }
 
 // checkCutTurnCharge__9daPy_py_cCFv
 // daPy_py_c::checkCutTurnCharge(const void)
-asm void func_80141644(void) {
+asm void checkCutTurnCharge__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141644.s"
 }
 
 // checkCutLargeJumpCharge__9daPy_py_cCFv
 // daPy_py_c::checkCutLargeJumpCharge(const void)
-asm void func_8014164C(void) {
+asm void checkCutLargeJumpCharge__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014164C.s"
 }
 
 // getBokoFlamePos__9daPy_py_cFP4cXyz
 // daPy_py_c::getBokoFlamePos(cXyz*)
-asm void func_80141654(void) {
+asm void getBokoFlamePos__9daPy_py_cFP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141654.s"
 }
 
 // checkComboCutTurn__9daPy_py_cCFv
 // daPy_py_c::checkComboCutTurn(const void)
-asm void func_8014165C(void) {
+asm void checkComboCutTurn__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014165C.s"
 }
 
 // checkClimbMove__9daPy_py_cCFv
 // daPy_py_c::checkClimbMove(const void)
-asm void func_80141664(void) {
+asm void checkClimbMove__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141664.s"
 }
 
 // checkGrassWhistle__9daPy_py_cCFv
 // daPy_py_c::checkGrassWhistle(const void)
-asm void func_8014166C(void) {
+asm void checkGrassWhistle__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014166C.s"
 }
 
 // checkBoarRun__9daPy_py_cCFv
 // daPy_py_c::checkBoarRun(const void)
-asm void func_80141674(void) {
+asm void checkBoarRun__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141674.s"
 }
 
 // checkFmChainPut__9daPy_py_cCFv
 // daPy_py_c::checkFmChainPut(const void)
-asm void func_8014167C(void) {
+asm void checkFmChainPut__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014167C.s"
 }
 
 // checkHorseElecDamage__9daPy_py_cCFv
 // daPy_py_c::checkHorseElecDamage(const void)
-asm void func_80141684(void) {
+asm void checkHorseElecDamage__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141684.s"
 }
 
 // getBaseAnimeFrameRate__9daPy_py_cCFv
 // daPy_py_c::getBaseAnimeFrameRate(const void)
-asm void func_8014168C(void) {
+asm void getBaseAnimeFrameRate__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014168C.s"
 }
 
 // getBaseAnimeFrame__9daPy_py_cCFv
 // daPy_py_c::getBaseAnimeFrame(const void)
-asm void func_80141694(void) {
+asm void getBaseAnimeFrame__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141694.s"
 }
 
 // setAnimeFrame__9daPy_py_cFf
 // daPy_py_c::setAnimeFrame(float)
-asm void func_8014169C(void) {
+asm void setAnimeFrame__9daPy_py_cFf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014169C.s"
 }
 
 // checkWolfLock__9daPy_py_cCFP10fopAc_ac_c
 // daPy_py_c::checkWolfLock(const fopAc_ac_c*)
-asm void func_801416A0(void) {
+asm void checkWolfLock__9daPy_py_cCFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416A0.s"
 }
 
 // cancelWolfLock__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::cancelWolfLock(fopAc_ac_c*)
-asm void func_801416A8(void) {
+asm void cancelWolfLock__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416A8.s"
 }
 
 // getItemID__9daPy_py_cCFv
 // daPy_py_c::getItemID(const void)
-asm void func_801416B0(void) {
+asm void getItemID__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416B0.s"
 }
 
 // exchangeGrabActor__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::exchangeGrabActor(fopAc_ac_c*)
-asm void func_801416B8(void) {
+asm void exchangeGrabActor__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416B8.s"
 }
 
 // setForceGrab__9daPy_py_cFP10fopAc_ac_cii
 // daPy_py_c::setForceGrab(fopAc_ac_c*, int, int)
-asm void func_801416C0(void) {
+asm void setForceGrab__9daPy_py_cFP10fopAc_ac_cii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416C0.s"
 }
 
 // setForcePutPos__9daPy_py_cFRC4cXyz
 // daPy_py_c::setForcePutPos(const cXyz&)
-asm void func_801416C8(void) {
+asm void setForcePutPos__9daPy_py_cFRC4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416C8.s"
 }
 
 // checkPlayerNoDraw__9daPy_py_cFv
 // daPy_py_c::checkPlayerNoDraw(void)
-asm void func_801416CC(void) {
+asm void checkPlayerNoDraw__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416CC.s"
 }
 
 // checkRopeTag__9daPy_py_cFv
 // daPy_py_c::checkRopeTag(void)
-asm void func_801416D4(void) {
+asm void checkRopeTag__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416D4.s"
 }
 
 // voiceStart__9daPy_py_cFUl
 // daPy_py_c::voiceStart(unsigned long)
-asm void func_801416DC(void) {
+asm void voiceStart__9daPy_py_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416DC.s"
 }
 
 // seStartOnlyReverb__9daPy_py_cFUl
 // daPy_py_c::seStartOnlyReverb(unsigned long)
-asm void func_801416E0(void) {
+asm void seStartOnlyReverb__9daPy_py_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416E0.s"
 }
 
 // seStartOnlyReverbLevel__9daPy_py_cFUl
 // daPy_py_c::seStartOnlyReverbLevel(unsigned long)
-asm void func_801416E4(void) {
+asm void seStartOnlyReverbLevel__9daPy_py_cFUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416E4.s"
 }
 
 // setOutPower__9daPy_py_cFfsi
 // daPy_py_c::setOutPower(float, short, int)
-asm void func_801416E8(void) {
+asm void setOutPower__9daPy_py_cFfsi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416E8.s"
 }
 
 // setGrabCollisionOffset__9daPy_py_cFffP13cBgS_PolyInfo
 // daPy_py_c::setGrabCollisionOffset(float, float, cBgS_PolyInfo*)
-asm void func_801416EC(void) {
+asm void setGrabCollisionOffset__9daPy_py_cFffP13cBgS_PolyInfo(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416EC.s"
 }
 
 // onMagneGrab__9daPy_py_cFff
 // daPy_py_c::onMagneGrab(float, float)
-asm void func_801416F0(void) {
+asm void onMagneGrab__9daPy_py_cFff(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416F0.s"
 }
 
 // getModelJointMtx__9daPy_py_cFUs
 // daPy_py_c::getModelJointMtx(unsigned short)
-asm void func_801416F4(void) {
+asm void getModelJointMtx__9daPy_py_cFUs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416F4.s"
 }
 
 // getHeadMtx__9daPy_py_cFv
 // daPy_py_c::getHeadMtx(void)
-asm void func_801416FC(void) {
+asm void getHeadMtx__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801416FC.s"
 }
 
 // setHookshotCarryOffset__9daPy_py_cFUiPC4cXyz
 // daPy_py_c::setHookshotCarryOffset(unsigned int, const cXyz*)
-asm void func_80141704(void) {
+asm void setHookshotCarryOffset__9daPy_py_cFUiPC4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141704.s"
 }
 
 // checkIronBallReturn__9daPy_py_cCFv
 // daPy_py_c::checkIronBallReturn(const void)
-asm void func_8014170C(void) {
+asm void checkIronBallReturn__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014170C.s"
 }
 
 // checkIronBallGroundStop__9daPy_py_cCFv
 // daPy_py_c::checkIronBallGroundStop(const void)
-asm void func_80141714(void) {
+asm void checkIronBallGroundStop__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141714.s"
 }
 
 // checkSingleBoarBattleSecondBowReady__9daPy_py_cCFv
 // daPy_py_c::checkSingleBoarBattleSecondBowReady(const void)
-asm void func_8014171C(void) {
+asm void checkSingleBoarBattleSecondBowReady__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014171C.s"
 }
 
 // checkPointSubWindowMode__9daPy_py_cCFv
 // daPy_py_c::checkPointSubWindowMode(const void)
-asm void func_80141724(void) {
+asm void checkPointSubWindowMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141724.s"
 }
 
 // setClothesChange__9daPy_py_cFi
 // daPy_py_c::setClothesChange(int)
-asm void func_8014172C(void) {
+asm void setClothesChange__9daPy_py_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014172C.s"
 }
 
 // setPlayerPosAndAngle__9daPy_py_cFPA4_f
-asm void func_80141730(void) {
+asm void setPlayerPosAndAngle__9daPy_py_cFPA4_f(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141730.s"
 }
 
 // setPlayerPosAndAngle__9daPy_py_cFPC4cXyzPC5csXyz
 // daPy_py_c::setPlayerPosAndAngle(const cXyz*, const csXyz*)
-asm void func_80141734(void) {
+asm void setPlayerPosAndAngle__9daPy_py_cFPC4cXyzPC5csXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141734.s"
 }
 
 // setPlayerPosAndAngle__9daPy_py_cFPC4cXyzsi
 // daPy_py_c::setPlayerPosAndAngle(const cXyz*, short, int)
-asm void func_80141738(void) {
+asm void setPlayerPosAndAngle__9daPy_py_cFPC4cXyzsi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141738.s"
 }
 
 // setThrowDamage__9daPy_py_cFsffiii
 // daPy_py_c::setThrowDamage(short, float, float, int, int, int)
-asm void func_8014173C(void) {
+asm void setThrowDamage__9daPy_py_cFsffiii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014173C.s"
 }
 
 // checkSetNpcTks__9daPy_py_cFP4cXyzii
 // daPy_py_c::checkSetNpcTks(cXyz*, int, int)
-asm void func_80141744(void) {
+asm void checkSetNpcTks__9daPy_py_cFP4cXyzii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141744.s"
 }
 
 // setRollJump__9daPy_py_cFffs
 // daPy_py_c::setRollJump(float, float, short)
-asm void func_8014174C(void) {
+asm void setRollJump__9daPy_py_cFffs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014174C.s"
 }
 
 // playerStartCollisionSE__9daPy_py_cFUlUl
 // daPy_py_c::playerStartCollisionSE(unsigned long, unsigned long)
-asm void func_80141754(void) {
+asm void playerStartCollisionSE__9daPy_py_cFUlUl(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141754.s"
 }
 
 // changeTextureAnime__9daPy_py_cFUsUsi
 // daPy_py_c::changeTextureAnime(unsigned short, unsigned short, int)
-asm void func_80141758(void) {
+asm void changeTextureAnime__9daPy_py_cFUsUsi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141758.s"
 }
 
 // cancelChangeTextureAnime__9daPy_py_cFv
 // daPy_py_c::cancelChangeTextureAnime(void)
-asm void func_8014175C(void) {
+asm void cancelChangeTextureAnime__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014175C.s"
 }
 
 // cancelDungeonWarpReadyNeck__9daPy_py_cFv
 // daPy_py_c::cancelDungeonWarpReadyNeck(void)
-asm void func_80141760(void) {
+asm void cancelDungeonWarpReadyNeck__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141760.s"
 }
 
 // onSceneChangeArea__9daPy_py_cFUcUcP10fopAc_ac_c
 // daPy_py_c::onSceneChangeArea(unsigned char, unsigned char, fopAc_ac_c*)
-asm void func_80141764(void) {
+asm void onSceneChangeArea__9daPy_py_cFUcUcP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141764.s"
 }
 
 // onSceneChangeAreaJump__9daPy_py_cFUcUcP10fopAc_ac_c
 // daPy_py_c::onSceneChangeAreaJump(unsigned char, unsigned char, fopAc_ac_c*)
-asm void func_80141768(void) {
+asm void onSceneChangeAreaJump__9daPy_py_cFUcUcP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141768.s"
 }
 
 // onSceneChangeDead__9daPy_py_cFUci
 // daPy_py_c::onSceneChangeDead(unsigned char, int)
-asm void func_8014176C(void) {
+asm void onSceneChangeDead__9daPy_py_cFUci(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014176C.s"
 }
 
 // getSpinnerActor__9daPy_py_cFv
 // daPy_py_c::getSpinnerActor(void)
-asm void func_80141770(void) {
+asm void getSpinnerActor__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141770.s"
 }
 
 // checkHorseRideNotReady__9daPy_py_cCFv
 // daPy_py_c::checkHorseRideNotReady(const void)
-asm void func_80141778(void) {
+asm void checkHorseRideNotReady__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141778.s"
 }
 
 // checkArrowChargeEnd__9daPy_py_cCFv
 // daPy_py_c::checkArrowChargeEnd(const void)
-asm void func_80141780(void) {
+asm void checkArrowChargeEnd__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141780.s"
 }
 
 // getSearchBallScale__9daPy_py_cCFv
 // daPy_py_c::getSearchBallScale(const void)
-asm void func_80141788(void) {
+asm void getSearchBallScale__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141788.s"
 }
 
 // checkFastShotTime__9daPy_py_cFv
 // daPy_py_c::checkFastShotTime(void)
-asm void func_80141790(void) {
+asm void checkFastShotTime__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141790.s"
 }
 
 // checkNoEquipItem__9daPy_py_cCFv
 // daPy_py_c::checkNoEquipItem(const void)
-asm void func_80141798(void) {
+asm void checkNoEquipItem__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141798.s"
 }
 
 // checkFireMaterial__9daPy_py_cCFv
 // daPy_py_c::checkFireMaterial(const void)
-asm void func_801417A0(void) {
+asm void checkFireMaterial__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417A0.s"
 }
 
 // checkKandelaarSwing__9daPy_py_cCFi
 // daPy_py_c::checkKandelaarSwing(const int)
-asm void func_801417A8(void) {
+asm void checkKandelaarSwing__9daPy_py_cCFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417A8.s"
 }
 
 // getBoardCutTurnOffsetAngleY__9daPy_py_cCFv
 // daPy_py_c::getBoardCutTurnOffsetAngleY(const void)
-asm void func_801417B0(void) {
+asm void getBoardCutTurnOffsetAngleY__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417B0.s"
 }
 
 // getMagneHitPos__9daPy_py_cFv
 // daPy_py_c::getMagneHitPos(void)
-asm void func_801417B8(void) {
+asm void getMagneHitPos__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417B8.s"
 }
 
 // getMagneBootsTopVec__9daPy_py_cFv
 // daPy_py_c::getMagneBootsTopVec(void)
-asm void func_801417C0(void) {
+asm void getMagneBootsTopVec__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417C0.s"
 }
 
 // checkUseKandelaar__9daPy_py_cFi
 // daPy_py_c::checkUseKandelaar(int)
-asm void func_801417C8(void) {
+asm void checkUseKandelaar__9daPy_py_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417C8.s"
 }
 
 // setDkCaught__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::setDkCaught(fopAc_ac_c*)
-asm void func_801417D0(void) {
+asm void setDkCaught__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417D0.s"
 }
 
 // onPressedDamage__9daPy_py_cFRC4cXyzs
 // daPy_py_c::onPressedDamage(const cXyz&, short)
-asm void func_801417D4(void) {
+asm void onPressedDamage__9daPy_py_cFRC4cXyzs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417D4.s"
 }
 
 // checkPriActorOwn__9daPy_py_cCFPC10fopAc_ac_c
 // daPy_py_c::checkPriActorOwn(const fopAc_ac_c*)
-asm void func_801417D8(void) {
+asm void checkPriActorOwn__9daPy_py_cCFPC10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417D8.s"
 }
 
 // onWolfEnemyBiteAll__9daPy_py_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2
-asm void func_801417E0(void) {
+asm void onWolfEnemyBiteAll__9daPy_py_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417E0.s"
 }
 
 // checkWolfEnemyBiteAllOwn__9daPy_py_cCFPC10fopAc_ac_c
 // daPy_py_c::checkWolfEnemyBiteAllOwn(const fopAc_ac_c*)
-asm void func_801417E8(void) {
+asm void checkWolfEnemyBiteAllOwn__9daPy_py_cCFPC10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417E8.s"
 }
 
 // setWolfEnemyHangBiteAngle__9daPy_py_cFs
 // daPy_py_c::setWolfEnemyHangBiteAngle(short)
-asm void func_801417F0(void) {
+asm void setWolfEnemyHangBiteAngle__9daPy_py_cFs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417F0.s"
 }
 
 // setKandelaarMtx__9daPy_py_cFPA4_fii
-asm void func_801417F4(void) {
+asm void setKandelaarMtx__9daPy_py_cFPA4_fii(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417F4.s"
 }
 
 // getStickAngleFromPlayerShape__9daPy_py_cCFPs
 // daPy_py_c::getStickAngleFromPlayerShape(const short*)
-asm void func_801417F8(void) {
+asm void getStickAngleFromPlayerShape__9daPy_py_cCFPs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801417F8.s"
 }
 
 // checkSpinnerPathMove__9daPy_py_cFv
 // daPy_py_c::checkSpinnerPathMove(void)
-asm void func_80141800(void) {
+asm void checkSpinnerPathMove__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141800.s"
 }
 
 // checkSpinnerTriggerAttack__9daPy_py_cFv
 // daPy_py_c::checkSpinnerTriggerAttack(void)
-asm void func_80141808(void) {
+asm void checkSpinnerTriggerAttack__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141808.s"
 }
 
 // onSpinnerPathForceRemove__9daPy_py_cFv
 // daPy_py_c::onSpinnerPathForceRemove(void)
-asm void func_80141810(void) {
+asm void onSpinnerPathForceRemove__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141810.s"
 }
 
 // getIronBallBgHit__9daPy_py_cCFv
 // daPy_py_c::getIronBallBgHit(const void)
-asm void func_80141814(void) {
+asm void getIronBallBgHit__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141814.s"
 }
 
 // getIronBallCenterPos__9daPy_py_cFv
 // daPy_py_c::getIronBallCenterPos(void)
-asm void func_8014181C(void) {
+asm void getIronBallCenterPos__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014181C.s"
 }
 
 // checkCanoeFishingGetLeft__9daPy_py_cCFv
 // daPy_py_c::checkCanoeFishingGetLeft(const void)
-asm void func_80141824(void) {
+asm void checkCanoeFishingGetLeft__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141824.s"
 }
 
 // checkCanoeFishingGetRight__9daPy_py_cCFv
 // daPy_py_c::checkCanoeFishingGetRight(const void)
-asm void func_8014182C(void) {
+asm void checkCanoeFishingGetRight__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014182C.s"
 }
 
 // checkBeeChildDrink__9daPy_py_cCFv
 // daPy_py_c::checkBeeChildDrink(const void)
-asm void func_80141834(void) {
+asm void checkBeeChildDrink__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141834.s"
 }
 
 // skipPortalObjWarp__9daPy_py_cFv
 // daPy_py_c::skipPortalObjWarp(void)
-asm void func_8014183C(void) {
+asm void skipPortalObjWarp__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014183C.s"
 }
 
 // checkTreasureRupeeReturn__9daPy_py_cCFi
 // daPy_py_c::checkTreasureRupeeReturn(const int)
-asm void func_80141840(void) {
+asm void checkTreasureRupeeReturn__9daPy_py_cCFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141840.s"
 }
 
 // setSumouReady__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::setSumouReady(fopAc_ac_c*)
-asm void func_80141848(void) {
+asm void setSumouReady__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141848.s"
 }
 
 // checkAcceptDungeonWarpAlink__9daPy_py_cFi
 // daPy_py_c::checkAcceptDungeonWarpAlink(int)
-asm void func_8014184C(void) {
+asm void checkAcceptDungeonWarpAlink__9daPy_py_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014184C.s"
 }
 
 // getSumouCounter__9daPy_py_cCFv
 // daPy_py_c::getSumouCounter(const void)
-asm void func_80141854(void) {
+asm void getSumouCounter__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141854.s"
 }
 
 // checkSumouWithstand__9daPy_py_cCFv
 // daPy_py_c::checkSumouWithstand(const void)
-asm void func_8014185C(void) {
+asm void checkSumouWithstand__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014185C.s"
 }
 
 // cancelGoronThrowEvent__9daPy_py_cFv
 // daPy_py_c::cancelGoronThrowEvent(void)
-asm void func_80141864(void) {
+asm void cancelGoronThrowEvent__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141864.s"
 }
 
 // setSumouGraspCancelCount__9daPy_py_cFi
 // daPy_py_c::setSumouGraspCancelCount(int)
-asm void func_80141868(void) {
+asm void setSumouGraspCancelCount__9daPy_py_cFi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141868.s"
 }
 
 // setSumouPushBackDirection__9daPy_py_cFs
 // daPy_py_c::setSumouPushBackDirection(short)
-asm void func_8014186C(void) {
+asm void setSumouPushBackDirection__9daPy_py_cFs(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014186C.s"
 }
 
 // setSumouLoseHeadUp__9daPy_py_cFv
 // daPy_py_c::setSumouLoseHeadUp(void)
-asm void func_80141870(void) {
+asm void setSumouLoseHeadUp__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141870.s"
 }
 
 // getGiantPuzzleAimAngle__9daPy_py_cCFv
 // daPy_py_c::getGiantPuzzleAimAngle(const void)
-asm void func_80141874(void) {
+asm void getGiantPuzzleAimAngle__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141874.s"
 }
 
 // setGoronSideMove__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::setGoronSideMove(fopAc_ac_c*)
-asm void func_8014187C(void) {
+asm void setGoronSideMove__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014187C.s"
 }
 
 // setCargoCarry__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::setCargoCarry(fopAc_ac_c*)
-asm void func_80141880(void) {
+asm void setCargoCarry__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141880.s"
 }
 
 // getDpdFarFlg__9daPy_py_cCFv
 // daPy_py_c::getDpdFarFlg(const void)
-asm void func_80141884(void) {
+asm void getDpdFarFlg__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141884.s"
 }
 
 // getHookshotTopPos__9daPy_py_cFv
 // daPy_py_c::getHookshotTopPos(void)
-asm void func_8014188C(void) {
+asm void getHookshotTopPos__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014188C.s"
 }
 
 // checkHookshotReturnMode__9daPy_py_cCFv
 // daPy_py_c::checkHookshotReturnMode(const void)
-asm void func_80141894(void) {
+asm void checkHookshotReturnMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141894.s"
 }
 
 // checkHookshotShootReturnMode__9daPy_py_cCFv
 // daPy_py_c::checkHookshotShootReturnMode(const void)
-asm void func_8014189C(void) {
+asm void checkHookshotShootReturnMode__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014189C.s"
 }
 
 // checkOctaIealHang__9daPy_py_cCFv
 // daPy_py_c::checkOctaIealHang(const void)
-asm void func_801418A4(void) {
+asm void checkOctaIealHang__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418A4.s"
 }
 
 // cancelOctaIealHang__9daPy_py_cFv
 // daPy_py_c::cancelOctaIealHang(void)
-asm void func_801418AC(void) {
+asm void cancelOctaIealHang__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418AC.s"
 }
 
 // cancelDragonHangBackJump__9daPy_py_cFv
 // daPy_py_c::cancelDragonHangBackJump(void)
-asm void func_801418B0(void) {
+asm void cancelDragonHangBackJump__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418B0.s"
 }
 
 // setOctaIealWildHang__9daPy_py_cFv
 // daPy_py_c::setOctaIealWildHang(void)
-asm void func_801418B4(void) {
+asm void setOctaIealWildHang__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418B4.s"
 }
 
 // checkDragonHangRide__9daPy_py_cCFv
 // daPy_py_c::checkDragonHangRide(const void)
-asm void func_801418B8(void) {
+asm void checkDragonHangRide__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418B8.s"
 }
 
 // changeDragonActor__9daPy_py_cFP10fopAc_ac_c
 // daPy_py_c::changeDragonActor(fopAc_ac_c*)
-asm void func_801418C0(void) {
+asm void changeDragonActor__9daPy_py_cFP10fopAc_ac_c(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418C0.s"
 }
 
 // getClothesChangeWaitTimer__9daPy_py_cCFv
 // daPy_py_c::getClothesChangeWaitTimer(const void)
-asm void func_801418C4(void) {
+asm void getClothesChangeWaitTimer__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418C4.s"
 }
 
 // getShieldChangeWaitTimer__9daPy_py_cCFv
 // daPy_py_c::getShieldChangeWaitTimer(const void)
-asm void func_801418CC(void) {
+asm void getShieldChangeWaitTimer__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418CC.s"
 }
 
 // getSwordChangeWaitTimer__9daPy_py_cCFv
 // daPy_py_c::getSwordChangeWaitTimer(const void)
-asm void func_801418D4(void) {
+asm void getSwordChangeWaitTimer__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418D4.s"
 }
 
 // checkMetamorphose__9daPy_py_cCFv
 // daPy_py_c::checkMetamorphose(const void)
-asm void func_801418DC(void) {
+asm void checkMetamorphose__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418DC.s"
 }
 
 // checkWolfDownAttackPullOut__9daPy_py_cCFv
 // daPy_py_c::checkWolfDownAttackPullOut(const void)
-asm void func_801418E4(void) {
+asm void checkWolfDownAttackPullOut__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418E4.s"
 }
 
 // checkBootsOrArmorHeavy__9daPy_py_cCFv
 // daPy_py_c::checkBootsOrArmorHeavy(const void)
-asm void func_801418EC(void) {
+asm void checkBootsOrArmorHeavy__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418EC.s"
 }
 
 // getBottleOpenAppearItem__9daPy_py_cCFv
 // daPy_py_c::getBottleOpenAppearItem(const void)
-asm void func_801418F4(void) {
+asm void getBottleOpenAppearItem__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418F4.s"
 }
 
 // checkItemSwordEquip__9daPy_py_cCFv
 // daPy_py_c::checkItemSwordEquip(const void)
-asm void func_801418FC(void) {
+asm void checkItemSwordEquip__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801418FC.s"
 }
 
 // getSinkShapeOffset__9daPy_py_cCFv
 // daPy_py_c::getSinkShapeOffset(const void)
-asm void func_80141904(void) {
+asm void getSinkShapeOffset__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141904.s"
 }
 
 // checkSinkDead__9daPy_py_cCFv
 // daPy_py_c::checkSinkDead(const void)
-asm void func_8014190C(void) {
+asm void checkSinkDead__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014190C.s"
 }
 
 // checkHorseStart__9daPy_py_cFv
 // daPy_py_c::checkHorseStart(void)
-asm void func_80141914(void) {
+asm void checkHorseStart__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141914.s"
 }
 
 // getWolfHowlMgrP__9daPy_py_cFv
 // daPy_py_c::getWolfHowlMgrP(void)
-asm void func_8014191C(void) {
+asm void getWolfHowlMgrP__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014191C.s"
 }
 
 // checkWolfHowlSuccessAnime__9daPy_py_cCFv
 // daPy_py_c::checkWolfHowlSuccessAnime(const void)
-asm void func_80141924(void) {
+asm void checkWolfHowlSuccessAnime__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141924.s"
 }
 
 // checkCopyRodTopUse__9daPy_py_cFv
 // daPy_py_c::checkCopyRodTopUse(void)
-asm void func_8014192C(void) {
+asm void checkCopyRodTopUse__9daPy_py_cFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014192C.s"
 }
 
 // checkCopyRodEquip__9daPy_py_cCFv
 // daPy_py_c::checkCopyRodEquip(const void)
-asm void func_80141934(void) {
+asm void checkCopyRodEquip__9daPy_py_cCFv(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141934.s"
 }
 
 // checkCutJumpMode__9daPy_py_cCFv
 // daPy_py_c::checkCutJumpMode(const void)
-asm void func_8014193C(void){nofralloc
+asm void checkCutJumpMode__9daPy_py_cCFv(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014193C.s"
 }
 
@@ -17017,20 +17017,20 @@ u32 daHorse_c::getZeldaActor(void) {
     return actorKeep.getActor();
 }
 
-u8 dComIfGp_getDoStatus(void) {
+u8 dComIfGp_getDoStatus__Fv(void) {
     return g_dComIfG_gameInfo.getPlay().getDoStatus();
 }
 
 // __ct__4cXyzFfff
 // cXyz::cXyz(float, float, float)
-asm void cXyz_X2_(void) {
+asm void __ct__4cXyzFfff(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014195C.s"
 }
 
 // dMeter2Info_offUseButton__Fi
-// dMeter2Info_offUseButton(int)
-asm void dMeter2Info_offUseButton(void) {
+// dMeter2Info_offUseButton__Fi(int)
+asm void dMeter2Info_offUseButton__Fi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014196C.s"
 }
@@ -17039,7 +17039,7 @@ void Z2CreatureLink::setLinkState(u8 state) {
     link_state = state;
 }
 
-u16 dComIfGs_getRupee(void) {
+u16 dComIfGs_getRupee__Fv(void) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getRupee();
 }
 
@@ -17048,7 +17048,7 @@ void dComIfGp_setItemRupeeCount(long amount) {
 }
 
 // dMeter2Info_setFloatingMessage__FUssb
-asm void dMeter2Info_setFloatingMessage(void) {
+asm void dMeter2Info_setFloatingMessage__FUssb(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_801419B8.s"
 }
@@ -17097,7 +17097,7 @@ asm void cLib_calcTimer(void) {
 }
 
 // __sinit_d_a_alink_cpp
-asm void func_80141B04(void) {
+asm void __sinit_d_a_alink_cpp(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80141B04.s"
 }

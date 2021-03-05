@@ -3,7 +3,7 @@
 /* 8001657C 000134BC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80016580 000134C0  3C 60 80 3E */ lis r3, lbl_803DEC60@ha
 /* 80016584 000134C4  38 63 EC 60 */ addi r3, r3, lbl_803DEC60@l
-/* 80016588 000134C8  4B FF F3 BD */ bl mDoDvdThd_param_c
+/* 80016588 000134C8  4B FF F3 BD */ bl __ct__17mDoDvdThd_param_cFv
 /* 8001658C 000134CC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80016590 000134D0  7C 08 03 A6 */ mtlr r0
 /* 80016594 000134D4  38 21 00 10 */ addi r1, r1, 0x10

@@ -19,7 +19,7 @@
 /* 801406F0 0013D630  3B C0 03 A7 */ li r30, 0x3a7
 /* 801406F4 0013D634  7F A3 EB 78 */ mr r3, r29
 /* 801406F8 0013D638  38 80 00 00 */ li r4, 0
-/* 801406FC 0013D63C  4B FF FE 55 */ bl changeModelDataDirect__9daAlink_cFiWolf
+/* 801406FC 0013D63C  4B FF FE 55 */ bl changeModelDataDirectWolf__9daAlink_cFi
 /* 80140700 0013D640  48 00 00 4C */ b lbl_8014074C
 lbl_80140704:
 /* 80140704 0013D644  3B 80 02 6A */ li r28, 0x26a
@@ -90,7 +90,7 @@ lbl_80140794:
 /* 801407FC 0013D73C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80140800 0013D740  D0 03 00 08 */ stfs f0, 8(r3)
 /* 80140804 0013D744  80 9D 06 C0 */ lwz r4, 0x6c0(r29)
-/* 80140808 0013D748  48 1E A8 95 */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_
+/* 80140808 0013D748  48 1E A8 95 */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData
 /* 8014080C 0013D74C  80 7D 06 C0 */ lwz r3, 0x6c0(r29)
 /* 80140810 0013D750  38 63 00 58 */ addi r3, r3, 0x58
 /* 80140814 0013D754  7F 44 D3 78 */ mr r4, r26
@@ -111,7 +111,7 @@ lbl_80140794:
 /* 80140850 0013D790  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80140854 0013D794  D0 03 00 08 */ stfs f0, 8(r3)
 /* 80140858 0013D798  80 9D 06 C0 */ lwz r4, 0x6c0(r29)
-/* 8014085C 0013D79C  48 1E A9 79 */ bl searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_
+/* 8014085C 0013D79C  48 1E A9 79 */ bl searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData
 /* 80140860 0013D7A0  80 7D 06 C0 */ lwz r3, 0x6c0(r29)
 /* 80140864 0013D7A4  38 63 00 58 */ addi r3, r3, 0x58
 /* 80140868 0013D7A8  7F 44 D3 78 */ mr r4, r26

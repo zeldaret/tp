@@ -7,9 +7,9 @@
 /* 80163358 00160298  8B CD 87 E4 */ lbz r30, lbl_80450D64-_SDA_BASE_(r13)
 /* 8016335C 0016029C  7F DE 07 74 */ extsb r30, r30
 /* 80163360 001602A0  7F C3 F3 78 */ mr r3, r30
-/* 80163364 001602A4  4B EC 9E F9 */ bl dComIfGp_getRoomCamera
+/* 80163364 001602A4  4B EC 9E F9 */ bl dComIfGp_getRoomCamera__Fi
 /* 80163368 001602A8  7F C3 F3 78 */ mr r3, r30
-/* 8016336C 001602AC  4B EC 9F 41 */ bl dComIfGp_getRoomArrow
+/* 8016336C 001602AC  4B EC 9F 41 */ bl dComIfGp_getRoomArrow__Fi
 /* 80163370 001602B0  38 A0 00 FF */ li r5, 0xff
 /* 80163374 001602B4  80 7F 03 CC */ lwz r3, 0x3cc(r31)
 /* 80163378 001602B8  2C 03 01 FF */ cmpwi r3, 0x1ff

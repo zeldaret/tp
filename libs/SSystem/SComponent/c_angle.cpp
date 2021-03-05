@@ -344,7 +344,7 @@ float cAngle_NS_Adjust(float f1, float f2, float f3) {
 
 // __sinit_c_angle_cpp
 //
-asm void func_80271BD4(void) {
+asm void __sinit_c_angle_cpp(void) {
     nofralloc
 #include "SComponent/c_angle/asm/func_80271BD4.s"
 }

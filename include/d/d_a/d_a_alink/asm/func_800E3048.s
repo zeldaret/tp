@@ -9,7 +9,7 @@
 /* 800E3068 000DFFA8  38 80 01 3E */ li r4, 0x13e
 /* 800E306C 000DFFAC  3C A0 80 39 */ lis r5, lbl_8038E7F4@ha
 /* 800E3070 000DFFB0  38 A5 E7 F4 */ addi r5, r5, lbl_8038E7F4@l
-/* 800E3074 000DFFB4  4B FC A0 81 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E3074 000DFFB4  4B FC A0 81 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E3078 000DFFB8  7F E3 FB 78 */ mr r3, r31
 /* 800E307C 000DFFBC  4B FD 7F 05 */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800E3080 000DFFC0  2C 03 00 00 */ cmpwi r3, 0

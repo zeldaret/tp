@@ -51,7 +51,7 @@ lbl_801380B8:
 lbl_801380BC:
 /* 801380BC 00134FFC  7F E3 FB 78 */ mr r3, r31
 /* 801380C0 00135000  38 80 00 39 */ li r4, 0x39
-/* 801380C4 00135004  4B FF 07 49 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 801380C4 00135004  4B FF 07 49 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 801380C8 00135008  2C 03 00 00 */ cmpwi r3, 0
 /* 801380CC 0013500C  41 82 00 08 */ beq lbl_801380D4
 /* 801380D0 00135010  C3 E2 92 C4 */ lfs f31, lbl_80452CC4-_SDA2_BASE_(r2)

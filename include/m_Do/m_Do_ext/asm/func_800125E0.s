@@ -14,13 +14,13 @@
 /* 80012614 0000F554  38 63 00 10 */ addi r3, r3, 0x10
 /* 80012618 0000F558  48 2B C6 AD */ bl __nwa__FUl
 /*.global mDoExt_3Dline_c*/
-/* 8001261C 0000F55C  3C 80 80 01 */ lis r4, mDoExt_3Dline_c@ha
+/* 8001261C 0000F55C  3C 80 80 01 */ lis r4, __ct__15mDoExt_3Dline_cFv@ha
 /*.global mDoExt_3Dline_c*/
-/* 80012620 0000F560  38 84 26 BC */ addi r4, r4, mDoExt_3Dline_c@l
+/* 80012620 0000F560  38 84 26 BC */ addi r4, r4, __ct__15mDoExt_3Dline_cFv@l
 /* 80012624 0000F564  38 A0 00 00 */ li r5, 0
 /* 80012628 0000F568  38 C0 00 20 */ li r6, 0x20
 /* 8001262C 0000F56C  7F E7 FB 78 */ mr r7, r31
-/* 80012630 0000F570  48 34 F8 E5 */ bl func_80361F14
+/* 80012630 0000F570  48 34 F8 E5 */ bl __construct_new_array
 /* 80012634 0000F574  90 7A 00 18 */ stw r3, 0x18(r26)
 /* 80012638 0000F578  80 1A 00 18 */ lwz r0, 0x18(r26)
 /* 8001263C 0000F57C  28 00 00 00 */ cmplwi r0, 0

@@ -5,7 +5,7 @@
 /* 801ADCB4 001AABF4  3C 60 80 43 */ lis r3, lbl_8042CA48@ha
 /* 801ADCB8 001AABF8  3B E3 CA 48 */ addi r31, r3, lbl_8042CA48@l
 /* 801ADCBC 001AABFC  38 7F 00 0C */ addi r3, r31, 0xc
-/* 801ADCC0 001AAC00  4B FF 16 29 */ bl dScnKy_env_light_c
+/* 801ADCC0 001AAC00  4B FF 16 29 */ bl __ct__18dScnKy_env_light_cFv
 /*.global __dt__18dScnKy_env_light_cFv*/
 /* 801ADCC4 001AAC04  3C 80 80 1B */ lis r4, __dt__18dScnKy_env_light_cFv@ha
 /*.global __dt__18dScnKy_env_light_cFv*/

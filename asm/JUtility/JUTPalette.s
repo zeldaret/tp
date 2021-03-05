@@ -42,8 +42,8 @@ lbl_802DE8CC:
 /* 802DE914 002DB854  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE918 002DB858  4E 80 00 20 */	blr 
 
-.global storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT_X1_
-storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT_X1_:
+.global storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
+storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv:
 /* 802DE91C 002DB85C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE920 002DB860  7C 08 02 A6 */	mflr r0
 /* 802DE924 002DB864  90 01 00 14 */	stw r0, 0x14(r1)

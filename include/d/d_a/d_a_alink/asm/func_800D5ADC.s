@@ -57,7 +57,7 @@ lbl_800D5BA0:
 /* 800D5BA8 000D2AE8  3C A0 80 39 */ lis r5, lbl_8038DD44@ha
 /* 800D5BAC 000D2AEC  38 A5 DD 44 */ addi r5, r5, lbl_8038DD44@l
 /* 800D5BB0 000D2AF0  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 800D5BB4 000D2AF4  4B FD 75 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800D5BB4 000D2AF4  4B FD 75 41 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D5BB8 000D2AF8  38 00 00 01 */ li r0, 1
 /* 800D5BBC 000D2AFC  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 800D5BC0 000D2B00  48 00 00 AC */ b lbl_800D5C6C

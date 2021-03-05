@@ -168,7 +168,7 @@ lbl_8021FA10:
 /* 8021FA24 0021C964  7C 04 00 2E */ lwzx r0, r4, r0
 /* 8021FA28 0021C968  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8021FA2C 0021C96C  41 82 00 2C */ beq lbl_8021FA58
-/* 8021FA30 0021C970  4B F6 1C 11 */ bl dCam_getBody
+/* 8021FA30 0021C970  4B F6 1C 11 */ bl dCam_getBody__Fv
 /* 8021FA34 0021C974  38 81 00 0A */ addi r4, r1, 0xa
 /* 8021FA38 0021C978  38 A1 00 08 */ addi r5, r1, 8
 /* 8021FA3C 0021C97C  4B F5 54 69 */ bl CalcSubjectAngle__9dCamera_cFPsPs

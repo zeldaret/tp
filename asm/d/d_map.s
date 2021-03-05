@@ -345,7 +345,7 @@ lbl_800289BC:
 /* 800289F0 00025930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800289F4 00025934  7C 08 02 A6 */	mflr r0
 /* 800289F8 00025938  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800289FC 0002593C  48 01 42 29 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class_X4_
+/* 800289FC 0002593C  48 01 42 29 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class
 /* 80028A00 00025940  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80028A04 00025944  7C 08 03 A6 */	mtlr r0
 /* 80028A08 00025948  38 21 00 10 */	addi r1, r1, 0x10
@@ -454,7 +454,7 @@ lbl_80028AEC:
 lbl_80028B90:
 /* 80028B90 00025AD0  7F C3 F3 78 */	mr r3, r30
 /* 80028B94 00025AD4  7F E4 FB 78 */	mr r4, r31
-/* 80028B98 00025AD8  48 01 3E A9 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class_X1_
+/* 80028B98 00025AD8  48 01 3E A9 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class
 lbl_80028B9C:
 /* 80028B9C 00025ADC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80028BA0 00025AE0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -993,7 +993,7 @@ lbl_800292D0:
 /* 8002931C 0002625C  2C 19 00 00 */	cmpwi r25, 0
 /* 80029320 00026260  40 82 03 B0 */	bne lbl_800296D0
 /* 80029324 00026264  3A E0 00 00 */	li r23, 0
-/* 80029328 00026268  48 00 5A B9 */	bl dComIfGp_isLightDropMapVisible
+/* 80029328 00026268  48 00 5A B9 */	bl dComIfGp_isLightDropMapVisible__Fv
 /* 8002932C 0002626C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80029330 00026270  41 82 00 68 */	beq lbl_80029398
 /* 80029334 00026274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1295,7 +1295,7 @@ copyPalette__6dMap_cFv:
 /* 80029784 000266C4  38 80 00 01 */	li r4, 1
 /* 80029788 000266C8  38 A0 00 2C */	li r5, 0x2c
 /* 8002978C 000266CC  C0 22 82 E0 */	lfs f1, lbl_80451CE0-_SDA2_BASE_(r2)
-/* 80029790 000266D0  48 00 08 D5 */	bl copyPalette__6dMap_cFv_X1_
+/* 80029790 000266D0  48 00 08 D5 */	bl copyPalette__6dMap_cFiif
 lbl_80029794:
 /* 80029794 000266D4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80029798 000266D8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1322,7 +1322,7 @@ lbl_800297DC:
 /* 800297DC 0002671C  7F 83 E3 78 */	mr r3, r28
 /* 800297E0 00026720  7F C4 F3 78 */	mr r4, r30
 /* 800297E4 00026724  FC 20 F8 90 */	fmr f1, f31
-/* 800297E8 00026728  48 00 07 9D */	bl setMapPaletteColorAlphaPer__6dMap_cFiif_X1_
+/* 800297E8 00026728  48 00 07 9D */	bl setMapPaletteColorAlphaPer__6dMap_cFif
 /* 800297EC 0002672C  3B DE 00 01 */	addi r30, r30, 1
 /* 800297F0 00026730  3B BD 00 01 */	addi r29, r29, 1
 lbl_800297F4:
@@ -1355,7 +1355,7 @@ resCopy__6dMap_cFv:
 /* 80029850 00026790  38 80 00 01 */	li r4, 1
 /* 80029854 00026794  38 A0 00 2C */	li r5, 0x2c
 /* 80029858 00026798  C0 22 82 E0 */	lfs f1, lbl_80451CE0-_SDA2_BASE_(r2)
-/* 8002985C 0002679C  48 00 08 09 */	bl copyPalette__6dMap_cFv_X1_
+/* 8002985C 0002679C  48 00 08 09 */	bl copyPalette__6dMap_cFiif
 lbl_80029860:
 /* 80029860 000267A0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80029864 000267A4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1375,7 +1375,7 @@ dMap_c:
 /* 80029890 000267D0  7C BC 2B 78 */	mr r28, r5
 /* 80029894 000267D4  7C DD 33 78 */	mr r29, r6
 /* 80029898 000267D8  7C FE 3B 78 */	mr r30, r7
-/* 8002989C 000267DC  48 00 15 D1 */	bl renderingAmap_c
+/* 8002989C 000267DC  48 00 15 D1 */	bl __ct__15renderingAmap_cFv
 /* 800298A0 000267E0  3C 60 80 3A */	lis r3, lbl_803A7030@ha
 /* 800298A4 000267E4  38 03 70 30 */	addi r0, r3, lbl_803A7030@l
 /* 800298A8 000267E8  90 1F 00 00 */	stw r0, 0(r31)
@@ -1861,8 +1861,8 @@ lbl_80029F64:
 /* 80029F7C 00026EBC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80029F80 00026EC0  4E 80 00 20 */	blr 
 
-.global setMapPaletteColorAlphaPer__6dMap_cFiif_X1_
-setMapPaletteColorAlphaPer__6dMap_cFiif_X1_:
+.global setMapPaletteColorAlphaPer__6dMap_cFif
+setMapPaletteColorAlphaPer__6dMap_cFif:
 /* 80029F84 00026EC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029F88 00026EC8  7C 08 02 A6 */	mflr r0
 /* 80029F8C 00026ECC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1923,8 +1923,8 @@ lbl_8002A034:
 /* 8002A05C 00026F9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002A060 00026FA0  4E 80 00 20 */	blr 
 
-.global copyPalette__6dMap_cFv_X1_
-copyPalette__6dMap_cFv_X1_:
+.global copyPalette__6dMap_cFiif
+copyPalette__6dMap_cFiif:
 /* 8002A064 00026FA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002A068 00026FA8  7C 08 02 A6 */	mflr r0
 /* 8002A06C 00026FAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2887,8 +2887,8 @@ lbl_8002AE54:
 /* 8002AE64 00027DA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002AE68 00027DA8  4E 80 00 20 */	blr 
 
-.global renderingAmap_c
-renderingAmap_c:
+.global __ct__15renderingAmap_cFv
+__ct__15renderingAmap_cFv:
 /* 8002AE6C 00027DAC  3C 80 80 3A */	lis r4, lbl_803A6F88@ha
 /* 8002AE70 00027DB0  38 04 6F 88 */	addi r0, r4, lbl_803A6F88@l
 /* 8002AE74 00027DB4  90 03 00 00 */	stw r0, 0(r3)

@@ -98,7 +98,7 @@ lbl_800E8AEC:
 /* 800E8B60 000E5AA0  C0 42 93 1C */ lfs f2, lbl_80452D1C-_SDA2_BASE_(r2)
 /* 800E8B64 000E5AA4  38 A0 FF FF */ li r5, -1
 /* 800E8B68 000E5AA8  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E8B6C 000E5AAC  48 04 0B 99 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 800E8B6C 000E5AAC  48 04 0B 99 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 800E8B70 000E5AB0  48 00 00 20 */ b lbl_800E8B90
 lbl_800E8B74:
 /* 800E8B74 000E5AB4  7F A3 EB 78 */ mr r3, r29
@@ -122,7 +122,7 @@ lbl_800E8B9C:
 /* 800E8BB4 000E5AF4  41 82 00 14 */ beq lbl_800E8BC8
 /* 800E8BB8 000E5AF8  7F A3 EB 78 */ mr r3, r29
 /* 800E8BBC 000E5AFC  38 80 00 0A */ li r4, 0xa
-/* 800E8BC0 000E5B00  48 04 0A B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800E8BC0 000E5B00  48 04 0A B9 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800E8BC4 000E5B04  48 00 00 10 */ b lbl_800E8BD4
 lbl_800E8BC8:
 /* 800E8BC8 000E5B08  7F A3 EB 78 */ mr r3, r29
@@ -176,7 +176,7 @@ lbl_800E8C50:
 /* 800E8C70 000E5BB0  41 82 00 14 */ beq lbl_800E8C84
 /* 800E8C74 000E5BB4  7F A3 EB 78 */ mr r3, r29
 /* 800E8C78 000E5BB8  38 80 00 0A */ li r4, 0xa
-/* 800E8C7C 000E5BBC  48 04 09 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800E8C7C 000E5BBC  48 04 09 FD */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800E8C80 000E5BC0  48 00 00 10 */ b lbl_800E8C90
 lbl_800E8C84:
 /* 800E8C84 000E5BC4  7F A3 EB 78 */ mr r3, r29

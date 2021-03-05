@@ -62,7 +62,7 @@ lbl_801103AC:
 /* 801103B4 0010D2F4  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 801103B8 0010D2F8  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 801103BC 0010D2FC  38 A5 00 78 */ addi r5, r5, 0x78
-/* 801103C0 0010D300  4B F9 CD 35 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 801103C0 0010D300  4B F9 CD 35 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 801103C4 0010D304  A3 DF 2F DC */ lhz r30, 0x2fdc(r31)
 lbl_801103C8:
 /* 801103C8 0010D308  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -96,7 +96,7 @@ lbl_80110420:
 lbl_80110430:
 /* 80110430 0010D370  3B C0 FF FF */ li r30, -1
 lbl_80110434:
-/* 80110434 0010D374  48 07 12 0D */ bl dCam_getBody
+/* 80110434 0010D374  48 07 12 0D */ bl dCam_getBody__Fv
 /* 80110438 0010D378  38 80 00 12 */ li r4, 0x12
 /* 8011043C 0010D37C  7F C5 F3 78 */ mr r5, r30
 /* 80110440 0010D380  3C C0 80 39 */ lis r6, lbl_80392094@ha

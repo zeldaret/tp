@@ -422,7 +422,7 @@ lbl_80119CD4:
 /* 80119CE4 00116C24  38 E1 00 08 */ addi r7, r1, 8
 /* 80119CE8 00116C28  39 01 00 10 */ addi r8, r1, 0x10
 /* 80119CEC 00116C2C  39 21 00 0C */ addi r9, r1, 0xc
-/* 80119CF0 00116C30  4B FF F7 75 */ bl daAlink_c_getDemoIDData
+/* 80119CF0 00116C30  4B FF F7 75 */ bl daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi
 /* 80119CF4 00116C34  2C 03 00 00 */ cmpwi r3, 0
 /* 80119CF8 00116C38  40 82 FA C4 */ bne lbl_801197BC
 lbl_80119CFC:

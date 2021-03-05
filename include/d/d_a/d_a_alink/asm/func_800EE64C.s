@@ -52,7 +52,7 @@ lbl_800EE704:
 /* 800EE710 000EB650  B0 1E 30 04 */ sth r0, 0x3004(r30)
 /* 800EE714 000EB654  7F C3 F3 78 */ mr r3, r30
 /* 800EE718 000EB658  38 80 00 4D */ li r4, 0x4d
-/* 800EE71C 000EB65C  4B FB E9 D9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800EE71C 000EB65C  4B FB E9 D9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_800EE720:
 /* 800EE720 000EB660  2C 1C 00 00 */ cmpwi r28, 0
 /* 800EE724 000EB664  41 82 00 40 */ beq lbl_800EE764

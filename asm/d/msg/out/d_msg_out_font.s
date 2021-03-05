@@ -3,8 +3,8 @@
 .section .text, "ax" # 80225bb8
 
 
-.global COutFontSet_c
-COutFontSet_c:
+.global __ct__13COutFontSet_cFv
+__ct__13COutFontSet_cFv:
 /* 80225BB8 00222AF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80225BBC 00222AFC  7C 08 02 A6 */	mflr r0
 /* 80225BC0 00222B00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -68,8 +68,8 @@ drawFont__13COutFontSet_cFP10J2DTextBoxUcffffUlUc:
 /* 80225C8C 00222BCC  98 A3 00 1D */	stb r5, 0x1d(r3)
 /* 80225C90 00222BD0  4E 80 00 20 */	blr 
 
-.global COutFont_c
-COutFont_c:
+.global __ct__10COutFont_cFUc
+__ct__10COutFont_cFUc:
 /* 80225C94 00222BD4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80225C98 00222BD8  7C 08 02 A6 */	mflr r0
 /* 80225C9C 00222BDC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -87,7 +87,7 @@ lbl_80225CC4:
 /* 80225CC8 00222C08  48 0A 8F 85 */	bl __nw__FUl
 /* 80225CCC 00222C0C  7C 64 1B 79 */	or. r4, r3, r3
 /* 80225CD0 00222C10  41 82 00 0C */	beq lbl_80225CDC
-/* 80225CD4 00222C14  4B FF FE E5 */	bl COutFontSet_c
+/* 80225CD4 00222C14  4B FF FE E5 */	bl __ct__13COutFontSet_cFv
 /* 80225CD8 00222C18  7C 64 1B 78 */	mr r4, r3
 lbl_80225CDC:
 /* 80225CDC 00222C1C  38 1F 00 04 */	addi r0, r31, 4
@@ -262,7 +262,7 @@ lbl_80225F44:
 /* 80225F4C 00222E8C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80225F50 00222E90  41 82 00 10 */	beq lbl_80225F60
 /* 80225F54 00222E94  7F 44 D3 78 */	mr r4, r26
-/* 80225F58 00222E98  48 0D 67 B1 */	bl J2DPicture_X3_
+/* 80225F58 00222E98  48 0D 67 B1 */	bl __ct__10J2DPictureFPC7ResTIMG
 /* 80225F5C 00222E9C  7C 60 1B 78 */	mr r0, r3
 lbl_80225F60:
 /* 80225F60 00222EA0  3B 9B 00 90 */	addi r28, r27, 0x90
@@ -2710,7 +2710,7 @@ setBlendAnime__10COutFont_cFP10J2DPictures:
 /* 802284BC 002253FC  40 80 00 34 */	bge lbl_802284F0
 /* 802284C0 00225400  38 60 00 0A */	li r3, 0xa
 /* 802284C4 00225404  38 A0 00 00 */	li r5, 0
-/* 802284C8 00225408  4B DF 7C 99 */	bl fopMsgM_valueIncrease
+/* 802284C8 00225408  4B DF 7C 99 */	bl fopMsgM_valueIncrease__FiiUc
 /* 802284CC 0022540C  FC 40 08 90 */	fmr f2, f1
 /* 802284D0 00225410  7F E3 FB 78 */	mr r3, r31
 /* 802284D4 00225414  C0 02 B0 14 */	lfs f0, lbl_80454A14-_SDA2_BASE_(r2)
@@ -2724,7 +2724,7 @@ lbl_802284F0:
 /* 802284F0 00225430  38 60 00 0A */	li r3, 0xa
 /* 802284F4 00225434  38 84 FF F6 */	addi r4, r4, -10
 /* 802284F8 00225438  38 A0 00 00 */	li r5, 0
-/* 802284FC 0022543C  4B DF 7C 65 */	bl fopMsgM_valueIncrease
+/* 802284FC 0022543C  4B DF 7C 65 */	bl fopMsgM_valueIncrease__FiiUc
 /* 80228500 00225440  7F E3 FB 78 */	mr r3, r31
 /* 80228504 00225444  C0 02 B0 14 */	lfs f0, lbl_80454A14-_SDA2_BASE_(r2)
 /* 80228508 00225448  EC 40 08 28 */	fsubs f2, f0, f1
@@ -2749,7 +2749,7 @@ getBtiName__10COutFont_cFi:
 /* 80228544 00225484  2C 04 00 28 */	cmpwi r4, 0x28
 /* 80228548 00225488  41 81 00 10 */	bgt lbl_80228558
 /* 8022854C 0022548C  38 64 FF E1 */	addi r3, r4, -31
-/* 80228550 00225490  4B FF 5D 79 */	bl dMeter2Info_getNumberTextureName
+/* 80228550 00225490  4B FF 5D 79 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 80228554 00225494  48 00 00 14 */	b lbl_80228568
 lbl_80228558:
 /* 80228558 00225498  54 80 10 3A */	slwi r0, r4, 2

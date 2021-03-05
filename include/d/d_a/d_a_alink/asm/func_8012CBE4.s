@@ -13,7 +13,7 @@
 /* 8012CC14 00129B54  40 82 00 28 */ bne lbl_8012CC3C
 /* 8012CC18 00129B58  7F C3 F3 78 */ mr r3, r30
 /* 8012CC1C 00129B5C  38 80 00 80 */ li r4, 0x80
-/* 8012CC20 00129B60  4B FF CA 59 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8012CC20 00129B60  4B FF CA 59 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8012CC24 00129B64  38 00 00 00 */ li r0, 0
 /* 8012CC28 00129B68  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 8012CC2C 00129B6C  B0 1E 30 0C */ sth r0, 0x300c(r30)
@@ -29,7 +29,7 @@ lbl_8012CC3C:
 /* 8012CC50 00129B90  40 80 00 2C */ bge lbl_8012CC7C
 /* 8012CC54 00129B94  7F C3 F3 78 */ mr r3, r30
 /* 8012CC58 00129B98  38 80 00 30 */ li r4, 0x30
-/* 8012CC5C 00129B9C  4B FF CA 1D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8012CC5C 00129B9C  4B FF CA 1D */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8012CC60 00129BA0  7F C3 F3 78 */ mr r3, r30
 /* 8012CC64 00129BA4  38 80 00 8D */ li r4, 0x8d
 /* 8012CC68 00129BA8  4B F8 2C 39 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -46,7 +46,7 @@ lbl_8012CC7C:
 /* 8012CC90 00129BD0  C0 46 00 08 */ lfs f2, 8(r6)
 /* 8012CC94 00129BD4  A8 A6 00 00 */ lha r5, 0(r6)
 /* 8012CC98 00129BD8  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 8012CC9C 00129BDC  4B FF CA 69 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8012CC9C 00129BDC  4B FF CA 69 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8012CCA0 00129BE0  38 00 00 00 */ li r0, 0
 /* 8012CCA4 00129BE4  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 8012CCA8 00129BE8  38 00 00 01 */ li r0, 1
@@ -55,7 +55,7 @@ lbl_8012CC7C:
 lbl_8012CCB4:
 /* 8012CCB4 00129BF4  7F C3 F3 78 */ mr r3, r30
 /* 8012CCB8 00129BF8  38 80 00 7F */ li r4, 0x7f
-/* 8012CCBC 00129BFC  4B FF C9 BD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8012CCBC 00129BFC  4B FF C9 BD */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8012CCC0 00129C00  38 00 00 00 */ li r0, 0
 /* 8012CCC4 00129C04  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 8012CCC8 00129C08  B0 1E 30 0C */ sth r0, 0x300c(r30)

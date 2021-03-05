@@ -197,8 +197,8 @@ lbl_80273A28:
 /* 80273A3C 0027097C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80273A40 00270980  4E 80 00 20 */	blr 
 
-.global clip__11J3DUClipperCFPA4_Cf3Vecf_X1_
-clip__11J3DUClipperCFPA4_Cf3Vecf_X1_:
+.global clip__11J3DUClipperCFPA4_CfP3VecP3Vec
+clip__11J3DUClipperCFPA4_CfP3VecP3Vec:
 /* 80273A44 00270984  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80273A48 00270988  7C 08 02 A6 */	mflr r0
 /* 80273A4C 0027098C  90 01 01 94 */	stw r0, 0x194(r1)

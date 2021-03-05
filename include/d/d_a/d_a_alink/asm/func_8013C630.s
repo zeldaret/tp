@@ -22,7 +22,7 @@
 /* 8013C684 001395C4  3C A0 80 39 */ lis r5, lbl_8038F6F4@ha
 /* 8013C688 001395C8  38 A5 F6 F4 */ addi r5, r5, lbl_8038F6F4@l
 /* 8013C68C 001395CC  38 A5 00 14 */ addi r5, r5, 0x14
-/* 8013C690 001395D0  4B FE D1 B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013C690 001395D0  4B FE D1 B9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013C694 001395D4  38 00 00 01 */ li r0, 1
 /* 8013C698 001395D8  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 8013C69C 001395DC  3C 60 80 42 */ lis r3, lbl_8042561C@ha
@@ -41,7 +41,7 @@ lbl_8013C6C8:
 /* 8013C6CC 0013960C  38 80 00 53 */ li r4, 0x53
 /* 8013C6D0 00139610  3C A0 80 39 */ lis r5, lbl_8038F6F4@ha
 /* 8013C6D4 00139614  38 A5 F6 F4 */ addi r5, r5, lbl_8038F6F4@l
-/* 8013C6D8 00139618  4B FE D1 71 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013C6D8 00139618  4B FE D1 71 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013C6DC 0013961C  38 00 00 00 */ li r0, 0
 /* 8013C6E0 00139620  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 8013C6E4 00139624  3C 60 80 42 */ lis r3, lbl_8042561C@ha

@@ -23,8 +23,8 @@ lbl_80296128:
 /* 80296140 00293080  42 00 FF E8 */	bdnz lbl_80296128
 /* 80296144 00293084  4E 80 00 20 */	blr 
 
-.global init__12JASSeqReaderFv_X1_
-init__12JASSeqReaderFv_X1_:
+.global init__12JASSeqReaderFPv
+init__12JASSeqReaderFPv:
 /* 80296148 00293088  90 83 00 00 */	stw r4, 0(r3)
 /* 8029614C 0029308C  80 03 00 00 */	lwz r0, 0(r3)
 /* 80296150 00293090  90 03 00 04 */	stw r0, 4(r3)

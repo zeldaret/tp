@@ -3,8 +3,8 @@
 .section .text, "ax" # 802f9a7c
 
 
-.global J2DWindow
-J2DWindow:
+.global __ct__9J2DWindowFv
+__ct__9J2DWindowFv:
 /* 802F9A7C 002F69BC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F9A80 002F69C0  7C 08 02 A6 */	mflr r0
 /* 802F9A84 002F69C4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -68,8 +68,8 @@ J2DWindow:
 /* 802F9B6C 002F6AAC  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F9B70 002F6AB0  4E 80 00 20 */	blr 
 
-.global J2DWindow_X1_
-J2DWindow_X1_:
+.global __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
+__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 802F9B74 002F6AB4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F9B78 002F6AB8  7C 08 02 A6 */	mflr r0
 /* 802F9B7C 002F6ABC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -110,8 +110,8 @@ J2DWindow_X1_:
 /* 802F9C08 002F6B48  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F9C0C 002F6B4C  4E 80 00 20 */	blr 
 
-.global J2DWindow_X2_
-J2DWindow_X2_:
+.global __ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial
+__ct__9J2DWindowFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial:
 /* 802F9C10 002F6B50  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 802F9C14 002F6B54  7C 08 02 A6 */	mflr r0
 /* 802F9C18 002F6B58  90 01 00 E4 */	stw r0, 0xe4(r1)
@@ -1181,7 +1181,7 @@ J2DWindow_NS_draw_private:
 /* 802FAC04 002F7B44  54 05 CF FE */	rlwinm r5, r0, 0x19, 0x1f, 0x1f
 /* 802FAC08 002F7B48  54 06 D7 FE */	rlwinm r6, r0, 0x1a, 0x1f, 0x1f
 /* 802FAC0C 002F7B4C  38 E0 00 01 */	li r7, 1
-/* 802FAC10 002F7B50  48 00 0B B9 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_
+/* 802FAC10 002F7B50  48 00 0B B9 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
 /* 802FAC14 002F7B54  88 1F 01 45 */	lbz r0, 0x145(r31)
 /* 802FAC18 002F7B58  54 07 07 FE */	clrlwi r7, r0, 0x1f
 /* 802FAC1C 002F7B5C  88 1F 01 44 */	lbz r0, 0x144(r31)
@@ -1191,7 +1191,7 @@ J2DWindow_NS_draw_private:
 /* 802FAC2C 002F7B6C  FC 40 F0 90 */	fmr f2, f30
 /* 802FAC30 002F7B70  54 05 DF FE */	rlwinm r5, r0, 0x1b, 0x1f, 0x1f
 /* 802FAC34 002F7B74  54 06 E7 FE */	rlwinm r6, r0, 0x1c, 0x1f, 0x1f
-/* 802FAC38 002F7B78  48 00 0B 91 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_
+/* 802FAC38 002F7B78  48 00 0B 91 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
 /* 802FAC3C 002F7B7C  88 9F 01 44 */	lbz r4, 0x144(r31)
 /* 802FAC40 002F7B80  54 80 DF FE */	rlwinm r0, r4, 0x1b, 0x1f, 0x1f
 /* 802FAC44 002F7B84  7C 00 00 D0 */	neg r0, r0
@@ -1230,7 +1230,7 @@ J2DWindow_NS_draw_private:
 /* 802FACC8 002F7C08  FC 40 E0 90 */	fmr f2, f28
 /* 802FACCC 002F7C0C  54 05 FF FE */	rlwinm r5, r0, 0x1f, 0x1f, 0x1f
 /* 802FACD0 002F7C10  54 06 07 FE */	clrlwi r6, r0, 0x1f
-/* 802FACD4 002F7C14  48 00 0A F5 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_
+/* 802FACD4 002F7C14  48 00 0A F5 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
 /* 802FACD8 002F7C18  88 9F 01 44 */	lbz r4, 0x144(r31)
 /* 802FACDC 002F7C1C  54 80 FF FE */	rlwinm r0, r4, 0x1f, 0x1f, 0x1f
 /* 802FACE0 002F7C20  7C 00 00 D0 */	neg r0, r0
@@ -1297,7 +1297,7 @@ J2DWindow_NS_draw_private:
 /* 802FADD4 002F7D14  FC 40 E0 90 */	fmr f2, f28
 /* 802FADD8 002F7D18  54 05 EF FE */	rlwinm r5, r0, 0x1d, 0x1f, 0x1f
 /* 802FADDC 002F7D1C  54 06 F7 FE */	rlwinm r6, r0, 0x1e, 0x1f, 0x1f
-/* 802FADE0 002F7D20  48 00 09 E9 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_
+/* 802FADE0 002F7D20  48 00 09 E9 */	bl drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
 /* 802FADE4 002F7D24  88 9F 01 44 */	lbz r4, 0x144(r31)
 /* 802FADE8 002F7D28  54 80 EF FE */	rlwinm r0, r4, 0x1d, 0x1f, 0x1f
 /* 802FADEC 002F7D2C  7C 00 00 D0 */	neg r0, r0
@@ -1952,8 +1952,8 @@ lbl_802FB6C8:
 /* 802FB7C0 002F8700  38 21 00 70 */	addi r1, r1, 0x70
 /* 802FB7C4 002F8704  4E 80 00 20 */	blr 
 
-.global drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_
-drawFrameTexture__9J2DWindowFP10JUTTextureffffUsUsUsUsb_X1_:
+.global drawFrameTexture__9J2DWindowFP10JUTTextureffbbb
+drawFrameTexture__9J2DWindowFP10JUTTextureffbbb:
 /* 802FB7C8 002F8708  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802FB7CC 002F870C  7C 08 02 A6 */	mflr r0
 /* 802FB7D0 002F8710  90 01 00 24 */	stw r0, 0x24(r1)

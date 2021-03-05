@@ -155,10 +155,10 @@ lbl_802230AC:
 /* 802230B8 0021FFF8  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 802230BC 0021FFFC  FC 20 F0 90 */ fmr f1, f30
 /* 802230C0 00220000  C0 5E 01 5C */ lfs f2, 0x15c(r30)
-/* 802230C4 00220004  4B FF 51 91 */ bl drawButtonC__13dMeter2Draw_cFUcbross
+/* 802230C4 00220004  4B FF 51 91 */ bl drawButtonCross__13dMeter2Draw_cFff
 lbl_802230C8:
 /* 802230C8 00220008  7F C3 F3 78 */ mr r3, r30
-/* 802230CC 0022000C  48 00 23 F5 */ bl alphaAnimeButton__9dMeter2_cFvCross
+/* 802230CC 0022000C  48 00 23 F5 */ bl alphaAnimeButtonCross__9dMeter2_cFv
 /* 802230D0 00220010  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 802230D4 00220014  CB E1 00 30 */ lfd f31, 0x30(r1)
 /* 802230D8 00220018  E3 C1 00 28 */ psq_l f30, 40(r1), 0, 0

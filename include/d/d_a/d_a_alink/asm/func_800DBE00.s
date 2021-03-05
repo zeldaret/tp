@@ -4,7 +4,7 @@
 /* 800DBE0C 000D8D4C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DBE10 000D8D50  7C 7F 1B 78 */ mr r31, r3
 /* 800DBE14 000D8D54  38 80 01 54 */ li r4, 0x154
-/* 800DBE18 000D8D58  4B FE 6F 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800DBE18 000D8D58  4B FE 6F 8D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DBE1C 000D8D5C  2C 03 00 00 */ cmpwi r3, 0
 /* 800DBE20 000D8D60  40 82 00 0C */ bne lbl_800DBE2C
 /* 800DBE24 000D8D64  38 60 00 01 */ li r3, 1
@@ -15,7 +15,7 @@ lbl_800DBE2C:
 /* 800DBE34 000D8D74  41 82 00 14 */ beq lbl_800DBE48
 /* 800DBE38 000D8D78  7F E3 FB 78 */ mr r3, r31
 /* 800DBE3C 000D8D7C  38 80 00 71 */ li r4, 0x71
-/* 800DBE40 000D8D80  48 04 D8 39 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800DBE40 000D8D80  48 04 D8 39 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DBE44 000D8D84  48 00 00 10 */ b lbl_800DBE54
 lbl_800DBE48:
 /* 800DBE48 000D8D88  7F E3 FB 78 */ mr r3, r31

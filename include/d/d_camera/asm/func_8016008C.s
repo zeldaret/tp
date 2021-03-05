@@ -16,7 +16,7 @@
 /* 801600B8 0015CFF8  38 A5 29 20 */ addi r5, r5, __dt__Q29dCamera_c10dCamInfo_cFv@l
 /* 801600BC 0015CFFC  38 C0 00 20 */ li r6, 0x20
 /* 801600C0 0015D000  38 E0 00 02 */ li r7, 2
-/* 801600C4 0015D004  48 20 1C 9D */ bl func_80361D60
+/* 801600C4 0015D004  48 20 1C 9D */ bl __construct_array
 /* 801600C8 0015D008  3C 60 80 3A */ lis r3, lbl_803A6F88@ha
 /* 801600CC 0015D00C  38 03 6F 88 */ addi r0, r3, lbl_803A6F88@l
 /* 801600D0 0015D010  90 1E 02 28 */ stw r0, 0x228(r30)
@@ -30,7 +30,7 @@
 /* 801600F0 0015D030  4B EF 3B ED */ bl init__8cM_rnd_cFiii
 /* 801600F4 0015D034  3B 5E 02 D0 */ addi r26, r30, 0x2d0
 /* 801600F8 0015D038  7F 43 D3 78 */ mr r3, r26
-/* 801600FC 0015D03C  4B F1 74 81 */ bl dBgS_GndChk
+/* 801600FC 0015D03C  4B F1 74 81 */ bl __ct__11dBgS_GndChkFv
 /* 80160100 0015D040  3C 60 80 3B */ lis r3, lbl_803AB6B8@ha
 /* 80160104 0015D044  38 63 B6 B8 */ addi r3, r3, lbl_803AB6B8@l
 /* 80160108 0015D048  90 7A 00 10 */ stw r3, 0x10(r26)
@@ -44,7 +44,7 @@
 /* 80160128 0015D068  4B F1 8D 59 */ bl SetCam__16dBgS_PolyPassChkFv
 /* 8016012C 0015D06C  3B 5E 03 2C */ addi r26, r30, 0x32c
 /* 80160130 0015D070  7F 43 D3 78 */ mr r3, r26
-/* 80160134 0015D074  4B F1 74 49 */ bl dBgS_GndChk
+/* 80160134 0015D074  4B F1 74 49 */ bl __ct__11dBgS_GndChkFv
 /* 80160138 0015D078  3C 60 80 3B */ lis r3, lbl_803AB6B8@ha
 /* 8016013C 0015D07C  38 03 B6 B8 */ addi r0, r3, lbl_803AB6B8@l
 /* 80160140 0015D080  90 1A 00 10 */ stw r0, 0x10(r26)
@@ -71,7 +71,7 @@
 /* 80160184 0015D0C4  38 A5 02 C4 */ addi r5, r5, dCamera_c_NS__class_3665d_camera_cpp_NS_dtor@l
 /* 80160188 0015D0C8  38 C0 00 14 */ li r6, 0x14
 /* 8016018C 0015D0CC  38 E0 00 04 */ li r7, 4
-/* 80160190 0015D0D0  48 20 1B D1 */ bl func_80361D60
+/* 80160190 0015D0D0  48 20 1B D1 */ bl __construct_array
 /* 80160194 0015D0D4  38 60 00 FF */ li r3, 0xff
 /* 80160198 0015D0D8  90 7E 07 D8 */ stw r3, 0x7d8(r30)
 /* 8016019C 0015D0DC  90 7E 07 DC */ stw r3, 0x7dc(r30)
@@ -111,10 +111,10 @@
 /* 80160224 0015D164  98 7E 09 13 */ stb r3, 0x913(r30)
 /* 80160228 0015D168  B0 7E 09 10 */ sth r3, 0x910(r30)
 /* 8016022C 0015D16C  38 7E 09 70 */ addi r3, r30, 0x970
-/* 80160230 0015D170  4B F2 84 39 */ bl dCamSetup_c
+/* 80160230 0015D170  4B F2 84 39 */ bl __ct__11dCamSetup_cFv
 /* 80160234 0015D174  38 7E 0A EC */ addi r3, r30, 0xaec
 /* 80160238 0015D178  38 80 00 00 */ li r4, 0
-/* 8016023C 0015D17C  4B F2 82 B5 */ bl dCamParam_c
+/* 8016023C 0015D17C  4B F2 82 B5 */ bl __ct__11dCamParam_cFl
 /* 80160240 0015D180  7F E3 FB 78 */ mr r3, r31
 /* 80160244 0015D184  4B EB E0 C5 */ bl fopCamM_GetParam__FP12camera_class
 /* 80160248 0015D188  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha

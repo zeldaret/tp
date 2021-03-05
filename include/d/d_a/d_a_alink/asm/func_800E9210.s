@@ -57,14 +57,14 @@ lbl_800E92BC:
 /* 800E92DC 000E621C  40 82 00 14 */ bne lbl_800E92F0
 /* 800E92E0 000E6220  7F C3 F3 78 */ mr r3, r30
 /* 800E92E4 000E6224  38 80 00 02 */ li r4, 2
-/* 800E92E8 000E6228  4B FE E1 91 */ bl setDamagePoint__9daAlink_cFiiiiNormal
+/* 800E92E8 000E6228  4B FE E1 91 */ bl setDamagePointNormal__9daAlink_cFi
 /* 800E92EC 000E622C  48 00 00 18 */ b lbl_800E9304
 lbl_800E92F0:
 /* 800E92F0 000E6230  2C 1F 01 06 */ cmpwi r31, 0x106
 /* 800E92F4 000E6234  41 82 00 10 */ beq lbl_800E9304
 /* 800E92F8 000E6238  7F C3 F3 78 */ mr r3, r30
 /* 800E92FC 000E623C  38 80 00 01 */ li r4, 1
-/* 800E9300 000E6240  4B FE E1 79 */ bl setDamagePoint__9daAlink_cFiiiiNormal
+/* 800E9300 000E6240  4B FE E1 79 */ bl setDamagePointNormal__9daAlink_cFi
 lbl_800E9304:
 /* 800E9304 000E6244  7F C3 F3 78 */ mr r3, r30
 /* 800E9308 000E6248  48 02 E9 89 */ bl resetSpecialEvent__9daAlink_cFv

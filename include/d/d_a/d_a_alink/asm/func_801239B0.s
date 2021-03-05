@@ -51,7 +51,7 @@ lbl_80123A68:
 /* 80123A6C 001209AC  40 82 00 B4 */ bne lbl_80123B20
 /* 80123A70 001209B0  3B A0 02 00 */ li r29, 0x200
 /* 80123A74 001209B4  38 7F 1E 2C */ addi r3, r31, 0x1e2c
-/* 80123A78 001209B8  48 08 78 19 */ bl dKy_pol_efftype_get
+/* 80123A78 001209B8  48 08 78 19 */ bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 80123A7C 001209BC  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 80123A80 001209C0  28 00 00 01 */ cmplwi r0, 1
 /* 80123A84 001209C4  40 82 00 14 */ bne lbl_80123A98
@@ -81,12 +81,12 @@ lbl_80123AA8:
 /* 80123ADC 00120A1C  39 1F 01 0C */ addi r8, r31, 0x10c
 /* 80123AE0 00120A20  39 21 00 18 */ addi r9, r1, 0x18
 /* 80123AE4 00120A24  39 40 00 00 */ li r10, 0
-/* 80123AE8 00120A28  4B F2 9B BD */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfPoly_X1_
+/* 80123AE8 00120A28  4B F2 9B BD */ bl setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
 /* 80123AEC 00120A2C  90 7F 32 CC */ stw r3, 0x32cc(r31)
 /* 80123AF0 00120A30  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 80123AF4 00120A34  38 63 02 10 */ addi r3, r3, 0x210
 /* 80123AF8 00120A38  80 9F 32 CC */ lwz r4, 0x32cc(r31)
-/* 80123AFC 00120A3C  4B F2 7E 1D */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 80123AFC 00120A3C  4B F2 7E 1D */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80123B00 00120A40  28 03 00 00 */ cmplwi r3, 0
 /* 80123B04 00120A44  41 82 00 70 */ beq lbl_80123B74
 /* 80123B08 00120A48  D3 C3 00 38 */ stfs f30, 0x38(r3)
@@ -106,14 +106,14 @@ lbl_80123B20:
 /* 80123B3C 00120A7C  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123B40 00120A80  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123B44 00120A84  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123B48 00120A88  4B FF CA ED */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 80123B48 00120A88  4B FF CA ED */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80123B4C 00120A8C  7F E3 FB 78 */ mr r3, r31
 /* 80123B50 00120A90  38 9F 31 BC */ addi r4, r31, 0x31bc
 /* 80123B54 00120A94  38 A0 01 B0 */ li r5, 0x1b0
 /* 80123B58 00120A98  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123B5C 00120A9C  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123B60 00120AA0  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123B64 00120AA4  4B FF CA D1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 80123B64 00120AA4  4B FF CA D1 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80123B68 00120AA8  48 00 00 0C */ b lbl_80123B74
 lbl_80123B6C:
 /* 80123B6C 00120AAC  3B A0 00 00 */ li r29, 0
@@ -134,7 +134,7 @@ lbl_80123B94:
 /* 80123BA0 00120AE0  38 DF 1E 2C */ addi r6, r31, 0x1e2c
 /* 80123BA4 00120AE4  38 FF 37 D4 */ addi r7, r31, 0x37d4
 /* 80123BA8 00120AE8  39 01 00 18 */ addi r8, r1, 0x18
-/* 80123BAC 00120AEC  4B FF CA 89 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 80123BAC 00120AEC  4B FF CA 89 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80123BB0 00120AF0  28 03 00 00 */ cmplwi r3, 0
 /* 80123BB4 00120AF4  41 82 00 14 */ beq lbl_80123BC8
 /* 80123BB8 00120AF8  80 1F 31 98 */ lwz r0, 0x3198(r31)

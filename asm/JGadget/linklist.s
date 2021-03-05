@@ -16,15 +16,15 @@ erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator:
 /* 802DCA7C 002D99BC  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 802DCA80 002D99C0  38 A1 00 10 */	addi r5, r1, 0x10
 /* 802DCA84 002D99C4  38 C1 00 0C */	addi r6, r1, 0xc
-/* 802DCA88 002D99C8  48 00 00 19 */	bl erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator_X1_
+/* 802DCA88 002D99C8  48 00 00 19 */	bl erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
 /* 802DCA8C 002D99CC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802DCA90 002D99D0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802DCA94 002D99D4  7C 08 03 A6 */	mtlr r0
 /* 802DCA98 002D99D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DCA9C 002D99DC  4E 80 00 20 */	blr 
 
-.global erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator_X1_
-erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator_X1_:
+.global erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
+erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator:
 /* 802DCAA0 002D99E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DCAA4 002D99E4  7C 08 02 A6 */	mflr r0
 /* 802DCAA8 002D99E8  90 01 00 34 */	stw r0, 0x34(r1)

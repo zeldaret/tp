@@ -516,7 +516,7 @@ lbl_800D8354:
 lbl_800D839C:
 /* 800D839C 000D52DC  7F E3 FB 78 */ mr r3, r31
 /* 800D83A0 000D52E0  38 80 00 02 */ li r4, 2
-/* 800D83A4 000D52E4  4B FF F0 D5 */ bl setDamagePoint__9daAlink_cFiiiiNormal
+/* 800D83A4 000D52E4  4B FF F0 D5 */ bl setDamagePointNormal__9daAlink_cFi
 /* 800D83A8 000D52E8  80 1F 05 84 */ lwz r0, 0x584(r31)
 /* 800D83AC 000D52EC  60 00 00 02 */ ori r0, r0, 2
 /* 800D83B0 000D52F0  90 1F 05 84 */ stw r0, 0x584(r31)

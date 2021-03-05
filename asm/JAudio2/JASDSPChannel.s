@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029d2f4
 
 
-.global JASDSPChannel
-JASDSPChannel:
+.global __ct__13JASDSPChannelFv
+__ct__13JASDSPChannelFv:
 /* 8029D2F4 0029A234  38 00 00 01 */	li r0, 1
 /* 8029D2F8 0029A238  90 03 00 00 */	stw r0, 0(r3)
 /* 8029D2FC 0029A23C  38 00 FF FF */	li r0, -1
@@ -81,14 +81,14 @@ initAll__13JASDSPChannelFv:
 /* 8029D3E0 0029A320  80 8D 8C 90 */	lwz r4, lbl_80451210-_SDA_BASE_(r13)
 /* 8029D3E4 0029A324  38 A0 00 20 */	li r5, 0x20
 /* 8029D3E8 0029A328  48 03 19 29 */	bl __nwa__FUlP7JKRHeapi
-.global JASDSPChannel
-/* 8029D3EC 0029A32C  3C 80 80 2A */	lis r4, JASDSPChannel@ha
-.global JASDSPChannel
-/* 8029D3F0 0029A330  38 84 D2 F4 */	addi r4, r4, JASDSPChannel@l
+.global __ct__13JASDSPChannelFv
+/* 8029D3EC 0029A32C  3C 80 80 2A */	lis r4, __ct__13JASDSPChannelFv@ha
+.global __ct__13JASDSPChannelFv
+/* 8029D3F0 0029A330  38 84 D2 F4 */	addi r4, r4, __ct__13JASDSPChannelFv@l
 /* 8029D3F4 0029A334  38 A0 00 00 */	li r5, 0
 /* 8029D3F8 0029A338  38 C0 00 1C */	li r6, 0x1c
 /* 8029D3FC 0029A33C  38 E0 00 40 */	li r7, 0x40
-/* 8029D400 0029A340  48 0C 4B 15 */	bl func_80361F14
+/* 8029D400 0029A340  48 0C 4B 15 */	bl __construct_new_array
 /* 8029D404 0029A344  90 6D 8D 60 */	stw r3, lbl_804512E0-_SDA_BASE_(r13)
 /* 8029D408 0029A348  3B C0 00 00 */	li r30, 0
 /* 8029D40C 0029A34C  3B E0 00 00 */	li r31, 0
@@ -142,8 +142,8 @@ lbl_8029D4A4:
 /* 8029D4B4 0029A3F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029D4B8 0029A3F8  4E 80 00 20 */	blr 
 
-.global alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPvForce
-alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPvForce:
+.global allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
+allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv:
 /* 8029D4BC 0029A3FC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029D4C0 0029A400  7C 08 02 A6 */	mflr r0
 /* 8029D4C4 0029A404  90 01 00 24 */	stw r0, 0x24(r1)

@@ -24,7 +24,7 @@ lbl_800D2B0C:
 /* 800D2B14 000CFA54  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D2B18 000CFA58  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D2B1C 000CFA5C  A3 E3 00 02 */ lhz r31, 2(r3)
-/* 800D2B20 000CFA60  4B F5 B1 89 */ bl dComIfGs_getMaxLifeGauge
+/* 800D2B20 000CFA60  4B F5 B1 89 */ bl dComIfGs_getMaxLifeGauge__Fv
 /* 800D2B24 000CFA64  54 63 04 3E */ clrlwi r3, r3, 0x10
 /* 800D2B28 000CFA68  57 E0 04 3E */ clrlwi r0, r31, 0x10
 /* 800D2B2C 000CFA6C  7C 00 18 40 */ cmplw r0, r3

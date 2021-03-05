@@ -39,7 +39,7 @@ lbl_80070D30:
 /* 80070D30 0006DC70  FC 20 E8 90 */ fmr f1, f29
 /* 80070D34 0006DC74  7F E3 FB 78 */ mr r3, r31
 /* 80070D38 0006DC78  C0 42 8C 58 */ lfs f2, lbl_80452658-_SDA2_BASE_(r2)
-/* 80070D3C 0006DC7C  4B FF FF 05 */ bl distace_angle_adjust
+/* 80070D3C 0006DC7C  4B FF FF 05 */ bl distace_angle_adjust__Ffsf
 /* 80070D40 0006DC80  EF FC 08 2A */ fadds f31, f28, f1
 /* 80070D44 0006DC84  C0 01 00 24 */ lfs f0, 0x24(r1)
 /* 80070D48 0006DC88  D0 01 00 0C */ stfs f0, 0xc(r1)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 800517b0
 
 
-.global dPath_GetPnt
-dPath_GetPnt:
+.global dPath_GetPnt__FPC5dPathi
+dPath_GetPnt__FPC5dPathi:
 /* 800517B0 0004E6F0  28 03 00 00 */	cmplwi r3, 0
 /* 800517B4 0004E6F4  41 82 00 24 */	beq lbl_800517D8
 /* 800517B8 0004E6F8  80 A3 00 08 */	lwz r5, 8(r3)
@@ -23,8 +23,8 @@ lbl_800517E0:
 /* 800517E4 0004E724  7C 65 02 14 */	add r3, r5, r0
 /* 800517E8 0004E728  4E 80 00 20 */	blr 
 
-.global dPath_GetRoomPath
-dPath_GetRoomPath:
+.global dPath_GetRoomPath__Fii
+dPath_GetRoomPath__Fii:
 /* 800517EC 0004E72C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800517F0 0004E730  7C 08 02 A6 */	mflr r0
 /* 800517F4 0004E734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -75,8 +75,8 @@ lbl_80051884:
 /* 80051890 0004E7D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051894 0004E7D4  4E 80 00 20 */	blr 
 
-.global dPath_GetNextRoomPath
-dPath_GetNextRoomPath:
+.global dPath_GetNextRoomPath__FPC5dPathi
+dPath_GetNextRoomPath__FPC5dPathi:
 /* 80051898 0004E7D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005189C 0004E7DC  7C 08 02 A6 */	mflr r0
 /* 800518A0 0004E7E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -135,8 +135,8 @@ lbl_80051948:
 /* 80051954 0004E894  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051958 0004E898  4E 80 00 20 */	blr 
 
-.global dPath_GetPolyRoomPathVec
-dPath_GetPolyRoomPathVec:
+.global dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi
+dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi:
 /* 8005195C 0004E89C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80051960 0004E8A0  7C 08 02 A6 */	mflr r0
 /* 80051964 0004E8A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -167,7 +167,7 @@ dPath_GetPolyRoomPathVec:
 /* 800519C8 0004E908  48 00 00 E0 */	b lbl_80051AA8
 lbl_800519CC:
 /* 800519CC 0004E90C  7F 64 DB 78 */	mr r4, r27
-/* 800519D0 0004E910  4B FF FE 1D */	bl dPath_GetRoomPath
+/* 800519D0 0004E910  4B FF FE 1D */	bl dPath_GetRoomPath__Fii
 /* 800519D4 0004E914  7C 7D 1B 79 */	or. r29, r3, r3
 /* 800519D8 0004E918  40 82 00 0C */	bne lbl_800519E4
 /* 800519DC 0004E91C  38 60 00 00 */	li r3, 0

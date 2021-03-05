@@ -16,7 +16,7 @@
 /* 800266E0 00023620  7F A4 EB 78 */ mr r4, r29
 /* 800266E4 00023624  7F C5 F3 78 */ mr r5, r30
 /* 800266E8 00023628  7F E6 FB 78 */ mr r6, r31
-/* 800266EC 0002362C  4B FF F3 4D */ bl dStage_actorInit
+/* 800266EC 0002362C  4B FF F3 4D */ bl dStage_actorInit__FP11dStage_dt_cPviPv
 /* 800266F0 00023630  38 60 00 01 */ li r3, 1
 /* 800266F4 00023634  39 61 00 20 */ addi r11, r1, 0x20
 /* 800266F8 00023638  48 33 BB 2D */ bl _restgpr_28

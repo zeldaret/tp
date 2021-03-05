@@ -144,7 +144,7 @@ lbl_800AD58C:
 /* 800AD5E8 000AA528  48 03 14 FD */ bl deleteArrow__9daAlink_cFv
 lbl_800AD5EC:
 /* 800AD5EC 000AA52C  7F 43 D3 78 */ mr r3, r26
-/* 800AD5F0 000AA530  48 03 66 AD */ bl checkGrabAnime__9daAlink_cCFvAndThrow
+/* 800AD5F0 000AA530  48 03 66 AD */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800AD5F4 000AA534  2C 03 00 00 */ cmpwi r3, 0
 /* 800AD5F8 000AA538  40 82 00 34 */ bne lbl_800AD62C
 /* 800AD5FC 000AA53C  38 60 00 00 */ li r3, 0

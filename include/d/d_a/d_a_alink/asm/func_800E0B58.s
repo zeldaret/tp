@@ -18,7 +18,7 @@ lbl_800E0B94:
 /* 800E0B94 000DDAD4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0B98 000DDAD8  41 82 00 10 */ beq lbl_800E0BA8
 /* 800E0B9C 000DDADC  7F E3 FB 78 */ mr r3, r31
-/* 800E0BA0 000DDAE0  4B FF FE FD */ bl checkUpperItemAction__9daAlink_cFvBoomerang
+/* 800E0BA0 000DDAE0  4B FF FE FD */ bl checkUpperItemActionBoomerang__9daAlink_cFv
 /* 800E0BA4 000DDAE4  48 00 00 2C */ b lbl_800E0BD0
 lbl_800E0BA8:
 /* 800E0BA8 000DDAE8  7F E3 FB 78 */ mr r3, r31

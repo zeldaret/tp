@@ -8,17 +8,17 @@ void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
 void animationTransform__7J2DPaneFv(void);
-void CPaneMgr_X1_(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
 void alphaAnimeHaihai__14dMeterHaihai_cFUl(void);
-void drawHaihai__14dMeterHaihai_cFUcBottom(void);
-void drawHaihai__14dMeterHaihai_cFUcLeft(void);
-void drawHaihai__14dMeterHaihai_cFUcRight(void);
-void drawHaihai__14dMeterHaihai_cFUcTop(void);
+void drawHaihaiBottom__14dMeterHaihai_cFff(void);
+void drawHaihaiLeft__14dMeterHaihai_cFff(void);
+void drawHaihaiRight__14dMeterHaihai_cFff(void);
+void drawHaihaiTop__14dMeterHaihai_cFff(void);
 void playBckAnime__14dMeterHaihai_cFP18J2DAnmTransformKey(void);
 void playBpkAnime__14dMeterHaihai_cFP11J2DAnmColor(void);
 void playBtkAnime__14dMeterHaihai_cFP19J2DAnmTextureSRTKey(void);
 void updateHaihai__14dMeterHaihai_cFv(void);
-void dPaneClass_showNullPane(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
 void load__20J2DAnmLoaderDataBaseFPCv(void);
 void animation__9J2DScreenFv(void);
@@ -56,35 +56,35 @@ extern u8 lbl_8042EBC8;
 extern "C" {
 // __ct__14dMeterHaihai_cFUc
 // dMeterHaihai_c::dMeterHaihai_c(unsigned char)
-asm void dMeterHaihai_c(void) {
+asm void __ct__14dMeterHaihai_cFUc(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020AE8C.s"
 }
 
 // __dt__14dMeterHaihai_cFv
 // dMeterHaihai_c::~dMeterHaihai_c(void)
-asm void func_8020AEF0(void) {
+asm void __dt__14dMeterHaihai_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020AEF0.s"
 }
 
 // _create__14dMeterHaihai_cFv
 // dMeterHaihai_c::_create(void)
-asm void func_8020AF6C(void) {
+asm void _create__14dMeterHaihai_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020AF6C.s"
 }
 
 // _execute__14dMeterHaihai_cFUl
 // dMeterHaihai_c::_execute(unsigned long)
-asm void func_8020B0F4(void) {
+asm void _execute__14dMeterHaihai_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B0F4.s"
 }
 
 // draw__14dMeterHaihai_cFv
 // dMeterHaihai_c::draw(void)
-asm void func_8020B140(void) {
+asm void draw__14dMeterHaihai_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B140.s"
 }
@@ -98,35 +98,35 @@ asm void drawHaihai__14dMeterHaihai_cFUc(void) {
 
 // drawHaihai__14dMeterHaihai_cFUcffff
 // dMeterHaihai_c::drawHaihai(unsigned char, float, float, float, float)
-asm void drawHaihai__14dMeterHaihai_cFUc_X1_(void) {
+asm void drawHaihai__14dMeterHaihai_cFUcffff(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B814.s"
 }
 
 // drawHaihaiLeft__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiLeft(float, float)
-asm void drawHaihai__14dMeterHaihai_cFUcLeft(void) {
+asm void drawHaihaiLeft__14dMeterHaihai_cFff(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020B9B0.s"
 }
 
 // drawHaihaiRight__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiRight(float, float)
-asm void drawHaihai__14dMeterHaihai_cFUcRight(void) {
+asm void drawHaihaiRight__14dMeterHaihai_cFff(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BA4C.s"
 }
 
 // drawHaihaiTop__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiTop(float, float)
-asm void drawHaihai__14dMeterHaihai_cFUcTop(void) {
+asm void drawHaihaiTop__14dMeterHaihai_cFff(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BAE8.s"
 }
 
 // drawHaihaiBottom__14dMeterHaihai_cFff
 // dMeterHaihai_c::drawHaihaiBottom(float, float)
-asm void drawHaihai__14dMeterHaihai_cFUcBottom(void) {
+asm void drawHaihaiBottom__14dMeterHaihai_cFff(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BB84.s"
 }
@@ -140,7 +140,7 @@ asm void setScale__14dMeterHaihai_cFf(void) {
 
 // _delete__14dMeterHaihai_cFv
 // dMeterHaihai_c::_delete(void)
-asm void func_8020BDAC(void) {
+asm void _delete__14dMeterHaihai_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_haihai/asm/func_8020BDAC.s"
 }

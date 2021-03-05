@@ -332,7 +332,7 @@ asm void taktModeMute__8Z2SeqMgrFv(void) {
 
 // taktModeMuteOff__8Z2SeqMgrFv
 // Z2SeqMgr::taktModeMuteOff(void)
-asm void taktModeMute__8Z2SeqMgrFvOff(void) {
+asm void taktModeMuteOff__8Z2SeqMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SeqMgr/asm/func_802B5ED4.s"
 }

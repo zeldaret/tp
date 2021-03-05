@@ -164,7 +164,7 @@ lbl_800ACC64:
 /* 800ACC78 000A9BB8  38 80 02 63 */ li r4, 0x263
 /* 800ACC7C 000A9BBC  38 BF 0F 4C */ addi r5, r31, 0xf4c
 /* 800ACC80 000A9BC0  C0 25 00 68 */ lfs f1, 0x68(r5)
-/* 800ACC84 000A9BC4  48 00 06 F1 */ bl setUpperAnimeBase__9daAlink_cFUsMorf
+/* 800ACC84 000A9BC4  48 00 06 F1 */ bl setUpperAnimeBaseMorf__9daAlink_cFUsf
 lbl_800ACC88:
 /* 800ACC88 000A9BC8  7F 63 DB 78 */ mr r3, r27
 /* 800ACC8C 000A9BCC  38 80 00 B6 */ li r4, 0xb6

@@ -87,13 +87,13 @@ lbl_800EEA50:
 /* 800EEA60 000EB9A0  7F C3 F3 78 */ mr r3, r30
 /* 800EEA64 000EB9A4  38 80 00 51 */ li r4, 0x51
 /* 800EEA68 000EB9A8  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800EEA6C 000EB9AC  4B FB E5 45 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800EEA6C 000EB9AC  4B FB E5 45 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800EEA70 000EB9B0  48 00 00 14 */ b lbl_800EEA84
 lbl_800EEA74:
 /* 800EEA74 000EB9B4  7F C3 F3 78 */ mr r3, r30
 /* 800EEA78 000EB9B8  38 80 00 52 */ li r4, 0x52
 /* 800EEA7C 000EB9BC  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800EEA80 000EB9C0  4B FB E5 31 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800EEA80 000EB9C0  4B FB E5 31 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_800EEA84:
 /* 800EEA84 000EB9C4  7F C3 F3 78 */ mr r3, r30
 /* 800EEA88 000EB9C8  4B FC 4D BD */ bl initServiceWaitTime__9daAlink_cFv

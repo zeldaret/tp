@@ -7,7 +7,7 @@
 /* 8011FD64 0011CCA4  7C 9D 23 78 */ mr r29, r4
 /* 8011FD68 0011CCA8  7C BE 2B 78 */ mr r30, r5
 /* 8011FD6C 0011CCAC  38 80 01 4F */ li r4, 0x14f
-/* 8011FD70 0011CCB0  4B FA 30 35 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 8011FD70 0011CCB0  4B FA 30 35 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011FD74 0011CCB4  2C 03 00 00 */ cmpwi r3, 0
 /* 8011FD78 0011CCB8  40 82 00 0C */ bne lbl_8011FD84
 /* 8011FD7C 0011CCBC  38 60 00 00 */ li r3, 0
@@ -31,7 +31,7 @@ lbl_8011FD84:
 /* 8011FDC0 0011CD00  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 8011FDC4 0011CD04  C0 25 00 70 */ lfs f1, 0x70(r5)
 /* 8011FDC8 0011CD08  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011FDCC 0011CD0C  48 00 99 0D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8011FDCC 0011CD0C  48 00 99 0D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8011FDD0 0011CD10  48 00 00 20 */ b lbl_8011FDF0
 lbl_8011FDD4:
 /* 8011FDD4 0011CD14  7F 83 E3 78 */ mr r3, r28
@@ -40,7 +40,7 @@ lbl_8011FDD4:
 /* 8011FDE0 0011CD20  38 A5 D6 BC */ addi r5, r5, lbl_8038D6BC@l
 /* 8011FDE4 0011CD24  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 8011FDE8 0011CD28  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011FDEC 0011CD2C  4B F8 D1 F5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8011FDEC 0011CD2C  4B F8 D1 F5 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_8011FDF0:
 /* 8011FDF0 0011CD30  3B 60 00 00 */ li r27, 0
 /* 8011FDF4 0011CD34  2C 1E 00 00 */ cmpwi r30, 0
@@ -174,7 +174,7 @@ lbl_8011FFB0:
 /* 8011FFCC 0011CF0C  4B F7 7F 15 */ bl checkItemGet__FUci
 /* 8011FFD0 0011CF10  2C 03 00 00 */ cmpwi r3, 0
 /* 8011FFD4 0011CF14  41 82 00 44 */ beq lbl_80120018
-/* 8011FFD8 0011CF18  4B F0 F2 D5 */ bl dComIfGs_getWarpStageName
+/* 8011FFD8 0011CF18  4B F0 F2 D5 */ bl dComIfGs_getWarpStageName__Fv
 /* 8011FFDC 0011CF1C  7C 64 1B 78 */ mr r4, r3
 /* 8011FFE0 0011CF20  38 61 00 08 */ addi r3, r1, 8
 /* 8011FFE4 0011CF24  48 24 89 B1 */ bl strcmp
@@ -237,9 +237,9 @@ lbl_80120088:
 /* 801200B0 0011CFF0  B0 1C 30 0A */ sth r0, 0x300a(r28)
 lbl_801200B4:
 /*.global daAlink_searchPortal*/
-/* 801200B4 0011CFF4  3C 60 80 12 */ lis r3, daAlink_searchPortal@ha
+/* 801200B4 0011CFF4  3C 60 80 12 */ lis r3, daAlink_searchPortal__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchPortal*/
-/* 801200B8 0011CFF8  38 63 F5 D4 */ addi r3, r3, daAlink_searchPortal@l
+/* 801200B8 0011CFF8  38 63 F5 D4 */ addi r3, r3, daAlink_searchPortal__FP10fopAc_ac_cPv@l
 /* 801200BC 0011CFFC  38 9C 04 D0 */ addi r4, r28, 0x4d0
 /* 801200C0 0011D000  4B EF 97 39 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801200C4 0011D004  28 03 00 00 */ cmplwi r3, 0

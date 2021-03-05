@@ -235,7 +235,7 @@ lbl_80202588:
 /* 802025B0 001FF4F0  80 A4 00 04 */ lwz r5, 4(r4)
 /* 802025B4 001FF4F4  38 C0 00 00 */ li r6, 0
 /* 802025B8 001FF4F8  38 E0 00 00 */ li r7, 0
-/* 802025BC 001FF4FC  48 05 29 01 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 802025BC 001FF4FC  48 05 29 01 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 802025C0 001FF500  C3 E1 00 D4 */ lfs f31, 0xd4(r1)
 /* 802025C4 001FF504  C3 C1 00 D8 */ lfs f30, 0xd8(r1)
 /* 802025C8 001FF508  38 60 00 01 */ li r3, 1
@@ -248,7 +248,7 @@ lbl_802025D0:
 /* 802025E0 001FF520  80 A4 00 04 */ lwz r5, 4(r4)
 /* 802025E4 001FF524  38 C0 00 00 */ li r6, 0
 /* 802025E8 001FF528  38 E0 00 00 */ li r7, 0
-/* 802025EC 001FF52C  48 05 28 D1 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 802025EC 001FF52C  48 05 28 D1 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 802025F0 001FF530  C3 E1 00 C8 */ lfs f31, 0xc8(r1)
 /* 802025F4 001FF534  C3 C1 00 CC */ lfs f30, 0xcc(r1)
 /* 802025F8 001FF538  38 60 00 01 */ li r3, 1
@@ -261,7 +261,7 @@ lbl_80202600:
 /* 80202610 001FF550  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202614 001FF554  38 C0 00 00 */ li r6, 0
 /* 80202618 001FF558  38 E0 00 00 */ li r7, 0
-/* 8020261C 001FF55C  48 05 28 A1 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020261C 001FF55C  48 05 28 A1 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202620 001FF560  C3 E1 00 BC */ lfs f31, 0xbc(r1)
 /* 80202624 001FF564  C3 C1 00 C0 */ lfs f30, 0xc0(r1)
 /* 80202628 001FF568  38 60 00 01 */ li r3, 1
@@ -274,7 +274,7 @@ lbl_80202630:
 /* 80202640 001FF580  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202644 001FF584  38 C0 00 00 */ li r6, 0
 /* 80202648 001FF588  38 E0 00 00 */ li r7, 0
-/* 8020264C 001FF58C  48 05 28 71 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020264C 001FF58C  48 05 28 71 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202650 001FF590  C3 E1 00 B0 */ lfs f31, 0xb0(r1)
 /* 80202654 001FF594  C3 C1 00 B4 */ lfs f30, 0xb4(r1)
 /* 80202658 001FF598  38 60 00 01 */ li r3, 1
@@ -287,7 +287,7 @@ lbl_80202660:
 /* 80202670 001FF5B0  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202674 001FF5B4  38 C0 00 00 */ li r6, 0
 /* 80202678 001FF5B8  38 E0 00 00 */ li r7, 0
-/* 8020267C 001FF5BC  48 05 28 41 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020267C 001FF5BC  48 05 28 41 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202680 001FF5C0  C3 E1 00 A4 */ lfs f31, 0xa4(r1)
 /* 80202684 001FF5C4  C3 C1 00 A8 */ lfs f30, 0xa8(r1)
 /* 80202688 001FF5C8  38 60 00 01 */ li r3, 1
@@ -300,7 +300,7 @@ lbl_80202690:
 /* 802026A0 001FF5E0  80 A4 00 04 */ lwz r5, 4(r4)
 /* 802026A4 001FF5E4  38 C0 00 00 */ li r6, 0
 /* 802026A8 001FF5E8  38 E0 00 00 */ li r7, 0
-/* 802026AC 001FF5EC  48 05 28 11 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 802026AC 001FF5EC  48 05 28 11 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 802026B0 001FF5F0  C3 E1 00 98 */ lfs f31, 0x98(r1)
 /* 802026B4 001FF5F4  C3 C1 00 9C */ lfs f30, 0x9c(r1)
 /* 802026B8 001FF5F8  38 60 00 01 */ li r3, 1
@@ -313,7 +313,7 @@ lbl_802026C0:
 /* 802026D0 001FF610  80 A4 00 04 */ lwz r5, 4(r4)
 /* 802026D4 001FF614  38 C0 00 00 */ li r6, 0
 /* 802026D8 001FF618  38 E0 00 00 */ li r7, 0
-/* 802026DC 001FF61C  48 05 27 E1 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 802026DC 001FF61C  48 05 27 E1 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 802026E0 001FF620  C3 E1 00 8C */ lfs f31, 0x8c(r1)
 /* 802026E4 001FF624  C3 C1 00 90 */ lfs f30, 0x90(r1)
 /* 802026E8 001FF628  38 60 00 01 */ li r3, 1
@@ -326,7 +326,7 @@ lbl_802026F0:
 /* 80202700 001FF640  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202704 001FF644  38 C0 00 00 */ li r6, 0
 /* 80202708 001FF648  38 E0 00 00 */ li r7, 0
-/* 8020270C 001FF64C  48 05 27 B1 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020270C 001FF64C  48 05 27 B1 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202710 001FF650  C3 E1 00 80 */ lfs f31, 0x80(r1)
 /* 80202714 001FF654  C3 C1 00 84 */ lfs f30, 0x84(r1)
 /* 80202718 001FF658  38 60 00 01 */ li r3, 1
@@ -339,7 +339,7 @@ lbl_80202720:
 /* 80202730 001FF670  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202734 001FF674  38 C0 00 00 */ li r6, 0
 /* 80202738 001FF678  38 E0 00 00 */ li r7, 0
-/* 8020273C 001FF67C  48 05 27 81 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020273C 001FF67C  48 05 27 81 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202740 001FF680  C3 E1 00 74 */ lfs f31, 0x74(r1)
 /* 80202744 001FF684  C3 C1 00 78 */ lfs f30, 0x78(r1)
 /* 80202748 001FF688  38 60 00 01 */ li r3, 1
@@ -360,7 +360,7 @@ lbl_80202750:
 /* 80202780 001FF6C0  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80202784 001FF6C4  38 C0 00 00 */ li r6, 0
 /* 80202788 001FF6C8  38 E0 00 00 */ li r7, 0
-/* 8020278C 001FF6CC  48 05 27 31 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020278C 001FF6CC  48 05 27 31 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80202790 001FF6D0  C3 E1 00 68 */ lfs f31, 0x68(r1)
 /* 80202794 001FF6D4  C3 C1 00 6C */ lfs f30, 0x6c(r1)
 /* 80202798 001FF6D8  38 60 00 01 */ li r3, 1
@@ -387,7 +387,7 @@ lbl_802027A0:
 /* 802027E8 001FF728  80 A4 00 04 */ lwz r5, 4(r4)
 /* 802027EC 001FF72C  38 C0 00 00 */ li r6, 0
 /* 802027F0 001FF730  38 E0 00 00 */ li r7, 0
-/* 802027F4 001FF734  48 05 26 C9 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 802027F4 001FF734  48 05 26 C9 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 802027F8 001FF738  C3 E1 00 5C */ lfs f31, 0x5c(r1)
 /* 802027FC 001FF73C  C3 C1 00 60 */ lfs f30, 0x60(r1)
 /* 80202800 001FF740  38 60 00 01 */ li r3, 1
@@ -445,7 +445,7 @@ lbl_80202878:
 /* 802028C4 001FF804  39 01 00 4C */ addi r8, r1, 0x4c
 /* 802028C8 001FF808  C0 9F 0E 40 */ lfs f4, 0xe40(r31)
 /* 802028CC 001FF80C  39 20 00 03 */ li r9, 3
-/* 802028D0 001FF810  48 01 18 0D */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 802028D0 001FF810  48 01 18 0D */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 802028D4 001FF814  48 00 01 7C */ b lbl_80202A50
 lbl_802028D8:
 /* 802028D8 001FF818  80 1F 0E 38 */ lwz r0, 0xe38(r31)
@@ -468,7 +468,7 @@ lbl_802028D8:
 /* 8020291C 001FF85C  39 01 00 3C */ addi r8, r1, 0x3c
 /* 80202920 001FF860  C0 9F 0E 40 */ lfs f4, 0xe40(r31)
 /* 80202924 001FF864  39 20 00 03 */ li r9, 3
-/* 80202928 001FF868  48 01 17 B5 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 80202928 001FF868  48 01 17 B5 */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 8020292C 001FF86C  48 00 01 24 */ b lbl_80202A50
 lbl_80202930:
 /* 80202930 001FF870  56 E0 06 3F */ clrlwi. r0, r23, 0x18
@@ -493,7 +493,7 @@ lbl_80202930:
 /* 8020297C 001FF8BC  39 01 00 2C */ addi r8, r1, 0x2c
 /* 80202980 001FF8C0  C0 9F 0E 58 */ lfs f4, 0xe58(r31)
 /* 80202984 001FF8C4  39 20 00 00 */ li r9, 0
-/* 80202988 001FF8C8  48 01 17 55 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 80202988 001FF8C8  48 01 17 55 */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 8020298C 001FF8CC  48 00 00 C4 */ b lbl_80202A50
 lbl_80202990:
 /* 80202990 001FF8D0  7F C3 F3 78 */ mr r3, r30
@@ -521,7 +521,7 @@ lbl_80202990:
 /* 802029E8 001FF928  39 01 00 1C */ addi r8, r1, 0x1c
 /* 802029EC 001FF92C  C0 9F 0E 28 */ lfs f4, 0xe28(r31)
 /* 802029F0 001FF930  39 20 00 00 */ li r9, 0
-/* 802029F4 001FF934  48 01 16 E9 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 802029F4 001FF934  48 01 16 E9 */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 802029F8 001FF938  48 00 00 58 */ b lbl_80202A50
 lbl_802029FC:
 /* 802029FC 001FF93C  80 1F 0E 08 */ lwz r0, 0xe08(r31)
@@ -544,7 +544,7 @@ lbl_802029FC:
 /* 80202A40 001FF980  39 01 00 0C */ addi r8, r1, 0xc
 /* 80202A44 001FF984  C0 9F 0E 10 */ lfs f4, 0xe10(r31)
 /* 80202A48 001FF988  39 20 00 00 */ li r9, 0
-/* 80202A4C 001FF98C  48 01 16 91 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 80202A4C 001FF98C  48 01 16 91 */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_80202A50:
 /* 80202A50 001FF990  3B 7B 00 01 */ addi r27, r27, 1
 /* 80202A54 001FF994  2C 1B 00 02 */ cmpwi r27, 2

@@ -8,27 +8,27 @@
 /* 801A7EA4 001A4DE4  7C 9E 23 78 */ mr r30, r4
 /* 801A7EA8 001A4DE8  7C BF 2B 78 */ mr r31, r5
 /* 801A7EAC 001A4DEC  FF E0 08 90 */ fmr f31, f1
-/* 801A7EB0 001A4DF0  4B FF FC 19 */ bl dKy_actor_addcol_amb_set
+/* 801A7EB0 001A4DF0  4B FF FC 19 */ bl dKy_actor_addcol_amb_set__Fsssf
 /* 801A7EB4 001A4DF4  7F A3 EB 78 */ mr r3, r29
 /* 801A7EB8 001A4DF8  7F C4 F3 78 */ mr r4, r30
 /* 801A7EBC 001A4DFC  7F E5 FB 78 */ mr r5, r31
 /* 801A7EC0 001A4E00  FC 20 F8 90 */ fmr f1, f31
-/* 801A7EC4 001A4E04  4B FF FC A5 */ bl dKy_bg_addcol_amb_set
+/* 801A7EC4 001A4E04  4B FF FC A5 */ bl dKy_bg_addcol_amb_set__Fsssf
 /* 801A7EC8 001A4E08  7F A3 EB 78 */ mr r3, r29
 /* 801A7ECC 001A4E0C  7F C4 F3 78 */ mr r4, r30
 /* 801A7ED0 001A4E10  7F E5 FB 78 */ mr r5, r31
 /* 801A7ED4 001A4E14  FC 20 F8 90 */ fmr f1, f31
-/* 801A7ED8 001A4E18  4B FF FD 31 */ bl dKy_bg1_addcol_amb_set
+/* 801A7ED8 001A4E18  4B FF FD 31 */ bl dKy_bg1_addcol_amb_set__Fsssf
 /* 801A7EDC 001A4E1C  7F A3 EB 78 */ mr r3, r29
 /* 801A7EE0 001A4E20  7F C4 F3 78 */ mr r4, r30
 /* 801A7EE4 001A4E24  7F E5 FB 78 */ mr r5, r31
 /* 801A7EE8 001A4E28  FC 20 F8 90 */ fmr f1, f31
-/* 801A7EEC 001A4E2C  4B FF FD BD */ bl dKy_bg2_addcol_amb_set
+/* 801A7EEC 001A4E2C  4B FF FD BD */ bl dKy_bg2_addcol_amb_set__Fsssf
 /* 801A7EF0 001A4E30  7F A3 EB 78 */ mr r3, r29
 /* 801A7EF4 001A4E34  7F C4 F3 78 */ mr r4, r30
 /* 801A7EF8 001A4E38  7F E5 FB 78 */ mr r5, r31
 /* 801A7EFC 001A4E3C  FC 20 F8 90 */ fmr f1, f31
-/* 801A7F00 001A4E40  4B FF FE 49 */ bl dKy_bg3_addcol_amb_set
+/* 801A7F00 001A4E40  4B FF FE 49 */ bl dKy_bg3_addcol_amb_set__Fsssf
 /* 801A7F04 001A4E44  CB E1 00 18 */ lfd f31, 0x18(r1)
 /* 801A7F08 001A4E48  39 61 00 18 */ addi r11, r1, 0x18
 /* 801A7F0C 001A4E4C  48 1B A3 1D */ bl _restgpr_29

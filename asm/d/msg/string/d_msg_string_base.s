@@ -3,8 +3,8 @@
 .section .text, "ax" # 802493b4
 
 
-.global dMsgStringBase_c
-dMsgStringBase_c:
+.global __ct__16dMsgStringBase_cFv
+__ct__16dMsgStringBase_cFv:
 /* 802493B4 002462F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802493B8 002462F8  7C 08 02 A6 */	mflr r0
 /* 802493BC 002462FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -28,7 +28,7 @@ lbl_802493F8:
 /* 80249400 00246340  48 08 58 4D */	bl __nw__FUl
 /* 80249404 00246344  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249408 00246348  41 82 00 0C */	beq lbl_80249414
-/* 8024940C 0024634C  4B FE 67 51 */	bl jmessage_string_tControl
+/* 8024940C 0024634C  4B FE 67 51 */	bl __ct__24jmessage_string_tControlFv
 /* 80249410 00246350  7C 60 1B 78 */	mr r0, r3
 lbl_80249414:
 /* 80249414 00246354  90 1F 00 08 */	stw r0, 8(r31)
@@ -36,7 +36,7 @@ lbl_80249414:
 /* 8024941C 0024635C  48 08 58 31 */	bl __nw__FUl
 /* 80249420 00246360  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249424 00246364  41 82 00 0C */	beq lbl_80249430
-/* 80249428 00246368  4B FE 64 99 */	bl jmessage_string_tReference
+/* 80249428 00246368  4B FE 64 99 */	bl __ct__26jmessage_string_tReferenceFv
 /* 8024942C 0024636C  7C 60 1B 78 */	mr r0, r3
 lbl_80249430:
 /* 80249430 00246370  90 1F 00 0C */	stw r0, 0xc(r31)
@@ -46,7 +46,7 @@ lbl_80249430:
 /* 80249440 00246380  41 82 00 14 */	beq lbl_80249454
 /* 80249444 00246384  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 80249448 00246388  80 BF 00 08 */	lwz r5, 8(r31)
-/* 8024944C 0024638C  4B FE 75 BD */	bl jmessage_string_tSequenceProcessor
+/* 8024944C 0024638C  4B FE 75 BD */	bl __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
 /* 80249450 00246390  7C 60 1B 78 */	mr r0, r3
 lbl_80249454:
 /* 80249454 00246394  90 1F 00 10 */	stw r0, 0x10(r31)
@@ -55,7 +55,7 @@ lbl_80249454:
 /* 80249460 002463A0  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249464 002463A4  41 82 00 10 */	beq lbl_80249474
 /* 80249468 002463A8  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 8024946C 002463AC  4B FE 77 5D */	bl jmessage_string_tRenderingProcessor
+/* 8024946C 002463AC  4B FE 77 5D */	bl __ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference
 /* 80249470 002463B0  7C 60 1B 78 */	mr r0, r3
 lbl_80249474:
 /* 80249474 002463B4  90 1F 00 14 */	stw r0, 0x14(r31)

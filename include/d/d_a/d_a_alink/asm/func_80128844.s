@@ -192,7 +192,7 @@ lbl_80128AFC:
 /* 80128B14 00125A54  38 A0 00 00 */ li r5, 0
 /* 80128B18 00125A58  38 C0 00 02 */ li r6, 2
 /* 80128B1C 00125A5C  FC 80 E0 90 */ fmr f4, f28
-/* 80128B20 00125A60  48 00 09 6D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128B20 00125A60  48 00 09 6D */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 80128B24 00125A64  48 00 03 70 */ b lbl_80128E94
 lbl_80128B28:
 /* 80128B28 00125A68  7F A3 EB 78 */ mr r3, r29
@@ -240,7 +240,7 @@ lbl_80128BB0:
 /* 80128BC4 00125B04  7F C5 F3 78 */ mr r5, r30
 /* 80128BC8 00125B08  7F 66 DB 78 */ mr r6, r27
 /* 80128BCC 00125B0C  FC 80 E0 90 */ fmr f4, f28
-/* 80128BD0 00125B10  48 00 08 BD */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128BD0 00125B10  48 00 08 BD */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 80128BD4 00125B14  48 00 00 88 */ b lbl_80128C5C
 lbl_80128BD8:
 /* 80128BD8 00125B18  7F A3 EB 78 */ mr r3, r29
@@ -257,7 +257,7 @@ lbl_80128BD8:
 /* 80128C04 00125B44  38 A0 00 1D */ li r5, 0x1d
 /* 80128C08 00125B48  38 C0 00 01 */ li r6, 1
 /* 80128C0C 00125B4C  FC 80 E0 90 */ fmr f4, f28
-/* 80128C10 00125B50  48 00 08 7D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128C10 00125B50  48 00 08 7D */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 80128C14 00125B54  38 00 00 02 */ li r0, 2
 /* 80128C18 00125B58  98 1D 2F C1 */ stb r0, 0x2fc1(r29)
 /* 80128C1C 00125B5C  48 00 00 40 */ b lbl_80128C5C
@@ -277,7 +277,7 @@ lbl_80128C3C:
 /* 80128C4C 00125B8C  7F 85 E3 78 */ mr r5, r28
 /* 80128C50 00125B90  38 C0 00 01 */ li r6, 1
 /* 80128C54 00125B94  FC 80 E0 90 */ fmr f4, f28
-/* 80128C58 00125B98  48 00 08 35 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128C58 00125B98  48 00 08 35 */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 lbl_80128C5C:
 /* 80128C5C 00125B9C  2C 1B 00 01 */ cmpwi r27, 1
 /* 80128C60 00125BA0  41 82 02 34 */ beq lbl_80128E94
@@ -311,7 +311,7 @@ lbl_80128C8C:
 /* 80128CC8 00125C08  38 A0 00 03 */ li r5, 3
 /* 80128CCC 00125C0C  38 C0 00 01 */ li r6, 1
 /* 80128CD0 00125C10  FC 80 E0 90 */ fmr f4, f28
-/* 80128CD4 00125C14  48 00 07 B9 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128CD4 00125C14  48 00 07 B9 */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 80128CD8 00125C18  48 00 01 8C */ b lbl_80128E64
 lbl_80128CDC:
 /* 80128CDC 00125C1C  80 1D 05 74 */ lwz r0, 0x574(r29)
@@ -325,7 +325,7 @@ lbl_80128CDC:
 /* 80128CFC 00125C3C  38 A0 00 03 */ li r5, 3
 /* 80128D00 00125C40  38 C0 00 01 */ li r6, 1
 /* 80128D04 00125C44  FC 80 E0 90 */ fmr f4, f28
-/* 80128D08 00125C48  48 00 07 85 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128D08 00125C48  48 00 07 85 */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 80128D0C 00125C4C  48 00 00 98 */ b lbl_80128DA4
 lbl_80128D10:
 /* 80128D10 00125C50  EC 3B B0 28 */ fsubs f1, f27, f22
@@ -369,7 +369,7 @@ lbl_80128D84:
 /* 80128D94 00125CD4  38 A0 00 27 */ li r5, 0x27
 /* 80128D98 00125CD8  38 C0 00 01 */ li r6, 1
 /* 80128D9C 00125CDC  FC 80 E0 90 */ fmr f4, f28
-/* 80128DA0 00125CE0  48 00 06 ED */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80128DA0 00125CE0  48 00 06 ED */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 lbl_80128DA4:
 /* 80128DA4 00125CE4  7F C3 F3 78 */ mr r3, r30
 /* 80128DA8 00125CE8  38 9F 25 04 */ addi r4, r31, 0x2504

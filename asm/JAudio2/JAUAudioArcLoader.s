@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a4740
 
 
-.global JAUAudioArcLoader
-JAUAudioArcLoader:
+.global __ct__17JAUAudioArcLoaderFP10JAUSection
+__ct__17JAUAudioArcLoaderFP10JAUSection:
 /* 802A4740 002A1680  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A4744 002A1684  7C 08 02 A6 */	mflr r0
 /* 802A4748 002A1688  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12,7 +12,7 @@ JAUAudioArcLoader:
 /* 802A4750 002A1690  93 C1 00 08 */	stw r30, 8(r1)
 /* 802A4754 002A1694  7C 7E 1B 78 */	mr r30, r3
 /* 802A4758 002A1698  7C 9F 23 78 */	mr r31, r4
-/* 802A475C 002A169C  4B FF FA E9 */	bl JAUAudioArcInterpreter
+/* 802A475C 002A169C  4B FF FA E9 */	bl __ct__22JAUAudioArcInterpreterFv
 /* 802A4760 002A16A0  3C 60 80 3D */	lis r3, lbl_803C9A78@ha
 /* 802A4764 002A16A4  38 03 9A 78 */	addi r0, r3, lbl_803C9A78@l
 /* 802A4768 002A16A8  90 1E 00 00 */	stw r0, 0(r30)
@@ -116,7 +116,7 @@ lbl_802A47EC:
 /* 802A48E0 002A1820  90 81 00 08 */	stw r4, 8(r1)
 /* 802A48E4 002A1824  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 802A48E8 002A1828  38 81 00 08 */	addi r4, r1, 8
-/* 802A48EC 002A182C  48 00 0E 45 */	bl newStaticSeqData__10JAUSectionF10JAISoundIDPCvUl_X1_
+/* 802A48EC 002A182C  48 00 0E 45 */	bl newStaticSeqData__10JAUSectionF10JAISoundID
 /* 802A48F0 002A1830  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A48F4 002A1834  7C 08 03 A6 */	mtlr r0
 /* 802A48F8 002A1838  38 21 00 10 */	addi r1, r1, 0x10

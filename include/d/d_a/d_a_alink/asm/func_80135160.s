@@ -4,7 +4,7 @@
 /* 8013516C 001320AC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80135170 001320B0  7C 7F 1B 78 */ mr r31, r3
 /* 80135174 001320B4  38 80 01 37 */ li r4, 0x137
-/* 80135178 001320B8  4B F8 DC 2D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80135178 001320B8  4B F8 DC 2D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013517C 001320BC  2C 03 00 00 */ cmpwi r3, 0
 /* 80135180 001320C0  40 82 00 0C */ bne lbl_8013518C
 /* 80135184 001320C4  38 60 00 00 */ li r3, 0

@@ -5,7 +5,7 @@
 /* 800570EC 0005402C  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 800570F0 00054030  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 800570F4 00054034  80 63 0E 74 */ lwz r3, 0xe74(r3)
-/* 800570F8 00054038  4B FF FA 51 */ bl dKyw_setDrawPacketListSky
+/* 800570F8 00054038  4B FF FA 51 */ bl dKyw_setDrawPacketListSky__FP9J3DPacketi
 /* 800570FC 0005403C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80057100 00054040  7C 08 03 A6 */ mtlr r0
 /* 80057104 00054044  38 21 00 10 */ addi r1, r1, 0x10

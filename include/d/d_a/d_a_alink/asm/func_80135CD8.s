@@ -84,7 +84,7 @@ lbl_80135DCC:
 /* 80135E14 00132D54  3C A0 80 39 */ lis r5, lbl_8038F1A0@ha
 /* 80135E18 00132D58  38 A5 F1 A0 */ addi r5, r5, lbl_8038F1A0@l
 /* 80135E1C 00132D5C  38 A5 00 28 */ addi r5, r5, 0x28
-/* 80135E20 00132D60  4B FF 3A 29 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80135E20 00132D60  4B FF 3A 29 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80135E24 00132D64  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80135E28 00132D68  54 00 04 38 */ rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80135E2C 00132D6C  3C 60 80 44 */ lis r3, lbl_80439A20@ha

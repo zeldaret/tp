@@ -8,10 +8,8 @@
 /* 80355990 003528D0  38 80 20 00 */	li r4, 0x2000
 /* 80355994 003528D4  4B FE 5C 49 */	bl DCStoreRange
 /* 80355998 003528D8  93 BE 00 D8 */	stw r29, 0xd8(r30)
-.global EraseCallback_X1_
-/* 8035599C 003528DC  3C 60 80 35 */	lis r3, EraseCallback_X1_@ha
-.global EraseCallback_X1_
-/* 803559A0 003528E0  38 A3 58 54 */	addi r5, r3, EraseCallback_X1_@l
+/* 8035599C 003528DC  3C 60 80 35 */	lis r3, EraseCallback@ha
+/* 803559A0 003528E0  38 A3 58 54 */	addi r5, r3, EraseCallback@l
 /* 803559A4 003528E4  80 1E 00 80 */	lwz r0, 0x80(r30)
 /* 803559A8 003528E8  7F 83 E3 78 */	mr r3, r28
 /* 803559AC 003528EC  80 9E 00 0C */	lwz r4, 0xc(r30)
@@ -276,7 +274,7 @@ lbl_80355D38:
 /* 80355D58 00352C98  7C 05 1A 14 */	add r0, r5, r3
 /* 80355D5C 00352C9C  7C 60 F9 14 */	adde r3, r0, r31
 /* 80355D60 00352CA0  38 A0 00 10 */	li r5, 0x10
-/* 80355D64 00352CA4  48 00 C9 31 */	bl func_80362694
+/* 80355D64 00352CA4  48 00 C9 31 */	bl __shr2i
 /* 80355D68 00352CA8  88 1D 00 00 */	lbz r0, 0(r29)
 /* 80355D6C 00352CAC  88 D9 00 00 */	lbz r6, 0(r25)
 /* 80355D70 00352CB0  7C 04 00 14 */	addc r0, r4, r0
@@ -297,7 +295,7 @@ lbl_80355D90:
 /* 80355DA8 00352CE8  7C 05 1A 14 */	add r0, r5, r3
 /* 80355DAC 00352CEC  7C 60 F9 14 */	adde r3, r0, r31
 /* 80355DB0 00352CF0  38 A0 00 10 */	li r5, 0x10
-/* 80355DB4 00352CF4  48 00 C8 E1 */	bl func_80362694
+/* 80355DB4 00352CF4  48 00 C8 E1 */	bl __shr2i
 /* 80355DB8 00352CF8  3B 5A 00 01 */	addi r26, r26, 1
 /* 80355DBC 00352CFC  2C 1A 00 0C */	cmpwi r26, 0xc
 /* 80355DC0 00352D00  38 00 7F FF */	li r0, 0x7fff

@@ -8,7 +8,7 @@
 /* 8013FFF4 0013CF34  80 04 00 00 */ lwz r0, 0(r4)
 /* 8013FFF8 0013CF38  28 00 00 00 */ cmplwi r0, 0
 /* 8013FFFC 0013CF3C  40 82 00 24 */ bne lbl_80140020
-/* 80140000 0013CF40  4B EC ED 51 */ bl mDoExt_getGameHeap
+/* 80140000 0013CF40  4B EC ED 51 */ bl mDoExt_getGameHeap__Fv
 /* 80140004 0013CF44  7C 64 1B 78 */ mr r4, r3
 /* 80140008 0013CF48  38 1F 00 0F */ addi r0, r31, 0xf
 /* 8014000C 0013CF4C  54 03 00 36 */ rlwinm r3, r0, 0, 0, 0x1b

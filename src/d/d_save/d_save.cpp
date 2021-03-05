@@ -8,24 +8,24 @@
 extern "C" {
 int getZoneNo__20dStage_roomControl_cFi(int);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
-u8 dComIfGs_getBottleMax(void);
-u8 dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_getBottleMax__Fv(void);
+u8 dComIfGs_getMixItemIndex__Fi(int);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __ct__12dSv_memory_cFv(void);
 void __ct__13dSv_memory2_cFv(void);
 void clrSaveFlag__12daObjCarry_cFv(void);
 void setSaveFlag__12daObjCarry_cFv(void);
-void dComIfGp_setSelectItem(int);
-void dComIfGs_setKeyNum(int, u8);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGp_setSelectItem__Fi(int);
+void dComIfGs_setKeyNum__FiUc(int, u8);
+void dComIfGs_setMixItemIndex__FiUc(int, u8);
+void dComIfGs_setSelectItemIndex__FiUc(int, u8);
 void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void setHotSpringTimer__13dMeter2Info_cFUc(void);
 void setSaveStageName__13dMeter2Info_cFPCc(void);
 void dSv_item_rename__FUc(void);
-void func_80361D60(void);
-void func_80362324(void);
-void func_8036687C(void);
+void __construct_array(void);
+void __div2i(void);
+void printf(void);
 void getItem__17dSv_player_item_cCFib(void);
 void getSound__19dSv_player_config_cFv(void);
 void getVibration__19dSv_player_config_cFv(void);
@@ -84,7 +84,7 @@ void dSv_player_status_a_c::init() {
     for (int i = 0; i < 4; i++) {
         mSelectItem[i] = NO_ITEM;
         mMixItem[i + 1] = NO_ITEM;
-        dComIfGp_setSelectItem(i);
+        dComIfGp_setSelectItem__Fi(i);
     }
 
     for (int i = 0; i < 6; i++) {
@@ -152,7 +152,7 @@ asm BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     nofralloc
 #include "d/d_save/d_save/asm/func_80032AF8.s"
     // if (i_magic == 0) {
-    //     return dComIfGs_isEventBit(0x2304);
+    //     return dComIfGs_isEventBit__FUs(0x2304);
     // }
     // return (mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
@@ -317,7 +317,7 @@ void dSv_player_item_c::setItem(int item_slot, u8 item_id) {
 
     do {
         if (item_slot == dComIfGs_getSelectItemIndex(select_item_index)) {
-            dComIfGp_setSelectItem(select_item_index);
+            dComIfGp_setSelectItem__Fi(select_item_index);
         }
         select_item_index++;
     } while (select_item_index < MAX_SELECT_ITEM);
@@ -329,8 +329,8 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
         if (isComboItem) {
             for (int i = 0; i < 2; i++) {
                 if ((dComIfGs_getSelectItemIndex(i) == item_idx ||
-                     item_idx == dComIfGs_getMixItemIndex(i)) &&
-                    dComIfGs_getMixItemIndex(i) != NO_ITEM) {
+                     item_idx == dComIfGs_getMixItemIndex__Fi(i)) &&
+                    dComIfGs_getMixItemIndex__Fi(i) != NO_ITEM) {
                     u8 item_id_2 = mItems[dComIfGs_getSelectItemIndex(i)];
                     u8 item_id_1 = mItems[dComIfGs_getMixItemIndex(i)];
 
@@ -378,9 +378,9 @@ u8 dSv_player_item_c::getItem(int item_idx, bool isComboItem) const {
 
                     if (i == 3) {
                         if (dComIfGs_getSelectItemIndex(i) == 0 &&
-                            dComIfGs_getMixItemIndex(i) == 0) {
-                            dComIfGs_setSelectItemIndex(i, 0xFF);
-                            dComIfGs_setMixItemIndex(i, 0xFF);
+                            dComIfGs_getMixItemIndex__Fi(i) == 0) {
+                            dComIfGs_setSelectItemIndex__FiUc(i, 0xFF);
+                            dComIfGs_setMixItemIndex__FiUc(i, 0xFF);
                             return 0xFF;
                         }
                     }
@@ -450,7 +450,7 @@ void dSv_player_item_c::setBottleItemIn(u8 i_item_id_1, u8 i_item_id_2) {
             for (int j = 0; j < 4; j++) {
                 j = getSelectItemIndex(i);
                 if (i + 11 == j) {
-                    dComIfGp_setSelectItem(j);
+                    dComIfGp_setSelectItem__Fi(j);
                 }
             }
         }
@@ -617,7 +617,7 @@ void dSv_player_item_c::setWarashibeItem(u8 i_item_id) {
     for (int i = 0; i < 4; i++) {
         select_item_index = dComIfGs_getSelectItemIndex((u8)i);
         if (select_item_index == SLOT_21) {
-            dComIfGp_setSelectItem((u8)i);
+            dComIfGp_setSelectItem__Fi((u8)i);
         }
     }
 }
@@ -641,7 +641,7 @@ void dSv_player_item_c::setRodTypeLevelUp(void) {
     }
 
     for (int i = 0; i < 4; i++) {
-        dComIfGp_setSelectItem(i);
+        dComIfGp_setSelectItem__Fi(i);
     }
 }
 
@@ -665,7 +665,7 @@ void dSv_player_item_c::setBaitItem(u8 param_1) {
     }
 
     for (int i = 0; i < 4; i++) {
-        dComIfGp_setSelectItem(i);
+        dComIfGp_setSelectItem__Fi(i);
     }
 }
 
@@ -737,8 +737,8 @@ u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 param_2) {
 
     if (iVar3 < 0) {
         mBottles[i_bottleIdx] = 0;
-    } else if (iVar3 > dComIfGs_getBottleMax()) {
-        mBottles[i_bottleIdx] = dComIfGs_getBottleMax();
+    } else if (iVar3 > dComIfGs_getBottleMax__Fv()) {
+        mBottles[i_bottleIdx] = dComIfGs_getBottleMax__Fv();
     } else {
         mBottles[i_bottleIdx] = iVar3;
     }
@@ -1083,7 +1083,7 @@ void dSv_event_c::init(void) {
     for (int i = 0; i < MAX_EVENTS; i++) {
         events[i] = 0;
     }
-    setInitEventBit();
+    setInitEventBit__Fv();
 }
 
 void dSv_event_c::onEventBit(u16 i_no) {
@@ -1538,11 +1538,11 @@ extern u8 lbl_803F6094[0x10100];
 void dSv_info_c::memory_to_card(char* param_1, int param_2) {
     BOOL bVar1 = FALSE;
     int uVar12 = 0;
-    BOOL bVar6 = dComIfGs_isEventBit(0x1B08);
+    BOOL bVar6 = dComIfGs_isEventBit__FUs(0x1B08);
     if (!tmp) {
-        BOOL bVar7 = dComIfGs_isEventBit(0x1B20);
+        BOOL bVar7 = dComIfGs_isEventBit__FUs(0x1B20);
         BOOL tmp = bVar7;
-        bVar7 = dComIfGs_isEventBit(0x1B10);
+        bVar7 = dComIfGs_isEventBit__FUs(0x1B10);
         BOOL tmp2 = bVar7;
         dComIfGs_offEventBit(0x1B20);
         dComIfGs_offEventBit(0x1B10);

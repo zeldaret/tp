@@ -52,8 +52,8 @@ ctor_subroutine__10JFWDisplayFb:
 /* 802720F0 0026F030  38 21 00 10 */	addi r1, r1, 0x10
 /* 802720F4 0026F034  4E 80 00 20 */	blr 
 
-.global JFWDisplay
-JFWDisplay:
+.global __ct__10JFWDisplayFP7JKRHeapQ26JUTXfb10EXfbNumberb
+__ct__10JFWDisplayFP7JKRHeapQ26JUTXfb10EXfbNumberb:
 /* 802720F8 0026F038  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802720FC 0026F03C  7C 08 02 A6 */	mflr r0
 /* 80272100 0026F040  90 01 00 24 */	stw r0, 0x24(r1)
@@ -71,7 +71,7 @@ JFWDisplay:
 /* 80272130 0026F070  4B FF FF 11 */	bl ctor_subroutine__10JFWDisplayFb
 /* 80272134 0026F074  7F C3 F3 78 */	mr r3, r30
 /* 80272138 0026F078  7F E4 FB 78 */	mr r4, r31
-/* 8027213C 0026F07C  48 07 32 7D */	bl createManager__6JUTXfbFP7JKRHeapl
+/* 8027213C 0026F07C  48 07 32 7D */	bl createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
 /* 80272140 0026F080  90 7D 00 10 */	stw r3, 0x10(r29)
 /* 80272144 0026F084  7F A3 EB 78 */	mr r3, r29
 /* 80272148 0026F088  39 61 00 20 */	addi r11, r1, 0x20
@@ -140,7 +140,7 @@ lbl_80272210:
 /* 8027222C 0026F16C  7F A4 EB 78 */	mr r4, r29
 /* 80272230 0026F170  7F C5 F3 78 */	mr r5, r30
 /* 80272234 0026F174  7F E6 FB 78 */	mr r6, r31
-/* 80272238 0026F178  4B FF FE C1 */	bl JFWDisplay
+/* 80272238 0026F178  4B FF FE C1 */	bl __ct__10JFWDisplayFP7JKRHeapQ26JUTXfb10EXfbNumberb
 /* 8027223C 0026F17C  7C 60 1B 78 */	mr r0, r3
 lbl_80272240:
 /* 80272240 0026F180  90 0D 8C 40 */	stw r0, lbl_804511C0-_SDA_BASE_(r13)
@@ -153,8 +153,8 @@ lbl_80272244:
 /* 80272258 0026F198  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027225C 0026F19C  4E 80 00 20 */	blr 
 
-.global callDirectDraw
-callDirectDraw:
+.global callDirectDraw__Fv
+callDirectDraw__Fv:
 /* 80272260 0026F1A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80272264 0026F1A4  7C 08 02 A6 */	mflr r0
 /* 80272268 0026F1A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -256,7 +256,7 @@ drawendXfb_single__10JFWDisplayFv:
 /* 802723C4 0026F304  7C 00 07 35 */	extsh. r0, r0
 /* 802723C8 0026F308  41 80 00 18 */	blt lbl_802723E0
 /* 802723CC 0026F30C  4B FF FE ED */	bl prepareCopyDisp__10JFWDisplayFv
-/* 802723D0 0026F310  48 00 0F D9 */	bl JFWDrawDoneAlarm
+/* 802723D0 0026F310  48 00 0F D9 */	bl JFWDrawDoneAlarm__Fv
 /* 802723D4 0026F314  48 0E 9A F9 */	bl GXFlush
 /* 802723D8 0026F318  A8 1F 00 14 */	lha r0, 0x14(r31)
 /* 802723DC 0026F31C  B0 1F 00 16 */	sth r0, 0x16(r31)
@@ -316,7 +316,7 @@ lbl_80272490:
 /* 80272490 0026F3D0  80 1E 00 18 */	lwz r0, 0x18(r30)
 /* 80272494 0026F3D4  2C 00 00 00 */	cmpwi r0, 0
 /* 80272498 0026F3D8  40 82 00 08 */	bne lbl_802724A0
-/* 8027249C 0026F3DC  4B FF FD C5 */	bl callDirectDraw
+/* 8027249C 0026F3DC  4B FF FD C5 */	bl callDirectDraw__Fv
 lbl_802724A0:
 /* 802724A0 0026F3E0  A8 1F 00 14 */	lha r0, 0x14(r31)
 /* 802724A4 0026F3E4  B0 1F 00 16 */	sth r0, 0x16(r31)
@@ -330,7 +330,7 @@ lbl_802724C0:
 /* 802724C0 0026F400  80 1E 00 08 */	lwz r0, 8(r30)
 /* 802724C4 0026F404  90 01 00 08 */	stw r0, 8(r1)
 /* 802724C8 0026F408  38 81 00 08 */	addi r4, r1, 8
-/* 802724CC 0026F40C  48 00 0A 8D */	bl clearEfb__10JFWDisplayFv_X1_
+/* 802724CC 0026F40C  48 00 0A 8D */	bl clearEfb__10JFWDisplayF8_GXColor
 /* 802724D0 0026F410  A8 1F 00 14 */	lha r0, 0x14(r31)
 /* 802724D4 0026F414  7C 00 07 35 */	extsh. r0, r0
 /* 802724D8 0026F418  40 80 00 0C */	bge lbl_802724E4
@@ -354,7 +354,7 @@ exchangeXfb_triple__10JFWDisplayFv:
 /* 80272510 0026F450  A8 1F 00 14 */	lha r0, 0x14(r31)
 /* 80272514 0026F454  7C 00 07 35 */	extsh. r0, r0
 /* 80272518 0026F458  41 80 00 08 */	blt lbl_80272520
-/* 8027251C 0026F45C  4B FF FD 45 */	bl callDirectDraw
+/* 8027251C 0026F45C  4B FF FD 45 */	bl callDirectDraw__Fv
 lbl_80272520:
 /* 80272520 0026F460  A8 1F 00 14 */	lha r0, 0x14(r31)
 /* 80272524 0026F464  B0 1F 00 16 */	sth r0, 0x16(r31)
@@ -490,7 +490,7 @@ endGX__10JFWDisplayFv:
 /* 802726E0 0026F620  EC 80 20 28 */	fsubs f4, f0, f4
 /* 802726E4 0026F624  C0 A2 B8 54 */	lfs f5, lbl_80455254-_SDA2_BASE_(r2)
 /* 802726E8 0026F628  C0 C2 B8 58 */	lfs f6, lbl_80455258-_SDA2_BASE_(r2)
-/* 802726EC 0026F62C  48 07 6F E5 */	bl J2DOrthoGraph_X1_
+/* 802726EC 0026F62C  48 07 6F E5 */	bl __ct__13J2DOrthoGraphFffffff
 /* 802726F0 0026F630  80 1F 00 04 */	lwz r0, 4(r31)
 /* 802726F4 0026F634  28 00 00 00 */	cmplwi r0, 0
 /* 802726F8 0026F638  41 82 00 14 */	beq lbl_8027270C
@@ -523,7 +523,7 @@ lbl_80272738:
 /* 8027275C 0026F69C  2C 00 00 01 */	cmpwi r0, 1
 /* 80272760 0026F6A0  40 82 00 08 */	bne lbl_80272768
 lbl_80272764:
-/* 80272764 0026F6A4  48 07 22 F1 */	bl flushMessage__12JUTAssertionFv_dbPrint
+/* 80272764 0026F6A4  48 07 22 F1 */	bl flushMessage_dbPrint__12JUTAssertionFv
 lbl_80272768:
 /* 80272768 0026F6A8  48 0E 97 65 */	bl GXFlush
 /* 8027276C 0026F6AC  3C 60 80 3D */	lis r3, lbl_803CC9E0@ha
@@ -589,7 +589,7 @@ lbl_80272804:
 lbl_80272858:
 /* 80272858 0026F798  80 7F 00 20 */	lwz r3, 0x20(r31)
 /* 8027285C 0026F79C  A0 9F 00 1C */	lhz r4, 0x1c(r31)
-/* 80272860 0026F7A0  48 00 04 51 */	bl waitForTick
+/* 80272860 0026F7A0  48 00 04 51 */	bl waitForTick__FUlUs
 /* 80272864 0026F7A4  80 6D 8F B8 */	lwz r3, lbl_80451538-_SDA_BASE_(r13)
 /* 80272868 0026F7A8  48 07 29 A9 */	bl waitRetraceIfNeed__8JUTVideoFv
 /* 8027286C 0026F7AC  48 0C FE A9 */	bl OSGetTick
@@ -657,7 +657,7 @@ lbl_80272940:
 /* 80272958 0026F898  90 01 00 08 */	stw r0, 8(r1)
 /* 8027295C 0026F89C  7F E3 FB 78 */	mr r3, r31
 /* 80272960 0026F8A0  38 81 00 08 */	addi r4, r1, 8
-/* 80272964 0026F8A4  48 00 05 F5 */	bl clearEfb__10JFWDisplayFv_X1_
+/* 80272964 0026F8A4  48 00 05 F5 */	bl clearEfb__10JFWDisplayF8_GXColor
 /* 80272968 0026F8A8  48 00 00 0C */	b lbl_80272974
 lbl_8027296C:
 /* 8027296C 0026F8AC  38 00 00 01 */	li r0, 1
@@ -799,11 +799,11 @@ lbl_80272B58:
 /* 80272B5C 0026FA9C  40 80 00 1C */	bge lbl_80272B78
 /* 80272B60 0026FAA0  48 00 00 10 */	b lbl_80272B70
 lbl_80272B64:
-/* 80272B64 0026FAA4  48 00 08 45 */	bl JFWDrawDoneAlarm
+/* 80272B64 0026FAA4  48 00 08 45 */	bl JFWDrawDoneAlarm__Fv
 /* 80272B68 0026FAA8  48 0E 93 65 */	bl GXFlush
 /* 80272B6C 0026FAAC  48 00 00 0C */	b lbl_80272B78
 lbl_80272B70:
-/* 80272B70 0026FAB0  48 00 08 39 */	bl JFWDrawDoneAlarm
+/* 80272B70 0026FAB0  48 00 08 39 */	bl JFWDrawDoneAlarm__Fv
 /* 80272B74 0026FAB4  48 0E 93 59 */	bl GXFlush
 lbl_80272B78:
 /* 80272B78 0026FAB8  83 CD 8F D8 */	lwz r30, lbl_80451558-_SDA_BASE_(r13)
@@ -882,7 +882,7 @@ waitBlanking__10JFWDisplayFi:
 lbl_80272C80:
 /* 80272C80 0026FBC0  80 7E 00 20 */	lwz r3, 0x20(r30)
 /* 80272C84 0026FBC4  A0 9E 00 1C */	lhz r4, 0x1c(r30)
-/* 80272C88 0026FBC8  48 00 00 29 */	bl waitForTick
+/* 80272C88 0026FBC8  48 00 00 29 */	bl waitForTick__FUlUs
 lbl_80272C8C:
 /* 80272C8C 0026FBCC  2C 1F 00 00 */	cmpwi r31, 0
 /* 80272C90 0026FBD0  3B FF FF FF */	addi r31, r31, -1
@@ -894,8 +894,8 @@ lbl_80272C8C:
 /* 80272CA8 0026FBE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80272CAC 0026FBEC  4E 80 00 20 */	blr 
 
-.global waitForTick
-waitForTick:
+.global waitForTick__FUlUs
+waitForTick__FUlUs:
 /* 80272CB0 0026FBF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80272CB4 0026FBF4  7C 08 02 A6 */	mflr r0
 /* 80272CB8 0026FBF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -977,8 +977,8 @@ lbl_80272DB8:
 /* 80272DC4 0026FD04  7C 08 03 A6 */	mtlr r0
 /* 80272DC8 0026FD08  38 21 00 20 */	addi r1, r1, 0x20
 /* 80272DCC 0026FD0C  4E 80 00 20 */	blr 
-.global JFWThreadAlarmHandler
-JFWThreadAlarmHandler:
+.global JFWThreadAlarmHandler__FP7OSAlarmP9OSContext
+JFWThreadAlarmHandler__FP7OSAlarmP9OSContext:
 /* 80272DD0 0026FD10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80272DD4 0026FD14  7C 08 02 A6 */	mflr r0
 /* 80272DD8 0026FD18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1022,10 +1022,10 @@ threadSleep__10JFWDisplayFx:
 /* 80272E64 0026FDA4  38 61 00 08 */	addi r3, r1, 8
 /* 80272E68 0026FDA8  7F 86 E3 78 */	mr r6, r28
 /* 80272E6C 0026FDAC  7F A5 EB 78 */	mr r5, r29
-.global JFWThreadAlarmHandler
-/* 80272E70 0026FDB0  3C 80 80 27 */	lis r4, JFWThreadAlarmHandler@ha
-.global JFWThreadAlarmHandler
-/* 80272E74 0026FDB4  38 E4 2D D0 */	addi r7, r4, JFWThreadAlarmHandler@l
+.global JFWThreadAlarmHandler__FP7OSAlarmP9OSContext
+/* 80272E70 0026FDB0  3C 80 80 27 */	lis r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@ha
+.global JFWThreadAlarmHandler__FP7OSAlarmP9OSContext
+/* 80272E74 0026FDB4  38 E4 2D D0 */	addi r7, r4, JFWThreadAlarmHandler__FP7OSAlarmP9OSContext@l
 /* 80272E78 0026FDB8  48 0C 7C E1 */	bl OSSetAlarm
 /* 80272E7C 0026FDBC  80 61 00 30 */	lwz r3, 0x30(r1)
 /* 80272E80 0026FDC0  48 0C EB BD */	bl OSSuspendThread
@@ -1084,14 +1084,14 @@ clearEfb__10JFWDisplayFv:
 /* 80272F38 0026FE78  80 03 00 08 */	lwz r0, 8(r3)
 /* 80272F3C 0026FE7C  90 01 00 08 */	stw r0, 8(r1)
 /* 80272F40 0026FE80  38 81 00 08 */	addi r4, r1, 8
-/* 80272F44 0026FE84  48 00 00 15 */	bl clearEfb__10JFWDisplayFv_X1_
+/* 80272F44 0026FE84  48 00 00 15 */	bl clearEfb__10JFWDisplayF8_GXColor
 /* 80272F48 0026FE88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80272F4C 0026FE8C  7C 08 03 A6 */	mtlr r0
 /* 80272F50 0026FE90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80272F54 0026FE94  4E 80 00 20 */	blr 
 
-.global clearEfb__10JFWDisplayFv_X1_
-clearEfb__10JFWDisplayFv_X1_:
+.global clearEfb__10JFWDisplayF8_GXColor
+clearEfb__10JFWDisplayF8_GXColor:
 /* 80272F58 0026FE98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80272F5C 0026FE9C  7C 08 02 A6 */	mflr r0
 /* 80272F60 0026FEA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1104,14 +1104,14 @@ clearEfb__10JFWDisplayFv_X1_:
 /* 80272F7C 0026FEBC  38 80 00 00 */	li r4, 0
 /* 80272F80 0026FEC0  38 A0 00 00 */	li r5, 0
 /* 80272F84 0026FEC4  39 01 00 08 */	addi r8, r1, 8
-/* 80272F88 0026FEC8  48 00 00 15 */	bl clearEfb__10JFWDisplayFv_X2_
+/* 80272F88 0026FEC8  48 00 00 15 */	bl clearEfb__10JFWDisplayFiiii8_GXColor
 /* 80272F8C 0026FECC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80272F90 0026FED0  7C 08 03 A6 */	mtlr r0
 /* 80272F94 0026FED4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80272F98 0026FED8  4E 80 00 20 */	blr 
 
-.global clearEfb__10JFWDisplayFv_X2_
-clearEfb__10JFWDisplayFv_X2_:
+.global clearEfb__10JFWDisplayFiiii8_GXColor
+clearEfb__10JFWDisplayFiiii8_GXColor:
 /* 80272F9C 0026FEDC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80272FA0 0026FEE0  7C 08 02 A6 */	mflr r0
 /* 80272FA4 0026FEE4  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1381,8 +1381,8 @@ lbl_802733A0:
 /* 802733A0 002702E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802733A4 002702E4  4E 80 00 20 */	blr 
 
-.global JFWDrawDoneAlarm
-JFWDrawDoneAlarm:
+.global JFWDrawDoneAlarm__Fv
+JFWDrawDoneAlarm__Fv:
 /* 802733A8 002702E8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802733AC 002702EC  7C 08 02 A6 */	mflr r0
 /* 802733B0 002702F0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1411,14 +1411,14 @@ JFWDrawDoneAlarm:
 /* 8027340C 0027034C  C8 01 00 48 */	lfd f0, 0x48(r1)
 /* 80273410 00270350  FC 00 08 28 */	fsub f0, f0, f1
 /* 80273414 00270354  FC 22 00 32 */	fmul f1, f2, f0
-/* 80273418 00270358  48 0E F3 59 */	bl func_80362770
+/* 80273418 00270358  48 0E F3 59 */	bl __cvt_dbl_usll
 /* 8027341C 0027035C  7C 65 1B 78 */	mr r5, r3
 /* 80273420 00270360  38 61 00 08 */	addi r3, r1, 8
 /* 80273424 00270364  7C 86 23 78 */	mr r6, r4
-.global JFWGXAbortAlarmHandler
-/* 80273428 00270368  3C 80 80 27 */	lis r4, JFWGXAbortAlarmHandler@ha
-.global JFWGXAbortAlarmHandler
-/* 8027342C 0027036C  38 E4 34 84 */	addi r7, r4, JFWGXAbortAlarmHandler@l
+.global JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext
+/* 80273428 00270368  3C 80 80 27 */	lis r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@ha
+.global JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext
+/* 8027342C 0027036C  38 E4 34 84 */	addi r7, r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@l
 /* 80273430 00270370  48 0C 77 29 */	bl OSSetAlarm
 /* 80273434 00270374  48 0E 8E C1 */	bl GXDrawDone
 /* 80273438 00270378  38 61 00 08 */	addi r3, r1, 8
@@ -1441,14 +1441,14 @@ lbl_8027346C:
 /* 80273478 002703B8  7C 08 03 A6 */	mtlr r0
 /* 8027347C 002703BC  38 21 00 60 */	addi r1, r1, 0x60
 /* 80273480 002703C0  4E 80 00 20 */	blr 
-.global JFWGXAbortAlarmHandler
-JFWGXAbortAlarmHandler:
+.global JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext
+JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext:
 /* 80273484 002703C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80273488 002703C8  7C 08 02 A6 */	mflr r0
 /* 8027348C 002703CC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80273490 002703D0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80273494 002703D4  93 C1 00 08 */	stw r30, 8(r1)
-/* 80273498 002703D8  48 00 00 65 */	bl diagnoseGpHang
+/* 80273498 002703D8  48 00 00 65 */	bl diagnoseGpHang__Fv
 /* 8027349C 002703DC  48 0E 8B F9 */	bl GXAbortFrame
 /* 802734A0 002703E0  38 00 00 61 */	li r0, 0x61
 /* 802734A4 002703E4  3C 80 CC 01 */	lis r4, 0xCC008000@ha
@@ -1475,8 +1475,8 @@ lbl_802734E0:
 /* 802734F4 00270434  38 21 00 10 */	addi r1, r1, 0x10
 /* 802734F8 00270438  4E 80 00 20 */	blr 
 
-.global diagnoseGpHang
-diagnoseGpHang:
+.global diagnoseGpHang__Fv
+diagnoseGpHang__Fv:
 /* 802734FC 0027043C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80273500 00270440  7C 08 02 A6 */	mflr r0
 /* 80273504 00270444  90 01 00 44 */	stw r0, 0x44(r1)

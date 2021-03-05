@@ -26,7 +26,7 @@ void dmaBufferFlush__FUl(void);
 void firstSrcData__Fv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl(void);
-void JSUFileInputStream_ct(void);
+void __ct__18JSUFileInputStreamFP7JKRFile(void);
 void __dt__14JSUInputStreamFv(void);
 void loadToAram__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchUlUlPUl(void);
 void loadToAram_Async__16JKRDvdAramRipperFP10JKRDvdFileUl15JKRExpandSwitchPFUl_vUlUlPUl(void);

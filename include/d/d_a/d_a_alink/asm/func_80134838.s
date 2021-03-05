@@ -111,7 +111,7 @@ lbl_801349A0:
 /* 801349C8 00131908  38 A5 F7 DC */ addi r5, r5, lbl_8038F7DC@l
 /* 801349CC 0013190C  C0 25 00 54 */ lfs f1, 0x54(r5)
 /* 801349D0 00131910  C0 45 00 58 */ lfs f2, 0x58(r5)
-/* 801349D4 00131914  4B FF 4D 05 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 801349D4 00131914  4B FF 4D 05 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_801349D8:
 /* 801349D8 00131918  38 60 00 01 */ li r3, 1
 /* 801349DC 0013191C  48 00 03 C4 */ b lbl_80134DA0
@@ -137,7 +137,7 @@ lbl_80134A0C:
 /* 80134A24 00131964  B0 1D 30 0C */ sth r0, 0x300c(r29)
 /* 80134A28 00131968  7F A3 EB 78 */ mr r3, r29
 /* 80134A2C 0013196C  38 80 00 04 */ li r4, 4
-/* 80134A30 00131970  4B FF 3D DD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 80134A30 00131970  4B FF 3D DD */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80134A34 00131974  2C 03 00 00 */ cmpwi r3, 0
 /* 80134A38 00131978  41 82 00 38 */ beq lbl_80134A70
 /* 80134A3C 0013197C  7F C3 F3 78 */ mr r3, r30
@@ -152,7 +152,7 @@ lbl_80134A0C:
 /* 80134A60 001319A0  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 80134A64 001319A4  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 80134A68 001319A8  C0 45 00 34 */ lfs f2, 0x34(r5)
-/* 80134A6C 001319AC  4B FF 4C 6D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80134A6C 001319AC  4B FF 4C 6D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80134A70:
 /* 80134A70 001319B0  A8 1D 30 08 */ lha r0, 0x3008(r29)
 /* 80134A74 001319B4  2C 00 00 00 */ cmpwi r0, 0
@@ -293,7 +293,7 @@ lbl_80134C24:
 /* 80134C58 00131B98  3C A0 80 39 */ lis r5, lbl_8038F7DC@ha
 /* 80134C5C 00131B9C  38 A5 F7 DC */ addi r5, r5, lbl_8038F7DC@l
 /* 80134C60 00131BA0  38 A5 00 28 */ addi r5, r5, 0x28
-/* 80134C64 00131BA4  4B FF 4B E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80134C64 00131BA4  4B FF 4B E5 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80134C68 00131BA8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80134C6C 00131BAC  D0 3D 33 98 */ stfs f1, 0x3398(r29)
 /* 80134C70 00131BB0  3C 60 80 43 */ lis r3, lbl_80430CF4@ha

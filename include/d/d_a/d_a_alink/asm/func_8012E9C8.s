@@ -46,7 +46,7 @@ lbl_8012EA64:
 /* 8012EA74 0012B9B4  C0 46 00 08 */ lfs f2, 8(r6)
 /* 8012EA78 0012B9B8  A8 A6 00 00 */ lha r5, 0(r6)
 /* 8012EA7C 0012B9BC  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 8012EA80 0012B9C0  4B FF AC 85 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8012EA80 0012B9C0  4B FF AC 85 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8012EA84 0012B9C4  C0 3F 05 2C */ lfs f1, 0x52c(r31)
 /* 8012EA88 0012B9C8  C0 1F 05 94 */ lfs f0, 0x594(r31)
 /* 8012EA8C 0012B9CC  FC 01 00 40 */ fcmpo cr0, f1, f0

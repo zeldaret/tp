@@ -35,7 +35,7 @@ lbl_8001B554:
 /* 8001B558 00018498  7F 23 CB 78 */ mr r3, r25
 /* 8001B55C 0001849C  7F 44 D3 78 */ mr r4, r26
 /* 8001B560 000184A0  38 C0 00 FF */ li r6, 0xff
-/* 8001B564 000184A4  48 02 C1 F5 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
+/* 8001B564 000184A4  48 02 C1 F5 */ bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 8001B568 000184A8  7C 78 1B 78 */ mr r24, r3
 /* 8001B56C 000184AC  7F 00 07 35 */ extsh. r0, r24
 /* 8001B570 000184B0  40 80 00 0C */ bge lbl_8001B57C

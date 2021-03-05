@@ -63,7 +63,7 @@ lbl_800DF184:
 /* 800DF1A8 000DC0E8  38 A0 00 02 */ li r5, 2
 /* 800DF1AC 000DC0EC  3C C0 80 39 */ lis r6, lbl_8038E658@ha
 /* 800DF1B0 000DC0F0  38 C6 E6 58 */ addi r6, r6, lbl_8038E658@l
-/* 800DF1B4 000DC0F4  4B FC E5 3D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800DF1B4 000DC0F4  4B FC E5 3D */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800DF1B8 000DC0F8  7F E3 FB 78 */ mr r3, r31
 /* 800DF1BC 000DC0FC  38 80 00 E8 */ li r4, 0xe8
 /* 800DF1C0 000DC100  38 A0 00 01 */ li r5, 1
@@ -209,7 +209,7 @@ lbl_800DF380:
 /* 800DF3CC 000DC30C  40 82 00 10 */ bne lbl_800DF3DC
 /* 800DF3D0 000DC310  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
 /* 800DF3D4 000DC314  38 80 FF FF */ li r4, -1
-/* 800DF3D8 000DC318  4B F4 F4 65 */ bl dComIfGp_addSelectItemNum
+/* 800DF3D8 000DC318  4B F4 F4 65 */ bl dComIfGp_addSelectItemNum__Fis
 lbl_800DF3DC:
 /* 800DF3DC 000DC31C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800DF3E0 000DC320  38 83 61 C0 */ addi r4, r3, g_dComIfG_gameInfo@l
@@ -261,7 +261,7 @@ lbl_800DF468:
 /* 800DF488 000DC3C8  38 80 00 0A */ li r4, 0xa
 /* 800DF48C 000DC3CC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800DF490 000DC3D0  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800DF494 000DC3D4  4B FC DF 15 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800DF494 000DC3D4  4B FC DF 15 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800DF498 000DC3D8  7F E3 FB 78 */ mr r3, r31
 /* 800DF49C 000DC3DC  38 80 00 09 */ li r4, 9
 /* 800DF4A0 000DC3E0  4B FD 06 09 */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

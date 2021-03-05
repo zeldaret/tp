@@ -64,7 +64,7 @@ lbl_800A560C:
 /* 800A560C 000A254C  A0 78 2F DC */ lhz r3, 0x2fdc(r24)
 /* 800A5610 000A2550  28 03 00 00 */ cmplwi r3, 0
 /* 800A5614 000A2554  41 82 00 7C */ beq lbl_800A5690
-/* 800A5618 000A2558  48 01 B0 61 */ bl checkCastleTown__9daAlink_cFvUseItem
+/* 800A5618 000A2558  48 01 B0 61 */ bl checkCastleTownUseItem__9daAlink_cFUs
 /* 800A561C 000A255C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A5620 000A2560  41 82 00 70 */ beq lbl_800A5690
 /* 800A5624 000A2564  48 01 AD 7D */ bl checkCloudSea__9daAlink_cFv
@@ -109,7 +109,7 @@ lbl_800A56A4:
 /* 800A56B0 000A25F0  38 98 04 D0 */ addi r4, r24, 0x4d0
 /* 800A56B4 000A25F4  A8 B8 04 E6 */ lha r5, 0x4e6(r24)
 /* 800A56B8 000A25F8  39 99 18 E0 */ addi r12, r25, 0x18e0
-/* 800A56BC 000A25FC  48 2B C9 C9 */ bl func_80362084
+/* 800A56BC 000A25FC  48 2B C9 C9 */ bl __ptmf_scall
 /* 800A56C0 000A2600  60 00 00 00 */ nop
 /* 800A56C4 000A2604  38 79 04 D0 */ addi r3, r25, 0x4d0
 /* 800A56C8 000A2608  4B F6 76 9D */ bl transS__14mDoMtx_stack_cFRC4cXyz

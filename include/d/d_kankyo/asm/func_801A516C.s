@@ -9,7 +9,7 @@
 /* 801A518C 001A20CC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A5190 001A20D0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801A5194 001A20D4  83 C3 5D 74 */ lwz r30, 0x5d74(r3)
-/* 801A5198 001A20D8  48 00 6F D1 */ bl dKy_SunMoon_Light_Check
+/* 801A5198 001A20D8  48 00 6F D1 */ bl dKy_SunMoon_Light_Check__Fv
 /* 801A519C 001A20DC  2C 03 00 01 */ cmpwi r3, 1
 /* 801A51A0 001A20E0  40 82 00 94 */ bne lbl_801A5234
 /* 801A51A4 001A20E4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha

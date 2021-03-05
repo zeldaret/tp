@@ -8,7 +8,7 @@
 /* 800ECFB8 000E9EF8  38 A5 E5 A4 */ addi r5, r5, lbl_8038E5A4@l
 /* 800ECFBC 000E9EFC  C0 25 00 5C */ lfs f1, 0x5c(r5)
 /* 800ECFC0 000E9F00  C0 45 00 60 */ lfs f2, 0x60(r5)
-/* 800ECFC4 000E9F04  4B FC 03 E5 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800ECFC4 000E9F04  4B FC 03 E5 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800ECFC8 000E9F08  7F E3 FB 78 */ mr r3, r31
 /* 800ECFCC 000E9F0C  38 80 00 E8 */ li r4, 0xe8
 /* 800ECFD0 000E9F10  38 A0 00 01 */ li r5, 1

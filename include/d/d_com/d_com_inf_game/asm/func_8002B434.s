@@ -10,7 +10,7 @@
 /* 8002B458 00028398  40 80 12 D4 */ bge lbl_8002C72C
 /* 8002B45C 0002839C  38 00 FF FF */ li r0, -1
 /* 8002B460 000283A0  90 01 00 08 */ stw r0, 8(r1)
-/* 8002B464 000283A4  48 18 12 A9 */ bl dKy_darkworld_stage_check
+/* 8002B464 000283A4  48 18 12 A9 */ bl dKy_darkworld_stage_check__FPCci
 /* 8002B468 000283A8  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8002B46C 000283AC  28 00 00 01 */ cmplwi r0, 1
 /* 8002B470 000283B0  40 82 00 0C */ bne lbl_8002B47C

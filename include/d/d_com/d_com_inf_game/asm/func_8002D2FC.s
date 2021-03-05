@@ -41,7 +41,7 @@ lbl_8002D350:
 /* 8002D398 0002A2D8  D0 01 00 20 */ stfs f0, 0x20(r1)
 /* 8002D39C 0002A2DC  80 76 5D B4 */ lwz r3, 0x5db4(r22)
 /* 8002D3A0 0002A2E0  AA C3 04 E6 */ lha r22, 0x4e6(r3)
-/* 8002D3A4 0002A2E4  48 00 1A BD */ bl dComIfGp_getNowLevel
+/* 8002D3A4 0002A2E4  48 00 1A BD */ bl dComIfGp_getNowLevel__Fv
 /* 8002D3A8 0002A2E8  7C 68 1B 78 */ mr r8, r3
 /* 8002D3AC 0002A2EC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D3B0 0002A2F0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -73,12 +73,12 @@ lbl_8002D408:
 /* 8002D410 0002A350  40 82 00 14 */ bne lbl_8002D424
 /* 8002D414 0002A354  38 60 00 06 */ li r3, 6
 /* 8002D418 0002A358  38 80 00 02 */ li r4, 2
-/* 8002D41C 0002A35C  48 00 1C 25 */ bl dComIfGs_setKeyNum
+/* 8002D41C 0002A35C  48 00 1C 25 */ bl dComIfGs_setKeyNum__FiUc
 /* 8002D420 0002A360  48 00 00 10 */ b lbl_8002D430
 lbl_8002D424:
 /* 8002D424 0002A364  38 60 00 06 */ li r3, 6
 /* 8002D428 0002A368  38 80 00 00 */ li r4, 0
-/* 8002D42C 0002A36C  48 00 1C 15 */ bl dComIfGs_setKeyNum
+/* 8002D42C 0002A36C  48 00 1C 15 */ bl dComIfGs_setKeyNum__FiUc
 lbl_8002D430:
 /* 8002D430 0002A370  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D434 0002A374  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

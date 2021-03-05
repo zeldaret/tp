@@ -19,7 +19,7 @@
 /* 800F9F78 000F6EB8  41 82 00 24 */ beq lbl_800F9F9C
 /* 800F9F7C 000F6EBC  7F C3 F3 78 */ mr r3, r30
 /* 800F9F80 000F6EC0  38 80 00 00 */ li r4, 0
-/* 800F9F84 000F6EC4  4B FC 0F 85 */ bl checkNextAction__9daAlink_cFiFromCrouch
+/* 800F9F84 000F6EC4  4B FC 0F 85 */ bl checkNextActionFromCrouch__9daAlink_cFi
 /* 800F9F88 000F6EC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F9F8C 000F6ECC  40 82 00 34 */ bne lbl_800F9FC0
 /* 800F9F90 000F6ED0  7F C3 F3 78 */ mr r3, r30
@@ -34,7 +34,7 @@ lbl_800F9F9C:
 /* 800F9FB0 000F6EF0  40 80 00 10 */ bge lbl_800F9FC0
 /* 800F9FB4 000F6EF4  7F C3 F3 78 */ mr r3, r30
 /* 800F9FB8 000F6EF8  38 80 00 01 */ li r4, 1
-/* 800F9FBC 000F6EFC  4B FC 0F 4D */ bl checkNextAction__9daAlink_cFiFromCrouch
+/* 800F9FBC 000F6EFC  4B FC 0F 4D */ bl checkNextActionFromCrouch__9daAlink_cFi
 lbl_800F9FC0:
 /* 800F9FC0 000F6F00  38 60 00 01 */ li r3, 1
 /* 800F9FC4 000F6F04  83 E1 00 0C */ lwz r31, 0xc(r1)

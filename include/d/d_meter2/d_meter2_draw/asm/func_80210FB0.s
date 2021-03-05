@@ -220,17 +220,17 @@ lbl_802111D8:
 /* 80211308 0020E248  38 80 00 00 */ li r4, 0
 /* 8021130C 0020E24C  48 00 A5 05 */ bl setItemParamB__13dMeter2Draw_cFUc
 /* 80211310 0020E250  7F E3 FB 78 */ mr r3, r31
-/* 80211314 0020E254  48 00 08 D9 */ bl init__13dMeter2Draw_cFvLife
+/* 80211314 0020E254  48 00 08 D9 */ bl initLife__13dMeter2Draw_cFv
 /* 80211318 0020E258  7F E3 FB 78 */ mr r3, r31
-/* 8021131C 0020E25C  48 00 0B 49 */ bl init__13dMeter2Draw_cFvMagic
+/* 8021131C 0020E25C  48 00 0B 49 */ bl initMagic__13dMeter2Draw_cFv
 /* 80211320 0020E260  7F E3 FB 78 */ mr r3, r31
-/* 80211324 0020E264  48 00 0E 6D */ bl init__13dMeter2Draw_cFvLightDrop
+/* 80211324 0020E264  48 00 0E 6D */ bl initLightDrop__13dMeter2Draw_cFv
 /* 80211328 0020E268  7F E3 FB 78 */ mr r3, r31
-/* 8021132C 0020E26C  48 00 10 D9 */ bl init__13dMeter2Draw_cFvRupeeKey
+/* 8021132C 0020E26C  48 00 10 D9 */ bl initRupeeKey__13dMeter2Draw_cFv
 /* 80211330 0020E270  7F E3 FB 78 */ mr r3, r31
-/* 80211334 0020E274  48 00 13 B1 */ bl init__13dMeter2Draw_cFvButton
+/* 80211334 0020E274  48 00 13 B1 */ bl initButton__13dMeter2Draw_cFv
 /* 80211338 0020E278  7F E3 FB 78 */ mr r3, r31
-/* 8021133C 0020E27C  48 00 21 D1 */ bl init__13dMeter2Draw_cFvButtonCross
+/* 8021133C 0020E27C  48 00 21 D1 */ bl initButtonCross__13dMeter2Draw_cFv
 /* 80211340 0020E280  38 00 00 00 */ li r0, 0
 /* 80211344 0020E284  98 1F 07 72 */ stb r0, 0x772(r31)
 /* 80211348 0020E288  83 E1 00 0C */ lwz r31, 0xc(r1)

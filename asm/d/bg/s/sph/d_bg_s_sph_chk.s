@@ -3,8 +3,8 @@
 .section .text, "ax" # 80078a14
 
 
-.global dBgS_SphChk
-dBgS_SphChk:
+.global __ct__11dBgS_SphChkFv
+__ct__11dBgS_SphChkFv:
 /* 80078A14 00075954  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078A18 00075958  7C 08 02 A6 */	mflr r0
 /* 80078A1C 0007595C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -18,7 +18,7 @@ dBgS_SphChk:
 /* 80078A3C 0007597C  38 7F 00 24 */	addi r3, r31, 0x24
 /* 80078A40 00075980  48 1E F1 0D */	bl __ct__8cBgS_ChkFv
 /* 80078A44 00075984  38 7F 00 38 */	addi r3, r31, 0x38
-/* 80078A48 00075988  4B FF EA 55 */	bl dBgS_Chk
+/* 80078A48 00075988  4B FF EA 55 */	bl __ct__8dBgS_ChkFv
 /* 80078A4C 0007598C  3C 60 80 3B */	lis r3, lbl_803AB9C8@ha
 /* 80078A50 00075990  38 63 B9 C8 */	addi r3, r3, lbl_803AB9C8@l
 /* 80078A54 00075994  90 7F 00 10 */	stw r3, 0x10(r31)

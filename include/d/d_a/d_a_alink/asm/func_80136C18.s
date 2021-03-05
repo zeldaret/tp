@@ -99,7 +99,7 @@ lbl_80136D74:
 /* 80136D88 00133CC8  FC 40 F8 90 */ fmr f2, f31
 /* 80136D8C 00133CCC  A8 A6 00 00 */ lha r5, 0(r6)
 /* 80136D90 00133CD0  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 80136D94 00133CD4  4B FF 29 71 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 80136D94 00133CD4  4B FF 29 71 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 80136D98 00133CD8  7F E3 FB 78 */ mr r3, r31
 /* 80136D9C 00133CDC  38 80 00 95 */ li r4, 0x95
 /* 80136DA0 00133CE0  4B F7 8B 01 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

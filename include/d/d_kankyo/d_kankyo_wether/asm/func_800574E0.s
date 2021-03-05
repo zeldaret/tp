@@ -38,8 +38,8 @@
 /* 80057574 000544B4  90 03 10 54 */ stw r0, 0x1054(r3)
 /* 80057578 000544B8  98 03 10 51 */ stb r0, 0x1051(r3)
 /* 8005757C 000544BC  D0 03 0E 60 */ stfs f0, 0xe60(r3)
-/* 80057580 000544C0  48 00 2F FD */ bl dKyw_wind_init
-/* 80057584 000544C4  48 00 37 C1 */ bl dKyw_pntwind_init
+/* 80057580 000544C0  48 00 2F FD */ bl dKyw_wind_init__Fv
+/* 80057584 000544C4  48 00 37 C1 */ bl dKyw_pntwind_init__Fv
 /* 80057588 000544C8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8005758C 000544CC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80057590 000544D0  3B C3 4E 00 */ addi r30, r3, 0x4e00

@@ -49,7 +49,7 @@ isVisitedRoom__10dMapInfo_nFi:
 /* 8003ED2C 0003BC6C  88 04 02 FC */	lbz r0, 0x2fc(r4)
 /* 8003ED30 0003BC70  28 00 00 00 */	cmplwi r0, 0
 /* 8003ED34 0003BC74  40 82 00 10 */	bne lbl_8003ED44
-/* 8003ED38 0003BC78  4B FF 0F 61 */	bl dComIfGs_isVisitedRoom
+/* 8003ED38 0003BC78  4B FF 0F 61 */	bl dComIfGs_isVisitedRoom__Fi
 /* 8003ED3C 0003BC7C  2C 03 00 00 */	cmpwi r3, 0
 /* 8003ED40 0003BC80  41 82 00 08 */	beq lbl_8003ED48
 lbl_8003ED44:
@@ -118,7 +118,7 @@ rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec:
 lbl_8003EE10:
 /* 8003EE10 0003BD50  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8003EE14 0003BD54  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
-/* 8003EE18 0003BD58  4B FC D5 C5 */	bl mDoMtx_YrotS
+/* 8003EE18 0003BD58  4B FC D5 C5 */	bl mDoMtx_YrotS__FPA4_fs
 /* 8003EE1C 0003BD5C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8003EE20 0003BD60  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8003EE24 0003BD64  7F E4 FB 78 */	mr r4, r31
@@ -252,7 +252,7 @@ lbl_8003EFAC:
 /* 8003EFEC 0003BF2C  40 82 00 24 */	bne lbl_8003F010
 lbl_8003EFF0:
 /* 8003EFF0 0003BF30  7F A3 EB 78 */	mr r3, r29
-/* 8003EFF4 0003BF34  48 05 D3 C1 */	bl getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c_X1_
+/* 8003EFF4 0003BF34  48 05 D3 C1 */	bl getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c
 /* 8003EFF8 0003BF38  7C 7D 1B 78 */	mr r29, r3
 /* 8003EFFC 0003BF3C  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8003F000:
@@ -1009,8 +1009,8 @@ lbl_8003FA34:
 /* 8003FA38 0003C978  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FA3C 0003C97C  4E 80 00 20 */	blr 
 
-.global setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc_X1_
-setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc_X1_:
+.global setPointer__8dMpath_cFScPvi
+setPointer__8dMpath_cFScPvi:
 /* 8003FA40 0003C980  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003FA44 0003C984  7C 08 02 A6 */	mflr r0
 /* 8003FA48 0003C988  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1387,7 +1387,7 @@ lbl_8003FEF8:
 /* 8003FF64 0003CEA4  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8003FF68 0003CEA8  38 C1 00 08 */	addi r6, r1, 8
 /* 8003FF6C 0003CEAC  38 E0 00 00 */	li r7, 0
-/* 8003FF70 0003CEB0  4B FC C7 A1 */	bl mDoMtx_lookAt_X1_
+/* 8003FF70 0003CEB0  4B FC C7 A1 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 8003FF74 0003CEB4  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8003FF78 0003CEB8  38 80 00 00 */	li r4, 0
 /* 8003FF7C 0003CEBC  48 32 02 D1 */	bl GXLoadPosMtxImm
@@ -1771,7 +1771,7 @@ lbl_800404C8:
 /* 800404E8 0003D428  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800404EC 0003D42C  41 82 00 0C */	beq lbl_800404F8
 /* 800404F0 0003D430  7F E3 FB 78 */	mr r3, r31
-/* 800404F4 0003D434  48 00 09 91 */	bl drawTreasure__28renderingPlusDoorAndCursor_cFvAfterPlayer
+/* 800404F4 0003D434  48 00 09 91 */	bl drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv
 lbl_800404F8:
 /* 800404F8 0003D438  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 800404FC 0003D43C  CB E1 00 40 */	lfd f31, 0x40(r1)
@@ -1816,7 +1816,7 @@ drawDoor1__19renderingPlusDoor_cFv:
 /* 8004057C 0003D4BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80040580 0003D4C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80040584 0003D4C4  7C 7F 1B 78 */	mr r31, r3
-/* 80040588 0003D4C8  4B FE 39 6D */	bl dStage_GetKeepDoorInfo
+/* 80040588 0003D4C8  4B FE 39 6D */	bl dStage_GetKeepDoorInfo__Fv
 /* 8004058C 0003D4CC  7C 65 1B 78 */	mr r5, r3
 /* 80040590 0003D4D0  7F E3 FB 78 */	mr r3, r31
 /* 80040594 0003D4D4  38 85 00 04 */	addi r4, r5, 4
@@ -1836,7 +1836,7 @@ drawDoor2__19renderingPlusDoor_cFv:
 /* 800405C0 0003D500  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800405C4 0003D504  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800405C8 0003D508  7C 7F 1B 78 */	mr r31, r3
-/* 800405CC 0003D50C  4B FE 3A 91 */	bl dStage_GetRoomKeepDoorInfo
+/* 800405CC 0003D50C  4B FE 3A 91 */	bl dStage_GetRoomKeepDoorInfo__Fv
 /* 800405D0 0003D510  7C 65 1B 78 */	mr r5, r3
 /* 800405D4 0003D514  7F E3 FB 78 */	mr r3, r31
 /* 800405D8 0003D518  38 85 00 04 */	addi r4, r5, 4
@@ -2067,7 +2067,7 @@ lbl_800408F0:
 /* 80040908 0003D848  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8004090C 0003D84C  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80040910 0003D850  A8 9D 00 1A */	lha r4, 0x1a(r29)
-/* 80040914 0003D854  4B FC BB B9 */	bl mDoMtx_ZrotM
+/* 80040914 0003D854  4B FC BB B9 */	bl mDoMtx_ZrotM__FPA4_fs
 /* 80040918 0003D858  C0 22 84 70 */	lfs f1, lbl_80451E70-_SDA2_BASE_(r2)
 /* 8004091C 0003D85C  FC 40 08 90 */	fmr f2, f1
 /* 80040920 0003D860  C0 62 84 38 */	lfs f3, lbl_80451E38-_SDA2_BASE_(r2)
@@ -2443,8 +2443,8 @@ lbl_80040E44:
 /* 80040E7C 0003DDBC  38 21 00 70 */	addi r1, r1, 0x70
 /* 80040E80 0003DDC0  4E 80 00 20 */	blr 
 
-.global drawTreasure__28renderingPlusDoorAndCursor_cFvAfterPlayer
-drawTreasure__28renderingPlusDoorAndCursor_cFvAfterPlayer:
+.global drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv
+drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv:
 /* 80040E84 0003DDC4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80040E88 0003DDC8  7C 08 02 A6 */	mflr r0
 /* 80040E8C 0003DDCC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2777,7 +2777,7 @@ drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif:
 /* 80041364 0003E2A4  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80041368 0003E2A8  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8004136C 0003E2AC  7F 84 E3 78 */	mr r4, r28
-/* 80041370 0003E2B0  4B FC B0 C5 */	bl mDoMtx_YrotM
+/* 80041370 0003E2B0  4B FC B0 C5 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80041374 0003E2B4  3B 80 00 00 */	li r28, 0
 /* 80041378 0003E2B8  3B E0 00 00 */	li r31, 0
 /* 8004137C 0003E2BC  3C 60 80 3E */	lis r3, lbl_803DD470@ha

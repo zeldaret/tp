@@ -10,7 +10,7 @@
 /* 800C004C 000BCF8C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C0050 000BCF90  D0 03 00 08 */ stfs f0, 8(r3)
 /* 800C0054 000BCF94  7F E4 FB 78 */ mr r4, r31
-/* 800C0058 000BCF98  48 26 B0 45 */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_
+/* 800C0058 000BCF98  48 26 B0 45 */ bl searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData
 /* 800C005C 000BCF9C  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800C0060 000BCFA0  7F C4 F3 78 */ mr r4, r30
 /* 800C0064 000BCFA4  48 26 FB 65 */ bl entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern

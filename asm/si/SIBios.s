@@ -1109,8 +1109,7 @@ lbl_80345AE0:
 /* 80345AF4 00342A34  38 21 00 28 */	addi r1, r1, 0x28
 /* 80345AF8 00342A38  7C 08 03 A6 */	mtlr r0
 /* 80345AFC 00342A3C  4E 80 00 20 */	blr 
-.global AlarmHandler_X1_
-AlarmHandler_X1_:
+AlarmHandler:
 /* 80345B00 00342A40  7C 08 02 A6 */	mflr r0
 /* 80345B04 00342A44  3C 80 80 45 */	lis r4, lbl_8044C6B0@ha
 /* 80345B08 00342A48  90 01 00 04 */	stw r0, 4(r1)
@@ -1208,11 +1207,9 @@ lbl_80345C3C:
 /* 80345C58 00342B98  1C 18 00 28 */	mulli r0, r24, 0x28
 /* 80345C5C 00342B9C  7F C4 98 10 */	subfc r30, r4, r19
 /* 80345C60 00342BA0  7F E3 A1 10 */	subfe r31, r3, r20
-.global AlarmHandler_X1_
-/* 80345C64 00342BA4  3C 80 80 34 */	lis r4, AlarmHandler_X1_@ha
+/* 80345C64 00342BA4  3C 80 80 34 */	lis r4, AlarmHandler@ha
 /* 80345C68 00342BA8  7C 77 02 14 */	add r3, r23, r0
-.global AlarmHandler_X1_
-/* 80345C6C 00342BAC  38 E4 5B 00 */	addi r7, r4, AlarmHandler_X1_@l
+/* 80345C6C 00342BAC  38 E4 5B 00 */	addi r7, r4, AlarmHandler@l
 /* 80345C70 00342BB0  38 DE 00 00 */	addi r6, r30, 0
 /* 80345C74 00342BB4  38 BF 00 00 */	addi r5, r31, 0
 /* 80345C78 00342BB8  38 63 00 80 */	addi r3, r3, 0x80

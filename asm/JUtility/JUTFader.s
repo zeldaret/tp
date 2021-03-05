@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e5530
 
 
-.global JUTFader
-JUTFader:
+.global __ct__8JUTFaderFiiiiQ28JUtility6TColor
+__ct__8JUTFaderFiiiiQ28JUtility6TColor:
 /* 802E5530 002E2470  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E5534 002E2474  3D 20 80 3D */	lis r9, lbl_803CC990@ha
 /* 802E5538 002E2478  38 09 C9 90 */	addi r0, r9, lbl_803CC990@l
@@ -131,7 +131,7 @@ lbl_802E56CC:
 /* 802E56F4 002E2634  28 00 00 00 */	cmplwi r0, 0
 /* 802E56F8 002E2638  41 82 00 60 */	beq lbl_802E5758
 /* 802E56FC 002E263C  38 61 00 1C */	addi r3, r1, 0x1c
-/* 802E5700 002E2640  48 00 3F 71 */	bl J2DOrthoGraph
+/* 802E5700 002E2640  48 00 3F 71 */	bl __ct__13J2DOrthoGraphFv
 /* 802E5704 002E2644  80 1F 00 0C */	lwz r0, 0xc(r31)
 /* 802E5708 002E2648  90 01 00 18 */	stw r0, 0x18(r1)
 /* 802E570C 002E264C  90 01 00 14 */	stw r0, 0x14(r1)

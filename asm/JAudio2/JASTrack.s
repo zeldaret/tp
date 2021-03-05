@@ -3,16 +3,16 @@
 .section .text, "ax" # 80291228
 
 
-.global JASTrack
-JASTrack:
+.global __ct__8JASTrackFv
+__ct__8JASTrackFv:
 /* 80291228 0028E168  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029122C 0028E16C  7C 08 02 A6 */	mflr r0
 /* 80291230 0028E170  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80291234 0028E174  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80291238 0028E178  7C 7F 1B 78 */	mr r31, r3
-/* 8029123C 0028E17C  48 00 26 81 */	bl JASSeqCtrl
+/* 8029123C 0028E17C  48 00 26 81 */	bl __ct__10JASSeqCtrlFv
 /* 80291240 0028E180  38 7F 00 80 */	addi r3, r31, 0x80
-/* 80291244 0028E184  48 00 24 01 */	bl JASRegisterParam
+/* 80291244 0028E184  48 00 24 01 */	bl __ct__16JASRegisterParamFv
 /* 80291248 0028E188  C0 02 BB A0 */	lfs f0, lbl_804555A0-_SDA2_BASE_(r2)
 /* 8029124C 0028E18C  D0 1F 00 9C */	stfs f0, 0x9c(r31)
 /* 80291250 0028E190  D0 1F 00 A0 */	stfs f0, 0xa0(r31)
@@ -41,7 +41,7 @@ JASTrack:
 /* 802912A4 0028E1E4  38 A0 00 00 */	li r5, 0
 /* 802912A8 0028E1E8  38 C0 00 0C */	li r6, 0xc
 /* 802912AC 0028E1EC  38 E0 00 06 */	li r7, 6
-/* 802912B0 0028E1F0  48 0D 0A B1 */	bl func_80361D60
+/* 802912B0 0028E1F0  48 0D 0A B1 */	bl __construct_array
 /* 802912B4 0028E1F4  38 7F 01 80 */	addi r3, r31, 0x180
 /* 802912B8 0028E1F8  7F E4 FB 78 */	mr r4, r31
 /* 802912BC 0028E1FC  48 00 1E 21 */	bl __ct__Q28JASTrack11TChannelMgrFP8JASTrack
@@ -92,7 +92,7 @@ lbl_8029134C:
 /* 8029135C 0028E29C  40 82 00 34 */	bne lbl_80291390
 /* 80291360 0028E2A0  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291364 0028E2A4  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
-/* 80291368 0028E2A8  4B FF F4 E1 */	bl JASGenericMemPool
+/* 80291368 0028E2A8  4B FF F4 E1 */	bl __ct__17JASGenericMemPoolFv
 /* 8029136C 0028E2AC  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291370 0028E2B0  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
 .global JASMemPool_MultiThreaded_NS_dtor_X1_
@@ -124,7 +124,7 @@ lbl_80291390:
 /* 802913D0 0028E310  40 82 00 34 */	bne lbl_80291404
 /* 802913D4 0028E314  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 802913D8 0028E318  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
-/* 802913DC 0028E31C  4B FF F4 6D */	bl JASGenericMemPool
+/* 802913DC 0028E31C  4B FF F4 6D */	bl __ct__17JASGenericMemPoolFv
 /* 802913E0 0028E320  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 802913E4 0028E324  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
 .global JASMemPool_MultiThreaded_NS_dtor
@@ -179,7 +179,7 @@ lbl_80291474:
 /* 8029148C 0028E3CC  40 82 00 34 */	bne lbl_802914C0
 /* 80291490 0028E3D0  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291494 0028E3D4  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
-/* 80291498 0028E3D8  4B FF F3 B1 */	bl JASGenericMemPool
+/* 80291498 0028E3D8  4B FF F3 B1 */	bl __ct__17JASGenericMemPoolFv
 /* 8029149C 0028E3DC  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 802914A0 0028E3E0  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
 .global JASMemPool_MultiThreaded_NS_dtor_X1_
@@ -234,7 +234,7 @@ lbl_80291534:
 /* 8029154C 0028E48C  40 82 00 34 */	bne lbl_80291580
 /* 80291550 0028E490  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291554 0028E494  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
-/* 80291558 0028E498  4B FF F2 F1 */	bl JASGenericMemPool
+/* 80291558 0028E498  4B FF F2 F1 */	bl __ct__17JASGenericMemPoolFv
 /* 8029155C 0028E49C  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291560 0028E4A0  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
 .global JASMemPool_MultiThreaded_NS_dtor_X1_
@@ -286,7 +286,7 @@ init__8JASTrackFv:
 /* 802915F8 0028E538  38 7C 00 5C */	addi r3, r28, 0x5c
 /* 802915FC 0028E53C  48 00 1F 51 */	bl init__12JASTrackPortFv
 /* 80291600 0028E540  7F 83 E3 78 */	mr r3, r28
-/* 80291604 0028E544  48 00 02 F9 */	bl init__8JASTrackFvTimed
+/* 80291604 0028E544  48 00 02 F9 */	bl initTimed__8JASTrackFv
 /* 80291608 0028E548  38 7C 00 80 */	addi r3, r28, 0x80
 /* 8029160C 0028E54C  48 00 20 59 */	bl init__16JASRegisterParamFv
 /* 80291610 0028E550  80 1B 00 18 */	lwz r0, 0x18(r27)
@@ -356,7 +356,7 @@ lbl_802916EC:
 /* 80291704 0028E644  40 82 00 34 */	bne lbl_80291738
 /* 80291708 0028E648  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 8029170C 0028E64C  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
-/* 80291710 0028E650  4B FF F1 39 */	bl JASGenericMemPool
+/* 80291710 0028E650  4B FF F1 39 */	bl __ct__17JASGenericMemPoolFv
 /* 80291714 0028E654  3C 60 80 43 */	lis r3, lbl_80431AF4@ha
 /* 80291718 0028E658  38 63 1A F4 */	addi r3, r3, lbl_80431AF4@l
 .global JASMemPool_MultiThreaded_NS_dtor_X1_
@@ -486,8 +486,8 @@ lbl_80291868:
 /* 802918F4 0028E834  38 21 00 30 */	addi r1, r1, 0x30
 /* 802918F8 0028E838  4E 80 00 20 */	blr 
 
-.global init__8JASTrackFvTimed
-init__8JASTrackFvTimed:
+.global initTimed__8JASTrackFv
+initTimed__8JASTrackFv:
 /* 802918FC 0028E83C  C0 02 BB A4 */	lfs f0, lbl_804555A4-_SDA2_BASE_(r2)
 /* 80291900 0028E840  D0 03 00 9C */	stfs f0, 0x9c(r3)
 /* 80291904 0028E844  C0 22 BB A0 */	lfs f1, lbl_804555A0-_SDA2_BASE_(r2)
@@ -698,8 +698,8 @@ lbl_80291BA8:
 /* 80291BB0 0028EAF0  38 60 00 01 */	li r3, 1
 /* 80291BB4 0028EAF4  4E 80 00 20 */	blr 
 
-.global close__8JASTrackFvChild
-close__8JASTrackFvChild:
+.global closeChild__8JASTrackFUl
+closeChild__8JASTrackFUl:
 /* 80291BB8 0028EAF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80291BBC 0028EAFC  7C 08 02 A6 */	mflr r0
 /* 80291BC0 0028EB00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -783,7 +783,7 @@ lbl_80291CD0:
 /* 80291CD8 0028EC18  40 82 00 34 */	bne lbl_80291D0C
 /* 80291CDC 0028EC1C  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 80291CE0 0028EC20  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
-/* 80291CE4 0028EC24  4B FF EB 65 */	bl JASGenericMemPool
+/* 80291CE4 0028EC24  4B FF EB 65 */	bl __ct__17JASGenericMemPoolFv
 /* 80291CE8 0028EC28  3C 60 80 43 */	lis r3, lbl_80431B04@ha
 /* 80291CEC 0028EC2C  38 63 1B 04 */	addi r3, r3, lbl_80431B04@l
 .global JASMemPool_MultiThreaded_NS_dtor
@@ -808,7 +808,7 @@ lbl_80291D0C:
 /* 80291D30 0028EC70  28 1D 00 00 */	cmplwi r29, 0
 /* 80291D34 0028EC74  41 82 00 10 */	beq lbl_80291D44
 /* 80291D38 0028EC78  7F A3 EB 78 */	mr r3, r29
-/* 80291D3C 0028EC7C  4B FF F4 ED */	bl JASTrack
+/* 80291D3C 0028EC7C  4B FF F4 ED */	bl __ct__8JASTrackFv
 /* 80291D40 0028EC80  7C 7D 1B 78 */	mr r29, r3
 lbl_80291D44:
 /* 80291D44 0028EC84  7F BC EB 78 */	mr r28, r29
@@ -1529,8 +1529,8 @@ lbl_80292700:
 /* 80292700 0028F640  90 A4 00 08 */	stw r5, 8(r4)
 /* 80292704 0028F644  4E 80 00 20 */	blr 
 
-.global noteOff__8JASTrackFUlUsAll
-noteOff__8JASTrackFUlUsAll:
+.global noteOffAll__8JASTrackFUs
+noteOffAll__8JASTrackFUs:
 /* 80292708 0028F648  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029270C 0028F64C  7C 08 02 A6 */	mflr r0
 /* 80292710 0028F650  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1561,7 +1561,7 @@ lbl_80292754:
 /* 80292768 0028F6A8  28 00 00 01 */	cmplwi r0, 1
 /* 8029276C 0028F6AC  40 82 00 0C */	bne lbl_80292778
 /* 80292770 0028F6B0  7F A4 EB 78 */	mr r4, r29
-/* 80292774 0028F6B4  4B FF FF 95 */	bl noteOff__8JASTrackFUlUsAll
+/* 80292774 0028F6B4  4B FF FF 95 */	bl noteOffAll__8JASTrackFUs
 lbl_80292778:
 /* 80292778 0028F6B8  3B DE 00 01 */	addi r30, r30, 1
 /* 8029277C 0028F6BC  2C 1E 00 10 */	cmpwi r30, 0x10
@@ -1585,7 +1585,7 @@ mute__8JASTrackFb:
 /* 802927B8 0028F6F8  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802927BC 0028F6FC  41 82 00 0C */	beq lbl_802927C8
 /* 802927C0 0028F700  38 80 00 0A */	li r4, 0xa
-/* 802927C4 0028F704  4B FF FF 45 */	bl noteOff__8JASTrackFUlUsAll
+/* 802927C4 0028F704  4B FF FF 45 */	bl noteOffAll__8JASTrackFUs
 lbl_802927C8:
 /* 802927C8 0028F708  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802927CC 0028F70C  7C 08 03 A6 */	mtlr r0
@@ -1887,8 +1887,8 @@ setTempo__8JASTrackFUs:
 /* 80292B84 0028FAC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80292B88 0028FAC8  4E 80 00 20 */	blr 
 
-.global setTempo__8JASTrackFUsRate
-setTempo__8JASTrackFUsRate:
+.global setTempoRate__8JASTrackFf
+setTempoRate__8JASTrackFf:
 /* 80292B8C 0028FACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80292B90 0028FAD0  7C 08 02 A6 */	mflr r0
 /* 80292B94 0028FAD4  90 01 00 14 */	stw r0, 0x14(r1)

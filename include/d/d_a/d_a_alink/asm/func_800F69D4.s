@@ -31,7 +31,7 @@ lbl_800F6A3C:
 /* 800F6A44 000F3984  7F C3 F3 78 */ mr r3, r30
 /* 800F6A48 000F3988  7F E4 FB 78 */ mr r4, r31
 /* 800F6A4C 000F398C  C0 22 93 3C */ lfs f1, lbl_80452D3C-_SDA2_BASE_(r2)
-/* 800F6A50 000F3990  4B FB 65 61 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800F6A50 000F3990  4B FB 65 61 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800F6A54 000F3994  38 60 00 01 */ li r3, 1
 /* 800F6A58 000F3998  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F6A5C 000F399C  83 C1 00 08 */ lwz r30, 8(r1)

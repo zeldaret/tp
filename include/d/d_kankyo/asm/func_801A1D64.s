@@ -60,7 +60,7 @@ lbl_801A1E30:
 lbl_801A1E44:
 /* 801A1E44 0019ED84  28 00 00 09 */ cmplwi r0, 9
 /* 801A1E48 0019ED88  40 82 00 38 */ bne lbl_801A1E80
-/* 801A1E4C 0019ED8C  48 00 A7 31 */ bl dKy_darkworld_check
+/* 801A1E4C 0019ED8C  48 00 A7 31 */ bl dKy_darkworld_check__Fv
 /* 801A1E50 0019ED90  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A1E54 0019ED94  41 82 00 2C */ beq lbl_801A1E80
 lbl_801A1E58:
@@ -70,7 +70,7 @@ lbl_801A1E58:
 /* 801A1E64 0019EDA4  28 00 00 03 */ cmplwi r0, 3
 /* 801A1E68 0019EDA8  40 82 00 10 */ bne lbl_801A1E78
 lbl_801A1E6C:
-/* 801A1E6C 0019EDAC  48 00 A7 11 */ bl dKy_darkworld_check
+/* 801A1E6C 0019EDAC  48 00 A7 11 */ bl dKy_darkworld_check__Fv
 /* 801A1E70 0019EDB0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A1E74 0019EDB4  41 82 00 0C */ beq lbl_801A1E80
 lbl_801A1E78:
@@ -102,7 +102,7 @@ lbl_801A1EBC:
 /* 801A1ED0 0019EE10  7F A5 EB 78 */ mr r5, r29
 /* 801A1ED4 0019EE14  7F C6 F3 78 */ mr r6, r30
 /* 801A1ED8 0019EE18  7F E7 FB 78 */ mr r7, r31
-/* 801A1EDC 0019EE1C  4B FF F7 E5 */ bl setLight__18dScnKy_env_light_cFv_actor
+/* 801A1EDC 0019EE1C  4B FF F7 E5 */ bl setLight_actor__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10PfPf
 /* 801A1EE0 0019EE20  A8 1B 03 48 */ lha r0, 0x348(r27)
 /* 801A1EE4 0019EE24  B0 1C 00 00 */ sth r0, 0(r28)
 /* 801A1EE8 0019EE28  A8 1B 03 4A */ lha r0, 0x34a(r27)
@@ -119,7 +119,7 @@ lbl_801A1F04:
 /* 801A1F10 0019EE50  7F A6 EB 78 */ mr r6, r29
 /* 801A1F14 0019EE54  7F C7 F3 78 */ mr r7, r30
 /* 801A1F18 0019EE58  7F E8 FB 78 */ mr r8, r31
-/* 801A1F1C 0019EE5C  4B FF F4 21 */ bl setLight__18dScnKy_env_light_cFv_bg
+/* 801A1F1C 0019EE5C  4B FF F4 21 */ bl setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 /* 801A1F20 0019EE60  A8 01 00 08 */ lha r0, 8(r1)
 /* 801A1F24 0019EE64  B0 1C 00 00 */ sth r0, 0(r28)
 /* 801A1F28 0019EE68  A8 01 00 0A */ lha r0, 0xa(r1)

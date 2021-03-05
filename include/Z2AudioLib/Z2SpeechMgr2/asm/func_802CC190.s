@@ -42,7 +42,7 @@ lbl_802CC21C:
 /* 802CC228 002C9168  88 63 00 0C */ lbz r3, 0xc(r3)
 /* 802CC22C 002C916C  7C 63 07 74 */ extsb r3, r3
 /* 802CC230 002C9170  3B BD 00 A1 */ addi r29, r29, 0xa1
-/* 802CC234 002C9174  4B D6 0E 39 */ bl dComIfGp_getReverb
+/* 802CC234 002C9174  4B D6 0E 39 */ bl dComIfGp_getReverb__Fi
 /* 802CC238 002C9178  7C 60 1B 78 */ mr r0, r3
 /* 802CC23C 002C917C  93 A1 00 08 */ stw r29, 8(r1)
 /* 802CC240 002C9180  38 7E 00 0C */ addi r3, r30, 0xc

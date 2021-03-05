@@ -15,9 +15,9 @@
 /* 8001F5C0 0001C500  90 1F 00 D8 */ stw r0, 0xd8(r31)
 /* 8001F5C4 0001C504  38 7F 00 C4 */ addi r3, r31, 0xc4
 /* 8001F5C8 0001C508  7F E4 FB 78 */ mr r4, r31
-/* 8001F5CC 0001C50C  48 00 0F 29 */ bl fopDwTg_Init
+/* 8001F5CC 0001C50C  48 00 0F 29 */ bl fopDwTg_Init__FP16create_tag_classPv
 /* 8001F5D0 0001C510  7F E3 FB 78 */ mr r3, r31
-/* 8001F5D4 0001C514  48 00 04 71 */ bl fopMsgM_GetAppend
+/* 8001F5D4 0001C514  48 00 04 71 */ bl fopMsgM_GetAppend__FPv
 /* 8001F5D8 0001C518  28 03 00 00 */ cmplwi r3, 0
 /* 8001F5DC 0001C51C  41 82 00 3C */ beq lbl_8001F618
 /* 8001F5E0 0001C520  80 03 00 00 */ lwz r0, 0(r3)
@@ -45,7 +45,7 @@ lbl_8001F618:
 /* 8001F634 0001C574  48 00 23 CD */ bl fpcLf_GetPriority__FPC14leafdraw_class
 /* 8001F638 0001C578  7C 64 07 34 */ extsh r4, r3
 /* 8001F63C 0001C57C  38 7F 00 C4 */ addi r3, r31, 0xc4
-/* 8001F640 0001C580  48 00 0E 6D */ bl fopDwTg_ToDrawQ
+/* 8001F640 0001C580  48 00 0E 6D */ bl fopDwTg_ToDrawQ__FP16create_tag_classi
 lbl_8001F644:
 /* 8001F644 0001C584  7F C3 F3 78 */ mr r3, r30
 /* 8001F648 0001C588  83 E1 00 0C */ lwz r31, 0xc(r1)

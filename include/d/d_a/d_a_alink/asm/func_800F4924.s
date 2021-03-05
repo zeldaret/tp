@@ -25,7 +25,7 @@ lbl_800F4974:
 /* 800F497C 000F18BC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F4980 000F18C0  41 82 00 10 */ beq lbl_800F4990
 /* 800F4984 000F18C4  7F E3 FB 78 */ mr r3, r31
-/* 800F4988 000F18C8  4B FE AE 8D */ bl checkNextAction__9daAlink_cFiBow
+/* 800F4988 000F18C8  4B FE AE 8D */ bl checkNextActionBow__9daAlink_cFv
 /* 800F498C 000F18CC  48 00 00 B0 */ b lbl_800F4A3C
 lbl_800F4990:
 /* 800F4990 000F18D0  7F E3 FB 78 */ mr r3, r31
@@ -33,7 +33,7 @@ lbl_800F4990:
 /* 800F4998 000F18D8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F499C 000F18DC  41 82 00 10 */ beq lbl_800F49AC
 /* 800F49A0 000F18E0  7F E3 FB 78 */ mr r3, r31
-/* 800F49A4 000F18E4  4B FE C2 41 */ bl checkNextAction__9daAlink_cFiBoomerang
+/* 800F49A4 000F18E4  4B FE C2 41 */ bl checkNextActionBoomerang__9daAlink_cFv
 /* 800F49A8 000F18E8  48 00 00 94 */ b lbl_800F4A3C
 lbl_800F49AC:
 /* 800F49AC 000F18EC  38 60 00 00 */ li r3, 0
@@ -49,11 +49,11 @@ lbl_800F49CC:
 /* 800F49CC 000F190C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F49D0 000F1910  41 82 00 10 */ beq lbl_800F49E0
 /* 800F49D4 000F1914  7F E3 FB 78 */ mr r3, r31
-/* 800F49D8 000F1918  48 01 4B F1 */ bl checkNextAction__9daAlink_cFiHookshot
+/* 800F49D8 000F1918  48 01 4B F1 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 800F49DC 000F191C  48 00 00 60 */ b lbl_800F4A3C
 lbl_800F49E0:
 /* 800F49E0 000F1920  7F E3 FB 78 */ mr r3, r31
-/* 800F49E4 000F1924  4B FE F2 B9 */ bl checkGrabAnime__9daAlink_cCFvAndThrow
+/* 800F49E4 000F1924  4B FE F2 B9 */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800F49E8 000F1928  2C 03 00 00 */ cmpwi r3, 0
 /* 800F49EC 000F192C  41 82 00 10 */ beq lbl_800F49FC
 /* 800F49F0 000F1930  7F E3 FB 78 */ mr r3, r31

@@ -227,8 +227,7 @@ lbl_80347980:
 /* 80347988 003448C8  38 21 02 F0 */	addi r1, r1, 0x2f0
 /* 8034798C 003448CC  7C 08 03 A6 */	mtlr r0
 /* 80347990 003448D0  4E 80 00 20 */	blr 
-.global AlarmHandler_X2_
-AlarmHandler_X2_:
+AlarmHandler:
 /* 80347994 003448D4  7C 08 02 A6 */	mflr r0
 /* 80347998 003448D8  3C 60 80 45 */	lis r3, lbl_8044C830@ha
 /* 8034799C 003448DC  90 01 00 04 */	stw r0, 4(r1)
@@ -572,10 +571,8 @@ lbl_80347E14:
 /* 80347E5C 00344D9C  7E C4 31 14 */	adde r22, r4, r6
 /* 80347E60 00344DA0  38 7F 00 40 */	addi r3, r31, 0x40
 /* 80347E64 00344DA4  4B FF 2A 95 */	bl OSCreateAlarm
-.global AlarmHandler_X2_
-/* 80347E68 00344DA8  3C 60 80 34 */	lis r3, AlarmHandler_X2_@ha
-.global AlarmHandler_X2_
-/* 80347E6C 00344DAC  38 E3 79 94 */	addi r7, r3, AlarmHandler_X2_@l
+/* 80347E68 00344DA8  3C 60 80 34 */	lis r3, AlarmHandler@ha
+/* 80347E6C 00344DAC  38 E3 79 94 */	addi r7, r3, AlarmHandler@l
 /* 80347E70 00344DB0  38 D7 00 00 */	addi r6, r23, 0
 /* 80347E74 00344DB4  38 B6 00 00 */	addi r5, r22, 0
 /* 80347E78 00344DB8  38 7F 00 40 */	addi r3, r31, 0x40

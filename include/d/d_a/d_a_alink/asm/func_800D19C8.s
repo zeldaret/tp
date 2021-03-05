@@ -101,7 +101,7 @@ lbl_800D1AB8:
 lbl_800D1B44:
 /* 800D1B44 000CEA84  C0 21 00 60 */ lfs f1, 0x60(r1)
 lbl_800D1B48:
-/* 800D1B48 000CEA88  48 19 66 9D */ bl cBgW_CheckBGround
+/* 800D1B48 000CEA88  48 19 66 9D */ bl cBgW_CheckBGround__Ff
 /* 800D1B4C 000CEA8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D1B50 000CEA90  40 82 02 9C */ bne lbl_800D1DEC
 /* 800D1B54 000CEA94  7F C3 F3 78 */ mr r3, r30
@@ -241,7 +241,7 @@ lbl_800D1D1C:
 /* 800D1D34 000CEC74  D0 01 00 40 */ stfs f0, 0x40(r1)
 /* 800D1D38 000CEC78  38 61 00 38 */ addi r3, r1, 0x38
 /* 800D1D3C 000CEC7C  38 80 00 02 */ li r4, 2
-/* 800D1D40 000CEC80  48 0D 67 45 */ bl dKy_SordFlush_set
+/* 800D1D40 000CEC80  48 0D 67 45 */ bl dKy_SordFlush_set__F4cXyzi
 lbl_800D1D44:
 /* 800D1D44 000CEC84  38 DE 1B 78 */ addi r6, r30, 0x1b78
 /* 800D1D48 000CEC88  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -274,7 +274,7 @@ lbl_800D1DA4:
 /* 800D1DAC 000CECEC  7C 7D 1B 78 */ mr r29, r3
 lbl_800D1DB0:
 /* 800D1DB0 000CECF0  38 7E 1B 5C */ addi r3, r30, 0x1b5c
-/* 800D1DB4 000CECF4  48 0D 97 0D */ bl dKy_pol_sound_get
+/* 800D1DB4 000CECF4  48 0D 97 0D */ bl dKy_pol_sound_get__FPC13cBgS_PolyInfo
 /* 800D1DB8 000CECF8  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 800D1DBC 000CECFC  38 7E 2C A8 */ addi r3, r30, 0x2ca8
 /* 800D1DC0 000CED00  7F A4 EB 78 */ mr r4, r29

@@ -14,12 +14,14 @@ private:
     unsigned short mId;
 };
 
-extern "C" {
-
 bool cBgW_CheckBGround(float a1);
 bool cBgW_CheckBRoof(float a1);
 bool cBgW_CheckBWall(float a1);
 
-}  // extern "C"
+extern "C" {
+void cBgW_CheckBGround__Ff(void);
+void cBgW_CheckBRoof__Ff(void);
+void cBgW_CheckBWall__Ff(void);
+}
 
 #endif

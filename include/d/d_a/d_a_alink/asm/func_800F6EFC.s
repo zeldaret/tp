@@ -36,7 +36,7 @@ lbl_800F6F50:
 /* 800F6F80 000F3EC0  48 00 00 0C */ b lbl_800F6F8C
 lbl_800F6F84:
 /* 800F6F84 000F3EC4  7F E3 FB 78 */ mr r3, r31
-/* 800F6F88 000F3EC8  4B FF D9 9D */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F6F88 000F3EC8  4B FF D9 9D */ bl checkNextActionCanoe__9daAlink_cFv
 lbl_800F6F8C:
 /* 800F6F8C 000F3ECC  38 60 00 01 */ li r3, 1
 lbl_800F6F90:

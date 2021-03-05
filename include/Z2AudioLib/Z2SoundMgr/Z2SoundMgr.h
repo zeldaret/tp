@@ -8,7 +8,7 @@ void resetFilterAll__10Z2SoundMgrFv(void);
 
 void func_802A9EE8(void);
 
-void seqCallback(void);
+void seqCallback__FP8JASTrackUs(void);
 
 void calc__10Z2SoundMgrFv(void);
 void __ct__10Z2SoundMgrFv(void);

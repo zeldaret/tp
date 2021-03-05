@@ -73,7 +73,7 @@ lbl_800C1F1C:
 /* 800C1F20 000BEE60  38 63 02 10 */ addi r3, r3, 0x210
 /* 800C1F24 000BEE64  38 1E 32 40 */ addi r0, r30, 0x3240
 /* 800C1F28 000BEE68  7C 9D 00 2E */ lwzx r4, r29, r0
-/* 800C1F2C 000BEE6C  4B F8 99 ED */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 800C1F2C 000BEE6C  4B F8 99 ED */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 800C1F30 000BEE70  28 03 00 00 */ cmplwi r3, 0
 /* 800C1F34 000BEE74  41 82 00 10 */ beq lbl_800C1F44
 /* 800C1F38 000BEE78  80 03 00 F4 */ lwz r0, 0xf4(r3)

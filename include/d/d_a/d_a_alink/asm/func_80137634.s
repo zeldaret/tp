@@ -12,7 +12,7 @@
 /* 80137660 001345A0  7C 00 00 34 */ cntlzw r0, r0
 /* 80137664 001345A4  54 1E DE 3E */ rlwinm r30, r0, 0x1b, 0x18, 0x1f
 /* 80137668 001345A8  38 80 00 0D */ li r4, 0xd
-/* 8013766C 001345AC  4B FF 11 A1 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 8013766C 001345AC  4B FF 11 A1 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80137670 001345B0  7C 60 00 34 */ cntlzw r0, r3
 /* 80137674 001345B4  54 1D DE 3E */ rlwinm r29, r0, 0x1b, 0x18, 0x1f
 /* 80137678 001345B8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -21,7 +21,7 @@
 /* 80137684 001345C4  54 1C 9F FE */ rlwinm r28, r0, 0x13, 0x1f, 0x1f
 /* 80137688 001345C8  7F 63 DB 78 */ mr r3, r27
 /* 8013768C 001345CC  38 80 01 01 */ li r4, 0x101
-/* 80137690 001345D0  4B F8 B7 15 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80137690 001345D0  4B F8 B7 15 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80137694 001345D4  2C 03 00 00 */ cmpwi r3, 0
 /* 80137698 001345D8  40 82 00 0C */ bne lbl_801376A4
 /* 8013769C 001345DC  38 60 00 00 */ li r3, 0
@@ -77,7 +77,7 @@ lbl_80137738:
 /* 8013774C 0013468C  3C A0 80 39 */ lis r5, lbl_8038F138@ha
 /* 80137750 00134690  38 A5 F1 38 */ addi r5, r5, lbl_8038F138@l
 /* 80137754 00134694  C0 45 00 40 */ lfs f2, 0x40(r5)
-/* 80137758 00134698  4B FF 1F 81 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80137758 00134698  4B FF 1F 81 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_8013775C:
 /* 8013775C 0013469C  6B A0 00 01 */ xori r0, r29, 1
 /* 80137760 001346A0  90 1B 31 98 */ stw r0, 0x3198(r27)

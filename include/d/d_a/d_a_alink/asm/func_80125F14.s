@@ -38,7 +38,7 @@ lbl_80125F90:
 /* 80125FA0 00122EE0  7F E6 FB 78 */ mr r6, r31
 /* 80125FA4 00122EE4  48 1D 26 A5 */ bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 80125FA8 00122EE8  80 7E 00 08 */ lwz r3, 8(r30)
-/* 80125FAC 00122EEC  48 12 F1 3D */ bl dPaneClass_showNullPane
+/* 80125FAC 00122EEC  48 12 F1 3D */ bl dPaneClass_showNullPane__FP9J2DScreen
 /* 80125FB0 00122EF0  3C 60 80 39 */ lis r3, lbl_80392094@ha
 /* 80125FB4 00122EF4  38 63 20 94 */ addi r3, r3, lbl_80392094@l
 /* 80125FB8 00122EF8  38 63 01 9D */ addi r3, r3, 0x19d

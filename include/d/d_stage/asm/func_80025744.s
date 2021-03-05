@@ -10,7 +10,7 @@
 /* 80025768 000226A8  7D 89 03 A6 */ mtctr r12
 /* 8002576C 000226AC  4E 80 04 21 */ bctrl
 /* 80025770 000226B0  7F C3 F3 78 */ mr r3, r30
-/* 80025774 000226B4  4B FF E7 8D */ bl dStage_isBossStage
+/* 80025774 000226B4  4B FF E7 8D */ bl dStage_isBossStage__FP11dStage_dt_c
 /* 80025778 000226B8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8002577C 000226BC  40 82 00 40 */ bne lbl_800257BC
 /* 80025780 000226C0  3C 60 80 38 */ lis r3, lbl_80378A50@ha
@@ -49,7 +49,7 @@ lbl_800257BC:
 /* 80025800 00022740  7F E4 07 74 */ extsb r4, r31
 /* 80025804 00022744  48 00 F3 11 */ bl init__12dSv_danBit_cFSc
 /* 80025808 00022748  7F C3 F3 78 */ mr r3, r30
-/* 8002580C 0002274C  4B FF E7 45 */ bl dStage_KeepDoorInfoInit
+/* 8002580C 0002274C  4B FF E7 45 */ bl dStage_KeepDoorInfoInit__FP11dStage_dt_c
 /* 80025810 00022750  38 60 00 01 */ li r3, 1
 /* 80025814 00022754  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80025818 00022758  83 C1 00 08 */ lwz r30, 8(r1)

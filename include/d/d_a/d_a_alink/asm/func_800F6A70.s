@@ -59,7 +59,7 @@ lbl_800F6B2C:
 /* 800F6B48 000F3A88  7F E3 FB 78 */ mr r3, r31
 /* 800F6B4C 000F3A8C  38 80 00 E3 */ li r4, 0xe3
 /* 800F6B50 000F3A90  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800F6B54 000F3A94  4B FB 64 5D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800F6B54 000F3A94  4B FB 64 5D */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800F6B58 000F3A98  38 00 00 00 */ li r0, 0
 /* 800F6B5C 000F3A9C  98 1F 2F C8 */ stb r0, 0x2fc8(r31)
 /* 800F6B60 000F3AA0  80 1F 31 A0 */ lwz r0, 0x31a0(r31)

@@ -3,15 +3,15 @@
 .section .text, "ax" # 80246b34
 
 
-.global dMsgScrnStaff_c
-dMsgScrnStaff_c:
+.global __ct__15dMsgScrnStaff_cFUc
+__ct__15dMsgScrnStaff_cFUc:
 /* 80246B34 00243A74  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80246B38 00243A78  7C 08 02 A6 */	mflr r0
 /* 80246B3C 00243A7C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80246B40 00243A80  39 61 00 20 */	addi r11, r1, 0x20
 /* 80246B44 00243A84  48 11 B6 8D */	bl _savegpr_26
 /* 80246B48 00243A88  7C 7E 1B 78 */	mr r30, r3
-/* 80246B4C 00243A8C  4B FF 55 91 */	bl dMsgScrnBase_c
+/* 80246B4C 00243A8C  4B FF 55 91 */	bl __ct__14dMsgScrnBase_cFv
 /* 80246B50 00243A90  3C 60 80 3C */	lis r3, lbl_803C1370@ha
 /* 80246B54 00243A94  38 03 13 70 */	addi r0, r3, lbl_803C1370@l
 /* 80246B58 00243A98  90 1E 00 00 */	stw r0, 0(r30)
@@ -37,7 +37,7 @@ lbl_80246B88:
 /* 80246BA4 00243AE4  80 C6 5C 84 */	lwz r6, 0x5c84(r6)
 /* 80246BA8 00243AE8  48 0B 1A A1 */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 80246BAC 00243AEC  80 7E 00 04 */	lwz r3, 4(r30)
-/* 80246BB0 00243AF0  48 00 E5 39 */	bl dPaneClass_showNullPane
+/* 80246BB0 00243AF0  48 00 E5 39 */	bl dPaneClass_showNullPane__FP9J2DScreen
 /* 80246BB4 00243AF4  38 60 00 6C */	li r3, 0x6c
 /* 80246BB8 00243AF8  48 08 80 95 */	bl __nw__FUl
 /* 80246BBC 00243AFC  7C 60 1B 79 */	or. r0, r3, r3
@@ -48,7 +48,7 @@ lbl_80246B88:
 /* 80246BD0 00243B10  38 A0 00 00 */	li r5, 0
 /* 80246BD4 00243B14  38 E0 00 02 */	li r7, 2
 /* 80246BD8 00243B18  39 00 00 00 */	li r8, 0
-/* 80246BDC 00243B1C  48 00 CD A9 */	bl CPaneMgr_X1_
+/* 80246BDC 00243B1C  48 00 CD A9 */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 80246BE0 00243B20  7C 60 1B 78 */	mr r0, r3
 lbl_80246BE4:
 /* 80246BE4 00243B24  90 1E 00 08 */	stw r0, 8(r30)
@@ -90,14 +90,14 @@ lbl_80246C4C:
 /* 80246C70 00243BB0  80 C6 00 04 */	lwz r6, 4(r6)
 /* 80246C74 00243BB4  38 E0 00 00 */	li r7, 0
 /* 80246C78 00243BB8  39 00 00 00 */	li r8, 0
-/* 80246C7C 00243BBC  48 00 CD 09 */	bl CPaneMgr_X1_
+/* 80246C7C 00243BBC  48 00 CD 09 */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 80246C80 00243BC0  7C 64 1B 78 */	mr r4, r3
 lbl_80246C84:
 /* 80246C84 00243BC4  38 1D 00 0C */	addi r0, r29, 0xc
 /* 80246C88 00243BC8  7C 9E 01 2E */	stwx r4, r30, r0
 /* 80246C8C 00243BCC  7C 7E 00 2E */	lwzx r3, r30, r0
 /* 80246C90 00243BD0  83 43 00 04 */	lwz r26, 4(r3)
-/* 80246C94 00243BD4  4B DC DD 5D */	bl mDoExt_getMesgFont
+/* 80246C94 00243BD4  4B DC DD 5D */	bl mDoExt_getMesgFont__Fv
 /* 80246C98 00243BD8  7C 64 1B 78 */	mr r4, r3
 /* 80246C9C 00243BDC  7F 43 D3 78 */	mr r3, r26
 /* 80246CA0 00243BE0  81 9A 00 00 */	lwz r12, 0(r26)
@@ -110,7 +110,7 @@ lbl_80246C84:
 /* 80246CBC 00243BFC  38 80 02 00 */	li r4, 0x200
 /* 80246CC0 00243C00  38 BC 00 15 */	addi r5, r28, 0x15
 /* 80246CC4 00243C04  4C C6 31 82 */	crclr 6
-/* 80246CC8 00243C08  48 0B 9A 85 */	bl setString__10J2DTextBoxFPCce_X1_
+/* 80246CC8 00243C08  48 0B 9A 85 */	bl setString__10J2DTextBoxFsPCce
 /* 80246CCC 00243C0C  3B FF 00 01 */	addi r31, r31, 1
 /* 80246CD0 00243C10  2C 1F 00 06 */	cmpwi r31, 6
 /* 80246CD4 00243C14  3B BD 00 04 */	addi r29, r29, 4

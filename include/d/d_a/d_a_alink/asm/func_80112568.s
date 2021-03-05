@@ -30,7 +30,7 @@ lbl_801125C0:
 /* 801125D4 0010F514  3C A0 80 39 */ lis r5, lbl_8038D664@ha
 /* 801125D8 0010F518  38 A5 D6 64 */ addi r5, r5, lbl_8038D664@l
 /* 801125DC 0010F51C  C0 45 00 18 */ lfs f2, 0x18(r5)
-/* 801125E0 0010F520  4B F9 AD C9 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 801125E0 0010F520  4B F9 AD C9 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 801125E4 0010F524  7F E3 FB 78 */ mr r3, r31
 /* 801125E8 0010F528  38 80 00 E8 */ li r4, 0xe8
 /* 801125EC 0010F52C  38 A0 00 01 */ li r5, 1

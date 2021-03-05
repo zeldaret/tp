@@ -55,7 +55,7 @@ void setTextCount__12Z2SpeechMgr2Fs(void);
 void speakOneWord__12Z2SpeechMgr2Fb(void);
 
 void func_802CCFF8(void);
-void func_802CBCEC(void);
+void __dt__15Z2SpeechStarterFv(void);
 }
 
 #endif

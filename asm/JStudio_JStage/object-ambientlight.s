@@ -33,7 +33,7 @@ __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13T
 /* 8028B66C 002885AC  38 A0 00 00 */	li r5, 0
 /* 8028B670 002885B0  38 C0 00 14 */	li r6, 0x14
 /* 8028B674 002885B4  38 E0 00 04 */	li r7, 4
-/* 8028B678 002885B8  48 0D 66 E9 */	bl func_80361D60
+/* 8028B678 002885B8  48 0D 66 E9 */	bl __construct_array
 /* 8028B67C 002885BC  93 DD 00 60 */	stw r30, 0x60(r29)
 /* 8028B680 002885C0  93 FD 00 64 */	stw r31, 0x64(r29)
 /* 8028B684 002885C4  3C 60 80 3C */	lis r3, lbl_803C5888@ha
@@ -105,7 +105,7 @@ lbl_8028B704:
 /* 8028B788 002886C8  3C 80 80 3A */	lis r4, lbl_8039AA98@ha
 /* 8028B78C 002886CC  38 84 AA 98 */	addi r4, r4, lbl_8039AA98@l
 /* 8028B790 002886D0  38 A1 00 08 */	addi r5, r1, 8
-/* 8028B794 002886D4  4B FF AB 19 */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_GXColor
+/* 8028B794 002886D4  4B FF AB 19 */	bl adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
 /* 8028B798 002886D8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8028B79C 002886DC  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 8028B7A0 002886E0  80 01 00 24 */	lwz r0, 0x24(r1)

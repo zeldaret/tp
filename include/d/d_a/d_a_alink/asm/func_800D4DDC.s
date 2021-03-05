@@ -24,7 +24,7 @@ lbl_800D4E1C:
 /* 800D4E34 000D1D74  7F C3 F3 78 */ mr r3, r30
 /* 800D4E38 000D1D78  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D4E3C 000D1D7C  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800D4E40 000D1D80  4B FD 85 69 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800D4E40 000D1D80  4B FD 85 69 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800D4E44 000D1D84  C0 1E 1F E0 */ lfs f0, 0x1fe0(r30)
 /* 800D4E48 000D1D88  D0 1E 20 58 */ stfs f0, 0x2058(r30)
 /* 800D4E4C 000D1D8C  80 7E 1F 54 */ lwz r3, 0x1f54(r30)
@@ -39,7 +39,7 @@ lbl_800D4E60:
 /* 800D4E6C 000D1DAC  3C A0 80 39 */ lis r5, lbl_8038DB84@ha
 /* 800D4E70 000D1DB0  38 A5 DB 84 */ addi r5, r5, lbl_8038DB84@l
 /* 800D4E74 000D1DB4  C0 45 00 50 */ lfs f2, 0x50(r5)
-/* 800D4E78 000D1DB8  4B FD 81 69 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800D4E78 000D1DB8  4B FD 81 69 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800D4E7C 000D1DBC  38 00 00 00 */ li r0, 0
 /* 800D4E80 000D1DC0  98 1E 2F 98 */ stb r0, 0x2f98(r30)
 /* 800D4E84 000D1DC4  3C 60 80 39 */ lis r3, lbl_8038DB84@ha

@@ -51,7 +51,7 @@ lbl_800F35E8:
 /* 800F3638 000F0578  48 00 00 90 */ b lbl_800F36C8
 lbl_800F363C:
 /* 800F363C 000F057C  7F E3 FB 78 */ mr r3, r31
-/* 800F3640 000F0580  4B FF BE 11 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F3640 000F0580  4B FF BE 11 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F3644 000F0584  48 00 00 84 */ b lbl_800F36C8
 lbl_800F3648:
 /* 800F3648 000F0588  A8 1F 30 0E */ lha r0, 0x300e(r31)

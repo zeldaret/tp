@@ -230,7 +230,7 @@ lbl_800D5230:
 /* 800D523C 000D217C  7F A4 EB 78 */ mr r4, r29
 /* 800D5240 000D2180  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D5244 000D2184  FC 40 F8 90 */ fmr f2, f31
-/* 800D5248 000D2188  4B FD 7D 99 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800D5248 000D2188  4B FD 7D 99 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_800D524C:
 /* 800D524C 000D218C  7F E3 FB 78 */ mr r3, r31
 /* 800D5250 000D2190  FC 20 F0 90 */ fmr f1, f30

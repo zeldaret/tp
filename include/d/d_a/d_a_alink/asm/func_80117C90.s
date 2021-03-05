@@ -15,7 +15,7 @@
 lbl_80117CC8:
 /* 80117CC8 00114C08  3B E0 FF FF */ li r31, -1
 lbl_80117CCC:
-/* 80117CCC 00114C0C  48 06 99 75 */ bl dCam_getBody
+/* 80117CCC 00114C0C  48 06 99 75 */ bl dCam_getBody__Fv
 /* 80117CD0 00114C10  7F E4 FB 78 */ mr r4, r31
 /* 80117CD4 00114C14  4B F7 0E E9 */ bl EndEventCamera__9dCamera_cFi
 /* 80117CD8 00114C18  7F C3 F3 78 */ mr r3, r30

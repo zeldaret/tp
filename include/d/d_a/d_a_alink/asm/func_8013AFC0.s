@@ -79,7 +79,7 @@ lbl_8013B0D0:
 /* 8013B0E8 00138028  40 81 00 18 */ ble lbl_8013B100
 /* 8013B0EC 0013802C  7F C3 F3 78 */ mr r3, r30
 /* 8013B0F0 00138030  38 80 00 01 */ li r4, 1
-/* 8013B0F4 00138034  4B FE EA 51 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013B0F4 00138034  4B FE EA 51 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B0F8 00138038  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B0FC 0013803C  40 82 01 88 */ bne lbl_8013B284
 lbl_8013B100:
@@ -92,7 +92,7 @@ lbl_8013B110:
 /* 8013B114 00138054  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 8013B118 00138058  7F C3 F3 78 */ mr r3, r30
 /* 8013B11C 0013805C  38 80 00 00 */ li r4, 0
-/* 8013B120 00138060  4B FE EA 25 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013B120 00138060  4B FE EA 25 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B124 00138064  48 00 01 60 */ b lbl_8013B284
 lbl_8013B128:
 /* 8013B128 00138068  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -101,7 +101,7 @@ lbl_8013B128:
 /* 8013B134 00138074  40 81 00 28 */ ble lbl_8013B15C
 /* 8013B138 00138078  7F C3 F3 78 */ mr r3, r30
 /* 8013B13C 0013807C  38 80 00 01 */ li r4, 1
-/* 8013B140 00138080  4B FE EA 05 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013B140 00138080  4B FE EA 05 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B144 00138084  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B148 00138088  40 82 01 3C */ bne lbl_8013B284
 /* 8013B14C 0013808C  7F C3 F3 78 */ mr r3, r30

@@ -10,7 +10,7 @@
 /* 80140AEC 0013DA2C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80140AF0 0013DA30  41 82 00 10 */ beq lbl_80140B00
 /* 80140AF4 0013DA34  38 80 00 01 */ li r4, 1
-/* 80140AF8 0013DA38  4B FF FA 59 */ bl changeModelDataDirect__9daAlink_cFiWolf
+/* 80140AF8 0013DA38  4B FF FA 59 */ bl changeModelDataDirectWolf__9daAlink_cFi
 /* 80140AFC 0013DA3C  48 00 00 0C */ b lbl_80140B08
 lbl_80140B00:
 /* 80140B00 0013DA40  38 80 00 01 */ li r4, 1

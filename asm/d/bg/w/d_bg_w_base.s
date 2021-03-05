@@ -3,8 +3,8 @@
 .section .text, "ax" # 8007e5a8
 
 
-.global dBgW_Base
-dBgW_Base:
+.global __ct__9dBgW_BaseFv
+__ct__9dBgW_BaseFv:
 /* 8007E5A8 0007B4E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8007E5AC 0007B4EC  7C 08 02 A6 */	mflr r0
 /* 8007E5B0 0007B4F0  90 01 00 14 */	stw r0, 0x14(r1)

@@ -62,7 +62,7 @@ lbl_80119E5C:
 /* 80119E74 00116DB4  3C A0 80 39 */ lis r5, lbl_8038F138@ha
 /* 80119E78 00116DB8  38 A5 F1 38 */ addi r5, r5, lbl_8038F138@l
 /* 80119E7C 00116DBC  C0 45 00 40 */ lfs f2, 0x40(r5)
-/* 80119E80 00116DC0  48 00 F8 59 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80119E80 00116DC0  48 00 F8 59 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80119E84 00116DC4  48 00 00 64 */ b lbl_80119EE8
 lbl_80119E88:
 /* 80119E88 00116DC8  38 00 00 0D */ li r0, 0xd

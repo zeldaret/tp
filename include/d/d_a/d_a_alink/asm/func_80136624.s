@@ -11,7 +11,7 @@
 /* 8013664C 0013358C  3C 80 80 39 */ lis r4, lbl_8038D658@ha
 /* 80136650 00133590  3B 44 D6 58 */ addi r26, r4, lbl_8038D658@l
 /* 80136654 00133594  38 80 01 08 */ li r4, 0x108
-/* 80136658 00133598  4B F8 C7 4D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80136658 00133598  4B F8 C7 4D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013665C 0013359C  2C 03 00 00 */ cmpwi r3, 0
 /* 80136660 001335A0  40 82 00 0C */ bne lbl_8013666C
 /* 80136664 001335A4  38 60 00 00 */ li r3, 0
@@ -117,7 +117,7 @@ lbl_801367C8:
 /* 801367C8 00133708  38 00 00 01 */ li r0, 1
 /* 801367CC 0013370C  B0 1C 30 0C */ sth r0, 0x300c(r28)
 /* 801367D0 00133710  7F 83 E3 78 */ mr r3, r28
-/* 801367D4 00133714  4B FF 2F 31 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 801367D4 00133714  4B FF 2F 31 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 801367D8 00133718  7F 83 E3 78 */ mr r3, r28
 /* 801367DC 0013371C  38 80 00 92 */ li r4, 0x92
 /* 801367E0 00133720  4B F7 90 C1 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -151,7 +151,7 @@ lbl_801367F8:
 /* 8013684C 0013378C  7F 83 E3 78 */ mr r3, r28
 /* 80136850 00133790  38 80 00 2D */ li r4, 0x2d
 /* 80136854 00133794  38 BB 00 14 */ addi r5, r27, 0x14
-/* 80136858 00133798  4B FF 2F F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80136858 00133798  4B FF 2F F1 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013685C 0013379C  7F 83 E3 78 */ mr r3, r28
 /* 80136860 001337A0  38 80 00 92 */ li r4, 0x92
 /* 80136864 001337A4  4B F7 90 3D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -170,7 +170,7 @@ lbl_8013688C:
 /* 80136894 001337D4  7F 83 E3 78 */ mr r3, r28
 /* 80136898 001337D8  38 80 00 2E */ li r4, 0x2e
 /* 8013689C 001337DC  38 BB 00 28 */ addi r5, r27, 0x28
-/* 801368A0 001337E0  4B FF 2F A9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 801368A0 001337E0  4B FF 2F A9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 801368A4 001337E4  7F 83 E3 78 */ mr r3, r28
 /* 801368A8 001337E8  38 80 00 93 */ li r4, 0x93
 /* 801368AC 001337EC  4B F7 8F F5 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -187,7 +187,7 @@ lbl_801368CC:
 /* 801368D4 00133814  7F 83 E3 78 */ mr r3, r28
 /* 801368D8 00133818  38 80 00 2F */ li r4, 0x2f
 /* 801368DC 0013381C  38 BB 00 3C */ addi r5, r27, 0x3c
-/* 801368E0 00133820  4B FF 2F 69 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 801368E0 00133820  4B FF 2F 69 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 801368E4 00133824  7F 83 E3 78 */ mr r3, r28
 /* 801368E8 00133828  38 80 00 93 */ li r4, 0x93
 /* 801368EC 0013382C  4B F7 8F B5 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -202,7 +202,7 @@ lbl_8013690C:
 /* 8013690C 0013384C  7F 83 E3 78 */ mr r3, r28
 /* 80136910 00133850  38 80 00 2C */ li r4, 0x2c
 /* 80136914 00133854  7F 65 DB 78 */ mr r5, r27
-/* 80136918 00133858  4B FF 2F 31 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80136918 00133858  4B FF 2F 31 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013691C 0013385C  7F 83 E3 78 */ mr r3, r28
 /* 80136920 00133860  38 80 00 92 */ li r4, 0x92
 /* 80136924 00133864  4B F7 8F 7D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

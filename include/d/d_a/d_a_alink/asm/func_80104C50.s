@@ -4,7 +4,7 @@
 /* 80104C5C 00101B9C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80104C60 00101BA0  7C 7F 1B 78 */ mr r31, r3
 /* 80104C64 00101BA4  38 80 00 7D */ li r4, 0x7d
-/* 80104C68 00101BA8  4B FB E1 3D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80104C68 00101BA8  4B FB E1 3D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80104C6C 00101BAC  2C 03 00 00 */ cmpwi r3, 0
 /* 80104C70 00101BB0  40 82 00 0C */ bne lbl_80104C7C
 /* 80104C74 00101BB4  38 60 00 00 */ li r3, 0
@@ -26,7 +26,7 @@ lbl_80104C7C:
 /* 80104CB0 00101BF0  3C A0 80 39 */ lis r5, lbl_8038E9C0@ha
 /* 80104CB4 00101BF4  38 A5 E9 C0 */ addi r5, r5, lbl_8038E9C0@l
 /* 80104CB8 00101BF8  C0 45 00 44 */ lfs f2, 0x44(r5)
-/* 80104CBC 00101BFC  4B FA 83 25 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80104CBC 00101BFC  4B FA 83 25 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_80104CC0:
 /* 80104CC0 00101C00  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80104CC4 00101C04  D0 1F 33 98 */ stfs f0, 0x3398(r31)

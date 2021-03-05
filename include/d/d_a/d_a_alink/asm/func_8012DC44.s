@@ -6,7 +6,7 @@
 /* 8012DC58 0012AB98  4B FF B3 05 */ bl setWolfAtnMoveDirection__9daAlink_cFv
 /* 8012DC5C 0012AB9C  7F E3 FB 78 */ mr r3, r31
 /* 8012DC60 0012ABA0  38 80 00 00 */ li r4, 0
-/* 8012DC64 0012ABA4  4B FF BE E1 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012DC64 0012ABA4  4B FF BE E1 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012DC68 0012ABA8  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DC6C 0012ABAC  40 82 00 84 */ bne lbl_8012DCF0
 /* 8012DC70 0012ABB0  7F E3 FB 78 */ mr r3, r31

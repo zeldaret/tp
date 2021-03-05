@@ -14,8 +14,8 @@ Set__14dBgS_SplGrpChkFR4cXyzf:
 /* 80078BA8 00075AE8  D0 23 00 48 */	stfs f1, 0x48(r3)
 /* 80078BAC 00075AEC  4E 80 00 20 */	blr 
 
-.global dBgS_SplGrpChk
-dBgS_SplGrpChk:
+.global __ct__14dBgS_SplGrpChkFv
+__ct__14dBgS_SplGrpChkFv:
 /* 80078BB0 00075AF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80078BB4 00075AF4  7C 08 02 A6 */	mflr r0
 /* 80078BB8 00075AF8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,7 +25,7 @@ dBgS_SplGrpChk:
 /* 80078BC8 00075B08  38 7F 00 10 */	addi r3, r31, 0x10
 /* 80078BCC 00075B0C  48 1E EF 81 */	bl __ct__8cBgS_ChkFv
 /* 80078BD0 00075B10  38 7F 00 24 */	addi r3, r31, 0x24
-/* 80078BD4 00075B14  4B FF E8 C9 */	bl dBgS_Chk
+/* 80078BD4 00075B14  4B FF E8 C9 */	bl __ct__8dBgS_ChkFv
 /* 80078BD8 00075B18  3C 60 80 3B */	lis r3, lbl_803ABA08@ha
 /* 80078BDC 00075B1C  38 63 BA 08 */	addi r3, r3, lbl_803ABA08@l
 /* 80078BE0 00075B20  90 7F 00 0C */	stw r3, 0xc(r31)

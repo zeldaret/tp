@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027dca0
 
 
-.global JPAEmitterManager
-JPAEmitterManager:
+.global __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
+__ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc:
 /* 8027DCA0 0027ABE0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027DCA4 0027ABE4  7C 08 02 A6 */	mflr r0
 /* 8027DCA8 0027ABE8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -32,17 +32,17 @@ JPAEmitterManager:
 /* 8027DD00 0027AC40  7F E4 FB 78 */	mr r4, r31
 /* 8027DD04 0027AC44  38 A0 00 00 */	li r5, 0
 /* 8027DD08 0027AC48  48 05 10 09 */	bl __nwa__FUlP7JKRHeapi
-.global JPABaseEmitter
-/* 8027DD0C 0027AC4C  3C 80 80 28 */	lis r4, JPABaseEmitter@ha
-.global JPABaseEmitter
-/* 8027DD10 0027AC50  38 84 E6 4C */	addi r4, r4, JPABaseEmitter@l
+.global __ct__14JPABaseEmitterFv
+/* 8027DD0C 0027AC4C  3C 80 80 28 */	lis r4, __ct__14JPABaseEmitterFv@ha
+.global __ct__14JPABaseEmitterFv
+/* 8027DD10 0027AC50  38 84 E6 4C */	addi r4, r4, __ct__14JPABaseEmitterFv@l
 .global __dt__14JPABaseEmitterFv
 /* 8027DD14 0027AC54  3C A0 80 28 */	lis r5, __dt__14JPABaseEmitterFv@ha
 .global __dt__14JPABaseEmitterFv
 /* 8027DD18 0027AC58  38 A5 E5 EC */	addi r5, r5, __dt__14JPABaseEmitterFv@l
 /* 8027DD1C 0027AC5C  38 C0 01 14 */	li r6, 0x114
 /* 8027DD20 0027AC60  7F 87 E3 78 */	mr r7, r28
-/* 8027DD24 0027AC64  48 0E 41 F1 */	bl func_80361F14
+/* 8027DD24 0027AC64  48 0E 41 F1 */	bl __construct_new_array
 /* 8027DD28 0027AC68  7C 7C 1B 78 */	mr r28, r3
 /* 8027DD2C 0027AC6C  3B 60 00 00 */	li r27, 0
 /* 8027DD30 0027AC70  3B A0 00 00 */	li r29, 0
@@ -74,7 +74,7 @@ lbl_8027DD50:
 /* 8027DD80 0027ACC0  38 A5 E5 4C */	addi r5, r5, JPANode_NS_dtor@l
 /* 8027DD84 0027ACC4  38 C0 00 A0 */	li r6, 0xa0
 /* 8027DD88 0027ACC8  7F 87 E3 78 */	mr r7, r28
-/* 8027DD8C 0027ACCC  48 0E 41 89 */	bl func_80361F14
+/* 8027DD8C 0027ACCC  48 0E 41 89 */	bl __construct_new_array
 /* 8027DD90 0027ACD0  38 E0 00 00 */	li r7, 0
 /* 8027DD94 0027ACD4  38 80 00 00 */	li r4, 0
 /* 8027DD98 0027ACD8  48 00 00 5C */	b lbl_8027DDF4
@@ -123,7 +123,7 @@ lbl_8027DDF4:
 /* 8027DE24 0027AD64  38 A5 E5 98 */	addi r5, r5, JSUList_NS_dtor_X1_@l
 /* 8027DE28 0027AD68  38 C0 00 0C */	li r6, 0xc
 /* 8027DE2C 0027AD6C  7F 87 E3 78 */	mr r7, r28
-/* 8027DE30 0027AD70  48 0E 40 E5 */	bl func_80361F14
+/* 8027DE30 0027AD70  48 0E 40 E5 */	bl __construct_new_array
 /* 8027DE34 0027AD74  90 7E 00 00 */	stw r3, 0(r30)
 /* 8027DE38 0027AD78  88 1E 00 2D */	lbz r0, 0x2d(r30)
 /* 8027DE3C 0027AD7C  54 03 10 3A */	slwi r3, r0, 2
@@ -283,7 +283,7 @@ draw__17JPAEmitterManagerFPC11JPADrawInfoUc:
 /* 8027E060 0027AFA0  38 84 01 B4 */	addi r4, r4, 0x1b4
 /* 8027E064 0027AFA4  48 0C 84 4D */	bl PSMTXCopy
 /* 8027E068 0027AFA8  7F A3 EB 78 */	mr r3, r29
-/* 8027E06C 0027AFAC  48 00 03 89 */	bl calc__17JPAEmitterManagerFUcYBBCam
+/* 8027E06C 0027AFAC  48 00 03 89 */	bl calcYBBCam__17JPAEmitterManagerFv
 /* 8027E070 0027AFB0  38 60 00 00 */	li r3, 0
 /* 8027E074 0027AFB4  38 80 00 00 */	li r4, 0
 /* 8027E078 0027AFB8  38 A0 00 00 */	li r5, 0
@@ -537,8 +537,8 @@ lbl_8027E3BC:
 /* 8027E3EC 0027B32C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027E3F0 0027B330  4E 80 00 20 */	blr 
 
-.global calc__17JPAEmitterManagerFUcYBBCam
-calc__17JPAEmitterManagerFUcYBBCam:
+.global calcYBBCam__17JPAEmitterManagerFv
+calcYBBCam__17JPAEmitterManagerFv:
 /* 8027E3F4 0027B334  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027E3F8 0027B338  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 8027E3FC 0027B33C  C0 24 01 A8 */	lfs f1, 0x1a8(r4)
@@ -706,8 +706,8 @@ lbl_8027E630:
 /* 8027E640 0027B580  7C 08 03 A6 */	mtlr r0
 /* 8027E644 0027B584  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027E648 0027B588  4E 80 00 20 */	blr 
-.global JPABaseEmitter
-JPABaseEmitter:
+.global __ct__14JPABaseEmitterFv
+__ct__14JPABaseEmitterFv:
 /* 8027E64C 0027B58C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027E650 0027B590  7C 08 02 A6 */	mflr r0
 /* 8027E654 0027B594  90 01 00 14 */	stw r0, 0x14(r1)

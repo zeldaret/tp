@@ -1,7 +1,7 @@
 #include "JSystem/JStudio/stb.h"
 
 extern "C" {
-int func_8036608C(const void*, const void*, u32);
+int memcmp(const void*, const void*, u32);
 void process_sequence___Q37JStudio3stb7TObjectFv();
 void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl();
 void getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData();

@@ -20,8 +20,7 @@
 /* 8007865C 0007559C  7C 08 03 A6 */	mtlr r0
 /* 80078660 000755A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078664 000755A4  4E 80 00 20 */	blr 
-.global CheckCreateHeap
-CheckCreateHeap:
+CheckCreateHeap__FP10fopAc_ac_c:
 /* 80078668 000755A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8007866C 000755AC  7C 08 02 A6 */	mflr r0
 /* 80078670 000755B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -137,7 +136,7 @@ lbl_800787A8:
 /* 80078804 00075744  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80078808 00075748  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8007880C 0007574C  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
-/* 80078810 00075750  4B F9 3C 25 */	bl mDoMtx_YrotM
+/* 80078810 00075750  4B F9 3C 25 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80078814 00075754  C0 3F 04 EC */	lfs f1, 0x4ec(r31)
 /* 80078818 00075758  C0 5F 04 F0 */	lfs f2, 0x4f0(r31)
 /* 8007881C 0007575C  C0 7F 04 F4 */	lfs f3, 0x4f4(r31)
@@ -156,10 +155,8 @@ lbl_80078844:
 /* 80078848 00075788  93 8D 89 F4 */	stw r28, lbl_80450F74-_SDA_BASE_(r13)
 /* 8007884C 0007578C  93 AD 89 F8 */	stw r29, lbl_80450F78-_SDA_BASE_(r13)
 /* 80078850 00075790  7F E3 FB 78 */	mr r3, r31
-.global CheckCreateHeap
-/* 80078854 00075794  3C 80 80 08 */	lis r4, CheckCreateHeap@ha
-.global CheckCreateHeap
-/* 80078858 00075798  38 84 86 68 */	addi r4, r4, CheckCreateHeap@l
+/* 80078854 00075794  3C 80 80 08 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha
+/* 80078858 00075798  38 84 86 68 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l
 /* 8007885C 0007579C  7F C5 F3 78 */	mr r5, r30
 /* 80078860 000757A0  4B FA 1C 51 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80078864 000757A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -251,7 +248,7 @@ lbl_80078934:
 /* 800789AC 000758EC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 800789B0 000758F0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 800789B4 000758F4  A8 9E 04 E6 */	lha r4, 0x4e6(r30)
-/* 800789B8 000758F8  4B F9 3A 7D */	bl mDoMtx_YrotM
+/* 800789B8 000758F8  4B F9 3A 7D */	bl mDoMtx_YrotM__FPA4_fs
 /* 800789BC 000758FC  C0 3E 04 EC */	lfs f1, 0x4ec(r30)
 /* 800789C0 00075900  C0 5E 04 F0 */	lfs f2, 0x4f0(r30)
 /* 800789C4 00075904  C0 7E 04 F4 */	lfs f3, 0x4f4(r30)

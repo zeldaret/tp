@@ -17,7 +17,7 @@ lbl_800FDC50:
 /* 800FDC54 000FAB94  38 A5 EB 8C */ addi r5, r5, lbl_8038EB8C@l
 /* 800FDC58 000FAB98  C0 25 00 40 */ lfs f1, 0x40(r5)
 /* 800FDC5C 000FAB9C  C0 45 00 44 */ lfs f2, 0x44(r5)
-/* 800FDC60 000FABA0  4B FA F3 81 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800FDC60 000FABA0  4B FA F3 81 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800FDC64 000FABA4  38 00 00 0E */ li r0, 0xe
 /* 800FDC68 000FABA8  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800FDC6C 000FABAC  7F C3 F3 78 */ mr r3, r30

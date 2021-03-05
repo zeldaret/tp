@@ -56,7 +56,7 @@ lbl_800B8048:
 /* 800B8058 000B4F98  80 BE 05 70 */ lwz r5, 0x570(r30)
 /* 800B805C 000B4F9C  7C A5 F8 2E */ lwzx r5, r5, r31
 /* 800B8060 000B4FA0  38 C0 00 FF */ li r6, 0xff
-/* 800B8064 000B4FA4  4B F8 F6 F5 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
+/* 800B8064 000B4FA4  4B F8 F6 F5 */ bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800B8068 000B4FA8  B0 7E 0E 1C */ sth r3, 0xe1c(r30)
 /* 800B806C 000B4FAC  7F C3 F3 78 */ mr r3, r30
 /* 800B8070 000B4FB0  A8 9E 0E 1C */ lha r4, 0xe1c(r30)

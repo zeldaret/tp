@@ -113,7 +113,7 @@ lbl_8011F21C:
 /* 8011F2A4 0011C1E4  38 A0 FF FF */ li r5, -1
 /* 8011F2A8 0011C1E8  A8 DF 04 E6 */ lha r6, 0x4e6(r31)
 /* 8011F2AC 0011C1EC  38 E0 FF FF */ li r7, -1
-/* 8011F2B0 0011C1F0  4B F0 7E C1 */ bl dStage_changeScene
+/* 8011F2B0 0011C1F0  4B F0 7E C1 */ bl dStage_changeScene__FifUlScsi
 /* 8011F2B4 0011C1F4  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011F2B8 0011C1F8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8011F2BC 0011C1FC  48 0F D7 B5 */ bl warpOutProc__13dMeter2Info_cFv

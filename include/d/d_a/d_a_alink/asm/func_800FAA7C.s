@@ -165,7 +165,7 @@ lbl_800FAC70:
 /* 800FACE0 000F7C20  3C A0 80 39 */ lis r5, lbl_8038EB8C@ha
 /* 800FACE4 000F7C24  38 A5 EB 8C */ addi r5, r5, lbl_8038EB8C@l
 /* 800FACE8 000F7C28  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800FACEC 000F7C2C  4B FB 24 09 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FACEC 000F7C2C  4B FB 24 09 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FACF0 000F7C30  3C 60 80 39 */ lis r3, lbl_8038EB8C@ha
 /* 800FACF4 000F7C34  38 63 EB 8C */ addi r3, r3, lbl_8038EB8C@l
 /* 800FACF8 000F7C38  C0 03 00 24 */ lfs f0, 0x24(r3)
@@ -183,7 +183,7 @@ lbl_800FAD20:
 /* 800FAD24 000F7C64  38 80 00 A1 */ li r4, 0xa1
 /* 800FAD28 000F7C68  3C A0 80 39 */ lis r5, lbl_8038EB8C@ha
 /* 800FAD2C 000F7C6C  38 A5 EB 8C */ addi r5, r5, lbl_8038EB8C@l
-/* 800FAD30 000F7C70  4B FB 23 C5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FAD30 000F7C70  4B FB 23 C5 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FAD34 000F7C74  3C 60 80 39 */ lis r3, lbl_8038EB8C@ha
 /* 800FAD38 000F7C78  38 63 EB 8C */ addi r3, r3, lbl_8038EB8C@l
 /* 800FAD3C 000F7C7C  C0 03 00 10 */ lfs f0, 0x10(r3)
@@ -205,7 +205,7 @@ lbl_800FAD70:
 /* 800FAD74 000F7CB4  38 80 00 92 */ li r4, 0x92
 /* 800FAD78 000F7CB8  3C A0 80 39 */ lis r5, lbl_8038E164@ha
 /* 800FAD7C 000F7CBC  38 A5 E1 64 */ addi r5, r5, lbl_8038E164@l
-/* 800FAD80 000F7CC0  4B FB 23 75 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FAD80 000F7CC0  4B FB 23 75 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FAD84 000F7CC4  3C 60 80 39 */ lis r3, lbl_8038E164@ha
 /* 800FAD88 000F7CC8  38 63 E1 64 */ addi r3, r3, lbl_8038E164@l
 /* 800FAD8C 000F7CCC  C0 03 00 10 */ lfs f0, 0x10(r3)

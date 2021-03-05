@@ -72,7 +72,7 @@ lbl_801A6370:
 /* 801A6384 001A32C4  7D 89 03 A6 */ mtctr r12
 /* 801A6388 001A32C8  4E 80 04 21 */ bctrl
 /* 801A638C 001A32CC  7C 7E 1B 78 */ mr r30, r3
-/* 801A6390 001A32D0  48 00 5D D9 */ bl dKy_SunMoon_Light_Check
+/* 801A6390 001A32D0  48 00 5D D9 */ bl dKy_SunMoon_Light_Check__Fv
 /* 801A6394 001A32D4  2C 03 00 01 */ cmpwi r3, 1
 /* 801A6398 001A32D8  40 82 00 38 */ bne lbl_801A63D0
 /* 801A639C 001A32DC  28 1E 00 00 */ cmplwi r30, 0
@@ -117,7 +117,7 @@ lbl_801A6410:
 /* 801A642C 001A336C  D0 01 00 28 */ stfs f0, 0x28(r1)
 /* 801A6430 001A3370  38 61 00 20 */ addi r3, r1, 0x20
 /* 801A6434 001A3374  38 80 00 00 */ li r4, 0
-/* 801A6438 001A3378  4B FF 7D 05 */ bl dKy_eflight_influence_id
+/* 801A6438 001A3378  4B FF 7D 05 */ bl dKy_eflight_influence_id__F4cXyzi
 /* 801A643C 001A337C  2C 03 00 00 */ cmpwi r3, 0
 /* 801A6440 001A3380  41 80 00 5C */ blt lbl_801A649C
 /* 801A6444 001A3384  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
@@ -126,8 +126,8 @@ lbl_801A6410:
 /* 801A6450 001A3390  7E 24 02 14 */ add r17, r4, r0
 /* 801A6454 001A3394  84 71 05 88 */ lwzu r3, 0x588(r17)
 /* 801A6458 001A3398  38 80 00 01 */ li r4, 1
-/* 801A645C 001A339C  48 00 15 E5 */ bl dKy_bgparts_activelight_set
-/* 801A6460 001A33A0  48 00 5E 2D */ bl dKy_Indoor_check
+/* 801A645C 001A339C  48 00 15 E5 */ bl dKy_bgparts_activelight_set__FP15LIGHT_INFLUENCEi
+/* 801A6460 001A33A0  48 00 5E 2D */ bl dKy_Indoor_check__Fv
 /* 801A6464 001A33A4  2C 03 00 01 */ cmpwi r3, 1
 /* 801A6468 001A33A8  40 82 00 54 */ bne lbl_801A64BC
 /* 801A646C 001A33AC  80 91 00 00 */ lwz r4, 0(r17)
@@ -140,17 +140,17 @@ lbl_801A6410:
 /* 801A6488 001A33C8  C0 04 00 08 */ lfs f0, 8(r4)
 /* 801A648C 001A33CC  D0 03 10 A8 */ stfs f0, 0x10a8(r3)
 /* 801A6490 001A33D0  38 60 00 01 */ li r3, 1
-/* 801A6494 001A33D4  48 00 68 49 */ bl dKy_shadow_mode_set
+/* 801A6494 001A33D4  48 00 68 49 */ bl dKy_shadow_mode_set__FUc
 /* 801A6498 001A33D8  48 00 00 24 */ b lbl_801A64BC
 lbl_801A649C:
 /* 801A649C 001A33DC  38 60 00 01 */ li r3, 1
-/* 801A64A0 001A33E0  48 00 16 0D */ bl dKy_bgparts_activelight_cut
+/* 801A64A0 001A33E0  48 00 16 0D */ bl dKy_bgparts_activelight_cut__Fi
 /* 801A64A4 001A33E4  38 60 00 01 */ li r3, 1
-/* 801A64A8 001A33E8  48 00 68 65 */ bl dKy_shadow_mode_check
+/* 801A64A8 001A33E8  48 00 68 65 */ bl dKy_shadow_mode_check__FUc
 /* 801A64AC 001A33EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A64B0 001A33F0  41 82 00 0C */ beq lbl_801A64BC
 /* 801A64B4 001A33F4  38 60 00 01 */ li r3, 1
-/* 801A64B8 001A33F8  48 00 68 3D */ bl dKy_shadow_mode_reset
+/* 801A64B8 001A33F8  48 00 68 3D */ bl dKy_shadow_mode_reset__FUc
 lbl_801A64BC:
 /* 801A64BC 001A33FC  38 A0 00 00 */ li r5, 0
 /* 801A64C0 001A3400  38 C0 00 00 */ li r6, 0
@@ -275,7 +275,7 @@ lbl_801A6640:
 /* 801A6680 001A35C0  7C 03 05 2E */ stfsx f0, r3, r0
 /* 801A6684 001A35C4  7F 43 D3 78 */ mr r3, r26
 /* 801A6688 001A35C8  7E C4 B3 78 */ mr r4, r22
-/* 801A668C 001A35CC  4B FF FB 69 */ bl dKy_lightswitch_check
+/* 801A668C 001A35CC  4B FF FB 69 */ bl dKy_lightswitch_check__FP30stage_pure_lightvec_info_classc
 /* 801A6690 001A35D0  2C 03 00 01 */ cmpwi r3, 1
 /* 801A6694 001A35D4  40 82 00 18 */ bne lbl_801A66AC
 /* 801A6698 001A35D8  C0 1A 00 0C */ lfs f0, 0xc(r26)
@@ -314,7 +314,7 @@ lbl_801A66BC:
 /* 801A6714 001A3654  80 0D 81 84 */ lwz r0, lbl_80450704-_SDA_BASE_(r13)
 /* 801A6718 001A3658  38 72 02 08 */ addi r3, r18, 0x208
 /* 801A671C 001A365C  7C 60 1A 14 */ add r3, r0, r3
-/* 801A6720 001A3660  4B FF 6A 81 */ bl dKy_lightdir_set
+/* 801A6720 001A3660  4B FF 6A 81 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A6724 001A3664  48 00 00 5C */ b lbl_801A6780
 lbl_801A6728:
 /* 801A6728 001A3668  C0 02 A2 0C */ lfs f0, lbl_80453C0C-_SDA2_BASE_(r2)
@@ -340,7 +340,7 @@ lbl_801A6728:
 /* 801A6778 001A36B8  38 12 02 14 */ addi r0, r18, 0x214
 /* 801A677C 001A36BC  7C 03 05 2E */ stfsx f0, r3, r0
 lbl_801A6780:
-/* 801A6780 001A36C0  48 00 59 E9 */ bl dKy_SunMoon_Light_Check
+/* 801A6780 001A36C0  48 00 59 E9 */ bl dKy_SunMoon_Light_Check__Fv
 /* 801A6784 001A36C4  2C 03 00 01 */ cmpwi r3, 1
 /* 801A6788 001A36C8  40 82 01 10 */ bne lbl_801A6898
 /* 801A678C 001A36CC  2C 17 00 01 */ cmpwi r23, 1
@@ -424,7 +424,7 @@ lbl_801A6898:
 /* 801A68B4 001A37F4  41 82 00 44 */ beq lbl_801A68F8
 /* 801A68B8 001A37F8  38 63 00 18 */ addi r3, r3, 0x18
 /* 801A68BC 001A37FC  FC 20 F8 90 */ fmr f1, f31
-/* 801A68C0 001A3800  4B FF 7B 71 */ bl dKy_light_influence_col_X1_
+/* 801A68C0 001A3800  4B FF 7B 71 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A68C4 001A3804  90 61 00 10 */ stw r3, 0x10(r1)
 /* 801A68C8 001A3808  80 0D 81 84 */ lwz r0, lbl_80450704-_SDA_BASE_(r13)
 /* 801A68CC 001A380C  38 72 01 E8 */ addi r3, r18, 0x1e8
@@ -444,7 +444,7 @@ lbl_801A68F8:
 /* 801A6900 001A3840  7C 60 AA 14 */ add r3, r0, r21
 /* 801A6904 001A3844  38 63 09 C4 */ addi r3, r3, 0x9c4
 /* 801A6908 001A3848  FC 20 F8 90 */ fmr f1, f31
-/* 801A690C 001A384C  4B FF 7B 25 */ bl dKy_light_influence_col_X1_
+/* 801A690C 001A384C  4B FF 7B 25 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A6910 001A3850  90 61 00 0C */ stw r3, 0xc(r1)
 /* 801A6914 001A3854  80 0D 81 84 */ lwz r0, lbl_80450704-_SDA_BASE_(r13)
 /* 801A6918 001A3858  38 72 01 E8 */ addi r3, r18, 0x1e8
@@ -542,7 +542,7 @@ lbl_801A6A48:
 /* 801A6A74 001A39B4  40 82 00 0C */ bne lbl_801A6A80
 lbl_801A6A78:
 /* 801A6A78 001A39B8  7E E3 BB 78 */ mr r3, r23
-/* 801A6A7C 001A39BC  4B FF 65 69 */ bl dKy_twi_wolflight_set
+/* 801A6A7C 001A39BC  4B FF 65 69 */ bl dKy_twi_wolflight_set__Fi
 lbl_801A6A80:
 /* 801A6A80 001A39C0  88 1C 03 7A */ lbz r0, 0x37a(r28)
 /* 801A6A84 001A39C4  28 00 00 10 */ cmplwi r0, 0x10
@@ -591,7 +591,7 @@ lbl_801A6B14:
 lbl_801A6B24:
 /* 801A6B24 001A3A64  38 7A 0C 24 */ addi r3, r26, 0xc24
 /* 801A6B28 001A3A68  FC 20 F8 90 */ fmr f1, f31
-/* 801A6B2C 001A3A6C  4B FF 79 05 */ bl dKy_light_influence_col_X1_
+/* 801A6B2C 001A3A6C  4B FF 79 05 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A6B30 001A3A70  90 61 00 08 */ stw r3, 8(r1)
 /* 801A6B34 001A3A74  80 0D 81 84 */ lwz r0, lbl_80450704-_SDA_BASE_(r13)
 /* 801A6B38 001A3A78  1C 78 00 E8 */ mulli r3, r24, 0xe8
@@ -634,7 +634,7 @@ lbl_801A6B24:
 /* 801A6BCC 001A3B0C  80 0D 81 84 */ lwz r0, lbl_80450704-_SDA_BASE_(r13)
 /* 801A6BD0 001A3B10  38 63 02 08 */ addi r3, r3, 0x208
 /* 801A6BD4 001A3B14  7C 60 1A 14 */ add r3, r0, r3
-/* 801A6BD8 001A3B18  4B FF 65 C9 */ bl dKy_lightdir_set
+/* 801A6BD8 001A3B18  4B FF 65 C9 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A6BDC 001A3B1C  48 00 00 10 */ b lbl_801A6BEC
 lbl_801A6BE0:
 /* 801A6BE0 001A3B20  3B 18 00 01 */ addi r24, r24, 1
@@ -645,7 +645,7 @@ lbl_801A6BEC:
 /* 801A6BF0 001A3B30  2C 17 00 06 */ cmpwi r23, 6
 /* 801A6BF4 001A3B34  3A D6 00 28 */ addi r22, r22, 0x28
 /* 801A6BF8 001A3B38  41 80 FE 24 */ blt lbl_801A6A1C
-/* 801A6BFC 001A3B3C  4B FF F4 E5 */ bl dKy_GlobalLight_set
+/* 801A6BFC 001A3B3C  4B FF F4 E5 */ bl dKy_GlobalLight_set__Fv
 lbl_801A6C00:
 /* 801A6C00 001A3B40  E3 E1 00 78 */ psq_l f31, 120(r1), 0, 0
 /* 801A6C04 001A3B44  CB E1 00 70 */ lfd f31, 0x70(r1)

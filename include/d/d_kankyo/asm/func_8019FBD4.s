@@ -74,7 +74,7 @@ lbl_8019FCA0:
 /* 8019FCEC 0019CC2C  C0 25 00 04 */ lfs f1, 4(r5)
 /* 8019FCF0 0019CC30  7C 46 24 2E */ lfsx f2, r6, r4
 /* 8019FCF4 0019CC34  C0 63 12 44 */ lfs f3, 0x1244(r3)
-/* 8019FCF8 0019CC38  4B FF DB 81 */ bl get_parcent
+/* 8019FCF8 0019CC38  4B FF DB 81 */ bl get_parcent__Ffff
 /* 8019FCFC 0019CC3C  D0 31 00 00 */ stfs f1, 0(r17)
 /* 8019FD00 0019CC40  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019FD04 0019CC44  3A 43 CA 54 */ addi r18, r3, lbl_8042CA54@l

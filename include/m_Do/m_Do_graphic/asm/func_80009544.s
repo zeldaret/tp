@@ -14,7 +14,7 @@
 /* 80009578 000064B8  38 E0 00 00 */ li r7, 0
 /* 8000957C 000064BC  48 35 46 A1 */ bl GXGetTexBufferSize
 /* 80009580 000064C0  7C 7F 1B 78 */ mr r31, r3
-/* 80009584 000064C4  48 00 58 69 */ bl mDoExt_getArchiveHeap
+/* 80009584 000064C4  48 00 58 69 */ bl mDoExt_getArchiveHeap__Fv
 /* 80009588 000064C8  7F E4 FB 78 */ mr r4, r31
 /* 8000958C 000064CC  38 A0 FF E0 */ li r5, -32
 /* 80009590 000064D0  48 2C 4F 45 */ bl alloc__7JKRHeapFUli

@@ -14,7 +14,7 @@
 lbl_8010D628:
 /* 8010D628 0010A568  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8010D62C 0010A56C  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010D630 0010A570  4B F9 F9 B1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8010D630 0010A570  4B F9 F9 B1 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010D634 0010A574  7F E3 FB 78 */ mr r3, r31
 /* 8010D638 0010A578  4B FA 9B 31 */ bl setFastShotTimer__9daAlink_cFv
 /* 8010D63C 0010A57C  7F E3 FB 78 */ mr r3, r31

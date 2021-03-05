@@ -15,7 +15,7 @@ lbl_8013866C:
 /* 80138678 001355B8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 lbl_8013867C:
 /* 8013867C 001355BC  7F E3 FB 78 */ mr r3, r31
-/* 80138680 001355C0  4B FF F9 81 */ bl setSpeedAndAngleSwim__9daAlink_cFvWolf
+/* 80138680 001355C0  4B FF F9 81 */ bl setSpeedAndAngleSwimWolf__9daAlink_cFv
 /* 80138684 001355C4  7F E3 FB 78 */ mr r3, r31
 /* 80138688 001355C8  4B FC B9 AD */ bl setSwimUpDownOffset__9daAlink_cFv
 /* 8013868C 001355CC  80 1F 05 74 */ lwz r0, 0x574(r31)
@@ -40,7 +40,7 @@ lbl_801386BC:
 /* 801386D0 00135610  48 00 00 38 */ b lbl_80138708
 lbl_801386D4:
 /* 801386D4 00135614  7F E3 FB 78 */ mr r3, r31
-/* 801386D8 00135618  4B FF FB 21 */ bl decideDoStatus__9daAlink_cFvSwimWolf
+/* 801386D8 00135618  4B FF FB 21 */ bl decideDoStatusSwimWolf__9daAlink_cFv
 /* 801386DC 0013561C  2C 03 00 00 */ cmpwi r3, 0
 /* 801386E0 00135620  41 82 00 0C */ beq lbl_801386EC
 /* 801386E4 00135624  38 60 00 01 */ li r3, 1

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e1d5c
 
 
-.global JUTException
-JUTException:
+.global __ct__12JUTExceptionFP14JUTDirectPrint
+__ct__12JUTExceptionFP14JUTDirectPrint:
 /* 802E1D5C 002DEC9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E1D60 002DECA0  7C 08 02 A6 */	mflr r0
 /* 802E1D64 002DECA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -90,7 +90,7 @@ create__12JUTExceptionFP14JUTDirectPrint:
 /* 802E1E70 002DEDB0  7C 64 1B 79 */	or. r4, r3, r3
 /* 802E1E74 002DEDB4  41 82 00 10 */	beq lbl_802E1E84
 /* 802E1E78 002DEDB8  7F E4 FB 78 */	mr r4, r31
-/* 802E1E7C 002DEDBC  4B FF FE E1 */	bl JUTException
+/* 802E1E7C 002DEDBC  4B FF FE E1 */	bl __ct__12JUTExceptionFP14JUTDirectPrint
 /* 802E1E80 002DEDC0  7C 64 1B 78 */	mr r4, r3
 lbl_802E1E84:
 /* 802E1E84 002DEDC4  90 8D 8F 88 */	stw r4, lbl_80451508-_SDA_BASE_(r13)
@@ -146,7 +146,7 @@ lbl_802E1F34:
 /* 802E1F40 002DEE80  28 00 00 00 */	cmplwi r0, 0
 /* 802E1F44 002DEE84  40 82 00 0C */	bne lbl_802E1F50
 /* 802E1F48 002DEE88  80 6D 8F 88 */	lwz r3, lbl_80451508-_SDA_BASE_(r13)
-/* 802E1F4C 002DEE8C  48 00 1A BD */	bl create__12JUTExceptionFP14JUTDirectPrintFB
+/* 802E1F4C 002DEE8C  48 00 1A BD */	bl createFB__12JUTExceptionFv
 lbl_802E1F50:
 /* 802E1F50 002DEE90  80 6D 8F 88 */	lwz r3, lbl_80451508-_SDA_BASE_(r13)
 /* 802E1F54 002DEE94  80 63 00 80 */	lwz r3, 0x80(r3)
@@ -256,7 +256,7 @@ panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct:
 /* 802E20D8 002DF018  7C 9F 23 78 */	mr r31, r4
 /* 802E20DC 002DF01C  38 61 00 08 */	addi r3, r1, 8
 /* 802E20E0 002DF020  38 80 00 FF */	li r4, 0xff
-/* 802E20E4 002DF024  48 08 45 AD */	bl func_80366690
+/* 802E20E4 002DF024  48 08 45 AD */	bl vsnprintf
 /* 802E20E8 002DF028  80 0D 8F 88 */	lwz r0, lbl_80451508-_SDA_BASE_(r13)
 /* 802E20EC 002DF02C  28 00 00 00 */	cmplwi r0, 0
 /* 802E20F0 002DF030  40 82 00 18 */	bne lbl_802E2108
@@ -651,8 +651,8 @@ lbl_802E2628:
 /* 802E2630 002DF570  38 60 00 00 */	li r3, 0
 /* 802E2634 002DF574  4E 80 00 20 */	blr 
 
-.global search_name_part
-search_name_part:
+.global search_name_part__FPUcPUci
+search_name_part__FPUcPUci:
 /* 802E2638 002DF578  7C 66 1B 78 */	mr r6, r3
 /* 802E263C 002DF57C  48 00 00 14 */	b lbl_802E2650
 lbl_802E2640:
@@ -741,7 +741,7 @@ lbl_802E2734:
 /* 802E275C 002DF69C  48 00 03 E9 */	bl showMapInfo_subroutine__12JUTExceptionFUlb
 /* 802E2760 002DF6A0  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E2764 002DF6A4  38 80 00 01 */	li r4, 1
-/* 802E2768 002DF6A8  48 00 5C E9 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E2768 002DF6A8  48 00 5C E9 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E276C 002DF6AC  80 7C 00 90 */	lwz r3, 0x90(r28)
 /* 802E2770 002DF6B0  48 00 12 11 */	bl waitTime__12JUTExceptionFl
 /* 802E2774 002DF6B4  83 BD 00 00 */	lwz r29, 0(r29)
@@ -1055,7 +1055,7 @@ lbl_802E2B9C:
 /* 802E2BC4 002DFB04  80 61 00 24 */	lwz r3, 0x24(r1)
 /* 802E2BC8 002DFB08  38 81 00 28 */	addi r4, r1, 0x28
 /* 802E2BCC 002DFB0C  38 A0 00 20 */	li r5, 0x20
-/* 802E2BD0 002DFB10  4B FF FA 69 */	bl search_name_part
+/* 802E2BD0 002DFB10  4B FF FA 69 */	bl search_name_part__FPUcPUci
 /* 802E2BD4 002DFB14  80 6D 8F 9C */	lwz r3, lbl_8045151C-_SDA_BASE_(r13)
 /* 802E2BD8 002DFB18  3C 80 80 3A */	lis r4, lbl_8039D490@ha
 /* 802E2BDC 002DFB1C  38 84 D4 90 */	addi r4, r4, lbl_8039D490@l
@@ -1113,8 +1113,8 @@ lbl_802E2C88:
 /* 802E2C98 002DFBD8  38 21 01 60 */	addi r1, r1, 0x160
 /* 802E2C9C 002DFBDC  4E 80 00 20 */	blr 
 
-.global showGPR__12JUTExceptionFP9OSContextMap
-showGPR__12JUTExceptionFP9OSContextMap:
+.global showGPRMap__12JUTExceptionFP9OSContext
+showGPRMap__12JUTExceptionFP9OSContext:
 /* 802E2CA0 002DFBE0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E2CA4 002DFBE4  7C 08 02 A6 */	mflr r0
 /* 802E2CA8 002DFBE8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1164,7 +1164,7 @@ lbl_802E2CE8:
 lbl_802E2D54:
 /* 802E2D54 002DFC94  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E2D58 002DFC98  38 80 00 01 */	li r4, 1
-/* 802E2D5C 002DFC9C  48 00 56 F5 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E2D5C 002DFC9C  48 00 56 F5 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E2D60 002DFCA0  80 79 00 90 */	lwz r3, 0x90(r25)
 /* 802E2D64 002DFCA4  48 00 0C 1D */	bl waitTime__12JUTExceptionFl
 lbl_802E2D68:
@@ -1232,7 +1232,7 @@ showSRR0Map__12JUTExceptionFP9OSContext:
 lbl_802E2E4C:
 /* 802E2E4C 002DFD8C  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E2E50 002DFD90  38 80 00 01 */	li r4, 1
-/* 802E2E54 002DFD94  48 00 55 FD */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E2E54 002DFD94  48 00 55 FD */	bl drawDirect__17JUTConsoleManagerCFb
 lbl_802E2E58:
 /* 802E2E58 002DFD98  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802E2E5C 002DFD9C  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1282,7 +1282,7 @@ lbl_802E2EE8:
 /* 802E2EF0 002DFE30  48 00 00 18 */	b lbl_802E2F08
 lbl_802E2EF4:
 /* 802E2EF4 002DFE34  7C C4 33 78 */	mr r4, r6
-/* 802E2EF8 002DFE38  4B FF FD A9 */	bl showGPR__12JUTExceptionFP9OSContextMap
+/* 802E2EF8 002DFE38  4B FF FD A9 */	bl showGPRMap__12JUTExceptionFP9OSContext
 /* 802E2EFC 002DFE3C  48 00 00 0C */	b lbl_802E2F08
 lbl_802E2F00:
 /* 802E2F00 002DFE40  7C C4 33 78 */	mr r4, r6
@@ -1337,7 +1337,7 @@ lbl_802E2F88:
 /* 802E2F9C 002DFEDC  38 00 03 E8 */	li r0, 0x3e8
 /* 802E2FA0 002DFEE0  7C C5 03 96 */	divwu r6, r5, r0
 /* 802E2FA4 002DFEE4  38 A0 00 00 */	li r5, 0
-/* 802E2FA8 002DFEE8  48 07 F3 7D */	bl func_80362324
+/* 802E2FA8 002DFEE8  48 07 F3 7D */	bl __div2i
 /* 802E2FAC 002DFEEC  38 C0 00 32 */	li r6, 0x32
 /* 802E2FB0 002DFEF0  38 00 00 00 */	li r0, 0
 /* 802E2FB4 002DFEF4  6C 65 80 00 */	xoris r5, r3, 0x8000
@@ -1765,7 +1765,7 @@ lbl_802E3584:
 /* 802E3598 002E04D8  4B FF F2 19 */	bl showMainInfo__12JUTExceptionFUsP9OSContextUlUl
 /* 802E359C 002E04DC  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E35A0 002E04E0  38 80 00 01 */	li r4, 1
-/* 802E35A4 002E04E4  48 00 4E AD */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E35A4 002E04E4  48 00 4E AD */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E35A8 002E04E8  80 79 00 8C */	lwz r3, 0x8c(r25)
 /* 802E35AC 002E04EC  48 00 03 D5 */	bl waitTime__12JUTExceptionFl
 /* 802E35B0 002E04F0  80 19 00 9C */	lwz r0, 0x9c(r25)
@@ -1780,7 +1780,7 @@ lbl_802E3584:
 /* 802E35D4 002E0514  4B FF F8 9D */	bl printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 /* 802E35D8 002E0518  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E35DC 002E051C  38 80 00 01 */	li r4, 1
-/* 802E35E0 002E0520  48 00 4E 71 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E35E0 002E0520  48 00 4E 71 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E35E4 002E0524  80 79 00 8C */	lwz r3, 0x8c(r25)
 /* 802E35E8 002E0528  48 00 03 99 */	bl waitTime__12JUTExceptionFl
 lbl_802E35EC:
@@ -1796,7 +1796,7 @@ lbl_802E35EC:
 /* 802E3610 002E0550  4B FF F8 61 */	bl printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 /* 802E3614 002E0554  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E3618 002E0558  38 80 00 01 */	li r4, 1
-/* 802E361C 002E055C  48 00 4E 35 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E361C 002E055C  48 00 4E 35 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E3620 002E0560  80 79 00 8C */	lwz r3, 0x8c(r25)
 /* 802E3624 002E0564  48 00 03 5D */	bl waitTime__12JUTExceptionFl
 lbl_802E3628:
@@ -1812,7 +1812,7 @@ lbl_802E3628:
 /* 802E364C 002E058C  4B FF F8 25 */	bl printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 /* 802E3650 002E0590  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E3654 002E0594  38 80 00 01 */	li r4, 1
-/* 802E3658 002E0598  48 00 4D F9 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E3658 002E0598  48 00 4D F9 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E365C 002E059C  80 79 00 8C */	lwz r3, 0x8c(r25)
 /* 802E3660 002E05A0  48 00 03 21 */	bl waitTime__12JUTExceptionFl
 lbl_802E3664:
@@ -1828,7 +1828,7 @@ lbl_802E3664:
 /* 802E3688 002E05C8  4B FF F7 E9 */	bl printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 /* 802E368C 002E05CC  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E3690 002E05D0  38 80 00 01 */	li r4, 1
-/* 802E3694 002E05D4  48 00 4D BD */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E3694 002E05D4  48 00 4D BD */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E3698 002E05D8  80 79 00 8C */	lwz r3, 0x8c(r25)
 /* 802E369C 002E05DC  48 00 02 E5 */	bl waitTime__12JUTExceptionFl
 lbl_802E36A0:
@@ -1844,7 +1844,7 @@ lbl_802E36A0:
 /* 802E36C4 002E0604  4B FF F7 AD */	bl printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl
 /* 802E36C8 002E0608  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E36CC 002E060C  38 80 00 01 */	li r4, 1
-/* 802E36D0 002E0610  48 00 4D 81 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E36D0 002E0610  48 00 4D 81 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E36D4 002E0614  80 79 00 90 */	lwz r3, 0x90(r25)
 /* 802E36D8 002E0618  48 00 02 A9 */	bl waitTime__12JUTExceptionFl
 lbl_802E36DC:
@@ -1853,7 +1853,7 @@ lbl_802E36DC:
 /* 802E36E4 002E0624  48 00 45 55 */	bl print__10JUTConsoleFPCc
 /* 802E36E8 002E0628  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E36EC 002E062C  38 80 00 01 */	li r4, 1
-/* 802E36F0 002E0630  48 00 4D 61 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E36F0 002E0630  48 00 4D 61 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E36F4 002E0634  2C 1E 00 00 */	cmpwi r30, 0
 /* 802E36F8 002E0638  40 82 00 40 */	bne lbl_802E3738
 /* 802E36FC 002E063C  80 0D 8F 90 */	lwz r0, lbl_80451510-_SDA_BASE_(r13)
@@ -1974,7 +1974,7 @@ lbl_802E3884:
 /* 802E388C 002E07CC  41 82 FF F8 */	beq lbl_802E3884
 /* 802E3890 002E07D0  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E3894 002E07D4  38 80 00 01 */	li r4, 1
-/* 802E3898 002E07D8  48 00 4B B9 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E3898 002E07D8  48 00 4B B9 */	bl drawDirect__17JUTConsoleManagerCFb
 lbl_802E389C:
 /* 802E389C 002E07DC  38 60 00 1E */	li r3, 0x1e
 /* 802E38A0 002E07E0  48 00 00 E1 */	bl waitTime__12JUTExceptionFl
@@ -1986,7 +1986,7 @@ lbl_802E38A8:
 /* 802E38B4 002E07F4  48 00 47 F5 */	bl scroll__10JUTConsoleFi
 /* 802E38B8 002E07F8  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E38BC 002E07FC  38 80 00 01 */	li r4, 1
-/* 802E38C0 002E0800  48 00 4B 91 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E38C0 002E0800  48 00 4B 91 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E38C4 002E0804  38 60 07 D0 */	li r3, 0x7d0
 /* 802E38C8 002E0808  48 00 00 B9 */	bl waitTime__12JUTExceptionFl
 lbl_802E38CC:
@@ -1999,7 +1999,7 @@ lbl_802E38D8:
 /* 802E38E0 002E0820  48 00 47 C9 */	bl scroll__10JUTConsoleFi
 /* 802E38E4 002E0824  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
 /* 802E38E8 002E0828  38 80 00 01 */	li r4, 1
-/* 802E38EC 002E082C  48 00 4B 65 */	bl draw__17JUTConsoleManagerCFvDirect
+/* 802E38EC 002E082C  48 00 4B 65 */	bl drawDirect__17JUTConsoleManagerCFb
 /* 802E38F0 002E0830  83 0D 8F 9C */	lwz r24, lbl_8045151C-_SDA_BASE_(r13)
 /* 802E38F4 002E0834  82 F8 00 48 */	lwz r23, 0x48(r24)
 /* 802E38F8 002E0838  7F 03 C3 78 */	mr r3, r24
@@ -2063,7 +2063,7 @@ lbl_802E39B4:
 /* 802E39C4 002E0904  54 00 F0 BE */	srwi r0, r0, 2
 /* 802E39C8 002E0908  7C C0 FB 96 */	divwu r6, r0, r31
 /* 802E39CC 002E090C  38 A0 00 00 */	li r5, 0
-/* 802E39D0 002E0910  48 07 E9 55 */	bl func_80362324
+/* 802E39D0 002E0910  48 07 E9 55 */	bl __div2i
 /* 802E39D4 002E0914  6C 65 80 00 */	xoris r5, r3, 0x8000
 /* 802E39D8 002E0918  6F 63 80 00 */	xoris r3, r27, 0x8000
 /* 802E39DC 002E091C  7C 1A 20 10 */	subfc r0, r26, r4
@@ -2079,8 +2079,8 @@ lbl_802E39F0:
 /* 802E3A00 002E0940  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E3A04 002E0944  4E 80 00 20 */	blr 
 
-.global create__12JUTExceptionFP14JUTDirectPrintFB
-create__12JUTExceptionFP14JUTDirectPrintFB:
+.global createFB__12JUTExceptionFv
+createFB__12JUTExceptionFv:
 /* 802E3A08 002E0948  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E3A0C 002E094C  7C 08 02 A6 */	mflr r0
 /* 802E3A10 002E0950  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2108,7 +2108,7 @@ create__12JUTExceptionFP14JUTDirectPrintFB:
 /* 802E3A68 002E09A8  7F E4 FB 78 */	mr r4, r31
 /* 802E3A6C 002E09AC  38 A0 00 01 */	li r5, 1
 /* 802E3A70 002E09B0  7F C6 F3 78 */	mr r6, r30
-/* 802E3A74 002E09B4  48 00 06 59 */	bl JUTExternalFB
+/* 802E3A74 002E09B4  48 00 06 59 */	bl __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
 lbl_802E3A78:
 /* 802E3A78 002E09B8  80 7C 00 80 */	lwz r3, 0x80(r28)
 /* 802E3A7C 002E09BC  7F C4 F3 78 */	mr r4, r30
@@ -2234,7 +2234,7 @@ queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb:
 /* 802E3C14 002E0B54  7F 88 E3 78 */	mr r8, r28
 /* 802E3C18 002E0B58  7F A9 EB 78 */	mr r9, r29
 /* 802E3C1C 002E0B5C  7F CA F3 78 */	mr r10, r30
-/* 802E3C20 002E0B60  48 00 00 71 */	bl queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb_single
+/* 802E3C20 002E0B60  48 00 00 71 */	bl queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb
 /* 802E3C24 002E0B64  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802E3C28 002E0B68  28 00 00 01 */	cmplwi r0, 1
 /* 802E3C2C 002E0B6C  40 82 00 48 */	bne lbl_802E3C74
@@ -2250,7 +2250,7 @@ lbl_802E3C38:
 /* 802E3C50 002E0B90  93 E1 00 08 */	stw r31, 8(r1)
 /* 802E3C54 002E0B94  80 63 00 00 */	lwz r3, 0(r3)
 /* 802E3C58 002E0B98  38 A0 FF FF */	li r5, -1
-/* 802E3C5C 002E0B9C  48 00 00 35 */	bl queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb_single
+/* 802E3C5C 002E0B9C  48 00 00 35 */	bl queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb
 /* 802E3C60 002E0BA0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802E3C64 002E0BA4  28 00 00 01 */	cmplwi r0, 1
 /* 802E3C68 002E0BA8  40 82 00 0C */	bne lbl_802E3C74
@@ -2266,8 +2266,8 @@ lbl_802E3C78:
 /* 802E3C88 002E0BC8  38 21 00 80 */	addi r1, r1, 0x80
 /* 802E3C8C 002E0BCC  4E 80 00 20 */	blr 
 
-.global queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb_single
-queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb_single:
+.global queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb
+queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb:
 /* 802E3C90 002E0BD0  94 21 F5 30 */	stwu r1, -0xad0(r1)
 /* 802E3C94 002E0BD4  7C 08 02 A6 */	mflr r0
 /* 802E3C98 002E0BD8  90 01 0A D4 */	stw r0, 0xad4(r1)
@@ -2287,7 +2287,7 @@ queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb_single:
 /* 802E3CD0 002E0C10  48 00 03 04 */	b lbl_802E3FD4
 lbl_802E3CD4:
 /* 802E3CD4 002E0C14  38 61 02 18 */	addi r3, r1, 0x218
-/* 802E3CD8 002E0C18  48 00 4B 21 */	bl JUTDirectFile
+/* 802E3CD8 002E0C18  48 00 4B 21 */	bl __ct__13JUTDirectFileFv
 /* 802E3CDC 002E0C1C  3A C0 00 00 */	li r22, 0
 /* 802E3CE0 002E0C20  38 61 02 18 */	addi r3, r1, 0x218
 /* 802E3CE4 002E0C24  7E 04 83 78 */	mr r4, r16
@@ -2378,7 +2378,7 @@ lbl_802E3DEC:
 /* 802E3E18 002E0D58  7E 23 8B 78 */	mr r3, r17
 /* 802E3E1C 002E0D5C  38 80 00 00 */	li r4, 0
 /* 802E3E20 002E0D60  38 A0 00 10 */	li r5, 0x10
-/* 802E3E24 002E0D64  48 08 4D DD */	bl func_80368C00
+/* 802E3E24 002E0D64  48 08 4D DD */	bl strtol
 /* 802E3E28 002E0D68  88 01 00 2A */	lbz r0, 0x2a(r1)
 /* 802E3E2C 002E0D6C  7C 04 07 74 */	extsb r4, r0
 /* 802E3E30 002E0D70  38 04 FF D0 */	addi r0, r4, -48
@@ -2387,7 +2387,7 @@ lbl_802E3DEC:
 /* 802E3E3C 002E0D7C  7E 43 93 78 */	mr r3, r18
 /* 802E3E40 002E0D80  38 80 00 00 */	li r4, 0
 /* 802E3E44 002E0D84  38 A0 00 10 */	li r5, 0x10
-/* 802E3E48 002E0D88  48 08 4D B9 */	bl func_80368C00
+/* 802E3E48 002E0D88  48 08 4D B9 */	bl strtol
 /* 802E3E4C 002E0D8C  7C 73 1B 78 */	mr r19, r3
 /* 802E3E50 002E0D90  7C 14 C0 40 */	cmplw r20, r24
 /* 802E3E54 002E0D94  41 81 FF 98 */	bgt lbl_802E3DEC
@@ -2509,8 +2509,8 @@ lbl_802E3FD4:
 /* 802E3FE4 002E0F24  38 21 0A D0 */	addi r1, r1, 0xad0
 /* 802E3FE8 002E0F28  4E 80 00 20 */	blr 
 
-.global create__12JUTExceptionFP14JUTDirectPrintConsole
-create__12JUTExceptionFP14JUTDirectPrintConsole:
+.global createConsole__12JUTExceptionFPvUl
+createConsole__12JUTExceptionFPvUl:
 /* 802E3FEC 002E0F2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E3FF0 002E0F30  7C 08 02 A6 */	mflr r0
 /* 802E3FF4 002E0F34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2533,7 +2533,7 @@ lbl_802E4018:
 /* 802E4034 002E0F74  38 60 00 32 */	li r3, 0x32
 /* 802E4038 002E0F78  7F C4 F3 78 */	mr r4, r30
 /* 802E403C 002E0F7C  7F E5 FB 78 */	mr r5, r31
-/* 802E4040 002E0F80  48 00 33 A5 */	bl create__10JUTConsoleFUiUiP7JKRHeap_X1_
+/* 802E4040 002E0F80  48 00 33 A5 */	bl create__10JUTConsoleFUiPvUl
 /* 802E4044 002E0F84  7C 64 1B 78 */	mr r4, r3
 /* 802E4048 002E0F88  90 8D 8F 9C */	stw r4, lbl_8045151C-_SDA_BASE_(r13)
 /* 802E404C 002E0F8C  80 6D 8F F0 */	lwz r3, lbl_80451570-_SDA_BASE_(r13)
@@ -2571,8 +2571,8 @@ lbl_802E40B4:
 /* 802E40C4 002E1004  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E40C8 002E1008  4E 80 00 20 */	blr 
 
-.global JUTExternalFB
-JUTExternalFB:
+.global __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
+__ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl:
 /* 802E40CC 002E100C  90 83 00 00 */	stw r4, 0(r3)
 /* 802E40D0 002E1010  90 E3 00 04 */	stw r7, 4(r3)
 /* 802E40D4 002E1014  38 00 00 01 */	li r0, 1

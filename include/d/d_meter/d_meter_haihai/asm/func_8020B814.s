@@ -50,7 +50,7 @@ lbl_8020B8C4:
 /* 8020B8CC 0020880C  C0 02 AD C8 */ lfs f0, lbl_804547C8-_SDA2_BASE_(r2)
 /* 8020B8D0 00208810  EC 1F 00 32 */ fmuls f0, f31, f0
 /* 8020B8D4 00208814  EC 5D 00 2A */ fadds f2, f29, f0
-/* 8020B8D8 00208818  48 00 02 AD */ bl drawHaihai__14dMeterHaihai_cFUcBottom
+/* 8020B8D8 00208818  48 00 02 AD */ bl drawHaihaiBottom__14dMeterHaihai_cFff
 lbl_8020B8DC:
 /* 8020B8DC 0020881C  57 C0 07 7B */ rlwinm. r0, r30, 0, 0x1d, 0x1d
 /* 8020B8E0 00208820  40 82 00 18 */ bne lbl_8020B8F8
@@ -65,7 +65,7 @@ lbl_8020B8F8:
 /* 8020B900 00208840  EC 1E 00 32 */ fmuls f0, f30, f0
 /* 8020B904 00208844  EC 3C 00 2A */ fadds f1, f28, f0
 /* 8020B908 00208848  FC 40 E8 90 */ fmr f2, f29
-/* 8020B90C 0020884C  48 00 01 41 */ bl drawHaihai__14dMeterHaihai_cFUcRight
+/* 8020B90C 0020884C  48 00 01 41 */ bl drawHaihaiRight__14dMeterHaihai_cFff
 lbl_8020B910:
 /* 8020B910 00208850  57 C0 07 39 */ rlwinm. r0, r30, 0, 0x1c, 0x1c
 /* 8020B914 00208854  40 82 00 18 */ bne lbl_8020B92C
@@ -80,7 +80,7 @@ lbl_8020B92C:
 /* 8020B934 00208874  C0 02 AD C8 */ lfs f0, lbl_804547C8-_SDA2_BASE_(r2)
 /* 8020B938 00208878  EC 1F 00 32 */ fmuls f0, f31, f0
 /* 8020B93C 0020887C  EC 5D 00 28 */ fsubs f2, f29, f0
-/* 8020B940 00208880  48 00 01 A9 */ bl drawHaihai__14dMeterHaihai_cFUcTop
+/* 8020B940 00208880  48 00 01 A9 */ bl drawHaihaiTop__14dMeterHaihai_cFff
 lbl_8020B944:
 /* 8020B944 00208884  57 C0 07 FF */ clrlwi. r0, r30, 0x1f
 /* 8020B948 00208888  40 82 00 18 */ bne lbl_8020B960
@@ -95,7 +95,7 @@ lbl_8020B960:
 /* 8020B968 002088A8  EC 1E 00 32 */ fmuls f0, f30, f0
 /* 8020B96C 002088AC  EC 3C 00 28 */ fsubs f1, f28, f0
 /* 8020B970 002088B0  FC 40 E8 90 */ fmr f2, f29
-/* 8020B974 002088B4  48 00 00 3D */ bl drawHaihai__14dMeterHaihai_cFUcLeft
+/* 8020B974 002088B4  48 00 00 3D */ bl drawHaihaiLeft__14dMeterHaihai_cFff
 lbl_8020B978:
 /* 8020B978 002088B8  E3 E1 00 48 */ psq_l f31, 72(r1), 0, 0
 /* 8020B97C 002088BC  CB E1 00 40 */ lfd f31, 0x40(r1)

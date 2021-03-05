@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027b040
 
 
-.global JPALoadExTex
-JPALoadExTex:
+.global JPALoadExTex__FP18JPAEmitterWorkData
+JPALoadExTex__FP18JPAEmitterWorkData:
 /* 8027B040 00277F80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027B044 00277F84  7C 08 02 A6 */	mflr r0
 /* 8027B048 00277F88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -71,7 +71,7 @@ lbl_8027B124:
 /* 8027B134 00278074  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027B138 00278078  4E 80 00 20 */	blr 
 
-.global JPAExTexShape
-JPAExTexShape:
+.global __ct__13JPAExTexShapeFPCUc
+__ct__13JPAExTexShapeFPCUc:
 /* 8027B13C 0027807C  90 83 00 00 */	stw r4, 0(r3)
 /* 8027B140 00278080  4E 80 00 20 */	blr 

@@ -31,7 +31,7 @@ lbl_80104138:
 /* 8010416C 001010AC  38 80 00 C2 */ li r4, 0xc2
 /* 80104170 001010B0  3C A0 80 39 */ lis r5, lbl_8038ED2C@ha
 /* 80104174 001010B4  38 A5 ED 2C */ addi r5, r5, lbl_8038ED2C@l
-/* 80104178 001010B8  4B FA 8F 7D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 80104178 001010B8  4B FA 8F 7D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010417C 001010BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80104180 001010C0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80104184 001010C4  80 03 5F 18 */ lwz r0, 0x5f18(r3)

@@ -12,7 +12,7 @@
 /* 800D3E04 000D0D44  3C A0 80 39 */ lis r5, lbl_8038DAEC@ha
 /* 800D3E08 000D0D48  38 A5 DA EC */ addi r5, r5, lbl_8038DAEC@l
 /* 800D3E0C 000D0D4C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800D3E10 000D0D50  4B FD 92 E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800D3E10 000D0D50  4B FD 92 E5 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D3E14 000D0D54  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D3E18 000D0D58  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800D3E1C 000D0D5C  7F E3 FB 78 */ mr r3, r31

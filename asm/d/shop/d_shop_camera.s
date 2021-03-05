@@ -475,7 +475,7 @@ Save__16ShopCam_action_cFv:
 /* 8019636C 001932AC  7C 7F 1B 78 */	mr r31, r3
 /* 80196370 001932B0  38 00 00 02 */	li r0, 2
 /* 80196374 001932B4  B0 03 00 D8 */	sth r0, 0xd8(r3)
-/* 80196378 001932B8  4B FE B2 C9 */	bl dCam_getBody
+/* 80196378 001932B8  4B FE B2 C9 */	bl dCam_getBody__Fv
 /* 8019637C 001932BC  4B FE A6 C5 */	bl EventRecoverNotime__9dCamera_cFv
 /* 80196380 001932C0  3C 60 80 3A */	lis r3, lbl_803A2180@ha
 /* 80196384 001932C4  38 83 21 80 */	addi r4, r3, lbl_803A2180@l
@@ -564,12 +564,12 @@ Save__16ShopCam_action_cFv:
 /* 801964D0 00193410  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801964D4 00193414  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801964D8 00193418  7C 7F 1B 78 */	mr r31, r3
-/* 801964DC 0019341C  48 1C BB 3D */	bl func_80362018
+/* 801964DC 0019341C  48 1C BB 3D */	bl __ptmf_test
 /* 801964E0 00193420  2C 03 00 00 */	cmpwi r3, 0
 /* 801964E4 00193424  41 82 00 14 */	beq lbl_801964F8
 /* 801964E8 00193428  7F E3 FB 78 */	mr r3, r31
 /* 801964EC 0019342C  7F EC FB 78 */	mr r12, r31
-/* 801964F0 00193430  48 1C BB 95 */	bl func_80362084
+/* 801964F0 00193430  48 1C BB 95 */	bl __ptmf_scall
 /* 801964F4 00193434  60 00 00 00 */	nop 
 lbl_801964F8:
 /* 801964F8 00193438  A8 7F 00 D8 */	lha r3, 0xd8(r31)
@@ -646,8 +646,8 @@ lbl_8019657C:
 /* 80196600 00193540  38 21 00 10 */	addi r1, r1, 0x10
 /* 80196604 00193544  4E 80 00 20 */	blr 
 
-.global setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz2
-setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz2:
+.global setCamDataIdx2__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
+setCamDataIdx2__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz:
 /* 80196608 00193548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019660C 0019354C  7C 08 02 A6 */	mflr r0
 /* 80196610 00193550  90 01 00 14 */	stw r0, 0x14(r1)

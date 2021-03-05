@@ -94,7 +94,7 @@ lbl_8002EB50:
 /* 8002EB58 0002BA98  48 00 00 8C */ b lbl_8002EBE4
 lbl_8002EB5C:
 /* 8002EB5C 0002BA9C  38 61 00 40 */ addi r3, r1, 0x40
-/* 8002EB60 0002BAA0  48 19 7A CD */ bl dMenuFmap_getStartStageName
+/* 8002EB60 0002BAA0  48 19 7A CD */ bl dMenuFmap_getStartStageName__FPv
 /* 8002EB64 0002BAA4  7F 3C D2 14 */ add r25, r28, r26
 /* 8002EB68 0002BAA8  7F 24 CB 78 */ mr r4, r25
 /* 8002EB6C 0002BAAC  48 33 9E 29 */ bl strcmp

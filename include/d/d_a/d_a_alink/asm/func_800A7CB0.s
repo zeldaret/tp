@@ -338,8 +338,8 @@ lbl_800A8160:
 /* 800A8160 000A50A0  38 7F 04 D0 */ addi r3, r31, 0x4d0
 /* 800A8164 000A50A4  38 81 00 54 */ addi r4, r1, 0x54
 /* 800A8168 000A50A8  38 A1 00 14 */ addi r5, r1, 0x14
-/* 800A816C 000A50AC  4B FB 31 8D */ bl dKyw_get_AllWind_vec
-/* 800A8170 000A50B0  48 10 3F D1 */ bl dKy_TeachWind_existence_chk
+/* 800A816C 000A50AC  4B FB 31 8D */ bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
+/* 800A8170 000A50B0  48 10 3F D1 */ bl dKy_TeachWind_existence_chk__Fv
 /* 800A8174 000A50B4  2C 03 00 00 */ cmpwi r3, 0
 /* 800A8178 000A50B8  41 82 00 14 */ beq lbl_800A818C
 /* 800A817C 000A50BC  C0 21 00 14 */ lfs f1, 0x14(r1)
@@ -354,7 +354,7 @@ lbl_800A8198:
 /* 800A8198 000A50D8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800A819C 000A50DC  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800A81A0 000A50E0  40 81 00 28 */ ble lbl_800A81C8
-/* 800A81A4 000A50E4  48 10 3F 9D */ bl dKy_TeachWind_existence_chk
+/* 800A81A4 000A50E4  48 10 3F 9D */ bl dKy_TeachWind_existence_chk__Fv
 /* 800A81A8 000A50E8  2C 03 FF FF */ cmpwi r3, -1
 /* 800A81AC 000A50EC  41 82 00 1C */ beq lbl_800A81C8
 /* 800A81B0 000A50F0  7F E3 FB 78 */ mr r3, r31

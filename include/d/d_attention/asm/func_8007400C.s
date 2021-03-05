@@ -3,7 +3,7 @@
 /* 80074014 00070F54  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80074018 00070F58  3C 60 80 42 */ lis r3, lbl_80424B0C@ha
 /* 8007401C 00070F5C  38 63 4B 0C */ addi r3, r3, lbl_80424B0C@l
-/* 80074020 00070F60  4B FF C1 39 */ bl dAttDrawParam_c
+/* 80074020 00070F60  4B FF C1 39 */ bl __ct__15dAttDrawParam_cFv
 /*.global __dt__15dAttDrawParam_cFv*/
 /* 80074024 00070F64  3C 80 80 07 */ lis r4, __dt__15dAttDrawParam_cFv@ha
 /*.global __dt__15dAttDrawParam_cFv*/

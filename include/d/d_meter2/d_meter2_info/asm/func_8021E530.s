@@ -34,7 +34,7 @@ lbl_8021E584:
 /* 8021E5A8 0021B4E8  4B E1 58 ED */ bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E5AC:
 /* 8021E5AC 0021B4EC  7F E3 FB 78 */ mr r3, r31
-/* 8021E5B0 0021B4F0  4B E1 09 11 */ bl dComIfGs_setSelectEquipSword
+/* 8021E5B0 0021B4F0  4B E1 09 11 */ bl dComIfGs_setSelectEquipSword__FUc
 /* 8021E5B4 0021B4F4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021E5B8 0021B4F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021E5BC 0021B4FC  9B E3 5E 75 */ stb r31, 0x5e75(r3)

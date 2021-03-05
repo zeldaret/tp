@@ -25,7 +25,7 @@ lbl_800F76CC:
 /* 800F76E0 000F4620  7F E3 FB 78 */ mr r3, r31
 /* 800F76E4 000F4624  38 80 02 68 */ li r4, 0x268
 /* 800F76E8 000F4628  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F76EC 000F462C  4B FB 5C 89 */ bl setUpperAnimeBase__9daAlink_cFUsMorf
+/* 800F76EC 000F462C  4B FB 5C 89 */ bl setUpperAnimeBaseMorf__9daAlink_cFUsf
 lbl_800F76F0:
 /* 800F76F0 000F4630  38 60 00 01 */ li r3, 1
 lbl_800F76F4:

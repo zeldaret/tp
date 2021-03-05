@@ -7,7 +7,7 @@
 /* 802B9DB0 002B6CF0  38 80 00 00 */ li r4, 0
 /* 802B9DB4 002B6CF4  4B FF 3B 99 */ bl seStopAll__7Z2SeMgrFUl
 /* 802B9DB8 002B6CF8  80 6D 85 BC */ lwz r3, lbl_80450B3C-_SDA_BASE_(r13)
-/* 802B9DBC 002B6CFC  48 00 CB E1 */ bl resetScene__10Z2EnvSeMgrFvInner
+/* 802B9DBC 002B6CFC  48 00 CB E1 */ bl resetSceneInner__10Z2EnvSeMgrFv
 /* 802B9DC0 002B6D00  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 802B9DC4 002B6D04  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 802B9DC8 002B6D08  38 63 07 F0 */ addi r3, r3, 0x7f0

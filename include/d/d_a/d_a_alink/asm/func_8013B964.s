@@ -15,7 +15,7 @@
 /* 8013B99C 001388DC  3C A0 80 39 */ lis r5, lbl_8038F658@ha
 /* 8013B9A0 001388E0  38 A5 F6 58 */ addi r5, r5, lbl_8038F658@l
 /* 8013B9A4 001388E4  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013B9A8 001388E8  4B FE DE A1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013B9A8 001388E8  4B FE DE A1 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013B9AC 001388EC  38 00 00 04 */ li r0, 4
 /* 8013B9B0 001388F0  98 1E 2F 9D */ stb r0, 0x2f9d(r30)
 /* 8013B9B4 001388F4  7F C3 F3 78 */ mr r3, r30

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a30d4
 
 
-.global JAIStream_JASAramStreamCallback_
-JAIStream_JASAramStreamCallback_:
+.global JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv
+JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv:
 /* 802A30D4 002A0014  2C 03 00 01 */	cmpwi r3, 1
 /* 802A30D8 002A0018  41 82 00 14 */	beq lbl_802A30EC
 /* 802A30DC 002A001C  4C 80 00 20 */	bgelr 
@@ -30,7 +30,7 @@ JAIStream:
 /* 802A3118 002A0058  7C 7D 1B 78 */	mr r29, r3
 /* 802A311C 002A005C  7C 9E 23 78 */	mr r30, r4
 /* 802A3120 002A0060  7C BF 2B 78 */	mr r31, r5
-/* 802A3124 002A0064  4B FF F1 D5 */	bl JAISound
+/* 802A3124 002A0064  4B FF F1 D5 */	bl __ct__8JAISoundFv
 /* 802A3128 002A0068  38 7D 00 98 */	addi r3, r29, 0x98
 /* 802A312C 002A006C  7F A4 EB 78 */	mr r4, r29
 /* 802A3130 002A0070  48 03 8C CD */	bl __ct__10JSUPtrLinkFPv
@@ -38,7 +38,7 @@ JAIStream:
 /* 802A3138 002A0078  38 03 99 D8 */	addi r0, r3, lbl_803C99D8@l
 /* 802A313C 002A007C  90 1D 00 00 */	stw r0, 0(r29)
 /* 802A3140 002A0080  38 7D 00 A8 */	addi r3, r29, 0xa8
-/* 802A3144 002A0084  4B FF 32 65 */	bl JASAramStream
+/* 802A3144 002A0084  4B FF 32 65 */	bl __ct__13JASAramStreamFv
 /* 802A3148 002A0088  38 80 00 00 */	li r4, 0
 /* 802A314C 002A008C  90 9D 02 90 */	stw r4, 0x290(r29)
 /* 802A3150 002A0090  93 FD 02 C0 */	stw r31, 0x2c0(r29)
@@ -138,10 +138,10 @@ lbl_802A3274:
 /* 802A329C 002A01DC  41 82 00 30 */	beq lbl_802A32CC
 /* 802A32A0 002A01E0  38 7F 00 A8 */	addi r3, r31, 0xa8
 /* 802A32A4 002A01E4  80 A1 00 08 */	lwz r5, 8(r1)
-.global JAIStream_JASAramStreamCallback_
-/* 802A32A8 002A01E8  3C C0 80 2A */	lis r6, JAIStream_JASAramStreamCallback_@ha
-.global JAIStream_JASAramStreamCallback_
-/* 802A32AC 002A01EC  38 C6 30 D4 */	addi r6, r6, JAIStream_JASAramStreamCallback_@l
+.global JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv
+/* 802A32A8 002A01E8  3C C0 80 2A */	lis r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@ha
+.global JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv
+/* 802A32AC 002A01EC  38 C6 30 D4 */	addi r6, r6, JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv@l
 /* 802A32B0 002A01F0  7F E7 FB 78 */	mr r7, r31
 /* 802A32B4 002A01F4  4B FF 31 E9 */	bl init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv
 /* 802A32B8 002A01F8  38 00 00 01 */	li r0, 1
@@ -264,7 +264,7 @@ lbl_802A3440:
 /* 802A344C 002A038C  38 00 00 05 */	li r0, 5
 /* 802A3450 002A0390  98 1F 00 1E */	stb r0, 0x1e(r31)
 /* 802A3454 002A0394  7F E3 FB 78 */	mr r3, r31
-/* 802A3458 002A0398  48 00 00 41 */	bl prepare___9JAIStreamFvstartStream_
+/* 802A3458 002A0398  48 00 00 41 */	bl prepare_startStream___9JAIStreamFv
 /* 802A345C 002A039C  48 00 00 28 */	b lbl_802A3484
 lbl_802A3460:
 /* 802A3460 002A03A0  4B FF FD D1 */	bl prepare_prepareStream___9JAIStreamFv
@@ -276,7 +276,7 @@ lbl_802A3460:
 lbl_802A3478:
 /* 802A3478 002A03B8  38 00 00 05 */	li r0, 5
 /* 802A347C 002A03BC  98 1F 00 1E */	stb r0, 0x1e(r31)
-/* 802A3480 002A03C0  48 00 00 19 */	bl prepare___9JAIStreamFvstartStream_
+/* 802A3480 002A03C0  48 00 00 19 */	bl prepare_startStream___9JAIStreamFv
 lbl_802A3484:
 /* 802A3484 002A03C4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802A3488 002A03C8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -284,8 +284,8 @@ lbl_802A3484:
 /* 802A3490 002A03D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A3494 002A03D4  4E 80 00 20 */	blr 
 
-.global prepare___9JAIStreamFvstartStream_
-prepare___9JAIStreamFvstartStream_:
+.global prepare_startStream___9JAIStreamFv
+prepare_startStream___9JAIStreamFv:
 /* 802A3498 002A03D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A349C 002A03DC  7C 08 02 A6 */	mflr r0
 /* 802A34A0 002A03E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -489,7 +489,7 @@ lbl_802A3744:
 /* 802A375C 002A069C  40 82 00 34 */	bne lbl_802A3790
 /* 802A3760 002A06A0  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3764 002A06A4  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
-/* 802A3768 002A06A8  4B FE D0 E1 */	bl JASGenericMemPool
+/* 802A3768 002A06A8  4B FE D0 E1 */	bl __ct__17JASGenericMemPoolFv
 /* 802A376C 002A06AC  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3770 002A06B0  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
 .global JASMemPool_NS_dtor_X1_
@@ -644,7 +644,7 @@ lbl_802A3930:
 /* 802A3980 002A08C0  40 82 00 34 */	bne lbl_802A39B4
 /* 802A3984 002A08C4  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3988 002A08C8  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
-/* 802A398C 002A08CC  4B FE CE BD */	bl JASGenericMemPool
+/* 802A398C 002A08CC  4B FE CE BD */	bl __ct__17JASGenericMemPoolFv
 /* 802A3990 002A08D0  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3994 002A08D4  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
 .global JASMemPool_NS_dtor_X1_
@@ -702,7 +702,7 @@ lbl_802A3A08:
 /* 802A3A54 002A0994  40 82 00 34 */	bne lbl_802A3A88
 /* 802A3A58 002A0998  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3A5C 002A099C  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
-/* 802A3A60 002A09A0  4B FE CD E9 */	bl JASGenericMemPool
+/* 802A3A60 002A09A0  4B FE CD E9 */	bl __ct__17JASGenericMemPoolFv
 /* 802A3A64 002A09A4  3C 60 80 43 */	lis r3, lbl_804340B0@ha
 /* 802A3A68 002A09A8  38 63 40 B0 */	addi r3, r3, lbl_804340B0@l
 .global JASMemPool_NS_dtor_X1_

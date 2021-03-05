@@ -16,7 +16,7 @@
 /* 80026818 00023758  7F A4 EB 78 */ mr r4, r29
 /* 8002681C 0002375C  7F C5 F3 78 */ mr r5, r30
 /* 80026820 00023760  7F E6 FB 78 */ mr r6, r31
-/* 80026824 00023764  4B FF F4 B9 */ bl dStage_doorInfoInit
+/* 80026824 00023764  4B FF F4 B9 */ bl dStage_doorInfoInit__FP11dStage_dt_cPviPv
 /* 80026828 00023768  38 60 00 01 */ li r3, 1
 /* 8002682C 0002376C  39 61 00 20 */ addi r11, r1, 0x20
 /* 80026830 00023770  48 33 B9 F5 */ bl _restgpr_28

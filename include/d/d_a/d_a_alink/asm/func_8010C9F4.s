@@ -38,7 +38,7 @@ lbl_8010CA6C:
 /* 8010CA84 001099C4  4B FC 1E 1D */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 8010CA88 001099C8  48 00 00 5C */ b lbl_8010CAE4
 lbl_8010CA8C:
-/* 8010CA8C 001099CC  48 07 4B B5 */ bl dCam_getBody
+/* 8010CA8C 001099CC  48 07 4B B5 */ bl dCam_getBody__Fv
 /* 8010CA90 001099D0  38 80 00 04 */ li r4, 4
 /* 8010CA94 001099D4  48 05 4A 61 */ bl ChangeModeOK__9dCamera_cFl
 /* 8010CA98 001099D8  54 60 06 3F */ clrlwi. r0, r3, 0x18

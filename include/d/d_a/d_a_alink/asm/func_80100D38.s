@@ -20,7 +20,7 @@ lbl_80100D78:
 /* 80100D7C 000FDCBC  2C 00 00 00 */ cmpwi r0, 0
 /* 80100D80 000FDCC0  40 82 00 0C */ bne lbl_80100D8C
 /* 80100D84 000FDCC4  7F E3 FB 78 */ mr r3, r31
-/* 80100D88 000FDCC8  4B FF FB 65 */ bl checkNextAction__9daAlink_cFiRoofHang
+/* 80100D88 000FDCC8  4B FF FB 65 */ bl checkNextActionRoofHang__9daAlink_cFv
 lbl_80100D8C:
 /* 80100D8C 000FDCCC  38 60 00 01 */ li r3, 1
 lbl_80100D90:

@@ -15,7 +15,7 @@
 /* 80030818 0002D758  38 A5 06 A0 */ addi r5, r5, __dt__13mDoExt_bckAnmFv@l
 /* 8003081C 0002D75C  38 C0 00 1C */ li r6, 0x1c
 /* 80030820 0002D760  38 E0 00 02 */ li r7, 2
-/* 80030824 0002D764  48 33 15 3D */ bl func_80361D60
+/* 80030824 0002D764  48 33 15 3D */ bl __construct_array
 /* 80030828 0002D768  38 7F 00 40 */ addi r3, r31, 0x40
 /*.global mDoExt_bpkAnm*/
 /* 8003082C 0002D76C  3C 80 80 03 */ lis r4, __ct__13mDoExt_bpkAnmFv@ha
@@ -27,7 +27,7 @@
 /* 80030838 0002D778  38 A5 06 F4 */ addi r5, r5, __dt__13mDoExt_bpkAnmFv@l
 /* 8003083C 0002D77C  38 C0 00 18 */ li r6, 0x18
 /* 80030840 0002D780  38 E0 00 02 */ li r7, 2
-/* 80030844 0002D784  48 33 15 1D */ bl func_80361D60
+/* 80030844 0002D784  48 33 15 1D */ bl __construct_array
 /* 80030848 0002D788  38 7F 00 70 */ addi r3, r31, 0x70
 /*.global mDoExt_brkAnm*/
 /* 8003084C 0002D78C  3C 80 80 03 */ lis r4, __ct__13mDoExt_brkAnmFv@ha
@@ -39,7 +39,7 @@
 /* 80030858 0002D798  38 A5 07 48 */ addi r5, r5, __dt__13mDoExt_brkAnmFv@l
 /* 8003085C 0002D79C  38 C0 00 18 */ li r6, 0x18
 /* 80030860 0002D7A0  38 E0 00 02 */ li r7, 2
-/* 80030864 0002D7A4  48 33 14 FD */ bl func_80361D60
+/* 80030864 0002D7A4  48 33 14 FD */ bl __construct_array
 /* 80030868 0002D7A8  38 7F 00 A0 */ addi r3, r31, 0xa0
 /*.global mDoExt_brkAnm*/
 /* 8003086C 0002D7AC  3C 80 80 03 */ lis r4, __ct__13mDoExt_brkAnmFv@ha
@@ -51,7 +51,7 @@
 /* 80030878 0002D7B8  38 A5 07 48 */ addi r5, r5, __dt__13mDoExt_brkAnmFv@l
 /* 8003087C 0002D7BC  38 C0 00 18 */ li r6, 0x18
 /* 80030880 0002D7C0  38 E0 00 02 */ li r7, 2
-/* 80030884 0002D7C4  48 33 14 DD */ bl func_80361D60
+/* 80030884 0002D7C4  48 33 14 DD */ bl __construct_array
 /* 80030888 0002D7C8  38 7F 00 D0 */ addi r3, r31, 0xd0
 /*.global mDoExt_btkAnm*/
 /* 8003088C 0002D7CC  3C 80 80 03 */ lis r4, __ct__13mDoExt_btkAnmFv@ha
@@ -63,7 +63,7 @@
 /* 80030898 0002D7D8  38 A5 07 9C */ addi r5, r5, __dt__13mDoExt_btkAnmFv@l
 /* 8003089C 0002D7DC  38 C0 00 18 */ li r6, 0x18
 /* 800308A0 0002D7E0  38 E0 00 02 */ li r7, 2
-/* 800308A4 0002D7E4  48 33 14 BD */ bl func_80361D60
+/* 800308A4 0002D7E4  48 33 14 BD */ bl __construct_array
 /* 800308A8 0002D7E8  3B DF 01 00 */ addi r30, r31, 0x100
 /* 800308AC 0002D7EC  3C 60 80 3A */ lis r3, lbl_803A3354@ha
 /* 800308B0 0002D7F0  38 03 33 54 */ addi r0, r3, lbl_803A3354@l

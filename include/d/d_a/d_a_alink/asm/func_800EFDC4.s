@@ -145,7 +145,7 @@ lbl_800EFFB4:
 /* 800EFFDC 000ECF1C  80 63 00 0C */ lwz r3, 0xc(r3)
 /* 800EFFE0 000ECF20  38 63 02 D0 */ addi r3, r3, 0x2d0
 /* 800EFFE4 000ECF24  38 81 00 08 */ addi r4, r1, 8
-/* 800EFFE8 000ECF28  4B F1 CC 19 */ bl mDoMtx_MtxToRot
+/* 800EFFE8 000ECF28  4B F1 CC 19 */ bl mDoMtx_MtxToRot__FPA4_CfP5csXyz
 /* 800EFFEC 000ECF2C  38 7C 04 E4 */ addi r3, r28, 0x4e4
 /* 800EFFF0 000ECF30  A8 01 00 0C */ lha r0, 0xc(r1)
 /* 800EFFF4 000ECF34  7C 00 00 D0 */ neg r0, r0
@@ -267,7 +267,7 @@ lbl_800F017C:
 /* 800F01AC 000ED0EC  41 82 00 58 */ beq lbl_800F0204
 /* 800F01B0 000ED0F0  7F A3 EB 78 */ mr r3, r29
 /* 800F01B4 000ED0F4  39 9D 18 EC */ addi r12, r29, 0x18ec
-/* 800F01B8 000ED0F8  48 27 1E CD */ bl func_80362084
+/* 800F01B8 000ED0F8  48 27 1E CD */ bl __ptmf_scall
 /* 800F01BC 000ED0FC  60 00 00 00 */ nop
 /* 800F01C0 000ED100  A8 1C 30 0C */ lha r0, 0x300c(r28)
 /* 800F01C4 000ED104  2C 00 00 00 */ cmpwi r0, 0
@@ -323,7 +323,7 @@ lbl_800F0240:
 /* 800F0284 000ED1C4  38 A5 E5 A4 */ addi r5, r5, lbl_8038E5A4@l
 /* 800F0288 000ED1C8  3B C5 00 28 */ addi r30, r5, 0x28
 /* 800F028C 000ED1CC  7F C5 F3 78 */ mr r5, r30
-/* 800F0290 000ED1D0  4B FB CE 65 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800F0290 000ED1D0  4B FB CE 65 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800F0294 000ED1D4  7F 83 E3 78 */ mr r3, r28
 /* 800F0298 000ED1D8  38 80 00 4F */ li r4, 0x4f
 /* 800F029C 000ED1DC  4B FB C1 B5 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
@@ -331,7 +331,7 @@ lbl_800F0240:
 /* 800F02A4 000ED1E4  7F 83 E3 78 */ mr r3, r28
 /* 800F02A8 000ED1E8  38 A0 00 02 */ li r5, 2
 /* 800F02AC 000ED1EC  7F C6 F3 78 */ mr r6, r30
-/* 800F02B0 000ED1F0  4B FB D8 09 */ bl setUnderAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERffsfParam
+/* 800F02B0 000ED1F0  4B FB D8 09 */ bl setUnderAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERPC16daAlinkHIO_anm_c
 /* 800F02B4 000ED1F4  80 1C 05 74 */ lwz r0, 0x574(r28)
 /* 800F02B8 000ED1F8  60 00 10 00 */ ori r0, r0, 0x1000
 /* 800F02BC 000ED1FC  90 1C 05 74 */ stw r0, 0x574(r28)

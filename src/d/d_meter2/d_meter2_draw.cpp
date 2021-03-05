@@ -8,7 +8,7 @@
 extern "C" {
 char* strcpy(char*, const char*);
 int strcmp(const char*, const char*);
-u16 dComIfGs_getMaxLifeGauge(void);
+u16 dComIfGs_getMaxLifeGauge__Fv(void);
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
@@ -16,30 +16,30 @@ void alloc__7JKRHeapFUli(void);
 void animationTransform__7J2DPaneFv(void);
 void appendChild__7J2DPaneFP7J2DPane(void);
 void cLib_addCalc2__FPffff(void);
-void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter(void);
+void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs(void);
 void paneTrans__8CPaneMgrFff(void);
 void setBlackWhite__8CPaneMgrFQ28JUtility6TColorQ28JUtility6TColor(void);
-void CPaneMgr_X1_(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
 void getAlphaRate__13CPaneMgrAlphaFv(void);
 void hide__13CPaneMgrAlphaFv(void);
 void isVisible__13CPaneMgrAlphaFv(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void show__13CPaneMgrAlphaFv(void);
-void CPaneMgrAlpha_X1_(void);
-void dCam_getBody(void);
-void dComIfGp_getSelectItem(void);
+void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap(void);
+void dCam_getBody__Fv(void);
+void dComIfGp_getSelectItem__Fi(void);
 void setAlphaRate__15dKantera_icon_cFf(void);
 void setNowGauge__15dKantera_icon_cFUsUs(void);
 void setPos__15dKantera_icon_cFff(void);
 void setScale__15dKantera_icon_cFff(void);
-void dKantera_icon_c(void);
+void __ct__15dKantera_icon_cFv(void);
 void changeTextureItemB__13dMeter2Draw_cFUc(void);
 void changeTextureItemXY__13dMeter2Draw_cFiUc(void);
 void drawButton3D__13dMeter2Draw_cFUc(void);
 void drawButtonA__13dMeter2Draw_cFUcfffffbb(void);
 void drawButtonB__13dMeter2Draw_cFUcbfffffb(void);
 void drawButtonC__13dMeter2Draw_cFUcb(void);
-void drawButtonC__13dMeter2Draw_cFUcbross(void);
+void drawButtonCross__13dMeter2Draw_cFff(void);
 void drawButtonR__13dMeter2Draw_cFUcUcbb(void);
 void drawButtonS__13dMeter2Draw_cFUc(void);
 void drawButtonXY__13dMeter2Draw_cFiUcUcbb(void);
@@ -50,7 +50,7 @@ void drawKey__13dMeter2Draw_cFs(void);
 void drawLife__13dMeter2Draw_cFssff(void);
 void drawLightDrop__13dMeter2Draw_cFUcUcffffUc(void);
 void drawMagic__13dMeter2Draw_cFssff(void);
-void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_(void);
+void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
 void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
 void drawRupee__13dMeter2Draw_cFs(void);
 void getActionString__13dMeter2Draw_cFUcUcPUc(void);
@@ -58,12 +58,12 @@ void getCanoeFishing__13dMeter2Draw_cFv(void);
 void getFishingType__13dMeter2Draw_cFv(void);
 void getNumberTexture__13dMeter2Draw_cFi(void);
 void init__13dMeter2Draw_cFv(void);
-void init__13dMeter2Draw_cFvButton(void);
-void init__13dMeter2Draw_cFvButtonCross(void);
-void init__13dMeter2Draw_cFvLife(void);
-void init__13dMeter2Draw_cFvLightDrop(void);
-void init__13dMeter2Draw_cFvMagic(void);
-void init__13dMeter2Draw_cFvRupeeKey(void);
+void initButton__13dMeter2Draw_cFv(void);
+void initButtonCross__13dMeter2Draw_cFv(void);
+void initLife__13dMeter2Draw_cFv(void);
+void initLightDrop__13dMeter2Draw_cFv(void);
+void initMagic__13dMeter2Draw_cFv(void);
+void initRupeeKey__13dMeter2Draw_cFv(void);
 void isBButtonShow__13dMeter2Draw_cFb(void);
 void playPikariBckAnimation__13dMeter2Draw_cFf(void);
 void playPikariBpkAnimation__13dMeter2Draw_cFf(void);
@@ -86,18 +86,18 @@ void setItemParamX__13dMeter2Draw_cFUc(void);
 void setItemParamY__13dMeter2Draw_cFUc(void);
 void setItemParamZ__13dMeter2Draw_cFUc(void);
 void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
-void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKana(void);
-void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji(void);
+void getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
+void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void isDirectUseItem__13dMeter2Info_cFi(void);
 void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void);
-void dMeter2Info_getNumberTextureName(void);
-void dMeter2Info_isItemOpenCheck(void);
-void dMeter2Info_isMapOpenCheck(void);
-void dMeter2Info_set2DVibration(void);
+void dMeter2Info_getNumberTextureName__Fi(void);
+void dMeter2Info_isItemOpenCheck__Fv(void);
+void dMeter2Info_isMapOpenCheck__Fv(void);
+void dMeter2Info_set2DVibration__Fv(void);
 void getStatus__12dMsgObject_cFv(void);
 void isHowlMessage__12dMsgObject_cFv(void);
-void dMsgObject_getGroupID(void);
-void dPaneClass_showNullPane(void);
+void dMsgObject_getGroupID__Fv(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void free__7JKRHeapFPv(void);
 void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive(void);
 void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader(void);
@@ -108,14 +108,14 @@ void isBottleItem__FUc(void);
 void isEventBit__11dSv_event_cCFUs(void);
 void isLightDropGetFlag__16dSv_light_drop_cCFUc(void);
 void load__20J2DAnmLoaderDataBaseFPCv(void);
-void J2DPicture_X3_(void);
+void __ct__10J2DPictureFPC7ResTIMG(void);
 void J2DPicture_X4_(void);
 void animation__9J2DScreenFv(void);
 void draw__9J2DScreenFffPC14J2DGrafContext(void);
 void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 void getStringPtr__10J2DTextBoxCFv(void);
-void setString__10J2DTextBoxFPCce_X1_(void);
-void mDoExt_getMesgFont(void);
+void setString__10J2DTextBoxFsPCce(void);
+void mDoExt_getMesgFont__Fv(void);
 void rotate__7J2DPaneFff13J2DRotateAxisf(void);
 void setBasePosition__7J2DPaneF15J2DBasePosition(void);
 }
@@ -218,14 +218,14 @@ extern u8 lbl_803A0004;
 extern "C" {
 // __ct__13dMeter2Draw_cFP10JKRExpHeap
 // dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap*)
-asm void dMeter2Draw_c(void) {
+asm void __ct__13dMeter2Draw_cFP10JKRExpHeap(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8020FAB4.s"
 }
 
 // __dt__13dMeter2Draw_cFv
 // dMeter2Draw_c::~dMeter2Draw_c(void)
-asm void func_802102F8(void) {
+asm void __dt__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_802102F8.s"
 }
@@ -246,49 +246,49 @@ asm void exec__13dMeter2Draw_cFUl(void) {
 
 // draw__13dMeter2Draw_cFv
 // dMeter2Draw_c::draw(void)
-asm void func_8021151C(void) {
+asm void draw__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8021151C.s"
 }
 
 // initLife__13dMeter2Draw_cFv
 // dMeter2Draw_c::initLife(void)
-asm void init__13dMeter2Draw_cFvLife(void) {
+asm void initLife__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80211BEC.s"
 }
 
 // initMagic__13dMeter2Draw_cFv
 // dMeter2Draw_c::initMagic(void)
-asm void init__13dMeter2Draw_cFvMagic(void) {
+asm void initMagic__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80211E64.s"
 }
 
 // initLightDrop__13dMeter2Draw_cFv
 // dMeter2Draw_c::initLightDrop(void)
-asm void init__13dMeter2Draw_cFvLightDrop(void) {
+asm void initLightDrop__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80212190.s"
 }
 
 // initRupeeKey__13dMeter2Draw_cFv
 // dMeter2Draw_c::initRupeeKey(void)
-asm void init__13dMeter2Draw_cFvRupeeKey(void) {
+asm void initRupeeKey__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80212404.s"
 }
 
 // initButton__13dMeter2Draw_cFv
 // dMeter2Draw_c::initButton(void)
-asm void init__13dMeter2Draw_cFvButton(void) {
+asm void initButton__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_802126E4.s"
 }
 
 // initButtonCross__13dMeter2Draw_cFv
 // dMeter2Draw_c::initButtonCross(void)
-asm void init__13dMeter2Draw_cFvButtonCross(void) {
+asm void initButtonCross__13dMeter2Draw_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8021350C.s"
 }
@@ -328,13 +328,13 @@ asm void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6
 }
 
 // drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
-asm void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_(void) {
+asm void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_802140DC.s"
 }
 
 // drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-asm void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUcHakusha(void) {
+asm void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8021462C.s"
 }
@@ -582,7 +582,7 @@ asm void drawButtonS__13dMeter2Draw_cFUc(void) {
 
 // drawButtonBin__13dMeter2Draw_cFUc
 // dMeter2Draw_c::drawButtonBin(unsigned char)
-asm void drawButtonB__13dMeter2Draw_cFUcbfffffbin(void) {
+asm void drawButtonBin__13dMeter2Draw_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80217A10.s"
 }
@@ -602,7 +602,7 @@ asm void getButtonCrossParentInitTransY__13dMeter2Draw_cFv(void) {
 
 // drawButtonCross__13dMeter2Draw_cFff
 // dMeter2Draw_c::drawButtonCross(float, float)
-asm void drawButtonC__13dMeter2Draw_cFUcbross(void) {
+asm void drawButtonCross__13dMeter2Draw_cFff(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80218254.s"
 }
@@ -780,7 +780,7 @@ asm void drawItemNum__13dMeter2Draw_cFUcf(void) {
 
 // drawKanteraMeter__13dMeter2Draw_cFUcf
 // dMeter2Draw_c::drawKanteraMeter(unsigned char, float)
-asm void drawKantera__13dMeter2Draw_cFllffMeter(void) {
+asm void drawKanteraMeter__13dMeter2Draw_cFUcf(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8021AF78.s"
 }

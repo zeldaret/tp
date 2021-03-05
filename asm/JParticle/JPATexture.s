@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027d7d4
 
 
-.global JPATexture
-JPATexture:
+.global __ct__10JPATextureFPCUc
+__ct__10JPATextureFPCUc:
 /* 8027D7D4 0027A714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D7D8 0027A718  7C 08 02 A6 */	mflr r0
 /* 8027D7DC 0027A71C  90 01 00 14 */	stw r0, 0x14(r1)

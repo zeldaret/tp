@@ -10,7 +10,7 @@
 /* 80135F24 00132E64  C0 02 93 A0 */ lfs f0, lbl_80452DA0-_SDA2_BASE_(r2)
 /* 80135F28 00132E68  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80135F2C 00132E6C  40 80 00 18 */ bge lbl_80135F44
-/* 80135F30 00132E70  4B FF F5 99 */ bl changeWolf__9daAlink_cFvHangEndProc
+/* 80135F30 00132E70  4B FF F5 99 */ bl changeWolfHangEndProc__9daAlink_cFv
 /* 80135F34 00132E74  2C 03 00 00 */ cmpwi r3, 0
 /* 80135F38 00132E78  41 82 00 0C */ beq lbl_80135F44
 /* 80135F3C 00132E7C  38 60 00 01 */ li r3, 1

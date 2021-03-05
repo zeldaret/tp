@@ -3,8 +3,8 @@
 .section .text, "ax" # 8023b9b4
 
 
-.global dMsgScrnArrow_c
-dMsgScrnArrow_c:
+.global __ct__15dMsgScrnArrow_cFv
+__ct__15dMsgScrnArrow_cFv:
 /* 8023B9B4 002388F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023B9B8 002388F8  7C 08 02 A6 */	mflr r0
 /* 8023B9BC 002388FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -31,7 +31,7 @@ lbl_8023B9F0:
 /* 8023BA0C 0023894C  80 DE 5C 6C */	lwz r6, 0x5c6c(r30)
 /* 8023BA10 00238950  48 0B CC 39 */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 8023BA14 00238954  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8023BA18 00238958  48 01 96 D1 */	bl dPaneClass_showNullPane
+/* 8023BA18 00238958  48 01 96 D1 */	bl dPaneClass_showNullPane__FP9J2DScreen
 /* 8023BA1C 0023895C  38 60 00 04 */	li r3, 4
 /* 8023BA20 00238960  64 63 00 04 */	oris r3, r3, 4
 /* 8023BA24 00238964  7C 72 E3 A6 */	mtspr 0x392, r3
@@ -79,7 +79,7 @@ lbl_8023B9F0:
 /* 8023BACC 00238A0C  38 A5 74 5F */	addi r5, r5, 0x7365745F@l
 /* 8023BAD0 00238A10  38 E0 00 00 */	li r7, 0
 /* 8023BAD4 00238A14  39 00 00 00 */	li r8, 0
-/* 8023BAD8 00238A18  48 01 7E AD */	bl CPaneMgr_X1_
+/* 8023BAD8 00238A18  48 01 7E AD */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 8023BADC 00238A1C  7C 60 1B 78 */	mr r0, r3
 lbl_8023BAE0:
 /* 8023BAE0 00238A20  90 1F 00 10 */	stw r0, 0x10(r31)
@@ -94,7 +94,7 @@ lbl_8023BAE0:
 /* 8023BB04 00238A44  38 A5 61 5F */	addi r5, r5, 0x0079615F@l
 /* 8023BB08 00238A48  38 E0 00 00 */	li r7, 0
 /* 8023BB0C 00238A4C  39 00 00 00 */	li r8, 0
-/* 8023BB10 00238A50  48 01 7E 75 */	bl CPaneMgr_X1_
+/* 8023BB10 00238A50  48 01 7E 75 */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 8023BB14 00238A54  7C 60 1B 78 */	mr r0, r3
 lbl_8023BB18:
 /* 8023BB18 00238A58  90 1F 00 14 */	stw r0, 0x14(r31)
@@ -145,7 +145,7 @@ lbl_8023BB18:
 /* 8023BBCC 00238B0C  38 A0 79 61 */	li r5, 0x7961
 /* 8023BBD0 00238B10  38 E0 00 00 */	li r7, 0
 /* 8023BBD4 00238B14  39 00 00 00 */	li r8, 0
-/* 8023BBD8 00238B18  48 01 7D AD */	bl CPaneMgr_X1_
+/* 8023BBD8 00238B18  48 01 7D AD */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 8023BBDC 00238B1C  7C 60 1B 78 */	mr r0, r3
 lbl_8023BBE0:
 /* 8023BBE0 00238B20  90 1F 00 18 */	stw r0, 0x18(r31)

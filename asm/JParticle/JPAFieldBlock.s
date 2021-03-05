@@ -1260,8 +1260,8 @@ lbl_8027CF28:
 /* 8027D080 00279FC0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8027D084 00279FC4  4E 80 00 20 */	blr 
 
-.global JPAFieldBlock
-JPAFieldBlock:
+.global __ct__13JPAFieldBlockFPCUcP7JKRHeap
+__ct__13JPAFieldBlockFPCUcP7JKRHeap:
 /* 8027D088 00279FC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D08C 00279FCC  7C 08 02 A6 */	mflr r0
 /* 8027D090 00279FD0  90 01 00 14 */	stw r0, 0x14(r1)

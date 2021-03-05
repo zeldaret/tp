@@ -185,7 +185,7 @@ lbl_800BE1CC:
 /* 800BE1F8 000BB138  48 0A 08 15 */ bl setParamData__9daPy_py_cFiiii
 /* 800BE1FC 000BB13C  80 81 00 08 */ lwz r4, 8(r1)
 /* 800BE200 000BB140  38 A0 00 00 */ li r5, 0
-/* 800BE204 000BB144  4B F6 92 AD */ bl dStage_restartRoom
+/* 800BE204 000BB144  4B F6 92 AD */ bl dStage_restartRoom__FUlUli
 /* 800BE208 000BB148  A0 1C 2F E8 */ lhz r0, 0x2fe8(r28)
 /* 800BE20C 000BB14C  28 00 01 50 */ cmplwi r0, 0x150
 /* 800BE210 000BB150  41 82 00 38 */ beq lbl_800BE248

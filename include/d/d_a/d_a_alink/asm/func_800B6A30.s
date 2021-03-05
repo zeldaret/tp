@@ -196,9 +196,9 @@ lbl_800B6CE4:
 /* 800B6D0C 000B3C4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B6D10 000B3C50  41 82 00 18 */ beq lbl_800B6D28
 /*.global daAlink_searchTagKandelaar*/
-/* 800B6D14 000B3C54  3C 60 80 11 */ lis r3, daAlink_searchTagKandelaar@ha
+/* 800B6D14 000B3C54  3C 60 80 11 */ lis r3, daAlink_searchTagKandelaar__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchTagKandelaar*/
-/* 800B6D18 000B3C58  38 63 06 54 */ addi r3, r3, daAlink_searchTagKandelaar@l
+/* 800B6D18 000B3C58  38 63 06 54 */ addi r3, r3, daAlink_searchTagKandelaar__FP10fopAc_ac_cPv@l
 /* 800B6D1C 000B3C5C  38 80 00 00 */ li r4, 0
 /* 800B6D20 000B3C60  4B F6 2A D9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B6D24 000B3C64  7C 7D 1B 78 */ mr r29, r3

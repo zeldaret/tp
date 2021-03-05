@@ -10,7 +10,7 @@ __ct__Q210JAUSection12TSectionDataFv:
 /* 802A4EF0 002A1E30  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802A4EF4 002A1E34  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A4EF8 002A1E38  7C 7F 1B 78 */	mr r31, r3
-/* 802A4EFC 002A1E3C  48 00 1B 5D */	bl JAUDynamicSeqDataBlocks
+/* 802A4EFC 002A1E3C  48 00 1B 5D */	bl __ct__23JAUDynamicSeqDataBlocksFv
 /* 802A4F00 002A1E40  38 7F 00 28 */	addi r3, r31, 0x28
 /* 802A4F04 002A1E44  48 03 70 11 */	bl initiate__10JSUPtrListFv
 /* 802A4F08 002A1E48  38 7F 00 34 */	addi r3, r31, 0x34
@@ -58,8 +58,8 @@ lbl_802A4F98:
 /* 802A4FA0 002A1EE0  7F C3 F3 78 */	mr r3, r30
 /* 802A4FA4 002A1EE4  7F E4 FB 78 */	mr r4, r31
 /* 802A4FA8 002A1EE8  4C C6 31 82 */	crclr 6
-/* 802A4FAC 002A1EEC  48 0C 17 F1 */	bl func_8036679C
-/* 802A4FB0 002A1EF0  48 0B DB 0D */	bl func_80362ABC
+/* 802A4FAC 002A1EEC  48 0C 17 F1 */	bl fprintf
+/* 802A4FB0 002A1EF0  48 0B DB 0D */	bl abort
 lbl_802A4FB4:
 /* 802A4FB4 002A1EF4  38 7C 00 54 */	addi r3, r28, 0x54
 /* 802A4FB8 002A1EF8  7F A4 EB 78 */	mr r4, r29
@@ -94,8 +94,8 @@ lbl_802A5014:
 /* 802A501C 002A1F5C  7F C3 F3 78 */	mr r3, r30
 /* 802A5020 002A1F60  7F E4 FB 78 */	mr r4, r31
 /* 802A5024 002A1F64  4C C6 31 82 */	crclr 6
-/* 802A5028 002A1F68  48 0C 17 75 */	bl func_8036679C
-/* 802A502C 002A1F6C  48 0B DA 91 */	bl func_80362ABC
+/* 802A5028 002A1F68  48 0C 17 75 */	bl fprintf
+/* 802A502C 002A1F6C  48 0B DA 91 */	bl abort
 lbl_802A5030:
 /* 802A5030 002A1F70  38 7C 00 34 */	addi r3, r28, 0x34
 /* 802A5034 002A1F74  7F A4 EB 78 */	mr r4, r29
@@ -110,8 +110,8 @@ lbl_802A5030:
 /* 802A5058 002A1F98  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A505C 002A1F9C  4E 80 00 20 */	blr 
 
-.global JAUSection
-JAUSection:
+.global __ct__10JAUSectionFP14JAUSectionHeapUll
+__ct__10JAUSectionFP14JAUSectionHeapUll:
 /* 802A5060 002A1FA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A5064 002A1FA4  7C 08 02 A6 */	mflr r0
 /* 802A5068 002A1FA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -352,7 +352,7 @@ newStreamFileTable__10JAUSectionFPCvb:
 /* 802A53BC 002A22FC  38 03 9B 14 */	addi r0, r3, lbl_803C9B14@l
 /* 802A53C0 002A2300  90 1B 00 00 */	stw r0, 0(r27)
 /* 802A53C4 002A2304  38 61 00 08 */	addi r3, r1, 8
-/* 802A53C8 002A2308  48 00 20 59 */	bl JAUStreamFileTable
+/* 802A53C8 002A2308  48 00 20 59 */	bl __ct__18JAUStreamFileTableFv
 /* 802A53CC 002A230C  38 61 00 08 */	addi r3, r1, 8
 /* 802A53D0 002A2310  7F C4 F3 78 */	mr r4, r30
 /* 802A53D4 002A2314  48 00 20 59 */	bl init__18JAUStreamFileTableFPCv
@@ -413,7 +413,7 @@ lbl_802A5480:
 /* 802A5498 002A23D8  38 03 9A 1C */	addi r0, r3, lbl_803C9A1C@l
 /* 802A549C 002A23DC  90 1C 00 00 */	stw r0, 0(r28)
 /* 802A54A0 002A23E0  38 7B 00 04 */	addi r3, r27, 4
-/* 802A54A4 002A23E4  48 00 1F 7D */	bl JAUStreamFileTable
+/* 802A54A4 002A23E4  48 00 1F 7D */	bl __ct__18JAUStreamFileTableFv
 /* 802A54A8 002A23E8  3C 60 80 3D */	lis r3, lbl_803C9B50@ha
 /* 802A54AC 002A23EC  38 03 9B 50 */	addi r0, r3, lbl_803C9B50@l
 /* 802A54B0 002A23F0  90 1B 00 00 */	stw r0, 0(r27)
@@ -462,7 +462,7 @@ lbl_802A5530:
 /* 802A5544 002A2484  48 02 97 09 */	bl __nw__FUl
 /* 802A5548 002A2488  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A554C 002A248C  41 82 00 0C */	beq lbl_802A5558
-/* 802A5550 002A2490  48 00 12 2D */	bl JAUSeqDataMgr_SeqCollection
+/* 802A5550 002A2490  48 00 12 2D */	bl __ct__27JAUSeqDataMgr_SeqCollectionFv
 /* 802A5554 002A2494  7C 7F 1B 78 */	mr r31, r3
 lbl_802A5558:
 /* 802A5558 002A2498  38 7F 00 04 */	addi r3, r31, 4
@@ -500,7 +500,7 @@ newStaticSeqDataBlock___10JAUSectionF10JAISoundIDUl:
 /* 802A55CC 002A250C  48 02 96 81 */	bl __nw__FUl
 /* 802A55D0 002A2510  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A55D4 002A2514  41 82 00 0C */	beq lbl_802A55E0
-/* 802A55D8 002A2518  48 00 13 1D */	bl JAUSeqDataBlock
+/* 802A55D8 002A2518  48 00 13 1D */	bl __ct__15JAUSeqDataBlockFv
 /* 802A55DC 002A251C  7C 7E 1B 78 */	mr r30, r3
 lbl_802A55E0:
 /* 802A55E0 002A2520  28 1E 00 00 */	cmplwi r30, 0
@@ -599,8 +599,8 @@ lbl_802A5718:
 /* 802A5728 002A2668  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A572C 002A266C  4E 80 00 20 */	blr 
 
-.global newStaticSeqData__10JAUSectionF10JAISoundIDPCvUl_X1_
-newStaticSeqData__10JAUSectionF10JAISoundIDPCvUl_X1_:
+.global newStaticSeqData__10JAUSectionF10JAISoundID
+newStaticSeqData__10JAUSectionF10JAISoundID:
 /* 802A5730 002A2670  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802A5734 002A2674  7C 08 02 A6 */	mflr r0
 /* 802A5738 002A2678  90 01 00 34 */	stw r0, 0x34(r1)
@@ -719,8 +719,8 @@ newWaveBank__10JAUSectionFUlPCv:
 /* 802A58D4 002A2814  38 84 B9 50 */	addi r4, r4, lbl_8039B950@l
 /* 802A58D8 002A2818  38 84 00 47 */	addi r4, r4, 0x47
 /* 802A58DC 002A281C  4C C6 31 82 */	crclr 6
-/* 802A58E0 002A2820  48 0C 0E BD */	bl func_8036679C
-/* 802A58E4 002A2824  48 0B D1 D9 */	bl func_80362ABC
+/* 802A58E0 002A2820  48 0C 0E BD */	bl fprintf
+/* 802A58E4 002A2824  48 0B D1 D9 */	bl abort
 lbl_802A58E8:
 /* 802A58E8 002A2828  38 7F 00 6C */	addi r3, r31, 0x6c
 /* 802A58EC 002A282C  7F 84 E3 78 */	mr r4, r28
@@ -768,8 +768,8 @@ loadWaveArc__10JAUSectionFUlUl:
 /* 802A5980 002A28C0  38 84 B9 50 */	addi r4, r4, lbl_8039B950@l
 /* 802A5984 002A28C4  38 84 00 24 */	addi r4, r4, 0x24
 /* 802A5988 002A28C8  4C C6 31 82 */	crclr 6
-/* 802A598C 002A28CC  48 0C 0E 11 */	bl func_8036679C
-/* 802A5990 002A28D0  48 0B D1 2D */	bl func_80362ABC
+/* 802A598C 002A28CC  48 0C 0E 11 */	bl fprintf
+/* 802A5990 002A28D0  48 0B D1 2D */	bl abort
 lbl_802A5994:
 /* 802A5994 002A28D4  38 7E 00 6C */	addi r3, r30, 0x6c
 /* 802A5998 002A28D8  7F A4 EB 78 */	mr r4, r29
@@ -881,8 +881,8 @@ lbl_802A5AE4:
 /* 802A5B0C 002A2A4C  38 84 B9 50 */	addi r4, r4, lbl_8039B950@l
 /* 802A5B10 002A2A50  38 84 00 47 */	addi r4, r4, 0x47
 /* 802A5B14 002A2A54  4C C6 31 82 */	crclr 6
-/* 802A5B18 002A2A58  48 0C 0C 85 */	bl func_8036679C
-/* 802A5B1C 002A2A5C  48 0B CF A1 */	bl func_80362ABC
+/* 802A5B18 002A2A58  48 0C 0C 85 */	bl fprintf
+/* 802A5B1C 002A2A5C  48 0B CF A1 */	bl abort
 lbl_802A5B20:
 /* 802A5B20 002A2A60  38 7E 00 8C */	addi r3, r30, 0x8c
 /* 802A5B24 002A2A64  7F 64 DB 78 */	mr r4, r27
@@ -973,8 +973,8 @@ lbl_802A5C28:
 /* 802A5C50 002A2B90  38 84 B9 50 */	addi r4, r4, lbl_8039B950@l
 /* 802A5C54 002A2B94  38 84 00 47 */	addi r4, r4, 0x47
 /* 802A5C58 002A2B98  4C C6 31 82 */	crclr 6
-/* 802A5C5C 002A2B9C  48 0C 0B 41 */	bl func_8036679C
-/* 802A5C60 002A2BA0  48 0B CE 5D */	bl func_80362ABC
+/* 802A5C5C 002A2B9C  48 0C 0B 41 */	bl fprintf
+/* 802A5C60 002A2BA0  48 0B CE 5D */	bl abort
 lbl_802A5C64:
 /* 802A5C64 002A2BA4  38 7D 00 8C */	addi r3, r29, 0x8c
 /* 802A5C68 002A2BA8  7F C4 F3 78 */	mr r4, r30
@@ -1106,7 +1106,7 @@ __ct__Q214JAUSectionHeap16TSectionHeapDataFv:
 /* 802A5E20 002A2D60  38 A0 03 FC */	li r5, 0x3fc
 /* 802A5E24 002A2D64  4B D5 D6 35 */	bl memset
 /* 802A5E28 002A2D68  38 7F 04 08 */	addi r3, r31, 0x408
-/* 802A5E2C 002A2D6C  48 00 0C 2D */	bl JAUDynamicSeqDataBlocks
+/* 802A5E2C 002A2D6C  48 00 0C 2D */	bl __ct__23JAUDynamicSeqDataBlocksFv
 /* 802A5E30 002A2D70  38 00 00 00 */	li r0, 0
 /* 802A5E34 002A2D74  90 1F 04 30 */	stw r0, 0x430(r31)
 /* 802A5E38 002A2D78  90 1F 04 34 */	stw r0, 0x434(r31)
@@ -1180,8 +1180,8 @@ releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv:
 /* 802A5F1C 002A2E5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A5F20 002A2E60  4E 80 00 20 */	blr 
 
-.global JAUNewSectionHeap
-JAUNewSectionHeap:
+.global JAUNewSectionHeap__FP12JKRSolidHeapb
+JAUNewSectionHeap__FP12JKRSolidHeapb:
 /* 802A5F24 002A2E64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A5F28 002A2E68  7C 08 02 A6 */	mflr r0
 /* 802A5F2C 002A2E6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1201,7 +1201,7 @@ JAUNewSectionHeap:
 /* 802A5F64 002A2EA4  7F 84 E3 78 */	mr r4, r28
 /* 802A5F68 002A2EA8  7F A5 EB 78 */	mr r5, r29
 /* 802A5F6C 002A2EAC  7F C6 F3 78 */	mr r6, r30
-/* 802A5F70 002A2EB0  48 00 00 71 */	bl JAUSectionHeap
+/* 802A5F70 002A2EB0  48 00 00 71 */	bl __ct__14JAUSectionHeapFP12JKRSolidHeapbl
 /* 802A5F74 002A2EB4  7C 7F 1B 78 */	mr r31, r3
 lbl_802A5F78:
 /* 802A5F78 002A2EB8  80 61 00 08 */	lwz r3, 8(r1)
@@ -1214,8 +1214,8 @@ lbl_802A5F78:
 /* 802A5F94 002A2ED4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A5F98 002A2ED8  4E 80 00 20 */	blr 
 
-.global JAUNewSectionHeap_X1_
-JAUNewSectionHeap_X1_:
+.global JAUNewSectionHeap__Fb
+JAUNewSectionHeap__Fb:
 /* 802A5F9C 002A2EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A5FA0 002A2EE0  7C 08 02 A6 */	mflr r0
 /* 802A5FA4 002A2EE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1227,15 +1227,15 @@ JAUNewSectionHeap_X1_:
 /* 802A5FBC 002A2EFC  38 A0 00 01 */	li r5, 1
 /* 802A5FC0 002A2F00  48 02 AA 65 */	bl create__12JKRSolidHeapFUlP7JKRHeapb
 /* 802A5FC4 002A2F04  7F E4 FB 78 */	mr r4, r31
-/* 802A5FC8 002A2F08  4B FF FF 5D */	bl JAUNewSectionHeap
+/* 802A5FC8 002A2F08  4B FF FF 5D */	bl JAUNewSectionHeap__FP12JKRSolidHeapb
 /* 802A5FCC 002A2F0C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802A5FD0 002A2F10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A5FD4 002A2F14  7C 08 03 A6 */	mtlr r0
 /* 802A5FD8 002A2F18  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A5FDC 002A2F1C  4E 80 00 20 */	blr 
 
-.global JAUSectionHeap
-JAUSectionHeap:
+.global __ct__14JAUSectionHeapFP12JKRSolidHeapbl
+__ct__14JAUSectionHeapFP12JKRSolidHeapbl:
 /* 802A5FE0 002A2F20  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A5FE4 002A2F24  7C 08 02 A6 */	mflr r0
 /* 802A5FE8 002A2F28  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1246,7 +1246,7 @@ JAUSectionHeap:
 /* 802A5FFC 002A2F3C  7C BF 2B 78 */	mr r31, r5
 /* 802A6000 002A2F40  7F A4 EB 78 */	mr r4, r29
 /* 802A6004 002A2F44  38 A0 00 00 */	li r5, 0
-/* 802A6008 002A2F48  4B FF F0 59 */	bl JAUSection
+/* 802A6008 002A2F48  4B FF F0 59 */	bl __ct__10JAUSectionFP14JAUSectionHeapUll
 /* 802A600C 002A2F4C  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 802A6010 002A2F50  41 82 00 14 */	beq lbl_802A6024
 /* 802A6014 002A2F54  34 7D 00 DC */	addic. r3, r29, 0xdc
@@ -1313,7 +1313,7 @@ newDynamicSeqBlock__14JAUSectionHeapFUl:
 /* 802A60DC 002A301C  48 02 8B 71 */	bl __nw__FUl
 /* 802A60E0 002A3020  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A60E4 002A3024  41 82 00 0C */	beq lbl_802A60F0
-/* 802A60E8 002A3028  48 00 08 0D */	bl JAUSeqDataBlock
+/* 802A60E8 002A3028  48 00 08 0D */	bl __ct__15JAUSeqDataBlockFv
 /* 802A60EC 002A302C  7C 7E 1B 78 */	mr r30, r3
 lbl_802A60F0:
 /* 802A60F0 002A3030  28 1E 00 00 */	cmplwi r30, 0

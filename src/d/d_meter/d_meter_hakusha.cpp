@@ -8,15 +8,15 @@ int strcmp(const char*, const char*);
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
-void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter(void);
+void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs(void);
 void paneTrans__8CPaneMgrFff(void);
-void CPaneMgr_X1_(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
 void getAlphaRate__13CPaneMgrAlphaFv(void);
 void hide__13CPaneMgrAlphaFv(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void show__13CPaneMgrAlphaFv(void);
 void getLayerNo__14dComIfG_play_cFi(int);
-void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUcHakusha(void);
+void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(void);
 void setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void alphaAnimeHakusha__15dMeterHakusha_cFUl(void);
@@ -26,7 +26,7 @@ void setAlphaButtonAnimeMin__15dMeterHakusha_cFv(void);
 void setAlphaHakushaAnimeMax__15dMeterHakusha_cFv(void);
 void setAlphaHakushaAnimeMin__15dMeterHakusha_cFv(void);
 void updateHakusha__15dMeterHakusha_cFv(void);
-void dPaneClass_showNullPane(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void draw__9J2DScreenFffPC14J2DGrafContext(void);
 void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 }
@@ -51,42 +51,42 @@ extern u8 lbl_8042EBC8;
 extern "C" {
 // __ct__15dMeterHakusha_cFPv
 // dMeterHakusha_c::dMeterHakusha_c(void*)
-asm void dMeterHakusha_c(void) {
+asm void __ct__15dMeterHakusha_cFPv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C320.s"
 }
 
 // __dt__15dMeterHakusha_cFv
 // dMeterHakusha_c::~dMeterHakusha_c(void)
-asm void func_8020C384(void) {
+asm void __dt__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C384.s"
 }
 
 // _create__15dMeterHakusha_cFv
 // dMeterHakusha_c::_create(void)
-asm void func_8020C400(void) {
+asm void _create__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C400.s"
 }
 
 // _execute__15dMeterHakusha_cFUl
 // dMeterHakusha_c::_execute(unsigned long)
-asm void func_8020C808(void) {
+asm void _execute__15dMeterHakusha_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C808.s"
 }
 
 // draw__15dMeterHakusha_cFv
 // dMeterHakusha_c::draw(void)
-asm void func_8020C850(void) {
+asm void draw__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C850.s"
 }
 
 // _delete__15dMeterHakusha_cFv
 // dMeterHakusha_c::_delete(void)
-asm void func_8020CABC(void) {
+asm void _delete__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020CABC.s"
 }

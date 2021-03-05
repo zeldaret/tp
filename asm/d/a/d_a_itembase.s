@@ -9,7 +9,7 @@ DeleteBase__12daItemBase_cFPCc:
 /* 80144728 00141668  7C 08 02 A6 */	mflr r0
 /* 8014472C 0014166C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80144730 00141670  38 63 05 6C */	addi r3, r3, 0x56c
-/* 80144734 00141674  4B EE 88 D5 */	bl dComIfG_resDelete
+/* 80144734 00141674  4B EE 88 D5 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80144738 00141678  38 60 00 01 */	li r3, 1
 /* 8014473C 0014167C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80144740 00141680  7C 08 03 A6 */	mtlr r0
@@ -72,7 +72,7 @@ lbl_80144808:
 /* 80144808 00141748  7F A3 EB 78 */	mr r3, r29
 /* 8014480C 0014174C  7E A4 AB 78 */	mr r4, r21
 /* 80144810 00141750  7E C5 B3 78 */	mr r5, r22
-/* 80144814 00141754  4B ED 04 41 */	bl mDoExt_J3DModel__create
+/* 80144814 00141754  4B ED 04 41 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80144818 00141758  90 7F 05 74 */	stw r3, 0x574(r31)
 /* 8014481C 0014175C  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 80144820 00141760  28 00 00 00 */	cmplwi r0, 0
@@ -340,7 +340,7 @@ lbl_80144B7C:
 /* 80144BEC 00141B2C  7D 89 03 A6 */	mtctr r12
 /* 80144BF0 00141B30  4E 80 04 21 */	bctrl 
 /* 80144BF4 00141B34  80 7F 05 74 */	lwz r3, 0x574(r31)
-/* 80144BF8 00141B38  4B EC 90 CD */	bl mDoExt_modelUpdateDL
+/* 80144BF8 00141B38  4B EC 90 CD */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 80144BFC 00141B3C  7F E3 FB 78 */	mr r3, r31
 /* 80144C00 00141B40  48 00 00 A1 */	bl setListEnd__12daItemBase_cFv
 /* 80144C04 00141B44  7F E3 FB 78 */	mr r3, r31
@@ -432,7 +432,7 @@ lbl_80144D04:
 /* 80144D4C 00141C8C  80 9F 05 74 */	lwz r4, 0x574(r31)
 /* 80144D50 00141C90  80 84 00 04 */	lwz r4, 4(r4)
 /* 80144D54 00141C94  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 80144D58 00141C98  48 06 00 49 */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
+/* 80144D58 00141C98  48 06 00 49 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 80144D5C 00141C9C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80144D60 00141CA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80144D64 00141CA4  7C 08 03 A6 */	mtlr r0
@@ -489,7 +489,7 @@ lbl_80144D04:
 /* 80144E30 00141D70  C0 62 99 A8 */	lfs f3, lbl_804533A8-_SDA2_BASE_(r2)
 /* 80144E34 00141D74  3C C0 80 42 */	lis r6, lbl_804248D0@ha
 /* 80144E38 00141D78  38 C6 48 D0 */	addi r6, r6, lbl_804248D0@l
-/* 80144E3C 00141D7C  4B EE 82 79 */	bl dComIfGd_setSimpleShadow
+/* 80144E3C 00141D7C  4B EE 82 79 */	bl dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj
 /* 80144E40 00141D80  48 00 00 80 */	b lbl_80144EC0
 lbl_80144E44:
 /* 80144E44 00141D84  7F E3 FB 78 */	mr r3, r31
@@ -522,7 +522,7 @@ lbl_80144E84:
 /* 80144EAC 00141DEC  C0 A2 99 A8 */	lfs f5, lbl_804533A8-_SDA2_BASE_(r2)
 /* 80144EB0 00141DF0  3D 40 80 42 */	lis r10, lbl_804248D0@ha
 /* 80144EB4 00141DF4  39 4A 48 D0 */	addi r10, r10, lbl_804248D0@l
-/* 80144EB8 00141DF8  4B EE 9A 59 */	bl dComIfGd_setShadow
+/* 80144EB8 00141DF8  4B EE 9A 59 */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 80144EBC 00141DFC  90 7F 09 1C */	stw r3, 0x91c(r31)
 lbl_80144EC0:
 /* 80144EC0 00141E00  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0

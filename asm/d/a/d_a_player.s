@@ -682,7 +682,7 @@ __dt__14daPy_anmHeap_cFv:
 /* 8015ED70 0015BCB0  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 8015ED74 0015BCB4  28 03 00 00 */	cmplwi r3, 0
 /* 8015ED78 0015BCB8  41 82 00 08 */	beq lbl_8015ED80
-/* 8015ED7C 0015BCBC  4B EB 04 11 */	bl mDoExt_destroySolidHeap
+/* 8015ED7C 0015BCBC  4B EB 04 11 */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 lbl_8015ED80:
 /* 8015ED80 0015BCC0  7F E0 07 35 */	extsh. r0, r31
 /* 8015ED84 0015BCC4  40 81 00 0C */	ble lbl_8015ED90
@@ -758,7 +758,7 @@ lbl_8015EE60:
 /* 8015EE60 0015BDA0  38 61 00 08 */	addi r3, r1, 8
 /* 8015EE64 0015BDA4  7F E4 FB 78 */	mr r4, r31
 /* 8015EE68 0015BDA8  38 A0 00 20 */	li r5, 0x20
-/* 8015EE6C 0015BDAC  4B EB 01 89 */	bl mDoExt_createSolidHeapFromGameToCurrent
+/* 8015EE6C 0015BDAC  4B EB 01 89 */	bl mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl
 /* 8015EE70 0015BDB0  90 7D 00 10 */	stw r3, 0x10(r29)
 /* 8015EE74 0015BDB4  2C 1E 00 04 */	cmpwi r30, 4
 /* 8015EE78 0015BDB8  40 82 00 10 */	bne lbl_8015EE88
@@ -776,7 +776,7 @@ lbl_8015EE88:
 /* 8015EEA4 0015BDE4  38 A0 00 00 */	li r5, 0
 /* 8015EEA8 0015BDE8  38 C0 00 00 */	li r6, 0
 /* 8015EEAC 0015BDEC  38 E0 00 00 */	li r7, 0
-/* 8015EEB0 0015BDF0  48 1C 9F 91 */	bl J3DAnmTransform
+/* 8015EEB0 0015BDF0  48 1C 9F 91 */	bl __ct__15J3DAnmTransformFsPfPsPf
 /* 8015EEB4 0015BDF4  3C 60 80 3A */	lis r3, lbl_803A7C70@ha
 /* 8015EEB8 0015BDF8  38 03 7C 70 */	addi r0, r3, lbl_803A7C70@l
 /* 8015EEBC 0015BDFC  90 1F 00 00 */	stw r0, 0(r31)
@@ -799,7 +799,7 @@ lbl_8015EEE0:
 /* 8015EEFC 0015BE3C  38 A0 00 00 */	li r5, 0
 /* 8015EF00 0015BE40  38 C0 00 00 */	li r6, 0
 /* 8015EF04 0015BE44  38 E0 00 00 */	li r7, 0
-/* 8015EF08 0015BE48  48 1C 9F 39 */	bl J3DAnmTransform
+/* 8015EF08 0015BE48  48 1C 9F 39 */	bl __ct__15J3DAnmTransformFsPfPsPf
 /* 8015EF0C 0015BE4C  3C 60 80 3A */	lis r3, lbl_803A7C70@ha
 /* 8015EF10 0015BE50  38 03 7C 70 */	addi r0, r3, lbl_803A7C70@l
 /* 8015EF14 0015BE54  90 1F 00 00 */	stw r0, 0(r31)
@@ -814,19 +814,19 @@ lbl_8015EF28:
 /* 8015EF34 0015BE74  48 16 FD 19 */	bl __nw__FUl
 /* 8015EF38 0015BE78  28 03 00 00 */	cmplwi r3, 0
 /* 8015EF3C 0015BE7C  41 82 00 20 */	beq lbl_8015EF5C
-/* 8015EF40 0015BE80  48 1C BF 99 */	bl J3DAnmTexPattern
+/* 8015EF40 0015BE80  48 1C BF 99 */	bl __ct__16J3DAnmTexPatternFv
 /* 8015EF44 0015BE84  48 00 00 18 */	b lbl_8015EF5C
 lbl_8015EF48:
 /* 8015EF48 0015BE88  38 60 00 7C */	li r3, 0x7c
 /* 8015EF4C 0015BE8C  48 16 FD 01 */	bl __nw__FUl
 /* 8015EF50 0015BE90  28 03 00 00 */	cmplwi r3, 0
 /* 8015EF54 0015BE94  41 82 00 08 */	beq lbl_8015EF5C
-/* 8015EF58 0015BE98  48 1C AF 05 */	bl J3DAnmTextureSRTKey
+/* 8015EF58 0015BE98  48 1C AF 05 */	bl __ct__19J3DAnmTextureSRTKeyFv
 lbl_8015EF5C:
 /* 8015EF5C 0015BE9C  80 61 00 08 */	lwz r3, 8(r1)
-/* 8015EF60 0015BEA0  4B EB 02 6D */	bl mDoExt_setCurrentHeap
+/* 8015EF60 0015BEA0  4B EB 02 6D */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015EF64 0015BEA4  80 7D 00 10 */	lwz r3, 0x10(r29)
-/* 8015EF68 0015BEA8  4B EB 01 25 */	bl mDoExt_adjustSolidHeap
+/* 8015EF68 0015BEA8  4B EB 01 25 */	bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 /* 8015EF6C 0015BEAC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8015EF70 0015BEB0  48 20 32 B9 */	bl _restgpr_29
 /* 8015EF74 0015BEB4  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -861,7 +861,7 @@ loadData__14daPy_anmHeap_cFUs:
 /* 8015EFDC 0015BF1C  48 1D 8B 65 */	bl load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag
 /* 8015EFE0 0015BF20  7C 7E 1B 78 */	mr r30, r3
 /* 8015EFE4 0015BF24  7F E3 FB 78 */	mr r3, r31
-/* 8015EFE8 0015BF28  4B EB 01 E5 */	bl mDoExt_setCurrentHeap
+/* 8015EFE8 0015BF28  4B EB 01 E5 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015EFEC 0015BF2C  7F C3 F3 78 */	mr r3, r30
 /* 8015EFF0 0015BF30  48 00 00 60 */	b lbl_8015F050
 lbl_8015EFF4:
@@ -897,8 +897,8 @@ lbl_8015F050:
 /* 8015F060 0015BFA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F064 0015BFA4  4E 80 00 20 */	blr 
 
-.global loadData__14daPy_anmHeap_cFUsIdx
-loadData__14daPy_anmHeap_cFUsIdx:
+.global loadDataIdx__14daPy_anmHeap_cFUs
+loadDataIdx__14daPy_anmHeap_cFUs:
 /* 8015F068 0015BFA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F06C 0015BFAC  7C 08 02 A6 */	mflr r0
 /* 8015F070 0015BFB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -929,8 +929,8 @@ lbl_8015F0C0:
 /* 8015F0C8 0015C008  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F0CC 0015C00C  4E 80 00 20 */	blr 
 
-.global loadData__14daPy_anmHeap_cFUsPriIdx
-loadData__14daPy_anmHeap_cFUsPriIdx:
+.global loadDataPriIdx__14daPy_anmHeap_cFUs
+loadDataPriIdx__14daPy_anmHeap_cFUs:
 /* 8015F0D0 0015C010  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F0D4 0015C014  7C 08 02 A6 */	mflr r0
 /* 8015F0D8 0015C018  90 01 00 14 */	stw r0, 0x14(r1)
@@ -953,8 +953,8 @@ lbl_8015F108:
 /* 8015F110 0015C050  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F114 0015C054  4E 80 00 20 */	blr 
 
-.global loadData__14daPy_anmHeap_cFUsDemoRID
-loadData__14daPy_anmHeap_cFUsDemoRID:
+.global loadDataDemoRID__14daPy_anmHeap_cFUsUs
+loadDataDemoRID__14daPy_anmHeap_cFUsUs:
 /* 8015F118 0015C058  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F11C 0015C05C  7C 08 02 A6 */	mflr r0
 /* 8015F120 0015C060  90 01 00 14 */	stw r0, 0x14(r1)
@@ -988,7 +988,7 @@ setAnimeHeap__14daPy_anmHeap_cFv:
 /* 8015F17C 0015C0BC  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8015F180 0015C0C0  48 16 F4 4D */	bl freeAll__7JKRHeapFv
 /* 8015F184 0015C0C4  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8015F188 0015C0C8  4B EB 00 45 */	bl mDoExt_setCurrentHeap
+/* 8015F188 0015C0C8  4B EB 00 45 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015F18C 0015C0CC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015F190 0015C0D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F194 0015C0D4  7C 08 03 A6 */	mtlr r0
@@ -1094,7 +1094,7 @@ setSight__18daPy_sightPacket_cFv:
 /* 8015F30C 0015C24C  7C 7F 1B 78 */	mr r31, r3
 /* 8015F310 0015C250  38 7F 00 08 */	addi r3, r31, 8
 /* 8015F314 0015C254  38 81 00 08 */	addi r4, r1, 8
-/* 8015F318 0015C258  4B EB 5F F9 */	bl mDoLib_project
+/* 8015F318 0015C258  4B EB 5F F9 */	bl mDoLib_project__FP3VecP3Vec
 /* 8015F31C 0015C25C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8015F320 0015C260  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8015F324 0015C264  C0 21 00 08 */	lfs f1, 8(r1)
@@ -1122,8 +1122,8 @@ setSight__18daPy_sightPacket_cFv:
 /* 8015F37C 0015C2BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015F380 0015C2C0  4E 80 00 20 */	blr 
 
-.global setSight__18daPy_sightPacket_cFvImage
-setSight__18daPy_sightPacket_cFvImage:
+.global setSightImage__18daPy_sightPacket_cFP7ResTIMG
+setSightImage__18daPy_sightPacket_cFP7ResTIMG:
 /* 8015F384 0015C2C4  90 83 00 44 */	stw r4, 0x44(r3)
 /* 8015F388 0015C2C8  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 8015F38C 0015C2CC  7C 04 02 14 */	add r0, r4, r0
@@ -1563,8 +1563,8 @@ setMidnaFaceNum__9daPy_py_cFi:
 /* 8015F974 0015C8B4  98 64 08 49 */	stb r3, 0x849(r4)
 /* 8015F978 0015C8B8  4E 80 00 20 */	blr 
 
-.global daPy_addCalcShort
-daPy_addCalcShort:
+.global daPy_addCalcShort__FPsssss
+daPy_addCalcShort__FPsssss:
 /* 8015F97C 0015C8BC  A9 03 00 00 */	lha r8, 0(r3)
 /* 8015F980 0015C8C0  7C 89 07 34 */	extsh r9, r4
 /* 8015F984 0015C8C4  7D 48 48 50 */	subf r10, r8, r9

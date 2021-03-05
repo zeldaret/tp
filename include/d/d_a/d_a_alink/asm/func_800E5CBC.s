@@ -102,7 +102,7 @@ lbl_800E5E2C:
 /* 800E5E38 000E2D78  38 80 00 AF */ li r4, 0xaf
 /* 800E5E3C 000E2D7C  3C A0 80 39 */ lis r5, lbl_8038EC48@ha
 /* 800E5E40 000E2D80  38 A5 EC 48 */ addi r5, r5, lbl_8038EC48@l
-/* 800E5E44 000E2D84  4B FC 72 B1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E5E44 000E2D84  4B FC 72 B1 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E5E48 000E2D88  C0 42 92 B8 */ lfs f2, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E5E4C 000E2D8C  3C 60 80 39 */ lis r3, lbl_8038EC48@ha
 /* 800E5E50 000E2D90  AC 03 EC 48 */ lhau r0, lbl_8038EC48@l(r3)

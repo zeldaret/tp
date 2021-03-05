@@ -42,7 +42,7 @@ lbl_802DE0F8:
 /* 802DE0F8 002DB038  7F 83 E3 78 */	mr r3, r28
 /* 802DE0FC 002DB03C  7F C4 F3 78 */	mr r4, r30
 /* 802DE100 002DB040  7F E5 FB 78 */	mr r5, r31
-/* 802DE104 002DB044  48 00 00 B9 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
+/* 802DE104 002DB044  48 00 00 B9 */	bl getResource__15JUTResReferenceFUlP10JKRArchive
 /* 802DE108 002DB048  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE10C 002DB04C  48 08 41 19 */	bl _restgpr_28
 /* 802DE110 002DB050  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -50,8 +50,8 @@ lbl_802DE0F8:
 /* 802DE118 002DB058  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE11C 002DB05C  4E 80 00 20 */	blr 
 
-.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
-getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_:
+.global getResource__15JUTResReferenceFPCvUlP10JKRArchive
+getResource__15JUTResReferenceFPCvUlP10JKRArchive:
 /* 802DE120 002DB060  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE124 002DB064  7C 08 02 A6 */	mflr r0
 /* 802DE128 002DB068  90 01 00 24 */	stw r0, 0x24(r1)
@@ -87,7 +87,7 @@ lbl_802DE194:
 /* 802DE194 002DB0D4  7F A3 EB 78 */	mr r3, r29
 /* 802DE198 002DB0D8  7F C4 F3 78 */	mr r4, r30
 /* 802DE19C 002DB0DC  7F E5 FB 78 */	mr r5, r31
-/* 802DE1A0 002DB0E0  48 00 00 1D */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
+/* 802DE1A0 002DB0E0  48 00 00 1D */	bl getResource__15JUTResReferenceFUlP10JKRArchive
 /* 802DE1A4 002DB0E4  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE1A8 002DB0E8  48 08 40 81 */	bl _restgpr_29
 /* 802DE1AC 002DB0EC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -95,8 +95,8 @@ lbl_802DE194:
 /* 802DE1B4 002DB0F4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE1B8 002DB0F8  4E 80 00 20 */	blr 
 
-.global getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_
-getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X2_:
+.global getResource__15JUTResReferenceFUlP10JKRArchive
+getResource__15JUTResReferenceFUlP10JKRArchive:
 /* 802DE1BC 002DB0FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE1C0 002DB100  7C 08 02 A6 */	mflr r0
 /* 802DE1C4 002DB104  90 01 00 14 */	stw r0, 0x14(r1)

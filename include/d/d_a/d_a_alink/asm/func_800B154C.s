@@ -49,7 +49,7 @@ lbl_800B15CC:
 /* 800B15FC 000AE53C  98 7F 2F C5 */ stb r3, 0x2fc5(r31)
 /* 800B1600 000AE540  3C 60 80 3F */ lis r3, lbl_803F1D80@ha
 /* 800B1604 000AE544  38 63 1D 80 */ addi r3, r3, lbl_803F1D80@l
-/* 800B1608 000AE548  48 0F 9F 95 */ bl dKy_pol_argument_get
+/* 800B1608 000AE548  48 0F 9F 95 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800B160C 000AE54C  98 7F 2F C6 */ stb r3, 0x2fc6(r31)
 /* 800B1610 000AE550  88 1F 2F C5 */ lbz r0, 0x2fc5(r31)
 /* 800B1614 000AE554  28 00 00 06 */ cmplwi r0, 6

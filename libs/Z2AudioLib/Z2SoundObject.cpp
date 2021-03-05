@@ -116,14 +116,14 @@ asm void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase(void) {
 
 // __ct__21Z2DopplerSoundObjBaseFv
 // Z2DopplerSoundObjBase::Z2DopplerSoundObjBase(void)
-asm void Z2DopplerSoundObjBase(void) {
+asm void __ct__21Z2DopplerSoundObjBaseFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE5A0.s"
 }
 
 // __dt__21Z2DopplerSoundObjBaseFv
 // Z2DopplerSoundObjBase::~Z2DopplerSoundObjBase(void)
-asm void func_802BE5FC(void) {
+asm void __dt__21Z2DopplerSoundObjBaseFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE5FC.s"
 }
@@ -137,28 +137,28 @@ asm void init__21Z2DopplerSoundObjBaseFP3VecUc(Vec* pSoundPos, u8 pNumHandles) {
 
 // framework__21Z2DopplerSoundObjBaseFUlSc
 // Z2DopplerSoundObjBase::framework(unsigned long, char)
-asm void func_802BE6B8(void) {
+asm void framework__21Z2DopplerSoundObjBaseFUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE6B8.s"
 }
 
 // startSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc
 // Z2DopplerSoundObjBase::startSound(JAISoundID, unsigned long, char)
-asm void func_802BE714(void) {
+asm void startSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE714.s"
 }
 
 // startLevelSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc
 // Z2DopplerSoundObjBase::startLevelSound(JAISoundID, unsigned long, char)
-asm void func_802BE7AC(void) {
+asm void startLevelSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE7AC.s"
 }
 
 // __ct__16Z2SoundObjSimpleFv
 // Z2SoundObjSimple::Z2SoundObjSimple(void)
-asm void Z2SoundObjSimple(void) {
+asm void __ct__16Z2SoundObjSimpleFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE844.s"
 }
@@ -184,42 +184,42 @@ asm void Z2SoundObjSimple::init(Vec* pSoundPos, u8 pNumHandles) {
 
 // startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc
 // Z2SoundObjSimple::startSound(JAISoundID, unsigned long, char)
-asm void func_802BE8A0(void) {
+asm void startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE8A0.s"
 }
 
 // startLevelSound__16Z2SoundObjSimpleF10JAISoundIDUlSc
 // Z2SoundObjSimple::startLevelSound(JAISoundID, unsigned long, char)
-asm void func_802BE9B0(void) {
+asm void startLevelSound__16Z2SoundObjSimpleF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BE9B0.s"
 }
 
 // __ct__15Z2SoundObjArrowFv
 // Z2SoundObjArrow::Z2SoundObjArrow(void)
-asm void func_802BEB38(void) {
+asm void __ct__15Z2SoundObjArrowFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEB38.s"
 }
 
 // init__15Z2SoundObjArrowFP3VecUc
 // Z2SoundObjArrow::init(Vec*, unsigned char)
-asm void func_802BEB74(void) {
+asm void init__15Z2SoundObjArrowFP3VecUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEB74.s"
 }
 
 // __ct__15Z2SoundObjAnimeFv
 // Z2SoundObjAnime::Z2SoundObjAnime(void)
-asm void Z2SoundObjAnime(void) {
+asm void __ct__15Z2SoundObjAnimeFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEB94.s"
 }
 
 // init__15Z2SoundObjAnimeFP3VecUc
 // Z2SoundObjAnime::init(Vec*, unsigned char)
-asm void func_802BEBDC(void) {
+asm void init__15Z2SoundObjAnimeFP3VecUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundObject/asm/func_802BEBDC.s"
 }

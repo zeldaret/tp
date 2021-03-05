@@ -60,12 +60,12 @@ lbl_8012DE54:
 lbl_8012DE90:
 /* 8012DE90 0012ADD0  7F C3 F3 78 */ mr r3, r30
 /* 8012DE94 0012ADD4  38 80 00 00 */ li r4, 0
-/* 8012DE98 0012ADD8  4B FF BC AD */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012DE98 0012ADD8  4B FF BC AD */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012DE9C 0012ADDC  48 00 00 10 */ b lbl_8012DEAC
 lbl_8012DEA0:
 /* 8012DEA0 0012ADE0  7F C3 F3 78 */ mr r3, r30
 /* 8012DEA4 0012ADE4  38 80 00 00 */ li r4, 0
-/* 8012DEA8 0012ADE8  4B FF BC 9D */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012DEA8 0012ADE8  4B FF BC 9D */ bl checkNextActionWolf__9daAlink_cFi
 lbl_8012DEAC:
 /* 8012DEAC 0012ADEC  38 60 00 01 */ li r3, 1
 lbl_8012DEB0:

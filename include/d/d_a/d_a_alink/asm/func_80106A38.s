@@ -46,7 +46,7 @@ lbl_80106AD0:
 /* 80106ADC 00103A1C  54 1E DE 3E */ rlwinm r30, r0, 0x1b, 0x18, 0x1f
 /* 80106AE0 00103A20  7F E3 FB 78 */ mr r3, r31
 /* 80106AE4 00103A24  38 80 00 A7 */ li r4, 0xa7
-/* 80106AE8 00103A28  4B FB C2 BD */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80106AE8 00103A28  4B FB C2 BD */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80106AEC 00103A2C  2C 03 00 00 */ cmpwi r3, 0
 /* 80106AF0 00103A30  40 82 00 0C */ bne lbl_80106AFC
 /* 80106AF4 00103A34  38 60 00 00 */ li r3, 0

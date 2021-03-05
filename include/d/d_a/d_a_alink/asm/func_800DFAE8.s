@@ -6,7 +6,7 @@
 /* 800DFAFC 000DCA3C  7C 7D 1B 78 */ mr r29, r3
 /* 800DFB00 000DCA40  38 7D 21 D8 */ addi r3, r29, 0x21d8
 /* 800DFB04 000DCA44  38 80 00 59 */ li r4, 0x59
-/* 800DFB08 000DCA48  48 07 F5 61 */ bl loadData__14daPy_anmHeap_cFUsIdx
+/* 800DFB08 000DCA48  48 07 F5 61 */ bl loadDataIdx__14daPy_anmHeap_cFUs
 /* 800DFB0C 000DCA4C  7C 7F 1B 78 */ mr r31, r3
 /* 800DFB10 000DCA50  7F A3 EB 78 */ mr r3, r29
 /* 800DFB14 000DCA54  4B FC 41 79 */ bl setItemHeap__9daAlink_cFv
@@ -31,7 +31,7 @@
 /* 800DFB60 000DCAA0  39 20 00 00 */ li r9, 0
 /* 800DFB64 000DCAA4  4B F2 DC 79 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 800DFB68 000DCAA8  7F C3 F3 78 */ mr r3, r30
-/* 800DFB6C 000DCAAC  4B F2 F6 61 */ bl mDoExt_setCurrentHeap
+/* 800DFB6C 000DCAAC  4B F2 F6 61 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 800DFB70 000DCAB0  80 7D 07 44 */ lwz r3, 0x744(r29)
 /* 800DFB74 000DCAB4  A8 03 00 06 */ lha r0, 6(r3)
 /* 800DFB78 000DCAB8  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)

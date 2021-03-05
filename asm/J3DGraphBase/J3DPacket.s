@@ -232,8 +232,8 @@ lbl_8031276C:
 /* 80312770 0030F6B0  90 83 00 08 */	stw r4, 8(r3)
 /* 80312774 0030F6B4  4E 80 00 20 */	blr 
 
-.global J3DDrawPacket
-J3DDrawPacket:
+.global __ct__13J3DDrawPacketFv
+__ct__13J3DDrawPacketFv:
 /* 80312778 0030F6B8  3C 80 80 3D */	lis r4, lbl_803CD97C@ha
 /* 8031277C 0030F6BC  38 04 D9 7C */	addi r0, r4, lbl_803CD97C@l
 /* 80312780 0030F6C0  90 03 00 00 */	stw r0, 0(r3)
@@ -369,14 +369,14 @@ lbl_8031290C:
 /* 8031293C 0030F87C  7C 08 03 A6 */	mtlr r0
 /* 80312940 0030F880  38 21 00 10 */	addi r1, r1, 0x10
 /* 80312944 0030F884  4E 80 00 20 */	blr 
-.global J3DMatPacket
-J3DMatPacket:
+.global __ct__12J3DMatPacketFv
+__ct__12J3DMatPacketFv:
 /* 80312948 0030F888  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8031294C 0030F88C  7C 08 02 A6 */	mflr r0
 /* 80312950 0030F890  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80312954 0030F894  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80312958 0030F898  7C 7F 1B 78 */	mr r31, r3
-/* 8031295C 0030F89C  4B FF FE 1D */	bl J3DDrawPacket
+/* 8031295C 0030F89C  4B FF FE 1D */	bl __ct__13J3DDrawPacketFv
 /* 80312960 0030F8A0  3C 60 80 3D */	lis r3, lbl_803CD954@ha
 /* 80312964 0030F8A4  38 03 D9 54 */	addi r0, r3, lbl_803CD954@l
 /* 80312968 0030F8A8  90 1F 00 00 */	stw r0, 0(r31)
@@ -509,14 +509,14 @@ lbl_80312AFC:
 /* 80312B14 0030FA54  7C 08 03 A6 */	mtlr r0
 /* 80312B18 0030FA58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80312B1C 0030FA5C  4E 80 00 20 */	blr 
-.global J3DShapePacket
-J3DShapePacket:
+.global __ct__14J3DShapePacketFv
+__ct__14J3DShapePacketFv:
 /* 80312B20 0030FA60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80312B24 0030FA64  7C 08 02 A6 */	mflr r0
 /* 80312B28 0030FA68  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80312B2C 0030FA6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80312B30 0030FA70  7C 7F 1B 78 */	mr r31, r3
-/* 80312B34 0030FA74  4B FF FC 45 */	bl J3DDrawPacket
+/* 80312B34 0030FA74  4B FF FC 45 */	bl __ct__13J3DDrawPacketFv
 /* 80312B38 0030FA78  3C 60 80 3D */	lis r3, lbl_803CD940@ha
 /* 80312B3C 0030FA7C  38 03 D9 40 */	addi r0, r3, lbl_803CD940@l
 /* 80312B40 0030FA80  90 1F 00 00 */	stw r0, 0(r31)
@@ -903,7 +903,7 @@ lbl_80313030:
 /* 80313084 0030FFC4  7C 83 23 78 */	mr r3, r4
 /* 80313088 0030FFC8  7C C4 33 78 */	mr r4, r6
 /* 8031308C 0030FFCC  39 81 00 08 */	addi r12, r1, 8
-/* 80313090 0030FFD0  48 04 EF F5 */	bl func_80362084
+/* 80313090 0030FFD0  48 04 EF F5 */	bl __ptmf_scall
 /* 80313094 0030FFD4  60 00 00 00 */	nop 
 /* 80313098 0030FFD8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8031309C 0030FFDC  7C 08 03 A6 */	mtlr r0

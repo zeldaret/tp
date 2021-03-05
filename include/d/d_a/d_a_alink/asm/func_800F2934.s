@@ -66,7 +66,7 @@ lbl_800F2A14:
 /* 800F2A28 000EF968  38 A0 00 02 */ li r5, 2
 /* 800F2A2C 000EF96C  3C C0 80 39 */ lis r6, lbl_8038E90C@ha
 /* 800F2A30 000EF970  38 C6 E9 0C */ addi r6, r6, lbl_8038E90C@l
-/* 800F2A34 000EF974  4B FB AC BD */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800F2A34 000EF974  4B FB AC BD */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F2A38 000EF978  7F E3 FB 78 */ mr r3, r31
 /* 800F2A3C 000EF97C  38 80 01 00 */ li r4, 0x100
 /* 800F2A40 000EF980  4B FB D0 D5 */ bl setFacePriAnime__9daAlink_cFQ29daAlink_c11daAlink_ANM
@@ -89,7 +89,7 @@ lbl_800F2A14:
 lbl_800F2A84:
 /* 800F2A84 000EF9C4  3B C0 FF FF */ li r30, -1
 lbl_800F2A88:
-/* 800F2A88 000EF9C8  48 08 EB B9 */ bl dCam_getBody
+/* 800F2A88 000EF9C8  48 08 EB B9 */ bl dCam_getBody__Fv
 /* 800F2A8C 000EF9CC  38 80 00 12 */ li r4, 0x12
 /* 800F2A90 000EF9D0  7F C5 F3 78 */ mr r5, r30
 /* 800F2A94 000EF9D4  3C C0 80 39 */ lis r6, lbl_80392094@ha

@@ -3,8 +3,8 @@
 .section .text, "ax" # 8023c0dc
 
 
-.global dMsgScrnBase_c
-dMsgScrnBase_c:
+.global __ct__14dMsgScrnBase_cFv
+__ct__14dMsgScrnBase_cFv:
 /* 8023C0DC 0023901C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023C0E0 00239020  7C 08 02 A6 */	mflr r0
 /* 8023C0E4 00239024  90 01 00 14 */	stw r0, 0x14(r1)

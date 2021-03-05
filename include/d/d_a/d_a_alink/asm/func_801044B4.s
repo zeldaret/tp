@@ -33,7 +33,7 @@ lbl_801044EC:
 /* 8010452C 0010146C  38 A5 ED 2C */ addi r5, r5, lbl_8038ED2C@l
 /* 80104530 00101470  C0 25 00 90 */ lfs f1, 0x90(r5)
 /* 80104534 00101474  C0 45 00 94 */ lfs f2, 0x94(r5)
-/* 80104538 00101478  4B FA 8A A9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80104538 00101478  4B FA 8A A9 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_8010453C:
 /* 8010453C 0010147C  7F E3 FB 78 */ mr r3, r31
 /* 80104540 00101480  4B FF FA F5 */ bl setSwimUpDownOffset__9daAlink_cFv
@@ -55,7 +55,7 @@ lbl_80104568:
 /* 8010457C 001014BC  48 00 00 E0 */ b lbl_8010465C
 lbl_80104580:
 /* 80104580 001014C0  7F E3 FB 78 */ mr r3, r31
-/* 80104584 001014C4  4B FF E4 45 */ bl checkNextAction__9daAlink_cFiSwim
+/* 80104584 001014C4  4B FF E4 45 */ bl checkNextActionSwim__9daAlink_cFv
 /* 80104588 001014C8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010458C 001014CC  41 82 00 0C */ beq lbl_80104598
 /* 80104590 001014D0  38 60 00 01 */ li r3, 1

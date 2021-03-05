@@ -59,7 +59,7 @@ lbl_800B5998:
 /* 800B59C0 000B2900  28 03 00 00 */ cmplwi r3, 0
 /* 800B59C4 000B2904  41 82 00 30 */ beq lbl_800B59F4
 /* 800B59C8 000B2908  7F E3 FB 78 */ mr r3, r31
-/* 800B59CC 000B290C  48 02 E2 D1 */ bl checkGrabAnime__9daAlink_cCFvAndThrow
+/* 800B59CC 000B290C  48 02 E2 D1 */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800B59D0 000B2910  2C 03 00 00 */ cmpwi r3, 0
 /* 800B59D4 000B2914  41 82 00 10 */ beq lbl_800B59E4
 /* 800B59D8 000B2918  7F E3 FB 78 */ mr r3, r31
@@ -95,7 +95,7 @@ lbl_800B5A20:
 /* 800B5A44 000B2984  48 00 01 68 */ b lbl_800B5BAC
 lbl_800B5A48:
 /* 800B5A48 000B2988  7F E3 FB 78 */ mr r3, r31
-/* 800B5A4C 000B298C  48 02 E2 51 */ bl checkGrabAnime__9daAlink_cCFvAndThrow
+/* 800B5A4C 000B298C  48 02 E2 51 */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800B5A50 000B2990  2C 03 00 00 */ cmpwi r3, 0
 /* 800B5A54 000B2994  41 82 00 10 */ beq lbl_800B5A64
 /* 800B5A58 000B2998  7F E3 FB 78 */ mr r3, r31

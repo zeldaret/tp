@@ -24,7 +24,7 @@ lbl_800E7628:
 /* 800E7644 000E4584  3C A0 80 39 */ lis r5, lbl_8038E840@ha
 /* 800E7648 000E4588  38 A5 E8 40 */ addi r5, r5, lbl_8038E840@l
 /* 800E764C 000E458C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800E7650 000E4590  4B FC 5A A5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E7650 000E4590  4B FC 5A A5 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E7654 000E4594  80 7E 28 28 */ lwz r3, 0x2828(r30)
 /* 800E7658 000E4598  28 03 00 00 */ cmplwi r3, 0
 /* 800E765C 000E459C  41 82 00 20 */ beq lbl_800E767C

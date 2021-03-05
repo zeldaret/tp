@@ -123,8 +123,8 @@ lbl_80314A84:
 /* 80314AB4 003119F4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80314AB8 003119F8  4E 80 00 20 */	blr 
 
-.global J3DShapeDraw
-J3DShapeDraw:
+.global __ct__12J3DShapeDrawFPCUcUl
+__ct__12J3DShapeDrawFPCUcUl:
 /* 80314ABC 003119FC  3C C0 80 3D */	lis r6, lbl_803CDC68@ha
 /* 80314AC0 00311A00  38 06 DC 68 */	addi r0, r6, lbl_803CDC68@l
 /* 80314AC4 00311A04  90 03 00 00 */	stw r0, 0(r3)

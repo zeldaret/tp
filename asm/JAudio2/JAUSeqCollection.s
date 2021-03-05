@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a66a0
 
 
-.global JAUSeqCollection
-JAUSeqCollection:
+.global __ct__16JAUSeqCollectionFv
+__ct__16JAUSeqCollectionFv:
 /* 802A66A0 002A35E0  38 00 00 00 */	li r0, 0
 /* 802A66A4 002A35E4  90 03 00 08 */	stw r0, 8(r3)
 /* 802A66A8 002A35E8  4E 80 00 20 */	blr 
@@ -61,8 +61,8 @@ lbl_802A6738:
 /* 802A674C 002A368C  38 60 00 01 */	li r3, 1
 /* 802A6750 002A3690  4E 80 00 20 */	blr 
 
-.global getSeqData__16JAUSeqCollectionFiiP10JAISeqDataRegion
-getSeqData__16JAUSeqCollectionFiiP10JAISeqDataRegion:
+.global getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion
+getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion:
 /* 802A6754 002A3694  80 03 00 08 */	lwz r0, 8(r3)
 /* 802A6758 002A3698  28 00 00 00 */	cmplwi r0, 0
 /* 802A675C 002A369C  41 82 00 18 */	beq lbl_802A6774
@@ -75,8 +75,8 @@ lbl_802A6774:
 /* 802A6774 002A36B4  38 60 00 00 */	li r3, 0
 /* 802A6778 002A36B8  4E 80 00 20 */	blr 
 
-.global JAUSeqDataMgr_SeqCollection
-JAUSeqDataMgr_SeqCollection:
+.global __ct__27JAUSeqDataMgr_SeqCollectionFv
+__ct__27JAUSeqDataMgr_SeqCollectionFv:
 /* 802A677C 002A36BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A6780 002A36C0  7C 08 02 A6 */	mflr r0
 /* 802A6784 002A36C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -86,7 +86,7 @@ JAUSeqDataMgr_SeqCollection:
 /* 802A6794 002A36D4  38 03 99 28 */	addi r0, r3, lbl_803C9928@l
 /* 802A6798 002A36D8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A679C 002A36DC  38 7F 00 04 */	addi r3, r31, 4
-/* 802A67A0 002A36E0  4B FF FF 01 */	bl JAUSeqCollection
+/* 802A67A0 002A36E0  4B FF FF 01 */	bl __ct__16JAUSeqCollectionFv
 /* 802A67A4 002A36E4  3C 60 80 3D */	lis r3, lbl_803C9B38@ha
 /* 802A67A8 002A36E8  38 03 9B 38 */	addi r0, r3, lbl_803C9B38@l
 /* 802A67AC 002A36EC  90 1F 00 00 */	stw r0, 0(r31)
@@ -111,7 +111,7 @@ JAUSeqDataMgr_SeqCollection:
 /* 802A67F8 002A3738  41 82 00 2C */	beq lbl_802A6824
 /* 802A67FC 002A373C  38 7F 00 04 */	addi r3, r31, 4
 /* 802A6800 002A3740  38 81 00 08 */	addi r4, r1, 8
-/* 802A6804 002A3744  4B FF FF 51 */	bl getSeqData__16JAUSeqCollectionFiiP10JAISeqDataRegion
+/* 802A6804 002A3744  4B FF FF 51 */	bl getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion
 /* 802A6808 002A3748  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 802A680C 002A374C  38 81 00 08 */	addi r4, r1, 8
 /* 802A6810 002A3750  81 83 00 00 */	lwz r12, 0(r3)

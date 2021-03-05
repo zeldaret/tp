@@ -12,7 +12,7 @@
 /* 801A5708 001A2648  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A570C 001A264C  88 03 12 C6 */ lbz r0, 0x12c6(r3)
 /* 801A5710 001A2650  7C 03 07 74 */ extsb r3, r0
-/* 801A5714 001A2654  48 00 15 0D */ bl dKy_setLight_nowroom
+/* 801A5714 001A2654  48 00 15 0D */ bl dKy_setLight_nowroom__Fc
 /* 801A5718 001A2658  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801A571C 001A265C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801A5720 001A2660  7C 08 03 A6 */ mtlr r0

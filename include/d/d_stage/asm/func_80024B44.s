@@ -24,14 +24,14 @@ lbl_80024B70:
 /* 80024B9C 00021ADC  38 A5 4E 00 */ addi r5, r5, 0x4e00
 /* 80024BA0 00021AE0  54 C6 06 3E */ clrlwi r6, r6, 0x18
 /* 80024BA4 00021AE4  4C C6 31 82 */ crclr 6
-/* 80024BA8 00021AE8  48 34 19 35 */ bl func_803664DC
+/* 80024BA8 00021AE8  48 34 19 35 */ bl sprintf
 /* 80024BAC 00021AEC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80024BB0 00021AF0  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 80024BB4 00021AF4  80 7F 5C 68 */ lwz r3, 0x5c68(r31)
 /* 80024BB8 00021AF8  38 81 00 08 */ addi r4, r1, 8
 /* 80024BBC 00021AFC  48 00 DB 7D */ bl dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc
 /* 80024BC0 00021B00  7C 7C 1B 78 */ mr r28, r3
-/* 80024BC4 00021B04  4B FE A2 29 */ bl mDoExt_getArchiveHeap
+/* 80024BC4 00021B04  4B FE A2 29 */ bl mDoExt_getArchiveHeap__Fv
 /* 80024BC8 00021B08  7F 84 E3 78 */ mr r4, r28
 /* 80024BCC 00021B0C  38 A0 FF E0 */ li r5, -32
 /* 80024BD0 00021B10  48 2A 99 05 */ bl alloc__7JKRHeapFUli

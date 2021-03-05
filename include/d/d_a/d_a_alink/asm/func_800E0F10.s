@@ -4,7 +4,7 @@
 /* 800E0F1C 000DDE5C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E0F20 000DDE60  7C 7F 1B 78 */ mr r31, r3
 /* 800E0F24 000DDE64  38 80 00 60 */ li r4, 0x60
-/* 800E0F28 000DDE68  4B FE 1E 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800E0F28 000DDE68  4B FE 1E 7D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E0F2C 000DDE6C  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0F30 000DDE70  40 82 00 0C */ bne lbl_800E0F3C
 /* 800E0F34 000DDE74  38 60 00 00 */ li r3, 0
@@ -21,7 +21,7 @@ lbl_800E0F3C:
 /* 800E0F5C 000DDE9C  3C A0 80 39 */ lis r5, lbl_8038E6C8@ha
 /* 800E0F60 000DDEA0  38 A5 E6 C8 */ addi r5, r5, lbl_8038E6C8@l
 /* 800E0F64 000DDEA4  C0 45 00 30 */ lfs f2, 0x30(r5)
-/* 800E0F68 000DDEA8  4B FC C0 79 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800E0F68 000DDEA8  4B FC C0 79 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800E0F6C 000DDEAC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E0F70 000DDEB0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E0F74 000DDEB4  80 03 5F 18 */ lwz r0, 0x5f18(r3)

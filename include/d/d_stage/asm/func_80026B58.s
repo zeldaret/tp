@@ -8,15 +8,15 @@
 /* 80026B74 00023AB4  3C A0 80 3A */ lis r5, lbl_803A66BC@ha
 /* 80026B78 00023AB8  38 A5 66 BC */ addi r5, r5, lbl_803A66BC@l
 /* 80026B7C 00023ABC  38 C0 00 1A */ li r6, 0x1a
-/* 80026B80 00023AC0  4B FF F5 35 */ bl dStage_dt_c_decode
+/* 80026B80 00023AC0  4B FF F5 35 */ bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026B84 00023AC4  7F C3 F3 78 */ mr r3, r30
 /* 80026B88 00023AC8  7F E4 FB 78 */ mr r4, r31
 /* 80026B8C 00023ACC  38 A0 FF FF */ li r5, -1
-/* 80026B90 00023AD0  4B FF FE 25 */ bl layerTableLoader
+/* 80026B90 00023AD0  4B FF FE 25 */ bl layerTableLoader__FPvP11dStage_dt_ci
 /* 80026B94 00023AD4  7F C3 F3 78 */ mr r3, r30
 /* 80026B98 00023AD8  7F E4 FB 78 */ mr r4, r31
 /* 80026B9C 00023ADC  38 A0 FF FF */ li r5, -1
-/* 80026BA0 00023AE0  4B FF FF 51 */ bl layerActorLoader
+/* 80026BA0 00023AE0  4B FF FF 51 */ bl layerActorLoader__FPvP11dStage_dt_ci
 /* 80026BA4 00023AE4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80026BA8 00023AE8  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80026BAC 00023AEC  80 01 00 14 */ lwz r0, 0x14(r1)

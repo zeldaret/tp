@@ -6,7 +6,7 @@
 /* 8001617C 000130BC  7C 7D 1B 78 */ mr r29, r3
 /* 80016180 000130C0  7C 9E 23 78 */ mr r30, r4
 /* 80016184 000130C4  7C BF 2B 78 */ mr r31, r5
-/* 80016188 000130C8  4B FF F9 ED */ bl mDoDvdThd_command_c
+/* 80016188 000130C8  4B FF F9 ED */ bl __ct__19mDoDvdThd_command_cFv
 /* 8001618C 000130CC  3C 60 80 3A */ lis r3, lbl_803A34B8@ha
 /* 80016190 000130D0  38 03 34 B8 */ addi r0, r3, lbl_803A34B8@l
 /* 80016194 000130D4  90 1D 00 10 */ stw r0, 0x10(r29)

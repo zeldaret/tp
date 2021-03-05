@@ -4,7 +4,7 @@
 /* 800F0AB0 000ED9F0  39 61 00 30 */ addi r11, r1, 0x30
 /* 800F0AB4 000ED9F4  48 27 17 29 */ bl _savegpr_29
 /* 800F0AB8 000ED9F8  7C 7F 1B 78 */ mr r31, r3
-/* 800F0ABC 000ED9FC  4B FF EB F5 */ bl checkHorseGetOff__9daAlink_cFvAndSetDoStatus
+/* 800F0ABC 000ED9FC  4B FF EB F5 */ bl checkHorseGetOffAndSetDoStatus__9daAlink_cFv
 /* 800F0AC0 000EDA00  7C 7D 1B 78 */ mr r29, r3
 /* 800F0AC4 000EDA04  7F E3 FB 78 */ mr r3, r31
 /* 800F0AC8 000EDA08  38 80 00 01 */ li r4, 1
@@ -42,7 +42,7 @@ lbl_800F0B28:
 /* 800F0B40 000EDA80  48 00 01 14 */ b lbl_800F0C54
 lbl_800F0B44:
 /* 800F0B44 000EDA84  7F E3 FB 78 */ mr r3, r31
-/* 800F0B48 000EDA88  4B FF E9 09 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F0B48 000EDA88  4B FF E9 09 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F0B4C 000EDA8C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0B50 000EDA90  40 82 01 00 */ bne lbl_800F0C50
 /* 800F0B54 000EDA94  7F E3 FB 78 */ mr r3, r31
@@ -57,9 +57,9 @@ lbl_800F0B70:
 /* 800F0B74 000EDAB4  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 800F0B78 000EDAB8  41 82 00 D8 */ beq lbl_800F0C50
 /*.global daAlink_searchBoar*/
-/* 800F0B7C 000EDABC  3C 60 80 0F */ lis r3, daAlink_searchBoar@ha
+/* 800F0B7C 000EDABC  3C 60 80 0F */ lis r3, daAlink_searchBoar__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchBoar*/
-/* 800F0B80 000EDAC0  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
+/* 800F0B80 000EDAC0  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar__FP10fopAc_ac_cPv@l
 /* 800F0B84 000EDAC4  38 80 00 00 */ li r4, 0
 /* 800F0B88 000EDAC8  4B F2 8C 71 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800F0B8C 000EDACC  7C 7D 1B 79 */ or. r29, r3, r3

@@ -37,7 +37,7 @@ lbl_800B399C:
 lbl_800B39AC:
 /* 800B39AC 000B08EC  7F C3 F3 78 */ mr r3, r30
 /* 800B39B0 000B08F0  38 80 00 39 */ li r4, 0x39
-/* 800B39B4 000B08F4  48 07 4E 59 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 800B39B4 000B08F4  48 07 4E 59 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 800B39B8 000B08F8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B39BC 000B08FC  40 82 00 28 */ bne lbl_800B39E4
 /* 800B39C0 000B0900  7F C3 F3 78 */ mr r3, r30

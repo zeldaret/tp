@@ -26,7 +26,7 @@
 /* 8020F750 0020C690  80 A4 00 04 */ lwz r5, 4(r4)
 /* 8020F754 0020C694  38 C0 00 00 */ li r6, 0
 /* 8020F758 0020C698  38 E0 00 00 */ li r7, 0
-/* 8020F75C 0020C69C  48 04 57 61 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020F75C 0020C69C  48 04 57 61 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8020F760 0020C6A0  80 61 00 24 */ lwz r3, 0x24(r1)
 /* 8020F764 0020C6A4  80 01 00 28 */ lwz r0, 0x28(r1)
 /* 8020F768 0020C6A8  90 61 00 30 */ stw r3, 0x30(r1)
@@ -43,7 +43,7 @@
 /* 8020F794 0020C6D4  80 7F 00 14 */ lwz r3, 0x14(r31)
 /* 8020F798 0020C6D8  80 63 00 04 */ lwz r3, 4(r3)
 /* 8020F79C 0020C6DC  C3 E3 01 1C */ lfs f31, 0x11c(r3)
-/* 8020F7A0 0020C6E0  4B E0 52 51 */ bl mDoExt_getMesgFont
+/* 8020F7A0 0020C6E0  4B E0 52 51 */ bl mDoExt_getMesgFont__Fv
 /* 8020F7A4 0020C6E4  7C 79 1B 78 */ mr r25, r3
 /* 8020F7A8 0020C6E8  C3 82 AE 60 */ lfs f28, lbl_80454860-_SDA2_BASE_(r2)
 /* 8020F7AC 0020C6EC  80 7F 00 14 */ lwz r3, 0x14(r31)
@@ -209,7 +209,7 @@ lbl_8020F934:
 /* 8020FA00 0020C940  39 01 00 10 */ addi r8, r1, 0x10
 /* 8020FA04 0020C944  C0 9C 0C 18 */ lfs f4, 0xc18(r28)
 /* 8020FA08 0020C948  39 20 00 00 */ li r9, 0
-/* 8020FA0C 0020C94C  48 00 46 D1 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_
+/* 8020FA0C 0020C94C  48 00 46 D1 */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_8020FA10:
 /* 8020FA10 0020C950  EF BD C0 2A */ fadds f29, f29, f24
 /* 8020FA14 0020C954  3B 5A 00 01 */ addi r26, r26, 1

@@ -61,7 +61,7 @@ lbl_8010580C:
 /* 80105814 00102754  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80105818 00102758  41 82 00 24 */ beq lbl_8010583C
 /* 8010581C 0010275C  7F C3 F3 78 */ mr r3, r30
-/* 80105820 00102760  4B FF D1 A9 */ bl checkNextAction__9daAlink_cFiSwim
+/* 80105820 00102760  4B FF D1 A9 */ bl checkNextActionSwim__9daAlink_cFv
 /* 80105824 00102764  2C 03 00 00 */ cmpwi r3, 0
 /* 80105828 00102768  40 82 00 5C */ bne lbl_80105884
 /* 8010582C 0010276C  7F C3 F3 78 */ mr r3, r30
@@ -77,7 +77,7 @@ lbl_8010583C:
 /* 80105850 00102790  60 00 00 04 */ ori r0, r0, 4
 /* 80105854 00102794  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 80105858 00102798  7F C3 F3 78 */ mr r3, r30
-/* 8010585C 0010279C  4B FF D1 6D */ bl checkNextAction__9daAlink_cFiSwim
+/* 8010585C 0010279C  4B FF D1 6D */ bl checkNextActionSwim__9daAlink_cFv
 /* 80105860 001027A0  2C 03 00 00 */ cmpwi r3, 0
 /* 80105864 001027A4  40 82 00 20 */ bne lbl_80105884
 /* 80105868 001027A8  C0 3E 33 AC */ lfs f1, 0x33ac(r30)

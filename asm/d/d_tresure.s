@@ -14,7 +14,7 @@ createWork__7dTres_cFv:
 /* 8009BBF0 00098B30  38 A0 00 00 */	li r5, 0
 /* 8009BBF4 00098B34  38 C0 00 1C */	li r6, 0x1c
 /* 8009BBF8 00098B38  38 E0 00 40 */	li r7, 0x40
-/* 8009BBFC 00098B3C  48 2C 63 19 */	bl func_80361F14
+/* 8009BBFC 00098B3C  48 2C 63 19 */	bl __construct_new_array
 /* 8009BC00 00098B40  90 6D 8A 18 */	stw r3, lbl_80450F98-_SDA_BASE_(r13)
 /* 8009BC04 00098B44  38 60 00 01 */	li r3, 1
 /* 8009BC08 00098B48  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -190,7 +190,7 @@ checkTreasureBox__7dTres_cFPQ27dTres_c6data_s:
 /* 8009BE50 00098D90  28 03 00 FF */	cmplwi r3, 0xff
 /* 8009BE54 00098D94  41 82 02 FC */	beq lbl_8009C150
 /* 8009BE58 00098D98  38 80 FF FF */	li r4, -1
-/* 8009BE5C 00098D9C  4B FB 59 91 */	bl dPath_GetRoomPath
+/* 8009BE5C 00098D9C  4B FB 59 91 */	bl dPath_GetRoomPath__Fii
 /* 8009BE60 00098DA0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8009BE64 00098DA4  41 82 02 EC */	beq lbl_8009C150
 /* 8009BE68 00098DA8  88 1D 00 12 */	lbz r0, 0x12(r29)
@@ -335,7 +335,7 @@ lbl_8009C05C:
 /* 8009C06C 00098FAC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8009C070 00098FB0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8009C074 00098FB4  7F C4 F3 78 */	mr r4, r30
-/* 8009C078 00098FB8  4B F7 03 65 */	bl mDoMtx_YrotS
+/* 8009C078 00098FB8  4B F7 03 65 */	bl mDoMtx_YrotS__FPA4_fs
 /* 8009C07C 00098FBC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8009C080 00098FC0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8009C084 00098FC4  38 81 00 24 */	addi r4, r1, 0x24
@@ -571,8 +571,8 @@ lbl_8009C3AC:
 /* 8009C3AC 000992EC  80 63 00 14 */	lwz r3, 0x14(r3)
 /* 8009C3B0 000992F0  4E 80 00 20 */	blr 
 
-.global getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c_X1_
-getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c_X1_:
+.global getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c
+getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c:
 /* 8009C3B4 000992F4  28 03 00 00 */	cmplwi r3, 0
 /* 8009C3B8 000992F8  40 82 00 0C */	bne lbl_8009C3C4
 /* 8009C3BC 000992FC  38 60 00 00 */	li r3, 0

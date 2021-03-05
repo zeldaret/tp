@@ -2,7 +2,7 @@
 #define JASGENERICMEMPOOL_H_
 
 extern "C" {
-void JASGenericMemPool(void);
+void __ct__17JASGenericMemPoolFv(void);
 void alloc__17JASGenericMemPoolFUl(void);
 void __dt__17JASGenericMemPoolFv(void);
 void free__17JASGenericMemPoolFPvUl(void);

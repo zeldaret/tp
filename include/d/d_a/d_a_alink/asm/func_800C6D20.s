@@ -108,7 +108,7 @@ lbl_800C6E68:
 /* 800C6EA8 000C3DE8  38 80 00 8C */ li r4, 0x8c
 /* 800C6EAC 000C3DEC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C6EB0 000C3DF0  C0 45 00 44 */ lfs f2, 0x44(r5)
-/* 800C6EB4 000C3DF4  4B FE 61 2D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800C6EB4 000C3DF4  4B FE 61 2D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800C6EB8 000C3DF8  38 00 00 01 */ li r0, 1
 /* 800C6EBC 000C3DFC  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_800C6EC0:

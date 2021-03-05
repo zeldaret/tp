@@ -177,7 +177,7 @@ lbl_80222260:
 /* 80222278 0021F1B8  98 7F 01 D1 */ stb r3, 0x1d1(r31)
 /* 8022227C 0021F1BC  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80222280 0021F1C0  88 9F 01 D1 */ lbz r4, 0x1d1(r31)
-/* 80222284 0021F1C4  4B FF 57 8D */ bl drawButtonB__13dMeter2Draw_cFUcbfffffbin
+/* 80222284 0021F1C4  4B FF 57 8D */ bl drawButtonBin__13dMeter2Draw_cFUc
 lbl_80222288:
 /* 80222288 0021F1C8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8022228C 0021F1CC  83 C1 00 08 */ lwz r30, 8(r1)

@@ -35,7 +35,7 @@ lbl_8012E6D0:
 lbl_8012E704:
 /* 8012E704 0012B644  7F C3 F3 78 */ mr r3, r30
 /* 8012E708 0012B648  38 80 00 00 */ li r4, 0
-/* 8012E70C 0012B64C  4B FF B4 39 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012E70C 0012B64C  4B FF B4 39 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012E710 0012B650  48 00 00 28 */ b lbl_8012E738
 lbl_8012E714:
 /* 8012E714 0012B654  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -46,7 +46,7 @@ lbl_8012E714:
 /* 8012E728 0012B668  40 81 00 10 */ ble lbl_8012E738
 /* 8012E72C 0012B66C  7F C3 F3 78 */ mr r3, r30
 /* 8012E730 0012B670  38 80 00 01 */ li r4, 1
-/* 8012E734 0012B674  4B FF B4 11 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012E734 0012B674  4B FF B4 11 */ bl checkNextActionWolf__9daAlink_cFi
 lbl_8012E738:
 /* 8012E738 0012B678  38 60 00 01 */ li r3, 1
 /* 8012E73C 0012B67C  83 E1 00 0C */ lwz r31, 0xc(r1)

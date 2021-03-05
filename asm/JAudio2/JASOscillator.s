@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029be94
 
 
-.global JASOscillator
-JASOscillator:
+.global __ct__13JASOscillatorFv
+__ct__13JASOscillatorFv:
 /* 8029BE94 00298DD4  38 00 00 00 */	li r0, 0
 /* 8029BE98 00298DD8  90 03 00 00 */	stw r0, 0(r3)
 /* 8029BE9C 00298DDC  B0 03 00 14 */	sth r0, 0x14(r3)
@@ -199,7 +199,7 @@ update__13JASOscillatorFv:
 /* 8029C12C 0029906C  90 01 00 08 */	stw r0, 8(r1)
 /* 8029C130 00299070  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8029C134 00299074  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8029C138 00299078  48 00 01 89 */	bl update__13JASOscillatorFvCurrentValue
+/* 8029C138 00299078  48 00 01 89 */	bl updateCurrentValue__13JASOscillatorFf
 /* 8029C13C 0029907C  48 00 01 74 */	b lbl_8029C2B0
 lbl_8029C140:
 /* 8029C140 00299080  C0 03 00 10 */	lfs f0, 0x10(r3)
@@ -303,15 +303,15 @@ lbl_8029C258:
 /* 8029C2A0 002991E0  90 01 00 08 */	stw r0, 8(r1)
 /* 8029C2A4 002991E4  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8029C2A8 002991E8  EC 20 10 28 */	fsubs f1, f0, f2
-/* 8029C2AC 002991EC  48 00 00 15 */	bl update__13JASOscillatorFvCurrentValue
+/* 8029C2AC 002991EC  48 00 00 15 */	bl updateCurrentValue__13JASOscillatorFf
 lbl_8029C2B0:
 /* 8029C2B0 002991F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029C2B4 002991F4  7C 08 03 A6 */	mtlr r0
 /* 8029C2B8 002991F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029C2BC 002991FC  4E 80 00 20 */	blr 
 
-.global update__13JASOscillatorFvCurrentValue
-update__13JASOscillatorFvCurrentValue:
+.global updateCurrentValue__13JASOscillatorFf
+updateCurrentValue__13JASOscillatorFf:
 /* 8029C2C0 00299200  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8029C2C4 00299204  7C 08 02 A6 */	mflr r0
 /* 8029C2C8 00299208  90 01 00 34 */	stw r0, 0x34(r1)

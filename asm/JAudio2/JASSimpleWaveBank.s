@@ -3,8 +3,8 @@
 .section .text, "ax" # 80298c94
 
 
-.global JASSimpleWaveBank
-JASSimpleWaveBank:
+.global __ct__17JASSimpleWaveBankFv
+__ct__17JASSimpleWaveBankFv:
 /* 80298C94 00295BD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298C98 00295BD8  7C 08 02 A6 */	mflr r0
 /* 80298C9C 00295BDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14,7 +14,7 @@ JASSimpleWaveBank:
 /* 80298CAC 00295BEC  38 03 77 80 */	addi r0, r3, lbl_803C7780@l
 /* 80298CB0 00295BF0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298CB4 00295BF4  38 7F 00 04 */	addi r3, r31, 4
-/* 80298CB8 00295BF8  48 00 14 85 */	bl JASWaveArc
+/* 80298CB8 00295BF8  48 00 14 85 */	bl __ct__10JASWaveArcFv
 /* 80298CBC 00295BFC  3C 60 80 3C */	lis r3, lbl_803C77AC@ha
 /* 80298CC0 00295C00  38 63 77 AC */	addi r3, r3, lbl_803C77AC@l
 /* 80298CC4 00295C04  90 7F 00 00 */	stw r3, 0(r31)
@@ -49,7 +49,7 @@ __dt__17JASSimpleWaveBankFv:
 /* 80298D2C 00295C6C  3C 80 80 2A */	lis r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
 .global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
 /* 80298D30 00295C70  38 84 8D 84 */	addi r4, r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
-/* 80298D34 00295C74  48 0C 8F 39 */	bl func_80361C6C
+/* 80298D34 00295C74  48 0C 8F 39 */	bl __destroy_new_array
 /* 80298D38 00295C78  38 7E 00 04 */	addi r3, r30, 4
 /* 80298D3C 00295C7C  38 80 00 00 */	li r4, 0
 /* 80298D40 00295C80  48 00 14 75 */	bl __dt__10JASWaveArcFv
@@ -114,7 +114,7 @@ setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap:
 /* 80298E04 00295D44  3C 80 80 2A */	lis r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
 .global __dt__Q217JASSimpleWaveBank11TWaveHandleFv
 /* 80298E08 00295D48  38 84 8D 84 */	addi r4, r4, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
-/* 80298E0C 00295D4C  48 0C 8E 61 */	bl func_80361C6C
+/* 80298E0C 00295D4C  48 0C 8E 61 */	bl __destroy_new_array
 /* 80298E10 00295D50  1C 7E 00 2C */	mulli r3, r30, 0x2c
 /* 80298E14 00295D54  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298E18 00295D58  7F E4 FB 78 */	mr r4, r31
@@ -130,7 +130,7 @@ setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap:
 /* 80298E30 00295D70  38 A5 8D 84 */	addi r5, r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
 /* 80298E34 00295D74  38 C0 00 2C */	li r6, 0x2c
 /* 80298E38 00295D78  7F C7 F3 78 */	mr r7, r30
-/* 80298E3C 00295D7C  48 0C 90 D9 */	bl func_80361F14
+/* 80298E3C 00295D7C  48 0C 90 D9 */	bl __construct_new_array
 /* 80298E40 00295D80  90 7D 00 78 */	stw r3, 0x78(r29)
 /* 80298E44 00295D84  93 DD 00 7C */	stw r30, 0x7c(r29)
 /* 80298E48 00295D88  39 61 00 20 */	addi r11, r1, 0x20

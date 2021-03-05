@@ -3,8 +3,8 @@
 .section .text, "ax" # 802f2ad0
 
 
-.global J2DMaterialFactory
-J2DMaterialFactory:
+.global __ct__18J2DMaterialFactoryFRC16J2DMaterialBlock
+__ct__18J2DMaterialFactoryFRC16J2DMaterialBlock:
 /* 802F2AD0 002EFA10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F2AD4 002EFA14  7C 08 02 A6 */	mflr r0
 /* 802F2AD8 002EFA18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -292,7 +292,7 @@ lbl_802F2ED4:
 /* 802F2F04 002EFE44  3C A0 54 49 */	lis r5, 0x54494D47@ha
 /* 802F2F08 002EFE48  38 A5 4D 47 */	addi r5, r5, 0x54494D47@l
 /* 802F2F0C 002EFE4C  7F 66 DB 78 */	mr r6, r27
-/* 802F2F10 002EFE50  4B FE B2 11 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+/* 802F2F10 002EFE50  4B FE B2 11 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F2F14 002EFE54  7C 65 1B 79 */	or. r5, r3, r3
 /* 802F2F18 002EFE58  40 82 00 28 */	bne lbl_802F2F40
 /* 802F2F1C 002EFE5C  28 1B 00 00 */	cmplwi r27, 0
@@ -302,7 +302,7 @@ lbl_802F2ED4:
 /* 802F2F2C 002EFE6C  3C A0 54 49 */	lis r5, 0x54494D47@ha
 /* 802F2F30 002EFE70  38 A5 4D 47 */	addi r5, r5, 0x54494D47@l
 /* 802F2F34 002EFE74  38 C0 00 00 */	li r6, 0
-/* 802F2F38 002EFE78  4B FE B1 E9 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+/* 802F2F38 002EFE78  4B FE B1 E9 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F2F3C 002EFE7C  7C 65 1B 78 */	mr r5, r3
 lbl_802F2F40:
 /* 802F2F40 002EFE80  28 05 00 00 */	cmplwi r5, 0
@@ -365,7 +365,7 @@ lbl_802F2FB8:
 /* 802F301C 002EFF5C  3C A0 46 4F */	lis r5, 0x464F4E54@ha
 /* 802F3020 002EFF60  38 A5 4E 54 */	addi r5, r5, 0x464F4E54@l
 /* 802F3024 002EFF64  7F 66 DB 78 */	mr r6, r27
-/* 802F3028 002EFF68  4B FE B0 F9 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+/* 802F3028 002EFF68  4B FE B0 F9 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F302C 002EFF6C  7C 64 1B 79 */	or. r4, r3, r3
 /* 802F3030 002EFF70  40 82 00 28 */	bne lbl_802F3058
 /* 802F3034 002EFF74  28 1B 00 00 */	cmplwi r27, 0
@@ -375,7 +375,7 @@ lbl_802F2FB8:
 /* 802F3044 002EFF84  3C A0 46 4F */	lis r5, 0x464F4E54@ha
 /* 802F3048 002EFF88  38 A5 4E 54 */	addi r5, r5, 0x464F4E54@l
 /* 802F304C 002EFF8C  38 C0 00 00 */	li r6, 0
-/* 802F3050 002EFF90  4B FE B0 D1 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+/* 802F3050 002EFF90  4B FE B0 D1 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F3054 002EFF94  7C 64 1B 78 */	mr r4, r3
 lbl_802F3058:
 /* 802F3058 002EFF98  28 04 00 00 */	cmplwi r4, 0
@@ -1205,10 +1205,10 @@ newTevStage__18J2DMaterialFactoryCFii:
 /* 802F3BC4 002F0B04  80 84 00 44 */	lwz r4, 0x44(r4)
 /* 802F3BC8 002F0B08  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 802F3BCC 002F0B0C  7C 84 02 14 */	add r4, r4, r0
-/* 802F3BD0 002F0B10  48 00 05 41 */	bl J2DTevStage_X1_
+/* 802F3BD0 002F0B10  48 00 05 41 */	bl __ct__11J2DTevStageFRC15J2DTevStageInfo
 /* 802F3BD4 002F0B14  48 00 00 08 */	b lbl_802F3BDC
 lbl_802F3BD8:
-/* 802F3BD8 002F0B18  4B FF DD 69 */	bl J2DTevStage
+/* 802F3BD8 002F0B18  4B FF DD 69 */	bl __ct__11J2DTevStageFv
 lbl_802F3BDC:
 /* 802F3BDC 002F0B1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802F3BE0 002F0B20  7C 08 03 A6 */	mtlr r0
@@ -1589,8 +1589,8 @@ lbl_802F4108:
 /* 802F4108 002F1048  38 60 00 00 */	li r3, 0
 /* 802F410C 002F104C  4E 80 00 20 */	blr 
 
-.global J2DTevStage_X1_
-J2DTevStage_X1_:
+.global __ct__11J2DTevStageFRC15J2DTevStageInfo
+__ct__11J2DTevStageFRC15J2DTevStageInfo:
 /* 802F4110 002F1050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F4114 002F1054  7C 08 02 A6 */	mflr r0
 /* 802F4118 002F1058  90 01 00 14 */	stw r0, 0x14(r1)

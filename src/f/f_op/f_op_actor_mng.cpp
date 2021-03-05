@@ -75,36 +75,36 @@ void cM_atan2s__Fff(void);
 void cM_rndFX__Ff(void);
 void cM_rndF__Ff(void);
 void createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi(void);
-void dBgS_GndChk(void);
-void dBgS_LinChk(void);
+void __ct__11dBgS_GndChkFv(void);
+void __ct__11dBgS_LinChkFv(void);
 void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c(void);
 void __dt__11dBgS_LinChkFv(void);
 void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo(void);
 void RoofChk__4dBgSFP12dBgS_RoofChk(void);
 void SplGrpChk__4dBgSFP14dBgS_SplGrpChk(void);
 void __dt__14dBgS_ObjGndChkFv(void);
-void dBgS_ObjLinChk(void);
+void __ct__14dBgS_ObjLinChkFv(void);
 void __dt__15dBgS_ObjRoofChkFv(void);
-void dBgS_RoofChk(void);
+void __ct__12dBgS_RoofChkFv(void);
 void __dt__12dBgS_RoofChkFv(void);
 void Set__14dBgS_SplGrpChkFR4cXyzf(void);
 void __dt__14dBgS_SplGrpChkFv(void);
-void dBgS_WtrChk(void);
+void __ct__11dBgS_WtrChkFv(void);
 void __dt__11dBgS_WtrChkFv(void);
-void dCam_getCamera(void);
-void getEventIdx__16dEvent_manager_cFPCcUcl_X1_(void);
-void getEventIdx__16dEvent_manager_cFPCcUcl_X2_(void);
+void dCam_getCamera__Fv(void);
+void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc(void);
+void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc(void);
 void getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs(void);
 void convPId__14dEvt_control_cFUi(void);
 void order__14dEvt_control_cFUsUsUsUsPvPvsUc(void);
 void searchMapEventData__14dEvt_control_cFUcl(void);
 void setGtItm__14dEvt_control_cFUc(void);
-void dKy_Sound_get(void);
-void get__Q213dPa_control_c7level_cFUlEmitter(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfSimpleFoot(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_(void);
-void dPath_GetPolyRoomPathVec(void);
-const char* dStage_getName2(s16, s8);
+void dKy_Sound_get__Fv(void);
+void getEmitter__Q213dPa_control_c7level_cFUl(void);
+void setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz(void);
+void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi(void);
+const char* dStage_getName2__FsSc(s16, s8);
 void checkArea__13daTagStream_cFPC4cXyz(void);
 void enemySearchJugge__FPvPv(void);
 void event_second_actor__FUs(void);
@@ -177,7 +177,7 @@ void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData(void);
 void fopAcM_setRoomLayer__FPvi(void);
 void fopAcM_setStageLayer__FPv(void);
 void waterCheck__11fopAcM_wt_cFPC4cXyz(void);
-BOOL fopAc_IsActor(void*);
+BOOL fopAc_IsActor__FPv(void*);
 void fopScnM_SearchByID(void);
 void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz(void);
 void fopAcM_SearchByName__FsPP10fopAc_ac_c(void);
@@ -207,7 +207,7 @@ void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci(void);
 void fopAcM_riverStream__FP4cXyzPsPff(void);
 void fopAcM_carryOffRevise__FP10fopAc_ac_c(void);
 void roofCheck__11fopAcM_rc_cFPC4cXyz(void);
-void func_8001DE14(void);
+void __sinit_f_op_actor_mng_cpp(void);
 void func_8001E0D4(void);
 void func_8001E0DC(void);
 void func_8001E0E4(void);
@@ -217,18 +217,18 @@ void func_8001E0FC(void);
 void func_8001E104(void);
 void func_8001E10C(void);
 void func_8001E114(void);
-void func_8001E11C(void);
-void func_8001E120(void);
-void func_8001E128(void);
-void func_8001E130(void);
-void func_8001E138(void);
+void onFrollCrashFlg__9daPy_py_cFUci(void);
+void checkWolfDash__9daPy_py_cCFv(void);
+void checkFrontRoll__9daPy_py_cCFv(void);
+void checkHorseRide__9daPy_py_cCFv(void);
+void getGrabActorID__9daPy_py_cCFv(void);
 void func_80361C24(void);
 void get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz(void);
 void isHeart__FUc(void);
 void __dt__5l_HIOFv(void);
-s32 mDoExt_adjustSolidHeap(JKRSolidHeap*);
-JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 size, u32 alignment);
-void mDoMtx_YrotS(void);
+s32 mDoExt_adjustSolidHeap__FP12JKRSolidHeap(JKRSolidHeap*);
+JKRSolidHeap* mDoExt_createSolidHeapFromGame__FUlUl(u32 size, u32 alignment);
+void mDoMtx_YrotS__FPA4_fs(void);
 void normalizeZP__4cXyzFv(void);
 void onActor__10dSv_info_cFii(void);
 void vectle_calc__FPC10DOUBLE_POSP4cXyz(void);
@@ -484,7 +484,7 @@ void* fopAcM_fastCreate(s16 pProcTypeID, u32 param_2, const cXyz* param_3, int p
 void* fopAcM_fastCreate(const char* pActorName, u32 pActorParams, const cXyz* pActorPos,
                         int param_4, const csXyz* pActorRot, const cXyz* param_6,
                         createFunc param_7, void* param_8) {
-    objectNameInfo* nameInfo = dStage_searchName(pActorName);
+    objectNameInfo* nameInfo = dStage_searchName__FPCc(pActorName);
     if (nameInfo == NULL) {
         return NULL;
     } else {
@@ -550,16 +550,16 @@ s32 fopAcM_createChildFromOffset(s16 pProcTypeID, unsigned int pParentProcID, u3
 void fopAcM_DeleteHeap(fopAc_ac_c* pActor) {
     fopAcM_Log(pActor, "ƒAƒNƒ^[‚Ìƒq[ƒv‚Ì”j‰ó");
     if (pActor->unk_0x0F0 != NULL) {
-        mDoExt_destroySolidHeap(pActor->unk_0x0F0);
+        mDoExt_destroySolidHeap__FP12JKRSolidHeap(pActor->unk_0x0F0);
         pActor->unk_0x0F0 = NULL;
     }
 }
 
 // fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap
 s32 fopAcM_callCallback(fopAc_ac_c* pActor, heapCallbackFunc pCallbackFunc, JKRHeap* pHeap) {
-    JKRHeap* oldHeap = mDoExt_setCurrentHeap(pHeap);
+    JKRHeap* oldHeap = mDoExt_setCurrentHeap__FP7JKRHeap(pHeap);
     s32 ret = pCallbackFunc(pActor);
-    mDoExt_setCurrentHeap(oldHeap);
+    mDoExt_setCurrentHeap__FP7JKRHeap(oldHeap);
     return ret;
 }
 
@@ -572,13 +572,13 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
     }
     while (true) {
         if (pSize != 0) {
-            heap00 = mDoExt_createSolidHeapFromGame(pSize, 0x20);
+            heap00 = mDoExt_createSolidHeapFromGame__FUlUl(pSize, 0x20);
             if (heap00 != NULL) {
                 bool status = fopAcM_callCallback(pActor, pHeapCallback, heap00) != 0;
                 if (!status) {
                     OSReport_Error("Œ©Ï‚à‚èƒq[ƒvƒTƒCƒY(%08x)‚Å“o˜^Ž¸”s‚µ‚Ü‚µ‚½B%08x[%s]\n",
                                    pSize, heap00->getFreeSize(), procNameString);
-                    mDoExt_destroySolidHeap(heap00);
+                    mDoExt_destroySolidHeap__FP12JKRSolidHeap(heap00);
                     heap00 = NULL;
                 }
             } else {
@@ -587,7 +587,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             }
         }
         if (heap00 == NULL) {
-            heap00 = mDoExt_createSolidHeapFromGame(0xFFFFFFFF, 0x20);
+            heap00 = mDoExt_createSolidHeapFromGame__FUlUl(0xFFFFFFFF, 0x20);
             if (heap00 == NULL) {
                 OSReport_Error("Å‘å‹ó‚«ƒq[ƒvƒTƒCƒY‚ÅŠm•ÛŽ¸”sB[%s]\n", procNameString);
                 return false;
@@ -596,7 +596,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             if (!status) {
                 OSReport_Error("Å‘å‹ó‚«ƒq[ƒvƒTƒCƒY‚Å“o˜^Ž¸”sB%08x[%s]\n", heap00->getFreeSize(),
                                procNameString);
-                mDoExt_destroySolidHeap(heap00);
+                mDoExt_destroySolidHeap__FP12JKRSolidHeap(heap00);
                 return false;
             }
         }
@@ -604,38 +604,38 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* pActor, heapCallbackFunc pHeapCallback, 
             break;
         }
         if (lbl_80450CC8 == 0) {
-            mDoExt_adjustSolidHeap(heap00);
+            mDoExt_adjustSolidHeap__FP12JKRSolidHeap(heap00);
             pActor->unk_0x0F0 = heap00;
             return true;
         } else {
             JKRSolidHeap* heap = NULL;
             u32 heap00Size = heap00->getSize();
             u32 alignedSize = ALIGN_NEXT(heap00Size - heap00->getFreeSize(), 0x20);
-            if (alignedSize + 0x90 < mDoExt_getGameHeap()->getFreeSize()) {
-                heap = mDoExt_createSolidHeapFromGame(alignedSize, 0x20);
+            if (alignedSize + 0x90 < mDoExt_getGameHeap__Fv()->getFreeSize()) {
+                heap = mDoExt_createSolidHeapFromGame__FUlUl(alignedSize, 0x20);
             }
             if (heap != NULL) {
                 if (heap < heap00) {
-                    mDoExt_destroySolidHeap(heap00);
+                    mDoExt_destroySolidHeap__FP12JKRSolidHeap(heap00);
                     heap00 = NULL;
                     bool status = fopAcM_callCallback(pActor, pHeapCallback, heap) != 0;
                     if (!status) {
                         OSReport_Error("‚Ò‚Á‚½‚èƒTƒCƒY‚ÅA“o˜^Ž¸”sH(ƒoƒO)\n");
-                        mDoExt_destroySolidHeap(heap);
+                        mDoExt_destroySolidHeap__FP12JKRSolidHeap(heap);
                         heap = NULL;
                     }
                 } else {
-                    mDoExt_destroySolidHeap(heap);
+                    mDoExt_destroySolidHeap__FP12JKRSolidHeap(heap);
                     heap = NULL;
                 }
             }
             if (heap != NULL) {
-                mDoExt_adjustSolidHeap(heap);
+                mDoExt_adjustSolidHeap__FP12JKRSolidHeap(heap);
                 pActor->unk_0x0F0 = heap;
                 return true;
             }
             if (heap00 != NULL) {
-                mDoExt_adjustSolidHeap(heap00);
+                mDoExt_adjustSolidHeap__FP12JKRSolidHeap(heap00);
                 pActor->unk_0x0F0 = heap00;
                 return true;
             }
@@ -761,7 +761,7 @@ s16 fopAcM_searchActorAngleY(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActor
     return cLib_targetAngleY(&pActorA->mPosition, &pActorB->mPosition);
 }
 
-inline f32 JMAFastSqrt(f32 f) {
+inline f32 JMAFastSqrt__Ff(f32 f) {
     if (f > lbl_80451C04) {
         f *= __frsqrte(f);  // generates a useless frsp
     }
@@ -778,7 +778,7 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* pActorA, const fopAc_ac_c* pActor
     const cXyz& posA = fopAcM_GetPosition_p(pActorA);
     const cXyz& posB = fopAcM_GetPosition_p(pActorB);
     return cM_atan2s(posB.y - posA.y,
-                     JMAFastSqrt(square(posB.x - posA.x) + square(posB.z - posA.z)));
+                     JMAFastSqrt__Ff(square(posB.x - posA.x) + square(posB.z - posA.z)));
 }
 #else
 asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c*, const fopAc_ac_c*) {
@@ -837,7 +837,7 @@ s32 fopAcM_checkCullingBox(Mtx pMtx, f32 pX1, f32 pY1, f32 pZ1, f32 pX2, f32 pY2
     Vec tmp2 = {pX2, pY2, pZ2};
     Mtx tmpMtx;
     PSMTXConcat(lbl_80434AC8.mtx, pMtx, tmpMtx);
-    return clip__11J3DUClipperCFPA4_Cf3Vecf_X1_(&lbl_803DD8E4, tmpMtx, &tmp2, &tmp1) != 0;
+    return clip__11J3DUClipperCFPA4_CfP3VecP3Vec(&lbl_803DD8E4, tmpMtx, &tmp2, &tmp1) != 0;
 }
 
 // fopAcM_cullingCheck__FPC10fopAc_ac_c
@@ -1274,7 +1274,7 @@ s32 fopAcM_createWarpHole(const cXyz* pPos, const csXyz* pRot, int param_3, u8 p
 
 // enemySearchJugge__FPvPv
 void* enemySearchJugge(void* pActor, void* pData) {
-    if (pActor != NULL && fopAc_IsActor(pActor) &&
+    if (pActor != NULL && fopAc_IsActor__FPv(pActor) &&
         static_cast<fopAc_ac_c*>(pActor)->unk_0x496 == 2) {
         return pActor;
     } else {
@@ -1402,7 +1402,7 @@ asm void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*) {
 
 // fopAcM_getProcNameString__FPC10fopAc_ac_c
 const char* fopAcM_getProcNameString(const fopAc_ac_c* pActor) {
-    const char* name = dStage_getName2(pActor->mBsTypeId, pActor->unk_0x499);
+    const char* name = dStage_getName2__FsSc(pActor->mBsTypeId, pActor->unk_0x499);
     return name != NULL ? name : "UNKOWN";
 }
 
@@ -1514,7 +1514,7 @@ extern "C" {
 
 // __sinit_f_op_actor_mng_cpp
 //
-asm void func_8001DE14(void) {
+asm void __sinit_f_op_actor_mng_cpp(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001DE14.s"
 }
@@ -1612,35 +1612,35 @@ asm void func_8001E114(void) {
 
 // onFrollCrashFlg__9daPy_py_cFUci
 // daPy_py_c::onFrollCrashFlg(u8, int)
-asm void func_8001E11C(void) {
+asm void onFrollCrashFlg__9daPy_py_cFUci(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E11C.s"
 }
 
 // checkWolfDash__9daPy_py_cCFv
 // daPy_py_c::checkWolfDash(void) const
-asm void func_8001E120(void) {
+asm void checkWolfDash__9daPy_py_cCFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E120.s"
 }
 
 // checkFrontRoll__9daPy_py_cCFv
 // daPy_py_c::checkFrontRoll(void) const
-asm void func_8001E128(void) {
+asm void checkFrontRoll__9daPy_py_cCFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E128.s"
 }
 
 // checkHorseRide__9daPy_py_cCFv
 // daPy_py_c::checkHorseRide(void) const
-asm void func_8001E130(void) {
+asm void checkHorseRide__9daPy_py_cCFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E130.s"
 }
 
 // getGrabActorID__9daPy_py_cCFv
 // daPy_py_c::getGrabActorID(void) const
-asm void func_8001E138(void) {
+asm void getGrabActorID__9daPy_py_cCFv(void) {
     nofralloc
 #include "f/f_op/f_op_actor_mng/asm/func_8001E138.s"
 }

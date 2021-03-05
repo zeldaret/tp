@@ -9,15 +9,15 @@
 /* 8019D63C 0019A57C  AB E4 00 02 */ lha r31, 2(r4)
 /* 8019D640 0019A580  AB C4 00 04 */ lha r30, 4(r4)
 /* 8019D644 0019A584  A8 64 00 00 */ lha r3, 0(r4)
-/* 8019D648 0019A588  4B FF FF 75 */ bl kankyo_color_ratio_calc_common
+/* 8019D648 0019A588  4B FF FF 75 */ bl kankyo_color_ratio_calc_common__Fsf
 /* 8019D64C 0019A58C  98 7D 00 00 */ stb r3, 0(r29)
 /* 8019D650 0019A590  7F E3 FB 78 */ mr r3, r31
 /* 8019D654 0019A594  FC 20 F8 90 */ fmr f1, f31
-/* 8019D658 0019A598  4B FF FF 65 */ bl kankyo_color_ratio_calc_common
+/* 8019D658 0019A598  4B FF FF 65 */ bl kankyo_color_ratio_calc_common__Fsf
 /* 8019D65C 0019A59C  98 7D 00 01 */ stb r3, 1(r29)
 /* 8019D660 0019A5A0  7F C3 F3 78 */ mr r3, r30
 /* 8019D664 0019A5A4  FC 20 F8 90 */ fmr f1, f31
-/* 8019D668 0019A5A8  4B FF FF 55 */ bl kankyo_color_ratio_calc_common
+/* 8019D668 0019A5A8  4B FF FF 55 */ bl kankyo_color_ratio_calc_common__Fsf
 /* 8019D66C 0019A5AC  98 7D 00 02 */ stb r3, 2(r29)
 /* 8019D670 0019A5B0  CB E1 00 18 */ lfd f31, 0x18(r1)
 /* 8019D674 0019A5B4  39 61 00 18 */ addi r11, r1, 0x18

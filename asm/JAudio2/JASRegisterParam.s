@@ -3,8 +3,8 @@
 .section .text, "ax" # 80293644
 
 
-.global JASRegisterParam
-JASRegisterParam:
+.global __ct__16JASRegisterParamFv
+__ct__16JASRegisterParamFv:
 /* 80293644 00290584  38 80 00 00 */	li r4, 0
 /* 80293648 00290588  7C 85 23 78 */	mr r5, r4
 /* 8029364C 0029058C  38 00 00 0E */	li r0, 0xe

@@ -11,7 +11,7 @@
 lbl_800C018C:
 /* 800C018C 000BD0CC  57 BE 06 3E */ clrlwi r30, r29, 0x18
 /* 800C0190 000BD0D0  7F C3 F3 78 */ mr r3, r30
-/* 800C0194 000BD0D4  4B F6 DD 89 */ bl dComIfGp_getSelectItem
+/* 800C0194 000BD0D4  4B F6 DD 89 */ bl dComIfGp_getSelectItem__Fi
 /* 800C0198 000BD0D8  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 800C019C 000BD0DC  7F 63 DB 78 */ mr r3, r27
 /* 800C01A0 000BD0E0  7F 84 E3 78 */ mr r4, r28

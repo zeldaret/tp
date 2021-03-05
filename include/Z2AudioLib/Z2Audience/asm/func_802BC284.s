@@ -23,9 +23,9 @@
 /* 802BC2DC 002B921C  D0 03 00 5C */ stfs f0, 0x5c(r3)
 /* 802BC2E0 002B9220  C0 02 C0 D8 */ lfs f0, lbl_80455AD8-_SDA2_BASE_(r2)
 /* 802BC2E4 002B9224  D0 03 00 60 */ stfs f0, 0x60(r3)
-/* 802BC2E8 002B9228  48 00 00 21 */ bl init__19Z2Audience3DSettingFvVolumeDist
+/* 802BC2E8 002B9228  48 00 00 21 */ bl initVolumeDist__19Z2Audience3DSettingFv
 /* 802BC2EC 002B922C  7F E3 FB 78 */ mr r3, r31
-/* 802BC2F0 002B9230  48 00 03 B5 */ bl init__19Z2Audience3DSettingFvDolbyDist
+/* 802BC2F0 002B9230  48 00 03 B5 */ bl initDolbyDist__19Z2Audience3DSettingFv
 /* 802BC2F4 002B9234  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802BC2F8 002B9238  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802BC2FC 002B923C  7C 08 03 A6 */ mtlr r0

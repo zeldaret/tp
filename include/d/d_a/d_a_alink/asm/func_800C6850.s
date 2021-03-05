@@ -11,7 +11,7 @@
 /* 800C6878 000C37B8  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C687C 000C37BC  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800C6880 000C37C0  C0 45 00 80 */ lfs f2, 0x80(r5)
-/* 800C6884 000C37C4  4B FE 67 5D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800C6884 000C37C4  4B FE 67 5D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800C6888 000C37C8  C0 1F 34 10 */ lfs f0, 0x3410(r31)
 /* 800C688C 000C37CC  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800C6890 000C37D0  C0 1F 34 10 */ lfs f0, 0x3410(r31)

@@ -9,9 +9,9 @@ extern node_list_class lbl_803A35E0;
 
 extern "C" {
 
-u32 fopAcTg_ToActorQ(create_tag_class* c);
-u32 fopAcTg_ActorQTo(create_tag_class* c);
-u32 fopAcTg_Init(create_tag_class* c, void* data);
+u32 fopAcTg_ToActorQ__FP16create_tag_class(create_tag_class* c);
+u32 fopAcTg_ActorQTo__FP16create_tag_class(create_tag_class* c);
+u32 fopAcTg_Init__FP16create_tag_classPv(create_tag_class* c, void* data);
 }
 
 #endif

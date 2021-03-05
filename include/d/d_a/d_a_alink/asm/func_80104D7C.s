@@ -53,7 +53,7 @@ lbl_80104E24:
 /* 80104E38 00101D78  48 00 00 6C */ b lbl_80104EA4
 lbl_80104E3C:
 /* 80104E3C 00101D7C  7F E3 FB 78 */ mr r3, r31
-/* 80104E40 00101D80  48 00 47 89 */ bl checkNextAction__9daAlink_cFiHookshot
+/* 80104E40 00101D80  48 00 47 89 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 80104E44 00101D84  2C 03 00 00 */ cmpwi r3, 0
 /* 80104E48 00101D88  40 82 00 58 */ bne lbl_80104EA0
 /* 80104E4C 00101D8C  7F E3 FB 78 */ mr r3, r31

@@ -1,7 +1,7 @@
 /* 8019FAB8 0019C9F8  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8019FABC 0019C9FC  7C 08 02 A6 */ mflr r0
 /* 8019FAC0 0019CA00  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8019FAC4 0019CA04  4B FF FF 4D */ bl dKy_getdaytime_hour
+/* 8019FAC4 0019CA04  4B FF FF 4D */ bl dKy_getdaytime_hour__Fv
 /* 8019FAC8 0019CA08  2C 03 00 06 */ cmpwi r3, 6
 /* 8019FACC 0019CA0C  41 80 00 14 */ blt lbl_8019FAE0
 /* 8019FAD0 0019CA10  2C 03 00 13 */ cmpwi r3, 0x13

@@ -122,7 +122,7 @@ lbl_802A9D68:
 /* 802A9D88 002A6CC8  38 80 00 08 */ li r4, 8
 /* 802A9D8C 002A6CCC  48 00 62 01 */ bl changeBgmStatus__8Z2SeqMgrFl
 /* 802A9D90 002A6CD0  48 00 00 08 */ b lbl_802A9D98
-/* 802A9D94 002A6CD4  4B D8 5F 61 */ bl dComIfGs_staffroll_next_go
+/* 802A9D94 002A6CD4  4B D8 5F 61 */ bl dComIfGs_staffroll_next_go__Fv
 lbl_802A9D98:
 /* 802A9D98 002A6CD8  57 E4 04 3E */ clrlwi r4, r31, 0x10
 /* 802A9D9C 002A6CDC  28 04 10 09 */ cmplwi r4, 0x1009

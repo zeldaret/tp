@@ -40,7 +40,7 @@ lbl_800C7870:
 lbl_800C7884:
 /* 800C7884 000C47C4  7F C3 F3 78 */ mr r3, r30
 /* 800C7888 000C47C8  38 80 01 4D */ li r4, 0x14d
-/* 800C788C 000C47CC  4B FF B5 19 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800C788C 000C47CC  4B FF B5 19 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C7890 000C47D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C7894 000C47D4  40 82 00 0C */ bne lbl_800C78A0
 /* 800C7898 000C47D8  38 60 00 01 */ li r3, 1
@@ -102,7 +102,7 @@ lbl_800C7954:
 /* 800C7964 000C48A4  41 82 00 B8 */ beq lbl_800C7A1C
 /* 800C7968 000C48A8  7F C3 F3 78 */ mr r3, r30
 /* 800C796C 000C48AC  38 80 00 70 */ li r4, 0x70
-/* 800C7970 000C48B0  48 06 1D 09 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800C7970 000C48B0  48 06 1D 09 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800C7974 000C48B4  3C 60 80 42 */ lis r3, lbl_8042561C@ha
 /* 800C7978 000C48B8  C4 03 56 1C */ lfsu f0, lbl_8042561C@l(r3)
 /* 800C797C 000C48BC  D0 1E 35 88 */ stfs f0, 0x3588(r30)
@@ -123,7 +123,7 @@ lbl_800C7954:
 /* 800C79B8 000C48F8  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 800C79BC 000C48FC  41 82 02 68 */ beq lbl_800C7C24
 /* 800C79C0 000C4900  3B A0 00 01 */ li r29, 1
-/* 800C79C4 000C4904  48 0E 4B B9 */ bl dKy_darkworld_check
+/* 800C79C4 000C4904  48 0E 4B B9 */ bl dKy_darkworld_check__Fv
 /* 800C79C8 000C4908  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 800C79CC 000C490C  28 00 00 01 */ cmplwi r0, 1
 /* 800C79D0 000C4910  41 82 00 24 */ beq lbl_800C79F4
@@ -246,7 +246,7 @@ lbl_800C7B74:
 /* 800C7B8C 000C4ACC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C7B90 000C4AD0  41 82 00 30 */ beq lbl_800C7BC0
 /* 800C7B94 000C4AD4  38 7E 1B 5C */ addi r3, r30, 0x1b5c
-/* 800C7B98 000C4AD8  4B FA E1 75 */ bl dBgS_CheckBWallPoly
+/* 800C7B98 000C4AD8  4B FA E1 75 */ bl dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo
 /* 800C7B9C 000C4ADC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C7BA0 000C4AE0  41 82 00 20 */ beq lbl_800C7BC0
 /* 800C7BA4 000C4AE4  7F E3 FB 78 */ mr r3, r31

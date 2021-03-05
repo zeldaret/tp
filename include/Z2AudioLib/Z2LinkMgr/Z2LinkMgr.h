@@ -69,23 +69,23 @@ struct Z2LinkSoundStarter {
 extern "C" {
 void __dt__14Z2CreatureRideFv(void);
 
-void func_802C5078(void);
-void func_802C57C0(void);
-void func_802C551C(void);
+void __dt__18Z2RideSoundStarterFv(void);
+void startSound__15Z2SoundObjCoachF10JAISoundIDUlSc(void);
+void startWheelSound__15Z2SoundObjCoachFf(void);
 void func_802C5284(void);
-void func_802C4FFC(void);
+void __ct__14Z2CreatureRideFv(void);
 void func_802C5894(void);
 void func_802C4928(void);
 void func_802C588C(void);
-void func_802C54FC(void);
-void func_802C54B8(void);
-void func_802C56C0(void);
-void func_802C51EC(void);
-void func_802C520C(void);
+void init__15Z2SoundObjCoachFP3VecUc(void);
+void __ct__15Z2SoundObjCoachFv(void);
+void startFireSound__15Z2SoundObjCoachFUs(void);
+void deleteObject__14Z2CreatureRideFv(void);
+void init__14Z2CreatureRideFP3VecP3VecUcUc(void);
 
 void __ct__18Z2LinkSoundStarterFv(void);
 
-void Z2RideSoundStarter(void);
+void __ct__18Z2RideSoundStarterFP14Z2CreatureRide(void);
 }
 
 #endif  // Z2LINKMGR_H_

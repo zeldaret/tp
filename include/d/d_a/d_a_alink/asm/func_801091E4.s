@@ -30,7 +30,7 @@ lbl_8010924C:
 /* 8010924C 0010618C  7F A3 EB 78 */ mr r3, r29
 /* 80109250 00106190  38 80 01 8D */ li r4, 0x18d
 /* 80109254 00106194  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80109258 00106198  4B FA 41 51 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 80109258 00106198  4B FA 41 51 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 8010925C 0010619C  38 00 00 00 */ li r0, 0
 /* 80109260 001061A0  B0 1D 30 20 */ sth r0, 0x3020(r29)
 /* 80109264 001061A4  7F A3 EB 78 */ mr r3, r29

@@ -13,45 +13,45 @@ void __dl__FPv(void);
 void __nw__FUl(void);
 void alloc__7JKRHeapFUli(void);
 void cLib_addCalc2__FPffff(void);
-void COutFont_c(void);
+void __ct__10COutFont_cFUc(void);
 void __dt__8CPaneMgrFv(void);
 void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs(void);
-void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter(void);
+void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs(void);
 void paneTrans__8CPaneMgrFff(void);
-void CPaneMgr_X1_(void);
-void CPaneMgr(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
+void __ct__8CPaneMgrFv(void);
 void getAlphaRate__13CPaneMgrAlphaFv(void);
 void hide__13CPaneMgrAlphaFv(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void show__13CPaneMgrAlphaFv(void);
 void getLayerNo__14dComIfG_play_cFi(int);
-void dComIfGs_isOneZoneSwitch(void);
-void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc_X1_(void);
+void dComIfGs_isOneZoneSwitch__Fii(void);
+void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
 void getCanoeFishing__13dMeter2Draw_cFv(void);
 void setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void decFloatingMessageTimer__13dMeter2Info_cFv(void);
-void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength(void);
+void getStringLength__13dMeter2Info_cFP10J2DTextBoxPc(void);
 void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void);
 void resetFloatingMessage__13dMeter2Info_cFv(void);
 void _create__14dMeterButton_cFv(void);
 void _delete__14dMeterButton_cFv(void);
 void alphaAnimeButton3D__14dMeterButton_cFUlb(void);
-void alphaAnimeButton3D__14dMeterButton_cFUlbB(void);
+void alphaAnimeButton3DB__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonA__14dMeterButton_cFUlb(void);
-void alphaAnimeButtonA__14dMeterButton_cFUlbB(void);
-void alphaAnimeButtonA__14dMeterButton_cFUlbR(void);
+void alphaAnimeButtonAB__14dMeterButton_cFUlb(void);
+void alphaAnimeButtonAR__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonB__14dMeterButton_cFUlb(void);
-void alphaAnimeButtonB__14dMeterButton_cFUlbin(void);
+void alphaAnimeButtonBin__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonC__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonNun__14dMeterButton_cFUlb(void);
-void alphaAnimeButtonNun__14dMeterButton_cFUlbC(void);
-void alphaAnimeButtonNun__14dMeterButton_cFUlbZ(void);
+void alphaAnimeButtonNunC__14dMeterButton_cFUlb(void);
+void alphaAnimeButtonNunZ__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonNURE__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonR__14dMeterButton_cFUlb(void);
-void alphaAnimeButtonR__14dMeterButton_cFUlbeel(void);
-void alphaAnimeButtonR__14dMeterButton_cFUlbeel2(void);
-void alphaAnimeButtonR__14dMeterButton_cFUlbemo(void);
-void alphaAnimeButtonR__14dMeterButton_cFUlbemo2(void);
+void alphaAnimeButtonReel__14dMeterButton_cFUlb(void);
+void alphaAnimeButtonReel2__14dMeterButton_cFUlb(void);
+void alphaAnimeButtonRemo__14dMeterButton_cFUlb(void);
+void alphaAnimeButtonRemo2__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonS__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonTate__14dMeterButton_cFUlb(void);
 void alphaAnimeButtonX__14dMeterButton_cFUlb(void);
@@ -129,8 +129,8 @@ void isMidonaTalkWait__12dMsgObject_cFv(void);
 void isPlaceMessage__12dMsgObject_cFv(void);
 void isStaffMessage__12dMsgObject_cFv(void);
 void __dt__12dMsgString_cFv(void);
-void dMsgString_c(void);
-void dPaneClass_showNullPane(void);
+void __ct__12dMsgString_cFv(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void free__7JKRHeapFPv(void);
 void getBounds__7J2DPaneFv(void);
 void getItem__17dSv_player_item_cCFib(void);
@@ -138,9 +138,9 @@ void isEventBit__11dSv_event_cCFUs(void);
 void draw__9J2DScreenFffPC14J2DGrafContext(void);
 void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 void getStringPtr__10J2DTextBoxCFv(void);
-void setString__10J2DTextBoxFPCce_X1_(void);
-void mDoExt_getCurrentHeap(void);
-void mDoExt_getMesgFont(void);
+void setString__10J2DTextBoxFsPCce(void);
+void mDoExt_getCurrentHeap__Fv(void);
+void mDoExt_getMesgFont__Fv(void);
 }
 
 // additional symbols needed for d_meter_button.cpp
@@ -185,14 +185,14 @@ extern u8 lbl_8043028C;
 extern "C" {
 // __ct__14dMeterButton_cFv
 // dMeterButton_c::dMeterButton_c(void)
-asm void dMeterButton_c(void) {
+asm void __ct__14dMeterButton_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80201328.s"
 }
 
 // __dt__14dMeterButton_cFv
 // dMeterButton_c::~dMeterButton_c(void)
-asm void func_80201370(void) {
+asm void __dt__14dMeterButton_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80201370.s"
 }
@@ -214,7 +214,7 @@ asm void _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb(void) {
 
 // draw__14dMeterButton_cFv
 // dMeterButton_c::draw(void)
-asm void func_80202240(void) {
+asm void draw__14dMeterButton_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80202240.s"
 }
@@ -298,28 +298,28 @@ asm void alphaAnimeButtonNun__14dMeterButton_cFUlb(void) {
 
 // alphaAnimeButtonRemo__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonRemo(unsigned long, bool)
-asm void alphaAnimeButtonR__14dMeterButton_cFUlbemo(void) {
+asm void alphaAnimeButtonRemo__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80203C30.s"
 }
 
 // alphaAnimeButtonRemo2__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonRemo2(unsigned long, bool)
-asm void alphaAnimeButtonR__14dMeterButton_cFUlbemo2(void) {
+asm void alphaAnimeButtonRemo2__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80203D44.s"
 }
 
 // alphaAnimeButtonAR__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonAR(unsigned long, bool)
-asm void alphaAnimeButtonA__14dMeterButton_cFUlbR(void) {
+asm void alphaAnimeButtonAR__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80203E58.s"
 }
 
 // alphaAnimeButton3DB__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButton3DB(unsigned long, bool)
-asm void alphaAnimeButton3D__14dMeterButton_cFUlbB(void) {
+asm void alphaAnimeButton3DB__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80203F60.s"
 }
@@ -333,21 +333,21 @@ asm void alphaAnimeButtonNURE__14dMeterButton_cFUlb(void) {
 
 // alphaAnimeButtonReel__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonReel(unsigned long, bool)
-asm void alphaAnimeButtonR__14dMeterButton_cFUlbeel(void) {
+asm void alphaAnimeButtonReel__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80204170.s"
 }
 
 // alphaAnimeButtonReel2__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonReel2(unsigned long, bool)
-asm void alphaAnimeButtonR__14dMeterButton_cFUlbeel2(void) {
+asm void alphaAnimeButtonReel2__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80204278.s"
 }
 
 // alphaAnimeButtonAB__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonAB(unsigned long, bool)
-asm void alphaAnimeButtonA__14dMeterButton_cFUlbB(void) {
+asm void alphaAnimeButtonAB__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80204368.s"
 }
@@ -361,21 +361,21 @@ asm void alphaAnimeButtonTate__14dMeterButton_cFUlb(void) {
 
 // alphaAnimeButtonNunZ__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonNunZ(unsigned long, bool)
-asm void alphaAnimeButtonNun__14dMeterButton_cFUlbZ(void) {
+asm void alphaAnimeButtonNunZ__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80204548.s"
 }
 
 // alphaAnimeButtonNunC__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonNunC(unsigned long, bool)
-asm void alphaAnimeButtonNun__14dMeterButton_cFUlbC(void) {
+asm void alphaAnimeButtonNunC__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_80204620.s"
 }
 
 // alphaAnimeButtonBin__14dMeterButton_cFUlb
 // dMeterButton_c::alphaAnimeButtonBin(unsigned long, bool)
-asm void alphaAnimeButtonB__14dMeterButton_cFUlbin(void) {
+asm void alphaAnimeButtonBin__14dMeterButton_cFUlb(void) {
     nofralloc
 #include "d/d_meter/d_meter_button/asm/func_802046F8.s"
 }

@@ -43,7 +43,7 @@ lbl_802E9D08:
 /* 802E9D0C 002E6C4C  40 82 00 10 */	bne lbl_802E9D1C
 /* 802E9D10 002E6C50  38 83 00 10 */	addi r4, r3, 0x10
 /* 802E9D14 002E6C54  38 A3 00 24 */	addi r5, r3, 0x24
-/* 802E9D18 002E6C58  48 00 01 A5 */	bl getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya
+/* 802E9D18 002E6C58  48 00 01 A5 */	bl getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
 lbl_802E9D1C:
 /* 802E9D1C 002E6C5C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802E9D20 002E6C60  7C 08 03 A6 */	mtlr r0
@@ -153,8 +153,8 @@ getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f:
 /* 802E9EB4 002E6DF4  38 21 00 40 */	addi r1, r1, 0x40
 /* 802E9EB8 002E6DF8  4E 80 00 20 */	blr 
 
-.global getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya
-getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_fMaya:
+.global getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
+getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f:
 /* 802E9EBC 002E6DFC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E9EC0 002E6E00  7C 08 02 A6 */	mflr r0
 /* 802E9EC4 002E6E04  90 01 00 34 */	stw r0, 0x34(r1)

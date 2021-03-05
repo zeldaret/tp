@@ -18,14 +18,14 @@
 /* 800CEDC8 000CBD08  38 80 00 00 */ li r4, 0
 /* 800CEDCC 000CBD0C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800CEDD0 000CBD10  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800CEDD4 000CBD14  48 05 A9 05 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 800CEDD4 000CBD14  48 05 A9 05 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 800CEDD8 000CBD18  48 00 00 18 */ b lbl_800CEDF0
 lbl_800CEDDC:
 /* 800CEDDC 000CBD1C  7F E3 FB 78 */ mr r3, r31
 /* 800CEDE0 000CBD20  38 80 00 19 */ li r4, 0x19
 /* 800CEDE4 000CBD24  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800CEDE8 000CBD28  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800CEDEC 000CBD2C  4B FD E1 F5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800CEDEC 000CBD2C  4B FD E1 F5 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_800CEDF0:
 /* 800CEDF0 000CBD30  38 60 00 01 */ li r3, 1
 /* 800CEDF4 000CBD34  83 E1 00 0C */ lwz r31, 0xc(r1)

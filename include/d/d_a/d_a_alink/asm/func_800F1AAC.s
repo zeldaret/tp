@@ -18,7 +18,7 @@ lbl_800F1AE4:
 /* 800F1AEC 000EEA2C  3C A0 80 39 */ lis r5, lbl_8038DC9C@ha
 /* 800F1AF0 000EEA30  38 A5 DC 9C */ addi r5, r5, lbl_8038DC9C@l
 /* 800F1AF4 000EEA34  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800F1AF8 000EEA38  4B FB B5 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800F1AF8 000EEA38  4B FB B5 FD */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800F1AFC 000EEA3C  7F E3 FB 78 */ mr r3, r31
 /* 800F1B00 000EEA40  38 80 00 2B */ li r4, 0x2b
 /* 800F1B04 000EEA44  4B FD FA 29 */ bl setCutType__9daAlink_cFUc

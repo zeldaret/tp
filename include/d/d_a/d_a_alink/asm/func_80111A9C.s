@@ -73,7 +73,7 @@ lbl_80111B9C:
 /* 80111BA8 0010EAE8  A0 83 00 00 */ lhz r4, 0(r3)
 /* 80111BAC 0010EAEC  7F 23 CB 78 */ mr r3, r25
 /* 80111BB0 0010EAF0  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 80111BB4 0010EAF4  4B F9 B7 C1 */ bl setUpperAnimeBase__9daAlink_cFUsMorf
+/* 80111BB4 0010EAF4  4B F9 B7 C1 */ bl setUpperAnimeBaseMorf__9daAlink_cFUsf
 /* 80111BB8 0010EAF8  7F 23 CB 78 */ mr r3, r25
 /* 80111BBC 0010EAFC  38 80 01 0F */ li r4, 0x10f
 /* 80111BC0 0010EB00  4B F9 DF 55 */ bl setFacePriAnime__9daAlink_cFQ29daAlink_c11daAlink_ANM
@@ -86,7 +86,7 @@ lbl_80111B9C:
 lbl_80111BDC:
 /* 80111BDC 0010EB1C  3B 40 FF FF */ li r26, -1
 lbl_80111BE0:
-/* 80111BE0 0010EB20  48 06 FA 61 */ bl dCam_getBody
+/* 80111BE0 0010EB20  48 06 FA 61 */ bl dCam_getBody__Fv
 /* 80111BE4 0010EB24  38 80 00 0C */ li r4, 0xc
 /* 80111BE8 0010EB28  7F 45 D3 78 */ mr r5, r26
 /* 80111BEC 0010EB2C  38 C0 00 00 */ li r6, 0

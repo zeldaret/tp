@@ -41,21 +41,21 @@ asm u32 Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const {
 // @todo thunk
 // getSoundType__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getSoundType(JAISoundID) const
-asm void func_802BB090(void) {
+asm void getSoundType__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB090.s"
 }
 
 // getCategory__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getCategory(JAISoundID) const
-asm void func_802BB0D8(void) {
+asm void getCategory__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB0D8.s"
 }
 
 // getPriority__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getPriority(JAISoundID) const
-asm void func_802BB0E0(void) {
+asm void getPriority__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB0E0.s"
 }
@@ -76,21 +76,21 @@ asm void getAudibleSw__11Z2SoundInfoCF10JAISoundID(void) {
 
 // getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe
 // Z2SoundInfo::getSeInfo(JAISoundID, JAISe*) const
-asm void func_802BB6DC(void) {
+asm void getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB6DC.s"
 }
 
 // getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq
 // Z2SoundInfo::getSeqInfo(JAISoundID, JAISeq*) const
-asm void func_802BB8B4(void) {
+asm void getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB8B4.s"
 }
 
 // getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream
 // Z2SoundInfo::getStreamInfo(JAISoundID, JAIStream*) const
-asm void func_802BB8E0(void) {
+asm void getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB8E0.s"
 }

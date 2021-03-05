@@ -140,7 +140,7 @@ lbl_8005B038:
 /* 8005B08C 00057FCC  38 61 00 10 */ addi r3, r1, 0x10
 /* 8005B090 00057FD0  7F 24 CB 78 */ mr r4, r25
 /* 8005B094 00057FD4  7F 45 D3 78 */ mr r5, r26
-/* 8005B098 00057FD8  48 00 06 C9 */ bl dKyr_get_vectle_calc
+/* 8005B098 00057FD8  48 00 06 C9 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005B09C 00057FDC  7F 23 CB 78 */ mr r3, r25
 /* 8005B0A0 00057FE0  38 81 00 10 */ addi r4, r1, 0x10
 /* 8005B0A4 00057FE4  48 2E C2 F9 */ bl PSVECSquareDistance

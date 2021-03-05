@@ -45,7 +45,7 @@ lbl_8001B2C0:
 /* 8001B2E0 00018220  7F C4 F3 78 */ mr r4, r30
 /* 8001B2E4 00018224  38 A0 00 00 */ li r5, 0
 /* 8001B2E8 00018228  7F A6 EB 78 */ mr r6, r29
-/* 8001B2EC 0001822C  48 02 C4 6D */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
+/* 8001B2EC 0001822C  48 02 C4 6D */ bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 8001B2F0 00018230  7C 6A 1B 78 */ mr r10, r3
 lbl_8001B2F4:
 /* 8001B2F4 00018234  93 A1 00 08 */ stw r29, 8(r1)

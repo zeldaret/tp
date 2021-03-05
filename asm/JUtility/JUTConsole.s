@@ -25,7 +25,7 @@ create__10JUTConsoleFUiUiP7JKRHeap:
 /* 802E7398 002E42D8  7F 64 DB 78 */	mr r4, r27
 /* 802E739C 002E42DC  7F 85 E3 78 */	mr r5, r28
 /* 802E73A0 002E42E0  38 C0 00 01 */	li r6, 1
-/* 802E73A4 002E42E4  48 00 00 C9 */	bl JUTConsole
+/* 802E73A4 002E42E4  48 00 00 C9 */	bl __ct__10JUTConsoleFUiUib
 /* 802E73A8 002E42E8  7C 7F 1B 78 */	mr r31, r3
 lbl_802E73AC:
 /* 802E73AC 002E42EC  38 1D 00 6C */	addi r0, r29, 0x6c
@@ -43,8 +43,8 @@ lbl_802E73AC:
 /* 802E73DC 002E431C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E73E0 002E4320  4E 80 00 20 */	blr 
 
-.global create__10JUTConsoleFUiUiP7JKRHeap_X1_
-create__10JUTConsoleFUiUiP7JKRHeap_X1_:
+.global create__10JUTConsoleFUiPvUl
+create__10JUTConsoleFUiPvUl:
 /* 802E73E4 002E4324  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E73E8 002E4328  7C 08 02 A6 */	mflr r0
 /* 802E73EC 002E432C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -63,7 +63,7 @@ create__10JUTConsoleFUiUiP7JKRHeap_X1_:
 /* 802E7420 002E4360  7F A3 EB 78 */	mr r3, r29
 /* 802E7424 002E4364  7F 84 E3 78 */	mr r4, r28
 /* 802E7428 002E4368  38 C0 00 00 */	li r6, 0
-/* 802E742C 002E436C  48 00 00 41 */	bl JUTConsole
+/* 802E742C 002E436C  48 00 00 41 */	bl __ct__10JUTConsoleFUiUib
 /* 802E7430 002E4370  7C 7F 1B 78 */	mr r31, r3
 lbl_802E7434:
 /* 802E7434 002E4374  38 1D 00 6C */	addi r0, r29, 0x6c
@@ -81,8 +81,8 @@ lbl_802E7434:
 /* 802E7464 002E43A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E7468 002E43A8  4E 80 00 20 */	blr 
 
-.global JUTConsole
-JUTConsole:
+.global __ct__10JUTConsoleFUiUib
+__ct__10JUTConsoleFUiUib:
 /* 802E746C 002E43AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E7470 002E43B0  7C 08 02 A6 */	mflr r0
 /* 802E7474 002E43B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -264,7 +264,7 @@ lbl_802E76AC:
 /* 802E76F0 002E4630  C0 82 C7 24 */	lfs f4, lbl_80456124-_SDA2_BASE_(r2)
 /* 802E76F4 002E4634  C0 A2 C7 28 */	lfs f5, lbl_80456128-_SDA2_BASE_(r2)
 /* 802E76F8 002E4638  C0 C2 C7 2C */	lfs f6, lbl_8045612C-_SDA2_BASE_(r2)
-/* 802E76FC 002E463C  48 00 1F D5 */	bl J2DOrthoGraph_X1_
+/* 802E76FC 002E463C  48 00 1F D5 */	bl __ct__13J2DOrthoGraphFffffff
 /* 802E7700 002E4640  38 61 01 08 */	addi r3, r1, 0x108
 /* 802E7704 002E4644  48 00 20 B1 */	bl setPort__13J2DOrthoGraphFv
 /* 802E7708 002E4648  3C 60 80 3D */	lis r3, lbl_803CC9E0@ha
@@ -293,7 +293,7 @@ lbl_802E7724:
 /* 802E7760 002E46A0  EC 80 20 28 */	fsubs f4, f0, f4
 /* 802E7764 002E46A4  C0 A2 C7 28 */	lfs f5, lbl_80456128-_SDA2_BASE_(r2)
 /* 802E7768 002E46A8  C0 C2 C7 2C */	lfs f6, lbl_8045612C-_SDA2_BASE_(r2)
-/* 802E776C 002E46AC  48 00 1F 65 */	bl J2DOrthoGraph_X1_
+/* 802E776C 002E46AC  48 00 1F 65 */	bl __ct__13J2DOrthoGraphFffffff
 /* 802E7770 002E46B0  38 61 00 34 */	addi r3, r1, 0x34
 /* 802E7774 002E46B4  48 00 20 41 */	bl setPort__13J2DOrthoGraphFv
 /* 802E7778 002E46B8  3C 60 80 3D */	lis r3, lbl_803CC9E0@ha
@@ -369,7 +369,7 @@ lbl_802E77A4:
 /* 802E7884 002E47C4  C8 01 02 28 */	lfd f0, 0x228(r1)
 /* 802E7888 002E47C8  EC 80 30 28 */	fsubs f4, f0, f6
 /* 802E788C 002E47CC  38 61 00 30 */	addi r3, r1, 0x30
-/* 802E7890 002E47D0  48 00 22 35 */	bl J2DFillBox
+/* 802E7890 002E47D0  48 00 22 35 */	bl J2DFillBox__FffffQ28JUtility6TColor
 /* 802E7894 002E47D4  80 79 00 4C */	lwz r3, 0x4c(r25)
 /* 802E7898 002E47D8  81 83 00 00 */	lwz r12, 0(r3)
 /* 802E789C 002E47DC  81 8C 00 0C */	lwz r12, 0xc(r12)
@@ -841,7 +841,7 @@ JUTConsole_print_f_va_:
 /* 802E7F4C 002E4E8C  38 61 00 08 */	addi r3, r1, 8
 /* 802E7F50 002E4E90  38 80 04 00 */	li r4, 0x400
 /* 802E7F54 002E4E94  7C 05 03 78 */	mr r5, r0
-/* 802E7F58 002E4E98  48 07 E7 39 */	bl func_80366690
+/* 802E7F58 002E4E98  48 07 E7 39 */	bl vsnprintf
 /* 802E7F5C 002E4E9C  7F E3 FB 78 */	mr r3, r31
 /* 802E7F60 002E4EA0  38 81 00 08 */	addi r4, r1, 8
 /* 802E7F64 002E4EA4  4B FF FC D5 */	bl print__10JUTConsoleFPCc
@@ -1030,8 +1030,8 @@ lbl_802E81C0:
 /* 802E81C4 002E5104  7C 64 02 14 */	add r3, r4, r0
 /* 802E81C8 002E5108  4E 80 00 20 */	blr 
 
-.global JUTConsoleManager
-JUTConsoleManager:
+.global __ct__17JUTConsoleManagerFv
+__ct__17JUTConsoleManagerFv:
 /* 802E81CC 002E510C  38 80 00 00 */	li r4, 0
 /* 802E81D0 002E5110  90 83 00 04 */	stw r4, 4(r3)
 /* 802E81D4 002E5114  90 83 00 08 */	stw r4, 8(r3)
@@ -1057,7 +1057,7 @@ lbl_802E820C:
 /* 802E8214 002E5154  4B FE 6A 85 */	bl __nw__FUlP7JKRHeapi
 /* 802E8218 002E5158  7C 60 1B 79 */	or. r0, r3, r3
 /* 802E821C 002E515C  41 82 00 0C */	beq lbl_802E8228
-/* 802E8220 002E5160  4B FF FF AD */	bl JUTConsoleManager
+/* 802E8220 002E5160  4B FF FF AD */	bl __ct__17JUTConsoleManagerFv
 /* 802E8224 002E5164  7C 60 1B 78 */	mr r0, r3
 lbl_802E8228:
 /* 802E8228 002E5168  90 0D 8F F0 */	stw r0, lbl_80451570-_SDA_BASE_(r13)
@@ -1219,8 +1219,8 @@ lbl_802E8438:
 /* 802E8448 002E5388  38 21 00 60 */	addi r1, r1, 0x60
 /* 802E844C 002E538C  4E 80 00 20 */	blr 
 
-.global draw__17JUTConsoleManagerCFvDirect
-draw__17JUTConsoleManagerCFvDirect:
+.global drawDirect__17JUTConsoleManagerCFb
+drawDirect__17JUTConsoleManagerCFb:
 /* 802E8450 002E5390  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E8454 002E5394  7C 08 02 A6 */	mflr r0
 /* 802E8458 002E5398  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1318,7 +1318,7 @@ JUTReportConsole_f_va:
 /* 802E856C 002E54AC  38 80 01 00 */	li r4, 0x100
 /* 802E8570 002E54B0  7F C5 F3 78 */	mr r5, r30
 /* 802E8574 002E54B4  7F E6 FB 78 */	mr r6, r31
-/* 802E8578 002E54B8  48 07 E1 19 */	bl func_80366690
+/* 802E8578 002E54B8  48 07 E1 19 */	bl vsnprintf
 /* 802E857C 002E54BC  48 00 00 34 */	b lbl_802E85B0
 lbl_802E8580:
 /* 802E8580 002E54C0  4B FF FF A9 */	bl JUTGetReportConsole
@@ -1329,7 +1329,7 @@ lbl_802E8580:
 /* 802E8594 002E54D4  38 80 01 00 */	li r4, 0x100
 /* 802E8598 002E54D8  7F C5 F3 78 */	mr r5, r30
 /* 802E859C 002E54DC  7F E6 FB 78 */	mr r6, r31
-/* 802E85A0 002E54E0  48 07 E0 F1 */	bl func_80366690
+/* 802E85A0 002E54E0  48 07 E0 F1 */	bl vsnprintf
 /* 802E85A4 002E54E4  4B FF FF 85 */	bl JUTGetReportConsole
 /* 802E85A8 002E54E8  38 81 00 08 */	addi r4, r1, 8
 /* 802E85AC 002E54EC  4B FF F6 8D */	bl print__10JUTConsoleFPCc

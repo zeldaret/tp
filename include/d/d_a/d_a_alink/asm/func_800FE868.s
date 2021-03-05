@@ -23,7 +23,7 @@
 /* 800FE8C0 000FB800  38 DF 04 D0 */ addi r6, r31, 0x4d0
 /* 800FE8C4 000FB804  38 FF 04 DC */ addi r7, r31, 0x4dc
 /* 800FE8C8 000FB808  39 1F 04 E4 */ addi r8, r31, 0x4e4
-/* 800FE8CC 000FB80C  4B F7 6F B5 */ bl Move__4dBgSFvBgTransPos
+/* 800FE8CC 000FB80C  4B F7 6F B5 */ bl MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz
 lbl_800FE8D0:
 /* 800FE8D0 000FB810  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
 /* 800FE8D4 000FB814  28 00 00 81 */ cmplwi r0, 0x81

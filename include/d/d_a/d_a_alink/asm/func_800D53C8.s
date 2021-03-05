@@ -80,7 +80,7 @@ lbl_800D54EC:
 /* 800D54F0 000D2430  38 80 00 78 */ li r4, 0x78
 /* 800D54F4 000D2434  3C A0 80 39 */ lis r5, lbl_8038DD44@ha
 /* 800D54F8 000D2438  38 A5 DD 44 */ addi r5, r5, lbl_8038DD44@l
-/* 800D54FC 000D243C  4B FD 7B F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800D54FC 000D243C  4B FD 7B F9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D5500 000D2440  C0 21 00 28 */ lfs f1, 0x28(r1)
 /* 800D5504 000D2444  C0 02 93 00 */ lfs f0, lbl_80452D00-_SDA2_BASE_(r2)
 /* 800D5508 000D2448  EC 01 00 2A */ fadds f0, f1, f0

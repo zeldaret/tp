@@ -40,13 +40,13 @@ lbl_80111100:
 /* 8011114C 0010E08C  A0 83 00 02 */ lhz r4, 2(r3)
 /* 80111150 0010E090  7F C3 F3 78 */ mr r3, r30
 /* 80111154 0010E094  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80111158 0010E098  4B F9 C2 1D */ bl setUpperAnimeBase__9daAlink_cFUsMorf
+/* 80111158 0010E098  4B F9 C2 1D */ bl setUpperAnimeBaseMorf__9daAlink_cFUsf
 /* 8011115C 0010E09C  48 00 00 14 */ b lbl_80111170
 lbl_80111160:
 /* 80111160 0010E0A0  7F C3 F3 78 */ mr r3, r30
 /* 80111164 0010E0A4  38 80 01 0D */ li r4, 0x10d
 /* 80111168 0010E0A8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8011116C 0010E0AC  4B F9 BE 45 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 8011116C 0010E0AC  4B F9 BE 45 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_80111170:
 /* 80111170 0010E0B0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80111174 0010E0B4  38 83 61 C0 */ addi r4, r3, g_dComIfG_gameInfo@l
@@ -111,7 +111,7 @@ lbl_80111224:
 /* 80111254 0010E194  3C C0 80 39 */ lis r6, lbl_8038E77C@ha
 /* 80111258 0010E198  38 C6 E7 7C */ addi r6, r6, lbl_8038E77C@l
 /* 8011125C 0010E19C  38 C6 00 28 */ addi r6, r6, 0x28
-/* 80111260 0010E1A0  4B F9 C4 91 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 80111260 0010E1A0  4B F9 C4 91 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 80111264 0010E1A4  48 00 00 1C */ b lbl_80111280
 lbl_80111268:
 /* 80111268 0010E1A8  7F C3 F3 78 */ mr r3, r30
@@ -119,7 +119,7 @@ lbl_80111268:
 /* 80111270 0010E1B0  3C A0 80 39 */ lis r5, lbl_8038E77C@ha
 /* 80111274 0010E1B4  38 A5 E7 7C */ addi r5, r5, lbl_8038E77C@l
 /* 80111278 0010E1B8  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8011127C 0010E1BC  4B F9 BE 79 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 8011127C 0010E1BC  4B F9 BE 79 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_80111280:
 /* 80111280 0010E1C0  C0 02 93 14 */ lfs f0, lbl_80452D14-_SDA2_BASE_(r2)
 /* 80111284 0010E1C4  80 7E 07 2C */ lwz r3, 0x72c(r30)

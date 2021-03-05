@@ -240,7 +240,7 @@ lbl_8011AF78:
 /* 8011AF98 00117ED8  41 82 00 14 */ beq lbl_8011AFAC
 /* 8011AF9C 00117EDC  7F 83 E3 78 */ mr r3, r28
 /* 8011AFA0 00117EE0  38 80 00 84 */ li r4, 0x84
-/* 8011AFA4 00117EE4  48 00 E6 D5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8011AFA4 00117EE4  48 00 E6 D5 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011AFA8 00117EE8  48 00 00 20 */ b lbl_8011AFC8
 lbl_8011AFAC:
 /* 8011AFAC 00117EEC  7F 83 E3 78 */ mr r3, r28

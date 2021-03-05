@@ -24,7 +24,7 @@ lbl_80115AD0:
 /* 80115AF8 00112A38  38 80 01 66 */ li r4, 0x166
 /* 80115AFC 00112A3C  3C A0 80 39 */ lis r5, lbl_8038EA70@ha
 /* 80115B00 00112A40  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
-/* 80115B04 00112A44  4B F9 75 F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 80115B04 00112A44  4B F9 75 F1 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 80115B08 00112A48  38 00 00 0C */ li r0, 0xc
 /* 80115B0C 00112A4C  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 /* 80115B10 00112A50  7F E3 FB 78 */ mr r3, r31

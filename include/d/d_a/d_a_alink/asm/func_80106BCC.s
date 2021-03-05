@@ -26,7 +26,7 @@ lbl_80106C00:
 /* 80106C2C 00103B6C  4B FF F9 09 */ bl setCommonBoardAnime__9daAlink_cFi
 lbl_80106C30:
 /* 80106C30 00103B70  7F E3 FB 78 */ mr r3, r31
-/* 80106C34 00103B74  4B FF F9 59 */ bl checkNextAction__9daAlink_cFiBoard
+/* 80106C34 00103B74  4B FF F9 59 */ bl checkNextActionBoard__9daAlink_cFv
 /* 80106C38 00103B78  2C 03 00 00 */ cmpwi r3, 0
 /* 80106C3C 00103B7C  40 82 02 2C */ bne lbl_80106E68
 /* 80106C40 00103B80  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)

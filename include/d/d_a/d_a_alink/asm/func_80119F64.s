@@ -177,7 +177,7 @@ lbl_8011A1A8:
 /* 8011A1E0 00117120  38 A5 D6 BC */ addi r5, r5, lbl_8038D6BC@l
 /* 8011A1E4 00117124  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 8011A1E8 00117128  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011A1EC 0011712C  4B F9 2D F5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8011A1EC 0011712C  4B F9 2D F5 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_8011A1F0:
 /* 8011A1F0 00117130  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8011A1F4 00117134  B0 1F 04 DE */ sth r0, 0x4de(r31)

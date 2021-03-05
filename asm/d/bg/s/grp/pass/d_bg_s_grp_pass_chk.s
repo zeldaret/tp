@@ -3,8 +3,8 @@
 .section .text, "ax" # 80077ba0
 
 
-.global dBgS_GrpPassChk
-dBgS_GrpPassChk:
+.global __ct__15dBgS_GrpPassChkFv
+__ct__15dBgS_GrpPassChkFv:
 /* 80077BA0 00074AE0  3C 80 80 3B */	lis r4, lbl_803AB7B4@ha
 /* 80077BA4 00074AE4  38 04 B7 B4 */	addi r0, r4, lbl_803AB7B4@l
 /* 80077BA8 00074AE8  90 03 00 00 */	stw r0, 0(r3)

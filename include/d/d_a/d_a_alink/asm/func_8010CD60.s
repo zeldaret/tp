@@ -45,7 +45,7 @@ lbl_8010CDC4:
 /* 8010CE04 00109D44  B0 1F 30 8E */ sth r0, 0x308e(r31)
 lbl_8010CE08:
 /* 8010CE08 00109D48  7F E3 FB 78 */ mr r3, r31
-/* 8010CE0C 00109D4C  4B FF C4 79 */ bl checkUpperItemAction__9daAlink_cFvHookshot
+/* 8010CE0C 00109D4C  4B FF C4 79 */ bl checkUpperItemActionHookshot__9daAlink_cFv
 /* 8010CE10 00109D50  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CE14 00109D54  40 82 01 3C */ bne lbl_8010CF50
 /* 8010CE18 00109D58  A8 1F 30 0E */ lha r0, 0x300e(r31)

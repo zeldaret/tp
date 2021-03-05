@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e9670
 
 
-.global J2DOrthoGraph
-J2DOrthoGraph:
+.global __ct__13J2DOrthoGraphFv
+__ct__13J2DOrthoGraphFv:
 /* 802E9670 002E65B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E9674 002E65B4  7C 08 02 A6 */	mflr r0
 /* 802E9678 002E65B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14,7 +14,7 @@ J2DOrthoGraph:
 /* 802E9688 002E65C8  FC 40 08 90 */	fmr f2, f1
 /* 802E968C 002E65CC  FC 60 08 90 */	fmr f3, f1
 /* 802E9690 002E65D0  FC 80 08 90 */	fmr f4, f1
-/* 802E9694 002E65D4  4B FF F4 75 */	bl J2DGrafContext
+/* 802E9694 002E65D4  4B FF F4 75 */	bl __ct__14J2DGrafContextFffff
 /* 802E9698 002E65D8  3C 60 80 3D */	lis r3, lbl_803CC9E0@ha
 /* 802E969C 002E65DC  38 03 C9 E0 */	addi r0, r3, lbl_803CC9E0@l
 /* 802E96A0 002E65E0  90 1F 00 00 */	stw r0, 0(r31)
@@ -30,8 +30,8 @@ J2DOrthoGraph:
 /* 802E96C8 002E6608  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E96CC 002E660C  4E 80 00 20 */	blr 
 
-.global J2DOrthoGraph_X1_
-J2DOrthoGraph_X1_:
+.global __ct__13J2DOrthoGraphFffffff
+__ct__13J2DOrthoGraphFffffff:
 /* 802E96D0 002E6610  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 802E96D4 002E6614  7C 08 02 A6 */	mflr r0
 /* 802E96D8 002E6618  90 01 00 64 */	stw r0, 0x64(r1)
@@ -49,7 +49,7 @@ J2DOrthoGraph_X1_:
 /* 802E9708 002E6648  FF A0 20 90 */	fmr f29, f4
 /* 802E970C 002E664C  FF C0 28 90 */	fmr f30, f5
 /* 802E9710 002E6650  FF E0 30 90 */	fmr f31, f6
-/* 802E9714 002E6654  4B FF F3 F5 */	bl J2DGrafContext
+/* 802E9714 002E6654  4B FF F3 F5 */	bl __ct__14J2DGrafContextFffff
 /* 802E9718 002E6658  3C 60 80 3D */	lis r3, lbl_803CC9E0@ha
 /* 802E971C 002E665C  38 03 C9 E0 */	addi r0, r3, lbl_803CC9E0@l
 /* 802E9720 002E6660  90 1F 00 00 */	stw r0, 0(r31)
@@ -227,8 +227,8 @@ lbl_802E997C:
 /* 802E9990 002E68D0  D0 24 00 0C */	stfs f1, 0xc(r4)
 /* 802E9994 002E68D4  4E 80 00 20 */	blr 
 
-.global J2DDrawLine
-J2DDrawLine:
+.global J2DDrawLine__FffffQ28JUtility6TColori
+J2DDrawLine__FffffQ28JUtility6TColori:
 /* 802E9998 002E68D8  94 21 FE A0 */	stwu r1, -0x160(r1)
 /* 802E999C 002E68DC  7C 08 02 A6 */	mflr r0
 /* 802E99A0 002E68E0  90 01 01 64 */	stw r0, 0x164(r1)
@@ -249,7 +249,7 @@ J2DDrawLine:
 /* 802E99DC 002E691C  7C 7E 1B 78 */	mr r30, r3
 /* 802E99E0 002E6920  7C 9F 23 78 */	mr r31, r4
 /* 802E99E4 002E6924  38 61 00 3C */	addi r3, r1, 0x3c
-/* 802E99E8 002E6928  4B FF FC 89 */	bl J2DOrthoGraph
+/* 802E99E8 002E6928  4B FF FC 89 */	bl __ct__13J2DOrthoGraphFv
 /* 802E99EC 002E692C  38 61 00 3C */	addi r3, r1, 0x3c
 /* 802E99F0 002E6930  57 E4 06 3E */	clrlwi r4, r31, 0x18
 /* 802E99F4 002E6934  4B FF F8 41 */	bl setLineWidth__14J2DGrafContextFUc
@@ -305,8 +305,8 @@ J2DDrawLine:
 /* 802E9ABC 002E69FC  38 21 01 60 */	addi r1, r1, 0x160
 /* 802E9AC0 002E6A00  4E 80 00 20 */	blr 
 
-.global J2DFillBox
-J2DFillBox:
+.global J2DFillBox__FffffQ28JUtility6TColor
+J2DFillBox__FffffQ28JUtility6TColor:
 /* 802E9AC4 002E6A04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E9AC8 002E6A08  7C 08 02 A6 */	mflr r0
 /* 802E9ACC 002E6A0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -336,7 +336,7 @@ J2DFillBox_X1_:
 /* 802E9B20 002E6A60  7C 7E 1B 78 */	mr r30, r3
 /* 802E9B24 002E6A64  7C 9F 23 78 */	mr r31, r4
 /* 802E9B28 002E6A68  38 61 00 1C */	addi r3, r1, 0x1c
-/* 802E9B2C 002E6A6C  4B FF FB 45 */	bl J2DOrthoGraph
+/* 802E9B2C 002E6A6C  4B FF FB 45 */	bl __ct__13J2DOrthoGraphFv
 /* 802E9B30 002E6A70  80 1F 00 00 */	lwz r0, 0(r31)
 /* 802E9B34 002E6A74  90 01 00 18 */	stw r0, 0x18(r1)
 /* 802E9B38 002E6A78  90 01 00 14 */	stw r0, 0x14(r1)
@@ -365,8 +365,8 @@ J2DFillBox_X1_:
 /* 802E9B94 002E6AD4  38 21 01 00 */	addi r1, r1, 0x100
 /* 802E9B98 002E6AD8  4E 80 00 20 */	blr 
 
-.global J2DDrawFrame
-J2DDrawFrame:
+.global J2DDrawFrame__FffffQ28JUtility6TColorUc
+J2DDrawFrame__FffffQ28JUtility6TColorUc:
 /* 802E9B9C 002E6ADC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802E9BA0 002E6AE0  7C 08 02 A6 */	mflr r0
 /* 802E9BA4 002E6AE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -398,7 +398,7 @@ J2DDrawFrame_X1_:
 /* 802E9C00 002E6B40  7C 9E 23 78 */	mr r30, r4
 /* 802E9C04 002E6B44  7C BF 2B 78 */	mr r31, r5
 /* 802E9C08 002E6B48  38 61 00 1C */	addi r3, r1, 0x1c
-/* 802E9C0C 002E6B4C  4B FF FA 65 */	bl J2DOrthoGraph
+/* 802E9C0C 002E6B4C  4B FF FA 65 */	bl __ct__13J2DOrthoGraphFv
 /* 802E9C10 002E6B50  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802E9C14 002E6B54  90 01 00 18 */	stw r0, 0x18(r1)
 /* 802E9C18 002E6B58  90 01 00 14 */	stw r0, 0x14(r1)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80298014
 
 
-.global JASBasicInst
-JASBasicInst:
+.global __ct__12JASBasicInstFv
+__ct__12JASBasicInstFv:
 /* 80298014 00294F54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298018 00294F58  7C 08 02 A6 */	mflr r0
 /* 8029801C 00294F5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -47,7 +47,7 @@ JASBasicInst:
 /* 802980AC 00294FEC  3C 80 80 2A */	lis r4, __dt__Q212JASBasicInst7TKeymapFv@ha
 .global __dt__Q212JASBasicInst7TKeymapFv
 /* 802980B0 00294FF0  38 84 82 50 */	addi r4, r4, __dt__Q212JASBasicInst7TKeymapFv@l
-/* 802980B4 00294FF4  48 0C 9B B9 */	bl func_80361C6C
+/* 802980B4 00294FF4  48 0C 9B B9 */	bl __destroy_new_array
 /* 802980B8 00294FF8  28 1E 00 00 */	cmplwi r30, 0
 /* 802980BC 00294FFC  41 82 00 10 */	beq lbl_802980CC
 /* 802980C0 00295000  3C 60 80 3C */	lis r3, lbl_803C76FC@ha
@@ -127,7 +127,7 @@ setKeyRegionCount__12JASBasicInstFUlP7JKRHeap:
 /* 802981C0 00295100  3C 80 80 2A */	lis r4, __dt__Q212JASBasicInst7TKeymapFv@ha
 .global __dt__Q212JASBasicInst7TKeymapFv
 /* 802981C4 00295104  38 84 82 50 */	addi r4, r4, __dt__Q212JASBasicInst7TKeymapFv@l
-/* 802981C8 00295108  48 0C 9A A5 */	bl func_80361C6C
+/* 802981C8 00295108  48 0C 9A A5 */	bl __destroy_new_array
 /* 802981CC 0029510C  57 C3 20 36 */	slwi r3, r30, 4
 /* 802981D0 00295110  38 63 00 10 */	addi r3, r3, 0x10
 /* 802981D4 00295114  7F E4 FB 78 */	mr r4, r31
@@ -143,7 +143,7 @@ setKeyRegionCount__12JASBasicInstFUlP7JKRHeap:
 /* 802981EC 0029512C  38 A5 82 50 */	addi r5, r5, __dt__Q212JASBasicInst7TKeymapFv@l
 /* 802981F0 00295130  38 C0 00 10 */	li r6, 0x10
 /* 802981F4 00295134  7F C7 F3 78 */	mr r7, r30
-/* 802981F8 00295138  48 0C 9D 1D */	bl func_80361F14
+/* 802981F8 00295138  48 0C 9D 1D */	bl __construct_new_array
 /* 802981FC 0029513C  90 7D 00 18 */	stw r3, 0x18(r29)
 /* 80298200 00295140  93 DD 00 14 */	stw r30, 0x14(r29)
 /* 80298204 00295144  39 61 00 20 */	addi r11, r1, 0x20

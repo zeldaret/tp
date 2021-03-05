@@ -26,7 +26,7 @@ lbl_800DEB40:
 /* 800DEB44 000DBA84  B0 03 09 50 */ sth r0, 0x950(r3)
 /* 800DEB48 000DBA88  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
 /* 800DEB4C 000DBA8C  38 80 FF FF */ li r4, -1
-/* 800DEB50 000DBA90  4B F4 FC ED */ bl dComIfGp_addSelectItemNum
+/* 800DEB50 000DBA90  4B F4 FC ED */ bl dComIfGp_addSelectItemNum__Fis
 /* 800DEB54 000DBA94  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800DEB58 000DBA98  38 83 61 C0 */ addi r4, r3, g_dComIfG_gameInfo@l
 /* 800DEB5C 000DBA9C  A8 64 5D F4 */ lha r3, 0x5df4(r4)

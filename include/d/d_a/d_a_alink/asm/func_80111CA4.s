@@ -42,9 +42,9 @@ lbl_80111D1C:
 /* 80111D3C 0010EC7C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80111D40 0010EC80  83 A3 5D B8 */ lwz r29, 0x5db8(r3)
 /*.global daAlink_searchWhistle*/
-/* 80111D44 0010EC84  3C 60 80 11 */ lis r3, daAlink_searchWhistle@ha
+/* 80111D44 0010EC84  3C 60 80 11 */ lis r3, daAlink_searchWhistle__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchWhistle*/
-/* 80111D48 0010EC88  38 63 17 4C */ addi r3, r3, daAlink_searchWhistle@l
+/* 80111D48 0010EC88  38 63 17 4C */ addi r3, r3, daAlink_searchWhistle__FP10fopAc_ac_cPv@l
 /* 80111D4C 0010EC8C  38 80 00 00 */ li r4, 0
 /* 80111D50 0010EC90  4B F0 7A A9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80111D54 0010EC94  7C 7E 1B 79 */ or. r30, r3, r3
@@ -64,7 +64,7 @@ lbl_80111D1C:
 /* 80111D8C 0010ECCC  41 82 00 14 */ beq lbl_80111DA0
 /* 80111D90 0010ECD0  88 1E 04 E2 */ lbz r0, 0x4e2(r30)
 /* 80111D94 0010ECD4  7C 04 07 74 */ extsb r4, r0
-/* 80111D98 0010ECD8  4B F3 FA 55 */ bl dPath_GetRoomPath
+/* 80111D98 0010ECD8  4B F3 FA 55 */ bl dPath_GetRoomPath__Fii
 /* 80111D9C 0010ECDC  90 7E 06 C8 */ stw r3, 0x6c8(r30)
 lbl_80111DA0:
 /* 80111DA0 0010ECE0  A8 7F 30 08 */ lha r3, 0x3008(r31)
@@ -85,7 +85,7 @@ lbl_80111DCC:
 /* 80111DD4 0010ED14  7F A3 EB 78 */ mr r3, r29
 /* 80111DD8 0010ED18  38 9F 04 D0 */ addi r4, r31, 0x4d0
 /* 80111DDC 0010ED1C  39 9D 18 D4 */ addi r12, r29, 0x18d4
-/* 80111DE0 0010ED20  48 25 02 A5 */ bl func_80362084
+/* 80111DE0 0010ED20  48 25 02 A5 */ bl __ptmf_scall
 /* 80111DE4 0010ED24  60 00 00 00 */ nop
 /* 80111DE8 0010ED28  7C 64 1B 78 */ mr r4, r3
 /* 80111DEC 0010ED2C  48 00 00 08 */ b lbl_80111DF4
@@ -144,7 +144,7 @@ lbl_80111EA0:
 /* 80111EA0 0010EDE0  7F E3 FB 78 */ mr r3, r31
 /* 80111EA4 0010EDE4  38 80 01 10 */ li r4, 0x110
 /* 80111EA8 0010EDE8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80111EAC 0010EDEC  4B F9 B1 05 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 80111EAC 0010EDEC  4B F9 B1 05 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 80111EB0 0010EDF0  7F E3 FB 78 */ mr r3, r31
 /* 80111EB4 0010EDF4  38 80 00 02 */ li r4, 2
 /* 80111EB8 0010EDF8  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)

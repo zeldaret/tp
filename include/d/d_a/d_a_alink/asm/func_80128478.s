@@ -41,7 +41,7 @@ lbl_80128504:
 /* 80128504 00125444  7C 1F 03 78 */ mr r31, r0
 /* 80128508 00125448  7F C3 F3 78 */ mr r3, r30
 /* 8012850C 0012544C  38 80 00 8B */ li r4, 0x8b
-/* 80128510 00125450  48 00 02 FD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 80128510 00125450  48 00 02 FD */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80128514 00125454  2C 03 00 00 */ cmpwi r3, 0
 /* 80128518 00125458  41 82 00 14 */ beq lbl_8012852C
 /* 8012851C 0012545C  7F C3 F3 78 */ mr r3, r30

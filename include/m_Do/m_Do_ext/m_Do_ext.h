@@ -8,14 +8,14 @@
 #include "os/OS.h"
 
 extern "C" {
-JKRExpHeap* mDoExt_getZeldaHeap();
-JKRExpHeap* mDoExt_getGameHeap();
-JKRExpHeap* mDoExt_getArchiveHeap();
-JKRExpHeap* mDoExt_getJ2dHeap();
-JKRExpHeap* mDoExt_getHostIOHeap();
-JKRExpHeap* mDoExt_getCommandHeap();
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-JKRHeap* mDoExt_setCurrentHeap(JKRHeap*);
+JKRExpHeap* mDoExt_getZeldaHeap__Fv();
+JKRExpHeap* mDoExt_getGameHeap__Fv();
+JKRExpHeap* mDoExt_getArchiveHeap__Fv();
+JKRExpHeap* mDoExt_getJ2dHeap__Fv();
+JKRExpHeap* mDoExt_getHostIOHeap__Fv();
+JKRExpHeap* mDoExt_getCommandHeap__Fv();
+void mDoExt_destroySolidHeap__FP12JKRSolidHeap(JKRSolidHeap*);
+JKRHeap* mDoExt_setCurrentHeap__FP7JKRHeap(JKRHeap*);
 }
 OSThread* mDoExt_GetCurrentRunningThread(void);
 

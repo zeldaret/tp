@@ -36,7 +36,7 @@
 /* 80161EC0 0015EE00  38 DF 02 A0 */ addi r6, r31, 0x2a0
 /* 80161EC4 0015EE04  38 E0 00 00 */ li r7, 0
 /* 80161EC8 0015EE08  39 00 00 00 */ li r8, 0
-/* 80161ECC 0015EE0C  4B F1 3A 91 */ bl Move__4dBgSFvBgMatrixCrrPos
+/* 80161ECC 0015EE0C  4B F1 3A 91 */ bl MoveBgMatrixCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz
 lbl_80161ED0:
 /* 80161ED0 0015EE10  80 1F 06 0C */ lwz r0, 0x60c(r31)
 /* 80161ED4 0015EE14  54 00 03 DF */ rlwinm. r0, r0, 0, 0xf, 0xf

@@ -35,8 +35,8 @@ lbl_8030CE64:
 /* 8030CE74 00309DB4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030CE78 00309DB8  4E 80 00 20 */	blr 
 
-.global get__13J2DDataManageFPCc_X1_
-get__13J2DDataManageFPCc_X1_:
+.global get__13J2DDataManageFP14JSUInputStream
+get__13J2DDataManageFP14JSUInputStream:
 /* 8030CE7C 00309DBC  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8030CE80 00309DC0  7C 08 02 A6 */	mflr r0
 /* 8030CE84 00309DC4  90 01 01 24 */	stw r0, 0x124(r1)

@@ -16,7 +16,7 @@
 lbl_80128F98:
 /* 80128F98 00125ED8  7F E3 FB 78 */ mr r3, r31
 /* 80128F9C 00125EDC  38 80 00 8B */ li r4, 0x8b
-/* 80128FA0 00125EE0  4B FF F8 6D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 80128FA0 00125EE0  4B FF F8 6D */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80128FA4 00125EE4  2C 03 00 00 */ cmpwi r3, 0
 /* 80128FA8 00125EE8  41 82 00 18 */ beq lbl_80128FC0
 /* 80128FAC 00125EEC  7F E3 FB 78 */ mr r3, r31

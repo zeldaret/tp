@@ -19,7 +19,7 @@ lbl_801A52B0:
 /* 801A52CC 001A220C  38 85 0D 64 */ addi r4, r5, 0xd64
 /* 801A52D0 001A2210  C0 25 0D 68 */ lfs f1, 0xd68(r5)
 /* 801A52D4 001A2214  38 A0 00 00 */ li r5, 0
-/* 801A52D8 001A2218  48 00 4A 89 */ bl dKy_BossLight_set
+/* 801A52D8 001A2218  48 00 4A 89 */ bl dKy_BossLight_set__FP4cXyzP8_GXColorfUc
 lbl_801A52DC:
 /* 801A52DC 001A221C  3B 7B 00 01 */ addi r27, r27, 1
 /* 801A52E0 001A2220  2C 1B 00 06 */ cmpwi r27, 6
@@ -208,7 +208,7 @@ lbl_801A557C:
 /* 801A5598 001A24D8  98 03 13 0B */ stb r0, 0x130b(r3)
 /* 801A559C 001A24DC  7F E3 FB 78 */ mr r3, r31
 /* 801A55A0 001A24E0  4B FF 9F 5D */ bl setDaytime__18dScnKy_env_light_cFv
-/* 801A55A4 001A24E4  4B EB 4D 9D */ bl dKyw_wether_proc
+/* 801A55A4 001A24E4  4B EB 4D 9D */ bl dKyw_wether_proc__Fv
 /* 801A55A8 001A24E8  7F E3 FB 78 */ mr r3, r31
 /* 801A55AC 001A24EC  4B FF F8 E5 */ bl CalcTevColor__18dScnKy_env_light_cFv
 /* 801A55B0 001A24F0  7F E3 FB 78 */ mr r3, r31
@@ -235,15 +235,15 @@ lbl_801A557C:
 /* 801A5604 001A2544  C0 03 00 08 */ lfs f0, 8(r3)
 /* 801A5608 001A2548  D0 04 10 A8 */ stfs f0, 0x10a8(r4)
 /* 801A560C 001A254C  38 60 00 02 */ li r3, 2
-/* 801A5610 001A2550  48 00 76 CD */ bl dKy_shadow_mode_set
+/* 801A5610 001A2550  48 00 76 CD */ bl dKy_shadow_mode_set__FUc
 /* 801A5614 001A2554  48 00 00 1C */ b lbl_801A5630
 lbl_801A5618:
 /* 801A5618 001A2558  38 60 00 02 */ li r3, 2
-/* 801A561C 001A255C  48 00 76 F1 */ bl dKy_shadow_mode_check
+/* 801A561C 001A255C  48 00 76 F1 */ bl dKy_shadow_mode_check__FUc
 /* 801A5620 001A2560  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A5624 001A2564  41 82 00 0C */ beq lbl_801A5630
 /* 801A5628 001A2568  38 60 00 02 */ li r3, 2
-/* 801A562C 001A256C  48 00 76 C9 */ bl dKy_shadow_mode_reset
+/* 801A562C 001A256C  48 00 76 C9 */ bl dKy_shadow_mode_reset__FUc
 lbl_801A5630:
 /* 801A5630 001A2570  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A5634 001A2574  3B C3 61 C0 */ addi r30, r3, g_dComIfG_gameInfo@l
@@ -254,11 +254,11 @@ lbl_801A5630:
 /* 801A5648 001A2588  48 1C 33 4D */ bl strcmp
 /* 801A564C 001A258C  2C 03 00 00 */ cmpwi r3, 0
 /* 801A5650 001A2590  40 82 00 74 */ bne lbl_801A56C4
-/* 801A5654 001A2594  4B FD BF ED */ bl dCam_getBody
+/* 801A5654 001A2594  4B FD BF ED */ bl dCam_getBody__Fv
 /* 801A5658 001A2598  80 03 01 A4 */ lwz r0, 0x1a4(r3)
 /* 801A565C 001A259C  2C 00 00 04 */ cmpwi r0, 4
 /* 801A5660 001A25A0  41 82 00 14 */ beq lbl_801A5674
-/* 801A5664 001A25A4  4B FD BF DD */ bl dCam_getBody
+/* 801A5664 001A25A4  4B FD BF DD */ bl dCam_getBody__Fv
 /* 801A5668 001A25A8  80 03 01 A4 */ lwz r0, 0x1a4(r3)
 /* 801A566C 001A25AC  2C 00 00 07 */ cmpwi r0, 7
 /* 801A5670 001A25B0  40 82 00 34 */ bne lbl_801A56A4

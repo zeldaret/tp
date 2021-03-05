@@ -3,7 +3,7 @@
 /* 8001D6A0 0001A5E0  90 01 00 24 */ stw r0, 0x24(r1)
 /* 8001D6A4 0001A5E4  90 81 00 08 */ stw r4, 8(r1)
 /* 8001D6A8 0001A5E8  90 A1 00 0C */ stw r5, 0xc(r1)
-/* 8001D6AC 0001A5EC  48 00 77 15 */ bl dStage_searchName
+/* 8001D6AC 0001A5EC  48 00 77 15 */ bl dStage_searchName__FPCc
 /* 8001D6B0 0001A5F0  28 03 00 00 */ cmplwi r3, 0
 /* 8001D6B4 0001A5F4  40 82 00 0C */ bne lbl_8001D6C0
 /* 8001D6B8 0001A5F8  38 60 00 00 */ li r3, 0

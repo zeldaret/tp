@@ -567,7 +567,7 @@ lbl_8013255C:
 /* 801325A0 0012F4E0  B0 1A 04 DE */ sth r0, 0x4de(r26)
 /* 801325A4 0012F4E4  7F 43 D3 78 */ mr r3, r26
 /* 801325A8 0012F4E8  38 80 00 00 */ li r4, 0
-/* 801325AC 0012F4EC  4B FF 75 99 */ bl checkNextAction__9daAlink_cFiWolf
+/* 801325AC 0012F4EC  4B FF 75 99 */ bl checkNextActionWolf__9daAlink_cFi
 /* 801325B0 0012F4F0  48 00 01 48 */ b lbl_801326F8
 lbl_801325B4:
 /* 801325B4 0012F4F4  7F 43 D3 78 */ mr r3, r26

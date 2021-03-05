@@ -36,7 +36,7 @@ lbl_8007262C:
 /* 80072674 0006F5B4  48 00 02 64 */ b lbl_800728D8
 lbl_80072678:
 /* 80072678 0006F5B8  38 80 00 00 */ li r4, 0
-/* 8007267C 0006F5BC  48 00 10 51 */ bl LockonTarget__12dAttention_cFlPId
+/* 8007267C 0006F5BC  48 00 10 51 */ bl LockonTargetPId__12dAttention_cFl
 /* 80072680 0006F5C0  90 7F 00 04 */ stw r3, 4(r31)
 /* 80072684 0006F5C4  88 1F 03 2F */ lbz r0, 0x32f(r31)
 /* 80072688 0006F5C8  28 00 00 00 */ cmplwi r0, 0

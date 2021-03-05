@@ -3,14 +3,14 @@
 .section .text, "ax" # 80253930
 
 
-.global CPaneMgr
-CPaneMgr:
+.global __ct__8CPaneMgrFv
+__ct__8CPaneMgrFv:
 /* 80253930 00250870  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80253934 00250874  7C 08 02 A6 */	mflr r0
 /* 80253938 00250878  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8025393C 0025087C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80253940 00250880  7C 7F 1B 78 */	mr r31, r3
-/* 80253944 00250884  48 00 1A A9 */	bl CPaneMgrAlpha
+/* 80253944 00250884  48 00 1A A9 */	bl __ct__13CPaneMgrAlphaFv
 /* 80253948 00250888  3C 60 80 3C */	lis r3, lbl_803C2E04@ha
 /* 8025394C 0025088C  38 03 2E 04 */	addi r0, r3, lbl_803C2E04@l
 /* 80253950 00250890  90 1F 00 00 */	stw r0, 0(r31)
@@ -27,8 +27,8 @@ CPaneMgr:
 /* 8025397C 002508BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80253980 002508C0  4E 80 00 20 */	blr 
 
-.global CPaneMgr_X1_
-CPaneMgr_X1_:
+.global __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
+__ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap:
 /* 80253984 002508C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80253988 002508C8  7C 08 02 A6 */	mflr r0
 /* 8025398C 002508CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -40,7 +40,7 @@ CPaneMgr_X1_:
 /* 802539A4 002508E4  7C DC 33 78 */	mr r28, r6
 /* 802539A8 002508E8  7C FE 3B 78 */	mr r30, r7
 /* 802539AC 002508EC  7D 1F 43 78 */	mr r31, r8
-/* 802539B0 002508F0  48 00 1A 3D */	bl CPaneMgrAlpha
+/* 802539B0 002508F0  48 00 1A 3D */	bl __ct__13CPaneMgrAlphaFv
 /* 802539B4 002508F4  3C 60 80 3C */	lis r3, lbl_803C2E04@ha
 /* 802539B8 002508F8  38 03 2E 04 */	addi r0, r3, lbl_803C2E04@l
 /* 802539BC 002508FC  90 1A 00 00 */	stw r0, 0(r26)
@@ -216,7 +216,7 @@ initiate__8CPaneMgrFP7J2DPaneP10JKRExpHeap:
 /* 80253C30 00250B70  90 BE 00 08 */	stw r5, 8(r30)
 /* 80253C34 00250B74  48 00 00 0C */	b lbl_80253C40
 lbl_80253C38:
-/* 80253C38 00250B78  4B DB B5 B5 */	bl mDoExt_getCurrentHeap
+/* 80253C38 00250B78  4B DB B5 B5 */	bl mDoExt_getCurrentHeap__Fv
 /* 80253C3C 00250B7C  90 7E 00 08 */	stw r3, 8(r30)
 lbl_80253C40:
 /* 80253C40 00250B80  38 00 00 00 */	li r0, 0
@@ -1361,7 +1361,7 @@ getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs:
 /* 80254CDC 00251C1C  C0 82 B4 AC */	lfs f4, lbl_80454EAC-_SDA2_BASE_(r2)
 /* 80254CE0 00251C20  C0 A2 B4 B0 */	lfs f5, lbl_80454EB0-_SDA2_BASE_(r2)
 /* 80254CE4 00251C24  C0 C2 B4 B4 */	lfs f6, lbl_80454EB4-_SDA2_BASE_(r2)
-/* 80254CE8 00251C28  48 09 49 E9 */	bl J2DOrthoGraph_X1_
+/* 80254CE8 00251C28  48 09 49 E9 */	bl __ct__13J2DOrthoGraphFffffff
 /* 80254CEC 00251C2C  C0 02 B4 88 */	lfs f0, lbl_80454E88-_SDA2_BASE_(r2)
 /* 80254CF0 00251C30  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80254CF4 00251C34  D0 01 00 0C */	stfs f0, 0xc(r1)
@@ -1487,8 +1487,8 @@ lbl_80254EA4:
 /* 80254EB4 00251DF4  38 21 01 60 */	addi r1, r1, 0x160
 /* 80254EB8 00251DF8  4E 80 00 20 */	blr 
 
-.global getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
-getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter:
+.global getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
+getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs:
 /* 80254EBC 00251DFC  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80254EC0 00251E00  7C 08 02 A6 */	mflr r0
 /* 80254EC4 00251E04  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1633,8 +1633,8 @@ lbl_80255064:
 /* 802550E0 00252020  38 21 00 40 */	addi r1, r1, 0x40
 /* 802550E4 00252024  4E 80 00 20 */	blr 
 
-.global dPaneClass_showNullPane
-dPaneClass_showNullPane:
+.global dPaneClass_showNullPane__FP9J2DScreen
+dPaneClass_showNullPane__FP9J2DScreen:
 /* 802550E8 00252028  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802550EC 0025202C  7C 08 02 A6 */	mflr r0
 /* 802550F0 00252030  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1647,15 +1647,15 @@ dPaneClass_showNullPane:
 /* 8025510C 0025204C  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80255110 00252050  7D 89 03 A6 */	mtctr r12
 /* 80255114 00252054  4E 80 04 21 */	bctrl 
-/* 80255118 00252058  48 00 00 15 */	bl dPaneClass_showNullPane_X1_
+/* 80255118 00252058  48 00 00 15 */	bl dPaneClass_showNullPane__FP7J2DPane
 lbl_8025511C:
 /* 8025511C 0025205C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80255120 00252060  7C 08 03 A6 */	mtlr r0
 /* 80255124 00252064  38 21 00 10 */	addi r1, r1, 0x10
 /* 80255128 00252068  4E 80 00 20 */	blr 
 
-.global dPaneClass_showNullPane_X1_
-dPaneClass_showNullPane_X1_:
+.global dPaneClass_showNullPane__FP7J2DPane
+dPaneClass_showNullPane__FP7J2DPane:
 /* 8025512C 0025206C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80255130 00252070  7C 08 02 A6 */	mflr r0
 /* 80255134 00252074  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1670,10 +1670,10 @@ dPaneClass_showNullPane_X1_:
 lbl_80255158:
 /* 80255158 00252098  7F E3 FB 78 */	mr r3, r31
 /* 8025515C 0025209C  48 0A 29 31 */	bl getFirstChildPane__7J2DPaneFv
-/* 80255160 002520A0  4B FF FF CD */	bl dPaneClass_showNullPane_X1_
+/* 80255160 002520A0  4B FF FF CD */	bl dPaneClass_showNullPane__FP7J2DPane
 /* 80255164 002520A4  7F E3 FB 78 */	mr r3, r31
 /* 80255168 002520A8  48 0A 29 5D */	bl getNextChildPane__7J2DPaneFv
-/* 8025516C 002520AC  4B FF FF C1 */	bl dPaneClass_showNullPane_X1_
+/* 8025516C 002520AC  4B FF FF C1 */	bl dPaneClass_showNullPane__FP7J2DPane
 lbl_80255170:
 /* 80255170 002520B0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80255174 002520B4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1681,8 +1681,8 @@ lbl_80255170:
 /* 8025517C 002520BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80255180 002520C0  4E 80 00 20 */	blr 
 
-.global dPaneClass_setPriority
-dPaneClass_setPriority:
+.global dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive
+dPaneClass_setPriority__FPPvP7JKRHeapP9J2DScreenPCcUlP10JKRArchive:
 /* 80255184 002520C4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80255188 002520C8  7C 08 02 A6 */	mflr r0
 /* 8025518C 002520CC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1742,7 +1742,7 @@ lbl_802551D8:
 /* 8025525C 0025219C  38 81 00 08 */	addi r4, r1, 8
 /* 80255260 002521A0  7F C5 F3 78 */	mr r5, r30
 /* 80255264 002521A4  7F E6 FB 78 */	mr r6, r31
-/* 80255268 002521A8  48 0A 34 E1 */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive_X1_
+/* 80255268 002521A8  48 0A 34 E1 */	bl setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
 /* 8025526C 002521AC  7C 7D 1B 78 */	mr r29, r3
 /* 80255270 002521B0  3C 60 80 3D */	lis r3, lbl_803CC4F0@ha
 /* 80255274 002521B4  38 03 C4 F0 */	addi r0, r3, lbl_803CC4F0@l

@@ -18,7 +18,7 @@ lbl_8029D97C:
 /* 8029D97C 0029A8BC  88 0D 8D 74 */	lbz r0, lbl_804512F4-_SDA_BASE_(r13)
 /* 8029D980 0029A8C0  28 00 00 00 */	cmplwi r0, 0
 /* 8029D984 0029A8C4  41 82 00 10 */	beq lbl_8029D994
-/* 8029D988 0029A8C8  48 00 0D 99 */	bl DspBoot
+/* 8029D988 0029A8C8  48 00 0D 99 */	bl DspBoot__FPFPv_v
 /* 8029D98C 0029A8CC  38 00 00 00 */	li r0, 0
 /* 8029D990 0029A8D0  98 0D 8D 74 */	stb r0, lbl_804512F4-_SDA_BASE_(r13)
 lbl_8029D994:
@@ -32,7 +32,7 @@ releaseHalt__6JASDspFUl:
 /* 8029D9A4 0029A8E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9A8 0029A8E8  7C 08 02 A6 */	mflr r0
 /* 8029D9AC 0029A8EC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8029D9B0 0029A8F0  48 00 0B 31 */	bl DSPReleaseHalt2
+/* 8029D9B0 0029A8F0  48 00 0B 31 */	bl DSPReleaseHalt2__FUl
 /* 8029D9B4 0029A8F4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029D9B8 0029A8F8  7C 08 03 A6 */	mtlr r0
 /* 8029D9BC 0029A8FC  38 21 00 10 */	addi r1, r1, 0x10
@@ -43,7 +43,7 @@ finishWork__6JASDspFUs:
 /* 8029D9C4 0029A904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9C8 0029A908  7C 08 02 A6 */	mflr r0
 /* 8029D9CC 0029A90C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8029D9D0 0029A910  48 00 0F B1 */	bl DspFinishWork
+/* 8029D9D0 0029A910  48 00 0F B1 */	bl DspFinishWork__FUs
 /* 8029D9D4 0029A914  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029D9D8 0029A918  7C 08 03 A6 */	mtlr r0
 /* 8029D9DC 0029A91C  38 21 00 10 */	addi r1, r1, 0x10
@@ -54,7 +54,7 @@ syncFrame__6JASDspFUlUlUl:
 /* 8029D9E4 0029A924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D9E8 0029A928  7C 08 02 A6 */	mflr r0
 /* 8029D9EC 0029A92C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8029D9F0 0029A930  48 00 14 51 */	bl DsyncFrame2
+/* 8029D9F0 0029A930  48 00 14 51 */	bl DsyncFrame2__FUlUlUl
 /* 8029D9F4 0029A934  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029D9F8 0029A938  7C 08 03 A6 */	mtlr r0
 /* 8029D9FC 0029A93C  38 21 00 10 */	addi r1, r1, 0x10
@@ -68,7 +68,7 @@ setDSPMixerLevel__6JASDspFf:
 /* 8029DA10 0029A950  D0 2D 8D 70 */	stfs f1, lbl_804512F0-_SDA_BASE_(r13)
 /* 8029DA14 0029A954  C0 02 BD 48 */	lfs f0, lbl_80455748-_SDA2_BASE_(r2)
 /* 8029DA18 0029A958  EC 21 00 32 */	fmuls f1, f1, f0
-/* 8029DA1C 0029A95C  48 00 0B C5 */	bl DsetMixerLevel
+/* 8029DA1C 0029A95C  48 00 0B C5 */	bl DsetMixerLevel__Ff
 /* 8029DA20 0029A960  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029DA24 0029A964  7C 08 03 A6 */	mtlr r0
 /* 8029DA28 0029A968  38 21 00 10 */	addi r1, r1, 0x10
@@ -169,7 +169,7 @@ lbl_8029DB34:
 /* 8029DB50 0029AA90  3C C0 80 3A */	lis r6, lbl_8039B360@ha
 /* 8029DB54 0029AA94  38 C6 B3 60 */	addi r6, r6, lbl_8039B360@l
 /* 8029DB58 0029AA98  80 ED 8D 6C */	lwz r7, lbl_804512EC-_SDA_BASE_(r13)
-/* 8029DB5C 0029AA9C  48 00 0A 05 */	bl DsetupTable
+/* 8029DB5C 0029AA9C  48 00 0A 05 */	bl DsetupTable__FUlUlUlUlUl
 /* 8029DB60 0029AAA0  4B FF FF 0D */	bl flushBuffer__6JASDspFv
 /* 8029DB64 0029AAA4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029DB68 0029AAA8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -273,7 +273,7 @@ init__Q26JASDsp8TChannelFv:
 /* 8029DCC0 0029AC00  B0 03 00 00 */	sth r0, 0(r3)
 /* 8029DCC4 0029AC04  B0 03 00 58 */	sth r0, 0x58(r3)
 /* 8029DCC8 0029AC08  90 03 00 68 */	stw r0, 0x68(r3)
-/* 8029DCCC 0029AC0C  48 00 02 E5 */	bl init__Q26JASDsp8TChannelFvFilter
+/* 8029DCCC 0029AC0C  48 00 02 E5 */	bl initFilter__Q26JASDsp8TChannelFv
 /* 8029DCD0 0029AC10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029DCD4 0029AC14  7C 08 03 A6 */	mtlr r0
 /* 8029DCD8 0029AC18  38 21 00 10 */	addi r1, r1, 0x10
@@ -434,8 +434,8 @@ setOscInfo__Q26JASDsp8TChannelFUl:
 /* 8029DEBC 0029ADFC  B0 83 01 00 */	sth r4, 0x100(r3)
 /* 8029DEC0 0029AE00  4E 80 00 20 */	blr 
 
-.global init__Q26JASDsp8TChannelFvAutoMixer
-init__Q26JASDsp8TChannelFvAutoMixer:
+.global initAutoMixer__Q26JASDsp8TChannelFv
+initAutoMixer__Q26JASDsp8TChannelFv:
 /* 8029DEC4 0029AE04  A0 03 00 58 */	lhz r0, 0x58(r3)
 /* 8029DEC8 0029AE08  28 00 00 00 */	cmplwi r0, 0
 /* 8029DECC 0029AE0C  41 82 00 10 */	beq lbl_8029DEDC
@@ -516,8 +516,8 @@ flush__Q26JASDsp8TChannelFv:
 /* 8029DFA8 0029AEE8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029DFAC 0029AEEC  4E 80 00 20 */	blr 
 
-.global init__Q26JASDsp8TChannelFvFilter
-init__Q26JASDsp8TChannelFvFilter:
+.global initFilter__Q26JASDsp8TChannelFv
+initFilter__Q26JASDsp8TChannelFv:
 /* 8029DFB0 0029AEF0  38 80 00 00 */	li r4, 0
 /* 8029DFB4 0029AEF4  7C 85 23 78 */	mr r5, r4
 /* 8029DFB8 0029AEF8  38 00 00 08 */	li r0, 8
@@ -605,8 +605,8 @@ setBusConnect__Q26JASDsp8TChannelFUcUc:
 /* 8029E0B4 0029AFF4  7C A3 03 2E */	sthx r5, r3, r0
 /* 8029E0B8 0029AFF8  4E 80 00 20 */	blr 
 
-.global DSP_CreateMap2
-DSP_CreateMap2:
+.global DSP_CreateMap2__FUl
+DSP_CreateMap2__FUl:
 /* 8029E0BC 0029AFFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E0C0 0029B000  7C 08 02 A6 */	mflr r0
 /* 8029E0C4 0029B004  90 01 00 24 */	stw r0, 0x24(r1)

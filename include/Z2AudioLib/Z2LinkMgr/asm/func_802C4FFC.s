@@ -6,7 +6,7 @@
 /* 802C5010 002C1F50  4B FF B3 B9 */ bl __ct__10Z2CreatureFv
 /* 802C5014 002C1F54  38 7F 00 90 */ addi r3, r31, 0x90
 /* 802C5018 002C1F58  7F E4 FB 78 */ mr r4, r31
-/* 802C501C 002C1F5C  48 00 02 19 */ bl Z2RideSoundStarter
+/* 802C501C 002C1F5C  48 00 02 19 */ bl __ct__18Z2RideSoundStarterFP14Z2CreatureRide
 /* 802C5020 002C1F60  3C 60 80 3D */ lis r3, lbl_803CB924@ha
 /* 802C5024 002C1F64  38 63 B9 24 */ addi r3, r3, lbl_803CB924@l
 /* 802C5028 002C1F68  90 7F 00 00 */ stw r3, 0(r31)

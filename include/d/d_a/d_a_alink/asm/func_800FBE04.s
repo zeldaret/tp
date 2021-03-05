@@ -152,7 +152,7 @@ lbl_800FC01C:
 /* 800FC030 000F8F70  3C A0 80 39 */ lis r5, lbl_8038E164@ha
 /* 800FC034 000F8F74  38 A5 E1 64 */ addi r5, r5, lbl_8038E164@l
 /* 800FC038 000F8F78  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800FC03C 000F8F7C  4B FB 10 B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FC03C 000F8F7C  4B FB 10 B9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FC040 000F8F80  7F E3 FB 78 */ mr r3, r31
 /* 800FC044 000F8F84  4B FE 3B E5 */ bl setBowHangAnime__9daAlink_cFv
 /* 800FC048 000F8F88  C0 01 00 24 */ lfs f0, 0x24(r1)

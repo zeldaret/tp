@@ -42,7 +42,7 @@ lbl_800CC880:
 /* 800CC894 000C97D4  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 800CC898 000C97D8  38 63 02 10 */ addi r3, r3, 0x210
 /* 800CC89C 000C97DC  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800CC8A0 000C97E0  4B F7 F0 79 */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 800CC8A0 000C97E0  4B F7 F0 79 */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 800CC8A4 000C97E4  7C 7B 1B 79 */ or. r27, r3, r3
 /* 800CC8A8 000C97E8  41 82 00 48 */ beq lbl_800CC8F0
 /* 800CC8AC 000C97EC  7F 83 E3 78 */ mr r3, r28
@@ -89,9 +89,9 @@ lbl_800CC928:
 /* 800CC940 000C9880  80 9C 06 74 */ lwz r4, 0x674(r28)
 /* 800CC944 000C9884  80 84 00 04 */ lwz r4, 4(r4)
 /* 800CC948 000C9888  38 BC 01 0C */ addi r5, r28, 0x10c
-/* 800CC94C 000C988C  48 0D 84 55 */ bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
+/* 800CC94C 000C988C  48 0D 84 55 */ bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 800CC950 000C9890  80 7C 06 74 */ lwz r3, 0x674(r28)
-/* 800CC954 000C9894  4B F4 14 11 */ bl mDoExt_modelEntryDL
+/* 800CC954 000C9894  4B F4 14 11 */ bl mDoExt_modelEntryDL__FP8J3DModel
 lbl_800CC958:
 /* 800CC958 000C9898  38 60 00 01 */ li r3, 1
 /* 800CC95C 000C989C  48 00 0E 18 */ b lbl_800CD774
@@ -1012,7 +1012,7 @@ lbl_800CD670:
 /* 800CD674 000CA5B4  38 63 02 10 */ addi r3, r3, 0x210
 /* 800CD678 000CA5B8  38 1F 32 28 */ addi r0, r31, 0x3228
 /* 800CD67C 000CA5BC  7C 9C 00 2E */ lwzx r4, r28, r0
-/* 800CD680 000CA5C0  4B F7 E2 99 */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 800CD680 000CA5C0  4B F7 E2 99 */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 800CD684 000CA5C4  28 03 00 00 */ cmplwi r3, 0
 /* 800CD688 000CA5C8  41 82 00 20 */ beq lbl_800CD6A8
 /* 800CD68C 000CA5CC  38 00 00 05 */ li r0, 5

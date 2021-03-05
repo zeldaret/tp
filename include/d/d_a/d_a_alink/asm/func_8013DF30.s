@@ -34,7 +34,7 @@ lbl_8013DF74:
 /* 8013DFB0 0013AEF0  98 03 05 8D */ stb r0, 0x58d(r3)
 /* 8013DFB4 0013AEF4  7F E3 FB 78 */ mr r3, r31
 /* 8013DFB8 0013AEF8  38 80 00 8D */ li r4, 0x8d
-/* 8013DFBC 0013AEFC  4B FE B6 BD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8013DFBC 0013AEFC  4B FE B6 BD */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8013DFC0 0013AF00  38 7F 04 D0 */ addi r3, r31, 0x4d0
 /* 8013DFC4 0013AF04  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
 /* 8013DFC8 0013AF08  38 84 04 D0 */ addi r4, r4, 0x4d0

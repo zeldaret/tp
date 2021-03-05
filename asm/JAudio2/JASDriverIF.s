@@ -151,8 +151,8 @@ DSPSyncCallback__9JASDriverFv:
 /* 8029E2F0 0029B230  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029E2F4 0029B234  4E 80 00 20 */	blr 
 
-.global updateDac__9JASDriverFvCallback
-updateDac__9JASDriverFvCallback:
+.global updateDacCallback__9JASDriverFv
+updateDacCallback__9JASDriverFv:
 /* 8029E2F8 0029B238  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E2FC 0029B23C  7C 08 02 A6 */	mflr r0
 /* 8029E300 0029B240  90 01 00 14 */	stw r0, 0x14(r1)
@@ -177,7 +177,7 @@ updateDac__9JASDriverFvCallback:
 /* 8029E344 0029B284  38 A0 00 00 */	li r5, 0
 /* 8029E348 0029B288  38 C0 00 08 */	li r6, 8
 /* 8029E34C 0029B28C  38 E0 00 20 */	li r7, 0x20
-/* 8029E350 0029B290  48 0C 3A 11 */	bl func_80361D60
+/* 8029E350 0029B290  48 0C 3A 11 */	bl __construct_array
 /* 8029E354 0029B294  38 7F 01 00 */	addi r3, r31, 0x100
 .global __ct__Q214JASCallbackMgr9TCallbackFv
 /* 8029E358 0029B298  3C 80 80 2A */	lis r4, __ct__Q214JASCallbackMgr9TCallbackFv@ha
@@ -186,7 +186,7 @@ updateDac__9JASDriverFvCallback:
 /* 8029E360 0029B2A0  38 A0 00 00 */	li r5, 0
 /* 8029E364 0029B2A4  38 C0 00 08 */	li r6, 8
 /* 8029E368 0029B2A8  38 E0 00 20 */	li r7, 0x20
-/* 8029E36C 0029B2AC  48 0C 39 F5 */	bl func_80361D60
+/* 8029E36C 0029B2AC  48 0C 39 F5 */	bl __construct_array
 /* 8029E370 0029B2B0  38 7F 02 00 */	addi r3, r31, 0x200
 .global __ct__Q214JASCallbackMgr9TCallbackFv
 /* 8029E374 0029B2B4  3C 80 80 2A */	lis r4, __ct__Q214JASCallbackMgr9TCallbackFv@ha
@@ -195,7 +195,7 @@ updateDac__9JASDriverFvCallback:
 /* 8029E37C 0029B2BC  38 A0 00 00 */	li r5, 0
 /* 8029E380 0029B2C0  38 C0 00 08 */	li r6, 8
 /* 8029E384 0029B2C4  38 E0 00 20 */	li r7, 0x20
-/* 8029E388 0029B2C8  48 0C 39 D9 */	bl func_80361D60
+/* 8029E388 0029B2C8  48 0C 39 D9 */	bl __construct_array
 /* 8029E38C 0029B2CC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029E390 0029B2D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E394 0029B2D4  7C 08 03 A6 */	mtlr r0

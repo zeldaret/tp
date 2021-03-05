@@ -6,8 +6,8 @@
 /* 8025AE1C 00257D5C  38 60 00 01 */	li r3, 1
 /* 8025AE20 00257D60  4E 80 00 20 */	blr 
 
-.global getResetArchiveBank
-getResetArchiveBank:
+.global getResetArchiveBank__FiPPCUc
+getResetArchiveBank__FiPPCUc:
 /* 8025AE24 00257D64  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8025AE28 00257D68  7C 08 02 A6 */	mflr r0
 /* 8025AE2C 00257D6C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -82,28 +82,28 @@ lbl_8025AF0C:
 /* 8025AF1C 00257E5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8025AF20 00257E60  4E 80 00 20 */	blr 
 
-.global resetArchiveBank
-resetArchiveBank:
+.global resetArchiveBank__Fi
+resetArchiveBank__Fi:
 /* 8025AF24 00257E64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025AF28 00257E68  7C 08 02 A6 */	mflr r0
 /* 8025AF2C 00257E6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8025AF30 00257E70  38 81 00 08 */	addi r4, r1, 8
-/* 8025AF34 00257E74  4B FF FE F1 */	bl getResetArchiveBank
+/* 8025AF34 00257E74  4B FF FE F1 */	bl getResetArchiveBank__FiPPCUc
 /* 8025AF38 00257E78  4B DC 9A 1D */	bl resetArchiveBank__20dStage_roomControl_cFi
 /* 8025AF3C 00257E7C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8025AF40 00257E80  7C 08 03 A6 */	mtlr r0
 /* 8025AF44 00257E84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025AF48 00257E88  4E 80 00 20 */	blr 
 
-.global setArchiveBank
-setArchiveBank:
+.global setArchiveBank__Fi
+setArchiveBank__Fi:
 /* 8025AF4C 00257E8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8025AF50 00257E90  7C 08 02 A6 */	mflr r0
 /* 8025AF54 00257E94  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8025AF58 00257E98  39 61 00 30 */	addi r11, r1, 0x30
 /* 8025AF5C 00257E9C  48 10 72 79 */	bl _savegpr_27
 /* 8025AF60 00257EA0  38 81 00 08 */	addi r4, r1, 8
-/* 8025AF64 00257EA4  4B FF FE C1 */	bl getResetArchiveBank
+/* 8025AF64 00257EA4  4B FF FE C1 */	bl getResetArchiveBank__FiPPCUc
 /* 8025AF68 00257EA8  7C 7C 1B 78 */	mr r28, r3
 /* 8025AF6C 00257EAC  80 01 00 08 */	lwz r0, 8(r1)
 /* 8025AF70 00257EB0  28 00 00 00 */	cmplwi r0, 0
@@ -139,7 +139,7 @@ lbl_8025AFC0:
 /* 8025AFDC 00257F1C  38 84 A3 88 */	addi r4, r4, lbl_8039A388@l
 /* 8025AFE0 00257F20  38 84 00 01 */	addi r4, r4, 1
 /* 8025AFE4 00257F24  38 A0 00 04 */	li r5, 4
-/* 8025AFE8 00257F28  48 11 1A 8D */	bl func_8036CA74
+/* 8025AFE8 00257F28  48 11 1A 8D */	bl strnicmp
 /* 8025AFEC 00257F2C  2C 03 00 00 */	cmpwi r3, 0
 /* 8025AFF0 00257F30  40 82 00 80 */	bne lbl_8025B070
 /* 8025AFF4 00257F34  7F 63 DB 78 */	mr r3, r27
@@ -148,7 +148,7 @@ lbl_8025AFC0:
 /* 8025B000 00257F40  4B DE 11 61 */	bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 8025B004 00257F44  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B008 00257F48  40 80 00 5C */	bge lbl_8025B064
-/* 8025B00C 00257F4C  4B DB 3D E1 */	bl mDoExt_getArchiveHeap
+/* 8025B00C 00257F4C  4B DB 3D E1 */	bl mDoExt_getArchiveHeap__Fv
 /* 8025B010 00257F50  7C 68 1B 78 */	mr r8, r3
 /* 8025B014 00257F54  7F 63 DB 78 */	mr r3, r27
 /* 8025B018 00257F58  7F A4 EB 78 */	mr r4, r29
@@ -176,7 +176,7 @@ lbl_8025B064:
 /* 8025B068 00257FA8  38 60 00 00 */	li r3, 0
 /* 8025B06C 00257FAC  48 00 00 6C */	b lbl_8025B0D8
 lbl_8025B070:
-/* 8025B070 00257FB0  4B DB 3D 7D */	bl mDoExt_getArchiveHeap
+/* 8025B070 00257FB0  4B DB 3D 7D */	bl mDoExt_getArchiveHeap__Fv
 /* 8025B074 00257FB4  7C 68 1B 78 */	mr r8, r3
 /* 8025B078 00257FB8  7F 63 DB 78 */	mr r3, r27
 /* 8025B07C 00257FBC  7F A4 EB 78 */	mr r4, r29
@@ -211,8 +211,8 @@ lbl_8025B0D8:
 /* 8025B0E4 00258024  7C 08 03 A6 */	mtlr r0
 /* 8025B0E8 00258028  38 21 00 30 */	addi r1, r1, 0x30
 /* 8025B0EC 0025802C  4E 80 00 20 */	blr 
-.global objectDeleteJugge
-objectDeleteJugge:
+.global objectDeleteJugge__FPvPv
+objectDeleteJugge__FPvPv:
 /* 8025B0F0 00258030  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025B0F4 00258034  7C 08 02 A6 */	mflr r0
 /* 8025B0F8 00258038  90 01 00 14 */	stw r0, 0x14(r1)
@@ -221,7 +221,7 @@ objectDeleteJugge:
 /* 8025B104 00258044  A8 03 00 0E */	lha r0, 0xe(r3)
 /* 8025B108 00258048  2C 00 02 DC */	cmpwi r0, 0x2dc
 /* 8025B10C 0025804C  41 82 00 2C */	beq lbl_8025B138
-/* 8025B110 00258050  4B DB DB D1 */	bl fopAc_IsActor
+/* 8025B110 00258050  4B DB DB D1 */	bl fopAc_IsActor__FPv
 /* 8025B114 00258054  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B118 00258058  41 82 00 18 */	beq lbl_8025B130
 /* 8025B11C 0025805C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
@@ -240,8 +240,8 @@ lbl_8025B13C:
 /* 8025B144 00258084  7C 08 03 A6 */	mtlr r0
 /* 8025B148 00258088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025B14C 0025808C  4E 80 00 20 */	blr 
-.global deleteJugge
-deleteJugge:
+.global deleteJugge__FPvPv
+deleteJugge__FPvPv:
 /* 8025B150 00258090  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025B154 00258094  7C 08 02 A6 */	mflr r0
 /* 8025B158 00258098  90 01 00 14 */	stw r0, 0x14(r1)
@@ -251,8 +251,8 @@ deleteJugge:
 /* 8025B168 002580A8  7C 08 03 A6 */	mtlr r0
 /* 8025B16C 002580AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025B170 002580B0  4E 80 00 20 */	blr 
-.global isCreatingCallback
-isCreatingCallback:
+.global isCreatingCallback__FP10create_tagPUi
+isCreatingCallback__FP10create_tagPUi:
 /* 8025B174 002580B4  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8025B178 002580B8  80 A3 00 44 */	lwz r5, 0x44(r3)
 /* 8025B17C 002580BC  80 A5 00 0C */	lwz r5, 0xc(r5)
@@ -262,16 +262,16 @@ isCreatingCallback:
 /* 8025B18C 002580CC  38 60 00 00 */	li r3, 0
 /* 8025B190 002580D0  4E 80 00 20 */	blr 
 
-.global isCreating
-isCreating:
+.global isCreating__FUi
+isCreating__FUi:
 /* 8025B194 002580D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025B198 002580D8  7C 08 02 A6 */	mflr r0
 /* 8025B19C 002580DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8025B1A0 002580E0  90 61 00 08 */	stw r3, 8(r1)
-.global isCreatingCallback
-/* 8025B1A4 002580E4  3C 60 80 26 */	lis r3, isCreatingCallback@ha
-.global isCreatingCallback
-/* 8025B1A8 002580E8  38 63 B1 74 */	addi r3, r3, isCreatingCallback@l
+.global isCreatingCallback__FP10create_tagPUi
+/* 8025B1A4 002580E4  3C 60 80 26 */	lis r3, isCreatingCallback__FP10create_tagPUi@ha
+.global isCreatingCallback__FP10create_tagPUi
+/* 8025B1A8 002580E8  38 63 B1 74 */	addi r3, r3, isCreatingCallback__FP10create_tagPUi@l
 /* 8025B1AC 002580EC  38 81 00 08 */	addi r4, r1, 8
 /* 8025B1B0 002580F0  4B DC 58 55 */	bl fpcCtIt_Judge__FPFPvPv_PvPv
 /* 8025B1B4 002580F4  30 03 FF FF */	addic r0, r3, -1
@@ -282,8 +282,8 @@ isCreating:
 /* 8025B1C8 00258108  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025B1CC 0025810C  4E 80 00 20 */	blr 
 
-.global loadDemoArchive
-loadDemoArchive:
+.global loadDemoArchive__Fi
+loadDemoArchive__Fi:
 /* 8025B1D0 00258110  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025B1D4 00258114  7C 08 02 A6 */	mflr r0
 /* 8025B1D8 00258118  90 01 00 24 */	stw r0, 0x24(r1)
@@ -326,7 +326,7 @@ loadDemoArchive:
 /* 8025B26C 002581AC  38 84 00 34 */	addi r4, r4, 0x34
 /* 8025B270 002581B0  7F C5 F3 78 */	mr r5, r30
 /* 8025B274 002581B4  4C C6 31 82 */	crclr 6
-/* 8025B278 002581B8  48 10 B2 65 */	bl func_803664DC
+/* 8025B278 002581B8  48 10 B2 65 */	bl sprintf
 /* 8025B27C 002581BC  3C 60 80 40 */	lis r3, lbl_80406194@ha
 /* 8025B280 002581C0  38 63 61 94 */	addi r3, r3, lbl_80406194@l
 /* 8025B284 002581C4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
@@ -359,8 +359,8 @@ lbl_8025B2D4:
 /* 8025B2E4 00258224  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025B2E8 00258228  4E 80 00 20 */	blr 
 
-.global objectSetCheck
-objectSetCheck:
+.global objectSetCheck__FP19room_of_scene_class
+objectSetCheck__FP19room_of_scene_class:
 /* 8025B2EC 0025822C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025B2F0 00258230  7C 08 02 A6 */	mflr r0
 /* 8025B2F4 00258234  90 01 00 24 */	stw r0, 0x24(r1)
@@ -394,7 +394,7 @@ lbl_8025B340:
 /* 8025B360 002582A0  48 00 00 54 */	b lbl_8025B3B4
 lbl_8025B364:
 /* 8025B364 002582A4  7F C3 F3 78 */	mr r3, r30
-/* 8025B368 002582A8  4B FF FB BD */	bl resetArchiveBank
+/* 8025B368 002582A8  4B FF FB BD */	bl resetArchiveBank__Fi
 /* 8025B36C 002582AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B370 002582B0  40 82 00 0C */	bne lbl_8025B37C
 /* 8025B374 002582B4  38 60 00 00 */	li r3, 0
@@ -405,7 +405,7 @@ lbl_8025B37C:
 /* 8025B384 002582C4  98 1D 01 D4 */	stb r0, 0x1d4(r29)
 lbl_8025B388:
 /* 8025B388 002582C8  7F C3 F3 78 */	mr r3, r30
-/* 8025B38C 002582CC  4B FF FB C1 */	bl setArchiveBank
+/* 8025B38C 002582CC  4B FF FB C1 */	bl setArchiveBank__Fi
 /* 8025B390 002582D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B394 002582D4  40 82 00 0C */	bne lbl_8025B3A0
 /* 8025B398 002582D8  38 60 00 00 */	li r3, 0
@@ -415,7 +415,7 @@ lbl_8025B3A0:
 /* 8025B3A4 002582E4  28 00 00 00 */	cmplwi r0, 0
 /* 8025B3A8 002582E8  41 82 00 0C */	beq lbl_8025B3B4
 /* 8025B3AC 002582EC  7F C3 F3 78 */	mr r3, r30
-/* 8025B3B0 002582F0  4B FF FE 21 */	bl loadDemoArchive
+/* 8025B3B0 002582F0  4B FF FE 21 */	bl loadDemoArchive__Fi
 lbl_8025B3B4:
 /* 8025B3B4 002582F4  3C 60 80 40 */	lis r3, lbl_80406194@ha
 /* 8025B3B8 002582F8  8C 03 61 94 */	lbzu r0, lbl_80406194@l(r3)
@@ -452,9 +452,9 @@ lbl_8025B3F0:
 /* 8025B430 00258370  80 7D 01 CC */	lwz r3, 0x1cc(r29)
 /* 8025B434 00258374  80 9D 01 D0 */	lwz r4, 0x1d0(r29)
 /* 8025B438 00258378  7F C5 F3 78 */	mr r5, r30
-/* 8025B43C 0025837C  4B DC B7 F9 */	bl dStage_dt_c_roomReLoader
+/* 8025B43C 0025837C  4B DC B7 F9 */	bl dStage_dt_c_roomReLoader__FPvP11dStage_dt_ci
 /* 8025B440 00258380  7F C3 07 74 */	extsb r3, r30
-/* 8025B444 00258384  4B DD 40 BD */	bl dComIfGp_ret_wp_set
+/* 8025B444 00258384  4B DD 40 BD */	bl dComIfGp_ret_wp_set__FSc
 /* 8025B448 00258388  38 00 FF FF */	li r0, -1
 /* 8025B44C 0025838C  98 1D 01 D4 */	stb r0, 0x1d4(r29)
 /* 8025B450 00258390  38 00 00 01 */	li r0, 1
@@ -473,17 +473,17 @@ lbl_8025B45C:
 lbl_8025B480:
 /* 8025B480 002583C0  38 60 FF FF */	li r3, -1
 lbl_8025B484:
-/* 8025B484 002583C4  4B FF FD 11 */	bl isCreating
+/* 8025B484 002583C4  4B FF FD 11 */	bl isCreating__FUi
 /* 8025B488 002583C8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B48C 002583CC  41 82 00 0C */	beq lbl_8025B498
 /* 8025B490 002583D0  38 60 00 00 */	li r3, 0
 /* 8025B494 002583D4  48 00 00 B8 */	b lbl_8025B54C
 lbl_8025B498:
 /* 8025B498 002583D8  38 7D 00 BC */	addi r3, r29, 0xbc
-.global deleteJugge
-/* 8025B49C 002583DC  3C 80 80 26 */	lis r4, deleteJugge@ha
-.global deleteJugge
-/* 8025B4A0 002583E0  38 84 B1 50 */	addi r4, r4, deleteJugge@l
+.global deleteJugge__FPvPv
+/* 8025B49C 002583DC  3C 80 80 26 */	lis r4, deleteJugge__FPvPv@ha
+.global deleteJugge__FPvPv
+/* 8025B4A0 002583E0  38 84 B1 50 */	addi r4, r4, deleteJugge__FPvPv@l
 /* 8025B4A4 002583E4  38 A0 00 00 */	li r5, 0
 /* 8025B4A8 002583E8  4B DC 67 81 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
 /* 8025B4AC 002583EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -517,10 +517,10 @@ lbl_8025B518:
 /* 8025B518 00258458  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B51C 0025845C  41 82 00 2C */	beq lbl_8025B548
 /* 8025B520 00258460  38 7D 00 BC */	addi r3, r29, 0xbc
-.global objectDeleteJugge
-/* 8025B524 00258464  3C 80 80 26 */	lis r4, objectDeleteJugge@ha
-.global objectDeleteJugge
-/* 8025B528 00258468  38 84 B0 F0 */	addi r4, r4, objectDeleteJugge@l
+.global objectDeleteJugge__FPvPv
+/* 8025B524 00258464  3C 80 80 26 */	lis r4, objectDeleteJugge__FPvPv@ha
+.global objectDeleteJugge__FPvPv
+/* 8025B528 00258468  38 84 B0 F0 */	addi r4, r4, objectDeleteJugge__FPvPv@l
 /* 8025B52C 0025846C  38 A0 00 00 */	li r5, 0
 /* 8025B530 00258470  4B DC 66 F9 */	bl fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
 /* 8025B534 00258474  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -558,7 +558,7 @@ lbl_8025B54C:
 /* 8025B5AC 002584EC  98 1E 00 00 */	stb r0, 0(r30)
 /* 8025B5B0 002584F0  48 00 00 A8 */	b lbl_8025B658
 lbl_8025B5B4:
-/* 8025B5B4 002584F4  4B FF FD 39 */	bl objectSetCheck
+/* 8025B5B4 002584F4  4B FF FD 39 */	bl objectSetCheck__FP19room_of_scene_class
 /* 8025B5B8 002584F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B5BC 002584FC  41 82 00 9C */	beq lbl_8025B658
 /* 8025B5C0 00258500  88 1E 00 00 */	lbz r0, 0(r30)
@@ -594,7 +594,7 @@ lbl_8025B5D8:
 lbl_8025B634:
 /* 8025B634 00258574  38 60 FF FF */	li r3, -1
 lbl_8025B638:
-/* 8025B638 00258578  4B FF FB 5D */	bl isCreating
+/* 8025B638 00258578  4B FF FB 5D */	bl isCreating__FUi
 /* 8025B63C 0025857C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B640 00258580  41 82 00 10 */	beq lbl_8025B650
 /* 8025B644 00258584  38 00 00 02 */	li r0, 2
@@ -614,8 +614,8 @@ lbl_8025B658:
 /* 8025B674 002585B4  38 60 00 01 */	li r3, 1
 /* 8025B678 002585B8  4E 80 00 20 */	blr 
 
-.global isReadRoom
-isReadRoom:
+.global isReadRoom__Fi
+isReadRoom__Fi:
 /* 8025B67C 002585BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025B680 002585C0  7C 08 02 A6 */	mflr r0
 /* 8025B684 002585C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -714,12 +714,12 @@ lbl_8025B728:
 /* 8025B7E0 00258720  7C 1F 00 00 */	cmpw r31, r0
 /* 8025B7E4 00258724  41 82 00 48 */	beq lbl_8025B82C
 /* 8025B7E8 00258728  7F E3 FB 78 */	mr r3, r31
-/* 8025B7EC 0025872C  4B FF FE 91 */	bl isReadRoom
+/* 8025B7EC 0025872C  4B FF FE 91 */	bl isReadRoom__Fi
 /* 8025B7F0 00258730  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8025B7F4 00258734  40 82 00 38 */	bne lbl_8025B82C
 lbl_8025B7F8:
 /* 8025B7F8 00258738  80 7E 00 B0 */	lwz r3, 0xb0(r30)
-/* 8025B7FC 0025873C  4B DD 3C C1 */	bl dComIfG_getRoomArcName
+/* 8025B7FC 0025873C  4B DD 3C C1 */	bl dComIfG_getRoomArcName__Fi
 /* 8025B800 00258740  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8025B804 00258744  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 8025B808 00258748  3C 84 00 02 */	addis r4, r4, 2
@@ -773,7 +773,7 @@ lbl_8025B888:
 /* 8025B8BC 002587FC  98 03 01 D8 */	stb r0, 0x1d8(r3)
 /* 8025B8C0 00258800  83 A3 00 B0 */	lwz r29, 0xb0(r3)
 /* 8025B8C4 00258804  7F A3 EB 78 */	mr r3, r29
-/* 8025B8C8 00258808  4B DD 3B F5 */	bl dComIfG_getRoomArcName
+/* 8025B8C8 00258808  4B DD 3B F5 */	bl dComIfG_getRoomArcName__Fi
 /* 8025B8CC 0025880C  7C 7F 1B 78 */	mr r31, r3
 /* 8025B8D0 00258810  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8025B8D4 00258814  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
@@ -803,7 +803,7 @@ lbl_8025B918:
 /* 8025B930 00258870  A0 03 00 0A */	lhz r0, 0xa(r3)
 /* 8025B934 00258874  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 8025B938 00258878  41 82 00 0C */	beq lbl_8025B944
-/* 8025B93C 0025887C  4B DB 34 B1 */	bl mDoExt_getArchiveHeap
+/* 8025B93C 0025887C  4B DB 34 B1 */	bl mDoExt_getArchiveHeap__Fv
 /* 8025B940 00258880  7C 7D 1B 78 */	mr r29, r3
 lbl_8025B944:
 /* 8025B944 00258884  7F C3 F3 78 */	mr r3, r30
@@ -830,7 +830,7 @@ lbl_8025B968:
 /* 8025B990 002588D0  48 10 68 49 */	bl _savegpr_28
 /* 8025B994 002588D4  7C 7C 1B 78 */	mr r28, r3
 /* 8025B998 002588D8  80 63 00 B0 */	lwz r3, 0xb0(r3)
-/* 8025B99C 002588DC  4B DD 3B 21 */	bl dComIfG_getRoomArcName
+/* 8025B99C 002588DC  4B DD 3B 21 */	bl dComIfG_getRoomArcName__Fi
 /* 8025B9A0 002588E0  7C 7F 1B 78 */	mr r31, r3
 /* 8025B9A4 002588E4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8025B9A8 002588E8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
@@ -875,27 +875,27 @@ lbl_8025BA0C:
 /* 8025BA38 00258978  38 84 00 42 */	addi r4, r4, 0x42
 /* 8025BA3C 0025897C  7F C5 F3 78 */	mr r5, r30
 /* 8025BA40 00258980  38 C0 00 40 */	li r6, 0x40
-/* 8025BA44 00258984  4B DE 09 39 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
+/* 8025BA44 00258984  4B DE 09 39 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 8025BA48 00258988  90 7C 01 CC */	stw r3, 0x1cc(r28)
 /* 8025BA4C 0025898C  80 7C 01 CC */	lwz r3, 0x1cc(r28)
 /* 8025BA50 00258990  28 03 00 00 */	cmplwi r3, 0
 /* 8025BA54 00258994  41 82 00 10 */	beq lbl_8025BA64
 /* 8025BA58 00258998  80 9C 01 D0 */	lwz r4, 0x1d0(r28)
 /* 8025BA5C 0025899C  7F A5 EB 78 */	mr r5, r29
-/* 8025BA60 002589A0  4B DC B1 5D */	bl dStage_dt_c_roomLoader
+/* 8025BA60 002589A0  4B DC B1 5D */	bl dStage_dt_c_roomLoader__FPvP11dStage_dt_ci
 lbl_8025BA64:
 /* 8025BA64 002589A4  3B C0 00 00 */	li r30, 0
 /* 8025BA68 002589A8  7F A3 EB 78 */	mr r3, r29
 /* 8025BA6C 002589AC  4B DC 89 45 */	bl getMemoryBlock__20dStage_roomControl_cFi
 /* 8025BA70 002589B0  28 03 00 00 */	cmplwi r3, 0
 /* 8025BA74 002589B4  41 82 00 0C */	beq lbl_8025BA80
-/* 8025BA78 002589B8  4B DB 37 55 */	bl mDoExt_setCurrentHeap
+/* 8025BA78 002589B8  4B DB 37 55 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8025BA7C 002589BC  7C 7E 1B 78 */	mr r30, r3
 lbl_8025BA80:
 /* 8025BA80 002589C0  28 1E 00 00 */	cmplwi r30, 0
 /* 8025BA84 002589C4  41 82 00 0C */	beq lbl_8025BA90
 /* 8025BA88 002589C8  7F C3 F3 78 */	mr r3, r30
-/* 8025BA8C 002589CC  4B DB 37 41 */	bl mDoExt_setCurrentHeap
+/* 8025BA8C 002589CC  4B DB 37 41 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 lbl_8025BA90:
 /* 8025BA90 002589D0  38 60 00 02 */	li r3, 2
 lbl_8025BA94:
@@ -917,7 +917,7 @@ setZoneNo__20dStage_roomControl_cFii:
 /* 8025BAC4 00258A04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025BAC8 00258A08  7C 08 02 A6 */	mflr r0
 /* 8025BACC 00258A0C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8025BAD0 00258A10  4B FF F8 1D */	bl objectSetCheck
+/* 8025BAD0 00258A10  4B FF F8 1D */	bl objectSetCheck__FP19room_of_scene_class
 /* 8025BAD4 00258A14  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8025BAD8 00258A18  20 00 00 00 */	subfic r0, r0, 0
 /* 8025BADC 00258A1C  7C 60 01 10 */	subfe r3, r0, r0
@@ -938,7 +938,7 @@ setZoneNo__20dStage_roomControl_cFii:
 /* 8025BB18 00258A58  38 60 00 00 */	li r3, 0
 /* 8025BB1C 00258A5C  48 00 00 1C */	b lbl_8025BB38
 lbl_8025BB20:
-/* 8025BB20 00258A60  4B FF F7 CD */	bl objectSetCheck
+/* 8025BB20 00258A60  4B FF F7 CD */	bl objectSetCheck__FP19room_of_scene_class
 /* 8025BB24 00258A64  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8025BB28 00258A68  20 00 00 00 */	subfic r0, r0, 0
 /* 8025BB2C 00258A6C  7C 60 01 10 */	subfe r3, r0, r0
@@ -956,7 +956,7 @@ lbl_8025BB38:
 /* 8025BB58 00258A98  38 65 01 C4 */	addi r3, r5, 0x1c4
 /* 8025BB5C 00258A9C  3C 80 80 3C */	lis r4, lbl_803C3260@ha
 /* 8025BB60 00258AA0  38 84 32 60 */	addi r4, r4, lbl_803C3260@l
-/* 8025BB64 00258AA4  4B DD 3F BD */	bl dComLbG_PhaseHandler
+/* 8025BB64 00258AA4  4B DD 3F BD */	bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 /* 8025BB68 00258AA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8025BB6C 00258AAC  7C 08 03 A6 */	mtlr r0
 /* 8025BB70 00258AB0  38 21 00 10 */	addi r1, r1, 0x10

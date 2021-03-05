@@ -57,7 +57,7 @@ lbl_800C77B4:
 lbl_800C77CC:
 /* 800C77CC 000C470C  7F A3 EB 78 */ mr r3, r29
 /* 800C77D0 000C4710  38 80 00 00 */ li r4, 0
-/* 800C77D4 000C4714  4B FF 37 35 */ bl checkNextAction__9daAlink_cFiFromCrouch
+/* 800C77D4 000C4714  4B FF 37 35 */ bl checkNextActionFromCrouch__9daAlink_cFi
 lbl_800C77D8:
 /* 800C77D8 000C4718  38 60 00 01 */ li r3, 1
 /* 800C77DC 000C471C  39 61 00 20 */ addi r11, r1, 0x20

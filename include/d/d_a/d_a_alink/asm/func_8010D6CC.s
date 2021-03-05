@@ -38,7 +38,7 @@ lbl_8010D714:
 lbl_8010D758:
 /* 8010D758 0010A698  3B E0 00 00 */ li r31, 0
 /* 8010D75C 0010A69C  7F A3 EB 78 */ mr r3, r29
-/* 8010D760 0010A6A0  4B FF BB 25 */ bl checkUpperItemAction__9daAlink_cFvHookshot
+/* 8010D760 0010A6A0  4B FF BB 25 */ bl checkUpperItemActionHookshot__9daAlink_cFv
 /* 8010D764 0010A6A4  2C 03 00 00 */ cmpwi r3, 0
 /* 8010D768 0010A6A8  40 82 01 B8 */ bne lbl_8010D920
 /* 8010D76C 0010A6AC  AB DD 04 E6 */ lha r30, 0x4e6(r29)

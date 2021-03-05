@@ -14,7 +14,7 @@
 /* 8012D5C4 0012A504  41 82 00 20 */ beq lbl_8012D5E4
 /* 8012D5C8 0012A508  7F C3 F3 78 */ mr r3, r30
 /* 8012D5CC 0012A50C  38 80 00 00 */ li r4, 0
-/* 8012D5D0 0012A510  4B FF C5 75 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012D5D0 0012A510  4B FF C5 75 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012D5D4 0012A514  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D5D8 0012A518  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D5DC 0012A51C  90 01 00 18 */ stw r0, 0x18(r1)
@@ -121,7 +121,7 @@ lbl_8012D738:
 lbl_8012D748:
 /* 8012D748 0012A688  7F C3 F3 78 */ mr r3, r30
 /* 8012D74C 0012A68C  38 80 00 00 */ li r4, 0
-/* 8012D750 0012A690  4B FF C3 F5 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012D750 0012A690  4B FF C3 F5 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012D754 0012A694  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 8012D758 0012A698  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 8012D75C 0012A69C  90 01 00 18 */ stw r0, 0x18(r1)
@@ -169,7 +169,7 @@ lbl_8012D7E4:
 lbl_8012D7F4:
 /* 8012D7F4 0012A734  7F C3 F3 78 */ mr r3, r30
 /* 8012D7F8 0012A738  38 80 00 01 */ li r4, 1
-/* 8012D7FC 0012A73C  4B FF C3 49 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012D7FC 0012A73C  4B FF C3 49 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012D800 0012A740  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
 /* 8012D804 0012A744  38 03 37 C0 */ addi r0, r3, lbl_803A37C0@l
 /* 8012D808 0012A748  90 01 00 18 */ stw r0, 0x18(r1)

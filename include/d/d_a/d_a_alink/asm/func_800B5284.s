@@ -292,7 +292,7 @@ lbl_800B568C:
 /* 800B56B0 000B25F0  40 82 00 14 */ bne lbl_800B56C4
 lbl_800B56B4:
 /* 800B56B4 000B25F4  7F C3 F3 78 */ mr r3, r30
-/* 800B56B8 000B25F8  48 03 72 41 */ bl checkReinRide__9daAlink_cCFvBgCheck
+/* 800B56B8 000B25F8  48 03 72 41 */ bl checkReinRideBgCheck__9daAlink_cFv
 /* 800B56BC 000B25FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800B56C0 000B2600  40 82 00 14 */ bne lbl_800B56D4
 lbl_800B56C4:

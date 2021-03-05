@@ -58,7 +58,7 @@ lbl_800F9534:
 /* 800F9548 000F6488  3C A0 80 39 */ lis r5, lbl_8038E01C@ha
 /* 800F954C 000F648C  38 A5 E0 1C */ addi r5, r5, lbl_8038E01C@l
 /* 800F9550 000F6490  C0 45 00 48 */ lfs f2, 0x48(r5)
-/* 800F9554 000F6494  4B FB 3A 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800F9554 000F6494  4B FB 3A 8D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_800F9558:
 /* 800F9558 000F6498  6B 40 00 01 */ xori r0, r26, 1
 /* 800F955C 000F649C  90 1B 31 98 */ stw r0, 0x3198(r27)

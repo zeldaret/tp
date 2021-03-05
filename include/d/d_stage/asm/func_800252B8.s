@@ -11,7 +11,7 @@
 /* 800252E0 00022220  80 7F 00 04 */ lwz r3, 4(r31)
 /* 800252E4 00022224  38 80 00 00 */ li r4, 0
 /* 800252E8 00022228  38 A0 00 00 */ li r5, 0
-/* 800252EC 0002222C  4B FF FC AD */ bl dStage_cameraCreate
+/* 800252EC 0002222C  4B FF FC AD */ bl dStage_cameraCreate__FP24stage_camera2_data_classii
 /* 800252F0 00022230  38 60 00 01 */ li r3, 1
 /* 800252F4 00022234  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800252F8 00022238  80 01 00 14 */ lwz r0, 0x14(r1)

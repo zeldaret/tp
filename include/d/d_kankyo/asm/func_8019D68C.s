@@ -17,16 +17,16 @@
 /* 8019D6CC 0019A60C  FF E0 18 90 */ fmr f31, f3
 /* 8019D6D0 0019A610  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 8019D6D4 0019A614  54 84 06 3E */ clrlwi r4, r4, 0x18
-/* 8019D6D8 0019A618  4B FF FE 95 */ bl s16_data_ratio_set
+/* 8019D6D8 0019A618  4B FF FE 95 */ bl s16_data_ratio_set__Fssf
 /* 8019D6DC 0019A61C  7C 7F 1B 78 */ mr r31, r3
 /* 8019D6E0 0019A620  57 83 06 3E */ clrlwi r3, r28, 0x18
 /* 8019D6E4 0019A624  57 A4 06 3E */ clrlwi r4, r29, 0x18
 /* 8019D6E8 0019A628  FC 20 E8 90 */ fmr f1, f29
-/* 8019D6EC 0019A62C  4B FF FE 81 */ bl s16_data_ratio_set
+/* 8019D6EC 0019A62C  4B FF FE 81 */ bl s16_data_ratio_set__Fssf
 /* 8019D6F0 0019A630  7C 64 1B 78 */ mr r4, r3
 /* 8019D6F4 0019A634  7F E3 FB 78 */ mr r3, r31
 /* 8019D6F8 0019A638  FC 20 F0 90 */ fmr f1, f30
-/* 8019D6FC 0019A63C  4B FF FE 71 */ bl s16_data_ratio_set
+/* 8019D6FC 0019A63C  4B FF FE 71 */ bl s16_data_ratio_set__Fssf
 /* 8019D700 0019A640  7C 03 F2 14 */ add r0, r3, r30
 /* 8019D704 0019A644  7C 00 07 34 */ extsh r0, r0
 /* 8019D708 0019A648  C8 22 A2 30 */ lfd f1, lbl_80453C30-_SDA2_BASE_(r2)

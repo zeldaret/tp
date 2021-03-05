@@ -3,8 +3,8 @@
 .section .text, "ax" # 802dd188
 
 
-.global JUTCacheFont
-JUTCacheFont:
+.global __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
+__ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap:
 /* 802DD188 002DA0C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DD18C 002DA0CC  7C 08 02 A6 */	mflr r0
 /* 802DD190 002DA0D0  90 01 00 24 */	stw r0, 0x24(r1)

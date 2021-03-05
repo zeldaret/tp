@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2d34
 
 
-.global JAISoundInfo
-JAISoundInfo:
+.global __ct__12JAISoundInfoFb
+__ct__12JAISoundInfoFb:
 /* 802A2D34 0029FC74  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A2D38 0029FC78  41 82 00 08 */	beq lbl_802A2D40
 /* 802A2D3C 0029FC7C  90 6D 85 DC */	stw r3, lbl_80450B5C-_SDA_BASE_(r13)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 801f9afc
 
 
-.global dMw_HIO_c
-dMw_HIO_c:
+.global __ct__9dMw_HIO_cFv
+__ct__9dMw_HIO_cFv:
 /* 801F9AFC 001F6A3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9B00 001F6A40  7C 08 02 A6 */	mflr r0
 /* 801F9B04 001F6A44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -233,8 +233,8 @@ getPachinkoFlag__9dMw_HIO_cFv:
 /* 801F9E24 001F6D64  38 60 00 00 */	li r3, 0
 /* 801F9E28 001F6D68  4E 80 00 20 */	blr 
 
-.global dMw_DHIO_c
-dMw_DHIO_c:
+.global __ct__10dMw_DHIO_cFv
+__ct__10dMw_DHIO_cFv:
 /* 801F9E2C 001F6D6C  3C 80 80 3C */	lis r4, lbl_803BE8E0@ha
 /* 801F9E30 001F6D70  38 04 E8 E0 */	addi r0, r4, lbl_803BE8E0@l
 /* 801F9E34 001F6D74  90 03 00 00 */	stw r0, 0(r3)
@@ -312,7 +312,7 @@ lbl_801F9F10:
 /* 801F9F38 001F6E78  3C 60 80 43 */	lis r3, lbl_8042E860@ha
 /* 801F9F3C 001F6E7C  3B E3 E8 60 */	addi r31, r3, lbl_8042E860@l
 /* 801F9F40 001F6E80  38 7F 00 0C */	addi r3, r31, 0xc
-/* 801F9F44 001F6E84  4B FF FB B9 */	bl dMw_HIO_c
+/* 801F9F44 001F6E84  4B FF FB B9 */	bl __ct__9dMw_HIO_cFv
 .global __dt__9dMw_HIO_cFv
 /* 801F9F48 001F6E88  3C 80 80 20 */	lis r4, __dt__9dMw_HIO_cFv@ha
 .global __dt__9dMw_HIO_cFv
@@ -320,7 +320,7 @@ lbl_801F9F10:
 /* 801F9F50 001F6E90  38 BF 00 00 */	addi r5, r31, 0
 /* 801F9F54 001F6E94  48 16 7C D1 */	bl func_80361C24
 /* 801F9F58 001F6E98  38 7F 01 48 */	addi r3, r31, 0x148
-/* 801F9F5C 001F6E9C  4B FF FE D1 */	bl dMw_DHIO_c
+/* 801F9F5C 001F6E9C  4B FF FE D1 */	bl __ct__10dMw_DHIO_cFv
 .global __dt__10dMw_DHIO_cFv
 /* 801F9F60 001F6EA0  3C 80 80 20 */	lis r4, __dt__10dMw_DHIO_cFv@ha
 .global __dt__10dMw_DHIO_cFv

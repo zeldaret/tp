@@ -23,47 +23,47 @@ void _savegpr_28(void);
 void _savegpr_29(void);
 void becomeCurrentHeap__7JKRHeapFv(void);
 void cb(void);
-void func_80015BB8(void);
-void func_80015CF0(void);
-void func_80015D44(void);
-void func_80015EDC(void);
-void func_80016108(void);
-void func_800162B0(void);
-void func_8001645C(void);
-void func_800164BC(void);
-void func_80016574(void);
+void __dt__20mDoDvdThd_callback_cFv(void);
+void execute__20mDoDvdThd_callback_cFv(void);
+void __dt__24mDoDvdThd_mountArchive_cFv(void);
+void execute__24mDoDvdThd_mountArchive_cFv(void);
+void __dt__25mDoDvdThd_mountXArchive_cFv(void);
+void execute__25mDoDvdThd_mountXArchive_cFv(void);
+void __dt__21mDoDvdThd_toMainRam_cFv(void);
+void execute__21mDoDvdThd_toMainRam_cFv(void);
+void __sinit_m_Do_dvd_thread_cpp(void);
 void getSize__7JKRHeapCFPv(void);
 void loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl(
     void);
 void create__9mDoDvdThdFl(void);
 void main__9mDoDvdThdFPv(void);
 void suspend__9mDoDvdThdFv(void);
-void mDoDvdThd_callback_c(void);
+void __ct__20mDoDvdThd_callback_cFPFPv_PvPv(void);
 void create__20mDoDvdThd_callback_cFPFPv_PvPv(void);
-void mDoDvdThd_command_c(void);
+void __ct__19mDoDvdThd_command_cFv(void);
 void __dt__19mDoDvdThd_command_cFv(void);
-void mDoDvdThd_mountArchive_c(void);
+void __ct__24mDoDvdThd_mountArchive_cFUc(void);
 void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap(void);
-void mDoDvdThd_mountXArchive_c(void);
+void __ct__25mDoDvdThd_mountXArchive_cFUcQ210JKRArchive10EMountMode(void);
 void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap(void);
-void mDoDvdThd_param_c(void);
+void __ct__17mDoDvdThd_param_cFv(void);
 void addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c(void);
 void cut__17mDoDvdThd_param_cFP19mDoDvdThd_command_c(void);
 void getFirstCommand__17mDoDvdThd_param_cFv(void);
 void kick__17mDoDvdThd_param_cFv(void);
 void mainLoop__17mDoDvdThd_param_cFv(void);
 void waitForKick__17mDoDvdThd_param_cFv(void);
-void mDoDvdThd_toMainRam_c(void);
+void __ct__21mDoDvdThd_toMainRam_cFUc(void);
 void create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap(void);
-void mDoExt_getArchiveHeap(void);
-void mDoExt_getArchiveHeapPtr(void);
-void mDoExt_getAssertHeap(void);
-void mDoExt_getCommandHeap(void);
-void mDoExt_getGameHeap(void);
-void mDoExt_getJ2dHeap(void);
-void mDoExt_getZeldaHeap(void);
+void mDoExt_getArchiveHeap__Fv(void);
+void mDoExt_getArchiveHeapPtr__Fv(void);
+void mDoExt_getAssertHeap__Fv(void);
+void mDoExt_getCommandHeap__Fv(void);
+void mDoExt_getGameHeap__Fv(void);
+void mDoExt_getJ2dHeap__Fv(void);
+void mDoExt_getZeldaHeap__Fv(void);
 void mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection(void);
-void my_DVDConvertPathToEntrynum(void);
+void my_DVDConvertPathToEntrynum__FPCc(void);
 }
 
 // additional symbols needed for m_Do_dvd_thread.cpp
@@ -102,8 +102,8 @@ asm void suspend__9mDoDvdThdFv(void) {
 }
 
 // my_DVDConvertPathToEntrynum__FPCc
-// my_DVDConvertPathToEntrynum(const s8*)
-asm void my_DVDConvertPathToEntrynum(void) {
+// my_DVDConvertPathToEntrynum__FPCc(const s8*)
+asm void my_DVDConvertPathToEntrynum__FPCc(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_800158DC.s"
 }
@@ -117,7 +117,7 @@ asm void __dt__19mDoDvdThd_command_cFv(void) {
 
 // __ct__17mDoDvdThd_param_cFv
 // mDoDvdThd_param_c::mDoDvdThd_param_c(void)
-asm void mDoDvdThd_param_c(void) {
+asm void __ct__17mDoDvdThd_param_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015944.s"
 }
@@ -173,21 +173,21 @@ asm void mainLoop__17mDoDvdThd_param_cFv(void) {
 
 // __ct__19mDoDvdThd_command_cFv
 // mDoDvdThd_command_c::mDoDvdThd_command_c(void)
-asm void mDoDvdThd_command_c(void) {
+asm void __ct__19mDoDvdThd_command_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015B74.s"
 }
 
 // __dt__20mDoDvdThd_callback_cFv
 // mDoDvdThd_callback_c::~mDoDvdThd_callback_c(void)
-asm void func_80015BB8(void) {
+asm void __dt__20mDoDvdThd_callback_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015BB8.s"
 }
 
 // __ct__20mDoDvdThd_callback_cFPFPv_PvPv
 // mDoDvdThd_callback_c::mDoDvdThd_callback_c(void* (*)(void*), void*)
-asm void mDoDvdThd_callback_c(void) {
+asm void __ct__20mDoDvdThd_callback_cFPFPv_PvPv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015C18.s"
 }
@@ -201,21 +201,21 @@ asm void create__20mDoDvdThd_callback_cFPFPv_PvPv(void) {
 
 // execute__20mDoDvdThd_callback_cFv
 // mDoDvdThd_callback_c::execute(void)
-asm void func_80015CF0(void) {
+asm void execute__20mDoDvdThd_callback_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015CF0.s"
 }
 
 // __dt__24mDoDvdThd_mountArchive_cFv
 // mDoDvdThd_mountArchive_c::~mDoDvdThd_mountArchive_c(void)
-asm void func_80015D44(void) {
+asm void __dt__24mDoDvdThd_mountArchive_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015D44.s"
 }
 
 // __ct__24mDoDvdThd_mountArchive_cFUc
 // mDoDvdThd_mountArchive_c::mDoDvdThd_mountArchive_c(u8)
-asm void mDoDvdThd_mountArchive_c(void) {
+asm void __ct__24mDoDvdThd_mountArchive_cFUc(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015DA4.s"
 }
@@ -229,21 +229,21 @@ asm void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap(void) {
 
 // execute__24mDoDvdThd_mountArchive_cFv
 // mDoDvdThd_mountArchive_c::execute(void)
-asm void func_80015EDC(void) {
+asm void execute__24mDoDvdThd_mountArchive_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80015EDC.s"
 }
 
 // __dt__25mDoDvdThd_mountXArchive_cFv
 // mDoDvdThd_mountXArchive_c::~mDoDvdThd_mountXArchive_c(void)
-asm void func_80016108(void) {
+asm void __dt__25mDoDvdThd_mountXArchive_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80016108.s"
 }
 
 // __ct__25mDoDvdThd_mountXArchive_cFUcQ210JKRArchive10EMountMode
 // mDoDvdThd_mountXArchive_c::mDoDvdThd_mountXArchive_c(u8, JKRArchive::EMountMode)
-asm void mDoDvdThd_mountXArchive_c(void) {
+asm void __ct__25mDoDvdThd_mountXArchive_cFUcQ210JKRArchive10EMountMode(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80016168.s"
 }
@@ -257,14 +257,14 @@ asm void create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JK
 
 // execute__25mDoDvdThd_mountXArchive_cFv
 // mDoDvdThd_mountXArchive_c::execute(void)
-asm void func_800162B0(void) {
+asm void execute__25mDoDvdThd_mountXArchive_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_800162B0.s"
 }
 
 // __ct__21mDoDvdThd_toMainRam_cFUc
 // mDoDvdThd_toMainRam_c::mDoDvdThd_toMainRam_c(u8)
-asm void mDoDvdThd_toMainRam_c(void) {
+asm void __ct__21mDoDvdThd_toMainRam_cFUc(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80016338.s"
 }
@@ -278,21 +278,21 @@ asm void create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap(void) {
 
 // __dt__21mDoDvdThd_toMainRam_cFv
 // mDoDvdThd_toMainRam_c::~mDoDvdThd_toMainRam_c(void)
-asm void func_8001645C(void) {
+asm void __dt__21mDoDvdThd_toMainRam_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_8001645C.s"
 }
 
 // execute__21mDoDvdThd_toMainRam_cFv
 // mDoDvdThd_toMainRam_c::execute(void)
-asm void func_800164BC(void) {
+asm void execute__21mDoDvdThd_toMainRam_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_800164BC.s"
 }
 
 // __sinit_m_Do_dvd_thread_cpp
 //
-asm void func_80016574(void) {
+asm void __sinit_m_Do_dvd_thread_cpp(void) {
     nofralloc
 #include "m_Do/m_Do_dvd_thread/asm/func_80016574.s"
 }

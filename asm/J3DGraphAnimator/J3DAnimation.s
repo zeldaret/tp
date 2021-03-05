@@ -728,8 +728,8 @@ lbl_80328E38:
 /* 80328E38 00325D78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80328E3C 00325D7C  4E 80 00 20 */	blr 
 
-.global J3DAnmTransform
-J3DAnmTransform:
+.global __ct__15J3DAnmTransformFsPfPsPf
+__ct__15J3DAnmTransformFsPfPsPf:
 /* 80328E40 00325D80  3D 00 80 3A */	lis r8, lbl_803A7C38@ha
 /* 80328E44 00325D84  38 08 7C 38 */	addi r0, r8, lbl_803A7C38@l
 /* 80328E48 00325D88  90 03 00 00 */	stw r0, 0(r3)
@@ -1863,8 +1863,8 @@ lbl_80329E3C:
 /* 80329E54 00326D94  38 21 00 40 */	addi r1, r1, 0x40
 /* 80329E58 00326D98  4E 80 00 20 */	blr 
 
-.global J3DAnmTextureSRTKey
-J3DAnmTextureSRTKey:
+.global __ct__19J3DAnmTextureSRTKeyFv
+__ct__19J3DAnmTextureSRTKeyFv:
 /* 80329E5C 00326D9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80329E60 00326DA0  7C 08 02 A6 */	mflr r0
 /* 80329E64 00326DA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1883,9 +1883,9 @@ J3DAnmTextureSRTKey:
 /* 80329E98 00326DD8  38 03 EE 24 */	addi r0, r3, lbl_803CEE24@l
 /* 80329E9C 00326DDC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80329EA0 00326DE0  38 7F 00 30 */	addi r3, r31, 0x30
-/* 80329EA4 00326DE4  4B FB 4A FD */	bl JUTNameTab
+/* 80329EA4 00326DE4  4B FB 4A FD */	bl __ct__10JUTNameTabFv
 /* 80329EA8 00326DE8  38 7F 00 64 */	addi r3, r31, 0x64
-/* 80329EAC 00326DEC  4B FB 4A F5 */	bl JUTNameTab
+/* 80329EAC 00326DEC  4B FB 4A F5 */	bl __ct__10JUTNameTabFv
 /* 80329EB0 00326DF0  38 00 00 00 */	li r0, 0
 /* 80329EB4 00326DF4  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 80329EB8 00326DF8  B0 1F 00 1A */	sth r0, 0x1a(r31)
@@ -2168,8 +2168,8 @@ lbl_8032A28C:
 /* 8032A294 003271D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A298 003271D8  4E 80 00 20 */	blr 
 
-.global J3DAnmVtxColor
-J3DAnmVtxColor:
+.global __ct__14J3DAnmVtxColorFv
+__ct__14J3DAnmVtxColorFv:
 /* 8032A29C 003271DC  3C 80 80 3A */	lis r4, lbl_803A7C38@ha
 /* 8032A2A0 003271E0  38 04 7C 38 */	addi r0, r4, lbl_803A7C38@l
 /* 8032A2A4 003271E4  90 03 00 00 */	stw r0, 0(r3)
@@ -2201,14 +2201,14 @@ lbl_8032A2F8:
 /* 8032A304 00327244  42 00 FF F4 */	bdnz lbl_8032A2F8
 /* 8032A308 00327248  4E 80 00 20 */	blr 
 
-.global J3DAnmVtxColorFull
-J3DAnmVtxColorFull:
+.global __ct__18J3DAnmVtxColorFullFv
+__ct__18J3DAnmVtxColorFullFv:
 /* 8032A30C 0032724C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A310 00327250  7C 08 02 A6 */	mflr r0
 /* 8032A314 00327254  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032A318 00327258  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032A31C 0032725C  7C 7F 1B 78 */	mr r31, r3
-/* 8032A320 00327260  4B FF FF 7D */	bl J3DAnmVtxColor
+/* 8032A320 00327260  4B FF FF 7D */	bl __ct__14J3DAnmVtxColorFv
 /* 8032A324 00327264  3C 60 80 3D */	lis r3, lbl_803CEDC0@ha
 /* 8032A328 00327268  38 03 ED C0 */	addi r0, r3, lbl_803CEDC0@l
 /* 8032A32C 0032726C  90 1F 00 00 */	stw r0, 0(r31)
@@ -2331,14 +2331,14 @@ lbl_8032A4D8:
 /* 8032A4D8 00327418  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032A4DC 0032741C  4E 80 00 20 */	blr 
 
-.global J3DAnmVtxColorKey
-J3DAnmVtxColorKey:
+.global __ct__17J3DAnmVtxColorKeyFv
+__ct__17J3DAnmVtxColorKeyFv:
 /* 8032A4E0 00327420  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A4E4 00327424  7C 08 02 A6 */	mflr r0
 /* 8032A4E8 00327428  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032A4EC 0032742C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032A4F0 00327430  7C 7F 1B 78 */	mr r31, r3
-/* 8032A4F4 00327434  4B FF FD A9 */	bl J3DAnmVtxColor
+/* 8032A4F4 00327434  4B FF FD A9 */	bl __ct__14J3DAnmVtxColorFv
 /* 8032A4F8 00327438  3C 60 80 3D */	lis r3, lbl_803CEDAC@ha
 /* 8032A4FC 0032743C  38 03 ED AC */	addi r0, r3, lbl_803CEDAC@l
 /* 8032A500 00327440  90 1F 00 00 */	stw r0, 0(r31)
@@ -2569,8 +2569,8 @@ lbl_8032A808:
 /* 8032A820 00327760  38 21 00 40 */	addi r1, r1, 0x40
 /* 8032A824 00327764  4E 80 00 20 */	blr 
 
-.global J3DAnmColor
-J3DAnmColor:
+.global __ct__11J3DAnmColorFv
+__ct__11J3DAnmColorFv:
 /* 8032A828 00327768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A82C 0032776C  7C 08 02 A6 */	mflr r0
 /* 8032A830 00327770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2595,7 +2595,7 @@ J3DAnmColor:
 /* 8032A87C 003277BC  B0 9F 00 14 */	sth r4, 0x14(r31)
 /* 8032A880 003277C0  90 9F 00 18 */	stw r4, 0x18(r31)
 /* 8032A884 003277C4  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 8032A888 003277C8  4B FB 41 19 */	bl JUTNameTab
+/* 8032A888 003277C8  4B FB 41 19 */	bl __ct__10JUTNameTabFv
 /* 8032A88C 003277CC  7F E3 FB 78 */	mr r3, r31
 /* 8032A890 003277D0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8032A894 003277D4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -2648,14 +2648,14 @@ lbl_8032A914:
 /* 8032A934 00327874  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032A938 00327878  4E 80 00 20 */	blr 
 
-.global J3DAnmColorFull
-J3DAnmColorFull:
+.global __ct__15J3DAnmColorFullFv
+__ct__15J3DAnmColorFullFv:
 /* 8032A93C 0032787C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032A940 00327880  7C 08 02 A6 */	mflr r0
 /* 8032A944 00327884  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032A948 00327888  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032A94C 0032788C  7C 7F 1B 78 */	mr r31, r3
-/* 8032A950 00327890  4B FF FE D9 */	bl J3DAnmColor
+/* 8032A950 00327890  4B FF FE D9 */	bl __ct__11J3DAnmColorFv
 /* 8032A954 00327894  3C 60 80 3D */	lis r3, lbl_803CED84@ha
 /* 8032A958 00327898  38 03 ED 84 */	addi r0, r3, lbl_803CED84@l
 /* 8032A95C 0032789C  90 1F 00 00 */	stw r0, 0(r31)
@@ -2773,14 +2773,14 @@ lbl_8032AAF8:
 /* 8032AAF8 00327A38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032AAFC 00327A3C  4E 80 00 20 */	blr 
 
-.global J3DAnmColorKey
-J3DAnmColorKey:
+.global __ct__14J3DAnmColorKeyFv
+__ct__14J3DAnmColorKeyFv:
 /* 8032AB00 00327A40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032AB04 00327A44  7C 08 02 A6 */	mflr r0
 /* 8032AB08 00327A48  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032AB0C 00327A4C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032AB10 00327A50  7C 7F 1B 78 */	mr r31, r3
-/* 8032AB14 00327A54  4B FF FD 15 */	bl J3DAnmColor
+/* 8032AB14 00327A54  4B FF FD 15 */	bl __ct__11J3DAnmColorFv
 /* 8032AB18 00327A58  3C 60 80 3D */	lis r3, lbl_803CED70@ha
 /* 8032AB1C 00327A5C  38 03 ED 70 */	addi r0, r3, lbl_803CED70@l
 /* 8032AB20 00327A60  90 1F 00 00 */	stw r0, 0(r31)
@@ -2998,8 +2998,8 @@ lbl_8032ADF8:
 /* 8032AE10 00327D50  38 21 00 40 */	addi r1, r1, 0x40
 /* 8032AE14 00327D54  4E 80 00 20 */	blr 
 
-.global J3DAnmTevRegKey
-J3DAnmTevRegKey:
+.global __ct__15J3DAnmTevRegKeyFv
+__ct__15J3DAnmTevRegKeyFv:
 /* 8032AE18 00327D58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032AE1C 00327D5C  7C 08 02 A6 */	mflr r0
 /* 8032AE20 00327D60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3018,9 +3018,9 @@ J3DAnmTevRegKey:
 /* 8032AE54 00327D94  38 03 ED 60 */	addi r0, r3, lbl_803CED60@l
 /* 8032AE58 00327D98  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032AE5C 00327D9C  38 7F 00 24 */	addi r3, r31, 0x24
-/* 8032AE60 00327DA0  4B FB 3B 41 */	bl JUTNameTab
+/* 8032AE60 00327DA0  4B FB 3B 41 */	bl __ct__10JUTNameTabFv
 /* 8032AE64 00327DA4  38 7F 00 38 */	addi r3, r31, 0x38
-/* 8032AE68 00327DA8  4B FB 3B 39 */	bl JUTNameTab
+/* 8032AE68 00327DA8  4B FB 3B 39 */	bl __ct__10JUTNameTabFv
 /* 8032AE6C 00327DAC  38 00 00 00 */	li r0, 0
 /* 8032AE70 00327DB0  B0 1F 00 0E */	sth r0, 0xe(r31)
 /* 8032AE74 00327DB4  B0 1F 00 0C */	sth r0, 0xc(r31)
@@ -3049,8 +3049,8 @@ J3DAnmTevRegKey:
 /* 8032AED0 00327E10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032AED4 00327E14  4E 80 00 20 */	blr 
 
-.global J3DAnmTexPattern
-J3DAnmTexPattern:
+.global __ct__16J3DAnmTexPatternFv
+__ct__16J3DAnmTexPatternFv:
 /* 8032AED8 00327E18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032AEDC 00327E1C  7C 08 02 A6 */	mflr r0
 /* 8032AEE0 00327E20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3074,7 +3074,7 @@ J3DAnmTexPattern:
 /* 8032AF28 00327E68  B0 9F 00 16 */	sth r4, 0x16(r31)
 /* 8032AF2C 00327E6C  90 9F 00 18 */	stw r4, 0x18(r31)
 /* 8032AF30 00327E70  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 8032AF34 00327E74  4B FB 3A 6D */	bl JUTNameTab
+/* 8032AF34 00327E74  4B FB 3A 6D */	bl __ct__10JUTNameTabFv
 /* 8032AF38 00327E78  7F E3 FB 78 */	mr r3, r31
 /* 8032AF3C 00327E7C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8032AF40 00327E80  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3178,8 +3178,8 @@ lbl_8032B074:
 /* 8032B094 00327FD4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032B098 00327FD8  4E 80 00 20 */	blr 
 
-.global searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_
-searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable_X1_:
+.global searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData
+searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData:
 /* 8032B09C 00327FDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032B0A0 00327FE0  7C 08 02 A6 */	mflr r0
 /* 8032B0A4 00327FE4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3270,8 +3270,8 @@ lbl_8032B1A0:
 /* 8032B1CC 0032810C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032B1D0 00328110  4E 80 00 20 */	blr 
 
-.global searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_
-searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable_X1_:
+.global searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData
+searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData:
 /* 8032B1D4 00328114  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032B1D8 00328118  7C 08 02 A6 */	mflr r0
 /* 8032B1DC 0032811C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3764,8 +3764,8 @@ lbl_8032B854:
 /* 8032B874 003287B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032B878 003287B8  4E 80 00 20 */	blr 
 
-.global searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
-searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_:
+.global searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
+searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData:
 /* 8032B87C 003287BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8032B880 003287C0  7C 08 02 A6 */	mflr r0
 /* 8032B884 003287C4  90 01 00 14 */	stw r0, 0x14(r1)

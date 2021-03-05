@@ -94,7 +94,7 @@ lbl_8028D66C:
 /* 8028D684 0028A5C4  41 82 00 14 */	beq lbl_8028D698
 /* 8028D688 0028A5C8  7F A4 EB 78 */	mr r4, r29
 /* 8028D68C 0028A5CC  7F E5 FB 78 */	mr r5, r31
-/* 8028D690 0028A5D0  4B FF A5 0D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_sound
+/* 8028D690 0028A5D0  4B FF A5 0D */	bl __ct__Q27JStudio13TObject_soundFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_sound
 /* 8028D694 0028A5D4  7C 7E 1B 78 */	mr r30, r3
 lbl_8028D698:
 /* 8028D698 0028A5D8  28 1E 00 00 */	cmplwi r30, 0

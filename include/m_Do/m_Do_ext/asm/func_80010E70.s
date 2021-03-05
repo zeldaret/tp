@@ -137,7 +137,7 @@ lbl_80011030:
 /* 80011070 0000DFB0  C8 01 00 18 */ lfd f0, 0x18(r1)
 /* 80011074 0000DFB4  EC 20 08 28 */ fsubs f1, f0, f1
 /* 80011078 0000DFB8  C0 5E 00 1C */ lfs f2, 0x1c(r30)
-/* 8001107C 0000DFBC  48 2A F5 AD */ bl init__10Z2CreatureFP3VecP3VecUcUcAnime
+/* 8001107C 0000DFBC  48 2A F5 AD */ bl initAnime__10Z2CreatureFPvbff
 lbl_80011080:
 /* 80011080 0000DFC0  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0
 /* 80011084 0000DFC4  CB E1 00 50 */ lfd f31, 0x50(r1)

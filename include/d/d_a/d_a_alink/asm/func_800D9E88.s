@@ -130,7 +130,7 @@ lbl_800DA038:
 /* 800DA05C 000D6F9C  3C A0 80 39 */ lis r5, lbl_8038E54C@ha
 /* 800DA060 000D6FA0  38 A5 E5 4C */ addi r5, r5, lbl_8038E54C@l
 /* 800DA064 000D6FA4  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 800DA068 000D6FA8  4B FD 2F 49 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800DA068 000D6FA8  4B FD 2F 49 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800DA06C 000D6FAC  7F E3 FB 78 */ mr r3, r31
 /* 800DA070 000D6FB0  A8 9F 30 80 */ lha r4, 0x3080(r31)
 /* 800DA074 000D6FB4  38 A0 00 00 */ li r5, 0

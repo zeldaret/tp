@@ -24,7 +24,7 @@ lbl_800F22F4:
 /* 800F22FC 000EF23C  7F E3 FB 78 */ mr r3, r31
 /* 800F2300 000EF240  4B FE CB 1D */ bl cancelBowMove__9daAlink_cFv
 /* 800F2304 000EF244  7F E3 FB 78 */ mr r3, r31
-/* 800F2308 000EF248  4B FF D1 49 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F2308 000EF248  4B FF D1 49 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F230C 000EF24C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2310 000EF250  40 82 00 0C */ bne lbl_800F231C
 /* 800F2314 000EF254  7F E3 FB 78 */ mr r3, r31

@@ -21,7 +21,7 @@ lbl_80106F30:
 /* 80106F4C 00103E8C  B0 1E 30 08 */ sth r0, 0x3008(r30)
 lbl_80106F50:
 /* 80106F50 00103E90  7F C3 F3 78 */ mr r3, r30
-/* 80106F54 00103E94  4B FF F6 39 */ bl checkNextAction__9daAlink_cFiBoard
+/* 80106F54 00103E94  4B FF F6 39 */ bl checkNextActionBoard__9daAlink_cFv
 /* 80106F58 00103E98  2C 03 00 00 */ cmpwi r3, 0
 /* 80106F5C 00103E9C  40 82 00 E8 */ bne lbl_80107044
 /* 80106F60 00103EA0  3B FE 1F D0 */ addi r31, r30, 0x1fd0

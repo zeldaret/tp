@@ -36,7 +36,7 @@ lbl_8002ECC8:
 /* 8002ECDC 0002BC1C  48 00 00 78 */ b lbl_8002ED54
 lbl_8002ECE0:
 /* 8002ECE0 0002BC20  38 61 00 60 */ addi r3, r1, 0x60
-/* 8002ECE4 0002BC24  48 19 79 49 */ bl dMenuFmap_getStartStageName
+/* 8002ECE4 0002BC24  48 19 79 49 */ bl dMenuFmap_getStartStageName__FPv
 /* 8002ECE8 0002BC28  7F BB FA 14 */ add r29, r27, r31
 /* 8002ECEC 0002BC2C  7F A4 EB 78 */ mr r4, r29
 /* 8002ECF0 0002BC30  48 33 9C A5 */ bl strcmp

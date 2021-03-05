@@ -7,7 +7,7 @@
 /* 80135210 00132150  28 05 00 00 */ cmplwi r5, 0
 /* 80135214 00132154  40 82 00 10 */ bne lbl_80135224
 /* 80135218 00132158  38 80 00 00 */ li r4, 0
-/* 8013521C 0013215C  4B FF 49 29 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013521C 0013215C  4B FF 49 29 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80135220 00132160  48 00 02 24 */ b lbl_80135444
 lbl_80135224:
 /* 80135224 00132164  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -29,9 +29,9 @@ lbl_80135224:
 /* 80135264 001321A4  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80135268 001321A8  41 82 00 30 */ beq lbl_80135298
 /*.global daAlink_searchGiantTalk*/
-/* 8013526C 001321AC  3C 60 80 13 */ lis r3, daAlink_searchGiantTalk@ha
+/* 8013526C 001321AC  3C 60 80 13 */ lis r3, daAlink_searchGiantTalk__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchGiantTalk*/
-/* 80135270 001321B0  38 63 50 A4 */ addi r3, r3, daAlink_searchGiantTalk@l
+/* 80135270 001321B0  38 63 50 A4 */ addi r3, r3, daAlink_searchGiantTalk__FP10fopAc_ac_cPv@l
 /* 80135274 001321B4  38 80 00 00 */ li r4, 0
 /* 80135278 001321B8  4B EE 45 81 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8013527C 001321BC  7C 64 1B 79 */ or. r4, r3, r3
@@ -89,9 +89,9 @@ lbl_80135298:
 /* 80135348 00132288  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8013534C 0013228C  40 80 00 78 */ bge lbl_801353C4
 /*.global daAlink_searchGiant*/
-/* 80135350 00132290  3C 60 80 13 */ lis r3, daAlink_searchGiant@ha
+/* 80135350 00132290  3C 60 80 13 */ lis r3, daAlink_searchGiant__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchGiant*/
-/* 80135354 00132294  38 63 50 50 */ addi r3, r3, daAlink_searchGiant@l
+/* 80135354 00132294  38 63 50 50 */ addi r3, r3, daAlink_searchGiant__FP10fopAc_ac_cPv@l
 /* 80135358 00132298  38 81 00 08 */ addi r4, r1, 8
 /* 8013535C 0013229C  4B EE 44 9D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80135360 001322A0  28 03 00 00 */ cmplwi r3, 0

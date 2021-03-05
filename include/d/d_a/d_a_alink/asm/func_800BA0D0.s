@@ -208,7 +208,7 @@ lbl_800BA3A4:
 /* 800BA3B4 000B72F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800BA3B8 000B72F8  41 82 00 14 */ beq lbl_800BA3CC
 /* 800BA3BC 000B72FC  7F 83 E3 78 */ mr r3, r28
-/* 800BA3C0 000B7300  48 02 54 55 */ bl checkNextAction__9daAlink_cFiBow
+/* 800BA3C0 000B7300  48 02 54 55 */ bl checkNextActionBow__9daAlink_cFv
 /* 800BA3C4 000B7304  7C 7B 1B 78 */ mr r27, r3
 /* 800BA3C8 000B7308  48 00 02 B4 */ b lbl_800BA67C
 lbl_800BA3CC:
@@ -220,7 +220,7 @@ lbl_800BA3CC:
 /* 800BA3E0 000B7320  28 00 01 02 */ cmplwi r0, 0x102
 /* 800BA3E4 000B7324  41 82 00 14 */ beq lbl_800BA3F8
 /* 800BA3E8 000B7328  7F 83 E3 78 */ mr r3, r28
-/* 800BA3EC 000B732C  48 02 67 F9 */ bl checkNextAction__9daAlink_cFiBoomerang
+/* 800BA3EC 000B732C  48 02 67 F9 */ bl checkNextActionBoomerang__9daAlink_cFv
 /* 800BA3F0 000B7330  7C 7B 1B 78 */ mr r27, r3
 /* 800BA3F4 000B7334  48 00 02 88 */ b lbl_800BA67C
 lbl_800BA3F8:
@@ -229,7 +229,7 @@ lbl_800BA3F8:
 /* 800BA400 000B7340  2C 03 00 00 */ cmpwi r3, 0
 /* 800BA404 000B7344  41 82 00 14 */ beq lbl_800BA418
 /* 800BA408 000B7348  7F 83 E3 78 */ mr r3, r28
-/* 800BA40C 000B734C  48 02 78 39 */ bl checkNextAction__9daAlink_cFiCopyRod
+/* 800BA40C 000B734C  48 02 78 39 */ bl checkNextActionCopyRod__9daAlink_cFv
 /* 800BA410 000B7350  7C 7B 1B 78 */ mr r27, r3
 /* 800BA414 000B7354  48 00 02 68 */ b lbl_800BA67C
 lbl_800BA418:
@@ -246,7 +246,7 @@ lbl_800BA438:
 /* 800BA438 000B7378  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BA43C 000B737C  41 82 00 14 */ beq lbl_800BA450
 /* 800BA440 000B7380  7F 83 E3 78 */ mr r3, r28
-/* 800BA444 000B7384  48 04 F1 85 */ bl checkNextAction__9daAlink_cFiHookshot
+/* 800BA444 000B7384  48 04 F1 85 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 800BA448 000B7388  7C 7B 1B 78 */ mr r27, r3
 /* 800BA44C 000B738C  48 00 02 30 */ b lbl_800BA67C
 lbl_800BA450:
@@ -255,7 +255,7 @@ lbl_800BA450:
 /* 800BA458 000B7398  2C 03 00 00 */ cmpwi r3, 0
 /* 800BA45C 000B739C  41 82 00 14 */ beq lbl_800BA470
 /* 800BA460 000B73A0  7F 83 E3 78 */ mr r3, r28
-/* 800BA464 000B73A4  48 05 AF 95 */ bl checkNextAction__9daAlink_cFiIronBall
+/* 800BA464 000B73A4  48 05 AF 95 */ bl checkNextActionIronBall__9daAlink_cFv
 /* 800BA468 000B73A8  7C 7B 1B 78 */ mr r27, r3
 /* 800BA46C 000B73AC  48 00 02 10 */ b lbl_800BA67C
 lbl_800BA470:

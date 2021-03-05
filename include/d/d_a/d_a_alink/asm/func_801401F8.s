@@ -22,7 +22,7 @@
 /* 8014024C 0013D18C  4B F6 3B 31 */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 80140250 0013D190  90 7E 06 78 */ stw r3, 0x678(r30)
 /* 80140254 0013D194  7F E3 FB 78 */ mr r3, r31
-/* 80140258 0013D198  4B EC EF 75 */ bl mDoExt_setCurrentHeap
+/* 80140258 0013D198  4B EC EF 75 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8014025C 0013D19C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80140260 0013D1A0  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80140264 0013D1A4  80 01 00 14 */ lwz r0, 0x14(r1)

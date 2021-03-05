@@ -35,7 +35,7 @@ extern "C" {
 void __dl__FPv(void);
 void __nw__FUlP7JKRHeapi(void);
 void func_80361C24(void);
-void func_80361D60(void);
+void __construct_array(void);
 }
 
 // additional symbols needed for Z2AudioMgr.cpp

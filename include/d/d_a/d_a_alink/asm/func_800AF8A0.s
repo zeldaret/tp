@@ -6,7 +6,7 @@
 /* 800AF8B4 000AC7F4  7C 7D 1B 78 */ mr r29, r3
 /* 800AF8B8 000AC7F8  7C 9E 23 78 */ mr r30, r4
 /* 800AF8BC 000AC7FC  38 80 00 00 */ li r4, 0
-/* 800AF8C0 000AC800  4B FF 81 2D */ bl checkWindSpeedOnAngle__9daAlink_cCFvAnime
+/* 800AF8C0 000AC800  4B FF 81 2D */ bl checkWindSpeedOnAngleAnime__9daAlink_cCFi
 /* 800AF8C4 000AC804  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800AF8C8 000AC808  41 82 00 24 */ beq lbl_800AF8EC
 /* 800AF8CC 000AC80C  2C 1E 00 00 */ cmpwi r30, 0

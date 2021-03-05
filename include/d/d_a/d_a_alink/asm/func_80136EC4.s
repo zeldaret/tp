@@ -4,7 +4,7 @@
 /* 80136ED0 00133E10  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 80136ED4 00133E14  7C 7F 1B 78 */ mr r31, r3
 /* 80136ED8 00133E18  38 80 00 7E */ li r4, 0x7e
-/* 80136EDC 00133E1C  4B FF 27 9D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 80136EDC 00133E1C  4B FF 27 9D */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 80136EE0 00133E20  7F E3 FB 78 */ mr r3, r31
 /* 80136EE4 00133E24  38 80 00 91 */ li r4, 0x91
 /* 80136EE8 00133E28  4B F7 89 B9 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

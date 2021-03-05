@@ -143,7 +143,7 @@ lbl_800E9DBC:
 /* 800E9DD8 000E6D18  38 A5 D6 BC */ addi r5, r5, lbl_8038D6BC@l
 /* 800E9DDC 000E6D1C  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 800E9DE0 000E6D20  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E9DE4 000E6D24  4B FC 31 FD */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800E9DE4 000E6D24  4B FC 31 FD */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800E9DE8 000E6D28  80 1C 31 A0 */ lwz r0, 0x31a0(r28)
 /* 800E9DEC 000E6D2C  54 00 04 5E */ rlwinm r0, r0, 0, 0x11, 0xf
 /* 800E9DF0 000E6D30  90 1C 31 A0 */ stw r0, 0x31a0(r28)

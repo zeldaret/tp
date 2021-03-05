@@ -5,7 +5,7 @@
 /* 8019F274 0019C1B4  38 80 00 00 */ li r4, 0
 /* 8019F278 0019C1B8  38 A0 00 00 */ li r5, 0
 /* 8019F27C 0019C1BC  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
-/* 8019F280 0019C1C0  48 00 8C 09 */ bl dKy_actor_addcol_set
+/* 8019F280 0019C1C0  48 00 8C 09 */ bl dKy_actor_addcol_set__Fsssf
 /* 8019F284 0019C1C4  C0 02 A2 48 */ lfs f0, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019F288 0019C1C8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019F28C 0019C1CC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l

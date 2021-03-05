@@ -124,7 +124,7 @@ lbl_802BCA3C:
 lbl_802BCA84:
 /* 802BCA84 002B99C4  80 6D 85 C4 */ lwz r3, lbl_80450B44-_SDA_BASE_(r13)
 /* 802BCA88 002B99C8  38 63 00 0C */ addi r3, r3, 0xc
-/* 802BCA8C 002B99CC  4B FF F8 7D */ bl init__19Z2Audience3DSettingFvVolumeDist
+/* 802BCA8C 002B99CC  4B FF F8 7D */ bl initVolumeDist__19Z2Audience3DSettingFv
 lbl_802BCA90:
 /* 802BCA90 002B99D0  57 C0 06 3F */ clrlwi. r0, r30, 0x18
 /* 802BCA94 002B99D4  40 82 00 18 */ bne lbl_802BCAAC

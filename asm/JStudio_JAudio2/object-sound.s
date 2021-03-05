@@ -108,7 +108,7 @@ __ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject:
 /* 8028D880 0028A7C0  38 A0 00 00 */	li r5, 0
 /* 8028D884 0028A7C4  38 C0 00 14 */	li r6, 0x14
 /* 8028D888 0028A7C8  38 E0 00 0D */	li r7, 0xd
-/* 8028D88C 0028A7CC  48 0D 44 D5 */	bl func_80361D60
+/* 8028D88C 0028A7CC  48 0D 44 D5 */	bl __construct_array
 /* 8028D890 0028A7D0  3C 60 80 3C */	lis r3, lbl_803C5A88@ha
 /* 8028D894 0028A7D4  38 03 5A 88 */	addi r0, r3, lbl_803C5A88@l
 /* 8028D898 0028A7D8  90 1E 00 00 */	stw r0, 0(r30)
@@ -213,7 +213,7 @@ lbl_8028DA0C:
 /* 8028DA0C 0028A94C  7F E3 FB 78 */	mr r3, r31
 /* 8028DA10 0028A950  3C 80 80 43 */	lis r4, lbl_80431490@ha
 /* 8028DA14 0028A954  38 84 14 90 */	addi r4, r4, lbl_80431490@l
-/* 8028DA18 0028A958  4B FF 87 A9 */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_immediate
+/* 8028DA18 0028A958  4B FF 87 A9 */	bl adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
 /* 8028DA1C 0028A95C  3C 60 80 43 */	lis r3, lbl_804314F8@ha
 /* 8028DA20 0028A960  38 03 14 F8 */	addi r0, r3, lbl_804314F8@l
 /* 8028DA24 0028A964  7C 04 03 78 */	mr r4, r0
@@ -275,7 +275,7 @@ lbl_8028DAE4:
 /* 8028DAE8 0028AA28  38 81 00 18 */	addi r4, r1, 0x18
 /* 8028DAEC 0028AA2C  80 BF 01 3C */	lwz r5, 0x13c(r31)
 /* 8028DAF0 0028AA30  80 DF 01 40 */	lwz r6, 0x140(r31)
-/* 8028DAF4 0028AA34  4B FF C7 9D */	bl transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl_X1_
+/* 8028DAF4 0028AA34  4B FF C7 9D */	bl transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 /* 8028DAF8 0028AA38  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8028DAFC 0028AA3C  40 82 00 0C */	bne lbl_8028DB08
 /* 8028DB00 0028AA40  38 00 00 00 */	li r0, 0

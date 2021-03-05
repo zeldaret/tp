@@ -4,7 +4,7 @@
 /* 800263AC 000232EC  88 63 00 04 */ lbz r3, 4(r3)
 /* 800263B0 000232F0  38 A0 00 00 */ li r5, 0
 /* 800263B4 000232F4  38 84 00 04 */ addi r4, r4, 4
-/* 800263B8 000232F8  48 01 96 89 */ bl setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc_X1_
+/* 800263B8 000232F8  48 01 96 89 */ bl setPointer__8dMpath_cFScPvi
 /* 800263BC 000232FC  38 60 00 01 */ li r3, 1
 /* 800263C0 00023300  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800263C4 00023304  7C 08 03 A6 */ mtlr r0

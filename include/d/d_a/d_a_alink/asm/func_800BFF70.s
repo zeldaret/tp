@@ -10,7 +10,7 @@
 /* 800BFF94 000BCED4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800BFF98 000BCED8  D0 03 00 08 */ stfs f0, 8(r3)
 /* 800BFF9C 000BCEDC  7F E4 FB 78 */ mr r4, r31
-/* 800BFFA0 000BCEE0  48 26 B8 DD */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
+/* 800BFFA0 000BCEE0  48 26 B8 DD */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
 /* 800BFFA4 000BCEE4  38 7F 00 58 */ addi r3, r31, 0x58
 /* 800BFFA8 000BCEE8  7F C4 F3 78 */ mr r4, r30
 /* 800BFFAC 000BCEEC  48 26 FE C5 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey

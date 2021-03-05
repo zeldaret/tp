@@ -168,7 +168,7 @@ asm void Z2WolfHowlMgr::skipCorrectDemo() {
 
 // __sinit_Z2WolfHowlMgr_cpp
 //
-asm void func_802CBB7C() {
+asm void __sinit_Z2WolfHowlMgr_cpp() {
     nofralloc
 #include "Z2AudioLib/Z2WolfHowlMgr/asm/func_802CBB7C.s"
 }

@@ -51,7 +51,7 @@ lbl_800B7C8C:
 /* 800B7CB4 000B4BF4  3B E0 00 01 */ li r31, 1
 lbl_800B7CB8:
 /* 800B7CB8 000B4BF8  7F C3 F3 78 */ mr r3, r30
-/* 800B7CBC 000B4BFC  4B F7 62 61 */ bl dComIfGp_getSelectItem
+/* 800B7CBC 000B4BFC  4B F7 62 61 */ bl dComIfGp_getSelectItem__Fi
 /* 800B7CC0 000B4C00  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 800B7CC4 000B4C04  48 0A 6F 15 */ bl checkTradeItem__9daPy_py_cFi
 /* 800B7CC8 000B4C08  2C 03 00 00 */ cmpwi r3, 0

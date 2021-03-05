@@ -40,7 +40,7 @@ asm void emphasisButtonDelete__9dMeter2_cFv(void) {
 
 // setLifeZero__9dMeter2_cFv
 // dMeter2_c::setLifeZero(void)
-asm void func_8021F780(void) {
+asm void setLifeZero__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F780.s"
 }
@@ -152,7 +152,7 @@ asm void moveButtonXY__9dMeter2_cFv(void) {
 
 // moveButtonCross__9dMeter2_cFv
 // dMeter2_c::moveButtonCross(void)
-asm void moveButtonC__9dMeter2_cFvross(void) {
+asm void moveButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222E88.s"
 }
@@ -271,7 +271,7 @@ asm void alphaAnimeButton__9dMeter2_cFv(void) {
 
 // alphaAnimeButtonCross__9dMeter2_cFv
 // dMeter2_c::alphaAnimeButtonCross(void)
-asm void alphaAnimeButton__9dMeter2_cFvCross(void) {
+asm void alphaAnimeButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802254C0.s"
 }
@@ -313,35 +313,35 @@ asm void isPachinkoEquip__9dMeter2_cFv(void) {
 
 // dMeter2_Draw__FP9dMeter2_c
 // dMeter2_Draw(dMeter2_c*)
-asm void func_80225AA0(void) {
+asm void dMeter2_Draw__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AA0.s"
 }
 
 // dMeter2_Execute__FP9dMeter2_c
 // dMeter2_Execute(dMeter2_c*)
-asm void func_80225AC0(void) {
+asm void dMeter2_Execute__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AC0.s"
 }
 
 // dMeter2_IsDelete__FP9dMeter2_c
 // dMeter2_IsDelete(dMeter2_c*)
-asm void func_80225AE0(void) {
+asm void dMeter2_IsDelete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE0.s"
 }
 
 // dMeter2_Delete__FP9dMeter2_c
 // dMeter2_Delete(dMeter2_c*)
-asm void func_80225AE8(void) {
+asm void dMeter2_Delete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE8.s"
 }
 
 // dMeter2_Create__FP9msg_class
 // dMeter2_Create(msg_class*)
-asm void func_80225B08(void) {
+asm void dMeter2_Create__FP9msg_class(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225B08.s"
 }

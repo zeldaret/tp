@@ -4,7 +4,7 @@
 /* 80112284 0010F1C4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80112288 0010F1C8  7C 7F 1B 78 */ mr r31, r3
 /* 8011228C 0010F1CC  38 80 00 BC */ li r4, 0xbc
-/* 80112290 0010F1D0  4B FB 0B 15 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 80112290 0010F1D0  4B FB 0B 15 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80112294 0010F1D4  2C 03 00 00 */ cmpwi r3, 0
 /* 80112298 0010F1D8  40 82 00 0C */ bne lbl_801122A4
 /* 8011229C 0010F1DC  38 60 00 00 */ li r3, 0
@@ -14,9 +14,9 @@ lbl_801122A4:
 /* 801122A8 0010F1E8  38 80 01 12 */ li r4, 0x112
 /* 801122AC 0010F1EC  4B F9 AC D5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /*.global daAlink_searchHawk*/
-/* 801122B0 0010F1F0  3C 60 80 11 */ lis r3, daAlink_searchHawk@ha
+/* 801122B0 0010F1F0  3C 60 80 11 */ lis r3, daAlink_searchHawk__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchHawk*/
-/* 801122B4 0010F1F4  38 63 17 70 */ addi r3, r3, daAlink_searchHawk@l
+/* 801122B4 0010F1F4  38 63 17 70 */ addi r3, r3, daAlink_searchHawk__FP10fopAc_ac_cPv@l
 /* 801122B8 0010F1F8  38 80 00 00 */ li r4, 0
 /* 801122BC 0010F1FC  4B F0 75 3D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801122C0 0010F200  7C 64 1B 79 */ or. r4, r3, r3

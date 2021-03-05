@@ -23,13 +23,13 @@ lbl_800B756C:
 /* 800B757C 000B44BC  7C 00 22 78 */ xor r0, r0, r4
 /* 800B7580 000B44C0  7C 04 00 50 */ subf r0, r4, r0
 /* 800B7584 000B44C4  54 1F 06 3E */ clrlwi r31, r0, 0x18
-/* 800B7588 000B44C8  4B F7 69 95 */ bl dComIfGp_getSelectItem
+/* 800B7588 000B44C8  4B F7 69 95 */ bl dComIfGp_getSelectItem__Fi
 /* 800B758C 000B44CC  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 800B7590 000B44D0  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
 /* 800B7594 000B44D4  7C 00 18 00 */ cmpw r0, r3
 /* 800B7598 000B44D8  40 82 00 2C */ bne lbl_800B75C4
 /* 800B759C 000B44DC  7F E3 FB 78 */ mr r3, r31
-/* 800B75A0 000B44E0  4B F7 69 7D */ bl dComIfGp_getSelectItem
+/* 800B75A0 000B44E0  4B F7 69 7D */ bl dComIfGp_getSelectItem__Fi
 /* 800B75A4 000B44E4  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 800B75A8 000B44E8  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
 /* 800B75AC 000B44EC  7C 00 18 00 */ cmpw r0, r3

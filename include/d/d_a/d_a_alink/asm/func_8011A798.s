@@ -111,7 +111,7 @@ lbl_8011A8F4:
 /* 8011A928 00117868  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011A92C 0011786C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011A930 00117870  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 8011A934 00117874  4B F2 8D B9 */ bl setPtI__14dEvt_control_cFPv_Id
+/* 8011A934 00117874  4B F2 8D B9 */ bl setPtI_Id__14dEvt_control_cFUi
 lbl_8011A938:
 /* 8011A938 00117878  B3 9D 30 0C */ sth r28, 0x300c(r29)
 /* 8011A93C 0011787C  48 00 00 2C */ b lbl_8011A968
@@ -135,7 +135,7 @@ lbl_8011A968:
 /* 8011A978 001178B8  41 82 00 14 */ beq lbl_8011A98C
 /* 8011A97C 001178BC  7F A3 EB 78 */ mr r3, r29
 /* 8011A980 001178C0  38 80 00 83 */ li r4, 0x83
-/* 8011A984 001178C4  48 00 EC F5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8011A984 001178C4  48 00 EC F5 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011A988 001178C8  48 00 00 20 */ b lbl_8011A9A8
 lbl_8011A98C:
 /* 8011A98C 001178CC  7F A3 EB 78 */ mr r3, r29
@@ -144,7 +144,7 @@ lbl_8011A98C:
 /* 8011A998 001178D8  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
 /* 8011A99C 001178DC  38 A0 FF FF */ li r5, -1
 /* 8011A9A0 001178E0  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011A9A4 001178E4  48 00 ED 61 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8011A9A4 001178E4  48 00 ED 61 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 lbl_8011A9A8:
 /* 8011A9A8 001178E8  38 00 00 0C */ li r0, 0xc
 /* 8011A9AC 001178EC  98 1D 2F 99 */ stb r0, 0x2f99(r29)
@@ -301,7 +301,7 @@ lbl_8011ABB8:
 /* 8011ABD0 00117B10  90 1D 31 98 */ stw r0, 0x3198(r29)
 /* 8011ABD4 00117B14  90 1D 32 CC */ stw r0, 0x32cc(r29)
 /* 8011ABD8 00117B18  B0 1D 30 12 */ sth r0, 0x3012(r29)
-/* 8011ABDC 00117B1C  48 08 D5 8D */ bl dKy_Itemgetcol_chg_on
+/* 8011ABDC 00117B1C  48 08 D5 8D */ bl dKy_Itemgetcol_chg_on__Fv
 /* 8011ABE0 00117B20  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011ABE4 00117B24  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011ABE8 00117B28  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

@@ -43,7 +43,7 @@ lbl_801152CC:
 /* 801152F4 00112234  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
 /* 801152F8 00112238  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 801152FC 0011223C  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 80115300 00112240  4B F9 7C E1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80115300 00112240  4B F9 7C E1 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_80115304:
 /* 80115304 00112244  7F E3 FB 78 */ mr r3, r31
 /* 80115308 00112248  38 80 01 63 */ li r4, 0x163
@@ -54,7 +54,7 @@ lbl_80115304:
 /* 8011531C 0011225C  38 A5 EA 70 */ addi r5, r5, lbl_8038EA70@l
 /* 80115320 00112260  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 80115324 00112264  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 80115328 00112268  4B F9 80 81 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 80115328 00112268  4B F9 80 81 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 8011532C 0011226C  38 00 00 02 */ li r0, 2
 /* 80115330 00112270  B0 1F 30 18 */ sth r0, 0x3018(r31)
 /* 80115334 00112274  7F E3 FB 78 */ mr r3, r31

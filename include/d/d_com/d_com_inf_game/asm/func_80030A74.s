@@ -67,7 +67,7 @@ lbl_80030B5C:
 /* 80030B64 0002DAA4  38 84 00 F4 */ addi r4, r4, __dt__12dCcMassS_ObjFv@l
 /* 80030B68 0002DAA8  38 A0 00 20 */ li r5, 0x20
 /* 80030B6C 0002DAAC  38 C0 00 02 */ li r6, 2
-/* 80030B70 0002DAB0  48 33 11 79 */ bl func_80361CE8
+/* 80030B70 0002DAB0  48 33 11 79 */ bl __destroy_arr
 /* 80030B74 0002DAB4  38 7E 00 44 */ addi r3, r30, 0x44
 /*.global __dt__12dCcMassS_ObjFv*/
 /* 80030B78 0002DAB8  3C 80 80 03 */ lis r4, __dt__12dCcMassS_ObjFv@ha
@@ -75,7 +75,7 @@ lbl_80030B5C:
 /* 80030B7C 0002DABC  38 84 00 F4 */ addi r4, r4, __dt__12dCcMassS_ObjFv@l
 /* 80030B80 0002DAC0  38 A0 00 20 */ li r5, 0x20
 /* 80030B84 0002DAC4  38 C0 00 0A */ li r6, 0xa
-/* 80030B88 0002DAC8  48 33 11 61 */ bl func_80361CE8
+/* 80030B88 0002DAC8  48 33 11 61 */ bl __destroy_arr
 /* 80030B8C 0002DACC  28 1E 00 00 */ cmplwi r30, 0
 /* 80030B90 0002DAD0  41 82 00 20 */ beq lbl_80030BB0
 /* 80030B94 0002DAD4  3C 60 80 3A */ lis r3, lbl_803A7200@ha

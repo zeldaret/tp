@@ -20,7 +20,7 @@ lbl_800F73BC:
 /* 800F73D0 000F4310  48 00 00 20 */ b lbl_800F73F0
 lbl_800F73D4:
 /* 800F73D4 000F4314  7F E3 FB 78 */ mr r3, r31
-/* 800F73D8 000F4318  4B FF D5 4D */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F73D8 000F4318  4B FF D5 4D */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F73DC 000F431C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F73E0 000F4320  40 82 00 0C */ bne lbl_800F73EC
 /* 800F73E4 000F4324  7F E3 FB 78 */ mr r3, r31

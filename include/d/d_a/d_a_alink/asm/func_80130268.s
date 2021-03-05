@@ -70,7 +70,7 @@ lbl_80130368:
 lbl_80130374:
 /* 80130374 0012D2B4  7F E3 FB 78 */ mr r3, r31
 /* 80130378 0012D2B8  38 80 00 00 */ li r4, 0
-/* 8013037C 0012D2BC  4B FF 97 C9 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013037C 0012D2BC  4B FF 97 C9 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80130380 0012D2C0  2C 03 00 00 */ cmpwi r3, 0
 /* 80130384 0012D2C4  40 82 00 98 */ bne lbl_8013041C
 /* 80130388 0012D2C8  7F E3 FB 78 */ mr r3, r31
@@ -112,7 +112,7 @@ lbl_801303F4:
 /* 8013040C 0012D34C  7F E3 FB 78 */ mr r3, r31
 /* 80130410 0012D350  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 80130414 0012D354  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 80130418 0012D358  4B F8 ED B5 */ bl seStartMapInfo__9daAlink_cFUlLevel
+/* 80130418 0012D358  4B F8 ED B5 */ bl seStartMapInfoLevel__9daAlink_cFUl
 lbl_8013041C:
 /* 8013041C 0012D35C  38 60 00 01 */ li r3, 1
 lbl_80130420:

@@ -10,9 +10,9 @@
 /* 800F4C9C 000F1BDC  28 1E 00 00 */ cmplwi r30, 0
 /* 800F4CA0 000F1BE0  40 82 00 20 */ bne lbl_800F4CC0
 /*.global daAlink_searchCanoe*/
-/* 800F4CA4 000F1BE4  3C 60 80 0F */ lis r3, daAlink_searchCanoe@ha
+/* 800F4CA4 000F1BE4  3C 60 80 0F */ lis r3, daAlink_searchCanoe__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchCanoe*/
-/* 800F4CA8 000F1BE8  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe@l
+/* 800F4CA8 000F1BE8  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe__FP10fopAc_ac_cPv@l
 /* 800F4CAC 000F1BEC  38 80 00 00 */ li r4, 0
 /* 800F4CB0 000F1BF0  4B F2 4B 49 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800F4CB4 000F1BF4  7C 7E 1B 78 */ mr r30, r3
@@ -29,7 +29,7 @@ lbl_800F4CC4:
 /* 800F4CD8 000F1C18  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800F4CDC 000F1C1C  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800F4CE0 000F1C20  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800F4CE4 000F1C24  4B FB 84 11 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800F4CE4 000F1C24  4B FB 84 11 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800F4CE8 000F1C28  7F A3 EB 78 */ mr r3, r29
 /* 800F4CEC 000F1C2C  38 80 00 00 */ li r4, 0
 /* 800F4CF0 000F1C30  38 A0 00 00 */ li r5, 0

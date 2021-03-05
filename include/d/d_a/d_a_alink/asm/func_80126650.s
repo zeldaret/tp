@@ -20,7 +20,7 @@ lbl_8012667C:
 /* 80126698 001235D8  4B F1 5C 55 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8012669C 001235DC  7C 64 1B 78 */ mr r4, r3
 /* 801266A0 001235E0  7F E3 FB 78 */ mr r3, r31
-/* 801266A4 001235E4  48 03 8C E1 */ bl setSight__18daPy_sightPacket_cFvImage
+/* 801266A4 001235E4  48 03 8C E1 */ bl setSightImage__18daPy_sightPacket_cFP7ResTIMG
 /* 801266A8 001235E8  38 60 00 01 */ li r3, 1
 lbl_801266AC:
 /* 801266AC 001235EC  83 E1 00 0C */ lwz r31, 0xc(r1)

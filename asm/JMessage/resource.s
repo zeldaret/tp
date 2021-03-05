@@ -310,15 +310,15 @@ setEncoding__Q28JMessage18TResourceContainerFUc:
 /* 802A90D4 002A6014  90 03 00 04 */	stw r0, 4(r3)
 /* 802A90D8 002A6018  48 00 00 08 */	b lbl_802A90E0
 lbl_802A90DC:
-/* 802A90DC 002A601C  48 00 00 15 */	bl setEncoding__Q28JMessage18TResourceContainerFUc_
+/* 802A90DC 002A601C  48 00 00 15 */	bl setEncoding___Q28JMessage18TResourceContainerFUc
 lbl_802A90E0:
 /* 802A90E0 002A6020  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A90E4 002A6024  7C 08 03 A6 */	mtlr r0
 /* 802A90E8 002A6028  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A90EC 002A602C  4E 80 00 20 */	blr 
 
-.global setEncoding__Q28JMessage18TResourceContainerFUc_
-setEncoding__Q28JMessage18TResourceContainerFUc_:
+.global setEncoding___Q28JMessage18TResourceContainerFUc
+setEncoding___Q28JMessage18TResourceContainerFUc:
 /* 802A90F0 002A6030  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A90F4 002A6034  98 83 00 00 */	stb r4, 0(r3)
 /* 802A90F8 002A6038  38 00 00 00 */	li r0, 0
@@ -389,7 +389,7 @@ lbl_802A919C:
 /* 802A91E8 002A6128  7F C3 F3 78 */	mr r3, r30
 /* 802A91EC 002A612C  38 82 BE 18 */	addi r4, r2, lbl_80455818-_SDA2_BASE_
 /* 802A91F0 002A6130  38 A0 00 04 */	li r5, 4
-/* 802A91F4 002A6134  48 0B CE 99 */	bl func_8036608C
+/* 802A91F4 002A6134  48 0B CE 99 */	bl memcmp
 /* 802A91F8 002A6138  2C 03 00 00 */	cmpwi r3, 0
 /* 802A91FC 002A613C  41 82 00 0C */	beq lbl_802A9208
 /* 802A9200 002A6140  38 60 00 00 */	li r3, 0

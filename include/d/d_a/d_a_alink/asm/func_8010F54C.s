@@ -43,7 +43,7 @@ lbl_8010F5C0:
 /* 8010F5E8 0010C528  38 80 01 00 */ li r4, 0x100
 /* 8010F5EC 0010C52C  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 8010F5F0 0010C530  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
-/* 8010F5F4 0010C534  4B F9 DB 01 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 8010F5F4 0010C534  4B F9 DB 01 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010F5F8 0010C538  7F E3 FB 78 */ mr r3, r31
 /* 8010F5FC 0010C53C  4B FB 02 59 */ bl keepItemData__9daAlink_cFv
 /* 8010F600 0010C540  7F E3 FB 78 */ mr r3, r31
@@ -65,7 +65,7 @@ lbl_8010F5C0:
 lbl_8010F640:
 /* 8010F640 0010C580  3B C0 FF FF */ li r30, -1
 lbl_8010F644:
-/* 8010F644 0010C584  48 07 1F FD */ bl dCam_getBody
+/* 8010F644 0010C584  48 07 1F FD */ bl dCam_getBody__Fv
 /* 8010F648 0010C588  38 80 00 12 */ li r4, 0x12
 /* 8010F64C 0010C58C  7F C5 F3 78 */ mr r5, r30
 /* 8010F650 0010C590  3C C0 80 39 */ lis r6, lbl_80392094@ha

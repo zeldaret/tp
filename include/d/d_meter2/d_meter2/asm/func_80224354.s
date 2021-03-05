@@ -188,10 +188,10 @@ lbl_80224604:
 /* 80224604 00221544  28 00 00 59 */ cmplwi r0, 0x59
 /* 80224608 00221548  40 82 00 50 */ bne lbl_80224658
 /* 8022460C 0022154C  7F 83 E3 78 */ mr r3, r28
-/* 80224610 00221550  4B E0 9F B1 */ bl dComIfGp_getSelectItemNum
+/* 80224610 00221550  4B E0 9F B1 */ bl dComIfGp_getSelectItemNum__Fi
 /* 80224614 00221554  54 7B 06 3E */ clrlwi r27, r3, 0x18
 /* 80224618 00221558  7F 83 E3 78 */ mr r3, r28
-/* 8022461C 0022155C  4B E0 A0 6D */ bl dComIfGp_getSelectItemMaxNum
+/* 8022461C 0022155C  4B E0 A0 6D */ bl dComIfGp_getSelectItemMaxNum__Fi
 /* 80224620 00221560  54 66 06 3E */ clrlwi r6, r3, 0x18
 /* 80224624 00221564  88 1E 01 DA */ lbz r0, 0x1da(r30)
 /* 80224628 00221568  7C 1B 00 40 */ cmplw r27, r0

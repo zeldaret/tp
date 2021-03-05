@@ -17,7 +17,7 @@ lbl_8002CD7C:
 /* 8002CD80 00029CC0  48 00 00 28 */ b lbl_8002CDA8
 lbl_8002CD84:
 /* 8002CD84 00029CC4  38 80 00 0C */ li r4, 0xc
-/* 8002CD88 00029CC8  4B FF FE CD */ bl dComIfG_changeOpeningScene
+/* 8002CD88 00029CC8  4B FF FE CD */ bl dComIfG_changeOpeningScene__FP11scene_classs
 /* 8002CD8C 00029CCC  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 8002CD90 00029CD0  38 63 03 D0 */ addi r3, r3, 0x3d0
 /* 8002CD94 00029CD4  38 80 00 1E */ li r4, 0x1e

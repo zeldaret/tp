@@ -219,7 +219,7 @@ lbl_800BFD04:
 /* 800BFD1C 000BCC5C  48 02 5E 99 */ bl setGrabItemActor__9daAlink_cFP10fopAc_ac_c
 /* 800BFD20 000BCC60  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
 /* 800BFD24 000BCC64  38 80 FF FF */ li r4, -1
-/* 800BFD28 000BCC68  4B F6 EB 15 */ bl dComIfGp_addSelectItemNum
+/* 800BFD28 000BCC68  4B F6 EB 15 */ bl dComIfGp_addSelectItemNum__Fis
 /* 800BFD2C 000BCC6C  C0 02 93 94 */ lfs f0, lbl_80452D94-_SDA2_BASE_(r2)
 /* 800BFD30 000BCC70  D0 1F 33 E4 */ stfs f0, 0x33e4(r31)
 /* 800BFD34 000BCC74  7F E3 FB 78 */ mr r3, r31

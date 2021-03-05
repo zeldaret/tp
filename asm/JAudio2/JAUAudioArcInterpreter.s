@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a4244
 
 
-.global JAUAudioArcInterpreter
-JAUAudioArcInterpreter:
+.global __ct__22JAUAudioArcInterpreterFv
+__ct__22JAUAudioArcInterpreterFv:
 /* 802A4244 002A1184  3C 80 80 3D */	lis r4, lbl_803C9A30@ha
 /* 802A4248 002A1188  38 04 9A 30 */	addi r0, r4, lbl_803C9A30@l
 /* 802A424C 002A118C  90 03 00 00 */	stw r0, 0(r3)

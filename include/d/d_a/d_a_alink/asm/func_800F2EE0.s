@@ -14,7 +14,7 @@
 /* 800F2F14 000EFE54  7F E3 FB 78 */ mr r3, r31
 /* 800F2F18 000EFE58  38 80 00 60 */ li r4, 0x60
 /* 800F2F1C 000EFE5C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F2F20 000EFE60  4B FB A0 91 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800F2F20 000EFE60  4B FB A0 91 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800F2F24 000EFE64  7F E3 FB 78 */ mr r3, r31
 /* 800F2F28 000EFE68  4B FF A5 B5 */ bl setSyncHorsePos__9daAlink_cFv
 /* 800F2F2C 000EFE6C  38 00 00 00 */ li r0, 0

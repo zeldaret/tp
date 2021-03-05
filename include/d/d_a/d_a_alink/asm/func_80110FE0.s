@@ -19,7 +19,7 @@ lbl_80111018:
 /* 80111020 0010DF60  7F C3 F3 78 */ mr r3, r30
 /* 80111024 0010DF64  4B FF FE 61 */ bl setKandelaarModel__9daAlink_cFv
 /* 80111028 0010DF68  88 7E 2F 9C */ lbz r3, 0x2f9c(r30)
-/* 8011102C 0010DF6C  4B F1 CE F1 */ bl dComIfGp_getSelectItem
+/* 8011102C 0010DF6C  4B F1 CE F1 */ bl dComIfGp_getSelectItem__Fi
 /* 80111030 0010DF70  54 64 06 3E */ clrlwi r4, r3, 0x18
 /* 80111034 0010DF74  7F C3 F3 78 */ mr r3, r30
 /* 80111038 0010DF78  4B FF D5 A1 */ bl setBottleModel__9daAlink_cFUs
@@ -39,7 +39,7 @@ lbl_80111018:
 lbl_80111070:
 /* 80111070 0010DFB0  3B E0 FF FF */ li r31, -1
 lbl_80111074:
-/* 80111074 0010DFB4  48 07 05 CD */ bl dCam_getBody
+/* 80111074 0010DFB4  48 07 05 CD */ bl dCam_getBody__Fv
 /* 80111078 0010DFB8  38 80 00 12 */ li r4, 0x12
 /* 8011107C 0010DFBC  7F E5 FB 78 */ mr r5, r31
 /* 80111080 0010DFC0  3C C0 80 39 */ lis r6, lbl_80392094@ha

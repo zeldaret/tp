@@ -90,7 +90,7 @@ lbl_801214B4:
 /* 801214C4 0011E404  48 00 00 0C */ b lbl_801214D0
 lbl_801214C8:
 /* 801214C8 0011E408  7F 63 DB 78 */ mr r3, r27
-/* 801214CC 0011E40C  48 00 11 89 */ bl setWaterfallEffect__9daAlink_cFPC4cXyzPUl_X1_
+/* 801214CC 0011E40C  48 00 11 89 */ bl setWaterfallEffect__9daAlink_cFv
 lbl_801214D0:
 /* 801214D0 0011E410  7F 63 DB 78 */ mr r3, r27
 /* 801214D4 0011E414  48 00 14 21 */ bl setSwordChargeEffect__9daAlink_cFv
@@ -107,7 +107,7 @@ lbl_801214F8:
 /* 801214FC 0011E43C  48 00 21 C1 */ bl setBootsLightEffect__9daAlink_cFv
 lbl_80121500:
 /* 80121500 0011E440  7F 63 DB 78 */ mr r3, r27
-/* 80121504 0011E444  48 00 22 A5 */ bl setLight__9daAlink_cFvningSwordEffect
+/* 80121504 0011E444  48 00 22 A5 */ bl setLightningSwordEffect__9daAlink_cFv
 /* 80121508 0011E448  80 1B 19 9C */ lwz r0, 0x199c(r27)
 /* 8012150C 0011E44C  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80121510 0011E450  41 82 00 DC */ beq lbl_801215EC
@@ -305,7 +305,7 @@ lbl_801217B4:
 /* 801217E4 0011E724  38 DB 1A F0 */ addi r6, r27, 0x1af0
 /* 801217E8 0011E728  38 E1 00 A8 */ addi r7, r1, 0xa8
 /* 801217EC 0011E72C  39 1B 04 DC */ addi r8, r27, 0x4dc
-/* 801217F0 0011E730  4B FF EE 45 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 801217F0 0011E730  4B FF EE 45 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 lbl_801217F4:
 /* 801217F4 0011E734  C0 01 00 A0 */ lfs f0, 0xa0(r1)
 /* 801217F8 0011E738  D0 01 00 AC */ stfs f0, 0xac(r1)
@@ -328,18 +328,18 @@ lbl_80121800:
 /* 80121838 0011E778  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012183C 0011E77C  41 82 00 9C */ beq lbl_801218D8
 /* 80121840 0011E780  38 7B 1E 1C */ addi r3, r27, 0x1e1c
-/* 80121844 0011E784  48 08 9A 4D */ bl dKy_pol_efftype_get
+/* 80121844 0011E784  48 08 9A 4D */ bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 80121848 0011E788  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8012184C 0011E78C  28 00 00 01 */ cmplwi r0, 1
 /* 80121850 0011E790  41 82 00 18 */ beq lbl_80121868
 /* 80121854 0011E794  38 7B 1E 1C */ addi r3, r27, 0x1e1c
-/* 80121858 0011E798  48 08 9A 39 */ bl dKy_pol_efftype_get
+/* 80121858 0011E798  48 08 9A 39 */ bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 8012185C 0011E79C  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 80121860 0011E7A0  28 00 00 01 */ cmplwi r0, 1
 /* 80121864 0011E7A4  40 82 00 74 */ bne lbl_801218D8
 lbl_80121868:
 /* 80121868 0011E7A8  38 7B 1E 1C */ addi r3, r27, 0x1e1c
-/* 8012186C 0011E7AC  48 08 9A 25 */ bl dKy_pol_efftype_get
+/* 8012186C 0011E7AC  48 08 9A 25 */ bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 80121870 0011E7B0  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 80121874 0011E7B4  20 60 00 01 */ subfic r3, r0, 1
 /* 80121878 0011E7B8  30 03 FF FF */ addic r0, r3, -1
@@ -360,7 +360,7 @@ lbl_80121868:
 /* 801218B4 0011E7F4  39 1B 01 0C */ addi r8, r27, 0x10c
 /* 801218B8 0011E7F8  39 3B 04 E4 */ addi r9, r27, 0x4e4
 /* 801218BC 0011E7FC  39 40 00 00 */ li r10, 0
-/* 801218C0 0011E800  4B F2 BD E5 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzfPoly_X1_
+/* 801218C0 0011E800  4B F2 BD E5 */ bl setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
 /* 801218C4 0011E804  90 7B 31 C0 */ stw r3, 0x31c0(r27)
 /* 801218C8 0011E808  80 7C 5D 3C */ lwz r3, 0x5d3c(r28)
 /* 801218CC 0011E80C  38 63 02 10 */ addi r3, r3, 0x210
@@ -428,7 +428,7 @@ lbl_80121960:
 /* 801219BC 0011E8FC  38 DB 1A F0 */ addi r6, r27, 0x1af0
 /* 801219C0 0011E900  38 E1 00 90 */ addi r7, r1, 0x90
 /* 801219C4 0011E904  39 1B 04 E4 */ addi r8, r27, 0x4e4
-/* 801219C8 0011E908  4B FF EC 6D */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 801219C8 0011E908  4B FF EC 6D */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 801219CC 0011E90C  28 03 00 00 */ cmplwi r3, 0
 /* 801219D0 0011E910  41 82 00 0C */ beq lbl_801219DC
 /* 801219D4 0011E914  38 0D 89 24 */ addi r0, r13, 0x80450EA4 - 0x80458580 /*SDA HACK; original: lbl_80450EA4-_SDA_BASE_*/
@@ -801,7 +801,7 @@ lbl_80121E34:
 /* 80121F10 0011EE50  38 DB 1A 60 */ addi r6, r27, 0x1a60
 /* 80121F14 0011EE54  38 FB 04 D0 */ addi r7, r27, 0x4d0
 /* 80121F18 0011EE58  39 1B 04 E4 */ addi r8, r27, 0x4e4
-/* 80121F1C 0011EE5C  4B FF E7 19 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 80121F1C 0011EE5C  4B FF E7 19 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80121F20 0011EE60  28 03 00 00 */ cmplwi r3, 0
 /* 80121F24 0011EE64  41 82 00 F4 */ beq lbl_80122018
 /* 80121F28 0011EE68  38 9F 12 18 */ addi r4, r31, 0x1218
@@ -875,7 +875,7 @@ lbl_80122018:
 /* 8012202C 0011EF6C  3C 80 80 3B */ lis r4, lbl_803B2CEC@ha
 /* 80122030 0011EF70  38 04 2C EC */ addi r0, r4, lbl_803B2CEC@l
 /* 80122034 0011EF74  7D 80 2A 14 */ add r12, r0, r5
-/* 80122038 0011EF78  48 24 00 4D */ bl func_80362084
+/* 80122038 0011EF78  48 24 00 4D */ bl __ptmf_scall
 /* 8012203C 0011EF7C  60 00 00 00 */ nop
 lbl_80122040:
 /* 80122040 0011EF80  C0 3B 33 B4 */ lfs f1, 0x33b4(r27)

@@ -8,7 +8,7 @@
 /* 800E064C 000DD58C  3C C0 80 39 */ lis r6, lbl_8038E6C8@ha
 /* 800E0650 000DD590  38 C6 E6 C8 */ addi r6, r6, lbl_8038E6C8@l
 /* 800E0654 000DD594  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800E0658 000DD598  4B FC D0 99 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800E0658 000DD598  4B FC D0 99 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800E065C 000DD59C  7F E3 FB 78 */ mr r3, r31
 /* 800E0660 000DD5A0  38 80 00 E8 */ li r4, 0xe8
 /* 800E0664 000DD5A4  38 A0 00 01 */ li r5, 1

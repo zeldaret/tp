@@ -1,7 +1,7 @@
 /* 8021BC24 00218B64  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8021BC28 00218B68  7C 08 02 A6 */ mflr r0
 /* 8021BC2C 00218B6C  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8021BC30 00218B70  4B F6 5A 11 */ bl dCam_getBody
+/* 8021BC30 00218B70  4B F6 5A 11 */ bl dCam_getBody__Fv
 /* 8021BC34 00218B74  80 03 01 A4 */ lwz r0, 0x1a4(r3)
 /* 8021BC38 00218B78  20 00 00 04 */ subfic r0, r0, 4
 /* 8021BC3C 00218B7C  7C 00 00 34 */ cntlzw r0, r0

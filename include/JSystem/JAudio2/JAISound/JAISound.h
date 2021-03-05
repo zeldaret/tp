@@ -150,7 +150,7 @@ void stop__8JAISoundFUl(JAISound*, u32 fadeout);
 void stop__8JAISoundFv(JAISound*);
 
 void __as__10JAISoundIDFRC10JAISoundID(void);
-void JAISoundID_X1_(void);
+void __ct__10JAISoundIDFUl(void);
 
 void acceptsNewAudible__8JAISoundCFv(void);
 void getID__8JAISoundCFv(void);

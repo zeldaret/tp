@@ -7,7 +7,7 @@
 /* 8011C644 00119584  3C 80 80 42 */ lis r4, lbl_80425508@ha
 /* 8011C648 00119588  3B E4 55 08 */ addi r31, r4, lbl_80425508@l
 /* 8011C64C 0011958C  38 80 01 52 */ li r4, 0x152
-/* 8011C650 00119590  4B FA 67 55 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 8011C650 00119590  4B FA 67 55 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011C654 00119594  2C 03 00 00 */ cmpwi r3, 0
 /* 8011C658 00119598  40 82 00 0C */ bne lbl_8011C664
 /* 8011C65C 0011959C  38 60 00 00 */ li r3, 0
@@ -20,7 +20,7 @@ lbl_8011C664:
 /* 8011C674 001195B4  41 82 00 58 */ beq lbl_8011C6CC
 /* 8011C678 001195B8  7F C3 F3 78 */ mr r3, r30
 /* 8011C67C 001195BC  38 80 00 82 */ li r4, 0x82
-/* 8011C680 001195C0  48 00 CF F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8011C680 001195C0  48 00 CF F9 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011C684 001195C4  7F C3 F3 78 */ mr r3, r30
 /* 8011C688 001195C8  38 80 00 A0 */ li r4, 0xa0
 /* 8011C68C 001195CC  4B F9 32 15 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

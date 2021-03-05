@@ -3,8 +3,8 @@
 .section .text, "ax" # 80325a18
 
 
-.global J3DJointTree
-J3DJointTree:
+.global __ct__12J3DJointTreeFv
+__ct__12J3DJointTreeFv:
 /* 80325A18 00322958  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80325A1C 0032295C  7C 08 02 A6 */	mflr r0
 /* 80325A20 00322960  90 01 00 14 */	stw r0, 0x14(r1)
@@ -28,7 +28,7 @@ J3DJointTree:
 /* 80325A68 003229A8  90 1F 00 2C */	stw r0, 0x2c(r31)
 /* 80325A6C 003229AC  90 1F 00 30 */	stw r0, 0x30(r31)
 /* 80325A70 003229B0  38 7F 00 34 */	addi r3, r31, 0x34
-/* 80325A74 003229B4  4B FE BB 6D */	bl J3DDrawMtxData
+/* 80325A74 003229B4  4B FE BB 6D */	bl __ct__14J3DDrawMtxDataFv
 /* 80325A78 003229B8  38 00 00 00 */	li r0, 0
 /* 80325A7C 003229BC  90 1F 00 40 */	stw r0, 0x40(r31)
 /* 80325A80 003229C0  90 1F 00 44 */	stw r0, 0x44(r31)

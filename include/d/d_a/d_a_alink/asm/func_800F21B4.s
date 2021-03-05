@@ -22,7 +22,7 @@ lbl_800F2200:
 /* 800F2200 000EF140  7F E3 FB 78 */ mr r3, r31
 /* 800F2204 000EF144  4B FF CB 95 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2208 000EF148  7F E3 FB 78 */ mr r3, r31
-/* 800F220C 000EF14C  4B FF D2 45 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F220C 000EF14C  4B FF D2 45 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F2210 000EF150  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2214 000EF154  40 82 00 20 */ bne lbl_800F2234
 /* 800F2218 000EF158  7F E3 FB 78 */ mr r3, r31

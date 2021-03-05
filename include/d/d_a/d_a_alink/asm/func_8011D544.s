@@ -39,7 +39,7 @@ lbl_8011D5AC:
 /* 8011D5D0 0011A510  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 8011D5D4 0011A514  C0 25 00 70 */ lfs f1, 0x70(r5)
 /* 8011D5D8 0011A518  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011D5DC 0011A51C  48 00 C0 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8011D5DC 0011A51C  48 00 C0 FD */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8011D5E0 0011A520  38 00 00 01 */ li r0, 1
 /* 8011D5E4 0011A524  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011D5E8 0011A528  48 00 00 4C */ b lbl_8011D634

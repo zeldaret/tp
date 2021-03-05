@@ -27,7 +27,7 @@ lbl_800DC2D0:
 /* 800DC2DC 000D921C  54 1D 03 5A */ rlwinm r29, r0, 0, 0xd, 0xd
 /* 800DC2E0 000D9220  7F E3 FB 78 */ mr r3, r31
 /* 800DC2E4 000D9224  38 80 01 56 */ li r4, 0x156
-/* 800DC2E8 000D9228  4B FE 6A BD */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800DC2E8 000D9228  4B FE 6A BD */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DC2EC 000D922C  2C 03 00 00 */ cmpwi r3, 0
 /* 800DC2F0 000D9230  40 82 00 0C */ bne lbl_800DC2FC
 /* 800DC2F4 000D9234  38 60 00 01 */ li r3, 1
@@ -46,7 +46,7 @@ lbl_800DC2FC:
 /* 800DC324 000D9264  38 BE 1B E4 */ addi r5, r30, 0x1be4
 /* 800DC328 000D9268  C0 25 00 5C */ lfs f1, 0x5c(r5)
 /* 800DC32C 000D926C  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
-/* 800DC330 000D9270  48 04 D3 A9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 800DC330 000D9270  48 04 D3 A9 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 800DC334 000D9274  38 00 00 03 */ li r0, 3
 /* 800DC338 000D9278  B0 1F 1F D8 */ sth r0, 0x1fd8(r31)
 /* 800DC33C 000D927C  38 00 00 00 */ li r0, 0
@@ -110,7 +110,7 @@ lbl_800DC3E0:
 lbl_800DC418:
 /* 800DC418 000D9358  3B 80 FF FF */ li r28, -1
 lbl_800DC41C:
-/* 800DC41C 000D935C  48 0A 52 25 */ bl dCam_getBody
+/* 800DC41C 000D935C  48 0A 52 25 */ bl dCam_getBody__Fv
 /* 800DC420 000D9360  38 80 00 09 */ li r4, 9
 /* 800DC424 000D9364  7F 85 E3 78 */ mr r5, r28
 /* 800DC428 000D9368  3C C0 80 39 */ lis r6, lbl_80392094@ha

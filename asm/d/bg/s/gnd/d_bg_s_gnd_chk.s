@@ -3,8 +3,8 @@
 .section .text, "ax" # 8007757c
 
 
-.global dBgS_GndChk
-dBgS_GndChk:
+.global __ct__11dBgS_GndChkFv
+__ct__11dBgS_GndChkFv:
 /* 8007757C 000744BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80077580 000744C0  7C 08 02 A6 */	mflr r0
 /* 80077584 000744C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12,7 +12,7 @@ dBgS_GndChk:
 /* 8007758C 000744CC  7C 7F 1B 78 */	mr r31, r3
 /* 80077590 000744D0  48 1F 06 8D */	bl __ct__11cBgS_GndChkFv
 /* 80077594 000744D4  38 7F 00 3C */	addi r3, r31, 0x3c
-/* 80077598 000744D8  4B FF FF 05 */	bl dBgS_Chk
+/* 80077598 000744D8  4B FF FF 05 */	bl __ct__8dBgS_ChkFv
 /* 8007759C 000744DC  3C 60 80 3B */	lis r3, lbl_803AB778@ha
 /* 800775A0 000744E0  38 63 B7 78 */	addi r3, r3, lbl_803AB778@l
 /* 800775A4 000744E4  90 7F 00 10 */	stw r3, 0x10(r31)
@@ -77,7 +77,7 @@ lbl_8007765C:
 /* 80077680 000745C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80077684 000745C4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80077688 000745C8  7C 7F 1B 78 */	mr r31, r3
-/* 8007768C 000745CC  4B FF FE F1 */	bl dBgS_GndChk
+/* 8007768C 000745CC  4B FF FE F1 */	bl __ct__11dBgS_GndChkFv
 /* 80077690 000745D0  3C 60 80 3A */	lis r3, lbl_803A382C@ha
 /* 80077694 000745D4  38 63 38 2C */	addi r3, r3, lbl_803A382C@l
 /* 80077698 000745D8  90 7F 00 10 */	stw r3, 0x10(r31)
@@ -159,7 +159,7 @@ lbl_80077794:
 /* 800777B8 000746F8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800777BC 000746FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800777C0 00074700  7C 7F 1B 78 */	mr r31, r3
-/* 800777C4 00074704  4B FF FD B9 */	bl dBgS_GndChk
+/* 800777C4 00074704  4B FF FD B9 */	bl __ct__11dBgS_GndChkFv
 /* 800777C8 00074708  3C 60 80 3A */	lis r3, lbl_803A382C@ha
 /* 800777CC 0007470C  38 63 38 2C */	addi r3, r3, lbl_803A382C@l
 /* 800777D0 00074710  90 7F 00 10 */	stw r3, 0x10(r31)
@@ -316,14 +316,14 @@ lbl_800779E4:
 /* 800779F8 00074938  38 21 00 10 */	addi r1, r1, 0x10
 /* 800779FC 0007493C  4E 80 00 20 */	blr 
 
-.global dBgS_CamGndChk_Wtr
-dBgS_CamGndChk_Wtr:
+.global __ct__18dBgS_CamGndChk_WtrFv
+__ct__18dBgS_CamGndChk_WtrFv:
 /* 80077A00 00074940  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80077A04 00074944  7C 08 02 A6 */	mflr r0
 /* 80077A08 00074948  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80077A0C 0007494C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80077A10 00074950  7C 7F 1B 78 */	mr r31, r3
-/* 80077A14 00074954  4B FF FB 69 */	bl dBgS_GndChk
+/* 80077A14 00074954  4B FF FB 69 */	bl __ct__11dBgS_GndChkFv
 /* 80077A18 00074958  3C 60 80 3B */	lis r3, lbl_803AB6B8@ha
 /* 80077A1C 0007495C  38 63 B6 B8 */	addi r3, r3, lbl_803AB6B8@l
 /* 80077A20 00074960  90 7F 00 10 */	stw r3, 0x10(r31)

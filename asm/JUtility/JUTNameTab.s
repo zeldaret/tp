@@ -3,8 +3,8 @@
 .section .text, "ax" # 802de9a0
 
 
-.global JUTNameTab
-JUTNameTab:
+.global __ct__10JUTNameTabFv
+__ct__10JUTNameTabFv:
 /* 802DE9A0 002DB8E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE9A4 002DB8E4  7C 08 02 A6 */	mflr r0
 /* 802DE9A8 002DB8E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -22,8 +22,8 @@ JUTNameTab:
 /* 802DE9D8 002DB918  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE9DC 002DB91C  4E 80 00 20 */	blr 
 
-.global JUTNameTab_X1_
-JUTNameTab_X1_:
+.global __ct__10JUTNameTabFPC7ResNTAB
+__ct__10JUTNameTabFPC7ResNTAB:
 /* 802DE9E0 002DB920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE9E4 002DB924  7C 08 02 A6 */	mflr r0
 /* 802DE9E8 002DB928  90 01 00 14 */	stw r0, 0x14(r1)

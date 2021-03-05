@@ -8,19 +8,19 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 extern "C" {
 void fopOvlpM_IsDoingReq__Fv(void);
-bool dComIfGp_checkMapShow(void);
+bool dComIfGp_checkMapShow__Fv(void);
 int strcmp(const char*, const char*);
 void __dl__FPv(void);
 void __nw__FUl(void);
 void cLib_addCalcAngleS__FPsssss(void);
-void dComIfGp_mapHide(void);
-void dComIfGp_mapShow(void);
+void dComIfGp_mapHide__Fv(void);
+void dComIfGp_mapShow__Fv(void);
 void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
 void _draw__6dMap_cFv(void);
 void _move__6dMap_cFffif(void);
 void dMap_c(void);
 void getMapPlayerPos__10dMapInfo_nFv(void);
-void dMeter2Info_set2DVibration(void);
+void dMeter2Info_set2DVibration__Fv(void);
 void _create__11dMeterMap_cFP9J2DScreen(void);
 void _delete__11dMeterMap_cFv(void);
 void checkMoveStatus__11dMeterMap_cFv(void);
@@ -32,12 +32,12 @@ void isShow__11dMeterMap_cFUl(void);
 void keyCheck__11dMeterMap_cFv(void);
 void isExistMapPathData__8dMpath_cFv(void);
 void getStatus__12dMsgObject_cFv(void);
-void dMw_LEFT_TRIGGER(void);
-void dMw_RIGHT_TRIGGER(void);
+void dMw_LEFT_TRIGGER__Fv(void);
+void dMw_RIGHT_TRIGGER__Fv(void);
 void getStatusRoomDt__20dStage_roomControl_cFi(void);
 void isDungeonItem__12dSv_memBit_cCFi(void);
 void isEventBit__11dSv_event_cCFUs(void);
-void J2DPicture_X3_(void);
+void __ct__10J2DPictureFPC7ResTIMG(void);
 void onEventBit__11dSv_event_cFUs(void);
 }
 
@@ -75,7 +75,7 @@ asm void getMapDispSizeTypeNo__11dMeterMap_cFv(void) {
 
 // isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv
 // dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo(void)
-asm void isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo(void) {
+asm void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D650.s"
 }
@@ -152,14 +152,14 @@ asm void isMapOpenCheck__11dMeterMap_cFv(void) {
 
 // __ct__11dMeterMap_cFP9J2DScreen
 // dMeterMap_c::dMeterMap_c(J2DScreen*)
-asm void dMeterMap_c(void) {
+asm void __ct__11dMeterMap_cFP9J2DScreen(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D948.s"
 }
 
 // __dt__11dMeterMap_cFv
 // dMeterMap_c::~dMeterMap_c(void)
-asm void func_8020D990(void) {
+asm void __dt__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020D990.s"
 }
@@ -194,7 +194,7 @@ asm void _draw__11dMeterMap_cFv(void) {
 
 // draw__11dMeterMap_cFv
 // dMeterMap_c::draw(void)
-asm void func_8020DF68(void) {
+asm void draw__11dMeterMap_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_map/asm/func_8020DF68.s"
 }

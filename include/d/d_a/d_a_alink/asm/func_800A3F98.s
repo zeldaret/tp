@@ -11,7 +11,7 @@
 /* 800A3FC0 000A0F00  3C A5 00 02 */ addis r5, r5, 2
 /* 800A3FC4 000A0F04  38 C0 00 80 */ li r6, 0x80
 /* 800A3FC8 000A0F08  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800A3FCC 000A0F0C  4B F9 83 B1 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci_X1_
+/* 800A3FCC 000A0F0C  4B F9 83 B1 */ bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 800A3FD0 000A0F10  7C 7E 1B 79 */ or. r30, r3, r3
 /* 800A3FD4 000A0F14  41 82 00 78 */ beq lbl_800A404C
 /* 800A3FD8 000A0F18  38 60 00 1C */ li r3, 0x1c

@@ -13,7 +13,7 @@
 /* 801A8B98 001A5AD8  A0 64 00 38 */ lhz r3, 0x38(r4)
 /* 801A8B9C 001A5ADC  38 03 00 01 */ addi r0, r3, 1
 /* 801A8BA0 001A5AE0  B0 04 00 38 */ sth r0, 0x38(r4)
-/* 801A8BA4 001A5AE4  48 00 51 5D */ bl dKankyo_DayProc
+/* 801A8BA4 001A5AE4  48 00 51 5D */ bl dKankyo_DayProc__Fv
 lbl_801A8BA8:
 /* 801A8BA8 001A5AE8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A8BAC 001A5AEC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

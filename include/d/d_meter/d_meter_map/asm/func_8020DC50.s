@@ -23,16 +23,16 @@ lbl_8020DC88:
 /* 8020DCA4 0020ABE4  7D 89 03 A6 */ mtctr r12
 /* 8020DCA8 0020ABE8  4E 80 04 21 */ bctrl
 lbl_8020DCAC:
-/* 8020DCAC 0020ABEC  4B FF F9 A5 */ bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
+/* 8020DCAC 0020ABEC  4B FF F9 A5 */ bl isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv
 /* 8020DCB0 0020ABF0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020DCB4 0020ABF4  41 82 00 1C */ beq lbl_8020DCD0
 /* 8020DCB8 0020ABF8  88 1F 00 2D */ lbz r0, 0x2d(r31)
 /* 8020DCBC 0020ABFC  28 00 00 00 */ cmplwi r0, 0
 /* 8020DCC0 0020AC00  41 82 00 0C */ beq lbl_8020DCCC
-/* 8020DCC4 0020AC04  4B E2 03 85 */ bl dComIfGp_mapShow
+/* 8020DCC4 0020AC04  4B E2 03 85 */ bl dComIfGp_mapShow__Fv
 /* 8020DCC8 0020AC08  48 00 00 08 */ b lbl_8020DCD0
 lbl_8020DCCC:
-/* 8020DCCC 0020AC0C  4B E2 03 AD */ bl dComIfGp_mapHide
+/* 8020DCCC 0020AC0C  4B E2 03 AD */ bl dComIfGp_mapHide__Fv
 lbl_8020DCD0:
 /* 8020DCD0 0020AC10  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020DCD4 0020AC14  80 01 00 14 */ lwz r0, 0x14(r1)

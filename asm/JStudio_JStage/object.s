@@ -47,8 +47,8 @@ lbl_8028A278:
 /* 8028A288 002871C8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8028A28C 002871CC  4E 80 00 20 */	blr 
 
-.global transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl_X1_
-transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl_X1_:
+.global transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl:
 /* 8028A290 002871D0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8028A294 002871D4  7C 08 02 A6 */	mflr r0
 /* 8028A298 002871D8  90 01 00 74 */	stw r0, 0x74(r1)
@@ -138,8 +138,8 @@ lbl_8028A3B4:
 /* 8028A3C4 00287304  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8028A3C8 00287308  4E 80 00 20 */	blr 
 
-.global transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl_X1_
-transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl_X1_:
+.global transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
+transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl:
 /* 8028A3CC 0028730C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8028A3D0 00287310  7C 08 02 A6 */	mflr r0
 /* 8028A3D4 00287314  90 01 00 A4 */	stw r0, 0xa4(r1)

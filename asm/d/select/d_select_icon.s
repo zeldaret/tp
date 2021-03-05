@@ -3,8 +3,8 @@
 .section .text, "ax" # 80195a2c
 
 
-.global dSi_HIO_c
-dSi_HIO_c:
+.global __ct__9dSi_HIO_cFv
+__ct__9dSi_HIO_cFv:
 /* 80195A2C 0019296C  3C 80 80 3C */	lis r4, lbl_803BB7B8@ha
 /* 80195A30 00192970  38 04 B7 B8 */	addi r0, r4, lbl_803BB7B8@l
 /* 80195A34 00192974  90 03 00 00 */	stw r0, 0(r3)
@@ -166,7 +166,7 @@ lbl_80195C4C:
 /* 80195C68 00192BA8  7C 08 02 A6 */	mflr r0
 /* 80195C6C 00192BAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80195C70 00192BB0  38 6D 8A D0 */	addi r3, r13, lbl_80451050-_SDA_BASE_
-/* 80195C74 00192BB4  4B FF FD B9 */	bl dSi_HIO_c
+/* 80195C74 00192BB4  4B FF FD B9 */	bl __ct__9dSi_HIO_cFv
 .global __dt__9dSi_HIO_cFv
 /* 80195C78 00192BB8  3C 80 80 19 */	lis r4, __dt__9dSi_HIO_cFv@ha
 .global __dt__9dSi_HIO_cFv

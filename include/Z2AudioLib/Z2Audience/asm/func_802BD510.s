@@ -18,7 +18,7 @@
 /* 802BD554 002BA494  40 82 00 34 */ bne lbl_802BD588
 /* 802BD558 002BA498  3C 60 80 43 */ lis r3, lbl_804341E4@ha
 /* 802BD55C 002BA49C  38 63 41 E4 */ addi r3, r3, lbl_804341E4@l
-/* 802BD560 002BA4A0  4B FD 32 E9 */ bl JASGenericMemPool
+/* 802BD560 002BA4A0  4B FD 32 E9 */ bl __ct__17JASGenericMemPoolFv
 /* 802BD564 002BA4A4  3C 60 80 43 */ lis r3, lbl_804341E4@ha
 /* 802BD568 002BA4A8  38 63 41 E4 */ addi r3, r3, lbl_804341E4@l
 /*.global JASMemPool_NS_dtor_X5_*/

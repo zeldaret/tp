@@ -10,7 +10,7 @@
 /* 802AB670 002A85B0  38 A5 78 38 */	addi r5, r5, __dt__14JAISoundHandleFv@l
 /* 802AB674 002A85B4  38 C0 00 04 */	li r6, 4
 /* 802AB678 002A85B8  38 E0 00 18 */	li r7, 0x18
-/* 802AB67C 002A85BC  48 0B 66 E5 */	bl func_80361D60
+/* 802AB67C 002A85BC  48 0B 66 E5 */	bl __construct_array
 /* 802AB680 002A85C0  93 FF 00 60 */	stw r31, 0x60(r31)
 /* 802AB684 002A85C4  38 00 00 18 */	li r0, 0x18
 /* 802AB688 002A85C8  90 1F 00 64 */	stw r0, 0x64(r31)
@@ -21,7 +21,7 @@
 /* 802AB69C 002A85DC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
 /* 802AB6A0 002A85E0  38 C0 00 24 */	li r6, 0x24
 /* 802AB6A4 002A85E4  38 E0 00 0A */	li r7, 0xa
-/* 802AB6A8 002A85E8  48 0B 66 B9 */	bl func_80361D60
+/* 802AB6A8 002A85E8  48 0B 66 B9 */	bl __construct_array
 /* 802AB6AC 002A85EC  38 7F 01 D4 */	addi r3, r31, 0x1d4
 /* 802AB6B0 002A85F0  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha
 /* 802AB6B4 002A85F4  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l
@@ -29,7 +29,7 @@
 /* 802AB6BC 002A85FC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
 /* 802AB6C0 002A8600  38 C0 00 24 */	li r6, 0x24
 /* 802AB6C4 002A8604  38 E0 00 0A */	li r7, 0xa
-/* 802AB6C8 002A8608  48 0B 66 99 */	bl func_80361D60
+/* 802AB6C8 002A8608  48 0B 66 99 */	bl __construct_array
 /* 802AB6CC 002A860C  38 00 00 00 */	li r0, 0
 /* 802AB6D0 002A8610  98 1F 03 C0 */	stb r0, 0x3c0(r31)
 /* 802AB6D4 002A8614  98 1F 03 C1 */	stb r0, 0x3c1(r31)

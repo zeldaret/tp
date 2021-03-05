@@ -64,7 +64,7 @@ lbl_80109368:
 lbl_8010936C:
 /* 8010936C 001062AC  7F E3 FB 78 */ mr r3, r31
 /* 80109370 001062B0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80109374 001062B4  4B FA 3C 3D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 80109374 001062B4  4B FA 3C 3D */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 80109378 001062B8  48 00 00 88 */ b lbl_80109400
 lbl_8010937C:
 /* 8010937C 001062BC  80 9F 31 A0 */ lwz r4, 0x31a0(r31)
@@ -77,7 +77,7 @@ lbl_8010937C:
 /* 80109398 001062D8  38 A0 00 02 */ li r5, 2
 /* 8010939C 001062DC  3C C0 80 39 */ lis r6, lbl_8038E9C0@ha
 /* 801093A0 001062E0  38 C6 E9 C0 */ addi r6, r6, lbl_8038E9C0@l
-/* 801093A4 001062E4  4B FA 43 4D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 801093A4 001062E4  4B FA 43 4D */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 801093A8 001062E8  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 801093AC 001062EC  54 00 03 5B */ rlwinm. r0, r0, 0, 0xd, 0xd
 /* 801093B0 001062F0  41 82 00 50 */ beq lbl_80109400
@@ -100,7 +100,7 @@ lbl_801093C0:
 /* 801093F0 00106330  38 80 01 2B */ li r4, 0x12b
 /* 801093F4 00106334  3C A0 80 39 */ lis r5, lbl_8038E9C0@ha
 /* 801093F8 00106338  38 A5 E9 C0 */ addi r5, r5, lbl_8038E9C0@l
-/* 801093FC 0010633C  4B FA 3C F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 801093FC 0010633C  4B FA 3C F9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_80109400:
 /* 80109400 00106340  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 80109404 00106344  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -183,14 +183,14 @@ lbl_801094F8:
 /* 80109524 00106464  B0 1F 30 1A */ sth r0, 0x301a(r31)
 lbl_80109528:
 /* 80109528 00106468  7F E3 FB 78 */ mr r3, r31
-/* 8010952C 0010646C  48 00 00 9D */ bl checkNextAction__9daAlink_cFiHookshot
+/* 8010952C 0010646C  48 00 00 9D */ bl checkNextActionHookshot__9daAlink_cFv
 /* 80109530 00106470  38 60 00 01 */ li r3, 1
 /* 80109534 00106474  48 00 00 7C */ b lbl_801095B0
 lbl_80109538:
 /* 80109538 00106478  2C 03 00 06 */ cmpwi r3, 6
 /* 8010953C 0010647C  40 82 00 14 */ bne lbl_80109550
 /* 80109540 00106480  7F E3 FB 78 */ mr r3, r31
-/* 80109544 00106484  48 00 00 85 */ bl checkNextAction__9daAlink_cFiHookshot
+/* 80109544 00106484  48 00 00 85 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 80109548 00106488  38 60 00 01 */ li r3, 1
 /* 8010954C 0010648C  48 00 00 64 */ b lbl_801095B0
 lbl_80109550:

@@ -7,7 +7,7 @@
 /* 80056CB0 00053BF0  38 86 00 24 */ addi r4, r6, 0x24
 /* 80056CB4 00053BF4  38 A6 00 10 */ addi r5, r6, 0x10
 /* 80056CB8 00053BF8  38 C6 00 14 */ addi r6, r6, 0x14
-/* 80056CBC 00053BFC  48 00 D7 91 */ bl dKyr_drawLenzflare
+/* 80056CBC 00053BFC  48 00 D7 91 */ bl dKyr_drawLenzflare__FPA4_fP4cXyzR8_GXColorPPUc
 /* 80056CC0 00053C00  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80056CC4 00053C04  7C 08 03 A6 */ mtlr r0
 /* 80056CC8 00053C08  38 21 00 10 */ addi r1, r1, 0x10

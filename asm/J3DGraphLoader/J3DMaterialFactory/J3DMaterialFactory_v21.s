@@ -3,8 +3,8 @@
 .section .text, "ax" # 80332da4
 
 
-.global J3DMaterialFactory_v21
-J3DMaterialFactory_v21:
+.global __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21
+__ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21:
 /* 80332DA4 0032FCE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80332DA8 0032FCE8  7C 08 02 A6 */	mflr r0
 /* 80332DAC 0032FCEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1114,10 +1114,10 @@ newTevStage__22J3DMaterialFactory_v21CFii:
 /* 80333D40 00330C80  80 84 00 44 */	lwz r4, 0x44(r4)
 /* 80333D44 00330C84  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 80333D48 00330C88  7C 84 02 14 */	add r4, r4, r0
-/* 80333D4C 00330C8C  4B D0 6D 81 */	bl J3DTevStage_X1_
+/* 80333D4C 00330C8C  4B D0 6D 81 */	bl __ct__11J3DTevStageFRC15J3DTevStageInfo
 /* 80333D50 00330C90  48 00 00 08 */	b lbl_80333D58
 lbl_80333D54:
-/* 80333D54 00330C94  4B CD A4 DD */	bl J3DTevStage
+/* 80333D54 00330C94  4B CD A4 DD */	bl __ct__11J3DTevStageFv
 lbl_80333D58:
 /* 80333D58 00330C98  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80333D5C 00330C9C  7C 08 03 A6 */	mtlr r0

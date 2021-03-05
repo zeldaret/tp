@@ -1011,9 +1011,9 @@ lbl_80086CFC:
 /* 80086D28 00083C68  40 82 00 4C */	bne lbl_80086D74
 lbl_80086D2C:
 /* 80086D2C 00083C6C  38 74 00 58 */	addi r3, r20, 0x58
-/* 80086D30 00083C70  4B FF C9 E9 */	bl Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBaseEffCounterTimer
+/* 80086D30 00083C70  4B FF C9 E9 */	bl SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv
 /* 80086D34 00083C74  38 73 00 9C */	addi r3, r19, 0x9c
-/* 80086D38 00083C78  4B FF C9 E1 */	bl Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBaseEffCounterTimer
+/* 80086D38 00083C78  4B FF C9 E1 */	bl SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv
 /* 80086D3C 00083C7C  93 81 00 08 */	stw r28, 8(r1)
 /* 80086D40 00083C80  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 80086D44 00083C84  93 C1 00 10 */	stw r30, 0x10(r1)

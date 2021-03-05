@@ -3,14 +3,14 @@
 .section .text, "ax" # 800183dc
 
 
-.global cCc_Init
-cCc_Init:
+.global cCc_Init__Fv
+cCc_Init__Fv:
 /* 800183DC 0001531C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800183E0 00015320  7C 08 02 A6 */	mflr r0
 /* 800183E4 00015324  90 01 00 34 */	stw r0, 0x34(r1)
 /* 800183E8 00015328  39 61 00 30 */	addi r11, r1, 0x30
 /* 800183EC 0001532C  48 34 9D D9 */	bl _savegpr_23
-/* 800183F0 00015330  4B FF 69 FD */	bl mDoExt_getArchiveHeap
+/* 800183F0 00015330  4B FF 69 FD */	bl mDoExt_getArchiveHeap__Fv
 /* 800183F4 00015334  7C 64 1B 78 */	mr r4, r3
 /* 800183F8 00015338  3C 60 00 01 */	lis r3, 0x00008820@ha
 /* 800183FC 0001533C  38 63 88 20 */	addi r3, r3, 0x00008820@l
@@ -75,7 +75,7 @@ lbl_800184B4:
 /* 800184D8 00015418  7C 64 1B 79 */	or. r4, r3, r3
 /* 800184DC 0001541C  41 82 00 10 */	beq lbl_800184EC
 /* 800184E0 00015420  80 9B 00 04 */	lwz r4, 4(r27)
-/* 800184E4 00015424  48 24 A1 7D */	bl DynamicModuleControl
+/* 800184E4 00015424  48 24 A1 7D */	bl __ct__20DynamicModuleControlFPCc
 /* 800184E8 00015428  7C 64 1B 78 */	mr r4, r3
 lbl_800184EC:
 /* 800184EC 0001542C  A8 1B 00 00 */	lha r0, 0(r27)
@@ -102,8 +102,8 @@ lbl_80018500:
 /* 8001853C 0001547C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80018540 00015480  4E 80 00 20 */	blr 
 
-.global cDyl_IsLinked
-cDyl_IsLinked:
+.global cDyl_IsLinked__Fs
+cDyl_IsLinked__Fs:
 /* 80018544 00015484  7C 60 07 34 */	extsh r0, r3
 /* 80018548 00015488  54 00 10 3A */	slwi r0, r0, 2
 /* 8001854C 0001548C  3C 60 80 3F */	lis r3, lbl_803F0F50@ha
@@ -120,8 +120,8 @@ lbl_80018574:
 /* 80018574 000154B4  38 60 00 01 */	li r3, 1
 /* 80018578 000154B8  4E 80 00 20 */	blr 
 
-.global cDyl_Unlink
-cDyl_Unlink:
+.global cDyl_Unlink__Fs
+cDyl_Unlink__Fs:
 /* 8001857C 000154BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018580 000154C0  7C 08 02 A6 */	mflr r0
 /* 80018584 000154C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -142,8 +142,8 @@ lbl_800185B0:
 /* 800185B8 000154F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800185BC 000154FC  4E 80 00 20 */	blr 
 
-.global cDyl_LinkASync
-cDyl_LinkASync:
+.global cDyl_LinkASync__Fs
+cDyl_LinkASync__Fs:
 /* 800185C0 00015500  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800185C4 00015504  7C 08 02 A6 */	mflr r0
 /* 800185C8 00015508  90 01 00 14 */	stw r0, 0x14(r1)
@@ -200,14 +200,14 @@ lbl_80018674:
 /* 8001867C 000155BC  7C 08 03 A6 */	mtlr r0
 /* 80018680 000155C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018684 000155C4  4E 80 00 20 */	blr 
-.global cDyl_InitCallback
-cDyl_InitCallback:
+.global cDyl_InitCallback__FPv
+cDyl_InitCallback__FPv:
 /* 80018688 000155C8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8001868C 000155CC  7C 08 02 A6 */	mflr r0
 /* 80018690 000155D0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80018694 000155D4  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80018698 000155D8  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 8001869C 000155DC  4B FF 67 51 */	bl mDoExt_getArchiveHeap
+/* 8001869C 000155DC  4B FF 67 51 */	bl mDoExt_getArchiveHeap__Fv
 /* 800186A0 000155E0  7C 64 1B 78 */	mr r4, r3
 /* 800186A4 000155E4  3C 60 80 37 */	lis r3, lbl_80375DE8@ha
 /* 800186A8 000155E8  38 63 5D E8 */	addi r3, r3, lbl_80375DE8@l
@@ -234,7 +234,7 @@ cDyl_InitCallback:
 /* 800186FC 0001563C  3C 80 80 37 */	lis r4, lbl_80375DE8@ha
 /* 80018700 00015640  38 84 5D E8 */	addi r4, r4, lbl_80375DE8@l
 /* 80018704 00015644  38 84 2A 7E */	addi r4, r4, 0x2a7e
-/* 80018708 00015648  48 24 9F 59 */	bl DynamicModuleControl
+/* 80018708 00015648  48 24 9F 59 */	bl __ct__20DynamicModuleControlFPCc
 /* 8001870C 0001564C  38 61 00 08 */	addi r3, r1, 8
 /* 80018710 00015650  48 24 9B C1 */	bl link__24DynamicModuleControlBaseFv
 /* 80018714 00015654  38 00 00 01 */	li r0, 1
@@ -258,16 +258,16 @@ cDyl_InitCallback:
 /* 8001875C 0001569C  38 21 00 40 */	addi r1, r1, 0x40
 /* 80018760 000156A0  4E 80 00 20 */	blr 
 
-.global cDyl_InitAsync
-cDyl_InitAsync:
+.global cDyl_InitAsync__Fv
+cDyl_InitAsync__Fv:
 /* 80018764 000156A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80018768 000156A8  7C 08 02 A6 */	mflr r0
 /* 8001876C 000156AC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80018770 000156B0  4B FF FC 6D */	bl cCc_Init
-.global cDyl_InitCallback
-/* 80018774 000156B4  3C 60 80 02 */	lis r3, cDyl_InitCallback@ha
-.global cDyl_InitCallback
-/* 80018778 000156B8  38 63 86 88 */	addi r3, r3, cDyl_InitCallback@l
+/* 80018770 000156B0  4B FF FC 6D */	bl cCc_Init__Fv
+.global cDyl_InitCallback__FPv
+/* 80018774 000156B4  3C 60 80 02 */	lis r3, cDyl_InitCallback__FPv@ha
+.global cDyl_InitCallback__FPv
+/* 80018778 000156B8  38 63 86 88 */	addi r3, r3, cDyl_InitCallback__FPv@l
 /* 8001877C 000156BC  38 80 00 00 */	li r4, 0
 /* 80018780 000156C0  4B FF D4 F5 */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 80018784 000156C4  90 6D 87 30 */	stw r3, lbl_80450CB0-_SDA_BASE_(r13)
@@ -276,8 +276,8 @@ cDyl_InitAsync:
 /* 80018790 000156D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018794 000156D4  4E 80 00 20 */	blr 
 
-.global cDyl_InitAsyncIsDone
-cDyl_InitAsyncIsDone:
+.global cDyl_InitAsyncIsDone__Fv
+cDyl_InitAsyncIsDone__Fv:
 /* 80018798 000156D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001879C 000156DC  7C 08 02 A6 */	mflr r0
 /* 800187A0 000156E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -315,7 +315,7 @@ lbl_800187F4:
 /* 80018810 00015750  7C 08 02 A6 */	mflr r0
 /* 80018814 00015754  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80018818 00015758  A8 63 00 00 */	lha r3, 0(r3)
-/* 8001881C 0001575C  4B FF FD A5 */	bl cDyl_LinkASync
+/* 8001881C 0001575C  4B FF FD A5 */	bl cDyl_LinkASync__Fs
 /* 80018820 00015760  2C 03 00 04 */	cmpwi r3, 4
 /* 80018824 00015764  38 00 00 02 */	li r0, 2
 /* 80018828 00015768  41 82 00 08 */	beq lbl_80018830
@@ -344,7 +344,7 @@ lbl_80018870:
 /* 80018870 000157B0  3C 80 80 3A */	lis r4, lbl_803A3590@ha
 /* 80018874 000157B4  38 84 35 90 */	addi r4, r4, lbl_803A3590@l
 /* 80018878 000157B8  38 A1 00 08 */	addi r5, r1, 8
-/* 8001887C 000157BC  48 01 72 A5 */	bl dComLbG_PhaseHandler
+/* 8001887C 000157BC  48 01 72 A5 */	bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 lbl_80018880:
 /* 80018880 000157C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80018884 000157C4  7C 08 03 A6 */	mtlr r0
@@ -362,7 +362,7 @@ Unlink__7cDylPhsFP30request_of_phase_process_classs:
 /* 800188A8 000157E8  2C 00 00 02 */	cmpwi r0, 2
 /* 800188AC 000157EC  40 82 00 18 */	bne lbl_800188C4
 /* 800188B0 000157F0  7C 83 23 78 */	mr r3, r4
-/* 800188B4 000157F4  4B FF FC C9 */	bl cDyl_Unlink
+/* 800188B4 000157F4  4B FF FC C9 */	bl cDyl_Unlink__Fs
 /* 800188B8 000157F8  38 00 00 00 */	li r0, 0
 /* 800188BC 000157FC  90 1F 00 04 */	stw r0, 4(r31)
 /* 800188C0 00015800  48 00 00 08 */	b lbl_800188C8

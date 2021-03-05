@@ -28,7 +28,7 @@ lbl_800B9448:
 /* 800B9458 000B6398  38 A0 00 02 */ li r5, 2
 /* 800B945C 000B639C  3C C0 80 39 */ lis r6, lbl_8038DE8C@ha
 /* 800B9460 000B63A0  38 C6 DE 8C */ addi r6, r6, lbl_8038DE8C@l
-/* 800B9464 000B63A4  4B FF 42 8D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800B9464 000B63A4  4B FF 42 8D */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800B9468 000B63A8  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 800B946C 000B63AC  54 00 04 5E */ rlwinm r0, r0, 0, 0x11, 0xf
 /* 800B9470 000B63B0  90 1F 05 7C */ stw r0, 0x57c(r31)
@@ -41,7 +41,7 @@ lbl_800B9478:
 /* 800B9488 000B63C8  38 A0 00 02 */ li r5, 2
 /* 800B948C 000B63CC  3C C0 80 39 */ lis r6, lbl_8038DE8C@ha
 /* 800B9490 000B63D0  38 C6 DE 8C */ addi r6, r6, lbl_8038DE8C@l
-/* 800B9494 000B63D4  4B FF 42 5D */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800B9494 000B63D4  4B FF 42 5D */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800B9498 000B63D8  28 1E 00 00 */ cmplwi r30, 0
 /* 800B949C 000B63DC  41 82 00 0C */ beq lbl_800B94A8
 /* 800B94A0 000B63E0  C0 02 93 1C */ lfs f0, lbl_80452D1C-_SDA2_BASE_(r2)

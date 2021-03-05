@@ -10,7 +10,7 @@
 /* 8010B380 001082C0  38 80 01 39 */ li r4, 0x139
 lbl_8010B384:
 /* 8010B384 001082C4  C0 22 93 14 */ lfs f1, lbl_80452D14-_SDA2_BASE_(r2)
-/* 8010B388 001082C8  4B FA 1C 29 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 8010B388 001082C8  4B FA 1C 29 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 8010B38C 001082CC  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 8010B390 001082D0  60 00 01 00 */ ori r0, r0, 0x100
 /* 8010B394 001082D4  90 1F 31 A0 */ stw r0, 0x31a0(r31)

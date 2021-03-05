@@ -5,7 +5,7 @@
 /* 8021F138 0021C078  48 14 30 A5 */ bl _savegpr_29
 /* 8021F13C 0021C07C  7C 7D 1B 78 */ mr r29, r3
 /* 8021F140 0021C080  80 63 01 00 */ lwz r3, 0x100(r3)
-/* 8021F144 0021C084  4B DF 00 89 */ bl mDoExt_setCurrentHeap
+/* 8021F144 0021C084  4B DF 00 89 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F148 0021C088  7C 7F 1B 78 */ mr r31, r3
 /* 8021F14C 0021C08C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021F150 0021C090  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -76,7 +76,7 @@ lbl_8021F1D0:
 /* 8021F24C 0021C18C  7F A3 EB 78 */ mr r3, r29
 /* 8021F250 0021C190  48 00 32 45 */ bl moveButtonS__9dMeter2_cFv
 /* 8021F254 0021C194  7F A3 EB 78 */ mr r3, r29
-/* 8021F258 0021C198  48 00 3C 31 */ bl moveButtonC__9dMeter2_cFvross
+/* 8021F258 0021C198  48 00 3C 31 */ bl moveButtonCross__9dMeter2_cFv
 /* 8021F25C 0021C19C  7F A3 EB 78 */ mr r3, r29
 /* 8021F260 0021C1A0  48 00 3E 99 */ bl moveTouchSubMenu__9dMeter2_cFv
 /* 8021F264 0021C1A4  7F A3 EB 78 */ mr r3, r29
@@ -141,7 +141,7 @@ lbl_8021F2E0:
 /* 8021F344 0021C284  98 03 5E 30 */ stb r0, 0x5e30(r3)
 /* 8021F348 0021C288  98 03 5E 4C */ stb r0, 0x5e4c(r3)
 /* 8021F34C 0021C28C  7F E3 FB 78 */ mr r3, r31
-/* 8021F350 0021C290  4B DE FE 7D */ bl mDoExt_setCurrentHeap
+/* 8021F350 0021C290  4B DE FE 7D */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F354 0021C294  38 60 00 01 */ li r3, 1
 /* 8021F358 0021C298  39 61 00 20 */ addi r11, r1, 0x20
 /* 8021F35C 0021C29C  48 14 2E CD */ bl _restgpr_29

@@ -53,19 +53,19 @@
 /* 800F9688 000F65C8  7F 23 CB 78 */ mr r3, r25
 /* 800F968C 000F65CC  38 81 00 44 */ addi r4, r1, 0x44
 /* 800F9690 000F65D0  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800F9694 000F65D4  4B FF F3 BD */ bl checkNotCrawlStand__9daAlink_cFP4cXyz_X1_
+/* 800F9694 000F65D4  4B FF F3 BD */ bl checkNotCrawlStand__9daAlink_cFP4cXyzP4cXyz
 /* 800F9698 000F65D8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F969C 000F65DC  40 82 00 34 */ bne lbl_800F96D0
 /* 800F96A0 000F65E0  7F 23 CB 78 */ mr r3, r25
 /* 800F96A4 000F65E4  38 81 00 2C */ addi r4, r1, 0x2c
 /* 800F96A8 000F65E8  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800F96AC 000F65EC  4B FF F3 A5 */ bl checkNotCrawlStand__9daAlink_cFP4cXyz_X1_
+/* 800F96AC 000F65EC  4B FF F3 A5 */ bl checkNotCrawlStand__9daAlink_cFP4cXyzP4cXyz
 /* 800F96B0 000F65F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F96B4 000F65F4  40 82 00 1C */ bne lbl_800F96D0
 /* 800F96B8 000F65F8  7F 23 CB 78 */ mr r3, r25
 /* 800F96BC 000F65FC  38 81 00 38 */ addi r4, r1, 0x38
 /* 800F96C0 000F6600  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800F96C4 000F6604  4B FF F3 8D */ bl checkNotCrawlStand__9daAlink_cFP4cXyz_X1_
+/* 800F96C4 000F6604  4B FF F3 8D */ bl checkNotCrawlStand__9daAlink_cFP4cXyzP4cXyz
 /* 800F96C8 000F6608  2C 03 00 00 */ cmpwi r3, 0
 /* 800F96CC 000F660C  41 82 00 18 */ beq lbl_800F96E4
 lbl_800F96D0:

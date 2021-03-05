@@ -23,7 +23,7 @@ lbl_800D4CA8:
 /* 800D4CBC 000D1BFC  3C A0 80 39 */ lis r5, lbl_8038DB84@ha
 /* 800D4CC0 000D1C00  38 A5 DB 84 */ addi r5, r5, lbl_8038DB84@l
 /* 800D4CC4 000D1C04  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800D4CC8 000D1C08  4B FD 84 2D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800D4CC8 000D1C08  4B FD 84 2D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D4CCC 000D1C0C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D4CD0 000D1C10  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800D4CD4 000D1C14  A8 1F 04 E6 */ lha r0, 0x4e6(r31)

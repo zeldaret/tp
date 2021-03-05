@@ -6,7 +6,7 @@
 /* 800DB6B8 000D85F8  7C 7F 1B 78 */ mr r31, r3
 /* 800DB6BC 000D85FC  7C 9E 23 78 */ mr r30, r4
 /* 800DB6C0 000D8600  38 80 00 78 */ li r4, 0x78
-/* 800DB6C4 000D8604  4B FE 76 E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800DB6C4 000D8604  4B FE 76 E1 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DB6C8 000D8608  2C 03 00 00 */ cmpwi r3, 0
 /* 800DB6CC 000D860C  40 82 00 0C */ bne lbl_800DB6D8
 /* 800DB6D0 000D8610  38 60 00 00 */ li r3, 0

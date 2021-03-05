@@ -38,7 +38,7 @@ lbl_800EDAF4:
 lbl_800EDAF8:
 /* 800EDAF8 000EAA38  7F C3 F3 78 */ mr r3, r30
 /* 800EDAFC 000EAA3C  C0 3F 17 50 */ lfs f1, 0x1750(r31)
-/* 800EDB00 000EAA40  4B FB F4 B1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800EDB00 000EAA40  4B FB F4 B1 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800EDB04 000EAA44  C0 1F 05 C0 */ lfs f0, 0x5c0(r31)
 /* 800EDB08 000EAA48  D0 1E 1F E0 */ stfs f0, 0x1fe0(r30)
 /* 800EDB0C 000EAA4C  80 7E 1F 2C */ lwz r3, 0x1f2c(r30)

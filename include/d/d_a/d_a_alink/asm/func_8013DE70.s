@@ -33,7 +33,7 @@ lbl_8013DED0:
 /* 8013DEEC 0013AE2C  A0 84 04 50 */ lhz r4, 0x450(r4)
 /* 8013DEF0 0013AE30  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013DEF4 0013AE34  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013DEF8 0013AE38  4B F6 F4 B1 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 8013DEF8 0013AE38  4B F6 F4 B1 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 8013DEFC 0013AE3C  28 1F 00 00 */ cmplwi r31, 0
 /* 8013DF00 0013AE40  41 82 00 14 */ beq lbl_8013DF14
 /* 8013DF04 0013AE44  9B DD 2F A3 */ stb r30, 0x2fa3(r29)

@@ -33,7 +33,7 @@ lbl_8012FED0:
 /* 8012FEFC 0012CE3C  38 A5 F3 F0 */ addi r5, r5, lbl_8038F3F0@l
 /* 8012FF00 0012CE40  3B C5 00 14 */ addi r30, r5, 0x14
 /* 8012FF04 0012CE44  7F C5 F3 78 */ mr r5, r30
-/* 8012FF08 0012CE48  4B FF 99 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8012FF08 0012CE48  4B FF 99 41 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8012FF0C 0012CE4C  2C 1D 00 00 */ cmpwi r29, 0
 /* 8012FF10 0012CE50  41 82 00 40 */ beq lbl_8012FF50
 /* 8012FF14 0012CE54  A8 1E 00 00 */ lha r0, 0(r30)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802938bc
 
 
-.global JASSeqCtrl
-JASSeqCtrl:
+.global __ct__10JASSeqCtrlFv
+__ct__10JASSeqCtrlFv:
 /* 802938BC 002907FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802938C0 00290800  7C 08 02 A6 */	mflr r0
 /* 802938C4 00290804  90 01 00 14 */	stw r0, 0x14(r1)
@@ -67,7 +67,7 @@ start__10JASSeqCtrlFPvUl:
 /* 80293990 002908D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80293994 002908D4  7C 7E 1B 78 */	mr r30, r3
 /* 80293998 002908D8  7C BF 2B 78 */	mr r31, r5
-/* 8029399C 002908DC  48 00 27 AD */	bl init__12JASSeqReaderFv_X1_
+/* 8029399C 002908DC  48 00 27 AD */	bl init__12JASSeqReaderFPv
 /* 802939A0 002908E0  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802939A4 002908E4  7C 00 FA 14 */	add r0, r0, r31
 /* 802939A8 002908E8  90 1E 00 04 */	stw r0, 4(r30)

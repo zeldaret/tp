@@ -142,7 +142,7 @@ lbl_80011F44:
 /* 80011F84 0000EEC4  C8 01 00 18 */ lfd f0, 0x18(r1)
 /* 80011F88 0000EEC8  EC 20 08 28 */ fsubs f1, f0, f1
 /* 80011F8C 0000EECC  C0 5D 00 1C */ lfs f2, 0x1c(r29)
-/* 80011F90 0000EED0  48 2A E6 99 */ bl init__10Z2CreatureFP3VecP3VecUcUcAnime
+/* 80011F90 0000EED0  48 2A E6 99 */ bl initAnime__10Z2CreatureFPvbff
 lbl_80011F94:
 /* 80011F94 0000EED4  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 80011F98 0000EED8  CB E1 00 60 */ lfd f31, 0x60(r1)

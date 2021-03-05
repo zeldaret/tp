@@ -39,7 +39,7 @@ lbl_800B89F4:
 /* 800B8A14 000B5954  48 00 05 E4 */ b lbl_800B8FF8
 lbl_800B8A18:
 /* 800B8A18 000B5958  7F E3 FB 78 */ mr r3, r31
-/* 800B8A1C 000B595C  48 01 99 4D */ bl checkCutTurnInput__9daAlink_cCFvTrigger
+/* 800B8A1C 000B595C  48 01 99 4D */ bl checkCutTurnInputTrigger__9daAlink_cFv
 /* 800B8A20 000B5960  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B8A24 000B5964  41 82 00 18 */ beq lbl_800B8A3C
 /* 800B8A28 000B5968  7F E3 FB 78 */ mr r3, r31
@@ -197,7 +197,7 @@ lbl_800B8C18:
 /* 800B8C40 000B5B80  48 00 03 B8 */ b lbl_800B8FF8
 lbl_800B8C44:
 /* 800B8C44 000B5B84  7F E3 FB 78 */ mr r3, r31
-/* 800B8C48 000B5B88  48 01 97 21 */ bl checkCutTurnInput__9daAlink_cCFvTrigger
+/* 800B8C48 000B5B88  48 01 97 21 */ bl checkCutTurnInputTrigger__9daAlink_cFv
 /* 800B8C4C 000B5B8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B8C50 000B5B90  41 82 00 70 */ beq lbl_800B8CC0
 /* 800B8C54 000B5B94  7F E3 FB 78 */ mr r3, r31

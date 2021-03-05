@@ -13,7 +13,7 @@
 /* 8002FE10 0002CD50  38 84 02 08 */ addi r4, r4, __dt__25dComIfG_camera_info_classFv@l
 /* 8002FE14 0002CD54  38 A0 00 38 */ li r5, 0x38
 /* 8002FE18 0002CD58  38 C0 00 01 */ li r6, 1
-/* 8002FE1C 0002CD5C  48 33 1E CD */ bl func_80361CE8
+/* 8002FE1C 0002CD5C  48 33 1E CD */ bl __destroy_arr
 /* 8002FE20 0002CD60  38 7F 4E 10 */ addi r3, r31, 0x4e10
 /*.global __dt__14dDlst_window_cFv*/
 /* 8002FE24 0002CD64  3C 80 80 03 */ lis r4, __dt__14dDlst_window_cFv@ha
@@ -21,7 +21,7 @@
 /* 8002FE28 0002CD68  38 84 01 CC */ addi r4, r4, __dt__14dDlst_window_cFv@l
 /* 8002FE2C 0002CD6C  38 A0 00 2C */ li r5, 0x2c
 /* 8002FE30 0002CD70  38 C0 00 01 */ li r6, 1
-/* 8002FE34 0002CD74  48 33 1E B5 */ bl func_80361CE8
+/* 8002FE34 0002CD74  48 33 1E B5 */ bl __destroy_arr
 /* 8002FE38 0002CD78  38 7F 47 80 */ addi r3, r31, 0x4780
 /* 8002FE3C 0002CD7C  38 80 FF FF */ li r4, -1
 /* 8002FE40 0002CD80  48 04 09 35 */ bl __dt__12dAttention_cFv
@@ -34,7 +34,7 @@
 /* 8002FE54 0002CD94  38 84 01 90 */ addi r4, r4, __dt__11dEvDtBase_cFv@l
 /* 8002FE58 0002CD98  38 A0 00 24 */ li r5, 0x24
 /* 8002FE5C 0002CD9C  38 C0 00 0B */ li r6, 0xb
-/* 8002FE60 0002CDA0  48 33 1E 89 */ bl func_80361CE8
+/* 8002FE60 0002CDA0  48 33 1E 89 */ bl __destroy_arr
 lbl_8002FE64:
 /* 8002FE64 0002CDA4  34 1F 3F 90 */ addic. r0, r31, 0x3f90
 /* 8002FE68 0002CDA8  41 82 00 1C */ beq lbl_8002FE84
@@ -45,7 +45,7 @@ lbl_8002FE64:
 /* 8002FE74 0002CDB4  38 84 01 54 */ addi r4, r4, __dt__12dEvt_order_cFv@l
 /* 8002FE78 0002CDB8  38 A0 00 18 */ li r5, 0x18
 /* 8002FE7C 0002CDBC  38 C0 00 08 */ li r6, 8
-/* 8002FE80 0002CDC0  48 33 1E 69 */ bl func_80361CE8
+/* 8002FE80 0002CDC0  48 33 1E 69 */ bl __destroy_arr
 lbl_8002FE84:
 /* 8002FE84 0002CDC4  38 7F 14 04 */ addi r3, r31, 0x1404
 /* 8002FE88 0002CDC8  38 80 FF FF */ li r4, -1
@@ -66,7 +66,7 @@ lbl_8002FE84:
 /* 8002FEBC 0002CDFC  38 84 FE F8 */ addi r4, r4, __dt__11cBgS_ChkElmFv@l
 /* 8002FEC0 0002CE00  38 A0 00 14 */ li r5, 0x14
 /* 8002FEC4 0002CE04  38 C0 01 00 */ li r6, 0x100
-/* 8002FEC8 0002CE08  48 33 1E 21 */ bl func_80361CE8
+/* 8002FEC8 0002CE08  48 33 1E 21 */ bl __destroy_arr
 lbl_8002FECC:
 /* 8002FECC 0002CE0C  7F C0 07 35 */ extsh. r0, r30
 /* 8002FED0 0002CE10  40 81 00 0C */ ble lbl_8002FEDC

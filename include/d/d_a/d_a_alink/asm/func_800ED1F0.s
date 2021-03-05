@@ -35,7 +35,7 @@ lbl_800ED260:
 /* 800ED274 000EA1B4  28 00 02 45 */ cmplwi r0, 0x245
 /* 800ED278 000EA1B8  41 82 00 78 */ beq lbl_800ED2F0
 /* 800ED27C 000EA1BC  7F C3 F3 78 */ mr r3, r30
-/* 800ED280 000EA1C0  4B FF 6A 1D */ bl checkGrabAnime__9daAlink_cCFvAndThrow
+/* 800ED280 000EA1C0  4B FF 6A 1D */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800ED284 000EA1C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800ED288 000EA1C8  40 82 00 68 */ bne lbl_800ED2F0
 /* 800ED28C 000EA1CC  7F C3 F3 78 */ mr r3, r30

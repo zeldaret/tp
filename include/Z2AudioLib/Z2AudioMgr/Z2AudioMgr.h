@@ -26,8 +26,8 @@ extern Z2AudioMgr* lbl_80451368;
 
 extern "C" {
 void func_802CDCEC(void);
-void func_8036679C(void);
-void func_80362ABC(void);
+void fprintf(void);
+void abort(void);
 void func_802CD7F8(void);
 void func_802CDB1C(void);
 void func_802CDB68(void);

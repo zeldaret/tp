@@ -120,9 +120,9 @@ lbl_800B850C:
 /* 800B851C 000B545C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B8520 000B5460  41 82 00 28 */ beq lbl_800B8548
 /*.global daAlink_searchKolin*/
-/* 800B8524 000B5464  3C 60 80 0B */ lis r3, daAlink_searchKolin@ha
+/* 800B8524 000B5464  3C 60 80 0B */ lis r3, daAlink_searchKolin__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchKolin*/
-/* 800B8528 000B5468  38 63 7F 84 */ addi r3, r3, daAlink_searchKolin@l
+/* 800B8528 000B5468  38 63 7F 84 */ addi r3, r3, daAlink_searchKolin__FP10fopAc_ac_cPv@l
 /* 800B852C 000B546C  38 80 00 00 */ li r4, 0
 /* 800B8530 000B5470  4B F6 12 C9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B8534 000B5474  28 03 00 00 */ cmplwi r3, 0
@@ -168,9 +168,9 @@ lbl_800B8598:
 /* 800B85C0 000B5500  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B85C4 000B5504  41 82 00 1C */ beq lbl_800B85E0
 /*.global daAlink_searchBouDoor*/
-/* 800B85C8 000B5508  3C 60 80 0B */ lis r3, daAlink_searchBouDoor@ha
+/* 800B85C8 000B5508  3C 60 80 0B */ lis r3, daAlink_searchBouDoor__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchBouDoor*/
-/* 800B85CC 000B550C  38 63 7D 4C */ addi r3, r3, daAlink_searchBouDoor@l
+/* 800B85CC 000B550C  38 63 7D 4C */ addi r3, r3, daAlink_searchBouDoor__FP10fopAc_ac_cPv@l
 /* 800B85D0 000B5510  38 80 00 00 */ li r4, 0
 /* 800B85D4 000B5514  4B F6 12 25 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800B85D8 000B5518  28 03 00 00 */ cmplwi r3, 0

@@ -170,7 +170,7 @@ lbl_8013A73C:
 /* 8013A768 001376A8  38 BF 1F 20 */ addi r5, r31, 0x1f20
 /* 8013A76C 001376AC  C0 25 00 24 */ lfs f1, 0x24(r5)
 /* 8013A770 001376B0  C0 45 00 28 */ lfs f2, 0x28(r5)
-/* 8013A774 001376B4  4B FE EF 65 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8013A774 001376B4  4B FE EF 65 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8013A778 001376B8  80 1D 05 80 */ lwz r0, 0x580(r29)
 /* 8013A77C 001376BC  60 00 00 02 */ ori r0, r0, 2
 /* 8013A780 001376C0  90 1D 05 80 */ stw r0, 0x580(r29)

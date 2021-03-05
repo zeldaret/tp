@@ -153,7 +153,7 @@ lbl_801160E0:
 /* 801160E8 00113028  38 03 22 E0 */ addi r0, r3, lbl_803B22E0@l
 /* 801160EC 0011302C  7F 80 22 14 */ add r28, r0, r4
 /* 801160F0 00113030  7F 83 E3 78 */ mr r3, r28
-/* 801160F4 00113034  48 24 BF 25 */ bl func_80362018
+/* 801160F4 00113034  48 24 BF 25 */ bl __ptmf_test
 /* 801160F8 00113038  2C 03 00 00 */ cmpwi r3, 0
 /* 801160FC 0011303C  41 82 00 24 */ beq lbl_80116120
 /* 80116100 00113040  80 1D 05 70 */ lwz r0, 0x570(r29)
@@ -161,7 +161,7 @@ lbl_801160E0:
 /* 80116108 00113048  90 1D 05 70 */ stw r0, 0x570(r29)
 /* 8011610C 0011304C  7F A3 EB 78 */ mr r3, r29
 /* 80116110 00113050  7F 8C E3 78 */ mr r12, r28
-/* 80116114 00113054  48 24 BF 71 */ bl func_80362084
+/* 80116114 00113054  48 24 BF 71 */ bl __ptmf_scall
 /* 80116118 00113058  60 00 00 00 */ nop
 /* 8011611C 0011305C  48 00 0D 2C */ b lbl_80116E48
 lbl_80116120:
@@ -398,9 +398,9 @@ lbl_8011645C:
 /* 80116478 001133B8  28 03 00 00 */ cmplwi r3, 0
 /* 8011647C 001133BC  40 82 00 4C */ bne lbl_801164C8
 /*.global daAlink_searchCanoe*/
-/* 80116480 001133C0  3C 60 80 0F */ lis r3, daAlink_searchCanoe@ha
+/* 80116480 001133C0  3C 60 80 0F */ lis r3, daAlink_searchCanoe__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchCanoe*/
-/* 80116484 001133C4  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe@l
+/* 80116484 001133C4  38 63 3C D8 */ addi r3, r3, daAlink_searchCanoe__FP10fopAc_ac_cPv@l
 /* 80116488 001133C8  38 80 00 00 */ li r4, 0
 /* 8011648C 001133CC  4B F0 33 6D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80116490 001133D0  7C 7E 1B 78 */ mr r30, r3
@@ -431,9 +431,9 @@ lbl_801164D0:
 /* 801164EC 0011342C  28 03 00 00 */ cmplwi r3, 0
 /* 801164F0 00113430  40 82 00 30 */ bne lbl_80116520
 /*.global daAlink_searchIceLeaf*/
-/* 801164F4 00113434  3C 60 80 10 */ lis r3, daAlink_searchIceLeaf@ha
+/* 801164F4 00113434  3C 60 80 10 */ lis r3, daAlink_searchIceLeaf__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchIceLeaf*/
-/* 801164F8 00113438  38 63 5A 84 */ addi r3, r3, daAlink_searchIceLeaf@l
+/* 801164F8 00113438  38 63 5A 84 */ addi r3, r3, daAlink_searchIceLeaf__FP10fopAc_ac_cPv@l
 /* 801164FC 0011343C  38 80 00 00 */ li r4, 0
 /* 80116500 00113440  4B F0 32 F9 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80116504 00113444  7C 64 1B 79 */ or. r4, r3, r3
@@ -926,7 +926,7 @@ lbl_80116BA8:
 /* 80116BB8 00113AF8  4B FD 5F A1 */ bl initForceRideHorse__9daAlink_cFv
 lbl_80116BBC:
 /* 80116BBC 00113AFC  7F A3 EB 78 */ mr r3, r29
-/* 80116BC0 00113B00  4B FD 88 91 */ bl checkNextAction__9daAlink_cFiHorse
+/* 80116BC0 00113B00  4B FD 88 91 */ bl checkNextActionHorse__9daAlink_cFv
 /* 80116BC4 00113B04  48 00 02 84 */ b lbl_80116E48
 lbl_80116BC8:
 /* 80116BC8 00113B08  7F A3 EB 78 */ mr r3, r29
@@ -1049,7 +1049,7 @@ lbl_80116D5C:
 /* 80116D74 00113CB4  40 82 00 24 */ bne lbl_80116D98
 /* 80116D78 00113CB8  7F C3 F3 78 */ mr r3, r30
 /* 80116D7C 00113CBC  39 9E 18 EC */ addi r12, r30, 0x18ec
-/* 80116D80 00113CC0  48 24 B3 05 */ bl func_80362084
+/* 80116D80 00113CC0  48 24 B3 05 */ bl __ptmf_scall
 /* 80116D84 00113CC4  60 00 00 00 */ nop
 /* 80116D88 00113CC8  38 7D 2C A8 */ addi r3, r29, 0x2ca8
 /* 80116D8C 00113CCC  38 80 00 01 */ li r4, 1
@@ -1060,7 +1060,7 @@ lbl_80116D98:
 /* 80116D9C 00113CDC  4B F2 0F 15 */ bl setPlayerRide__10e_wb_classFv
 lbl_80116DA0:
 /* 80116DA0 00113CE0  7F A3 EB 78 */ mr r3, r29
-/* 80116DA4 00113CE4  4B FD 86 AD */ bl checkNextAction__9daAlink_cFiHorse
+/* 80116DA4 00113CE4  4B FD 86 AD */ bl checkNextActionHorse__9daAlink_cFv
 /* 80116DA8 00113CE8  48 00 00 A0 */ b lbl_80116E48
 lbl_80116DAC:
 /* 80116DAC 00113CEC  7F A3 EB 78 */ mr r3, r29
@@ -1071,7 +1071,7 @@ lbl_80116DAC:
 /* 80116DC0 00113D00  28 03 00 00 */ cmplwi r3, 0
 /* 80116DC4 00113D04  41 82 00 10 */ beq lbl_80116DD4
 /* 80116DC8 00113D08  7F A3 EB 78 */ mr r3, r29
-/* 80116DCC 00113D0C  4B FD DB 59 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 80116DCC 00113D0C  4B FD DB 59 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 80116DD0 00113D10  48 00 00 78 */ b lbl_80116E48
 lbl_80116DD4:
 /* 80116DD4 00113D14  7F A3 EB 78 */ mr r3, r29
@@ -1082,7 +1082,7 @@ lbl_80116DD4:
 /* 80116DE8 00113D28  28 03 00 00 */ cmplwi r3, 0
 /* 80116DEC 00113D2C  41 82 00 10 */ beq lbl_80116DFC
 /* 80116DF0 00113D30  7F A3 EB 78 */ mr r3, r29
-/* 80116DF4 00113D34  4B FE F7 99 */ bl checkNextAction__9daAlink_cFiBoard
+/* 80116DF4 00113D34  4B FE F7 99 */ bl checkNextActionBoard__9daAlink_cFv
 /* 80116DF8 00113D38  48 00 00 50 */ b lbl_80116E48
 lbl_80116DFC:
 /* 80116DFC 00113D3C  7F A3 EB 78 */ mr r3, r29

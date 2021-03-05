@@ -14,7 +14,7 @@
 /* 800C3258 000C0198  7C 00 00 34 */ cntlzw r0, r0
 /* 800C325C 000C019C  54 1E DE 3E */ rlwinm r30, r0, 0x1b, 0x18, 0x1f
 /* 800C3260 000C01A0  38 80 00 02 */ li r4, 2
-/* 800C3264 000C01A4  4B FF FB 41 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800C3264 000C01A4  4B FF FB 41 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C3268 000C01A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C326C 000C01AC  40 82 00 0C */ bne lbl_800C3278
 /* 800C3270 000C01B0  38 60 00 00 */ li r3, 0

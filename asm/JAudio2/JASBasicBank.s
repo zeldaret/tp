@@ -3,8 +3,8 @@
 .section .text, "ax" # 80297d78
 
 
-.global JASBasicBank
-JASBasicBank:
+.global __ct__12JASBasicBankFv
+__ct__12JASBasicBankFv:
 /* 80297D78 00294CB8  3C 80 80 3C */	lis r4, lbl_803C76BC@ha
 /* 80297D7C 00294CBC  38 04 76 BC */	addi r0, r4, lbl_803C76BC@l
 /* 80297D80 00294CC0  90 03 00 00 */	stw r0, 0(r3)

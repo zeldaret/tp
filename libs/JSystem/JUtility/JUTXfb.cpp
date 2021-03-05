@@ -3,8 +3,8 @@
 #include "global.h"
 
 extern "C" {
-void common_init__6JUTXfbFl(void);
-void initiate__6JUTXfbFUsUsP7JKRHeapl(void);
+void common_init__6JUTXfbFi(void);
+void initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber(void);
 }
 
 void JUTXfb::clearIndex() {
@@ -14,7 +14,7 @@ void JUTXfb::clearIndex() {
     return;
 }
 
-void JUTXfb::common_init(s32 p1) {
+void JUTXfb::common_init(int p1) {
     this->num_xfbs = p1;
     this->clearIndex();
     this->field_0x1c = 99;

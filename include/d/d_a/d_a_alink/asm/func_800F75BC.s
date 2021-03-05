@@ -40,7 +40,7 @@ lbl_800F7600:
 /* 800F7654 000F4594  3C C0 80 39 */ lis r6, lbl_8038E77C@ha
 /* 800F7658 000F4598  38 C6 E7 7C */ addi r6, r6, lbl_8038E77C@l
 /* 800F765C 000F459C  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800F7660 000F45A0  4B FB 60 91 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800F7660 000F45A0  4B FB 60 91 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F7664 000F45A4  7F E3 FB 78 */ mr r3, r31
 /* 800F7668 000F45A8  48 01 99 79 */ bl commonKandelaarPourInit__9daAlink_cFv
 /* 800F766C 000F45AC  38 60 00 01 */ li r3, 1

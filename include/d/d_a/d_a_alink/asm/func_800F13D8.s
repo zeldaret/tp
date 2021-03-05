@@ -119,7 +119,7 @@ lbl_800F156C:
 /* 800F1570 000EE4B0  A0 9C 00 04 */ lhz r4, 4(r28)
 /* 800F1574 000EE4B4  38 A0 00 02 */ li r5, 2
 /* 800F1578 000EE4B8  7F A6 EB 78 */ mr r6, r29
-/* 800F157C 000EE4BC  4B FB C1 75 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800F157C 000EE4BC  4B FB C1 75 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F1580 000EE4C0  7F C3 F3 78 */ mr r3, r30
 /* 800F1584 000EE4C4  80 9C 00 00 */ lwz r4, 0(r28)
 /* 800F1588 000EE4C8  4B FB E5 21 */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

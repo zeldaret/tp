@@ -15,7 +15,7 @@
 /* 8002CC8C 00029BCC  38 80 00 64 */ li r4, 0x64
 /* 8002CC90 00029BD0  38 A0 00 00 */ li r5, 0
 /* 8002CC94 00029BD4  38 C0 00 0A */ li r6, 0xa
-/* 8002CC98 00029BD8  48 00 08 BD */ bl dComIfGp_setNextStage_X1_
+/* 8002CC98 00029BD8  48 00 08 BD */ bl dComIfGp_setNextStage__FPCcsScSc
 /* 8002CC9C 00029BDC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002CCA0 00029BE0  38 A3 61 C0 */ addi r5, r3, g_dComIfG_gameInfo@l
 /* 8002CCA4 00029BE4  38 65 4E 0E */ addi r3, r5, 0x4e0e

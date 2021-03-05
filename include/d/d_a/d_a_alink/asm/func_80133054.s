@@ -11,7 +11,7 @@
 /* 8013307C 0012FFBC  40 82 00 24 */ bne lbl_801330A0
 /* 80133080 0012FFC0  7F C3 F3 78 */ mr r3, r30
 /* 80133084 0012FFC4  38 80 00 25 */ li r4, 0x25
-/* 80133088 0012FFC8  4B FF 65 F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 80133088 0012FFC8  4B FF 65 F1 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8013308C 0012FFCC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80133090 0012FFD0  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 80133094 0012FFD4  38 00 00 01 */ li r0, 1
@@ -20,7 +20,7 @@
 lbl_801330A0:
 /* 801330A0 0012FFE0  7F C3 F3 78 */ mr r3, r30
 /* 801330A4 0012FFE4  38 80 00 26 */ li r4, 0x26
-/* 801330A8 0012FFE8  4B FF 65 D1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 801330A8 0012FFE8  4B FF 65 D1 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 801330AC 0012FFEC  3C 60 80 42 */ lis r3, lbl_80425634@ha
 /* 801330B0 0012FFF0  C4 03 56 34 */ lfsu f0, lbl_80425634@l(r3)
 /* 801330B4 0012FFF4  D0 1E 35 88 */ stfs f0, 0x3588(r30)

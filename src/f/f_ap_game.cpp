@@ -14,11 +14,11 @@ extern "C" {
 void __dl__FPv(void);
 void fapGm_HIO_c(void);
 void __dt__11fapGm_HIO_cFv(void);
-void fopDwTg_CreateQueue(void);
-void fopOvlpM_Init(void);
+void fopDwTg_CreateQueue__Fv(void);
+void fopOvlpM_Init__Fv(void);
 void fopScnM_Init(void);
 void fpcM_Init(void);
-void func_80018B28(void);
+void __sinit_f_ap_game_cpp(void);
 void func_80361C24(void);
 void __ct__11fapGm_HIO_cFv(void);
 }
@@ -98,9 +98,9 @@ void fapGm_Execute(void) {
 void fapGm_Create(void) {
     fpcM_Init();
     fopScnM_Init();
-    fopOvlpM_Init();
+    fopOvlpM_Init__Fv();
     fopCamM_Init();
-    fopDwTg_CreateQueue();
+    fopDwTg_CreateQueue__Fv();
     g_HIO.field_0x4 = -1;
 }
 
@@ -114,7 +114,7 @@ asm void __dt__11fapGm_HIO_cFv(void) {
 
 // __sinit_f_ap_game_cpp
 //
-asm void func_80018B28(void) {
+asm void __sinit_f_ap_game_cpp(void) {
     nofralloc
 #include "f/f_ap_game/asm/func_80018B28.s"
 }

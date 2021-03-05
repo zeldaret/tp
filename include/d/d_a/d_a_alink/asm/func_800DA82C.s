@@ -30,7 +30,7 @@ lbl_800DA868:
 /* 800DA89C 000D77DC  2C 19 00 00 */ cmpwi r25, 0
 /* 800DA8A0 000D77E0  41 80 00 30 */ blt lbl_800DA8D0
 /* 800DA8A4 000D77E4  C0 21 00 28 */ lfs f1, 0x28(r1)
-/* 800DA8A8 000D77E8  48 18 D9 69 */ bl cBgW_CheckBWall
+/* 800DA8A8 000D77E8  48 18 D9 69 */ bl cBgW_CheckBWall__Ff
 /* 800DA8AC 000D77EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DA8B0 000D77F0  41 82 00 20 */ beq lbl_800DA8D0
 /* 800DA8B4 000D77F4  7F A3 EB 78 */ mr r3, r29
@@ -149,7 +149,7 @@ lbl_800DA9FC:
 /* 800DAA48 000D7988  90 18 31 98 */ stw r0, 0x3198(r24)
 /* 800DAA4C 000D798C  7F 03 C3 78 */ mr r3, r24
 /* 800DAA50 000D7990  38 80 00 28 */ li r4, 0x28
-/* 800DAA54 000D7994  48 04 EC 25 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800DAA54 000D7994  48 04 EC 25 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DAA58 000D7998  B3 F8 30 80 */ sth r31, 0x3080(r24)
 /* 800DAA5C 000D799C  48 00 00 90 */ b lbl_800DAAEC
 lbl_800DAA60:
@@ -163,7 +163,7 @@ lbl_800DAA60:
 /* 800DAA7C 000D79BC  C0 42 93 14 */ lfs f2, lbl_80452D14-_SDA2_BASE_(r2)
 /* 800DAA80 000D79C0  38 A0 00 03 */ li r5, 3
 /* 800DAA84 000D79C4  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800DAA88 000D79C8  48 04 EC 7D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 800DAA88 000D79C8  48 04 EC 7D */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 800DAA8C 000D79CC  38 1F C0 00 */ addi r0, r31, -16384
 /* 800DAA90 000D79D0  B0 18 30 82 */ sth r0, 0x3082(r24)
 /* 800DAA94 000D79D4  48 00 00 58 */ b lbl_800DAAEC
@@ -178,7 +178,7 @@ lbl_800DAA98:
 /* 800DAAB4 000D79F4  C0 42 93 14 */ lfs f2, lbl_80452D14-_SDA2_BASE_(r2)
 /* 800DAAB8 000D79F8  38 A0 00 03 */ li r5, 3
 /* 800DAABC 000D79FC  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800DAAC0 000D7A00  48 04 EC 45 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 800DAAC0 000D7A00  48 04 EC 45 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 800DAAC4 000D7A04  20 1F 40 00 */ subfic r0, r31, 0x4000
 /* 800DAAC8 000D7A08  B0 18 30 82 */ sth r0, 0x3082(r24)
 /* 800DAACC 000D7A0C  48 00 00 20 */ b lbl_800DAAEC
@@ -187,7 +187,7 @@ lbl_800DAAD0:
 /* 800DAAD4 000D7A14  90 18 31 98 */ stw r0, 0x3198(r24)
 /* 800DAAD8 000D7A18  7F 03 C3 78 */ mr r3, r24
 /* 800DAADC 000D7A1C  38 80 00 29 */ li r4, 0x29
-/* 800DAAE0 000D7A20  48 04 EB 99 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800DAAE0 000D7A20  48 04 EB 99 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DAAE4 000D7A24  7C 1F 00 D0 */ neg r0, r31
 /* 800DAAE8 000D7A28  B0 18 30 80 */ sth r0, 0x3080(r24)
 lbl_800DAAEC:
@@ -210,7 +210,7 @@ lbl_800DAB14:
 /* 800DAB24 000D7A64  7F 03 C3 78 */ mr r3, r24
 /* 800DAB28 000D7A68  38 80 00 88 */ li r4, 0x88
 /* 800DAB2C 000D7A6C  38 A5 00 64 */ addi r5, r5, 0x64
-/* 800DAB30 000D7A70  4B FD 25 C5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800DAB30 000D7A70  4B FD 25 C5 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DAB34 000D7A74  38 1F C0 00 */ addi r0, r31, -16384
 /* 800DAB38 000D7A78  B0 18 30 80 */ sth r0, 0x3080(r24)
 /* 800DAB3C 000D7A7C  48 00 00 7C */ b lbl_800DABB8
@@ -222,7 +222,7 @@ lbl_800DAB40:
 /* 800DAB50 000D7A90  7F 03 C3 78 */ mr r3, r24
 /* 800DAB54 000D7A94  38 80 00 89 */ li r4, 0x89
 /* 800DAB58 000D7A98  38 A5 00 78 */ addi r5, r5, 0x78
-/* 800DAB5C 000D7A9C  4B FD 25 99 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800DAB5C 000D7A9C  4B FD 25 99 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DAB60 000D7AA0  38 1F C0 00 */ addi r0, r31, -16384
 /* 800DAB64 000D7AA4  B0 18 30 82 */ sth r0, 0x3082(r24)
 /* 800DAB68 000D7AA8  48 00 00 50 */ b lbl_800DABB8
@@ -234,7 +234,7 @@ lbl_800DAB6C:
 /* 800DAB7C 000D7ABC  7F 03 C3 78 */ mr r3, r24
 /* 800DAB80 000D7AC0  38 80 00 8A */ li r4, 0x8a
 /* 800DAB84 000D7AC4  38 A5 00 8C */ addi r5, r5, 0x8c
-/* 800DAB88 000D7AC8  4B FD 25 6D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800DAB88 000D7AC8  4B FD 25 6D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DAB8C 000D7ACC  20 1F 40 00 */ subfic r0, r31, 0x4000
 /* 800DAB90 000D7AD0  B0 18 30 82 */ sth r0, 0x3082(r24)
 /* 800DAB94 000D7AD4  48 00 00 24 */ b lbl_800DABB8
@@ -244,7 +244,7 @@ lbl_800DAB98:
 /* 800DABA0 000D7AE0  7F 03 C3 78 */ mr r3, r24
 /* 800DABA4 000D7AE4  38 80 00 87 */ li r4, 0x87
 /* 800DABA8 000D7AE8  38 A5 00 50 */ addi r5, r5, 0x50
-/* 800DABAC 000D7AEC  4B FD 25 49 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800DABAC 000D7AEC  4B FD 25 49 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DABB0 000D7AF0  20 1F 40 00 */ subfic r0, r31, 0x4000
 /* 800DABB4 000D7AF4  B0 18 30 80 */ sth r0, 0x3080(r24)
 lbl_800DABB8:

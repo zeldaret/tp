@@ -78,7 +78,7 @@ lbl_8013F5B0:
 lbl_8013F5C0:
 /* 8013F5C0 0013C500  3B 80 FF FF */ li r28, -1
 lbl_8013F5C4:
-/* 8013F5C4 0013C504  48 04 20 7D */ bl dCam_getBody
+/* 8013F5C4 0013C504  48 04 20 7D */ bl dCam_getBody__Fv
 /* 8013F5C8 0013C508  38 80 00 1E */ li r4, 0x1e
 /* 8013F5CC 0013C50C  7F 85 E3 78 */ mr r5, r28
 /* 8013F5D0 0013C510  3C C0 80 39 */ lis r6, lbl_80392094@ha
@@ -175,7 +175,7 @@ lbl_8013F6C0:
 /* 8013F72C 0013C66C  4E 80 04 21 */ bctrl
 /* 8013F730 0013C670  7F A3 EB 78 */ mr r3, r29
 /* 8013F734 0013C674  38 80 00 6A */ li r4, 0x6a
-/* 8013F738 0013C678  4B FE 9F 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8013F738 0013C678  4B FE 9F 41 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8013F73C 0013C67C  7F A3 EB 78 */ mr r3, r29
 /* 8013F740 0013C680  38 80 00 99 */ li r4, 0x99
 /* 8013F744 0013C684  4B F7 01 5D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

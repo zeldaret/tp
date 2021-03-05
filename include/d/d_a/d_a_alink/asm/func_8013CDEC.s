@@ -56,7 +56,7 @@ lbl_8013CE90:
 /* 8013CEBC 00139DFC  38 80 00 79 */ li r4, 0x79
 /* 8013CEC0 00139E00  C0 3D 34 78 */ lfs f1, 0x3478(r29)
 /* 8013CEC4 00139E04  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013CEC8 00139E08  4B FE C8 11 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8013CEC8 00139E08  4B FE C8 11 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8013CECC 00139E0C  38 00 00 00 */ li r0, 0
 /* 8013CED0 00139E10  B0 1D 30 0E */ sth r0, 0x300e(r29)
 /* 8013CED4 00139E14  38 00 00 01 */ li r0, 1

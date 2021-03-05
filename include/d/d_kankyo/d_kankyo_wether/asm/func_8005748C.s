@@ -5,7 +5,7 @@
 /* 8005749C 000543DC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 800574A0 000543E0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 800574A4 000543E4  80 63 10 58 */ lwz r3, 0x1058(r3)
-/* 800574A8 000543E8  4B FF F7 31 */ bl dKyw_setDrawPacketListXluBg
+/* 800574A8 000543E8  4B FF F7 31 */ bl dKyw_setDrawPacketListXluBg__FP9J3DPacketi
 /* 800574AC 000543EC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800574B0 000543F0  7C 08 03 A6 */ mtlr r0
 /* 800574B4 000543F4  38 21 00 10 */ addi r1, r1, 0x10

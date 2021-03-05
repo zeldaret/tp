@@ -47,7 +47,7 @@ u32 fopScnM_ReRequest(s16 param_1, u32 param_2) {
 }
 
 void fopScnM_Management(void) {
-    fopScnRq_Handler();
+    fopScnRq_Handler__Fv();
 }
 
 void fopScnM_Init(void) {

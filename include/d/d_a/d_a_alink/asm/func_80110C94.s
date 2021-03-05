@@ -46,7 +46,7 @@
 /* 80110D48 0010DC88  4E 80 04 21 */ bctrl
 /* 80110D4C 0010DC8C  38 7F 36 0C */ addi r3, r31, 0x360c
 /* 80110D50 0010DC90  38 81 00 10 */ addi r4, r1, 0x10
-/* 80110D54 0010DC94  4B F0 45 BD */ bl mDoLib_project
+/* 80110D54 0010DC94  4B F0 45 BD */ bl mDoLib_project__FP3VecP3Vec
 /* 80110D58 0010DC98  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80110D5C 0010DC9C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80110D60 0010DCA0  80 63 5D 74 */ lwz r3, 0x5d74(r3)
@@ -95,7 +95,7 @@ lbl_80110DEC:
 /* 80110DFC 0010DD3C  C3 C3 00 CC */ lfs f30, 0xcc(r3)
 /* 80110E00 0010DD40  38 7F 36 0C */ addi r3, r31, 0x360c
 /* 80110E04 0010DD44  38 81 00 10 */ addi r4, r1, 0x10
-/* 80110E08 0010DD48  4B F0 46 E5 */ bl mDoLib_pos2camera
+/* 80110E08 0010DD48  4B F0 46 E5 */ bl mDoLib_pos2camera__FP3VecP3Vec
 /* 80110E0C 0010DD4C  C0 21 00 18 */ lfs f1, 0x18(r1)
 /* 80110E10 0010DD50  C0 02 92 E0 */ lfs f0, lbl_80452CE0-_SDA2_BASE_(r2)
 /* 80110E14 0010DD54  EC 21 00 2A */ fadds f1, f1, f0

@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027d730
 
 
-.global JPAKeyBlock
-JPAKeyBlock:
+.global __ct__11JPAKeyBlockFPCUc
+__ct__11JPAKeyBlockFPCUc:
 /* 8027D730 0027A670  90 83 00 00 */	stw r4, 0(r3)
 /* 8027D734 0027A674  38 04 00 0C */	addi r0, r4, 0xc
 /* 8027D738 0027A678  90 03 00 04 */	stw r0, 4(r3)
@@ -45,7 +45,7 @@ calc__11JPAKeyBlockFf:
 lbl_8027D7B8:
 /* 8027D7B8 0027A6F8  88 65 00 09 */	lbz r3, 9(r5)
 /* 8027D7BC 0027A6FC  80 86 00 04 */	lwz r4, 4(r6)
-/* 8027D7C0 0027A700  48 00 31 C5 */	bl JPACalcKeyAnmValue
+/* 8027D7C0 0027A700  48 00 31 C5 */	bl JPACalcKeyAnmValue__FfUsPCf
 /* 8027D7C4 0027A704  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8027D7C8 0027A708  7C 08 03 A6 */	mtlr r0
 /* 8027D7CC 0027A70C  38 21 00 20 */	addi r1, r1, 0x20

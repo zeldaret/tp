@@ -35,7 +35,7 @@ lbl_8013B318:
 /* 8013B31C 0013825C  7F C4 F3 78 */ mr r4, r30
 /* 8013B320 00138260  3C A0 80 39 */ lis r5, lbl_8038F558@ha
 /* 8013B324 00138264  38 A5 F5 58 */ addi r5, r5, lbl_8038F558@l
-/* 8013B328 00138268  4B FE E5 21 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013B328 00138268  4B FE E5 21 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013B32C 0013826C  3C 60 80 39 */ lis r3, lbl_8038F558@ha
 /* 8013B330 00138270  38 63 F5 58 */ addi r3, r3, lbl_8038F558@l
 /* 8013B334 00138274  C0 03 00 14 */ lfs f0, 0x14(r3)

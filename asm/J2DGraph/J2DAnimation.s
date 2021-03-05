@@ -1722,7 +1722,7 @@ lbl_8030BD98:
 /* 8030BDAC 00308CEC  3C 80 80 31 */	lis r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
 .global __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
 /* 8030BDB0 00308CF0  38 84 CB 3C */	addi r4, r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
-/* 8030BDB4 00308CF4  48 05 5E B9 */	bl func_80361C6C
+/* 8030BDB4 00308CF4  48 05 5E B9 */	bl __destroy_new_array
 /* 8030BDB8 00308CF8  80 7E 01 08 */	lwz r3, 0x108(r30)
 /* 8030BDBC 00308CFC  A3 83 00 00 */	lhz r28, 0(r3)
 /* 8030BDC0 00308D00  57 83 18 38 */	slwi r3, r28, 3
@@ -1738,7 +1738,7 @@ lbl_8030BD98:
 /* 8030BDD8 00308D18  38 A5 CB 3C */	addi r5, r5, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
 /* 8030BDDC 00308D1C  38 C0 00 08 */	li r6, 8
 /* 8030BDE0 00308D20  7F 87 E3 78 */	mr r7, r28
-/* 8030BDE4 00308D24  48 05 61 31 */	bl func_80361F14
+/* 8030BDE4 00308D24  48 05 61 31 */	bl __construct_new_array
 /* 8030BDE8 00308D28  90 7D 00 30 */	stw r3, 0x30(r29)
 /* 8030BDEC 00308D2C  80 1D 00 30 */	lwz r0, 0x30(r29)
 /* 8030BDF0 00308D30  28 00 00 00 */	cmplwi r0, 0
@@ -1757,7 +1757,7 @@ lbl_8030BE08:
 /* 8030BE20 00308D60  3C A0 54 49 */	lis r5, 0x54494D47@ha
 /* 8030BE24 00308D64  38 A5 4D 47 */	addi r5, r5, 0x54494D47@l
 /* 8030BE28 00308D68  38 C0 00 00 */	li r6, 0
-/* 8030BE2C 00308D6C  4B FD 22 F5 */	bl getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive_X1_
+/* 8030BE2C 00308D6C  4B FD 22 F5 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 8030BE30 00308D70  7C 7A 1B 79 */	or. r26, r3, r3
 /* 8030BE34 00308D74  40 82 00 2C */	bne lbl_8030BE60
 /* 8030BE38 00308D78  83 8D 90 10 */	lwz r28, lbl_80451590-_SDA_BASE_(r13)
@@ -1789,7 +1789,7 @@ lbl_8030BE60:
 /* 8030BE9C 00308DDC  A0 FA 00 0A */	lhz r7, 0xa(r26)
 /* 8030BEA0 00308DE0  80 1A 00 0C */	lwz r0, 0xc(r26)
 /* 8030BEA4 00308DE4  7D 1A 02 14 */	add r8, r26, r0
-/* 8030BEA8 00308DE8  4B FD 2A 75 */	bl storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT_X1_
+/* 8030BEA8 00308DE8  4B FD 2A 75 */	bl storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
 lbl_8030BEAC:
 /* 8030BEAC 00308DEC  80 7D 00 30 */	lwz r3, 0x30(r29)
 /* 8030BEB0 00308DF0  38 1B 00 04 */	addi r0, r27, 4
@@ -2748,7 +2748,7 @@ lbl_8030CB74:
 /* 8030CBC0 00309B00  3C 80 80 31 */	lis r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
 .global __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
 /* 8030CBC4 00309B04  38 84 CB 3C */	addi r4, r4, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
-/* 8030CBC8 00309B08  48 05 50 A5 */	bl func_80361C6C
+/* 8030CBC8 00309B08  48 05 50 A5 */	bl __destroy_new_array
 /* 8030CBCC 00309B0C  34 1E 00 20 */	addic. r0, r30, 0x20
 /* 8030CBD0 00309B10  41 82 00 10 */	beq lbl_8030CBE0
 /* 8030CBD4 00309B14  3C 60 80 3C */	lis r3, lbl_803BB3DC@ha

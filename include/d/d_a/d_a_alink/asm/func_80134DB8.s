@@ -12,7 +12,7 @@
 /* 80134DE4 00131D24  3C A0 80 39 */ lis r5, lbl_8038F7DC@ha
 /* 80134DE8 00131D28  38 A5 F7 DC */ addi r5, r5, lbl_8038F7DC@l
 /* 80134DEC 00131D2C  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 80134DF0 00131D30  4B FF 4A 59 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80134DF0 00131D30  4B FF 4A 59 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80134DF4 00131D34  88 1E 2F A8 */ lbz r0, 0x2fa8(r30)
 /* 80134DF8 00131D38  28 00 00 08 */ cmplwi r0, 8
 /* 80134DFC 00131D3C  40 82 00 18 */ bne lbl_80134E14

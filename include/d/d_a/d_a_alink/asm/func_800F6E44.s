@@ -15,7 +15,7 @@ lbl_800F6E78:
 /* 800F6E78 000F3DB8  7F E3 FB 78 */ mr r3, r31
 /* 800F6E7C 000F3DBC  4B FE 7F A1 */ bl cancelBowMove__9daAlink_cFv
 /* 800F6E80 000F3DC0  7F E3 FB 78 */ mr r3, r31
-/* 800F6E84 000F3DC4  4B FF DA A1 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F6E84 000F3DC4  4B FF DA A1 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F6E88 000F3DC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6E8C 000F3DCC  40 82 00 0C */ bne lbl_800F6E98
 /* 800F6E90 000F3DD0  7F E3 FB 78 */ mr r3, r31

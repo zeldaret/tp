@@ -16,7 +16,7 @@
 lbl_8012CFA4:
 /* 8012CFA4 00129EE4  7F E3 FB 78 */ mr r3, r31
 /* 8012CFA8 00129EE8  38 80 00 EF */ li r4, 0xef
-/* 8012CFAC 00129EEC  4B F9 5D F9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 8012CFAC 00129EEC  4B F9 5D F9 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012CFB0 00129EF0  2C 03 00 00 */ cmpwi r3, 0
 /* 8012CFB4 00129EF4  40 82 00 0C */ bne lbl_8012CFC0
 /* 8012CFB8 00129EF8  38 60 00 00 */ li r3, 0
@@ -26,7 +26,7 @@ lbl_8012CFC0:
 /* 8012CFC4 00129F04  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 8012CFC8 00129F08  7F E3 FB 78 */ mr r3, r31
 /* 8012CFCC 00129F0C  38 80 00 18 */ li r4, 0x18
-/* 8012CFD0 00129F10  4B FF C6 A9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8012CFD0 00129F10  4B FF C6 A9 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8012CFD4 00129F14  38 60 00 01 */ li r3, 1
 lbl_8012CFD8:
 /* 8012CFD8 00129F18  83 E1 00 0C */ lwz r31, 0xc(r1)

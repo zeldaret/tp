@@ -47,7 +47,7 @@ lbl_800BDEEC:
 /* 800BDEEC 000BAE2C  80 7E 28 30 */ lwz r3, 0x2830(r30)
 /* 800BDEF0 000BAE30  28 03 00 00 */ cmplwi r3, 0
 /* 800BDEF4 000BAE34  41 82 00 38 */ beq lbl_800BDF2C
-/* 800BDEF8 000BAE38  48 02 59 39 */ bl daAlink_checkLightBallA
+/* 800BDEF8 000BAE38  48 02 59 39 */ bl daAlink_checkLightBallA__FP10fopAc_ac_c
 /* 800BDEFC 000BAE3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BDF00 000BAE40  41 82 00 10 */ beq lbl_800BDF10
 /* 800BDF04 000BAE44  80 1F 00 00 */ lwz r0, 0(r31)
@@ -55,7 +55,7 @@ lbl_800BDEEC:
 /* 800BDF0C 000BAE4C  90 1F 00 00 */ stw r0, 0(r31)
 lbl_800BDF10:
 /* 800BDF10 000BAE50  80 7E 28 30 */ lwz r3, 0x2830(r30)
-/* 800BDF14 000BAE54  48 02 59 45 */ bl daAlink_checkLightBallB
+/* 800BDF14 000BAE54  48 02 59 45 */ bl daAlink_checkLightBallB__FP10fopAc_ac_c
 /* 800BDF18 000BAE58  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BDF1C 000BAE5C  41 82 00 10 */ beq lbl_800BDF2C
 /* 800BDF20 000BAE60  80 1F 00 00 */ lwz r0, 0(r31)

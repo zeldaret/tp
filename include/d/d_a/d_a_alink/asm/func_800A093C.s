@@ -204,7 +204,7 @@ lbl_800A0C0C:
 /* 800A0C18 0009DB58  7C 79 1B 78 */	mr r25, r3
 /* 800A0C1C 0009DB5C  28 1A 00 00 */	cmplwi r26, 0
 /* 800A0C20 0009DB60  40 82 00 10 */	bne lbl_800A0C30
-/* 800A0C24 0009DB64  48 0E 0A 1D */	bl dCam_getBody
+/* 800A0C24 0009DB64  48 0E 0A 1D */	bl dCam_getBody__Fv
 /* 800A0C28 0009DB68  48 0E 08 D9 */	bl GetForceLockOnActor__9dCamera_cFv
 /* 800A0C2C 0009DB6C  7C 7A 1B 78 */	mr r26, r3
 lbl_800A0C30:
@@ -386,7 +386,7 @@ lbl_800A0E70:
 lbl_800A0EB0:
 /* 800A0EB0 0009DDF0  7F E3 FB 78 */	mr r3, r31
 /* 800A0EB4 0009DDF4  38 80 00 01 */	li r4, 1
-/* 800A0EB8 0009DDF8  48 00 6B 35 */	bl checkWindSpeedOnAngle__9daAlink_cCFvAnime
+/* 800A0EB8 0009DDF8  48 00 6B 35 */	bl checkWindSpeedOnAngleAnime__9daAlink_cCFi
 /* 800A0EBC 0009DDFC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800A0EC0 0009DE00  41 82 01 08 */	beq lbl_800A0FC8
 /* 800A0EC4 0009DE04  80 1F 05 74 */	lwz r0, 0x574(r31)
@@ -582,7 +582,7 @@ lbl_800A115C:
 /* 800A1178 0009E0B8  40 82 00 18 */	bne lbl_800A1190
 /* 800A117C 0009E0BC  7F E3 FB 78 */	mr r3, r31
 /* 800A1180 0009E0C0  38 80 00 37 */	li r4, 0x37
-/* 800A1184 0009E0C4  48 08 76 89 */	bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 800A1184 0009E0C4  48 08 76 89 */	bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 800A1188 0009E0C8  2C 03 00 00 */	cmpwi r3, 0
 /* 800A118C 0009E0CC  41 82 00 48 */	beq lbl_800A11D4
 lbl_800A1190:
@@ -669,7 +669,7 @@ lbl_800A12B0:
 /* 800A12BC 0009E1FC  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800A12C0 0009E200  41 82 00 60 */	beq lbl_800A1320
 /* 800A12C4 0009E204  3B 40 00 01 */	li r26, 1
-/* 800A12C8 0009E208  48 10 B2 B5 */	bl dKy_darkworld_check
+/* 800A12C8 0009E208  48 10 B2 B5 */	bl dKy_darkworld_check__Fv
 /* 800A12CC 0009E20C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800A12D0 0009E210  28 00 00 01 */	cmplwi r0, 1
 /* 800A12D4 0009E214  41 82 00 24 */	beq lbl_800A12F8

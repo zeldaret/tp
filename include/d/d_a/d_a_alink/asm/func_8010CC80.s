@@ -16,7 +16,7 @@
 lbl_8010CCBC:
 /* 8010CCBC 00109BFC  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8010CCC0 00109C00  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010CCC4 00109C04  4B FA 03 1D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8010CCC4 00109C04  4B FA 03 1D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010CCC8 00109C08  7F C3 F3 78 */ mr r3, r30
 /* 8010CCCC 00109C0C  4B FA A4 9D */ bl setFastShotTimer__9daAlink_cFv
 /* 8010CCD0 00109C10  7F C3 F3 78 */ mr r3, r30

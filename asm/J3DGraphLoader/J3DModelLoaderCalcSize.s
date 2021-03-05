@@ -194,7 +194,7 @@ lbl_80336A10:
 lbl_80336A34:
 /* 80336A34 00333974  7F 23 CB 78 */	mr r3, r25
 /* 80336A38 00333978  7F 84 E3 78 */	mr r4, r28
-/* 80336A3C 0033397C  48 00 05 B5 */	bl calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlockTable
+/* 80336A3C 0033397C  48 00 05 B5 */	bl calcSizeTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
 /* 80336A40 00333980  7F BD 1A 14 */	add r29, r29, r3
 /* 80336A44 00333984  3B 60 00 01 */	li r27, 1
 /* 80336A48 00333988  48 00 00 14 */	b lbl_80336A5C
@@ -463,7 +463,7 @@ calcSizeDraw__14J3DModelLoaderFPC12J3DDrawBlock:
 /* 80336DCC 00333D0C  7C BB 2B 78 */	mr r27, r5
 /* 80336DD0 00333D10  3B E0 00 00 */	li r31, 0
 /* 80336DD4 00333D14  38 61 00 08 */	addi r3, r1, 8
-/* 80336DD8 00333D18  4B FF 92 15 */	bl J3DMaterialFactory
+/* 80336DD8 00333D18  4B FF 92 15 */	bl __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
 /* 80336DDC 00333D1C  A3 DC 00 08 */	lhz r30, 8(r28)
 /* 80336DE0 00333D20  38 61 00 08 */	addi r3, r1, 8
 /* 80336DE4 00333D24  4B FF 94 D9 */	bl countUniqueMaterials__18J3DMaterialFactoryFv
@@ -533,7 +533,7 @@ calcSizeShape__14J3DModelLoaderFPC13J3DShapeBlockUl:
 /* 80336EBC 00333DFC  7C BD 2B 78 */	mr r29, r5
 /* 80336EC0 00333E00  3B E0 00 00 */	li r31, 0
 /* 80336EC4 00333E04  38 61 00 08 */	addi r3, r1, 8
-/* 80336EC8 00333E08  48 00 04 89 */	bl J3DShapeFactory
+/* 80336EC8 00333E08  48 00 04 89 */	bl __ct__15J3DShapeFactoryFRC13J3DShapeBlock
 /* 80336ECC 00333E0C  A0 9E 00 08 */	lhz r4, 8(r30)
 /* 80336ED0 00333E10  80 1E 00 14 */	lwz r0, 0x14(r30)
 /* 80336ED4 00333E14  28 00 00 00 */	cmplwi r0, 0
@@ -543,7 +543,7 @@ lbl_80336EE0:
 /* 80336EE0 00333E20  54 80 10 3A */	slwi r0, r4, 2
 /* 80336EE4 00333E24  7F FF 02 14 */	add r31, r31, r0
 /* 80336EE8 00333E28  38 61 00 08 */	addi r3, r1, 8
-/* 80336EEC 00333E2C  48 00 0A ED */	bl calcSize__15J3DShapeFactoryFiUlVcdVatCmdBuffer
+/* 80336EEC 00333E2C  48 00 0A ED */	bl calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl
 /* 80336EF0 00333E30  7F FF 1A 14 */	add r31, r31, r3
 /* 80336EF4 00333E34  83 DC 00 14 */	lwz r30, 0x14(r28)
 /* 80336EF8 00333E38  48 00 00 24 */	b lbl_80336F1C
@@ -589,7 +589,7 @@ lbl_80336F58:
 /* 80336F7C 00333EBC  3B E0 00 00 */	li r31, 0
 /* 80336F80 00333EC0  A3 C4 00 08 */	lhz r30, 8(r4)
 /* 80336F84 00333EC4  38 61 00 08 */	addi r3, r1, 8
-/* 80336F88 00333EC8  4B FF 90 65 */	bl J3DMaterialFactory
+/* 80336F88 00333EC8  4B FF 90 65 */	bl __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
 /* 80336F8C 00333ECC  80 1D 00 14 */	lwz r0, 0x14(r29)
 /* 80336F90 00333ED0  28 00 00 00 */	cmplwi r0, 0
 /* 80336F94 00333ED4  41 82 00 08 */	beq lbl_80336F9C
@@ -619,8 +619,8 @@ lbl_80336FC8:
 /* 80336FE8 00333F28  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 80336FEC 00333F2C  4E 80 00 20 */	blr 
 
-.global calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlockTable
-calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlockTable:
+.global calcSizeTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
+calcSizeTextureTable__14J3DModelLoaderFPC15J3DTextureBlock:
 /* 80336FF0 00333F30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80336FF4 00333F34  7C 08 02 A6 */	mflr r0
 /* 80336FF8 00333F38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -642,7 +642,7 @@ calcSizePatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl:
 /* 8033702C 00333F6C  3B E0 00 00 */	li r31, 0
 /* 80337030 00333F70  A3 C4 00 08 */	lhz r30, 8(r4)
 /* 80337034 00333F74  38 61 00 08 */	addi r3, r1, 8
-/* 80337038 00333F78  4B FF 8F B5 */	bl J3DMaterialFactory
+/* 80337038 00333F78  4B FF 8F B5 */	bl __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
 /* 8033703C 00333F7C  80 1D 00 14 */	lwz r0, 0x14(r29)
 /* 80337040 00333F80  28 00 00 00 */	cmplwi r0, 0
 /* 80337044 00333F84  41 82 00 08 */	beq lbl_8033704C
@@ -684,7 +684,7 @@ calcSizeMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl:
 /* 803370BC 00333FFC  7C BF 2B 78 */	mr r31, r5
 /* 803370C0 00334000  3B C0 00 00 */	li r30, 0
 /* 803370C4 00334004  38 61 00 08 */	addi r3, r1, 8
-/* 803370C8 00334008  4B FF 91 6D */	bl J3DMaterialFactory_X1_
+/* 803370C8 00334008  4B FF 91 6D */	bl __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock
 /* 803370CC 0033400C  88 1B 00 18 */	lbz r0, 0x18(r27)
 /* 803370D0 00334010  28 00 00 00 */	cmplwi r0, 0
 /* 803370D4 00334014  40 82 00 54 */	bne lbl_80337128

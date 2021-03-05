@@ -33,7 +33,7 @@ lbl_800E1B44:
 /* 800E1B54 000DEA94  38 A0 00 02 */ li r5, 2
 /* 800E1B58 000DEA98  3C C0 80 39 */ lis r6, lbl_8038E6C8@ha
 /* 800E1B5C 000DEA9C  38 C6 E6 C8 */ addi r6, r6, lbl_8038E6C8@l
-/* 800E1B60 000DEAA0  4B FC BB 91 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 800E1B60 000DEAA0  4B FC BB 91 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800E1B64 000DEAA4  7F E3 FB 78 */ mr r3, r31
 /* 800E1B68 000DEAA8  4B FF F7 C9 */ bl getCopyRodBallDisMax__9daAlink_cCFv
 /* 800E1B6C 000DEAAC  D0 3F 34 90 */ stfs f1, 0x3490(r31)

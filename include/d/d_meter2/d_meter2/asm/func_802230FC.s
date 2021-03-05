@@ -5,7 +5,7 @@
 /* 8022310C 0022004C  93 C1 00 08 */ stw r30, 8(r1)
 /* 80223110 00220050  7C 7E 1B 78 */ mr r30, r3
 /* 80223114 00220054  80 63 01 04 */ lwz r3, 0x104(r3)
-/* 80223118 00220058  4B DE C0 B5 */ bl mDoExt_setCurrentHeap
+/* 80223118 00220058  4B DE C0 B5 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8022311C 0022005C  7C 7F 1B 78 */ mr r31, r3
 /* 80223120 00220060  7F C3 F3 78 */ mr r3, r30
 /* 80223124 00220064  48 00 06 B1 */ bl checkSubContents__9dMeter2_cFv
@@ -45,7 +45,7 @@ lbl_80223190:
 /* 802231A4 002200E4  4E 80 04 21 */ bctrl
 lbl_802231A8:
 /* 802231A8 002200E8  7F E3 FB 78 */ mr r3, r31
-/* 802231AC 002200EC  4B DE C0 21 */ bl mDoExt_setCurrentHeap
+/* 802231AC 002200EC  4B DE C0 21 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 802231B0 002200F0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802231B4 002200F4  83 C1 00 08 */ lwz r30, 8(r1)
 /* 802231B8 002200F8  80 01 00 14 */ lwz r0, 0x14(r1)

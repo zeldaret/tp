@@ -13,7 +13,7 @@
 /* 8013561C 0013255C  C0 46 00 08 */ lfs f2, 8(r6)
 /* 80135620 00132560  38 A0 00 0C */ li r5, 0xc
 /* 80135624 00132564  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 80135628 00132568  4B FF 40 DD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 80135628 00132568  4B FF 40 DD */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8013562C 0013256C  88 1F 2F 91 */ lbz r0, 0x2f91(r31)
 /* 80135630 00132570  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 80135634 00132574  A8 7F 30 6E */ lha r3, 0x306e(r31)

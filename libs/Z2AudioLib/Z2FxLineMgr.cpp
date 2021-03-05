@@ -28,7 +28,7 @@ extern u8 lbl_80450B80;
 extern "C" {
 // __ct__11Z2FxLineMgrFv
 // Z2FxLineMgr::Z2FxLineMgr(void)
-asm void Z2FxLineMgr(void) {
+asm void __ct__11Z2FxLineMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2FxLineMgr/asm/func_802BA7DC.s"
 }

@@ -17,7 +17,7 @@
 extern "C" {
 void __dl__FPv(void);
 void func_80361C24(void);
-void func_80361D60(void);
+void __construct_array(void);
 void __cvt_fp2unsigned(void);
 }
 
@@ -103,21 +103,21 @@ asm void Z2Audible(void) {
 
 // __ct__16Z2AudibleChannelFv
 // Z2AudibleChannel::Z2AudibleChannel(void)
-asm void Z2AudibleChannel(void) {
+asm void __ct__16Z2AudibleChannelFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BBE74.s"
 }
 
 // calc__9Z2AudibleFv
 // Z2Audible::calc(void)
-asm void func_802BBE98(void) {
+asm void calc__9Z2AudibleFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BBE98.s"
 }
 
 // getOuterParams__9Z2AudibleFi
 // Z2Audible::getOuterParams(int)
-asm void func_802BBED0(void) {
+asm void getOuterParams__9Z2AudibleFi(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BBED0.s"
 }
@@ -145,7 +145,7 @@ asm void getDistVolBit__9Z2AudibleFv(void) {
 
 // __ct__19Z2Audience3DSettingFv
 // Z2Audience3DSetting::Z2Audience3DSetting(void)
-asm void Z2Audience3DSetting(void) {
+asm void __ct__19Z2Audience3DSettingFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BC248.s"
 }
@@ -159,7 +159,7 @@ asm void init__19Z2Audience3DSettingFv(void) {
 
 // initVolumeDist__19Z2Audience3DSettingFv
 // Z2Audience3DSetting::initVolumeDist(void)
-asm void init__19Z2Audience3DSettingFvVolumeDist(void) {
+asm void initVolumeDist__19Z2Audience3DSettingFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BC308.s"
 }
@@ -173,7 +173,7 @@ asm void updateVolumeDist__19Z2Audience3DSettingFf(void) {
 
 // initDolbyDist__19Z2Audience3DSettingFv
 // Z2Audience3DSetting::initDolbyDist(void)
-asm void init__19Z2Audience3DSettingFvDolbyDist(void) {
+asm void initDolbyDist__19Z2Audience3DSettingFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BC6A4.s"
 }
@@ -187,7 +187,7 @@ asm void updateDolbyDist__19Z2Audience3DSettingFff(void) {
 
 // __ct__13Z2AudioCameraFv
 // Z2AudioCamera::Z2AudioCamera(void)
-asm void Z2AudioCamera(void) {
+asm void __ct__13Z2AudioCameraFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BC758.s"
 }
@@ -208,7 +208,7 @@ asm void setCameraState__13Z2AudioCameraFPA4_CfR3Vecb(void) {
 
 // setCameraState__13Z2AudioCameraFPA4_fR3VecR3Vecffbb
 // Z2AudioCamera::setCameraState(float [][4], Vec&, Vec&, float, float, bool, bool)
-asm void setCameraState__13Z2AudioCameraFPA4_CfR3Vecb_X1_(void) {
+asm void setCameraState__13Z2AudioCameraFPA4_fR3VecR3Vecffbb(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BC8AC.s"
 }
@@ -222,7 +222,7 @@ asm void convertAbsToRel__13Z2AudioCameraFP9Z2Audiblei(void) {
 
 // convertAbsToRel__13Z2AudioCameraCFR3VecP3Vec
 // Z2AudioCamera::convertAbsToRel(Vec&, Vec*) const
-asm void convertAbsToRel__13Z2AudioCameraFP9Z2Audiblei_X1_(void) {
+asm void convertAbsToRel__13Z2AudioCameraCFR3VecP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BCC7C.s"
 }
@@ -236,7 +236,7 @@ asm void isInSight__13Z2AudioCameraCFR3Vec(void) {
 
 // __ct__9Z2SpotMicFv
 // Z2SpotMic::Z2SpotMic(void)
-asm void Z2SpotMic(void) {
+asm void __ct__9Z2SpotMicFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BCD28.s"
 }
@@ -285,7 +285,7 @@ asm void calcMicVolume__9Z2SpotMicFfif(void) {
 
 // __ct__10Z2AudienceFv
 // Z2Audience::Z2Audience(void)
-asm void Z2Audience(void) {
+asm void __ct__10Z2AudienceFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BD130.s"
 }
@@ -320,21 +320,21 @@ asm void func_802BD338(void) {
 
 // deleteAudible__10Z2AudienceFP10JAIAudible
 // Z2Audience::deleteAudible(JAIAudible*)
-asm void func_802BD4D4(void) {
+asm void deleteAudible__10Z2AudienceFP10JAIAudible(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BD4D4.s"
 }
 
 // __dt__9Z2AudibleFv
 // Z2Audible::~Z2Audible(void)
-asm void func_802BD510(void) {
+asm void __dt__9Z2AudibleFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BD510.s"
 }
 
 // calcPriority__10Z2AudienceFP10JAIAudible
 // Z2Audience::calcPriority(JAIAudible*)
-asm void func_802BD5B8(void) {
+asm void calcPriority__10Z2AudienceFP10JAIAudible(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BD5B8.s"
 }
@@ -348,7 +348,7 @@ asm void calcOffMicSound__10Z2AudienceFf(void) {
 
 // mixChannelOut__10Z2AudienceFRC14JASSoundParamsP10JAIAudiblei
 // Z2Audience::mixChannelOut(const JASSoundParams&, JAIAudible*, int)
-asm void func_802BD71C(void) {
+asm void mixChannelOut__10Z2AudienceFRC14JASSoundParamsP10JAIAudiblei(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BD71C.s"
 }
@@ -426,14 +426,14 @@ asm void calcPitch___10Z2AudienceCFP16Z2AudibleChannelPC9Z2AudiblePC13Z2AudioCam
 
 // getMaxChannels__10Z2AudienceFv
 // Z2Audience::getMaxChannels(void)
-asm void func_802BDED4(void) {
+asm void getMaxChannels__10Z2AudienceFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BDED4.s"
 }
 
 // __sinit_Z2Audience_cpp
 //
-asm void func_802BDEDC(void) {
+asm void __sinit_Z2Audience_cpp(void) {
     nofralloc
 #include "Z2AudioLib/Z2Audience/asm/func_802BDEDC.s"
 }

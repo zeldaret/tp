@@ -179,7 +179,7 @@ lbl_80289D34:
 /* 80289D44 00286C84  41 82 00 14 */	beq lbl_80289D58
 /* 80289D48 00286C88  7F 84 E3 78 */	mr r4, r28
 /* 80289D4C 00286C8C  7F E5 FB 78 */	mr r5, r31
-/* 80289D50 00286C90  4B FF CB C1 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_actor
+/* 80289D50 00286C90  4B FF CB C1 */	bl __ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor
 /* 80289D54 00286C94  7C 7E 1B 78 */	mr r30, r3
 lbl_80289D58:
 /* 80289D58 00286C98  28 1E 00 00 */	cmplwi r30, 0
@@ -255,7 +255,7 @@ lbl_80289E38:
 /* 80289E48 00286D88  41 82 00 14 */	beq lbl_80289E5C
 /* 80289E4C 00286D8C  7F 84 E3 78 */	mr r4, r28
 /* 80289E50 00286D90  7F E5 FB 78 */	mr r5, r31
-/* 80289E54 00286D94  4B FF D0 29 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_camera
+/* 80289E54 00286D94  4B FF D0 29 */	bl __ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera
 /* 80289E58 00286D98  7C 7E 1B 78 */	mr r30, r3
 lbl_80289E5C:
 /* 80289E5C 00286D9C  28 1E 00 00 */	cmplwi r30, 0
@@ -331,7 +331,7 @@ lbl_80289F3C:
 /* 80289F4C 00286E8C  41 82 00 14 */	beq lbl_80289F60
 /* 80289F50 00286E90  7F 84 E3 78 */	mr r4, r28
 /* 80289F54 00286E94  7F E5 FB 78 */	mr r5, r31
-/* 80289F58 00286E98  4B FF CD A5 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_ambientLight
+/* 80289F58 00286E98  4B FF CD A5 */	bl __ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight
 /* 80289F5C 00286E9C  7C 7E 1B 78 */	mr r30, r3
 lbl_80289F60:
 /* 80289F60 00286EA0  28 1E 00 00 */	cmplwi r30, 0
@@ -407,7 +407,7 @@ lbl_8028A040:
 /* 8028A050 00286F90  41 82 00 14 */	beq lbl_8028A064
 /* 8028A054 00286F94  7F 84 E3 78 */	mr r4, r28
 /* 8028A058 00286F98  7F E5 FB 78 */	mr r5, r31
-/* 8028A05C 00286F9C  4B FF D3 0D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_light
+/* 8028A05C 00286F9C  4B FF D3 0D */	bl __ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light
 /* 8028A060 00286FA0  7C 7E 1B 78 */	mr r30, r3
 lbl_8028A064:
 /* 8028A064 00286FA4  28 1E 00 00 */	cmplwi r30, 0
@@ -483,7 +483,7 @@ lbl_8028A144:
 /* 8028A154 00287094  41 82 00 14 */	beq lbl_8028A168
 /* 8028A158 00287098  7F 84 E3 78 */	mr r4, r28
 /* 8028A15C 0028709C  7F E5 FB 78 */	mr r5, r31
-/* 8028A160 002870A0  4B FF D0 7D */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_fog
+/* 8028A160 002870A0  4B FF D0 7D */	bl __ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog
 /* 8028A164 002870A4  7C 7E 1B 78 */	mr r30, r3
 lbl_8028A168:
 /* 8028A168 002870A8  28 1E 00 00 */	cmplwi r30, 0

@@ -12,7 +12,7 @@
 /* 800127A0 0000F6E0  80 7F 00 0C */ lwz r3, 0xc(r31)
 /* 800127A4 0000F6E4  28 03 00 00 */ cmplwi r3, 0
 /* 800127A8 0000F6E8  41 82 00 08 */ beq lbl_800127B0
-/* 800127AC 0000F6EC  48 19 4E 35 */ bl dKy_Global_amb_set
+/* 800127AC 0000F6EC  48 19 4E 35 */ bl dKy_Global_amb_set__FP12dKy_tevstr_c
 lbl_800127B0:
 /* 800127B0 0000F6F0  83 BF 00 18 */ lwz r29, 0x18(r31)
 /* 800127B4 0000F6F4  A0 1F 00 14 */ lhz r0, 0x14(r31)

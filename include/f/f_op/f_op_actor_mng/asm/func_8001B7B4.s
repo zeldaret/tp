@@ -52,7 +52,7 @@ lbl_8001B84C:
 /* 8001B86C 000187AC  38 77 4F F8 */ addi r3, r23, 0x4ff8
 /* 8001B870 000187B0  7F 04 C3 78 */ mr r4, r24
 /* 8001B874 000187B4  7F 25 CB 78 */ mr r5, r25
-/* 8001B878 000187B8  48 02 BE 21 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X1_
+/* 8001B878 000187B8  48 02 BE 21 */ bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc
 /* 8001B87C 000187BC  7C 7A 1B 78 */ mr r26, r3
 lbl_8001B880:
 /* 8001B880 000187C0  57 80 05 EF */ rlwinm. r0, r28, 0, 0x17, 0x17

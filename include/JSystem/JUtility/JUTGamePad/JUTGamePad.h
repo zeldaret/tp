@@ -7,9 +7,6 @@
 #include "os/OS.h"
 #include "pad/pad.h"
 
-typedef u32 EStickMode;
-typedef u32 EWhichStick;
-
 namespace CButton {
 enum {
     DPAD_LEFT = 0x0001,
@@ -29,6 +26,8 @@ enum {
 
 struct JUTGamePad : public JKRDisposer {
 public:
+    enum EStickMode {};
+    enum EWhichStick {};
     // typedef u32 EPadPort;
     enum EPadPort { Port_1 = 0, Port_2 = 0, Port_3 = 0, Port_4 = 0 };
     JUTGamePad(JUTGamePad::EPadPort port);
@@ -77,7 +76,7 @@ public:
         CStick();
         void clear();
         void clear(JUTGamePad* pad);
-        u32 update(s8 unk0, s8 unk1, EStickMode mode, EWhichStick stick, u32 unk2);
+        u32 update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick, u32 unk2);
         u32 getButton(u32 unk);
 
         float mPosX;
@@ -89,7 +88,11 @@ public:
     };
 
     struct CRumble {
-        typedef s32 ERumble;  // should probably be an enum
+        enum ERumble {
+            VAL_0 = 0,
+            VAL_1 = 1,
+            VAL_2 = 2,
+        };
 
         void clear();
         void clear(JUTGamePad* pad);
@@ -129,7 +132,7 @@ public:
 };
 
 struct JUTGamePadLongPress {
-    void checkCallback(s32 unk0, u32 unk2);
+    void checkCallback(int unk0, u32 unk2);
 
     u8 unk0[17];
     bool field_0x11;  // bool?
@@ -145,7 +148,7 @@ struct JUTGamePadLongPress {
 
 extern "C" {
 // s32 JUTGamePad_NS_init(void);
-bool getNumBit(u8* unk0, u32 unk1);
+bool getNumBit__FPUci(u8* unk0, u32 unk1);
 }
 
 extern float lbl_80456028;                // JUTGamePad::CStick::clear() init to 0.0

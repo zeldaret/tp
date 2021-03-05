@@ -9,7 +9,7 @@
 /* 8002F3D4 0002C314  88 1F 00 0C */ lbz r0, 0xc(r31)
 /* 8002F3D8 0002C318  54 00 10 3A */ slwi r0, r0, 2
 /* 8002F3DC 0002C31C  7C 84 00 2E */ lwzx r4, r4, r0
-/* 8002F3E0 0002C320  4B FF DB E1 */ bl dComIfG_resLoad_X1_
+/* 8002F3E0 0002C320  4B FF DB E1 */ bl dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap
 /* 8002F3E4 0002C324  2C 03 00 04 */ cmpwi r3, 4
 /* 8002F3E8 0002C328  40 82 00 38 */ bne lbl_8002F420
 /* 8002F3EC 0002C32C  80 9F 00 00 */ lwz r4, 0(r31)

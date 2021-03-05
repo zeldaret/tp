@@ -68,7 +68,7 @@ lbl_8011B808:
 /* 8011B818 00118758  7F E3 FB 78 */ mr r3, r31
 /* 8011B81C 0011875C  7F C4 F3 78 */ mr r4, r30
 /* 8011B820 00118760  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8011B824 00118764  4B F9 17 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 8011B824 00118764  4B F9 17 8D */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 8011B828 00118768  38 60 00 00 */ li r3, 0
 /* 8011B82C 0011876C  B0 7F 30 08 */ sth r3, 0x3008(r31)
 /* 8011B830 00118770  38 00 00 05 */ li r0, 5

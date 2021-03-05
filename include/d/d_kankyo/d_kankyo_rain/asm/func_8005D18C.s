@@ -17,7 +17,7 @@
 /* 8005D1CC 0005A10C  83 23 5D 74 */ lwz r25, 0x5d74(r3)
 /* 8005D1D0 0005A110  83 A3 5D AC */ lwz r29, 0x5dac(r3)
 /* 8005D1D4 0005A114  38 61 00 38 */ addi r3, r1, 0x38
-/* 8005D1D8 0005A118  4B FF D9 29 */ bl dKyw_get_wind_vecpow
+/* 8005D1D8 0005A118  4B FF D9 29 */ bl dKyw_get_wind_vecpow__Fv
 /* 8005D1DC 0005A11C  C0 01 00 38 */ lfs f0, 0x38(r1)
 /* 8005D1E0 0005A120  D0 01 00 C8 */ stfs f0, 0xc8(r1)
 /* 8005D1E4 0005A124  C0 01 00 3C */ lfs f0, 0x3c(r1)
@@ -52,7 +52,7 @@ lbl_8005D248:
 /* 8005D254 0005A194  38 79 00 E4 */ addi r3, r25, 0xe4
 /* 8005D258 0005A198  38 9A 36 E4 */ addi r4, r26, 0x36e4
 /* 8005D25C 0005A19C  38 A1 00 B0 */ addi r5, r1, 0xb0
-/* 8005D260 0005A1A0  4B FF E5 01 */ bl dKyr_get_vectle_calc
+/* 8005D260 0005A1A0  4B FF E5 01 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005D264 0005A1A4  38 7A 36 D8 */ addi r3, r26, 0x36d8
 /* 8005D268 0005A1A8  38 99 00 D8 */ addi r4, r25, 0xd8
 /* 8005D26C 0005A1AC  48 2E A1 31 */ bl PSVECSquareDistance
@@ -350,13 +350,13 @@ lbl_8005D614:
 /* 8005D678 0005A5B8  38 81 00 E0 */ addi r4, r1, 0xe0
 /* 8005D67C 0005A5BC  C0 22 88 94 */ lfs f1, lbl_80452294-_SDA2_BASE_(r2)
 /* 8005D680 0005A5C0  C0 42 87 FC */ lfs f2, lbl_804521FC-_SDA2_BASE_(r2)
-/* 8005D684 0005A5C4  4B FF E1 AD */ bl dKy_set_eyevect_calc2
+/* 8005D684 0005A5C4  4B FF E1 AD */ bl dKy_set_eyevect_calc2__FP12camera_classP3Vecff
 /* 8005D688 0005A5C8  C0 02 87 B8 */ lfs f0, lbl_804521B8-_SDA2_BASE_(r2)
 /* 8005D68C 0005A5CC  D0 01 00 DC */ stfs f0, 0xdc(r1)
 /* 8005D690 0005A5D0  D0 01 00 D8 */ stfs f0, 0xd8(r1)
 /* 8005D694 0005A5D4  D0 01 00 D4 */ stfs f0, 0xd4(r1)
-/* 8005D698 0005A5D8  4B FF D4 49 */ bl dKyw_get_wind_vec
-/* 8005D69C 0005A5DC  4B FF D4 55 */ bl dKyw_get_wind_pow
+/* 8005D698 0005A5D8  4B FF D4 49 */ bl dKyw_get_wind_vec__Fv
+/* 8005D69C 0005A5DC  4B FF D4 55 */ bl dKyw_get_wind_pow__Fv
 /* 8005D6A0 0005A5E0  C0 02 87 B8 */ lfs f0, lbl_804521B8-_SDA2_BASE_(r2)
 /* 8005D6A4 0005A5E4  D0 1A 36 CC */ stfs f0, 0x36cc(r26)
 /* 8005D6A8 0005A5E8  D0 1A 36 C8 */ stfs f0, 0x36c8(r26)
@@ -406,15 +406,15 @@ lbl_8005D72C:
 lbl_8005D74C:
 /* 8005D74C 0005A68C  2C 14 00 00 */ cmpwi r20, 0
 /* 8005D750 0005A690  40 82 00 5C */ bne lbl_8005D7AC
-/* 8005D754 0005A694  4B FF F6 7D */ bl overhead_bg_chk
+/* 8005D754 0005A694  4B FF F6 7D */ bl overhead_bg_chk__Fv
 /* 8005D758 0005A698  7C 78 1B 78 */ mr r24, r3
 /* 8005D75C 0005A69C  38 61 00 98 */ addi r3, r1, 0x98
 /* 8005D760 0005A6A0  C0 22 88 94 */ lfs f1, lbl_80452294-_SDA2_BASE_(r2)
-/* 8005D764 0005A6A4  4B FF F8 15 */ bl forward_overhead_bg_chk
+/* 8005D764 0005A6A4  4B FF F8 15 */ bl forward_overhead_bg_chk__FP4cXyzf
 /* 8005D768 0005A6A8  7C 77 1B 78 */ mr r23, r3
 /* 8005D76C 0005A6AC  38 61 00 8C */ addi r3, r1, 0x8c
 /* 8005D770 0005A6B0  C0 22 88 98 */ lfs f1, lbl_80452298-_SDA2_BASE_(r2)
-/* 8005D774 0005A6B4  4B FF F8 05 */ bl forward_overhead_bg_chk
+/* 8005D774 0005A6B4  4B FF F8 05 */ bl forward_overhead_bg_chk__FP4cXyzf
 /* 8005D778 0005A6B8  7C 76 1B 78 */ mr r22, r3
 /* 8005D77C 0005A6BC  2C 18 00 00 */ cmpwi r24, 0
 /* 8005D780 0005A6C0  41 82 00 14 */ beq lbl_8005D794
@@ -537,7 +537,7 @@ lbl_8005D8B0:
 /* 8005D928 0005A868  D0 3C 00 38 */ stfs f1, 0x38(r28)
 /* 8005D92C 0005A86C  7F 43 D3 78 */ mr r3, r26
 /* 8005D930 0005A870  7E 64 9B 78 */ mr r4, r19
-/* 8005D934 0005A874  4B FF F4 75 */ bl rain_bg_chk
+/* 8005D934 0005A874  4B FF F4 75 */ bl rain_bg_chk__FP19dKankyo_rain_Packeti
 /* 8005D938 0005A878  88 7C 00 18 */ lbz r3, 0x18(r28)
 /* 8005D93C 0005A87C  38 03 00 01 */ addi r0, r3, 1
 /* 8005D940 0005A880  98 1C 00 18 */ stb r0, 0x18(r28)
@@ -805,7 +805,7 @@ lbl_8005DCFC:
 /* 8005DD08 0005AC48  38 61 00 BC */ addi r3, r1, 0xbc
 /* 8005DD0C 0005AC4C  38 81 00 E0 */ addi r4, r1, 0xe0
 /* 8005DD10 0005AC50  38 A1 00 B0 */ addi r5, r1, 0xb0
-/* 8005DD14 0005AC54  4B FF D9 F5 */ bl get_vectle_calc_X1_
+/* 8005DD14 0005AC54  4B FF D9 F5 */ bl get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005DD18 0005AC58  C0 21 00 B0 */ lfs f1, 0xb0(r1)
 /* 8005DD1C 0005AC5C  C0 02 88 A4 */ lfs f0, lbl_804522A4-_SDA2_BASE_(r2)
 /* 8005DD20 0005AC60  EC 40 F8 2A */ fadds f2, f0, f31
@@ -822,7 +822,7 @@ lbl_8005DD44:
 /* 8005DD48 0005AC88  98 1C 00 18 */ stb r0, 0x18(r28)
 /* 8005DD4C 0005AC8C  7F 43 D3 78 */ mr r3, r26
 /* 8005DD50 0005AC90  7E 64 9B 78 */ mr r4, r19
-/* 8005DD54 0005AC94  4B FF F0 55 */ bl rain_bg_chk
+/* 8005DD54 0005AC94  4B FF F0 55 */ bl rain_bg_chk__FP19dKankyo_rain_Packeti
 lbl_8005DD58:
 /* 8005DD58 0005AC98  C0 3C 00 2C */ lfs f1, 0x2c(r28)
 /* 8005DD5C 0005AC9C  C0 1C 00 20 */ lfs f0, 0x20(r28)
@@ -849,7 +849,7 @@ lbl_8005DD58:
 /* 8005DDB0 0005ACF0  D0 3C 00 24 */ stfs f1, 0x24(r28)
 /* 8005DDB4 0005ACF4  7F 43 D3 78 */ mr r3, r26
 /* 8005DDB8 0005ACF8  7E 64 9B 78 */ mr r4, r19
-/* 8005DDBC 0005ACFC  4B FF EF ED */ bl rain_bg_chk
+/* 8005DDBC 0005ACFC  4B FF EF ED */ bl rain_bg_chk__FP19dKankyo_rain_Packeti
 /* 8005DDC0 0005AD00  38 00 00 0A */ li r0, 0xa
 /* 8005DDC4 0005AD04  B0 1C 00 4C */ sth r0, 0x4c(r28)
 /* 8005DDC8 0005AD08  48 00 00 0C */ b lbl_8005DDD4

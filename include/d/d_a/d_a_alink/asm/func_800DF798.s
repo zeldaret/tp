@@ -7,7 +7,7 @@
 /* 800DF7B0 000DC6F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800DF7B4 000DC6F4  41 82 00 1C */ beq lbl_800DF7D0
 /* 800DF7B8 000DC6F8  7F E3 FB 78 */ mr r3, r31
-/* 800DF7BC 000DC6FC  4B FF F9 01 */ bl checkUpperItemAction__9daAlink_cFvBow
+/* 800DF7BC 000DC6FC  4B FF F9 01 */ bl checkUpperItemActionBow__9daAlink_cFv
 /* 800DF7C0 000DC700  7F E3 FB 78 */ mr r3, r31
 /* 800DF7C4 000DC704  38 80 00 00 */ li r4, 0
 /* 800DF7C8 000DC708  4B FD BA E9 */ bl setBodyAngleXReadyAnime__9daAlink_cFi

@@ -21,7 +21,7 @@ lbl_8028E550:
 /* 8028E568 0028B4A8  41 82 00 14 */	beq lbl_8028E57C
 /* 8028E56C 0028B4AC  7F A4 EB 78 */	mr r4, r29
 /* 8028E570 0028B4B0  7F E5 FB 78 */	mr r5, r31
-/* 8028E574 0028B4B4  4B FF 91 F9 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor_particle
+/* 8028E574 0028B4B4  4B FF 91 F9 */	bl __ct__Q27JStudio16TObject_particleFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio17TAdaptor_particle
 /* 8028E578 0028B4B8  7C 7E 1B 78 */	mr r30, r3
 lbl_8028E57C:
 /* 8028E57C 0028B4BC  28 1E 00 00 */	cmplwi r30, 0
@@ -96,7 +96,7 @@ __ct__Q217JStudio_JParticle17TAdaptor_particleFPQ217JStudio_JParticle13TCreateOb
 /* 8028E664 0028B5A4  38 A0 00 00 */	li r5, 0
 /* 8028E668 0028B5A8  38 C0 00 14 */	li r6, 0x14
 /* 8028E66C 0028B5AC  38 E0 00 14 */	li r7, 0x14
-/* 8028E670 0028B5B0  48 0D 36 F1 */	bl func_80361D60
+/* 8028E670 0028B5B0  48 0D 36 F1 */	bl __construct_array
 /* 8028E674 0028B5B4  3C 60 80 3C */	lis r3, lbl_803C5B0C@ha
 /* 8028E678 0028B5B8  38 03 5B 0C */	addi r0, r3, lbl_803C5B0C@l
 /* 8028E67C 0028B5BC  90 1F 00 00 */	stw r0, 0(r31)
@@ -293,7 +293,7 @@ lbl_8028E834:
 lbl_8028E960:
 /* 8028E960 0028B8A0  3C 80 80 43 */	lis r4, lbl_80431540@ha
 /* 8028E964 0028B8A4  38 84 15 40 */	addi r4, r4, lbl_80431540@l
-/* 8028E968 0028B8A8  4B FF 78 59 */	bl adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl_immediate
+/* 8028E968 0028B8A8  4B FF 78 59 */	bl adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
 /* 8028E96C 0028B8AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028E970 0028B8B0  7C 08 03 A6 */	mtlr r0
 /* 8028E974 0028B8B4  38 21 00 10 */	addi r1, r1, 0x10
@@ -655,7 +655,7 @@ lbl_8028EE30:
 /* 8028EEA8 0028BDE8  80 01 00 B4 */	lwz r0, 0xb4(r1)
 /* 8028EEAC 0028BDEC  7C 05 07 34 */	extsh r5, r0
 /* 8028EEB0 0028BDF0  38 DF 00 68 */	addi r6, r31, 0x68
-/* 8028EEB4 0028BDF4  4B FF 18 81 */	bl JPAGetXYZRotateMtx
+/* 8028EEB4 0028BDF4  4B FF 18 81 */	bl JPAGetXYZRotateMtx__FsssPA4_f
 /* 8028EEB8 0028BDF8  E0 1C 00 18 */	psq_l f0, 24(r28), 0, qr0
 /* 8028EEBC 0028BDFC  C0 5C 00 20 */	lfs f2, 0x20(r28)
 /* 8028EEC0 0028BE00  F0 01 00 10 */	psq_st f0, 16(r1), 0, qr0

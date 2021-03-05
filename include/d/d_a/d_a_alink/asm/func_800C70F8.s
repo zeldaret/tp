@@ -46,7 +46,7 @@ lbl_800C71A4:
 /* 800C71A8 000C40E8  38 80 00 D7 */ li r4, 0xd7
 /* 800C71AC 000C40EC  3C A0 80 39 */ lis r5, lbl_8038E11C@ha
 /* 800C71B0 000C40F0  38 A5 E1 1C */ addi r5, r5, lbl_8038E11C@l
-/* 800C71B4 000C40F4  4B FE 5F 41 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800C71B4 000C40F4  4B FE 5F 41 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C71B8 000C40F8  2C 1E 00 01 */ cmpwi r30, 1
 /* 800C71BC 000C40FC  40 82 00 BC */ bne lbl_800C7278
 /* 800C71C0 000C4100  C0 22 93 78 */ lfs f1, lbl_80452D78-_SDA2_BASE_(r2)

@@ -200,12 +200,12 @@ lbl_8010E1D8:
 /* 8010E238 0010B178  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 8010E23C 0010B17C  C0 25 00 68 */ lfs f1, 0x68(r5)
 /* 8010E240 0010B180  C0 45 00 80 */ lfs f2, 0x80(r5)
-/* 8010E244 0010B184  4B F9 ED 9D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8010E244 0010B184  4B F9 ED 9D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010E248 0010B188  38 00 00 F9 */ li r0, 0xf9
 /* 8010E24C 0010B18C  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 8010E250 0010B190  88 1F 04 E2 */ lbz r0, 0x4e2(r31)
 /* 8010E254 0010B194  7C 03 07 74 */ extsb r3, r0
-/* 8010E258 0010B198  4B F1 EE 15 */ bl dComIfGp_getReverb
+/* 8010E258 0010B198  4B F1 EE 15 */ bl dComIfGp_getReverb__Fi
 /* 8010E25C 0010B19C  7C 67 1B 78 */ mr r7, r3
 /* 8010E260 0010B1A0  3C 60 00 08 */ lis r3, 0x00080220@ha
 /* 8010E264 0010B1A4  38 03 02 20 */ addi r0, r3, 0x00080220@l
@@ -258,7 +258,7 @@ lbl_8010E300:
 /* 8010E30C 0010B24C  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 8010E310 0010B250  C0 25 00 60 */ lfs f1, 0x60(r5)
 /* 8010E314 0010B254  C0 45 00 64 */ lfs f2, 0x64(r5)
-/* 8010E318 0010B258  4B F9 EC C9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8010E318 0010B258  4B F9 EC C9 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010E31C 0010B25C  38 00 00 F2 */ li r0, 0xf2
 /* 8010E320 0010B260  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 8010E324 0010B264  48 00 01 3C */ b lbl_8010E460
@@ -343,7 +343,7 @@ lbl_8010E43C:
 /* 8010E448 0010B388  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 8010E44C 0010B38C  C0 25 00 68 */ lfs f1, 0x68(r5)
 /* 8010E450 0010B390  C0 45 00 6C */ lfs f2, 0x6c(r5)
-/* 8010E454 0010B394  4B F9 EB 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8010E454 0010B394  4B F9 EB 8D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010E458 0010B398  38 00 00 F4 */ li r0, 0xf4
 /* 8010E45C 0010B39C  90 1E 31 98 */ stw r0, 0x3198(r30)
 lbl_8010E460:

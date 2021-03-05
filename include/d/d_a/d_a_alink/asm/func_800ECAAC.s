@@ -5,9 +5,9 @@
 /* 800ECABC 000E99FC  93 C1 00 08 */ stw r30, 8(r1)
 /* 800ECAC0 000E9A00  7C 7E 1B 78 */ mr r30, r3
 /*.global daAlink_searchBoar*/
-/* 800ECAC4 000E9A04  3C 60 80 0F */ lis r3, daAlink_searchBoar@ha
+/* 800ECAC4 000E9A04  3C 60 80 0F */ lis r3, daAlink_searchBoar__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchBoar*/
-/* 800ECAC8 000E9A08  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
+/* 800ECAC8 000E9A08  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar__FP10fopAc_ac_cPv@l
 /* 800ECACC 000E9A0C  38 80 00 00 */ li r4, 0
 /* 800ECAD0 000E9A10  4B F2 CD 29 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800ECAD4 000E9A14  7C 7F 1B 79 */ or. r31, r3, r3

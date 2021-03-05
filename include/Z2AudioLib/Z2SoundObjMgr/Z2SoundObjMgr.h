@@ -53,7 +53,7 @@ void Z2SoundObjMgr_NS_removeEnemy(void);
 void searchEnemy__13Z2SoundObjMgrFv(void);
 
 // Static initializer
-void func_802C01EC(void);
+void __sinit_Z2SoundObjMgr_cpp(void);
 }
 
 #endif  // Z2SOUNDOBJMGR_H_

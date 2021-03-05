@@ -70,7 +70,7 @@ lbl_800EDF80:
 /* 800EDFF8 000EAF38  B0 1D 30 04 */ sth r0, 0x3004(r29)
 /* 800EDFFC 000EAF3C  7F A3 EB 78 */ mr r3, r29
 /* 800EE000 000EAF40  38 80 00 4D */ li r4, 0x4d
-/* 800EE004 000EAF44  4B FB F0 F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800EE004 000EAF44  4B FB F0 F1 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800EE008 000EAF48  80 1D 05 74 */ lwz r0, 0x574(r29)
 /* 800EE00C 000EAF4C  54 00 05 24 */ rlwinm r0, r0, 0, 0x14, 0x12
 /* 800EE010 000EAF50  90 1D 05 74 */ stw r0, 0x574(r29)
@@ -220,7 +220,7 @@ lbl_800EE1DC:
 /* 800EE230 000EB170  7F A3 EB 78 */ mr r3, r29
 /* 800EE234 000EB174  38 80 00 4F */ li r4, 0x4f
 /* 800EE238 000EB178  7F 85 E3 78 */ mr r5, r28
-/* 800EE23C 000EB17C  4B FB EE B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800EE23C 000EB17C  4B FB EE B9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 lbl_800EE240:
 /* 800EE240 000EB180  7F A3 EB 78 */ mr r3, r29
 /* 800EE244 000EB184  38 80 00 4F */ li r4, 0x4f
@@ -229,7 +229,7 @@ lbl_800EE240:
 /* 800EE250 000EB190  7F A3 EB 78 */ mr r3, r29
 /* 800EE254 000EB194  38 A0 00 02 */ li r5, 2
 /* 800EE258 000EB198  7F 86 E3 78 */ mr r6, r28
-/* 800EE25C 000EB19C  4B FB F8 5D */ bl setUnderAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERffsfParam
+/* 800EE25C 000EB19C  4B FB F8 5D */ bl setUnderAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERPC16daAlinkHIO_anm_c
 /* 800EE260 000EB1A0  80 1D 05 74 */ lwz r0, 0x574(r29)
 /* 800EE264 000EB1A4  60 00 10 00 */ ori r0, r0, 0x1000
 /* 800EE268 000EB1A8  90 1D 05 74 */ stw r0, 0x574(r29)

@@ -17,7 +17,7 @@
 lbl_800F6DA4:
 /* 800F6DA4 000F3CE4  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 800F6DA8 000F3CE8  7F A3 EB 78 */ mr r3, r29
-/* 800F6DAC 000F3CEC  4B FF DB 79 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F6DAC 000F3CEC  4B FF DB 79 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F6DB0 000F3CF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6DB4 000F3CF4  40 82 00 20 */ bne lbl_800F6DD4
 /* 800F6DB8 000F3CF8  7F A3 EB 78 */ mr r3, r29

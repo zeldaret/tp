@@ -17,13 +17,13 @@
 /* 800283DC 0002531C  48 2F D2 E9 */ bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 800283E0 00025320  38 7F 00 74 */ addi r3, r31, 0x74
 /*.global J3DLightObj*/
-/* 800283E4 00025324  3C 80 80 02 */ lis r4, J3DLightObj@ha
+/* 800283E4 00025324  3C 80 80 02 */ lis r4, __ct__11J3DLightObjFv@ha
 /*.global J3DLightObj*/
-/* 800283E8 00025328  38 84 8C 0C */ addi r4, r4, J3DLightObj@l
+/* 800283E8 00025328  38 84 8C 0C */ addi r4, r4, __ct__11J3DLightObjFv@l
 /* 800283EC 0002532C  38 A0 00 00 */ li r5, 0
 /* 800283F0 00025330  38 C0 00 74 */ li r6, 0x74
 /* 800283F4 00025334  38 E0 00 06 */ li r7, 6
-/* 800283F8 00025338  48 33 99 69 */ bl func_80361D60
+/* 800283F8 00025338  48 33 99 69 */ bl __construct_array
 /* 800283FC 0002533C  7F C3 F3 78 */ mr r3, r30
 /* 80028400 00025340  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80028404 00025344  83 C1 00 08 */ lwz r30, 8(r1)

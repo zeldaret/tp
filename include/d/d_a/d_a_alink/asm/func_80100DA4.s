@@ -48,7 +48,7 @@ lbl_80100E48:
 /* 80100E54 000FDD94  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 80100E58 000FDD98  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
 /* 80100E5C 000FDD9C  C0 45 00 2C */ lfs f2, 0x2c(r5)
-/* 80100E60 000FDDA0  4B FA C1 81 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80100E60 000FDDA0  4B FA C1 81 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80100E64 000FDDA4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80100E68 000FDDA8  FC 1E 08 40 */ fcmpo cr0, f30, f1
 /* 80100E6C 000FDDAC  4C 41 13 82 */ cror 2, 1, 2

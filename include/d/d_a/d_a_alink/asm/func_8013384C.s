@@ -7,7 +7,7 @@
 /* 80133864 001307A4  4B F8 E7 09 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80133868 001307A8  7F E3 FB 78 */ mr r3, r31
 /* 8013386C 001307AC  38 80 00 21 */ li r4, 0x21
-/* 80133870 001307B0  4B FF 4F 9D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANMWolf
+/* 80133870 001307B0  4B FF 4F 9D */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80133874 001307B4  2C 03 00 00 */ cmpwi r3, 0
 /* 80133878 001307B8  40 82 00 20 */ bne lbl_80133898
 /* 8013387C 001307BC  7F E3 FB 78 */ mr r3, r31
@@ -16,7 +16,7 @@
 /* 80133888 001307C8  3C A0 80 39 */ lis r5, lbl_8038F46C@ha
 /* 8013388C 001307CC  38 A5 F4 6C */ addi r5, r5, lbl_8038F46C@l
 /* 80133890 001307D0  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 80133894 001307D4  4B FF 5E 45 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80133894 001307D4  4B FF 5E 45 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80133898:
 /* 80133898 001307D8  7F E3 FB 78 */ mr r3, r31
 /* 8013389C 001307DC  4B FF E1 55 */ bl initWolfRopeShapeAngle__9daAlink_cFv

@@ -16,9 +16,9 @@
 /* 800165D8 00013518  7C 68 1B 78 */ mr r8, r3
 /* 800165DC 0001351C  38 7F 00 00 */ addi r3, r31, 0
 /*.global mDoDvdErr_Watch*/
-/* 800165E0 00013520  3C 80 80 01 */ lis r4, mDoDvdErr_Watch@ha
+/* 800165E0 00013520  3C 80 80 01 */ lis r4, mDoDvdErr_Watch__FPv@ha
 /*.global mDoDvdErr_Watch*/
-/* 800165E4 00013524  38 84 66 A4 */ addi r4, r4, mDoDvdErr_Watch@l
+/* 800165E4 00013524  38 84 66 A4 */ addi r4, r4, mDoDvdErr_Watch__FPv@l
 /* 800165E8 00013528  38 A0 00 00 */ li r5, 0
 /* 800165EC 0001352C  38 DF 03 20 */ addi r6, r31, 0x320
 /* 800165F0 00013530  38 E0 0C 00 */ li r7, 0xc00
@@ -38,9 +38,9 @@
 /* 80016628 00013568  54 08 F0 BE */ srwi r8, r0, 2
 /* 8001662C 0001356C  38 E0 00 00 */ li r7, 0
 /*.global AlarmHandler*/
-/* 80016630 00013570  3C 80 80 01 */ lis r4, AlarmHandler@ha
+/* 80016630 00013570  3C 80 80 01 */ lis r4, AlarmHandler__FP7OSAlarmP9OSContext@ha
 /*.global AlarmHandler*/
-/* 80016634 00013574  39 24 67 04 */ addi r9, r4, AlarmHandler@l
+/* 80016634 00013574  39 24 67 04 */ addi r9, r4, AlarmHandler__FP7OSAlarmP9OSContext@l
 /* 80016638 00013578  48 32 45 89 */ bl OSSetPeriodicAlarm
 /* 8001663C 0001357C  38 00 00 01 */ li r0, 1
 /* 80016640 00013580  98 0D 87 08 */ stb r0, lbl_80450C88-_SDA_BASE_(r13)

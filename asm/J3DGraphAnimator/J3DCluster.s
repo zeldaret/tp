@@ -3,8 +3,8 @@
 .section .text, "ax" # 8032e1f8
 
 
-.global J3DDeformData
-J3DDeformData:
+.global __ct__13J3DDeformDataFv
+__ct__13J3DDeformDataFv:
 /* 8032E1F8 0032B138  38 00 00 00 */	li r0, 0
 /* 8032E1FC 0032B13C  B0 03 00 00 */	sth r0, 0(r3)
 /* 8032E200 0032B140  B0 03 00 02 */	sth r0, 2(r3)
@@ -48,14 +48,14 @@ deform__13J3DDeformDataFP8J3DModel:
 /* 8032E278 0032B1B8  7C 08 02 A6 */	mflr r0
 /* 8032E27C 0032B1BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032E280 0032B1C0  38 84 00 88 */	addi r4, r4, 0x88
-/* 8032E284 0032B1C4  48 00 00 15 */	bl deform__13J3DDeformDataFP8J3DModel_X1_
+/* 8032E284 0032B1C4  48 00 00 15 */	bl deform__13J3DDeformDataFP15J3DVertexBuffer
 /* 8032E288 0032B1C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8032E28C 0032B1CC  7C 08 03 A6 */	mtlr r0
 /* 8032E290 0032B1D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032E294 0032B1D4  4E 80 00 20 */	blr 
 
-.global deform__13J3DDeformDataFP8J3DModel_X1_
-deform__13J3DDeformDataFP8J3DModel_X1_:
+.global deform__13J3DDeformDataFP15J3DVertexBuffer
+deform__13J3DDeformDataFP15J3DVertexBuffer:
 /* 8032E298 0032B1D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032E29C 0032B1DC  7C 08 02 A6 */	mflr r0
 /* 8032E2A0 0032B1E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -129,8 +129,8 @@ lbl_8032E388:
 /* 8032E394 0032B2D4  41 80 FF D8 */	blt lbl_8032E36C
 /* 8032E398 0032B2D8  4E 80 00 20 */	blr 
 
-.global J3DDeformer
-J3DDeformer:
+.global __ct__11J3DDeformerFP13J3DDeformData
+__ct__11J3DDeformerFP13J3DDeformData:
 /* 8032E39C 0032B2DC  90 83 00 00 */	stw r4, 0(r3)
 /* 8032E3A0 0032B2E0  38 00 00 00 */	li r0, 0
 /* 8032E3A4 0032B2E4  90 03 00 04 */	stw r0, 4(r3)
@@ -197,7 +197,7 @@ lbl_8032E46C:
 /* 8032E47C 0032B3BC  7F A4 EB 78 */	mr r4, r29
 /* 8032E480 0032B3C0  7F C5 F3 78 */	mr r5, r30
 /* 8032E484 0032B3C4  80 DC 00 08 */	lwz r6, 8(r28)
-/* 8032E488 0032B3C8  48 00 06 2D */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_X1_
+/* 8032E488 0032B3C8  48 00 06 2D */	bl deform__11J3DDeformerFP15J3DVertexBufferUsPf
 lbl_8032E48C:
 /* 8032E48C 0032B3CC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8032E490 0032B3D0  48 03 3D 8D */	bl _restgpr_26
@@ -206,8 +206,8 @@ lbl_8032E48C:
 /* 8032E49C 0032B3DC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032E4A0 0032B3E0  4E 80 00 20 */	blr 
 
-.global deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32
-deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32:
+.global deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
+deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf:
 /* 8032E4A4 0032B3E4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032E4A8 0032B3E8  7C 08 02 A6 */	mflr r0
 /* 8032E4AC 0032B3EC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -305,8 +305,8 @@ lbl_8032E5E8:
 /* 8032E604 0032B544  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032E608 0032B548  4E 80 00 20 */	blr 
 
-.global deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32
-deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32:
+.global deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
+deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf:
 /* 8032E60C 0032B54C  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8032E610 0032B550  7C 08 02 A6 */	mflr r0
 /* 8032E614 0032B554  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -632,8 +632,8 @@ lbl_8032EA68:
 /* 8032EAAC 0032B9EC  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8032EAB0 0032B9F0  4E 80 00 20 */	blr 
 
-.global deform__11J3DDeformerFP15J3DVertexBufferUs_X1_
-deform__11J3DDeformerFP15J3DVertexBufferUs_X1_:
+.global deform__11J3DDeformerFP15J3DVertexBufferUsPf
+deform__11J3DDeformerFP15J3DVertexBufferUsPf:
 /* 8032EAB4 0032B9F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032EAB8 0032B9F8  7C 08 02 A6 */	mflr r0
 /* 8032EABC 0032B9FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -683,7 +683,7 @@ lbl_8032EB30:
 /* 8032EB64 0032BAA4  7F 85 E3 78 */	mr r5, r28
 /* 8032EB68 0032BAA8  7F 66 DB 78 */	mr r6, r27
 /* 8032EB6C 0032BAAC  7F E7 FB 78 */	mr r7, r31
-/* 8032EB70 0032BAB0  4B FF F9 35 */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_VtxPosF32
+/* 8032EB70 0032BAB0  4B FF F9 35 */	bl deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
 /* 8032EB74 0032BAB4  80 1D 00 10 */	lwz r0, 0x10(r29)
 /* 8032EB78 0032BAB8  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8032EB7C 0032BABC  41 82 00 38 */	beq lbl_8032EBB4
@@ -699,7 +699,7 @@ lbl_8032EB30:
 /* 8032EBA4 0032BAE4  7F 85 E3 78 */	mr r5, r28
 /* 8032EBA8 0032BAE8  7F 66 DB 78 */	mr r6, r27
 /* 8032EBAC 0032BAEC  7F E7 FB 78 */	mr r7, r31
-/* 8032EBB0 0032BAF0  4B FF FA 5D */	bl deform__11J3DDeformerFP15J3DVertexBufferUs_VtxNrmF32
+/* 8032EBB0 0032BAF0  4B FF FA 5D */	bl deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
 lbl_8032EBB4:
 /* 8032EBB4 0032BAF4  39 61 00 20 */	addi r11, r1, 0x20
 /* 8032EBB8 0032BAF8  48 03 36 69 */	bl _restgpr_27

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80035c8c
 
 
-.global dJntCol_c
-dJntCol_c:
+.global __ct__9dJntCol_cFv
+__ct__9dJntCol_cFv:
 /* 80035C8C 00032BCC  38 00 00 00 */	li r0, 0
 /* 80035C90 00032BD0  90 03 00 04 */	stw r0, 4(r3)
 /* 80035C94 00032BD4  90 03 00 00 */	stw r0, 0(r3)
@@ -415,7 +415,7 @@ lbl_8003624C:
 /* 80036258 00033198  7C 64 1B 78 */	mr r4, r3
 /* 8003625C 0003319C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80036260 000331A0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
-/* 80036264 000331A4  4B FD 61 39 */	bl mDoMtx_XrotM
+/* 80036264 000331A4  4B FD 61 39 */	bl mDoMtx_XrotM__FPA4_fs
 /* 80036268 000331A8  C0 01 01 B8 */	lfs f0, 0x1b8(r1)
 /* 8003626C 000331AC  FC 20 00 50 */	fneg f1, f0
 /* 80036270 000331B0  C0 41 01 C0 */	lfs f2, 0x1c0(r1)
@@ -423,7 +423,7 @@ lbl_8003624C:
 /* 80036278 000331B8  7C 64 1B 78 */	mr r4, r3
 /* 8003627C 000331BC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80036280 000331C0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
-/* 80036284 000331C4  4B FD 61 B1 */	bl mDoMtx_YrotM
+/* 80036284 000331C4  4B FD 61 B1 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80036288 000331C8  C0 01 01 94 */	lfs f0, 0x194(r1)
 /* 8003628C 000331CC  FC 20 00 50 */	fneg f1, f0
 /* 80036290 000331D0  C0 01 01 98 */	lfs f0, 0x198(r1)

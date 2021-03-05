@@ -19,25 +19,25 @@ lbl_802BD15C:
 /* 802BD174 002BA0B4  38 00 00 7F */ li r0, 0x7f
 /* 802BD178 002BA0B8  98 1F 00 08 */ stb r0, 8(r31)
 /* 802BD17C 002BA0BC  38 7F 00 0C */ addi r3, r31, 0xc
-/* 802BD180 002BA0C0  4B FF F0 C9 */ bl Z2Audience3DSetting
+/* 802BD180 002BA0C0  4B FF F0 C9 */ bl __ct__19Z2Audience3DSettingFv
 /* 802BD184 002BA0C4  38 7F 01 34 */ addi r3, r31, 0x134
 /*.global Z2AudioCamera*/
-/* 802BD188 002BA0C8  3C 80 80 2C */ lis r4, Z2AudioCamera@ha
+/* 802BD188 002BA0C8  3C 80 80 2C */ lis r4, __ct__13Z2AudioCameraFv@ha
 /*.global Z2AudioCamera*/
-/* 802BD18C 002BA0CC  38 84 C7 58 */ addi r4, r4, Z2AudioCamera@l
+/* 802BD18C 002BA0CC  38 84 C7 58 */ addi r4, r4, __ct__13Z2AudioCameraFv@l
 /* 802BD190 002BA0D0  38 A0 00 00 */ li r5, 0
 /* 802BD194 002BA0D4  38 C0 00 74 */ li r6, 0x74
 /* 802BD198 002BA0D8  38 E0 00 01 */ li r7, 1
-/* 802BD19C 002BA0DC  48 0A 4B C5 */ bl func_80361D60
+/* 802BD19C 002BA0DC  48 0A 4B C5 */ bl __construct_array
 /* 802BD1A0 002BA0E0  38 7F 01 A8 */ addi r3, r31, 0x1a8
 /*.global Z2SpotMic*/
-/* 802BD1A4 002BA0E4  3C 80 80 2C */ lis r4, Z2SpotMic@ha
+/* 802BD1A4 002BA0E4  3C 80 80 2C */ lis r4, __ct__9Z2SpotMicFv@ha
 /*.global Z2SpotMic*/
-/* 802BD1A8 002BA0E8  38 84 CD 28 */ addi r4, r4, Z2SpotMic@l
+/* 802BD1A8 002BA0E8  38 84 CD 28 */ addi r4, r4, __ct__9Z2SpotMicFv@l
 /* 802BD1AC 002BA0EC  38 A0 00 00 */ li r5, 0
 /* 802BD1B0 002BA0F0  38 C0 00 28 */ li r6, 0x28
 /* 802BD1B4 002BA0F4  38 E0 00 01 */ li r7, 1
-/* 802BD1B8 002BA0F8  48 0A 4B A9 */ bl func_80361D60
+/* 802BD1B8 002BA0F8  48 0A 4B A9 */ bl __construct_array
 /* 802BD1BC 002BA0FC  38 00 00 01 */ li r0, 1
 /* 802BD1C0 002BA100  90 1F 01 D4 */ stw r0, 0x1d4(r31)
 /* 802BD1C4 002BA104  38 00 00 00 */ li r0, 0

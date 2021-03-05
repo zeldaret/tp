@@ -39,7 +39,7 @@ lbl_800F7078:
 lbl_800F7098:
 /* 800F7098 000F3FD8  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 800F709C 000F3FDC  7F A3 EB 78 */ mr r3, r29
-/* 800F70A0 000F3FE0  4B FF D8 85 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F70A0 000F3FE0  4B FF D8 85 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F70A4 000F3FE4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F70A8 000F3FE8  40 82 00 24 */ bne lbl_800F70CC
 /* 800F70AC 000F3FEC  7F A3 EB 78 */ mr r3, r29

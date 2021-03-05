@@ -16,8 +16,8 @@ clear__16J3DMaterialTableFv:
 /* 8032F5C8 0032C508  B0 03 00 1C */	sth r0, 0x1c(r3)
 /* 8032F5CC 0032C50C  4E 80 00 20 */	blr 
 
-.global J3DMaterialTable
-J3DMaterialTable:
+.global __ct__16J3DMaterialTableFv
+__ct__16J3DMaterialTableFv:
 /* 8032F5D0 0032C510  3C 80 80 3D */	lis r4, lbl_803CEE80@ha
 /* 8032F5D4 0032C514  38 04 EE 80 */	addi r0, r4, lbl_803CEE80@l
 /* 8032F5D8 0032C518  90 03 00 00 */	stw r0, 0(r3)

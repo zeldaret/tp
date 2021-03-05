@@ -204,7 +204,7 @@ lbl_800B29EC:
 /* 800B2A00 000AF940  1C 00 00 38 */ mulli r0, r0, 0x38
 /* 800B2A04 000AF944  7C 63 02 14 */ add r3, r3, r0
 /* 800B2A08 000AF948  80 63 5D 74 */ lwz r3, 0x5d74(r3)
-/* 800B2A0C 000AF94C  48 0C EC 09 */ bl dCam_getControledAngleY
+/* 800B2A0C 000AF94C  48 0C EC 09 */ bl dCam_getControledAngleY__FP12camera_class
 /* 800B2A10 000AF950  A8 1E 2F E0 */ lha r0, 0x2fe0(r30)
 /* 800B2A14 000AF954  7C 00 1A 14 */ add r0, r0, r3
 /* 800B2A18 000AF958  B0 1E 2F E2 */ sth r0, 0x2fe2(r30)

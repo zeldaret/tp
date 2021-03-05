@@ -11,9 +11,9 @@
 /* 80071E14 0006ED54  54 00 00 01 */ rlwinm. r0, r0, 0, 0, 0
 /* 80071E18 0006ED58  40 82 00 58 */ bne lbl_80071E70
 /*.global sound_attention*/
-/* 80071E1C 0006ED5C  3C 60 80 07 */ lis r3, sound_attention@ha
+/* 80071E1C 0006ED5C  3C 60 80 07 */ lis r3, sound_attention__FP10fopAc_ac_cPv@ha
 /*.global sound_attention*/
-/* 80071E20 0006ED60  38 63 1D 6C */ addi r3, r3, sound_attention@l
+/* 80071E20 0006ED60  38 63 1D 6C */ addi r3, r3, sound_attention__FP10fopAc_ac_cPv@l
 /* 80071E24 0006ED64  7F E4 FB 78 */ mr r4, r31
 /* 80071E28 0006ED68  4B FA 79 95 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80071E2C 0006ED6C  80 1F 05 14 */ lwz r0, 0x514(r31)

@@ -10,7 +10,7 @@
 /* 8013A810 00137750  3C A0 80 39 */ lis r5, lbl_8038F5B4@ha
 /* 8013A814 00137754  38 A5 F5 B4 */ addi r5, r5, lbl_8038F5B4@l
 /* 8013A818 00137758  38 A5 00 14 */ addi r5, r5, 0x14
-/* 8013A81C 0013775C  4B FE F0 2D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013A81C 0013775C  4B FE F0 2D */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013A820 00137760  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013A824 00137764  D0 3F 04 FC */ stfs f1, 0x4fc(r31)
 /* 8013A828 00137768  D0 3F 33 98 */ stfs f1, 0x3398(r31)

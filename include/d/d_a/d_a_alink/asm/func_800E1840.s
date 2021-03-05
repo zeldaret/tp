@@ -27,7 +27,7 @@ lbl_800E18A0:
 /* 800E18A0 000DE7E0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_800E18A4:
 /* 800E18A4 000DE7E4  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E18A8 000DE7E8  4B FC BB 01 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800E18A8 000DE7E8  4B FC BB 01 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800E18AC 000DE7EC  7F A3 EB 78 */ mr r3, r29
 /* 800E18B0 000DE7F0  81 9D 06 28 */ lwz r12, 0x628(r29)
 /* 800E18B4 000DE7F4  81 8C 02 A0 */ lwz r12, 0x2a0(r12)

@@ -10,7 +10,7 @@
 /* 800B8954 000B5894  48 00 00 20 */ b lbl_800B8974
 lbl_800B8958:
 /* 800B8958 000B5898  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
-/* 800B895C 000B589C  4B F7 55 C1 */ bl dComIfGp_getSelectItem
+/* 800B895C 000B589C  4B F7 55 C1 */ bl dComIfGp_getSelectItem__Fi
 /* 800B8960 000B58A0  54 63 06 3E */ clrlwi r3, r3, 0x18
 /* 800B8964 000B58A4  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800B8968 000B58A8  7C 00 18 50 */ subf r0, r0, r3

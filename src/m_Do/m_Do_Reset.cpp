@@ -17,7 +17,7 @@ s32 pause__13JASTaskThreadFb(JASTaskThread*, bool);
 void cAPICPad_recalibrate__Fv(void);
 void getResetData__6mDoRstFv(void);
 void destroyManager__8JUTVideoFv(void);
-void mDoDvdErr_ThdCleanup(void);
+void mDoDvdErr_ThdCleanup__Fv(void);
 void VIFlush(void);
 void VISetBlack(s32);
 void VIWaitForRetrace(void);
@@ -51,7 +51,7 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     OSThread* thread;
     s32 enable;
     /* sManager */ lbl_80451550->clearIndex();
-    mDoDvdErr_ThdCleanup();
+    mDoDvdErr_ThdCleanup__Fv();
     cAPICPad_recalibrate__Fv();
     if (lbl_80450BB8 != false) {
         do {

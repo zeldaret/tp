@@ -9,20 +9,20 @@
 extern "C" {
 void fopDwTg_DrawQTo__FP16create_tag_class(void);
 void fopDwTg_DrawQTo(void);
-void fopDwTg_Init(void);
-void fopDwTg_ToDrawQ(void);
-void fopMsgM_GetAppend(void);
-void fopMsg_Draw(void);
+void fopDwTg_Init__FP16create_tag_classPv(void);
+void fopDwTg_ToDrawQ__FP16create_tag_classi(void);
+void fopMsgM_GetAppend__FPv(void);
+void fopMsg_Draw__FPv(void);
 void fpcLf_DrawMethod__FP21leafdraw_method_classPv(void);
 void fpcLf_GetPriority__FPC14leafdraw_class(void);
 void fpcMtd_Create__FP20process_method_classPv(void);
 void fpcMtd_Delete__FP20process_method_classPv(void);
 void fpcMtd_Execute__FP20process_method_classPv(void);
 void fpcMtd_IsDelete__FP20process_method_classPv(void);
-void func_8001F4B0(void);
-void func_8001F4E8(void);
-void func_8001F53C(void);
-void func_8001F588(void);
+void fopMsg_Execute__FPv(void);
+void fopMsg_IsDelete__FPv(void);
+void fopMsg_Delete__FPv(void);
+void fopMsg_Create__FPv(void);
 }
 
 // additional symbols needed for f_op_msg.cpp
@@ -32,36 +32,36 @@ extern u8 lbl_80451124;
 
 extern "C" {
 // fopMsg_Draw__FPv
-// fopMsg_Draw(void*)
-asm void fopMsg_Draw(void) {
+// fopMsg_Draw__FPv(void*)
+asm void fopMsg_Draw__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F488.s"
 }
 
 // fopMsg_Execute__FPv
 // fopMsg_Execute(void*)
-asm void func_8001F4B0(void) {
+asm void fopMsg_Execute__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F4B0.s"
 }
 
 // fopMsg_IsDelete__FPv
 // fopMsg_IsDelete(void*)
-asm void func_8001F4E8(void) {
+asm void fopMsg_IsDelete__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F4E8.s"
 }
 
 // fopMsg_Delete__FPv
 // fopMsg_Delete(void*)
-asm void func_8001F53C(void) {
+asm void fopMsg_Delete__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F53C.s"
 }
 
 // fopMsg_Create__FPv
 // fopMsg_Create(void*)
-asm void func_8001F588(void) {
+asm void fopMsg_Create__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_msg/asm/func_8001F588.s"
 }

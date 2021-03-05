@@ -37,7 +37,7 @@ lbl_80101560:
 /* 801015C0 000FE500  D0 03 00 1C */ stfs f0, 0x1c(r3)
 lbl_801015C4:
 /* 801015C4 000FE504  7F C3 F3 78 */ mr r3, r30
-/* 801015C8 000FE508  4B FF F3 25 */ bl checkNextAction__9daAlink_cFiRoofHang
+/* 801015C8 000FE508  4B FF F3 25 */ bl checkNextActionRoofHang__9daAlink_cFv
 /* 801015CC 000FE50C  48 00 00 54 */ b lbl_80101620
 lbl_801015D0:
 /* 801015D0 000FE510  C0 3F 00 10 */ lfs f1, 0x10(r31)

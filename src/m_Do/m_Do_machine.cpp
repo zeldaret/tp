@@ -11,7 +11,7 @@ extern "C" {
 void firstInit__9JFWSystemFv(void);
 void init__9JFWSystemFv(void);
 void setVisible__12JUTAssertionFb(void);
-void draw__17JUTConsoleManagerCFvDirect(void);
+void drawDirect__17JUTConsoleManagerCFb(void);
 void setDirectConsole__17JUTConsoleManagerFP10JUTConsole(void);
 void getLineOffset__10JUTConsoleCFv(void);
 void getUsedLine__10JUTConsoleCFv(void);
@@ -43,40 +43,40 @@ void becomeCurrentHeap__7JKRHeapFv(void);
 void cAPICPad_recalibrate__Fv(void);
 void cM_initRnd__Fiii(void);
 void createManager__15JKRThreadSwitchFP7JKRHeap(void);
-void developKeyCheck(void);
-void exceptionReadPad(void);
-void exceptionRestart(void);
-void exception_addition(void);
-void fault_callback_scroll(void);
+void developKeyCheck__FUlUl(void);
+void exceptionReadPad__FPUlPUl(void);
+void exceptionRestart__Fv(void);
+void exception_addition__FP10JUTConsole(void);
+void fault_callback_scroll__FUsP9OSContextUlUl(void);
 void getFreeSize__7JKRHeapCFv(void);
 void getTotalFreeSize__7JKRHeapCFv(void);
 void init__3cMlFP7JKRHeap(void);
-void mDoDvdErr_ThdInit(void);
+void mDoDvdErr_ThdInit__Fv(void);
 void create__9mDoDvdThdFl(void);
-void mDoExt_createArchiveHeap(void);
-void mDoExt_createAssertHeap(void);
-void mDoExt_createCommandHeap(void);
-void mDoExt_createDbPrintHeap(void);
-void mDoExt_createGameHeap(void);
-void mDoExt_createJ2dHeap(void);
-void mDoExt_createZeldaHeap(void);
-void mDoExt_getArchiveHeap(void);
-void mDoExt_getCommandHeap(void);
-void mDoExt_getDbPrintHeap(void);
-void mDoExt_getGameHeap(void);
-void mDoExt_getJ2dHeap(void);
-void mDoExt_getZeldaHeap(void);
-void mDoMch_Create(void);
-void mDoMch_HeapCheckAll(void);
-void mDoMch_IsProgressiveMode(void);
+void mDoExt_createArchiveHeap__FUlP7JKRHeap(void);
+void mDoExt_createAssertHeap__FP7JKRHeap(void);
+void mDoExt_createCommandHeap__FUlP7JKRHeap(void);
+void mDoExt_createDbPrintHeap__FUlP7JKRHeap(void);
+void mDoExt_createGameHeap__FUlP7JKRHeap(void);
+void mDoExt_createJ2dHeap__FUlP7JKRHeap(void);
+void mDoExt_createZeldaHeap__FUlP7JKRHeap(void);
+void mDoExt_getArchiveHeap__Fv(void);
+void mDoExt_getCommandHeap__Fv(void);
+void mDoExt_getDbPrintHeap__Fv(void);
+void mDoExt_getGameHeap__Fv(void);
+void mDoExt_getJ2dHeap__Fv(void);
+void mDoExt_getZeldaHeap__Fv(void);
+void mDoMch_Create__Fv(void);
+void mDoMch_HeapCheckAll__Fv(void);
+void mDoMch_IsProgressiveMode__Fv(void);
 void ThdInit__15mDoMemCd_Ctrl_cFv(void);
 void mDoRst_reset__FiUli(void);
-void myExceptionCallback(void);
-void myGetHeapTypeByString(void);
-void myHeapCheckRecursive(void);
-void myMemoryErrorRoutine(void);
-void my_PrintHeap(void);
-void my_SysPrintHeap(void);
+void myExceptionCallback__FUsP9OSContextUlUl(void);
+void myGetHeapTypeByString__FP7JKRHeap(void);
+void myHeapCheckRecursive__FP7JKRHeap(void);
+void myMemoryErrorRoutine__FPvUli(void);
+void my_PrintHeap__FPCcUl(void);
+void my_SysPrintHeap__FPCcPvUl(void);
 void setErrorFlag__7JKRHeapFb(void);
 void setErrorHandler__7JKRHeapFPFP7JKRHeapUli_v(void);
 void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap(void);
@@ -132,92 +132,92 @@ extern u8 lbl_803EAF40;
 
 extern "C" {
 // myGetHeapTypeByString__FP7JKRHeap
-// myGetHeapTypeByString(JKRHeap*)
-asm void myGetHeapTypeByString(void) {
+// myGetHeapTypeByString__FP7JKRHeap(JKRHeap*)
+asm void myGetHeapTypeByString__FP7JKRHeap(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B1EC.s"
 }
 
 // myMemoryErrorRoutine__FPvUli
-// myMemoryErrorRoutine(void*, u32, int)
-asm void myMemoryErrorRoutine(void) {
+// myMemoryErrorRoutine__FPvUli(void*, u32, int)
+asm void myMemoryErrorRoutine__FPvUli(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B3EC.s"
 }
 
 // myHeapCheckRecursive__FP7JKRHeap
-// myHeapCheckRecursive(JKRHeap*)
-asm void myHeapCheckRecursive(void) {
+// myHeapCheckRecursive__FP7JKRHeap(JKRHeap*)
+asm void myHeapCheckRecursive__FP7JKRHeap(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B5C8.s"
 }
 
 // mDoMch_HeapCheckAll__Fv
-// mDoMch_HeapCheckAll(void)
-asm void mDoMch_HeapCheckAll(void) {
+// mDoMch_HeapCheckAll__Fv(void)
+asm void mDoMch_HeapCheckAll__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B668.s"
 }
 
 // developKeyCheck__FUlUl
-// developKeyCheck(u32, u32)
-asm void developKeyCheck(void) {
+// developKeyCheck__FUlUl(u32, u32)
+asm void developKeyCheck__FUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B68C.s"
 }
 
 // mDoMch_IsProgressiveMode__Fv
-// mDoMch_IsProgressiveMode(void)
-asm void mDoMch_IsProgressiveMode(void) {
+// mDoMch_IsProgressiveMode__Fv(void)
+asm void mDoMch_IsProgressiveMode__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B73C.s"
 }
 
 // exceptionReadPad__FPUlPUl
-// exceptionReadPad(u32*, u32*)
-asm void exceptionReadPad(void) {
+// exceptionReadPad__FPUlPUl(u32*, u32*)
+asm void exceptionReadPad__FPUlPUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B768.s"
 }
 
 // exceptionRestart__Fv
-// exceptionRestart(void)
-asm void exceptionRestart(void) {
+// exceptionRestart__Fv(void)
+asm void exceptionRestart__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B798.s"
 }
 
 // myExceptionCallback__FUsP9OSContextUlUl
-// myExceptionCallback(u16, OSContext*, u32, u32)
-asm void myExceptionCallback(void) {
+// myExceptionCallback__FUsP9OSContextUlUl(u16, OSContext*, u32, u32)
+asm void myExceptionCallback__FUsP9OSContextUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B7C8.s"
 }
 
 // fault_callback_scroll__FUsP9OSContextUlUl
-// fault_callback_scroll(u16, OSContext*, u32, u32)
-asm void fault_callback_scroll(void) {
+// fault_callback_scroll__FUsP9OSContextUlUl(u16, OSContext*, u32, u32)
+asm void fault_callback_scroll__FUsP9OSContextUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000B95C.s"
 }
 
 // my_PrintHeap__FPCcUl
-// my_PrintHeap(const s8*, u32)
-asm void my_PrintHeap(void) {
+// my_PrintHeap__FPCcUl(const s8*, u32)
+asm void my_PrintHeap__FPCcUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000BCF4.s"
 }
 
 // my_SysPrintHeap__FPCcPvUl
-// my_SysPrintHeap(const s8*, void*, u32)
-asm void my_SysPrintHeap(void) {
+// my_SysPrintHeap__FPCcPvUl(const s8*, void*, u32)
+asm void my_SysPrintHeap__FPCcPvUl(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000BCF8.s"
 }
 
 // mDoMch_Create__Fv
-// mDoMch_Create(void)
-asm void mDoMch_Create(void) {
+// mDoMch_Create__Fv(void)
+asm void mDoMch_Create__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine/asm/func_8000BD44.s"
 }

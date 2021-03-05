@@ -2,7 +2,7 @@
 #define Z2AUDIENCE_H_
 
 extern "C" {
-void Z2Audience(void);
+void __ct__10Z2AudienceFv(void);
 void __dt__10Z2AudienceFv(void);
 void calcDeltaPriority___10Z2AudienceCFfib(void);
 void calcFxMix___10Z2AudienceCFfi(void);
@@ -16,22 +16,22 @@ void calcVolume___10Z2AudienceCFfi(void);
 void convertAbsToRel__10Z2AudienceFR3VecP3Veci(void);
 void setTargetVolume__10Z2AudienceFfi(void);
 
-void Z2Audience3DSetting(void);
+void __ct__19Z2Audience3DSettingFv(void);
 void init__19Z2Audience3DSettingFv(void);
-void init__19Z2Audience3DSettingFvDolbyDist(void);
-void init__19Z2Audience3DSettingFvVolumeDist(void);
+void initDolbyDist__19Z2Audience3DSettingFv(void);
+void initVolumeDist__19Z2Audience3DSettingFv(void);
 void updateDolbyDist__19Z2Audience3DSettingFff(void);
 void updateVolumeDist__19Z2Audience3DSettingFf(void);
 
-void func_802BBE98(void);
-void func_802BDEDC(void);
-void func_802BD4D4(void);
-void func_802BD71C(void);
-void func_802BBED0(void);
+void calc__9Z2AudibleFv(void);
+void __sinit_Z2Audience_cpp(void);
+void deleteAudible__10Z2AudienceFP10JAIAudible(void);
+void mixChannelOut__10Z2AudienceFRC14JASSoundParamsP10JAIAudiblei(void);
+void getOuterParams__9Z2AudibleFi(void);
 void func_802BD338(void);
-void func_802BDED4(void);
-void func_802BD5B8(void);
-void func_802BD510(void);
+void getMaxChannels__10Z2AudienceFv(void);
+void calcPriority__10Z2AudienceFP10JAIAudible(void);
+void __dt__9Z2AudibleFv(void);
 }
 
 #endif  // Z2AUDIENCE_H_

@@ -34,7 +34,7 @@ void getOnLineNum__13Z2WolfHowlMgrFv(void);
 void resetState__13Z2WolfHowlMgrFv(void);
 void startGuideMelody__13Z2WolfHowlMgrFb(void);
 
-void func_802CBB7C(void);
+void __sinit_Z2WolfHowlMgr_cpp(void);
 void func_802CB6EC(void);
 }
 

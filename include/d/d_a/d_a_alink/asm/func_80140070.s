@@ -25,7 +25,7 @@
 /* 801400D0 0013D010  40 82 01 10 */ bne lbl_801401E0
 /* 801400D4 0013D014  38 7F 06 2C */ addi r3, r31, 0x62c
 /* 801400D8 0013D018  80 9F 06 34 */ lwz r4, 0x634(r31)
-/* 801400DC 0013D01C  4B EE CF 2D */ bl dComIfG_resDelete
+/* 801400DC 0013D01C  4B EE CF 2D */ bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 801400E0 0013D020  38 7F 06 2C */ addi r3, r31, 0x62c
 /* 801400E4 0013D024  48 12 65 41 */ bl cPhs_Reset
 /* 801400E8 0013D028  80 7F 06 38 */ lwz r3, 0x638(r31)
@@ -64,7 +64,7 @@ lbl_8014015C:
 /* 8014015C 0013D09C  38 7F 06 2C */ addi r3, r31, 0x62c
 /* 80140160 0013D0A0  80 9F 06 34 */ lwz r4, 0x634(r31)
 /* 80140164 0013D0A4  80 BF 06 38 */ lwz r5, 0x638(r31)
-/* 80140168 0013D0A8  4B EE CE 59 */ bl dComIfG_resLoad_X1_
+/* 80140168 0013D0A8  4B EE CE 59 */ bl dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap
 /* 8014016C 0013D0AC  2C 03 00 04 */ cmpwi r3, 4
 /* 80140170 0013D0B0  40 82 00 5C */ bne lbl_801401CC
 /* 80140174 0013D0B4  38 00 00 00 */ li r0, 0

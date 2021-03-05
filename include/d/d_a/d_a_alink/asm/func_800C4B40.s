@@ -169,7 +169,7 @@ lbl_800C4DB4:
 /* 800C4DB8 000C1CF8  54 00 06 F9 */ rlwinm. r0, r0, 0, 0x1b, 0x1c
 /* 800C4DBC 000C1CFC  40 82 00 10 */ bne lbl_800C4DCC
 /* 800C4DC0 000C1D00  38 7E 18 B0 */ addi r3, r30, 0x18b0
-/* 800C4DC4 000C1D04  48 0E 66 FD */ bl dKy_pol_sound_get
+/* 800C4DC4 000C1D04  48 0E 66 FD */ bl dKy_pol_sound_get__FPC13cBgS_PolyInfo
 /* 800C4DC8 000C1D08  98 7E 2F A4 */ stb r3, 0x2fa4(r30)
 lbl_800C4DCC:
 /* 800C4DCC 000C1D0C  80 1E 05 70 */ lwz r0, 0x570(r30)

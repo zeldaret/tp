@@ -13,7 +13,7 @@
 /* 802C6C4C 002C3B8C  80 6D 86 00 */ lwz r3, lbl_80450B80-_SDA_BASE_(r13)
 /* 802C6C50 002C3B90  88 63 00 0C */ lbz r3, 0xc(r3)
 /* 802C6C54 002C3B94  7C 63 07 74 */ extsb r3, r3
-/* 802C6C58 002C3B98  4B D6 64 15 */ bl dComIfGp_getReverb
+/* 802C6C58 002C3B98  4B D6 64 15 */ bl dComIfGp_getReverb__Fi
 /* 802C6C5C 002C3B9C  7C 64 1B 78 */ mr r4, r3
 /* 802C6C60 002C3BA0  7F E3 FB 78 */ mr r3, r31
 /* 802C6C64 002C3BA4  48 00 04 65 */ bl startStaticEnvSe__10Z2EnvSeMgrFSc

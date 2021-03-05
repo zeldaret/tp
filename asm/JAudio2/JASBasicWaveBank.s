@@ -3,8 +3,8 @@
 .section .text, "ax" # 802984f8
 
 
-.global JASBasicWaveBank
-JASBasicWaveBank:
+.global __ct__16JASBasicWaveBankFv
+__ct__16JASBasicWaveBankFv:
 /* 802984F8 00295438  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802984FC 0029543C  7C 08 02 A6 */	mflr r0
 /* 80298500 00295440  90 01 00 14 */	stw r0, 0x14(r1)
@@ -45,13 +45,13 @@ JASBasicWaveBank:
 /* 80298588 002954C8  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank11TWaveHandleFv@ha
 .global __dt__Q216JASBasicWaveBank11TWaveHandleFv
 /* 8029858C 002954CC  38 84 85 E4 */	addi r4, r4, __dt__Q216JASBasicWaveBank11TWaveHandleFv@l
-/* 80298590 002954D0  48 0C 96 DD */	bl func_80361C6C
+/* 80298590 002954D0  48 0C 96 DD */	bl __destroy_new_array
 /* 80298594 002954D4  80 7E 00 20 */	lwz r3, 0x20(r30)
 .global __dt__Q216JASBasicWaveBank10TWaveGroupFv
 /* 80298598 002954D8  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha
 .global __dt__Q216JASBasicWaveBank10TWaveGroupFv
 /* 8029859C 002954DC  38 84 8A 0C */	addi r4, r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l
-/* 802985A0 002954E0  48 0C 96 CD */	bl func_80361C6C
+/* 802985A0 002954E0  48 0C 96 CD */	bl __destroy_new_array
 /* 802985A4 002954E4  28 1E 00 00 */	cmplwi r30, 0
 /* 802985A8 002954E8  41 82 00 10 */	beq lbl_802985B8
 /* 802985AC 002954EC  3C 60 80 3C */	lis r3, lbl_803C7780@ha
@@ -126,7 +126,7 @@ setGroupCount__16JASBasicWaveBankFUlP7JKRHeap:
 /* 80298688 002955C8  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha
 .global __dt__Q216JASBasicWaveBank10TWaveGroupFv
 /* 8029868C 002955CC  38 84 8A 0C */	addi r4, r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l
-/* 80298690 002955D0  48 0C 95 DD */	bl func_80361C6C
+/* 80298690 002955D0  48 0C 95 DD */	bl __destroy_new_array
 /* 80298694 002955D4  B3 DD 00 26 */	sth r30, 0x26(r29)
 /* 80298698 002955D8  57 C3 38 30 */	slwi r3, r30, 7
 /* 8029869C 002955DC  38 63 00 10 */	addi r3, r3, 0x10
@@ -143,7 +143,7 @@ setGroupCount__16JASBasicWaveBankFUlP7JKRHeap:
 /* 802986B8 002955F8  38 A5 8A 0C */	addi r5, r5, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l
 /* 802986BC 002955FC  38 C0 00 80 */	li r6, 0x80
 /* 802986C0 00295600  7F C7 F3 78 */	mr r7, r30
-/* 802986C4 00295604  48 0C 98 51 */	bl func_80361F14
+/* 802986C4 00295604  48 0C 98 51 */	bl __construct_new_array
 /* 802986C8 00295608  90 7D 00 20 */	stw r3, 0x20(r29)
 /* 802986CC 0029560C  38 A0 00 00 */	li r5, 0
 /* 802986D0 00295610  38 60 00 00 */	li r3, 0
@@ -180,7 +180,7 @@ setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap:
 /* 80298734 00295674  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank11TWaveHandleFv@ha
 .global __dt__Q216JASBasicWaveBank11TWaveHandleFv
 /* 80298738 00295678  38 84 85 E4 */	addi r4, r4, __dt__Q216JASBasicWaveBank11TWaveHandleFv@l
-/* 8029873C 0029567C  48 0C 95 31 */	bl func_80361C6C
+/* 8029873C 0029567C  48 0C 95 31 */	bl __destroy_new_array
 /* 80298740 00295680  1C 7E 00 2C */	mulli r3, r30, 0x2c
 /* 80298744 00295684  38 63 00 10 */	addi r3, r3, 0x10
 /* 80298748 00295688  7F E4 FB 78 */	mr r4, r31
@@ -196,7 +196,7 @@ setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap:
 /* 80298760 002956A0  38 A5 85 E4 */	addi r5, r5, __dt__Q216JASBasicWaveBank11TWaveHandleFv@l
 /* 80298764 002956A4  38 C0 00 2C */	li r6, 0x2c
 /* 80298768 002956A8  7F C7 F3 78 */	mr r7, r30
-/* 8029876C 002956AC  48 0C 97 A9 */	bl func_80361F14
+/* 8029876C 002956AC  48 0C 97 A9 */	bl __construct_new_array
 /* 80298770 002956B0  90 7D 00 1C */	stw r3, 0x1c(r29)
 /* 80298774 002956B4  B3 DD 00 24 */	sth r30, 0x24(r29)
 /* 80298778 002956B8  39 61 00 20 */	addi r11, r1, 0x20
@@ -368,7 +368,7 @@ __ct__Q216JASBasicWaveBank10TWaveGroupFv:
 /* 802989C8 00295908  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802989CC 0029590C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802989D0 00295910  7C 7F 1B 78 */	mr r31, r3
-/* 802989D4 00295914  48 00 17 69 */	bl JASWaveArc
+/* 802989D4 00295914  48 00 17 69 */	bl __ct__10JASWaveArcFv
 /* 802989D8 00295918  3C 60 80 3C */	lis r3, lbl_803C773C@ha
 /* 802989DC 0029591C  38 03 77 3C */	addi r0, r3, lbl_803C773C@l
 /* 802989E0 00295920  90 1F 00 00 */	stw r0, 0(r31)
@@ -446,7 +446,7 @@ lbl_80298AB8:
 /* 80298AD8 00295A18  38 A0 00 00 */	li r5, 0
 /* 80298ADC 00295A1C  38 C0 00 08 */	li r6, 8
 /* 80298AE0 00295A20  7F C7 F3 78 */	mr r7, r30
-/* 80298AE4 00295A24  48 0C 94 31 */	bl func_80361F14
+/* 80298AE4 00295A24  48 0C 94 31 */	bl __construct_new_array
 /* 80298AE8 00295A28  90 7D 00 78 */	stw r3, 0x78(r29)
 /* 80298AEC 00295A2C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80298AF0 00295A30  48 0C 97 39 */	bl _restgpr_29

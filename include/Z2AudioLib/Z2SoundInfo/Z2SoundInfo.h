@@ -24,16 +24,16 @@ void getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound(void);
 void getStreamFileEntry__11Z2SoundInfoF10JAISoundID(void);
 void getStreamFilePath__11Z2SoundInfoF10JAISoundID(void);
 
-void func_802BB6DC(void);
+void getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe(void);
 void func_802BBCBC(void);
-void func_802BB0E0(void);
+void getPriority__11Z2SoundInfoCF10JAISoundID(void);
 void func_802BBCD4(void);
 void func_802BBCCC(void);
-void func_802BB8B4(void);
-void func_802BB090(void);
-void func_802BB8E0(void);
+void getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq(void);
+void getSoundType__11Z2SoundInfoCF10JAISoundID(void);
+void getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream(void);
 void func_802BBCC4(void);
-void func_802BB0D8(void);
+void getCategory__11Z2SoundInfoCF10JAISoundID(void);
 }
 
 #endif

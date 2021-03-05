@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029d0b4
 
 
-.global JASAudioReseter
-JASAudioReseter:
+.global __ct__15JASAudioReseterFv
+__ct__15JASAudioReseterFv:
 /* 8029D0B4 00299FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029D0B8 00299FF8  7C 08 02 A6 */	mflr r0
 /* 8029D0BC 00299FFC  90 01 00 14 */	stw r0, 0x14(r1)

@@ -82,7 +82,7 @@ lbl_800DDCA4:
 /* 800DDCDC 000DAC1C  2C 03 00 07 */ cmpwi r3, 7
 /* 800DDCE0 000DAC20  41 82 00 38 */ beq lbl_800DDD18
 /* 800DDCE4 000DAC24  38 7E 1B 5C */ addi r3, r30, 0x1b5c
-/* 800DDCE8 000DAC28  48 0C D7 D9 */ bl dKy_pol_sound_get
+/* 800DDCE8 000DAC28  48 0C D7 D9 */ bl dKy_pol_sound_get__FPC13cBgS_PolyInfo
 /* 800DDCEC 000DAC2C  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 800DDCF0 000DAC30  38 7E 2C A8 */ addi r3, r30, 0x2ca8
 /* 800DDCF4 000DAC34  3C 80 00 04 */ lis r4, 0x00040002@ha

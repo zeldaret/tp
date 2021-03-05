@@ -3,8 +3,8 @@
 .section .text, "ax" # 80273e10
 
 
-.global JPAResourceManager
-JPAResourceManager:
+.global __ct__18JPAResourceManagerFPCvP7JKRHeap
+__ct__18JPAResourceManagerFPCvP7JKRHeap:
 /* 80273E10 00270D50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80273E14 00270D54  7C 08 02 A6 */	mflr r0
 /* 80273E18 00270D58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -20,7 +20,7 @@ JPAResourceManager:
 /* 80273E40 00270D80  90 A3 00 00 */	stw r5, 0(r3)
 /* 80273E44 00270D84  38 61 00 08 */	addi r3, r1, 8
 /* 80273E48 00270D88  7F E5 FB 78 */	mr r5, r31
-/* 80273E4C 00270D8C  48 00 9A 55 */	bl JPAResourceLoader
+/* 80273E4C 00270D8C  48 00 9A 55 */	bl __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager
 /* 80273E50 00270D90  7F E3 FB 78 */	mr r3, r31
 /* 80273E54 00270D94  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80273E58 00270D98  80 01 00 24 */	lwz r0, 0x24(r1)

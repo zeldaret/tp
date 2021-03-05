@@ -3,8 +3,8 @@
 .section .text, "ax" # 80310ef8
 
 
-.global J3DVertexData
-J3DVertexData:
+.global __ct__13J3DVertexDataFv
+__ct__13J3DVertexDataFv:
 /* 80310EF8 0030DE38  38 A0 00 00 */	li r5, 0
 /* 80310EFC 0030DE3C  90 A3 00 00 */	stw r5, 0(r3)
 /* 80310F00 0030DE40  90 A3 00 04 */	stw r5, 4(r3)
@@ -515,8 +515,8 @@ lbl_803115C8:
 /* 803115D8 0030E518  38 21 00 20 */	addi r1, r1, 0x20
 /* 803115DC 0030E51C  4E 80 00 20 */	blr 
 
-.global J3DDrawMtxData
-J3DDrawMtxData:
+.global __ct__14J3DDrawMtxDataFv
+__ct__14J3DDrawMtxDataFv:
 /* 803115E0 0030E520  38 00 00 00 */	li r0, 0
 /* 803115E4 0030E524  B0 03 00 00 */	sth r0, 0(r3)
 /* 803115E8 0030E528  90 03 00 04 */	stw r0, 4(r3)

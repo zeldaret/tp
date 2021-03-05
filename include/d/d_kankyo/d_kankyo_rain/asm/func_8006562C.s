@@ -42,7 +42,7 @@
 /* 800656D0 00062610  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800656D4 00062614  82 83 5D 74 */ lwz r20, 0x5d74(r3)
 /* 800656D8 00062618  38 61 00 48 */ addi r3, r1, 0x48
-/* 800656DC 0006261C  4B FF 54 25 */ bl dKyw_get_wind_vecpow
+/* 800656DC 0006261C  4B FF 54 25 */ bl dKyw_get_wind_vecpow__Fv
 /* 800656E0 00062620  C0 01 00 48 */ lfs f0, 0x48(r1)
 /* 800656E4 00062624  D0 01 00 90 */ stfs f0, 0x90(r1)
 /* 800656E8 00062628  C0 01 00 4C */ lfs f0, 0x4c(r1)
@@ -90,7 +90,7 @@ lbl_80065714:
 lbl_8006578C:
 /* 8006578C 000626CC  38 61 00 9C */ addi r3, r1, 0x9c
 /* 80065790 000626D0  80 93 00 00 */ lwz r4, 0(r19)
-/* 80065794 000626D4  4B FF 62 91 */ bl dKyr_set_btitex
+/* 80065794 000626D4  4B FF 62 91 */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 80065798 000626D8  38 60 00 00 */ li r3, 0
 /* 8006579C 000626DC  48 2F 83 95 */ bl GXSetNumChans
 /* 800657A0 000626E0  80 01 00 14 */ lwz r0, 0x14(r1)
@@ -159,7 +159,7 @@ lbl_8006578C:
 /* 8006589C 000627DC  48 2F AD 35 */ bl GXSetClipMode
 /* 800658A0 000627E0  38 60 00 00 */ li r3, 0
 /* 800658A4 000627E4  48 2F 98 31 */ bl GXSetNumIndStages
-/* 800658A8 000627E8  4B FF D2 35 */ bl dKr_cullVtx_Set
+/* 800658A8 000627E8  4B FF D2 35 */ bl dKr_cullVtx_Set__Fv
 /* 800658AC 000627EC  38 61 00 BC */ addi r3, r1, 0xbc
 /* 800658B0 000627F0  38 80 00 5A */ li r4, 0x5a
 /* 800658B4 000627F4  C0 42 8A 60 */ lfs f2, lbl_80452460-_SDA2_BASE_(r2)
@@ -202,7 +202,7 @@ lbl_8006593C:
 /* 80065944 00062884  FC 00 B8 40 */ fcmpo cr0, f0, f23
 /* 80065948 00062888  4C 40 13 82 */ cror 2, 0, 2
 /* 8006594C 0006288C  41 82 06 50 */ beq lbl_80065F9C
-/* 80065950 00062890  48 14 6C 2D */ bl dKy_darkworld_check
+/* 80065950 00062890  48 14 6C 2D */ bl dKy_darkworld_check__Fv
 /* 80065954 00062894  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80065958 00062898  41 82 00 24 */ beq lbl_8006597C
 /* 8006595C 0006289C  C0 22 8A 80 */ lfs f1, lbl_80452480-_SDA2_BASE_(r2)

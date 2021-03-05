@@ -16,7 +16,7 @@ lbl_8013F224:
 /* 8013F224 0013C164  A8 1F 30 0C */ lha r0, 0x300c(r31)
 /* 8013F228 0013C168  2C 00 00 01 */ cmpwi r0, 1
 /* 8013F22C 0013C16C  40 82 00 10 */ bne lbl_8013F23C
-/* 8013F230 0013C170  48 04 24 11 */ bl dCam_getBody
+/* 8013F230 0013C170  48 04 24 11 */ bl dCam_getBody__Fv
 /* 8013F234 0013C174  38 80 00 03 */ li r4, 3
 /* 8013F238 0013C178  48 02 3D F1 */ bl SetTrimTypeForce__9dCamera_cFl
 lbl_8013F23C:
@@ -42,7 +42,7 @@ lbl_8013F23C:
 /* 8013F288 0013C1C8  39 00 00 00 */ li r8, 0
 /* 8013F28C 0013C1CC  39 20 00 00 */ li r9, 0
 /* 8013F290 0013C1D0  39 40 00 00 */ li r10, 0
-/* 8013F294 0013C1D4  4B F3 64 E1 */ bl Move__4dBgSFvBgCrrPos
+/* 8013F294 0013C1D4  4B F3 64 E1 */ bl MoveBgCrrPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyzbb
 /* 8013F298 0013C1D8  38 61 00 08 */ addi r3, r1, 8
 /* 8013F29C 0013C1DC  38 9F 37 C8 */ addi r4, r31, 0x37c8
 /* 8013F2A0 0013C1E0  38 A1 00 14 */ addi r5, r1, 0x14
@@ -91,7 +91,7 @@ lbl_8013F320:
 /* 8013F344 0013C284  3C A0 80 39 */ lis r5, lbl_8038F858@ha
 /* 8013F348 0013C288  38 A5 F8 58 */ addi r5, r5, lbl_8038F858@l
 /* 8013F34C 0013C28C  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013F350 0013C290  4B FE A4 F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013F350 0013C290  4B FE A4 F9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013F354 0013C294  38 00 00 01 */ li r0, 1
 /* 8013F358 0013C298  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 8013F35C 0013C29C  7F E3 FB 78 */ mr r3, r31

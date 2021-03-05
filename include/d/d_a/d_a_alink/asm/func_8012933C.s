@@ -65,7 +65,7 @@ lbl_8012941C:
 /* 8012942C 0012636C  38 A0 00 44 */ li r5, 0x44
 /* 80129430 00126370  7F A6 EB 78 */ mr r6, r29
 /* 80129434 00126374  FC 80 F0 90 */ fmr f4, f30
-/* 80129438 00126378  48 00 00 55 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80129438 00126378  48 00 00 55 */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 /* 8012943C 0012637C  48 00 00 28 */ b lbl_80129464
 lbl_80129440:
 /* 80129440 00126380  C0 43 00 24 */ lfs f2, 0x24(r3)
@@ -76,7 +76,7 @@ lbl_80129440:
 /* 80129454 00126394  38 A0 00 44 */ li r5, 0x44
 /* 80129458 00126398  38 C0 00 03 */ li r6, 3
 /* 8012945C 0012639C  FC 80 F0 90 */ fmr f4, f30
-/* 80129460 001263A0  48 00 00 2D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMifWolf
+/* 80129460 001263A0  48 00 00 2D */ bl setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
 lbl_80129464:
 /* 80129464 001263A4  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 80129468 001263A8  CB E1 00 30 */ lfd f31, 0x30(r1)

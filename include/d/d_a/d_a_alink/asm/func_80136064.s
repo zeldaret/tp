@@ -7,7 +7,7 @@
 /* 8013607C 00132FBC  38 A0 00 02 */ li r5, 2
 /* 80136080 00132FC0  3C C0 80 39 */ lis r6, lbl_8038F3C4@ha
 /* 80136084 00132FC4  38 C6 F3 C4 */ addi r6, r6, lbl_8038F3C4@l
-/* 80136088 00132FC8  4B F7 76 69 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsfParam
+/* 80136088 00132FC8  4B F7 76 69 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 8013608C 00132FCC  7F E3 FB 78 */ mr r3, r31
 /* 80136090 00132FD0  3C 80 00 02 */ lis r4, 0x00020014@ha
 /* 80136094 00132FD4  38 84 00 14 */ addi r4, r4, 0x00020014@l

@@ -40,7 +40,7 @@ lbl_800F1C08:
 /* 800F1C38 000EEB78  48 00 00 C8 */ b lbl_800F1D00
 lbl_800F1C3C:
 /* 800F1C3C 000EEB7C  7F C3 F3 78 */ mr r3, r30
-/* 800F1C40 000EEB80  4B FF D8 11 */ bl checkNextAction__9daAlink_cFiHorse
+/* 800F1C40 000EEB80  4B FF D8 11 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F1C44 000EEB84  2C 03 00 00 */ cmpwi r3, 0
 /* 800F1C48 000EEB88  41 82 00 20 */ beq lbl_800F1C68
 /* 800F1C4C 000EEB8C  80 7E 20 60 */ lwz r3, 0x2060(r30)

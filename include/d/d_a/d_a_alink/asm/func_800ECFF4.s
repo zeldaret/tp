@@ -25,7 +25,7 @@ lbl_800ED044:
 /* 800ED04C 000E9F8C  7C 80 01 10 */ subfe r4, r0, r0
 /* 800ED050 000E9F90  38 84 02 4D */ addi r4, r4, 0x24d
 /* 800ED054 000E9F94  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800ED058 000E9F98  4B FC 03 1D */ bl setUpperAnimeBase__9daAlink_cFUsMorf
+/* 800ED058 000E9F98  4B FC 03 1D */ bl setUpperAnimeBaseMorf__9daAlink_cFUsf
 lbl_800ED05C:
 /* 800ED05C 000E9F9C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800ED060 000E9FA0  83 C1 00 08 */ lwz r30, 8(r1)

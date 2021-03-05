@@ -18,7 +18,7 @@
 /* 8011F3A4 0011C2E4  3C A0 80 39 */ lis r5, lbl_8038D664@ha
 /* 8011F3A8 0011C2E8  38 A5 D6 64 */ addi r5, r5, lbl_8038D664@l
 /* 8011F3AC 0011C2EC  C0 45 00 18 */ lfs f2, 0x18(r5)
-/* 8011F3B0 0011C2F0  4B F8 DC 31 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 8011F3B0 0011C2F0  4B F8 DC 31 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8011F3B4 0011C2F4  4B FA 0F 5D */ bl checkDungeon__9daAlink_cFv
 /* 8011F3B8 0011C2F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F3BC 0011C2FC  41 82 00 28 */ beq lbl_8011F3E4
@@ -30,7 +30,7 @@
 /* 8011F3D4 0011C314  88 1F 04 E2 */ lbz r0, 0x4e2(r31)
 /* 8011F3D8 0011C318  7C 05 07 74 */ extsb r5, r0
 /* 8011F3DC 0011C31C  38 C0 00 04 */ li r6, 4
-/* 8011F3E0 0011C320  4B FF 68 71 */ bl create__9daAlink_cFvNpcTks
+/* 8011F3E0 0011C320  4B FF 68 71 */ bl createNpcTks__9daAlink_cFP4cXyziUl
 lbl_8011F3E4:
 /* 8011F3E4 0011C324  38 00 40 00 */ li r0, 0x4000
 /* 8011F3E8 0011C328  B0 1F 30 0C */ sth r0, 0x300c(r31)

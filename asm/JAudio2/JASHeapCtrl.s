@@ -3,8 +3,8 @@
 .section .text, "ax" # 80290140
 
 
-.global JASHeap
-JASHeap:
+.global __ct__7JASHeapFP11JASDisposer
+__ct__7JASHeapFP11JASDisposer:
 /* 80290140 0028D080  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80290144 0028D084  7C 08 02 A6 */	mflr r0
 /* 80290148 0028D088  90 01 00 24 */	stw r0, 0x24(r1)
@@ -196,8 +196,8 @@ lbl_802903DC:
 /* 802903EC 0028D32C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802903F0 0028D330  4E 80 00 20 */	blr 
 
-.global alloc__7JASHeapFP7JASHeapUlTail
-alloc__7JASHeapFP7JASHeapUlTail:
+.global allocTail__7JASHeapFP7JASHeapUl
+allocTail__7JASHeapFP7JASHeapUl:
 /* 802903F4 0028D334  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802903F8 0028D338  7C 08 02 A6 */	mflr r0
 /* 802903FC 0028D33C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -521,8 +521,8 @@ lbl_80290828:
 /* 80290840 0028D780  38 21 00 20 */	addi r1, r1, 0x20
 /* 80290844 0028D784  4E 80 00 20 */	blr 
 
-.global JASGenericMemPool
-JASGenericMemPool:
+.global __ct__17JASGenericMemPoolFv
+__ct__17JASGenericMemPoolFv:
 /* 80290848 0028D788  38 00 00 00 */	li r0, 0
 /* 8029084C 0028D78C  90 03 00 00 */	stw r0, 0(r3)
 /* 80290850 0028D790  90 03 00 04 */	stw r0, 4(r3)
@@ -746,7 +746,7 @@ getAramHeap__9JASKernelFv:
 /* 80290B20 0028DA60  3C 60 80 43 */	lis r3, lbl_804315DC@ha
 /* 80290B24 0028DA64  38 63 15 DC */	addi r3, r3, lbl_804315DC@l
 /* 80290B28 0028DA68  38 80 00 00 */	li r4, 0
-/* 80290B2C 0028DA6C  4B FF F6 15 */	bl JASHeap
+/* 80290B2C 0028DA6C  4B FF F6 15 */	bl __ct__7JASHeapFP11JASDisposer
 .global __dt__7JASHeapFv
 /* 80290B30 0028DA70  3C 80 80 29 */	lis r4, __dt__7JASHeapFv@ha
 .global __dt__7JASHeapFv

@@ -35,7 +35,7 @@ lbl_800C5EC4:
 lbl_800C5EEC:
 /* 800C5EEC 000C2E2C  7F 63 DB 78 */ mr r3, r27
 /* 800C5EF0 000C2E30  38 80 00 15 */ li r4, 0x15
-/* 800C5EF4 000C2E34  4B FF CE B1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800C5EF4 000C2E34  4B FF CE B1 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C5EF8 000C2E38  2C 03 00 00 */ cmpwi r3, 0
 /* 800C5EFC 000C2E3C  40 82 00 0C */ bne lbl_800C5F08
 /* 800C5F00 000C2E40  38 60 00 00 */ li r3, 0
@@ -66,7 +66,7 @@ lbl_800C5F4C:
 /* 800C5F58 000C2E98  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C5F5C 000C2E9C  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800C5F60 000C2EA0  C0 45 00 6C */ lfs f2, 0x6c(r5)
-/* 800C5F64 000C2EA4  4B FE 70 7D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800C5F64 000C2EA4  4B FE 70 7D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800C5F68 000C2EA8  38 00 00 33 */ li r0, 0x33
 /* 800C5F6C 000C2EAC  90 1B 31 98 */ stw r0, 0x3198(r27)
 /* 800C5F70 000C2EB0  A8 7B 04 E6 */ lha r3, 0x4e6(r27)
@@ -79,7 +79,7 @@ lbl_800C5F84:
 /* 800C5F88 000C2EC8  38 80 00 31 */ li r4, 0x31
 /* 800C5F8C 000C2ECC  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C5F90 000C2ED0  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
-/* 800C5F94 000C2ED4  4B FE 71 61 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800C5F94 000C2ED4  4B FE 71 61 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C5F98 000C2ED8  2C 1D 00 00 */ cmpwi r29, 0
 /* 800C5F9C 000C2EDC  40 82 00 18 */ bne lbl_800C5FB4
 /* 800C5FA0 000C2EE0  80 7B 20 60 */ lwz r3, 0x2060(r27)

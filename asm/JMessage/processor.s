@@ -733,7 +733,7 @@ lbl_802A846C:
 /* 802A849C 002A53DC  48 00 00 88 */	b lbl_802A8524
 lbl_802A84A0:
 /* 802A84A0 002A53E0  7F C3 F3 78 */	mr r3, r30
-/* 802A84A4 002A53E4  48 00 02 31 */	bl on_branch_query__Q28JMessage18TSequenceProcessorFUlResult
+/* 802A84A4 002A53E4  48 00 02 31 */	bl on_branch_queryResult__Q28JMessage18TSequenceProcessorFv
 /* 802A84A8 002A53E8  7C 64 1B 78 */	mr r4, r3
 /* 802A84AC 002A53EC  3C 60 80 00 */	lis r3, 0x7FFFFFFF@ha
 /* 802A84B0 002A53F0  38 03 FF FF */	addi r0, r3, 0x7FFFFFFF@l
@@ -901,8 +901,8 @@ on_branch_query__Q28JMessage18TSequenceProcessorFUl:
 /* 802A86CC 002A560C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A86D0 002A5610  4E 80 00 20 */	blr 
 
-.global on_branch_query__Q28JMessage18TSequenceProcessorFUlResult
-on_branch_query__Q28JMessage18TSequenceProcessorFUlResult:
+.global on_branch_queryResult__Q28JMessage18TSequenceProcessorFv
+on_branch_queryResult__Q28JMessage18TSequenceProcessorFv:
 /* 802A86D4 002A5614  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A86D8 002A5618  7C 08 02 A6 */	mflr r0
 /* 802A86DC 002A561C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1007,10 +1007,10 @@ lbl_802A8848:
 /* 802A8850 002A5790  48 00 00 C4 */	b lbl_802A8914
 lbl_802A8854:
 /* 802A8854 002A5794  80 A8 00 00 */	lwz r5, 0(r8)
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_
-/* 802A8858 002A5798  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onJump_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_
-/* 802A885C 002A579C  38 84 89 EC */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onJump_@l
+.global process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+/* 802A8858 002A5798  3C 80 80 2B */	lis r4, process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor@ha
+.global process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+/* 802A885C 002A579C  38 84 89 EC */	addi r4, r4, process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor@l
 /* 802A8860 002A57A0  4B FF FD 71 */	bl on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl
 /* 802A8864 002A57A4  48 00 00 B0 */	b lbl_802A8914
 lbl_802A8868:
@@ -1018,34 +1018,34 @@ lbl_802A8868:
 /* 802A886C 002A57AC  7D 05 43 78 */	mr r5, r8
 /* 802A8870 002A57B0  4B FF F8 21 */	bl do_tag___Q28JMessage10TProcessorFUlPCvUl
 /* 802A8874 002A57B4  48 00 00 A0 */	b lbl_802A8914
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_
-/* 802A8878 002A57B8  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_
-/* 802A887C 002A57BC  38 84 89 B8 */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_@l
+.global process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+/* 802A8878 002A57B8  3C 80 80 2B */	lis r4, process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor@ha
+.global process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+/* 802A887C 002A57BC  38 84 89 B8 */	addi r4, r4, process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor@l
 /* 802A8880 002A57C0  7F E5 FB 78 */	mr r5, r31
 /* 802A8884 002A57C4  4B FF FD 4D */	bl on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl
 /* 802A8888 002A57C8  48 00 00 8C */	b lbl_802A8914
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_
-/* 802A888C 002A57CC  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_
-/* 802A8890 002A57D0  38 84 8A 18 */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_@l
+.global process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A888C 002A57CC  3C 80 80 2B */	lis r4, process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@ha
+.global process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A8890 002A57D0  38 84 8A 18 */	addi r4, r4, process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@l
 /* 802A8894 002A57D4  7F E6 FB 78 */	mr r6, r31
 /* 802A8898 002A57D8  4B FF FD F9 */	bl on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
 /* 802A889C 002A57DC  48 00 00 78 */	b lbl_802A8914
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_
-/* 802A88A0 002A57E0  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_
-/* 802A88A4 002A57E4  38 84 8A 50 */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_@l
+.global process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88A0 002A57E0  3C 80 80 2B */	lis r4, process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@ha
+.global process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88A4 002A57E4  38 84 8A 50 */	addi r4, r4, process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@l
 /* 802A88A8 002A57E8  7F E6 FB 78 */	mr r6, r31
 /* 802A88AC 002A57EC  4B FF FD E5 */	bl on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
 /* 802A88B0 002A57F0  48 00 00 64 */	b lbl_802A8914
 /* 802A88B4 002A57F4  7F E4 FB 78 */	mr r4, r31
 /* 802A88B8 002A57F8  4B FF FD E9 */	bl on_branch_query__Q28JMessage18TSequenceProcessorFUl
 /* 802A88BC 002A57FC  48 00 00 58 */	b lbl_802A8914
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_
-/* 802A88C0 002A5800  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_
-/* 802A88C4 002A5804  38 84 8A 18 */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_@l
+.global process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88C0 002A5800  3C 80 80 2B */	lis r4, process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@ha
+.global process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88C4 002A5804  38 84 8A 18 */	addi r4, r4, process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@l
 /* 802A88C8 002A5808  38 A8 00 02 */	addi r5, r8, 2
 /* 802A88CC 002A580C  A0 C8 00 00 */	lhz r6, 0(r8)
 /* 802A88D0 002A5810  4B FF FD C1 */	bl on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
@@ -1053,10 +1053,10 @@ lbl_802A8868:
 /* 802A88D8 002A5818  7F E4 FB 78 */	mr r4, r31
 /* 802A88DC 002A581C  4B FF FD C5 */	bl on_branch_query__Q28JMessage18TSequenceProcessorFUl
 /* 802A88E0 002A5820  48 00 00 34 */	b lbl_802A8914
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_
-/* 802A88E4 002A5824  3C 80 80 2B */	lis r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_@ha
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_
-/* 802A88E8 002A5828  38 84 8A 50 */	addi r4, r4, process__Q28JMessage18TSequenceProcessorFPCc_onBranch_@l
+.global process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88E4 002A5824  3C 80 80 2B */	lis r4, process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@ha
+.global process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+/* 802A88E8 002A5828  38 84 8A 50 */	addi r4, r4, process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl@l
 /* 802A88EC 002A582C  38 A8 00 02 */	addi r5, r8, 2
 /* 802A88F0 002A5830  A0 C8 00 00 */	lhz r6, 0(r8)
 /* 802A88F4 002A5834  4B FF FD 9D */	bl on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
@@ -1076,8 +1076,8 @@ lbl_802A8914:
 /* 802A8924 002A5864  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8928 002A5868  4E 80 00 20 */	blr 
 
-.global process__Q28JMessage18TSequenceProcessorFPCc_setMessageIndex_reserved_
-process__Q28JMessage18TSequenceProcessorFPCc_setMessageIndex_reserved_:
+.global process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs
+process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs:
 /* 802A892C 002A586C  54 64 04 3E */	clrlwi r4, r3, 0x10
 /* 802A8930 002A5870  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 802A8934 002A5874  38 03 FF FF */	addi r0, r3, 0x0000FFFF@l
@@ -1085,8 +1085,8 @@ process__Q28JMessage18TSequenceProcessorFPCc_setMessageIndex_reserved_:
 /* 802A893C 002A587C  4D 82 00 20 */	beqlr 
 /* 802A8940 002A5880  4E 80 00 20 */	blr 
 
-.global process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_
-process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_:
+.global process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
+process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs:
 /* 802A8944 002A5884  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8948 002A5888  7C 08 02 A6 */	mflr r0
 /* 802A894C 002A588C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1098,7 +1098,7 @@ process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_:
 /* 802A8964 002A58A4  28 00 FF 00 */	cmplwi r0, 0xff00
 /* 802A8968 002A58A8  41 80 00 14 */	blt lbl_802A897C
 /* 802A896C 002A58AC  7C C3 33 78 */	mr r3, r6
-/* 802A8970 002A58B0  4B FF FF BD */	bl process__Q28JMessage18TSequenceProcessorFPCc_setMessageIndex_reserved_
+/* 802A8970 002A58B0  4B FF FF BD */	bl process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs
 /* 802A8974 002A58B4  38 60 00 00 */	li r3, 0
 /* 802A8978 002A58B8  48 00 00 2C */	b lbl_802A89A4
 lbl_802A897C:
@@ -1106,7 +1106,7 @@ lbl_802A897C:
 /* 802A8980 002A58C0  7F E3 FB 78 */	mr r3, r31
 /* 802A8984 002A58C4  7D 04 43 78 */	mr r4, r8
 /* 802A8988 002A58C8  7C E5 3B 78 */	mr r5, r7
-/* 802A898C 002A58CC  4B FF F0 95 */	bl setMessageCode__Q28JMessage8TControlFUsUs_inSequence_
+/* 802A898C 002A58CC  4B FF F0 95 */	bl setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
 /* 802A8990 002A58D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A8994 002A58D4  41 82 00 0C */	beq lbl_802A89A0
 /* 802A8998 002A58D8  80 7F 00 14 */	lwz r3, 0x14(r31)
@@ -1119,8 +1119,8 @@ lbl_802A89A4:
 /* 802A89AC 002A58EC  7C 08 03 A6 */	mtlr r0
 /* 802A89B0 002A58F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A89B4 002A58F4  4E 80 00 20 */	blr 
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_
-process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_:
+.global process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor:
 /* 802A89B8 002A58F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A89BC 002A58FC  7C 08 02 A6 */	mflr r0
 /* 802A89C0 002A5900  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1129,26 +1129,26 @@ process__Q28JMessage18TSequenceProcessorFPCc_onJump_limited_:
 /* 802A89CC 002A590C  A0 84 00 0C */	lhz r4, 0xc(r4)
 /* 802A89D0 002A5910  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 802A89D4 002A5914  54 05 04 3E */	clrlwi r5, r0, 0x10
-/* 802A89D8 002A5918  4B FF FF 6D */	bl process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_
+/* 802A89D8 002A5918  4B FF FF 6D */	bl process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
 /* 802A89DC 002A591C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A89E0 002A5920  7C 08 03 A6 */	mtlr r0
 /* 802A89E4 002A5924  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A89E8 002A5928  4E 80 00 20 */	blr 
-.global process__Q28JMessage18TSequenceProcessorFPCc_onJump_
-process__Q28JMessage18TSequenceProcessorFPCc_onJump_:
+.global process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
+process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor:
 /* 802A89EC 002A592C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A89F0 002A5930  7C 08 02 A6 */	mflr r0
 /* 802A89F4 002A5934  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802A89F8 002A5938  80 03 00 44 */	lwz r0, 0x44(r3)
 /* 802A89FC 002A593C  54 04 84 3E */	srwi r4, r0, 0x10
 /* 802A8A00 002A5940  54 05 04 3E */	clrlwi r5, r0, 0x10
-/* 802A8A04 002A5944  4B FF FF 41 */	bl process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_
+/* 802A8A04 002A5944  4B FF FF 41 */	bl process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
 /* 802A8A08 002A5948  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A8A0C 002A594C  7C 08 03 A6 */	mtlr r0
 /* 802A8A10 002A5950  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8A14 002A5954  4E 80 00 20 */	blr 
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_
-process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_:
+.global process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl:
 /* 802A8A18 002A5958  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8A1C 002A595C  7C 08 02 A6 */	mflr r0
 /* 802A8A20 002A5960  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1158,13 +1158,13 @@ process__Q28JMessage18TSequenceProcessorFPCc_onBranch_limited_:
 /* 802A8A30 002A5970  80 83 00 08 */	lwz r4, 8(r3)
 /* 802A8A34 002A5974  80 84 00 0C */	lwz r4, 0xc(r4)
 /* 802A8A38 002A5978  A0 84 00 0C */	lhz r4, 0xc(r4)
-/* 802A8A3C 002A597C  4B FF FF 09 */	bl process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_
+/* 802A8A3C 002A597C  4B FF FF 09 */	bl process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
 /* 802A8A40 002A5980  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A8A44 002A5984  7C 08 03 A6 */	mtlr r0
 /* 802A8A48 002A5988  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A8A4C 002A598C  4E 80 00 20 */	blr 
-.global process__Q28JMessage18TSequenceProcessorFPCc_onBranch_
-process__Q28JMessage18TSequenceProcessorFPCc_onBranch_:
+.global process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl
+process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl:
 /* 802A8A50 002A5990  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A8A54 002A5994  7C 08 02 A6 */	mflr r0
 /* 802A8A58 002A5998  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1173,7 +1173,7 @@ process__Q28JMessage18TSequenceProcessorFPCc_onBranch_:
 /* 802A8A64 002A59A4  7C 05 00 2E */	lwzx r0, r5, r0
 /* 802A8A68 002A59A8  54 04 84 3E */	srwi r4, r0, 0x10
 /* 802A8A6C 002A59AC  54 05 04 3E */	clrlwi r5, r0, 0x10
-/* 802A8A70 002A59B0  4B FF FE D5 */	bl process__Q28JMessage18TSequenceProcessorFPCc_setMessageCode_
+/* 802A8A70 002A59B0  4B FF FE D5 */	bl process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs
 /* 802A8A74 002A59B4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A8A78 002A59B8  7C 08 03 A6 */	mtlr r0
 /* 802A8A7C 002A59BC  38 21 00 10 */	addi r1, r1, 0x10

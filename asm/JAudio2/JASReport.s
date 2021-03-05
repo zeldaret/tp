@@ -3,8 +3,8 @@
 .section .text, "ax" # 80290f64
 
 
-.global JASReport
-JASReport:
+.global JASReport__FPCce
+JASReport__FPCce:
 /* 80290F64 0028DEA4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80290F68 0028DEA8  7C 08 02 A6 */	mflr r0
 /* 80290F6C 0028DEAC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -48,7 +48,7 @@ lbl_80290F9C:
 /* 80291000 0028DF40  38 80 00 40 */	li r4, 0x40
 /* 80291004 0028DF44  7F E5 FB 78 */	mr r5, r31
 /* 80291008 0028DF48  38 C1 00 6C */	addi r6, r1, 0x6c
-/* 8029100C 0028DF4C  48 0D 56 85 */	bl func_80366690
+/* 8029100C 0028DF4C  48 0D 56 85 */	bl vsnprintf
 /* 80291010 0028DF50  80 6D 8C AC */	lwz r3, lbl_8045122C-_SDA_BASE_(r13)
 /* 80291014 0028DF54  38 03 00 01 */	addi r0, r3, 1
 /* 80291018 0028DF58  90 0D 8C AC */	stw r0, lbl_8045122C-_SDA_BASE_(r13)

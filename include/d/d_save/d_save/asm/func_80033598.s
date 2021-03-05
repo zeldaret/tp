@@ -65,7 +65,7 @@ lbl_8003362C:
 /* 80033694 000305D4  98 64 5E 7D */	stb r3, 0x5e7d(r4)
 /* 80033698 000305D8  9B C4 5E 7E */	stb r30, 0x5e7e(r4)
 /* 8003369C 000305DC  7F E3 FB 78 */	mr r3, r31
-/* 800336A0 000305E0  4B FF A7 55 */	bl dComIfGp_setSelectItem
+/* 800336A0 000305E0  4B FF A7 55 */	bl dComIfGp_setSelectItem__Fi
 lbl_800336A4:
 /* 800336A4 000305E4  39 61 00 20 */	addi r11, r1, 0x20
 /* 800336A8 000305E8  48 32 EB 81 */	bl _restgpr_29

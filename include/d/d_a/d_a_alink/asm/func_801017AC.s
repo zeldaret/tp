@@ -24,7 +24,7 @@ lbl_801017E4:
 /* 80101804 000FE744  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
 /* 80101808 000FE748  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 8010180C 000FE74C  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 80101810 000FE750  4B FA B7 D1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80101810 000FE750  4B FA B7 D1 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80101814 000FE754  38 00 00 01 */ li r0, 1
 /* 80101818 000FE758  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8010181C 000FE75C  48 00 00 40 */ b lbl_8010185C

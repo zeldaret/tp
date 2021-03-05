@@ -4,7 +4,7 @@
 /* 801372C0 00134200  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801372C4 00134204  7C 7F 1B 78 */ mr r31, r3
 /* 801372C8 00134208  38 80 00 00 */ li r4, 0
-/* 801372CC 0013420C  4B FF 28 79 */ bl checkNextAction__9daAlink_cFiWolf
+/* 801372CC 0013420C  4B FF 28 79 */ bl checkNextActionWolf__9daAlink_cFi
 /* 801372D0 00134210  2C 03 00 00 */ cmpwi r3, 0
 /* 801372D4 00134214  41 82 00 44 */ beq lbl_80137318
 /* 801372D8 00134218  88 1F 2F 8C */ lbz r0, 0x2f8c(r31)

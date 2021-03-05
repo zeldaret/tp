@@ -23,7 +23,7 @@
 /* 80117BE8 00114B28  C0 25 00 14 */ lfs f1, 0x14(r5)
 /* 80117BEC 00114B2C  38 A6 17 D0 */ addi r5, r6, 0x17d0
 /* 80117BF0 00114B30  C0 45 00 94 */ lfs f2, 0x94(r5)
-/* 80117BF4 00114B34  48 01 1A E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80117BF4 00114B34  48 01 1A E5 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80117BF8 00114B38  7F E3 FB 78 */ mr r3, r31
 /* 80117BFC 00114B3C  38 80 00 19 */ li r4, 0x19
 /* 80117C00 00114B40  4B F9 7D A9 */ bl setFaceBasicAnime__9daAlink_cFQ29daAlink_c11daAlink_ANM
@@ -34,7 +34,7 @@ lbl_80117C08:
 /* 80117C10 00114B50  C0 25 00 1C */ lfs f1, 0x1c(r5)
 /* 80117C14 00114B54  38 A6 00 0C */ addi r5, r6, 0xc
 /* 80117C18 00114B58  C0 45 00 18 */ lfs f2, 0x18(r5)
-/* 80117C1C 00114B5C  4B F9 53 C5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80117C1C 00114B5C  4B F9 53 C5 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_80117C20:
 /* 80117C20 00114B60  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80117C24 00114B64  80 01 00 14 */ lwz r0, 0x14(r1)

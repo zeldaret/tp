@@ -3,9 +3,9 @@
 /* 801A8A8C 001A59CC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801A8A90 001A59D0  DB E1 00 08 */ stfd f31, 8(r1)
 /* 801A8A94 001A59D4  FF E0 08 90 */ fmr f31, f1
-/* 801A8A98 001A59D8  48 00 00 21 */ bl dKy_set_vrboxsoracol_ratio
+/* 801A8A98 001A59D8  48 00 00 21 */ bl dKy_set_vrboxsoracol_ratio__Ff
 /* 801A8A9C 001A59DC  FC 20 F8 90 */ fmr f1, f31
-/* 801A8AA0 001A59E0  48 00 00 29 */ bl dKy_set_vrboxkumocol_ratio
+/* 801A8AA0 001A59E0  48 00 00 29 */ bl dKy_set_vrboxkumocol_ratio__Ff
 /* 801A8AA4 001A59E4  CB E1 00 08 */ lfd f31, 8(r1)
 /* 801A8AA8 001A59E8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801A8AAC 001A59EC  7C 08 03 A6 */ mtlr r0

@@ -70,7 +70,7 @@ lbl_800C17E8:
 /* 800C1804 000BE744  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 800C1808 000BE748  38 63 02 10 */ addi r3, r3, 0x210
 /* 800C180C 000BE74C  80 9C 31 C4 */ lwz r4, 0x31c4(r28)
-/* 800C1810 000BE750  4B F8 A1 09 */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 800C1810 000BE750  4B F8 A1 09 */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 800C1814 000BE754  28 03 00 00 */ cmplwi r3, 0
 /* 800C1818 000BE758  41 82 00 28 */ beq lbl_800C1840
 /* 800C181C 000BE75C  80 03 00 EC */ lwz r0, 0xec(r3)
@@ -104,7 +104,7 @@ lbl_800C1840:
 /* 800C1884 000BE7C4  39 3C 04 E4 */ addi r9, r28, 0x4e4
 /* 800C1888 000BE7C8  39 40 00 00 */ li r10, 0
 /* 800C188C 000BE7CC  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800C1890 000BE7D0  4B F8 BC 3D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf_X1_
+/* 800C1890 000BE7D0  4B F8 BC 3D */ bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 800C1894 000BE7D4  90 7C 31 C4 */ stw r3, 0x31c4(r28)
 /* 800C1898 000BE7D8  3C 60 00 02 */ lis r3, 0x00020058@ha
 /* 800C189C 000BE7DC  38 03 00 58 */ addi r0, r3, 0x00020058@l
@@ -287,7 +287,7 @@ lbl_800C1A60:
 /* 800C1B24 000BEA64  7F 44 D3 78 */ mr r4, r26
 /* 800C1B28 000BEA68  7F 65 DB 78 */ mr r5, r27
 /* 800C1B2C 000BEA6C  38 C0 00 00 */ li r6, 0
-/* 800C1B30 000BEA70  4B F4 A7 71 */ bl mDoMtx_ZXYrotM
+/* 800C1B30 000BEA70  4B F4 A7 71 */ bl mDoMtx_ZXYrotM__FPA4_fsss
 /* 800C1B34 000BEA74  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800C1B38 000BEA78  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800C1B3C 000BEA7C  38 81 00 5C */ addi r4, r1, 0x5c
@@ -393,7 +393,7 @@ lbl_800C1C80:
 /* 800C1CBC 000BEBFC  38 81 00 28 */ addi r4, r1, 0x28
 /* 800C1CC0 000BEC00  88 BE 00 00 */ lbz r5, 0(r30)
 /* 800C1CC4 000BEC04  88 DE 00 01 */ lbz r6, 1(r30)
-/* 800C1CC8 000BEC08  48 0E 8F 95 */ bl dKy_WolfEyeLight_set
+/* 800C1CC8 000BEC08  48 0E 8F 95 */ bl dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc
 lbl_800C1CCC:
 /* 800C1CCC 000BEC0C  E3 E1 00 B8 */ psq_l f31, 184(r1), 0, 0
 /* 800C1CD0 000BEC10  CB E1 00 B0 */ lfd f31, 0xb0(r1)

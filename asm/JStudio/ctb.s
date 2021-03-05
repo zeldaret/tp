@@ -161,8 +161,8 @@ destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject:
 /* 80281124 0027E064  38 21 00 10 */	addi r1, r1, 0x10
 /* 80281128 0027E068  4E 80 00 20 */	blr 
 
-.global destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject_all
-destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject_all:
+.global destroyObject_all__Q37JStudio3ctb8TControlFv
+destroyObject_all__Q37JStudio3ctb8TControlFv:
 /* 8028112C 0027E06C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80281130 0027E070  7C 08 02 A6 */	mflr r0
 /* 80281134 0027E074  90 01 00 24 */	stw r0, 0x24(r1)
@@ -236,8 +236,8 @@ lbl_80281220:
 /* 80281228 0027E168  38 21 00 50 */	addi r1, r1, 0x50
 /* 8028122C 0027E16C  4E 80 00 20 */	blr 
 
-.global getObject__Q37JStudio3ctb8TControlFPCvUl_index
-getObject__Q37JStudio3ctb8TControlFPCvUl_index:
+.global getObject_index__Q37JStudio3ctb8TControlFUl
+getObject_index__Q37JStudio3ctb8TControlFUl:
 /* 80281230 0027E170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80281234 0027E174  80 03 00 08 */	lwz r0, 8(r3)
 /* 80281238 0027E178  7C 04 00 40 */	cmplw r4, r0
@@ -377,7 +377,7 @@ lbl_802813C0:
 /* 80281400 0027E340  7F E3 FB 78 */	mr r3, r31
 /* 80281404 0027E344  38 82 B9 F8 */	addi r4, r2, lbl_804553F8-_SDA2_BASE_
 /* 80281408 0027E348  38 A0 00 04 */	li r5, 4
-/* 8028140C 0027E34C  48 0E 4C 81 */	bl func_8036608C
+/* 8028140C 0027E34C  48 0E 4C 81 */	bl memcmp
 /* 80281410 0027E350  2C 03 00 00 */	cmpwi r3, 0
 /* 80281414 0027E354  41 82 00 0C */	beq lbl_80281420
 /* 80281418 0027E358  38 60 00 00 */	li r3, 0

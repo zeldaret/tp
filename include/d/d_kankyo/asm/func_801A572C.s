@@ -38,7 +38,7 @@ lbl_801A578C:
 /* 801A57BC 001A26FC  38 00 00 01 */ li r0, 1
 /* 801A57C0 001A2700  98 0D 8A EB */ stb r0, lbl_8045106B-_SDA_BASE_(r13)
 lbl_801A57C4:
-/* 801A57C4 001A2704  48 00 5A BD */ bl dKy_camera_water_in_status_check
+/* 801A57C4 001A2704  48 00 5A BD */ bl dKy_camera_water_in_status_check__Fv
 /* 801A57C8 001A2708  2C 03 00 00 */ cmpwi r3, 0
 /* 801A57CC 001A270C  41 82 03 88 */ beq lbl_801A5B54
 /* 801A57D0 001A2710  38 7D 00 D8 */ addi r3, r29, 0xd8
@@ -279,7 +279,7 @@ lbl_801A5A34:
 /* 801A5B24 001A2A64  3B A3 4A C8 */ addi r29, r3, lbl_80434AC8@l
 /* 801A5B28 001A2A68  90 1D 00 4C */ stw r0, 0x4c(r29)
 /* 801A5B2C 001A2A6C  80 7C 0F 30 */ lwz r3, 0xf30(r28)
-/* 801A5B30 001A2A70  4B E6 81 95 */ bl mDoExt_modelUpdateDL
+/* 801A5B30 001A2A70  4B E6 81 95 */ bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 801A5B34 001A2A74  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A5B38 001A2A78  38 83 61 C0 */ addi r4, r3, g_dComIfG_gameInfo@l
 /* 801A5B3C 001A2A7C  80 04 5F 80 */ lwz r0, 0x5f80(r4)

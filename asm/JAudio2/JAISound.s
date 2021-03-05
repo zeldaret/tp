@@ -119,8 +119,8 @@ mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf:
 /* 802A22F0 0029F230  D0 05 00 10 */	stfs f0, 0x10(r5)
 /* 802A22F4 0029F234  4E 80 00 20 */	blr 
 
-.global JAISound
-JAISound:
+.global __ct__8JAISoundFv
+__ct__8JAISoundFv:
 /* 802A22F8 0029F238  3C 80 80 3D */	lis r4, lbl_803C9970@ha
 /* 802A22FC 0029F23C  38 04 99 70 */	addi r0, r4, lbl_803C9970@l
 /* 802A2300 0029F240  90 03 00 00 */	stw r0, 0(r3)
@@ -386,7 +386,7 @@ increasePrepareCount_JAISound___8JAISoundFv:
 /* 802A2698 0029F5D8  80 86 00 14 */	lwz r4, 0x14(r6)
 /* 802A269C 0029F5DC  80 A6 00 18 */	lwz r5, 0x18(r6)
 /* 802A26A0 0029F5E0  4C C6 31 82 */	crclr 6
-/* 802A26A4 0029F5E4  4B FE E8 C1 */	bl JASReport
+/* 802A26A4 0029F5E4  4B FE E8 C1 */	bl JASReport__FPCce
 lbl_802A26A8:
 /* 802A26A8 0029F5E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802A26AC 0029F5EC  7C 08 03 A6 */	mtlr r0

@@ -2,7 +2,7 @@
 #define Z2SPOTMIC_H_
 
 extern "C" {
-void Z2SpotMic(void);
+void __ct__9Z2SpotMicFv(void);
 void calcMicDist__9Z2SpotMicFP9Z2Audible(void);
 void calcMicPriority__9Z2SpotMicFf(void);
 void calcMicVolume__9Z2SpotMicFfif(void);

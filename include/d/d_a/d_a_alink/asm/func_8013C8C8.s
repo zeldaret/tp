@@ -7,7 +7,7 @@
 /* 8013C8E0 00139820  4B F8 56 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013C8E4 00139824  7F E3 FB 78 */ mr r3, r31
 /* 8013C8E8 00139828  38 80 00 74 */ li r4, 0x74
-/* 8013C8EC 0013982C  4B FE CD 8D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8013C8EC 0013982C  4B FE CD 8D */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8013C8F0 00139830  7F E3 FB 78 */ mr r3, r31
 /* 8013C8F4 00139834  38 80 00 9A */ li r4, 0x9a
 /* 8013C8F8 00139838  4B F7 2F A9 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -49,7 +49,7 @@ lbl_8013C984:
 /* 8013C984 001398C4  38 A0 FF FF */ li r5, -1
 lbl_8013C988:
 /* 8013C988 001398C8  38 C0 00 05 */ li r6, 5
-/* 8013C98C 001398CC  48 06 B8 35 */ bl dKy_Sound_set
+/* 8013C98C 001398CC  48 06 B8 35 */ bl dKy_Sound_set__F4cXyziUii
 /* 8013C990 001398D0  7F E3 FB 78 */ mr r3, r31
 /* 8013C994 001398D4  3C 80 00 02 */ lis r4, 0x00020054@ha
 /* 8013C998 001398D8  38 84 00 54 */ addi r4, r4, 0x00020054@l

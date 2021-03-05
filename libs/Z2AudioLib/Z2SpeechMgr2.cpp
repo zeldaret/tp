@@ -12,7 +12,7 @@
 
 extern "C" {
 void __dl__FPv(void);
-void dComIfGp_getReverb(void);
+void dComIfGp_getReverb__Fi(void);
 }
 
 // additional symbols needed for Z2SpeechMgr2.cpp
@@ -55,7 +55,7 @@ asm Z2SpeechMgr2::Z2SpeechMgr2() {
 extern "C" {
 // __dt__15Z2SpeechStarterFv
 // Z2SpeechStarter::~Z2SpeechStarter(void)
-asm void func_802CBCEC(void) {
+asm void __dt__15Z2SpeechStarterFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SpeechMgr2/asm/func_802CBCEC.s"
 }

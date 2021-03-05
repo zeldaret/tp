@@ -34,7 +34,7 @@
 /* 8005A3C4 00057304  FC 01 00 00 */ fcmpu cr0, f1, f0
 /* 8005A3C8 00057308  41 82 01 24 */ beq lbl_8005A4EC
 lbl_8005A3CC:
-/* 8005A3CC 0005730C  48 15 21 B1 */ bl dKy_darkworld_check
+/* 8005A3CC 0005730C  48 15 21 B1 */ bl dKy_darkworld_check__Fv
 /* 8005A3D0 00057310  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8005A3D4 00057314  40 82 01 18 */ bne lbl_8005A4EC
 /* 8005A3D8 00057318  7F E3 FB 78 */ mr r3, r31
@@ -70,7 +70,7 @@ lbl_8005A420:
 /* 8005A44C 0005738C  41 80 00 4C */ blt lbl_8005A498
 /* 8005A450 00057390  28 00 00 06 */ cmplwi r0, 6
 /* 8005A454 00057394  40 80 00 44 */ bge lbl_8005A498
-/* 8005A458 00057398  48 14 E6 E1 */ bl dKy_get_dayofweek
+/* 8005A458 00057398  48 14 E6 E1 */ bl dKy_get_dayofweek__Fv
 lbl_8005A45C:
 /* 8005A45C 0005739C  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8005A460 000573A0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
@@ -143,7 +143,7 @@ lbl_8005A550:
 /* 8005A558 00057498  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 8005A55C 0005749C  98 03 0E A9 */ stb r0, 0xea9(r3)
 lbl_8005A560:
-/* 8005A560 000574A0  48 00 06 D1 */ bl squal_proc
+/* 8005A560 000574A0  48 00 06 D1 */ bl squal_proc__Fv
 /* 8005A564 000574A4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8005A568 000574A8  83 C1 00 08 */ lwz r30, 8(r1)
 /* 8005A56C 000574AC  80 01 00 14 */ lwz r0, 0x14(r1)

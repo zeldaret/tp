@@ -102,8 +102,8 @@ lbl_80290E58:
 /* 80290EDC 0028DE1C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80290EE0 0028DE20  4E 80 00 20 */	blr 
 
-.global start__8JASProbeFPCc_X1_
-start__8JASProbeFPCc_X1_:
+.global start__8JASProbeFlPCc
+start__8JASProbeFlPCc:
 /* 80290EE4 0028DE24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290EE8 0028DE28  7C 08 02 A6 */	mflr r0
 /* 80290EEC 0028DE2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -122,8 +122,8 @@ lbl_80290F14:
 /* 80290F1C 0028DE5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80290F20 0028DE60  4E 80 00 20 */	blr 
 
-.global stop__8JASProbeFv_X1_
-stop__8JASProbeFv_X1_:
+.global stop__8JASProbeFl
+stop__8JASProbeFl:
 /* 80290F24 0028DE64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290F28 0028DE68  7C 08 02 A6 */	mflr r0
 /* 80290F2C 0028DE6C  90 01 00 14 */	stw r0, 0x14(r1)

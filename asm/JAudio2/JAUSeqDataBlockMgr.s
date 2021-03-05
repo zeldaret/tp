@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a68f4
 
 
-.global JAUSeqDataBlock
-JAUSeqDataBlock:
+.global __ct__15JAUSeqDataBlockFv
+__ct__15JAUSeqDataBlockFv:
 /* 802A68F4 002A3834  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A68F8 002A3838  7C 08 02 A6 */	mflr r0
 /* 802A68FC 002A383C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -121,8 +121,8 @@ lbl_802A6A48:
 /* 802A6A50 002A3990  38 60 00 00 */	li r3, 0
 /* 802A6A54 002A3994  4E 80 00 20 */	blr 
 
-.global JAUDynamicSeqDataBlocks
-JAUDynamicSeqDataBlocks:
+.global __ct__23JAUDynamicSeqDataBlocksFv
+__ct__23JAUDynamicSeqDataBlocksFv:
 /* 802A6A58 002A3998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A6A5C 002A399C  7C 08 02 A6 */	mflr r0
 /* 802A6A60 002A39A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -241,8 +241,8 @@ lbl_802A6BD8:
 /* 802A6BE8 002A3B28  7C 08 03 A6 */	mtlr r0
 /* 802A6BEC 002A3B2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A6BF0 002A3B30  4E 80 00 20 */	blr 
-.global JAUDynamicSeqDataBlocks_receiveLoaded_
-JAUDynamicSeqDataBlocks_receiveLoaded_:
+.global JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl
+JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl:
 /* 802A6BF4 002A3B34  80 84 00 00 */	lwz r4, 0(r4)
 /* 802A6BF8 002A3B38  28 03 00 00 */	cmplwi r3, 0
 /* 802A6BFC 002A3B3C  41 82 00 10 */	beq lbl_802A6C0C
@@ -299,7 +299,7 @@ lbl_802A6C64:
 /* 802A6CB0 002A3BF0  7F E3 FB 78 */	mr r3, r31
 /* 802A6CB4 002A3BF4  7F 64 DB 78 */	mr r4, r27
 /* 802A6CB8 002A3BF8  7F A5 EB 78 */	mr r5, r29
-/* 802A6CBC 002A3BFC  48 00 01 45 */	bl releaseIdleDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP14JAISeqDataUser_
+/* 802A6CBC 002A3BFC  48 00 01 45 */	bl releaseIdleDynamicSeqDataBlock___23JAUDynamicSeqDataBlocksFP14JAISeqDataUserUl
 /* 802A6CC0 002A3C00  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802A6CC4 002A3C04  40 82 00 14 */	bne lbl_802A6CD8
 /* 802A6CC8 002A3C08  38 60 00 00 */	li r3, 0
@@ -325,10 +325,10 @@ lbl_802A6CD8:
 /* 802A6D10 002A3C50  7F C4 F3 78 */	mr r4, r30
 /* 802A6D14 002A3C54  80 A6 00 14 */	lwz r5, 0x14(r6)
 /* 802A6D18 002A3C58  80 C6 00 18 */	lwz r6, 0x18(r6)
-.global JAUDynamicSeqDataBlocks_receiveLoaded_
-/* 802A6D1C 002A3C5C  3C E0 80 2A */	lis r7, JAUDynamicSeqDataBlocks_receiveLoaded_@ha
-.global JAUDynamicSeqDataBlocks_receiveLoaded_
-/* 802A6D20 002A3C60  38 E7 6B F4 */	addi r7, r7, JAUDynamicSeqDataBlocks_receiveLoaded_@l
+.global JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl
+/* 802A6D1C 002A3C5C  3C E0 80 2A */	lis r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@ha
+.global JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl
+/* 802A6D20 002A3C60  38 E7 6B F4 */	addi r7, r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@l
 /* 802A6D24 002A3C64  7F 88 E3 78 */	mr r8, r28
 /* 802A6D28 002A3C68  4B FE 9F F1 */	bl loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
 /* 802A6D2C 002A3C6C  38 60 00 01 */	li r3, 1
@@ -394,8 +394,8 @@ lbl_802A6DDC:
 /* 802A6DF8 002A3D38  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A6DFC 002A3D3C  4E 80 00 20 */	blr 
 
-.global releaseIdleDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP14JAISeqDataUser_
-releaseIdleDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP14JAISeqDataUser_:
+.global releaseIdleDynamicSeqDataBlock___23JAUDynamicSeqDataBlocksFP14JAISeqDataUserUl
+releaseIdleDynamicSeqDataBlock___23JAUDynamicSeqDataBlocksFP14JAISeqDataUserUl:
 /* 802A6E00 002A3D40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802A6E04 002A3D44  7C 08 02 A6 */	mflr r0
 /* 802A6E08 002A3D48  90 01 00 34 */	stw r0, 0x34(r1)

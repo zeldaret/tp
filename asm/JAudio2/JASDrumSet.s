@@ -3,8 +3,8 @@
 .section .text, "ax" # 802982ec
 
 
-.global JASDrumSet
-JASDrumSet:
+.global __ct__10JASDrumSetFv
+__ct__10JASDrumSetFv:
 /* 802982EC 0029522C  3C 80 80 3C */	lis r4, lbl_803C76FC@ha
 /* 802982F0 00295230  38 04 76 FC */	addi r0, r4, lbl_803C76FC@l
 /* 802982F4 00295234  90 03 00 00 */	stw r0, 0(r3)

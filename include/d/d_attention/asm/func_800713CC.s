@@ -4,9 +4,9 @@
 /* 800713D8 0006E318  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800713DC 0006E31C  7C 7F 1B 78 */ mr r31, r3
 /*.global select_attention*/
-/* 800713E0 0006E320  3C 60 80 07 */ lis r3, select_attention@ha
+/* 800713E0 0006E320  3C 60 80 07 */ lis r3, select_attention__FP10fopAc_ac_cPv@ha
 /*.global select_attention*/
-/* 800713E4 0006E324  38 63 13 8C */ addi r3, r3, select_attention@l
+/* 800713E4 0006E324  38 63 13 8C */ addi r3, r3, select_attention__FP10fopAc_ac_cPv@l
 /* 800713E8 0006E328  7F E4 FB 78 */ mr r4, r31
 /* 800713EC 0006E32C  4B FA 83 D1 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 800713F0 0006E330  80 1F 03 34 */ lwz r0, 0x334(r31)

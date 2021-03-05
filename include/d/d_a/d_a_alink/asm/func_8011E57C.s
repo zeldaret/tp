@@ -20,7 +20,7 @@
 /* 8011E5C8 0011B508  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011E5CC 0011B50C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E5D0 0011B510  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 8011E5D4 0011B514  4B F2 51 19 */ bl setPtI__14dEvt_control_cFPv_Id
+/* 8011E5D4 0011B514  4B F2 51 19 */ bl setPtI_Id__14dEvt_control_cFUi
 /* 8011E5D8 0011B518  38 00 00 01 */ li r0, 1
 /* 8011E5DC 0011B51C  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_8011E5E0:

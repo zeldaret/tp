@@ -20,7 +20,7 @@
 #include "msl_c/string.h"
 
 extern "C" {
-void cDyl_InitAsync(void);
+void cDyl_InitAsync__Fv(void);
 void CheckHeap1__9HeapCheckFv(void);
 void create__12JKRSolidHeapFUlP7JKRHeapb(void);
 void create__8mDoCPd_cFv(void);
@@ -40,7 +40,7 @@ void heapDisplay__9HeapCheckCFv(void);
 void JUTReport__FiiPCce(int, int, const char*, ...);
 void JUTReport__FiiiPCce(void);
 void create__20mDoDvdThd_callback_cFPFPv_PvPv(void);
-void mDoMch_HeapCheckAll(void);
+void mDoMch_HeapCheckAll__Fv(void);
 void update__15mDoMemCd_Ctrl_cFv(void);
 void read__8mDoCPd_cFv(void);
 void version_check__Fv(void);
@@ -115,7 +115,7 @@ void HeapCheck::CheckHeap1(void) {
 
 #ifdef NONMATCHING
 void CheckHeap(u32 controller_pad_no) {
-    mDoMch_HeapCheckAll();
+    mDoMch_HeapCheckAll__Fv();
     OSCheckActiveThreads();
 
     bool unk = false;
@@ -466,7 +466,7 @@ void debug(void) {
 void main01(void) {
     HeapCheck* heaps = lbl_803D32E0;
 
-    mDoMch_Create();
+    mDoMch_Create__Fv();
     mDoGph_Create();
     create__8mDoCPd_cFv();
 
@@ -538,7 +538,7 @@ void main01(void) {
     fapGm_Create();
     fopAcM_initManager();
     lbl_80450B18 = 0;
-    cDyl_InitAsync();
+    cDyl_InitAsync__Fv();
 
     // g_mDoAud_audioHeap
 
@@ -550,7 +550,7 @@ void main01(void) {
         lbl_80450B34++;
 
         if (lbl_80450B00 && (lbl_80450B34 == ((lbl_80450B34 / lbl_80450B00) * lbl_80450B00))) {
-            mDoMch_HeapCheckAll();
+            mDoMch_HeapCheckAll__Fv();
         }
 
         if (lbl_80450C80) {

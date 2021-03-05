@@ -44,7 +44,7 @@ lbl_8013CBCC:
 /* 8013CBE0 00139B20  FC 40 F8 90 */ fmr f2, f31
 /* 8013CBE4 00139B24  38 A0 FF FF */ li r5, -1
 /* 8013CBE8 00139B28  C0 66 00 30 */ lfs f3, 0x30(r6)
-/* 8013CBEC 00139B2C  4B FE CB 19 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8013CBEC 00139B2C  4B FE CB 19 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8013CBF0 00139B30  7F A3 EB 78 */ mr r3, r29
 /* 8013CBF4 00139B34  7F E4 FB 78 */ mr r4, r31
 /* 8013CBF8 00139B38  FC 20 F8 90 */ fmr f1, f31

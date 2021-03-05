@@ -62,7 +62,7 @@ lbl_8012F77C:
 /* 8012F7D4 0012C714  D0 03 00 14 */ stfs f0, 0x14(r3)
 /* 8012F7D8 0012C718  7F E3 FB 78 */ mr r3, r31
 /* 8012F7DC 0012C71C  38 80 00 00 */ li r4, 0
-/* 8012F7E0 0012C720  4B FF A3 65 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012F7E0 0012C720  4B FF A3 65 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012F7E4 0012C724  48 00 00 40 */ b lbl_8012F824
 lbl_8012F7E8:
 /* 8012F7E8 0012C728  C0 3F 33 98 */ lfs f1, 0x3398(r31)
@@ -80,7 +80,7 @@ lbl_8012F814:
 /* 8012F814 0012C754  7F E3 FB 78 */ mr r3, r31
 /* 8012F818 0012C758  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 8012F81C 0012C75C  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 8012F820 0012C760  4B F8 F9 AD */ bl seStartMapInfo__9daAlink_cFUlLevel
+/* 8012F820 0012C760  4B F8 F9 AD */ bl seStartMapInfoLevel__9daAlink_cFUl
 lbl_8012F824:
 /* 8012F824 0012C764  38 60 00 01 */ li r3, 1
 /* 8012F828 0012C768  83 E1 00 0C */ lwz r31, 0xc(r1)

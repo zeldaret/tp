@@ -7,9 +7,9 @@
 /* 800BE284 000BB1C4  54 00 01 D1 */ rlwinm. r0, r0, 0, 7, 8
 /* 800BE288 000BB1C8  40 82 00 20 */ bne lbl_800BE2A8
 /*.global daAlink_searchCoach*/
-/* 800BE28C 000BB1CC  3C 60 80 0F */ lis r3, daAlink_searchCoach@ha
+/* 800BE28C 000BB1CC  3C 60 80 0F */ lis r3, daAlink_searchCoach__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchCoach*/
-/* 800BE290 000BB1D0  38 63 C7 58 */ addi r3, r3, daAlink_searchCoach@l
+/* 800BE290 000BB1D0  38 63 C7 58 */ addi r3, r3, daAlink_searchCoach__FP10fopAc_ac_cPv@l
 /* 800BE294 000BB1D4  38 80 00 00 */ li r4, 0
 /* 800BE298 000BB1D8  4B F5 B5 61 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800BE29C 000BB1DC  28 03 00 00 */ cmplwi r3, 0

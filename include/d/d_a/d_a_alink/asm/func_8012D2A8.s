@@ -6,7 +6,7 @@
 /* 8012D2BC 0012A1FC  7C 7E 1B 78 */ mr r30, r3
 /* 8012D2C0 0012A200  AB E3 04 E6 */ lha r31, 0x4e6(r3)
 /* 8012D2C4 0012A204  38 80 00 00 */ li r4, 0
-/* 8012D2C8 0012A208  4B FF C8 7D */ bl checkNextAction__9daAlink_cFiWolf
+/* 8012D2C8 0012A208  4B FF C8 7D */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012D2CC 0012A20C  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D2D0 0012A210  40 82 00 94 */ bne lbl_8012D364
 /* 8012D2D4 0012A214  7F C3 F3 78 */ mr r3, r30

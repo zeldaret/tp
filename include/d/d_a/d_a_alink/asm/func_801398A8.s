@@ -11,7 +11,7 @@
 /* 801398D0 00136810  3C A0 80 39 */ lis r5, lbl_8038F7A4@ha
 /* 801398D4 00136814  38 A5 F7 A4 */ addi r5, r5, lbl_8038F7A4@l
 /* 801398D8 00136818  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 801398DC 0013681C  4B FE FD FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 801398DC 0013681C  4B FE FD FD */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 801398E0 00136820  7F E3 FB 78 */ mr r3, r31
 /* 801398E4 00136824  3C 80 00 01 */ lis r4, 0x00010037@ha
 /* 801398E8 00136828  38 84 00 37 */ addi r4, r4, 0x00010037@l

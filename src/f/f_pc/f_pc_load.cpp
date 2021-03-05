@@ -5,9 +5,9 @@
 
 extern "C" {
 
-extern s32 cDyl_IsLinked(s16 procName);
-extern s32 cDyl_Unlink(s16 procName);
-extern s32 cDyl_LinkASync(s16 procName);
+extern s32 cDyl_IsLinked__Fs(s16 procName);
+extern s32 cDyl_Unlink__Fs(s16 procName);
+extern s32 cDyl_LinkASync__Fs(s16 procName);
 
 }
 
@@ -18,15 +18,15 @@ BOOL fpcLd_Use(s16 procName) {
 }
 
 s32 fpcLd_IsLoaded(s16 procName) {
-    return cDyl_IsLinked((int)procName);
+    return cDyl_IsLinked__Fs((int)procName);
 }
 
 void fpcLd_Free(s16 procName) {
-    cDyl_Unlink((int)procName);
+    cDyl_Unlink__Fs((int)procName);
 }
 
 s32 fpcLd_Load(s16 procName) {
-    s32 phase = cDyl_LinkASync((int)procName);
+    s32 phase = cDyl_LinkASync__Fs((int)procName);
 
     switch (phase) {
     case cPhs_COMPLEATE_e:

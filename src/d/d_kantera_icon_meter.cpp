@@ -7,10 +7,10 @@ extern "C" {
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
-void CPaneMgr_X1_(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void initiate__15dKantera_icon_cFv(void);
-void dPaneClass_showNullPane(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
 void draw__9J2DScreenFffPC14J2DGrafContext(void);
 void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 }
@@ -29,14 +29,14 @@ extern u8 lbl_8042EBC8;
 extern "C" {
 // __ct__15dKantera_icon_cFv
 // dKantera_icon_c::dKantera_icon_c(void)
-asm void dKantera_icon_c(void) {
+asm void __ct__15dKantera_icon_cFv(void) {
     nofralloc
 #include "d/d_kantera_icon_meter/asm/func_801AE938.s"
 }
 
 // __dt__15dKantera_icon_cFv
 // dKantera_icon_c::~dKantera_icon_c(void)
-asm void func_801AE974(void) {
+asm void __dt__15dKantera_icon_cFv(void) {
     nofralloc
 #include "d/d_kantera_icon_meter/asm/func_801AE974.s"
 }
@@ -78,14 +78,14 @@ asm void setNowGauge__15dKantera_icon_cFUsUs(void) {
 
 // draw__19dDlst_KanteraIcon_cFv
 // dDlst_KanteraIcon_c::draw(void)
-asm void func_801AECB8(void) {
+asm void draw__19dDlst_KanteraIcon_cFv(void) {
     nofralloc
 #include "d/d_kantera_icon_meter/asm/func_801AECB8.s"
 }
 
 // __dt__19dDlst_KanteraIcon_cFv
 // dDlst_KanteraIcon_c::~dDlst_KanteraIcon_c(void)
-asm void func_801AED1C(void) {
+asm void __dt__19dDlst_KanteraIcon_cFv(void) {
     nofralloc
 #include "d/d_kantera_icon_meter/asm/func_801AED1C.s"
 }

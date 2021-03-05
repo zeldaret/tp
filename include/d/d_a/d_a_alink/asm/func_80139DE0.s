@@ -179,7 +179,7 @@ lbl_8013A084:
 /* 8013A084 00136FC4  7F A3 EB 78 */ mr r3, r29
 /* 8013A088 00136FC8  38 80 00 50 */ li r4, 0x50
 /* 8013A08C 00136FCC  38 BF 1F 20 */ addi r5, r31, 0x1f20
-/* 8013A090 00136FD0  4B FE F7 B9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013A090 00136FD0  4B FE F7 B9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013A094 00136FD4  80 9D 27 EC */ lwz r4, 0x27ec(r29)
 /* 8013A098 00136FD8  28 04 00 00 */ cmplwi r4, 0
 /* 8013A09C 00136FDC  41 82 03 58 */ beq lbl_8013A3F4

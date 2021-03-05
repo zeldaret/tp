@@ -38,10 +38,10 @@ lbl_802242D4:
 /* 802242E4 00221224  7C 1C 00 00 */ cmpw r28, r0
 /* 802242E8 00221228  40 82 00 3C */ bne lbl_80224324
 /* 802242EC 0022122C  7E E3 BB 78 */ mr r3, r23
-/* 802242F0 00221230  4B E0 A3 99 */ bl dComIfGp_getSelectItemMaxNum
+/* 802242F0 00221230  4B E0 A3 99 */ bl dComIfGp_getSelectItemMaxNum__Fi
 /* 802242F4 00221234  54 7D 06 3E */ clrlwi r29, r3, 0x18
 /* 802242F8 00221238  7E E3 BB 78 */ mr r3, r23
-/* 802242FC 0022123C  4B E0 A2 C5 */ bl dComIfGp_getSelectItemNum
+/* 802242FC 0022123C  4B E0 A2 C5 */ bl dComIfGp_getSelectItemNum__Fi
 /* 80224300 00221240  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 80224304 00221244  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 80224308 00221248  56 E4 06 3E */ clrlwi r4, r23, 0x18

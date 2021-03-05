@@ -112,7 +112,7 @@ lbl_801AC464:
 /* 801AC478 001A93B8  40 80 00 E4 */ bge lbl_801AC55C
 /* 801AC47C 001A93BC  38 7E 05 38 */ addi r3, r30, 0x538
 /* 801AC480 001A93C0  38 81 00 30 */ addi r4, r1, 0x30
-/* 801AC484 001A93C4  4B E6 8E 8D */ bl mDoLib_project
+/* 801AC484 001A93C4  4B E6 8E 8D */ bl mDoLib_project__FP3VecP3Vec
 /* 801AC488 001A93C8  C0 41 00 30 */ lfs f2, 0x30(r1)
 /* 801AC48C 001A93CC  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
 /* 801AC490 001A93D0  FC 02 08 40 */ fcmpo cr0, f2, f1
@@ -131,11 +131,11 @@ lbl_801AC464:
 /* 801AC4C4 001A9404  38 7D 00 D8 */ addi r3, r29, 0xd8
 /* 801AC4C8 001A9408  38 9D 00 E4 */ addi r4, r29, 0xe4
 /* 801AC4CC 001A940C  38 A1 00 18 */ addi r5, r1, 0x18
-/* 801AC4D0 001A9410  4B EA F2 91 */ bl dKyr_get_vectle_calc
+/* 801AC4D0 001A9410  4B EA F2 91 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 801AC4D4 001A9414  38 7D 00 D8 */ addi r3, r29, 0xd8
 /* 801AC4D8 001A9418  38 9E 05 38 */ addi r4, r30, 0x538
 /* 801AC4DC 001A941C  38 A1 00 0C */ addi r5, r1, 0xc
-/* 801AC4E0 001A9420  4B EA F2 81 */ bl dKyr_get_vectle_calc
+/* 801AC4E0 001A9420  4B EA F2 81 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 801AC4E4 001A9424  C0 21 00 18 */ lfs f1, 0x18(r1)
 /* 801AC4E8 001A9428  C0 41 00 20 */ lfs f2, 0x20(r1)
 /* 801AC4EC 001A942C  48 0B B1 89 */ bl cM_atan2s

@@ -287,7 +287,7 @@ lbl_800BEED8:
 /* 800BEEF4 000BBE34  7C 05 07 74 */ extsb r5, r0
 /* 800BEEF8 000BBE38  A8 DC 04 E6 */ lha r6, 0x4e6(r28)
 /* 800BEEFC 000BBE3C  38 E0 FF FF */ li r7, -1
-/* 800BEF00 000BBE40  4B F6 82 71 */ bl dStage_changeScene
+/* 800BEF00 000BBE40  4B F6 82 71 */ bl dStage_changeScene__FifUlScsi
 /* 800BEF04 000BBE44  7C 7D 1B 79 */ or. r29, r3, r3
 /* 800BEF08 000BBE48  41 82 00 30 */ beq lbl_800BEF38
 /* 800BEF0C 000BBE4C  80 1C 05 78 */ lwz r0, 0x578(r28)
@@ -307,7 +307,7 @@ lbl_800BEF38:
 /* 800BEF40 000BBE80  41 82 00 5C */ beq lbl_800BEF9C
 /* 800BEF44 000BBE84  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF48 000BBE88  7C 04 07 74 */ extsb r4, r0
-/* 800BEF4C 000BBE8C  4B F9 28 A1 */ bl dPath_GetRoomPath
+/* 800BEF4C 000BBE8C  4B F9 28 A1 */ bl dPath_GetRoomPath__Fii
 /* 800BEF50 000BBE90  90 7C 2F 58 */ stw r3, 0x2f58(r28)
 /* 800BEF54 000BBE94  48 00 00 48 */ b lbl_800BEF9C
 lbl_800BEF58:
@@ -317,7 +317,7 @@ lbl_800BEF58:
 /* 800BEF64 000BBEA4  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF68 000BBEA8  7C 05 07 74 */ extsb r5, r0
 /* 800BEF6C 000BBEAC  A8 DC 04 E6 */ lha r6, 0x4e6(r28)
-/* 800BEF70 000BBEB0  4B F6 81 8D */ bl dStage_changeSceneExitId
+/* 800BEF70 000BBEB0  4B F6 81 8D */ bl dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs
 /* 800BEF74 000BBEB4  7C 7D 1B 78 */ mr r29, r3
 /* 800BEF78 000BBEB8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800BEF7C 000BBEBC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -326,7 +326,7 @@ lbl_800BEF58:
 /* 800BEF88 000BBEC8  4B FB 60 59 */ bl GetRoomPathId__4dBgSFRC13cBgS_PolyInfo
 /* 800BEF8C 000BBECC  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF90 000BBED0  7C 04 07 74 */ extsb r4, r0
-/* 800BEF94 000BBED4  4B F9 28 59 */ bl dPath_GetRoomPath
+/* 800BEF94 000BBED4  4B F9 28 59 */ bl dPath_GetRoomPath__Fii
 /* 800BEF98 000BBED8  90 7C 2F 58 */ stw r3, 0x2f58(r28)
 lbl_800BEF9C:
 /* 800BEF9C 000BBEDC  2C 1D 00 00 */ cmpwi r29, 0

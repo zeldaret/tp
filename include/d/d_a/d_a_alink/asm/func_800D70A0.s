@@ -16,7 +16,7 @@
 /* 800D70DC 000D401C  41 82 00 6C */ beq lbl_800D7148
 lbl_800D70E0:
 /* 800D70E0 000D4020  7F E3 FB 78 */ mr r3, r31
-/* 800D70E4 000D4024  4B FF B2 85 */ bl checkCutTurnInput__9daAlink_cCFvTrigger
+/* 800D70E4 000D4024  4B FF B2 85 */ bl checkCutTurnInputTrigger__9daAlink_cFv
 /* 800D70E8 000D4028  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D70EC 000D402C  41 82 00 5C */ beq lbl_800D7148
 /* 800D70F0 000D4030  80 1F 05 74 */ lwz r0, 0x574(r31)

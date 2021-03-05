@@ -7,7 +7,7 @@
 /* 800C0794 000BD6D4  7C 9D 23 78 */ mr r29, r4
 /* 800C0798 000BD6D8  7C BE 2B 78 */ mr r30, r5
 /* 800C079C 000BD6DC  54 83 06 3E */ clrlwi r3, r4, 0x18
-/* 800C07A0 000BD6E0  4B F6 D7 7D */ bl dComIfGp_getSelectItem
+/* 800C07A0 000BD6E0  4B F6 D7 7D */ bl dComIfGp_getSelectItem__Fi
 /* 800C07A4 000BD6E4  54 7F 06 3E */ clrlwi r31, r3, 0x18
 /* 800C07A8 000BD6E8  9B BC 2F 9C */ stb r29, 0x2f9c(r28)
 /* 800C07AC 000BD6EC  2C 1E 00 0F */ cmpwi r30, 0xf

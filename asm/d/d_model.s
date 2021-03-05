@@ -54,10 +54,10 @@
 /* 8009C5BC 000994FC  38 81 00 08 */	addi r4, r1, 8
 /* 8009C5C0 00099500  48 2C 14 89 */	bl GXSetChanMatColor
 /* 8009C5C4 00099504  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8009C5C8 00099508  48 10 A8 D5 */	bl dKy_setLight_nowroom_actor
-/* 8009C5CC 0009950C  48 10 AF F5 */	bl dKy_setLight_again
+/* 8009C5C8 00099508  48 10 A8 D5 */	bl dKy_setLight_nowroom_actor__FP12dKy_tevstr_c
+/* 8009C5CC 0009950C  48 10 AF F5 */	bl dKy_setLight_again__Fv
 /* 8009C5D0 00099510  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8009C5D4 00099514  48 10 C0 7D */	bl dKy_GxFog_tevstr_set
+/* 8009C5D4 00099514  48 10 C0 7D */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 8009C5D8 00099518  83 9F 00 1C */	lwz r28, 0x1c(r31)
 /* 8009C5DC 0009951C  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8009C5E0 00099520  3B C3 4A C8 */	addi r30, r3, lbl_80434AC8@l
@@ -214,7 +214,7 @@ create__10dMdl_mng_cFv:
 /* 8009C7D8 00099718  38 A5 C8 08 */	addi r5, r5, __dt__6dMdl_cFv@l
 /* 8009C7DC 0009971C  38 C0 00 20 */	li r6, 0x20
 /* 8009C7E0 00099720  38 E0 00 04 */	li r7, 4
-/* 8009C7E4 00099724  48 2C 55 7D */	bl func_80361D60
+/* 8009C7E4 00099724  48 2C 55 7D */	bl __construct_array
 /* 8009C7E8 00099728  38 00 00 00 */	li r0, 0
 /* 8009C7EC 0009972C  98 1F 00 80 */	stb r0, 0x80(r31)
 lbl_8009C7F0:
@@ -269,7 +269,7 @@ remove__10dMdl_mng_cFv:
 /* 8009C88C 000997CC  38 84 C8 08 */	addi r4, r4, __dt__6dMdl_cFv@l
 /* 8009C890 000997D0  38 A0 00 20 */	li r5, 0x20
 /* 8009C894 000997D4  38 C0 00 04 */	li r6, 4
-/* 8009C898 000997D8  48 2C 54 51 */	bl func_80361CE8
+/* 8009C898 000997D8  48 2C 54 51 */	bl __destroy_arr
 /* 8009C89C 000997DC  7F E3 FB 78 */	mr r3, r31
 /* 8009C8A0 000997E0  48 23 24 9D */	bl __dl__FPv
 lbl_8009C8A4:

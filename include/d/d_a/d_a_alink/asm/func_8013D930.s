@@ -25,7 +25,7 @@ lbl_8013D980:
 /* 8013D988 0013A8C8  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8013D98C 0013A8CC  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013D990 0013A8D0  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013D994 0013A8D4  4B FE BD 71 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8013D994 0013A8D4  4B FE BD 71 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8013D998 0013A8D8  38 00 00 00 */ li r0, 0
 /* 8013D99C 0013A8DC  98 1F 1F D4 */ stb r0, 0x1fd4(r31)
 /* 8013D9A0 0013A8E0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)

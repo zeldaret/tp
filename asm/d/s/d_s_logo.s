@@ -3,8 +3,8 @@
 .section .text, "ax" # 802560a4
 
 
-.global dLog_HIO_c
-dLog_HIO_c:
+.global __ct__10dLog_HIO_cFv
+__ct__10dLog_HIO_cFv:
 /* 802560A4 00252FE4  3C 80 80 3C */	lis r4, lbl_803C300C@ha
 /* 802560A8 00252FE8  38 04 30 0C */	addi r0, r4, lbl_803C300C@l
 /* 802560AC 00252FEC  90 03 00 00 */	stw r0, 0(r3)
@@ -128,7 +128,7 @@ draw__10dScnLogo_cFv:
 /* 80256238 00253178  3C 80 80 3C */	lis r4, lbl_803C2F04@ha
 /* 8025623C 0025317C  38 04 2F 04 */	addi r0, r4, lbl_803C2F04@l
 /* 80256240 00253180  7D 80 2A 14 */	add r12, r0, r5
-/* 80256244 00253184  48 10 BE 41 */	bl func_80362084
+/* 80256244 00253184  48 10 BE 41 */	bl __ptmf_scall
 /* 80256248 00253188  60 00 00 00 */	nop 
 /* 8025624C 0025318C  38 60 00 01 */	li r3, 1
 /* 80256250 00253190  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1222,7 +1222,7 @@ lbl_80257270:
 /* 80257298 002541D8  2C 00 00 00 */	cmpwi r0, 0
 /* 8025729C 002541DC  40 82 00 0C */	bne lbl_802572A8
 /* 802572A0 002541E0  38 80 00 0C */	li r4, 0xc
-/* 802572A4 002541E4  4B DD 59 B1 */	bl dComIfG_changeOpeningScene
+/* 802572A4 002541E4  4B DD 59 B1 */	bl dComIfG_changeOpeningScene__FP11scene_classs
 lbl_802572A8:
 /* 802572A8 002541E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802572AC 002541EC  7C 08 03 A6 */	mtlr r0
@@ -1616,13 +1616,13 @@ lbl_80257830:
 /* 80257838 00254778  7F 63 DB 78 */	mr r3, r27
 /* 8025783C 0025477C  48 07 B9 71 */	bl getTotalFreeSize__11JKRAramHeapFv
 /* 80257840 00254780  7C 7C 1B 78 */	mr r28, r3
-/* 80257844 00254784  4B DB D1 AD */	bl mDoExt_getMesgFont
-/* 80257848 00254788  4B DB D3 59 */	bl mDoExt_getSubFont
-/* 8025784C 0025478C  4B DB D2 B9 */	bl mDoExt_getRubyFont
+/* 80257844 00254784  4B DB D1 AD */	bl mDoExt_getMesgFont__Fv
+/* 80257848 00254788  4B DB D3 59 */	bl mDoExt_getSubFont__Fv
+/* 8025784C 0025478C  4B DB D2 B9 */	bl mDoExt_getRubyFont__Fv
 /* 80257850 00254790  7F 63 DB 78 */	mr r3, r27
 /* 80257854 00254794  48 07 B9 59 */	bl getTotalFreeSize__11JKRAramHeapFv
 /* 80257858 00254798  7C 63 E0 50 */	subf r3, r3, r28
-/* 8025785C 0025479C  4B DB D5 01 */	bl mDoExt_setAraCacheSize
+/* 8025785C 0025479C  4B DB D5 01 */	bl mDoExt_setAraCacheSize__FUl
 /* 80257860 002547A0  80 7F 02 A0 */	lwz r3, 0x2a0(r31)
 /* 80257864 002547A4  80 03 00 1C */	lwz r0, 0x1c(r3)
 /* 80257868 002547A8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
@@ -1655,7 +1655,7 @@ lbl_802578BC:
 /* 802578CC 0025480C  7F C5 F3 78 */	mr r5, r30
 /* 802578D0 00254810  38 C0 00 80 */	li r6, 0x80
 /* 802578D4 00254814  4B DE 4A 19 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
-/* 802578D8 00254818  4B DF E7 11 */	bl setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObjTex
+/* 802578D8 00254818  4B DF E7 11 */	bl setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG
 /* 802578DC 0025481C  4B E4 42 FD */	bl createWork__7dTres_cFv
 /* 802578E0 00254820  4B DE 7F 09 */	bl createWork__8dMpath_cFv
 /* 802578E4 00254824  7F A0 07 35 */	extsh. r0, r29
@@ -1691,7 +1691,7 @@ lbl_802578F4:
 /* 80257958 00254898  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025795C 0025489C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80257960 002548A0  4B DD 50 79 */	bl createParticle__14dComIfG_play_cFv
-/* 80257964 002548A4  4B DB 73 ED */	bl mDoExt_getGameHeap
+/* 80257964 002548A4  4B DB 73 ED */	bl mDoExt_getGameHeap__Fv
 /* 80257968 002548A8  3C 80 00 34 */	lis r4, 0x34
 /* 8025796C 002548AC  38 A0 FF F0 */	li r5, -16
 /* 80257970 002548B0  48 07 6B 65 */	bl alloc__7JKRHeapFUli
@@ -1718,7 +1718,7 @@ lbl_802578F4:
 /* 802579C4 00254904  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802579C8 00254908  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802579CC 0025490C  7C 7F 1B 78 */	mr r31, r3
-/* 802579D0 00254910  4B DC 0D C9 */	bl cDyl_InitAsyncIsDone
+/* 802579D0 00254910  4B DC 0D C9 */	bl cDyl_InitAsyncIsDone__Fv
 /* 802579D4 00254914  2C 03 00 00 */	cmpwi r3, 0
 /* 802579D8 00254918  40 82 00 0C */	bne lbl_802579E4
 /* 802579DC 0025491C  38 60 00 00 */	li r3, 0
@@ -1780,15 +1780,15 @@ lbl_80257A5C:
 /* 80257AAC 002549EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80257AB0 002549F0  4E 80 00 20 */	blr 
 
-.global resLoad
-resLoad:
+.global resLoad__FP30request_of_phase_process_classP10dScnLogo_c
+resLoad__FP30request_of_phase_process_classP10dScnLogo_c:
 /* 80257AB4 002549F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80257AB8 002549F8  7C 08 02 A6 */	mflr r0
 /* 80257ABC 002549FC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80257AC0 00254A00  7C 85 23 78 */	mr r5, r4
 /* 80257AC4 00254A04  3C 80 80 3C */	lis r4, lbl_803C2FC4@ha
 /* 80257AC8 00254A08  38 84 2F C4 */	addi r4, r4, lbl_803C2FC4@l
-/* 80257ACC 00254A0C  4B DD 80 55 */	bl dComLbG_PhaseHandler
+/* 80257ACC 00254A0C  4B DD 80 55 */	bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 /* 80257AD0 00254A10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80257AD4 00254A14  7C 08 03 A6 */	mtlr r0
 /* 80257AD8 00254A18  38 21 00 10 */	addi r1, r1, 0x10
@@ -1804,14 +1804,14 @@ create__10dScnLogo_cFv:
 /* 80257AF4 00254A34  7C 7E 1B 78 */	mr r30, r3
 /* 80257AF8 00254A38  38 7E 01 C4 */	addi r3, r30, 0x1c4
 /* 80257AFC 00254A3C  7F C4 F3 78 */	mr r4, r30
-/* 80257B00 00254A40  4B FF FF B5 */	bl resLoad
+/* 80257B00 00254A40  4B FF FF B5 */	bl resLoad__FP30request_of_phase_process_classP10dScnLogo_c
 /* 80257B04 00254A44  7C 7F 1B 78 */	mr r31, r3
 /* 80257B08 00254A48  2C 1F 00 04 */	cmpwi r31, 4
 /* 80257B0C 00254A4C  41 82 00 08 */	beq lbl_80257B14
 /* 80257B10 00254A50  48 00 01 3C */	b lbl_80257C4C
 lbl_80257B14:
 /* 80257B14 00254A54  80 7E 01 D4 */	lwz r3, 0x1d4(r30)
-/* 80257B18 00254A58  4B DB 76 B5 */	bl mDoExt_setCurrentHeap
+/* 80257B18 00254A58  4B DB 76 B5 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80257B1C 00254A5C  90 7E 01 D8 */	stw r3, 0x1d8(r30)
 /* 80257B20 00254A60  7F C3 F3 78 */	mr r3, r30
 /* 80257B24 00254A64  48 00 01 41 */	bl logoInitGC__10dScnLogo_cFv
@@ -1932,7 +1932,7 @@ logoInitGC__10dScnLogo_cFv:
 /* 80257CC4 00254C04  38 E0 01 78 */	li r7, 0x178
 /* 80257CC8 00254C08  39 00 00 68 */	li r8, 0x68
 /* 80257CCC 00254C0C  39 20 00 FF */	li r9, 0xff
-/* 80257CD0 00254C10  4B DF BD 31 */	bl dDlst_2D_c
+/* 80257CD0 00254C10  4B DF BD 31 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257CD4 00254C14  7C 60 1B 78 */	mr r0, r3
 lbl_80257CD8:
 /* 80257CD8 00254C18  90 1F 01 E4 */	stw r0, 0x1e4(r31)
@@ -1968,7 +1968,7 @@ lbl_80257CD8:
 /* 80257D50 00254C90  38 E0 00 E8 */	li r7, 0xe8
 /* 80257D54 00254C94  39 00 00 70 */	li r8, 0x70
 /* 80257D58 00254C98  39 20 00 FF */	li r9, 0xff
-/* 80257D5C 00254C9C  4B DF BC A5 */	bl dDlst_2D_c
+/* 80257D5C 00254C9C  4B DF BC A5 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257D60 00254CA0  7C 60 1B 78 */	mr r0, r3
 lbl_80257D64:
 /* 80257D64 00254CA4  90 1F 01 E8 */	stw r0, 0x1e8(r31)
@@ -1989,7 +1989,7 @@ lbl_80257D64:
 /* 80257DA0 00254CE0  38 E0 02 60 */	li r7, 0x260
 /* 80257DA4 00254CE4  39 00 01 C0 */	li r8, 0x1c0
 /* 80257DA8 00254CE8  39 20 00 FF */	li r9, 0xff
-/* 80257DAC 00254CEC  4B DF BC 55 */	bl dDlst_2D_c
+/* 80257DAC 00254CEC  4B DF BC 55 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257DB0 00254CF0  7C 60 1B 78 */	mr r0, r3
 lbl_80257DB4:
 /* 80257DB4 00254CF4  90 1F 01 DC */	stw r0, 0x1dc(r31)
@@ -2010,7 +2010,7 @@ lbl_80257DB4:
 /* 80257DF0 00254D30  38 E0 02 60 */	li r7, 0x260
 /* 80257DF4 00254D34  39 00 00 30 */	li r8, 0x30
 /* 80257DF8 00254D38  39 20 00 FF */	li r9, 0xff
-/* 80257DFC 00254D3C  4B DF BC 05 */	bl dDlst_2D_c
+/* 80257DFC 00254D3C  4B DF BC 05 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257E00 00254D40  7C 60 1B 78 */	mr r0, r3
 lbl_80257E04:
 /* 80257E04 00254D44  90 1F 01 E0 */	stw r0, 0x1e0(r31)
@@ -2031,7 +2031,7 @@ lbl_80257E04:
 /* 80257E40 00254D80  38 E0 01 A0 */	li r7, 0x1a0
 /* 80257E44 00254D84  39 00 00 48 */	li r8, 0x48
 /* 80257E48 00254D88  39 20 00 FF */	li r9, 0xff
-/* 80257E4C 00254D8C  4B DF BB B5 */	bl dDlst_2D_c
+/* 80257E4C 00254D8C  4B DF BB B5 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257E50 00254D90  7C 60 1B 78 */	mr r0, r3
 lbl_80257E54:
 /* 80257E54 00254D94  90 1F 01 EC */	stw r0, 0x1ec(r31)
@@ -2052,7 +2052,7 @@ lbl_80257E54:
 /* 80257E90 00254DD0  38 E0 00 50 */	li r7, 0x50
 /* 80257E94 00254DD4  39 00 00 20 */	li r8, 0x20
 /* 80257E98 00254DD8  39 20 00 FF */	li r9, 0xff
-/* 80257E9C 00254DDC  4B DF BB 65 */	bl dDlst_2D_c
+/* 80257E9C 00254DDC  4B DF BB 65 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257EA0 00254DE0  7C 60 1B 78 */	mr r0, r3
 lbl_80257EA4:
 /* 80257EA4 00254DE4  90 1F 01 F0 */	stw r0, 0x1f0(r31)
@@ -2087,7 +2087,7 @@ lbl_80257EA4:
 /* 80257F18 00254E58  38 E0 00 50 */	li r7, 0x50
 /* 80257F1C 00254E5C  39 00 00 20 */	li r8, 0x20
 /* 80257F20 00254E60  39 20 00 FF */	li r9, 0xff
-/* 80257F24 00254E64  4B DF BA DD */	bl dDlst_2D_c
+/* 80257F24 00254E64  4B DF BA DD */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257F28 00254E68  7C 60 1B 78 */	mr r0, r3
 lbl_80257F2C:
 /* 80257F2C 00254E6C  90 1F 01 F4 */	stw r0, 0x1f4(r31)
@@ -2129,7 +2129,7 @@ lbl_80257F2C:
 /* 80257FBC 00254EFC  38 E0 01 50 */	li r7, 0x150
 /* 80257FC0 00254F00  39 00 00 58 */	li r8, 0x58
 /* 80257FC4 00254F04  39 20 00 FF */	li r9, 0xff
-/* 80257FC8 00254F08  4B DF BA 39 */	bl dDlst_2D_c
+/* 80257FC8 00254F08  4B DF BA 39 */	bl __ct__10dDlst_2D_cFP7ResTIMGssssUc
 /* 80257FCC 00254F0C  7C 60 1B 78 */	mr r0, r3
 lbl_80257FD0:
 /* 80257FD0 00254F10  90 1F 01 F8 */	stw r0, 0x1f8(r31)
@@ -2175,7 +2175,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258064 00254FA4  38 E0 00 00 */	li r7, 0
 /* 80258068 00254FA8  39 00 00 00 */	li r8, 0
 /* 8025806C 00254FAC  4B DE 40 0D */	bl setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap
-/* 80258070 00254FB0  4B DB 6D C1 */	bl mDoExt_getJ2dHeap
+/* 80258070 00254FB0  4B DB 6D C1 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258074 00254FB4  7C 66 1B 78 */	mr r6, r3
 /* 80258078 00254FB8  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 8025807C 00254FBC  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2192,7 +2192,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802580A8 00254FE8  38 C0 00 00 */	li r6, 0
 /* 802580AC 00254FEC  4B DB E1 35 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802580B0 00254FF0  90 7F 02 24 */	stw r3, 0x224(r31)
-/* 802580B4 00254FF4  4B DB 6D 7D */	bl mDoExt_getJ2dHeap
+/* 802580B4 00254FF4  4B DB 6D 7D */	bl mDoExt_getJ2dHeap__Fv
 /* 802580B8 00254FF8  7C 66 1B 78 */	mr r6, r3
 /* 802580BC 00254FFC  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802580C0 00255000  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2201,7 +2201,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802580CC 0025500C  38 A0 00 02 */	li r5, 2
 /* 802580D0 00255010  4B DB E1 11 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802580D4 00255014  90 7F 02 2C */	stw r3, 0x22c(r31)
-/* 802580D8 00255018  4B DB 6D 59 */	bl mDoExt_getJ2dHeap
+/* 802580D8 00255018  4B DB 6D 59 */	bl mDoExt_getJ2dHeap__Fv
 /* 802580DC 0025501C  7C 66 1B 78 */	mr r6, r3
 /* 802580E0 00255020  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802580E4 00255024  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2210,7 +2210,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802580F0 00255030  38 A0 00 02 */	li r5, 2
 /* 802580F4 00255034  4B DB E0 ED */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802580F8 00255038  90 7F 02 30 */	stw r3, 0x230(r31)
-/* 802580FC 0025503C  4B DB 6D 35 */	bl mDoExt_getJ2dHeap
+/* 802580FC 0025503C  4B DB 6D 35 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258100 00255040  7C 66 1B 78 */	mr r6, r3
 /* 80258104 00255044  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258108 00255048  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2219,7 +2219,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258114 00255054  38 A0 00 02 */	li r5, 2
 /* 80258118 00255058  4B DB E0 C9 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 8025811C 0025505C  90 7F 02 34 */	stw r3, 0x234(r31)
-/* 80258120 00255060  4B DB 6D 11 */	bl mDoExt_getJ2dHeap
+/* 80258120 00255060  4B DB 6D 11 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258124 00255064  7C 66 1B 78 */	mr r6, r3
 /* 80258128 00255068  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 8025812C 0025506C  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2228,7 +2228,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258138 00255078  38 A0 00 02 */	li r5, 2
 /* 8025813C 0025507C  4B DB E0 A5 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258140 00255080  90 7F 02 3C */	stw r3, 0x23c(r31)
-/* 80258144 00255084  4B DB 6C ED */	bl mDoExt_getJ2dHeap
+/* 80258144 00255084  4B DB 6C ED */	bl mDoExt_getJ2dHeap__Fv
 /* 80258148 00255088  7C 66 1B 78 */	mr r6, r3
 /* 8025814C 0025508C  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258150 00255090  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2237,7 +2237,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 8025815C 0025509C  38 A0 00 02 */	li r5, 2
 /* 80258160 002550A0  4B DB E0 81 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258164 002550A4  90 7F 02 40 */	stw r3, 0x240(r31)
-/* 80258168 002550A8  4B DB 6C C9 */	bl mDoExt_getJ2dHeap
+/* 80258168 002550A8  4B DB 6C C9 */	bl mDoExt_getJ2dHeap__Fv
 /* 8025816C 002550AC  7C 66 1B 78 */	mr r6, r3
 /* 80258170 002550B0  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258174 002550B4  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2246,7 +2246,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258180 002550C0  38 A0 00 02 */	li r5, 2
 /* 80258184 002550C4  4B DB E0 5D */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258188 002550C8  90 7F 02 48 */	stw r3, 0x248(r31)
-/* 8025818C 002550CC  4B DB 6C A5 */	bl mDoExt_getJ2dHeap
+/* 8025818C 002550CC  4B DB 6C A5 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258190 002550D0  7C 66 1B 78 */	mr r6, r3
 /* 80258194 002550D4  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258198 002550D8  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2255,7 +2255,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802581A4 002550E4  38 A0 00 02 */	li r5, 2
 /* 802581A8 002550E8  4B DB E0 39 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802581AC 002550EC  90 7F 02 4C */	stw r3, 0x24c(r31)
-/* 802581B0 002550F0  4B DB 6C 81 */	bl mDoExt_getJ2dHeap
+/* 802581B0 002550F0  4B DB 6C 81 */	bl mDoExt_getJ2dHeap__Fv
 /* 802581B4 002550F4  7C 66 1B 78 */	mr r6, r3
 /* 802581B8 002550F8  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802581BC 002550FC  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2264,7 +2264,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802581C8 00255108  38 A0 00 02 */	li r5, 2
 /* 802581CC 0025510C  4B DB E0 15 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802581D0 00255110  90 7F 02 50 */	stw r3, 0x250(r31)
-/* 802581D4 00255114  4B DB 6C 5D */	bl mDoExt_getJ2dHeap
+/* 802581D4 00255114  4B DB 6C 5D */	bl mDoExt_getJ2dHeap__Fv
 /* 802581D8 00255118  7C 66 1B 78 */	mr r6, r3
 /* 802581DC 0025511C  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802581E0 00255120  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2281,7 +2281,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 8025820C 0025514C  38 C0 00 00 */	li r6, 0
 /* 80258210 00255150  4B DB DF D1 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258214 00255154  90 7F 02 5C */	stw r3, 0x25c(r31)
-/* 80258218 00255158  4B DB 6C 19 */	bl mDoExt_getJ2dHeap
+/* 80258218 00255158  4B DB 6C 19 */	bl mDoExt_getJ2dHeap__Fv
 /* 8025821C 0025515C  7C 66 1B 78 */	mr r6, r3
 /* 80258220 00255160  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258224 00255164  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2290,7 +2290,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258230 00255170  38 A0 00 02 */	li r5, 2
 /* 80258234 00255174  4B DB DF AD */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258238 00255178  90 7F 02 60 */	stw r3, 0x260(r31)
-/* 8025823C 0025517C  4B DB 6B F5 */	bl mDoExt_getJ2dHeap
+/* 8025823C 0025517C  4B DB 6B F5 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258240 00255180  7C 66 1B 78 */	mr r6, r3
 /* 80258244 00255184  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258248 00255188  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2299,7 +2299,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258254 00255194  38 A0 00 02 */	li r5, 2
 /* 80258258 00255198  4B DB DF 89 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 8025825C 0025519C  90 7F 02 64 */	stw r3, 0x264(r31)
-/* 80258260 002551A0  4B DB 6B D1 */	bl mDoExt_getJ2dHeap
+/* 80258260 002551A0  4B DB 6B D1 */	bl mDoExt_getJ2dHeap__Fv
 /* 80258264 002551A4  7C 66 1B 78 */	mr r6, r3
 /* 80258268 002551A8  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 8025826C 002551AC  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2308,7 +2308,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258278 002551B8  38 A0 00 02 */	li r5, 2
 /* 8025827C 002551BC  4B DB DF 65 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258280 002551C0  90 7F 02 68 */	stw r3, 0x268(r31)
-/* 80258284 002551C4  4B DB 6B AD */	bl mDoExt_getJ2dHeap
+/* 80258284 002551C4  4B DB 6B AD */	bl mDoExt_getJ2dHeap__Fv
 /* 80258288 002551C8  7C 66 1B 78 */	mr r6, r3
 /* 8025828C 002551CC  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258290 002551D0  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2317,7 +2317,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 8025829C 002551DC  38 A0 00 02 */	li r5, 2
 /* 802582A0 002551E0  4B DB DF 41 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802582A4 002551E4  90 7F 02 6C */	stw r3, 0x26c(r31)
-/* 802582A8 002551E8  4B DB 6B 89 */	bl mDoExt_getJ2dHeap
+/* 802582A8 002551E8  4B DB 6B 89 */	bl mDoExt_getJ2dHeap__Fv
 /* 802582AC 002551EC  7C 66 1B 78 */	mr r6, r3
 /* 802582B0 002551F0  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802582B4 002551F4  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2326,7 +2326,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802582C0 00255200  38 A0 00 02 */	li r5, 2
 /* 802582C4 00255204  4B DB DF 1D */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802582C8 00255208  90 7F 02 70 */	stw r3, 0x270(r31)
-/* 802582CC 0025520C  4B DB 6B 65 */	bl mDoExt_getJ2dHeap
+/* 802582CC 0025520C  4B DB 6B 65 */	bl mDoExt_getJ2dHeap__Fv
 /* 802582D0 00255210  7C 66 1B 78 */	mr r6, r3
 /* 802582D4 00255214  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802582D8 00255218  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2335,7 +2335,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 802582E4 00255224  38 A0 00 02 */	li r5, 2
 /* 802582E8 00255228  4B DB DE F9 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 802582EC 0025522C  90 7F 02 74 */	stw r3, 0x274(r31)
-/* 802582F0 00255230  4B DB 6B 41 */	bl mDoExt_getJ2dHeap
+/* 802582F0 00255230  4B DB 6B 41 */	bl mDoExt_getJ2dHeap__Fv
 /* 802582F4 00255234  7C 66 1B 78 */	mr r6, r3
 /* 802582F8 00255238  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 802582FC 0025523C  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2344,7 +2344,7 @@ dvdDataLoad__10dScnLogo_cFv:
 /* 80258308 00255248  38 A0 00 02 */	li r5, 2
 /* 8025830C 0025524C  4B DB DE D5 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80258310 00255250  90 7F 02 78 */	stw r3, 0x278(r31)
-/* 80258314 00255254  4B DB 6B 1D */	bl mDoExt_getJ2dHeap
+/* 80258314 00255254  4B DB 6B 1D */	bl mDoExt_getJ2dHeap__Fv
 /* 80258318 00255258  7C 66 1B 78 */	mr r6, r3
 /* 8025831C 0025525C  3C 60 80 3A */	lis r3, lbl_80399FFC@ha
 /* 80258320 00255260  38 63 9F FC */	addi r3, r3, lbl_80399FFC@l
@@ -2542,7 +2542,7 @@ lbl_802585B8:
 /* 802585D0 00255510  3C 60 80 3C */	lis r3, lbl_803C2E38@ha
 /* 802585D4 00255514  3B E3 2E 38 */	addi r31, r3, lbl_803C2E38@l
 /* 802585D8 00255518  38 6D 8B 68 */	addi r3, r13, lbl_804510E8-_SDA_BASE_
-/* 802585DC 0025551C  4B FF DA C9 */	bl dLog_HIO_c
+/* 802585DC 0025551C  4B FF DA C9 */	bl __ct__10dLog_HIO_cFv
 .global __dt__10dLog_HIO_cFv
 /* 802585E0 00255520  3C 80 80 26 */	lis r4, __dt__10dLog_HIO_cFv@ha
 .global __dt__10dLog_HIO_cFv

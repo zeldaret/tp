@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e8b08
 
 
-.global J2DGrafContext
-J2DGrafContext:
+.global __ct__14J2DGrafContextFffff
+__ct__14J2DGrafContextFffff:
 /* 802E8B08 002E5A48  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E8B0C 002E5A4C  7C 08 02 A6 */	mflr r0
 /* 802E8B10 002E5A50  90 01 00 34 */	stw r0, 0x34(r1)

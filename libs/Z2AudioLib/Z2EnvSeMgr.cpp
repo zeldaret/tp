@@ -16,7 +16,7 @@
 extern "C" {
 void __dl__FPv(void);
 void isEventBit__11dSv_event_cCFUs(void);
-void dComIfGp_getReverb(void);
+void dComIfGp_getReverb__Fi(void);
 void __cvt_fp2unsigned(void);
 void isSwitch__12dSv_memBit_cCFi(void);
 void startRainSe__10Z2EnvSeMgrFlSc(void);
@@ -114,7 +114,7 @@ extern u8 lbl_80451360;
 extern "C" {
 // __ct__11Z2EnvSeBaseFP3Vec
 // Z2EnvSeBase::Z2EnvSeBase(Vec*)
-asm void Z2EnvSeBase(void) {
+asm void __ct__11Z2EnvSeBaseFP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C589C.s"
 }
@@ -135,14 +135,14 @@ asm void startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUl(void) {
 
 // startEnvSeLevel__11Z2EnvSeBaseF10JAISoundIDfffffUl
 // Z2EnvSeBase::startEnvSeLevel(JAISoundID, float, float, float, float, float, unsigned long)
-asm void startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUlLevel(void) {
+asm void startEnvSeLevel__11Z2EnvSeBaseF10JAISoundIDfffffUl(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C5AB4.s"
 }
 
 // __ct__10Z2EnvSeDirFP3Vec
 // Z2EnvSeDir::Z2EnvSeDir(Vec*)
-asm void Z2EnvSeDir(void) {
+asm void __ct__10Z2EnvSeDirFP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C5C9C.s"
 }
@@ -177,7 +177,7 @@ asm void startEnvSeDirLevel__10Z2EnvSeDirF10JAISoundIDff(void) {
 
 // __ct__14Z2EnvSeAutoPanFv
 // Z2EnvSeAutoPan::Z2EnvSeAutoPan(void)
-asm void Z2EnvSeAutoPan(void) {
+asm void __ct__14Z2EnvSeAutoPanFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C5ECC.s"
 }
@@ -238,7 +238,7 @@ asm void resetScene__10Z2EnvSeMgrFv(void) {
 
 // resetSceneInner__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::resetSceneInner(void)
-asm void resetScene__10Z2EnvSeMgrFvInner(void) {
+asm void resetSceneInner__10Z2EnvSeMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C699C.s"
 }
@@ -301,7 +301,7 @@ asm void startFarThunderSe__10Z2EnvSeMgrFP3VecSc(void) {
 
 // setSnowPower__10Z2EnvSeMgrFSc
 // Z2EnvSeMgr::setSnowPower(char)
-asm void func_802C7FB4(void) {
+asm void setSnowPower__10Z2EnvSeMgrFSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C7FB4.s"
 }
@@ -343,7 +343,7 @@ asm void registRiverSePos__10Z2EnvSeMgrFP3Vec(void) {
 
 // setHyrulSewerOpen__10Z2EnvSeMgrFb
 // Z2EnvSeMgr::setHyrulSewerOpen(bool)
-asm void func_802C8258(void) {
+asm void setHyrulSewerOpen__10Z2EnvSeMgrFb(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C8258.s"
 }
@@ -399,21 +399,21 @@ asm void startEtcSe__10Z2EnvSeMgrFSc(void) {
 
 // registWolfSmellSePos__10Z2EnvSeMgrFP3Vec
 // Z2EnvSeMgr::registWolfSmellSePos(Vec*)
-asm void func_802C92C8(void) {
+asm void registWolfSmellSePos__10Z2EnvSeMgrFP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C92C8.s"
 }
 
 // startFogWipeTrigger__10Z2EnvSeMgrFP3Vec
 // Z2EnvSeMgr::startFogWipeTrigger(Vec*)
-asm void func_802C92EC(void) {
+asm void startFogWipeTrigger__10Z2EnvSeMgrFP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C92EC.s"
 }
 
 // setFogWipeWidth__10Z2EnvSeMgrFf
 // Z2EnvSeMgr::setFogWipeWidth(float)
-asm void func_802C93A0(void) {
+asm void setFogWipeWidth__10Z2EnvSeMgrFf(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C93A0.s"
 }
@@ -427,7 +427,7 @@ asm void getFogDensity__10Z2EnvSeMgrFv(void) {
 
 // startFogSe__10Z2EnvSeMgrFv
 // Z2EnvSeMgr::startFogSe(void)
-asm void func_802C9400(void) {
+asm void startFogSe__10Z2EnvSeMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2EnvSeMgr/asm/func_802C9400.s"
 }

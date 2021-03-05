@@ -25,7 +25,7 @@
 /* 80124908 00121848  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8012490C 0012184C  40 80 01 0C */ bge lbl_80124A18
 /* 80124910 00121850  38 7F 1A F0 */ addi r3, r31, 0x1af0
-/* 80124914 00121854  48 08 69 7D */ bl dKy_pol_efftype_get
+/* 80124914 00121854  48 08 69 7D */ bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 80124918 00121858  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8012491C 0012185C  28 00 00 02 */ cmplwi r0, 2
 /* 80124920 00121860  40 82 00 F8 */ bne lbl_80124A18
@@ -41,7 +41,7 @@
 /* 80124948 00121888  38 DF 1A F0 */ addi r6, r31, 0x1af0
 /* 8012494C 0012188C  38 E1 00 08 */ addi r7, r1, 8
 /* 80124950 00121890  39 1F 04 DC */ addi r8, r31, 0x4dc
-/* 80124954 00121894  4B FF BC E1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 80124954 00121894  4B FF BC E1 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80124958 00121898  28 03 00 00 */ cmplwi r3, 0
 /* 8012495C 0012189C  41 82 00 14 */ beq lbl_80124970
 /* 80124960 001218A0  38 00 00 0A */ li r0, 0xa
@@ -75,7 +75,7 @@ lbl_80124970:
 /* 801249CC 0012190C  38 DF 1A F0 */ addi r6, r31, 0x1af0
 /* 801249D0 00121910  38 E1 00 08 */ addi r7, r1, 8
 /* 801249D4 00121914  39 1F 04 DC */ addi r8, r31, 0x4dc
-/* 801249D8 00121918  4B FF BC 5D */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 801249D8 00121918  4B FF BC 5D */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 801249DC 0012191C  C0 1F 33 B4 */ lfs f0, 0x33b4(r31)
 /* 801249E0 00121920  D0 01 00 0C */ stfs f0, 0xc(r1)
 /* 801249E4 00121924  7F E3 FB 78 */ mr r3, r31
@@ -84,7 +84,7 @@ lbl_80124970:
 /* 801249F0 00121930  38 DF 1A F0 */ addi r6, r31, 0x1af0
 /* 801249F4 00121934  38 E1 00 08 */ addi r7, r1, 8
 /* 801249F8 00121938  39 1F 04 DC */ addi r8, r31, 0x4dc
-/* 801249FC 0012193C  4B FF BC 39 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 801249FC 0012193C  4B FF BC 39 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 80124A00 00121940  28 03 00 00 */ cmplwi r3, 0
 /* 80124A04 00121944  41 82 00 14 */ beq lbl_80124A18
 /* 80124A08 00121948  38 00 00 14 */ li r0, 0x14

@@ -9,31 +9,31 @@ extern "C" {
 int getTimerMode__14dComIfG_play_cFv(void);
 int strcmp(const char*, const char*);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
-u8 dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_getMixItemIndex__Fi(int);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __nw__FUl(void);
 void cLib_addCalc2__FPffff(void);
-void dCam_getBody(void);
+void dCam_getBody__Fv(void);
 void CalcSubjectAngle__9dCamera_cFPsPs(void);
 void clearItemBombNumCount__14dComIfG_play_cFUc(void);
 void getItemBombNumCount__14dComIfG_play_cFUc(void);
 void getLayerNo__14dComIfG_play_cFi(int);
 void setItemBombNumCount__14dComIfG_play_cFUcs(u8, s16);
-void dComIfGp_getSelectItem(void);
-void dComIfGp_getSelectItemMaxNum(void);
-void dComIfGp_getSelectItemNum(void);
-void dComIfGp_getSubHeap2D(void);
-void dComIfGp_offHeapLockFlag(void);
-void dComIfGp_setHeapLockFlag(void);
-void dComIfGp_setSelectItem(int);
-void dComIfGs_getSelectMixItemNoArrowIndex(void);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_setSelectItemIndex(int, u8);
+void dComIfGp_getSelectItem__Fi(void);
+void dComIfGp_getSelectItemMaxNum__Fi(void);
+void dComIfGp_getSelectItemNum__Fi(void);
+void dComIfGp_getSubHeap2D__Fi(void);
+void dComIfGp_offHeapLockFlag__Fi(void);
+void dComIfGp_setHeapLockFlag__FUc(void);
+void dComIfGp_setSelectItem__Fi(int);
+void dComIfGs_getSelectMixItemNoArrowIndex__Fi(void);
+void dComIfGs_setMixItemIndex__FiUc(int, u8);
+void dComIfGs_setSelectItemIndex__FiUc(int, u8);
 void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
-void dKy_darkworld_check(void);
+void dKy_darkworld_check__Fv(void);
 void alphaAnimeButton__9dMeter2_cFv(void);
-void alphaAnimeButton__9dMeter2_cFvCross(void);
+void alphaAnimeButtonCross__9dMeter2_cFv(void);
 void alphaAnimeKantera__9dMeter2_cFv(void);
 void alphaAnimeKey__9dMeter2_cFv(void);
 void alphaAnimeLife__9dMeter2_cFv(void);
@@ -57,7 +57,7 @@ void moveButton3D__9dMeter2_cFv(void);
 void moveButtonA__9dMeter2_cFv(void);
 void moveButtonB__9dMeter2_cFv(void);
 void moveButtonC__9dMeter2_cFv(void);
-void moveButtonC__9dMeter2_cFvross(void);
+void moveButtonCross__9dMeter2_cFv(void);
 void moveButtonR__9dMeter2_cFv(void);
 void moveButtonS__9dMeter2_cFv(void);
 void moveButtonXY__9dMeter2_cFv(void);
@@ -74,16 +74,16 @@ void moveTouchSubMenu__9dMeter2_cFv(void);
 void drawButton3D__13dMeter2Draw_cFUc(void);
 void drawButtonA__13dMeter2Draw_cFUcfffffbb(void);
 void drawButtonB__13dMeter2Draw_cFUcbfffffb(void);
-void drawButtonB__13dMeter2Draw_cFUcbfffffbin(void);
+void drawButtonBin__13dMeter2Draw_cFUc(void);
 void drawButtonC__13dMeter2Draw_cFUcb(void);
-void drawButtonC__13dMeter2Draw_cFUcbross(void);
+void drawButtonCross__13dMeter2Draw_cFff(void);
 void drawButtonR__13dMeter2Draw_cFUcUcbb(void);
 void drawButtonS__13dMeter2Draw_cFUc(void);
 void drawButtonXY__13dMeter2Draw_cFiUcUcbb(void);
 void drawButtonZ__13dMeter2Draw_cFUc(void);
 void drawItemNum__13dMeter2Draw_cFUcf(void);
 void drawKantera__13dMeter2Draw_cFllff(void);
-void drawKantera__13dMeter2Draw_cFllffMeter(void);
+void drawKanteraMeter__13dMeter2Draw_cFUcf(void);
 void drawKey__13dMeter2Draw_cFs(void);
 void drawLife__13dMeter2Draw_cFssff(void);
 void drawLightDrop__13dMeter2Draw_cFUcUcffffUc(void);
@@ -131,39 +131,39 @@ void setButtonIconAlpha__13dMeter2Draw_cFiUcUlb(void);
 void setButtonIconBAlpha__13dMeter2Draw_cFUcUlb(void);
 void setButtonIconMidonaAlpha__13dMeter2Draw_cFUl(void);
 void setItemNum__13dMeter2Draw_cFUcUcUc(void);
-void dMeter2Draw_c(void);
+void __ct__13dMeter2Draw_cFP10JKRExpHeap(void);
 void decHotSpringTimer__13dMeter2Info_cFv(void);
 void isDirectUseItem__13dMeter2Info_cFi(void);
 void isFloatingMessageVisible__13dMeter2Info_cFv(void);
-void dMeter2Info_is2DActiveTouchArea(void);
+void dMeter2Info_is2DActiveTouchArea__Fv(void);
 void _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb(void);
 void hideAll__14dMeterButton_cFv(void);
 void isClose__14dMeterButton_cFv(void);
 void setString__14dMeterButton_cFPcUcUcUc(void);
-void dMeterButton_c(void);
-void dMeterHaihai_c(void);
-void dMeterHakusha_c(void);
+void __ct__14dMeterButton_cFv(void);
+void __ct__14dMeterHaihai_cFUc(void);
+void __ct__15dMeterHakusha_cFPv(void);
 void _draw__11dMeterMap_cFv(void);
 void _move__11dMeterMap_cFUl(void);
 void getMapDispEdgeTop__11dMeterMap_cFv(void);
-void isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo(void);
+void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv(void);
 void meter_map_move__11dMeterMap_cFUl(void);
 void setMapAlpha__11dMeterMap_cFUc(void);
-void dMeterMap_c(void);  // from d_meter_map
+void __ct__11dMeterMap_cFP9J2DScreen(void);  // from d_meter_map
 void createString__14dMeterString_cFi(void);
-void dMeterString_c(void);
+void __ct__14dMeterString_cFi(void);
 void getStatus__12dMsgObject_cFv(void);
 void isPlaceMessage__12dMsgObject_cFv(void);
 void getArrowFlag__9dMw_HIO_cFv(void);
 void getBombFlag__9dMw_HIO_cFv(void);
 void getPachinkoFlag__9dMw_HIO_cFv(void);
-void dScope_c(void);
-void dTimer_createStockTimer(void);
-void fopMsgM_Create(void);
-void fopMsgM_createExpHeap(void);
-void fopMsgM_destroyExpHeap(void);
-void fopMsgM_setMessageID(void);
-void fopMsgM_setStageLayer(void);
+void __ct__8dScope_cFUc(void);
+void dTimer_createStockTimer__Fv(void);
+void fopMsgM_Create__FsPFPv_iPv(void);
+void fopMsgM_createExpHeap__FUlP7JKRHeap(void);
+void fopMsgM_destroyExpHeap__FP10JKRExpHeap(void);
+void fopMsgM_setMessageID__FUi(void);
+void fopMsgM_setStageLayer__FPv(void);
 void freeAll__7JKRHeapFv(void);
 void getBottleNum__24dSv_player_item_record_cCFUc(void);
 void getItem__17dSv_player_item_cCFib(void);
@@ -245,7 +245,7 @@ asm void emphasisButtonDelete__9dMeter2_cFv(void) {
 
 // setLifeZero__9dMeter2_cFv
 // dMeter2_c::setLifeZero(void)
-asm void func_8021F780(void) {
+asm void setLifeZero__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F780.s"
 }
@@ -357,7 +357,7 @@ asm void moveButtonXY__9dMeter2_cFv(void) {
 
 // moveButtonCross__9dMeter2_cFv
 // dMeter2_c::moveButtonCross(void)
-asm void moveButtonC__9dMeter2_cFvross(void) {
+asm void moveButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222E88.s"
 }
@@ -476,7 +476,7 @@ asm void alphaAnimeButton__9dMeter2_cFv(void) {
 
 // alphaAnimeButtonCross__9dMeter2_cFv
 // dMeter2_c::alphaAnimeButtonCross(void)
-asm void alphaAnimeButton__9dMeter2_cFvCross(void) {
+asm void alphaAnimeButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802254C0.s"
 }
@@ -518,35 +518,35 @@ asm void isPachinkoEquip__9dMeter2_cFv(void) {
 
 // dMeter2_Draw__FP9dMeter2_c
 // dMeter2_Draw(dMeter2_c*)
-asm void func_80225AA0(void) {
+asm void dMeter2_Draw__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AA0.s"
 }
 
 // dMeter2_Execute__FP9dMeter2_c
 // dMeter2_Execute(dMeter2_c*)
-asm void func_80225AC0(void) {
+asm void dMeter2_Execute__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AC0.s"
 }
 
 // dMeter2_IsDelete__FP9dMeter2_c
 // dMeter2_IsDelete(dMeter2_c*)
-asm void func_80225AE0(void) {
+asm void dMeter2_IsDelete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE0.s"
 }
 
 // dMeter2_Delete__FP9dMeter2_c
 // dMeter2_Delete(dMeter2_c*)
-asm void func_80225AE8(void) {
+asm void dMeter2_Delete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE8.s"
 }
 
 // dMeter2_Create__FP9msg_class
 // dMeter2_Create(msg_class*)
-asm void func_80225B08(void) {
+asm void dMeter2_Create__FP9msg_class(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225B08.s"
 }

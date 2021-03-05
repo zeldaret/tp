@@ -18,7 +18,7 @@ lbl_80101334:
 /* 80101348 000FE288  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010134C 000FE28C  41 82 00 10 */ beq lbl_8010135C
 /* 80101350 000FE290  7F C3 F3 78 */ mr r3, r30
-/* 80101354 000FE294  4B FF F5 99 */ bl checkNextAction__9daAlink_cFiRoofHang
+/* 80101354 000FE294  4B FF F5 99 */ bl checkNextActionRoofHang__9daAlink_cFv
 /* 80101358 000FE298  48 00 00 44 */ b lbl_8010139C
 lbl_8010135C:
 /* 8010135C 000FE29C  7F C3 F3 78 */ mr r3, r30

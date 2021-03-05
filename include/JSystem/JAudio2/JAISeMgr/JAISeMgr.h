@@ -17,7 +17,7 @@ void setCategoryArrangement__8JAISeMgrFRC24JAISeCategoryArrangement(void);
 void setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr(void);
 void JAISeMgr_NS_startSound(void);
 void stop__8JAISeMgrFv(void);
-void stop__8JAISeMgrFvSoundID(void);
+void stopSoundID__8JAISeMgrF10JAISoundID(void);
 }
 
 #endif  // JAI_SE_MGR_H_

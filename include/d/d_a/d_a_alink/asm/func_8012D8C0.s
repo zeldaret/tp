@@ -15,7 +15,7 @@
 /* 8012D8F8 0012A838  C0 46 00 44 */ lfs f2, 0x44(r6)
 /* 8012D8FC 0012A83C  38 A0 00 05 */ li r5, 5
 /* 8012D900 0012A840  C0 66 00 48 */ lfs f3, 0x48(r6)
-/* 8012D904 0012A844  4B FF BE 01 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolf
+/* 8012D904 0012A844  4B FF BE 01 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8012D908 0012A848  2C 1E 00 00 */ cmpwi r30, 0
 /* 8012D90C 0012A84C  41 82 00 54 */ beq lbl_8012D960
 /* 8012D910 0012A850  A8 7F 31 02 */ lha r3, 0x3102(r31)
@@ -82,7 +82,7 @@ lbl_8012D9F0:
 /* 8012D9F0 0012A930  38 A0 FF FF */ li r5, -1
 lbl_8012D9F4:
 /* 8012D9F4 0012A934  38 C0 00 05 */ li r6, 5
-/* 8012D9F8 0012A938  48 07 A7 C9 */ bl dKy_Sound_set
+/* 8012D9F8 0012A938  48 07 A7 C9 */ bl dKy_Sound_set__F4cXyziUii
 /* 8012D9FC 0012A93C  7F E3 FB 78 */ mr r3, r31
 /* 8012DA00 0012A940  3C 80 00 02 */ lis r4, 0x00020054@ha
 /* 8012DA04 0012A944  38 84 00 54 */ addi r4, r4, 0x00020054@l

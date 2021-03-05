@@ -152,7 +152,7 @@ lbl_80118488:
 /* 80118538 00115478  C0 05 00 20 */ lfs f0, 0x20(r5)
 /* 8011853C 0011547C  FC 20 00 50 */ fneg f1, f0
 /* 80118540 00115480  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80118544 00115484  4B F9 4A 9D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80118544 00115484  4B F9 4A 9D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80118548 00115488  38 60 00 01 */ li r3, 1
 /* 8011854C 0011548C  48 00 00 08 */ b lbl_80118554
 lbl_80118550:

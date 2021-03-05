@@ -128,8 +128,8 @@ lbl_800310C0:
 /* 800310C0 0002E000  38 60 00 00 */	li r3, 0
 /* 800310C4 0002E004  4E 80 00 20 */	blr 
 
-.global check__Q27daSus_c6data_cFRC4cXyz_X1_
-check__Q27daSus_c6data_cFRC4cXyz_X1_:
+.global check__Q27daSus_c6data_cFP10fopAc_ac_c
+check__Q27daSus_c6data_cFP10fopAc_ac_c:
 /* 800310C8 0002E008  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800310CC 0002E00C  7C 08 02 A6 */	mflr r0
 /* 800310D0 0002E010  90 01 00 24 */	stw r0, 0x24(r1)
@@ -428,8 +428,8 @@ lbl_800314BC:
 /* 800314CC 0002E40C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800314D0 0002E410  4E 80 00 20 */	blr 
 
-.global check__7daSus_cFScRC4cXyz_X1_
-check__7daSus_cFScRC4cXyz_X1_:
+.global check__7daSus_cFP10fopAc_ac_c
+check__7daSus_cFP10fopAc_ac_c:
 /* 800314D4 0002E414  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800314D8 0002E418  7C 08 02 A6 */	mflr r0
 /* 800314DC 0002E41C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -457,7 +457,7 @@ lbl_8003151C:
 /* 80031530 0002E470  40 82 00 14 */	bne lbl_80031544
 /* 80031534 0002E474  7F C3 F3 78 */	mr r3, r30
 /* 80031538 0002E478  7F E4 FB 78 */	mr r4, r31
-/* 8003153C 0002E47C  4B FF FB 8D */	bl check__Q27daSus_c6data_cFRC4cXyz_X1_
+/* 8003153C 0002E47C  4B FF FB 8D */	bl check__Q27daSus_c6data_cFP10fopAc_ac_c
 /* 80031540 0002E480  7F BD 1B 78 */	or r29, r29, r3
 lbl_80031544:
 /* 80031544 0002E484  3B DE 00 24 */	addi r30, r30, 0x24
@@ -574,8 +574,8 @@ lbl_80031690:
 /* 800316D8 0002E618  38 21 00 10 */	addi r1, r1, 0x10
 /* 800316DC 0002E61C  4E 80 00 20 */	blr 
 
-.global daNpcKakashi_getSwdTutorialStep
-daNpcKakashi_getSwdTutorialStep:
+.global daNpcKakashi_getSwdTutorialStep__Fv
+daNpcKakashi_getSwdTutorialStep__Fv:
 /* 800316E0 0002E620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800316E4 0002E624  7C 08 02 A6 */	mflr r0
 /* 800316E8 0002E628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -591,8 +591,8 @@ daNpcKakashi_getSwdTutorialStep:
 /* 80031710 0002E650  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031714 0002E654  4E 80 00 20 */	blr 
 
-.global daNpcKakashi_getSwdTutorialResult
-daNpcKakashi_getSwdTutorialResult:
+.global daNpcKakashi_getSwdTutorialResult__Fv
+daNpcKakashi_getSwdTutorialResult__Fv:
 /* 80031718 0002E658  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003171C 0002E65C  7C 08 02 A6 */	mflr r0
 /* 80031720 0002E660  90 01 00 14 */	stw r0, 0x14(r1)
@@ -631,8 +631,8 @@ lbl_80031794:
 /* 8003179C 0002E6DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800317A0 0002E6E0  4E 80 00 20 */	blr 
 
-.global daNpcKakashi_getSuccessCount
-daNpcKakashi_getSuccessCount:
+.global daNpcKakashi_getSuccessCount__Fv
+daNpcKakashi_getSuccessCount__Fv:
 /* 800317A4 0002E6E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800317A8 0002E6E8  7C 08 02 A6 */	mflr r0
 /* 800317AC 0002E6EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -695,7 +695,7 @@ daNpcKakashi_getSuccessCount:
 /* 80031890 0002E7D0  80 05 00 B0 */	lwz r0, 0xb0(r5)
 /* 80031894 0002E7D4  54 05 04 3E */	clrlwi r5, r0, 0x10
 /* 80031898 0002E7D8  4C C6 31 82 */	crclr 6
-/* 8003189C 0002E7DC  48 33 4C 41 */	bl func_803664DC
+/* 8003189C 0002E7DC  48 33 4C 41 */	bl sprintf
 /* 800318A0 0002E7E0  38 6D 88 1C */	addi r3, r13, lbl_80450D9C-_SDA_BASE_
 /* 800318A4 0002E7E4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800318A8 0002E7E8  7C 08 03 A6 */	mtlr r0
@@ -759,7 +759,7 @@ entry__10daMirror_cFP8J3DModel:
 lbl_80031970:
 /* 80031970 0002E8B0  3C A0 80 42 */	lis r5, lbl_8042457C@ha
 /* 80031974 0002E8B4  39 85 45 7C */	addi r12, r5, lbl_8042457C@l
-/* 80031978 0002E8B8  48 33 07 0D */	bl func_80362084
+/* 80031978 0002E8B8  48 33 07 0D */	bl __ptmf_scall
 /* 8003197C 0002E8BC  60 00 00 00 */	nop 
 lbl_80031980:
 /* 80031980 0002E8C0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -798,7 +798,7 @@ lbl_800319B8:
 /* 800319FC 0002E93C  80 06 00 08 */	lwz r0, 8(r6)
 /* 80031A00 0002E940  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80031A04 0002E944  39 81 00 08 */	addi r12, r1, 8
-/* 80031A08 0002E948  48 33 06 7D */	bl func_80362084
+/* 80031A08 0002E948  48 33 06 7D */	bl __ptmf_scall
 /* 80031A0C 0002E94C  60 00 00 00 */	nop 
 lbl_80031A10:
 /* 80031A10 0002E950  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -821,7 +821,7 @@ lbl_80031A10:
 /* 80031A54 0002E994  80 06 00 08 */	lwz r0, 8(r6)
 /* 80031A58 0002E998  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80031A5C 0002E99C  39 81 00 08 */	addi r12, r1, 8
-/* 80031A60 0002E9A0  48 33 06 25 */	bl func_80362084
+/* 80031A60 0002E9A0  48 33 06 25 */	bl __ptmf_scall
 /* 80031A64 0002E9A4  60 00 00 00 */	nop 
 lbl_80031A68:
 /* 80031A68 0002E9A8  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1097,12 +1097,12 @@ setSaveFlag__12daObjCarry_cFv:
 /* 80031DEC 0002ED2C  38 A5 1F 28 */	addi r5, r5, __dt__Q27daSus_c6data_cFv@l
 /* 80031DF0 0002ED30  38 C0 00 24 */	li r6, 0x24
 /* 80031DF4 0002ED34  38 E0 00 20 */	li r7, 0x20
-/* 80031DF8 0002ED38  48 32 FF 69 */	bl func_80361D60
+/* 80031DF8 0002ED38  48 32 FF 69 */	bl __construct_array
 /* 80031DFC 0002ED3C  38 60 00 00 */	li r3, 0
-.global __arraydtor_3839
-/* 80031E00 0002ED40  3C 80 80 03 */	lis r4, __arraydtor_3839@ha
-.global __arraydtor_3839
-/* 80031E04 0002ED44  38 84 1E F0 */	addi r4, r4, __arraydtor_3839@l
+.global __arraydtor$3839
+/* 80031E00 0002ED40  3C 80 80 03 */	lis r4, __arraydtor$3839@ha
+.global __arraydtor$3839
+/* 80031E04 0002ED44  38 84 1E F0 */	addi r4, r4, __arraydtor$3839@l
 /* 80031E08 0002ED48  38 BF 00 00 */	addi r5, r31, 0
 /* 80031E0C 0002ED4C  48 32 FE 19 */	bl func_80361C24
 /* 80031E10 0002ED50  38 7F 04 8C */	addi r3, r31, 0x48c
@@ -1113,7 +1113,7 @@ setSaveFlag__12daObjCarry_cFv:
 /* 80031E1C 0002ED5C  38 A0 00 00 */	li r5, 0
 /* 80031E20 0002ED60  38 C0 00 04 */	li r6, 4
 /* 80031E24 0002ED64  38 E0 00 40 */	li r7, 0x40
-/* 80031E28 0002ED68  48 32 FF 39 */	bl func_80361D60
+/* 80031E28 0002ED68  48 32 FF 39 */	bl __construct_array
 /* 80031E2C 0002ED6C  3C 60 80 3A */	lis r3, lbl_803A2180@ha
 /* 80031E30 0002ED70  38 A3 21 80 */	addi r5, r3, lbl_803A2180@l
 /* 80031E34 0002ED74  80 85 00 00 */	lwz r4, 0(r5)
@@ -1135,12 +1135,12 @@ setSaveFlag__12daObjCarry_cFv:
 /* 80031E74 0002EDB4  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
 /* 80031E78 0002EDB8  38 C0 00 0C */	li r6, 0xc
 /* 80031E7C 0002EDBC  38 E0 00 05 */	li r7, 5
-/* 80031E80 0002EDC0  48 32 FE E1 */	bl func_80361D60
+/* 80031E80 0002EDC0  48 32 FE E1 */	bl __construct_array
 /* 80031E84 0002EDC4  38 60 00 00 */	li r3, 0
-.global __arraydtor_4479
-/* 80031E88 0002EDC8  3C 80 80 03 */	lis r4, __arraydtor_4479@ha
-.global __arraydtor_4479
-/* 80031E8C 0002EDCC  38 84 1E AC */	addi r4, r4, __arraydtor_4479@l
+.global __arraydtor$4479
+/* 80031E88 0002EDC8  3C 80 80 03 */	lis r4, __arraydtor$4479@ha
+.global __arraydtor$4479
+/* 80031E8C 0002EDCC  38 84 1E AC */	addi r4, r4, __arraydtor$4479@l
 /* 80031E90 0002EDD0  38 BF 05 B0 */	addi r5, r31, 0x5b0
 /* 80031E94 0002EDD4  48 32 FD 91 */	bl func_80361C24
 /* 80031E98 0002EDD8  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1148,8 +1148,8 @@ setSaveFlag__12daObjCarry_cFv:
 /* 80031EA0 0002EDE0  7C 08 03 A6 */	mtlr r0
 /* 80031EA4 0002EDE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80031EA8 0002EDE8  4E 80 00 20 */	blr 
-.global __arraydtor_4479
-__arraydtor_4479:
+.global __arraydtor$4479
+__arraydtor$4479:
 /* 80031EAC 0002EDEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031EB0 0002EDF0  7C 08 02 A6 */	mflr r0
 /* 80031EB4 0002EDF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1159,7 +1159,7 @@ __arraydtor_4479:
 /* 80031EC4 0002EE04  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
 /* 80031EC8 0002EE08  38 A0 00 0C */	li r5, 0xc
 /* 80031ECC 0002EE0C  38 C0 00 05 */	li r6, 5
-/* 80031ED0 0002EE10  48 32 FE 19 */	bl func_80361CE8
+/* 80031ED0 0002EE10  48 32 FE 19 */	bl __destroy_arr
 /* 80031ED4 0002EE14  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80031ED8 0002EE18  7C 08 03 A6 */	mtlr r0
 /* 80031EDC 0002EE1C  38 21 00 10 */	addi r1, r1, 0x10
@@ -1169,8 +1169,8 @@ __ct__Q27daSus_c6room_cFv:
 /* 80031EE4 0002EE24  38 00 00 00 */	li r0, 0
 /* 80031EE8 0002EE28  90 03 00 00 */	stw r0, 0(r3)
 /* 80031EEC 0002EE2C  4E 80 00 20 */	blr 
-.global __arraydtor_3839
-__arraydtor_3839:
+.global __arraydtor$3839
+__arraydtor$3839:
 /* 80031EF0 0002EE30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031EF4 0002EE34  7C 08 02 A6 */	mflr r0
 /* 80031EF8 0002EE38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1182,7 +1182,7 @@ __arraydtor_3839:
 /* 80031F08 0002EE48  38 84 1F 28 */	addi r4, r4, __dt__Q27daSus_c6data_cFv@l
 /* 80031F0C 0002EE4C  38 A0 00 24 */	li r5, 0x24
 /* 80031F10 0002EE50  38 C0 00 20 */	li r6, 0x20
-/* 80031F14 0002EE54  48 32 FD D5 */	bl func_80361CE8
+/* 80031F14 0002EE54  48 32 FD D5 */	bl __destroy_arr
 /* 80031F18 0002EE58  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80031F1C 0002EE5C  7C 08 03 A6 */	mtlr r0
 /* 80031F20 0002EE60  38 21 00 10 */	addi r1, r1, 0x10

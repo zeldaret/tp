@@ -17,7 +17,7 @@
 /* 8020CDAC 00209CEC  80 A4 00 04 */ lwz r5, 4(r4)
 /* 8020CDB0 00209CF0  38 C0 00 00 */ li r6, 0
 /* 8020CDB4 00209CF4  38 E0 00 00 */ li r7, 0
-/* 8020CDB8 00209CF8  48 04 81 05 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020CDB8 00209CF8  48 04 81 05 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8020CDBC 00209CFC  80 61 00 14 */ lwz r3, 0x14(r1)
 /* 8020CDC0 00209D00  80 01 00 18 */ lwz r0, 0x18(r1)
 /* 8020CDC4 00209D04  90 61 00 2C */ stw r3, 0x2c(r1)
@@ -29,7 +29,7 @@
 /* 8020CDDC 00209D1C  80 A4 00 04 */ lwz r5, 4(r4)
 /* 8020CDE0 00209D20  38 C0 00 00 */ li r6, 0
 /* 8020CDE4 00209D24  38 E0 00 00 */ li r7, 0
-/* 8020CDE8 00209D28  48 04 80 D5 */ bl getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbsCenter
+/* 8020CDE8 00209D28  48 04 80 D5 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8020CDEC 00209D2C  80 61 00 08 */ lwz r3, 8(r1)
 /* 8020CDF0 00209D30  80 01 00 0C */ lwz r0, 0xc(r1)
 /* 8020CDF4 00209D34  90 61 00 20 */ stw r3, 0x20(r1)

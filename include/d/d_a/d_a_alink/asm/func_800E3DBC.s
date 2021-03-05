@@ -40,7 +40,7 @@ lbl_800E3E34:
 /* 800E3E50 000E0D90  38 80 00 60 */ li r4, 0x60
 /* 800E3E54 000E0D94  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E3E58 000E0D98  FC 40 F8 90 */ fmr f2, f31
-/* 800E3E5C 000E0D9C  4B FC 95 4D */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800E3E5C 000E0D9C  4B FC 95 4D */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800E3E60 000E0DA0  7F E3 FB 78 */ mr r3, r31
 /* 800E3E64 000E0DA4  38 80 00 FA */ li r4, 0xfa
 /* 800E3E68 000E0DA8  38 A0 00 01 */ li r5, 1
@@ -57,7 +57,7 @@ lbl_800E3E7C:
 /* 800E3E90 000E0DD0  38 80 00 50 */ li r4, 0x50
 /* 800E3E94 000E0DD4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E3E98 000E0DD8  FC 40 F8 90 */ fmr f2, f31
-/* 800E3E9C 000E0DDC  4B FC 95 0D */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800E3E9C 000E0DDC  4B FC 95 0D */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800E3EA0 000E0DE0  7F E3 FB 78 */ mr r3, r31
 /* 800E3EA4 000E0DE4  38 80 01 3D */ li r4, 0x13d
 /* 800E3EA8 000E0DE8  38 A0 00 01 */ li r5, 1
@@ -72,7 +72,7 @@ lbl_800E3EC4:
 /* 800E3EC8 000E0E08  38 80 01 6C */ li r4, 0x16c
 /* 800E3ECC 000E0E0C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E3ED0 000E0E10  FC 40 F8 90 */ fmr f2, f31
-/* 800E3ED4 000E0E14  4B FC 94 D5 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800E3ED4 000E0E14  4B FC 94 D5 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800E3ED8 000E0E18  7F E3 FB 78 */ mr r3, r31
 /* 800E3EDC 000E0E1C  38 80 01 3D */ li r4, 0x13d
 /* 800E3EE0 000E0E20  38 A0 00 01 */ li r5, 1

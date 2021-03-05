@@ -16,11 +16,11 @@
 /* 8005A0F4 00057034  48 30 E8 A1 */ bl strcmp
 /* 8005A0F8 00057038  2C 03 00 00 */ cmpwi r3, 0
 /* 8005A0FC 0005703C  41 82 00 10 */ beq lbl_8005A10C
-/* 8005A100 00057040  4B FF E2 19 */ bl wether_move_sun
-/* 8005A104 00057044  4B FF E7 91 */ bl wether_move_rain
-/* 8005A108 00057048  4B FF E9 F9 */ bl wether_move_snow
+/* 8005A100 00057040  4B FF E2 19 */ bl wether_move_sun__Fv
+/* 8005A104 00057044  4B FF E7 91 */ bl wether_move_rain__Fv
+/* 8005A108 00057048  4B FF E9 F9 */ bl wether_move_snow__Fv
 lbl_8005A10C:
-/* 8005A10C 0005704C  4B FF EA 81 */ bl wether_move_star
+/* 8005A10C 0005704C  4B FF EA 81 */ bl wether_move_star__Fv
 /* 8005A110 00057050  7F E3 FB 78 */ mr r3, r31
 /* 8005A114 00057054  3C 80 80 38 */ lis r4, lbl_8037A368@ha
 /* 8005A118 00057058  38 84 A3 68 */ addi r4, r4, lbl_8037A368@l
@@ -28,11 +28,11 @@ lbl_8005A10C:
 /* 8005A120 00057060  48 30 E8 75 */ bl strcmp
 /* 8005A124 00057064  2C 03 00 00 */ cmpwi r3, 0
 /* 8005A128 00057068  41 82 00 18 */ beq lbl_8005A140
-/* 8005A12C 0005706C  4B FF ED ED */ bl wether_move_housi
-/* 8005A130 00057070  4B FF F4 51 */ bl wether_move_moya
-/* 8005A134 00057074  4B FF FD 05 */ bl wether_move_mud
-/* 8005A138 00057078  4B FF FE 3D */ bl wether_move_evil
-/* 8005A13C 0005707C  4B FF F2 A1 */ bl wether_move_odour
+/* 8005A12C 0005706C  4B FF ED ED */ bl wether_move_housi__Fv
+/* 8005A130 00057070  4B FF F4 51 */ bl wether_move_moya__Fv
+/* 8005A134 00057074  4B FF FD 05 */ bl wether_move_mud__Fv
+/* 8005A138 00057078  4B FF FE 3D */ bl wether_move_evil__Fv
+/* 8005A13C 0005707C  4B FF F2 A1 */ bl wether_move_odour__Fv
 lbl_8005A140:
 /* 8005A140 00057080  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8005A144 00057084  80 01 00 14 */ lwz r0, 0x14(r1)

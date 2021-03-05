@@ -32,7 +32,7 @@ lbl_801116C0:
 /* 801116F4 0010E634  3C A0 80 39 */ lis r5, lbl_8038E77C@ha
 /* 801116F8 0010E638  38 A5 E7 7C */ addi r5, r5, lbl_8038E77C@l
 /* 801116FC 0010E63C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80111700 0010E640  4B F9 B9 F5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 80111700 0010E640  4B F9 B9 F5 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 80111704 0010E644  7F E3 FB 78 */ mr r3, r31
 /* 80111708 0010E648  4B FF F8 D9 */ bl commonKandelaarPourInit__9daAlink_cFv
 /* 8011170C 0010E64C  38 60 00 01 */ li r3, 1

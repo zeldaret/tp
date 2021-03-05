@@ -6,7 +6,7 @@
 /* 80108B48 00105A88  7C 7E 1B 78 */ mr r30, r3
 /* 80108B4C 00105A8C  38 7E 21 D8 */ addi r3, r30, 0x21d8
 /* 80108B50 00105A90  38 80 01 7E */ li r4, 0x17e
-/* 80108B54 00105A94  48 05 65 15 */ bl loadData__14daPy_anmHeap_cFUsIdx
+/* 80108B54 00105A94  48 05 65 15 */ bl loadDataIdx__14daPy_anmHeap_cFUs
 /* 80108B58 00105A98  7C 7D 1B 78 */ mr r29, r3
 /* 80108B5C 00105A9C  7F C3 F3 78 */ mr r3, r30
 /* 80108B60 00105AA0  4B F9 B1 2D */ bl setItemHeap__9daAlink_cFv
@@ -79,7 +79,7 @@ lbl_80108C60:
 /* 80108C68 00105BA8  48 1C 5F E5 */ bl __nw__FUl
 /* 80108C6C 00105BAC  7C 60 1B 79 */ or. r0, r3, r3
 /* 80108C70 00105BB0  41 82 00 0C */ beq lbl_80108C7C
-/* 80108C74 00105BB4  48 1B 5B D1 */ bl Z2SoundObjSimple
+/* 80108C74 00105BB4  48 1B 5B D1 */ bl __ct__16Z2SoundObjSimpleFv
 /* 80108C78 00105BB8  7C 60 1B 78 */ mr r0, r3
 lbl_80108C7C:
 /* 80108C7C 00105BBC  90 1E 07 6C */ stw r0, 0x76c(r30)
@@ -87,7 +87,7 @@ lbl_80108C7C:
 /* 80108C84 00105BC4  48 1C 5F C9 */ bl __nw__FUl
 /* 80108C88 00105BC8  7C 60 1B 79 */ or. r0, r3, r3
 /* 80108C8C 00105BCC  41 82 00 0C */ beq lbl_80108C98
-/* 80108C90 00105BD0  4B F6 F2 CD */ bl dBgS_ObjLinChk
+/* 80108C90 00105BD0  4B F6 F2 CD */ bl __ct__14dBgS_ObjLinChkFv
 /* 80108C94 00105BD4  7C 60 1B 78 */ mr r0, r3
 lbl_80108C98:
 /* 80108C98 00105BD8  90 1E 07 7C */ stw r0, 0x77c(r30)
@@ -113,7 +113,7 @@ lbl_80108C98:
 /* 80108CE8 00105C28  39 20 00 00 */ li r9, 0
 /* 80108CEC 00105C2C  4B F0 4A F1 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 80108CF0 00105C30  7F E3 FB 78 */ mr r3, r31
-/* 80108CF4 00105C34  4B F0 64 D9 */ bl mDoExt_setCurrentHeap
+/* 80108CF4 00105C34  4B F0 64 D9 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80108CF8 00105C38  7F C3 F3 78 */ mr r3, r30
 /* 80108CFC 00105C3C  4B FF F9 E1 */ bl resetHookshotMode__9daAlink_cFv
 /* 80108D00 00105C40  80 7E 07 70 */ lwz r3, 0x770(r30)
@@ -146,9 +146,9 @@ lbl_80108D24:
 /* 80108D68 00105CA8  60 00 00 01 */ ori r0, r0, 1
 /* 80108D6C 00105CAC  90 1E 12 2C */ stw r0, 0x122c(r30)
 /*.global daAlink_hookshotAtHitCallBack*/
-/* 80108D70 00105CB0  3C 60 80 11 */ lis r3, daAlink_hookshotAtHitCallBack@ha
+/* 80108D70 00105CB0  3C 60 80 11 */ lis r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@ha
 /*.global daAlink_hookshotAtHitCallBack*/
-/* 80108D74 00105CB4  38 03 85 9C */ addi r0, r3, daAlink_hookshotAtHitCallBack@l
+/* 80108D74 00105CB4  38 03 85 9C */ addi r0, r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@l
 /* 80108D78 00105CB8  90 1E 12 8C */ stw r0, 0x128c(r30)
 /* 80108D7C 00105CBC  98 9E 12 A1 */ stb r4, 0x12a1(r30)
 /* 80108D80 00105CC0  80 7E 07 6C */ lwz r3, 0x76c(r30)

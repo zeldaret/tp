@@ -12,7 +12,7 @@
 /* 800FB2CC 000F820C  3C A0 80 39 */ lis r5, lbl_8038E1B8@ha
 /* 800FB2D0 000F8210  38 A5 E1 B8 */ addi r5, r5, lbl_8038E1B8@l
 /* 800FB2D4 000F8214  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800FB2D8 000F8218  4B FB 1E 1D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800FB2D8 000F8218  4B FB 1E 1D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FB2DC 000F821C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800FB2E0 000F8220  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FB2E4 000F8224  80 03 5F 18 */ lwz r0, 0x5f18(r3)

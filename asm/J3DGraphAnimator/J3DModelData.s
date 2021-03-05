@@ -12,8 +12,8 @@ clear__12J3DModelDataFv:
 /* 80325D98 00322CD8  B0 03 00 0E */	sth r0, 0xe(r3)
 /* 80325D9C 00322CDC  4E 80 00 20 */	blr 
 
-.global J3DModelData
-J3DModelData:
+.global __ct__12J3DModelDataFv
+__ct__12J3DModelDataFv:
 /* 80325DA0 00322CE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80325DA4 00322CE4  7C 08 02 A6 */	mflr r0
 /* 80325DA8 00322CE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -23,9 +23,9 @@ J3DModelData:
 /* 80325DB8 00322CF8  38 03 ED 14 */	addi r0, r3, lbl_803CED14@l
 /* 80325DBC 00322CFC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80325DC0 00322D00  38 7F 00 10 */	addi r3, r31, 0x10
-/* 80325DC4 00322D04  4B FF FC 55 */	bl J3DJointTree
+/* 80325DC4 00322D04  4B FF FC 55 */	bl __ct__12J3DJointTreeFv
 /* 80325DC8 00322D08  38 7F 00 58 */	addi r3, r31, 0x58
-/* 80325DCC 00322D0C  48 00 98 05 */	bl J3DMaterialTable
+/* 80325DCC 00322D0C  48 00 98 05 */	bl __ct__16J3DMaterialTableFv
 /* 80325DD0 00322D10  3C 60 80 3D */	lis r3, lbl_803CED08@ha
 /* 80325DD4 00322D14  38 03 ED 08 */	addi r0, r3, lbl_803CED08@l
 /* 80325DD8 00322D18  90 1F 00 78 */	stw r0, 0x78(r31)
@@ -34,7 +34,7 @@ J3DModelData:
 /* 80325DE4 00322D24  90 1F 00 80 */	stw r0, 0x80(r31)
 /* 80325DE8 00322D28  90 1F 00 84 */	stw r0, 0x84(r31)
 /* 80325DEC 00322D2C  38 7F 00 88 */	addi r3, r31, 0x88
-/* 80325DF0 00322D30  4B FE B1 09 */	bl J3DVertexData
+/* 80325DF0 00322D30  4B FE B1 09 */	bl __ct__13J3DVertexDataFv
 /* 80325DF4 00322D34  7F E3 FB 78 */	mr r3, r31
 /* 80325DF8 00322D38  4B FF FF 91 */	bl clear__12J3DModelDataFv
 /* 80325DFC 00322D3C  7F E3 FB 78 */	mr r3, r31

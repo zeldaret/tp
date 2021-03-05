@@ -42,7 +42,7 @@ lbl_800DC4B8:
 /* 800DC514 000D9454  7C 05 07 74 */ extsb r5, r0
 /* 800DC518 000D9458  A8 DF 04 E6 */ lha r6, 0x4e6(r31)
 /* 800DC51C 000D945C  38 E0 FF FF */ li r7, -1
-/* 800DC520 000D9460  4B F4 AC 51 */ bl dStage_changeScene
+/* 800DC520 000D9460  4B F4 AC 51 */ bl dStage_changeScene__FifUlScsi
 /* 800DC524 000D9464  48 00 00 0C */ b lbl_800DC530
 lbl_800DC528:
 /* 800DC528 000D9468  38 04 FF FF */ addi r0, r4, -1

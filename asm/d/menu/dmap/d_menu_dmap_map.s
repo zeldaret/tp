@@ -1445,7 +1445,7 @@ initZoomIn__20dMenu_StageMapCtrl_cFUc:
 /* 801C1CC0 001BEC00  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1CC4 001BEC04  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1CC8 001BEC08  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1CCC 001BEC0C  48 1A 03 B9 */	bl func_80362084
+/* 801C1CCC 001BEC0C  48 1A 03 B9 */	bl __ptmf_scall
 /* 801C1CD0 001BEC10  60 00 00 00 */	nop 
 /* 801C1CD4 001BEC14  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 801C1CD8 001BEC18  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -1454,8 +1454,8 @@ initZoomIn__20dMenu_StageMapCtrl_cFUc:
 /* 801C1CE4 001BEC24  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C1CE8 001BEC28  4E 80 00 20 */	blr 
 
-.global initZoomIn__20dMenu_StageMapCtrl_cFUc_X1_
-initZoomIn__20dMenu_StageMapCtrl_cFUc_X1_:
+.global initZoomIn__20dMenu_StageMapCtrl_cFUcff
+initZoomIn__20dMenu_StageMapCtrl_cFUcff:
 /* 801C1CEC 001BEC2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C1CF0 001BEC30  7C 08 02 A6 */	mflr r0
 /* 801C1CF4 001BEC34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1517,7 +1517,7 @@ lbl_801C1DAC:
 /* 801C1DC4 001BED04  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1DC8 001BED08  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1DCC 001BED0C  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1DD0 001BED10  48 1A 02 B5 */	bl func_80362084
+/* 801C1DD0 001BED10  48 1A 02 B5 */	bl __ptmf_scall
 /* 801C1DD4 001BED14  60 00 00 00 */	nop 
 /* 801C1DD8 001BED18  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 801C1DDC 001BED1C  CB E1 00 20 */	lfd f31, 0x20(r1)
@@ -1530,8 +1530,8 @@ lbl_801C1DAC:
 /* 801C1DF8 001BED38  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C1DFC 001BED3C  4E 80 00 20 */	blr 
 
-.global initZoomIn__20dMenu_StageMapCtrl_cFUcCenterHold
-initZoomIn__20dMenu_StageMapCtrl_cFUcCenterHold:
+.global initZoomInCenterHold__20dMenu_StageMapCtrl_cFUc
+initZoomInCenterHold__20dMenu_StageMapCtrl_cFUc:
 /* 801C1E00 001BED40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C1E04 001BED44  7C 08 02 A6 */	mflr r0
 /* 801C1E08 001BED48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1553,7 +1553,7 @@ initZoomIn__20dMenu_StageMapCtrl_cFUcCenterHold:
 /* 801C1E48 001BED88  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1E4C 001BED8C  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1E50 001BED90  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1E54 001BED94  48 1A 02 31 */	bl func_80362084
+/* 801C1E54 001BED94  48 1A 02 31 */	bl __ptmf_scall
 /* 801C1E58 001BED98  60 00 00 00 */	nop 
 /* 801C1E5C 001BED9C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C1E60 001BEDA0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1593,7 +1593,7 @@ zoomCalcSet__20dMenu_StageMapCtrl_cFf:
 /* 801C1EDC 001BEE1C  7C 00 07 74 */	extsb r0, r0
 /* 801C1EE0 001BEE20  7C 80 18 50 */	subf r4, r0, r3
 /* 801C1EE4 001BEE24  38 A0 00 04 */	li r5, 4
-/* 801C1EE8 001BEE28  4B E5 E2 79 */	bl fopMsgM_valueIncrease
+/* 801C1EE8 001BEE28  4B E5 E2 79 */	bl fopMsgM_valueIncrease__FiiUc
 /* 801C1EEC 001BEE2C  D0 3F 00 D8 */	stfs f1, 0xd8(r31)
 /* 801C1EF0 001BEE30  7F E3 FB 78 */	mr r3, r31
 /* 801C1EF4 001BEE34  4B FF FF 81 */	bl zoomCalcSet__20dMenu_StageMapCtrl_cFf
@@ -1625,7 +1625,7 @@ initZoomOut__20dMenu_StageMapCtrl_cFUc:
 /* 801C1F4C 001BEE8C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1F50 001BEE90  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1F54 001BEE94  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1F58 001BEE98  48 1A 01 2D */	bl func_80362084
+/* 801C1F58 001BEE98  48 1A 01 2D */	bl __ptmf_scall
 /* 801C1F5C 001BEE9C  60 00 00 00 */	nop 
 /* 801C1F60 001BEEA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C1F64 001BEEA4  7C 08 03 A6 */	mtlr r0
@@ -1664,7 +1664,7 @@ initZoomWait__20dMenu_StageMapCtrl_cFff:
 /* 801C1FDC 001BEF1C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1FE0 001BEF20  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1FE4 001BEF24  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1FE8 001BEF28  48 1A 00 9D */	bl func_80362084
+/* 801C1FE8 001BEF28  48 1A 00 9D */	bl __ptmf_scall
 /* 801C1FEC 001BEF2C  60 00 00 00 */	nop 
 /* 801C1FF0 001BEF30  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C1FF4 001BEF34  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1797,7 +1797,7 @@ lbl_801C2160:
 /* 801C21D0 001BF110  7C 00 07 74 */	extsb r0, r0
 /* 801C21D4 001BF114  7C 80 18 50 */	subf r4, r0, r3
 /* 801C21D8 001BF118  38 A0 00 04 */	li r5, 4
-/* 801C21DC 001BF11C  4B E5 DF 85 */	bl fopMsgM_valueIncrease
+/* 801C21DC 001BF11C  4B E5 DF 85 */	bl fopMsgM_valueIncrease__FiiUc
 /* 801C21E0 001BF120  7F E3 FB 78 */	mr r3, r31
 /* 801C21E4 001BF124  C0 02 A6 98 */	lfs f0, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C21E8 001BF128  EF E0 08 28 */	fsubs f31, f0, f1
@@ -1834,7 +1834,7 @@ move__20dMenu_StageMapCtrl_cFv:
 /* 801C2254 001BF194  3C 80 80 3C */	lis r4, lbl_803BCD44@ha
 /* 801C2258 001BF198  38 04 CD 44 */	addi r0, r4, lbl_803BCD44@l
 /* 801C225C 001BF19C  7D 80 2A 14 */	add r12, r0, r5
-/* 801C2260 001BF1A0  48 19 FE 25 */	bl func_80362084
+/* 801C2260 001BF1A0  48 19 FE 25 */	bl __ptmf_scall
 /* 801C2264 001BF1A4  60 00 00 00 */	nop 
 /* 801C2268 001BF1A8  88 1E 00 F5 */	lbz r0, 0xf5(r30)
 /* 801C226C 001BF1AC  7C 00 F8 40 */	cmplw r0, r31
@@ -1844,7 +1844,7 @@ move__20dMenu_StageMapCtrl_cFv:
 /* 801C227C 001BF1BC  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C2280 001BF1C0  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C2284 001BF1C4  7D 80 2A 14 */	add r12, r0, r5
-/* 801C2288 001BF1C8  48 19 FD FD */	bl func_80362084
+/* 801C2288 001BF1C8  48 19 FD FD */	bl __ptmf_scall
 /* 801C228C 001BF1CC  60 00 00 00 */	nop 
 lbl_801C2290:
 /* 801C2290 001BF1D0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1903,14 +1903,14 @@ _create__20dMenu_StageMapCtrl_cFUsUsUsUsPv:
 lbl_801C2344:
 /* 801C2344 001BF284  7C 08 03 78 */	mr r8, r0
 lbl_801C2348:
-/* 801C2348 001BF288  48 00 00 15 */	bl _create__20dMenu_StageMapCtrl_cFUsUsUsUsPv_X1_
+/* 801C2348 001BF288  48 00 00 15 */	bl _create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv
 /* 801C234C 001BF28C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C2350 001BF290  7C 08 03 A6 */	mtlr r0
 /* 801C2354 001BF294  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C2358 001BF298  4E 80 00 20 */	blr 
 
-.global _create__20dMenu_StageMapCtrl_cFUsUsUsUsPv_X1_
-_create__20dMenu_StageMapCtrl_cFUsUsUsUsPv_X1_:
+.global _create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv
+_create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv:
 /* 801C235C 001BF29C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C2360 001BF2A0  7C 08 02 A6 */	mflr r0
 /* 801C2364 001BF2A4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2015,7 +2015,7 @@ lbl_801C23D0:
 /* 801C24EC 001BF42C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C24F0 001BF430  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C24F4 001BF434  7D 80 2A 14 */	add r12, r0, r5
-/* 801C24F8 001BF438  48 19 FB 8D */	bl func_80362084
+/* 801C24F8 001BF438  48 19 FB 8D */	bl __ptmf_scall
 /* 801C24FC 001BF43C  60 00 00 00 */	nop 
 /* 801C2500 001BF440  39 61 00 30 */	addi r11, r1, 0x30
 /* 801C2504 001BF444  48 19 FD 19 */	bl _restgpr_26

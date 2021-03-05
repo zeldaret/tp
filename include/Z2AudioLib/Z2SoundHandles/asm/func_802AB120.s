@@ -32,7 +32,7 @@ lbl_802AB184:
 /* 802AB18C 002A80CC  40 82 00 34 */ bne lbl_802AB1C0
 /* 802AB190 002A80D0  3C 60 80 43 */ lis r3, lbl_804341C4@ha
 /* 802AB194 002A80D4  38 63 41 C4 */ addi r3, r3, lbl_804341C4@l
-/* 802AB198 002A80D8  4B FE 56 B1 */ bl JASGenericMemPool
+/* 802AB198 002A80D8  4B FE 56 B1 */ bl __ct__17JASGenericMemPoolFv
 /* 802AB19C 002A80DC  3C 60 80 43 */ lis r3, lbl_804341C4@ha
 /* 802AB1A0 002A80E0  38 63 41 C4 */ addi r3, r3, lbl_804341C4@l
 /*.global JASMemPool_NS_dtor_X4_*/

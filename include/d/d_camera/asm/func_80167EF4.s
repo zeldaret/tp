@@ -14,7 +14,7 @@
 /* 80167F28 00164E68  C0 04 00 08 */ lfs f0, 8(r4)
 /* 80167F2C 00164E6C  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 80167F30 00164E70  38 61 00 68 */ addi r3, r1, 0x68
-/* 80167F34 00164E74  4B F1 10 C1 */ bl dBgS_RoofChk
+/* 80167F34 00164E74  4B F1 10 C1 */ bl __ct__12dBgS_RoofChkFv
 /* 80167F38 00164E78  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80167F3C 00164E7C  4B F1 0F B1 */ bl SetUnderwaterRoof__16dBgS_PolyPassChkFv
 /* 80167F40 00164E80  C0 01 00 08 */ lfs f0, 8(r1)
@@ -35,7 +35,7 @@
 /* 80167F7C 00164EBC  D0 21 00 0C */ stfs f1, 0xc(r1)
 lbl_80167F80:
 /* 80167F80 00164EC0  38 61 00 14 */ addi r3, r1, 0x14
-/* 80167F84 00164EC4  4B F0 FA 7D */ bl dBgS_CamGndChk_Wtr
+/* 80167F84 00164EC4  4B F0 FA 7D */ bl __ct__18dBgS_CamGndChk_WtrFv
 /* 80167F88 00164EC8  38 61 00 14 */ addi r3, r1, 0x14
 /* 80167F8C 00164ECC  38 81 00 08 */ addi r4, r1, 8
 /* 80167F90 00164ED0  48 0F FD 99 */ bl SetPos__11cBgS_GndChkFPC4cXyz

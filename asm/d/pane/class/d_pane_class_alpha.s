@@ -3,15 +3,15 @@
 .section .text, "ax" # 802553ec
 
 
-.global CPaneMgrAlpha
-CPaneMgrAlpha:
+.global __ct__13CPaneMgrAlphaFv
+__ct__13CPaneMgrAlphaFv:
 /* 802553EC 0025232C  3C 80 80 3C */	lis r4, lbl_803C2E28@ha
 /* 802553F0 00252330  38 04 2E 28 */	addi r0, r4, lbl_803C2E28@l
 /* 802553F4 00252334  90 03 00 00 */	stw r0, 0(r3)
 /* 802553F8 00252338  4E 80 00 20 */	blr 
 
-.global CPaneMgrAlpha_X1_
-CPaneMgrAlpha_X1_:
+.global __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap
+__ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap:
 /* 802553FC 0025233C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80255400 00252340  7C 08 02 A6 */	mflr r0
 /* 80255404 00252344  90 01 00 24 */	stw r0, 0x24(r1)
@@ -90,7 +90,7 @@ initiateAlpha__13CPaneMgrAlphaFP7J2DPaneP10JKRExpHeap:
 /* 80255508 00252448  90 BE 00 08 */	stw r5, 8(r30)
 /* 8025550C 0025244C  48 00 00 0C */	b lbl_80255518
 lbl_80255510:
-/* 80255510 00252450  4B DB 9C DD */	bl mDoExt_getCurrentHeap
+/* 80255510 00252450  4B DB 9C DD */	bl mDoExt_getCurrentHeap__Fv
 /* 80255514 00252454  90 7E 00 08 */	stw r3, 8(r30)
 lbl_80255518:
 /* 80255518 00252458  38 00 00 00 */	li r0, 0
@@ -617,14 +617,14 @@ lbl_80255C50:
 /* 80255C60 00252BA0  38 21 00 40 */	addi r1, r1, 0x40
 /* 80255C64 00252BA4  4E 80 00 20 */	blr 
 
-.global CPaneMgrAlphaMorf
-CPaneMgrAlphaMorf:
+.global __ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap
+__ct__17CPaneMgrAlphaMorfFP9J2DScreenUxUcP10JKRExpHeap:
 /* 80255C68 00252BA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80255C6C 00252BAC  7C 08 02 A6 */	mflr r0
 /* 80255C70 00252BB0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80255C74 00252BB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80255C78 00252BB8  7C 7F 1B 78 */	mr r31, r3
-/* 80255C7C 00252BBC  4B FF F7 81 */	bl CPaneMgrAlpha_X1_
+/* 80255C7C 00252BBC  4B FF F7 81 */	bl __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap
 /* 80255C80 00252BC0  3C 60 80 3C */	lis r3, lbl_803C2E18@ha
 /* 80255C84 00252BC4  38 03 2E 18 */	addi r0, r3, lbl_803C2E18@l
 /* 80255C88 00252BC8  90 1F 00 00 */	stw r0, 0(r31)

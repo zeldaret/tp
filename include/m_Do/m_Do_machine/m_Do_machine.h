@@ -3,6 +3,6 @@
 
 #include "global.h"
 
-extern "C" void mDoMch_Create(void);
+extern "C" void mDoMch_Create__Fv(void);
 
 #endif

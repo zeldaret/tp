@@ -144,7 +144,7 @@ lbl_80122B08:
 /* 80122B10 0011FA50  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 80122B14 0011FA54  38 63 02 10 */ addi r3, r3, 0x210
 /* 80122B18 0011FA58  80 9F 32 1C */ lwz r4, 0x321c(r31)
-/* 80122B1C 0011FA5C  4B F2 8D FD */ bl get__Q213dPa_control_c7level_cFUlEmitter
+/* 80122B1C 0011FA5C  4B F2 8D FD */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80122B20 0011FA60  28 03 00 00 */ cmplwi r3, 0
 /* 80122B24 0011FA64  41 82 00 58 */ beq lbl_80122B7C
 /* 80122B28 0011FA68  8B 63 00 BB */ lbz r27, 0xbb(r3)

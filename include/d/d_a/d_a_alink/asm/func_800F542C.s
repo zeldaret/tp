@@ -17,7 +17,7 @@ lbl_800F5454:
 /* 800F5468 000F23A8  48 00 02 9C */ b lbl_800F5704
 lbl_800F546C:
 /* 800F546C 000F23AC  7F E3 FB 78 */ mr r3, r31
-/* 800F5470 000F23B0  4B FF F4 B5 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F5470 000F23B0  4B FF F4 B5 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F5474 000F23B4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5478 000F23B8  40 82 02 8C */ bne lbl_800F5704
 /* 800F547C 000F23BC  7F E3 FB 78 */ mr r3, r31

@@ -20,7 +20,7 @@
 /* 80119180 001160C0  7C 00 F8 40 */ cmplw r0, r31
 /* 80119184 001160C4  41 82 00 28 */ beq lbl_801191AC
 /* 80119188 001160C8  80 9E 00 04 */ lwz r4, 4(r30)
-/* 8011918C 001160CC  48 21 26 F1 */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable_X1_
+/* 8011918C 001160CC  48 21 26 F1 */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
 /* 80119190 001160D0  80 7E 00 04 */ lwz r3, 4(r30)
 /* 80119194 001160D4  38 63 00 58 */ addi r3, r3, 0x58
 /* 80119198 001160D8  7F E4 FB 78 */ mr r4, r31

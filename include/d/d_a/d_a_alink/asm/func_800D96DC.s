@@ -24,7 +24,7 @@ lbl_800D9730:
 /* 800D9730 000D6670  54 1E 06 3E */ clrlwi r30, r0, 0x18
 /* 800D9734 000D6674  7E A3 AB 78 */ mr r3, r21
 /* 800D9738 000D6678  38 80 01 59 */ li r4, 0x159
-/* 800D973C 000D667C  4B FE 96 69 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800D973C 000D667C  4B FE 96 69 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D9740 000D6680  2C 03 00 00 */ cmpwi r3, 0
 /* 800D9744 000D6684  40 82 00 0C */ bne lbl_800D9750
 /* 800D9748 000D6688  38 60 00 00 */ li r3, 0
@@ -64,7 +64,7 @@ lbl_800D9764:
 /* 800D97C8 000D6708  4B F9 62 5D */ bl StartShock__12dVibration_cFii4cXyz
 /* 800D97CC 000D670C  7E A3 AB 78 */ mr r3, r21
 /* 800D97D0 000D6710  80 95 31 8C */ lwz r4, 0x318c(r21)
-/* 800D97D4 000D6714  4B FF DC A5 */ bl setDamagePoint__9daAlink_cFiiiiNormal
+/* 800D97D4 000D6714  4B FF DC A5 */ bl setDamagePointNormal__9daAlink_cFi
 /* 800D97D8 000D6718  80 15 05 74 */ lwz r0, 0x574(r21)
 /* 800D97DC 000D671C  60 00 40 00 */ ori r0, r0, 0x4000
 /* 800D97E0 000D6720  90 15 05 74 */ stw r0, 0x574(r21)
@@ -334,7 +334,7 @@ lbl_800D9B4C:
 /* 800D9B7C 000D6ABC  7E A3 AB 78 */ mr r3, r21
 /* 800D9B80 000D6AC0  80 95 31 98 */ lwz r4, 0x3198(r21)
 /* 800D9B84 000D6AC4  C0 38 00 58 */ lfs f1, 0x58(r24)
-/* 800D9B88 000D6AC8  48 04 FB 21 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseMorf
+/* 800D9B88 000D6AC8  48 04 FB 21 */ bl setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf
 /* 800D9B8C 000D6ACC  7E A3 AB 78 */ mr r3, r21
 /* 800D9B90 000D6AD0  38 80 00 91 */ li r4, 0x91
 /* 800D9B94 000D6AD4  4B FD 5D 0D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -360,7 +360,7 @@ lbl_800D9BAC:
 /* 800D9BDC 000D6B1C  7E A3 AB 78 */ mr r3, r21
 /* 800D9BE0 000D6B20  80 95 31 98 */ lwz r4, 0x3198(r21)
 /* 800D9BE4 000D6B24  C0 38 00 A8 */ lfs f1, 0xa8(r24)
-/* 800D9BE8 000D6B28  4B FD 33 C9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 800D9BE8 000D6B28  4B FD 33 C9 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_800D9BEC:
 /* 800D9BEC 000D6B2C  2C 16 00 00 */ cmpwi r22, 0
 /* 800D9BF0 000D6B30  40 80 01 A0 */ bge lbl_800D9D90

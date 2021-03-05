@@ -147,7 +147,7 @@ lbl_800734D0:
 /* 800734EC 0007042C  88 1D 01 70 */ lbz r0, 0x170(r29)
 /* 800734F0 00070430  54 00 10 3A */ slwi r0, r0, 2
 /* 800734F4 00070434  7C 7D 00 2E */ lwzx r3, r29, r0
-/* 800734F8 00070438  4B F9 A7 CD */ bl mDoExt_modelUpdateDL
+/* 800734F8 00070438  4B F9 A7 CD */ bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 800734FC 0007043C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80073500 00070440  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80073504 00070444  80 03 5F 80 */ lwz r0, 0x5f80(r3)

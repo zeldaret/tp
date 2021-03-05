@@ -26,7 +26,7 @@ lbl_800E6AF4:
 lbl_800E6AF8:
 /* 800E6AF8 000E3A38  7F E3 FB 78 */ mr r3, r31
 /* 800E6AFC 000E3A3C  38 80 00 71 */ li r4, 0x71
-/* 800E6B00 000E3A40  4B FD C2 A5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800E6B00 000E3A40  4B FD C2 A5 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E6B04 000E3A44  2C 03 00 00 */ cmpwi r3, 0
 /* 800E6B08 000E3A48  40 82 00 0C */ bne lbl_800E6B14
 /* 800E6B0C 000E3A4C  38 60 00 00 */ li r3, 0

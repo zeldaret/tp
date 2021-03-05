@@ -4,7 +4,7 @@
 /* 800E9350 000E6290  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E9354 000E6294  7C 7F 1B 78 */ mr r31, r3
 /* 800E9358 000E6298  38 80 00 BF */ li r4, 0xbf
-/* 800E935C 000E629C  4B FD 9A 49 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800E935C 000E629C  4B FD 9A 49 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E9360 000E62A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E9364 000E62A4  40 82 00 0C */ bne lbl_800E9370
 /* 800E9368 000E62A8  38 60 00 00 */ li r3, 0
@@ -41,9 +41,9 @@ lbl_800E938C:
 /* 800E93DC 000E631C  38 00 00 00 */ li r0, 0
 /* 800E93E0 000E6320  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /*.global daAlink_searchGoat*/
-/* 800E93E4 000E6324  3C 60 80 0F */ lis r3, daAlink_searchGoat@ha
+/* 800E93E4 000E6324  3C 60 80 0F */ lis r3, daAlink_searchGoat__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchGoat*/
-/* 800E93E8 000E6328  38 63 91 B0 */ addi r3, r3, daAlink_searchGoat@l
+/* 800E93E8 000E6328  38 63 91 B0 */ addi r3, r3, daAlink_searchGoat__FP10fopAc_ac_cPv@l
 /* 800E93EC 000E632C  38 80 00 00 */ li r4, 0
 /* 800E93F0 000E6330  4B F3 04 09 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800E93F4 000E6334  7C 64 1B 79 */ or. r4, r3, r3

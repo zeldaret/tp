@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027aebc
 
 
-.global JPARegistChildPrmEnv
-JPARegistChildPrmEnv:
+.global JPARegistChildPrmEnv__FP18JPAEmitterWorkData
+JPARegistChildPrmEnv__FP18JPAEmitterWorkData:
 /* 8027AEBC 00277DFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8027AEC0 00277E00  7C 08 02 A6 */	mflr r0
 /* 8027AEC4 00277E04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -77,8 +77,8 @@ JPARegistChildPrmEnv:
 /* 8027AFD0 00277F10  7C 08 03 A6 */	mtlr r0
 /* 8027AFD4 00277F14  38 21 00 20 */	addi r1, r1, 0x20
 /* 8027AFD8 00277F18  4E 80 00 20 */	blr 
-.global JPACalcChildAlphaOut
-JPACalcChildAlphaOut:
+.global JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle
+JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8027AFDC 00277F1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027AFE0 00277F20  C0 42 B9 08 */	lfs f2, lbl_80455308-_SDA2_BASE_(r2)
 /* 8027AFE4 00277F24  C0 22 B9 0C */	lfs f1, lbl_8045530C-_SDA2_BASE_(r2)
@@ -90,8 +90,8 @@ JPACalcChildAlphaOut:
 /* 8027AFFC 00277F3C  98 04 00 96 */	stb r0, 0x96(r4)
 /* 8027B000 00277F40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027B004 00277F44  4E 80 00 20 */	blr 
-.global JPACalcChildScaleOut
-JPACalcChildScaleOut:
+.global JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle
+JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8027B008 00277F48  C0 24 00 68 */	lfs f1, 0x68(r4)
 /* 8027B00C 00277F4C  C0 42 B9 0C */	lfs f2, lbl_8045530C-_SDA2_BASE_(r2)
 /* 8027B010 00277F50  C0 04 00 84 */	lfs f0, 0x84(r4)
@@ -105,7 +105,7 @@ JPACalcChildScaleOut:
 /* 8027B030 00277F70  D0 04 00 64 */	stfs f0, 0x64(r4)
 /* 8027B034 00277F74  4E 80 00 20 */	blr 
 
-.global JPAChildShape
-JPAChildShape:
+.global __ct__13JPAChildShapeFPCUc
+__ct__13JPAChildShapeFPCUc:
 /* 8027B038 00277F78  90 83 00 00 */	stw r4, 0(r3)
 /* 8027B03C 00277F7C  4E 80 00 20 */	blr 

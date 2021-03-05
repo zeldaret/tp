@@ -26,7 +26,7 @@ lbl_801A4C48:
 lbl_801A4C70:
 /* 801A4C70 001A1BB0  7F A3 EB 78 */ mr r3, r29
 /* 801A4C74 001A1BB4  7F 44 D3 78 */ mr r4, r26
-/* 801A4C78 001A1BB8  4B FF F7 A9 */ bl setLightTevColorType_MAJI_sub
+/* 801A4C78 001A1BB8  4B FF F7 A9 */ bl setLightTevColorType_MAJI_sub__FP11J3DMaterialP12dKy_tevstr_ci
 /* 801A4C7C 001A1BBC  7F C3 F3 78 */ mr r3, r30
 /* 801A4C80 001A1BC0  57 84 04 3E */ clrlwi r4, r28, 0x10
 /* 801A4C84 001A1BC4  48 13 9E 75 */ bl getName__10JUTNameTabCFUs

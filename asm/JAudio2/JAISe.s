@@ -17,7 +17,7 @@ JAISe:
 /* 8029F060 0029BFA0  7F 84 E3 78 */	mr r4, r28
 /* 8029F064 0029BFA4  48 03 CD 99 */	bl __ct__10JSUPtrLinkFPv
 /* 8029F068 0029BFA8  38 7C 00 10 */	addi r3, r28, 0x10
-/* 8029F06C 0029BFAC  48 00 32 8D */	bl JAISound
+/* 8029F06C 0029BFAC  48 00 32 8D */	bl __ct__8JAISoundFv
 /* 8029F070 0029BFB0  3C 60 80 3D */	lis r3, lbl_803C9858@ha
 /* 8029F074 0029BFB4  38 63 98 58 */	addi r3, r3, lbl_803C9858@l
 /* 8029F078 0029BFB8  90 7C 00 A8 */	stw r3, 0xa8(r28)
@@ -32,7 +32,7 @@ JAISe:
 /* 8029F09C 0029BFDC  D0 1C 00 C0 */	stfs f0, 0xc0(r28)
 /* 8029F0A0 0029BFE0  D0 3C 00 C4 */	stfs f1, 0xc4(r28)
 /* 8029F0A4 0029BFE4  38 7C 00 C8 */	addi r3, r28, 0xc8
-/* 8029F0A8 0029BFE8  4B FF 21 81 */	bl JASTrack
+/* 8029F0A8 0029BFE8  4B FF 21 81 */	bl __ct__8JASTrackFv
 /* 8029F0AC 0029BFEC  38 00 00 00 */	li r0, 0
 /* 8029F0B0 0029BFF0  90 1C 03 10 */	stw r0, 0x310(r28)
 /* 8029F0B4 0029BFF4  90 1C 03 14 */	stw r0, 0x314(r28)
@@ -64,7 +64,7 @@ mixOut___5JAISeFRC14JASSoundParams:
 /* 8029F110 0029C050  7C 9E 23 78 */	mr r30, r4
 /* 8029F114 0029C054  38 7D 00 C8 */	addi r3, r29, 0xc8
 /* 8029F118 0029C058  C0 3D 03 28 */	lfs f1, 0x328(r29)
-/* 8029F11C 0029C05C  4B FF 3A 71 */	bl setTempo__8JASTrackFUsRate
+/* 8029F11C 0029C05C  4B FF 3A 71 */	bl setTempoRate__8JASTrackFf
 /* 8029F120 0029C060  C0 02 BD 78 */	lfs f0, lbl_80455778-_SDA2_BASE_(r2)
 /* 8029F124 0029C064  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8029F128 0029C068  D0 01 00 10 */	stfs f0, 0x10(r1)
@@ -609,8 +609,8 @@ lbl_8029F838:
 getTrack__5JAISeFv:
 /* 8029F84C 0029C78C  38 63 00 C8 */	addi r3, r3, 0xc8
 /* 8029F850 0029C790  4E 80 00 20 */	blr 
-.global getChild__5JAISeFiTrack
-getChild__5JAISeFiTrack:
+.global getChildTrack__5JAISeFi
+getChildTrack__5JAISeFi:
 /* 8029F854 0029C794  54 80 10 3A */	slwi r0, r4, 2
 /* 8029F858 0029C798  7C 63 02 14 */	add r3, r3, r0
 /* 8029F85C 0029C79C  80 63 01 F8 */	lwz r3, 0x1f8(r3)
@@ -629,8 +629,8 @@ getTempoMgr__5JAISeFv:
 .global getTempoMgr__5JAISeFv
 /* 8029F87C 0029C7BC  4B FF FF EC */	b getTempoMgr__5JAISeFv
 /* 8029F880 0029C7C0  38 63 FF F0 */	addi r3, r3, -16
-.global getChild__5JAISeFiTrack
-/* 8029F884 0029C7C4  4B FF FF D0 */	b getChild__5JAISeFiTrack
+.global getChildTrack__5JAISeFi
+/* 8029F884 0029C7C4  4B FF FF D0 */	b getChildTrack__5JAISeFi
 /* 8029F888 0029C7C8  38 63 FF F0 */	addi r3, r3, -16
 .global getTrack__5JAISeFv
 /* 8029F88C 0029C7CC  4B FF FF C0 */	b getTrack__5JAISeFv

@@ -4,7 +4,7 @@
 /* 8011DDE0 0011AD20  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011DDE4 0011AD24  7C 7F 1B 78 */ mr r31, r3
 /* 8011DDE8 0011AD28  38 80 00 E1 */ li r4, 0xe1
-/* 8011DDEC 0011AD2C  4B FA 4F B9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 8011DDEC 0011AD2C  4B FA 4F B9 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011DDF0 0011AD30  2C 03 00 00 */ cmpwi r3, 0
 /* 8011DDF4 0011AD34  40 82 00 0C */ bne lbl_8011DE00
 /* 8011DDF8 0011AD38  38 60 00 00 */ li r3, 0

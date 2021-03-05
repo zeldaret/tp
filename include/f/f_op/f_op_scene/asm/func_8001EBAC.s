@@ -11,7 +11,7 @@
 /* 8001EBD4 0001BB14  2C 1E 00 01 */ cmpwi r30, 1
 /* 8001EBD8 0001BB18  40 82 00 0C */ bne lbl_8001EBE4
 /* 8001EBDC 0001BB1C  38 7F 01 B0 */ addi r3, r31, 0x1b0
-/* 8001EBE0 0001BB20  48 00 05 5D */ bl fopScnTg_QueueTo
+/* 8001EBE0 0001BB20  48 00 05 5D */ bl fopScnTg_QueueTo__FP15scene_tag_class
 lbl_8001EBE4:
 /* 8001EBE4 0001BB24  7F C3 F3 78 */ mr r3, r30
 /* 8001EBE8 0001BB28  83 E1 00 0C */ lwz r31, 0xc(r1)

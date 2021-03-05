@@ -15,16 +15,16 @@ void _restgpr_23(void);
 void _savegpr_23(void);
 void cr1(void);
 void dump__14dRes_control_cFv(void);
-void dispConsoleToTerminal(void);
-void dispDateInfo(void);
-void dispGameInfo(void);
-void dispHeapInfo(void);
+void dispConsoleToTerminal__Fv(void);
+void dispDateInfo__Fv(void);
+void dispGameInfo__Fv(void);
+void dispHeapInfo__Fv(void);
 void dump__11JKRAramHeapFv(void);
-void exception_addition(void);
+void exception_addition__FP10JUTConsole(void);
 void getFreeSize__7JKRHeapCFv(void);
 void getTotalFreeSize__7JKRHeapCFv(void);
 void print(void);
-void print_f(void);
+void print_f__FPCce(void);
 }
 
 // additional symbols needed for m_Do_machine_exception.cpp
@@ -43,8 +43,8 @@ extern u8 lbl_803A2EE0;
 
 extern "C" {
 // print_f__FPCce
-// print_f(const s8*, varargs...)
-asm void print_f(void) {
+// print_f__FPCce(const s8*, varargs...)
+asm void print_f__FPCce(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80017D7C.s"
 }
@@ -57,36 +57,36 @@ asm void print(void) {
 }
 
 // dispHeapInfo__Fv
-// dispHeapInfo(void)
-asm void dispHeapInfo(void) {
+// dispHeapInfo__Fv(void)
+asm void dispHeapInfo__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80017E30.s"
 }
 
 // dispGameInfo__Fv
-// dispGameInfo(void)
-asm void dispGameInfo(void) {
+// dispGameInfo__Fv(void)
+asm void dispGameInfo__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80017F8C.s"
 }
 
 // dispDateInfo__Fv
-// dispDateInfo(void)
-asm void dispDateInfo(void) {
+// dispDateInfo__Fv(void)
+asm void dispDateInfo__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80017FD0.s"
 }
 
 // dispConsoleToTerminal__Fv
-// dispConsoleToTerminal(void)
-asm void dispConsoleToTerminal(void) {
+// dispConsoleToTerminal__Fv(void)
+asm void dispConsoleToTerminal__Fv(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80018124.s"
 }
 
 // exception_addition__FP10JUTConsole
-// exception_addition(JUTConsole*)
-asm void exception_addition(void) {
+// exception_addition__FP10JUTConsole(JUTConsole*)
+asm void exception_addition__FP10JUTConsole(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_8001814C.s"
 }

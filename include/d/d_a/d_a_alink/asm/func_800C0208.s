@@ -10,7 +10,7 @@
 lbl_800C022C:
 /* 800C022C 000BD16C  57 DF 06 3E */ clrlwi r31, r30, 0x18
 /* 800C0230 000BD170  7F E3 FB 78 */ mr r3, r31
-/* 800C0234 000BD174  4B F6 DC E9 */ bl dComIfGp_getSelectItem
+/* 800C0234 000BD174  4B F6 DC E9 */ bl dComIfGp_getSelectItem__Fi
 /* 800C0238 000BD178  54 65 06 3E */ clrlwi r5, r3, 0x18
 /* 800C023C 000BD17C  7F 83 E3 78 */ mr r3, r28
 /* 800C0240 000BD180  7F A4 EB 78 */ mr r4, r29

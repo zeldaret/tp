@@ -20,7 +20,7 @@
 /* 80115158 00112098  38 80 01 9A */ li r4, 0x19a
 /* 8011515C 0011209C  C0 3F 00 1C */ lfs f1, 0x1c(r31)
 /* 80115160 001120A0  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 80115164 001120A4  4B F9 82 45 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 80115164 001120A4  4B F9 82 45 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 80115168 001120A8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011516C 001120AC  D0 1E 1F 50 */ stfs f0, 0x1f50(r30)
 /* 80115170 001120B0  7F C3 F3 78 */ mr r3, r30

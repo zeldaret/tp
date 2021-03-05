@@ -28,11 +28,11 @@ void _restgpr_28(void);
 void _savegpr_27(void);
 void _savegpr_28(void);
 void becomeCurrentHeap__7JKRHeapFv(void);
-void func_80017470(void);
-void mDoExt_getAssertHeap(void);
-void mDoMemCdRWm_Restore(void);
-void mDoMemCdRWm_Store(void);
-void mDoMemCd_Ctrl_c(void);
+void __sinit_m_Do_MemCard_cpp(void);
+void mDoExt_getAssertHeap__Fv(void);
+void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl(void);
+void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl(void);
+void __ct__15mDoMemCd_Ctrl_cFv(void);
 void FormatSync__15mDoMemCd_Ctrl_cFv(void);
 void LoadSync__15mDoMemCd_Ctrl_cFPvUlUl(void);
 void SaveSync__15mDoMemCd_Ctrl_cFv(void);
@@ -45,7 +45,7 @@ void detach__15mDoMemCd_Ctrl_cFv(void);
 void format__15mDoMemCd_Ctrl_cFv(void);
 void getStatus__15mDoMemCd_Ctrl_cFUl(void);
 void load__15mDoMemCd_Ctrl_cFv(void);
-void load__15mDoMemCd_Ctrl_cFvfile(void);
+void loadfile__15mDoMemCd_Ctrl_cFv(void);
 void main__15mDoMemCd_Ctrl_cFv(void);
 void mount__15mDoMemCd_Ctrl_cFv(void);
 void restore__15mDoMemCd_Ctrl_cFv(void);
@@ -53,7 +53,7 @@ void save__15mDoMemCd_Ctrl_cFPvUlUl(void);
 void setCardState__15mDoMemCd_Ctrl_cFl(void);
 void store__15mDoMemCd_Ctrl_cFv(void);
 void update__15mDoMemCd_Ctrl_cFv(void);
-void mDoMemCd_main(void);
+void mDoMemCd_main__FPv(void);
 }
 
 // additional symbols needed for m_Do_MemCard.cpp
@@ -69,7 +69,7 @@ extern u8 lbl_803EAF40;
 extern "C" {
 // __ct__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::mDoMemCd_Ctrl_c(void)
-asm void mDoMemCd_Ctrl_c(void) {
+asm void __ct__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_8001672C.s"
 }
@@ -195,7 +195,7 @@ asm void mount__15mDoMemCd_Ctrl_cFv(void) {
 
 // loadfile__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::loadfile(void)
-asm void load__15mDoMemCd_Ctrl_cFvfile(void) {
+asm void loadfile__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017274.s"
 }
@@ -215,15 +215,15 @@ asm void setCardState__15mDoMemCd_Ctrl_cFl(void) {
 }
 
 // mDoMemCd_main__FPv
-// mDoMemCd_main(void*)
-asm void mDoMemCd_main(void) {
+// mDoMemCd_main__FPv(void*)
+asm void mDoMemCd_main__FPv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_8001741C.s"
 }
 
 // __sinit_m_Do_MemCard_cpp
 //
-asm void func_80017470(void) {
+asm void __sinit_m_Do_MemCard_cpp(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017470.s"
 }

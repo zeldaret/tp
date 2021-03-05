@@ -48,8 +48,8 @@ lbl_8029EA6C:
 /* 8029EA98 0029B9D8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EA9C 0029B9DC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DSPAddPriorTask
-DSPAddPriorTask:
+.global DSPAddPriorTask__FP15STRUCT_DSP_TASK
+DSPAddPriorTask__FP15STRUCT_DSP_TASK:
 /* 8029EAA0 0029B9E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EAA4 0029B9E4  7C 08 02 A6 */	mflr r0
 /* 8029EAA8 0029B9E8  90 01 00 14 */	stw r0, 0x14(r1)

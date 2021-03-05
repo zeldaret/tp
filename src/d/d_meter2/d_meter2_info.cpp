@@ -6,20 +6,20 @@
 #include "msl_c/string.h"
 
 extern "C" {
-u8 dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_getMixItemIndex__Fi(int);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __ct__5csXyzFsss(void);
 void __dl__FPv(void);
-void daNpcF_getPlayerInfoFromPlayerList(void);
-void dComIfGp_setSelectItem(int);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_setSelectEquipClothes(u8);
-void dComIfGs_setSelectEquipShield(u8);
-void dComIfGs_setSelectEquipSword(u8);
-void dComIfGs_setSelectItemIndex(int, u8);
-void dComIfGs_setWarpItemData_X1_(void);
-void dComIfGs_setWarpMarkFlag(void);
+void daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz(void);
+void dComIfGp_setSelectItem__Fi(int);
+void dComIfGs_setMixItemIndex__FiUc(int, u8);
+void dComIfGs_setSelectEquipClothes__FUc(u8);
+void dComIfGs_setSelectEquipShield__FUc(u8);
+void dComIfGs_setSelectEquipSword__FUc(u8);
+void dComIfGs_setSelectItemIndex__FiUc(int, u8);
+void dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc(void);
+void dComIfGs_setWarpMarkFlag__FUc(void);
 void DCStoreRangeNoSync(void);
 void changeWater__13dMeter2Info_cFUc(void);
 void get2ndTexture__13dMeter2Info_cFUc(void);
@@ -38,7 +38,7 @@ void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci(void);
 void __dt__10dMsgFlow_cFv(void);
 void getMsgNo__10dMsgFlow_cFv(void);
 void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c(void);
-void dMsgFlow_c(void);
+void __ct__10dMsgFlow_cFv(void);
 void setLetterNameID__12dMsgObject_cFUs(void);
 void func_80361C24(void);
 void __cvt_fp2unsigned(void);
@@ -81,7 +81,7 @@ extern u8 lbl_803A7288;
 extern "C" {
 // __ct__13dMeter2Info_cFv
 // dMeter2Info_c::dMeter2Info_c(void)
-asm void dMeter2Info_c(void) {
+asm void __ct__13dMeter2Info_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021BDDC.s"
 }
@@ -107,7 +107,7 @@ asm void setFloatingMessage__13dMeter2Info_cFUssb(void) {
 }
 
 // setFloatingFlow__13dMeter2Info_cFUssb
-asm void func_8021C11C(void) {
+asm void setFloatingFlow__13dMeter2Info_cFUssb(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C11C.s"
 }
@@ -149,35 +149,35 @@ asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void) {
 
 // getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 // dMeter2Info_c::getStringKana(unsigned long, char*, JMSMesgEntry_c*)
-asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKana(void) {
+asm void getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C370.s"
 }
 
 // getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 // dMeter2Info_c::getStringKanji(unsigned long, char*, JMSMesgEntry_c*)
-asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cKanji(void) {
+asm void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C544.s"
 }
 
 // getStringLength__13dMeter2Info_cFP10J2DTextBoxPc
 // dMeter2Info_c::getStringLength(J2DTextBox*, char*)
-asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength(void) {
+asm void getStringLength__13dMeter2Info_cFP10J2DTextBoxPc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C6A4.s"
 }
 
 // getFont__10J2DTextBoxCFv
 // J2DTextBox::getFont(const void)
-asm void func_8021C7F4(void) {
+asm void getFont__10J2DTextBoxCFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C7F4.s"
 }
 
 // getStringLength__13dMeter2Info_cFP7JUTFontffPc
 // dMeter2Info_c::getStringLength(JUTFont*, float, float, char*)
-asm void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_cLength_X1_(void) {
+asm void getStringLength__13dMeter2Info_cFP7JUTFontffPc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C7FC.s"
 }
@@ -198,7 +198,7 @@ asm void isDirectUseItem__13dMeter2Info_cFi(void) {
 
 // setMeterString__13dMeter2Info_cFl
 // dMeter2Info_c::setMeterString(long)
-asm void func_8021C970(void) {
+asm void setMeterString__13dMeter2Info_cFl(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021C970.s"
 }
@@ -346,7 +346,7 @@ asm void resetMiniGameItem__13dMeter2Info_cFb(void) {
 
 // setMiniGameCount__13dMeter2Info_cFSc
 // dMeter2Info_c::setMiniGameCount(char)
-asm void func_8021E268(void) {
+asm void setMiniGameCount__13dMeter2Info_cFSc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E268.s"
 }
@@ -360,115 +360,115 @@ asm void setSaveStageName__13dMeter2Info_cFPCc(void) {
 
 // dMeter2Info_getNowLifeGauge__Fv
 // dMeter2Info_getNowLifeGauge(void)
-asm void func_8021E2B4(void) {
+asm void dMeter2Info_getNowLifeGauge__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E2B4.s"
 }
 
 // dMeter2Info_getNumberTextureName__Fi
-// dMeter2Info_getNumberTextureName(int)
-asm void dMeter2Info_getNumberTextureName(void) {
+// dMeter2Info_getNumberTextureName__Fi(int)
+asm void dMeter2Info_getNumberTextureName__Fi(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E2C8.s"
 }
 
 // dMeter2Info_getPlusTextureName__Fv
 // dMeter2Info_getPlusTextureName(void)
-asm void func_8021E2DC(void) {
+asm void dMeter2Info_getPlusTextureName__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E2DC.s"
 }
 
 // dMeter2Info_getPixel__FffffffPC7ResTIMG
-// dMeter2Info_getPixel(float, float, float, float, float, float, const ResTIMG*)
-asm void dMeter2Info_getPixel(void) {
+// dMeter2Info_getPixel__FffffffPC7ResTIMG(float, float, float, float, float, float, const ResTIMG*)
+asm void dMeter2Info_getPixel__FffffffPC7ResTIMG(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E308.s"
 }
 
 // dMeter2Info_setCloth__FUcb
-asm void dMeter2Info_setCloth(void) {
+asm void dMeter2Info_setCloth__FUcb(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E4B0.s"
 }
 
 // dMeter2Info_setSword__FUcb
-asm void dMeter2Info_setSword(u8, bool) {
+asm void dMeter2Info_setSword__FUcb(u8, bool) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E530.s"
 }
 
 // dMeter2Info_setShield__FUcb
-asm void dMeter2Info_setShield(void) {
+asm void dMeter2Info_setShield__FUcb(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E5D4.s"
 }
 
 // dMeter2Info_is2DActiveTouchArea__Fv
-// dMeter2Info_is2DActiveTouchArea(void)
-asm void dMeter2Info_is2DActiveTouchArea(void) {
+// dMeter2Info_is2DActiveTouchArea__Fv(void)
+asm void dMeter2Info_is2DActiveTouchArea__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E660.s"
 }
 
 // dMeter2Info_isMapOpenCheck__Fv
-// dMeter2Info_isMapOpenCheck(void)
-asm void dMeter2Info_isMapOpenCheck(void) {
+// dMeter2Info_isMapOpenCheck__Fv(void)
+asm void dMeter2Info_isMapOpenCheck__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E668.s"
 }
 
 // dMeter2Info_isItemOpenCheck__Fv
-// dMeter2Info_isItemOpenCheck(void)
-asm void dMeter2Info_isItemOpenCheck(void) {
+// dMeter2Info_isItemOpenCheck__Fv(void)
+asm void dMeter2Info_isItemOpenCheck__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E688.s"
 }
 
 // dMeter2Info_getRecieveLetterNum__Fv
-// dMeter2Info_getRecieveLetterNum(void)
-asm void dMeter2Info_getRecieveLetterNum(void) {
+// dMeter2Info_getRecieveLetterNum__Fv(void)
+asm void dMeter2Info_getRecieveLetterNum__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E6E4.s"
 }
 
 // dMeter2Info_getNewLetterNum__Fv
-// dMeter2Info_getNewLetterNum(void)
-asm void dMeter2Info_getNewLetterNum(void) {
+// dMeter2Info_getNewLetterNum__Fv(void)
+asm void dMeter2Info_getNewLetterNum__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E754.s"
 }
 
 // dMeter2Info_setNewLetterSender__Fv
-// dMeter2Info_setNewLetterSender(void)
-asm void dMeter2Info_setNewLetterSender(void) {
+// dMeter2Info_setNewLetterSender__Fv(void)
+asm void dMeter2Info_setNewLetterSender__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E804.s"
 }
 
 // dMeter2Info_recieveLetter__Fv
-// dMeter2Info_recieveLetter(void)
-asm void dMeter2Info_recieveLetter(void) {
+// dMeter2Info_recieveLetter__Fv(void)
+asm void dMeter2Info_recieveLetter__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E8DC.s"
 }
 
 // dMeter2Info_set2DVibration__Fv
-// dMeter2Info_set2DVibration(void)
-asm void dMeter2Info_set2DVibration(void) {
+// dMeter2Info_set2DVibration__Fv(void)
+asm void dMeter2Info_set2DVibration__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E9D0.s"
 }
 
 // dMeter2Info_set2DVibrationM__Fv
-// dMeter2Info_set2DVibrationM(void)
-asm void dMeter2Info_set2DVibrationM(void) {
+// dMeter2Info_set2DVibrationM__Fv(void)
+asm void dMeter2Info_set2DVibrationM__Fv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E9D4.s"
 }
 
 // __sinit_d_meter2_info_cpp
-asm void func_8021E9D8(void) {
+asm void __sinit_d_meter2_info_cpp(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021E9D8.s"
 }

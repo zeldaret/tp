@@ -10,7 +10,7 @@
 /* 8013D0F8 0013A038  54 00 04 A5 */ rlwinm. r0, r0, 0, 0x12, 0x12
 /* 8013D0FC 0013A03C  41 82 00 10 */ beq lbl_8013D10C
 /* 8013D100 0013A040  38 80 00 00 */ li r4, 0
-/* 8013D104 0013A044  4B FE CA 41 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013D104 0013A044  4B FE CA 41 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013D108 0013A048  48 00 02 D8 */ b lbl_8013D3E0
 lbl_8013D10C:
 /* 8013D10C 0013A04C  A8 04 00 08 */ lha r0, 8(r4)
@@ -30,7 +30,7 @@ lbl_8013D124:
 /* 8013D140 0013A080  38 80 00 47 */ li r4, 0x47
 /* 8013D144 0013A084  3C A0 80 39 */ lis r5, lbl_8038F95C@ha
 /* 8013D148 0013A088  38 A5 F9 5C */ addi r5, r5, lbl_8038F95C@l
-/* 8013D14C 0013A08C  4B FE C6 FD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013D14C 0013A08C  4B FE C6 FD */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013D150 0013A090  C3 E2 95 50 */ lfs f31, lbl_80452F50-_SDA2_BASE_(r2)
 /* 8013D154 0013A094  C0 02 93 30 */ lfs f0, lbl_80452D30-_SDA2_BASE_(r2)
 /* 8013D158 0013A098  D0 1F 34 78 */ stfs f0, 0x3478(r31)
@@ -45,7 +45,7 @@ lbl_8013D170:
 /* 8013D178 0013A0B8  3C A0 80 39 */ lis r5, lbl_8038F95C@ha
 /* 8013D17C 0013A0BC  38 A5 F9 5C */ addi r5, r5, lbl_8038F95C@l
 /* 8013D180 0013A0C0  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013D184 0013A0C4  4B FE C6 C5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 8013D184 0013A0C4  4B FE C6 C5 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013D188 0013A0C8  C3 E2 93 B0 */ lfs f31, lbl_80452DB0-_SDA2_BASE_(r2)
 /* 8013D18C 0013A0CC  C0 02 93 74 */ lfs f0, lbl_80452D74-_SDA2_BASE_(r2)
 /* 8013D190 0013A0D0  D0 1F 34 78 */ stfs f0, 0x3478(r31)

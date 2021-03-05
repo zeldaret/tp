@@ -7,7 +7,7 @@
 /* 801A6C38 001A3B78  28 00 00 00 */ cmplwi r0, 0
 /* 801A6C3C 001A3B7C  41 82 00 0C */ beq lbl_801A6C48
 /* 801A6C40 001A3B80  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
-/* 801A6C44 001A3B84  4B FF F6 35 */ bl dKy_setLight_nowroom_common
+/* 801A6C44 001A3B84  4B FF F6 35 */ bl dKy_setLight_nowroom_common__Fcf
 lbl_801A6C48:
 /* 801A6C48 001A3B88  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801A6C4C 001A3B8C  7C 08 03 A6 */ mtlr r0

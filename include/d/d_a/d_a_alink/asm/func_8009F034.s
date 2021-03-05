@@ -77,7 +77,7 @@ lbl_8009F150:
 /* 8009F150 0009C090  38 61 00 C4 */	addi r3, r1, 0xc4
 /* 8009F154 0009C094  38 81 00 D0 */	addi r4, r1, 0xd0
 /* 8009F158 0009C098  38 A1 00 18 */	addi r5, r1, 0x18
-/* 8009F15C 0009C09C  4B FB C1 9D */	bl dKyw_get_AllWind_vec
+/* 8009F15C 0009C09C  4B FB C1 9D */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 8009F160 0009C0A0  80 1F 31 A0 */	lwz r0, 0x31a0(r31)
 /* 8009F164 0009C0A4  54 00 03 5B */	rlwinm. r0, r0, 0, 0xd, 0xd
 /* 8009F168 0009C0A8  40 82 00 10 */	bne lbl_8009F178

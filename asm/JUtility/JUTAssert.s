@@ -77,8 +77,8 @@ lbl_802E4A40:
 /* 802E4A4C 002E198C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E4A50 002E1990  4E 80 00 20 */	blr 
 
-.global flushMessage__12JUTAssertionFv_dbPrint
-flushMessage__12JUTAssertionFv_dbPrint:
+.global flushMessage_dbPrint__12JUTAssertionFv
+flushMessage_dbPrint__12JUTAssertionFv:
 /* 802E4A54 002E1994  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802E4A58 002E1998  7C 08 02 A6 */	mflr r0
 /* 802E4A5C 002E199C  90 01 00 54 */	stw r0, 0x54(r1)

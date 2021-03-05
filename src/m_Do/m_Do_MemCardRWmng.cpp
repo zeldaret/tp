@@ -16,16 +16,16 @@ void _restgpr_20(void);
 void _restgpr_28(void);
 void _savegpr_20(void);
 void _savegpr_28(void);
-void func_803665BC(void);
-void mDoMemCdRWm_BuildHeader(void);
-void mDoMemCdRWm_CalcCheckSum(void);
-void mDoMemCdRWm_CalcCheckSumGameData(void);
-void mDoMemCdRWm_CheckCardStat(void);
-void mDoMemCdRWm_Restore(void);
-void mDoMemCdRWm_SetCardStat(void);
-void mDoMemCdRWm_SetCheckSumGameData(void);
-void mDoMemCdRWm_Store(void);
-void mDoMemCdRWm_TestCheckSumGameData(void);
+void snprintf(void);
+void mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData(void);
+void mDoMemCdRWm_CalcCheckSum__FPvUl(void);
+void mDoMemCdRWm_CalcCheckSumGameData__FPvUl(void);
+void mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo(void);
+void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl(void);
+void mDoMemCdRWm_SetCardStat__FP12CARDFileInfo(void);
+void mDoMemCdRWm_SetCheckSumGameData__FPUcUc(void);
+void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl(void);
+void mDoMemCdRWm_TestCheckSumGameData__FPv(void);
 }
 
 // additional symbols needed for m_Do_MemCardRWmng.cpp
@@ -36,64 +36,64 @@ extern u8 lbl_803EAF40;
 
 extern "C" {
 // mDoMemCdRWm_Store__FP12CARDFileInfoPvUl
-// mDoMemCdRWm_Store(CARDFileInfo*, void*, u32)
-asm void mDoMemCdRWm_Store(void) {
+// mDoMemCdRWm_Store__FP12CARDFileInfoPvUl(CARDFileInfo*, void*, u32)
+asm void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017498.s"
 }
 
 // mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl
-// mDoMemCdRWm_Restore(CARDFileInfo*, void*, u32)
-asm void mDoMemCdRWm_Restore(void) {
+// mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl(CARDFileInfo*, void*, u32)
+asm void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_8001769C.s"
 }
 
 // mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData
-// mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData*)
-asm void mDoMemCdRWm_BuildHeader(void) {
+// mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData(mDoMemCdRWm_HeaderData*)
+asm void mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_8001787C.s"
 }
 
 // mDoMemCdRWm_SetCardStat__FP12CARDFileInfo
-// mDoMemCdRWm_SetCardStat(CARDFileInfo*)
-asm void mDoMemCdRWm_SetCardStat(void) {
+// mDoMemCdRWm_SetCardStat__FP12CARDFileInfo(CARDFileInfo*)
+asm void mDoMemCdRWm_SetCardStat__FP12CARDFileInfo(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_800179E4.s"
 }
 
 // mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo
-// mDoMemCdRWm_CheckCardStat(CARDFileInfo*)
-asm void mDoMemCdRWm_CheckCardStat(void) {
+// mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo(CARDFileInfo*)
+asm void mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017B4C.s"
 }
 
 // mDoMemCdRWm_CalcCheckSum__FPvUl
-// mDoMemCdRWm_CalcCheckSum(void*, u32)
-asm void mDoMemCdRWm_CalcCheckSum(void) {
+// mDoMemCdRWm_CalcCheckSum__FPvUl(void*, u32)
+asm void mDoMemCdRWm_CalcCheckSum__FPvUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017C74.s"
 }
 
 // mDoMemCdRWm_CalcCheckSumGameData__FPvUl
-// mDoMemCdRWm_CalcCheckSumGameData(void*, u32)
-asm void mDoMemCdRWm_CalcCheckSumGameData(void) {
+// mDoMemCdRWm_CalcCheckSumGameData__FPvUl(void*, u32)
+asm void mDoMemCdRWm_CalcCheckSumGameData__FPvUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017CB4.s"
 }
 
 // mDoMemCdRWm_TestCheckSumGameData__FPv
-// mDoMemCdRWm_TestCheckSumGameData(void*)
-asm void mDoMemCdRWm_TestCheckSumGameData(void) {
+// mDoMemCdRWm_TestCheckSumGameData__FPv(void*)
+asm void mDoMemCdRWm_TestCheckSumGameData__FPv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017CEC.s"
 }
 
 // mDoMemCdRWm_SetCheckSumGameData__FPUcUc
-// mDoMemCdRWm_SetCheckSumGameData(u8*, u8)
-asm void mDoMemCdRWm_SetCheckSumGameData(void) {
+// mDoMemCdRWm_SetCheckSumGameData__FPUcUc(u8*, u8)
+asm void mDoMemCdRWm_SetCheckSumGameData__FPUcUc(void) {
     nofralloc
 #include "m_Do/m_Do_MemCardRWmng/asm/func_80017D38.s"
 }

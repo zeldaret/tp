@@ -8,14 +8,14 @@
 /* 800B6F44 000B3E84  2C 03 00 00 */ cmpwi r3, 0
 /* 800B6F48 000B3E88  41 82 00 10 */ beq lbl_800B6F58
 /* 800B6F4C 000B3E8C  7F E3 FB 78 */ mr r3, r31
-/* 800B6F50 000B3E90  48 02 88 C5 */ bl checkNextAction__9daAlink_cFiBow
+/* 800B6F50 000B3E90  48 02 88 C5 */ bl checkNextActionBow__9daAlink_cFv
 /* 800B6F54 000B3E94  48 00 01 28 */ b lbl_800B707C
 lbl_800B6F58:
 /* 800B6F58 000B3E98  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
 /* 800B6F5C 000B3E9C  28 03 00 40 */ cmplwi r3, 0x40
 /* 800B6F60 000B3EA0  40 82 00 10 */ bne lbl_800B6F70
 /* 800B6F64 000B3EA4  7F E3 FB 78 */ mr r3, r31
-/* 800B6F68 000B3EA8  48 02 9C 7D */ bl checkNextAction__9daAlink_cFiBoomerang
+/* 800B6F68 000B3EA8  48 02 9C 7D */ bl checkNextActionBoomerang__9daAlink_cFv
 /* 800B6F6C 000B3EAC  48 00 01 10 */ b lbl_800B707C
 lbl_800B6F70:
 /* 800B6F70 000B3EB0  28 03 00 46 */ cmplwi r3, 0x46
@@ -24,7 +24,7 @@ lbl_800B6F70:
 /* 800B6F7C 000B3EBC  28 00 00 00 */ cmplwi r0, 0
 /* 800B6F80 000B3EC0  40 82 00 10 */ bne lbl_800B6F90
 /* 800B6F84 000B3EC4  7F E3 FB 78 */ mr r3, r31
-/* 800B6F88 000B3EC8  48 02 AC BD */ bl checkNextAction__9daAlink_cFiCopyRod
+/* 800B6F88 000B3EC8  48 02 AC BD */ bl checkNextActionCopyRod__9daAlink_cFv
 /* 800B6F8C 000B3ECC  48 00 00 F0 */ b lbl_800B707C
 lbl_800B6F90:
 /* 800B6F90 000B3ED0  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
@@ -55,7 +55,7 @@ lbl_800B6FD4:
 /* 800B6FE8 000B3F28  2C 03 00 00 */ cmpwi r3, 0
 /* 800B6FEC 000B3F2C  40 82 00 8C */ bne lbl_800B7078
 /* 800B6FF0 000B3F30  7F E3 FB 78 */ mr r3, r31
-/* 800B6FF4 000B3F34  48 05 E4 05 */ bl checkNextAction__9daAlink_cFiIronBall
+/* 800B6FF4 000B3F34  48 05 E4 05 */ bl checkNextActionIronBall__9daAlink_cFv
 /* 800B6FF8 000B3F38  48 00 00 84 */ b lbl_800B707C
 lbl_800B6FFC:
 /* 800B6FFC 000B3F3C  28 03 00 60 */ cmplwi r3, 0x60
@@ -91,7 +91,7 @@ lbl_800B7064:
 /* 800B7064 000B3FA4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B7068 000B3FA8  40 82 00 10 */ bne lbl_800B7078
 /* 800B706C 000B3FAC  7F E3 FB 78 */ mr r3, r31
-/* 800B7070 000B3FB0  48 05 25 59 */ bl checkNextAction__9daAlink_cFiHookshot
+/* 800B7070 000B3FB0  48 05 25 59 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 800B7074 000B3FB4  48 00 00 08 */ b lbl_800B707C
 lbl_800B7078:
 /* 800B7078 000B3FB8  38 60 FF FF */ li r3, -1

@@ -111,9 +111,9 @@ lbl_80139BF0:
 /* 80139C08 00136B48  38 00 00 00 */ li r0, 0
 /* 80139C0C 00136B4C  90 01 00 08 */ stw r0, 8(r1)
 /*.global daAlink_searchWolfLockEnemy*/
-/* 80139C10 00136B50  3C 60 80 14 */ lis r3, daAlink_searchWolfLockEnemy@ha
+/* 80139C10 00136B50  3C 60 80 14 */ lis r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchWolfLockEnemy*/
-/* 80139C14 00136B54  38 63 92 A8 */ addi r3, r3, daAlink_searchWolfLockEnemy@l
+/* 80139C14 00136B54  38 63 92 A8 */ addi r3, r3, daAlink_searchWolfLockEnemy__FP10fopAc_ac_cPv@l
 /* 80139C18 00136B58  38 81 00 08 */ addi r4, r1, 8
 /* 80139C1C 00136B5C  4B ED FB A1 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80139C20 00136B60  80 01 00 08 */ lwz r0, 8(r1)
@@ -208,7 +208,7 @@ lbl_80139D4C:
 /* 80139D5C 00136C9C  4B FB F1 AD */ bl stopHalfMoveAnime__9daAlink_cFf
 lbl_80139D60:
 /* 80139D60 00136CA0  7F C3 F3 78 */ mr r3, r30
-/* 80139D64 00136CA4  4B FE E7 15 */ bl setSpeedAndAngleWolf__9daAlink_cFvAtn
+/* 80139D64 00136CA4  4B FE E7 15 */ bl setSpeedAndAngleWolfAtn__9daAlink_cFv
 /* 80139D68 00136CA8  7F C3 F3 78 */ mr r3, r30
 /* 80139D6C 00136CAC  4B FF D3 C1 */ bl getWolfLieMoveSpeed__9daAlink_cFv
 /* 80139D70 00136CB0  D0 3E 33 98 */ stfs f1, 0x3398(r30)

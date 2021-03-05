@@ -3,8 +3,8 @@
 .section .text, "ax" # 802ff660
 
 
-.global J2DTextBox
-J2DTextBox:
+.global __ct__10J2DTextBoxFv
+__ct__10J2DTextBoxFv:
 /* 802FF660 002FC5A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802FF664 002FC5A4  7C 08 02 A6 */	mflr r0
 /* 802FF668 002FC5A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -36,8 +36,8 @@ J2DTextBox:
 /* 802FF6D0 002FC610  38 21 00 10 */	addi r1, r1, 0x10
 /* 802FF6D4 002FC614  4E 80 00 20 */	blr 
 
-.global J2DTextBox_X1_
-J2DTextBox_X1_:
+.global __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
+__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive:
 /* 802FF6D8 002FC618  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802FF6DC 002FC61C  7C 08 02 A6 */	mflr r0
 /* 802FF6E0 002FC620  90 01 00 24 */	stw r0, 0x24(r1)
@@ -72,8 +72,8 @@ J2DTextBox_X1_:
 /* 802FF754 002FC694  38 21 00 20 */	addi r1, r1, 0x20
 /* 802FF758 002FC698  4E 80 00 20 */	blr 
 
-.global J2DTextBox_X2_
-J2DTextBox_X2_:
+.global __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
+__ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial:
 /* 802FF75C 002FC69C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 802FF760 002FC6A0  7C 08 02 A6 */	mflr r0
 /* 802FF764 002FC6A4  90 01 00 94 */	stw r0, 0x94(r1)
@@ -882,7 +882,7 @@ lbl_803002D0:
 /* 80300358 002FD298  38 C1 00 10 */	addi r6, r1, 0x10
 /* 8030035C 002FD29C  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80300360 002FD2A0  39 01 00 08 */	addi r8, r1, 8
-/* 80300364 002FD2A4  4B FF 40 31 */	bl J2DPrint
+/* 80300364 002FD2A4  4B FF 40 31 */	bl __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 80300368 002FD2A8  C0 5E 01 20 */	lfs f2, 0x120(r30)
 /* 8030036C 002FD2AC  C0 3E 01 1C */	lfs f1, 0x11c(r30)
 /* 80300370 002FD2B0  C0 02 C8 80 */	lfs f0, lbl_80456280-_SDA2_BASE_(r2)
@@ -1002,7 +1002,7 @@ draw__10J2DTextBoxFfff18J2DTextBoxHBinding:
 /* 80300510 002FD450  38 C1 00 10 */	addi r6, r1, 0x10
 /* 80300514 002FD454  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80300518 002FD458  39 01 00 08 */	addi r8, r1, 8
-/* 8030051C 002FD45C  4B FF 3E 79 */	bl J2DPrint
+/* 8030051C 002FD45C  4B FF 3E 79 */	bl __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 80300520 002FD460  C0 5D 01 20 */	lfs f2, 0x120(r29)
 /* 80300524 002FD464  C0 3D 01 1C */	lfs f1, 0x11c(r29)
 /* 80300528 002FD468  C0 02 C8 80 */	lfs f0, lbl_80456280-_SDA2_BASE_(r2)
@@ -1065,7 +1065,7 @@ lbl_8030059C:
 /* 803005F8 002FD538  C0 1D 01 20 */	lfs f0, 0x120(r29)
 /* 803005FC 002FD53C  FC 80 00 50 */	fneg f4, f0
 /* 80300600 002FD540  88 FD 00 B2 */	lbz r7, 0xb2(r29)
-/* 80300604 002FD544  4B FF 42 25 */	bl print__8J2DPrintFffUcPCceReturn
+/* 80300604 002FD544  4B FF 42 25 */	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
 lbl_80300608:
 /* 80300608 002FD548  38 61 00 18 */	addi r3, r1, 0x18
 /* 8030060C 002FD54C  48 04 5E 79 */	bl PSMTXIdentity
@@ -1159,8 +1159,8 @@ lbl_80300730:
 /* 80300744 002FD684  38 21 00 90 */	addi r1, r1, 0x90
 /* 80300748 002FD688  4E 80 00 20 */	blr 
 
-.global setString__10J2DTextBoxFPCce_X1_
-setString__10J2DTextBoxFPCce_X1_:
+.global setString__10J2DTextBoxFsPCce
+setString__10J2DTextBoxFsPCce:
 /* 8030074C 002FD68C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80300750 002FD690  7C 08 02 A6 */	mflr r0
 /* 80300754 002FD694  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1327,7 +1327,7 @@ lbl_803008D0:
 /* 803009B8 002FD8F8  38 C1 00 10 */	addi r6, r1, 0x10
 /* 803009BC 002FD8FC  38 E1 00 0C */	addi r7, r1, 0xc
 /* 803009C0 002FD900  39 01 00 08 */	addi r8, r1, 8
-/* 803009C4 002FD904  4B FF 39 D1 */	bl J2DPrint
+/* 803009C4 002FD904  4B FF 39 D1 */	bl __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 803009C8 002FD908  C0 5E 01 20 */	lfs f2, 0x120(r30)
 /* 803009CC 002FD90C  C0 3E 01 1C */	lfs f1, 0x11c(r30)
 /* 803009D0 002FD910  C0 02 C8 80 */	lfs f0, lbl_80456280-_SDA2_BASE_(r2)
@@ -1395,7 +1395,7 @@ lbl_80300A28:
 /* 80300AB4 002FD9F4  C0 7E 01 0C */	lfs f3, 0x10c(r30)
 /* 80300AB8 002FD9F8  C0 9E 01 10 */	lfs f4, 0x110(r30)
 /* 80300ABC 002FD9FC  88 FE 00 B3 */	lbz r7, 0xb3(r30)
-/* 80300AC0 002FDA00  4B FF 3D 69 */	bl print__8J2DPrintFffUcPCceReturn
+/* 80300AC0 002FDA00  4B FF 3D 69 */	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
 lbl_80300AC4:
 /* 80300AC4 002FDA04  38 61 00 48 */	addi r3, r1, 0x48
 /* 80300AC8 002FDA08  38 80 FF FF */	li r4, -1

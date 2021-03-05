@@ -190,7 +190,7 @@ lbl_802A1A80:
 /* 802A1A88 0029E9C8  40 82 00 34 */	bne lbl_802A1ABC
 /* 802A1A8C 0029E9CC  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A1A90 0029E9D0  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
-/* 802A1A94 0029E9D4  4B FE ED B5 */	bl JASGenericMemPool
+/* 802A1A94 0029E9D4  4B FE ED B5 */	bl __ct__17JASGenericMemPoolFv
 /* 802A1A98 0029E9D8  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A1A9C 0029E9DC  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 .global JASMemPool_NS_dtor_X2_
@@ -463,8 +463,8 @@ lbl_802A1E20:
 /* 802A1E34 0029ED74  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1E38 0029ED78  4E 80 00 20 */	blr 
 
-.global stop__9JAISeqMgrFv_X1_
-stop__9JAISeqMgrFv_X1_:
+.global stop__9JAISeqMgrFUl
+stop__9JAISeqMgrFUl:
 /* 802A1E3C 0029ED7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A1E40 0029ED80  7C 08 02 A6 */	mflr r0
 /* 802A1E44 0029ED84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -488,8 +488,8 @@ lbl_802A1E6C:
 /* 802A1E84 0029EDC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A1E88 0029EDC8  4E 80 00 20 */	blr 
 
-.global stop__9JAISeqMgrFvSoundID
-stop__9JAISeqMgrFvSoundID:
+.global stopSoundID__9JAISeqMgrF10JAISoundID
+stopSoundID__9JAISeqMgrF10JAISoundID:
 /* 802A1E8C 0029EDCC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A1E90 0029EDD0  7C 08 02 A6 */	mflr r0
 /* 802A1E94 0029EDD4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -563,7 +563,7 @@ beginStartSeq___9JAISeqMgrFv:
 /* 802A1F74 0029EEB4  40 82 00 34 */	bne lbl_802A1FA8
 /* 802A1F78 0029EEB8  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A1F7C 0029EEBC  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
-/* 802A1F80 0029EEC0  4B FE E8 C9 */	bl JASGenericMemPool
+/* 802A1F80 0029EEC0  4B FE E8 C9 */	bl __ct__17JASGenericMemPoolFv
 /* 802A1F84 0029EEC4  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A1F88 0029EEC8  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 .global JASMemPool_NS_dtor_X2_
@@ -645,7 +645,7 @@ lbl_802A2084:
 /* 802A208C 0029EFCC  40 82 00 34 */	bne lbl_802A20C0
 /* 802A2090 0029EFD0  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A2094 0029EFD4  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
-/* 802A2098 0029EFD8  4B FE E7 B1 */	bl JASGenericMemPool
+/* 802A2098 0029EFD8  4B FE E7 B1 */	bl __ct__17JASGenericMemPoolFv
 /* 802A209C 0029EFDC  3C 60 80 43 */	lis r3, lbl_804340CC@ha
 /* 802A20A0 0029EFE0  38 63 40 CC */	addi r3, r3, lbl_804340CC@l
 .global JASMemPool_NS_dtor_X2_

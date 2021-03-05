@@ -3,8 +3,8 @@
 .section .text, "ax" # 80048c54
 
 
-.global dSmplMdl_modelUpdateDL
-dSmplMdl_modelUpdateDL:
+.global dSmplMdl_modelUpdateDL__FP8J3DModel
+dSmplMdl_modelUpdateDL__FP8J3DModel:
 /* 80048C54 00045B94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048C58 00045B98  7C 08 02 A6 */	mflr r0
 /* 80048C5C 00045B9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -30,8 +30,8 @@ dSmplMdl_modelUpdateDL:
 /* 80048CAC 00045BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048CB0 00045BF0  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c
-dSmplMdl_draw_c:
+.global __ct__15dSmplMdl_draw_cFv
+__ct__15dSmplMdl_draw_cFv:
 /* 80048CB4 00045BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048CB8 00045BF8  7C 08 02 A6 */	mflr r0
 /* 80048CBC 00045BFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -42,14 +42,14 @@ dSmplMdl_draw_c:
 /* 80048CD0 00045C10  38 03 82 F8 */	addi r0, r3, lbl_803A82F8@l
 /* 80048CD4 00045C14  90 1D 00 00 */	stw r0, 0(r29)
 /* 80048CD8 00045C18  38 7D 00 04 */	addi r3, r29, 4
-.global diff_model_c
-/* 80048CDC 00045C1C  3C 80 80 05 */	lis r4, diff_model_c@ha
-.global diff_model_c
-/* 80048CE0 00045C20  38 84 8D 60 */	addi r4, r4, diff_model_c@l
+.global __ct__12diff_model_cFv
+/* 80048CDC 00045C1C  3C 80 80 05 */	lis r4, __ct__12diff_model_cFv@ha
+.global __ct__12diff_model_cFv
+/* 80048CE0 00045C20  38 84 8D 60 */	addi r4, r4, __ct__12diff_model_cFv@l
 /* 80048CE4 00045C24  38 A0 00 00 */	li r5, 0
 /* 80048CE8 00045C28  38 C0 00 14 */	li r6, 0x14
 /* 80048CEC 00045C2C  38 E0 00 08 */	li r7, 8
-/* 80048CF0 00045C30  48 31 90 71 */	bl func_80361D60
+/* 80048CF0 00045C30  48 31 90 71 */	bl __construct_array
 /* 80048CF4 00045C34  3B C0 00 00 */	li r30, 0
 /* 80048CF8 00045C38  3B E0 00 00 */	li r31, 0
 lbl_80048CFC:
@@ -79,8 +79,8 @@ lbl_80048D28:
 /* 80048D54 00045C94  7C 08 03 A6 */	mtlr r0
 /* 80048D58 00045C98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048D5C 00045C9C  4E 80 00 20 */	blr 
-.global diff_model_c
-diff_model_c:
+.global __ct__12diff_model_cFv
+__ct__12diff_model_cFv:
 /* 80048D60 00045CA0  38 00 00 00 */	li r0, 0
 /* 80048D64 00045CA4  90 03 00 00 */	stw r0, 0(r3)
 /* 80048D68 00045CA8  90 03 00 04 */	stw r0, 4(r3)
@@ -357,7 +357,7 @@ create__12diff_model_cFP12J3DModelDataiUc:
 /* 80049118 00046058  40 82 00 AC */	bne lbl_800491C4
 /* 8004911C 0004605C  38 60 20 00 */	li r3, 0x2000
 /* 80049120 00046060  38 80 00 20 */	li r4, 0x20
-/* 80049124 00046064  4B FC 5F 21 */	bl mDoExt_createSolidHeapFromGameToCurrent_X1_
+/* 80049124 00046064  4B FC 5F 21 */	bl mDoExt_createSolidHeapFromGameToCurrent__FUlUl
 /* 80049128 00046068  90 7C 00 00 */	stw r3, 0(r28)
 /* 8004912C 0004606C  80 1C 00 00 */	lwz r0, 0(r28)
 /* 80049130 00046070  28 00 00 00 */	cmplwi r0, 0
@@ -366,7 +366,7 @@ create__12diff_model_cFP12J3DModelDataiUc:
 /* 8004913C 0004607C  3C 80 00 08 */	lis r4, 8
 /* 80049140 00046080  3C A0 11 00 */	lis r5, 0x11000084@ha
 /* 80049144 00046084  38 A5 00 84 */	addi r5, r5, 0x11000084@l
-/* 80049148 00046088  4B FC BB 0D */	bl mDoExt_J3DModel__create
+/* 80049148 00046088  4B FC BB 0D */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 8004914C 0004608C  90 7C 00 04 */	stw r3, 4(r28)
 /* 80049150 00046090  80 7C 00 04 */	lwz r3, 4(r28)
 /* 80049154 00046094  28 03 00 00 */	cmplwi r3, 0
@@ -374,7 +374,7 @@ create__12diff_model_cFP12J3DModelDataiUc:
 /* 8004915C 0004609C  7F 83 E3 78 */	mr r3, r28
 /* 80049160 000460A0  38 80 00 01 */	li r4, 1
 /* 80049164 000460A4  48 00 00 AD */	bl remove__12diff_model_cFi
-/* 80049168 000460A8  4B FC 60 8D */	bl mDoExt_restoreCurrentHeap
+/* 80049168 000460A8  4B FC 60 8D */	bl mDoExt_restoreCurrentHeap__Fv
 /* 8004916C 000460AC  48 00 00 6C */	b lbl_800491D8
 lbl_80049170:
 /* 80049170 000460B0  C0 02 85 38 */	lfs f0, lbl_80451F38-_SDA2_BASE_(r2)
@@ -393,7 +393,7 @@ lbl_80049170:
 /* 800491A4 000460E4  38 03 00 01 */	addi r0, r3, 1
 /* 800491A8 000460E8  90 1C 00 08 */	stw r0, 8(r28)
 /* 800491AC 000460EC  80 7C 00 00 */	lwz r3, 0(r28)
-/* 800491B0 000460F0  4B FC 5F A9 */	bl mDoExt_adjustSolidHeapToSystem
+/* 800491B0 000460F0  4B FC 5F A9 */	bl mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap
 /* 800491B4 000460F4  9B DC 00 11 */	stb r30, 0x11(r28)
 /* 800491B8 000460F8  9B FC 00 10 */	stb r31, 0x10(r28)
 /* 800491BC 000460FC  38 60 00 01 */	li r3, 1
@@ -444,7 +444,7 @@ lbl_80049244:
 /* 80049244 00046184  80 7F 00 00 */	lwz r3, 0(r31)
 /* 80049248 00046188  28 03 00 00 */	cmplwi r3, 0
 /* 8004924C 0004618C  41 82 00 10 */	beq lbl_8004925C
-/* 80049250 00046190  4B FC 5F 3D */	bl mDoExt_destroySolidHeap
+/* 80049250 00046190  4B FC 5F 3D */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 /* 80049254 00046194  7F E3 FB 78 */	mr r3, r31
 /* 80049258 00046198  48 00 01 11 */	bl init__12diff_model_cFv
 lbl_8004925C:
@@ -484,7 +484,7 @@ draw__12diff_model_cFv:
 /* 800492D4 00046214  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 800492D8 00046218  80 9E 00 04 */	lwz r4, 4(r30)
 /* 800492DC 0004621C  80 84 00 04 */	lwz r4, 4(r4)
-/* 800492E0 00046220  48 15 BA C1 */	bl setLight__18dScnKy_env_light_cFvTevColorType_MAJI
+/* 800492E0 00046220  48 15 BA C1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 800492E4 00046224  88 1E 00 10 */	lbz r0, 0x10(r30)
 /* 800492E8 00046228  28 00 00 01 */	cmplwi r0, 1
 /* 800492EC 0004622C  40 82 00 34 */	bne lbl_80049320
@@ -499,13 +499,13 @@ draw__12diff_model_cFv:
 /* 80049310 00046250  48 00 00 10 */	b lbl_80049320
 lbl_80049314:
 /* 80049314 00046254  80 7F 00 00 */	lwz r3, 0(r31)
-/* 80049318 00046258  4B FF F9 3D */	bl dSmplMdl_modelUpdateDL
+/* 80049318 00046258  4B FF F9 3D */	bl dSmplMdl_modelUpdateDL__FP8J3DModel
 /* 8004931C 0004625C  83 FF 00 04 */	lwz r31, 4(r31)
 lbl_80049320:
 /* 80049320 00046260  28 1F 00 00 */	cmplwi r31, 0
 /* 80049324 00046264  40 82 FF F0 */	bne lbl_80049314
 /* 80049328 00046268  80 7E 00 04 */	lwz r3, 4(r30)
-/* 8004932C 0004626C  4B FC 49 99 */	bl mDoExt_modelUpdateDL
+/* 8004932C 0004626C  4B FC 49 99 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 80049330 00046270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80049334 00046274  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
 /* 80049338 00046278  80 04 5F 80 */	lwz r0, 0x5f80(r4)

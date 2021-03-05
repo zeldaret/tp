@@ -56,7 +56,7 @@ void framework__14Z2SoundObjBaseFUlSc(void);
 void init__14Z2SoundObjBaseFP3VecUc(void);
 void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool(void);
 
-void Z2SoundObjAnime(void);
+void __ct__15Z2SoundObjAnimeFv(void);
 void ageSounds___15Z2SoundObjAnimeFv(void);
 void Z2SoundObjAnime_NS_getSoundID(void);
 void initAnime__15Z2SoundObjAnimeFPvbff(void);
@@ -69,22 +69,22 @@ void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase(void);
 void startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void);
 void startSound__14Z2SoundObjBaseF10JAISoundIDUlSc(void);
 
-void Z2SoundObjSimple(void);
+void __ct__16Z2SoundObjSimpleFv(void);
 void __dt__16Z2SoundObjSimpleFv(void);
 
-void Z2DopplerSoundObjBase(void);
+void __ct__21Z2DopplerSoundObjBaseFv(void);
 
-void func_802BE7AC(void);
-void func_802BE714(void);
-void func_802BEB74(void);
-void func_802BE6B8(void);
+void startLevelSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc(void);
+void startSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc(void);
+void init__15Z2SoundObjArrowFP3VecUc(void);
+void framework__21Z2DopplerSoundObjBaseFUlSc(void);
 void func_802BE880(void);
-void func_802BEB38(void);
-void func_802BE8A0(void);
-void func_802BE9B0(void);
+void __ct__15Z2SoundObjArrowFv(void);
+void startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc(void);
+void startLevelSound__16Z2SoundObjSimpleF10JAISoundIDUlSc(void);
 void func_802BE65C(void);
-void func_802BEBDC(void);
-void func_802BE5FC(void);
+void init__15Z2SoundObjAnimeFP3VecUc(void);
+void __dt__21Z2DopplerSoundObjBaseFv(void);
 }
 
 #endif

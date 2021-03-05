@@ -4,7 +4,7 @@
 /* 800F2830 000EF770  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2834 000EF774  7C 7F 1B 78 */ mr r31, r3
 /* 800F2838 000EF778  38 80 00 4B */ li r4, 0x4b
-/* 800F283C 000EF77C  4B FD 05 69 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800F283C 000EF77C  4B FD 05 69 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F2840 000EF780  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2844 000EF784  40 82 00 0C */ bne lbl_800F2850
 /* 800F2848 000EF788  38 60 00 00 */ li r3, 0

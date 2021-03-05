@@ -52,7 +52,7 @@ lbl_8013AB34:
 lbl_8013AB88:
 /* 8013AB88 00137AC8  7F C3 F3 78 */ mr r3, r30
 /* 8013AB8C 00137ACC  38 80 00 00 */ li r4, 0
-/* 8013AB90 00137AD0  4B FE EF B5 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013AB90 00137AD0  4B FE EF B5 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013AB94 00137AD4  48 00 00 94 */ b lbl_8013AC28
 lbl_8013AB98:
 /* 8013AB98 00137AD8  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -77,7 +77,7 @@ lbl_8013AB98:
 lbl_8013ABE4:
 /* 8013ABE4 00137B24  7F C3 F3 78 */ mr r3, r30
 /* 8013ABE8 00137B28  38 80 00 01 */ li r4, 1
-/* 8013ABEC 00137B2C  4B FE EF 59 */ bl checkNextAction__9daAlink_cFiWolf
+/* 8013ABEC 00137B2C  4B FE EF 59 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013ABF0 00137B30  2C 03 00 00 */ cmpwi r3, 0
 /* 8013ABF4 00137B34  40 82 00 34 */ bne lbl_8013AC28
 /* 8013ABF8 00137B38  B3 FE 04 DE */ sth r31, 0x4de(r30)
@@ -92,7 +92,7 @@ lbl_8013AC00:
 /* 8013AC18 00137B58  7F C3 F3 78 */ mr r3, r30
 /* 8013AC1C 00137B5C  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 8013AC20 00137B60  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 8013AC24 00137B64  4B F8 45 A9 */ bl seStartMapInfo__9daAlink_cFUlLevel
+/* 8013AC24 00137B64  4B F8 45 A9 */ bl seStartMapInfoLevel__9daAlink_cFUl
 lbl_8013AC28:
 /* 8013AC28 00137B68  38 60 00 01 */ li r3, 1
 lbl_8013AC2C:

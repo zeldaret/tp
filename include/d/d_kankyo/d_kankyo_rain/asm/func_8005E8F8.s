@@ -29,7 +29,7 @@
 /* 8005E968 0005B8A8  83 3E 5D 74 */ lwz r25, 0x5d74(r30)
 /* 8005E96C 0005B8AC  83 9E 5D AC */ lwz r28, 0x5dac(r30)
 /* 8005E970 0005B8B0  38 61 00 30 */ addi r3, r1, 0x30
-/* 8005E974 0005B8B4  4B FF C1 8D */ bl dKyw_get_wind_vecpow
+/* 8005E974 0005B8B4  4B FF C1 8D */ bl dKyw_get_wind_vecpow__Fv
 /* 8005E978 0005B8B8  C0 01 00 30 */ lfs f0, 0x30(r1)
 /* 8005E97C 0005B8BC  D0 01 00 78 */ stfs f0, 0x78(r1)
 /* 8005E980 0005B8C0  C0 01 00 34 */ lfs f0, 0x34(r1)
@@ -37,11 +37,11 @@
 /* 8005E988 0005B8C8  C0 01 00 38 */ lfs f0, 0x38(r1)
 /* 8005E98C 0005B8CC  D0 01 00 80 */ stfs f0, 0x80(r1)
 /* 8005E990 0005B8D0  38 61 01 38 */ addi r3, r1, 0x138
-/* 8005E994 0005B8D4  48 01 8B E9 */ bl dBgS_GndChk
+/* 8005E994 0005B8D4  48 01 8B E9 */ bl __ct__11dBgS_GndChkFv
 /* 8005E998 0005B8D8  3B 60 00 00 */ li r27, 0
 /* 8005E99C 0005B8DC  C3 E2 88 14 */ lfs f31, lbl_80452214-_SDA2_BASE_(r2)
 /* 8005E9A0 0005B8E0  38 61 00 E4 */ addi r3, r1, 0xe4
-/* 8005E9A4 0005B8E4  48 01 90 5D */ bl dBgS_CamGndChk_Wtr
+/* 8005E9A4 0005B8E4  48 01 90 5D */ bl __ct__18dBgS_CamGndChk_WtrFv
 /* 8005E9A8 0005B8E8  C3 C2 89 20 */ lfs f30, lbl_80452320-_SDA2_BASE_(r2)
 /* 8005E9AC 0005B8EC  3B 00 00 00 */ li r24, 0
 /* 8005E9B0 0005B8F0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -78,7 +78,7 @@ lbl_8005E9DC:
 /* 8005EA28 0005B968  48 01 5A 79 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 8005EA2C 0005B96C  FF C0 08 90 */ fmr f30, f1
 lbl_8005EA30:
-/* 8005EA30 0005B970  48 14 DB 4D */ bl dKy_darkworld_check
+/* 8005EA30 0005B970  48 14 DB 4D */ bl dKy_darkworld_check__Fv
 /* 8005EA34 0005B974  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8005EA38 0005B978  28 00 00 01 */ cmplwi r0, 1
 /* 8005EA3C 0005B97C  41 82 00 10 */ beq lbl_8005EA4C
@@ -148,7 +148,7 @@ lbl_8005EB18:
 /* 8005EB1C 0005BA5C  38 81 00 84 */ addi r4, r1, 0x84
 /* 8005EB20 0005BA60  C0 22 88 A4 */ lfs f1, lbl_804522A4-_SDA2_BASE_(r2)
 /* 8005EB24 0005BA64  FC 40 08 90 */ fmr f2, f1
-/* 8005EB28 0005BA68  4B FF CD 09 */ bl dKy_set_eyevect_calc2
+/* 8005EB28 0005BA68  4B FF CD 09 */ bl dKy_set_eyevect_calc2__FP12camera_classP3Vecff
 /* 8005EB2C 0005BA6C  38 61 00 84 */ addi r3, r1, 0x84
 /* 8005EB30 0005BA70  38 9A 00 10 */ addi r4, r26, 0x10
 /* 8005EB34 0005BA74  48 2E 88 69 */ bl PSVECSquareDistance
@@ -229,7 +229,7 @@ lbl_8005EC2C:
 /* 8005EC38 0005BB78  D0 1A 00 14 */ stfs f0, 0x14(r26)
 /* 8005EC3C 0005BB7C  C0 01 00 8C */ lfs f0, 0x8c(r1)
 /* 8005EC40 0005BB80  D0 1A 00 18 */ stfs f0, 0x18(r26)
-/* 8005EC44 0005BB84  4B FF BE AD */ bl dKyw_get_wind_pow
+/* 8005EC44 0005BB84  4B FF BE AD */ bl dKyw_get_wind_pow__Fv
 /* 8005EC48 0005BB88  88 1D 0E A9 */ lbz r0, 0xea9(r29)
 /* 8005EC4C 0005BB8C  28 00 00 01 */ cmplwi r0, 1
 /* 8005EC50 0005BB90  40 82 00 A8 */ bne lbl_8005ECF8
@@ -240,7 +240,7 @@ lbl_8005EC2C:
 /* 8005EC64 0005BBA4  28 00 00 00 */ cmplwi r0, 0
 /* 8005EC68 0005BBA8  41 82 00 90 */ beq lbl_8005ECF8
 /* 8005EC6C 0005BBAC  38 61 00 90 */ addi r3, r1, 0x90
-/* 8005EC70 0005BBB0  48 01 8D 91 */ bl dBgS_CamGndChk_Wtr
+/* 8005EC70 0005BBB0  48 01 8D 91 */ bl __ct__18dBgS_CamGndChk_WtrFv
 /* 8005EC74 0005BBB4  82 DE 5D 74 */ lwz r22, 0x5d74(r30)
 /* 8005EC78 0005BBB8  C0 16 00 D8 */ lfs f0, 0xd8(r22)
 /* 8005EC7C 0005BBBC  D0 01 00 48 */ stfs f0, 0x48(r1)
@@ -498,7 +498,7 @@ lbl_8005EFCC:
 /* 8005F030 0005BF70  D0 1B 00 2C */ stfs f0, 0x2c(r27)
 /* 8005F034 0005BF74  48 00 00 18 */ b lbl_8005F04C
 lbl_8005F038:
-/* 8005F038 0005BF78  4B FF F8 79 */ bl d_krain_cut_turn_check
+/* 8005F038 0005BF78  4B FF F8 79 */ bl d_krain_cut_turn_check__Fv
 /* 8005F03C 0005BF7C  2C 03 00 00 */ cmpwi r3, 0
 /* 8005F040 0005BF80  41 82 00 0C */ beq lbl_8005F04C
 /* 8005F044 0005BF84  38 00 00 03 */ li r0, 3
@@ -738,7 +738,7 @@ lbl_8005F378:
 lbl_8005F38C:
 /* 8005F38C 0005C2CC  38 61 00 24 */ addi r3, r1, 0x24
 /* 8005F390 0005C2D0  38 81 00 6C */ addi r4, r1, 0x6c
-/* 8005F394 0005C2D4  4B FF BE F1 */ bl dKyw_pntwind_get_vecpow
+/* 8005F394 0005C2D4  4B FF BE F1 */ bl dKyw_pntwind_get_vecpow__FP4cXyz
 /* 8005F398 0005C2D8  C0 41 00 24 */ lfs f2, 0x24(r1)
 /* 8005F39C 0005C2DC  D0 41 00 60 */ stfs f2, 0x60(r1)
 /* 8005F3A0 0005C2E0  C0 01 00 28 */ lfs f0, 0x28(r1)
@@ -993,7 +993,7 @@ lbl_8005F71C:
 /* 8005F728 0005C668  38 61 00 6C */ addi r3, r1, 0x6c
 /* 8005F72C 0005C66C  38 81 00 84 */ addi r4, r1, 0x84
 /* 8005F730 0005C670  38 A1 00 60 */ addi r5, r1, 0x60
-/* 8005F734 0005C674  4B FF BF D5 */ bl get_vectle_calc_X1_
+/* 8005F734 0005C674  4B FF BF D5 */ bl get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005F738 0005C678  C0 21 00 60 */ lfs f1, 0x60(r1)
 /* 8005F73C 0005C67C  C0 02 89 3C */ lfs f0, lbl_8045233C-_SDA2_BASE_(r2)
 /* 8005F740 0005C680  EC 40 B8 2A */ fadds f2, f0, f23
@@ -1125,7 +1125,7 @@ lbl_8005F8DC:
 /* 8005F908 0005C848  C0 02 87 B8 */ lfs f0, lbl_804521B8-_SDA2_BASE_(r2)
 /* 8005F90C 0005C84C  D0 1B 00 60 */ stfs f0, 0x60(r27)
 lbl_8005F910:
-/* 8005F910 0005C850  48 14 CC 6D */ bl dKy_darkworld_check
+/* 8005F910 0005C850  48 14 CC 6D */ bl dKy_darkworld_check__Fv
 /* 8005F914 0005C854  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8005F918 0005C858  28 00 00 01 */ cmplwi r0, 1
 /* 8005F91C 0005C85C  41 82 00 10 */ beq lbl_8005F92C

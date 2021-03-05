@@ -112,7 +112,7 @@ lbl_800FB928:
 /* 800FB930 000F8870  7F C3 F3 78 */ mr r3, r30
 /* 800FB934 000F8874  7F A4 EB 78 */ mr r4, r29
 /* 800FB938 000F8878  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
-/* 800FB93C 000F887C  4B FB 16 A5 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 800FB93C 000F887C  4B FB 16 A5 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800FB940 000F8880  38 00 00 0D */ li r0, 0xd
 /* 800FB944 000F8884  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800FB948 000F8888  A8 1F 00 08 */ lha r0, 8(r31)

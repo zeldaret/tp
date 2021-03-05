@@ -93,8 +93,8 @@ dead__12daItemBase_cFv:
 /* 80037B6C 00034AAC  7C 08 03 A6 */	mtlr r0
 /* 80037B70 00034AB0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80037B74 00034AB4  4E 80 00 20 */	blr 
-.global CheckFieldItemCreateHeap
-CheckFieldItemCreateHeap:
+.global CheckFieldItemCreateHeap__FP10fopAc_ac_c
+CheckFieldItemCreateHeap__FP10fopAc_ac_c:
 /* 80037B78 00034AB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80037B7C 00034ABC  7C 08 02 A6 */	mflr r0
 /* 80037B80 00034AC0  90 01 00 24 */	stw r0, 0x24(r1)

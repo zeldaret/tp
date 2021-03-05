@@ -27,7 +27,7 @@ lbl_800E7C80:
 /* 800E7C90 000E4BD0  38 80 01 81 */ li r4, 0x181
 /* 800E7C94 000E4BD4  3C A0 80 39 */ lis r5, lbl_8038E7CC@ha
 /* 800E7C98 000E4BD8  38 A5 E7 CC */ addi r5, r5, lbl_8038E7CC@l
-/* 800E7C9C 000E4BDC  4B FC 54 59 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E7C9C 000E4BDC  4B FC 54 59 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E7CA0 000E4BE0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E7CA4 000E4BE4  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800E7CA8 000E4BE8  38 60 00 01 */ li r3, 1

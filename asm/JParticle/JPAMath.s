@@ -86,8 +86,8 @@ lbl_80280620:
 /* 802806B8 0027D5F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 802806BC 0027D5FC  4E 80 00 20 */	blr 
 
-.global JPAGetYZRotateMtx
-JPAGetYZRotateMtx:
+.global JPAGetYZRotateMtx__FssPA4_f
+JPAGetYZRotateMtx__FssPA4_f:
 /* 802806C0 0027D600  3C C0 80 44 */	lis r6, lbl_80439A20@ha
 /* 802806C4 0027D604  38 C6 9A 20 */	addi r6, r6, lbl_80439A20@l
 /* 802806C8 0027D608  38 E6 00 04 */	addi r7, r6, 4
@@ -118,8 +118,8 @@ JPAGetYZRotateMtx:
 /* 8028072C 0027D66C  D0 05 00 0C */	stfs f0, 0xc(r5)
 /* 80280730 0027D670  4E 80 00 20 */	blr 
 
-.global JPAGetXYZRotateMtx
-JPAGetXYZRotateMtx:
+.global JPAGetXYZRotateMtx__FsssPA4_f
+JPAGetXYZRotateMtx__FsssPA4_f:
 /* 80280734 0027D674  3C E0 80 44 */	lis r7, lbl_80439A20@ha
 /* 80280738 0027D678  38 E7 9A 20 */	addi r7, r7, lbl_80439A20@l
 /* 8028073C 0027D67C  39 07 00 04 */	addi r8, r7, 4
@@ -278,8 +278,8 @@ lbl_80280954:
 /* 8028097C 0027D8BC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80280980 0027D8C0  4E 80 00 20 */	blr 
 
-.global JPACalcKeyAnmValue
-JPACalcKeyAnmValue:
+.global JPACalcKeyAnmValue__FfUsPCf
+JPACalcKeyAnmValue__FfUsPCf:
 /* 80280984 0027D8C4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80280988 0027D8C8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8028098C 0027D8CC  40 80 00 0C */	bge lbl_80280998

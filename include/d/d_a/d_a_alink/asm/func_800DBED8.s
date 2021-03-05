@@ -24,7 +24,7 @@ lbl_800DBF24:
 /* 800DBF30 000D8E70  54 1D 06 72 */ rlwinm r29, r0, 0, 0x19, 0x19
 /* 800DBF34 000D8E74  7F C3 F3 78 */ mr r3, r30
 /* 800DBF38 000D8E78  38 80 01 55 */ li r4, 0x155
-/* 800DBF3C 000D8E7C  4B FE 6E 69 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800DBF3C 000D8E7C  4B FE 6E 69 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DBF40 000D8E80  2C 03 00 00 */ cmpwi r3, 0
 /* 800DBF44 000D8E84  40 82 00 0C */ bne lbl_800DBF50
 /* 800DBF48 000D8E88  38 60 00 01 */ li r3, 1
@@ -45,7 +45,7 @@ lbl_800DBF68:
 /* 800DBF7C 000D8EBC  41 82 00 64 */ beq lbl_800DBFE0
 /* 800DBF80 000D8EC0  7F C3 F3 78 */ mr r3, r30
 /* 800DBF84 000D8EC4  38 80 00 7D */ li r4, 0x7d
-/* 800DBF88 000D8EC8  48 04 D6 F1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800DBF88 000D8EC8  48 04 D6 F1 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DBF8C 000D8ECC  7F C3 F3 78 */ mr r3, r30
 /* 800DBF90 000D8ED0  38 80 00 9E */ li r4, 0x9e
 /* 800DBF94 000D8ED4  4B FD 39 0D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -199,7 +199,7 @@ lbl_800DC19C:
 lbl_800DC1C8:
 /* 800DC1C8 000D9108  3B A0 FF FF */ li r29, -1
 lbl_800DC1CC:
-/* 800DC1CC 000D910C  48 0A 54 75 */ bl dCam_getBody
+/* 800DC1CC 000D910C  48 0A 54 75 */ bl dCam_getBody__Fv
 /* 800DC1D0 000D9110  38 80 00 09 */ li r4, 9
 /* 800DC1D4 000D9114  7F A5 EB 78 */ mr r5, r29
 /* 800DC1D8 000D9118  3C C0 80 39 */ lis r6, lbl_80392094@ha

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e41e8
 
 
-.global JUTDirectPrint
-JUTDirectPrint:
+.global __ct__14JUTDirectPrintFv
+__ct__14JUTDirectPrintFv:
 /* 802E41E8 002E1128  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E41EC 002E112C  7C 08 02 A6 */	mflr r0
 /* 802E41F0 002E1130  90 01 00 14 */	stw r0, 0x14(r1)
@@ -20,7 +20,7 @@ JUTDirectPrint:
 /* 802E4218 002E1158  38 80 00 FF */	li r4, 0xff
 /* 802E421C 002E115C  38 A0 00 FF */	li r5, 0xff
 /* 802E4220 002E1160  38 C0 00 FF */	li r6, 0xff
-/* 802E4224 002E1164  48 00 05 A5 */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
+/* 802E4224 002E1164  48 00 05 A5 */	bl setCharColor__14JUTDirectPrintFUcUcUc
 /* 802E4228 002E1168  7F E3 FB 78 */	mr r3, r31
 /* 802E422C 002E116C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802E4230 002E1170  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -40,7 +40,7 @@ start__14JUTDirectPrintFv:
 /* 802E425C 002E119C  4B FE A9 F1 */	bl __nw__FUl
 /* 802E4260 002E11A0  7C 60 1B 79 */	or. r0, r3, r3
 /* 802E4264 002E11A4  41 82 00 0C */	beq lbl_802E4270
-/* 802E4268 002E11A8  4B FF FF 81 */	bl JUTDirectPrint
+/* 802E4268 002E11A8  4B FF FF 81 */	bl __ct__14JUTDirectPrintFv
 /* 802E426C 002E11AC  7C 60 1B 78 */	mr r0, r3
 lbl_802E4270:
 /* 802E4270 002E11B0  90 0D 8F A8 */	stw r0, lbl_80451528-_SDA_BASE_(r13)
@@ -308,7 +308,7 @@ printSub__14JUTDirectPrintFUsUsPCcP16__va_list_structb:
 /* 802E45D8 002E1518  38 80 01 00 */	li r4, 0x100
 /* 802E45DC 002E151C  7C C5 33 78 */	mr r5, r6
 /* 802E45E0 002E1520  7C E6 3B 78 */	mr r6, r7
-/* 802E45E4 002E1524  48 08 20 AD */	bl func_80366690
+/* 802E45E4 002E1524  48 08 20 AD */	bl vsnprintf
 /* 802E45E8 002E1528  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802E45EC 002E152C  7F 5D D3 78 */	mr r29, r26
 /* 802E45F0 002E1530  40 81 00 C4 */	ble lbl_802E46B4
@@ -388,14 +388,14 @@ drawString__14JUTDirectPrintFUsUsPc:
 /* 802E46E8 002E1628  3C C0 80 3A */	lis r6, lbl_8039D9A0@ha
 /* 802E46EC 002E162C  38 C6 D9 A0 */	addi r6, r6, lbl_8039D9A0@l
 /* 802E46F0 002E1630  4C C6 31 82 */	crclr 6
-/* 802E46F4 002E1634  48 00 00 15 */	bl drawString__14JUTDirectPrintFUsUsPc_f
+/* 802E46F4 002E1634  48 00 00 15 */	bl drawString_f__14JUTDirectPrintFUsUsPCce
 /* 802E46F8 002E1638  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E46FC 002E163C  7C 08 03 A6 */	mtlr r0
 /* 802E4700 002E1640  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E4704 002E1644  4E 80 00 20 */	blr 
 
-.global drawString__14JUTDirectPrintFUsUsPc_f
-drawString__14JUTDirectPrintFUsUsPc_f:
+.global drawString_f__14JUTDirectPrintFUsUsPCce
+drawString_f__14JUTDirectPrintFUsUsPCce:
 /* 802E4708 002E1648  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802E470C 002E164C  7C 08 02 A6 */	mflr r0
 /* 802E4710 002E1650  90 01 00 84 */	stw r0, 0x84(r1)
@@ -444,14 +444,14 @@ setCharColor__14JUTDirectPrintFQ28JUtility6TColor:
 /* 802E47A8 002E16E8  88 84 00 00 */	lbz r4, 0(r4)
 /* 802E47AC 002E16EC  88 A6 00 01 */	lbz r5, 1(r6)
 /* 802E47B0 002E16F0  88 C6 00 02 */	lbz r6, 2(r6)
-/* 802E47B4 002E16F4  48 00 00 15 */	bl setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
+/* 802E47B4 002E16F4  48 00 00 15 */	bl setCharColor__14JUTDirectPrintFUcUcUc
 /* 802E47B8 002E16F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E47BC 002E16FC  7C 08 03 A6 */	mtlr r0
 /* 802E47C0 002E1700  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E47C4 002E1704  4E 80 00 20 */	blr 
 
-.global setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_
-setCharColor__14JUTDirectPrintFQ28JUtility6TColor_X1_:
+.global setCharColor__14JUTDirectPrintFUcUcUc
+setCharColor__14JUTDirectPrintFUcUcUc:
 /* 802E47C8 002E1708  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802E47CC 002E170C  98 83 00 18 */	stb r4, 0x18(r3)
 /* 802E47D0 002E1710  98 A3 00 19 */	stb r5, 0x19(r3)

@@ -24,7 +24,7 @@ lbl_80137588:
 /* 80137594 001344D4  2C 03 00 00 */ cmpwi r3, 0
 /* 80137598 001344D8  40 82 00 10 */ bne lbl_801375A8
 /* 8013759C 001344DC  7F C3 F3 78 */ mr r3, r30
-/* 801375A0 001344E0  4B FF FD 15 */ bl checkNextAction__9daAlink_cFiWolfFromLie
+/* 801375A0 001344E0  4B FF FD 15 */ bl checkNextActionWolfFromLie__9daAlink_cFv
 /* 801375A4 001344E4  48 00 00 74 */ b lbl_80137618
 lbl_801375A8:
 /* 801375A8 001344E8  C0 3E 33 AC */ lfs f1, 0x33ac(r30)

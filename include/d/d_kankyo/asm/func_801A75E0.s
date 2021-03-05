@@ -17,7 +17,7 @@
 /* 801A7620 001A4560  28 00 00 03 */ cmplwi r0, 3
 /* 801A7624 001A4564  40 82 00 54 */ bne lbl_801A7678
 lbl_801A7628:
-/* 801A7628 001A4568  48 00 4F 55 */ bl dKy_darkworld_check
+/* 801A7628 001A4568  48 00 4F 55 */ bl dKy_darkworld_check__Fv
 /* 801A762C 001A456C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A7630 001A4570  41 82 00 80 */ beq lbl_801A76B0
 /* 801A7634 001A4574  88 1F 03 7A */ lbz r0, 0x37a(r31)
@@ -46,7 +46,7 @@ lbl_801A7678:
 lbl_801A7688:
 /* 801A7688 001A45C8  28 00 00 09 */ cmplwi r0, 9
 /* 801A768C 001A45CC  40 82 00 24 */ bne lbl_801A76B0
-/* 801A7690 001A45D0  48 00 4E ED */ bl dKy_darkworld_check
+/* 801A7690 001A45D0  48 00 4E ED */ bl dKy_darkworld_check__Fv
 /* 801A7694 001A45D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A7698 001A45D8  41 82 00 18 */ beq lbl_801A76B0
 lbl_801A769C:

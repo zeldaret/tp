@@ -53,7 +53,7 @@ lbl_80109864:
 /* 80109864 001067A4  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_80109868:
 /* 80109868 001067A8  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010986C 001067AC  4B FA 3B 3D */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 8010986C 001067AC  4B FA 3B 3D */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 lbl_80109870:
 /* 80109870 001067B0  38 00 00 00 */ li r0, 0
 /* 80109874 001067B4  B0 1D 30 8E */ sth r0, 0x308e(r29)

@@ -27,7 +27,7 @@ lbl_8021E610:
 /* 8021E634 0021B574  4B E1 58 61 */ bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E638:
 /* 8021E638 0021B578  7F E3 FB 78 */ mr r3, r31
-/* 8021E63C 0021B57C  4B E1 09 59 */ bl dComIfGs_setSelectEquipShield
+/* 8021E63C 0021B57C  4B E1 09 59 */ bl dComIfGs_setSelectEquipShield__FUc
 /* 8021E640 0021B580  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021E644 0021B584  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021E648 0021B588  9B E3 5E 76 */ stb r31, 0x5e76(r3)

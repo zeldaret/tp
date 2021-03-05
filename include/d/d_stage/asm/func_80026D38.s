@@ -5,27 +5,27 @@
 /* 80026D48 00023C88  3C 60 80 38 */ lis r3, lbl_80378A50@ha
 /* 80026D4C 00023C8C  38 63 8A 50 */ addi r3, r3, lbl_80378A50@l
 /* 80026D50 00023C90  38 63 01 19 */ addi r3, r3, 0x119
-/* 80026D54 00023C94  48 00 86 E1 */ bl dComIfG_getStageRes
+/* 80026D54 00023C94  48 00 86 E1 */ bl dComIfG_getStageRes__FPCc
 /* 80026D58 00023C98  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 80026D5C 00023C9C  3B E4 61 C0 */ addi r31, r4, g_dComIfG_gameInfo@l
 /* 80026D60 00023CA0  38 9F 4E 20 */ addi r4, r31, 0x4e20
-/* 80026D64 00023CA4  4B FF FD F5 */ bl dStage_dt_c_stageLoader
+/* 80026D64 00023CA4  4B FF FD F5 */ bl dStage_dt_c_stageLoader__FPvP11dStage_dt_c
 /* 80026D68 00023CA8  48 00 A8 3D */ bl execute__7daSus_cFv
 /* 80026D6C 00023CAC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80026D70 00023CB0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80026D74 00023CB4  88 03 4E 0A */ lbz r0, 0x4e0a(r3)
 /* 80026D78 00023CB8  7C 03 07 75 */ extsb. r3, r0
 /* 80026D7C 00023CBC  41 80 00 08 */ blt lbl_80026D84
-/* 80026D80 00023CC0  4B FF DF 91 */ bl func_80024D10
+/* 80026D80 00023CC0  4B FF DF 91 */ bl dStage_roomInit__Fi
 lbl_80026D84:
 /* 80026D84 00023CC4  38 00 00 00 */ li r0, 0
 /* 80026D88 00023CC8  3C 60 80 40 */ lis r3, lbl_80406194@ha
 /* 80026D8C 00023CCC  98 03 61 94 */ stb r0, lbl_80406194@l(r3)
-/* 80026D90 00023CD0  4B FF FB 09 */ bl dKankyo_create
+/* 80026D90 00023CD0  4B FF FB 09 */ bl dKankyo_create__Fv
 /* 80026D94 00023CD4  3C 60 80 38 */ lis r3, lbl_80378A50@ha
 /* 80026D98 00023CD8  38 63 8A 50 */ addi r3, r3, lbl_80378A50@l
 /* 80026D9C 00023CDC  38 63 01 23 */ addi r3, r3, 0x123
-/* 80026DA0 00023CE0  48 00 86 95 */ bl dComIfG_getStageRes
+/* 80026DA0 00023CE0  48 00 86 95 */ bl dComIfG_getStageRes__FPCc
 /* 80026DA4 00023CE4  28 03 00 00 */ cmplwi r3, 0
 /* 80026DA8 00023CE8  41 82 00 34 */ beq lbl_80026DDC
 /* 80026DAC 00023CEC  4B FF A9 49 */ bl fpcLy_CurrentLayer

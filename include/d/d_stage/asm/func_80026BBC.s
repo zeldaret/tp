@@ -6,7 +6,7 @@
 /* 80026BD0 00023B10  7C 7D 1B 78 */ mr r29, r3
 /* 80026BD4 00023B14  7C 9E 23 78 */ mr r30, r4
 /* 80026BD8 00023B18  7C BF 2B 78 */ mr r31, r5
-/* 80026BDC 00023B1C  4B FF F7 81 */ bl dStage_dt_c_offsetToPtr
+/* 80026BDC 00023B1C  4B FF F7 81 */ bl dStage_dt_c_offsetToPtr__FPv
 /* 80026BE0 00023B20  7F C3 F3 78 */ mr r3, r30
 /* 80026BE4 00023B24  81 9E 00 00 */ lwz r12, 0(r30)
 /* 80026BE8 00023B28  81 8C 00 08 */ lwz r12, 8(r12)
@@ -17,11 +17,11 @@
 /* 80026BFC 00023B3C  3C A0 80 3A */ lis r5, lbl_803A67F4@ha
 /* 80026C00 00023B40  38 A5 67 F4 */ addi r5, r5, lbl_803A67F4@l
 /* 80026C04 00023B44  38 C0 00 0E */ li r6, 0xe
-/* 80026C08 00023B48  4B FF F4 AD */ bl dStage_dt_c_decode
+/* 80026C08 00023B48  4B FF F4 AD */ bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026C0C 00023B4C  7F A3 EB 78 */ mr r3, r29
 /* 80026C10 00023B50  7F C4 F3 78 */ mr r4, r30
 /* 80026C14 00023B54  7F E5 FB 78 */ mr r5, r31
-/* 80026C18 00023B58  4B FF FD 9D */ bl layerTableLoader
+/* 80026C18 00023B58  4B FF FD 9D */ bl layerTableLoader__FPvP11dStage_dt_ci
 /* 80026C1C 00023B5C  39 61 00 20 */ addi r11, r1, 0x20
 /* 80026C20 00023B60  48 33 B6 09 */ bl _restgpr_29
 /* 80026C24 00023B64  80 01 00 24 */ lwz r0, 0x24(r1)

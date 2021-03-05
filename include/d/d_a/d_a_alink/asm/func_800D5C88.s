@@ -29,7 +29,7 @@ lbl_800D5CD4:
 /* 800D5CF0 000D2C30  38 80 00 7C */ li r4, 0x7c
 /* 800D5CF4 000D2C34  3C A0 80 39 */ lis r5, lbl_8038DDB8@ha
 /* 800D5CF8 000D2C38  38 A5 DD B8 */ addi r5, r5, lbl_8038DDB8@l
-/* 800D5CFC 000D2C3C  4B FD 73 F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800D5CFC 000D2C3C  4B FD 73 F9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D5D00 000D2C40  7F E3 FB 78 */ mr r3, r31
 /* 800D5D04 000D2C44  3C 80 80 39 */ lis r4, lbl_8038DDB8@ha
 /* 800D5D08 000D2C48  38 84 DD B8 */ addi r4, r4, lbl_8038DDB8@l

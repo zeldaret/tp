@@ -12,7 +12,7 @@
 /* 80138938 00135878  3C A0 80 39 */ lis r5, lbl_8038F8B4@ha
 /* 8013893C 0013587C  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
 /* 80138940 00135880  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80138944 00135884  4B FF 0F 05 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfParam
+/* 80138944 00135884  4B FF 0F 05 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80138948 00135888  7F C3 F3 78 */ mr r3, r30
 /* 8013894C 0013588C  38 80 00 8F */ li r4, 0x8f
 /* 80138950 00135890  4B F7 6F 51 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

@@ -127,7 +127,7 @@ lbl_800B7F0C:
 /* 800B7F1C 000B4E5C  80 BF 05 70 */ lwz r5, 0x570(r31)
 /* 800B7F20 000B4E60  80 A5 00 28 */ lwz r5, 0x28(r5)
 /* 800B7F24 000B4E64  38 C0 00 FF */ li r6, 0xff
-/* 800B7F28 000B4E68  4B F8 F8 31 */ bl getEventIdx__16dEvent_manager_cFPCcUcl_X2_
+/* 800B7F28 000B4E68  4B F8 F8 31 */ bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800B7F2C 000B4E6C  B0 7F 0E 1C */ sth r3, 0xe1c(r31)
 /* 800B7F30 000B4E70  7F E3 FB 78 */ mr r3, r31
 /* 800B7F34 000B4E74  A8 9F 0E 1C */ lha r4, 0xe1c(r31)

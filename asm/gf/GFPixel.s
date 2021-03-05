@@ -3,8 +3,8 @@
 .section .text, "ax" # 802cde9c
 
 
-.global GFSetFog
-GFSetFog:
+.global GFSetFog__F10_GXFogTypeffff8_GXColor
+GFSetFog__F10_GXFogTypeffff8_GXColor:
 /* 802CDE9C 002CADDC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802CDEA0 002CADE0  7C 08 02 A6 */	mflr r0
 /* 802CDEA4 002CADE4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -104,8 +104,8 @@ lbl_802CDF40:
 /* 802CDFFC 002CAF3C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802CE000 002CAF40  4E 80 00 20 */	blr 
 
-.global GFSetBlendModeEtc
-GFSetBlendModeEtc:
+.global GFSetBlendModeEtc__F12_GXBlendMode14_GXBlendFactor14_GXBlendFactor10_GXLogicOpUcUcUc
+GFSetBlendModeEtc__F12_GXBlendMode14_GXBlendFactor14_GXBlendFactor10_GXLogicOpUcUcUc:
 /* 802CE004 002CAF44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802CE008 002CAF48  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802CE00C 002CAF4C  93 C1 00 08 */	stw r30, 8(r1)
@@ -149,8 +149,8 @@ lbl_802CE034:
 /* 802CE09C 002CAFDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802CE0A0 002CAFE0  4E 80 00 20 */	blr 
 
-.global GFSetZMode
-GFSetZMode:
+.global GFSetZMode__FUc10_GXCompareUc
+GFSetZMode__FUc10_GXCompareUc:
 /* 802CE0A4 002CAFE4  38 00 00 61 */	li r0, 0x61
 /* 802CE0A8 002CAFE8  3C C0 CC 01 */	lis r6, 0xCC008000@ha
 /* 802CE0AC 002CAFEC  98 06 80 00 */	stb r0, 0xCC008000@l(r6)

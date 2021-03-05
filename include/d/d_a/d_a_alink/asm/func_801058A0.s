@@ -38,7 +38,7 @@ lbl_801058E0:
 /* 80105930 00102870  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 80105934 00102874  7F E3 FB 78 */ mr r3, r31
 /* 80105938 00102878  80 9F 31 8C */ lwz r4, 0x318c(r31)
-/* 8010593C 0010287C  4B FD 1B 3D */ bl setDamagePoint__9daAlink_cFiiiiNormal
+/* 8010593C 0010287C  4B FD 1B 3D */ bl setDamagePointNormal__9daAlink_cFi
 /* 80105940 00102880  C0 3F 34 78 */ lfs f1, 0x3478(r31)
 /* 80105944 00102884  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 80105948 00102888  FC 01 00 40 */ fcmpo cr0, f1, f0

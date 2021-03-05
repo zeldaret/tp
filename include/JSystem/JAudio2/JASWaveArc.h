@@ -5,7 +5,7 @@
 extern "C" {
 void erase__10JASWaveArcFv(void);
 void load__10JASWaveArcFP7JASHeap(void);
-void load__10JASWaveArcFP7JASHeapTail(void);
+void loadTail__10JASWaveArcFP7JASHeap(void);
 }
 
 #endif  // JASWAVEARC_H_

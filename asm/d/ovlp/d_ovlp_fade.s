@@ -6,8 +6,8 @@
 /* 8025217C 0024F0BC  38 60 00 01 */	li r3, 1
 /* 80252180 0024F0C0  4E 80 00 20 */	blr 
 
-.global dOvlpFd_startFadeIn
-dOvlpFd_startFadeIn:
+.global dOvlpFd_startFadeIn__Fi
+dOvlpFd_startFadeIn__Fi:
 /* 80252184 0024F0C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252188 0024F0C8  7C 08 02 A6 */	mflr r0
 /* 8025218C 0024F0CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -36,8 +36,8 @@ dOvlpFd_startFadeIn:
 /* 802521E8 0024F128  7C 08 03 A6 */	mtlr r0
 /* 802521EC 0024F12C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802521F0 0024F130  4E 80 00 20 */	blr 
-.global dOvlpFd_FadeOut
-dOvlpFd_FadeOut:
+.global dOvlpFd_FadeOut__FP14overlap1_class
+dOvlpFd_FadeOut__FP14overlap1_class:
 /* 802521F4 0024F134  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802521F8 0024F138  7C 08 02 A6 */	mflr r0
 /* 802521FC 0024F13C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -60,12 +60,12 @@ lbl_8025223C:
 /* 8025223C 0024F17C  2C 00 00 03 */	cmpwi r0, 3
 /* 80252240 0024F180  41 82 00 14 */	beq lbl_80252254
 /* 80252244 0024F184  7F E3 FB 78 */	mr r3, r31
-/* 80252248 0024F188  4B FF FF 3D */	bl dOvlpFd_startFadeIn
+/* 80252248 0024F188  4B FF FF 3D */	bl dOvlpFd_startFadeIn__Fi
 /* 8025224C 0024F18C  93 FE 00 CC */	stw r31, 0xcc(r30)
 /* 80252250 0024F190  48 00 00 14 */	b lbl_80252264
 lbl_80252254:
 /* 80252254 0024F194  38 60 00 00 */	li r3, 0
-/* 80252258 0024F198  4B FF FF 2D */	bl dOvlpFd_startFadeIn
+/* 80252258 0024F198  4B FF FF 2D */	bl dOvlpFd_startFadeIn__Fi
 /* 8025225C 0024F19C  38 00 00 01 */	li r0, 1
 /* 80252260 0024F1A0  90 1E 00 CC */	stw r0, 0xcc(r30)
 lbl_80252264:
@@ -76,7 +76,7 @@ lbl_80252264:
 /* 80252274 0024F1B4  2C 00 00 07 */	cmpwi r0, 7
 /* 80252278 0024F1B8  40 82 00 0C */	bne lbl_80252284
 /* 8025227C 0024F1BC  38 60 00 07 */	li r3, 7
-/* 80252280 0024F1C0  4B FF FF 05 */	bl dOvlpFd_startFadeIn
+/* 80252280 0024F1C0  4B FF FF 05 */	bl dOvlpFd_startFadeIn__Fi
 lbl_80252284:
 /* 80252284 0024F1C4  4B DC C2 41 */	bl fopOvlpM_SceneIsStart__Fv
 /* 80252288 0024F1C8  80 7E 00 CC */	lwz r3, 0xcc(r30)
@@ -96,18 +96,18 @@ lbl_802522AC:
 /* 802522BC 0024F1FC  7C 08 03 A6 */	mtlr r0
 /* 802522C0 0024F200  38 21 00 10 */	addi r1, r1, 0x10
 /* 802522C4 0024F204  4E 80 00 20 */	blr 
-.global dOvlpFd_Wait
-dOvlpFd_Wait:
+.global dOvlpFd_Wait__FP14overlap1_class
+dOvlpFd_Wait__FP14overlap1_class:
 /* 802522C8 0024F208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802522CC 0024F20C  7C 08 02 A6 */	mflr r0
 /* 802522D0 0024F210  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802522D4 0024F214  4B DC C2 31 */	bl fopOvlpM_IsOutReq__FP18overlap_task_class
 /* 802522D8 0024F218  2C 03 00 00 */	cmpwi r3, 0
 /* 802522DC 0024F21C  41 82 00 10 */	beq lbl_802522EC
-.global dOvlpFd_FadeOut
-/* 802522E0 0024F220  3C 60 80 25 */	lis r3, dOvlpFd_FadeOut@ha
-.global dOvlpFd_FadeOut
-/* 802522E4 0024F224  38 03 21 F4 */	addi r0, r3, dOvlpFd_FadeOut@l
+.global dOvlpFd_FadeOut__FP14overlap1_class
+/* 802522E0 0024F220  3C 60 80 25 */	lis r3, dOvlpFd_FadeOut__FP14overlap1_class@ha
+.global dOvlpFd_FadeOut__FP14overlap1_class
+/* 802522E4 0024F224  38 03 21 F4 */	addi r0, r3, dOvlpFd_FadeOut__FP14overlap1_class@l
 /* 802522E8 0024F228  90 0D 8B 60 */	stw r0, lbl_804510E0-_SDA_BASE_(r13)
 lbl_802522EC:
 /* 802522EC 0024F22C  38 60 00 01 */	li r3, 1
@@ -115,8 +115,8 @@ lbl_802522EC:
 /* 802522F4 0024F234  7C 08 03 A6 */	mtlr r0
 /* 802522F8 0024F238  38 21 00 10 */	addi r1, r1, 0x10
 /* 802522FC 0024F23C  4E 80 00 20 */	blr 
-.global dOvlpFd_FadeIn
-dOvlpFd_FadeIn:
+.global dOvlpFd_FadeIn__FP14overlap1_class
+dOvlpFd_FadeIn__FP14overlap1_class:
 /* 80252300 0024F240  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80252304 0024F244  7C 08 02 A6 */	mflr r0
 /* 80252308 0024F248  90 01 00 14 */	stw r0, 0x14(r1)
@@ -181,10 +181,10 @@ lbl_802523C8:
 /* 802523CC 0024F30C  34 03 FF FF */	addic. r0, r3, -1
 /* 802523D0 0024F310  90 1F 00 D0 */	stw r0, 0xd0(r31)
 /* 802523D4 0024F314  40 82 00 3C */	bne lbl_80252410
-.global dOvlpFd_Wait
-/* 802523D8 0024F318  3C 60 80 25 */	lis r3, dOvlpFd_Wait@ha
-.global dOvlpFd_Wait
-/* 802523DC 0024F31C  38 03 22 C8 */	addi r0, r3, dOvlpFd_Wait@l
+.global dOvlpFd_Wait__FP14overlap1_class
+/* 802523D8 0024F318  3C 60 80 25 */	lis r3, dOvlpFd_Wait__FP14overlap1_class@ha
+.global dOvlpFd_Wait__FP14overlap1_class
+/* 802523DC 0024F31C  38 03 22 C8 */	addi r0, r3, dOvlpFd_Wait__FP14overlap1_class@l
 /* 802523E0 0024F320  90 0D 8B 60 */	stw r0, lbl_804510E0-_SDA_BASE_(r13)
 /* 802523E4 0024F324  80 6D 8C 40 */	lwz r3, lbl_804511C0-_SDA_BASE_(r13)
 /* 802523E8 0024F328  80 63 00 04 */	lwz r3, 4(r3)
@@ -222,10 +222,10 @@ lbl_80252414:
 /* 8025245C 0024F39C  4E 80 00 20 */	blr 
 /* 80252460 0024F3A0  38 60 00 01 */	li r3, 1
 /* 80252464 0024F3A4  4E 80 00 20 */	blr 
-.global dOvlpFd_FadeIn
-/* 80252468 0024F3A8  3C 60 80 25 */	lis r3, dOvlpFd_FadeIn@ha
-.global dOvlpFd_FadeIn
-/* 8025246C 0024F3AC  38 03 23 00 */	addi r0, r3, dOvlpFd_FadeIn@l
+.global dOvlpFd_FadeIn__FP14overlap1_class
+/* 80252468 0024F3A8  3C 60 80 25 */	lis r3, dOvlpFd_FadeIn__FP14overlap1_class@ha
+.global dOvlpFd_FadeIn__FP14overlap1_class
+/* 8025246C 0024F3AC  38 03 23 00 */	addi r0, r3, dOvlpFd_FadeIn__FP14overlap1_class@l
 /* 80252470 0024F3B0  90 0D 8B 60 */	stw r0, lbl_804510E0-_SDA_BASE_(r13)
 /* 80252474 0024F3B4  38 60 00 04 */	li r3, 4
 /* 80252478 0024F3B8  4E 80 00 20 */	blr 

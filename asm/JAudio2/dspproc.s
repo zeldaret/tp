@@ -3,21 +3,21 @@
 .section .text, "ax" # 8029e4e0
 
 
-.global DSPReleaseHalt2
-DSPReleaseHalt2:
+.global DSPReleaseHalt2__FUl
+DSPReleaseHalt2__FUl:
 /* 8029E4E0 0029B420  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E4E4 0029B424  7C 08 02 A6 */	mflr r0
 /* 8029E4E8 0029B428  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8029E4EC 0029B42C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8029E4F0 0029B430  7C 7F 1B 78 */	mr r31, r3
-/* 8029E4F4 0029B434  4B FF FB C9 */	bl DSP_CreateMap2
+/* 8029E4F4 0029B434  4B FF FB C9 */	bl DSP_CreateMap2__FUl
 /* 8029E4F8 0029B438  7C 60 1B 78 */	mr r0, r3
 /* 8029E4FC 0029B43C  38 61 00 08 */	addi r3, r1, 8
 /* 8029E500 0029B440  53 E0 80 1E */	rlwimi r0, r31, 0x10, 0, 0xf
 /* 8029E504 0029B444  38 80 00 00 */	li r4, 0
 /* 8029E508 0029B448  90 01 00 08 */	stw r0, 8(r1)
 /* 8029E50C 0029B44C  38 A0 00 00 */	li r5, 0
-/* 8029E510 0029B450  48 00 02 D1 */	bl DSPSendCommands2
+/* 8029E510 0029B450  48 00 02 D1 */	bl DSPSendCommands2__FPUlUlPFUs_v
 /* 8029E514 0029B454  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8029E518 0029B458  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8029E51C 0029B45C  7C 08 03 A6 */	mtlr r0
@@ -29,8 +29,8 @@ DSPReleaseHalt2:
 /* 8029E534 0029B474  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E538 0029B478  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E53C 0029B47C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-.global setup_callback
-setup_callback:
+.global setup_callback__FUs
+setup_callback__FUs:
 /* 8029E540 0029B480  38 00 00 00 */	li r0, 0
 /* 8029E544 0029B484  90 0D 8D 78 */	stw r0, lbl_804512F8-_SDA_BASE_(r13)
 /* 8029E548 0029B488  4E 80 00 20 */	blr 
@@ -40,19 +40,19 @@ setup_callback:
 /* 8029E558 0029B498  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E55C 0029B49C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsetupTable
-DsetupTable:
+.global DsetupTable__FUlUlUlUlUl
+DsetupTable__FUlUlUlUlUl:
 /* 8029E560 0029B4A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E564 0029B4A4  7C 08 02 A6 */	mflr r0
 /* 8029E568 0029B4A8  39 00 00 01 */	li r8, 1
 /* 8029E56C 0029B4AC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8029E570 0029B4B0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8029E574 0029B4B4  64 09 81 00 */	oris r9, r0, 0x8100
-.global setup_callback
-/* 8029E578 0029B4B8  3C 60 80 2A */	lis r3, setup_callback@ha
+.global setup_callback__FUs
+/* 8029E578 0029B4B8  3C 60 80 2A */	lis r3, setup_callback__FUs@ha
 /* 8029E57C 0029B4BC  90 81 00 0C */	stw r4, 0xc(r1)
-.global setup_callback
-/* 8029E580 0029B4C0  38 03 E5 40 */	addi r0, r3, setup_callback@l
+.global setup_callback__FUs
+/* 8029E580 0029B4C0  38 03 E5 40 */	addi r0, r3, setup_callback__FUs@l
 /* 8029E584 0029B4C4  38 61 00 08 */	addi r3, r1, 8
 /* 8029E588 0029B4C8  38 80 00 05 */	li r4, 5
 /* 8029E58C 0029B4CC  90 A1 00 10 */	stw r5, 0x10(r1)
@@ -61,7 +61,7 @@ DsetupTable:
 /* 8029E598 0029B4D8  90 C1 00 14 */	stw r6, 0x14(r1)
 /* 8029E59C 0029B4DC  90 E1 00 18 */	stw r7, 0x18(r1)
 /* 8029E5A0 0029B4E0  91 0D 8D 78 */	stw r8, lbl_804512F8-_SDA_BASE_(r13)
-/* 8029E5A4 0029B4E4  48 00 02 3D */	bl DSPSendCommands2
+/* 8029E5A4 0029B4E4  48 00 02 3D */	bl DSPSendCommands2__FPUlUlPFUs_v
 lbl_8029E5A8:
 /* 8029E5A8 0029B4E8  80 0D 8D 78 */	lwz r0, lbl_804512F8-_SDA_BASE_(r13)
 /* 8029E5AC 0029B4EC  2C 00 00 00 */	cmpwi r0, 0
@@ -78,8 +78,8 @@ lbl_8029E5A8:
 /* 8029E5D8 0029B518  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E5DC 0029B51C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsetMixerLevel
-DsetMixerLevel:
+.global DsetMixerLevel__Ff
+DsetMixerLevel__Ff:
 /* 8029E5E0 0029B520  C0 02 BD 70 */	lfs f0, lbl_80455770-_SDA2_BASE_(r2)
 /* 8029E5E4 0029B524  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E5E8 0029B528  EC 00 00 72 */	fmuls f0, f0, f1
@@ -97,8 +97,8 @@ DsetMixerLevel:
 /* 8029E618 0029B558  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E61C 0029B55C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsyncFrame2ch
-DsyncFrame2ch:
+.global DsyncFrame2ch__FUlUlUl
+DsyncFrame2ch__FUlUlUl:
 /* 8029E620 0029B560  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E624 0029B564  7C 08 02 A6 */	mflr r0
 /* 8029E628 0029B568  90 01 00 24 */	stw r0, 0x24(r1)
@@ -115,7 +115,7 @@ DsyncFrame2ch:
 /* 8029E654 0029B594  90 C1 00 08 */	stw r6, 8(r1)
 /* 8029E658 0029B598  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029E65C 0029B59C  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8029E660 0029B5A0  48 00 01 81 */	bl DSPSendCommands2
+/* 8029E660 0029B5A0  48 00 01 81 */	bl DSPSendCommands2__FPUlUlPFUs_v
 /* 8029E664 0029B5A4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8029E668 0029B5A8  7C 08 03 A6 */	mtlr r0
 /* 8029E66C 0029B5AC  38 21 00 20 */	addi r1, r1, 0x20
@@ -124,8 +124,8 @@ DsyncFrame2ch:
 /* 8029E678 0029B5B8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E67C 0029B5BC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsyncFrame4ch
-DsyncFrame4ch:
+.global DsyncFrame4ch__FUlUlUlUlUl
+DsyncFrame4ch__FUlUlUlUlUl:
 /* 8029E680 0029B5C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E684 0029B5C4  7C 08 02 A6 */	mflr r0
 /* 8029E688 0029B5C8  54 63 82 1E */	rlwinm r3, r3, 0x10, 8, 0xf
@@ -141,7 +141,7 @@ DsyncFrame4ch:
 /* 8029E6B0 0029B5F0  90 01 00 08 */	stw r0, 8(r1)
 /* 8029E6B4 0029B5F4  90 C1 00 14 */	stw r6, 0x14(r1)
 /* 8029E6B8 0029B5F8  90 E1 00 18 */	stw r7, 0x18(r1)
-/* 8029E6BC 0029B5FC  48 00 01 25 */	bl DSPSendCommands2
+/* 8029E6BC 0029B5FC  48 00 01 25 */	bl DSPSendCommands2__FPUlUlPFUs_v
 /* 8029E6C0 0029B600  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8029E6C4 0029B604  7C 08 03 A6 */	mtlr r0
 /* 8029E6C8 0029B608  38 21 00 20 */	addi r1, r1, 0x20

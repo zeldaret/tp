@@ -18,12 +18,12 @@ void fopOvlpM_Request__FsUs(void);
 void fopOvlpM_ToldAboutID__FUi(void);
 void fopScnPause_Disable__FP11scene_class(void);
 void fopScnPause_Enable__FP11scene_class(void);
-void fopScnRq_Execute(void);
-void fopScnRq_FadeRequest(void);
-void fopScnRq_Handler(void);
+void fopScnRq_Execute__FP19scene_request_class(void);
+void fopScnRq_FadeRequest__FsUs(void);
+void fopScnRq_Handler__Fv(void);
 void fopScnRq_ReRequest(void);
 void fopScnRq_Request(void);
-void fopScnRq_phase_ClearOverlap(void);
+void fopScnRq_phase_ClearOverlap__FP19scene_request_class(void);
 void func_8001EE64(void);
 void func_8001EE84(void);
 void func_8001EEB4(void);
@@ -39,8 +39,8 @@ extern u8 lbl_80450CE0;
 
 extern "C" {
 // fopScnRq_phase_ClearOverlap__FP19scene_request_class
-// fopScnRq_phase_ClearOverlap(scene_request_class*)
-asm void fopScnRq_phase_ClearOverlap(void) {
+// fopScnRq_phase_ClearOverlap__FP19scene_request_class(scene_request_class*)
+asm void fopScnRq_phase_ClearOverlap__FP19scene_request_class(void) {
     nofralloc
 #include "f/f_op/f_op_scene_req/asm/func_8001EE34.s"
 }
@@ -74,8 +74,8 @@ asm void func_8001EEE4(void) {
 }
 
 // fopScnRq_Execute__FP19scene_request_class
-// fopScnRq_Execute(scene_request_class*)
-asm void fopScnRq_Execute(void) {
+// fopScnRq_Execute__FP19scene_request_class(scene_request_class*)
+asm void fopScnRq_Execute__FP19scene_request_class(void) {
     nofralloc
 #include "f/f_op/f_op_scene_req/asm/func_8001EF24.s"
 }
@@ -95,8 +95,8 @@ asm void func_8001EFB0(void) {
 }
 
 // fopScnRq_FadeRequest__FsUs
-// fopScnRq_FadeRequest(s16, u16)
-asm void fopScnRq_FadeRequest(void) {
+// fopScnRq_FadeRequest__FsUs(s16, u16)
+asm void fopScnRq_FadeRequest__FsUs(void) {
     nofralloc
 #include "f/f_op/f_op_scene_req/asm/func_8001EFF0.s"
 }
@@ -116,8 +116,8 @@ asm void fopScnRq_ReRequest(void) {
 }
 
 // fopScnRq_Handler__Fv
-// fopScnRq_Handler(void)
-asm void fopScnRq_Handler(void) {
+// fopScnRq_Handler__Fv(void)
+asm void fopScnRq_Handler__Fv(void) {
     nofralloc
 #include "f/f_op/f_op_scene_req/asm/func_8001F11C.s"
 }

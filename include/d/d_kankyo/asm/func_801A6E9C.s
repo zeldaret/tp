@@ -27,7 +27,7 @@
 lbl_801A6F04:
 /* 801A6F04 001A3E44  7E E3 BB 78 */ mr r3, r23
 /* 801A6F08 001A3E48  38 81 00 08 */ addi r4, r1, 8
-/* 801A6F0C 001A3E4C  4B FF FE 41 */ bl dKy_move_room_ratio
+/* 801A6F0C 001A3E4C  4B FF FE 41 */ bl dKy_move_room_ratio__FP12dKy_tevstr_cPSc
 /* 801A6F10 001A3E50  FF E0 08 90 */ fmr f31, f1
 lbl_801A6F14:
 /* 801A6F14 001A3E54  88 17 03 7A */ lbz r0, 0x37a(r23)
@@ -125,11 +125,11 @@ lbl_801A7030:
 /* 801A706C 001A3FAC  7F 83 E3 78 */ mr r3, r28
 /* 801A7070 001A3FB0  C0 33 00 18 */ lfs f1, 0x18(r19)
 /* 801A7074 001A3FB4  88 93 00 1C */ lbz r4, 0x1c(r19)
-/* 801A7078 001A3FB8  4B FF 62 4D */ bl dKy_GXInitLightSpot
+/* 801A7078 001A3FB8  4B FF 62 4D */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A707C 001A3FBC  7E 63 9B 78 */ mr r3, r19
 /* 801A7080 001A3FC0  88 01 00 08 */ lbz r0, 8(r1)
 /* 801A7084 001A3FC4  7C 04 07 74 */ extsb r4, r0
-/* 801A7088 001A3FC8  4B FF F1 6D */ bl dKy_lightswitch_check
+/* 801A7088 001A3FC8  4B FF F1 6D */ bl dKy_lightswitch_check__FP30stage_pure_lightvec_info_classc
 /* 801A708C 001A3FCC  2C 03 00 01 */ cmpwi r3, 1
 /* 801A7090 001A3FD0  40 82 00 10 */ bne lbl_801A70A0
 /* 801A7094 001A3FD4  C0 13 00 0C */ lfs f0, 0xc(r19)
@@ -141,11 +141,11 @@ lbl_801A70A4:
 /* 801A70A4 001A3FE4  7F 83 E3 78 */ mr r3, r28
 /* 801A70A8 001A3FE8  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A70AC 001A3FEC  88 93 00 1D */ lbz r4, 0x1d(r19)
-/* 801A70B0 001A3FF0  4B FF 63 9D */ bl dKy_GXInitLightDistAttn
+/* 801A70B0 001A3FF0  4B FF 63 9D */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 /* 801A70B4 001A3FF4  C0 33 00 10 */ lfs f1, 0x10(r19)
 /* 801A70B8 001A3FF8  C0 53 00 14 */ lfs f2, 0x14(r19)
 /* 801A70BC 001A3FFC  38 7C 00 0C */ addi r3, r28, 0xc
-/* 801A70C0 001A4000  4B FF 60 E1 */ bl dKy_lightdir_set
+/* 801A70C0 001A4000  4B FF 60 E1 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A70C4 001A4004  C0 1C 00 0C */ lfs f0, 0xc(r28)
 /* 801A70C8 001A4008  FC 00 00 50 */ fneg f0, f0
 /* 801A70CC 001A400C  D0 1C 00 0C */ stfs f0, 0xc(r28)
@@ -156,7 +156,7 @@ lbl_801A70A4:
 /* 801A70E0 001A4020  FC 00 00 50 */ fneg f0, f0
 /* 801A70E4 001A4024  D0 1C 00 14 */ stfs f0, 0x14(r28)
 lbl_801A70E8:
-/* 801A70E8 001A4028  48 00 50 81 */ bl dKy_SunMoon_Light_Check
+/* 801A70E8 001A4028  48 00 50 81 */ bl dKy_SunMoon_Light_Check__Fv
 /* 801A70EC 001A402C  2C 03 00 01 */ cmpwi r3, 1
 /* 801A70F0 001A4030  40 82 00 C8 */ bne lbl_801A71B8
 /* 801A70F4 001A4034  2C 18 00 01 */ cmpwi r24, 1
@@ -205,12 +205,12 @@ lbl_801A7194:
 /* 801A7194 001A40D4  7F 83 E3 78 */ mr r3, r28
 /* 801A7198 001A40D8  C0 22 A2 2C */ lfs f1, lbl_80453C2C-_SDA2_BASE_(r2)
 /* 801A719C 001A40DC  38 80 00 00 */ li r4, 0
-/* 801A71A0 001A40E0  4B FF 61 25 */ bl dKy_GXInitLightSpot
+/* 801A71A0 001A40E0  4B FF 61 25 */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A71A4 001A40E4  7F 83 E3 78 */ mr r3, r28
 /* 801A71A8 001A40E8  C0 22 A3 24 */ lfs f1, lbl_80453D24-_SDA2_BASE_(r2)
 /* 801A71AC 001A40EC  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A71B0 001A40F0  38 80 00 03 */ li r4, 3
-/* 801A71B4 001A40F4  4B FF 62 99 */ bl dKy_GXInitLightDistAttn
+/* 801A71B4 001A40F4  4B FF 62 99 */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 lbl_801A71B8:
 /* 801A71B8 001A40F8  7F 43 D3 78 */ mr r3, r26
 /* 801A71BC 001A40FC  38 81 00 10 */ addi r4, r1, 0x10
@@ -346,11 +346,11 @@ lbl_801A7374:
 /* 801A73B0 001A42F0  40 82 00 0C */ bne lbl_801A73BC
 lbl_801A73B4:
 /* 801A73B4 001A42F4  7F 03 C3 78 */ mr r3, r24
-/* 801A73B8 001A42F8  4B FF 5C 2D */ bl dKy_twi_wolflight_set
+/* 801A73B8 001A42F8  4B FF 5C 2D */ bl dKy_twi_wolflight_set__Fi
 lbl_801A73BC:
 /* 801A73BC 001A42FC  38 7E 0C 24 */ addi r3, r30, 0xc24
 /* 801A73C0 001A4300  C0 37 03 74 */ lfs f1, 0x374(r23)
-/* 801A73C4 001A4304  4B FF 70 6D */ bl dKy_light_influence_col_X1_
+/* 801A73C4 001A4304  4B FF 70 6D */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A73C8 001A4308  90 61 00 0C */ stw r3, 0xc(r1)
 /* 801A73CC 001A430C  88 01 00 0C */ lbz r0, 0xc(r1)
 /* 801A73D0 001A4310  98 1C 00 18 */ stb r0, 0x18(r28)
@@ -428,7 +428,7 @@ lbl_801A74E0:
 /* 801A74E0 001A4420  7F 83 E3 78 */ mr r3, r28
 /* 801A74E4 001A4424  C0 3E 0C 30 */ lfs f1, 0xc30(r30)
 /* 801A74E8 001A4428  88 9E 0C 3C */ lbz r4, 0xc3c(r30)
-/* 801A74EC 001A442C  4B FF 5D D9 */ bl dKy_GXInitLightSpot
+/* 801A74EC 001A442C  4B FF 5D D9 */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A74F0 001A4430  C0 1E 0C 28 */ lfs f0, 0xc28(r30)
 /* 801A74F4 001A4434  EC 20 07 F2 */ fmuls f1, f0, f31
 /* 801A74F8 001A4438  C0 02 A2 0C */ lfs f0, lbl_80453C0C-_SDA2_BASE_(r2)
@@ -440,7 +440,7 @@ lbl_801A750C:
 /* 801A750C 001A444C  7F 83 E3 78 */ mr r3, r28
 /* 801A7510 001A4450  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A7514 001A4454  88 9E 0C 3D */ lbz r4, 0xc3d(r30)
-/* 801A7518 001A4458  4B FF 5F 35 */ bl dKy_GXInitLightDistAttn
+/* 801A7518 001A4458  4B FF 5F 35 */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 /* 801A751C 001A445C  7F 43 D3 78 */ mr r3, r26
 /* 801A7520 001A4460  38 81 00 10 */ addi r4, r1, 0x10
 /* 801A7524 001A4464  38 A1 00 1C */ addi r5, r1, 0x1c
@@ -454,7 +454,7 @@ lbl_801A750C:
 /* 801A7544 001A4484  C0 3E 0C 34 */ lfs f1, 0xc34(r30)
 /* 801A7548 001A4488  C0 5E 0C 38 */ lfs f2, 0xc38(r30)
 /* 801A754C 001A448C  38 7C 00 0C */ addi r3, r28, 0xc
-/* 801A7550 001A4490  4B FF 5C 51 */ bl dKy_lightdir_set
+/* 801A7550 001A4490  4B FF 5C 51 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A7554 001A4494  C0 1C 00 0C */ lfs f0, 0xc(r28)
 /* 801A7558 001A4498  FC 00 00 50 */ fneg f0, f0
 /* 801A755C 001A449C  D0 1C 00 0C */ stfs f0, 0xc(r28)

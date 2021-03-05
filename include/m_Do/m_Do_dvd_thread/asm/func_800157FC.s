@@ -11,7 +11,7 @@
 /* 80015824 00012764  38 61 00 08 */ addi r3, r1, 8
 /* 80015828 00012768  38 80 FF FF */ li r4, -1
 /* 8001582C 0001276C  48 2B BF 2D */ bl __dt__9JKRThreadFv
-/* 80015830 00012770  4B FF 94 B5 */ bl mDoExt_getAssertHeap
+/* 80015830 00012770  4B FF 94 B5 */ bl mDoExt_getAssertHeap__Fv
 /* 80015834 00012774  48 2B 8C 05 */ bl becomeCurrentHeap__7JKRHeapFv
 /* 80015838 00012778  7F E3 FB 78 */ mr r3, r31
 /* 8001583C 0001277C  48 00 02 9D */ bl mainLoop__17mDoDvdThd_param_cFv

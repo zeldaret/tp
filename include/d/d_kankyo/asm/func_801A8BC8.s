@@ -2,7 +2,7 @@
 /* 801A8BCC 001A5B0C  7C 08 02 A6 */ mflr r0
 /* 801A8BD0 001A5B10  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801A8BD4 001A5B14  38 60 00 FA */ li r3, 0xfa
-/* 801A8BD8 001A5B18  4B EB 2A 75 */ bl dKyw_rain_set
+/* 801A8BD8 001A5B18  4B EB 2A 75 */ bl dKyw_rain_set__Fi
 /* 801A8BDC 001A5B1C  38 00 00 01 */ li r0, 1
 /* 801A8BE0 001A5B20  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A8BE4 001A5B24  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l

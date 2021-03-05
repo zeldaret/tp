@@ -8,20 +8,20 @@
 /* 800B74D0 000B4410  2C 03 00 00 */ cmpwi r3, 0
 /* 800B74D4 000B4414  41 82 00 10 */ beq lbl_800B74E4
 /* 800B74D8 000B4418  7F E3 FB 78 */ mr r3, r31
-/* 800B74DC 000B441C  48 02 82 BD */ bl checkUpperItemAction__9daAlink_cFvBowFly
+/* 800B74DC 000B441C  48 02 82 BD */ bl checkUpperItemActionBowFly__9daAlink_cFv
 /* 800B74E0 000B4420  48 00 00 2C */ b lbl_800B750C
 lbl_800B74E4:
 /* 800B74E4 000B4424  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800B74E8 000B4428  28 00 00 40 */ cmplwi r0, 0x40
 /* 800B74EC 000B442C  40 82 00 10 */ bne lbl_800B74FC
 /* 800B74F0 000B4430  7F E3 FB 78 */ mr r3, r31
-/* 800B74F4 000B4434  48 02 96 65 */ bl checkUpperItemAction__9daAlink_cFvBoomerangFly
+/* 800B74F4 000B4434  48 02 96 65 */ bl checkUpperItemActionBoomerangFly__9daAlink_cFv
 /* 800B74F8 000B4438  48 00 00 14 */ b lbl_800B750C
 lbl_800B74FC:
 /* 800B74FC 000B443C  28 00 00 46 */ cmplwi r0, 0x46
 /* 800B7500 000B4440  40 82 00 0C */ bne lbl_800B750C
 /* 800B7504 000B4444  7F E3 FB 78 */ mr r3, r31
-/* 800B7508 000B4448  48 02 A6 AD */ bl checkUpperItemAction__9daAlink_cFvCopyRodFly
+/* 800B7508 000B4448  48 02 A6 AD */ bl checkUpperItemActionCopyRodFly__9daAlink_cFv
 lbl_800B750C:
 /* 800B750C 000B444C  7F E3 FB 78 */ mr r3, r31
 /* 800B7510 000B4450  48 03 CA F9 */ bl checkCanoeJumpRide__9daAlink_cFv

@@ -57,29 +57,29 @@ __ct__12dCcMassS_MngFv:
 /* 80085380 000822C0  38 03 72 00 */	addi r0, r3, lbl_803A7200@l
 /* 80085384 000822C4  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80085388 000822C8  38 7F 00 44 */	addi r3, r31, 0x44
-.global dCcMassS_Obj
-/* 8008538C 000822CC  3C 80 80 08 */	lis r4, dCcMassS_Obj@ha
-.global dCcMassS_Obj
-/* 80085390 000822D0  38 84 55 C8 */	addi r4, r4, dCcMassS_Obj@l
+.global __ct__12dCcMassS_ObjFv
+/* 8008538C 000822CC  3C 80 80 08 */	lis r4, __ct__12dCcMassS_ObjFv@ha
+.global __ct__12dCcMassS_ObjFv
+/* 80085390 000822D0  38 84 55 C8 */	addi r4, r4, __ct__12dCcMassS_ObjFv@l
 .global __dt__12dCcMassS_ObjFv
 /* 80085394 000822D4  3C A0 80 03 */	lis r5, __dt__12dCcMassS_ObjFv@ha
 .global __dt__12dCcMassS_ObjFv
 /* 80085398 000822D8  38 A5 00 F4 */	addi r5, r5, __dt__12dCcMassS_ObjFv@l
 /* 8008539C 000822DC  38 C0 00 20 */	li r6, 0x20
 /* 800853A0 000822E0  38 E0 00 0A */	li r7, 0xa
-/* 800853A4 000822E4  48 2D C9 BD */	bl func_80361D60
+/* 800853A4 000822E4  48 2D C9 BD */	bl __construct_array
 /* 800853A8 000822E8  38 7F 01 88 */	addi r3, r31, 0x188
-.global dCcMassS_Obj
-/* 800853AC 000822EC  3C 80 80 08 */	lis r4, dCcMassS_Obj@ha
-.global dCcMassS_Obj
-/* 800853B0 000822F0  38 84 55 C8 */	addi r4, r4, dCcMassS_Obj@l
+.global __ct__12dCcMassS_ObjFv
+/* 800853AC 000822EC  3C 80 80 08 */	lis r4, __ct__12dCcMassS_ObjFv@ha
+.global __ct__12dCcMassS_ObjFv
+/* 800853B0 000822F0  38 84 55 C8 */	addi r4, r4, __ct__12dCcMassS_ObjFv@l
 .global __dt__12dCcMassS_ObjFv
 /* 800853B4 000822F4  3C A0 80 03 */	lis r5, __dt__12dCcMassS_ObjFv@ha
 .global __dt__12dCcMassS_ObjFv
 /* 800853B8 000822F8  38 A5 00 F4 */	addi r5, r5, __dt__12dCcMassS_ObjFv@l
 /* 800853BC 000822FC  38 C0 00 20 */	li r6, 0x20
 /* 800853C0 00082300  38 E0 00 02 */	li r7, 2
-/* 800853C4 00082304  48 2D C9 9D */	bl func_80361D60
+/* 800853C4 00082304  48 2D C9 9D */	bl __construct_array
 /* 800853C8 00082308  3C 60 80 3C */	lis r3, lbl_803C36D0@ha
 /* 800853CC 0008230C  38 A3 36 D0 */	addi r5, r3, lbl_803C36D0@l
 /* 800853D0 00082310  90 BF 01 E4 */	stw r5, 0x1e4(r31)
@@ -219,8 +219,8 @@ lbl_800855B0:
 /* 800855BC 000824FC  7C 08 03 A6 */	mtlr r0
 /* 800855C0 00082500  38 21 00 10 */	addi r1, r1, 0x10
 /* 800855C4 00082504  4E 80 00 20 */	blr 
-.global dCcMassS_Obj
-dCcMassS_Obj:
+.global __ct__12dCcMassS_ObjFv
+__ct__12dCcMassS_ObjFv:
 /* 800855C8 00082508  3C 80 80 3A */	lis r4, lbl_803A71F4@ha
 /* 800855CC 0008250C  38 04 71 F4 */	addi r0, r4, lbl_803A71F4@l
 /* 800855D0 00082510  90 03 00 1C */	stw r0, 0x1c(r3)
@@ -819,8 +819,8 @@ lbl_80085E4C:
 /* 80085E64 00082DA4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80085E68 00082DA8  4E 80 00 20 */	blr 
 
-.global Set__12dCcMassS_MngFP8cCcD_ObjUcCam
-Set__12dCcMassS_MngFP8cCcD_ObjUcCam:
+.global SetCam__12dCcMassS_MngFRC8cM3dGCps
+SetCam__12dCcMassS_MngFRC8cM3dGCps:
 /* 80085E6C 00082DAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80085E70 00082DB0  7C 08 02 A6 */	mflr r0
 /* 80085E74 00082DB4  90 01 00 14 */	stw r0, 0x14(r1)

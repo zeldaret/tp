@@ -16,7 +16,7 @@
 /* 8011CF9C 00119EDC  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011CFA0 00119EE0  41 82 00 38 */ beq lbl_8011CFD8
 /* 8011CFA4 00119EE4  38 80 00 7B */ li r4, 0x7b
-/* 8011CFA8 00119EE8  48 00 C6 D1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 8011CFA8 00119EE8  48 00 C6 D1 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011CFAC 00119EEC  7F E3 FB 78 */ mr r3, r31
 /* 8011CFB0 00119EF0  38 80 00 9C */ li r4, 0x9c
 /* 8011CFB4 00119EF4  4B F9 28 ED */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
@@ -56,7 +56,7 @@ lbl_8011D014:
 /* 8011D030 00119F70  7C 05 07 74 */ extsb r5, r0
 /* 8011D034 00119F74  A8 DF 04 E6 */ lha r6, 0x4e6(r31)
 /* 8011D038 00119F78  38 E0 FF FF */ li r7, -1
-/* 8011D03C 00119F7C  4B F0 A1 35 */ bl dStage_changeScene
+/* 8011D03C 00119F7C  4B F0 A1 35 */ bl dStage_changeScene__FifUlScsi
 /* 8011D040 00119F80  2C 03 00 00 */ cmpwi r3, 0
 /* 8011D044 00119F84  41 82 00 44 */ beq lbl_8011D088
 /* 8011D048 00119F88  38 00 00 33 */ li r0, 0x33

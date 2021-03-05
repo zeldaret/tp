@@ -11,9 +11,9 @@
 /* 8001EC28 0001BB68  90 1F 01 AC */ stw r0, 0x1ac(r31)
 /* 8001EC2C 0001BB6C  38 7F 01 B0 */ addi r3, r31, 0x1b0
 /* 8001EC30 0001BB70  7F E4 FB 78 */ mr r4, r31
-/* 8001EC34 0001BB74  48 00 05 55 */ bl fopScnTg_Init
+/* 8001EC34 0001BB74  48 00 05 55 */ bl fopScnTg_Init__FP15scene_tag_classPv
 /* 8001EC38 0001BB78  38 7F 01 B0 */ addi r3, r31, 0x1b0
-/* 8001EC3C 0001BB7C  48 00 05 21 */ bl fopScnTg_ToQueue
+/* 8001EC3C 0001BB7C  48 00 05 21 */ bl fopScnTg_ToQueue__FP15scene_tag_class
 /* 8001EC40 0001BB80  80 7F 00 AC */ lwz r3, 0xac(r31)
 /* 8001EC44 0001BB84  28 03 00 00 */ cmplwi r3, 0
 /* 8001EC48 0001BB88  41 82 00 0C */ beq lbl_8001EC54

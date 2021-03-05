@@ -120,7 +120,7 @@ lbl_800DB2DC:
 /* 800DB2F8 000D8238  40 82 00 1C */ bne lbl_800DB314
 /* 800DB2FC 000D823C  54 60 06 B5 */ rlwinm. r0, r3, 0, 0x1a, 0x1a
 /* 800DB300 000D8240  40 82 00 14 */ bne lbl_800DB314
-/* 800DB304 000D8244  48 0A 63 3D */ bl dCam_getBody
+/* 800DB304 000D8244  48 0A 63 3D */ bl dCam_getBody__Fv
 /* 800DB308 000D8248  48 08 61 C9 */ bl Stop__9dCamera_cFv
 /* 800DB30C 000D824C  38 00 00 01 */ li r0, 1
 /* 800DB310 000D8250  B0 1B 30 0C */ sth r0, 0x300c(r27)
@@ -137,7 +137,7 @@ lbl_800DB314:
 /* 800DB338 000D8278  4E 80 04 21 */ bctrl
 /* 800DB33C 000D827C  7F 63 DB 78 */ mr r3, r27
 /* 800DB340 000D8280  7F C4 F3 78 */ mr r4, r30
-/* 800DB344 000D8284  48 04 E3 35 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBase
+/* 800DB344 000D8284  48 04 E3 35 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DB348 000D8288  7F 63 DB 78 */ mr r3, r27
 /* 800DB34C 000D828C  38 80 00 91 */ li r4, 0x91
 /* 800DB350 000D8290  4B FD 45 51 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

@@ -43,7 +43,7 @@ lbl_8012467C:
 /* 80124690 001215D0  38 DB 1A F0 */ addi r6, r27, 0x1af0
 /* 80124694 001215D4  38 E1 00 14 */ addi r7, r1, 0x14
 /* 80124698 001215D8  39 00 00 00 */ li r8, 0
-/* 8012469C 001215DC  4B FF BF 99 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyzPolyColor
+/* 8012469C 001215DC  4B FF BF 99 */ bl setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz
 /* 801246A0 001215E0  28 03 00 00 */ cmplwi r3, 0
 /* 801246A4 001215E4  41 82 00 68 */ beq lbl_8012470C
 /* 801246A8 001215E8  38 00 00 05 */ li r0, 5

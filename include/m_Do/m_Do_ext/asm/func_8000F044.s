@@ -5,11 +5,11 @@
 /* 8000F054 0000BF94  93 C1 00 08 */ stw r30, 8(r1)
 /* 8000F058 0000BF98  7C 7E 1B 78 */ mr r30, r3
 /* 8000F05C 0000BF9C  7C 9F 23 78 */ mr r31, r4
-/* 8000F060 0000BFA0  4B FF FC F1 */ bl mDoExt_getGameHeap
+/* 8000F060 0000BFA0  4B FF FC F1 */ bl mDoExt_getGameHeap__Fv
 /* 8000F064 0000BFA4  7C 64 1B 78 */ mr r4, r3
 /* 8000F068 0000BFA8  7F C3 F3 78 */ mr r3, r30
 /* 8000F06C 0000BFAC  7F E5 FB 78 */ mr r5, r31
-/* 8000F070 0000BFB0  4B FF FF 4D */ bl mDoExt_createSolidHeapToCurrent_X1_
+/* 8000F070 0000BFB0  4B FF FF 4D */ bl mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl
 /* 8000F074 0000BFB4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8000F078 0000BFB8  83 C1 00 08 */ lwz r30, 8(r1)
 /* 8000F07C 0000BFBC  80 01 00 14 */ lwz r0, 0x14(r1)

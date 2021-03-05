@@ -33,7 +33,7 @@ lbl_800E7140:
 /* 800E7174 000E40B4  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 800E7178 000E40B8  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 800E717C 000E40BC  38 A5 00 64 */ addi r5, r5, 0x64
-/* 800E7180 000E40C0  4B FC 5F 75 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E7180 000E40C0  4B FC 5F 75 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E7184 000E40C4  C0 02 93 24 */ lfs f0, lbl_80452D24-_SDA2_BASE_(r2)
 /* 800E7188 000E40C8  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800E718C 000E40CC  48 00 00 24 */ b lbl_800E71B0
@@ -43,7 +43,7 @@ lbl_800E7190:
 /* 800E7198 000E40D8  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 800E719C 000E40DC  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
 /* 800E71A0 000E40E0  38 A5 00 50 */ addi r5, r5, 0x50
-/* 800E71A4 000E40E4  4B FC 5F 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfParam
+/* 800E71A4 000E40E4  4B FC 5F 51 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E71A8 000E40E8  C0 02 93 8C */ lfs f0, lbl_80452D8C-_SDA2_BASE_(r2)
 /* 800E71AC 000E40EC  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 lbl_800E71B0:

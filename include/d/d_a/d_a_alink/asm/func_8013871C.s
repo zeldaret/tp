@@ -12,7 +12,7 @@
 /* 80138748 00135688  3C A0 80 39 */ lis r5, lbl_8038F8B4@ha
 /* 8013874C 0013568C  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
 /* 80138750 00135690  C0 45 00 78 */ lfs f2, 0x78(r5)
-/* 80138754 00135694  4B FF 0F 85 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 80138754 00135694  4B FF 0F 85 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80138758 00135698  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 8013875C 0013569C  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80138760 001356A0  41 82 00 14 */ beq lbl_80138774

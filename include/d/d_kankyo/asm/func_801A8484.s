@@ -7,7 +7,7 @@
 /* 801A849C 001A53DC  7C 9E 23 78 */ mr r30, r4
 /* 801A84A0 001A53E0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A84A4 001A53E4  3B E3 CA 54 */ addi r31, r3, lbl_8042CA54@l
-/* 801A84A8 001A53E8  48 00 40 D5 */ bl dKy_darkworld_check
+/* 801A84A8 001A53E8  48 00 40 D5 */ bl dKy_darkworld_check__Fv
 /* 801A84AC 001A53EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A84B0 001A53F0  40 82 00 70 */ bne lbl_801A8520
 /* 801A84B4 001A53F4  88 1F 0E D5 */ lbz r0, 0xed5(r31)

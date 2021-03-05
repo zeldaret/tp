@@ -74,8 +74,8 @@ Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBase:
 /* 80083710 00080650  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80083714 00080654  4E 80 00 20 */	blr 
 
-.global Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBaseEffCounterTimer
-Set__22dCcD_GAtTgCoCommonBaseFRC25dCcD_SrcGAtTgCoCommonBaseEffCounterTimer:
+.global SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv
+SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv:
 /* 80083718 00080658  38 00 00 05 */	li r0, 5
 /* 8008371C 0008065C  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80083720 00080660  4E 80 00 20 */	blr 
@@ -101,8 +101,8 @@ ChkEffCounter__22dCcD_GAtTgCoCommonBaseFv:
 /* 80083758 00080698  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8008375C 0008069C  4E 80 00 20 */	blr 
 
-.global dCcD_GStts
-dCcD_GStts:
+.global __ct__10dCcD_GSttsFv
+__ct__10dCcD_GSttsFv:
 /* 80083760 000806A0  3C 80 80 3B */	lis r4, lbl_803AC31C@ha
 /* 80083764 000806A4  38 04 C3 1C */	addi r0, r4, lbl_803AC31C@l
 /* 80083768 000806A8  90 03 00 00 */	stw r0, 0(r3)
@@ -980,7 +980,7 @@ GetAtHitGObj__12dCcD_GObjInfFv:
 /* 800843C0 00081300  38 60 00 00 */	li r3, 0
 /* 800843C4 00081304  48 00 00 08 */	b lbl_800843CC
 lbl_800843C8:
-/* 800843C8 00081308  48 00 03 D5 */	bl dCcD_GetGObjInf
+/* 800843C8 00081308  48 00 03 D5 */	bl dCcD_GetGObjInf__FP8cCcD_Obj
 lbl_800843CC:
 /* 800843CC 0008130C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800843D0 00081310  7C 08 03 A6 */	mtlr r0
@@ -1106,15 +1106,15 @@ GetTgHitGObj__12dCcD_GObjInfFv:
 /* 80084560 000814A0  38 60 00 00 */	li r3, 0
 /* 80084564 000814A4  48 00 00 08 */	b lbl_8008456C
 lbl_80084568:
-/* 80084568 000814A8  48 00 02 35 */	bl dCcD_GetGObjInf
+/* 80084568 000814A8  48 00 02 35 */	bl dCcD_GetGObjInf__FP8cCcD_Obj
 lbl_8008456C:
 /* 8008456C 000814AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80084570 000814B0  7C 08 03 A6 */	mtlr r0
 /* 80084574 000814B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80084578 000814B8  4E 80 00 20 */	blr 
 
-.global GetTgHitObj__12dCcD_GObjInfFvSe
-GetTgHitObj__12dCcD_GObjInfFvSe:
+.global GetTgHitObjSe__12dCcD_GObjInfFv
+GetTgHitObjSe__12dCcD_GObjInfFv:
 /* 8008457C 000814BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80084580 000814C0  7C 08 02 A6 */	mflr r0
 /* 80084584 000814C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1274,8 +1274,8 @@ Set__12dCcD_GObjInfFRC15dCcD_SrcGObjInf:
 /* 80084794 000816D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80084798 000816D8  4E 80 00 20 */	blr 
 
-.global dCcD_GetGObjInf
-dCcD_GetGObjInf:
+.global dCcD_GetGObjInf__FP8cCcD_Obj
+dCcD_GetGObjInf__FP8cCcD_Obj:
 /* 8008479C 000816DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800847A0 000816E0  7C 08 02 A6 */	mflr r0
 /* 800847A4 000816E4  90 01 00 14 */	stw r0, 0x14(r1)

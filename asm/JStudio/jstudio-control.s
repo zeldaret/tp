@@ -226,15 +226,15 @@ lbl_8028541C:
 /* 80285434 00282374  38 21 00 30 */	addi r1, r1, 0x30
 /* 80285438 00282378  4E 80 00 20 */	blr 
 
-.global transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject_index
-transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject_index:
+.global transform_setOrigin_ctb_index__Q27JStudio8TControlFUl
+transform_setOrigin_ctb_index__Q27JStudio8TControlFUl:
 /* 8028543C 0028237C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80285440 00282380  7C 08 02 A6 */	mflr r0
 /* 80285444 00282384  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80285448 00282388  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8028544C 0028238C  7C 7F 1B 78 */	mr r31, r3
 /* 80285450 00282390  38 7F 00 74 */	addi r3, r31, 0x74
-/* 80285454 00282394  4B FF BD DD */	bl getObject__Q37JStudio3ctb8TControlFPCvUl_index
+/* 80285454 00282394  4B FF BD DD */	bl getObject_index__Q37JStudio3ctb8TControlFUl
 /* 80285458 00282398  7C 64 1B 79 */	or. r4, r3, r3
 /* 8028545C 0028239C  40 82 00 0C */	bne lbl_80285468
 /* 80285460 002823A0  38 60 00 00 */	li r3, 0
@@ -440,7 +440,7 @@ lbl_802856EC:
 /* 8028572C 0028266C  7F E3 FB 78 */	mr r3, r31
 /* 80285730 00282670  38 82 BA 60 */	addi r4, r2, lbl_80455460-_SDA2_BASE_
 /* 80285734 00282674  38 A0 00 08 */	li r5, 8
-/* 80285738 00282678  48 0E 09 55 */	bl func_8036608C
+/* 80285738 00282678  48 0E 09 55 */	bl memcmp
 /* 8028573C 0028267C  2C 03 00 00 */	cmpwi r3, 0
 /* 80285740 00282680  41 82 00 0C */	beq lbl_8028574C
 /* 80285744 00282684  38 60 00 00 */	li r3, 0
@@ -612,7 +612,7 @@ lbl_80285978:
 /* 8028597C 002828BC  40 82 00 38 */	bne lbl_802859B4
 /* 80285980 002828C0  7F E3 FB 78 */	mr r3, r31
 /* 80285984 002828C4  38 80 00 00 */	li r4, 0
-/* 80285988 002828C8  4B FF FA B5 */	bl transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject_index
+/* 80285988 002828C8  4B FF FA B5 */	bl transform_setOrigin_ctb_index__Q27JStudio8TControlFUl
 /* 8028598C 002828CC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80285990 002828D0  40 82 00 18 */	bne lbl_802859A8
 /* 80285994 002828D4  38 61 00 0C */	addi r3, r1, 0xc

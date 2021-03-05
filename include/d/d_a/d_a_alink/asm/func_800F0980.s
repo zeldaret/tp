@@ -5,7 +5,7 @@
 /* 800F0990 000ED8D0  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F0994 000ED8D4  7C 7E 1B 78 */ mr r30, r3
 /* 800F0998 000ED8D8  38 80 00 3C */ li r4, 0x3c
-/* 800F099C 000ED8DC  4B FD 24 09 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROCNotSameProc
+/* 800F099C 000ED8DC  4B FD 24 09 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F09A0 000ED8E0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F09A4 000ED8E4  40 82 00 0C */ bne lbl_800F09B0
 /* 800F09A8 000ED8E8  38 60 00 00 */ li r3, 0
@@ -39,7 +39,7 @@ lbl_800F0A0C:
 /* 800F0A0C 000ED94C  7F C3 F3 78 */ mr r3, r30
 /* 800F0A10 000ED950  4B FC 2E 35 */ bl initServiceWaitTime__9daAlink_cFv
 /* 800F0A14 000ED954  7F C3 F3 78 */ mr r3, r30
-/* 800F0A18 000ED958  4B FF EC 99 */ bl checkHorseGetOff__9daAlink_cFvAndSetDoStatus
+/* 800F0A18 000ED958  4B FF EC 99 */ bl checkHorseGetOffAndSetDoStatus__9daAlink_cFv
 /* 800F0A1C 000ED95C  3B E0 00 00 */ li r31, 0
 /* 800F0A20 000ED960  7F C3 F3 78 */ mr r3, r30
 /* 800F0A24 000ED964  4B FF C6 51 */ bl checkHorseNoUpperAnime__9daAlink_cCFv

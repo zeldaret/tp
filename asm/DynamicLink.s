@@ -57,8 +57,8 @@ lbl_80262268:
 /* 8026227C 0025F1BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80262280 0025F1C0  4E 80 00 20 */	blr 
 
-.global DynamicModuleControlBase
-DynamicModuleControlBase:
+.global __ct__24DynamicModuleControlBaseFv
+__ct__24DynamicModuleControlBaseFv:
 /* 80262284 0025F1C4  3C 80 80 3C */	lis r4, lbl_803C34F4@ha
 /* 80262288 0025F1C8  38 04 34 F4 */	addi r0, r4, lbl_803C34F4@l
 /* 8026228C 0025F1CC  90 03 00 0C */	stw r0, 0xc(r3)
@@ -343,8 +343,8 @@ lbl_80262608:
 /* 80262658 0025F598  38 21 00 30 */	addi r1, r1, 0x30
 /* 8026265C 0025F59C  4E 80 00 20 */	blr 
 
-.global DynamicModuleControl
-DynamicModuleControl:
+.global __ct__20DynamicModuleControlFPCc
+__ct__20DynamicModuleControlFPCc:
 /* 80262660 0025F5A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80262664 0025F5A4  7C 08 02 A6 */	mflr r0
 /* 80262668 0025F5A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -352,7 +352,7 @@ DynamicModuleControl:
 /* 80262670 0025F5B0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80262674 0025F5B4  7C 7E 1B 78 */	mr r30, r3
 /* 80262678 0025F5B8  7C 9F 23 78 */	mr r31, r4
-/* 8026267C 0025F5BC  4B FF FC 09 */	bl DynamicModuleControlBase
+/* 8026267C 0025F5BC  4B FF FC 09 */	bl __ct__24DynamicModuleControlBaseFv
 /* 80262680 0025F5C0  3C 60 80 3C */	lis r3, lbl_803C34C0@ha
 /* 80262684 0025F5C4  38 03 34 C0 */	addi r0, r3, lbl_803C34C0@l
 /* 80262688 0025F5C8  90 1E 00 0C */	stw r0, 0xc(r30)
@@ -380,7 +380,7 @@ mountCallback__20DynamicModuleControlFPv:
 /* 802626D4 0025F614  7C 08 02 A6 */	mflr r0
 /* 802626D8 0025F618  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802626DC 0025F61C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802626E0 0025F620  4B DA C7 0D */	bl mDoExt_getArchiveHeap
+/* 802626E0 0025F620  4B DA C7 0D */	bl mDoExt_getArchiveHeap__Fv
 /* 802626E4 0025F624  7C 7F 1B 78 */	mr r31, r3
 /* 802626E8 0025F628  3C 60 80 3A */	lis r3, lbl_8039A4A0@ha
 /* 802626EC 0025F62C  38 63 A4 A0 */	addi r3, r3, lbl_8039A4A0@l
@@ -443,8 +443,8 @@ callback__20DynamicModuleControlFPv:
 /* 802627B8 0025F6F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802627BC 0025F6FC  4E 80 00 20 */	blr 
 
-.global calcSum2
-calcSum2:
+.global calcSum2__FPCUsUl
+calcSum2__FPCUsUl:
 /* 802627C0 0025F700  38 A0 00 00 */	li r5, 0
 /* 802627C4 0025F704  48 00 00 14 */	b lbl_802627D8
 lbl_802627C8:
@@ -469,7 +469,7 @@ lbl_802627D8:
 /* 8026280C 0025F74C  38 60 00 01 */	li r3, 1
 /* 80262810 0025F750  48 00 02 D4 */	b lbl_80262AE4
 lbl_80262814:
-/* 80262814 0025F754  4B DA C5 D9 */	bl mDoExt_getArchiveHeap
+/* 80262814 0025F754  4B DA C5 D9 */	bl mDoExt_getArchiveHeap__Fv
 /* 80262818 0025F758  7C 7E 1B 78 */	mr r30, r3
 /* 8026281C 0025F75C  3B A0 00 00 */	li r29, 0
 /* 80262820 0025F760  3C 60 80 3A */	lis r3, lbl_8039A4A0@ha
@@ -488,7 +488,7 @@ lbl_80262844:
 /* 8026284C 0025F78C  38 BF 01 41 */	addi r5, r31, 0x141
 /* 80262850 0025F790  80 DC 00 1C */	lwz r6, 0x1c(r28)
 /* 80262854 0025F794  4C C6 31 82 */	crclr 6
-/* 80262858 0025F798  48 10 3D 65 */	bl func_803665BC
+/* 80262858 0025F798  48 10 3D 65 */	bl snprintf
 /* 8026285C 0025F79C  80 1C 00 10 */	lwz r0, 0x10(r28)
 /* 80262860 0025F7A0  28 00 00 00 */	cmplwi r0, 0
 /* 80262864 0025F7A4  40 82 00 B0 */	bne lbl_80262914
@@ -560,7 +560,7 @@ lbl_80262948:
 /* 8026295C 0025F89C  38 A5 01 48 */	addi r5, r5, 0x148
 /* 80262960 0025F8A0  80 DC 00 1C */	lwz r6, 0x1c(r28)
 /* 80262964 0025F8A4  4C C6 31 82 */	crclr 6
-/* 80262968 0025F8A8  48 10 3C 55 */	bl func_803665BC
+/* 80262968 0025F8A8  48 10 3C 55 */	bl snprintf
 /* 8026296C 0025F8AC  38 00 00 00 */	li r0, 0
 /* 80262970 0025F8B0  90 01 00 08 */	stw r0, 8(r1)
 /* 80262974 0025F8B4  38 61 00 10 */	addi r3, r1, 0x10
@@ -621,7 +621,7 @@ lbl_80262A44:
 /* 80262A44 0025F984  80 9C 00 24 */	lwz r4, 0x24(r28)
 /* 80262A48 0025F988  2C 04 00 00 */	cmpwi r4, 0
 /* 80262A4C 0025F98C  40 81 00 80 */	ble lbl_80262ACC
-/* 80262A50 0025F990  4B FF FD 71 */	bl calcSum2
+/* 80262A50 0025F990  4B FF FD 71 */	bl calcSum2__FPCUsUl
 /* 80262A54 0025F994  88 DC 00 21 */	lbz r6, 0x21(r28)
 /* 80262A58 0025F998  28 06 00 00 */	cmplwi r6, 0
 /* 80262A5C 0025F99C  40 82 00 18 */	bne lbl_80262A74

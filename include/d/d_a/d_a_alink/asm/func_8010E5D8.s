@@ -21,12 +21,12 @@
 /* 8010E628 0010B568  7F 83 E3 78 */ mr r3, r28
 /* 8010E62C 0010B56C  38 80 03 AE */ li r4, 0x3ae
 /* 8010E630 0010B570  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E634 0010B574  4B FB 19 F5 */ bl loadAram__9daAlink_cFUsUlItemBtp
+/* 8010E634 0010B574  4B FB 19 F5 */ bl loadAramItemBtp__9daAlink_cFUsP8J3DModel
 /* 8010E638 0010B578  90 7C 07 2C */ stw r3, 0x72c(r28)
 /* 8010E63C 0010B57C  7F 83 E3 78 */ mr r3, r28
 /* 8010E640 0010B580  38 80 03 22 */ li r4, 0x322
 /* 8010E644 0010B584  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E648 0010B588  4B FB 19 29 */ bl loadAram__9daAlink_cFUsUlItemBrk
+/* 8010E648 0010B588  4B FB 19 29 */ bl loadAramItemBrk__9daAlink_cFUsP8J3DModel
 /* 8010E64C 0010B58C  90 7C 07 24 */ stw r3, 0x724(r28)
 /* 8010E650 0010B590  57 BF 04 3E */ clrlwi r31, r29, 0x10
 /* 8010E654 0010B594  7F E3 FB 78 */ mr r3, r31
@@ -42,30 +42,30 @@ lbl_8010E678:
 /* 8010E678 0010B5B8  7F 83 E3 78 */ mr r3, r28
 /* 8010E67C 0010B5BC  38 80 03 28 */ li r4, 0x328
 /* 8010E680 0010B5C0  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E684 0010B5C4  4B FB 19 49 */ bl loadAram__9daAlink_cFUsUlItemBtk
+/* 8010E684 0010B5C4  4B FB 19 49 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E688 0010B5C8  90 7C 07 1C */ stw r3, 0x71c(r28)
 /* 8010E68C 0010B5CC  7F 83 E3 78 */ mr r3, r28
 /* 8010E690 0010B5D0  38 80 03 27 */ li r4, 0x327
 /* 8010E694 0010B5D4  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E698 0010B5D8  4B FB 19 35 */ bl loadAram__9daAlink_cFUsUlItemBtk
+/* 8010E698 0010B5D8  4B FB 19 35 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E69C 0010B5DC  90 7C 07 20 */ stw r3, 0x720(r28)
 /* 8010E6A0 0010B5E0  48 00 00 2C */ b lbl_8010E6CC
 lbl_8010E6A4:
 /* 8010E6A4 0010B5E4  7F 83 E3 78 */ mr r3, r28
 /* 8010E6A8 0010B5E8  38 80 03 2A */ li r4, 0x32a
 /* 8010E6AC 0010B5EC  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6B0 0010B5F0  4B FB 19 1D */ bl loadAram__9daAlink_cFUsUlItemBtk
+/* 8010E6B0 0010B5F0  4B FB 19 1D */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6B4 0010B5F4  90 7C 07 1C */ stw r3, 0x71c(r28)
 /* 8010E6B8 0010B5F8  7F 83 E3 78 */ mr r3, r28
 /* 8010E6BC 0010B5FC  38 80 03 29 */ li r4, 0x329
 /* 8010E6C0 0010B600  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6C4 0010B604  4B FB 19 09 */ bl loadAram__9daAlink_cFUsUlItemBtk
+/* 8010E6C4 0010B604  4B FB 19 09 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6C8 0010B608  90 7C 07 20 */ stw r3, 0x720(r28)
 lbl_8010E6CC:
 /* 8010E6CC 0010B60C  7F 83 E3 78 */ mr r3, r28
 /* 8010E6D0 0010B610  38 80 03 2B */ li r4, 0x32b
 /* 8010E6D4 0010B614  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6D8 0010B618  4B FB 18 F5 */ bl loadAram__9daAlink_cFUsUlItemBtk
+/* 8010E6D8 0010B618  4B FB 18 F5 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6DC 0010B61C  90 7C 07 18 */ stw r3, 0x718(r28)
 /* 8010E6E0 0010B620  57 A0 04 3E */ clrlwi r0, r29, 0x10
 /* 8010E6E4 0010B624  28 00 00 6C */ cmplwi r0, 0x6c
@@ -148,7 +148,7 @@ lbl_8010E7E4:
 /* 8010E810 0010B750  90 7C 07 0C */ stw r3, 0x70c(r28)
 lbl_8010E814:
 /* 8010E814 0010B754  7F C3 F3 78 */ mr r3, r30
-/* 8010E818 0010B758  4B F0 09 B5 */ bl mDoExt_setCurrentHeap
+/* 8010E818 0010B758  4B F0 09 B5 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8010E81C 0010B75C  80 7C 07 08 */ lwz r3, 0x708(r28)
 /* 8010E820 0010B760  83 C3 00 04 */ lwz r30, 4(r3)
 /* 8010E824 0010B764  B3 BC 2F DC */ sth r29, 0x2fdc(r28)
@@ -168,9 +168,9 @@ lbl_8010E858:
 /* 8010E858 0010B798  80 7E 00 28 */ lwz r3, 0x28(r30)
 /* 8010E85C 0010B79C  80 83 00 04 */ lwz r4, 4(r3)
 /*.global daAlink_bottleModelCallBack*/
-/* 8010E860 0010B7A0  3C 60 80 11 */ lis r3, daAlink_bottleModelCallBack@ha
+/* 8010E860 0010B7A0  3C 60 80 11 */ lis r3, daAlink_bottleModelCallBack__FP8J3DJointi@ha
 /*.global daAlink_bottleModelCallBack*/
-/* 8010E864 0010B7A4  38 03 E5 2C */ addi r0, r3, daAlink_bottleModelCallBack@l
+/* 8010E864 0010B7A4  38 03 E5 2C */ addi r0, r3, daAlink_bottleModelCallBack__FP8J3DJointi@l
 /* 8010E868 0010B7A8  90 04 00 04 */ stw r0, 4(r4)
 /* 8010E86C 0010B7AC  80 7C 07 08 */ lwz r3, 0x708(r28)
 /* 8010E870 0010B7B0  93 83 00 14 */ stw r28, 0x14(r3)

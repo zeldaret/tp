@@ -22,7 +22,7 @@ lbl_800F72A4:
 lbl_800F72C4:
 /* 800F72C4 000F4204  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 800F72C8 000F4208  7F A3 EB 78 */ mr r3, r29
-/* 800F72CC 000F420C  4B FF D6 59 */ bl checkNextAction__9daAlink_cFiCanoe
+/* 800F72CC 000F420C  4B FF D6 59 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F72D0 000F4210  2C 03 00 00 */ cmpwi r3, 0
 /* 800F72D4 000F4214  40 82 00 24 */ bne lbl_800F72F8
 /* 800F72D8 000F4218  7F A3 EB 78 */ mr r3, r29

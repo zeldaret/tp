@@ -50,7 +50,7 @@ lbl_801385D4:
 /* 801385DC 0013551C  C0 25 00 88 */ lfs f1, 0x88(r5)
 lbl_801385E0:
 /* 801385E0 00135520  FC 40 F8 90 */ fmr f2, f31
-/* 801385E4 00135524  4B FF 10 F5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 801385E4 00135524  4B FF 10 F5 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 801385E8 00135528  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801385EC 0013552C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801385F0 00135530  80 03 5F 18 */ lwz r0, 0x5f18(r3)

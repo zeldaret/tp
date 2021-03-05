@@ -27,7 +27,7 @@ lbl_800E05BC:
 /* 800E05BC 000DD4FC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_800E05C0:
 /* 800E05C0 000DD500  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800E05C4 000DD504  4B FC CD E5 */ bl setUpperAnimeBase__9daAlink_cFUsSpeed
+/* 800E05C4 000DD504  4B FC CD E5 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 800E05C8 000DD508  7F A3 EB 78 */ mr r3, r29
 /* 800E05CC 000DD50C  4B FF FF 1D */ bl setBoomerangReadyQuake__9daAlink_cFv
 /* 800E05D0 000DD510  39 61 00 20 */ addi r11, r1, 0x20

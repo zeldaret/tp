@@ -218,7 +218,7 @@ lbl_802A7818:
 lbl_802A781C:
 /* 802A781C 002A475C  7F 83 E3 78 */	mr r3, r28
 /* 802A7820 002A4760  7C 05 03 78 */	mr r5, r0
-/* 802A7824 002A4764  48 00 01 FD */	bl setMessageCode__Q28JMessage8TControlFUsUs_inSequence_
+/* 802A7824 002A4764  48 00 01 FD */	bl setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
 /* 802A7828 002A4768  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A782C 002A476C  40 82 00 0C */	bne lbl_802A7838
 /* 802A7830 002A4770  38 60 00 00 */	li r3, 0
@@ -305,7 +305,7 @@ lbl_802A7940:
 /* 802A7944 002A4884  7F C4 F3 78 */	mr r4, r30
 /* 802A7948 002A4888  54 C5 84 3E */	srwi r5, r6, 0x10
 /* 802A794C 002A488C  54 C6 04 3E */	clrlwi r6, r6, 0x10
-/* 802A7950 002A4890  48 00 00 D1 */	bl setMessageCode__Q28JMessage8TControlFUsUs_inSequence_
+/* 802A7950 002A4890  48 00 00 D1 */	bl setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
 /* 802A7954 002A4894  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A7958 002A4898  40 82 00 0C */	bne lbl_802A7964
 /* 802A795C 002A489C  38 60 00 00 */	li r3, 0
@@ -364,8 +364,8 @@ lbl_802A7A08:
 /* 802A7A18 002A4958  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A7A1C 002A495C  4E 80 00 20 */	blr 
 
-.global setMessageCode__Q28JMessage8TControlFUsUs_inSequence_
-setMessageCode__Q28JMessage8TControlFUsUs_inSequence_:
+.global setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
+setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs:
 /* 802A7A20 002A4960  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A7A24 002A4964  7C 08 02 A6 */	mflr r0
 /* 802A7A28 002A4968  90 01 00 24 */	stw r0, 0x24(r1)

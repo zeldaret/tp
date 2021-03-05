@@ -248,14 +248,14 @@ asm void func_802C4928(void) {
 
 // __ct__14Z2CreatureRideFv
 // Z2CreatureRide::Z2CreatureRide(void)
-asm void func_802C4FFC(void) {
+asm void __ct__14Z2CreatureRideFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C4FFC.s"
 }
 
 // __dt__18Z2RideSoundStarterFv
 // Z2RideSoundStarter::~Z2RideSoundStarter(void)
-asm void func_802C5078(void) {
+asm void __dt__18Z2RideSoundStarterFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C5078.s"
 }
@@ -269,14 +269,14 @@ asm void __dt__14Z2CreatureRideFv(void) {
 
 // deleteObject__14Z2CreatureRideFv
 // Z2CreatureRide::deleteObject(void)
-asm void func_802C51EC(void) {
+asm void deleteObject__14Z2CreatureRideFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C51EC.s"
 }
 
 // init__14Z2CreatureRideFP3VecP3VecUcUc
 // Z2CreatureRide::init(Vec*, Vec*, unsigned char, unsigned char)
-asm void func_802C520C(void) {
+asm void init__14Z2CreatureRideFP3VecP3VecUcUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C520C.s"
 }
@@ -290,7 +290,7 @@ asm void setLinkRiding__14Z2CreatureRideFb(void) {
 
 // __ct__18Z2RideSoundStarterFP14Z2CreatureRide
 // Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide*)
-asm void Z2RideSoundStarter(void) {
+asm void __ct__18Z2RideSoundStarterFP14Z2CreatureRide(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C5234.s"
 }
@@ -305,35 +305,35 @@ asm void func_802C5284(void) {
 
 // __ct__15Z2SoundObjCoachFv
 // Z2SoundObjCoach::Z2SoundObjCoach(void)
-asm void func_802C54B8(void) {
+asm void __ct__15Z2SoundObjCoachFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C54B8.s"
 }
 
 // init__15Z2SoundObjCoachFP3VecUc
 // Z2SoundObjCoach::init(Vec*, unsigned char)
-asm void func_802C54FC(void) {
+asm void init__15Z2SoundObjCoachFP3VecUc(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C54FC.s"
 }
 
 // startWheelSound__15Z2SoundObjCoachFf
 // Z2SoundObjCoach::startWheelSound(float)
-asm void func_802C551C(void) {
+asm void startWheelSound__15Z2SoundObjCoachFf(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C551C.s"
 }
 
 // startFireSound__15Z2SoundObjCoachFUs
 // Z2SoundObjCoach::startFireSound(unsigned short)
-asm void func_802C56C0(void) {
+asm void startFireSound__15Z2SoundObjCoachFUs(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C56C0.s"
 }
 
 // startSound__15Z2SoundObjCoachF10JAISoundIDUlSc
 // Z2SoundObjCoach::startSound(JAISoundID, unsigned long, char)
-asm void func_802C57C0(void) {
+asm void startSound__15Z2SoundObjCoachF10JAISoundIDUlSc(void) {
     nofralloc
 #include "Z2AudioLib/Z2LinkMgr/asm/func_802C57C0.s"
 }

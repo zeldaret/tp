@@ -255,7 +255,7 @@ lbl_8013EB18:
 /* 8013EBC4 0013BB04  A8 1D 04 E6 */ lha r0, 0x4e6(r29)
 /* 8013EBC8 0013BB08  7C 00 00 D0 */ neg r0, r0
 /* 8013EBCC 0013BB0C  7C 04 07 34 */ extsh r4, r0
-/* 8013EBD0 0013BB10  4B EC D8 0D */ bl mDoMtx_YrotS
+/* 8013EBD0 0013BB10  4B EC D8 0D */ bl mDoMtx_YrotS__FPA4_fs
 /* 8013EBD4 0013BB14  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 8013EBD8 0013BB18  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 8013EBDC 0013BB1C  38 81 00 6C */ addi r4, r1, 0x6c
@@ -332,7 +332,7 @@ lbl_8013ECC0:
 /* 8013ECE4 0013BC24  EF E4 00 24 */ fdivs f31, f4, f0
 lbl_8013ECE8:
 /* 8013ECE8 0013BC28  7F A3 EB 78 */ mr r3, r29
-/* 8013ECEC 0013BC2C  4B FE A9 ED */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsfWolfBaseSpeed
+/* 8013ECEC 0013BC2C  4B FE A9 ED */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8013ECF0 0013BC30  A8 1E 00 08 */ lha r0, 8(r30)
 /* 8013ECF4 0013BC34  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)
 /* 8013ECF8 0013BC38  6C 00 80 00 */ xoris r0, r0, 0x8000

@@ -2,7 +2,7 @@
 /* 8005B264 000581A4  7C 08 02 A6 */ mflr r0
 /* 8005B268 000581A8  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8005B26C 000581AC  38 C0 00 01 */ li r6, 1
-/* 8005B270 000581B0  4B FF FC 21 */ bl pntwind_get_info
+/* 8005B270 000581B0  4B FF FC 21 */ bl pntwind_get_info__FP4cXyzP4cXyzPfUc
 /* 8005B274 000581B4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8005B278 000581B8  7C 08 03 A6 */ mtlr r0
 /* 8005B27C 000581BC  38 21 00 10 */ addi r1, r1, 0x10

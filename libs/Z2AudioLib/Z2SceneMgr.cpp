@@ -14,11 +14,11 @@ extern "C" {
 int strcmp(const char*, const char*);
 void __ct__10JAISoundIDFRC10JAISoundID(void);
 void JSUList_X1_(void);
-void dComIfGs_isStageSwitch(void);
-void dComIfGs_getStartPoint(void);
+void dComIfGs_isStageSwitch__Fii(void);
+void dComIfGs_getStartPoint__Fv(void);
 void isSwitch__10dSv_info_cCFii(void);
-void dComIfGs_isEventBit(void);
-void dComIfGs_isSaveSwitch(void);
+void dComIfGs_isEventBit__FUs(void);
+void dComIfGs_isSaveSwitch__Fi(void);
 void isSwitch__12dSv_memBit_cCFi(void);
 void isEventBit__11dSv_event_cCFUs(void);
 }
@@ -182,8 +182,8 @@ asm void JSUList_X1_(void) {
 }
 
 // dComIfGs_getStartPoint__Fv
-// dComIfGs_getStartPoint(void)
-asm void dComIfGs_getStartPoint(void) {
+// dComIfGs_getStartPoint__Fv(void)
+asm void dComIfGs_getStartPoint__Fv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B999C.s"
 }
@@ -210,8 +210,8 @@ asm void __as__10JAISoundIDFRC10JAISoundID(void) {
 }
 
 // dComIfGs_isSaveSwitch__Fi
-// dComIfGs_isSaveSwitch(int)
-asm void dComIfGs_isSaveSwitch(void) {
+// dComIfGs_isSaveSwitch__Fi(int)
+asm void dComIfGs_isSaveSwitch__Fi(void) {
     nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B9A94.s"
 }
@@ -239,7 +239,7 @@ asm void setWindStoneVol__8Z2SeqMgrFfUl(void) {
 
 // __ct__10JAISoundIDFUl
 // JAISoundID::JAISoundID(unsigned long)
-asm void JAISoundID_X1_(void) {
+asm void __ct__10JAISoundIDFUl(void) {
     nofralloc
 #include "Z2AudioLib/Z2SceneMgr/asm/func_802B9B60.s"
 }

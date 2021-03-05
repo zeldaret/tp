@@ -60,8 +60,8 @@ lbl_802E87E0:
 /* 802E87F0 002E5730  38 21 00 20 */	addi r1, r1, 0x20
 /* 802E87F4 002E5734  4E 80 00 20 */	blr 
 
-.global JUTDirectFile
-JUTDirectFile:
+.global __ct__13JUTDirectFileFv
+__ct__13JUTDirectFileFv:
 /* 802E87F8 002E5738  38 80 00 00 */	li r4, 0
 /* 802E87FC 002E573C  90 83 08 28 */	stw r4, 0x828(r3)
 /* 802E8800 002E5740  90 83 08 2C */	stw r4, 0x82c(r3)

@@ -11,7 +11,7 @@
 /* 80107328 00104268  48 00 00 94 */ b lbl_801073BC
 lbl_8010732C:
 /* 8010732C 0010426C  7F E3 FB 78 */ mr r3, r31
-/* 80107330 00104270  4B FF F2 5D */ bl checkNextAction__9daAlink_cFiBoard
+/* 80107330 00104270  4B FF F2 5D */ bl checkNextActionBoard__9daAlink_cFv
 /* 80107334 00104274  2C 03 00 00 */ cmpwi r3, 0
 /* 80107338 00104278  40 82 00 80 */ bne lbl_801073B8
 /* 8010733C 0010427C  80 1F 31 A0 */ lwz r0, 0x31a0(r31)

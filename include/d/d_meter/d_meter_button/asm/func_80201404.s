@@ -99,22 +99,22 @@ lbl_802014C0:
 /* 80201588 001FE4C8  7D E3 7B 78 */ mr r3, r15
 /* 8020158C 001FE4CC  7D C4 73 78 */ mr r4, r14
 /* 80201590 001FE4D0  7F 65 DB 78 */ mr r5, r27
-/* 80201594 001FE4D4  48 00 26 9D */ bl alphaAnimeButtonR__14dMeterButton_cFUlbemo
+/* 80201594 001FE4D4  48 00 26 9D */ bl alphaAnimeButtonRemo__14dMeterButton_cFUlb
 /* 80201598 001FE4D8  7C 7B 1B 78 */ mr r27, r3
 /* 8020159C 001FE4DC  7D E3 7B 78 */ mr r3, r15
 /* 802015A0 001FE4E0  7D C4 73 78 */ mr r4, r14
 /* 802015A4 001FE4E4  7F 85 E3 78 */ mr r5, r28
-/* 802015A8 001FE4E8  48 00 27 9D */ bl alphaAnimeButtonR__14dMeterButton_cFUlbemo2
+/* 802015A8 001FE4E8  48 00 27 9D */ bl alphaAnimeButtonRemo2__14dMeterButton_cFUlb
 /* 802015AC 001FE4EC  7C 7C 1B 78 */ mr r28, r3
 /* 802015B0 001FE4F0  7D E3 7B 78 */ mr r3, r15
 /* 802015B4 001FE4F4  7D C4 73 78 */ mr r4, r14
 /* 802015B8 001FE4F8  7F A5 EB 78 */ mr r5, r29
-/* 802015BC 001FE4FC  48 00 28 9D */ bl alphaAnimeButtonA__14dMeterButton_cFUlbR
+/* 802015BC 001FE4FC  48 00 28 9D */ bl alphaAnimeButtonAR__14dMeterButton_cFUlb
 /* 802015C0 001FE500  7C 7D 1B 78 */ mr r29, r3
 /* 802015C4 001FE504  7D E3 7B 78 */ mr r3, r15
 /* 802015C8 001FE508  7D C4 73 78 */ mr r4, r14
 /* 802015CC 001FE50C  7F C5 F3 78 */ mr r5, r30
-/* 802015D0 001FE510  48 00 29 91 */ bl alphaAnimeButton3D__14dMeterButton_cFUlbB
+/* 802015D0 001FE510  48 00 29 91 */ bl alphaAnimeButton3DB__14dMeterButton_cFUlb
 /* 802015D4 001FE514  7C 7E 1B 78 */ mr r30, r3
 /* 802015D8 001FE518  7D E3 7B 78 */ mr r3, r15
 /* 802015DC 001FE51C  7D C4 73 78 */ mr r4, r14
@@ -124,17 +124,17 @@ lbl_802014C0:
 /* 802015EC 001FE52C  7D E3 7B 78 */ mr r3, r15
 /* 802015F0 001FE530  7D C4 73 78 */ mr r4, r14
 /* 802015F4 001FE534  88 A1 00 AF */ lbz r5, 0xaf(r1)
-/* 802015F8 001FE538  48 00 2B 79 */ bl alphaAnimeButtonR__14dMeterButton_cFUlbeel
+/* 802015F8 001FE538  48 00 2B 79 */ bl alphaAnimeButtonReel__14dMeterButton_cFUlb
 /* 802015FC 001FE53C  90 61 00 0C */ stw r3, 0xc(r1)
 /* 80201600 001FE540  7D E3 7B 78 */ mr r3, r15
 /* 80201604 001FE544  7D C4 73 78 */ mr r4, r14
 /* 80201608 001FE548  88 A1 00 B3 */ lbz r5, 0xb3(r1)
-/* 8020160C 001FE54C  48 00 2C 6D */ bl alphaAnimeButtonR__14dMeterButton_cFUlbeel2
+/* 8020160C 001FE54C  48 00 2C 6D */ bl alphaAnimeButtonReel2__14dMeterButton_cFUlb
 /* 80201610 001FE550  90 61 00 10 */ stw r3, 0x10(r1)
 /* 80201614 001FE554  7D E3 7B 78 */ mr r3, r15
 /* 80201618 001FE558  7D C4 73 78 */ mr r4, r14
 /* 8020161C 001FE55C  88 A1 00 B7 */ lbz r5, 0xb7(r1)
-/* 80201620 001FE560  48 00 2D 49 */ bl alphaAnimeButtonA__14dMeterButton_cFUlbB
+/* 80201620 001FE560  48 00 2D 49 */ bl alphaAnimeButtonAB__14dMeterButton_cFUlb
 /* 80201624 001FE564  90 61 00 14 */ stw r3, 0x14(r1)
 /* 80201628 001FE568  7D E3 7B 78 */ mr r3, r15
 /* 8020162C 001FE56C  7D C4 73 78 */ mr r4, r14
@@ -144,17 +144,17 @@ lbl_802014C0:
 /* 8020163C 001FE57C  7D E3 7B 78 */ mr r3, r15
 /* 80201640 001FE580  7D C4 73 78 */ mr r4, r14
 /* 80201644 001FE584  88 A1 00 BF */ lbz r5, 0xbf(r1)
-/* 80201648 001FE588  48 00 2F 01 */ bl alphaAnimeButtonNun__14dMeterButton_cFUlbZ
+/* 80201648 001FE588  48 00 2F 01 */ bl alphaAnimeButtonNunZ__14dMeterButton_cFUlb
 /* 8020164C 001FE58C  90 61 00 1C */ stw r3, 0x1c(r1)
 /* 80201650 001FE590  7D E3 7B 78 */ mr r3, r15
 /* 80201654 001FE594  7D C4 73 78 */ mr r4, r14
 /* 80201658 001FE598  88 A1 00 C3 */ lbz r5, 0xc3(r1)
-/* 8020165C 001FE59C  48 00 2F C5 */ bl alphaAnimeButtonNun__14dMeterButton_cFUlbC
+/* 8020165C 001FE59C  48 00 2F C5 */ bl alphaAnimeButtonNunC__14dMeterButton_cFUlb
 /* 80201660 001FE5A0  90 61 00 20 */ stw r3, 0x20(r1)
 /* 80201664 001FE5A4  7D E3 7B 78 */ mr r3, r15
 /* 80201668 001FE5A8  7D C4 73 78 */ mr r4, r14
 /* 8020166C 001FE5AC  88 A1 00 C7 */ lbz r5, 0xc7(r1)
-/* 80201670 001FE5B0  48 00 30 89 */ bl alphaAnimeButtonB__14dMeterButton_cFUlbin
+/* 80201670 001FE5B0  48 00 30 89 */ bl alphaAnimeButtonBin__14dMeterButton_cFUlb
 /* 80201674 001FE5B4  7C 6E 1B 78 */ mr r14, r3
 /* 80201678 001FE5B8  7D E3 7B 78 */ mr r3, r15
 /* 8020167C 001FE5BC  48 00 94 09 */ bl pikariCheck__14dMeterButton_cFv

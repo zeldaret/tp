@@ -3,10 +3,10 @@
 /* 8020D87C 0020A7BC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8020D880 0020A7C0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8020D884 0020A7C4  7C 7F 1B 78 */ mr r31, r3
-/* 8020D888 0020A7C8  4B FF FD C9 */ bl isEnableDispMap__11dMeterMap_cFvAndMapDispSizeTypeNo
+/* 8020D888 0020A7C8  4B FF FD C9 */ bl isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv
 /* 8020D88C 0020A7CC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020D890 0020A7D0  41 82 00 18 */ beq lbl_8020D8A8
-/* 8020D894 0020A7D4  4B E2 07 B5 */ bl dComIfGp_mapShow
+/* 8020D894 0020A7D4  4B E2 07 B5 */ bl dComIfGp_mapShow__Fv
 /* 8020D898 0020A7D8  38 00 00 01 */ li r0, 1
 /* 8020D89C 0020A7DC  98 1F 00 2D */ stb r0, 0x2d(r31)
 /* 8020D8A0 0020A7E0  38 00 00 07 */ li r0, 7

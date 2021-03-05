@@ -18,7 +18,7 @@ lbl_800E1BF4:
 /* 800E1BF4 000DEB34  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1BF8 000DEB38  41 82 00 10 */ beq lbl_800E1C08
 /* 800E1BFC 000DEB3C  7F E3 FB 78 */ mr r3, r31
-/* 800E1C00 000DEB40  4B FF FE DD */ bl checkUpperItemAction__9daAlink_cFvCopyRod
+/* 800E1C00 000DEB40  4B FF FE DD */ bl checkUpperItemActionCopyRod__9daAlink_cFv
 /* 800E1C04 000DEB44  48 00 00 2C */ b lbl_800E1C30
 lbl_800E1C08:
 /* 800E1C08 000DEB48  7F E3 FB 78 */ mr r3, r31

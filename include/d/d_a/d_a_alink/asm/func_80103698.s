@@ -397,7 +397,7 @@ lbl_80103C04:
 /* 80103C18 00100B58  38 A5 ED 2C */ addi r5, r5, lbl_8038ED2C@l
 /* 80103C1C 00100B5C  C0 25 00 90 */ lfs f1, 0x90(r5)
 /* 80103C20 00100B60  C0 45 00 94 */ lfs f2, 0x94(r5)
-/* 80103C24 00100B64  4B FA 93 BD */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMSpeed
+/* 80103C24 00100B64  4B FA 93 BD */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80103C28 00100B68  48 00 00 2C */ b lbl_80103C54
 lbl_80103C2C:
 /* 80103C2C 00100B6C  7F 43 D3 78 */ mr r3, r26
@@ -411,7 +411,7 @@ lbl_80103C2C:
 lbl_80103C4C:
 /* 80103C4C 00100B8C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 lbl_80103C50:
-/* 80103C50 00100B90  4B FA 93 61 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANMMorf
+/* 80103C50 00100B90  4B FA 93 61 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_80103C54:
 /* 80103C54 00100B94  2C 1D 00 14 */ cmpwi r29, 0x14
 /* 80103C58 00100B98  41 82 00 6C */ beq lbl_80103CC4

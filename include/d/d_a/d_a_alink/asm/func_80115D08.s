@@ -74,7 +74,7 @@ lbl_80115DD4:
 /* 80115E28 00112D68  38 80 00 00 */ li r4, 0
 /* 80115E2C 00112D6C  38 A1 00 10 */ addi r5, r1, 0x10
 /* 80115E30 00112D70  38 C1 00 08 */ addi r6, r1, 8
-/* 80115E34 00112D74  48 03 F9 41 */ bl daNpcF_getPlayerInfoFromPlayerList
+/* 80115E34 00112D74  48 03 F9 41 */ bl daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz
 /* 80115E38 00112D78  3B A1 00 10 */ addi r29, r1, 0x10
 /* 80115E3C 00112D7C  28 1F 00 0C */ cmplwi r31, 0xc
 /* 80115E40 00112D80  41 82 00 48 */ beq lbl_80115E88
@@ -102,7 +102,7 @@ lbl_80115E88:
 /* 80115E8C 00112DCC  7F A4 EB 78 */ mr r4, r29
 /* 80115E90 00112DD0  7F C5 F3 78 */ mr r5, r30
 /* 80115E94 00112DD4  7F 66 DB 78 */ mr r6, r27
-/* 80115E98 00112DD8  4B FF FD B9 */ bl create__9daAlink_cFvNpcTks
+/* 80115E98 00112DD8  4B FF FD B9 */ bl createNpcTks__9daAlink_cFP4cXyziUl
 /* 80115E9C 00112DDC  38 60 00 01 */ li r3, 1
 /* 80115EA0 00112DE0  48 00 00 08 */ b lbl_80115EA8
 lbl_80115EA4:

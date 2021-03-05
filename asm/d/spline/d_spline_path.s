@@ -195,8 +195,8 @@ Calc__14d2DBSplinePathFP4cXyz:
 /* 80097B18 00094A58  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097B1C 00094A5C  4E 80 00 20 */	blr 
 
-.global Calc__14d2DBSplinePathFP4cXyz_X1_
-Calc__14d2DBSplinePathFP4cXyz_X1_:
+.global Calc__14d2DBSplinePathFPf
+Calc__14d2DBSplinePathFPf:
 /* 80097B20 00094A60  C0 23 00 1C */	lfs f1, 0x1c(r3)
 /* 80097B24 00094A64  80 03 00 28 */	lwz r0, 0x28(r3)
 /* 80097B28 00094A68  54 00 10 3A */	slwi r0, r0, 2
