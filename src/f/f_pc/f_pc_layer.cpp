@@ -28,11 +28,11 @@ BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
     return checkEqual(1, fpcMtdTg_Do(pLayer));
 }
 
-s32 fpcLy_IntoQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag, s32 idx) {
+s32 fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx) {
     return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);
 }
 
-s32 fpcLy_ToQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag) {
+s32 fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag) {
     return cTg_AdditionToTree(&pLayer->mNodeListTree, treeListIdx, pTag);
 }
 

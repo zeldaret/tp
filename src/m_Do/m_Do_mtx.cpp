@@ -162,7 +162,8 @@ asm void mDoMtx_inverseTranspose__FPA4_CfPA4_f(void) {
 }
 
 // mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion
-// mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion(const Quaternion*, const Quaternion*, Quaternion*)
+// mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion(const Quaternion*, const
+// Quaternion*, Quaternion*)
 asm void mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion(void) {
     nofralloc
 #include "m_Do/m_Do_mtx/asm/func_8000CB5C.s"

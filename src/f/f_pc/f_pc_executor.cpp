@@ -5,8 +5,8 @@
 #include "f/f_pc/f_pc_layer_tag.h"
 #include "f/f_pc/f_pc_line_iter.h"
 #include "f/f_pc/f_pc_node.h"
-#include "f/f_pc/f_pc_searcher.h"
 #include "f/f_pc/f_pc_pause.h"
+#include "f/f_pc/f_pc_searcher.h"
 
 // g_fpcNd_type
 extern s32 lbl_80450D40;

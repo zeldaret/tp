@@ -315,7 +315,8 @@ void getMagneBootsLocalAngleY__9daAlink_cFsi(void);
 void getSceneExitMoveAngle__9daAlink_cFv(void);
 void getSwimMaxFallSpeed__9daAlink_cCFv(void);
 void getSwordAtType__9daAlink_cFv(void);
-void getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl(void);
+void getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl(
+    void);
 void getWallGrabStatus__9daAlink_cFv(void);
 void getZoraSwim__9daAlink_cCFv(void);
 void grabLineCheck__9daAlink_cFP4cXyzP4cXyz(void);
@@ -983,7 +984,8 @@ void Set__12dCcMassS_MngFP8cCcD_ObjUc(void);
 void getLayerNo__14dComIfG_play_cFi(int);
 void dComIfG_resDelete__FP30request_of_phase_process_classPCc(void);
 void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void);
-void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void);
+void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(
+    void);
 void dComIfGp_addSelectItemNum__Fis(void);
 void dComIfGp_att_getCatghTarget__Fv(void);
 void dComIfGp_checkItemGet__FUci(void);
@@ -1085,18 +1087,23 @@ void setSmellType__12dMsgObject_cFUc(void);
 void getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf(void);
 void forceOnEventMove__Q213dPa_control_c7level_cFUl(void);
 void getEmitter__Q213dPa_control_c7level_cFUl(void);
-void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
+void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl(void);
-void setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(void);
-void setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(void);
+void setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(
+    void);
+void setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz(
+    void);
 void setWaterRipple__13dPa_control_cFPUlR13cBgS_PolyInfoPC4cXyzfPC12dKy_tevstr_cPC4cXyzSc(void);
 void setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz(void);
 void dPaneClass_showNullPane__FP9J2DScreen(void);
 void init__7dPaPo_cFP9dBgS_Acchff(void);
 void setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff(void);
 void clearFourAllID__8dPaPoF_cFv(void);
-void setEffectFour__8dPaPoF_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff(void);
+void setEffectFour__8dPaPoF_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff(
+    void);
 void dPath_GetRoomPath__Fii(void);
 void getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci(void);
 void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci(void);
@@ -1234,7 +1241,8 @@ void __ct__11J3DTexNoAnmFv(void);
 void __dt__18JPAEmitterCallBackFv(void);
 void __dt__19JPAParticleCallBackFv(void);
 void JPASetRMtxTVecfromMtx(void);
-void getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData(void);
+void getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData(
+    void);
 void mDoAud_seStartLevel__FUlPC3VecUlSc(void);
 void mDoAud_setLinkGroupInfo__FUc(void);
 void mDoAud_setLinkHp__Fll(void);
@@ -2643,7 +2651,9 @@ asm void checkUnderMove1BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM(void) {
 }
 
 // getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl
-asm void getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl(void) {
+asm void
+getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl(
+    void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AC610.s"
 }
@@ -2658,7 +2668,9 @@ asm void setDoubleAnimeBlendRatio__9daAlink_cFf(void) {
 // commonDoubleAnime__9daAlink_cFP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformfffi
 // daAlink_c::commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*,
 // J3DAnmTransform*, float, float, float, int)
-asm void commonDoubleAnime__9daAlink_cFP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformfffi(void) {
+asm void
+commonDoubleAnime__9daAlink_cFP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformfffi(
+    void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_800AC754.s"
 }
@@ -11185,8 +11197,10 @@ asm void hookshotAtHitCallBack__9daAlink_cFP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_G
 }
 
 // daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf
-// daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*)
-asm void daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(void) {
+// daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(fopAc_ac_c*,
+// dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*)
+asm void
+daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8010859C.s"
 }
@@ -12535,7 +12549,8 @@ asm void setStickAnmData__9daAlink_cFP10J3DAnmBaseiiUsi(void) {
 }
 
 // daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi
-// daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi(dDemo_actor_c*, int*, int*, int*, unsigned short*, int*, int*)
+// daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi(dDemo_actor_c*, int*, int*, int*,
+// unsigned short*, int*, int*)
 asm void daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80119464.s"
@@ -13572,7 +13587,8 @@ asm void initBlur__14daAlink_blur_cFfiPC4cXyzPC4cXyzPC4cXyz(void) {
 }
 
 // setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz
-// setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz(const cXyz*, const cXyz*, const cXyz*, const cXyz*, float, cXyz*)
+// setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz(const cXyz*, const cXyz*, const cXyz*, const
+// cXyz*, float, cXyz*)
 asm void setBezierPos__FPC4cXyzPC4cXyzPC4cXyzPC4cXyzfP4cXyz(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_80125778.s"
@@ -13809,7 +13825,8 @@ asm void setBlendWolfAtnBackMoveAnime__9daAlink_cFf(void) {
 }
 
 // setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif
-asm void setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif(void) {
+asm void
+setDoubleAnimeWolf__9daAlink_cFfffQ29daAlink_c12daAlink_WANMQ29daAlink_c12daAlink_WANMif(void) {
     nofralloc
 #include "d/d_a/d_a_alink/asm/func_8012948C.s"
 }

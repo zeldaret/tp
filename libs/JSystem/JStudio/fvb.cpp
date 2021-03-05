@@ -6,7 +6,8 @@ extern "C" {
 extern void getObject_index__Q37JStudio3fvb8TControlFUl();
 extern void insert__Q27JGadget20TVector_pointer_voidFPPvRCPv();
 extern void getObject__Q37JStudio3fvb8TControlFPCvUl();
-extern void getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData();
+extern void
+getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData();
 extern void range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd();
 void __ct__Q27JStudio24TFunctionValue_compositeFv();
 extern void getCompositeOperation___Q27JStudio3fvbFQ47JStudio3fvb4data11TEComposite();

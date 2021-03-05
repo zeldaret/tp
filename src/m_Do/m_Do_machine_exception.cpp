@@ -23,7 +23,7 @@ void dump__11JKRAramHeapFv(void);
 void exception_addition__FP10JUTConsole(void);
 void getFreeSize__7JKRHeapCFv(void);
 void getTotalFreeSize__7JKRHeapCFv(void);
-void print(void);
+void print__FPCc(void);
 void print_f__FPCce(void);
 }
 
@@ -51,7 +51,7 @@ asm void print_f__FPCce(void) {
 
 // print__FPCc
 // print(const s8*)
-asm void print(void) {
+asm void print__FPCc(void) {
     nofralloc
 #include "m_Do/m_Do_machine_exception/asm/func_80017E08.s"
 }

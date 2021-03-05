@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029bd14
 
 
-.global JASLfo
-JASLfo:
+.global __ct__6JASLfoFv
+__ct__6JASLfoFv:
 /* 8029BD14 00298C54  38 80 00 00 */	li r4, 0
 /* 8029BD18 00298C58  90 83 00 00 */	stw r4, 0(r3)
 /* 8029BD1C 00298C5C  38 00 00 01 */	li r0, 1
@@ -112,7 +112,7 @@ lbl_8029BE60:
 /* 8029BE74 00298DB4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029BE78 00298DB8  3C 60 80 43 */	lis r3, lbl_80431C40@ha
 /* 8029BE7C 00298DBC  38 63 1C 40 */	addi r3, r3, lbl_80431C40@l
-/* 8029BE80 00298DC0  4B FF FE 95 */	bl JASLfo
+/* 8029BE80 00298DC0  4B FF FE 95 */	bl __ct__6JASLfoFv
 /* 8029BE84 00298DC4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029BE88 00298DC8  7C 08 03 A6 */	mtlr r0
 /* 8029BE8C 00298DCC  38 21 00 10 */	addi r1, r1, 0x10

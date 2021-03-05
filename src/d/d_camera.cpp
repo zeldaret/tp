@@ -983,7 +983,8 @@ asm void lineCollisionCheckBush__9dCamera_cFP4cXyzP4cXyz(void) {
 }
 
 // sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv
-// sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv(dBgS_SphChk*, cBgD_Vtx_t*, int, int, int, cM3dGPla*, void*)
+// sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv(dBgS_SphChk*, cBgD_Vtx_t*, int,
+// int, int, cM3dGPla*, void*)
 asm void sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv(void) {
     nofralloc
 #include "d/d_camera/asm/func_80165C08.s"
@@ -1579,7 +1580,7 @@ asm void view_setup__FP20camera_process_class(void) {
 
 // store__FP20camera_process_class
 // store(camera_process_class*)
-asm void store(void) {
+asm void store__FP20camera_process_class(void) {
     nofralloc
 #include "d/d_camera/asm/func_80181804.s"
 }

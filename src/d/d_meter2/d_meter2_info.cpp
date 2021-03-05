@@ -249,14 +249,17 @@ asm void getItemType__13dMeter2Info_cFUc(void) {
 // readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei
 // dMeter2Info_c::readItemTexture(unsigned char, void*, J2DPicture*, void*, J2DPicture*, void*,
 // J2DPicture*, void*, J2DPicture*, int)
-asm void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void) {
+asm void
+readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(
+    void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021CF08.s"
 }
 
 // setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture
 // dMeter2Info_c::setItemColor(unsigned char, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*)
-asm void setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture(void) {
+asm void
+setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture(void) {
     nofralloc
 #include "d/d_meter2/d_meter2_info/asm/func_8021D36C.s"
 }

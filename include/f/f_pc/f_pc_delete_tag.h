@@ -6,7 +6,7 @@
 #include "f/f_pc/f_pc_layer.h"
 #include "global.h"
 
-typedef s32 (*delete_tag_func)(void*);
+typedef int (*delete_tag_func)(void*);
 
 typedef struct delete_tag_class {
     create_tag_class mBase;

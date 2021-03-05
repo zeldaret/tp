@@ -46,7 +46,8 @@ void dKy_efplight_set__FP15LIGHT_INFLUENCE(void);
 void dKy_get_parcent__Ffff(void);
 void dKy_GxFog_set__Fv(void);
 void dKy_move_room_ratio__FP12dKy_tevstr_cPSc(void);
-void dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void);
+void dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(
+    void);
 void dKy_rain_check__Fv(void);
 void dKy_set_actcol_ratio__Ff(void);
 void dKy_set_bgcol_ratio__Ff(void);
@@ -58,7 +59,8 @@ void dKyw_get_wind_pow__Fv(void);
 void dKyw_get_wind_vec__Fv(void);
 void dKyw_get_wind_vecpow__Fv(void);
 void dKyw_pntwind_get_vecpow__FP4cXyz(void);
-void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
 void getDaytime__18dScnKy_env_light_cFv(void);
 void getStatusRoomDt__20dStage_roomControl_cFi(void);

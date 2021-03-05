@@ -6,10 +6,13 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_lib/d_lib.h"
 #include "f/f_pc/f_pc_base.h"
+#include "f/f_pc/f_pc_create_iter.h"
 #include "f/f_pc/f_pc_creator.h"
 #include "f/f_pc/f_pc_delete_tag.h"
 #include "f/f_pc/f_pc_deletor.h"
+#include "f/f_pc/f_pc_draw.h"
 #include "f/f_pc/f_pc_executor.h"
+#include "f/f_pc/f_pc_fstcreate_req.h"
 #include "f/f_pc/f_pc_layer_iter.h"
 #include "f/f_pc/f_pc_layer_tag.h"
 #include "f/f_pc/f_pc_line.h"
@@ -20,9 +23,6 @@
 #include "f/f_pc/f_pc_pause.h"
 #include "f/f_pc/f_pc_priority.h"
 #include "f/f_pc/f_pc_profile.h"
-#include "f/f_pc/f_pc_draw.h"
-#include "f/f_pc/f_pc_fstcreate_req.h"
-#include "f/f_pc/f_pc_create_iter.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
@@ -107,7 +107,8 @@ void fpcM_Init(void) {
 
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
                                     void* pData) {
-    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3, pData);
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3,
+                            pData);
 }
 
 s32 fpcM_IsPause(void* pProc, u8 param_2) {

@@ -114,7 +114,8 @@ asm void createTimerAppend__FiUlUcUcffffUi(void) {
 }
 
 // fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i
-// fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int (*)(void*))
+// fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(s16, fopAc_ac_c*, cXyz*, u32*, u32*, int
+// (*)(void*))
 asm void fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i(void) {
     nofralloc
 #include "f/f_op/f_op_msg_mng/asm/func_8001FC4C.s"

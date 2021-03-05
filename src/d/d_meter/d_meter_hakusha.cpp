@@ -16,7 +16,8 @@ void hide__13CPaneMgrAlphaFv(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void show__13CPaneMgrAlphaFv(void);
 void getLayerNo__14dComIfG_play_cFi(int);
-void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(void);
+void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(
+    void);
 void setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void alphaAnimeHakusha__15dMeterHakusha_cFUl(void);

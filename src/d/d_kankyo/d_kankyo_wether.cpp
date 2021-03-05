@@ -62,7 +62,8 @@ void dKyw_pntlight_set__FP14WIND_INFLUENCE(void);
 void dKyw_pntwind_cut__FP14WIND_INFLUENCE(void);
 void dKyw_pntwind_init__Fv(void);
 void dKyw_wind_init__Fv(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void drawCloudShadow__FPA4_fPPUc(void);
 void drawVrkumo__FPA4_fR8_GXColorPPUc(void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);

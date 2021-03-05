@@ -86,7 +86,8 @@ void dKyw_rain_set__Fi(void);
 void dKyw_wether_proc__Fv(void);
 void dKyw_wind_set__Fv(void);
 void getActor__12dMsgObject_cFv(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void getRes__14dRes_control_cFPCclP11dRes_info_ci(void);
 void getDarkDaytime__18dScnKy_env_light_cFv(void);
 void getStatusRoomDt__20dStage_roomControl_cFi(void);
@@ -446,8 +447,8 @@ asm void kankyo_color_ratio_calc__FP8_GXColor11_GXColorS10f(void) {
 }
 
 // kankyo_color_ratio_set__FUcUcfUcUcfsf
-// kankyo_color_ratio_set__FUcUcfUcUcfsf(unsigned char, unsigned char, float, unsigned char, unsigned char, float,
-// short, float)
+// kankyo_color_ratio_set__FUcUcfUcUcfsf(unsigned char, unsigned char, float, unsigned char,
+// unsigned char, float, short, float)
 asm void kankyo_color_ratio_set__FUcUcfUcUcfsf(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_8019D68C.s"
@@ -757,9 +758,12 @@ asm void setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPi
 }
 
 // dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
-// dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f(_GXColorS10*, color_RGB_class*, color_RGB_class*, color_RGB_class*,
-// color_RGB_class*, float, float, _GXColorS10, float)
-asm void dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f(void) {
+// dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f(_GXColorS10*,
+// color_RGB_class*, color_RGB_class*, color_RGB_class*, color_RGB_class*, float, float,
+// _GXColorS10, float)
+asm void
+dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f(
+    void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A0340.s"
 }
@@ -788,7 +792,9 @@ asm void setLight_actor__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10PfPf(
 // settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 // dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz*, dKy_tevstr_c*, _GXColorS10*,
 // _GXColorS10*, float*, float*)
-asm void settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf(void) {
+asm void
+settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf(
+    void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A1D64.s"
 }
@@ -810,7 +816,9 @@ asm void cLib_addCalcU8__FPUcUcss(void) {
 // settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
 // dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz*, dKy_tevstr_c*, _GXColorS10,
 // _GXColorS10, unsigned char)
-asm void settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc(void) {
+asm void
+settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc(
+    void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A2128.s"
 }
@@ -1390,24 +1398,28 @@ asm void NewAmbColGet__FP11_GXColorS10(void) {
 }
 
 // dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
-// dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*, dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*,
-// float)
-asm void dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
+// dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*,
+// dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*, float)
+asm void
+dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A8E20.s"
 }
 
 // dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
-// dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*, dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*,
-// float)
-asm void dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
+// dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*,
+// dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*, float)
+asm void
+dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A9BE4.s"
 }
 
 // dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
-// dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*, dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*, float)
-asm void dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
+// dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(cXyz*,
+// dKy_tevstr_c*, _GXColor*, _GXColor*, _GXColor*, _GXColor*, float)
+asm void
+dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801A9CBC.s"
 }
@@ -1427,7 +1439,8 @@ asm void dKy_BossSpotLight_set__FP4cXyzfffP8_GXColorfUcUc(void) {
 }
 
 // dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc
-// dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc(cXyz*, float, float, float, _GXColor*, float, unsigned char, unsigned char)
+// dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc(cXyz*, float, float, float, _GXColor*, float,
+// unsigned char, unsigned char)
 asm void dKy_WolfEyeLight_set__FP4cXyzfffP8_GXColorfUcUc(void) {
     nofralloc
 #include "d/d_kankyo/asm/func_801AAC5C.s"

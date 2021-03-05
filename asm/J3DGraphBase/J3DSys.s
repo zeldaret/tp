@@ -3,8 +3,8 @@
 .section .text, "ax" # 8030fde8
 
 
-.global J3DSys
-J3DSys:
+.global __ct__6J3DSysFv
+__ct__6J3DSysFv:
 /* 8030FDE8 0030CD28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030FDEC 0030CD2C  7C 08 02 A6 */	mflr r0
 /* 8030FDF0 0030CD30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1158,7 +1158,7 @@ reinitPixelProc__6J3DSysFv:
 /* 80310ED8 0030DE18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80310EDC 0030DE1C  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 80310EE0 0030DE20  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 80310EE4 0030DE24  4B FF EF 05 */	bl J3DSys
+/* 80310EE4 0030DE24  4B FF EF 05 */	bl __ct__6J3DSysFv
 /* 80310EE8 0030DE28  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80310EEC 0030DE2C  7C 08 03 A6 */	mtlr r0
 /* 80310EF0 0030DE30  38 21 00 10 */	addi r1, r1, 0x10

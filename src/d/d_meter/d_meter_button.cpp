@@ -26,12 +26,14 @@ void setAlphaRate__13CPaneMgrAlphaFf(void);
 void show__13CPaneMgrAlphaFv(void);
 void getLayerNo__14dComIfG_play_cFi(int);
 void dComIfGs_isOneZoneSwitch__Fii(void);
-void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
+void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void);
 void getCanoeFishing__13dMeter2Draw_cFv(void);
 void setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
 void decFloatingMessageTimer__13dMeter2Info_cFv(void);
 void getStringLength__13dMeter2Info_cFP10J2DTextBoxPc(void);
-void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void);
+void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(
+    void);
 void resetFloatingMessage__13dMeter2Info_cFv(void);
 void _create__14dMeterButton_cFv(void);
 void _delete__14dMeterButton_cFv(void);

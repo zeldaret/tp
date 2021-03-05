@@ -1800,8 +1800,8 @@ lbl_801596DC:
 /* 801596FC 0015663C  7C 08 03 A6 */	mtlr r0
 /* 80159700 00156640  38 21 00 50 */	addi r1, r1, 0x50
 /* 80159704 00156644  4E 80 00 20 */	blr 
-.global s_sub1
-s_sub1:
+.global s_sub1__FPvPv
+s_sub1__FPvPv:
 /* 80159708 00156648  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015970C 0015664C  7C 08 02 A6 */	mflr r0
 /* 80159710 00156650  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1863,10 +1863,10 @@ lbl_801597A8:
 /* 801597E4 00156724  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 801597E8 00156728  4B EC 0F 29 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 801597EC 0015672C  B0 6D 8A 8C */	sth r3, lbl_8045100C-_SDA_BASE_(r13)
-.global s_sub1
-/* 801597F0 00156730  3C 60 80 16 */	lis r3, s_sub1@ha
-.global s_sub1
-/* 801597F4 00156734  38 63 97 08 */	addi r3, r3, s_sub1@l
+.global s_sub1__FPvPv
+/* 801597F0 00156730  3C 60 80 16 */	lis r3, s_sub1__FPvPv@ha
+.global s_sub1__FPvPv
+/* 801597F4 00156734  38 63 97 08 */	addi r3, r3, s_sub1__FPvPv@l
 /* 801597F8 00156738  7F E4 FB 78 */	mr r4, r31
 /* 801597FC 0015673C  4B EC 7B 3D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80159800 00156740  80 6D 8A 84 */	lwz r3, lbl_80451004-_SDA_BASE_(r13)
@@ -2647,8 +2647,8 @@ lbl_8015A2B8:
 lbl_8015A2BC:
 /* 8015A2BC 001571FC  7C 03 03 78 */	mr r3, r0
 /* 8015A2C0 00157200  4E 80 00 20 */	blr 
-.global s_sub
-s_sub:
+.global s_sub__FPvPv
+s_sub__FPvPv:
 /* 8015A2C4 00157204  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015A2C8 00157208  7C 08 02 A6 */	mflr r0
 /* 8015A2CC 0015720C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2710,10 +2710,10 @@ lbl_8015A354:
 /* 8015A3A0 001572E0  38 60 00 00 */	li r3, 0
 /* 8015A3A4 001572E4  48 00 00 2C */	b lbl_8015A3D0
 lbl_8015A3A8:
-.global s_sub
-/* 8015A3A8 001572E8  3C 60 80 16 */	lis r3, s_sub@ha
-.global s_sub
-/* 8015A3AC 001572EC  38 63 A2 C4 */	addi r3, r3, s_sub@l
+.global s_sub__FPvPv
+/* 8015A3A8 001572E8  3C 60 80 16 */	lis r3, s_sub__FPvPv@ha
+.global s_sub__FPvPv
+/* 8015A3AC 001572EC  38 63 A2 C4 */	addi r3, r3, s_sub__FPvPv@l
 /* 8015A3B0 001572F0  7F E4 FB 78 */	mr r4, r31
 /* 8015A3B4 001572F4  4B EC 6F 85 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8015A3B8 001572F8  80 1F 00 04 */	lwz r0, 4(r31)

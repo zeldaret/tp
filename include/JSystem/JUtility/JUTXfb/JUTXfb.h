@@ -7,7 +7,7 @@
 
 class JUTXfb {
 public:
-    enum EXfbNumber { // TODO: placeholder
+    enum EXfbNumber {  // TODO: placeholder
         UNK_0 = 0,
         UNK_1 = 1,
         UNK_2 = 2,

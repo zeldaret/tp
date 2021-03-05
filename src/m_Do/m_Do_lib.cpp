@@ -45,7 +45,8 @@ extern u8 lbl_80451BA0;
 
 extern "C" {
 // mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj
-// mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(const ResTIMG*, _GXTexObj*, u32, _GXTlutObj*)
+// mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(const ResTIMG*, _GXTexObj*, u32,
+// _GXTlutObj*)
 asm void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_8001513C.s"

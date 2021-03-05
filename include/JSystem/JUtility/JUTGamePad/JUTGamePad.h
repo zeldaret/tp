@@ -76,7 +76,8 @@ public:
         CStick();
         void clear();
         void clear(JUTGamePad* pad);
-        u32 update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick, u32 unk2);
+        u32 update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick,
+                   u32 unk2);
         u32 getButton(u32 unk);
 
         float mPosX;

@@ -204,10 +204,10 @@ create__10dMdl_mng_cFv:
 /* 8009C7C0 00099700  48 23 24 8D */	bl __nw__FUl
 /* 8009C7C4 00099704  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8009C7C8 00099708  41 82 00 28 */	beq lbl_8009C7F0
-.global dMdl_c
-/* 8009C7CC 0009970C  3C 80 80 0A */	lis r4, dMdl_c@ha
-.global dMdl_c
-/* 8009C7D0 00099710  38 84 C9 30 */	addi r4, r4, dMdl_c@l
+.global __ct__6dMdl_cFv
+/* 8009C7CC 0009970C  3C 80 80 0A */	lis r4, __ct__6dMdl_cFv@ha
+.global __ct__6dMdl_cFv
+/* 8009C7D0 00099710  38 84 C9 30 */	addi r4, r4, __ct__6dMdl_cFv@l
 .global __dt__6dMdl_cFv
 /* 8009C7D4 00099714  3C A0 80 0A */	lis r5, __dt__6dMdl_cFv@ha
 .global __dt__6dMdl_cFv
@@ -314,8 +314,8 @@ lbl_8009C920:
 /* 8009C924 00099864  7C 08 03 A6 */	mtlr r0
 /* 8009C928 00099868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C92C 0009986C  4E 80 00 20 */	blr 
-.global dMdl_c
-dMdl_c:
+.global __ct__6dMdl_cFv
+__ct__6dMdl_cFv:
 /* 8009C930 00099870  3C 80 80 3D */	lis r4, lbl_803CD97C@ha
 /* 8009C934 00099874  38 04 D9 7C */	addi r0, r4, lbl_803CD97C@l
 /* 8009C938 00099878  90 03 00 00 */	stw r0, 0(r3)

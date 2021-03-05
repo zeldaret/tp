@@ -36,8 +36,8 @@ void fpcLy_DeletingMesg(layer_class* pLayer);
 BOOL fpcLy_IsCreatingMesg(layer_class* pLayer);
 BOOL fpcLy_IsDeletingMesg(layer_class* pLayer);
 
-s32 fpcLy_IntoQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag, s32 idx);
-s32 fpcLy_ToQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag);
+s32 fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx);
+s32 fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag);
 s32 fpcLy_QueueTo(layer_class* pLayer, create_tag_class* pTag);
 
 void fpcLy_Cancel(layer_class* pLayer);

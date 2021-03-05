@@ -93,7 +93,8 @@ void dComIfG_resetToOpening__FP11scene_class(void);
 void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void);
 void dComIfG_resLoad__FP30request_of_phase_process_classPCc(void);
 void dComIfG_TimerDeleteRequest__Fi(void);
-void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void);
+void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(
+    void);
 void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(void);
 void dComIfGp_addSelectItemNum__Fis(void);
 void dComIfGp_calcNowRegion__Fv(void);
@@ -559,7 +560,8 @@ asm void phase_3__FPc(void) {
 }
 
 // dComIfG_resLoad__FP30request_of_phase_process_classPCc
-// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const char*)
+// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*)
 asm void dComIfG_resLoad__FP30request_of_phase_process_classPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CEBC.s"
@@ -587,14 +589,16 @@ asm void phase_03__FP12phaseParam_c(void) {
 }
 
 // dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap
-// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const char*, JKRHeap*)
+// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*, JKRHeap*)
 asm void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CFC0.s"
 }
 
 // dComIfG_resDelete__FP30request_of_phase_process_classPCc
-// dComIfG_resDelete__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const char*)
+// dComIfG_resDelete__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*)
 asm void dComIfG_resDelete__FP30request_of_phase_process_classPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D008.s"
@@ -608,7 +612,8 @@ asm void dComIfGp_getReverb__Fi(void) {
 }
 
 // dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj
-// dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(cXyz*, float, float, cBgS_PolyInfo&, short, float, _GXTexObj*)
+// dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(cXyz*, float, float,
+// cBgS_PolyInfo&, short, float, _GXTexObj*)
 asm void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D0B4.s"
@@ -636,8 +641,8 @@ asm void dComIfGp_getRoomArrow__Fi(void) {
 }
 
 // dComIfGp_setNextStage__FPCcsScScfUliScsii
-// dComIfGp_setNextStage__FPCcsScScfUliScsii(const char*, short, char, char, float, unsigned long, int, char, short,
-// int, int)
+// dComIfGp_setNextStage__FPCcsScScfUliScsii(const char*, short, char, char, float, unsigned long,
+// int, char, short, int, int)
 asm void dComIfGp_setNextStage__FPCcsScScfUliScsii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D2FC.s"
@@ -960,9 +965,11 @@ asm void dComIfGp_addSelectItemNum__Fis(void) {
 }
 
 // dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
-// dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(unsigned long, char, J3DModel*, cXyz*, float, float, float, float,
-// cBgS_PolyInfo&, dKy_tevstr_c*, short, float, _GXTexObj*)
-asm void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void) {
+// dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(unsigned
+// long, char, J3DModel*, cXyz*, float, float, float, float, cBgS_PolyInfo&, dKy_tevstr_c*, short,
+// float, _GXTexObj*)
+asm void
+dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E910.s"
 }
@@ -1303,7 +1310,8 @@ asm void dComIfGp_TransportWarp_check__Fv(void) {
 }
 
 // dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
-// dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(request_of_phase_process_class*, int (*)(void*), void*)
+// dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(request_of_phase_process_class*,
+// int (*)(void*), void*)
 asm void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FB20.s"

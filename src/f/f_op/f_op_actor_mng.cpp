@@ -101,8 +101,10 @@ void searchMapEventData__14dEvt_control_cFUcl(void);
 void setGtItm__14dEvt_control_cFUc(void);
 void dKy_Sound_get__Fv(void);
 void getEmitter__Q213dPa_control_c7level_cFUl(void);
-void setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz(void);
-void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz(
+    void);
+void set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi(void);
 const char* dStage_getName2__FsSc(s16, s8);
 void checkArea__13daTagStream_cFPC4cXyz(void);

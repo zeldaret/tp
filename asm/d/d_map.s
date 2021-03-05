@@ -1363,8 +1363,8 @@ lbl_80029860:
 /* 8002986C 000267AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80029870 000267B0  4E 80 00 20 */	blr 
 
-.global dMap_c
-dMap_c:
+.global __ct__6dMap_cFiiii
+__ct__6dMap_cFiiii:
 /* 80029874 000267B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029878 000267B8  7C 08 02 A6 */	mflr r0
 /* 8002987C 000267BC  90 01 00 24 */	stw r0, 0x24(r1)

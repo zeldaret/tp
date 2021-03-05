@@ -67,8 +67,8 @@ lbl_8007927C:
 /* 8007928C 000761CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80079290 000761D0  4E 80 00 20 */	blr 
 
-.global cBgW
-cBgW:
+.global __ct__4cBgWFv
+__ct__4cBgWFv:
 /* 80079294 000761D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80079298 000761D8  7C 08 02 A6 */	mflr r0
 /* 8007929C 000761DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2827,14 +2827,14 @@ GetTriGrp__4cBgWCFi:
 /* 8007B968 000788A8  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 8007B96C 000788AC  4E 80 00 20 */	blr 
 
-.global dBgW
-dBgW:
+.global __ct__4dBgWFv
+__ct__4dBgWFv:
 /* 8007B970 000788B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8007B974 000788B4  7C 08 02 A6 */	mflr r0
 /* 8007B978 000788B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8007B97C 000788BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8007B980 000788C0  7C 7F 1B 78 */	mr r31, r3
-/* 8007B984 000788C4  4B FF D9 11 */	bl cBgW
+/* 8007B984 000788C4  4B FF D9 11 */	bl __ct__4cBgWFv
 /* 8007B988 000788C8  3C 60 80 3B */	lis r3, lbl_803ABA80@ha
 /* 8007B98C 000788CC  38 03 BA 80 */	addi r0, r3, lbl_803ABA80@l
 /* 8007B990 000788D0  90 1F 00 04 */	stw r0, 4(r31)
@@ -5854,7 +5854,7 @@ lbl_8007E494:
 /* 8007E4E4 0007B424  48 25 07 69 */	bl __nw__FUl
 /* 8007E4E8 0007B428  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8007E4EC 0007B42C  41 82 00 0C */	beq lbl_8007E4F8
-/* 8007E4F0 0007B430  4B FF D4 81 */	bl dBgW
+/* 8007E4F0 0007B430  4B FF D4 81 */	bl __ct__4dBgWFv
 /* 8007E4F4 0007B434  7C 7F 1B 78 */	mr r31, r3
 lbl_8007E4F8:
 /* 8007E4F8 0007B438  28 1F 00 00 */	cmplwi r31, 0

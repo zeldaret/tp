@@ -29,6 +29,6 @@ typedef struct fpcCtIt_jilprm_c {
 s32 fpcCtIt_Method(fpcCtIt_MethodFunc pJudge, void* pUserData);
 void* fpcCtIt_Judge(fpcCtIt_JudgeFunc pJudge, void* pUserData);
 void* fpcCtIt_filter_JudgeInLayer(create_tag*, fpcCtIt_jilprm_c*);
-void* fpcCtIt_JudgeInLayer(u32 pUnk0, fpcCtIt_JudgeFunc pFunc, void* pUserData);
+void* fpcCtIt_JudgeInLayer(unsigned int pUnk0, fpcCtIt_JudgeFunc pFunc, void* pUserData);
 
 #endif

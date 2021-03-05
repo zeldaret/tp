@@ -471,7 +471,8 @@ asm void deleteObject__12Z2CreatureOIFv(void) {
 
 // init__12Z2CreatureOIFP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3Vec
 // Z2CreatureOI::init(Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*)
-asm void init__12Z2CreatureOIFP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3Vec(void) {
+asm void
+init__12Z2CreatureOIFP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3VecP3Vec(void) {
     nofralloc
 #include "Z2AudioLib/Z2Creature/asm/func_802C2670.s"
 }

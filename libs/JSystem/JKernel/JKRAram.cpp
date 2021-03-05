@@ -135,11 +135,13 @@ asm void* JKRAram::run(void) {
 
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
+        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xdb, "%s",
+                                         ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
+        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xe3, "%s",
+                                         ":::address not 32Byte aligned.");
     }
 }
 

@@ -187,7 +187,8 @@ void calc__28mDoExt_MtxCalcAnmBlendTblOldFv(void);
 void __dt__12J3DFrameCtrlFv(void);
 void func_8000FA20(void);
 void __dt__19J3DMtxCalcNoAnmBaseFv(void);
-void __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(void);
+void __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(
+    void);
 void __dt__14mDoExt_McaMorfFv(void);
 void calc__14mDoExt_McaMorfFv(void);
 void entryDL__14mDoExt_McaMorfFv(void);
@@ -195,7 +196,8 @@ void modelCalc__14mDoExt_McaMorfFv(void);
 void __dt__16mDoExt_McaMorfSOFv(void);
 void calc__16mDoExt_McaMorfSOFv(void);
 void updateDL__16mDoExt_McaMorfSOFv(void);
-void __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(void);
+void __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void);
 void __dt__15mDoExt_McaMorf2Fv(void);
 void calc__15mDoExt_McaMorf2Fv(void);
 void setAnmRate__15mDoExt_McaMorf2Ff(void);
@@ -243,18 +245,22 @@ void __ct__15mDoExt_3Dline_cFv(void);
 void init__15mDoExt_3Dline_cFUsii(void);
 void mDoExt_J3DModel__create__FP12J3DModelDataUlUl(void);
 void ERROR_EXIT__15mDoExt_McaMorf2Fv(void);
-void create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(void);
+void create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void);
 void setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff(void);
 void stopZelAnime__15mDoExt_McaMorf2Fv(void);
-void __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(void);
-void create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(void);
+void __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void);
+void create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void);
 void entryDL__16mDoExt_McaMorfSOFv(void);
 void getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo(void);
 void modelCalc__16mDoExt_McaMorfSOFv(void);
 void play__16mDoExt_McaMorfSOFUlSc(void);
 void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff(void);
 void stopZelAnime__16mDoExt_McaMorfSOFv(void);
-void create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(void);
+void create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(
+    void);
 void getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo(void);
 void play__14mDoExt_McaMorfFP3VecUlSc(void);
 void setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv(void);
@@ -1425,7 +1431,9 @@ asm void frameUpdate__13mDoExt_morf_cFv(void) {
 // __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
 // mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
 // mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int, int, void*, u32, u32)
-asm void __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(void) {
+asm void
+__ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_8000FC4C.s"
 }
@@ -1440,7 +1448,9 @@ asm void __dt__14mDoExt_McaMorfFv(void) {
 // create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
 // mDoExt_McaMorf::create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
 // J3DAnmTransform*, int, f32, int, int, int, void*, u32, u32)
-asm void create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(void) {
+asm void
+create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_8000FD94.s"
 }
@@ -1490,7 +1500,9 @@ asm void getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo(void) {
 // __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 // mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
 // mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32)
-asm void __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(void) {
+asm void
+__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_800107D0.s"
 }
@@ -1505,7 +1517,9 @@ asm void __dt__16mDoExt_McaMorfSOFv(void) {
 // create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 // mDoExt_McaMorfSO::create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
 // J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32)
-asm void create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(void) {
+asm void
+create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_800108F0.s"
 }
@@ -1570,7 +1584,9 @@ asm void stopZelAnime__16mDoExt_McaMorfSOFv(void) {
 // mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
 // mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, J3DAnmTransform*, int, f32, int, int, Z2Creature*,
 // u32, u32)
-asm void __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(void) {
+asm void
+__ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_80011348.s"
 }
@@ -1585,7 +1601,9 @@ asm void __dt__15mDoExt_McaMorf2Fv(void) {
 // create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
 // mDoExt_McaMorf2::create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
 // J3DAnmTransform*, J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32)
-asm void create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(void) {
+asm void
+create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl(
+    void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_80011464.s"
 }
@@ -1759,7 +1777,8 @@ asm void draw__26mDoExt_3DlineMatSortPacketFv(void) {
 }
 
 // mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl
-// mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl(JUTFont**, ResFONT**, JKRHeap*, const s8*, JKRArchive*, u8, u32, u32)
+// mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl(JUTFont**, ResFONT**,
+// JKRHeap*, const s8*, JKRArchive*, u8, u32, u32)
 asm void mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_ext/asm/func_80014804.s"

@@ -24,7 +24,8 @@ void remove__10JSUPtrListFP10JSUPtrLink(void);
 void startMotor__Q210JUTGamePad7CRumbleFi(void);
 void stopMotor__Q210JUTGamePad7CRumbleFib(void);
 void update__10JUTGamePadFv(void);
-void update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl(void);
+void update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl(
+    void);
 void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
 void update__Q210JUTGamePad7CRumbleFs(void);
 }
@@ -184,7 +185,8 @@ void JUTGamePad::CStick::clear() {
     this->mAngle = 0;
 }
 
-asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode, JUTGamePad::EWhichStick stick, u32 unk2) {
+asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode,
+                                   JUTGamePad::EWhichStick stick, u32 unk2) {
     nofralloc
 #include "JSystem/JUtility/JUTGamePad/asm/func_802E1238.s"
 }

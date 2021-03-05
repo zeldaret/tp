@@ -17,7 +17,8 @@ void _savegpr_28(void);
 void _savegpr_29(void);
 void cLib_memSet__FPviUl(void);
 void createAppend_X1_(void);
-void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(void);
+void set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf(
+    void);
 void fopKyM_Create(void);
 void fopKyM_Delete(void);
 void fopKyM_create(void);

@@ -18,7 +18,7 @@ void dComIfGp_mapShow__Fv(void);
 void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
 void _draw__6dMap_cFv(void);
 void _move__6dMap_cFffif(void);
-void dMap_c(void);
+void __ct__6dMap_cFiiii(void);
 void getMapPlayerPos__10dMapInfo_nFv(void);
 void dMeter2Info_set2DVibration__Fv(void);
 void _create__11dMeterMap_cFP9J2DScreen(void);

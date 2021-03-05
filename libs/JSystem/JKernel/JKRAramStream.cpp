@@ -100,11 +100,13 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
             heap->dump();
         }
 
-        panic_f__12JUTExceptionFPCciPCce("JKRAramStream.cpp", 0xac, "%s", ":::Cannot alloc memory\n");
+        panic_f__12JUTExceptionFPCciPCce("JKRAramStream.cpp", 0xac, "%s",
+                                         ":::Cannot alloc memory\n");
     }
 
     if (buffer) {
-        seek__20JSURandomInputStreamFl17JSUStreamSeekFrom((JSURandomInputStream*)command->mStream, offset, 0);
+        seek__20JSURandomInputStreamFl17JSUStreamSeekFrom((JSURandomInputStream*)command->mStream,
+                                                          offset, 0);
         while (dstSize != 0) {
             u32 length;
             if (dstSize > size) {

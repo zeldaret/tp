@@ -410,7 +410,8 @@ asm void dStage_getName2__FsSc(void) {
 }
 
 // dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
-// dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class(stage_actor_data_class*, fopAcM_prm_class*)
+// dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class(stage_actor_data_class*,
+// fopAcM_prm_class*)
 asm void dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024EFC.s"
@@ -931,7 +932,8 @@ asm void dStage_RoomCheck__FP11cBgS_GndChk(void) {
 }
 
 // dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs
-// dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(cBgS_PolyInfo&, float, unsigned long, char, short)
+// dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(cBgS_PolyInfo&, float, unsigned long, char,
+// short)
 asm void dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(void) {
     nofralloc
 #include "d/d_stage/asm/func_800270FC.s"

@@ -14,7 +14,8 @@ void paneTrans__8CPaneMgrFff(void);
 void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
 void setAlphaRate__13CPaneMgrAlphaFf(void);
 void dComIfG_TimerDeleteRequest__Fi(void);
-void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
+void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void);
 void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void resetMeterString__13dMeter2Info_cFv(void);
 void createString__14dMeterString_cFi(void);

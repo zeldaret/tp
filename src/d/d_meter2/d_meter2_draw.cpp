@@ -50,8 +50,10 @@ void drawKey__13dMeter2Draw_cFs(void);
 void drawLife__13dMeter2Draw_cFssff(void);
 void drawLightDrop__13dMeter2Draw_cFUcUcffffUc(void);
 void drawMagic__13dMeter2Draw_cFssff(void);
-void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
-void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void);
+void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void);
+void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void);
 void drawRupee__13dMeter2Draw_cFs(void);
 void getActionString__13dMeter2Draw_cFUcUcPUc(void);
 void getCanoeFishing__13dMeter2Draw_cFv(void);
@@ -89,7 +91,8 @@ void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
 void isDirectUseItem__13dMeter2Info_cFi(void);
-void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(void);
+void readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei(
+    void);
 void dMeter2Info_getNumberTextureName__Fi(void);
 void dMeter2Info_isItemOpenCheck__Fv(void);
 void dMeter2Info_isMapOpenCheck__Fv(void);
@@ -322,19 +325,25 @@ asm void playOxygenBpkAnimation__13dMeter2Draw_cFP11J2DAnmColor(void) {
 }
 
 // drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
-asm void drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void) {
+asm void
+drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_80213FF0.s"
 }
 
 // drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
-asm void drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(void) {
+asm void
+drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc(
+    void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_802140DC.s"
 }
 
 // drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-asm void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(void) {
+asm void
+drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(
+    void) {
     nofralloc
 #include "d/d_meter2/d_meter2_draw/asm/func_8021462C.s"
 }

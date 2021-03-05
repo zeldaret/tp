@@ -33,7 +33,7 @@ lbl_80181F40:
 /* 80181F40 0017EE80  38 7F 02 48 */ addi r3, r31, 0x248
 /* 80181F44 0017EE84  4B FE 10 F1 */ bl CalcTrimSize__9dCamera_cFv
 /* 80181F48 0017EE88  7F E3 FB 78 */ mr r3, r31
-/* 80181F4C 0017EE8C  4B FF F8 B9 */ bl store
+/* 80181F4C 0017EE8C  4B FF F8 B9 */ bl store__FP20camera_process_class
 /* 80181F50 0017EE90  7F E3 FB 78 */ mr r3, r31
 /* 80181F54 0017EE94  4B FF F7 B5 */ bl view_setup__FP20camera_process_class
 /* 80181F58 0017EE98  38 60 00 01 */ li r3, 1

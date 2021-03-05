@@ -106,7 +106,7 @@ lbl_801823C0:
 /* 801823F4 0017F334  38 00 00 00 */ li r0, 0
 /* 801823F8 0017F338  B0 1F 00 FC */ sth r0, 0xfc(r31)
 /* 801823FC 0017F33C  7F E3 FB 78 */ mr r3, r31
-/* 80182400 0017F340  4B FF F4 05 */ bl store
+/* 80182400 0017F340  4B FF F4 05 */ bl store__FP20camera_process_class
 /* 80182404 0017F344  7F E3 FB 78 */ mr r3, r31
 /* 80182408 0017F348  4B FF F3 01 */ bl view_setup__FP20camera_process_class
 /* 8018240C 0017F34C  38 00 00 01 */ li r0, 1

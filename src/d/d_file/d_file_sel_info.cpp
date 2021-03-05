@@ -131,9 +131,11 @@ asm void dDlst_FileInfo_c::draw(void) {
 #include "d/d_file/d_file_sel_info/asm/func_80192D9C.s"
 }
 
-asm void _sinit_d_file_sel_info_cpp(void) {
+extern "C" {
+asm void __sinit_d_file_sel_info_cpp(void) {
     nofralloc
 #include "d/d_file/d_file_sel_info/asm/func_80192E88.s"
+}
 }
 
 asm dDlst_FileInfo_c::~dDlst_FileInfo_c() {

@@ -57,7 +57,9 @@ void J2DPane_X2_(void);
 void __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc(void);
 void align__20JSURandomInputStreamFl(void);
 void peek__20JSURandomInputStreamFPvl(void);
-void* getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive(JSURandomInputStream* stream, u32 arg2, JKRArchive* archive);
+void* getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive(JSURandomInputStream* stream,
+                                                                      u32 arg2,
+                                                                      JKRArchive* archive);
 void move__7J2DPaneFff(void);
 void add__7J2DPaneFff(void);
 void makeMatrix__7J2DPaneFffff(void);

@@ -95,7 +95,8 @@ s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
     }
 }
 
-s32 fpcDt_Delete(base_process_class* pProc) {
+s32 fpcDt_Delete(void* pProcV) {
+    base_process_class* pProc = static_cast<base_process_class*>(pProcV);
     if (pProc != NULL) {
         if (fpcCt_IsDoing(pProc) == 1)
             return 0;
