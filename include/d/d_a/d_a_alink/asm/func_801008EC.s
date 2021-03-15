@@ -12,12 +12,12 @@
 /* 80100918 000FD858  A8 1D 2F E2 */ lha r0, 0x2fe2(r29)
 /* 8010091C 000FD85C  7C 03 00 50 */ subf r0, r3, r0
 /* 80100920 000FD860  7C 03 07 34 */ extsh r3, r0
-/* 80100924 000FD864  4B FB 2B 71 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 80100924 000FD864  4B FB 2B 71 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 80100928 000FD868  98 7D 2F 98 */ stb r3, 0x2f98(r29)
 /* 8010092C 000FD86C  83 FD 27 E0 */ lwz r31, 0x27e0(r29)
 /* 80100930 000FD870  3B C0 00 01 */ li r30, 1
 /* 80100934 000FD874  7F E3 FB 78 */ mr r3, r31
-/* 80100938 000FD878  4B F7 2E AD */ bl dAttention_c_NS_LockonTruth
+/* 80100938 000FD878  4B F7 2E AD */ bl LockonTruth__12dAttention_cFv
 /* 8010093C 000FD87C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80100940 000FD880  40 82 00 14 */ bne lbl_80100954
 /* 80100944 000FD884  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -34,16 +34,16 @@ lbl_80100954:
 /* 8010096C 000FD8AC  40 82 00 54 */ bne lbl_801009C0
 lbl_80100970:
 /* 80100970 000FD8B0  7F A3 EB 78 */ mr r3, r29
-/* 80100974 000FD8B4  4B FF FC F5 */ bl daAlink_c_NS_checkRoofHangMovePos
+/* 80100974 000FD8B4  4B FF FC F5 */ bl checkRoofHangMovePos__9daAlink_cFv
 /* 80100978 000FD8B8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010097C 000FD8BC  41 82 00 10 */ beq lbl_8010098C
 /* 80100980 000FD8C0  7F A3 EB 78 */ mr r3, r29
-/* 80100984 000FD8C4  48 00 08 99 */ bl daAlink_c_NS_procRoofHangSideMoveInit
+/* 80100984 000FD8C4  48 00 08 99 */ bl procRoofHangSideMoveInit__9daAlink_cFv
 /* 80100988 000FD8C8  48 00 00 10 */ b lbl_80100998
 lbl_8010098C:
 /* 8010098C 000FD8CC  7F A3 EB 78 */ mr r3, r29
 /* 80100990 000FD8D0  38 80 00 00 */ li r4, 0
-/* 80100994 000FD8D4  48 00 02 21 */ bl daAlink_c_NS_procRoofHangWaitInit
+/* 80100994 000FD8D4  48 00 02 21 */ bl procRoofHangWaitInit__9daAlink_cFi
 lbl_80100998:
 /* 80100998 000FD8D8  38 60 00 01 */ li r3, 1
 /* 8010099C 000FD8DC  48 00 00 5C */ b lbl_801009F8
@@ -52,27 +52,27 @@ lbl_801009A0:
 /* 801009A4 000FD8E4  28 00 00 01 */ cmplwi r0, 1
 /* 801009A8 000FD8E8  40 82 00 10 */ bne lbl_801009B8
 /* 801009AC 000FD8EC  7F A3 EB 78 */ mr r3, r29
-/* 801009B0 000FD8F0  48 00 0A 09 */ bl daAlink_c_NS_procRoofHangTurnInit
+/* 801009B0 000FD8F0  48 00 0A 09 */ bl procRoofHangTurnInit__9daAlink_cFv
 /* 801009B4 000FD8F4  48 00 00 44 */ b lbl_801009F8
 lbl_801009B8:
 /* 801009B8 000FD8F8  38 00 00 00 */ li r0, 0
 /* 801009BC 000FD8FC  98 1D 2F 98 */ stb r0, 0x2f98(r29)
 lbl_801009C0:
 /* 801009C0 000FD900  7F A3 EB 78 */ mr r3, r29
-/* 801009C4 000FD904  4B FF FC A5 */ bl daAlink_c_NS_checkRoofHangMovePos
+/* 801009C4 000FD904  4B FF FC A5 */ bl checkRoofHangMovePos__9daAlink_cFv
 /* 801009C8 000FD908  2C 03 00 00 */ cmpwi r3, 0
 /* 801009CC 000FD90C  41 82 00 10 */ beq lbl_801009DC
 /* 801009D0 000FD910  7F A3 EB 78 */ mr r3, r29
-/* 801009D4 000FD914  48 00 03 D1 */ bl daAlink_c_NS_procRoofHangFrontMoveInit
+/* 801009D4 000FD914  48 00 03 D1 */ bl procRoofHangFrontMoveInit__9daAlink_cFv
 /* 801009D8 000FD918  48 00 00 1C */ b lbl_801009F4
 lbl_801009DC:
 /* 801009DC 000FD91C  7F A3 EB 78 */ mr r3, r29
 /* 801009E0 000FD920  38 80 00 00 */ li r4, 0
-/* 801009E4 000FD924  48 00 01 D1 */ bl daAlink_c_NS_procRoofHangWaitInit
+/* 801009E4 000FD924  48 00 01 D1 */ bl procRoofHangWaitInit__9daAlink_cFi
 /* 801009E8 000FD928  48 00 00 0C */ b lbl_801009F4
 lbl_801009EC:
 /* 801009EC 000FD92C  38 80 00 00 */ li r4, 0
-/* 801009F0 000FD930  48 00 01 C5 */ bl daAlink_c_NS_procRoofHangWaitInit
+/* 801009F0 000FD930  48 00 01 C5 */ bl procRoofHangWaitInit__9daAlink_cFi
 lbl_801009F4:
 /* 801009F4 000FD934  38 60 00 01 */ li r3, 1
 lbl_801009F8:

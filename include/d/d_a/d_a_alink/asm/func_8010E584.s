@@ -9,7 +9,7 @@
 /* 8010E5A4 0010B4E4  28 00 00 B5 */ cmplwi r0, 0xb5
 /* 8010E5A8 0010B4E8  41 82 00 18 */ beq lbl_8010E5C0
 /* 8010E5AC 0010B4EC  54 83 04 3E */ clrlwi r3, r4, 0x10
-/* 8010E5B0 0010B4F0  48 05 05 91 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 8010E5B0 0010B4F0  48 05 05 91 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 8010E5B4 0010B4F4  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E5B8 0010B4F8  41 82 00 08 */ beq lbl_8010E5C0
 /* 8010E5BC 0010B4FC  3B E0 00 01 */ li r31, 1

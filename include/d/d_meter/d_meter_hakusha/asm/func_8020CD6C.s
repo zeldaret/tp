@@ -17,7 +17,7 @@
 /* 8020CDAC 00209CEC  80 A4 00 04 */ lwz r5, 4(r4)
 /* 8020CDB0 00209CF0  38 C0 00 00 */ li r6, 0
 /* 8020CDB4 00209CF4  38 E0 00 00 */ li r7, 0
-/* 8020CDB8 00209CF8  48 04 81 05 */ bl CPaneMgr_NS_getGlobalVtxCenter
+/* 8020CDB8 00209CF8  48 04 81 05 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8020CDBC 00209CFC  80 61 00 14 */ lwz r3, 0x14(r1)
 /* 8020CDC0 00209D00  80 01 00 18 */ lwz r0, 0x18(r1)
 /* 8020CDC4 00209D04  90 61 00 2C */ stw r3, 0x2c(r1)
@@ -29,7 +29,7 @@
 /* 8020CDDC 00209D1C  80 A4 00 04 */ lwz r5, 4(r4)
 /* 8020CDE0 00209D20  38 C0 00 00 */ li r6, 0
 /* 8020CDE4 00209D24  38 E0 00 00 */ li r7, 0
-/* 8020CDE8 00209D28  48 04 80 D5 */ bl CPaneMgr_NS_getGlobalVtxCenter
+/* 8020CDE8 00209D28  48 04 80 D5 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8020CDEC 00209D2C  80 61 00 08 */ lwz r3, 8(r1)
 /* 8020CDF0 00209D30  80 01 00 0C */ lwz r0, 0xc(r1)
 /* 8020CDF4 00209D34  90 61 00 20 */ stw r3, 0x20(r1)
@@ -39,7 +39,7 @@
 /* 8020CE04 00209D44  C3 C1 00 2C */ lfs f30, 0x2c(r1)
 /* 8020CE08 00209D48  C3 A1 00 30 */ lfs f29, 0x30(r1)
 /* 8020CE0C 00209D4C  7F 83 E3 78 */ mr r3, r28
-/* 8020CE10 00209D50  48 00 06 71 */ bl dMeterHakusha_c_NS_getHakushaNum
+/* 8020CE10 00209D50  48 00 06 71 */ bl getHakushaNum__15dMeterHakusha_cFv
 /* 8020CE14 00209D54  C8 22 AE 18 */ lfd f1, lbl_80454818-_SDA2_BASE_(r2)
 /* 8020CE18 00209D58  6C 60 80 00 */ xoris r0, r3, 0x8000
 /* 8020CE1C 00209D5C  90 01 00 3C */ stw r0, 0x3c(r1)
@@ -229,7 +229,7 @@ lbl_8020D0A4:
 /* 8020D0B0 00209FF0  3B 5A 00 04 */ addi r26, r26, 4
 lbl_8020D0B4:
 /* 8020D0B4 00209FF4  7F 83 E3 78 */ mr r3, r28
-/* 8020D0B8 00209FF8  48 00 03 C9 */ bl dMeterHakusha_c_NS_getHakushaNum
+/* 8020D0B8 00209FF8  48 00 03 C9 */ bl getHakushaNum__15dMeterHakusha_cFv
 /* 8020D0BC 00209FFC  7C 1D 18 00 */ cmpw r29, r3
 /* 8020D0C0 0020A000  41 80 FE 3C */ blt lbl_8020CEFC
 /* 8020D0C4 0020A004  C0 1C 01 00 */ lfs f0, 0x100(r28)
@@ -263,7 +263,7 @@ lbl_8020D0B4:
 /* 8020D134 0020A074  C0 04 03 B0 */ lfs f0, 0x3b0(r4)
 /* 8020D138 0020A078  EC 21 00 2A */ fadds f1, f1, f0
 /* 8020D13C 0020A07C  C0 44 03 B4 */ lfs f2, 0x3b4(r4)
-/* 8020D140 0020A080  48 04 74 71 */ bl CPaneMgr_NS_paneTrans
+/* 8020D140 0020A080  48 04 74 71 */ bl paneTrans__8CPaneMgrFff
 /* 8020D144 0020A084  48 00 00 1C */ b lbl_8020D160
 lbl_8020D148:
 /* 8020D148 0020A088  80 7C 00 10 */ lwz r3, 0x10(r28)
@@ -271,7 +271,7 @@ lbl_8020D148:
 /* 8020D150 0020A090  38 84 EB C8 */ addi r4, r4, lbl_8042EBC8@l
 /* 8020D154 0020A094  C0 24 03 B0 */ lfs f1, 0x3b0(r4)
 /* 8020D158 0020A098  C0 44 03 B4 */ lfs f2, 0x3b4(r4)
-/* 8020D15C 0020A09C  48 04 74 55 */ bl CPaneMgr_NS_paneTrans
+/* 8020D15C 0020A09C  48 04 74 55 */ bl paneTrans__8CPaneMgrFff
 lbl_8020D160:
 /* 8020D160 0020A0A0  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 8020D164 0020A0A4  38 63 EB C8 */ addi r3, r3, lbl_8042EBC8@l
@@ -287,7 +287,7 @@ lbl_8020D160:
 /* 8020D18C 0020A0CC  80 7C 00 34 */ lwz r3, 0x34(r28)
 /* 8020D190 0020A0D0  C0 3A 03 B8 */ lfs f1, 0x3b8(r26)
 /* 8020D194 0020A0D4  C0 5A 03 BC */ lfs f2, 0x3bc(r26)
-/* 8020D198 0020A0D8  48 04 74 19 */ bl CPaneMgr_NS_paneTrans
+/* 8020D198 0020A0D8  48 04 74 19 */ bl paneTrans__8CPaneMgrFff
 /* 8020D19C 0020A0DC  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 8020D1A0 0020A0E0  38 63 EB C8 */ addi r3, r3, lbl_8042EBC8@l
 /* 8020D1A4 0020A0E4  C0 03 03 C0 */ lfs f0, 0x3c0(r3)

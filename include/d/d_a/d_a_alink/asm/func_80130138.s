@@ -10,14 +10,14 @@
 /* 8013015C 0012D09C  C0 42 93 24 */ lfs f2, lbl_80452D24-_SDA2_BASE_(r2)
 /* 80130160 0012D0A0  48 14 05 E1 */ bl cLib_chaseF__FPfff
 /* 80130164 0012D0A4  7F E3 FB 78 */ mr r3, r31
-/* 80130168 0012D0A8  48 02 E3 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80130168 0012D0A8  48 02 E3 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013016C 0012D0AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80130170 0012D0B0  41 82 00 1C */ beq lbl_8013018C
 /* 80130174 0012D0B4  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 80130178 0012D0B8  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8013017C 0012D0BC  7F C3 F3 78 */ mr r3, r30
 /* 80130180 0012D0C0  38 80 00 00 */ li r4, 0
-/* 80130184 0012D0C4  4B FF 99 C1 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80130184 0012D0C4  4B FF 99 C1 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80130188 0012D0C8  48 00 00 40 */ b lbl_801301C8
 lbl_8013018C:
 /* 8013018C 0012D0CC  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -31,7 +31,7 @@ lbl_8013018C:
 /* 801301AC 0012D0EC  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 801301B0 0012D0F0  7F C3 F3 78 */ mr r3, r30
 /* 801301B4 0012D0F4  38 80 00 01 */ li r4, 1
-/* 801301B8 0012D0F8  4B FF 99 8D */ bl daAlink_c_NS_checkNextActionWolf
+/* 801301B8 0012D0F8  4B FF 99 8D */ bl checkNextActionWolf__9daAlink_cFi
 /* 801301BC 0012D0FC  2C 03 00 00 */ cmpwi r3, 0
 /* 801301C0 0012D100  40 82 00 08 */ bne lbl_801301C8
 /* 801301C4 0012D104  B3 FE 04 DE */ sth r31, 0x4de(r30)

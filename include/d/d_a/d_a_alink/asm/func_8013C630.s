@@ -6,7 +6,7 @@
 /* 8013C644 00139584  7C 7E 1B 78 */ mr r30, r3
 /* 8013C648 00139588  7C 9F 23 78 */ mr r31, r4
 /* 8013C64C 0013958C  38 80 01 26 */ li r4, 0x126
-/* 8013C650 00139590  4B F8 59 1D */ bl daAlink_c_NS_commonProcInit
+/* 8013C650 00139590  4B F8 59 1D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013C654 00139594  38 7E 04 D0 */ addi r3, r30, 0x4d0
 /* 8013C658 00139598  80 9E 07 C8 */ lwz r4, 0x7c8(r30)
 /* 8013C65C 0013959C  38 84 05 38 */ addi r4, r4, 0x538
@@ -22,7 +22,7 @@
 /* 8013C684 001395C4  3C A0 80 39 */ lis r5, lbl_8038F6F4@ha
 /* 8013C688 001395C8  38 A5 F6 F4 */ addi r5, r5, lbl_8038F6F4@l
 /* 8013C68C 001395CC  38 A5 00 14 */ addi r5, r5, 0x14
-/* 8013C690 001395D0  4B FE D1 B9 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013C690 001395D0  4B FE D1 B9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013C694 001395D4  38 00 00 01 */ li r0, 1
 /* 8013C698 001395D8  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 8013C69C 001395DC  3C 60 80 42 */ lis r3, lbl_8042561C@ha
@@ -41,7 +41,7 @@ lbl_8013C6C8:
 /* 8013C6CC 0013960C  38 80 00 53 */ li r4, 0x53
 /* 8013C6D0 00139610  3C A0 80 39 */ lis r5, lbl_8038F6F4@ha
 /* 8013C6D4 00139614  38 A5 F6 F4 */ addi r5, r5, lbl_8038F6F4@l
-/* 8013C6D8 00139618  4B FE D1 71 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013C6D8 00139618  4B FE D1 71 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013C6DC 0013961C  38 00 00 00 */ li r0, 0
 /* 8013C6E0 00139620  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 8013C6E4 00139624  3C 60 80 42 */ lis r3, lbl_8042561C@ha
@@ -69,7 +69,7 @@ lbl_8013C72C:
 /* 8013C730 00139670  98 1E 2F 9D */ stb r0, 0x2f9d(r30)
 /* 8013C734 00139674  7F C3 F3 78 */ mr r3, r30
 /* 8013C738 00139678  38 80 00 01 */ li r4, 1
-/* 8013C73C 0013967C  4B FE 4A 85 */ bl daAlink_c_NS_setFootEffectProcType
+/* 8013C73C 0013967C  4B FE 4A 85 */ bl setFootEffectProcType__9daAlink_cFi
 /* 8013C740 00139680  C0 3E 33 98 */ lfs f1, 0x3398(r30)
 /* 8013C744 00139684  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)
 /* 8013C748 00139688  EC 01 00 32 */ fmuls f0, f1, f0

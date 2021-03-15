@@ -33,7 +33,7 @@
 /* 800FA764 000F76A4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FA768 000F76A8  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800FA76C 000F76AC  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 800FA770 000F76B0  4B F7 9D 31 */ bl cBgS_NS_GroundCross
+/* 800FA770 000F76B0  4B F7 9D 31 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800FA774 000F76B4  D0 3F 33 D8 */ stfs f1, 0x33d8(r31)
 /* 800FA778 000F76B8  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800FA77C 000F76BC  80 01 00 24 */ lwz r0, 0x24(r1)

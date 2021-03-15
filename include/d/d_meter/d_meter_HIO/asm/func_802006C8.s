@@ -7,27 +7,27 @@
 /* 802006E0 001FD620  38 03 F0 F4 */ addi r0, r3, lbl_803BF0F4@l
 /* 802006E4 001FD624  90 1F 00 00 */ stw r0, 0(r31)
 /* 802006E8 001FD628  38 7F 00 1C */ addi r3, r31, 0x1c
-/*.global dMeter_fmapHIO_c_NS_MapBlinkAnime*/
-/* 802006EC 001FD62C  3C 80 80 20 */ lis r4, dMeter_fmapHIO_c_NS_MapBlinkAnime@ha
-/*.global dMeter_fmapHIO_c_NS_MapBlinkAnime*/
-/* 802006F0 001FD630  38 84 10 70 */ addi r4, r4, dMeter_fmapHIO_c_NS_MapBlinkAnime@l
+/*.global __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv*/
+/* 802006EC 001FD62C  3C 80 80 20 */ lis r4, __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv@ha
+/*.global __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv*/
+/* 802006F0 001FD630  38 84 10 70 */ addi r4, r4, __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv@l
 /* 802006F4 001FD634  38 A0 00 00 */ li r5, 0
 /* 802006F8 001FD638  38 C0 00 28 */ li r6, 0x28
 /* 802006FC 001FD63C  38 E0 00 03 */ li r7, 3
-/* 80200700 001FD640  48 16 16 61 */ bl func_80361D60
+/* 80200700 001FD640  48 16 16 61 */ bl __construct_array
 /* 80200704 001FD644  38 00 FF FF */ li r0, -1
 /* 80200708 001FD648  90 1F 02 54 */ stw r0, 0x254(r31)
 /* 8020070C 001FD64C  90 1F 02 58 */ stw r0, 0x258(r31)
 /* 80200710 001FD650  38 7F 02 5C */ addi r3, r31, 0x25c
-/* 80200714 001FD654  3C 80 80 01 */ lis r4, cXyz_NS_ctor@ha
-/* 80200718 001FD658  38 84 25 DC */ addi r4, r4, cXyz_NS_ctor@l
-/* 8020071C 001FD65C  3C A0 80 01 */ lis r5, cXyz_NS_dtor@ha
-/* 80200720 001FD660  38 A5 91 84 */ addi r5, r5, cXyz_NS_dtor@l
+/* 80200714 001FD654  3C 80 80 01 */ lis r4, __ct__4cXyzFv@ha
+/* 80200718 001FD658  38 84 25 DC */ addi r4, r4, __ct__4cXyzFv@l
+/* 8020071C 001FD65C  3C A0 80 01 */ lis r5, __dt__4cXyzFv@ha
+/* 80200720 001FD660  38 A5 91 84 */ addi r5, r5, __dt__4cXyzFv@l
 /* 80200724 001FD664  38 C0 00 0C */ li r6, 0xc
 /* 80200728 001FD668  38 E0 00 0C */ li r7, 0xc
-/* 8020072C 001FD66C  48 16 16 35 */ bl func_80361D60
+/* 8020072C 001FD66C  48 16 16 35 */ bl __construct_array
 /* 80200730 001FD670  38 7F 03 14 */ addi r3, r31, 0x314
-/* 80200734 001FD674  4B FF FD 81 */ bl dMeter_mapIconHIO_c
+/* 80200734 001FD674  4B FF FD 81 */ bl __ct__19dMeter_mapIconHIO_cFv
 /* 80200738 001FD678  38 60 00 00 */ li r3, 0
 /* 8020073C 001FD67C  90 7F 00 0C */ stw r3, 0xc(r31)
 /* 80200740 001FD680  90 7F 00 10 */ stw r3, 0x10(r31)

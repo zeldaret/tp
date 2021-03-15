@@ -31,7 +31,7 @@
 /* 8009C560 000994A0  7D 89 03 A6 */	mtctr r12
 /* 8009C564 000994A4  4E 80 04 21 */	bctrl 
 /* 8009C568 000994A8  7F A3 EB 78 */	mr r3, r29
-/* 8009C56C 000994AC  48 27 8D 95 */	bl J3DShape_NS_loadPreDrawSetting
+/* 8009C56C 000994AC  48 27 8D 95 */	bl loadPreDrawSetting__8J3DShapeCFv
 /* 8009C570 000994B0  80 02 D1 70 */	lwz r0, lbl_80456B70-_SDA2_BASE_(r2)
 /* 8009C574 000994B4  90 01 00 10 */	stw r0, 0x10(r1)
 /* 8009C578 000994B8  80 7F 00 14 */	lwz r3, 0x14(r31)
@@ -54,10 +54,10 @@
 /* 8009C5BC 000994FC  38 81 00 08 */	addi r4, r1, 8
 /* 8009C5C0 00099500  48 2C 14 89 */	bl GXSetChanMatColor
 /* 8009C5C4 00099504  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8009C5C8 00099508  48 10 A8 D5 */	bl dKy_setLight_nowroom_actor
-/* 8009C5CC 0009950C  48 10 AF F5 */	bl dKy_setLight_again
+/* 8009C5C8 00099508  48 10 A8 D5 */	bl dKy_setLight_nowroom_actor__FP12dKy_tevstr_c
+/* 8009C5CC 0009950C  48 10 AF F5 */	bl dKy_setLight_again__Fv
 /* 8009C5D0 00099510  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8009C5D4 00099514  48 10 C0 7D */	bl dKy_GxFog_tevstr_set
+/* 8009C5D4 00099514  48 10 C0 7D */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 8009C5D8 00099518  83 9F 00 1C */	lwz r28, 0x1c(r31)
 /* 8009C5DC 0009951C  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8009C5E0 00099520  3B C3 4A C8 */	addi r30, r3, lbl_80434AC8@l
@@ -91,8 +91,8 @@ lbl_8009C628:
 /* 8009C648 00099588  38 21 00 60 */	addi r1, r1, 0x60
 /* 8009C64C 0009958C  4E 80 00 20 */	blr 
 
-.global dMdl_c_NS_create
-dMdl_c_NS_create:
+.global create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c
+create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c:
 /* 8009C650 00099590  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8009C654 00099594  B0 A3 00 18 */	sth r5, 0x18(r3)
 /* 8009C658 00099598  90 C3 00 14 */	stw r6, 0x14(r3)
@@ -114,7 +114,7 @@ dMdl_c_NS_create:
 /* 8009C698 000995D8  80 63 5F 90 */	lwz r3, 0x5f90(r3)
 /* 8009C69C 000995DC  7F C4 F3 78 */	mr r4, r30
 /* 8009C6A0 000995E0  38 A0 00 00 */	li r5, 0
-/* 8009C6A4 000995E4  48 28 8D E9 */	bl J3DDrawBuffer_NS_entryImm
+/* 8009C6A4 000995E4  48 28 8D E9 */	bl entryImm__13J3DDrawBufferFP9J3DPacketUs
 /* 8009C6A8 000995E8  38 00 00 01 */	li r0, 1
 /* 8009C6AC 000995EC  98 1E 00 1A */	stb r0, 0x1a(r30)
 /* 8009C6B0 000995F0  38 00 00 00 */	li r0, 0
@@ -130,8 +130,8 @@ lbl_8009C6B8:
 /* 8009C6D4 00099614  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C6D8 00099618  4E 80 00 20 */	blr 
 
-.global dMdl_mng_c_NS_search
-dMdl_mng_c_NS_search:
+.global search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
+search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c:
 /* 8009C6DC 0009961C  88 03 00 80 */	lbz r0, 0x80(r3)
 /* 8009C6E0 00099620  54 A5 04 3E */	clrlwi r5, r5, 0x10
 /* 8009C6E4 00099624  7C 09 03 A6 */	mtctr r0
@@ -154,8 +154,8 @@ lbl_8009C71C:
 /* 8009C71C 0009965C  38 60 00 00 */	li r3, 0
 /* 8009C720 00099660  4E 80 00 20 */	blr 
 
-.global dMdl_mng_c_NS_entry
-dMdl_mng_c_NS_entry:
+.global entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
+entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c:
 /* 8009C724 00099664  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009C728 00099668  7C 08 02 A6 */	mflr r0
 /* 8009C72C 0009966C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -165,7 +165,7 @@ dMdl_mng_c_NS_entry:
 /* 8009C73C 0009967C  7C 9C 23 78 */	mr r28, r4
 /* 8009C740 00099680  7C BD 2B 78 */	mr r29, r5
 /* 8009C744 00099684  7C DE 33 78 */	mr r30, r6
-/* 8009C748 00099688  4B FF FF 95 */	bl dMdl_mng_c_NS_search
+/* 8009C748 00099688  4B FF FF 95 */	bl search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
 /* 8009C74C 0009968C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8009C750 00099690  40 82 00 40 */	bne lbl_8009C790
 /* 8009C754 00099694  88 1B 00 80 */	lbz r0, 0x80(r27)
@@ -180,7 +180,7 @@ lbl_8009C768:
 /* 8009C774 000996B4  7F 84 E3 78 */	mr r4, r28
 /* 8009C778 000996B8  7F A5 EB 78 */	mr r5, r29
 /* 8009C77C 000996BC  7F C6 F3 78 */	mr r6, r30
-/* 8009C780 000996C0  4B FF FE D1 */	bl dMdl_c_NS_create
+/* 8009C780 000996C0  4B FF FE D1 */	bl create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c
 /* 8009C784 000996C4  88 7B 00 80 */	lbz r3, 0x80(r27)
 /* 8009C788 000996C8  38 03 00 01 */	addi r0, r3, 1
 /* 8009C78C 000996CC  98 1B 00 80 */	stb r0, 0x80(r27)
@@ -194,8 +194,8 @@ lbl_8009C794:
 /* 8009C7A4 000996E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009C7A8 000996E8  4E 80 00 20 */	blr 
 
-.global dMdl_mng_c_NS_create
-dMdl_mng_c_NS_create:
+.global create__10dMdl_mng_cFv
+create__10dMdl_mng_cFv:
 /* 8009C7AC 000996EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009C7B0 000996F0  7C 08 02 A6 */	mflr r0
 /* 8009C7B4 000996F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -204,17 +204,17 @@ dMdl_mng_c_NS_create:
 /* 8009C7C0 00099700  48 23 24 8D */	bl __nw__FUl
 /* 8009C7C4 00099704  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8009C7C8 00099708  41 82 00 28 */	beq lbl_8009C7F0
-.global dMdl_c
-/* 8009C7CC 0009970C  3C 80 80 0A */	lis r4, dMdl_c@ha
-.global dMdl_c
-/* 8009C7D0 00099710  38 84 C9 30 */	addi r4, r4, dMdl_c@l
-.global dMdl_c_NS_dtor
-/* 8009C7D4 00099714  3C A0 80 0A */	lis r5, dMdl_c_NS_dtor@ha
-.global dMdl_c_NS_dtor
-/* 8009C7D8 00099718  38 A5 C8 08 */	addi r5, r5, dMdl_c_NS_dtor@l
+.global __ct__6dMdl_cFv
+/* 8009C7CC 0009970C  3C 80 80 0A */	lis r4, __ct__6dMdl_cFv@ha
+.global __ct__6dMdl_cFv
+/* 8009C7D0 00099710  38 84 C9 30 */	addi r4, r4, __ct__6dMdl_cFv@l
+.global __dt__6dMdl_cFv
+/* 8009C7D4 00099714  3C A0 80 0A */	lis r5, __dt__6dMdl_cFv@ha
+.global __dt__6dMdl_cFv
+/* 8009C7D8 00099718  38 A5 C8 08 */	addi r5, r5, __dt__6dMdl_cFv@l
 /* 8009C7DC 0009971C  38 C0 00 20 */	li r6, 0x20
 /* 8009C7E0 00099720  38 E0 00 04 */	li r7, 4
-/* 8009C7E4 00099724  48 2C 55 7D */	bl func_80361D60
+/* 8009C7E4 00099724  48 2C 55 7D */	bl __construct_array
 /* 8009C7E8 00099728  38 00 00 00 */	li r0, 0
 /* 8009C7EC 0009972C  98 1F 00 80 */	stb r0, 0x80(r31)
 lbl_8009C7F0:
@@ -224,8 +224,8 @@ lbl_8009C7F0:
 /* 8009C7FC 0009973C  7C 08 03 A6 */	mtlr r0
 /* 8009C800 00099740  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C804 00099744  4E 80 00 20 */	blr 
-.global dMdl_c_NS_dtor
-dMdl_c_NS_dtor:
+.global __dt__6dMdl_cFv
+__dt__6dMdl_cFv:
 /* 8009C808 00099748  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009C80C 0009974C  7C 08 02 A6 */	mflr r0
 /* 8009C810 00099750  90 01 00 14 */	stw r0, 0x14(r1)
@@ -252,8 +252,8 @@ lbl_8009C84C:
 /* 8009C85C 0009979C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C860 000997A0  4E 80 00 20 */	blr 
 
-.global dMdl_mng_c_NS_remove
-dMdl_mng_c_NS_remove:
+.global remove__10dMdl_mng_cFv
+remove__10dMdl_mng_cFv:
 /* 8009C864 000997A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009C868 000997A8  7C 08 02 A6 */	mflr r0
 /* 8009C86C 000997AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -263,13 +263,13 @@ dMdl_mng_c_NS_remove:
 /* 8009C87C 000997BC  41 82 00 30 */	beq lbl_8009C8AC
 /* 8009C880 000997C0  41 82 00 24 */	beq lbl_8009C8A4
 /* 8009C884 000997C4  7F E3 FB 78 */	mr r3, r31
-.global dMdl_c_NS_dtor
-/* 8009C888 000997C8  3C 80 80 0A */	lis r4, dMdl_c_NS_dtor@ha
-.global dMdl_c_NS_dtor
-/* 8009C88C 000997CC  38 84 C8 08 */	addi r4, r4, dMdl_c_NS_dtor@l
+.global __dt__6dMdl_cFv
+/* 8009C888 000997C8  3C 80 80 0A */	lis r4, __dt__6dMdl_cFv@ha
+.global __dt__6dMdl_cFv
+/* 8009C88C 000997CC  38 84 C8 08 */	addi r4, r4, __dt__6dMdl_cFv@l
 /* 8009C890 000997D0  38 A0 00 20 */	li r5, 0x20
 /* 8009C894 000997D4  38 C0 00 04 */	li r6, 4
-/* 8009C898 000997D8  48 2C 54 51 */	bl func_80361CE8
+/* 8009C898 000997D8  48 2C 54 51 */	bl __destroy_arr
 /* 8009C89C 000997DC  7F E3 FB 78 */	mr r3, r31
 /* 8009C8A0 000997E0  48 23 24 9D */	bl __dl__FPv
 lbl_8009C8A4:
@@ -282,8 +282,8 @@ lbl_8009C8AC:
 /* 8009C8B8 000997F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C8BC 000997FC  4E 80 00 20 */	blr 
 
-.global dMdl_mng_c_NS_reset
-dMdl_mng_c_NS_reset:
+.global reset__10dMdl_mng_cFv
+reset__10dMdl_mng_cFv:
 /* 8009C8C0 00099800  80 6D 8A 20 */	lwz r3, lbl_80450FA0-_SDA_BASE_(r13)
 /* 8009C8C4 00099804  28 03 00 00 */	cmplwi r3, 0
 /* 8009C8C8 00099808  4D 82 00 20 */	beqlr 
@@ -308,14 +308,14 @@ lbl_8009C900:
 /* 8009C910 00099850  38 C4 00 6C */	addi r6, r4, 0x6c
 /* 8009C914 00099854  7D 04 43 78 */	mr r4, r8
 /* 8009C918 00099858  7C E5 3B 78 */	mr r5, r7
-/* 8009C91C 0009985C  4B FF FE 09 */	bl dMdl_mng_c_NS_entry
+/* 8009C91C 0009985C  4B FF FE 09 */	bl entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c
 lbl_8009C920:
 /* 8009C920 00099860  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009C924 00099864  7C 08 03 A6 */	mtlr r0
 /* 8009C928 00099868  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009C92C 0009986C  4E 80 00 20 */	blr 
-.global dMdl_c
-dMdl_c:
+.global __ct__6dMdl_cFv
+__ct__6dMdl_cFv:
 /* 8009C930 00099870  3C 80 80 3D */	lis r4, lbl_803CD97C@ha
 /* 8009C934 00099874  38 04 D9 7C */	addi r0, r4, lbl_803CD97C@l
 /* 8009C938 00099878  90 03 00 00 */	stw r0, 0(r3)

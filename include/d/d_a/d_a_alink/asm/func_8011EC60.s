@@ -12,11 +12,11 @@
 /* 8011EC8C 0011BBCC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011EC90 0011BBD0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011EC94 0011BBD4  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8011EC98 0011BBD8  4B F2 94 E5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011EC98 0011BBD8  4B F2 94 E5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011EC9C 0011BBDC  48 00 00 60 */ b lbl_8011ECFC
 lbl_8011ECA0:
 /* 8011ECA0 0011BBE0  7F E3 FB 78 */ mr r3, r31
-/* 8011ECA4 0011BBE4  48 03 F8 29 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011ECA4 0011BBE4  48 03 F8 29 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011ECA8 0011BBE8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011ECAC 0011BBEC  41 82 00 34 */ beq lbl_8011ECE0
 /* 8011ECB0 0011BBF0  38 00 00 01 */ li r0, 1
@@ -24,12 +24,12 @@ lbl_8011ECA0:
 /* 8011ECB8 0011BBF8  7F C3 F3 78 */ mr r3, r30
 /* 8011ECBC 0011BBFC  38 80 01 90 */ li r4, 0x190
 /* 8011ECC0 0011BC00  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8011ECC4 0011BC04  4B F8 E2 ED */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 8011ECC4 0011BC04  4B F8 E2 ED */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 8011ECC8 0011BC08  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011ECCC 0011BC0C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011ECD0 0011BC10  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011ECD4 0011BC14  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8011ECD8 0011BC18  4B F2 94 A5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011ECD8 0011BC18  4B F2 94 A5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011ECDC 0011BC1C  48 00 00 20 */ b lbl_8011ECFC
 lbl_8011ECE0:
 /* 8011ECE0 0011BC20  C0 3F 00 10 */ lfs f1, 0x10(r31)

@@ -15,7 +15,7 @@ void fopScnM_SearchByID__FUi(void);
 void fopCamM_Create__FisPv(void);
 char* strcpy(char*, const char*);
 int strcmp(const char*, const char*);
-void __arraydtor_5375(void);
+void func_80028328(void);
 void __dl__FPv(void);
 void __dla__FPv(void);
 void __nwa__FUlP7JKRHeapi(void);
@@ -24,58 +24,59 @@ void alloc__7JKRHeapFUliP7JKRHeap(void);
 void clearRoomItem__13dSv_zoneBit_cFv(void);
 void clearRoomSwitch__13dSv_zoneBit_cFv(void);
 void create__10JKRExpHeapFUlP7JKRHeapb(void);
-void daSus_c_NS_check(void);
-void daSus_c_NS_execute(void);
-void dBgS_NS_GetExitId(void);
-void dBgS_NS_GetRoomId(void);
-void dComIfG_getOldStageRes(void);
-void dComIfG_getStageRes(void);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dComIfGp_setNextStage(void);
-void dEvent_manager_c_NS_create(void);
-void dEvent_manager_c_NS_remove(void);
-void dKy_set_nexttime(void);
+void check__7daSus_cFScRC4cXyz(void);
+void execute__7daSus_cFv(void);
+void GetExitId__4dBgSFRC13cBgS_PolyInfo(void);
+void GetRoomId__4dBgSFRC13cBgS_PolyInfo(void);
+void dComIfG_getOldStageRes__FPCc(void);
+void dComIfG_getStageRes__FPCc(void);
+void getLayerNo__14dComIfG_play_cFi(int);
+void dComIfGp_setNextStage__FPCcsScScfUliScsii(void);
+void create__16dEvent_manager_cFv(void);
+void remove__16dEvent_manager_cFv(void);
+void dKy_set_nexttime__Ff(void);
 void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc(void);
-void dMpath_c_NS_setPointer_X1_(void);
-void dMpath_c_NS_setPointer(void);
-void dRes_control_c_NS_deleteRes(void);
-void dRes_control_c_NS_getResInfo(void);
-void dRes_control_c_NS_syncRes(void);
-void dStage_changeScene(void);
-void dStage_KeepDoorInfo_NS_dtor(void);
-void dStage_roomControl_c_NS_SetTimePass(void);
-void dStage_roomStatus_c_NS_dtor(void);
-void dStage_roomStatus_c(void);
-void dSvBit_HIO_c_NS_init(void);
-void dTres_c_NS_addData(void);
+void setPointer__8dMpath_cFScPvi(void);
+void setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc(void);
+void deleteRes__14dRes_control_cFPCcP11dRes_info_ci(void);
+void getResInfo__14dRes_control_cFPCcP11dRes_info_ci(void);
+void syncRes__14dRes_control_cFPCcP11dRes_info_ci(void);
+void dStage_changeScene__FifUlScsi(void);
+void __dt__19dStage_KeepDoorInfoFv(void);
+void SetTimePass__20dStage_roomControl_cFi(void);
+void __dt__19dStage_roomStatus_cFv(void);
+void __ct__19dStage_roomStatus_cFv(void);
+void init__12dSvBit_HIO_cFv(void);
+void addData__7dTres_cFPQ27dTres_c10list_classSc(void);
 void fopCamM_Create(void);
 void fopKyM_fastCreate(void);
-void fopMsgM_Create(void);
+void fopMsgM_Create__FsPFPv_iPv(void);
 void fopScnM_CreateReq(void);
 void fopScnM_SearchByID(void);
 void free__7JKRHeapFPv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void func_80361C24(void);
-void func_80361CE8(void);
-void func_80361D60(void);
-void func_803664DC(void);
-void func_803665BC(void);
+void __destroy_arr(void);
+void __construct_array(void);
+void sprintf(void);
+void snprintf(void);
 void strncpy(void);
 void getSave__10dSv_info_cFi(void);
 void init__12dSv_danBit_cFSc(void);
-void init__20dStage_roomControl_cFvZone(void);
+void initZone__20dStage_roomControl_cFv(void);
 void initFileList2__15dStage_roomDt_cFv(void);
 void initZone__10dSv_info_cFv(void);
 void isActor__10dSv_info_cCFii(void);
-void J3DLightInfo_NS___as(void);
-void mDoExt_destroyExpHeap(void);
+void __as__12J3DLightInfoFRC12J3DLightInfo(void);
+void mDoExt_destroyExpHeap__FP10JKRExpHeap(void);
 void putSave__10dSv_info_cFi(void);
 void set__19dStage_startStage_cFPCcScsSc(const char*, s8, s16, s8);
-void stage_tgsc_data_class_NS_dtor(void);
-void stage_tgsc_data_class(void);
+void __dt__21stage_tgsc_data_classFv(void);
+void __ct__21stage_tgsc_data_classFv(void);
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
 void fopScnM_CreateReq__FssUsUl(void);
 void fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i(void);
+void __ct__11J3DLightObjFv(void);
 }
 
 extern char lbl_80378A50[0x3F8];  // d_stage string literals
@@ -149,55 +150,55 @@ void dStage_SetErrorStage(void) {
 
 extern "C" {
 #ifdef NONMATCHING
-u32* dStage_GetKeepDoorInfo(void) {
+u32* dStage_GetKeepDoorInfo__Fv(void) {
     return lbl_803F4E74;
 }
 #else
-asm void dStage_GetKeepDoorInfo(void) {
+asm void dStage_GetKeepDoorInfo__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80023EF4.s"
 }
 #endif
 
 // dStage_isBossStage__FP11dStage_dt_c
-// dStage_isBossStage(dStage_dt_c*)
-asm void dStage_isBossStage(void) {
+// dStage_isBossStage__FP11dStage_dt_c(dStage_dt_c*)
+asm void dStage_isBossStage__FP11dStage_dt_c(void) {
     nofralloc
 #include "d/d_stage/asm/func_80023F00.s"
 }
 
 // dStage_KeepDoorInfoInit__FP11dStage_dt_c
-// dStage_KeepDoorInfoInit(dStage_dt_c*)
-asm void dStage_KeepDoorInfoInit(void) {
+// dStage_KeepDoorInfoInit__FP11dStage_dt_c(dStage_dt_c*)
+asm void dStage_KeepDoorInfoInit__FP11dStage_dt_c(void) {
     nofralloc
 #include "d/d_stage/asm/func_80023F50.s"
 }
 
 // dStage_KeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class
-// dStage_KeepDoorInfoProc(dStage_dt_c*, stage_tgsc_class*)
-asm void dStage_KeepDoorInfoProc(void) {
+// dStage_KeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class(dStage_dt_c*, stage_tgsc_class*)
+asm void dStage_KeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class(void) {
     nofralloc
 #include "d/d_stage/asm/func_80023F84.s"
 }
 
 // dStage_GetRoomKeepDoorInfo__Fv
-// dStage_GetRoomKeepDoorInfo(void)
-asm void dStage_GetRoomKeepDoorInfo(void) {
+// dStage_GetRoomKeepDoorInfo__Fv(void)
+asm void dStage_GetRoomKeepDoorInfo__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002405C.s"
 }
 
 // dStage_initRoomKeepDoorInfo__Fv
-// dStage_initRoomKeepDoorInfo(void)
-asm void dStage_initRoomKeepDoorInfo(void) {
+// dStage_initRoomKeepDoorInfo__Fv(void)
+asm void dStage_initRoomKeepDoorInfo__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024068.s"
 }
 
 #pragma optimization_level 0
 // dStage_RoomKeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class
-// dStage_RoomKeepDoorInfoProc(dStage_dt_c*, stage_tgsc_class*)
-asm void dStage_RoomKeepDoorInfoProc(void) {
+// dStage_RoomKeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class(dStage_dt_c*, stage_tgsc_class*)
+asm void dStage_RoomKeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024078.s"
 }
@@ -205,7 +206,7 @@ asm void dStage_RoomKeepDoorInfoProc(void) {
 
 // dStage_RoomKeepDoorInit__FP11dStage_dt_cPviPv
 // dStage_RoomKeepDoorInit(dStage_dt_c*, void*, int, void*)
-asm void func_80024174(void) {
+asm void dStage_RoomKeepDoorInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024174.s"
 }
@@ -224,70 +225,70 @@ asm void dStage_roomControl_c::init(void) {
 
 // initZone__20dStage_roomControl_cFv
 // dStage_roomControl_c::initZone(void)
-asm void init__20dStage_roomControl_cFvZone(void) {
+asm void initZone__20dStage_roomControl_cFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024338.s"
 }
 
 // getStatusRoomDt__20dStage_roomControl_cFi
 // dStage_roomControl_c::getStatusRoomDt(int)
-asm void dStage_roomControl_c_NS_getStatusRoomDt(void) {
+asm void getStatusRoomDt__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024384.s"
 }
 
 // getMemoryBlock__20dStage_roomControl_cFi
 // dStage_roomControl_c::getMemoryBlock(int)
-asm void dStage_roomControl_c_NS_getMemoryBlock(void) {
+asm void getMemoryBlock__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_800243B0.s"
 }
 
 // setStayNo__20dStage_roomControl_cFi
 // dStage_roomControl_c::setStayNo(int)
-asm void dStage_roomControl_c_NS_setStayNo(void) {
+asm void setStayNo__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_800243E8.s"
 }
 
 // setNextStayNo__20dStage_roomControl_cFi
 // dStage_roomControl_c::setNextStayNo(int)
-asm void func_80024424(void) {
+asm void setNextStayNo__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024424.s"
 }
 
 // stayRoomCheck__FiPUci
-// stayRoomCheck(int, unsigned char*, int)
-asm void stayRoomCheck(void) {
+// stayRoomCheck__FiPUci(int, unsigned char*, int)
+asm void stayRoomCheck__FiPUci(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002442C.s"
 }
 
 // createRoomScene__Fi
-// createRoomScene(int)
-asm void createRoomScene(void) {
+// createRoomScene__Fi(int)
+asm void createRoomScene__Fi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024460.s"
 }
 
 // checkRoomDisp__20dStage_roomControl_cCFi
 // dStage_roomControl_c::checkRoomDisp(int) const
-asm void func_800244E8(void) {
+asm void checkRoomDisp__20dStage_roomControl_cCFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_800244E8.s"
 }
 
 // loadRoom__20dStage_roomControl_cFiPUcb
 // dStage_roomControl_c::loadRoom(int, unsigned char*, bool)
-asm void dStage_roomControl_c_NS_loadRoom(void) {
+asm void loadRoom__20dStage_roomControl_cFiPUcb(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002451C.s"
 }
 
 // zoneCountCheck__20dStage_roomControl_cCFi
 // dStage_roomControl_c::zoneCountCheck(int) const
-asm void dStage_roomControl_c_NS_zoneCountCheck(void) {
+asm void zoneCountCheck__20dStage_roomControl_cCFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002471C.s"
 }
@@ -299,56 +300,56 @@ asm stage_stag_info_class* dStage_stageDt_c::getStagInfo(void) const {
 
 // createMemoryBlock__20dStage_roomControl_cFiUl
 // dStage_roomControl_c::createMemoryBlock(int, unsigned long)
-asm void dStage_roomControl_c_NS_createMemoryBlock(void) {
+asm void createMemoryBlock__20dStage_roomControl_cFiUl(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024844.s"
 }
 
 // destroyMemoryBlock__20dStage_roomControl_cFv
 // dStage_roomControl_c::destroyMemoryBlock(void)
-asm void dStage_roomControl_c_NS_destroyMemoryBlock(void) {
+asm void destroyMemoryBlock__20dStage_roomControl_cFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800248A8.s"
 }
 
 // setArcBank__20dStage_roomControl_cFiPCc
 // dStage_roomControl_c::setArcBank(int, const char*)
-asm void dStage_roomControl_c_NS_setArcBank(void) {
+asm void setArcBank__20dStage_roomControl_cFiPCc(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002490C.s"
 }
 
 // getArcBank__20dStage_roomControl_cFi
 // dStage_roomControl_c::getArcBank(int)
-asm void dStage_roomControl_c_NS_getArcBank(void) {
+asm void getArcBank__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024940.s"
 }
 
 // resetArchiveBank__20dStage_roomControl_cFi
 // dStage_roomControl_c::resetArchiveBank(int)
-asm void dStage_roomControl_c_NS_resetArchiveBank(void) {
+asm void resetArchiveBank__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024954.s"
 }
 
 // create__Q220dStage_roomControl_c9roomDzs_cFUc
 // dStage_roomControl_c::roomDzs_c::create(unsigned char)
-asm void dStage_roomControl_c_NS_roomDzs_c_NS_create(void) {
+asm void create__Q220dStage_roomControl_c9roomDzs_cFUc(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024A34.s"
 }
 
 // remove__Q220dStage_roomControl_c9roomDzs_cFv
 // dStage_roomControl_c::roomDzs_c::remove(void)
-asm void dStage_roomControl_c_NS_roomDzs_c_NS_remove(void) {
+asm void remove__Q220dStage_roomControl_c9roomDzs_cFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024ABC.s"
 }
 
 // add__Q220dStage_roomControl_c9roomDzs_cFUcUc
 // dStage_roomControl_c::roomDzs_c::add(unsigned char, unsigned char)
-asm void dStage_roomControl_c_NS_roomDzs_c_NS_add(void) {
+asm void add__Q220dStage_roomControl_c9roomDzs_cFUcUc(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024B44.s"
 }
@@ -370,14 +371,14 @@ asm void dStage_roomDt_c::init(void) {
 
 // dStage_roomInit__Fi
 // dStage_roomInit(int)
-asm void func_80024D10(void) {
+asm void dStage_roomInit__Fi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024D10.s"
 }
 
 // SetTimePass__20dStage_roomControl_cFi
 // dStage_roomControl_c::SetTimePass(int)
-asm void dStage_roomControl_c_NS_SetTimePass(void) {
+asm void SetTimePass__20dStage_roomControl_cFi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024DB0.s"
 }
@@ -388,36 +389,37 @@ asm roomRead_class* dStage_stageDt_c::getRoom(void) const {
 }
 
 // dStage_searchName__FPCc
-// dStage_searchName(const char*)
-asm objectNameInfo* dStage_searchName(const char*) {
+// dStage_searchName__FPCc(const char*)
+asm objectNameInfo* dStage_searchName__FPCc(const char*) {
     nofralloc
 #include "d/d_stage/asm/func_80024DC0.s"
 }
 
 // dStage_getName__FsSc
-// dStage_getName(short, char)
-asm void dStage_getName(void) {
+// dStage_getName__FsSc(short, char)
+asm void dStage_getName__FsSc(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024E30.s"
 }
 
 // dStage_getName2__FsSc
-// dStage_getName2(short, char)
-asm void dStage_getName2(void) {
+// dStage_getName2__FsSc(short, char)
+asm void dStage_getName2__FsSc(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024EDC.s"
 }
 
 // dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
-// dStage_actorCreate(stage_actor_data_class*, fopAcM_prm_class*)
-asm void dStage_actorCreate(void) {
+// dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class(stage_actor_data_class*,
+// fopAcM_prm_class*)
+asm void dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024EFC.s"
 }
 
 // dStage_cameraCreate__FP24stage_camera2_data_classii
-// dStage_cameraCreate(stage_camera2_data_class*, int, int)
-asm void dStage_cameraCreate(void) {
+// dStage_cameraCreate__FP24stage_camera2_data_classii(stage_camera2_data_class*, int, int)
+asm void dStage_cameraCreate__FP24stage_camera2_data_classii(void) {
     nofralloc
 #include "d/d_stage/asm/func_80024F98.s"
 }
@@ -434,28 +436,28 @@ asm stage_actor_class* dStage_stageDt_c::getPlayer(void) const {
 
 // dStage_playerInit__FP11dStage_dt_cPviPv
 // dStage_playerInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025014(void) {
+asm void dStage_playerInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025014.s"
 }
 
 // dStage_cameraInit__FP11dStage_dt_cPviPv
 // dStage_cameraInit(dStage_dt_c*, void*, int, void*)
-asm void func_800252B8(void) {
+asm void dStage_cameraInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800252B8.s"
 }
 
 // dStage_RoomCameraInit__FP11dStage_dt_cPviPv
 // dStage_RoomCameraInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025308(void) {
+asm void dStage_RoomCameraInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025308.s"
 }
 
 // dStage_arrowInit__FP11dStage_dt_cPviPv
 // dStage_arrowInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002533C(void) {
+asm void dStage_arrowInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002533C.s"
 }
@@ -482,84 +484,84 @@ asm stage_map_info_dummy_class* dStage_stageDt_c::getMapInfoBase(void) const {
 
 // dStage_paletteInfoInit__FP11dStage_dt_cPviPv
 // dStage_paletteInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025498(void) {
+asm void dStage_paletteInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025498.s"
 }
 
 // dStage_pselectInfoInit__FP11dStage_dt_cPviPv
 // dStage_pselectInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800254CC(void) {
+asm void dStage_pselectInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800254CC.s"
 }
 
 // dStage_envrInfoInit__FP11dStage_dt_cPviPv
 // dStage_envrInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025500(void) {
+asm void dStage_envrInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025500.s"
 }
 
 // dStage_filiInfo2Init__FP11dStage_dt_cPviPv
 // dStage_filiInfo2Init(dStage_dt_c*, void*, int, void*)
-asm void func_80025534(void) {
+asm void dStage_filiInfo2Init__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025534.s"
 }
 
 // dStage_fieldMapFiliInfo2Init__FP11dStage_dt_cPviPv
 // dStage_fieldMapFiliInfo2Init(dStage_dt_c*, void*, int, void*)
-asm void func_8002556C(void) {
+asm void dStage_fieldMapFiliInfo2Init__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002556C.s"
 }
 
 // dStage_filiInfoInit__FP11dStage_dt_cPviPv
 // dStage_filiInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002558C(void) {
+asm void dStage_filiInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002558C.s"
 }
 
 // dStage_vrboxInfoInit__FP11dStage_dt_cPviPv
 // dStage_vrboxInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800255E0(void) {
+asm void dStage_vrboxInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800255E0.s"
 }
 
 // dStage_vrboxcolInfoInit__FP11dStage_dt_cPviPv
 // dStage_vrboxcolInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025614(void) {
+asm void dStage_vrboxcolInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025614.s"
 }
 
 // dStage_plightInfoInit__FP11dStage_dt_cPviPv
 // dStage_plightInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025648(void) {
+asm void dStage_plightInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025648.s"
 }
 
 // dStage_lgtvInfoInit__FP11dStage_dt_cPviPv
 // dStage_lgtvInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800256AC(void) {
+asm void dStage_lgtvInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800256AC.s"
 }
 
 // dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi
-// dStage_stagInfo_GetParticleNo(stage_stag_info_class*, int)
-asm void dStage_stagInfo_GetParticleNo(void) {
+// dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi(stage_stag_info_class*, int)
+asm void dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025738.s"
 }
 
 // dStage_stagInfoInit__FP11dStage_dt_cPviPv
 // dStage_stagInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025744(void) {
+asm void dStage_stagInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025744.s"
 }
@@ -571,287 +573,287 @@ asm void dStage_stageDt_c::resetOldMulti(void) {
 
 // dStage_sclsInfoInit__FP11dStage_dt_cPviPv
 // dStage_sclsInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025838(void) {
+asm void dStage_sclsInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025838.s"
 }
 
 // dStage_actorCommonLayerInit__FP11dStage_dt_cPviPv
 // dStage_actorCommonLayerInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002586C(void) {
+asm void dStage_actorCommonLayerInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002586C.s"
 }
 
 // dStage_tgscCommonLayerInit__FP11dStage_dt_cPviPv
 // dStage_tgscCommonLayerInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025958(void) {
+asm void dStage_tgscCommonLayerInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025958.s"
 }
 
 // dStage_actorInit__FP11dStage_dt_cPviPv
-// dStage_actorInit(dStage_dt_c*, void*, int, void*)
-asm void dStage_actorInit(void) {
+// dStage_actorInit__FP11dStage_dt_cPviPv(dStage_dt_c*, void*, int, void*)
+asm void dStage_actorInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025A38.s"
 }
 
 // dStage_actorInit_always__FP11dStage_dt_cPviPv
 // dStage_actorInit_always(dStage_dt_c*, void*, int, void*)
-asm void func_80025B24(void) {
+asm void dStage_actorInit_always__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025B24.s"
 }
 
 // dStage_tgscInfoInit__FP11dStage_dt_cPviPv
-// dStage_tgscInfoInit(dStage_dt_c*, void*, int, void*)
-asm void dStage_tgscInfoInit(void) {
+// dStage_tgscInfoInit__FP11dStage_dt_cPviPv(dStage_dt_c*, void*, int, void*)
+asm void dStage_tgscInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025BFC.s"
 }
 
 // dStage_doorInfoInit__FP11dStage_dt_cPviPv
-// dStage_doorInfoInit(dStage_dt_c*, void*, int, void*)
-asm void dStage_doorInfoInit(void) {
+// dStage_doorInfoInit__FP11dStage_dt_cPviPv(dStage_dt_c*, void*, int, void*)
+asm void dStage_doorInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025CDC.s"
 }
 
 // dStage_roomReadInit__FP11dStage_dt_cPviPv
 // dStage_roomReadInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025DA8(void) {
+asm void dStage_roomReadInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025DA8.s"
 }
 
 // dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi
-// dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int)
-asm void dStage_roomRead_dt_c_GetReverbStage(void) {
+// dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(roomRead_class&, int)
+asm void dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025E40.s"
 }
 
 // dStage_ppntInfoInit__FP11dStage_dt_cPviPv
 // dStage_ppntInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025E70(void) {
+asm void dStage_ppntInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025E70.s"
 }
 
 // dStage_pathInfoInit__FP11dStage_dt_cPviPv
 // dStage_pathInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025EA4(void) {
+asm void dStage_pathInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025EA4.s"
 }
 
 // dStage_rppnInfoInit__FP11dStage_dt_cPviPv
 // dStage_rppnInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025F44(void) {
+asm void dStage_rppnInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025F44.s"
 }
 
 // dStage_rpatInfoInit__FP11dStage_dt_cPviPv
 // dStage_rpatInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80025F78(void) {
+asm void dStage_rpatInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80025F78.s"
 }
 
 // dStage_soundInfoInit__FP11dStage_dt_cPviPv
 // dStage_soundInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026018(void) {
+asm void dStage_soundInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026018.s"
 }
 
 // dStage_soundInfoInitCL__FP11dStage_dt_cPviPv
 // dStage_soundInfoInitCL(dStage_dt_c*, void*, int, void*)
-asm void func_8002604C(void) {
+asm void dStage_soundInfoInitCL__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002604C.s"
 }
 
 // dStage_setLayerTagName__FP9FuncTableii
-// dStage_setLayerTagName(FuncTable*, int, int)
-asm void dStage_setLayerTagName(void) {
+// dStage_setLayerTagName__FP9FuncTableii(FuncTable*, int, int)
+asm void dStage_setLayerTagName__FP9FuncTableii(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026080.s"
 }
 
 // dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
-// dStage_dt_c_decode(void*, dStage_dt_c*, FuncTable*, int)
-asm void dStage_dt_c_decode(void) {
+// dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei(void*, dStage_dt_c*, FuncTable*, int)
+asm void dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei(void) {
     nofralloc
 #include "d/d_stage/asm/func_800260B4.s"
 }
 
 // dStage_stEventInfoInit__FP11dStage_dt_cPviPv
 // dStage_stEventInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002617C(void) {
+asm void dStage_stEventInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002617C.s"
 }
 
 // dStage_mapEventInfoInit__FP11dStage_dt_cPviPv
 // dStage_mapEventInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800261B0(void) {
+asm void dStage_mapEventInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800261B0.s"
 }
 
 // dStage_floorInfoInit__FP11dStage_dt_cPviPv
 // dStage_floorInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800261E4(void) {
+asm void dStage_floorInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800261E4.s"
 }
 
 // dStage_memaInfoInit__FP11dStage_dt_cPviPv
 // dStage_memaInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026218(void) {
+asm void dStage_memaInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026218.s"
 }
 
 // dStage_mecoInfoInit__FP11dStage_dt_cPviPv
 // dStage_mecoInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026298(void) {
+asm void dStage_mecoInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026298.s"
 }
 
 // dStage_stageKeepTresureInit__FP11dStage_dt_cPviPv
 // dStage_stageKeepTresureInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002631C(void) {
+asm void dStage_stageKeepTresureInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002631C.s"
 }
 
 // dStage_fieldMapTresureInit__FP11dStage_dt_cPviPv
 // dStage_fieldMapTresureInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002634C(void) {
+asm void dStage_fieldMapTresureInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002634C.s"
 }
 
 // dStage_dt_c_offsetToPtr__FPv
-// dStage_dt_c_offsetToPtr(void*)
-asm void dStage_dt_c_offsetToPtr(void) {
+// dStage_dt_c_offsetToPtr__FPv(void*)
+asm void dStage_dt_c_offsetToPtr__FPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002635C.s"
 }
 
 // dStage_mapPathInit__FP11dStage_dt_cPviPv
 // dStage_mapPathInit(dStage_dt_c*, void*, int, void*)
-asm void func_800263A0(void) {
+asm void dStage_mapPathInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800263A0.s"
 }
 
 // dStage_mapPathInitCommonLayer__FP11dStage_dt_cPviPv
 // dStage_mapPathInitCommonLayer(dStage_dt_c*, void*, int, void*)
-asm void func_800263D0(void) {
+asm void dStage_mapPathInitCommonLayer__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800263D0.s"
 }
 
 // dStage_fieldMapMapPathInit__FP11dStage_dt_cPviPv
 // dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026400(void) {
+asm void dStage_fieldMapMapPathInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026400.s"
 }
 
 // readMult__FP11dStage_dt_cP14dStage_Multi_cb
-// readMult(dStage_dt_c*, dStage_Multi_c*, bool)
-asm void readMult(void) {
+// readMult__FP11dStage_dt_cP14dStage_Multi_cb(dStage_dt_c*, dStage_Multi_c*, bool)
+asm void readMult__FP11dStage_dt_cP14dStage_Multi_cb(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002645C.s"
 }
 
 // dStage_multInfoInit__FP11dStage_dt_cPviPv
 // dStage_multInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800265DC(void) {
+asm void dStage_multInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800265DC.s"
 }
 
 // dStage_lbnkInfoInit__FP11dStage_dt_cPviPv
 // dStage_lbnkInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026670(void) {
+asm void dStage_lbnkInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026670.s"
 }
 
 // dStage_roomTresureInit__FP11dStage_dt_cPviPv
 // dStage_roomTresureInit(dStage_dt_c*, void*, int, void*)
-asm void func_800266A4(void) {
+asm void dStage_roomTresureInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800266A4.s"
 }
 
 // dStage_layerTresureInit__FP11dStage_dt_cPviPv
 // dStage_layerTresureInit(dStage_dt_c*, void*, int, void*)
-asm void func_8002670C(void) {
+asm void dStage_layerTresureInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002670C.s"
 }
 
 // dStage_dmapInfoInit__FP11dStage_dt_cPviPv
 // dStage_dmapInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026730(void) {
+asm void dStage_dmapInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026730.s"
 }
 
 // dStage_stageDrtgInfoInit__FP11dStage_dt_cPviPv
 // dStage_stageDrtgInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026764(void) {
+asm void dStage_stageDrtgInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026764.s"
 }
 
 // dStage_roomDrtgInfoInit__FP11dStage_dt_cPviPv
 // dStage_roomDrtgInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_800267DC(void) {
+asm void dStage_roomDrtgInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800267DC.s"
 }
 
 // dStage_elstInfoInit__FP11dStage_dt_cPviPv
 // dStage_elstInfoInit(dStage_dt_c*, void*, int, void*)
-asm void func_80026844(void) {
+asm void dStage_elstInfoInit__FP11dStage_dt_cPviPv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026844.s"
 }
 
 // dKankyo_create__Fv
-// dKankyo_create(void)
-asm void dKankyo_create(void) {
+// dKankyo_create__Fv(void)
+asm void dKankyo_create__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026898.s"
 }
 
 // layerMemoryInfoLoader__FPvP11dStage_dt_ci
-// layerMemoryInfoLoader(void*, dStage_dt_c*, int)
-asm void layerMemoryInfoLoader(void) {
+// layerMemoryInfoLoader__FPvP11dStage_dt_ci(void*, dStage_dt_c*, int)
+asm void layerMemoryInfoLoader__FPvP11dStage_dt_ci(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026914.s"
 }
 
 // dStage_dt_c_stageInitLoader__FPvP11dStage_dt_c
-// dStage_dt_c_stageInitLoader(void*, dStage_dt_c*)
-asm void dStage_dt_c_stageInitLoader(void) {
+// dStage_dt_c_stageInitLoader__FPvP11dStage_dt_c(void*, dStage_dt_c*)
+asm void dStage_dt_c_stageInitLoader__FPvP11dStage_dt_c(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026940.s"
 }
 
 // layerTableLoader__FPvP11dStage_dt_ci
-// layerTableLoader(void*, dStage_dt_c*, int)
-asm void layerTableLoader(void) {
+// layerTableLoader__FPvP11dStage_dt_ci(void*, dStage_dt_c*, int)
+asm void layerTableLoader__FPvP11dStage_dt_ci(void) {
     nofralloc
 #include "d/d_stage/asm/func_800269B4.s"
 }
@@ -862,57 +864,57 @@ asm dStage_Elst_c* dStage_stageDt_c::getElst(void) {
 }
 
 // layerActorLoader__FPvP11dStage_dt_ci
-// layerActorLoader(void*, dStage_dt_c*, int)
-asm void layerActorLoader(void) {
+// layerActorLoader__FPvP11dStage_dt_ci(void*, dStage_dt_c*, int)
+asm void layerActorLoader__FPvP11dStage_dt_ci(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026AF0.s"
 }
 
 // dStage_dt_c_stageLoader__FPvP11dStage_dt_c
-// dStage_dt_c_stageLoader(void*, dStage_dt_c*)
-asm void dStage_dt_c_stageLoader(void) {
+// dStage_dt_c_stageLoader__FPvP11dStage_dt_c(void*, dStage_dt_c*)
+asm void dStage_dt_c_stageLoader__FPvP11dStage_dt_c(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026B58.s"
 }
 
 // dStage_dt_c_roomLoader__FPvP11dStage_dt_ci
-// dStage_dt_c_roomLoader(void*, dStage_dt_c*, int)
-asm void dStage_dt_c_roomLoader(void) {
+// dStage_dt_c_roomLoader__FPvP11dStage_dt_ci(void*, dStage_dt_c*, int)
+asm void dStage_dt_c_roomLoader__FPvP11dStage_dt_ci(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026BBC.s"
 }
 
 // dStage_dt_c_roomReLoader__FPvP11dStage_dt_ci
-// dStage_dt_c_roomReLoader(void*, dStage_dt_c*, int)
-asm void dStage_dt_c_roomReLoader(void) {
+// dStage_dt_c_roomReLoader__FPvP11dStage_dt_ci(void*, dStage_dt_c*, int)
+asm void dStage_dt_c_roomReLoader__FPvP11dStage_dt_ci(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026C34.s"
 }
 
 // dStage_dt_c_fieldMapLoader__FPvP11dStage_dt_c
-// dStage_dt_c_fieldMapLoader(void*, dStage_dt_c*)
-asm void dStage_dt_c_fieldMapLoader(void) {
+// dStage_dt_c_fieldMapLoader__FPvP11dStage_dt_c(void*, dStage_dt_c*)
+asm void dStage_dt_c_fieldMapLoader__FPvP11dStage_dt_c(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026C8C.s"
 }
 
 // dStage_infoCreate__Fv
-// dStage_infoCreate(void)
-asm void dStage_infoCreate(void) {
+// dStage_infoCreate__Fv(void)
+asm void dStage_infoCreate__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026CDC.s"
 }
 
 // dStage_Create__Fv
-// dStage_Create(void)
-asm void dStage_Create(void) {
+// dStage_Create__Fv(void)
+asm void dStage_Create__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026D38.s"
 }
 
 // dStage_Delete__Fv
-// dStage_Delete(void)
-asm void dStage_Delete(void) {
+// dStage_Delete__Fv(void)
+asm void dStage_Delete__Fv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026DF8.s"
 }
@@ -923,22 +925,23 @@ asm void dStage_stageDt_c::setOldMulti(void) {
 }
 
 // dStage_RoomCheck__FP11cBgS_GndChk
-// dStage_RoomCheck(cBgS_GndChk*)
-asm void dStage_RoomCheck(void) {
+// dStage_RoomCheck__FP11cBgS_GndChk(cBgS_GndChk*)
+asm void dStage_RoomCheck__FP11cBgS_GndChk(void) {
     nofralloc
 #include "d/d_stage/asm/func_80026FE8.s"
 }
 
 // dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs
-// dStage_changeSceneExitId(cBgS_PolyInfo&, float, unsigned long, char, short)
-asm void dStage_changeSceneExitId(void) {
+// dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(cBgS_PolyInfo&, float, unsigned long, char,
+// short)
+asm void dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs(void) {
     nofralloc
 #include "d/d_stage/asm/func_800270FC.s"
 }
 
 // dStage_changeScene__FifUlScsi
-// dStage_changeScene(int, float, unsigned long, char, short, int)
-asm void dStage_changeScene(void) {
+// dStage_changeScene__FifUlScsi(int, float, unsigned long, char, short, int)
+asm void dStage_changeScene__FifUlScsi(void) {
     nofralloc
 #include "d/d_stage/asm/func_80027170.s"
 }
@@ -954,15 +957,15 @@ asm stage_scls_info_dummy_class* dStage_stageDt_c::getSclsInfo(void) const {
 }
 
 // dStage_changeScene4Event__FiScibfUlsi
-// dStage_changeScene4Event(int, char, int, bool, float, unsigned long, short, int)
-asm void dStage_changeScene4Event(void) {
+// dStage_changeScene4Event__FiScibfUlsi(int, char, int, bool, float, unsigned long, short, int)
+asm void dStage_changeScene4Event__FiScibfUlsi(void) {
     nofralloc
 #include "d/d_stage/asm/func_800272F0.s"
 }
 
 // dStage_restartRoom__FUlUli
-// dStage_restartRoom(unsigned long, unsigned long, int)
-asm void dStage_restartRoom(void) {
+// dStage_restartRoom__FUlUli(unsigned long, unsigned long, int)
+asm void dStage_restartRoom__FUlUli(void) {
     nofralloc
 #include "d/d_stage/asm/func_800274B0.s"
 }
@@ -1675,49 +1678,49 @@ void dStage_stageDt_c::setElst(dStage_Elst_c* i_Elst) {
 
 // __sinit_d_stage_cpp
 //
-asm void func_8002824C(void) {
+asm void __sinit_d_stage_cpp(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002824C.s"
 }
 
 // __arraydtor$5375
 //
-asm void __arraydtor_5375(void) {
+asm void func_80028328(void) {
     nofralloc
 #include "d/d_stage/asm/func_80028328.s"
 }
 
 // __dt__19dStage_roomStatus_cFv
 // dStage_roomStatus_c::~dStage_roomStatus_c(void)
-asm void dStage_roomStatus_c_NS_dtor(void) {
+asm void __dt__19dStage_roomStatus_cFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80028360.s"
 }
 
 // __ct__19dStage_roomStatus_cFv
 // dStage_roomStatus_c::dStage_roomStatus_c(void)
-asm void dStage_roomStatus_c(void) {
+asm void __ct__19dStage_roomStatus_cFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002839C.s"
 }
 
 // __dt__19dStage_KeepDoorInfoFv
 // dStage_KeepDoorInfo::~dStage_KeepDoorInfo(void)
-asm void dStage_KeepDoorInfo_NS_dtor(void) {
+asm void __dt__19dStage_KeepDoorInfoFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_80028418.s"
 }
 
 // __dt__21stage_tgsc_data_classFv
 // stage_tgsc_data_class::~stage_tgsc_data_class(void)
-asm void stage_tgsc_data_class_NS_dtor(void) {
+asm void __dt__21stage_tgsc_data_classFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_8002847C.s"
 }
 
 // __ct__21stage_tgsc_data_classFv
 // stage_tgsc_data_class::stage_tgsc_data_class(void)
-asm void stage_tgsc_data_class(void) {
+asm void __ct__21stage_tgsc_data_classFv(void) {
     nofralloc
 #include "d/d_stage/asm/func_800284B8.s"
 }

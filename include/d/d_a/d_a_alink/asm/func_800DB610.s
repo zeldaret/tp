@@ -9,12 +9,12 @@
 /* 800DB630 000D8570  64 00 08 00 */ oris r0, r0, 0x800
 /* 800DB634 000D8574  90 03 05 88 */ stw r0, 0x588(r3)
 /* 800DB638 000D8578  7F E3 FB 78 */ mr r3, r31
-/* 800DB63C 000D857C  48 08 2E 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DB63C 000D857C  48 08 2E 91 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DB640 000D8580  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DB644 000D8584  41 82 00 14 */ beq lbl_800DB658
 /* 800DB648 000D8588  7F C3 F3 78 */ mr r3, r30
 /* 800DB64C 000D858C  38 80 00 00 */ li r4, 0
-/* 800DB650 000D8590  4B FD EA 81 */ bl daAlink_c_NS_checkNextAction
+/* 800DB650 000D8590  4B FD EA 81 */ bl checkNextAction__9daAlink_cFi
 /* 800DB654 000D8594  48 00 00 34 */ b lbl_800DB688
 lbl_800DB658:
 /* 800DB658 000D8598  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -28,7 +28,7 @@ lbl_800DB658:
 /* 800DB678 000D85B8  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 800DB67C 000D85BC  7F C3 F3 78 */ mr r3, r30
 /* 800DB680 000D85C0  38 80 00 01 */ li r4, 1
-/* 800DB684 000D85C4  4B FD EA 4D */ bl daAlink_c_NS_checkNextAction
+/* 800DB684 000D85C4  4B FD EA 4D */ bl checkNextAction__9daAlink_cFi
 lbl_800DB688:
 /* 800DB688 000D85C8  38 60 00 01 */ li r3, 1
 /* 800DB68C 000D85CC  83 E1 00 0C */ lwz r31, 0xc(r1)

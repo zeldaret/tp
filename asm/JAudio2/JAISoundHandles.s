@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2c98
 
 
-.global JAISoundHandles_NS_getHandleSoundID
-JAISoundHandles_NS_getHandleSoundID:
+.global getHandleSoundID__15JAISoundHandlesF10JAISoundID
+getHandleSoundID__15JAISoundHandlesF10JAISoundID:
 /* 802A2C98 0029FBD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A2C9C 0029FBDC  38 A0 00 00 */	li r5, 0
 /* 802A2CA0 0029FBE0  80 C3 00 04 */	lwz r6, 4(r3)
@@ -33,8 +33,8 @@ lbl_802A2CEC:
 /* 802A2CEC 0029FC2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A2CF0 0029FC30  4E 80 00 20 */	blr 
 
-.global JAISoundHandles_NS_getFreeHandle
-JAISoundHandles_NS_getFreeHandle:
+.global getFreeHandle__15JAISoundHandlesFv
+getFreeHandle__15JAISoundHandlesFv:
 /* 802A2CF4 0029FC34  38 80 00 00 */	li r4, 0
 /* 802A2CF8 0029FC38  80 03 00 04 */	lwz r0, 4(r3)
 /* 802A2CFC 0029FC3C  7C 09 03 A6 */	mtctr r0

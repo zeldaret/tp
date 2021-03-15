@@ -36,7 +36,7 @@ lbl_80103330:
 /* 8010334C 0010028C  38 00 00 00 */ li r0, 0
 /* 80103350 00100290  B0 1F 30 00 */ sth r0, 0x3000(r31)
 /* 80103354 00100294  7F E3 FB 78 */ mr r3, r31
-/* 80103358 00100298  4B FF E9 3D */ bl daAlink_c_NS_offOxygenTimer
+/* 80103358 00100298  4B FF E9 3D */ bl offOxygenTimer__9daAlink_cFv
 /* 8010335C 0010029C  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
 /* 80103360 001002A0  28 00 02 3F */ cmplwi r0, 0x23f
 /* 80103364 001002A4  41 82 00 10 */ beq lbl_80103374
@@ -47,7 +47,7 @@ lbl_80103374:
 /* 80103374 001002B4  7F E3 FB 78 */ mr r3, r31
 /* 80103378 001002B8  38 80 00 02 */ li r4, 2
 /* 8010337C 001002BC  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80103380 001002C0  4B FA A3 A5 */ bl daAlink_c_NS_resetUpperAnime
+/* 80103380 001002C0  4B FA A3 A5 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_80103384:
 /* 80103384 001002C4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80103388 001002C8  80 01 00 14 */ lwz r0, 0x14(r1)

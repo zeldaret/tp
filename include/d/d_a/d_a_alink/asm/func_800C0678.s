@@ -4,31 +4,31 @@
 /* 800C0684 000BD5C4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C0688 000BD5C8  93 C1 00 08 */ stw r30, 8(r1)
 /* 800C068C 000BD5CC  7C 7E 1B 78 */ mr r30, r3
-/* 800C0690 000BD5D0  4B FF FF 05 */ bl daAlink_c_NS_checkNotBattleStage
+/* 800C0690 000BD5D0  4B FF FF 05 */ bl checkNotBattleStage__9daAlink_cFv
 /* 800C0694 000BD5D4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0698 000BD5D8  41 82 00 C8 */ beq lbl_800C0760
 /* 800C069C 000BD5DC  57 DF 04 3E */ clrlwi r31, r30, 0x10
 /* 800C06A0 000BD5E0  28 1F 00 48 */ cmplwi r31, 0x48
 /* 800C06A4 000BD5E4  41 82 00 AC */ beq lbl_800C0750
 /* 800C06A8 000BD5E8  7F E3 FB 78 */ mr r3, r31
-/* 800C06AC 000BD5EC  48 09 E5 2D */ bl daPy_py_c_NS_checkTradeItem
+/* 800C06AC 000BD5EC  48 09 E5 2D */ bl checkTradeItem__9daPy_py_cFi
 /* 800C06B0 000BD5F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06B4 000BD5F4  40 82 00 9C */ bne lbl_800C0750
 /* 800C06B8 000BD5F8  7F E0 FB 78 */ mr r0, r31
 /* 800C06BC 000BD5FC  28 00 00 27 */ cmplwi r0, 0x27
 /* 800C06C0 000BD600  40 82 00 10 */ bne lbl_800C06D0
-/* 800C06C4 000BD604  48 05 E7 7D */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 800C06C4 000BD604  48 05 E7 7D */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C06C8 000BD608  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06CC 000BD60C  40 82 00 84 */ bne lbl_800C0750
 lbl_800C06D0:
-/* 800C06D0 000BD610  4B FF FD E5 */ bl daAlink_c_NS_checkRoomSpecial
+/* 800C06D0 000BD610  4B FF FD E5 */ bl checkRoomSpecial__9daAlink_cFv
 /* 800C06D4 000BD614  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C06D8 000BD618  41 82 00 20 */ beq lbl_800C06F8
 /* 800C06DC 000BD61C  57 C0 04 3E */ clrlwi r0, r30, 0x10
 /* 800C06E0 000BD620  28 00 00 60 */ cmplwi r0, 0x60
 /* 800C06E4 000BD624  41 82 00 6C */ beq lbl_800C0750
 /* 800C06E8 000BD628  7F E3 FB 78 */ mr r3, r31
-/* 800C06EC 000BD62C  48 09 E5 3D */ bl daPy_py_c_NS_checkDungeonWarpItem
+/* 800C06EC 000BD62C  48 09 E5 3D */ bl checkDungeonWarpItem__9daPy_py_cFi
 /* 800C06F0 000BD630  2C 03 00 00 */ cmpwi r3, 0
 /* 800C06F4 000BD634  40 82 00 5C */ bne lbl_800C0750
 lbl_800C06F8:
@@ -42,7 +42,7 @@ lbl_800C06F8:
 /* 800C0714 000BD654  28 00 00 46 */ cmplwi r0, 0x46
 /* 800C0718 000BD658  41 82 00 38 */ beq lbl_800C0750
 lbl_800C071C:
-/* 800C071C 000BD65C  4B FF FD 31 */ bl daAlink_c_NS_checkLv2DungeonRoomSpecial
+/* 800C071C 000BD65C  4B FF FD 31 */ bl checkLv2DungeonRoomSpecial__9daAlink_cFv
 /* 800C0720 000BD660  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0724 000BD664  41 82 00 10 */ beq lbl_800C0734
 /* 800C0728 000BD668  57 C0 04 3E */ clrlwi r0, r30, 0x10
@@ -50,7 +50,7 @@ lbl_800C071C:
 /* 800C0730 000BD670  41 82 00 20 */ beq lbl_800C0750
 lbl_800C0734:
 /* 800C0734 000BD674  7F E3 FB 78 */ mr r3, r31
-/* 800C0738 000BD678  48 09 E3 51 */ bl daPy_py_c_NS_checkBottleItem
+/* 800C0738 000BD678  48 09 E3 51 */ bl checkBottleItem__9daPy_py_cFi
 /* 800C073C 000BD67C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0740 000BD680  41 82 00 18 */ beq lbl_800C0758
 /* 800C0744 000BD684  57 C0 04 3E */ clrlwi r0, r30, 0x10

@@ -6,7 +6,7 @@
 /* 800ADACC 000AAA0C  C0 46 00 08 */ lfs f2, 8(r6)
 /* 800ADAD0 000AAA10  A8 C6 00 00 */ lha r6, 0(r6)
 /* 800ADAD4 000AAA14  C0 67 00 0C */ lfs f3, 0xc(r7)
-/* 800ADAD8 000AAA18  4B FF FE 8D */ bl daAlink_c_NS_setUnderAnime
+/* 800ADAD8 000AAA18  4B FF FE 8D */ bl setUnderAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UNDERffsf
 /* 800ADADC 000AAA1C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800ADAE0 000AAA20  7C 08 03 A6 */ mtlr r0
 /* 800ADAE4 000AAA24  38 21 00 10 */ addi r1, r1, 0x10

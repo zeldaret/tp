@@ -12,16 +12,16 @@
 /* 8000E568 0000B4A8  38 63 00 10 */ addi r3, r3, 0x10
 /* 8000E56C 0000B4AC  48 2C 07 59 */ bl __nwa__FUl
 /*.global mDoExt_invJntPacket*/
-/* 8000E570 0000B4B0  3C 80 80 01 */ lis r4, mDoExt_invJntPacket@ha
+/* 8000E570 0000B4B0  3C 80 80 01 */ lis r4, __ct__19mDoExt_invJntPacketFv@ha
 /*.global mDoExt_invJntPacket*/
-/* 8000E574 0000B4B4  38 84 E6 54 */ addi r4, r4, mDoExt_invJntPacket@l
-/*.global mDoExt_invJntPacket_NS_dtor*/
-/* 8000E578 0000B4B8  3C A0 80 01 */ lis r5, mDoExt_invJntPacket_NS_dtor@ha
-/*.global mDoExt_invJntPacket_NS_dtor*/
-/* 8000E57C 0000B4BC  38 A5 E5 F8 */ addi r5, r5, mDoExt_invJntPacket_NS_dtor@l
+/* 8000E574 0000B4B4  38 84 E6 54 */ addi r4, r4, __ct__19mDoExt_invJntPacketFv@l
+/*.global __dt__19mDoExt_invJntPacketFv*/
+/* 8000E578 0000B4B8  3C A0 80 01 */ lis r5, __dt__19mDoExt_invJntPacketFv@ha
+/*.global __dt__19mDoExt_invJntPacketFv*/
+/* 8000E57C 0000B4BC  38 A5 E5 F8 */ addi r5, r5, __dt__19mDoExt_invJntPacketFv@l
 /* 8000E580 0000B4C0  38 C0 00 18 */ li r6, 0x18
 /* 8000E584 0000B4C4  7F E7 FB 78 */ mr r7, r31
-/* 8000E588 0000B4C8  48 35 39 8D */ bl func_80361F14
+/* 8000E588 0000B4C8  48 35 39 8D */ bl __construct_new_array
 /* 8000E58C 0000B4CC  90 7B 00 04 */ stw r3, 4(r27)
 /* 8000E590 0000B4D0  80 1B 00 04 */ lwz r0, 4(r27)
 /* 8000E594 0000B4D4  28 00 00 00 */ cmplwi r0, 0

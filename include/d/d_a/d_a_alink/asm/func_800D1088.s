@@ -5,13 +5,13 @@
 /* 800D1098 000CDFD8  7C 7F 1B 78 */ mr r31, r3
 /* 800D109C 000CDFDC  38 80 00 00 */ li r4, 0
 /* 800D10A0 000CDFE0  38 A0 00 00 */ li r5, 0
-/* 800D10A4 000CDFE4  4B FF 02 39 */ bl daAlink_c_NS_deleteEquipItem
+/* 800D10A4 000CDFE4  4B FF 02 39 */ bl deleteEquipItem__9daAlink_cFii
 /* 800D10A8 000CDFE8  7F E3 FB 78 */ mr r3, r31
-/* 800D10AC 000CDFEC  48 00 01 BD */ bl daAlink_c_NS_setSwordModel
+/* 800D10AC 000CDFEC  48 00 01 BD */ bl setSwordModel__9daAlink_cFv
 /* 800D10B0 000CDFF0  38 00 00 03 */ li r0, 3
 /* 800D10B4 000CDFF4  98 1F 05 69 */ stb r0, 0x569(r31)
 /* 800D10B8 000CDFF8  7F E3 FB 78 */ mr r3, r31
-/* 800D10BC 000CDFFC  48 00 13 05 */ bl daAlink_c_NS_checkCutAction
+/* 800D10BC 000CDFFC  48 00 13 05 */ bl checkCutAction__9daAlink_cFv
 /* 800D10C0 000CE000  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 800D10C4 000CE004  64 00 00 08 */ oris r0, r0, 8
 /* 800D10C8 000CE008  90 1F 05 70 */ stw r0, 0x570(r31)

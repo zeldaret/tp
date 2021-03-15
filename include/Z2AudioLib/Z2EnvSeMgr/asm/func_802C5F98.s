@@ -73,12 +73,12 @@ lbl_802C609C:
 /* 802C60A8 002C2FE8  38 63 00 48 */ addi r3, r3, 0x48
 /* 802C60AC 002C2FEC  C0 3F 00 08 */ lfs f1, 8(r31)
 /* 802C60B0 002C2FF0  38 80 00 00 */ li r4, 0
-/* 802C60B4 002C2FF4  4B FD CE 09 */ bl JAISoundParamsMove_NS_movePan
+/* 802C60B4 002C2FF4  4B FD CE 09 */ bl movePan__18JAISoundParamsMoveFfUl
 /* 802C60B8 002C2FF8  80 7F 00 04 */ lwz r3, 4(r31)
 /* 802C60BC 002C2FFC  38 63 00 48 */ addi r3, r3, 0x48
 /* 802C60C0 002C3000  C0 3F 00 0C */ lfs f1, 0xc(r31)
 /* 802C60C4 002C3004  38 80 00 00 */ li r4, 0
-/* 802C60C8 002C3008  4B FD CE 4D */ bl JAISoundParamsMove_NS_moveDolby
+/* 802C60C8 002C3008  4B FD CE 4D */ bl moveDolby__18JAISoundParamsMoveFfUl
 lbl_802C60CC:
 /* 802C60CC 002C300C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802C60D0 002C3010  80 01 00 14 */ lwz r0, 0x14(r1)

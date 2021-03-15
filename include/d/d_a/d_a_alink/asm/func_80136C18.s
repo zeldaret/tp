@@ -9,12 +9,12 @@
 /* 80136C38 00133B78  7C 9E 23 78 */ mr r30, r4
 /* 80136C3C 00133B7C  2C 1E 00 02 */ cmpwi r30, 2
 /* 80136C40 00133B80  40 82 00 6C */ bne lbl_80136CAC
-/* 80136C44 00133B84  4B FD EF DD */ bl daAlink_c_NS_checkEventRun
+/* 80136C44 00133B84  4B FD EF DD */ bl checkEventRun__9daAlink_cCFv
 /* 80136C48 00133B88  2C 03 00 00 */ cmpwi r3, 0
 /* 80136C4C 00133B8C  40 82 00 10 */ bne lbl_80136C5C
 /* 80136C50 00133B90  7F E3 FB 78 */ mr r3, r31
 /* 80136C54 00133B94  38 80 00 08 */ li r4, 8
-/* 80136C58 00133B98  4B FA 08 4D */ bl daAlink_c_NS_setLandDamagePoint
+/* 80136C58 00133B98  4B FA 08 4D */ bl setLandDamagePoint__9daAlink_cFi
 lbl_80136C5C:
 /* 80136C5C 00133B9C  3C 60 80 39 */ lis r3, lbl_8038F374@ha
 /* 80136C60 00133BA0  38 63 F3 74 */ addi r3, r3, lbl_8038F374@l
@@ -34,7 +34,7 @@ lbl_80136C5C:
 /* 80136C98 00133BD8  38 80 00 05 */ li r4, 5
 /* 80136C9C 00133BDC  38 A0 00 1F */ li r5, 0x1f
 /* 80136CA0 00133BE0  38 C1 00 14 */ addi r6, r1, 0x14
-/* 80136CA4 00133BE4  4B F3 8D 81 */ bl dVibration_c_NS_StartShock
+/* 80136CA4 00133BE4  4B F3 8D 81 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80136CA8 00133BE8  48 00 00 68 */ b lbl_80136D10
 lbl_80136CAC:
 /* 80136CAC 00133BEC  3C 80 80 39 */ lis r4, lbl_8038F374@ha
@@ -44,12 +44,12 @@ lbl_80136CAC:
 /* 80136CBC 00133BFC  B0 1F 30 08 */ sth r0, 0x3008(r31)
 /* 80136CC0 00133C00  2C 1E 00 01 */ cmpwi r30, 1
 /* 80136CC4 00133C04  40 82 00 4C */ bne lbl_80136D10
-/* 80136CC8 00133C08  4B FD EF 59 */ bl daAlink_c_NS_checkEventRun
+/* 80136CC8 00133C08  4B FD EF 59 */ bl checkEventRun__9daAlink_cCFv
 /* 80136CCC 00133C0C  2C 03 00 00 */ cmpwi r3, 0
 /* 80136CD0 00133C10  40 82 00 10 */ bne lbl_80136CE0
 /* 80136CD4 00133C14  7F E3 FB 78 */ mr r3, r31
 /* 80136CD8 00133C18  38 80 00 04 */ li r4, 4
-/* 80136CDC 00133C1C  4B FA 07 C9 */ bl daAlink_c_NS_setLandDamagePoint
+/* 80136CDC 00133C1C  4B FA 07 C9 */ bl setLandDamagePoint__9daAlink_cFi
 lbl_80136CE0:
 /* 80136CE0 00133C20  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80136CE4 00133C24  D0 21 00 08 */ stfs f1, 8(r1)
@@ -62,11 +62,11 @@ lbl_80136CE0:
 /* 80136D00 00133C40  38 80 00 04 */ li r4, 4
 /* 80136D04 00133C44  38 A0 00 1F */ li r5, 0x1f
 /* 80136D08 00133C48  38 C1 00 08 */ addi r6, r1, 8
-/* 80136D0C 00133C4C  4B F3 8D 19 */ bl dVibration_c_NS_StartShock
+/* 80136D0C 00133C4C  4B F3 8D 19 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_80136D10:
 /* 80136D10 00133C50  7F E3 FB 78 */ mr r3, r31
 /* 80136D14 00133C54  38 80 01 09 */ li r4, 0x109
-/* 80136D18 00133C58  4B F8 B2 55 */ bl daAlink_c_NS_commonProcInit
+/* 80136D18 00133C58  4B F8 B2 55 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80136D1C 00133C5C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80136D20 00133C60  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 80136D24 00133C64  2C 1E 00 00 */ cmpwi r30, 0
@@ -99,17 +99,17 @@ lbl_80136D74:
 /* 80136D88 00133CC8  FC 40 F8 90 */ fmr f2, f31
 /* 80136D8C 00133CCC  A8 A6 00 00 */ lha r5, 0(r6)
 /* 80136D90 00133CD0  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 80136D94 00133CD4  4B FF 29 71 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 80136D94 00133CD4  4B FF 29 71 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 80136D98 00133CD8  7F E3 FB 78 */ mr r3, r31
 /* 80136D9C 00133CDC  38 80 00 95 */ li r4, 0x95
-/* 80136DA0 00133CE0  4B F7 8B 01 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 80136DA0 00133CE0  4B F7 8B 01 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 80136DA4 00133CE4  38 00 00 00 */ li r0, 0
 /* 80136DA8 00133CE8  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 80136DAC 00133CEC  38 00 00 04 */ li r0, 4
 /* 80136DB0 00133CF0  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 80136DB4 00133CF4  7F E3 FB 78 */ mr r3, r31
 /* 80136DB8 00133CF8  38 80 00 04 */ li r4, 4
-/* 80136DBC 00133CFC  4B FE A4 05 */ bl daAlink_c_NS_setFootEffectProcType
+/* 80136DBC 00133CFC  4B FE A4 05 */ bl setFootEffectProcType__9daAlink_cFi
 /* 80136DC0 00133D00  38 60 00 01 */ li r3, 1
 /* 80136DC4 00133D04  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 80136DC8 00133D08  CB E1 00 30 */ lfd f31, 0x30(r1)

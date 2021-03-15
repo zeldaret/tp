@@ -8,7 +8,7 @@
 /* 800FC584 000F94C4  2C 00 00 F7 */ cmpwi r0, 0xf7
 /* 800FC588 000F94C8  40 82 00 0C */ bne lbl_800FC594
 /* 800FC58C 000F94CC  38 63 28 0C */ addi r3, r3, 0x280c
-/* 800FC590 000F94D0  48 06 27 29 */ bl daPy_actorKeep_c_NS_setData
+/* 800FC590 000F94D0  48 06 27 29 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_800FC594:
 /* 800FC594 000F94D4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800FC598 000F94D8  7C 08 03 A6 */ mtlr r0

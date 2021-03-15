@@ -46,13 +46,13 @@ lbl_800B36B8:
 /* 800B36DC 000B061C  D0 01 00 1C */ stfs f0, 0x1c(r1)
 /* 800B36E0 000B0620  7F C3 F3 78 */ mr r3, r30
 /* 800B36E4 000B0624  38 81 00 14 */ addi r4, r1, 0x14
-/* 800B36E8 000B0628  48 02 ED 95 */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800B36E8 000B0628  48 02 ED 95 */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800B36EC 000B062C  38 61 00 14 */ addi r3, r1, 0x14
 /* 800B36F0 000B0630  48 1B 3A 39 */ bl atan2sX_Z__4cXyzCFv
 /* 800B36F4 000B0634  7C 7F 1B 78 */ mr r31, r3
 lbl_800B36F8:
 /* 800B36F8 000B0638  7F C3 F3 78 */ mr r3, r30
-/* 800B36FC 000B063C  48 07 46 6D */ bl daAlink_c_NS_checkWolfShapeReverse
+/* 800B36FC 000B063C  48 07 46 6D */ bl checkWolfShapeReverse__9daAlink_cCFv
 /* 800B3700 000B0640  2C 03 00 00 */ cmpwi r3, 0
 /* 800B3704 000B0644  41 82 00 14 */ beq lbl_800B3718
 /* 800B3708 000B0648  3F FF 00 01 */ addis r31, r31, 1

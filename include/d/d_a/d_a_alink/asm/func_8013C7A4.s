@@ -42,7 +42,7 @@ lbl_8013C82C:
 /* 8013C83C 0013977C  C0 82 92 B8 */ lfs f4, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8013C840 00139780  48 13 31 3D */ bl cLib_addCalc__FPfffff
 /* 8013C844 00139784  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8013C848 00139788  48 02 1C 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013C848 00139788  48 02 1C 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013C84C 0013978C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013C850 00139790  41 82 00 60 */ beq lbl_8013C8B0
 /* 8013C854 00139794  88 1F 2F B1 */ lbz r0, 0x2fb1(r31)
@@ -50,18 +50,18 @@ lbl_8013C82C:
 /* 8013C85C 0013979C  41 82 00 14 */ beq lbl_8013C870
 /* 8013C860 001397A0  7F E3 FB 78 */ mr r3, r31
 /* 8013C864 001397A4  A8 9F 30 0A */ lha r4, 0x300a(r31)
-/* 8013C868 001397A8  4B FF F5 BD */ bl daAlink_c_NS_procWolfLockAttackInit
+/* 8013C868 001397A8  4B FF F5 BD */ bl procWolfLockAttackInit__9daAlink_cFi
 /* 8013C86C 001397AC  48 00 00 44 */ b lbl_8013C8B0
 lbl_8013C870:
 /* 8013C870 001397B0  7F E3 FB 78 */ mr r3, r31
-/* 8013C874 001397B4  4B F7 70 91 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 8013C874 001397B4  4B F7 70 91 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 8013C878 001397B8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013C87C 001397BC  41 82 00 1C */ beq lbl_8013C898
 /* 8013C880 001397C0  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8013C884 001397C4  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 8013C888 001397C8  7F E3 FB 78 */ mr r3, r31
 /* 8013C88C 001397CC  38 80 00 00 */ li r4, 0
-/* 8013C890 001397D0  4B FE D2 B5 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013C890 001397D0  4B FE D2 B5 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013C894 001397D4  48 00 00 1C */ b lbl_8013C8B0
 lbl_8013C898:
 /* 8013C898 001397D8  38 00 00 04 */ li r0, 4
@@ -69,7 +69,7 @@ lbl_8013C898:
 /* 8013C8A0 001397E0  7F E3 FB 78 */ mr r3, r31
 /* 8013C8A4 001397E4  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 8013C8A8 001397E8  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 8013C8AC 001397EC  4B F8 29 21 */ bl daAlink_c_NS_seStartMapInfoLevel
+/* 8013C8AC 001397EC  4B F8 29 21 */ bl seStartMapInfoLevel__9daAlink_cFUl
 lbl_8013C8B0:
 /* 8013C8B0 001397F0  38 60 00 01 */ li r3, 1
 /* 8013C8B4 001397F4  83 E1 00 0C */ lwz r31, 0xc(r1)

@@ -24,7 +24,7 @@
 lbl_800D2CD4:
 /* 800D2CD4 000CFC14  38 80 00 01 */ li r4, 1
 /* 800D2CD8 000CFC18  38 A0 00 01 */ li r5, 1
-/* 800D2CDC 000CFC1C  4B FE 87 DD */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800D2CDC 000CFC1C  4B FE 87 DD */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800D2CE0 000CFC20  2C 03 00 00 */ cmpwi r3, 0
 /* 800D2CE4 000CFC24  41 82 00 14 */ beq lbl_800D2CF8
 /* 800D2CE8 000CFC28  C0 3F 04 FC */ lfs f1, 0x4fc(r31)

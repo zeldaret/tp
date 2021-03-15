@@ -9,7 +9,7 @@
 /* 800C0ABC 000BD9FC  7C 9D 23 78 */ mr r29, r4
 /* 800C0AC0 000BDA00  54 9F 06 3E */ clrlwi r31, r4, 0x18
 /* 800C0AC4 000BDA04  7F E3 FB 78 */ mr r3, r31
-/* 800C0AC8 000BDA08  4B F6 D4 55 */ bl dComIfGp_getSelectItem
+/* 800C0AC8 000BDA08  4B F6 D4 55 */ bl dComIfGp_getSelectItem__Fi
 /* 800C0ACC 000BDA0C  54 7E 06 3E */ clrlwi r30, r3, 0x18
 /* 800C0AD0 000BDA10  7F 83 E3 78 */ mr r3, r28
 /* 800C0AD4 000BDA14  81 9C 06 28 */ lwz r12, 0x628(r28)
@@ -23,13 +23,13 @@
 /* 800C0AF4 000BDA34  28 1E 00 48 */ cmplwi r30, 0x48
 /* 800C0AF8 000BDA38  41 82 00 14 */ beq lbl_800C0B0C
 /* 800C0AFC 000BDA3C  7F C3 F3 78 */ mr r3, r30
-/* 800C0B00 000BDA40  48 09 E0 41 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 800C0B00 000BDA40  48 09 E0 41 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 800C0B04 000BDA44  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0B08 000BDA48  41 82 00 18 */ beq lbl_800C0B20
 lbl_800C0B0C:
 /* 800C0B0C 000BDA4C  7F 83 E3 78 */ mr r3, r28
 /* 800C0B10 000BDA50  C0 3C 33 B4 */ lfs f1, 0x33b4(r28)
-/* 800C0B14 000BDA54  48 04 FC 79 */ bl daAlink_c_NS_checkWaterInKandelaarOffset
+/* 800C0B14 000BDA54  48 04 FC 79 */ bl checkWaterInKandelaarOffset__9daAlink_cFf
 /* 800C0B18 000BDA58  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0B1C 000BDA5C  40 82 02 40 */ bne lbl_800C0D5C
 lbl_800C0B20:
@@ -47,7 +47,7 @@ lbl_800C0B20:
 /* 800C0B4C 000BDA8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0B50 000BDA90  40 82 02 0C */ bne lbl_800C0D5C
 lbl_800C0B54:
-/* 800C0B54 000BDA94  4B FF F8 4D */ bl daAlink_c_NS_checkCloudSea
+/* 800C0B54 000BDA94  4B FF F8 4D */ bl checkCloudSea__9daAlink_cFv
 /* 800C0B58 000BDA98  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0B5C 000BDA9C  40 82 02 00 */ bne lbl_800C0D5C
 /* 800C0B60 000BDAA0  80 1C 31 A0 */ lwz r0, 0x31a0(r28)
@@ -59,7 +59,7 @@ lbl_800C0B54:
 lbl_800C0B78:
 /* 800C0B78 000BDAB8  7F 83 E3 78 */ mr r3, r28
 /* 800C0B7C 000BDABC  7F C4 F3 78 */ mr r4, r30
-/* 800C0B80 000BDAC0  48 04 0D 65 */ bl daAlink_c_NS_checkAcceptUseItemInWater
+/* 800C0B80 000BDAC0  48 04 0D 65 */ bl checkAcceptUseItemInWater__9daAlink_cCFUs
 /* 800C0B84 000BDAC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0B88 000BDAC8  41 82 01 D4 */ beq lbl_800C0D5C
 lbl_800C0B8C:
@@ -70,7 +70,7 @@ lbl_800C0B8C:
 /* 800C0B9C 000BDADC  41 82 01 C0 */ beq lbl_800C0D5C
 lbl_800C0BA0:
 /* 800C0BA0 000BDAE0  7F C3 F3 78 */ mr r3, r30
-/* 800C0BA4 000BDAE4  4B FF FA D5 */ bl daAlink_c_NS_checkCastleTownUseItem
+/* 800C0BA4 000BDAE4  4B FF FA D5 */ bl checkCastleTownUseItem__9daAlink_cFUs
 /* 800C0BA8 000BDAE8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0BAC 000BDAEC  41 82 01 B0 */ beq lbl_800C0D5C
 /* 800C0BB0 000BDAF0  7F 83 E3 78 */ mr r3, r28
@@ -95,7 +95,7 @@ lbl_800C0BD4:
 /* 800C0BF8 000BDB38  28 1E 00 46 */ cmplwi r30, 0x46
 /* 800C0BFC 000BDB3C  41 82 01 60 */ beq lbl_800C0D5C
 /* 800C0C00 000BDB40  7F C3 F3 78 */ mr r3, r30
-/* 800C0C04 000BDB44  48 09 DE 1D */ bl daPy_py_c_NS_checkFishingRodItem
+/* 800C0C04 000BDB44  48 09 DE 1D */ bl checkFishingRodItem__9daPy_py_cFi
 /* 800C0C08 000BDB48  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0C0C 000BDB4C  40 82 01 50 */ bne lbl_800C0D5C
 lbl_800C0C10:
@@ -127,17 +127,17 @@ lbl_800C0C6C:
 /* 800C0C6C 000BDBAC  28 1E 00 41 */ cmplwi r30, 0x41
 /* 800C0C70 000BDBB0  41 82 00 EC */ beq lbl_800C0D5C
 lbl_800C0C74:
-/* 800C0C74 000BDBB4  4B FF F6 55 */ bl daAlink_c_NS_checkBossRoom
+/* 800C0C74 000BDBB4  4B FF F6 55 */ bl checkBossRoom__9daAlink_cFv
 /* 800C0C78 000BDBB8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0C7C 000BDBBC  41 82 00 14 */ beq lbl_800C0C90
 /* 800C0C80 000BDBC0  7F C3 F3 78 */ mr r3, r30
-/* 800C0C84 000BDBC4  48 09 DF A5 */ bl daPy_py_c_NS_checkDungeonWarpItem
+/* 800C0C84 000BDBC4  48 09 DF A5 */ bl checkDungeonWarpItem__9daPy_py_cFi
 /* 800C0C88 000BDBC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0C8C 000BDBCC  40 82 00 D0 */ bne lbl_800C0D5C
 lbl_800C0C90:
 /* 800C0C90 000BDBD0  28 1E 00 25 */ cmplwi r30, 0x25
 /* 800C0C94 000BDBD4  40 82 00 8C */ bne lbl_800C0D20
-/* 800C0C98 000BDBD8  48 05 E1 A9 */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 800C0C98 000BDBD8  48 05 E1 A9 */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C0C9C 000BDBDC  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0CA0 000BDBE0  40 82 00 BC */ bne lbl_800C0D5C
 /* 800C0CA4 000BDBE4  3C 60 80 39 */ lis r3, lbl_80392094@ha
@@ -179,13 +179,13 @@ lbl_800C0D20:
 /* 800C0D2C 000BDC6C  28 1E 01 03 */ cmplwi r30, 0x103
 /* 800C0D30 000BDC70  41 82 00 34 */ beq lbl_800C0D64
 /* 800C0D34 000BDC74  7F C3 F3 78 */ mr r3, r30
-/* 800C0D38 000BDC78  48 09 DD A1 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 800C0D38 000BDC78  48 09 DD A1 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 800C0D3C 000BDC7C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0D40 000BDC80  40 82 00 24 */ bne lbl_800C0D64
 /* 800C0D44 000BDC84  28 1E 00 45 */ cmplwi r30, 0x45
 /* 800C0D48 000BDC88  41 82 00 1C */ beq lbl_800C0D64
 /* 800C0D4C 000BDC8C  7F C3 F3 78 */ mr r3, r30
-/* 800C0D50 000BDC90  48 09 DE 41 */ bl daPy_py_c_NS_checkBowItem
+/* 800C0D50 000BDC90  48 09 DE 41 */ bl checkBowItem__9daPy_py_cFi
 /* 800C0D54 000BDC94  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0D58 000BDC98  40 82 00 0C */ bne lbl_800C0D64
 lbl_800C0D5C:
@@ -195,15 +195,15 @@ lbl_800C0D64:
 /* 800C0D64 000BDCA4  28 1E 00 45 */ cmplwi r30, 0x45
 /* 800C0D68 000BDCA8  41 82 00 5C */ beq lbl_800C0DC4
 /* 800C0D6C 000BDCAC  7F C3 F3 78 */ mr r3, r30
-/* 800C0D70 000BDCB0  48 09 DE B9 */ bl daPy_py_c_NS_checkDungeonWarpItem
+/* 800C0D70 000BDCB0  48 09 DE B9 */ bl checkDungeonWarpItem__9daPy_py_cFi
 /* 800C0D74 000BDCB4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0D78 000BDCB8  40 82 00 4C */ bne lbl_800C0DC4
 /* 800C0D7C 000BDCBC  7F C3 F3 78 */ mr r3, r30
-/* 800C0D80 000BDCC0  48 09 DE 59 */ bl daPy_py_c_NS_checkTradeItem
+/* 800C0D80 000BDCC0  48 09 DE 59 */ bl checkTradeItem__9daPy_py_cFi
 /* 800C0D84 000BDCC4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0D88 000BDCC8  40 82 00 3C */ bne lbl_800C0DC4
 /* 800C0D8C 000BDCCC  7F C3 F3 78 */ mr r3, r30
-/* 800C0D90 000BDCD0  48 09 DC F9 */ bl daPy_py_c_NS_checkBottleItem
+/* 800C0D90 000BDCD0  48 09 DC F9 */ bl checkBottleItem__9daPy_py_cFi
 /* 800C0D94 000BDCD4  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0D98 000BDCD8  41 82 00 0C */ beq lbl_800C0DA4
 /* 800C0D9C 000BDCDC  28 1E 00 60 */ cmplwi r30, 0x60
@@ -238,19 +238,19 @@ lbl_800C0DE0:
 /* 800C0E00 000BDD40  41 82 00 48 */ beq lbl_800C0E48
 lbl_800C0E04:
 /* 800C0E04 000BDD44  7F C3 F3 78 */ mr r3, r30
-/* 800C0E08 000BDD48  48 09 DC D1 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 800C0E08 000BDD48  48 09 DC D1 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 800C0E0C 000BDD4C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0E10 000BDD50  41 82 00 0C */ beq lbl_800C0E1C
 /* 800C0E14 000BDD54  38 60 00 03 */ li r3, 3
 /* 800C0E18 000BDD58  48 00 04 A4 */ b lbl_800C12BC
 lbl_800C0E1C:
 /* 800C0E1C 000BDD5C  7F C3 F3 78 */ mr r3, r30
-/* 800C0E20 000BDD60  48 09 DD 21 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 800C0E20 000BDD60  48 09 DD 21 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 800C0E24 000BDD64  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0E28 000BDD68  41 82 04 64 */ beq lbl_800C128C
 /* 800C0E2C 000BDD6C  7F 83 E3 78 */ mr r3, r28
 /* 800C0E30 000BDD70  38 80 00 48 */ li r4, 0x48
-/* 800C0E34 000BDD74  4B FF F3 D5 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C0E34 000BDD74  4B FF F3 D5 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C0E38 000BDD78  2C 03 00 02 */ cmpwi r3, 2
 /* 800C0E3C 000BDD7C  41 82 04 50 */ beq lbl_800C128C
 /* 800C0E40 000BDD80  38 60 00 08 */ li r3, 8
@@ -278,7 +278,7 @@ lbl_800C0E8C:
 /* 800C0E90 000BDDD0  54 00 04 E7 */ rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800C0E94 000BDDD4  41 82 00 14 */ beq lbl_800C0EA8
 /* 800C0E98 000BDDD8  C0 3C 36 AC */ lfs f1, 0x36ac(r28)
-/* 800C0E9C 000BDDDC  48 1A 73 49 */ bl cBgW_CheckBGround
+/* 800C0E9C 000BDDDC  48 1A 73 49 */ bl cBgW_CheckBGround__Ff
 /* 800C0EA0 000BDDE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0EA4 000BDDE4  40 82 00 10 */ bne lbl_800C0EB4
 lbl_800C0EA8:
@@ -293,14 +293,14 @@ lbl_800C0EBC:
 /* 800C0EC0 000BDE00  48 00 03 FC */ b lbl_800C12BC
 lbl_800C0EC4:
 /* 800C0EC4 000BDE04  7F C3 F3 78 */ mr r3, r30
-/* 800C0EC8 000BDE08  48 09 DC 11 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 800C0EC8 000BDE08  48 09 DC 11 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 800C0ECC 000BDE0C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0ED0 000BDE10  41 82 00 28 */ beq lbl_800C0EF8
 /* 800C0ED4 000BDE14  80 1C 05 70 */ lwz r0, 0x570(r28)
 /* 800C0ED8 000BDE18  54 00 04 E7 */ rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800C0EDC 000BDE1C  41 82 00 1C */ beq lbl_800C0EF8
 /* 800C0EE0 000BDE20  C0 3C 36 AC */ lfs f1, 0x36ac(r28)
-/* 800C0EE4 000BDE24  48 1A 73 01 */ bl cBgW_CheckBGround
+/* 800C0EE4 000BDE24  48 1A 73 01 */ bl cBgW_CheckBGround__Ff
 /* 800C0EE8 000BDE28  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0EEC 000BDE2C  41 82 03 A0 */ beq lbl_800C128C
 /* 800C0EF0 000BDE30  38 60 00 03 */ li r3, 3
@@ -348,7 +348,7 @@ lbl_800C0F60:
 /* 800C0F90 000BDED0  7F 83 E3 78 */ mr r3, r28
 /* 800C0F94 000BDED4  38 81 00 38 */ addi r4, r1, 0x38
 /* 800C0F98 000BDED8  38 A1 00 2C */ addi r5, r1, 0x2c
-/* 800C0F9C 000BDEDC  4B FE 11 FD */ bl daAlink_c_NS_commonLineCheck
+/* 800C0F9C 000BDEDC  4B FE 11 FD */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800C0FA0 000BDEE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0FA4 000BDEE4  41 82 00 AC */ beq lbl_800C1050
 /* 800C0FA8 000BDEE8  C0 42 93 14 */ lfs f2, lbl_80452D14-_SDA2_BASE_(r2)
@@ -371,7 +371,7 @@ lbl_800C0F60:
 /* 800C0FEC 000BDF2C  7F 83 E3 78 */ mr r3, r28
 /* 800C0FF0 000BDF30  38 81 00 38 */ addi r4, r1, 0x38
 /* 800C0FF4 000BDF34  38 A1 00 2C */ addi r5, r1, 0x2c
-/* 800C0FF8 000BDF38  4B FE 11 A1 */ bl daAlink_c_NS_commonLineCheck
+/* 800C0FF8 000BDF38  4B FE 11 A1 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800C0FFC 000BDF3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C1000 000BDF40  41 82 00 50 */ beq lbl_800C1050
 /* 800C1004 000BDF44  C0 5C 1B 80 */ lfs f2, 0x1b80(r28)
@@ -402,7 +402,7 @@ lbl_800C1050:
 /* 800C1064 000BDFA4  48 00 02 58 */ b lbl_800C12BC
 lbl_800C1068:
 /* 800C1068 000BDFA8  7F C3 F3 78 */ mr r3, r30
-/* 800C106C 000BDFAC  48 09 DB BD */ bl daPy_py_c_NS_checkDungeonWarpItem
+/* 800C106C 000BDFAC  48 09 DB BD */ bl checkDungeonWarpItem__9daPy_py_cFi
 /* 800C1070 000BDFB0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C1074 000BDFB4  41 82 00 0C */ beq lbl_800C1080
 /* 800C1078 000BDFB8  38 60 00 05 */ li r3, 5
@@ -410,7 +410,7 @@ lbl_800C1068:
 lbl_800C1080:
 /* 800C1080 000BDFC0  7F 83 E3 78 */ mr r3, r28
 /* 800C1084 000BDFC4  38 80 01 08 */ li r4, 0x108
-/* 800C1088 000BDFC8  4B FF F1 81 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C1088 000BDFC8  4B FF F1 81 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C108C 000BDFCC  2C 03 00 02 */ cmpwi r3, 2
 /* 800C1090 000BDFD0  41 82 00 78 */ beq lbl_800C1108
 /* 800C1094 000BDFD4  28 1E 00 74 */ cmplwi r30, 0x74
@@ -420,8 +420,8 @@ lbl_800C1080:
 lbl_800C10A4:
 /* 800C10A4 000BDFE4  7F 83 E3 78 */ mr r3, r28
 /* 800C10A8 000BDFE8  38 80 01 08 */ li r4, 0x108
-/* 800C10AC 000BDFEC  4B FF F1 5D */ bl daAlink_c_NS_checkItemSetButton
-/* 800C10B0 000BDFF0  4B F6 CE 6D */ bl dComIfGp_getSelectItem
+/* 800C10AC 000BDFEC  4B FF F1 5D */ bl checkItemSetButton__9daAlink_cFi
+/* 800C10B0 000BDFF0  4B F6 CE 6D */ bl dComIfGp_getSelectItem__Fi
 /* 800C10B4 000BDFF4  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 800C10B8 000BDFF8  2C 00 00 5D */ cmpwi r0, 0x5d
 /* 800C10BC 000BDFFC  41 82 00 0C */ beq lbl_800C10C8
@@ -450,21 +450,21 @@ lbl_800C1100:
 /* 800C1104 000BE044  48 00 01 B8 */ b lbl_800C12BC
 lbl_800C1108:
 /* 800C1108 000BE048  7F C3 F3 78 */ mr r3, r30
-/* 800C110C 000BE04C  48 09 D9 CD */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 800C110C 000BE04C  48 09 D9 CD */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 800C1110 000BE050  2C 03 00 00 */ cmpwi r3, 0
 /* 800C1114 000BE054  41 82 00 0C */ beq lbl_800C1120
 /* 800C1118 000BE058  38 60 00 03 */ li r3, 3
 /* 800C111C 000BE05C  48 00 01 A0 */ b lbl_800C12BC
 lbl_800C1120:
 /* 800C1120 000BE060  7F C3 F3 78 */ mr r3, r30
-/* 800C1124 000BE064  48 09 DA 45 */ bl daPy_py_c_NS_checkOpenBottleItem
+/* 800C1124 000BE064  48 09 DA 45 */ bl checkOpenBottleItem__9daPy_py_cFi
 /* 800C1128 000BE068  2C 03 00 00 */ cmpwi r3, 0
 /* 800C112C 000BE06C  41 82 00 0C */ beq lbl_800C1138
 /* 800C1130 000BE070  38 60 00 06 */ li r3, 6
 /* 800C1134 000BE074  48 00 01 88 */ b lbl_800C12BC
 lbl_800C1138:
 /* 800C1138 000BE078  7F C3 F3 78 */ mr r3, r30
-/* 800C113C 000BE07C  48 09 DA 9D */ bl daPy_py_c_NS_checkTradeItem
+/* 800C113C 000BE07C  48 09 DA 9D */ bl checkTradeItem__9daPy_py_cFi
 /* 800C1140 000BE080  2C 03 00 00 */ cmpwi r3, 0
 /* 800C1144 000BE084  41 82 00 0C */ beq lbl_800C1150
 /* 800C1148 000BE088  38 60 00 0E */ li r3, 0xe
@@ -476,12 +476,12 @@ lbl_800C1150:
 /* 800C115C 000BE09C  48 00 01 60 */ b lbl_800C12BC
 lbl_800C1160:
 /* 800C1160 000BE0A0  7F C3 F3 78 */ mr r3, r30
-/* 800C1164 000BE0A4  48 09 D9 DD */ bl daPy_py_c_NS_checkOilBottleItem
+/* 800C1164 000BE0A4  48 09 D9 DD */ bl checkOilBottleItem__9daPy_py_cFi
 /* 800C1168 000BE0A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800C116C 000BE0AC  41 82 00 20 */ beq lbl_800C118C
 /* 800C1170 000BE0B0  7F 83 E3 78 */ mr r3, r28
 /* 800C1174 000BE0B4  38 80 00 48 */ li r4, 0x48
-/* 800C1178 000BE0B8  4B FF F0 91 */ bl daAlink_c_NS_checkItemSetButton
+/* 800C1178 000BE0B8  4B FF F0 91 */ bl checkItemSetButton__9daAlink_cFi
 /* 800C117C 000BE0BC  2C 03 00 02 */ cmpwi r3, 2
 /* 800C1180 000BE0C0  41 82 00 0C */ beq lbl_800C118C
 /* 800C1184 000BE0C4  38 60 00 08 */ li r3, 8
@@ -490,7 +490,7 @@ lbl_800C118C:
 /* 800C118C 000BE0CC  28 1E 00 3E */ cmplwi r30, 0x3e
 /* 800C1190 000BE0D0  40 82 00 1C */ bne lbl_800C11AC
 /* 800C1194 000BE0D4  7F 83 E3 78 */ mr r3, r28
-/* 800C1198 000BE0D8  48 00 D2 D1 */ bl daAlink_c_NS_acceptSubjectModeChange
+/* 800C1198 000BE0D8  48 00 D2 D1 */ bl acceptSubjectModeChange__9daAlink_cFv
 /* 800C119C 000BE0DC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C11A0 000BE0E0  41 82 00 EC */ beq lbl_800C128C
 /* 800C11A4 000BE0E4  38 60 00 09 */ li r3, 9
@@ -499,7 +499,7 @@ lbl_800C11AC:
 /* 800C11AC 000BE0EC  28 1E 00 72 */ cmplwi r30, 0x72
 /* 800C11B0 000BE0F0  40 82 00 DC */ bne lbl_800C128C
 /* 800C11B4 000BE0F4  7F E3 FB 78 */ mr r3, r31
-/* 800C11B8 000BE0F8  4B F6 D4 09 */ bl dComIfGp_getSelectItemNum
+/* 800C11B8 000BE0F8  4B F6 D4 09 */ bl dComIfGp_getSelectItemNum__Fi
 /* 800C11BC 000BE0FC  7C 60 07 35 */ extsh. r0, r3
 /* 800C11C0 000BE100  41 82 00 CC */ beq lbl_800C128C
 /* 800C11C4 000BE104  88 1C 2F CF */ lbz r0, 0x2fcf(r28)
@@ -514,11 +514,11 @@ lbl_800C11D8:
 /* 800C11E4 000BE124  7C 00 F0 40 */ cmplw r0, r30
 /* 800C11E8 000BE128  41 82 00 A4 */ beq lbl_800C128C
 /* 800C11EC 000BE12C  7F C3 F3 78 */ mr r3, r30
-/* 800C11F0 000BE130  48 09 D8 59 */ bl daPy_py_c_NS_checkBombItem
+/* 800C11F0 000BE130  48 09 D8 59 */ bl checkBombItem__9daPy_py_cFi
 /* 800C11F4 000BE134  2C 03 00 00 */ cmpwi r3, 0
 /* 800C11F8 000BE138  41 82 00 14 */ beq lbl_800C120C
 /* 800C11FC 000BE13C  7F E3 FB 78 */ mr r3, r31
-/* 800C1200 000BE140  4B F6 D3 C1 */ bl dComIfGp_getSelectItemNum
+/* 800C1200 000BE140  4B F6 D3 C1 */ bl dComIfGp_getSelectItemNum__Fi
 /* 800C1204 000BE144  7C 60 07 35 */ extsh. r0, r3
 /* 800C1208 000BE148  41 82 00 74 */ beq lbl_800C127C
 lbl_800C120C:

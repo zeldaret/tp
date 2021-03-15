@@ -17,7 +17,7 @@ lbl_8002F364:
 /* 8002F364 0002C2A4  38 7B 00 04 */ addi r3, r27, 4
 /* 8002F368 0002C2A8  80 9B 00 00 */ lwz r4, 0(r27)
 /* 8002F36C 0002C2AC  7C 84 F8 2E */ lwzx r4, r4, r31
-/* 8002F370 0002C2B0  4B FF DC 99 */ bl dComIfG_resDelete
+/* 8002F370 0002C2B0  4B FF DC 99 */ bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8002F374 0002C2B4  93 DB 00 08 */ stw r30, 8(r27)
 /* 8002F378 0002C2B8  3B BD FF FF */ addi r29, r29, -1
 /* 8002F37C 0002C2BC  3B FF FF FC */ addi r31, r31, -4

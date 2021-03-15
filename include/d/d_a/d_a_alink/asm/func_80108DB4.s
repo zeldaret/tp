@@ -3,7 +3,7 @@
 /* 80108DBC 00105CFC  90 01 00 24 */ stw r0, 0x24(r1)
 /* 80108DC0 00105D00  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 80108DC4 00105D04  7C 7F 1B 78 */ mr r31, r3
-/* 80108DC8 00105D08  4B FF F9 BD */ bl daAlink_c_NS_checkLv7BossRoom
+/* 80108DC8 00105D08  4B FF F9 BD */ bl checkLv7BossRoom__9daAlink_cFv
 /* 80108DCC 00105D0C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80108DD0 00105D10  41 82 00 14 */ beq lbl_80108DE4
 /* 80108DD4 00105D14  3C 60 80 39 */ lis r3, lbl_8038E9C0@ha
@@ -17,7 +17,7 @@ lbl_80108DE4:
 lbl_80108DF0:
 /* 80108DF0 00105D30  7F E3 FB 78 */ mr r3, r31
 /* 80108DF4 00105D34  38 81 00 08 */ addi r4, r1, 8
-/* 80108DF8 00105D38  4B FB 67 09 */ bl daAlink_c_NS_checkSightLine
+/* 80108DF8 00105D38  4B FB 67 09 */ bl checkSightLine__9daAlink_cFfP4cXyz
 /* 80108DFC 00105D3C  80 9F 28 50 */ lwz r4, 0x2850(r31)
 /* 80108E00 00105D40  28 04 00 00 */ cmplwi r4, 0
 /* 80108E04 00105D44  41 82 00 20 */ beq lbl_80108E24
@@ -49,7 +49,7 @@ lbl_80108E3C:
 /* 80108E64 00105DA4  40 80 00 18 */ bge lbl_80108E7C
 /* 80108E68 00105DA8  7F E3 FB 78 */ mr r3, r31
 /* 80108E6C 00105DAC  38 9F 1B CC */ addi r4, r31, 0x1bcc
-/* 80108E70 00105DB0  4B FF F9 41 */ bl daAlink_c_NS_checkHookshotStickBG
+/* 80108E70 00105DB0  4B FF F9 41 */ bl checkHookshotStickBG__9daAlink_cFR13cBgS_PolyInfo
 /* 80108E74 00105DB4  2C 03 00 00 */ cmpwi r3, 0
 /* 80108E78 00105DB8  40 82 00 10 */ bne lbl_80108E88
 lbl_80108E7C:
@@ -58,7 +58,7 @@ lbl_80108E7C:
 /* 80108E84 00105DC4  41 82 00 30 */ beq lbl_80108EB4
 lbl_80108E88:
 /* 80108E88 00105DC8  38 7F 20 64 */ addi r3, r31, 0x2064
-/* 80108E8C 00105DCC  48 01 D8 85 */ bl daAlink_sight_c_NS_onLockFlg
+/* 80108E8C 00105DCC  48 01 D8 85 */ bl onLockFlg__15daAlink_sight_cFv
 /* 80108E90 00105DD0  80 7F 28 50 */ lwz r3, 0x2850(r31)
 /* 80108E94 00105DD4  28 03 00 00 */ cmplwi r3, 0
 /* 80108E98 00105DD8  41 82 00 30 */ beq lbl_80108EC8
@@ -77,7 +77,7 @@ lbl_80108EC0:
 /* 80108EC4 00105E04  98 1F 20 68 */ stb r0, 0x2068(r31)
 lbl_80108EC8:
 /* 80108EC8 00105E08  38 7F 28 4C */ addi r3, r31, 0x284c
-/* 80108ECC 00105E0C  48 05 5E 31 */ bl daPy_actorKeep_c_NS_clearData
+/* 80108ECC 00105E0C  48 05 5E 31 */ bl clearData__16daPy_actorKeep_cFv
 /* 80108ED0 00105E10  C0 02 92 BC */ lfs f0, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 80108ED4 00105E14  D0 1F 34 94 */ stfs f0, 0x3494(r31)
 /* 80108ED8 00105E18  83 E1 00 1C */ lwz r31, 0x1c(r1)

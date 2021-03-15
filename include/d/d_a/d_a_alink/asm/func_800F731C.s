@@ -4,17 +4,17 @@
 /* 800F7328 000F4268  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F732C 000F426C  7C 7F 1B 78 */ mr r31, r3
 /* 800F7330 000F4270  38 80 00 9F */ li r4, 0x9f
-/* 800F7334 000F4274  4B FC BA 71 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800F7334 000F4274  4B FC BA 71 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F7338 000F4278  2C 03 00 00 */ cmpwi r3, 0
 /* 800F733C 000F427C  40 82 00 0C */ bne lbl_800F7348
 /* 800F7340 000F4280  38 60 00 00 */ li r3, 0
 /* 800F7344 000F4284  48 00 00 30 */ b lbl_800F7374
 lbl_800F7348:
 /* 800F7348 000F4288  7F E3 FB 78 */ mr r3, r31
-/* 800F734C 000F428C  4B FF D2 51 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F734C 000F428C  4B FF D2 51 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F7350 000F4290  7F E3 FB 78 */ mr r3, r31
 /* 800F7354 000F4294  38 80 00 00 */ li r4, 0
-/* 800F7358 000F4298  48 01 1D 95 */ bl daAlink_c_NS_initHookshotUpperAnimeSpeed
+/* 800F7358 000F4298  48 01 1D 95 */ bl initHookshotUpperAnimeSpeed__9daAlink_cFi
 /* 800F735C 000F429C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F7360 000F42A0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F7364 000F42A4  80 03 5F 18 */ lwz r0, 0x5f18(r3)

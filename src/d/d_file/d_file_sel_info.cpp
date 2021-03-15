@@ -7,18 +7,18 @@ char* strcpy(char*, const char*);
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
-void CPaneMgrAlpha_X1_(void);
-void dDlst_list_c_NS_set(void);
-void dMeter2Info_c_NS_getString(void);
-void func_80362324(void);
-void func_80362540(void);
-void func_803664DC(void);
-void J2DScreen_NS_draw(void);
-void J2DScreen_NS_setPriority(void);
-void J2DTextBox_NS_getStringPtr(void);
-void J2DTextBox_NS_setString_X1_(void);
-void mDoExt_getMesgFont(void);
-void mDoExt_removeMesgFont(void);
+void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap(void);
+void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
+void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(void);
+void __div2i(void);
+void __mod2i(void);
+void sprintf(void);
+void draw__9J2DScreenFffPC14J2DGrafContext(void);
+void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
+void getStringPtr__10J2DTextBoxCFv(void);
+void setString__10J2DTextBoxFsPCce(void);
+void mDoExt_getMesgFont__Fv(void);
+void mDoExt_removeMesgFont__Fv(void);
 void screenSet__12dFile_info_cFv(void);
 void setHeartCnt__12dFile_info_cFP10dSv_save_c(void);
 void setPlayTime__12dFile_info_cFP10dSv_save_c(void);
@@ -55,7 +55,7 @@ asm void dFile_info_c::screenSet(void) {
 #if NONMATCHING
 class JMSMesgEntry_c {};
 
-extern void dMeter2Info_c_NS_getString(u32, char*, JMSMesgEntry_c*);
+extern void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(u32, char*, JMSMesgEntry_c*);
 extern u8 DAT_804070D8;
 extern u16 DAT_804061C2;
 extern char DAT_80406374[16];
@@ -63,7 +63,7 @@ extern char DAT_803948D8;
 
 s32 dFile_info_c::setSaveData(dSv_save_c* save_file, int param_2, u8 param_3) {
     if (param_2 == 0) {
-        dMeter2Info_c_NS_getString(0x51, this->unk56, 0);
+        getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x51, this->unk56, 0);
         return -1;
     } else {
         if (!save_file->getPlayer().getPlayerInfo().getLinkName()) {
@@ -74,10 +74,10 @@ s32 dFile_info_c::setSaveData(dSv_save_c* save_file, int param_2, u8 param_3) {
                 strcpy(this->unk44, DAT_80406374);
                 strcpy(this->save_date, (char*)DAT_803948D8);
                 strcpy(this->play_time, (char*)DAT_803948D8);
-                dMeter2Info_c_NS_getString(0x4d, this->unk56, 0);
+                getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x4d, this->unk56, 0);
                 return 2;
             } else {
-                dMeter2Info_c_NS_getString(0x4d, this->unk56, 0);
+                getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c(0x4d, this->unk56, 0);
                 return 1;
             }
         } else {
@@ -131,9 +131,11 @@ asm void dDlst_FileInfo_c::draw(void) {
 #include "d/d_file/d_file_sel_info/asm/func_80192D9C.s"
 }
 
-asm void _sinit_d_file_sel_info_cpp(void) {
+extern "C" {
+asm void __sinit_d_file_sel_info_cpp(void) {
     nofralloc
 #include "d/d_file/d_file_sel_info/asm/func_80192E88.s"
+}
 }
 
 asm dDlst_FileInfo_c::~dDlst_FileInfo_c() {

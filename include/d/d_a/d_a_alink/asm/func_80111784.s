@@ -5,7 +5,7 @@
 /* 80111794 0010E6D4  48 25 0A 49 */ bl _savegpr_29
 /* 80111798 0010E6D8  7C 7D 1B 78 */ mr r29, r3
 /* 8011179C 0010E6DC  7C 9E 23 78 */ mr r30, r4
-/* 801117A0 0010E6E0  4B F9 24 ED */ bl daAlink_c_NS_setItemHeap
+/* 801117A0 0010E6E0  4B F9 24 ED */ bl setItemHeap__9daAlink_cFv
 /* 801117A4 0010E6E4  7C 7F 1B 78 */ mr r31, r3
 /* 801117A8 0010E6E8  57 C0 10 3A */ slwi r0, r30, 2
 /* 801117AC 0010E6EC  38 6D 81 1C */ addi r3, r13, 0x8045069C - 0x80458580 /*SDA HACK; original: lbl_8045069C-_SDA_BASE_*/
@@ -18,14 +18,14 @@
 /* 801117C8 0010E708  3C A5 00 02 */ addis r5, r5, 2
 /* 801117CC 0010E70C  38 C0 00 80 */ li r6, 0x80
 /* 801117D0 0010E710  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 801117D4 0010E714  4B F2 AB 19 */ bl dRes_control_c_NS_getRes
+/* 801117D4 0010E714  4B F2 AB 19 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 801117D8 0010E718  3C 80 00 08 */ lis r4, 8
 /* 801117DC 0010E71C  3C A0 11 00 */ lis r5, 0x11000084@ha
 /* 801117E0 0010E720  38 A5 00 84 */ addi r5, r5, 0x11000084@l
-/* 801117E4 0010E724  4B F0 34 71 */ bl mDoExt_J3DModel__create
+/* 801117E4 0010E724  4B F0 34 71 */ bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 801117E8 0010E728  90 7D 07 08 */ stw r3, 0x708(r29)
 /* 801117EC 0010E72C  7F E3 FB 78 */ mr r3, r31
-/* 801117F0 0010E730  4B EF D9 DD */ bl mDoExt_setCurrentHeap
+/* 801117F0 0010E730  4B EF D9 DD */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 801117F4 0010E734  38 00 01 04 */ li r0, 0x104
 /* 801117F8 0010E738  B0 1D 2F DC */ sth r0, 0x2fdc(r29)
 /* 801117FC 0010E73C  38 00 00 02 */ li r0, 2

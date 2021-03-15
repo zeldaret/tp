@@ -12,7 +12,7 @@
 /* 80115D34 00112C74  54 1F 07 3E */ clrlwi r31, r0, 0x1c
 /* 80115D38 00112C78  2C 06 00 00 */ cmpwi r6, 0
 /* 80115D3C 00112C7C  41 82 01 68 */ beq lbl_80115EA4
-/* 80115D40 00112C80  4B FA A5 D1 */ bl daAlink_c_NS_checkDungeon
+/* 80115D40 00112C80  4B FA A5 D1 */ bl checkDungeon__9daAlink_cFv
 /* 80115D44 00112C84  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80115D48 00112C88  41 82 01 5C */ beq lbl_80115EA4
 /* 80115D4C 00112C8C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -46,7 +46,7 @@
 /* 80115DBC 00112CFC  4B F8 21 25 */ bl checkItemGet__FUci
 /* 80115DC0 00112D00  2C 03 00 00 */ cmpwi r3, 0
 /* 80115DC4 00112D04  41 82 00 E0 */ beq lbl_80115EA4
-/* 80115DC8 00112D08  48 00 90 79 */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 80115DC8 00112D08  48 00 90 79 */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 80115DCC 00112D0C  2C 03 00 00 */ cmpwi r3, 0
 /* 80115DD0 00112D10  40 82 00 D4 */ bne lbl_80115EA4
 lbl_80115DD4:
@@ -74,7 +74,7 @@ lbl_80115DD4:
 /* 80115E28 00112D68  38 80 00 00 */ li r4, 0
 /* 80115E2C 00112D6C  38 A1 00 10 */ addi r5, r1, 0x10
 /* 80115E30 00112D70  38 C1 00 08 */ addi r6, r1, 8
-/* 80115E34 00112D74  48 03 F9 41 */ bl daNpcF_getPlayerInfoFromPlayerList
+/* 80115E34 00112D74  48 03 F9 41 */ bl daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz
 /* 80115E38 00112D78  3B A1 00 10 */ addi r29, r1, 0x10
 /* 80115E3C 00112D7C  28 1F 00 0C */ cmplwi r31, 0xc
 /* 80115E40 00112D80  41 82 00 48 */ beq lbl_80115E88
@@ -102,7 +102,7 @@ lbl_80115E88:
 /* 80115E8C 00112DCC  7F A4 EB 78 */ mr r4, r29
 /* 80115E90 00112DD0  7F C5 F3 78 */ mr r5, r30
 /* 80115E94 00112DD4  7F 66 DB 78 */ mr r6, r27
-/* 80115E98 00112DD8  4B FF FD B9 */ bl daAlink_c_NS_createNpcTks
+/* 80115E98 00112DD8  4B FF FD B9 */ bl createNpcTks__9daAlink_cFP4cXyziUl
 /* 80115E9C 00112DDC  38 60 00 01 */ li r3, 1
 /* 80115EA0 00112DE0  48 00 00 08 */ b lbl_80115EA8
 lbl_80115EA4:

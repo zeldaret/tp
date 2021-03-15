@@ -5,7 +5,7 @@
 /* 80024A44 00021984  93 C1 00 08 */ stw r30, 8(r1)
 /* 80024A48 00021988  7C 7E 1B 78 */ mr r30, r3
 /* 80024A4C 0002198C  7C 9F 23 78 */ mr r31, r4
-/* 80024A50 00021990  4B FE A3 9D */ bl mDoExt_getArchiveHeap
+/* 80024A50 00021990  4B FE A3 9D */ bl mDoExt_getArchiveHeap__Fv
 /* 80024A54 00021994  7C 64 1B 78 */ mr r4, r3
 /* 80024A58 00021998  57 E3 15 BA */ rlwinm r3, r31, 2, 0x16, 0x1d
 /* 80024A5C 0002199C  38 A0 FF FC */ li r5, -4

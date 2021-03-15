@@ -5,13 +5,13 @@
 /* 80015554 00012494  38 03 34 98 */ addi r0, r3, lbl_803A3498@l
 /* 80015558 00012498  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
 /* 8001555C 0001249C  94 03 D8 E4 */ stwu r0, lbl_803DD8E4@l(r3)
-/* 80015560 000124A0  48 25 E2 19 */ bl J3DUClipper_NS_init
+/* 80015560 000124A0  48 25 E2 19 */ bl init__11J3DUClipperFv
 /* 80015564 000124A4  3C 60 80 3E */ lis r3, lbl_803DD8E4@ha
 /* 80015568 000124A8  38 63 D8 E4 */ addi r3, r3, lbl_803DD8E4@l
-/*.global J3DUClipper_NS_dtor*/
-/* 8001556C 000124AC  3C 80 80 01 */ lis r4, J3DUClipper_NS_dtor@ha
-/*.global J3DUClipper_NS_dtor*/
-/* 80015570 000124B0  38 84 55 90 */ addi r4, r4, J3DUClipper_NS_dtor@l
+/*.global __dt__11J3DUClipperFv*/
+/* 8001556C 000124AC  3C 80 80 01 */ lis r4, __dt__11J3DUClipperFv@ha
+/*.global __dt__11J3DUClipperFv*/
+/* 80015570 000124B0  38 84 55 90 */ addi r4, r4, __dt__11J3DUClipperFv@l
 /* 80015574 000124B4  3C A0 80 3E */ lis r5, lbl_803DD8D8@ha
 /* 80015578 000124B8  38 A5 D8 D8 */ addi r5, r5, lbl_803DD8D8@l
 /* 8001557C 000124BC  48 34 C6 A9 */ bl func_80361C24

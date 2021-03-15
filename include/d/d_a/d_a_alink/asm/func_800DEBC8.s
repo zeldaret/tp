@@ -20,7 +20,7 @@ lbl_800DEC04:
 /* 800DEC10 000DBB50  2C 00 00 00 */ cmpwi r0, 0
 /* 800DEC14 000DBB54  40 82 00 14 */ bne lbl_800DEC28
 /* 800DEC18 000DBB58  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
-/* 800DEC1C 000DBB5C  4B F4 F9 A5 */ bl dComIfGp_getSelectItemNum
+/* 800DEC1C 000DBB5C  4B F4 F9 A5 */ bl dComIfGp_getSelectItemNum__Fi
 /* 800DEC20 000DBB60  7C 60 07 35 */ extsh. r0, r3
 /* 800DEC24 000DBB64  41 82 01 4C */ beq lbl_800DED70
 lbl_800DEC28:
@@ -30,7 +30,7 @@ lbl_800DEC28:
 /* 800DEC34 000DBB74  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800DEC38 000DBB78  3B A0 00 01 */ li r29, 1
 /* 800DEC3C 000DBB7C  7F C3 F3 78 */ mr r3, r30
-/* 800DEC40 000DBB80  4B F9 4B A5 */ bl dAttention_c_NS_LockonTruth
+/* 800DEC40 000DBB80  4B F9 4B A5 */ bl LockonTruth__12dAttention_cFv
 /* 800DEC44 000DBB84  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DEC48 000DBB88  40 82 00 14 */ bne lbl_800DEC5C
 /* 800DEC4C 000DBB8C  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -44,9 +44,9 @@ lbl_800DEC5C:
 lbl_800DEC68:
 /* 800DEC68 000DBBA8  7F E3 FB 78 */ mr r3, r31
 /* 800DEC6C 000DBBAC  38 80 00 11 */ li r4, 0x11
-/* 800DEC70 000DBBB0  4B FD 3A 6D */ bl daAlink_c_NS_setItemActionButtonStatus
+/* 800DEC70 000DBBB0  4B FD 3A 6D */ bl setItemActionButtonStatus__9daAlink_cFUc
 /* 800DEC74 000DBBB4  7F E3 FB 78 */ mr r3, r31
-/* 800DEC78 000DBBB8  4B FD 3A 85 */ bl daAlink_c_NS_itemActionTrigger
+/* 800DEC78 000DBBB8  4B FD 3A 85 */ bl itemActionTrigger__9daAlink_cFv
 /* 800DEC7C 000DBBBC  2C 03 00 00 */ cmpwi r3, 0
 /* 800DEC80 000DBBC0  41 82 00 F0 */ beq lbl_800DED70
 /* 800DEC84 000DBBC4  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
@@ -107,11 +107,11 @@ lbl_800DED4C:
 /* 800DED50 000DBC90  28 00 00 00 */ cmplwi r0, 0
 /* 800DED54 000DBC94  41 82 00 1C */ beq lbl_800DED70
 /* 800DED58 000DBC98  7F E3 FB 78 */ mr r3, r31
-/* 800DED5C 000DBC9C  4B FF FD 89 */ bl daAlink_c_NS_deleteArrow
+/* 800DED5C 000DBC9C  4B FF FD 89 */ bl deleteArrow__9daAlink_cFv
 /* 800DED60 000DBCA0  7F E3 FB 78 */ mr r3, r31
-/* 800DED64 000DBCA4  4B FF FC D9 */ bl daAlink_c_NS_makeArrow
+/* 800DED64 000DBCA4  4B FF FC D9 */ bl makeArrow__9daAlink_cFv
 /* 800DED68 000DBCA8  7F E3 FB 78 */ mr r3, r31
-/* 800DED6C 000DBCAC  48 00 02 4D */ bl daAlink_c_NS_setBowReloadAnime
+/* 800DED6C 000DBCAC  48 00 02 4D */ bl setBowReloadAnime__9daAlink_cFv
 lbl_800DED70:
 /* 800DED70 000DBCB0  39 61 00 20 */ addi r11, r1, 0x20
 /* 800DED74 000DBCB4  48 28 34 B5 */ bl _restgpr_29

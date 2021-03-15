@@ -15,7 +15,7 @@
 /* 8021E0FC 0021B03C  3B A3 61 C0 */ addi r29, r3, g_dComIfG_gameInfo@l
 lbl_8021E100:
 /* 8021E100 0021B040  7F 63 DB 78 */ mr r3, r27
-/* 8021E104 0021B044  4B E0 FC C5 */ bl dComIfGs_getMixItemIndex
+/* 8021E104 0021B044  4B E0 FC C5 */ bl dComIfGs_getMixItemIndex__Fi
 /* 8021E108 0021B048  7F 9E DA 14 */ add r28, r30, r27
 /* 8021E10C 0021B04C  98 7C 00 D4 */ stb r3, 0xd4(r28)
 /* 8021E110 0021B050  7F A3 EB 78 */ mr r3, r29
@@ -55,10 +55,10 @@ lbl_8021E190:
 /* 8021E190 0021B0D0  7F 63 DB 78 */ mr r3, r27
 /* 8021E194 0021B0D4  7F 9E DA 14 */ add r28, r30, r27
 /* 8021E198 0021B0D8  88 9C 00 C8 */ lbz r4, 0xc8(r28)
-/* 8021E19C 0021B0DC  4B E0 FB 6D */ bl dComIfGs_setMixItemIndex
+/* 8021E19C 0021B0DC  4B E0 FB 6D */ bl dComIfGs_setMixItemIndex__FiUc
 /* 8021E1A0 0021B0E0  7F 63 DB 78 */ mr r3, r27
 /* 8021E1A4 0021B0E4  88 9C 00 C4 */ lbz r4, 0xc4(r28)
-/* 8021E1A8 0021B0E8  4B E0 FB 1D */ bl dComIfGs_setSelectItemIndex
+/* 8021E1A8 0021B0E8  4B E0 FB 1D */ bl dComIfGs_setSelectItemIndex__FiUc
 /* 8021E1AC 0021B0EC  3B 7B 00 01 */ addi r27, r27, 1
 /* 8021E1B0 0021B0F0  2C 1B 00 02 */ cmpwi r27, 2
 /* 8021E1B4 0021B0F4  41 80 FF DC */ blt lbl_8021E190

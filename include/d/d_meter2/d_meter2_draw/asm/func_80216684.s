@@ -81,7 +81,7 @@ lbl_80216794:
 /* 80216798 002136D8  C0 39 07 CC */ lfs f1, 0x7cc(r25)
 /* 8021679C 002136DC  C0 19 07 D0 */ lfs f0, 0x7d0(r25)
 /* 802167A0 002136E0  EC 21 00 32 */ fmuls f1, f1, f0
-/* 802167A4 002136E4  48 03 F0 2D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802167A4 002136E4  48 03 F0 2D */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_802167A8:
 /* 802167A8 002136E8  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 802167AC 002136EC  40 82 00 1C */ bne lbl_802167C8
@@ -98,7 +98,7 @@ lbl_802167C8:
 /* 802167D4 00213714  C0 19 07 CC */ lfs f0, 0x7cc(r25)
 /* 802167D8 00213718  EC 01 00 32 */ fmuls f0, f1, f0
 /* 802167DC 0021371C  EC 22 00 32 */ fmuls f1, f2, f0
-/* 802167E0 00213720  48 03 EF F1 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802167E0 00213720  48 03 EF F1 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_802167E4:
 /* 802167E4 00213724  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 802167E8 00213728  40 82 00 1C */ bne lbl_80216804
@@ -115,14 +115,14 @@ lbl_80216804:
 /* 80216810 00213750  C0 19 07 CC */ lfs f0, 0x7cc(r25)
 /* 80216814 00213754  EC 01 00 32 */ fmuls f0, f1, f0
 /* 80216818 00213758  EC 22 00 32 */ fmuls f1, f2, f0
-/* 8021681C 0021375C  48 03 EF B5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8021681C 0021375C  48 03 EF B5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80216820 00213760  80 79 02 BC */ lwz r3, 0x2bc(r25)
 /* 80216824 00213764  C0 59 07 D0 */ lfs f2, 0x7d0(r25)
 /* 80216828 00213768  C0 39 07 D8 */ lfs f1, 0x7d8(r25)
 /* 8021682C 0021376C  C0 19 07 CC */ lfs f0, 0x7cc(r25)
 /* 80216830 00213770  EC 01 00 32 */ fmuls f0, f1, f0
 /* 80216834 00213774  EC 22 00 32 */ fmuls f1, f2, f0
-/* 80216838 00213778  48 03 EF 99 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80216838 00213778  48 03 EF 99 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_8021683C:
 /* 8021683C 0021377C  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 80216840 00213780  40 82 00 1C */ bne lbl_8021685C
@@ -149,7 +149,7 @@ lbl_80216870:
 /* 80216888 002137C8  EC 01 00 32 */ fmuls f0, f1, f0
 /* 8021688C 002137CC  EC 02 00 32 */ fmuls f0, f2, f0
 /* 80216890 002137D0  EC 23 00 32 */ fmuls f1, f3, f0
-/* 80216894 002137D4  48 03 EF 3D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80216894 002137D4  48 03 EF 3D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80216898 002137D8  3B DE 00 01 */ addi r30, r30, 1
 /* 8021689C 002137DC  2C 1E 00 02 */ cmpwi r30, 2
 /* 802168A0 002137E0  3B 7B 00 04 */ addi r27, r27, 4

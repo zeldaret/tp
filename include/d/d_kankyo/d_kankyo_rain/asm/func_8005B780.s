@@ -14,7 +14,7 @@
 /* 8005B7B4 000586F4  38 7E 00 D8 */ addi r3, r30, 0xd8
 /* 8005B7B8 000586F8  38 9E 00 E4 */ addi r4, r30, 0xe4
 /* 8005B7BC 000586FC  38 A1 00 08 */ addi r5, r1, 8
-/* 8005B7C0 00058700  4B FF FF 49 */ bl get_vectle_calc_X1_
+/* 8005B7C0 00058700  4B FF FF 49 */ bl get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005B7C4 00058704  C0 3E 00 D8 */ lfs f1, 0xd8(r30)
 /* 8005B7C8 00058708  C0 01 00 08 */ lfs f0, 8(r1)
 /* 8005B7CC 0005870C  EC 00 07 B2 */ fmuls f0, f0, f30

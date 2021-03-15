@@ -7,7 +7,7 @@
 /* 800161F8 00013138  7C 9C 23 78 */ mr r28, r4
 /* 800161FC 0001313C  7C BD 2B 78 */ mr r29, r5
 /* 80016200 00013140  7C DE 33 78 */ mr r30, r6
-/* 80016204 00013144  4B FF 8B AD */ bl mDoExt_getCommandHeap
+/* 80016204 00013144  4B FF 8B AD */ bl mDoExt_getCommandHeap__Fv
 /* 80016208 00013148  7C 64 1B 78 */ mr r4, r3
 /* 8001620C 0001314C  38 60 00 28 */ li r3, 0x28
 /* 80016210 00013150  38 A0 FF FC */ li r5, -4
@@ -16,13 +16,13 @@
 /* 8001621C 0001315C  41 82 00 14 */ beq lbl_80016230
 /* 80016220 00013160  7F 84 E3 78 */ mr r4, r28
 /* 80016224 00013164  7F A5 EB 78 */ mr r5, r29
-/* 80016228 00013168  4B FF FF 41 */ bl mDoDvdThd_mountXArchive_c
+/* 80016228 00013168  4B FF FF 41 */ bl __ct__25mDoDvdThd_mountXArchive_cFUcQ210JKRArchive10EMountMode
 /* 8001622C 0001316C  7C 7F 1B 78 */ mr r31, r3
 lbl_80016230:
 /* 80016230 00013170  28 1F 00 00 */ cmplwi r31, 0
 /* 80016234 00013174  41 82 00 60 */ beq lbl_80016294
 /* 80016238 00013178  7F 63 DB 78 */ mr r3, r27
-/* 8001623C 0001317C  4B FF F6 A1 */ bl my_DVDConvertPathToEntrynum
+/* 8001623C 0001317C  4B FF F6 A1 */ bl my_DVDConvertPathToEntrynum__FPCc
 /* 80016240 00013180  90 7F 00 18 */ stw r3, 0x18(r31)
 /* 80016244 00013184  80 1F 00 18 */ lwz r0, 0x18(r31)
 /* 80016248 00013188  2C 00 FF FF */ cmpwi r0, -1
@@ -45,7 +45,7 @@ lbl_80016280:
 /* 80016284 000131C4  3C 60 80 3E */ lis r3, lbl_803DEC60@ha
 /* 80016288 000131C8  38 63 EC 60 */ addi r3, r3, lbl_803DEC60@l
 /* 8001628C 000131CC  7F E4 FB 78 */ mr r4, r31
-/* 80016290 000131D0  4B FF F7 55 */ bl mDoDvdThd_param_c_NS_addition
+/* 80016290 000131D0  4B FF F7 55 */ bl addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 lbl_80016294:
 /* 80016294 000131D4  7F E3 FB 78 */ mr r3, r31
 /* 80016298 000131D8  39 61 00 20 */ addi r11, r1, 0x20

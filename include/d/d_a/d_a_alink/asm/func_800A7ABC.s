@@ -32,14 +32,14 @@
 /* 800A7B38 000A4A78  7F C3 F3 78 */ mr r3, r30
 /* 800A7B3C 000A4A7C  38 81 00 30 */ addi r4, r1, 0x30
 /* 800A7B40 000A4A80  38 A1 00 24 */ addi r5, r1, 0x24
-/* 800A7B44 000A4A84  4B FF A6 55 */ bl daAlink_c_NS_commonLineCheck
+/* 800A7B44 000A4A84  4B FF A6 55 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800A7B48 000A4A88  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A7B4C 000A4A8C  41 82 01 48 */ beq lbl_800A7C94
 /* 800A7B50 000A4A90  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800A7B54 000A4A94  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800A7B58 000A4A98  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800A7B5C 000A4A9C  38 9E 1B 5C */ addi r4, r30, 0x1b5c
-/* 800A7B60 000A4AA0  4B FC D2 A1 */ bl dBgS_NS_GetWallCode
+/* 800A7B60 000A4AA0  4B FC D2 A1 */ bl GetWallCode__4dBgSFRC13cBgS_PolyInfo
 /* 800A7B64 000A4AA4  2C 03 00 0A */ cmpwi r3, 0xa
 /* 800A7B68 000A4AA8  41 82 01 2C */ beq lbl_800A7C94
 /* 800A7B6C 000A4AAC  38 9E 1B 78 */ addi r4, r30, 0x1b78

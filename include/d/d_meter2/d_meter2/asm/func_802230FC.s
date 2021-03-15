@@ -5,10 +5,10 @@
 /* 8022310C 0022004C  93 C1 00 08 */ stw r30, 8(r1)
 /* 80223110 00220050  7C 7E 1B 78 */ mr r30, r3
 /* 80223114 00220054  80 63 01 04 */ lwz r3, 0x104(r3)
-/* 80223118 00220058  4B DE C0 B5 */ bl mDoExt_setCurrentHeap
+/* 80223118 00220058  4B DE C0 B5 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8022311C 0022005C  7C 7F 1B 78 */ mr r31, r3
 /* 80223120 00220060  7F C3 F3 78 */ mr r3, r30
-/* 80223124 00220064  48 00 06 B1 */ bl dMeter2_c_NS_checkSubContents
+/* 80223124 00220064  48 00 06 B1 */ bl checkSubContents__9dMeter2_cFv
 /* 80223128 00220068  80 7E 01 10 */ lwz r3, 0x110(r30)
 /* 8022312C 0022006C  28 03 00 00 */ cmplwi r3, 0
 /* 80223130 00220070  41 82 00 18 */ beq lbl_80223148
@@ -35,7 +35,7 @@ lbl_80223148:
 /* 80223180 002200C0  28 04 00 00 */ cmplwi r4, 0
 /* 80223184 002200C4  41 82 00 0C */ beq lbl_80223190
 /* 80223188 002200C8  80 7E 01 14 */ lwz r3, 0x114(r30)
-/* 8022318C 002200CC  4B FE C4 19 */ bl dMeterString_c_NS_createString
+/* 8022318C 002200CC  4B FE C4 19 */ bl createString__14dMeterString_cFi
 lbl_80223190:
 /* 80223190 002200D0  80 7E 01 14 */ lwz r3, 0x114(r30)
 /* 80223194 002200D4  80 9E 01 24 */ lwz r4, 0x124(r30)
@@ -45,7 +45,7 @@ lbl_80223190:
 /* 802231A4 002200E4  4E 80 04 21 */ bctrl
 lbl_802231A8:
 /* 802231A8 002200E8  7F E3 FB 78 */ mr r3, r31
-/* 802231AC 002200EC  4B DE C0 21 */ bl mDoExt_setCurrentHeap
+/* 802231AC 002200EC  4B DE C0 21 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 802231B0 002200F0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802231B4 002200F4  83 C1 00 08 */ lwz r30, 8(r1)
 /* 802231B8 002200F8  80 01 00 14 */ lwz r0, 0x14(r1)

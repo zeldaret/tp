@@ -4,7 +4,7 @@
 /* 801186E0 00115620  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801186E4 00115624  7C 7F 1B 78 */ mr r31, r3
 /* 801186E8 00115628  38 80 01 88 */ li r4, 0x188
-/* 801186EC 0011562C  4B F9 48 95 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 801186EC 0011562C  4B F9 48 95 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 801186F0 00115630  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 801186F4 00115634  54 00 06 2C */ rlwinm r0, r0, 0, 0x18, 0x16
 /* 801186F8 00115638  90 1F 31 A0 */ stw r0, 0x31a0(r31)
@@ -32,10 +32,10 @@ lbl_80118728:
 /* 80118748 00115688  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011874C 0011568C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80118750 00115690  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 80118754 00115694  4B F2 AF 99 */ bl dEvt_control_c_NS_setPtI_Id
+/* 80118754 00115694  4B F2 AF 99 */ bl setPtI_Id__14dEvt_control_cFUi
 lbl_80118758:
 /* 80118758 00115698  7F E3 FB 78 */ mr r3, r31
-/* 8011875C 0011569C  4B FA 70 F9 */ bl daAlink_c_NS_keepItemData
+/* 8011875C 0011569C  4B FA 70 F9 */ bl keepItemData__9daAlink_cFv
 /* 80118760 001156A0  38 60 00 01 */ li r3, 1
 /* 80118764 001156A4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80118768 001156A8  80 01 00 14 */ lwz r0, 0x14(r1)

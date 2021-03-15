@@ -24,13 +24,13 @@
 /* 80211578 0020E4B8  C0 22 AE 80 */ lfs f1, lbl_80454880-_SDA2_BASE_(r2)
 /* 8021157C 0020E4BC  FC 40 08 90 */ fmr f2, f1
 /* 80211580 0020E4C0  7E A4 AB 78 */ mr r4, r21
-/* 80211584 0020E4C4  48 0E 79 51 */ bl J2DScreen_NS_draw
+/* 80211584 0020E4C4  48 0E 79 51 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80211588 0020E4C8  7F 23 CB 78 */ mr r3, r25
 /* 8021158C 0020E4CC  38 80 00 01 */ li r4, 1
-/* 80211590 0020E4D0  48 00 39 25 */ bl dMeter2Draw_c_NS_drawKanteraScreen
+/* 80211590 0020E4D0  48 00 39 25 */ bl drawKanteraScreen__13dMeter2Draw_cFUc
 /* 80211594 0020E4D4  7F 23 CB 78 */ mr r3, r25
 /* 80211598 0020E4D8  38 80 00 02 */ li r4, 2
-/* 8021159C 0020E4DC  48 00 39 19 */ bl dMeter2Draw_c_NS_drawKanteraScreen
+/* 8021159C 0020E4DC  48 00 39 19 */ bl drawKanteraScreen__13dMeter2Draw_cFUc
 /* 802115A0 0020E4E0  3B 60 00 00 */ li r27, 0
 /* 802115A4 0020E4E4  3A E0 00 00 */ li r23, 0
 /* 802115A8 0020E4E8  3B 00 00 00 */ li r24, 0
@@ -140,7 +140,7 @@ lbl_80211700:
 /* 80211738 0020E678  28 00 00 00 */ cmplwi r0, 0
 /* 8021173C 0020E67C  40 82 01 60 */ bne lbl_8021189C
 /* 80211740 0020E680  80 79 02 F8 */ lwz r3, 0x2f8(r25)
-/* 80211744 0020E684  48 04 40 E5 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80211744 0020E684  48 04 40 E5 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80211748 0020E688  C0 42 AE 80 */ lfs f2, lbl_80454880-_SDA2_BASE_(r2)
 /* 8021174C 0020E68C  FC 02 08 00 */ fcmpu cr0, f2, f1
 /* 80211750 0020E690  41 82 01 4C */ beq lbl_8021189C
@@ -167,7 +167,7 @@ lbl_80211700:
 /* 802117A4 0020E6E4  39 21 00 68 */ addi r9, r1, 0x68
 /* 802117A8 0020E6E8  C0 4A 04 90 */ lfs f2, 0x490(r10)
 /* 802117AC 0020E6EC  89 59 07 59 */ lbz r10, 0x759(r25)
-/* 802117B0 0020E6F0  48 00 28 41 */ bl dMeter2Draw_c_NS_drawPikari
+/* 802117B0 0020E6F0  48 00 28 41 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_802117B4:
 /* 802117B4 0020E6F4  C0 39 06 0C */ lfs f1, 0x60c(r25)
 /* 802117B8 0020E6F8  C0 02 AE 80 */ lfs f0, lbl_80454880-_SDA2_BASE_(r2)
@@ -193,7 +193,7 @@ lbl_802117B4:
 /* 80211808 0020E748  39 21 00 58 */ addi r9, r1, 0x58
 /* 8021180C 0020E74C  C0 4A 04 A4 */ lfs f2, 0x4a4(r10)
 /* 80211810 0020E750  89 59 07 5A */ lbz r10, 0x75a(r25)
-/* 80211814 0020E754  48 00 27 DD */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211814 0020E754  48 00 27 DD */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_80211818:
 /* 80211818 0020E758  3A A0 00 00 */ li r21, 0
 /* 8021181C 0020E75C  3A E0 00 00 */ li r23, 0
@@ -224,7 +224,7 @@ lbl_8021182C:
 /* 8021187C 0020E7BC  C0 56 04 7C */ lfs f2, 0x47c(r22)
 /* 80211880 0020E7C0  38 15 07 5C */ addi r0, r21, 0x75c
 /* 80211884 0020E7C4  7D 59 00 AE */ lbzx r10, r25, r0
-/* 80211888 0020E7C8  48 00 27 69 */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211888 0020E7C8  48 00 27 69 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_8021188C:
 /* 8021188C 0020E7CC  3A B5 00 01 */ addi r21, r21, 1
 /* 80211890 0020E7D0  2C 15 00 02 */ cmpwi r21, 2
@@ -232,7 +232,7 @@ lbl_8021188C:
 /* 80211898 0020E7D8  41 80 FF 94 */ blt lbl_8021182C
 lbl_8021189C:
 /* 8021189C 0020E7DC  80 79 01 E0 */ lwz r3, 0x1e0(r25)
-/* 802118A0 0020E7E0  48 04 3F 89 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 802118A0 0020E7E0  48 04 3F 89 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 802118A4 0020E7E4  C0 42 AE 80 */ lfs f2, lbl_80454880-_SDA2_BASE_(r2)
 /* 802118A8 0020E7E8  FC 02 08 00 */ fcmpu cr0, f2, f1
 /* 802118AC 0020E7EC  41 82 02 A4 */ beq lbl_80211B50
@@ -340,7 +340,7 @@ lbl_802119D4:
 /* 80211A24 0020E964  39 21 00 38 */ addi r9, r1, 0x38
 /* 80211A28 0020E968  FC 40 F0 90 */ fmr f2, f30
 /* 80211A2C 0020E96C  39 40 00 03 */ li r10, 3
-/* 80211A30 0020E970  48 00 25 C1 */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211A30 0020E970  48 00 25 C1 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 80211A34 0020E974  80 1E 0E FC */ lwz r0, 0xefc(r30)
 /* 80211A38 0020E978  90 01 00 28 */ stw r0, 0x28(r1)
 /* 80211A3C 0020E97C  80 1E 0F 04 */ lwz r0, 0xf04(r30)
@@ -359,7 +359,7 @@ lbl_802119D4:
 /* 80211A70 0020E9B0  39 21 00 28 */ addi r9, r1, 0x28
 /* 80211A74 0020E9B4  C0 5E 0F 0C */ lfs f2, 0xf0c(r30)
 /* 80211A78 0020E9B8  39 40 00 03 */ li r10, 3
-/* 80211A7C 0020E9BC  48 00 25 75 */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211A7C 0020E9BC  48 00 25 75 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_80211A80:
 /* 80211A80 0020E9C0  88 1E 0F 24 */ lbz r0, 0xf24(r30)
 /* 80211A84 0020E9C4  28 00 00 00 */ cmplwi r0, 0
@@ -409,7 +409,7 @@ lbl_80211ADC:
 /* 80211B2C 0020EA6C  39 21 00 18 */ addi r9, r1, 0x18
 /* 80211B30 0020EA70  FC 40 E8 90 */ fmr f2, f29
 /* 80211B34 0020EA74  89 59 07 5F */ lbz r10, 0x75f(r25)
-/* 80211B38 0020EA78  48 00 24 B9 */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211B38 0020EA78  48 00 24 B9 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_80211B3C:
 /* 80211B3C 0020EA7C  3A B5 00 01 */ addi r21, r21, 1
 /* 80211B40 0020EA80  2C 15 00 10 */ cmpwi r21, 0x10
@@ -441,7 +441,7 @@ lbl_80211B50:
 /* 80211BA4 0020EAE4  39 21 00 08 */ addi r9, r1, 8
 /* 80211BA8 0020EAE8  C0 4A 04 F4 */ lfs f2, 0x4f4(r10)
 /* 80211BAC 0020EAEC  39 40 00 03 */ li r10, 3
-/* 80211BB0 0020EAF0  48 00 24 41 */ bl dMeter2Draw_c_NS_drawPikari
+/* 80211BB0 0020EAF0  48 00 24 41 */ bl drawPikari__13dMeter2Draw_cFP8CPaneMgrPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 lbl_80211BB4:
 /* 80211BB4 0020EAF4  E3 E1 01 18 */ psq_l f31, 280(r1), 0, 0
 /* 80211BB8 0020EAF8  CB E1 01 10 */ lfd f31, 0x110(r1)

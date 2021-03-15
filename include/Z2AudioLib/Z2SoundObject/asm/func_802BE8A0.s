@@ -10,7 +10,7 @@
 /* 802BE8C4 002BB804  80 04 00 00 */ lwz r0, 0(r4)
 /* 802BE8C8 002BB808  90 01 00 08 */ stw r0, 8(r1)
 /* 802BE8CC 002BB80C  38 81 00 08 */ addi r4, r1, 8
-/* 802BE8D0 002BB810  4B FF F8 75 */ bl Z2SoundObjBase_NS_startSound
+/* 802BE8D0 002BB810  4B FF F8 75 */ bl startSound__14Z2SoundObjBaseF10JAISoundIDUlSc
 /* 802BE8D4 002BB814  7C 7F 1B 78 */ mr r31, r3
 /* 802BE8D8 002BB818  80 7D 00 00 */ lwz r3, 0(r29)
 /* 802BE8DC 002BB81C  3C 03 FF FE */ addis r0, r3, 0xfffe
@@ -51,7 +51,7 @@
 /* 802BE968 002BB8A8  80 7F 00 00 */ lwz r3, 0(r31)
 /* 802BE96C 002BB8AC  38 63 00 48 */ addi r3, r3, 0x48
 /* 802BE970 002BB8B0  38 80 00 00 */ li r4, 0
-/* 802BE974 002BB8B4  4B FE 44 99 */ bl JAISoundParamsMove_NS_movePitch
+/* 802BE974 002BB8B4  4B FE 44 99 */ bl movePitch__18JAISoundParamsMoveFfUl
 /* 802BE978 002BB8B8  80 7F 00 00 */ lwz r3, 0(r31)
 /* 802BE97C 002BB8BC  38 63 00 48 */ addi r3, r3, 0x48
 /* 802BE980 002BB8C0  FC 20 F8 90 */ fmr f1, f31

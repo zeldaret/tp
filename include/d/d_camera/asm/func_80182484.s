@@ -3,7 +3,7 @@
 /* 8018248C 0017F3CC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80182490 0017F3D0  38 63 02 48 */ addi r3, r3, 0x248
 /* 80182494 0017F3D4  38 80 FF FF */ li r4, -1
-/* 80182498 0017F3D8  4B FD DE 6D */ bl dCamera_c_NS_dtor
+/* 80182498 0017F3D8  4B FD DE 6D */ bl __dt__9dCamera_cFv
 /* 8018249C 0017F3DC  38 00 00 00 */ li r0, 0
 /* 801824A0 0017F3E0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801824A4 0017F3E4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

@@ -37,23 +37,23 @@ lbl_800B399C:
 lbl_800B39AC:
 /* 800B39AC 000B08EC  7F C3 F3 78 */ mr r3, r30
 /* 800B39B0 000B08F0  38 80 00 39 */ li r4, 0x39
-/* 800B39B4 000B08F4  48 07 4E 59 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 800B39B4 000B08F4  48 07 4E 59 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 800B39B8 000B08F8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B39BC 000B08FC  40 82 00 28 */ bne lbl_800B39E4
 /* 800B39C0 000B0900  7F C3 F3 78 */ mr r3, r30
 /* 800B39C4 000B0904  38 80 00 C6 */ li r4, 0xc6
-/* 800B39C8 000B0908  4B FF 8B 91 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800B39C8 000B0908  4B FF 8B 91 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800B39CC 000B090C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B39D0 000B0910  40 82 00 14 */ bne lbl_800B39E4
 /* 800B39D4 000B0914  7F C3 F3 78 */ mr r3, r30
-/* 800B39D8 000B0918  48 04 DF E1 */ bl daAlink_c_NS_getZoraSwim
+/* 800B39D8 000B0918  48 04 DF E1 */ bl getZoraSwim__9daAlink_cCFv
 /* 800B39DC 000B091C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B39E0 000B0920  41 82 00 08 */ beq lbl_800B39E8
 lbl_800B39E4:
 /* 800B39E4 000B0924  C3 FE 05 94 */ lfs f31, 0x594(r30)
 lbl_800B39E8:
 /* 800B39E8 000B0928  7F C3 F3 78 */ mr r3, r30
-/* 800B39EC 000B092C  48 00 75 95 */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800B39EC 000B092C  48 00 75 95 */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800B39F0 000B0930  2C 03 00 00 */ cmpwi r3, 0
 /* 800B39F4 000B0934  41 82 00 1C */ beq lbl_800B3A10
 /* 800B39F8 000B0938  80 1E 19 9C */ lwz r0, 0x199c(r30)
@@ -63,18 +63,18 @@ lbl_800B39E8:
 /* 800B3A08 000B0948  28 00 00 01 */ cmplwi r0, 1
 /* 800B3A0C 000B094C  41 82 00 98 */ beq lbl_800B3AA4
 lbl_800B3A10:
-/* 800B3A10 000B0950  48 00 C9 D9 */ bl daAlink_c_NS_checkRoomOnly
+/* 800B3A10 000B0950  48 00 C9 D9 */ bl checkRoomOnly__9daAlink_cFv
 /* 800B3A14 000B0954  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B3A18 000B0958  40 82 00 58 */ bne lbl_800B3A70
 /* 800B3A1C 000B095C  A0 1E 1F BC */ lhz r0, 0x1fbc(r30)
 /* 800B3A20 000B0960  28 00 02 02 */ cmplwi r0, 0x202
 /* 800B3A24 000B0964  41 82 00 4C */ beq lbl_800B3A70
 /* 800B3A28 000B0968  7F C3 F3 78 */ mr r3, r30
-/* 800B3A2C 000B096C  48 03 02 F1 */ bl daAlink_c_NS_checkGrabSlowMoveActor
+/* 800B3A2C 000B096C  48 03 02 F1 */ bl checkGrabSlowMoveActor__9daAlink_cFv
 /* 800B3A30 000B0970  2C 03 00 00 */ cmpwi r3, 0
 /* 800B3A34 000B0974  40 82 00 3C */ bne lbl_800B3A70
 /* 800B3A38 000B0978  7F C3 F3 78 */ mr r3, r30
-/* 800B3A3C 000B097C  48 02 93 B5 */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800B3A3C 000B097C  48 02 93 B5 */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800B3A40 000B0980  2C 03 00 00 */ cmpwi r3, 0
 /* 800B3A44 000B0984  41 82 00 10 */ beq lbl_800B3A54
 /* 800B3A48 000B0988  88 1E 2F 8C */ lbz r0, 0x2f8c(r30)
@@ -182,7 +182,7 @@ lbl_800B3BAC:
 /* 800B3BB0 000B0AF0  41 82 00 18 */ beq lbl_800B3BC8
 /* 800B3BB4 000B0AF4  7F C3 F3 78 */ mr r3, r30
 /* 800B3BB8 000B0AF8  38 81 00 08 */ addi r4, r1, 8
-/* 800B3BBC 000B0AFC  4B FF E4 1D */ bl daAlink_c_NS_getSlidePolygon
+/* 800B3BBC 000B0AFC  4B FF E4 1D */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 800B3BC0 000B0B00  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B3BC4 000B0B04  41 82 00 14 */ beq lbl_800B3BD8
 lbl_800B3BC8:
@@ -223,7 +223,7 @@ lbl_800B3C44:
 /* 800B3C48 000B0B88  54 00 04 E7 */ rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800B3C4C 000B0B8C  40 82 01 64 */ bne lbl_800B3DB0
 /* 800B3C50 000B0B90  7F C3 F3 78 */ mr r3, r30
-/* 800B3C54 000B0B94  48 04 DD 65 */ bl daAlink_c_NS_getZoraSwim
+/* 800B3C54 000B0B94  48 04 DD 65 */ bl getZoraSwim__9daAlink_cCFv
 /* 800B3C58 000B0B98  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B3C5C 000B0B9C  41 82 00 14 */ beq lbl_800B3C70
 /* 800B3C60 000B0BA0  A8 7E 30 80 */ lha r3, 0x3080(r30)
@@ -295,7 +295,7 @@ lbl_800B3D1C:
 /* 800B3D50 000B0C90  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800B3D54 000B0C94  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800B3D58 000B0C98  38 9E 1E 4C */ addi r4, r30, 0x1e4c
-/* 800B3D5C 000B0C9C  4B FC 09 05 */ bl cBgS_NS_ChkPolySafe
+/* 800B3D5C 000B0C9C  4B FC 09 05 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 800B3D60 000B0CA0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B3D64 000B0CA4  41 82 00 0C */ beq lbl_800B3D70
 /* 800B3D68 000B0CA8  38 00 00 03 */ li r0, 3

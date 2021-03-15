@@ -46,7 +46,7 @@ lbl_801253D4:
 /* 801253E0 00122320  38 A5 88 1A */ addi r5, r5, 0x0000881A@l
 /* 801253E4 00122324  38 C1 00 2C */ addi r6, r1, 0x2c
 /* 801253E8 00122328  38 FF 04 E4 */ addi r7, r31, 0x4e4
-/* 801253EC 0012232C  4B FF B1 95 */ bl daAlink_c_NS_setEmitter
+/* 801253EC 0012232C  4B FF B1 95 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 801253F0 00122330  28 03 00 00 */ cmplwi r3, 0
 /* 801253F4 00122334  41 82 00 28 */ beq lbl_8012541C
 /* 801253F8 00122338  E0 1D 00 00 */ psq_l f0, 0(r29), 0, 0
@@ -112,14 +112,14 @@ lbl_8012549C:
 /* 801254D4 00122414  39 20 00 00 */ li r9, 0
 /* 801254D8 00122418  39 40 00 FF */ li r10, 0xff
 /* 801254DC 0012241C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 801254E0 00122420  4B F2 75 B1 */ bl dPa_control_c_NS_set
+/* 801254E0 00122420  4B F2 75 B1 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 801254E4 00122424  3B 9C 00 01 */ addi r28, r28, 1
 /* 801254E8 00122428  2C 1C 00 02 */ cmpwi r28, 2
 /* 801254EC 0012242C  3B DE 00 02 */ addi r30, r30, 2
 /* 801254F0 00122430  41 80 FF AC */ blt lbl_8012549C
 /* 801254F4 00122434  7F E3 FB 78 */ mr r3, r31
 /* 801254F8 00122438  80 9F 32 68 */ lwz r4, 0x3268(r31)
-/* 801254FC 0012243C  4B FF B2 7D */ bl daAlink_c_NS_stopDrawParticle
+/* 801254FC 0012243C  4B FF B2 7D */ bl stopDrawParticle__9daAlink_cFUl
 /* 80125500 00122440  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 80125504 00122444  54 00 05 66 */ rlwinm r0, r0, 0, 0x15, 0x13
 /* 80125508 00122448  90 1F 05 7C */ stw r0, 0x57c(r31)

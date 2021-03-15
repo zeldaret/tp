@@ -2,7 +2,7 @@
 #define F_F_OP_SCENE_REQ_H_
 
 extern "C" {
-void fopScnRq_Handler(void);
+void fopScnRq_Handler__Fv(void);
 void fopScnRq_ReRequest(void);
 }
 

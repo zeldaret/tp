@@ -13,16 +13,16 @@
 /* 80216D5C 00213C9C  EC 01 00 32 */ fmuls f0, f1, f0
 /* 80216D60 00213CA0  EF E2 00 32 */ fmuls f31, f2, f0
 /* 80216D64 00213CA4  80 7F 02 E0 */ lwz r3, 0x2e0(r31)
-/* 80216D68 00213CA8  48 03 EA C1 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80216D68 00213CA8  48 03 EA C1 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80216D6C 00213CAC  FC 1F 08 00 */ fcmpu cr0, f31, f1
 /* 80216D70 00213CB0  41 82 00 20 */ beq lbl_80216D90
 /* 80216D74 00213CB4  80 7F 02 E0 */ lwz r3, 0x2e0(r31)
 /* 80216D78 00213CB8  FC 20 F8 90 */ fmr f1, f31
-/* 80216D7C 00213CBC  48 03 EA 55 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80216D7C 00213CBC  48 03 EA 55 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80216D80 00213CC0  7F E3 FB 78 */ mr r3, r31
 /* 80216D84 00213CC4  80 9F 02 E0 */ lwz r4, 0x2e0(r31)
 /* 80216D88 00213CC8  38 A0 00 05 */ li r5, 5
-/* 80216D8C 00213CCC  48 00 3D 19 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80216D8C 00213CCC  48 00 3D 19 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80216D90:
 /* 80216D90 00213CD0  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0
 /* 80216D94 00213CD4  CB E1 00 10 */ lfd f31, 0x10(r1)

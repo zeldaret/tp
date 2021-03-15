@@ -3,8 +3,8 @@
 .section .text, "ax" # 80285114
 
 
-.global JStudio_NS_TControl
-JStudio_NS_TControl:
+.global __ct__Q27JStudio8TControlFv
+__ct__Q27JStudio8TControlFv:
 /* 80285114 00282054  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80285118 00282058  7C 08 02 A6 */	mflr r0
 /* 8028511C 0028205C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -17,7 +17,7 @@ JStudio_NS_TControl:
 /* 80285138 00282078  38 7F 00 60 */	addi r3, r31, 0x60
 /* 8028513C 0028207C  4B FF F5 2D */	bl __ct__Q37JStudio3fvb8TControlFv
 /* 80285140 00282080  38 7F 00 74 */	addi r3, r31, 0x74
-/* 80285144 00282084  4B FF BE 81 */	bl JStudio_NS_ctb_NS_TControl
+/* 80285144 00282084  4B FF BE 81 */	bl __ct__Q37JStudio3ctb8TControlFv
 /* 80285148 00282088  38 00 00 00 */	li r0, 0
 /* 8028514C 0028208C  98 1F 00 88 */	stb r0, 0x88(r31)
 /* 80285150 00282090  98 1F 00 89 */	stb r0, 0x89(r31)
@@ -32,11 +32,11 @@ JStudio_NS_TControl:
 /* 80285174 002820B4  7F E3 FB 78 */	mr r3, r31
 /* 80285178 002820B8  38 81 00 08 */	addi r4, r1, 8
 /* 8028517C 002820BC  C0 22 BA 58 */	lfs f1, lbl_80455458-_SDA2_BASE_(r2)
-/* 80285180 002820C0  48 00 00 D1 */	bl JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy
+/* 80285180 002820C0  48 00 00 D1 */	bl transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 80285184 002820C4  7F E3 FB 78 */	mr r3, r31
 /* 80285188 002820C8  38 81 00 08 */	addi r4, r1, 8
 /* 8028518C 002820CC  C0 22 BA 58 */	lfs f1, lbl_80455458-_SDA2_BASE_(r2)
-/* 80285190 002820D0  48 00 01 41 */	bl JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy
+/* 80285190 002820D0  48 00 01 41 */	bl transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 80285194 002820D4  7F E3 FB 78 */	mr r3, r31
 /* 80285198 002820D8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8028519C 002820DC  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -56,7 +56,7 @@ JStudio_NS_TControl:
 /* 802851D4 00282114  90 1E 00 00 */	stw r0, 0(r30)
 /* 802851D8 00282118  38 7E 00 74 */	addi r3, r30, 0x74
 /* 802851DC 0028211C  38 80 FF FF */	li r4, -1
-/* 802851E0 00282120  4B FF BE 15 */	bl JStudio_NS_ctb_NS_TControl_NS_dtor
+/* 802851E0 00282120  4B FF BE 15 */	bl __dt__Q37JStudio3ctb8TControlFv
 /* 802851E4 00282124  38 7E 00 60 */	addi r3, r30, 0x60
 /* 802851E8 00282128  38 80 FF FF */	li r4, -1
 /* 802851EC 0028212C  4B FF F4 AD */	bl __dt__Q37JStudio3fvb8TControlFv
@@ -76,8 +76,8 @@ lbl_8028520C:
 /* 80285220 00282160  38 21 00 10 */	addi r1, r1, 0x10
 /* 80285224 00282164  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TControl_NS_setFactory
-JStudio_NS_TControl_NS_setFactory:
+.global setFactory__Q27JStudio8TControlFPQ27JStudio8TFactory
+setFactory__Q27JStudio8TControlFPQ27JStudio8TFactory:
 /* 80285228 00282168  38 00 00 00 */	li r0, 0
 /* 8028522C 0028216C  38 A0 00 00 */	li r5, 0
 /* 80285230 00282170  28 04 00 00 */	cmplwi r4, 0
@@ -90,8 +90,8 @@ lbl_80285240:
 /* 80285248 00282188  90 A3 00 78 */	stw r5, 0x78(r3)
 /* 8028524C 0028218C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy
-JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy:
+.global transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
+transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf:
 /* 80285250 00282190  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80285254 00282194  7C 08 02 A6 */	mflr r0
 /* 80285258 00282198  90 01 00 44 */	stw r0, 0x44(r1)
@@ -125,8 +125,8 @@ JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy:
 /* 802852C8 00282208  38 21 00 40 */	addi r1, r1, 0x40
 /* 802852CC 0028220C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy
-JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy:
+.global transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
+transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf:
 /* 802852D0 00282210  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 802852D4 00282214  7C 08 02 A6 */	mflr r0
 /* 802852D8 00282218  90 01 00 84 */	stw r0, 0x84(r1)
@@ -166,8 +166,8 @@ JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy:
 /* 80285360 002822A0  38 21 00 80 */	addi r1, r1, 0x80
 /* 80285364 002822A4  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TControl_NS_transform_setOrigin_ctb
-JStudio_NS_TControl_NS_transform_setOrigin_ctb:
+.global transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject
+transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject:
 /* 80285368 002822A8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8028536C 002822AC  7C 08 02 A6 */	mflr r0
 /* 80285370 002822B0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -205,11 +205,11 @@ lbl_802853AC:
 /* 802853EC 0028232C  7F C3 F3 78 */	mr r3, r30
 /* 802853F0 00282330  38 81 00 08 */	addi r4, r1, 8
 /* 802853F4 00282334  FC 20 F8 90 */	fmr f1, f31
-/* 802853F8 00282338  4B FF FE 59 */	bl JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy
+/* 802853F8 00282338  4B FF FE 59 */	bl transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 802853FC 0028233C  7F C3 F3 78 */	mr r3, r30
 /* 80285400 00282340  38 81 00 08 */	addi r4, r1, 8
 /* 80285404 00282344  FC 20 F8 90 */	fmr f1, f31
-/* 80285408 00282348  4B FF FE C9 */	bl JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy
+/* 80285408 00282348  4B FF FE C9 */	bl transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 8028540C 0028234C  48 00 00 0C */	b lbl_80285418
 lbl_80285410:
 /* 80285410 00282350  38 60 00 00 */	li r3, 0
@@ -226,22 +226,22 @@ lbl_8028541C:
 /* 80285434 00282374  38 21 00 30 */	addi r1, r1, 0x30
 /* 80285438 00282378  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TControl_NS_transform_setOrigin_ctb_index
-JStudio_NS_TControl_NS_transform_setOrigin_ctb_index:
+.global transform_setOrigin_ctb_index__Q27JStudio8TControlFUl
+transform_setOrigin_ctb_index__Q27JStudio8TControlFUl:
 /* 8028543C 0028237C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80285440 00282380  7C 08 02 A6 */	mflr r0
 /* 80285444 00282384  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80285448 00282388  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8028544C 0028238C  7C 7F 1B 78 */	mr r31, r3
 /* 80285450 00282390  38 7F 00 74 */	addi r3, r31, 0x74
-/* 80285454 00282394  4B FF BD DD */	bl JStudio_NS_ctb_NS_TControl_NS_getObject_index
+/* 80285454 00282394  4B FF BD DD */	bl getObject_index__Q37JStudio3ctb8TControlFUl
 /* 80285458 00282398  7C 64 1B 79 */	or. r4, r3, r3
 /* 8028545C 0028239C  40 82 00 0C */	bne lbl_80285468
 /* 80285460 002823A0  38 60 00 00 */	li r3, 0
 /* 80285464 002823A4  48 00 00 10 */	b lbl_80285474
 lbl_80285468:
 /* 80285468 002823A8  7F E3 FB 78 */	mr r3, r31
-/* 8028546C 002823AC  4B FF FE FD */	bl JStudio_NS_TControl_NS_transform_setOrigin_ctb
+/* 8028546C 002823AC  4B FF FE FD */	bl transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject
 /* 80285470 002823B0  38 60 00 01 */	li r3, 1
 lbl_80285474:
 /* 80285474 002823B4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -250,8 +250,8 @@ lbl_80285474:
 /* 80285480 002823C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80285484 002823C4  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TCreateObject_NS_dtor
-JStudio_NS_TCreateObject_NS_dtor:
+.global __dt__Q27JStudio13TCreateObjectFv
+__dt__Q27JStudio13TCreateObjectFv:
 /* 80285488 002823C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028548C 002823CC  7C 08 02 A6 */	mflr r0
 /* 80285490 002823D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -284,7 +284,7 @@ lbl_802854B8:
 /* 802854F8 00282438  90 1E 00 00 */	stw r0, 0(r30)
 /* 802854FC 0028243C  38 7E 00 14 */	addi r3, r30, 0x14
 /* 80285500 00282440  38 80 FF FF */	li r4, -1
-/* 80285504 00282444  4B FF BD 71 */	bl JStudio_NS_ctb_NS_TFactory_NS_dtor
+/* 80285504 00282444  4B FF BD 71 */	bl __dt__Q37JStudio3ctb8TFactoryFv
 /* 80285508 00282448  38 7E 00 10 */	addi r3, r30, 0x10
 /* 8028550C 0028244C  38 80 FF FF */	li r4, -1
 /* 80285510 00282450  4B FF F4 09 */	bl __dt__Q37JStudio3fvb8TFactoryFv
@@ -310,8 +310,8 @@ lbl_80285544:
 /* 80285558 00282498  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028555C 0028249C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TFactory_NS_appendCreateObject
-JStudio_NS_TFactory_NS_appendCreateObject:
+.global appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject
+appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject:
 /* 80285560 002824A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80285564 002824A4  7C 08 02 A6 */	mflr r0
 /* 80285568 002824A8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -383,8 +383,8 @@ lbl_80285658:
 /* 80285664 002825A4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80285668 002825A8  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TParse
-JStudio_NS_TParse:
+.global __ct__Q27JStudio6TParseFPQ27JStudio8TControl
+__ct__Q27JStudio6TParseFPQ27JStudio8TControl:
 /* 8028566C 002825AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80285670 002825B0  7C 08 02 A6 */	mflr r0
 /* 80285674 002825B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -401,8 +401,8 @@ JStudio_NS_TParse:
 /* 802856A0 002825E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802856A4 002825E4  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TParse_NS_dtor
-JStudio_NS_TParse_NS_dtor:
+.global __dt__Q27JStudio6TParseFv
+__dt__Q27JStudio6TParseFv:
 /* 802856A8 002825E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802856AC 002825EC  7C 08 02 A6 */	mflr r0
 /* 802856B0 002825F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -440,7 +440,7 @@ lbl_802856EC:
 /* 8028572C 0028266C  7F E3 FB 78 */	mr r3, r31
 /* 80285730 00282670  38 82 BA 60 */	addi r4, r2, lbl_80455460-_SDA2_BASE_
 /* 80285734 00282674  38 A0 00 08 */	li r5, 8
-/* 80285738 00282678  48 0E 09 55 */	bl func_8036608C
+/* 80285738 00282678  48 0E 09 55 */	bl memcmp
 /* 8028573C 0028267C  2C 03 00 00 */	cmpwi r3, 0
 /* 80285740 00282680  41 82 00 0C */	beq lbl_8028574C
 /* 80285744 00282684  38 60 00 00 */	li r3, 0
@@ -471,11 +471,11 @@ lbl_80285770:
 /* 8028579C 002826DC  7F E3 FB 78 */	mr r3, r31
 /* 802857A0 002826E0  38 81 00 08 */	addi r4, r1, 8
 /* 802857A4 002826E4  C0 22 BA 58 */	lfs f1, lbl_80455458-_SDA2_BASE_(r2)
-/* 802857A8 002826E8  4B FF FA A9 */	bl JStudio_NS_TControl_NS_transformOnSet_setOrigin_TxyzRy
+/* 802857A8 002826E8  4B FF FA A9 */	bl transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 802857AC 002826EC  7F E3 FB 78 */	mr r3, r31
 /* 802857B0 002826F0  38 81 00 08 */	addi r4, r1, 8
 /* 802857B4 002826F4  C0 22 BA 58 */	lfs f1, lbl_80455458-_SDA2_BASE_(r2)
-/* 802857B8 002826F8  4B FF FB 19 */	bl JStudio_NS_TControl_NS_transformOnGet_setOrigin_TxyzRy
+/* 802857B8 002826F8  4B FF FB 19 */	bl transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf
 /* 802857BC 002826FC  38 00 00 00 */	li r0, 0
 /* 802857C0 00282700  98 1F 00 88 */	stb r0, 0x88(r31)
 /* 802857C4 00282704  98 1F 00 89 */	stb r0, 0x89(r31)
@@ -504,10 +504,10 @@ lbl_802857CC:
 /* 80285818 00282758  41 82 00 10 */	beq lbl_80285828
 /* 8028581C 0028275C  48 00 00 14 */	b lbl_80285830
 lbl_80285820:
-/* 80285820 00282760  48 00 00 25 */	bl JStudio_NS_TParse_NS_parseBlock_block_fvb_
+/* 80285820 00282760  48 00 00 25 */	bl parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
 /* 80285824 00282764  48 00 00 10 */	b lbl_80285834
 lbl_80285828:
-/* 80285828 00282768  48 00 00 C9 */	bl JStudio_NS_TParse_NS_parseBlock_block_ctb_
+/* 80285828 00282768  48 00 00 C9 */	bl parseBlock_block_ctb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
 /* 8028582C 0028276C  48 00 00 08 */	b lbl_80285834
 lbl_80285830:
 /* 80285830 00282770  48 00 3F B9 */	bl parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
@@ -517,8 +517,8 @@ lbl_80285834:
 /* 8028583C 0028277C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80285840 00282780  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TParse_NS_parseBlock_block_fvb_
-JStudio_NS_TParse_NS_parseBlock_block_fvb_:
+.global parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
 /* 80285844 00282784  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80285848 00282788  7C 08 02 A6 */	mflr r0
 /* 8028584C 0028278C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -568,8 +568,8 @@ lbl_802858D8:
 /* 802858E8 00282828  38 21 00 20 */	addi r1, r1, 0x20
 /* 802858EC 0028282C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_TParse_NS_parseBlock_block_ctb_
-JStudio_NS_TParse_NS_parseBlock_block_ctb_:
+.global parseBlock_block_ctb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+parseBlock_block_ctb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl:
 /* 802858F0 00282830  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802858F4 00282834  7C 08 02 A6 */	mflr r0
 /* 802858F8 00282838  90 01 00 34 */	stw r0, 0x34(r1)
@@ -594,7 +594,7 @@ lbl_80285930:
 lbl_8028593C:
 /* 8028593C 0028287C  38 61 00 0C */	addi r3, r1, 0xc
 /* 80285940 00282880  38 9F 00 74 */	addi r4, r31, 0x74
-/* 80285944 00282884  4B FF BA 19 */	bl JStudio_NS_ctb_NS_TParse
+/* 80285944 00282884  4B FF BA 19 */	bl __ct__Q37JStudio3ctb6TParseFPQ37JStudio3ctb8TControl
 /* 80285948 00282888  93 C1 00 08 */	stw r30, 8(r1)
 /* 8028594C 0028288C  38 61 00 0C */	addi r3, r1, 0xc
 /* 80285950 00282890  38 81 00 08 */	addi r4, r1, 8
@@ -604,7 +604,7 @@ lbl_8028593C:
 /* 80285960 002828A0  40 82 00 18 */	bne lbl_80285978
 /* 80285964 002828A4  38 61 00 0C */	addi r3, r1, 0xc
 /* 80285968 002828A8  38 80 FF FF */	li r4, -1
-/* 8028596C 002828AC  4B FF BA 11 */	bl JStudio_NS_ctb_NS_TParse_NS_dtor
+/* 8028596C 002828AC  4B FF BA 11 */	bl __dt__Q37JStudio3ctb6TParseFv
 /* 80285970 002828B0  38 60 00 00 */	li r3, 0
 /* 80285974 002828B4  48 00 00 50 */	b lbl_802859C4
 lbl_80285978:
@@ -612,12 +612,12 @@ lbl_80285978:
 /* 8028597C 002828BC  40 82 00 38 */	bne lbl_802859B4
 /* 80285980 002828C0  7F E3 FB 78 */	mr r3, r31
 /* 80285984 002828C4  38 80 00 00 */	li r4, 0
-/* 80285988 002828C8  4B FF FA B5 */	bl JStudio_NS_TControl_NS_transform_setOrigin_ctb_index
+/* 80285988 002828C8  4B FF FA B5 */	bl transform_setOrigin_ctb_index__Q27JStudio8TControlFUl
 /* 8028598C 002828CC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80285990 002828D0  40 82 00 18 */	bne lbl_802859A8
 /* 80285994 002828D4  38 61 00 0C */	addi r3, r1, 0xc
 /* 80285998 002828D8  38 80 FF FF */	li r4, -1
-/* 8028599C 002828DC  4B FF B9 E1 */	bl JStudio_NS_ctb_NS_TParse_NS_dtor
+/* 8028599C 002828DC  4B FF B9 E1 */	bl __dt__Q37JStudio3ctb6TParseFv
 /* 802859A0 002828E0  38 60 00 00 */	li r3, 0
 /* 802859A4 002828E4  48 00 00 20 */	b lbl_802859C4
 lbl_802859A8:
@@ -627,7 +627,7 @@ lbl_802859A8:
 lbl_802859B4:
 /* 802859B4 002828F4  38 61 00 0C */	addi r3, r1, 0xc
 /* 802859B8 002828F8  38 80 FF FF */	li r4, -1
-/* 802859BC 002828FC  4B FF B9 C1 */	bl JStudio_NS_ctb_NS_TParse_NS_dtor
+/* 802859BC 002828FC  4B FF B9 C1 */	bl __dt__Q37JStudio3ctb6TParseFv
 /* 802859C0 00282900  38 60 00 01 */	li r3, 1
 lbl_802859C4:
 /* 802859C4 00282904  39 61 00 30 */	addi r11, r1, 0x30

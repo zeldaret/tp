@@ -3,8 +3,8 @@
 .section .text, "ax" # 8028b610
 
 
-.global JStudio_JStage_NS_TAdaptor_ambientLight
-JStudio_JStage_NS_TAdaptor_ambientLight:
+.global __ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight
+__ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight:
 /* 8028B610 00288550  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028B614 00288554  7C 08 02 A6 */	mflr r0
 /* 8028B618 00288558  90 01 00 24 */	stw r0, 0x24(r1)
@@ -26,14 +26,14 @@ JStudio_JStage_NS_TAdaptor_ambientLight:
 /* 8028B658 00288598  3C 80 80 3C */	lis r4, lbl_803C5560@ha
 /* 8028B65C 0028859C  38 04 55 60 */	addi r0, r4, lbl_803C5560@l
 /* 8028B660 002885A0  90 1D 00 00 */	stw r0, 0(r29)
-.global JStudio_NS_TVariableValue
-/* 8028B664 002885A4  3C 80 80 29 */	lis r4, JStudio_NS_TVariableValue@ha
-.global JStudio_NS_TVariableValue
-/* 8028B668 002885A8  38 84 B5 68 */	addi r4, r4, JStudio_NS_TVariableValue@l
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028B664 002885A4  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028B668 002885A8  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l
 /* 8028B66C 002885AC  38 A0 00 00 */	li r5, 0
 /* 8028B670 002885B0  38 C0 00 14 */	li r6, 0x14
 /* 8028B674 002885B4  38 E0 00 04 */	li r7, 4
-/* 8028B678 002885B8  48 0D 66 E9 */	bl func_80361D60
+/* 8028B678 002885B8  48 0D 66 E9 */	bl __construct_array
 /* 8028B67C 002885BC  93 DD 00 60 */	stw r30, 0x60(r29)
 /* 8028B680 002885C0  93 FD 00 64 */	stw r31, 0x64(r29)
 /* 8028B684 002885C4  3C 60 80 3C */	lis r3, lbl_803C5888@ha
@@ -63,7 +63,7 @@ JStudio_JStage_NS_TAdaptor_ambientLight:
 /* 8028B6E4 00288624  4E 80 04 21 */	bctrl 
 /* 8028B6E8 00288628  7F C3 F3 78 */	mr r3, r30
 /* 8028B6EC 0028862C  38 80 00 00 */	li r4, 0
-/* 8028B6F0 00288630  4B FF B5 AD */	bl JStudio_NS_TAdaptor_ambientLight_NS_dtor
+/* 8028B6F0 00288630  4B FF B5 AD */	bl __dt__Q27JStudio21TAdaptor_ambientLightFv
 /* 8028B6F4 00288634  7F E0 07 35 */	extsh. r0, r31
 /* 8028B6F8 00288638  40 81 00 0C */	ble lbl_8028B704
 /* 8028B6FC 0028863C  7F C3 F3 78 */	mr r3, r30
@@ -105,7 +105,7 @@ lbl_8028B704:
 /* 8028B788 002886C8  3C 80 80 3A */	lis r4, lbl_8039AA98@ha
 /* 8028B78C 002886CC  38 84 AA 98 */	addi r4, r4, lbl_8039AA98@l
 /* 8028B790 002886D0  38 A1 00 08 */	addi r5, r1, 8
-/* 8028B794 002886D4  4B FF AB 19 */	bl JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_GXColor
+/* 8028B794 002886D4  4B FF AB 19 */	bl adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
 /* 8028B798 002886D8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8028B79C 002886DC  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 8028B7A0 002886E0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -143,7 +143,7 @@ lbl_8028B704:
 /* 8028B820 00288760  38 81 00 0C */	addi r4, r1, 0xc
 /* 8028B824 00288764  3C A0 80 3A */	lis r5, lbl_8039AA98@ha
 /* 8028B828 00288768  38 A5 AA 98 */	addi r5, r5, lbl_8039AA98@l
-/* 8028B82C 0028876C  4B FF AB 61 */	bl JStudio_NS_TAdaptor_NS_adaptor_getVariableValue_GXColor
+/* 8028B82C 0028876C  4B FF AB 61 */	bl adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
 /* 8028B830 00288770  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8028B834 00288774  90 01 00 08 */	stw r0, 8(r1)
 /* 8028B838 00288778  7F E3 FB 78 */	mr r3, r31
@@ -167,7 +167,7 @@ lbl_8028B704:
 /* 8028B880 002887C0  7C 08 02 A6 */	mflr r0
 /* 8028B884 002887C4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028B888 002887C8  38 63 00 60 */	addi r3, r3, 0x60
-/* 8028B88C 002887CC  4B FF EB E5 */	bl JStudio_JStage_NS_TAdaptor_object__NS_adaptor_object_data_
+/* 8028B88C 002887CC  4B FF EB E5 */	bl adaptor_object_data___Q214JStudio_JStage16TAdaptor_object_FPCvUlPCvUl
 /* 8028B890 002887D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028B894 002887D4  7C 08 03 A6 */	mtlr r0
 /* 8028B898 002887D8  38 21 00 10 */	addi r1, r1, 0x10

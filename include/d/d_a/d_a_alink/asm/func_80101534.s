@@ -4,7 +4,7 @@
 /* 80101540 000FE480  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80101544 000FE484  93 C1 00 08 */ stw r30, 8(r1)
 /* 80101548 000FE488  7C 7E 1B 78 */ mr r30, r3
-/* 8010154C 000FE48C  4B FF F2 25 */ bl daAlink_c_NS_commonRoofHangProc
+/* 8010154C 000FE48C  4B FF F2 25 */ bl commonRoofHangProc__9daAlink_cFv
 /* 80101550 000FE490  2C 03 00 00 */ cmpwi r3, 0
 /* 80101554 000FE494  41 82 00 0C */ beq lbl_80101560
 /* 80101558 000FE498  38 60 00 01 */ li r3, 1
@@ -12,7 +12,7 @@
 lbl_80101560:
 /* 80101560 000FE4A0  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 80101564 000FE4A4  7F E3 FB 78 */ mr r3, r31
-/* 80101568 000FE4A8  48 05 CF 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80101568 000FE4A8  48 05 CF 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8010156C 000FE4AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80101570 000FE4B0  41 82 00 60 */ beq lbl_801015D0
 /* 80101574 000FE4B4  A8 1E 30 08 */ lha r0, 0x3008(r30)
@@ -28,7 +28,7 @@ lbl_80101560:
 /* 8010159C 000FE4DC  38 80 00 00 */ li r4, 0
 /* 801015A0 000FE4E0  38 A0 80 00 */ li r5, -32768
 /* 801015A4 000FE4E4  38 C0 00 00 */ li r6, 0
-/* 801015A8 000FE4E8  4B FA C5 D1 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 801015A8 000FE4E8  4B FA C5 D1 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 801015AC 000FE4EC  80 7E 20 60 */ lwz r3, 0x2060(r30)
 /* 801015B0 000FE4F0  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 801015B4 000FE4F4  C0 23 00 1C */ lfs f1, 0x1c(r3)
@@ -37,7 +37,7 @@ lbl_80101560:
 /* 801015C0 000FE500  D0 03 00 1C */ stfs f0, 0x1c(r3)
 lbl_801015C4:
 /* 801015C4 000FE504  7F C3 F3 78 */ mr r3, r30
-/* 801015C8 000FE508  4B FF F3 25 */ bl daAlink_c_NS_checkNextActionRoofHang
+/* 801015C8 000FE508  4B FF F3 25 */ bl checkNextActionRoofHang__9daAlink_cFv
 /* 801015CC 000FE50C  48 00 00 54 */ b lbl_80101620
 lbl_801015D0:
 /* 801015D0 000FE510  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -60,7 +60,7 @@ lbl_801015D0:
 lbl_80101614:
 /* 80101614 000FE554  7F C3 F3 78 */ mr r3, r30
 /* 80101618 000FE558  38 9E 1E 2C */ addi r4, r30, 0x1e2c
-/* 8010161C 000FE55C  4B FF EF F9 */ bl daAlink_c_NS_setRoofHangHandOnSE
+/* 8010161C 000FE55C  4B FF EF F9 */ bl setRoofHangHandOnSE__9daAlink_cFP13cBgS_PolyInfo
 lbl_80101620:
 /* 80101620 000FE560  38 60 00 01 */ li r3, 1
 lbl_80101624:

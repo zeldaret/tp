@@ -30,7 +30,7 @@ lbl_800333B4:
 /* 800333E0 00030320  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 800333E4 00030324  38 1F 00 0B */	addi r0, r31, 0xb
 /* 800333E8 00030328  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 800333EC 0003032C  48 1E A8 D9 */	bl dMeter2Info_c_NS_setHotSpringTimer
+/* 800333EC 0003032C  48 1E A8 D9 */	bl setHotSpringTimer__13dMeter2Info_cFUc
 lbl_800333F0:
 /* 800333F0 00030330  3B A0 00 00 */	li r29, 0
 /* 800333F4 00030334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -44,7 +44,7 @@ lbl_80033400:
 /* 80033410 00030350  7C 1F 00 00 */	cmpw r31, r0
 /* 80033414 00030354  40 82 00 0C */	bne lbl_80033420
 /* 80033418 00030358  7F A3 EB 78 */	mr r3, r29
-/* 8003341C 0003035C  4B FF A9 D9 */	bl dComIfGp_setSelectItem
+/* 8003341C 0003035C  4B FF A9 D9 */	bl dComIfGp_setSelectItem__Fi
 lbl_80033420:
 /* 80033420 00030360  3B BD 00 01 */	addi r29, r29, 1
 /* 80033424 00030364  2C 1D 00 03 */	cmpwi r29, 3

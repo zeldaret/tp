@@ -4,25 +4,25 @@
 /* 80107568 001044A8  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8010756C 001044AC  7C 7F 1B 78 */ mr r31, r3
 /* 80107570 001044B0  38 80 00 01 */ li r4, 1
-/* 80107574 001044B4  4B FF E5 E5 */ bl daAlink_c_NS_boardCommon
+/* 80107574 001044B4  4B FF E5 E5 */ bl boardCommon__9daAlink_cFi
 /* 80107578 001044B8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010757C 001044BC  41 82 00 0C */ beq lbl_80107588
 /* 80107580 001044C0  38 60 00 01 */ li r3, 1
 /* 80107584 001044C4  48 00 00 3C */ b lbl_801075C0
 lbl_80107588:
 /* 80107588 001044C8  7F E3 FB 78 */ mr r3, r31
-/* 8010758C 001044CC  4B FC B0 F9 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
+/* 8010758C 001044CC  4B FC B0 F9 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 80107590 001044D0  7F E3 FB 78 */ mr r3, r31
-/* 80107594 001044D4  4B FF EF F9 */ bl daAlink_c_NS_checkNextActionBoard
+/* 80107594 001044D4  4B FF EF F9 */ bl checkNextActionBoard__9daAlink_cFv
 /* 80107598 001044D8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010759C 001044DC  40 82 00 20 */ bne lbl_801075BC
 /* 801075A0 001044E0  7F E3 FB 78 */ mr r3, r31
-/* 801075A4 001044E4  4B FB 1C B1 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 801075A4 001044E4  4B FB 1C B1 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 801075A8 001044E8  2C 03 00 00 */ cmpwi r3, 0
 /* 801075AC 001044EC  41 82 00 10 */ beq lbl_801075BC
 /* 801075B0 001044F0  7F E3 FB 78 */ mr r3, r31
 /* 801075B4 001044F4  38 80 00 00 */ li r4, 0
-/* 801075B8 001044F8  4B FF F4 81 */ bl daAlink_c_NS_procBoardWaitInit
+/* 801075B8 001044F8  4B FF F4 81 */ bl procBoardWaitInit__9daAlink_cFP10fopAc_ac_c
 lbl_801075BC:
 /* 801075BC 001044FC  38 60 00 01 */ li r3, 1
 lbl_801075C0:

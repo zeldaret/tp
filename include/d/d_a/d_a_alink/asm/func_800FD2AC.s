@@ -24,7 +24,7 @@
 /* 800FD308 000FA248  C0 82 92 A4 */ lfs f4, lbl_80452CA4-_SDA2_BASE_(r2)
 /* 800FD30C 000FA24C  48 17 26 71 */ bl cLib_addCalc__FPfffff
 /* 800FD310 000FA250  7F 83 E3 78 */ mr r3, r28
-/* 800FD314 000FA254  4B FB C0 2D */ bl daAlink_c_NS_checkEquipAnime
+/* 800FD314 000FA254  4B FB C0 2D */ bl checkEquipAnime__9daAlink_cCFv
 /* 800FD318 000FA258  2C 03 00 00 */ cmpwi r3, 0
 /* 800FD31C 000FA25C  41 82 00 0C */ beq lbl_800FD328
 /* 800FD320 000FA260  38 60 00 00 */ li r3, 0
@@ -91,40 +91,40 @@ lbl_800FD3BC:
 /* 800FD404 000FA344  7F 83 E3 78 */ mr r3, r28
 /* 800FD408 000FA348  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FD40C 000FA34C  38 A1 00 08 */ addi r5, r1, 8
-/* 800FD410 000FA350  4B FA 4D 89 */ bl daAlink_c_NS_commonLineCheck
+/* 800FD410 000FA350  4B FA 4D 89 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FD414 000FA354  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FD418 000FA358  40 82 00 2C */ bne lbl_800FD444
 /* 800FD41C 000FA35C  2C 1F 40 00 */ cmpwi r31, 0x4000
 /* 800FD420 000FA360  40 80 00 14 */ bge lbl_800FD434
 /* 800FD424 000FA364  7F 83 E3 78 */ mr r3, r28
 /* 800FD428 000FA368  7F A4 EB 78 */ mr r4, r29
-/* 800FD42C 000FA36C  48 00 03 F9 */ bl daAlink_c_NS_procLadderUpEndInit
+/* 800FD42C 000FA36C  48 00 03 F9 */ bl procLadderUpEndInit__9daAlink_cFi
 /* 800FD430 000FA370  48 00 00 5C */ b lbl_800FD48C
 lbl_800FD434:
 /* 800FD434 000FA374  7F 83 E3 78 */ mr r3, r28
 /* 800FD438 000FA378  7F A4 EB 78 */ mr r4, r29
-/* 800FD43C 000FA37C  48 00 07 DD */ bl daAlink_c_NS_procLadderDownEndInit
+/* 800FD43C 000FA37C  48 00 07 DD */ bl procLadderDownEndInit__9daAlink_cFi
 /* 800FD440 000FA380  48 00 00 4C */ b lbl_800FD48C
 lbl_800FD444:
 /* 800FD444 000FA384  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800FD448 000FA388  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800FD44C 000FA38C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800FD450 000FA390  38 9C 1B 5C */ addi r4, r28, 0x1b5c
-/* 800FD454 000FA394  4B F7 79 AD */ bl dBgS_NS_GetWallCode
+/* 800FD454 000FA394  4B F7 79 AD */ bl GetWallCode__4dBgSFRC13cBgS_PolyInfo
 /* 800FD458 000FA398  2C 03 00 04 */ cmpwi r3, 4
 /* 800FD45C 000FA39C  41 82 00 1C */ beq lbl_800FD478
 /* 800FD460 000FA3A0  2C 1F 40 00 */ cmpwi r31, 0x4000
 /* 800FD464 000FA3A4  41 80 00 28 */ blt lbl_800FD48C
 /* 800FD468 000FA3A8  7F 83 E3 78 */ mr r3, r28
 /* 800FD46C 000FA3AC  7F A4 EB 78 */ mr r4, r29
-/* 800FD470 000FA3B0  48 00 07 A9 */ bl daAlink_c_NS_procLadderDownEndInit
+/* 800FD470 000FA3B0  48 00 07 A9 */ bl procLadderDownEndInit__9daAlink_cFi
 /* 800FD474 000FA3B4  48 00 00 18 */ b lbl_800FD48C
 lbl_800FD478:
 /* 800FD478 000FA3B8  7F 83 E3 78 */ mr r3, r28
 /* 800FD47C 000FA3BC  7F A4 EB 78 */ mr r4, r29
 /* 800FD480 000FA3C0  7F C5 F3 78 */ mr r5, r30
 /* 800FD484 000FA3C4  38 DC 37 C8 */ addi r6, r28, 0x37c8
-/* 800FD488 000FA3C8  48 00 09 09 */ bl daAlink_c_NS_procLadderMoveInit
+/* 800FD488 000FA3C8  48 00 09 09 */ bl procLadderMoveInit__9daAlink_cFiiP4cXyz
 lbl_800FD48C:
 /* 800FD48C 000FA3CC  38 60 00 00 */ li r3, 0
 lbl_800FD490:

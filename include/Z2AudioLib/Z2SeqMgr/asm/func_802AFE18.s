@@ -7,7 +7,7 @@
 /* 802AFE30 002ACD70  28 03 00 00 */	cmplwi r3, 0
 /* 802AFE34 002ACD74  41 82 00 0C */	beq lbl_802AFE40
 /* 802AFE38 002ACD78  38 63 00 1C */	addi r3, r3, 0x1c
-/* 802AFE3C 002ACD7C  4B FF 24 09 */	bl JAISoundStatus__NS_unlockIfLocked
+/* 802AFE3C 002ACD7C  4B FF 24 09 */	bl unlockIfLocked__15JAISoundStatus_Fv
 lbl_802AFE40:
 /* 802AFE40 002ACD80  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 802AFE44 002ACD84  28 03 00 00 */	cmplwi r3, 0

@@ -6,18 +6,18 @@
 /* 80026B04 00023A44  7C 7E 1B 78 */ mr r30, r3
 /* 80026B08 00023A48  7C 9F 23 78 */ mr r31, r4
 /* 80026B0C 00023A4C  38 60 00 00 */ li r3, 0
-/* 80026B10 00023A50  48 00 5E 6D */ bl dComIfG_play_c_NS_getLayerNo
+/* 80026B10 00023A50  48 00 5E 6D */ bl getLayerNo__14dComIfG_play_cFi
 /* 80026B14 00023A54  7C 65 1B 78 */ mr r5, r3
 /* 80026B18 00023A58  3C 60 80 3A */ lis r3, lbl_803A668C@ha
 /* 80026B1C 00023A5C  38 63 66 8C */ addi r3, r3, lbl_803A668C@l
 /* 80026B20 00023A60  38 80 00 04 */ li r4, 4
-/* 80026B24 00023A64  4B FF F5 5D */ bl dStage_setLayerTagName
+/* 80026B24 00023A64  4B FF F5 5D */ bl dStage_setLayerTagName__FP9FuncTableii
 /* 80026B28 00023A68  7F C3 F3 78 */ mr r3, r30
 /* 80026B2C 00023A6C  7F E4 FB 78 */ mr r4, r31
 /* 80026B30 00023A70  3C A0 80 3A */ lis r5, lbl_803A668C@ha
 /* 80026B34 00023A74  38 A5 66 8C */ addi r5, r5, lbl_803A668C@l
 /* 80026B38 00023A78  38 C0 00 04 */ li r6, 4
-/* 80026B3C 00023A7C  4B FF F5 79 */ bl dStage_dt_c_decode
+/* 80026B3C 00023A7C  4B FF F5 79 */ bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026B40 00023A80  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80026B44 00023A84  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80026B48 00023A88  80 01 00 14 */ lwz r0, 0x14(r1)

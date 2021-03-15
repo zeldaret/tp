@@ -7,7 +7,7 @@
 /* 80118B4C 00115A8C  7C 9F 23 78 */ mr r31, r4
 /* 80118B50 00115A90  7C A4 2B 78 */ mr r4, r5
 /* 80118B54 00115A94  38 A0 00 01 */ li r5, 1
-/* 80118B58 00115A98  4B FB E6 B1 */ bl daAlink_c_NS_damageMagnification
+/* 80118B58 00115A98  4B FB E6 B1 */ bl damageMagnification__9daAlink_cFii
 /* 80118B5C 00115A9C  FC 00 08 1E */ fctiwz f0, f1
 /* 80118B60 00115AA0  D8 01 00 08 */ stfd f0, 8(r1)
 /* 80118B64 00115AA4  80 01 00 0C */ lwz r0, 0xc(r1)
@@ -21,7 +21,7 @@
 /* 80118B84 00115AC4  7C 1F 00 00 */ cmpw r31, r0
 /* 80118B88 00115AC8  41 80 00 50 */ blt lbl_80118BD8
 /* 80118B8C 00115ACC  7F C3 F3 78 */ mr r3, r30
-/* 80118B90 00115AD0  4B FB EC 39 */ bl daAlink_c_NS_checkMagicArmorNoDamage
+/* 80118B90 00115AD0  4B FB EC 39 */ bl checkMagicArmorNoDamage__9daAlink_cFv
 /* 80118B94 00115AD4  2C 03 00 00 */ cmpwi r3, 0
 /* 80118B98 00115AD8  40 82 00 40 */ bne lbl_80118BD8
 /* 80118B9C 00115ADC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -36,7 +36,7 @@
 /* 80118BC0 00115B00  90 1E 05 78 */ stw r0, 0x578(r30)
 /* 80118BC4 00115B04  7F C3 F3 78 */ mr r3, r30
 /* 80118BC8 00115B08  38 80 00 00 */ li r4, 0
-/* 80118BCC 00115B0C  48 00 32 89 */ bl daAlink_c_NS_procCoDeadInit
+/* 80118BCC 00115B0C  48 00 32 89 */ bl procCoDeadInit__9daAlink_cFi
 /* 80118BD0 00115B10  38 60 00 01 */ li r3, 1
 /* 80118BD4 00115B14  48 00 00 08 */ b lbl_80118BDC
 lbl_80118BD8:

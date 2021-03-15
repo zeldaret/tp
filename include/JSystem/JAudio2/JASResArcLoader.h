@@ -2,7 +2,7 @@
 #define JASRESARCLOADER_H_
 
 extern "C" {
-void JASResArcLoader_NS_getResMaxSize(void);
+void getResMaxSize__15JASResArcLoaderFPC10JKRArchive(void);
 }
 
 #endif  // JASRESARCLOADER_H_

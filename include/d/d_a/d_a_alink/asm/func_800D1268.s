@@ -10,7 +10,7 @@
 /* 800D128C 000CE1CC  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 800D1290 000CE1D0  38 63 03 D0 */ addi r3, r3, 0x3d0
 /* 800D1294 000CE1D4  38 80 00 01 */ li r4, 1
-/* 800D1298 000CE1D8  48 1E 4B ED */ bl Z2SeqMgr_NS_bgmSetSwordUsing
+/* 800D1298 000CE1D8  48 1E 4B ED */ bl bgmSetSwordUsing__8Z2SeqMgrFl
 /* 800D129C 000CE1DC  38 00 00 00 */ li r0, 0
 /* 800D12A0 000CE1E0  98 1F 2F 94 */ stb r0, 0x2f94(r31)
 /* 800D12A4 000CE1E4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80288988
 
 
-.global JStudio_NS_object_NS_TIDData_NS_isEqual
-JStudio_NS_object_NS_TIDData_NS_isEqual:
+.global isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData
+isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData:
 /* 80288988 002858C8  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8028898C 002858CC  80 04 00 04 */	lwz r0, 4(r4)
 /* 80288990 002858D0  7C 05 00 40 */	cmplw r5, r0

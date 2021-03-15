@@ -21,7 +21,7 @@ lbl_80056B6C:
 /* 80056B94 00053AD4  7C 7E 00 2E */ lwzx r3, r30, r0
 /* 80056B98 00053AD8  7F A4 EB 78 */ mr r4, r29
 /* 80056B9C 00053ADC  38 A0 00 00 */ li r5, 0
-/* 80056BA0 00053AE0  48 2C E8 ED */ bl J3DDrawBuffer_NS_entryImm
+/* 80056BA0 00053AE0  48 2C E8 ED */ bl entryImm__13J3DDrawBufferFP9J3DPacketUs
 /* 80056BA4 00053AE4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80056BA8 00053AE8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80056BAC 00053AEC  80 03 5F 80 */ lwz r0, 0x5f80(r3)

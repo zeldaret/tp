@@ -16,13 +16,13 @@
 /* 800A3F3C 000A0E7C  3C A5 00 02 */ addis r5, r5, 2
 /* 800A3F40 000A0E80  38 C0 00 80 */ li r6, 0x80
 /* 800A3F44 000A0E84  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800A3F48 000A0E88  4B F9 84 35 */ bl dRes_control_c_NS_getRes_X1_
+/* 800A3F48 000A0E88  4B F9 84 35 */ bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 800A3F4C 000A0E8C  7C 64 1B 79 */ or. r4, r3, r3
 /* 800A3F50 000A0E90  41 82 00 2C */ beq lbl_800A3F7C
 /* 800A3F54 000A0E94  7F A3 EB 78 */ mr r3, r29
 /* 800A3F58 000A0E98  3C A0 00 08 */ lis r5, 8
 /* 800A3F5C 000A0E9C  7F E6 FB 78 */ mr r6, r31
-/* 800A3F60 000A0EA0  4B FF FE 1D */ bl daAlink_c_NS_initModel
+/* 800A3F60 000A0EA0  4B FF FE 1D */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 800A3F64 000A0EA4  90 7E 00 00 */ stw r3, 0(r30)
 /* 800A3F68 000A0EA8  80 1E 00 00 */ lwz r0, 0(r30)
 /* 800A3F6C 000A0EAC  28 00 00 00 */ cmplwi r0, 0

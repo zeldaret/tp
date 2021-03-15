@@ -19,7 +19,7 @@
 /* 80180A88 0017D9C8  38 A1 00 08 */ addi r5, r1, 8
 /* 80180A8C 0017D9CC  C0 23 01 30 */ lfs f1, 0x130(r3)
 /* 80180A90 0017D9D0  A8 C3 01 34 */ lha r6, 0x134(r3)
-/* 80180A94 0017D9D4  48 00 01 0D */ bl dCamera_c_NS_Reset
+/* 80180A94 0017D9D4  48 00 01 0D */ bl Reset__9dCamera_cF4cXyz4cXyzfs
 /* 80180A98 0017D9D8  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 80180A9C 0017D9DC  7C 08 03 A6 */ mtlr r0
 /* 80180AA0 0017D9E0  38 21 00 20 */ addi r1, r1, 0x20

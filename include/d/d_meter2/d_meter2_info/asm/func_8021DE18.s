@@ -47,7 +47,7 @@ lbl_8021DEB4:
 /* 8021DEC0 0021AE00  3B 63 61 C0 */ addi r27, r3, g_dComIfG_gameInfo@l
 lbl_8021DEC4:
 /* 8021DEC4 0021AE04  7F E3 FB 78 */ mr r3, r31
-/* 8021DEC8 0021AE08  4B E0 FF 01 */ bl dComIfGs_getMixItemIndex
+/* 8021DEC8 0021AE08  4B E0 FF 01 */ bl dComIfGs_getMixItemIndex__Fi
 /* 8021DECC 0021AE0C  7F DC FA 14 */ add r30, r28, r31
 /* 8021DED0 0021AE10  98 7E 00 C8 */ stb r3, 0xc8(r30)
 /* 8021DED4 0021AE14  7F 63 DB 78 */ mr r3, r27
@@ -88,10 +88,10 @@ lbl_8021DF5C:
 /* 8021DF5C 0021AE9C  7F 43 D3 78 */ mr r3, r26
 /* 8021DF60 0021AEA0  7F 7C D2 14 */ add r27, r28, r26
 /* 8021DF64 0021AEA4  88 9B 00 D4 */ lbz r4, 0xd4(r27)
-/* 8021DF68 0021AEA8  4B E0 FD A1 */ bl dComIfGs_setMixItemIndex
+/* 8021DF68 0021AEA8  4B E0 FD A1 */ bl dComIfGs_setMixItemIndex__FiUc
 /* 8021DF6C 0021AEAC  7F 43 D3 78 */ mr r3, r26
 /* 8021DF70 0021AEB0  88 9B 00 D0 */ lbz r4, 0xd0(r27)
-/* 8021DF74 0021AEB4  4B E0 FD 51 */ bl dComIfGs_setSelectItemIndex
+/* 8021DF74 0021AEB4  4B E0 FD 51 */ bl dComIfGs_setSelectItemIndex__FiUc
 /* 8021DF78 0021AEB8  3B 5A 00 01 */ addi r26, r26, 1
 /* 8021DF7C 0021AEBC  2C 1A 00 02 */ cmpwi r26, 2
 /* 8021DF80 0021AEC0  41 80 FF DC */ blt lbl_8021DF5C
@@ -148,18 +148,18 @@ lbl_8021DFEC:
 /* 8021E048 0021AF88  98 1B 5E 7E */ stb r0, 0x5e7e(r27)
 /* 8021E04C 0021AF8C  38 60 00 01 */ li r3, 1
 /* 8021E050 0021AF90  38 80 00 FF */ li r4, 0xff
-/* 8021E054 0021AF94  4B E0 FC B5 */ bl dComIfGs_setMixItemIndex
+/* 8021E054 0021AF94  4B E0 FC B5 */ bl dComIfGs_setMixItemIndex__FiUc
 /* 8021E058 0021AF98  38 60 00 01 */ li r3, 1
 /* 8021E05C 0021AF9C  38 80 00 FF */ li r4, 0xff
-/* 8021E060 0021AFA0  4B E0 FC 65 */ bl dComIfGs_setSelectItemIndex
+/* 8021E060 0021AFA0  4B E0 FC 65 */ bl dComIfGs_setSelectItemIndex__FiUc
 /* 8021E064 0021AFA4  38 60 00 00 */ li r3, 0
 /* 8021E068 0021AFA8  38 80 00 04 */ li r4, 4
-/* 8021E06C 0021AFAC  4B E0 FC 9D */ bl dComIfGs_setMixItemIndex
+/* 8021E06C 0021AFAC  4B E0 FC 9D */ bl dComIfGs_setMixItemIndex__FiUc
 /* 8021E070 0021AFB0  38 60 00 00 */ li r3, 0
 /* 8021E074 0021AFB4  88 9C 00 DC */ lbz r4, 0xdc(r28)
 /* 8021E078 0021AFB8  38 04 00 0F */ addi r0, r4, 0xf
 /* 8021E07C 0021AFBC  54 04 06 3E */ clrlwi r4, r0, 0x18
-/* 8021E080 0021AFC0  4B E0 FC 45 */ bl dComIfGs_setSelectItemIndex
+/* 8021E080 0021AFC0  4B E0 FC 45 */ bl dComIfGs_setSelectItemIndex__FiUc
 lbl_8021E084:
 /* 8021E084 0021AFC4  57 A0 06 3F */ clrlwi. r0, r29, 0x18
 /* 8021E088 0021AFC8  40 82 00 24 */ bne lbl_8021E0AC

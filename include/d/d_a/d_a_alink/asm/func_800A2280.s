@@ -8,7 +8,7 @@
 /* 800A229C 0009F1DC  41 82 00 34 */ beq lbl_800A22D0
 /* 800A22A0 0009F1E0  38 7F 1A 60 */ addi r3, r31, 0x1a60
 /* 800A22A4 0009F1E4  38 80 00 00 */ li r4, 0
-/* 800A22A8 0009F1E8  4B FF FF 39 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800A22A8 0009F1E8  4B FF FF 39 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800A22AC 0009F1EC  7C 60 07 34 */ extsh r0, r3
 /* 800A22B0 0009F1F0  2C 00 00 21 */ cmpwi r0, 0x21
 /* 800A22B4 0009F1F4  40 82 00 1C */ bne lbl_800A22D0
@@ -16,7 +16,7 @@
 /* 800A22BC 0009F1FC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800A22C0 0009F200  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800A22C4 0009F204  A0 9F 1A 62 */ lhz r4, 0x1a62(r31)
-/* 800A22C8 0009F208  4B FD 23 51 */ bl cBgS_NS_GetActorPointer
+/* 800A22C8 0009F208  4B FD 23 51 */ bl GetActorPointer__4cBgSCFi
 /* 800A22CC 0009F20C  48 00 00 08 */ b lbl_800A22D4
 lbl_800A22D0:
 /* 800A22D0 0009F210  38 60 00 00 */ li r3, 0

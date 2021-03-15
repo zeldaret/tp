@@ -37,7 +37,7 @@ lbl_8006E714:
 /* 8006E73C 0006B67C  41 82 09 EC */ beq lbl_8006F128
 /* 8006E740 0006B680  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 8006E744 0006B684  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
-/* 8006E748 0006B688  48 2A 1F F5 */ bl J3DSys_NS_reinitGX
+/* 8006E748 0006B688  48 2A 1F F5 */ bl reinitGX__6J3DSysFv
 /* 8006E74C 0006B68C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006E750 0006B690  3B A3 61 C0 */ addi r29, r3, g_dComIfG_gameInfo@l
 /* 8006E754 0006B694  80 7D 61 B0 */ lwz r3, 0x61b0(r29)
@@ -77,7 +77,7 @@ lbl_8006E774:
 /* 8006E7D8 0006B718  98 01 00 1F */ stb r0, 0x1f(r1)
 /* 8006E7DC 0006B71C  38 61 00 78 */ addi r3, r1, 0x78
 /* 8006E7E0 0006B720  80 99 00 00 */ lwz r4, 0(r25)
-/* 8006E7E4 0006B724  4B FE D2 41 */ bl dKyr_set_btitex
+/* 8006E7E4 0006B724  4B FE D2 41 */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 8006E7E8 0006B728  C0 2D 89 C8 */ lfs f1, lbl_80450F48-_SDA_BASE_(r13)
 /* 8006E7EC 0006B72C  C0 02 88 14 */ lfs f0, lbl_80452214-_SDA2_BASE_(r2)
 /* 8006E7F0 0006B730  EC 21 00 2A */ fadds f1, f1, f0
@@ -195,7 +195,7 @@ lbl_8006E774:
 /* 8006E9B0 0006B8F0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8006E9B4 0006B8F4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8006E9B8 0006B8F8  38 63 4B 88 */ addi r3, r3, 0x4b88
-/* 8006E9BC 0006B8FC  48 01 6C D5 */ bl dCcMassS_Mng_NS_Prepare
+/* 8006E9BC 0006B8FC  48 01 6C D5 */ bl Prepare__12dCcMassS_MngFv
 /* 8006E9C0 0006B900  3B 60 00 00 */ li r27, 0
 /* 8006E9C4 0006B904  3A E0 00 00 */ li r23, 0
 /* 8006E9C8 0006B908  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -233,7 +233,7 @@ lbl_8006E9E4:
 /* 8006EA44 0006B984  40 81 00 40 */ ble lbl_8006EA84
 /* 8006EA48 0006B988  38 61 00 48 */ addi r3, r1, 0x48
 /* 8006EA4C 0006B98C  38 81 00 3C */ addi r4, r1, 0x3c
-/* 8006EA50 0006B990  4B FA 68 C1 */ bl mDoLib_project
+/* 8006EA50 0006B990  4B FA 68 C1 */ bl mDoLib_project__FP3VecP3Vec
 /* 8006EA54 0006B994  C0 21 00 3C */ lfs f1, 0x3c(r1)
 /* 8006EA58 0006B998  FC 01 F0 40 */ fcmpo cr0, f1, f30
 /* 8006EA5C 0006B99C  40 81 06 90 */ ble lbl_8006F0EC
@@ -369,7 +369,7 @@ lbl_8006EBDC:
 /* 8006EC28 0006BB68  C0 01 00 50 */ lfs f0, 0x50(r1)
 /* 8006EC2C 0006BB6C  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 8006EC30 0006BB70  38 61 00 24 */ addi r3, r1, 0x24
-/* 8006EC34 0006BB74  4B FF F8 15 */ bl dKyr_near_bosslight_check
+/* 8006EC34 0006BB74  4B FF F8 15 */ bl dKyr_near_bosslight_check__F4cXyz
 /* 8006EC38 0006BB78  C0 02 8A 44 */ lfs f0, lbl_80452444-_SDA2_BASE_(r2)
 /* 8006EC3C 0006BB7C  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8006EC40 0006BB80  40 80 00 54 */ bge lbl_8006EC94
@@ -488,7 +488,7 @@ lbl_8006EDCC:
 /* 8006EDE8 0006BD28  EC 20 08 28 */ fsubs f1, f0, f1
 /* 8006EDEC 0006BD2C  C0 02 88 90 */ lfs f0, lbl_80452290-_SDA2_BASE_(r2)
 /* 8006EDF0 0006BD30  EF A1 00 24 */ fdivs f29, f1, f0
-/* 8006EDF4 0006BD34  48 0F 06 31 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 8006EDF4 0006BD34  48 0F 06 31 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8006EDF8 0006BD38  2C 03 00 00 */ cmpwi r3, 0
 /* 8006EDFC 0006BD3C  41 82 00 50 */ beq lbl_8006EE4C
 /* 8006EE00 0006BD40  EC 1D F8 28 */ fsubs f0, f29, f31
@@ -692,12 +692,12 @@ lbl_8006F0F4:
 /* 8006F104 0006C044  90 0D 90 50 */ stw r0, lbl_804515D0-_SDA_BASE_(r13)
 /* 8006F108 0006C048  38 60 00 00 */ li r3, 0
 /* 8006F10C 0006C04C  48 2F 14 C5 */ bl GXSetClipMode
-/* 8006F110 0006C050  48 0F 03 15 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 8006F110 0006C050  48 0F 03 15 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8006F114 0006C054  2C 03 00 00 */ cmpwi r3, 0
 /* 8006F118 0006C058  40 82 00 10 */ bne lbl_8006F128
 /* 8006F11C 0006C05C  7F 03 C3 78 */ mr r3, r24
 /* 8006F120 0006C060  7F 24 CB 78 */ mr r4, r25
-/* 8006F124 0006C064  4B FF E9 59 */ bl dKyr_evil_draw2
+/* 8006F124 0006C064  4B FF E9 59 */ bl dKyr_evil_draw2__FPA4_fPPUc
 lbl_8006F128:
 /* 8006F128 0006C068  E3 E1 01 A8 */ psq_l f31, 424(r1), 0, 0
 /* 8006F12C 0006C06C  CB E1 01 A0 */ lfd f31, 0x1a0(r1)

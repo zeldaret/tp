@@ -6,7 +6,7 @@
 /* 8021BB80 00218AC0  A0 04 00 B0 */ lhz r0, 0xb0(r4)
 /* 8021BB84 00218AC4  54 00 07 FF */ clrlwi. r0, r0, 0x1f
 /* 8021BB88 00218AC8  41 82 00 18 */ beq lbl_8021BBA0
-/* 8021BB8C 00218ACC  48 00 00 29 */ bl dMeter2Draw_c_NS_getCanoeFishing
+/* 8021BB8C 00218ACC  48 00 00 29 */ bl getCanoeFishing__13dMeter2Draw_cFv
 /* 8021BB90 00218AD0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021BB94 00218AD4  41 82 00 0C */ beq lbl_8021BBA0
 /* 8021BB98 00218AD8  38 60 00 01 */ li r3, 1

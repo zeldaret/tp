@@ -15,7 +15,7 @@
 /* 8013FC5C 0013CB9C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013FC60 0013CBA0  38 63 4E C8 */ addi r3, r3, 0x4ec8
 /* 8013FC64 0013CBA4  7F C4 F3 78 */ mr r4, r30
-/* 8013FC68 0013CBA8  4B F0 28 B1 */ bl dEvt_control_c_NS_reset_X1_
+/* 8013FC68 0013CBA8  4B F0 28 B1 */ bl reset__14dEvt_control_cFPv
 /* 8013FC6C 0013CBAC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013FC70 0013CBB0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013FC74 0013CBB4  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -61,7 +61,7 @@ lbl_8013FCE4:
 /* 8013FD08 0013CC48  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013FD0C 0013CC4C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8013FD10 0013CC50  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8013FD14 0013CC54  4B F0 84 69 */ bl dEvent_manager_c_NS_cutEnd
+/* 8013FD14 0013CC54  4B F0 84 69 */ bl cutEnd__16dEvent_manager_cFi
 /* 8013FD18 0013CC58  28 1F 00 00 */ cmplwi r31, 0
 /* 8013FD1C 0013CC5C  41 82 00 0C */ beq lbl_8013FD28
 /* 8013FD20 0013CC60  38 00 00 00 */ li r0, 0
@@ -69,13 +69,13 @@ lbl_8013FCE4:
 lbl_8013FD28:
 /* 8013FD28 0013CC68  7F C3 F3 78 */ mr r3, r30
 /* 8013FD2C 0013CC6C  38 80 00 72 */ li r4, 0x72
-/* 8013FD30 0013CC70  4B FE 8A DD */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 8013FD30 0013CC70  4B FE 8A DD */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013FD34 0013CC74  2C 03 00 00 */ cmpwi r3, 0
 /* 8013FD38 0013CC78  41 82 00 14 */ beq lbl_8013FD4C
 /* 8013FD3C 0013CC7C  7F C3 F3 78 */ mr r3, r30
 /* 8013FD40 0013CC80  3C 80 00 01 */ lis r4, 0x0001003E@ha
 /* 8013FD44 0013CC84  38 84 00 3E */ addi r4, r4, 0x0001003E@l
-/* 8013FD48 0013CC88  4B F7 F3 71 */ bl daAlink_c_NS_voiceStartLevel
+/* 8013FD48 0013CC88  4B F7 F3 71 */ bl voiceStartLevel__9daAlink_cFUl
 lbl_8013FD4C:
 /* 8013FD4C 0013CC8C  A8 1E 30 10 */ lha r0, 0x3010(r30)
 /* 8013FD50 0013CC90  2C 00 00 00 */ cmpwi r0, 0
@@ -90,7 +90,7 @@ lbl_8013FD60:
 /* 8013FD70 0013CCB0  7F C4 F3 78 */ mr r4, r30
 /* 8013FD74 0013CCB4  38 A0 00 00 */ li r5, 0
 /* 8013FD78 0013CCB8  38 C0 00 00 */ li r6, 0
-/* 8013FD7C 0013CCBC  48 10 A5 5D */ bl dMsgFlow_c_NS_doFlow
+/* 8013FD7C 0013CCBC  48 10 A5 5D */ bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 8013FD80 0013CCC0  2C 03 00 00 */ cmpwi r3, 0
 /* 8013FD84 0013CCC4  41 82 00 20 */ beq lbl_8013FDA4
 /* 8013FD88 0013CCC8  28 1F 00 00 */ cmplwi r31, 0
@@ -99,7 +99,7 @@ lbl_8013FD60:
 /* 8013FD94 0013CCD4  98 1F 05 88 */ stb r0, 0x588(r31)
 lbl_8013FD98:
 /* 8013FD98 0013CCD8  7F C3 F3 78 */ mr r3, r30
-/* 8013FD9C 0013CCDC  4B FD 7E F5 */ bl daAlink_c_NS_resetSpecialEvent
+/* 8013FD9C 0013CCDC  4B FD 7E F5 */ bl resetSpecialEvent__9daAlink_cFv
 /* 8013FDA0 0013CCE0  48 00 01 6C */ b lbl_8013FF0C
 lbl_8013FDA4:
 /* 8013FDA4 0013CCE4  A0 1E 28 9E */ lhz r0, 0x289e(r30)
@@ -112,7 +112,7 @@ lbl_8013FDA4:
 /* 8013FDC0 0013CD00  7C 00 18 00 */ cmpw r0, r3
 /* 8013FDC4 0013CD04  41 82 01 48 */ beq lbl_8013FF0C
 /* 8013FDC8 0013CD08  7F C3 F3 78 */ mr r3, r30
-/* 8013FDCC 0013CD0C  4B FF FB 41 */ bl daAlink_c_NS_setSmellSave
+/* 8013FDCC 0013CD0C  4B FF FB 41 */ bl setSmellSave__9daAlink_cFv
 /* 8013FDD0 0013CD10  48 00 01 3C */ b lbl_8013FF0C
 lbl_8013FDD4:
 /* 8013FDD4 0013CD14  A8 1E 30 10 */ lha r0, 0x3010(r30)
@@ -140,7 +140,7 @@ lbl_8013FE18:
 /* 8013FE24 0013CD64  C0 42 93 30 */ lfs f2, lbl_80452D30-_SDA2_BASE_(r2)
 /* 8013FE28 0013CD68  38 A0 FF FF */ li r5, -1
 /* 8013FE2C 0013CD6C  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8013FE30 0013CD70  4B FE 98 D5 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8013FE30 0013CD70  4B FE 98 D5 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8013FE34 0013CD74  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013FE38 0013CD78  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013FE3C 0013CD7C  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -161,19 +161,19 @@ lbl_8013FE5C:
 lbl_8013FE74:
 /* 8013FE74 0013CDB4  3B E0 FF FF */ li r31, -1
 lbl_8013FE78:
-/* 8013FE78 0013CDB8  48 04 17 C9 */ bl dCam_getBody
+/* 8013FE78 0013CDB8  48 04 17 C9 */ bl dCam_getBody__Fv
 /* 8013FE7C 0013CDBC  38 80 00 08 */ li r4, 8
 /* 8013FE80 0013CDC0  7F E5 FB 78 */ mr r5, r31
 /* 8013FE84 0013CDC4  38 C0 00 00 */ li r6, 0
 /* 8013FE88 0013CDC8  4C C6 31 82 */ crclr 6
-/* 8013FE8C 0013CDCC  4B F4 8B F1 */ bl dCamera_c_NS_StartEventCamera
+/* 8013FE8C 0013CDCC  4B F4 8B F1 */ bl StartEventCamera__9dCamera_cFiie
 /* 8013FE90 0013CDD0  38 00 00 0C */ li r0, 0xc
 /* 8013FE94 0013CDD4  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8013FE98 0013CDD8  80 1E 31 98 */ lwz r0, 0x3198(r30)
 /* 8013FE9C 0013CDDC  2C 00 0B BC */ cmpwi r0, 0xbbc
 /* 8013FEA0 0013CDE0  40 82 00 6C */ bne lbl_8013FF0C
 /* 8013FEA4 0013CDE4  7F C3 F3 78 */ mr r3, r30
-/* 8013FEA8 0013CDE8  4B FF FA 65 */ bl daAlink_c_NS_setSmellSave
+/* 8013FEA8 0013CDE8  4B FF FA 65 */ bl setSmellSave__9daAlink_cFv
 /* 8013FEAC 0013CDEC  48 00 00 60 */ b lbl_8013FF0C
 lbl_8013FEB0:
 /* 8013FEB0 0013CDF0  A8 7E 30 08 */ lha r3, 0x3008(r30)
@@ -184,12 +184,12 @@ lbl_8013FEB0:
 /* 8013FEC4 0013CE04  48 00 00 48 */ b lbl_8013FF0C
 lbl_8013FEC8:
 /* 8013FEC8 0013CE08  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 8013FECC 0013CE0C  48 01 E6 01 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013FECC 0013CE0C  48 01 E6 01 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013FED0 0013CE10  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013FED4 0013CE14  41 82 00 38 */ beq lbl_8013FF0C
 /* 8013FED8 0013CE18  7F C3 F3 78 */ mr r3, r30
 /* 8013FEDC 0013CE1C  38 80 00 84 */ li r4, 0x84
-/* 8013FEE0 0013CE20  4B FE 97 99 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8013FEE0 0013CE20  4B FE 97 99 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8013FEE4 0013CE24  38 00 00 0C */ li r0, 0xc
 /* 8013FEE8 0013CE28  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8013FEEC 0013CE2C  38 00 00 01 */ li r0, 1
@@ -199,7 +199,7 @@ lbl_8013FEC8:
 /* 8013FEFC 0013CE3C  80 BE 31 98 */ lwz r5, 0x3198(r30)
 /* 8013FF00 0013CE40  38 C0 00 00 */ li r6, 0
 /* 8013FF04 0013CE44  38 E0 00 00 */ li r7, 0
-/* 8013FF08 0013CE48  48 10 A0 89 */ bl dMsgFlow_c_NS_init
+/* 8013FF08 0013CE48  48 10 A0 89 */ bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 lbl_8013FF0C:
 /* 8013FF0C 0013CE4C  38 60 00 01 */ li r3, 1
 /* 8013FF10 0013CE50  83 E1 00 0C */ lwz r31, 0xc(r1)

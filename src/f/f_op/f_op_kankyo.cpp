@@ -2,6 +2,7 @@
 
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "f/f_op/f_op_draw_tag.h"
+#include "f/f_pc/f_pc_base.h"
 #include "global.h"
 
 // additional symbols needed for f_op_kankyo.cpp
@@ -9,20 +10,20 @@
 extern "C" {
 void fopDwTg_DrawQTo__FP16create_tag_class(void);
 void fopDwTg_DrawQTo(void);
-void fopDwTg_Init(void);
-void fopDwTg_ToDrawQ(void);
-void fopKy_Draw(void);
+void fopDwTg_Init__FP16create_tag_classPv(void);
+void fopDwTg_ToDrawQ__FP16create_tag_classi(void);
+void fopKy_Draw__FPv(void);
 void fpcBs_MakeOfType(void);
-void fpcLf_DrawMethod(void);
-void fpcLf_GetPriority(void);
-void fpcMtd_Create(void);
-void fpcMtd_Delete(void);
-void fpcMtd_Execute(void);
-void fpcMtd_IsDelete(void);
-void func_8001F2C0(void);
-void func_8001F314(void);
-void func_8001F368(void);
-void func_8001F3B4(void);
+void fpcMtd_Create__FP20process_method_classPv(void);
+void fpcMtd_Delete__FP20process_method_classPv(void);
+void fpcMtd_IsDelete__FP20process_method_classPv(void);
+void fpcMtd_Execute__FP20process_method_classPv(void);
+void fpcLf_DrawMethod__FP21leafdraw_method_classPv(void);
+void fpcLf_GetPriority__FPC14leafdraw_class(void);
+void fopKy_Execute__FPv(void);
+void fopKy_IsDelete__FPv(void);
+void fopKy_Delete__FPv(void);
+void fopKy_Create__FPv(void);
 }
 
 // additional symbols needed for f_op_kankyo.cpp
@@ -32,36 +33,36 @@ extern u8 lbl_80451124;
 
 extern "C" {
 // fopKy_Draw__FPv
-// fopKy_Draw(void*)
-asm void fopKy_Draw(void) {
+// fopKy_Draw__FPv(void*)
+asm void fopKy_Draw__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_kankyo/asm/func_8001F284.s"
 }
 
 // fopKy_Execute__FPv
 // fopKy_Execute(void*)
-asm void func_8001F2C0(void) {
+asm void fopKy_Execute__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_kankyo/asm/func_8001F2C0.s"
 }
 
 // fopKy_IsDelete__FPv
 // fopKy_IsDelete(void*)
-asm void func_8001F314(void) {
+asm void fopKy_IsDelete__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_kankyo/asm/func_8001F314.s"
 }
 
 // fopKy_Delete__FPv
 // fopKy_Delete(void*)
-asm void func_8001F368(void) {
+asm void fopKy_Delete__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_kankyo/asm/func_8001F368.s"
 }
 
 // fopKy_Create__FPv
 // fopKy_Create(void*)
-asm void func_8001F3B4(void) {
+asm void fopKy_Create__FPv(void) {
     nofralloc
 #include "f/f_op/f_op_kankyo/asm/func_8001F3B4.s"
 }

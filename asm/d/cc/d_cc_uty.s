@@ -14,8 +14,8 @@ lbl_800873C0:
 /* 800873CC 0008430C  7C 63 00 2E */	lwzx r3, r3, r0
 /* 800873D0 00084310  4E 80 00 20 */	blr 
 
-.global cc_pl_cut_bit_get
-cc_pl_cut_bit_get:
+.global cc_pl_cut_bit_get__Fv
+cc_pl_cut_bit_get__Fv:
 /* 800873D4 00084314  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800873D8 00084318  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800873DC 0008431C  80 83 5D AC */	lwz r4, 0x5dac(r3)
@@ -90,8 +90,8 @@ lbl_800874BC:
 /* 800874BC 000843FC  38 60 04 00 */	li r3, 0x400
 /* 800874C0 00084400  4E 80 00 20 */	blr 
 
-.global getMapInfo
-getMapInfo:
+.global getMapInfo__FSc
+getMapInfo__FSc:
 /* 800874C4 00084404  38 80 00 1E */	li r4, 0x1e
 /* 800874C8 00084408  7C 60 07 74 */	extsb r0, r3
 /* 800874CC 0008440C  2C 00 00 01 */	cmpwi r0, 1
@@ -106,13 +106,13 @@ lbl_800874E8:
 /* 800874E8 00084428  7C 83 23 78 */	mr r3, r4
 /* 800874EC 0008442C  4E 80 00 20 */	blr 
 
-.global getHitId
-getHitId:
+.global getHitId__FP8cCcD_Obji
+getHitId__FP8cCcD_Obji:
 /* 800874F0 00084430  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800874F4 00084434  7C 08 02 A6 */	mflr r0
 /* 800874F8 00084438  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800874FC 0008443C  88 63 00 74 */	lbz r3, 0x74(r3)
-/* 80087500 00084440  4B FF D0 B1 */	bl dCcD_GObjInf_NS_getHitSeID
+/* 80087500 00084440  4B FF D0 B1 */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 80087504 00084444  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80087508 00084448  7C 08 03 A6 */	mtlr r0
 /* 8008750C 0008444C  38 21 00 10 */	addi r1, r1, 0x10
@@ -137,7 +137,7 @@ lbl_80087550:
 lbl_80087554:
 /* 80087554 00084494  7C 83 23 78 */	mr r3, r4
 /* 80087558 00084498  7C 04 03 78 */	mr r4, r0
-/* 8008755C 0008449C  4B FF FF 95 */	bl getHitId
+/* 8008755C 0008449C  4B FF FF 95 */	bl getHitId__FP8cCcD_Obji
 /* 80087560 000844A0  7C 64 1B 78 */	mr r4, r3
 /* 80087564 000844A4  7F C3 F3 78 */	mr r3, r30
 /* 80087568 000844A8  7F E5 FB 78 */	mr r5, r31
@@ -153,8 +153,8 @@ lbl_8008757C:
 /* 8008758C 000844CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80087590 000844D0  4E 80 00 20 */	blr 
 
-.global at_power_get
-at_power_get:
+.global at_power_get__FP11dCcU_AtInfo
+at_power_get__FP11dCcU_AtInfo:
 /* 80087594 000844D4  80 A3 00 00 */	lwz r5, 0(r3)
 /* 80087598 000844D8  88 85 00 14 */	lbz r4, 0x14(r5)
 /* 8008759C 000844DC  7C 80 23 78 */	mr r0, r4
@@ -525,8 +525,8 @@ lbl_80087A50:
 /* 80087A50 00084990  7C 03 03 78 */	mr r3, r0
 /* 80087A54 00084994  4E 80 00 20 */	blr 
 
-.global at_power_check
-at_power_check:
+.global at_power_check__FP11dCcU_AtInfo
+at_power_check__FP11dCcU_AtInfo:
 /* 80087A58 00084998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80087A5C 0008499C  7C 08 02 A6 */	mflr r0
 /* 80087A60 000849A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -549,7 +549,7 @@ lbl_80087A80:
 /* 80087AA0 000849E0  28 00 00 00 */	cmplwi r0, 0
 /* 80087AA4 000849E4  41 82 00 B4 */	beq lbl_80087B58
 /* 80087AA8 000849E8  7F E3 FB 78 */	mr r3, r31
-/* 80087AAC 000849EC  4B FF FA E9 */	bl at_power_get
+/* 80087AAC 000849EC  4B FF FA E9 */	bl at_power_get__FP11dCcU_AtInfo
 /* 80087AB0 000849F0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80087AB4 000849F4  B0 1F 00 1C */	sth r0, 0x1c(r31)
 /* 80087AB8 000849F8  80 7F 00 04 */	lwz r3, 4(r31)
@@ -571,7 +571,7 @@ lbl_80087AE4:
 lbl_80087AF0:
 /* 80087AF0 00084A30  38 00 00 01 */	li r0, 1
 /* 80087AF4 00084A34  98 1F 00 20 */	stb r0, 0x20(r31)
-/* 80087AF8 00084A38  4B FF F8 DD */	bl cc_pl_cut_bit_get
+/* 80087AF8 00084A38  4B FF F8 DD */	bl cc_pl_cut_bit_get__Fv
 /* 80087AFC 00084A3C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80087B00 00084A40  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 80087B04 00084A44  48 00 00 54 */	b lbl_80087B58
@@ -628,7 +628,7 @@ lbl_80087BA8:
 /* 80087BB4 00084AF4  41 82 00 08 */	beq lbl_80087BBC
 /* 80087BB8 00084AF8  40 82 00 20 */	bne lbl_80087BD8
 lbl_80087BBC:
-/* 80087BBC 00084AFC  4B FF CB E1 */	bl dCcD_GetGObjInf
+/* 80087BBC 00084AFC  4B FF CB E1 */	bl dCcD_GetGObjInf__FP8cCcD_Obj
 /* 80087BC0 00084B00  88 03 00 77 */	lbz r0, 0x77(r3)
 /* 80087BC4 00084B04  2C 00 00 01 */	cmpwi r0, 1
 /* 80087BC8 00084B08  40 82 00 24 */	bne lbl_80087BEC
@@ -664,7 +664,7 @@ lbl_80087BF0:
 /* 80087C34 00084B74  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 80087C38 00084B78  83 DF 5D AC */	lwz r30, 0x5dac(r31)
 /* 80087C3C 00084B7C  7F 83 E3 78 */	mr r3, r28
-/* 80087C40 00084B80  4B FF FE 19 */	bl at_power_check
+/* 80087C40 00084B80  4B FF FE 19 */	bl at_power_check__FP11dCcU_AtInfo
 /* 80087C44 00084B84  90 7C 00 04 */	stw r3, 4(r28)
 /* 80087C48 00084B88  80 7C 00 04 */	lwz r3, 4(r28)
 /* 80087C4C 00084B8C  28 03 00 00 */	cmplwi r3, 0
@@ -840,7 +840,7 @@ lbl_80087E9C:
 /* 80087EB4 00084DF4  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80087EB8 00084DF8  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80087EBC 00084DFC  40 82 00 40 */	bne lbl_80087EFC
-/* 80087EC0 00084E00  48 0D 74 D9 */	bl daPy_py_c_NS_checkMasterSwordEquip
+/* 80087EC0 00084E00  48 0D 74 D9 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80087EC4 00084E04  2C 03 00 00 */	cmpwi r3, 0
 /* 80087EC8 00084E08  41 82 00 10 */	beq lbl_80087ED8
 /* 80087ECC 00084E0C  A0 1C 00 1C */	lhz r0, 0x1c(r28)
@@ -904,7 +904,7 @@ lbl_80087F88:
 /* 80087F98 00084ED8  28 1A 00 00 */	cmplwi r26, 0
 /* 80087F9C 00084EDC  41 82 00 2C */	beq lbl_80087FC8
 /* 80087FA0 00084EE0  7F 24 CB 78 */	mr r4, r25
-/* 80087FA4 00084EE4  4B FF F5 4D */	bl getHitId
+/* 80087FA4 00084EE4  4B FF F5 4D */	bl getHitId__FP8cCcD_Obji
 /* 80087FA8 00084EE8  7C 64 1B 78 */	mr r4, r3
 /* 80087FAC 00084EEC  80 7C 00 08 */	lwz r3, 8(r28)
 /* 80087FB0 00084EF0  7F 45 D3 78 */	mr r5, r26
@@ -915,11 +915,11 @@ lbl_80087F88:
 /* 80087FC4 00084F04  48 00 00 38 */	b lbl_80087FFC
 lbl_80087FC8:
 /* 80087FC8 00084F08  88 7C 00 1F */	lbz r3, 0x1f(r28)
-/* 80087FCC 00084F0C  4B FF F4 F9 */	bl getMapInfo
+/* 80087FCC 00084F0C  4B FF F4 F9 */	bl getMapInfo__FSc
 /* 80087FD0 00084F10  7C 7A 1B 78 */	mr r26, r3
 /* 80087FD4 00084F14  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80087FD8 00084F18  7F 24 CB 78 */	mr r4, r25
-/* 80087FDC 00084F1C  4B FF F5 15 */	bl getHitId
+/* 80087FDC 00084F1C  4B FF F5 15 */	bl getHitId__FP8cCcD_Obji
 /* 80087FE0 00084F20  7C 64 1B 78 */	mr r4, r3
 /* 80087FE4 00084F24  80 7C 00 08 */	lwz r3, 8(r28)
 /* 80087FE8 00084F28  7F 45 D3 78 */	mr r5, r26

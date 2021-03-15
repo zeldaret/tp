@@ -4,7 +4,7 @@
 /* 80119604 00116544  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80119608 00116548  7C 7F 1B 78 */ mr r31, r3
 /* 8011960C 0011654C  38 80 01 3D */ li r4, 0x13d
-/* 80119610 00116550  4B FA 97 95 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 80119610 00116550  4B FA 97 95 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80119614 00116554  2C 03 00 00 */ cmpwi r3, 0
 /* 80119618 00116558  40 82 00 0C */ bne lbl_80119624
 /* 8011961C 0011655C  38 60 00 01 */ li r3, 1
@@ -22,7 +22,7 @@ lbl_80119624:
 /* 80119648 00116588  B0 1F 1F 6C */ sth r0, 0x1f6c(r31)
 /* 8011964C 0011658C  B0 1F 1F A8 */ sth r0, 0x1fa8(r31)
 /* 80119650 00116590  7F E3 FB 78 */ mr r3, r31
-/* 80119654 00116594  4B F9 30 E5 */ bl daAlink_c_NS_setDoubleAnimeBlendRatio
+/* 80119654 00116594  4B F9 30 E5 */ bl setDoubleAnimeBlendRatio__9daAlink_cFf
 /* 80119658 00116598  38 00 00 00 */ li r0, 0
 /* 8011965C 0011659C  90 1F 1F 34 */ stw r0, 0x1f34(r31)
 /* 80119660 001165A0  90 1F 1F 4C */ stw r0, 0x1f4c(r31)
@@ -32,7 +32,7 @@ lbl_80119624:
 /* 80119670 001165B0  7F E3 FB 78 */ mr r3, r31
 /* 80119674 001165B4  38 80 00 00 */ li r4, 0
 /* 80119678 001165B8  38 A0 00 01 */ li r5, 1
-/* 8011967C 001165BC  4B FA 7C 61 */ bl daAlink_c_NS_deleteEquipItem
+/* 8011967C 001165BC  4B FA 7C 61 */ bl deleteEquipItem__9daAlink_cFii
 /* 80119680 001165C0  3C 60 00 01 */ lis r3, 0x00010800@ha
 /* 80119684 001165C4  38 03 08 00 */ addi r0, r3, 0x00010800@l
 /* 80119688 001165C8  90 1F 1F 60 */ stw r0, 0x1f60(r31)

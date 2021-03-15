@@ -77,7 +77,7 @@ lbl_8009F150:
 /* 8009F150 0009C090  38 61 00 C4 */	addi r3, r1, 0xc4
 /* 8009F154 0009C094  38 81 00 D0 */	addi r4, r1, 0xd0
 /* 8009F158 0009C098  38 A1 00 18 */	addi r5, r1, 0x18
-/* 8009F15C 0009C09C  4B FB C1 9D */	bl dKyw_get_AllWind_vec
+/* 8009F15C 0009C09C  4B FB C1 9D */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 8009F160 0009C0A0  80 1F 31 A0 */	lwz r0, 0x31a0(r31)
 /* 8009F164 0009C0A4  54 00 03 5B */	rlwinm. r0, r0, 0, 0xd, 0xd
 /* 8009F168 0009C0A8  40 82 00 10 */	bne lbl_8009F178
@@ -162,7 +162,7 @@ lbl_8009F24C:
 lbl_8009F294:
 /* 8009F294 0009C1D4  7F E3 FB 78 */	mr r3, r31
 /* 8009F298 0009C1D8  38 80 00 52 */	li r4, 0x52
-/* 8009F29C 0009C1DC  48 00 D2 BD */	bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 8009F29C 0009C1DC  48 00 D2 BD */	bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 8009F2A0 0009C1E0  2C 03 00 00 */	cmpwi r3, 0
 /* 8009F2A4 0009C1E4  41 82 00 44 */	beq lbl_8009F2E8
 /* 8009F2A8 0009C1E8  C0 3F 1F E0 */	lfs f1, 0x1fe0(r31)
@@ -484,7 +484,7 @@ lbl_8009F6DC:
 lbl_8009F718:
 /* 8009F718 0009C658  7F E3 FB 78 */	mr r3, r31
 /* 8009F71C 0009C65C  38 81 00 B8 */	addi r4, r1, 0xb8
-/* 8009F720 0009C660  48 04 2D 5D */	bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 8009F720 0009C660  48 04 2D 5D */	bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 8009F724 0009C664  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 8009F728 0009C668  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 8009F72C 0009C66C  40 82 00 18 */	bne lbl_8009F744
@@ -498,7 +498,7 @@ lbl_8009F744:
 /* 8009F748 0009C688  41 82 00 30 */	beq lbl_8009F778
 /* 8009F74C 0009C68C  38 7F 1D C0 */	addi r3, r31, 0x1dc0
 /* 8009F750 0009C690  38 80 00 00 */	li r4, 0
-/* 8009F754 0009C694  48 00 2A 8D */	bl daAlink_c_NS_getMoveBGActorName
+/* 8009F754 0009C694  48 00 2A 8D */	bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 8009F758 0009C698  7C 60 07 34 */	extsh r0, r3
 /* 8009F75C 0009C69C  2C 00 00 C6 */	cmpwi r0, 0xc6
 /* 8009F760 0009C6A0  40 82 00 18 */	bne lbl_8009F778
@@ -576,7 +576,7 @@ lbl_8009F824:
 /* 8009F868 0009C7A8  40 80 01 3C */	bge lbl_8009F9A4
 /* 8009F86C 0009C7AC  7F E3 FB 78 */	mr r3, r31
 /* 8009F870 0009C7B0  38 80 01 16 */	li r4, 0x116
-/* 8009F874 0009C7B4  48 00 CC E5 */	bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 8009F874 0009C7B4  48 00 CC E5 */	bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 8009F878 0009C7B8  2C 03 00 00 */	cmpwi r3, 0
 /* 8009F87C 0009C7BC  40 82 01 28 */	bne lbl_8009F9A4
 /* 8009F880 0009C7C0  C0 01 00 94 */	lfs f0, 0x94(r1)

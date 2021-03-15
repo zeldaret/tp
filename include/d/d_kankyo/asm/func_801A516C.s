@@ -9,12 +9,12 @@
 /* 801A518C 001A20CC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A5190 001A20D0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801A5194 001A20D4  83 C3 5D 74 */ lwz r30, 0x5d74(r3)
-/* 801A5198 001A20D8  48 00 6F D1 */ bl dKy_SunMoon_Light_Check
+/* 801A5198 001A20D8  48 00 6F D1 */ bl dKy_SunMoon_Light_Check__Fv
 /* 801A519C 001A20DC  2C 03 00 01 */ cmpwi r3, 1
 /* 801A51A0 001A20E0  40 82 00 94 */ bne lbl_801A5234
 /* 801A51A4 001A20E4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A51A8 001A20E8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 801A51AC 001A20EC  4B FF A8 5D */ bl dScnKy_env_light_c_NS_getDaytime
+/* 801A51AC 001A20EC  4B FF A8 5D */ bl getDaytime__18dScnKy_env_light_cFv
 /* 801A51B0 001A20F0  C0 02 A3 98 */ lfs f0, lbl_80453D98-_SDA2_BASE_(r2)
 /* 801A51B4 001A20F4  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801A51B8 001A20F8  40 81 00 2C */ ble lbl_801A51E4

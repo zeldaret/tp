@@ -4,7 +4,7 @@
 /* 8010CD6C 00109CAC  39 61 00 20 */ addi r11, r1, 0x20
 /* 8010CD70 00109CB0  48 25 54 69 */ bl _savegpr_28
 /* 8010CD74 00109CB4  7C 7F 1B 78 */ mr r31, r3
-/* 8010CD78 00109CB8  4B FF BC A1 */ bl daAlink_c_NS_checkHookshotWait
+/* 8010CD78 00109CB8  4B FF BC A1 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010CD7C 00109CBC  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CD80 00109CC0  41 82 00 10 */ beq lbl_8010CD90
 /* 8010CD84 00109CC4  7F E3 FB 78 */ mr r3, r31
@@ -12,19 +12,19 @@
 /* 8010CD8C 00109CCC  4B FA 64 C5 */ bl setDoStatus__9daAlink_cFUc
 lbl_8010CD90:
 /* 8010CD90 00109CD0  7F E3 FB 78 */ mr r3, r31
-/* 8010CD94 00109CD4  4B FF EB D9 */ bl daAlink_c_NS_commonHookshotRoofWait
+/* 8010CD94 00109CD4  4B FF EB D9 */ bl commonHookshotRoofWait__9daAlink_cFv
 /* 8010CD98 00109CD8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CD9C 00109CDC  41 82 00 0C */ beq lbl_8010CDA8
 /* 8010CDA0 00109CE0  38 60 00 01 */ li r3, 1
 /* 8010CDA4 00109CE4  48 00 01 B0 */ b lbl_8010CF54
 lbl_8010CDA8:
 /* 8010CDA8 00109CE8  7F E3 FB 78 */ mr r3, r31
-/* 8010CDAC 00109CEC  4B FF BC 6D */ bl daAlink_c_NS_checkHookshotWait
+/* 8010CDAC 00109CEC  4B FF BC 6D */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010CDB0 00109CF0  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CDB4 00109CF4  41 82 00 10 */ beq lbl_8010CDC4
 /* 8010CDB8 00109CF8  7F E3 FB 78 */ mr r3, r31
 /* 8010CDBC 00109CFC  38 80 00 00 */ li r4, 0
-/* 8010CDC0 00109D00  4B FA 69 75 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 8010CDC0 00109D00  4B FA 69 75 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 lbl_8010CDC4:
 /* 8010CDC4 00109D04  38 00 00 00 */ li r0, 0
 /* 8010CDC8 00109D08  98 1F 20 68 */ stb r0, 0x2068(r31)
@@ -37,7 +37,7 @@ lbl_8010CDC4:
 /* 8010CDE4 00109D24  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CDE8 00109D28  41 82 00 20 */ beq lbl_8010CE08
 /* 8010CDEC 00109D2C  7F E3 FB 78 */ mr r3, r31
-/* 8010CDF0 00109D30  4B FF BC 29 */ bl daAlink_c_NS_checkHookshotWait
+/* 8010CDF0 00109D30  4B FF BC 29 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010CDF4 00109D34  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CDF8 00109D38  41 82 00 10 */ beq lbl_8010CE08
 /* 8010CDFC 00109D3C  A8 7F 30 8E */ lha r3, 0x308e(r31)
@@ -45,7 +45,7 @@ lbl_8010CDC4:
 /* 8010CE04 00109D44  B0 1F 30 8E */ sth r0, 0x308e(r31)
 lbl_8010CE08:
 /* 8010CE08 00109D48  7F E3 FB 78 */ mr r3, r31
-/* 8010CE0C 00109D4C  4B FF C4 79 */ bl daAlink_c_NS_checkUpperItemActionHookshot
+/* 8010CE0C 00109D4C  4B FF C4 79 */ bl checkUpperItemActionHookshot__9daAlink_cFv
 /* 8010CE10 00109D50  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CE14 00109D54  40 82 01 3C */ bne lbl_8010CF50
 /* 8010CE18 00109D58  A8 1F 30 0E */ lha r0, 0x300e(r31)
@@ -53,7 +53,7 @@ lbl_8010CE08:
 /* 8010CE20 00109D60  83 BF 27 E0 */ lwz r29, 0x27e0(r31)
 /* 8010CE24 00109D64  3B 80 00 01 */ li r28, 1
 /* 8010CE28 00109D68  7F A3 EB 78 */ mr r3, r29
-/* 8010CE2C 00109D6C  4B F6 69 B9 */ bl dAttention_c_NS_LockonTruth
+/* 8010CE2C 00109D6C  4B F6 69 B9 */ bl LockonTruth__12dAttention_cFv
 /* 8010CE30 00109D70  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8010CE34 00109D74  40 82 00 14 */ bne lbl_8010CE48
 /* 8010CE38 00109D78  80 1D 03 34 */ lwz r0, 0x334(r29)
@@ -67,7 +67,7 @@ lbl_8010CE48:
 /* 8010CE54 00109D94  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CE58 00109D98  40 82 00 68 */ bne lbl_8010CEC0
 /* 8010CE5C 00109D9C  7F E3 FB 78 */ mr r3, r31
-/* 8010CE60 00109DA0  4B FF BB B9 */ bl daAlink_c_NS_checkHookshotWait
+/* 8010CE60 00109DA0  4B FF BB B9 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010CE64 00109DA4  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CE68 00109DA8  41 82 00 40 */ beq lbl_8010CEA8
 /* 8010CE6C 00109DAC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -79,11 +79,11 @@ lbl_8010CE48:
 /* 8010CE84 00109DC4  2C 00 00 00 */ cmpwi r0, 0
 /* 8010CE88 00109DC8  41 82 00 2C */ beq lbl_8010CEB4
 /* 8010CE8C 00109DCC  7F E3 FB 78 */ mr r3, r31
-/* 8010CE90 00109DD0  4B FC 1A 11 */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 8010CE90 00109DD0  4B FC 1A 11 */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 8010CE94 00109DD4  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CE98 00109DD8  41 82 00 1C */ beq lbl_8010CEB4
 /* 8010CE9C 00109DDC  7F E3 FB 78 */ mr r3, r31
-/* 8010CEA0 00109DE0  4B FF BF 15 */ bl daAlink_c_NS_setHookshotSight
+/* 8010CEA0 00109DE0  4B FF BF 15 */ bl setHookshotSight__9daAlink_cFv
 /* 8010CEA4 00109DE4  48 00 00 10 */ b lbl_8010CEB4
 lbl_8010CEA8:
 /* 8010CEA8 00109DE8  80 1E 5F 18 */ lwz r0, 0x5f18(r30)
@@ -104,11 +104,11 @@ lbl_8010CEC0:
 /* 8010CEDC 00109E1C  38 80 00 00 */ li r4, 0
 /* 8010CEE0 00109E20  80 BF 28 58 */ lwz r5, 0x2858(r31)
 /* 8010CEE4 00109E24  38 C0 00 00 */ li r6, 0
-/* 8010CEE8 00109E28  4B FF F9 49 */ bl daAlink_c_NS_procHookshotRoofWaitInit
+/* 8010CEE8 00109E28  4B FF F9 49 */ bl procHookshotRoofWaitInit__9daAlink_cFiP10fopAc_ac_ci
 /* 8010CEEC 00109E2C  48 00 00 68 */ b lbl_8010CF54
 lbl_8010CEF0:
 /* 8010CEF0 00109E30  7F E3 FB 78 */ mr r3, r31
-/* 8010CEF4 00109E34  4B FF BB 25 */ bl daAlink_c_NS_checkHookshotWait
+/* 8010CEF4 00109E34  4B FF BB 25 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010CEF8 00109E38  2C 03 00 00 */ cmpwi r3, 0
 /* 8010CEFC 00109E3C  41 82 00 3C */ beq lbl_8010CF38
 /* 8010CF00 00109E40  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -118,14 +118,14 @@ lbl_8010CEF0:
 /* 8010CF10 00109E50  40 82 00 1C */ bne lbl_8010CF2C
 /* 8010CF14 00109E54  7F E3 FB 78 */ mr r3, r31
 /* 8010CF18 00109E58  38 80 00 00 */ li r4, 0
-/* 8010CF1C 00109E5C  4B FA E3 95 */ bl daAlink_c_NS_setBodyAngleXReadyAnime
+/* 8010CF1C 00109E5C  4B FA E3 95 */ bl setBodyAngleXReadyAnime__9daAlink_cFi
 /* 8010CF20 00109E60  7F E3 FB 78 */ mr r3, r31
-/* 8010CF24 00109E64  4B FF E4 89 */ bl daAlink_c_NS_hookshotRoofTurn
+/* 8010CF24 00109E64  4B FF E4 89 */ bl hookshotRoofTurn__9daAlink_cFv
 /* 8010CF28 00109E68  48 00 00 10 */ b lbl_8010CF38
 lbl_8010CF2C:
 /* 8010CF2C 00109E6C  7F E3 FB 78 */ mr r3, r31
 /* 8010CF30 00109E70  38 80 00 00 */ li r4, 0
-/* 8010CF34 00109E74  4B FA A2 5D */ bl daAlink_c_NS_cancelItemUseQuake
+/* 8010CF34 00109E74  4B FA A2 5D */ bl cancelItemUseQuake__9daAlink_cFi
 lbl_8010CF38:
 /* 8010CF38 00109E78  38 00 00 00 */ li r0, 0
 /* 8010CF3C 00109E7C  B0 1F 30 0C */ sth r0, 0x300c(r31)

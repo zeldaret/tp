@@ -90,7 +90,7 @@ lbl_8021AC88:
 /* 8021ACD4 00217C14  83 5D 5D 30 */ lwz r26, 0x5d30(r29)
 /* 8021ACD8 00217C18  38 00 00 0A */ li r0, 0xa
 /* 8021ACDC 00217C1C  7C 7C 03 D6 */ divw r3, r28, r0
-/* 8021ACE0 00217C20  48 00 35 E9 */ bl dMeter2Info_getNumberTextureName
+/* 8021ACE0 00217C20  48 00 35 E9 */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021ACE4 00217C24  7C 65 1B 78 */ mr r5, r3
 /* 8021ACE8 00217C28  7F 43 D3 78 */ mr r3, r26
 /* 8021ACEC 00217C2C  3C 80 54 49 */ lis r4, 0x54494D47@ha
@@ -112,7 +112,7 @@ lbl_8021AC88:
 /* 8021AD2C 00217C6C  7C 1C 1B D6 */ divw r0, r28, r3
 /* 8021AD30 00217C70  7C 00 19 D6 */ mullw r0, r0, r3
 /* 8021AD34 00217C74  7C 60 E0 50 */ subf r3, r0, r28
-/* 8021AD38 00217C78  48 00 35 91 */ bl dMeter2Info_getNumberTextureName
+/* 8021AD38 00217C78  48 00 35 91 */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021AD3C 00217C7C  7C 65 1B 78 */ mr r5, r3
 /* 8021AD40 00217C80  7F 43 D3 78 */ mr r3, r26
 /* 8021AD44 00217C84  3C 80 54 49 */ lis r4, 0x54494D47@ha
@@ -140,7 +140,7 @@ lbl_8021AD90:
 /* 8021AD98 00217CD8  83 5D 5D 30 */ lwz r26, 0x5d30(r29)
 /* 8021AD9C 00217CDC  38 00 00 64 */ li r0, 0x64
 /* 8021ADA0 00217CE0  7C 7C 03 D6 */ divw r3, r28, r0
-/* 8021ADA4 00217CE4  48 00 35 25 */ bl dMeter2Info_getNumberTextureName
+/* 8021ADA4 00217CE4  48 00 35 25 */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021ADA8 00217CE8  7C 65 1B 78 */ mr r5, r3
 /* 8021ADAC 00217CEC  7F 43 D3 78 */ mr r3, r26
 /* 8021ADB0 00217CF0  3C 80 54 49 */ lis r4, 0x54494D47@ha
@@ -165,7 +165,7 @@ lbl_8021AD90:
 /* 8021ADFC 00217D3C  83 5D 5D 30 */ lwz r26, 0x5d30(r29)
 /* 8021AE00 00217D40  38 00 00 0A */ li r0, 0xa
 /* 8021AE04 00217D44  7C 7C 03 D6 */ divw r3, r28, r0
-/* 8021AE08 00217D48  48 00 34 C1 */ bl dMeter2Info_getNumberTextureName
+/* 8021AE08 00217D48  48 00 34 C1 */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021AE0C 00217D4C  7C 65 1B 78 */ mr r5, r3
 /* 8021AE10 00217D50  7F 43 D3 78 */ mr r3, r26
 /* 8021AE14 00217D54  3C 80 54 49 */ lis r4, 0x54494D47@ha
@@ -187,7 +187,7 @@ lbl_8021AD90:
 /* 8021AE54 00217D94  7C 1C 1B D6 */ divw r0, r28, r3
 /* 8021AE58 00217D98  7C 00 19 D6 */ mullw r0, r0, r3
 /* 8021AE5C 00217D9C  7C 60 E0 50 */ subf r3, r0, r28
-/* 8021AE60 00217DA0  48 00 34 69 */ bl dMeter2Info_getNumberTextureName
+/* 8021AE60 00217DA0  48 00 34 69 */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021AE64 00217DA4  7C 65 1B 78 */ mr r5, r3
 /* 8021AE68 00217DA8  7F 43 D3 78 */ mr r3, r26
 /* 8021AE6C 00217DAC  3C 80 54 49 */ lis r4, 0x54494D47@ha

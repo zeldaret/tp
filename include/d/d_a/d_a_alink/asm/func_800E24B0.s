@@ -5,16 +5,16 @@
 /* 800E24C0 000DF400  7C 7F 1B 78 */ mr r31, r3
 /* 800E24C4 000DF404  38 7F 1D AC */ addi r3, r31, 0x1dac
 /* 800E24C8 000DF408  7F E6 FB 78 */ mr r6, r31
-/* 800E24CC 000DF40C  4B F9 58 99 */ bl dBgS_LinChk_NS_Set
+/* 800E24CC 000DF40C  4B F9 58 99 */ bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 800E24D0 000DF410  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E24D4 000DF414  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E24D8 000DF418  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E24DC 000DF41C  38 9F 1D AC */ addi r4, r31, 0x1dac
-/* 800E24E0 000DF420  4B F9 1E D5 */ bl cBgS_NS_LineCross
+/* 800E24E0 000DF420  4B F9 1E D5 */ bl LineCross__4cBgSFP11cBgS_LinChk
 /* 800E24E4 000DF424  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E24E8 000DF428  41 82 00 1C */ beq lbl_800E2504
 /* 800E24EC 000DF42C  38 7F 1D C0 */ addi r3, r31, 0x1dc0
-/* 800E24F0 000DF430  4B F4 F6 61 */ bl daTagMagne_c_NS_checkMagnetCode
+/* 800E24F0 000DF430  4B F4 F6 61 */ bl checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo
 /* 800E24F4 000DF434  2C 03 00 00 */ cmpwi r3, 0
 /* 800E24F8 000DF438  41 82 00 0C */ beq lbl_800E2504
 /* 800E24FC 000DF43C  38 60 00 01 */ li r3, 1

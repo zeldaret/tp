@@ -32,7 +32,7 @@
 /* 801241C0 00121100  39 20 00 00 */ li r9, 0
 /* 801241C4 00121104  39 40 00 FF */ li r10, 0xff
 /* 801241C8 00121108  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 801241CC 0012110C  4B F2 88 C5 */ bl dPa_control_c_NS_set
+/* 801241CC 0012110C  4B F2 88 C5 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_801241D0:
 /* 801241D0 00121110  80 01 00 34 */ lwz r0, 0x34(r1)
 /* 801241D4 00121114  7C 08 03 A6 */ mtlr r0

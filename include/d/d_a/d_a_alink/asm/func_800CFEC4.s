@@ -5,7 +5,7 @@
 /* 800CFED4 000CCE14  38 83 61 C0 */ addi r4, r3, g_dComIfG_gameInfo@l
 /* 800CFED8 000CCE18  38 64 5B 54 */ addi r3, r4, 0x5b54
 /* 800CFEDC 000CCE1C  80 84 5B 64 */ lwz r4, 0x5b64(r4)
-/* 800CFEE0 000CCE20  4B FA 3A AD */ bl dAttCatch_c_NS_convPId
+/* 800CFEE0 000CCE20  4B FA 3A AD */ bl convPId__11dAttCatch_cFUi
 /* 800CFEE4 000CCE24  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800CFEE8 000CCE28  7C 08 03 A6 */ mtlr r0
 /* 800CFEEC 000CCE2C  38 21 00 10 */ addi r1, r1, 0x10

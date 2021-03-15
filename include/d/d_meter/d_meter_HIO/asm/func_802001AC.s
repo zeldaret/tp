@@ -12,14 +12,14 @@
 /* 802001D8 001FD118  90 1F 00 D8 */ stw r0, 0xd8(r31)
 /* 802001DC 001FD11C  90 1F 00 DC */ stw r0, 0xdc(r31)
 /* 802001E0 001FD120  38 7F 01 30 */ addi r3, r31, 0x130
-/*.global JUtility_NS_TColor*/
-/* 802001E4 001FD124  3C 80 80 19 */ lis r4, JUtility_NS_TColor@ha
-/*.global JUtility_NS_TColor*/
-/* 802001E8 001FD128  38 84 39 60 */ addi r4, r4, JUtility_NS_TColor@l
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 802001E4 001FD124  3C 80 80 19 */ lis r4, __ct__Q28JUtility6TColorFv@ha
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 802001E8 001FD128  38 84 39 60 */ addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 802001EC 001FD12C  38 A0 00 00 */ li r5, 0
 /* 802001F0 001FD130  38 C0 00 04 */ li r6, 4
 /* 802001F4 001FD134  38 E0 00 02 */ li r7, 2
-/* 802001F8 001FD138  48 16 1B 69 */ bl func_80361D60
+/* 802001F8 001FD138  48 16 1B 69 */ bl __construct_array
 /* 802001FC 001FD13C  C0 02 AB 88 */ lfs f0, lbl_80454588-_SDA2_BASE_(r2)
 /* 80200200 001FD140  D0 1F 00 08 */ stfs f0, 8(r31)
 /* 80200204 001FD144  C0 02 AB DC */ lfs f0, lbl_804545DC-_SDA2_BASE_(r2)

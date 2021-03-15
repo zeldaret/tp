@@ -53,7 +53,7 @@
 /* 8020A610 00207550  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A614 00207554  C0 5E 04 F0 */ lfs f2, 0x4f0(r30)
 /* 8020A618 00207558  38 A0 00 FF */ li r5, 0xff
-/* 8020A61C 0020755C  48 00 08 4D */ bl dMeterButton_c_NS_paneTrans
+/* 8020A61C 0020755C  48 00 08 4D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A620 00207560  48 00 01 B4 */ b lbl_8020A7D4
 /* 8020A624 00207564  80 9E 00 24 */ lwz r4, 0x24(r30)
 /* 8020A628 00207568  C0 5E 03 08 */ lfs f2, 0x308(r30)
@@ -63,7 +63,7 @@
 /* 8020A638 00207578  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A63C 0020757C  C0 5E 04 FC */ lfs f2, 0x4fc(r30)
 /* 8020A640 00207580  38 A0 00 FF */ li r5, 0xff
-/* 8020A644 00207584  48 00 08 25 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A644 00207584  48 00 08 25 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A648 00207588  48 00 01 8C */ b lbl_8020A7D4
 /* 8020A64C 0020758C  80 9E 00 20 */ lwz r4, 0x20(r30)
 /* 8020A650 00207590  C0 5E 03 0C */ lfs f2, 0x30c(r30)
@@ -73,7 +73,7 @@
 /* 8020A660 002075A0  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A664 002075A4  C0 5E 05 08 */ lfs f2, 0x508(r30)
 /* 8020A668 002075A8  38 A0 00 FF */ li r5, 0xff
-/* 8020A66C 002075AC  48 00 07 FD */ bl dMeterButton_c_NS_paneTrans
+/* 8020A66C 002075AC  48 00 07 FD */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A670 002075B0  48 00 01 64 */ b lbl_8020A7D4
 /* 8020A674 002075B4  80 9E 00 28 */ lwz r4, 0x28(r30)
 /* 8020A678 002075B8  C0 5E 03 10 */ lfs f2, 0x310(r30)
@@ -83,7 +83,7 @@
 /* 8020A688 002075C8  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A68C 002075CC  C0 5E 05 14 */ lfs f2, 0x514(r30)
 /* 8020A690 002075D0  38 A0 00 FF */ li r5, 0xff
-/* 8020A694 002075D4  48 00 07 D5 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A694 002075D4  48 00 07 D5 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A698 002075D8  48 00 01 3C */ b lbl_8020A7D4
 /* 8020A69C 002075DC  3B 40 00 00 */ li r26, 0
 /* 8020A6A0 002075E0  C0 3D 03 04 */ lfs f1, 0x304(r29)
@@ -97,7 +97,7 @@
 /* 8020A6C0 00207600  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A6C4 00207604  C0 5E 05 20 */ lfs f2, 0x520(r30)
 /* 8020A6C8 00207608  38 A0 00 FF */ li r5, 0xff
-/* 8020A6CC 0020760C  48 00 07 9D */ bl dMeterButton_c_NS_paneTrans
+/* 8020A6CC 0020760C  48 00 07 9D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A6D0 00207610  48 00 01 04 */ b lbl_8020A7D4
 /* 8020A6D4 00207614  80 9E 00 30 */ lwz r4, 0x30(r30)
 /* 8020A6D8 00207618  C0 5E 03 18 */ lfs f2, 0x318(r30)
@@ -107,7 +107,7 @@
 /* 8020A6E8 00207628  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A6EC 0020762C  C0 5E 05 2C */ lfs f2, 0x52c(r30)
 /* 8020A6F0 00207630  38 A0 00 FF */ li r5, 0xff
-/* 8020A6F4 00207634  48 00 07 75 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A6F4 00207634  48 00 07 75 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A6F8 00207638  48 00 00 DC */ b lbl_8020A7D4
 /* 8020A6FC 0020763C  80 9E 00 34 */ lwz r4, 0x34(r30)
 /* 8020A700 00207640  C0 5E 03 1C */ lfs f2, 0x31c(r30)
@@ -117,7 +117,7 @@
 /* 8020A710 00207650  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A714 00207654  C0 5E 05 38 */ lfs f2, 0x538(r30)
 /* 8020A718 00207658  38 A0 00 FF */ li r5, 0xff
-/* 8020A71C 0020765C  48 00 07 4D */ bl dMeterButton_c_NS_paneTrans
+/* 8020A71C 0020765C  48 00 07 4D */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A720 00207660  C3 FE 05 38 */ lfs f31, 0x538(r30)
 /* 8020A724 00207664  48 00 00 B0 */ b lbl_8020A7D4
 /* 8020A728 00207668  80 9E 00 38 */ lwz r4, 0x38(r30)
@@ -128,7 +128,7 @@
 /* 8020A73C 0020767C  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A740 00207680  C0 5E 05 44 */ lfs f2, 0x544(r30)
 /* 8020A744 00207684  38 A0 00 FF */ li r5, 0xff
-/* 8020A748 00207688  48 00 07 21 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A748 00207688  48 00 07 21 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A74C 0020768C  48 00 00 88 */ b lbl_8020A7D4
 /* 8020A750 00207690  80 9E 00 3C */ lwz r4, 0x3c(r30)
 /* 8020A754 00207694  C0 5E 03 24 */ lfs f2, 0x324(r30)
@@ -138,7 +138,7 @@
 /* 8020A764 002076A4  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A768 002076A8  C0 5E 05 50 */ lfs f2, 0x550(r30)
 /* 8020A76C 002076AC  38 A0 00 FF */ li r5, 0xff
-/* 8020A770 002076B0  48 00 06 F9 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A770 002076B0  48 00 06 F9 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A774 002076B4  48 00 00 60 */ b lbl_8020A7D4
 /* 8020A778 002076B8  80 9E 00 50 */ lwz r4, 0x50(r30)
 /* 8020A77C 002076BC  28 04 00 00 */ cmplwi r4, 0
@@ -150,7 +150,7 @@
 /* 8020A794 002076D4  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A798 002076D8  C0 5E 05 8C */ lfs f2, 0x58c(r30)
 /* 8020A79C 002076DC  38 A0 00 FF */ li r5, 0xff
-/* 8020A7A0 002076E0  48 00 06 C9 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A7A0 002076E0  48 00 06 C9 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A7A4 002076E4  48 00 00 30 */ b lbl_8020A7D4
 /* 8020A7A8 002076E8  80 9E 00 70 */ lwz r4, 0x70(r30)
 /* 8020A7AC 002076EC  28 04 00 00 */ cmplwi r4, 0
@@ -162,7 +162,7 @@
 /* 8020A7C4 00207704  EC 22 00 2A */ fadds f1, f2, f0
 /* 8020A7C8 00207708  C0 5E 05 EC */ lfs f2, 0x5ec(r30)
 /* 8020A7CC 0020770C  38 A0 00 FF */ li r5, 0xff
-/* 8020A7D0 00207710  48 00 06 99 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A7D0 00207710  48 00 06 99 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_8020A7D4:
 /* 8020A7D4 00207714  57 40 06 3E */ clrlwi r0, r26, 0x18
 /* 8020A7D8 00207718  2C 00 00 01 */ cmpwi r0, 1
@@ -240,7 +240,7 @@ lbl_8020A8C4:
 /* 8020A8E4 00207824  C0 02 AD A8 */ lfs f0, lbl_804547A8-_SDA2_BASE_(r2)
 /* 8020A8E8 00207828  EC 42 00 28 */ fsubs f2, f2, f0
 /* 8020A8EC 0020782C  57 E5 06 3E */ clrlwi r5, r31, 0x18
-/* 8020A8F0 00207830  48 00 05 79 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A8F0 00207830  48 00 05 79 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 /* 8020A8F4 00207834  88 1E 04 D9 */ lbz r0, 0x4d9(r30)
 /* 8020A8F8 00207838  7C 00 F8 00 */ cmpw r0, r31
 /* 8020A8FC 0020783C  40 82 00 20 */ bne lbl_8020A91C
@@ -250,7 +250,7 @@ lbl_8020A8C4:
 /* 8020A90C 0020784C  EC 20 E8 2A */ fadds f1, f0, f29
 /* 8020A910 00207850  C0 5E 06 1C */ lfs f2, 0x61c(r30)
 /* 8020A914 00207854  38 A0 00 FF */ li r5, 0xff
-/* 8020A918 00207858  48 00 05 51 */ bl dMeterButton_c_NS_paneTrans
+/* 8020A918 00207858  48 00 05 51 */ bl paneTrans__14dMeterButton_cFP8CPaneMgrffUc
 lbl_8020A91C:
 /* 8020A91C 0020785C  E3 E1 00 48 */ psq_l f31, 72(r1), 0, 0
 /* 8020A920 00207860  CB E1 00 40 */ lfd f31, 0x40(r1)

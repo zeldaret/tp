@@ -58,7 +58,7 @@ lbl_800CB090:
 lbl_800CB09C:
 /* 800CB09C 000C7FDC  7F A3 EB 78 */ mr r3, r29
 /* 800CB0A0 000C7FE0  38 80 00 FA */ li r4, 0xfa
-/* 800CB0A4 000C7FE4  4B FE 14 B5 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800CB0A4 000C7FE4  4B FE 14 B5 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800CB0A8 000C7FE8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CB0AC 000C7FEC  41 82 00 1C */ beq lbl_800CB0C8
 /* 800CB0B0 000C7FF0  C0 3D 1F E0 */ lfs f1, 0x1fe0(r29)
@@ -90,7 +90,7 @@ lbl_800CB0FC:
 /* 800CB108 000C8048  28 00 00 67 */ cmplwi r0, 0x67
 /* 800CB10C 000C804C  40 82 00 24 */ bne lbl_800CB130
 /* 800CB110 000C8050  7F A3 EB 78 */ mr r3, r29
-/* 800CB114 000C8054  48 01 4A B5 */ bl daAlink_c_NS_checkBowGrabLeftHand
+/* 800CB114 000C8054  48 01 4A B5 */ bl checkBowGrabLeftHand__9daAlink_cCFv
 /* 800CB118 000C8058  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CB11C 000C805C  41 82 00 0C */ beq lbl_800CB128
 /* 800CB120 000C8060  3B E0 00 00 */ li r31, 0
@@ -137,7 +137,7 @@ lbl_800CB180:
 /* 800CB1AC 000C80EC  40 82 00 18 */ bne lbl_800CB1C4
 /* 800CB1B0 000C80F0  7F A3 EB 78 */ mr r3, r29
 /* 800CB1B4 000C80F4  38 80 01 18 */ li r4, 0x118
-/* 800CB1B8 000C80F8  4B FE 13 A1 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800CB1B8 000C80F8  4B FE 13 A1 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800CB1BC 000C80FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800CB1C0 000C8100  41 82 00 0C */ beq lbl_800CB1CC
 lbl_800CB1C4:
@@ -255,7 +255,7 @@ lbl_800CB310:
 /* 800CB344 000C8284  80 9D 06 A0 */ lwz r4, 0x6a0(r29)
 /* 800CB348 000C8288  80 84 00 04 */ lwz r4, 4(r4)
 /* 800CB34C 000C828C  C0 23 00 10 */ lfs f1, 0x10(r3)
-/* 800CB350 000C8290  4B F4 26 7D */ bl mDoExt_bckAnm_NS_entry
+/* 800CB350 000C8290  4B F4 26 7D */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 lbl_800CB354:
 /* 800CB354 000C8294  80 7D 06 A0 */ lwz r3, 0x6a0(r29)
 /* 800CB358 000C8298  81 83 00 00 */ lwz r12, 0(r3)
@@ -316,7 +316,7 @@ lbl_800CB3EC:
 /* 800CB420 000C8360  80 9D 06 A8 */ lwz r4, 0x6a8(r29)
 /* 800CB424 000C8364  80 84 00 04 */ lwz r4, 4(r4)
 /* 800CB428 000C8368  C0 23 00 10 */ lfs f1, 0x10(r3)
-/* 800CB42C 000C836C  4B F4 25 A1 */ bl mDoExt_bckAnm_NS_entry
+/* 800CB42C 000C836C  4B F4 25 A1 */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 lbl_800CB430:
 /* 800CB430 000C8370  80 7D 06 A8 */ lwz r3, 0x6a8(r29)
 /* 800CB434 000C8374  81 83 00 00 */ lwz r12, 0(r3)

@@ -16,7 +16,7 @@ lbl_80106564:
 /* 8010656C 001034AC  3C E0 80 39 */ lis r7, lbl_8038E870@ha
 /* 80106570 001034B0  38 E7 E8 70 */ addi r7, r7, lbl_8038E870@l
 /* 80106574 001034B4  C0 87 00 64 */ lfs f4, 0x64(r7)
-/* 80106578 001034B8  4B FA 64 9D */ bl daAlink_c_NS_setDoubleAnime
+/* 80106578 001034B8  4B FA 64 9D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 /* 8010657C 001034BC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80106580 001034C0  7C 08 03 A6 */ mtlr r0
 /* 80106584 001034C4  38 21 00 10 */ addi r1, r1, 0x10

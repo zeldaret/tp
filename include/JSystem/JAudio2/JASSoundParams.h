@@ -2,8 +2,8 @@
 #define JASSOUNDPARAMS_H_
 
 extern "C" {
-void JASSoundParams_NS_clamp(void);
-void JASSoundParams_NS_combine(void);
+void clamp__14JASSoundParamsFv(void);
+void combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams(void);
 }
 
 #endif  // JASSOUNDPARAMS_H_

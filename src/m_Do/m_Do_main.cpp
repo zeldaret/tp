@@ -20,15 +20,15 @@
 #include "msl_c/string.h"
 
 extern "C" {
-void cDyl_InitAsync(void);
+void cDyl_InitAsync__Fv(void);
 void CheckHeap1__9HeapCheckFv(void);
 void create__12JKRSolidHeapFUlP7JKRHeapb(void);
 void create__8mDoCPd_cFv(void);
 void dComIfG_inf_c_NS_ct(void);
 void debug__Fv(void);
-void dRes_control_c_NS_dump(void);
+void dump__14dRes_control_cFv(void);
 void dump__11JKRAramHeapFv(void);
-void DynamicModuleControlBase_NS_dump(void);
+void dump__24DynamicModuleControlBaseFv(void);
 void fopAcM_initManager(void);
 void getFreeSize__11JKRAramHeapFv(void);
 void getFreeSize__7JKRHeapCFv(void);
@@ -39,9 +39,9 @@ void getUsedCount__9HeapCheckCFv(void);
 void heapDisplay__9HeapCheckCFv(void);
 void JUTReport__FiiPCce(int, int, const char*, ...);
 void JUTReport__FiiiPCce(void);
-void mDoDvdThd_callback_c_NS_create(void);
-void mDoMch_HeapCheckAll(void);
-void mDoMemCd_Ctrl_c_NS_update(void);
+void create__20mDoDvdThd_callback_cFPFPv_PvPv(void);
+void mDoMch_HeapCheckAll__Fv(void);
+void update__15mDoMemCd_Ctrl_cFv(void);
 void read__8mDoCPd_cFv(void);
 void version_check__Fv(void);
 void main01__Fv(void);
@@ -115,7 +115,7 @@ void HeapCheck::CheckHeap1(void) {
 
 #ifdef NONMATCHING
 void CheckHeap(u32 controller_pad_no) {
-    mDoMch_HeapCheckAll();
+    mDoMch_HeapCheckAll__Fv();
     OSCheckActiveThreads();
 
     bool unk = false;
@@ -370,8 +370,8 @@ void Debug_console(u32 controller_pad_no) {
                     sAramObject__7JKRAram->getAramHeap()->dump();
                 }
 
-                DynamicModuleControlBase_NS_dump();
-                dRes_control_c_NS_dump();
+                dump__24DynamicModuleControlBaseFv();
+                dump__14dRes_control_cFv();
             }
 
             if (tmp5 & 2) {
@@ -466,7 +466,7 @@ void debug(void) {
 void main01(void) {
     HeapCheck* heaps = lbl_803D32E0;
 
-    mDoMch_Create();
+    mDoMch_Create__Fv();
     mDoGph_Create();
     create__8mDoCPd_cFv();
 
@@ -538,7 +538,7 @@ void main01(void) {
     fapGm_Create();
     fopAcM_initManager();
     lbl_80450B18 = 0;
-    cDyl_InitAsync();
+    cDyl_InitAsync__Fv();
 
     // g_mDoAud_audioHeap
 
@@ -550,11 +550,11 @@ void main01(void) {
         lbl_80450B34++;
 
         if (lbl_80450B00 && (lbl_80450B34 == ((lbl_80450B34 / lbl_80450B00) * lbl_80450B00))) {
-            mDoMch_HeapCheckAll();
+            mDoMch_HeapCheckAll__Fv();
         }
 
         if (lbl_80450C80) {
-            mDoMemCd_Ctrl_c_NS_update();
+            update__15mDoMemCd_Ctrl_cFv();
         }
         mDoCPd_c_NS_read();
         fapGm_Execute();

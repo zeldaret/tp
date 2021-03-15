@@ -14,33 +14,33 @@ lbl_800DD044:
 /* 800DD048 000D9F88  28 00 00 16 */ cmplwi r0, 0x16
 /* 800DD04C 000D9F8C  41 82 00 98 */ beq lbl_800DD0E4
 /* 800DD050 000D9F90  7F E3 FB 78 */ mr r3, r31
-/* 800DD054 000D9F94  4B FF FF 11 */ bl daAlink_c_NS_checkGuardAccept
+/* 800DD054 000D9F94  4B FF FF 11 */ bl checkGuardAccept__9daAlink_cFv
 /* 800DD058 000D9F98  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD05C 000D9F9C  41 82 00 98 */ beq lbl_800DD0F4
 /* 800DD060 000D9FA0  7F E3 FB 78 */ mr r3, r31
-/* 800DD064 000D9FA4  48 00 6C 09 */ bl daAlink_c_NS_checkGrabAnime
+/* 800DD064 000D9FA4  48 00 6C 09 */ bl checkGrabAnime__9daAlink_cCFv
 /* 800DD068 000D9FA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD06C 000D9FAC  40 82 00 88 */ bne lbl_800DD0F4
 /* 800DD070 000D9FB0  7F E3 FB 78 */ mr r3, r31
-/* 800DD074 000D9FB4  4B FD DF 0D */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800DD074 000D9FB4  4B FD DF 0D */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800DD078 000D9FB8  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD07C 000D9FBC  40 82 00 78 */ bne lbl_800DD0F4
 /* 800DD080 000D9FC0  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
 /* 800DD084 000D9FC4  28 00 02 62 */ cmplwi r0, 0x262
 /* 800DD088 000D9FC8  41 82 00 6C */ beq lbl_800DD0F4
 /* 800DD08C 000D9FCC  7F E3 FB 78 */ mr r3, r31
-/* 800DD090 000D9FD0  4B FF 3E 3D */ bl daAlink_c_NS_checkCutDashAnime
+/* 800DD090 000D9FD0  4B FF 3E 3D */ bl checkCutDashAnime__9daAlink_cCFv
 /* 800DD094 000D9FD4  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD098 000D9FD8  40 82 00 5C */ bne lbl_800DD0F4
 /* 800DD09C 000D9FDC  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
 /* 800DD0A0 000D9FE0  28 00 00 83 */ cmplwi r0, 0x83
 /* 800DD0A4 000D9FE4  41 82 00 50 */ beq lbl_800DD0F4
 /* 800DD0A8 000D9FE8  7F E3 FB 78 */ mr r3, r31
-/* 800DD0AC 000D9FEC  4B FD C2 95 */ bl daAlink_c_NS_checkEquipAnime
+/* 800DD0AC 000D9FEC  4B FD C2 95 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800DD0B0 000D9FF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD0B4 000D9FF4  41 82 00 14 */ beq lbl_800DD0C8
 /* 800DD0B8 000D9FF8  7F E3 FB 78 */ mr r3, r31
-/* 800DD0BC 000D9FFC  4B FF FD 35 */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800DD0BC 000D9FFC  4B FF FD 35 */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800DD0C0 000DA000  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD0C4 000DA004  41 82 00 30 */ beq lbl_800DD0F4
 lbl_800DD0C8:
@@ -48,7 +48,7 @@ lbl_800DD0C8:
 /* 800DD0CC 000DA00C  28 00 00 00 */ cmplwi r0, 0
 /* 800DD0D0 000DA010  40 82 00 24 */ bne lbl_800DD0F4
 /* 800DD0D4 000DA014  7F E3 FB 78 */ mr r3, r31
-/* 800DD0D8 000DA018  4B FF F5 A1 */ bl daAlink_c_NS_checkGuardActionChange
+/* 800DD0D8 000DA018  4B FF F5 A1 */ bl checkGuardActionChange__9daAlink_cFv
 /* 800DD0DC 000DA01C  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD0E0 000DA020  41 82 00 14 */ beq lbl_800DD0F4
 lbl_800DD0E4:

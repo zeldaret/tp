@@ -3,10 +3,10 @@
 /* 800D1034 000CDF74  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800D1038 000CDF78  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D103C 000CDF7C  7C 7F 1B 78 */ mr r31, r3
-/* 800D1040 000CDF80  48 00 18 51 */ bl daAlink_c_NS_checkCutBackState
+/* 800D1040 000CDF80  48 00 18 51 */ bl checkCutBackState__9daAlink_cFv
 /* 800D1044 000CDF84  2C 03 00 00 */ cmpwi r3, 0
 /* 800D1048 000CDF88  41 82 00 28 */ beq lbl_800D1070
-/* 800D104C 000CDF8C  4B FE F5 49 */ bl daAlink_c_NS_checkNotBattleStage
+/* 800D104C 000CDF8C  4B FE F5 49 */ bl checkNotBattleStage__9daAlink_cFv
 /* 800D1050 000CDF90  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D1054 000CDF94  40 82 00 1C */ bne lbl_800D1070
 /* 800D1058 000CDF98  7F E3 FB 78 */ mr r3, r31

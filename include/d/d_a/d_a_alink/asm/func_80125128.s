@@ -28,7 +28,7 @@ lbl_80125154:
 /* 80125190 001220D0  40 81 00 14 */ ble lbl_801251A4
 /* 80125194 001220D4  7F 63 DB 78 */ mr r3, r27
 /* 80125198 001220D8  7F 84 E3 78 */ mr r4, r28
-/* 8012519C 001220DC  4B FF FC 8D */ bl daAlink_c_NS_clearFirePointDamageEffect
+/* 8012519C 001220DC  4B FF FC 8D */ bl clearFirePointDamageEffect__9daAlink_cFi
 /* 801251A0 001220E0  48 00 01 40 */ b lbl_801252E0
 lbl_801251A4:
 /* 801251A4 001220E4  80 1E 00 04 */ lwz r0, 4(r30)
@@ -65,7 +65,7 @@ lbl_80125210:
 /* 80125218 00122158  38 A0 07 42 */ li r5, 0x742
 /* 8012521C 0012215C  38 C1 00 20 */ addi r6, r1, 0x20
 /* 80125220 00122160  38 E0 00 00 */ li r7, 0
-/* 80125224 00122164  4B FF B3 5D */ bl daAlink_c_NS_setEmitter
+/* 80125224 00122164  4B FF B3 5D */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80125228 00122168  28 03 00 00 */ cmplwi r3, 0
 /* 8012522C 0012216C  41 82 00 40 */ beq lbl_8012526C
 /* 80125230 00122170  38 A0 00 00 */ li r5, 0
@@ -82,7 +82,7 @@ lbl_80125254:
 /* 80125258 00122198  41 82 00 14 */ beq lbl_8012526C
 /* 8012525C 0012219C  7F 63 DB 78 */ mr r3, r27
 /* 80125260 001221A0  7F 84 E3 78 */ mr r4, r28
-/* 80125264 001221A4  4B FF FB C5 */ bl daAlink_c_NS_clearFirePointDamageEffect
+/* 80125264 001221A4  4B FF FB C5 */ bl clearFirePointDamageEffect__9daAlink_cFi
 /* 80125268 001221A8  48 00 00 78 */ b lbl_801252E0
 lbl_8012526C:
 /* 8012526C 001221AC  2C 1A 00 00 */ cmpwi r26, 0
@@ -99,7 +99,7 @@ lbl_8012528C:
 /* 80125294 001221D4  38 A0 07 43 */ li r5, 0x743
 /* 80125298 001221D8  38 C1 00 20 */ addi r6, r1, 0x20
 /* 8012529C 001221DC  38 E0 00 00 */ li r7, 0
-/* 801252A0 001221E0  4B FF B2 E1 */ bl daAlink_c_NS_setEmitter
+/* 801252A0 001221E0  4B FF B2 E1 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 801252A4 001221E4  2C 1A 00 00 */ cmpwi r26, 0
 /* 801252A8 001221E8  41 82 00 1C */ beq lbl_801252C4
 /* 801252AC 001221EC  28 03 00 00 */ cmplwi r3, 0

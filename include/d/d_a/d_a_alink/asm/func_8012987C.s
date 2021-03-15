@@ -12,7 +12,7 @@
 /* 801298A8 001267E8  C0 03 04 D4 */ lfs f0, 0x4d4(r3)
 /* 801298AC 001267EC  EC 01 00 28 */ fsubs f0, f1, f0
 /* 801298B0 001267F0  EF E2 00 32 */ fmuls f31, f2, f0
-/* 801298B4 001267F4  4B FA D6 79 */ bl daAlink_c_NS_checkNoLandDamageSlidePolygon
+/* 801298B4 001267F4  4B FA D6 79 */ bl checkNoLandDamageSlidePolygon__9daAlink_cFv
 /* 801298B8 001267F8  2C 03 00 00 */ cmpwi r3, 0
 /* 801298BC 001267FC  40 82 00 18 */ bne lbl_801298D4
 /* 801298C0 00126800  3C 60 80 39 */ lis r3, lbl_8038F374@ha
@@ -25,7 +25,7 @@ lbl_801298D4:
 /* 801298D8 00126818  41 82 00 14 */ beq lbl_801298EC
 /* 801298DC 0012681C  7F C3 F3 78 */ mr r3, r30
 /* 801298E0 00126820  38 80 00 00 */ li r4, 0
-/* 801298E4 00126824  48 00 D3 35 */ bl daAlink_c_NS_procWolfLandDamageInit
+/* 801298E4 00126824  48 00 D3 35 */ bl procWolfLandDamageInit__9daAlink_cFi
 /* 801298E8 00126828  48 00 00 4C */ b lbl_80129934
 lbl_801298EC:
 /* 801298EC 0012682C  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
@@ -38,7 +38,7 @@ lbl_80129900:
 /* 80129904 00126844  48 00 00 34 */ b lbl_80129938
 lbl_80129908:
 /* 80129908 00126848  7F C3 F3 78 */ mr r3, r30
-/* 8012990C 0012684C  48 00 58 2D */ bl daAlink_c_NS_procWolfLandInit
+/* 8012990C 0012684C  48 00 58 2D */ bl procWolfLandInit__9daAlink_cFv
 /* 80129910 00126850  48 00 00 24 */ b lbl_80129934
 lbl_80129914:
 /* 80129914 00126854  7F C3 F3 78 */ mr r3, r30
@@ -50,7 +50,7 @@ lbl_80129914:
 lbl_8012992C:
 /* 8012992C 0012686C  38 80 00 02 */ li r4, 2
 lbl_80129930:
-/* 80129930 00126870  48 00 D2 E9 */ bl daAlink_c_NS_procWolfLandDamageInit
+/* 80129930 00126870  48 00 D2 E9 */ bl procWolfLandDamageInit__9daAlink_cFi
 lbl_80129934:
 /* 80129934 00126874  38 60 00 01 */ li r3, 1
 lbl_80129938:

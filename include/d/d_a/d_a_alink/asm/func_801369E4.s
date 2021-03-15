@@ -72,7 +72,7 @@ lbl_80136AE0:
 /* 80136AE8 00133A28  41 82 00 34 */ beq lbl_80136B1C
 /* 80136AEC 00133A2C  7F E3 FB 78 */ mr r3, r31
 /* 80136AF0 00133A30  C0 22 93 20 */ lfs f1, lbl_80452D20-_SDA2_BASE_(r2)
-/* 80136AF4 00133A34  48 1F 19 39 */ bl J3DFrameCtrl_NS_checkPass
+/* 80136AF4 00133A34  48 1F 19 39 */ bl checkPass__12J3DFrameCtrlFf
 /* 80136AF8 00133A38  2C 03 00 00 */ cmpwi r3, 0
 /* 80136AFC 00133A3C  41 82 00 20 */ beq lbl_80136B1C
 /* 80136B00 00133A40  7F C3 F3 78 */ mr r3, r30
@@ -92,7 +92,7 @@ lbl_80136B1C:
 /* 80136B34 00133A74  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 lbl_80136B38:
 /* 80136B38 00133A78  7F E3 FB 78 */ mr r3, r31
-/* 80136B3C 00133A7C  48 02 79 91 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80136B3C 00133A7C  48 02 79 91 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136B40 00133A80  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136B44 00133A84  41 82 00 70 */ beq lbl_80136BB4
 /* 80136B48 00133A88  A8 1E 30 12 */ lha r0, 0x3012(r30)
@@ -105,7 +105,7 @@ lbl_80136B38:
 /* 80136B64 00133AA4  38 00 00 0D */ li r0, 0xd
 /* 80136B68 00133AA8  90 03 08 C0 */ stw r0, 0x8c0(r3)
 /* 80136B6C 00133AAC  7F C3 F3 78 */ mr r3, r30
-/* 80136B70 00133AB0  4B FF 64 E1 */ bl daAlink_c_NS_procWolfMidnaRideShockInit
+/* 80136B70 00133AB0  4B FF 64 E1 */ bl procWolfMidnaRideShockInit__9daAlink_cFv
 /* 80136B74 00133AB4  48 00 00 8C */ b lbl_80136C00
 lbl_80136B78:
 /* 80136B78 00133AB8  80 1E 06 14 */ lwz r0, 0x614(r30)
@@ -118,12 +118,12 @@ lbl_80136B8C:
 /* 80136B90 00133AD0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80136B94 00133AD4  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 80136B98 00133AD8  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 80136B9C 00133ADC  4B F1 15 E1 */ bl dEvent_manager_c_NS_cutEnd
+/* 80136B9C 00133ADC  4B F1 15 E1 */ bl cutEnd__16dEvent_manager_cFi
 /* 80136BA0 00133AE0  48 00 00 5C */ b lbl_80136BFC
 lbl_80136BA4:
 /* 80136BA4 00133AE4  7F C3 F3 78 */ mr r3, r30
 /* 80136BA8 00133AE8  38 80 00 00 */ li r4, 0
-/* 80136BAC 00133AEC  4B FF 2F 99 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80136BAC 00133AEC  4B FF 2F 99 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136BB0 00133AF0  48 00 00 4C */ b lbl_80136BFC
 lbl_80136BB4:
 /* 80136BB4 00133AF4  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -132,7 +132,7 @@ lbl_80136BB4:
 /* 80136BC0 00133B00  40 81 00 14 */ ble lbl_80136BD4
 /* 80136BC4 00133B04  7F C3 F3 78 */ mr r3, r30
 /* 80136BC8 00133B08  38 80 00 01 */ li r4, 1
-/* 80136BCC 00133B0C  4B FF 2F 79 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80136BCC 00133B0C  4B FF 2F 79 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136BD0 00133B10  48 00 00 2C */ b lbl_80136BFC
 lbl_80136BD4:
 /* 80136BD4 00133B14  80 1E 05 8C */ lwz r0, 0x58c(r30)

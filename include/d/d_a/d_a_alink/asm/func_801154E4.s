@@ -4,7 +4,7 @@
 /* 801154F0 00112430  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801154F4 00112434  7C 7F 1B 78 */ mr r31, r3
 /* 801154F8 00112438  38 80 00 D8 */ li r4, 0xd8
-/* 801154FC 0011243C  4B FA D8 A9 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 801154FC 0011243C  4B FA D8 A9 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80115500 00112440  2C 03 00 00 */ cmpwi r3, 0
 /* 80115504 00112444  40 82 00 0C */ bne lbl_80115510
 /* 80115508 00112448  38 60 00 00 */ li r3, 0
@@ -13,11 +13,11 @@ lbl_80115510:
 /* 80115510 00112450  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80115514 00112454  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 80115518 00112458  7F E3 FB 78 */ mr r3, r31
-/* 8011551C 0011245C  4B FF FB C9 */ bl daAlink_c_NS_checkIronBallAnime
+/* 8011551C 0011245C  4B FF FB C9 */ bl checkIronBallAnime__9daAlink_cCFv
 /* 80115520 00112460  2C 03 00 00 */ cmpwi r3, 0
 /* 80115524 00112464  41 82 00 0C */ beq lbl_80115530
 /* 80115528 00112468  7F E3 FB 78 */ mr r3, r31
-/* 8011552C 0011246C  4B FF FC B5 */ bl daAlink_c_NS_setIronBallBaseAnime
+/* 8011552C 0011246C  4B FF FC B5 */ bl setIronBallBaseAnime__9daAlink_cFv
 lbl_80115530:
 /* 80115530 00112470  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80115534 00112474  B0 1F 04 DE */ sth r0, 0x4de(r31)

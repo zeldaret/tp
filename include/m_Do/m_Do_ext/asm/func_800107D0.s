@@ -16,7 +16,7 @@
 /* 8001080C 0000D74C  83 A1 00 58 */ lwz r29, 0x58(r1)
 /* 80010810 0000D750  83 C1 00 5C */ lwz r30, 0x5c(r1)
 /* 80010814 0000D754  83 E1 00 60 */ lwz r31, 0x60(r1)
-/* 80010818 0000D758  4B FF F1 39 */ bl mDoExt_morf_c
+/* 80010818 0000D758  4B FF F1 39 */ bl __ct__13mDoExt_morf_cFv
 /* 8001081C 0000D75C  3C 60 80 3A */ lis r3, lbl_803A32B0@ha
 /* 80010820 0000D760  38 03 32 B0 */ addi r0, r3, lbl_803A32B0@l
 /* 80010824 0000D764  90 15 00 00 */ stw r0, 0(r21)
@@ -35,7 +35,7 @@
 /* 80010858 0000D798  FC 20 F8 90 */ fmr f1, f31
 /* 8001085C 0000D79C  7F 69 DB 78 */ mr r9, r27
 /* 80010860 0000D7A0  7F 8A E3 78 */ mr r10, r28
-/* 80010864 0000D7A4  48 00 00 8D */ bl mDoExt_McaMorfSO_NS_create
+/* 80010864 0000D7A4  48 00 00 8D */ bl create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
 /* 80010868 0000D7A8  7E A3 AB 78 */ mr r3, r21
 /* 8001086C 0000D7AC  CB E1 00 48 */ lfd f31, 0x48(r1)
 /* 80010870 0000D7B0  39 61 00 48 */ addi r11, r1, 0x48

@@ -8,7 +8,7 @@
 /* 800DBDC0 000D8D00  54 80 07 FF */ clrlwi. r0, r4, 0x1f
 /* 800DBDC4 000D8D04  40 82 00 10 */ bne lbl_800DBDD4
 /* 800DBDC8 000D8D08  38 80 00 00 */ li r4, 0
-/* 800DBDCC 000D8D0C  4B FD E3 05 */ bl daAlink_c_NS_checkNextAction
+/* 800DBDCC 000D8D0C  4B FD E3 05 */ bl checkNextAction__9daAlink_cFi
 /* 800DBDD0 000D8D10  48 00 00 1C */ b lbl_800DBDEC
 lbl_800DBDD4:
 /* 800DBDD4 000D8D14  A8 03 30 0C */ lha r0, 0x300c(r3)
@@ -16,7 +16,7 @@ lbl_800DBDD4:
 /* 800DBDDC 000D8D1C  40 82 00 10 */ bne lbl_800DBDEC
 /* 800DBDE0 000D8D20  54 80 07 BD */ rlwinm. r0, r4, 0, 0x1e, 0x1e
 /* 800DBDE4 000D8D24  41 82 00 08 */ beq lbl_800DBDEC
-/* 800DBDE8 000D8D28  4B FF FE B1 */ bl daAlink_c_NS_setScreamWaitAnime
+/* 800DBDE8 000D8D28  4B FF FE B1 */ bl setScreamWaitAnime__9daAlink_cFv
 lbl_800DBDEC:
 /* 800DBDEC 000D8D2C  38 60 00 01 */ li r3, 1
 /* 800DBDF0 000D8D30  80 01 00 14 */ lwz r0, 0x14(r1)

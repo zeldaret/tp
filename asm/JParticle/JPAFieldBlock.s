@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027bdec
 
 
-.global JPAFieldBase_NS_calcAffect
-JPAFieldBase_NS_calcAffect:
+.global calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
+calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle:
 /* 8027BDEC 00278D2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8027BDF0 00278D30  7C 08 02 A6 */	mflr r0
 /* 8027BDF4 00278D34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -26,7 +26,7 @@ JPAFieldBase_NS_calcAffect:
 /* 8027BE34 00278D74  54 00 86 79 */	rlwinm. r0, r0, 0x10, 0x19, 0x1c
 /* 8027BE38 00278D78  41 82 00 28 */	beq lbl_8027BE60
 /* 8027BE3C 00278D7C  C0 3F 00 84 */	lfs f1, 0x84(r31)
-/* 8027BE40 00278D80  48 00 00 D9 */	bl JPAFieldBase_NS_calcFadeAffect
+/* 8027BE40 00278D80  48 00 00 D9 */	bl calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf
 /* 8027BE44 00278D84  FF E0 08 90 */	fmr f31, f1
 /* 8027BE48 00278D88  E0 01 00 08 */	psq_l f0, 8(r1), 0, qr0
 /* 8027BE4C 00278D8C  E0 21 80 10 */	psq_l f1, 16(r1), 1, qr0
@@ -87,8 +87,8 @@ lbl_8027BEF8:
 /* 8027BF10 00278E50  38 21 00 30 */	addi r1, r1, 0x30
 /* 8027BF14 00278E54  4E 80 00 20 */	blr 
 
-.global JPAFieldBase_NS_calcFadeAffect
-JPAFieldBase_NS_calcFadeAffect:
+.global calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf
+calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf:
 /* 8027BF18 00278E58  C0 42 B9 38 */	lfs f2, lbl_80455338-_SDA2_BASE_(r2)
 /* 8027BF1C 00278E5C  80 64 00 00 */	lwz r3, 0(r4)
 /* 8027BF20 00278E60  80 03 00 08 */	lwz r0, 8(r3)
@@ -180,7 +180,7 @@ lbl_8027C034:
 /* 8027C05C 00278F9C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8027C060 00278FA0  7C A4 2B 78 */	mr r4, r5
 /* 8027C064 00278FA4  7C C5 33 78 */	mr r5, r6
-/* 8027C068 00278FA8  4B FF FD 85 */	bl JPAFieldBase_NS_calcAffect
+/* 8027C068 00278FA8  4B FF FD 85 */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027C06C 00278FAC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8027C070 00278FB0  7C 08 03 A6 */	mtlr r0
 /* 8027C074 00278FB4  38 21 00 10 */	addi r1, r1, 0x10
@@ -281,7 +281,7 @@ lbl_8027C198:
 /* 8027C1D8 00279118  7C DF 33 78 */	mr r31, r6
 /* 8027C1DC 0027911C  7F C4 F3 78 */	mr r4, r30
 /* 8027C1E0 00279120  7F E5 FB 78 */	mr r5, r31
-/* 8027C1E4 00279124  4B FF FC 09 */	bl JPAFieldBase_NS_calcAffect
+/* 8027C1E4 00279124  4B FF FC 09 */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027C1E8 00279128  80 7E 00 00 */	lwz r3, 0(r30)
 /* 8027C1EC 0027912C  80 03 00 08 */	lwz r0, 8(r3)
 /* 8027C1F0 00279130  54 00 87 7B */	rlwinm. r0, r0, 0x10, 0x1d, 0x1d
@@ -378,7 +378,7 @@ lbl_8027C334:
 lbl_8027C350:
 /* 8027C350 00279290  7C A4 2B 78 */	mr r4, r5
 /* 8027C354 00279294  7C C5 33 78 */	mr r5, r6
-/* 8027C358 00279298  4B FF FA 95 */	bl JPAFieldBase_NS_calcAffect
+/* 8027C358 00279298  4B FF FA 95 */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027C35C 0027929C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8027C360 002792A0  7C 08 03 A6 */	mtlr r0
 /* 8027C364 002792A4  38 21 00 10 */	addi r1, r1, 0x10
@@ -512,7 +512,7 @@ lbl_8027C534:
 lbl_8027C550:
 /* 8027C550 00279490  7C A4 2B 78 */	mr r4, r5
 /* 8027C554 00279494  7C C5 33 78 */	mr r5, r6
-/* 8027C558 00279498  4B FF F8 95 */	bl JPAFieldBase_NS_calcAffect
+/* 8027C558 00279498  4B FF F8 95 */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027C55C 0027949C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8027C560 002794A0  7C 08 03 A6 */	mtlr r0
 /* 8027C564 002794A4  38 21 00 10 */	addi r1, r1, 0x10
@@ -686,7 +686,7 @@ lbl_8027C7BC:
 /* 8027C7E4 00279724  7F A3 EB 78 */	mr r3, r29
 /* 8027C7E8 00279728  7F C4 F3 78 */	mr r4, r30
 /* 8027C7EC 0027972C  7F E5 FB 78 */	mr r5, r31
-/* 8027C7F0 00279730  4B FF F5 FD */	bl JPAFieldBase_NS_calcAffect
+/* 8027C7F0 00279730  4B FF F5 FD */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027C7F4 00279734  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 8027C7F8 00279738  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 8027C7FC 0027973C  39 61 00 30 */	addi r11, r1, 0x30
@@ -1002,7 +1002,7 @@ lbl_8027CC94:
 /* 8027CC94 00279BD4  7F A3 EB 78 */	mr r3, r29
 /* 8027CC98 00279BD8  7F C4 F3 78 */	mr r4, r30
 /* 8027CC9C 00279BDC  7F E5 FB 78 */	mr r5, r31
-/* 8027CCA0 00279BE0  4B FF F1 4D */	bl JPAFieldBase_NS_calcAffect
+/* 8027CCA0 00279BE0  4B FF F1 4D */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027CCA4 00279BE4  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 8027CCA8 00279BE8  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 8027CCAC 00279BEC  E3 C1 00 48 */	psq_l f30, 72(r1), 0, qr0
@@ -1079,7 +1079,7 @@ lbl_8027CD08:
 /* 8027CDC4 00279D04  F0 03 80 0C */	psq_st f0, 12(r3), 1, qr0
 /* 8027CDC8 00279D08  7C A4 2B 78 */	mr r4, r5
 /* 8027CDCC 00279D0C  7C C5 33 78 */	mr r5, r6
-/* 8027CDD0 00279D10  4B FF F0 1D */	bl JPAFieldBase_NS_calcAffect
+/* 8027CDD0 00279D10  4B FF F0 1D */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 lbl_8027CDD4:
 /* 8027CDD4 00279D14  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8027CDD8 00279D18  7C 08 03 A6 */	mtlr r0
@@ -1097,7 +1097,7 @@ lbl_8027CDD4:
 /* 8027CE08 00279D48  40 82 00 34 */	bne lbl_8027CE3C
 /* 8027CE0C 00279D4C  7F C4 F3 78 */	mr r4, r30
 /* 8027CE10 00279D50  C0 3F 00 84 */	lfs f1, 0x84(r31)
-/* 8027CE14 00279D54  4B FF F1 05 */	bl JPAFieldBase_NS_calcFadeAffect
+/* 8027CE14 00279D54  4B FF F1 05 */	bl calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf
 /* 8027CE18 00279D58  C0 7F 00 74 */	lfs f3, 0x74(r31)
 /* 8027CE1C 00279D5C  C0 42 B9 38 */	lfs f2, lbl_80455338-_SDA2_BASE_(r2)
 /* 8027CE20 00279D60  C0 1E 00 28 */	lfs f0, 0x28(r30)
@@ -1252,7 +1252,7 @@ lbl_8027CF28:
 /* 8027D060 00279FA0  7F A3 EB 78 */	mr r3, r29
 /* 8027D064 00279FA4  7F C4 F3 78 */	mr r4, r30
 /* 8027D068 00279FA8  7F E5 FB 78 */	mr r5, r31
-/* 8027D06C 00279FAC  4B FF ED 81 */	bl JPAFieldBase_NS_calcAffect
+/* 8027D06C 00279FAC  4B FF ED 81 */	bl calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle
 /* 8027D070 00279FB0  39 61 00 60 */	addi r11, r1, 0x60
 /* 8027D074 00279FB4  48 0E 51 B5 */	bl _restgpr_29
 /* 8027D078 00279FB8  80 01 00 64 */	lwz r0, 0x64(r1)
@@ -1260,8 +1260,8 @@ lbl_8027CF28:
 /* 8027D080 00279FC0  38 21 00 60 */	addi r1, r1, 0x60
 /* 8027D084 00279FC4  4E 80 00 20 */	blr 
 
-.global JPAFieldBlock
-JPAFieldBlock:
+.global __ct__13JPAFieldBlockFPCUcP7JKRHeap
+__ct__13JPAFieldBlockFPCUcP7JKRHeap:
 /* 8027D088 00279FC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D08C 00279FCC  7C 08 02 A6 */	mflr r0
 /* 8027D090 00279FD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1269,7 +1269,7 @@ JPAFieldBlock:
 /* 8027D098 00279FD8  7C 7F 1B 78 */	mr r31, r3
 /* 8027D09C 00279FDC  90 83 00 00 */	stw r4, 0(r3)
 /* 8027D0A0 00279FE0  7C A4 2B 78 */	mr r4, r5
-/* 8027D0A4 00279FE4  48 00 00 1D */	bl JPAFieldBlock_NS_init
+/* 8027D0A4 00279FE4  48 00 00 1D */	bl init__13JPAFieldBlockFP7JKRHeap
 /* 8027D0A8 00279FE8  7F E3 FB 78 */	mr r3, r31
 /* 8027D0AC 00279FEC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8027D0B0 00279FF0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1277,8 +1277,8 @@ JPAFieldBlock:
 /* 8027D0B8 00279FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027D0BC 00279FFC  4E 80 00 20 */	blr 
 
-.global JPAFieldBlock_NS_init
-JPAFieldBlock_NS_init:
+.global init__13JPAFieldBlockFP7JKRHeap
+init__13JPAFieldBlockFP7JKRHeap:
 /* 8027D0C0 0027A000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027D0C4 0027A004  7C 08 02 A6 */	mflr r0
 /* 8027D0C8 0027A008  90 01 00 14 */	stw r0, 0x14(r1)

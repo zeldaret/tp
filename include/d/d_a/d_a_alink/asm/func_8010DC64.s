@@ -23,10 +23,10 @@
 lbl_8010DCBC:
 /* 8010DCBC 0010ABFC  7F C3 F3 78 */ mr r3, r30
 /* 8010DCC0 0010AC00  38 80 00 A4 */ li r4, 0xa4
-/* 8010DCC4 0010AC04  4B FB 42 A9 */ bl daAlink_c_NS_commonProcInit
+/* 8010DCC4 0010AC04  4B FB 42 A9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010DCC8 0010AC08  38 7E 28 14 */ addi r3, r30, 0x2814
 /* 8010DCCC 0010AC0C  7F E4 FB 78 */ mr r4, r31
-/* 8010DCD0 0010AC10  48 05 0F E9 */ bl daPy_actorKeep_c_NS_setData
+/* 8010DCD0 0010AC10  48 05 0F E9 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010DCD4 0010AC14  7F C3 F3 78 */ mr r3, r30
 /* 8010DCD8 0010AC18  38 80 00 D7 */ li r4, 0xd7
 /* 8010DCDC 0010AC1C  3C A0 80 39 */ lis r5, lbl_8038E11C@ha
@@ -35,12 +35,12 @@ lbl_8010DCBC:
 /* 8010DCE8 0010AC28  C0 42 93 44 */ lfs f2, lbl_80452D44-_SDA2_BASE_(r2)
 /* 8010DCEC 0010AC2C  A8 A6 00 00 */ lha r5, 0(r6)
 /* 8010DCF0 0010AC30  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 8010DCF4 0010AC34  4B F9 F3 19 */ bl daAlink_c_NS_setSingleAnime
+/* 8010DCF4 0010AC34  4B F9 F3 19 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 8010DCF8 0010AC38  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010DCFC 0010AC3C  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 8010DD00 0010AC40  7F C3 F3 78 */ mr r3, r30
 /* 8010DD04 0010AC44  38 80 00 00 */ li r4, 0
-/* 8010DD08 0010AC48  4B FD 48 79 */ bl daAlink_c_NS_setHeavyBoots
+/* 8010DD08 0010AC48  4B FD 48 79 */ bl setHeavyBoots__9daAlink_cFi
 /* 8010DD0C 0010AC4C  C0 02 93 28 */ lfs f0, lbl_80452D28-_SDA2_BASE_(r2)
 /* 8010DD10 0010AC50  D0 1E 04 FC */ stfs f0, 0x4fc(r30)
 /* 8010DD14 0010AC54  7F C3 F3 78 */ mr r3, r30
@@ -62,7 +62,7 @@ lbl_8010DCBC:
 /* 8010DD54 0010AC94  7F C3 F3 78 */ mr r3, r30
 /* 8010DD58 0010AC98  38 80 00 01 */ li r4, 1
 /* 8010DD5C 0010AC9C  38 A0 00 01 */ li r5, 1
-/* 8010DD60 0010ACA0  4B FB 35 7D */ bl daAlink_c_NS_deleteEquipItem
+/* 8010DD60 0010ACA0  4B FB 35 7D */ bl deleteEquipItem__9daAlink_cFii
 /* 8010DD64 0010ACA4  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8010DD68 0010ACA8  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8010DD6C 0010ACAC  3C 60 80 42 */ lis r3, lbl_80425514@ha

@@ -10,8 +10,6 @@ typedef struct node_class {
     struct node_class* mpNextNode;
 } node_class;
 
-extern "C" {
-
 void cNd_Join(node_class* pA, node_class* pB);
 int cNd_LengthOf(node_class* pNode);
 node_class* cNd_First(node_class* pNode);
@@ -25,6 +23,5 @@ void cNd_SetObject(node_class* pNode, void* pData);
 void cNd_ClearObject(node_class* pNode);
 void cNd_ForcedClear(node_class* pNode);
 void cNd_Create(node_class* pNode, void* pData);
-};
 
 #endif

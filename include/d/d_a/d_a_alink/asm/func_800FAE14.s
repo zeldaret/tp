@@ -5,18 +5,18 @@
 /* 800FAE24 000F7D64  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FAE28 000F7D68  7C 7E 1B 78 */ mr r30, r3
 /* 800FAE2C 000F7D6C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800FAE30 000F7D70  4B FF F9 5D */ bl daAlink_c_NS_changeHangEndProc
+/* 800FAE30 000F7D70  4B FF F9 5D */ bl changeHangEndProc__9daAlink_cFv
 /* 800FAE34 000F7D74  2C 03 00 00 */ cmpwi r3, 0
 /* 800FAE38 000F7D78  41 82 00 0C */ beq lbl_800FAE44
 /* 800FAE3C 000F7D7C  38 60 00 01 */ li r3, 1
 /* 800FAE40 000F7D80  48 00 00 74 */ b lbl_800FAEB4
 lbl_800FAE44:
 /* 800FAE44 000F7D84  7F E3 FB 78 */ mr r3, r31
-/* 800FAE48 000F7D88  48 06 36 85 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FAE48 000F7D88  48 06 36 85 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FAE4C 000F7D8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FAE50 000F7D90  41 82 00 10 */ beq lbl_800FAE60
 /* 800FAE54 000F7D94  7F C3 F3 78 */ mr r3, r30
-/* 800FAE58 000F7D98  48 00 05 E5 */ bl daAlink_c_NS_procHangWaitInit
+/* 800FAE58 000F7D98  48 00 05 E5 */ bl procHangWaitInit__9daAlink_cFv
 /* 800FAE5C 000F7D9C  48 00 00 54 */ b lbl_800FAEB0
 lbl_800FAE60:
 /* 800FAE60 000F7DA0  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -31,14 +31,14 @@ lbl_800FAE60:
 /* 800FAE84 000F7DC4  A8 1E 2F E2 */ lha r0, 0x2fe2(r30)
 /* 800FAE88 000F7DC8  7C 03 00 50 */ subf r0, r3, r0
 /* 800FAE8C 000F7DCC  7C 03 07 34 */ extsh r3, r0
-/* 800FAE90 000F7DD0  4B FB 86 05 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 800FAE90 000F7DD0  4B FB 86 05 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 800FAE94 000F7DD4  2C 03 00 00 */ cmpwi r3, 0
 /* 800FAE98 000F7DD8  40 82 00 18 */ bne lbl_800FAEB0
 /* 800FAE9C 000F7DDC  7F C3 F3 78 */ mr r3, r30
 /* 800FAEA0 000F7DE0  3C 80 80 39 */ lis r4, lbl_8038E164@ha
 /* 800FAEA4 000F7DE4  38 84 E1 64 */ addi r4, r4, lbl_8038E164@l
 /* 800FAEA8 000F7DE8  C0 24 00 30 */ lfs f1, 0x30(r4)
-/* 800FAEAC 000F7DEC  48 00 0D 1D */ bl daAlink_c_NS_procHangClimbInit
+/* 800FAEAC 000F7DEC  48 00 0D 1D */ bl procHangClimbInit__9daAlink_cFf
 lbl_800FAEB0:
 /* 800FAEB0 000F7DF0  38 60 00 01 */ li r3, 1
 lbl_800FAEB4:

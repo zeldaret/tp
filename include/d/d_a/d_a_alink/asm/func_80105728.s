@@ -50,23 +50,23 @@
 /* 801057EC 0010272C  38 00 00 00 */ li r0, 0
 /* 801057F0 00102730  B0 1E 05 9E */ sth r0, 0x59e(r30)
 /* 801057F4 00102734  7F C3 F3 78 */ mr r3, r30
-/* 801057F8 00102738  4B FF D8 61 */ bl daAlink_c_NS_checkSwimUpAction
+/* 801057F8 00102738  4B FF D8 61 */ bl checkSwimUpAction__9daAlink_cFv
 /* 801057FC 0010273C  2C 03 00 00 */ cmpwi r3, 0
 /* 80105800 00102740  41 82 00 0C */ beq lbl_8010580C
 /* 80105804 00102744  38 60 00 01 */ li r3, 1
 /* 80105808 00102748  48 00 00 80 */ b lbl_80105888
 lbl_8010580C:
 /* 8010580C 0010274C  7F E3 FB 78 */ mr r3, r31
-/* 80105810 00102750  48 05 8C BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80105810 00102750  48 05 8C BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80105814 00102754  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80105818 00102758  41 82 00 24 */ beq lbl_8010583C
 /* 8010581C 0010275C  7F C3 F3 78 */ mr r3, r30
-/* 80105820 00102760  4B FF D1 A9 */ bl daAlink_c_NS_checkNextActionSwim
+/* 80105820 00102760  4B FF D1 A9 */ bl checkNextActionSwim__9daAlink_cFv
 /* 80105824 00102764  2C 03 00 00 */ cmpwi r3, 0
 /* 80105828 00102768  40 82 00 5C */ bne lbl_80105884
 /* 8010582C 0010276C  7F C3 F3 78 */ mr r3, r30
 /* 80105830 00102770  38 80 00 00 */ li r4, 0
-/* 80105834 00102774  4B FF EA C5 */ bl daAlink_c_NS_procSwimWaitInit
+/* 80105834 00102774  4B FF EA C5 */ bl procSwimWaitInit__9daAlink_cFi
 /* 80105838 00102778  48 00 00 50 */ b lbl_80105888
 lbl_8010583C:
 /* 8010583C 0010277C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -77,7 +77,7 @@ lbl_8010583C:
 /* 80105850 00102790  60 00 00 04 */ ori r0, r0, 4
 /* 80105854 00102794  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 80105858 00102798  7F C3 F3 78 */ mr r3, r30
-/* 8010585C 0010279C  4B FF D1 6D */ bl daAlink_c_NS_checkNextActionSwim
+/* 8010585C 0010279C  4B FF D1 6D */ bl checkNextActionSwim__9daAlink_cFv
 /* 80105860 001027A0  2C 03 00 00 */ cmpwi r3, 0
 /* 80105864 001027A4  40 82 00 20 */ bne lbl_80105884
 /* 80105868 001027A8  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
@@ -85,7 +85,7 @@ lbl_8010583C:
 /* 80105870 001027B0  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80105874 001027B4  40 81 00 10 */ ble lbl_80105884
 /* 80105878 001027B8  7F C3 F3 78 */ mr r3, r30
-/* 8010587C 001027BC  4B FF ED F5 */ bl daAlink_c_NS_procSwimMoveInit
+/* 8010587C 001027BC  4B FF ED F5 */ bl procSwimMoveInit__9daAlink_cFv
 /* 80105880 001027C0  48 00 00 08 */ b lbl_80105888
 lbl_80105884:
 /* 80105884 001027C4  38 60 00 01 */ li r3, 1

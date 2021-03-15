@@ -63,7 +63,7 @@
 /* 80062C44 0005FB84  7C 04 00 50 */ subf r0, r4, r0
 /* 80062C48 0005FB88  54 00 18 3E */ rotlwi r0, r0, 3
 /* 80062C4C 0005FB8C  7F E0 22 14 */ add r31, r0, r4
-/* 80062C50 0005FB90  48 13 CD B9 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 80062C50 0005FB90  48 13 CD B9 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80062C54 0005FB94  C0 02 87 E4 */ lfs f0, lbl_804521E4-_SDA2_BASE_(r2)
 /* 80062C58 0005FB98  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80062C5C 0005FB9C  40 80 00 18 */ bge lbl_80062C74
@@ -147,17 +147,17 @@ lbl_80062D78:
 /* 80062D78 0005FCB8  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80062D7C 0005FCBC  80 9B 00 00 */ lwz r4, 0(r27)
 /* 80062D80 0005FCC0  38 A0 00 00 */ li r5, 0
-/* 80062D84 0005FCC4  4B FF 8B A9 */ bl dKyr_set_btitex_common
+/* 80062D84 0005FCC4  4B FF 8B A9 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80062D88 0005FCC8  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80062D8C 0005FCCC  80 9B 00 04 */ lwz r4, 4(r27)
 /* 80062D90 0005FCD0  38 A0 00 01 */ li r5, 1
-/* 80062D94 0005FCD4  4B FF 8B 99 */ bl dKyr_set_btitex_common
+/* 80062D94 0005FCD4  4B FF 8B 99 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80062D98 0005FCD8  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80062D9C 0005FCDC  57 20 10 3A */ slwi r0, r25, 2
 /* 80062DA0 0005FCE0  7C 9B 02 14 */ add r4, r27, r0
 /* 80062DA4 0005FCE4  80 84 00 08 */ lwz r4, 8(r4)
 /* 80062DA8 0005FCE8  38 A0 00 02 */ li r5, 2
-/* 80062DAC 0005FCEC  4B FF 8B 81 */ bl dKyr_set_btitex_common
+/* 80062DAC 0005FCEC  4B FF 8B 81 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80062DB0 0005FCF0  38 60 00 00 */ li r3, 0
 /* 80062DB4 0005FCF4  48 2F AD 7D */ bl GXSetNumChans
 /* 80062DB8 0005FCF8  80 01 00 20 */ lwz r0, 0x20(r1)
@@ -359,7 +359,7 @@ lbl_800630B0:
 /* 800630C4 00060004  38 7E 00 D8 */ addi r3, r30, 0xd8
 /* 800630C8 00060008  38 9E 00 E4 */ addi r4, r30, 0xe4
 /* 800630CC 0006000C  38 A1 00 30 */ addi r5, r1, 0x30
-/* 800630D0 00060010  4B FF 86 91 */ bl dKyr_get_vectle_calc
+/* 800630D0 00060010  4B FF 86 91 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 800630D4 00060014  C0 21 00 30 */ lfs f1, 0x30(r1)
 /* 800630D8 00060018  EC 61 00 72 */ fmuls f3, f1, f1
 /* 800630DC 0006001C  C0 41 00 38 */ lfs f2, 0x38(r1)
@@ -457,7 +457,7 @@ lbl_80063238:
 /* 8006323C 0006017C  40 82 01 4C */ bne lbl_80063388
 /* 80063240 00060180  38 61 00 8C */ addi r3, r1, 0x8c
 /* 80063244 00060184  80 9C 00 14 */ lwz r4, 0x14(r28)
-/* 80063248 00060188  4B FF 87 DD */ bl dKyr_set_btitex
+/* 80063248 00060188  4B FF 87 DD */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 8006324C 0006018C  48 2F 83 41 */ bl GXClearVtxDesc
 /* 80063250 00060190  38 60 00 09 */ li r3, 9
 /* 80063254 00060194  38 80 00 01 */ li r4, 1

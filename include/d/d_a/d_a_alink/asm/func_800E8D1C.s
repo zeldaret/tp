@@ -8,7 +8,7 @@
 /* 800E8D38 000E5C78  7C 7F 1B 78 */ mr r31, r3
 /* 800E8D3C 000E5C7C  7C 85 23 78 */ mr r5, r4
 /* 800E8D40 000E5C80  38 80 00 00 */ li r4, 0
-/* 800E8D44 000E5C84  4B FF F1 F9 */ bl daAlink_c_NS_setPushPullKeepData
+/* 800E8D44 000E5C84  4B FF F1 F9 */ bl setPushPullKeepData__9daAlink_cFQ29dBgW_Base13PushPullLabeli
 /* 800E8D48 000E5C88  2C 03 00 00 */ cmpwi r3, 0
 /* 800E8D4C 000E5C8C  40 82 00 0C */ bne lbl_800E8D58
 /* 800E8D50 000E5C90  38 60 00 00 */ li r3, 0
@@ -16,9 +16,9 @@
 lbl_800E8D58:
 /* 800E8D58 000E5C98  7F E3 FB 78 */ mr r3, r31
 /* 800E8D5C 000E5C9C  38 80 00 39 */ li r4, 0x39
-/* 800E8D60 000E5CA0  4B FD 92 0D */ bl daAlink_c_NS_commonProcInit
+/* 800E8D60 000E5CA0  4B FD 92 0D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E8D64 000E5CA4  7F E3 FB 78 */ mr r3, r31
-/* 800E8D68 000E5CA8  4B FF F3 3D */ bl daAlink_c_NS_checkPushPullTurnBlock
+/* 800E8D68 000E5CA8  4B FF F3 3D */ bl checkPushPullTurnBlock__9daAlink_cFv
 /* 800E8D6C 000E5CAC  B0 7F 30 08 */ sth r3, 0x3008(r31)
 /* 800E8D70 000E5CB0  A8 1F 30 08 */ lha r0, 0x3008(r31)
 /* 800E8D74 000E5CB4  B0 1F 30 12 */ sth r0, 0x3012(r31)
@@ -28,18 +28,18 @@ lbl_800E8D58:
 /* 800E8D84 000E5CC4  C3 E2 92 B8 */ lfs f31, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E8D88 000E5CC8  7F E3 FB 78 */ mr r3, r31
 /* 800E8D8C 000E5CCC  38 80 00 3B */ li r4, 0x3b
-/* 800E8D90 000E5CD0  4B FC 41 F1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800E8D90 000E5CD0  4B FC 41 F1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800E8D94 000E5CD4  48 00 00 28 */ b lbl_800E8DBC
 lbl_800E8D98:
 /* 800E8D98 000E5CD8  7F E3 FB 78 */ mr r3, r31
-/* 800E8D9C 000E5CDC  4B FF F5 B9 */ bl daAlink_c_NS_getPushPullAnimeSpeed
+/* 800E8D9C 000E5CDC  4B FF F5 B9 */ bl getPushPullAnimeSpeed__9daAlink_cFv
 /* 800E8DA0 000E5CE0  FF E0 08 90 */ fmr f31, f1
 /* 800E8DA4 000E5CE4  7F E3 FB 78 */ mr r3, r31
 /* 800E8DA8 000E5CE8  38 80 00 3A */ li r4, 0x3a
 /* 800E8DAC 000E5CEC  3C A0 80 39 */ lis r5, lbl_8038E210@ha
 /* 800E8DB0 000E5CF0  38 A5 E2 10 */ addi r5, r5, lbl_8038E210@l
 /* 800E8DB4 000E5CF4  C0 45 00 24 */ lfs f2, 0x24(r5)
-/* 800E8DB8 000E5CF8  4B FC 42 29 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800E8DB8 000E5CF8  4B FC 42 29 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_800E8DBC:
 /* 800E8DBC 000E5CFC  D3 FF 1F DC */ stfs f31, 0x1fdc(r31)
 /* 800E8DC0 000E5D00  38 00 00 01 */ li r0, 1
@@ -48,7 +48,7 @@ lbl_800E8DBC:
 /* 800E8DCC 000E5D0C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8DD0 000E5D10  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E8DD4 000E5D14  A0 9F 1E 1E */ lhz r4, 0x1e1e(r31)
-/* 800E8DD8 000E5D18  4B F8 B8 41 */ bl cBgS_NS_GetActorPointer
+/* 800E8DD8 000E5D18  4B F8 B8 41 */ bl GetActorPointer__4cBgSCFi
 /* 800E8DDC 000E5D1C  7C 7E 1B 78 */ mr r30, r3
 /* 800E8DE0 000E5D20  7F E4 FB 78 */ mr r4, r31
 /* 800E8DE4 000E5D24  4B F3 19 2D */ bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c

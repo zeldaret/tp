@@ -14,15 +14,15 @@
 /* 800F3464 000F03A4  41 82 00 14 */ beq lbl_800F3478
 /* 800F3468 000F03A8  7F A3 EB 78 */ mr r3, r29
 /* 800F346C 000F03AC  7F C4 F3 78 */ mr r4, r30
-/* 800F3470 000F03B0  4B FF E8 A9 */ bl daAlink_c_NS_procHorseDamageInit
+/* 800F3470 000F03B0  4B FF E8 A9 */ bl procHorseDamageInit__9daAlink_cFP12dCcD_GObjInf
 /* 800F3474 000F03B4  48 00 00 F4 */ b lbl_800F3568
 lbl_800F3478:
 /* 800F3478 000F03B8  7F A3 EB 78 */ mr r3, r29
 /* 800F347C 000F03BC  38 80 00 50 */ li r4, 0x50
-/* 800F3480 000F03C0  4B FC EA ED */ bl daAlink_c_NS_commonProcInit
+/* 800F3480 000F03C0  4B FC EA ED */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F3484 000F03C4  7F A3 EB 78 */ mr r3, r29
 /* 800F3488 000F03C8  7F C4 F3 78 */ mr r4, r30
-/* 800F348C 000F03CC  4B FE 40 69 */ bl daAlink_c_NS_getDamageVec
+/* 800F348C 000F03CC  4B FE 40 69 */ bl getDamageVec__9daAlink_cFP12dCcD_GObjInf
 /* 800F3490 000F03D0  48 17 3C 99 */ bl atan2sX_Z__4cXyzCFv
 /* 800F3494 000F03D4  A8 1D 04 E6 */ lha r0, 0x4e6(r29)
 /* 800F3498 000F03D8  7C 00 18 50 */ subf r0, r0, r3
@@ -50,7 +50,7 @@ lbl_800F34E0:
 /* 800F34E8 000F0428  7C 60 00 78 */ andc r0, r3, r0
 /* 800F34EC 000F042C  98 1D 2F AB */ stb r0, 0x2fab(r29)
 /* 800F34F0 000F0430  7F A3 EB 78 */ mr r3, r29
-/* 800F34F4 000F0434  4B FB 9A 8D */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800F34F4 000F0434  4B FB 9A 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800F34F8 000F0438  38 00 00 00 */ li r0, 0
 /* 800F34FC 000F043C  B0 1D 30 0E */ sth r0, 0x300e(r29)
 /* 800F3500 000F0440  B0 1D 30 04 */ sth r0, 0x3004(r29)
@@ -58,10 +58,10 @@ lbl_800F34E0:
 /* 800F3508 000F0448  7F A3 EB 78 */ mr r3, r29
 /* 800F350C 000F044C  38 80 00 02 */ li r4, 2
 /* 800F3510 000F0450  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F3514 000F0454  4B FB A5 D9 */ bl daAlink_c_NS_resetUnderAnime
+/* 800F3514 000F0454  4B FB A5 D9 */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 /* 800F3518 000F0458  7F A3 EB 78 */ mr r3, r29
-/* 800F351C 000F045C  4B FF 9F C1 */ bl daAlink_c_NS_setSyncHorsePos
-/* 800F3520 000F0460  4B FF 92 91 */ bl daAlink_c_NS_setHorseZeldaDamage
+/* 800F351C 000F045C  4B FF 9F C1 */ bl setSyncHorsePos__9daAlink_cFv
+/* 800F3520 000F0460  4B FF 92 91 */ bl setHorseZeldaDamage__9daAlink_cFv
 /* 800F3524 000F0464  2C 1F 00 00 */ cmpwi r31, 0
 /* 800F3528 000F0468  41 82 00 3C */ beq lbl_800F3564
 /* 800F352C 000F046C  7F A3 EB 78 */ mr r3, r29

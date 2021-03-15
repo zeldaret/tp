@@ -43,7 +43,7 @@ lbl_8012E144:
 /* 8012E14C 0012B08C  B0 1F 04 DE */ sth r0, 0x4de(r31)
 lbl_8012E150:
 /* 8012E150 0012B090  7F E3 FB 78 */ mr r3, r31
-/* 8012E154 0012B094  4B FF E1 B5 */ bl daAlink_c_NS_checkWolfAtnDoCharge
+/* 8012E154 0012B094  4B FF E1 B5 */ bl checkWolfAtnDoCharge__9daAlink_cFv
 /* 8012E158 0012B098  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 8012E15C 0012B09C  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 8012E160 0012B0A0  41 82 00 20 */ beq lbl_8012E180
@@ -52,7 +52,7 @@ lbl_8012E150:
 /* 8012E16C 0012B0AC  41 82 00 14 */ beq lbl_8012E180
 /* 8012E170 0012B0B0  7F E3 FB 78 */ mr r3, r31
 /* 8012E174 0012B0B4  A8 9F 30 12 */ lha r4, 0x3012(r31)
-/* 8012E178 0012B0B8  48 00 00 71 */ bl daAlink_c_NS_procWolfSideStepLandInit
+/* 8012E178 0012B0B8  48 00 00 71 */ bl procWolfSideStepLandInit__9daAlink_cFs
 /* 8012E17C 0012B0BC  48 00 00 58 */ b lbl_8012E1D4
 lbl_8012E180:
 /* 8012E180 0012B0C0  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -71,7 +71,7 @@ lbl_8012E180:
 /* 8012E1B4 0012B0F4  7F E3 FB 78 */ mr r3, r31
 /* 8012E1B8 0012B0F8  38 80 00 02 */ li r4, 2
 /* 8012E1BC 0012B0FC  C0 25 00 64 */ lfs f1, 0x64(r5)
-/* 8012E1C0 0012B100  48 00 0C 11 */ bl daAlink_c_NS_procWolfFallInit
+/* 8012E1C0 0012B100  48 00 0C 11 */ bl procWolfFallInit__9daAlink_cFif
 /* 8012E1C4 0012B104  48 00 00 10 */ b lbl_8012E1D4
 lbl_8012E1C8:
 /* 8012E1C8 0012B108  38 00 00 01 */ li r0, 1

@@ -10,7 +10,7 @@
 /* 802C0D28 002BDC68  4B FE AC 39 */ bl decrCrowdSize__7Z2SeMgrFv
 lbl_802C0D2C:
 /* 802C0D2C 002BDC6C  7F E3 FB 78 */ mr r3, r31
-/* 802C0D30 002BDC70  4B FF F7 B9 */ bl Z2Creature_NS_deleteObject
+/* 802C0D30 002BDC70  4B FF F7 B9 */ bl deleteObject__10Z2CreatureFv
 /* 802C0D34 002BDC74  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802C0D38 002BDC78  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802C0D3C 002BDC7C  7C 08 03 A6 */ mtlr r0

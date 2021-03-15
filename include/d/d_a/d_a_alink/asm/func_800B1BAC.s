@@ -13,7 +13,7 @@
 /* 800B1BDC 000AEB1C  C3 C2 92 C0 */ lfs f30, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800B1BE0 000AEB20  FF A0 F0 90 */ fmr f29, f30
 /* 800B1BE4 000AEB24  C3 E3 2B A8 */ lfs f31, 0x2ba8(r3)
-/* 800B1BE8 000AEB28  48 06 40 39 */ bl daAlink_c_NS_checkEventRun
+/* 800B1BE8 000AEB28  48 06 40 39 */ bl checkEventRun__9daAlink_cCFv
 /* 800B1BEC 000AEB2C  7C 7F 1B 78 */ mr r31, r3
 /* 800B1BF0 000AEB30  80 1E 19 9C */ lwz r0, 0x199c(r30)
 /* 800B1BF4 000AEB34  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
@@ -22,7 +22,7 @@
 /* 800B1C00 000AEB40  28 00 00 03 */ cmplwi r0, 3
 /* 800B1C04 000AEB44  41 82 00 14 */ beq lbl_800B1C18
 /* 800B1C08 000AEB48  7F C3 F3 78 */ mr r3, r30
-/* 800B1C0C 000AEB4C  48 05 3E 8D */ bl daAlink_c_NS_checkSnowCode
+/* 800B1C0C 000AEB4C  48 05 3E 8D */ bl checkSnowCode__9daAlink_cCFv
 /* 800B1C10 000AEB50  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B1C14 000AEB54  41 82 01 D0 */ beq lbl_800B1DE4
 lbl_800B1C18:
@@ -34,11 +34,11 @@ lbl_800B1C18:
 /* 800B1C2C 000AEB6C  54 60 01 8D */ rlwinm. r0, r3, 0, 6, 6
 /* 800B1C30 000AEB70  40 82 01 BC */ bne lbl_800B1DEC
 /* 800B1C34 000AEB74  7F C3 F3 78 */ mr r3, r30
-/* 800B1C38 000AEB78  48 05 3E 61 */ bl daAlink_c_NS_checkSnowCode
+/* 800B1C38 000AEB78  48 05 3E 61 */ bl checkSnowCode__9daAlink_cCFv
 /* 800B1C3C 000AEB7C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B1C40 000AEB80  41 82 00 54 */ beq lbl_800B1C94
 /* 800B1C44 000AEB84  7F C3 F3 78 */ mr r3, r30
-/* 800B1C48 000AEB88  48 00 1C BD */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800B1C48 000AEB88  48 00 1C BD */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800B1C4C 000AEB8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B1C50 000AEB90  41 82 00 10 */ beq lbl_800B1C60
 /* 800B1C54 000AEB94  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)

@@ -9,13 +9,13 @@
 /* 8001F3D4 0001C314  40 82 00 6C */ bne lbl_8001F440
 /* 8001F3D8 0001C318  83 C3 00 10 */ lwz r30, 0x10(r3)
 /* 8001F3DC 0001C31C  38 6D 87 68 */ la r3, lbl_80450CE8(r13)
-/* 8001F3E0 0001C320  48 00 12 7D */ bl fpcBs_MakeOfType
+/* 8001F3E0 0001C320  48 00 12 7D */ bl fpcBs_MakeOfType__FPi
 /* 8001F3E4 0001C324  90 7F 00 C0 */ stw r3, 0xc0(r31)
 /* 8001F3E8 0001C328  80 1E 00 24 */ lwz r0, 0x24(r30)
 /* 8001F3EC 0001C32C  90 1F 00 D8 */ stw r0, 0xd8(r31)
 /* 8001F3F0 0001C330  38 7F 00 C4 */ addi r3, r31, 0xc4
 /* 8001F3F4 0001C334  7F E4 FB 78 */ mr r4, r31
-/* 8001F3F8 0001C338  48 00 10 FD */ bl fopDwTg_Init
+/* 8001F3F8 0001C338  48 00 10 FD */ bl fopDwTg_Init__FP16create_tag_classPv
 /* 8001F3FC 0001C33C  80 7F 00 AC */ lwz r3, 0xac(r31)
 /* 8001F400 0001C340  28 03 00 00 */ cmplwi r3, 0
 /* 8001F404 0001C344  41 82 00 3C */ beq lbl_8001F440
@@ -36,15 +36,15 @@
 lbl_8001F440:
 /* 8001F440 0001C380  80 7F 00 D8 */ lwz r3, 0xd8(r31)
 /* 8001F444 0001C384  7F E4 FB 78 */ mr r4, r31
-/* 8001F448 0001C388  48 00 30 85 */ bl fpcMtd_Create
+/* 8001F448 0001C388  48 00 30 85 */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001F44C 0001C38C  7C 7E 1B 78 */ mr r30, r3
 /* 8001F450 0001C390  2C 1E 00 04 */ cmpwi r30, 4
 /* 8001F454 0001C394  40 82 00 18 */ bne lbl_8001F46C
 /* 8001F458 0001C398  7F E3 FB 78 */ mr r3, r31
-/* 8001F45C 0001C39C  48 00 25 A5 */ bl fpcLf_GetPriority
+/* 8001F45C 0001C39C  48 00 25 A5 */ bl fpcLf_GetPriority__FPC14leafdraw_class
 /* 8001F460 0001C3A0  7C 64 07 34 */ extsh r4, r3
 /* 8001F464 0001C3A4  38 7F 00 C4 */ addi r3, r31, 0xc4
-/* 8001F468 0001C3A8  48 00 10 45 */ bl fopDwTg_ToDrawQ
+/* 8001F468 0001C3A8  48 00 10 45 */ bl fopDwTg_ToDrawQ__FP16create_tag_classi
 lbl_8001F46C:
 /* 8001F46C 0001C3AC  7F C3 F3 78 */ mr r3, r30
 /* 8001F470 0001C3B0  83 E1 00 0C */ lwz r31, 0xc(r1)

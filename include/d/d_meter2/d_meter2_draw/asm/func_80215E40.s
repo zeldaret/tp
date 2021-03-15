@@ -5,7 +5,7 @@
 /* 80215E50 00212D90  48 14 C3 81 */ bl _savegpr_26
 /* 80215E54 00212D94  7C 7F 1B 78 */ mr r31, r3
 /* 80215E58 00212D98  80 63 01 E0 */ lwz r3, 0x1e0(r3)
-/* 80215E5C 00212D9C  48 03 F9 CD */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215E5C 00212D9C  48 03 F9 CD */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215E60 00212DA0  C0 02 AE 80 */ lfs f0, lbl_80454880-_SDA2_BASE_(r2)
 /* 80215E64 00212DA4  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80215E68 00212DA8  41 82 01 08 */ beq lbl_80215F70
@@ -15,24 +15,24 @@
 /* 80215E78 00212DB8  C0 24 00 18 */ lfs f1, 0x18(r4)
 /* 80215E7C 00212DBC  C0 1F 06 FC */ lfs f0, 0x6fc(r31)
 /* 80215E80 00212DC0  EC 21 00 32 */ fmuls f1, f1, f0
-/* 80215E84 00212DC4  48 03 F9 4D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215E84 00212DC4  48 03 F9 4D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80215E88 00212DC8  7F E3 FB 78 */ mr r3, r31
 /* 80215E8C 00212DCC  80 9F 01 E0 */ lwz r4, 0x1e0(r31)
 /* 80215E90 00212DD0  38 A0 00 05 */ li r5, 5
-/* 80215E94 00212DD4  48 00 4B 35 */ bl dMeter2Draw_c_NS_setAlphaAnimeMin
+/* 80215E94 00212DD4  48 00 4B 35 */ bl setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 80215E98 00212DD8  3B 60 00 00 */ li r27, 0
 /* 80215E9C 00212DDC  3B C0 00 00 */ li r30, 0
 /* 80215EA0 00212DE0  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 80215EA4 00212DE4  3B A3 EB C8 */ addi r29, r3, lbl_8042EBC8@l
 lbl_80215EA8:
 /* 80215EA8 00212DE8  80 7F 01 E0 */ lwz r3, 0x1e0(r31)
-/* 80215EAC 00212DEC  48 03 F9 7D */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215EAC 00212DEC  48 03 F9 7D */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215EB0 00212DF0  7C 7D F2 14 */ add r3, r29, r30
 /* 80215EB4 00212DF4  C0 03 0E AC */ lfs f0, 0xeac(r3)
 /* 80215EB8 00212DF8  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80215EBC 00212DFC  38 1E 01 E8 */ addi r0, r30, 0x1e8
 /* 80215EC0 00212E00  7C 7F 00 2E */ lwzx r3, r31, r0
-/* 80215EC4 00212E04  48 03 F9 0D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215EC4 00212E04  48 03 F9 0D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80215EC8 00212E08  3B 7B 00 01 */ addi r27, r27, 1
 /* 80215ECC 00212E0C  2C 1B 00 02 */ cmpwi r27, 2
 /* 80215ED0 00212E10  3B DE 00 04 */ addi r30, r30, 4
@@ -50,29 +50,29 @@ lbl_80215EEC:
 /* 80215EFC 00212E3C  7C 1A 00 00 */ cmpw r26, r0
 /* 80215F00 00212E40  40 80 00 2C */ bge lbl_80215F2C
 /* 80215F04 00212E44  80 7F 01 EC */ lwz r3, 0x1ec(r31)
-/* 80215F08 00212E48  48 03 F9 21 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215F08 00212E48  48 03 F9 21 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215F0C 00212E4C  7F 7F F2 14 */ add r27, r31, r30
 /* 80215F10 00212E50  80 7B 01 F4 */ lwz r3, 0x1f4(r27)
-/* 80215F14 00212E54  48 03 F8 BD */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215F14 00212E54  48 03 F8 BD */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80215F18 00212E58  80 7F 01 EC */ lwz r3, 0x1ec(r31)
-/* 80215F1C 00212E5C  48 03 F9 0D */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215F1C 00212E5C  48 03 F9 0D */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215F20 00212E60  80 7B 01 F8 */ lwz r3, 0x1f8(r27)
-/* 80215F24 00212E64  48 03 F8 AD */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215F24 00212E64  48 03 F8 AD */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80215F28 00212E68  48 00 00 38 */ b lbl_80215F60
 lbl_80215F2C:
 /* 80215F2C 00212E6C  80 7F 01 EC */ lwz r3, 0x1ec(r31)
-/* 80215F30 00212E70  48 03 F8 F9 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215F30 00212E70  48 03 F8 F9 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215F34 00212E74  C0 02 AE C8 */ lfs f0, lbl_804548C8-_SDA2_BASE_(r2)
 /* 80215F38 00212E78  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80215F3C 00212E7C  7F 7F F2 14 */ add r27, r31, r30
 /* 80215F40 00212E80  80 7B 01 F4 */ lwz r3, 0x1f4(r27)
-/* 80215F44 00212E84  48 03 F8 8D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215F44 00212E84  48 03 F8 8D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80215F48 00212E88  80 7F 01 EC */ lwz r3, 0x1ec(r31)
-/* 80215F4C 00212E8C  48 03 F8 DD */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215F4C 00212E8C  48 03 F8 DD */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215F50 00212E90  C0 02 AE C8 */ lfs f0, lbl_804548C8-_SDA2_BASE_(r2)
 /* 80215F54 00212E94  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80215F58 00212E98  80 7B 01 F8 */ lwz r3, 0x1f8(r27)
-/* 80215F5C 00212E9C  48 03 F8 75 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80215F5C 00212E9C  48 03 F8 75 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_80215F60:
 /* 80215F60 00212EA0  3B 5A 00 01 */ addi r26, r26, 1
 /* 80215F64 00212EA4  2C 1A 00 10 */ cmpwi r26, 0x10

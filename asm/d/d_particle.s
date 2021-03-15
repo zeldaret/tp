@@ -3,8 +3,8 @@
 .section .text, "ax" # 80049420
 
 
-.global dPa_cleanupGX
-dPa_cleanupGX:
+.global dPa_cleanupGX__Fv
+dPa_cleanupGX__Fv:
 /* 80049420 00046360  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049424 00046364  7C 08 02 A6 */	mflr r0
 /* 80049428 00046368  90 01 00 14 */	stw r0, 0x14(r1)
@@ -94,8 +94,8 @@ dPa_cleanupGX:
 /* 80049578 000464B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004957C 000464BC  4E 80 00 20 */	blr 
 
-.global dPa_followEcallBack
-dPa_followEcallBack:
+.global __ct__19dPa_followEcallBackFUcUc
+__ct__19dPa_followEcallBackFUcUc:
 /* 80049580 000464C0  3C C0 80 3B */	lis r6, lbl_803A8578@ha
 /* 80049584 000464C4  38 06 85 78 */	addi r0, r6, lbl_803A8578@l
 /* 80049588 000464C8  90 03 00 00 */	stw r0, 0(r3)
@@ -138,7 +138,7 @@ dPa_followEcallBack:
 /* 8004961C 0004655C  A8 85 00 02 */	lha r4, 2(r5)
 /* 80049620 00046560  A8 A5 00 04 */	lha r5, 4(r5)
 /* 80049624 00046564  38 DF 00 68 */	addi r6, r31, 0x68
-/* 80049628 00046568  48 23 71 0D */	bl JPAGetXYZRotateMtx
+/* 80049628 00046568  48 23 71 0D */	bl JPAGetXYZRotateMtx__FsssPA4_f
 lbl_8004962C:
 /* 8004962C 0004656C  38 80 00 00 */	li r4, 0
 /* 80049630 00046570  80 1F 00 F4 */	lwz r0, 0xf4(r31)
@@ -258,8 +258,8 @@ lbl_80049734:
 /* 800497E0 00046720  90 04 00 C0 */	stw r0, 0xc0(r4)
 /* 800497E4 00046724  4E 80 00 20 */	blr 
 
-.global dPa_group_id_change
-dPa_group_id_change:
+.global dPa_group_id_change__FPUlPUc
+dPa_group_id_change__FPUlPUc:
 /* 800497E8 00046728  88 04 00 00 */	lbz r0, 0(r4)
 /* 800497EC 0004672C  28 00 00 0F */	cmplwi r0, 0xf
 /* 800497F0 00046730  4C 80 00 20 */	bgelr 
@@ -360,8 +360,8 @@ lbl_80049920:
 /* 8004992C 0004686C  98 04 00 00 */	stb r0, 0(r4)
 /* 80049930 00046870  4E 80 00 20 */	blr 
 
-.global initiateLighting8
-initiateLighting8:
+.global initiateLighting8__FR8_GXColors
+initiateLighting8__FR8_GXColors:
 /* 80049934 00046874  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80049938 00046878  7C 08 02 A6 */	mflr r0
 /* 8004993C 0004687C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -392,7 +392,7 @@ initiateLighting8:
 /* 800499A0 000468E0  9B A1 00 11 */	stb r29, 0x11(r1)
 /* 800499A4 000468E4  54 1C BE BC */	rlwinm r28, r0, 0x17, 0x1a, 0x1e
 /* 800499A8 000468E8  9B 81 00 12 */	stb r28, 0x12(r1)
-/* 800499AC 000468EC  48 11 5A 79 */	bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 800499AC 000468EC  48 11 5A 79 */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 800499B0 000468F0  2C 03 00 00 */	cmpwi r3, 0
 /* 800499B4 000468F4  41 82 01 00 */	beq lbl_80049AB4
 /* 800499B8 000468F8  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
@@ -494,8 +494,8 @@ lbl_80049AF0:
 /* 80049B28 00046A68  38 21 00 70 */	addi r1, r1, 0x70
 /* 80049B2C 00046A6C  4E 80 00 20 */	blr 
 
-.global initiate_b_Lighting8
-initiate_b_Lighting8:
+.global initiate_b_Lighting8__FR8_GXColor
+initiate_b_Lighting8__FR8_GXColor:
 /* 80049B30 00046A70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80049B34 00046A74  7C 08 02 A6 */	mflr r0
 /* 80049B38 00046A78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -533,8 +533,8 @@ initiate_b_Lighting8:
 /* 80049BB8 00046AF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80049BBC 00046AFC  4E 80 00 20 */	blr 
 
-.global drawFirst
-drawFirst:
+.global drawFirst__FP14JPABaseEmitter
+drawFirst__FP14JPABaseEmitter:
 /* 80049BC0 00046B00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049BC4 00046B04  7C 08 02 A6 */	mflr r0
 /* 80049BC8 00046B08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -560,8 +560,8 @@ drawFirst:
 /* 80049C18 00046B58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049C1C 00046B5C  4E 80 00 20 */	blr 
 
-.global drawFirst_l8
-drawFirst_l8:
+.global drawFirst_l8__FP14JPABaseEmitter
+drawFirst_l8__FP14JPABaseEmitter:
 /* 80049C20 00046B60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049C24 00046B64  7C 08 02 A6 */	mflr r0
 /* 80049C28 00046B68  90 01 00 14 */	stw r0, 0x14(r1)
@@ -572,8 +572,8 @@ drawFirst_l8:
 /* 80049C3C 00046B7C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049C40 00046B80  4E 80 00 20 */	blr 
 
-.global drawSecond_light8
-drawSecond_light8:
+.global drawSecond_light8__FP14JPABaseEmitter
+drawSecond_light8__FP14JPABaseEmitter:
 /* 80049C44 00046B84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80049C48 00046B88  7C 08 02 A6 */	mflr r0
 /* 80049C4C 00046B8C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -588,7 +588,7 @@ drawSecond_light8:
 /* 80049C70 00046BB0  88 0D 87 E4 */	lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 80049C74 00046BB4  7C 03 07 74 */	extsb r3, r0
 /* 80049C78 00046BB8  C0 22 85 50 */	lfs f1, lbl_80451F50-_SDA2_BASE_(r2)
-/* 80049C7C 00046BBC  48 15 CF DD */	bl dKy_setLight_nowroom_grass
+/* 80049C7C 00046BBC  48 15 CF DD */	bl dKy_setLight_nowroom_grass__Fcf
 /* 80049C80 00046BC0  38 60 00 01 */	li r3, 1
 /* 80049C84 00046BC4  48 31 5F C1 */	bl GXSetColorUpdate
 /* 80049C88 00046BC8  38 60 00 07 */	li r3, 7
@@ -622,7 +622,7 @@ drawSecond_light8:
 /* 80049CF8 00046C38  98 01 00 0B */	stb r0, 0xb(r1)
 /* 80049CFC 00046C3C  38 61 00 08 */	addi r3, r1, 8
 /* 80049D00 00046C40  7F E4 FB 78 */	mr r4, r31
-/* 80049D04 00046C44  4B FF FC 31 */	bl initiateLighting8
+/* 80049D04 00046C44  4B FF FC 31 */	bl initiateLighting8__FR8_GXColors
 /* 80049D08 00046C48  38 60 00 01 */	li r3, 1
 /* 80049D0C 00046C4C  48 31 20 F1 */	bl GXSetNumTexGens
 /* 80049D10 00046C50  38 60 00 00 */	li r3, 0
@@ -702,8 +702,8 @@ drawSecond_light8:
 /* 80049E38 00046D78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80049E3C 00046D7C  4E 80 00 20 */	blr 
 
-.global drawSecond_b_light8
-drawSecond_b_light8:
+.global drawSecond_b_light8__FP14JPABaseEmitter
+drawSecond_b_light8__FP14JPABaseEmitter:
 /* 80049E40 00046D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80049E44 00046D84  7C 08 02 A6 */	mflr r0
 /* 80049E48 00046D88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -714,7 +714,7 @@ drawSecond_b_light8:
 /* 80049E5C 00046D9C  3B E3 CA 54 */	addi r31, r3, lbl_8042CA54@l
 /* 80049E60 00046DA0  88 0D 87 E4 */	lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 80049E64 00046DA4  7C 03 07 74 */	extsb r3, r0
-/* 80049E68 00046DA8  48 15 CD B9 */	bl dKy_setLight_nowroom
+/* 80049E68 00046DA8  48 15 CD B9 */	bl dKy_setLight_nowroom__Fc
 /* 80049E6C 00046DAC  38 60 00 01 */	li r3, 1
 /* 80049E70 00046DB0  48 31 5D D5 */	bl GXSetColorUpdate
 /* 80049E74 00046DB4  38 60 00 01 */	li r3, 1
@@ -742,7 +742,7 @@ lbl_80049EAC:
 /* 80049EC8 00046E08  98 01 00 0B */	stb r0, 0xb(r1)
 lbl_80049ECC:
 /* 80049ECC 00046E0C  38 61 00 08 */	addi r3, r1, 8
-/* 80049ED0 00046E10  4B FF FC 61 */	bl initiate_b_Lighting8
+/* 80049ED0 00046E10  4B FF FC 61 */	bl initiate_b_Lighting8__FR8_GXColor
 /* 80049ED4 00046E14  38 60 00 02 */	li r3, 2
 /* 80049ED8 00046E18  48 31 59 B9 */	bl GXSetNumTevStages
 /* 80049EDC 00046E1C  38 60 00 00 */	li r3, 0
@@ -814,8 +814,8 @@ lbl_80049ECC:
 /* 80049FE4 00046F24  38 21 00 20 */	addi r1, r1, 0x20
 /* 80049FE8 00046F28  4E 80 00 20 */	blr 
 
-.global static_light8EcallBack
-static_light8EcallBack:
+.global static_light8EcallBack__FP14JPABaseEmitter
+static_light8EcallBack__FP14JPABaseEmitter:
 /* 80049FEC 00046F2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049FF0 00046F30  7C 08 02 A6 */	mflr r0
 /* 80049FF4 00046F34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -869,7 +869,7 @@ static_light8EcallBack:
 /* 8004A0B4 00046FF4  38 80 00 01 */	li r4, 1
 /* 8004A0B8 00046FF8  48 31 0E 01 */	bl GXSetVtxDesc
 /* 8004A0BC 00046FFC  7F E3 FB 78 */	mr r3, r31
-/* 8004A0C0 00047000  48 23 4E 81 */	bl JPABaseEmitter_NS_getDrawCount
+/* 8004A0C0 00047000  48 23 4E 81 */	bl getDrawCount__14JPABaseEmitterCFv
 /* 8004A0C4 00047004  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004A0C8 00047008  2C 00 00 02 */	cmpwi r0, 2
 /* 8004A0CC 0004700C  41 82 00 20 */	beq lbl_8004A0EC
@@ -879,11 +879,11 @@ static_light8EcallBack:
 /* 8004A0DC 0004701C  48 00 00 18 */	b lbl_8004A0F4
 lbl_8004A0E0:
 /* 8004A0E0 00047020  7F E3 FB 78 */	mr r3, r31
-/* 8004A0E4 00047024  4B FF FA DD */	bl drawFirst
+/* 8004A0E4 00047024  4B FF FA DD */	bl drawFirst__FP14JPABaseEmitter
 /* 8004A0E8 00047028  48 00 00 0C */	b lbl_8004A0F4
 lbl_8004A0EC:
 /* 8004A0EC 0004702C  7F E3 FB 78 */	mr r3, r31
-/* 8004A0F0 00047030  4B FF FB 55 */	bl drawSecond_light8
+/* 8004A0F0 00047030  4B FF FB 55 */	bl drawSecond_light8__FP14JPABaseEmitter
 lbl_8004A0F4:
 /* 8004A0F4 00047034  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8004A0F8 00047038  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -891,8 +891,8 @@ lbl_8004A0F4:
 /* 8004A100 00047040  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A104 00047044  4E 80 00 20 */	blr 
 
-.global static_gen_b_light8EcallBack
-static_gen_b_light8EcallBack:
+.global static_gen_b_light8EcallBack__FP14JPABaseEmitter
+static_gen_b_light8EcallBack__FP14JPABaseEmitter:
 /* 8004A108 00047048  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8004A10C 0004704C  7C 08 02 A6 */	mflr r0
 /* 8004A110 00047050  90 01 00 44 */	stw r0, 0x44(r1)
@@ -946,7 +946,7 @@ static_gen_b_light8EcallBack:
 /* 8004A1D0 00047110  38 80 00 01 */	li r4, 1
 /* 8004A1D4 00047114  48 31 0C E5 */	bl GXSetVtxDesc
 /* 8004A1D8 00047118  7F E3 FB 78 */	mr r3, r31
-/* 8004A1DC 0004711C  48 23 4D 65 */	bl JPABaseEmitter_NS_getDrawCount
+/* 8004A1DC 0004711C  48 23 4D 65 */	bl getDrawCount__14JPABaseEmitterCFv
 /* 8004A1E0 00047120  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004A1E4 00047124  2C 00 00 02 */	cmpwi r0, 2
 /* 8004A1E8 00047128  41 82 00 20 */	beq lbl_8004A208
@@ -956,11 +956,11 @@ static_gen_b_light8EcallBack:
 /* 8004A1F8 00047138  48 00 00 18 */	b lbl_8004A210
 lbl_8004A1FC:
 /* 8004A1FC 0004713C  7F E3 FB 78 */	mr r3, r31
-/* 8004A200 00047140  4B FF FA 21 */	bl drawFirst_l8
+/* 8004A200 00047140  4B FF FA 21 */	bl drawFirst_l8__FP14JPABaseEmitter
 /* 8004A204 00047144  48 00 00 0C */	b lbl_8004A210
 lbl_8004A208:
 /* 8004A208 00047148  7F E3 FB 78 */	mr r3, r31
-/* 8004A20C 0004714C  4B FF FC 35 */	bl drawSecond_b_light8
+/* 8004A20C 0004714C  4B FF FC 35 */	bl drawSecond_b_light8__FP14JPABaseEmitter
 lbl_8004A210:
 /* 8004A210 00047150  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 8004A214 00047154  80 01 00 44 */	lwz r0, 0x44(r1)
@@ -968,8 +968,8 @@ lbl_8004A210:
 /* 8004A21C 0004715C  38 21 00 40 */	addi r1, r1, 0x40
 /* 8004A220 00047160  4E 80 00 20 */	blr 
 
-.global static_gen_d_light8EcallBack
-static_gen_d_light8EcallBack:
+.global static_gen_d_light8EcallBack__FP14JPABaseEmitter
+static_gen_d_light8EcallBack__FP14JPABaseEmitter:
 /* 8004A224 00047164  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A228 00047168  7C 08 02 A6 */	mflr r0
 /* 8004A22C 0004716C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1023,7 +1023,7 @@ static_gen_d_light8EcallBack:
 /* 8004A2EC 0004722C  38 80 00 01 */	li r4, 1
 /* 8004A2F0 00047230  48 31 0B C9 */	bl GXSetVtxDesc
 /* 8004A2F4 00047234  7F E3 FB 78 */	mr r3, r31
-/* 8004A2F8 00047238  48 23 4C 49 */	bl JPABaseEmitter_NS_getDrawCount
+/* 8004A2F8 00047238  48 23 4C 49 */	bl getDrawCount__14JPABaseEmitterCFv
 /* 8004A2FC 0004723C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004A300 00047240  2C 00 00 02 */	cmpwi r0, 2
 /* 8004A304 00047244  41 82 00 20 */	beq lbl_8004A324
@@ -1033,11 +1033,11 @@ static_gen_d_light8EcallBack:
 /* 8004A314 00047254  48 00 00 18 */	b lbl_8004A32C
 lbl_8004A318:
 /* 8004A318 00047258  7F E3 FB 78 */	mr r3, r31
-/* 8004A31C 0004725C  4B FF F9 05 */	bl drawFirst_l8
+/* 8004A31C 0004725C  4B FF F9 05 */	bl drawFirst_l8__FP14JPABaseEmitter
 /* 8004A320 00047260  48 00 00 0C */	b lbl_8004A32C
 lbl_8004A324:
 /* 8004A324 00047264  7F E3 FB 78 */	mr r3, r31
-/* 8004A328 00047268  4B FF FB 19 */	bl drawSecond_b_light8
+/* 8004A328 00047268  4B FF FB 19 */	bl drawSecond_b_light8__FP14JPABaseEmitter
 lbl_8004A32C:
 /* 8004A32C 0004726C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8004A330 00047270  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1048,7 +1048,7 @@ lbl_8004A32C:
 /* 8004A344 00047284  7C 08 02 A6 */	mflr r0
 /* 8004A348 00047288  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004A34C 0004728C  7C 83 23 78 */	mr r3, r4
-/* 8004A350 00047290  4B FF FC 9D */	bl static_light8EcallBack
+/* 8004A350 00047290  4B FF FC 9D */	bl static_light8EcallBack__FP14JPABaseEmitter
 /* 8004A354 00047294  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004A358 00047298  7C 08 03 A6 */	mtlr r0
 /* 8004A35C 0004729C  38 21 00 10 */	addi r1, r1, 0x10
@@ -1057,7 +1057,7 @@ lbl_8004A32C:
 /* 8004A368 000472A8  7C 08 02 A6 */	mflr r0
 /* 8004A36C 000472AC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004A370 000472B0  7C 83 23 78 */	mr r3, r4
-/* 8004A374 000472B4  4B FF FD 95 */	bl static_gen_b_light8EcallBack
+/* 8004A374 000472B4  4B FF FD 95 */	bl static_gen_b_light8EcallBack__FP14JPABaseEmitter
 /* 8004A378 000472B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004A37C 000472BC  7C 08 03 A6 */	mtlr r0
 /* 8004A380 000472C0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1066,14 +1066,14 @@ lbl_8004A32C:
 /* 8004A38C 000472CC  7C 08 02 A6 */	mflr r0
 /* 8004A390 000472D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004A394 000472D4  7C 83 23 78 */	mr r3, r4
-/* 8004A398 000472D8  4B FF FE 8D */	bl static_gen_d_light8EcallBack
+/* 8004A398 000472D8  4B FF FE 8D */	bl static_gen_d_light8EcallBack__FP14JPABaseEmitter
 /* 8004A39C 000472DC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004A3A0 000472E0  7C 08 03 A6 */	mtlr r0
 /* 8004A3A4 000472E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A3A8 000472E8  4E 80 00 20 */	blr 
 
-.global dPa_setWindPower
-dPa_setWindPower:
+.global dPa_setWindPower__FP15JPABaseParticle
+dPa_setWindPower__FP15JPABaseParticle:
 /* 8004A3AC 000472EC  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8004A3B0 000472F0  7C 08 02 A6 */	mflr r0
 /* 8004A3B4 000472F4  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1088,7 +1088,7 @@ dPa_setWindPower:
 /* 8004A3D8 00047318  38 61 00 30 */	addi r3, r1, 0x30
 /* 8004A3DC 0004731C  38 81 00 24 */	addi r4, r1, 0x24
 /* 8004A3E0 00047320  38 A1 00 08 */	addi r5, r1, 8
-/* 8004A3E4 00047324  48 01 0F 15 */	bl dKyw_get_AllWind_vec
+/* 8004A3E4 00047324  48 01 0F 15 */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 8004A3E8 00047328  C0 02 85 54 */	lfs f0, lbl_80451F54-_SDA2_BASE_(r2)
 /* 8004A3EC 0004732C  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8004A3F0 00047330  38 61 00 0C */	addi r3, r1, 0xc
@@ -1145,7 +1145,7 @@ dPa_setWindPower:
 /* 8004A4BC 000473FC  FC 1F 00 00 */	fcmpu cr0, f31, f0
 /* 8004A4C0 00047400  41 82 00 C4 */	beq lbl_8004A584
 /* 8004A4C4 00047404  7F C3 F3 78 */	mr r3, r30
-/* 8004A4C8 00047408  48 00 08 C9 */	bl dPa_modelEcallBack_NS_getRotAxis
+/* 8004A4C8 00047408  48 00 08 C9 */	bl getRotAxis__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004A4CC 0004740C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004A4D0 00047410  2C 00 00 02 */	cmpwi r0, 2
 /* 8004A4D4 00047414  41 82 00 54 */	beq lbl_8004A528
@@ -1220,7 +1220,7 @@ lbl_8004A584:
 /* 8004A5CC 0004750C  48 2F BF 19 */	bl PSMTXConcat
 /* 8004A5D0 00047510  7F C3 F3 78 */	mr r3, r30
 /* 8004A5D4 00047514  38 81 00 74 */	addi r4, r1, 0x74
-/* 8004A5D8 00047518  48 00 07 15 */	bl dPa_modelEcallBack_NS_drawModel
+/* 8004A5D8 00047518  48 00 07 15 */	bl drawModel__18dPa_modelEcallBackFP14JPABaseEmitterPA4_f
 /* 8004A5DC 0004751C  80 1F 00 7C */	lwz r0, 0x7c(r31)
 /* 8004A5E0 00047520  60 00 00 08 */	ori r0, r0, 8
 /* 8004A5E4 00047524  90 1F 00 7C */	stw r0, 0x7c(r31)
@@ -1233,8 +1233,8 @@ lbl_8004A584:
 /* 8004A600 00047540  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8004A604 00047544  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_model_c_NS_set
-dPa_modelEcallBack_NS_model_c_NS_set:
+.global set__Q218dPa_modelEcallBack7model_cFP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc
+set__Q218dPa_modelEcallBack7model_cFP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc:
 /* 8004A608 00047548  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004A60C 0004754C  7C 08 02 A6 */	mflr r0
 /* 8004A610 00047550  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1255,14 +1255,14 @@ lbl_8004A648:
 /* 8004A648 00047588  90 9A 00 00 */	stw r4, 0(r26)
 /* 8004A64C 0004758C  38 7A 00 08 */	addi r3, r26, 8
 /* 8004A650 00047590  7F 64 DB 78 */	mr r4, r27
-/* 8004A654 00047594  48 2D B0 71 */	bl J3DLightInfo_NS___as
+/* 8004A654 00047594  48 2D B0 71 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 8004A658 00047598  3A FA 00 7C */	addi r23, r26, 0x7c
 /* 8004A65C 0004759C  3B 1B 00 74 */	addi r24, r27, 0x74
 /* 8004A660 000475A0  3B 3A 03 34 */	addi r25, r26, 0x334
 lbl_8004A664:
 /* 8004A664 000475A4  7E E3 BB 78 */	mr r3, r23
 /* 8004A668 000475A8  7F 04 C3 78 */	mr r4, r24
-/* 8004A66C 000475AC  48 2D B0 59 */	bl J3DLightInfo_NS___as
+/* 8004A66C 000475AC  48 2D B0 59 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 8004A670 000475B0  3A F7 00 74 */	addi r23, r23, 0x74
 /* 8004A674 000475B4  7C 17 C8 40 */	cmplw r23, r25
 /* 8004A678 000475B8  3B 18 00 74 */	addi r24, r24, 0x74
@@ -1344,8 +1344,8 @@ lbl_8004A794:
 /* 8004A7A4 000476E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004A7A8 000476E8  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_model_c_NS_setup
-dPa_modelEcallBack_NS_model_c_NS_setup:
+.global setup__Q218dPa_modelEcallBack7model_cFv
+setup__Q218dPa_modelEcallBack7model_cFv:
 /* 8004A7AC 000476EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004A7B0 000476F0  7C 08 02 A6 */	mflr r0
 /* 8004A7B4 000476F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1360,7 +1360,7 @@ dPa_modelEcallBack_NS_model_c_NS_setup:
 /* 8004A7D8 00047718  40 82 00 44 */	bne lbl_8004A81C
 /* 8004A7DC 0004771C  7C 7F 1B 78 */	mr r31, r3
 /* 8004A7E0 00047720  80 9E 00 00 */	lwz r4, 0(r30)
-/* 8004A7E4 00047724  48 2E 08 B9 */	bl J3DAnmTexPattern_NS_searchUpdateMaterialID_X1_
+/* 8004A7E4 00047724  48 2E 08 B9 */	bl searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData
 /* 8004A7E8 00047728  88 1E 03 91 */	lbz r0, 0x391(r30)
 /* 8004A7EC 0004772C  C8 22 85 68 */	lfd f1, lbl_80451F68-_SDA2_BASE_(r2)
 /* 8004A7F0 00047730  90 01 00 0C */	stw r0, 0xc(r1)
@@ -1372,12 +1372,12 @@ dPa_modelEcallBack_NS_model_c_NS_setup:
 /* 8004A808 00047748  80 7E 00 00 */	lwz r3, 0(r30)
 /* 8004A80C 0004774C  38 63 00 58 */	addi r3, r3, 0x58
 /* 8004A810 00047750  7F E4 FB 78 */	mr r4, r31
-/* 8004A814 00047754  48 2E 53 B5 */	bl J3DMaterialTable_NS_entryTexNoAnimator
+/* 8004A814 00047754  48 2E 53 B5 */	bl entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern
 /* 8004A818 00047758  48 00 00 40 */	b lbl_8004A858
 lbl_8004A81C:
 /* 8004A81C 0004775C  7C 7F 1B 78 */	mr r31, r3
 /* 8004A820 00047760  80 9E 00 00 */	lwz r4, 0(r30)
-/* 8004A824 00047764  48 2E 10 59 */	bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 8004A824 00047764  48 2E 10 59 */	bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
 /* 8004A828 00047768  88 1E 03 91 */	lbz r0, 0x391(r30)
 /* 8004A82C 0004776C  C8 22 85 68 */	lfd f1, lbl_80451F68-_SDA2_BASE_(r2)
 /* 8004A830 00047770  90 01 00 0C */	stw r0, 0xc(r1)
@@ -1389,13 +1389,13 @@ lbl_8004A81C:
 /* 8004A848 00047788  80 7E 00 00 */	lwz r3, 0(r30)
 /* 8004A84C 0004778C  38 63 00 58 */	addi r3, r3, 0x58
 /* 8004A850 00047790  7F E4 FB 78 */	mr r4, r31
-/* 8004A854 00047794  48 2E 56 1D */	bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 8004A854 00047794  48 2E 56 1D */	bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_8004A858:
 /* 8004A858 00047798  83 FE 00 00 */	lwz r31, 0(r30)
 /* 8004A85C 0004779C  7F E3 FB 78 */	mr r3, r31
-/* 8004A860 000477A0  48 2D B8 99 */	bl J3DModelData_NS_syncJ3DSysFlags
+/* 8004A860 000477A0  48 2D B8 99 */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 8004A864 000477A4  7F E3 FB 78 */	mr r3, r31
-/* 8004A868 000477A8  48 2D B8 65 */	bl J3DModelData_NS_syncJ3DSysPointers
+/* 8004A868 000477A8  48 2D B8 65 */	bl syncJ3DSysPointers__12J3DModelDataCFv
 /* 8004A86C 000477AC  38 00 00 00 */	li r0, 0
 /* 8004A870 000477B0  90 0D 90 50 */	stw r0, lbl_804515D0-_SDA_BASE_(r13)
 /* 8004A874 000477B4  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -1405,8 +1405,8 @@ lbl_8004A858:
 /* 8004A884 000477C4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004A888 000477C8  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_model_c_NS_cleanup
-dPa_modelEcallBack_NS_model_c_NS_cleanup:
+.global cleanup__Q218dPa_modelEcallBack7model_cFv
+cleanup__Q218dPa_modelEcallBack7model_cFv:
 /* 8004A88C 000477CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004A890 000477D0  7C 08 02 A6 */	mflr r0
 /* 8004A894 000477D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1418,20 +1418,20 @@ dPa_modelEcallBack_NS_model_c_NS_cleanup:
 /* 8004A8AC 000477EC  40 82 00 14 */	bne lbl_8004A8C0
 /* 8004A8B0 000477F0  80 63 00 00 */	lwz r3, 0(r3)
 /* 8004A8B4 000477F4  38 63 00 58 */	addi r3, r3, 0x58
-/* 8004A8B8 000477F8  48 2E 4E 41 */	bl J3DMaterialTable_NS_removeTexNoAnimator
+/* 8004A8B8 000477F8  48 2E 4E 41 */	bl removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern
 /* 8004A8BC 000477FC  48 00 00 10 */	b lbl_8004A8CC
 lbl_8004A8C0:
 /* 8004A8C0 00047800  80 63 00 00 */	lwz r3, 0(r3)
 /* 8004A8C4 00047804  38 63 00 58 */	addi r3, r3, 0x58
-/* 8004A8C8 00047808  48 2E 4F B9 */	bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 8004A8C8 00047808  48 2E 4F B9 */	bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_8004A8CC:
 /* 8004A8CC 0004780C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004A8D0 00047810  7C 08 03 A6 */	mtlr r0
 /* 8004A8D4 00047814  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004A8D8 00047818  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_model_c_NS_draw
-dPa_modelEcallBack_NS_model_c_NS_draw:
+.global draw__Q218dPa_modelEcallBack7model_cFPA4_f
+draw__Q218dPa_modelEcallBack7model_cFPA4_f:
 /* 8004A8DC 0004781C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8004A8E0 00047820  7C 08 02 A6 */	mflr r0
 /* 8004A8E4 00047824  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1454,7 +1454,7 @@ lbl_8004A918:
 /* 8004A924 00047864  7D 89 03 A6 */	mtctr r12
 /* 8004A928 00047868  4E 80 04 21 */	bctrl 
 /* 8004A92C 0004786C  80 7D 00 08 */	lwz r3, 8(r29)
-/* 8004A930 00047870  48 2C A9 D1 */	bl J3DShape_NS_loadPreDrawSetting
+/* 8004A930 00047870  48 2C A9 D1 */	bl loadPreDrawSetting__8J3DShapeCFv
 /* 8004A934 00047874  80 7D 00 3C */	lwz r3, 0x3c(r29)
 /* 8004A938 00047878  7C 03 F0 40 */	cmplw r3, r30
 /* 8004A93C 0004787C  40 80 00 0C */	bge lbl_8004A948
@@ -1494,12 +1494,12 @@ lbl_8004A97C:
 /* 8004A9B0 000478F0  80 7B 00 00 */	lwz r3, 0(r27)
 /* 8004A9B4 000478F4  80 63 00 6C */	lwz r3, 0x6c(r3)
 /* 8004A9B8 000478F8  38 A0 00 00 */	li r5, 0
-/* 8004A9BC 000478FC  48 2C 76 91 */	bl J3DTexture_NS_loadGX
-/* 8004A9C0 00047900  48 15 CC 01 */	bl dKy_setLight_again
+/* 8004A9BC 000478FC  48 2C 76 91 */	bl loadGX__10J3DTextureCFUs11_GXTexMapID
+/* 8004A9C0 00047900  48 15 CC 01 */	bl dKy_setLight_again__Fv
 /* 8004A9C4 00047904  38 7B 00 08 */	addi r3, r27, 8
-/* 8004A9C8 00047908  48 15 CC 19 */	bl dKy_Global_amb_set
+/* 8004A9C8 00047908  48 15 CC 19 */	bl dKy_Global_amb_set__FP12dKy_tevstr_c
 /* 8004A9CC 0004790C  38 7B 00 08 */	addi r3, r27, 8
-/* 8004A9D0 00047910  48 15 DC 81 */	bl dKy_GxFog_tevstr_set
+/* 8004A9D0 00047910  48 15 DC 81 */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 8004A9D4 00047914  7F E3 FB 78 */	mr r3, r31
 /* 8004A9D8 00047918  7F 84 E3 78 */	mr r4, r28
 /* 8004A9DC 0004791C  38 A1 00 08 */	addi r5, r1, 8
@@ -1547,11 +1547,11 @@ lbl_8004AA64:
 /* 8004AA7C 000479BC  90 04 00 EC */	stw r0, 0xec(r4)
 /* 8004AA80 000479C0  90 04 00 F0 */	stw r0, 0xf0(r4)
 /* 8004AA84 000479C4  7C 83 23 78 */	mr r3, r4
-/* 8004AA88 000479C8  48 00 02 09 */	bl dPa_modelEcallBack_NS_resetModel
+/* 8004AA88 000479C8  48 00 02 09 */	bl resetModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004AA8C 000479CC  48 00 00 0C */	b lbl_8004AA98
 lbl_8004AA90:
 /* 8004AA90 000479D0  7C 83 23 78 */	mr r3, r4
-/* 8004AA94 000479D4  48 00 02 2D */	bl dPa_modelEcallBack_NS_setupModel
+/* 8004AA94 000479D4  48 00 02 2D */	bl setupModel__18dPa_modelEcallBackFP14JPABaseEmitter
 lbl_8004AA98:
 /* 8004AA98 000479D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004AA9C 000479DC  7C 08 03 A6 */	mtlr r0
@@ -1589,8 +1589,8 @@ lbl_8004AB0C:
 /* 8004AB14 00047A54  42 00 FF B8 */	bdnz lbl_8004AACC
 /* 8004AB18 00047A58  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_create
-dPa_modelEcallBack_NS_create:
+.global create__18dPa_modelEcallBackFUc
+create__18dPa_modelEcallBackFUc:
 /* 8004AB1C 00047A5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AB20 00047A60  7C 08 02 A6 */	mflr r0
 /* 8004AB24 00047A64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1601,17 +1601,17 @@ dPa_modelEcallBack_NS_create:
 /* 8004AB38 00047A78  1C 7F 03 94 */	mulli r3, r31, 0x394
 /* 8004AB3C 00047A7C  38 63 00 10 */	addi r3, r3, 0x10
 /* 8004AB40 00047A80  48 28 41 85 */	bl __nwa__FUl
-.global dPa_modelEcallBack_NS_model_c
-/* 8004AB44 00047A84  3C 80 80 05 */	lis r4, dPa_modelEcallBack_NS_model_c@ha
-.global dPa_modelEcallBack_NS_model_c
-/* 8004AB48 00047A88  38 84 FB 90 */	addi r4, r4, dPa_modelEcallBack_NS_model_c@l
-.global dPa_modelEcallBack_NS_model_c_NS_dtor
-/* 8004AB4C 00047A8C  3C A0 80 05 */	lis r5, dPa_modelEcallBack_NS_model_c_NS_dtor@ha
-.global dPa_modelEcallBack_NS_model_c_NS_dtor
-/* 8004AB50 00047A90  38 A5 AB 88 */	addi r5, r5, dPa_modelEcallBack_NS_model_c_NS_dtor@l
+.global __ct__Q218dPa_modelEcallBack7model_cFv
+/* 8004AB44 00047A84  3C 80 80 05 */	lis r4, __ct__Q218dPa_modelEcallBack7model_cFv@ha
+.global __ct__Q218dPa_modelEcallBack7model_cFv
+/* 8004AB48 00047A88  38 84 FB 90 */	addi r4, r4, __ct__Q218dPa_modelEcallBack7model_cFv@l
+.global __dt__Q218dPa_modelEcallBack7model_cFv
+/* 8004AB4C 00047A8C  3C A0 80 05 */	lis r5, __dt__Q218dPa_modelEcallBack7model_cFv@ha
+.global __dt__Q218dPa_modelEcallBack7model_cFv
+/* 8004AB50 00047A90  38 A5 AB 88 */	addi r5, r5, __dt__Q218dPa_modelEcallBack7model_cFv@l
 /* 8004AB54 00047A94  38 C0 03 94 */	li r6, 0x394
 /* 8004AB58 00047A98  7F E7 FB 78 */	mr r7, r31
-/* 8004AB5C 00047A9C  48 31 73 B9 */	bl func_80361F14
+/* 8004AB5C 00047A9C  48 31 73 B9 */	bl __construct_new_array
 /* 8004AB60 00047AA0  90 6D 89 18 */	stw r3, lbl_80450E98-_SDA_BASE_(r13)
 /* 8004AB64 00047AA4  9B CD 89 1C */	stb r30, lbl_80450E9C-_SDA_BASE_(r13)
 /* 8004AB68 00047AA8  38 00 00 00 */	li r0, 0
@@ -1622,8 +1622,8 @@ dPa_modelEcallBack_NS_create:
 /* 8004AB7C 00047ABC  7C 08 03 A6 */	mtlr r0
 /* 8004AB80 00047AC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004AB84 00047AC4  4E 80 00 20 */	blr 
-.global dPa_modelEcallBack_NS_model_c_NS_dtor
-dPa_modelEcallBack_NS_model_c_NS_dtor:
+.global __dt__Q218dPa_modelEcallBack7model_cFv
+__dt__Q218dPa_modelEcallBack7model_cFv:
 /* 8004AB88 00047AC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AB8C 00047ACC  7C 08 02 A6 */	mflr r0
 /* 8004AB90 00047AD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1641,19 +1641,19 @@ lbl_8004ABAC:
 /* 8004ABBC 00047AFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ABC0 00047B00  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_remove
-dPa_modelEcallBack_NS_remove:
+.global remove__18dPa_modelEcallBackFv
+remove__18dPa_modelEcallBackFv:
 /* 8004ABC4 00047B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004ABC8 00047B08  7C 08 02 A6 */	mflr r0
 /* 8004ABCC 00047B0C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004ABD0 00047B10  80 6D 89 18 */	lwz r3, lbl_80450E98-_SDA_BASE_(r13)
 /* 8004ABD4 00047B14  28 03 00 00 */	cmplwi r3, 0
 /* 8004ABD8 00047B18  41 82 00 18 */	beq lbl_8004ABF0
-.global dPa_modelEcallBack_NS_model_c_NS_dtor
-/* 8004ABDC 00047B1C  3C 80 80 05 */	lis r4, dPa_modelEcallBack_NS_model_c_NS_dtor@ha
-.global dPa_modelEcallBack_NS_model_c_NS_dtor
-/* 8004ABE0 00047B20  38 84 AB 88 */	addi r4, r4, dPa_modelEcallBack_NS_model_c_NS_dtor@l
-/* 8004ABE4 00047B24  48 31 70 89 */	bl func_80361C6C
+.global __dt__Q218dPa_modelEcallBack7model_cFv
+/* 8004ABDC 00047B1C  3C 80 80 05 */	lis r4, __dt__Q218dPa_modelEcallBack7model_cFv@ha
+.global __dt__Q218dPa_modelEcallBack7model_cFv
+/* 8004ABE0 00047B20  38 84 AB 88 */	addi r4, r4, __dt__Q218dPa_modelEcallBack7model_cFv@l
+/* 8004ABE4 00047B24  48 31 70 89 */	bl __destroy_new_array
 /* 8004ABE8 00047B28  38 00 00 00 */	li r0, 0
 /* 8004ABEC 00047B2C  90 0D 89 18 */	stw r0, lbl_80450E98-_SDA_BASE_(r13)
 lbl_8004ABF0:
@@ -1662,8 +1662,8 @@ lbl_8004ABF0:
 /* 8004ABF8 00047B38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ABFC 00047B3C  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_setModel
-dPa_modelEcallBack_NS_setModel:
+.global setModel__18dPa_modelEcallBackFP14JPABaseEmitterP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc
+setModel__18dPa_modelEcallBackFP14JPABaseEmitterP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc:
 /* 8004AC00 00047B40  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004AC04 00047B44  7C 08 02 A6 */	mflr r0
 /* 8004AC08 00047B48  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1676,7 +1676,7 @@ dPa_modelEcallBack_NS_setModel:
 /* 8004AC24 00047B64  7C FD 3B 78 */	mr r29, r7
 /* 8004AC28 00047B68  7D 1E 43 78 */	mr r30, r8
 /* 8004AC2C 00047B6C  7D 3F 4B 78 */	mr r31, r9
-/* 8004AC30 00047B70  48 00 01 29 */	bl dPa_modelEcallBack_NS_getModel
+/* 8004AC30 00047B70  48 00 01 29 */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004AC34 00047B74  28 03 00 00 */	cmplwi r3, 0
 /* 8004AC38 00047B78  41 82 00 3C */	beq lbl_8004AC74
 /* 8004AC3C 00047B7C  7F 44 D3 78 */	mr r4, r26
@@ -1685,7 +1685,7 @@ dPa_modelEcallBack_NS_setModel:
 /* 8004AC48 00047B88  7F A7 EB 78 */	mr r7, r29
 /* 8004AC4C 00047B8C  7F C8 F3 78 */	mr r8, r30
 /* 8004AC50 00047B90  7F E9 FB 78 */	mr r9, r31
-/* 8004AC54 00047B94  4B FF F9 B5 */	bl dPa_modelEcallBack_NS_model_c_NS_set
+/* 8004AC54 00047B94  4B FF F9 B5 */	bl set__Q218dPa_modelEcallBack7model_cFP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc
 /* 8004AC58 00047B98  38 0D 89 10 */	addi r0, r13, lbl_80450E90-_SDA_BASE_
 /* 8004AC5C 00047B9C  90 19 00 EC */	stw r0, 0xec(r25)
 /* 8004AC60 00047BA0  80 19 00 F4 */	lwz r0, 0xf4(r25)
@@ -1703,12 +1703,12 @@ lbl_8004AC78:
 /* 8004AC88 00047BC8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004AC8C 00047BCC  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_resetModel
-dPa_modelEcallBack_NS_resetModel:
+.global resetModel__18dPa_modelEcallBackFP14JPABaseEmitter
+resetModel__18dPa_modelEcallBackFP14JPABaseEmitter:
 /* 8004AC90 00047BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AC94 00047BD4  7C 08 02 A6 */	mflr r0
 /* 8004AC98 00047BD8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004AC9C 00047BDC  48 00 00 BD */	bl dPa_modelEcallBack_NS_getModel
+/* 8004AC9C 00047BDC  48 00 00 BD */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004ACA0 00047BE0  28 03 00 00 */	cmplwi r3, 0
 /* 8004ACA4 00047BE4  41 82 00 0C */	beq lbl_8004ACB0
 /* 8004ACA8 00047BE8  38 00 00 00 */	li r0, 0
@@ -1719,33 +1719,33 @@ lbl_8004ACB0:
 /* 8004ACB8 00047BF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ACBC 00047BFC  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_setupModel
-dPa_modelEcallBack_NS_setupModel:
+.global setupModel__18dPa_modelEcallBackFP14JPABaseEmitter
+setupModel__18dPa_modelEcallBackFP14JPABaseEmitter:
 /* 8004ACC0 00047C00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004ACC4 00047C04  7C 08 02 A6 */	mflr r0
 /* 8004ACC8 00047C08  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004ACCC 00047C0C  48 00 00 8D */	bl dPa_modelEcallBack_NS_getModel
+/* 8004ACCC 00047C0C  48 00 00 8D */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004ACD0 00047C10  28 03 00 00 */	cmplwi r3, 0
 /* 8004ACD4 00047C14  41 82 00 08 */	beq lbl_8004ACDC
-/* 8004ACD8 00047C18  4B FF FA D5 */	bl dPa_modelEcallBack_NS_model_c_NS_setup
+/* 8004ACD8 00047C18  4B FF FA D5 */	bl setup__Q218dPa_modelEcallBack7model_cFv
 lbl_8004ACDC:
 /* 8004ACDC 00047C1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004ACE0 00047C20  7C 08 03 A6 */	mtlr r0
 /* 8004ACE4 00047C24  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ACE8 00047C28  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_drawModel
-dPa_modelEcallBack_NS_drawModel:
+.global drawModel__18dPa_modelEcallBackFP14JPABaseEmitterPA4_f
+drawModel__18dPa_modelEcallBackFP14JPABaseEmitterPA4_f:
 /* 8004ACEC 00047C2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004ACF0 00047C30  7C 08 02 A6 */	mflr r0
 /* 8004ACF4 00047C34  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004ACF8 00047C38  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004ACFC 00047C3C  7C 9F 23 78 */	mr r31, r4
-/* 8004AD00 00047C40  48 00 00 59 */	bl dPa_modelEcallBack_NS_getModel
+/* 8004AD00 00047C40  48 00 00 59 */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004AD04 00047C44  28 03 00 00 */	cmplwi r3, 0
 /* 8004AD08 00047C48  41 82 00 0C */	beq lbl_8004AD14
 /* 8004AD0C 00047C4C  7F E4 FB 78 */	mr r4, r31
-/* 8004AD10 00047C50  4B FF FB CD */	bl dPa_modelEcallBack_NS_model_c_NS_draw
+/* 8004AD10 00047C50  4B FF FB CD */	bl draw__Q218dPa_modelEcallBack7model_cFPA4_f
 lbl_8004AD14:
 /* 8004AD14 00047C54  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8004AD18 00047C58  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1753,24 +1753,24 @@ lbl_8004AD14:
 /* 8004AD20 00047C60  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004AD24 00047C64  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_cleanupModel
-dPa_modelEcallBack_NS_cleanupModel:
+.global cleanupModel__18dPa_modelEcallBackFP14JPABaseEmitter
+cleanupModel__18dPa_modelEcallBackFP14JPABaseEmitter:
 /* 8004AD28 00047C68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AD2C 00047C6C  7C 08 02 A6 */	mflr r0
 /* 8004AD30 00047C70  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004AD34 00047C74  48 00 00 25 */	bl dPa_modelEcallBack_NS_getModel
+/* 8004AD34 00047C74  48 00 00 25 */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004AD38 00047C78  28 03 00 00 */	cmplwi r3, 0
 /* 8004AD3C 00047C7C  41 82 00 08 */	beq lbl_8004AD44
-/* 8004AD40 00047C80  4B FF FB 4D */	bl dPa_modelEcallBack_NS_model_c_NS_cleanup
+/* 8004AD40 00047C80  4B FF FB 4D */	bl cleanup__Q218dPa_modelEcallBack7model_cFv
 lbl_8004AD44:
-/* 8004AD44 00047C84  4B FF E6 DD */	bl dPa_cleanupGX
+/* 8004AD44 00047C84  4B FF E6 DD */	bl dPa_cleanupGX__Fv
 /* 8004AD48 00047C88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004AD4C 00047C8C  7C 08 03 A6 */	mtlr r0
 /* 8004AD50 00047C90  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004AD54 00047C94  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_getModel
-dPa_modelEcallBack_NS_getModel:
+.global getModel__18dPa_modelEcallBackFP14JPABaseEmitter
+getModel__18dPa_modelEcallBackFP14JPABaseEmitter:
 /* 8004AD58 00047C98  80 8D 89 18 */	lwz r4, lbl_80450E98-_SDA_BASE_(r13)
 /* 8004AD5C 00047C9C  28 04 00 00 */	cmplwi r4, 0
 /* 8004AD60 00047CA0  41 82 00 28 */	beq lbl_8004AD88
@@ -1787,12 +1787,12 @@ lbl_8004AD88:
 /* 8004AD88 00047CC8  38 60 00 00 */	li r3, 0
 /* 8004AD8C 00047CCC  4E 80 00 20 */	blr 
 
-.global dPa_modelEcallBack_NS_getRotAxis
-dPa_modelEcallBack_NS_getRotAxis:
+.global getRotAxis__18dPa_modelEcallBackFP14JPABaseEmitter
+getRotAxis__18dPa_modelEcallBackFP14JPABaseEmitter:
 /* 8004AD90 00047CD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004AD94 00047CD4  7C 08 02 A6 */	mflr r0
 /* 8004AD98 00047CD8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004AD9C 00047CDC  4B FF FF BD */	bl dPa_modelEcallBack_NS_getModel
+/* 8004AD9C 00047CDC  4B FF FF BD */	bl getModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 8004ADA0 00047CE0  28 03 00 00 */	cmplwi r3, 0
 /* 8004ADA4 00047CE4  41 82 00 0C */	beq lbl_8004ADB0
 /* 8004ADA8 00047CE8  88 63 03 90 */	lbz r3, 0x390(r3)
@@ -1811,13 +1811,13 @@ lbl_8004ADB4:
 /* 8004ADD4 00047D14  7C 83 23 78 */	mr r3, r4
 /* 8004ADD8 00047D18  88 85 00 04 */	lbz r4, 4(r5)
 /* 8004ADDC 00047D1C  38 A0 00 00 */	li r5, 0
-/* 8004ADE0 00047D20  48 23 41 71 */	bl JPABaseEmitter_NS_loadTexture
+/* 8004ADE0 00047D20  48 23 41 71 */	bl loadTexture__14JPABaseEmitterFUc11_GXTexMapID
 /* 8004ADE4 00047D24  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004ADE8 00047D28  7C 08 03 A6 */	mtlr r0
 /* 8004ADEC 00047D2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004ADF0 00047D30  4E 80 00 20 */	blr 
-.global dPa_simpleEcallBack
-dPa_simpleEcallBack:
+.global __ct__19dPa_simpleEcallBackFv
+__ct__19dPa_simpleEcallBackFv:
 /* 8004ADF4 00047D34  3C 80 80 3B */	lis r4, lbl_803A8578@ha
 /* 8004ADF8 00047D38  38 04 85 78 */	addi r0, r4, lbl_803A8578@l
 /* 8004ADFC 00047D3C  90 03 00 00 */	stw r0, 0(r3)
@@ -1838,7 +1838,7 @@ dPa_simpleEcallBack:
 /* 8004AE38 00047D78  7C 7C 1B 78 */	mr r28, r3
 /* 8004AE3C 00047D7C  7C 9D 23 78 */	mr r29, r4
 /* 8004AE40 00047D80  7F A3 EB 78 */	mr r3, r29
-/* 8004AE44 00047D84  48 23 40 ED */	bl JPABaseEmitter_NS_getCurrentCreateNumber
+/* 8004AE44 00047D84  48 23 40 ED */	bl getCurrentCreateNumber__14JPABaseEmitterCFv
 /* 8004AE48 00047D88  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8004AE4C 00047D8C  41 81 00 10 */	bgt lbl_8004AE5C
 /* 8004AE50 00047D90  38 00 00 00 */	li r0, 0
@@ -1865,7 +1865,7 @@ lbl_8004AE80:
 /* 8004AE9C 00047DDC  7F 64 DB 78 */	mr r4, r27
 /* 8004AEA0 00047DE0  38 A1 00 08 */	addi r5, r1, 8
 /* 8004AEA4 00047DE4  C0 22 85 70 */	lfs f1, lbl_80451F70-_SDA2_BASE_(r2)
-/* 8004AEA8 00047DE8  48 22 8A 55 */	bl J3DUClipper_NS_clip
+/* 8004AEA8 00047DE8  48 22 8A 55 */	bl clip__11J3DUClipperCFPA4_Cf3Vecf
 /* 8004AEAC 00047DEC  2C 03 00 00 */	cmpwi r3, 0
 /* 8004AEB0 00047DF0  40 82 00 9C */	bne lbl_8004AF4C
 /* 8004AEB4 00047DF4  C3 FD 00 10 */	lfs f31, 0x10(r29)
@@ -1894,7 +1894,7 @@ lbl_8004AE80:
 /* 8004AF10 00047E50  48 00 00 34 */	b lbl_8004AF44
 lbl_8004AF14:
 /* 8004AF14 00047E54  7F A3 EB 78 */	mr r3, r29
-/* 8004AF18 00047E58  48 23 3B 29 */	bl JPABaseEmitter_NS_createParticle
+/* 8004AF18 00047E58  48 23 3B 29 */	bl createParticle__14JPABaseEmitterFv
 /* 8004AF1C 00047E5C  28 03 00 00 */	cmplwi r3, 0
 /* 8004AF20 00047E60  41 82 00 2C */	beq lbl_8004AF4C
 /* 8004AF24 00047E64  C0 5E 00 08 */	lfs f2, 8(r30)
@@ -1931,8 +1931,8 @@ lbl_8004AF68:
 /* 8004AF90 00047ED0  4E 80 00 20 */	blr 
 /* 8004AF94 00047ED4  4E 80 00 20 */	blr 
 
-.global dPa_simpleEcallBack_NS_create
-dPa_simpleEcallBack_NS_create:
+.global create__19dPa_simpleEcallBackFP17JPAEmitterManagerUsUc
+create__19dPa_simpleEcallBackFP17JPAEmitterManagerUsUc:
 /* 8004AF98 00047ED8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004AF9C 00047EDC  7C 08 02 A6 */	mflr r0
 /* 8004AFA0 00047EE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1950,21 +1950,21 @@ dPa_simpleEcallBack_NS_create:
 /* 8004AFD0 00047F10  1C 7F 00 14 */	mulli r3, r31, 0x14
 /* 8004AFD4 00047F14  38 63 00 10 */	addi r3, r3, 0x10
 /* 8004AFD8 00047F18  48 28 3C ED */	bl __nwa__FUl
-.global dPa_simpleData_c
-/* 8004AFDC 00047F1C  3C 80 80 05 */	lis r4, dPa_simpleData_c@ha
-.global dPa_simpleData_c
-/* 8004AFE0 00047F20  38 84 B0 60 */	addi r4, r4, dPa_simpleData_c@l
-.global dPa_simpleData_c_NS_dtor
-/* 8004AFE4 00047F24  3C A0 80 05 */	lis r5, dPa_simpleData_c_NS_dtor@ha
-.global dPa_simpleData_c_NS_dtor
-/* 8004AFE8 00047F28  38 A5 B0 24 */	addi r5, r5, dPa_simpleData_c_NS_dtor@l
+.global __ct__16dPa_simpleData_cFv
+/* 8004AFDC 00047F1C  3C 80 80 05 */	lis r4, __ct__16dPa_simpleData_cFv@ha
+.global __ct__16dPa_simpleData_cFv
+/* 8004AFE0 00047F20  38 84 B0 60 */	addi r4, r4, __ct__16dPa_simpleData_cFv@l
+.global __dt__16dPa_simpleData_cFv
+/* 8004AFE4 00047F24  3C A0 80 05 */	lis r5, __dt__16dPa_simpleData_cFv@ha
+.global __dt__16dPa_simpleData_cFv
+/* 8004AFE8 00047F28  38 A5 B0 24 */	addi r5, r5, __dt__16dPa_simpleData_cFv@l
 /* 8004AFEC 00047F2C  38 C0 00 14 */	li r6, 0x14
 /* 8004AFF0 00047F30  7F E7 FB 78 */	mr r7, r31
-/* 8004AFF4 00047F34  48 31 6F 21 */	bl func_80361F14
+/* 8004AFF4 00047F34  48 31 6F 21 */	bl __construct_new_array
 /* 8004AFF8 00047F38  90 7D 00 10 */	stw r3, 0x10(r29)
 /* 8004AFFC 00047F3C  7F A3 EB 78 */	mr r3, r29
 /* 8004B000 00047F40  7F C4 F3 78 */	mr r4, r30
-/* 8004B004 00047F44  48 00 00 61 */	bl dPa_simpleEcallBack_NS_createEmitter
+/* 8004B004 00047F44  48 00 00 61 */	bl createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager
 /* 8004B008 00047F48  80 7D 00 04 */	lwz r3, 4(r29)
 /* 8004B00C 00047F4C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8004B010 00047F50  48 31 72 19 */	bl _restgpr_29
@@ -1972,8 +1972,8 @@ dPa_simpleEcallBack_NS_create:
 /* 8004B018 00047F58  7C 08 03 A6 */	mtlr r0
 /* 8004B01C 00047F5C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B020 00047F60  4E 80 00 20 */	blr 
-.global dPa_simpleData_c_NS_dtor
-dPa_simpleData_c_NS_dtor:
+.global __dt__16dPa_simpleData_cFv
+__dt__16dPa_simpleData_cFv:
 /* 8004B024 00047F64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B028 00047F68  7C 08 02 A6 */	mflr r0
 /* 8004B02C 00047F6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1990,12 +1990,12 @@ lbl_8004B048:
 /* 8004B054 00047F94  7C 08 03 A6 */	mtlr r0
 /* 8004B058 00047F98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B05C 00047F9C  4E 80 00 20 */	blr 
-.global dPa_simpleData_c
-dPa_simpleData_c:
+.global __ct__16dPa_simpleData_cFv
+__ct__16dPa_simpleData_cFv:
 /* 8004B060 00047FA0  4E 80 00 20 */	blr 
 
-.global dPa_simpleEcallBack_NS_createEmitter
-dPa_simpleEcallBack_NS_createEmitter:
+.global createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager
+createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager:
 /* 8004B064 00047FA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B068 00047FA8  7C 08 02 A6 */	mflr r0
 /* 8004B06C 00047FAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2004,12 +2004,12 @@ dPa_simpleEcallBack_NS_createEmitter:
 /* 8004B078 00047FB8  7C 7F 1B 78 */	mr r31, r3
 /* 8004B07C 00047FBC  7C 9D 23 78 */	mr r29, r4
 /* 8004B080 00047FC0  A0 63 00 08 */	lhz r3, 8(r3)
-/* 8004B084 00047FC4  48 00 0A ED */	bl dPa_control_c_NS_getRM_ID
+/* 8004B084 00047FC4  48 00 0A ED */	bl getRM_ID__13dPa_control_cFUs
 /* 8004B088 00047FC8  80 9D 00 1C */	lwz r4, 0x1c(r29)
 /* 8004B08C 00047FCC  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 8004B090 00047FD0  7C 64 00 2E */	lwzx r3, r4, r0
 /* 8004B094 00047FD4  A0 9F 00 08 */	lhz r4, 8(r31)
-/* 8004B098 00047FD8  48 22 8F 35 */	bl JPAResourceManager_NS_getResUserWork
+/* 8004B098 00047FD8  48 22 8F 35 */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004B09C 00047FDC  7C 7E 1B 78 */	mr r30, r3
 /* 8004B0A0 00047FE0  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8004B0A4 00047FE4  28 00 00 00 */	cmplwi r0, 0
@@ -2026,7 +2026,7 @@ dPa_simpleEcallBack_NS_createEmitter:
 /* 8004B0D0 00048010  98 0D 89 1E */	stb r0, lbl_80450E9E-_SDA_BASE_(r13)
 lbl_8004B0D4:
 /* 8004B0D4 00048014  A0 7F 00 08 */	lhz r3, 8(r31)
-/* 8004B0D8 00048018  48 00 0A 99 */	bl dPa_control_c_NS_getRM_ID
+/* 8004B0D8 00048018  48 00 0A 99 */	bl getRM_ID__13dPa_control_cFUs
 /* 8004B0DC 0004801C  7C 67 1B 78 */	mr r7, r3
 /* 8004B0E0 00048020  7F A3 EB 78 */	mr r3, r29
 /* 8004B0E4 00048024  3C 80 80 42 */	lis r4, lbl_80424728@ha
@@ -2067,8 +2067,8 @@ lbl_8004B150:
 /* 8004B160 000480A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B164 000480A4  4E 80 00 20 */	blr 
 
-.global dPa_simpleEcallBack_NS_set
-dPa_simpleEcallBack_NS_set:
+.global set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif
+set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif:
 /* 8004B168 000480A8  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8004B16C 000480AC  7C 08 02 A6 */	mflr r0
 /* 8004B170 000480B0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2111,13 +2111,13 @@ lbl_8004B1E0:
 /* 8004B1F8 00048138  C0 19 00 08 */	lfs f0, 8(r25)
 /* 8004B1FC 0004813C  D0 1F 00 08 */	stfs f0, 8(r31)
 /* 8004B200 00048140  A0 78 00 08 */	lhz r3, 8(r24)
-/* 8004B204 00048144  48 00 09 6D */	bl dPa_control_c_NS_getRM_ID
+/* 8004B204 00048144  48 00 09 6D */	bl getRM_ID__13dPa_control_cFUs
 /* 8004B208 00048148  80 8D 89 20 */	lwz r4, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004B20C 0004814C  80 84 00 1C */	lwz r4, 0x1c(r4)
 /* 8004B210 00048150  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 8004B214 00048154  7C 64 00 2E */	lwzx r3, r4, r0
 /* 8004B218 00048158  A0 98 00 08 */	lhz r4, 8(r24)
-/* 8004B21C 0004815C  48 22 8D B1 */	bl JPAResourceManager_NS_getResUserWork
+/* 8004B21C 0004815C  48 22 8D B1 */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004B220 00048160  74 60 00 EF */	andis. r0, r3, 0xef
 /* 8004B224 00048164  54 04 84 3E */	srwi r4, r0, 0x10
 /* 8004B228 00048168  28 04 00 64 */	cmplwi r4, 0x64
@@ -2177,7 +2177,7 @@ lbl_8004B2E0:
 /* 8004B2F0 00048230  38 E1 00 24 */	addi r7, r1, 0x24
 /* 8004B2F4 00048234  39 01 00 20 */	addi r8, r1, 0x20
 /* 8004B2F8 00048238  FC 20 F8 90 */	fmr f1, f31
-/* 8004B2FC 0004823C  48 15 E8 E9 */	bl dKy_ParticleColor_get_actor
+/* 8004B2FC 0004823C  48 15 E8 E9 */	bl dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004B300 00048240  88 01 00 28 */	lbz r0, 0x28(r1)
 /* 8004B304 00048244  98 1F 00 0C */	stb r0, 0xc(r31)
 /* 8004B308 00048248  88 01 00 29 */	lbz r0, 0x29(r1)
@@ -2227,7 +2227,7 @@ lbl_8004B39C:
 /* 8004B3AC 000482EC  38 E1 00 14 */	addi r7, r1, 0x14
 /* 8004B3B0 000482F0  39 01 00 10 */	addi r8, r1, 0x10
 /* 8004B3B4 000482F4  FC 20 F8 90 */	fmr f1, f31
-/* 8004B3B8 000482F8  48 15 E9 05 */	bl dKy_ParticleColor_get_bg
+/* 8004B3B8 000482F8  48 15 E9 05 */	bl dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004B3BC 000482FC  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 8004B3C0 00048300  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 8004B3C4 00048304  C0 23 12 5C */	lfs f1, 0x125c(r3)
@@ -2237,7 +2237,7 @@ lbl_8004B39C:
 /* 8004B3D4 00048314  EF E1 00 2A */	fadds f31, f1, f0
 /* 8004B3D8 00048318  38 61 00 1C */	addi r3, r1, 0x1c
 /* 8004B3DC 0004831C  FC 20 F8 90 */	fmr f1, f31
-/* 8004B3E0 00048320  48 15 30 51 */	bl dKy_light_influence_col_X1_
+/* 8004B3E0 00048320  48 15 30 51 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004B3E4 00048324  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8004B3E8 00048328  88 01 00 0C */	lbz r0, 0xc(r1)
 /* 8004B3EC 0004832C  98 01 00 1C */	stb r0, 0x1c(r1)
@@ -2249,7 +2249,7 @@ lbl_8004B39C:
 /* 8004B404 00048344  98 01 00 1F */	stb r0, 0x1f(r1)
 /* 8004B408 00048348  38 61 00 18 */	addi r3, r1, 0x18
 /* 8004B40C 0004834C  FC 20 F8 90 */	fmr f1, f31
-/* 8004B410 00048350  48 15 30 21 */	bl dKy_light_influence_col_X1_
+/* 8004B410 00048350  48 15 30 21 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004B414 00048354  90 61 00 08 */	stw r3, 8(r1)
 /* 8004B418 00048358  88 61 00 08 */	lbz r3, 8(r1)
 /* 8004B41C 0004835C  98 61 00 18 */	stb r3, 0x18(r1)
@@ -2309,14 +2309,14 @@ lbl_8004B4C0:
 /* 8004B4E4 00048424  7C 08 02 A6 */	mflr r0
 /* 8004B4E8 00048428  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004B4EC 0004842C  7C A3 2B 78 */	mr r3, r5
-/* 8004B4F0 00048430  4B FF EE BD */	bl dPa_setWindPower
+/* 8004B4F0 00048430  4B FF EE BD */	bl dPa_setWindPower__FP15JPABaseParticle
 /* 8004B4F4 00048434  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004B4F8 00048438  7C 08 03 A6 */	mtlr r0
 /* 8004B4FC 0004843C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B500 00048440  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_emitter_c_NS_onActive
-dPa_control_c_NS_level_c_NS_emitter_c_NS_onActive:
+.global onActive__Q313dPa_control_c7level_c9emitter_cFv
+onActive__Q313dPa_control_c7level_c9emitter_cFv:
 /* 8004B504 00048444  88 03 00 06 */	lbz r0, 6(r3)
 /* 8004B508 00048448  60 00 00 01 */	ori r0, r0, 1
 /* 8004B50C 0004844C  98 03 00 06 */	stb r0, 6(r3)
@@ -2335,8 +2335,8 @@ lbl_8004B534:
 /* 8004B53C 0004847C  98 03 00 06 */	stb r0, 6(r3)
 /* 8004B540 00048480  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_emitter_c_NS_entry
-dPa_control_c_NS_level_c_NS_emitter_c_NS_entry:
+.global entry__Q313dPa_control_c7level_c9emitter_cFUlUsP14JPABaseEmitterP18dPa_levelEcallBack
+entry__Q313dPa_control_c7level_c9emitter_cFUlUsP14JPABaseEmitterP18dPa_levelEcallBack:
 /* 8004B544 00048484  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B548 00048488  7C 08 02 A6 */	mflr r0
 /* 8004B54C 0004848C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2347,7 +2347,7 @@ dPa_control_c_NS_level_c_NS_emitter_c_NS_entry:
 /* 8004B560 000484A0  7C FF 3B 78 */	mr r31, r7
 /* 8004B564 000484A4  90 83 00 00 */	stw r4, 0(r3)
 /* 8004B568 000484A8  B0 A3 00 04 */	sth r5, 4(r3)
-/* 8004B56C 000484AC  4B FF FF 99 */	bl dPa_control_c_NS_level_c_NS_emitter_c_NS_onActive
+/* 8004B56C 000484AC  4B FF FF 99 */	bl onActive__Q313dPa_control_c7level_c9emitter_cFv
 /* 8004B570 000484B0  93 DD 00 08 */	stw r30, 8(r29)
 /* 8004B574 000484B4  93 FD 00 0C */	stw r31, 0xc(r29)
 /* 8004B578 000484B8  38 00 00 00 */	li r0, 0
@@ -2364,8 +2364,8 @@ dPa_control_c_NS_level_c_NS_emitter_c_NS_entry:
 /* 8004B5A4 000484E4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B5A8 000484E8  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_emitter_c_NS_cleanup
-dPa_control_c_NS_level_c_NS_emitter_c_NS_cleanup:
+.global cleanup__Q313dPa_control_c7level_c9emitter_cFv
+cleanup__Q313dPa_control_c7level_c9emitter_cFv:
 /* 8004B5AC 000484EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B5B0 000484F0  7C 08 02 A6 */	mflr r0
 /* 8004B5B4 000484F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2425,22 +2425,22 @@ lbl_8004B640:
 /* 8004B680 000485C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B684 000485C4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c
-dPa_control_c_NS_level_c:
+.global __ct__Q213dPa_control_c7level_cFv
+__ct__Q213dPa_control_c7level_cFv:
 /* 8004B688 000485C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B68C 000485CC  7C 08 02 A6 */	mflr r0
 /* 8004B690 000485D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004B694 000485D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004B698 000485D8  7C 7F 1B 78 */	mr r31, r3
 /* 8004B69C 000485DC  38 7F 00 08 */	addi r3, r31, 8
-.global dPa_control_c_NS_level_c_NS_emitter_c
-/* 8004B6A0 000485E0  3C 80 80 05 */	lis r4, dPa_control_c_NS_level_c_NS_emitter_c@ha
-.global dPa_control_c_NS_level_c_NS_emitter_c
-/* 8004B6A4 000485E4  38 84 FB FC */	addi r4, r4, dPa_control_c_NS_level_c_NS_emitter_c@l
+.global __ct__Q313dPa_control_c7level_c9emitter_cFv
+/* 8004B6A0 000485E0  3C 80 80 05 */	lis r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@ha
+.global __ct__Q313dPa_control_c7level_c9emitter_cFv
+/* 8004B6A4 000485E4  38 84 FB FC */	addi r4, r4, __ct__Q313dPa_control_c7level_c9emitter_cFv@l
 /* 8004B6A8 000485E8  38 A0 00 00 */	li r5, 0
 /* 8004B6AC 000485EC  38 C0 00 18 */	li r6, 0x18
 /* 8004B6B0 000485F0  38 E0 00 80 */	li r7, 0x80
-/* 8004B6B4 000485F4  48 31 66 AD */	bl func_80361D60
+/* 8004B6B4 000485F4  48 31 66 AD */	bl __construct_array
 /* 8004B6B8 000485F8  38 80 00 00 */	li r4, 0
 /* 8004B6BC 000485FC  90 9F 00 00 */	stw r4, 0(r31)
 /* 8004B6C0 00048600  98 9F 00 04 */	stb r4, 4(r31)
@@ -2459,8 +2459,8 @@ lbl_8004B6D0:
 /* 8004B6F0 00048630  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B6F4 00048634  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_execute
-dPa_control_c_NS_level_c_NS_execute:
+.global execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
+execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c:
 /* 8004B6F8 00048638  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B6FC 0004863C  7C 08 02 A6 */	mflr r0
 /* 8004B700 00048640  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2485,7 +2485,7 @@ lbl_8004B73C:
 /* 8004B748 00048688  90 03 00 F4 */	stw r0, 0xf4(r3)
 /* 8004B74C 0004868C  7F C3 F3 78 */	mr r3, r30
 /* 8004B750 00048690  7F E4 FB 78 */	mr r4, r31
-/* 8004B754 00048694  48 00 03 21 */	bl dPa_control_c_NS_level_c_NS_cutTable
+/* 8004B754 00048694  48 00 03 21 */	bl cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
 /* 8004B758 00048698  38 1E 00 08 */	addi r0, r30, 8
 /* 8004B75C 0004869C  7C 00 F8 50 */	subf r0, r0, r31
 /* 8004B760 000486A0  38 60 00 18 */	li r3, 0x18
@@ -2510,8 +2510,8 @@ lbl_8004B790:
 /* 8004B7A0 000486E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B7A4 000486E4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_execute_X1_
-dPa_control_c_NS_level_c_NS_execute_X1_:
+.global execute__Q213dPa_control_c7level_cFv
+execute__Q213dPa_control_c7level_cFv:
 /* 8004B7A8 000486E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B7AC 000486EC  7C 08 02 A6 */	mflr r0
 /* 8004B7B0 000486F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2526,7 +2526,7 @@ lbl_8004B7C8:
 /* 8004B7D0 00048710  41 82 00 10 */	beq lbl_8004B7E0
 /* 8004B7D4 00048714  7F A3 EB 78 */	mr r3, r29
 /* 8004B7D8 00048718  7F E4 FB 78 */	mr r4, r31
-/* 8004B7DC 0004871C  4B FF FF 1D */	bl dPa_control_c_NS_level_c_NS_execute
+/* 8004B7DC 0004871C  4B FF FF 1D */	bl execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
 lbl_8004B7E0:
 /* 8004B7E0 00048720  3B DE 00 01 */	addi r30, r30, 1
 /* 8004B7E4 00048724  2C 1E 00 80 */	cmpwi r30, 0x80
@@ -2539,8 +2539,8 @@ lbl_8004B7E0:
 /* 8004B800 00048740  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B804 00048744  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_cleanup
-dPa_control_c_NS_level_c_NS_cleanup:
+.global cleanup__Q213dPa_control_c7level_cFv
+cleanup__Q213dPa_control_c7level_cFv:
 /* 8004B808 00048748  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004B80C 0004874C  7C 08 02 A6 */	mflr r0
 /* 8004B810 00048750  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2557,7 +2557,7 @@ lbl_8004B82C:
 /* 8004B838 00048778  9B FE 00 06 */	stb r31, 6(r30)
 /* 8004B83C 0004877C  7F 83 E3 78 */	mr r3, r28
 /* 8004B840 00048780  7F C4 F3 78 */	mr r4, r30
-/* 8004B844 00048784  48 00 02 31 */	bl dPa_control_c_NS_level_c_NS_cutTable
+/* 8004B844 00048784  48 00 02 31 */	bl cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
 /* 8004B848 00048788  9B BC 00 04 */	stb r29, 4(r28)
 lbl_8004B84C:
 /* 8004B84C 0004878C  3B BD 00 01 */	addi r29, r29, 1
@@ -2571,8 +2571,8 @@ lbl_8004B84C:
 /* 8004B86C 000487AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004B870 000487B0  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_get
-dPa_control_c_NS_level_c_NS_get:
+.global get__Q213dPa_control_c7level_cFUl
+get__Q213dPa_control_c7level_cFUl:
 /* 8004B874 000487B4  28 04 00 00 */	cmplwi r4, 0
 /* 8004B878 000487B8  40 82 00 0C */	bne lbl_8004B884
 /* 8004B87C 000487BC  38 60 00 00 */	li r3, 0
@@ -2593,12 +2593,12 @@ lbl_8004B8A4:
 /* 8004B8AC 000487EC  38 60 00 00 */	li r3, 0
 /* 8004B8B0 000487F0  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_forceOnEventMove
-dPa_control_c_NS_level_c_NS_forceOnEventMove:
+.global forceOnEventMove__Q213dPa_control_c7level_cFUl
+forceOnEventMove__Q213dPa_control_c7level_cFUl:
 /* 8004B8B4 000487F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B8B8 000487F8  7C 08 02 A6 */	mflr r0
 /* 8004B8BC 000487FC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004B8C0 00048800  4B FF FF B5 */	bl dPa_control_c_NS_level_c_NS_get
+/* 8004B8C0 00048800  4B FF FF B5 */	bl get__Q213dPa_control_c7level_cFUl
 /* 8004B8C4 00048804  28 03 00 00 */	cmplwi r3, 0
 /* 8004B8C8 00048808  41 82 00 10 */	beq lbl_8004B8D8
 /* 8004B8CC 0004880C  88 03 00 06 */	lbz r0, 6(r3)
@@ -2610,8 +2610,8 @@ lbl_8004B8D8:
 /* 8004B8E0 00048820  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B8E4 00048824  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_allForceOnEventMove
-dPa_control_c_NS_level_c_NS_allForceOnEventMove:
+.global allForceOnEventMove__Q213dPa_control_c7level_cFv
+allForceOnEventMove__Q213dPa_control_c7level_cFv:
 /* 8004B8E8 00048828  38 63 00 08 */	addi r3, r3, 8
 /* 8004B8EC 0004882C  38 00 00 80 */	li r0, 0x80
 /* 8004B8F0 00048830  7C 09 03 A6 */	mtctr r0
@@ -2627,12 +2627,12 @@ lbl_8004B90C:
 /* 8004B910 00048850  42 00 FF E4 */	bdnz lbl_8004B8F4
 /* 8004B914 00048854  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_getEmitter
-dPa_control_c_NS_level_c_NS_getEmitter:
+.global getEmitter__Q213dPa_control_c7level_cFUl
+getEmitter__Q213dPa_control_c7level_cFUl:
 /* 8004B918 00048858  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B91C 0004885C  7C 08 02 A6 */	mflr r0
 /* 8004B920 00048860  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8004B924 00048864  4B FF FF 51 */	bl dPa_control_c_NS_level_c_NS_get
+/* 8004B924 00048864  4B FF FF 51 */	bl get__Q213dPa_control_c7level_cFUl
 /* 8004B928 00048868  28 03 00 00 */	cmplwi r3, 0
 /* 8004B92C 0004886C  40 82 00 0C */	bne lbl_8004B938
 /* 8004B930 00048870  38 60 00 00 */	li r3, 0
@@ -2645,8 +2645,8 @@ lbl_8004B93C:
 /* 8004B944 00048884  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004B948 00048888  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_entry
-dPa_control_c_NS_level_c_NS_entry:
+.global entry__Q213dPa_control_c7level_cFUsP14JPABaseEmitterP18dPa_levelEcallBack
+entry__Q213dPa_control_c7level_cFUsP14JPABaseEmitterP18dPa_levelEcallBack:
 /* 8004B94C 0004888C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004B950 00048890  7C 08 02 A6 */	mflr r0
 /* 8004B954 00048894  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2679,13 +2679,13 @@ lbl_8004B9A8:
 /* 8004B9B8 000488F8  80 9F 00 00 */	lwz r4, 0(r31)
 /* 8004B9BC 000488FC  7D 25 4B 78 */	mr r5, r9
 /* 8004B9C0 00048900  7D 06 43 78 */	mr r6, r8
-/* 8004B9C4 00048904  4B FF FB 81 */	bl dPa_control_c_NS_level_c_NS_emitter_c_NS_entry
+/* 8004B9C4 00048904  4B FF FB 81 */	bl entry__Q313dPa_control_c7level_c9emitter_cFUlUsP14JPABaseEmitterP18dPa_levelEcallBack
 /* 8004B9C8 00048908  7F E3 FB 78 */	mr r3, r31
 /* 8004B9CC 0004890C  88 1F 00 04 */	lbz r0, 4(r31)
 /* 8004B9D0 00048910  1C 80 00 18 */	mulli r4, r0, 0x18
 /* 8004B9D4 00048914  38 84 00 08 */	addi r4, r4, 8
 /* 8004B9D8 00048918  7C 9F 22 14 */	add r4, r31, r4
-/* 8004B9DC 0004891C  48 00 00 65 */	bl dPa_control_c_NS_level_c_NS_addTable
+/* 8004B9DC 0004891C  48 00 00 65 */	bl addTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
 /* 8004B9E0 00048920  80 7F 00 00 */	lwz r3, 0(r31)
 /* 8004B9E4 00048924  48 00 00 48 */	b lbl_8004BA2C
 lbl_8004B9E8:
@@ -2713,8 +2713,8 @@ lbl_8004BA2C:
 /* 8004BA38 00048978  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BA3C 0004897C  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_addTable
-dPa_control_c_NS_level_c_NS_addTable:
+.global addTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
+addTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c:
 /* 8004BA40 00048980  80 04 00 00 */	lwz r0, 0(r4)
 /* 8004BA44 00048984  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 8004BA48 00048988  7C 63 02 14 */	add r3, r3, r0
@@ -2730,8 +2730,8 @@ lbl_8004BA60:
 /* 8004BA6C 000489AC  90 83 0C 08 */	stw r4, 0xc08(r3)
 /* 8004BA70 000489B0  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_level_c_NS_cutTable
-dPa_control_c_NS_level_c_NS_cutTable:
+.global cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
+cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c:
 /* 8004BA74 000489B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BA78 000489B8  7C 08 02 A6 */	mflr r0
 /* 8004BA7C 000489BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2752,34 +2752,34 @@ lbl_8004BAA8:
 /* 8004BAB0 000489F0  90 A6 00 10 */	stw r5, 0x10(r6)
 lbl_8004BAB4:
 /* 8004BAB4 000489F4  7C 83 23 78 */	mr r3, r4
-/* 8004BAB8 000489F8  4B FF FA F5 */	bl dPa_control_c_NS_level_c_NS_emitter_c_NS_cleanup
+/* 8004BAB8 000489F8  4B FF FA F5 */	bl cleanup__Q313dPa_control_c7level_c9emitter_cFv
 /* 8004BABC 000489FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004BAC0 00048A00  7C 08 03 A6 */	mtlr r0
 /* 8004BAC4 00048A04  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BAC8 00048A08  4E 80 00 20 */	blr 
 
-.global dPa_control_c
-dPa_control_c:
+.global __ct__13dPa_control_cFv
+__ct__13dPa_control_cFv:
 /* 8004BACC 00048A0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BAD0 00048A10  7C 08 02 A6 */	mflr r0
 /* 8004BAD4 00048A14  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004BAD8 00048A18  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004BADC 00048A1C  7C 7F 1B 78 */	mr r31, r3
 /* 8004BAE0 00048A20  38 7F 00 1C */	addi r3, r31, 0x1c
-.global dPa_simpleEcallBack
-/* 8004BAE4 00048A24  3C 80 80 05 */	lis r4, dPa_simpleEcallBack@ha
-.global dPa_simpleEcallBack
-/* 8004BAE8 00048A28  38 84 AD F4 */	addi r4, r4, dPa_simpleEcallBack@l
-.global dPa_simpleEcallBack_NS_dtor
-/* 8004BAEC 00048A2C  3C A0 80 05 */	lis r5, dPa_simpleEcallBack_NS_dtor@ha
-.global dPa_simpleEcallBack_NS_dtor
-/* 8004BAF0 00048A30  38 A5 FC 08 */	addi r5, r5, dPa_simpleEcallBack_NS_dtor@l
+.global __ct__19dPa_simpleEcallBackFv
+/* 8004BAE4 00048A24  3C 80 80 05 */	lis r4, __ct__19dPa_simpleEcallBackFv@ha
+.global __ct__19dPa_simpleEcallBackFv
+/* 8004BAE8 00048A28  38 84 AD F4 */	addi r4, r4, __ct__19dPa_simpleEcallBackFv@l
+.global __dt__19dPa_simpleEcallBackFv
+/* 8004BAEC 00048A2C  3C A0 80 05 */	lis r5, __dt__19dPa_simpleEcallBackFv@ha
+.global __dt__19dPa_simpleEcallBackFv
+/* 8004BAF0 00048A30  38 A5 FC 08 */	addi r5, r5, __dt__19dPa_simpleEcallBackFv@l
 /* 8004BAF4 00048A34  38 C0 00 14 */	li r6, 0x14
 /* 8004BAF8 00048A38  38 E0 00 19 */	li r7, 0x19
-/* 8004BAFC 00048A3C  48 31 62 65 */	bl func_80361D60
+/* 8004BAFC 00048A3C  48 31 62 65 */	bl __construct_array
 /* 8004BB00 00048A40  38 7F 02 10 */	addi r3, r31, 0x210
-/* 8004BB04 00048A44  4B FF FB 85 */	bl dPa_control_c_NS_level_c
-/* 8004BB08 00048A48  4B FC 32 E5 */	bl mDoExt_getArchiveHeap
+/* 8004BB04 00048A44  4B FF FB 85 */	bl __ct__Q213dPa_control_c7level_cFv
+/* 8004BB08 00048A48  4B FC 32 E5 */	bl mDoExt_getArchiveHeap__Fv
 /* 8004BB0C 00048A4C  7C 64 1B 78 */	mr r4, r3
 /* 8004BB10 00048A50  3C 60 00 09 */	lis r3, 0x00096000@ha
 /* 8004BB14 00048A54  38 63 60 00 */	addi r3, r3, 0x00096000@l
@@ -2806,13 +2806,13 @@ dPa_control_c:
 /* 8004BB68 00048AA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BB6C 00048AAC  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_getRM_ID
-dPa_control_c_NS_getRM_ID:
+.global getRM_ID__13dPa_control_cFUs
+getRM_ID__13dPa_control_cFUs:
 /* 8004BB70 00048AB0  54 63 8F FE */	rlwinm r3, r3, 0x11, 0x1f, 0x1f
 /* 8004BB74 00048AB4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_createCommon
-dPa_control_c_NS_createCommon:
+.global createCommon__13dPa_control_cFPCv
+createCommon__13dPa_control_cFPCv:
 /* 8004BB78 00048AB8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004BB7C 00048ABC  7C 08 02 A6 */	mflr r0
 /* 8004BB80 00048AC0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2822,7 +2822,7 @@ dPa_control_c_NS_createCommon:
 /* 8004BB90 00048AD0  7C 9B 23 78 */	mr r27, r4
 /* 8004BB94 00048AD4  38 60 00 00 */	li r3, 0
 /* 8004BB98 00048AD8  38 80 00 00 */	li r4, 0
-/* 8004BB9C 00048ADC  4B FC 33 85 */	bl mDoExt_createSolidHeapFromSystem
+/* 8004BB9C 00048ADC  4B FC 33 85 */	bl mDoExt_createSolidHeapFromSystem__FUlUl
 /* 8004BBA0 00048AE0  90 7F 00 00 */	stw r3, 0(r31)
 /* 8004BBA4 00048AE4  38 60 00 14 */	li r3, 0x14
 /* 8004BBA8 00048AE8  80 9F 00 00 */	lwz r4, 0(r31)
@@ -2832,7 +2832,7 @@ dPa_control_c_NS_createCommon:
 /* 8004BBB8 00048AF8  41 82 00 14 */	beq lbl_8004BBCC
 /* 8004BBBC 00048AFC  7F 64 DB 78 */	mr r4, r27
 /* 8004BBC0 00048B00  80 BF 00 00 */	lwz r5, 0(r31)
-/* 8004BBC4 00048B04  48 22 82 4D */	bl JPAResourceManager
+/* 8004BBC4 00048B04  48 22 82 4D */	bl __ct__18JPAResourceManagerFPCvP7JKRHeap
 /* 8004BBC8 00048B08  7C 60 1B 78 */	mr r0, r3
 lbl_8004BBCC:
 /* 8004BBCC 00048B0C  90 1F 00 04 */	stw r0, 4(r31)
@@ -2840,7 +2840,7 @@ lbl_8004BBCC:
 /* 8004BBD4 00048B14  80 8D 86 4C */	lwz r4, lbl_80450BCC-_SDA_BASE_(r13)
 /* 8004BBD8 00048B18  3C A0 80 38 */	lis r5, lbl_8037A12C@ha
 /* 8004BBDC 00048B1C  38 A5 A1 2C */	addi r5, r5, lbl_8037A12C@l
-/* 8004BBE0 00048B20  48 22 83 0D */	bl JPAResourceManager_NS_swapTexture
+/* 8004BBE0 00048B20  48 22 83 0D */	bl swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
 /* 8004BBE4 00048B24  38 60 00 30 */	li r3, 0x30
 /* 8004BBE8 00048B28  80 9F 00 00 */	lwz r4, 0(r31)
 /* 8004BBEC 00048B2C  38 A0 00 00 */	li r5, 0
@@ -2852,16 +2852,16 @@ lbl_8004BBCC:
 /* 8004BC04 00048B44  80 DF 00 00 */	lwz r6, 0(r31)
 /* 8004BC08 00048B48  38 E0 00 13 */	li r7, 0x13
 /* 8004BC0C 00048B4C  39 00 00 02 */	li r8, 2
-/* 8004BC10 00048B50  48 23 20 91 */	bl JPAEmitterManager
+/* 8004BC10 00048B50  48 23 20 91 */	bl __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
 /* 8004BC14 00048B54  7C 60 1B 78 */	mr r0, r3
 lbl_8004BC18:
 /* 8004BC18 00048B58  90 0D 89 20 */	stw r0, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004BC1C 00048B5C  7C 03 03 78 */	mr r3, r0
 /* 8004BC20 00048B60  80 9F 00 04 */	lwz r4, 4(r31)
 /* 8004BC24 00048B64  38 A0 00 00 */	li r5, 0
-/* 8004BC28 00048B68  48 23 27 1D */	bl JPAEmitterManager_NS_entryResourceManager
+/* 8004BC28 00048B68  48 23 27 1D */	bl entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
 /* 8004BC2C 00048B6C  80 7F 00 00 */	lwz r3, 0(r31)
-/* 8004BC30 00048B70  4B FC 35 9D */	bl mDoExt_setCurrentHeap
+/* 8004BC30 00048B70  4B FC 35 9D */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8004BC34 00048B74  7C 7D 1B 78 */	mr r29, r3
 /* 8004BC38 00048B78  3B 80 00 00 */	li r28, 0
 /* 8004BC3C 00048B7C  3C 60 80 3B */	lis r3, lbl_803A85D0@ha
@@ -2872,23 +2872,23 @@ lbl_8004BC48:
 /* 8004BC4C 00048B8C  7F 7E 02 2E */	lhzx r27, r30, r0
 /* 8004BC50 00048B90  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8004BC54 00048B94  7F 64 DB 78 */	mr r4, r27
-/* 8004BC58 00048B98  48 22 82 51 */	bl JPAResourceManager_NS_checkUserIndexDuplication
+/* 8004BC58 00048B98  48 22 82 51 */	bl checkUserIndexDuplication__18JPAResourceManagerCFUs
 /* 8004BC5C 00048B9C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004BC60 00048BA0  41 82 00 3C */	beq lbl_8004BC9C
 /* 8004BC64 00048BA4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8004BC68 00048BA8  7F 64 DB 78 */	mr r4, r27
-/* 8004BC6C 00048BAC  48 22 83 61 */	bl JPAResourceManager_NS_getResUserWork
+/* 8004BC6C 00048BAC  48 22 83 61 */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004BC70 00048BB0  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8004BC74 00048BB4  38 00 00 00 */	li r0, 0
 /* 8004BC78 00048BB8  98 01 00 08 */	stb r0, 8(r1)
 /* 8004BC7C 00048BBC  38 61 00 0C */	addi r3, r1, 0xc
 /* 8004BC80 00048BC0  38 81 00 08 */	addi r4, r1, 8
-/* 8004BC84 00048BC4  4B FF DB 65 */	bl dPa_group_id_change
+/* 8004BC84 00048BC4  4B FF DB 65 */	bl dPa_group_id_change__FPUlPUc
 /* 8004BC88 00048BC8  7F E3 FB 78 */	mr r3, r31
 /* 8004BC8C 00048BCC  7F 64 DB 78 */	mr r4, r27
 /* 8004BC90 00048BD0  88 A1 00 08 */	lbz r5, 8(r1)
 /* 8004BC94 00048BD4  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8004BC98 00048BD8  48 00 14 91 */	bl dPa_control_c_NS_newSimple
+/* 8004BC98 00048BD8  48 00 14 91 */	bl newSimple__13dPa_control_cFUsUcPUl
 lbl_8004BC9C:
 /* 8004BC9C 00048BDC  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8004BCA0:
@@ -2898,9 +2898,9 @@ lbl_8004BCA0:
 /* 8004BCAC 00048BEC  88 1F 00 19 */	lbz r0, 0x19(r31)
 /* 8004BCB0 00048BF0  98 1F 00 1A */	stb r0, 0x1a(r31)
 /* 8004BCB4 00048BF4  7F A3 EB 78 */	mr r3, r29
-/* 8004BCB8 00048BF8  4B FC 35 15 */	bl mDoExt_setCurrentHeap
+/* 8004BCB8 00048BF8  4B FC 35 15 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8004BCBC 00048BFC  80 7F 00 00 */	lwz r3, 0(r31)
-/* 8004BCC0 00048C00  4B FC 33 CD */	bl mDoExt_adjustSolidHeap
+/* 8004BCC0 00048C00  4B FC 33 CD */	bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 /* 8004BCC4 00048C04  39 61 00 30 */	addi r11, r1, 0x30
 /* 8004BCC8 00048C08  48 31 65 59 */	bl _restgpr_27
 /* 8004BCCC 00048C0C  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -2908,8 +2908,8 @@ lbl_8004BCA0:
 /* 8004BCD4 00048C14  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004BCD8 00048C18  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_createRoomScene
-dPa_control_c_NS_createRoomScene:
+.global createRoomScene__13dPa_control_cFv
+createRoomScene__13dPa_control_cFv:
 /* 8004BCDC 00048C1C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004BCE0 00048C20  7C 08 02 A6 */	mflr r0
 /* 8004BCE4 00048C24  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2918,7 +2918,7 @@ dPa_control_c_NS_createRoomScene:
 /* 8004BCF0 00048C30  7C 7B 1B 78 */	mr r27, r3
 /* 8004BCF4 00048C34  38 60 00 00 */	li r3, 0
 /* 8004BCF8 00048C38  38 80 00 00 */	li r4, 0
-/* 8004BCFC 00048C3C  4B FC 31 DD */	bl mDoExt_createSolidHeapFromGame
+/* 8004BCFC 00048C3C  4B FC 31 DD */	bl mDoExt_createSolidHeapFromGame__FUlUl
 /* 8004BD00 00048C40  90 7B 00 0C */	stw r3, 0xc(r27)
 /* 8004BD04 00048C44  38 60 00 14 */	li r3, 0x14
 /* 8004BD08 00048C48  80 9B 00 0C */	lwz r4, 0xc(r27)
@@ -2928,7 +2928,7 @@ dPa_control_c_NS_createRoomScene:
 /* 8004BD18 00048C58  41 82 00 14 */	beq lbl_8004BD2C
 /* 8004BD1C 00048C5C  80 9B 00 10 */	lwz r4, 0x10(r27)
 /* 8004BD20 00048C60  80 BB 00 0C */	lwz r5, 0xc(r27)
-/* 8004BD24 00048C64  48 22 80 ED */	bl JPAResourceManager
+/* 8004BD24 00048C64  48 22 80 ED */	bl __ct__18JPAResourceManagerFPCvP7JKRHeap
 /* 8004BD28 00048C68  7C 60 1B 78 */	mr r0, r3
 lbl_8004BD2C:
 /* 8004BD2C 00048C6C  90 1B 00 14 */	stw r0, 0x14(r27)
@@ -2936,13 +2936,13 @@ lbl_8004BD2C:
 /* 8004BD34 00048C74  80 8D 86 4C */	lwz r4, lbl_80450BCC-_SDA_BASE_(r13)
 /* 8004BD38 00048C78  3C A0 80 38 */	lis r5, lbl_8037A12C@ha
 /* 8004BD3C 00048C7C  38 A5 A1 2C */	addi r5, r5, lbl_8037A12C@l
-/* 8004BD40 00048C80  48 22 81 AD */	bl JPAResourceManager_NS_swapTexture
+/* 8004BD40 00048C80  48 22 81 AD */	bl swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
 /* 8004BD44 00048C84  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004BD48 00048C88  80 9B 00 14 */	lwz r4, 0x14(r27)
 /* 8004BD4C 00048C8C  38 A0 00 01 */	li r5, 1
-/* 8004BD50 00048C90  48 23 25 F5 */	bl JPAEmitterManager_NS_entryResourceManager
+/* 8004BD50 00048C90  48 23 25 F5 */	bl entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
 /* 8004BD54 00048C94  80 7B 00 0C */	lwz r3, 0xc(r27)
-/* 8004BD58 00048C98  4B FC 34 75 */	bl mDoExt_setCurrentHeap
+/* 8004BD58 00048C98  4B FC 34 75 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8004BD5C 00048C9C  7C 7E 1B 78 */	mr r30, r3
 /* 8004BD60 00048CA0  3B A0 00 00 */	li r29, 0
 /* 8004BD64 00048CA4  3C 60 80 3B */	lis r3, lbl_803A85DC@ha
@@ -2953,23 +2953,23 @@ lbl_8004BD70:
 /* 8004BD74 00048CB4  7F 9F 02 2E */	lhzx r28, r31, r0
 /* 8004BD78 00048CB8  80 7B 00 14 */	lwz r3, 0x14(r27)
 /* 8004BD7C 00048CBC  7F 84 E3 78 */	mr r4, r28
-/* 8004BD80 00048CC0  48 22 81 29 */	bl JPAResourceManager_NS_checkUserIndexDuplication
+/* 8004BD80 00048CC0  48 22 81 29 */	bl checkUserIndexDuplication__18JPAResourceManagerCFUs
 /* 8004BD84 00048CC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004BD88 00048CC8  41 82 00 3C */	beq lbl_8004BDC4
 /* 8004BD8C 00048CCC  80 7B 00 14 */	lwz r3, 0x14(r27)
 /* 8004BD90 00048CD0  7F 84 E3 78 */	mr r4, r28
-/* 8004BD94 00048CD4  48 22 82 39 */	bl JPAResourceManager_NS_getResUserWork
+/* 8004BD94 00048CD4  48 22 82 39 */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004BD98 00048CD8  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8004BD9C 00048CDC  38 00 00 00 */	li r0, 0
 /* 8004BDA0 00048CE0  98 01 00 08 */	stb r0, 8(r1)
 /* 8004BDA4 00048CE4  38 61 00 0C */	addi r3, r1, 0xc
 /* 8004BDA8 00048CE8  38 81 00 08 */	addi r4, r1, 8
-/* 8004BDAC 00048CEC  4B FF DA 3D */	bl dPa_group_id_change
+/* 8004BDAC 00048CEC  4B FF DA 3D */	bl dPa_group_id_change__FPUlPUc
 /* 8004BDB0 00048CF0  7F 63 DB 78 */	mr r3, r27
 /* 8004BDB4 00048CF4  7F 84 E3 78 */	mr r4, r28
 /* 8004BDB8 00048CF8  88 A1 00 08 */	lbz r5, 8(r1)
 /* 8004BDBC 00048CFC  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8004BDC0 00048D00  48 00 13 69 */	bl dPa_control_c_NS_newSimple
+/* 8004BDC0 00048D00  48 00 13 69 */	bl newSimple__13dPa_control_cFUsUcPUl
 lbl_8004BDC4:
 /* 8004BDC4 00048D04  3B BD 00 01 */	addi r29, r29, 1
 lbl_8004BDC8:
@@ -2977,9 +2977,9 @@ lbl_8004BDC8:
 /* 8004BDCC 00048D0C  28 00 00 0E */	cmplwi r0, 0xe
 /* 8004BDD0 00048D10  41 80 FF A0 */	blt lbl_8004BD70
 /* 8004BDD4 00048D14  7F C3 F3 78 */	mr r3, r30
-/* 8004BDD8 00048D18  4B FC 33 F5 */	bl mDoExt_setCurrentHeap
+/* 8004BDD8 00048D18  4B FC 33 F5 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8004BDDC 00048D1C  80 7B 00 0C */	lwz r3, 0xc(r27)
-/* 8004BDE0 00048D20  4B FC 32 AD */	bl mDoExt_adjustSolidHeap
+/* 8004BDE0 00048D20  4B FC 32 AD */	bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 /* 8004BDE4 00048D24  39 61 00 30 */	addi r11, r1, 0x30
 /* 8004BDE8 00048D28  48 31 64 39 */	bl _restgpr_27
 /* 8004BDEC 00048D2C  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -2987,8 +2987,8 @@ lbl_8004BDC8:
 /* 8004BDF4 00048D34  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004BDF8 00048D38  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_readScene
-dPa_control_c_NS_readScene:
+.global readScene__13dPa_control_cFUcPP21mDoDvdThd_toMainRam_c
+readScene__13dPa_control_cFUcPP21mDoDvdThd_toMainRam_c:
 /* 8004BDFC 00048D3C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004BE00 00048D40  7C 08 02 A6 */	mflr r0
 /* 8004BE04 00048D44  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3023,12 +3023,12 @@ lbl_8004BE58:
 /* 8004BE6C 00048DAC  38 84 00 06 */	addi r4, r4, 6
 /* 8004BE70 00048DB0  57 C5 06 3E */	clrlwi r5, r30, 0x18
 /* 8004BE74 00048DB4  4C C6 31 82 */	crclr 6
-/* 8004BE78 00048DB8  48 31 A6 65 */	bl func_803664DC
+/* 8004BE78 00048DB8  48 31 A6 65 */	bl sprintf
 /* 8004BE7C 00048DBC  3C 60 80 42 */	lis r3, lbl_804248AC@ha
 /* 8004BE80 00048DC0  38 63 48 AC */	addi r3, r3, lbl_804248AC@l
 /* 8004BE84 00048DC4  38 80 00 00 */	li r4, 0
 /* 8004BE88 00048DC8  80 BD 00 08 */	lwz r5, 8(r29)
-/* 8004BE8C 00048DCC  4B FC A5 09 */	bl mDoDvdThd_toMainRam_c_NS_create
+/* 8004BE8C 00048DCC  4B FC A5 09 */	bl create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap
 /* 8004BE90 00048DD0  90 7F 00 00 */	stw r3, 0(r31)
 /* 8004BE94 00048DD4  38 60 00 01 */	li r3, 1
 lbl_8004BE98:
@@ -3039,8 +3039,8 @@ lbl_8004BE98:
 /* 8004BEA8 00048DE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004BEAC 00048DEC  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_createScene
-dPa_control_c_NS_createScene:
+.global createScene__13dPa_control_cFPCv
+createScene__13dPa_control_cFPCv:
 /* 8004BEB0 00048DF0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004BEB4 00048DF4  7C 08 02 A6 */	mflr r0
 /* 8004BEB8 00048DF8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3055,7 +3055,7 @@ lbl_8004BED8:
 /* 8004BED8 00048E18  38 7F 00 1C */	addi r3, r31, 0x1c
 /* 8004BEDC 00048E1C  7C 7C 1A 14 */	add r3, r28, r3
 /* 8004BEE0 00048E20  80 8D 89 20 */	lwz r4, lbl_80450EA0-_SDA_BASE_(r13)
-/* 8004BEE4 00048E24  4B FF F1 81 */	bl dPa_simpleEcallBack_NS_createEmitter
+/* 8004BEE4 00048E24  4B FF F1 81 */	bl createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager
 /* 8004BEE8 00048E28  3B DE 00 01 */	addi r30, r30, 1
 /* 8004BEEC 00048E2C  3B FF 00 14 */	addi r31, r31, 0x14
 lbl_8004BEF0:
@@ -3070,10 +3070,10 @@ lbl_8004BF08:
 /* 8004BF0C 00048E4C  28 00 00 00 */	cmplwi r0, 0
 /* 8004BF10 00048E50  41 82 00 0C */	beq lbl_8004BF1C
 /* 8004BF14 00048E54  7F 83 E3 78 */	mr r3, r28
-/* 8004BF18 00048E58  4B FF FD C5 */	bl dPa_control_c_NS_createRoomScene
+/* 8004BF18 00048E58  4B FF FD C5 */	bl createRoomScene__13dPa_control_cFv
 lbl_8004BF1C:
 /* 8004BF1C 00048E5C  38 60 00 80 */	li r3, 0x80
-/* 8004BF20 00048E60  4B FF EB FD */	bl dPa_modelEcallBack_NS_create
+/* 8004BF20 00048E60  4B FF EB FD */	bl create__18dPa_modelEcallBackFUc
 /* 8004BF24 00048E64  39 61 00 20 */	addi r11, r1, 0x20
 /* 8004BF28 00048E68  48 31 62 FD */	bl _restgpr_28
 /* 8004BF2C 00048E6C  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -3081,8 +3081,8 @@ lbl_8004BF1C:
 /* 8004BF34 00048E74  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004BF38 00048E78  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_removeRoomScene
-dPa_control_c_NS_removeRoomScene:
+.global removeRoomScene__13dPa_control_cFb
+removeRoomScene__13dPa_control_cFb:
 /* 8004BF3C 00048E7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BF40 00048E80  7C 08 02 A6 */	mflr r0
 /* 8004BF44 00048E84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3098,9 +3098,9 @@ dPa_control_c_NS_removeRoomScene:
 lbl_8004BF6C:
 /* 8004BF6C 00048EAC  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004BF70 00048EB0  38 80 00 01 */	li r4, 1
-/* 8004BF74 00048EB4  48 23 23 E1 */	bl JPAEmitterManager_NS_clearResourceManager
+/* 8004BF74 00048EB4  48 23 23 E1 */	bl clearResourceManager__17JPAEmitterManagerFUc
 /* 8004BF78 00048EB8  80 7E 00 0C */	lwz r3, 0xc(r30)
-/* 8004BF7C 00048EBC  4B FC 32 11 */	bl mDoExt_destroySolidHeap
+/* 8004BF7C 00048EBC  4B FC 32 11 */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 /* 8004BF80 00048EC0  38 00 00 00 */	li r0, 0
 /* 8004BF84 00048EC4  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8004BF88 00048EC8  90 1E 00 14 */	stw r0, 0x14(r30)
@@ -3125,8 +3125,8 @@ lbl_8004BFBC:
 /* 8004BFCC 00048F0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004BFD0 00048F10  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_removeScene
-dPa_control_c_NS_removeScene:
+.global removeScene__13dPa_control_cFb
+removeScene__13dPa_control_cFb:
 /* 8004BFD4 00048F14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004BFD8 00048F18  7C 08 02 A6 */	mflr r0
 /* 8004BFDC 00048F1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3135,10 +3135,10 @@ dPa_control_c_NS_removeScene:
 /* 8004BFE8 00048F28  7C 7E 1B 78 */	mr r30, r3
 /* 8004BFEC 00048F2C  7C 9F 23 78 */	mr r31, r4
 /* 8004BFF0 00048F30  38 7E 02 10 */	addi r3, r30, 0x210
-/* 8004BFF4 00048F34  4B FF F8 15 */	bl dPa_control_c_NS_level_c_NS_cleanup
+/* 8004BFF4 00048F34  4B FF F8 15 */	bl cleanup__Q213dPa_control_c7level_cFv
 /* 8004BFF8 00048F38  7F C3 F3 78 */	mr r3, r30
 /* 8004BFFC 00048F3C  7F E4 FB 78 */	mr r4, r31
-/* 8004C000 00048F40  4B FF FF 3D */	bl dPa_control_c_NS_removeRoomScene
+/* 8004C000 00048F40  4B FF FF 3D */	bl removeRoomScene__13dPa_control_cFb
 /* 8004C004 00048F44  38 A0 00 00 */	li r5, 0
 /* 8004C008 00048F48  38 60 00 00 */	li r3, 0
 /* 8004C00C 00048F4C  7C 64 1B 78 */	mr r4, r3
@@ -3153,8 +3153,8 @@ lbl_8004C024:
 /* 8004C028 00048F68  7C 05 00 00 */	cmpw r5, r0
 /* 8004C02C 00048F6C  41 80 FF E8 */	blt lbl_8004C014
 /* 8004C030 00048F70  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
-/* 8004C034 00048F74  48 23 21 ED */	bl JPAEmitterManager_NS_forceDeleteAllEmitter
-/* 8004C038 00048F78  4B FF EB 8D */	bl dPa_modelEcallBack_NS_remove
+/* 8004C034 00048F74  48 23 21 ED */	bl forceDeleteAllEmitter__17JPAEmitterManagerFv
+/* 8004C038 00048F78  4B FF EB 8D */	bl remove__18dPa_modelEcallBackFv
 /* 8004C03C 00048F7C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8004C040 00048F80  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8004C044 00048F84  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3162,20 +3162,20 @@ lbl_8004C024:
 /* 8004C04C 00048F8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C050 00048F90  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_cleanup
-dPa_control_c_NS_cleanup:
+.global cleanup__13dPa_control_cFv
+cleanup__13dPa_control_cFv:
 /* 8004C054 00048F94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C058 00048F98  7C 08 02 A6 */	mflr r0
 /* 8004C05C 00048F9C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004C060 00048FA0  38 63 02 10 */	addi r3, r3, 0x210
-/* 8004C064 00048FA4  4B FF F7 A5 */	bl dPa_control_c_NS_level_c_NS_cleanup
+/* 8004C064 00048FA4  4B FF F7 A5 */	bl cleanup__Q213dPa_control_c7level_cFv
 /* 8004C068 00048FA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004C06C 00048FAC  7C 08 03 A6 */	mtlr r0
 /* 8004C070 00048FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C074 00048FB4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_calc3D
-dPa_control_c_NS_calc3D:
+.global calc3D__13dPa_control_cFv
+calc3D__13dPa_control_cFv:
 /* 8004C078 00048FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C07C 00048FBC  7C 08 02 A6 */	mflr r0
 /* 8004C080 00048FC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3194,14 +3194,14 @@ lbl_8004C0A8:
 lbl_8004C0B0:
 /* 8004C0B0 00048FF0  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004C0B4 00048FF4  7F E4 FB 78 */	mr r4, r31
-/* 8004C0B8 00048FF8  48 23 1E E9 */	bl JPAEmitterManager_NS_calc
+/* 8004C0B8 00048FF8  48 23 1E E9 */	bl calc__17JPAEmitterManagerFUc
 /* 8004C0BC 00048FFC  3B FF 00 01 */	addi r31, r31, 1
 lbl_8004C0C0:
 /* 8004C0C0 00049000  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8004C0C4 00049004  28 00 00 0D */	cmplwi r0, 0xd
 /* 8004C0C8 00049008  40 81 FF E8 */	ble lbl_8004C0B0
 /* 8004C0CC 0004900C  38 7E 02 10 */	addi r3, r30, 0x210
-/* 8004C0D0 00049010  4B FF F6 D9 */	bl dPa_control_c_NS_level_c_NS_execute_X1_
+/* 8004C0D0 00049010  4B FF F6 D9 */	bl execute__Q213dPa_control_c7level_cFv
 lbl_8004C0D4:
 /* 8004C0D4 00049014  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8004C0D8 00049018  83 C1 00 08 */	lwz r30, 8(r1)
@@ -3210,8 +3210,8 @@ lbl_8004C0D4:
 /* 8004C0E4 00049024  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C0E8 00049028  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_calc2D
-dPa_control_c_NS_calc2D:
+.global calc2D__13dPa_control_cFv
+calc2D__13dPa_control_cFv:
 /* 8004C0EC 0004902C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C0F0 00049030  7C 08 02 A6 */	mflr r0
 /* 8004C0F4 00049034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3221,7 +3221,7 @@ dPa_control_c_NS_calc2D:
 lbl_8004C104:
 /* 8004C104 00049044  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004C108 00049048  7F E4 FB 78 */	mr r4, r31
-/* 8004C10C 0004904C  48 23 1E 95 */	bl JPAEmitterManager_NS_calc
+/* 8004C10C 0004904C  48 23 1E 95 */	bl calc__17JPAEmitterManagerFUc
 /* 8004C110 00049050  3B FF 00 01 */	addi r31, r31, 1
 lbl_8004C114:
 /* 8004C114 00049054  57 E0 06 3E */	clrlwi r0, r31, 0x18
@@ -3233,8 +3233,8 @@ lbl_8004C114:
 /* 8004C12C 0004906C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C130 00049070  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_calcMenu
-dPa_control_c_NS_calcMenu:
+.global calcMenu__13dPa_control_cFv
+calcMenu__13dPa_control_cFv:
 /* 8004C134 00049074  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C138 00049078  7C 08 02 A6 */	mflr r0
 /* 8004C13C 0004907C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3247,7 +3247,7 @@ dPa_control_c_NS_calcMenu:
 lbl_8004C158:
 /* 8004C158 00049098  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004C15C 0004909C  7F E4 FB 78 */	mr r4, r31
-/* 8004C160 000490A0  48 23 1E 41 */	bl JPAEmitterManager_NS_calc
+/* 8004C160 000490A0  48 23 1E 41 */	bl calc__17JPAEmitterManagerFUc
 /* 8004C164 000490A4  3B FF 00 01 */	addi r31, r31, 1
 lbl_8004C168:
 /* 8004C168 000490A8  57 E0 06 3E */	clrlwi r0, r31, 0x18
@@ -3260,8 +3260,8 @@ lbl_8004C174:
 /* 8004C180 000490C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C184 000490C4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_draw
-dPa_control_c_NS_draw:
+.global draw__13dPa_control_cFP11JPADrawInfoUc
+draw__13dPa_control_cFP11JPADrawInfoUc:
 /* 8004C188 000490C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004C18C 000490CC  7C 08 02 A6 */	mflr r0
 /* 8004C190 000490D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3274,19 +3274,19 @@ dPa_control_c_NS_draw:
 /* 8004C1AC 000490EC  41 82 00 54 */	beq lbl_8004C200
 /* 8004C1B0 000490F0  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8004C1B4 000490F4  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 8004C1B8 000490F8  48 2C 45 85 */	bl J3DSys_NS_reinitGX
-/* 8004C1BC 000490FC  48 15 B4 05 */	bl dKy_setLight_again
+/* 8004C1B8 000490F8  48 2C 45 85 */	bl reinitGX__6J3DSysFv
+/* 8004C1BC 000490FC  48 15 B4 05 */	bl dKy_setLight_again__Fv
 /* 8004C1C0 00049100  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 8004C1C4 00049104  28 00 00 06 */	cmplwi r0, 6
 /* 8004C1C8 00049108  41 80 00 10 */	blt lbl_8004C1D8
 /* 8004C1CC 0004910C  28 00 00 0B */	cmplwi r0, 0xb
 /* 8004C1D0 00049110  41 81 00 08 */	bgt lbl_8004C1D8
-/* 8004C1D4 00049114  48 15 C4 59 */	bl dKy_GxFog_set
+/* 8004C1D4 00049114  48 15 C4 59 */	bl dKy_GxFog_set__Fv
 lbl_8004C1D8:
 /* 8004C1D8 00049118  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004C1DC 0004911C  7F C4 F3 78 */	mr r4, r30
 /* 8004C1E0 00049120  7F E5 FB 78 */	mr r5, r31
-/* 8004C1E4 00049124  48 23 1E 45 */	bl JPAEmitterManager_NS_draw
+/* 8004C1E4 00049124  48 23 1E 45 */	bl draw__17JPAEmitterManagerFPC11JPADrawInfoUc
 /* 8004C1E8 00049128  38 60 00 00 */	li r3, 0
 /* 8004C1EC 0004912C  48 31 3A 85 */	bl GXSetAlphaUpdate
 /* 8004C1F0 00049130  38 60 00 00 */	li r3, 0
@@ -3301,8 +3301,8 @@ lbl_8004C200:
 /* 8004C210 00049150  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004C214 00049154  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setHitMark
-dPa_control_c_NS_setHitMark:
+.global setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
+setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl:
 /* 8004C218 00049158  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8004C21C 0004915C  7C 08 02 A6 */	mflr r0
 /* 8004C220 00049160  90 01 00 94 */	stw r0, 0x94(r1)
@@ -3331,7 +3331,7 @@ dPa_control_c_NS_setHitMark:
 /* 8004C27C 000491BC  20 00 00 06 */	subfic r0, r0, 6
 /* 8004C280 000491C0  7C 00 00 34 */	cntlzw r0, r0
 /* 8004C284 000491C4  54 08 DE 3E */	rlwinm r8, r0, 0x1b, 0x18, 0x1f
-/* 8004C288 000491C8  4B FE A9 BD */	bl dJntCol_c_NS_getHitmarkPosAndAngle
+/* 8004C288 000491C8  4B FE A9 BD */	bl getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi
 /* 8004C28C 000491CC  2C 03 00 00 */	cmpwi r3, 0
 /* 8004C290 000491D0  41 80 00 0C */	blt lbl_8004C29C
 /* 8004C294 000491D4  3B E1 00 64 */	addi r31, r1, 0x64
@@ -3358,7 +3358,7 @@ lbl_8004C29C:
 /* 8004C2E4 00049224  7F A9 EB 78 */	mr r9, r29
 /* 8004C2E8 00049228  39 40 00 FF */	li r10, 0xff
 /* 8004C2EC 0004922C  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C2F0 00049230  48 00 07 A1 */	bl dPa_control_c_NS_set
+/* 8004C2F0 00049230  48 00 07 A1 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C2F4 00049234  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C2F8 00049238  38 80 00 00 */	li r4, 0
 /* 8004C2FC 0004923C  90 81 00 08 */	stw r4, 8(r1)
@@ -3375,7 +3375,7 @@ lbl_8004C29C:
 /* 8004C328 00049268  7F A9 EB 78 */	mr r9, r29
 /* 8004C32C 0004926C  39 40 00 FF */	li r10, 0xff
 /* 8004C330 00049270  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C334 00049274  48 00 07 5D */	bl dPa_control_c_NS_set
+/* 8004C334 00049274  48 00 07 5D */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C338 00049278  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C33C 0004927C  38 80 00 00 */	li r4, 0
 /* 8004C340 00049280  90 81 00 08 */	stw r4, 8(r1)
@@ -3392,7 +3392,7 @@ lbl_8004C29C:
 /* 8004C36C 000492AC  7F A9 EB 78 */	mr r9, r29
 /* 8004C370 000492B0  39 40 00 FF */	li r10, 0xff
 /* 8004C374 000492B4  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C378 000492B8  48 00 07 19 */	bl dPa_control_c_NS_set
+/* 8004C378 000492B8  48 00 07 19 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C37C 000492BC  57 C0 07 BD */	rlwinm. r0, r30, 0, 0x1e, 0x1e
 /* 8004C380 000492C0  41 82 00 5C */	beq lbl_8004C3DC
 /* 8004C384 000492C4  28 1C 00 00 */	cmplwi r28, 0
@@ -3416,7 +3416,7 @@ lbl_8004C29C:
 /* 8004C3CC 0004930C  7F A9 EB 78 */	mr r9, r29
 /* 8004C3D0 00049310  39 40 00 FF */	li r10, 0xff
 /* 8004C3D4 00049314  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C3D8 00049318  48 00 06 B9 */	bl dPa_control_c_NS_set
+/* 8004C3D8 00049318  48 00 06 B9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_8004C3DC:
 /* 8004C3DC 0004931C  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C3E0 00049320  38 80 00 00 */	li r4, 0
@@ -3434,7 +3434,7 @@ lbl_8004C3DC:
 /* 8004C410 00049350  7F A9 EB 78 */	mr r9, r29
 /* 8004C414 00049354  39 40 00 FF */	li r10, 0xff
 /* 8004C418 00049358  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C41C 0004935C  48 00 06 75 */	bl dPa_control_c_NS_set
+/* 8004C41C 0004935C  48 00 06 75 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C420 00049360  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8004C424 00049364  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 8004C428 00049368  C0 1F 00 04 */	lfs f0, 4(r31)
@@ -3443,7 +3443,7 @@ lbl_8004C3DC:
 /* 8004C434 00049374  D0 01 00 54 */	stfs f0, 0x54(r1)
 /* 8004C438 00049378  38 61 00 4C */	addi r3, r1, 0x4c
 /* 8004C43C 0004937C  38 80 00 01 */	li r4, 1
-/* 8004C440 00049380  48 15 C0 45 */	bl dKy_SordFlush_set
+/* 8004C440 00049380  48 15 C0 45 */	bl dKy_SordFlush_set__F4cXyzi
 /* 8004C444 00049384  48 00 03 DC */	b lbl_8004C820
 lbl_8004C448:
 /* 8004C448 00049388  28 03 00 02 */	cmplwi r3, 2
@@ -3475,7 +3475,7 @@ lbl_8004C470:
 /* 8004C4AC 000493EC  7F A9 EB 78 */	mr r9, r29
 /* 8004C4B0 000493F0  39 40 00 FF */	li r10, 0xff
 /* 8004C4B4 000493F4  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C4B8 000493F8  48 00 05 D9 */	bl dPa_control_c_NS_set
+/* 8004C4B8 000493F8  48 00 05 D9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C4BC 000493FC  80 7C 5D 3C */	lwz r3, 0x5d3c(r28)
 /* 8004C4C0 00049400  38 80 00 00 */	li r4, 0
 /* 8004C4C4 00049404  90 81 00 08 */	stw r4, 8(r1)
@@ -3492,7 +3492,7 @@ lbl_8004C470:
 /* 8004C4F0 00049430  7F A9 EB 78 */	mr r9, r29
 /* 8004C4F4 00049434  39 40 00 FF */	li r10, 0xff
 /* 8004C4F8 00049438  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C4FC 0004943C  48 00 05 95 */	bl dPa_control_c_NS_set
+/* 8004C4FC 0004943C  48 00 05 95 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C500 00049440  57 60 04 3E */	clrlwi r0, r27, 0x10
 /* 8004C504 00049444  28 00 00 09 */	cmplwi r0, 9
 /* 8004C508 00049448  41 82 03 18 */	beq lbl_8004C820
@@ -3504,7 +3504,7 @@ lbl_8004C470:
 /* 8004C520 00049460  D0 01 00 48 */	stfs f0, 0x48(r1)
 /* 8004C524 00049464  38 61 00 40 */	addi r3, r1, 0x40
 /* 8004C528 00049468  38 80 00 00 */	li r4, 0
-/* 8004C52C 0004946C  48 15 BF 59 */	bl dKy_SordFlush_set
+/* 8004C52C 0004946C  48 15 BF 59 */	bl dKy_SordFlush_set__F4cXyzi
 /* 8004C530 00049470  48 00 02 F0 */	b lbl_8004C820
 lbl_8004C534:
 /* 8004C534 00049474  28 03 00 07 */	cmplwi r3, 7
@@ -3546,7 +3546,7 @@ lbl_8004C580:
 /* 8004C5BC 000494FC  39 21 00 58 */	addi r9, r1, 0x58
 /* 8004C5C0 00049500  39 40 00 FF */	li r10, 0xff
 /* 8004C5C4 00049504  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C5C8 00049508  48 00 04 C9 */	bl dPa_control_c_NS_set
+/* 8004C5C8 00049508  48 00 04 C9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C5CC 0004950C  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C5D0 00049510  38 80 00 00 */	li r4, 0
 /* 8004C5D4 00049514  90 81 00 08 */	stw r4, 8(r1)
@@ -3563,7 +3563,7 @@ lbl_8004C580:
 /* 8004C600 00049540  39 21 00 58 */	addi r9, r1, 0x58
 /* 8004C604 00049544  39 40 00 FF */	li r10, 0xff
 /* 8004C608 00049548  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C60C 0004954C  48 00 04 85 */	bl dPa_control_c_NS_set
+/* 8004C60C 0004954C  48 00 04 85 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C610 00049550  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C614 00049554  38 80 00 00 */	li r4, 0
 /* 8004C618 00049558  90 81 00 08 */	stw r4, 8(r1)
@@ -3580,7 +3580,7 @@ lbl_8004C580:
 /* 8004C644 00049584  39 21 00 58 */	addi r9, r1, 0x58
 /* 8004C648 00049588  39 40 00 FF */	li r10, 0xff
 /* 8004C64C 0004958C  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C650 00049590  48 00 04 41 */	bl dPa_control_c_NS_set
+/* 8004C650 00049590  48 00 04 41 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C654 00049594  57 C0 07 BD */	rlwinm. r0, r30, 0, 0x1e, 0x1e
 /* 8004C658 00049598  41 82 01 C8 */	beq lbl_8004C820
 /* 8004C65C 0004959C  28 1C 00 00 */	cmplwi r28, 0
@@ -3604,7 +3604,7 @@ lbl_8004C580:
 /* 8004C6A4 000495E4  39 21 00 58 */	addi r9, r1, 0x58
 /* 8004C6A8 000495E8  39 40 00 FF */	li r10, 0xff
 /* 8004C6AC 000495EC  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C6B0 000495F0  48 00 03 E1 */	bl dPa_control_c_NS_set
+/* 8004C6B0 000495F0  48 00 03 E1 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C6B4 000495F4  48 00 01 6C */	b lbl_8004C820
 lbl_8004C6B8:
 /* 8004C6B8 000495F8  28 03 00 01 */	cmplwi r3, 1
@@ -3630,7 +3630,7 @@ lbl_8004C6C8:
 /* 8004C704 00049644  7F A9 EB 78 */	mr r9, r29
 /* 8004C708 00049648  39 40 00 FF */	li r10, 0xff
 /* 8004C70C 0004964C  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C710 00049650  48 00 03 81 */	bl dPa_control_c_NS_set
+/* 8004C710 00049650  48 00 03 81 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C714 00049654  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C718 00049658  38 80 00 00 */	li r4, 0
 /* 8004C71C 0004965C  90 81 00 08 */	stw r4, 8(r1)
@@ -3647,7 +3647,7 @@ lbl_8004C6C8:
 /* 8004C748 00049688  7F A9 EB 78 */	mr r9, r29
 /* 8004C74C 0004968C  39 40 00 FF */	li r10, 0xff
 /* 8004C750 00049690  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C754 00049694  48 00 03 3D */	bl dPa_control_c_NS_set
+/* 8004C754 00049694  48 00 03 3D */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C758 00049698  80 7B 5D 3C */	lwz r3, 0x5d3c(r27)
 /* 8004C75C 0004969C  38 80 00 00 */	li r4, 0
 /* 8004C760 000496A0  90 81 00 08 */	stw r4, 8(r1)
@@ -3664,7 +3664,7 @@ lbl_8004C6C8:
 /* 8004C78C 000496CC  7F A9 EB 78 */	mr r9, r29
 /* 8004C790 000496D0  39 40 00 FF */	li r10, 0xff
 /* 8004C794 000496D4  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C798 000496D8  48 00 02 F9 */	bl dPa_control_c_NS_set
+/* 8004C798 000496D8  48 00 02 F9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004C79C 000496DC  57 C0 07 BD */	rlwinm. r0, r30, 0, 0x1e, 0x1e
 /* 8004C7A0 000496E0  41 82 00 5C */	beq lbl_8004C7FC
 /* 8004C7A4 000496E4  28 1C 00 00 */	cmplwi r28, 0
@@ -3688,7 +3688,7 @@ lbl_8004C6C8:
 /* 8004C7EC 0004972C  7F A9 EB 78 */	mr r9, r29
 /* 8004C7F0 00049730  39 40 00 FF */	li r10, 0xff
 /* 8004C7F4 00049734  C0 22 85 88 */	lfs f1, lbl_80451F88-_SDA2_BASE_(r2)
-/* 8004C7F8 00049738  48 00 02 99 */	bl dPa_control_c_NS_set
+/* 8004C7F8 00049738  48 00 02 99 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_8004C7FC:
 /* 8004C7FC 0004973C  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8004C800 00049740  D0 01 00 28 */	stfs f0, 0x28(r1)
@@ -3698,7 +3698,7 @@ lbl_8004C7FC:
 /* 8004C810 00049750  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8004C814 00049754  38 61 00 28 */	addi r3, r1, 0x28
 /* 8004C818 00049758  38 80 00 01 */	li r4, 1
-/* 8004C81C 0004975C  48 15 BC 69 */	bl dKy_SordFlush_set
+/* 8004C81C 0004975C  48 15 BC 69 */	bl dKy_SordFlush_set__F4cXyzi
 lbl_8004C820:
 /* 8004C820 00049760  39 61 00 90 */	addi r11, r1, 0x90
 /* 8004C824 00049764  48 31 59 F9 */	bl _restgpr_26
@@ -3707,8 +3707,8 @@ lbl_8004C820:
 /* 8004C830 00049770  38 21 00 90 */	addi r1, r1, 0x90
 /* 8004C834 00049774  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setWaterRipple
-dPa_control_c_NS_setWaterRipple:
+.global setWaterRipple__13dPa_control_cFPUlR13cBgS_PolyInfoPC4cXyzfPC12dKy_tevstr_cPC4cXyzSc
+setWaterRipple__13dPa_control_cFPUlR13cBgS_PolyInfoPC4cXyzfPC12dKy_tevstr_cPC4cXyzSc:
 /* 8004C838 00049778  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8004C83C 0004977C  7C 08 02 A6 */	mflr r0
 /* 8004C840 00049780  90 01 00 84 */	stw r0, 0x84(r1)
@@ -3742,7 +3742,7 @@ lbl_8004C898:
 /* 8004C8AC 000497EC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8004C8B0 000497F0  7F 64 DB 78 */	mr r4, r27
 /* 8004C8B4 000497F4  38 A1 00 30 */	addi r5, r1, 0x30
-/* 8004C8B8 000497F8  48 02 7E 8D */	bl cBgS_NS_GetTriPla
+/* 8004C8B8 000497F8  48 02 7E 8D */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 8004C8BC 000497FC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004C8C0 00049800  41 82 01 28 */	beq lbl_8004C9E8
 /* 8004C8C4 00049804  C0 01 00 30 */	lfs f0, 0x30(r1)
@@ -3847,11 +3847,11 @@ lbl_8004C9F8:
 /* 8004CA24 00049964  7F A8 EB 78 */	mr r8, r29
 /* 8004CA28 00049968  39 21 00 1C */	addi r9, r1, 0x1c
 /* 8004CA2C 0004996C  7F CA F3 78 */	mr r10, r30
-/* 8004CA30 00049970  48 00 0C 75 */	bl dPa_control_c_NS_setPoly_X1_
+/* 8004CA30 00049970  48 00 0C 75 */	bl setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
 /* 8004CA34 00049974  90 7A 00 00 */	stw r3, 0(r26)
 /* 8004CA38 00049978  38 79 02 10 */	addi r3, r25, 0x210
 /* 8004CA3C 0004997C  80 9A 00 00 */	lwz r4, 0(r26)
-/* 8004CA40 00049980  4B FF EE D9 */	bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 8004CA40 00049980  4B FF EE D9 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 8004CA44 00049984  28 03 00 00 */	cmplwi r3, 0
 /* 8004CA48 00049988  41 82 00 08 */	beq lbl_8004CA50
 /* 8004CA4C 0004998C  D3 E3 00 28 */	stfs f31, 0x28(r3)
@@ -3873,8 +3873,8 @@ lbl_8004CA50:
 /* 8004CA88 000499C8  38 21 00 80 */	addi r1, r1, 0x80
 /* 8004CA8C 000499CC  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_set
-dPa_control_c_NS_set:
+.global set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf:
 /* 8004CA90 000499D0  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8004CA94 000499D4  7C 08 02 A6 */	mflr r0
 /* 8004CA98 000499D8  90 01 00 94 */	stw r0, 0x94(r1)
@@ -3896,7 +3896,7 @@ dPa_control_c_NS_set:
 /* 8004CAD8 00049A18  82 A1 00 A8 */	lwz r21, 0xa8(r1)
 /* 8004CADC 00049A1C  FF E0 08 90 */	fmr f31, f1
 /* 8004CAE0 00049A20  7E C3 B3 78 */	mr r3, r22
-/* 8004CAE4 00049A24  4B FF F0 8D */	bl dPa_control_c_NS_getRM_ID
+/* 8004CAE4 00049A24  4B FF F0 8D */	bl getRM_ID__13dPa_control_cFUs
 /* 8004CAE8 00049A28  7C 74 1B 78 */	mr r20, r3
 /* 8004CAEC 00049A2C  80 6D 89 20 */	lwz r3, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004CAF0 00049A30  80 63 00 1C */	lwz r3, 0x1c(r3)
@@ -3908,7 +3908,7 @@ dPa_control_c_NS_set:
 /* 8004CB08 00049A48  48 00 04 68 */	b lbl_8004CF70
 lbl_8004CB0C:
 /* 8004CB0C 00049A4C  7E C4 B3 78 */	mr r4, r22
-/* 8004CB10 00049A50  48 22 74 BD */	bl JPAResourceManager_NS_getResUserWork
+/* 8004CB10 00049A50  48 22 74 BD */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004CB14 00049A54  90 61 00 34 */	stw r3, 0x34(r1)
 /* 8004CB18 00049A58  28 18 00 00 */	cmplwi r24, 0
 /* 8004CB1C 00049A5C  41 82 00 18 */	beq lbl_8004CB34
@@ -3920,7 +3920,7 @@ lbl_8004CB0C:
 lbl_8004CB34:
 /* 8004CB34 00049A74  38 61 00 34 */	addi r3, r1, 0x34
 /* 8004CB38 00049A78  38 81 00 08 */	addi r4, r1, 8
-/* 8004CB3C 00049A7C  4B FF CC AD */	bl dPa_group_id_change
+/* 8004CB3C 00049A7C  4B FF CC AD */	bl dPa_group_id_change__FPUlPUc
 /* 8004CB40 00049A80  C0 57 00 08 */	lfs f2, 8(r23)
 /* 8004CB44 00049A84  C0 37 00 04 */	lfs f1, 4(r23)
 /* 8004CB48 00049A88  C0 17 00 00 */	lfs f0, 0(r23)
@@ -3946,7 +3946,7 @@ lbl_8004CB88:
 /* 8004CB94 00049AD4  A8 99 00 02 */	lha r4, 2(r25)
 /* 8004CB98 00049AD8  A8 B9 00 04 */	lha r5, 4(r25)
 /* 8004CB9C 00049ADC  38 D6 00 68 */	addi r6, r22, 0x68
-/* 8004CBA0 00049AE0  48 23 3B 95 */	bl JPAGetXYZRotateMtx
+/* 8004CBA0 00049AE0  48 23 3B 95 */	bl JPAGetXYZRotateMtx__FsssPA4_f
 lbl_8004CBA4:
 /* 8004CBA4 00049AE4  28 1A 00 00 */	cmplwi r26, 0
 /* 8004CBA8 00049AE8  41 82 00 24 */	beq lbl_8004CBCC
@@ -4086,7 +4086,7 @@ lbl_8004CD88:
 /* 8004CD98 00049CD8  38 E1 00 28 */	addi r7, r1, 0x28
 /* 8004CD9C 00049CDC  39 01 00 24 */	addi r8, r1, 0x24
 /* 8004CDA0 00049CE0  FC 20 F8 90 */	fmr f1, f31
-/* 8004CDA4 00049CE4  48 15 CE 41 */	bl dKy_ParticleColor_get_actor
+/* 8004CDA4 00049CE4  48 15 CE 41 */	bl dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004CDA8 00049CE8  88 81 00 32 */	lbz r4, 0x32(r1)
 /* 8004CDAC 00049CEC  88 61 00 31 */	lbz r3, 0x31(r1)
 /* 8004CDB0 00049CF0  88 01 00 30 */	lbz r0, 0x30(r1)
@@ -4136,7 +4136,7 @@ lbl_8004CE44:
 /* 8004CE54 00049D94  38 E1 00 18 */	addi r7, r1, 0x18
 /* 8004CE58 00049D98  39 01 00 14 */	addi r8, r1, 0x14
 /* 8004CE5C 00049D9C  FC 20 F8 90 */	fmr f1, f31
-/* 8004CE60 00049DA0  48 15 CE 5D */	bl dKy_ParticleColor_get_bg
+/* 8004CE60 00049DA0  48 15 CE 5D */	bl dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004CE64 00049DA4  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 8004CE68 00049DA8  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 8004CE6C 00049DAC  C0 23 12 5C */	lfs f1, 0x125c(r3)
@@ -4146,7 +4146,7 @@ lbl_8004CE44:
 /* 8004CE7C 00049DBC  EF E1 00 2A */	fadds f31, f1, f0
 /* 8004CE80 00049DC0  38 61 00 20 */	addi r3, r1, 0x20
 /* 8004CE84 00049DC4  FC 20 F8 90 */	fmr f1, f31
-/* 8004CE88 00049DC8  48 15 15 A9 */	bl dKy_light_influence_col_X1_
+/* 8004CE88 00049DC8  48 15 15 A9 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004CE8C 00049DCC  90 61 00 10 */	stw r3, 0x10(r1)
 /* 8004CE90 00049DD0  88 01 00 10 */	lbz r0, 0x10(r1)
 /* 8004CE94 00049DD4  98 01 00 20 */	stb r0, 0x20(r1)
@@ -4158,7 +4158,7 @@ lbl_8004CE44:
 /* 8004CEAC 00049DEC  98 01 00 23 */	stb r0, 0x23(r1)
 /* 8004CEB0 00049DF0  38 61 00 1C */	addi r3, r1, 0x1c
 /* 8004CEB4 00049DF4  FC 20 F8 90 */	fmr f1, f31
-/* 8004CEB8 00049DF8  48 15 15 79 */	bl dKy_light_influence_col_X1_
+/* 8004CEB8 00049DF8  48 15 15 79 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004CEBC 00049DFC  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8004CEC0 00049E00  88 01 00 0C */	lbz r0, 0xc(r1)
 /* 8004CEC4 00049E04  98 01 00 1C */	stb r0, 0x1c(r1)
@@ -4218,8 +4218,8 @@ lbl_8004CF70:
 /* 8004CF88 00049EC8  38 21 00 90 */	addi r1, r1, 0x90
 /* 8004CF8C 00049ECC  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_getPolyColor
-dPa_control_c_NS_getPolyColor:
+.global getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
+getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf:
 /* 8004CF90 00049ED0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004CF94 00049ED4  7C 08 02 A6 */	mflr r0
 /* 8004CF98 00049ED8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4235,7 +4235,7 @@ dPa_control_c_NS_getPolyColor:
 /* 8004CFC0 00049F00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8004CFC4 00049F04  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8004CFC8 00049F08  7F 44 D3 78 */	mr r4, r26
-/* 8004CFCC 00049F0C  48 02 76 95 */	bl cBgS_NS_ChkPolySafe
+/* 8004CFCC 00049F0C  48 02 76 95 */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 8004CFD0 00049F10  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004CFD4 00049F14  40 82 00 0C */	bne lbl_8004CFE0
 /* 8004CFD8 00049F18  38 60 00 00 */	li r3, 0
@@ -4245,29 +4245,29 @@ lbl_8004CFE0:
 /* 8004CFE4 00049F24  40 82 00 38 */	bne lbl_8004D01C
 /* 8004CFE8 00049F28  7F 43 D3 78 */	mr r3, r26
 /* 8004CFEC 00049F2C  7F 84 E3 78 */	mr r4, r28
-/* 8004CFF0 00049F30  48 15 E6 79 */	bl dKy_pol_eff_prim_get
+/* 8004CFF0 00049F30  48 15 E6 79 */	bl dKy_pol_eff_prim_get__FPC13cBgS_PolyInfoP8_GXColor
 /* 8004CFF4 00049F34  7F 43 D3 78 */	mr r3, r26
 /* 8004CFF8 00049F38  7F A4 EB 78 */	mr r4, r29
-/* 8004CFFC 00049F3C  48 15 E7 D5 */	bl dKy_pol_eff_env_get
+/* 8004CFFC 00049F3C  48 15 E7 D5 */	bl dKy_pol_eff_env_get__FPC13cBgS_PolyInfoP8_GXColor
 /* 8004D000 00049F40  7F 43 D3 78 */	mr r3, r26
-/* 8004D004 00049F44  48 15 EC 0D */	bl dKy_pol_eff_alpha_get
+/* 8004D004 00049F44  48 15 EC 0D */	bl dKy_pol_eff_alpha_get__FPC13cBgS_PolyInfo
 /* 8004D008 00049F48  98 7E 00 00 */	stb r3, 0(r30)
 /* 8004D00C 00049F4C  7F 43 D3 78 */	mr r3, r26
-/* 8004D010 00049F50  48 15 ED 3D */	bl dKy_pol_eff_ratio_get
+/* 8004D010 00049F50  48 15 ED 3D */	bl dKy_pol_eff_ratio_get__FPC13cBgS_PolyInfo
 /* 8004D014 00049F54  D0 3F 00 00 */	stfs f1, 0(r31)
 /* 8004D018 00049F58  48 00 00 34 */	b lbl_8004D04C
 lbl_8004D01C:
 /* 8004D01C 00049F5C  7F 43 D3 78 */	mr r3, r26
 /* 8004D020 00049F60  7F 84 E3 78 */	mr r4, r28
-/* 8004D024 00049F64  48 15 E9 19 */	bl dKy_pol_eff2_prim_get
+/* 8004D024 00049F64  48 15 E9 19 */	bl dKy_pol_eff2_prim_get__FPC13cBgS_PolyInfoP8_GXColor
 /* 8004D028 00049F68  7F 43 D3 78 */	mr r3, r26
 /* 8004D02C 00049F6C  7F A4 EB 78 */	mr r4, r29
-/* 8004D030 00049F70  48 15 EA 75 */	bl dKy_pol_eff2_env_get
+/* 8004D030 00049F70  48 15 EA 75 */	bl dKy_pol_eff2_env_get__FPC13cBgS_PolyInfoP8_GXColor
 /* 8004D034 00049F74  7F 43 D3 78 */	mr r3, r26
-/* 8004D038 00049F78  48 15 EE 71 */	bl dKy_pol_eff2_alpha_get
+/* 8004D038 00049F78  48 15 EE 71 */	bl dKy_pol_eff2_alpha_get__FPC13cBgS_PolyInfo
 /* 8004D03C 00049F7C  98 7E 00 00 */	stb r3, 0(r30)
 /* 8004D040 00049F80  7F 43 D3 78 */	mr r3, r26
-/* 8004D044 00049F84  48 15 EF A1 */	bl dKy_pol_eff2_ratio_get
+/* 8004D044 00049F84  48 15 EF A1 */	bl dKy_pol_eff2_ratio_get__FPC13cBgS_PolyInfo
 /* 8004D048 00049F88  D0 3F 00 00 */	stfs f1, 0(r31)
 lbl_8004D04C:
 /* 8004D04C 00049F8C  38 60 00 01 */	li r3, 1
@@ -4279,8 +4279,8 @@ lbl_8004D050:
 /* 8004D060 00049FA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004D064 00049FA4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setPoly
-dPa_control_c_NS_setPoly:
+.global setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
+setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz:
 /* 8004D068 00049FA8  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8004D06C 00049FAC  7C 08 02 A6 */	mflr r0
 /* 8004D070 00049FB0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4301,7 +4301,7 @@ dPa_control_c_NS_setPoly:
 /* 8004D0AC 00049FEC  38 C1 00 24 */	addi r6, r1, 0x24
 /* 8004D0B0 00049FF0  38 E1 00 20 */	addi r7, r1, 0x20
 /* 8004D0B4 00049FF4  39 01 00 2C */	addi r8, r1, 0x2c
-/* 8004D0B8 00049FF8  4B FF FE D9 */	bl dPa_control_c_NS_getPolyColor
+/* 8004D0B8 00049FF8  4B FF FE D9 */	bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 8004D0BC 00049FFC  2C 03 00 00 */	cmpwi r3, 0
 /* 8004D0C0 0004A000  41 82 00 4C */	beq lbl_8004D10C
 /* 8004D0C4 0004A004  93 A1 00 08 */	stw r29, 8(r1)
@@ -4320,7 +4320,7 @@ dPa_control_c_NS_setPoly:
 /* 8004D0F8 0004A038  7F 89 E3 78 */	mr r9, r28
 /* 8004D0FC 0004A03C  89 41 00 20 */	lbz r10, 0x20(r1)
 /* 8004D100 0004A040  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 8004D104 0004A044  4B FF F9 8D */	bl dPa_control_c_NS_set
+/* 8004D104 0004A044  4B FF F9 8D */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004D108 0004A048  48 00 00 08 */	b lbl_8004D110
 lbl_8004D10C:
 /* 8004D10C 0004A04C  38 60 00 00 */	li r3, 0
@@ -4332,8 +4332,8 @@ lbl_8004D110:
 /* 8004D120 0004A060  38 21 00 60 */	addi r1, r1, 0x60
 /* 8004D124 0004A064  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_newSimple
-dPa_control_c_NS_newSimple:
+.global newSimple__13dPa_control_cFUsUcPUl
+newSimple__13dPa_control_cFUsUcPUl:
 /* 8004D128 0004A068  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004D12C 0004A06C  7C 08 02 A6 */	mflr r0
 /* 8004D130 0004A070  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4357,7 +4357,7 @@ lbl_8004D16C:
 /* 8004D174 0004A0B4  7C 7F 1A 14 */	add r3, r31, r3
 /* 8004D178 0004A0B8  80 8D 89 20 */	lwz r4, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004D17C 0004A0BC  7C E5 3B 78 */	mr r5, r7
-/* 8004D180 0004A0C0  4B FF DE 19 */	bl dPa_simpleEcallBack_NS_create
+/* 8004D180 0004A0C0  4B FF DE 19 */	bl create__19dPa_simpleEcallBackFP17JPAEmitterManagerUsUc
 /* 8004D184 0004A0C4  28 03 00 00 */	cmplwi r3, 0
 /* 8004D188 0004A0C8  40 82 00 0C */	bne lbl_8004D194
 /* 8004D18C 0004A0CC  38 60 00 00 */	li r3, 0
@@ -4386,7 +4386,7 @@ lbl_8004D1A4:
 /* 8004D1E0 0004A120  7D 3E 4B 78 */	mr r30, r9
 /* 8004D1E4 0004A124  7D 5F 53 78 */	mr r31, r10
 /* 8004D1E8 0004A128  FF E0 08 90 */	fmr f31, f1
-/* 8004D1EC 0004A12C  48 00 00 51 */	bl dPa_control_c_NS_getSimple
+/* 8004D1EC 0004A12C  48 00 00 51 */	bl getSimple__13dPa_control_cFUs
 /* 8004D1F0 0004A130  28 03 00 00 */	cmplwi r3, 0
 /* 8004D1F4 0004A134  40 82 00 0C */	bne lbl_8004D200
 /* 8004D1F8 0004A138  38 60 00 00 */	li r3, 0
@@ -4399,7 +4399,7 @@ lbl_8004D200:
 /* 8004D210 0004A150  7F C8 F3 78 */	mr r8, r30
 /* 8004D214 0004A154  7F E9 FB 78 */	mr r9, r31
 /* 8004D218 0004A158  FC 20 F8 90 */	fmr f1, f31
-/* 8004D21C 0004A15C  4B FF DF 4D */	bl dPa_simpleEcallBack_NS_set
+/* 8004D21C 0004A15C  4B FF DF 4D */	bl set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif
 lbl_8004D220:
 /* 8004D220 0004A160  CB E1 00 28 */	lfd f31, 0x28(r1)
 /* 8004D224 0004A164  39 61 00 28 */	addi r11, r1, 0x28
@@ -4409,8 +4409,8 @@ lbl_8004D220:
 /* 8004D234 0004A174  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004D238 0004A178  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_getSimple
-dPa_control_c_NS_getSimple:
+.global getSimple__13dPa_control_cFUs
+getSimple__13dPa_control_cFUs:
 /* 8004D23C 0004A17C  38 A3 00 1C */	addi r5, r3, 0x1c
 /* 8004D240 0004A180  88 03 00 19 */	lbz r0, 0x19(r3)
 /* 8004D244 0004A184  54 83 04 3E */	clrlwi r3, r4, 0x10
@@ -4430,8 +4430,8 @@ lbl_8004D270:
 /* 8004D270 0004A1B0  38 60 00 00 */	li r3, 0
 /* 8004D274 0004A1B4  4E 80 00 20 */	blr 
 
-.global dPa_kankyocolor_set
-dPa_kankyocolor_set:
+.global dPa_kankyocolor_set__FfP14JPABaseEmitterPC12dKy_tevstr_cUlPC4cXyzPC8_GXColorPC8_GXColor
+dPa_kankyocolor_set__FfP14JPABaseEmitterPC12dKy_tevstr_cUlPC4cXyzPC8_GXColorPC8_GXColor:
 /* 8004D278 0004A1B8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8004D27C 0004A1BC  7C 08 02 A6 */	mflr r0
 /* 8004D280 0004A1C0  90 01 00 54 */	stw r0, 0x54(r1)
@@ -4487,7 +4487,7 @@ lbl_8004D330:
 /* 8004D33C 0004A27C  38 E1 00 24 */	addi r7, r1, 0x24
 /* 8004D340 0004A280  39 01 00 20 */	addi r8, r1, 0x20
 /* 8004D344 0004A284  FC 20 F8 90 */	fmr f1, f31
-/* 8004D348 0004A288  48 15 C8 9D */	bl dKy_ParticleColor_get_actor
+/* 8004D348 0004A288  48 15 C8 9D */	bl dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004D34C 0004A28C  88 81 00 2E */	lbz r4, 0x2e(r1)
 /* 8004D350 0004A290  88 61 00 2D */	lbz r3, 0x2d(r1)
 /* 8004D354 0004A294  88 01 00 2C */	lbz r0, 0x2c(r1)
@@ -4536,7 +4536,7 @@ lbl_8004D3E8:
 /* 8004D3F4 0004A334  38 E1 00 14 */	addi r7, r1, 0x14
 /* 8004D3F8 0004A338  39 01 00 10 */	addi r8, r1, 0x10
 /* 8004D3FC 0004A33C  FC 20 F8 90 */	fmr f1, f31
-/* 8004D400 0004A340  48 15 C8 BD */	bl dKy_ParticleColor_get_bg
+/* 8004D400 0004A340  48 15 C8 BD */	bl dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 8004D404 0004A344  3C 60 80 43 */	lis r3, lbl_8042CA54@ha
 /* 8004D408 0004A348  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 8004D40C 0004A34C  C0 23 12 5C */	lfs f1, 0x125c(r3)
@@ -4546,7 +4546,7 @@ lbl_8004D3E8:
 /* 8004D41C 0004A35C  EF E1 00 2A */	fadds f31, f1, f0
 /* 8004D420 0004A360  38 61 00 1C */	addi r3, r1, 0x1c
 /* 8004D424 0004A364  FC 20 F8 90 */	fmr f1, f31
-/* 8004D428 0004A368  48 15 10 09 */	bl dKy_light_influence_col_X1_
+/* 8004D428 0004A368  48 15 10 09 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004D42C 0004A36C  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8004D430 0004A370  88 01 00 0C */	lbz r0, 0xc(r1)
 /* 8004D434 0004A374  98 01 00 1C */	stb r0, 0x1c(r1)
@@ -4558,7 +4558,7 @@ lbl_8004D3E8:
 /* 8004D44C 0004A38C  98 01 00 1F */	stb r0, 0x1f(r1)
 /* 8004D450 0004A390  38 61 00 18 */	addi r3, r1, 0x18
 /* 8004D454 0004A394  FC 20 F8 90 */	fmr f1, f31
-/* 8004D458 0004A398  48 15 0F D9 */	bl dKy_light_influence_col_X1_
+/* 8004D458 0004A398  48 15 0F D9 */	bl dKy_light_influence_col__FP8_GXColorf
 /* 8004D45C 0004A39C  90 61 00 08 */	stw r3, 8(r1)
 /* 8004D460 0004A3A0  88 01 00 08 */	lbz r0, 8(r1)
 /* 8004D464 0004A3A4  98 01 00 18 */	stb r0, 0x18(r1)
@@ -4589,8 +4589,8 @@ lbl_8004D4B0:
 /* 8004D4C4 0004A404  38 21 00 50 */	addi r1, r1, 0x50
 /* 8004D4C8 0004A408  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_set_X1_
-dPa_control_c_NS_set_X1_:
+.global set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf:
 /* 8004D4CC 0004A40C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8004D4D0 0004A410  7C 08 02 A6 */	mflr r0
 /* 8004D4D4 0004A414  90 01 00 74 */	stw r0, 0x74(r1)
@@ -4613,16 +4613,16 @@ dPa_control_c_NS_set_X1_:
 /* 8004D518 0004A458  82 41 00 8C */	lwz r18, 0x8c(r1)
 /* 8004D51C 0004A45C  FF E0 08 90 */	fmr f31, f1
 /* 8004D520 0004A460  38 75 02 10 */	addi r3, r21, 0x210
-/* 8004D524 0004A464  4B FF E3 51 */	bl dPa_control_c_NS_level_c_NS_get
+/* 8004D524 0004A464  4B FF E3 51 */	bl get__Q213dPa_control_c7level_cFUl
 /* 8004D528 0004A468  7C 74 1B 78 */	mr r20, r3
 /* 8004D52C 0004A46C  7E E3 BB 78 */	mr r3, r23
-/* 8004D530 0004A470  4B FF E6 41 */	bl dPa_control_c_NS_getRM_ID
+/* 8004D530 0004A470  4B FF E6 41 */	bl getRM_ID__13dPa_control_cFUs
 /* 8004D534 0004A474  80 8D 89 20 */	lwz r4, lbl_80450EA0-_SDA_BASE_(r13)
 /* 8004D538 0004A478  80 84 00 1C */	lwz r4, 0x1c(r4)
 /* 8004D53C 0004A47C  54 60 15 BA */	rlwinm r0, r3, 2, 0x16, 0x1d
 /* 8004D540 0004A480  7C 64 00 2E */	lwzx r3, r4, r0
 /* 8004D544 0004A484  7E E4 BB 78 */	mr r4, r23
-/* 8004D548 0004A488  48 22 6A 85 */	bl JPAResourceManager_NS_getResUserWork
+/* 8004D548 0004A488  48 22 6A 85 */	bl getResUserWork__18JPAResourceManagerCFUs
 /* 8004D54C 0004A48C  7C 73 1B 78 */	mr r19, r3
 /* 8004D550 0004A490  28 14 00 00 */	cmplwi r20, 0
 /* 8004D554 0004A494  41 82 00 B8 */	beq lbl_8004D60C
@@ -4631,7 +4631,7 @@ dPa_control_c_NS_set_X1_:
 /* 8004D560 0004A4A0  7C 03 00 40 */	cmplw r3, r0
 /* 8004D564 0004A4A4  40 82 00 9C */	bne lbl_8004D600
 /* 8004D568 0004A4A8  7E 83 A3 78 */	mr r3, r20
-/* 8004D56C 0004A4AC  4B FF DF 99 */	bl dPa_control_c_NS_level_c_NS_emitter_c_NS_onActive
+/* 8004D56C 0004A4AC  4B FF DF 99 */	bl onActive__Q313dPa_control_c7level_c9emitter_cFv
 /* 8004D570 0004A4B0  82 34 00 08 */	lwz r17, 8(r20)
 /* 8004D574 0004A4B4  80 11 00 F4 */	lwz r0, 0xf4(r17)
 /* 8004D578 0004A4B8  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
@@ -4651,7 +4651,7 @@ dPa_control_c_NS_set_X1_:
 /* 8004D5B0 0004A4F0  A8 9A 00 02 */	lha r4, 2(r26)
 /* 8004D5B4 0004A4F4  A8 BA 00 04 */	lha r5, 4(r26)
 /* 8004D5B8 0004A4F8  38 D1 00 68 */	addi r6, r17, 0x68
-/* 8004D5BC 0004A4FC  48 23 31 79 */	bl JPAGetXYZRotateMtx
+/* 8004D5BC 0004A4FC  48 23 31 79 */	bl JPAGetXYZRotateMtx__FsssPA4_f
 lbl_8004D5C0:
 /* 8004D5C0 0004A500  80 11 00 F4 */	lwz r0, 0xf4(r17)
 /* 8004D5C4 0004A504  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -4667,13 +4667,13 @@ lbl_8004D5D8:
 /* 8004D5E8 0004A528  7F 06 C3 78 */	mr r6, r24
 /* 8004D5EC 0004A52C  7F C7 F3 78 */	mr r7, r30
 /* 8004D5F0 0004A530  7F E8 FB 78 */	mr r8, r31
-/* 8004D5F4 0004A534  4B FF FC 85 */	bl dPa_kankyocolor_set
+/* 8004D5F4 0004A534  4B FF FC 85 */	bl dPa_kankyocolor_set__FfP14JPABaseEmitterPC12dKy_tevstr_cUlPC4cXyzPC8_GXColorPC8_GXColor
 /* 8004D5F8 0004A538  80 74 00 00 */	lwz r3, 0(r20)
 /* 8004D5FC 0004A53C  48 00 00 88 */	b lbl_8004D684
 lbl_8004D600:
 /* 8004D600 0004A540  38 75 02 10 */	addi r3, r21, 0x210
 /* 8004D604 0004A544  7E 84 A3 78 */	mr r4, r20
-/* 8004D608 0004A548  4B FF E4 6D */	bl dPa_control_c_NS_level_c_NS_cutTable
+/* 8004D608 0004A548  4B FF E4 6D */	bl cutTable__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c
 lbl_8004D60C:
 /* 8004D60C 0004A54C  28 1D 00 00 */	cmplwi r29, 0
 /* 8004D610 0004A550  41 82 00 18 */	beq lbl_8004D628
@@ -4697,7 +4697,7 @@ lbl_8004D628:
 /* 8004D654 0004A594  7F 69 DB 78 */	mr r9, r27
 /* 8004D658 0004A598  7F 8A E3 78 */	mr r10, r28
 /* 8004D65C 0004A59C  FC 20 F8 90 */	fmr f1, f31
-/* 8004D660 0004A5A0  4B FF F4 31 */	bl dPa_control_c_NS_set
+/* 8004D660 0004A5A0  4B FF F4 31 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004D664 0004A5A4  7C 65 1B 79 */	or. r5, r3, r3
 /* 8004D668 0004A5A8  40 82 00 0C */	bne lbl_8004D674
 /* 8004D66C 0004A5AC  38 60 00 00 */	li r3, 0
@@ -4706,7 +4706,7 @@ lbl_8004D674:
 /* 8004D674 0004A5B4  38 75 02 10 */	addi r3, r21, 0x210
 /* 8004D678 0004A5B8  7E E4 BB 78 */	mr r4, r23
 /* 8004D67C 0004A5BC  7F A6 EB 78 */	mr r6, r29
-/* 8004D680 0004A5C0  4B FF E2 CD */	bl dPa_control_c_NS_level_c_NS_entry
+/* 8004D680 0004A5C0  4B FF E2 CD */	bl entry__Q213dPa_control_c7level_cFUsP14JPABaseEmitterP18dPa_levelEcallBack
 lbl_8004D684:
 /* 8004D684 0004A5C4  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 8004D688 0004A5C8  CB E1 00 60 */	lfd f31, 0x60(r1)
@@ -4717,8 +4717,8 @@ lbl_8004D684:
 /* 8004D69C 0004A5DC  38 21 00 70 */	addi r1, r1, 0x70
 /* 8004D6A0 0004A5E0  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setPoly_X1_
-dPa_control_c_NS_setPoly_X1_:
+.global setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
+setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz:
 /* 8004D6A4 0004A5E4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8004D6A8 0004A5E8  7C 08 02 A6 */	mflr r0
 /* 8004D6AC 0004A5EC  90 01 00 64 */	stw r0, 0x64(r1)
@@ -4740,7 +4740,7 @@ dPa_control_c_NS_setPoly_X1_:
 /* 8004D6EC 0004A62C  38 C1 00 24 */	addi r6, r1, 0x24
 /* 8004D6F0 0004A630  38 E1 00 20 */	addi r7, r1, 0x20
 /* 8004D6F4 0004A634  39 01 00 2C */	addi r8, r1, 0x2c
-/* 8004D6F8 0004A638  4B FF F8 99 */	bl dPa_control_c_NS_getPolyColor
+/* 8004D6F8 0004A638  4B FF F8 99 */	bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 8004D6FC 0004A63C  2C 03 00 00 */	cmpwi r3, 0
 /* 8004D700 0004A640  41 82 00 54 */	beq lbl_8004D754
 /* 8004D704 0004A644  88 01 00 20 */	lbz r0, 0x20(r1)
@@ -4761,7 +4761,7 @@ dPa_control_c_NS_setPoly_X1_:
 /* 8004D740 0004A680  7F 69 DB 78 */	mr r9, r27
 /* 8004D744 0004A684  7F 8A E3 78 */	mr r10, r28
 /* 8004D748 0004A688  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 8004D74C 0004A68C  4B FF FD 81 */	bl dPa_control_c_NS_set_X1_
+/* 8004D74C 0004A68C  4B FF FD 81 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004D750 0004A690  48 00 00 08 */	b lbl_8004D758
 lbl_8004D754:
 /* 8004D754 0004A694  38 60 00 00 */	li r3, 0
@@ -4773,17 +4773,17 @@ lbl_8004D758:
 /* 8004D768 0004A6A8  38 21 00 60 */	addi r1, r1, 0x60
 /* 8004D76C 0004A6AC  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setStopContinue
-dPa_control_c_NS_setStopContinue:
+.global setStopContinue__13dPa_control_cFUl
+setStopContinue__13dPa_control_cFUl:
 /* 8004D770 0004A6B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004D774 0004A6B4  7C 08 02 A6 */	mflr r0
 /* 8004D778 0004A6B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8004D77C 0004A6BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004D780 0004A6C0  38 63 02 10 */	addi r3, r3, 0x210
-/* 8004D784 0004A6C4  4B FF E0 F1 */	bl dPa_control_c_NS_level_c_NS_get
+/* 8004D784 0004A6C4  4B FF E0 F1 */	bl get__Q213dPa_control_c7level_cFUl
 /* 8004D788 0004A6C8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8004D78C 0004A6CC  41 82 00 20 */	beq lbl_8004D7AC
-/* 8004D790 0004A6D0  4B FF DD 75 */	bl dPa_control_c_NS_level_c_NS_emitter_c_NS_onActive
+/* 8004D790 0004A6D0  4B FF DD 75 */	bl onActive__Q313dPa_control_c7level_c9emitter_cFv
 /* 8004D794 0004A6D4  80 7F 00 08 */	lwz r3, 8(r31)
 /* 8004D798 0004A6D8  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 8004D79C 0004A6DC  60 00 00 01 */	ori r0, r0, 1
@@ -4799,8 +4799,8 @@ lbl_8004D7B0:
 /* 8004D7BC 0004A6FC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004D7C0 0004A700  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setSimpleFoot
-dPa_control_c_NS_setSimpleFoot:
+.global setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz
+setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz:
 /* 8004D7C4 0004A704  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8004D7C8 0004A708  7C 08 02 A6 */	mflr r0
 /* 8004D7CC 0004A70C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -4824,14 +4824,14 @@ dPa_control_c_NS_setSimpleFoot:
 /* 8004D814 0004A754  38 C1 00 24 */	addi r6, r1, 0x24
 /* 8004D818 0004A758  38 E1 00 20 */	addi r7, r1, 0x20
 /* 8004D81C 0004A75C  39 01 00 2C */	addi r8, r1, 0x2c
-/* 8004D820 0004A760  4B FF F7 71 */	bl dPa_control_c_NS_getPolyColor
+/* 8004D820 0004A760  4B FF F7 71 */	bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 8004D824 0004A764  2C 03 00 00 */	cmpwi r3, 0
 /* 8004D828 0004A768  40 82 00 0C */	bne lbl_8004D834
 /* 8004D82C 0004A76C  38 60 00 00 */	li r3, 0
 /* 8004D830 0004A770  48 00 01 40 */	b lbl_8004D970
 lbl_8004D834:
 /* 8004D834 0004A774  7E 63 9B 78 */	mr r3, r19
-/* 8004D838 0004A778  48 15 DA 59 */	bl dKy_pol_efftype_get
+/* 8004D838 0004A778  48 15 DA 59 */	bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 8004D83C 0004A77C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004D840 0004A780  28 00 00 06 */	cmplwi r0, 6
 /* 8004D844 0004A784  41 80 00 0C */	blt lbl_8004D850
@@ -4861,16 +4861,16 @@ lbl_8004D850:
 /* 8004D8A0 0004A7E0  7E C9 B3 78 */	mr r9, r22
 /* 8004D8A4 0004A7E4  7E EA BB 78 */	mr r10, r23
 /* 8004D8A8 0004A7E8  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 8004D8AC 0004A7EC  4B FF FC 21 */	bl dPa_control_c_NS_set_X1_
+/* 8004D8AC 0004A7EC  4B FF FC 21 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004D8B0 0004A7F0  7C 7C 1B 78 */	mr r28, r3
 /* 8004D8B4 0004A7F4  7E 63 9B 78 */	mr r3, r19
-/* 8004D8B8 0004A7F8  48 15 DA F1 */	bl dKy_pol_efftype2_get
+/* 8004D8B8 0004A7F8  48 15 DA F1 */	bl dKy_pol_efftype2_get__FPC13cBgS_PolyInfo
 /* 8004D8BC 0004A7FC  7C 7D 1B 78 */	mr r29, r3
 /* 8004D8C0 0004A800  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8004D8C4 0004A804  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8004D8C8 0004A808  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8004D8CC 0004A80C  7E 64 9B 78 */	mr r4, r19
-/* 8004D8D0 0004A810  48 02 75 81 */	bl dBgS_NS_GetPolyAtt0
+/* 8004D8D0 0004A810  48 02 75 81 */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 8004D8D4 0004A814  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 8004D8D8 0004A818  28 00 00 06 */	cmplwi r0, 6
 /* 8004D8DC 0004A81C  40 80 00 90 */	bge lbl_8004D96C
@@ -4885,7 +4885,7 @@ lbl_8004D8F0:
 /* 8004D8FC 0004A83C  38 C1 00 24 */	addi r6, r1, 0x24
 /* 8004D900 0004A840  38 E1 00 20 */	addi r7, r1, 0x20
 /* 8004D904 0004A844  39 01 00 2C */	addi r8, r1, 0x2c
-/* 8004D908 0004A848  4B FF F6 89 */	bl dPa_control_c_NS_getPolyColor
+/* 8004D908 0004A848  4B FF F6 89 */	bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 8004D90C 0004A84C  80 9F 00 00 */	lwz r4, 0(r31)
 /* 8004D910 0004A850  88 01 00 20 */	lbz r0, 0x20(r1)
 /* 8004D914 0004A854  90 01 00 08 */	stw r0, 8(r1)
@@ -4908,7 +4908,7 @@ lbl_8004D8F0:
 /* 8004D958 0004A898  7E C9 B3 78 */	mr r9, r22
 /* 8004D95C 0004A89C  7E EA BB 78 */	mr r10, r23
 /* 8004D960 0004A8A0  C0 21 00 2C */	lfs f1, 0x2c(r1)
-/* 8004D964 0004A8A4  4B FF FB 69 */	bl dPa_control_c_NS_set_X1_
+/* 8004D964 0004A8A4  4B FF FB 69 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004D968 0004A8A8  90 7F 00 00 */	stw r3, 0(r31)
 lbl_8004D96C:
 /* 8004D96C 0004A8AC  7F 83 E3 78 */	mr r3, r28
@@ -4920,8 +4920,8 @@ lbl_8004D970:
 /* 8004D980 0004A8C0  38 21 00 70 */	addi r1, r1, 0x70
 /* 8004D984 0004A8C4  4E 80 00 20 */	blr 
 
-.global dPa_control_c_NS_setCommonPoly
-dPa_control_c_NS_setCommonPoly:
+.global setCommonPoly__13dPa_control_cFPUlP13cBgS_PolyInfoPC4cXyzPC4cXyzPC12dKy_tevstr_cUlUlPC5csXyzPC4cXyzSc
+setCommonPoly__13dPa_control_cFPUlP13cBgS_PolyInfoPC4cXyzPC4cXyzPC12dKy_tevstr_cUlUlPC5csXyzPC4cXyzSc:
 /* 8004D988 0004A8C8  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8004D98C 0004A8CC  7C 08 02 A6 */	mflr r0
 /* 8004D990 0004A8D0  90 01 00 94 */	stw r0, 0x94(r1)
@@ -4942,7 +4942,7 @@ dPa_control_c_NS_setCommonPoly:
 /* 8004D9CC 0004A90C  39 C3 0F 38 */	addi r14, r3, 0xf38
 /* 8004D9D0 0004A910  7D C3 73 78 */	mr r3, r14
 /* 8004D9D4 0004A914  7E 24 8B 78 */	mr r4, r17
-/* 8004D9D8 0004A918  48 02 6C 89 */	bl cBgS_NS_ChkPolySafe
+/* 8004D9D8 0004A918  48 02 6C 89 */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 8004D9DC 0004A91C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004D9E0 0004A920  40 82 00 0C */	bne lbl_8004D9EC
 /* 8004D9E4 0004A924  38 60 00 00 */	li r3, 0
@@ -4950,7 +4950,7 @@ dPa_control_c_NS_setCommonPoly:
 lbl_8004D9EC:
 /* 8004D9EC 0004A92C  7D C3 73 78 */	mr r3, r14
 /* 8004D9F0 0004A930  7E 24 8B 78 */	mr r4, r17
-/* 8004D9F4 0004A934  48 02 74 5D */	bl dBgS_NS_GetPolyAtt0
+/* 8004D9F4 0004A934  48 02 74 5D */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 8004D9F8 0004A938  7C 7D 1B 78 */	mr r29, r3
 /* 8004D9FC 0004A93C  3B 20 00 00 */	li r25, 0
 /* 8004DA00 0004A940  3B E0 00 00 */	li r31, 0
@@ -4966,7 +4966,7 @@ lbl_8004DA18:
 /* 8004DA24 0004A964  38 C1 00 30 */	addi r6, r1, 0x30
 /* 8004DA28 0004A968  38 E1 00 2C */	addi r7, r1, 0x2c
 /* 8004DA2C 0004A96C  39 01 00 38 */	addi r8, r1, 0x38
-/* 8004DA30 0004A970  4B FF F5 61 */	bl dPa_control_c_NS_getPolyColor
+/* 8004DA30 0004A970  4B FF F5 61 */	bl getPolyColor__13dPa_control_cFR13cBgS_PolyInfoiP8_GXColorP8_GXColorPUcPf
 /* 8004DA34 0004A974  2C 03 00 00 */	cmpwi r3, 0
 /* 8004DA38 0004A978  40 82 00 10 */	bne lbl_8004DA48
 /* 8004DA3C 0004A97C  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
@@ -4977,7 +4977,7 @@ lbl_8004DA48:
 /* 8004DA4C 0004A98C  41 82 00 38 */	beq lbl_8004DA84
 /* 8004DA50 0004A990  2C 19 00 01 */	cmpwi r25, 1
 /* 8004DA54 0004A994  40 82 00 28 */	bne lbl_8004DA7C
-/* 8004DA58 0004A998  48 15 D8 29 */	bl dKy_camera_water_in_status_check
+/* 8004DA58 0004A998  48 15 D8 29 */	bl dKy_camera_water_in_status_check__Fv
 /* 8004DA5C 0004A99C  2C 03 00 00 */	cmpwi r3, 0
 /* 8004DA60 0004A9A0  41 82 00 1C */	beq lbl_8004DA7C
 /* 8004DA64 0004A9A4  2C 1D 00 01 */	cmpwi r29, 1
@@ -4994,7 +4994,7 @@ lbl_8004DA84:
 /* 8004DA84 0004A9C4  2C 19 00 00 */	cmpwi r25, 0
 /* 8004DA88 0004A9C8  40 82 00 10 */	bne lbl_8004DA98
 /* 8004DA8C 0004A9CC  7E 23 8B 78 */	mr r3, r17
-/* 8004DA90 0004A9D0  48 15 D8 01 */	bl dKy_pol_efftype_get
+/* 8004DA90 0004A9D0  48 15 D8 01 */	bl dKy_pol_efftype_get__FPC13cBgS_PolyInfo
 /* 8004DA94 0004A9D4  48 00 00 24 */	b lbl_8004DAB8
 lbl_8004DA98:
 /* 8004DA98 0004A9D8  2C 1D 00 01 */	cmpwi r29, 1
@@ -5006,7 +5006,7 @@ lbl_8004DAA8:
 /* 8004DAAC 0004A9EC  48 00 00 0C */	b lbl_8004DAB8
 lbl_8004DAB0:
 /* 8004DAB0 0004A9F0  7E 23 8B 78 */	mr r3, r17
-/* 8004DAB4 0004A9F4  48 15 D8 F5 */	bl dKy_pol_efftype2_get
+/* 8004DAB4 0004A9F4  48 15 D8 F5 */	bl dKy_pol_efftype2_get__FPC13cBgS_PolyInfo
 lbl_8004DAB8:
 /* 8004DAB8 0004A9F8  54 64 06 3E */	clrlwi r4, r3, 0x18
 /* 8004DABC 0004A9FC  28 04 00 06 */	cmplwi r4, 6
@@ -5083,12 +5083,12 @@ lbl_8004DB78:
 /* 8004DBC0 0004AB00  81 21 00 98 */	lwz r9, 0x98(r1)
 /* 8004DBC4 0004AB04  81 41 00 9C */	lwz r10, 0x9c(r1)
 /* 8004DBC8 0004AB08  C0 21 00 38 */	lfs f1, 0x38(r1)
-/* 8004DBCC 0004AB0C  4B FF F9 01 */	bl dPa_control_c_NS_set_X1_
+/* 8004DBCC 0004AB0C  4B FF F9 01 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8004DBD0 0004AB10  90 76 00 00 */	stw r3, 0(r22)
 /* 8004DBD4 0004AB14  80 6E 5D 3C */	lwz r3, 0x5d3c(r14)
 /* 8004DBD8 0004AB18  38 63 02 10 */	addi r3, r3, 0x210
 /* 8004DBDC 0004AB1C  80 96 00 00 */	lwz r4, 0(r22)
-/* 8004DBE0 0004AB20  4B FF DC D5 */	bl dPa_control_c_NS_level_c_NS_forceOnEventMove
+/* 8004DBE0 0004AB20  4B FF DC D5 */	bl forceOnEventMove__Q213dPa_control_c7level_cFUl
 /* 8004DBE4 0004AB24  3B 5A 00 01 */	addi r26, r26, 1
 /* 8004DBE8 0004AB28  2C 1A 00 04 */	cmpwi r26, 4
 /* 8004DBEC 0004AB2C  3A D6 00 04 */	addi r22, r22, 4
@@ -5209,7 +5209,7 @@ lbl_8004DD04:
 /* 8004DDA4 0004ACE4  7C BE 2B 78 */	mr r30, r5
 /* 8004DDA8 0004ACE8  8B E4 00 BB */	lbz r31, 0xbb(r4)
 /* 8004DDAC 0004ACEC  7F C3 F3 78 */	mr r3, r30
-/* 8004DDB0 0004ACF0  4B FF C5 FD */	bl dPa_setWindPower
+/* 8004DDB0 0004ACF0  4B FF C5 FD */	bl dPa_setWindPower__FP15JPABaseParticle
 /* 8004DDB4 0004ACF4  38 61 01 04 */	addi r3, r1, 0x104
 /* 8004DDB8 0004ACF8  48 2F 86 CD */	bl PSMTXIdentity
 /* 8004DDBC 0004ACFC  38 61 00 D4 */	addi r3, r1, 0xd4
@@ -5434,11 +5434,11 @@ lbl_8004E0CC:
 /* 8004E0F8 0004B038  EE F7 00 32 */	fmuls f23, f23, f0
 /* 8004E0FC 0004B03C  7F C3 F3 78 */	mr r3, r30
 /* 8004E100 0004B040  7F A4 EB 78 */	mr r4, r29
-/* 8004E104 0004B044  48 23 24 45 */	bl JPABaseParticle_NS_getWidth
+/* 8004E104 0004B044  48 23 24 45 */	bl getWidth__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004E108 0004B048  EE D6 00 72 */	fmuls f22, f22, f1
 /* 8004E10C 0004B04C  7F C3 F3 78 */	mr r3, r30
 /* 8004E110 0004B050  7F A4 EB 78 */	mr r4, r29
-/* 8004E114 0004B054  48 23 24 55 */	bl JPABaseParticle_NS_getHeight
+/* 8004E114 0004B054  48 23 24 55 */	bl getHeight__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004E118 0004B058  EE F7 00 72 */	fmuls f23, f23, f1
 /* 8004E11C 0004B05C  C0 02 85 E0 */	lfs f0, lbl_80451FE0-_SDA2_BASE_(r2)
 /* 8004E120 0004B060  EE D6 00 32 */	fmuls f22, f22, f0
@@ -5866,11 +5866,11 @@ lbl_8004E450:
 /* 8004E77C 0004B6BC  C2 7D 00 B4 */	lfs f19, 0xb4(r29)
 /* 8004E780 0004B6C0  7F C3 F3 78 */	mr r3, r30
 /* 8004E784 0004B6C4  7F A4 EB 78 */	mr r4, r29
-/* 8004E788 0004B6C8  48 23 1D C1 */	bl JPABaseParticle_NS_getWidth
+/* 8004E788 0004B6C8  48 23 1D C1 */	bl getWidth__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004E78C 0004B6CC  EE 94 00 72 */	fmuls f20, f20, f1
 /* 8004E790 0004B6D0  7F C3 F3 78 */	mr r3, r30
 /* 8004E794 0004B6D4  7F A4 EB 78 */	mr r4, r29
-/* 8004E798 0004B6D8  48 23 1D D1 */	bl JPABaseParticle_NS_getHeight
+/* 8004E798 0004B6D8  48 23 1D D1 */	bl getHeight__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004E79C 0004B6DC  EC 33 00 72 */	fmuls f1, f19, f1
 /* 8004E7A0 0004B6E0  EC 15 05 32 */	fmuls f0, f21, f20
 /* 8004E7A4 0004B6E4  D0 01 00 50 */	stfs f0, 0x50(r1)
@@ -6504,11 +6504,11 @@ lbl_8004F0EC:
 /* 8004F108 0004C048  C2 FD 00 B4 */	lfs f23, 0xb4(r29)
 /* 8004F10C 0004C04C  7F C3 F3 78 */	mr r3, r30
 /* 8004F110 0004C050  7F A4 EB 78 */	mr r4, r29
-/* 8004F114 0004C054  48 23 14 35 */	bl JPABaseParticle_NS_getWidth
+/* 8004F114 0004C054  48 23 14 35 */	bl getWidth__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004F118 0004C058  EE D6 00 72 */	fmuls f22, f22, f1
 /* 8004F11C 0004C05C  7F C3 F3 78 */	mr r3, r30
 /* 8004F120 0004C060  7F A4 EB 78 */	mr r4, r29
-/* 8004F124 0004C064  48 23 14 45 */	bl JPABaseParticle_NS_getHeight
+/* 8004F124 0004C064  48 23 14 45 */	bl getHeight__15JPABaseParticleCFPC14JPABaseEmitter
 /* 8004F128 0004C068  EE F7 00 72 */	fmuls f23, f23, f1
 /* 8004F12C 0004C06C  38 61 00 74 */	addi r3, r1, 0x74
 /* 8004F130 0004C070  FC 20 B0 90 */	fmr f1, f22
@@ -6881,8 +6881,8 @@ lbl_8004F464:
 /* 8004F6B0 0004C5F0  38 21 02 30 */	addi r1, r1, 0x230
 /* 8004F6B4 0004C5F4  4E 80 00 20 */	blr 
 
-.global dPa_hermiteEcallBack_c_NS_setOldPosP
-dPa_hermiteEcallBack_c_NS_setOldPosP:
+.global setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz
+setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz:
 /* 8004F6B8 0004C5F8  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8004F6BC 0004C5FC  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8004F6C0 0004C600  4E 80 00 20 */	blr 
@@ -7100,7 +7100,7 @@ lbl_8004F95C:
 /* 8004F9E4 0004C924  EC 04 00 2A */	fadds f0, f4, f0
 /* 8004F9E8 0004C928  ED C5 00 2A */	fadds f14, f5, f0
 /* 8004F9EC 0004C92C  7F E3 FB 78 */	mr r3, r31
-/* 8004F9F0 0004C930  48 22 F0 51 */	bl JPABaseEmitter_NS_createParticle
+/* 8004F9F0 0004C930  48 22 F0 51 */	bl createParticle__14JPABaseEmitterFv
 /* 8004F9F4 0004C934  28 03 00 00 */	cmplwi r3, 0
 /* 8004F9F8 0004C938  41 82 00 10 */	beq lbl_8004FA08
 /* 8004F9FC 0004C93C  D2 C3 00 18 */	stfs f22, 0x18(r3)
@@ -7194,7 +7194,7 @@ lbl_8004FA14:
 /* 8004FB50 0004CA90  4E 80 04 21 */	bctrl 
 /* 8004FB54 0004CA94  7F C3 F3 78 */	mr r3, r30
 /* 8004FB58 0004CA98  38 80 00 00 */	li r4, 0
-/* 8004FB5C 0004CA9C  48 22 EB 49 */	bl JPAEmitterCallBack_NS_dtor
+/* 8004FB5C 0004CA9C  48 22 EB 49 */	bl __dt__18JPAEmitterCallBackFv
 /* 8004FB60 0004CAA0  7F E0 07 35 */	extsh. r0, r31
 /* 8004FB64 0004CAA4  40 81 00 0C */	ble lbl_8004FB70
 /* 8004FB68 0004CAA8  7F C3 F3 78 */	mr r3, r30
@@ -7208,8 +7208,8 @@ lbl_8004FB70:
 /* 8004FB84 0004CAC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FB88 0004CAC8  4E 80 00 20 */	blr 
 /* 8004FB8C 0004CACC  4E 80 00 20 */	blr 
-.global dPa_modelEcallBack_NS_model_c
-dPa_modelEcallBack_NS_model_c:
+.global __ct__Q218dPa_modelEcallBack7model_cFv
+__ct__Q218dPa_modelEcallBack7model_cFv:
 /* 8004FB90 0004CAD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FB94 0004CAD4  7C 08 02 A6 */	mflr r0
 /* 8004FB98 0004CAD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7220,16 +7220,16 @@ dPa_modelEcallBack_NS_model_c:
 /* 8004FBAC 0004CAEC  7F E3 FB 78 */	mr r3, r31
 /* 8004FBB0 0004CAF0  3C 80 80 3A */	lis r4, lbl_803A1EC8@ha
 /* 8004FBB4 0004CAF4  38 84 1E C8 */	addi r4, r4, lbl_803A1EC8@l
-/* 8004FBB8 0004CAF8  48 2D 5B 0D */	bl J3DLightInfo_NS___as
+/* 8004FBB8 0004CAF8  48 2D 5B 0D */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 8004FBBC 0004CAFC  38 7F 00 74 */	addi r3, r31, 0x74
-.global J3DLightObj
-/* 8004FBC0 0004CB00  3C 80 80 02 */	lis r4, J3DLightObj@ha
-.global J3DLightObj
-/* 8004FBC4 0004CB04  38 84 8C 0C */	addi r4, r4, J3DLightObj@l
+.global __ct__11J3DLightObjFv
+/* 8004FBC0 0004CB00  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha
+.global __ct__11J3DLightObjFv
+/* 8004FBC4 0004CB04  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l
 /* 8004FBC8 0004CB08  38 A0 00 00 */	li r5, 0
 /* 8004FBCC 0004CB0C  38 C0 00 74 */	li r6, 0x74
 /* 8004FBD0 0004CB10  38 E0 00 06 */	li r7, 6
-/* 8004FBD4 0004CB14  48 31 21 8D */	bl func_80361D60
+/* 8004FBD4 0004CB14  48 31 21 8D */	bl __construct_array
 /* 8004FBD8 0004CB18  38 00 00 00 */	li r0, 0
 /* 8004FBDC 0004CB1C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FBE0 0004CB20  7F C3 F3 78 */	mr r3, r30
@@ -7239,13 +7239,13 @@ dPa_modelEcallBack_NS_model_c:
 /* 8004FBF0 0004CB30  7C 08 03 A6 */	mtlr r0
 /* 8004FBF4 0004CB34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FBF8 0004CB38  4E 80 00 20 */	blr 
-.global dPa_control_c_NS_level_c_NS_emitter_c
-dPa_control_c_NS_level_c_NS_emitter_c:
+.global __ct__Q313dPa_control_c7level_c9emitter_cFv
+__ct__Q313dPa_control_c7level_c9emitter_cFv:
 /* 8004FBFC 0004CB3C  38 00 00 00 */	li r0, 0
 /* 8004FC00 0004CB40  90 03 00 00 */	stw r0, 0(r3)
 /* 8004FC04 0004CB44  4E 80 00 20 */	blr 
-.global dPa_simpleEcallBack_NS_dtor
-dPa_simpleEcallBack_NS_dtor:
+.global __dt__19dPa_simpleEcallBackFv
+__dt__19dPa_simpleEcallBackFv:
 /* 8004FC08 0004CB48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FC0C 0004CB4C  7C 08 02 A6 */	mflr r0
 /* 8004FC10 0004CB50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7258,7 +7258,7 @@ dPa_simpleEcallBack_NS_dtor:
 /* 8004FC2C 0004CB6C  38 04 84 48 */	addi r0, r4, lbl_803A8448@l
 /* 8004FC30 0004CB70  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FC34 0004CB74  38 80 00 00 */	li r4, 0
-/* 8004FC38 0004CB78  48 22 EA 6D */	bl JPAEmitterCallBack_NS_dtor
+/* 8004FC38 0004CB78  48 22 EA 6D */	bl __dt__18JPAEmitterCallBackFv
 /* 8004FC3C 0004CB7C  7F E0 07 35 */	extsh. r0, r31
 /* 8004FC40 0004CB80  40 81 00 0C */	ble lbl_8004FC4C
 /* 8004FC44 0004CB84  7F C3 F3 78 */	mr r3, r30
@@ -7271,8 +7271,8 @@ lbl_8004FC4C:
 /* 8004FC5C 0004CB9C  7C 08 03 A6 */	mtlr r0
 /* 8004FC60 0004CBA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FC64 0004CBA4  4E 80 00 20 */	blr 
-.global dPa_particleTracePcallBack_c_NS_dtor
-dPa_particleTracePcallBack_c_NS_dtor:
+.global __dt__28dPa_particleTracePcallBack_cFv
+__dt__28dPa_particleTracePcallBack_cFv:
 /* 8004FC68 0004CBA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FC6C 0004CBAC  7C 08 02 A6 */	mflr r0
 /* 8004FC70 0004CBB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7285,7 +7285,7 @@ dPa_particleTracePcallBack_c_NS_dtor:
 /* 8004FC8C 0004CBCC  38 04 83 8C */	addi r0, r4, lbl_803A838C@l
 /* 8004FC90 0004CBD0  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FC94 0004CBD4  38 80 00 00 */	li r4, 0
-/* 8004FC98 0004CBD8  48 22 F3 0D */	bl JPAParticleCallBack_NS_dtor
+/* 8004FC98 0004CBD8  48 22 F3 0D */	bl __dt__19JPAParticleCallBackFv
 /* 8004FC9C 0004CBDC  7F E0 07 35 */	extsh. r0, r31
 /* 8004FCA0 0004CBE0  40 81 00 0C */	ble lbl_8004FCAC
 /* 8004FCA4 0004CBE4  7F C3 F3 78 */	mr r3, r30
@@ -7319,7 +7319,7 @@ lbl_8004FCAC:
 /* 8004FD10 0004CC50  4E 80 04 21 */	bctrl 
 /* 8004FD14 0004CC54  7F C3 F3 78 */	mr r3, r30
 /* 8004FD18 0004CC58  38 80 00 00 */	li r4, 0
-/* 8004FD1C 0004CC5C  48 22 E9 89 */	bl JPAEmitterCallBack_NS_dtor
+/* 8004FD1C 0004CC5C  48 22 E9 89 */	bl __dt__18JPAEmitterCallBackFv
 lbl_8004FD20:
 /* 8004FD20 0004CC60  7F E0 07 35 */	extsh. r0, r31
 /* 8004FD24 0004CC64  40 81 00 0C */	ble lbl_8004FD30
@@ -7333,8 +7333,8 @@ lbl_8004FD30:
 /* 8004FD40 0004CC80  7C 08 03 A6 */	mtlr r0
 /* 8004FD44 0004CC84  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FD48 0004CC88  4E 80 00 20 */	blr 
-.global dPa_gen_d_light8PcallBack_NS_dtor
-dPa_gen_d_light8PcallBack_NS_dtor:
+.global __dt__25dPa_gen_d_light8PcallBackFv
+__dt__25dPa_gen_d_light8PcallBackFv:
 /* 8004FD4C 0004CC8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FD50 0004CC90  7C 08 02 A6 */	mflr r0
 /* 8004FD54 0004CC94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7347,7 +7347,7 @@ dPa_gen_d_light8PcallBack_NS_dtor:
 /* 8004FD70 0004CCB0  38 04 83 C4 */	addi r0, r4, lbl_803A83C4@l
 /* 8004FD74 0004CCB4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FD78 0004CCB8  38 80 00 00 */	li r4, 0
-/* 8004FD7C 0004CCBC  48 22 F2 29 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FD7C 0004CCBC  48 22 F2 29 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FD80 0004CCC0  7F E0 07 35 */	extsh. r0, r31
 /* 8004FD84 0004CCC4  40 81 00 0C */	ble lbl_8004FD90
 /* 8004FD88 0004CCC8  7F C3 F3 78 */	mr r3, r30
@@ -7360,8 +7360,8 @@ lbl_8004FD90:
 /* 8004FDA0 0004CCE0  7C 08 03 A6 */	mtlr r0
 /* 8004FDA4 0004CCE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FDA8 0004CCE8  4E 80 00 20 */	blr 
-.global dPa_gen_b_light8PcallBack_NS_dtor
-dPa_gen_b_light8PcallBack_NS_dtor:
+.global __dt__25dPa_gen_b_light8PcallBackFv
+__dt__25dPa_gen_b_light8PcallBackFv:
 /* 8004FDAC 0004CCEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FDB0 0004CCF0  7C 08 02 A6 */	mflr r0
 /* 8004FDB4 0004CCF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7374,7 +7374,7 @@ dPa_gen_b_light8PcallBack_NS_dtor:
 /* 8004FDD0 0004CD10  38 04 83 D8 */	addi r0, r4, lbl_803A83D8@l
 /* 8004FDD4 0004CD14  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FDD8 0004CD18  38 80 00 00 */	li r4, 0
-/* 8004FDDC 0004CD1C  48 22 F1 C9 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FDDC 0004CD1C  48 22 F1 C9 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FDE0 0004CD20  7F E0 07 35 */	extsh. r0, r31
 /* 8004FDE4 0004CD24  40 81 00 0C */	ble lbl_8004FDF0
 /* 8004FDE8 0004CD28  7F C3 F3 78 */	mr r3, r30
@@ -7387,8 +7387,8 @@ lbl_8004FDF0:
 /* 8004FE00 0004CD40  7C 08 03 A6 */	mtlr r0
 /* 8004FE04 0004CD44  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FE08 0004CD48  4E 80 00 20 */	blr 
-.global dPa_light8PcallBack_NS_dtor
-dPa_light8PcallBack_NS_dtor:
+.global __dt__19dPa_light8PcallBackFv
+__dt__19dPa_light8PcallBackFv:
 /* 8004FE0C 0004CD4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FE10 0004CD50  7C 08 02 A6 */	mflr r0
 /* 8004FE14 0004CD54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7401,7 +7401,7 @@ dPa_light8PcallBack_NS_dtor:
 /* 8004FE30 0004CD70  38 04 83 EC */	addi r0, r4, lbl_803A83EC@l
 /* 8004FE34 0004CD74  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FE38 0004CD78  38 80 00 00 */	li r4, 0
-/* 8004FE3C 0004CD7C  48 22 F1 69 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FE3C 0004CD7C  48 22 F1 69 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FE40 0004CD80  7F E0 07 35 */	extsh. r0, r31
 /* 8004FE44 0004CD84  40 81 00 0C */	ble lbl_8004FE50
 /* 8004FE48 0004CD88  7F C3 F3 78 */	mr r3, r30
@@ -7414,8 +7414,8 @@ lbl_8004FE50:
 /* 8004FE60 0004CDA0  7C 08 03 A6 */	mtlr r0
 /* 8004FE64 0004CDA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FE68 0004CDA8  4E 80 00 20 */	blr 
-.global dPa_fsenthPcallBack_NS_dtor
-dPa_fsenthPcallBack_NS_dtor:
+.global __dt__19dPa_fsenthPcallBackFv
+__dt__19dPa_fsenthPcallBackFv:
 /* 8004FE6C 0004CDAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FE70 0004CDB0  7C 08 02 A6 */	mflr r0
 /* 8004FE74 0004CDB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7428,7 +7428,7 @@ dPa_fsenthPcallBack_NS_dtor:
 /* 8004FE90 0004CDD0  38 04 84 00 */	addi r0, r4, lbl_803A8400@l
 /* 8004FE94 0004CDD4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FE98 0004CDD8  38 80 00 00 */	li r4, 0
-/* 8004FE9C 0004CDDC  48 22 F1 09 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FE9C 0004CDDC  48 22 F1 09 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FEA0 0004CDE0  7F E0 07 35 */	extsh. r0, r31
 /* 8004FEA4 0004CDE4  40 81 00 0C */	ble lbl_8004FEB0
 /* 8004FEA8 0004CDE8  7F C3 F3 78 */	mr r3, r30
@@ -7441,8 +7441,8 @@ lbl_8004FEB0:
 /* 8004FEC0 0004CE00  7C 08 03 A6 */	mtlr r0
 /* 8004FEC4 0004CE04  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FEC8 0004CE08  4E 80 00 20 */	blr 
-.global dPa_wbPcallBack_c_NS_dtor
-dPa_wbPcallBack_c_NS_dtor:
+.global __dt__17dPa_wbPcallBack_cFv
+__dt__17dPa_wbPcallBack_cFv:
 /* 8004FECC 0004CE0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FED0 0004CE10  7C 08 02 A6 */	mflr r0
 /* 8004FED4 0004CE14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7455,7 +7455,7 @@ dPa_wbPcallBack_c_NS_dtor:
 /* 8004FEF0 0004CE30  38 04 84 14 */	addi r0, r4, lbl_803A8414@l
 /* 8004FEF4 0004CE34  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FEF8 0004CE38  38 80 00 00 */	li r4, 0
-/* 8004FEFC 0004CE3C  48 22 F0 A9 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FEFC 0004CE3C  48 22 F0 A9 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FF00 0004CE40  7F E0 07 35 */	extsh. r0, r31
 /* 8004FF04 0004CE44  40 81 00 0C */	ble lbl_8004FF10
 /* 8004FF08 0004CE48  7F C3 F3 78 */	mr r3, r30
@@ -7480,7 +7480,7 @@ lbl_8004FF10:
 /* 8004FF50 0004CE90  38 04 84 34 */	addi r0, r4, lbl_803A8434@l
 /* 8004FF54 0004CE94  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FF58 0004CE98  38 80 00 00 */	li r4, 0
-/* 8004FF5C 0004CE9C  48 22 F0 49 */	bl JPAParticleCallBack_NS_dtor
+/* 8004FF5C 0004CE9C  48 22 F0 49 */	bl __dt__19JPAParticleCallBackFv
 /* 8004FF60 0004CEA0  7F E0 07 35 */	extsh. r0, r31
 /* 8004FF64 0004CEA4  40 81 00 0C */	ble lbl_8004FF70
 /* 8004FF68 0004CEA8  7F C3 F3 78 */	mr r3, r30
@@ -7493,8 +7493,8 @@ lbl_8004FF70:
 /* 8004FF80 0004CEC0  7C 08 03 A6 */	mtlr r0
 /* 8004FF84 0004CEC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004FF88 0004CEC8  4E 80 00 20 */	blr 
-.global dPa_selectTexEcallBack_NS_dtor
-dPa_selectTexEcallBack_NS_dtor:
+.global __dt__22dPa_selectTexEcallBackFv
+__dt__22dPa_selectTexEcallBackFv:
 /* 8004FF8C 0004CECC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004FF90 0004CED0  7C 08 02 A6 */	mflr r0
 /* 8004FF94 0004CED4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7516,7 +7516,7 @@ dPa_selectTexEcallBack_NS_dtor:
 /* 8004FFD4 0004CF14  4E 80 04 21 */	bctrl 
 /* 8004FFD8 0004CF18  7F C3 F3 78 */	mr r3, r30
 /* 8004FFDC 0004CF1C  38 80 00 00 */	li r4, 0
-/* 8004FFE0 0004CF20  48 22 E6 C5 */	bl JPAEmitterCallBack_NS_dtor
+/* 8004FFE0 0004CF20  48 22 E6 C5 */	bl __dt__18JPAEmitterCallBackFv
 lbl_8004FFE4:
 /* 8004FFE4 0004CF24  7F E0 07 35 */	extsh. r0, r31
 /* 8004FFE8 0004CF28  40 81 00 0C */	ble lbl_8004FFF4
@@ -7535,13 +7535,13 @@ lbl_8004FFF4:
 /* 80050018 0004CF58  7C 08 02 A6 */	mflr r0
 /* 8005001C 0004CF5C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80050020 0004CF60  7C 83 23 78 */	mr r3, r4
-/* 80050024 0004CF64  4B FF AD 05 */	bl dPa_modelEcallBack_NS_cleanupModel
+/* 80050024 0004CF64  4B FF AD 05 */	bl cleanupModel__18dPa_modelEcallBackFP14JPABaseEmitter
 /* 80050028 0004CF68  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8005002C 0004CF6C  7C 08 03 A6 */	mtlr r0
 /* 80050030 0004CF70  38 21 00 10 */	addi r1, r1, 0x10
 /* 80050034 0004CF74  4E 80 00 20 */	blr 
-.global dPa_modelPcallBack_NS_dtor
-dPa_modelPcallBack_NS_dtor:
+.global __dt__18dPa_modelPcallBackFv
+__dt__18dPa_modelPcallBackFv:
 /* 80050038 0004CF78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005003C 0004CF7C  7C 08 02 A6 */	mflr r0
 /* 80050040 0004CF80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7554,7 +7554,7 @@ dPa_modelPcallBack_NS_dtor:
 /* 8005005C 0004CF9C  38 04 84 AC */	addi r0, r4, lbl_803A84AC@l
 /* 80050060 0004CFA0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050064 0004CFA4  38 80 00 00 */	li r4, 0
-/* 80050068 0004CFA8  48 22 EF 3D */	bl JPAParticleCallBack_NS_dtor
+/* 80050068 0004CFA8  48 22 EF 3D */	bl __dt__19JPAParticleCallBackFv
 /* 8005006C 0004CFAC  7F E0 07 35 */	extsh. r0, r31
 /* 80050070 0004CFB0  40 81 00 0C */	ble lbl_8005007C
 /* 80050074 0004CFB4  7F C3 F3 78 */	mr r3, r30
@@ -7570,13 +7570,13 @@ lbl_8005007C:
 /* 80050098 0004CFD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005009C 0004CFDC  7C 08 02 A6 */	mflr r0
 /* 800500A0 0004CFE0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800500A4 0004CFE4  4B FF 93 7D */	bl dPa_cleanupGX
+/* 800500A4 0004CFE4  4B FF 93 7D */	bl dPa_cleanupGX__Fv
 /* 800500A8 0004CFE8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800500AC 0004CFEC  7C 08 03 A6 */	mtlr r0
 /* 800500B0 0004CFF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800500B4 0004CFF4  4E 80 00 20 */	blr 
-.global dPa_gen_b_light8EcallBack_NS_dtor
-dPa_gen_b_light8EcallBack_NS_dtor:
+.global __dt__25dPa_gen_b_light8EcallBackFv
+__dt__25dPa_gen_b_light8EcallBackFv:
 /* 800500B8 0004CFF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800500BC 0004CFFC  7C 08 02 A6 */	mflr r0
 /* 800500C0 0004D000  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7598,7 +7598,7 @@ dPa_gen_b_light8EcallBack_NS_dtor:
 /* 80050100 0004D040  4E 80 04 21 */	bctrl 
 /* 80050104 0004D044  7F C3 F3 78 */	mr r3, r30
 /* 80050108 0004D048  38 80 00 00 */	li r4, 0
-/* 8005010C 0004D04C  48 22 E5 99 */	bl JPAEmitterCallBack_NS_dtor
+/* 8005010C 0004D04C  48 22 E5 99 */	bl __dt__18JPAEmitterCallBackFv
 lbl_80050110:
 /* 80050110 0004D050  7F E0 07 35 */	extsh. r0, r31
 /* 80050114 0004D054  40 81 00 0C */	ble lbl_80050120
@@ -7615,13 +7615,13 @@ lbl_80050120:
 /* 8005013C 0004D07C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050140 0004D080  7C 08 02 A6 */	mflr r0
 /* 80050144 0004D084  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80050148 0004D088  4B FF 92 D9 */	bl dPa_cleanupGX
+/* 80050148 0004D088  4B FF 92 D9 */	bl dPa_cleanupGX__Fv
 /* 8005014C 0004D08C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80050150 0004D090  7C 08 03 A6 */	mtlr r0
 /* 80050154 0004D094  38 21 00 10 */	addi r1, r1, 0x10
 /* 80050158 0004D098  4E 80 00 20 */	blr 
-.global dPa_light8EcallBack_NS_dtor
-dPa_light8EcallBack_NS_dtor:
+.global __dt__19dPa_light8EcallBackFv
+__dt__19dPa_light8EcallBackFv:
 /* 8005015C 0004D09C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050160 0004D0A0  7C 08 02 A6 */	mflr r0
 /* 80050164 0004D0A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7643,7 +7643,7 @@ dPa_light8EcallBack_NS_dtor:
 /* 800501A4 0004D0E4  4E 80 04 21 */	bctrl 
 /* 800501A8 0004D0E8  7F C3 F3 78 */	mr r3, r30
 /* 800501AC 0004D0EC  38 80 00 00 */	li r4, 0
-/* 800501B0 0004D0F0  48 22 E4 F5 */	bl JPAEmitterCallBack_NS_dtor
+/* 800501B0 0004D0F0  48 22 E4 F5 */	bl __dt__18JPAEmitterCallBackFv
 lbl_800501B4:
 /* 800501B4 0004D0F4  7F E0 07 35 */	extsh. r0, r31
 /* 800501B8 0004D0F8  40 81 00 0C */	ble lbl_800501C4
@@ -7660,7 +7660,7 @@ lbl_800501C4:
 /* 800501E0 0004D120  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800501E4 0004D124  7C 08 02 A6 */	mflr r0
 /* 800501E8 0004D128  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800501EC 0004D12C  4B FF 92 35 */	bl dPa_cleanupGX
+/* 800501EC 0004D12C  4B FF 92 35 */	bl dPa_cleanupGX__Fv
 /* 800501F0 0004D130  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800501F4 0004D134  7C 08 03 A6 */	mtlr r0
 /* 800501F8 0004D138  38 21 00 10 */	addi r1, r1, 0x10
@@ -7686,7 +7686,7 @@ lbl_800501C4:
 /* 80050248 0004D188  4E 80 04 21 */	bctrl 
 /* 8005024C 0004D18C  7F C3 F3 78 */	mr r3, r30
 /* 80050250 0004D190  38 80 00 00 */	li r4, 0
-/* 80050254 0004D194  48 22 E4 51 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050254 0004D194  48 22 E4 51 */	bl __dt__18JPAEmitterCallBackFv
 lbl_80050258:
 /* 80050258 0004D198  7F E0 07 35 */	extsh. r0, r31
 /* 8005025C 0004D19C  40 81 00 0C */	ble lbl_80050268
@@ -7724,8 +7724,8 @@ lbl_80050268:
 /* 800502D8 0004D218  38 21 00 10 */	addi r1, r1, 0x10
 /* 800502DC 0004D21C  4E 80 00 20 */	blr 
 /* 800502E0 0004D220  4E 80 00 20 */	blr 
-.global dPa_setColorEcallBack_NS_dtor
-dPa_setColorEcallBack_NS_dtor:
+.global __dt__21dPa_setColorEcallBackFv
+__dt__21dPa_setColorEcallBackFv:
 /* 800502E4 0004D224  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800502E8 0004D228  7C 08 02 A6 */	mflr r0
 /* 800502EC 0004D22C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7747,7 +7747,7 @@ dPa_setColorEcallBack_NS_dtor:
 /* 8005032C 0004D26C  4E 80 04 21 */	bctrl 
 /* 80050330 0004D270  7F C3 F3 78 */	mr r3, r30
 /* 80050334 0004D274  38 80 00 00 */	li r4, 0
-/* 80050338 0004D278  48 22 E3 6D */	bl JPAEmitterCallBack_NS_dtor
+/* 80050338 0004D278  48 22 E3 6D */	bl __dt__18JPAEmitterCallBackFv
 lbl_8005033C:
 /* 8005033C 0004D27C  7F E0 07 35 */	extsh. r0, r31
 /* 80050340 0004D280  40 81 00 0C */	ble lbl_8005034C
@@ -7765,8 +7765,8 @@ lbl_8005034C:
 /* 8005036C 0004D2AC  4E 80 00 20 */	blr 
 /* 80050370 0004D2B0  4E 80 00 20 */	blr 
 /* 80050374 0004D2B4  4E 80 00 20 */	blr 
-.global dPa_modelEcallBack_NS_dtor
-dPa_modelEcallBack_NS_dtor:
+.global __dt__18dPa_modelEcallBackFv
+__dt__18dPa_modelEcallBackFv:
 /* 80050378 0004D2B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005037C 0004D2BC  7C 08 02 A6 */	mflr r0
 /* 80050380 0004D2C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7788,7 +7788,7 @@ dPa_modelEcallBack_NS_dtor:
 /* 800503C0 0004D300  4E 80 04 21 */	bctrl 
 /* 800503C4 0004D304  7F C3 F3 78 */	mr r3, r30
 /* 800503C8 0004D308  38 80 00 00 */	li r4, 0
-/* 800503CC 0004D30C  48 22 E2 D9 */	bl JPAEmitterCallBack_NS_dtor
+/* 800503CC 0004D30C  48 22 E2 D9 */	bl __dt__18JPAEmitterCallBackFv
 lbl_800503D0:
 /* 800503D0 0004D310  7F E0 07 35 */	extsh. r0, r31
 /* 800503D4 0004D314  40 81 00 0C */	ble lbl_800503E0
@@ -7802,8 +7802,8 @@ lbl_800503E0:
 /* 800503F0 0004D330  7C 08 03 A6 */	mtlr r0
 /* 800503F4 0004D334  38 21 00 10 */	addi r1, r1, 0x10
 /* 800503F8 0004D338  4E 80 00 20 */	blr 
-.global dPa_gen_d_light8EcallBack_NS_dtor
-dPa_gen_d_light8EcallBack_NS_dtor:
+.global __dt__25dPa_gen_d_light8EcallBackFv
+__dt__25dPa_gen_d_light8EcallBackFv:
 /* 800503FC 0004D33C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80050400 0004D340  7C 08 02 A6 */	mflr r0
 /* 80050404 0004D344  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7825,7 +7825,7 @@ dPa_gen_d_light8EcallBack_NS_dtor:
 /* 80050444 0004D384  4E 80 04 21 */	bctrl 
 /* 80050448 0004D388  7F C3 F3 78 */	mr r3, r30
 /* 8005044C 0004D38C  38 80 00 00 */	li r4, 0
-/* 80050450 0004D390  48 22 E2 55 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050450 0004D390  48 22 E2 55 */	bl __dt__18JPAEmitterCallBackFv
 lbl_80050454:
 /* 80050454 0004D394  7F E0 07 35 */	extsh. r0, r31
 /* 80050458 0004D398  40 81 00 0C */	ble lbl_80050464
@@ -7859,10 +7859,10 @@ lbl_80050464:
 /* 800504C4 0004D404  38 00 00 00 */	li r0, 0
 /* 800504C8 0004D408  90 0D 89 18 */	stw r0, lbl_80450E98-_SDA_BASE_(r13)
 /* 800504CC 0004D40C  38 6D 89 10 */	addi r3, r13, lbl_80450E90-_SDA_BASE_
-.global dPa_modelEcallBack_NS_dtor
-/* 800504D0 0004D410  3C 80 80 05 */	lis r4, dPa_modelEcallBack_NS_dtor@ha
-.global dPa_modelEcallBack_NS_dtor
-/* 800504D4 0004D414  38 84 03 78 */	addi r4, r4, dPa_modelEcallBack_NS_dtor@l
+.global __dt__18dPa_modelEcallBackFv
+/* 800504D0 0004D410  3C 80 80 05 */	lis r4, __dt__18dPa_modelEcallBackFv@ha
+.global __dt__18dPa_modelEcallBackFv
+/* 800504D4 0004D414  38 84 03 78 */	addi r4, r4, __dt__18dPa_modelEcallBackFv@l
 /* 800504D8 0004D418  38 BF 00 00 */	addi r5, r31, 0
 /* 800504DC 0004D41C  48 31 17 49 */	bl func_80361C24
 /* 800504E0 0004D420  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -7871,10 +7871,10 @@ lbl_80050464:
 /* 800504EC 0004D42C  38 1E 01 A4 */	addi r0, r30, 0x1a4
 /* 800504F0 0004D430  90 0D 89 14 */	stw r0, lbl_80450E94-_SDA_BASE_(r13)
 /* 800504F4 0004D434  38 6D 89 14 */	addi r3, r13, lbl_80450E94-_SDA_BASE_
-.global dPa_modelPcallBack_NS_dtor
-/* 800504F8 0004D438  3C 80 80 05 */	lis r4, dPa_modelPcallBack_NS_dtor@ha
-.global dPa_modelPcallBack_NS_dtor
-/* 800504FC 0004D43C  38 84 00 38 */	addi r4, r4, dPa_modelPcallBack_NS_dtor@l
+.global __dt__18dPa_modelPcallBackFv
+/* 800504F8 0004D438  3C 80 80 05 */	lis r4, __dt__18dPa_modelPcallBackFv@ha
+.global __dt__18dPa_modelPcallBackFv
+/* 800504FC 0004D43C  38 84 00 38 */	addi r4, r4, __dt__18dPa_modelPcallBackFv@l
 /* 80050500 0004D440  38 BF 00 0C */	addi r5, r31, 0xc
 /* 80050504 0004D444  48 31 17 21 */	bl func_80361C24
 /* 80050508 0004D448  3C 60 80 3B */	lis r3, lbl_803A8578@ha
@@ -7892,10 +7892,10 @@ lbl_80050464:
 /* 80050538 0004D478  90 7F 00 84 */	stw r3, 0x84(r31)
 /* 8005053C 0004D47C  38 7F 00 84 */	addi r3, r31, 0x84
 /* 80050540 0004D480  98 03 00 04 */	stb r0, 4(r3)
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050544 0004D484  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050548 0004D488  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050544 0004D484  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050548 0004D488  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 8005054C 0004D48C  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80050550 0004D490  48 31 16 D5 */	bl func_80361C24
 /* 80050554 0004D494  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -7909,7 +7909,7 @@ lbl_80050464:
 /* 80050574 0004D4B4  4E 80 04 21 */	bctrl 
 /* 80050578 0004D4B8  38 61 00 58 */	addi r3, r1, 0x58
 /* 8005057C 0004D4BC  38 80 00 00 */	li r4, 0
-/* 80050580 0004D4C0  48 22 E1 25 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050580 0004D4C0  48 22 E1 25 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050584 0004D4C4  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050588 0004D4C8  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005058C 0004D4CC  90 C1 00 50 */	stw r6, 0x50(r1)
@@ -7926,10 +7926,10 @@ lbl_80050464:
 /* 800505B8 0004D4F8  90 83 00 08 */	stw r4, 8(r3)
 /* 800505BC 0004D4FC  98 03 00 0C */	stb r0, 0xc(r3)
 /* 800505C0 0004D500  38 63 00 08 */	addi r3, r3, 8
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800505C4 0004D504  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800505C8 0004D508  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800505C4 0004D504  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800505C8 0004D508  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 800505CC 0004D50C  38 BF 00 30 */	addi r5, r31, 0x30
 /* 800505D0 0004D510  48 31 16 55 */	bl func_80361C24
 /* 800505D4 0004D514  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -7943,7 +7943,7 @@ lbl_80050464:
 /* 800505F4 0004D534  4E 80 04 21 */	bctrl 
 /* 800505F8 0004D538  38 61 00 50 */	addi r3, r1, 0x50
 /* 800505FC 0004D53C  38 80 00 00 */	li r4, 0
-/* 80050600 0004D540  48 22 E0 A5 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050600 0004D540  48 22 E0 A5 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050604 0004D544  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050608 0004D548  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005060C 0004D54C  90 C1 00 48 */	stw r6, 0x48(r1)
@@ -7960,10 +7960,10 @@ lbl_80050464:
 /* 80050638 0004D578  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8005063C 0004D57C  98 03 00 14 */	stb r0, 0x14(r3)
 /* 80050640 0004D580  38 63 00 10 */	addi r3, r3, 0x10
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050644 0004D584  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050648 0004D588  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050644 0004D584  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050648 0004D588  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 8005064C 0004D58C  38 BF 00 3C */	addi r5, r31, 0x3c
 /* 80050650 0004D590  48 31 15 D5 */	bl func_80361C24
 /* 80050654 0004D594  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -7977,7 +7977,7 @@ lbl_80050464:
 /* 80050674 0004D5B4  4E 80 04 21 */	bctrl 
 /* 80050678 0004D5B8  38 61 00 48 */	addi r3, r1, 0x48
 /* 8005067C 0004D5BC  38 80 00 00 */	li r4, 0
-/* 80050680 0004D5C0  48 22 E0 25 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050680 0004D5C0  48 22 E0 25 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050684 0004D5C4  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050688 0004D5C8  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005068C 0004D5CC  90 C1 00 40 */	stw r6, 0x40(r1)
@@ -7994,10 +7994,10 @@ lbl_80050464:
 /* 800506B8 0004D5F8  90 83 00 18 */	stw r4, 0x18(r3)
 /* 800506BC 0004D5FC  98 03 00 1C */	stb r0, 0x1c(r3)
 /* 800506C0 0004D600  38 63 00 18 */	addi r3, r3, 0x18
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800506C4 0004D604  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800506C8 0004D608  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800506C4 0004D604  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800506C8 0004D608  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 800506CC 0004D60C  38 BF 00 48 */	addi r5, r31, 0x48
 /* 800506D0 0004D610  48 31 15 55 */	bl func_80361C24
 /* 800506D4 0004D614  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -8011,7 +8011,7 @@ lbl_80050464:
 /* 800506F4 0004D634  4E 80 04 21 */	bctrl 
 /* 800506F8 0004D638  38 61 00 40 */	addi r3, r1, 0x40
 /* 800506FC 0004D63C  38 80 00 00 */	li r4, 0
-/* 80050700 0004D640  48 22 DF A5 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050700 0004D640  48 22 DF A5 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050704 0004D644  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050708 0004D648  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005070C 0004D64C  90 C1 00 38 */	stw r6, 0x38(r1)
@@ -8028,10 +8028,10 @@ lbl_80050464:
 /* 80050738 0004D678  90 83 00 20 */	stw r4, 0x20(r3)
 /* 8005073C 0004D67C  98 03 00 24 */	stb r0, 0x24(r3)
 /* 80050740 0004D680  38 63 00 20 */	addi r3, r3, 0x20
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050744 0004D684  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050748 0004D688  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050744 0004D684  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050748 0004D688  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 8005074C 0004D68C  38 BF 00 54 */	addi r5, r31, 0x54
 /* 80050750 0004D690  48 31 14 D5 */	bl func_80361C24
 /* 80050754 0004D694  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -8045,7 +8045,7 @@ lbl_80050464:
 /* 80050774 0004D6B4  4E 80 04 21 */	bctrl 
 /* 80050778 0004D6B8  38 61 00 38 */	addi r3, r1, 0x38
 /* 8005077C 0004D6BC  38 80 00 00 */	li r4, 0
-/* 80050780 0004D6C0  48 22 DF 25 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050780 0004D6C0  48 22 DF 25 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050784 0004D6C4  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050788 0004D6C8  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005078C 0004D6CC  90 C1 00 30 */	stw r6, 0x30(r1)
@@ -8062,10 +8062,10 @@ lbl_80050464:
 /* 800507B8 0004D6F8  90 83 00 28 */	stw r4, 0x28(r3)
 /* 800507BC 0004D6FC  98 03 00 2C */	stb r0, 0x2c(r3)
 /* 800507C0 0004D700  38 63 00 28 */	addi r3, r3, 0x28
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800507C4 0004D704  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800507C8 0004D708  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800507C4 0004D704  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800507C8 0004D708  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 800507CC 0004D70C  38 BF 00 60 */	addi r5, r31, 0x60
 /* 800507D0 0004D710  48 31 14 55 */	bl func_80361C24
 /* 800507D4 0004D714  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -8079,7 +8079,7 @@ lbl_80050464:
 /* 800507F4 0004D734  4E 80 04 21 */	bctrl 
 /* 800507F8 0004D738  38 61 00 30 */	addi r3, r1, 0x30
 /* 800507FC 0004D73C  38 80 00 00 */	li r4, 0
-/* 80050800 0004D740  48 22 DE A5 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050800 0004D740  48 22 DE A5 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050804 0004D744  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050808 0004D748  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005080C 0004D74C  90 C1 00 28 */	stw r6, 0x28(r1)
@@ -8096,10 +8096,10 @@ lbl_80050464:
 /* 80050838 0004D778  90 83 00 30 */	stw r4, 0x30(r3)
 /* 8005083C 0004D77C  98 03 00 34 */	stb r0, 0x34(r3)
 /* 80050840 0004D780  38 63 00 30 */	addi r3, r3, 0x30
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050844 0004D784  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 80050848 0004D788  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050844 0004D784  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 80050848 0004D788  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 8005084C 0004D78C  38 BF 00 6C */	addi r5, r31, 0x6c
 /* 80050850 0004D790  48 31 13 D5 */	bl func_80361C24
 /* 80050854 0004D794  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -8113,7 +8113,7 @@ lbl_80050464:
 /* 80050874 0004D7B4  4E 80 04 21 */	bctrl 
 /* 80050878 0004D7B8  38 61 00 28 */	addi r3, r1, 0x28
 /* 8005087C 0004D7BC  38 80 00 00 */	li r4, 0
-/* 80050880 0004D7C0  48 22 DE 25 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050880 0004D7C0  48 22 DE 25 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050884 0004D7C4  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050888 0004D7C8  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005088C 0004D7CC  90 C1 00 20 */	stw r6, 0x20(r1)
@@ -8130,10 +8130,10 @@ lbl_80050464:
 /* 800508B8 0004D7F8  90 83 00 38 */	stw r4, 0x38(r3)
 /* 800508BC 0004D7FC  98 03 00 3C */	stb r0, 0x3c(r3)
 /* 800508C0 0004D800  38 63 00 38 */	addi r3, r3, 0x38
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800508C4 0004D804  3C 80 80 05 */	lis r4, dPa_selectTexEcallBack_NS_dtor@ha
-.global dPa_selectTexEcallBack_NS_dtor
-/* 800508C8 0004D808  38 84 FF 8C */	addi r4, r4, dPa_selectTexEcallBack_NS_dtor@l
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800508C4 0004D804  3C 80 80 05 */	lis r4, __dt__22dPa_selectTexEcallBackFv@ha
+.global __dt__22dPa_selectTexEcallBackFv
+/* 800508C8 0004D808  38 84 FF 8C */	addi r4, r4, __dt__22dPa_selectTexEcallBackFv@l
 /* 800508CC 0004D80C  38 BF 00 78 */	addi r5, r31, 0x78
 /* 800508D0 0004D810  48 31 13 55 */	bl func_80361C24
 /* 800508D4 0004D814  38 1E 01 5C */	addi r0, r30, 0x15c
@@ -8147,7 +8147,7 @@ lbl_80050464:
 /* 800508F4 0004D834  4E 80 04 21 */	bctrl 
 /* 800508F8 0004D838  38 61 00 20 */	addi r3, r1, 0x20
 /* 800508FC 0004D83C  38 80 00 00 */	li r4, 0
-/* 80050900 0004D840  48 22 DD A5 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050900 0004D840  48 22 DD A5 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050904 0004D844  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050908 0004D848  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 8005090C 0004D84C  90 C1 00 18 */	stw r6, 0x18(r1)
@@ -8172,10 +8172,10 @@ lbl_80050464:
 /* 80050958 0004D898  38 7F 00 E8 */	addi r3, r31, 0xe8
 /* 8005095C 0004D89C  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80050960 0004D8A0  90 03 00 04 */	stw r0, 4(r3)
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050964 0004D8A4  3C 80 80 05 */	lis r4, dPa_setColorEcallBack_NS_dtor@ha
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050968 0004D8A8  38 84 02 E4 */	addi r4, r4, dPa_setColorEcallBack_NS_dtor@l
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050964 0004D8A4  3C 80 80 05 */	lis r4, __dt__21dPa_setColorEcallBackFv@ha
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050968 0004D8A8  38 84 02 E4 */	addi r4, r4, __dt__21dPa_setColorEcallBackFv@l
 /* 8005096C 0004D8AC  38 BF 00 C4 */	addi r5, r31, 0xc4
 /* 80050970 0004D8B0  48 31 12 B5 */	bl func_80361C24
 /* 80050974 0004D8B4  3C 60 80 3B */	lis r3, lbl_803A8594@ha
@@ -8190,7 +8190,7 @@ lbl_80050464:
 /* 80050998 0004D8D8  4E 80 04 21 */	bctrl 
 /* 8005099C 0004D8DC  38 61 00 18 */	addi r3, r1, 0x18
 /* 800509A0 0004D8E0  38 80 00 00 */	li r4, 0
-/* 800509A4 0004D8E4  48 22 DD 01 */	bl JPAEmitterCallBack_NS_dtor
+/* 800509A4 0004D8E4  48 22 DD 01 */	bl __dt__18JPAEmitterCallBackFv
 /* 800509A8 0004D8E8  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 800509AC 0004D8EC  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 800509B0 0004D8F0  90 C1 00 10 */	stw r6, 0x10(r1)
@@ -8216,10 +8216,10 @@ lbl_80050464:
 /* 80050A00 0004D940  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80050A04 0004D944  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80050A08 0004D948  38 63 00 08 */	addi r3, r3, 8
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050A0C 0004D94C  3C 80 80 05 */	lis r4, dPa_setColorEcallBack_NS_dtor@ha
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050A10 0004D950  38 84 02 E4 */	addi r4, r4, dPa_setColorEcallBack_NS_dtor@l
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050A0C 0004D94C  3C 80 80 05 */	lis r4, __dt__21dPa_setColorEcallBackFv@ha
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050A10 0004D950  38 84 02 E4 */	addi r4, r4, __dt__21dPa_setColorEcallBackFv@l
 /* 80050A14 0004D954  38 BF 00 D0 */	addi r5, r31, 0xd0
 /* 80050A18 0004D958  48 31 12 0D */	bl func_80361C24
 /* 80050A1C 0004D95C  3C 60 80 3B */	lis r3, lbl_803A8594@ha
@@ -8234,7 +8234,7 @@ lbl_80050464:
 /* 80050A40 0004D980  4E 80 04 21 */	bctrl 
 /* 80050A44 0004D984  38 61 00 10 */	addi r3, r1, 0x10
 /* 80050A48 0004D988  38 80 00 00 */	li r4, 0
-/* 80050A4C 0004D98C  48 22 DC 59 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050A4C 0004D98C  48 22 DC 59 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050A50 0004D990  3C 60 80 3B */	lis r3, lbl_803A8578@ha
 /* 80050A54 0004D994  38 C3 85 78 */	addi r6, r3, lbl_803A8578@l
 /* 80050A58 0004D998  90 C1 00 08 */	stw r6, 8(r1)
@@ -8260,10 +8260,10 @@ lbl_80050464:
 /* 80050AA8 0004D9E8  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 80050AAC 0004D9EC  90 03 00 14 */	stw r0, 0x14(r3)
 /* 80050AB0 0004D9F0  38 63 00 10 */	addi r3, r3, 0x10
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050AB4 0004D9F4  3C 80 80 05 */	lis r4, dPa_setColorEcallBack_NS_dtor@ha
-.global dPa_setColorEcallBack_NS_dtor
-/* 80050AB8 0004D9F8  38 84 02 E4 */	addi r4, r4, dPa_setColorEcallBack_NS_dtor@l
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050AB4 0004D9F4  3C 80 80 05 */	lis r4, __dt__21dPa_setColorEcallBackFv@ha
+.global __dt__21dPa_setColorEcallBackFv
+/* 80050AB8 0004D9F8  38 84 02 E4 */	addi r4, r4, __dt__21dPa_setColorEcallBackFv@l
 /* 80050ABC 0004D9FC  38 BF 00 DC */	addi r5, r31, 0xdc
 /* 80050AC0 0004DA00  48 31 11 65 */	bl func_80361C24
 /* 80050AC4 0004DA04  3C 60 80 3B */	lis r3, lbl_803A8594@ha
@@ -8278,17 +8278,17 @@ lbl_80050464:
 /* 80050AE8 0004DA28  4E 80 04 21 */	bctrl 
 /* 80050AEC 0004DA2C  38 61 00 08 */	addi r3, r1, 8
 /* 80050AF0 0004DA30  38 80 00 00 */	li r4, 0
-/* 80050AF4 0004DA34  48 22 DB B1 */	bl JPAEmitterCallBack_NS_dtor
+/* 80050AF4 0004DA34  48 22 DB B1 */	bl __dt__18JPAEmitterCallBackFv
 /* 80050AF8 0004DA38  3C 60 80 3A */	lis r3, lbl_803A357C@ha
 /* 80050AFC 0004DA3C  38 03 35 7C */	addi r0, r3, lbl_803A357C@l
 /* 80050B00 0004DA40  90 0D 89 24 */	stw r0, lbl_80450EA4-_SDA_BASE_(r13)
 /* 80050B04 0004DA44  38 1E 01 0C */	addi r0, r30, 0x10c
 /* 80050B08 0004DA48  90 0D 89 24 */	stw r0, lbl_80450EA4-_SDA_BASE_(r13)
 /* 80050B0C 0004DA4C  38 6D 89 24 */	addi r3, r13, lbl_80450EA4-_SDA_BASE_
-.global dPa_wbPcallBack_c_NS_dtor
-/* 80050B10 0004DA50  3C 80 80 05 */	lis r4, dPa_wbPcallBack_c_NS_dtor@ha
-.global dPa_wbPcallBack_c_NS_dtor
-/* 80050B14 0004DA54  38 84 FE CC */	addi r4, r4, dPa_wbPcallBack_c_NS_dtor@l
+.global __dt__17dPa_wbPcallBack_cFv
+/* 80050B10 0004DA50  3C 80 80 05 */	lis r4, __dt__17dPa_wbPcallBack_cFv@ha
+.global __dt__17dPa_wbPcallBack_cFv
+/* 80050B14 0004DA54  38 84 FE CC */	addi r4, r4, __dt__17dPa_wbPcallBack_cFv@l
 /* 80050B18 0004DA58  38 BF 01 00 */	addi r5, r31, 0x100
 /* 80050B1C 0004DA5C  48 31 11 09 */	bl func_80361C24
 /* 80050B20 0004DA60  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -8297,10 +8297,10 @@ lbl_80050464:
 /* 80050B2C 0004DA6C  38 1E 00 F8 */	addi r0, r30, 0xf8
 /* 80050B30 0004DA70  90 0D 89 28 */	stw r0, lbl_80450EA8-_SDA_BASE_(r13)
 /* 80050B34 0004DA74  38 6D 89 28 */	addi r3, r13, lbl_80450EA8-_SDA_BASE_
-.global dPa_fsenthPcallBack_NS_dtor
-/* 80050B38 0004DA78  3C 80 80 05 */	lis r4, dPa_fsenthPcallBack_NS_dtor@ha
-.global dPa_fsenthPcallBack_NS_dtor
-/* 80050B3C 0004DA7C  38 84 FE 6C */	addi r4, r4, dPa_fsenthPcallBack_NS_dtor@l
+.global __dt__19dPa_fsenthPcallBackFv
+/* 80050B38 0004DA78  3C 80 80 05 */	lis r4, __dt__19dPa_fsenthPcallBackFv@ha
+.global __dt__19dPa_fsenthPcallBackFv
+/* 80050B3C 0004DA7C  38 84 FE 6C */	addi r4, r4, __dt__19dPa_fsenthPcallBackFv@l
 /* 80050B40 0004DA80  38 BF 01 0C */	addi r5, r31, 0x10c
 /* 80050B44 0004DA84  48 31 10 E1 */	bl func_80361C24
 /* 80050B48 0004DA88  3C 60 80 3B */	lis r3, lbl_803A8578@ha
@@ -8312,10 +8312,10 @@ lbl_80050464:
 /* 80050B60 0004DAA0  38 1E 02 00 */	addi r0, r30, 0x200
 /* 80050B64 0004DAA4  90 0D 89 2C */	stw r0, lbl_80450EAC-_SDA_BASE_(r13)
 /* 80050B68 0004DAA8  38 6D 89 2C */	addi r3, r13, lbl_80450EAC-_SDA_BASE_
-.global dPa_light8EcallBack_NS_dtor
-/* 80050B6C 0004DAAC  3C 80 80 05 */	lis r4, dPa_light8EcallBack_NS_dtor@ha
-.global dPa_light8EcallBack_NS_dtor
-/* 80050B70 0004DAB0  38 84 01 5C */	addi r4, r4, dPa_light8EcallBack_NS_dtor@l
+.global __dt__19dPa_light8EcallBackFv
+/* 80050B6C 0004DAAC  3C 80 80 05 */	lis r4, __dt__19dPa_light8EcallBackFv@ha
+.global __dt__19dPa_light8EcallBackFv
+/* 80050B70 0004DAB0  38 84 01 5C */	addi r4, r4, __dt__19dPa_light8EcallBackFv@l
 /* 80050B74 0004DAB4  38 BF 01 18 */	addi r5, r31, 0x118
 /* 80050B78 0004DAB8  48 31 10 AD */	bl func_80361C24
 /* 80050B7C 0004DABC  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -8324,10 +8324,10 @@ lbl_80050464:
 /* 80050B88 0004DAC8  38 1E 00 E4 */	addi r0, r30, 0xe4
 /* 80050B8C 0004DACC  90 0D 89 30 */	stw r0, lbl_80450EB0-_SDA_BASE_(r13)
 /* 80050B90 0004DAD0  38 6D 89 30 */	addi r3, r13, lbl_80450EB0-_SDA_BASE_
-.global dPa_light8PcallBack_NS_dtor
-/* 80050B94 0004DAD4  3C 80 80 05 */	lis r4, dPa_light8PcallBack_NS_dtor@ha
-.global dPa_light8PcallBack_NS_dtor
-/* 80050B98 0004DAD8  38 84 FE 0C */	addi r4, r4, dPa_light8PcallBack_NS_dtor@l
+.global __dt__19dPa_light8PcallBackFv
+/* 80050B94 0004DAD4  3C 80 80 05 */	lis r4, __dt__19dPa_light8PcallBackFv@ha
+.global __dt__19dPa_light8PcallBackFv
+/* 80050B98 0004DAD8  38 84 FE 0C */	addi r4, r4, __dt__19dPa_light8PcallBackFv@l
 /* 80050B9C 0004DADC  38 BF 01 24 */	addi r5, r31, 0x124
 /* 80050BA0 0004DAE0  48 31 10 85 */	bl func_80361C24
 /* 80050BA4 0004DAE4  3C 60 80 3B */	lis r3, lbl_803A8578@ha
@@ -8339,10 +8339,10 @@ lbl_80050464:
 /* 80050BBC 0004DAFC  38 1E 01 DC */	addi r0, r30, 0x1dc
 /* 80050BC0 0004DB00  90 0D 89 34 */	stw r0, lbl_80450EB4-_SDA_BASE_(r13)
 /* 80050BC4 0004DB04  38 6D 89 34 */	addi r3, r13, lbl_80450EB4-_SDA_BASE_
-.global dPa_gen_b_light8EcallBack_NS_dtor
-/* 80050BC8 0004DB08  3C 80 80 05 */	lis r4, dPa_gen_b_light8EcallBack_NS_dtor@ha
-.global dPa_gen_b_light8EcallBack_NS_dtor
-/* 80050BCC 0004DB0C  38 84 00 B8 */	addi r4, r4, dPa_gen_b_light8EcallBack_NS_dtor@l
+.global __dt__25dPa_gen_b_light8EcallBackFv
+/* 80050BC8 0004DB08  3C 80 80 05 */	lis r4, __dt__25dPa_gen_b_light8EcallBackFv@ha
+.global __dt__25dPa_gen_b_light8EcallBackFv
+/* 80050BCC 0004DB0C  38 84 00 B8 */	addi r4, r4, __dt__25dPa_gen_b_light8EcallBackFv@l
 /* 80050BD0 0004DB10  38 BF 01 30 */	addi r5, r31, 0x130
 /* 80050BD4 0004DB14  48 31 10 51 */	bl func_80361C24
 /* 80050BD8 0004DB18  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -8351,10 +8351,10 @@ lbl_80050464:
 /* 80050BE4 0004DB24  38 1E 00 D0 */	addi r0, r30, 0xd0
 /* 80050BE8 0004DB28  90 0D 89 38 */	stw r0, lbl_80450EB8-_SDA_BASE_(r13)
 /* 80050BEC 0004DB2C  38 6D 89 38 */	addi r3, r13, lbl_80450EB8-_SDA_BASE_
-.global dPa_gen_b_light8PcallBack_NS_dtor
-/* 80050BF0 0004DB30  3C 80 80 05 */	lis r4, dPa_gen_b_light8PcallBack_NS_dtor@ha
-.global dPa_gen_b_light8PcallBack_NS_dtor
-/* 80050BF4 0004DB34  38 84 FD AC */	addi r4, r4, dPa_gen_b_light8PcallBack_NS_dtor@l
+.global __dt__25dPa_gen_b_light8PcallBackFv
+/* 80050BF0 0004DB30  3C 80 80 05 */	lis r4, __dt__25dPa_gen_b_light8PcallBackFv@ha
+.global __dt__25dPa_gen_b_light8PcallBackFv
+/* 80050BF4 0004DB34  38 84 FD AC */	addi r4, r4, __dt__25dPa_gen_b_light8PcallBackFv@l
 /* 80050BF8 0004DB38  38 BF 01 3C */	addi r5, r31, 0x13c
 /* 80050BFC 0004DB3C  48 31 10 29 */	bl func_80361C24
 /* 80050C00 0004DB40  3C 60 80 3B */	lis r3, lbl_803A8578@ha
@@ -8366,10 +8366,10 @@ lbl_80050464:
 /* 80050C18 0004DB58  38 1E 01 B8 */	addi r0, r30, 0x1b8
 /* 80050C1C 0004DB5C  90 0D 89 3C */	stw r0, lbl_80450EBC-_SDA_BASE_(r13)
 /* 80050C20 0004DB60  38 6D 89 3C */	addi r3, r13, lbl_80450EBC-_SDA_BASE_
-.global dPa_gen_d_light8EcallBack_NS_dtor
-/* 80050C24 0004DB64  3C 80 80 05 */	lis r4, dPa_gen_d_light8EcallBack_NS_dtor@ha
-.global dPa_gen_d_light8EcallBack_NS_dtor
-/* 80050C28 0004DB68  38 84 03 FC */	addi r4, r4, dPa_gen_d_light8EcallBack_NS_dtor@l
+.global __dt__25dPa_gen_d_light8EcallBackFv
+/* 80050C24 0004DB64  3C 80 80 05 */	lis r4, __dt__25dPa_gen_d_light8EcallBackFv@ha
+.global __dt__25dPa_gen_d_light8EcallBackFv
+/* 80050C28 0004DB68  38 84 03 FC */	addi r4, r4, __dt__25dPa_gen_d_light8EcallBackFv@l
 /* 80050C2C 0004DB6C  38 BF 01 48 */	addi r5, r31, 0x148
 /* 80050C30 0004DB70  48 31 0F F5 */	bl func_80361C24
 /* 80050C34 0004DB74  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -8378,10 +8378,10 @@ lbl_80050464:
 /* 80050C40 0004DB80  38 1E 00 BC */	addi r0, r30, 0xbc
 /* 80050C44 0004DB84  90 0D 89 40 */	stw r0, lbl_80450EC0-_SDA_BASE_(r13)
 /* 80050C48 0004DB88  38 6D 89 40 */	addi r3, r13, lbl_80450EC0-_SDA_BASE_
-.global dPa_gen_d_light8PcallBack_NS_dtor
-/* 80050C4C 0004DB8C  3C 80 80 05 */	lis r4, dPa_gen_d_light8PcallBack_NS_dtor@ha
-.global dPa_gen_d_light8PcallBack_NS_dtor
-/* 80050C50 0004DB90  38 84 FD 4C */	addi r4, r4, dPa_gen_d_light8PcallBack_NS_dtor@l
+.global __dt__25dPa_gen_d_light8PcallBackFv
+/* 80050C4C 0004DB8C  3C 80 80 05 */	lis r4, __dt__25dPa_gen_d_light8PcallBackFv@ha
+.global __dt__25dPa_gen_d_light8PcallBackFv
+/* 80050C50 0004DB90  38 84 FD 4C */	addi r4, r4, __dt__25dPa_gen_d_light8PcallBackFv@l
 /* 80050C54 0004DB94  38 BF 01 54 */	addi r5, r31, 0x154
 /* 80050C58 0004DB98  48 31 0F CD */	bl func_80361C24
 /* 80050C5C 0004DB9C  3C 60 80 3A */	lis r3, lbl_803A357C@ha
@@ -8390,10 +8390,10 @@ lbl_80050464:
 /* 80050C68 0004DBA8  38 1E 00 84 */	addi r0, r30, 0x84
 /* 80050C6C 0004DBAC  90 0D 89 48 */	stw r0, lbl_80450EC8-_SDA_BASE_(r13)
 /* 80050C70 0004DBB0  38 6D 89 48 */	addi r3, r13, lbl_80450EC8-_SDA_BASE_
-.global dPa_particleTracePcallBack_c_NS_dtor
-/* 80050C74 0004DBB4  3C 80 80 05 */	lis r4, dPa_particleTracePcallBack_c_NS_dtor@ha
-.global dPa_particleTracePcallBack_c_NS_dtor
-/* 80050C78 0004DBB8  38 84 FC 68 */	addi r4, r4, dPa_particleTracePcallBack_c_NS_dtor@l
+.global __dt__28dPa_particleTracePcallBack_cFv
+/* 80050C74 0004DBB4  3C 80 80 05 */	lis r4, __dt__28dPa_particleTracePcallBack_cFv@ha
+.global __dt__28dPa_particleTracePcallBack_cFv
+/* 80050C78 0004DBB8  38 84 FC 68 */	addi r4, r4, __dt__28dPa_particleTracePcallBack_cFv@l
 /* 80050C7C 0004DBBC  38 BF 01 90 */	addi r5, r31, 0x190
 /* 80050C80 0004DBC0  48 31 0F A5 */	bl func_80361C24
 /* 80050C84 0004DBC4  83 E1 00 6C */	lwz r31, 0x6c(r1)

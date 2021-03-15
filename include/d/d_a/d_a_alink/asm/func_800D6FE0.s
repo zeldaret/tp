@@ -5,7 +5,7 @@
 /* 800D6FF0 000D3F30  F3 E1 00 18 */ psq_st f31, 24(r1), 0, 0
 /* 800D6FF4 000D3F34  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D6FF8 000D3F38  7C 7F 1B 78 */ mr r31, r3
-/* 800D6FFC 000D3F3C  48 03 EC 25 */ bl daAlink_c_NS_checkEventRun
+/* 800D6FFC 000D3F3C  48 03 EC 25 */ bl checkEventRun__9daAlink_cCFv
 /* 800D7000 000D3F40  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7004 000D3F44  40 82 00 80 */ bne lbl_800D7084
 /* 800D7008 000D3F48  C0 42 93 88 */ lfs f2, lbl_80452D88-_SDA2_BASE_(r2)
@@ -20,7 +20,7 @@
 /* 800D702C 000D3F6C  4C 41 13 82 */ cror 2, 1, 2
 /* 800D7030 000D3F70  40 82 00 54 */ bne lbl_800D7084
 /* 800D7034 000D3F74  7F E3 FB 78 */ mr r3, r31
-/* 800D7038 000D3F78  4B FF FE F5 */ bl daAlink_c_NS_checkNoLandDamageSlidePolygon
+/* 800D7038 000D3F78  4B FF FE F5 */ bl checkNoLandDamageSlidePolygon__9daAlink_cFv
 /* 800D703C 000D3F7C  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7040 000D3F80  40 82 00 44 */ bne lbl_800D7084
 /* 800D7044 000D3F84  3C 60 80 39 */ lis r3, lbl_8038E454@ha
@@ -31,12 +31,12 @@
 /* 800D7058 000D3F98  40 82 00 14 */ bne lbl_800D706C
 /* 800D705C 000D3F9C  7F E3 FB 78 */ mr r3, r31
 /* 800D7060 000D3FA0  38 80 00 08 */ li r4, 8
-/* 800D7064 000D3FA4  48 00 04 41 */ bl daAlink_c_NS_setLandDamagePoint
+/* 800D7064 000D3FA4  48 00 04 41 */ bl setLandDamagePoint__9daAlink_cFi
 /* 800D7068 000D3FA8  48 00 00 10 */ b lbl_800D7078
 lbl_800D706C:
 /* 800D706C 000D3FAC  7F E3 FB 78 */ mr r3, r31
 /* 800D7070 000D3FB0  38 80 00 04 */ li r4, 4
-/* 800D7074 000D3FB4  48 00 04 31 */ bl daAlink_c_NS_setLandDamagePoint
+/* 800D7074 000D3FB4  48 00 04 31 */ bl setLandDamagePoint__9daAlink_cFi
 lbl_800D7078:
 /* 800D7078 000D3FB8  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 800D707C 000D3FBC  60 00 00 08 */ ori r0, r0, 8

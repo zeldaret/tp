@@ -35,7 +35,7 @@ extern "C" {
 void __dl__FPv(void);
 void __nw__FUlP7JKRHeapi(void);
 void func_80361C24(void);
-void func_80361D60(void);
+void __construct_array(void);
 }
 
 // additional symbols needed for Z2AudioMgr.cpp
@@ -98,7 +98,7 @@ asm Z2AudioMgr* Z2AudioMgr::setOutputMode(unsigned long) {
 extern "C" {
 // zeldaGFrameWork__10Z2AudioMgrFv
 // Z2AudioMgr::zeldaGFrameWork(void)
-asm void Z2AudioMgr_NS_zeldaGFrameWork(void) {
+asm void zeldaGFrameWork__10Z2AudioMgrFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2AudioMgr/asm/func_802CD8B4.s"
 }

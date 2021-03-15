@@ -18,7 +18,7 @@
 /* 800BFF48 000BCE88  48 21 5F 85 */ bl readIdxResource__10JKRArchiveFPvUlUl
 /* 800BFF4C 000BCE8C  7F E3 FB 78 */ mr r3, r31
 /* 800BFF50 000BCE90  38 80 00 00 */ li r4, 0
-/* 800BFF54 000BCE94  48 27 7B ED */ bl J3DAnmLoaderDataBase_NS_load
+/* 800BFF54 000BCE94  48 27 7B ED */ bl load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag
 /* 800BFF58 000BCE98  39 61 00 20 */ addi r11, r1, 0x20
 /* 800BFF5C 000BCE9C  48 2A 22 CD */ bl _restgpr_29
 /* 800BFF60 000BCEA0  80 01 00 24 */ lwz r0, 0x24(r1)

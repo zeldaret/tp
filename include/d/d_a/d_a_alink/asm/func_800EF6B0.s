@@ -8,7 +8,7 @@
 /* 800EF6CC 000EC60C  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800EF6D0 000EC610  83 84 5D B8 */ lwz r28, 0x5db8(r4)
 /* 800EF6D4 000EC614  3B E0 00 00 */ li r31, 0
-/* 800EF6D8 000EC618  4B FF FE C1 */ bl daAlink_c_NS_checkHorseGetOff
+/* 800EF6D8 000EC618  4B FF FE C1 */ bl checkHorseGetOff__9daAlink_cFv
 /* 800EF6DC 000EC61C  7C 7D 1B 78 */ mr r29, r3
 /* 800EF6E0 000EC620  80 7E 28 18 */ lwz r3, 0x2818(r30)
 /* 800EF6E4 000EC624  C0 03 05 2C */ lfs f0, 0x52c(r3)
@@ -18,12 +18,12 @@
 /* 800EF6F4 000EC634  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800EF6F8 000EC638  40 80 00 14 */ bge lbl_800EF70C
 /* 800EF6FC 000EC63C  7F C3 F3 78 */ mr r3, r30
-/* 800EF700 000EC640  4B FC 53 09 */ bl daAlink_c_NS_setTalkStatus
+/* 800EF700 000EC640  4B FC 53 09 */ bl setTalkStatus__9daAlink_cFv
 /* 800EF704 000EC644  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF708 000EC648  40 82 01 60 */ bne lbl_800EF868
 lbl_800EF70C:
 /* 800EF70C 000EC64C  7F C3 F3 78 */ mr r3, r30
-/* 800EF710 000EC650  4B FF D7 F5 */ bl daAlink_c_NS_checkHorseLieAnime
+/* 800EF710 000EC650  4B FF D7 F5 */ bl checkHorseLieAnime__9daAlink_cCFv
 /* 800EF714 000EC654  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF718 000EC658  41 82 00 30 */ beq lbl_800EF748
 /* 800EF71C 000EC65C  80 1E 05 78 */ lwz r0, 0x578(r30)
@@ -40,11 +40,11 @@ lbl_800EF738:
 /* 800EF744 000EC684  48 00 01 24 */ b lbl_800EF868
 lbl_800EF748:
 /* 800EF748 000EC688  7F C3 F3 78 */ mr r3, r30
-/* 800EF74C 000EC68C  4B FF D9 29 */ bl daAlink_c_NS_checkHorseNoUpperAnime
+/* 800EF74C 000EC68C  4B FF D9 29 */ bl checkHorseNoUpperAnime__9daAlink_cCFv
 /* 800EF750 000EC690  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF754 000EC694  40 82 00 14 */ bne lbl_800EF768
 /* 800EF758 000EC698  7F C3 F3 78 */ mr r3, r30
-/* 800EF75C 000EC69C  4B FC 9B E5 */ bl daAlink_c_NS_checkEquipAnime
+/* 800EF75C 000EC69C  4B FC 9B E5 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800EF760 000EC6A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF764 000EC6A4  41 82 01 04 */ beq lbl_800EF868
 lbl_800EF768:
@@ -61,7 +61,7 @@ lbl_800EF768:
 /* 800EF790 000EC6D0  28 00 00 FF */ cmplwi r0, 0xff
 /* 800EF794 000EC6D4  40 82 00 78 */ bne lbl_800EF80C
 /* 800EF798 000EC6D8  7F C3 F3 78 */ mr r3, r30
-/* 800EF79C 000EC6DC  4B FF F9 FD */ bl daAlink_c_NS_checkHorseGetOffDirection
+/* 800EF79C 000EC6DC  4B FF F9 FD */ bl checkHorseGetOffDirection__9daAlink_cFv
 /* 800EF7A0 000EC6E0  7C 7F 1B 78 */ mr r31, r3
 /* 800EF7A4 000EC6E4  2C 1F 00 02 */ cmpwi r31, 2
 /* 800EF7A8 000EC6E8  40 82 00 2C */ bne lbl_800EF7D4

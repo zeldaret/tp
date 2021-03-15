@@ -15,16 +15,16 @@
 /* 801A4DD8 001A1D18  88 0D 87 E4 */ lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 801A4DDC 001A1D1C  7C 04 07 74 */ extsb r4, r0
 /* 801A4DE0 001A1D20  38 A0 00 FF */ li r5, 0xff
-/* 801A4DE4 001A1D24  48 00 3B 09 */ bl dKy_tevstr_init
+/* 801A4DE4 001A1D24  48 00 3B 09 */ bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
 lbl_801A4DE8:
 /* 801A4DE8 001A1D28  7F C3 F3 78 */ mr r3, r30
 /* 801A4DEC 001A1D2C  38 80 00 0B */ li r4, 0xb
 /* 801A4DF0 001A1D30  38 A0 00 00 */ li r5, 0
 /* 801A4DF4 001A1D34  7F A6 EB 78 */ mr r6, r29
-/* 801A4DF8 001A1D38  4B FF E9 CD */ bl dScnKy_env_light_c_NS_settingTevStruct
+/* 801A4DF8 001A1D38  4B FF E9 CD */ bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
 lbl_801A4DFC:
 /* 801A4DFC 001A1D3C  7F A3 EB 78 */ mr r3, r29
-/* 801A4E00 001A1D40  48 00 20 9D */ bl dKy_setLight_nowroom_actor
+/* 801A4E00 001A1D40  48 00 20 9D */ bl dKy_setLight_nowroom_actor__FP12dKy_tevstr_c
 /* 801A4E04 001A1D44  88 1D 03 7A */ lbz r0, 0x37a(r29)
 /* 801A4E08 001A1D48  28 00 00 0A */ cmplwi r0, 0xa
 /* 801A4E0C 001A1D4C  40 81 00 1C */ ble lbl_801A4E28
@@ -42,7 +42,7 @@ lbl_801A4E2C:
 /* 801A4E34 001A1D74  7F 83 E3 78 */ mr r3, r28
 /* 801A4E38 001A1D78  7F A4 EB 78 */ mr r4, r29
 /* 801A4E3C 001A1D7C  7F E5 FB 78 */ mr r5, r31
-/* 801A4E40 001A1D80  4B FF FD D1 */ bl dKy_cloudshadow_scroll
+/* 801A4E40 001A1D80  4B FF FD D1 */ bl dKy_cloudshadow_scroll__FP12J3DModelDataP12dKy_tevstr_ci
 /* 801A4E44 001A1D84  48 00 00 34 */ b lbl_801A4E78
 lbl_801A4E48:
 /* 801A4E48 001A1D88  A0 7C 00 5C */ lhz r3, 0x5c(r28)
@@ -54,7 +54,7 @@ lbl_801A4E54:
 /* 801A4E5C 001A1D9C  7C 63 00 2E */ lwzx r3, r3, r0
 /* 801A4E60 001A1DA0  7F A4 EB 78 */ mr r4, r29
 /* 801A4E64 001A1DA4  7F E5 FB 78 */ mr r5, r31
-/* 801A4E68 001A1DA8  4B FF F5 B9 */ bl setLightTevColorType_MAJI_sub
+/* 801A4E68 001A1DA8  4B FF F5 B9 */ bl setLightTevColorType_MAJI_sub__FP11J3DMaterialP12dKy_tevstr_ci
 /* 801A4E6C 001A1DAC  3B DE FF FF */ addi r30, r30, -1
 lbl_801A4E70:
 /* 801A4E70 001A1DB0  2C 1E 00 00 */ cmpwi r30, 0

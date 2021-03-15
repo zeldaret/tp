@@ -11,10 +11,10 @@
 /* 80140C38 0013DB78  90 1E 00 00 */ stw r0, 0(r30)
 /* 80140C3C 0013DB7C  38 7E 00 4B */ addi r3, r30, 0x4b
 /* 80140C40 0013DB80  38 80 FF FF */ li r4, -1
-/* 80140C44 0013DB84  4B FF FF 55 */ bl daAlinkHIO_wolf_c_NS_dtor
+/* 80140C44 0013DB84  4B FF FF 55 */ bl __dt__17daAlinkHIO_wolf_cFv
 /* 80140C48 0013DB88  38 7E 00 0C */ addi r3, r30, 0xc
 /* 80140C4C 0013DB8C  38 80 FF FF */ li r4, -1
-/* 80140C50 0013DB90  4B FF FF 85 */ bl daAlinkHIO_cut_c_NS_dtor
+/* 80140C50 0013DB90  4B FF FF 85 */ bl __dt__16daAlinkHIO_cut_cFv
 /* 80140C54 0013DB94  7F E0 07 35 */ extsh. r0, r31
 /* 80140C58 0013DB98  40 81 00 0C */ ble lbl_80140C64
 /* 80140C5C 0013DB9C  7F C3 F3 78 */ mr r3, r30

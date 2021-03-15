@@ -2,10 +2,10 @@
 #define JASAUDIORESETER_H_
 
 extern "C" {
-void JASAudioReseter(void);
-void JASAudioReseter_NS_checkDone(void);
-void JASAudioReseter_NS_resume(void);
-void JASAudioReseter_NS_start(void);
+void __ct__15JASAudioReseterFv(void);
+void checkDone__15JASAudioReseterCFv(void);
+void resume__15JASAudioReseterFv(void);
+void start__15JASAudioReseterFUlb(void);
 }
 
 #endif  // JASAUDIORESETER_H_

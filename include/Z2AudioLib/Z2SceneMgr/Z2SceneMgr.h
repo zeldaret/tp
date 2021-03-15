@@ -58,19 +58,19 @@ extern "C" {
 void __ct__10Z2SceneMgrFv(void);
 void setSceneExist__10Z2SceneMgrFb(void);
 
-void Z2SceneMgr_NS_check1stDynamicWave(void);
-void Z2SceneMgr_NS_checkFirstWaves(void);
-void Z2SceneMgr_NS_eraseBgmWave(void);
-void Z2SceneMgr_NS_eraseSeWave(void);
-void Z2SceneMgr_NS_framework(void);
-void Z2SceneMgr_NS_getWaveLoadStatus(void);
-void Z2SceneMgr_NS__load1stWaveInner_1(void);
-void Z2SceneMgr_NS__load1stWaveInner_2(void);
-void Z2SceneMgr_NS_loadBgmWave(void);
-void Z2SceneMgr_NS_loadSeWave(void);
-void Z2SceneMgr_NS_loadStaticWaves(void);
-void Z2SceneMgr_NS_sceneBgmStart(void);
-void Z2SceneMgr_NS_sceneChange(void);
+void check1stDynamicWave__10Z2SceneMgrFv(void);
+void checkFirstWaves__10Z2SceneMgrFv(void);
+void eraseBgmWave__10Z2SceneMgrFUl(void);
+void eraseSeWave__10Z2SceneMgrFUl(void);
+void framework__10Z2SceneMgrFv(void);
+void getWaveLoadStatus__10Z2SceneMgrFUlUl(void);
+void _load1stWaveInner_1__10Z2SceneMgrFv(void);
+void _load1stWaveInner_2__10Z2SceneMgrFv(void);
+void loadBgmWave__10Z2SceneMgrFUl(void);
+void loadSeWave__10Z2SceneMgrFUl(void);
+void loadStaticWaves__10Z2SceneMgrFv(void);
+void sceneBgmStart__10Z2SceneMgrFv(void);
+void sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb(void);
 }
 
 #endif  // Z2SCENEMGR_H_

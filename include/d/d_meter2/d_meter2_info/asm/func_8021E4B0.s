@@ -24,7 +24,7 @@ lbl_8021E4E0:
 /* 8021E504 0021B444  4B E1 59 91 */ bl offFirstBit__21dSv_player_get_item_cFUc
 lbl_8021E508:
 /* 8021E508 0021B448  7F E3 FB 78 */ mr r3, r31
-/* 8021E50C 0021B44C  4B E1 09 A5 */ bl dComIfGs_setSelectEquipClothes
+/* 8021E50C 0021B44C  4B E1 09 A5 */ bl dComIfGs_setSelectEquipClothes__FUc
 /* 8021E510 0021B450  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021E514 0021B454  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021E518 0021B458  9B E3 5E 74 */ stb r31, 0x5e74(r3)

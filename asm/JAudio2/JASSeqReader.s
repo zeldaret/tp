@@ -3,8 +3,8 @@
 .section .text, "ax" # 80296108
 
 
-.global JASSeqReader_NS_init
-JASSeqReader_NS_init:
+.global init__12JASSeqReaderFv
+init__12JASSeqReaderFv:
 /* 80296108 00293048  38 C0 00 00 */	li r6, 0
 /* 8029610C 0029304C  90 C3 00 00 */	stw r6, 0(r3)
 /* 80296110 00293050  90 C3 00 04 */	stw r6, 4(r3)
@@ -23,8 +23,8 @@ lbl_80296128:
 /* 80296140 00293080  42 00 FF E8 */	bdnz lbl_80296128
 /* 80296144 00293084  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_init_X1_
-JASSeqReader_NS_init_X1_:
+.global init__12JASSeqReaderFPv
+init__12JASSeqReaderFPv:
 /* 80296148 00293088  90 83 00 00 */	stw r4, 0(r3)
 /* 8029614C 0029308C  80 03 00 00 */	lwz r0, 0(r3)
 /* 80296150 00293090  90 03 00 04 */	stw r0, 4(r3)
@@ -44,8 +44,8 @@ lbl_8029616C:
 /* 80296184 002930C4  42 00 FF E8 */	bdnz lbl_8029616C
 /* 80296188 002930C8  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_call
-JASSeqReader_NS_call:
+.global call__12JASSeqReaderFUl
+call__12JASSeqReaderFUl:
 /* 8029618C 002930CC  80 A3 00 08 */	lwz r5, 8(r3)
 /* 80296190 002930D0  28 05 00 08 */	cmplwi r5, 8
 /* 80296194 002930D4  41 80 00 0C */	blt lbl_802961A0
@@ -64,8 +64,8 @@ lbl_802961A0:
 /* 802961C4 00293104  38 60 00 01 */	li r3, 1
 /* 802961C8 00293108  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_loopStart
-JASSeqReader_NS_loopStart:
+.global loopStart__12JASSeqReaderFUl
+loopStart__12JASSeqReaderFUl:
 /* 802961CC 0029310C  80 03 00 08 */	lwz r0, 8(r3)
 /* 802961D0 00293110  28 00 00 08 */	cmplwi r0, 8
 /* 802961D4 00293114  41 80 00 0C */	blt lbl_802961E0
@@ -85,8 +85,8 @@ lbl_802961E0:
 /* 80296208 00293148  38 60 00 01 */	li r3, 1
 /* 8029620C 0029314C  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_loopEnd
-JASSeqReader_NS_loopEnd:
+.global loopEnd__12JASSeqReaderFv
+loopEnd__12JASSeqReaderFv:
 /* 80296210 00293150  80 03 00 08 */	lwz r0, 8(r3)
 /* 80296214 00293154  28 00 00 00 */	cmplwi r0, 0
 /* 80296218 00293158  40 82 00 0C */	bne lbl_80296224
@@ -118,8 +118,8 @@ lbl_8029625C:
 /* 80296274 002931B4  38 60 00 01 */	li r3, 1
 /* 80296278 002931B8  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_ret
-JASSeqReader_NS_ret:
+.global ret__12JASSeqReaderFv
+ret__12JASSeqReaderFv:
 /* 8029627C 002931BC  80 83 00 08 */	lwz r4, 8(r3)
 /* 80296280 002931C0  28 04 00 00 */	cmplwi r4, 0
 /* 80296284 002931C4  40 82 00 0C */	bne lbl_80296290
@@ -135,8 +135,8 @@ lbl_80296290:
 /* 802962A8 002931E8  38 60 00 01 */	li r3, 1
 /* 802962AC 002931EC  4E 80 00 20 */	blr 
 
-.global JASSeqReader_NS_readMidiValue
-JASSeqReader_NS_readMidiValue:
+.global readMidiValue__12JASSeqReaderFv
+readMidiValue__12JASSeqReaderFv:
 /* 802962B0 002931F0  80 83 00 04 */	lwz r4, 4(r3)
 /* 802962B4 002931F4  38 04 00 01 */	addi r0, r4, 1
 /* 802962B8 002931F8  90 03 00 04 */	stw r0, 4(r3)

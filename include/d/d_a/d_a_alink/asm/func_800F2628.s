@@ -3,7 +3,7 @@
 /* 800F2630 000EF570  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F2634 000EF574  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2638 000EF578  7C 7F 1B 78 */ mr r31, r3
-/* 800F263C 000EF57C  4B FC 4C A9 */ bl daAlink_c_NS_checkItemActorPointer
+/* 800F263C 000EF57C  4B FC 4C A9 */ bl checkItemActorPointer__9daAlink_cFv
 /* 800F2640 000EF580  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2644 000EF584  40 82 00 0C */ bne lbl_800F2650
 /* 800F2648 000EF588  38 60 00 01 */ li r3, 1
@@ -28,27 +28,27 @@ lbl_800F2678:
 /* 800F2688 000EF5C8  4B FC 0B C9 */ bl setDoStatus__9daAlink_cFUc
 lbl_800F268C:
 /* 800F268C 000EF5CC  7F E3 FB 78 */ mr r3, r31
-/* 800F2690 000EF5D0  4B FF B3 95 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F2690 000EF5D0  4B FF B3 95 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F2694 000EF5D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2698 000EF5D8  40 82 00 0C */ bne lbl_800F26A4
 /* 800F269C 000EF5DC  38 60 00 01 */ li r3, 1
 /* 800F26A0 000EF5E0  48 00 00 40 */ b lbl_800F26E0
 lbl_800F26A4:
 /* 800F26A4 000EF5E4  7F E3 FB 78 */ mr r3, r31
-/* 800F26A8 000EF5E8  4B FF B6 C5 */ bl daAlink_c_NS_checkHorseSpecialProc
+/* 800F26A8 000EF5E8  4B FF B6 C5 */ bl checkHorseSpecialProc__9daAlink_cFv
 /* 800F26AC 000EF5EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F26B0 000EF5F0  41 82 00 0C */ beq lbl_800F26BC
 /* 800F26B4 000EF5F4  38 60 00 01 */ li r3, 1
 /* 800F26B8 000EF5F8  48 00 00 28 */ b lbl_800F26E0
 lbl_800F26BC:
 /* 800F26BC 000EF5FC  7F E3 FB 78 */ mr r3, r31
-/* 800F26C0 000EF600  4B FF C6 D9 */ bl daAlink_c_NS_setBaseRideAnime
+/* 800F26C0 000EF600  4B FF C6 D9 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F26C4 000EF604  7F E3 FB 78 */ mr r3, r31
-/* 800F26C8 000EF608  4B FF CD 89 */ bl daAlink_c_NS_checkNextActionHorse
+/* 800F26C8 000EF608  4B FF CD 89 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F26CC 000EF60C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F26D0 000EF610  40 82 00 0C */ bne lbl_800F26DC
 /* 800F26D4 000EF614  7F E3 FB 78 */ mr r3, r31
-/* 800F26D8 000EF618  4B FF C9 79 */ bl daAlink_c_NS_setBodyAngleRideReadyAnime
+/* 800F26D8 000EF618  4B FF C9 79 */ bl setBodyAngleRideReadyAnime__9daAlink_cFv
 lbl_800F26DC:
 /* 800F26DC 000EF61C  38 60 00 01 */ li r3, 1
 lbl_800F26E0:

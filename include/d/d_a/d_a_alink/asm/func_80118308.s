@@ -133,7 +133,7 @@ lbl_80118488:
 /* 801184EC 0011542C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801184F0 00115430  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 801184F4 00115434  38 9D 1D 08 */ addi r4, r29, 0x1d08
-/* 801184F8 00115438  4B F5 BF A9 */ bl cBgS_NS_GroundCross
+/* 801184F8 00115438  4B F5 BF A9 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 801184FC 0011543C  C0 1D 04 D4 */ lfs f0, 0x4d4(r29)
 /* 80118500 00115440  EC 21 00 28 */ fsubs f1, f1, f0
 /* 80118504 00115444  C0 0D 81 14 */ lfs f0, lbl_80450694-_SDA_BASE_(r13)
@@ -152,7 +152,7 @@ lbl_80118488:
 /* 80118538 00115478  C0 05 00 20 */ lfs f0, 0x20(r5)
 /* 8011853C 0011547C  FC 20 00 50 */ fneg f1, f0
 /* 80118540 00115480  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80118544 00115484  4B F9 4A 9D */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80118544 00115484  4B F9 4A 9D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80118548 00115488  38 60 00 01 */ li r3, 1
 /* 8011854C 0011548C  48 00 00 08 */ b lbl_80118554
 lbl_80118550:

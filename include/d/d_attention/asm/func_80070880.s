@@ -5,21 +5,21 @@
 /* 80070890 0006D7D0  48 2F 19 49 */ bl _savegpr_28
 /* 80070894 0006D7D4  7C 7C 1B 78 */ mr r28, r3
 /* 80070898 0006D7D8  38 80 00 00 */ li r4, 0
-/* 8007089C 0006D7DC  4B FF FF A9 */ bl dAttention_c_NS_GetLockonList
+/* 8007089C 0006D7DC  4B FF FF A9 */ bl GetLockonList__12dAttention_cFl
 /* 800708A0 0006D7E0  7C 7D 1B 79 */ or. r29, r3, r3
 /* 800708A4 0006D7E4  41 82 00 48 */ beq lbl_800708EC
-/* 800708A8 0006D7E8  48 00 2F BD */ bl dAttList_c_NS_getActor
+/* 800708A8 0006D7E8  48 00 2F BD */ bl getActor__10dAttList_cFv
 /* 800708AC 0006D7EC  28 03 00 00 */ cmplwi r3, 0
 /* 800708B0 0006D7F0  41 82 00 3C */ beq lbl_800708EC
 /* 800708B4 0006D7F4  80 1D 00 0C */ lwz r0, 0xc(r29)
 /* 800708B8 0006D7F8  28 00 00 01 */ cmplwi r0, 1
 /* 800708BC 0006D7FC  40 82 00 30 */ bne lbl_800708EC
 /* 800708C0 0006D800  7F 83 E3 78 */ mr r3, r28
-/* 800708C4 0006D804  48 00 2F 21 */ bl dAttention_c_NS_LockonTruth
+/* 800708C4 0006D804  48 00 2F 21 */ bl LockonTruth__12dAttention_cFv
 /* 800708C8 0006D808  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800708CC 0006D80C  41 82 00 20 */ beq lbl_800708EC
 /* 800708D0 0006D810  7F A3 EB 78 */ mr r3, r29
-/* 800708D4 0006D814  48 00 2F 91 */ bl dAttList_c_NS_getActor
+/* 800708D4 0006D814  48 00 2F 91 */ bl getActor__10dAttList_cFv
 /* 800708D8 0006D818  80 03 05 5C */ lwz r0, 0x55c(r3)
 /* 800708DC 0006D81C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800708E0 0006D820  40 82 00 0C */ bne lbl_800708EC
@@ -42,7 +42,7 @@ lbl_8007090C:
 /* 80070918 0006D858  40 82 00 24 */ bne lbl_8007093C
 /* 8007091C 0006D85C  3B C3 03 E0 */ addi r30, r3, 0x3e0
 /* 80070920 0006D860  7F C3 F3 78 */ mr r3, r30
-/* 80070924 0006D864  48 00 2F 41 */ bl dAttList_c_NS_getActor
+/* 80070924 0006D864  48 00 2F 41 */ bl getActor__10dAttList_cFv
 /* 80070928 0006D868  80 03 05 5C */ lwz r0, 0x55c(r3)
 /* 8007092C 0006D86C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80070930 0006D870  40 82 00 14 */ bne lbl_80070944

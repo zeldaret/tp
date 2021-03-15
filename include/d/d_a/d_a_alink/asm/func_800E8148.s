@@ -32,7 +32,7 @@
 /* 800E81C4 000E5104  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 800E81C8 000E5108  38 81 00 14 */ addi r4, r1, 0x14
 /* 800E81CC 000E510C  38 A1 00 08 */ addi r5, r1, 8
-/* 800E81D0 000E5110  4B FB 9F C9 */ bl daAlink_c_NS_commonLineCheck
+/* 800E81D0 000E5110  4B FB 9F C9 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800E81D4 000E5114  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E81D8 000E5118  41 82 00 0C */ beq lbl_800E81E4
 /* 800E81DC 000E511C  38 60 00 01 */ li r3, 1
@@ -46,7 +46,7 @@ lbl_800E81E4:
 /* 800E81F8 000E5138  7F E3 FB 78 */ mr r3, r31
 /* 800E81FC 000E513C  38 81 00 14 */ addi r4, r1, 0x14
 /* 800E8200 000E5140  38 A1 00 08 */ addi r5, r1, 8
-/* 800E8204 000E5144  4B FB 9F 95 */ bl daAlink_c_NS_commonLineCheck
+/* 800E8204 000E5144  4B FB 9F 95 */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800E8208 000E5148  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E820C 000E514C  41 82 00 0C */ beq lbl_800E8218
 /* 800E8210 000E5150  38 60 00 01 */ li r3, 1
@@ -68,7 +68,7 @@ lbl_800E8218:
 /* 800E824C 000E518C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800E8250 000E5190  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800E8254 000E5194  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 800E8258 000E5198  4B F8 C2 49 */ bl cBgS_NS_GroundCross
+/* 800E8258 000E5198  4B F8 C2 49 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800E825C 000E519C  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 800E8260 000E51A0  EC 21 00 28 */ fsubs f1, f1, f0
 /* 800E8264 000E51A4  C0 0D 81 14 */ lfs f0, lbl_80450694-_SDA_BASE_(r13)

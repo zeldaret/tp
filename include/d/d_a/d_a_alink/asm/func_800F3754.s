@@ -5,16 +5,16 @@
 /* 800F3764 000F06A4  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F3768 000F06A8  7C 7E 1B 78 */ mr r30, r3
 /* 800F376C 000F06AC  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800F3770 000F06B0  4B FF A2 B5 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F3770 000F06B0  4B FF A2 B5 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F3774 000F06B4  7F E3 FB 78 */ mr r3, r31
-/* 800F3778 000F06B8  48 06 AD 55 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F3778 000F06B8  48 06 AD 55 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F377C 000F06BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F3780 000F06C0  41 82 00 1C */ beq lbl_800F379C
 /* 800F3784 000F06C4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F3788 000F06C8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F378C 000F06CC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800F3790 000F06D0  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800F3794 000F06D4  4B F5 49 E9 */ bl dEvent_manager_c_NS_cutEnd
+/* 800F3794 000F06D4  4B F5 49 E9 */ bl cutEnd__16dEvent_manager_cFi
 /* 800F3798 000F06D8  48 00 00 64 */ b lbl_800F37FC
 lbl_800F379C:
 /* 800F379C 000F06DC  C0 3F 00 10 */ lfs f1, 0x10(r31)

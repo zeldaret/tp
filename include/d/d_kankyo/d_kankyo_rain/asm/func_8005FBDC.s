@@ -24,16 +24,16 @@
 /* 8005FC38 0005CB78  90 1D 00 00 */ stw r0, 0(r29)
 /* 8005FC3C 0005CB7C  38 64 00 14 */ addi r3, r4, 0x14
 /*.global SNOW_EFF*/
-/* 8005FC40 0005CB80  3C 80 80 05 */ lis r4, SNOW_EFF@ha
+/* 8005FC40 0005CB80  3C 80 80 05 */ lis r4, __ct__8SNOW_EFFFv@ha
 /*.global SNOW_EFF*/
-/* 8005FC44 0005CB84  38 84 6D 94 */ addi r4, r4, SNOW_EFF@l
-/*.global SNOW_EFF_NS_dtor*/
-/* 8005FC48 0005CB88  3C A0 80 05 */ lis r5, SNOW_EFF_NS_dtor@ha
-/*.global SNOW_EFF_NS_dtor*/
-/* 8005FC4C 0005CB8C  38 A5 6D 58 */ addi r5, r5, SNOW_EFF_NS_dtor@l
+/* 8005FC44 0005CB84  38 84 6D 94 */ addi r4, r4, __ct__8SNOW_EFFFv@l
+/*.global __dt__8SNOW_EFFFv*/
+/* 8005FC48 0005CB88  3C A0 80 05 */ lis r5, __dt__8SNOW_EFFFv@ha
+/*.global __dt__8SNOW_EFFFv*/
+/* 8005FC4C 0005CB8C  38 A5 6D 58 */ addi r5, r5, __dt__8SNOW_EFFFv@l
 /* 8005FC50 0005CB90  38 C0 00 38 */ li r6, 0x38
 /* 8005FC54 0005CB94  38 E0 01 F4 */ li r7, 0x1f4
-/* 8005FC58 0005CB98  48 30 21 09 */ bl func_80361D60
+/* 8005FC58 0005CB98  48 30 21 09 */ bl __construct_array
 lbl_8005FC5C:
 /* 8005FC5C 0005CB9C  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8005FC60 0005CBA0  3B E3 CA 54 */ addi r31, r3, lbl_8042CA54@l
@@ -49,7 +49,7 @@ lbl_8005FC5C:
 /* 8005FC88 0005CBC8  3C A5 00 02 */ addis r5, r5, 2
 /* 8005FC8C 0005CBCC  38 C0 00 80 */ li r6, 0x80
 /* 8005FC90 0005CBD0  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 8005FC94 0005CBD4  4B FD C6 59 */ bl dRes_control_c_NS_getRes
+/* 8005FC94 0005CBD4  4B FD C6 59 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8005FC98 0005CBD8  80 9F 0E 94 */ lwz r4, 0xe94(r31)
 /* 8005FC9C 0005CBDC  90 64 00 10 */ stw r3, 0x10(r4)
 /* 8005FCA0 0005CBE0  38 60 00 00 */ li r3, 0

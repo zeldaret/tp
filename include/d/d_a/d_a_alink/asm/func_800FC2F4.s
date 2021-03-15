@@ -8,20 +8,20 @@
 /* 800FC310 000F9250  41 82 00 14 */ beq lbl_800FC324
 /* 800FC314 000F9254  38 80 00 5D */ li r4, 0x5d
 /* 800FC318 000F9258  80 BF 27 F4 */ lwz r5, 0x27f4(r31)
-/* 800FC31C 000F925C  4B FC 6A C1 */ bl daAlink_c_NS_procPreActionUnequipInit
+/* 800FC31C 000F925C  4B FC 6A C1 */ bl procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c
 /* 800FC320 000F9260  48 00 00 5C */ b lbl_800FC37C
 lbl_800FC324:
 /* 800FC324 000F9264  38 80 00 5D */ li r4, 0x5d
-/* 800FC328 000F9268  4B FC 5C 45 */ bl daAlink_c_NS_commonProcInit
+/* 800FC328 000F9268  4B FC 5C 45 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FC32C 000F926C  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800FC330 000F9270  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800FC334 000F9274  48 06 29 85 */ bl daPy_actorKeep_c_NS_setData
+/* 800FC334 000F9274  48 06 29 85 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800FC338 000F9278  7F E3 FB 78 */ mr r3, r31
 /* 800FC33C 000F927C  38 80 00 91 */ li r4, 0x91
 /* 800FC340 000F9280  3C A0 80 39 */ lis r5, lbl_8038E164@ha
 /* 800FC344 000F9284  38 A5 E1 64 */ addi r5, r5, lbl_8038E164@l
 /* 800FC348 000F9288  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 800FC34C 000F928C  4B FB 0D A9 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800FC34C 000F928C  4B FB 0D A9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800FC350 000F9290  80 7F 27 F4 */ lwz r3, 0x27f4(r31)
 /* 800FC354 000F9294  A8 63 04 E6 */ lha r3, 0x4e6(r3)
 /* 800FC358 000F9298  3C 63 00 01 */ addis r3, r3, 1

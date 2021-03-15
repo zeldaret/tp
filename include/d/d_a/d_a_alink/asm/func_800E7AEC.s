@@ -54,7 +54,7 @@ lbl_800E7B9C:
 /* 800E7BAC 000E4AEC  41 82 00 0C */ beq lbl_800E7BB8
 lbl_800E7BB0:
 /* 800E7BB0 000E4AF0  38 63 28 44 */ addi r3, r3, 0x2844
-/* 800E7BB4 000E4AF4  48 07 71 05 */ bl daPy_actorKeep_c_NS_setData
+/* 800E7BB4 000E4AF4  48 07 71 05 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_800E7BB8:
 /* 800E7BB8 000E4AF8  7F E3 FB 78 */ mr r3, r31
 /* 800E7BBC 000E4AFC  83 E1 00 0C */ lwz r31, 0xc(r1)

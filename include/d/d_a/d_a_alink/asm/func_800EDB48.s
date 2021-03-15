@@ -8,7 +8,7 @@
 /* 800EDB64 000EAAA4  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 800EDB68 000EAAA8  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800EDB6C 000EAAAC  83 E4 5D B8 */ lwz r31, 0x5db8(r4)
-/* 800EDB70 000EAAB0  4B FF F5 05 */ bl daAlink_c_NS_checkHorseNoUpperAnime
+/* 800EDB70 000EAAB0  4B FF F5 05 */ bl checkHorseNoUpperAnime__9daAlink_cCFv
 /* 800EDB74 000EAAB4  2C 03 00 00 */ cmpwi r3, 0
 /* 800EDB78 000EAAB8  40 82 00 10 */ bne lbl_800EDB88
 /* 800EDB7C 000EAABC  A0 1C 1F BC */ lhz r0, 0x1fbc(r28)
@@ -39,7 +39,7 @@ lbl_800EDBC4:
 /* 800EDBD4 000EAB14  7F 83 E3 78 */ mr r3, r28
 /* 800EDBD8 000EAB18  38 80 00 02 */ li r4, 2
 /* 800EDBDC 000EAB1C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800EDBE0 000EAB20  4B FB FB 45 */ bl daAlink_c_NS_resetUpperAnime
+/* 800EDBE0 000EAB20  4B FB FB 45 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800EDBE4 000EAB24  38 00 00 55 */ li r0, 0x55
 /* 800EDBE8 000EAB28  90 1D 00 00 */ stw r0, 0(r29)
 /* 800EDBEC 000EAB2C  90 1D 00 04 */ stw r0, 4(r29)
@@ -88,7 +88,7 @@ lbl_800EDC68:
 lbl_800EDC7C:
 /* 800EDC7C 000EABBC  28 00 00 13 */ cmplwi r0, 0x13
 /* 800EDC80 000EABC0  40 82 00 28 */ bne lbl_800EDCA8
-/* 800EDC84 000EABC4  4B FF EA E9 */ bl daAlink_c_NS_checkHorseZeldaBowMode
+/* 800EDC84 000EABC4  4B FF EA E9 */ bl checkHorseZeldaBowMode__9daAlink_cFv
 /* 800EDC88 000EABC8  2C 03 00 00 */ cmpwi r3, 0
 /* 800EDC8C 000EABCC  41 82 00 10 */ beq lbl_800EDC9C
 /* 800EDC90 000EABD0  38 00 00 4C */ li r0, 0x4c

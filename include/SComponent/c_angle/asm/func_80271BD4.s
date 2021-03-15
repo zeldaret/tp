@@ -7,36 +7,36 @@
 /* 80271BEC 0026EB2C  38 6D 8C 08 */ addi r3, r13, 0x80451188 - 0x80458580 /*SDA HACK; original: lbl_80451188-_SDA_BASE_*/
 /* 80271BF0 0026EB30  38 80 00 00 */ li r4, 0
 /* 80271BF4 0026EB34  4B FF F3 A5 */ bl __ct__7cSAngleFs
-/* 80271BF8 0026EB38  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 80271BFC 0026EB3C  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 80271BF8 0026EB38  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 80271BFC 0026EB3C  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 80271C00 0026EB40  38 BF 00 00 */ addi r5, r31, 0
 /* 80271C04 0026EB44  48 0F 00 21 */ bl func_80361C24
 /* 80271C08 0026EB48  38 6D 8C 0C */ addi r3, r13, 0x8045118C - 0x80458580 /*SDA HACK; original: lbl_8045118C-_SDA_BASE_*/
 /* 80271C0C 0026EB4C  38 80 00 B6 */ li r4, 0xb6
 /* 80271C10 0026EB50  4B FF F3 89 */ bl __ct__7cSAngleFs
-/* 80271C14 0026EB54  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 80271C18 0026EB58  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 80271C14 0026EB54  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 80271C18 0026EB58  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 80271C1C 0026EB5C  38 BF 00 0C */ addi r5, r31, 0xc
 /* 80271C20 0026EB60  48 0F 00 05 */ bl func_80361C24
 /* 80271C24 0026EB64  38 6D 8C 10 */ addi r3, r13, 0x80451190 - 0x80458580 /*SDA HACK; original: lbl_80451190-_SDA_BASE_*/
 /* 80271C28 0026EB68  38 80 40 00 */ li r4, 0x4000
 /* 80271C2C 0026EB6C  4B FF F3 6D */ bl __ct__7cSAngleFs
-/* 80271C30 0026EB70  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 80271C34 0026EB74  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 80271C30 0026EB70  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 80271C34 0026EB74  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 80271C38 0026EB78  38 BF 00 18 */ addi r5, r31, 0x18
 /* 80271C3C 0026EB7C  48 0E FF E9 */ bl func_80361C24
 /* 80271C40 0026EB80  38 6D 8C 14 */ addi r3, r13, 0x80451194 - 0x80458580 /*SDA HACK; original: lbl_80451194-_SDA_BASE_*/
 /* 80271C44 0026EB84  38 80 80 00 */ li r4, -32768
 /* 80271C48 0026EB88  4B FF F3 51 */ bl __ct__7cSAngleFs
-/* 80271C4C 0026EB8C  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 80271C50 0026EB90  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 80271C4C 0026EB8C  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 80271C50 0026EB90  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 80271C54 0026EB94  38 BF 00 24 */ addi r5, r31, 0x24
 /* 80271C58 0026EB98  48 0E FF CD */ bl func_80361C24
 /* 80271C5C 0026EB9C  38 6D 8C 18 */ addi r3, r13, 0x80451198 - 0x80458580 /*SDA HACK; original: lbl_80451198-_SDA_BASE_*/
 /* 80271C60 0026EBA0  38 80 C0 00 */ li r4, -16384
 /* 80271C64 0026EBA4  4B FF F3 35 */ bl __ct__7cSAngleFs
-/* 80271C68 0026EBA8  3C 80 80 03 */ lis r4, cSAngle_NS_dtor@ha
-/* 80271C6C 0026EBAC  38 84 05 10 */ addi r4, r4, cSAngle_NS_dtor@l
+/* 80271C68 0026EBA8  3C 80 80 03 */ lis r4, __dt__7cSAngleFv@ha
+/* 80271C6C 0026EBAC  38 84 05 10 */ addi r4, r4, __dt__7cSAngleFv@l
 /* 80271C70 0026EBB0  38 BF 00 30 */ addi r5, r31, 0x30
 /* 80271C74 0026EBB4  48 0E FF B1 */ bl func_80361C24
 /* 80271C78 0026EBB8  83 E1 00 0C */ lwz r31, 0xc(r1)

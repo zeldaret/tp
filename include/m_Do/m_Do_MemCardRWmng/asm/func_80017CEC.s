@@ -4,7 +4,7 @@
 /* 80017CF8 00014C38  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80017CFC 00014C3C  7C 7F 1B 78 */ mr r31, r3
 /* 80017D00 00014C40  38 80 0A 8C */ li r4, 0xa8c
-/* 80017D04 00014C44  4B FF FF B1 */ bl mDoMemCdRWm_CalcCheckSumGameData
+/* 80017D04 00014C44  4B FF FF B1 */ bl mDoMemCdRWm_CalcCheckSumGameData__FPvUl
 /* 80017D08 00014C48  80 1F 0A 8C */ lwz r0, 0xa8c(r31)
 /* 80017D0C 00014C4C  80 BF 0A 90 */ lwz r5, 0xa90(r31)
 /* 80017D10 00014C50  7C 84 2A 78 */ xor r4, r4, r5

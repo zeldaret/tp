@@ -23,7 +23,7 @@
 /* 800AD9BC 000AA8FC  7C 9F 22 14 */ add r4, r31, r4
 /* 800AD9C0 000AA900  7F 45 D3 78 */ mr r5, r26
 /* 800AD9C4 000AA904  38 C0 2C 00 */ li r6, 0x2c00
-/* 800AD9C8 000AA908  4B FF 63 45 */ bl daAlink_c_NS_getAnimeResource
+/* 800AD9C8 000AA908  4B FF 63 45 */ bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
 /* 800AD9CC 000AA90C  7C 7D 1B 79 */ or. r29, r3, r3
 /* 800AD9D0 000AA910  40 82 00 10 */ bne lbl_800AD9E0
 /* 800AD9D4 000AA914  57 60 18 38 */ slwi r0, r27, 3
@@ -67,11 +67,11 @@ lbl_800ADA3C:
 /* 800ADA5C 000AA99C  7F 87 E3 78 */ mr r7, r28
 /* 800ADA60 000AA9A0  FC 20 E0 90 */ fmr f1, f28
 /* 800ADA64 000AA9A4  FC 40 F8 90 */ fmr f2, f31
-/* 800ADA68 000AA9A8  4B FF E9 2D */ bl daAlink_c_NS_setFrameCtrl
+/* 800ADA68 000AA9A8  4B FF E9 2D */ bl setFrameCtrl__9daAlink_cFP16daPy_frameCtrl_cUcssff
 /* 800ADA6C 000AA9AC  D3 FD 00 08 */ stfs f31, 8(r29)
 /* 800ADA70 000AA9B0  7F E3 FB 78 */ mr r3, r31
 /* 800ADA74 000AA9B4  FC 20 F0 90 */ fmr f1, f30
-/* 800ADA78 000AA9B8  4B FF FE 7D */ bl daAlink_c_NS_setUnderAnimeMorf
+/* 800ADA78 000AA9B8  4B FF FE 7D */ bl setUnderAnimeMorf__9daAlink_cFf
 /* 800ADA7C 000AA9BC  38 60 00 01 */ li r3, 1
 /* 800ADA80 000AA9C0  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 800ADA84 000AA9C4  CB E1 00 60 */ lfd f31, 0x60(r1)

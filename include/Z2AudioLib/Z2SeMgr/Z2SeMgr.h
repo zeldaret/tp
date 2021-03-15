@@ -120,7 +120,7 @@ void resetMultiSePos__12Z2MultiSeMgrFv(void);
 float getPanPower__12Z2MultiSeMgrFv(void);
 float getDolbyPower__12Z2MultiSeMgrFv(void);
 
-void Z2SeMgr_NS_resetCrowdSize(void);
+void resetCrowdSize__7Z2SeMgrFv(void);
 }
 
 extern Z2SeMgr* lbl_80450B88;  // Z2SeMgr sInstance

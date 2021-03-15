@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029631c
 
 
-.global JASAramStream_NS_initSystem
-JASAramStream_NS_initSystem:
+.global initSystem__13JASAramStreamFUlUl
+initSystem__13JASAramStreamFUlUl:
 /* 8029631C 0029325C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296320 00293260  7C 08 02 A6 */	mflr r0
 /* 80296324 00293264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12,18 +12,18 @@ JASAramStream_NS_initSystem:
 /* 8029632C 0029326C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80296330 00293270  7C 7E 1B 78 */	mr r30, r3
 /* 80296334 00293274  7C 9F 23 78 */	mr r31, r4
-.global JASAramStream_NS_dvdErrorCheck
-/* 80296338 00293278  3C 60 80 29 */	lis r3, JASAramStream_NS_dvdErrorCheck@ha
-.global JASAramStream_NS_dvdErrorCheck
-/* 8029633C 0029327C  38 63 6D 94 */	addi r3, r3, JASAramStream_NS_dvdErrorCheck@l
+.global dvdErrorCheck__13JASAramStreamFPv
+/* 80296338 00293278  3C 60 80 29 */	lis r3, dvdErrorCheck__13JASAramStreamFPv@ha
+.global dvdErrorCheck__13JASAramStreamFPv
+/* 8029633C 0029327C  38 63 6D 94 */	addi r3, r3, dvdErrorCheck__13JASAramStreamFPv@l
 /* 80296340 00293280  38 80 00 00 */	li r4, 0
-/* 80296344 00293284  48 00 7F 31 */	bl JASDriver_NS_registerSubFrameCallback
+/* 80296344 00293284  48 00 7F 31 */	bl registerSubFrameCallback__9JASDriverFPFPv_lPv
 /* 80296348 00293288  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029634C 0029328C  41 82 00 44 */	beq lbl_80296390
 /* 80296350 00293290  80 0D 8C D0 */	lwz r0, lbl_80451250-_SDA_BASE_(r13)
 /* 80296354 00293294  28 00 00 00 */	cmplwi r0, 0
 /* 80296358 00293298  40 82 00 0C */	bne lbl_80296364
-/* 8029635C 0029329C  4B FF 9B A1 */	bl JASDvd_NS_getThreadPointer
+/* 8029635C 0029329C  4B FF 9B A1 */	bl getThreadPointer__6JASDvdFv
 /* 80296360 002932A0  90 6D 8C D0 */	stw r3, lbl_80451250-_SDA_BASE_(r13)
 lbl_80296364:
 /* 80296364 002932A4  38 1E 00 20 */	addi r0, r30, 0x20
@@ -45,8 +45,8 @@ lbl_80296390:
 /* 802963A0 002932E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802963A4 002932E4  4E 80 00 20 */	blr 
 
-.global JASAramStream
-JASAramStream:
+.global __ct__13JASAramStreamFv
+__ct__13JASAramStreamFv:
 /* 802963A8 002932E8  38 C0 00 00 */	li r6, 0
 /* 802963AC 002932EC  90 C3 00 A8 */	stw r6, 0xa8(r3)
 /* 802963B0 002932F0  98 C3 00 AC */	stb r6, 0xac(r3)
@@ -111,8 +111,8 @@ lbl_80296488:
 /* 80296494 002933D4  42 00 FF F4 */	bdnz lbl_80296488
 /* 80296498 002933D8  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_init
-JASAramStream_NS_init:
+.global init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv
+init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv:
 /* 8029649C 002933DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802964A0 002933E0  7C 08 02 A6 */	mflr r0
 /* 802964A4 002933E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -163,8 +163,8 @@ lbl_802964EC:
 /* 80296554 00293494  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296558 00293498  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_prepare
-JASAramStream_NS_prepare:
+.global prepare__13JASAramStreamFli
+prepare__13JASAramStreamFli:
 /* 8029655C 0029349C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80296560 002934A0  7C 08 02 A6 */	mflr r0
 /* 80296564 002934A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -180,12 +180,12 @@ JASAramStream_NS_prepare:
 /* 8029658C 002934CC  38 60 00 00 */	li r3, 0
 /* 80296590 002934D0  48 00 00 70 */	b lbl_80296600
 lbl_80296594:
-.global JASAramStream_NS_channelProcCallback
-/* 80296594 002934D4  3C 60 80 29 */	lis r3, JASAramStream_NS_channelProcCallback@ha
-.global JASAramStream_NS_channelProcCallback
-/* 80296598 002934D8  38 63 6D 74 */	addi r3, r3, JASAramStream_NS_channelProcCallback@l
+.global channelProcCallback__13JASAramStreamFPv
+/* 80296594 002934D4  3C 60 80 29 */	lis r3, channelProcCallback__13JASAramStreamFPv@ha
+.global channelProcCallback__13JASAramStreamFPv
+/* 80296598 002934D8  38 63 6D 74 */	addi r3, r3, channelProcCallback__13JASAramStreamFPv@l
 /* 8029659C 002934DC  7F C4 F3 78 */	mr r4, r30
-/* 802965A0 002934E0  48 00 7C D5 */	bl JASDriver_NS_registerSubFrameCallback
+/* 802965A0 002934E0  48 00 7C D5 */	bl registerSubFrameCallback__9JASDriverFPFPv_lPv
 /* 802965A4 002934E4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802965A8 002934E8  40 82 00 0C */	bne lbl_802965B4
 /* 802965AC 002934EC  38 60 00 00 */	li r3, 0
@@ -196,21 +196,21 @@ lbl_802965B4:
 /* 802965BC 002934FC  90 01 00 0C */	stw r0, 0xc(r1)
 /* 802965C0 00293500  93 E1 00 10 */	stw r31, 0x10(r1)
 /* 802965C4 00293504  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_headerLoadTask
-/* 802965C8 00293508  3C 80 80 29 */	lis r4, JASAramStream_NS_headerLoadTask@ha
-.global JASAramStream_NS_headerLoadTask
-/* 802965CC 0029350C  38 84 67 3C */	addi r4, r4, JASAramStream_NS_headerLoadTask@l
+.global headerLoadTask__13JASAramStreamFPv
+/* 802965C8 00293508  3C 80 80 29 */	lis r4, headerLoadTask__13JASAramStreamFPv@ha
+.global headerLoadTask__13JASAramStreamFPv
+/* 802965CC 0029350C  38 84 67 3C */	addi r4, r4, headerLoadTask__13JASAramStreamFPv@l
 /* 802965D0 00293510  38 A1 00 08 */	addi r5, r1, 8
 /* 802965D4 00293514  38 C0 00 0C */	li r6, 0xc
-/* 802965D8 00293518  4B FF 95 85 */	bl JASTaskThread_NS_sendCmdMsg
+/* 802965D8 00293518  4B FF 95 85 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
 /* 802965DC 0029351C  2C 03 00 00 */	cmpwi r3, 0
 /* 802965E0 00293520  40 82 00 1C */	bne lbl_802965FC
-.global JASAramStream_NS_channelProcCallback
-/* 802965E4 00293524  3C 60 80 29 */	lis r3, JASAramStream_NS_channelProcCallback@ha
-.global JASAramStream_NS_channelProcCallback
-/* 802965E8 00293528  38 63 6D 74 */	addi r3, r3, JASAramStream_NS_channelProcCallback@l
+.global channelProcCallback__13JASAramStreamFPv
+/* 802965E4 00293524  3C 60 80 29 */	lis r3, channelProcCallback__13JASAramStreamFPv@ha
+.global channelProcCallback__13JASAramStreamFPv
+/* 802965E8 00293528  38 63 6D 74 */	addi r3, r3, channelProcCallback__13JASAramStreamFPv@l
 /* 802965EC 0029352C  7F C4 F3 78 */	mr r4, r30
-/* 802965F0 00293530  48 00 7B D5 */	bl JASDriver_NS_rejectCallback
+/* 802965F0 00293530  48 00 7B D5 */	bl rejectCallback__9JASDriverFPFPv_lPv
 /* 802965F4 00293534  38 60 00 00 */	li r3, 0
 /* 802965F8 00293538  48 00 00 08 */	b lbl_80296600
 lbl_802965FC:
@@ -223,8 +223,8 @@ lbl_80296600:
 /* 80296610 00293550  38 21 00 20 */	addi r1, r1, 0x20
 /* 80296614 00293554  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_start
-JASAramStream_NS_start:
+.global start__13JASAramStreamFv
+start__13JASAramStreamFv:
 /* 80296618 00293558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029661C 0029355C  7C 08 02 A6 */	mflr r0
 /* 80296620 00293560  90 01 00 14 */	stw r0, 0x14(r1)
@@ -239,8 +239,8 @@ JASAramStream_NS_start:
 /* 80296644 00293584  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296648 00293588  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_stop
-JASAramStream_NS_stop:
+.global stop__13JASAramStreamFUs
+stop__13JASAramStreamFUs:
 /* 8029664C 0029358C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296650 00293590  7C 08 02 A6 */	mflr r0
 /* 80296654 00293594  90 01 00 14 */	stw r0, 0x14(r1)
@@ -256,8 +256,8 @@ JASAramStream_NS_stop:
 /* 8029667C 002935BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296680 002935C0  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_pause
-JASAramStream_NS_pause:
+.global pause__13JASAramStreamFb
+pause__13JASAramStreamFb:
 /* 80296684 002935C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296688 002935C8  7C 08 02 A6 */	mflr r0
 /* 8029668C 002935CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -280,8 +280,8 @@ lbl_802966BC:
 /* 802966C4 00293604  38 21 00 10 */	addi r1, r1, 0x10
 /* 802966C8 00293608  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_cancel
-JASAramStream_NS_cancel:
+.global cancel__13JASAramStreamFv
+cancel__13JASAramStreamFv:
 /* 802966CC 0029360C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802966D0 00293610  7C 08 02 A6 */	mflr r0
 /* 802966D4 00293614  90 01 00 14 */	stw r0, 0x14(r1)
@@ -289,11 +289,11 @@ JASAramStream_NS_cancel:
 /* 802966DC 0029361C  38 00 00 01 */	li r0, 1
 /* 802966E0 00293620  98 03 01 14 */	stb r0, 0x114(r3)
 /* 802966E4 00293624  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_finishTask
-/* 802966E8 00293628  3C 80 80 29 */	lis r4, JASAramStream_NS_finishTask@ha
-.global JASAramStream_NS_finishTask
-/* 802966EC 0029362C  38 84 68 68 */	addi r4, r4, JASAramStream_NS_finishTask@l
-/* 802966F0 00293630  4B FF 95 65 */	bl JASTaskThread_NS_sendCmdMsg_X1_
+.global finishTask__13JASAramStreamFPv
+/* 802966E8 00293628  3C 80 80 29 */	lis r4, finishTask__13JASAramStreamFPv@ha
+.global finishTask__13JASAramStreamFPv
+/* 802966EC 0029362C  38 84 68 68 */	addi r4, r4, finishTask__13JASAramStreamFPv@l
+/* 802966F0 00293630  4B FF 95 65 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 802966F4 00293634  30 03 FF FF */	addic r0, r3, -1
 /* 802966F8 00293638  7C 00 19 10 */	subfe r0, r0, r3
 /* 802966FC 0029363C  54 03 06 3E */	clrlwi r3, r0, 0x18
@@ -302,8 +302,8 @@ JASAramStream_NS_cancel:
 /* 80296708 00293648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029670C 0029364C  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_getBlockSamples
-JASAramStream_NS_getBlockSamples:
+.global getBlockSamples__13JASAramStreamCFv
+getBlockSamples__13JASAramStreamCFv:
 /* 80296710 00293650  A0 03 01 58 */	lhz r0, 0x158(r3)
 /* 80296714 00293654  28 00 00 00 */	cmplwi r0, 0
 /* 80296718 00293658  40 82 00 18 */	bne lbl_80296730
@@ -316,8 +316,8 @@ lbl_80296730:
 /* 80296730 00293670  80 0D 8C D8 */	lwz r0, lbl_80451258-_SDA_BASE_(r13)
 /* 80296734 00293674  54 03 F8 7E */	srwi r3, r0, 1
 /* 80296738 00293678  4E 80 00 20 */	blr 
-.global JASAramStream_NS_headerLoadTask
-JASAramStream_NS_headerLoadTask:
+.global headerLoadTask__13JASAramStreamFPv
+headerLoadTask__13JASAramStreamFPv:
 /* 8029673C 0029367C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296740 00293680  7C 08 02 A6 */	mflr r0
 /* 80296744 00293684  90 01 00 14 */	stw r0, 0x14(r1)
@@ -325,13 +325,13 @@ JASAramStream_NS_headerLoadTask:
 /* 8029674C 0029368C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80296750 00293690  80 85 00 04 */	lwz r4, 4(r5)
 /* 80296754 00293694  80 A5 00 08 */	lwz r5, 8(r5)
-/* 80296758 00293698  48 00 01 C9 */	bl JASAramStream_NS_headerLoad
+/* 80296758 00293698  48 00 01 C9 */	bl headerLoad__13JASAramStreamFUli
 /* 8029675C 0029369C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80296760 002936A0  7C 08 03 A6 */	mtlr r0
 /* 80296764 002936A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296768 002936A8  4E 80 00 20 */	blr 
-.global JASAramStream_NS_firstLoadTask
-JASAramStream_NS_firstLoadTask:
+.global firstLoadTask__13JASAramStreamFPv
+firstLoadTask__13JASAramStreamFPv:
 /* 8029676C 002936AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80296770 002936B0  7C 08 02 A6 */	mflr r0
 /* 80296774 002936B4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -340,7 +340,7 @@ JASAramStream_NS_firstLoadTask:
 /* 80296780 002936C0  7C 7F 1B 78 */	mr r31, r3
 /* 80296784 002936C4  83 C3 00 00 */	lwz r30, 0(r3)
 /* 80296788 002936C8  7F C3 F3 78 */	mr r3, r30
-/* 8029678C 002936CC  48 00 03 5D */	bl JASAramStream_NS_load
+/* 8029678C 002936CC  48 00 03 5D */	bl load__13JASAramStreamFv
 /* 80296790 002936D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80296794 002936D4  41 82 00 9C */	beq lbl_80296830
 /* 80296798 002936D8  80 7F 00 08 */	lwz r3, 8(r31)
@@ -352,12 +352,12 @@ JASAramStream_NS_firstLoadTask:
 /* 802967B0 002936F0  2C 00 00 00 */	cmpwi r0, 0
 /* 802967B4 002936F4  40 82 00 28 */	bne lbl_802967DC
 /* 802967B8 002936F8  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_prepareFinishTask
-/* 802967BC 002936FC  3C 80 80 29 */	lis r4, JASAramStream_NS_prepareFinishTask@ha
-.global JASAramStream_NS_prepareFinishTask
-/* 802967C0 00293700  38 84 68 C8 */	addi r4, r4, JASAramStream_NS_prepareFinishTask@l
+.global prepareFinishTask__13JASAramStreamFPv
+/* 802967BC 002936FC  3C 80 80 29 */	lis r4, prepareFinishTask__13JASAramStreamFPv@ha
+.global prepareFinishTask__13JASAramStreamFPv
+/* 802967C0 00293700  38 84 68 C8 */	addi r4, r4, prepareFinishTask__13JASAramStreamFPv@l
 /* 802967C4 00293704  7F C5 F3 78 */	mr r5, r30
-/* 802967C8 00293708  4B FF 94 8D */	bl JASTaskThread_NS_sendCmdMsg_X1_
+/* 802967C8 00293708  4B FF 94 8D */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 802967CC 0029370C  2C 03 00 00 */	cmpwi r3, 0
 /* 802967D0 00293710  40 82 00 0C */	bne lbl_802967DC
 /* 802967D4 00293714  38 00 00 01 */	li r0, 1
@@ -369,13 +369,13 @@ lbl_802967DC:
 /* 802967E8 00293728  38 03 FF FF */	addi r0, r3, -1
 /* 802967EC 0029372C  90 1F 00 04 */	stw r0, 4(r31)
 /* 802967F0 00293730  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_firstLoadTask
-/* 802967F4 00293734  3C 80 80 29 */	lis r4, JASAramStream_NS_firstLoadTask@ha
-.global JASAramStream_NS_firstLoadTask
-/* 802967F8 00293738  38 84 67 6C */	addi r4, r4, JASAramStream_NS_firstLoadTask@l
+.global firstLoadTask__13JASAramStreamFPv
+/* 802967F4 00293734  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha
+.global firstLoadTask__13JASAramStreamFPv
+/* 802967F8 00293738  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l
 /* 802967FC 0029373C  7F E5 FB 78 */	mr r5, r31
 /* 80296800 00293740  38 C0 00 0C */	li r6, 0xc
-/* 80296804 00293744  4B FF 93 59 */	bl JASTaskThread_NS_sendCmdMsg
+/* 80296804 00293744  4B FF 93 59 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
 /* 80296808 00293748  2C 03 00 00 */	cmpwi r3, 0
 /* 8029680C 0029374C  40 82 00 0C */	bne lbl_80296818
 /* 80296810 00293750  38 00 00 01 */	li r0, 1
@@ -394,29 +394,29 @@ lbl_80296830:
 /* 8029683C 0029377C  7C 08 03 A6 */	mtlr r0
 /* 80296840 00293780  38 21 00 20 */	addi r1, r1, 0x20
 /* 80296844 00293784  4E 80 00 20 */	blr 
-.global JASAramStream_NS_loadToAramTask
-JASAramStream_NS_loadToAramTask:
+.global loadToAramTask__13JASAramStreamFPv
+loadToAramTask__13JASAramStreamFPv:
 /* 80296848 00293788  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029684C 0029378C  7C 08 02 A6 */	mflr r0
 /* 80296850 00293790  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80296854 00293794  48 00 02 95 */	bl JASAramStream_NS_load
+/* 80296854 00293794  48 00 02 95 */	bl load__13JASAramStreamFv
 /* 80296858 00293798  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029685C 0029379C  7C 08 03 A6 */	mtlr r0
 /* 80296860 002937A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296864 002937A4  4E 80 00 20 */	blr 
-.global JASAramStream_NS_finishTask
-JASAramStream_NS_finishTask:
+.global finishTask__13JASAramStreamFPv
+finishTask__13JASAramStreamFPv:
 /* 80296868 002937A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029686C 002937AC  7C 08 02 A6 */	mflr r0
 /* 80296870 002937B0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80296874 002937B4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80296878 002937B8  7C 7F 1B 78 */	mr r31, r3
-.global JASAramStream_NS_channelProcCallback
-/* 8029687C 002937BC  3C 60 80 29 */	lis r3, JASAramStream_NS_channelProcCallback@ha
-.global JASAramStream_NS_channelProcCallback
-/* 80296880 002937C0  38 63 6D 74 */	addi r3, r3, JASAramStream_NS_channelProcCallback@l
+.global channelProcCallback__13JASAramStreamFPv
+/* 8029687C 002937BC  3C 60 80 29 */	lis r3, channelProcCallback__13JASAramStreamFPv@ha
+.global channelProcCallback__13JASAramStreamFPv
+/* 80296880 002937C0  38 63 6D 74 */	addi r3, r3, channelProcCallback__13JASAramStreamFPv@l
 /* 80296884 002937C4  7F E4 FB 78 */	mr r4, r31
-/* 80296888 002937C8  48 00 79 3D */	bl JASDriver_NS_rejectCallback
+/* 80296888 002937C8  48 00 79 3D */	bl rejectCallback__9JASDriverFPFPv_lPv
 /* 8029688C 002937CC  81 9F 01 50 */	lwz r12, 0x150(r31)
 /* 80296890 002937D0  28 0C 00 00 */	cmplwi r12, 0
 /* 80296894 002937D4  41 82 00 20 */	beq lbl_802968B4
@@ -433,8 +433,8 @@ lbl_802968B4:
 /* 802968BC 002937FC  7C 08 03 A6 */	mtlr r0
 /* 802968C0 00293800  38 21 00 10 */	addi r1, r1, 0x10
 /* 802968C4 00293804  4E 80 00 20 */	blr 
-.global JASAramStream_NS_prepareFinishTask
-JASAramStream_NS_prepareFinishTask:
+.global prepareFinishTask__13JASAramStreamFPv
+prepareFinishTask__13JASAramStreamFPv:
 /* 802968C8 00293808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802968CC 0029380C  7C 08 02 A6 */	mflr r0
 /* 802968D0 00293810  90 01 00 14 */	stw r0, 0x14(r1)
@@ -459,8 +459,8 @@ lbl_8029690C:
 /* 80296918 00293858  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029691C 0029385C  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_headerLoad
-JASAramStream_NS_headerLoad:
+.global headerLoad__13JASAramStreamFUli
+headerLoad__13JASAramStreamFUli:
 /* 80296920 00293860  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80296924 00293864  7C 08 02 A6 */	mflr r0
 /* 80296928 00293868  90 01 00 34 */	stw r0, 0x34(r1)
@@ -536,7 +536,7 @@ lbl_80296998:
 /* 80296A34 00293974  80 1D 01 5C */	lwz r0, 0x15c(r29)
 /* 80296A38 00293978  90 1D 01 08 */	stw r0, 0x108(r29)
 /* 80296A3C 0029397C  7F A3 EB 78 */	mr r3, r29
-/* 80296A40 00293980  4B FF FC D1 */	bl JASAramStream_NS_getBlockSamples
+/* 80296A40 00293980  4B FF FC D1 */	bl getBlockSamples__13JASAramStreamCFv
 /* 80296A44 00293984  2C 1F 00 00 */	cmpwi r31, 0
 /* 80296A48 00293988  41 80 00 10 */	blt lbl_80296A58
 /* 80296A4C 0029398C  80 1D 01 08 */	lwz r0, 0x108(r29)
@@ -557,13 +557,13 @@ lbl_80296A70:
 /* 80296A7C 002939BC  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80296A80 002939C0  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80296A84 002939C4  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_firstLoadTask
-/* 80296A88 002939C8  3C 80 80 29 */	lis r4, JASAramStream_NS_firstLoadTask@ha
-.global JASAramStream_NS_firstLoadTask
-/* 80296A8C 002939CC  38 84 67 6C */	addi r4, r4, JASAramStream_NS_firstLoadTask@l
+.global firstLoadTask__13JASAramStreamFPv
+/* 80296A88 002939C8  3C 80 80 29 */	lis r4, firstLoadTask__13JASAramStreamFPv@ha
+.global firstLoadTask__13JASAramStreamFPv
+/* 80296A8C 002939CC  38 84 67 6C */	addi r4, r4, firstLoadTask__13JASAramStreamFPv@l
 /* 80296A90 002939D0  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80296A94 002939D4  38 C0 00 0C */	li r6, 0xc
-/* 80296A98 002939D8  4B FF 90 C5 */	bl JASTaskThread_NS_sendCmdMsg
+/* 80296A98 002939D8  4B FF 90 C5 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
 /* 80296A9C 002939DC  2C 03 00 00 */	cmpwi r3, 0
 /* 80296AA0 002939E0  40 82 00 14 */	bne lbl_80296AB4
 /* 80296AA4 002939E4  38 00 00 01 */	li r0, 1
@@ -586,8 +586,8 @@ lbl_80296AD0:
 /* 80296AE0 00293A20  38 21 00 30 */	addi r1, r1, 0x30
 /* 80296AE4 00293A24  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_load
-JASAramStream_NS_load:
+.global load__13JASAramStreamFv
+load__13JASAramStreamFv:
 /* 80296AE8 00293A28  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80296AEC 00293A2C  7C 08 02 A6 */	mflr r0
 /* 80296AF0 00293A30  90 01 00 34 */	stw r0, 0x34(r1)
@@ -613,12 +613,12 @@ lbl_80296B2C:
 /* 80296B3C 00293A7C  48 00 02 20 */	b lbl_80296D5C
 lbl_80296B40:
 /* 80296B40 00293A80  7F 83 E3 78 */	mr r3, r28
-/* 80296B44 00293A84  4B FF FB CD */	bl JASAramStream_NS_getBlockSamples
+/* 80296B44 00293A84  4B FF FB CD */	bl getBlockSamples__13JASAramStreamCFv
 /* 80296B48 00293A88  80 9C 01 70 */	lwz r4, 0x170(r28)
 /* 80296B4C 00293A8C  38 04 FF FF */	addi r0, r4, -1
 /* 80296B50 00293A90  7F E0 1B 96 */	divwu r31, r0, r3
 /* 80296B54 00293A94  7F 83 E3 78 */	mr r3, r28
-/* 80296B58 00293A98  4B FF FB B9 */	bl JASAramStream_NS_getBlockSamples
+/* 80296B58 00293A98  4B FF FB B9 */	bl getBlockSamples__13JASAramStreamCFv
 /* 80296B5C 00293A9C  80 1C 01 6C */	lwz r0, 0x16c(r28)
 /* 80296B60 00293AA0  7F C0 1B 96 */	divwu r30, r0, r3
 /* 80296B64 00293AA4  80 9C 01 10 */	lwz r4, 0x110(r28)
@@ -771,18 +771,18 @@ lbl_80296D5C:
 /* 80296D68 00293CA8  7C 08 03 A6 */	mtlr r0
 /* 80296D6C 00293CAC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80296D70 00293CB0  4E 80 00 20 */	blr 
-.global JASAramStream_NS_channelProcCallback
-JASAramStream_NS_channelProcCallback:
+.global channelProcCallback__13JASAramStreamFPv
+channelProcCallback__13JASAramStreamFPv:
 /* 80296D74 00293CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296D78 00293CB8  7C 08 02 A6 */	mflr r0
 /* 80296D7C 00293CBC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80296D80 00293CC0  48 00 07 2D */	bl JASAramStream_NS_channelProc
+/* 80296D80 00293CC0  48 00 07 2D */	bl channelProc__13JASAramStreamFv
 /* 80296D84 00293CC4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80296D88 00293CC8  7C 08 03 A6 */	mtlr r0
 /* 80296D8C 00293CCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296D90 00293CD0  4E 80 00 20 */	blr 
-.global JASAramStream_NS_dvdErrorCheck
-JASAramStream_NS_dvdErrorCheck:
+.global dvdErrorCheck__13JASAramStreamFPv
+dvdErrorCheck__13JASAramStreamFPv:
 /* 80296D94 00293CD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296D98 00293CD8  7C 08 02 A6 */	mflr r0
 /* 80296D9C 00293CDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -808,8 +808,8 @@ lbl_80296DDC:
 /* 80296DE4 00293D24  7C 08 03 A6 */	mtlr r0
 /* 80296DE8 00293D28  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296DEC 00293D2C  4E 80 00 20 */	blr 
-.global JASAramStream_NS_channelCallback
-JASAramStream_NS_channelCallback:
+.global channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv
+channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv:
 /* 80296DF0 00293D30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80296DF4 00293D34  7C 08 02 A6 */	mflr r0
 /* 80296DF8 00293D38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -820,14 +820,14 @@ JASAramStream_NS_channelCallback:
 /* 80296E0C 00293D4C  7D 04 43 78 */	mr r4, r8
 /* 80296E10 00293D50  7C E5 3B 78 */	mr r5, r7
 /* 80296E14 00293D54  7C 06 03 78 */	mr r6, r0
-/* 80296E18 00293D58  48 00 00 15 */	bl JASAramStream_NS_updateChannel
+/* 80296E18 00293D58  48 00 00 15 */	bl updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel
 /* 80296E1C 00293D5C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80296E20 00293D60  7C 08 03 A6 */	mtlr r0
 /* 80296E24 00293D64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80296E28 00293D68  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_updateChannel
-JASAramStream_NS_updateChannel:
+.global updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel
+updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel:
 /* 80296E2C 00293D6C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80296E30 00293D70  7C 08 02 A6 */	mflr r0
 /* 80296E34 00293D74  90 01 00 54 */	stw r0, 0x54(r1)
@@ -837,7 +837,7 @@ JASAramStream_NS_updateChannel:
 /* 80296E44 00293D84  7C 99 23 78 */	mr r25, r4
 /* 80296E48 00293D88  7C BC 2B 78 */	mr r28, r5
 /* 80296E4C 00293D8C  7C DD 33 78 */	mr r29, r6
-/* 80296E50 00293D90  4B FF F8 C1 */	bl JASAramStream_NS_getBlockSamples
+/* 80296E50 00293D90  4B FF F8 C1 */	bl getBlockSamples__13JASAramStreamCFv
 /* 80296E54 00293D94  7C 7F 1B 78 */	mr r31, r3
 /* 80296E58 00293D98  2C 19 00 01 */	cmpwi r25, 1
 /* 80296E5C 00293D9C  41 82 00 20 */	beq lbl_80296E7C
@@ -1059,23 +1059,23 @@ lbl_80297184:
 /* 80297184 002940C4  80 0D 8C D8 */	lwz r0, lbl_80451258-_SDA_BASE_(r13)
 /* 80297188 002940C8  7F C3 03 96 */	divwu r30, r3, r0
 /* 8029718C 002940CC  7F 63 DB 78 */	mr r3, r27
-/* 80297190 002940D0  4B FF F5 81 */	bl JASAramStream_NS_getBlockSamples
+/* 80297190 002940D0  4B FF F5 81 */	bl getBlockSamples__13JASAramStreamCFv
 /* 80297194 002940D4  80 1B 00 B0 */	lwz r0, 0xb0(r27)
 /* 80297198 002940D8  7C 1E 00 40 */	cmplw r30, r0
 /* 8029719C 002940DC  41 82 01 74 */	beq lbl_80297310
 /* 802971A0 002940E0  7C 00 F0 10 */	subfc r0, r0, r30
 /* 802971A4 002940E4  7C 00 01 10 */	subfe r0, r0, r0
 /* 802971A8 002940E8  7F 20 00 D0 */	neg r25, r0
-.global JASAramStream_NS_loadToAramTask
-/* 802971AC 002940EC  3C 60 80 29 */	lis r3, JASAramStream_NS_loadToAramTask@ha
-.global JASAramStream_NS_loadToAramTask
-/* 802971B0 002940F0  3B 43 68 48 */	addi r26, r3, JASAramStream_NS_loadToAramTask@l
+.global loadToAramTask__13JASAramStreamFPv
+/* 802971AC 002940EC  3C 60 80 29 */	lis r3, loadToAramTask__13JASAramStreamFPv@ha
+.global loadToAramTask__13JASAramStreamFPv
+/* 802971B0 002940F0  3B 43 68 48 */	addi r26, r3, loadToAramTask__13JASAramStreamFPv@l
 /* 802971B4 002940F4  48 00 00 64 */	b lbl_80297218
 lbl_802971B8:
 /* 802971B8 002940F8  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
 /* 802971BC 002940FC  7F 44 D3 78 */	mr r4, r26
 /* 802971C0 00294100  7F 65 DB 78 */	mr r5, r27
-/* 802971C4 00294104  4B FF 8A 91 */	bl JASTaskThread_NS_sendCmdMsg_X1_
+/* 802971C4 00294104  4B FF 8A 91 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 802971C8 00294108  2C 03 00 00 */	cmpwi r3, 0
 /* 802971CC 0029410C  40 82 00 10 */	bne lbl_802971DC
 /* 802971D0 00294110  38 00 00 01 */	li r0, 1
@@ -1260,12 +1260,12 @@ lbl_80297444:
 /* 80297454 00294394  38 00 00 01 */	li r0, 1
 /* 80297458 00294398  98 1B 01 14 */	stb r0, 0x114(r27)
 /* 8029745C 0029439C  80 6D 8C D0 */	lwz r3, lbl_80451250-_SDA_BASE_(r13)
-.global JASAramStream_NS_finishTask
-/* 80297460 002943A0  3C 80 80 29 */	lis r4, JASAramStream_NS_finishTask@ha
-.global JASAramStream_NS_finishTask
-/* 80297464 002943A4  38 84 68 68 */	addi r4, r4, JASAramStream_NS_finishTask@l
+.global finishTask__13JASAramStreamFPv
+/* 80297460 002943A0  3C 80 80 29 */	lis r4, finishTask__13JASAramStreamFPv@ha
+.global finishTask__13JASAramStreamFPv
+/* 80297464 002943A4  38 84 68 68 */	addi r4, r4, finishTask__13JASAramStreamFPv@l
 /* 80297468 002943A8  7F 65 DB 78 */	mr r5, r27
-/* 8029746C 002943AC  4B FF 87 E9 */	bl JASTaskThread_NS_sendCmdMsg_X1_
+/* 8029746C 002943AC  4B FF 87 E9 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 80297470 002943B0  2C 03 00 00 */	cmpwi r3, 0
 /* 80297474 002943B4  40 82 00 10 */	bne lbl_80297484
 /* 80297478 002943B8  38 00 00 01 */	li r0, 1
@@ -1284,8 +1284,8 @@ lbl_80297494:
 /* 802974A4 002943E4  38 21 00 50 */	addi r1, r1, 0x50
 /* 802974A8 002943E8  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_channelProc
-JASAramStream_NS_channelProc:
+.global channelProc__13JASAramStreamFv
+channelProc__13JASAramStreamFv:
 /* 802974AC 002943EC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802974B0 002943F0  7C 08 02 A6 */	mflr r0
 /* 802974B4 002943F4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1336,12 +1336,12 @@ lbl_80297548:
 /* 80297550 00294490  48 00 00 30 */	b lbl_80297580
 lbl_80297554:
 /* 80297554 00294494  7F E3 FB 78 */	mr r3, r31
-/* 80297558 00294498  48 00 01 01 */	bl JASAramStream_NS_channelStart
+/* 80297558 00294498  48 00 01 01 */	bl channelStart__13JASAramStreamFv
 /* 8029755C 0029449C  48 00 00 30 */	b lbl_8029758C
 lbl_80297560:
 /* 80297560 002944A0  54 64 84 3E */	srwi r4, r3, 0x10
 /* 80297564 002944A4  7F E3 FB 78 */	mr r3, r31
-/* 80297568 002944A8  48 00 03 09 */	bl JASAramStream_NS_channelStop
+/* 80297568 002944A8  48 00 03 09 */	bl channelStop__13JASAramStreamFUs
 /* 8029756C 002944AC  48 00 00 20 */	b lbl_8029758C
 lbl_80297570:
 /* 80297570 002944B0  88 1F 00 AE */	lbz r0, 0xae(r31)
@@ -1411,8 +1411,8 @@ lbl_80297640:
 /* 80297650 00294590  38 21 00 20 */	addi r1, r1, 0x20
 /* 80297654 00294594  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_channelStart
-JASAramStream_NS_channelStart:
+.global channelStart__13JASAramStreamFv
+channelStart__13JASAramStreamFv:
 /* 80297658 00294598  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8029765C 0029459C  7C 08 02 A6 */	mflr r0
 /* 80297660 002945A0  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1447,7 +1447,7 @@ lbl_802976A8:
 /* 802976C8 00294608  48 00 01 6C */	b lbl_80297834
 lbl_802976CC:
 /* 802976CC 0029460C  7F A3 EB 78 */	mr r3, r29
-/* 802976D0 00294610  4B FF F0 41 */	bl JASAramStream_NS_getBlockSamples
+/* 802976D0 00294610  4B FF F0 41 */	bl getBlockSamples__13JASAramStreamCFv
 /* 802976D4 00294614  80 1D 01 5C */	lwz r0, 0x15c(r29)
 /* 802976D8 00294618  7E E0 19 D6 */	mullw r23, r0, r3
 /* 802976DC 0029461C  3B 02 BC 28 */	addi r24, r2, lbl_80455628-_SDA2_BASE_
@@ -1456,7 +1456,7 @@ lbl_802976CC:
 /* 802976E8 00294628  40 82 00 34 */	bne lbl_8029771C
 /* 802976EC 0029462C  3C 60 80 43 */	lis r3, lbl_80431B34@ha
 /* 802976F0 00294630  38 63 1B 34 */	addi r3, r3, lbl_80431B34@l
-/* 802976F4 00294634  4B FF 91 55 */	bl JASGenericMemPool
+/* 802976F4 00294634  4B FF 91 55 */	bl __ct__17JASGenericMemPoolFv
 /* 802976F8 00294638  3C 60 80 43 */	lis r3, lbl_80431B34@ha
 /* 802976FC 0029463C  38 63 1B 34 */	addi r3, r3, lbl_80431B34@l
 .global JASMemPool_MultiThreaded_NS_dtor_X2_
@@ -1473,19 +1473,19 @@ lbl_8029771C:
 /* 80297720 00294660  90 61 00 08 */	stw r3, 8(r1)
 /* 80297724 00294664  7F 23 CB 78 */	mr r3, r25
 /* 80297728 00294668  38 80 01 08 */	li r4, 0x108
-/* 8029772C 0029466C  4B FF 92 1D */	bl JASGenericMemPool_NS_alloc
+/* 8029772C 0029466C  4B FF 92 1D */	bl alloc__17JASGenericMemPoolFUl
 /* 80297730 00294670  7C 75 1B 78 */	mr r21, r3
 /* 80297734 00294674  80 61 00 08 */	lwz r3, 8(r1)
 /* 80297738 00294678  48 0A 5F E5 */	bl OSRestoreInterrupts
 /* 8029773C 0029467C  28 15 00 00 */	cmplwi r21, 0
 /* 80297740 00294680  41 82 00 1C */	beq lbl_8029775C
 /* 80297744 00294684  7E A3 AB 78 */	mr r3, r21
-.global JASAramStream_NS_channelCallback
-/* 80297748 00294688  3C 80 80 29 */	lis r4, JASAramStream_NS_channelCallback@ha
-.global JASAramStream_NS_channelCallback
-/* 8029774C 0029468C  38 84 6D F0 */	addi r4, r4, JASAramStream_NS_channelCallback@l
+.global channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv
+/* 80297748 00294688  3C 80 80 29 */	lis r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@ha
+.global channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv
+/* 8029774C 0029468C  38 84 6D F0 */	addi r4, r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@l
 /* 80297750 00294690  7F A5 EB 78 */	mr r5, r29
-/* 80297754 00294694  48 00 30 AD */	bl JASChannel
+/* 80297754 00294694  48 00 30 AD */	bl __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 /* 80297758 00294698  7C 75 1B 78 */	mr r21, r3
 lbl_8029775C:
 /* 8029775C 0029469C  38 00 7F 7F */	li r0, 0x7f7f
@@ -1497,12 +1497,12 @@ lbl_8029776C:
 /* 80297770 002946B0  7E 64 9B 78 */	mr r4, r19
 /* 80297774 002946B4  38 14 01 DC */	addi r0, r20, 0x1dc
 /* 80297778 002946B8  7C BD 02 2E */	lhzx r5, r29, r0
-/* 8029777C 002946BC  48 00 34 1D */	bl JASChannel_NS_setMixConfig
+/* 8029777C 002946BC  48 00 34 1D */	bl setMixConfig__10JASChannelFUlUs
 /* 80297780 002946C0  3A 73 00 01 */	addi r19, r19, 1
 /* 80297784 002946C4  28 13 00 06 */	cmplwi r19, 6
 /* 80297788 002946C8  3A 94 00 02 */	addi r20, r20, 2
 /* 8029778C 002946CC  41 80 FF E0 */	blt lbl_8029776C
-/* 80297790 002946D0  48 00 52 59 */	bl JASDriver_NS_getDacRate
+/* 80297790 002946D0  48 00 52 59 */	bl getDacRate__9JASDriverFv
 /* 80297794 002946D4  80 1D 01 64 */	lwz r0, 0x164(r29)
 /* 80297798 002946D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029779C 002946DC  93 41 00 10 */	stw r26, 0x10(r1)
@@ -1513,7 +1513,7 @@ lbl_8029776C:
 /* 802977B0 002946F0  7E A3 AB 78 */	mr r3, r21
 /* 802977B4 002946F4  38 80 00 00 */	li r4, 0
 /* 802977B8 002946F8  7F 65 DB 78 */	mr r5, r27
-/* 802977BC 002946FC  48 00 33 A9 */	bl JASChannel_NS_setOscInit
+/* 802977BC 002946FC  48 00 33 A9 */	bl setOscInit__10JASChannelFUlPCQ213JASOscillator4Data
 /* 802977C0 00294700  9B F5 00 E0 */	stb r31, 0xe0(r21)
 /* 802977C4 00294704  38 00 00 3C */	li r0, 0x3c
 /* 802977C8 00294708  98 15 00 E1 */	stb r0, 0xe1(r21)
@@ -1538,7 +1538,7 @@ lbl_8029776C:
 /* 80297814 00294754  90 15 01 04 */	stw r0, 0x104(r21)
 /* 80297818 00294758  90 B5 00 DC */	stw r5, 0xdc(r21)
 /* 8029781C 0029475C  7E A3 AB 78 */	mr r3, r21
-/* 80297820 00294760  48 00 32 41 */	bl JASChannel_NS_playForce
+/* 80297820 00294760  48 00 32 41 */	bl playForce__10JASChannelFv
 /* 80297824 00294764  38 1C 00 90 */	addi r0, r28, 0x90
 /* 80297828 00294768  7E BD 01 2E */	stwx r21, r29, r0
 /* 8029782C 0029476C  3B DE 00 01 */	addi r30, r30, 1
@@ -1560,8 +1560,8 @@ lbl_80297834:
 /* 80297868 002947A8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8029786C 002947AC  4E 80 00 20 */	blr 
 
-.global JASAramStream_NS_channelStop
-JASAramStream_NS_channelStop:
+.global channelStop__13JASAramStreamFUs
+channelStop__13JASAramStreamFUs:
 /* 80297870 002947B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80297874 002947B4  7C 08 02 A6 */	mflr r0
 /* 80297878 002947B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1578,7 +1578,7 @@ lbl_80297898:
 /* 802978A0 002947E0  28 03 00 00 */	cmplwi r3, 0
 /* 802978A4 002947E4  41 82 00 0C */	beq lbl_802978B0
 /* 802978A8 002947E8  7F A4 EB 78 */	mr r4, r29
-/* 802978AC 002947EC  48 00 32 25 */	bl JASChannel_NS_release
+/* 802978AC 002947EC  48 00 32 25 */	bl release__10JASChannelFUs
 lbl_802978B0:
 /* 802978B0 002947F0  3B DE 00 01 */	addi r30, r30, 1
 /* 802978B4 002947F4  3B FF 00 04 */	addi r31, r31, 4
@@ -1603,7 +1603,7 @@ JASMemPool_MultiThreaded_NS_dtor_X2_:
 /* 802978F4 00294834  7C 9F 23 78 */	mr r31, r4
 /* 802978F8 00294838  41 82 00 1C */	beq lbl_80297914
 /* 802978FC 0029483C  38 80 00 00 */	li r4, 0
-/* 80297900 00294840  4B FF 8F 61 */	bl JASGenericMemPool_NS_dtor
+/* 80297900 00294840  4B FF 8F 61 */	bl __dt__17JASGenericMemPoolFv
 /* 80297904 00294844  7F E0 07 35 */	extsh. r0, r31
 /* 80297908 00294848  40 81 00 0C */	ble lbl_80297914
 /* 8029790C 0029484C  7F C3 F3 78 */	mr r3, r30

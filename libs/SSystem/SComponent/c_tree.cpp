@@ -2,7 +2,6 @@
 #include "SComponent/c_tree.h"
 #include "global.h"
 
-extern "C" {
 int cTr_SingleCut(node_class* pNode) {
     return cLs_SingleCut(pNode);
 }
@@ -28,4 +27,3 @@ void cTr_Create(node_lists_tree_class* pTree, node_list_class* pLists, int numLi
     while (numLists-- > 0)
         cLs_Create(pLists++);
 }
-};

@@ -8,7 +8,7 @@
 /* 8001F2A0 0001C1E0  28 00 00 00 */ cmplwi r0, 0
 /* 8001F2A4 0001C1E4  40 82 00 0C */ bne lbl_8001F2B0
 /* 8001F2A8 0001C1E8  80 64 00 D8 */ lwz r3, 0xd8(r4)
-/* 8001F2AC 0001C1EC  48 00 27 79 */ bl fpcLf_DrawMethod
+/* 8001F2AC 0001C1EC  48 00 27 79 */ bl fpcLf_DrawMethod__FP21leafdraw_method_classPv
 lbl_8001F2B0:
 /* 8001F2B0 0001C1F0  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001F2B4 0001C1F4  7C 08 03 A6 */ mtlr r0

@@ -9,7 +9,7 @@
 /* 800BB0A4 000B7FE4  28 00 00 00 */ cmplwi r0, 0
 /* 800BB0A8 000B7FE8  41 82 01 CC */ beq lbl_800BB274
 /* 800BB0AC 000B7FEC  38 81 00 24 */ addi r4, r1, 0x24
-/* 800BB0B0 000B7FF0  4B FF FF 71 */ bl daAlink_c_NS_getBodyAngleXBasePos
+/* 800BB0B0 000B7FF0  4B FF FF 71 */ bl getBodyAngleXBasePos__9daAlink_cFP4cXyz
 /* 800BB0B4 000B7FF4  38 61 00 0C */ addi r3, r1, 0xc
 /* 800BB0B8 000B7FF8  80 9F 27 EC */ lwz r4, 0x27ec(r31)
 /* 800BB0BC 000B7FFC  38 84 05 38 */ addi r4, r4, 0x538
@@ -23,7 +23,7 @@
 /* 800BB0DC 000B801C  D0 01 00 20 */ stfs f0, 0x20(r1)
 /* 800BB0E0 000B8020  7F E3 FB 78 */ mr r3, r31
 /* 800BB0E4 000B8024  38 81 00 18 */ addi r4, r1, 0x18
-/* 800BB0E8 000B8028  48 02 73 95 */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800BB0E8 000B8028  48 02 73 95 */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800BB0EC 000B802C  C0 21 00 1C */ lfs f1, 0x1c(r1)
 /* 800BB0F0 000B8030  C0 02 93 D4 */ lfs f0, lbl_80452DD4-_SDA2_BASE_(r2)
 /* 800BB0F4 000B8034  EC 01 00 28 */ fsubs f0, f1, f0
@@ -142,7 +142,7 @@ lbl_800BB274:
 /* 800BB274 000B81B4  3B C0 00 00 */ li r30, 0
 lbl_800BB278:
 /* 800BB278 000B81B8  7F E3 FB 78 */ mr r3, r31
-/* 800BB27C 000B81BC  4B FF 68 ED */ bl daAlink_c_NS_checkNotItemSinkLimit
+/* 800BB27C 000B81BC  4B FF 68 ED */ bl checkNotItemSinkLimit__9daAlink_cFv
 /* 800BB280 000B81C0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BB284 000B81C4  41 82 00 10 */ beq lbl_800BB294
 /* 800BB288 000B81C8  7F C0 07 35 */ extsh. r0, r30

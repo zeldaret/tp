@@ -12,7 +12,7 @@
 /* 8001DD48 0001AC88  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8001DD4C 0001AC8C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8001DD50 0001AC90  38 63 0F 38 */ addi r3, r3, 0xf38
-/* 8001DD54 0001AC94  48 05 77 49 */ bl dBgS_NS_RoofChk
+/* 8001DD54 0001AC94  48 05 77 49 */ bl RoofChk__4dBgSFP12dBgS_RoofChk
 /* 8001DD58 0001AC98  D0 2D 87 54 */ stfs f1, lbl_80450CD4-_SDA_BASE_(r13)
 /* 8001DD5C 0001AC9C  C0 42 82 5C */ lfs f2, lbl_80451C5C-_SDA2_BASE_(r2)
 /* 8001DD60 0001ACA0  FC 00 08 18 */ frsp f0, f1

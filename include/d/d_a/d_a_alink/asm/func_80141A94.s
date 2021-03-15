@@ -4,9 +4,9 @@
 /* 80141AA0 0013E9E0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80141AA4 0013E9E4  7C 7F 1B 78 */ mr r31, r3
 /* 80141AA8 0013E9E8  38 7F 07 40 */ addi r3, r31, 0x740
-/* 80141AAC 0013E9EC  48 01 D1 9D */ bl daPy_actorKeep_c_NS_setActor
+/* 80141AAC 0013E9EC  48 01 D1 9D */ bl setActor__16daPy_actorKeep_cFv
 /* 80141AB0 0013E9F0  38 7F 07 48 */ addi r3, r31, 0x748
-/* 80141AB4 0013E9F4  48 01 D1 95 */ bl daPy_actorKeep_c_NS_setActor
+/* 80141AB4 0013E9F4  48 01 D1 95 */ bl setActor__16daPy_actorKeep_cFv
 /* 80141AB8 0013E9F8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80141ABC 0013E9FC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80141AC0 0013EA00  7C 08 03 A6 */ mtlr r0

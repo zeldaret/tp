@@ -194,7 +194,7 @@ lbl_802214E8:
 /* 80221504 0021E444  3B C0 00 01 */ li r30, 1
 lbl_80221508:
 /* 80221508 0021E448  7F 63 DB 78 */ mr r3, r27
-/* 8022150C 0021E44C  48 00 41 D1 */ bl dMeter2_c_NS_isShowLightDrop
+/* 8022150C 0021E44C  48 00 41 D1 */ bl isShowLightDrop__9dMeter2_cFv
 /* 80221510 0021E450  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80221514 0021E454  41 82 00 30 */ beq lbl_80221544
 /* 80221518 0021E458  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -327,7 +327,7 @@ lbl_802216A0:
 /* 802216EC 0021E62C  40 80 00 08 */ bge lbl_802216F4
 /* 802216F0 0021E630  D3 FB 01 44 */ stfs f31, 0x144(r27)
 lbl_802216F4:
-/* 802216F4 0021E634  48 01 6B 39 */ bl dMsgObject_c_NS_getStatus
+/* 802216F4 0021E634  48 01 6B 39 */ bl getStatus__12dMsgObject_cFv
 /* 802216F8 0021E638  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802216FC 0021E63C  20 60 00 01 */ subfic r3, r0, 1
 /* 80221700 0021E640  30 03 FF FF */ addic r0, r3, -1
@@ -336,7 +336,7 @@ lbl_802216F4:
 /* 8022170C 0021E64C  54 00 06 3E */ clrlwi r0, r0, 0x18
 /* 80221710 0021E650  7C 03 00 40 */ cmplw r3, r0
 /* 80221714 0021E654  41 82 00 20 */ beq lbl_80221734
-/* 80221718 0021E658  48 01 6B 15 */ bl dMsgObject_c_NS_getStatus
+/* 80221718 0021E658  48 01 6B 15 */ bl getStatus__12dMsgObject_cFv
 /* 8022171C 0021E65C  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 80221720 0021E660  20 60 00 01 */ subfic r3, r0, 1
 /* 80221724 0021E664  30 03 FF FF */ addic r0, r3, -1
@@ -378,7 +378,7 @@ lbl_80221788:
 /* 802217A8 0021E6E8  C0 9B 01 40 */ lfs f4, 0x140(r27)
 /* 802217AC 0021E6EC  C0 BB 01 44 */ lfs f5, 0x144(r27)
 /* 802217B0 0021E6F0  7F A5 EB 78 */ mr r5, r29
-/* 802217B4 0021E6F4  4B FF 55 F9 */ bl dMeter2Draw_c_NS_drawButtonA
+/* 802217B4 0021E6F4  4B FF 55 F9 */ bl drawButtonA__13dMeter2Draw_cFUcfffffbb
 /* 802217B8 0021E6F8  57 80 06 3F */ clrlwi. r0, r28, 0x18
 /* 802217BC 0021E6FC  41 82 00 10 */ beq lbl_802217CC
 /* 802217C0 0021E700  38 00 00 00 */ li r0, 0

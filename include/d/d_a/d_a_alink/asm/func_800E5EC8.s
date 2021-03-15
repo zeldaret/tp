@@ -7,11 +7,11 @@
 /* 800E5EE0 000E2E20  28 00 00 00 */ cmplwi r0, 0
 /* 800E5EE4 000E2E24  40 82 00 10 */ bne lbl_800E5EF4
 /* 800E5EE8 000E2E28  38 80 00 00 */ li r4, 0
-/* 800E5EEC 000E2E2C  4B FD 41 E5 */ bl daAlink_c_NS_checkNextAction
+/* 800E5EEC 000E2E2C  4B FD 41 E5 */ bl checkNextAction__9daAlink_cFi
 /* 800E5EF0 000E2E30  48 00 00 CC */ b lbl_800E5FBC
 lbl_800E5EF4:
 /* 800E5EF4 000E2E34  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800E5EF8 000E2E38  48 07 85 D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E5EF8 000E2E38  48 07 85 D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E5EFC 000E2E3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E5F00 000E2E40  41 82 00 58 */ beq lbl_800E5F58
 /* 800E5F04 000E2E44  80 1F 31 98 */ lwz r0, 0x3198(r31)
@@ -28,13 +28,13 @@ lbl_800E5EF4:
 /* 800E5F30 000E2E70  D8 01 00 08 */ stfd f0, 8(r1)
 /* 800E5F34 000E2E74  80 A1 00 0C */ lwz r5, 0xc(r1)
 /* 800E5F38 000E2E78  C0 66 00 84 */ lfs f3, 0x84(r6)
-/* 800E5F3C 000E2E7C  4B FC 70 D1 */ bl daAlink_c_NS_setSingleAnime
+/* 800E5F3C 000E2E7C  4B FC 70 D1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800E5F40 000E2E80  38 00 00 00 */ li r0, 0
 /* 800E5F44 000E2E84  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 800E5F48 000E2E88  48 00 00 70 */ b lbl_800E5FB8
 lbl_800E5F4C:
 /* 800E5F4C 000E2E8C  7F E3 FB 78 */ mr r3, r31
-/* 800E5F50 000E2E90  48 00 00 81 */ bl daAlink_c_NS_procGrabUpInit
+/* 800E5F50 000E2E90  48 00 00 81 */ bl procGrabUpInit__9daAlink_cFv
 /* 800E5F54 000E2E94  48 00 00 64 */ b lbl_800E5FB8
 lbl_800E5F58:
 /* 800E5F58 000E2E98  A8 1F 30 0E */ lha r0, 0x300e(r31)
@@ -49,7 +49,7 @@ lbl_800E5F58:
 /* 800E5F7C 000E2EBC  EC 01 00 28 */ fsubs f0, f1, f0
 /* 800E5F80 000E2EC0  EC 22 00 32 */ fmuls f1, f2, f0
 /* 800E5F84 000E2EC4  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800E5F88 000E2EC8  4B FF F0 21 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E5F88 000E2EC8  4B FF F0 21 */ bl setCarryArmAngle__9daAlink_cFff
 /* 800E5F8C 000E2ECC  48 00 00 2C */ b lbl_800E5FB8
 lbl_800E5F90:
 /* 800E5F90 000E2ED0  7F E3 FB 78 */ mr r3, r31
@@ -61,7 +61,7 @@ lbl_800E5F90:
 /* 800E5FA8 000E2EE8  C0 04 00 08 */ lfs f0, 8(r4)
 /* 800E5FAC 000E2EEC  EC 02 00 28 */ fsubs f0, f2, f0
 /* 800E5FB0 000E2EF0  EC 43 00 32 */ fmuls f2, f3, f0
-/* 800E5FB4 000E2EF4  4B FF EF F5 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E5FB4 000E2EF4  4B FF EF F5 */ bl setCarryArmAngle__9daAlink_cFff
 lbl_800E5FB8:
 /* 800E5FB8 000E2EF8  38 60 00 01 */ li r3, 1
 lbl_800E5FBC:

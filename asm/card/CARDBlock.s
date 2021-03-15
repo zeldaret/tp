@@ -7,7 +7,6 @@
 __CARDGetFatBlock:
 /* 80355414 00352354  80 63 00 88 */	lwz r3, 0x88(r3)
 /* 80355418 00352358  4E 80 00 20 */	blr 
-.global WriteCallback
 WriteCallback:
 /* 8035541C 0035235C  7C 08 02 A6 */	mflr r0
 /* 80355420 00352360  90 01 00 04 */	stw r0, 4(r1)
@@ -66,7 +65,6 @@ lbl_803554D4:
 /* 803554E4 00352424  38 21 00 20 */	addi r1, r1, 0x20
 /* 803554E8 00352428  7C 08 03 A6 */	mtlr r0
 /* 803554EC 0035242C  4E 80 00 20 */	blr 
-.global EraseCallback
 EraseCallback:
 /* 803554F0 00352430  7C 08 02 A6 */	mflr r0
 /* 803554F4 00352434  90 01 00 04 */	stw r0, 4(r1)
@@ -82,10 +80,8 @@ EraseCallback:
 /* 8035551C 0035245C  7F C0 2A 14 */	add r30, r0, r5
 /* 80355520 00352460  41 80 00 3C */	blt lbl_8035555C
 /* 80355524 00352464  80 BE 00 88 */	lwz r5, 0x88(r30)
-.global WriteCallback
 /* 80355528 00352468  3C 60 80 35 */	lis r3, WriteCallback@ha
 /* 8035552C 0035246C  80 1E 00 80 */	lwz r0, 0x80(r30)
-.global WriteCallback
 /* 80355530 00352470  38 E3 54 1C */	addi r7, r3, WriteCallback@l
 /* 80355534 00352474  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80355538 00352478  7C 00 28 50 */	subf r0, r0, r5
@@ -235,9 +231,7 @@ __CARDUpdateFatBlock:
 /* 8035572C 0035266C  38 80 20 00 */	li r4, 0x2000
 /* 80355730 00352670  4B FE 5E AD */	bl DCStoreRange
 /* 80355734 00352674  93 DF 00 D8 */	stw r30, 0xd8(r31)
-.global EraseCallback
 /* 80355738 00352678  3C 60 80 35 */	lis r3, EraseCallback@ha
-.global EraseCallback
 /* 8035573C 0035267C  38 A3 54 F0 */	addi r5, r3, EraseCallback@l
 /* 80355740 00352680  80 1F 00 80 */	lwz r0, 0x80(r31)
 /* 80355744 00352684  7F 83 E3 78 */	mr r3, r28

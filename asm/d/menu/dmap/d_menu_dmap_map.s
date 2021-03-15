@@ -6,7 +6,7 @@
 /* 801C084C 001BD78C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0850 001BD790  7C 08 02 A6 */	mflr r0
 /* 801C0854 001BD794  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801C0858 001BD798  4B E7 E4 81 */	bl dMapInfo_n_NS_chkGetMap
+/* 801C0858 001BD798  4B E7 E4 81 */	bl chkGetMap__10dMapInfo_nFv
 /* 801C085C 001BD79C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C0860 001BD7A0  7C 08 03 A6 */	mtlr r0
 /* 801C0864 001BD7A4  38 21 00 10 */	addi r1, r1, 0x10
@@ -21,11 +21,11 @@
 /* 801C0888 001BD7C8  7C D9 33 78 */	mr r25, r6
 /* 801C088C 001BD7CC  3B E0 00 00 */	li r31, 0
 /* 801C0890 001BD7D0  88 64 00 11 */	lbz r3, 0x11(r4)
-/* 801C0894 001BD7D4  4B ED BC 1D */	bl dTres_c_NS_getTypeToTypeGroupNo
+/* 801C0894 001BD7D4  4B ED BC 1D */	bl getTypeToTypeGroupNo__7dTres_cFUc
 /* 801C0898 001BD7D8  54 7C 06 3E */	clrlwi r28, r3, 0x18
 /* 801C089C 001BD7DC  3B 60 00 00 */	li r27, 0
-/* 801C08A0 001BD7E0  4B E7 E4 39 */	bl dMapInfo_n_NS_chkGetMap
-/* 801C08A4 001BD7E4  4B E7 E3 FD */	bl dMapInfo_n_NS_chkGetCompass
+/* 801C08A0 001BD7E0  4B E7 E4 39 */	bl chkGetMap__10dMapInfo_nFv
+/* 801C08A4 001BD7E4  4B E7 E3 FD */	bl chkGetCompass__10dMapInfo_nFv
 /* 801C08A8 001BD7E8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C08AC 001BD7EC  41 82 00 08 */	beq lbl_801C08B4
 /* 801C08B0 001BD7F0  3B 60 00 01 */	li r27, 1
@@ -205,8 +205,8 @@ lbl_801C0B24:
 /* 801C0B40 001BDA80  C0 22 A6 60 */	lfs f1, lbl_80454060-_SDA2_BASE_(r2)
 /* 801C0B44 001BDA84  4E 80 00 20 */	blr 
 
-.global renderingDmap_c_NS_getLineWidthZoomBig
-renderingDmap_c_NS_getLineWidthZoomBig:
+.global getLineWidthZoomBig__15renderingDmap_cFi
+getLineWidthZoomBig__15renderingDmap_cFi:
 /* 801C0B48 001BDA88  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0B4C 001BDA8C  7C 08 02 A6 */	mflr r0
 /* 801C0B50 001BDA90  90 01 00 14 */	stw r0, 0x14(r1)
@@ -222,7 +222,7 @@ renderingDmap_c_NS_getLineWidthZoomBig:
 /* 801C0B78 001BDAB8  48 00 00 18 */	b lbl_801C0B90
 lbl_801C0B7C:
 /* 801C0B7C 001BDABC  7C 83 23 78 */	mr r3, r4
-/* 801C0B80 001BDAC0  4B E7 E1 91 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 801C0B80 001BDAC0  4B E7 E1 91 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 801C0B84 001BDAC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C0B88 001BDAC8  41 82 00 08 */	beq lbl_801C0B90
 /* 801C0B8C 001BDACC  3B E2 A6 6C */	addi r31, r2, lbl_8045406C-_SDA2_BASE_
@@ -235,8 +235,8 @@ lbl_801C0B90:
 /* 801C0BA4 001BDAE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0BA8 001BDAE8  4E 80 00 20 */	blr 
 
-.global renderingDmap_c_NS_getLineWidthZoomSmall
-renderingDmap_c_NS_getLineWidthZoomSmall:
+.global getLineWidthZoomSmall__15renderingDmap_cFi
+getLineWidthZoomSmall__15renderingDmap_cFi:
 /* 801C0BAC 001BDAEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0BB0 001BDAF0  7C 08 02 A6 */	mflr r0
 /* 801C0BB4 001BDAF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -252,7 +252,7 @@ renderingDmap_c_NS_getLineWidthZoomSmall:
 /* 801C0BDC 001BDB1C  48 00 00 18 */	b lbl_801C0BF4
 lbl_801C0BE0:
 /* 801C0BE0 001BDB20  7C 83 23 78 */	mr r3, r4
-/* 801C0BE4 001BDB24  4B E7 E1 2D */	bl dMapInfo_n_NS_isVisitedRoom
+/* 801C0BE4 001BDB24  4B E7 E1 2D */	bl isVisitedRoom__10dMapInfo_nFi
 /* 801C0BE8 001BDB28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C0BEC 001BDB2C  41 82 00 08 */	beq lbl_801C0BF4
 /* 801C0BF0 001BDB30  3B E2 A6 84 */	addi r31, r2, lbl_80454084-_SDA2_BASE_
@@ -271,10 +271,10 @@ lbl_801C0BF4:
 /* 801C0C20 001BDB60  C0 02 A6 94 */	lfs f0, lbl_80454094-_SDA2_BASE_(r2)
 /* 801C0C24 001BDB64  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801C0C28 001BDB68  40 81 00 0C */	ble lbl_801C0C34
-/* 801C0C2C 001BDB6C  4B FF FF 1D */	bl renderingDmap_c_NS_getLineWidthZoomBig
+/* 801C0C2C 001BDB6C  4B FF FF 1D */	bl getLineWidthZoomBig__15renderingDmap_cFi
 /* 801C0C30 001BDB70  48 00 00 08 */	b lbl_801C0C38
 lbl_801C0C34:
-/* 801C0C34 001BDB74  4B FF FF 79 */	bl renderingDmap_c_NS_getLineWidthZoomSmall
+/* 801C0C34 001BDB74  4B FF FF 79 */	bl getLineWidthZoomSmall__15renderingDmap_cFi
 lbl_801C0C38:
 /* 801C0C38 001BDB78  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C0C3C 001BDB7C  7C 08 03 A6 */	mtlr r0
@@ -297,7 +297,7 @@ lbl_801C0C38:
 /* 801C0C80 001BDBC0  48 00 00 18 */	b lbl_801C0C98
 lbl_801C0C84:
 /* 801C0C84 001BDBC4  7C 83 23 78 */	mr r3, r4
-/* 801C0C88 001BDBC8  4B E7 E0 89 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 801C0C88 001BDBC8  4B E7 E0 89 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 801C0C8C 001BDBCC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C0C90 001BDBD0  41 82 00 08 */	beq lbl_801C0C98
 /* 801C0C94 001BDBD4  3B DF 01 14 */	addi r30, r31, 0x114
@@ -313,28 +313,28 @@ lbl_801C0C98:
 /* 801C0CB8 001BDBF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0CBC 001BDBFC  7C 08 02 A6 */	mflr r0
 /* 801C0CC0 001BDC00  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801C0CC4 001BDC04  4B E7 F8 55 */	bl renderingPlusDoor_c_NS_afterDrawPath
+/* 801C0CC4 001BDC04  4B E7 F8 55 */	bl afterDrawPath__19renderingPlusDoor_cFv
 /* 801C0CC8 001BDC08  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C0CCC 001BDC0C  7C 08 03 A6 */	mtlr r0
 /* 801C0CD0 001BDC10  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0CD4 001BDC14  4E 80 00 20 */	blr 
 
-.global dMenu_DmapMap_c_NS__create
-dMenu_DmapMap_c_NS__create:
+.global _create__15dMenu_DmapMap_cFUsUsUsUsPv
+_create__15dMenu_DmapMap_cFUsUsUsUsPv:
 /* 801C0CD8 001BDC18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0CDC 001BDC1C  7C 08 02 A6 */	mflr r0
 /* 801C0CE0 001BDC20  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801C0CE4 001BDC24  91 0D 8B 08 */	stw r8, lbl_80451088-_SDA_BASE_(r13)
 /* 801C0CE8 001BDC28  38 00 00 78 */	li r0, 0x78
 /* 801C0CEC 001BDC2C  90 03 00 84 */	stw r0, 0x84(r3)
-/* 801C0CF0 001BDC30  48 00 00 81 */	bl dMenu_DmapMap_c_NS_setTexture
+/* 801C0CF0 001BDC30  48 00 00 81 */	bl setTexture__15dMenu_DmapMap_cFUsUsUsUs
 /* 801C0CF4 001BDC34  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C0CF8 001BDC38  7C 08 03 A6 */	mtlr r0
 /* 801C0CFC 001BDC3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0D00 001BDC40  4E 80 00 20 */	blr 
 
-.global dMenu_DmapMap_c_NS__delete
-dMenu_DmapMap_c_NS__delete:
+.global _delete__15dMenu_DmapMap_cFv
+_delete__15dMenu_DmapMap_cFv:
 /* 801C0D04 001BDC44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C0D08 001BDC48  7C 08 02 A6 */	mflr r0
 /* 801C0D0C 001BDC4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -366,8 +366,8 @@ lbl_801C0D48:
 /* 801C0D68 001BDCA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C0D6C 001BDCAC  4E 80 00 20 */	blr 
 
-.global dMenu_DmapMap_c_NS_setTexture
-dMenu_DmapMap_c_NS_setTexture:
+.global setTexture__15dMenu_DmapMap_cFUsUsUsUs
+setTexture__15dMenu_DmapMap_cFUsUsUsUs:
 /* 801C0D70 001BDCB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C0D74 001BDCB4  7C 08 02 A6 */	mflr r0
 /* 801C0D78 001BDCB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -400,7 +400,7 @@ lbl_801C0DA4:
 /* 801C0DE0 001BDD20  7F 06 C3 78 */	mr r6, r24
 /* 801C0DE4 001BDD24  7F 27 CB 78 */	mr r7, r25
 /* 801C0DE8 001BDD28  7F 48 D3 78 */	mr r8, r26
-/* 801C0DEC 001BDD2C  4B E7 EE DD */	bl renderingDAmap_c_NS_init
+/* 801C0DEC 001BDD2C  4B E7 EE DD */	bl init__16renderingDAmap_cFPUcUsUsUsUs
 /* 801C0DF0 001BDD30  38 60 00 20 */	li r3, 0x20
 /* 801C0DF4 001BDD34  38 80 00 20 */	li r4, 0x20
 /* 801C0DF8 001BDD38  48 10 DE 7D */	bl __nw__FUli
@@ -412,7 +412,7 @@ lbl_801C0DA4:
 /* 801C0E10 001BDD50  80 FD 00 7C */	lwz r7, 0x7c(r29)
 /* 801C0E14 001BDD54  81 0D 8B 08 */	lwz r8, lbl_80451088-_SDA_BASE_(r13)
 /* 801C0E18 001BDD58  39 20 00 1E */	li r9, 0x1e
-/* 801C0E1C 001BDD5C  4B E7 BF 1D */	bl dRenderingMap_c_NS_makeResTIMG
+/* 801C0E1C 001BDD5C  4B E7 BF 1D */	bl makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs
 /* 801C0E20 001BDD60  3B 7B 00 01 */	addi r27, r27, 1
 /* 801C0E24 001BDD64  2C 1B 00 02 */	cmpwi r27, 2
 /* 801C0E28 001BDD68  3B FF 00 38 */	addi r31, r31, 0x38
@@ -425,8 +425,8 @@ lbl_801C0DA4:
 /* 801C0E44 001BDD84  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C0E48 001BDD88  4E 80 00 20 */	blr 
 
-.global dMenu_DmapMap_c_NS_setPos
-dMenu_DmapMap_c_NS_setPos:
+.global setPos__15dMenu_DmapMap_cFiifffbf
+setPos__15dMenu_DmapMap_cFiifffbf:
 /* 801C0E4C 001BDD8C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C0E50 001BDD90  7C 08 02 A6 */	mflr r0
 /* 801C0E54 001BDD94  90 01 00 34 */	stw r0, 0x34(r1)
@@ -446,7 +446,7 @@ dMenu_DmapMap_c_NS_setPos:
 /* 801C0E8C 001BDDCC  D3 E3 00 38 */	stfs f31, 0x38(r3)
 /* 801C0E90 001BDDD0  38 7E 00 04 */	addi r3, r30, 4
 /* 801C0E94 001BDDD4  7C C5 07 74 */	extsb r5, r6
-/* 801C0E98 001BDDD8  4B E7 EE 71 */	bl renderingDAmap_c_NS_entry
+/* 801C0E98 001BDDD8  4B E7 EE 71 */	bl entry__16renderingDAmap_cFfffiSc
 /* 801C0E9C 001BDDDC  88 0D 87 E4 */	lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 801C0EA0 001BDDE0  7C 04 07 74 */	extsb r4, r0
 /* 801C0EA4 001BDDE4  D3 FE 00 70 */	stfs f31, 0x70(r30)
@@ -455,7 +455,7 @@ dMenu_DmapMap_c_NS_setPos:
 /* 801C0EB0 001BDDF0  FC 40 E8 90 */	fmr f2, f29
 /* 801C0EB4 001BDDF4  FC 60 F0 90 */	fmr f3, f30
 /* 801C0EB8 001BDDF8  7F E5 07 74 */	extsb r5, r31
-/* 801C0EBC 001BDDFC  4B E7 EE 4D */	bl renderingDAmap_c_NS_entry
+/* 801C0EBC 001BDDFC  4B E7 EE 4D */	bl entry__16renderingDAmap_cFfffiSc
 /* 801C0EC0 001BDE00  39 61 00 30 */	addi r11, r1, 0x30
 /* 801C0EC4 001BDE04  48 1A 12 C9 */	bl _restfpr_28
 /* 801C0EC8 001BDE08  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -465,8 +465,8 @@ dMenu_DmapMap_c_NS_setPos:
 /* 801C0ED8 001BDE18  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C0EDC 001BDE1C  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getMapBlendPer
-dMenu_StageMapCtrl_c_NS_getMapBlendPer:
+.global getMapBlendPer__20dMenu_StageMapCtrl_cCFv
+getMapBlendPer__20dMenu_StageMapCtrl_cCFv:
 /* 801C0EE0 001BDE20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0EE4 001BDE24  7C 08 02 A6 */	mflr r0
 /* 801C0EE8 001BDE28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -487,8 +487,8 @@ lbl_801C0F14:
 /* 801C0F1C 001BDE5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0F20 001BDE60  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPixelStageSizeX
-dMenu_StageMapCtrl_c_NS_getPixelStageSizeX:
+.global getPixelStageSizeX__20dMenu_StageMapCtrl_cCFv
+getPixelStageSizeX__20dMenu_StageMapCtrl_cCFv:
 /* 801C0F24 001BDE64  C0 4D 89 00 */	lfs f2, lbl_80450E80-_SDA_BASE_(r13)
 /* 801C0F28 001BDE68  C0 22 A6 98 */	lfs f1, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C0F2C 001BDE6C  C0 03 00 BC */	lfs f0, 0xbc(r3)
@@ -496,8 +496,8 @@ dMenu_StageMapCtrl_c_NS_getPixelStageSizeX:
 /* 801C0F34 001BDE74  EC 22 00 32 */	fmuls f1, f2, f0
 /* 801C0F38 001BDE78  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPixelStageSizeZ
-dMenu_StageMapCtrl_c_NS_getPixelStageSizeZ:
+.global getPixelStageSizeZ__20dMenu_StageMapCtrl_cCFv
+getPixelStageSizeZ__20dMenu_StageMapCtrl_cCFv:
 /* 801C0F3C 001BDE7C  C0 4D 89 04 */	lfs f2, lbl_80450E84-_SDA_BASE_(r13)
 /* 801C0F40 001BDE80  C0 22 A6 98 */	lfs f1, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C0F44 001BDE84  C0 03 00 BC */	lfs f0, 0xbc(r3)
@@ -505,8 +505,8 @@ dMenu_StageMapCtrl_c_NS_getPixelStageSizeZ:
 /* 801C0F4C 001BDE8C  EC 22 00 32 */	fmuls f1, f2, f0
 /* 801C0F50 001BDE90  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPixelCenterX
-dMenu_StageMapCtrl_c_NS_getPixelCenterX:
+.global getPixelCenterX__20dMenu_StageMapCtrl_cCFv
+getPixelCenterX__20dMenu_StageMapCtrl_cCFv:
 /* 801C0F54 001BDE94  C0 22 A6 98 */	lfs f1, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C0F58 001BDE98  C0 03 00 BC */	lfs f0, 0xbc(r3)
 /* 801C0F5C 001BDE9C  EC 41 00 24 */	fdivs f2, f1, f0
@@ -516,8 +516,8 @@ dMenu_StageMapCtrl_c_NS_getPixelCenterX:
 /* 801C0F6C 001BDEAC  EC 22 00 32 */	fmuls f1, f2, f0
 /* 801C0F70 001BDEB0  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPixelCenterZ
-dMenu_StageMapCtrl_c_NS_getPixelCenterZ:
+.global getPixelCenterZ__20dMenu_StageMapCtrl_cCFv
+getPixelCenterZ__20dMenu_StageMapCtrl_cCFv:
 /* 801C0F74 001BDEB4  C0 22 A6 98 */	lfs f1, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C0F78 001BDEB8  C0 03 00 BC */	lfs f0, 0xbc(r3)
 /* 801C0F7C 001BDEBC  EC 41 00 24 */	fdivs f2, f1, f0
@@ -527,8 +527,8 @@ dMenu_StageMapCtrl_c_NS_getPixelCenterZ:
 /* 801C0F8C 001BDECC  EC 22 00 32 */	fmuls f1, f2, f0
 /* 801C0F90 001BDED0  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initGetTreasureList
-dMenu_StageMapCtrl_c_NS_initGetTreasureList:
+.global initGetTreasureList__20dMenu_StageMapCtrl_cFUcSc
+initGetTreasureList__20dMenu_StageMapCtrl_cFUcSc:
 /* 801C0F94 001BDED4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C0F98 001BDED8  7C 08 02 A6 */	mflr r0
 /* 801C0F9C 001BDEDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -539,7 +539,7 @@ dMenu_StageMapCtrl_c_NS_initGetTreasureList:
 /* 801C0FB0 001BDEF0  9B E3 00 F6 */	stb r31, 0xf6(r3)
 /* 801C0FB4 001BDEF4  98 A3 00 F7 */	stb r5, 0xf7(r3)
 /* 801C0FB8 001BDEF8  7F E3 FB 78 */	mr r3, r31
-/* 801C0FBC 001BDEFC  4B ED B3 A5 */	bl dTres_c_NS_getFirstData
+/* 801C0FBC 001BDEFC  4B ED B3 A5 */	bl getFirstData__7dTres_cFUc
 /* 801C0FC0 001BDF00  90 7E 00 8C */	stw r3, 0x8c(r30)
 /* 801C0FC4 001BDF04  3C 60 80 42 */	lis r3, lbl_80425438@ha
 /* 801C0FC8 001BDF08  38 63 54 38 */	addi r3, r3, lbl_80425438@l
@@ -555,8 +555,8 @@ dMenu_StageMapCtrl_c_NS_initGetTreasureList:
 /* 801C0FF0 001BDF30  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0FF4 001BDF34  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getTreasureList
-dMenu_StageMapCtrl_c_NS_getTreasureList:
+.global getTreasureList__20dMenu_StageMapCtrl_cFPfPfPScPUcPSc
+getTreasureList__20dMenu_StageMapCtrl_cFPfPfPScPUcPSc:
 /* 801C0FF8 001BDF38  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801C0FFC 001BDF3C  7C 08 02 A6 */	mflr r0
 /* 801C1000 001BDF40  90 01 00 44 */	stw r0, 0x44(r1)
@@ -597,7 +597,7 @@ lbl_801C102C:
 /* 801C1088 001BDFC8  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 801C108C 001BDFCC  7F 64 DB 78 */	mr r4, r27
 /* 801C1090 001BDFD0  7F 85 E3 78 */	mr r5, r28
-/* 801C1094 001BDFD4  48 00 00 95 */	bl dMenu_StageMapCtrl_c_NS_cnvPosTo2Dpos
+/* 801C1094 001BDFD4  48 00 00 95 */	bl cnvPosTo2Dpos__20dMenu_StageMapCtrl_cCFffPfPf
 /* 801C1098 001BDFD8  28 1D 00 00 */	cmplwi r29, 0
 /* 801C109C 001BDFDC  41 82 00 18 */	beq lbl_801C10B4
 /* 801C10A0 001BDFE0  80 7A 00 8C */	lwz r3, 0x8c(r26)
@@ -621,7 +621,7 @@ lbl_801C10DC:
 /* 801C10DC 001BE01C  3B 20 00 01 */	li r25, 1
 lbl_801C10E0:
 /* 801C10E0 001BE020  80 7A 00 8C */	lwz r3, 0x8c(r26)
-/* 801C10E4 001BE024  4B ED B2 B9 */	bl dTres_c_NS_getNextData
+/* 801C10E4 001BE024  4B ED B2 B9 */	bl getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c
 /* 801C10E8 001BE028  90 7A 00 8C */	stw r3, 0x8c(r26)
 /* 801C10EC 001BE02C  A0 7A 00 E4 */	lhz r3, 0xe4(r26)
 /* 801C10F0 001BE030  38 03 FF FF */	addi r0, r3, -1
@@ -641,8 +641,8 @@ lbl_801C110C:
 /* 801C1120 001BE060  38 21 00 40 */	addi r1, r1, 0x40
 /* 801C1124 001BE064  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_cnvPosTo2Dpos
-dMenu_StageMapCtrl_c_NS_cnvPosTo2Dpos:
+.global cnvPosTo2Dpos__20dMenu_StageMapCtrl_cCFffPfPf
+cnvPosTo2Dpos__20dMenu_StageMapCtrl_cCFffPfPf:
 /* 801C1128 001BE068  28 04 00 00 */	cmplwi r4, 0
 /* 801C112C 001BE06C  41 82 00 30 */	beq lbl_801C115C
 /* 801C1130 001BE070  C0 62 A6 98 */	lfs f3, lbl_80454098-_SDA2_BASE_(r2)
@@ -672,8 +672,8 @@ lbl_801C115C:
 /* 801C118C 001BE0CC  D0 05 00 00 */	stfs f0, 0(r5)
 /* 801C1190 001BE0D0  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPlayerDrawInfo
-dMenu_StageMapCtrl_c_NS_getPlayerDrawInfo:
+.global getPlayerDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs
+getPlayerDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs:
 /* 801C1194 001BE0D4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C1198 001BE0D8  7C 08 02 A6 */	mflr r0
 /* 801C119C 001BE0DC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -684,7 +684,7 @@ dMenu_StageMapCtrl_c_NS_getPlayerDrawInfo:
 /* 801C11B0 001BE0F0  7C BE 2B 78 */	mr r30, r5
 /* 801C11B4 001BE0F4  7C DF 33 78 */	mr r31, r6
 /* 801C11B8 001BE0F8  38 61 00 08 */	addi r3, r1, 8
-/* 801C11BC 001BE0FC  4B E7 DC A1 */	bl dMapInfo_n_NS_getMapPlayerPos
+/* 801C11BC 001BE0FC  4B E7 DC A1 */	bl getMapPlayerPos__10dMapInfo_nFv
 /* 801C11C0 001BE100  80 61 00 08 */	lwz r3, 8(r1)
 /* 801C11C4 001BE104  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 801C11C8 001BE108  90 61 00 14 */	stw r3, 0x14(r1)
@@ -696,10 +696,10 @@ dMenu_StageMapCtrl_c_NS_getPlayerDrawInfo:
 /* 801C11E0 001BE120  C0 41 00 1C */	lfs f2, 0x1c(r1)
 /* 801C11E4 001BE124  7F A4 EB 78 */	mr r4, r29
 /* 801C11E8 001BE128  7F C5 F3 78 */	mr r5, r30
-/* 801C11EC 001BE12C  4B FF FF 3D */	bl dMenu_StageMapCtrl_c_NS_cnvPosTo2Dpos
+/* 801C11EC 001BE12C  4B FF FF 3D */	bl cnvPosTo2Dpos__20dMenu_StageMapCtrl_cCFffPfPf
 /* 801C11F0 001BE130  28 1F 00 00 */	cmplwi r31, 0
 /* 801C11F4 001BE134  41 82 00 0C */	beq lbl_801C1200
-/* 801C11F8 001BE138  4B E7 DD 29 */	bl dMapInfo_n_NS_getMapPlayerAngleY
+/* 801C11F8 001BE138  4B E7 DD 29 */	bl getMapPlayerAngleY__10dMapInfo_nFv
 /* 801C11FC 001BE13C  B0 7F 00 00 */	sth r3, 0(r31)
 lbl_801C1200:
 /* 801C1200 001BE140  39 61 00 30 */	addi r11, r1, 0x30
@@ -709,8 +709,8 @@ lbl_801C1200:
 /* 801C1210 001BE150  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C1214 001BE154  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getRestartDrawInfo
-dMenu_StageMapCtrl_c_NS_getRestartDrawInfo:
+.global getRestartDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs
+getRestartDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs:
 /* 801C1218 001BE158  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C121C 001BE15C  7C 08 02 A6 */	mflr r0
 /* 801C1220 001BE160  90 01 00 34 */	stw r0, 0x34(r1)
@@ -721,7 +721,7 @@ dMenu_StageMapCtrl_c_NS_getRestartDrawInfo:
 /* 801C1234 001BE174  7C BE 2B 78 */	mr r30, r5
 /* 801C1238 001BE178  7C DF 33 78 */	mr r31, r6
 /* 801C123C 001BE17C  38 61 00 08 */	addi r3, r1, 8
-/* 801C1240 001BE180  4B E7 DD ED */	bl dMapInfo_n_NS_getMapRestartPos
+/* 801C1240 001BE180  4B E7 DD ED */	bl getMapRestartPos__10dMapInfo_nFv
 /* 801C1244 001BE184  80 61 00 08 */	lwz r3, 8(r1)
 /* 801C1248 001BE188  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 801C124C 001BE18C  90 61 00 14 */	stw r3, 0x14(r1)
@@ -733,15 +733,15 @@ dMenu_StageMapCtrl_c_NS_getRestartDrawInfo:
 /* 801C1264 001BE1A4  C0 41 00 1C */	lfs f2, 0x1c(r1)
 /* 801C1268 001BE1A8  7F A4 EB 78 */	mr r4, r29
 /* 801C126C 001BE1AC  7F C5 F3 78 */	mr r5, r30
-/* 801C1270 001BE1B0  4B FF FE B9 */	bl dMenu_StageMapCtrl_c_NS_cnvPosTo2Dpos
-/* 801C1274 001BE1B4  4B E7 DE 85 */	bl dMapInfo_n_NS_getMapRestartAngleY
+/* 801C1270 001BE1B0  4B FF FE B9 */	bl cnvPosTo2Dpos__20dMenu_StageMapCtrl_cCFffPfPf
+/* 801C1274 001BE1B4  4B E7 DE 85 */	bl getMapRestartAngleY__10dMapInfo_nFv
 /* 801C1278 001BE1B8  28 1F 00 00 */	cmplwi r31, 0
 /* 801C127C 001BE1BC  41 82 00 08 */	beq lbl_801C1284
 /* 801C1280 001BE1C0  B0 7F 00 00 */	sth r3, 0(r31)
 lbl_801C1284:
 /* 801C1284 001BE1C4  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 801C1288 001BE1C8  38 60 00 01 */	li r3, 1
-/* 801C128C 001BE1CC  4B E7 E2 E5 */	bl dMapInfo_c_NS_calcNowStayFloorNo
+/* 801C128C 001BE1CC  4B E7 E2 E5 */	bl calcNowStayFloorNo__10dMapInfo_cFfb
 /* 801C1290 001BE1D0  39 61 00 30 */	addi r11, r1, 0x30
 /* 801C1294 001BE1D4  48 1A 0F 91 */	bl _restgpr_28
 /* 801C1298 001BE1D8  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -749,14 +749,14 @@ lbl_801C1284:
 /* 801C12A0 001BE1E0  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C12A4 001BE1E4  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_setPlusNowStayFloorNo
-dMenu_StageMapCtrl_c_NS_setPlusNowStayFloorNo:
+.global setPlusNowStayFloorNo__20dMenu_StageMapCtrl_cFScUc
+setPlusNowStayFloorNo__20dMenu_StageMapCtrl_cFScUc:
 /* 801C12A8 001BE1E8  98 83 00 EA */	stb r4, 0xea(r3)
 /* 801C12AC 001BE1EC  98 A3 00 F0 */	stb r5, 0xf0(r3)
 /* 801C12B0 001BE1F0  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_moveFloor
-dMenu_StageMapCtrl_c_NS_moveFloor:
+.global moveFloor__20dMenu_StageMapCtrl_cFv
+moveFloor__20dMenu_StageMapCtrl_cFv:
 /* 801C12B4 001BE1F4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 801C12B8 001BE1F8  7C 08 02 A6 */	mflr r0
 /* 801C12BC 001BE1FC  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1149,7 +1149,7 @@ lbl_801C185C:
 /* 801C188C 001BE7CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C1890 001BE7D0  7C 08 02 A6 */	mflr r0
 /* 801C1894 001BE7D4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801C1898 001BE7D8  4B FF FA 1D */	bl dMenu_StageMapCtrl_c_NS_moveFloor
+/* 801C1898 001BE7D8  4B FF FA 1D */	bl moveFloor__20dMenu_StageMapCtrl_cFv
 /* 801C189C 001BE7DC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C18A0 001BE7E0  7C 08 03 A6 */	mtlr r0
 /* 801C18A4 001BE7E4  38 21 00 10 */	addi r1, r1, 0x10
@@ -1209,14 +1209,14 @@ lbl_801C1968:
 /* 801C1974 001BE8B4  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 801C1978 001BE8B8  28 00 00 00 */	cmplwi r0, 0
 /* 801C197C 001BE8BC  41 82 00 94 */	beq lbl_801C1A10
-/* 801C1980 001BE8C0  4B E7 D3 59 */	bl dMapInfo_n_NS_chkGetMap
+/* 801C1980 001BE8C0  4B E7 D3 59 */	bl chkGetMap__10dMapInfo_nFv
 /* 801C1984 001BE8C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C1988 001BE8C8  40 82 00 30 */	bne lbl_801C19B8
-/* 801C198C 001BE8CC  4B E7 D3 15 */	bl dMapInfo_n_NS_chkGetCompass
+/* 801C198C 001BE8CC  4B E7 D3 15 */	bl chkGetCompass__10dMapInfo_nFv
 /* 801C1990 001BE8D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C1994 001BE8D4  40 82 00 24 */	bne lbl_801C19B8
 /* 801C1998 001BE8D8  7F E3 FB 78 */	mr r3, r31
-/* 801C199C 001BE8DC  4B E7 D3 75 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 801C199C 001BE8DC  4B E7 D3 75 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 801C19A0 001BE8E0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801C19A4 001BE8E4  40 82 00 14 */	bne lbl_801C19B8
 /* 801C19A8 001BE8E8  88 18 00 E6 */	lbz r0, 0xe6(r24)
@@ -1229,7 +1229,7 @@ lbl_801C19B8:
 /* 801C19C0 001BE900  38 A1 00 0C */	addi r5, r1, 0xc
 /* 801C19C4 001BE904  38 C1 00 10 */	addi r6, r1, 0x10
 /* 801C19C8 001BE908  38 E1 00 08 */	addi r7, r1, 8
-/* 801C19CC 001BE90C  4B E7 D8 29 */	bl dMapInfo_n_NS_getRoomMinMaxXZ
+/* 801C19CC 001BE90C  4B E7 D8 29 */	bl getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf
 /* 801C19D0 001BE910  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 801C19D4 001BE914  FC 00 F8 40 */	fcmpo cr0, f0, f31
 /* 801C19D8 001BE918  40 80 00 08 */	bge lbl_801C19E0
@@ -1346,7 +1346,7 @@ lbl_801C1ADC:
 /* 801C1B5C 001BEA9C  41 82 00 10 */	beq lbl_801C1B6C
 /* 801C1B60 001BEAA0  38 81 00 0C */	addi r4, r1, 0xc
 /* 801C1B64 001BEAA4  38 A1 00 08 */	addi r5, r1, 8
-/* 801C1B68 001BEAA8  4B E7 D6 35 */	bl dMapInfo_n_NS_getRoomCenter
+/* 801C1B68 001BEAA8  4B E7 D6 35 */	bl getRoomCenter__10dMapInfo_nFiPfPf
 lbl_801C1B6C:
 /* 801C1B6C 001BEAAC  28 1E 00 00 */	cmplwi r30, 0
 /* 801C1B70 001BEAB0  41 82 00 0C */	beq lbl_801C1B7C
@@ -1408,8 +1408,8 @@ lbl_801C1C28:
 /* 801C1C38 001BEB78  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C1C3C 001BEB7C  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initZoomIn
-dMenu_StageMapCtrl_c_NS_initZoomIn:
+.global initZoomIn__20dMenu_StageMapCtrl_cFUc
+initZoomIn__20dMenu_StageMapCtrl_cFUc:
 /* 801C1C40 001BEB80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801C1C44 001BEB84  7C 08 02 A6 */	mflr r0
 /* 801C1C48 001BEB88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1445,7 +1445,7 @@ dMenu_StageMapCtrl_c_NS_initZoomIn:
 /* 801C1CC0 001BEC00  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1CC4 001BEC04  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1CC8 001BEC08  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1CCC 001BEC0C  48 1A 03 B9 */	bl func_80362084
+/* 801C1CCC 001BEC0C  48 1A 03 B9 */	bl __ptmf_scall
 /* 801C1CD0 001BEC10  60 00 00 00 */	nop 
 /* 801C1CD4 001BEC14  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 801C1CD8 001BEC18  83 C1 00 18 */	lwz r30, 0x18(r1)
@@ -1454,8 +1454,8 @@ dMenu_StageMapCtrl_c_NS_initZoomIn:
 /* 801C1CE4 001BEC24  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C1CE8 001BEC28  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initZoomIn_X1_
-dMenu_StageMapCtrl_c_NS_initZoomIn_X1_:
+.global initZoomIn__20dMenu_StageMapCtrl_cFUcff
+initZoomIn__20dMenu_StageMapCtrl_cFUcff:
 /* 801C1CEC 001BEC2C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C1CF0 001BEC30  7C 08 02 A6 */	mflr r0
 /* 801C1CF4 001BEC34  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1517,7 +1517,7 @@ lbl_801C1DAC:
 /* 801C1DC4 001BED04  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1DC8 001BED08  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1DCC 001BED0C  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1DD0 001BED10  48 1A 02 B5 */	bl func_80362084
+/* 801C1DD0 001BED10  48 1A 02 B5 */	bl __ptmf_scall
 /* 801C1DD4 001BED14  60 00 00 00 */	nop 
 /* 801C1DD8 001BED18  E3 E1 00 28 */	psq_l f31, 40(r1), 0, qr0
 /* 801C1DDC 001BED1C  CB E1 00 20 */	lfd f31, 0x20(r1)
@@ -1530,8 +1530,8 @@ lbl_801C1DAC:
 /* 801C1DF8 001BED38  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C1DFC 001BED3C  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initZoomInCenterHold
-dMenu_StageMapCtrl_c_NS_initZoomInCenterHold:
+.global initZoomInCenterHold__20dMenu_StageMapCtrl_cFUc
+initZoomInCenterHold__20dMenu_StageMapCtrl_cFUc:
 /* 801C1E00 001BED40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C1E04 001BED44  7C 08 02 A6 */	mflr r0
 /* 801C1E08 001BED48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1553,7 +1553,7 @@ dMenu_StageMapCtrl_c_NS_initZoomInCenterHold:
 /* 801C1E48 001BED88  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1E4C 001BED8C  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1E50 001BED90  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1E54 001BED94  48 1A 02 31 */	bl func_80362084
+/* 801C1E54 001BED94  48 1A 02 31 */	bl __ptmf_scall
 /* 801C1E58 001BED98  60 00 00 00 */	nop 
 /* 801C1E5C 001BED9C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C1E60 001BEDA0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1562,8 +1562,8 @@ dMenu_StageMapCtrl_c_NS_initZoomInCenterHold:
 /* 801C1E6C 001BEDAC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C1E70 001BEDB0  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_zoomCalcSet
-dMenu_StageMapCtrl_c_NS_zoomCalcSet:
+.global zoomCalcSet__20dMenu_StageMapCtrl_cFf
+zoomCalcSet__20dMenu_StageMapCtrl_cFf:
 /* 801C1E74 001BEDB4  C0 43 00 A4 */	lfs f2, 0xa4(r3)
 /* 801C1E78 001BEDB8  C0 03 00 AC */	lfs f0, 0xac(r3)
 /* 801C1E7C 001BEDBC  EC 00 10 28 */	fsubs f0, f0, f2
@@ -1593,10 +1593,10 @@ dMenu_StageMapCtrl_c_NS_zoomCalcSet:
 /* 801C1EDC 001BEE1C  7C 00 07 74 */	extsb r0, r0
 /* 801C1EE0 001BEE20  7C 80 18 50 */	subf r4, r0, r3
 /* 801C1EE4 001BEE24  38 A0 00 04 */	li r5, 4
-/* 801C1EE8 001BEE28  4B E5 E2 79 */	bl fopMsgM_valueIncrease
+/* 801C1EE8 001BEE28  4B E5 E2 79 */	bl fopMsgM_valueIncrease__FiiUc
 /* 801C1EEC 001BEE2C  D0 3F 00 D8 */	stfs f1, 0xd8(r31)
 /* 801C1EF0 001BEE30  7F E3 FB 78 */	mr r3, r31
-/* 801C1EF4 001BEE34  4B FF FF 81 */	bl dMenu_StageMapCtrl_c_NS_zoomCalcSet
+/* 801C1EF4 001BEE34  4B FF FF 81 */	bl zoomCalcSet__20dMenu_StageMapCtrl_cFf
 /* 801C1EF8 001BEE38  88 7F 00 F4 */	lbz r3, 0xf4(r31)
 /* 801C1EFC 001BEE3C  38 03 FF FF */	addi r0, r3, -1
 /* 801C1F00 001BEE40  98 1F 00 F4 */	stb r0, 0xf4(r31)
@@ -1612,8 +1612,8 @@ lbl_801C1F18:
 /* 801C1F24 001BEE64  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C1F28 001BEE68  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initZoomOut
-dMenu_StageMapCtrl_c_NS_initZoomOut:
+.global initZoomOut__20dMenu_StageMapCtrl_cFUc
+initZoomOut__20dMenu_StageMapCtrl_cFUc:
 /* 801C1F2C 001BEE6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C1F30 001BEE70  7C 08 02 A6 */	mflr r0
 /* 801C1F34 001BEE74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1625,15 +1625,15 @@ dMenu_StageMapCtrl_c_NS_initZoomOut:
 /* 801C1F4C 001BEE8C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1F50 001BEE90  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1F54 001BEE94  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1F58 001BEE98  48 1A 01 2D */	bl func_80362084
+/* 801C1F58 001BEE98  48 1A 01 2D */	bl __ptmf_scall
 /* 801C1F5C 001BEE9C  60 00 00 00 */	nop 
 /* 801C1F60 001BEEA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C1F64 001BEEA4  7C 08 03 A6 */	mtlr r0
 /* 801C1F68 001BEEA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C1F6C 001BEEAC  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_initZoomWait
-dMenu_StageMapCtrl_c_NS_initZoomWait:
+.global initZoomWait__20dMenu_StageMapCtrl_cFff
+initZoomWait__20dMenu_StageMapCtrl_cFff:
 /* 801C1F70 001BEEB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C1F74 001BEEB4  7C 08 02 A6 */	mflr r0
 /* 801C1F78 001BEEB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1664,7 +1664,7 @@ dMenu_StageMapCtrl_c_NS_initZoomWait:
 /* 801C1FDC 001BEF1C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C1FE0 001BEF20  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C1FE4 001BEF24  7D 80 2A 14 */	add r12, r0, r5
-/* 801C1FE8 001BEF28  48 1A 00 9D */	bl func_80362084
+/* 801C1FE8 001BEF28  48 1A 00 9D */	bl __ptmf_scall
 /* 801C1FEC 001BEF2C  60 00 00 00 */	nop 
 /* 801C1FF0 001BEF30  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C1FF4 001BEF34  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1774,7 +1774,7 @@ lbl_801C2160:
 /* 801C2174 001BF0B4  D0 1F 00 B4 */	stfs f0, 0xb4(r31)
 /* 801C2178 001BF0B8  D0 1F 00 B8 */	stfs f0, 0xb8(r31)
 /* 801C217C 001BF0BC  7F E3 FB 78 */	mr r3, r31
-/* 801C2180 001BF0C0  4B FF F1 35 */	bl dMenu_StageMapCtrl_c_NS_moveFloor
+/* 801C2180 001BF0C0  4B FF F1 35 */	bl moveFloor__20dMenu_StageMapCtrl_cFv
 /* 801C2184 001BF0C4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801C2188 001BF0C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C218C 001BF0CC  7C 08 03 A6 */	mtlr r0
@@ -1797,12 +1797,12 @@ lbl_801C2160:
 /* 801C21D0 001BF110  7C 00 07 74 */	extsb r0, r0
 /* 801C21D4 001BF114  7C 80 18 50 */	subf r4, r0, r3
 /* 801C21D8 001BF118  38 A0 00 04 */	li r5, 4
-/* 801C21DC 001BF11C  4B E5 DF 85 */	bl fopMsgM_valueIncrease
+/* 801C21DC 001BF11C  4B E5 DF 85 */	bl fopMsgM_valueIncrease__FiiUc
 /* 801C21E0 001BF120  7F E3 FB 78 */	mr r3, r31
 /* 801C21E4 001BF124  C0 02 A6 98 */	lfs f0, lbl_80454098-_SDA2_BASE_(r2)
 /* 801C21E8 001BF128  EF E0 08 28 */	fsubs f31, f0, f1
 /* 801C21EC 001BF12C  FC 20 F8 90 */	fmr f1, f31
-/* 801C21F0 001BF130  4B FF FC 85 */	bl dMenu_StageMapCtrl_c_NS_zoomCalcSet
+/* 801C21F0 001BF130  4B FF FC 85 */	bl zoomCalcSet__20dMenu_StageMapCtrl_cFf
 /* 801C21F4 001BF134  D3 FF 00 D8 */	stfs f31, 0xd8(r31)
 /* 801C21F8 001BF138  88 7F 00 F4 */	lbz r3, 0xf4(r31)
 /* 801C21FC 001BF13C  38 03 FF FF */	addi r0, r3, -1
@@ -1821,8 +1821,8 @@ lbl_801C2218:
 /* 801C222C 001BF16C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801C2230 001BF170  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_move
-dMenu_StageMapCtrl_c_NS_move:
+.global move__20dMenu_StageMapCtrl_cFv
+move__20dMenu_StageMapCtrl_cFv:
 /* 801C2234 001BF174  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C2238 001BF178  7C 08 02 A6 */	mflr r0
 /* 801C223C 001BF17C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1834,7 +1834,7 @@ dMenu_StageMapCtrl_c_NS_move:
 /* 801C2254 001BF194  3C 80 80 3C */	lis r4, lbl_803BCD44@ha
 /* 801C2258 001BF198  38 04 CD 44 */	addi r0, r4, lbl_803BCD44@l
 /* 801C225C 001BF19C  7D 80 2A 14 */	add r12, r0, r5
-/* 801C2260 001BF1A0  48 19 FE 25 */	bl func_80362084
+/* 801C2260 001BF1A0  48 19 FE 25 */	bl __ptmf_scall
 /* 801C2264 001BF1A4  60 00 00 00 */	nop 
 /* 801C2268 001BF1A8  88 1E 00 F5 */	lbz r0, 0xf5(r30)
 /* 801C226C 001BF1AC  7C 00 F8 40 */	cmplw r0, r31
@@ -1844,7 +1844,7 @@ dMenu_StageMapCtrl_c_NS_move:
 /* 801C227C 001BF1BC  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C2280 001BF1C0  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C2284 001BF1C4  7D 80 2A 14 */	add r12, r0, r5
-/* 801C2288 001BF1C8  48 19 FD FD */	bl func_80362084
+/* 801C2288 001BF1C8  48 19 FD FD */	bl __ptmf_scall
 /* 801C228C 001BF1CC  60 00 00 00 */	nop 
 lbl_801C2290:
 /* 801C2290 001BF1D0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1868,15 +1868,15 @@ lbl_801C2290:
 /* 801C22D8 001BF218  C0 63 00 BC */	lfs f3, 0xbc(r3)
 /* 801C22DC 001BF21C  38 C0 00 01 */	li r6, 1
 /* 801C22E0 001BF220  C0 83 00 D8 */	lfs f4, 0xd8(r3)
-/* 801C22E4 001BF224  4B FF EB 69 */	bl dMenu_DmapMap_c_NS_setPos
+/* 801C22E4 001BF224  4B FF EB 69 */	bl setPos__15dMenu_DmapMap_cFiifffbf
 lbl_801C22E8:
 /* 801C22E8 001BF228  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C22EC 001BF22C  7C 08 03 A6 */	mtlr r0
 /* 801C22F0 001BF230  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C22F4 001BF234  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_getPlayerStayFloorNo
-dMenu_StageMapCtrl_c_NS_getPlayerStayFloorNo:
+.global getPlayerStayFloorNo__20dMenu_StageMapCtrl_cCFv
+getPlayerStayFloorNo__20dMenu_StageMapCtrl_cCFv:
 /* 801C22F8 001BF238  38 60 00 00 */	li r3, 0
 /* 801C22FC 001BF23C  88 0D 88 E0 */	lbz r0, lbl_80450E60-_SDA_BASE_(r13)
 /* 801C2300 001BF240  28 00 00 00 */	cmplwi r0, 0
@@ -1888,8 +1888,8 @@ lbl_801C2314:
 /* 801C2314 001BF254  7C 03 03 78 */	mr r3, r0
 /* 801C2318 001BF258  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS__create
-dMenu_StageMapCtrl_c_NS__create:
+.global _create__20dMenu_StageMapCtrl_cFUsUsUsUsPv
+_create__20dMenu_StageMapCtrl_cFUsUsUsUsPv:
 /* 801C231C 001BF25C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C2320 001BF260  7C 08 02 A6 */	mflr r0
 /* 801C2324 001BF264  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1903,14 +1903,14 @@ dMenu_StageMapCtrl_c_NS__create:
 lbl_801C2344:
 /* 801C2344 001BF284  7C 08 03 78 */	mr r8, r0
 lbl_801C2348:
-/* 801C2348 001BF288  48 00 00 15 */	bl dMenu_StageMapCtrl_c_NS__create_X1_
+/* 801C2348 001BF288  48 00 00 15 */	bl _create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv
 /* 801C234C 001BF28C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C2350 001BF290  7C 08 03 A6 */	mtlr r0
 /* 801C2354 001BF294  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C2358 001BF298  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS__create_X1_
-dMenu_StageMapCtrl_c_NS__create_X1_:
+.global _create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv
+_create__20dMenu_StageMapCtrl_cFUsUsUsUsScPv:
 /* 801C235C 001BF29C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801C2360 001BF2A0  7C 08 02 A6 */	mflr r0
 /* 801C2364 001BF2A4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1931,7 +1931,7 @@ dMenu_StageMapCtrl_c_NS__create_X1_:
 /* 801C23A0 001BF2E0  98 03 00 EC */	stb r0, 0xec(r3)
 /* 801C23A4 001BF2E4  38 7A 00 ED */	addi r3, r26, 0xed
 /* 801C23A8 001BF2E8  38 9A 00 EE */	addi r4, r26, 0xee
-/* 801C23AC 001BF2EC  4B E7 D3 B5 */	bl dMpath_c_NS_getTopBottomFloorNo
+/* 801C23AC 001BF2EC  4B E7 D3 B5 */	bl getTopBottomFloorNo__8dMpath_cFPScPSc
 /* 801C23B0 001BF2F0  88 1A 00 EE */	lbz r0, 0xee(r26)
 /* 801C23B4 001BF2F4  7C 03 07 74 */	extsb r3, r0
 /* 801C23B8 001BF2F8  88 1A 00 ED */	lbz r0, 0xed(r26)
@@ -1961,7 +1961,7 @@ lbl_801C23D0:
 /* 801C2414 001BF354  7F A6 EB 78 */	mr r6, r29
 /* 801C2418 001BF358  7F C7 F3 78 */	mr r7, r30
 /* 801C241C 001BF35C  7F E8 FB 78 */	mr r8, r31
-/* 801C2420 001BF360  4B FF E8 B9 */	bl dMenu_DmapMap_c_NS__create
+/* 801C2420 001BF360  4B FF E8 B9 */	bl _create__15dMenu_DmapMap_cFUsUsUsUsPv
 /* 801C2424 001BF364  7F 43 D3 78 */	mr r3, r26
 /* 801C2428 001BF368  38 9A 00 9C */	addi r4, r26, 0x9c
 /* 801C242C 001BF36C  38 BA 00 A0 */	addi r5, r26, 0xa0
@@ -2015,7 +2015,7 @@ lbl_801C23D0:
 /* 801C24EC 001BF42C  3C 80 80 3C */	lis r4, lbl_803BCCE4@ha
 /* 801C24F0 001BF430  38 04 CC E4 */	addi r0, r4, lbl_803BCCE4@l
 /* 801C24F4 001BF434  7D 80 2A 14 */	add r12, r0, r5
-/* 801C24F8 001BF438  48 19 FB 8D */	bl func_80362084
+/* 801C24F8 001BF438  48 19 FB 8D */	bl __ptmf_scall
 /* 801C24FC 001BF43C  60 00 00 00 */	nop 
 /* 801C2500 001BF440  39 61 00 30 */	addi r11, r1, 0x30
 /* 801C2504 001BF444  48 19 FD 19 */	bl _restgpr_26
@@ -2024,19 +2024,19 @@ lbl_801C23D0:
 /* 801C2510 001BF450  38 21 00 30 */	addi r1, r1, 0x30
 /* 801C2514 001BF454  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS__delete
-dMenu_StageMapCtrl_c_NS__delete:
+.global _delete__20dMenu_StageMapCtrl_cFv
+_delete__20dMenu_StageMapCtrl_cFv:
 /* 801C2518 001BF458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801C251C 001BF45C  7C 08 02 A6 */	mflr r0
 /* 801C2520 001BF460  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801C2524 001BF464  4B FF E7 E1 */	bl dMenu_DmapMap_c_NS__delete
+/* 801C2524 001BF464  4B FF E7 E1 */	bl _delete__15dMenu_DmapMap_cFv
 /* 801C2528 001BF468  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801C252C 001BF46C  7C 08 03 A6 */	mtlr r0
 /* 801C2530 001BF470  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C2534 001BF474  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_isEnableZoomIn
-dMenu_StageMapCtrl_c_NS_isEnableZoomIn:
+.global isEnableZoomIn__20dMenu_StageMapCtrl_cFv
+isEnableZoomIn__20dMenu_StageMapCtrl_cFv:
 /* 801C2538 001BF478  38 A0 00 00 */	li r5, 0
 /* 801C253C 001BF47C  88 03 00 F3 */	lbz r0, 0xf3(r3)
 /* 801C2540 001BF480  28 00 00 00 */	cmplwi r0, 0
@@ -2055,20 +2055,20 @@ lbl_801C2570:
 /* 801C2570 001BF4B0  7C A3 2B 78 */	mr r3, r5
 /* 801C2574 001BF4B4  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_isEnableZoomOut
-dMenu_StageMapCtrl_c_NS_isEnableZoomOut:
+.global isEnableZoomOut__20dMenu_StageMapCtrl_cFv
+isEnableZoomOut__20dMenu_StageMapCtrl_cFv:
 /* 801C2578 001BF4B8  88 03 00 F3 */	lbz r0, 0xf3(r3)
 /* 801C257C 001BF4BC  7C 00 00 34 */	cntlzw r0, r0
 /* 801C2580 001BF4C0  54 03 D9 7E */	srwi r3, r0, 5
 /* 801C2584 001BF4C4  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_setPlusZoomCenterX
-dMenu_StageMapCtrl_c_NS_setPlusZoomCenterX:
+.global setPlusZoomCenterX__20dMenu_StageMapCtrl_cFf
+setPlusZoomCenterX__20dMenu_StageMapCtrl_cFf:
 /* 801C2588 001BF4C8  D0 23 00 B4 */	stfs f1, 0xb4(r3)
 /* 801C258C 001BF4CC  4E 80 00 20 */	blr 
 
-.global dMenu_StageMapCtrl_c_NS_setPlusZoomCenterZ
-dMenu_StageMapCtrl_c_NS_setPlusZoomCenterZ:
+.global setPlusZoomCenterZ__20dMenu_StageMapCtrl_cFf
+setPlusZoomCenterZ__20dMenu_StageMapCtrl_cFf:
 /* 801C2590 001BF4D0  D0 23 00 B8 */	stfs f1, 0xb8(r3)
 /* 801C2594 001BF4D4  4E 80 00 20 */	blr 
 /* 801C2598 001BF4D8  28 04 00 00 */	cmplwi r4, 0

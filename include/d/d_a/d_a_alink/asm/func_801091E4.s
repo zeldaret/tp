@@ -7,7 +7,7 @@
 /* 801091FC 0010613C  83 E3 27 E0 */ lwz r31, 0x27e0(r3)
 /* 80109200 00106140  3B C0 00 01 */ li r30, 1
 /* 80109204 00106144  7F E3 FB 78 */ mr r3, r31
-/* 80109208 00106148  4B F6 A5 DD */ bl dAttention_c_NS_LockonTruth
+/* 80109208 00106148  4B F6 A5 DD */ bl LockonTruth__12dAttention_cFv
 /* 8010920C 0010614C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80109210 00106150  40 82 00 14 */ bne lbl_80109224
 /* 80109214 00106154  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -30,11 +30,11 @@ lbl_8010924C:
 /* 8010924C 0010618C  7F A3 EB 78 */ mr r3, r29
 /* 80109250 00106190  38 80 01 8D */ li r4, 0x18d
 /* 80109254 00106194  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 80109258 00106198  4B FA 41 51 */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 80109258 00106198  4B FA 41 51 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 8010925C 0010619C  38 00 00 00 */ li r0, 0
 /* 80109260 001061A0  B0 1D 30 20 */ sth r0, 0x3020(r29)
 /* 80109264 001061A4  7F A3 EB 78 */ mr r3, r29
-/* 80109268 001061A8  4B FF FF 09 */ bl daAlink_c_NS_initHookshotReady
+/* 80109268 001061A8  4B FF FF 09 */ bl initHookshotReady__9daAlink_cFv
 /* 8010926C 001061AC  39 61 00 20 */ addi r11, r1, 0x20
 /* 80109270 001061B0  48 25 8F B9 */ bl _restgpr_29
 /* 80109274 001061B4  80 01 00 24 */ lwz r0, 0x24(r1)

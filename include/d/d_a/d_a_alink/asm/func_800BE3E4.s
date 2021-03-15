@@ -12,7 +12,7 @@
 /* 800BE410 000BB350  54 80 04 A5 */ rlwinm. r0, r4, 0, 0x12, 0x12
 /* 800BE414 000BB354  41 82 05 9C */ beq lbl_800BE9B0
 /* 800BE418 000BB358  38 7D 1D C0 */ addi r3, r29, 0x1dc0
-/* 800BE41C 000BB35C  48 0E D1 81 */ bl dKy_pol_argument_get
+/* 800BE41C 000BB35C  48 0E D1 81 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800BE420 000BB360  54 60 06 31 */ rlwinm. r0, r3, 0, 0x18, 0x18
 /* 800BE424 000BB364  41 82 05 8C */ beq lbl_800BE9B0
 /* 800BE428 000BB368  7F A3 EB 78 */ mr r3, r29
@@ -20,7 +20,7 @@
 /* 800BE430 000BB370  38 A0 00 C9 */ li r5, 0xc9
 /* 800BE434 000BB374  38 C0 00 04 */ li r6, 4
 /* 800BE438 000BB378  38 E0 00 00 */ li r7, 0
-/* 800BE43C 000BB37C  4B FF FB 25 */ bl daAlink_c_NS_startRestartRoom
+/* 800BE43C 000BB37C  4B FF FB 25 */ bl startRestartRoom__9daAlink_cFUliii
 /* 800BE440 000BB380  38 60 00 01 */ li r3, 1
 /* 800BE444 000BB384  48 00 05 70 */ b lbl_800BE9B4
 lbl_800BE448:
@@ -31,7 +31,7 @@ lbl_800BE448:
 /* 800BE458 000BB398  28 00 00 02 */ cmplwi r0, 2
 /* 800BE45C 000BB39C  40 82 00 10 */ bne lbl_800BE46C
 /* 800BE460 000BB3A0  38 80 00 01 */ li r4, 1
-/* 800BE464 000BB3A4  48 01 DA 75 */ bl daAlink_c_NS_procCoLavaReturnInit
+/* 800BE464 000BB3A4  48 01 DA 75 */ bl procCoLavaReturnInit__9daAlink_cFi
 /* 800BE468 000BB3A8  48 00 05 4C */ b lbl_800BE9B4
 lbl_800BE46C:
 /* 800BE46C 000BB3AC  80 1D 31 A0 */ lwz r0, 0x31a0(r29)
@@ -58,7 +58,7 @@ lbl_800BE4A0:
 /* 800BE4BC 000BB3FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BE4C0 000BB400  41 82 00 10 */ beq lbl_800BE4D0
 /* 800BE4C4 000BB404  7F A3 EB 78 */ mr r3, r29
-/* 800BE4C8 000BB408  48 01 DD B1 */ bl daAlink_c_NS_procCoSwimFreezeReturnInit
+/* 800BE4C8 000BB408  48 01 DD B1 */ bl procCoSwimFreezeReturnInit__9daAlink_cFv
 /* 800BE4CC 000BB40C  48 00 04 E8 */ b lbl_800BE9B4
 lbl_800BE4D0:
 /* 800BE4D0 000BB410  88 1D 05 6A */ lbz r0, 0x56a(r29)
@@ -170,7 +170,7 @@ lbl_800BE638:
 /* 800BE648 000BB588  40 82 00 5C */ bne lbl_800BE6A4
 lbl_800BE64C:
 /* 800BE64C 000BB58C  7F A3 EB 78 */ mr r3, r29
-/* 800BE650 000BB590  4B FF FC 1D */ bl daAlink_c_NS_checkCoachGuardGame
+/* 800BE650 000BB590  4B FF FC 1D */ bl checkCoachGuardGame__9daAlink_cFv
 /* 800BE654 000BB594  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE658 000BB598  41 82 00 10 */ beq lbl_800BE668
 /* 800BE65C 000BB59C  3B E0 00 00 */ li r31, 0
@@ -181,7 +181,7 @@ lbl_800BE668:
 /* 800BE66C 000BB5AC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BE670 000BB5B0  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BE674 000BB5B4  38 9D 1A 60 */ addi r4, r29, 0x1a60
-/* 800BE678 000BB5B8  4B FB 65 21 */ bl dBgS_NS_GetExitId
+/* 800BE678 000BB5B8  4B FB 65 21 */ bl GetExitId__4dBgSFRC13cBgS_PolyInfo
 /* 800BE67C 000BB5BC  7C 7F 1B 78 */ mr r31, r3
 /* 800BE680 000BB5C0  88 1D 04 E2 */ lbz r0, 0x4e2(r29)
 /* 800BE684 000BB5C4  7C 1E 07 74 */ extsb r30, r0
@@ -225,13 +225,13 @@ lbl_800BE6E8:
 /* 800BE70C 000BB64C  38 A0 00 00 */ li r5, 0
 /* 800BE710 000BB650  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800BE714 000BB654  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800BE718 000BB658  4B F8 4A 55 */ bl dEvt_control_c_NS_compulsory
+/* 800BE718 000BB658  4B F8 4A 55 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800BE71C 000BB65C  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE720 000BB660  41 82 01 20 */ beq lbl_800BE840
 /* 800BE724 000BB664  7F A3 EB 78 */ mr r3, r29
 /* 800BE728 000BB668  38 80 00 04 */ li r4, 4
 /* 800BE72C 000BB66C  38 A0 00 00 */ li r5, 0
-/* 800BE730 000BB670  48 05 A4 05 */ bl daAlink_c_NS_checkRestartDead
+/* 800BE730 000BB670  48 05 A4 05 */ bl checkRestartDead__9daAlink_cFii
 /* 800BE734 000BB674  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE738 000BB678  40 82 01 08 */ bne lbl_800BE840
 /* 800BE73C 000BB67C  38 00 00 03 */ li r0, 3
@@ -260,7 +260,7 @@ lbl_800BE77C:
 /* 800BE790 000BB6D0  7F A3 EB 78 */ mr r3, r29
 /* 800BE794 000BB6D4  38 80 00 04 */ li r4, 4
 /* 800BE798 000BB6D8  38 A1 00 0C */ addi r5, r1, 0xc
-/* 800BE79C 000BB6DC  4B FF F6 85 */ bl daAlink_c_NS_setLastSceneDamage
+/* 800BE79C 000BB6DC  4B FF F6 85 */ bl setLastSceneDamage__9daAlink_cFiPUl
 /* 800BE7A0 000BB6E0  38 00 00 33 */ li r0, 0x33
 /* 800BE7A4 000BB6E4  90 01 00 08 */ stw r0, 8(r1)
 /* 800BE7A8 000BB6E8  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -280,7 +280,7 @@ lbl_800BE77C:
 /* 800BE7E0 000BB720  7F C5 F3 78 */ mr r5, r30
 /* 800BE7E4 000BB724  A8 DD 04 E6 */ lha r6, 0x4e6(r29)
 /* 800BE7E8 000BB728  38 E0 FF FF */ li r7, -1
-/* 800BE7EC 000BB72C  4B F6 89 85 */ bl dStage_changeScene
+/* 800BE7EC 000BB72C  4B F6 89 85 */ bl dStage_changeScene__FifUlScsi
 /* 800BE7F0 000BB730  48 00 00 50 */ b lbl_800BE840
 lbl_800BE7F4:
 /* 800BE7F4 000BB734  7F A3 EB 78 */ mr r3, r29
@@ -288,7 +288,7 @@ lbl_800BE7F4:
 /* 800BE7FC 000BB73C  38 A0 00 C9 */ li r5, 0xc9
 /* 800BE800 000BB740  38 C0 00 04 */ li r6, 4
 /* 800BE804 000BB744  38 E0 00 00 */ li r7, 0
-/* 800BE808 000BB748  4B FF F7 59 */ bl daAlink_c_NS_startRestartRoom
+/* 800BE808 000BB748  4B FF F7 59 */ bl startRestartRoom__9daAlink_cFUliii
 /* 800BE80C 000BB74C  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE810 000BB750  41 82 00 30 */ beq lbl_800BE840
 /* 800BE814 000BB754  7F A3 EB 78 */ mr r3, r29
@@ -310,19 +310,19 @@ lbl_800BE848:
 /* 800BE84C 000BB78C  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800BE850 000BB790  41 82 00 14 */ beq lbl_800BE864
 /* 800BE854 000BB794  38 7D 1A 60 */ addi r3, r29, 0x1a60
-/* 800BE858 000BB798  48 0E CD 45 */ bl dKy_pol_argument_get
+/* 800BE858 000BB798  48 0E CD 45 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800BE85C 000BB79C  54 60 06 31 */ rlwinm. r0, r3, 0, 0x18, 0x18
 /* 800BE860 000BB7A0  40 82 00 FC */ bne lbl_800BE95C
 lbl_800BE864:
 /* 800BE864 000BB7A4  7F A3 EB 78 */ mr r3, r29
-/* 800BE868 000BB7A8  4B FF 2C 21 */ bl daAlink_c_NS_checkWaterPolygonUnder
+/* 800BE868 000BB7A8  4B FF 2C 21 */ bl checkWaterPolygonUnder__9daAlink_cFv
 /* 800BE86C 000BB7AC  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE870 000BB7B0  41 82 00 20 */ beq lbl_800BE890
 /* 800BE874 000BB7B4  80 1D 05 70 */ lwz r0, 0x570(r29)
 /* 800BE878 000BB7B8  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800BE87C 000BB7BC  41 82 00 14 */ beq lbl_800BE890
 /* 800BE880 000BB7C0  38 7D 1A F0 */ addi r3, r29, 0x1af0
-/* 800BE884 000BB7C4  48 0E CD 19 */ bl dKy_pol_argument_get
+/* 800BE884 000BB7C4  48 0E CD 19 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800BE888 000BB7C8  54 60 06 31 */ rlwinm. r0, r3, 0, 0x18, 0x18
 /* 800BE88C 000BB7CC  40 82 00 D0 */ bne lbl_800BE95C
 lbl_800BE890:
@@ -347,7 +347,7 @@ lbl_800BE8C4:
 /* 800BE8D4 000BB814  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800BE8D8 000BB818  41 82 00 34 */ beq lbl_800BE90C
 /* 800BE8DC 000BB81C  7F A3 EB 78 */ mr r3, r29
-/* 800BE8E0 000BB820  4B FF 2B A9 */ bl daAlink_c_NS_checkWaterPolygonUnder
+/* 800BE8E0 000BB820  4B FF 2B A9 */ bl checkWaterPolygonUnder__9daAlink_cFv
 /* 800BE8E4 000BB824  2C 03 00 00 */ cmpwi r3, 0
 /* 800BE8E8 000BB828  41 82 00 24 */ beq lbl_800BE90C
 /* 800BE8EC 000BB82C  C0 5D 33 B4 */ lfs f2, 0x33b4(r29)
@@ -392,7 +392,7 @@ lbl_800BE95C:
 lbl_800BE980:
 /* 800BE980 000BB8C0  7F A3 EB 78 */ mr r3, r29
 /* 800BE984 000BB8C4  38 80 00 00 */ li r4, 0
-/* 800BE988 000BB8C8  48 01 D5 51 */ bl daAlink_c_NS_procCoLavaReturnInit
+/* 800BE988 000BB8C8  48 01 D5 51 */ bl procCoLavaReturnInit__9daAlink_cFi
 /* 800BE98C 000BB8CC  48 00 00 28 */ b lbl_800BE9B4
 lbl_800BE990:
 /* 800BE990 000BB8D0  7F A3 EB 78 */ mr r3, r29
@@ -400,7 +400,7 @@ lbl_800BE990:
 /* 800BE998 000BB8D8  38 A0 00 C9 */ li r5, 0xc9
 /* 800BE99C 000BB8DC  38 C0 00 04 */ li r6, 4
 /* 800BE9A0 000BB8E0  38 E0 00 00 */ li r7, 0
-/* 800BE9A4 000BB8E4  4B FF F5 BD */ bl daAlink_c_NS_startRestartRoom
+/* 800BE9A4 000BB8E4  4B FF F5 BD */ bl startRestartRoom__9daAlink_cFUliii
 /* 800BE9A8 000BB8E8  38 60 00 01 */ li r3, 1
 /* 800BE9AC 000BB8EC  48 00 00 08 */ b lbl_800BE9B4
 lbl_800BE9B0:

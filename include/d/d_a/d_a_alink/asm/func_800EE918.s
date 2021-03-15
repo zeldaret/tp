@@ -33,7 +33,7 @@ lbl_800EE990:
 /* 800EE990 000EB8D0  3B E0 00 00 */ li r31, 0
 lbl_800EE994:
 /* 800EE994 000EB8D4  7F C3 F3 78 */ mr r3, r30
-/* 800EE998 000EB8D8  4B FC 5E 1D */ bl daAlink_c_NS_checkServiceWaitMode
+/* 800EE998 000EB8D8  4B FC 5E 1D */ bl checkServiceWaitMode__9daAlink_cFv
 /* 800EE99C 000EB8DC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EE9A0 000EB8E0  41 82 00 F0 */ beq lbl_800EEA90
 /* 800EE9A4 000EB8E4  7F C3 F3 78 */ mr r3, r30
@@ -48,26 +48,26 @@ lbl_800EE994:
 /* 800EE9C8 000EB908  40 82 00 C8 */ bne lbl_800EEA90
 /* 800EE9CC 000EB90C  7F C3 F3 78 */ mr r3, r30
 /* 800EE9D0 000EB910  A0 9E 2F DC */ lhz r4, 0x2fdc(r30)
-/* 800EE9D4 000EB914  4B FE FD AD */ bl daAlink_c_NS_checkBowAndSlingItem
+/* 800EE9D4 000EB914  4B FE FD AD */ bl checkBowAndSlingItem__9daAlink_cFi
 /* 800EE9D8 000EB918  2C 03 00 00 */ cmpwi r3, 0
 /* 800EE9DC 000EB91C  40 82 00 B4 */ bne lbl_800EEA90
 /* 800EE9E0 000EB920  7F C3 F3 78 */ mr r3, r30
-/* 800EE9E4 000EB924  4B FC 4F 21 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800EE9E4 000EB924  4B FC 4F 21 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800EE9E8 000EB928  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EE9EC 000EB92C  41 82 00 A4 */ beq lbl_800EEA90
 /* 800EE9F0 000EB930  7F C3 F3 78 */ mr r3, r30
 /* 800EE9F4 000EB934  38 80 00 5A */ li r4, 0x5a
-/* 800EE9F8 000EB938  4B FB DB 61 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800EE9F8 000EB938  4B FB DB 61 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EE9FC 000EB93C  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEA00 000EB940  40 82 00 90 */ bne lbl_800EEA90
 /* 800EEA04 000EB944  7F C3 F3 78 */ mr r3, r30
 /* 800EEA08 000EB948  38 80 00 5B */ li r4, 0x5b
-/* 800EEA0C 000EB94C  4B FB DB 4D */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800EEA0C 000EB94C  4B FB DB 4D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEA10 000EB950  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEA14 000EB954  40 82 00 7C */ bne lbl_800EEA90
 /* 800EEA18 000EB958  7F C3 F3 78 */ mr r3, r30
 /* 800EEA1C 000EB95C  38 80 00 4D */ li r4, 0x4d
-/* 800EEA20 000EB960  4B FB DB 39 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800EEA20 000EB960  4B FB DB 39 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEA24 000EB964  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEA28 000EB968  40 82 00 68 */ bne lbl_800EEA90
 /* 800EEA2C 000EB96C  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
@@ -87,20 +87,20 @@ lbl_800EEA50:
 /* 800EEA60 000EB9A0  7F C3 F3 78 */ mr r3, r30
 /* 800EEA64 000EB9A4  38 80 00 51 */ li r4, 0x51
 /* 800EEA68 000EB9A8  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800EEA6C 000EB9AC  4B FB E5 45 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 800EEA6C 000EB9AC  4B FB E5 45 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800EEA70 000EB9B0  48 00 00 14 */ b lbl_800EEA84
 lbl_800EEA74:
 /* 800EEA74 000EB9B4  7F C3 F3 78 */ mr r3, r30
 /* 800EEA78 000EB9B8  38 80 00 52 */ li r4, 0x52
 /* 800EEA7C 000EB9BC  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800EEA80 000EB9C0  4B FB E5 31 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 800EEA80 000EB9C0  4B FB E5 31 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_800EEA84:
 /* 800EEA84 000EB9C4  7F C3 F3 78 */ mr r3, r30
-/* 800EEA88 000EB9C8  4B FC 4D BD */ bl daAlink_c_NS_initServiceWaitTime
+/* 800EEA88 000EB9C8  4B FC 4D BD */ bl initServiceWaitTime__9daAlink_cFv
 /* 800EEA8C 000EB9CC  48 00 00 0C */ b lbl_800EEA98
 lbl_800EEA90:
 /* 800EEA90 000EB9D0  7F C3 F3 78 */ mr r3, r30
-/* 800EEA94 000EB9D4  4B FC 4D B1 */ bl daAlink_c_NS_initServiceWaitTime
+/* 800EEA94 000EB9D4  4B FC 4D B1 */ bl initServiceWaitTime__9daAlink_cFv
 lbl_800EEA98:
 /* 800EEA98 000EB9D8  7F C3 F3 78 */ mr r3, r30
 /* 800EEA9C 000EB9DC  81 9E 06 28 */ lwz r12, 0x628(r30)
@@ -111,12 +111,12 @@ lbl_800EEA98:
 /* 800EEAB0 000EB9F0  41 82 00 14 */ beq lbl_800EEAC4
 /* 800EEAB4 000EB9F4  7F C3 F3 78 */ mr r3, r30
 /* 800EEAB8 000EB9F8  7F E4 FB 78 */ mr r4, r31
-/* 800EEABC 000EB9FC  4B FF F4 31 */ bl daAlink_c_NS_setSyncHorse
+/* 800EEABC 000EB9FC  4B FF F4 31 */ bl setSyncHorse__9daAlink_cFi
 /* 800EEAC0 000EBA00  48 00 00 10 */ b lbl_800EEAD0
 lbl_800EEAC4:
 /* 800EEAC4 000EBA04  7F C3 F3 78 */ mr r3, r30
 /* 800EEAC8 000EBA08  7F E4 FB 78 */ mr r4, r31
-/* 800EEACC 000EBA0C  4B FF FB 81 */ bl daAlink_c_NS_setSyncBoar
+/* 800EEACC 000EBA0C  4B FF FB 81 */ bl setSyncBoar__9daAlink_cFi
 lbl_800EEAD0:
 /* 800EEAD0 000EBA10  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800EEAD4 000EBA14  83 C1 00 08 */ lwz r30, 8(r1)

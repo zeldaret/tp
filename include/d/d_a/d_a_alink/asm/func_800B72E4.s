@@ -10,11 +10,11 @@
 /* 800B7308 000B4248  48 00 00 74 */ b lbl_800B737C
 lbl_800B730C:
 /* 800B730C 000B424C  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800B7310 000B4250  48 0A 79 ED */ bl daPy_actorKeep_c_NS_clearData
+/* 800B7310 000B4250  48 0A 79 ED */ bl clearData__16daPy_actorKeep_cFv
 /* 800B7314 000B4254  7F E3 FB 78 */ mr r3, r31
 /* 800B7318 000B4258  38 80 00 02 */ li r4, 2
 /* 800B731C 000B425C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800B7320 000B4260  4B FF 64 05 */ bl daAlink_c_NS_resetUpperAnime
+/* 800B7320 000B4260  4B FF 64 05 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800B7324 000B4264  38 00 00 FF */ li r0, 0xff
 /* 800B7328 000B4268  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800B732C 000B426C  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -29,15 +29,15 @@ lbl_800B730C:
 /* 800B7350 000B4290  41 82 00 14 */ beq lbl_800B7364
 /* 800B7354 000B4294  7F E3 FB 78 */ mr r3, r31
 /* 800B7358 000B4298  38 80 00 00 */ li r4, 0
-/* 800B735C 000B429C  48 03 DE 89 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800B735C 000B429C  48 03 DE 89 */ bl procCanoeWaitInit__9daAlink_cFi
 /* 800B7360 000B42A0  48 00 00 18 */ b lbl_800B7378
 lbl_800B7364:
 /* 800B7364 000B42A4  7F E3 FB 78 */ mr r3, r31
-/* 800B7368 000B42A8  48 03 96 19 */ bl daAlink_c_NS_procHorseWaitInit
+/* 800B7368 000B42A8  48 03 96 19 */ bl procHorseWaitInit__9daAlink_cFv
 /* 800B736C 000B42AC  48 00 00 0C */ b lbl_800B7378
 lbl_800B7370:
 /* 800B7370 000B42B0  7F E3 FB 78 */ mr r3, r31
-/* 800B7374 000B42B4  48 00 C0 45 */ bl daAlink_c_NS_procWaitInit
+/* 800B7374 000B42B4  48 00 C0 45 */ bl procWaitInit__9daAlink_cFv
 lbl_800B7378:
 /* 800B7378 000B42B8  38 60 00 00 */ li r3, 0
 lbl_800B737C:

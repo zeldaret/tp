@@ -3,8 +3,8 @@
 .section .text, "ax" # 802deb58
 
 
-.global JUTGraphFifo
-JUTGraphFifo:
+.global __ct__12JUTGraphFifoFUl
+__ct__12JUTGraphFifoFUl:
 /* 802DEB58 002DBA98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DEB5C 002DBA9C  7C 08 02 A6 */	mflr r0
 /* 802DEB60 002DBAA0  90 01 00 14 */	stw r0, 0x14(r1)

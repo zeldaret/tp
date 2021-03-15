@@ -17,7 +17,7 @@
 /* 800B96E4 000B6624  28 1E 00 44 */ cmplwi r30, 0x44
 /* 800B96E8 000B6628  41 82 00 14 */ beq lbl_800B96FC
 /* 800B96EC 000B662C  7F C3 F3 78 */ mr r3, r30
-/* 800B96F0 000B6630  48 0A 53 99 */ bl daPy_py_c_NS_checkBottleItem
+/* 800B96F0 000B6630  48 0A 53 99 */ bl checkBottleItem__9daPy_py_cFi
 /* 800B96F4 000B6634  2C 03 00 00 */ cmpwi r3, 0
 /* 800B96F8 000B6638  41 82 00 18 */ beq lbl_800B9710
 lbl_800B96FC:
@@ -29,11 +29,11 @@ lbl_800B96FC:
 lbl_800B9710:
 /* 800B9710 000B6650  7F E3 FB 78 */ mr r3, r31
 /* 800B9714 000B6654  7F C4 F3 78 */ mr r4, r30
-/* 800B9718 000B6658  48 02 50 69 */ bl daAlink_c_NS_checkBowAndSlingItem
+/* 800B9718 000B6658  48 02 50 69 */ bl checkBowAndSlingItem__9daAlink_cFi
 /* 800B971C 000B665C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9720 000B6660  41 82 00 30 */ beq lbl_800B9750
 /* 800B9724 000B6664  7F E3 FB 78 */ mr r3, r31
-/* 800B9728 000B6668  48 02 64 A1 */ bl daAlink_c_NS_checkBowGrabLeftHand
+/* 800B9728 000B6668  48 02 64 A1 */ bl checkBowGrabLeftHand__9daAlink_cCFv
 /* 800B972C 000B666C  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 800B9730 000B6670  20 00 00 00 */ subfic r0, r0, 0
 /* 800B9734 000B6674  7C 60 01 10 */ subfe r3, r0, r0
@@ -53,7 +53,7 @@ lbl_800B9760:
 /* 800B9764 000B66A4  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 800B9768 000B66A8  40 81 00 40 */ ble lbl_800B97A8
 /* 800B976C 000B66AC  7F E3 FB 78 */ mr r3, r31
-/* 800B9770 000B66B0  48 00 00 7D */ bl daAlink_c_NS_checkFastUnequip
+/* 800B9770 000B66B0  48 00 00 7D */ bl checkFastUnequip__9daAlink_cFv
 /* 800B9774 000B66B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B9778 000B66B8  41 82 00 30 */ beq lbl_800B97A8
 /* 800B977C 000B66BC  57 C0 04 3E */ clrlwi r0, r30, 0x10
@@ -78,7 +78,7 @@ lbl_800B97B0:
 /* 800B97BC 000B66FC  C0 5D 00 08 */ lfs f2, 8(r29)
 /* 800B97C0 000B6700  A8 DD 00 00 */ lha r6, 0(r29)
 /* 800B97C4 000B6704  C0 7D 00 0C */ lfs f3, 0xc(r29)
-/* 800B97C8 000B6708  4B FF 3C 11 */ bl daAlink_c_NS_setUpperAnime
+/* 800B97C8 000B6708  4B FF 3C 11 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 800B97CC 000B670C  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0
 /* 800B97D0 000B6710  CB E1 00 20 */ lfd f31, 0x20(r1)
 /* 800B97D4 000B6714  39 61 00 20 */ addi r11, r1, 0x20

@@ -6,7 +6,7 @@
 /* 800F3E60 000F0DA0  7C 7D 1B 78 */ mr r29, r3
 /* 800F3E64 000F0DA4  7C 9E 23 78 */ mr r30, r4
 /* 800F3E68 000F0DA8  3B E0 00 00 */ li r31, 0
-/* 800F3E6C 000F0DAC  4B FF FE ED */ bl daAlink_c_NS_checkFishingRodAndLureItem
+/* 800F3E6C 000F0DAC  4B FF FE ED */ bl checkFishingRodAndLureItem__9daAlink_cCFv
 /* 800F3E70 000F0DB0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F3E74 000F0DB4  41 82 00 28 */ beq lbl_800F3E9C
 /* 800F3E78 000F0DB8  80 7D 28 24 */ lwz r3, 0x2824(r29)

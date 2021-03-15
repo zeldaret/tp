@@ -10,11 +10,11 @@
 /* 800EDA48 000EA988  28 03 00 00 */ cmplwi r3, 0
 /* 800EDA4C 000EA98C  41 82 00 10 */ beq lbl_800EDA5C
 /* 800EDA50 000EA990  7F E3 FB 78 */ mr r3, r31
-/* 800EDA54 000EA994  4B FF FA 89 */ bl daAlink_c_NS_setSyncHorsePos
+/* 800EDA54 000EA994  4B FF FA 89 */ bl setSyncHorsePos__9daAlink_cFv
 /* 800EDA58 000EA998  48 00 00 0C */ b lbl_800EDA64
 lbl_800EDA5C:
 /* 800EDA5C 000EA99C  7F E3 FB 78 */ mr r3, r31
-/* 800EDA60 000EA9A0  4B FF FD 2D */ bl daAlink_c_NS_setSyncBoarPos
+/* 800EDA60 000EA9A0  4B FF FD 2D */ bl setSyncBoarPos__9daAlink_cFv
 lbl_800EDA64:
 /* 800EDA64 000EA9A4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800EDA68 000EA9A8  80 01 00 14 */ lwz r0, 0x14(r1)

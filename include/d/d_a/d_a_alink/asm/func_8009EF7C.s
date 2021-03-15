@@ -9,7 +9,7 @@
 /* 8009EF9C 0009BEDC  2C 1F 00 24 */	cmpwi r31, 0x24
 /* 8009EFA0 0009BEE0  40 82 00 10 */	bne lbl_8009EFB0
 /* 8009EFA4 0009BEE4  7F C3 F3 78 */	mr r3, r30
-/* 8009EFA8 0009BEE8  48 08 BD 75 */	bl daAlink_c_NS_setWolfFootMatrix
+/* 8009EFA8 0009BEE8  48 08 BD 75 */	bl setWolfFootMatrix__9daAlink_cFv
 /* 8009EFAC 0009BEEC  48 00 00 28 */	b lbl_8009EFD4
 lbl_8009EFB0:
 /* 8009EFB0 0009BEF0  2C 1F 00 07 */	cmpwi r31, 7
@@ -21,7 +21,7 @@ lbl_8009EFB0:
 lbl_8009EFC8:
 /* 8009EFC8 0009BF08  7F C3 F3 78 */	mr r3, r30
 /* 8009EFCC 0009BF0C  7F E4 FB 78 */	mr r4, r31
-/* 8009EFD0 0009BF10  48 08 BC FD */	bl daAlink_c_NS_changeWolfBlendRate
+/* 8009EFD0 0009BF10  48 08 BC FD */	bl changeWolfBlendRate__9daAlink_cFi
 lbl_8009EFD4:
 /* 8009EFD4 0009BF14  38 60 00 01 */	li r3, 1
 /* 8009EFD8 0009BF18  83 E1 00 0C */	lwz r31, 0xc(r1)

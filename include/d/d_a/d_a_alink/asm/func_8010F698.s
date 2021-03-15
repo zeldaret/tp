@@ -10,11 +10,11 @@
 /* 8010F6BC 0010C5FC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010F6C0 0010C600  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8010F6C4 0010C604  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8010F6C8 0010C608  4B F3 8A B5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8010F6C8 0010C608  4B F3 8A B5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8010F6CC 0010C60C  48 00 00 10 */ b lbl_8010F6DC
 lbl_8010F6D0:
 /* 8010F6D0 0010C610  38 80 00 00 */ li r4, 0
-/* 8010F6D4 0010C614  4B FF F3 F1 */ bl daAlink_c_NS_commonBottleDrink
+/* 8010F6D4 0010C614  4B FF F3 F1 */ bl commonBottleDrink__9daAlink_cFi
 /* 8010F6D8 0010C618  B0 7F 30 0E */ sth r3, 0x300e(r31)
 lbl_8010F6DC:
 /* 8010F6DC 0010C61C  38 60 00 01 */ li r3, 1

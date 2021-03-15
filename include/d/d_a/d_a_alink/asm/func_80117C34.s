@@ -9,7 +9,7 @@
 /* 80117C54 00114B94  80 7F 06 88 */ lwz r3, 0x688(r31)
 /* 80117C58 00114B98  80 63 00 04 */ lwz r3, 4(r3)
 /* 80117C5C 00114B9C  38 63 00 58 */ addi r3, r3, 0x58
-/* 80117C60 00114BA0  48 21 7B 55 */ bl J3DMaterialTable_NS_removeTexMtxAnimator
+/* 80117C60 00114BA0  48 21 7B 55 */ bl removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 lbl_80117C64:
 /* 80117C64 00114BA4  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 80117C68 00114BA8  54 00 07 34 */ rlwinm r0, r0, 0, 0x1c, 0x1a

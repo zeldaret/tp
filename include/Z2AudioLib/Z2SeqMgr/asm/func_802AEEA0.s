@@ -54,7 +54,7 @@
 /* 802AEF74 002ABEB4  D0 03 00 AC */	stfs f0, 0xac(r3)
 /* 802AEF78 002ABEB8  38 00 FF FF */	li r0, -1
 /* 802AEF7C 002ABEBC  B0 03 00 B8 */	sth r0, 0xb8(r3)
-/* 802AEF80 002ABEC0  48 00 51 A9 */	bl Z2SeqMgr_NS_resetBattleBgmParams
+/* 802AEF80 002ABEC0  48 00 51 A9 */	bl resetBattleBgmParams__8Z2SeqMgrFv
 /* 802AEF84 002ABEC4  38 00 00 FF */	li r0, 0xff
 /* 802AEF88 002ABEC8  98 1F 00 BC */	stb r0, 0xbc(r31)
 /* 802AEF8C 002ABECC  98 1F 00 BD */	stb r0, 0xbd(r31)

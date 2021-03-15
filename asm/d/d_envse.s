@@ -6,8 +6,8 @@
 /* 80182DD4 0017FD14  38 60 00 01 */	li r3, 1
 /* 80182DD8 0017FD18  4E 80 00 20 */	blr 
 
-.global dEnvSe_getNearPathPos
-dEnvSe_getNearPathPos:
+.global dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
+dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath:
 /* 80182DDC 0017FD1C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80182DE0 0017FD20  7C 08 02 A6 */	mflr r0
 /* 80182DE4 0017FD24  90 01 00 74 */	stw r0, 0x74(r1)
@@ -146,8 +146,8 @@ lbl_80182FAC:
 /* 80182FD0 0017FF10  38 21 00 70 */	addi r1, r1, 0x70
 /* 80182FD4 0017FF14  4E 80 00 20 */	blr 
 
-.global dEnvSe_c_NS_execute_common
-dEnvSe_c_NS_execute_common:
+.global execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
+execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc:
 /* 80182FD8 0017FF18  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80182FDC 0017FF1C  7C 08 02 A6 */	mflr r0
 /* 80182FE0 0017FF20  90 01 00 74 */	stw r0, 0x74(r1)
@@ -178,7 +178,7 @@ lbl_80183020:
 /* 80183040 0017FF80  80 83 5D 74 */	lwz r4, 0x5d74(r3)
 /* 80183044 0017FF84  38 61 00 08 */	addi r3, r1, 8
 /* 80183048 0017FF88  38 84 02 48 */	addi r4, r4, 0x248
-/* 8018304C 0017FF8C  4B FF EE 19 */	bl dCamera_c_NS_Eye
+/* 8018304C 0017FF8C  4B FF EE 19 */	bl Eye__9dCamera_cFv
 /* 80183050 0017FF90  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80183054 0017FF94  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80183058 0017FF98  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -196,7 +196,7 @@ lbl_80183080:
 /* 80183080 0017FFC0  7F E3 FB 78 */	mr r3, r31
 /* 80183084 0017FFC4  7F 04 C3 78 */	mr r4, r24
 /* 80183088 0017FFC8  38 A0 00 06 */	li r5, 6
-/* 8018308C 0017FFCC  48 1E 30 01 */	bl func_8036608C
+/* 8018308C 0017FFCC  48 1E 30 01 */	bl memcmp
 /* 80183090 0017FFD0  2C 03 00 00 */	cmpwi r3, 0
 /* 80183094 0017FFD4  40 82 00 6C */	bne lbl_80183100
 /* 80183098 0017FFD8  88 1D 00 00 */	lbz r0, 0(r29)
@@ -211,7 +211,7 @@ lbl_80183080:
 /* 801830BC 0017FFFC  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801830C0 00180000  88 FF 00 1A */	lbz r7, 0x1a(r31)
 /* 801830C4 00180004  39 1F 00 08 */	addi r8, r31, 8
-/* 801830C8 00180008  48 14 3B BD */	bl Z2EnvSeMgr_NS_initStaticEnvSe
+/* 801830C8 00180008  48 14 3B BD */	bl initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec
 lbl_801830CC:
 /* 801830CC 0018000C  88 1D 00 00 */	lbz r0, 0(r29)
 /* 801830D0 00180010  60 00 00 01 */	ori r0, r0, 1
@@ -220,11 +220,11 @@ lbl_801830D8:
 /* 801830D8 00180018  2C 19 00 00 */	cmpwi r25, 0
 /* 801830DC 0018001C  40 82 00 1C */	bne lbl_801830F8
 /* 801830E0 00180020  7F 63 DB 78 */	mr r3, r27
-/* 801830E4 00180024  4B EA 9F 89 */	bl dComIfGp_getReverb
+/* 801830E4 00180024  4B EA 9F 89 */	bl dComIfGp_getReverb__Fi
 /* 801830E8 00180028  7C 64 1B 78 */	mr r4, r3
 /* 801830EC 0018002C  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 801830F0 00180030  38 63 DD 70 */	addi r3, r3, lbl_8042DD70@l
-/* 801830F4 00180034  48 14 3F D5 */	bl Z2EnvSeMgr_NS_startStaticEnvSe
+/* 801830F4 00180034  48 14 3F D5 */	bl startStaticEnvSe__10Z2EnvSeMgrFSc
 lbl_801830F8:
 /* 801830F8 00180038  3B 20 00 01 */	li r25, 1
 /* 801830FC 0018003C  48 00 03 50 */	b lbl_8018344C
@@ -240,14 +240,14 @@ lbl_80183100:
 /* 80183120 00180060  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 80183124 00180064  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 80183128 00180068  88 FF 00 1A */	lbz r7, 0x1a(r31)
-/* 8018312C 0018006C  48 14 4F CD */	bl Z2EnvSeMgr_NS_initRiverSe
+/* 8018312C 0018006C  48 14 4F CD */	bl initRiverSe__10Z2EnvSeMgrFUcUcUcUc
 /* 80183130 00180070  88 1D 00 00 */	lbz r0, 0(r29)
 /* 80183134 00180074  60 00 00 02 */	ori r0, r0, 2
 /* 80183138 00180078  98 1D 00 00 */	stb r0, 0(r29)
 lbl_8018313C:
 /* 8018313C 0018007C  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 80183140 00180080  7F 84 E3 78 */	mr r4, r28
-/* 80183144 00180084  4B EC E6 A9 */	bl dPath_GetRoomPath
+/* 80183144 00180084  4B EC E6 A9 */	bl dPath_GetRoomPath__Fii
 /* 80183148 00180088  7C 76 1B 78 */	mr r22, r3
 /* 8018314C 0018008C  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 80183150 00180090  3A E3 DD 70 */	addi r23, r3, lbl_8042DD70@l
@@ -256,23 +256,23 @@ lbl_80183158:
 /* 80183158 00180098  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 8018315C 0018009C  38 81 00 20 */	addi r4, r1, 0x20
 /* 80183160 001800A0  7E C5 B3 78 */	mr r5, r22
-/* 80183164 001800A4  4B FF FC 79 */	bl dEnvSe_getNearPathPos
+/* 80183164 001800A4  4B FF FC 79 */	bl dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
 /* 80183168 001800A8  7E E3 BB 78 */	mr r3, r23
 /* 8018316C 001800AC  38 9E 00 DC */	addi r4, r30, 0xdc
-/* 80183170 001800B0  48 14 50 C5 */	bl Z2EnvSeMgr_NS_registRiverSePos
+/* 80183170 001800B0  48 14 50 C5 */	bl registRiverSePos__10Z2EnvSeMgrFP3Vec
 /* 80183174 001800B4  7E C3 B3 78 */	mr r3, r22
 /* 80183178 001800B8  7F 84 E3 78 */	mr r4, r28
-/* 8018317C 001800BC  4B EC E7 1D */	bl dPath_GetNextRoomPath
+/* 8018317C 001800BC  4B EC E7 1D */	bl dPath_GetNextRoomPath__FPC5dPathi
 /* 80183180 001800C0  7C 76 1B 78 */	mr r22, r3
 lbl_80183184:
 /* 80183184 001800C4  28 16 00 00 */	cmplwi r22, 0
 /* 80183188 001800C8  40 82 FF D0 */	bne lbl_80183158
 /* 8018318C 001800CC  7F 63 DB 78 */	mr r3, r27
-/* 80183190 001800D0  4B EA 9E DD */	bl dComIfGp_getReverb
+/* 80183190 001800D0  4B EA 9E DD */	bl dComIfGp_getReverb__Fi
 /* 80183194 001800D4  7C 64 1B 78 */	mr r4, r3
 /* 80183198 001800D8  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 8018319C 001800DC  38 63 DD 70 */	addi r3, r3, lbl_8042DD70@l
-/* 801831A0 001800E0  48 14 51 61 */	bl Z2EnvSeMgr_NS_startRiverSe
+/* 801831A0 001800E0  48 14 51 61 */	bl startRiverSe__10Z2EnvSeMgrFSc
 /* 801831A4 001800E4  48 00 02 A8 */	b lbl_8018344C
 lbl_801831A8:
 /* 801831A8 001800E8  28 04 00 10 */	cmplwi r4, 0x10
@@ -287,7 +287,7 @@ lbl_801831A8:
 /* 801831CC 0018010C  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801831D0 00180110  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801831D4 00180114  88 FF 00 1A */	lbz r7, 0x1a(r31)
-/* 801831D8 00180118  48 14 55 59 */	bl Z2EnvSeMgr_NS_initFallSe
+/* 801831D8 00180118  48 14 55 59 */	bl initFallSe__10Z2EnvSeMgrFUcUcUcUc
 /* 801831DC 0018011C  88 1D 00 00 */	lbz r0, 0(r29)
 /* 801831E0 00180120  60 00 00 04 */	ori r0, r0, 4
 /* 801831E4 00180124  98 1D 00 00 */	stb r0, 0(r29)
@@ -300,7 +300,7 @@ lbl_801831E8:
 /* 801831FC 0018013C  D0 1E 00 E4 */	stfs f0, 0xe4(r30)
 /* 80183200 00180140  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 80183204 00180144  7F 84 E3 78 */	mr r4, r28
-/* 80183208 00180148  4B EC E5 E5 */	bl dPath_GetRoomPath
+/* 80183208 00180148  4B EC E5 E5 */	bl dPath_GetRoomPath__Fii
 /* 8018320C 0018014C  7C 76 1B 78 */	mr r22, r3
 /* 80183210 00180150  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 80183214 00180154  3A E3 DD 70 */	addi r23, r3, lbl_8042DD70@l
@@ -309,7 +309,7 @@ lbl_8018321C:
 /* 8018321C 0018015C  38 61 00 14 */	addi r3, r1, 0x14
 /* 80183220 00180160  38 81 00 20 */	addi r4, r1, 0x20
 /* 80183224 00180164  7E C5 B3 78 */	mr r5, r22
-/* 80183228 00180168  4B FF FB B5 */	bl dEnvSe_getNearPathPos
+/* 80183228 00180168  4B FF FB B5 */	bl dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
 /* 8018322C 0018016C  38 61 00 14 */	addi r3, r1, 0x14
 /* 80183230 00180170  38 81 00 20 */	addi r4, r1, 0x20
 /* 80183234 00180174  48 1C 41 69 */	bl PSVECSquareDistance
@@ -325,20 +325,20 @@ lbl_8018321C:
 lbl_8018325C:
 /* 8018325C 0018019C  7E E3 BB 78 */	mr r3, r23
 /* 80183260 001801A0  38 81 00 14 */	addi r4, r1, 0x14
-/* 80183264 001801A4  48 14 56 09 */	bl Z2EnvSeMgr_NS_registFallSePos
+/* 80183264 001801A4  48 14 56 09 */	bl registFallSePos__10Z2EnvSeMgrFP3Vec
 /* 80183268 001801A8  7E C3 B3 78 */	mr r3, r22
 /* 8018326C 001801AC  7F 84 E3 78 */	mr r4, r28
-/* 80183270 001801B0  4B EC E6 29 */	bl dPath_GetNextRoomPath
+/* 80183270 001801B0  4B EC E6 29 */	bl dPath_GetNextRoomPath__FPC5dPathi
 /* 80183274 001801B4  7C 76 1B 78 */	mr r22, r3
 lbl_80183278:
 /* 80183278 001801B8  28 16 00 00 */	cmplwi r22, 0
 /* 8018327C 001801BC  40 82 FF A0 */	bne lbl_8018321C
 /* 80183280 001801C0  7F 63 DB 78 */	mr r3, r27
-/* 80183284 001801C4  4B EA 9D E9 */	bl dComIfGp_getReverb
+/* 80183284 001801C4  4B EA 9D E9 */	bl dComIfGp_getReverb__Fi
 /* 80183288 001801C8  7C 64 1B 78 */	mr r4, r3
 /* 8018328C 001801CC  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 80183290 001801D0  38 63 DD 70 */	addi r3, r3, lbl_8042DD70@l
-/* 80183294 001801D4  48 14 55 FD */	bl Z2EnvSeMgr_NS_startFallSe
+/* 80183294 001801D4  48 14 55 FD */	bl startFallSe__10Z2EnvSeMgrFSc
 /* 80183298 001801D8  48 00 01 B4 */	b lbl_8018344C
 lbl_8018329C:
 /* 8018329C 001801DC  28 04 00 20 */	cmplwi r4, 0x20
@@ -351,14 +351,14 @@ lbl_8018329C:
 /* 801832B8 001801F8  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801832BC 001801FC  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801832C0 00180200  88 FF 00 1A */	lbz r7, 0x1a(r31)
-/* 801832C4 00180204  48 14 57 CD */	bl Z2EnvSeMgr_NS_initEtcSe
+/* 801832C4 00180204  48 14 57 CD */	bl initEtcSe__10Z2EnvSeMgrFUcUcUcUc
 /* 801832C8 00180208  88 1D 00 00 */	lbz r0, 0(r29)
 /* 801832CC 0018020C  60 00 00 08 */	ori r0, r0, 8
 /* 801832D0 00180210  98 1D 00 00 */	stb r0, 0(r29)
 lbl_801832D4:
 /* 801832D4 00180214  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 801832D8 00180218  7F 84 E3 78 */	mr r4, r28
-/* 801832DC 0018021C  4B EC E5 11 */	bl dPath_GetRoomPath
+/* 801832DC 0018021C  4B EC E5 11 */	bl dPath_GetRoomPath__Fii
 /* 801832E0 00180220  7C 76 1B 78 */	mr r22, r3
 /* 801832E4 00180224  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 801832E8 00180228  3A E3 DD 70 */	addi r23, r3, lbl_8042DD70@l
@@ -367,30 +367,30 @@ lbl_801832F0:
 /* 801832F0 00180230  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 801832F4 00180234  38 81 00 20 */	addi r4, r1, 0x20
 /* 801832F8 00180238  7E C5 B3 78 */	mr r5, r22
-/* 801832FC 0018023C  4B FF FA E1 */	bl dEnvSe_getNearPathPos
+/* 801832FC 0018023C  4B FF FA E1 */	bl dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
 /* 80183300 00180240  7E E3 BB 78 */	mr r3, r23
 /* 80183304 00180244  38 9E 00 DC */	addi r4, r30, 0xdc
-/* 80183308 00180248  48 14 59 1D */	bl Z2EnvSeMgr_NS_registEtcSePos
+/* 80183308 00180248  48 14 59 1D */	bl registEtcSePos__10Z2EnvSeMgrFP3Vec
 /* 8018330C 0018024C  7E C3 B3 78 */	mr r3, r22
 /* 80183310 00180250  7F 84 E3 78 */	mr r4, r28
-/* 80183314 00180254  4B EC E5 85 */	bl dPath_GetNextRoomPath
+/* 80183314 00180254  4B EC E5 85 */	bl dPath_GetNextRoomPath__FPC5dPathi
 /* 80183318 00180258  7C 76 1B 78 */	mr r22, r3
 lbl_8018331C:
 /* 8018331C 0018025C  28 16 00 00 */	cmplwi r22, 0
 /* 80183320 00180260  40 82 FF D0 */	bne lbl_801832F0
 /* 80183324 00180264  7F 63 DB 78 */	mr r3, r27
-/* 80183328 00180268  4B EA 9D 45 */	bl dComIfGp_getReverb
+/* 80183328 00180268  4B EA 9D 45 */	bl dComIfGp_getReverb__Fi
 /* 8018332C 0018026C  7C 64 1B 78 */	mr r4, r3
 /* 80183330 00180270  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 80183334 00180274  38 63 DD 70 */	addi r3, r3, lbl_8042DD70@l
-/* 80183338 00180278  48 14 59 11 */	bl Z2EnvSeMgr_NS_startEtcSe
+/* 80183338 00180278  48 14 59 11 */	bl startEtcSe__10Z2EnvSeMgrFSc
 /* 8018333C 0018027C  48 00 01 10 */	b lbl_8018344C
 lbl_80183340:
 /* 80183340 00180280  28 04 00 40 */	cmplwi r4, 0x40
 /* 80183344 00180284  40 80 00 58 */	bge lbl_8018339C
 /* 80183348 00180288  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 8018334C 0018028C  7F 84 E3 78 */	mr r4, r28
-/* 80183350 00180290  4B EC E4 9D */	bl dPath_GetRoomPath
+/* 80183350 00180290  4B EC E4 9D */	bl dPath_GetRoomPath__Fii
 /* 80183354 00180294  7C 76 1B 78 */	mr r22, r3
 /* 80183358 00180298  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 8018335C 0018029C  3A E3 DD 70 */	addi r23, r3, lbl_8042DD70@l
@@ -399,13 +399,13 @@ lbl_80183364:
 /* 80183364 001802A4  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 80183368 001802A8  38 81 00 20 */	addi r4, r1, 0x20
 /* 8018336C 001802AC  7E C5 B3 78 */	mr r5, r22
-/* 80183370 001802B0  4B FF FA 6D */	bl dEnvSe_getNearPathPos
+/* 80183370 001802B0  4B FF FA 6D */	bl dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
 /* 80183374 001802B4  7E E3 BB 78 */	mr r3, r23
 /* 80183378 001802B8  38 9E 00 DC */	addi r4, r30, 0xdc
-/* 8018337C 001802BC  48 14 44 91 */	bl Z2EnvSeMgr_NS_registWindowPos
+/* 8018337C 001802BC  48 14 44 91 */	bl registWindowPos__10Z2EnvSeMgrFP3Vec
 /* 80183380 001802C0  7E C3 B3 78 */	mr r3, r22
 /* 80183384 001802C4  7F 84 E3 78 */	mr r4, r28
-/* 80183388 001802C8  4B EC E5 11 */	bl dPath_GetNextRoomPath
+/* 80183388 001802C8  4B EC E5 11 */	bl dPath_GetNextRoomPath__FPC5dPathi
 /* 8018338C 001802CC  7C 76 1B 78 */	mr r22, r3
 lbl_80183390:
 /* 80183390 001802D0  28 16 00 00 */	cmplwi r22, 0
@@ -423,7 +423,7 @@ lbl_8018339C:
 /* 801833BC 001802FC  88 BF 00 14 */	lbz r5, 0x14(r31)
 /* 801833C0 00180300  88 DF 00 19 */	lbz r6, 0x19(r31)
 /* 801833C4 00180304  88 FF 00 1A */	lbz r7, 0x1a(r31)
-/* 801833C8 00180308  48 14 61 45 */	bl Z2EnvSeMgr_NS_initLv3WaterSe
+/* 801833C8 00180308  48 14 61 45 */	bl initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc
 /* 801833CC 0018030C  80 7E 01 08 */	lwz r3, 0x108(r30)
 /* 801833D0 00180310  38 00 00 01 */	li r0, 1
 /* 801833D4 00180314  7C 00 D0 30 */	slw r0, r0, r26
@@ -432,7 +432,7 @@ lbl_8018339C:
 lbl_801833E0:
 /* 801833E0 00180320  88 7F 00 18 */	lbz r3, 0x18(r31)
 /* 801833E4 00180324  7F 84 E3 78 */	mr r4, r28
-/* 801833E8 00180328  4B EC E4 05 */	bl dPath_GetRoomPath
+/* 801833E8 00180328  4B EC E4 05 */	bl dPath_GetRoomPath__Fii
 /* 801833EC 0018032C  7C 76 1B 78 */	mr r22, r3
 /* 801833F0 00180330  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 801833F4 00180334  3A E3 DD 70 */	addi r23, r3, lbl_8042DD70@l
@@ -441,24 +441,24 @@ lbl_801833FC:
 /* 801833FC 0018033C  38 7E 00 DC */	addi r3, r30, 0xdc
 /* 80183400 00180340  38 81 00 20 */	addi r4, r1, 0x20
 /* 80183404 00180344  7E C5 B3 78 */	mr r5, r22
-/* 80183408 00180348  4B FF F9 D5 */	bl dEnvSe_getNearPathPos
+/* 80183408 00180348  4B FF F9 D5 */	bl dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
 /* 8018340C 0018034C  7E E3 BB 78 */	mr r3, r23
 /* 80183410 00180350  88 9F 00 17 */	lbz r4, 0x17(r31)
 /* 80183414 00180354  38 BE 00 DC */	addi r5, r30, 0xdc
-/* 80183418 00180358  48 14 6B 41 */	bl Z2EnvSeMgr_NS_registLv3WaterSePos
+/* 80183418 00180358  48 14 6B 41 */	bl registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec
 /* 8018341C 0018035C  7E C3 B3 78 */	mr r3, r22
 /* 80183420 00180360  7F 84 E3 78 */	mr r4, r28
-/* 80183424 00180364  4B EC E4 75 */	bl dPath_GetNextRoomPath
+/* 80183424 00180364  4B EC E4 75 */	bl dPath_GetNextRoomPath__FPC5dPathi
 /* 80183428 00180368  7C 76 1B 78 */	mr r22, r3
 lbl_8018342C:
 /* 8018342C 0018036C  28 16 00 00 */	cmplwi r22, 0
 /* 80183430 00180370  40 82 FF CC */	bne lbl_801833FC
 /* 80183434 00180374  7F 63 DB 78 */	mr r3, r27
-/* 80183438 00180378  4B EA 9C 35 */	bl dComIfGp_getReverb
+/* 80183438 00180378  4B EA 9C 35 */	bl dComIfGp_getReverb__Fi
 /* 8018343C 0018037C  7C 64 1B 78 */	mr r4, r3
 /* 80183440 00180380  3C 60 80 43 */	lis r3, lbl_8042DD70@ha
 /* 80183444 00180384  38 63 DD 70 */	addi r3, r3, lbl_8042DD70@l
-/* 80183448 00180388  48 14 73 4D */	bl Z2EnvSeMgr_NS_startLv3WaterSe
+/* 80183448 00180388  48 14 73 4D */	bl startLv3WaterSe__10Z2EnvSeMgrFSc
 lbl_8018344C:
 /* 8018344C 0018038C  3B FF 00 1C */	addi r31, r31, 0x1c
 /* 80183450 00180390  3B 5A FF FF */	addi r26, r26, -1
@@ -476,8 +476,8 @@ lbl_80183460:
 /* 80183478 001803B8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8018347C 001803BC  4E 80 00 20 */	blr 
 
-.global dEnvSe_c_NS_execute
-dEnvSe_c_NS_execute:
+.global execute__8dEnvSe_cFv
+execute__8dEnvSe_cFv:
 /* 80183480 001803C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80183484 001803C4  7C 08 02 A6 */	mflr r0
 /* 80183488 001803C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -490,7 +490,7 @@ dEnvSe_c_NS_execute:
 /* 801834A4 001803E4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 801834A8 001803E8  38 7F 4E C4 */	addi r3, r31, 0x4ec4
 /* 801834AC 001803EC  7F C4 F3 78 */	mr r4, r30
-/* 801834B0 001803F0  4B EA 0E D5 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801834B0 001803F0  4B EA 0E D5 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801834B4 001803F4  7C 7D 1B 79 */	or. r29, r3, r3
 /* 801834B8 001803F8  40 82 00 0C */	bne lbl_801834C4
 /* 801834BC 001803FC  38 60 00 01 */	li r3, 1
@@ -514,7 +514,7 @@ lbl_801834E4:
 /* 801834FC 0018043C  7F 83 E3 78 */	mr r3, r28
 /* 80183500 00180440  38 BC 00 FC */	addi r5, r28, 0xfc
 /* 80183504 00180444  38 C0 00 01 */	li r6, 1
-/* 80183508 00180448  4B FF FA D1 */	bl dEnvSe_c_NS_execute_common
+/* 80183508 00180448  4B FF FA D1 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 8018350C 0018044C  7F A3 EB 78 */	mr r3, r29
 /* 80183510 00180450  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80183514 00180454  81 8C 00 EC */	lwz r12, 0xec(r12)
@@ -524,7 +524,7 @@ lbl_801834E4:
 /* 80183524 00180464  7F 83 E3 78 */	mr r3, r28
 /* 80183528 00180468  38 BC 00 FD */	addi r5, r28, 0xfd
 /* 8018352C 0018046C  38 C0 00 01 */	li r6, 1
-/* 80183530 00180470  4B FF FA A9 */	bl dEnvSe_c_NS_execute_common
+/* 80183530 00180470  4B FF FA A9 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 80183534 00180474  3B BF 4E 20 */	addi r29, r31, 0x4e20
 /* 80183538 00180478  7F A3 EB 78 */	mr r3, r29
 /* 8018353C 0018047C  81 9D 00 00 */	lwz r12, 0(r29)
@@ -535,7 +535,7 @@ lbl_801834E4:
 /* 80183550 00180490  7F 83 E3 78 */	mr r3, r28
 /* 80183554 00180494  38 BC 00 FE */	addi r5, r28, 0xfe
 /* 80183558 00180498  38 C0 00 00 */	li r6, 0
-/* 8018355C 0018049C  4B FF FA 7D */	bl dEnvSe_c_NS_execute_common
+/* 8018355C 0018049C  4B FF FA 7D */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 /* 80183560 001804A0  7F A3 EB 78 */	mr r3, r29
 /* 80183564 001804A4  81 9D 00 00 */	lwz r12, 0(r29)
 /* 80183568 001804A8  81 8C 00 EC */	lwz r12, 0xec(r12)
@@ -545,7 +545,7 @@ lbl_801834E4:
 /* 80183578 001804B8  7F 83 E3 78 */	mr r3, r28
 /* 8018357C 001804BC  38 BC 00 FF */	addi r5, r28, 0xff
 /* 80183580 001804C0  38 C0 00 00 */	li r6, 0
-/* 80183584 001804C4  4B FF FA 55 */	bl dEnvSe_c_NS_execute_common
+/* 80183584 001804C4  4B FF FA 55 */	bl execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc
 lbl_80183588:
 /* 80183588 001804C8  39 61 00 20 */	addi r11, r1, 0x20
 /* 8018358C 001804CC  48 1D EC 99 */	bl _restgpr_28
@@ -556,7 +556,7 @@ lbl_80183588:
 /* 801835A0 001804E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801835A4 001804E4  7C 08 02 A6 */	mflr r0
 /* 801835A8 001804E8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801835AC 001804EC  4B FF FE D5 */	bl dEnvSe_c_NS_execute
+/* 801835AC 001804EC  4B FF FE D5 */	bl execute__8dEnvSe_cFv
 /* 801835B0 001804F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801835B4 001804F4  7C 08 03 A6 */	mtlr r0
 /* 801835B8 001804F8  38 21 00 10 */	addi r1, r1, 0x10

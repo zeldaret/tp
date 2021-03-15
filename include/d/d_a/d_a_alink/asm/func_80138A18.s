@@ -16,7 +16,7 @@
 /* 80138A54 00135994  D0 1E 37 D0 */ stfs f0, 0x37d0(r30)
 /* 80138A58 00135998  7F E3 FB 78 */ mr r3, r31
 /* 80138A5C 0013599C  C0 22 93 44 */ lfs f1, lbl_80452D44-_SDA2_BASE_(r2)
-/* 80138A60 001359A0  48 1E F9 CD */ bl J3DFrameCtrl_NS_checkPass
+/* 80138A60 001359A0  48 1E F9 CD */ bl checkPass__12J3DFrameCtrlFf
 /* 80138A64 001359A4  2C 03 00 00 */ cmpwi r3, 0
 /* 80138A68 001359A8  41 82 00 4C */ beq lbl_80138AB4
 /* 80138A6C 001359AC  A8 1E 30 0C */ lha r0, 0x300c(r30)
@@ -45,14 +45,14 @@ lbl_80138AB4:
 /* 80138AC0 00135A00  7F C3 F3 78 */ mr r3, r30
 /* 80138AC4 00135A04  38 81 00 0C */ addi r4, r1, 0xc
 /* 80138AC8 00135A08  38 A1 00 08 */ addi r5, r1, 8
-/* 80138ACC 00135A0C  4B FE B1 25 */ bl daAlink_c_NS_setWolfSwimEndEffect
+/* 80138ACC 00135A0C  4B FE B1 25 */ bl setWolfSwimEndEffect__9daAlink_cFPP14JPABaseEmitterPP14JPABaseEmitter
 /* 80138AD0 00135A10  7F E3 FB 78 */ mr r3, r31
-/* 80138AD4 00135A14  48 02 59 F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80138AD4 00135A14  48 02 59 F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80138AD8 00135A18  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80138ADC 00135A1C  41 82 00 14 */ beq lbl_80138AF0
 /* 80138AE0 00135A20  7F C3 F3 78 */ mr r3, r30
 /* 80138AE4 00135A24  38 80 00 00 */ li r4, 0
-/* 80138AE8 00135A28  4B FF 10 5D */ bl daAlink_c_NS_checkNextActionWolf
+/* 80138AE8 00135A28  4B FF 10 5D */ bl checkNextActionWolf__9daAlink_cFi
 /* 80138AEC 00135A2C  48 00 00 28 */ b lbl_80138B14
 lbl_80138AF0:
 /* 80138AF0 00135A30  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -63,7 +63,7 @@ lbl_80138AF0:
 /* 80138B04 00135A44  40 81 00 10 */ ble lbl_80138B14
 /* 80138B08 00135A48  7F C3 F3 78 */ mr r3, r30
 /* 80138B0C 00135A4C  38 80 00 01 */ li r4, 1
-/* 80138B10 00135A50  4B FF 10 35 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80138B10 00135A50  4B FF 10 35 */ bl checkNextActionWolf__9daAlink_cFi
 lbl_80138B14:
 /* 80138B14 00135A54  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
 /* 80138B18 00135A58  28 00 01 2A */ cmplwi r0, 0x12a

@@ -42,11 +42,11 @@ lbl_800FE5E4:
 /* 800FE640 000FB580  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 800FE644 000FB584  38 81 00 14 */ addi r4, r1, 0x14
 /* 800FE648 000FB588  38 A1 00 08 */ addi r5, r1, 8
-/* 800FE64C 000FB58C  4B FA 3B 4D */ bl daAlink_c_NS_commonLineCheck
+/* 800FE64C 000FB58C  4B FA 3B 4D */ bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FE650 000FB590  54 7F 06 3F */ clrlwi. r31, r3, 0x18
 /* 800FE654 000FB594  41 82 00 18 */ beq lbl_800FE66C
 /* 800FE658 000FB598  38 7E 1B 5C */ addi r3, r30, 0x1b5c
-/* 800FE65C 000FB59C  4B F7 76 B1 */ bl dBgS_CheckBWallPoly
+/* 800FE65C 000FB59C  4B F7 76 B1 */ bl dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo
 /* 800FE660 000FB5A0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FE664 000FB5A4  40 82 00 08 */ bne lbl_800FE66C
 /* 800FE668 000FB5A8  3B E0 00 00 */ li r31, 0
@@ -55,13 +55,13 @@ lbl_800FE66C:
 /* 800FE670 000FB5B0  41 82 00 18 */ beq lbl_800FE688
 /* 800FE674 000FB5B4  7F C3 F3 78 */ mr r3, r30
 /* 800FE678 000FB5B8  38 9E 1B 5C */ addi r4, r30, 0x1b5c
-/* 800FE67C 000FB5BC  4B FF F9 DD */ bl daAlink_c_NS_checkClimbCode
+/* 800FE67C 000FB5BC  4B FF F9 DD */ bl checkClimbCode__9daAlink_cFR13cBgS_PolyInfo
 /* 800FE680 000FB5C0  2C 03 00 00 */ cmpwi r3, 0
 /* 800FE684 000FB5C4  40 82 00 48 */ bne lbl_800FE6CC
 lbl_800FE688:
 /* 800FE688 000FB5C8  7F C3 F3 78 */ mr r3, r30
 /* 800FE68C 000FB5CC  C0 21 00 18 */ lfs f1, 0x18(r1)
-/* 800FE690 000FB5D0  48 00 05 E1 */ bl daAlink_c_NS_checkClimbRoof
+/* 800FE690 000FB5D0  48 00 05 E1 */ bl checkClimbRoof__9daAlink_cFf
 /* 800FE694 000FB5D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800FE698 000FB5D8  40 82 00 24 */ bne lbl_800FE6BC
 /* 800FE69C 000FB5DC  2C 1F 00 00 */ cmpwi r31, 0
@@ -69,7 +69,7 @@ lbl_800FE688:
 /* 800FE6A4 000FB5E4  7F C3 F3 78 */ mr r3, r30
 /* 800FE6A8 000FB5E8  38 81 00 08 */ addi r4, r1, 8
 /* 800FE6AC 000FB5EC  C0 21 00 18 */ lfs f1, 0x18(r1)
-/* 800FE6B0 000FB5F0  48 00 06 A1 */ bl daAlink_c_NS_checkClimbGround
+/* 800FE6B0 000FB5F0  48 00 06 A1 */ bl checkClimbGround__9daAlink_cFP4cXyzf
 /* 800FE6B4 000FB5F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800FE6B8 000FB5F8  41 82 00 0C */ beq lbl_800FE6C4
 lbl_800FE6BC:

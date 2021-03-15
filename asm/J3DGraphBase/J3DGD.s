@@ -3,8 +3,8 @@
 .section .text, "ax" # 8030d098
 
 
-.global J3DGDSetGenMode
-J3DGDSetGenMode:
+.global J3DGDSetGenMode__FUcUcUcUc11_GXCullMode
+J3DGDSetGenMode__FUcUcUcUc11_GXCullMode:
 /* 8030D098 00309FD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030D09C 00309FDC  7C 08 02 A6 */	mflr r0
 /* 8030D0A0 00309FE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -101,8 +101,8 @@ lbl_8030D0DC:
 /* 8030D208 0030A148  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030D20C 0030A14C  4E 80 00 20 */	blr 
 
-.global J3DGDSetGenMode_3Param
-J3DGDSetGenMode_3Param:
+.global J3DGDSetGenMode_3Param__FUcUcUc
+J3DGDSetGenMode_3Param__FUcUcUc:
 /* 8030D210 0030A150  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030D214 0030A154  7C 08 02 A6 */	mflr r0
 /* 8030D218 0030A158  90 01 00 24 */	stw r0, 0x24(r1)
@@ -190,8 +190,8 @@ lbl_8030D24C:
 /* 8030D35C 0030A29C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030D360 0030A2A0  4E 80 00 20 */	blr 
 
-.global J3DGDSetLightAttn
-J3DGDSetLightAttn:
+.global J3DGDSetLightAttn__F10_GXLightIDffffff
+J3DGDSetLightAttn__F10_GXLightIDffffff:
 /* 8030D364 0030A2A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030D368 0030A2A8  7C 60 00 34 */	cntlzw r0, r3
 /* 8030D36C 0030A2AC  20 00 00 1F */	subfic r0, r0, 0x1f
@@ -384,8 +384,8 @@ lbl_8030D380:
 /* 8030D654 0030A594  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030D658 0030A598  4E 80 00 20 */	blr 
 
-.global J3DGDSetLightColor
-J3DGDSetLightColor:
+.global J3DGDSetLightColor__F10_GXLightID8_GXColor
+J3DGDSetLightColor__F10_GXLightID8_GXColor:
 /* 8030D65C 0030A59C  88 E4 00 03 */	lbz r7, 3(r4)
 /* 8030D660 0030A5A0  88 C4 00 02 */	lbz r6, 2(r4)
 /* 8030D664 0030A5A4  88 A4 00 00 */	lbz r5, 0(r4)
@@ -456,8 +456,8 @@ lbl_8030D694:
 /* 8030D764 0030A6A4  98 04 00 00 */	stb r0, 0(r4)
 /* 8030D768 0030A6A8  4E 80 00 20 */	blr 
 
-.global J3DGDSetLightPos
-J3DGDSetLightPos:
+.global J3DGDSetLightPos__F10_GXLightIDfff
+J3DGDSetLightPos__F10_GXLightIDfff:
 /* 8030D76C 0030A6AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030D770 0030A6B0  7C 60 00 34 */	cntlzw r0, r3
 /* 8030D774 0030A6B4  20 00 00 1F */	subfic r0, r0, 0x1f
@@ -575,8 +575,8 @@ lbl_8030D788:
 /* 8030D930 0030A870  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030D934 0030A874  4E 80 00 20 */	blr 
 
-.global J3DGDSetLightDir
-J3DGDSetLightDir:
+.global J3DGDSetLightDir__F10_GXLightIDfff
+J3DGDSetLightDir__F10_GXLightIDfff:
 /* 8030D938 0030A878  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030D93C 0030A87C  7C 60 00 34 */	cntlzw r0, r3
 /* 8030D940 0030A880  20 00 00 1F */	subfic r0, r0, 0x1f
@@ -694,8 +694,8 @@ lbl_8030D954:
 /* 8030DAFC 0030AA3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030DB00 0030AA40  4E 80 00 20 */	blr 
 
-.global J3DGDSetVtxAttrFmtv
-J3DGDSetVtxAttrFmtv:
+.global J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb
+J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb:
 /* 8030DB04 0030AA44  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 8030DB08 0030AA48  7C 08 02 A6 */	mflr r0
 /* 8030DB0C 0030AA4C  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1047,8 +1047,8 @@ lbl_8030DD5C:
 /* 8030E05C 0030AF9C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8030E060 0030AFA0  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexCoordGen
-J3DGDSetTexCoordGen:
+.global J3DGDSetTexCoordGen__F13_GXTexGenType12_GXTexGenSrc
+J3DGDSetTexCoordGen__F13_GXTexGenType12_GXTexGenSrc:
 /* 8030E064 0030AFA4  39 00 00 00 */	li r8, 0
 /* 8030E068 0030AFA8  39 20 00 00 */	li r9, 0
 /* 8030E06C 0030AFAC  39 40 00 05 */	li r10, 5
@@ -1174,8 +1174,8 @@ lbl_8030E1A8:
 /* 8030E22C 0030B16C  98 C3 00 00 */	stb r6, 0(r3)
 /* 8030E230 0030B170  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexCoordScale2
-J3DGDSetTexCoordScale2:
+.global J3DGDSetTexCoordScale2__F13_GXTexCoordIDUsUcUcUsUcUc
+J3DGDSetTexCoordScale2__F13_GXTexCoordIDUsUcUcUsUcUc:
 /* 8030E234 0030B174  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8030E238 0030B178  7C 08 02 A6 */	mflr r0
 /* 8030E23C 0030B17C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1307,8 +1307,8 @@ lbl_8030E280:
 /* 8030E430 0030B370  38 21 00 30 */	addi r1, r1, 0x30
 /* 8030E434 0030B374  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexLookupMode
-J3DGDSetTexLookupMode:
+.global J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy
+J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy:
 /* 8030E438 0030B378  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030E43C 0030B37C  39 6D 83 8C */	addi r11, r13, lbl_8045090C-_SDA_BASE_
 /* 8030E440 0030B380  7C 0B 18 AE */	lbzx r0, r11, r3
@@ -1413,8 +1413,8 @@ J3DGDSetTexLookupMode:
 /* 8030E5CC 0030B50C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030E5D0 0030B510  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexImgAttr
-J3DGDSetTexImgAttr:
+.global J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt
+J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt:
 /* 8030E5D4 0030B514  38 ED 83 9C */	addi r7, r13, lbl_8045091C-_SDA_BASE_
 /* 8030E5D8 0030B518  7C 07 18 AE */	lbzx r0, r7, r3
 /* 8030E5DC 0030B51C  54 07 C0 0E */	slwi r7, r0, 0x18
@@ -1458,8 +1458,8 @@ J3DGDSetTexImgAttr:
 /* 8030E674 0030B5B4  98 C3 00 00 */	stb r6, 0(r3)
 /* 8030E678 0030B5B8  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexImgPtr
-J3DGDSetTexImgPtr:
+.global J3DGDSetTexImgPtr__F11_GXTexMapIDPv
+J3DGDSetTexImgPtr__F11_GXTexMapIDPv:
 /* 8030E67C 0030B5BC  3C 04 80 00 */	addis r0, r4, 0x8000
 /* 8030E680 0030B5C0  54 05 D9 7E */	srwi r5, r0, 5
 /* 8030E684 0030B5C4  38 8D 83 A4 */	addi r4, r13, lbl_80450924-_SDA_BASE_
@@ -1497,8 +1497,8 @@ J3DGDSetTexImgPtr:
 /* 8030E704 0030B644  98 C3 00 00 */	stb r6, 0(r3)
 /* 8030E708 0030B648  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexImgPtrRaw
-J3DGDSetTexImgPtrRaw:
+.global J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl
+J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl:
 /* 8030E70C 0030B64C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030E710 0030B650  7C 08 02 A6 */	mflr r0
 /* 8030E714 0030B654  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1554,8 +1554,8 @@ lbl_8030E744:
 /* 8030E7D8 0030B718  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030E7DC 0030B71C  4E 80 00 20 */	blr 
 
-.global J3DGDSetTexTlut
-J3DGDSetTexTlut:
+.global J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt
+J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt:
 /* 8030E7E0 0030B720  38 CD 83 AC */	addi r6, r13, lbl_8045092C-_SDA_BASE_
 /* 8030E7E4 0030B724  7C 06 18 AE */	lbzx r0, r6, r3
 /* 8030E7E8 0030B728  54 06 C0 0E */	slwi r6, r0, 0x18
@@ -1595,8 +1595,8 @@ J3DGDSetTexTlut:
 /* 8030E870 0030B7B0  98 C3 00 00 */	stb r6, 0(r3)
 /* 8030E874 0030B7B4  4E 80 00 20 */	blr 
 
-.global J3DGDLoadTlut
-J3DGDLoadTlut:
+.global J3DGDLoadTlut__FPvUl11_GXTlutSize
+J3DGDLoadTlut__FPvUl11_GXTlutSize:
 /* 8030E878 0030B7B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030E87C 0030B7BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8030E880 0030B7C0  39 20 00 61 */	li r9, 0x61
@@ -1772,8 +1772,8 @@ J3DGDLoadTlut:
 /* 8030EB28 0030BA68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030EB2C 0030BA6C  4E 80 00 20 */	blr 
 
-.global J3DGDSetIndTexMtx
-J3DGDSetIndTexMtx:
+.global J3DGDSetIndTexMtx__F14_GXIndTexMtxIDPA3_fSc
+J3DGDSetIndTexMtx__F14_GXIndTexMtxIDPA3_fSc:
 /* 8030EB30 0030BA70  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8030EB34 0030BA74  7C 08 02 A6 */	mflr r0
 /* 8030EB38 0030BA78  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1966,8 +1966,8 @@ lbl_8030EC44:
 /* 8030EE08 0030BD48  38 21 00 60 */	addi r1, r1, 0x60
 /* 8030EE0C 0030BD4C  4E 80 00 20 */	blr 
 
-.global J3DGDSetIndTexCoordScale
-J3DGDSetIndTexCoordScale:
+.global J3DGDSetIndTexCoordScale__F16_GXIndTexStageID14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale
+J3DGDSetIndTexCoordScale__F16_GXIndTexStageID14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale:
 /* 8030EE10 0030BD50  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030EE14 0030BD54  7C 08 02 A6 */	mflr r0
 /* 8030EE18 0030BD58  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2032,8 +2032,8 @@ lbl_8030EE54:
 /* 8030EF00 0030BE40  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030EF04 0030BE44  4E 80 00 20 */	blr 
 
-.global J3DGDSetIndTexOrder
-J3DGDSetIndTexOrder:
+.global J3DGDSetIndTexOrder__FUl13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID
+J3DGDSetIndTexOrder__FUl13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID:
 /* 8030EF08 0030BE48  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8030EF0C 0030BE4C  7C 08 02 A6 */	mflr r0
 /* 8030EF10 0030BE50  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2172,8 +2172,8 @@ lbl_8030F078:
 /* 8030F100 0030C040  38 21 00 30 */	addi r1, r1, 0x30
 /* 8030F104 0030C044  4E 80 00 20 */	blr 
 
-.global J3DGDSetTevOrder
-J3DGDSetTevOrder:
+.global J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID
+J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID:
 /* 8030F108 0030C048  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8030F10C 0030C04C  7C 08 02 A6 */	mflr r0
 /* 8030F110 0030C050  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2279,8 +2279,8 @@ lbl_8030F1E8:
 /* 8030F28C 0030C1CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8030F290 0030C1D0  4E 80 00 20 */	blr 
 
-.global J3DGDSetTevKColor
-J3DGDSetTevKColor:
+.global J3DGDSetTevKColor__F14_GXTevKColorID8_GXColor
+J3DGDSetTevKColor__F14_GXTevKColorID8_GXColor:
 /* 8030F294 0030C1D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030F298 0030C1D8  7C 08 02 A6 */	mflr r0
 /* 8030F29C 0030C1DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2373,8 +2373,8 @@ lbl_8030F300:
 /* 8030F3F4 0030C334  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030F3F8 0030C338  4E 80 00 20 */	blr 
 
-.global J3DGDSetTevColorS10
-J3DGDSetTevColorS10:
+.global J3DGDSetTevColorS10__F11_GXTevRegID11_GXColorS10
+J3DGDSetTevColorS10__F11_GXTevRegID11_GXColorS10:
 /* 8030F3FC 0030C33C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030F400 0030C340  7C 08 02 A6 */	mflr r0
 /* 8030F404 0030C344  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2518,8 +2518,8 @@ lbl_8030F468:
 /* 8030F628 0030C568  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030F62C 0030C56C  4E 80 00 20 */	blr 
 
-.global J3DGDSetFog
-J3DGDSetFog:
+.global J3DGDSetFog__F10_GXFogTypeffff8_GXColor
+J3DGDSetFog__F10_GXFogTypeffff8_GXColor:
 /* 8030F630 0030C570  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8030F634 0030C574  7C 08 02 A6 */	mflr r0
 /* 8030F638 0030C578  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2746,8 +2746,8 @@ lbl_8030F6D4:
 /* 8030F98C 0030C8CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8030F990 0030C8D0  4E 80 00 20 */	blr 
 
-.global J3DGDSetFogRangeAdj
-J3DGDSetFogRangeAdj:
+.global J3DGDSetFogRangeAdj__FUcUsP14_GXFogAdjTable
+J3DGDSetFogRangeAdj__FUcUsP14_GXFogAdjTable:
 /* 8030F994 0030C8D4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8030F998 0030C8D8  41 82 00 BC */	beq lbl_8030FA54
 /* 8030F99C 0030C8DC  38 C0 00 00 */	li r6, 0
@@ -2834,8 +2834,8 @@ lbl_8030FA54:
 /* 8030FAD8 0030CA18  98 C3 00 00 */	stb r6, 0(r3)
 /* 8030FADC 0030CA1C  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadPosMtxImm
-J3DFifoLoadPosMtxImm:
+.global J3DFifoLoadPosMtxImm__FPA4_fUl
+J3DFifoLoadPosMtxImm__FPA4_fUl:
 /* 8030FAE0 0030CA20  38 00 00 10 */	li r0, 0x10
 /* 8030FAE4 0030CA24  3C A0 CC 01 */	lis r5, 0xCC008000@ha
 /* 8030FAE8 0030CA28  98 05 80 00 */	stb r0, 0xCC008000@l(r5)
@@ -2869,8 +2869,8 @@ J3DFifoLoadPosMtxImm:
 /* 8030FB58 0030CA98  90 05 80 00 */	stw r0, -0x8000(r5)
 /* 8030FB5C 0030CA9C  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadNrmMtxImm
-J3DFifoLoadNrmMtxImm:
+.global J3DFifoLoadNrmMtxImm__FPA4_fUl
+J3DFifoLoadNrmMtxImm__FPA4_fUl:
 /* 8030FB60 0030CAA0  38 00 00 10 */	li r0, 0x10
 /* 8030FB64 0030CAA4  3C A0 CC 01 */	lis r5, 0xCC008000@ha
 /* 8030FB68 0030CAA8  98 05 80 00 */	stb r0, 0xCC008000@l(r5)
@@ -2899,8 +2899,8 @@ J3DFifoLoadNrmMtxImm:
 /* 8030FBC4 0030CB04  90 05 80 00 */	stw r0, -0x8000(r5)
 /* 8030FBC8 0030CB08  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadNrmMtxImm3x3
-J3DFifoLoadNrmMtxImm3x3:
+.global J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
+J3DFifoLoadNrmMtxImm3x3__FPA3_fUl:
 /* 8030FBCC 0030CB0C  38 00 00 10 */	li r0, 0x10
 /* 8030FBD0 0030CB10  3C A0 CC 01 */	lis r5, 0xCC008000@ha
 /* 8030FBD4 0030CB14  98 05 80 00 */	stb r0, 0xCC008000@l(r5)
@@ -2929,8 +2929,8 @@ J3DFifoLoadNrmMtxImm3x3:
 /* 8030FC30 0030CB70  90 05 80 00 */	stw r0, -0x8000(r5)
 /* 8030FC34 0030CB74  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadNrmMtxToTexMtx
-J3DFifoLoadNrmMtxToTexMtx:
+.global J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl
+J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl:
 /* 8030FC38 0030CB78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030FC3C 0030CB7C  38 00 00 10 */	li r0, 0x10
 /* 8030FC40 0030CB80  3C A0 CC 01 */	lis r5, 0xCC008000@ha
@@ -2970,8 +2970,8 @@ J3DFifoLoadNrmMtxToTexMtx:
 /* 8030FCC8 0030CC08  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030FCCC 0030CC0C  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadNrmMtxToTexMtx3x3
-J3DFifoLoadNrmMtxToTexMtx3x3:
+.global J3DFifoLoadNrmMtxToTexMtx3x3__FPA3_fUl
+J3DFifoLoadNrmMtxToTexMtx3x3__FPA3_fUl:
 /* 8030FCD0 0030CC10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030FCD4 0030CC14  38 00 00 10 */	li r0, 0x10
 /* 8030FCD8 0030CC18  3C A0 CC 01 */	lis r5, 0xCC008000@ha
@@ -3011,8 +3011,8 @@ J3DFifoLoadNrmMtxToTexMtx3x3:
 /* 8030FD60 0030CCA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8030FD64 0030CCA4  4E 80 00 20 */	blr 
 
-.global J3DFifoLoadTexCached
-J3DFifoLoadTexCached:
+.global J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize
+J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize:
 /* 8030FD68 0030CCA8  39 40 00 61 */	li r10, 0x61
 /* 8030FD6C 0030CCAC  3D 20 CC 01 */	lis r9, 0xCC008000@ha
 /* 8030FD70 0030CCB0  99 49 80 00 */	stb r10, 0xCC008000@l(r9)

@@ -3,7 +3,7 @@
 /* 800BAF10 000B7E50  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800BAF14 000B7E54  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800BAF18 000B7E58  7C 7F 1B 78 */ mr r31, r3
-/* 800BAF1C 000B7E5C  4B FF F1 B5 */ bl daAlink_c_NS_checkNextAction
+/* 800BAF1C 000B7E5C  4B FF F1 B5 */ bl checkNextAction__9daAlink_cFi
 /* 800BAF20 000B7E60  2C 03 00 00 */ cmpwi r3, 0
 /* 800BAF24 000B7E64  41 82 00 44 */ beq lbl_800BAF68
 /* 800BAF28 000B7E68  88 1F 2F 8C */ lbz r0, 0x2f8c(r31)
@@ -20,7 +20,7 @@ lbl_800BAF44:
 /* 800BAF50 000B7E90  C0 24 00 38 */ lfs f1, 0x38(r4)
 /* 800BAF54 000B7E94  38 80 00 00 */ li r4, 0
 /* 800BAF58 000B7E98  38 A0 00 23 */ li r5, 0x23
-/* 800BAF5C 000B7E9C  4B F5 48 ED */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800BAF5C 000B7E9C  4B F5 48 ED */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_800BAF60:
 /* 800BAF60 000B7EA0  38 60 00 01 */ li r3, 1
 /* 800BAF64 000B7EA4  48 00 00 08 */ b lbl_800BAF6C

@@ -4,12 +4,12 @@
 /* 800DBD28 000D8C68  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DBD2C 000D8C6C  7C 7F 1B 78 */ mr r31, r3
 /* 800DBD30 000D8C70  38 80 00 DE */ li r4, 0xde
-/* 800DBD34 000D8C74  4B FE 62 39 */ bl daAlink_c_NS_commonProcInit
+/* 800DBD34 000D8C74  4B FE 62 39 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DBD38 000D8C78  80 1F 05 8C */ lwz r0, 0x58c(r31)
 /* 800DBD3C 000D8C7C  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800DBD40 000D8C80  41 82 00 10 */ beq lbl_800DBD50
 /* 800DBD44 000D8C84  7F E3 FB 78 */ mr r3, r31
-/* 800DBD48 000D8C88  4B FF FF 51 */ bl daAlink_c_NS_setScreamWaitAnime
+/* 800DBD48 000D8C88  4B FF FF 51 */ bl setScreamWaitAnime__9daAlink_cFv
 /* 800DBD4C 000D8C8C  48 00 00 30 */ b lbl_800DBD7C
 lbl_800DBD50:
 /* 800DBD50 000D8C90  7F E3 FB 78 */ mr r3, r31
@@ -20,7 +20,7 @@ lbl_800DBD50:
 /* 800DBD64 000D8CA4  3C A0 80 39 */ lis r5, lbl_8038D664@ha
 /* 800DBD68 000D8CA8  38 A5 D6 64 */ addi r5, r5, lbl_8038D664@l
 /* 800DBD6C 000D8CAC  C0 45 00 18 */ lfs f2, 0x18(r5)
-/* 800DBD70 000D8CB0  4B FD 12 71 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800DBD70 000D8CB0  4B FD 12 71 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800DBD74 000D8CB4  38 00 00 00 */ li r0, 0
 /* 800DBD78 000D8CB8  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_800DBD7C:

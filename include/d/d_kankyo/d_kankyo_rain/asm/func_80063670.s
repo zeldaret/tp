@@ -111,7 +111,7 @@ lbl_80063800:
 /* 80063810 00060750  2C 03 00 00 */ cmpwi r3, 0
 /* 80063814 00060754  40 82 00 3C */ bne lbl_80063850
 /* 80063818 00060758  38 60 00 00 */ li r3, 0
-/* 8006381C 0006075C  4B FC 91 61 */ bl dComIfG_play_c_NS_getLayerNo
+/* 8006381C 0006075C  4B FC 91 61 */ bl getLayerNo__14dComIfG_play_cFi
 /* 80063820 00060760  2C 03 00 00 */ cmpwi r3, 0
 /* 80063824 00060764  40 82 00 2C */ bne lbl_80063850
 /* 80063828 00060768  C0 5A 10 94 */ lfs f2, 0x1094(r26)
@@ -152,7 +152,7 @@ lbl_8006389C:
 /* 800638AC 000607EC  48 30 50 E9 */ bl strcmp
 /* 800638B0 000607F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800638B4 000607F4  40 82 00 58 */ bne lbl_8006390C
-/* 800638B8 000607F8  48 13 C2 01 */ bl dKy_daynight_check
+/* 800638B8 000607F8  48 13 C2 01 */ bl dKy_daynight_check__Fv
 /* 800638BC 000607FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800638C0 00060800  41 82 00 4C */ beq lbl_8006390C
 /* 800638C4 00060804  C0 02 8A 6C */ lfs f0, lbl_8045246C-_SDA2_BASE_(r2)
@@ -182,7 +182,7 @@ lbl_8006390C:
 /* 80063920 00060860  7F 20 1A 14 */ add r25, r0, r3
 /* 80063924 00060864  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80063928 00060868  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 8006392C 0006086C  48 13 C0 DD */ bl dScnKy_env_light_c_NS_getDaytime
+/* 8006392C 0006086C  48 13 C0 DD */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80063930 00060870  C0 02 87 E4 */ lfs f0, lbl_804521E4-_SDA2_BASE_(r2)
 /* 80063934 00060874  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80063938 00060878  40 80 00 18 */ bge lbl_80063950
@@ -201,7 +201,7 @@ lbl_80063950:
 /* 80063964 000608A4  40 82 00 38 */ bne lbl_8006399C
 /* 80063968 000608A8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8006396C 000608AC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 80063970 000608B0  48 13 C0 99 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 80063970 000608B0  48 13 C0 99 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80063974 000608B4  C0 02 87 E4 */ lfs f0, lbl_804521E4-_SDA2_BASE_(r2)
 /* 80063978 000608B8  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8006397C 000608BC  40 80 00 14 */ bge lbl_80063990
@@ -287,17 +287,17 @@ lbl_80063AA0:
 /* 80063AA0 000609E0  38 61 00 98 */ addi r3, r1, 0x98
 /* 80063AA4 000609E4  80 9C 00 00 */ lwz r4, 0(r28)
 /* 80063AA8 000609E8  38 A0 00 00 */ li r5, 0
-/* 80063AAC 000609EC  4B FF 7E 81 */ bl dKyr_set_btitex_common
+/* 80063AAC 000609EC  4B FF 7E 81 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80063AB0 000609F0  38 61 00 98 */ addi r3, r1, 0x98
 /* 80063AB4 000609F4  80 9C 00 04 */ lwz r4, 4(r28)
 /* 80063AB8 000609F8  38 A0 00 01 */ li r5, 1
-/* 80063ABC 000609FC  4B FF 7E 71 */ bl dKyr_set_btitex_common
+/* 80063ABC 000609FC  4B FF 7E 71 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80063AC0 00060A00  38 61 00 98 */ addi r3, r1, 0x98
 /* 80063AC4 00060A04  57 40 10 3A */ slwi r0, r26, 2
 /* 80063AC8 00060A08  7C 9C 02 14 */ add r4, r28, r0
 /* 80063ACC 00060A0C  80 84 00 08 */ lwz r4, 8(r4)
 /* 80063AD0 00060A10  38 A0 00 02 */ li r5, 2
-/* 80063AD4 00060A14  4B FF 7E 59 */ bl dKyr_set_btitex_common
+/* 80063AD4 00060A14  4B FF 7E 59 */ bl dKyr_set_btitex_common__FP9_GXTexObjP7ResTIMG11_GXTexMapID
 /* 80063AD8 00060A18  38 60 00 00 */ li r3, 0
 /* 80063ADC 00060A1C  48 2F A0 55 */ bl GXSetNumChans
 /* 80063AE0 00060A20  80 01 00 20 */ lwz r0, 0x20(r1)
@@ -508,7 +508,7 @@ lbl_80063DE4:
 /* 80063E10 00060D50  38 77 00 D8 */ addi r3, r23, 0xd8
 /* 80063E14 00060D54  38 97 00 E4 */ addi r4, r23, 0xe4
 /* 80063E18 00060D58  38 A1 00 30 */ addi r5, r1, 0x30
-/* 80063E1C 00060D5C  4B FF 79 45 */ bl dKyr_get_vectle_calc
+/* 80063E1C 00060D5C  4B FF 79 45 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 80063E20 00060D60  C0 21 00 30 */ lfs f1, 0x30(r1)
 /* 80063E24 00060D64  EC 61 00 72 */ fmuls f3, f1, f1
 /* 80063E28 00060D68  C0 41 00 38 */ lfs f2, 0x38(r1)
@@ -593,13 +593,13 @@ lbl_80063F40:
 /* 80063F50 00060E90  48 30 4A 45 */ bl strcmp
 /* 80063F54 00060E94  2C 03 00 00 */ cmpwi r3, 0
 /* 80063F58 00060E98  40 82 00 3C */ bne lbl_80063F94
-/* 80063F5C 00060E9C  48 13 BB 5D */ bl dKy_daynight_check
+/* 80063F5C 00060E9C  48 13 BB 5D */ bl dKy_daynight_check__Fv
 /* 80063F60 00060EA0  2C 03 00 00 */ cmpwi r3, 0
 /* 80063F64 00060EA4  41 82 00 30 */ beq lbl_80063F94
 /* 80063F68 00060EA8  C2 E2 88 9C */ lfs f23, lbl_8045229C-_SDA2_BASE_(r2)
 /* 80063F6C 00060EAC  34 78 40 C0 */ addic. r3, r24, 0x40c0
 /* 80063F70 00060EB0  41 82 00 24 */ beq lbl_80063F94
-/* 80063F74 00060EB4  4B FE 44 75 */ bl dEvent_manager_c_NS_getRunEventName
+/* 80063F74 00060EB4  4B FE 44 75 */ bl getRunEventName__16dEvent_manager_cFv
 /* 80063F78 00060EB8  3C 80 80 38 */ lis r4, lbl_8037A578@ha
 /* 80063F7C 00060EBC  38 84 A5 78 */ addi r4, r4, lbl_8037A578@l
 /* 80063F80 00060EC0  38 84 00 6C */ addi r4, r4, 0x6c
@@ -637,7 +637,7 @@ lbl_80063FF4:
 /* 80063FF8 00060F38  40 82 01 4C */ bne lbl_80064144
 /* 80063FFC 00060F3C  38 61 00 98 */ addi r3, r1, 0x98
 /* 80064000 00060F40  80 9D 00 14 */ lwz r4, 0x14(r29)
-/* 80064004 00060F44  4B FF 7A 21 */ bl dKyr_set_btitex
+/* 80064004 00060F44  4B FF 7A 21 */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 80064008 00060F48  48 2F 75 85 */ bl GXClearVtxDesc
 /* 8006400C 00060F4C  38 60 00 09 */ li r3, 9
 /* 80064010 00060F50  38 80 00 01 */ li r4, 1
@@ -886,7 +886,7 @@ lbl_800643B0:
 /* 800643C0 00061300  40 82 00 10 */ bne lbl_800643D0
 /* 800643C4 00061304  7F 63 DB 78 */ mr r3, r27
 /* 800643C8 00061308  7F 84 E3 78 */ mr r4, r28
-/* 800643CC 0006130C  4B FF E7 81 */ bl dKyr_draw_rev_moon
+/* 800643CC 0006130C  4B FF E7 81 */ bl dKyr_draw_rev_moon__FPA4_fPPUc
 lbl_800643D0:
 /* 800643D0 00061310  3A D6 00 01 */ addi r22, r22, 1
 /* 800643D4 00061314  2C 16 00 02 */ cmpwi r22, 2

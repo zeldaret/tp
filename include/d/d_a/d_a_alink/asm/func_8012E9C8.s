@@ -10,7 +10,7 @@
 /* 8012E9EC 0012B92C  7C 7F 1B 78 */ mr r31, r3
 /* 8012E9F0 0012B930  7C 9D 23 78 */ mr r29, r4
 /* 8012E9F4 0012B934  38 80 00 FC */ li r4, 0xfc
-/* 8012E9F8 0012B938  4B F9 35 75 */ bl daAlink_c_NS_commonProcInit
+/* 8012E9F8 0012B938  4B F9 35 75 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012E9FC 0012B93C  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 8012EA00 0012B940  54 00 02 53 */ rlwinm. r0, r0, 0, 9, 9
 /* 8012EA04 0012B944  41 82 00 40 */ beq lbl_8012EA44
@@ -46,7 +46,7 @@ lbl_8012EA64:
 /* 8012EA74 0012B9B4  C0 46 00 08 */ lfs f2, 8(r6)
 /* 8012EA78 0012B9B8  A8 A6 00 00 */ lha r5, 0(r6)
 /* 8012EA7C 0012B9BC  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 8012EA80 0012B9C0  4B FF AC 85 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8012EA80 0012B9C0  4B FF AC 85 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8012EA84 0012B9C4  C0 3F 05 2C */ lfs f1, 0x52c(r31)
 /* 8012EA88 0012B9C8  C0 1F 05 94 */ lfs f0, 0x594(r31)
 /* 8012EA8C 0012B9CC  FC 01 00 40 */ fcmpo cr0, f1, f0

@@ -15,7 +15,7 @@
 /* 800EEDD0 000EBD10  83 E3 5D B8 */ lwz r31, 0x5db8(r3)
 /* 800EEDD4 000EBD14  7F C3 F3 78 */ mr r3, r30
 /* 800EEDD8 000EBD18  38 81 00 08 */ addi r4, r1, 8
-/* 800EEDDC 000EBD1C  4B FF ED 6D */ bl daAlink_c_NS_getBaseHorseAnime
+/* 800EEDDC 000EBD1C  4B FF ED 6D */ bl getBaseHorseAnime__9daAlink_cFPQ29daAlink_c11daAlink_ANM
 /* 800EEDE0 000EBD20  7F C3 F3 78 */ mr r3, r30
 /* 800EEDE4 000EBD24  C0 3F 05 9C */ lfs f1, 0x59c(r31)
 /* 800EEDE8 000EBD28  C0 42 92 B8 */ lfs f2, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -24,13 +24,13 @@
 /* 800EEDF4 000EBD34  80 A1 00 0C */ lwz r5, 0xc(r1)
 /* 800EEDF8 000EBD38  38 C0 00 0A */ li r6, 0xa
 /* 800EEDFC 000EBD3C  C0 9F 17 50 */ lfs f4, 0x1750(r31)
-/* 800EEE00 000EBD40  4B FB DC 15 */ bl daAlink_c_NS_setDoubleAnime
+/* 800EEE00 000EBD40  4B FB DC 15 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 /* 800EEE04 000EBD44  7F C3 F3 78 */ mr r3, r30
-/* 800EEE08 000EBD48  4B FF FC E1 */ bl daAlink_c_NS_setBaseHorseAnimeFrame
+/* 800EEE08 000EBD48  4B FF FC E1 */ bl setBaseHorseAnimeFrame__9daAlink_cFv
 /* 800EEE0C 000EBD4C  48 00 00 0C */ b lbl_800EEE18
 lbl_800EEE10:
 /* 800EEE10 000EBD50  7F C3 F3 78 */ mr r3, r30
-/* 800EEE14 000EBD54  4B FF FE 85 */ bl daAlink_c_NS_setBaseBoarAnime
+/* 800EEE14 000EBD54  4B FF FE 85 */ bl setBaseBoarAnime__9daAlink_cFv
 lbl_800EEE18:
 /* 800EEE18 000EBD58  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800EEE1C 000EBD5C  83 C1 00 18 */ lwz r30, 0x18(r1)

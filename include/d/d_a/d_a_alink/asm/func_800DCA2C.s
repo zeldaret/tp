@@ -5,7 +5,7 @@
 /* 800DCA3C 000D997C  93 C1 00 08 */ stw r30, 8(r1)
 /* 800DCA40 000D9980  7C 7E 1B 78 */ mr r30, r3
 /* 800DCA44 000D9984  3B E0 00 00 */ li r31, 0
-/* 800DCA48 000D9988  48 08 29 7D */ bl daPy_py_c_NS_checkWoodShieldEquip
+/* 800DCA48 000D9988  48 08 29 7D */ bl checkWoodShieldEquip__9daPy_py_cFv
 /* 800DCA4C 000D998C  2C 03 00 00 */ cmpwi r3, 0
 /* 800DCA50 000D9990  41 82 00 14 */ beq lbl_800DCA64
 /* 800DCA54 000D9994  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)

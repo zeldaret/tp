@@ -1,7 +1,7 @@
 /* 8002E688 0002B5C8  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 8002E68C 0002B5CC  7C 08 02 A6 */ mflr r0
 /* 8002E690 0002B5D0  90 01 00 14 */ stw r0, 0x14(r1)
-/* 8002E694 0002B5D4  4B FF F8 89 */ bl dComIfGp_getSelectItem
+/* 8002E694 0002B5D4  4B FF F8 89 */ bl dComIfGp_getSelectItem__Fi
 /* 8002E698 0002B5D8  7C 64 1B 78 */ mr r4, r3
 /* 8002E69C 0002B5DC  38 60 00 00 */ li r3, 0
 /* 8002E6A0 0002B5E0  54 85 06 3E */ clrlwi r5, r4, 0x18
@@ -31,7 +31,7 @@ lbl_8002E6E4:
 lbl_8002E6F4:
 /* 8002E6F4 0002B634  28 05 00 76 */ cmplwi r5, 0x76
 /* 8002E6F8 0002B638  40 82 00 0C */ bne lbl_8002E704
-/* 8002E6FC 0002B63C  4B FF FE BD */ bl dComIfGs_getBottleMax
+/* 8002E6FC 0002B63C  4B FF FE BD */ bl dComIfGs_getBottleMax__Fv
 /* 8002E700 0002B640  54 63 06 3E */ clrlwi r3, r3, 0x18
 lbl_8002E704:
 /* 8002E704 0002B644  80 01 00 14 */ lwz r0, 0x14(r1)

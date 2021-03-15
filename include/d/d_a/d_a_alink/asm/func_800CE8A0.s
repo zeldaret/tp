@@ -78,7 +78,7 @@ lbl_800CE948:
 /* 800CE9CC 000CB90C  80 01 00 2C */ lwz r0, 0x2c(r1)
 /* 800CE9D0 000CB910  B0 01 00 08 */ sth r0, 8(r1)
 /* 800CE9D4 000CB914  7F E3 FB 78 */ mr r3, r31
-/* 800CE9D8 000CB918  4B FE 31 91 */ bl daAlink_c_NS_checkNotItemSinkLimit
+/* 800CE9D8 000CB918  4B FE 31 91 */ bl checkNotItemSinkLimit__9daAlink_cFv
 /* 800CE9DC 000CB91C  2C 03 00 00 */ cmpwi r3, 0
 /* 800CE9E0 000CB920  41 82 00 2C */ beq lbl_800CEA0C
 /* 800CE9E4 000CB924  A8 61 00 08 */ lha r3, 8(r1)
@@ -94,7 +94,7 @@ lbl_800CEA04:
 /* 800CEA08 000CB948  B0 01 00 08 */ sth r0, 8(r1)
 lbl_800CEA0C:
 /* 800CEA0C 000CB94C  7F E3 FB 78 */ mr r3, r31
-/* 800CEA10 000CB950  4B FE 31 59 */ bl daAlink_c_NS_checkNotItemSinkLimit
+/* 800CEA10 000CB950  4B FE 31 59 */ bl checkNotItemSinkLimit__9daAlink_cFv
 /* 800CEA14 000CB954  2C 03 00 00 */ cmpwi r3, 0
 /* 800CEA18 000CB958  41 82 00 28 */ beq lbl_800CEA40
 /* 800CEA1C 000CB95C  A8 01 00 08 */ lha r0, 8(r1)
@@ -143,7 +143,7 @@ lbl_800CEAB4:
 /* 800CEAB4 000CB9F4  B0 9F 05 9C */ sth r4, 0x59c(r31)
 /* 800CEAB8 000CB9F8  7F E3 FB 78 */ mr r3, r31
 /* 800CEABC 000CB9FC  A8 9F 05 9C */ lha r4, 0x59c(r31)
-/* 800CEAC0 000CBA00  4B FF FC 69 */ bl daAlink_c_NS_checkBodyAngleX
+/* 800CEAC0 000CBA00  4B FF FC 69 */ bl checkBodyAngleX__9daAlink_cFs
 /* 800CEAC4 000CBA04  A8 1F 05 9C */ lha r0, 0x59c(r31)
 /* 800CEAC8 000CBA08  B0 1F 31 0A */ sth r0, 0x310a(r31)
 /* 800CEACC 000CBA0C  A8 1F 04 E6 */ lha r0, 0x4e6(r31)

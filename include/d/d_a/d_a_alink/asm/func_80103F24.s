@@ -8,11 +8,11 @@
 /* 80103F40 00100E80  80 03 05 70 */ lwz r0, 0x570(r3)
 /* 80103F44 00100E84  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80103F48 00100E88  40 82 00 30 */ bne lbl_80103F78
-/* 80103F4C 00100E8C  4B FF FF 95 */ bl daAlink_c_NS_checkSwimButtonAccept
+/* 80103F4C 00100E8C  4B FF FF 95 */ bl checkSwimButtonAccept__9daAlink_cFv
 /* 80103F50 00100E90  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80103F54 00100E94  40 82 00 14 */ bne lbl_80103F68
 /* 80103F58 00100E98  7F C3 F3 78 */ mr r3, r30
-/* 80103F5C 00100E9C  4B FF FF AD */ bl daAlink_c_NS_checkUpSwimButtonAccept
+/* 80103F5C 00100E9C  4B FF FF AD */ bl checkUpSwimButtonAccept__9daAlink_cFv
 /* 80103F60 00100EA0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80103F64 00100EA4  41 82 00 14 */ beq lbl_80103F78
 lbl_80103F68:

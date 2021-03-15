@@ -3,7 +3,7 @@
 /* 8019FB38 0019CA78  90 01 00 24 */ stw r0, 0x24(r1)
 /* 8019FB3C 0019CA7C  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019FB40 0019CA80  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 8019FB44 0019CA84  48 00 00 89 */ bl dScnKy_env_light_c_NS_getDarkDaytime
+/* 8019FB44 0019CA84  48 00 00 89 */ bl getDarkDaytime__18dScnKy_env_light_cFv
 /* 8019FB48 0019CA88  C0 62 A2 BC */ lfs f3, lbl_80453CBC-_SDA2_BASE_(r2)
 /* 8019FB4C 0019CA8C  C0 42 A2 70 */ lfs f2, lbl_80453C70-_SDA2_BASE_(r2)
 /* 8019FB50 0019CA90  EC 02 00 72 */ fmuls f0, f2, f1

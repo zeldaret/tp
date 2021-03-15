@@ -6,7 +6,7 @@
 /* 80208FC8 00205F08  80 63 00 6C */ lwz r3, 0x6c(r3)
 /* 80208FCC 00205F0C  28 03 00 00 */ cmplwi r3, 0
 /* 80208FD0 00205F10  41 82 00 D0 */ beq lbl_802090A0
-/* 80208FD4 00205F14  48 04 C8 55 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80208FD4 00205F14  48 04 C8 55 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80208FD8 00205F18  C0 02 AD 4C */ lfs f0, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80208FDC 00205F1C  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80208FE0 00205F20  41 82 00 C0 */ beq lbl_802090A0
@@ -21,7 +21,7 @@
 lbl_80209004:
 /* 80209004 00205F44  80 7F 00 6C */ lwz r3, 0x6c(r31)
 /* 80209008 00205F48  C0 22 AD 4C */ lfs f1, lbl_8045474C-_SDA2_BASE_(r2)
-/* 8020900C 00205F4C  48 04 C7 C5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 8020900C 00205F4C  48 04 C7 C5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80209010 00205F50  38 00 00 05 */ li r0, 5
 /* 80209014 00205F54  80 7F 00 6C */ lwz r3, 0x6c(r31)
 /* 80209018 00205F58  B0 03 00 16 */ sth r0, 0x16(r3)
@@ -29,17 +29,17 @@ lbl_80209004:
 lbl_80209020:
 /* 80209020 00205F60  80 7F 00 6C */ lwz r3, 0x6c(r31)
 /* 80209024 00205F64  FC 20 00 90 */ fmr f1, f0
-/* 80209028 00205F68  48 04 C7 A9 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80209028 00205F68  48 04 C7 A9 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 8020902C 00205F6C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80209030 00205F70  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 80209034 00205F74  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80209038 00205F78  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 8020903C 00205F7C  80 9F 00 6C */ lwz r4, 0x6c(r31)
 /* 80209040 00205F80  38 A0 00 05 */ li r5, 5
-/* 80209044 00205F84  48 01 1A 61 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 80209044 00205F84  48 01 1A 61 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80209048:
 /* 80209048 00205F88  80 7F 00 6C */ lwz r3, 0x6c(r31)
-/* 8020904C 00205F8C  48 04 C7 DD */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8020904C 00205F8C  48 04 C7 DD */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80209050 00205F90  C0 42 AD 4C */ lfs f2, lbl_8045474C-_SDA2_BASE_(r2)
 /* 80209054 00205F94  FC 02 08 00 */ fcmpu cr0, f2, f1
 /* 80209058 00205F98  40 82 00 48 */ bne lbl_802090A0

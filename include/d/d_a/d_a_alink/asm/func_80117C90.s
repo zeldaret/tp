@@ -7,7 +7,7 @@
 /* 80117CA8 00114BE8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80117CAC 00114BEC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80117CB0 00114BF0  38 63 4E C8 */ addi r3, r3, 0x4ec8
-/* 80117CB4 00114BF4  4B F2 A7 B5 */ bl dEvt_control_c_NS_reset
+/* 80117CB4 00114BF4  4B F2 A7 B5 */ bl reset__14dEvt_control_cFv
 /* 80117CB8 00114BF8  28 1E 00 00 */ cmplwi r30, 0
 /* 80117CBC 00114BFC  41 82 00 0C */ beq lbl_80117CC8
 /* 80117CC0 00114C00  83 FE 00 04 */ lwz r31, 4(r30)
@@ -15,11 +15,11 @@
 lbl_80117CC8:
 /* 80117CC8 00114C08  3B E0 FF FF */ li r31, -1
 lbl_80117CCC:
-/* 80117CCC 00114C0C  48 06 99 75 */ bl dCam_getBody
+/* 80117CCC 00114C0C  48 06 99 75 */ bl dCam_getBody__Fv
 /* 80117CD0 00114C10  7F E4 FB 78 */ mr r4, r31
-/* 80117CD4 00114C14  4B F7 0E E9 */ bl dCamera_c_NS_EndEventCamera
+/* 80117CD4 00114C14  4B F7 0E E9 */ bl EndEventCamera__9dCamera_cFi
 /* 80117CD8 00114C18  7F C3 F3 78 */ mr r3, r30
-/* 80117CDC 00114C1C  48 00 00 1D */ bl daAlink_c_NS_endDemoMode
+/* 80117CDC 00114C1C  48 00 00 1D */ bl endDemoMode__9daAlink_cFv
 /* 80117CE0 00114C20  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80117CE4 00114C24  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80117CE8 00114C28  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -13,7 +13,7 @@
 /* 80182590 0017F4D0  80 9F 00 4C */ lwz r4, 0x4c(r31)
 /* 80182594 0017F4D4  80 BF 00 50 */ lwz r5, 0x50(r31)
 /* 80182598 0017F4D8  80 DF 00 54 */ lwz r6, 0x54(r31)
-/* 8018259C 0017F4DC  4B ED 17 41 */ bl cM_rnd_c_NS_init
+/* 8018259C 0017F4DC  4B ED 17 41 */ bl init__8cM_rnd_cFiii
 lbl_801825A0:
 /* 801825A0 0017F4E0  7F E3 FB 78 */ mr r3, r31
 /* 801825A4 0017F4E4  38 9F 00 38 */ addi r4, r31, 0x38
@@ -26,7 +26,7 @@ lbl_801825A0:
 /* 801825C0 0017F500  C0 5F 00 64 */ lfs f2, 0x64(r31)
 /* 801825C4 0017F504  C0 7F 00 68 */ lfs f3, 0x68(r31)
 /* 801825C8 0017F508  C0 9F 00 6C */ lfs f4, 0x6c(r31)
-/* 801825CC 0017F50C  4B ED 1C 29 */ bl dDlst_effectLine_c_NS_update
+/* 801825CC 0017F50C  4B ED 1C 29 */ bl update__18dDlst_effectLine_cFR4cXyzR8_GXColorUsUsUsUsffff
 lbl_801825D0:
 /* 801825D0 0017F510  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801825D4 0017F514  80 01 00 14 */ lwz r0, 0x14(r1)

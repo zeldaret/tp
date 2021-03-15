@@ -36,16 +36,16 @@
 /* 8019ED24 0019BC64  38 80 00 00 */ li r4, 0
 /* 8019ED28 0019BC68  38 A0 00 00 */ li r5, 0
 /* 8019ED2C 0019BC6C  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
-/* 8019ED30 0019BC70  48 00 91 59 */ bl dKy_actor_addcol_set
+/* 8019ED30 0019BC70  48 00 91 59 */ bl dKy_actor_addcol_set__Fsssf
 /* 8019ED34 0019BC74  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
 /* 8019ED38 0019BC78  FC 40 08 90 */ fmr f2, f1
 /* 8019ED3C 0019BC7C  FC 60 08 90 */ fmr f3, f1
-/* 8019ED40 0019BC80  48 00 93 91 */ bl dKy_fog_startendz_set
+/* 8019ED40 0019BC80  48 00 93 91 */ bl dKy_fog_startendz_set__Ffff
 /* 8019ED44 0019BC84  38 60 00 00 */ li r3, 0
 /* 8019ED48 0019BC88  38 80 00 00 */ li r4, 0
 /* 8019ED4C 0019BC8C  38 A0 00 00 */ li r5, 0
 /* 8019ED50 0019BC90  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
-/* 8019ED54 0019BC94  48 00 93 0D */ bl dKy_vrbox_addcol_set
+/* 8019ED54 0019BC94  48 00 93 0D */ bl dKy_vrbox_addcol_set__Fsssf
 /* 8019ED58 0019BC98  38 80 00 00 */ li r4, 0
 /* 8019ED5C 0019BC9C  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019ED60 0019BCA0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
@@ -61,7 +61,7 @@
 /* 8019ED88 0019BCC8  38 00 01 40 */ li r0, 0x140
 /* 8019ED8C 0019BCCC  B0 03 12 BC */ sth r0, 0x12bc(r3)
 /* 8019ED90 0019BCD0  38 60 00 00 */ li r3, 0
-/* 8019ED94 0019BCD4  4B EB 7C 91 */ bl dKyd_xfog_table_set
+/* 8019ED94 0019BCD4  4B EB 7C 91 */ bl dKyd_xfog_table_set__FUc
 /* 8019ED98 0019BCD8  C0 02 A2 48 */ lfs f0, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019ED9C 0019BCDC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019EDA0 0019BCE0  3B C3 CA 54 */ addi r30, r3, lbl_8042CA54@l
@@ -119,7 +119,7 @@ lbl_8019EE58:
 /* 8019EE6C 0019BDAC  38 00 00 01 */ li r0, 1
 /* 8019EE70 0019BDB0  98 03 13 09 */ stb r0, 0x1309(r3)
 /* 8019EE74 0019BDB4  7F E3 FB 78 */ mr r3, r31
-/* 8019EE78 0019BDB8  4B FF FD 59 */ bl dKy_light_size_get
+/* 8019EE78 0019BDB8  4B FF FD 59 */ bl dKy_light_size_get__FPCc
 /* 8019EE7C 0019BDBC  C0 02 A2 48 */ lfs f0, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019EE80 0019BDC0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019EE84 0019BDC4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
@@ -144,13 +144,13 @@ lbl_8019EE58:
 /* 8019EED0 0019BE10  54 00 87 7E */ rlwinm r0, r0, 0x10, 0x1d, 0x1f
 /* 8019EED4 0019BE14  28 00 00 03 */ cmplwi r0, 3
 /* 8019EED8 0019BE18  40 82 00 18 */ bne lbl_8019EEF0
-/* 8019EEDC 0019BE1C  4B EB 7B 3D */ bl dKyd_schejule_boss_getp
+/* 8019EEDC 0019BE1C  4B EB 7B 3D */ bl dKyd_schejule_boss_getp__Fv
 /* 8019EEE0 0019BE20  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019EEE4 0019BE24  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019EEE8 0019BE28  90 64 00 14 */ stw r3, 0x14(r4)
 /* 8019EEEC 0019BE2C  48 00 00 14 */ b lbl_8019EF00
 lbl_8019EEF0:
-/* 8019EEF0 0019BE30  4B EB 7B 1D */ bl dKyd_schejule_getp
+/* 8019EEF0 0019BE30  4B EB 7B 1D */ bl dKyd_schejule_getp__Fv
 /* 8019EEF4 0019BE34  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019EEF8 0019BE38  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019EEFC 0019BE3C  90 64 00 14 */ stw r3, 0x14(r4)
@@ -280,7 +280,7 @@ lbl_8019F07C:
 /* 8019F0CC 0019C00C  93 83 00 0C */ stw r28, 0xc(r3)
 /* 8019F0D0 0019C010  48 00 00 14 */ b lbl_8019F0E4
 lbl_8019F0D4:
-/* 8019F0D4 0019C014  4B EB 79 21 */ bl dKyd_dmenvr_getp
+/* 8019F0D4 0019C014  4B EB 79 21 */ bl dKyd_dmenvr_getp__Fv
 /* 8019F0D8 0019C018  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019F0DC 0019C01C  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019F0E0 0019C020  90 64 00 0C */ stw r3, 0xc(r4)
@@ -292,7 +292,7 @@ lbl_8019F0E4:
 /* 8019F0F4 0019C034  93 43 00 04 */ stw r26, 4(r3)
 /* 8019F0F8 0019C038  48 00 00 14 */ b lbl_8019F10C
 lbl_8019F0FC:
-/* 8019F0FC 0019C03C  4B EB 78 E1 */ bl dKyd_dmpalet_getp
+/* 8019F0FC 0019C03C  4B EB 78 E1 */ bl dKyd_dmpalet_getp__Fv
 /* 8019F100 0019C040  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019F104 0019C044  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019F108 0019C048  90 64 00 04 */ stw r3, 4(r4)
@@ -304,7 +304,7 @@ lbl_8019F10C:
 /* 8019F11C 0019C05C  93 63 00 08 */ stw r27, 8(r3)
 /* 8019F120 0019C060  48 00 00 14 */ b lbl_8019F134
 lbl_8019F124:
-/* 8019F124 0019C064  4B EB 78 C5 */ bl dKyd_dmpselect_getp
+/* 8019F124 0019C064  4B EB 78 C5 */ bl dKyd_dmpselect_getp__Fv
 /* 8019F128 0019C068  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019F12C 0019C06C  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019F130 0019C070  90 64 00 08 */ stw r3, 8(r4)
@@ -316,15 +316,15 @@ lbl_8019F134:
 /* 8019F144 0019C084  93 A3 00 10 */ stw r29, 0x10(r3)
 /* 8019F148 0019C088  48 00 00 14 */ b lbl_8019F15C
 lbl_8019F14C:
-/* 8019F14C 0019C08C  4B EB 78 B5 */ bl dKyd_dmvrbox_getp
+/* 8019F14C 0019C08C  4B EB 78 B5 */ bl dKyd_dmvrbox_getp__Fv
 /* 8019F150 0019C090  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019F154 0019C094  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019F158 0019C098  90 64 00 10 */ stw r3, 0x10(r4)
 lbl_8019F15C:
-/* 8019F15C 0019C09C  4B FF F5 39 */ bl plight_init
-/* 8019F160 0019C0A0  4B FF F5 D5 */ bl plight_set
-/* 8019F164 0019C0A4  4B FF F5 A5 */ bl darkmist_init
-/* 8019F168 0019C0A8  4B FF F6 ED */ bl bgparts_activelight_init
+/* 8019F15C 0019C09C  4B FF F5 39 */ bl plight_init__Fv
+/* 8019F160 0019C0A0  4B FF F5 D5 */ bl plight_set__Fv
+/* 8019F164 0019C0A4  4B FF F5 A5 */ bl darkmist_init__Fv
+/* 8019F168 0019C0A8  4B FF F6 ED */ bl bgparts_activelight_init__Fv
 /* 8019F16C 0019C0AC  C0 02 A2 48 */ lfs f0, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019F170 0019C0B0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019F174 0019C0B4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
@@ -337,9 +337,9 @@ lbl_8019F15C:
 /* 8019F190 0019C0D0  C0 02 A2 0C */ lfs f0, lbl_80453C0C-_SDA2_BASE_(r2)
 /* 8019F194 0019C0D4  D0 03 0F 34 */ stfs f0, 0xf34(r3)
 /* 8019F198 0019C0D8  90 03 0F 38 */ stw r0, 0xf38(r3)
-/* 8019F19C 0019C0DC  4B FF F9 05 */ bl undwater_init
+/* 8019F19C 0019C0DC  4B FF F9 05 */ bl undwater_init__Fv
 /* 8019F1A0 0019C0E0  38 60 00 00 */ li r3, 0
-/* 8019F1A4 0019C0E4  4B E9 08 4D */ bl dComIfGs_PolyDamageOff_Set
+/* 8019F1A4 0019C0E4  4B E9 08 4D */ bl dComIfGs_PolyDamageOff_Set__FSc
 /* 8019F1A8 0019C0E8  88 0D 87 E4 */ lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 8019F1AC 0019C0EC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8019F1B0 0019C0F0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l

@@ -3,8 +3,8 @@
 .section .text, "ax" # 801ce068
 
 
-.global twoValueLineInterpolation
-twoValueLineInterpolation:
+.global twoValueLineInterpolation__FUcUcf
+twoValueLineInterpolation__FUcUcf:
 /* 801CE068 001CAFA8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801CE06C 001CAFAC  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 801CE070 001CAFB0  C8 82 A7 78 */	lfd f4, lbl_80454178-_SDA2_BASE_(r2)
@@ -31,8 +31,8 @@ twoValueLineInterpolation:
 /* 801CE0C4 001CB004  38 21 00 30 */	addi r1, r1, 0x30
 /* 801CE0C8 001CB008  4E 80 00 20 */	blr 
 
-.global twoColorLineInterporation
-twoColorLineInterporation:
+.global twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor
+twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor:
 /* 801CE0CC 001CB00C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CE0D0 001CB010  7C 08 02 A6 */	mflr r0
 /* 801CE0D4 001CB014  90 01 00 24 */	stw r0, 0x24(r1)
@@ -45,22 +45,22 @@ twoColorLineInterporation:
 /* 801CE0F0 001CB030  7C BF 2B 78 */	mr r31, r5
 /* 801CE0F4 001CB034  88 63 00 00 */	lbz r3, 0(r3)
 /* 801CE0F8 001CB038  88 84 00 00 */	lbz r4, 0(r4)
-/* 801CE0FC 001CB03C  4B FF FF 6D */	bl twoValueLineInterpolation
+/* 801CE0FC 001CB03C  4B FF FF 6D */	bl twoValueLineInterpolation__FUcUcf
 /* 801CE100 001CB040  98 7F 00 00 */	stb r3, 0(r31)
 /* 801CE104 001CB044  88 7D 00 01 */	lbz r3, 1(r29)
 /* 801CE108 001CB048  88 9E 00 01 */	lbz r4, 1(r30)
 /* 801CE10C 001CB04C  FC 20 F8 90 */	fmr f1, f31
-/* 801CE110 001CB050  4B FF FF 59 */	bl twoValueLineInterpolation
+/* 801CE110 001CB050  4B FF FF 59 */	bl twoValueLineInterpolation__FUcUcf
 /* 801CE114 001CB054  98 7F 00 01 */	stb r3, 1(r31)
 /* 801CE118 001CB058  88 7D 00 02 */	lbz r3, 2(r29)
 /* 801CE11C 001CB05C  88 9E 00 02 */	lbz r4, 2(r30)
 /* 801CE120 001CB060  FC 20 F8 90 */	fmr f1, f31
-/* 801CE124 001CB064  4B FF FF 45 */	bl twoValueLineInterpolation
+/* 801CE124 001CB064  4B FF FF 45 */	bl twoValueLineInterpolation__FUcUcf
 /* 801CE128 001CB068  98 7F 00 02 */	stb r3, 2(r31)
 /* 801CE12C 001CB06C  88 7D 00 03 */	lbz r3, 3(r29)
 /* 801CE130 001CB070  88 9E 00 03 */	lbz r4, 3(r30)
 /* 801CE134 001CB074  FC 20 F8 90 */	fmr f1, f31
-/* 801CE138 001CB078  4B FF FF 31 */	bl twoValueLineInterpolation
+/* 801CE138 001CB078  4B FF FF 31 */	bl twoValueLineInterpolation__FUcUcf
 /* 801CE13C 001CB07C  98 7F 00 03 */	stb r3, 3(r31)
 /* 801CE140 001CB080  CB E1 00 18 */	lfd f31, 0x18(r1)
 /* 801CE144 001CB084  39 61 00 18 */	addi r11, r1, 0x18
@@ -70,8 +70,8 @@ twoColorLineInterporation:
 /* 801CE154 001CB094  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CE158 001CB098  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_init
-renderingFmap_c_NS_init:
+.global init__15renderingFmap_cFPUcUsUsUsUs
+init__15renderingFmap_cFPUcUsUsUsUs:
 /* 801CE15C 001CB09C  90 83 00 04 */	stw r4, 4(r3)
 /* 801CE160 001CB0A0  B0 A3 00 1C */	sth r5, 0x1c(r3)
 /* 801CE164 001CB0A4  B0 C3 00 1E */	sth r6, 0x1e(r3)
@@ -84,8 +84,8 @@ renderingFmap_c_NS_init:
 /* 801CE180 001CB0C0  98 03 00 BB */	stb r0, 0xbb(r3)
 /* 801CE184 001CB0C4  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_entry
-renderingFmap_c_NS_entry:
+.global entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff
+entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff:
 /* 801CE188 001CB0C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CE18C 001CB0CC  7C 08 02 A6 */	mflr r0
 /* 801CE190 001CB0D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -120,14 +120,14 @@ renderingFmap_c_NS_entry:
 /* 801CE204 001CB144  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 801CE208 001CB148  38 83 00 64 */	addi r4, r3, 0x64
 /* 801CE20C 001CB14C  38 A3 00 68 */	addi r5, r3, 0x68
-/* 801CE210 001CB150  4B E8 85 85 */	bl dDlst_list_c_NS_set
+/* 801CE210 001CB150  4B E8 85 85 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 801CE214 001CB154  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 801CE218 001CB158  7C 08 03 A6 */	mtlr r0
 /* 801CE21C 001CB15C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CE220 001CB160  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_isSwitchSpecialOff
-renderingFmap_c_NS_isSwitchSpecialOff:
+.global isSwitchSpecialOff__15renderingFmap_cFi
+isSwitchSpecialOff__15renderingFmap_cFi:
 /* 801CE224 001CB164  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE228 001CB168  7C 08 02 A6 */	mflr r0
 /* 801CE22C 001CB16C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -170,19 +170,19 @@ lbl_801CE2B8:
 /* 801CE2B8 001CB1F8  88 1F 00 01 */	lbz r0, 1(r31)
 /* 801CE2BC 001CB1FC  28 00 00 00 */	cmplwi r0, 0
 /* 801CE2C0 001CB200  40 82 00 18 */	bne lbl_801CE2D8
-/* 801CE2C4 001CB204  4B FF FF 61 */	bl renderingFmap_c_NS_isSwitchSpecialOff
+/* 801CE2C4 001CB204  4B FF FF 61 */	bl isSwitchSpecialOff__15renderingFmap_cFi
 /* 801CE2C8 001CB208  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CE2CC 001CB20C  41 82 00 20 */	beq lbl_801CE2EC
 /* 801CE2D0 001CB210  38 60 00 01 */	li r3, 1
 /* 801CE2D4 001CB214  48 00 00 D4 */	b lbl_801CE3A8
 lbl_801CE2D8:
-/* 801CE2D8 001CB218  4B FF FF 4D */	bl renderingFmap_c_NS_isSwitchSpecialOff
+/* 801CE2D8 001CB218  4B FF FF 4D */	bl isSwitchSpecialOff__15renderingFmap_cFi
 /* 801CE2DC 001CB21C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CE2E0 001CB220  41 82 00 0C */	beq lbl_801CE2EC
 /* 801CE2E4 001CB224  38 60 00 00 */	li r3, 0
 /* 801CE2E8 001CB228  48 00 00 C0 */	b lbl_801CE3A8
 lbl_801CE2EC:
-/* 801CE2EC 001CB22C  4B E6 0B 75 */	bl dComIfGp_getNowLevel
+/* 801CE2EC 001CB22C  4B E6 0B 75 */	bl dComIfGp_getNowLevel__Fv
 /* 801CE2F0 001CB230  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 801CE2F4 001CB234  80 1E 00 A0 */	lwz r0, 0xa0(r30)
 /* 801CE2F8 001CB238  7C 00 18 00 */	cmpw r0, r3
@@ -219,13 +219,13 @@ lbl_801CE35C:
 /* 801CE36C 001CB2AC  28 00 00 00 */	cmplwi r0, 0
 /* 801CE370 001CB2B0  41 82 00 18 */	beq lbl_801CE388
 /* 801CE374 001CB2B4  88 7E 00 B9 */	lbz r3, 0xb9(r30)
-/* 801CE378 001CB2B8  4B E5 F3 C9 */	bl dComIfGs_isStageSwitch
+/* 801CE378 001CB2B8  4B E5 F3 C9 */	bl dComIfGs_isStageSwitch__Fii
 /* 801CE37C 001CB2BC  30 03 FF FF */	addic r0, r3, -1
 /* 801CE380 001CB2C0  7C 60 19 10 */	subfe r3, r0, r3
 /* 801CE384 001CB2C4  48 00 00 24 */	b lbl_801CE3A8
 lbl_801CE388:
 /* 801CE388 001CB2C8  88 7E 00 B9 */	lbz r3, 0xb9(r30)
-/* 801CE38C 001CB2CC  4B E5 F3 B5 */	bl dComIfGs_isStageSwitch
+/* 801CE38C 001CB2CC  4B E5 F3 B5 */	bl dComIfGs_isStageSwitch__Fii
 /* 801CE390 001CB2D0  7C 60 00 34 */	cntlzw r0, r3
 /* 801CE394 001CB2D4  54 03 D9 7E */	srwi r3, r0, 5
 /* 801CE398 001CB2D8  48 00 00 10 */	b lbl_801CE3A8
@@ -241,8 +241,8 @@ lbl_801CE3A8:
 /* 801CE3B8 001CB2F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE3BC 001CB2FC  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getPointStagePathInnerNo
-renderingFmap_c_NS_getPointStagePathInnerNo:
+.global getPointStagePathInnerNo__15renderingFmap_cFP24dMenu_Fmap_region_data_cffiPiPi
+getPointStagePathInnerNo__15renderingFmap_cFP24dMenu_Fmap_region_data_cffiPiPi:
 /* 801CE3C0 001CB300  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE3C4 001CB304  7C 08 02 A6 */	mflr r0
 /* 801CE3C8 001CB308  90 01 00 14 */	stw r0, 0x14(r1)
@@ -258,7 +258,7 @@ renderingFmap_c_NS_getPointStagePathInnerNo:
 /* 801CE3F0 001CB330  7C A4 2B 78 */	mr r4, r5
 /* 801CE3F4 001CB334  7C C5 33 78 */	mr r5, r6
 /* 801CE3F8 001CB338  7C E6 3B 78 */	mr r6, r7
-/* 801CE3FC 001CB33C  4B E6 F7 75 */	bl dMenu_Fmap_region_data_c_NS_getPointStagePathInnerNo
+/* 801CE3FC 001CB33C  4B E6 F7 75 */	bl getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi
 /* 801CE400 001CB340  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CE404 001CB344  7C 08 03 A6 */	mtlr r0
 /* 801CE408 001CB348  38 21 00 10 */	addi r1, r1, 0x10
@@ -290,7 +290,7 @@ renderingFmap_c_NS_getPointStagePathInnerNo:
 /* 801CE470 001CB3B0  38 BF 00 60 */	addi r5, r31, 0x60
 /* 801CE474 001CB3B4  38 DF 00 6C */	addi r6, r31, 0x6c
 /* 801CE478 001CB3B8  38 E0 00 00 */	li r7, 0
-/* 801CE47C 001CB3BC  4B E3 E2 95 */	bl mDoMtx_lookAt_X1_
+/* 801CE47C 001CB3BC  4B E3 E2 95 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 801CE480 001CB3C0  38 7F 00 24 */	addi r3, r31, 0x24
 /* 801CE484 001CB3C4  38 80 00 00 */	li r4, 0
 /* 801CE488 001CB3C8  48 19 1D C5 */	bl GXLoadPosMtxImm
@@ -315,8 +315,8 @@ renderingFmap_c_NS_getPointStagePathInnerNo:
 /* 801CE4D4 001CB414  38 60 00 01 */	li r3, 1
 /* 801CE4D8 001CB418  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_isDrawRoom
-renderingFmap_c_NS_isDrawRoom:
+.global isDrawRoom__15renderingFmap_cFv
+isDrawRoom__15renderingFmap_cFv:
 /* 801CE4DC 001CB41C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE4E0 001CB420  7C 08 02 A6 */	mflr r0
 /* 801CE4E4 001CB424  90 01 00 14 */	stw r0, 0x14(r1)
@@ -324,7 +324,7 @@ renderingFmap_c_NS_isDrawRoom:
 /* 801CE4EC 001CB42C  93 C1 00 08 */	stw r30, 8(r1)
 /* 801CE4F0 001CB430  7C 7E 1B 78 */	mr r30, r3
 /* 801CE4F4 001CB434  3B E0 00 00 */	li r31, 0
-/* 801CE4F8 001CB438  4B E6 09 69 */	bl dComIfGp_getNowLevel
+/* 801CE4F8 001CB438  4B E6 09 69 */	bl dComIfGp_getNowLevel__Fv
 /* 801CE4FC 001CB43C  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 801CE500 001CB440  80 1E 00 A0 */	lwz r0, 0xa0(r30)
 /* 801CE504 001CB444  7C 00 18 00 */	cmpw r0, r3
@@ -340,7 +340,7 @@ renderingFmap_c_NS_isDrawRoom:
 /* 801CE52C 001CB46C  41 82 00 14 */	beq lbl_801CE540
 lbl_801CE530:
 /* 801CE530 001CB470  80 7E 00 84 */	lwz r3, 0x84(r30)
-/* 801CE534 001CB474  4B E6 F2 E5 */	bl dMenu_Fmap_room_data_c_NS_isArrival
+/* 801CE534 001CB474  4B E6 F2 E5 */	bl isArrival__22dMenu_Fmap_room_data_cFv
 /* 801CE538 001CB478  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CE53C 001CB47C  41 82 00 08 */	beq lbl_801CE544
 lbl_801CE540:
@@ -366,7 +366,7 @@ lbl_801CE544:
 /* 801CE588 001CB4C8  38 BF 00 60 */	addi r5, r31, 0x60
 /* 801CE58C 001CB4CC  38 DF 00 6C */	addi r6, r31, 0x6c
 /* 801CE590 001CB4D0  38 E0 00 00 */	li r7, 0
-/* 801CE594 001CB4D4  4B E3 E1 7D */	bl mDoMtx_lookAt_X1_
+/* 801CE594 001CB4D4  4B E3 E1 7D */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 801CE598 001CB4D8  38 7F 00 24 */	addi r3, r31, 0x24
 /* 801CE59C 001CB4DC  38 80 00 00 */	li r4, 0
 /* 801CE5A0 001CB4E0  48 19 1C AD */	bl GXLoadPosMtxImm
@@ -380,7 +380,7 @@ lbl_801CE544:
 /* 801CE5C0 001CB500  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801CE5C4 001CB504  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801CE5C8 001CB508  7C 7F 1B 78 */	mr r31, r3
-/* 801CE5CC 001CB50C  4B E6 ED 55 */	bl dRenderingFDAmap_c_NS_postRenderingMap
+/* 801CE5CC 001CB50C  4B E6 ED 55 */	bl postRenderingMap__18dRenderingFDAmap_cFv
 /* 801CE5D0 001CB510  38 00 00 01 */	li r0, 1
 /* 801CE5D4 001CB514  98 1F 00 BB */	stb r0, 0xbb(r31)
 /* 801CE5D8 001CB518  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -389,8 +389,8 @@ lbl_801CE544:
 /* 801CE5E4 001CB524  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE5E8 001CB528  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_roomSetteing
-renderingFmap_c_NS_roomSetteing:
+.global roomSetteing__15renderingFmap_cFv
+roomSetteing__15renderingFmap_cFv:
 /* 801CE5EC 001CB52C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 801CE5F0 001CB530  7C 08 02 A6 */	mflr r0
 /* 801CE5F4 001CB534  90 01 00 54 */	stw r0, 0x54(r1)
@@ -430,7 +430,7 @@ renderingFmap_c_NS_roomSetteing:
 /* 801CE67C 001CB5BC  38 A1 00 08 */	addi r5, r1, 8
 /* 801CE680 001CB5C0  38 C6 00 6C */	addi r6, r6, 0x6c
 /* 801CE684 001CB5C4  38 E0 00 00 */	li r7, 0
-/* 801CE688 001CB5C8  4B E3 E0 89 */	bl mDoMtx_lookAt_X1_
+/* 801CE688 001CB5C8  4B E3 E0 89 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 801CE68C 001CB5CC  38 61 00 20 */	addi r3, r1, 0x20
 /* 801CE690 001CB5D0  38 80 00 00 */	li r4, 0
 /* 801CE694 001CB5D4  48 19 1B B9 */	bl GXLoadPosMtxImm
@@ -445,7 +445,7 @@ renderingFmap_c_NS_roomSetteing:
 /* 801CE6B8 001CB5F8  93 C1 00 08 */	stw r30, 8(r1)
 /* 801CE6BC 001CB5FC  7C 7E 1B 78 */	mr r30, r3
 /* 801CE6C0 001CB600  3B E0 00 00 */	li r31, 0
-/* 801CE6C4 001CB604  48 00 00 99 */	bl renderingFmap_c_NS_getFirstRegion
+/* 801CE6C4 001CB604  48 00 00 99 */	bl getFirstRegion__15renderingFmap_cFv
 /* 801CE6C8 001CB608  80 1E 00 84 */	lwz r0, 0x84(r30)
 /* 801CE6CC 001CB60C  28 00 00 00 */	cmplwi r0, 0
 /* 801CE6D0 001CB610  41 82 00 70 */	beq lbl_801CE740
@@ -471,14 +471,14 @@ lbl_801CE70C:
 /* 801CE718 001CB658  28 1F 00 00 */	cmplwi r31, 0
 /* 801CE71C 001CB65C  41 82 FF CC */	beq lbl_801CE6E8
 /* 801CE720 001CB660  7F C3 F3 78 */	mr r3, r30
-/* 801CE724 001CB664  4B FF FD B9 */	bl renderingFmap_c_NS_isDrawRoom
+/* 801CE724 001CB664  4B FF FD B9 */	bl isDrawRoom__15renderingFmap_cFv
 /* 801CE728 001CB668  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CE72C 001CB66C  41 82 FF BC */	beq lbl_801CE6E8
 lbl_801CE730:
 /* 801CE730 001CB670  28 1F 00 00 */	cmplwi r31, 0
 /* 801CE734 001CB674  41 82 00 0C */	beq lbl_801CE740
 /* 801CE738 001CB678  7F C3 F3 78 */	mr r3, r30
-/* 801CE73C 001CB67C  4B FF FE B1 */	bl renderingFmap_c_NS_roomSetteing
+/* 801CE73C 001CB67C  4B FF FE B1 */	bl roomSetteing__15renderingFmap_cFv
 lbl_801CE740:
 /* 801CE740 001CB680  7F E3 FB 78 */	mr r3, r31
 /* 801CE744 001CB684  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -488,8 +488,8 @@ lbl_801CE740:
 /* 801CE754 001CB694  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE758 001CB698  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getFirstRegion
-renderingFmap_c_NS_getFirstRegion:
+.global getFirstRegion__15renderingFmap_cFv
+getFirstRegion__15renderingFmap_cFv:
 /* 801CE75C 001CB69C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE760 001CB6A0  7C 08 02 A6 */	mflr r0
 /* 801CE764 001CB6A4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -504,15 +504,15 @@ renderingFmap_c_NS_getFirstRegion:
 /* 801CE788 001CB6C8  80 84 00 20 */	lwz r4, 0x20(r4)
 /* 801CE78C 001CB6CC  90 83 00 A0 */	stw r4, 0xa0(r3)
 /* 801CE790 001CB6D0  90 03 00 94 */	stw r0, 0x94(r3)
-/* 801CE794 001CB6D4  48 00 00 15 */	bl renderingFmap_c_NS_getFirstStage
+/* 801CE794 001CB6D4  48 00 00 15 */	bl getFirstStage__15renderingFmap_cFv
 lbl_801CE798:
 /* 801CE798 001CB6D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CE79C 001CB6DC  7C 08 03 A6 */	mtlr r0
 /* 801CE7A0 001CB6E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE7A4 001CB6E4  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getFirstStage
-renderingFmap_c_NS_getFirstStage:
+.global getFirstStage__15renderingFmap_cFv
+getFirstStage__15renderingFmap_cFv:
 /* 801CE7A8 001CB6E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE7AC 001CB6EC  7C 08 02 A6 */	mflr r0
 /* 801CE7B0 001CB6F0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -533,15 +533,15 @@ renderingFmap_c_NS_getFirstStage:
 /* 801CE7EC 001CB72C  88 84 00 02 */	lbz r4, 2(r4)
 /* 801CE7F0 001CB730  98 83 00 BA */	stb r4, 0xba(r3)
 /* 801CE7F4 001CB734  90 03 00 98 */	stw r0, 0x98(r3)
-/* 801CE7F8 001CB738  48 00 00 15 */	bl renderingFmap_c_NS_getFirstRoom
+/* 801CE7F8 001CB738  48 00 00 15 */	bl getFirstRoom__15renderingFmap_cFv
 lbl_801CE7FC:
 /* 801CE7FC 001CB73C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CE800 001CB740  7C 08 03 A6 */	mtlr r0
 /* 801CE804 001CB744  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE808 001CB748  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getFirstRoom
-renderingFmap_c_NS_getFirstRoom:
+.global getFirstRoom__15renderingFmap_cFv
+getFirstRoom__15renderingFmap_cFv:
 /* 801CE80C 001CB74C  38 A0 00 00 */	li r5, 0
 /* 801CE810 001CB750  90 A3 00 88 */	stw r5, 0x88(r3)
 /* 801CE814 001CB754  80 83 00 80 */	lwz r4, 0x80(r3)
@@ -559,8 +559,8 @@ renderingFmap_c_NS_getFirstRoom:
 /* 801CE844 001CB784  90 03 00 88 */	stw r0, 0x88(r3)
 /* 801CE848 001CB788  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getNextRoom
-renderingFmap_c_NS_getNextRoom:
+.global getNextRoom__15renderingFmap_cFv
+getNextRoom__15renderingFmap_cFv:
 /* 801CE84C 001CB78C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE850 001CB790  7C 08 02 A6 */	mflr r0
 /* 801CE854 001CB794  90 01 00 14 */	stw r0, 0x14(r1)
@@ -571,7 +571,7 @@ renderingFmap_c_NS_getNextRoom:
 /* 801CE868 001CB7A8  80 03 00 84 */	lwz r0, 0x84(r3)
 /* 801CE86C 001CB7AC  28 00 00 00 */	cmplwi r0, 0
 /* 801CE870 001CB7B0  40 82 00 10 */	bne lbl_801CE880
-/* 801CE874 001CB7B4  48 00 00 45 */	bl renderingFmap_c_NS_getNextStage
+/* 801CE874 001CB7B4  48 00 00 45 */	bl getNextStage__15renderingFmap_cFv
 /* 801CE878 001CB7B8  7C 65 1B 78 */	mr r5, r3
 /* 801CE87C 001CB7BC  48 00 00 28 */	b lbl_801CE8A4
 lbl_801CE880:
@@ -591,8 +591,8 @@ lbl_801CE8A4:
 /* 801CE8B0 001CB7F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE8B4 001CB7F4  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getNextStage
-renderingFmap_c_NS_getNextStage:
+.global getNextStage__15renderingFmap_cFv
+getNextStage__15renderingFmap_cFv:
 /* 801CE8B8 001CB7F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE8BC 001CB7FC  7C 08 02 A6 */	mflr r0
 /* 801CE8C0 001CB800  90 01 00 14 */	stw r0, 0x14(r1)
@@ -604,7 +604,7 @@ renderingFmap_c_NS_getNextStage:
 /* 801CE8D8 001CB818  80 03 00 80 */	lwz r0, 0x80(r3)
 /* 801CE8DC 001CB81C  28 00 00 00 */	cmplwi r0, 0
 /* 801CE8E0 001CB820  40 82 00 10 */	bne lbl_801CE8F0
-/* 801CE8E4 001CB824  48 00 00 59 */	bl renderingFmap_c_NS_getNextRegion
+/* 801CE8E4 001CB824  48 00 00 59 */	bl getNextRegion__15renderingFmap_cFv
 /* 801CE8E8 001CB828  7C 7F 1B 78 */	mr r31, r3
 /* 801CE8EC 001CB82C  48 00 00 38 */	b lbl_801CE924
 lbl_801CE8F0:
@@ -620,7 +620,7 @@ lbl_801CE8F0:
 /* 801CE914 001CB854  80 83 00 8C */	lwz r4, 0x8c(r3)
 /* 801CE918 001CB858  88 04 00 02 */	lbz r0, 2(r4)
 /* 801CE91C 001CB85C  98 03 00 BA */	stb r0, 0xba(r3)
-/* 801CE920 001CB860  4B FF FE ED */	bl renderingFmap_c_NS_getFirstRoom
+/* 801CE920 001CB860  4B FF FE ED */	bl getFirstRoom__15renderingFmap_cFv
 lbl_801CE924:
 /* 801CE924 001CB864  7F E3 FB 78 */	mr r3, r31
 /* 801CE928 001CB868  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -629,8 +629,8 @@ lbl_801CE924:
 /* 801CE934 001CB874  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CE938 001CB878  4E 80 00 20 */	blr 
 
-.global renderingFmap_c_NS_getNextRegion
-renderingFmap_c_NS_getNextRegion:
+.global getNextRegion__15renderingFmap_cFv
+getNextRegion__15renderingFmap_cFv:
 /* 801CE93C 001CB87C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CE940 001CB880  7C 08 02 A6 */	mflr r0
 /* 801CE944 001CB884  90 01 00 14 */	stw r0, 0x14(r1)
@@ -651,7 +651,7 @@ lbl_801CE970:
 /* 801CE97C 001CB8BC  80 83 00 7C */	lwz r4, 0x7c(r3)
 /* 801CE980 001CB8C0  80 04 00 20 */	lwz r0, 0x20(r4)
 /* 801CE984 001CB8C4  90 03 00 A0 */	stw r0, 0xa0(r3)
-/* 801CE988 001CB8C8  4B FF FE 21 */	bl renderingFmap_c_NS_getFirstStage
+/* 801CE988 001CB8C8  4B FF FE 21 */	bl getFirstStage__15renderingFmap_cFv
 lbl_801CE98C:
 /* 801CE98C 001CB8CC  7F E3 FB 78 */	mr r3, r31
 /* 801CE990 001CB8D0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -668,7 +668,7 @@ lbl_801CE98C:
 lbl_801CE9BC:
 /* 801CE9BC 001CB8FC  3B E0 00 00 */	li r31, 0
 /* 801CE9C0 001CB900  7F C3 F3 78 */	mr r3, r30
-/* 801CE9C4 001CB904  4B FF FE 89 */	bl renderingFmap_c_NS_getNextRoom
+/* 801CE9C4 001CB904  4B FF FE 89 */	bl getNextRoom__15renderingFmap_cFv
 /* 801CE9C8 001CB908  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CE9CC 001CB90C  41 82 00 0C */	beq lbl_801CE9D8
 /* 801CE9D0 001CB910  38 60 00 00 */	li r3, 0
@@ -685,14 +685,14 @@ lbl_801CE9EC:
 /* 801CE9F4 001CB934  28 1F 00 00 */	cmplwi r31, 0
 /* 801CE9F8 001CB938  41 82 FF C4 */	beq lbl_801CE9BC
 /* 801CE9FC 001CB93C  7F C3 F3 78 */	mr r3, r30
-/* 801CEA00 001CB940  4B FF FA DD */	bl renderingFmap_c_NS_isDrawRoom
+/* 801CEA00 001CB940  4B FF FA DD */	bl isDrawRoom__15renderingFmap_cFv
 /* 801CEA04 001CB944  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CEA08 001CB948  41 82 FF B4 */	beq lbl_801CE9BC
 lbl_801CEA0C:
 /* 801CEA0C 001CB94C  28 1F 00 00 */	cmplwi r31, 0
 /* 801CEA10 001CB950  41 82 00 0C */	beq lbl_801CEA1C
 /* 801CEA14 001CB954  7F C3 F3 78 */	mr r3, r30
-/* 801CEA18 001CB958  4B FF FB D5 */	bl renderingFmap_c_NS_roomSetteing
+/* 801CEA18 001CB958  4B FF FB D5 */	bl roomSetteing__15renderingFmap_cFv
 lbl_801CEA1C:
 /* 801CEA1C 001CB95C  7F E3 FB 78 */	mr r3, r31
 lbl_801CEA20:
@@ -703,8 +703,8 @@ lbl_801CEA20:
 /* 801CEA30 001CB970  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CEA34 001CB974  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setFmapPaletteColor
-dMenu_FmapMap_c_NS_setFmapPaletteColor:
+.global setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc
+setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc:
 /* 801CEA38 001CB978  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CEA3C 001CB97C  7C 08 02 A6 */	mflr r0
 /* 801CEA40 001CB980  90 01 00 14 */	stw r0, 0x14(r1)
@@ -736,8 +736,8 @@ lbl_801CEA70:
 /* 801CEAA4 001CB9E4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CEAA8 001CB9E8  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_
-dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_:
+.global setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
+setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor:
 /* 801CEAAC 001CB9EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CEAB0 001CB9F0  7C 08 02 A6 */	mflr r0
 /* 801CEAB4 001CB9F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -746,14 +746,14 @@ dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_:
 /* 801CEAC0 001CBA00  88 C8 00 01 */	lbz r6, 1(r8)
 /* 801CEAC4 001CBA04  88 E8 00 02 */	lbz r7, 2(r8)
 /* 801CEAC8 001CBA08  89 08 00 03 */	lbz r8, 3(r8)
-/* 801CEACC 001CBA0C  4B FF FF 6D */	bl dMenu_FmapMap_c_NS_setFmapPaletteColor
+/* 801CEACC 001CBA0C  4B FF FF 6D */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc
 /* 801CEAD0 001CBA10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CEAD4 001CBA14  7C 08 03 A6 */	mtlr r0
 /* 801CEAD8 001CBA18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CEADC 001CBA1C  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_isFlashRoomNoCheck
-dMenu_FmapMap_c_NS_isFlashRoomNoCheck:
+.global isFlashRoomNoCheck__15dMenu_FmapMap_cCFi
+isFlashRoomNoCheck__15dMenu_FmapMap_cCFi:
 /* 801CEAE0 001CBA20  38 A0 00 00 */	li r5, 0
 /* 801CEAE4 001CBA24  80 C3 00 E8 */	lwz r6, 0xe8(r3)
 /* 801CEAE8 001CBA28  80 03 00 EC */	lwz r0, 0xec(r3)
@@ -773,8 +773,8 @@ lbl_801CEB14:
 /* 801CEB14 001CBA54  7C A3 2B 78 */	mr r3, r5
 /* 801CEB18 001CBA58  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setPointColor
-dMenu_FmapMap_c_NS_setPointColor:
+.global setPointColor__15dMenu_FmapMap_cFf
+setPointColor__15dMenu_FmapMap_cFf:
 /* 801CEB1C 001CBA5C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801CEB20 001CBA60  7C 08 02 A6 */	mflr r0
 /* 801CEB24 001CBA64  90 01 00 34 */	stw r0, 0x34(r1)
@@ -786,7 +786,7 @@ dMenu_FmapMap_c_NS_setPointColor:
 /* 801CEB3C 001CBA7C  88 03 00 D8 */	lbz r0, 0xd8(r3)
 /* 801CEB40 001CBA80  28 00 00 00 */	cmplwi r0, 0
 /* 801CEB44 001CBA84  41 82 00 78 */	beq lbl_801CEBBC
-/* 801CEB48 001CBA88  4B E6 03 19 */	bl dComIfGp_getNowLevel
+/* 801CEB48 001CBA88  4B E6 03 19 */	bl dComIfGp_getNowLevel__Fv
 /* 801CEB4C 001CBA8C  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 801CEB50 001CBA90  88 1F 00 E4 */	lbz r0, 0xe4(r31)
 /* 801CEB54 001CBA94  7C 00 18 40 */	cmplw r0, r3
@@ -806,11 +806,11 @@ lbl_801CEB7C:
 /* 801CEB88 001CBAC8  38 84 01 08 */	addi r4, r4, 0x108
 /* 801CEB8C 001CBACC  FC 20 F8 90 */	fmr f1, f31
 /* 801CEB90 001CBAD0  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEB94 001CBAD4  4B FF F5 39 */	bl twoColorLineInterporation
+/* 801CEB94 001CBAD4  4B FF F5 39 */	bl twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor
 /* 801CEB98 001CBAD8  7F E3 FB 78 */	mr r3, r31
 /* 801CEB9C 001CBADC  7C 9D F0 2E */	lwzx r4, r29, r30
 /* 801CEBA0 001CBAE0  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEBA4 001CBAE4  4B FF FF 09 */	bl dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_
+/* 801CEBA4 001CBAE4  4B FF FF 09 */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
 /* 801CEBA8 001CBAE8  3B 9C 00 01 */	addi r28, r28, 1
 /* 801CEBAC 001CBAEC  2C 1C 00 08 */	cmpwi r28, 8
 /* 801CEBB0 001CBAF0  3B DE 00 04 */	addi r30, r30, 4
@@ -828,11 +828,11 @@ lbl_801CEBCC:
 /* 801CEBD8 001CBB18  38 84 01 48 */	addi r4, r4, 0x148
 /* 801CEBDC 001CBB1C  FC 20 F8 90 */	fmr f1, f31
 /* 801CEBE0 001CBB20  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEBE4 001CBB24  4B FF F4 E9 */	bl twoColorLineInterporation
+/* 801CEBE4 001CBB24  4B FF F4 E9 */	bl twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor
 /* 801CEBE8 001CBB28  7F E3 FB 78 */	mr r3, r31
 /* 801CEBEC 001CBB2C  7C 9D F0 2E */	lwzx r4, r29, r30
 /* 801CEBF0 001CBB30  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEBF4 001CBB34  4B FF FE B9 */	bl dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_
+/* 801CEBF4 001CBB34  4B FF FE B9 */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
 /* 801CEBF8 001CBB38  3B 9C 00 01 */	addi r28, r28, 1
 /* 801CEBFC 001CBB3C  2C 1C 00 08 */	cmpwi r28, 8
 /* 801CEC00 001CBB40  3B DE 00 04 */	addi r30, r30, 4
@@ -846,8 +846,8 @@ lbl_801CEC08:
 /* 801CEC1C 001CBB5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 801CEC20 001CBB60  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c
-dMenu_FmapMap_c:
+.global __ct__15dMenu_FmapMap_cFv
+__ct__15dMenu_FmapMap_cFv:
 /* 801CEC24 001CBB64  3C 80 80 3A */	lis r4, lbl_803A6F88@ha
 /* 801CEC28 001CBB68  38 04 6F 88 */	addi r0, r4, lbl_803A6F88@l
 /* 801CEC2C 001CBB6C  90 03 00 00 */	stw r0, 0(r3)
@@ -928,7 +928,7 @@ dMenu_FmapMap_c:
 /* 801CED58 001CBC98  3C 80 80 3C */	lis r4, lbl_803BD680@ha
 /* 801CED5C 001CBC9C  38 04 D6 80 */	addi r0, r4, lbl_803BD680@l
 /* 801CED60 001CBCA0  90 1E 00 00 */	stw r0, 0(r30)
-/* 801CED64 001CBCA4  48 00 00 D9 */	bl dMenu_FmapMap_c_NS__delete
+/* 801CED64 001CBCA4  48 00 00 D9 */	bl _delete__15dMenu_FmapMap_cFv
 /* 801CED68 001CBCA8  28 1E 00 00 */	cmplwi r30, 0
 /* 801CED6C 001CBCAC  41 82 00 50 */	beq lbl_801CEDBC
 /* 801CED70 001CBCB0  3C 60 80 3C */	lis r3, lbl_803BD6E8@ha
@@ -964,8 +964,8 @@ lbl_801CEDCC:
 /* 801CEDE0 001CBD20  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CEDE4 001CBD24  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS__create
-dMenu_FmapMap_c_NS__create:
+.global _create__15dMenu_FmapMap_cFUsUsUsUsPv
+_create__15dMenu_FmapMap_cFUsUsUsUsPv:
 /* 801CEDE8 001CBD28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CEDEC 001CBD2C  7C 08 02 A6 */	mflr r0
 /* 801CEDF0 001CBD30  90 01 00 14 */	stw r0, 0x14(r1)
@@ -982,14 +982,14 @@ dMenu_FmapMap_c_NS__create:
 /* 801CEE1C 001CBD5C  88 03 00 D8 */	lbz r0, 0xd8(r3)
 /* 801CEE20 001CBD60  98 03 00 D9 */	stb r0, 0xd9(r3)
 /* 801CEE24 001CBD64  99 03 00 E5 */	stb r8, 0xe5(r3)
-/* 801CEE28 001CBD68  48 00 05 6D */	bl dMenu_FmapMap_c_NS_setTexture
+/* 801CEE28 001CBD68  48 00 05 6D */	bl setTexture__15dMenu_FmapMap_cFUsUsUsUs
 /* 801CEE2C 001CBD6C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CEE30 001CBD70  7C 08 03 A6 */	mtlr r0
 /* 801CEE34 001CBD74  38 21 00 10 */	addi r1, r1, 0x10
 /* 801CEE38 001CBD78  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS__delete
-dMenu_FmapMap_c_NS__delete:
+.global _delete__15dMenu_FmapMap_cFv
+_delete__15dMenu_FmapMap_cFv:
 /* 801CEE3C 001CBD7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CEE40 001CBD80  7C 08 02 A6 */	mflr r0
 /* 801CEE44 001CBD84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1058,7 +1058,7 @@ lbl_801CEF30:
 /* 801CEF30 001CBE70  7F E3 FB 78 */	mr r3, r31
 /* 801CEF34 001CBE74  C0 02 A7 84 */	lfs f0, lbl_80454184-_SDA2_BASE_(r2)
 /* 801CEF38 001CBE78  EC 20 08 28 */	fsubs f1, f0, f1
-/* 801CEF3C 001CBE7C  4B FF FB E1 */	bl dMenu_FmapMap_c_NS_setPointColor
+/* 801CEF3C 001CBE7C  4B FF FB E1 */	bl setPointColor__15dMenu_FmapMap_cFf
 /* 801CEF40 001CBE80  80 BF 00 C4 */	lwz r5, 0xc4(r31)
 /* 801CEF44 001CBE84  A8 85 01 68 */	lha r4, 0x168(r5)
 /* 801CEF48 001CBE88  3C 60 80 43 */	lis r3, lbl_80430CD8@ha
@@ -1097,11 +1097,11 @@ lbl_801CEF30:
 /* 801CEFCC 001CBF0C  38 65 00 D8 */	addi r3, r5, 0xd8
 /* 801CEFD0 001CBF10  38 85 00 DC */	addi r4, r5, 0xdc
 /* 801CEFD4 001CBF14  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEFD8 001CBF18  4B FF F0 F5 */	bl twoColorLineInterporation
+/* 801CEFD8 001CBF18  4B FF F0 F5 */	bl twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor
 /* 801CEFDC 001CBF1C  7F E3 FB 78 */	mr r3, r31
 /* 801CEFE0 001CBF20  38 80 00 19 */	li r4, 0x19
 /* 801CEFE4 001CBF24  38 A1 00 08 */	addi r5, r1, 8
-/* 801CEFE8 001CBF28  4B FF FA C5 */	bl dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_
+/* 801CEFE8 001CBF28  4B FF FA C5 */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
 /* 801CEFEC 001CBF2C  80 BF 00 C4 */	lwz r5, 0xc4(r31)
 /* 801CEFF0 001CBF30  A8 85 01 6A */	lha r4, 0x16a(r5)
 /* 801CEFF4 001CBF34  3C 60 80 43 */	lis r3, lbl_80430CD8@ha
@@ -1140,13 +1140,13 @@ lbl_801CEF30:
 /* 801CF078 001CBFB8  EC 02 00 32 */	fmuls f0, f2, f0
 /* 801CF07C 001CBFBC  EC 22 00 2A */	fadds f1, f2, f0
 /* 801CF080 001CBFC0  38 A1 00 08 */	addi r5, r1, 8
-/* 801CF084 001CBFC4  4B FF F0 49 */	bl twoColorLineInterporation
+/* 801CF084 001CBFC4  4B FF F0 49 */	bl twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor
 /* 801CF088 001CBFC8  7F E3 FB 78 */	mr r3, r31
 /* 801CF08C 001CBFCC  38 80 00 1A */	li r4, 0x1a
 /* 801CF090 001CBFD0  38 A1 00 08 */	addi r5, r1, 8
-/* 801CF094 001CBFD4  4B FF FA 19 */	bl dMenu_FmapMap_c_NS_setFmapPaletteColor_X1_
+/* 801CF094 001CBFD4  4B FF FA 19 */	bl setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor
 /* 801CF098 001CBFD8  7F E3 FB 78 */	mr r3, r31
-/* 801CF09C 001CBFDC  4B E6 DD 11 */	bl dRenderingMap_c_NS_renderingMap
+/* 801CF09C 001CBFDC  4B E6 DD 11 */	bl renderingMap__15dRenderingMap_cFv
 /* 801CF0A0 001CBFE0  83 E1 00 6C */	lwz r31, 0x6c(r1)
 /* 801CF0A4 001CBFE4  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 801CF0A8 001CBFE8  7C 08 03 A6 */	mtlr r0
@@ -1168,7 +1168,7 @@ lbl_801CEF30:
 lbl_801CF0E8:
 /* 801CF0E8 001CC028  7F C3 F3 78 */	mr r3, r30
 /* 801CF0EC 001CC02C  7F E4 FB 78 */	mr r4, r31
-/* 801CF0F0 001CC030  4B E6 E2 D1 */	bl dRenderingFDAmap_c_NS_renderingDecoration
+/* 801CF0F0 001CC030  4B E6 E2 D1 */	bl renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class
 /* 801CF0F4 001CC034  80 7E 00 D4 */	lwz r3, 0xd4(r30)
 /* 801CF0F8 001CC038  38 03 00 01 */	addi r0, r3, 1
 /* 801CF0FC 001CC03C  90 1E 00 D4 */	stw r0, 0xd4(r30)
@@ -1178,7 +1178,7 @@ lbl_801CF100:
 /* 801CF108 001CC048  41 80 FF E0 */	blt lbl_801CF0E8
 /* 801CF10C 001CC04C  48 00 00 08 */	b lbl_801CF114
 lbl_801CF110:
-/* 801CF110 001CC050  4B E6 D8 3D */	bl dDrawPath_c_NS_rendering
+/* 801CF110 001CC050  4B E6 D8 3D */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class
 lbl_801CF114:
 /* 801CF114 001CC054  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801CF118 001CC058  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1238,8 +1238,8 @@ lbl_801CF1CC:
 /* 801CF1D8 001CC118  68 03 00 01 */	xori r3, r0, 1
 /* 801CF1DC 001CC11C  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setFlashOn
-dMenu_FmapMap_c_NS_setFlashOn:
+.global setFlashOn__15dMenu_FmapMap_cFiiPUci
+setFlashOn__15dMenu_FmapMap_cFiiPUci:
 /* 801CF1E0 001CC120  88 03 00 D8 */	lbz r0, 0xd8(r3)
 /* 801CF1E4 001CC124  98 03 00 D9 */	stb r0, 0xd9(r3)
 /* 801CF1E8 001CC128  38 00 00 01 */	li r0, 1
@@ -1321,14 +1321,14 @@ lbl_801CF284:
 /* 801CF304 001CC244  48 00 00 70 */	b lbl_801CF374
 lbl_801CF308:
 /* 801CF308 001CC248  80 9B 00 9C */	lwz r4, 0x9c(r27)
-/* 801CF30C 001CC24C  4B FF F7 D5 */	bl dMenu_FmapMap_c_NS_isFlashRoomNoCheck
+/* 801CF30C 001CC24C  4B FF F7 D5 */	bl isFlashRoomNoCheck__15dMenu_FmapMap_cCFi
 /* 801CF310 001CC250  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801CF314 001CC254  41 82 00 0C */	beq lbl_801CF320
 /* 801CF318 001CC258  3B FD 00 68 */	addi r31, r29, 0x68
 /* 801CF31C 001CC25C  48 00 00 58 */	b lbl_801CF374
 lbl_801CF320:
 /* 801CF320 001CC260  83 9B 00 A0 */	lwz r28, 0xa0(r27)
-/* 801CF324 001CC264  4B E5 FB 3D */	bl dComIfGp_getNowLevel
+/* 801CF324 001CC264  4B E5 FB 3D */	bl dComIfGp_getNowLevel__Fv
 /* 801CF328 001CC268  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801CF32C 001CC26C  7C 1C 00 00 */	cmpw r28, r0
 /* 801CF330 001CC270  40 82 00 44 */	bne lbl_801CF374
@@ -1340,7 +1340,7 @@ lbl_801CF320:
 /* 801CF348 001CC288  48 00 00 2C */	b lbl_801CF374
 lbl_801CF34C:
 /* 801CF34C 001CC28C  83 9B 00 A0 */	lwz r28, 0xa0(r27)
-/* 801CF350 001CC290  4B E5 FB 11 */	bl dComIfGp_getNowLevel
+/* 801CF350 001CC290  4B E5 FB 11 */	bl dComIfGp_getNowLevel__Fv
 /* 801CF354 001CC294  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801CF358 001CC298  7C 1C 00 00 */	cmpw r28, r0
 /* 801CF35C 001CC29C  40 82 00 18 */	bne lbl_801CF374
@@ -1359,8 +1359,8 @@ lbl_801CF374:
 /* 801CF38C 001CC2CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CF390 001CC2D0  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setTexture
-dMenu_FmapMap_c_NS_setTexture:
+.global setTexture__15dMenu_FmapMap_cFUsUsUsUs
+setTexture__15dMenu_FmapMap_cFUsUsUsUs:
 /* 801CF394 001CC2D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801CF398 001CC2D8  7C 08 02 A6 */	mflr r0
 /* 801CF39C 001CC2DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1389,7 +1389,7 @@ dMenu_FmapMap_c_NS_setTexture:
 /* 801CF3F8 001CC338  7F A6 EB 78 */	mr r6, r29
 /* 801CF3FC 001CC33C  7F C7 F3 78 */	mr r7, r30
 /* 801CF400 001CC340  7F E8 FB 78 */	mr r8, r31
-/* 801CF404 001CC344  4B FF ED 59 */	bl renderingFmap_c_NS_init
+/* 801CF404 001CC344  4B FF ED 59 */	bl init__15renderingFmap_cFPUcUsUsUsUs
 /* 801CF408 001CC348  38 60 00 20 */	li r3, 0x20
 /* 801CF40C 001CC34C  38 80 00 20 */	li r4, 0x20
 /* 801CF410 001CC350  48 0F F8 65 */	bl __nw__FUli
@@ -1401,7 +1401,7 @@ dMenu_FmapMap_c_NS_setTexture:
 /* 801CF428 001CC368  80 FB 00 C0 */	lwz r7, 0xc0(r27)
 /* 801CF42C 001CC36C  81 1B 00 C8 */	lwz r8, 0xc8(r27)
 /* 801CF430 001CC370  39 20 00 1B */	li r9, 0x1b
-/* 801CF434 001CC374  4B E6 D9 05 */	bl dRenderingMap_c_NS_makeResTIMG
+/* 801CF434 001CC374  4B E6 D9 05 */	bl makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs
 /* 801CF438 001CC378  39 61 00 20 */	addi r11, r1, 0x20
 /* 801CF43C 001CC37C  48 19 2D E5 */	bl _restgpr_27
 /* 801CF440 001CC380  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -1409,8 +1409,8 @@ dMenu_FmapMap_c_NS_setTexture:
 /* 801CF448 001CC388  38 21 00 20 */	addi r1, r1, 0x20
 /* 801CF44C 001CC38C  4E 80 00 20 */	blr 
 
-.global dMenu_FmapMap_c_NS_setRendering
-dMenu_FmapMap_c_NS_setRendering:
+.global setRendering__15dMenu_FmapMap_cFP23dMenu_Fmap_world_data_ciffff
+setRendering__15dMenu_FmapMap_cFP23dMenu_Fmap_world_data_ciffff:
 /* 801CF450 001CC390  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801CF454 001CC394  7C 08 02 A6 */	mflr r0
 /* 801CF458 001CC398  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1442,7 +1442,7 @@ lbl_801CF4B4:
 /* 801CF4B4 001CC3F4  88 02 A7 94 */	lbz r0, lbl_80454194-_SDA2_BASE_(r2)
 /* 801CF4B8 001CC3F8  98 03 00 E5 */	stb r0, 0xe5(r3)
 lbl_801CF4BC:
-/* 801CF4BC 001CC3FC  4B FF EC CD */	bl renderingFmap_c_NS_entry
+/* 801CF4BC 001CC3FC  4B FF EC CD */	bl entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff
 /* 801CF4C0 001CC400  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801CF4C4 001CC404  7C 08 03 A6 */	mtlr r0
 /* 801CF4C8 001CC408  38 21 00 10 */	addi r1, r1, 0x10

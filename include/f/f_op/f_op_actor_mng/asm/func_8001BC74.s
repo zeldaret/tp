@@ -13,7 +13,7 @@
 /* 8001BCA4 00018BE4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8001BCA8 00018BE8  38 63 4E C8 */ addi r3, r3, 0x4ec8
 /* 8001BCAC 00018BEC  54 84 06 3E */ clrlwi r4, r4, 0x18
-/* 8001BCB0 00018BF0  48 02 7A 75 */ bl dEvt_control_c_NS_setGtItm
+/* 8001BCB0 00018BF0  48 02 7A 75 */ bl setGtItm__14dEvt_control_cFUc
 /* 8001BCB4 00018BF4  2C 1B 00 FF */ cmpwi r27, 0xff
 /* 8001BCB8 00018BF8  40 82 00 0C */ bne lbl_8001BCC4
 /* 8001BCBC 00018BFC  38 60 FF FF */ li r3, -1

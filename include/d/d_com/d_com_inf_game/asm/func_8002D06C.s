@@ -10,7 +10,7 @@
 /* 8002D090 00029FD0  7D 89 03 A6 */ mtctr r12
 /* 8002D094 00029FD4  4E 80 04 21 */ bctrl
 /* 8002D098 00029FD8  7F E4 FB 78 */ mr r4, r31
-/* 8002D09C 00029FDC  4B FF 8D A5 */ bl dStage_roomRead_dt_c_GetReverbStage
+/* 8002D09C 00029FDC  4B FF 8D A5 */ bl dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi
 /* 8002D0A0 00029FE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8002D0A4 00029FE4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002D0A8 00029FE8  7C 08 03 A6 */ mtlr r0

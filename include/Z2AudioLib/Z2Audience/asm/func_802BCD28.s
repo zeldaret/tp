@@ -23,7 +23,7 @@
 /* 802BCD80 002B9CC0  EC 02 00 24 */ fdivs f0, f2, f0
 /* 802BCD84 002B9CC4  D0 03 00 1C */ stfs f0, 0x1c(r3)
 /* 802BCD88 002B9CC8  38 80 00 00 */ li r4, 0
-/* 802BCD8C 002B9CCC  48 00 00 1D */ bl Z2SpotMic_NS_clearMicState
+/* 802BCD8C 002B9CCC  48 00 00 1D */ bl clearMicState__9Z2SpotMicFi
 /* 802BCD90 002B9CD0  7F E3 FB 78 */ mr r3, r31
 /* 802BCD94 002B9CD4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802BCD98 002B9CD8  80 01 00 14 */ lwz r0, 0x14(r1)

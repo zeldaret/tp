@@ -5,7 +5,7 @@
 /* 80015DB4 00012CF4  93 C1 00 08 */ stw r30, 8(r1)
 /* 80015DB8 00012CF8  7C 7E 1B 78 */ mr r30, r3
 /* 80015DBC 00012CFC  7C 9F 23 78 */ mr r31, r4
-/* 80015DC0 00012D00  4B FF FD B5 */ bl mDoDvdThd_command_c
+/* 80015DC0 00012D00  4B FF FD B5 */ bl __ct__19mDoDvdThd_command_cFv
 /* 80015DC4 00012D04  3C 60 80 3A */ lis r3, lbl_803A34C8@ha
 /* 80015DC8 00012D08  38 03 34 C8 */ addi r0, r3, lbl_803A34C8@l
 /* 80015DCC 00012D0C  90 1E 00 10 */ stw r0, 0x10(r30)

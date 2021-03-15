@@ -5,7 +5,7 @@
 /* 800F6A80 000F39C0  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F6A84 000F39C4  7C 7F 1B 78 */ mr r31, r3
 /* 800F6A88 000F39C8  3B DF 1F D0 */ addi r30, r31, 0x1fd0
-/* 800F6A8C 000F39CC  4B FF DD 4D */ bl daAlink_c_NS_canoeCommon
+/* 800F6A8C 000F39CC  4B FF DD 4D */ bl canoeCommon__9daAlink_cFv
 /* 800F6A90 000F39D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6A94 000F39D4  41 82 00 14 */ beq lbl_800F6AA8
 /* 800F6A98 000F39D8  38 00 00 01 */ li r0, 1
@@ -14,18 +14,18 @@
 /* 800F6AA4 000F39E4  48 00 01 30 */ b lbl_800F6BD4
 lbl_800F6AA8:
 /* 800F6AA8 000F39E8  7F E3 FB 78 */ mr r3, r31
-/* 800F6AAC 000F39EC  4B FF D9 E5 */ bl daAlink_c_NS_setFishGetFace
+/* 800F6AAC 000F39EC  4B FF D9 E5 */ bl setFishGetFace__9daAlink_cFv
 /* 800F6AB0 000F39F0  7F E3 FB 78 */ mr r3, r31
 /* 800F6AB4 000F39F4  38 80 00 E3 */ li r4, 0xe3
-/* 800F6AB8 000F39F8  4B FB 5A A1 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800F6AB8 000F39F8  4B FB 5A A1 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800F6ABC 000F39FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6AC0 000F3A00  41 82 00 6C */ beq lbl_800F6B2C
 /* 800F6AC4 000F3A04  7F C3 F3 78 */ mr r3, r30
-/* 800F6AC8 000F3A08  48 06 7A 05 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F6AC8 000F3A08  48 06 7A 05 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F6ACC 000F3A0C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F6AD0 000F3A10  41 82 00 10 */ beq lbl_800F6AE0
 /* 800F6AD4 000F3A14  7F E3 FB 78 */ mr r3, r31
-/* 800F6AD8 000F3A18  4B FF F9 8D */ bl daAlink_c_NS_procCanoeFishingWaitInit
+/* 800F6AD8 000F3A18  4B FF F9 8D */ bl procCanoeFishingWaitInit__9daAlink_cFv
 /* 800F6ADC 000F3A1C  48 00 00 F4 */ b lbl_800F6BD0
 lbl_800F6AE0:
 /* 800F6AE0 000F3A20  C0 3E 00 10 */ lfs f1, 0x10(r30)
@@ -50,7 +50,7 @@ lbl_800F6B10:
 /* 800F6B28 000F3A68  48 00 00 A8 */ b lbl_800F6BD0
 lbl_800F6B2C:
 /* 800F6B2C 000F3A6C  7F C3 F3 78 */ mr r3, r30
-/* 800F6B30 000F3A70  48 06 79 9D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F6B30 000F3A70  48 06 79 9D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F6B34 000F3A74  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F6B38 000F3A78  41 82 00 58 */ beq lbl_800F6B90
 /* 800F6B3C 000F3A7C  80 1F 05 88 */ lwz r0, 0x588(r31)
@@ -59,7 +59,7 @@ lbl_800F6B2C:
 /* 800F6B48 000F3A88  7F E3 FB 78 */ mr r3, r31
 /* 800F6B4C 000F3A8C  38 80 00 E3 */ li r4, 0xe3
 /* 800F6B50 000F3A90  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800F6B54 000F3A94  4B FB 64 5D */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 800F6B54 000F3A94  4B FB 64 5D */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 800F6B58 000F3A98  38 00 00 00 */ li r0, 0
 /* 800F6B5C 000F3A9C  98 1F 2F C8 */ stb r0, 0x2fc8(r31)
 /* 800F6B60 000F3AA0  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -73,12 +73,12 @@ lbl_800F6B70:
 /* 800F6B7C 000F3ABC  38 00 00 00 */ li r0, 0
 /* 800F6B80 000F3AC0  98 1F 2F C8 */ stb r0, 0x2fc8(r31)
 /* 800F6B84 000F3AC4  7F E3 FB 78 */ mr r3, r31
-/* 800F6B88 000F3AC8  4B FF F8 DD */ bl daAlink_c_NS_procCanoeFishingWaitInit
+/* 800F6B88 000F3AC8  4B FF F8 DD */ bl procCanoeFishingWaitInit__9daAlink_cFv
 /* 800F6B8C 000F3ACC  48 00 00 44 */ b lbl_800F6BD0
 lbl_800F6B90:
 /* 800F6B90 000F3AD0  7F C3 F3 78 */ mr r3, r30
 /* 800F6B94 000F3AD4  C0 3F 34 78 */ lfs f1, 0x3478(r31)
-/* 800F6B98 000F3AD8  48 23 18 95 */ bl J3DFrameCtrl_NS_checkPass
+/* 800F6B98 000F3AD8  48 23 18 95 */ bl checkPass__12J3DFrameCtrlFf
 /* 800F6B9C 000F3ADC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6BA0 000F3AE0  41 82 00 10 */ beq lbl_800F6BB0
 /* 800F6BA4 000F3AE4  38 00 00 05 */ li r0, 5
@@ -87,7 +87,7 @@ lbl_800F6B90:
 lbl_800F6BB0:
 /* 800F6BB0 000F3AF0  7F C3 F3 78 */ mr r3, r30
 /* 800F6BB4 000F3AF4  C0 3F 34 7C */ lfs f1, 0x347c(r31)
-/* 800F6BB8 000F3AF8  48 23 18 75 */ bl J3DFrameCtrl_NS_checkPass
+/* 800F6BB8 000F3AF8  48 23 18 75 */ bl checkPass__12J3DFrameCtrlFf
 /* 800F6BBC 000F3AFC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6BC0 000F3B00  41 82 00 10 */ beq lbl_800F6BD0
 /* 800F6BC4 000F3B04  80 1F 31 A0 */ lwz r0, 0x31a0(r31)

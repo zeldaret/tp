@@ -15,7 +15,7 @@
 /* 80110720 0010D660  41 82 00 10 */ beq lbl_80110730
 /* 80110724 0010D664  38 80 00 00 */ li r4, 0
 /* 80110728 0010D668  38 A0 00 01 */ li r5, 1
-/* 8011072C 0010D66C  4B FB 0B B1 */ bl daAlink_c_NS_deleteEquipItem
+/* 8011072C 0010D66C  4B FB 0B B1 */ bl deleteEquipItem__9daAlink_cFii
 lbl_80110730:
 /* 80110730 0010D670  80 1C 05 8C */ lwz r0, 0x58c(r28)
 /* 80110734 0010D674  60 00 00 04 */ ori r0, r0, 4

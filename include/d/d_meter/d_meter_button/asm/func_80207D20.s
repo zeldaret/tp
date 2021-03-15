@@ -4,7 +4,7 @@
 /* 80207D2C 00204C6C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80207D30 00204C70  7C 7F 1B 78 */ mr r31, r3
 /* 80207D34 00204C74  80 63 00 3C */ lwz r3, 0x3c(r3)
-/* 80207D38 00204C78  48 04 DA F1 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80207D38 00204C78  48 04 DA F1 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80207D3C 00204C7C  C0 02 AD 48 */ lfs f0, lbl_80454748-_SDA2_BASE_(r2)
 /* 80207D40 00204C80  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80207D44 00204C84  41 82 00 58 */ beq lbl_80207D9C
@@ -16,18 +16,18 @@
 lbl_80207D5C:
 /* 80207D5C 00204C9C  80 7F 00 3C */ lwz r3, 0x3c(r31)
 /* 80207D60 00204CA0  C0 22 AD 48 */ lfs f1, lbl_80454748-_SDA2_BASE_(r2)
-/* 80207D64 00204CA4  48 04 DA 6D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80207D64 00204CA4  48 04 DA 6D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80207D68 00204CA8  38 00 00 00 */ li r0, 0
 /* 80207D6C 00204CAC  80 7F 00 3C */ lwz r3, 0x3c(r31)
 /* 80207D70 00204CB0  B0 03 00 16 */ sth r0, 0x16(r3)
 /* 80207D74 00204CB4  80 7F 00 3C */ lwz r3, 0x3c(r31)
-/* 80207D78 00204CB8  48 04 DA B1 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80207D78 00204CB8  48 04 DA B1 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80207D7C 00204CBC  C0 02 AD 48 */ lfs f0, lbl_80454748-_SDA2_BASE_(r2)
 /* 80207D80 00204CC0  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80207D84 00204CC4  40 82 00 18 */ bne lbl_80207D9C
 /* 80207D88 00204CC8  7F E3 FB 78 */ mr r3, r31
 /* 80207D8C 00204CCC  38 80 00 08 */ li r4, 8
-/* 80207D90 00204CD0  48 00 2B BD */ bl dMeterButton_c_NS_hide_button
+/* 80207D90 00204CD0  48 00 2B BD */ bl hide_button__14dMeterButton_cFUc
 /* 80207D94 00204CD4  38 00 00 00 */ li r0, 0
 /* 80207D98 00204CD8  98 1F 04 C8 */ stb r0, 0x4c8(r31)
 lbl_80207D9C:

@@ -3,9 +3,9 @@
 
 // Additional symbols needed for JASWaveArc
 extern "C" {
-void JASWaveArc_NS_erase(void);
-void JASWaveArc_NS_load(void);
-void JASWaveArc_NS_loadTail(void);
+void erase__10JASWaveArcFv(void);
+void load__10JASWaveArcFP7JASHeap(void);
+void loadTail__10JASWaveArcFP7JASHeap(void);
 }
 
 #endif  // JASWAVEARC_H_

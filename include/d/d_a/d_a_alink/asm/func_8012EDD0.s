@@ -9,7 +9,7 @@
 /* 8012EDF0 0012BD30  7C 9F 23 78 */ mr r31, r4
 /* 8012EDF4 0012BD34  FF E0 08 90 */ fmr f31, f1
 /* 8012EDF8 0012BD38  38 80 00 FD */ li r4, 0xfd
-/* 8012EDFC 0012BD3C  4B F9 3F A9 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8012EDFC 0012BD3C  4B F9 3F A9 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012EE00 0012BD40  2C 03 00 00 */ cmpwi r3, 0
 /* 8012EE04 0012BD44  40 82 00 0C */ bne lbl_8012EE10
 /* 8012EE08 0012BD48  38 60 00 00 */ li r3, 0
@@ -41,10 +41,10 @@ lbl_8012EE38:
 /* 8012EE68 0012BDA8  38 80 00 06 */ li r4, 6
 /* 8012EE6C 0012BDAC  38 A0 00 1F */ li r5, 0x1f
 /* 8012EE70 0012BDB0  38 C1 00 08 */ addi r6, r1, 8
-/* 8012EE74 0012BDB4  4B F4 0B B1 */ bl dVibration_c_NS_StartShock
+/* 8012EE74 0012BDB4  4B F4 0B B1 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8012EE78 0012BDB8  7F C3 F3 78 */ mr r3, r30
 /* 8012EE7C 0012BDBC  80 9E 31 8C */ lwz r4, 0x318c(r30)
-/* 8012EE80 0012BDC0  4B FA 85 F9 */ bl daAlink_c_NS_setDamagePointNormal
+/* 8012EE80 0012BDC0  4B FA 85 F9 */ bl setDamagePointNormal__9daAlink_cFi
 /* 8012EE84 0012BDC4  80 1E 05 74 */ lwz r0, 0x574(r30)
 /* 8012EE88 0012BDC8  60 00 40 00 */ ori r0, r0, 0x4000
 /* 8012EE8C 0012BDCC  90 1E 05 74 */ stw r0, 0x574(r30)
@@ -66,7 +66,7 @@ lbl_8012EEC0:
 /* 8012EEC4 0012BE04  38 80 00 05 */ li r4, 5
 /* 8012EEC8 0012BE08  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8012EECC 0012BE0C  FC 40 F8 90 */ fmr f2, f31
-/* 8012EED0 0012BE10  4B FF A8 09 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 8012EED0 0012BE10  4B FF A8 09 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8012EED4 0012BE14  A8 1E 1F D8 */ lha r0, 0x1fd8(r30)
 /* 8012EED8 0012BE18  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)
 /* 8012EEDC 0012BE1C  6C 00 80 00 */ xoris r0, r0, 0x8000
@@ -91,7 +91,7 @@ lbl_8012EEC0:
 /* 8012EF28 0012BE68  38 00 00 0C */ li r0, 0xc
 /* 8012EF2C 0012BE6C  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 8012EF30 0012BE70  7F C3 F3 78 */ mr r3, r30
-/* 8012EF34 0012BE74  4B F9 05 AD */ bl daAlink_c_NS_resetBasAnime
+/* 8012EF34 0012BE74  4B F9 05 AD */ bl resetBasAnime__9daAlink_cFv
 /* 8012EF38 0012BE78  80 1E 05 70 */ lwz r0, 0x570(r30)
 /* 8012EF3C 0012BE7C  54 00 03 98 */ rlwinm r0, r0, 0, 0xe, 0xc
 /* 8012EF40 0012BE80  90 1E 05 70 */ stw r0, 0x570(r30)

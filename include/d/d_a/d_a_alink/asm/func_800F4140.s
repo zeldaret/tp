@@ -32,7 +32,7 @@ lbl_800F41B0:
 /* 800F41B4 000F10F4  28 1E 00 00 */ cmplwi r30, 0
 /* 800F41B8 000F10F8  41 82 00 20 */ beq lbl_800F41D8
 /* 800F41BC 000F10FC  7F E3 FB 78 */ mr r3, r31
-/* 800F41C0 000F1100  48 02 1A 61 */ bl daAlink_c_NS_checkEventRun
+/* 800F41C0 000F1100  48 02 1A 61 */ bl checkEventRun__9daAlink_cCFv
 /* 800F41C4 000F1104  2C 03 00 00 */ cmpwi r3, 0
 /* 800F41C8 000F1108  40 82 00 10 */ bne lbl_800F41D8
 /* 800F41CC 000F110C  C3 BE 14 C8 */ lfs f29, 0x14c8(r30)
@@ -205,7 +205,7 @@ lbl_800F43F8:
 /* 800F4448 000F1388  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800F444C 000F138C  C0 01 00 08 */ lfs f0, 8(r1)
 /* 800F4450 000F1390  EC 21 00 28 */ fsubs f1, f1, f0
-/* 800F4454 000F1394  4B FB 82 E5 */ bl daAlink_c_NS_setDoubleAnimeBlendRatio
+/* 800F4454 000F1394  4B FB 82 E5 */ bl setDoubleAnimeBlendRatio__9daAlink_cFf
 /* 800F4458 000F1398  E3 E1 00 78 */ psq_l f31, 120(r1), 0, 0
 /* 800F445C 000F139C  CB E1 00 70 */ lfd f31, 0x70(r1)
 /* 800F4460 000F13A0  E3 C1 00 68 */ psq_l f30, 104(r1), 0, 0

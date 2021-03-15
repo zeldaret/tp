@@ -31,7 +31,7 @@ lbl_801A4488:
 /* 801A4494 001A13D4  41 82 00 18 */ beq lbl_801A44AC
 /* 801A4498 001A13D8  28 00 00 09 */ cmplwi r0, 9
 /* 801A449C 001A13DC  40 82 01 60 */ bne lbl_801A45FC
-/* 801A44A0 001A13E0  48 00 80 DD */ bl dKy_darkworld_check
+/* 801A44A0 001A13E0  48 00 80 DD */ bl dKy_darkworld_check__Fv
 /* 801A44A4 001A13E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A44A8 001A13E8  41 82 01 54 */ beq lbl_801A45FC
 lbl_801A44AC:
@@ -41,7 +41,7 @@ lbl_801A44AC:
 /* 801A44B8 001A13F8  28 00 00 03 */ cmplwi r0, 3
 /* 801A44BC 001A13FC  40 82 00 10 */ bne lbl_801A44CC
 lbl_801A44C0:
-/* 801A44C0 001A1400  48 00 80 BD */ bl dKy_darkworld_check
+/* 801A44C0 001A1400  48 00 80 BD */ bl dKy_darkworld_check__Fv
 /* 801A44C4 001A1404  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A44C8 001A1408  41 82 01 34 */ beq lbl_801A45FC
 lbl_801A44CC:
@@ -200,17 +200,17 @@ lbl_801A46F0:
 /* 801A4700 001A1640  41 80 03 EC */ blt lbl_801A4AEC
 /* 801A4704 001A1644  28 00 00 04 */ cmplwi r0, 4
 /* 801A4708 001A1648  41 81 03 E4 */ bgt lbl_801A4AEC
-/* 801A470C 001A164C  4B EB 23 59 */ bl dKyd_maple_col_getp
+/* 801A470C 001A164C  4B EB 23 59 */ bl dKyd_maple_col_getp__Fv
 /* 801A4710 001A1650  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A4714 001A1654  1C 80 00 03 */ mulli r4, r0, 3
 /* 801A4718 001A1658  38 04 00 15 */ addi r0, r4, 0x15
 /* 801A471C 001A165C  7E C3 00 AE */ lbzx r22, r3, r0
-/* 801A4720 001A1660  4B EB 23 45 */ bl dKyd_maple_col_getp
+/* 801A4720 001A1660  4B EB 23 45 */ bl dKyd_maple_col_getp__Fv
 /* 801A4724 001A1664  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A4728 001A1668  1C 80 00 03 */ mulli r4, r0, 3
 /* 801A472C 001A166C  38 04 00 16 */ addi r0, r4, 0x16
 /* 801A4730 001A1670  7E E3 00 AE */ lbzx r23, r3, r0
-/* 801A4734 001A1674  4B EB 23 31 */ bl dKyd_maple_col_getp
+/* 801A4734 001A1674  4B EB 23 31 */ bl dKyd_maple_col_getp__Fv
 /* 801A4738 001A1678  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A473C 001A167C  1C 80 00 03 */ mulli r4, r0, 3
 /* 801A4740 001A1680  38 04 00 17 */ addi r0, r4, 0x17
@@ -321,7 +321,7 @@ lbl_801A48BC:
 /* 801A48D4 001A1814  7F 43 D3 78 */ mr r3, r26
 /* 801A48D8 001A1818  38 96 00 74 */ addi r4, r22, 0x74
 /* 801A48DC 001A181C  7C 99 22 14 */ add r4, r25, r4
-/* 801A48E0 001A1820  48 18 0D E5 */ bl J3DLightInfo_NS___as
+/* 801A48E0 001A1820  48 18 0D E5 */ bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 801A48E4 001A1824  88 1A 00 18 */ lbz r0, 0x18(r26)
 /* 801A48E8 001A1828  98 1E 0F DC */ stb r0, 0xfdc(r30)
 /* 801A48EC 001A182C  88 1A 00 19 */ lbz r0, 0x19(r26)
@@ -335,20 +335,20 @@ lbl_801A4908:
 /* 801A4908 001A1848  3B 56 0F 50 */ addi r26, r22, 0xf50
 /* 801A490C 001A184C  7F 5E D2 14 */ add r26, r30, r26
 lbl_801A4910:
-/* 801A4910 001A1850  4B EB 21 55 */ bl dKyd_maple_col_getp
+/* 801A4910 001A1850  4B EB 21 55 */ bl dKyd_maple_col_getp__Fv
 /* 801A4914 001A1854  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A4918 001A1858  7C 80 BA 14 */ add r4, r0, r23
 /* 801A491C 001A185C  38 04 FF FF */ addi r0, r4, -1
 /* 801A4920 001A1860  1C 00 00 03 */ mulli r0, r0, 3
 /* 801A4924 001A1864  7F 83 00 AE */ lbzx r28, r3, r0
-/* 801A4928 001A1868  4B EB 21 3D */ bl dKyd_maple_col_getp
+/* 801A4928 001A1868  4B EB 21 3D */ bl dKyd_maple_col_getp__Fv
 /* 801A492C 001A186C  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A4930 001A1870  7C 80 BA 14 */ add r4, r0, r23
 /* 801A4934 001A1874  38 04 FF FF */ addi r0, r4, -1
 /* 801A4938 001A1878  1C 80 00 03 */ mulli r4, r0, 3
 /* 801A493C 001A187C  38 04 00 01 */ addi r0, r4, 1
 /* 801A4940 001A1880  7F 63 00 AE */ lbzx r27, r3, r0
-/* 801A4944 001A1884  4B EB 21 21 */ bl dKyd_maple_col_getp
+/* 801A4944 001A1884  4B EB 21 21 */ bl dKyd_maple_col_getp__Fv
 /* 801A4948 001A1888  88 1F 12 FE */ lbz r0, 0x12fe(r31)
 /* 801A494C 001A188C  7C 80 BA 14 */ add r4, r0, r23
 /* 801A4950 001A1890  38 04 FF FF */ addi r0, r4, -1

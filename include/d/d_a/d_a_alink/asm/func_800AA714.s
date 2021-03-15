@@ -8,28 +8,28 @@
 /* 800AA730 000A7670  54 00 06 73 */ rlwinm. r0, r0, 0, 0x19, 0x19
 /* 800AA734 000A7674  41 82 00 A0 */ beq lbl_800AA7D4
 /* 800AA738 000A7678  38 9E 10 F0 */ addi r4, r30, 0x10f0
-/* 800AA73C 000A767C  48 02 70 B1 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA73C 000A767C  48 02 70 B1 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA740 000A7680  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA744 000A7684  40 82 00 38 */ bne lbl_800AA77C
 /* 800AA748 000A7688  7F C3 F3 78 */ mr r3, r30
 /* 800AA74C 000A768C  38 9E 08 50 */ addi r4, r30, 0x850
-/* 800AA750 000A7690  48 02 70 9D */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA750 000A7690  48 02 70 9D */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA754 000A7694  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA758 000A7698  40 82 00 24 */ bne lbl_800AA77C
 /* 800AA75C 000A769C  7F C3 F3 78 */ mr r3, r30
 /* 800AA760 000A76A0  38 9E 09 8C */ addi r4, r30, 0x98c
-/* 800AA764 000A76A4  48 02 70 89 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA764 000A76A4  48 02 70 89 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 /* 800AA768 000A76A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA76C 000A76AC  40 82 00 10 */ bne lbl_800AA77C
 /* 800AA770 000A76B0  7F C3 F3 78 */ mr r3, r30
 /* 800AA774 000A76B4  38 9E 0A C8 */ addi r4, r30, 0xac8
-/* 800AA778 000A76B8  48 02 70 75 */ bl daAlink_c_NS_setSwordHitVibration
+/* 800AA778 000A76B8  48 02 70 75 */ bl setSwordHitVibration__9daAlink_cFP12dCcD_GObjInf
 lbl_800AA77C:
 /* 800AA77C 000A76BC  80 1E 10 54 */ lwz r0, 0x1054(r30)
 /* 800AA780 000A76C0  54 00 05 66 */ rlwinm r0, r0, 0, 0x15, 0x13
 /* 800AA784 000A76C4  90 1E 10 54 */ stw r0, 0x1054(r30)
 /* 800AA788 000A76C8  38 7E 10 F0 */ addi r3, r30, 0x10f0
-/* 800AA78C 000A76CC  4B FD 9B 8D */ bl dCcD_GObjInf_NS_ResetAtHit
+/* 800AA78C 000A76CC  4B FD 9B 8D */ bl ResetAtHit__12dCcD_GObjInfFv
 /* 800AA790 000A76D0  80 1E 05 70 */ lwz r0, 0x570(r30)
 /* 800AA794 000A76D4  54 00 06 B0 */ rlwinm r0, r0, 0, 0x1a, 0x18
 /* 800AA798 000A76D8  90 1E 05 70 */ stw r0, 0x570(r30)
@@ -40,7 +40,7 @@ lbl_800AA7A4:
 /* 800AA7A8 000A76E8  54 00 00 3C */ rlwinm r0, r0, 0, 0, 0x1e
 /* 800AA7AC 000A76EC  90 1F 00 00 */ stw r0, 0(r31)
 /* 800AA7B0 000A76F0  7F E3 FB 78 */ mr r3, r31
-/* 800AA7B4 000A76F4  4B FD 9B 65 */ bl dCcD_GObjInf_NS_ResetAtHit
+/* 800AA7B4 000A76F4  4B FD 9B 65 */ bl ResetAtHit__12dCcD_GObjInfFv
 /* 800AA7B8 000A76F8  80 1F 00 9C */ lwz r0, 0x9c(r31)
 /* 800AA7BC 000A76FC  54 00 05 66 */ rlwinm r0, r0, 0, 0x15, 0x13
 /* 800AA7C0 000A7700  90 1F 00 9C */ stw r0, 0x9c(r31)

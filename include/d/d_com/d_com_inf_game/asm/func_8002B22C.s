@@ -22,7 +22,7 @@ lbl_8002B260:
 /* 8002B27C 000281BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8002B280 000281C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002B284 000281C4  38 63 4E C4 */	addi r3, r3, 0x4ec4
-/* 8002B288 000281C8  4B FF 90 B1 */	bl init__20dStage_roomControl_cFvZone
+/* 8002B288 000281C8  4B FF 90 B1 */	bl initZone__20dStage_roomControl_cFv
 lbl_8002B28C:
 /* 8002B28C 000281CC  38 00 00 00 */	li r0, 0
 /* 8002B290 000281D0  98 1F 4F 51 */	stb r0, 0x4f51(r31)

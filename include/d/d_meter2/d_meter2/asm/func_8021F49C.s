@@ -7,7 +7,7 @@
 /* 8021F4B4 0021C3F4  80 63 01 00 */ lwz r3, 0x100(r3)
 /* 8021F4B8 0021C3F8  48 0A F2 CD */ bl getTotalFreeSize__7JKRHeapCFv
 /* 8021F4BC 0021C3FC  80 7E 01 00 */ lwz r3, 0x100(r30)
-/* 8021F4C0 0021C400  4B DE FD 0D */ bl mDoExt_setCurrentHeap
+/* 8021F4C0 0021C400  4B DE FD 0D */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F4C4 0021C404  7C 7F 1B 78 */ mr r31, r3
 /* 8021F4C8 0021C408  88 1E 01 EA */ lbz r0, 0x1ea(r30)
 /* 8021F4CC 0021C40C  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -47,16 +47,16 @@ lbl_8021F548:
 /* 8021F54C 0021C48C  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 8021F550 0021C490  41 82 00 68 */ beq lbl_8021F5B8
 /* 8021F554 0021C494  7F C3 F3 78 */ mr r3, r30
-/* 8021F558 0021C498  48 00 64 A1 */ bl dMeter2_c_NS_isArrowEquip
+/* 8021F558 0021C498  48 00 64 A1 */ bl isArrowEquip__9dMeter2_cFv
 /* 8021F55C 0021C49C  2C 03 00 00 */ cmpwi r3, 0
 /* 8021F560 0021C4A0  40 82 00 14 */ bne lbl_8021F574
 /* 8021F564 0021C4A4  7F C3 F3 78 */ mr r3, r30
-/* 8021F568 0021C4A8  48 00 64 FD */ bl dMeter2_c_NS_isPachinkoEquip
+/* 8021F568 0021C4A8  48 00 64 FD */ bl isPachinkoEquip__9dMeter2_cFv
 /* 8021F56C 0021C4AC  2C 03 00 00 */ cmpwi r3, 0
 /* 8021F570 0021C4B0  41 82 00 48 */ beq lbl_8021F5B8
 lbl_8021F574:
 /* 8021F574 0021C4B4  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 8021F578 0021C4B8  4B FF BB 51 */ bl dMeter2Draw_c_NS_isButtonVisible
+/* 8021F578 0021C4B8  4B FF BB 51 */ bl isButtonVisible__13dMeter2Draw_cFv
 /* 8021F57C 0021C4BC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F580 0021C4C0  41 82 00 38 */ beq lbl_8021F5B8
 /* 8021F584 0021C4C4  38 00 00 1C */ li r0, 0x1c
@@ -91,7 +91,7 @@ lbl_8021F5EC:
 /* 8021F5EC 0021C52C  80 7E 01 00 */ lwz r3, 0x100(r30)
 /* 8021F5F0 0021C530  48 0A F1 95 */ bl getTotalFreeSize__7JKRHeapCFv
 /* 8021F5F4 0021C534  80 7E 01 04 */ lwz r3, 0x104(r30)
-/* 8021F5F8 0021C538  4B DE FB D5 */ bl mDoExt_setCurrentHeap
+/* 8021F5F8 0021C538  4B DE FB D5 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F5FC 0021C53C  80 7E 01 10 */ lwz r3, 0x110(r30)
 /* 8021F600 0021C540  28 03 00 00 */ cmplwi r3, 0
 /* 8021F604 0021C544  41 82 00 24 */ beq lbl_8021F628
@@ -134,7 +134,7 @@ lbl_8021F680:
 /* 8021F684 0021C5C4  90 1E 01 1C */ stw r0, 0x11c(r30)
 lbl_8021F688:
 /* 8021F688 0021C5C8  7F E3 FB 78 */ mr r3, r31
-/* 8021F68C 0021C5CC  4B DE FB 41 */ bl mDoExt_setCurrentHeap
+/* 8021F68C 0021C5CC  4B DE FB 41 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F690 0021C5D0  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 8021F694 0021C5D4  28 03 00 00 */ cmplwi r3, 0
 /* 8021F698 0021C5D8  41 82 00 18 */ beq lbl_8021F6B0
@@ -147,11 +147,11 @@ lbl_8021F6B0:
 /* 8021F6B0 0021C5F0  38 00 00 00 */ li r0, 0
 /* 8021F6B4 0021C5F4  90 1E 01 0C */ stw r0, 0x10c(r30)
 /* 8021F6B8 0021C5F8  80 7E 01 04 */ lwz r3, 0x104(r30)
-/* 8021F6BC 0021C5FC  4B E0 0D 25 */ bl fopMsgM_destroyExpHeap
+/* 8021F6BC 0021C5FC  4B E0 0D 25 */ bl fopMsgM_destroyExpHeap__FP10JKRExpHeap
 /* 8021F6C0 0021C600  80 7E 01 00 */ lwz r3, 0x100(r30)
-/* 8021F6C4 0021C604  4B E0 0D 1D */ bl fopMsgM_destroyExpHeap
+/* 8021F6C4 0021C604  4B E0 0D 1D */ bl fopMsgM_destroyExpHeap__FP10JKRExpHeap
 /* 8021F6C8 0021C608  7F C3 F3 78 */ mr r3, r30
-/* 8021F6CC 0021C60C  48 00 00 21 */ bl dMeter2_c_NS_emphasisButtonDelete
+/* 8021F6CC 0021C60C  48 00 00 21 */ bl emphasisButtonDelete__9dMeter2_cFv
 /* 8021F6D0 0021C610  38 60 00 01 */ li r3, 1
 /* 8021F6D4 0021C614  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 8021F6D8 0021C618  83 C1 00 18 */ lwz r30, 0x18(r1)

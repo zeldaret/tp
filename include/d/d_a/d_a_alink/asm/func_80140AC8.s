@@ -10,14 +10,14 @@
 /* 80140AEC 0013DA2C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80140AF0 0013DA30  41 82 00 10 */ beq lbl_80140B00
 /* 80140AF4 0013DA34  38 80 00 01 */ li r4, 1
-/* 80140AF8 0013DA38  4B FF FA 59 */ bl daAlink_c_NS_changeModelDataDirectWolf
+/* 80140AF8 0013DA38  4B FF FA 59 */ bl changeModelDataDirectWolf__9daAlink_cFi
 /* 80140AFC 0013DA3C  48 00 00 0C */ b lbl_80140B08
 lbl_80140B00:
 /* 80140B00 0013DA40  38 80 00 01 */ li r4, 1
-/* 80140B04 0013DA44  4B FF F8 35 */ bl daAlink_c_NS_changeModelDataDirect
+/* 80140B04 0013DA44  4B FF F8 35 */ bl changeModelDataDirect__9daAlink_cFi
 lbl_80140B08:
 /* 80140B08 0013DA48  7F E3 FB 78 */ mr r3, r31
-/* 80140B0C 0013DA4C  4B F6 81 D9 */ bl daAlink_c_NS_setMatrix
+/* 80140B0C 0013DA4C  4B F6 81 D9 */ bl setMatrix__9daAlink_cFv
 /* 80140B10 0013DA50  80 7F 06 50 */ lwz r3, 0x650(r31)
 /* 80140B14 0013DA54  81 83 00 00 */ lwz r12, 0(r3)
 /* 80140B18 0013DA58  81 8C 00 10 */ lwz r12, 0x10(r12)
@@ -28,17 +28,17 @@ lbl_80140B08:
 /* 80140B2C 0013DA6C  90 1F 05 78 */ stw r0, 0x578(r31)
 /* 80140B30 0013DA70  7F E3 FB 78 */ mr r3, r31
 /* 80140B34 0013DA74  38 80 00 00 */ li r4, 0
-/* 80140B38 0013DA78  4B F6 3D D9 */ bl daAlink_c_NS_setSelectEquipItem
+/* 80140B38 0013DA78  4B F6 3D D9 */ bl setSelectEquipItem__9daAlink_cFi
 /* 80140B3C 0013DA7C  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 80140B40 0013DA80  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80140B44 0013DA84  41 82 00 10 */ beq lbl_80140B54
 /* 80140B48 0013DA88  7F E3 FB 78 */ mr r3, r31
-/* 80140B4C 0013DA8C  4B F6 94 01 */ bl daAlink_c_NS_setWolfItemMatrix
+/* 80140B4C 0013DA8C  4B F6 94 01 */ bl setWolfItemMatrix__9daAlink_cFv
 /* 80140B50 0013DA90  48 00 00 10 */ b lbl_80140B60
 lbl_80140B54:
 /* 80140B54 0013DA94  7F E3 FB 78 */ mr r3, r31
 /* 80140B58 0013DA98  38 80 00 00 */ li r4, 0
-/* 80140B5C 0013DA9C  4B F6 88 F5 */ bl daAlink_c_NS_setItemMatrix
+/* 80140B5C 0013DA9C  4B F6 88 F5 */ bl setItemMatrix__9daAlink_cFi
 lbl_80140B60:
 /* 80140B60 0013DAA0  80 1F 05 78 */ lwz r0, 0x578(r31)
 /* 80140B64 0013DAA4  54 00 02 90 */ rlwinm r0, r0, 0, 0xa, 8

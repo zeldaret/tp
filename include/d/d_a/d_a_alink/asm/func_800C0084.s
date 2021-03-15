@@ -7,11 +7,11 @@
 /* 800C009C 000BCFDC  7C 7F 1B 78 */ mr r31, r3
 /* 800C00A0 000BCFE0  FF E0 08 90 */ fmr f31, f1
 /* 800C00A4 000BCFE4  38 7F 21 D8 */ addi r3, r31, 0x21d8
-/* 800C00A8 000BCFE8  48 09 EF C1 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 800C00A8 000BCFE8  48 09 EF C1 */ bl loadDataIdx__14daPy_anmHeap_cFUs
 /* 800C00AC 000BCFEC  7C 64 1B 79 */ or. r4, r3, r3
 /* 800C00B0 000BCFF0  41 82 00 0C */ beq lbl_800C00BC
 /* 800C00B4 000BCFF4  38 7F 07 30 */ addi r3, r31, 0x730
-/* 800C00B8 000BCFF8  4B F4 D8 D9 */ bl mDoExt_bckAnm_NS_changeBckOnly
+/* 800C00B8 000BCFF8  4B F4 D8 D9 */ bl changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
 lbl_800C00BC:
 /* 800C00BC 000BCFFC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800C00C0 000BD000  FC 1F 00 40 */ fcmpo cr0, f31, f0

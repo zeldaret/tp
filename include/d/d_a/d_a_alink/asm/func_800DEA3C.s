@@ -12,7 +12,7 @@
 /* 800DEA68 000DB9A8  2C 00 00 01 */ cmpwi r0, 1
 /* 800DEA6C 000DB9AC  40 82 00 1C */ bne lbl_800DEA88
 /* 800DEA70 000DB9B0  88 7F 2F 9C */ lbz r3, 0x2f9c(r31)
-/* 800DEA74 000DB9B4  4B F4 FB 4D */ bl dComIfGp_getSelectItemNum
+/* 800DEA74 000DB9B4  4B F4 FB 4D */ bl dComIfGp_getSelectItemNum__Fi
 /* 800DEA78 000DB9B8  7C 60 07 35 */ extsh. r0, r3
 /* 800DEA7C 000DB9BC  40 82 00 0C */ bne lbl_800DEA88
 /* 800DEA80 000DB9C0  38 00 00 00 */ li r0, 0
@@ -33,7 +33,7 @@ lbl_800DEA88:
 /* 800DEAB8 000DB9F8  4B F3 B3 4D */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 800DEABC 000DB9FC  7C 64 1B 78 */ mr r4, r3
 /* 800DEAC0 000DBA00  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800DEAC4 000DBA04  48 08 01 F5 */ bl daPy_actorKeep_c_NS_setData
+/* 800DEAC4 000DBA04  48 08 01 F5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 lbl_800DEAC8:
 /* 800DEAC8 000DBA08  38 00 00 00 */ li r0, 0
 /* 800DEACC 000DBA0C  B0 1F 30 18 */ sth r0, 0x3018(r31)

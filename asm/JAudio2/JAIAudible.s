@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029efac
 
 
-.global JAIAudible_NS_dtor
-JAIAudible_NS_dtor:
+.global __dt__10JAIAudibleFv
+__dt__10JAIAudibleFv:
 /* 8029EFAC 0029BEEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EFB0 0029BEF0  7C 08 02 A6 */	mflr r0
 /* 8029EFB4 0029BEF4  90 01 00 14 */	stw r0, 0x14(r1)

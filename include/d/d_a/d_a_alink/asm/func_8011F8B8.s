@@ -14,11 +14,11 @@ lbl_8011F8E8:
 /* 8011F8E8 0011C828  80 1F 05 7C */ lwz r0, 0x57c(r31)
 /* 8011F8EC 0011C82C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011F8F0 0011C830  41 82 00 44 */ beq lbl_8011F934
-/* 8011F8F4 0011C834  4B F1 01 CD */ bl dComIfGp_TargetWarpPt_get
+/* 8011F8F4 0011C834  4B F1 01 CD */ bl dComIfGp_TargetWarpPt_get__Fv
 /* 8011F8F8 0011C838  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011F8FC 0011C83C  28 00 00 09 */ cmplwi r0, 9
 /* 8011F900 0011C840  40 82 00 34 */ bne lbl_8011F934
-/* 8011F904 0011C844  4B F1 01 E5 */ bl dComIfGp_TransportWarp_check
+/* 8011F904 0011C844  4B F1 01 E5 */ bl dComIfGp_TransportWarp_check__Fv
 /* 8011F908 0011C848  2C 03 00 00 */ cmpwi r3, 0
 /* 8011F90C 0011C84C  41 82 00 28 */ beq lbl_8011F934
 /* 8011F910 0011C850  38 60 00 02 */ li r3, 2
@@ -28,7 +28,7 @@ lbl_8011F8E8:
 /* 8011F920 0011C860  7C 05 07 74 */ extsb r5, r0
 /* 8011F924 0011C864  A8 DF 04 E6 */ lha r6, 0x4e6(r31)
 /* 8011F928 0011C868  38 E0 FF FF */ li r7, -1
-/* 8011F92C 0011C86C  4B F0 78 45 */ bl dStage_changeScene
+/* 8011F92C 0011C86C  4B F0 78 45 */ bl dStage_changeScene__FifUlScsi
 /* 8011F930 0011C870  48 00 00 90 */ b lbl_8011F9C0
 lbl_8011F934:
 /* 8011F934 0011C874  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -37,7 +37,7 @@ lbl_8011F934:
 /* 8011F940 0011C880  38 80 00 00 */ li r4, 0
 /* 8011F944 0011C884  38 A0 00 CA */ li r5, 0xca
 /* 8011F948 0011C888  38 C0 00 00 */ li r6, 0
-/* 8011F94C 0011C88C  48 03 F0 C1 */ bl daPy_py_c_NS_setParamData
+/* 8011F94C 0011C88C  48 03 F0 C1 */ bl setParamData__9daPy_py_cFiiii
 /* 8011F950 0011C890  7C 67 1B 78 */ mr r7, r3
 /* 8011F954 0011C894  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011F958 0011C898  38 A3 01 88 */ addi r5, r3, lbl_80430188@l
@@ -65,7 +65,7 @@ lbl_8011F934:
 /* 8011F9B0 0011C8F0  39 00 00 01 */ li r8, 1
 /* 8011F9B4 0011C8F4  39 20 00 00 */ li r9, 0
 /* 8011F9B8 0011C8F8  A9 5F 04 E6 */ lha r10, 0x4e6(r31)
-/* 8011F9BC 0011C8FC  4B F0 D9 41 */ bl dComIfGp_setNextStage
+/* 8011F9BC 0011C8FC  4B F0 D9 41 */ bl dComIfGp_setNextStage__FPCcsScScfUliScsii
 lbl_8011F9C0:
 /* 8011F9C0 0011C900  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
 /* 8011F9C4 0011C904  28 00 01 4F */ cmplwi r0, 0x14f

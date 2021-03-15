@@ -10,13 +10,13 @@
 /* 80057D2C 00054C6C  38 03 9A D4 */ addi r0, r3, lbl_803A9AD4@l
 /* 80057D30 00054C70  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057D34 00054C74  38 7E 00 18 */ addi r3, r30, 0x18
-/*.global EF_MUD_EFF_NS_dtor*/
-/* 80057D38 00054C78  3C 80 80 05 */ lis r4, EF_MUD_EFF_NS_dtor@ha
-/*.global EF_MUD_EFF_NS_dtor*/
-/* 80057D3C 00054C7C  38 84 6F FC */ addi r4, r4, EF_MUD_EFF_NS_dtor@l
+/*.global __dt__10EF_MUD_EFFFv*/
+/* 80057D38 00054C78  3C 80 80 05 */ lis r4, __dt__10EF_MUD_EFFFv@ha
+/*.global __dt__10EF_MUD_EFFFv*/
+/* 80057D3C 00054C7C  38 84 6F FC */ addi r4, r4, __dt__10EF_MUD_EFFFv@l
 /* 80057D40 00054C80  38 A0 00 48 */ li r5, 0x48
 /* 80057D44 00054C84  38 C0 00 64 */ li r6, 0x64
-/* 80057D48 00054C88  48 30 9F A1 */ bl func_80361CE8
+/* 80057D48 00054C88  48 30 9F A1 */ bl __destroy_arr
 /* 80057D4C 00054C8C  28 1E 00 00 */ cmplwi r30, 0
 /* 80057D50 00054C90  41 82 00 10 */ beq lbl_80057D60
 /* 80057D54 00054C94  3C 60 80 3D */ lis r3, lbl_803CD97C@ha

@@ -299,10 +299,10 @@ lbl_80221074:
 /* 8022107C 0021DFBC  40 82 00 10 */ bne lbl_8022108C
 /* 80221080 0021DFC0  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 80221084 0021DFC4  A8 9E 01 B0 */ lha r4, 0x1b0(r30)
-/* 80221088 0021DFC8  4B FF 52 A5 */ bl dMeter2Draw_c_NS_drawRupee
+/* 80221088 0021DFC8  4B FF 52 A5 */ bl drawRupee__13dMeter2Draw_cFs
 lbl_8022108C:
 /* 8022108C 0021DFCC  7F C3 F3 78 */ mr r3, r30
-/* 80221090 0021DFD0  48 00 3D 31 */ bl dMeter2_c_NS_alphaAnimeRupee
+/* 80221090 0021DFD0  48 00 3D 31 */ bl alphaAnimeRupee__9dMeter2_cFv
 /* 80221094 0021DFD4  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 80221098 0021DFD8  83 C1 00 18 */ lwz r30, 0x18(r1)
 /* 8022109C 0021DFDC  80 01 00 24 */ lwz r0, 0x24(r1)

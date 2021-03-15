@@ -141,37 +141,37 @@ lbl_800731EC:
 /* 80073208 00070148  1C 60 00 1C */ mulli r3, r0, 0x1c
 /* 8007320C 0007014C  38 63 00 08 */ addi r3, r3, 8
 /* 80073210 00070150  7C 7F 1A 14 */ add r3, r31, r3
-/* 80073214 00070154  4B F9 A2 15 */ bl mDoExt_baseAnm_NS_play
+/* 80073214 00070154  4B F9 A2 15 */ bl play__14mDoExt_baseAnmFv
 /* 80073218 00070158  88 1F 01 70 */ lbz r0, 0x170(r31)
 /* 8007321C 0007015C  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 80073220 00070160  38 63 00 40 */ addi r3, r3, 0x40
 /* 80073224 00070164  7C 7F 1A 14 */ add r3, r31, r3
-/* 80073228 00070168  4B F9 A2 01 */ bl mDoExt_baseAnm_NS_play
+/* 80073228 00070168  4B F9 A2 01 */ bl play__14mDoExt_baseAnmFv
 /* 8007322C 0007016C  88 1F 01 70 */ lbz r0, 0x170(r31)
 /* 80073230 00070170  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 80073234 00070174  38 63 00 70 */ addi r3, r3, 0x70
 /* 80073238 00070178  7C 7F 1A 14 */ add r3, r31, r3
-/* 8007323C 0007017C  4B F9 A1 ED */ bl mDoExt_baseAnm_NS_play
+/* 8007323C 0007017C  4B F9 A1 ED */ bl play__14mDoExt_baseAnmFv
 /* 80073240 00070180  88 1F 01 70 */ lbz r0, 0x170(r31)
 /* 80073244 00070184  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 80073248 00070188  38 63 00 D0 */ addi r3, r3, 0xd0
 /* 8007324C 0007018C  7C 7F 1A 14 */ add r3, r31, r3
-/* 80073250 00070190  4B F9 A1 D9 */ bl mDoExt_baseAnm_NS_play
+/* 80073250 00070190  4B F9 A1 D9 */ bl play__14mDoExt_baseAnmFv
 /* 80073254 00070194  88 1F 01 70 */ lbz r0, 0x170(r31)
 /* 80073258 00070198  1C 60 00 18 */ mulli r3, r0, 0x18
 /* 8007325C 0007019C  38 63 00 A0 */ addi r3, r3, 0xa0
 /* 80073260 000701A0  7C 7F 1A 14 */ add r3, r31, r3
-/* 80073264 000701A4  4B F9 A1 C5 */ bl mDoExt_baseAnm_NS_play
+/* 80073264 000701A4  4B F9 A1 C5 */ bl play__14mDoExt_baseAnmFv
 /* 80073268 000701A8  48 00 00 24 */ b lbl_8007328C
 lbl_8007326C:
 /* 8007326C 000701AC  38 7F 01 00 */ addi r3, r31, 0x100
-/* 80073270 000701B0  4B F9 A1 B9 */ bl mDoExt_baseAnm_NS_play
+/* 80073270 000701B0  4B F9 A1 B9 */ bl play__14mDoExt_baseAnmFv
 /* 80073274 000701B4  38 7F 01 1C */ addi r3, r31, 0x11c
-/* 80073278 000701B8  4B F9 A1 B1 */ bl mDoExt_baseAnm_NS_play
+/* 80073278 000701B8  4B F9 A1 B1 */ bl play__14mDoExt_baseAnmFv
 /* 8007327C 000701BC  38 7F 01 34 */ addi r3, r31, 0x134
-/* 80073280 000701C0  4B F9 A1 A9 */ bl mDoExt_baseAnm_NS_play
+/* 80073280 000701C0  4B F9 A1 A9 */ bl play__14mDoExt_baseAnmFv
 /* 80073284 000701C4  38 7F 01 4C */ addi r3, r31, 0x14c
-/* 80073288 000701C8  4B F9 A1 A1 */ bl mDoExt_baseAnm_NS_play
+/* 80073288 000701C8  4B F9 A1 A1 */ bl play__14mDoExt_baseAnmFv
 lbl_8007328C:
 /* 8007328C 000701CC  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 80073290 000701D0  CB E1 00 30 */ lfd f31, 0x30(r1)

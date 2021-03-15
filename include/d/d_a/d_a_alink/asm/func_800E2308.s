@@ -4,7 +4,7 @@
 /* 800E2314 000DF254  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E2318 000DF258  7C 7F 1B 78 */ mr r31, r3
 /* 800E231C 000DF25C  38 80 00 66 */ li r4, 0x66
-/* 800E2320 000DF260  4B FE 0A 85 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800E2320 000DF260  4B FE 0A 85 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E2324 000DF264  2C 03 00 00 */ cmpwi r3, 0
 /* 800E2328 000DF268  40 82 00 0C */ bne lbl_800E2334
 /* 800E232C 000DF26C  38 60 00 01 */ li r3, 1
@@ -19,11 +19,11 @@ lbl_800E2334:
 /* 800E234C 000DF28C  7F E3 FB 78 */ mr r3, r31
 /* 800E2350 000DF290  38 80 00 00 */ li r4, 0
 /* 800E2354 000DF294  38 A0 00 00 */ li r5, 0
-/* 800E2358 000DF298  4B FD EF 85 */ bl daAlink_c_NS_deleteEquipItem
+/* 800E2358 000DF298  4B FD EF 85 */ bl deleteEquipItem__9daAlink_cFii
 /* 800E235C 000DF29C  38 00 00 46 */ li r0, 0x46
 /* 800E2360 000DF2A0  B0 1F 2F DC */ sth r0, 0x2fdc(r31)
 /* 800E2364 000DF2A4  7F E3 FB 78 */ mr r3, r31
-/* 800E2368 000DF2A8  4B FF F3 E1 */ bl daAlink_c_NS_setCopyRodModel
+/* 800E2368 000DF2A8  4B FF F3 E1 */ bl setCopyRodModel__9daAlink_cFv
 lbl_800E236C:
 /* 800E236C 000DF2AC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E2370 000DF2B0  80 7F 07 24 */ lwz r3, 0x724(r31)
@@ -31,7 +31,7 @@ lbl_800E236C:
 lbl_800E2378:
 /* 800E2378 000DF2B8  7F E3 FB 78 */ mr r3, r31
 /* 800E237C 000DF2BC  38 80 01 7A */ li r4, 0x17a
-/* 800E2380 000DF2C0  4B FC AC 01 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800E2380 000DF2C0  4B FC AC 01 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800E2384 000DF2C4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E2388 000DF2C8  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800E238C 000DF2CC  38 60 00 01 */ li r3, 1

@@ -4,14 +4,14 @@
 /* 800C3A50 000C0990  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C3A54 000C0994  7C 7F 1B 78 */ mr r31, r3
 /* 800C3A58 000C0998  38 80 00 00 */ li r4, 0
-/* 800C3A5C 000C099C  4B FF 66 75 */ bl daAlink_c_NS_checkNextAction
+/* 800C3A5C 000C099C  4B FF 66 75 */ bl checkNextAction__9daAlink_cFi
 /* 800C3A60 000C09A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800C3A64 000C09A4  40 82 00 18 */ bne lbl_800C3A7C
 /* 800C3A68 000C09A8  7F E3 FB 78 */ mr r3, r31
 /* 800C3A6C 000C09AC  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C3A70 000C09B0  4B FE B0 01 */ bl daAlink_c_NS_setBlendAtnMoveAnime
+/* 800C3A70 000C09B0  4B FE B0 01 */ bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800C3A74 000C09B4  7F E3 FB 78 */ mr r3, r31
-/* 800C3A78 000C09B8  4B FF 39 19 */ bl daAlink_c_NS_checkSwordTwirlAction
+/* 800C3A78 000C09B8  4B FF 39 19 */ bl checkSwordTwirlAction__9daAlink_cFv
 lbl_800C3A7C:
 /* 800C3A7C 000C09BC  38 60 00 01 */ li r3, 1
 /* 800C3A80 000C09C0  83 E1 00 0C */ lwz r31, 0xc(r1)

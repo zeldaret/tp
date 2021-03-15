@@ -2,7 +2,7 @@
 #define JAIAUDIBLE_H_
 
 extern "C" {
-void JAIAudible_NS_dtor(void);
+void __dt__10JAIAudibleFv(void);
 }
 
 #endif  // JAIAUDIBLE_H_

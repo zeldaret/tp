@@ -4,7 +4,7 @@
 /* 800D4208 000D1148  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D420C 000D114C  93 C1 00 08 */ stw r30, 8(r1)
 /* 800D4210 000D1150  7C 7E 1B 78 */ mr r30, r3
-/* 800D4214 000D1154  4B FE 5D 3D */ bl daAlink_c_NS_checkGroundSpecialMode
+/* 800D4214 000D1154  4B FE 5D 3D */ bl checkGroundSpecialMode__9daAlink_cFv
 /* 800D4218 000D1158  2C 03 00 00 */ cmpwi r3, 0
 /* 800D421C 000D115C  41 82 00 0C */ beq lbl_800D4228
 /* 800D4220 000D1160  38 60 00 01 */ li r3, 1
@@ -21,7 +21,7 @@ lbl_800D4228:
 /* 800D4248 000D1188  2C 00 00 00 */ cmpwi r0, 0
 /* 800D424C 000D118C  40 82 00 18 */ bne lbl_800D4264
 /* 800D4250 000D1190  7F C3 F3 78 */ mr r3, r30
-/* 800D4254 000D1194  4B FF E4 31 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
+/* 800D4254 000D1194  4B FF E4 31 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 800D4258 000D1198  80 1E 05 88 */ lwz r0, 0x588(r30)
 /* 800D425C 000D119C  64 00 08 00 */ oris r0, r0, 0x800
 /* 800D4260 000D11A0  90 1E 05 88 */ stw r0, 0x588(r30)
@@ -31,17 +31,17 @@ lbl_800D4264:
 /* 800D426C 000D11AC  41 82 00 10 */ beq lbl_800D427C
 /* 800D4270 000D11B0  7F C3 F3 78 */ mr r3, r30
 /* 800D4274 000D11B4  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800D4278 000D11B8  48 00 8D 91 */ bl daAlink_c_NS_setUpperGuardAnime
+/* 800D4278 000D11B8  48 00 8D 91 */ bl setUpperGuardAnime__9daAlink_cFf
 lbl_800D427C:
 /* 800D427C 000D11BC  7F E3 FB 78 */ mr r3, r31
-/* 800D4280 000D11C0  48 08 A2 4D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D4280 000D11C0  48 08 A2 4D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D4284 000D11C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D4288 000D11C8  41 82 00 1C */ beq lbl_800D42A4
 /* 800D428C 000D11CC  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 800D4290 000D11D0  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800D4294 000D11D4  7F C3 F3 78 */ mr r3, r30
 /* 800D4298 000D11D8  38 80 00 00 */ li r4, 0
-/* 800D429C 000D11DC  4B FE 5E 35 */ bl daAlink_c_NS_checkNextAction
+/* 800D429C 000D11DC  4B FE 5E 35 */ bl checkNextAction__9daAlink_cFi
 /* 800D42A0 000D11E0  48 00 00 40 */ b lbl_800D42E0
 lbl_800D42A4:
 /* 800D42A4 000D11E4  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -52,7 +52,7 @@ lbl_800D42A4:
 /* 800D42B8 000D11F8  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 800D42BC 000D11FC  7F C3 F3 78 */ mr r3, r30
 /* 800D42C0 000D1200  38 80 00 01 */ li r4, 1
-/* 800D42C4 000D1204  4B FE 5E 0D */ bl daAlink_c_NS_checkNextAction
+/* 800D42C4 000D1204  4B FE 5E 0D */ bl checkNextAction__9daAlink_cFi
 /* 800D42C8 000D1208  2C 03 00 00 */ cmpwi r3, 0
 /* 800D42CC 000D120C  40 82 00 14 */ bne lbl_800D42E0
 /* 800D42D0 000D1210  A8 7E 04 E6 */ lha r3, 0x4e6(r30)

@@ -7,10 +7,10 @@
 /* 800D2BA0 000CFAE0  28 04 00 04 */ cmplwi r4, 4
 /* 800D2BA4 000CFAE4  40 82 00 1C */ bne lbl_800D2BC0
 /* 800D2BA8 000CFAE8  38 80 00 01 */ li r4, 1
-/* 800D2BAC 000CFAEC  4B FF E8 85 */ bl daAlink_c_NS_resetCombo
+/* 800D2BAC 000CFAEC  4B FF E8 85 */ bl resetCombo__9daAlink_cFi
 /* 800D2BB0 000CFAF0  7F E3 FB 78 */ mr r3, r31
 /* 800D2BB4 000CFAF4  38 80 00 00 */ li r4, 0
-/* 800D2BB8 000CFAF8  4B FE 75 19 */ bl daAlink_c_NS_checkNextAction
+/* 800D2BB8 000CFAF8  4B FE 75 19 */ bl checkNextAction__9daAlink_cFi
 /* 800D2BBC 000CFAFC  48 00 00 2C */ b lbl_800D2BE8
 lbl_800D2BC0:
 /* 800D2BC0 000CFB00  38 04 00 01 */ addi r0, r4, 1
@@ -19,11 +19,11 @@ lbl_800D2BC0:
 /* 800D2BCC 000CFB0C  28 00 00 03 */ cmplwi r0, 3
 /* 800D2BD0 000CFB10  41 81 00 10 */ bgt lbl_800D2BE0
 /* 800D2BD4 000CFB14  38 80 00 02 */ li r4, 2
-/* 800D2BD8 000CFB18  48 00 03 81 */ bl daAlink_c_NS_procCutNormalInit
+/* 800D2BD8 000CFB18  48 00 03 81 */ bl procCutNormalInit__9daAlink_cFi
 /* 800D2BDC 000CFB1C  48 00 00 0C */ b lbl_800D2BE8
 lbl_800D2BE0:
 /* 800D2BE0 000CFB20  38 80 00 01 */ li r4, 1
-/* 800D2BE4 000CFB24  48 00 08 F5 */ bl daAlink_c_NS_procCutFinishInit
+/* 800D2BE4 000CFB24  48 00 08 F5 */ bl procCutFinishInit__9daAlink_cFi
 lbl_800D2BE8:
 /* 800D2BE8 000CFB28  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800D2BEC 000CFB2C  80 01 00 14 */ lwz r0, 0x14(r1)

@@ -4,12 +4,12 @@
 /* 800F614C 000F308C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F6150 000F3090  7C 7F 1B 78 */ mr r31, r3
 /* 800F6154 000F3094  38 80 00 93 */ li r4, 0x93
-/* 800F6158 000F3098  4B FC BE 15 */ bl daAlink_c_NS_commonProcInit
+/* 800F6158 000F3098  4B FC BE 15 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F615C 000F309C  7F E3 FB 78 */ mr r3, r31
 /* 800F6160 000F30A0  38 80 00 E4 */ li r4, 0xe4
-/* 800F6164 000F30A4  4B FB 6E 1D */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800F6164 000F30A4  4B FB 6E 1D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800F6168 000F30A8  7F E3 FB 78 */ mr r3, r31
-/* 800F616C 000F30AC  4B FF E4 31 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F616C 000F30AC  4B FF E4 31 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F6170 000F30B0  38 60 00 01 */ li r3, 1
 /* 800F6174 000F30B4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F6178 000F30B8  80 01 00 14 */ lwz r0, 0x14(r1)

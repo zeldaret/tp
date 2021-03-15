@@ -5,7 +5,7 @@
 /* 800FBCE4 000F8C24  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FBCE8 000F8C28  7C 7E 1B 78 */ mr r30, r3
 /* 800FBCEC 000F8C2C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800FBCF0 000F8C30  4B FF E9 F5 */ bl daAlink_c_NS_setHangGroundY
+/* 800FBCF0 000F8C30  4B FF E9 F5 */ bl setHangGroundY__9daAlink_cFv
 /* 800FBCF4 000F8C34  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 800FBCF8 000F8C38  54 00 04 63 */ rlwinm. r0, r0, 0, 0x11, 0x11
 /* 800FBCFC 000F8C3C  41 82 00 2C */ beq lbl_800FBD28
@@ -17,11 +17,11 @@
 /* 800FBD14 000F8C54  40 81 00 14 */ ble lbl_800FBD28
 /* 800FBD18 000F8C58  7F C3 F3 78 */ mr r3, r30
 /* 800FBD1C 000F8C5C  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800FBD20 000F8C60  4B FC B1 F9 */ bl daAlink_c_NS_procLandInit
+/* 800FBD20 000F8C60  4B FC B1 F9 */ bl procLandInit__9daAlink_cFf
 /* 800FBD24 000F8C64  48 00 00 C8 */ b lbl_800FBDEC
 lbl_800FBD28:
 /* 800FBD28 000F8C68  A0 7E 2F DC */ lhz r3, 0x2fdc(r30)
-/* 800FBD2C 000F8C6C  48 06 2E 65 */ bl daPy_py_c_NS_checkBowItem
+/* 800FBD2C 000F8C6C  48 06 2E 65 */ bl checkBowItem__9daPy_py_cFi
 /* 800FBD30 000F8C70  2C 03 00 00 */ cmpwi r3, 0
 /* 800FBD34 000F8C74  41 82 00 0C */ beq lbl_800FBD40
 /* 800FBD38 000F8C78  C0 1E 1F E0 */ lfs f0, 0x1fe0(r30)
@@ -29,7 +29,7 @@ lbl_800FBD28:
 lbl_800FBD40:
 /* 800FBD40 000F8C80  7F E3 FB 78 */ mr r3, r31
 /* 800FBD44 000F8C84  C0 22 93 34 */ lfs f1, lbl_80452D34-_SDA2_BASE_(r2)
-/* 800FBD48 000F8C88  48 22 C6 E5 */ bl J3DFrameCtrl_NS_checkPass
+/* 800FBD48 000F8C88  48 22 C6 E5 */ bl checkPass__12J3DFrameCtrlFf
 /* 800FBD4C 000F8C8C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FBD50 000F8C90  41 82 00 28 */ beq lbl_800FBD78
 /* 800FBD54 000F8C94  38 9E 2A 4C */ addi r4, r30, 0x2a4c
@@ -53,12 +53,12 @@ lbl_800FBD78:
 /* 800FBD94 000F8CD4  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 lbl_800FBD98:
 /* 800FBD98 000F8CD8  7F E3 FB 78 */ mr r3, r31
-/* 800FBD9C 000F8CDC  48 06 27 31 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FBD9C 000F8CDC  48 06 27 31 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FBDA0 000F8CE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FBDA4 000F8CE4  41 82 00 14 */ beq lbl_800FBDB8
 /* 800FBDA8 000F8CE8  7F C3 F3 78 */ mr r3, r30
 /* 800FBDAC 000F8CEC  38 80 00 00 */ li r4, 0
-/* 800FBDB0 000F8CF0  4B FB E3 21 */ bl daAlink_c_NS_checkNextAction
+/* 800FBDB0 000F8CF0  4B FB E3 21 */ bl checkNextAction__9daAlink_cFi
 /* 800FBDB4 000F8CF4  48 00 00 34 */ b lbl_800FBDE8
 lbl_800FBDB8:
 /* 800FBDB8 000F8CF8  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -72,7 +72,7 @@ lbl_800FBDB8:
 /* 800FBDD8 000F8D18  90 1E 31 A0 */ stw r0, 0x31a0(r30)
 /* 800FBDDC 000F8D1C  7F C3 F3 78 */ mr r3, r30
 /* 800FBDE0 000F8D20  38 80 00 01 */ li r4, 1
-/* 800FBDE4 000F8D24  4B FB E2 ED */ bl daAlink_c_NS_checkNextAction
+/* 800FBDE4 000F8D24  4B FB E2 ED */ bl checkNextAction__9daAlink_cFi
 lbl_800FBDE8:
 /* 800FBDE8 000F8D28  38 60 00 01 */ li r3, 1
 lbl_800FBDEC:

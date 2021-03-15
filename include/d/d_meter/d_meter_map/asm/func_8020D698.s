@@ -11,7 +11,7 @@
 /* 8020D6C0 0020A600  38 60 00 01 */ li r3, 1
 /* 8020D6C4 0020A604  48 00 00 54 */ b lbl_8020D718
 lbl_8020D6C8:
-/* 8020D6C8 0020A608  48 02 AB 65 */ bl dMsgObject_c_NS_getStatus
+/* 8020D6C8 0020A608  48 02 AB 65 */ bl getStatus__12dMsgObject_cFv
 /* 8020D6CC 0020A60C  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8020D6D0 0020A610  20 60 00 01 */ subfic r3, r0, 1
 /* 8020D6D4 0020A614  30 03 FF FF */ addic r0, r3, -1

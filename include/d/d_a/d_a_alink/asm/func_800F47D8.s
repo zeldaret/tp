@@ -10,10 +10,10 @@
 /* 800F47FC 000F173C  28 00 00 00 */ cmplwi r0, 0
 /* 800F4800 000F1740  40 82 00 10 */ bne lbl_800F4810
 /* 800F4804 000F1744  38 80 00 00 */ li r4, 0
-/* 800F4808 000F1748  4B FC 58 C9 */ bl daAlink_c_NS_checkNextAction
+/* 800F4808 000F1748  4B FC 58 C9 */ bl checkNextAction__9daAlink_cFi
 /* 800F480C 000F174C  48 00 00 F8 */ b lbl_800F4904
 lbl_800F4810:
-/* 800F4810 000F1750  4B FF FD 8D */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F4810 000F1750  4B FF FD 8D */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F4814 000F1754  80 7F 28 18 */ lwz r3, 0x2818(r31)
 /* 800F4818 000F1758  88 03 14 40 */ lbz r0, 0x1440(r3)
 /* 800F481C 000F175C  28 00 00 03 */ cmplwi r0, 3
@@ -30,7 +30,7 @@ lbl_800F4840:
 /* 800F4840 000F1780  A3 DF 1F 94 */ lhz r30, 0x1f94(r31)
 /* 800F4844 000F1784  7F E3 FB 78 */ mr r3, r31
 /* 800F4848 000F1788  38 80 00 DD */ li r4, 0xdd
-/* 800F484C 000F178C  4B FB 7C 05 */ bl daAlink_c_NS_getMainBckData
+/* 800F484C 000F178C  4B FB 7C 05 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800F4850 000F1790  A0 63 00 02 */ lhz r3, 2(r3)
 /* 800F4854 000F1794  57 C0 04 3E */ clrlwi r0, r30, 0x10
 /* 800F4858 000F1798  7C 00 18 40 */ cmplw r0, r3
@@ -38,7 +38,7 @@ lbl_800F4840:
 /* 800F4860 000F17A0  A3 DF 1F 94 */ lhz r30, 0x1f94(r31)
 /* 800F4864 000F17A4  7F E3 FB 78 */ mr r3, r31
 /* 800F4868 000F17A8  38 80 00 DE */ li r4, 0xde
-/* 800F486C 000F17AC  4B FB 7B E5 */ bl daAlink_c_NS_getMainBckData
+/* 800F486C 000F17AC  4B FB 7B E5 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800F4870 000F17B0  A0 63 00 02 */ lhz r3, 2(r3)
 /* 800F4874 000F17B4  57 C0 04 3E */ clrlwi r0, r30, 0x10
 /* 800F4878 000F17B8  7C 00 18 40 */ cmplw r0, r3

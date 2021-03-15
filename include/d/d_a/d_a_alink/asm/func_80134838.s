@@ -32,7 +32,7 @@ lbl_80134890:
 /* 801348AC 001317EC  40 80 00 10 */ bge lbl_801348BC
 lbl_801348B0:
 /* 801348B0 001317F0  7F A3 EB 78 */ mr r3, r29
-/* 801348B4 001317F4  4B FF 88 F5 */ bl daAlink_c_NS_procWolfWaitInit
+/* 801348B4 001317F4  4B FF 88 F5 */ bl procWolfWaitInit__9daAlink_cFv
 /* 801348B8 001317F8  48 00 01 20 */ b lbl_801349D8
 lbl_801348BC:
 /* 801348BC 001317FC  80 1D 31 98 */ lwz r0, 0x3198(r29)
@@ -83,7 +83,7 @@ lbl_80134950:
 /* 80134960 001318A0  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80134964 001318A4  40 82 00 2C */ bne lbl_80134990
 /* 80134968 001318A8  7F C3 F3 78 */ mr r3, r30
-/* 8013496C 001318AC  48 02 9B 61 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013496C 001318AC  48 02 9B 61 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80134970 001318B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80134974 001318B4  40 82 00 1C */ bne lbl_80134990
 /* 80134978 001318B8  C0 3E 00 10 */ lfs f1, 0x10(r30)
@@ -95,11 +95,11 @@ lbl_80134950:
 lbl_80134990:
 /* 80134990 001318D0  7F A3 EB 78 */ mr r3, r29
 /* 80134994 001318D4  7F E4 FB 78 */ mr r4, r31
-/* 80134998 001318D8  4B FF F6 69 */ bl daAlink_c_NS_procWolfTagJumpInit
+/* 80134998 001318D8  4B FF F6 69 */ bl procWolfTagJumpInit__9daAlink_cFP10fopAc_ac_c
 /* 8013499C 001318DC  48 00 00 3C */ b lbl_801349D8
 lbl_801349A0:
 /* 801349A0 001318E0  7F C3 F3 78 */ mr r3, r30
-/* 801349A4 001318E4  48 02 9B 29 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801349A4 001318E4  48 02 9B 29 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801349A8 001318E8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801349AC 001318EC  41 82 00 2C */ beq lbl_801349D8
 /* 801349B0 001318F0  80 1D 31 A0 */ lwz r0, 0x31a0(r29)
@@ -111,7 +111,7 @@ lbl_801349A0:
 /* 801349C8 00131908  38 A5 F7 DC */ addi r5, r5, lbl_8038F7DC@l
 /* 801349CC 0013190C  C0 25 00 54 */ lfs f1, 0x54(r5)
 /* 801349D0 00131910  C0 45 00 58 */ lfs f2, 0x58(r5)
-/* 801349D4 00131914  4B FF 4D 05 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 801349D4 00131914  4B FF 4D 05 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_801349D8:
 /* 801349D8 00131918  38 60 00 01 */ li r3, 1
 /* 801349DC 0013191C  48 00 03 C4 */ b lbl_80134DA0
@@ -137,11 +137,11 @@ lbl_80134A0C:
 /* 80134A24 00131964  B0 1D 30 0C */ sth r0, 0x300c(r29)
 /* 80134A28 00131968  7F A3 EB 78 */ mr r3, r29
 /* 80134A2C 0013196C  38 80 00 04 */ li r4, 4
-/* 80134A30 00131970  4B FF 3D DD */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 80134A30 00131970  4B FF 3D DD */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80134A34 00131974  2C 03 00 00 */ cmpwi r3, 0
 /* 80134A38 00131978  41 82 00 38 */ beq lbl_80134A70
 /* 80134A3C 0013197C  7F C3 F3 78 */ mr r3, r30
-/* 80134A40 00131980  48 02 9A 8D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80134A40 00131980  48 02 9A 8D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80134A44 00131984  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80134A48 00131988  41 82 00 28 */ beq lbl_80134A70
 /* 80134A4C 0013198C  38 00 00 0C */ li r0, 0xc
@@ -152,7 +152,7 @@ lbl_80134A0C:
 /* 80134A60 001319A0  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 80134A64 001319A4  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 80134A68 001319A8  C0 45 00 34 */ lfs f2, 0x34(r5)
-/* 80134A6C 001319AC  4B FF 4C 6D */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 80134A6C 001319AC  4B FF 4C 6D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80134A70:
 /* 80134A70 001319B0  A8 1D 30 08 */ lha r0, 0x3008(r29)
 /* 80134A74 001319B4  2C 00 00 00 */ cmpwi r0, 0
@@ -293,7 +293,7 @@ lbl_80134C24:
 /* 80134C58 00131B98  3C A0 80 39 */ lis r5, lbl_8038F7DC@ha
 /* 80134C5C 00131B9C  38 A5 F7 DC */ addi r5, r5, lbl_8038F7DC@l
 /* 80134C60 00131BA0  38 A5 00 28 */ addi r5, r5, 0x28
-/* 80134C64 00131BA4  4B FF 4B E5 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80134C64 00131BA4  4B FF 4B E5 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80134C68 00131BA8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80134C6C 00131BAC  D0 3D 33 98 */ stfs f1, 0x3398(r29)
 /* 80134C70 00131BB0  3C 60 80 43 */ lis r3, lbl_80430CF4@ha
@@ -311,7 +311,7 @@ lbl_80134C24:
 /* 80134CA0 00131BE0  98 1D 2F 9D */ stb r0, 0x2f9d(r29)
 /* 80134CA4 00131BE4  7F A3 EB 78 */ mr r3, r29
 /* 80134CA8 00131BE8  38 80 00 04 */ li r4, 4
-/* 80134CAC 00131BEC  4B FE C5 15 */ bl daAlink_c_NS_setFootEffectProcType
+/* 80134CAC 00131BEC  4B FE C5 15 */ bl setFootEffectProcType__9daAlink_cFi
 /* 80134CB0 00131BF0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80134CB4 00131BF4  D0 21 00 18 */ stfs f1, 0x18(r1)
 /* 80134CB8 00131BF8  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -323,17 +323,17 @@ lbl_80134C24:
 /* 80134CD0 00131C10  38 80 00 02 */ li r4, 2
 /* 80134CD4 00131C14  38 A0 00 0F */ li r5, 0xf
 /* 80134CD8 00131C18  38 C1 00 18 */ addi r6, r1, 0x18
-/* 80134CDC 00131C1C  4B F3 AD 49 */ bl dVibration_c_NS_StartShock
+/* 80134CDC 00131C1C  4B F3 AD 49 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80134CE0 00131C20  48 00 00 BC */ b lbl_80134D9C
 lbl_80134CE4:
 /* 80134CE4 00131C24  7F A3 EB 78 */ mr r3, r29
 /* 80134CE8 00131C28  7F E4 FB 78 */ mr r4, r31
-/* 80134CEC 00131C2C  48 00 00 CD */ bl daAlink_c_NS_procWolfTagJumpLandInit
+/* 80134CEC 00131C2C  48 00 00 CD */ bl procWolfTagJumpLandInit__9daAlink_cFP10fopAc_ac_c
 /* 80134CF0 00131C30  48 00 00 AC */ b lbl_80134D9C
 lbl_80134CF4:
 /* 80134CF4 00131C34  7F A3 EB 78 */ mr r3, r29
 /* 80134CF8 00131C38  38 80 00 00 */ li r4, 0
-/* 80134CFC 00131C3C  48 00 00 BD */ bl daAlink_c_NS_procWolfTagJumpLandInit
+/* 80134CFC 00131C3C  48 00 00 BD */ bl procWolfTagJumpLandInit__9daAlink_cFP10fopAc_ac_c
 /* 80134D00 00131C40  48 00 00 9C */ b lbl_80134D9C
 lbl_80134D04:
 /* 80134D04 00131C44  80 1D 31 98 */ lwz r0, 0x3198(r29)
@@ -344,7 +344,7 @@ lbl_80134D04:
 /* 80134D18 00131C58  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 80134D1C 00131C5C  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 80134D20 00131C60  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 80134D24 00131C64  4B FF A0 AD */ bl daAlink_c_NS_procWolfFallInit
+/* 80134D24 00131C64  4B FF A0 AD */ bl procWolfFallInit__9daAlink_cFif
 /* 80134D28 00131C68  48 00 00 74 */ b lbl_80134D9C
 lbl_80134D2C:
 /* 80134D2C 00131C6C  A8 1D 04 E6 */ lha r0, 0x4e6(r29)
@@ -367,7 +367,7 @@ lbl_80134D2C:
 /* 80134D70 00131CB0  D0 1D 04 D8 */ stfs f0, 0x4d8(r29)
 /* 80134D74 00131CB4  7F A3 EB 78 */ mr r3, r29
 /* 80134D78 00131CB8  38 80 00 00 */ li r4, 0
-/* 80134D7C 00131CBC  48 00 00 3D */ bl daAlink_c_NS_procWolfTagJumpLandInit
+/* 80134D7C 00131CBC  48 00 00 3D */ bl procWolfTagJumpLandInit__9daAlink_cFP10fopAc_ac_c
 /* 80134D80 00131CC0  48 00 00 1C */ b lbl_80134D9C
 lbl_80134D84:
 /* 80134D84 00131CC4  7F A3 EB 78 */ mr r3, r29
@@ -375,7 +375,7 @@ lbl_80134D84:
 /* 80134D8C 00131CCC  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 80134D90 00131CD0  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 80134D94 00131CD4  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 80134D98 00131CD8  4B FF A0 39 */ bl daAlink_c_NS_procWolfFallInit
+/* 80134D98 00131CD8  4B FF A0 39 */ bl procWolfFallInit__9daAlink_cFif
 lbl_80134D9C:
 /* 80134D9C 00131CDC  38 60 00 01 */ li r3, 1
 lbl_80134DA0:

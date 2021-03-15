@@ -22,7 +22,7 @@
 /* 800DB46C 000D83AC  38 A0 00 04 */ li r5, 4
 /* 800DB470 000D83B0  38 C0 0C 00 */ li r6, 0xc00
 /* 800DB474 000D83B4  38 E0 01 80 */ li r7, 0x180
-/* 800DB478 000D83B8  48 08 45 05 */ bl daPy_addCalcShort
+/* 800DB478 000D83B8  48 08 45 05 */ bl daPy_addCalcShort__FPsssss
 lbl_800DB47C:
 /* 800DB47C 000D83BC  A8 1F 30 0E */ lha r0, 0x300e(r31)
 /* 800DB480 000D83C0  2C 00 00 00 */ cmpwi r0, 0
@@ -38,7 +38,7 @@ lbl_800DB47C:
 /* 800DB4A8 000D83E8  38 80 00 05 */ li r4, 5
 /* 800DB4AC 000D83EC  38 A0 00 01 */ li r5, 1
 /* 800DB4B0 000D83F0  38 C1 00 08 */ addi r6, r1, 8
-/* 800DB4B4 000D83F4  4B F9 46 5D */ bl dVibration_c_NS_StartQuake
+/* 800DB4B4 000D83F4  4B F9 46 5D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800DB4B8 000D83F8  A8 7F 30 0E */ lha r3, 0x300e(r31)
 /* 800DB4BC 000D83FC  38 03 FF FF */ addi r0, r3, -1
 /* 800DB4C0 000D8400  B0 1F 30 0E */ sth r0, 0x300e(r31)
@@ -53,16 +53,16 @@ lbl_800DB4DC:
 /* 800DB4DC 000D841C  A8 1F 30 0C */ lha r0, 0x300c(r31)
 /* 800DB4E0 000D8420  2C 00 00 00 */ cmpwi r0, 0
 /* 800DB4E4 000D8424  41 82 00 0C */ beq lbl_800DB4F0
-/* 800DB4E8 000D8428  48 0A 61 59 */ bl dCam_getBody
-/* 800DB4EC 000D842C  48 08 5F C1 */ bl dCamera_c_NS_Start
+/* 800DB4E8 000D8428  48 0A 61 59 */ bl dCam_getBody__Fv
+/* 800DB4EC 000D842C  48 08 5F C1 */ bl Start__9dCamera_cFv
 lbl_800DB4F0:
 /* 800DB4F0 000D8430  7F E3 FB 78 */ mr r3, r31
-/* 800DB4F4 000D8434  48 03 C7 9D */ bl daAlink_c_NS_resetSpecialEvent
+/* 800DB4F4 000D8434  48 03 C7 9D */ bl resetSpecialEvent__9daAlink_cFv
 /* 800DB4F8 000D8438  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800DB4FC 000D843C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800DB500 000D8440  38 63 5B D4 */ addi r3, r3, 0x5bd4
 /* 800DB504 000D8444  38 80 00 1F */ li r4, 0x1f
-/* 800DB508 000D8448  4B F9 48 8D */ bl dVibration_c_NS_StopQuake
+/* 800DB508 000D8448  4B F9 48 8D */ bl StopQuake__12dVibration_cFi
 /* 800DB50C 000D844C  80 7F 31 A0 */ lwz r3, 0x31a0(r31)
 /* 800DB510 000D8450  54 60 07 BD */ rlwinm. r0, r3, 0, 0x1e, 0x1e
 /* 800DB514 000D8454  40 82 00 10 */ bne lbl_800DB524
@@ -79,7 +79,7 @@ lbl_800DB524:
 /* 800DB53C 000D847C  38 E0 00 00 */ li r7, 0
 /* 800DB540 000D8480  39 00 00 00 */ li r8, 0
 /* 800DB544 000D8484  39 20 00 02 */ li r9, 2
-/* 800DB548 000D8488  4B FF E1 95 */ bl daAlink_c_NS_procCoLargeDamageInit
+/* 800DB548 000D8488  4B FF E1 95 */ bl procCoLargeDamageInit__9daAlink_cFiissP12dCcD_GObjInfi
 /* 800DB54C 000D848C  48 00 00 4C */ b lbl_800DB598
 lbl_800DB550:
 /* 800DB550 000D8490  54 60 03 5B */ rlwinm. r0, r3, 0, 0xd, 0xd
@@ -89,19 +89,19 @@ lbl_800DB550:
 /* 800DB560 000D84A0  41 82 00 14 */ beq lbl_800DB574
 /* 800DB564 000D84A4  7F E3 FB 78 */ mr r3, r31
 /* 800DB568 000D84A8  38 80 00 00 */ li r4, 0
-/* 800DB56C 000D84AC  48 05 CF C1 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 800DB56C 000D84AC  48 05 CF C1 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 800DB570 000D84B0  48 00 00 28 */ b lbl_800DB598
 lbl_800DB574:
 /* 800DB574 000D84B4  7F E3 FB 78 */ mr r3, r31
 /* 800DB578 000D84B8  38 80 00 00 */ li r4, 0
-/* 800DB57C 000D84BC  48 02 8D 7D */ bl daAlink_c_NS_procSwimWaitInit
+/* 800DB57C 000D84BC  48 02 8D 7D */ bl procSwimWaitInit__9daAlink_cFi
 /* 800DB580 000D84C0  48 00 00 18 */ b lbl_800DB598
 lbl_800DB584:
 /* 800DB584 000D84C4  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
 /* 800DB588 000D84C8  28 00 01 42 */ cmplwi r0, 0x142
 /* 800DB58C 000D84CC  40 82 00 0C */ bne lbl_800DB598
 /* 800DB590 000D84D0  7F E3 FB 78 */ mr r3, r31
-/* 800DB594 000D84D4  4B FD A3 59 */ bl daAlink_c_NS_checkWaitAction
+/* 800DB594 000D84D4  4B FD A3 59 */ bl checkWaitAction__9daAlink_cFv
 lbl_800DB598:
 /* 800DB598 000D84D8  38 60 00 01 */ li r3, 1
 /* 800DB59C 000D84DC  83 E1 00 1C */ lwz r31, 0x1c(r1)

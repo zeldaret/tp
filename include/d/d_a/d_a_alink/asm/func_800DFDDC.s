@@ -7,15 +7,15 @@
 /* 800DFDF4 000DCD34  4B FD 34 5D */ bl setDoStatus__9daAlink_cFUc
 /* 800DFDF8 000DCD38  7F E3 FB 78 */ mr r3, r31
 /* 800DFDFC 000DCD3C  38 80 00 00 */ li r4, 0
-/* 800DFE00 000DCD40  4B FD A2 D1 */ bl daAlink_c_NS_checkNextAction
+/* 800DFE00 000DCD40  4B FD A2 D1 */ bl checkNextAction__9daAlink_cFi
 /* 800DFE04 000DCD44  2C 03 00 00 */ cmpwi r3, 0
 /* 800DFE08 000DCD48  40 82 00 1C */ bne lbl_800DFE24
 /* 800DFE0C 000DCD4C  7F E3 FB 78 */ mr r3, r31
-/* 800DFE10 000DCD50  4B FE EA 91 */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 800DFE10 000DCD50  4B FE EA 91 */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 800DFE14 000DCD54  2C 03 00 00 */ cmpwi r3, 0
 /* 800DFE18 000DCD58  41 82 00 0C */ beq lbl_800DFE24
 /* 800DFE1C 000DCD5C  7F E3 FB 78 */ mr r3, r31
-/* 800DFE20 000DCD60  4B FF FE B9 */ bl daAlink_c_NS_setBowSight
+/* 800DFE20 000DCD60  4B FF FE B9 */ bl setBowSight__9daAlink_cFv
 lbl_800DFE24:
 /* 800DFE24 000DCD64  38 60 00 01 */ li r3, 1
 /* 800DFE28 000DCD68  83 E1 00 0C */ lwz r31, 0xc(r1)

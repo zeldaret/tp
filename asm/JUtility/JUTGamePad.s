@@ -20,32 +20,32 @@
 /* 802E1B90 002DEAD0  38 BF 00 00 */	addi r5, r31, 0
 /* 802E1B94 002DEAD4  48 08 00 91 */	bl func_80361C24
 /* 802E1B98 002DEAD8  38 7F 00 48 */	addi r3, r31, 0x48
-.global JUTGamePad_NS_CButton
-/* 802E1B9C 002DEADC  3C 80 80 2E */	lis r4, JUTGamePad_NS_CButton@ha
-.global JUTGamePad_NS_CButton
-/* 802E1BA0 002DEAE0  38 84 1C D8 */	addi r4, r4, JUTGamePad_NS_CButton@l
+.global __ct__Q210JUTGamePad7CButtonFv
+/* 802E1B9C 002DEADC  3C 80 80 2E */	lis r4, __ct__Q210JUTGamePad7CButtonFv@ha
+.global __ct__Q210JUTGamePad7CButtonFv
+/* 802E1BA0 002DEAE0  38 84 1C D8 */	addi r4, r4, __ct__Q210JUTGamePad7CButtonFv@l
 /* 802E1BA4 002DEAE4  38 A0 00 00 */	li r5, 0
 /* 802E1BA8 002DEAE8  38 C0 00 30 */	li r6, 0x30
 /* 802E1BAC 002DEAEC  38 E0 00 04 */	li r7, 4
-/* 802E1BB0 002DEAF0  48 08 01 B1 */	bl func_80361D60
+/* 802E1BB0 002DEAF0  48 08 01 B1 */	bl __construct_array
 /* 802E1BB4 002DEAF4  38 7F 01 08 */	addi r3, r31, 0x108
-.global JUTGamePad_NS_CStick
-/* 802E1BB8 002DEAF8  3C 80 80 2E */	lis r4, JUTGamePad_NS_CStick@ha
-.global JUTGamePad_NS_CStick
-/* 802E1BBC 002DEAFC  38 84 1C A8 */	addi r4, r4, JUTGamePad_NS_CStick@l
+.global __ct__Q210JUTGamePad6CStickFv
+/* 802E1BB8 002DEAF8  3C 80 80 2E */	lis r4, __ct__Q210JUTGamePad6CStickFv@ha
+.global __ct__Q210JUTGamePad6CStickFv
+/* 802E1BBC 002DEAFC  38 84 1C A8 */	addi r4, r4, __ct__Q210JUTGamePad6CStickFv@l
 /* 802E1BC0 002DEB00  38 A0 00 00 */	li r5, 0
 /* 802E1BC4 002DEB04  38 C0 00 10 */	li r6, 0x10
 /* 802E1BC8 002DEB08  38 E0 00 04 */	li r7, 4
-/* 802E1BCC 002DEB0C  48 08 01 95 */	bl func_80361D60
+/* 802E1BCC 002DEB0C  48 08 01 95 */	bl __construct_array
 /* 802E1BD0 002DEB10  38 7F 01 48 */	addi r3, r31, 0x148
-.global JUTGamePad_NS_CStick
-/* 802E1BD4 002DEB14  3C 80 80 2E */	lis r4, JUTGamePad_NS_CStick@ha
-.global JUTGamePad_NS_CStick
-/* 802E1BD8 002DEB18  38 84 1C A8 */	addi r4, r4, JUTGamePad_NS_CStick@l
+.global __ct__Q210JUTGamePad6CStickFv
+/* 802E1BD4 002DEB14  3C 80 80 2E */	lis r4, __ct__Q210JUTGamePad6CStickFv@ha
+.global __ct__Q210JUTGamePad6CStickFv
+/* 802E1BD8 002DEB18  38 84 1C A8 */	addi r4, r4, __ct__Q210JUTGamePad6CStickFv@l
 /* 802E1BDC 002DEB1C  38 A0 00 00 */	li r5, 0
 /* 802E1BE0 002DEB20  38 C0 00 10 */	li r6, 0x10
 /* 802E1BE4 002DEB24  38 E0 00 04 */	li r7, 4
-/* 802E1BE8 002DEB28  48 08 01 79 */	bl func_80361D60
+/* 802E1BE8 002DEB28  48 08 01 79 */	bl __construct_array
 /* 802E1BEC 002DEB2C  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 802E1BF0 002DEB30  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 802E1BF4 002DEB34  54 03 F0 BE */	srwi r3, r0, 2
@@ -98,8 +98,8 @@ lbl_802E1C8C:
 /* 802E1C9C 002DEBDC  7C 08 03 A6 */	mtlr r0
 /* 802E1CA0 002DEBE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E1CA4 002DEBE4  4E 80 00 20 */	blr 
-.global JUTGamePad_NS_CStick
-JUTGamePad_NS_CStick:
+.global __ct__Q210JUTGamePad6CStickFv
+__ct__Q210JUTGamePad6CStickFv:
 /* 802E1CA8 002DEBE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E1CAC 002DEBEC  7C 08 02 A6 */	mflr r0
 /* 802E1CB0 002DEBF0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -112,8 +112,8 @@ JUTGamePad_NS_CStick:
 /* 802E1CCC 002DEC0C  7C 08 03 A6 */	mtlr r0
 /* 802E1CD0 002DEC10  38 21 00 10 */	addi r1, r1, 0x10
 /* 802E1CD4 002DEC14  4E 80 00 20 */	blr 
-.global JUTGamePad_NS_CButton
-JUTGamePad_NS_CButton:
+.global __ct__Q210JUTGamePad7CButtonFv
+__ct__Q210JUTGamePad7CButtonFv:
 /* 802E1CD8 002DEC18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E1CDC 002DEC1C  7C 08 02 A6 */	mflr r0
 /* 802E1CE0 002DEC20  90 01 00 14 */	stw r0, 0x14(r1)

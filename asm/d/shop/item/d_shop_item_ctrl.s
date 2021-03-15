@@ -22,8 +22,8 @@ lbl_80196938:
 /* 80196950 00193890  42 00 FF E8 */	bdnz lbl_80196938
 /* 80196954 00193894  4E 80 00 20 */	blr 
 
-.global dShopItemCtrl_c_NS_dtor
-dShopItemCtrl_c_NS_dtor:
+.global __dt__15dShopItemCtrl_cFv
+__dt__15dShopItemCtrl_cFv:
 /* 80196958 00193898  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019695C 0019389C  7C 08 02 A6 */	mflr r0
 /* 80196960 001938A0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -44,8 +44,8 @@ lbl_80196988:
 /* 80196998 001938D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019699C 001938DC  4E 80 00 20 */	blr 
 
-.global dShopItemCtrl_c_NS_getCurrentPos
-dShopItemCtrl_c_NS_getCurrentPos:
+.global getCurrentPos__15dShopItemCtrl_cFi
+getCurrentPos__15dShopItemCtrl_cFi:
 /* 801969A0 001938E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801969A4 001938E4  7C 08 02 A6 */	mflr r0
 /* 801969A8 001938E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -62,10 +62,10 @@ dShopItemCtrl_c_NS_getCurrentPos:
 /* 801969D4 00193914  28 00 FF FF */	cmplwi r0, 0xffff
 /* 801969D8 00193918  41 82 00 38 */	beq lbl_80196A10
 /* 801969DC 0019391C  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 801969E0 00193920  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 801969E4 00193924  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 801969E0 00193920  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 801969E4 00193924  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 801969E8 00193928  38 81 00 08 */	addi r4, r1, 8
 /* 801969EC 0019392C  4B E8 2E 0D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 801969F0 00193930  28 03 00 00 */	cmplwi r3, 0
@@ -89,8 +89,8 @@ lbl_80196A10:
 /* 80196A34 00193974  38 21 00 20 */	addi r1, r1, 0x20
 /* 80196A38 00193978  4E 80 00 20 */	blr 
 
-.global dShopItemCtrl_c_NS_isHomePos
-dShopItemCtrl_c_NS_isHomePos:
+.global isHomePos__15dShopItemCtrl_cFi
+isHomePos__15dShopItemCtrl_cFi:
 /* 80196A3C 0019397C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80196A40 00193980  7C 08 02 A6 */	mflr r0
 /* 80196A44 00193984  90 01 00 24 */	stw r0, 0x24(r1)
@@ -106,15 +106,15 @@ dShopItemCtrl_c_NS_isHomePos:
 /* 80196A6C 001939AC  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196A70 001939B0  41 82 00 68 */	beq lbl_80196AD8
 /* 80196A74 001939B4  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 80196A78 001939B8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196A7C 001939BC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196A78 001939B8  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196A7C 001939BC  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196A80 001939C0  38 81 00 08 */	addi r4, r1, 8
 /* 80196A84 001939C4  4B E8 2D 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196A88 001939C8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80196A8C 001939CC  41 82 00 4C */	beq lbl_80196AD8
-/* 80196A90 001939D0  4B EA 11 8D */	bl daShopItem_c_NS_getPosP
+/* 80196A90 001939D0  4B EA 11 8D */	bl getPosP__12daShopItem_cFv
 /* 80196A94 001939D4  C0 7F 04 A8 */	lfs f3, 0x4a8(r31)
 /* 80196A98 001939D8  D0 61 00 0C */	stfs f3, 0xc(r1)
 /* 80196A9C 001939DC  C0 5F 04 AC */	lfs f2, 0x4ac(r31)
@@ -141,8 +141,8 @@ lbl_80196ADC:
 /* 80196AE8 00193A28  38 21 00 20 */	addi r1, r1, 0x20
 /* 80196AEC 00193A2C  4E 80 00 20 */	blr 
 
-.global dShopItemCtrl_c_NS_setRotateAnime
-dShopItemCtrl_c_NS_setRotateAnime:
+.global setRotateAnime__15dShopItemCtrl_cFi
+setRotateAnime__15dShopItemCtrl_cFi:
 /* 80196AF0 00193A30  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80196AF4 00193A34  7C 08 02 A6 */	mflr r0
 /* 80196AF8 00193A38  90 01 00 34 */	stw r0, 0x34(r1)
@@ -159,15 +159,15 @@ lbl_80196B14:
 /* 80196B20 00193A60  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196B24 00193A64  41 82 00 58 */	beq lbl_80196B7C
 /* 80196B28 00193A68  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 80196B2C 00193A6C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196B30 00193A70  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196B2C 00193A6C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196B30 00193A70  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196B34 00193A74  38 81 00 08 */	addi r4, r1, 8
 /* 80196B38 00193A78  4B E8 2C C1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196B3C 00193A7C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80196B40 00193A80  41 82 00 3C */	beq lbl_80196B7C
-/* 80196B44 00193A84  4B EA 10 D1 */	bl daShopItem_c_NS_getRotateP
+/* 80196B44 00193A84  4B EA 10 D1 */	bl getRotateP__12daShopItem_cFv
 /* 80196B48 00193A88  38 1C FF FF */	addi r0, r28, -1
 /* 80196B4C 00193A8C  7C 1D 00 00 */	cmpw r29, r0
 /* 80196B50 00193A90  40 82 00 14 */	bne lbl_80196B64
@@ -194,8 +194,8 @@ lbl_80196B7C:
 /* 80196B9C 00193ADC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80196BA0 00193AE0  4E 80 00 20 */	blr 
 
-.global dShopItemCtrl_c_NS_setZoomAnime
-dShopItemCtrl_c_NS_setZoomAnime:
+.global setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
+setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb:
 /* 80196BA4 00193AE4  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80196BA8 00193AE8  7C 08 02 A6 */	mflr r0
 /* 80196BAC 00193AEC  90 01 00 84 */	stw r0, 0x84(r1)
@@ -215,15 +215,15 @@ lbl_80196BD4:
 /* 80196BE0 00193B20  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80196BE4 00193B24  41 82 04 8C */	beq lbl_80197070
 /* 80196BE8 00193B28  90 61 00 18 */	stw r3, 0x18(r1)
-.global fpcSch_JudgeByID
-/* 80196BEC 00193B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 80196BF0 00193B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 80196BEC 00193B2C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 80196BF0 00193B30  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 80196BF4 00193B34  38 81 00 18 */	addi r4, r1, 0x18
 /* 80196BF8 00193B38  4B E8 2C 01 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80196BFC 00193B3C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80196C00 00193B40  41 82 04 70 */	beq lbl_80197070
-/* 80196C04 00193B44  4B EA 10 19 */	bl daShopItem_c_NS_getPosP
+/* 80196C04 00193B44  4B EA 10 19 */	bl getPosP__12daShopItem_cFv
 /* 80196C08 00193B48  7C 7D 1B 78 */	mr r29, r3
 /* 80196C0C 00193B4C  C0 1F 04 A8 */	lfs f0, 0x4a8(r31)
 /* 80196C10 00193B50  D0 01 00 4C */	stfs f0, 0x4c(r1)

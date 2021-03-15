@@ -5,18 +5,18 @@
 
 extern "C" {
 int checkItemGet__FUci(u8, int);
-int item_getcheck_func_FISHING_ROD_1(void);
-u16 dComIfGs_getMaxLifeGauge(void);
+int item_getcheck_func_FISHING_ROD_1__Fv(void);
+u16 dComIfGs_getMaxLifeGauge__Fv(void);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u32 isMagicFlag__21dSv_player_status_a_cCFUc(u8);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
-void addBombCount(u8, u8);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
-void dComIfGs_setSelectEquipClothes(u8);
-void dComIfGs_setSelectEquipShield(u8);
-void dComIfGs_setSelectEquipSword(u8);
-void dMeter2Info_setSword(u8, bool);
+void addBombCount__FUcUc(u8, u8);
+void getLayerNo__14dComIfG_play_cFi(int);
+void setItemBombNumCount__14dComIfG_play_cFUcs(u8, s16);
+void dComIfGs_setSelectEquipClothes__FUc(u8);
+void dComIfGs_setSelectEquipShield__FUc(u8);
+void dComIfGs_setSelectEquipSword__FUc(u8);
+void dMeter2Info_setSword__FUcb(u8, bool);
 void getItem__17dSv_player_item_cCFib(void);
 void isFirstBit__21dSv_player_get_item_cCFUc(void);
 void onDungeonItem__12dSv_memBit_cFi(int);
@@ -104,19 +104,19 @@ void item_func_L_MAGIC(void) {
 }
 
 void item_func_BOMB_5(void) {
-    addBombCount(NORMAL_BOMB, 5);
+    addBombCount__FUcUc(NORMAL_BOMB, 5);
 }
 
 void item_func_BOMB_10(void) {
-    addBombCount(NORMAL_BOMB, 10);
+    addBombCount__FUcUc(NORMAL_BOMB, 10);
 }
 
 void item_func_BOMB_20(void) {
-    addBombCount(NORMAL_BOMB, 20);
+    addBombCount__FUcUc(NORMAL_BOMB, 20);
 }
 
 void item_func_BOMB_30(void) {
-    addBombCount(NORMAL_BOMB, 30);
+    addBombCount__FUcUc(NORMAL_BOMB, 30);
 }
 
 void item_func_ARROW_10(void) {
@@ -140,31 +140,31 @@ void item_func_PACHINKO_SHOT(void) {
 }
 
 void item_func_WATER_BOMB_5(void) {
-    addBombCount(WATER_BOMB, 5);
+    addBombCount__FUcUc(WATER_BOMB, 5);
 }
 
 void item_func_WATER_BOMB_10(void) {
-    addBombCount(WATER_BOMB, 10);
+    addBombCount__FUcUc(WATER_BOMB, 10);
 }
 
 void item_func_WATER_BOMB_20(void) {
-    addBombCount(WATER_BOMB, 15);
+    addBombCount__FUcUc(WATER_BOMB, 15);
 }
 
 void item_func_WATER_BOMB_30(void) {
-    addBombCount(WATER_BOMB, 3);
+    addBombCount__FUcUc(WATER_BOMB, 3);
 }
 
 void item_func_BOMB_INSECT_5(void) {
-    addBombCount(POKE_BOMB, 5);
+    addBombCount__FUcUc(POKE_BOMB, 5);
 }
 
 void item_func_BOMB_INSECT_10(void) {
-    addBombCount(POKE_BOMB, 10);
+    addBombCount__FUcUc(POKE_BOMB, 10);
 }
 
 void item_func_BOMB_INSECT_20(void) {
-    addBombCount(POKE_BOMB, 3);
+    addBombCount__FUcUc(POKE_BOMB, 3);
 }
 
 void item_func_BOMB_INSECT_30(void) {
@@ -215,17 +215,17 @@ void item_func_DUNGEON_BACK(void) {
 
 void item_func_SWORD(void) {
     dComIfGs_setCollectSword(ORDON_SWORD_FLAG);
-    dComIfGs_setSelectEquipSword(SWORD);
+    dComIfGs_setSelectEquipSword__FUc(SWORD);
 }
 
 void item_func_MASTER_SWORD(void) {
     dComIfGs_setCollectSword(MASTER_SWORD_FLAG);
-    dComIfGs_setSelectEquipSword(MASTER_SWORD);
+    dComIfGs_setSelectEquipSword__FUc(MASTER_SWORD);
 }
 
 void item_func_WOOD_SHIELD(void) {
     dComIfGs_setCollectShield(ORDON_SHIELD_FLAG);
-    dComIfGs_setSelectEquipShield(WOOD_SHIELD);
+    dComIfGs_setSelectEquipShield__FUc(WOOD_SHIELD);
 }
 
 void item_func_SHIELD(void) {
@@ -241,12 +241,12 @@ void item_func_TKS_LETTER(void) {
 }
 
 void item_func_WEAR_CASUAL(void) {
-    dComIfGs_setSelectEquipClothes(WEARS_CASUAL);
+    dComIfGs_setSelectEquipClothes__FUc(WEARS_CASUAL);
 }
 
 void item_func_WEAR_KOKIRI(void) {
     dComIfGs_setCollectClothes(KOKIRI_CLOTHES_FLAG);
-    dComIfGs_setSelectEquipClothes(WEAR_KOKIRI);
+    dComIfGs_setSelectEquipClothes__FUc(WEAR_KOKIRI);
 }
 
 void item_func_ARMOR(void) {
@@ -281,7 +281,7 @@ void item_func_WALLET_LV3(void) {
 void item_func_ZORAS_JEWEL(void) {
     int checkFishingRod;
 
-    checkFishingRod = item_getcheck_func_FISHING_ROD_1();
+    checkFishingRod = item_getcheck_func_FISHING_ROD_1__Fv();
     if (checkFishingRod != 0) {
         dComIfGs_setRodTypeLevelUp();
     } else {
@@ -296,7 +296,7 @@ void item_func_HAWK_EYE(void) {
 #ifdef NONMATCHING
 void item_func_WOOD_STICK(void) {
     dComIfGs_setCollectSword(WOODEN_SWORD_FLAG);
-    dComIfGs_setSelectEquipSword(WOOD_STICK);
+    dComIfGs_setSelectEquipSword__FUc(WOOD_STICK);
     dComIfGs_onSwitch(28, lbl_80450D64);  // wrong order
 }
 #else
@@ -349,7 +349,7 @@ void item_func_KANTERA(void) {
 
 void item_func_LIGHT_SWORD(void) {
     dComIfGs_setCollectSword(LIGHT_SWORD_FLAG);
-    dMeter2Info_setSword(LIGHT_SWORD, 0);
+    dMeter2Info_setSword__FUcb(LIGHT_SWORD, 0);
 }
 
 void item_func_FISHING_ROD_1(void) {
@@ -1117,7 +1117,7 @@ BOOL item_getcheck_func_LIGHT_SWORD(void) {
     return dComIfGs_isCollectSword(LIGHT_SWORD_FLAG);
 }
 
-asm int item_getcheck_func_FISHING_ROD_1(void) {
+asm int item_getcheck_func_FISHING_ROD_1__Fv(void) {
     nofralloc
 #include "d/d_item/d_item/asm/func_8009A0C8.s"
 }
@@ -1171,23 +1171,23 @@ int item_getcheck_func_HAWK_ARROW(void) {
 }
 
 BOOL item_getcheck_func_BEE_ROD(void) {
-    return item_getcheck_func_FISHING_ROD_1();
+    return item_getcheck_func_FISHING_ROD_1__Fv();
 }
 
 BOOL item_getcheck_func_JEWEL_ROD(void) {
-    return item_getcheck_func_FISHING_ROD_1();
+    return item_getcheck_func_FISHING_ROD_1__Fv();
 }
 
 BOOL item_getcheck_func_WORM_ROD(void) {
-    return item_getcheck_func_FISHING_ROD_1();
+    return item_getcheck_func_FISHING_ROD_1__Fv();
 }
 
 BOOL item_getcheck_func_JEWEL_BEE_ROD(void) {
-    return item_getcheck_func_FISHING_ROD_1();
+    return item_getcheck_func_FISHING_ROD_1__Fv();
 }
 
 BOOL item_getcheck_func_JEWEL_WORM_ROD(void) {
-    return item_getcheck_func_FISHING_ROD_1();
+    return item_getcheck_func_FISHING_ROD_1__Fv();
 }
 
 int item_getcheck_func_EMPTY_BOTTLE(void) {
@@ -1698,7 +1698,7 @@ asm u32 check_itemno(int param1) {
 }
 #endif
 
-asm void addBombCount(u8 param1, u8 param2) {
+asm void addBombCount__FUcUc(u8 param1, u8 param2) {
     nofralloc
 #include "d/d_item/d_item/asm/func_8009B940.s"
 }

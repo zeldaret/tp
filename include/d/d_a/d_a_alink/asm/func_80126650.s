@@ -4,7 +4,7 @@
 /* 8012665C 0012359C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80126660 001235A0  7C 7F 1B 78 */ mr r31, r3
 /* 80126664 001235A4  38 7F 00 50 */ addi r3, r31, 0x50
-/* 80126668 001235A8  4B FF F8 AD */ bl daAlink_lockCursor_c_NS_create
+/* 80126668 001235A8  4B FF F8 AD */ bl create__20daAlink_lockCursor_cFv
 /* 8012666C 001235AC  2C 03 00 00 */ cmpwi r3, 0
 /* 80126670 001235B0  40 82 00 0C */ bne lbl_8012667C
 /* 80126674 001235B4  38 60 00 00 */ li r3, 0
@@ -17,10 +17,10 @@ lbl_8012667C:
 /* 8012668C 001235CC  3C A5 00 02 */ addis r5, r5, 2
 /* 80126690 001235D0  38 C0 00 80 */ li r6, 0x80
 /* 80126694 001235D4  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 80126698 001235D8  4B F1 5C 55 */ bl dRes_control_c_NS_getRes
+/* 80126698 001235D8  4B F1 5C 55 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8012669C 001235DC  7C 64 1B 78 */ mr r4, r3
 /* 801266A0 001235E0  7F E3 FB 78 */ mr r3, r31
-/* 801266A4 001235E4  48 03 8C E1 */ bl daPy_sightPacket_c_NS_setSightImage
+/* 801266A4 001235E4  48 03 8C E1 */ bl setSightImage__18daPy_sightPacket_cFP7ResTIMG
 /* 801266A8 001235E8  38 60 00 01 */ li r3, 1
 lbl_801266AC:
 /* 801266AC 001235EC  83 E1 00 0C */ lwz r31, 0xc(r1)

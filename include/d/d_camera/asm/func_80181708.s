@@ -20,7 +20,7 @@
 /* 80181754 0017E694  38 BD 00 E4 */ addi r5, r29, 0xe4
 /* 80181758 0017E698  38 DD 00 F0 */ addi r6, r29, 0xf0
 /* 8018175C 0017E69C  A8 FD 00 FC */ lha r7, 0xfc(r29)
-/* 80181760 0017E6A0  4B E8 AF B1 */ bl mDoMtx_lookAt_X1_
+/* 80181760 0017E6A0  4B E8 AF B1 */ bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 80181764 0017E6A4  38 7D 01 40 */ addi r3, r29, 0x140
 /* 80181768 0017E6A8  38 9D 01 E0 */ addi r4, r29, 0x1e0
 /* 8018176C 0017E6AC  48 1C 4D 45 */ bl PSMTXCopy
@@ -56,7 +56,7 @@ lbl_801817DC:
 /* 801817DC 0017E71C  C0 3D 00 D0 */ lfs f1, 0xd0(r29)
 /* 801817E0 0017E720  C0 5D 00 D4 */ lfs f2, 0xd4(r29)
 /* 801817E4 0017E724  C0 7D 00 C8 */ lfs f3, 0xc8(r29)
-/* 801817E8 0017E728  4B E9 3A A5 */ bl mDoLib_clipper_NS_setup
+/* 801817E8 0017E728  4B E9 3A A5 */ bl setup__14mDoLib_clipperFffff
 /* 801817EC 0017E72C  39 61 00 20 */ addi r11, r1, 0x20
 /* 801817F0 0017E730  48 1E 0A 39 */ bl _restgpr_29
 /* 801817F4 0017E734  80 01 00 24 */ lwz r0, 0x24(r1)

@@ -21,16 +21,16 @@
 /* 8019D7F0 0019A730  FF 80 30 90 */ fmr f28, f6
 /* 8019D7F4 0019A734  FF A0 38 90 */ fmr f29, f7
 /* 8019D7F8 0019A738  FF C0 40 90 */ fmr f30, f8
-/* 8019D7FC 0019A73C  4B FF FF 95 */ bl fl_data_ratio_set
+/* 8019D7FC 0019A73C  4B FF FF 95 */ bl fl_data_ratio_set__Ffff
 /* 8019D800 0019A740  FF E0 08 90 */ fmr f31, f1
 /* 8019D804 0019A744  FC 20 D0 90 */ fmr f1, f26
 /* 8019D808 0019A748  FC 40 D8 90 */ fmr f2, f27
 /* 8019D80C 0019A74C  FC 60 C8 90 */ fmr f3, f25
-/* 8019D810 0019A750  4B FF FF 81 */ bl fl_data_ratio_set
+/* 8019D810 0019A750  4B FF FF 81 */ bl fl_data_ratio_set__Ffff
 /* 8019D814 0019A754  FC 40 08 90 */ fmr f2, f1
 /* 8019D818 0019A758  FC 20 F8 90 */ fmr f1, f31
 /* 8019D81C 0019A75C  FC 60 E0 90 */ fmr f3, f28
-/* 8019D820 0019A760  4B FF FF 71 */ bl fl_data_ratio_set
+/* 8019D820 0019A760  4B FF FF 71 */ bl fl_data_ratio_set__Ffff
 /* 8019D824 0019A764  EC 1D 08 28 */ fsubs f0, f29, f1
 /* 8019D828 0019A768  EC 1E 00 32 */ fmuls f0, f30, f0
 /* 8019D82C 0019A76C  EC 21 00 2A */ fadds f1, f1, f0

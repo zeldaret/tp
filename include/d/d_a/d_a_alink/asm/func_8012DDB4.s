@@ -20,7 +20,7 @@ lbl_8012DDF0:
 lbl_8012DDFC:
 /* 8012DDFC 0012AD3C  48 14 29 45 */ bl cLib_chaseF__FPfff
 /* 8012DE00 0012AD40  7F C3 F3 78 */ mr r3, r30
-/* 8012DE04 0012AD44  4B FF BC 7D */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8012DE04 0012AD44  4B FF BC 7D */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8012DE08 0012AD48  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DE0C 0012AD4C  41 82 00 0C */ beq lbl_8012DE18
 /* 8012DE10 0012AD50  38 60 00 01 */ li r3, 1
@@ -36,7 +36,7 @@ lbl_8012DE18:
 /* 8012DE34 0012AD74  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8012DE38 0012AD78  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8012DE3C 0012AD7C  7F C3 F3 78 */ mr r3, r30
-/* 8012DE40 0012AD80  4B F8 BE ED */ bl daAlink_c_NS_checkNextActionFromButton
+/* 8012DE40 0012AD80  4B F8 BE ED */ bl checkNextActionFromButton__9daAlink_cFv
 /* 8012DE44 0012AD84  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DE48 0012AD88  41 82 00 0C */ beq lbl_8012DE54
 /* 8012DE4C 0012AD8C  38 60 00 01 */ li r3, 1
@@ -45,7 +45,7 @@ lbl_8012DE54:
 /* 8012DE54 0012AD94  7F E0 07 35 */ extsh. r0, r31
 /* 8012DE58 0012AD98  40 82 00 54 */ bne lbl_8012DEAC
 /* 8012DE5C 0012AD9C  7F C3 F3 78 */ mr r3, r30
-/* 8012DE60 0012ADA0  4B FE 7D C1 */ bl daAlink_c_NS_checkEventRun
+/* 8012DE60 0012ADA0  4B FE 7D C1 */ bl checkEventRun__9daAlink_cCFv
 /* 8012DE64 0012ADA4  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DE68 0012ADA8  41 82 00 38 */ beq lbl_8012DEA0
 /* 8012DE6C 0012ADAC  80 1E 06 14 */ lwz r0, 0x614(r30)
@@ -55,17 +55,17 @@ lbl_8012DE54:
 /* 8012DE7C 0012ADBC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012DE80 0012ADC0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012DE84 0012ADC4  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8012DE88 0012ADC8  4B F1 A2 F5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8012DE88 0012ADC8  4B F1 A2 F5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8012DE8C 0012ADCC  48 00 00 20 */ b lbl_8012DEAC
 lbl_8012DE90:
 /* 8012DE90 0012ADD0  7F C3 F3 78 */ mr r3, r30
 /* 8012DE94 0012ADD4  38 80 00 00 */ li r4, 0
-/* 8012DE98 0012ADD8  4B FF BC AD */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012DE98 0012ADD8  4B FF BC AD */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012DE9C 0012ADDC  48 00 00 10 */ b lbl_8012DEAC
 lbl_8012DEA0:
 /* 8012DEA0 0012ADE0  7F C3 F3 78 */ mr r3, r30
 /* 8012DEA4 0012ADE4  38 80 00 00 */ li r4, 0
-/* 8012DEA8 0012ADE8  4B FF BC 9D */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012DEA8 0012ADE8  4B FF BC 9D */ bl checkNextActionWolf__9daAlink_cFi
 lbl_8012DEAC:
 /* 8012DEAC 0012ADEC  38 60 00 01 */ li r3, 1
 lbl_8012DEB0:

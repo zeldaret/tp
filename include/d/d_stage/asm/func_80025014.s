@@ -155,7 +155,7 @@ lbl_80025208:
 /* 8002524C 0002218C  4B FF EF 51 */ bl set__19dStage_startStage_cFPCcScsSc
 /* 80025250 00022190  7F C3 F3 78 */ mr r3, r30
 /* 80025254 00022194  7F A4 EB 78 */ mr r4, r29
-/* 80025258 00022198  4B FF FC A5 */ bl dStage_actorCreate
+/* 80025258 00022198  4B FF FC A5 */ bl dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
 /* 8002525C 0002219C  80 6D 87 E0 */ lwz r3, lbl_80450D60-_SDA_BASE_(r13)
 /* 80025260 000221A0  4B FF 9A 51 */ bl fopScnM_SearchByID__FUi
 /* 80025264 000221A4  A8 03 00 08 */ lha r0, 8(r3)
@@ -171,7 +171,7 @@ lbl_80025208:
 /* 8002528C 000221CC  38 60 03 16 */ li r3, 0x316
 /* 80025290 000221D0  38 80 00 00 */ li r4, 0
 /* 80025294 000221D4  38 A0 00 00 */ li r5, 0
-/* 80025298 000221D8  4B FF AE 71 */ bl fopMsgM_Create
+/* 80025298 000221D8  4B FF AE 71 */ bl fopMsgM_Create__FsPFPv_iPv
 lbl_8002529C:
 /* 8002529C 000221DC  38 60 00 01 */ li r3, 1
 lbl_800252A0:

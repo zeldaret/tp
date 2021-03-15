@@ -10,17 +10,17 @@
 /* 800CFD7C 000CCCBC  38 03 35 A0 */ addi r0, r3, lbl_803B35A0@l
 /* 800CFD80 000CCCC0  90 1E 00 00 */ stw r0, 0(r30)
 /* 800CFD84 000CCCC4  38 7E 03 08 */ addi r3, r30, 0x308
-/* 800CFD88 000CCCC8  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 800CFD8C 000CCCCC  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 800CFD88 000CCCC8  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 800CFD8C 000CCCCC  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 800CFD90 000CCCD0  38 A0 00 0C */ li r5, 0xc
 /* 800CFD94 000CCCD4  38 C0 00 3C */ li r6, 0x3c
-/* 800CFD98 000CCCD8  48 29 1F 51 */ bl func_80361CE8
+/* 800CFD98 000CCCD8  48 29 1F 51 */ bl __destroy_arr
 /* 800CFD9C 000CCCDC  38 7E 00 38 */ addi r3, r30, 0x38
-/* 800CFDA0 000CCCE0  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 800CFDA4 000CCCE4  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 800CFDA0 000CCCE0  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 800CFDA4 000CCCE4  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 800CFDA8 000CCCE8  38 A0 00 0C */ li r5, 0xc
 /* 800CFDAC 000CCCEC  38 C0 00 3C */ li r6, 0x3c
-/* 800CFDB0 000CCCF0  48 29 1F 39 */ bl func_80361CE8
+/* 800CFDB0 000CCCF0  48 29 1F 39 */ bl __destroy_arr
 /* 800CFDB4 000CCCF4  28 1E 00 00 */ cmplwi r30, 0
 /* 800CFDB8 000CCCF8  41 82 00 10 */ beq lbl_800CFDC8
 /* 800CFDBC 000CCCFC  3C 60 80 3D */ lis r3, lbl_803CD97C@ha

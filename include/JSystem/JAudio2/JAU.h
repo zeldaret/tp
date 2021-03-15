@@ -2,10 +2,10 @@
 #define JAU_H_
 
 extern "C" {
-void JAU_JAIInitializer(void);
-void JAU_JAIInitializer_NS_initJAInterface(void);
-void JAU_JASInitializer(void);
-void JAU_JASInitializer_NS_initJASystem(void);
+void __ct__18JAU_JAIInitializerFv(void);
+void initJAInterface__18JAU_JAIInitializerFv(void);
+void __ct__18JAU_JASInitializerFv(void);
+void initJASystem__18JAU_JASInitializerFP12JKRSolidHeap(void);
 }
 
 #endif  // JAU_H_

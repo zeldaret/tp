@@ -4,7 +4,7 @@
 /* 80026920 00023860  3C A0 80 3A */ lis r5, lbl_803A6620@ha
 /* 80026924 00023864  38 A5 66 20 */ addi r5, r5, lbl_803A6620@l
 /* 80026928 00023868  38 C0 00 02 */ li r6, 2
-/* 8002692C 0002386C  4B FF F7 89 */ bl dStage_dt_c_decode
+/* 8002692C 0002386C  4B FF F7 89 */ bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026930 00023870  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80026934 00023874  7C 08 03 A6 */ mtlr r0
 /* 80026938 00023878  38 21 00 10 */ addi r1, r1, 0x10

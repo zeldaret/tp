@@ -4,7 +4,7 @@
 /* 8013B430 00138370  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013B434 00138374  93 C1 00 08 */ stw r30, 8(r1)
 /* 8013B438 00138378  7C 7E 1B 78 */ mr r30, r3
-/* 8013B43C 0013837C  4B FE E6 45 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013B43C 0013837C  4B FE E6 45 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8013B440 00138380  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B444 00138384  41 82 00 0C */ beq lbl_8013B450
 /* 8013B448 00138388  38 60 00 01 */ li r3, 1
@@ -18,12 +18,12 @@ lbl_8013B450:
 /* 8013B464 001383A4  C0 44 00 10 */ lfs f2, 0x10(r4)
 /* 8013B468 001383A8  48 13 52 D9 */ bl cLib_chaseF__FPfff
 /* 8013B46C 001383AC  7F E3 FB 78 */ mr r3, r31
-/* 8013B470 001383B0  48 02 30 5D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013B470 001383B0  48 02 30 5D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013B474 001383B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013B478 001383B8  41 82 00 14 */ beq lbl_8013B48C
 /* 8013B47C 001383BC  7F C3 F3 78 */ mr r3, r30
 /* 8013B480 001383C0  38 80 00 00 */ li r4, 0
-/* 8013B484 001383C4  4B FE E6 C1 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B484 001383C4  4B FE E6 C1 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B488 001383C8  48 00 00 84 */ b lbl_8013B50C
 lbl_8013B48C:
 /* 8013B48C 001383CC  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -34,7 +34,7 @@ lbl_8013B48C:
 /* 8013B4A0 001383E0  40 81 00 14 */ ble lbl_8013B4B4
 /* 8013B4A4 001383E4  7F C3 F3 78 */ mr r3, r30
 /* 8013B4A8 001383E8  38 80 00 01 */ li r4, 1
-/* 8013B4AC 001383EC  4B FE E6 99 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B4AC 001383EC  4B FE E6 99 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B4B0 001383F0  48 00 00 5C */ b lbl_8013B50C
 lbl_8013B4B4:
 /* 8013B4B4 001383F4  A8 1E 30 0E */ lha r0, 0x300e(r30)

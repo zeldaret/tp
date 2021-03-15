@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280f18
 
 
-.global JStudio_NS_ctb_NS_TObject_NS_dtor
-JStudio_NS_ctb_NS_TObject_NS_dtor:
+.global __dt__Q37JStudio3ctb7TObjectFv
+__dt__Q37JStudio3ctb7TObjectFv:
 /* 80280F18 0027DE58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280F1C 0027DE5C  7C 08 02 A6 */	mflr r0
 /* 80280F20 0027DE60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,8 +25,8 @@ lbl_80280F48:
 /* 80280F58 0027DE98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80280F5C 0027DE9C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TObject_TxyzRy
-JStudio_NS_ctb_NS_TObject_TxyzRy:
+.global __ct__Q37JStudio3ctb14TObject_TxyzRyFRCQ47JStudio3ctb4data13TParse_TBlock
+__ct__Q37JStudio3ctb14TObject_TxyzRyFRCQ47JStudio3ctb4data13TParse_TBlock:
 /* 80280F60 0027DEA0  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80280F64 0027DEA4  A0 85 00 06 */	lhz r4, 6(r5)
 /* 80280F68 0027DEA8  38 04 00 03 */	addi r0, r4, 3
@@ -54,8 +54,8 @@ lbl_80280F88:
 /* 80280FBC 0027DEFC  38 60 00 01 */	li r3, 1
 /* 80280FC0 0027DF00  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl
-JStudio_NS_ctb_NS_TControl:
+.global __ct__Q37JStudio3ctb8TControlFv
+__ct__Q37JStudio3ctb8TControlFv:
 /* 80280FC4 0027DF04  3C 80 80 3C */	lis r4, lbl_803C48B4@ha
 /* 80280FC8 0027DF08  38 04 48 B4 */	addi r0, r4, lbl_803C48B4@l
 /* 80280FCC 0027DF0C  90 03 00 00 */	stw r0, 0(r3)
@@ -69,8 +69,8 @@ JStudio_NS_ctb_NS_TControl:
 /* 80280FEC 0027DF2C  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80280FF0 0027DF30  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_dtor
-JStudio_NS_ctb_NS_TControl_NS_dtor:
+.global __dt__Q37JStudio3ctb8TControlFv
+__dt__Q37JStudio3ctb8TControlFv:
 /* 80280FF4 0027DF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280FF8 0027DF38  7C 08 02 A6 */	mflr r0
 /* 80280FFC 0027DF3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -101,8 +101,8 @@ lbl_80281044:
 /* 80281058 0027DF98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028105C 0027DF9C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_appendObject
-JStudio_NS_ctb_NS_TControl_NS_appendObject:
+.global appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
+appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject:
 /* 80281060 0027DFA0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80281064 0027DFA4  7C 08 02 A6 */	mflr r0
 /* 80281068 0027DFA8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,8 +123,8 @@ JStudio_NS_ctb_NS_TControl_NS_appendObject:
 /* 802810A4 0027DFE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 802810A8 0027DFE8  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_removeObject
-JStudio_NS_ctb_NS_TControl_NS_removeObject:
+.global removeObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
+removeObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject:
 /* 802810AC 0027DFEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802810B0 0027DFF0  7C 08 02 A6 */	mflr r0
 /* 802810B4 0027DFF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -132,14 +132,14 @@ JStudio_NS_ctb_NS_TControl_NS_removeObject:
 /* 802810BC 0027DFFC  38 A4 00 0C */	addi r5, r4, 0xc
 /* 802810C0 0027E000  38 61 00 08 */	addi r3, r1, 8
 /* 802810C4 0027E004  38 86 00 08 */	addi r4, r6, 8
-/* 802810C8 0027E008  48 05 BB 0D */	bl JGadget_NS_TNodeLinkList_NS_Erase
+/* 802810C8 0027E008  48 05 BB 0D */	bl Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 /* 802810CC 0027E00C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802810D0 0027E010  7C 08 03 A6 */	mtlr r0
 /* 802810D4 0027E014  38 21 00 10 */	addi r1, r1, 0x10
 /* 802810D8 0027E018  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_destroyObject
-JStudio_NS_ctb_NS_TControl_NS_destroyObject:
+.global destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
+destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject:
 /* 802810DC 0027E01C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802810E0 0027E020  7C 08 02 A6 */	mflr r0
 /* 802810E4 0027E024  90 01 00 14 */	stw r0, 0x14(r1)
@@ -147,7 +147,7 @@ JStudio_NS_ctb_NS_TControl_NS_destroyObject:
 /* 802810EC 0027E02C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802810F0 0027E030  7C 7E 1B 78 */	mr r30, r3
 /* 802810F4 0027E034  7C 9F 23 78 */	mr r31, r4
-/* 802810F8 0027E038  4B FF FF B5 */	bl JStudio_NS_ctb_NS_TControl_NS_removeObject
+/* 802810F8 0027E038  4B FF FF B5 */	bl removeObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
 /* 802810FC 0027E03C  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80281100 0027E040  7F E4 FB 78 */	mr r4, r31
 /* 80281104 0027E044  81 83 00 00 */	lwz r12, 0(r3)
@@ -161,8 +161,8 @@ JStudio_NS_ctb_NS_TControl_NS_destroyObject:
 /* 80281124 0027E064  38 21 00 10 */	addi r1, r1, 0x10
 /* 80281128 0027E068  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_destroyObject_all
-JStudio_NS_ctb_NS_TControl_NS_destroyObject_all:
+.global destroyObject_all__Q37JStudio3ctb8TControlFv
+destroyObject_all__Q37JStudio3ctb8TControlFv:
 /* 8028112C 0027E06C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80281130 0027E070  7C 08 02 A6 */	mflr r0
 /* 80281134 0027E074  90 01 00 24 */	stw r0, 0x24(r1)
@@ -179,7 +179,7 @@ lbl_80281158:
 /* 8028115C 0027E09C  90 61 00 08 */	stw r3, 8(r1)
 /* 80281160 0027E0A0  38 83 FF F4 */	addi r4, r3, -12
 /* 80281164 0027E0A4  7F C3 F3 78 */	mr r3, r30
-/* 80281168 0027E0A8  4B FF FF 75 */	bl JStudio_NS_ctb_NS_TControl_NS_destroyObject
+/* 80281168 0027E0A8  4B FF FF 75 */	bl destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
 lbl_8028116C:
 /* 8028116C 0027E0AC  80 1E 00 08 */	lwz r0, 8(r30)
 /* 80281170 0027E0B0  28 00 00 00 */	cmplwi r0, 0
@@ -191,8 +191,8 @@ lbl_8028116C:
 /* 80281188 0027E0C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028118C 0027E0CC  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_getObject
-JStudio_NS_ctb_NS_TControl_NS_getObject:
+.global getObject__Q37JStudio3ctb8TControlFPCvUl
+getObject__Q37JStudio3ctb8TControlFPCvUl:
 /* 80281190 0027E0D0  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80281194 0027E0D4  7C 08 02 A6 */	mflr r0
 /* 80281198 0027E0D8  90 01 00 54 */	stw r0, 0x54(r1)
@@ -236,8 +236,8 @@ lbl_80281220:
 /* 80281228 0027E168  38 21 00 50 */	addi r1, r1, 0x50
 /* 8028122C 0027E16C  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TControl_NS_getObject_index
-JStudio_NS_ctb_NS_TControl_NS_getObject_index:
+.global getObject_index__Q37JStudio3ctb8TControlFUl
+getObject_index__Q37JStudio3ctb8TControlFUl:
 /* 80281230 0027E170  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80281234 0027E174  80 03 00 08 */	lwz r0, 8(r3)
 /* 80281238 0027E178  7C 04 00 40 */	cmplw r4, r0
@@ -260,8 +260,8 @@ lbl_8028126C:
 /* 8028126C 0027E1AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80281270 0027E1B0  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TFactory_NS_dtor
-JStudio_NS_ctb_NS_TFactory_NS_dtor:
+.global __dt__Q37JStudio3ctb8TFactoryFv
+__dt__Q37JStudio3ctb8TFactoryFv:
 /* 80281274 0027E1B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80281278 0027E1B8  7C 08 02 A6 */	mflr r0
 /* 8028127C 0027E1BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -297,7 +297,7 @@ lbl_802812E4:
 /* 802812EC 0027E22C  7C 60 1B 79 */	or. r0, r3, r3
 /* 802812F0 0027E230  41 82 00 10 */	beq lbl_80281300
 /* 802812F4 0027E234  7F E4 FB 78 */	mr r4, r31
-/* 802812F8 0027E238  4B FF FC 69 */	bl JStudio_NS_ctb_NS_TObject_TxyzRy
+/* 802812F8 0027E238  4B FF FC 69 */	bl __ct__Q37JStudio3ctb14TObject_TxyzRyFRCQ47JStudio3ctb4data13TParse_TBlock
 /* 802812FC 0027E23C  7C 60 1B 78 */	mr r0, r3
 lbl_80281300:
 /* 80281300 0027E240  7C 03 03 78 */	mr r3, r0
@@ -327,8 +327,8 @@ lbl_8028134C:
 /* 80281354 0027E294  38 21 00 10 */	addi r1, r1, 0x10
 /* 80281358 0027E298  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TParse
-JStudio_NS_ctb_NS_TParse:
+.global __ct__Q37JStudio3ctb6TParseFPQ37JStudio3ctb8TControl
+__ct__Q37JStudio3ctb6TParseFPQ37JStudio3ctb8TControl:
 /* 8028135C 0027E29C  3C A0 80 3C */	lis r5, lbl_803C488C@ha
 /* 80281360 0027E2A0  38 05 48 8C */	addi r0, r5, lbl_803C488C@l
 /* 80281364 0027E2A4  90 03 00 00 */	stw r0, 0(r3)
@@ -338,8 +338,8 @@ JStudio_NS_ctb_NS_TParse:
 /* 80281374 0027E2B4  90 83 00 04 */	stw r4, 4(r3)
 /* 80281378 0027E2B8  4E 80 00 20 */	blr 
 
-.global JStudio_NS_ctb_NS_TParse_NS_dtor
-JStudio_NS_ctb_NS_TParse_NS_dtor:
+.global __dt__Q37JStudio3ctb6TParseFv
+__dt__Q37JStudio3ctb6TParseFv:
 /* 8028137C 0027E2BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80281380 0027E2C0  7C 08 02 A6 */	mflr r0
 /* 80281384 0027E2C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -377,7 +377,7 @@ lbl_802813C0:
 /* 80281400 0027E340  7F E3 FB 78 */	mr r3, r31
 /* 80281404 0027E344  38 82 B9 F8 */	addi r4, r2, lbl_804553F8-_SDA2_BASE_
 /* 80281408 0027E348  38 A0 00 04 */	li r5, 4
-/* 8028140C 0027E34C  48 0E 4C 81 */	bl func_8036608C
+/* 8028140C 0027E34C  48 0E 4C 81 */	bl memcmp
 /* 80281410 0027E350  2C 03 00 00 */	cmpwi r3, 0
 /* 80281414 0027E354  41 82 00 0C */	beq lbl_80281420
 /* 80281418 0027E358  38 60 00 00 */	li r3, 0
@@ -432,7 +432,7 @@ lbl_8028145C:
 lbl_802814CC:
 /* 802814CC 0027E40C  7F E3 FB 78 */	mr r3, r31
 /* 802814D0 0027E410  54 05 04 3E */	clrlwi r5, r0, 0x10
-/* 802814D4 0027E414  4B FF FC BD */	bl JStudio_NS_ctb_NS_TControl_NS_getObject
+/* 802814D4 0027E414  4B FF FC BD */	bl getObject__Q37JStudio3ctb8TControlFPCvUl
 /* 802814D8 0027E418  28 03 00 00 */	cmplwi r3, 0
 /* 802814DC 0027E41C  41 82 00 0C */	beq lbl_802814E8
 /* 802814E0 0027E420  38 60 00 01 */	li r3, 1
@@ -460,7 +460,7 @@ lbl_8028150C:
 /* 8028152C 0027E46C  48 00 00 10 */	b lbl_8028153C
 lbl_80281530:
 /* 80281530 0027E470  7F E3 FB 78 */	mr r3, r31
-/* 80281534 0027E474  4B FF FB 2D */	bl JStudio_NS_ctb_NS_TControl_NS_appendObject
+/* 80281534 0027E474  4B FF FB 2D */	bl appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject
 /* 80281538 0027E478  38 60 00 01 */	li r3, 1
 lbl_8028153C:
 /* 8028153C 0027E47C  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -481,7 +481,7 @@ lbl_8028153C:
 /* 80281578 0027E4B8  38 04 48 C0 */	addi r0, r4, lbl_803C48C0@l
 /* 8028157C 0027E4BC  90 1E 00 08 */	stw r0, 8(r30)
 /* 80281580 0027E4C0  38 80 00 00 */	li r4, 0
-/* 80281584 0027E4C4  4B FF F9 95 */	bl JStudio_NS_ctb_NS_TObject_NS_dtor
+/* 80281584 0027E4C4  4B FF F9 95 */	bl __dt__Q37JStudio3ctb7TObjectFv
 /* 80281588 0027E4C8  7F E0 07 35 */	extsh. r0, r31
 /* 8028158C 0027E4CC  40 81 00 0C */	ble lbl_80281598
 /* 80281590 0027E4D0  7F C3 F3 78 */	mr r3, r30
@@ -525,7 +525,7 @@ lbl_802815E8:
 /* 80281610 0027E550  80 7D 00 00 */	lwz r3, 0(r29)
 /* 80281614 0027E554  38 63 FF F4 */	addi r3, r3, -12
 /* 80281618 0027E558  7F E4 FB 78 */	mr r4, r31
-/* 8028161C 0027E55C  48 00 73 6D */	bl JStudio_NS_object_NS_TIDData_NS_isEqual
+/* 8028161C 0027E55C  48 00 73 6D */	bl isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData
 /* 80281620 0027E560  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80281624 0027E564  41 82 FF B8 */	beq lbl_802815DC
 lbl_80281628:

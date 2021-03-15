@@ -4,7 +4,7 @@
 struct JAIAudience {};
 
 extern "C" {
-void JAIAudience_NS_dtor(void);
+void __dt__11JAIAudienceFv(void);
 }
 
 #endif  // JAIAUDIENCE_H_

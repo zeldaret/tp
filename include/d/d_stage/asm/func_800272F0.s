@@ -26,7 +26,7 @@ lbl_80027350:
 /* 80027350 00024290  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80027354 00024294  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80027358 00024298  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 8002735C 0002429C  4B FF D0 29 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8002735C 0002429C  4B FF D0 29 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80027360 000242A0  81 83 00 00 */ lwz r12, 0(r3)
 /* 80027364 000242A4  81 8C 00 C4 */ lwz r12, 0xc4(r12)
 /* 80027368 000242A8  7D 89 03 A6 */ mtctr r12
@@ -89,7 +89,7 @@ lbl_8002740C:
 /* 8002742C 0002436C  C8 01 00 10 */ lfd f0, 0x10(r1)
 /* 80027430 00024370  EC 00 08 28 */ fsubs f0, f0, f1
 /* 80027434 00024374  EC 22 00 32 */ fmuls f1, f2, f0
-/* 80027438 00024378  48 18 17 21 */ bl dKy_set_nexttime
+/* 80027438 00024378  48 18 17 21 */ bl dKy_set_nexttime__Ff
 lbl_8002743C:
 /* 8002743C 0002437C  57 23 06 3E */ clrlwi r3, r25, 0x18
 /* 80027440 00024380  30 03 FF FF */ addic r0, r3, -1
@@ -110,7 +110,7 @@ lbl_8002743C:
 /* 8002747C 000243BC  7F E0 00 78 */ andc r0, r31, r0
 /* 80027480 000243C0  7C 09 07 74 */ extsb r9, r0
 /* 80027484 000243C4  7F 6A DB 78 */ mr r10, r27
-/* 80027488 000243C8  48 00 5E 75 */ bl dComIfGp_setNextStage
+/* 80027488 000243C8  48 00 5E 75 */ bl dComIfGp_setNextStage__FPCcsScScfUliScsii
 /* 8002748C 000243CC  38 60 00 01 */ li r3, 1
 lbl_80027490:
 /* 80027490 000243D0  E3 E1 00 48 */ psq_l f31, 72(r1), 0, 0

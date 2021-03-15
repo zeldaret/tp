@@ -12,26 +12,26 @@
 /* 800EEE88 000EBDC8  28 03 00 00 */ cmplwi r3, 0
 /* 800EEE8C 000EBDCC  41 82 00 80 */ beq lbl_800EEF0C
 /* 800EEE90 000EBDD0  7F C3 F3 78 */ mr r3, r30
-/* 800EEE94 000EBDD4  4B FC A3 C1 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800EEE94 000EBDD4  4B FC A3 C1 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800EEE98 000EBDD8  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEE9C 000EBDDC  41 82 00 70 */ beq lbl_800EEF0C
 /* 800EEEA0 000EBDE0  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
 /* 800EEEA4 000EBDE4  28 00 01 03 */ cmplwi r0, 0x103
 /* 800EEEA8 000EBDE8  40 82 00 64 */ bne lbl_800EEF0C
-/* 800EEEAC 000EBDEC  4B FF D8 C1 */ bl daAlink_c_NS_checkHorseZeldaBowMode
+/* 800EEEAC 000EBDEC  4B FF D8 C1 */ bl checkHorseZeldaBowMode__9daAlink_cFv
 /* 800EEEB0 000EBDF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEEB4 000EBDF4  40 82 00 58 */ bne lbl_800EEF0C
 /* 800EEEB8 000EBDF8  2C 1F 00 00 */ cmpwi r31, 0
 /* 800EEEBC 000EBDFC  41 82 00 14 */ beq lbl_800EEED0
 /* 800EEEC0 000EBE00  7F C3 F3 78 */ mr r3, r30
-/* 800EEEC4 000EBE04  4B FF FF 6D */ bl daAlink_c_NS_checkHorseSwordUpSpped
+/* 800EEEC4 000EBE04  4B FF FF 6D */ bl checkHorseSwordUpSpped__9daAlink_cFv
 /* 800EEEC8 000EBE08  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EEECC 000EBE0C  40 82 00 28 */ bne lbl_800EEEF4
 lbl_800EEED0:
 /* 800EEED0 000EBE10  2C 1F 00 00 */ cmpwi r31, 0
 /* 800EEED4 000EBE14  40 82 00 38 */ bne lbl_800EEF0C
 /* 800EEED8 000EBE18  80 7E 27 EC */ lwz r3, 0x27ec(r30)
-/* 800EEEDC 000EBE1C  4B FE D6 6D */ bl daAlink_c_NS_checkEnemyGroup
+/* 800EEEDC 000EBE1C  4B FE D6 6D */ bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 800EEEE0 000EBE20  2C 03 00 00 */ cmpwi r3, 0
 /* 800EEEE4 000EBE24  41 82 00 28 */ beq lbl_800EEF0C
 /* 800EEEE8 000EBE28  80 1E 05 74 */ lwz r0, 0x574(r30)
@@ -39,7 +39,7 @@ lbl_800EEED0:
 /* 800EEEF0 000EBE30  41 82 00 1C */ beq lbl_800EEF0C
 lbl_800EEEF4:
 /* 800EEEF4 000EBE34  7F C3 F3 78 */ mr r3, r30
-/* 800EEEF8 000EBE38  4B FF E0 A5 */ bl daAlink_c_NS_setHorseSwordUpAnime
+/* 800EEEF8 000EBE38  4B FF E0 A5 */ bl setHorseSwordUpAnime__9daAlink_cFv
 /* 800EEEFC 000EBE3C  3C 60 80 39 */ lis r3, lbl_8038E5A4@ha
 /* 800EEF00 000EBE40  38 63 E5 A4 */ addi r3, r3, lbl_8038E5A4@l
 /* 800EEF04 000EBE44  A8 03 00 50 */ lha r0, 0x50(r3)

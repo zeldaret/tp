@@ -4,7 +4,7 @@
 /* 8012DD14 0012AC54  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012DD18 0012AC58  7C 7F 1B 78 */ mr r31, r3
 /* 8012DD1C 0012AC5C  38 80 00 F5 */ li r4, 0xf5
-/* 8012DD20 0012AC60  4B F9 50 85 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8012DD20 0012AC60  4B F9 50 85 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012DD24 0012AC64  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DD28 0012AC68  40 82 00 0C */ bne lbl_8012DD34
 /* 8012DD2C 0012AC6C  38 60 00 00 */ li r3, 0
@@ -27,9 +27,9 @@ lbl_8012DD64:
 /* 8012DD64 0012ACA4  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
 /* 8012DD68 0012ACA8  38 A5 EE 28 */ addi r5, r5, lbl_8038EE28@l
 /* 8012DD6C 0012ACAC  C0 45 00 94 */ lfs f2, 0x94(r5)
-/* 8012DD70 0012ACB0  4B FF B9 69 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 8012DD70 0012ACB0  4B FF B9 69 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 8012DD74 0012ACB4  7F E3 FB 78 */ mr r3, r31
-/* 8012DD78 0012ACB8  4B FE 7E A9 */ bl daAlink_c_NS_checkEventRun
+/* 8012DD78 0012ACB8  4B FE 7E A9 */ bl checkEventRun__9daAlink_cCFv
 /* 8012DD7C 0012ACBC  2C 03 00 00 */ cmpwi r3, 0
 /* 8012DD80 0012ACC0  41 82 00 0C */ beq lbl_8012DD8C
 /* 8012DD84 0012ACC4  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)

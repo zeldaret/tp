@@ -446,7 +446,7 @@ inline u16 dComIfGs_getMaxLife(void) {
 inline void dComIfGs_offEventBit(u16 event) {
     g_dComIfG_gameInfo.getSaveFile().getEventFlags().offEventBit(event);
 }
-// inline int dComIfGs_isEventBit(u16 event) {
+// inline int dComIfGs_isEventBit__FUs(u16 event) {
 //     return g_dComIfG_gameInfo.getSaveFile().getEventFlags().isEventBit(event);
 // }
 inline const char* dComIfGs_getLastWarpMarkStageName(void) {
@@ -493,7 +493,7 @@ inline void dComIfGd_reset(void) {
 }
 
 extern "C" {
-void dComIfGs_staffroll_next_go(void);
+void dComIfGs_staffroll_next_go__Fv(void);
 }
 
 #endif

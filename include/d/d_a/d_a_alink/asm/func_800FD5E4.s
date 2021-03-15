@@ -15,7 +15,7 @@
 /* 800FD61C 000FA55C  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800FD620 000FA560  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800FD624 000FA564  C0 25 00 70 */ lfs f1, 0x70(r5)
-/* 800FD628 000FA568  4B FC 94 21 */ bl daAlink_c_NS_procFallInit
+/* 800FD628 000FA568  4B FC 94 21 */ bl procFallInit__9daAlink_cFif
 /* 800FD62C 000FA56C  48 00 00 08 */ b lbl_800FD634
 lbl_800FD630:
 /* 800FD630 000FA570  38 60 00 00 */ li r3, 0

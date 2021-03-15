@@ -4,11 +4,11 @@
 /* 8019EBDC 0019BB1C  39 61 00 20 */ addi r11, r1, 0x20
 /* 8019EBE0 0019BB20  48 1C 35 FD */ bl _savegpr_29
 /* 8019EBE4 0019BB24  7C 7D 1B 78 */ mr r29, r3
-/* 8019EBE8 0019BB28  4B EB 7E 95 */ bl dKyd_light_size_tbl_getp
+/* 8019EBE8 0019BB28  4B EB 7E 95 */ bl dKyd_light_size_tbl_getp__Fv
 /* 8019EBEC 0019BB2C  7C 7F 1B 78 */ mr r31, r3
-/* 8019EBF0 0019BB30  4B EB 7E 99 */ bl dKyd_light_tw_size_tbl_getp
+/* 8019EBF0 0019BB30  4B EB 7E 99 */ bl dKyd_light_tw_size_tbl_getp__Fv
 /* 8019EBF4 0019BB34  7C 7E 1B 78 */ mr r30, r3
-/* 8019EBF8 0019BB38  48 00 D9 85 */ bl dKy_darkworld_check
+/* 8019EBF8 0019BB38  48 00 D9 85 */ bl dKy_darkworld_check__Fv
 /* 8019EBFC 0019BB3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8019EC00 0019BB40  40 82 00 44 */ bne lbl_8019EC44
 /* 8019EC04 0019BB44  3B C0 00 00 */ li r30, 0

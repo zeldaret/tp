@@ -9,17 +9,17 @@
 /* 800CB618 000C8558  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800CB61C 000C855C  28 00 00 42 */ cmplwi r0, 0x42
 /* 800CB620 000C8560  40 82 00 10 */ bne lbl_800CB630
-/* 800CB624 000C8564  48 00 58 75 */ bl daAlink_c_NS_checkSwordEquipAnime
+/* 800CB624 000C8564  48 00 58 75 */ bl checkSwordEquipAnime__9daAlink_cCFv
 /* 800CB628 000C8568  2C 03 00 00 */ cmpwi r3, 0
 /* 800CB62C 000C856C  40 82 00 50 */ bne lbl_800CB67C
 lbl_800CB630:
 /* 800CB630 000C8570  7F E3 FB 78 */ mr r3, r31
 /* 800CB634 000C8574  A0 9F 2F DC */ lhz r4, 0x2fdc(r31)
-/* 800CB638 000C8578  48 01 31 49 */ bl daAlink_c_NS_checkBowAndSlingItem
+/* 800CB638 000C8578  48 01 31 49 */ bl checkBowAndSlingItem__9daAlink_cFi
 /* 800CB63C 000C857C  2C 03 00 00 */ cmpwi r3, 0
 /* 800CB640 000C8580  41 82 00 34 */ beq lbl_800CB674
 /* 800CB644 000C8584  7F E3 FB 78 */ mr r3, r31
-/* 800CB648 000C8588  48 01 45 81 */ bl daAlink_c_NS_checkBowGrabLeftHand
+/* 800CB648 000C8588  48 01 45 81 */ bl checkBowGrabLeftHand__9daAlink_cCFv
 /* 800CB64C 000C858C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CB650 000C8590  40 82 00 24 */ bne lbl_800CB674
 /* 800CB654 000C8594  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

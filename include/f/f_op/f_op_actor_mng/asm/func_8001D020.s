@@ -47,7 +47,7 @@
 /* 8001D0D8 0001A018  7F C8 F3 78 */ mr r8, r30
 /* 8001D0DC 0001A01C  7F E9 FB 78 */ mr r9, r31
 /* 8001D0E0 0001A020  7F AA EB 78 */ mr r10, r29
-/* 8001D0E4 0001A024  48 03 06 E1 */ bl dPa_control_c_NS_setSimpleFoot
+/* 8001D0E4 0001A024  48 03 06 E1 */ bl setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz
 /* 8001D0E8 0001A028  90 7B 00 00 */ stw r3, 0(r27)
 lbl_8001D0EC:
 /* 8001D0EC 0001A02C  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0

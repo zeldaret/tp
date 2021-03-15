@@ -6,7 +6,7 @@
 /* 801107D0 0010D710  80 03 05 78 */ lwz r0, 0x578(r3)
 /* 801107D4 0010D714  54 00 07 FF */ clrlwi. r0, r0, 0x1f
 /* 801107D8 0010D718  41 82 00 54 */ beq lbl_8011082C
-/* 801107DC 0010D71C  4B FF FF B1 */ bl daAlink_c_NS_checkWaterInKandelaarOffset
+/* 801107DC 0010D71C  4B FF FF B1 */ bl checkWaterInKandelaarOffset__9daAlink_cFf
 /* 801107E0 0010D720  2C 03 00 00 */ cmpwi r3, 0
 /* 801107E4 0010D724  41 82 00 48 */ beq lbl_8011082C
 /* 801107E8 0010D728  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
@@ -15,11 +15,11 @@
 /* 801107F4 0010D734  7F E3 FB 78 */ mr r3, r31
 /* 801107F8 0010D738  38 80 00 01 */ li r4, 1
 /* 801107FC 0010D73C  38 A0 00 01 */ li r5, 1
-/* 80110800 0010D740  4B FB 0A DD */ bl daAlink_c_NS_deleteEquipItem
+/* 80110800 0010D740  4B FB 0A DD */ bl deleteEquipItem__9daAlink_cFii
 /* 80110804 0010D744  48 00 00 28 */ b lbl_8011082C
 lbl_80110808:
 /* 80110808 0010D748  7F E3 FB 78 */ mr r3, r31
-/* 8011080C 0010D74C  48 00 00 35 */ bl daAlink_c_NS_offKandelaarModel
+/* 8011080C 0010D74C  48 00 00 35 */ bl offKandelaarModel__9daAlink_cFv
 /* 80110810 0010D750  7F E3 FB 78 */ mr r3, r31
 /* 80110814 0010D754  3C 80 00 02 */ lis r4, 0x0002002D@ha
 /* 80110818 0010D758  38 84 00 2D */ addi r4, r4, 0x0002002D@l

@@ -9,7 +9,7 @@
 /* 80215910 00212850  3B C0 00 00 */ li r30, 0
 /* 80215914 00212854  3B A0 00 00 */ li r29, 0
 /* 80215918 00212858  80 63 01 CC */ lwz r3, 0x1cc(r3)
-/* 8021591C 0021285C  48 03 FF 0D */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8021591C 0021285C  48 03 FF 0D */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80215920 00212860  C0 1B 07 BC */ lfs f0, 0x7bc(r27)
 /* 80215924 00212864  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 80215928 00212868  40 82 00 0C */ bne lbl_80215934
@@ -17,7 +17,7 @@
 /* 80215930 00212870  41 82 00 14 */ beq lbl_80215944
 lbl_80215934:
 /* 80215934 00212874  80 7B 01 CC */ lwz r3, 0x1cc(r27)
-/* 80215938 00212878  48 03 FE F1 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80215938 00212878  48 03 FE F1 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 8021593C 0021287C  D0 3B 07 BC */ stfs f1, 0x7bc(r27)
 /* 80215940 00212880  3B E0 00 01 */ li r31, 1
 lbl_80215944:
@@ -56,7 +56,7 @@ lbl_802159AC:
 /* 802159B0 002128F0  C0 3B 07 C0 */ lfs f1, 0x7c0(r27)
 /* 802159B4 002128F4  C0 1B 07 BC */ lfs f0, 0x7bc(r27)
 /* 802159B8 002128F8  EC 21 00 32 */ fmuls f1, f1, f0
-/* 802159BC 002128FC  48 03 FE 15 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802159BC 002128FC  48 03 FE 15 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_802159C0:
 /* 802159C0 00212900  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 802159C4 00212904  40 82 00 14 */ bne lbl_802159D8
@@ -69,12 +69,12 @@ lbl_802159D8:
 /* 802159DC 0021291C  C0 3B 07 C4 */ lfs f1, 0x7c4(r27)
 /* 802159E0 00212920  C0 1B 07 BC */ lfs f0, 0x7bc(r27)
 /* 802159E4 00212924  EC 21 00 32 */ fmuls f1, f1, f0
-/* 802159E8 00212928  48 03 FD E9 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802159E8 00212928  48 03 FD E9 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802159EC 0021292C  80 7B 01 DC */ lwz r3, 0x1dc(r27)
 /* 802159F0 00212930  C0 3B 07 C4 */ lfs f1, 0x7c4(r27)
 /* 802159F4 00212934  C0 1B 07 BC */ lfs f0, 0x7bc(r27)
 /* 802159F8 00212938  EC 21 00 32 */ fmuls f1, f1, f0
-/* 802159FC 0021293C  48 03 FD D5 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802159FC 0021293C  48 03 FD D5 */ bl setAlphaRate__13CPaneMgrAlphaFf
 lbl_80215A00:
 /* 80215A00 00212940  39 61 00 20 */ addi r11, r1, 0x20
 /* 80215A04 00212944  48 14 C8 1D */ bl _restgpr_27

@@ -66,7 +66,7 @@ lbl_802BE230:
 /* 802BE230 002BB170  28 1C 00 00 */ cmplwi r28, 0
 /* 802BE234 002BB174  40 82 00 10 */ bne lbl_802BE244
 /* 802BE238 002BB178  7F A3 EB 78 */ mr r3, r29
-/* 802BE23C 002BB17C  4B FE D0 9D */ bl Z2SoundHandles_NS_getFreeHandle
+/* 802BE23C 002BB17C  4B FE D0 9D */ bl getFreeHandle__14Z2SoundHandlesFv
 /* 802BE240 002BB180  7C 7C 1B 78 */ mr r28, r3
 lbl_802BE244:
 /* 802BE244 002BB184  28 1C 00 00 */ cmplwi r28, 0
@@ -75,7 +75,7 @@ lbl_802BE244:
 /* 802BE250 002BB190  90 01 00 0C */ stw r0, 0xc(r1)
 /* 802BE254 002BB194  7F A3 EB 78 */ mr r3, r29
 /* 802BE258 002BB198  38 81 00 0C */ addi r4, r1, 0xc
-/* 802BE25C 002BB19C  4B FE D1 75 */ bl Z2SoundHandles_NS_getLowPrioSound
+/* 802BE25C 002BB19C  4B FE D1 75 */ bl getLowPrioSound__14Z2SoundHandlesF10JAISoundID
 /* 802BE260 002BB1A0  7C 7C 1B 78 */ mr r28, r3
 lbl_802BE264:
 /* 802BE264 002BB1A4  28 1C 00 00 */ cmplwi r28, 0

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80048c54
 
 
-.global dSmplMdl_modelUpdateDL
-dSmplMdl_modelUpdateDL:
+.global dSmplMdl_modelUpdateDL__FP8J3DModel
+dSmplMdl_modelUpdateDL__FP8J3DModel:
 /* 80048C54 00045B94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048C58 00045B98  7C 08 02 A6 */	mflr r0
 /* 80048C5C 00045B9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -30,8 +30,8 @@ dSmplMdl_modelUpdateDL:
 /* 80048CAC 00045BEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048CB0 00045BF0  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c
-dSmplMdl_draw_c:
+.global __ct__15dSmplMdl_draw_cFv
+__ct__15dSmplMdl_draw_cFv:
 /* 80048CB4 00045BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048CB8 00045BF8  7C 08 02 A6 */	mflr r0
 /* 80048CBC 00045BFC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -42,20 +42,20 @@ dSmplMdl_draw_c:
 /* 80048CD0 00045C10  38 03 82 F8 */	addi r0, r3, lbl_803A82F8@l
 /* 80048CD4 00045C14  90 1D 00 00 */	stw r0, 0(r29)
 /* 80048CD8 00045C18  38 7D 00 04 */	addi r3, r29, 4
-.global diff_model_c
-/* 80048CDC 00045C1C  3C 80 80 05 */	lis r4, diff_model_c@ha
-.global diff_model_c
-/* 80048CE0 00045C20  38 84 8D 60 */	addi r4, r4, diff_model_c@l
+.global __ct__12diff_model_cFv
+/* 80048CDC 00045C1C  3C 80 80 05 */	lis r4, __ct__12diff_model_cFv@ha
+.global __ct__12diff_model_cFv
+/* 80048CE0 00045C20  38 84 8D 60 */	addi r4, r4, __ct__12diff_model_cFv@l
 /* 80048CE4 00045C24  38 A0 00 00 */	li r5, 0
 /* 80048CE8 00045C28  38 C0 00 14 */	li r6, 0x14
 /* 80048CEC 00045C2C  38 E0 00 08 */	li r7, 8
-/* 80048CF0 00045C30  48 31 90 71 */	bl func_80361D60
+/* 80048CF0 00045C30  48 31 90 71 */	bl __construct_array
 /* 80048CF4 00045C34  3B C0 00 00 */	li r30, 0
 /* 80048CF8 00045C38  3B E0 00 00 */	li r31, 0
 lbl_80048CFC:
 /* 80048CFC 00045C3C  38 7F 00 04 */	addi r3, r31, 4
 /* 80048D00 00045C40  7C 7D 1A 14 */	add r3, r29, r3
-/* 80048D04 00045C44  48 00 06 65 */	bl diff_model_c_NS_init
+/* 80048D04 00045C44  48 00 06 65 */	bl init__12diff_model_cFv
 /* 80048D08 00045C48  3B DE 00 01 */	addi r30, r30, 1
 /* 80048D0C 00045C4C  2C 1E 00 08 */	cmpwi r30, 8
 /* 80048D10 00045C50  3B FF 00 14 */	addi r31, r31, 0x14
@@ -79,8 +79,8 @@ lbl_80048D28:
 /* 80048D54 00045C94  7C 08 03 A6 */	mtlr r0
 /* 80048D58 00045C98  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048D5C 00045C9C  4E 80 00 20 */	blr 
-.global diff_model_c
-diff_model_c:
+.global __ct__12diff_model_cFv
+__ct__12diff_model_cFv:
 /* 80048D60 00045CA0  38 00 00 00 */	li r0, 0
 /* 80048D64 00045CA4  90 03 00 00 */	stw r0, 0(r3)
 /* 80048D68 00045CA8  90 03 00 04 */	stw r0, 4(r3)
@@ -109,7 +109,7 @@ lbl_80048DB4:
 /* 80048DC0 00045D00  41 82 00 10 */	beq lbl_80048DD0
 /* 80048DC4 00045D04  38 63 00 04 */	addi r3, r3, 4
 /* 80048DC8 00045D08  38 80 00 01 */	li r4, 1
-/* 80048DCC 00045D0C  48 00 04 45 */	bl diff_model_c_NS_remove
+/* 80048DCC 00045D0C  48 00 04 45 */	bl remove__12diff_model_cFi
 lbl_80048DD0:
 /* 80048DD0 00045D10  3B DE 00 01 */	addi r30, r30, 1
 /* 80048DD4 00045D14  2C 1E 00 08 */	cmpwi r30, 8
@@ -128,8 +128,8 @@ lbl_80048DF0:
 /* 80048E04 00045D44  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048E08 00045D48  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c_NS_draw
-dSmplMdl_draw_c_NS_draw:
+.global draw__15dSmplMdl_draw_cFv
+draw__15dSmplMdl_draw_cFv:
 /* 80048E0C 00045D4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048E10 00045D50  7C 08 02 A6 */	mflr r0
 /* 80048E14 00045D54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -144,7 +144,7 @@ lbl_80048E2C:
 /* 80048E34 00045D74  28 00 00 00 */	cmplwi r0, 0
 /* 80048E38 00045D78  41 82 00 0C */	beq lbl_80048E44
 /* 80048E3C 00045D7C  38 63 00 04 */	addi r3, r3, 4
-/* 80048E40 00045D80  48 00 04 31 */	bl diff_model_c_NS_draw
+/* 80048E40 00045D80  48 00 04 31 */	bl draw__12diff_model_cFv
 lbl_80048E44:
 /* 80048E44 00045D84  3B DE 00 01 */	addi r30, r30, 1
 /* 80048E48 00045D88  2C 1E 00 08 */	cmpwi r30, 8
@@ -167,7 +167,7 @@ lbl_80048E84:
 /* 80048E84 00045DC4  38 7F 00 04 */	addi r3, r31, 4
 /* 80048E88 00045DC8  7C 7D 1A 14 */	add r3, r29, r3
 /* 80048E8C 00045DCC  38 80 00 00 */	li r4, 0
-/* 80048E90 00045DD0  48 00 05 79 */	bl diff_model_c_NS_insert
+/* 80048E90 00045DD0  48 00 05 79 */	bl insert__12diff_model_cFP11modelList_c
 /* 80048E94 00045DD4  3B DE 00 01 */	addi r30, r30, 1
 /* 80048E98 00045DD8  2C 1E 00 08 */	cmpwi r30, 8
 /* 80048E9C 00045DDC  3B FF 00 14 */	addi r31, r31, 0x14
@@ -179,8 +179,8 @@ lbl_80048E84:
 /* 80048EB4 00045DF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048EB8 00045DF8  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c_NS_entry
-dSmplMdl_draw_c_NS_entry:
+.global entry__15dSmplMdl_draw_cFP8J3DModeli
+entry__15dSmplMdl_draw_cFP8J3DModeli:
 /* 80048EBC 00045DFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80048EC0 00045E00  7C 08 02 A6 */	mflr r0
 /* 80048EC4 00045E04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -204,7 +204,7 @@ lbl_80048F00:
 /* 80048F08 00045E48  7F C3 F3 78 */	mr r3, r30
 /* 80048F0C 00045E4C  80 9B 00 04 */	lwz r4, 4(r27)
 /* 80048F10 00045E50  7F 85 E3 78 */	mr r5, r28
-/* 80048F14 00045E54  48 00 04 75 */	bl diff_model_c_NS_isSame
+/* 80048F14 00045E54  48 00 04 75 */	bl isSame__12diff_model_cFP12J3DModelDatai
 /* 80048F18 00045E58  2C 03 00 00 */	cmpwi r3, 0
 /* 80048F1C 00045E5C  41 82 00 20 */	beq lbl_80048F3C
 /* 80048F20 00045E60  7F C3 F3 78 */	mr r3, r30
@@ -212,7 +212,7 @@ lbl_80048F00:
 /* 80048F28 00045E68  54 04 18 38 */	slwi r4, r0, 3
 /* 80048F2C 00045E6C  38 84 00 A8 */	addi r4, r4, 0xa8
 /* 80048F30 00045E70  7C 9A 22 14 */	add r4, r26, r4
-/* 80048F34 00045E74  48 00 04 D5 */	bl diff_model_c_NS_insert
+/* 80048F34 00045E74  48 00 04 D5 */	bl insert__12diff_model_cFP11modelList_c
 /* 80048F38 00045E78  48 00 00 14 */	b lbl_80048F4C
 lbl_80048F3C:
 /* 80048F3C 00045E7C  3B BD 00 01 */	addi r29, r29, 1
@@ -231,8 +231,8 @@ lbl_80048F58:
 /* 80048F68 00045EA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048F6C 00045EAC  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c_NS_addModel
-dSmplMdl_draw_c_NS_addModel:
+.global addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc
+addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc:
 /* 80048F70 00045EB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80048F74 00045EB4  7C 08 02 A6 */	mflr r0
 /* 80048F78 00045EB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -250,14 +250,14 @@ lbl_80048F9C:
 /* 80048FA4 00045EE4  7F C3 F3 78 */	mr r3, r30
 /* 80048FA8 00045EE8  7F 44 D3 78 */	mr r4, r26
 /* 80048FAC 00045EEC  7F 65 DB 78 */	mr r5, r27
-/* 80048FB0 00045EF0  48 00 03 D9 */	bl diff_model_c_NS_isSame
+/* 80048FB0 00045EF0  48 00 03 D9 */	bl isSame__12diff_model_cFP12J3DModelDatai
 /* 80048FB4 00045EF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80048FB8 00045EF8  41 82 00 24 */	beq lbl_80048FDC
 /* 80048FBC 00045EFC  7F C3 F3 78 */	mr r3, r30
 /* 80048FC0 00045F00  7F 44 D3 78 */	mr r4, r26
 /* 80048FC4 00045F04  7F 65 DB 78 */	mr r5, r27
 /* 80048FC8 00045F08  7F 86 E3 78 */	mr r6, r28
-/* 80048FCC 00045F0C  48 00 01 21 */	bl diff_model_c_NS_create
+/* 80048FCC 00045F0C  48 00 01 21 */	bl create__12diff_model_cFP12J3DModelDataiUc
 /* 80048FD0 00045F10  30 03 FF FF */	addic r0, r3, -1
 /* 80048FD4 00045F14  7C 60 19 10 */	subfe r3, r0, r3
 /* 80048FD8 00045F18  48 00 00 68 */	b lbl_80049040
@@ -272,14 +272,14 @@ lbl_80048FF4:
 /* 80048FF4 00045F34  3B DF 00 04 */	addi r30, r31, 4
 /* 80048FF8 00045F38  7F D9 F2 14 */	add r30, r25, r30
 /* 80048FFC 00045F3C  7F C3 F3 78 */	mr r3, r30
-/* 80049000 00045F40  48 00 01 F5 */	bl diff_model_c_NS_getModelData
+/* 80049000 00045F40  48 00 01 F5 */	bl getModelData__12diff_model_cFv
 /* 80049004 00045F44  28 03 00 00 */	cmplwi r3, 0
 /* 80049008 00045F48  40 82 00 24 */	bne lbl_8004902C
 /* 8004900C 00045F4C  7F C3 F3 78 */	mr r3, r30
 /* 80049010 00045F50  7F 44 D3 78 */	mr r4, r26
 /* 80049014 00045F54  7F 65 DB 78 */	mr r5, r27
 /* 80049018 00045F58  7F 86 E3 78 */	mr r6, r28
-/* 8004901C 00045F5C  48 00 00 D1 */	bl diff_model_c_NS_create
+/* 8004901C 00045F5C  48 00 00 D1 */	bl create__12diff_model_cFP12J3DModelDataiUc
 /* 80049020 00045F60  30 03 FF FF */	addic r0, r3, -1
 /* 80049024 00045F64  7C 60 19 10 */	subfe r3, r0, r3
 /* 80049028 00045F68  48 00 00 18 */	b lbl_80049040
@@ -297,8 +297,8 @@ lbl_80049040:
 /* 80049050 00045F90  38 21 00 30 */	addi r1, r1, 0x30
 /* 80049054 00045F94  4E 80 00 20 */	blr 
 
-.global dSmplMdl_draw_c_NS_removeModel
-dSmplMdl_draw_c_NS_removeModel:
+.global removeModel__15dSmplMdl_draw_cFP12J3DModelDatai
+removeModel__15dSmplMdl_draw_cFP12J3DModelDatai:
 /* 80049058 00045F98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004905C 00045F9C  7C 08 02 A6 */	mflr r0
 /* 80049060 00045FA0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -319,12 +319,12 @@ lbl_8004908C:
 /* 80049094 00045FD4  7F C3 F3 78 */	mr r3, r30
 /* 80049098 00045FD8  7F 64 DB 78 */	mr r4, r27
 /* 8004909C 00045FDC  7F 85 E3 78 */	mr r5, r28
-/* 800490A0 00045FE0  48 00 02 E9 */	bl diff_model_c_NS_isSame
+/* 800490A0 00045FE0  48 00 02 E9 */	bl isSame__12diff_model_cFP12J3DModelDatai
 /* 800490A4 00045FE4  2C 03 00 00 */	cmpwi r3, 0
 /* 800490A8 00045FE8  41 82 00 18 */	beq lbl_800490C0
 /* 800490AC 00045FEC  7F C3 F3 78 */	mr r3, r30
 /* 800490B0 00045FF0  38 80 00 00 */	li r4, 0
-/* 800490B4 00045FF4  48 00 01 5D */	bl diff_model_c_NS_remove
+/* 800490B4 00045FF4  48 00 01 5D */	bl remove__12diff_model_cFi
 /* 800490B8 00045FF8  38 60 00 00 */	li r3, 0
 /* 800490BC 00045FFC  48 00 00 18 */	b lbl_800490D4
 lbl_800490C0:
@@ -341,8 +341,8 @@ lbl_800490D4:
 /* 800490E4 00046024  38 21 00 20 */	addi r1, r1, 0x20
 /* 800490E8 00046028  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_create
-diff_model_c_NS_create:
+.global create__12diff_model_cFP12J3DModelDataiUc
+create__12diff_model_cFP12J3DModelDataiUc:
 /* 800490EC 0004602C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800490F0 00046030  7C 08 02 A6 */	mflr r0
 /* 800490F4 00046034  90 01 00 34 */	stw r0, 0x34(r1)
@@ -357,7 +357,7 @@ diff_model_c_NS_create:
 /* 80049118 00046058  40 82 00 AC */	bne lbl_800491C4
 /* 8004911C 0004605C  38 60 20 00 */	li r3, 0x2000
 /* 80049120 00046060  38 80 00 20 */	li r4, 0x20
-/* 80049124 00046064  4B FC 5F 21 */	bl mDoExt_createSolidHeapFromGameToCurrent_X1_
+/* 80049124 00046064  4B FC 5F 21 */	bl mDoExt_createSolidHeapFromGameToCurrent__FUlUl
 /* 80049128 00046068  90 7C 00 00 */	stw r3, 0(r28)
 /* 8004912C 0004606C  80 1C 00 00 */	lwz r0, 0(r28)
 /* 80049130 00046070  28 00 00 00 */	cmplwi r0, 0
@@ -366,15 +366,15 @@ diff_model_c_NS_create:
 /* 8004913C 0004607C  3C 80 00 08 */	lis r4, 8
 /* 80049140 00046080  3C A0 11 00 */	lis r5, 0x11000084@ha
 /* 80049144 00046084  38 A5 00 84 */	addi r5, r5, 0x11000084@l
-/* 80049148 00046088  4B FC BB 0D */	bl mDoExt_J3DModel__create
+/* 80049148 00046088  4B FC BB 0D */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 8004914C 0004608C  90 7C 00 04 */	stw r3, 4(r28)
 /* 80049150 00046090  80 7C 00 04 */	lwz r3, 4(r28)
 /* 80049154 00046094  28 03 00 00 */	cmplwi r3, 0
 /* 80049158 00046098  40 82 00 18 */	bne lbl_80049170
 /* 8004915C 0004609C  7F 83 E3 78 */	mr r3, r28
 /* 80049160 000460A0  38 80 00 01 */	li r4, 1
-/* 80049164 000460A4  48 00 00 AD */	bl diff_model_c_NS_remove
-/* 80049168 000460A8  4B FC 60 8D */	bl mDoExt_restoreCurrentHeap
+/* 80049164 000460A4  48 00 00 AD */	bl remove__12diff_model_cFi
+/* 80049168 000460A8  4B FC 60 8D */	bl mDoExt_restoreCurrentHeap__Fv
 /* 8004916C 000460AC  48 00 00 6C */	b lbl_800491D8
 lbl_80049170:
 /* 80049170 000460B0  C0 02 85 38 */	lfs f0, lbl_80451F38-_SDA2_BASE_(r2)
@@ -393,7 +393,7 @@ lbl_80049170:
 /* 800491A4 000460E4  38 03 00 01 */	addi r0, r3, 1
 /* 800491A8 000460E8  90 1C 00 08 */	stw r0, 8(r28)
 /* 800491AC 000460EC  80 7C 00 00 */	lwz r3, 0(r28)
-/* 800491B0 000460F0  4B FC 5F A9 */	bl mDoExt_adjustSolidHeapToSystem
+/* 800491B0 000460F0  4B FC 5F A9 */	bl mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap
 /* 800491B4 000460F4  9B DC 00 11 */	stb r30, 0x11(r28)
 /* 800491B8 000460F8  9B FC 00 10 */	stb r31, 0x10(r28)
 /* 800491BC 000460FC  38 60 00 01 */	li r3, 1
@@ -414,8 +414,8 @@ lbl_800491DC:
 /* 800491EC 0004612C  38 21 00 30 */	addi r1, r1, 0x30
 /* 800491F0 00046130  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_getModelData
-diff_model_c_NS_getModelData:
+.global getModelData__12diff_model_cFv
+getModelData__12diff_model_cFv:
 /* 800491F4 00046134  80 63 00 04 */	lwz r3, 4(r3)
 /* 800491F8 00046138  28 03 00 00 */	cmplwi r3, 0
 /* 800491FC 0004613C  41 82 00 0C */	beq lbl_80049208
@@ -425,8 +425,8 @@ lbl_80049208:
 /* 80049208 00046148  38 60 00 00 */	li r3, 0
 /* 8004920C 0004614C  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_remove
-diff_model_c_NS_remove:
+.global remove__12diff_model_cFi
+remove__12diff_model_cFi:
 /* 80049210 00046150  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049214 00046154  7C 08 02 A6 */	mflr r0
 /* 80049218 00046158  90 01 00 14 */	stw r0, 0x14(r1)
@@ -444,9 +444,9 @@ lbl_80049244:
 /* 80049244 00046184  80 7F 00 00 */	lwz r3, 0(r31)
 /* 80049248 00046188  28 03 00 00 */	cmplwi r3, 0
 /* 8004924C 0004618C  41 82 00 10 */	beq lbl_8004925C
-/* 80049250 00046190  4B FC 5F 3D */	bl mDoExt_destroySolidHeap
+/* 80049250 00046190  4B FC 5F 3D */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 /* 80049254 00046194  7F E3 FB 78 */	mr r3, r31
-/* 80049258 00046198  48 00 01 11 */	bl diff_model_c_NS_init
+/* 80049258 00046198  48 00 01 11 */	bl init__12diff_model_cFv
 lbl_8004925C:
 /* 8004925C 0004619C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80049260 000461A0  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -454,8 +454,8 @@ lbl_8004925C:
 /* 80049268 000461A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004926C 000461AC  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_draw
-diff_model_c_NS_draw:
+.global draw__12diff_model_cFv
+draw__12diff_model_cFv:
 /* 80049270 000461B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049274 000461B4  7C 08 02 A6 */	mflr r0
 /* 80049278 000461B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -465,7 +465,7 @@ diff_model_c_NS_draw:
 /* 80049288 000461C8  83 E3 00 0C */	lwz r31, 0xc(r3)
 /* 8004928C 000461CC  28 1F 00 00 */	cmplwi r31, 0
 /* 80049290 000461D0  41 82 00 C0 */	beq lbl_80049350
-/* 80049294 000461D4  48 00 01 69 */	bl diff_model_c_NS_getRoomNo
+/* 80049294 000461D4  48 00 01 69 */	bl getRoomNo__12diff_model_cFv
 /* 80049298 000461D8  3C 80 80 3F */	lis r4, lbl_803F6094@ha
 /* 8004929C 000461DC  38 84 60 94 */	addi r4, r4, lbl_803F6094@l
 /* 800492A0 000461E0  1C 03 04 04 */	mulli r0, r3, 0x404
@@ -474,7 +474,7 @@ diff_model_c_NS_draw:
 /* 800492AC 000461EC  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 800492B0 000461F0  41 82 00 A0 */	beq lbl_80049350
 /* 800492B4 000461F4  7F C3 F3 78 */	mr r3, r30
-/* 800492B8 000461F8  48 00 01 45 */	bl diff_model_c_NS_getRoomNo
+/* 800492B8 000461F8  48 00 01 45 */	bl getRoomNo__12diff_model_cFv
 /* 800492BC 000461FC  1C 83 04 04 */	mulli r4, r3, 0x404
 /* 800492C0 00046200  3C 60 80 3F */	lis r3, lbl_803F6094@ha
 /* 800492C4 00046204  38 03 60 94 */	addi r0, r3, lbl_803F6094@l
@@ -484,7 +484,7 @@ diff_model_c_NS_draw:
 /* 800492D4 00046214  38 63 CA 54 */	addi r3, r3, lbl_8042CA54@l
 /* 800492D8 00046218  80 9E 00 04 */	lwz r4, 4(r30)
 /* 800492DC 0004621C  80 84 00 04 */	lwz r4, 4(r4)
-/* 800492E0 00046220  48 15 BA C1 */	bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 800492E0 00046220  48 15 BA C1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 800492E4 00046224  88 1E 00 10 */	lbz r0, 0x10(r30)
 /* 800492E8 00046228  28 00 00 01 */	cmplwi r0, 1
 /* 800492EC 0004622C  40 82 00 34 */	bne lbl_80049320
@@ -499,13 +499,13 @@ diff_model_c_NS_draw:
 /* 80049310 00046250  48 00 00 10 */	b lbl_80049320
 lbl_80049314:
 /* 80049314 00046254  80 7F 00 00 */	lwz r3, 0(r31)
-/* 80049318 00046258  4B FF F9 3D */	bl dSmplMdl_modelUpdateDL
+/* 80049318 00046258  4B FF F9 3D */	bl dSmplMdl_modelUpdateDL__FP8J3DModel
 /* 8004931C 0004625C  83 FF 00 04 */	lwz r31, 4(r31)
 lbl_80049320:
 /* 80049320 00046260  28 1F 00 00 */	cmplwi r31, 0
 /* 80049324 00046264  40 82 FF F0 */	bne lbl_80049314
 /* 80049328 00046268  80 7E 00 04 */	lwz r3, 4(r30)
-/* 8004932C 0004626C  4B FC 49 99 */	bl mDoExt_modelUpdateDL
+/* 8004932C 0004626C  4B FC 49 99 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 80049330 00046270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80049334 00046274  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
 /* 80049338 00046278  80 04 5F 80 */	lwz r0, 0x5f80(r4)
@@ -522,8 +522,8 @@ lbl_80049350:
 /* 80049360 000462A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049364 000462A4  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_init
-diff_model_c_NS_init:
+.global init__12diff_model_cFv
+init__12diff_model_cFv:
 /* 80049368 000462A8  38 00 00 00 */	li r0, 0
 /* 8004936C 000462AC  90 03 00 04 */	stw r0, 4(r3)
 /* 80049370 000462B0  90 03 00 00 */	stw r0, 0(r3)
@@ -533,8 +533,8 @@ diff_model_c_NS_init:
 /* 80049380 000462C0  98 03 00 11 */	stb r0, 0x11(r3)
 /* 80049384 000462C4  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_isSame
-diff_model_c_NS_isSame:
+.global isSame__12diff_model_cFP12J3DModelDatai
+isSame__12diff_model_cFP12J3DModelDatai:
 /* 80049388 000462C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004938C 000462CC  7C 08 02 A6 */	mflr r0
 /* 80049390 000462D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -547,11 +547,11 @@ diff_model_c_NS_isSame:
 /* 800493AC 000462EC  28 00 00 00 */	cmplwi r0, 0
 /* 800493B0 000462F0  41 82 00 30 */	beq lbl_800493E0
 /* 800493B4 000462F4  3B E0 00 00 */	li r31, 0
-/* 800493B8 000462F8  4B FF FE 3D */	bl diff_model_c_NS_getModelData
+/* 800493B8 000462F8  4B FF FE 3D */	bl getModelData__12diff_model_cFv
 /* 800493BC 000462FC  7C 03 E8 40 */	cmplw r3, r29
 /* 800493C0 00046300  40 82 00 18 */	bne lbl_800493D8
 /* 800493C4 00046304  7F 83 E3 78 */	mr r3, r28
-/* 800493C8 00046308  48 00 00 35 */	bl diff_model_c_NS_getRoomNo
+/* 800493C8 00046308  48 00 00 35 */	bl getRoomNo__12diff_model_cFv
 /* 800493CC 0004630C  7C 1E 18 00 */	cmpw r30, r3
 /* 800493D0 00046310  40 82 00 08 */	bne lbl_800493D8
 /* 800493D4 00046314  3B E0 00 01 */	li r31, 1
@@ -568,14 +568,14 @@ lbl_800493E4:
 /* 800493F4 00046334  38 21 00 20 */	addi r1, r1, 0x20
 /* 800493F8 00046338  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_getRoomNo
-diff_model_c_NS_getRoomNo:
+.global getRoomNo__12diff_model_cFv
+getRoomNo__12diff_model_cFv:
 /* 800493FC 0004633C  88 63 00 11 */	lbz r3, 0x11(r3)
 /* 80049400 00046340  7C 63 07 74 */	extsb r3, r3
 /* 80049404 00046344  4E 80 00 20 */	blr 
 
-.global diff_model_c_NS_insert
-diff_model_c_NS_insert:
+.global insert__12diff_model_cFP11modelList_c
+insert__12diff_model_cFP11modelList_c:
 /* 80049408 00046348  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8004940C 0004634C  90 83 00 0C */	stw r4, 0xc(r3)
 /* 80049410 00046350  28 04 00 00 */	cmplwi r4, 0

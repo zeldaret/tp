@@ -13,8 +13,6 @@ extern node_list_class lbl_803A39A0;
 // g_fpcNd_type
 extern s32 lbl_80450D40;
 
-extern "C" {
-
 BOOL fpcLd_Use(s16 procName);
 s32 fpcLd_IsLoaded(s16 procName);
 void fpcLd_Free(s16 procName);
@@ -97,7 +95,8 @@ s32 fpcDt_ToDeleteQ(base_process_class* pProc) {
     }
 }
 
-s32 fpcDt_Delete(base_process_class* pProc) {
+s32 fpcDt_Delete(void* pProcV) {
+    base_process_class* pProc = static_cast<base_process_class*>(pProcV);
     if (pProc != NULL) {
         if (fpcCt_IsDoing(pProc) == 1)
             return 0;
@@ -109,5 +108,4 @@ s32 fpcDt_Delete(base_process_class* pProc) {
     } else {
         return 1;
     }
-}
 }

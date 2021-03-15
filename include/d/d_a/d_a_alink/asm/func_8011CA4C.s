@@ -12,7 +12,7 @@ lbl_8011CA70:
 /* 8011CA74 001199B4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011CA78 001199B8  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011CA7C 001199BC  80 84 31 84 */ lwz r4, 0x3184(r4)
-/* 8011CA80 001199C0  4B F2 B6 FD */ bl dEvent_manager_c_NS_cutEnd
+/* 8011CA80 001199C0  4B F2 B6 FD */ bl cutEnd__16dEvent_manager_cFi
 /* 8011CA84 001199C4  38 60 00 01 */ li r3, 1
 /* 8011CA88 001199C8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8011CA8C 001199CC  7C 08 03 A6 */ mtlr r0

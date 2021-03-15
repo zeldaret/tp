@@ -13,7 +13,7 @@
 /* 800F8928 000F5868  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800F892C 000F586C  41 82 00 3C */ beq lbl_800F8968
 /* 800F8930 000F5870  38 80 00 01 */ li r4, 1
-/* 800F8934 000F5874  4B FD 62 A5 */ bl daAlink_c_NS_checkSubjectEnd
+/* 800F8934 000F5874  4B FD 62 A5 */ bl checkSubjectEnd__9daAlink_cFi
 /* 800F8938 000F5878  2C 03 00 00 */ cmpwi r3, 0
 /* 800F893C 000F587C  40 82 00 14 */ bne lbl_800F8950
 /* 800F8940 000F5880  C0 3E 33 B4 */ lfs f1, 0x33b4(r30)
@@ -28,9 +28,9 @@ lbl_800F8950:
 /* 800F8960 000F58A0  90 03 5F 18 */ stw r0, 0x5f18(r3)
 /* 800F8964 000F58A4  48 00 00 64 */ b lbl_800F89C8
 lbl_800F8968:
-/* 800F8968 000F58A8  48 08 8C D9 */ bl dCam_getBody
+/* 800F8968 000F58A8  48 08 8C D9 */ bl dCam_getBody__Fv
 /* 800F896C 000F58AC  38 80 00 04 */ li r4, 4
-/* 800F8970 000F58B0  48 06 8B 85 */ bl dCamera_c_NS_ChangeModeOK
+/* 800F8970 000F58B0  48 06 8B 85 */ bl ChangeModeOK__9dCamera_cFl
 /* 800F8974 000F58B4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F8978 000F58B8  41 82 00 50 */ beq lbl_800F89C8
 /* 800F897C 000F58BC  C0 3E 33 B4 */ lfs f1, 0x33b4(r30)
@@ -47,11 +47,11 @@ lbl_800F8968:
 /* 800F89A8 000F58E8  54 00 04 E7 */ rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800F89AC 000F58EC  41 82 00 1C */ beq lbl_800F89C8
 /* 800F89B0 000F58F0  7F C3 F3 78 */ mr r3, r30
-/* 800F89B4 000F58F4  48 01 D2 6D */ bl daAlink_c_NS_checkEventRun
+/* 800F89B4 000F58F4  48 01 D2 6D */ bl checkEventRun__9daAlink_cCFv
 /* 800F89B8 000F58F8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F89BC 000F58FC  40 82 00 0C */ bne lbl_800F89C8
 /* 800F89C0 000F5900  7F C3 F3 78 */ mr r3, r30
-/* 800F89C4 000F5904  4B FD 61 31 */ bl daAlink_c_NS_setSubjectMode
+/* 800F89C4 000F5904  4B FD 61 31 */ bl setSubjectMode__9daAlink_cFv
 lbl_800F89C8:
 /* 800F89C8 000F5908  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F89CC 000F590C  83 C1 00 08 */ lwz r30, 8(r1)

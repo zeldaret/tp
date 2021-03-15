@@ -6,7 +6,7 @@
 /* 800E2530 000DF470  7C 7E 1B 78 */ mr r30, r3
 /* 800E2534 000DF474  3B E0 00 00 */ li r31, 0
 /* 800E2538 000DF478  38 A0 00 01 */ li r5, 1
-/* 800E253C 000DF47C  4B FD 8F 7D */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800E253C 000DF47C  4B FD 8F 7D */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800E2540 000DF480  2C 03 00 00 */ cmpwi r3, 0
 /* 800E2544 000DF484  41 82 00 10 */ beq lbl_800E2554
 /* 800E2548 000DF488  80 1E 05 70 */ lwz r0, 0x570(r30)

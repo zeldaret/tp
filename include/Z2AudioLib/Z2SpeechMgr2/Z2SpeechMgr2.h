@@ -44,18 +44,18 @@ extern "C" {
 void __ct__15Z2SpeechStarterFv(void);
 
 void __ct__12Z2SpeechMgr2Fv(void);
-void Z2SpeechMgr2_NS_framework(void);
-void Z2SpeechMgr2_NS_isMidnaSpeak(void);
-void Z2SpeechMgr2_NS_isNonVerbal(void);
-void Z2SpeechMgr2_NS_playOneShotVoice(void);
-void Z2SpeechMgr2_NS_selectTail(void);
-void Z2SpeechMgr2_NS_selectUnit(void);
-void Z2SpeechMgr2_NS_setString(void);
-void Z2SpeechMgr2_NS_setTextCount(void);
-void Z2SpeechMgr2_NS_speakOneWord(void);
+void framework__12Z2SpeechMgr2Fv(void);
+void isMidnaSpeak__12Z2SpeechMgr2Fv(void);
+void isNonVerbal__12Z2SpeechMgr2Fv(void);
+void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc(void);
+void selectTail__12Z2SpeechMgr2Fv(void);
+void selectUnit__12Z2SpeechMgr2Fb(void);
+void setString__12Z2SpeechMgr2FPCUssUcUs(void);
+void setTextCount__12Z2SpeechMgr2Fs(void);
+void speakOneWord__12Z2SpeechMgr2Fb(void);
 
 void func_802CCFF8(void);
-void func_802CBCEC(void);
+void __dt__15Z2SpeechStarterFv(void);
 }
 
 #endif

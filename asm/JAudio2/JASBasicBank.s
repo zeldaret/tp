@@ -3,8 +3,8 @@
 .section .text, "ax" # 80297d78
 
 
-.global JASBasicBank
-JASBasicBank:
+.global __ct__12JASBasicBankFv
+__ct__12JASBasicBankFv:
 /* 80297D78 00294CB8  3C 80 80 3C */	lis r4, lbl_803C76BC@ha
 /* 80297D7C 00294CBC  38 04 76 BC */	addi r0, r4, lbl_803C76BC@l
 /* 80297D80 00294CC0  90 03 00 00 */	stw r0, 0(r3)
@@ -17,8 +17,8 @@ JASBasicBank:
 /* 80297D9C 00294CDC  98 A3 00 0C */	stb r5, 0xc(r3)
 /* 80297DA0 00294CE0  4E 80 00 20 */	blr 
 
-.global JASBasicBank_NS_newInstTable
-JASBasicBank_NS_newInstTable:
+.global newInstTable__12JASBasicBankFUcP7JKRHeap
+newInstTable__12JASBasicBankFUcP7JKRHeap:
 /* 80297DA4 00294CE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80297DA8 00294CE8  7C 08 02 A6 */	mflr r0
 /* 80297DAC 00294CEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -36,7 +36,7 @@ JASBasicBank_NS_newInstTable:
 /* 80297DDC 00294D1C  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80297DE0 00294D20  88 1F 00 0C */	lbz r0, 0xc(r31)
 /* 80297DE4 00294D24  54 04 10 3A */	slwi r4, r0, 2
-/* 80297DE8 00294D28  4B FF 76 99 */	bl JASCalc_NS_bzero
+/* 80297DE8 00294D28  4B FF 76 99 */	bl bzero__7JASCalcFPvUl
 lbl_80297DEC:
 /* 80297DEC 00294D2C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80297DF0 00294D30  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -51,7 +51,7 @@ lbl_80297DEC:
 /* 80297E14 00294D54  7C BD 2B 78 */	mr r29, r5
 /* 80297E18 00294D58  7C DE 33 78 */	mr r30, r6
 /* 80297E1C 00294D5C  7C FF 3B 78 */	mr r31, r7
-/* 80297E20 00294D60  48 00 00 61 */	bl JASBasicBank_NS_getInst
+/* 80297E20 00294D60  48 00 00 61 */	bl getInst__12JASBasicBankCFi
 /* 80297E24 00294D64  28 03 00 00 */	cmplwi r3, 0
 /* 80297E28 00294D68  40 82 00 0C */	bne lbl_80297E34
 /* 80297E2C 00294D6C  38 60 00 00 */	li r3, 0
@@ -72,8 +72,8 @@ lbl_80297E50:
 /* 80297E60 00294DA0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80297E64 00294DA4  4E 80 00 20 */	blr 
 
-.global JASBasicBank_NS_setInst
-JASBasicBank_NS_setInst:
+.global setInst__12JASBasicBankFiP7JASInst
+setInst__12JASBasicBankFiP7JASInst:
 /* 80297E68 00294DA8  80 63 00 08 */	lwz r3, 8(r3)
 /* 80297E6C 00294DAC  28 03 00 00 */	cmplwi r3, 0
 /* 80297E70 00294DB0  4D 82 00 20 */	beqlr 
@@ -81,8 +81,8 @@ JASBasicBank_NS_setInst:
 /* 80297E78 00294DB8  7C A3 01 2E */	stwx r5, r3, r0
 /* 80297E7C 00294DBC  4E 80 00 20 */	blr 
 
-.global JASBasicBank_NS_getInst
-JASBasicBank_NS_getInst:
+.global getInst__12JASBasicBankCFi
+getInst__12JASBasicBankCFi:
 /* 80297E80 00294DC0  2C 04 00 00 */	cmpwi r4, 0
 /* 80297E84 00294DC4  40 80 00 0C */	bge lbl_80297E90
 /* 80297E88 00294DC8  38 60 00 00 */	li r3, 0

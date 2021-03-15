@@ -49,7 +49,7 @@ lbl_801A1734:
 /* 801A1778 0019E6B8  39 01 00 23 */ addi r8, r1, 0x23
 /* 801A177C 0019E6BC  39 21 00 21 */ addi r9, r1, 0x21
 /* 801A1780 0019E6C0  39 41 00 22 */ addi r10, r1, 0x22
-/* 801A1784 0019E6C4  4B FF E4 51 */ bl dScnKy_env_light_c_NS_setLight_palno_get
+/* 801A1784 0019E6C4  4B FF E4 51 */ bl setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc
 /* 801A1788 0019E6C8  88 01 00 23 */ lbz r0, 0x23(r1)
 /* 801A178C 0019E6CC  28 00 00 FF */ cmplwi r0, 0xff
 /* 801A1790 0019E6D0  40 82 00 28 */ bne lbl_801A17B8
@@ -105,7 +105,7 @@ lbl_801A1810:
 /* 801A184C 0019E78C  C0 09 11 FC */ lfs f0, 0x11fc(r9)
 /* 801A1850 0019E790  EC 00 00 32 */ fmuls f0, f0, f0
 /* 801A1854 0019E794  EC 63 00 32 */ fmuls f3, f3, f0
-/* 801A1858 0019E798  4B FF EA E9 */ bl dKy_calc_color_set
+/* 801A1858 0019E798  4B FF EA E9 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 /* 801A185C 0019E79C  48 00 00 50 */ b lbl_801A18AC
 lbl_801A1860:
 /* 801A1860 0019E7A0  80 76 11 60 */ lwz r3, 0x1160(r22)
@@ -126,13 +126,13 @@ lbl_801A1860:
 /* 801A189C 0019E7DC  EC 00 00 32 */ fmuls f0, f0, f0
 /* 801A18A0 0019E7E0  EC 03 00 32 */ fmuls f0, f3, f0
 /* 801A18A4 0019E7E4  EC 64 00 32 */ fmuls f3, f4, f0
-/* 801A18A8 0019E7E8  4B FF EA 99 */ bl dKy_calc_color_set
+/* 801A18A8 0019E7E8  4B FF EA 99 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 lbl_801A18AC:
-/* 801A18AC 0019E7EC  4B FB DB 79 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A18AC 0019E7EC  4B FB DB 79 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A18B0 0019E7F0  2C 03 00 00 */ cmpwi r3, 0
 /* 801A18B4 0019E7F4  41 82 00 0C */ beq lbl_801A18C0
 /* 801A18B8 0019E7F8  38 77 03 48 */ addi r3, r23, 0x348
-/* 801A18BC 0019E7FC  4B FF AA CD */ bl dKy_WolfPowerup_AmbCol
+/* 801A18BC 0019E7FC  4B FF AA CD */ bl dKy_WolfPowerup_AmbCol__FP11_GXColorS10
 lbl_801A18C0:
 /* 801A18C0 0019E800  3B E0 00 00 */ li r31, 0
 /* 801A18C4 0019E804  3A A0 00 00 */ li r21, 0
@@ -173,8 +173,8 @@ lbl_801A1908:
 /* 801A1948 0019E888  C0 57 03 70 */ lfs f2, 0x370(r23)
 /* 801A194C 0019E88C  39 01 00 70 */ addi r8, r1, 0x70
 /* 801A1950 0019E890  C0 62 A2 48 */ lfs f3, lbl_80453C48-_SDA2_BASE_(r2)
-/* 801A1954 0019E894  4B FF E9 ED */ bl dKy_calc_color_set
-/* 801A1958 0019E898  4B FB DA CD */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1954 0019E894  4B FF E9 ED */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
+/* 801A1958 0019E898  4B FB DA CD */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A195C 0019E89C  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1960 0019E8A0  41 82 00 14 */ beq lbl_801A1974
 /* 801A1964 0019E8A4  38 00 00 00 */ li r0, 0
@@ -192,7 +192,7 @@ lbl_801A1974:
 /* 801A1990 0019E8D0  98 01 00 33 */ stb r0, 0x33(r1)
 /* 801A1994 0019E8D4  38 61 00 30 */ addi r3, r1, 0x30
 /* 801A1998 0019E8D8  C0 37 03 74 */ lfs f1, 0x374(r23)
-/* 801A199C 0019E8DC  4B FF CA 95 */ bl dKy_light_influence_col_X1_
+/* 801A199C 0019E8DC  4B FF CA 95 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A19A0 0019E8E0  90 61 00 28 */ stw r3, 0x28(r1)
 /* 801A19A4 0019E8E4  88 01 00 28 */ lbz r0, 0x28(r1)
 /* 801A19A8 0019E8E8  98 10 00 18 */ stb r0, 0x18(r16)
@@ -223,8 +223,8 @@ lbl_801A19C8:
 /* 801A1A08 0019E948  C0 57 03 70 */ lfs f2, 0x370(r23)
 /* 801A1A0C 0019E94C  39 01 00 68 */ addi r8, r1, 0x68
 /* 801A1A10 0019E950  C0 72 12 10 */ lfs f3, 0x1210(r18)
-/* 801A1A14 0019E954  4B FF E9 2D */ bl dKy_calc_color_set
-/* 801A1A18 0019E958  4B FB DA 0D */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1A14 0019E954  4B FF E9 2D */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
+/* 801A1A18 0019E958  4B FB DA 0D */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1A1C 0019E95C  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1A20 0019E960  41 82 00 14 */ beq lbl_801A1A34
 /* 801A1A24 0019E964  38 00 00 00 */ li r0, 0
@@ -241,7 +241,7 @@ lbl_801A1A34:
 /* 801A1A4C 0019E98C  C0 36 12 10 */ lfs f1, 0x1210(r22)
 /* 801A1A50 0019E990  C0 17 03 74 */ lfs f0, 0x374(r23)
 /* 801A1A54 0019E994  EC 21 00 32 */ fmuls f1, f1, f0
-/* 801A1A58 0019E998  4B FF BB C5 */ bl kankyo_color_ratio_calc
+/* 801A1A58 0019E998  4B FF BB C5 */ bl kankyo_color_ratio_calc__FP8_GXColor11_GXColorS10f
 /* 801A1A5C 0019E99C  48 00 01 88 */ b lbl_801A1BE4
 lbl_801A1A60:
 /* 801A1A60 0019E9A0  88 17 03 7A */ lbz r0, 0x37a(r23)
@@ -273,8 +273,8 @@ lbl_801A1A80:
 /* 801A1AC4 0019EA04  39 01 00 58 */ addi r8, r1, 0x58
 /* 801A1AC8 0019EA08  C0 12 11 FC */ lfs f0, 0x11fc(r18)
 /* 801A1ACC 0019EA0C  EC 60 00 32 */ fmuls f3, f0, f0
-/* 801A1AD0 0019EA10  4B FF E8 71 */ bl dKy_calc_color_set
-/* 801A1AD4 0019EA14  4B FB D9 51 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1AD0 0019EA10  4B FF E8 71 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
+/* 801A1AD4 0019EA14  4B FB D9 51 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1AD8 0019EA18  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1ADC 0019EA1C  41 82 00 14 */ beq lbl_801A1AF0
 /* 801A1AE0 0019EA20  38 00 00 00 */ li r0, 0
@@ -292,7 +292,7 @@ lbl_801A1AF0:
 /* 801A1B0C 0019EA4C  98 01 00 2F */ stb r0, 0x2f(r1)
 /* 801A1B10 0019EA50  38 61 00 2C */ addi r3, r1, 0x2c
 /* 801A1B14 0019EA54  C0 37 03 74 */ lfs f1, 0x374(r23)
-/* 801A1B18 0019EA58  4B FF C9 19 */ bl dKy_light_influence_col_X1_
+/* 801A1B18 0019EA58  4B FF C9 19 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A1B1C 0019EA5C  90 61 00 24 */ stw r3, 0x24(r1)
 /* 801A1B20 0019EA60  88 01 00 24 */ lbz r0, 0x24(r1)
 /* 801A1B24 0019EA64  98 10 00 18 */ stb r0, 0x18(r16)
@@ -326,8 +326,8 @@ lbl_801A1B44:
 /* 801A1B90 0019EAD0  C0 12 11 FC */ lfs f0, 0x11fc(r18)
 /* 801A1B94 0019EAD4  EC 00 00 32 */ fmuls f0, f0, f0
 /* 801A1B98 0019EAD8  EC 63 00 32 */ fmuls f3, f3, f0
-/* 801A1B9C 0019EADC  4B FF E7 A5 */ bl dKy_calc_color_set
-/* 801A1BA0 0019EAE0  4B FB D8 85 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1B9C 0019EADC  4B FF E7 A5 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
+/* 801A1BA0 0019EAE0  4B FB D8 85 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1BA4 0019EAE4  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1BA8 0019EAE8  41 82 00 14 */ beq lbl_801A1BBC
 /* 801A1BAC 0019EAEC  38 00 00 00 */ li r0, 0
@@ -344,7 +344,7 @@ lbl_801A1BBC:
 /* 801A1BD4 0019EB14  C0 36 12 10 */ lfs f1, 0x1210(r22)
 /* 801A1BD8 0019EB18  C0 17 03 74 */ lfs f0, 0x374(r23)
 /* 801A1BDC 0019EB1C  EC 21 00 32 */ fmuls f1, f1, f0
-/* 801A1BE0 0019EB20  4B FF BA 3D */ bl kankyo_color_ratio_calc
+/* 801A1BE0 0019EB20  4B FF BA 3D */ bl kankyo_color_ratio_calc__FP8_GXColor11_GXColorS10f
 lbl_801A1BE4:
 /* 801A1BE4 0019EB24  3B FF 00 01 */ addi r31, r31, 1
 /* 801A1BE8 0019EB28  2C 1F 00 06 */ cmpwi r31, 6
@@ -367,7 +367,7 @@ lbl_801A1BE4:
 /* 801A1C2C 0019EB6C  3D 20 80 43 */ lis r9, lbl_8042CA54@ha
 /* 801A1C30 0019EB70  39 29 CA 54 */ addi r9, r9, lbl_8042CA54@l
 /* 801A1C34 0019EB74  C0 69 12 04 */ lfs f3, 0x1204(r9)
-/* 801A1C38 0019EB78  4B FF E7 09 */ bl dKy_calc_color_set
+/* 801A1C38 0019EB78  4B FF E7 09 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 /* 801A1C3C 0019EB7C  88 17 03 7A */ lbz r0, 0x37a(r23)
 /* 801A1C40 0019EB80  28 00 00 0A */ cmplwi r0, 0xa
 /* 801A1C44 0019EB84  41 82 00 0C */ beq lbl_801A1C50
@@ -389,7 +389,7 @@ lbl_801A1C60:
 /* 801A1C7C 0019EBBC  3A 03 CA 54 */ addi r16, r3, lbl_8042CA54@l
 /* 801A1C80 0019EBC0  C0 F0 11 EC */ lfs f7, 0x11ec(r16)
 /* 801A1C84 0019EBC4  C1 10 11 F4 */ lfs f8, 0x11f4(r16)
-/* 801A1C88 0019EBC8  4B FF BB 19 */ bl float_kankyo_color_ratio_set
+/* 801A1C88 0019EBC8  4B FF BB 19 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A1C8C 0019EBCC  D0 39 00 00 */ stfs f1, 0(r25)
 /* 801A1C90 0019EBD0  C0 3E 00 28 */ lfs f1, 0x28(r30)
 /* 801A1C94 0019EBD4  C0 5D 00 28 */ lfs f2, 0x28(r29)
@@ -401,7 +401,7 @@ lbl_801A1C60:
 /* 801A1CAC 0019EBEC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A1CB0 0019EBF0  C0 E3 11 F0 */ lfs f7, 0x11f0(r3)
 /* 801A1CB4 0019EBF4  C1 10 11 F4 */ lfs f8, 0x11f4(r16)
-/* 801A1CB8 0019EBF8  4B FF BA E9 */ bl float_kankyo_color_ratio_set
+/* 801A1CB8 0019EBF8  4B FF BA E9 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A1CBC 0019EBFC  D0 3A 00 00 */ stfs f1, 0(r26)
 /* 801A1CC0 0019EC00  48 00 00 64 */ b lbl_801A1D24
 lbl_801A1CC4:
@@ -415,7 +415,7 @@ lbl_801A1CC4:
 /* 801A1CE0 0019EC20  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A1CE4 0019EC24  C0 E3 11 EC */ lfs f7, 0x11ec(r3)
 /* 801A1CE8 0019EC28  C1 02 A2 0C */ lfs f8, lbl_80453C0C-_SDA2_BASE_(r2)
-/* 801A1CEC 0019EC2C  4B FF BA B5 */ bl float_kankyo_color_ratio_set
+/* 801A1CEC 0019EC2C  4B FF BA B5 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A1CF0 0019EC30  D0 39 00 00 */ stfs f1, 0(r25)
 /* 801A1CF4 0019EC34  C0 3E 00 28 */ lfs f1, 0x28(r30)
 /* 801A1CF8 0019EC38  C0 5D 00 28 */ lfs f2, 0x28(r29)
@@ -427,10 +427,10 @@ lbl_801A1CC4:
 /* 801A1D10 0019EC50  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A1D14 0019EC54  C0 E3 11 F0 */ lfs f7, 0x11f0(r3)
 /* 801A1D18 0019EC58  C1 02 A2 0C */ lfs f8, lbl_80453C0C-_SDA2_BASE_(r2)
-/* 801A1D1C 0019EC5C  4B FF BA 85 */ bl float_kankyo_color_ratio_set
+/* 801A1D1C 0019EC5C  4B FF BA 85 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A1D20 0019EC60  D0 3A 00 00 */ stfs f1, 0(r26)
 lbl_801A1D24:
-/* 801A1D24 0019EC64  4B FB D7 01 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1D24 0019EC64  4B FB D7 01 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1D28 0019EC68  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1D2C 0019EC6C  41 82 00 20 */ beq lbl_801A1D4C
 /* 801A1D30 0019EC70  38 00 00 00 */ li r0, 0
@@ -439,7 +439,7 @@ lbl_801A1D24:
 /* 801A1D3C 0019EC7C  B0 18 00 04 */ sth r0, 4(r24)
 /* 801A1D40 0019EC80  7F 23 CB 78 */ mr r3, r25
 /* 801A1D44 0019EC84  7F 44 D3 78 */ mr r4, r26
-/* 801A1D48 0019EC88  4B FF AF 95 */ bl dKy_WolfPowerup_FogNearFar
+/* 801A1D48 0019EC88  4B FF AF 95 */ bl dKy_WolfPowerup_FogNearFar__FPfPf
 lbl_801A1D4C:
 /* 801A1D4C 0019EC8C  39 61 01 00 */ addi r11, r1, 0x100
 /* 801A1D50 0019EC90  48 1C 04 A5 */ bl _restgpr_16

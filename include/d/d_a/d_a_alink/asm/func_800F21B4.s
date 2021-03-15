@@ -6,32 +6,32 @@
 /* 800F21C8 000EF108  38 80 00 12 */ li r4, 0x12
 /* 800F21CC 000EF10C  4B FC 10 85 */ bl setDoStatus__9daAlink_cFUc
 /* 800F21D0 000EF110  7F E3 FB 78 */ mr r3, r31
-/* 800F21D4 000EF114  4B FF B8 51 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F21D4 000EF114  4B FF B8 51 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F21D8 000EF118  2C 03 00 00 */ cmpwi r3, 0
 /* 800F21DC 000EF11C  40 82 00 0C */ bne lbl_800F21E8
 /* 800F21E0 000EF120  38 60 00 01 */ li r3, 1
 /* 800F21E4 000EF124  48 00 00 54 */ b lbl_800F2238
 lbl_800F21E8:
 /* 800F21E8 000EF128  7F E3 FB 78 */ mr r3, r31
-/* 800F21EC 000EF12C  4B FF BB 81 */ bl daAlink_c_NS_checkHorseSpecialProc
+/* 800F21EC 000EF12C  4B FF BB 81 */ bl checkHorseSpecialProc__9daAlink_cFv
 /* 800F21F0 000EF130  2C 03 00 00 */ cmpwi r3, 0
 /* 800F21F4 000EF134  41 82 00 0C */ beq lbl_800F2200
 /* 800F21F8 000EF138  38 60 00 01 */ li r3, 1
 /* 800F21FC 000EF13C  48 00 00 3C */ b lbl_800F2238
 lbl_800F2200:
 /* 800F2200 000EF140  7F E3 FB 78 */ mr r3, r31
-/* 800F2204 000EF144  4B FF CB 95 */ bl daAlink_c_NS_setBaseRideAnime
+/* 800F2204 000EF144  4B FF CB 95 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2208 000EF148  7F E3 FB 78 */ mr r3, r31
-/* 800F220C 000EF14C  4B FF D2 45 */ bl daAlink_c_NS_checkNextActionHorse
+/* 800F220C 000EF14C  4B FF D2 45 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F2210 000EF150  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2214 000EF154  40 82 00 20 */ bne lbl_800F2234
 /* 800F2218 000EF158  7F E3 FB 78 */ mr r3, r31
 /* 800F221C 000EF15C  A8 9F 04 DE */ lha r4, 0x4de(r31)
-/* 800F2220 000EF160  4B FF CD 11 */ bl daAlink_c_NS_setRideSubjectAngle
+/* 800F2220 000EF160  4B FF CD 11 */ bl setRideSubjectAngle__9daAlink_cFs
 /* 800F2224 000EF164  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2228 000EF168  41 82 00 0C */ beq lbl_800F2234
 /* 800F222C 000EF16C  7F E3 FB 78 */ mr r3, r31
-/* 800F2230 000EF170  4B FE DA A9 */ bl daAlink_c_NS_setBowSight
+/* 800F2230 000EF170  4B FE DA A9 */ bl setBowSight__9daAlink_cFv
 lbl_800F2234:
 /* 800F2234 000EF174  38 60 00 01 */ li r3, 1
 lbl_800F2238:

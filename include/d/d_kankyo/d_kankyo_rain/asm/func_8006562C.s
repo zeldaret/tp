@@ -42,7 +42,7 @@
 /* 800656D0 00062610  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800656D4 00062614  82 83 5D 74 */ lwz r20, 0x5d74(r3)
 /* 800656D8 00062618  38 61 00 48 */ addi r3, r1, 0x48
-/* 800656DC 0006261C  4B FF 54 25 */ bl dKyw_get_wind_vecpow
+/* 800656DC 0006261C  4B FF 54 25 */ bl dKyw_get_wind_vecpow__Fv
 /* 800656E0 00062620  C0 01 00 48 */ lfs f0, 0x48(r1)
 /* 800656E4 00062624  D0 01 00 90 */ stfs f0, 0x90(r1)
 /* 800656E8 00062628  C0 01 00 4C */ lfs f0, 0x4c(r1)
@@ -90,7 +90,7 @@ lbl_80065714:
 lbl_8006578C:
 /* 8006578C 000626CC  38 61 00 9C */ addi r3, r1, 0x9c
 /* 80065790 000626D0  80 93 00 00 */ lwz r4, 0(r19)
-/* 80065794 000626D4  4B FF 62 91 */ bl dKyr_set_btitex
+/* 80065794 000626D4  4B FF 62 91 */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 80065798 000626D8  38 60 00 00 */ li r3, 0
 /* 8006579C 000626DC  48 2F 83 95 */ bl GXSetNumChans
 /* 800657A0 000626E0  80 01 00 14 */ lwz r0, 0x14(r1)
@@ -159,7 +159,7 @@ lbl_8006578C:
 /* 8006589C 000627DC  48 2F AD 35 */ bl GXSetClipMode
 /* 800658A0 000627E0  38 60 00 00 */ li r3, 0
 /* 800658A4 000627E4  48 2F 98 31 */ bl GXSetNumIndStages
-/* 800658A8 000627E8  4B FF D2 35 */ bl dKr_cullVtx_Set
+/* 800658A8 000627E8  4B FF D2 35 */ bl dKr_cullVtx_Set__Fv
 /* 800658AC 000627EC  38 61 00 BC */ addi r3, r1, 0xbc
 /* 800658B0 000627F0  38 80 00 5A */ li r4, 0x5a
 /* 800658B4 000627F4  C0 42 8A 60 */ lfs f2, lbl_80452460-_SDA2_BASE_(r2)
@@ -202,7 +202,7 @@ lbl_8006593C:
 /* 80065944 00062884  FC 00 B8 40 */ fcmpo cr0, f0, f23
 /* 80065948 00062888  4C 40 13 82 */ cror 2, 0, 2
 /* 8006594C 0006288C  41 82 06 50 */ beq lbl_80065F9C
-/* 80065950 00062890  48 14 6C 2D */ bl dKy_darkworld_check
+/* 80065950 00062890  48 14 6C 2D */ bl dKy_darkworld_check__Fv
 /* 80065954 00062894  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80065958 00062898  41 82 00 24 */ beq lbl_8006597C
 /* 8006595C 0006289C  C0 22 8A 80 */ lfs f1, lbl_80452480-_SDA2_BASE_(r2)
@@ -527,8 +527,8 @@ lbl_80065DFC:
 /* 80065E20 00062D60  D0 18 00 04 */ stfs f0, 4(r24)
 /* 80065E24 00062D64  D0 18 00 08 */ stfs f0, 8(r24)
 /* 80065E28 00062D68  38 79 00 30 */ addi r3, r25, 0x30
-/* 80065E2C 00062D6C  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80065E30 00062D70  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80065E2C 00062D6C  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80065E30 00062D70  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80065E34 00062D74  38 B9 00 00 */ addi r5, r25, 0
 /* 80065E38 00062D78  48 2F BD ED */ bl func_80361C24
 /* 80065E3C 00062D7C  C0 22 87 B8 */ lfs f1, lbl_804521B8-_SDA2_BASE_(r2)
@@ -540,8 +540,8 @@ lbl_80065DFC:
 /* 80065E54 00062D94  D0 18 00 10 */ stfs f0, 0x10(r24)
 /* 80065E58 00062D98  D0 18 00 14 */ stfs f0, 0x14(r24)
 /* 80065E5C 00062D9C  7E E3 BB 78 */ mr r3, r23
-/* 80065E60 00062DA0  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80065E64 00062DA4  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80065E60 00062DA0  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80065E64 00062DA4  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80065E68 00062DA8  38 B9 00 0C */ addi r5, r25, 0xc
 /* 80065E6C 00062DAC  48 2F BD B9 */ bl func_80361C24
 /* 80065E70 00062DB0  C0 22 8A B8 */ lfs f1, lbl_804524B8-_SDA2_BASE_(r2)
@@ -553,8 +553,8 @@ lbl_80065DFC:
 /* 80065E88 00062DC8  D0 18 00 1C */ stfs f0, 0x1c(r24)
 /* 80065E8C 00062DCC  D0 38 00 20 */ stfs f1, 0x20(r24)
 /* 80065E90 00062DD0  7E C3 B3 78 */ mr r3, r22
-/* 80065E94 00062DD4  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80065E98 00062DD8  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80065E94 00062DD4  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80065E98 00062DD8  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80065E9C 00062DDC  38 B9 00 18 */ addi r5, r25, 0x18
 /* 80065EA0 00062DE0  48 2F BD 85 */ bl func_80361C24
 /* 80065EA4 00062DE4  C0 22 8A 58 */ lfs f1, lbl_80452458-_SDA2_BASE_(r2)
@@ -566,8 +566,8 @@ lbl_80065DFC:
 /* 80065EBC 00062DFC  D0 18 00 28 */ stfs f0, 0x28(r24)
 /* 80065EC0 00062E00  D0 38 00 2C */ stfs f1, 0x2c(r24)
 /* 80065EC4 00062E04  7E A3 AB 78 */ mr r3, r21
-/* 80065EC8 00062E08  3C 80 80 01 */ lis r4, cXyz_NS_dtor@ha
-/* 80065ECC 00062E0C  38 84 91 84 */ addi r4, r4, cXyz_NS_dtor@l
+/* 80065EC8 00062E08  3C 80 80 01 */ lis r4, __dt__4cXyzFv@ha
+/* 80065ECC 00062E0C  38 84 91 84 */ addi r4, r4, __dt__4cXyzFv@l
 /* 80065ED0 00062E10  38 B9 00 24 */ addi r5, r25, 0x24
 /* 80065ED4 00062E14  48 2F BD 51 */ bl func_80361C24
 /* 80065ED8 00062E18  38 00 00 01 */ li r0, 1

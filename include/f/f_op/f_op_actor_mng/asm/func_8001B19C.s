@@ -40,7 +40,7 @@ lbl_8001B20C:
 /* 8001B224 00018164  39 08 61 C0 */ addi r8, r8, g_dComIfG_gameInfo@l
 /* 8001B228 00018168  81 08 5D AC */ lwz r8, 0x5dac(r8)
 /* 8001B22C 0001816C  39 40 FF FF */ li r10, -1
-/* 8001B230 00018170  48 02 64 39 */ bl dEvt_control_c_NS_order
+/* 8001B230 00018170  48 02 64 39 */ bl order__14dEvt_control_cFUsUsUsUsPvPvsUc
 lbl_8001B234:
 /* 8001B234 00018174  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001B238 00018178  7C 08 03 A6 */ mtlr r0

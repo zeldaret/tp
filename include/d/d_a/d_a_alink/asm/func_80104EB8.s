@@ -4,14 +4,14 @@
 /* 80104EC4 00101E04  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80104EC8 00101E08  7C 7F 1B 78 */ mr r31, r3
 /* 80104ECC 00101E0C  38 80 00 7E */ li r4, 0x7e
-/* 80104ED0 00101E10  4B FB DE D5 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 80104ED0 00101E10  4B FB DE D5 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80104ED4 00101E14  2C 03 00 00 */ cmpwi r3, 0
 /* 80104ED8 00101E18  40 82 00 0C */ bne lbl_80104EE4
 /* 80104EDC 00101E1C  38 60 00 00 */ li r3, 0
 /* 80104EE0 00101E20  48 00 00 D0 */ b lbl_80104FB0
 lbl_80104EE4:
 /* 80104EE4 00101E24  7F E3 FB 78 */ mr r3, r31
-/* 80104EE8 00101E28  4B FA EA 1D */ bl daAlink_c_NS_checkZeroSpeedF
+/* 80104EE8 00101E28  4B FA EA 1D */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 80104EEC 00101E2C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80104EF0 00101E30  41 82 00 10 */ beq lbl_80104F00
 /* 80104EF4 00101E34  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -20,7 +20,7 @@ lbl_80104EE4:
 lbl_80104F00:
 /* 80104F00 00101E40  7F E3 FB 78 */ mr r3, r31
 /* 80104F04 00101E44  38 80 00 00 */ li r4, 0
-/* 80104F08 00101E48  48 00 41 E5 */ bl daAlink_c_NS_initHookshotUpperAnimeSpeed
+/* 80104F08 00101E48  48 00 41 E5 */ bl initHookshotUpperAnimeSpeed__9daAlink_cFi
 /* 80104F0C 00101E4C  38 00 FF FF */ li r0, -1
 /* 80104F10 00101E50  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 80104F14 00101E54  38 00 00 05 */ li r0, 5
@@ -29,7 +29,7 @@ lbl_80104F00:
 /* 80104F20 00101E60  2C 00 00 00 */ cmpwi r0, 0
 /* 80104F24 00101E64  40 82 00 0C */ bne lbl_80104F30
 /* 80104F28 00101E68  7F E3 FB 78 */ mr r3, r31
-/* 80104F2C 00101E6C  4B FF E7 6D */ bl daAlink_c_NS_setSwimMoveAnime
+/* 80104F2C 00101E6C  4B FF E7 6D */ bl setSwimMoveAnime__9daAlink_cFv
 lbl_80104F30:
 /* 80104F30 00101E70  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 80104F34 00101E74  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
@@ -47,7 +47,7 @@ lbl_80104F4C:
 /* 80104F60 00101EA0  7F E3 FB 78 */ mr r3, r31
 /* 80104F64 00101EA4  38 A0 00 00 */ li r5, 0
 /* 80104F68 00101EA8  38 C0 00 00 */ li r6, 0
-/* 80104F6C 00101EAC  4B FA 8C 0D */ bl daAlink_c_NS_setOldRootQuaternion
+/* 80104F6C 00101EAC  4B FA 8C 0D */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 80104F70 00101EB0  38 00 00 00 */ li r0, 0
 /* 80104F74 00101EB4  B0 1F 30 80 */ sth r0, 0x3080(r31)
 lbl_80104F78:

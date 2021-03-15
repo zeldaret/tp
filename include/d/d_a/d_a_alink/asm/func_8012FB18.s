@@ -4,7 +4,7 @@
 /* 8012FB24 0012CA64  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012FB28 0012CA68  7C 7F 1B 78 */ mr r31, r3
 /* 8012FB2C 0012CA6C  38 80 01 0D */ li r4, 0x10d
-/* 8012FB30 0012CA70  4B F9 24 3D */ bl daAlink_c_NS_commonProcInit
+/* 8012FB30 0012CA70  4B F9 24 3D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012FB34 0012CA74  38 9F 1F D0 */ addi r4, r31, 0x1fd0
 /* 8012FB38 0012CA78  3C 60 80 39 */ lis r3, lbl_8038EE28@ha
 /* 8012FB3C 0012CA7C  38 E3 EE 28 */ addi r7, r3, lbl_8038EE28@l
@@ -15,7 +15,7 @@
 /* 8012FB50 0012CA90  A8 E7 00 14 */ lha r7, 0x14(r7)
 /* 8012FB54 0012CA94  C0 1F 1F E0 */ lfs f0, 0x1fe0(r31)
 /* 8012FB58 0012CA98  EC 41 00 2A */ fadds f2, f1, f0
-/* 8012FB5C 0012CA9C  4B F7 C8 39 */ bl daAlink_c_NS_setFrameCtrl
+/* 8012FB5C 0012CA9C  4B F7 C8 39 */ bl setFrameCtrl__9daAlink_cFP16daPy_frameCtrl_cUcssff
 /* 8012FB60 0012CAA0  C0 22 94 E0 */ lfs f1, lbl_80452EE0-_SDA2_BASE_(r2)
 /* 8012FB64 0012CAA4  3C 60 80 39 */ lis r3, lbl_8038EF28@ha
 /* 8012FB68 0012CAA8  38 63 EF 28 */ addi r3, r3, lbl_8038EF28@l
@@ -26,7 +26,7 @@
 /* 8012FB7C 0012CABC  98 1F 2F 99 */ stb r0, 0x2f99(r31)
 /* 8012FB80 0012CAC0  7F E3 FB 78 */ mr r3, r31
 /* 8012FB84 0012CAC4  38 80 00 02 */ li r4, 2
-/* 8012FB88 0012CAC8  4B FF 16 39 */ bl daAlink_c_NS_setFootEffectProcType
+/* 8012FB88 0012CAC8  4B FF 16 39 */ bl setFootEffectProcType__9daAlink_cFi
 /* 8012FB8C 0012CACC  38 00 00 08 */ li r0, 8
 /* 8012FB90 0012CAD0  98 1F 2F 9D */ stb r0, 0x2f9d(r31)
 /* 8012FB94 0012CAD4  38 00 00 00 */ li r0, 0

@@ -4,7 +4,7 @@
 /* 8011D6DC 0011A61C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011D6E0 0011A620  7C 7F 1B 78 */ mr r31, r3
 /* 8011D6E4 0011A624  38 80 01 58 */ li r4, 0x158
-/* 8011D6E8 0011A628  4B FA 56 BD */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011D6E8 0011A628  4B FA 56 BD */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011D6EC 0011A62C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011D6F0 0011A630  40 82 00 0C */ bne lbl_8011D6FC
 /* 8011D6F4 0011A634  38 60 00 01 */ li r3, 1
@@ -15,7 +15,7 @@ lbl_8011D6FC:
 /* 8011D704 0011A644  41 82 00 4C */ beq lbl_8011D750
 /* 8011D708 0011A648  7F E3 FB 78 */ mr r3, r31
 /* 8011D70C 0011A64C  38 80 00 89 */ li r4, 0x89
-/* 8011D710 0011A650  48 00 BF 69 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8011D710 0011A650  48 00 BF 69 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011D714 0011A654  3C 60 80 42 */ lis r3, lbl_8042561C@ha
 /* 8011D718 0011A658  C4 03 56 1C */ lfsu f0, lbl_8042561C@l(r3)
 /* 8011D71C 0011A65C  D0 1F 35 88 */ stfs f0, 0x3588(r31)
@@ -34,7 +34,7 @@ lbl_8011D6FC:
 lbl_8011D750:
 /* 8011D750 0011A690  7F E3 FB 78 */ mr r3, r31
 /* 8011D754 0011A694  38 80 01 80 */ li r4, 0x180
-/* 8011D758 0011A698  4B F8 F8 29 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011D758 0011A698  4B F8 F8 29 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011D75C 0011A69C  3C 60 80 42 */ lis r3, lbl_80425514@ha
 /* 8011D760 0011A6A0  C4 03 55 14 */ lfsu f0, lbl_80425514@l(r3)
 /* 8011D764 0011A6A4  D0 1F 35 88 */ stfs f0, 0x3588(r31)

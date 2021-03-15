@@ -11,7 +11,7 @@
 /* 80020130 0001D070  7F C5 F3 78 */ mr r5, r30
 /* 80020134 0001D074  38 C0 00 00 */ li r6, 0
 /* 80020138 0001D078  7F E7 FB 78 */ mr r7, r31
-/* 8002013C 0001D07C  48 00 3C 59 */ bl fpcSCtRq_Request
+/* 8002013C 0001D07C  48 00 3C 59 */ bl fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv
 /* 80020140 0001D080  39 61 00 20 */ addi r11, r1, 0x20
 /* 80020144 0001D084  48 34 20 E5 */ bl _restgpr_29
 /* 80020148 0001D088  80 01 00 24 */ lwz r0, 0x24(r1)

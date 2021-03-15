@@ -5,10 +5,11 @@
 #include "f/f_pc/f_pc_base.h"
 #include "global.h"
 
-extern "C" {
-
 void* fpcSch_JudgeForPName(void* pProc, void* pUserData);
 void* fpcSch_JudgeByID(void* pProc, void* pUserData);
-};
+
+extern "C" {
+void fpcSch_JudgeForPName__FPvPv(void);
+}
 
 #endif

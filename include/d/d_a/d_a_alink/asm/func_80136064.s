@@ -7,7 +7,7 @@
 /* 8013607C 00132FBC  38 A0 00 02 */ li r5, 2
 /* 80136080 00132FC0  3C C0 80 39 */ lis r6, lbl_8038F3C4@ha
 /* 80136084 00132FC4  38 C6 F3 C4 */ addi r6, r6, lbl_8038F3C4@l
-/* 80136088 00132FC8  4B F7 76 69 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 80136088 00132FC8  4B F7 76 69 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 8013608C 00132FCC  7F E3 FB 78 */ mr r3, r31
 /* 80136090 00132FD0  3C 80 00 02 */ lis r4, 0x00020014@ha
 /* 80136094 00132FD4  38 84 00 14 */ addi r4, r4, 0x00020014@l
@@ -16,10 +16,10 @@
 /* 801360A0 00132FE0  7D 89 03 A6 */ mtctr r12
 /* 801360A4 00132FE4  4E 80 04 21 */ bctrl
 /* 801360A8 00132FE8  7F E3 FB 78 */ mr r3, r31
-/* 801360AC 00132FEC  4B FA EB 29 */ bl daAlink_c_NS_freeGrabItem
+/* 801360AC 00132FEC  4B FA EB 29 */ bl freeGrabItem__9daAlink_cFv
 /* 801360B0 00132FF0  7F E3 FB 78 */ mr r3, r31
 /* 801360B4 00132FF4  38 80 00 90 */ li r4, 0x90
-/* 801360B8 00132FF8  4B F7 99 F1 */ bl daAlink_c_NS_setFacePriTexture
+/* 801360B8 00132FF8  4B F7 99 F1 */ bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 801360BC 00132FFC  7F E3 FB 78 */ mr r3, r31
 /* 801360C0 00133000  3C 80 00 01 */ lis r4, 0x00010034@ha
 /* 801360C4 00133004  38 84 00 34 */ addi r4, r4, 0x00010034@l

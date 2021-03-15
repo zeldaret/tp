@@ -49,7 +49,7 @@ lbl_80134F28:
 /* 80134F6C 00131EAC  41 82 00 14 */ beq lbl_80134F80
 /* 80134F70 00131EB0  7F E3 FB 78 */ mr r3, r31
 /* 80134F74 00131EB4  80 9F 28 10 */ lwz r4, 0x2810(r31)
-/* 80134F78 00131EB8  4B FF F0 89 */ bl daAlink_c_NS_procWolfTagJumpInit
+/* 80134F78 00131EB8  4B FF F0 89 */ bl procWolfTagJumpInit__9daAlink_cFP10fopAc_ac_c
 /* 80134F7C 00131EBC  48 00 00 BC */ b lbl_80135038
 lbl_80134F80:
 /* 80134F80 00131EC0  38 00 00 04 */ li r0, 4
@@ -66,12 +66,12 @@ lbl_80134F80:
 /* 80134FAC 00131EEC  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80134FB0 00131EF0  40 80 00 6C */ bge lbl_8013501C
 /* 80134FB4 00131EF4  7F C3 F3 78 */ mr r3, r30
-/* 80134FB8 00131EF8  48 02 95 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80134FB8 00131EF8  48 02 95 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80134FBC 00131EFC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80134FC0 00131F00  41 82 00 14 */ beq lbl_80134FD4
 /* 80134FC4 00131F04  7F E3 FB 78 */ mr r3, r31
 /* 80134FC8 00131F08  38 80 00 00 */ li r4, 0
-/* 80134FCC 00131F0C  4B FF 4B 79 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80134FCC 00131F0C  4B FF 4B 79 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80134FD0 00131F10  48 00 00 64 */ b lbl_80135034
 lbl_80134FD4:
 /* 80134FD4 00131F14  C0 3E 00 10 */ lfs f1, 0x10(r30)
@@ -82,7 +82,7 @@ lbl_80134FD4:
 /* 80134FE8 00131F28  40 81 00 18 */ ble lbl_80135000
 /* 80134FEC 00131F2C  7F E3 FB 78 */ mr r3, r31
 /* 80134FF0 00131F30  38 80 00 01 */ li r4, 1
-/* 80134FF4 00131F34  4B FF 4B 51 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80134FF4 00131F34  4B FF 4B 51 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80134FF8 00131F38  2C 03 00 00 */ cmpwi r3, 0
 /* 80134FFC 00131F3C  40 82 00 38 */ bne lbl_80135034
 lbl_80135000:
@@ -91,7 +91,7 @@ lbl_80135000:
 /* 80135008 00131F48  7F E3 FB 78 */ mr r3, r31
 /* 8013500C 00131F4C  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 80135010 00131F50  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 80135014 00131F54  4B F8 A1 B9 */ bl daAlink_c_NS_seStartMapInfoLevel
+/* 80135014 00131F54  4B F8 A1 B9 */ bl seStartMapInfoLevel__9daAlink_cFUl
 /* 80135018 00131F58  48 00 00 1C */ b lbl_80135034
 lbl_8013501C:
 /* 8013501C 00131F5C  38 00 00 78 */ li r0, 0x78
@@ -99,7 +99,7 @@ lbl_8013501C:
 /* 80135024 00131F64  7F E3 FB 78 */ mr r3, r31
 /* 80135028 00131F68  3C 80 00 03 */ lis r4, 0x00030018@ha
 /* 8013502C 00131F6C  38 84 00 18 */ addi r4, r4, 0x00030018@l
-/* 80135030 00131F70  4B F8 A1 9D */ bl daAlink_c_NS_seStartMapInfoLevel
+/* 80135030 00131F70  4B F8 A1 9D */ bl seStartMapInfoLevel__9daAlink_cFUl
 lbl_80135034:
 /* 80135034 00131F74  38 60 00 01 */ li r3, 1
 lbl_80135038:

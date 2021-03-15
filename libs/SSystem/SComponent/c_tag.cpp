@@ -2,7 +2,6 @@
 #include "SComponent/c_tag.h"
 #include "SComponent/c_tree.h"
 
-extern "C" {
 int cTg_IsUse(create_tag_class* pTag) {
     return pTag->mbIsUse;
 }
@@ -78,4 +77,3 @@ void cTg_Create(create_tag_class* pTag, void* pData) {
     pTag->mpTagData = pData;
     pTag->mbIsUse = false;
 }
-};

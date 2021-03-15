@@ -3,7 +3,7 @@
 /* 801354D0 00132410  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801354D4 00132414  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801354D8 00132418  7C 7F 1B 78 */ mr r31, r3
-/* 801354DC 0013241C  4B FF FF 7D */ bl daAlink_c_NS_setWolfHangGroundY
+/* 801354DC 0013241C  4B FF FF 7D */ bl setWolfHangGroundY__9daAlink_cFv
 /* 801354E0 00132420  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 801354E4 00132424  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 801354E8 00132428  41 82 00 2C */ beq lbl_80135514
@@ -30,7 +30,7 @@ lbl_80135520:
 /* 80135534 00132474  FC 02 00 40 */ fcmpo cr0, f2, f0
 /* 80135538 00132478  40 80 00 10 */ bge lbl_80135548
 /* 8013553C 0013247C  7F E3 FB 78 */ mr r3, r31
-/* 80135540 00132480  4B FF 9B F9 */ bl daAlink_c_NS_procWolfLandInit
+/* 80135540 00132480  4B FF 9B F9 */ bl procWolfLandInit__9daAlink_cFv
 /* 80135544 00132484  48 00 00 94 */ b lbl_801355D8
 lbl_80135548:
 /* 80135548 00132488  7F E3 FB 78 */ mr r3, r31
@@ -65,7 +65,7 @@ lbl_80135548:
 /* 801355BC 001324FC  3C A0 80 39 */ lis r5, lbl_8038F1A0@ha
 /* 801355C0 00132500  38 A5 F1 A0 */ addi r5, r5, lbl_8038F1A0@l
 /* 801355C4 00132504  C0 25 00 98 */ lfs f1, 0x98(r5)
-/* 801355C8 00132508  4B FF 98 09 */ bl daAlink_c_NS_procWolfFallInit
+/* 801355C8 00132508  4B FF 98 09 */ bl procWolfFallInit__9daAlink_cFif
 /* 801355CC 0013250C  38 60 00 01 */ li r3, 1
 /* 801355D0 00132510  48 00 00 08 */ b lbl_801355D8
 lbl_801355D4:

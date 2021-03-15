@@ -4,10 +4,10 @@
 /* 80136ED0 00133E10  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 80136ED4 00133E14  7C 7F 1B 78 */ mr r31, r3
 /* 80136ED8 00133E18  38 80 00 7E */ li r4, 0x7e
-/* 80136EDC 00133E1C  4B FF 27 9D */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 80136EDC 00133E1C  4B FF 27 9D */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 80136EE0 00133E20  7F E3 FB 78 */ mr r3, r31
 /* 80136EE4 00133E24  38 80 00 91 */ li r4, 0x91
-/* 80136EE8 00133E28  4B F7 89 B9 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 80136EE8 00133E28  4B F7 89 B9 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 80136EEC 00133E2C  7F E3 FB 78 */ mr r3, r31
 /* 80136EF0 00133E30  3C 80 00 01 */ lis r4, 0x000100AA@ha
 /* 80136EF4 00133E34  38 84 00 AA */ addi r4, r4, 0x000100AA@l
@@ -28,7 +28,7 @@
 /* 80136F30 00133E70  38 80 00 05 */ li r4, 5
 /* 80136F34 00133E74  38 A0 00 01 */ li r5, 1
 /* 80136F38 00133E78  38 C1 00 08 */ addi r6, r1, 8
-/* 80136F3C 00133E7C  4B F3 8B D5 */ bl dVibration_c_NS_StartQuake
+/* 80136F3C 00133E7C  4B F3 8B D5 */ bl StartQuake__12dVibration_cFii4cXyz
 /* 80136F40 00133E80  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 80136F44 00133E84  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 80136F48 00133E88  7C 08 03 A6 */ mtlr r0

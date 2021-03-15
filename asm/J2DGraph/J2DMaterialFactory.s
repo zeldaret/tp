@@ -3,8 +3,8 @@
 .section .text, "ax" # 802f2ad0
 
 
-.global J2DMaterialFactory
-J2DMaterialFactory:
+.global __ct__18J2DMaterialFactoryFRC16J2DMaterialBlock
+__ct__18J2DMaterialFactoryFRC16J2DMaterialBlock:
 /* 802F2AD0 002EFA10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F2AD4 002EFA14  7C 08 02 A6 */	mflr r0
 /* 802F2AD8 002EFA18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -121,8 +121,8 @@ lbl_802F2B48:
 /* 802F2C8C 002EFBCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F2C90 002EFBD0  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_countStages
-J2DMaterialFactory_NS_countStages:
+.global countStages__18J2DMaterialFactoryCFi
+countStages__18J2DMaterialFactoryCFi:
 /* 802F2C94 002EFBD4  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F2C98 002EFBD8  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F2C9C 002EFBDC  54 80 08 3C */	slwi r0, r4, 1
@@ -162,8 +162,8 @@ lbl_802F2D14:
 /* 802F2D14 002EFC54  7C C3 33 78 */	mr r3, r6
 /* 802F2D18 002EFC58  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_create
-J2DMaterialFactory_NS_create:
+.global create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive
+create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive:
 /* 802F2D1C 002EFC5C  94 21 FC 30 */	stwu r1, -0x3d0(r1)
 /* 802F2D20 002EFC60  7C 08 02 A6 */	mflr r0
 /* 802F2D24 002EFC64  90 01 03 D4 */	stw r0, 0x3d4(r1)
@@ -177,7 +177,7 @@ J2DMaterialFactory_NS_create:
 /* 802F2D44 002EFC84  7D 16 43 78 */	mr r22, r8
 /* 802F2D48 002EFC88  7D 3B 4B 78 */	mr r27, r9
 /* 802F2D4C 002EFC8C  7F A4 EB 78 */	mr r4, r29
-/* 802F2D50 002EFC90  4B FF FF 45 */	bl J2DMaterialFactory_NS_countStages
+/* 802F2D50 002EFC90  4B FF FF 45 */	bl countStages__18J2DMaterialFactoryCFi
 /* 802F2D54 002EFC94  56 64 02 DE */	rlwinm r4, r19, 0, 0xb, 0xf
 /* 802F2D58 002EFC98  56 60 86 FE */	rlwinm r0, r19, 0x10, 0x1b, 0x1f
 /* 802F2D5C 002EFC9C  7C 03 00 40 */	cmplw r3, r0
@@ -199,11 +199,11 @@ lbl_802F2D7C:
 /* 802F2D94 002EFCD4  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 802F2D98 002EFCD8  7C 93 23 78 */	mr r19, r4
 /* 802F2D9C 002EFCDC  57 83 04 3E */	clrlwi r3, r28, 0x10
-/* 802F2DA0 002EFCE0  4B FF 76 71 */	bl J2DMaterial_NS_createTevBlock
+/* 802F2DA0 002EFCE0  4B FF 76 71 */	bl createTevBlock__11J2DMaterialFib
 /* 802F2DA4 002EFCE4  90 7F 00 70 */	stw r3, 0x70(r31)
 /* 802F2DA8 002EFCE8  7E 83 A3 78 */	mr r3, r20
 /* 802F2DAC 002EFCEC  7E 64 9B 78 */	mr r4, r19
-/* 802F2DB0 002EFCF0  4B FF 78 15 */	bl J2DMaterial_NS_createIndBlock
+/* 802F2DB0 002EFCF0  4B FF 78 15 */	bl createIndBlock__11J2DMaterialFib
 /* 802F2DB4 002EFCF4  90 7F 00 74 */	stw r3, 0x74(r31)
 /* 802F2DB8 002EFCF8  B3 BF 00 0C */	sth r29, 0xc(r31)
 /* 802F2DBC 002EFCFC  80 9E 00 04 */	lwz r4, 4(r30)
@@ -215,20 +215,20 @@ lbl_802F2D7C:
 /* 802F2DD4 002EFD14  90 1F 00 08 */	stw r0, 8(r31)
 /* 802F2DD8 002EFD18  7F C3 F3 78 */	mr r3, r30
 /* 802F2DDC 002EFD1C  7F A4 EB 78 */	mr r4, r29
-/* 802F2DE0 002EFD20  48 00 08 ED */	bl J2DMaterialFactory_NS_newColorChanNum
+/* 802F2DE0 002EFD20  48 00 08 ED */	bl newColorChanNum__18J2DMaterialFactoryCFi
 /* 802F2DE4 002EFD24  98 7F 00 18 */	stb r3, 0x18(r31)
 /* 802F2DE8 002EFD28  7F C3 F3 78 */	mr r3, r30
 /* 802F2DEC 002EFD2C  7F A4 EB 78 */	mr r4, r29
-/* 802F2DF0 002EFD30  48 00 0A F1 */	bl J2DMaterialFactory_NS_newCullMode
+/* 802F2DF0 002EFD30  48 00 0A F1 */	bl newCullMode__18J2DMaterialFactoryCFi
 /* 802F2DF4 002EFD34  98 7F 00 22 */	stb r3, 0x22(r31)
 /* 802F2DF8 002EFD38  7F C3 F3 78 */	mr r3, r30
 /* 802F2DFC 002EFD3C  7F A4 EB 78 */	mr r4, r29
-/* 802F2E00 002EFD40  48 00 09 59 */	bl J2DMaterialFactory_NS_newTexGenNum
+/* 802F2E00 002EFD40  48 00 09 59 */	bl newTexGenNum__18J2DMaterialFactoryCFi
 /* 802F2E04 002EFD44  90 7F 00 28 */	stw r3, 0x28(r31)
 /* 802F2E08 002EFD48  38 61 00 4C */	addi r3, r1, 0x4c
 /* 802F2E0C 002EFD4C  7F C4 F3 78 */	mr r4, r30
 /* 802F2E10 002EFD50  7F A5 EB 78 */	mr r5, r29
-/* 802F2E14 002EFD54  48 00 11 CD */	bl J2DMaterialFactory_NS_newAlphaComp
+/* 802F2E14 002EFD54  48 00 11 CD */	bl newAlphaComp__18J2DMaterialFactoryCFi
 /* 802F2E18 002EFD58  80 01 00 4C */	lwz r0, 0x4c(r1)
 /* 802F2E1C 002EFD5C  90 01 00 50 */	stw r0, 0x50(r1)
 /* 802F2E20 002EFD60  A0 01 00 50 */	lhz r0, 0x50(r1)
@@ -240,7 +240,7 @@ lbl_802F2D7C:
 /* 802F2E38 002EFD78  38 61 00 44 */	addi r3, r1, 0x44
 /* 802F2E3C 002EFD7C  7F C4 F3 78 */	mr r4, r30
 /* 802F2E40 002EFD80  7F A5 EB 78 */	mr r5, r29
-/* 802F2E44 002EFD84  48 00 12 19 */	bl J2DMaterialFactory_NS_newBlend
+/* 802F2E44 002EFD84  48 00 12 19 */	bl newBlend__18J2DMaterialFactoryCFi
 /* 802F2E48 002EFD88  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 802F2E4C 002EFD8C  90 01 00 48 */	stw r0, 0x48(r1)
 /* 802F2E50 002EFD90  88 01 00 48 */	lbz r0, 0x48(r1)
@@ -253,12 +253,12 @@ lbl_802F2D7C:
 /* 802F2E6C 002EFDAC  98 1F 00 7F */	stb r0, 0x7f(r31)
 /* 802F2E70 002EFDB0  7F C3 F3 78 */	mr r3, r30
 /* 802F2E74 002EFDB4  7F A4 EB 78 */	mr r4, r29
-/* 802F2E78 002EFDB8  48 00 12 61 */	bl J2DMaterialFactory_NS_newDither
+/* 802F2E78 002EFDB8  48 00 12 61 */	bl newDither__18J2DMaterialFactoryCFi
 /* 802F2E7C 002EFDBC  98 7F 00 80 */	stb r3, 0x80(r31)
 /* 802F2E80 002EFDC0  82 7F 00 70 */	lwz r19, 0x70(r31)
 /* 802F2E84 002EFDC4  7F C3 F3 78 */	mr r3, r30
 /* 802F2E88 002EFDC8  7F A4 EB 78 */	mr r4, r29
-/* 802F2E8C 002EFDCC  48 00 0C C9 */	bl J2DMaterialFactory_NS_newTevStageNum
+/* 802F2E8C 002EFDCC  48 00 0C C9 */	bl newTevStageNum__18J2DMaterialFactoryCFi
 /* 802F2E90 002EFDD0  7C 64 1B 78 */	mr r4, r3
 /* 802F2E94 002EFDD4  7E 63 9B 78 */	mr r3, r19
 /* 802F2E98 002EFDD8  81 93 00 00 */	lwz r12, 0(r19)
@@ -279,11 +279,11 @@ lbl_802F2D7C:
 lbl_802F2ED4:
 /* 802F2ED4 002EFE14  7F C3 F3 78 */	mr r3, r30
 /* 802F2ED8 002EFE18  7F A4 EB 78 */	mr r4, r29
-/* 802F2EDC 002EFE1C  48 00 0A 45 */	bl J2DMaterialFactory_NS_newTexNo
+/* 802F2EDC 002EFE1C  48 00 0A 45 */	bl newTexNo__18J2DMaterialFactoryCFii
 /* 802F2EE0 002EFE20  7C 75 1B 78 */	mr r21, r3
 /* 802F2EE4 002EFE24  7F 03 C3 78 */	mr r3, r24
 /* 802F2EE8 002EFE28  7E A4 AB 78 */	mr r4, r21
-/* 802F2EEC 002EFE2C  48 01 A0 25 */	bl J2DResReference_NS_getResReference
+/* 802F2EEC 002EFE2C  48 01 A0 25 */	bl getResReference__15J2DResReferenceCFUs
 /* 802F2EF0 002EFE30  7C 73 1B 79 */	or. r19, r3, r3
 /* 802F2EF4 002EFE34  38 A0 00 00 */	li r5, 0
 /* 802F2EF8 002EFE38  41 82 00 84 */	beq lbl_802F2F7C
@@ -292,7 +292,7 @@ lbl_802F2ED4:
 /* 802F2F04 002EFE44  3C A0 54 49 */	lis r5, 0x54494D47@ha
 /* 802F2F08 002EFE48  38 A5 4D 47 */	addi r5, r5, 0x54494D47@l
 /* 802F2F0C 002EFE4C  7F 66 DB 78 */	mr r6, r27
-/* 802F2F10 002EFE50  4B FE B2 11 */	bl JUTResReference_NS_getResource_X1_
+/* 802F2F10 002EFE50  4B FE B2 11 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F2F14 002EFE54  7C 65 1B 79 */	or. r5, r3, r3
 /* 802F2F18 002EFE58  40 82 00 28 */	bne lbl_802F2F40
 /* 802F2F1C 002EFE5C  28 1B 00 00 */	cmplwi r27, 0
@@ -302,7 +302,7 @@ lbl_802F2ED4:
 /* 802F2F2C 002EFE6C  3C A0 54 49 */	lis r5, 0x54494D47@ha
 /* 802F2F30 002EFE70  38 A5 4D 47 */	addi r5, r5, 0x54494D47@l
 /* 802F2F34 002EFE74  38 C0 00 00 */	li r6, 0
-/* 802F2F38 002EFE78  4B FE B1 E9 */	bl JUTResReference_NS_getResource_X1_
+/* 802F2F38 002EFE78  4B FE B1 E9 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F2F3C 002EFE7C  7C 65 1B 78 */	mr r5, r3
 lbl_802F2F40:
 /* 802F2F40 002EFE80  28 05 00 00 */	cmplwi r5, 0
@@ -312,13 +312,13 @@ lbl_802F2F40:
 /* 802F2F50 002EFE90  41 82 00 2C */	beq lbl_802F2F7C
 /* 802F2F54 002EFE94  7F 03 C3 78 */	mr r3, r24
 /* 802F2F58 002EFE98  7E A4 AB 78 */	mr r4, r21
-/* 802F2F5C 002EFE9C  48 01 9F E9 */	bl J2DResReference_NS_getName
+/* 802F2F5C 002EFE9C  48 01 9F E9 */	bl getName__15J2DResReferenceCFUs
 /* 802F2F60 002EFEA0  7C 64 1B 78 */	mr r4, r3
 /* 802F2F64 002EFEA4  38 61 01 90 */	addi r3, r1, 0x190
 /* 802F2F68 002EFEA8  48 07 5B C5 */	bl strcpy
 /* 802F2F6C 002EFEAC  80 6D 90 10 */	lwz r3, lbl_80451590-_SDA_BASE_(r13)
 /* 802F2F70 002EFEB0  38 81 01 90 */	addi r4, r1, 0x190
-/* 802F2F74 002EFEB4  48 01 9E A5 */	bl J2DDataManage_NS_get
+/* 802F2F74 002EFEB4  48 01 9E A5 */	bl get__13J2DDataManageFPCc
 /* 802F2F78 002EFEB8  7C 65 1B 78 */	mr r5, r3
 lbl_802F2F7C:
 /* 802F2F7C 002EFEBC  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -342,7 +342,7 @@ lbl_802F2FB8:
 /* 802F2FC0 002EFF00  41 80 FF 14 */	blt lbl_802F2ED4
 /* 802F2FC4 002EFF04  7F C3 F3 78 */	mr r3, r30
 /* 802F2FC8 002EFF08  7F A4 EB 78 */	mr r4, r29
-/* 802F2FCC 002EFF0C  48 00 09 9D */	bl J2DMaterialFactory_NS_newFontNo
+/* 802F2FCC 002EFF0C  48 00 09 9D */	bl newFontNo__18J2DMaterialFactoryCFi
 /* 802F2FD0 002EFF10  7C 64 1B 78 */	mr r4, r3
 /* 802F2FD4 002EFF14  80 7F 00 70 */	lwz r3, 0x70(r31)
 /* 802F2FD8 002EFF18  81 83 00 00 */	lwz r12, 0(r3)
@@ -356,7 +356,7 @@ lbl_802F2FB8:
 /* 802F2FF8 002EFF38  4E 80 04 21 */	bctrl 
 /* 802F2FFC 002EFF3C  7C 64 1B 78 */	mr r4, r3
 /* 802F3000 002EFF40  7E C3 B3 78 */	mr r3, r22
-/* 802F3004 002EFF44  48 01 9F 0D */	bl J2DResReference_NS_getResReference
+/* 802F3004 002EFF44  48 01 9F 0D */	bl getResReference__15J2DResReferenceCFUs
 /* 802F3008 002EFF48  7C 73 1B 79 */	or. r19, r3, r3
 /* 802F300C 002EFF4C  38 80 00 00 */	li r4, 0
 /* 802F3010 002EFF50  41 82 00 98 */	beq lbl_802F30A8
@@ -365,7 +365,7 @@ lbl_802F2FB8:
 /* 802F301C 002EFF5C  3C A0 46 4F */	lis r5, 0x464F4E54@ha
 /* 802F3020 002EFF60  38 A5 4E 54 */	addi r5, r5, 0x464F4E54@l
 /* 802F3024 002EFF64  7F 66 DB 78 */	mr r6, r27
-/* 802F3028 002EFF68  4B FE B0 F9 */	bl JUTResReference_NS_getResource_X1_
+/* 802F3028 002EFF68  4B FE B0 F9 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F302C 002EFF6C  7C 64 1B 79 */	or. r4, r3, r3
 /* 802F3030 002EFF70  40 82 00 28 */	bne lbl_802F3058
 /* 802F3034 002EFF74  28 1B 00 00 */	cmplwi r27, 0
@@ -375,7 +375,7 @@ lbl_802F2FB8:
 /* 802F3044 002EFF84  3C A0 46 4F */	lis r5, 0x464F4E54@ha
 /* 802F3048 002EFF88  38 A5 4E 54 */	addi r5, r5, 0x464F4E54@l
 /* 802F304C 002EFF8C  38 C0 00 00 */	li r6, 0
-/* 802F3050 002EFF90  4B FE B0 D1 */	bl JUTResReference_NS_getResource_X1_
+/* 802F3050 002EFF90  4B FE B0 D1 */	bl getResource__15JUTResReferenceFPCvUlP10JKRArchive
 /* 802F3054 002EFF94  7C 64 1B 78 */	mr r4, r3
 lbl_802F3058:
 /* 802F3058 002EFF98  28 04 00 00 */	cmplwi r4, 0
@@ -390,13 +390,13 @@ lbl_802F3058:
 /* 802F307C 002EFFBC  4E 80 04 21 */	bctrl 
 /* 802F3080 002EFFC0  7C 64 1B 78 */	mr r4, r3
 /* 802F3084 002EFFC4  7E C3 B3 78 */	mr r3, r22
-/* 802F3088 002EFFC8  48 01 9E BD */	bl J2DResReference_NS_getName
+/* 802F3088 002EFFC8  48 01 9E BD */	bl getName__15J2DResReferenceCFUs
 /* 802F308C 002EFFCC  7C 64 1B 78 */	mr r4, r3
 /* 802F3090 002EFFD0  38 61 00 8C */	addi r3, r1, 0x8c
 /* 802F3094 002EFFD4  48 07 5A 99 */	bl strcpy
 /* 802F3098 002EFFD8  80 6D 90 10 */	lwz r3, lbl_80451590-_SDA_BASE_(r13)
 /* 802F309C 002EFFDC  38 81 00 8C */	addi r4, r1, 0x8c
-/* 802F30A0 002EFFE0  48 01 9D 79 */	bl J2DDataManage_NS_get
+/* 802F30A0 002EFFE0  48 01 9D 79 */	bl get__13J2DDataManageFPCc
 /* 802F30A4 002EFFE4  7C 64 1B 78 */	mr r4, r3
 lbl_802F30A8:
 /* 802F30A8 002EFFE8  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -410,7 +410,7 @@ lbl_802F30C4:
 /* 802F30C4 002F0004  38 61 00 3C */	addi r3, r1, 0x3c
 /* 802F30C8 002F0008  7F C4 F3 78 */	mr r4, r30
 /* 802F30CC 002F000C  7F A5 EB 78 */	mr r5, r29
-/* 802F30D0 002F0010  48 00 08 D9 */	bl J2DMaterialFactory_NS_newTevOrder
+/* 802F30D0 002F0010  48 00 08 D9 */	bl newTevOrder__18J2DMaterialFactoryCFii
 /* 802F30D4 002F0014  80 01 00 3C */	lwz r0, 0x3c(r1)
 /* 802F30D8 002F0018  90 01 00 40 */	stw r0, 0x40(r1)
 /* 802F30DC 002F001C  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -436,7 +436,7 @@ lbl_802F3118:
 /* 802F3124 002F0064  38 61 00 60 */	addi r3, r1, 0x60
 /* 802F3128 002F0068  7F C4 F3 78 */	mr r4, r30
 /* 802F312C 002F006C  7F A5 EB 78 */	mr r5, r29
-/* 802F3130 002F0070  48 00 0A 5D */	bl J2DMaterialFactory_NS_newTevStage
+/* 802F3130 002F0070  48 00 0A 5D */	bl newTevStage__18J2DMaterialFactoryCFii
 /* 802F3134 002F0074  80 61 00 60 */	lwz r3, 0x60(r1)
 /* 802F3138 002F0078  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 802F313C 002F007C  90 61 00 68 */	stw r3, 0x68(r1)
@@ -496,7 +496,7 @@ lbl_802F3204:
 /* 802F3208 002F0148  7F C4 F3 78 */	mr r4, r30
 /* 802F320C 002F014C  7F A5 EB 78 */	mr r5, r29
 /* 802F3210 002F0150  56 66 06 3E */	clrlwi r6, r19, 0x18
-/* 802F3214 002F0154  48 00 08 A1 */	bl J2DMaterialFactory_NS_newTevKColor
+/* 802F3214 002F0154  48 00 08 A1 */	bl newTevKColor__18J2DMaterialFactoryCFii
 /* 802F3218 002F0158  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 802F321C 002F015C  90 01 00 38 */	stw r0, 0x38(r1)
 /* 802F3220 002F0160  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -519,7 +519,7 @@ lbl_802F3254:
 /* 802F325C 002F019C  7F C4 F3 78 */	mr r4, r30
 /* 802F3260 002F01A0  7F A5 EB 78 */	mr r5, r29
 /* 802F3264 002F01A4  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F3268 002F01A8  48 00 07 B5 */	bl J2DMaterialFactory_NS_newTevColor
+/* 802F3268 002F01A8  48 00 07 B5 */	bl newTevColor__18J2DMaterialFactoryCFii
 /* 802F326C 002F01AC  7E 63 9B 78 */	mr r3, r19
 /* 802F3270 002F01B0  56 A4 06 3E */	clrlwi r4, r21, 0x18
 /* 802F3274 002F01B4  38 A1 00 58 */	addi r5, r1, 0x58
@@ -539,7 +539,7 @@ lbl_802F32A0:
 /* 802F32A4 002F01E4  7F C4 F3 78 */	mr r4, r30
 /* 802F32A8 002F01E8  7F A5 EB 78 */	mr r5, r29
 /* 802F32AC 002F01EC  56 66 06 3E */	clrlwi r6, r19, 0x18
-/* 802F32B0 002F01F0  48 00 09 3D */	bl J2DMaterialFactory_NS_newTevSwapModeTable
+/* 802F32B0 002F01F0  48 00 09 3D */	bl newTevSwapModeTable__18J2DMaterialFactoryCFii
 /* 802F32B4 002F01F4  88 01 00 08 */	lbz r0, 8(r1)
 /* 802F32B8 002F01F8  98 01 00 0C */	stb r0, 0xc(r1)
 /* 802F32BC 002F01FC  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -562,7 +562,7 @@ lbl_802F32F4:
 /* 802F32F8 002F0238  7F C4 F3 78 */	mr r4, r30
 /* 802F32FC 002F023C  7F A5 EB 78 */	mr r5, r29
 /* 802F3300 002F0240  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F3304 002F0244  48 00 03 29 */	bl J2DMaterialFactory_NS_newMatColor
+/* 802F3304 002F0244  48 00 03 29 */	bl newMatColor__18J2DMaterialFactoryCFii
 /* 802F3308 002F0248  80 01 00 2C */	lwz r0, 0x2c(r1)
 /* 802F330C 002F024C  90 01 00 30 */	stw r0, 0x30(r1)
 /* 802F3310 002F0250  88 61 00 30 */	lbz r3, 0x30(r1)
@@ -588,7 +588,7 @@ lbl_802F3354:
 /* 802F3358 002F0298  7F C4 F3 78 */	mr r4, r30
 /* 802F335C 002F029C  7F A5 EB 78 */	mr r5, r29
 /* 802F3360 002F02A0  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F3364 002F02A4  48 00 03 A1 */	bl J2DMaterialFactory_NS_newColorChan
+/* 802F3364 002F02A4  48 00 03 A1 */	bl newColorChan__18J2DMaterialFactoryCFii
 /* 802F3368 002F02A8  A0 81 00 1C */	lhz r4, 0x1c(r1)
 /* 802F336C 002F02AC  56 A3 0D FC */	rlwinm r3, r21, 1, 0x17, 0x1e
 /* 802F3370 002F02B0  38 03 00 0A */	addi r0, r3, 0xa
@@ -606,7 +606,7 @@ lbl_802F3394:
 /* 802F3398 002F02D8  7F C4 F3 78 */	mr r4, r30
 /* 802F339C 002F02DC  7F A5 EB 78 */	mr r5, r29
 /* 802F33A0 002F02E0  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F33A4 002F02E4  48 00 03 ED */	bl J2DMaterialFactory_NS_newTexCoord
+/* 802F33A4 002F02E4  48 00 03 ED */	bl newTexCoord__18J2DMaterialFactoryCFii
 /* 802F33A8 002F02E8  80 01 00 28 */	lwz r0, 0x28(r1)
 /* 802F33AC 002F02EC  90 01 00 54 */	stw r0, 0x54(r1)
 /* 802F33B0 002F02F0  88 61 00 54 */	lbz r3, 0x54(r1)
@@ -629,7 +629,7 @@ lbl_802F33EC:
 /* 802F33EC 002F032C  7F C3 F3 78 */	mr r3, r30
 /* 802F33F0 002F0330  7F A4 EB 78 */	mr r4, r29
 /* 802F33F4 002F0334  56 A5 06 3E */	clrlwi r5, r21, 0x18
-/* 802F33F8 002F0338  48 00 04 0D */	bl J2DMaterialFactory_NS_newTexMtx
+/* 802F33F8 002F0338  48 00 04 0D */	bl newTexMtx__18J2DMaterialFactoryCFii
 /* 802F33FC 002F033C  56 A4 15 BA */	rlwinm r4, r21, 2, 0x16, 0x1d
 /* 802F3400 002F0340  38 04 00 24 */	addi r0, r4, 0x24
 /* 802F3404 002F0344  7C 73 01 2E */	stwx r3, r19, r0
@@ -683,7 +683,7 @@ lbl_802F3490:
 lbl_802F34B0:
 /* 802F34B0 002F03F0  7F C3 F3 78 */	mr r3, r30
 /* 802F34B4 002F03F4  7F A4 EB 78 */	mr r4, r29
-/* 802F34B8 002F03F8  48 00 07 D1 */	bl J2DMaterialFactory_NS_newIndTexStageNum
+/* 802F34B8 002F03F8  48 00 07 D1 */	bl newIndTexStageNum__18J2DMaterialFactoryCFi
 /* 802F34BC 002F03FC  7C 73 1B 78 */	mr r19, r3
 /* 802F34C0 002F0400  80 7F 00 74 */	lwz r3, 0x74(r31)
 /* 802F34C4 002F0404  7E 64 9B 78 */	mr r4, r19
@@ -699,7 +699,7 @@ lbl_802F34E4:
 /* 802F34E8 002F0428  7F C4 F3 78 */	mr r4, r30
 /* 802F34EC 002F042C  7F A5 EB 78 */	mr r5, r29
 /* 802F34F0 002F0430  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F34F4 002F0434  48 00 08 2D */	bl J2DMaterialFactory_NS_newIndTexMtx
+/* 802F34F4 002F0434  48 00 08 2D */	bl newIndTexMtx__18J2DMaterialFactoryCFii
 /* 802F34F8 002F0438  80 7F 00 74 */	lwz r3, 0x74(r31)
 /* 802F34FC 002F043C  56 A4 06 3E */	clrlwi r4, r21, 0x18
 /* 802F3500 002F0440  38 A1 00 70 */	addi r5, r1, 0x70
@@ -720,7 +720,7 @@ lbl_802F3530:
 /* 802F3534 002F0474  7F C4 F3 78 */	mr r4, r30
 /* 802F3538 002F0478  7F A5 EB 78 */	mr r5, r29
 /* 802F353C 002F047C  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F3540 002F0480  48 00 07 79 */	bl J2DMaterialFactory_NS_newIndTexOrder
+/* 802F3540 002F0480  48 00 07 79 */	bl newIndTexOrder__18J2DMaterialFactoryCFii
 /* 802F3544 002F0484  A0 01 00 14 */	lhz r0, 0x14(r1)
 /* 802F3548 002F0488  B0 01 00 18 */	sth r0, 0x18(r1)
 /* 802F354C 002F048C  80 7F 00 74 */	lwz r3, 0x74(r31)
@@ -743,7 +743,7 @@ lbl_802F3584:
 /* 802F3588 002F04C8  7F C4 F3 78 */	mr r4, r30
 /* 802F358C 002F04CC  7F A5 EB 78 */	mr r5, r29
 /* 802F3590 002F04D0  56 A6 06 3E */	clrlwi r6, r21, 0x18
-/* 802F3594 002F04D4  48 00 09 E5 */	bl J2DMaterialFactory_NS_newIndTexCoordScale
+/* 802F3594 002F04D4  48 00 09 E5 */	bl newIndTexCoordScale__18J2DMaterialFactoryCFii
 /* 802F3598 002F04D8  80 7F 00 74 */	lwz r3, 0x74(r31)
 /* 802F359C 002F04DC  56 A4 06 3E */	clrlwi r4, r21, 0x18
 /* 802F35A0 002F04E0  38 A1 00 10 */	addi r5, r1, 0x10
@@ -762,7 +762,7 @@ lbl_802F35CC:
 /* 802F35CC 002F050C  38 61 00 20 */	addi r3, r1, 0x20
 /* 802F35D0 002F0510  7F C4 F3 78 */	mr r4, r30
 /* 802F35D4 002F0514  7F A5 EB 78 */	mr r5, r29
-/* 802F35D8 002F0518  48 00 08 4D */	bl J2DMaterialFactory_NS_newIndTevStage
+/* 802F35D8 002F0518  48 00 08 4D */	bl newIndTevStage__18J2DMaterialFactoryCFii
 /* 802F35DC 002F051C  80 01 00 20 */	lwz r0, 0x20(r1)
 /* 802F35E0 002F0520  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802F35E4 002F0524  80 7F 00 70 */	lwz r3, 0x70(r31)
@@ -786,8 +786,8 @@ lbl_802F3610:
 /* 802F3624 002F0564  38 21 03 D0 */	addi r1, r1, 0x3d0
 /* 802F3628 002F0568  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newMatColor
-J2DMaterialFactory_NS_newMatColor:
+.global newMatColor__18J2DMaterialFactoryCFii
+newMatColor__18J2DMaterialFactoryCFii:
 /* 802F362C 002F056C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F3630 002F0570  80 02 C7 C0 */	lwz r0, lbl_804561C0-_SDA2_BASE_(r2)
 /* 802F3634 002F0574  90 01 00 10 */	stw r0, 0x10(r1)
@@ -831,8 +831,8 @@ lbl_802F36C4:
 /* 802F36C4 002F0604  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F36C8 002F0608  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newColorChanNum
-J2DMaterialFactory_NS_newColorChanNum:
+.global newColorChanNum__18J2DMaterialFactoryCFi
+newColorChanNum__18J2DMaterialFactoryCFi:
 /* 802F36CC 002F060C  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F36D0 002F0610  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F36D4 002F0614  54 80 08 3C */	slwi r0, r4, 1
@@ -849,8 +849,8 @@ lbl_802F36FC:
 /* 802F36FC 002F063C  38 60 00 00 */	li r3, 0
 /* 802F3700 002F0640  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newColorChan
-J2DMaterialFactory_NS_newColorChan:
+.global newColorChan__18J2DMaterialFactoryCFii
+newColorChan__18J2DMaterialFactoryCFii:
 /* 802F3704 002F0644  81 04 00 04 */	lwz r8, 4(r4)
 /* 802F3708 002F0648  80 E4 00 08 */	lwz r7, 8(r4)
 /* 802F370C 002F064C  54 A0 08 3C */	slwi r0, r5, 1
@@ -874,8 +874,8 @@ lbl_802F3748:
 /* 802F3750 002F0690  B0 03 00 00 */	sth r0, 0(r3)
 /* 802F3754 002F0694  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTexGenNum
-J2DMaterialFactory_NS_newTexGenNum:
+.global newTexGenNum__18J2DMaterialFactoryCFi
+newTexGenNum__18J2DMaterialFactoryCFi:
 /* 802F3758 002F0698  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F375C 002F069C  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F3760 002F06A0  54 80 08 3C */	slwi r0, r4, 1
@@ -892,8 +892,8 @@ lbl_802F3788:
 /* 802F3788 002F06C8  38 60 00 00 */	li r3, 0
 /* 802F378C 002F06CC  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTexCoord
-J2DMaterialFactory_NS_newTexCoord:
+.global newTexCoord__18J2DMaterialFactoryCFii
+newTexCoord__18J2DMaterialFactoryCFii:
 /* 802F3790 002F06D0  81 04 00 04 */	lwz r8, 4(r4)
 /* 802F3794 002F06D4  80 E4 00 08 */	lwz r7, 8(r4)
 /* 802F3798 002F06D8  54 A0 08 3C */	slwi r0, r5, 1
@@ -925,8 +925,8 @@ lbl_802F37E4:
 /* 802F37FC 002F073C  98 03 00 02 */	stb r0, 2(r3)
 /* 802F3800 002F0740  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTexMtx
-J2DMaterialFactory_NS_newTexMtx:
+.global newTexMtx__18J2DMaterialFactoryCFii
+newTexMtx__18J2DMaterialFactoryCFii:
 /* 802F3804 002F0744  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F3808 002F0748  7C 08 02 A6 */	mflr r0
 /* 802F380C 002F074C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -975,7 +975,7 @@ J2DMaterialFactory_NS_newTexMtx:
 /* 802F38B8 002F07F8  D0 03 00 20 */	stfs f0, 0x20(r3)
 lbl_802F38BC:
 /* 802F38BC 002F07FC  7C 7E 1B 78 */	mr r30, r3
-/* 802F38C0 002F0800  4B FF 64 05 */	bl J2DTexMtx_NS_calc
+/* 802F38C0 002F0800  4B FF 64 05 */	bl calc__9J2DTexMtxFv
 lbl_802F38C4:
 /* 802F38C4 002F0804  7F C3 F3 78 */	mr r3, r30
 /* 802F38C8 002F0808  39 61 00 20 */	addi r11, r1, 0x20
@@ -985,8 +985,8 @@ lbl_802F38C4:
 /* 802F38D8 002F0818  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F38DC 002F081C  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newCullMode
-J2DMaterialFactory_NS_newCullMode:
+.global newCullMode__18J2DMaterialFactoryCFi
+newCullMode__18J2DMaterialFactoryCFi:
 /* 802F38E0 002F0820  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F38E4 002F0824  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F38E8 002F0828  54 80 08 3C */	slwi r0, r4, 1
@@ -1005,8 +1005,8 @@ lbl_802F3918:
 /* 802F3918 002F0858  38 60 00 FF */	li r3, 0xff
 /* 802F391C 002F085C  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTexNo
-J2DMaterialFactory_NS_newTexNo:
+.global newTexNo__18J2DMaterialFactoryCFii
+newTexNo__18J2DMaterialFactoryCFii:
 /* 802F3920 002F0860  80 E3 00 04 */	lwz r7, 4(r3)
 /* 802F3924 002F0864  80 C3 00 08 */	lwz r6, 8(r3)
 /* 802F3928 002F0868  54 80 08 3C */	slwi r0, r4, 1
@@ -1027,8 +1027,8 @@ lbl_802F395C:
 /* 802F3960 002F08A0  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 802F3964 002F08A4  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newFontNo
-J2DMaterialFactory_NS_newFontNo:
+.global newFontNo__18J2DMaterialFactoryCFi
+newFontNo__18J2DMaterialFactoryCFi:
 /* 802F3968 002F08A8  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F396C 002F08AC  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F3970 002F08B0  54 80 08 3C */	slwi r0, r4, 1
@@ -1047,8 +1047,8 @@ lbl_802F399C:
 /* 802F39A0 002F08E0  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 802F39A4 002F08E4  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevOrder
-J2DMaterialFactory_NS_newTevOrder:
+.global newTevOrder__18J2DMaterialFactoryCFii
+newTevOrder__18J2DMaterialFactoryCFii:
 /* 802F39A8 002F08E8  81 04 00 04 */	lwz r8, 4(r4)
 /* 802F39AC 002F08EC  80 E4 00 08 */	lwz r7, 8(r4)
 /* 802F39B0 002F08F0  54 A0 08 3C */	slwi r0, r5, 1
@@ -1080,8 +1080,8 @@ lbl_802F39FC:
 /* 802F3A14 002F0954  98 03 00 02 */	stb r0, 2(r3)
 /* 802F3A18 002F0958  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevColor
-J2DMaterialFactory_NS_newTevColor:
+.global newTevColor__18J2DMaterialFactoryCFii
+newTevColor__18J2DMaterialFactoryCFii:
 /* 802F3A1C 002F095C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3A20 002F0960  80 E2 D1 B0 */	lwz r7, lbl_80456BB0-_SDA2_BASE_(r2)
 /* 802F3A24 002F0964  80 02 D1 B4 */	lwz r0, lbl_80456BB4-_SDA2_BASE_(r2)
@@ -1123,8 +1123,8 @@ lbl_802F3AAC:
 /* 802F3AAC 002F09EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3AB0 002F09F0  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevKColor
-J2DMaterialFactory_NS_newTevKColor:
+.global newTevKColor__18J2DMaterialFactoryCFii
+newTevKColor__18J2DMaterialFactoryCFii:
 /* 802F3AB4 002F09F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F3AB8 002F09F8  80 02 C7 C4 */	lwz r0, lbl_804561C4-_SDA2_BASE_(r2)
 /* 802F3ABC 002F09FC  90 01 00 10 */	stw r0, 0x10(r1)
@@ -1168,8 +1168,8 @@ lbl_802F3B4C:
 /* 802F3B4C 002F0A8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F3B50 002F0A90  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevStageNum
-J2DMaterialFactory_NS_newTevStageNum:
+.global newTevStageNum__18J2DMaterialFactoryCFi
+newTevStageNum__18J2DMaterialFactoryCFi:
 /* 802F3B54 002F0A94  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F3B58 002F0A98  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F3B5C 002F0A9C  54 80 08 3C */	slwi r0, r4, 1
@@ -1186,8 +1186,8 @@ lbl_802F3B84:
 /* 802F3B84 002F0AC4  38 60 00 FF */	li r3, 0xff
 /* 802F3B88 002F0AC8  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevStage
-J2DMaterialFactory_NS_newTevStage:
+.global newTevStage__18J2DMaterialFactoryCFii
+newTevStage__18J2DMaterialFactoryCFii:
 /* 802F3B8C 002F0ACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3B90 002F0AD0  7C 08 02 A6 */	mflr r0
 /* 802F3B94 002F0AD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1205,18 +1205,18 @@ J2DMaterialFactory_NS_newTevStage:
 /* 802F3BC4 002F0B04  80 84 00 44 */	lwz r4, 0x44(r4)
 /* 802F3BC8 002F0B08  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 802F3BCC 002F0B0C  7C 84 02 14 */	add r4, r4, r0
-/* 802F3BD0 002F0B10  48 00 05 41 */	bl J2DTevStage_X1_
+/* 802F3BD0 002F0B10  48 00 05 41 */	bl __ct__11J2DTevStageFRC15J2DTevStageInfo
 /* 802F3BD4 002F0B14  48 00 00 08 */	b lbl_802F3BDC
 lbl_802F3BD8:
-/* 802F3BD8 002F0B18  4B FF DD 69 */	bl J2DTevStage
+/* 802F3BD8 002F0B18  4B FF DD 69 */	bl __ct__11J2DTevStageFv
 lbl_802F3BDC:
 /* 802F3BDC 002F0B1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802F3BE0 002F0B20  7C 08 03 A6 */	mtlr r0
 /* 802F3BE4 002F0B24  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3BE8 002F0B28  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newTevSwapModeTable
-J2DMaterialFactory_NS_newTevSwapModeTable:
+.global newTevSwapModeTable__18J2DMaterialFactoryCFii
+newTevSwapModeTable__18J2DMaterialFactoryCFii:
 /* 802F3BEC 002F0B2C  81 04 00 04 */	lwz r8, 4(r4)
 /* 802F3BF0 002F0B30  80 E4 00 08 */	lwz r7, 8(r4)
 /* 802F3BF4 002F0B34  54 A0 08 3C */	slwi r0, r5, 1
@@ -1258,8 +1258,8 @@ lbl_802F3C54:
 /* 802F3C80 002F0BC0  98 03 00 00 */	stb r0, 0(r3)
 /* 802F3C84 002F0BC4  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newIndTexStageNum
-J2DMaterialFactory_NS_newIndTexStageNum:
+.global newIndTexStageNum__18J2DMaterialFactoryCFi
+newIndTexStageNum__18J2DMaterialFactoryCFi:
 /* 802F3C88 002F0BC8  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 802F3C8C 002F0BCC  28 03 00 00 */	cmplwi r3, 0
 /* 802F3C90 002F0BD0  41 82 00 20 */	beq lbl_802F3CB0
@@ -1274,8 +1274,8 @@ lbl_802F3CB0:
 /* 802F3CB0 002F0BF0  38 60 00 00 */	li r3, 0
 /* 802F3CB4 002F0BF4  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newIndTexOrder
-J2DMaterialFactory_NS_newIndTexOrder:
+.global newIndTexOrder__18J2DMaterialFactoryCFii
+newIndTexOrder__18J2DMaterialFactoryCFii:
 /* 802F3CB8 002F0BF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3CBC 002F0BFC  88 02 C7 84 */	lbz r0, lbl_80456184-_SDA2_BASE_(r2)
 /* 802F3CC0 002F0C00  98 01 00 08 */	stb r0, 8(r1)
@@ -1305,8 +1305,8 @@ lbl_802F3D18:
 /* 802F3D18 002F0C58  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3D1C 002F0C5C  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newIndTexMtx
-J2DMaterialFactory_NS_newIndTexMtx:
+.global newIndTexMtx__18J2DMaterialFactoryCFii
+newIndTexMtx__18J2DMaterialFactoryCFii:
 /* 802F3D20 002F0C60  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F3D24 002F0C64  39 40 00 00 */	li r10, 0
 /* 802F3D28 002F0C68  38 E0 00 00 */	li r7, 0
@@ -1380,8 +1380,8 @@ lbl_802F3E1C:
 /* 802F3E1C 002F0D5C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F3E20 002F0D60  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newIndTevStage
-J2DMaterialFactory_NS_newIndTevStage:
+.global newIndTevStage__18J2DMaterialFactoryCFii
+newIndTevStage__18J2DMaterialFactoryCFii:
 /* 802F3E24 002F0D64  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F3E28 002F0D68  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802F3E2C 002F0D6C  93 C1 00 28 */	stw r30, 0x28(r1)
@@ -1470,8 +1470,8 @@ lbl_802F3F68:
 /* 802F3F70 002F0EB0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F3F74 002F0EB4  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newIndTexCoordScale
-J2DMaterialFactory_NS_newIndTexCoordScale:
+.global newIndTexCoordScale__18J2DMaterialFactoryCFii
+newIndTexCoordScale__18J2DMaterialFactoryCFii:
 /* 802F3F78 002F0EB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3F7C 002F0EBC  88 02 C7 90 */	lbz r0, lbl_80456190-_SDA2_BASE_(r2)
 /* 802F3F80 002F0EC0  98 01 00 08 */	stb r0, 8(r1)
@@ -1501,8 +1501,8 @@ lbl_802F3FD8:
 /* 802F3FD8 002F0F18  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3FDC 002F0F1C  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newAlphaComp
-J2DMaterialFactory_NS_newAlphaComp:
+.global newAlphaComp__18J2DMaterialFactoryCFi
+newAlphaComp__18J2DMaterialFactoryCFi:
 /* 802F3FE0 002F0F20  80 E4 00 04 */	lwz r7, 4(r4)
 /* 802F3FE4 002F0F24  80 C4 00 08 */	lwz r6, 8(r4)
 /* 802F3FE8 002F0F28  54 A0 08 3C */	slwi r0, r5, 1
@@ -1536,8 +1536,8 @@ lbl_802F4044:
 /* 802F4054 002F0F94  98 03 00 03 */	stb r0, 3(r3)
 /* 802F4058 002F0F98  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newBlend
-J2DMaterialFactory_NS_newBlend:
+.global newBlend__18J2DMaterialFactoryCFi
+newBlend__18J2DMaterialFactoryCFi:
 /* 802F405C 002F0F9C  80 E4 00 04 */	lwz r7, 4(r4)
 /* 802F4060 002F0FA0  80 C4 00 08 */	lwz r6, 8(r4)
 /* 802F4064 002F0FA4  54 A0 08 3C */	slwi r0, r5, 1
@@ -1571,8 +1571,8 @@ lbl_802F40B0:
 /* 802F40D0 002F1010  98 03 00 03 */	stb r0, 3(r3)
 /* 802F40D4 002F1014  4E 80 00 20 */	blr 
 
-.global J2DMaterialFactory_NS_newDither
-J2DMaterialFactory_NS_newDither:
+.global newDither__18J2DMaterialFactoryCFi
+newDither__18J2DMaterialFactoryCFi:
 /* 802F40D8 002F1018  80 C3 00 04 */	lwz r6, 4(r3)
 /* 802F40DC 002F101C  80 A3 00 08 */	lwz r5, 8(r3)
 /* 802F40E0 002F1020  54 80 08 3C */	slwi r0, r4, 1
@@ -1589,14 +1589,14 @@ lbl_802F4108:
 /* 802F4108 002F1048  38 60 00 00 */	li r3, 0
 /* 802F410C 002F104C  4E 80 00 20 */	blr 
 
-.global J2DTevStage_X1_
-J2DTevStage_X1_:
+.global __ct__11J2DTevStageFRC15J2DTevStageInfo
+__ct__11J2DTevStageFRC15J2DTevStageInfo:
 /* 802F4110 002F1050  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F4114 002F1054  7C 08 02 A6 */	mflr r0
 /* 802F4118 002F1058  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802F411C 002F105C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F4120 002F1060  7C 7F 1B 78 */	mr r31, r3
-/* 802F4124 002F1064  4B FF D8 85 */	bl J2DTevStage_NS_setTevStageInfo
+/* 802F4124 002F1064  4B FF D8 85 */	bl setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo
 /* 802F4128 002F1068  88 1F 00 07 */	lbz r0, 7(r31)
 /* 802F412C 002F106C  54 04 07 B6 */	rlwinm r4, r0, 0, 0x1e, 0x1b
 /* 802F4130 002F1070  38 62 C7 98 */	addi r3, r2, lbl_80456198-_SDA2_BASE_

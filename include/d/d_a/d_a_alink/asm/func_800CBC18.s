@@ -63,7 +63,7 @@ lbl_800CBCC8:
 /* 800CBCFC 000C8C3C  41 82 00 C4 */ beq lbl_800CBDC0
 /* 800CBD00 000C8C40  38 65 61 C0 */ addi r3, r5, 0x61c0
 /* 800CBD04 000C8C44  80 BD 06 50 */ lwz r5, 0x650(r29)
-/* 800CBD08 000C8C48  4B F8 A2 15 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBD08 000C8C48  4B F8 A2 15 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBD0C 000C8C4C  48 00 00 B4 */ b lbl_800CBDC0
 lbl_800CBD10:
 /* 800CBD10 000C8C50  80 1D 31 A0 */ lwz r0, 0x31a0(r29)
@@ -114,14 +114,14 @@ lbl_800CBD8C:
 /* 800CBDA8 000C8CE8  C0 A2 92 B8 */ lfs f5, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800CBDAC 000C8CEC  3D 40 80 42 */ lis r10, lbl_804248D0@ha
 /* 800CBDB0 000C8CF0  39 4A 48 D0 */ addi r10, r10, lbl_804248D0@l
-/* 800CBDB4 000C8CF4  4B F6 2B 5D */ bl dComIfGd_setShadow
+/* 800CBDB4 000C8CF4  4B F6 2B 5D */ bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 800CBDB8 000C8CF8  90 7D 31 A4 */ stw r3, 0x31a4(r29)
 /* 800CBDBC 000C8CFC  83 DD 31 A4 */ lwz r30, 0x31a4(r29)
 lbl_800CBDC0:
 /* 800CBDC0 000C8D00  28 1E 00 00 */ cmplwi r30, 0
 /* 800CBDC4 000C8D04  41 82 04 80 */ beq lbl_800CC244
 /* 800CBDC8 000C8D08  7F A3 EB 78 */ mr r3, r29
-/* 800CBDCC 000C8D0C  4B FF F6 B5 */ bl daAlink_c_NS_checkSwordDraw
+/* 800CBDCC 000C8D0C  4B FF F6 B5 */ bl checkSwordDraw__9daAlink_cFv
 /* 800CBDD0 000C8D10  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBDD4 000C8D14  41 82 00 4C */ beq lbl_800CBE20
 /* 800CBDD8 000C8D18  80 1D 05 7C */ lwz r0, 0x57c(r29)
@@ -132,7 +132,7 @@ lbl_800CBDC0:
 /* 800CBDEC 000C8D2C  38 63 61 C0 */ addi r3, r3, 0x61c0
 /* 800CBDF0 000C8D30  7F C4 F3 78 */ mr r4, r30
 /* 800CBDF4 000C8D34  80 BD 06 B8 */ lwz r5, 0x6b8(r29)
-/* 800CBDF8 000C8D38  4B F8 A1 25 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBDF8 000C8D38  4B F8 A1 25 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBDFC:
 /* 800CBDFC 000C8D3C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800CBE00 000C8D40  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -142,10 +142,10 @@ lbl_800CBDFC:
 /* 800CBE10 000C8D50  38 63 61 C0 */ addi r3, r3, 0x61c0
 /* 800CBE14 000C8D54  7F C4 F3 78 */ mr r4, r30
 /* 800CBE18 000C8D58  80 BD 06 BC */ lwz r5, 0x6bc(r29)
-/* 800CBE1C 000C8D5C  4B F8 A1 01 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBE1C 000C8D5C  4B F8 A1 01 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBE20:
 /* 800CBE20 000C8D60  7F A3 EB 78 */ mr r3, r29
-/* 800CBE24 000C8D64  4B FF F7 19 */ bl daAlink_c_NS_checkShieldDraw
+/* 800CBE24 000C8D64  4B FF F7 19 */ bl checkShieldDraw__9daAlink_cFv
 /* 800CBE28 000C8D68  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBE2C 000C8D6C  41 82 00 1C */ beq lbl_800CBE48
 /* 800CBE30 000C8D70  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -153,7 +153,7 @@ lbl_800CBE20:
 /* 800CBE38 000C8D78  38 63 61 C0 */ addi r3, r3, 0x61c0
 /* 800CBE3C 000C8D7C  7F C4 F3 78 */ mr r4, r30
 /* 800CBE40 000C8D80  80 BD 06 78 */ lwz r5, 0x678(r29)
-/* 800CBE44 000C8D84  4B F8 A0 D9 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBE44 000C8D84  4B F8 A0 D9 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBE48:
 /* 800CBE48 000C8D88  80 1D 05 74 */ lwz r0, 0x574(r29)
 /* 800CBE4C 000C8D8C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
@@ -161,7 +161,7 @@ lbl_800CBE48:
 /* 800CBE54 000C8D94  80 1D 05 70 */ lwz r0, 0x570(r29)
 /* 800CBE58 000C8D98  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 800CBE5C 000C8D9C  41 82 03 3C */ beq lbl_800CC198
-/* 800CBE60 000C8DA0  4B FF 45 41 */ bl daAlink_c_NS_checkCloudSea
+/* 800CBE60 000C8DA0  4B FF 45 41 */ bl checkCloudSea__9daAlink_cFv
 /* 800CBE64 000C8DA4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBE68 000C8DA8  40 82 03 30 */ bne lbl_800CC198
 /* 800CBE6C 000C8DAC  80 9F 08 94 */ lwz r4, 0x894(r31)
@@ -188,19 +188,19 @@ lbl_800CBEA4:
 /* 800CBEB8 000C8DF8  7F 83 E3 78 */ mr r3, r28
 /* 800CBEBC 000C8DFC  7F C4 F3 78 */ mr r4, r30
 /* 800CBEC0 000C8E00  80 BD 07 9C */ lwz r5, 0x79c(r29)
-/* 800CBEC4 000C8E04  4B F8 A0 59 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBEC4 000C8E04  4B F8 A0 59 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBEC8 000C8E08  80 1F 08 94 */ lwz r0, 0x894(r31)
 /* 800CBECC 000C8E0C  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800CBED0 000C8E10  40 82 00 14 */ bne lbl_800CBEE4
 /* 800CBED4 000C8E14  7F 83 E3 78 */ mr r3, r28
 /* 800CBED8 000C8E18  7F C4 F3 78 */ mr r4, r30
 /* 800CBEDC 000C8E1C  80 BD 07 A0 */ lwz r5, 0x7a0(r29)
-/* 800CBEE0 000C8E20  4B F8 A0 3D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBEE0 000C8E20  4B F8 A0 3D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBEE4:
 /* 800CBEE4 000C8E24  7F 83 E3 78 */ mr r3, r28
 /* 800CBEE8 000C8E28  7F C4 F3 78 */ mr r4, r30
 /* 800CBEEC 000C8E2C  80 BD 07 A8 */ lwz r5, 0x7a8(r29)
-/* 800CBEF0 000C8E30  4B F8 A0 2D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBEF0 000C8E30  4B F8 A0 2D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBEF4 000C8E34  48 00 02 A4 */ b lbl_800CC198
 lbl_800CBEF8:
 /* 800CBEF8 000C8E38  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -209,22 +209,22 @@ lbl_800CBEF8:
 /* 800CBF04 000C8E44  7F E3 FB 78 */ mr r3, r31
 /* 800CBF08 000C8E48  7F C4 F3 78 */ mr r4, r30
 /* 800CBF0C 000C8E4C  80 BD 06 54 */ lwz r5, 0x654(r29)
-/* 800CBF10 000C8E50  4B F8 A0 0D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF10 000C8E50  4B F8 A0 0D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBF14 000C8E54  7F E3 FB 78 */ mr r3, r31
 /* 800CBF18 000C8E58  7F C4 F3 78 */ mr r4, r30
 /* 800CBF1C 000C8E5C  80 BD 06 58 */ lwz r5, 0x658(r29)
-/* 800CBF20 000C8E60  4B F8 9F FD */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF20 000C8E60  4B F8 9F FD */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBF24 000C8E64  7F E3 FB 78 */ mr r3, r31
 /* 800CBF28 000C8E68  7F C4 F3 78 */ mr r4, r30
 /* 800CBF2C 000C8E6C  80 BD 06 5C */ lwz r5, 0x65c(r29)
-/* 800CBF30 000C8E70  4B F8 9F ED */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF30 000C8E70  4B F8 9F ED */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBF34 000C8E74  88 1D 2F 92 */ lbz r0, 0x2f92(r29)
 /* 800CBF38 000C8E78  28 00 00 FB */ cmplwi r0, 0xfb
 /* 800CBF3C 000C8E7C  40 82 00 14 */ bne lbl_800CBF50
 /* 800CBF40 000C8E80  7F E3 FB 78 */ mr r3, r31
 /* 800CBF44 000C8E84  7F C4 F3 78 */ mr r4, r30
 /* 800CBF48 000C8E88  80 BD 06 A0 */ lwz r5, 0x6a0(r29)
-/* 800CBF4C 000C8E8C  4B F8 9F D1 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF4C 000C8E8C  4B F8 9F D1 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBF50:
 /* 800CBF50 000C8E90  88 1D 2F 93 */ lbz r0, 0x2f93(r29)
 /* 800CBF54 000C8E94  28 00 00 FB */ cmplwi r0, 0xfb
@@ -232,7 +232,7 @@ lbl_800CBF50:
 /* 800CBF5C 000C8E9C  7F E3 FB 78 */ mr r3, r31
 /* 800CBF60 000C8EA0  7F C4 F3 78 */ mr r4, r30
 /* 800CBF64 000C8EA4  80 BD 06 A8 */ lwz r5, 0x6a8(r29)
-/* 800CBF68 000C8EA8  4B F8 9F B5 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF68 000C8EA8  4B F8 9F B5 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CBF6C:
 /* 800CBF6C 000C8EAC  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
 /* 800CBF70 000C8EB0  28 00 00 40 */ cmplwi r0, 0x40
@@ -243,11 +243,11 @@ lbl_800CBF6C:
 /* 800CBF84 000C8EC4  7F E3 FB 78 */ mr r3, r31
 /* 800CBF88 000C8EC8  7F C4 F3 78 */ mr r4, r30
 /* 800CBF8C 000C8ECC  80 A5 05 24 */ lwz r5, 0x524(r5)
-/* 800CBF90 000C8ED0  4B F8 9F 8D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBF90 000C8ED0  4B F8 9F 8D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBF94 000C8ED4  48 00 01 64 */ b lbl_800CC0F8
 lbl_800CBF98:
 /* 800CBF98 000C8ED8  7F A3 EB 78 */ mr r3, r29
-/* 800CBF9C 000C8EDC  4B FF F6 5D */ bl daAlink_c_NS_checkItemDraw
+/* 800CBF9C 000C8EDC  4B FF F6 5D */ bl checkItemDraw__9daAlink_cFv
 /* 800CBFA0 000C8EE0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CBFA4 000C8EE4  41 82 01 54 */ beq lbl_800CC0F8
 /* 800CBFA8 000C8EE8  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
@@ -262,7 +262,7 @@ lbl_800CBFC8:
 /* 800CBFC8 000C8F08  7F E3 FB 78 */ mr r3, r31
 /* 800CBFCC 000C8F0C  7F C4 F3 78 */ mr r4, r30
 /* 800CBFD0 000C8F10  80 BD 07 08 */ lwz r5, 0x708(r29)
-/* 800CBFD4 000C8F14  4B F8 9F 49 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CBFD4 000C8F14  4B F8 9F 49 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CBFD8 000C8F18  48 00 01 20 */ b lbl_800CC0F8
 lbl_800CBFDC:
 /* 800CBFDC 000C8F1C  38 7D 38 04 */ addi r3, r29, 0x3804
@@ -285,22 +285,22 @@ lbl_800CBFDC:
 /* 800CC020 000C8F60  C0 A2 92 B8 */ lfs f5, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800CC024 000C8F64  3D 40 80 42 */ lis r10, lbl_804248D0@ha
 /* 800CC028 000C8F68  39 4A 48 D0 */ addi r10, r10, lbl_804248D0@l
-/* 800CC02C 000C8F6C  4B F6 28 E5 */ bl dComIfGd_setShadow
+/* 800CC02C 000C8F6C  4B F6 28 E5 */ bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 800CC030 000C8F70  90 7D 32 D4 */ stw r3, 0x32d4(r29)
 /* 800CC034 000C8F74  48 00 00 C4 */ b lbl_800CC0F8
 lbl_800CC038:
 /* 800CC038 000C8F78  7F A3 EB 78 */ mr r3, r29
-/* 800CC03C 000C8F7C  48 03 C8 29 */ bl daAlink_c_NS_changeHookshotDrawModel
+/* 800CC03C 000C8F7C  48 03 C8 29 */ bl changeHookshotDrawModel__9daAlink_cFv
 /* 800CC040 000C8F80  7F E3 FB 78 */ mr r3, r31
 /* 800CC044 000C8F84  7F C4 F3 78 */ mr r4, r30
 /* 800CC048 000C8F88  80 BD 07 08 */ lwz r5, 0x708(r29)
-/* 800CC04C 000C8F8C  4B F8 9E D1 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC04C 000C8F8C  4B F8 9E D1 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CC050 000C8F90  A0 7D 2F DC */ lhz r3, 0x2fdc(r29)
-/* 800CC054 000C8F94  48 09 2B 65 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800CC054 000C8F94  48 09 2B 65 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800CC058 000C8F98  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC05C 000C8F9C  41 82 00 94 */ beq lbl_800CC0F0
 /* 800CC060 000C8FA0  7F A3 EB 78 */ mr r3, r29
-/* 800CC064 000C8FA4  48 03 C9 B5 */ bl daAlink_c_NS_checkHookshotWait
+/* 800CC064 000C8FA4  48 03 C9 B5 */ bl checkHookshotWait__9daAlink_cCFv
 /* 800CC068 000C8FA8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC06C 000C8FAC  41 82 00 28 */ beq lbl_800CC094
 /* 800CC070 000C8FB0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -311,13 +311,13 @@ lbl_800CC038:
 /* 800CC084 000C8FC4  7F E3 FB 78 */ mr r3, r31
 /* 800CC088 000C8FC8  7F C4 F3 78 */ mr r4, r30
 /* 800CC08C 000C8FCC  80 BD 07 0C */ lwz r5, 0x70c(r29)
-/* 800CC090 000C8FD0  4B F8 9E 8D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC090 000C8FD0  4B F8 9E 8D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC094:
 /* 800CC094 000C8FD4  A0 1D 2F DC */ lhz r0, 0x2fdc(r29)
 /* 800CC098 000C8FD8  28 00 00 47 */ cmplwi r0, 0x47
 /* 800CC09C 000C8FDC  40 82 00 54 */ bne lbl_800CC0F0
 /* 800CC0A0 000C8FE0  7F A3 EB 78 */ mr r3, r29
-/* 800CC0A4 000C8FE4  48 01 0E 61 */ bl daAlink_c_NS_checkPlayerGuardAndAttack
+/* 800CC0A4 000C8FE4  48 01 0E 61 */ bl checkPlayerGuardAndAttack__9daAlink_cCFv
 /* 800CC0A8 000C8FE8  2C 03 00 00 */ cmpwi r3, 0
 /* 800CC0AC 000C8FEC  40 82 00 44 */ bne lbl_800CC0F0
 /* 800CC0B0 000C8FF0  80 1D 05 70 */ lwz r0, 0x570(r29)
@@ -326,7 +326,7 @@ lbl_800CC094:
 /* 800CC0BC 000C8FFC  7F E3 FB 78 */ mr r3, r31
 /* 800CC0C0 000C9000  7F C4 F3 78 */ mr r4, r30
 /* 800CC0C4 000C9004  80 BD 07 10 */ lwz r5, 0x710(r29)
-/* 800CC0C8 000C9008  4B F8 9E 55 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC0C8 000C9008  4B F8 9E 55 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CC0CC 000C900C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800CC0D0 000C9010  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800CC0D4 000C9014  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -335,10 +335,10 @@ lbl_800CC094:
 /* 800CC0E0 000C9020  7F E3 FB 78 */ mr r3, r31
 /* 800CC0E4 000C9024  7F C4 F3 78 */ mr r4, r30
 /* 800CC0E8 000C9028  80 BD 07 14 */ lwz r5, 0x714(r29)
-/* 800CC0EC 000C902C  4B F8 9E 31 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC0EC 000C902C  4B F8 9E 31 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC0F0:
 /* 800CC0F0 000C9030  7F A3 EB 78 */ mr r3, r29
-/* 800CC0F4 000C9034  48 03 C7 71 */ bl daAlink_c_NS_changeHookshotDrawModel
+/* 800CC0F4 000C9034  48 03 C7 71 */ bl changeHookshotDrawModel__9daAlink_cFv
 lbl_800CC0F8:
 /* 800CC0F8 000C9038  80 1D 05 78 */ lwz r0, 0x578(r29)
 /* 800CC0FC 000C903C  54 00 07 FF */ clrlwi. r0, r0, 0x1f
@@ -346,7 +346,7 @@ lbl_800CC0F8:
 /* 800CC104 000C9044  7F E3 FB 78 */ mr r3, r31
 /* 800CC108 000C9048  7F C4 F3 78 */ mr r4, r30
 /* 800CC10C 000C904C  80 BD 06 FC */ lwz r5, 0x6fc(r29)
-/* 800CC110 000C9050  4B F8 9E 0D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC110 000C9050  4B F8 9E 0D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC114:
 /* 800CC114 000C9054  80 1D 05 70 */ lwz r0, 0x570(r29)
 /* 800CC118 000C9058  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
@@ -358,7 +358,7 @@ lbl_800CC128:
 /* 800CC12C 000C906C  7F C4 F3 78 */ mr r4, r30
 /* 800CC130 000C9070  38 1C 07 84 */ addi r0, r28, 0x784
 /* 800CC134 000C9074  7C BD 00 2E */ lwzx r5, r29, r0
-/* 800CC138 000C9078  4B F8 9D E5 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC138 000C9078  4B F8 9D E5 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 /* 800CC13C 000C907C  3B 7B 00 01 */ addi r27, r27, 1
 /* 800CC140 000C9080  2C 1B 00 02 */ cmpwi r27, 2
 /* 800CC144 000C9084  3B 9C 00 04 */ addi r28, r28, 4
@@ -384,7 +384,7 @@ lbl_800CC14C:
 /* 800CC188 000C90C8  7F E3 FB 78 */ mr r3, r31
 /* 800CC18C 000C90CC  7F C4 F3 78 */ mr r4, r30
 /* 800CC190 000C90D0  80 A5 05 24 */ lwz r5, 0x524(r5)
-/* 800CC194 000C90D4  4B F8 9D 89 */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC194 000C90D4  4B F8 9D 89 */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC198:
 /* 800CC198 000C90D8  80 7D 28 2C */ lwz r3, 0x282c(r29)
 /* 800CC19C 000C90DC  3C 03 00 01 */ addis r0, r3, 1
@@ -406,7 +406,7 @@ lbl_800CC198:
 /* 800CC1D4 000C9114  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800CC1D8 000C9118  38 63 61 C0 */ addi r3, r3, 0x61c0
 /* 800CC1DC 000C911C  7F C4 F3 78 */ mr r4, r30
-/* 800CC1E0 000C9120  4B F8 9D 3D */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC1E0 000C9120  4B F8 9D 3D */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC1E4:
 /* 800CC1E4 000C9124  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800CC1E8 000C9128  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -433,7 +433,7 @@ lbl_800CC1E4:
 /* 800CC234 000C9174  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800CC238 000C9178  38 63 61 C0 */ addi r3, r3, 0x61c0
 /* 800CC23C 000C917C  7F C4 F3 78 */ mr r4, r30
-/* 800CC240 000C9180  4B F8 9C DD */ bl dDlst_shadowControl_c_NS_addReal
+/* 800CC240 000C9180  4B F8 9C DD */ bl addReal__21dDlst_shadowControl_cFUlP8J3DModel
 lbl_800CC244:
 /* 800CC244 000C9184  39 61 00 40 */ addi r11, r1, 0x40
 /* 800CC248 000C9188  48 29 5F D9 */ bl _restgpr_27

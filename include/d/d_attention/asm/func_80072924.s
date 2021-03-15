@@ -39,7 +39,7 @@ lbl_80072994:
 /* 800729B4 0006F8F4  90 1F 00 0C */ stw r0, 0xc(r31)
 lbl_800729B8:
 /* 800729B8 0006F8F8  7F E3 FB 78 */ mr r3, r31
-/* 800729BC 0006F8FC  4B FF EA 69 */ bl dAttention_c_NS_setOwnerAttentionPos
+/* 800729BC 0006F8FC  4B FF EA 69 */ bl setOwnerAttentionPos__12dAttention_cFv
 /* 800729C0 0006F900  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800729C4 0006F904  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800729C8 0006F908  88 03 4F AD */ lbz r0, 0x4fad(r3)
@@ -63,29 +63,29 @@ lbl_800729E0:
 /* 80072A0C 0006F94C  38 00 FF FF */ li r0, -1
 /* 80072A10 0006F950  90 1F 00 04 */ stw r0, 4(r31)
 /* 80072A14 0006F954  7F E3 FB 78 */ mr r3, r31
-/* 80072A18 0006F958  4B FF F0 51 */ bl dAttention_c_NS_freeAttention
+/* 80072A18 0006F958  4B FF F0 51 */ bl freeAttention__12dAttention_cFv
 /* 80072A1C 0006F95C  48 00 01 18 */ b lbl_80072B34
 lbl_80072A20:
 /* 80072A20 0006F960  7F E3 FB 78 */ mr r3, r31
-/* 80072A24 0006F964  4B FF F6 D5 */ bl dAttention_c_NS_checkButton
+/* 80072A24 0006F964  4B FF F6 D5 */ bl checkButton__12dAttention_cFv
 /* 80072A28 0006F968  88 0D 80 F0 */ lbz r0, lbl_80450670-_SDA_BASE_(r13)
 /* 80072A2C 0006F96C  28 00 00 00 */ cmplwi r0, 0
 /* 80072A30 0006F970  41 82 00 10 */ beq lbl_80072A40
 /* 80072A34 0006F974  7F E3 FB 78 */ mr r3, r31
-/* 80072A38 0006F978  4B FF F9 0D */ bl dAttention_c_NS_judgementStatus4Hold
+/* 80072A38 0006F978  4B FF F9 0D */ bl judgementStatus4Hold__12dAttention_cFv
 /* 80072A3C 0006F97C  48 00 00 0C */ b lbl_80072A48
 lbl_80072A40:
 /* 80072A40 0006F980  7F E3 FB 78 */ mr r3, r31
-/* 80072A44 0006F984  4B FF FB AD */ bl dAttention_c_NS_judgementStatus4Switch
+/* 80072A44 0006F984  4B FF FB AD */ bl judgementStatus4Switch__12dAttention_cFv
 lbl_80072A48:
 /* 80072A48 0006F988  80 7F 03 34 */ lwz r3, 0x334(r31)
 /* 80072A4C 0006F98C  54 60 4F FF */ rlwinm. r0, r3, 9, 0x1f, 0x1f
 /* 80072A50 0006F990  41 82 00 4C */ beq lbl_80072A9C
 /* 80072A54 0006F994  7F E3 FB 78 */ mr r3, r31
-/* 80072A58 0006F998  4B FF F0 11 */ bl dAttention_c_NS_freeAttention
+/* 80072A58 0006F998  4B FF F0 11 */ bl freeAttention__12dAttention_cFv
 /* 80072A5C 0006F99C  7F E3 FB 78 */ mr r3, r31
 /* 80072A60 0006F9A0  38 80 00 00 */ li r4, 0
-/* 80072A64 0006F9A4  48 00 0A D9 */ bl dAttention_c_NS_LockonTarget
+/* 80072A64 0006F9A4  48 00 0A D9 */ bl LockonTarget__12dAttention_cFl
 /* 80072A68 0006F9A8  28 03 00 00 */ cmplwi r3, 0
 /* 80072A6C 0006F9AC  40 82 00 14 */ bne lbl_80072A80
 /* 80072A70 0006F9B0  80 1F 03 34 */ lwz r0, 0x334(r31)
@@ -112,7 +112,7 @@ lbl_80072A9C:
 /* 80072ABC 0006F9FC  41 82 00 1C */ beq lbl_80072AD8
 /* 80072AC0 0006FA00  7F E3 FB 78 */ mr r3, r31
 /* 80072AC4 0006FA04  38 80 00 5A */ li r4, 0x5a
-/* 80072AC8 0006FA08  48 00 02 B9 */ bl dAttention_c_NS_lockSoundStart
+/* 80072AC8 0006FA08  48 00 02 B9 */ bl lockSoundStart__12dAttention_cFUl
 /* 80072ACC 0006FA0C  80 1F 03 34 */ lwz r0, 0x334(r31)
 /* 80072AD0 0006FA10  54 00 00 C2 */ rlwinm r0, r0, 0, 3, 1
 /* 80072AD4 0006FA14  90 1F 03 34 */ stw r0, 0x334(r31)
@@ -128,12 +128,12 @@ lbl_80072AE8:
 /* 80072AF4 0006FA34  41 82 00 40 */ beq lbl_80072B34
 /* 80072AF8 0006FA38  7F E3 FB 78 */ mr r3, r31
 /* 80072AFC 0006FA3C  38 80 00 00 */ li r4, 0
-/* 80072B00 0006FA40  48 00 0A 3D */ bl dAttention_c_NS_LockonTarget
+/* 80072B00 0006FA40  48 00 0A 3D */ bl LockonTarget__12dAttention_cFl
 /* 80072B04 0006FA44  28 03 00 00 */ cmplwi r3, 0
 /* 80072B08 0006FA48  40 82 00 20 */ bne lbl_80072B28
 /* 80072B0C 0006FA4C  7F E3 FB 78 */ mr r3, r31
 /* 80072B10 0006FA50  38 80 00 59 */ li r4, 0x59
-/* 80072B14 0006FA54  48 00 02 6D */ bl dAttention_c_NS_lockSoundStart
+/* 80072B14 0006FA54  48 00 02 6D */ bl lockSoundStart__12dAttention_cFUl
 /* 80072B18 0006FA58  80 1F 03 34 */ lwz r0, 0x334(r31)
 /* 80072B1C 0006FA5C  64 00 20 00 */ oris r0, r0, 0x2000
 /* 80072B20 0006FA60  60 00 00 20 */ ori r0, r0, 0x20
@@ -146,11 +146,11 @@ lbl_80072B34:
 /* 80072B34 0006FA74  88 1F 03 29 */ lbz r0, 0x329(r31)
 /* 80072B38 0006FA78  98 1F 03 2A */ stb r0, 0x32a(r31)
 /* 80072B3C 0006FA7C  7F E3 FB 78 */ mr r3, r31
-/* 80072B40 0006FA80  4B FF F2 AD */ bl dAttention_c_NS_runSoundProc
+/* 80072B40 0006FA80  4B FF F2 AD */ bl runSoundProc__12dAttention_cFv
 /* 80072B44 0006FA84  7F E3 FB 78 */ mr r3, r31
-/* 80072B48 0006FA88  4B FF F3 3D */ bl dAttention_c_NS_runDrawProc
+/* 80072B48 0006FA88  4B FF F3 3D */ bl runDrawProc__12dAttention_cFv
 /* 80072B4C 0006FA8C  7F E3 FB 78 */ mr r3, r31
-/* 80072B50 0006FA90  4B FF F5 A5 */ bl dAttention_c_NS_runDebugDisp
+/* 80072B50 0006FA90  4B FF F5 A5 */ bl runDebugDisp__12dAttention_cFv
 /* 80072B54 0006FA94  88 1F 03 29 */ lbz r0, 0x329(r31)
 /* 80072B58 0006FA98  28 00 00 01 */ cmplwi r0, 1
 /* 80072B5C 0006FA9C  40 82 00 28 */ bne lbl_80072B84
@@ -174,11 +174,11 @@ lbl_80072B84:
 /* 80072BA0 0006FAE0  90 03 5D 7C */ stw r0, 0x5d7c(r3)
 lbl_80072BA4:
 /* 80072BA4 0006FAE4  38 7F 04 90 */ addi r3, r31, 0x490
-/* 80072BA8 0006FAE8  48 00 0D C9 */ bl dAttHint_c_NS_proc
+/* 80072BA8 0006FAE8  48 00 0D C9 */ bl proc__10dAttHint_cFv
 /* 80072BAC 0006FAEC  38 7F 04 9C */ addi r3, r31, 0x49c
-/* 80072BB0 0006FAF0  48 00 0E 2D */ bl dAttCatch_c_NS_proc
+/* 80072BB0 0006FAF0  48 00 0E 2D */ bl proc__11dAttCatch_cFv
 /* 80072BB4 0006FAF4  38 7F 04 B4 */ addi r3, r31, 0x4b4
-/* 80072BB8 0006FAF8  48 00 11 35 */ bl dAttLook_c_NS_proc
+/* 80072BB8 0006FAF8  48 00 11 35 */ bl proc__10dAttLook_cFv
 /* 80072BBC 0006FAFC  38 60 00 01 */ li r3, 1
 lbl_80072BC0:
 /* 80072BC0 0006FB00  83 E1 00 0C */ lwz r31, 0xc(r1)

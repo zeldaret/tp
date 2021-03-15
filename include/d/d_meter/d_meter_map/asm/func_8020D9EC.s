@@ -4,8 +4,8 @@
 /* 8020D9F8 0020A938  39 61 00 30 */ addi r11, r1, 0x30
 /* 8020D9FC 0020A93C  48 15 47 D9 */ bl _savegpr_27
 /* 8020DA00 0020A940  7C 7F 1B 78 */ mr r31, r3
-/* 8020DA04 0020A944  4B FF FB 25 */ bl dMeterMap_c_NS_getMapDispSizeTypeNo
-/* 8020DA08 0020A948  4B FF FB 21 */ bl dMeterMap_c_NS_getMapDispSizeTypeNo
+/* 8020DA04 0020A944  4B FF FB 25 */ bl getMapDispSizeTypeNo__11dMeterMap_cFv
+/* 8020DA08 0020A948  4B FF FB 21 */ bl getMapDispSizeTypeNo__11dMeterMap_cFv
 /* 8020DA0C 0020A94C  2C 03 00 03 */ cmpwi r3, 3
 /* 8020DA10 0020A950  41 82 00 58 */ beq lbl_8020DA68
 /* 8020DA14 0020A954  40 80 00 1C */ bge lbl_8020DA30
@@ -74,7 +74,7 @@ lbl_8020DAA0:
 /* 8020DAF4 0020AA34  7F A5 EB 78 */ mr r5, r29
 /* 8020DAF8 0020AA38  7F 86 E3 78 */ mr r6, r28
 /* 8020DAFC 0020AA3C  7F 67 DB 78 */ mr r7, r27
-/* 8020DB00 0020AA40  4B E1 BD 75 */ bl dMap_c
+/* 8020DB00 0020AA40  4B E1 BD 75 */ bl __ct__6dMap_cFiiii
 /* 8020DB04 0020AA44  7C 60 1B 78 */ mr r0, r3
 lbl_8020DB08:
 /* 8020DB08 0020AA48  90 1F 00 08 */ stw r0, 8(r31)
@@ -84,7 +84,7 @@ lbl_8020DB08:
 /* 8020DB18 0020AA58  41 82 00 14 */ beq lbl_8020DB2C
 /* 8020DB1C 0020AA5C  80 9F 00 08 */ lwz r4, 8(r31)
 /* 8020DB20 0020AA60  80 84 00 48 */ lwz r4, 0x48(r4)
-/* 8020DB24 0020AA64  48 0E EB E5 */ bl J2DPicture_X3_
+/* 8020DB24 0020AA64  48 0E EB E5 */ bl __ct__10J2DPictureFPC7ResTIMG
 /* 8020DB28 0020AA68  7C 60 1B 78 */ mr r0, r3
 lbl_8020DB2C:
 /* 8020DB2C 0020AA6C  90 1F 00 04 */ stw r0, 4(r31)
@@ -102,18 +102,18 @@ lbl_8020DB2C:
 /* 8020DB5C 0020AA9C  38 00 00 00 */ li r0, 0
 /* 8020DB60 0020AAA0  90 1F 00 14 */ stw r0, 0x14(r31)
 /* 8020DB64 0020AAA4  98 1F 00 2A */ stb r0, 0x2a(r31)
-/* 8020DB68 0020AAA8  4B E2 05 41 */ bl dComIfGp_checkMapShow
+/* 8020DB68 0020AAA8  4B E2 05 41 */ bl dComIfGp_checkMapShow__Fv
 /* 8020DB6C 0020AAAC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020DB70 0020AAB0  41 82 00 38 */ beq lbl_8020DBA8
 /* 8020DB74 0020AAB4  38 00 00 01 */ li r0, 1
 /* 8020DB78 0020AAB8  98 1F 00 2D */ stb r0, 0x2d(r31)
-/* 8020DB7C 0020AABC  4B FF FA D5 */ bl dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo
+/* 8020DB7C 0020AABC  4B FF FA D5 */ bl isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv
 /* 8020DB80 0020AAC0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020DB84 0020AAC4  40 82 00 0C */ bne lbl_8020DB90
 /* 8020DB88 0020AAC8  38 00 00 00 */ li r0, 0
 /* 8020DB8C 0020AACC  98 1F 00 2D */ stb r0, 0x2d(r31)
 lbl_8020DB90:
-/* 8020DB90 0020AAD0  4B FF FD 71 */ bl dMeterMap_c_NS_isMapOpenCheck
+/* 8020DB90 0020AAD0  4B FF FD 71 */ bl isMapOpenCheck__11dMeterMap_cFv
 /* 8020DB94 0020AAD4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8020DB98 0020AAD8  40 82 00 18 */ bne lbl_8020DBB0
 /* 8020DB9C 0020AADC  38 00 00 00 */ li r0, 0
@@ -129,7 +129,7 @@ lbl_8020DBB0:
 /* 8020DBBC 0020AAFC  38 00 00 01 */ li r0, 1
 /* 8020DBC0 0020AB00  98 1F 00 2D */ stb r0, 0x2d(r31)
 /* 8020DBC4 0020AB04  7F E3 FB 78 */ mr r3, r31
-/* 8020DBC8 0020AB08  4B FF FC 1D */ bl dMeterMap_c_NS_getDispPosInside_OffsetX
+/* 8020DBC8 0020AB08  4B FF FC 1D */ bl getDispPosInside_OffsetX__11dMeterMap_cFv
 /* 8020DBCC 0020AB0C  B0 7F 00 28 */ sth r3, 0x28(r31)
 /* 8020DBD0 0020AB10  38 00 00 01 */ li r0, 1
 /* 8020DBD4 0020AB14  3C 60 80 43 */ lis r3, lbl_80430188@ha
@@ -140,7 +140,7 @@ lbl_8020DBE4:
 /* 8020DBE4 0020AB24  38 00 00 00 */ li r0, 0
 /* 8020DBE8 0020AB28  98 1F 00 2D */ stb r0, 0x2d(r31)
 /* 8020DBEC 0020AB2C  7F E3 FB 78 */ mr r3, r31
-/* 8020DBF0 0020AB30  4B FF FB FD */ bl dMeterMap_c_NS_getDispPosOutSide_OffsetX
+/* 8020DBF0 0020AB30  4B FF FB FD */ bl getDispPosOutSide_OffsetX__11dMeterMap_cFv
 /* 8020DBF4 0020AB34  B0 7F 00 28 */ sth r3, 0x28(r31)
 /* 8020DBF8 0020AB38  38 00 00 00 */ li r0, 0
 /* 8020DBFC 0020AB3C  3C 60 80 43 */ lis r3, lbl_80430188@ha

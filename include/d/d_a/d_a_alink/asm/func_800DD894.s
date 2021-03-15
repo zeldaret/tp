@@ -9,11 +9,11 @@
 /* 800DD8B4 000DA7F4  28 00 00 42 */ cmplwi r0, 0x42
 /* 800DD8B8 000DA7F8  41 82 00 0C */ beq lbl_800DD8C4
 /* 800DD8BC 000DA7FC  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800DD8C0 000DA800  4B FF F7 49 */ bl daAlink_c_NS_setUpperGuardAnime
+/* 800DD8C0 000DA800  4B FF F7 49 */ bl setUpperGuardAnime__9daAlink_cFf
 lbl_800DD8C4:
 /* 800DD8C4 000DA804  7F E3 FB 78 */ mr r3, r31
 /* 800DD8C8 000DA808  38 80 00 00 */ li r4, 0
-/* 800DD8CC 000DA80C  4B FD 5E 69 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 800DD8CC 000DA80C  4B FD 5E 69 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 800DD8D0 000DA810  A8 7F 30 0A */ lha r3, 0x300a(r31)
 /* 800DD8D4 000DA814  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD8D8 000DA818  41 82 00 2C */ beq lbl_800DD904
@@ -71,13 +71,13 @@ lbl_800DD984:
 /* 800DD994 000DA8D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD998 000DA8D8  41 82 00 58 */ beq lbl_800DD9F0
 /* 800DD99C 000DA8DC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800DD9A0 000DA8E0  48 08 0B 2D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800DD9A0 000DA8E0  48 08 0B 2D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800DD9A4 000DA8E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DD9A8 000DA8E8  41 82 00 48 */ beq lbl_800DD9F0
 /* 800DD9AC 000DA8EC  38 00 00 00 */ li r0, 0
 /* 800DD9B0 000DA8F0  90 1F 08 44 */ stw r0, 0x844(r31)
 /* 800DD9B4 000DA8F4  7F E3 FB 78 */ mr r3, r31
-/* 800DD9B8 000DA8F8  4B FF EC C1 */ bl daAlink_c_NS_checkGuardActionChange
+/* 800DD9B8 000DA8F8  4B FF EC C1 */ bl checkGuardActionChange__9daAlink_cFv
 /* 800DD9BC 000DA8FC  2C 03 00 00 */ cmpwi r3, 0
 /* 800DD9C0 000DA900  40 82 00 10 */ bne lbl_800DD9D0
 /* 800DD9C4 000DA904  80 1F 05 8C */ lwz r0, 0x58c(r31)
@@ -92,7 +92,7 @@ lbl_800DD9D0:
 lbl_800DD9E4:
 /* 800DD9E4 000DA924  7F E3 FB 78 */ mr r3, r31
 /* 800DD9E8 000DA928  38 80 00 00 */ li r4, 0
-/* 800DD9EC 000DA92C  4B FD C6 E5 */ bl daAlink_c_NS_checkNextAction
+/* 800DD9EC 000DA92C  4B FD C6 E5 */ bl checkNextAction__9daAlink_cFi
 lbl_800DD9F0:
 /* 800DD9F0 000DA930  38 60 00 01 */ li r3, 1
 /* 800DD9F4 000DA934  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0

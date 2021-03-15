@@ -17,10 +17,10 @@
 /* 800267A4 000236E4  7F 84 E3 78 */ mr r4, r28
 /* 800267A8 000236E8  7F A5 EB 78 */ mr r5, r29
 /* 800267AC 000236EC  7F C6 F3 78 */ mr r6, r30
-/* 800267B0 000236F0  4B FF F4 4D */ bl dStage_tgscInfoInit
+/* 800267B0 000236F0  4B FF F4 4D */ bl dStage_tgscInfoInit__FP11dStage_dt_cPviPv
 /* 800267B4 000236F4  7F 63 DB 78 */ mr r3, r27
 /* 800267B8 000236F8  7F E4 FB 78 */ mr r4, r31
-/* 800267BC 000236FC  4B FF D7 C9 */ bl dStage_KeepDoorInfoProc
+/* 800267BC 000236FC  4B FF D7 C9 */ bl dStage_KeepDoorInfoProc__FP11dStage_dt_cP16stage_tgsc_class
 /* 800267C0 00023700  38 60 00 01 */ li r3, 1
 /* 800267C4 00023704  39 61 00 20 */ addi r11, r1, 0x20
 /* 800267C8 00023708  48 33 BA 59 */ bl _restgpr_27

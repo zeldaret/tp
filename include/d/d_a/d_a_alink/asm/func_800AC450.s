@@ -22,7 +22,7 @@ lbl_800AC490:
 /* 800AC4A0 000A93E0  48 00 00 A0 */ b lbl_800AC540
 lbl_800AC4A4:
 /* 800AC4A4 000A93E4  7F A3 EB 78 */ mr r3, r29
-/* 800AC4A8 000A93E8  48 03 09 49 */ bl daAlink_c_NS_checkUpperGuardAnime
+/* 800AC4A8 000A93E8  48 03 09 49 */ bl checkUpperGuardAnime__9daAlink_cCFv
 /* 800AC4AC 000A93EC  2C 03 00 00 */ cmpwi r3, 0
 /* 800AC4B0 000A93F0  41 82 00 1C */ beq lbl_800AC4CC
 /* 800AC4B4 000A93F4  2C 1E 00 14 */ cmpwi r30, 0x14
@@ -52,7 +52,7 @@ lbl_800AC4F8:
 /* 800AC508 000A9448  48 00 00 38 */ b lbl_800AC540
 lbl_800AC50C:
 /* 800AC50C 000A944C  7F A3 EB 78 */ mr r3, r29
-/* 800AC510 000A9450  48 04 78 49 */ bl daAlink_c_NS_checkFishingRodAndLureItem
+/* 800AC510 000A9450  48 04 78 49 */ bl checkFishingRodAndLureItem__9daAlink_cCFv
 /* 800AC514 000A9454  2C 03 00 00 */ cmpwi r3, 0
 /* 800AC518 000A9458  41 82 00 1C */ beq lbl_800AC534
 /* 800AC51C 000A945C  2C 1E 00 1C */ cmpwi r30, 0x1c

@@ -9,7 +9,7 @@ void __dt__10JSUPtrListFv(void);
 void __dt__11JKRDisposerFv(void);
 void getFreeSize__7JKRHeapCFv(void);
 void getMaxFreeBlock__7JKRHeapCFv(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void remove__10JSUPtrListFP10JSUPtrLink(void);
 }
 
@@ -355,7 +355,7 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 }
 
 void JKRHeap::JKRDefaultMemoryErrorRoutine(JKRHeap* heap, u32 size, int alignment) {
-    JUTException_NS_panic_f("JKRHeap.cpp", 0x33f, "%s", "abort\n");
+    panic_f__12JUTExceptionFPCciPCce("JKRHeap.cpp", 0x33f, "%s", "abort\n");
 }
 
 bool JKRHeap::setErrorFlag(bool errorFlag) {

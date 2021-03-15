@@ -7,7 +7,7 @@
 /* 80135210 00132150  28 05 00 00 */ cmplwi r5, 0
 /* 80135214 00132154  40 82 00 10 */ bne lbl_80135224
 /* 80135218 00132158  38 80 00 00 */ li r4, 0
-/* 8013521C 0013215C  4B FF 49 29 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013521C 0013215C  4B FF 49 29 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80135220 00132160  48 00 02 24 */ b lbl_80135444
 lbl_80135224:
 /* 80135224 00132164  80 1F 05 70 */ lwz r0, 0x570(r31)
@@ -19,7 +19,7 @@ lbl_80135224:
 /* 8013523C 0013217C  40 82 01 88 */ bne lbl_801353C4
 /* 80135240 00132180  28 05 00 28 */ cmplwi r5, 0x28
 /* 80135244 00132184  41 82 01 80 */ beq lbl_801353C4
-/* 80135248 00132188  4B F7 E6 BD */ bl daAlink_c_NS_checkZeroSpeedF
+/* 80135248 00132188  4B F7 E6 BD */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 8013524C 0013218C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80135250 00132190  41 82 01 74 */ beq lbl_801353C4
 /* 80135254 00132194  7F E3 FB 78 */ mr r3, r31
@@ -29,9 +29,9 @@ lbl_80135224:
 /* 80135264 001321A4  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80135268 001321A8  41 82 00 30 */ beq lbl_80135298
 /*.global daAlink_searchGiantTalk*/
-/* 8013526C 001321AC  3C 60 80 13 */ lis r3, daAlink_searchGiantTalk@ha
+/* 8013526C 001321AC  3C 60 80 13 */ lis r3, daAlink_searchGiantTalk__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchGiantTalk*/
-/* 80135270 001321B0  38 63 50 A4 */ addi r3, r3, daAlink_searchGiantTalk@l
+/* 80135270 001321B0  38 63 50 A4 */ addi r3, r3, daAlink_searchGiantTalk__FP10fopAc_ac_cPv@l
 /* 80135274 001321B4  38 80 00 00 */ li r4, 0
 /* 80135278 001321B8  4B EE 45 81 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8013527C 001321BC  7C 64 1B 79 */ or. r4, r3, r3
@@ -50,7 +50,7 @@ lbl_80135298:
 /* 801352AC 001321EC  A8 1F 2F E2 */ lha r0, 0x2fe2(r31)
 /* 801352B0 001321F0  7C 03 00 50 */ subf r0, r3, r0
 /* 801352B4 001321F4  7C 03 07 34 */ extsh r3, r0
-/* 801352B8 001321F8  4B F7 E1 DD */ bl daAlink_c_NS_getDirectionFromAngle
+/* 801352B8 001321F8  4B F7 E1 DD */ bl getDirectionFromAngle__9daAlink_cFs
 /* 801352BC 001321FC  2C 03 00 00 */ cmpwi r3, 0
 /* 801352C0 00132200  40 82 00 C4 */ bne lbl_80135384
 /* 801352C4 00132204  3C 60 80 44 */ lis r3, lbl_80439A20@ha
@@ -80,7 +80,7 @@ lbl_80135298:
 /* 80135324 00132264  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80135328 00132268  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 8013532C 0013226C  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 80135330 00132270  4B F3 F1 71 */ bl cBgS_NS_GroundCross
+/* 80135330 00132270  4B F3 F1 71 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 80135334 00132274  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
 /* 80135338 00132278  EC 01 00 28 */ fsubs f0, f1, f0
 /* 8013533C 0013227C  FC 00 02 10 */ fabs f0, f0
@@ -89,9 +89,9 @@ lbl_80135298:
 /* 80135348 00132288  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8013534C 0013228C  40 80 00 78 */ bge lbl_801353C4
 /*.global daAlink_searchGiant*/
-/* 80135350 00132290  3C 60 80 13 */ lis r3, daAlink_searchGiant@ha
+/* 80135350 00132290  3C 60 80 13 */ lis r3, daAlink_searchGiant__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchGiant*/
-/* 80135354 00132294  38 63 50 50 */ addi r3, r3, daAlink_searchGiant@l
+/* 80135354 00132294  38 63 50 50 */ addi r3, r3, daAlink_searchGiant__FP10fopAc_ac_cPv@l
 /* 80135358 00132298  38 81 00 08 */ addi r4, r1, 8
 /* 8013535C 0013229C  4B EE 44 9D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80135360 001322A0  28 03 00 00 */ cmplwi r3, 0
@@ -142,7 +142,7 @@ lbl_801353C4:
 /* 80135404 00132344  B0 1F 04 DE */ sth r0, 0x4de(r31)
 lbl_80135408:
 /* 80135408 00132348  7F E3 FB 78 */ mr r3, r31
-/* 8013540C 0013234C  4B F7 E4 F9 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 8013540C 0013234C  4B F7 E4 F9 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 80135410 00132350  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80135414 00132354  41 82 00 14 */ beq lbl_80135428
 /* 80135418 00132358  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -156,7 +156,7 @@ lbl_80135428:
 lbl_80135434:
 /* 80135434 00132374  7F E3 FB 78 */ mr r3, r31
 /* 80135438 00132378  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8013543C 0013237C  4B FF 34 09 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8013543C 0013237C  4B FF 34 09 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 80135440 00132380  38 60 00 01 */ li r3, 1
 lbl_80135444:
 /* 80135444 00132384  83 E1 00 1C */ lwz r31, 0x1c(r1)

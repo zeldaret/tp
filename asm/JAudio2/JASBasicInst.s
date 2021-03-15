@@ -3,8 +3,8 @@
 .section .text, "ax" # 80298014
 
 
-.global JASBasicInst
-JASBasicInst:
+.global __ct__12JASBasicInstFv
+__ct__12JASBasicInstFv:
 /* 80298014 00294F54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298018 00294F58  7C 08 02 A6 */	mflr r0
 /* 8029801C 00294F5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -24,7 +24,7 @@ JASBasicInst:
 /* 80298054 00294F94  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80298058 00294F98  38 7F 00 0C */	addi r3, r31, 0xc
 /* 8029805C 00294F9C  38 80 00 08 */	li r4, 8
-/* 80298060 00294FA0  4B FF 74 21 */	bl JASCalc_NS_bzero
+/* 80298060 00294FA0  4B FF 74 21 */	bl bzero__7JASCalcFPvUl
 /* 80298064 00294FA4  7F E3 FB 78 */	mr r3, r31
 /* 80298068 00294FA8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029806C 00294FAC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -43,11 +43,11 @@ JASBasicInst:
 /* 802980A0 00294FE0  38 03 76 E8 */	addi r0, r3, lbl_803C76E8@l
 /* 802980A4 00294FE4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802980A8 00294FE8  80 7E 00 18 */	lwz r3, 0x18(r30)
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802980AC 00294FEC  3C 80 80 2A */	lis r4, JASBasicInst_NS_TKeymap_NS_dtor@ha
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802980B0 00294FF0  38 84 82 50 */	addi r4, r4, JASBasicInst_NS_TKeymap_NS_dtor@l
-/* 802980B4 00294FF4  48 0C 9B B9 */	bl func_80361C6C
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802980AC 00294FEC  3C 80 80 2A */	lis r4, __dt__Q212JASBasicInst7TKeymapFv@ha
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802980B0 00294FF0  38 84 82 50 */	addi r4, r4, __dt__Q212JASBasicInst7TKeymapFv@l
+/* 802980B4 00294FF4  48 0C 9B B9 */	bl __destroy_new_array
 /* 802980B8 00294FF8  28 1E 00 00 */	cmplwi r30, 0
 /* 802980BC 00294FFC  41 82 00 10 */	beq lbl_802980CC
 /* 802980C0 00295000  3C 60 80 3C */	lis r3, lbl_803C76FC@ha
@@ -112,8 +112,8 @@ lbl_8029816C:
 /* 80298194 002950D4  38 60 00 01 */	li r3, 1
 /* 80298198 002950D8  4E 80 00 20 */	blr 
 
-.global JASBasicInst_NS_setKeyRegionCount
-JASBasicInst_NS_setKeyRegionCount:
+.global setKeyRegionCount__12JASBasicInstFUlP7JKRHeap
+setKeyRegionCount__12JASBasicInstFUlP7JKRHeap:
 /* 8029819C 002950DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802981A0 002950E0  7C 08 02 A6 */	mflr r0
 /* 802981A4 002950E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -123,27 +123,27 @@ JASBasicInst_NS_setKeyRegionCount:
 /* 802981B4 002950F4  7C 9E 23 78 */	mr r30, r4
 /* 802981B8 002950F8  7C BF 2B 78 */	mr r31, r5
 /* 802981BC 002950FC  80 63 00 18 */	lwz r3, 0x18(r3)
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802981C0 00295100  3C 80 80 2A */	lis r4, JASBasicInst_NS_TKeymap_NS_dtor@ha
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802981C4 00295104  38 84 82 50 */	addi r4, r4, JASBasicInst_NS_TKeymap_NS_dtor@l
-/* 802981C8 00295108  48 0C 9A A5 */	bl func_80361C6C
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802981C0 00295100  3C 80 80 2A */	lis r4, __dt__Q212JASBasicInst7TKeymapFv@ha
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802981C4 00295104  38 84 82 50 */	addi r4, r4, __dt__Q212JASBasicInst7TKeymapFv@l
+/* 802981C8 00295108  48 0C 9A A5 */	bl __destroy_new_array
 /* 802981CC 0029510C  57 C3 20 36 */	slwi r3, r30, 4
 /* 802981D0 00295110  38 63 00 10 */	addi r3, r3, 0x10
 /* 802981D4 00295114  7F E4 FB 78 */	mr r4, r31
 /* 802981D8 00295118  38 A0 00 00 */	li r5, 0
 /* 802981DC 0029511C  48 03 6B 35 */	bl __nwa__FUlP7JKRHeapi
-.global JASBasicInst_NS_TKeymap
-/* 802981E0 00295120  3C 80 80 2A */	lis r4, JASBasicInst_NS_TKeymap@ha
-.global JASBasicInst_NS_TKeymap
-/* 802981E4 00295124  38 84 82 D4 */	addi r4, r4, JASBasicInst_NS_TKeymap@l
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802981E8 00295128  3C A0 80 2A */	lis r5, JASBasicInst_NS_TKeymap_NS_dtor@ha
-.global JASBasicInst_NS_TKeymap_NS_dtor
-/* 802981EC 0029512C  38 A5 82 50 */	addi r5, r5, JASBasicInst_NS_TKeymap_NS_dtor@l
+.global __ct__Q212JASBasicInst7TKeymapFv
+/* 802981E0 00295120  3C 80 80 2A */	lis r4, __ct__Q212JASBasicInst7TKeymapFv@ha
+.global __ct__Q212JASBasicInst7TKeymapFv
+/* 802981E4 00295124  38 84 82 D4 */	addi r4, r4, __ct__Q212JASBasicInst7TKeymapFv@l
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802981E8 00295128  3C A0 80 2A */	lis r5, __dt__Q212JASBasicInst7TKeymapFv@ha
+.global __dt__Q212JASBasicInst7TKeymapFv
+/* 802981EC 0029512C  38 A5 82 50 */	addi r5, r5, __dt__Q212JASBasicInst7TKeymapFv@l
 /* 802981F0 00295130  38 C0 00 10 */	li r6, 0x10
 /* 802981F4 00295134  7F C7 F3 78 */	mr r7, r30
-/* 802981F8 00295138  48 0C 9D 1D */	bl func_80361F14
+/* 802981F8 00295138  48 0C 9D 1D */	bl __construct_new_array
 /* 802981FC 0029513C  90 7D 00 18 */	stw r3, 0x18(r29)
 /* 80298200 00295140  93 DD 00 14 */	stw r30, 0x14(r29)
 /* 80298204 00295144  39 61 00 20 */	addi r11, r1, 0x20
@@ -153,15 +153,15 @@ JASBasicInst_NS_setKeyRegionCount:
 /* 80298214 00295154  38 21 00 20 */	addi r1, r1, 0x20
 /* 80298218 00295158  4E 80 00 20 */	blr 
 
-.global JASBasicInst_NS_setOsc
-JASBasicInst_NS_setOsc:
+.global setOsc__12JASBasicInstFiPCQ213JASOscillator4Data
+setOsc__12JASBasicInstFiPCQ213JASOscillator4Data:
 /* 8029821C 0029515C  54 80 10 3A */	slwi r0, r4, 2
 /* 80298220 00295160  7C 63 02 14 */	add r3, r3, r0
 /* 80298224 00295164  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 80298228 00295168  4E 80 00 20 */	blr 
 
-.global JASBasicInst_NS_getKeyRegion
-JASBasicInst_NS_getKeyRegion:
+.global getKeyRegion__12JASBasicInstFi
+getKeyRegion__12JASBasicInstFi:
 /* 8029822C 0029516C  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 80298230 00295170  7C 04 00 40 */	cmplw r4, r0
 /* 80298234 00295174  41 80 00 0C */	blt lbl_80298240
@@ -172,8 +172,8 @@ lbl_80298240:
 /* 80298244 00295184  54 80 20 36 */	slwi r0, r4, 4
 /* 80298248 00295188  7C 63 02 14 */	add r3, r3, r0
 /* 8029824C 0029518C  4E 80 00 20 */	blr 
-.global JASBasicInst_NS_TKeymap_NS_dtor
-JASBasicInst_NS_TKeymap_NS_dtor:
+.global __dt__Q212JASBasicInst7TKeymapFv
+__dt__Q212JASBasicInst7TKeymapFv:
 /* 80298250 00295190  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80298254 00295194  7C 08 02 A6 */	mflr r0
 /* 80298258 00295198  90 01 00 14 */	stw r0, 0x14(r1)
@@ -209,8 +209,8 @@ lbl_802982BC:
 /* 802982C8 00295208  7C 08 03 A6 */	mtlr r0
 /* 802982CC 0029520C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802982D0 00295210  4E 80 00 20 */	blr 
-.global JASBasicInst_NS_TKeymap
-JASBasicInst_NS_TKeymap:
+.global __ct__Q212JASBasicInst7TKeymapFv
+__ct__Q212JASBasicInst7TKeymapFv:
 /* 802982D4 00295214  38 00 FF FF */	li r0, -1
 /* 802982D8 00295218  90 03 00 00 */	stw r0, 0(r3)
 /* 802982DC 0029521C  4E 80 00 20 */	blr 

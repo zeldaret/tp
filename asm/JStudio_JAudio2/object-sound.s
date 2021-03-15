@@ -22,7 +22,7 @@ JStudio_JAudio2_NS__unnamed_object_sound_cpp__NS_setValue_PAN_:
 /* 8028D758 0028A698  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028D75C 0028A69C  38 80 00 00 */	li r4, 0
 /* 8028D760 0028A6A0  38 63 00 48 */	addi r3, r3, 0x48
-/* 8028D764 0028A6A4  48 01 57 59 */	bl JAISoundParamsMove_NS_movePan
+/* 8028D764 0028A6A4  48 01 57 59 */	bl movePan__18JAISoundParamsMoveFfUl
 /* 8028D768 0028A6A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028D76C 0028A6AC  7C 08 03 A6 */	mtlr r0
 /* 8028D770 0028A6B0  38 21 00 10 */	addi r1, r1, 0x10
@@ -34,7 +34,7 @@ JStudio_JAudio2_NS__unnamed_object_sound_cpp__NS_setValue_PITCH_:
 /* 8028D780 0028A6C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028D784 0028A6C4  38 80 00 00 */	li r4, 0
 /* 8028D788 0028A6C8  38 63 00 48 */	addi r3, r3, 0x48
-/* 8028D78C 0028A6CC  48 01 56 81 */	bl JAISoundParamsMove_NS_movePitch
+/* 8028D78C 0028A6CC  48 01 56 81 */	bl movePitch__18JAISoundParamsMoveFfUl
 /* 8028D790 0028A6D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028D794 0028A6D4  7C 08 03 A6 */	mtlr r0
 /* 8028D798 0028A6D8  38 21 00 10 */	addi r1, r1, 0x10
@@ -73,14 +73,14 @@ JStudio_JAudio2_NS__unnamed_object_sound_cpp__NS_setValue_ECHO_:
 /* 8028D808 0028A748  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028D80C 0028A74C  38 80 00 00 */	li r4, 0
 /* 8028D810 0028A750  38 63 00 48 */	addi r3, r3, 0x48
-/* 8028D814 0028A754  48 01 56 51 */	bl JAISoundParamsMove_NS_moveFxMix
+/* 8028D814 0028A754  48 01 56 51 */	bl moveFxMix__18JAISoundParamsMoveFfUl
 /* 8028D818 0028A758  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028D81C 0028A75C  7C 08 03 A6 */	mtlr r0
 /* 8028D820 0028A760  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028D824 0028A764  4E 80 00 20 */	blr 
 
-.global JStudio_JAudio2_NS_TAdaptor_sound
-JStudio_JAudio2_NS_TAdaptor_sound:
+.global __ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject
+__ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject:
 /* 8028D828 0028A768  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028D82C 0028A76C  7C 08 02 A6 */	mflr r0
 /* 8028D830 0028A770  90 01 00 14 */	stw r0, 0x14(r1)
@@ -101,14 +101,14 @@ JStudio_JAudio2_NS_TAdaptor_sound:
 /* 8028D86C 0028A7AC  3C 80 80 3C */	lis r4, lbl_803C535C@ha
 /* 8028D870 0028A7B0  38 04 53 5C */	addi r0, r4, lbl_803C535C@l
 /* 8028D874 0028A7B4  90 1E 00 00 */	stw r0, 0(r30)
-.global JStudio_NS_TVariableValue
-/* 8028D878 0028A7B8  3C 80 80 29 */	lis r4, JStudio_NS_TVariableValue@ha
-.global JStudio_NS_TVariableValue
-/* 8028D87C 0028A7BC  38 84 B5 68 */	addi r4, r4, JStudio_NS_TVariableValue@l
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028D878 0028A7B8  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha
+.global __ct__Q27JStudio14TVariableValueFv
+/* 8028D87C 0028A7BC  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l
 /* 8028D880 0028A7C0  38 A0 00 00 */	li r5, 0
 /* 8028D884 0028A7C4  38 C0 00 14 */	li r6, 0x14
 /* 8028D888 0028A7C8  38 E0 00 0D */	li r7, 0xd
-/* 8028D88C 0028A7CC  48 0D 44 D5 */	bl func_80361D60
+/* 8028D88C 0028A7CC  48 0D 44 D5 */	bl __construct_array
 /* 8028D890 0028A7D0  3C 60 80 3C */	lis r3, lbl_803C5A88@ha
 /* 8028D894 0028A7D4  38 03 5A 88 */	addi r0, r3, lbl_803C5A88@l
 /* 8028D898 0028A7D8  90 1E 00 00 */	stw r0, 0(r30)
@@ -170,7 +170,7 @@ lbl_8028D95C:
 lbl_8028D96C:
 /* 8028D96C 0028A8AC  7F C3 F3 78 */	mr r3, r30
 /* 8028D970 0028A8B0  38 80 00 00 */	li r4, 0
-/* 8028D974 0028A8B4  4B FF A1 C9 */	bl JStudio_NS_TAdaptor_sound_NS_dtor
+/* 8028D974 0028A8B4  4B FF A1 C9 */	bl __dt__Q27JStudio14TAdaptor_soundFv
 /* 8028D978 0028A8B8  7F E0 07 35 */	extsh. r0, r31
 /* 8028D97C 0028A8BC  40 81 00 0C */	ble lbl_8028D988
 /* 8028D980 0028A8C0  7F C3 F3 78 */	mr r3, r30
@@ -213,7 +213,7 @@ lbl_8028DA0C:
 /* 8028DA0C 0028A94C  7F E3 FB 78 */	mr r3, r31
 /* 8028DA10 0028A950  3C 80 80 43 */	lis r4, lbl_80431490@ha
 /* 8028DA14 0028A954  38 84 14 90 */	addi r4, r4, lbl_80431490@l
-/* 8028DA18 0028A958  4B FF 87 A9 */	bl JStudio_NS_TAdaptor_NS_adaptor_setVariableValue_immediate
+/* 8028DA18 0028A958  4B FF 87 A9 */	bl adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
 /* 8028DA1C 0028A95C  3C 60 80 43 */	lis r3, lbl_804314F8@ha
 /* 8028DA20 0028A960  38 03 14 F8 */	addi r0, r3, lbl_804314F8@l
 /* 8028DA24 0028A964  7C 04 03 78 */	mr r4, r0
@@ -252,7 +252,7 @@ lbl_8028DA54:
 /* 8028DA98 0028A9D8  38 81 00 18 */	addi r4, r1, 0x18
 /* 8028DA9C 0028A9DC  3C A0 80 3A */	lis r5, lbl_8039AB6C@ha
 /* 8028DAA0 0028A9E0  38 A5 AB 6C */	addi r5, r5, lbl_8039AB6C@l
-/* 8028DAA4 0028A9E4  4B FF 87 D1 */	bl JStudio_NS_TAdaptor_NS_adaptor_getVariableValue_Vec
+/* 8028DAA4 0028A9E4  4B FF 87 D1 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028DAA8 0028A9E8  88 1F 01 44 */	lbz r0, 0x144(r31)
 /* 8028DAAC 0028A9EC  28 00 00 00 */	cmplwi r0, 0
 /* 8028DAB0 0028A9F0  40 82 00 34 */	bne lbl_8028DAE4
@@ -275,7 +275,7 @@ lbl_8028DAE4:
 /* 8028DAE8 0028AA28  38 81 00 18 */	addi r4, r1, 0x18
 /* 8028DAEC 0028AA2C  80 BF 01 3C */	lwz r5, 0x13c(r31)
 /* 8028DAF0 0028AA30  80 DF 01 40 */	lwz r6, 0x140(r31)
-/* 8028DAF4 0028AA34  4B FF C7 9D */	bl JStudio_JStage_NS_transform_toGlobalFromLocal_X1_
+/* 8028DAF4 0028AA34  4B FF C7 9D */	bl transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
 /* 8028DAF8 0028AA38  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8028DAFC 0028AA3C  40 82 00 0C */	bne lbl_8028DB08
 /* 8028DB00 0028AA40  38 00 00 00 */	li r0, 0
@@ -332,9 +332,9 @@ lbl_8028DB94:
 /* 8028DBB4 0028AAF4  28 00 00 00 */	cmplwi r0, 0
 /* 8028DBB8 0028AAF8  40 82 00 14 */	bne lbl_8028DBCC
 /* 8028DBBC 0028AAFC  7F E3 FB 78 */	mr r3, r31
-/* 8028DBC0 0028AB00  48 00 03 45 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_prepareSound_
+/* 8028DBC0 0028AB00  48 00 03 45 */	bl prepareSound___Q215JStudio_JAudio214TAdaptor_soundFv
 /* 8028DBC4 0028AB04  7F E3 FB 78 */	mr r3, r31
-/* 8028DBC8 0028AB08  48 00 03 DD */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_
+/* 8028DBC8 0028AB08  48 00 03 DD */	bl beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv
 lbl_8028DBCC:
 /* 8028DBCC 0028AB0C  80 7F 01 2C */	lwz r3, 0x12c(r31)
 /* 8028DBD0 0028AB10  28 03 00 00 */	cmplwi r3, 0
@@ -367,7 +367,7 @@ lbl_8028DC08:
 lbl_8028DC38:
 /* 8028DC38 0028AB78  80 05 00 00 */	lwz r0, 0(r5)
 /* 8028DC3C 0028AB7C  90 03 01 24 */	stw r0, 0x124(r3)
-/* 8028DC40 0028AB80  48 00 02 C5 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_prepareSound_
+/* 8028DC40 0028AB80  48 00 02 C5 */	bl prepareSound___Q215JStudio_JAudio214TAdaptor_soundFv
 lbl_8028DC44:
 /* 8028DC44 0028AB84  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028DC48 0028AB88  7C 08 03 A6 */	mtlr r0
@@ -382,7 +382,7 @@ lbl_8028DC44:
 lbl_8028DC6C:
 /* 8028DC6C 0028ABAC  38 00 00 00 */	li r0, 0
 /* 8028DC70 0028ABB0  90 03 01 28 */	stw r0, 0x128(r3)
-/* 8028DC74 0028ABB4  48 00 03 31 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_
+/* 8028DC74 0028ABB4  48 00 03 31 */	bl beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv
 lbl_8028DC78:
 /* 8028DC78 0028ABB8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028DC7C 0028ABBC  7C 08 03 A6 */	mtlr r0
@@ -401,7 +401,7 @@ lbl_8028DCA8:
 /* 8028DCAC 0028ABEC  48 0D 44 01 */	bl __cvt_fp2unsigned
 /* 8028DCB0 0028ABF0  90 7F 01 28 */	stw r3, 0x128(r31)
 /* 8028DCB4 0028ABF4  7F E3 FB 78 */	mr r3, r31
-/* 8028DCB8 0028ABF8  48 00 02 ED */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_
+/* 8028DCB8 0028ABF8  48 00 02 ED */	bl beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv
 lbl_8028DCBC:
 /* 8028DCBC 0028ABFC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8028DCC0 0028AC00  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -416,7 +416,7 @@ lbl_8028DCBC:
 /* 8028DCE4 0028AC24  48 00 00 0C */	b lbl_8028DCF0
 lbl_8028DCE8:
 /* 8028DCE8 0028AC28  38 80 00 00 */	li r4, 0
-/* 8028DCEC 0028AC2C  48 00 03 69 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_endSound_fadeOut_
+/* 8028DCEC 0028AC2C  48 00 03 69 */	bl endSound_fadeOut___Q215JStudio_JAudio214TAdaptor_soundFUl
 lbl_8028DCF0:
 /* 8028DCF0 0028AC30  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028DCF4 0028AC34  7C 08 03 A6 */	mtlr r0
@@ -435,7 +435,7 @@ lbl_8028DD20:
 /* 8028DD24 0028AC64  48 0D 43 89 */	bl __cvt_fp2unsigned
 /* 8028DD28 0028AC68  7C 64 1B 78 */	mr r4, r3
 /* 8028DD2C 0028AC6C  7F E3 FB 78 */	mr r3, r31
-/* 8028DD30 0028AC70  48 00 03 25 */	bl JStudio_JAudio2_NS_TAdaptor_sound_NS_endSound_fadeOut_
+/* 8028DD30 0028AC70  48 00 03 25 */	bl endSound_fadeOut___Q215JStudio_JAudio214TAdaptor_soundFUl
 lbl_8028DD34:
 /* 8028DD34 0028AC74  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8028DD38 0028AC78  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -560,8 +560,8 @@ lbl_8028DEF4:
 /* 8028DEFC 0028AE3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028DF00 0028AE40  4E 80 00 20 */	blr 
 
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_prepareSound_
-JStudio_JAudio2_NS_TAdaptor_sound_NS_prepareSound_:
+.global prepareSound___Q215JStudio_JAudio214TAdaptor_soundFv
+prepareSound___Q215JStudio_JAudio214TAdaptor_soundFv:
 /* 8028DF04 0028AE44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028DF08 0028AE48  7C 08 02 A6 */	mflr r0
 /* 8028DF0C 0028AE4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -599,7 +599,7 @@ lbl_8028DF7C:
 /* 8028DF80 0028AEC0  28 03 00 00 */	cmplwi r3, 0
 /* 8028DF84 0028AEC4  41 82 00 0C */	beq lbl_8028DF90
 /* 8028DF88 0028AEC8  38 63 00 1C */	addi r3, r3, 0x1c
-/* 8028DF8C 0028AECC  48 01 42 95 */	bl JAISoundStatus__NS_lockWhenPrepared
+/* 8028DF8C 0028AECC  48 01 42 95 */	bl lockWhenPrepared__15JAISoundStatus_Fv
 lbl_8028DF90:
 /* 8028DF90 0028AED0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8028DF94 0028AED4  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -607,8 +607,8 @@ lbl_8028DF90:
 /* 8028DF9C 0028AEDC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028DFA0 0028AEE0  4E 80 00 20 */	blr 
 
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_
-JStudio_JAudio2_NS_TAdaptor_sound_NS_beginSound_fadeIn_:
+.global beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv
+beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv:
 /* 8028DFA4 0028AEE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8028DFA8 0028AEE8  7C 08 02 A6 */	mflr r0
 /* 8028DFAC 0028AEEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -647,7 +647,7 @@ lbl_8028E014:
 lbl_8028E02C:
 /* 8028E02C 0028AF6C  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 8028E030 0028AF70  38 63 00 1C */	addi r3, r3, 0x1c
-/* 8028E034 0028AF74  48 01 42 11 */	bl JAISoundStatus__NS_unlockIfLocked
+/* 8028E034 0028AF74  48 01 42 11 */	bl unlockIfLocked__15JAISoundStatus_Fv
 /* 8028E038 0028AF78  38 00 00 01 */	li r0, 1
 /* 8028E03C 0028AF7C  98 1F 01 20 */	stb r0, 0x120(r31)
 lbl_8028E040:
@@ -657,8 +657,8 @@ lbl_8028E040:
 /* 8028E04C 0028AF8C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8028E050 0028AF90  4E 80 00 20 */	blr 
 
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_endSound_fadeOut_
-JStudio_JAudio2_NS_TAdaptor_sound_NS_endSound_fadeOut_:
+.global endSound_fadeOut___Q215JStudio_JAudio214TAdaptor_soundFUl
+endSound_fadeOut___Q215JStudio_JAudio214TAdaptor_soundFUl:
 /* 8028E054 0028AF94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028E058 0028AF98  7C 08 02 A6 */	mflr r0
 /* 8028E05C 0028AF9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -676,8 +676,8 @@ lbl_8028E080:
 /* 8028E088 0028AFC8  7C 08 03 A6 */	mtlr r0
 /* 8028E08C 0028AFCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8028E090 0028AFD0  4E 80 00 20 */	blr 
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor:
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+__dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv:
 /* 8028E094 0028AFD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8028E098 0028AFD8  7C 08 02 A6 */	mflr r0
 /* 8028E09C 0028AFDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -690,7 +690,7 @@ JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor:
 /* 8028E0B8 0028AFF8  38 04 5A 78 */	addi r0, r4, lbl_803C5A78@l
 /* 8028E0BC 0028AFFC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E0C0 0028B000  38 80 00 00 */	li r4, 0
-/* 8028E0C4 0028B004  4B FF 7D 49 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E0C4 0028B004  4B FF 7D 49 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E0C8 0028B008  7F E0 07 35 */	extsh. r0, r31
 /* 8028E0CC 0028B00C  40 81 00 0C */	ble lbl_8028E0D8
 /* 8028E0D0 0028B010  7F C3 F3 78 */	mr r3, r30
@@ -727,10 +727,10 @@ lbl_8028E0D8:
 /* 8028E140 0028B080  38 7F 00 68 */	addi r3, r31, 0x68
 /* 8028E144 0028B084  90 83 00 04 */	stw r4, 4(r3)
 /* 8028E148 0028B088  90 03 00 08 */	stw r0, 8(r3)
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E14C 0028B08C  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E150 0028B090  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E14C 0028B08C  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E150 0028B090  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E154 0028B094  38 BF 00 20 */	addi r5, r31, 0x20
 /* 8028E158 0028B098  48 0D 3A CD */	bl func_80361C24
 /* 8028E15C 0028B09C  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -738,7 +738,7 @@ lbl_8028E0D8:
 /* 8028E164 0028B0A4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8028E168 0028B0A8  38 61 00 44 */	addi r3, r1, 0x44
 /* 8028E16C 0028B0AC  38 80 00 00 */	li r4, 0
-/* 8028E170 0028B0B0  4B FF 7C 9D */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E170 0028B0B0  4B FF 7C 9D */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E174 0028B0B4  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028E178 0028B0B8  38 C3 56 40 */	addi r6, r3, lbl_803C5640@l
 /* 8028E17C 0028B0BC  90 C1 00 38 */	stw r6, 0x38(r1)
@@ -758,10 +758,10 @@ lbl_8028E0D8:
 /* 8028E1AC 0028B0EC  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8028E1B0 0028B0F0  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8028E1B4 0028B0F4  38 63 00 0C */	addi r3, r3, 0xc
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E1B8 0028B0F8  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E1BC 0028B0FC  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E1B8 0028B0F8  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E1BC 0028B0FC  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E1C0 0028B100  38 BF 00 2C */	addi r5, r31, 0x2c
 /* 8028E1C4 0028B104  48 0D 3A 61 */	bl func_80361C24
 /* 8028E1C8 0028B108  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -769,7 +769,7 @@ lbl_8028E0D8:
 /* 8028E1D0 0028B110  90 01 00 38 */	stw r0, 0x38(r1)
 /* 8028E1D4 0028B114  38 61 00 38 */	addi r3, r1, 0x38
 /* 8028E1D8 0028B118  38 80 00 00 */	li r4, 0
-/* 8028E1DC 0028B11C  4B FF 7C 31 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E1DC 0028B11C  4B FF 7C 31 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E1E0 0028B120  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028E1E4 0028B124  38 C3 56 40 */	addi r6, r3, lbl_803C5640@l
 /* 8028E1E8 0028B128  90 C1 00 2C */	stw r6, 0x2c(r1)
@@ -789,10 +789,10 @@ lbl_8028E0D8:
 /* 8028E218 0028B158  90 83 00 1C */	stw r4, 0x1c(r3)
 /* 8028E21C 0028B15C  90 03 00 20 */	stw r0, 0x20(r3)
 /* 8028E220 0028B160  38 63 00 18 */	addi r3, r3, 0x18
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E224 0028B164  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E228 0028B168  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E224 0028B164  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E228 0028B168  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E22C 0028B16C  38 BF 00 38 */	addi r5, r31, 0x38
 /* 8028E230 0028B170  48 0D 39 F5 */	bl func_80361C24
 /* 8028E234 0028B174  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -800,7 +800,7 @@ lbl_8028E0D8:
 /* 8028E23C 0028B17C  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 8028E240 0028B180  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8028E244 0028B184  38 80 00 00 */	li r4, 0
-/* 8028E248 0028B188  4B FF 7B C5 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E248 0028B188  4B FF 7B C5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E24C 0028B18C  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028E250 0028B190  38 C3 56 40 */	addi r6, r3, lbl_803C5640@l
 /* 8028E254 0028B194  90 C1 00 20 */	stw r6, 0x20(r1)
@@ -820,10 +820,10 @@ lbl_8028E0D8:
 /* 8028E284 0028B1C4  90 83 00 28 */	stw r4, 0x28(r3)
 /* 8028E288 0028B1C8  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 8028E28C 0028B1CC  38 63 00 24 */	addi r3, r3, 0x24
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E290 0028B1D0  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E294 0028B1D4  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E290 0028B1D0  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E294 0028B1D4  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E298 0028B1D8  38 BF 00 44 */	addi r5, r31, 0x44
 /* 8028E29C 0028B1DC  48 0D 39 89 */	bl func_80361C24
 /* 8028E2A0 0028B1E0  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -831,7 +831,7 @@ lbl_8028E0D8:
 /* 8028E2A8 0028B1E8  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8028E2AC 0028B1EC  38 61 00 20 */	addi r3, r1, 0x20
 /* 8028E2B0 0028B1F0  38 80 00 00 */	li r4, 0
-/* 8028E2B4 0028B1F4  4B FF 7B 59 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E2B4 0028B1F4  4B FF 7B 59 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E2B8 0028B1F8  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028E2BC 0028B1FC  38 C3 56 40 */	addi r6, r3, lbl_803C5640@l
 /* 8028E2C0 0028B200  90 C1 00 14 */	stw r6, 0x14(r1)
@@ -851,10 +851,10 @@ lbl_8028E0D8:
 /* 8028E2F0 0028B230  90 83 00 34 */	stw r4, 0x34(r3)
 /* 8028E2F4 0028B234  90 03 00 38 */	stw r0, 0x38(r3)
 /* 8028E2F8 0028B238  38 63 00 30 */	addi r3, r3, 0x30
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E2FC 0028B23C  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E300 0028B240  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E2FC 0028B23C  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E300 0028B240  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E304 0028B244  38 BF 00 50 */	addi r5, r31, 0x50
 /* 8028E308 0028B248  48 0D 39 1D */	bl func_80361C24
 /* 8028E30C 0028B24C  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -862,7 +862,7 @@ lbl_8028E0D8:
 /* 8028E314 0028B254  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028E318 0028B258  38 61 00 14 */	addi r3, r1, 0x14
 /* 8028E31C 0028B25C  38 80 00 00 */	li r4, 0
-/* 8028E320 0028B260  4B FF 7A ED */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E320 0028B260  4B FF 7A ED */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E324 0028B264  3C 60 80 3C */	lis r3, lbl_803C5640@ha
 /* 8028E328 0028B268  38 C3 56 40 */	addi r6, r3, lbl_803C5640@l
 /* 8028E32C 0028B26C  90 C1 00 08 */	stw r6, 8(r1)
@@ -879,10 +879,10 @@ lbl_8028E0D8:
 /* 8028E358 0028B298  90 83 00 40 */	stw r4, 0x40(r3)
 /* 8028E35C 0028B29C  90 03 00 44 */	stw r0, 0x44(r3)
 /* 8028E360 0028B2A0  38 63 00 3C */	addi r3, r3, 0x3c
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E364 0028B2A4  3C 80 80 29 */	lis r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@ha
-.global JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor
-/* 8028E368 0028B2A8  38 84 E0 94 */	addi r4, r4, JStudio_JAudio2_NS_TAdaptor_sound_NS_TVVOSetValue__NS_dtor@l
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E364 0028B2A4  3C 80 80 29 */	lis r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@ha
+.global __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv
+/* 8028E368 0028B2A8  38 84 E0 94 */	addi r4, r4, __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv@l
 /* 8028E36C 0028B2AC  38 BF 00 5C */	addi r5, r31, 0x5c
 /* 8028E370 0028B2B0  48 0D 38 B5 */	bl func_80361C24
 /* 8028E374 0028B2B4  3C 60 80 3C */	lis r3, lbl_803C5A78@ha
@@ -890,7 +890,7 @@ lbl_8028E0D8:
 /* 8028E37C 0028B2BC  90 01 00 08 */	stw r0, 8(r1)
 /* 8028E380 0028B2C0  38 61 00 08 */	addi r3, r1, 8
 /* 8028E384 0028B2C4  38 80 00 00 */	li r4, 0
-/* 8028E388 0028B2C8  4B FF 7A 85 */	bl JStudio_NS_TVariableValue_NS_TOutput_NS_dtor
+/* 8028E388 0028B2C8  4B FF 7A 85 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
 /* 8028E38C 0028B2CC  83 E1 00 5C */	lwz r31, 0x5c(r1)
 /* 8028E390 0028B2D0  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8028E394 0028B2D4  7C 08 03 A6 */	mtlr r0

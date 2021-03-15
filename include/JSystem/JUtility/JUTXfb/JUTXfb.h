@@ -7,12 +7,17 @@
 
 class JUTXfb {
 public:
-    typedef s32 EXfbNumber;
+    enum EXfbNumber {  // TODO: placeholder
+        UNK_0 = 0,
+        UNK_1 = 1,
+        UNK_2 = 2,
+        UNK_3 = 3,
+    };
     JUTXfb(GXRenderModeObj* obj, JKRHeap* heap, EXfbNumber xfb_number);
     ~JUTXfb();
 
     void clearIndex();
-    void common_init(s32 xfb_number);
+    void common_init(int xfb_number);
     void delXfb(s32 index);
     static JUTXfb* createManager(JKRHeap* heap, EXfbNumber xfb_number);
     static void destroyManager();

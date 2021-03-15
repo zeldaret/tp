@@ -34,7 +34,7 @@ removeObject__Q37JStudio3fvb8TControlFPQ37JStudio3fvb7TObject:
 /* 80284760 002816A0  38 A4 00 0C */	addi r5, r4, 0xc
 /* 80284764 002816A4  38 61 00 08 */	addi r3, r1, 8
 /* 80284768 002816A8  38 86 00 08 */	addi r4, r6, 8
-/* 8028476C 002816AC  48 05 84 69 */	bl JGadget_NS_TNodeLinkList_NS_Erase
+/* 8028476C 002816AC  48 05 84 69 */	bl Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 /* 80284770 002816B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80284774 002816B4  7C 08 03 A6 */	mtlr r0
 /* 80284778 002816B8  38 21 00 10 */	addi r1, r1, 0x10
@@ -348,7 +348,7 @@ parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl:
 /* 80284B80 00281AC0  7F E3 FB 78 */	mr r3, r31
 /* 80284B84 00281AC4  38 82 BA 50 */	addi r4, r2, lbl_80455450-_SDA2_BASE_
 /* 80284B88 00281AC8  38 A0 00 04 */	li r5, 4
-/* 80284B8C 00281ACC  48 0E 15 01 */	bl func_8036608C
+/* 80284B8C 00281ACC  48 0E 15 01 */	bl memcmp
 /* 80284B90 00281AD0  2C 03 00 00 */	cmpwi r3, 0
 /* 80284B94 00281AD4  41 82 00 0C */	beq lbl_80284BA0
 /* 80284B98 00281AD8  38 60 00 00 */	li r3, 0
@@ -648,7 +648,7 @@ __dt__Q37JStudio3fvb17TObject_compositeFv:
 /* 80284FC4 00281F04  41 82 00 10 */	beq lbl_80284FD4
 /* 80284FC8 00281F08  38 7E 00 1C */	addi r3, r30, 0x1c
 /* 80284FCC 00281F0C  38 80 00 00 */	li r4, 0
-/* 80284FD0 00281F10  48 05 7D 2D */	bl JGadget_NS_TVector_pointer_void_NS_dtor
+/* 80284FD0 00281F10  48 05 7D 2D */	bl __dt__Q27JGadget20TVector_pointer_voidFv
 lbl_80284FD4:
 /* 80284FD4 00281F14  38 7E 00 18 */	addi r3, r30, 0x18
 /* 80284FD8 00281F18  38 80 00 00 */	li r4, 0
@@ -700,7 +700,7 @@ lbl_8028504C:
 /* 80285074 00281FB4  80 7D 00 00 */	lwz r3, 0(r29)
 /* 80285078 00281FB8  38 63 FF F4 */	addi r3, r3, -12
 /* 8028507C 00281FBC  7F E4 FB 78 */	mr r4, r31
-/* 80285080 00281FC0  48 00 39 09 */	bl JStudio_NS_object_NS_TIDData_NS_isEqual
+/* 80285080 00281FC0  48 00 39 09 */	bl isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData
 /* 80285084 00281FC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80285088 00281FC8  41 82 FF B8 */	beq lbl_80285040
 lbl_8028508C:

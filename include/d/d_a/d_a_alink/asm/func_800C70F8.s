@@ -6,7 +6,7 @@
 /* 800C710C 000C404C  7C 7F 1B 78 */ mr r31, r3
 /* 800C7110 000C4050  7C 9E 23 78 */ mr r30, r4
 /* 800C7114 000C4054  38 80 00 1A */ li r4, 0x1a
-/* 800C7118 000C4058  4B FF AE 55 */ bl daAlink_c_NS_commonProcInit
+/* 800C7118 000C4058  4B FF AE 55 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C711C 000C405C  2C 1E 00 02 */ cmpwi r30, 2
 /* 800C7120 000C4060  40 82 00 84 */ bne lbl_800C71A4
 /* 800C7124 000C4064  7F E3 FB 78 */ mr r3, r31
@@ -17,9 +17,9 @@
 /* 800C7138 000C4078  C0 42 93 44 */ lfs f2, lbl_80452D44-_SDA2_BASE_(r2)
 /* 800C713C 000C407C  A8 A6 00 00 */ lha r5, 0(r6)
 /* 800C7140 000C4080  C0 66 00 0C */ lfs f3, 0xc(r6)
-/* 800C7144 000C4084  4B FE 5E C9 */ bl daAlink_c_NS_setSingleAnime
+/* 800C7144 000C4084  4B FE 5E C9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800C7148 000C4088  7F E3 FB 78 */ mr r3, r31
-/* 800C714C 000C408C  4B FE D7 85 */ bl daAlink_c_NS_setJumpMode
+/* 800C714C 000C408C  4B FE D7 85 */ bl setJumpMode__9daAlink_cFv
 /* 800C7150 000C4090  C0 02 93 20 */ lfs f0, lbl_80452D20-_SDA2_BASE_(r2)
 /* 800C7154 000C4094  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 800C7158 000C4098  7F E3 FB 78 */ mr r3, r31
@@ -46,7 +46,7 @@ lbl_800C71A4:
 /* 800C71A8 000C40E8  38 80 00 D7 */ li r4, 0xd7
 /* 800C71AC 000C40EC  3C A0 80 39 */ lis r5, lbl_8038E11C@ha
 /* 800C71B0 000C40F0  38 A5 E1 1C */ addi r5, r5, lbl_8038E11C@l
-/* 800C71B4 000C40F4  4B FE 5F 41 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800C71B4 000C40F4  4B FE 5F 41 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C71B8 000C40F8  2C 1E 00 01 */ cmpwi r30, 1
 /* 800C71BC 000C40FC  40 82 00 BC */ bne lbl_800C7278
 /* 800C71C0 000C4100  C0 22 93 78 */ lfs f1, lbl_80452D78-_SDA2_BASE_(r2)
@@ -95,7 +95,7 @@ lbl_800C7250:
 /* 800C7264 000C41A4  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800C7268 000C41A8  7F E3 FB 78 */ mr r3, r31
 /* 800C726C 000C41AC  38 80 00 00 */ li r4, 0
-/* 800C7270 000C41B0  48 01 B3 11 */ bl daAlink_c_NS_setHeavyBoots
+/* 800C7270 000C41B0  48 01 B3 11 */ bl setHeavyBoots__9daAlink_cFi
 /* 800C7274 000C41B4  48 00 00 14 */ b lbl_800C7288
 lbl_800C7278:
 /* 800C7278 000C41B8  C0 1F 34 F0 */ lfs f0, 0x34f0(r31)

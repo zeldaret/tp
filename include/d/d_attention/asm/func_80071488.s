@@ -57,7 +57,7 @@ lbl_800714C8:
 /* 80071560 0006E4A0  A8 C1 00 24 */ lha r6, 0x24(r1)
 /* 80071564 0006E4A4  7C E7 07 34 */ extsh r7, r7
 /* 80071568 0006E4A8  39 01 00 28 */ addi r8, r1, 0x28
-/* 8007156C 0006E4AC  4B FF F9 25 */ bl dAttention_c_NS_calcWeight
+/* 8007156C 0006E4AC  4B FF F9 25 */ bl calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl
 /* 80071570 0006E4B0  FF E0 08 90 */ fmr f31, f1
 /* 80071574 0006E4B4  38 61 00 10 */ addi r3, r1, 0x10
 /* 80071578 0006E4B8  38 81 00 24 */ addi r4, r1, 0x24
@@ -69,7 +69,7 @@ lbl_800714C8:
 /* 80071590 0006E4D0  C0 41 00 2C */ lfs f2, 0x2c(r1)
 /* 80071594 0006E4D4  38 C1 00 10 */ addi r6, r1, 0x10
 /* 80071598 0006E4D8  80 E1 00 28 */ lwz r7, 0x28(r1)
-/* 8007159C 0006E4DC  4B FF FB 25 */ bl dAttention_c_NS_setList
+/* 8007159C 0006E4DC  4B FF FB 25 */ bl setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl
 lbl_800715A0:
 /* 800715A0 0006E4E0  80 1F 05 5C */ lwz r0, 0x55c(r31)
 /* 800715A4 0006E4E4  54 00 06 39 */ rlwinm. r0, r0, 0, 0x18, 0x1c
@@ -81,7 +81,7 @@ lbl_800715A0:
 /* 800715BC 0006E4FC  A8 C1 00 24 */ lha r6, 0x24(r1)
 /* 800715C0 0006E500  A8 E1 00 20 */ lha r7, 0x20(r1)
 /* 800715C4 0006E504  39 01 00 28 */ addi r8, r1, 0x28
-/* 800715C8 0006E508  4B FF F8 C9 */ bl dAttention_c_NS_calcWeight
+/* 800715C8 0006E508  4B FF F8 C9 */ bl calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl
 /* 800715CC 0006E50C  FF E0 08 90 */ fmr f31, f1
 /* 800715D0 0006E510  38 61 00 0C */ addi r3, r1, 0xc
 /* 800715D4 0006E514  38 81 00 24 */ addi r4, r1, 0x24
@@ -93,7 +93,7 @@ lbl_800715A0:
 /* 800715EC 0006E52C  C0 41 00 2C */ lfs f2, 0x2c(r1)
 /* 800715F0 0006E530  38 C1 00 0C */ addi r6, r1, 0xc
 /* 800715F4 0006E534  80 E1 00 28 */ lwz r7, 0x28(r1)
-/* 800715F8 0006E538  4B FF FA C9 */ bl dAttention_c_NS_setList
+/* 800715F8 0006E538  4B FF FA C9 */ bl setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl
 lbl_800715FC:
 /* 800715FC 0006E53C  80 1F 05 5C */ lwz r0, 0x55c(r31)
 /* 80071600 0006E540  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
@@ -105,7 +105,7 @@ lbl_800715FC:
 /* 80071618 0006E558  A8 C1 00 24 */ lha r6, 0x24(r1)
 /* 8007161C 0006E55C  A8 E1 00 20 */ lha r7, 0x20(r1)
 /* 80071620 0006E560  39 01 00 28 */ addi r8, r1, 0x28
-/* 80071624 0006E564  4B FF F8 6D */ bl dAttention_c_NS_calcWeight
+/* 80071624 0006E564  4B FF F8 6D */ bl calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl
 /* 80071628 0006E568  FF E0 08 90 */ fmr f31, f1
 /* 8007162C 0006E56C  38 61 00 08 */ addi r3, r1, 8
 /* 80071630 0006E570  38 81 00 24 */ addi r4, r1, 0x24
@@ -117,7 +117,7 @@ lbl_800715FC:
 /* 80071648 0006E588  C0 41 00 2C */ lfs f2, 0x2c(r1)
 /* 8007164C 0006E58C  38 C1 00 08 */ addi r6, r1, 8
 /* 80071650 0006E590  80 E1 00 28 */ lwz r7, 0x28(r1)
-/* 80071654 0006E594  4B FF FA 6D */ bl dAttention_c_NS_setList
+/* 80071654 0006E594  4B FF FA 6D */ bl setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl
 lbl_80071658:
 /* 80071658 0006E598  38 60 00 00 */ li r3, 0
 lbl_8007165C:

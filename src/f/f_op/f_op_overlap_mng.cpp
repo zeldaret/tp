@@ -13,7 +13,7 @@ extern "C" {
 // void cReq_Done__FP18request_base_class(void);
 void cReq_Is_Done__FP18request_base_class(void);
 void fopOvlpM_Done(void);
-void fopOvlpM_Init(void);
+void fopOvlpM_Init__Fv(void);
 void fopOvlpM_Request(void);
 void fopOvlpM_ToldAboutID(void);
 void fopScnPause_Disable(void);
@@ -108,6 +108,6 @@ int fopOvlpM_Cancel(void) {
     return 0;
 }
 
-void fopOvlpM_Init(void) {
+void fopOvlpM_Init__Fv(void) {
     return;
 }

@@ -28,14 +28,14 @@ lbl_800E6644:
 /* 800E6658 000E3598  48 18 A0 E9 */ bl cLib_chaseF__FPfff
 /* 800E665C 000E359C  7F E3 FB 78 */ mr r3, r31
 /* 800E6660 000E35A0  C0 3E 34 3C */ lfs f1, 0x343c(r30)
-/* 800E6664 000E35A4  48 24 1D C9 */ bl J3DFrameCtrl_NS_checkPass
+/* 800E6664 000E35A4  48 24 1D C9 */ bl checkPass__12J3DFrameCtrlFf
 /* 800E6668 000E35A8  2C 03 00 00 */ cmpwi r3, 0
 /* 800E666C 000E35AC  41 82 00 0C */ beq lbl_800E6678
 /* 800E6670 000E35B0  7F C3 F3 78 */ mr r3, r30
-/* 800E6674 000E35B4  4B FF ED 85 */ bl daAlink_c_NS_setGrabItemThrow
+/* 800E6674 000E35B4  4B FF ED 85 */ bl setGrabItemThrow__9daAlink_cFv
 lbl_800E6678:
 /* 800E6678 000E35B8  7F E3 FB 78 */ mr r3, r31
-/* 800E667C 000E35BC  48 07 7E 51 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E667C 000E35BC  48 07 7E 51 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E6680 000E35C0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E6684 000E35C4  41 82 00 34 */ beq lbl_800E66B8
 /* 800E6688 000E35C8  80 1E 31 98 */ lwz r0, 0x3198(r30)
@@ -45,11 +45,11 @@ lbl_800E6678:
 /* 800E6698 000E35D8  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800E669C 000E35DC  7F C3 F3 78 */ mr r3, r30
 /* 800E66A0 000E35E0  38 80 00 00 */ li r4, 0
-/* 800E66A4 000E35E4  4B FD 2D 51 */ bl daAlink_c_NS_swordEquip
+/* 800E66A4 000E35E4  4B FD 2D 51 */ bl swordEquip__9daAlink_cFi
 lbl_800E66A8:
 /* 800E66A8 000E35E8  7F C3 F3 78 */ mr r3, r30
 /* 800E66AC 000E35EC  38 80 00 00 */ li r4, 0
-/* 800E66B0 000E35F0  4B FD 3A 21 */ bl daAlink_c_NS_checkNextAction
+/* 800E66B0 000E35F0  4B FD 3A 21 */ bl checkNextAction__9daAlink_cFi
 /* 800E66B4 000E35F4  48 00 00 5C */ b lbl_800E6710
 lbl_800E66B8:
 /* 800E66B8 000E35F8  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -66,15 +66,15 @@ lbl_800E66B8:
 /* 800E66E4 000E3624  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800E66E8 000E3628  7F C3 F3 78 */ mr r3, r30
 /* 800E66EC 000E362C  38 80 00 00 */ li r4, 0
-/* 800E66F0 000E3630  4B FD 2D 05 */ bl daAlink_c_NS_swordEquip
+/* 800E66F0 000E3630  4B FD 2D 05 */ bl swordEquip__9daAlink_cFi
 /* 800E66F4 000E3634  7F C3 F3 78 */ mr r3, r30
 /* 800E66F8 000E3638  38 80 00 00 */ li r4, 0
-/* 800E66FC 000E363C  4B FD 39 D5 */ bl daAlink_c_NS_checkNextAction
+/* 800E66FC 000E363C  4B FD 39 D5 */ bl checkNextAction__9daAlink_cFi
 /* 800E6700 000E3640  48 00 00 10 */ b lbl_800E6710
 lbl_800E6704:
 /* 800E6704 000E3644  7F C3 F3 78 */ mr r3, r30
 /* 800E6708 000E3648  38 80 00 01 */ li r4, 1
-/* 800E670C 000E364C  4B FD 39 C5 */ bl daAlink_c_NS_checkNextAction
+/* 800E670C 000E364C  4B FD 39 C5 */ bl checkNextAction__9daAlink_cFi
 lbl_800E6710:
 /* 800E6710 000E3650  38 60 00 01 */ li r3, 1
 /* 800E6714 000E3654  83 E1 00 0C */ lwz r31, 0xc(r1)

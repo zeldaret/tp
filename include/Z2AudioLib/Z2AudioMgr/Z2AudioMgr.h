@@ -26,8 +26,8 @@ extern Z2AudioMgr* lbl_80451368;
 
 extern "C" {
 void func_802CDCEC(void);
-void func_8036679C(void);
-void func_80362ABC(void);
+void fprintf(void);
+void abort(void);
 void func_802CD7F8(void);
 void func_802CDB1C(void);
 void func_802CDB68(void);
@@ -39,7 +39,7 @@ void setOutputMode__10Z2AudioMgrFUl(void);
 void Z2AudioMgr_NS_gframeProcess(void);
 void Z2AudioMgr_NS_init(void);
 void Z2AudioMgr_NS_resetRecover(void);
-void Z2AudioMgr_NS_zeldaGFrameWork(void);
+void zeldaGFrameWork__10Z2AudioMgrFv(void);
 }
 
 #endif  // Z2AUDIOMGR_H_

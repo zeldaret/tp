@@ -6,7 +6,7 @@
 /* 80115120 00112060  7C 7E 1B 78 */ mr r30, r3
 /* 80115124 00112064  38 80 00 02 */ li r4, 2
 /* 80115128 00112068  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8011512C 0011206C  4B F9 85 F9 */ bl daAlink_c_NS_resetUpperAnime
+/* 8011512C 0011206C  4B F9 85 F9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 80115130 00112070  7F C3 F3 78 */ mr r3, r30
 /* 80115134 00112074  38 80 01 62 */ li r4, 0x162
 /* 80115138 00112078  3C A0 80 39 */ lis r5, lbl_8038EA70@ha
@@ -15,12 +15,12 @@
 /* 80115144 00112084  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80115148 00112088  38 A0 00 15 */ li r5, 0x15
 /* 8011514C 0011208C  C0 7F 00 20 */ lfs f3, 0x20(r31)
-/* 80115150 00112090  4B F9 7E BD */ bl daAlink_c_NS_setSingleAnime
+/* 80115150 00112090  4B F9 7E BD */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 80115154 00112094  7F C3 F3 78 */ mr r3, r30
 /* 80115158 00112098  38 80 01 9A */ li r4, 0x19a
 /* 8011515C 0011209C  C0 3F 00 1C */ lfs f1, 0x1c(r31)
 /* 80115160 001120A0  C0 42 92 BC */ lfs f2, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 80115164 001120A4  4B F9 82 45 */ bl daAlink_c_NS_setUpperAnimeBaseSpeed
+/* 80115164 001120A4  4B F9 82 45 */ bl setUpperAnimeBaseSpeed__9daAlink_cFUsff
 /* 80115168 001120A8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011516C 001120AC  D0 1E 1F 50 */ stfs f0, 0x1f50(r30)
 /* 80115170 001120B0  7F C3 F3 78 */ mr r3, r30
@@ -34,7 +34,7 @@
 /* 80115190 001120D0  54 00 00 3C */ rlwinm r0, r0, 0, 0, 0x1e
 /* 80115194 001120D4  90 1E 0F B8 */ stw r0, 0xfb8(r30)
 /* 80115198 001120D8  38 7E 0F B8 */ addi r3, r30, 0xfb8
-/* 8011519C 001120DC  4B F6 F1 7D */ bl dCcD_GObjInf_NS_ResetAtHit
+/* 8011519C 001120DC  4B F6 F1 7D */ bl ResetAtHit__12dCcD_GObjInfFv
 /* 801151A0 001120E0  38 00 00 02 */ li r0, 2
 /* 801151A4 001120E4  98 1E 0F CC */ stb r0, 0xfcc(r30)
 /* 801151A8 001120E8  38 00 00 0A */ li r0, 0xa

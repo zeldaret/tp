@@ -34,24 +34,24 @@ lbl_800588CC:
 /* 80058914 00055854  90 1E 00 00 */ stw r0, 0(r30)
 /* 80058918 00055858  38 64 00 18 */ addi r3, r4, 0x18
 /*.global RAIN_EFF*/
-/* 8005891C 0005585C  3C 80 80 05 */ lis r4, RAIN_EFF@ha
+/* 8005891C 0005585C  3C 80 80 05 */ lis r4, __ct__8RAIN_EFFFv@ha
 /*.global RAIN_EFF*/
-/* 80058920 00055860  38 84 6D 0C */ addi r4, r4, RAIN_EFF@l
-/*.global RAIN_EFF_NS_dtor*/
-/* 80058924 00055864  3C A0 80 05 */ lis r5, RAIN_EFF_NS_dtor@ha
-/*.global RAIN_EFF_NS_dtor*/
-/* 80058928 00055868  38 A5 6C D0 */ addi r5, r5, RAIN_EFF_NS_dtor@l
+/* 80058920 00055860  38 84 6D 0C */ addi r4, r4, __ct__8RAIN_EFFFv@l
+/*.global __dt__8RAIN_EFFFv*/
+/* 80058924 00055864  3C A0 80 05 */ lis r5, __dt__8RAIN_EFFFv@ha
+/*.global __dt__8RAIN_EFFFv*/
+/* 80058928 00055868  38 A5 6C D0 */ addi r5, r5, __dt__8RAIN_EFFFv@l
 /* 8005892C 0005586C  38 C0 00 38 */ li r6, 0x38
 /* 80058930 00055870  38 E0 00 FA */ li r7, 0xfa
-/* 80058934 00055874  48 30 94 2D */ bl func_80361D60
+/* 80058934 00055874  48 30 94 2D */ bl __construct_array
 lbl_80058938:
 /* 80058938 00055878  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8005893C 0005587C  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 80058940 00055880  93 C3 0E 84 */ stw r30, 0xe84(r3)
 /* 80058944 00055884  28 1E 00 00 */ cmplwi r30, 0
 /* 80058948 00055888  41 82 01 A0 */ beq lbl_80058AE8
-/* 8005894C 0005588C  48 00 43 11 */ bl dKyr_rain_init
-/* 80058950 00055890  48 00 48 3D */ bl dKyr_rain_move
+/* 8005894C 0005588C  48 00 43 11 */ bl dKyr_rain_init__Fv
+/* 80058950 00055890  48 00 48 3D */ bl dKyr_rain_move__Fv
 /* 80058954 00055894  38 00 00 01 */ li r0, 1
 /* 80058958 00055898  98 1F 0E 7C */ stb r0, 0xe7c(r31)
 /* 8005895C 0005589C  80 1F 0E 80 */ lwz r0, 0xe80(r31)
@@ -76,7 +76,7 @@ lbl_800589A4:
 /* 800589A4 000558E4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800589A8 000558E8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800589AC 000558EC  83 C3 5D 74 */ lwz r30, 0x5d74(r3)
-/* 800589B0 000558F0  48 00 47 DD */ bl dKyr_rain_move
+/* 800589B0 000558F0  48 00 47 DD */ bl dKyr_rain_move__Fv
 /* 800589B4 000558F4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 800589B8 000558F8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 800589BC 000558FC  80 03 0E 8C */ lwz r0, 0xe8c(r3)
@@ -115,14 +115,14 @@ lbl_80058A04:
 /* 80058A3C 0005597C  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
 /* 80058A40 00055980  38 80 00 00 */ li r4, 0
 /* 80058A44 00055984  38 A0 00 00 */ li r5, 0
-/* 80058A48 00055988  48 26 ED E9 */ bl Z2EnvSeMgr_NS_startRainSe
+/* 80058A48 00055988  48 26 ED E9 */ bl startRainSe__10Z2EnvSeMgrFlSc
 /* 80058A4C 0005598C  48 00 00 18 */ b lbl_80058A64
 lbl_80058A50:
 /* 80058A50 00055990  3C 60 80 43 */ lis r3, lbl_8042DD70@ha
 /* 80058A54 00055994  38 63 DD 70 */ addi r3, r3, lbl_8042DD70@l
 /* 80058A58 00055998  38 80 00 01 */ li r4, 1
 /* 80058A5C 0005599C  38 A0 00 00 */ li r5, 0
-/* 80058A60 000559A0  48 26 ED D1 */ bl Z2EnvSeMgr_NS_startRainSe
+/* 80058A60 000559A0  48 26 ED D1 */ bl startRainSe__10Z2EnvSeMgrFlSc
 lbl_80058A64:
 /* 80058A64 000559A4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80058A68 000559A8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l

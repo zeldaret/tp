@@ -3,8 +3,8 @@
 .section .text, "ax" # 802e8b08
 
 
-.global J2DGrafContext
-J2DGrafContext:
+.global __ct__14J2DGrafContextFffff
+__ct__14J2DGrafContextFffff:
 /* 802E8B08 002E5A48  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802E8B0C 002E5A4C  7C 08 02 A6 */	mflr r0
 /* 802E8B10 002E5A50  90 01 00 34 */	stw r0, 0x34(r1)
@@ -38,10 +38,10 @@ J2DGrafContext:
 /* 802E8B80 002E5AC0  38 A1 00 10 */	addi r5, r1, 0x10
 /* 802E8B84 002E5AC4  38 C1 00 14 */	addi r6, r1, 0x14
 /* 802E8B88 002E5AC8  38 E1 00 18 */	addi r7, r1, 0x18
-/* 802E8B8C 002E5ACC  48 00 05 8D */	bl J2DGrafContext_NS_setColor
+/* 802E8B8C 002E5ACC  48 00 05 8D */	bl setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
 /* 802E8B90 002E5AD0  7F E3 FB 78 */	mr r3, r31
 /* 802E8B94 002E5AD4  38 80 00 06 */	li r4, 6
-/* 802E8B98 002E5AD8  48 00 06 9D */	bl J2DGrafContext_NS_setLineWidth
+/* 802E8B98 002E5AD8  48 00 06 9D */	bl setLineWidth__14J2DGrafContextFUc
 /* 802E8B9C 002E5ADC  7F E3 FB 78 */	mr r3, r31
 /* 802E8BA0 002E5AE0  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 802E8BA4 002E5AE4  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -49,8 +49,8 @@ J2DGrafContext:
 /* 802E8BAC 002E5AEC  38 21 00 30 */	addi r1, r1, 0x30
 /* 802E8BB0 002E5AF0  4E 80 00 20 */	blr 
 
-.global J2DGrafContext_NS_setPort
-J2DGrafContext_NS_setPort:
+.global setPort__14J2DGrafContextFv
+setPort__14J2DGrafContextFv:
 /* 802E8BB4 002E5AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E8BB8 002E5AF8  7C 08 02 A6 */	mflr r0
 /* 802E8BBC 002E5AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -210,8 +210,8 @@ lbl_802E8C68:
 /* 802E8E18 002E5D58  38 21 00 40 */	addi r1, r1, 0x40
 /* 802E8E1C 002E5D5C  4E 80 00 20 */	blr 
 
-.global J2DGrafContext_NS_setScissor
-J2DGrafContext_NS_setScissor:
+.global setScissor__14J2DGrafContextFv
+setScissor__14J2DGrafContextFv:
 /* 802E8E20 002E5D60  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802E8E24 002E5D64  7C 08 02 A6 */	mflr r0
 /* 802E8E28 002E5D68  90 01 00 74 */	stw r0, 0x74(r1)
@@ -424,8 +424,8 @@ J2DGrafContext_NS_scissor:
 /* 802E9110 002E6050  90 03 00 20 */	stw r0, 0x20(r3)
 /* 802E9114 002E6054  4E 80 00 20 */	blr 
 
-.global J2DGrafContext_NS_setColor
-J2DGrafContext_NS_setColor:
+.global setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor:
 /* 802E9118 002E6058  88 04 00 00 */	lbz r0, 0(r4)
 /* 802E911C 002E605C  98 03 00 24 */	stb r0, 0x24(r3)
 /* 802E9120 002E6060  88 04 00 01 */	lbz r0, 1(r4)
@@ -498,8 +498,8 @@ J2DGrafContext_NS_setColor:
 /* 802E922C 002E616C  98 83 00 B8 */	stb r4, 0xb8(r3)
 /* 802E9230 002E6170  4E 80 00 20 */	blr 
 
-.global J2DGrafContext_NS_setLineWidth
-J2DGrafContext_NS_setLineWidth:
+.global setLineWidth__14J2DGrafContextFUc
+setLineWidth__14J2DGrafContextFUc:
 /* 802E9234 002E6174  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802E9238 002E6178  7C 08 02 A6 */	mflr r0
 /* 802E923C 002E617C  90 01 00 14 */	stw r0, 0x14(r1)

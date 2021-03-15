@@ -7,7 +7,7 @@
 /* 8001F4C8 0001C408  7C 00 07 75 */ extsb. r0, r0
 /* 8001F4CC 0001C40C  40 82 00 0C */ bne lbl_8001F4D8
 /* 8001F4D0 0001C410  80 64 00 D8 */ lwz r3, 0xd8(r4)
-/* 8001F4D4 0001C414  48 00 2F 8D */ bl fpcMtd_Execute
+/* 8001F4D4 0001C414  48 00 2F 8D */ bl fpcMtd_Execute__FP20process_method_classPv
 lbl_8001F4D8:
 /* 8001F4D8 0001C418  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001F4DC 0001C41C  7C 08 03 A6 */ mtlr r0

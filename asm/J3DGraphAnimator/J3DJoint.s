@@ -3,8 +3,8 @@
 .section .text, "ax" # 8032ec28
 
 
-.global J3DMtxCalcJ3DSysInitBasic_NS_init
-J3DMtxCalcJ3DSysInitBasic_NS_init:
+.global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
+init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf:
 /* 8032EC28 0032BB68  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032EC2C 0032BB6C  7C 08 02 A6 */	mflr r0
 /* 8032EC30 0032BB70  90 01 00 24 */	stw r0, 0x24(r1)
@@ -33,14 +33,14 @@ J3DMtxCalcJ3DSysInitBasic_NS_init:
 /* 8032EC8C 0032BBCC  7C 83 23 78 */	mr r3, r4
 /* 8032EC90 0032BBD0  3C 80 80 43 */	lis r4, lbl_80434BE4@ha
 /* 8032EC94 0032BBD4  38 84 4B E4 */	addi r4, r4, lbl_80434BE4@l
-/* 8032EC98 0032BBD8  48 00 AD ED */	bl JMAMTXApplyScale
+/* 8032EC98 0032BBD8  48 00 AD ED */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
 /* 8032EC9C 0032BBDC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8032ECA0 0032BBE0  7C 08 03 A6 */	mtlr r0
 /* 8032ECA4 0032BBE4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032ECA8 0032BBE8  4E 80 00 20 */	blr 
 
-.global J3DMtxCalcJ3DSysInitMaya_NS_init
-J3DMtxCalcJ3DSysInitMaya_NS_init:
+.global init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
+init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf:
 /* 8032ECAC 0032BBEC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032ECB0 0032BBF0  7C 08 02 A6 */	mflr r0
 /* 8032ECB4 0032BBF4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -69,14 +69,14 @@ J3DMtxCalcJ3DSysInitMaya_NS_init:
 /* 8032ED10 0032BC50  7C 83 23 78 */	mr r3, r4
 /* 8032ED14 0032BC54  3C 80 80 43 */	lis r4, lbl_80434BE4@ha
 /* 8032ED18 0032BC58  38 84 4B E4 */	addi r4, r4, lbl_80434BE4@l
-/* 8032ED1C 0032BC5C  48 00 AD 69 */	bl JMAMTXApplyScale
+/* 8032ED1C 0032BC5C  48 00 AD 69 */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
 /* 8032ED20 0032BC60  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8032ED24 0032BC64  7C 08 03 A6 */	mtlr r0
 /* 8032ED28 0032BC68  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032ED2C 0032BC6C  4E 80 00 20 */	blr 
 
-.global J3DMtxCalcCalcTransformBasic_NS_calcTransform
-J3DMtxCalcCalcTransformBasic_NS_calcTransform:
+.global calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
+calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo:
 /* 8032ED30 0032BC70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032ED34 0032BC74  7C 08 02 A6 */	mflr r0
 /* 8032ED38 0032BC78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -104,7 +104,7 @@ J3DMtxCalcCalcTransformBasic_NS_calcTransform:
 /* 8032ED90 0032BCD0  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8032ED94 0032BCD4  D0 1F 00 08 */	stfs f0, 8(r31)
 /* 8032ED98 0032BCD8  7F A4 EB 78 */	mr r4, r29
-/* 8032ED9C 0032BCDC  4B FE 2B C9 */	bl J3DGetTranslateRotateMtx
+/* 8032ED9C 0032BCDC  4B FE 2B C9 */	bl J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f
 /* 8032EDA0 0032BCE0  C0 22 CA A0 */	lfs f1, lbl_804564A0-_SDA2_BASE_(r2)
 /* 8032EDA4 0032BCE4  3C 60 80 43 */	lis r3, lbl_80434C14@ha
 /* 8032EDA8 0032BCE8  C0 03 4C 14 */	lfs f0, lbl_80434C14@l(r3)
@@ -131,7 +131,7 @@ lbl_8032EDD8:
 /* 8032EDF4 0032BD34  C0 3B 00 00 */	lfs f1, 0(r27)
 /* 8032EDF8 0032BD38  C0 5B 00 04 */	lfs f2, 4(r27)
 /* 8032EDFC 0032BD3C  C0 7B 00 08 */	lfs f3, 8(r27)
-/* 8032EE00 0032BD40  48 00 AC 85 */	bl JMAMTXApplyScale
+/* 8032EE00 0032BD40  48 00 AC 85 */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
 /* 8032EE04 0032BD44  48 00 00 10 */	b lbl_8032EE14
 lbl_8032EE08:
 /* 8032EE08 0032BD48  38 00 00 01 */	li r0, 1
@@ -154,8 +154,8 @@ lbl_8032EE14:
 /* 8032EE48 0032BD88  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032EE4C 0032BD8C  4E 80 00 20 */	blr 
 
-.global J3DMtxCalcCalcTransformSoftimage_NS_calcTransform
-J3DMtxCalcCalcTransformSoftimage_NS_calcTransform:
+.global calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
+calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo:
 /* 8032EE50 0032BD90  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032EE54 0032BD94  7C 08 02 A6 */	mflr r0
 /* 8032EE58 0032BD98  90 01 00 24 */	stw r0, 0x24(r1)
@@ -183,7 +183,7 @@ J3DMtxCalcCalcTransformSoftimage_NS_calcTransform:
 /* 8032EEB0 0032BDF0  C0 1E 00 08 */	lfs f0, 8(r30)
 /* 8032EEB4 0032BDF4  EC 63 00 32 */	fmuls f3, f3, f0
 /* 8032EEB8 0032BDF8  7F E6 FB 78 */	mr r6, r31
-/* 8032EEBC 0032BDFC  4B FE 2B 69 */	bl J3DGetTranslateRotateMtx_X1_
+/* 8032EEBC 0032BDFC  4B FE 2B 69 */	bl J3DGetTranslateRotateMtx__FsssfffPA4_f
 /* 8032EEC0 0032BE00  3C 60 80 43 */	lis r3, lbl_80434BE4@ha
 /* 8032EEC4 0032BE04  38 63 4B E4 */	addi r3, r3, lbl_80434BE4@l
 /* 8032EEC8 0032BE08  7F E4 FB 78 */	mr r4, r31
@@ -226,7 +226,7 @@ lbl_8032EF30:
 /* 8032EF54 0032BE94  C0 25 4C 14 */	lfs f1, lbl_80434C14@l(r5)
 /* 8032EF58 0032BE98  C0 5E 00 04 */	lfs f2, 4(r30)
 /* 8032EF5C 0032BE9C  C0 7E 00 08 */	lfs f3, 8(r30)
-/* 8032EF60 0032BEA0  48 00 AB 25 */	bl JMAMTXApplyScale
+/* 8032EF60 0032BEA0  48 00 AB 25 */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
 /* 8032EF64 0032BEA4  3C 60 80 43 */	lis r3, lbl_80434BE4@ha
 /* 8032EF68 0032BEA8  38 63 4B E4 */	addi r3, r3, lbl_80434BE4@l
 /* 8032EF6C 0032BEAC  C0 03 00 0C */	lfs f0, 0xc(r3)
@@ -252,8 +252,8 @@ lbl_8032EFA4:
 /* 8032EFB4 0032BEF4  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032EFB8 0032BEF8  4E 80 00 20 */	blr 
 
-.global J3DMtxCalcCalcTransformMaya_NS_calcTransform
-J3DMtxCalcCalcTransformMaya_NS_calcTransform:
+.global calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
+calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo:
 /* 8032EFBC 0032BEFC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032EFC0 0032BF00  7C 08 02 A6 */	mflr r0
 /* 8032EFC4 0032BF04  90 01 00 24 */	stw r0, 0x24(r1)
@@ -267,7 +267,7 @@ J3DMtxCalcCalcTransformMaya_NS_calcTransform:
 /* 8032EFE4 0032BF24  1C 1E 00 30 */	mulli r0, r30, 0x30
 /* 8032EFE8 0032BF28  7F A4 02 14 */	add r29, r4, r0
 /* 8032EFEC 0032BF2C  7F A4 EB 78 */	mr r4, r29
-/* 8032EFF0 0032BF30  4B FE 29 75 */	bl J3DGetTranslateRotateMtx
+/* 8032EFF0 0032BF30  4B FE 29 75 */	bl J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f
 /* 8032EFF4 0032BF34  C0 22 CA A0 */	lfs f1, lbl_804564A0-_SDA2_BASE_(r2)
 /* 8032EFF8 0032BF38  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8032EFFC 0032BF3C  FC 01 00 00 */	fcmpu cr0, f1, f0
@@ -291,7 +291,7 @@ lbl_8032F02C:
 /* 8032F040 0032BF80  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 8032F044 0032BF84  C0 5F 00 04 */	lfs f2, 4(r31)
 /* 8032F048 0032BF88  C0 7F 00 08 */	lfs f3, 8(r31)
-/* 8032F04C 0032BF8C  48 00 AA 39 */	bl JMAMTXApplyScale
+/* 8032F04C 0032BF8C  48 00 AA 39 */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
 lbl_8032F050:
 /* 8032F050 0032BF90  88 1C 00 17 */	lbz r0, 0x17(r28)
 /* 8032F054 0032BF94  28 00 00 01 */	cmplwi r0, 1
@@ -354,8 +354,8 @@ lbl_8032F0E4:
 /* 8032F134 0032C074  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032F138 0032C078  4E 80 00 20 */	blr 
 
-.global J3DJoint_NS_appendChild
-J3DJoint_NS_appendChild:
+.global appendChild__8J3DJointFP8J3DJoint
+appendChild__8J3DJointFP8J3DJoint:
 /* 8032F13C 0032C07C  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8032F140 0032C080  28 00 00 00 */	cmplwi r0, 0
 /* 8032F144 0032C084  40 82 00 0C */	bne lbl_8032F150
@@ -373,8 +373,8 @@ lbl_8032F15C:
 /* 8032F168 0032C0A8  90 83 00 10 */	stw r4, 0x10(r3)
 /* 8032F16C 0032C0AC  4E 80 00 20 */	blr 
 
-.global J3DJoint
-J3DJoint:
+.global __ct__8J3DJointFv
+__ct__8J3DJointFv:
 /* 8032F170 0032C0B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032F174 0032C0B4  38 80 00 00 */	li r4, 0
 /* 8032F178 0032C0B8  90 83 00 00 */	stw r4, 0(r3)
@@ -434,8 +434,8 @@ lbl_8032F1B4:
 /* 8032F24C 0032C18C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032F250 0032C190  4E 80 00 20 */	blr 
 
-.global J3DJoint_NS_entryIn
-J3DJoint_NS_entryIn:
+.global entryIn__8J3DJointFv
+entryIn__8J3DJointFv:
 /* 8032F254 0032C194  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8032F258 0032C198  7C 08 02 A6 */	mflr r0
 /* 8032F25C 0032C19C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -507,7 +507,7 @@ lbl_8032F334:
 /* 8032F348 0032C288  4E 80 04 21 */	bctrl 
 lbl_8032F34C:
 /* 8032F34C 0032C28C  7F 83 E3 78 */	mr r3, r28
-/* 8032F350 0032C290  4B FE 77 61 */	bl J3DMaterial_NS_setCurrentMtx
+/* 8032F350 0032C290  4B FE 77 61 */	bl setCurrentMtx__11J3DMaterialFv
 /* 8032F354 0032C294  80 7C 00 3C */	lwz r3, 0x3c(r28)
 /* 8032F358 0032C298  3C 00 C0 00 */	lis r0, 0xc000
 /* 8032F35C 0032C29C  7C 03 00 40 */	cmplw r3, r0
@@ -554,8 +554,8 @@ lbl_8032F3D8:
 /* 8032F3F0 0032C330  38 21 00 20 */	addi r1, r1, 0x20
 /* 8032F3F4 0032C334  4E 80 00 20 */	blr 
 
-.global J3DJoint_NS_recursiveCalc
-J3DJoint_NS_recursiveCalc:
+.global recursiveCalc__8J3DJointFv
+recursiveCalc__8J3DJointFv:
 /* 8032F3F8 0032C338  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 8032F3FC 0032C33C  7C 08 02 A6 */	mflr r0
 /* 8032F400 0032C340  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -622,7 +622,7 @@ lbl_8032F4E8:
 /* 8032F4E8 0032C428  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 8032F4EC 0032C42C  28 03 00 00 */	cmplwi r3, 0
 /* 8032F4F0 0032C430  41 82 00 08 */	beq lbl_8032F4F8
-/* 8032F4F4 0032C434  4B FF FF 05 */	bl J3DJoint_NS_recursiveCalc
+/* 8032F4F4 0032C434  4B FF FF 05 */	bl recursiveCalc__8J3DJointFv
 lbl_8032F4F8:
 /* 8032F4F8 0032C438  38 61 00 08 */	addi r3, r1, 8
 /* 8032F4FC 0032C43C  3C 80 80 43 */	lis r4, lbl_80434BE4@ha
@@ -651,7 +651,7 @@ lbl_8032F550:
 /* 8032F550 0032C490  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 8032F554 0032C494  28 03 00 00 */	cmplwi r3, 0
 /* 8032F558 0032C498  41 82 00 08 */	beq lbl_8032F560
-/* 8032F55C 0032C49C  4B FF FE 9D */	bl J3DJoint_NS_recursiveCalc
+/* 8032F55C 0032C49C  4B FF FE 9D */	bl recursiveCalc__8J3DJointFv
 lbl_8032F560:
 /* 8032F560 0032C4A0  E3 E1 00 A8 */	psq_l f31, 168(r1), 0, qr0
 /* 8032F564 0032C4A4  CB E1 00 A0 */	lfd f31, 0xa0(r1)

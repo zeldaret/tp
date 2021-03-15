@@ -8,7 +8,7 @@
 /* 80204294 002011D4  7C BD 2B 78 */ mr r29, r5
 /* 80204298 002011D8  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 8020429C 002011DC  40 82 00 94 */ bne lbl_80204330
-/* 802042A0 002011E0  48 03 3F 8D */ bl dMsgObject_c_NS_getStatus
+/* 802042A0 002011E0  48 03 3F 8D */ bl getStatus__12dMsgObject_cFv
 /* 802042A4 002011E4  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802042A8 002011E8  20 60 00 01 */ subfic r3, r0, 1
 /* 802042AC 002011EC  30 03 FF FF */ addic r0, r3, -1
@@ -49,11 +49,11 @@ lbl_80204310:
 /* 8020432C 0020126C  41 82 00 10 */ beq lbl_8020433C
 lbl_80204330:
 /* 80204330 00201270  7F C3 F3 78 */ mr r3, r30
-/* 80204334 00201274  48 00 46 6D */ bl dMeterButton_c_NS_setAlphaButtonReel2AnimeMin
+/* 80204334 00201274  48 00 46 6D */ bl setAlphaButtonReel2AnimeMin__14dMeterButton_cFv
 /* 80204338 00201278  48 00 00 14 */ b lbl_8020434C
 lbl_8020433C:
 /* 8020433C 0020127C  7F C3 F3 78 */ mr r3, r30
-/* 80204340 00201280  48 00 46 F9 */ bl dMeterButton_c_NS_setAlphaButtonReel2AnimeMax
+/* 80204340 00201280  48 00 46 F9 */ bl setAlphaButtonReel2AnimeMax__14dMeterButton_cFv
 /* 80204344 00201284  38 60 00 01 */ li r3, 1
 /* 80204348 00201288  48 00 00 08 */ b lbl_80204350
 lbl_8020434C:

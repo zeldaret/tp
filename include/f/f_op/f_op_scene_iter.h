@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 #include "f/f_pc/f_pc_base.h"
 
-typedef void* (*fop_ScnItFunc)(base_process_class* pProc, void* pUserData);
+typedef void* (*fop_ScnItFunc)(void* pProc, void* pUserData);
 void* fopScnIt_Judge(fop_ScnItFunc pFunc1, void* pUserData);
 
 #endif

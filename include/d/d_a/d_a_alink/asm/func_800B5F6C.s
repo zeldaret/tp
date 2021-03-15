@@ -8,7 +8,7 @@
 /* 800B5F88 000B2EC8  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800B5F8C 000B2ECC  90 01 00 18 */ stw r0, 0x18(r1)
 /* 800B5F90 000B2ED0  38 81 00 08 */ addi r4, r1, 8
-/* 800B5F94 000B2ED4  4B FF C0 45 */ bl daAlink_c_NS_getSlidePolygon
+/* 800B5F94 000B2ED4  4B FF C0 45 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 800B5F98 000B2ED8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800B5F9C 000B2EDC  41 82 00 B0 */ beq lbl_800B604C
 /* 800B5FA0 000B2EE0  38 61 00 08 */ addi r3, r1, 8
@@ -44,7 +44,7 @@ lbl_800B6004:
 /* 800B6010 000B2F50  7F C3 F3 78 */ mr r3, r30
 /* 800B6014 000B2F54  7F E4 FB 78 */ mr r4, r31
 /* 800B6018 000B2F58  38 A0 00 00 */ li r5, 0
-/* 800B601C 000B2F5C  48 07 9E 65 */ bl daAlink_c_NS_procWolfSlideInit
+/* 800B601C 000B2F5C  48 07 9E 65 */ bl procWolfSlideInit__9daAlink_cFsi
 /* 800B6020 000B2F60  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 800B6024 000B2F64  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800B6028 000B2F68  90 01 00 18 */ stw r0, 0x18(r1)
@@ -52,7 +52,7 @@ lbl_800B6004:
 lbl_800B6030:
 /* 800B6030 000B2F70  7F C3 F3 78 */ mr r3, r30
 /* 800B6034 000B2F74  7F E4 FB 78 */ mr r4, r31
-/* 800B6038 000B2F78  48 00 E3 41 */ bl daAlink_c_NS_procSlideInit
+/* 800B6038 000B2F78  48 00 E3 41 */ bl procSlideInit__9daAlink_cFs
 /* 800B603C 000B2F7C  3C 80 80 3A */ lis r4, lbl_803A37C0@ha
 /* 800B6040 000B2F80  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800B6044 000B2F84  90 01 00 18 */ stw r0, 0x18(r1)

@@ -41,70 +41,70 @@ asm u32 Z2SoundInfo::getBgmSeqResourceID(JAISoundID) const {
 // @todo thunk
 // getSoundType__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getSoundType(JAISoundID) const
-asm void func_802BB090(void) {
+asm void getSoundType__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB090.s"
 }
 
 // getCategory__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getCategory(JAISoundID) const
-asm void func_802BB0D8(void) {
+asm void getCategory__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB0D8.s"
 }
 
 // getPriority__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getPriority(JAISoundID) const
-asm void func_802BB0E0(void) {
+asm void getPriority__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB0E0.s"
 }
 
 // getAudibleSwFull__11Z2SoundInfoF10JAISoundID
 // Z2SoundInfo::getAudibleSwFull(JAISoundID)
-asm void Z2SoundInfo_NS_getAudibleSwFull(void) {
+asm void getAudibleSwFull__11Z2SoundInfoF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB158.s"
 }
 
 // getAudibleSw__11Z2SoundInfoCF10JAISoundID
 // Z2SoundInfo::getAudibleSw(JAISoundID) const
-asm void Z2SoundInfo_NS_getAudibleSw(void) {
+asm void getAudibleSw__11Z2SoundInfoCF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB448.s"
 }
 
 // getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe
 // Z2SoundInfo::getSeInfo(JAISoundID, JAISe*) const
-asm void func_802BB6DC(void) {
+asm void getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB6DC.s"
 }
 
 // getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq
 // Z2SoundInfo::getSeqInfo(JAISoundID, JAISeq*) const
-asm void func_802BB8B4(void) {
+asm void getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB8B4.s"
 }
 
 // getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream
 // Z2SoundInfo::getStreamInfo(JAISoundID, JAIStream*) const
-asm void func_802BB8E0(void) {
+asm void getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BB8E0.s"
 }
 
 // getStreamFilePath__11Z2SoundInfoF10JAISoundID
 // Z2SoundInfo::getStreamFilePath(JAISoundID)
-asm void Z2SoundInfo_NS_getStreamFilePath(void) {
+asm void getStreamFilePath__11Z2SoundInfoF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBA10.s"
 }
 
 // getStreamFileEntry__11Z2SoundInfoF10JAISoundID
 // Z2SoundInfo::getStreamFileEntry(JAISoundID)
-asm void Z2SoundInfo_NS_getStreamFileEntry(void) {
+asm void getStreamFileEntry__11Z2SoundInfoF10JAISoundID(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBA88.s"
 }
@@ -120,14 +120,14 @@ asm u32 Z2SoundInfo::getSwBit(JAISoundID) const {
 extern "C" {
 // getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound
 // Z2SoundInfo::getSoundInfo_(JAISoundID, JAISound*) const
-asm void Z2SoundInfo_NS_getSoundInfo_(void) {
+asm void getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBB48.s"
 }
 
 // __dt__11Z2SoundInfoFv
 // Z2SoundInfo::~Z2SoundInfo(void)
-asm void Z2SoundInfo_NS_dtor(void) {
+asm void __dt__11Z2SoundInfoFv(void) {
     nofralloc
 #include "Z2AudioLib/Z2SoundInfo/asm/func_802BBBE0.s"
 }

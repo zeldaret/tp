@@ -3,8 +3,8 @@
 .section .text, "ax" # 8027efa4
 
 
-.global JPAParticleCallBack_NS_dtor
-JPAParticleCallBack_NS_dtor:
+.global __dt__19JPAParticleCallBackFv
+__dt__19JPAParticleCallBackFv:
 /* 8027EFA4 0027BEE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8027EFA8 0027BEE8  7C 08 02 A6 */	mflr r0
 /* 8027EFAC 0027BEEC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -25,8 +25,8 @@ lbl_8027EFD4:
 /* 8027EFE4 0027BF24  38 21 00 10 */	addi r1, r1, 0x10
 /* 8027EFE8 0027BF28  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_init_p
-JPABaseParticle_NS_init_p:
+.global init_p__15JPABaseParticleFP18JPAEmitterWorkData
+init_p__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 8027EFEC 0027BF2C  94 21 FF 10 */	stwu r1, -0xf0(r1)
 /* 8027EFF0 0027BF30  7C 08 02 A6 */	mflr r0
 /* 8027EFF4 0027BF34  90 01 00 F4 */	stw r0, 0xf4(r1)
@@ -253,7 +253,7 @@ lbl_8027F2C0:
 /* 8027F33C 0027C27C  54 80 84 3E */	srwi r0, r4, 0x10
 /* 8027F340 0027C280  7C 04 07 34 */	extsh r4, r0
 /* 8027F344 0027C284  38 A1 00 54 */	addi r5, r1, 0x54
-/* 8027F348 0027C288  48 00 13 79 */	bl JPAGetYZRotateMtx
+/* 8027F348 0027C288  48 00 13 79 */	bl JPAGetYZRotateMtx__FssPA4_f
 /* 8027F34C 0027C28C  38 7B 00 48 */	addi r3, r27, 0x48
 /* 8027F350 0027C290  38 81 00 54 */	addi r4, r1, 0x54
 /* 8027F354 0027C294  7C 85 23 78 */	mr r5, r4
@@ -620,8 +620,8 @@ lbl_8027F890:
 /* 8027F8C0 0027C800  38 21 00 F0 */	addi r1, r1, 0xf0
 /* 8027F8C4 0027C804  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_init_c
-JPABaseParticle_NS_init_c:
+.global init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle
+init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8027F8C8 0027C808  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8027F8CC 0027C80C  7C 08 02 A6 */	mflr r0
 /* 8027F8D0 0027C810  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -862,7 +862,7 @@ lbl_8027FC54:
 /* 8027FC5C 0027CB9C  38 7E 00 30 */	addi r3, r30, 0x30
 /* 8027FC60 0027CBA0  38 81 00 28 */	addi r4, r1, 0x28
 /* 8027FC64 0027CBA4  38 BD 00 30 */	addi r5, r29, 0x30
-/* 8027FC68 0027CBA8  48 0B 9D F5 */	bl JMAVECScaleAdd
+/* 8027FC68 0027CBA8  48 0B 9D F5 */	bl JMAVECScaleAdd__FPC3VecPC3VecP3Vecf
 /* 8027FC6C 0027CBAC  80 7F 00 00 */	lwz r3, 0(r31)
 /* 8027FC70 0027CBB0  C3 E3 00 18 */	lfs f31, 0x18(r3)
 /* 8027FC74 0027CBB4  E0 1E 00 48 */	psq_l f0, 72(r30), 0, qr0
@@ -1091,8 +1091,8 @@ lbl_8027FFA8:
 /* 8027FFC8 0027CF08  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8027FFCC 0027CF0C  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_calc_p
-JPABaseParticle_NS_calc_p:
+.global calc_p__15JPABaseParticleFP18JPAEmitterWorkData
+calc_p__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 8027FFD0 0027CF10  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8027FFD4 0027CF14  7C 08 02 A6 */	mflr r0
 /* 8027FFD8 0027CF18  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1147,7 +1147,7 @@ lbl_80280078:
 /* 80280094 0027CFD4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80280098 0027CFD8  7F E4 FB 78 */	mr r4, r31
 /* 8028009C 0027CFDC  7F C5 F3 78 */	mr r5, r30
-/* 802800A0 0027CFE0  4B FF 65 E5 */	bl JPAResource_NS_calcField
+/* 802800A0 0027CFE0  4B FF 65 E5 */	bl calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 lbl_802800A4:
 /* 802800A4 0027CFE4  E0 3E 00 48 */	psq_l f1, 72(r30), 0, qr0
 /* 802800A8 0027CFE8  E0 1E 00 3C */	psq_l f0, 60(r30), 0, qr0
@@ -1202,7 +1202,7 @@ lbl_80280164:
 /* 80280164 0027D0A4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80280168 0027D0A8  7F E4 FB 78 */	mr r4, r31
 /* 8028016C 0027D0AC  7F C5 F3 78 */	mr r5, r30
-/* 80280170 0027D0B0  4B FF 64 1D */	bl JPAResource_NS_calc_p
+/* 80280170 0027D0B0  4B FF 64 1D */	bl calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 /* 80280174 0027D0B4  A0 7E 00 88 */	lhz r3, 0x88(r30)
 /* 80280178 0027D0B8  A8 1E 00 8A */	lha r0, 0x8a(r30)
 /* 8028017C 0027D0BC  7C 03 02 14 */	add r0, r3, r0
@@ -1213,7 +1213,7 @@ lbl_80280164:
 /* 80280190 0027D0D0  41 82 00 44 */	beq lbl_802801D4
 /* 80280194 0027D0D4  7F C3 F3 78 */	mr r3, r30
 /* 80280198 0027D0D8  7F E4 FB 78 */	mr r4, r31
-/* 8028019C 0027D0DC  48 00 03 2D */	bl JPABaseParticle_NS_canCreateChild
+/* 8028019C 0027D0DC  48 00 03 2D */	bl canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData
 /* 802801A0 0027D0E0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802801A4 0027D0E4  41 82 00 30 */	beq lbl_802801D4
 /* 802801A8 0027D0E8  80 7F 00 04 */	lwz r3, 4(r31)
@@ -1224,7 +1224,7 @@ lbl_80280164:
 lbl_802801BC:
 /* 802801BC 0027D0FC  80 7F 00 00 */	lwz r3, 0(r31)
 /* 802801C0 0027D100  7F C4 F3 78 */	mr r4, r30
-/* 802801C4 0027D104  4B FF E9 9D */	bl JPABaseEmitter_NS_createChild
+/* 802801C4 0027D104  4B FF E9 9D */	bl createChild__14JPABaseEmitterFP15JPABaseParticle
 /* 802801C8 0027D108  3B BD FF FF */	addi r29, r29, -1
 lbl_802801CC:
 /* 802801CC 0027D10C  2C 1D 00 00 */	cmpwi r29, 0
@@ -1267,8 +1267,8 @@ lbl_80280240:
 /* 80280258 0027D198  38 21 00 40 */	addi r1, r1, 0x40
 /* 8028025C 0027D19C  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_calc_c
-JPABaseParticle_NS_calc_c:
+.global calc_c__15JPABaseParticleFP18JPAEmitterWorkData
+calc_c__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 80280260 0027D1A0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80280264 0027D1A4  7C 08 02 A6 */	mflr r0
 /* 80280268 0027D1A8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1333,7 +1333,7 @@ lbl_80280314:
 /* 8028034C 0027D28C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80280350 0027D290  7F E4 FB 78 */	mr r4, r31
 /* 80280354 0027D294  7F C5 F3 78 */	mr r5, r30
-/* 80280358 0027D298  4B FF 63 2D */	bl JPAResource_NS_calcField
+/* 80280358 0027D298  4B FF 63 2D */	bl calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 lbl_8028035C:
 /* 8028035C 0027D29C  E0 3E 00 48 */	psq_l f1, 72(r30), 0, qr0
 /* 80280360 0027D2A0  E0 1E 00 3C */	psq_l f0, 60(r30), 0, qr0
@@ -1389,7 +1389,7 @@ lbl_8028041C:
 /* 8028041C 0027D35C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80280420 0027D360  7F E4 FB 78 */	mr r4, r31
 /* 80280424 0027D364  7F C5 F3 78 */	mr r5, r30
-/* 80280428 0027D368  4B FF 61 E1 */	bl JPAResource_NS_calc_c
+/* 80280428 0027D368  4B FF 61 E1 */	bl calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle
 /* 8028042C 0027D36C  A0 7E 00 88 */	lhz r3, 0x88(r30)
 /* 80280430 0027D370  A8 1E 00 8A */	lha r0, 0x8a(r30)
 /* 80280434 0027D374  7C 03 02 14 */	add r0, r3, r0
@@ -1431,8 +1431,8 @@ lbl_802804A8:
 /* 802804C0 0027D400  38 21 00 30 */	addi r1, r1, 0x30
 /* 802804C4 0027D404  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_canCreateChild
-JPABaseParticle_NS_canCreateChild:
+.global canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData
+canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData:
 /* 802804C8 0027D408  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802804CC 0027D40C  80 84 00 04 */	lwz r4, 4(r4)
 /* 802804D0 0027D410  80 A4 00 24 */	lwz r5, 0x24(r4)
@@ -1467,8 +1467,8 @@ lbl_8028053C:
 /* 80280540 0027D480  38 21 00 20 */	addi r1, r1, 0x20
 /* 80280544 0027D484  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_getWidth
-JPABaseParticle_NS_getWidth:
+.global getWidth__15JPABaseParticleCFPC14JPABaseEmitter
+getWidth__15JPABaseParticleCFPC14JPABaseEmitter:
 /* 80280548 0027D488  C0 22 B9 B0 */	lfs f1, lbl_804553B0-_SDA2_BASE_(r2)
 /* 8028054C 0027D48C  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 80280550 0027D490  EC 21 00 32 */	fmuls f1, f1, f0
@@ -1478,8 +1478,8 @@ JPABaseParticle_NS_getWidth:
 /* 80280560 0027D4A0  EC 21 00 32 */	fmuls f1, f1, f0
 /* 80280564 0027D4A4  4E 80 00 20 */	blr 
 
-.global JPABaseParticle_NS_getHeight
-JPABaseParticle_NS_getHeight:
+.global getHeight__15JPABaseParticleCFPC14JPABaseEmitter
+getHeight__15JPABaseParticleCFPC14JPABaseEmitter:
 /* 80280568 0027D4A8  C0 22 B9 B0 */	lfs f1, lbl_804553B0-_SDA2_BASE_(r2)
 /* 8028056C 0027D4AC  C0 03 00 64 */	lfs f0, 0x64(r3)
 /* 80280570 0027D4B0  EC 21 00 32 */	fmuls f1, f1, f0

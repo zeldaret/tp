@@ -4,32 +4,32 @@
 /* 800F1AB8 000EE9F8  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F1ABC 000EE9FC  7C 7F 1B 78 */ mr r31, r3
 /* 800F1AC0 000EEA00  38 80 00 43 */ li r4, 0x43
-/* 800F1AC4 000EEA04  4B FD 04 A9 */ bl daAlink_c_NS_commonProcInit
+/* 800F1AC4 000EEA04  4B FD 04 A9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F1AC8 000EEA08  A0 1F 1F 80 */ lhz r0, 0x1f80(r31)
 /* 800F1ACC 000EEA0C  28 00 00 19 */ cmplwi r0, 0x19
 /* 800F1AD0 000EEA10  40 82 00 14 */ bne lbl_800F1AE4
 /* 800F1AD4 000EEA14  7F E3 FB 78 */ mr r3, r31
 /* 800F1AD8 000EEA18  38 80 00 02 */ li r4, 2
 /* 800F1ADC 000EEA1C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F1AE0 000EEA20  4B FB C0 0D */ bl daAlink_c_NS_resetUnderAnime
+/* 800F1AE0 000EEA20  4B FB C0 0D */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 lbl_800F1AE4:
 /* 800F1AE4 000EEA24  7F E3 FB 78 */ mr r3, r31
 /* 800F1AE8 000EEA28  38 80 00 50 */ li r4, 0x50
 /* 800F1AEC 000EEA2C  3C A0 80 39 */ lis r5, lbl_8038DC9C@ha
 /* 800F1AF0 000EEA30  38 A5 DC 9C */ addi r5, r5, lbl_8038DC9C@l
 /* 800F1AF4 000EEA34  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800F1AF8 000EEA38  4B FB B5 FD */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800F1AF8 000EEA38  4B FB B5 FD */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800F1AFC 000EEA3C  7F E3 FB 78 */ mr r3, r31
 /* 800F1B00 000EEA40  38 80 00 2B */ li r4, 0x2b
-/* 800F1B04 000EEA44  4B FD FA 29 */ bl daAlink_c_NS_setCutType
+/* 800F1B04 000EEA44  4B FD FA 29 */ bl setCutType__9daAlink_cFUc
 /* 800F1B08 000EEA48  7F E3 FB 78 */ mr r3, r31
 /* 800F1B0C 000EEA4C  38 80 00 01 */ li r4, 1
-/* 800F1B10 000EEA50  4B FF CE 09 */ bl daAlink_c_NS_setSyncRide
+/* 800F1B10 000EEA50  4B FF CE 09 */ bl setSyncRide__9daAlink_cFi
 /* 800F1B14 000EEA54  3C 60 80 39 */ lis r3, lbl_8038DC9C@ha
 /* 800F1B18 000EEA58  38 63 DC 9C */ addi r3, r3, lbl_8038DC9C@l
 /* 800F1B1C 000EEA5C  C0 03 00 50 */ lfs f0, 0x50(r3)
 /* 800F1B20 000EEA60  D0 1F 34 78 */ stfs f0, 0x3478(r31)
-/* 800F1B24 000EEA64  4B FD F4 39 */ bl daAlink_c_NS_getSwordAtType
+/* 800F1B24 000EEA64  4B FD F4 39 */ bl getSwordAtType__9daAlink_cFv
 /* 800F1B28 000EEA68  7C 64 1B 78 */ mr r4, r3
 /* 800F1B2C 000EEA6C  7F E3 FB 78 */ mr r3, r31
 /* 800F1B30 000EEA70  38 A0 00 01 */ li r5, 1
@@ -40,7 +40,7 @@ lbl_800F1AE4:
 /* 800F1B44 000EEA84  C0 1F 34 78 */ lfs f0, 0x3478(r31)
 /* 800F1B48 000EEA88  EC 21 00 32 */ fmuls f1, f1, f0
 /* 800F1B4C 000EEA8C  C0 42 93 68 */ lfs f2, lbl_80452D68-_SDA2_BASE_(r2)
-/* 800F1B50 000EEA90  4B FD F9 F1 */ bl daAlink_c_NS_setCylAtParam
+/* 800F1B50 000EEA90  4B FD F9 F1 */ bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
 /* 800F1B54 000EEA94  3C 60 80 39 */ lis r3, lbl_8038DC9C@ha
 /* 800F1B58 000EEA98  38 63 DC 9C */ addi r3, r3, lbl_8038DC9C@l
 /* 800F1B5C 000EEA9C  A8 03 00 3E */ lha r0, 0x3e(r3)
@@ -53,8 +53,8 @@ lbl_800F1AE4:
 /* 800F1B78 000EEAB8  7D 89 03 A6 */ mtctr r12
 /* 800F1B7C 000EEABC  4E 80 04 21 */ bctrl
 /* 800F1B80 000EEAC0  7F E3 FB 78 */ mr r3, r31
-/* 800F1B84 000EEAC4  48 03 25 C1 */ bl daAlink_c_NS_setCutWaterDropEffect
-/* 800F1B88 000EEAC8  4B FF AC 29 */ bl daAlink_c_NS_setHorseZeldaDamage
+/* 800F1B84 000EEAC4  48 03 25 C1 */ bl setCutWaterDropEffect__9daAlink_cFv
+/* 800F1B88 000EEAC8  4B FF AC 29 */ bl setHorseZeldaDamage__9daAlink_cFv
 /* 800F1B8C 000EEACC  38 60 00 01 */ li r3, 1
 /* 800F1B90 000EEAD0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F1B94 000EEAD4  80 01 00 14 */ lwz r0, 0x14(r1)

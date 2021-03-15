@@ -32,7 +32,7 @@ lbl_8002D350:
 /* 8002D374 0002A2B4  88 03 04 E2 */ lbz r0, 0x4e2(r3)
 /* 8002D378 0002A2B8  7C 15 07 74 */ extsb r21, r0
 /* 8002D37C 0002A2BC  38 61 00 0C */ addi r3, r1, 0xc
-/* 8002D380 0002A2C0  48 01 1A DD */ bl dMapInfo_n_NS_getMapPlayerPos
+/* 8002D380 0002A2C0  48 01 1A DD */ bl getMapPlayerPos__10dMapInfo_nFv
 /* 8002D384 0002A2C4  C0 01 00 0C */ lfs f0, 0xc(r1)
 /* 8002D388 0002A2C8  D0 01 00 18 */ stfs f0, 0x18(r1)
 /* 8002D38C 0002A2CC  C0 01 00 10 */ lfs f0, 0x10(r1)
@@ -41,7 +41,7 @@ lbl_8002D350:
 /* 8002D398 0002A2D8  D0 01 00 20 */ stfs f0, 0x20(r1)
 /* 8002D39C 0002A2DC  80 76 5D B4 */ lwz r3, 0x5db4(r22)
 /* 8002D3A0 0002A2E0  AA C3 04 E6 */ lha r22, 0x4e6(r3)
-/* 8002D3A4 0002A2E4  48 00 1A BD */ bl dComIfGp_getNowLevel
+/* 8002D3A4 0002A2E4  48 00 1A BD */ bl dComIfGp_getNowLevel__Fv
 /* 8002D3A8 0002A2E8  7C 68 1B 78 */ mr r8, r3
 /* 8002D3AC 0002A2EC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D3B0 0002A2F0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -73,12 +73,12 @@ lbl_8002D408:
 /* 8002D410 0002A350  40 82 00 14 */ bne lbl_8002D424
 /* 8002D414 0002A354  38 60 00 06 */ li r3, 6
 /* 8002D418 0002A358  38 80 00 02 */ li r4, 2
-/* 8002D41C 0002A35C  48 00 1C 25 */ bl dComIfGs_setKeyNum
+/* 8002D41C 0002A35C  48 00 1C 25 */ bl dComIfGs_setKeyNum__FiUc
 /* 8002D420 0002A360  48 00 00 10 */ b lbl_8002D430
 lbl_8002D424:
 /* 8002D424 0002A364  38 60 00 06 */ li r3, 6
 /* 8002D428 0002A368  38 80 00 00 */ li r4, 0
-/* 8002D42C 0002A36C  48 00 1C 15 */ bl dComIfGs_setKeyNum
+/* 8002D42C 0002A36C  48 00 1C 15 */ bl dComIfGs_setKeyNum__FiUc
 lbl_8002D430:
 /* 8002D430 0002A370  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D434 0002A374  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -86,7 +86,7 @@ lbl_8002D430:
 /* 8002D43C 0002A37C  28 03 00 00 */ cmplwi r3, 0
 /* 8002D440 0002A380  41 82 00 0C */ beq lbl_8002D44C
 /* 8002D444 0002A384  38 81 00 08 */ addi r4, r1, 8
-/* 8002D448 0002A388  48 09 0A 01 */ bl daAlink_c_NS_setLastSceneMode
+/* 8002D448 0002A388  48 09 0A 01 */ bl setLastSceneMode__9daAlink_cFPUl
 lbl_8002D44C:
 /* 8002D44C 0002A38C  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8002D450 0002A390  38 63 01 88 */ addi r3, r3, lbl_80430188@l
@@ -108,7 +108,7 @@ lbl_8002D44C:
 /* 8002D490 0002A3D0  3C 80 80 38 */ lis r4, lbl_80378F38@ha
 /* 8002D494 0002A3D4  38 84 8F 38 */ addi r4, r4, lbl_80378F38@l
 /* 8002D498 0002A3D8  38 84 01 51 */ addi r4, r4, 0x151
-/* 8002D49C 0002A3DC  48 1F 0D F5 */ bl dMeter2Info_c_NS_setSaveStageName
+/* 8002D49C 0002A3DC  48 1F 0D F5 */ bl setSaveStageName__13dMeter2Info_cFPCc
 lbl_8002D4A0:
 /* 8002D4A0 0002A3E0  2C 1E 00 02 */ cmpwi r30, 2
 /* 8002D4A4 0002A3E4  41 82 00 34 */ beq lbl_8002D4D8

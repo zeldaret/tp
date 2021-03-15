@@ -17,7 +17,7 @@ lbl_8002C9B0:
 /* 8002C9B8 000298F8  38 65 4E 00 */ addi r3, r5, 0x4e00
 /* 8002C9BC 000298FC  88 05 4E 0B */ lbz r0, 0x4e0b(r5)
 /* 8002C9C0 00029900  7C 05 07 74 */ extsb r5, r0
-/* 8002C9C4 00029904  4B FF FF 8D */ bl dComIfG_play_c_NS_getLayerNo_common
+/* 8002C9C4 00029904  4B FF FF 8D */ bl getLayerNo_common__14dComIfG_play_cFPCcii
 /* 8002C9C8 00029908  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002C9CC 0002990C  7C 08 03 A6 */ mtlr r0
 /* 8002C9D0 00029910  38 21 00 10 */ addi r1, r1, 0x10

@@ -13,7 +13,7 @@ lbl_801255E8:
 /* 801255E8 00122528  7F A3 EB 78 */ mr r3, r29
 /* 801255EC 0012252C  38 1F 32 60 */ addi r0, r31, 0x3260
 /* 801255F0 00122530  7C 9D 00 2E */ lwzx r4, r29, r0
-/* 801255F4 00122534  4B FF B1 85 */ bl daAlink_c_NS_stopDrawParticle
+/* 801255F4 00122534  4B FF B1 85 */ bl stopDrawParticle__9daAlink_cFUl
 /* 801255F8 00122538  3B DE 00 01 */ addi r30, r30, 1
 /* 801255FC 0012253C  2C 1E 00 02 */ cmpwi r30, 2
 /* 80125600 00122540  3B FF 00 04 */ addi r31, r31, 4

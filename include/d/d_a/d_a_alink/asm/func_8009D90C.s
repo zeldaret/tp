@@ -5,7 +5,7 @@
 /* 8009D91C 0009A85C  48 2C 48 BD */	bl _savegpr_28
 /* 8009D920 0009A860  7C 7E 1B 78 */	mr r30, r3
 /* 8009D924 0009A864  7C 9F 23 78 */	mr r31, r4
-/* 8009D928 0009A868  48 28 EA 9D */	bl J3DMaterialAnm_NS_calc
+/* 8009D928 0009A868  48 28 EA 9D */	bl calc__14J3DMaterialAnmCFP11J3DMaterial
 /* 8009D92C 0009A86C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8009D930 0009A870  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8009D934 0009A874  80 63 5D B4 */	lwz r3, 0x5db4(r3)

@@ -4,10 +4,10 @@
 /* 80133858 00130798  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013385C 0013079C  7C 7F 1B 78 */ mr r31, r3
 /* 80133860 001307A0  38 80 01 17 */ li r4, 0x117
-/* 80133864 001307A4  4B F8 E7 09 */ bl daAlink_c_NS_commonProcInit
+/* 80133864 001307A4  4B F8 E7 09 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80133868 001307A8  7F E3 FB 78 */ mr r3, r31
 /* 8013386C 001307AC  38 80 00 21 */ li r4, 0x21
-/* 80133870 001307B0  4B FF 4F 9D */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 80133870 001307B0  4B FF 4F 9D */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 80133874 001307B4  2C 03 00 00 */ cmpwi r3, 0
 /* 80133878 001307B8  40 82 00 20 */ bne lbl_80133898
 /* 8013387C 001307BC  7F E3 FB 78 */ mr r3, r31
@@ -16,10 +16,10 @@
 /* 80133888 001307C8  3C A0 80 39 */ lis r5, lbl_8038F46C@ha
 /* 8013388C 001307CC  38 A5 F4 6C */ addi r5, r5, lbl_8038F46C@l
 /* 80133890 001307D0  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 80133894 001307D4  4B FF 5E 45 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 80133894 001307D4  4B FF 5E 45 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80133898:
 /* 80133898 001307D8  7F E3 FB 78 */ mr r3, r31
-/* 8013389C 001307DC  4B FF E1 55 */ bl daAlink_c_NS_initWolfRopeShapeAngle
+/* 8013389C 001307DC  4B FF E1 55 */ bl initWolfRopeShapeAngle__9daAlink_cFv
 /* 801338A0 001307E0  B0 7F 30 0C */ sth r3, 0x300c(r31)
 /* 801338A4 001307E4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 801338A8 001307E8  B0 1F 04 DE */ sth r0, 0x4de(r31)
@@ -32,10 +32,10 @@ lbl_80133898:
 /* 801338C4 00130804  D0 1F 04 FC */ stfs f0, 0x4fc(r31)
 /* 801338C8 00130808  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 801338CC 0013080C  7F E3 FB 78 */ mr r3, r31
-/* 801338D0 00130810  4B FF DE 49 */ bl daAlink_c_NS_setWolfRopePosY
+/* 801338D0 00130810  4B FF DE 49 */ bl setWolfRopePosY__9daAlink_cFv
 /* 801338D4 00130814  7C 64 1B 78 */ mr r4, r3
 /* 801338D8 00130818  7F E3 FB 78 */ mr r3, r31
-/* 801338DC 0013081C  4B FF E2 21 */ bl daAlink_c_NS_setWolfRopeOffsetY
+/* 801338DC 0013081C  4B FF E2 21 */ bl setWolfRopeOffsetY__9daAlink_cFi
 /* 801338E0 00130820  38 60 00 00 */ li r3, 0
 /* 801338E4 00130824  A0 1F 1F BC */ lhz r0, 0x1fbc(r31)
 /* 801338E8 00130828  28 00 02 DA */ cmplwi r0, 0x2da
@@ -52,7 +52,7 @@ lbl_80133900:
 /* 8013390C 0013084C  B0 1F 30 A0 */ sth r0, 0x30a0(r31)
 lbl_80133910:
 /* 80133910 00130850  7F E3 FB 78 */ mr r3, r31
-/* 80133914 00130854  4B F9 B1 E1 */ bl daAlink_c_NS_setSubjectMode
+/* 80133914 00130854  4B F9 B1 E1 */ bl setSubjectMode__9daAlink_cFv
 /* 80133918 00130858  38 60 00 01 */ li r3, 1
 /* 8013391C 0013085C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80133920 00130860  80 01 00 14 */ lwz r0, 0x14(r1)

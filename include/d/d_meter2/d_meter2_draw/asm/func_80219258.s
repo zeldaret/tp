@@ -5,7 +5,7 @@
 /* 80219268 002161A8  48 14 8F 6D */ bl _savegpr_27
 /* 8021926C 002161AC  7C 7B 1B 78 */ mr r27, r3
 /* 80219270 002161B0  80 63 03 00 */ lwz r3, 0x300(r3)
-/* 80219274 002161B4  48 03 C5 B5 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80219274 002161B4  48 03 C5 B5 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219278 002161B8  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 8021927C 002161BC  3B C3 EB C8 */ addi r30, r3, lbl_8042EBC8@l
 /* 80219280 002161C0  C0 7E 00 A8 */ lfs f3, 0xa8(r30)
@@ -17,18 +17,18 @@
 /* 80219298 002161D8  41 82 00 20 */ beq lbl_802192B8
 /* 8021929C 002161DC  80 7B 03 00 */ lwz r3, 0x300(r27)
 /* 802192A0 002161E0  FC 20 00 90 */ fmr f1, f0
-/* 802192A4 002161E4  48 03 C5 2D */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802192A4 002161E4  48 03 C5 2D */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802192A8 002161E8  7F 63 DB 78 */ mr r3, r27
 /* 802192AC 002161EC  80 9B 03 00 */ lwz r4, 0x300(r27)
 /* 802192B0 002161F0  38 A0 00 05 */ li r5, 5
-/* 802192B4 002161F4  48 00 17 F1 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 802192B4 002161F4  48 00 17 F1 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_802192B8:
 /* 802192B8 002161F8  3B 80 00 00 */ li r28, 0
 /* 802192BC 002161FC  3B E0 00 00 */ li r31, 0
 lbl_802192C0:
 /* 802192C0 00216200  3B BF 00 C0 */ addi r29, r31, 0xc0
 /* 802192C4 00216204  7C 7B E8 2E */ lwzx r3, r27, r29
-/* 802192C8 00216208  48 03 C5 61 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 802192C8 00216208  48 03 C5 61 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 802192CC 0021620C  C0 5E 00 18 */ lfs f2, 0x18(r30)
 /* 802192D0 00216210  C0 1E 00 84 */ lfs f0, 0x84(r30)
 /* 802192D4 00216214  EC 02 00 32 */ fmuls f0, f2, f0
@@ -36,11 +36,11 @@ lbl_802192C0:
 /* 802192DC 0021621C  41 82 00 20 */ beq lbl_802192FC
 /* 802192E0 00216220  7C 7B E8 2E */ lwzx r3, r27, r29
 /* 802192E4 00216224  FC 20 00 90 */ fmr f1, f0
-/* 802192E8 00216228  48 03 C4 E9 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 802192E8 00216228  48 03 C4 E9 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802192EC 0021622C  7F 63 DB 78 */ mr r3, r27
 /* 802192F0 00216230  7C 9B E8 2E */ lwzx r4, r27, r29
 /* 802192F4 00216234  38 A0 00 05 */ li r5, 5
-/* 802192F8 00216238  48 00 17 AD */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 802192F8 00216238  48 00 17 AD */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_802192FC:
 /* 802192FC 0021623C  3B 9C 00 01 */ addi r28, r28, 1
 /* 80219300 00216240  2C 1C 00 05 */ cmpwi r28, 5

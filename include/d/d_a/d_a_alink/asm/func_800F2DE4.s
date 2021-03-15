@@ -5,15 +5,15 @@
 /* 800F2DF4 000EFD34  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F2DF8 000EFD38  7C 7E 1B 78 */ mr r30, r3
 /* 800F2DFC 000EFD3C  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800F2E00 000EFD40  4B FF AC 25 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F2E00 000EFD40  4B FF AC 25 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F2E04 000EFD44  7F E3 FB 78 */ mr r3, r31
-/* 800F2E08 000EFD48  48 06 B6 C5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F2E08 000EFD48  48 06 B6 C5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F2E0C 000EFD4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F2E10 000EFD50  41 82 00 18 */ beq lbl_800F2E28
 /* 800F2E14 000EFD54  38 00 00 13 */ li r0, 0x13
 /* 800F2E18 000EFD58  98 1E 2F AB */ stb r0, 0x2fab(r30)
 /* 800F2E1C 000EFD5C  7F C3 F3 78 */ mr r3, r30
-/* 800F2E20 000EFD60  4B FF DB 61 */ bl daAlink_c_NS_procHorseWaitInit
+/* 800F2E20 000EFD60  4B FF DB 61 */ bl procHorseWaitInit__9daAlink_cFv
 /* 800F2E24 000EFD64  48 00 00 A4 */ b lbl_800F2EC8
 lbl_800F2E28:
 /* 800F2E28 000EFD68  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -48,7 +48,7 @@ lbl_800F2E74:
 lbl_800F2E94:
 /* 800F2E94 000EFDD4  7F E3 FB 78 */ mr r3, r31
 /* 800F2E98 000EFDD8  C0 22 93 78 */ lfs f1, lbl_80452D78-_SDA2_BASE_(r2)
-/* 800F2E9C 000EFDDC  48 23 55 91 */ bl J3DFrameCtrl_NS_checkPass
+/* 800F2E9C 000EFDDC  48 23 55 91 */ bl checkPass__12J3DFrameCtrlFf
 /* 800F2EA0 000EFDE0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2EA4 000EFDE4  41 82 00 20 */ beq lbl_800F2EC4
 /* 800F2EA8 000EFDE8  7F C3 F3 78 */ mr r3, r30

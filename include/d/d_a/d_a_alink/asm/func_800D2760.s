@@ -15,7 +15,7 @@
 /* 800D2798 000CF6D8  60 00 00 04 */ ori r0, r0, 4
 /* 800D279C 000CF6DC  90 03 31 A0 */ stw r0, 0x31a0(r3)
 /* 800D27A0 000CF6E0  38 80 00 01 */ li r4, 1
-/* 800D27A4 000CF6E4  4B FE 79 2D */ bl daAlink_c_NS_checkNextAction
+/* 800D27A4 000CF6E4  4B FE 79 2D */ bl checkNextAction__9daAlink_cFi
 /* 800D27A8 000CF6E8  2C 03 00 00 */ cmpwi r3, 0
 /* 800D27AC 000CF6EC  41 82 00 0C */ beq lbl_800D27B8
 /* 800D27B0 000CF6F0  38 60 00 01 */ li r3, 1

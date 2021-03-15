@@ -6,7 +6,7 @@
 /* 800A7A00 000A4940  7C 7D 1B 78 */ mr r29, r3
 /* 800A7A04 000A4944  7C 9E 23 78 */ mr r30, r4
 /* 800A7A08 000A4948  3B E0 00 00 */ li r31, 0
-/* 800A7A0C 000A494C  4B FF FF 45 */ bl daAlink_c_NS_checkWindSpeedOnAngle
+/* 800A7A0C 000A494C  4B FF FF 45 */ bl checkWindSpeedOnAngle__9daAlink_cCFv
 /* 800A7A10 000A4950  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A7A14 000A4954  41 82 00 2C */ beq lbl_800A7A40
 /* 800A7A18 000A4958  88 1D 2F 8C */ lbz r0, 0x2f8c(r29)

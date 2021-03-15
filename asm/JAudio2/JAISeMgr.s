@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029f8b0
 
 
-.global JAISeCategoryMgr_NS_isUsingSeqData
-JAISeCategoryMgr_NS_isUsingSeqData:
+.global isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion
+isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion:
 /* 8029F8B0 0029C7F0  80 E3 00 58 */	lwz r7, 0x58(r3)
 /* 8029F8B4 0029C7F4  80 C4 00 00 */	lwz r6, 0(r4)
 /* 8029F8B8 0029C7F8  80 04 00 04 */	lwz r0, 4(r4)
@@ -39,8 +39,8 @@ lbl_8029F90C:
 /* 8029F914 0029C854  38 60 00 00 */	li r3, 0
 /* 8029F918 0029C858  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_releaseSeqData
-JAISeCategoryMgr_NS_releaseSeqData:
+.global releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion
+releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion:
 /* 8029F91C 0029C85C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029F920 0029C860  7C 08 02 A6 */	mflr r0
 /* 8029F924 0029C864  90 01 00 24 */	stw r0, 0x24(r1)
@@ -91,8 +91,8 @@ lbl_8029F9AC:
 /* 8029F9BC 0029C8FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029F9C0 0029C900  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_JAISeMgr_calc_
-JAISeCategoryMgr_NS_JAISeMgr_calc_:
+.global JAISeMgr_calc___16JAISeCategoryMgrFv
+JAISeMgr_calc___16JAISeCategoryMgrFv:
 /* 8029F9C4 0029C904  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029F9C8 0029C908  7C 08 02 A6 */	mflr r0
 /* 8029F9CC 0029C90C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -183,13 +183,13 @@ lbl_8029FAF0:
 /* 8029FAF8 0029CA38  48 00 00 10 */	b lbl_8029FB08
 lbl_8029FAFC:
 /* 8029FAFC 0029CA3C  80 7F 00 00 */	lwz r3, 0(r31)
-/* 8029FB00 0029CA40  4B FF F9 CD */	bl JAISe_NS_JAISeCategoryMgr_calc_
+/* 8029FB00 0029CA40  4B FF F9 CD */	bl JAISeCategoryMgr_calc___5JAISeFv
 /* 8029FB04 0029CA44  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_8029FB08:
 /* 8029FB08 0029CA48  28 1F 00 00 */	cmplwi r31, 0
 /* 8029FB0C 0029CA4C  40 82 FF F0 */	bne lbl_8029FAFC
 /* 8029FB10 0029CA50  7F C3 F3 78 */	mr r3, r30
-/* 8029FB14 0029CA54  48 00 02 2D */	bl JAISeCategoryMgr_NS_sortByPriority_
+/* 8029FB14 0029CA54  48 00 02 2D */	bl sortByPriority___16JAISeCategoryMgrFv
 /* 8029FB18 0029CA58  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029FB1C 0029CA5C  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8029FB20 0029CA60  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -197,8 +197,8 @@ lbl_8029FB08:
 /* 8029FB28 0029CA68  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029FB2C 0029CA6C  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_JAISeMgr_freeDeadSe_
-JAISeCategoryMgr_NS_JAISeMgr_freeDeadSe_:
+.global JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv
+JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv:
 /* 8029FB30 0029CA70  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029FB34 0029CA74  7C 08 02 A6 */	mflr r0
 /* 8029FB38 0029CA78  90 01 00 24 */	stw r0, 0x24(r1)
@@ -230,7 +230,7 @@ lbl_8029FB5C:
 /* 8029FB9C 0029CADC  41 82 00 10 */	beq lbl_8029FBAC
 /* 8029FBA0 0029CAE0  38 7E 00 C8 */	addi r3, r30, 0xc8
 /* 8029FBA4 0029CAE4  38 80 FF FF */	li r4, -1
-/* 8029FBA8 0029CAE8  4B FF 17 75 */	bl JASTrack_NS_dtor
+/* 8029FBA8 0029CAE8  4B FF 17 75 */	bl __dt__8JASTrackFv
 lbl_8029FBAC:
 /* 8029FBAC 0029CAEC  28 1E 00 00 */	cmplwi r30, 0
 /* 8029FBB0 0029CAF0  41 82 00 10 */	beq lbl_8029FBC0
@@ -243,7 +243,7 @@ lbl_8029FBC0:
 /* 8029FBC8 0029CB08  40 82 00 34 */	bne lbl_8029FBFC
 /* 8029FBCC 0029CB0C  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 8029FBD0 0029CB10  38 63 40 84 */	addi r3, r3, lbl_80434084@l
-/* 8029FBD4 0029CB14  4B FF 0C 75 */	bl JASGenericMemPool
+/* 8029FBD4 0029CB14  4B FF 0C 75 */	bl __ct__17JASGenericMemPoolFv
 /* 8029FBD8 0029CB18  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 8029FBDC 0029CB1C  38 63 40 84 */	addi r3, r3, lbl_80434084@l
 .global JASMemPool_NS_dtor
@@ -260,7 +260,7 @@ lbl_8029FBFC:
 /* 8029FC00 0029CB40  38 63 40 84 */	addi r3, r3, lbl_80434084@l
 /* 8029FC04 0029CB44  7F C4 F3 78 */	mr r4, r30
 /* 8029FC08 0029CB48  38 A0 03 38 */	li r5, 0x338
-/* 8029FC0C 0029CB4C  4B FF 0D 89 */	bl JASGenericMemPool_NS_free
+/* 8029FC0C 0029CB4C  4B FF 0D 89 */	bl free__17JASGenericMemPoolFPvUl
 lbl_8029FC10:
 /* 8029FC10 0029CB50  7F FE FB 78 */	mr r30, r31
 lbl_8029FC14:
@@ -283,7 +283,7 @@ JASMemPool_NS_dtor:
 /* 8029FC4C 0029CB8C  7C 9F 23 78 */	mr r31, r4
 /* 8029FC50 0029CB90  41 82 00 1C */	beq lbl_8029FC6C
 /* 8029FC54 0029CB94  38 80 00 00 */	li r4, 0
-/* 8029FC58 0029CB98  4B FF 0C 09 */	bl JASGenericMemPool_NS_dtor
+/* 8029FC58 0029CB98  4B FF 0C 09 */	bl __dt__17JASGenericMemPoolFv
 /* 8029FC5C 0029CB9C  7F E0 07 35 */	extsh. r0, r31
 /* 8029FC60 0029CBA0  40 81 00 0C */	ble lbl_8029FC6C
 /* 8029FC64 0029CBA4  7F C3 F3 78 */	mr r3, r30
@@ -297,8 +297,8 @@ lbl_8029FC6C:
 /* 8029FC80 0029CBC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029FC84 0029CBC4  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_JAISeMgr_acceptsNewSe_
-JAISeCategoryMgr_NS_JAISeMgr_acceptsNewSe_:
+.global JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl
+JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl:
 /* 8029FC88 0029CBC8  80 A3 00 68 */	lwz r5, 0x68(r3)
 /* 8029FC8C 0029CBCC  2C 05 00 00 */	cmpwi r5, 0
 /* 8029FC90 0029CBD0  40 82 00 0C */	bne lbl_8029FC9C
@@ -355,8 +355,8 @@ lbl_8029FD20:
 /* 8029FD38 0029CC78  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 8029FD3C 0029CC7C  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_sortByPriority_
-JAISeCategoryMgr_NS_sortByPriority_:
+.global sortByPriority___16JAISeCategoryMgrFv
+sortByPriority___16JAISeCategoryMgrFv:
 /* 8029FD40 0029CC80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029FD44 0029CC84  7C 08 02 A6 */	mflr r0
 /* 8029FD48 0029CC88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -403,8 +403,8 @@ lbl_8029FDC0:
 /* 8029FDD8 0029CD18  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029FDDC 0029CD1C  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_stop
-JAISeCategoryMgr_NS_stop:
+.global stop__16JAISeCategoryMgrFUl
+stop__16JAISeCategoryMgrFUl:
 /* 8029FDE0 0029CD20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029FDE4 0029CD24  7C 08 02 A6 */	mflr r0
 /* 8029FDE8 0029CD28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -429,8 +429,8 @@ lbl_8029FE14:
 /* 8029FE2C 0029CD6C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029FE30 0029CD70  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_stop_X1_
-JAISeCategoryMgr_NS_stop_X1_:
+.global stop__16JAISeCategoryMgrFv
+stop__16JAISeCategoryMgrFv:
 /* 8029FE34 0029CD74  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029FE38 0029CD78  7C 08 02 A6 */	mflr r0
 /* 8029FE3C 0029CD7C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,8 +451,8 @@ lbl_8029FE5C:
 /* 8029FE70 0029CDB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029FE74 0029CDB4  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_stopSoundID
-JAISeCategoryMgr_NS_stopSoundID:
+.global stopSoundID__16JAISeCategoryMgrF10JAISoundID
+stopSoundID__16JAISeCategoryMgrF10JAISoundID:
 /* 8029FE78 0029CDB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029FE7C 0029CDBC  7C 08 02 A6 */	mflr r0
 /* 8029FE80 0029CDC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -487,8 +487,8 @@ lbl_8029FED4:
 /* 8029FEE4 0029CE24  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029FEE8 0029CE28  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_pause
-JAISeCategoryMgr_NS_pause:
+.global pause__16JAISeCategoryMgrFb
+pause__16JAISeCategoryMgrFb:
 /* 8029FEEC 0029CE2C  80 A3 00 58 */	lwz r5, 0x58(r3)
 /* 8029FEF0 0029CE30  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 8029FEF4 0029CE34  48 00 00 18 */	b lbl_8029FF0C
@@ -503,8 +503,8 @@ lbl_8029FF0C:
 /* 8029FF10 0029CE50  40 82 FF E8 */	bne lbl_8029FEF8
 /* 8029FF14 0029CE54  4E 80 00 20 */	blr 
 
-.global JAISeCategoryMgr_NS_JAISeMgr_mixOut_
-JAISeCategoryMgr_NS_JAISeMgr_mixOut_:
+.global JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity
+JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity:
 /* 8029FF18 0029CE58  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8029FF1C 0029CE5C  7C 08 02 A6 */	mflr r0
 /* 8029FF20 0029CE60  90 01 00 44 */	stw r0, 0x44(r1)
@@ -522,7 +522,7 @@ JAISeCategoryMgr_NS_JAISeMgr_mixOut_:
 /* 8029FF50 0029CE90  D0 21 00 28 */	stfs f1, 0x28(r1)
 /* 8029FF54 0029CE94  38 61 00 18 */	addi r3, r1, 0x18
 /* 8029FF58 0029CE98  38 BE 00 08 */	addi r5, r30, 8
-/* 8029FF5C 0029CE9C  4B FF E5 21 */	bl JASSoundParams_NS_combine
+/* 8029FF5C 0029CE9C  4B FF E5 21 */	bl combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams
 /* 8029FF60 0029CEA0  83 FE 00 58 */	lwz r31, 0x58(r30)
 /* 8029FF64 0029CEA4  80 1E 00 68 */	lwz r0, 0x68(r30)
 /* 8029FF68 0029CEA8  7C 1E 03 78 */	mr r30, r0
@@ -536,7 +536,7 @@ lbl_8029FF78:
 /* 8029FF84 0029CEC4  38 80 00 01 */	li r4, 1
 /* 8029FF88 0029CEC8  38 A1 00 18 */	addi r5, r1, 0x18
 /* 8029FF8C 0029CECC  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8029FF90 0029CED0  4B FF F3 75 */	bl JAISe_NS_JAISeCategoryMgr_mixOut_
+/* 8029FF90 0029CED0  4B FF F3 75 */	bl JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity
 /* 8029FF94 0029CED4  83 FF 00 0C */	lwz r31, 0xc(r31)
 /* 8029FF98 0029CED8  3B DE FF FF */	addi r30, r30, -1
 lbl_8029FF9C:
@@ -557,7 +557,7 @@ lbl_8029FFC4:
 /* 8029FFD0 0029CF10  38 80 00 00 */	li r4, 0
 /* 8029FFD4 0029CF14  38 A1 00 18 */	addi r5, r1, 0x18
 /* 8029FFD8 0029CF18  38 C1 00 10 */	addi r6, r1, 0x10
-/* 8029FFDC 0029CF1C  4B FF F3 29 */	bl JAISe_NS_JAISeCategoryMgr_mixOut_
+/* 8029FFDC 0029CF1C  4B FF F3 29 */	bl JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity
 /* 8029FFE0 0029CF20  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_8029FFE4:
 /* 8029FFE4 0029CF24  28 1F 00 00 */	cmplwi r31, 0
@@ -571,7 +571,7 @@ lbl_8029FFF4:
 /* 802A0000 0029CF40  38 80 00 01 */	li r4, 1
 /* 802A0004 0029CF44  38 A1 00 18 */	addi r5, r1, 0x18
 /* 802A0008 0029CF48  38 C1 00 0C */	addi r6, r1, 0xc
-/* 802A000C 0029CF4C  4B FF F2 F9 */	bl JAISe_NS_JAISeCategoryMgr_mixOut_
+/* 802A000C 0029CF4C  4B FF F2 F9 */	bl JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity
 /* 802A0010 0029CF50  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_802A0014:
 /* 802A0014 0029CF54  28 1F 00 00 */	cmplwi r31, 0
@@ -589,7 +589,7 @@ lbl_802A0034:
 /* 802A0040 0029CF80  38 80 00 00 */	li r4, 0
 /* 802A0044 0029CF84  38 A1 00 18 */	addi r5, r1, 0x18
 /* 802A0048 0029CF88  38 C1 00 08 */	addi r6, r1, 8
-/* 802A004C 0029CF8C  4B FF F2 B9 */	bl JAISe_NS_JAISeCategoryMgr_mixOut_
+/* 802A004C 0029CF8C  4B FF F2 B9 */	bl JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity
 /* 802A0050 0029CF90  83 FF 00 0C */	lwz r31, 0xc(r31)
 lbl_802A0054:
 /* 802A0054 0029CF94  28 1F 00 00 */	cmplwi r31, 0
@@ -620,17 +620,17 @@ lbl_802A0094:
 /* 802A00A4 0029CFE4  38 03 98 B0 */	addi r0, r3, lbl_803C98B0@l
 /* 802A00A8 0029CFE8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A00AC 0029CFEC  38 7F 00 14 */	addi r3, r31, 0x14
-.global JAISeCategoryMgr
-/* 802A00B0 0029CFF0  3C 80 80 2A */	lis r4, JAISeCategoryMgr@ha
-.global JAISeCategoryMgr
-/* 802A00B4 0029CFF4  38 84 09 94 */	addi r4, r4, JAISeCategoryMgr@l
+.global __ct__16JAISeCategoryMgrFv
+/* 802A00B0 0029CFF0  3C 80 80 2A */	lis r4, __ct__16JAISeCategoryMgrFv@ha
+.global __ct__16JAISeCategoryMgrFv
+/* 802A00B4 0029CFF4  38 84 09 94 */	addi r4, r4, __ct__16JAISeCategoryMgrFv@l
 .global __dt__16JAISeCategoryMgrFv
 /* 802A00B8 0029CFF8  3C A0 80 00 */	lis r5, __dt__16JAISeCategoryMgrFv@ha
 .global __dt__16JAISeCategoryMgrFv
 /* 802A00BC 0029CFFC  38 A5 78 DC */	addi r5, r5, __dt__16JAISeCategoryMgrFv@l
 /* 802A00C0 0029D000  38 C0 00 6C */	li r6, 0x6c
 /* 802A00C4 0029D004  38 E0 00 10 */	li r7, 0x10
-/* 802A00C8 0029D008  48 0C 1C 99 */	bl func_80361D60
+/* 802A00C8 0029D008  48 0C 1C 99 */	bl __construct_array
 /* 802A00CC 0029D00C  C0 42 BD 8C */	lfs f2, lbl_8045578C-_SDA2_BASE_(r2)
 /* 802A00D0 0029D010  D0 5F 06 D4 */	stfs f2, 0x6d4(r31)
 /* 802A00D4 0029D014  D0 5F 06 DC */	stfs f2, 0x6dc(r31)
@@ -683,7 +683,7 @@ lbl_802A018C:
 /* 802A018C 0029D0CC  38 7F 00 14 */	addi r3, r31, 0x14
 /* 802A0190 0029D0D0  7C 7C 1A 14 */	add r3, r28, r3
 /* 802A0194 0029D0D4  7F A4 EB 78 */	mr r4, r29
-/* 802A0198 0029D0D8  4B FF F7 19 */	bl JAISeCategoryMgr_NS_isUsingSeqData
+/* 802A0198 0029D0D8  4B FF F7 19 */	bl isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion
 /* 802A019C 0029D0DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A01A0 0029D0E0  41 82 00 0C */	beq lbl_802A01AC
 /* 802A01A4 0029D0E4  38 60 00 01 */	li r3, 1
@@ -715,7 +715,7 @@ lbl_802A0200:
 /* 802A0200 0029D140  38 7F 00 14 */	addi r3, r31, 0x14
 /* 802A0204 0029D144  7C 7B 1A 14 */	add r3, r27, r3
 /* 802A0208 0029D148  7F 84 E3 78 */	mr r4, r28
-/* 802A020C 0029D14C  4B FF F7 11 */	bl JAISeCategoryMgr_NS_releaseSeqData
+/* 802A020C 0029D14C  4B FF F7 11 */	bl releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion
 /* 802A0210 0029D150  2C 03 00 01 */	cmpwi r3, 1
 /* 802A0214 0029D154  41 82 00 1C */	beq lbl_802A0230
 /* 802A0218 0029D158  40 80 00 1C */	bge lbl_802A0234
@@ -743,8 +743,8 @@ lbl_802A0250:
 /* 802A0260 0029D1A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A0264 0029D1A4  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_setCategoryArrangement
-JAISeMgr_NS_setCategoryArrangement:
+.global setCategoryArrangement__8JAISeMgrFRC24JAISeCategoryArrangement
+setCategoryArrangement__8JAISeMgrFRC24JAISeCategoryArrangement:
 /* 802A0268 0029D1A8  38 A0 00 00 */	li r5, 0
 /* 802A026C 0029D1AC  38 C0 00 00 */	li r6, 0
 /* 802A0270 0029D1B0  38 00 00 10 */	li r0, 0x10
@@ -761,8 +761,8 @@ lbl_802A0278:
 /* 802A0298 0029D1D8  42 00 FF E0 */	bdnz lbl_802A0278
 /* 802A029C 0029D1DC  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_stop
-JAISeMgr_NS_stop:
+.global stop__8JAISeMgrFv
+stop__8JAISeMgrFv:
 /* 802A02A0 0029D1E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A02A4 0029D1E4  7C 08 02 A6 */	mflr r0
 /* 802A02A8 0029D1E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -774,7 +774,7 @@ JAISeMgr_NS_stop:
 lbl_802A02C0:
 /* 802A02C0 0029D200  38 7F 00 14 */	addi r3, r31, 0x14
 /* 802A02C4 0029D204  7C 7D 1A 14 */	add r3, r29, r3
-/* 802A02C8 0029D208  4B FF FB 6D */	bl JAISeCategoryMgr_NS_stop_X1_
+/* 802A02C8 0029D208  4B FF FB 6D */	bl stop__16JAISeCategoryMgrFv
 /* 802A02CC 0029D20C  3B DE 00 01 */	addi r30, r30, 1
 /* 802A02D0 0029D210  2C 1E 00 10 */	cmpwi r30, 0x10
 /* 802A02D4 0029D214  3B FF 00 6C */	addi r31, r31, 0x6c
@@ -786,8 +786,8 @@ lbl_802A02C0:
 /* 802A02EC 0029D22C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A02F0 0029D230  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_stopSoundID
-JAISeMgr_NS_stopSoundID:
+.global stopSoundID__8JAISeMgrF10JAISoundID
+stopSoundID__8JAISeMgrF10JAISoundID:
 /* 802A02F4 0029D234  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A02F8 0029D238  7C 08 02 A6 */	mflr r0
 /* 802A02FC 0029D23C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -803,7 +803,7 @@ lbl_802A0318:
 /* 802A0320 0029D260  38 7F 00 14 */	addi r3, r31, 0x14
 /* 802A0324 0029D264  7C 7C 1A 14 */	add r3, r28, r3
 /* 802A0328 0029D268  38 81 00 08 */	addi r4, r1, 8
-/* 802A032C 0029D26C  4B FF FB 4D */	bl JAISeCategoryMgr_NS_stopSoundID
+/* 802A032C 0029D26C  4B FF FB 4D */	bl stopSoundID__16JAISeCategoryMgrF10JAISoundID
 /* 802A0330 0029D270  3B DE 00 01 */	addi r30, r30, 1
 /* 802A0334 0029D274  2C 1E 00 10 */	cmpwi r30, 0x10
 /* 802A0338 0029D278  3B FF 00 6C */	addi r31, r31, 0x6c
@@ -815,8 +815,8 @@ lbl_802A0318:
 /* 802A0350 0029D290  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A0354 0029D294  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_initParams
-JAISeMgr_NS_initParams:
+.global initParams__8JAISeMgrFv
+initParams__8JAISeMgrFv:
 /* 802A0358 0029D298  38 80 00 00 */	li r4, 0
 /* 802A035C 0029D29C  C0 42 BD 8C */	lfs f2, lbl_8045578C-_SDA2_BASE_(r2)
 /* 802A0360 0029D2A0  C0 22 BD 90 */	lfs f1, lbl_80455790-_SDA2_BASE_(r2)
@@ -851,13 +851,13 @@ lbl_802A0370:
 /* 802A03D0 0029D310  42 00 FF A0 */	bdnz lbl_802A0370
 /* 802A03D4 0029D314  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_setAudience
-JAISeMgr_NS_setAudience:
+.global setAudience__8JAISeMgrFP11JAIAudience
+setAudience__8JAISeMgrFP11JAIAudience:
 /* 802A03D8 0029D318  90 83 00 08 */	stw r4, 8(r3)
 /* 802A03DC 0029D31C  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_setSeqDataMgr
-JAISeMgr_NS_setSeqDataMgr:
+.global setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr
+setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr:
 /* 802A03E0 0029D320  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A03E4 0029D324  7C 08 02 A6 */	mflr r0
 /* 802A03E8 0029D328  90 01 00 14 */	stw r0, 0x14(r1)
@@ -865,7 +865,7 @@ JAISeMgr_NS_setSeqDataMgr:
 /* 802A03F0 0029D330  93 C1 00 08 */	stw r30, 8(r1)
 /* 802A03F4 0029D334  7C 7E 1B 78 */	mr r30, r3
 /* 802A03F8 0029D338  7C 9F 23 78 */	mr r31, r4
-/* 802A03FC 0029D33C  48 00 00 39 */	bl JAISeMgr_NS_resetSeqDataMgr
+/* 802A03FC 0029D33C  48 00 00 39 */	bl resetSeqDataMgr__8JAISeMgrFv
 /* 802A0400 0029D340  93 FE 00 0C */	stw r31, 0xc(r30)
 /* 802A0404 0029D344  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 802A0408 0029D348  7F C4 F3 78 */	mr r4, r30
@@ -880,8 +880,8 @@ JAISeMgr_NS_setSeqDataMgr:
 /* 802A042C 0029D36C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A0430 0029D370  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_resetSeqDataMgr
-JAISeMgr_NS_resetSeqDataMgr:
+.global resetSeqDataMgr__8JAISeMgrFv
+resetSeqDataMgr__8JAISeMgrFv:
 /* 802A0434 0029D374  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A0438 0029D378  7C 08 02 A6 */	mflr r0
 /* 802A043C 0029D37C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -904,8 +904,8 @@ lbl_802A0470:
 /* 802A047C 0029D3BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A0480 0029D3C0  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_newSe_
-JAISeMgr_NS_newSe_:
+.global newSe___8JAISeMgrFiUl
+newSe___8JAISeMgrFiUl:
 /* 802A0484 0029D3C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A0488 0029D3C8  7C 08 02 A6 */	mflr r0
 /* 802A048C 0029D3CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -922,7 +922,7 @@ lbl_802A04AC:
 /* 802A04B4 0029D3F4  7F FD FA 14 */	add r31, r29, r31
 /* 802A04B8 0029D3F8  7F E3 FB 78 */	mr r3, r31
 /* 802A04BC 0029D3FC  7F C4 F3 78 */	mr r4, r30
-/* 802A04C0 0029D400  4B FF F7 C9 */	bl JAISeCategoryMgr_NS_JAISeMgr_acceptsNewSe_
+/* 802A04C0 0029D400  4B FF F7 C9 */	bl JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl
 /* 802A04C4 0029D404  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802A04C8 0029D408  40 82 00 0C */	bne lbl_802A04D4
 /* 802A04CC 0029D40C  38 60 00 00 */	li r3, 0
@@ -933,7 +933,7 @@ lbl_802A04D4:
 /* 802A04DC 0029D41C  40 82 00 34 */	bne lbl_802A0510
 /* 802A04E0 0029D420  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 802A04E4 0029D424  38 63 40 84 */	addi r3, r3, lbl_80434084@l
-/* 802A04E8 0029D428  4B FF 03 61 */	bl JASGenericMemPool
+/* 802A04E8 0029D428  4B FF 03 61 */	bl __ct__17JASGenericMemPoolFv
 /* 802A04EC 0029D42C  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 802A04F0 0029D430  38 63 40 84 */	addi r3, r3, lbl_80434084@l
 .global JASMemPool_NS_dtor
@@ -949,7 +949,7 @@ lbl_802A0510:
 /* 802A0510 0029D450  3C 60 80 43 */	lis r3, lbl_80434084@ha
 /* 802A0514 0029D454  38 63 40 84 */	addi r3, r3, lbl_80434084@l
 /* 802A0518 0029D458  38 80 03 38 */	li r4, 0x338
-/* 802A051C 0029D45C  4B FF 04 2D */	bl JASGenericMemPool_NS_alloc
+/* 802A051C 0029D45C  4B FF 04 2D */	bl alloc__17JASGenericMemPoolFUl
 /* 802A0520 0029D460  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802A0524 0029D464  41 82 00 18 */	beq lbl_802A053C
 /* 802A0528 0029D468  7F A4 EB 78 */	mr r4, r29
@@ -975,8 +975,8 @@ lbl_802A055C:
 /* 802A056C 0029D4AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A0570 0029D4B0  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_calc
-JAISeMgr_NS_calc:
+.global calc__8JAISeMgrFv
+calc__8JAISeMgrFv:
 /* 802A0574 0029D4B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A0578 0029D4B8  7C 08 02 A6 */	mflr r0
 /* 802A057C 0029D4BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1068,7 +1068,7 @@ lbl_802A06A0:
 lbl_802A06AC:
 /* 802A06AC 0029D5EC  38 7E 00 14 */	addi r3, r30, 0x14
 /* 802A06B0 0029D5F0  7C 7F 1A 14 */	add r3, r31, r3
-/* 802A06B4 0029D5F4  4B FF F3 11 */	bl JAISeCategoryMgr_NS_JAISeMgr_calc_
+/* 802A06B4 0029D5F4  4B FF F3 11 */	bl JAISeMgr_calc___16JAISeCategoryMgrFv
 /* 802A06B8 0029D5F8  3B BD 00 01 */	addi r29, r29, 1
 /* 802A06BC 0029D5FC  2C 1D 00 10 */	cmpwi r29, 0x10
 /* 802A06C0 0029D600  3B DE 00 6C */	addi r30, r30, 0x6c
@@ -1078,7 +1078,7 @@ lbl_802A06AC:
 lbl_802A06D0:
 /* 802A06D0 0029D610  38 7E 00 14 */	addi r3, r30, 0x14
 /* 802A06D4 0029D614  7C 7F 1A 14 */	add r3, r31, r3
-/* 802A06D8 0029D618  4B FF F4 59 */	bl JAISeCategoryMgr_NS_JAISeMgr_freeDeadSe_
+/* 802A06D8 0029D618  4B FF F4 59 */	bl JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv
 /* 802A06DC 0029D61C  3B BD 00 01 */	addi r29, r29, 1
 /* 802A06E0 0029D620  2C 1D 00 10 */	cmpwi r29, 0x10
 /* 802A06E4 0029D624  3B DE 00 6C */	addi r30, r30, 0x6c
@@ -1090,8 +1090,8 @@ lbl_802A06D0:
 /* 802A06FC 0029D63C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802A0700 0029D640  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_mixOut
-JAISeMgr_NS_mixOut:
+.global mixOut__8JAISeMgrFv
+mixOut__8JAISeMgrFv:
 /* 802A0704 0029D644  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802A0708 0029D648  7C 08 02 A6 */	mflr r0
 /* 802A070C 0029D64C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1107,7 +1107,7 @@ lbl_802A0724:
 /* 802A0730 0029D670  7C 7D 1A 14 */	add r3, r29, r3
 /* 802A0734 0029D674  38 9D 06 D4 */	addi r4, r29, 0x6d4
 /* 802A0738 0029D678  38 A1 00 08 */	addi r5, r1, 8
-/* 802A073C 0029D67C  4B FF F7 DD */	bl JAISeCategoryMgr_NS_JAISeMgr_mixOut_
+/* 802A073C 0029D67C  4B FF F7 DD */	bl JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity
 /* 802A0740 0029D680  3B DE 00 01 */	addi r30, r30, 1
 /* 802A0744 0029D684  2C 1E 00 10 */	cmpwi r30, 0x10
 /* 802A0748 0029D688  3B FF 00 6C */	addi r31, r31, 0x6c
@@ -1164,14 +1164,14 @@ lbl_802A07F8:
 lbl_802A0800:
 /* 802A0800 0029D740  7F 83 E3 78 */	mr r3, r28
 /* 802A0804 0029D744  7F 44 D3 78 */	mr r4, r26
-/* 802A0808 0029D748  4B FF FC 7D */	bl JAISeMgr_NS_newSe_
+/* 802A0808 0029D748  4B FF FC 7D */	bl newSe___8JAISeMgrFiUl
 /* 802A080C 0029D74C  7C 79 1B 79 */	or. r25, r3, r3
 /* 802A0810 0029D750  40 82 00 20 */	bne lbl_802A0830
 /* 802A0814 0029D754  3C 60 80 3A */	lis r3, lbl_8039B8F8@ha
 /* 802A0818 0029D758  38 63 B8 F8 */	addi r3, r3, lbl_8039B8F8@l
 /* 802A081C 0029D75C  80 9D 00 00 */	lwz r4, 0(r29)
 /* 802A0820 0029D760  4C C6 31 82 */	crclr 6
-/* 802A0824 0029D764  4B FF 07 41 */	bl JASReport
+/* 802A0824 0029D764  4B FF 07 41 */	bl JASReport__FPCce
 /* 802A0828 0029D768  38 60 00 00 */	li r3, 0
 /* 802A082C 0029D76C  48 00 00 8C */	b lbl_802A08B8
 lbl_802A0830:
@@ -1210,7 +1210,7 @@ lbl_802A08A0:
 /* 802A08A4 0029D7E4  41 82 00 10 */	beq lbl_802A08B4
 /* 802A08A8 0029D7E8  38 79 00 10 */	addi r3, r25, 0x10
 /* 802A08AC 0029D7EC  7F C4 F3 78 */	mr r4, r30
-/* 802A08B0 0029D7F0  48 00 19 0D */	bl JAISound_NS_attachHandle
+/* 802A08B0 0029D7F0  48 00 19 0D */	bl attachHandle__8JAISoundFP14JAISoundHandle
 lbl_802A08B4:
 /* 802A08B4 0029D7F4  38 60 00 01 */	li r3, 1
 lbl_802A08B8:
@@ -1221,8 +1221,8 @@ lbl_802A08B8:
 /* 802A08C8 0029D808  38 21 00 40 */	addi r1, r1, 0x40
 /* 802A08CC 0029D80C  4E 80 00 20 */	blr 
 
-.global JAISeMgr_NS_getNumActiveSe
-JAISeMgr_NS_getNumActiveSe:
+.global getNumActiveSe__8JAISeMgrCFv
+getNumActiveSe__8JAISeMgrCFv:
 /* 802A08D0 0029D810  38 A0 00 00 */	li r5, 0
 /* 802A08D4 0029D814  38 80 00 00 */	li r4, 0
 /* 802A08D8 0029D818  38 00 00 10 */	li r0, 0x10
@@ -1253,10 +1253,10 @@ lbl_802A08E0:
 /* 802A0930 0029D870  38 84 78 DC */	addi r4, r4, __dt__16JAISeCategoryMgrFv@l
 /* 802A0934 0029D874  38 A0 00 6C */	li r5, 0x6c
 /* 802A0938 0029D878  38 C0 00 10 */	li r6, 0x10
-/* 802A093C 0029D87C  48 0C 13 AD */	bl func_80361CE8
+/* 802A093C 0029D87C  48 0C 13 AD */	bl __destroy_arr
 /* 802A0940 0029D880  7F C3 F3 78 */	mr r3, r30
 /* 802A0944 0029D884  38 80 00 00 */	li r4, 0
-/* 802A0948 0029D888  48 00 0E 2D */	bl JAISeqDataUser_NS_dtor
+/* 802A0948 0029D888  48 00 0E 2D */	bl __dt__14JAISeqDataUserFv
 /* 802A094C 0029D88C  28 1E 00 00 */	cmplwi r30, 0
 /* 802A0950 0029D890  41 82 00 18 */	beq lbl_802A0968
 /* 802A0954 0029D894  80 0D 85 EC */	lwz r0, lbl_80450B6C-_SDA_BASE_(r13)
@@ -1277,8 +1277,8 @@ lbl_802A0978:
 /* 802A0988 0029D8C8  7C 08 03 A6 */	mtlr r0
 /* 802A098C 0029D8CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802A0990 0029D8D0  4E 80 00 20 */	blr 
-.global JAISeCategoryMgr
-JAISeCategoryMgr:
+.global __ct__16JAISeCategoryMgrFv
+__ct__16JAISeCategoryMgrFv:
 /* 802A0994 0029D8D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A0998 0029D8D8  7C 08 02 A6 */	mflr r0
 /* 802A099C 0029D8DC  90 01 00 14 */	stw r0, 0x14(r1)

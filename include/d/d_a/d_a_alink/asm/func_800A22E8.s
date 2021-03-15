@@ -145,7 +145,7 @@ lbl_800A24F8:
 /* 800A24FC 0009F43C  28 00 00 F2 */ cmplwi r0, 0xf2
 /* 800A2500 0009F440  40 82 00 14 */ bne lbl_800A2514
 /* 800A2504 0009F444  7F C3 F3 78 */ mr r3, r30
-/* 800A2508 0009F448  48 01 0F F9 */ bl daAlink_c_NS_checkAttentionState
+/* 800A2508 0009F448  48 01 0F F9 */ bl checkAttentionState__9daAlink_cFv
 /* 800A250C 0009F44C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A2510 0009F450  40 82 00 18 */ bne lbl_800A2528
 lbl_800A2514:

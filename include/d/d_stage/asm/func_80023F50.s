@@ -1,7 +1,7 @@
 /* 80023F50 00020E90  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 80023F54 00020E94  7C 08 02 A6 */ mflr r0
 /* 80023F58 00020E98  90 01 00 14 */ stw r0, 0x14(r1)
-/* 80023F5C 00020E9C  4B FF FF A5 */ bl dStage_isBossStage
+/* 80023F5C 00020E9C  4B FF FF A5 */ bl dStage_isBossStage__FP11dStage_dt_c
 /* 80023F60 00020EA0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80023F64 00020EA4  40 82 00 10 */ bne lbl_80023F74
 /* 80023F68 00020EA8  38 00 00 00 */ li r0, 0

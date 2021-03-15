@@ -8,10 +8,10 @@
 /* 80108738 00105678  80 03 28 50 */ lwz r0, 0x2850(r3)
 /* 8010873C 0010567C  28 00 00 00 */ cmplwi r0, 0
 /* 80108740 00105680  41 82 00 28 */ beq lbl_80108768
-/* 80108744 00105684  48 00 00 E5 */ bl daAlink_c_NS_cancelHookshotCarry
+/* 80108744 00105684  48 00 00 E5 */ bl cancelHookshotCarry__9daAlink_cFv
 /* 80108748 00105688  38 7E 28 4C */ addi r3, r30, 0x284c
 /* 8010874C 0010568C  7F E4 FB 78 */ mr r4, r31
-/* 80108750 00105690  48 05 65 69 */ bl daPy_actorKeep_c_NS_setData
+/* 80108750 00105690  48 05 65 69 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 80108754 00105694  80 1F 04 9C */ lwz r0, 0x49c(r31)
 /* 80108758 00105698  64 00 00 10 */ oris r0, r0, 0x10
 /* 8010875C 0010569C  90 1F 04 9C */ stw r0, 0x49c(r31)

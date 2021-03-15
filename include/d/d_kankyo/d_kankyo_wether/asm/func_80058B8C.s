@@ -74,13 +74,13 @@ lbl_80058C80:
 lbl_80058CA0:
 /* 80058CA0 00055BE0  2C 1E 00 00 */ cmpwi r30, 0
 /* 80058CA4 00055BE4  41 82 02 54 */ beq lbl_80058EF8
-/* 80058CA8 00055BE8  48 15 38 D5 */ bl dKy_darkworld_check
+/* 80058CA8 00055BE8  48 15 38 D5 */ bl dKy_darkworld_check__Fv
 /* 80058CAC 00055BEC  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 80058CB0 00055BF0  28 00 00 01 */ cmplwi r0, 1
 /* 80058CB4 00055BF4  41 82 02 44 */ beq lbl_80058EF8
 /* 80058CB8 00055BF8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80058CBC 00055BFC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 80058CC0 00055C00  48 14 6D 49 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 80058CC0 00055C00  48 14 6D 49 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 80058CC4 00055C04  C0 82 87 00 */ lfs f4, lbl_80452100-_SDA2_BASE_(r2)
 /* 80058CC8 00055C08  FC 01 20 40 */ fcmpo cr0, f1, f4
 /* 80058CCC 00055C0C  4C 41 13 82 */ cror 2, 1, 2
@@ -202,21 +202,21 @@ lbl_80058E70:
 /* 80058E70 00055DB0  80 1D 0E 9C */ lwz r0, 0xe9c(r29)
 /* 80058E74 00055DB4  2C 00 00 00 */ cmpwi r0, 0
 /* 80058E78 00055DB8  41 82 00 80 */ beq lbl_80058EF8
-/* 80058E7C 00055DBC  48 00 84 A9 */ bl dKyr_star_init
-/* 80058E80 00055DC0  48 01 2A 5D */ bl dKyr_shstar_init
+/* 80058E7C 00055DBC  48 00 84 A9 */ bl dKyr_star_init__Fv
+/* 80058E80 00055DC0  48 01 2A 5D */ bl dKyr_shstar_init__Fv
 /* 80058E84 00055DC4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80058E88 00055DC8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 80058E8C 00055DCC  80 03 0E A4 */ lwz r0, 0xea4(r3)
 /* 80058E90 00055DD0  28 00 00 00 */ cmplwi r0, 0
 /* 80058E94 00055DD4  41 82 00 64 */ beq lbl_80058EF8
-/* 80058E98 00055DD8  48 00 85 75 */ bl dKyr_star_move
-/* 80058E9C 00055DDC  48 01 2A 45 */ bl dKyr_shstar_move
+/* 80058E98 00055DD8  48 00 85 75 */ bl dKyr_star_move__Fv
+/* 80058E9C 00055DDC  48 01 2A 45 */ bl dKyr_shstar_move__Fv
 /* 80058EA0 00055DE0  38 00 00 01 */ li r0, 1
 /* 80058EA4 00055DE4  98 1E 0E 98 */ stb r0, 0xe98(r30)
 /* 80058EA8 00055DE8  48 00 00 50 */ b lbl_80058EF8
 lbl_80058EAC:
-/* 80058EAC 00055DEC  48 00 85 61 */ bl dKyr_star_move
-/* 80058EB0 00055DF0  48 01 2A 31 */ bl dKyr_shstar_move
+/* 80058EAC 00055DEC  48 00 85 61 */ bl dKyr_star_move__Fv
+/* 80058EB0 00055DF0  48 01 2A 31 */ bl dKyr_shstar_move__Fv
 /* 80058EB4 00055DF4  80 1D 0E 9C */ lwz r0, 0xe9c(r29)
 /* 80058EB8 00055DF8  2C 00 00 00 */ cmpwi r0, 0
 /* 80058EBC 00055DFC  40 82 00 3C */ bne lbl_80058EF8

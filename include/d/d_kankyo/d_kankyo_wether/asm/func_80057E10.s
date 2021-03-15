@@ -10,13 +10,13 @@
 /* 80057E34 00054D74  38 03 9B 24 */ addi r0, r3, lbl_803A9B24@l
 /* 80057E38 00054D78  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057E3C 00054D7C  38 7E 00 18 */ addi r3, r30, 0x18
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80057E40 00054D80  3C 80 80 05 */ lis r4, CLOUD_EFF_NS_dtor@ha
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80057E44 00054D84  38 84 6E 38 */ addi r4, r4, CLOUD_EFF_NS_dtor@l
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80057E40 00054D80  3C 80 80 05 */ lis r4, __dt__9CLOUD_EFFFv@ha
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80057E44 00054D84  38 84 6E 38 */ addi r4, r4, __dt__9CLOUD_EFFFv@l
 /* 80057E48 00054D88  38 A0 00 38 */ li r5, 0x38
 /* 80057E4C 00054D8C  38 C0 00 32 */ li r6, 0x32
-/* 80057E50 00054D90  48 30 9E 99 */ bl func_80361CE8
+/* 80057E50 00054D90  48 30 9E 99 */ bl __destroy_arr
 /* 80057E54 00054D94  28 1E 00 00 */ cmplwi r30, 0
 /* 80057E58 00054D98  41 82 00 10 */ beq lbl_80057E68
 /* 80057E5C 00054D9C  3C 60 80 3D */ lis r3, lbl_803CD97C@ha

@@ -227,10 +227,10 @@ lbl_80220BC0:
 /* 80220BE0 0021DB20  C0 7B 04 28 */ lfs f3, 0x428(r27)
 /* 80220BE4 0021DB24  C0 9B 04 2C */ lfs f4, 0x42c(r27)
 /* 80220BE8 0021DB28  7F 86 E3 78 */ mr r6, r28
-/* 80220BEC 0021DB2C  4B FF 4F 2D */ bl dMeter2Draw_c_NS_drawLightDrop
+/* 80220BEC 0021DB2C  4B FF 4F 2D */ bl drawLightDrop__13dMeter2Draw_cFUcUcffffUc
 lbl_80220BF0:
 /* 80220BF0 0021DB30  7F 63 DB 78 */ mr r3, r27
-/* 80220BF4 0021DB34  48 00 41 79 */ bl dMeter2_c_NS_alphaAnimeLightDrop
+/* 80220BF4 0021DB34  48 00 41 79 */ bl alphaAnimeLightDrop__9dMeter2_cFv
 /* 80220BF8 0021DB38  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 80220BFC 0021DB3C  CB E1 00 60 */ lfd f31, 0x60(r1)
 /* 80220C00 0021DB40  E3 C1 00 58 */ psq_l f30, 88(r1), 0, 0

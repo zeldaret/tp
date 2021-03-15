@@ -4,7 +4,7 @@
 /* 800F5DC4 000F2D04  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F5DC8 000F2D08  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F5DCC 000F2D0C  7C 7E 1B 78 */ mr r30, r3
-/* 800F5DD0 000F2D10  4B FF EA 09 */ bl daAlink_c_NS_canoeCommon
+/* 800F5DD0 000F2D10  4B FF EA 09 */ bl canoeCommon__9daAlink_cFv
 /* 800F5DD4 000F2D14  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5DD8 000F2D18  41 82 00 0C */ beq lbl_800F5DE4
 /* 800F5DDC 000F2D1C  38 60 00 01 */ li r3, 1
@@ -12,30 +12,30 @@
 lbl_800F5DE4:
 /* 800F5DE4 000F2D24  3B FE 20 18 */ addi r31, r30, 0x2018
 /* 800F5DE8 000F2D28  7F C3 F3 78 */ mr r3, r30
-/* 800F5DEC 000F2D2C  4B FC 3B 61 */ bl daAlink_c_NS_checkItemChangeFromButton
+/* 800F5DEC 000F2D2C  4B FC 3B 61 */ bl checkItemChangeFromButton__9daAlink_cFv
 /* 800F5DF0 000F2D30  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5DF4 000F2D34  40 82 00 98 */ bne lbl_800F5E8C
 /* 800F5DF8 000F2D38  7F C3 F3 78 */ mr r3, r30
-/* 800F5DFC 000F2D3C  4B FC 35 45 */ bl daAlink_c_NS_checkEquipAnime
+/* 800F5DFC 000F2D3C  4B FC 35 45 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800F5E00 000F2D40  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5E04 000F2D44  41 82 00 14 */ beq lbl_800F5E18
 /* 800F5E08 000F2D48  7F C3 F3 78 */ mr r3, r30
 /* 800F5E0C 000F2D4C  38 80 00 00 */ li r4, 0
-/* 800F5E10 000F2D50  48 00 00 99 */ bl daAlink_c_NS_procCanoePaddlePutInit
+/* 800F5E10 000F2D50  48 00 00 99 */ bl procCanoePaddlePutInit__9daAlink_cFi
 /* 800F5E14 000F2D54  48 00 00 78 */ b lbl_800F5E8C
 lbl_800F5E18:
 /* 800F5E18 000F2D58  7F E3 FB 78 */ mr r3, r31
-/* 800F5E1C 000F2D5C  48 06 86 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F5E1C 000F2D5C  48 06 86 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F5E20 000F2D60  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F5E24 000F2D64  41 82 00 14 */ beq lbl_800F5E38
 /* 800F5E28 000F2D68  7F C3 F3 78 */ mr r3, r30
 /* 800F5E2C 000F2D6C  80 9E 31 98 */ lwz r4, 0x3198(r30)
-/* 800F5E30 000F2D70  4B FF F8 ED */ bl daAlink_c_NS_procCanoeRowInit
+/* 800F5E30 000F2D70  4B FF F8 ED */ bl procCanoeRowInit__9daAlink_cFi
 /* 800F5E34 000F2D74  48 00 00 58 */ b lbl_800F5E8C
 lbl_800F5E38:
 /* 800F5E38 000F2D78  7F E3 FB 78 */ mr r3, r31
 /* 800F5E3C 000F2D7C  C0 22 94 B4 */ lfs f1, lbl_80452EB4-_SDA2_BASE_(r2)
-/* 800F5E40 000F2D80  48 23 25 ED */ bl J3DFrameCtrl_NS_checkPass
+/* 800F5E40 000F2D80  48 23 25 ED */ bl checkPass__12J3DFrameCtrlFf
 /* 800F5E44 000F2D84  2C 03 00 00 */ cmpwi r3, 0
 /* 800F5E48 000F2D88  41 82 00 44 */ beq lbl_800F5E8C
 /* 800F5E4C 000F2D8C  A8 1E 30 12 */ lha r0, 0x3012(r30)

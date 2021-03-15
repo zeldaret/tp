@@ -5,67 +5,67 @@
 /* 8010E5E8 0010B528  48 25 3B ED */ bl _savegpr_27
 /* 8010E5EC 0010B52C  7C 7C 1B 78 */ mr r28, r3
 /* 8010E5F0 0010B530  7C 9D 23 78 */ mr r29, r4
-/* 8010E5F4 0010B534  4B F9 56 99 */ bl daAlink_c_NS_setItemHeap
+/* 8010E5F4 0010B534  4B F9 56 99 */ bl setItemHeap__9daAlink_cFv
 /* 8010E5F8 0010B538  7C 7E 1B 78 */ mr r30, r3
 /* 8010E5FC 0010B53C  7F 83 E3 78 */ mr r3, r28
 /* 8010E600 0010B540  38 80 03 10 */ li r4, 0x310
 /* 8010E604 0010B544  38 A0 5C 00 */ li r5, 0x5c00
-/* 8010E608 0010B548  4B FB 18 41 */ bl daAlink_c_NS_loadAramBmd
+/* 8010E608 0010B548  4B FB 18 41 */ bl loadAramBmd__9daAlink_cFUsUl
 /* 8010E60C 0010B54C  7C 64 1B 78 */ mr r4, r3
 /* 8010E610 0010B550  7F 83 E3 78 */ mr r3, r28
 /* 8010E614 0010B554  38 A0 00 00 */ li r5, 0
 /* 8010E618 0010B558  3C C0 01 02 */ lis r6, 0x01020200@ha
 /* 8010E61C 0010B55C  38 C6 02 00 */ addi r6, r6, 0x01020200@l
-/* 8010E620 0010B560  4B F9 57 5D */ bl daAlink_c_NS_initModel
+/* 8010E620 0010B560  4B F9 57 5D */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 8010E624 0010B564  90 7C 07 08 */ stw r3, 0x708(r28)
 /* 8010E628 0010B568  7F 83 E3 78 */ mr r3, r28
 /* 8010E62C 0010B56C  38 80 03 AE */ li r4, 0x3ae
 /* 8010E630 0010B570  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E634 0010B574  4B FB 19 F5 */ bl daAlink_c_NS_loadAramItemBtp
+/* 8010E634 0010B574  4B FB 19 F5 */ bl loadAramItemBtp__9daAlink_cFUsP8J3DModel
 /* 8010E638 0010B578  90 7C 07 2C */ stw r3, 0x72c(r28)
 /* 8010E63C 0010B57C  7F 83 E3 78 */ mr r3, r28
 /* 8010E640 0010B580  38 80 03 22 */ li r4, 0x322
 /* 8010E644 0010B584  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E648 0010B588  4B FB 19 29 */ bl daAlink_c_NS_loadAramItemBrk
+/* 8010E648 0010B588  4B FB 19 29 */ bl loadAramItemBrk__9daAlink_cFUsP8J3DModel
 /* 8010E64C 0010B58C  90 7C 07 24 */ stw r3, 0x724(r28)
 /* 8010E650 0010B590  57 BF 04 3E */ clrlwi r31, r29, 0x10
 /* 8010E654 0010B594  7F E3 FB 78 */ mr r3, r31
-/* 8010E658 0010B598  48 05 04 81 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 8010E658 0010B598  48 05 04 81 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 8010E65C 0010B59C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E660 0010B5A0  40 82 00 18 */ bne lbl_8010E678
 /* 8010E664 0010B5A4  7F 83 E3 78 */ mr r3, r28
 /* 8010E668 0010B5A8  7F A4 EB 78 */ mr r4, r29
-/* 8010E66C 0010B5AC  4B FF FF 19 */ bl daAlink_c_NS_checkOilBottleItemNotGet
+/* 8010E66C 0010B5AC  4B FF FF 19 */ bl checkOilBottleItemNotGet__9daAlink_cFUs
 /* 8010E670 0010B5B0  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E674 0010B5B4  41 82 00 30 */ beq lbl_8010E6A4
 lbl_8010E678:
 /* 8010E678 0010B5B8  7F 83 E3 78 */ mr r3, r28
 /* 8010E67C 0010B5BC  38 80 03 28 */ li r4, 0x328
 /* 8010E680 0010B5C0  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E684 0010B5C4  4B FB 19 49 */ bl daAlink_c_NS_loadAramItemBtk
+/* 8010E684 0010B5C4  4B FB 19 49 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E688 0010B5C8  90 7C 07 1C */ stw r3, 0x71c(r28)
 /* 8010E68C 0010B5CC  7F 83 E3 78 */ mr r3, r28
 /* 8010E690 0010B5D0  38 80 03 27 */ li r4, 0x327
 /* 8010E694 0010B5D4  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E698 0010B5D8  4B FB 19 35 */ bl daAlink_c_NS_loadAramItemBtk
+/* 8010E698 0010B5D8  4B FB 19 35 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E69C 0010B5DC  90 7C 07 20 */ stw r3, 0x720(r28)
 /* 8010E6A0 0010B5E0  48 00 00 2C */ b lbl_8010E6CC
 lbl_8010E6A4:
 /* 8010E6A4 0010B5E4  7F 83 E3 78 */ mr r3, r28
 /* 8010E6A8 0010B5E8  38 80 03 2A */ li r4, 0x32a
 /* 8010E6AC 0010B5EC  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6B0 0010B5F0  4B FB 19 1D */ bl daAlink_c_NS_loadAramItemBtk
+/* 8010E6B0 0010B5F0  4B FB 19 1D */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6B4 0010B5F4  90 7C 07 1C */ stw r3, 0x71c(r28)
 /* 8010E6B8 0010B5F8  7F 83 E3 78 */ mr r3, r28
 /* 8010E6BC 0010B5FC  38 80 03 29 */ li r4, 0x329
 /* 8010E6C0 0010B600  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6C4 0010B604  4B FB 19 09 */ bl daAlink_c_NS_loadAramItemBtk
+/* 8010E6C4 0010B604  4B FB 19 09 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6C8 0010B608  90 7C 07 20 */ stw r3, 0x720(r28)
 lbl_8010E6CC:
 /* 8010E6CC 0010B60C  7F 83 E3 78 */ mr r3, r28
 /* 8010E6D0 0010B610  38 80 03 2B */ li r4, 0x32b
 /* 8010E6D4 0010B614  80 BC 07 08 */ lwz r5, 0x708(r28)
-/* 8010E6D8 0010B618  4B FB 18 F5 */ bl daAlink_c_NS_loadAramItemBtk
+/* 8010E6D8 0010B618  4B FB 18 F5 */ bl loadAramItemBtk__9daAlink_cFUsP8J3DModel
 /* 8010E6DC 0010B61C  90 7C 07 18 */ stw r3, 0x718(r28)
 /* 8010E6E0 0010B620  57 A0 04 3E */ clrlwi r0, r29, 0x10
 /* 8010E6E4 0010B624  28 00 00 6C */ cmplwi r0, 0x6c
@@ -73,17 +73,17 @@ lbl_8010E6CC:
 /* 8010E6EC 0010B62C  7F 83 E3 78 */ mr r3, r28
 /* 8010E6F0 0010B630  38 80 01 E8 */ li r4, 0x1e8
 /* 8010E6F4 0010B634  38 A0 0C 00 */ li r5, 0xc00
-/* 8010E6F8 0010B638  4B FB 18 0D */ bl daAlink_c_NS_loadAram
+/* 8010E6F8 0010B638  4B FB 18 0D */ bl loadAram__9daAlink_cFUsUl
 /* 8010E6FC 0010B63C  7C 7B 1B 78 */ mr r27, r3
 /* 8010E700 0010B640  7F 83 E3 78 */ mr r3, r28
 /* 8010E704 0010B644  38 80 03 1D */ li r4, 0x31d
 /* 8010E708 0010B648  38 A0 14 00 */ li r5, 0x1400
-/* 8010E70C 0010B64C  4B FB 17 3D */ bl daAlink_c_NS_loadAramBmd
+/* 8010E70C 0010B64C  4B FB 17 3D */ bl loadAramBmd__9daAlink_cFUsUl
 /* 8010E710 0010B650  7C 64 1B 78 */ mr r4, r3
 /* 8010E714 0010B654  7F 83 E3 78 */ mr r3, r28
 /* 8010E718 0010B658  3C A0 00 08 */ lis r5, 8
 /* 8010E71C 0010B65C  38 C0 00 00 */ li r6, 0
-/* 8010E720 0010B660  4B F9 56 5D */ bl daAlink_c_NS_initModel
+/* 8010E720 0010B660  4B F9 56 5D */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 8010E724 0010B664  90 7C 07 0C */ stw r3, 0x70c(r28)
 /* 8010E728 0010B668  38 7C 07 4C */ addi r3, r28, 0x74c
 /* 8010E72C 0010B66C  7F 64 DB 78 */ mr r4, r27
@@ -93,12 +93,12 @@ lbl_8010E6CC:
 /* 8010E73C 0010B67C  38 E0 00 00 */ li r7, 0
 /* 8010E740 0010B680  39 00 FF FF */ li r8, -1
 /* 8010E744 0010B684  39 20 00 00 */ li r9, 0
-/* 8010E748 0010B688  4B EF F0 95 */ bl mDoExt_bckAnm_NS_init
+/* 8010E748 0010B688  4B EF F0 95 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 8010E74C 0010B68C  80 7C 07 0C */ lwz r3, 0x70c(r28)
 /* 8010E750 0010B690  80 83 00 04 */ lwz r4, 4(r3)
 /* 8010E754 0010B694  38 7C 07 4C */ addi r3, r28, 0x74c
 /* 8010E758 0010B698  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8010E75C 0010B69C  4B EF F2 71 */ bl mDoExt_bckAnm_NS_entry
+/* 8010E75C 0010B69C  4B EF F2 71 */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 /* 8010E760 0010B6A0  48 00 00 B4 */ b lbl_8010E814
 lbl_8010E764:
 /* 8010E764 0010B6A4  28 00 00 74 */ cmplwi r0, 0x74
@@ -106,17 +106,17 @@ lbl_8010E764:
 /* 8010E76C 0010B6AC  7F 83 E3 78 */ mr r3, r28
 /* 8010E770 0010B6B0  38 80 01 E9 */ li r4, 0x1e9
 /* 8010E774 0010B6B4  38 A0 0C 00 */ li r5, 0xc00
-/* 8010E778 0010B6B8  4B FB 17 8D */ bl daAlink_c_NS_loadAram
+/* 8010E778 0010B6B8  4B FB 17 8D */ bl loadAram__9daAlink_cFUsUl
 /* 8010E77C 0010B6BC  7C 7B 1B 78 */ mr r27, r3
 /* 8010E780 0010B6C0  7F 83 E3 78 */ mr r3, r28
 /* 8010E784 0010B6C4  38 80 03 1E */ li r4, 0x31e
 /* 8010E788 0010B6C8  38 A0 24 00 */ li r5, 0x2400
-/* 8010E78C 0010B6CC  4B FB 16 BD */ bl daAlink_c_NS_loadAramBmd
+/* 8010E78C 0010B6CC  4B FB 16 BD */ bl loadAramBmd__9daAlink_cFUsUl
 /* 8010E790 0010B6D0  7C 64 1B 78 */ mr r4, r3
 /* 8010E794 0010B6D4  7F 83 E3 78 */ mr r3, r28
 /* 8010E798 0010B6D8  3C A0 00 08 */ lis r5, 8
 /* 8010E79C 0010B6DC  38 C0 00 00 */ li r6, 0
-/* 8010E7A0 0010B6E0  4B F9 55 DD */ bl daAlink_c_NS_initModel
+/* 8010E7A0 0010B6E0  4B F9 55 DD */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 8010E7A4 0010B6E4  90 7C 07 0C */ stw r3, 0x70c(r28)
 /* 8010E7A8 0010B6E8  38 7C 07 4C */ addi r3, r28, 0x74c
 /* 8010E7AC 0010B6EC  7F 64 DB 78 */ mr r4, r27
@@ -126,12 +126,12 @@ lbl_8010E764:
 /* 8010E7BC 0010B6FC  38 E0 00 00 */ li r7, 0
 /* 8010E7C0 0010B700  39 00 FF FF */ li r8, -1
 /* 8010E7C4 0010B704  39 20 00 00 */ li r9, 0
-/* 8010E7C8 0010B708  4B EF F0 15 */ bl mDoExt_bckAnm_NS_init
+/* 8010E7C8 0010B708  4B EF F0 15 */ bl init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb
 /* 8010E7CC 0010B70C  80 7C 07 0C */ lwz r3, 0x70c(r28)
 /* 8010E7D0 0010B710  80 83 00 04 */ lwz r4, 4(r3)
 /* 8010E7D4 0010B714  38 7C 07 4C */ addi r3, r28, 0x74c
 /* 8010E7D8 0010B718  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8010E7DC 0010B71C  4B EF F1 F1 */ bl mDoExt_bckAnm_NS_entry
+/* 8010E7DC 0010B71C  4B EF F1 F1 */ bl entry__13mDoExt_bckAnmFP12J3DModelDataf
 /* 8010E7E0 0010B720  48 00 00 34 */ b lbl_8010E814
 lbl_8010E7E4:
 /* 8010E7E4 0010B724  28 00 00 76 */ cmplwi r0, 0x76
@@ -139,22 +139,22 @@ lbl_8010E7E4:
 /* 8010E7EC 0010B72C  7F 83 E3 78 */ mr r3, r28
 /* 8010E7F0 0010B730  38 80 03 1C */ li r4, 0x31c
 /* 8010E7F4 0010B734  38 A0 10 00 */ li r5, 0x1000
-/* 8010E7F8 0010B738  4B FB 16 51 */ bl daAlink_c_NS_loadAramBmd
+/* 8010E7F8 0010B738  4B FB 16 51 */ bl loadAramBmd__9daAlink_cFUsUl
 /* 8010E7FC 0010B73C  7C 64 1B 78 */ mr r4, r3
 /* 8010E800 0010B740  7F 83 E3 78 */ mr r3, r28
 /* 8010E804 0010B744  3C A0 00 08 */ lis r5, 8
 /* 8010E808 0010B748  38 C0 00 00 */ li r6, 0
-/* 8010E80C 0010B74C  4B F9 55 71 */ bl daAlink_c_NS_initModel
+/* 8010E80C 0010B74C  4B F9 55 71 */ bl initModel__9daAlink_cFP12J3DModelDataUlUl
 /* 8010E810 0010B750  90 7C 07 0C */ stw r3, 0x70c(r28)
 lbl_8010E814:
 /* 8010E814 0010B754  7F C3 F3 78 */ mr r3, r30
-/* 8010E818 0010B758  4B F0 09 B5 */ bl mDoExt_setCurrentHeap
+/* 8010E818 0010B758  4B F0 09 B5 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8010E81C 0010B75C  80 7C 07 08 */ lwz r3, 0x708(r28)
 /* 8010E820 0010B760  83 C3 00 04 */ lwz r30, 4(r3)
 /* 8010E824 0010B764  B3 BC 2F DC */ sth r29, 0x2fdc(r28)
 /* 8010E828 0010B768  7F 83 E3 78 */ mr r3, r28
 /* 8010E82C 0010B76C  7F A4 EB 78 */ mr r4, r29
-/* 8010E830 0010B770  4B FF FD 55 */ bl daAlink_c_NS_checkOilBottleItemNotGet
+/* 8010E830 0010B770  4B FF FD 55 */ bl checkOilBottleItemNotGet__9daAlink_cFUs
 /* 8010E834 0010B774  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E838 0010B778  41 82 00 20 */ beq lbl_8010E858
 /* 8010E83C 0010B77C  80 7E 00 28 */ lwz r3, 0x28(r30)
@@ -168,9 +168,9 @@ lbl_8010E858:
 /* 8010E858 0010B798  80 7E 00 28 */ lwz r3, 0x28(r30)
 /* 8010E85C 0010B79C  80 83 00 04 */ lwz r4, 4(r3)
 /*.global daAlink_bottleModelCallBack*/
-/* 8010E860 0010B7A0  3C 60 80 11 */ lis r3, daAlink_bottleModelCallBack@ha
+/* 8010E860 0010B7A0  3C 60 80 11 */ lis r3, daAlink_bottleModelCallBack__FP8J3DJointi@ha
 /*.global daAlink_bottleModelCallBack*/
-/* 8010E864 0010B7A4  38 03 E5 2C */ addi r0, r3, daAlink_bottleModelCallBack@l
+/* 8010E864 0010B7A4  38 03 E5 2C */ addi r0, r3, daAlink_bottleModelCallBack__FP8J3DJointi@l
 /* 8010E868 0010B7A8  90 04 00 04 */ stw r0, 4(r4)
 /* 8010E86C 0010B7AC  80 7C 07 08 */ lwz r3, 0x708(r28)
 /* 8010E870 0010B7B0  93 83 00 14 */ stw r28, 0x14(r3)
@@ -180,7 +180,7 @@ lbl_8010E858:
 /* 8010E880 0010B7C0  B0 1C 30 1A */ sth r0, 0x301a(r28)
 lbl_8010E884:
 /* 8010E884 0010B7C4  7F E3 FB 78 */ mr r3, r31
-/* 8010E888 0010B7C8  48 05 02 51 */ bl daPy_py_c_NS_checkDrinkBottleItem
+/* 8010E888 0010B7C8  48 05 02 51 */ bl checkDrinkBottleItem__9daPy_py_cFi
 /* 8010E88C 0010B7CC  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E890 0010B7D0  41 82 00 10 */ beq lbl_8010E8A0
 /* 8010E894 0010B7D4  57 A0 04 3E */ clrlwi r0, r29, 0x10
@@ -188,7 +188,7 @@ lbl_8010E884:
 /* 8010E89C 0010B7DC  40 82 00 14 */ bne lbl_8010E8B0
 lbl_8010E8A0:
 /* 8010E8A0 0010B7E0  7F E3 FB 78 */ mr r3, r31
-/* 8010E8A4 0010B7E4  48 05 02 9D */ bl daPy_py_c_NS_checkOilBottleItem
+/* 8010E8A4 0010B7E4  48 05 02 9D */ bl checkOilBottleItem__9daPy_py_cFi
 /* 8010E8A8 0010B7E8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E8AC 0010B7EC  41 82 01 88 */ beq lbl_8010EA34
 lbl_8010E8B0:
@@ -232,7 +232,7 @@ lbl_8010E924:
 /* 8010E930 0010B870  48 00 01 7C */ b lbl_8010EAAC
 lbl_8010E934:
 /* 8010E934 0010B874  7F E3 FB 78 */ mr r3, r31
-/* 8010E938 0010B878  48 05 02 09 */ bl daPy_py_c_NS_checkOilBottleItem
+/* 8010E938 0010B878  48 05 02 09 */ bl checkOilBottleItem__9daPy_py_cFi
 /* 8010E93C 0010B87C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010E940 0010B880  41 82 00 14 */ beq lbl_8010E954
 /* 8010E944 0010B884  C0 02 93 24 */ lfs f0, lbl_80452D24-_SDA2_BASE_(r2)
@@ -307,7 +307,7 @@ lbl_8010EA10:
 /* 8010EA30 0010B970  48 00 00 7C */ b lbl_8010EAAC
 lbl_8010EA34:
 /* 8010EA34 0010B974  7F E3 FB 78 */ mr r3, r31
-/* 8010EA38 0010B978  48 05 01 31 */ bl daPy_py_c_NS_checkOpenBottleItem
+/* 8010EA38 0010B978  48 05 01 31 */ bl checkOpenBottleItem__9daPy_py_cFi
 /* 8010EA3C 0010B97C  2C 03 00 00 */ cmpwi r3, 0
 /* 8010EA40 0010B980  41 82 00 48 */ beq lbl_8010EA88
 /* 8010EA44 0010B984  57 A0 04 3E */ clrlwi r0, r29, 0x10

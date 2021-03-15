@@ -4,12 +4,12 @@
 /* 801073DC 0010431C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801073E0 00104320  7C 7F 1B 78 */ mr r31, r3
 /* 801073E4 00104324  38 80 00 AB */ li r4, 0xab
-/* 801073E8 00104328  4B FF F2 69 */ bl daAlink_c_NS_commonProcBoardInit
+/* 801073E8 00104328  4B FF F2 69 */ bl commonProcBoardInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801073EC 0010432C  7F E3 FB 78 */ mr r3, r31
-/* 801073F0 00104330  4B FC 77 05 */ bl daAlink_c_NS_setSubjectMode
+/* 801073F0 00104330  4B FC 77 05 */ bl setSubjectMode__9daAlink_cFv
 /* 801073F4 00104334  7F E3 FB 78 */ mr r3, r31
 /* 801073F8 00104338  38 80 00 00 */ li r4, 0
-/* 801073FC 0010433C  4B FF F1 39 */ bl daAlink_c_NS_setCommonBoardAnime
+/* 801073FC 0010433C  4B FF F1 39 */ bl setCommonBoardAnime__9daAlink_cFi
 /* 80107400 00104340  38 60 00 01 */ li r3, 1
 /* 80107404 00104344  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80107408 00104348  80 01 00 14 */ lwz r0, 0x14(r1)

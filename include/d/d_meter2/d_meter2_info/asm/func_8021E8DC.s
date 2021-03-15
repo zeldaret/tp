@@ -4,7 +4,7 @@
 /* 8021E8E8 0021B828  39 61 00 20 */ addi r11, r1, 0x20
 /* 8021E8EC 0021B82C  48 14 38 E5 */ bl _savegpr_26
 /* 8021E8F0 0021B830  3B 40 00 00 */ li r26, 0
-/* 8021E8F4 0021B834  4B FF FD F1 */ bl dMeter2Info_getRecieveLetterNum
+/* 8021E8F4 0021B834  4B FF FD F1 */ bl dMeter2Info_getRecieveLetterNum__Fv
 /* 8021E8F8 0021B838  7C 7F 1B 78 */ mr r31, r3
 /* 8021E8FC 0021B83C  3B C0 00 00 */ li r30, 0
 /* 8021E900 0021B840  3B A0 00 00 */ li r29, 0

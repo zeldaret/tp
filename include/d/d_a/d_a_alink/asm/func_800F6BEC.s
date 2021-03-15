@@ -4,11 +4,11 @@
 /* 800F6BF8 000F3B38  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F6BFC 000F3B3C  7C 7F 1B 78 */ mr r31, r3
 /* 800F6C00 000F3B40  38 80 00 98 */ li r4, 0x98
-/* 800F6C04 000F3B44  4B FC B3 69 */ bl daAlink_c_NS_commonProcInit
+/* 800F6C04 000F3B44  4B FC B3 69 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F6C08 000F3B48  7F E3 FB 78 */ mr r3, r31
-/* 800F6C0C 000F3B4C  4B FF D9 91 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F6C0C 000F3B4C  4B FF D9 91 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F6C10 000F3B50  7F E3 FB 78 */ mr r3, r31
-/* 800F6C14 000F3B54  4B FD 7E E1 */ bl daAlink_c_NS_setSubjectMode
+/* 800F6C14 000F3B54  4B FD 7E E1 */ bl setSubjectMode__9daAlink_cFv
 /* 800F6C18 000F3B58  38 60 00 01 */ li r3, 1
 /* 800F6C1C 000F3B5C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F6C20 000F3B60  80 01 00 14 */ lwz r0, 0x14(r1)

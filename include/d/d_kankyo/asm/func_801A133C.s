@@ -42,7 +42,7 @@ lbl_801A1398:
 /* 801A13DC 0019E31C  39 01 00 23 */ addi r8, r1, 0x23
 /* 801A13E0 0019E320  39 21 00 21 */ addi r9, r1, 0x21
 /* 801A13E4 0019E324  39 41 00 22 */ addi r10, r1, 0x22
-/* 801A13E8 0019E328  4B FF E7 ED */ bl dScnKy_env_light_c_NS_setLight_palno_get
+/* 801A13E8 0019E328  4B FF E7 ED */ bl setLight_palno_get__18dScnKy_env_light_cFPUcPUcPUcPUcPUcPUcPUcPUcPfPiPiPfPUc
 /* 801A13EC 0019E32C  88 01 00 23 */ lbz r0, 0x23(r1)
 /* 801A13F0 0019E330  28 00 00 FF */ cmplwi r0, 0xff
 /* 801A13F4 0019E334  40 82 00 38 */ bne lbl_801A142C
@@ -96,17 +96,17 @@ lbl_801A1470:
 /* 801A14A8 0019E3E8  C0 54 03 70 */ lfs f2, 0x370(r20)
 /* 801A14AC 0019E3EC  39 01 00 48 */ addi r8, r1, 0x48
 /* 801A14B0 0019E3F0  C0 7F 12 00 */ lfs f3, 0x1200(r31)
-/* 801A14B4 0019E3F4  4B FF EE 8D */ bl dKy_calc_color_set
+/* 801A14B4 0019E3F4  4B FF EE 8D */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 /* 801A14B8 0019E3F8  3A 52 00 01 */ addi r18, r18, 1
 /* 801A14BC 0019E3FC  2C 12 00 04 */ cmpwi r18, 4
 /* 801A14C0 0019E400  3A 10 00 08 */ addi r16, r16, 8
 /* 801A14C4 0019E404  3A 31 00 03 */ addi r17, r17, 3
 /* 801A14C8 0019E408  41 80 FF A8 */ blt lbl_801A1470
-/* 801A14CC 0019E40C  4B FB DF 59 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A14CC 0019E40C  4B FB DF 59 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A14D0 0019E410  2C 03 00 00 */ cmpwi r3, 0
 /* 801A14D4 0019E414  41 82 00 0C */ beq lbl_801A14E0
 /* 801A14D8 0019E418  7F 83 E3 78 */ mr r3, r28
-/* 801A14DC 0019E41C  4B FF B6 31 */ bl dKy_WolfPowerup_BgAmbCol
+/* 801A14DC 0019E41C  4B FF B6 31 */ bl dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10
 lbl_801A14E0:
 /* 801A14E0 0019E420  38 00 00 FF */ li r0, 0xff
 /* 801A14E4 0019E424  B0 1C 00 1E */ sth r0, 0x1e(r28)
@@ -137,8 +137,8 @@ lbl_801A1504:
 /* 801A1544 0019E484  C0 54 03 70 */ lfs f2, 0x370(r20)
 /* 801A1548 0019E488  39 01 00 40 */ addi r8, r1, 0x40
 /* 801A154C 0019E48C  C0 7F 12 00 */ lfs f3, 0x1200(r31)
-/* 801A1550 0019E490  4B FF ED F1 */ bl dKy_calc_color_set
-/* 801A1554 0019E494  4B FB DE D1 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1550 0019E490  4B FF ED F1 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
+/* 801A1554 0019E494  4B FB DE D1 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1558 0019E498  2C 03 00 00 */ cmpwi r3, 0
 /* 801A155C 0019E49C  41 82 00 14 */ beq lbl_801A1570
 /* 801A1560 0019E4A0  38 00 00 00 */ li r0, 0
@@ -158,7 +158,7 @@ lbl_801A1570:
 /* 801A1594 0019E4D4  98 01 00 2B */ stb r0, 0x2b(r1)
 /* 801A1598 0019E4D8  38 61 00 28 */ addi r3, r1, 0x28
 /* 801A159C 0019E4DC  C0 34 03 74 */ lfs f1, 0x374(r20)
-/* 801A15A0 0019E4E0  4B FF CE 91 */ bl dKy_light_influence_col_X1_
+/* 801A15A0 0019E4E0  4B FF CE 91 */ bl dKy_light_influence_col__FP8_GXColorf
 /* 801A15A4 0019E4E4  90 61 00 24 */ stw r3, 0x24(r1)
 /* 801A15A8 0019E4E8  88 01 00 24 */ lbz r0, 0x24(r1)
 /* 801A15AC 0019E4EC  98 1E 00 18 */ stb r0, 0x18(r30)
@@ -189,7 +189,7 @@ lbl_801A1570:
 /* 801A1610 0019E550  3D 20 80 43 */ lis r9, lbl_8042CA54@ha
 /* 801A1614 0019E554  39 29 CA 54 */ addi r9, r9, lbl_8042CA54@l
 /* 801A1618 0019E558  C0 69 12 04 */ lfs f3, 0x1204(r9)
-/* 801A161C 0019E55C  4B FF ED 25 */ bl dKy_calc_color_set
+/* 801A161C 0019E55C  4B FF ED 25 */ bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 /* 801A1620 0019E560  C0 3B 00 24 */ lfs f1, 0x24(r27)
 /* 801A1624 0019E564  C0 5A 00 24 */ lfs f2, 0x24(r26)
 /* 801A1628 0019E568  C0 61 00 34 */ lfs f3, 0x34(r1)
@@ -200,7 +200,7 @@ lbl_801A1570:
 /* 801A163C 0019E57C  3A 03 CA 54 */ addi r16, r3, lbl_8042CA54@l
 /* 801A1640 0019E580  C0 F0 11 EC */ lfs f7, 0x11ec(r16)
 /* 801A1644 0019E584  C1 10 11 F4 */ lfs f8, 0x11f4(r16)
-/* 801A1648 0019E588  4B FF C1 59 */ bl float_kankyo_color_ratio_set
+/* 801A1648 0019E588  4B FF C1 59 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A164C 0019E58C  D0 36 00 00 */ stfs f1, 0(r22)
 /* 801A1650 0019E590  C0 3B 00 28 */ lfs f1, 0x28(r27)
 /* 801A1654 0019E594  C0 5A 00 28 */ lfs f2, 0x28(r26)
@@ -212,9 +212,9 @@ lbl_801A1570:
 /* 801A166C 0019E5AC  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A1670 0019E5B0  C0 E3 11 F0 */ lfs f7, 0x11f0(r3)
 /* 801A1674 0019E5B4  C1 10 11 F4 */ lfs f8, 0x11f4(r16)
-/* 801A1678 0019E5B8  4B FF C1 29 */ bl float_kankyo_color_ratio_set
+/* 801A1678 0019E5B8  4B FF C1 29 */ bl float_kankyo_color_ratio_set__Fffffffff
 /* 801A167C 0019E5BC  D0 37 00 00 */ stfs f1, 0(r23)
-/* 801A1680 0019E5C0  4B FB DD A5 */ bl daPy_py_c_NS_checkNowWolfEyeUp
+/* 801A1680 0019E5C0  4B FB DD A5 */ bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 801A1684 0019E5C4  2C 03 00 00 */ cmpwi r3, 0
 /* 801A1688 0019E5C8  41 82 00 20 */ beq lbl_801A16A8
 /* 801A168C 0019E5CC  38 00 00 00 */ li r0, 0
@@ -223,7 +223,7 @@ lbl_801A1570:
 /* 801A1698 0019E5D8  B0 15 00 04 */ sth r0, 4(r21)
 /* 801A169C 0019E5DC  7E C3 B3 78 */ mr r3, r22
 /* 801A16A0 0019E5E0  7E E4 BB 78 */ mr r4, r23
-/* 801A16A4 0019E5E4  4B FF B6 39 */ bl dKy_WolfPowerup_FogNearFar
+/* 801A16A4 0019E5E4  4B FF B6 39 */ bl dKy_WolfPowerup_FogNearFar__FPfPf
 lbl_801A16A8:
 /* 801A16A8 0019E5E8  39 61 00 C0 */ addi r11, r1, 0xc0
 /* 801A16AC 0019E5EC  48 1C 0B 49 */ bl _restgpr_16

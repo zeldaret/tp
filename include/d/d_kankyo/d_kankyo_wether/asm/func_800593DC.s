@@ -39,16 +39,16 @@ lbl_80059420:
 /* 8005946C 000563AC  90 1D 00 00 */ stw r0, 0(r29)
 /* 80059470 000563B0  38 64 00 14 */ addi r3, r4, 0x14
 /*.global EF_ODOUR_EFF*/
-/* 80059474 000563B4  3C 80 80 05 */ lis r4, EF_ODOUR_EFF@ha
+/* 80059474 000563B4  3C 80 80 05 */ lis r4, __ct__12EF_ODOUR_EFFFv@ha
 /*.global EF_ODOUR_EFF*/
-/* 80059478 000563B8  38 84 6F C8 */ addi r4, r4, EF_ODOUR_EFF@l
-/*.global EF_ODOUR_EFF_NS_dtor*/
-/* 8005947C 000563BC  3C A0 80 05 */ lis r5, EF_ODOUR_EFF_NS_dtor@ha
-/*.global EF_ODOUR_EFF_NS_dtor*/
-/* 80059480 000563C0  38 A5 6F 8C */ addi r5, r5, EF_ODOUR_EFF_NS_dtor@l
+/* 80059478 000563B8  38 84 6F C8 */ addi r4, r4, __ct__12EF_ODOUR_EFFFv@l
+/*.global __dt__12EF_ODOUR_EFFFv*/
+/* 8005947C 000563BC  3C A0 80 05 */ lis r5, __dt__12EF_ODOUR_EFFFv@ha
+/*.global __dt__12EF_ODOUR_EFFFv*/
+/* 80059480 000563C0  38 A5 6F 8C */ addi r5, r5, __dt__12EF_ODOUR_EFFFv@l
 /* 80059484 000563C4  38 C0 00 30 */ li r6, 0x30
 /* 80059488 000563C8  38 E0 07 D0 */ li r7, 0x7d0
-/* 8005948C 000563CC  48 30 88 D5 */ bl func_80361D60
+/* 8005948C 000563CC  48 30 88 D5 */ bl __construct_array
 lbl_80059490:
 /* 80059490 000563D0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80059494 000563D4  3B C3 CA 54 */ addi r30, r3, lbl_8042CA54@l
@@ -64,11 +64,11 @@ lbl_80059490:
 /* 800594BC 000563FC  3C A5 00 02 */ addis r5, r5, 2
 /* 800594C0 00056400  38 C0 00 80 */ li r6, 0x80
 /* 800594C4 00056404  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800594C8 00056408  4B FE 2E 25 */ bl dRes_control_c_NS_getRes
+/* 800594C8 00056408  4B FE 2E 25 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800594CC 0005640C  80 9E 0F 28 */ lwz r4, 0xf28(r30)
 /* 800594D0 00056410  90 64 00 10 */ stw r3, 0x10(r4)
-/* 800594D4 00056414  48 01 24 11 */ bl dKyr_odour_init
-/* 800594D8 00056418  48 01 24 4D */ bl dKyr_odour_move
+/* 800594D4 00056414  48 01 24 11 */ bl dKyr_odour_init__Fv
+/* 800594D8 00056418  48 01 24 4D */ bl dKyr_odour_move__Fv
 /* 800594DC 0005641C  38 00 00 01 */ li r0, 1
 /* 800594E0 00056420  98 1F 0F 20 */ stb r0, 0xf20(r31)
 /* 800594E4 00056424  48 00 00 84 */ b lbl_80059568
@@ -92,7 +92,7 @@ lbl_80059520:
 /* 80059524 00056464  90 1F 0F 28 */ stw r0, 0xf28(r31)
 /* 80059528 00056468  48 00 00 40 */ b lbl_80059568
 lbl_8005952C:
-/* 8005952C 0005646C  48 01 23 F9 */ bl dKyr_odour_move
+/* 8005952C 0005646C  48 01 23 F9 */ bl dKyr_odour_move__Fv
 /* 80059530 00056470  48 00 00 38 */ b lbl_80059568
 lbl_80059534:
 /* 80059534 00056474  38 00 00 00 */ li r0, 0

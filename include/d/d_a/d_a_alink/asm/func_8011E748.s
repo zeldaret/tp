@@ -6,7 +6,7 @@
 /* 8011E75C 0011B69C  7C 7E 1B 78 */ mr r30, r3
 /* 8011E760 0011B6A0  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 8011E764 0011B6A4  7F E3 FB 78 */ mr r3, r31
-/* 8011E768 0011B6A8  48 03 FD 65 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011E768 0011B6A8  48 03 FD 65 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011E76C 0011B6AC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011E770 0011B6B0  41 82 00 5C */ beq lbl_8011E7CC
 /* 8011E774 0011B6B4  A8 1E 30 0C */ lha r0, 0x300c(r30)
@@ -22,7 +22,7 @@
 /* 8011E79C 0011B6DC  38 A0 00 1A */ li r5, 0x1a
 /* 8011E7A0 0011B6E0  38 C0 00 02 */ li r6, 2
 /* 8011E7A4 0011B6E4  C0 82 92 C4 */ lfs f4, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011E7A8 0011B6E8  4B F8 E2 6D */ bl daAlink_c_NS_setDoubleAnime
+/* 8011E7A8 0011B6E8  4B F8 E2 6D */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 lbl_8011E7AC:
 /* 8011E7AC 0011B6EC  38 00 00 01 */ li r0, 1
 /* 8011E7B0 0011B6F0  B0 1E 30 0C */ sth r0, 0x300c(r30)
@@ -30,7 +30,7 @@ lbl_8011E7AC:
 /* 8011E7B8 0011B6F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E7BC 0011B6FC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011E7C0 0011B700  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8011E7C4 0011B704  4B F2 99 B9 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011E7C4 0011B704  4B F2 99 B9 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011E7C8 0011B708  48 00 00 58 */ b lbl_8011E820
 lbl_8011E7CC:
 /* 8011E7CC 0011B70C  A8 1E 30 0C */ lha r0, 0x300c(r30)
@@ -40,12 +40,12 @@ lbl_8011E7CC:
 /* 8011E7DC 0011B71C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E7E0 0011B720  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011E7E4 0011B724  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8011E7E8 0011B728  4B F2 99 95 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011E7E8 0011B728  4B F2 99 95 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011E7EC 0011B72C  48 00 00 34 */ b lbl_8011E820
 lbl_8011E7F0:
 /* 8011E7F0 0011B730  7F E3 FB 78 */ mr r3, r31
 /* 8011E7F4 0011B734  C0 22 93 30 */ lfs f1, lbl_80452D30-_SDA2_BASE_(r2)
-/* 8011E7F8 0011B738  48 20 9C 35 */ bl J3DFrameCtrl_NS_checkPass
+/* 8011E7F8 0011B738  48 20 9C 35 */ bl checkPass__12J3DFrameCtrlFf
 /* 8011E7FC 0011B73C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011E800 0011B740  41 82 00 20 */ beq lbl_8011E820
 /* 8011E804 0011B744  7F C3 F3 78 */ mr r3, r30

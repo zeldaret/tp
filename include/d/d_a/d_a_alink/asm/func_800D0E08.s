@@ -17,9 +17,9 @@
 /* 800D0E48 000CDD88  2C 00 00 17 */ cmpwi r0, 0x17
 /* 800D0E4C 000CDD8C  41 82 00 1C */ beq lbl_800D0E68
 /*.global daAlink_searchNightStalker*/
-/* 800D0E50 000CDD90  3C 60 80 0D */ lis r3, daAlink_searchNightStalker@ha
+/* 800D0E50 000CDD90  3C 60 80 0D */ lis r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchNightStalker*/
-/* 800D0E54 000CDD94  38 63 0D 38 */ addi r3, r3, daAlink_searchNightStalker@l
+/* 800D0E54 000CDD94  38 63 0D 38 */ addi r3, r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@l
 /* 800D0E58 000CDD98  38 80 00 00 */ li r4, 0
 /* 800D0E5C 000CDD9C  4B F4 89 9D */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800D0E60 000CDDA0  28 03 00 00 */ cmplwi r3, 0

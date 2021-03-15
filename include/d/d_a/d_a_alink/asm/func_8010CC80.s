@@ -6,7 +6,7 @@
 /* 8010CC94 00109BD4  7C 7E 1B 78 */ mr r30, r3
 /* 8010CC98 00109BD8  7C 9F 23 78 */ mr r31, r4
 /* 8010CC9C 00109BDC  38 80 00 C8 */ li r4, 0xc8
-/* 8010CCA0 00109BE0  4B FB 52 CD */ bl daAlink_c_NS_commonProcInit
+/* 8010CCA0 00109BE0  4B FB 52 CD */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010CCA4 00109BE4  7F C3 F3 78 */ mr r3, r30
 /* 8010CCA8 00109BE8  A8 1E 30 20 */ lha r0, 0x3020(r30)
 /* 8010CCAC 00109BEC  2C 00 00 00 */ cmpwi r0, 0
@@ -16,9 +16,9 @@
 lbl_8010CCBC:
 /* 8010CCBC 00109BFC  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 8010CCC0 00109C00  C0 42 92 C4 */ lfs f2, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8010CCC4 00109C04  4B FA 03 1D */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 8010CCC4 00109C04  4B FA 03 1D */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010CCC8 00109C08  7F C3 F3 78 */ mr r3, r30
-/* 8010CCCC 00109C0C  4B FA A4 9D */ bl daAlink_c_NS_setFastShotTimer
+/* 8010CCCC 00109C0C  4B FA A4 9D */ bl setFastShotTimer__9daAlink_cFv
 /* 8010CCD0 00109C10  7F C3 F3 78 */ mr r3, r30
 /* 8010CCD4 00109C14  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8010CCD8 00109C18  C0 5E 05 34 */ lfs f2, 0x534(r30)
@@ -31,9 +31,9 @@ lbl_8010CCBC:
 /* 8010CCF4 00109C34  D0 1E 2B 98 */ stfs f0, 0x2b98(r30)
 /* 8010CCF8 00109C38  7F C3 F3 78 */ mr r3, r30
 /* 8010CCFC 00109C3C  7F E4 FB 78 */ mr r4, r31
-/* 8010CD00 00109C40  4B FF E9 45 */ bl daAlink_c_NS_initHookshotRoofWaitActor
+/* 8010CD00 00109C40  4B FF E9 45 */ bl initHookshotRoofWaitActor__9daAlink_cFP10fopAc_ac_c
 /* 8010CD04 00109C44  7F C3 F3 78 */ mr r3, r30
-/* 8010CD08 00109C48  4B FF C4 69 */ bl daAlink_c_NS_initHookshotReady
+/* 8010CD08 00109C48  4B FF C4 69 */ bl initHookshotReady__9daAlink_cFv
 /* 8010CD0C 00109C4C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010CD10 00109C50  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010CD14 00109C54  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

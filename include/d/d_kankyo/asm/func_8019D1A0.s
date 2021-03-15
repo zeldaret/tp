@@ -48,7 +48,7 @@
 /* 8019D25C 0019A19C  3C 60 80 43 */ lis r3, lbl_80434AC8@ha
 /* 8019D260 0019A1A0  38 63 4A C8 */ addi r3, r3, lbl_80434AC8@l
 /* 8019D264 0019A1A4  38 81 00 20 */ addi r4, r1, 0x20
-/* 8019D268 0019A1A8  4B E6 F7 49 */ bl mDoMtx_inverseTranspose
+/* 8019D268 0019A1A8  4B E6 F7 49 */ bl mDoMtx_inverseTranspose__FPA4_CfPA4_f
 /* 8019D26C 0019A1AC  38 61 00 20 */ addi r3, r1, 0x20
 /* 8019D270 0019A1B0  38 81 00 08 */ addi r4, r1, 8
 /* 8019D274 0019A1B4  38 A1 00 14 */ addi r5, r1, 0x14

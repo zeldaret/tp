@@ -30,10 +30,8 @@ typedef struct create_request {
     layer_class* mpLayer;
 } create_request;  // Size: 0x48
 
-extern "C" {
-
-BOOL fpcCtRq_isCreatingByID(create_tag* pTag, s32* pId);
-BOOL fpcCtRq_IsCreatingByID(u32 id);
+BOOL fpcCtRq_isCreatingByID(create_tag* pTag, unsigned int* pId);
+BOOL fpcCtRq_IsCreatingByID(unsigned int id);
 void fpcCtRq_CreateQTo(create_request* pReq);
 void fpcCtRq_ToCreateQ(create_request* pReq);
 BOOL fpcCtRq_Delete(create_request* pReq);
@@ -42,6 +40,5 @@ s32 fpcCtRq_IsDoing(create_request* pReq);
 void fpcCtRq_Handler(void);
 create_request* fpcCtRq_Create(layer_class* pLayer, u32 size,
                                create_request_method_class* pCtRqMtd);
-};
 
 #endif

@@ -41,8 +41,6 @@ typedef struct request_node_class {
     node_create_request* mNodeCrReq;
 } request_node_class;
 
-extern "C" {
-
 void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq);
 void fpcNdRq_ToRequestQ(node_create_request* pNodeCreateReq);
 s32 fpcNdRq_phase_IsCreated(node_create_request* pNodeCreateReq);
@@ -63,10 +61,9 @@ node_create_request* fpcNdRq_ChangeNode(u32 pRequestSize, struct process_node_cl
 node_create_request* fpcNdRq_DeleteNode(u32 pRequestSize, struct process_node_class* pProcNode);
 node_create_request* fpcNdRq_CreateNode(u32 pRequestSize, s16 param_2, void* param_3);
 node_create_request*
-fpcNdRq_Request(u32 param_1, s32 param_2, struct process_node_class* param_3, s16 param_4,
+fpcNdRq_Request(u32 param_1, int param_2, struct process_node_class* param_3, s16 param_4,
                 void* param_5, node_create_request_method_class* pNodeCreateRequestMethodClass);
-s32 fpcNdRq_ReChangeNode(u32 pRequestId, s16 param_2, void* param_3);
-s32 fpcNdRq_ReRequest(u32 pRequestId, s16 param_2, void* param_3);
-};
+s32 fpcNdRq_ReChangeNode(unsigned int pRequestId, s16 param_2, void* param_3);
+s32 fpcNdRq_ReRequest(unsigned int pRequestId, s16 param_2, void* param_3);
 
 #endif

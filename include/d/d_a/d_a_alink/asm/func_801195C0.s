@@ -6,7 +6,7 @@
 /* 801195D4 00116514  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801195D8 00116518  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 801195DC 0011651C  80 84 31 84 */ lwz r4, 0x3184(r4)
-/* 801195E0 00116520  4B F2 EB 9D */ bl dEvent_manager_c_NS_cutEnd
+/* 801195E0 00116520  4B F2 EB 9D */ bl cutEnd__16dEvent_manager_cFi
 /* 801195E4 00116524  38 60 00 01 */ li r3, 1
 /* 801195E8 00116528  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801195EC 0011652C  7C 08 03 A6 */ mtlr r0

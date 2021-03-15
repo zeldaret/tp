@@ -3,25 +3,25 @@
 /* 800F2AE0 000EFA20  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F2AE4 000EFA24  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2AE8 000EFA28  7C 7F 1B 78 */ mr r31, r3
-/* 800F2AEC 000EFA2C  4B FF AF 39 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F2AEC 000EFA2C  4B FF AF 39 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F2AF0 000EFA30  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2AF4 000EFA34  40 82 00 2C */ bne lbl_800F2B20
 /* 800F2AF8 000EFA38  7F E3 FB 78 */ mr r3, r31
 /* 800F2AFC 000EFA3C  38 80 00 02 */ li r4, 2
 /* 800F2B00 000EFA40  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800F2B04 000EFA44  4B FB AC 21 */ bl daAlink_c_NS_resetUpperAnime
+/* 800F2B04 000EFA44  4B FB AC 21 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800F2B08 000EFA48  7F E3 FB 78 */ mr r3, r31
-/* 800F2B0C 000EFA4C  4B FC CD 79 */ bl daAlink_c_NS_returnKeepItemData
+/* 800F2B0C 000EFA4C  4B FC CD 79 */ bl returnKeepItemData__9daAlink_cFv
 /* 800F2B10 000EFA50  7F E3 FB 78 */ mr r3, r31
-/* 800F2B14 000EFA54  48 02 51 7D */ bl daAlink_c_NS_resetSpecialEvent
+/* 800F2B14 000EFA54  48 02 51 7D */ bl resetSpecialEvent__9daAlink_cFv
 /* 800F2B18 000EFA58  38 60 00 01 */ li r3, 1
 /* 800F2B1C 000EFA5C  48 00 00 1C */ b lbl_800F2B38
 lbl_800F2B20:
 /* 800F2B20 000EFA60  7F E3 FB 78 */ mr r3, r31
-/* 800F2B24 000EFA64  4B FF C2 75 */ bl daAlink_c_NS_setBaseRideAnime
+/* 800F2B24 000EFA64  4B FF C2 75 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2B28 000EFA68  7F E3 FB 78 */ mr r3, r31
 /* 800F2B2C 000EFA6C  38 80 00 01 */ li r4, 1
-/* 800F2B30 000EFA70  48 01 BF 95 */ bl daAlink_c_NS_commonBottleDrink
+/* 800F2B30 000EFA70  48 01 BF 95 */ bl commonBottleDrink__9daAlink_cFi
 /* 800F2B34 000EFA74  38 60 00 01 */ li r3, 1
 lbl_800F2B38:
 /* 800F2B38 000EFA78  83 E1 00 0C */ lwz r31, 0xc(r1)

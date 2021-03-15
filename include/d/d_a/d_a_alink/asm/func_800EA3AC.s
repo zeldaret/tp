@@ -4,12 +4,12 @@
 /* 800EA3B8 000E72F8  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800EA3BC 000E72FC  7C 7F 1B 78 */ mr r31, r3
 /* 800EA3C0 000E7300  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800EA3C4 000E7304  48 07 41 09 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800EA3C4 000E7304  48 07 41 09 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800EA3C8 000E7308  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800EA3CC 000E730C  41 82 00 10 */ beq lbl_800EA3DC
 /* 800EA3D0 000E7310  7F E3 FB 78 */ mr r3, r31
 /* 800EA3D4 000E7314  38 80 00 00 */ li r4, 0
-/* 800EA3D8 000E7318  4B FC FC F9 */ bl daAlink_c_NS_checkNextAction
+/* 800EA3D8 000E7318  4B FC FC F9 */ bl checkNextAction__9daAlink_cFi
 lbl_800EA3DC:
 /* 800EA3DC 000E731C  38 60 00 01 */ li r3, 1
 /* 800EA3E0 000E7320  83 E1 00 0C */ lwz r31, 0xc(r1)

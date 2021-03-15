@@ -23,7 +23,7 @@
 /* 8012975C 0012669C  A0 BD 00 00 */ lhz r5, 0(r29)
 /* 80129760 001266A0  3C C0 00 01 */ lis r6, 0x00010800@ha
 /* 80129764 001266A4  38 C6 08 00 */ addi r6, r6, 0x00010800@l
-/* 80129768 001266A8  4B F7 A5 A5 */ bl daAlink_c_NS_getAnimeResource
+/* 80129768 001266A8  4B F7 A5 A5 */ bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
 /* 8012976C 001266AC  7C 64 1B 79 */ or. r4, r3, r3
 /* 80129770 001266B0  40 82 00 08 */ bne lbl_80129778
 /* 80129774 001266B4  80 9F 1F 2C */ lwz r4, 0x1f2c(r31)
@@ -33,7 +33,7 @@ lbl_80129778:
 /* 80129780 001266C0  FC 20 E8 90 */ fmr f1, f29
 /* 80129784 001266C4  FC 40 F0 90 */ fmr f2, f30
 /* 80129788 001266C8  7F 86 E3 78 */ mr r6, r28
-/* 8012978C 001266CC  4B F8 35 B5 */ bl daAlink_c_NS_commonSingleAnime
+/* 8012978C 001266CC  4B F8 35 B5 */ bl commonSingleAnime__9daAlink_cFP15J3DAnmTransformP15J3DAnmTransformffs
 /* 80129790 001266D0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80129794 001266D4  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 80129798 001266D8  4C 41 13 82 */ cror 2, 1, 2
@@ -42,13 +42,13 @@ lbl_80129778:
 /* 801297A4 001266E4  FC 20 F8 90 */ fmr f1, f31
 /* 801297A8 001266E8  38 80 00 00 */ li r4, 0
 /* 801297AC 001266EC  38 A0 00 28 */ li r5, 0x28
-/* 801297B0 001266F0  4B EE 60 99 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 801297B0 001266F0  4B EE 60 99 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_801297B4:
 /* 801297B4 001266F4  7F E3 FB 78 */ mr r3, r31
 /* 801297B8 001266F8  38 80 00 8B */ li r4, 0x8b
-/* 801297BC 001266FC  4B F8 60 E5 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 801297BC 001266FC  4B F8 60 E5 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 801297C0 00126700  7F E3 FB 78 */ mr r3, r31
-/* 801297C4 00126704  48 00 DC 35 */ bl daAlink_c_NS_checkWolfLieCode
+/* 801297C4 00126704  48 00 DC 35 */ bl checkWolfLieCode__9daAlink_cFv
 /* 801297C8 00126708  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801297CC 0012670C  41 82 00 10 */ beq lbl_801297DC
 /* 801297D0 00126710  38 00 00 02 */ li r0, 2

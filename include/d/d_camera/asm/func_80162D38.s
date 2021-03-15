@@ -32,7 +32,7 @@ lbl_80162D88:
 /* 80162DB0 0015FCF0  7C 80 00 38 */ and r0, r4, r0
 /* 80162DB4 0015FCF4  90 1E 06 0C */ stw r0, 0x60c(r30)
 /* 80162DB8 0015FCF8  7F C3 F3 78 */ mr r3, r30
-/* 80162DBC 0015FCFC  48 00 52 31 */ bl dCamera_c_NS_checkGroundInfo
+/* 80162DBC 0015FCFC  48 00 52 31 */ bl checkGroundInfo__9dCamera_cFv
 /* 80162DC0 0015FD00  80 1F 5D 7C */ lwz r0, 0x5d7c(r31)
 /* 80162DC4 0015FD04  54 00 06 6E */ rlwinm r0, r0, 0, 0x19, 0x17
 /* 80162DC8 0015FD08  90 1F 5D 7C */ stw r0, 0x5d7c(r31)
@@ -54,7 +54,7 @@ lbl_80162DEC:
 /* 80162E04 0015FD44  7F C3 F3 78 */ mr r3, r30
 /* 80162E08 0015FD48  38 9E 00 B0 */ addi r4, r30, 0xb0
 /* 80162E0C 0015FD4C  38 A0 00 01 */ li r5, 1
-/* 80162E10 0015FD50  48 00 1E 55 */ bl dCamera_c_NS_pushInfo
+/* 80162E10 0015FD50  48 00 1E 55 */ bl pushInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_cs
 /* 80162E14 0015FD54  80 1E 06 8C */ lwz r0, 0x68c(r30)
 /* 80162E18 0015FD58  90 1E 04 F4 */ stw r0, 0x4f4(r30)
 /* 80162E1C 0015FD5C  80 1D 00 04 */ lwz r0, 4(r29)
@@ -62,7 +62,7 @@ lbl_80162DEC:
 /* 80162E24 0015FD64  38 7E 0A EC */ addi r3, r30, 0xaec
 /* 80162E28 0015FD68  3C 80 45 4E */ lis r4, 0x454E3031@ha
 /* 80162E2C 0015FD6C  38 84 30 31 */ addi r4, r4, 0x454E3031@l
-/* 80162E30 0015FD70  4B F2 57 F1 */ bl dCamParam_c_NS_SearchStyle
+/* 80162E30 0015FD70  4B F2 57 F1 */ bl SearchStyle__11dCamParam_cFUl
 /* 80162E34 0015FD74  90 7E 06 7C */ stw r3, 0x67c(r30)
 /* 80162E38 0015FD78  38 00 00 00 */ li r0, 0
 /* 80162E3C 0015FD7C  90 1E 01 70 */ stw r0, 0x170(r30)
@@ -78,7 +78,7 @@ lbl_80162E48:
 /* 80162E60 0015FDA0  1C 00 00 16 */ mulli r0, r0, 0x16
 /* 80162E64 0015FDA4  7C 84 02 14 */ add r4, r4, r0
 /* 80162E68 0015FDA8  A8 84 00 1E */ lha r4, 0x1e(r4)
-/* 80162E6C 0015FDAC  48 01 C9 BD */ bl dCamera_c_NS_eventCamera
+/* 80162E6C 0015FDAC  48 01 C9 BD */ bl eventCamera__9dCamera_cFl
 /* 80162E70 0015FDB0  80 7E 01 70 */ lwz r3, 0x170(r30)
 /* 80162E74 0015FDB4  38 03 00 01 */ addi r0, r3, 1
 /* 80162E78 0015FDB8  90 1E 01 70 */ stw r0, 0x170(r30)
@@ -98,11 +98,11 @@ lbl_80162E94:
 /* 80162EAC 0015FDEC  7C 80 00 38 */ and r0, r4, r0
 /* 80162EB0 0015FDF0  90 1E 06 0C */ stw r0, 0x60c(r30)
 /* 80162EB4 0015FDF4  38 7E 02 28 */ addi r3, r30, 0x228
-/* 80162EB8 0015FDF8  48 01 F7 2D */ bl dCamForcusLine_NS_Off
+/* 80162EB8 0015FDF8  48 01 F7 2D */ bl Off__14dCamForcusLineFv
 /* 80162EBC 0015FDFC  7F C3 F3 78 */ mr r3, r30
-/* 80162EC0 0015FE00  48 01 DE 65 */ bl dCamera_c_NS_shakeCamera
+/* 80162EC0 0015FE00  48 01 DE 65 */ bl shakeCamera__9dCamera_cFv
 /* 80162EC4 0015FE04  7F C3 F3 78 */ mr r3, r30
-/* 80162EC8 0015FE08  48 01 E3 B9 */ bl dCamera_c_NS_blureCamera
+/* 80162EC8 0015FE08  48 01 E3 B9 */ bl blureCamera__9dCamera_cFv
 /* 80162ECC 0015FE0C  38 00 00 00 */ li r0, 0
 /* 80162ED0 0015FE10  98 1E 00 21 */ stb r0, 0x21(r30)
 /* 80162ED4 0015FE14  A8 7E 09 4C */ lha r3, 0x94c(r30)
@@ -115,13 +115,13 @@ lbl_80162EE8:
 /* 80162EEC 0015FE2C  B0 1E 09 4C */ sth r0, 0x94c(r30)
 /* 80162EF0 0015FE30  7F C3 F3 78 */ mr r3, r30
 /* 80162EF4 0015FE34  38 9E 00 3C */ addi r4, r30, 0x3c
-/* 80162EF8 0015FE38  48 00 4F FD */ bl dCamera_c_NS_getWaterSurfaceHeight
+/* 80162EF8 0015FE38  48 00 4F FD */ bl getWaterSurfaceHeight__9dCamera_cFP4cXyz
 /* 80162EFC 0015FE3C  FF E0 08 90 */ fmr f31, f1
 /* 80162F00 0015FE40  C0 1E 00 40 */ lfs f0, 0x40(r30)
 /* 80162F04 0015FE44  FC 1F 00 40 */ fcmpo cr0, f31, f0
 /* 80162F08 0015FE48  40 81 00 24 */ ble lbl_80162F2C
 /* 80162F0C 0015FE4C  38 60 00 01 */ li r3, 1
-/* 80162F10 0015FE50  48 04 83 61 */ bl dKy_camera_water_in_status_set
+/* 80162F10 0015FE50  48 04 83 61 */ bl dKy_camera_water_in_status_set__FUc
 /* 80162F14 0015FE54  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80162F18 0015FE58  38 63 04 C4 */ addi r3, r3, 0x4c4
 /* 80162F1C 0015FE5C  C0 1E 00 40 */ lfs f0, 0x40(r30)
@@ -130,7 +130,7 @@ lbl_80162EE8:
 /* 80162F28 0015FE68  48 00 00 1C */ b lbl_80162F44
 lbl_80162F2C:
 /* 80162F2C 0015FE6C  38 60 00 00 */ li r3, 0
-/* 80162F30 0015FE70  48 04 83 41 */ bl dKy_camera_water_in_status_set
+/* 80162F30 0015FE70  48 04 83 41 */ bl dKy_camera_water_in_status_set__FUc
 /* 80162F34 0015FE74  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80162F38 0015FE78  38 63 04 C4 */ addi r3, r3, 0x4c4
 /* 80162F3C 0015FE7C  C0 22 9C A0 */ lfs f1, lbl_804536A0-_SDA2_BASE_(r2)

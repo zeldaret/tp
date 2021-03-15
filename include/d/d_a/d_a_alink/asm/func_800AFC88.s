@@ -3,9 +3,9 @@
 /* 800AFC90 000ACBD0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800AFC94 000ACBD4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800AFC98 000ACBD8  7C 7F 1B 78 */ mr r31, r3
-/* 800AFC9C 000ACBDC  4B FF FF 35 */ bl daAlink_c_NS_resetFacePriBtp
+/* 800AFC9C 000ACBDC  4B FF FF 35 */ bl resetFacePriBtp__9daAlink_cFv
 /* 800AFCA0 000ACBE0  7F E3 FB 78 */ mr r3, r31
-/* 800AFCA4 000ACBE4  4B FF FF 89 */ bl daAlink_c_NS_resetFacePriBtk
+/* 800AFCA4 000ACBE4  4B FF FF 89 */ bl resetFacePriBtk__9daAlink_cFv
 /* 800AFCA8 000ACBE8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800AFCAC 000ACBEC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800AFCB0 000ACBF0  7C 08 03 A6 */ mtlr r0

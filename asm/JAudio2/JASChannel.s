@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029a800
 
 
-.global JASChannel
-JASChannel:
+.global __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
+__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv:
 /* 8029A800 00297740  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A804 00297744  7C 08 02 A6 */	mflr r0
 /* 8029A808 00297748  90 01 00 14 */	stw r0, 0x14(r1)
@@ -18,18 +18,18 @@ JASChannel:
 /* 8029A828 00297768  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8029A82C 0029776C  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8029A830 00297770  38 7F 00 1C */	addi r3, r31, 0x1c
-.global JASOscillator
-/* 8029A834 00297774  3C 80 80 2A */	lis r4, JASOscillator@ha
-.global JASOscillator
-/* 8029A838 00297778  38 84 BE 94 */	addi r4, r4, JASOscillator@l
+.global __ct__13JASOscillatorFv
+/* 8029A834 00297774  3C 80 80 2A */	lis r4, __ct__13JASOscillatorFv@ha
+.global __ct__13JASOscillatorFv
+/* 8029A838 00297778  38 84 BE 94 */	addi r4, r4, __ct__13JASOscillatorFv@l
 /* 8029A83C 0029777C  38 A0 00 00 */	li r5, 0
 /* 8029A840 00297780  38 C0 00 20 */	li r6, 0x20
 /* 8029A844 00297784  38 E0 00 02 */	li r7, 2
-/* 8029A848 00297788  48 0C 75 19 */	bl func_80361D60
+/* 8029A848 00297788  48 0C 75 19 */	bl __construct_array
 /* 8029A84C 0029778C  38 7F 00 5C */	addi r3, r31, 0x5c
-/* 8029A850 00297790  48 00 14 C5 */	bl JASLfo
+/* 8029A850 00297790  48 00 14 C5 */	bl __ct__6JASLfoFv
 /* 8029A854 00297794  38 7F 00 74 */	addi r3, r31, 0x74
-/* 8029A858 00297798  48 00 14 BD */	bl JASLfo
+/* 8029A858 00297798  48 00 14 BD */	bl __ct__6JASLfoFv
 /* 8029A85C 0029779C  C0 42 BC 80 */	lfs f2, lbl_80455680-_SDA2_BASE_(r2)
 /* 8029A860 002977A0  D0 5F 00 9C */	stfs f2, 0x9c(r31)
 /* 8029A864 002977A4  D0 5F 00 A0 */	stfs f2, 0xa0(r31)
@@ -78,8 +78,8 @@ JASChannel:
 /* 8029A910 00297850  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029A914 00297854  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_dtor
-JASChannel_NS_dtor:
+.global __dt__10JASChannelFv
+__dt__10JASChannelFv:
 /* 8029A918 00297858  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029A91C 0029785C  7C 08 02 A6 */	mflr r0
 /* 8029A920 00297860  90 01 00 24 */	stw r0, 0x24(r1)
@@ -91,7 +91,7 @@ JASChannel_NS_dtor:
 /* 8029A938 00297878  80 7F 00 08 */	lwz r3, 8(r31)
 /* 8029A93C 0029787C  28 03 00 00 */	cmplwi r3, 0
 /* 8029A940 00297880  41 82 00 08 */	beq lbl_8029A948
-/* 8029A944 00297884  48 00 29 FD */	bl JASDSPChannel_NS_drop
+/* 8029A944 00297884  48 00 29 FD */	bl drop__13JASDSPChannelFv
 lbl_8029A948:
 /* 8029A948 00297888  81 9F 00 0C */	lwz r12, 0xc(r31)
 /* 8029A94C 0029788C  28 0C 00 00 */	cmplwi r12, 0
@@ -110,7 +110,7 @@ lbl_8029A96C:
 /* 8029A97C 002978BC  40 82 00 34 */	bne lbl_8029A9B0
 /* 8029A980 002978C0  3C 60 80 43 */	lis r3, lbl_80431B34@ha
 /* 8029A984 002978C4  38 63 1B 34 */	addi r3, r3, lbl_80431B34@l
-/* 8029A988 002978C8  4B FF 5E C1 */	bl JASGenericMemPool
+/* 8029A988 002978C8  4B FF 5E C1 */	bl __ct__17JASGenericMemPoolFv
 /* 8029A98C 002978CC  3C 60 80 43 */	lis r3, lbl_80431B34@ha
 /* 8029A990 002978D0  38 63 1B 34 */	addi r3, r3, lbl_80431B34@l
 .global JASMemPool_MultiThreaded_NS_dtor_X2_
@@ -129,7 +129,7 @@ lbl_8029A9B0:
 /* 8029A9BC 002978FC  38 63 1B 34 */	addi r3, r3, lbl_80431B34@l
 /* 8029A9C0 00297900  7F E4 FB 78 */	mr r4, r31
 /* 8029A9C4 00297904  38 A0 01 08 */	li r5, 0x108
-/* 8029A9C8 00297908  4B FF 5F CD */	bl JASGenericMemPool_NS_free
+/* 8029A9C8 00297908  4B FF 5F CD */	bl free__17JASGenericMemPoolFPvUl
 /* 8029A9CC 0029790C  80 61 00 08 */	lwz r3, 8(r1)
 /* 8029A9D0 00297910  48 0A 2D 4D */	bl OSRestoreInterrupts
 lbl_8029A9D4:
@@ -141,8 +141,8 @@ lbl_8029A9D4:
 /* 8029A9E8 00297928  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029A9EC 0029792C  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_play
-JASChannel_NS_play:
+.global play__10JASChannelFv
+play__10JASChannelFv:
 /* 8029A9F0 00297930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029A9F4 00297934  7C 08 02 A6 */	mflr r0
 /* 8029A9F8 00297938  90 01 00 14 */	stw r0, 0x14(r1)
@@ -150,22 +150,22 @@ JASChannel_NS_play:
 /* 8029AA00 00297940  7C 7F 1B 78 */	mr r31, r3
 /* 8029AA04 00297944  A0 03 00 98 */	lhz r0, 0x98(r3)
 /* 8029AA08 00297948  54 03 06 3E */	clrlwi r3, r0, 0x18
-.global JASChannel_NS_dspUpdateCallback
-/* 8029AA0C 0029794C  3C 80 80 2A */	lis r4, JASChannel_NS_dspUpdateCallback@ha
-.global JASChannel_NS_dspUpdateCallback
-/* 8029AA10 00297950  38 84 AF 78 */	addi r4, r4, JASChannel_NS_dspUpdateCallback@l
+.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
+/* 8029AA0C 0029794C  3C 80 80 2A */	lis r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha
+.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
+/* 8029AA10 00297950  38 84 AF 78 */	addi r4, r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l
 /* 8029AA14 00297954  7F E5 FB 78 */	mr r5, r31
-/* 8029AA18 00297958  48 00 2A 35 */	bl JASDSPChannel_NS_alloc
+/* 8029AA18 00297958  48 00 2A 35 */	bl alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
 /* 8029AA1C 0029795C  28 03 00 00 */	cmplwi r3, 0
 /* 8029AA20 00297960  40 82 00 18 */	bne lbl_8029AA38
 /* 8029AA24 00297964  7F E3 FB 78 */	mr r3, r31
 /* 8029AA28 00297968  38 80 00 01 */	li r4, 1
-/* 8029AA2C 0029796C  4B FF FE ED */	bl JASChannel_NS_dtor
+/* 8029AA2C 0029796C  4B FF FE ED */	bl __dt__10JASChannelFv
 /* 8029AA30 00297970  38 60 00 00 */	li r3, 0
 /* 8029AA34 00297974  48 00 00 18 */	b lbl_8029AA4C
 lbl_8029AA38:
 /* 8029AA38 00297978  90 7F 00 08 */	stw r3, 8(r31)
-/* 8029AA3C 0029797C  48 00 28 F5 */	bl JASDSPChannel_NS_start
+/* 8029AA3C 0029797C  48 00 28 F5 */	bl start__13JASDSPChannelFv
 /* 8029AA40 00297980  38 00 00 01 */	li r0, 1
 /* 8029AA44 00297984  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029AA48 00297988  38 60 00 01 */	li r3, 1
@@ -176,8 +176,8 @@ lbl_8029AA4C:
 /* 8029AA58 00297998  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029AA5C 0029799C  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_playForce
-JASChannel_NS_playForce:
+.global playForce__10JASChannelFv
+playForce__10JASChannelFv:
 /* 8029AA60 002979A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029AA64 002979A4  7C 08 02 A6 */	mflr r0
 /* 8029AA68 002979A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -185,22 +185,22 @@ JASChannel_NS_playForce:
 /* 8029AA70 002979B0  7C 7F 1B 78 */	mr r31, r3
 /* 8029AA74 002979B4  A0 03 00 98 */	lhz r0, 0x98(r3)
 /* 8029AA78 002979B8  54 03 06 3E */	clrlwi r3, r0, 0x18
-.global JASChannel_NS_dspUpdateCallback
-/* 8029AA7C 002979BC  3C 80 80 2A */	lis r4, JASChannel_NS_dspUpdateCallback@ha
-.global JASChannel_NS_dspUpdateCallback
-/* 8029AA80 002979C0  38 84 AF 78 */	addi r4, r4, JASChannel_NS_dspUpdateCallback@l
+.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
+/* 8029AA7C 002979BC  3C 80 80 2A */	lis r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha
+.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
+/* 8029AA80 002979C0  38 84 AF 78 */	addi r4, r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l
 /* 8029AA84 002979C4  7F E5 FB 78 */	mr r5, r31
-/* 8029AA88 002979C8  48 00 2A 35 */	bl JASDSPChannel_NS_allocForce
+/* 8029AA88 002979C8  48 00 2A 35 */	bl allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
 /* 8029AA8C 002979CC  28 03 00 00 */	cmplwi r3, 0
 /* 8029AA90 002979D0  40 82 00 18 */	bne lbl_8029AAA8
 /* 8029AA94 002979D4  7F E3 FB 78 */	mr r3, r31
 /* 8029AA98 002979D8  38 80 00 01 */	li r4, 1
-/* 8029AA9C 002979DC  4B FF FE 7D */	bl JASChannel_NS_dtor
+/* 8029AA9C 002979DC  4B FF FE 7D */	bl __dt__10JASChannelFv
 /* 8029AAA0 002979E0  38 60 00 00 */	li r3, 0
 /* 8029AAA4 002979E4  48 00 00 18 */	b lbl_8029AABC
 lbl_8029AAA8:
 /* 8029AAA8 002979E8  90 7F 00 08 */	stw r3, 8(r31)
-/* 8029AAAC 002979EC  48 00 28 85 */	bl JASDSPChannel_NS_start
+/* 8029AAAC 002979EC  48 00 28 85 */	bl start__13JASDSPChannelFv
 /* 8029AAB0 002979F0  38 00 00 01 */	li r0, 1
 /* 8029AAB4 002979F4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029AAB8 002979F8  38 60 00 01 */	li r3, 1
@@ -211,8 +211,8 @@ lbl_8029AABC:
 /* 8029AAC8 00297A08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029AACC 00297A0C  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_release
-JASChannel_NS_release:
+.global release__10JASChannelFUs
+release__10JASChannelFUs:
 /* 8029AAD0 00297A10  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029AAD4 00297A14  7C 08 02 A6 */	mflr r0
 /* 8029AAD8 00297A18  90 01 00 24 */	stw r0, 0x24(r1)
@@ -234,7 +234,7 @@ lbl_8029AB08:
 /* 8029AB10 00297A50  80 03 00 00 */	lwz r0, 0(r3)
 /* 8029AB14 00297A54  28 00 00 00 */	cmplwi r0, 0
 /* 8029AB18 00297A58  41 82 00 08 */	beq lbl_8029AB20
-/* 8029AB1C 00297A5C  48 00 14 C9 */	bl JASOscillator_NS_release
+/* 8029AB1C 00297A5C  48 00 14 C9 */	bl release__13JASOscillatorFv
 lbl_8029AB20:
 /* 8029AB20 00297A60  3B DE 00 01 */	addi r30, r30, 1
 /* 8029AB24 00297A64  28 1E 00 02 */	cmplwi r30, 2
@@ -244,7 +244,7 @@ lbl_8029AB20:
 /* 8029AB34 00297A74  7C 00 46 70 */	srawi r0, r0, 8
 /* 8029AB38 00297A78  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8029AB3C 00297A7C  80 7D 00 08 */	lwz r3, 8(r29)
-/* 8029AB40 00297A80  48 00 29 F5 */	bl JASDSPChannel_NS_setPriority
+/* 8029AB40 00297A80  48 00 29 F5 */	bl setPriority__13JASDSPChannelFUc
 /* 8029AB44 00297A84  38 00 00 02 */	li r0, 2
 /* 8029AB48 00297A88  90 1D 00 00 */	stw r0, 0(r29)
 lbl_8029AB4C:
@@ -255,8 +255,8 @@ lbl_8029AB4C:
 /* 8029AB5C 00297A9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029AB60 00297AA0  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_setOscInit
-JASChannel_NS_setOscInit:
+.global setOscInit__10JASChannelFUlPCQ213JASOscillator4Data
+setOscInit__10JASChannelFUlPCQ213JASOscillator4Data:
 /* 8029AB64 00297AA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029AB68 00297AA8  7C 08 02 A6 */	mflr r0
 /* 8029AB6C 00297AAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -265,21 +265,21 @@ JASChannel_NS_setOscInit:
 /* 8029AB78 00297AB8  38 63 00 1C */	addi r3, r3, 0x1c
 /* 8029AB7C 00297ABC  7C 60 1A 14 */	add r3, r0, r3
 /* 8029AB80 00297AC0  7C A4 2B 78 */	mr r4, r5
-/* 8029AB84 00297AC4  48 00 13 41 */	bl JASOscillator_NS_initStart
+/* 8029AB84 00297AC4  48 00 13 41 */	bl initStart__13JASOscillatorFPCQ213JASOscillator4Data
 /* 8029AB88 00297AC8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029AB8C 00297ACC  7C 08 03 A6 */	mtlr r0
 /* 8029AB90 00297AD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029AB94 00297AD4  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_setMixConfig
-JASChannel_NS_setMixConfig:
+.global setMixConfig__10JASChannelFUlUs
+setMixConfig__10JASChannelFUlUs:
 /* 8029AB98 00297AD8  54 80 08 3C */	slwi r0, r4, 1
 /* 8029AB9C 00297ADC  7C 63 02 14 */	add r3, r3, r0
 /* 8029ABA0 00297AE0  B0 A3 00 8C */	sth r5, 0x8c(r3)
 /* 8029ABA4 00297AE4  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_calcEffect
-JASChannel_NS_calcEffect:
+.global calcEffect__10JASChannelFPCQ210JASChannel9PanVector
+calcEffect__10JASChannelFPCQ210JASChannel9PanVector:
 /* 8029ABA8 00297AE8  C0 43 00 08 */	lfs f2, 8(r3)
 /* 8029ABAC 00297AEC  C0 23 00 00 */	lfs f1, 0(r3)
 /* 8029ABB0 00297AF0  C0 03 00 04 */	lfs f0, 4(r3)
@@ -287,8 +287,8 @@ JASChannel_NS_calcEffect:
 /* 8029ABB8 00297AF8  EC 22 00 2A */	fadds f1, f2, f0
 /* 8029ABBC 00297AFC  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_calcPan
-JASChannel_NS_calcPan:
+.global calcPan__10JASChannelFPCQ210JASChannel9PanVector
+calcPan__10JASChannelFPCQ210JASChannel9PanVector:
 /* 8029ABC0 00297B00  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8029ABC4 00297B04  C0 62 BC 88 */	lfs f3, lbl_80455688-_SDA2_BASE_(r2)
 /* 8029ABC8 00297B08  EC 40 18 28 */	fsubs f2, f0, f3
@@ -301,8 +301,8 @@ JASChannel_NS_calcPan:
 /* 8029ABE4 00297B24  EC 22 00 2A */	fadds f1, f2, f0
 /* 8029ABE8 00297B28  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_effectOsc
-JASChannel_NS_effectOsc:
+.global effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams
+effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams:
 /* 8029ABEC 00297B2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029ABF0 00297B30  7C 08 02 A6 */	mflr r0
 /* 8029ABF4 00297B34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -313,7 +313,7 @@ JASChannel_NS_effectOsc:
 /* 8029AC08 00297B48  54 9F 28 34 */	slwi r31, r4, 5
 /* 8029AC0C 00297B4C  38 7F 00 1C */	addi r3, r31, 0x1c
 /* 8029AC10 00297B50  7C 7D 1A 14 */	add r3, r29, r3
-/* 8029AC14 00297B54  48 00 13 B5 */	bl JASOscillator_NS_getValue
+/* 8029AC14 00297B54  48 00 13 B5 */	bl getValue__13JASOscillatorCFv
 /* 8029AC18 00297B58  7C 7D FA 14 */	add r3, r29, r31
 /* 8029AC1C 00297B5C  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8029AC20 00297B60  80 03 00 00 */	lwz r0, 0(r3)
@@ -363,8 +363,8 @@ lbl_8029ACBC:
 /* 8029ACCC 00297C0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029ACD0 00297C10  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_setKeySweepTarget
-JASChannel_NS_setKeySweepTarget:
+.global setKeySweepTarget__10JASChannelFlUl
+setKeySweepTarget__10JASChannelFlUl:
 /* 8029ACD4 00297C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029ACD8 00297C18  28 05 00 00 */	cmplwi r5, 0
 /* 8029ACDC 00297C1C  40 82 00 28 */	bne lbl_8029AD04
@@ -393,8 +393,8 @@ lbl_8029AD2C:
 /* 8029AD30 00297C70  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029AD34 00297C74  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_updateEffectorParam
-JASChannel_NS_updateEffectorParam:
+.global updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams
+updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams:
 /* 8029AD38 00297C78  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8029AD3C 00297C7C  7C 08 02 A6 */	mflr r0
 /* 8029AD40 00297C80  90 01 00 94 */	stw r0, 0x94(r1)
@@ -432,7 +432,7 @@ JASChannel_NS_updateEffectorParam:
 /* 8029ADC0 00297D00  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8029ADC4 00297D04  C3 E2 BC 88 */	lfs f31, lbl_80455688-_SDA2_BASE_(r2)
 /* 8029ADC8 00297D08  C3 C2 BC 84 */	lfs f30, lbl_80455684-_SDA2_BASE_(r2)
-/* 8029ADCC 00297D0C  48 00 33 B5 */	bl JASDriver_NS_getOutputMode
+/* 8029ADCC 00297D0C  48 00 33 B5 */	bl getOutputMode__9JASDriverFv
 /* 8029ADD0 00297D10  2C 03 00 01 */	cmpwi r3, 1
 /* 8029ADD4 00297D14  41 82 00 18 */	beq lbl_8029ADEC
 /* 8029ADD8 00297D18  40 80 00 08 */	bge lbl_8029ADE0
@@ -443,19 +443,19 @@ lbl_8029ADE0:
 /* 8029ADE8 00297D28  48 00 00 14 */	b lbl_8029ADFC
 lbl_8029ADEC:
 /* 8029ADEC 00297D2C  38 61 00 20 */	addi r3, r1, 0x20
-/* 8029ADF0 00297D30  4B FF FD D1 */	bl JASChannel_NS_calcPan
+/* 8029ADF0 00297D30  4B FF FD D1 */	bl calcPan__10JASChannelFPCQ210JASChannel9PanVector
 /* 8029ADF4 00297D34  FF E0 08 90 */	fmr f31, f1
 /* 8029ADF8 00297D38  48 00 00 1C */	b lbl_8029AE14
 lbl_8029ADFC:
 /* 8029ADFC 00297D3C  38 61 00 20 */	addi r3, r1, 0x20
-/* 8029AE00 00297D40  4B FF FD C1 */	bl JASChannel_NS_calcPan
+/* 8029AE00 00297D40  4B FF FD C1 */	bl calcPan__10JASChannelFPCQ210JASChannel9PanVector
 /* 8029AE04 00297D44  FF E0 08 90 */	fmr f31, f1
 /* 8029AE08 00297D48  38 61 00 08 */	addi r3, r1, 8
-/* 8029AE0C 00297D4C  4B FF FD 9D */	bl JASChannel_NS_calcEffect
+/* 8029AE0C 00297D4C  4B FF FD 9D */	bl calcEffect__10JASChannelFPCQ210JASChannel9PanVector
 /* 8029AE10 00297D50  FF C0 08 90 */	fmr f30, f1
 lbl_8029AE14:
 /* 8029AE14 00297D54  38 61 00 14 */	addi r3, r1, 0x14
-/* 8029AE18 00297D58  4B FF FD 91 */	bl JASChannel_NS_calcEffect
+/* 8029AE18 00297D58  4B FF FD 91 */	bl calcEffect__10JASChannelFPCQ210JASChannel9PanVector
 /* 8029AE1C 00297D5C  FF A0 08 90 */	fmr f29, f1
 /* 8029AE20 00297D60  A0 1C 00 CA */	lhz r0, 0xca(r28)
 /* 8029AE24 00297D64  C8 22 BC A8 */	lfd f1, lbl_804556A8-_SDA2_BASE_(r2)
@@ -468,7 +468,7 @@ lbl_8029AE14:
 /* 8029AE40 00297D80  EF 81 00 24 */	fdivs f28, f1, f0
 /* 8029AE44 00297D84  EF 9C 07 32 */	fmuls f28, f28, f28
 /* 8029AE48 00297D88  38 7C 00 74 */	addi r3, r28, 0x74
-/* 8029AE4C 00297D8C  48 00 0E F9 */	bl JASLfo_NS_getValue
+/* 8029AE4C 00297D8C  48 00 0E F9 */	bl getValue__6JASLfoCFv
 /* 8029AE50 00297D90  C0 1F 00 18 */	lfs f0, 0x18(r31)
 /* 8029AE54 00297D94  EC 20 00 72 */	fmuls f1, f0, f1
 /* 8029AE58 00297D98  C0 02 BC 80 */	lfs f0, lbl_80455680-_SDA2_BASE_(r2)
@@ -533,13 +533,13 @@ lbl_8029AF10:
 /* 8029AF1C 00297E5C  7F 83 E3 78 */	mr r3, r28
 /* 8029AF20 00297E60  7F A4 EB 78 */	mr r4, r29
 /* 8029AF24 00297E64  FC 20 E0 90 */	fmr f1, f28
-/* 8029AF28 00297E68  48 00 07 79 */	bl JASChannel_NS_updateAutoMixer
+/* 8029AF28 00297E68  48 00 07 79 */	bl updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff
 /* 8029AF2C 00297E6C  48 00 00 14 */	b lbl_8029AF40
 lbl_8029AF30:
 /* 8029AF30 00297E70  7F 83 E3 78 */	mr r3, r28
 /* 8029AF34 00297E74  FC 20 E0 90 */	fmr f1, f28
 /* 8029AF38 00297E78  7F C4 F3 78 */	mr r4, r30
-/* 8029AF3C 00297E7C  48 00 08 9D */	bl JASChannel_NS_updateMixer
+/* 8029AF3C 00297E7C  48 00 08 9D */	bl updateMixer__10JASChannelFffffPUs
 lbl_8029AF40:
 /* 8029AF40 00297E80  E3 E1 00 88 */	psq_l f31, 136(r1), 0, qr0
 /* 8029AF44 00297E84  CB E1 00 80 */	lfd f31, 0x80(r1)
@@ -555,8 +555,8 @@ lbl_8029AF40:
 /* 8029AF6C 00297EAC  7C 08 03 A6 */	mtlr r0
 /* 8029AF70 00297EB0  38 21 00 90 */	addi r1, r1, 0x90
 /* 8029AF74 00297EB4  4E 80 00 20 */	blr 
-.global JASChannel_NS_dspUpdateCallback
-JASChannel_NS_dspUpdateCallback:
+.global dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv
+dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv:
 /* 8029AF78 00297EB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029AF7C 00297EBC  7C 08 02 A6 */	mflr r0
 /* 8029AF80 00297EC0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -574,20 +574,20 @@ lbl_8029AFA4:
 /* 8029AFAC 00297EEC  48 00 00 1C */	b lbl_8029AFC8
 lbl_8029AFB0:
 /* 8029AFB0 00297EF0  7F E3 FB 78 */	mr r3, r31
-/* 8029AFB4 00297EF4  48 00 03 71 */	bl JASChannel_NS_updateDSPChannel
+/* 8029AFB4 00297EF4  48 00 03 71 */	bl updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
 /* 8029AFB8 00297EF8  48 00 00 38 */	b lbl_8029AFF0
 lbl_8029AFBC:
 /* 8029AFBC 00297EFC  7F E3 FB 78 */	mr r3, r31
-/* 8029AFC0 00297F00  48 00 00 45 */	bl JASChannel_NS_initialUpdateDSPChannel
+/* 8029AFC0 00297F00  48 00 00 45 */	bl initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
 /* 8029AFC4 00297F04  48 00 00 2C */	b lbl_8029AFF0
 lbl_8029AFC8:
 /* 8029AFC8 00297F08  80 7F 00 08 */	lwz r3, 8(r31)
-/* 8029AFCC 00297F0C  48 00 23 55 */	bl JASDSPChannel_NS_free
+/* 8029AFCC 00297F0C  48 00 23 55 */	bl free__13JASDSPChannelFv
 /* 8029AFD0 00297F10  38 00 00 00 */	li r0, 0
 /* 8029AFD4 00297F14  90 1F 00 08 */	stw r0, 8(r31)
 /* 8029AFD8 00297F18  7F E3 FB 78 */	mr r3, r31
 /* 8029AFDC 00297F1C  38 80 00 01 */	li r4, 1
-/* 8029AFE0 00297F20  4B FF F9 39 */	bl JASChannel_NS_dtor
+/* 8029AFE0 00297F20  4B FF F9 39 */	bl __dt__10JASChannelFv
 /* 8029AFE4 00297F24  38 60 FF FF */	li r3, -1
 /* 8029AFE8 00297F28  48 00 00 08 */	b lbl_8029AFF0
 lbl_8029AFEC:
@@ -599,8 +599,8 @@ lbl_8029AFF0:
 /* 8029AFFC 00297F3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029B000 00297F40  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_initialUpdateDSPChannel
-JASChannel_NS_initialUpdateDSPChannel:
+.global initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
+initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
 /* 8029B004 00297F44  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8029B008 00297F48  7C 08 02 A6 */	mflr r0
 /* 8029B00C 00297F4C  90 01 00 64 */	stw r0, 0x64(r1)
@@ -612,7 +612,7 @@ JASChannel_NS_initialUpdateDSPChannel:
 /* 8029B024 00297F64  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8029B028 00297F68  40 82 00 0C */	bne lbl_8029B034
 /* 8029B02C 00297F6C  7F E3 FB 78 */	mr r3, r31
-/* 8029B030 00297F70  48 00 2E 95 */	bl JASDsp_NS_TChannel_NS_initAutoMixer
+/* 8029B030 00297F70  48 00 2E 95 */	bl initAutoMixer__Q26JASDsp8TChannelFv
 lbl_8029B034:
 /* 8029B034 00297F74  81 9E 00 0C */	lwz r12, 0xc(r30)
 /* 8029B038 00297F78  28 0C 00 00 */	cmplwi r12, 0
@@ -629,26 +629,26 @@ lbl_8029B058:
 /* 8029B060 00297FA0  28 00 00 00 */	cmplwi r0, 0
 /* 8029B064 00297FA4  40 82 00 28 */	bne lbl_8029B08C
 /* 8029B068 00297FA8  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B06C 00297FAC  48 00 22 B5 */	bl JASDSPChannel_NS_free
+/* 8029B06C 00297FAC  48 00 22 B5 */	bl free__13JASDSPChannelFv
 /* 8029B070 00297FB0  38 00 00 00 */	li r0, 0
 /* 8029B074 00297FB4  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B078 00297FB8  7F C3 F3 78 */	mr r3, r30
 /* 8029B07C 00297FBC  38 80 00 01 */	li r4, 1
-/* 8029B080 00297FC0  4B FF F8 99 */	bl JASChannel_NS_dtor
+/* 8029B080 00297FC0  4B FF F8 99 */	bl __dt__10JASChannelFv
 /* 8029B084 00297FC4  38 60 FF FF */	li r3, -1
 /* 8029B088 00297FC8  48 00 02 84 */	b lbl_8029B30C
 lbl_8029B08C:
 /* 8029B08C 00297FCC  7F C3 F3 78 */	mr r3, r30
-/* 8029B090 00297FD0  48 00 0C 31 */	bl JASChannel_NS_checkBankDispose
+/* 8029B090 00297FD0  48 00 0C 31 */	bl checkBankDispose__10JASChannelCFv
 /* 8029B094 00297FD4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029B098 00297FD8  41 82 00 28 */	beq lbl_8029B0C0
 /* 8029B09C 00297FDC  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B0A0 00297FE0  48 00 22 81 */	bl JASDSPChannel_NS_free
+/* 8029B0A0 00297FE0  48 00 22 81 */	bl free__13JASDSPChannelFv
 /* 8029B0A4 00297FE4  38 00 00 00 */	li r0, 0
 /* 8029B0A8 00297FE8  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B0AC 00297FEC  7F C3 F3 78 */	mr r3, r30
 /* 8029B0B0 00297FF0  38 80 00 01 */	li r4, 1
-/* 8029B0B4 00297FF4  4B FF F8 65 */	bl JASChannel_NS_dtor
+/* 8029B0B4 00297FF4  4B FF F8 65 */	bl __dt__10JASChannelFv
 /* 8029B0B8 00297FF8  38 60 FF FF */	li r3, -1
 /* 8029B0BC 00297FFC  48 00 02 50 */	b lbl_8029B30C
 lbl_8029B0C0:
@@ -668,12 +668,12 @@ lbl_8029B0E8:
 /* 8029B0EC 0029802C  38 9E 00 E0 */	addi r4, r30, 0xe0
 /* 8029B0F0 00298030  80 BE 01 04 */	lwz r5, 0x104(r30)
 /* 8029B0F4 00298034  80 DE 00 D8 */	lwz r6, 0xd8(r30)
-/* 8029B0F8 00298038  48 00 2C 95 */	bl JASDsp_NS_TChannel_NS_setWaveInfo
+/* 8029B0F8 00298038  48 00 2C 95 */	bl setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl
 /* 8029B0FC 0029803C  48 00 00 10 */	b lbl_8029B10C
 lbl_8029B100:
 /* 8029B100 00298040  7F E3 FB 78 */	mr r3, r31
 /* 8029B104 00298044  80 9E 01 04 */	lwz r4, 0x104(r30)
-/* 8029B108 00298048  48 00 2D A5 */	bl JASDsp_NS_TChannel_NS_setOscInfo
+/* 8029B108 00298048  48 00 2D A5 */	bl setOscInfo__Q26JASDsp8TChannelFUl
 lbl_8029B10C:
 /* 8029B10C 0029804C  3B A0 00 00 */	li r29, 0
 /* 8029B110 00298050  48 00 00 84 */	b lbl_8029B194
@@ -682,7 +682,7 @@ lbl_8029B114:
 /* 8029B118 00298058  38 03 00 8C */	addi r0, r3, 0x8c
 /* 8029B11C 0029805C  7C 1E 02 2E */	lhzx r0, r30, r0
 /* 8029B120 00298060  B0 01 00 08 */	sth r0, 8(r1)
-/* 8029B124 00298064  48 00 30 5D */	bl JASDriver_NS_getOutputMode
+/* 8029B124 00298064  48 00 30 5D */	bl getOutputMode__9JASDriverFv
 /* 8029B128 00298068  28 03 00 00 */	cmplwi r3, 0
 /* 8029B12C 0029806C  40 82 00 38 */	bne lbl_8029B164
 /* 8029B130 00298070  88 01 00 08 */	lbz r0, 8(r1)
@@ -712,7 +712,7 @@ lbl_8029B180:
 /* 8029B180 002980C0  7F E3 FB 78 */	mr r3, r31
 /* 8029B184 002980C4  7F A4 EB 78 */	mr r4, r29
 /* 8029B188 002980C8  88 A1 00 08 */	lbz r5, 8(r1)
-/* 8029B18C 002980CC  48 00 2F 11 */	bl JASDsp_NS_TChannel_NS_setBusConnect
+/* 8029B18C 002980CC  48 00 2F 11 */	bl setBusConnect__Q26JASDsp8TChannelFUcUc
 /* 8029B190 002980D0  3B BD 00 01 */	addi r29, r29, 1
 lbl_8029B194:
 /* 8029B194 002980D4  57 A0 06 3E */	clrlwi r0, r29, 0x18
@@ -736,25 +736,25 @@ lbl_8029B1D0:
 /* 8029B1D8 00298118  80 03 00 00 */	lwz r0, 0(r3)
 /* 8029B1DC 0029811C  28 00 00 00 */	cmplwi r0, 0
 /* 8029B1E0 00298120  41 82 00 18 */	beq lbl_8029B1F8
-/* 8029B1E4 00298124  48 00 0E FD */	bl JASOscillator_NS_update
+/* 8029B1E4 00298124  48 00 0E FD */	bl update__13JASOscillatorFv
 /* 8029B1E8 00298128  7F C3 F3 78 */	mr r3, r30
 /* 8029B1EC 0029812C  7F 84 E3 78 */	mr r4, r28
 /* 8029B1F0 00298130  38 A1 00 18 */	addi r5, r1, 0x18
-/* 8029B1F4 00298134  4B FF F9 F9 */	bl JASChannel_NS_effectOsc
+/* 8029B1F4 00298134  4B FF F9 F9 */	bl effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams
 lbl_8029B1F8:
 /* 8029B1F8 00298138  3B 9C 00 01 */	addi r28, r28, 1
 /* 8029B1FC 0029813C  28 1C 00 02 */	cmplwi r28, 2
 /* 8029B200 00298140  3B BD 00 20 */	addi r29, r29, 0x20
 /* 8029B204 00298144  41 80 FF CC */	blt lbl_8029B1D0
 /* 8029B208 00298148  38 7E 00 5C */	addi r3, r30, 0x5c
-/* 8029B20C 0029814C  48 00 0C 21 */	bl JASLfo_NS_resetCounter
+/* 8029B20C 0029814C  48 00 0C 21 */	bl resetCounter__6JASLfoFv
 /* 8029B210 00298150  38 7E 00 74 */	addi r3, r30, 0x74
-/* 8029B214 00298154  48 00 0C 19 */	bl JASLfo_NS_resetCounter
+/* 8029B214 00298154  48 00 0C 19 */	bl resetCounter__6JASLfoFv
 /* 8029B218 00298158  7F C3 F3 78 */	mr r3, r30
 /* 8029B21C 0029815C  7F E4 FB 78 */	mr r4, r31
 /* 8029B220 00298160  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8029B224 00298164  38 C1 00 18 */	addi r6, r1, 0x18
-/* 8029B228 00298168  4B FF FB 11 */	bl JASChannel_NS_updateEffectorParam
+/* 8029B228 00298168  4B FF FB 11 */	bl updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams
 /* 8029B22C 0029816C  3B 80 00 00 */	li r28, 0
 /* 8029B230 00298170  3B A1 00 0C */	addi r29, r1, 0xc
 /* 8029B234 00298174  48 00 00 20 */	b lbl_8029B254
@@ -764,14 +764,14 @@ lbl_8029B238:
 /* 8029B240 00298180  57 80 0D FC */	rlwinm r0, r28, 1, 0x17, 0x1e
 /* 8029B244 00298184  7C 1D 02 2E */	lhzx r0, r29, r0
 /* 8029B248 00298188  7C 05 07 34 */	extsh r5, r0
-/* 8029B24C 0029818C  48 00 2C E9 */	bl JASDsp_NS_TChannel_NS_setMixerInitVolume
+/* 8029B24C 0029818C  48 00 2C E9 */	bl setMixerInitVolume__Q26JASDsp8TChannelFUcs
 /* 8029B250 00298190  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8029B254:
 /* 8029B254 00298194  57 80 06 3E */	clrlwi r0, r28, 0x18
 /* 8029B258 00298198  28 00 00 06 */	cmplwi r0, 6
 /* 8029B25C 0029819C  41 80 FF DC */	blt lbl_8029B238
 /* 8029B260 002981A0  38 7E 00 5C */	addi r3, r30, 0x5c
-/* 8029B264 002981A4  48 00 0A E1 */	bl JASLfo_NS_getValue
+/* 8029B264 002981A4  48 00 0A E1 */	bl getValue__6JASLfoCFv
 /* 8029B268 002981A8  C0 01 00 2C */	lfs f0, 0x2c(r1)
 /* 8029B26C 002981AC  EC 60 00 72 */	fmuls f3, f0, f1
 /* 8029B270 002981B0  C0 5E 00 A4 */	lfs f2, 0xa4(r30)
@@ -789,7 +789,7 @@ lbl_8029B254:
 /* 8029B2A0 002981E0  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8029B2A4 002981E4  EC 02 00 2A */	fadds f0, f2, f0
 /* 8029B2A8 002981E8  EC 20 18 2A */	fadds f1, f0, f3
-/* 8029B2AC 002981EC  4B FF 42 CD */	bl JASCalc_NS_pow2
+/* 8029B2AC 002981EC  4B FF 42 CD */	bl pow2__7JASCalcFf
 /* 8029B2B0 002981F0  C0 82 BC B4 */	lfs f4, lbl_804556B4-_SDA2_BASE_(r2)
 /* 8029B2B4 002981F4  C0 7E 00 A0 */	lfs f3, 0xa0(r30)
 /* 8029B2B8 002981F8  C0 5E 00 BC */	lfs f2, 0xbc(r30)
@@ -807,10 +807,10 @@ lbl_8029B2E0:
 /* 8029B2E4 00298224  FC 00 08 1E */	fctiwz f0, f1
 /* 8029B2E8 00298228  D8 01 00 40 */	stfd f0, 0x40(r1)
 /* 8029B2EC 0029822C  80 81 00 44 */	lwz r4, 0x44(r1)
-/* 8029B2F0 00298230  48 00 2C 2D */	bl JASDsp_NS_TChannel_NS_setPitch
+/* 8029B2F0 00298230  48 00 2C 2D */	bl setPitch__Q26JASDsp8TChannelFUs
 /* 8029B2F4 00298234  7F E3 FB 78 */	mr r3, r31
 /* 8029B2F8 00298238  88 9E 00 04 */	lbz r4, 4(r30)
-/* 8029B2FC 0029823C  48 00 2C 85 */	bl JASDsp_NS_TChannel_NS_setPauseFlag
+/* 8029B2FC 0029823C  48 00 2C 85 */	bl setPauseFlag__Q26JASDsp8TChannelFUc
 /* 8029B300 00298240  38 00 00 00 */	li r0, 0
 /* 8029B304 00298244  B0 1F 00 66 */	sth r0, 0x66(r31)
 /* 8029B308 00298248  38 60 00 00 */	li r3, 0
@@ -822,8 +822,8 @@ lbl_8029B30C:
 /* 8029B31C 0029825C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8029B320 00298260  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_updateDSPChannel
-JASChannel_NS_updateDSPChannel:
+.global updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
+updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel:
 /* 8029B324 00298264  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8029B328 00298268  7C 08 02 A6 */	mflr r0
 /* 8029B32C 0029826C  90 01 00 74 */	stw r0, 0x74(r1)
@@ -848,32 +848,32 @@ lbl_8029B36C:
 /* 8029B374 002982B4  28 00 00 00 */	cmplwi r0, 0
 /* 8029B378 002982B8  40 82 00 28 */	bne lbl_8029B3A0
 /* 8029B37C 002982BC  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B380 002982C0  48 00 1F A1 */	bl JASDSPChannel_NS_free
+/* 8029B380 002982C0  48 00 1F A1 */	bl free__13JASDSPChannelFv
 /* 8029B384 002982C4  38 00 00 00 */	li r0, 0
 /* 8029B388 002982C8  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B38C 002982CC  7F C3 F3 78 */	mr r3, r30
 /* 8029B390 002982D0  38 80 00 01 */	li r4, 1
-/* 8029B394 002982D4  4B FF F5 85 */	bl JASChannel_NS_dtor
+/* 8029B394 002982D4  4B FF F5 85 */	bl __dt__10JASChannelFv
 /* 8029B398 002982D8  38 60 FF FF */	li r3, -1
 /* 8029B39C 002982DC  48 00 02 E4 */	b lbl_8029B680
 lbl_8029B3A0:
 /* 8029B3A0 002982E0  7F C3 F3 78 */	mr r3, r30
-/* 8029B3A4 002982E4  48 00 09 1D */	bl JASChannel_NS_checkBankDispose
+/* 8029B3A4 002982E4  48 00 09 1D */	bl checkBankDispose__10JASChannelCFv
 /* 8029B3A8 002982E8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8029B3AC 002982EC  41 82 00 28 */	beq lbl_8029B3D4
 /* 8029B3B0 002982F0  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B3B4 002982F4  48 00 1F 6D */	bl JASDSPChannel_NS_free
+/* 8029B3B4 002982F4  48 00 1F 6D */	bl free__13JASDSPChannelFv
 /* 8029B3B8 002982F8  38 00 00 00 */	li r0, 0
 /* 8029B3BC 002982FC  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B3C0 00298300  7F C3 F3 78 */	mr r3, r30
 /* 8029B3C4 00298304  38 80 00 01 */	li r4, 1
-/* 8029B3C8 00298308  4B FF F5 51 */	bl JASChannel_NS_dtor
+/* 8029B3C8 00298308  4B FF F5 51 */	bl __dt__10JASChannelFv
 /* 8029B3CC 0029830C  38 60 FF FF */	li r3, -1
 /* 8029B3D0 00298310  48 00 02 B0 */	b lbl_8029B680
 lbl_8029B3D4:
 /* 8029B3D4 00298314  7F E3 FB 78 */	mr r3, r31
 /* 8029B3D8 00298318  88 9E 00 04 */	lbz r4, 4(r30)
-/* 8029B3DC 0029831C  48 00 2B A5 */	bl JASDsp_NS_TChannel_NS_setPauseFlag
+/* 8029B3DC 0029831C  48 00 2B A5 */	bl setPauseFlag__Q26JASDsp8TChannelFUc
 /* 8029B3E0 00298320  C0 22 BC 80 */	lfs f1, lbl_80455680-_SDA2_BASE_(r2)
 /* 8029B3E4 00298324  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 8029B3E8 00298328  D0 21 00 18 */	stfs f1, 0x18(r1)
@@ -899,24 +899,24 @@ lbl_8029B430:
 /* 8029B430 00298370  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8029B434 00298374  41 82 01 18 */	beq lbl_8029B54C
 /* 8029B438 00298378  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B43C 0029837C  48 00 1E E5 */	bl JASDSPChannel_NS_free
+/* 8029B43C 0029837C  48 00 1E E5 */	bl free__13JASDSPChannelFv
 /* 8029B440 00298380  38 00 00 00 */	li r0, 0
 /* 8029B444 00298384  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B448 00298388  7F C3 F3 78 */	mr r3, r30
 /* 8029B44C 0029838C  38 80 00 01 */	li r4, 1
-/* 8029B450 00298390  4B FF F4 C9 */	bl JASChannel_NS_dtor
+/* 8029B450 00298390  4B FF F4 C9 */	bl __dt__10JASChannelFv
 /* 8029B454 00298394  38 60 FF FF */	li r3, -1
 /* 8029B458 00298398  48 00 02 28 */	b lbl_8029B680
 lbl_8029B45C:
-/* 8029B45C 0029839C  48 00 15 8D */	bl JASDriver_NS_getDacRate
+/* 8029B45C 0029839C  48 00 15 8D */	bl getDacRate__9JASDriverFv
 /* 8029B460 002983A0  C0 02 BC B8 */	lfs f0, lbl_804556B8-_SDA2_BASE_(r2)
 /* 8029B464 002983A4  EF E0 08 24 */	fdivs f31, f0, f1
 /* 8029B468 002983A8  38 7E 00 5C */	addi r3, r30, 0x5c
 /* 8029B46C 002983AC  FC 20 F8 90 */	fmr f1, f31
-/* 8029B470 002983B0  48 00 09 69 */	bl JASLfo_NS_incCounter
+/* 8029B470 002983B0  48 00 09 69 */	bl incCounter__6JASLfoFf
 /* 8029B474 002983B4  38 7E 00 74 */	addi r3, r30, 0x74
 /* 8029B478 002983B8  FC 20 F8 90 */	fmr f1, f31
-/* 8029B47C 002983BC  48 00 09 5D */	bl JASLfo_NS_incCounter
+/* 8029B47C 002983BC  48 00 09 5D */	bl incCounter__6JASLfoFf
 /* 8029B480 002983C0  80 7E 00 14 */	lwz r3, 0x14(r30)
 /* 8029B484 002983C4  28 03 00 00 */	cmplwi r3, 0
 /* 8029B488 002983C8  41 82 00 3C */	beq lbl_8029B4C4
@@ -935,7 +935,7 @@ lbl_8029B45C:
 /* 8029B4BC 002983FC  7D 89 03 A6 */	mtctr r12
 /* 8029B4C0 00298400  4E 80 04 21 */	bctrl 
 lbl_8029B4C4:
-/* 8029B4C4 00298404  48 00 15 25 */	bl JASDriver_NS_getDacRate
+/* 8029B4C4 00298404  48 00 15 25 */	bl getDacRate__9JASDriverFv
 /* 8029B4C8 00298408  C0 02 BC BC */	lfs f0, lbl_804556BC-_SDA2_BASE_(r2)
 /* 8029B4CC 0029840C  EF E0 08 24 */	fdivs f31, f0, f1
 /* 8029B4D0 00298410  3B 60 00 00 */	li r27, 0
@@ -947,23 +947,23 @@ lbl_8029B4D8:
 /* 8029B4E4 00298424  28 00 00 00 */	cmplwi r0, 0
 /* 8029B4E8 00298428  41 82 00 54 */	beq lbl_8029B53C
 /* 8029B4EC 0029842C  FC 20 F8 90 */	fmr f1, f31
-/* 8029B4F0 00298430  48 00 0A 79 */	bl JASOscillator_NS_incCounter
+/* 8029B4F0 00298430  48 00 0A 79 */	bl incCounter__13JASOscillatorFf
 /* 8029B4F4 00298434  7F C3 F3 78 */	mr r3, r30
 /* 8029B4F8 00298438  7F 64 DB 78 */	mr r4, r27
 /* 8029B4FC 0029843C  38 A1 00 14 */	addi r5, r1, 0x14
-/* 8029B500 00298440  4B FF F6 ED */	bl JASChannel_NS_effectOsc
+/* 8029B500 00298440  4B FF F6 ED */	bl effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams
 /* 8029B504 00298444  28 1B 00 00 */	cmplwi r27, 0
 /* 8029B508 00298448  40 82 00 34 */	bne lbl_8029B53C
 /* 8029B50C 0029844C  80 1C 00 38 */	lwz r0, 0x38(r28)
 /* 8029B510 00298450  2C 00 00 00 */	cmpwi r0, 0
 /* 8029B514 00298454  40 82 00 28 */	bne lbl_8029B53C
 /* 8029B518 00298458  80 7E 00 08 */	lwz r3, 8(r30)
-/* 8029B51C 0029845C  48 00 1E 05 */	bl JASDSPChannel_NS_free
+/* 8029B51C 0029845C  48 00 1E 05 */	bl free__13JASDSPChannelFv
 /* 8029B520 00298460  38 00 00 00 */	li r0, 0
 /* 8029B524 00298464  90 1E 00 08 */	stw r0, 8(r30)
 /* 8029B528 00298468  7F C3 F3 78 */	mr r3, r30
 /* 8029B52C 0029846C  38 80 00 01 */	li r4, 1
-/* 8029B530 00298470  4B FF F3 E9 */	bl JASChannel_NS_dtor
+/* 8029B530 00298470  4B FF F3 E9 */	bl __dt__10JASChannelFv
 /* 8029B534 00298474  38 60 FF FF */	li r3, -1
 /* 8029B538 00298478  48 00 01 48 */	b lbl_8029B680
 lbl_8029B53C:
@@ -976,7 +976,7 @@ lbl_8029B54C:
 /* 8029B550 00298490  7F E4 FB 78 */	mr r4, r31
 /* 8029B554 00298494  38 A1 00 08 */	addi r5, r1, 8
 /* 8029B558 00298498  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8029B55C 0029849C  4B FF F7 DD */	bl JASChannel_NS_updateEffectorParam
+/* 8029B55C 0029849C  4B FF F7 DD */	bl updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams
 /* 8029B560 002984A0  3B 60 00 00 */	li r27, 0
 /* 8029B564 002984A4  3B A1 00 08 */	addi r29, r1, 8
 /* 8029B568 002984A8  48 00 00 20 */	b lbl_8029B588
@@ -986,14 +986,14 @@ lbl_8029B56C:
 /* 8029B574 002984B4  57 60 0D FC */	rlwinm r0, r27, 1, 0x17, 0x1e
 /* 8029B578 002984B8  7C 1D 02 2E */	lhzx r0, r29, r0
 /* 8029B57C 002984BC  7C 05 07 34 */	extsh r5, r0
-/* 8029B580 002984C0  48 00 29 D5 */	bl JASDsp_NS_TChannel_NS_setMixerVolume
+/* 8029B580 002984C0  48 00 29 D5 */	bl setMixerVolume__Q26JASDsp8TChannelFUcs
 /* 8029B584 002984C4  3B 7B 00 01 */	addi r27, r27, 1
 lbl_8029B588:
 /* 8029B588 002984C8  57 60 06 3E */	clrlwi r0, r27, 0x18
 /* 8029B58C 002984CC  28 00 00 06 */	cmplwi r0, 6
 /* 8029B590 002984D0  41 80 FF DC */	blt lbl_8029B56C
 /* 8029B594 002984D4  38 7E 00 5C */	addi r3, r30, 0x5c
-/* 8029B598 002984D8  48 00 07 AD */	bl JASLfo_NS_getValue
+/* 8029B598 002984D8  48 00 07 AD */	bl getValue__6JASLfoCFv
 /* 8029B59C 002984DC  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8029B5A0 002984E0  EC 60 00 72 */	fmuls f3, f0, f1
 /* 8029B5A4 002984E4  C0 5E 00 A4 */	lfs f2, 0xa4(r30)
@@ -1011,7 +1011,7 @@ lbl_8029B588:
 /* 8029B5D4 00298514  EC 01 00 24 */	fdivs f0, f1, f0
 /* 8029B5D8 00298518  EC 02 00 2A */	fadds f0, f2, f0
 /* 8029B5DC 0029851C  EC 20 18 2A */	fadds f1, f0, f3
-/* 8029B5E0 00298520  4B FF 3F 99 */	bl JASCalc_NS_pow2
+/* 8029B5E0 00298520  4B FF 3F 99 */	bl pow2__7JASCalcFf
 /* 8029B5E4 00298524  C0 82 BC B4 */	lfs f4, lbl_804556B4-_SDA2_BASE_(r2)
 /* 8029B5E8 00298528  C0 7E 00 A0 */	lfs f3, 0xa0(r30)
 /* 8029B5EC 0029852C  C0 5E 00 BC */	lfs f2, 0xbc(r30)
@@ -1029,7 +1029,7 @@ lbl_8029B614:
 /* 8029B618 00298558  FC 00 08 1E */	fctiwz f0, f1
 /* 8029B61C 0029855C  D8 01 00 38 */	stfd f0, 0x38(r1)
 /* 8029B620 00298560  80 81 00 3C */	lwz r4, 0x3c(r1)
-/* 8029B624 00298564  48 00 28 F9 */	bl JASDsp_NS_TChannel_NS_setPitch
+/* 8029B624 00298564  48 00 28 F9 */	bl setPitch__Q26JASDsp8TChannelFUs
 /* 8029B628 00298568  88 1E 00 04 */	lbz r0, 4(r30)
 /* 8029B62C 0029856C  28 00 00 00 */	cmplwi r0, 0
 /* 8029B630 00298570  40 82 00 4C */	bne lbl_8029B67C
@@ -1063,8 +1063,8 @@ lbl_8029B680:
 /* 8029B698 002985D8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8029B69C 002985DC  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_updateAutoMixer
-JASChannel_NS_updateAutoMixer:
+.global updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff
+updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff:
 /* 8029B6A0 002985E0  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8029B6A4 002985E4  7C 08 02 A6 */	mflr r0
 /* 8029B6A8 002985E8  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1084,7 +1084,7 @@ JASChannel_NS_updateAutoMixer:
 /* 8029B6E0 00298620  FF 80 10 90 */	fmr f28, f2
 /* 8029B6E4 00298624  FF A0 18 90 */	fmr f29, f3
 /* 8029B6E8 00298628  FF C0 20 90 */	fmr f30, f4
-/* 8029B6EC 0029862C  48 00 2A 95 */	bl JASDriver_NS_getOutputMode
+/* 8029B6EC 0029862C  48 00 2A 95 */	bl getOutputMode__9JASDriverFv
 /* 8029B6F0 00298630  28 03 00 00 */	cmplwi r3, 0
 /* 8029B6F4 00298634  40 82 00 0C */	bne lbl_8029B700
 /* 8029B6F8 00298638  C0 02 BC C0 */	lfs f0, lbl_804556C0-_SDA2_BASE_(r2)
@@ -1104,7 +1104,7 @@ lbl_8029B714:
 lbl_8029B728:
 /* 8029B728 00298668  FF E0 D8 90 */	fmr f31, f27
 lbl_8029B72C:
-/* 8029B72C 0029866C  48 00 2A 25 */	bl JASDriver_NS_getChannelLevel_dsp
+/* 8029B72C 0029866C  48 00 2A 25 */	bl getChannelLevel_dsp__9JASDriverFv
 /* 8029B730 00298670  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8029B734 00298674  C8 22 BC A8 */	lfd f1, lbl_804556A8-_SDA2_BASE_(r2)
 /* 8029B738 00298678  90 01 00 0C */	stw r0, 0xc(r1)
@@ -1131,7 +1131,7 @@ lbl_8029B72C:
 /* 8029B78C 002986CC  D8 01 00 28 */	stfd f0, 0x28(r1)
 /* 8029B790 002986D0  80 E1 00 2C */	lwz r7, 0x2c(r1)
 /* 8029B794 002986D4  39 00 00 00 */	li r8, 0
-/* 8029B798 002986D8  48 00 27 59 */	bl JASDsp_NS_TChannel_NS_setAutoMixer
+/* 8029B798 002986D8  48 00 27 59 */	bl setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc
 /* 8029B79C 002986DC  E3 E1 00 88 */	psq_l f31, 136(r1), 0, qr0
 /* 8029B7A0 002986E0  CB E1 00 80 */	lfd f31, 0x80(r1)
 /* 8029B7A4 002986E4  E3 C1 00 78 */	psq_l f30, 120(r1), 0, qr0
@@ -1148,8 +1148,8 @@ lbl_8029B72C:
 /* 8029B7D0 00298710  38 21 00 90 */	addi r1, r1, 0x90
 /* 8029B7D4 00298714  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_updateMixer
-JASChannel_NS_updateMixer:
+.global updateMixer__10JASChannelFffffPUs
+updateMixer__10JASChannelFffffPUs:
 /* 8029B7D8 00298718  94 21 FF 30 */	stwu r1, -0xd0(r1)
 /* 8029B7DC 0029871C  7C 08 02 A6 */	mflr r0
 /* 8029B7E0 00298720  90 01 00 D4 */	stw r0, 0xd4(r1)
@@ -1232,7 +1232,7 @@ lbl_8029B904:
 /* 8029B904 00298844  EF 9C 06 F2 */	fmuls f28, f28, f27
 /* 8029B908 00298848  48 00 00 88 */	b lbl_8029B990
 lbl_8029B90C:
-/* 8029B90C 0029884C  48 00 28 75 */	bl JASDriver_NS_getOutputMode
+/* 8029B90C 0029884C  48 00 28 75 */	bl getOutputMode__9JASDriverFv
 /* 8029B910 00298850  28 03 00 00 */	cmplwi r3, 0
 /* 8029B914 00298854  40 82 00 0C */	bne lbl_8029B920
 /* 8029B918 00298858  EF 9C 06 F2 */	fmuls f28, f28, f27
@@ -1344,7 +1344,7 @@ lbl_8029BA98:
 /* 8029BA98 002989D8  EF 9C 06 F2 */	fmuls f28, f28, f27
 /* 8029BA9C 002989DC  48 00 00 88 */	b lbl_8029BB24
 lbl_8029BAA0:
-/* 8029BAA0 002989E0  48 00 26 E1 */	bl JASDriver_NS_getOutputMode
+/* 8029BAA0 002989E0  48 00 26 E1 */	bl getOutputMode__9JASDriverFv
 /* 8029BAA4 002989E4  28 03 00 00 */	cmplwi r3, 0
 /* 8029BAA8 002989E8  40 82 00 0C */	bne lbl_8029BAB4
 /* 8029BAAC 002989EC  EF 9C 06 F2 */	fmuls f28, f28, f27
@@ -1395,7 +1395,7 @@ lbl_8029BB38:
 lbl_8029BB4C:
 /* 8029BB4C 00298A8C  FE C0 E0 90 */	fmr f22, f28
 lbl_8029BB50:
-/* 8029BB50 00298A90  48 00 26 01 */	bl JASDriver_NS_getChannelLevel_dsp
+/* 8029BB50 00298A90  48 00 26 01 */	bl getChannelLevel_dsp__9JASDriverFv
 /* 8029BB54 00298A94  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8029BB58 00298A98  C8 22 BC A8 */	lfd f1, lbl_804556A8-_SDA2_BASE_(r2)
 /* 8029BB5C 00298A9C  90 01 00 1C */	stw r0, 0x1c(r1)
@@ -1440,15 +1440,15 @@ lbl_8029BB84:
 /* 8029BBF4 00298B34  38 21 00 D0 */	addi r1, r1, 0xd0
 /* 8029BBF8 00298B38  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_free
-JASChannel_NS_free:
+.global free__10JASChannelFv
+free__10JASChannelFv:
 /* 8029BBFC 00298B3C  38 00 00 00 */	li r0, 0
 /* 8029BC00 00298B40  90 03 00 0C */	stw r0, 0xc(r3)
 /* 8029BC04 00298B44  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8029BC08 00298B48  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_initBankDisposeMsgQueue
-JASChannel_NS_initBankDisposeMsgQueue:
+.global initBankDisposeMsgQueue__10JASChannelFv
+initBankDisposeMsgQueue__10JASChannelFv:
 /* 8029BC0C 00298B4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029BC10 00298B50  7C 08 02 A6 */	mflr r0
 /* 8029BC14 00298B54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1465,8 +1465,8 @@ JASChannel_NS_initBankDisposeMsgQueue:
 /* 8029BC40 00298B80  38 21 00 10 */	addi r1, r1, 0x10
 /* 8029BC44 00298B84  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_receiveBankDisposeMsg
-JASChannel_NS_receiveBankDisposeMsg:
+.global receiveBankDisposeMsg__10JASChannelFv
+receiveBankDisposeMsg__10JASChannelFv:
 /* 8029BC48 00298B88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029BC4C 00298B8C  7C 08 02 A6 */	mflr r0
 /* 8029BC50 00298B90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1500,8 +1500,8 @@ lbl_8029BC90:
 /* 8029BCB8 00298BF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029BCBC 00298BFC  4E 80 00 20 */	blr 
 
-.global JASChannel_NS_checkBankDispose
-JASChannel_NS_checkBankDispose:
+.global checkBankDispose__10JASChannelCFv
+checkBankDispose__10JASChannelCFv:
 /* 8029BCC0 00298C00  80 A3 00 18 */	lwz r5, 0x18(r3)
 /* 8029BCC4 00298C04  28 05 00 00 */	cmplwi r5, 0
 /* 8029BCC8 00298C08  40 82 00 0C */	bne lbl_8029BCD4

@@ -2,8 +2,6 @@
 #include "SComponent/c_node_iter.h"
 #include "global.h"
 
-extern "C" {
-
 #define NODE_GET_PREV(pNode) (pNode ? pNode->mpPrevNode : NULL)
 #define NODE_GET_NEXT(pNode) (pNode ? pNode->mpNextNode : NULL)
 
@@ -35,4 +33,3 @@ void* cNdIt_Judge(node_class* pNode, cNdIt_JudgeFunc pJudge, void* pUserData) {
 
     return NULL;
 }
-};

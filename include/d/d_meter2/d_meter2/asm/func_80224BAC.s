@@ -75,7 +75,7 @@ lbl_80224C78:
 /* 80224CC0 00221C00  41 82 00 24 */ beq lbl_80224CE4
 lbl_80224CC4:
 /* 80224CC4 00221C04  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 80224CC8 00221C08  4B FF 0D 51 */ bl dMeter2Draw_c_NS_setAlphaOxygenAnimeMin
+/* 80224CC8 00221C08  4B FF 0D 51 */ bl setAlphaOxygenAnimeMin__13dMeter2Draw_cFv
 /* 80224CCC 00221C0C  88 1F 5E B7 */ lbz r0, 0x5eb7(r31)
 /* 80224CD0 00221C10  28 00 00 00 */ cmplwi r0, 0
 /* 80224CD4 00221C14  40 82 00 74 */ bne lbl_80224D48
@@ -84,7 +84,7 @@ lbl_80224CC4:
 /* 80224CE0 00221C20  48 00 00 68 */ b lbl_80224D48
 lbl_80224CE4:
 /* 80224CE4 00221C24  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 80224CE8 00221C28  4B FF 0D AD */ bl dMeter2Draw_c_NS_setAlphaOxygenAnimeMax
+/* 80224CE8 00221C28  4B FF 0D AD */ bl setAlphaOxygenAnimeMax__13dMeter2Draw_cFv
 /* 80224CEC 00221C2C  88 1E 01 E1 */ lbz r0, 0x1e1(r30)
 /* 80224CF0 00221C30  28 00 00 00 */ cmplwi r0, 0
 /* 80224CF4 00221C34  40 82 00 54 */ bne lbl_80224D48
@@ -111,7 +111,7 @@ lbl_80224CE4:
 lbl_80224D48:
 /* 80224D48 00221C88  80 7E 01 0C */ lwz r3, 0x10c(r30)
 /* 80224D4C 00221C8C  38 80 00 00 */ li r4, 0
-/* 80224D50 00221C90  4B FF 0B A1 */ bl dMeter2Draw_c_NS_setAlphaOxygenChange
+/* 80224D50 00221C90  4B FF 0B A1 */ bl setAlphaOxygenChange__13dMeter2Draw_cFb
 /* 80224D54 00221C94  39 61 00 20 */ addi r11, r1, 0x20
 /* 80224D58 00221C98  48 13 D4 D1 */ bl _restgpr_29
 /* 80224D5C 00221C9C  80 01 00 24 */ lwz r0, 0x24(r1)

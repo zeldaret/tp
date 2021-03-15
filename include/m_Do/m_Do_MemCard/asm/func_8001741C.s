@@ -9,11 +9,11 @@
 /* 8001743C 0001437C  38 61 00 08 */ addi r3, r1, 8
 /* 80017440 00014380  38 80 FF FF */ li r4, -1
 /* 80017444 00014384  48 2B A3 15 */ bl __dt__9JKRThreadFv
-/* 80017448 00014388  4B FF 78 9D */ bl mDoExt_getAssertHeap
+/* 80017448 00014388  4B FF 78 9D */ bl mDoExt_getAssertHeap__Fv
 /* 8001744C 0001438C  48 2B 6F ED */ bl becomeCurrentHeap__7JKRHeapFv
 /* 80017450 00014390  3C 60 80 3F */ lis r3, lbl_803EAF40@ha
 /* 80017454 00014394  38 63 AF 40 */ addi r3, r3, lbl_803EAF40@l
-/* 80017458 00014398  4B FF F3 79 */ bl mDoMemCd_Ctrl_c_NS_main
+/* 80017458 00014398  4B FF F3 79 */ bl main__15mDoMemCd_Ctrl_cFv
 /* 8001745C 0001439C  38 60 00 00 */ li r3, 0
 /* 80017460 000143A0  80 01 00 94 */ lwz r0, 0x94(r1)
 /* 80017464 000143A4  7C 08 03 A6 */ mtlr r0

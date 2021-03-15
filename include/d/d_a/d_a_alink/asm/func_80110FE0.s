@@ -15,14 +15,14 @@ lbl_80111010:
 /* 80111014 0010DF54  B0 1E 30 0E */ sth r0, 0x300e(r30)
 lbl_80111018:
 /* 80111018 0010DF58  7F C3 F3 78 */ mr r3, r30
-/* 8011101C 0010DF5C  4B FA E8 39 */ bl daAlink_c_NS_keepItemData
+/* 8011101C 0010DF5C  4B FA E8 39 */ bl keepItemData__9daAlink_cFv
 /* 80111020 0010DF60  7F C3 F3 78 */ mr r3, r30
-/* 80111024 0010DF64  4B FF FE 61 */ bl daAlink_c_NS_setKandelaarModel
+/* 80111024 0010DF64  4B FF FE 61 */ bl setKandelaarModel__9daAlink_cFv
 /* 80111028 0010DF68  88 7E 2F 9C */ lbz r3, 0x2f9c(r30)
-/* 8011102C 0010DF6C  4B F1 CE F1 */ bl dComIfGp_getSelectItem
+/* 8011102C 0010DF6C  4B F1 CE F1 */ bl dComIfGp_getSelectItem__Fi
 /* 80111030 0010DF70  54 64 06 3E */ clrlwi r4, r3, 0x18
 /* 80111034 0010DF74  7F C3 F3 78 */ mr r3, r30
-/* 80111038 0010DF78  4B FF D5 A1 */ bl daAlink_c_NS_setBottleModel
+/* 80111038 0010DF78  4B FF D5 A1 */ bl setBottleModel__9daAlink_cFUs
 /* 8011103C 0010DF7C  38 00 00 00 */ li r0, 0
 /* 80111040 0010DF80  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 80111044 0010DF84  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -39,7 +39,7 @@ lbl_80111018:
 lbl_80111070:
 /* 80111070 0010DFB0  3B E0 FF FF */ li r31, -1
 lbl_80111074:
-/* 80111074 0010DFB4  48 07 05 CD */ bl dCam_getBody
+/* 80111074 0010DFB4  48 07 05 CD */ bl dCam_getBody__Fv
 /* 80111078 0010DFB8  38 80 00 12 */ li r4, 0x12
 /* 8011107C 0010DFBC  7F E5 FB 78 */ mr r5, r31
 /* 80111080 0010DFC0  3C C0 80 39 */ lis r6, lbl_80392094@ha
@@ -49,7 +49,7 @@ lbl_80111074:
 /* 80111090 0010DFD0  39 1E 31 94 */ addi r8, r30, 0x3194
 /* 80111094 0010DFD4  39 20 00 00 */ li r9, 0
 /* 80111098 0010DFD8  4C C6 31 82 */ crclr 6
-/* 8011109C 0010DFDC  4B F7 79 E1 */ bl dCamera_c_NS_StartEventCamera
+/* 8011109C 0010DFDC  4B F7 79 E1 */ bl StartEventCamera__9dCamera_cFiie
 /* 801110A0 0010DFE0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 801110A4 0010DFE4  83 C1 00 08 */ lwz r30, 8(r1)
 /* 801110A8 0010DFE8  80 01 00 14 */ lwz r0, 0x14(r1)

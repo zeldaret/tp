@@ -5,7 +5,7 @@
 /* 80105ACC 00102A0C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80105AD0 00102A10  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80105AD4 00102A14  38 63 0F 38 */ addi r3, r3, 0xf38
-/* 80105AD8 00102A18  4B F6 F1 E5 */ bl dBgS_NS_GetSpecialCode
+/* 80105AD8 00102A18  4B F6 F1 E5 */ bl GetSpecialCode__4dBgSFRC13cBgS_PolyInfo
 /* 80105ADC 00102A1C  38 80 00 01 */ li r4, 1
 /* 80105AE0 00102A20  38 03 FF FB */ addi r0, r3, -5
 /* 80105AE4 00102A24  38 60 FF FF */ li r3, -1

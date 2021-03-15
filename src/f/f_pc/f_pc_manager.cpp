@@ -6,10 +6,13 @@
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
 #include "d/d_lib/d_lib.h"
 #include "f/f_pc/f_pc_base.h"
+#include "f/f_pc/f_pc_create_iter.h"
 #include "f/f_pc/f_pc_creator.h"
 #include "f/f_pc/f_pc_delete_tag.h"
 #include "f/f_pc/f_pc_deletor.h"
+#include "f/f_pc/f_pc_draw.h"
 #include "f/f_pc/f_pc_executor.h"
+#include "f/f_pc/f_pc_fstcreate_req.h"
 #include "f/f_pc/f_pc_layer_iter.h"
 #include "f/f_pc/f_pc_layer_tag.h"
 #include "f/f_pc/f_pc_line.h"
@@ -24,14 +27,9 @@
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
 
 extern "C" {
-bool dDvdErrorMsg_c_NS_execute(void);
-bool dShutdownErrorMsg_c_NS_execute(void);
-void dDlst_peekZ_c_NS_peekData(dDlst_peekZ_c*);
-void fpcDw_Execute(base_process_class* pProc);
-void fpcDw_Handler(void*, void*);
-base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
-                                     FastCreateReqFunc param_3, void* param_4, void* pData);
-void* fpcCtIt_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData);
+bool execute__14dDvdErrorMsg_cFv(void);
+bool execute__19dShutdownErrorMsg_cFv(void);
+void peekData__13dDlst_peekZ_cFv(dDlst_peekZ_c*);
 }
 
 extern u8 lbl_80450D38;
@@ -46,8 +44,8 @@ void fpcM_Draw(void* pProc) {
     fpcDw_Execute((base_process_class*)pProc);
 }
 
-s32 fpcM_DrawIterater(cNdIt_MethodFunc pFunc) {
-    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), pFunc, NULL);
+s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc) {
+    return fpcLyIt_OnlyHere(fpcLy_RootLayer(), (cNdIt_MethodFunc)pFunc, NULL);
 }
 
 void fpcM_Execute(void* pProc) {
@@ -64,16 +62,16 @@ BOOL fpcM_IsCreating(u32 pID) {
 
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
     MtxInit();
-    dDlst_peekZ_c_NS_peekData(&g_dComIfG_gameInfo.getdlstPeekZ());
-    if (!dShutdownErrorMsg_c_NS_execute()) {
+    peekData__13dDlst_peekZ_cFv(&g_dComIfG_gameInfo.getdlstPeekZ());
+    if (!execute__19dShutdownErrorMsg_cFv()) {
         if (lbl_80450D39 == 0) {
             lbl_80450D38 = 0;
             lbl_80450D39 = 1;
         }
-        if (!dDvdErrorMsg_c_NS_execute()) {
+        if (!execute__14dDvdErrorMsg_cFv()) {
             if (lbl_80450D38 != 0) {
                 dLib_time_c::startTime();
-                Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, false);
+                pauseAllGameSound__10Z2SoundMgrFb(lbl_80450B60, false);
                 lbl_80450D38 = 0;
             }
             cAPIGph_Painter();
@@ -88,14 +86,14 @@ void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2) {
                 pFunc1();
             }
             fpcEx_Handler((cNdIt_MethodFunc)fpcM_Execute);
-            fpcDw_Handler((void*)fpcM_DrawIterater, fpcM_Draw);
+            fpcDw_Handler((cNdIt_MethodFuncFunc)fpcM_DrawIterater, (cNdIt_MethodFunc)fpcM_Draw);
             if (pFunc2) {
                 pFunc2();
             }
             g_dComIfG_gameInfo.getPlay().drawSimpleModel();
         } else if (lbl_80450D38 == 0) {
             dLib_time_c::stopTime();
-            Z2SoundMgr_NS_pauseAllGameSound(lbl_80450B60, true);
+            pauseAllGameSound__10Z2SoundMgrFb(lbl_80450B60, true);
             m_gamePad[0]->stopPatternedRumble();
             lbl_80450D38 = 1;
         }
@@ -109,7 +107,8 @@ void fpcM_Init(void) {
 
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
                                     void* pData) {
-    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, param_2, param_3, pData);
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), pProcTypeID, (fstCreateFunc)param_2, param_3,
+                            pData);
 }
 
 s32 fpcM_IsPause(void* pProc, u8 param_2) {
@@ -124,7 +123,7 @@ void fpcM_PauseDisable(void* pProc, u8 param_2) {
     fpcPause_Disable((process_node_class*)pProc, param_2 & 0xFF);
 }
 
-void* fpcM_JudgeInLayer(u32 pLayerID, cNdIt_MethodFunc pFunc, void* pUserData) {
+void* fpcM_JudgeInLayer(u32 pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData) {
     layer_class* layer = fpcLy_Layer(pLayerID);
     if (layer != NULL) {
         void* ret = fpcCtIt_JudgeInLayer(pLayerID, pFunc, pUserData);

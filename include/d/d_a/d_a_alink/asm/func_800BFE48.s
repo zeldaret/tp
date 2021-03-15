@@ -41,7 +41,7 @@ lbl_800BFEDC:
 /* 800BFEE0 000BCE20  42 00 FF D8 */ bdnz lbl_800BFEB8
 lbl_800BFEE4:
 /* 800BFEE4 000BCE24  7F C4 F3 78 */ mr r4, r30
-/* 800BFEE8 000BCE28  4B F7 AF 2D */ bl dRes_info_c_NS_loaderBasicBmd
+/* 800BFEE8 000BCE28  4B F7 AF 2D */ bl loaderBasicBmd__11dRes_info_cFUlPv
 /* 800BFEEC 000BCE2C  39 61 00 20 */ addi r11, r1, 0x20
 /* 800BFEF0 000BCE30  48 2A 23 35 */ bl _restgpr_28
 /* 800BFEF4 000BCE34  80 01 00 24 */ lwz r0, 0x24(r1)

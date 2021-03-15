@@ -9,18 +9,18 @@
 extern "C" {
 void GXInitTexObjCI(void);
 void GXInitTlutObj(void);
-void J3DUClipper_NS_calcViewFrustum(void);
-void J3DUClipper_NS_dtor(void);
-void J3DUClipper_NS_init(void);
+void calcViewFrustum__11J3DUClipperFv(void);
+void __dt__11J3DUClipperFv(void);
+void init__11J3DUClipperFv(void);
 void __dl__FPv(void);
 void _restgpr_29(void);
 void _savegpr_29(void);
-void func_80015544(void);
+void __sinit_m_Do_lib_cpp(void);
 void func_80361C24(void);
-void mDoLib_clipper_NS_setup(void);
-void mDoLib_pos2camera(void);
-void mDoLib_project(void);
-void mDoLib_setResTimgObj(void);
+void setup__14mDoLib_clipperFffff(void);
+void mDoLib_pos2camera__FP3VecP3Vec(void);
+void mDoLib_project__FP3VecP3Vec(void);
+void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(void);
 }
 
 // additional symbols needed for m_Do_lib.cpp
@@ -45,43 +45,44 @@ extern u8 lbl_80451BA0;
 
 extern "C" {
 // mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj
-// mDoLib_setResTimgObj(const ResTIMG*, _GXTexObj*, u32, _GXTlutObj*)
-asm void mDoLib_setResTimgObj(void) {
+// mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(const ResTIMG*, _GXTexObj*, u32,
+// _GXTlutObj*)
+asm void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_8001513C.s"
 }
 
 // setup__14mDoLib_clipperFffff
 // mDoLib_clipper::setup(f32, f32, f32, f32)
-asm void mDoLib_clipper_NS_setup(void) {
+asm void setup__14mDoLib_clipperFffff(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_8001528C.s"
 }
 
 // mDoLib_project__FP3VecP3Vec
-// mDoLib_project(Vec*, Vec*)
-asm void mDoLib_project(void) {
+// mDoLib_project__FP3VecP3Vec(Vec*, Vec*)
+asm void mDoLib_project__FP3VecP3Vec(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_80015310.s"
 }
 
 // mDoLib_pos2camera__FP3VecP3Vec
-// mDoLib_pos2camera(Vec*, Vec*)
-asm void mDoLib_pos2camera(void) {
+// mDoLib_pos2camera__FP3VecP3Vec(Vec*, Vec*)
+asm void mDoLib_pos2camera__FP3VecP3Vec(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_800154EC.s"
 }
 
 // __sinit_m_Do_lib_cpp
 //
-asm void func_80015544(void) {
+asm void __sinit_m_Do_lib_cpp(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_80015544.s"
 }
 
 // __dt__11J3DUClipperFv
 // J3DUClipper::~J3DUClipper(void)
-asm void J3DUClipper_NS_dtor(void) {
+asm void __dt__11J3DUClipperFv(void) {
     nofralloc
 #include "m_Do/m_Do_lib/asm/func_80015590.s"
 }

@@ -6,7 +6,7 @@
 /* 800E0DA0 000DDCE0  80 03 05 70 */ lwz r0, 0x570(r3)
 /* 800E0DA4 000DDCE4  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800E0DA8 000DDCE8  41 82 00 A4 */ beq lbl_800E0E4C
-/* 800E0DAC 000DDCEC  48 03 4E 75 */ bl daAlink_c_NS_checkEventRun
+/* 800E0DAC 000DDCEC  48 03 4E 75 */ bl checkEventRun__9daAlink_cCFv
 /* 800E0DB0 000DDCF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0DB4 000DDCF4  40 82 00 8C */ bne lbl_800E0E40
 /* 800E0DB8 000DDCF8  80 1F 05 74 */ lwz r0, 0x574(r31)
@@ -16,7 +16,7 @@
 /* 800E0DC8 000DDD08  54 00 00 C7 */ rlwinm. r0, r0, 0, 3, 3
 /* 800E0DCC 000DDD0C  41 82 00 74 */ beq lbl_800E0E40
 /* 800E0DD0 000DDD10  7F E3 FB 78 */ mr r3, r31
-/* 800E0DD4 000DDD14  4B FD 84 81 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800E0DD4 000DDD14  4B FD 84 81 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800E0DD8 000DDD18  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0DDC 000DDD1C  40 82 00 3C */ bne lbl_800E0E18
 /* 800E0DE0 000DDD20  38 60 00 00 */ li r3, 0
@@ -32,7 +32,7 @@ lbl_800E0E00:
 /* 800E0E00 000DDD40  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0E04 000DDD44  40 82 00 14 */ bne lbl_800E0E18
 /* 800E0E08 000DDD48  7F E3 FB 78 */ mr r3, r31
-/* 800E0E0C 000DDD4C  4B FF F6 A1 */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800E0E0C 000DDD4C  4B FF F6 A1 */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800E0E10 000DDD50  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0E14 000DDD54  41 82 00 2C */ beq lbl_800E0E40
 lbl_800E0E18:
@@ -42,11 +42,11 @@ lbl_800E0E18:
 /* 800E0E24 000DDD64  54 60 05 6B */ rlwinm. r0, r3, 0, 0x15, 0x15
 /* 800E0E28 000DDD68  40 82 00 10 */ bne lbl_800E0E38
 /* 800E0E2C 000DDD6C  7F E3 FB 78 */ mr r3, r31
-/* 800E0E30 000DDD70  48 00 03 A9 */ bl daAlink_c_NS_procBoomerangCatchInit
+/* 800E0E30 000DDD70  48 00 03 A9 */ bl procBoomerangCatchInit__9daAlink_cFv
 /* 800E0E34 000DDD74  48 00 00 1C */ b lbl_800E0E50
 lbl_800E0E38:
 /* 800E0E38 000DDD78  7F E3 FB 78 */ mr r3, r31
-/* 800E0E3C 000DDD7C  4B FF F7 F5 */ bl daAlink_c_NS_setBoomerangCatchAnime
+/* 800E0E3C 000DDD7C  4B FF F7 F5 */ bl setBoomerangCatchAnime__9daAlink_cFv
 lbl_800E0E40:
 /* 800E0E40 000DDD80  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 800E0E44 000DDD84  54 00 06 F2 */ rlwinm r0, r0, 0, 0x1b, 0x19

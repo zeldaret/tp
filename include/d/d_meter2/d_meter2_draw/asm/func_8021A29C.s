@@ -6,7 +6,7 @@
 /* 8021A2B0 002171F0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021A2B4 002171F4  83 E3 5D 30 */ lwz r31, 0x5d30(r3)
 /* 8021A2B8 002171F8  7C 83 23 78 */ mr r3, r4
-/* 8021A2BC 002171FC  48 00 40 0D */ bl dMeter2Info_getNumberTextureName
+/* 8021A2BC 002171FC  48 00 40 0D */ bl dMeter2Info_getNumberTextureName__Fi
 /* 8021A2C0 00217200  7C 65 1B 78 */ mr r5, r3
 /* 8021A2C4 00217204  7F E3 FB 78 */ mr r3, r31
 /* 8021A2C8 00217208  3C 80 54 49 */ lis r4, 0x54494D47@ha

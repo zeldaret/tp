@@ -4,7 +4,7 @@
 /* 800DBCA4 000D8BE4  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 800DBCA8 000D8BE8  7C 7F 1B 78 */ mr r31, r3
 /* 800DBCAC 000D8BEC  38 80 01 7B */ li r4, 0x17b
-/* 800DBCB0 000D8BF0  4B FD 12 D1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800DBCB0 000D8BF0  4B FD 12 D1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800DBCB4 000D8BF4  7F E3 FB 78 */ mr r3, r31
 /* 800DBCB8 000D8BF8  3C 80 00 01 */ lis r4, 0x000100A9@ha
 /* 800DBCBC 000D8BFC  38 84 00 A9 */ addi r4, r4, 0x000100A9@l
@@ -25,7 +25,7 @@
 /* 800DBCF8 000D8C38  38 80 00 05 */ li r4, 5
 /* 800DBCFC 000D8C3C  38 A0 00 01 */ li r5, 1
 /* 800DBD00 000D8C40  38 C1 00 08 */ addi r6, r1, 8
-/* 800DBD04 000D8C44  4B F9 3E 0D */ bl dVibration_c_NS_StartQuake
+/* 800DBD04 000D8C44  4B F9 3E 0D */ bl StartQuake__12dVibration_cFii4cXyz
 /* 800DBD08 000D8C48  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800DBD0C 000D8C4C  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 800DBD10 000D8C50  7C 08 03 A6 */ mtlr r0

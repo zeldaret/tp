@@ -10,7 +10,7 @@
 lbl_800713B0:
 /* 800713B0 0006E2F0  7C 83 23 78 */ mr r3, r4
 /* 800713B4 0006E2F4  7C A4 2B 78 */ mr r4, r5
-/* 800713B8 0006E2F8  48 00 00 D1 */ bl dAttention_c_NS_SelectAttention
+/* 800713B8 0006E2F8  48 00 00 D1 */ bl SelectAttention__12dAttention_cFP10fopAc_ac_c
 lbl_800713BC:
 /* 800713BC 0006E2FC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800713C0 0006E300  7C 08 03 A6 */ mtlr r0

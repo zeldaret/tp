@@ -4,7 +4,7 @@
 /* 800FDB80 000FAAC0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800FDB84 000FAAC4  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FDB88 000FAAC8  7C 7E 1B 78 */ mr r30, r3
-/* 800FDB8C 000FAACC  4B FF F9 1D */ bl daAlink_c_NS_setMoveBGLadderCorrect
+/* 800FDB8C 000FAACC  4B FF F9 1D */ bl setMoveBGLadderCorrect__9daAlink_cFv
 /* 800FDB90 000FAAD0  2C 03 00 00 */ cmpwi r3, 0
 /* 800FDB94 000FAAD4  41 82 00 0C */ beq lbl_800FDBA0
 /* 800FDB98 000FAAD8  38 60 00 01 */ li r3, 1
@@ -14,16 +14,16 @@ lbl_800FDBA0:
 /* 800FDBA4 000FAAE4  38 00 00 06 */ li r0, 6
 /* 800FDBA8 000FAAE8  98 1E 2F 99 */ stb r0, 0x2f99(r30)
 /* 800FDBAC 000FAAEC  7F E3 FB 78 */ mr r3, r31
-/* 800FDBB0 000FAAF0  48 06 09 1D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FDBB0 000FAAF0  48 06 09 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FDBB4 000FAAF4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FDBB8 000FAAF8  41 82 00 24 */ beq lbl_800FDBDC
 /* 800FDBBC 000FAAFC  7F C3 F3 78 */ mr r3, r30
-/* 800FDBC0 000FAB00  4B FF FA 25 */ bl daAlink_c_NS_checkLadderFall
+/* 800FDBC0 000FAB00  4B FF FA 25 */ bl checkLadderFall__9daAlink_cFv
 /* 800FDBC4 000FAB04  2C 03 00 00 */ cmpwi r3, 0
 /* 800FDBC8 000FAB08  40 82 00 34 */ bne lbl_800FDBFC
 /* 800FDBCC 000FAB0C  7F C3 F3 78 */ mr r3, r30
 /* 800FDBD0 000FAB10  38 80 00 00 */ li r4, 0
-/* 800FDBD4 000FAB14  4B FF F6 D9 */ bl daAlink_c_NS_changeLadderMoveProc
+/* 800FDBD4 000FAB14  4B FF F6 D9 */ bl changeLadderMoveProc__9daAlink_cFi
 /* 800FDBD8 000FAB18  48 00 00 24 */ b lbl_800FDBFC
 lbl_800FDBDC:
 /* 800FDBDC 000FAB1C  C0 3F 00 10 */ lfs f1, 0x10(r31)

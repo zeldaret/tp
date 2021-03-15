@@ -4,7 +4,7 @@
 /* 801287A4 001256E4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801287A8 001256E8  7C 7F 1B 78 */ mr r31, r3
 /* 801287AC 001256EC  80 63 27 EC */ lwz r3, 0x27ec(r3)
-/* 801287B0 001256F0  4B FB 3D 99 */ bl daAlink_c_NS_checkEnemyGroup
+/* 801287B0 001256F0  4B FB 3D 99 */ bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 801287B4 001256F4  2C 03 00 00 */ cmpwi r3, 0
 /* 801287B8 001256F8  40 82 00 34 */ bne lbl_801287EC
 /* 801287BC 001256FC  80 1F 06 14 */ lwz r0, 0x614(r31)

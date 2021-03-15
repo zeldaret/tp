@@ -6,7 +6,7 @@
 /* 800B930C 000B624C  A0 03 1F BC */ lhz r0, 0x1fbc(r3)
 /* 800B9310 000B6250  28 00 02 45 */ cmplwi r0, 0x245
 /* 800B9314 000B6254  41 82 00 10 */ beq lbl_800B9324
-/* 800B9318 000B6258  4B FF FF B9 */ bl daAlink_c_NS_checkOneHandItemEquipAnime
+/* 800B9318 000B6258  4B FF FF B9 */ bl checkOneHandItemEquipAnime__9daAlink_cCFv
 /* 800B931C 000B625C  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9320 000B6260  41 82 00 08 */ beq lbl_800B9328
 lbl_800B9324:

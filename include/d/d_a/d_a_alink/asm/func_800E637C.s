@@ -7,11 +7,11 @@
 /* 800E6394 000E32D4  28 00 00 00 */ cmplwi r0, 0
 /* 800E6398 000E32D8  40 82 00 10 */ bne lbl_800E63A8
 /* 800E639C 000E32DC  38 80 00 00 */ li r4, 0
-/* 800E63A0 000E32E0  4B FD 3D 31 */ bl daAlink_c_NS_checkNextAction
+/* 800E63A0 000E32E0  4B FD 3D 31 */ bl checkNextAction__9daAlink_cFi
 /* 800E63A4 000E32E4  48 00 00 34 */ b lbl_800E63D8
 lbl_800E63A8:
 /* 800E63A8 000E32E8  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800E63AC 000E32EC  48 07 81 21 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E63AC 000E32EC  48 07 81 21 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E63B0 000E32F0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E63B4 000E32F4  41 82 00 24 */ beq lbl_800E63D8
 /* 800E63B8 000E32F8  A8 7F 30 08 */ lha r3, 0x3008(r31)
@@ -22,7 +22,7 @@ lbl_800E63A8:
 /* 800E63CC 000E330C  48 00 00 0C */ b lbl_800E63D8
 lbl_800E63D0:
 /* 800E63D0 000E3310  7F E3 FB 78 */ mr r3, r31
-/* 800E63D4 000E3314  48 00 0B 19 */ bl daAlink_c_NS_procGrabStandInit
+/* 800E63D4 000E3314  48 00 0B 19 */ bl procGrabStandInit__9daAlink_cFv
 lbl_800E63D8:
 /* 800E63D8 000E3318  38 60 00 01 */ li r3, 1
 /* 800E63DC 000E331C  83 E1 00 0C */ lwz r31, 0xc(r1)

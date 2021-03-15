@@ -8,7 +8,7 @@
 /* 800E002C 000DCF6C  A0 03 2F DC */ lhz r0, 0x2fdc(r3)
 /* 800E0030 000DCF70  28 00 01 02 */ cmplwi r0, 0x102
 /* 800E0034 000DCF74  41 82 00 14 */ beq lbl_800E0048
-/* 800E0038 000DCF78  48 00 04 09 */ bl daAlink_c_NS_checkBoomerangAnime
+/* 800E0038 000DCF78  48 00 04 09 */ bl checkBoomerangAnime__9daAlink_cCFv
 /* 800E003C 000DCF7C  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0040 000DCF80  41 82 00 08 */ beq lbl_800E0048
 /* 800E0044 000DCF84  3B E0 00 01 */ li r31, 1

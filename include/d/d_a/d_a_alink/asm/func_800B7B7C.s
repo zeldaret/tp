@@ -20,11 +20,11 @@
 /* 800B7BC8 000B4B08  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 800B7BCC 000B4B0C  41 82 00 10 */ beq lbl_800B7BDC
 /* 800B7BD0 000B4B10  7F E3 FB 78 */ mr r3, r31
-/* 800B7BD4 000B4B14  48 07 55 D5 */ bl daAlink_c_NS_procWolfWaitInit
+/* 800B7BD4 000B4B14  48 07 55 D5 */ bl procWolfWaitInit__9daAlink_cFv
 /* 800B7BD8 000B4B18  48 00 00 0C */ b lbl_800B7BE4
 lbl_800B7BDC:
 /* 800B7BDC 000B4B1C  7F E3 FB 78 */ mr r3, r31
-/* 800B7BE0 000B4B20  48 00 B7 D9 */ bl daAlink_c_NS_procWaitInit
+/* 800B7BE0 000B4B20  48 00 B7 D9 */ bl procWaitInit__9daAlink_cFv
 lbl_800B7BE4:
 /* 800B7BE4 000B4B24  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800B7BE8 000B4B28  80 01 00 14 */ lwz r0, 0x14(r1)

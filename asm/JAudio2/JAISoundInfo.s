@@ -3,8 +3,8 @@
 .section .text, "ax" # 802a2d34
 
 
-.global JAISoundInfo
-JAISoundInfo:
+.global __ct__12JAISoundInfoFb
+__ct__12JAISoundInfoFb:
 /* 802A2D34 0029FC74  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 802A2D38 0029FC78  41 82 00 08 */	beq lbl_802A2D40
 /* 802A2D3C 0029FC7C  90 6D 85 DC */	stw r3, lbl_80450B5C-_SDA_BASE_(r13)
@@ -14,8 +14,8 @@ lbl_802A2D40:
 /* 802A2D48 0029FC88  90 03 00 00 */	stw r0, 0(r3)
 /* 802A2D4C 0029FC8C  4E 80 00 20 */	blr 
 
-.global JAISoundInfo_NS_dtor
-JAISoundInfo_NS_dtor:
+.global __dt__12JAISoundInfoFv
+__dt__12JAISoundInfoFv:
 /* 802A2D50 0029FC90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A2D54 0029FC94  7C 08 02 A6 */	mflr r0
 /* 802A2D58 0029FC98  90 01 00 14 */	stw r0, 0x14(r1)

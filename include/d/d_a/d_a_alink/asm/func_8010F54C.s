@@ -21,7 +21,7 @@ lbl_8010F588:
 /* 8010F598 0010C4D8  38 A0 00 00 */ li r5, 0
 /* 8010F59C 0010C4DC  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8010F5A0 0010C4E0  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8010F5A4 0010C4E4  4B F3 3B C9 */ bl dEvt_control_c_NS_compulsory
+/* 8010F5A4 0010C4E4  4B F3 3B C9 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 8010F5A8 0010C4E8  2C 03 00 00 */ cmpwi r3, 0
 /* 8010F5AC 0010C4EC  40 82 00 0C */ bne lbl_8010F5B8
 /* 8010F5B0 0010C4F0  38 60 00 00 */ li r3, 0
@@ -32,7 +32,7 @@ lbl_8010F5B8:
 lbl_8010F5C0:
 /* 8010F5C0 0010C500  7F E3 FB 78 */ mr r3, r31
 /* 8010F5C4 0010C504  38 80 00 B3 */ li r4, 0xb3
-/* 8010F5C8 0010C508  4B FB 29 A5 */ bl daAlink_c_NS_commonProcInit
+/* 8010F5C8 0010C508  4B FB 29 A5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010F5CC 0010C50C  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 8010F5D0 0010C510  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 8010F5D4 0010C514  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -43,12 +43,12 @@ lbl_8010F5C0:
 /* 8010F5E8 0010C528  38 80 01 00 */ li r4, 0x100
 /* 8010F5EC 0010C52C  3C A0 80 39 */ lis r5, lbl_8038E90C@ha
 /* 8010F5F0 0010C530  38 A5 E9 0C */ addi r5, r5, lbl_8038E90C@l
-/* 8010F5F4 0010C534  4B F9 DB 01 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 8010F5F4 0010C534  4B F9 DB 01 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010F5F8 0010C538  7F E3 FB 78 */ mr r3, r31
-/* 8010F5FC 0010C53C  4B FB 02 59 */ bl daAlink_c_NS_keepItemData
+/* 8010F5FC 0010C53C  4B FB 02 59 */ bl keepItemData__9daAlink_cFv
 /* 8010F600 0010C540  7F E3 FB 78 */ mr r3, r31
 /* 8010F604 0010C544  7F C4 F3 78 */ mr r4, r30
-/* 8010F608 0010C548  4B FF EF D1 */ bl daAlink_c_NS_setBottleModel
+/* 8010F608 0010C548  4B FF EF D1 */ bl setBottleModel__9daAlink_cFUs
 /* 8010F60C 0010C54C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8010F610 0010C550  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8010F614 0010C554  80 03 5F 1C */ lwz r0, 0x5f1c(r3)
@@ -65,7 +65,7 @@ lbl_8010F5C0:
 lbl_8010F640:
 /* 8010F640 0010C580  3B C0 FF FF */ li r30, -1
 lbl_8010F644:
-/* 8010F644 0010C584  48 07 1F FD */ bl dCam_getBody
+/* 8010F644 0010C584  48 07 1F FD */ bl dCam_getBody__Fv
 /* 8010F648 0010C588  38 80 00 12 */ li r4, 0x12
 /* 8010F64C 0010C58C  7F C5 F3 78 */ mr r5, r30
 /* 8010F650 0010C590  3C C0 80 39 */ lis r6, lbl_80392094@ha
@@ -75,7 +75,7 @@ lbl_8010F644:
 /* 8010F660 0010C5A0  39 1F 31 94 */ addi r8, r31, 0x3194
 /* 8010F664 0010C5A4  39 20 00 00 */ li r9, 0
 /* 8010F668 0010C5A8  4C C6 31 82 */ crclr 6
-/* 8010F66C 0010C5AC  4B F7 94 11 */ bl dCamera_c_NS_StartEventCamera
+/* 8010F66C 0010C5AC  4B F7 94 11 */ bl StartEventCamera__9dCamera_cFiie
 /* 8010F670 0010C5B0  38 00 00 00 */ li r0, 0
 /* 8010F674 0010C5B4  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8010F678 0010C5B8  B0 1F 30 0E */ sth r0, 0x300e(r31)

@@ -4,7 +4,7 @@
 /* 802093E4 00206324  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 802093E8 00206328  7C 7F 1B 78 */ mr r31, r3
 /* 802093EC 0020632C  80 63 00 F4 */ lwz r3, 0xf4(r3)
-/* 802093F0 00206330  48 04 C4 39 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 802093F0 00206330  48 04 C4 39 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 802093F4 00206334  C0 02 AD 4C */ lfs f0, lbl_8045474C-_SDA2_BASE_(r2)
 /* 802093F8 00206338  FC 00 08 00 */ fcmpu cr0, f0, f1
 /* 802093FC 0020633C  41 82 00 64 */ beq lbl_80209460
@@ -12,12 +12,12 @@
 /* 80209404 00206344  28 04 00 FF */ cmplwi r4, 0xff
 /* 80209408 00206348  41 82 00 30 */ beq lbl_80209438
 /* 8020940C 0020634C  7F E3 FB 78 */ mr r3, r31
-/* 80209410 00206350  4B FF D9 61 */ bl dMeterButton_c_NS_isFastSet
+/* 80209410 00206350  4B FF D9 61 */ bl isFastSet__14dMeterButton_cFi
 /* 80209414 00206354  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80209418 00206358  41 82 00 20 */ beq lbl_80209438
 /* 8020941C 0020635C  80 7F 00 F4 */ lwz r3, 0xf4(r31)
 /* 80209420 00206360  C0 22 AD 4C */ lfs f1, lbl_8045474C-_SDA2_BASE_(r2)
-/* 80209424 00206364  48 04 C3 AD */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80209424 00206364  48 04 C3 AD */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80209428 00206368  38 00 00 05 */ li r0, 5
 /* 8020942C 0020636C  80 7F 00 F4 */ lwz r3, 0xf4(r31)
 /* 80209430 00206370  B0 03 00 16 */ sth r0, 0x16(r3)
@@ -25,14 +25,14 @@
 lbl_80209438:
 /* 80209438 00206378  80 7F 00 F4 */ lwz r3, 0xf4(r31)
 /* 8020943C 0020637C  C0 22 AD 4C */ lfs f1, lbl_8045474C-_SDA2_BASE_(r2)
-/* 80209440 00206380  48 04 C3 91 */ bl CPaneMgrAlpha_NS_setAlphaRate
+/* 80209440 00206380  48 04 C3 91 */ bl setAlphaRate__13CPaneMgrAlphaFf
 /* 80209444 00206384  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80209448 00206388  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8020944C 0020638C  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80209450 00206390  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80209454 00206394  80 9F 00 F4 */ lwz r4, 0xf4(r31)
 /* 80209458 00206398  38 A0 00 05 */ li r5, 5
-/* 8020945C 0020639C  48 01 16 49 */ bl dMeter2Draw_c_NS_setAlphaAnimeMax
+/* 8020945C 0020639C  48 01 16 49 */ bl setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas
 lbl_80209460:
 /* 80209460 002063A0  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80209464 002063A4  80 01 00 14 */ lwz r0, 0x14(r1)

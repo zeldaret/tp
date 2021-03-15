@@ -4,7 +4,7 @@
 /* 8013AFCC 00137F0C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013AFD0 00137F10  93 C1 00 08 */ stw r30, 8(r1)
 /* 8013AFD4 00137F14  7C 7E 1B 78 */ mr r30, r3
-/* 8013AFD8 00137F18  4B FE EA A9 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013AFD8 00137F18  4B FE EA A9 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8013AFDC 00137F1C  2C 03 00 00 */ cmpwi r3, 0
 /* 8013AFE0 00137F20  41 82 00 0C */ beq lbl_8013AFEC
 /* 8013AFE4 00137F24  38 60 00 01 */ li r3, 1
@@ -20,9 +20,9 @@ lbl_8013AFEC:
 /* 8013B008 00137F48  C0 44 00 10 */ lfs f2, 0x10(r4)
 /* 8013B00C 00137F4C  48 13 57 35 */ bl cLib_chaseF__FPfff
 /* 8013B010 00137F50  7F C3 F3 78 */ mr r3, r30
-/* 8013B014 00137F54  4B F9 70 E9 */ bl daAlink_c_NS_setComboReserb
+/* 8013B014 00137F54  4B F9 70 E9 */ bl setComboReserb__9daAlink_cFv
 /* 8013B018 00137F58  7F C3 F3 78 */ mr r3, r30
-/* 8013B01C 00137F5C  4B F9 76 69 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
+/* 8013B01C 00137F5C  4B F9 76 69 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 8013B020 00137F60  88 1E 05 68 */ lbz r0, 0x568(r30)
 /* 8013B024 00137F64  28 00 00 2F */ cmplwi r0, 0x2f
 /* 8013B028 00137F68  41 82 00 28 */ beq lbl_8013B050
@@ -30,7 +30,7 @@ lbl_8013AFEC:
 /* 8013B030 00137F70  A8 1E 30 0A */ lha r0, 0x300a(r30)
 /* 8013B034 00137F74  7C 00 00 34 */ cntlzw r0, r0
 /* 8013B038 00137F78  54 04 DE 3E */ rlwinm r4, r0, 0x1b, 0x18, 0x1f
-/* 8013B03C 00137F7C  4B FE F1 ED */ bl daAlink_c_NS_checkWolfAttackReverse
+/* 8013B03C 00137F7C  4B FE F1 ED */ bl checkWolfAttackReverse__9daAlink_cFi
 /* 8013B040 00137F80  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B044 00137F84  41 82 00 0C */ beq lbl_8013B050
 /* 8013B048 00137F88  38 60 00 01 */ li r3, 1
@@ -50,16 +50,16 @@ lbl_8013B050:
 /* 8013B07C 00137FBC  30 00 FF FF */ addic r0, r0, -1
 /* 8013B080 00137FC0  7C 80 01 10 */ subfe r4, r0, r0
 /* 8013B084 00137FC4  38 84 00 03 */ addi r4, r4, 3
-/* 8013B088 00137FC8  48 00 1A C1 */ bl daAlink_c_NS_procWolfEnemyThrowInit
+/* 8013B088 00137FC8  48 00 1A C1 */ bl procWolfEnemyThrowInit__9daAlink_cFi
 /* 8013B08C 00137FCC  48 00 01 FC */ b lbl_8013B288
 lbl_8013B090:
 /* 8013B090 00137FD0  7F E3 FB 78 */ mr r3, r31
-/* 8013B094 00137FD4  48 02 34 39 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013B094 00137FD4  48 02 34 39 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013B098 00137FD8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013B09C 00137FDC  41 82 00 8C */ beq lbl_8013B128
 /* 8013B0A0 00137FE0  7F C3 F3 78 */ mr r3, r30
 /* 8013B0A4 00137FE4  38 80 00 01 */ li r4, 1
-/* 8013B0A8 00137FE8  4B F9 63 89 */ bl daAlink_c_NS_resetCombo
+/* 8013B0A8 00137FE8  4B F9 63 89 */ bl resetCombo__9daAlink_cFi
 /* 8013B0AC 00137FEC  80 1E 06 14 */ lwz r0, 0x614(r30)
 /* 8013B0B0 00137FF0  28 00 00 2B */ cmplwi r0, 0x2b
 /* 8013B0B4 00137FF4  40 82 00 1C */ bne lbl_8013B0D0
@@ -67,7 +67,7 @@ lbl_8013B090:
 /* 8013B0BC 00137FFC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013B0C0 00138000  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8013B0C4 00138004  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8013B0C8 00138008  4B F0 D0 B5 */ bl dEvent_manager_c_NS_cutEnd
+/* 8013B0C8 00138008  4B F0 D0 B5 */ bl cutEnd__16dEvent_manager_cFi
 /* 8013B0CC 0013800C  48 00 01 B8 */ b lbl_8013B284
 lbl_8013B0D0:
 /* 8013B0D0 00138010  A8 1E 30 08 */ lha r0, 0x3008(r30)
@@ -79,7 +79,7 @@ lbl_8013B0D0:
 /* 8013B0E8 00138028  40 81 00 18 */ ble lbl_8013B100
 /* 8013B0EC 0013802C  7F C3 F3 78 */ mr r3, r30
 /* 8013B0F0 00138030  38 80 00 01 */ li r4, 1
-/* 8013B0F4 00138034  4B FE EA 51 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B0F4 00138034  4B FE EA 51 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B0F8 00138038  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B0FC 0013803C  40 82 01 88 */ bne lbl_8013B284
 lbl_8013B100:
@@ -92,7 +92,7 @@ lbl_8013B110:
 /* 8013B114 00138054  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 /* 8013B118 00138058  7F C3 F3 78 */ mr r3, r30
 /* 8013B11C 0013805C  38 80 00 00 */ li r4, 0
-/* 8013B120 00138060  4B FE EA 25 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B120 00138060  4B FE EA 25 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B124 00138064  48 00 01 60 */ b lbl_8013B284
 lbl_8013B128:
 /* 8013B128 00138068  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -101,22 +101,22 @@ lbl_8013B128:
 /* 8013B134 00138074  40 81 00 28 */ ble lbl_8013B15C
 /* 8013B138 00138078  7F C3 F3 78 */ mr r3, r30
 /* 8013B13C 0013807C  38 80 00 01 */ li r4, 1
-/* 8013B140 00138080  4B FE EA 05 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8013B140 00138080  4B FE EA 05 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8013B144 00138084  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B148 00138088  40 82 01 3C */ bne lbl_8013B284
 /* 8013B14C 0013808C  7F C3 F3 78 */ mr r3, r30
 /* 8013B150 00138090  38 80 00 01 */ li r4, 1
-/* 8013B154 00138094  4B F9 62 DD */ bl daAlink_c_NS_resetCombo
+/* 8013B154 00138094  4B F9 62 DD */ bl resetCombo__9daAlink_cFi
 /* 8013B158 00138098  48 00 01 2C */ b lbl_8013B284
 lbl_8013B15C:
 /* 8013B15C 0013809C  7F C3 F3 78 */ mr r3, r30
 /* 8013B160 001380A0  38 80 00 01 */ li r4, 1
-/* 8013B164 001380A4  4B F7 85 D1 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 8013B164 001380A4  4B F7 85 D1 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 8013B168 001380A8  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 8013B16C 001380AC  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8013B170 001380B0  7F E3 FB 78 */ mr r3, r31
 /* 8013B174 001380B4  C0 3E 34 84 */ lfs f1, 0x3484(r30)
-/* 8013B178 001380B8  48 1E D2 B5 */ bl J3DFrameCtrl_NS_checkPass
+/* 8013B178 001380B8  48 1E D2 B5 */ bl checkPass__12J3DFrameCtrlFf
 /* 8013B17C 001380BC  2C 03 00 00 */ cmpwi r3, 0
 /* 8013B180 001380C0  41 82 00 0C */ beq lbl_8013B18C
 /* 8013B184 001380C4  C0 1E 34 88 */ lfs f0, 0x3488(r30)

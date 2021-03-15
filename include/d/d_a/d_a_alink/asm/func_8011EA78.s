@@ -13,13 +13,13 @@
 /* 8011EAA8 0011B9E8  C0 03 37 D0 */ lfs f0, 0x37d0(r3)
 /* 8011EAAC 0011B9EC  D0 03 04 D8 */ stfs f0, 0x4d8(r3)
 /* 8011EAB0 0011B9F0  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011EAB4 0011B9F4  48 03 FA 19 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011EAB4 0011B9F4  48 03 FA 19 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011EAB8 0011B9F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011EABC 0011B9FC  41 82 00 14 */ beq lbl_8011EAD0
 /* 8011EAC0 0011BA00  7F E3 FB 78 */ mr r3, r31
 /* 8011EAC4 0011BA04  38 80 01 98 */ li r4, 0x198
 /* 8011EAC8 0011BA08  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8011EACC 0011BA0C  4B F8 E4 E5 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 8011EACC 0011BA0C  4B F8 E4 E5 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 lbl_8011EAD0:
 /* 8011EAD0 0011BA10  38 60 00 01 */ li r3, 1
 /* 8011EAD4 0011BA14  83 E1 00 0C */ lwz r31, 0xc(r1)

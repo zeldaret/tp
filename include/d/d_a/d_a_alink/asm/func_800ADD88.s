@@ -18,7 +18,7 @@ lbl_800ADDC0:
 lbl_800ADDC8:
 /* 800ADDC8 000AAD08  38 9F 1A 60 */ addi r4, r31, 0x1a60
 /* 800ADDCC 000AAD0C  A8 BF 04 DE */ lha r5, 0x4de(r31)
-/* 800ADDD0 000AAD10  48 00 22 C9 */ bl daAlink_c_NS_getGroundAngle
+/* 800ADDD0 000AAD10  48 00 22 C9 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 lbl_800ADDD4:
 /* 800ADDD4 000AAD14  C0 3F 33 98 */ lfs f1, 0x3398(r31)
 /* 800ADDD8 000AAD18  3C 80 80 44 */ lis r4, lbl_80439A20@ha

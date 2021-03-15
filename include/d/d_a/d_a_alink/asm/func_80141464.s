@@ -9,7 +9,7 @@
 /* 80141484 0013E3C4  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 80141488 0013E3C8  7C E4 3B 78 */ mr r4, r7
 /* 8014148C 0013E3CC  7C 05 03 78 */ mr r5, r0
-/* 80141490 0013E3D0  4B F0 66 8D */ bl dEvent_manager_c_NS_getMyStaffId
+/* 80141490 0013E3D0  4B F0 66 8D */ bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 80141494 0013E3D4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80141498 0013E3D8  7C 08 03 A6 */ mtlr r0
 /* 8014149C 0013E3DC  38 21 00 10 */ addi r1, r1, 0x10

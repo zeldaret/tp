@@ -3,12 +3,12 @@
 .section .text, "ax" # 80232a3c
 
 
-.global dMsgObject_getGroupID
-dMsgObject_getGroupID:
+.global dMsgObject_getGroupID__Fv
+dMsgObject_getGroupID__Fv:
 /* 80232A3C 0022F97C  A8 6D 8B 48 */	lha r3, lbl_804510C8-_SDA_BASE_(r13)
 /* 80232A40 0022F980  4E 80 00 20 */	blr 
-.global dMsgObject_searchSSItem
-dMsgObject_searchSSItem:
+.global dMsgObject_searchSSItem__FPvPv
+dMsgObject_searchSSItem__FPvPv:
 /* 80232A44 0022F984  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80232A48 0022F988  7C 08 02 A6 */	mflr r0
 /* 80232A4C 0022F98C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -18,7 +18,7 @@ dMsgObject_searchSSItem:
 /* 80232A5C 0022F99C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80232A60 0022F9A0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80232A64 0022F9A4  83 E4 5D AC */	lwz r31, 0x5dac(r4)
-/* 80232A68 0022F9A8  4B DE 62 79 */	bl fopAc_IsActor
+/* 80232A68 0022F9A8  4B DE 62 79 */	bl fopAc_IsActor__FPv
 /* 80232A6C 0022F9AC  2C 03 00 00 */	cmpwi r3, 0
 /* 80232A70 0022F9B0  41 82 00 60 */	beq lbl_80232AD0
 /* 80232A74 0022F9B4  A8 1E 00 08 */	lha r0, 8(r30)
@@ -54,8 +54,8 @@ lbl_80232AD4:
 /* 80232AE4 0022FA24  38 21 00 10 */	addi r1, r1, 0x10
 /* 80232AE8 0022FA28  4E 80 00 20 */	blr 
 
-.global dMsgObject_HowlHIO_c
-dMsgObject_HowlHIO_c:
+.global __ct__20dMsgObject_HowlHIO_cFv
+__ct__20dMsgObject_HowlHIO_cFv:
 /* 80232AEC 0022FA2C  3C 80 80 3C */	lis r4, lbl_803C0BE4@ha
 /* 80232AF0 0022FA30  38 04 0B E4 */	addi r0, r4, lbl_803C0BE4@l
 /* 80232AF4 0022FA34  90 03 00 00 */	stw r0, 0(r3)
@@ -217,8 +217,8 @@ dMsgObject_HowlHIO_c:
 /* 80232D64 0022FCA4  D0 03 00 A8 */	stfs f0, 0xa8(r3)
 /* 80232D68 0022FCA8  4E 80 00 20 */	blr 
 
-.global dMsgObject_HIO_c
-dMsgObject_HIO_c:
+.global __ct__16dMsgObject_HIO_cFv
+__ct__16dMsgObject_HIO_cFv:
 /* 80232D6C 0022FCAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80232D70 0022FCB0  7C 08 02 A6 */	mflr r0
 /* 80232D74 0022FCB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -229,23 +229,23 @@ dMsgObject_HIO_c:
 /* 80232D88 0022FCC8  38 03 0B D8 */	addi r0, r3, lbl_803C0BD8@l
 /* 80232D8C 0022FCCC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80232D90 0022FCD0  38 7F 00 E8 */	addi r3, r31, 0xe8
-.global JUtility_NS_TColor
-/* 80232D94 0022FCD4  3C 80 80 19 */	lis r4, JUtility_NS_TColor@ha
-.global JUtility_NS_TColor
-/* 80232D98 0022FCD8  38 84 39 60 */	addi r4, r4, JUtility_NS_TColor@l
+.global __ct__Q28JUtility6TColorFv
+/* 80232D94 0022FCD4  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
+.global __ct__Q28JUtility6TColorFv
+/* 80232D98 0022FCD8  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 80232D9C 0022FCDC  38 A0 00 00 */	li r5, 0
 /* 80232DA0 0022FCE0  38 C0 00 04 */	li r6, 4
 /* 80232DA4 0022FCE4  38 E0 00 14 */	li r7, 0x14
-/* 80232DA8 0022FCE8  48 12 EF B9 */	bl func_80361D60
+/* 80232DA8 0022FCE8  48 12 EF B9 */	bl __construct_array
 /* 80232DAC 0022FCEC  38 7F 01 38 */	addi r3, r31, 0x138
-.global JUtility_NS_TColor
-/* 80232DB0 0022FCF0  3C 80 80 19 */	lis r4, JUtility_NS_TColor@ha
-.global JUtility_NS_TColor
-/* 80232DB4 0022FCF4  38 84 39 60 */	addi r4, r4, JUtility_NS_TColor@l
+.global __ct__Q28JUtility6TColorFv
+/* 80232DB0 0022FCF0  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
+.global __ct__Q28JUtility6TColorFv
+/* 80232DB4 0022FCF4  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 80232DB8 0022FCF8  38 A0 00 00 */	li r5, 0
 /* 80232DBC 0022FCFC  38 C0 00 04 */	li r6, 4
 /* 80232DC0 0022FD00  38 E0 00 14 */	li r7, 0x14
-/* 80232DC4 0022FD04  48 12 EF 9D */	bl func_80361D60
+/* 80232DC4 0022FD04  48 12 EF 9D */	bl __construct_array
 /* 80232DC8 0022FD08  38 00 FF FF */	li r0, -1
 /* 80232DCC 0022FD0C  90 1F 01 88 */	stw r0, 0x188(r31)
 /* 80232DD0 0022FD10  90 1F 02 D4 */	stw r0, 0x2d4(r31)
@@ -255,7 +255,7 @@ dMsgObject_HIO_c:
 /* 80232DE0 0022FD20  90 1F 02 E4 */	stw r0, 0x2e4(r31)
 /* 80232DE4 0022FD24  90 1F 02 E8 */	stw r0, 0x2e8(r31)
 /* 80232DE8 0022FD28  38 7F 03 5C */	addi r3, r31, 0x35c
-/* 80232DEC 0022FD2C  4B FF FD 01 */	bl dMsgObject_HowlHIO_c
+/* 80232DEC 0022FD2C  4B FF FD 01 */	bl __ct__20dMsgObject_HowlHIO_cFv
 /* 80232DF0 0022FD30  C0 02 B0 C8 */	lfs f0, lbl_80454AC8-_SDA2_BASE_(r2)
 /* 80232DF4 0022FD34  D0 1F 00 08 */	stfs f0, 8(r31)
 /* 80232DF8 0022FD38  C0 02 B0 CC */	lfs f0, lbl_80454ACC-_SDA2_BASE_(r2)
@@ -553,8 +553,8 @@ lbl_80232FE8:
 /* 8023327C 002301BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80233280 002301C0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS__create
-dMsgObject_c_NS__create:
+.global _create__12dMsgObject_cFP9msg_class
+_create__12dMsgObject_cFP9msg_class:
 /* 80233284 002301C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80233288 002301C8  7C 08 02 A6 */	mflr r0
 /* 8023328C 002301CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -620,7 +620,7 @@ lbl_8023332C:
 /* 80233378 002302B8  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8023337C 002302BC  90 1E 01 28 */	stw r0, 0x128(r30)
 /* 80233380 002302C0  38 60 00 00 */	li r3, 0
-/* 80233384 002302C4  48 00 4D 41 */	bl dMsgObject_c_NS_changeGroup
+/* 80233384 002302C4  48 00 4D 41 */	bl changeGroup__12dMsgObject_cFs
 /* 80233388 002302C8  38 00 00 00 */	li r0, 0
 /* 8023338C 002302CC  90 1E 01 0C */	stw r0, 0x10c(r30)
 /* 80233390 002302D0  90 1E 01 04 */	stw r0, 0x104(r30)
@@ -628,7 +628,7 @@ lbl_8023332C:
 /* 80233398 002302D8  48 09 B8 B5 */	bl __nw__FUl
 /* 8023339C 002302DC  7C 60 1B 79 */	or. r0, r3, r3
 /* 802333A0 002302E0  41 82 00 0C */	beq lbl_802333AC
-/* 802333A4 002302E4  48 07 5C C9 */	bl JMessage_NS_TResourceContainer
+/* 802333A4 002302E4  48 07 5C C9 */	bl __ct__Q28JMessage18TResourceContainerFv
 /* 802333A8 002302E8  7C 60 1B 78 */	mr r0, r3
 lbl_802333AC:
 /* 802333AC 002302EC  90 1E 01 10 */	stw r0, 0x110(r30)
@@ -638,7 +638,7 @@ lbl_802333AC:
 /* 802333BC 002302FC  48 09 B8 91 */	bl __nw__FUl
 /* 802333C0 00230300  7C 60 1B 79 */	or. r0, r3, r3
 /* 802333C4 00230304  41 82 00 0C */	beq lbl_802333D0
-/* 802333C8 00230308  4B FF 57 3D */	bl jmessage_tReference
+/* 802333C8 00230308  4B FF 57 3D */	bl __ct__19jmessage_tReferenceFv
 /* 802333CC 0023030C  7C 60 1B 78 */	mr r0, r3
 lbl_802333D0:
 /* 802333D0 00230310  90 1E 01 18 */	stw r0, 0x118(r30)
@@ -651,7 +651,7 @@ lbl_802333D0:
 /* 802333EC 0023032C  41 82 00 14 */	beq lbl_80233400
 /* 802333F0 00230330  80 9E 01 18 */	lwz r4, 0x118(r30)
 /* 802333F4 00230334  80 BE 01 14 */	lwz r5, 0x114(r30)
-/* 802333F8 00230338  4B FF 81 61 */	bl jmessage_tSequenceProcessor
+/* 802333F8 00230338  4B FF 81 61 */	bl __ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl
 /* 802333FC 0023033C  7C 60 1B 78 */	mr r0, r3
 lbl_80233400:
 /* 80233400 00230340  90 1E 01 1C */	stw r0, 0x11c(r30)
@@ -660,7 +660,7 @@ lbl_80233400:
 /* 8023340C 0023034C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80233410 00230350  41 82 00 10 */	beq lbl_80233420
 /* 80233414 00230354  80 9E 01 18 */	lwz r4, 0x118(r30)
-/* 80233418 00230358  4B FF 98 99 */	bl jmessage_tRenderingProcessor
+/* 80233418 00230358  4B FF 98 99 */	bl __ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference
 /* 8023341C 0023035C  7C 60 1B 78 */	mr r0, r3
 lbl_80233420:
 /* 80233420 00230360  90 1E 01 20 */	stw r0, 0x120(r30)
@@ -680,7 +680,7 @@ lbl_80233420:
 /* 80233458 00230398  7C 60 1B 79 */	or. r0, r3, r3
 /* 8023345C 0023039C  41 82 00 10 */	beq lbl_8023346C
 /* 80233460 002303A0  80 9E 01 10 */	lwz r4, 0x110(r30)
-/* 80233464 002303A4  48 07 5C CD */	bl JMessage_NS_TParse
+/* 80233464 002303A4  48 07 5C CD */	bl __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer
 /* 80233468 002303A8  7C 60 1B 78 */	mr r0, r3
 lbl_8023346C:
 /* 8023346C 002303AC  90 1E 01 24 */	stw r0, 0x124(r30)
@@ -691,7 +691,7 @@ lbl_8023346C:
 /* 80233480 002303C0  38 A0 00 00 */	li r5, 0
 /* 80233484 002303C4  48 0A 94 8D */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 80233488 002303C8  80 7E 01 14 */	lwz r3, 0x114(r30)
-/* 8023348C 002303CC  48 07 41 49 */	bl JMessage_NS_TControl_NS_reset
+/* 8023348C 002303CC  48 07 41 49 */	bl reset__Q28JMessage8TControlFv
 /* 80233490 002303D0  80 7E 01 14 */	lwz r3, 0x114(r30)
 /* 80233494 002303D4  80 83 00 04 */	lwz r4, 4(r3)
 /* 80233498 002303D8  28 04 00 00 */	cmplwi r4, 0
@@ -708,7 +708,7 @@ lbl_802334BC:
 /* 802334BC 002303FC  38 00 00 00 */	li r0, 0
 /* 802334C0 00230400  90 03 00 10 */	stw r0, 0x10(r3)
 /* 802334C4 00230404  80 7E 01 18 */	lwz r3, 0x118(r30)
-/* 802334C8 00230408  4B FF 63 49 */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 802334C8 00230408  4B FF 63 49 */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 802334CC 0023040C  C0 02 B0 BC */	lfs f0, lbl_80454ABC-_SDA2_BASE_(r2)
 /* 802334D0 00230410  D0 1E 01 50 */	stfs f0, 0x150(r30)
 /* 802334D4 00230414  38 60 00 00 */	li r3, 0
@@ -743,12 +743,12 @@ lbl_802334BC:
 /* 80233548 00230488  B0 7E 01 72 */	sth r3, 0x172(r30)
 /* 8023354C 0023048C  7F C3 F3 78 */	mr r3, r30
 /* 80233550 00230490  38 80 00 01 */	li r4, 1
-/* 80233554 00230494  48 00 33 91 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80233554 00230494  48 00 33 91 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80233558 00230498  38 60 00 2C */	li r3, 0x2c
 /* 8023355C 0023049C  48 09 B6 F1 */	bl __nw__FUl
 /* 80233560 002304A0  7C 60 1B 79 */	or. r0, r3, r3
 /* 80233564 002304A4  41 82 00 0C */	beq lbl_80233570
-/* 80233568 002304A8  48 01 66 B9 */	bl dMsgString_c
+/* 80233568 002304A8  48 01 66 B9 */	bl __ct__12dMsgString_cFv
 /* 8023356C 002304AC  7C 60 1B 78 */	mr r0, r3
 lbl_80233570:
 /* 80233570 002304B0  90 1E 01 08 */	stw r0, 0x108(r30)
@@ -760,8 +760,8 @@ lbl_80233570:
 /* 80233588 002304C8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023358C 002304CC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS__execute
-dMsgObject_c_NS__execute:
+.global _execute__12dMsgObject_cFv
+_execute__12dMsgObject_cFv:
 /* 80233590 002304D0  94 21 EF C0 */	stwu r1, -0x1040(r1)
 /* 80233594 002304D4  7C 08 02 A6 */	mflr r0
 /* 80233598 002304D8  90 01 10 44 */	stw r0, 0x1044(r1)
@@ -773,20 +773,20 @@ dMsgObject_c_NS__execute:
 /* 802335B0 002304F0  80 63 01 44 */	lwz r3, 0x144(r3)
 /* 802335B4 002304F4  28 03 00 00 */	cmplwi r3, 0
 /* 802335B8 002304F8  41 82 00 0C */	beq lbl_802335C4
-/* 802335BC 002304FC  4B DD BC 11 */	bl mDoExt_setCurrentHeap
+/* 802335BC 002304FC  4B DD BC 11 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 802335C0 00230500  90 7F 01 48 */	stw r3, 0x148(r31)
 lbl_802335C4:
 /* 802335C4 00230504  88 1F 04 D2 */	lbz r0, 0x4d2(r31)
 /* 802335C8 00230508  28 00 00 00 */	cmplwi r0, 0
 /* 802335CC 0023050C  41 82 00 3C */	beq lbl_80233608
 /* 802335D0 00230510  7F E3 FB 78 */	mr r3, r31
-/* 802335D4 00230514  48 00 33 25 */	bl dMsgObject_c_NS_getStatusLocal
+/* 802335D4 00230514  48 00 33 25 */	bl getStatusLocal__12dMsgObject_cFv
 /* 802335D8 00230518  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 802335DC 0023051C  28 00 00 01 */	cmplwi r0, 1
 /* 802335E0 00230520  41 82 00 14 */	beq lbl_802335F4
 /* 802335E4 00230524  7F E3 FB 78 */	mr r3, r31
 /* 802335E8 00230528  38 80 00 13 */	li r4, 0x13
-/* 802335EC 0023052C  48 00 32 F9 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802335EC 0023052C  48 00 32 F9 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 802335F0 00230530  48 00 00 10 */	b lbl_80233600
 lbl_802335F4:
 /* 802335F4 00230534  38 00 00 00 */	li r0, 0
@@ -798,9 +798,9 @@ lbl_80233600:
 lbl_80233608:
 /* 80233608 00230548  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 8023360C 0023054C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 80233610 00230550  4B FE 8C 29 */	bl dMeter2Info_c_NS_decMsgKeyWaitTimer
+/* 80233610 00230550  4B FE 8C 29 */	bl decMsgKeyWaitTimer__13dMeter2Info_cFv
 /* 80233614 00230554  80 7F 01 14 */	lwz r3, 0x114(r31)
-/* 80233618 00230558  48 07 40 1D */	bl JMessage_NS_TControl_NS_update
+/* 80233618 00230558  48 07 40 1D */	bl update__Q28JMessage8TControlFv
 /* 8023361C 0023055C  98 7F 04 CA */	stb r3, 0x4ca(r31)
 /* 80233620 00230560  3C 60 80 43 */	lis r3, lbl_8043028C@ha
 /* 80233624 00230564  38 63 02 8C */	addi r3, r3, lbl_8043028C@l
@@ -812,7 +812,7 @@ lbl_80233608:
 /* 8023363C 0023057C  28 00 00 00 */	cmplwi r0, 0
 /* 80233640 00230580  41 82 00 F8 */	beq lbl_80233738
 /* 80233644 00230584  80 7F 01 14 */	lwz r3, 0x114(r31)
-/* 80233648 00230588  48 07 3F 8D */	bl JMessage_NS_TControl_NS_reset
+/* 80233648 00230588  48 07 3F 8D */	bl reset__Q28JMessage8TControlFv
 /* 8023364C 0023058C  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 80233650 00230590  80 83 00 04 */	lwz r4, 4(r3)
 /* 80233654 00230594  28 04 00 00 */	cmplwi r4, 0
@@ -829,13 +829,13 @@ lbl_80233678:
 /* 80233678 002305B8  38 00 00 00 */	li r0, 0
 /* 8023367C 002305BC  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80233680 002305C0  80 7F 01 18 */	lwz r3, 0x118(r31)
-/* 80233684 002305C4  4B FF 61 8D */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 80233684 002305C4  4B FF 61 8D */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 80233688 002305C8  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 8023368C 002305CC  80 03 05 B8 */	lwz r0, 0x5b8(r3)
 /* 80233690 002305D0  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 80233694 002305D4  54 04 84 3E */	srwi r4, r0, 0x10
 /* 80233698 002305D8  54 05 04 3E */	clrlwi r5, r0, 0x10
-/* 8023369C 002305DC  48 07 41 4D */	bl JMessage_NS_TControl_NS_setMessageCode
+/* 8023369C 002305DC  48 07 41 4D */	bl setMessageCode__Q28JMessage8TControlFUsUs
 /* 802336A0 002305E0  38 00 00 00 */	li r0, 0
 /* 802336A4 002305E4  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 802336A8 002305E8  90 03 05 B8 */	stw r0, 0x5b8(r3)
@@ -877,16 +877,16 @@ lbl_80233704:
 /* 80233734 00230674  41 80 FF D0 */	blt lbl_80233704
 lbl_80233738:
 /* 80233738 00230678  80 7F 01 14 */	lwz r3, 0x114(r31)
-/* 8023373C 0023067C  48 07 3E F9 */	bl JMessage_NS_TControl_NS_update
+/* 8023373C 0023067C  48 07 3E F9 */	bl update__Q28JMessage8TControlFv
 /* 80233740 00230680  98 7F 04 CA */	stb r3, 0x4ca(r31)
 lbl_80233744:
 /* 80233744 00230684  7F E3 FB 78 */	mr r3, r31
-/* 80233748 00230688  48 00 31 B1 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80233748 00230688  48 00 31 B1 */	bl getStatusLocal__12dMsgObject_cFv
 /* 8023374C 0023068C  B0 7F 01 66 */	sth r3, 0x166(r31)
 /* 80233750 00230690  38 00 00 00 */	li r0, 0
 /* 80233754 00230694  98 1F 01 A2 */	stb r0, 0x1a2(r31)
 /* 80233758 00230698  7F E3 FB 78 */	mr r3, r31
-/* 8023375C 0023069C  48 00 31 9D */	bl dMsgObject_c_NS_getStatusLocal
+/* 8023375C 0023069C  48 00 31 9D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80233760 002306A0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80233764 002306A4  28 00 00 18 */	cmplwi r0, 0x18
 /* 80233768 002306A8  41 81 00 B4 */	bgt lbl_8023381C
@@ -897,50 +897,50 @@ lbl_80233744:
 /* 8023377C 002306BC  7C 09 03 A6 */	mtctr r0
 /* 80233780 002306C0  4E 80 04 20 */	bctr 
 /* 80233784 002306C4  7F E3 FB 78 */	mr r3, r31
-/* 80233788 002306C8  48 00 09 C9 */	bl dMsgObject_c_NS_waitProc
+/* 80233788 002306C8  48 00 09 C9 */	bl waitProc__12dMsgObject_cFv
 /* 8023378C 002306CC  48 00 00 90 */	b lbl_8023381C
 /* 80233790 002306D0  7F E3 FB 78 */	mr r3, r31
-/* 80233794 002306D4  48 00 0B 85 */	bl dMsgObject_c_NS_openProc
+/* 80233794 002306D4  48 00 0B 85 */	bl openProc__12dMsgObject_cFv
 /* 80233798 002306D8  48 00 00 84 */	b lbl_8023381C
 /* 8023379C 002306DC  7F E3 FB 78 */	mr r3, r31
-/* 802337A0 002306E0  48 00 12 39 */	bl dMsgObject_c_NS_outnowProc
+/* 802337A0 002306E0  48 00 12 39 */	bl outnowProc__12dMsgObject_cFv
 /* 802337A4 002306E4  48 00 00 78 */	b lbl_8023381C
 /* 802337A8 002306E8  7F E3 FB 78 */	mr r3, r31
-/* 802337AC 002306EC  48 00 15 21 */	bl dMsgObject_c_NS_outwaitProc
+/* 802337AC 002306EC  48 00 15 21 */	bl outwaitProc__12dMsgObject_cFv
 /* 802337B0 002306F0  48 00 00 6C */	b lbl_8023381C
 /* 802337B4 002306F4  7F E3 FB 78 */	mr r3, r31
-/* 802337B8 002306F8  48 00 18 39 */	bl dMsgObject_c_NS_stopProc
+/* 802337B8 002306F8  48 00 18 39 */	bl stopProc__12dMsgObject_cFv
 /* 802337BC 002306FC  48 00 00 60 */	b lbl_8023381C
 /* 802337C0 00230700  7F E3 FB 78 */	mr r3, r31
-/* 802337C4 00230704  48 00 18 31 */	bl dMsgObject_c_NS_continueProc
+/* 802337C4 00230704  48 00 18 31 */	bl continueProc__12dMsgObject_cFv
 /* 802337C8 00230708  48 00 00 54 */	b lbl_8023381C
 /* 802337CC 0023070C  7F E3 FB 78 */	mr r3, r31
-/* 802337D0 00230710  48 00 1B 4D */	bl dMsgObject_c_NS_selectProc
+/* 802337D0 00230710  48 00 1B 4D */	bl selectProc__12dMsgObject_cFv
 /* 802337D4 00230714  48 00 00 48 */	b lbl_8023381C
 /* 802337D8 00230718  7F E3 FB 78 */	mr r3, r31
-/* 802337DC 0023071C  48 00 20 A1 */	bl dMsgObject_c_NS_selectEndProc
+/* 802337DC 0023071C  48 00 20 A1 */	bl selectEndProc__12dMsgObject_cFv
 /* 802337E0 00230720  48 00 00 3C */	b lbl_8023381C
 /* 802337E4 00230724  7F E3 FB 78 */	mr r3, r31
-/* 802337E8 00230728  48 00 20 ED */	bl dMsgObject_c_NS_inputProc
+/* 802337E8 00230728  48 00 20 ED */	bl inputProc__12dMsgObject_cFv
 /* 802337EC 0023072C  48 00 00 30 */	b lbl_8023381C
 /* 802337F0 00230730  7F E3 FB 78 */	mr r3, r31
-/* 802337F4 00230734  48 00 22 E1 */	bl dMsgObject_c_NS_finishProc
+/* 802337F4 00230734  48 00 22 E1 */	bl finishProc__12dMsgObject_cFv
 /* 802337F8 00230738  48 00 00 24 */	b lbl_8023381C
 /* 802337FC 0023073C  7F E3 FB 78 */	mr r3, r31
-/* 80233800 00230740  48 00 24 C1 */	bl dMsgObject_c_NS_endProc
+/* 80233800 00230740  48 00 24 C1 */	bl endProc__12dMsgObject_cFv
 /* 80233804 00230744  48 00 00 18 */	b lbl_8023381C
 /* 80233808 00230748  7F E3 FB 78 */	mr r3, r31
-/* 8023380C 0023074C  48 00 26 B1 */	bl dMsgObject_c_NS_deleteProc
+/* 8023380C 0023074C  48 00 26 B1 */	bl deleteProc__12dMsgObject_cFv
 /* 80233810 00230750  48 00 00 0C */	b lbl_8023381C
 /* 80233814 00230754  7F E3 FB 78 */	mr r3, r31
-/* 80233818 00230758  48 00 28 85 */	bl dMsgObject_c_NS_textmodeProc
+/* 80233818 00230758  48 00 28 85 */	bl textmodeProc__12dMsgObject_cFv
 lbl_8023381C:
 /* 8023381C 0023075C  7F E3 FB 78 */	mr r3, r31
-/* 80233820 00230760  48 00 43 49 */	bl dMsgObject_c_NS_isDraw
+/* 80233820 00230760  48 00 43 49 */	bl isDraw__12dMsgObject_cFv
 /* 80233824 00230764  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80233828 00230768  41 82 01 10 */	beq lbl_80233938
 /* 8023382C 0023076C  7F E3 FB 78 */	mr r3, r31
-/* 80233830 00230770  48 00 39 B5 */	bl dMsgObject_c_NS_isPlaceMessage
+/* 80233830 00230770  48 00 39 B5 */	bl isPlaceMessage__12dMsgObject_cFv
 /* 80233834 00230774  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80233838 00230778  40 82 01 00 */	bne lbl_80233938
 /* 8023383C 0023077C  80 7F 01 18 */	lwz r3, 0x118(r31)
@@ -1006,7 +1006,7 @@ lbl_802338FC:
 /* 8023391C 0023085C  B0 05 00 08 */	sth r0, 8(r5)
 /* 80233920 00230860  80 6D 85 F0 */	lwz r3, lbl_80450B70-_SDA_BASE_(r13)
 /* 80233924 00230864  A8 81 08 12 */	lha r4, 0x812(r1)
-/* 80233928 00230868  48 09 86 39 */	bl Z2SpeechMgr2_NS_setTextCount
+/* 80233928 00230868  48 09 86 39 */	bl setTextCount__12Z2SpeechMgr2Fs
 /* 8023392C 0023086C  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 80233930 00230870  A8 03 04 0E */	lha r0, 0x40e(r3)
 /* 80233934 00230874  B0 03 04 10 */	sth r0, 0x410(r3)
@@ -1029,14 +1029,14 @@ lbl_80233954:
 /* 80233970 002308B0  B0 1F 01 7E */	sth r0, 0x17e(r31)
 lbl_80233974:
 /* 80233974 002308B4  7F E3 FB 78 */	mr r3, r31
-/* 80233978 002308B8  48 00 2F 81 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80233978 002308B8  48 00 2F 81 */	bl getStatusLocal__12dMsgObject_cFv
 /* 8023397C 002308BC  B0 7F 01 68 */	sth r3, 0x168(r31)
 /* 80233980 002308C0  38 00 00 00 */	li r0, 0
 /* 80233984 002308C4  98 1F 04 C9 */	stb r0, 0x4c9(r31)
 /* 80233988 002308C8  80 7F 01 48 */	lwz r3, 0x148(r31)
 /* 8023398C 002308CC  28 03 00 00 */	cmplwi r3, 0
 /* 80233990 002308D0  41 82 00 10 */	beq lbl_802339A0
-/* 80233994 002308D4  4B DD B8 39 */	bl mDoExt_setCurrentHeap
+/* 80233994 002308D4  4B DD B8 39 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80233998 002308D8  38 00 00 00 */	li r0, 0
 /* 8023399C 002308DC  90 1F 01 48 */	stw r0, 0x148(r31)
 lbl_802339A0:
@@ -1048,15 +1048,15 @@ lbl_802339A0:
 /* 802339B4 002308F4  38 21 10 40 */	addi r1, r1, 0x1040
 /* 802339B8 002308F8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS__draw
-dMsgObject_c_NS__draw:
+.global _draw__12dMsgObject_cFv
+_draw__12dMsgObject_cFv:
 /* 802339BC 002308FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802339C0 00230900  7C 08 02 A6 */	mflr r0
 /* 802339C4 00230904  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802339C8 00230908  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802339CC 0023090C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802339D0 00230910  7C 7E 1B 78 */	mr r30, r3
-/* 802339D4 00230914  48 00 2F 25 */	bl dMsgObject_c_NS_getStatusLocal
+/* 802339D4 00230914  48 00 2F 25 */	bl getStatusLocal__12dMsgObject_cFv
 /* 802339D8 00230918  54 60 04 3F */	clrlwi. r0, r3, 0x10
 /* 802339DC 0023091C  41 82 00 98 */	beq lbl_80233A74
 /* 802339E0 00230920  28 00 00 01 */	cmplwi r0, 1
@@ -1064,11 +1064,11 @@ dMsgObject_c_NS__draw:
 /* 802339E8 00230928  28 00 00 0B */	cmplwi r0, 0xb
 /* 802339EC 0023092C  41 82 00 88 */	beq lbl_80233A74
 /* 802339F0 00230930  7F C3 F3 78 */	mr r3, r30
-/* 802339F4 00230934  48 00 41 75 */	bl dMsgObject_c_NS_isDraw
+/* 802339F4 00230934  48 00 41 75 */	bl isDraw__12dMsgObject_cFv
 /* 802339F8 00230938  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802339FC 0023093C  41 82 00 0C */	beq lbl_80233A08
 /* 80233A00 00230940  80 7E 01 14 */	lwz r3, 0x114(r30)
-/* 80233A04 00230944  48 07 3C B9 */	bl JMessage_NS_TControl_NS_render
+/* 80233A04 00230944  48 07 3C B9 */	bl render__Q28JMessage8TControlFv
 lbl_80233A08:
 /* 80233A08 00230948  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80233A0C 0023094C  28 03 00 00 */	cmplwi r3, 0
@@ -1077,10 +1077,10 @@ lbl_80233A08:
 /* 80233A18 00230958  83 E4 00 04 */	lwz r31, 4(r4)
 /* 80233A1C 0023095C  38 9F 0A 1C */	addi r4, r31, 0xa1c
 /* 80233A20 00230960  38 BF 0C 1C */	addi r5, r31, 0xc1c
-/* 80233A24 00230964  48 00 89 3D */	bl dMsgScrnBase_c_NS_setString
+/* 80233A24 00230964  48 00 89 3D */	bl setString__14dMsgScrnBase_cFPcPc
 /* 80233A28 00230968  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80233A2C 0023096C  38 9F 0E 1C */	addi r4, r31, 0xe1c
-/* 80233A30 00230970  48 00 89 BD */	bl dMsgScrnBase_c_NS_setRubyString
+/* 80233A30 00230970  48 00 89 BD */	bl setRubyString__14dMsgScrnBase_cFPc
 /* 80233A34 00230974  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80233A38 00230978  38 9F 10 1C */	addi r4, r31, 0x101c
 /* 80233A3C 0023097C  38 BF 10 4E */	addi r5, r31, 0x104e
@@ -1109,13 +1109,13 @@ lbl_80233A74:
 /* 80233A94 002309D4  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80233A98 002309D8  38 83 00 AC */	addi r4, r3, 0xac
 /* 80233A9C 002309DC  38 A3 00 B0 */	addi r5, r3, 0xb0
-/* 80233AA0 002309E0  4B E2 2C F5 */	bl dDlst_list_c_NS_set
+/* 80233AA0 002309E0  4B E2 2C F5 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 80233AA4 002309E4  48 00 00 14 */	b lbl_80233AB8
 lbl_80233AA8:
 /* 80233AA8 002309E8  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80233AAC 002309EC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 80233AB0 002309F0  38 A3 01 B8 */	addi r5, r3, 0x1b8
-/* 80233AB4 002309F4  4B E2 2C E1 */	bl dDlst_list_c_NS_set
+/* 80233AB4 002309F4  4B E2 2C E1 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_80233AB8:
 /* 80233AB8 002309F8  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80233ABC 002309FC  81 83 00 00 */	lwz r12, 0(r3)
@@ -1131,8 +1131,8 @@ lbl_80233ACC:
 /* 80233AE0 00230A20  38 21 00 10 */	addi r1, r1, 0x10
 /* 80233AE4 00230A24  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS__delete
-dMsgObject_c_NS__delete:
+.global _delete__12dMsgObject_cFv
+_delete__12dMsgObject_cFv:
 /* 80233AE8 00230A28  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80233AEC 00230A2C  7C 08 02 A6 */	mflr r0
 /* 80233AF0 00230A30  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1151,7 +1151,7 @@ lbl_80233B08:
 /* 80233B20 00230A60  38 61 00 10 */	addi r3, r1, 0x10
 /* 80233B24 00230A64  38 9E 00 08 */	addi r4, r30, 8
 /* 80233B28 00230A68  38 A1 00 14 */	addi r5, r1, 0x14
-/* 80233B2C 00230A6C  48 0A 8F 2D */	bl JGadget_NS_TNodeLinkList_NS_erase
+/* 80233B2C 00230A6C  48 0A 8F 2D */	bl erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator
 /* 80233B30 00230A70  38 7E 00 08 */	addi r3, r30, 8
 /* 80233B34 00230A74  7F A4 EB 78 */	mr r4, r29
 /* 80233B38 00230A78  81 9E 00 14 */	lwz r12, 0x14(r30)
@@ -1200,7 +1200,7 @@ lbl_80233BC8:
 /* 80233BD0 00230B10  41 82 00 18 */	beq lbl_80233BE8
 /* 80233BD4 00230B14  38 7E 00 08 */	addi r3, r30, 8
 /* 80233BD8 00230B18  38 80 FF FF */	li r4, -1
-/* 80233BDC 00230B1C  48 07 53 1D */	bl JMessage_NS_TResourceContainer_NS_TCResource_NS_dtor
+/* 80233BDC 00230B1C  48 07 53 1D */	bl __dt__Q38JMessage18TResourceContainer10TCResourceFv
 /* 80233BE0 00230B20  7F C3 F3 78 */	mr r3, r30
 /* 80233BE4 00230B24  48 09 B1 59 */	bl __dl__FPv
 lbl_80233BE8:
@@ -1252,7 +1252,7 @@ lbl_80233C88:
 /* 80233C8C 00230BCC  90 1F 01 24 */	stw r0, 0x124(r31)
 /* 80233C90 00230BD0  80 7F 01 08 */	lwz r3, 0x108(r31)
 /* 80233C94 00230BD4  38 80 00 01 */	li r4, 1
-/* 80233C98 00230BD8  48 01 60 91 */	bl dMsgString_c_NS_dtor
+/* 80233C98 00230BD8  48 01 60 91 */	bl __dt__12dMsgString_cFv
 /* 80233C9C 00230BDC  38 60 00 00 */	li r3, 0
 /* 80233CA0 00230BE0  90 7F 01 08 */	stw r3, 0x108(r31)
 /* 80233CA4 00230BE4  80 1F 01 44 */	lwz r0, 0x144(r31)
@@ -1266,9 +1266,9 @@ lbl_80233CB4:
 /* 80233CC0 00230C00  28 00 00 05 */	cmplwi r0, 5
 /* 80233CC4 00230C04  40 82 00 14 */	bne lbl_80233CD8
 /* 80233CC8 00230C08  38 60 00 07 */	li r3, 7
-/* 80233CCC 00230C0C  4B DF A4 BD */	bl dComIfGp_offHeapLockFlag
+/* 80233CCC 00230C0C  4B DF A4 BD */	bl dComIfGp_offHeapLockFlag__Fi
 /* 80233CD0 00230C10  38 60 00 08 */	li r3, 8
-/* 80233CD4 00230C14  4B DF A4 B5 */	bl dComIfGp_offHeapLockFlag
+/* 80233CD4 00230C14  4B DF A4 B5 */	bl dComIfGp_offHeapLockFlag__Fi
 lbl_80233CD8:
 /* 80233CD8 00230C18  38 00 00 00 */	li r0, 0
 /* 80233CDC 00230C1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1282,8 +1282,8 @@ lbl_80233CD8:
 /* 80233CFC 00230C3C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80233D00 00230C40  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setMessageIndex
-dMsgObject_c_NS_setMessageIndex:
+.global setMessageIndex__12dMsgObject_cFUlUlb
+setMessageIndex__12dMsgObject_cFUlUlb:
 /* 80233D04 00230C44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80233D08 00230C48  7C 08 02 A6 */	mflr r0
 /* 80233D0C 00230C4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1293,7 +1293,7 @@ dMsgObject_c_NS_setMessageIndex:
 /* 80233D1C 00230C5C  7C BB 2B 78 */	mr r27, r5
 /* 80233D20 00230C60  7C DF 33 78 */	mr r31, r6
 /* 80233D24 00230C64  90 83 01 58 */	stw r4, 0x158(r3)
-/* 80233D28 00230C68  48 00 02 B1 */	bl dMsgObject_c_NS_getRevoMessageIndex
+/* 80233D28 00230C68  48 00 02 B1 */	bl getRevoMessageIndex__12dMsgObject_cFUl
 /* 80233D2C 00230C6C  7C 7E 1B 78 */	mr r30, r3
 /* 80233D30 00230C70  88 1D 04 CC */	lbz r0, 0x4cc(r29)
 /* 80233D34 00230C74  28 00 00 00 */	cmplwi r0, 0
@@ -1314,7 +1314,7 @@ lbl_80233D44:
 /* 80233D6C 00230CAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80233D70 00230CB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80233D74 00230CB4  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80233D78 00230CB8  4B E0 F9 15 */	bl dEvt_control_c_NS_setPtT
+/* 80233D78 00230CB8  4B E0 F9 15 */	bl setPtT__14dEvt_control_cFPv
 /* 80233D7C 00230CBC  38 00 00 01 */	li r0, 1
 /* 80233D80 00230CC0  98 1D 04 D1 */	stb r0, 0x4d1(r29)
 /* 80233D84 00230CC4  80 1D 01 40 */	lwz r0, 0x140(r29)
@@ -1322,8 +1322,8 @@ lbl_80233D44:
 lbl_80233D8C:
 /* 80233D8C 00230CCC  7F A3 EB 78 */	mr r3, r29
 /* 80233D90 00230CD0  80 9D 01 54 */	lwz r4, 0x154(r29)
-/* 80233D94 00230CD4  48 00 03 A9 */	bl dMsgObject_c_NS_getMessageGroup
-/* 80233D98 00230CD8  48 00 43 2D */	bl dMsgObject_c_NS_changeGroup
+/* 80233D94 00230CD4  48 00 03 A9 */	bl getMessageGroup__12dMsgObject_cFUl
+/* 80233D98 00230CD8  48 00 43 2D */	bl changeGroup__12dMsgObject_cFs
 /* 80233D9C 00230CDC  38 00 00 00 */	li r0, 0
 /* 80233DA0 00230CE0  B0 1D 01 72 */	sth r0, 0x172(r29)
 /* 80233DA4 00230CE4  A8 1D 01 72 */	lha r0, 0x172(r29)
@@ -1335,7 +1335,7 @@ lbl_80233D8C:
 /* 80233DBC 00230CFC  7F 7C 02 14 */	add r27, r28, r0
 /* 80233DC0 00230D00  7F A3 EB 78 */	mr r3, r29
 /* 80233DC4 00230D04  7F C4 F3 78 */	mr r4, r30
-/* 80233DC8 00230D08  48 00 01 BD */	bl dMsgObject_c_NS_getMessageIndex
+/* 80233DC8 00230D08  48 00 01 BD */	bl getMessageIndex__12dMsgObject_cFUl
 /* 80233DCC 00230D0C  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 80233DD0 00230D10  7C 7C 02 14 */	add r3, r28, r0
 /* 80233DD4 00230D14  88 03 00 1F */	lbz r0, 0x1f(r3)
@@ -1351,7 +1351,7 @@ lbl_80233D8C:
 /* 80233DFC 00230D3C  48 00 00 40 */	b lbl_80233E3C
 lbl_80233E00:
 /* 80233E00 00230D40  7F A3 EB 78 */	mr r3, r29
-/* 80233E04 00230D44  48 00 01 81 */	bl dMsgObject_c_NS_getMessageIndex
+/* 80233E04 00230D44  48 00 01 81 */	bl getMessageIndex__12dMsgObject_cFUl
 /* 80233E08 00230D48  28 03 02 64 */	cmplwi r3, 0x264
 /* 80233E0C 00230D4C  40 82 00 14 */	bne lbl_80233E20
 /* 80233E10 00230D50  38 00 00 00 */	li r0, 0
@@ -1373,7 +1373,7 @@ lbl_80233E3C:
 /* 80233E48 00230D88  80 9D 01 54 */	lwz r4, 0x154(r29)
 /* 80233E4C 00230D8C  38 A0 00 00 */	li r5, 0
 /* 80233E50 00230D90  38 C0 00 00 */	li r6, 0
-/* 80233E54 00230D94  48 07 3A A1 */	bl JMessage_NS_TControl_NS_setMessageID
+/* 80233E54 00230D94  48 07 3A A1 */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 lbl_80233E58:
 /* 80233E58 00230D98  39 61 00 20 */	addi r11, r1, 0x20
 /* 80233E5C 00230D9C  48 12 E3 C5 */	bl _restgpr_27
@@ -1382,8 +1382,8 @@ lbl_80233E58:
 /* 80233E68 00230DA8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80233E6C 00230DAC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setMessageIndexDemo
-dMsgObject_c_NS_setMessageIndexDemo:
+.global setMessageIndexDemo__12dMsgObject_cFUlb
+setMessageIndexDemo__12dMsgObject_cFUlb:
 /* 80233E70 00230DB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80233E74 00230DB4  7C 08 02 A6 */	mflr r0
 /* 80233E78 00230DB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1392,12 +1392,12 @@ dMsgObject_c_NS_setMessageIndexDemo:
 /* 80233E84 00230DC4  7C 7E 1B 78 */	mr r30, r3
 /* 80233E88 00230DC8  7C BF 2B 78 */	mr r31, r5
 /* 80233E8C 00230DCC  90 83 01 58 */	stw r4, 0x158(r3)
-/* 80233E90 00230DD0  48 00 01 49 */	bl dMsgObject_c_NS_getRevoMessageIndex
+/* 80233E90 00230DD0  48 00 01 49 */	bl getRevoMessageIndex__12dMsgObject_cFUl
 /* 80233E94 00230DD4  7C 7C 1B 78 */	mr r28, r3
 /* 80233E98 00230DD8  38 00 00 01 */	li r0, 1
 /* 80233E9C 00230DDC  98 1E 04 CB */	stb r0, 0x4cb(r30)
 /* 80233EA0 00230DE0  98 1E 04 D4 */	stb r0, 0x4d4(r30)
-/* 80233EA4 00230DE4  48 00 3A AD */	bl dMsgObject_c_NS_onCameraCancelFlag
+/* 80233EA4 00230DE4  48 00 3A AD */	bl onCameraCancelFlag__12dMsgObject_cFv
 /* 80233EA8 00230DE8  93 9E 01 54 */	stw r28, 0x154(r30)
 /* 80233EAC 00230DEC  38 00 02 64 */	li r0, 0x264
 /* 80233EB0 00230DF0  90 1E 01 5C */	stw r0, 0x15c(r30)
@@ -1412,7 +1412,7 @@ dMsgObject_c_NS_setMessageIndexDemo:
 /* 80233ED4 00230E14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80233ED8 00230E18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80233EDC 00230E1C  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80233EE0 00230E20  4B E0 F7 AD */	bl dEvt_control_c_NS_setPtT
+/* 80233EE0 00230E20  4B E0 F7 AD */	bl setPtT__14dEvt_control_cFPv
 /* 80233EE4 00230E24  38 00 00 01 */	li r0, 1
 /* 80233EE8 00230E28  98 1E 04 D1 */	stb r0, 0x4d1(r30)
 /* 80233EEC 00230E2C  80 1E 01 40 */	lwz r0, 0x140(r30)
@@ -1420,8 +1420,8 @@ dMsgObject_c_NS_setMessageIndexDemo:
 lbl_80233EF4:
 /* 80233EF4 00230E34  7F C3 F3 78 */	mr r3, r30
 /* 80233EF8 00230E38  80 9E 01 54 */	lwz r4, 0x154(r30)
-/* 80233EFC 00230E3C  48 00 02 41 */	bl dMsgObject_c_NS_getMessageGroup
-/* 80233F00 00230E40  48 00 41 C5 */	bl dMsgObject_c_NS_changeGroup
+/* 80233EFC 00230E3C  48 00 02 41 */	bl getMessageGroup__12dMsgObject_cFUl
+/* 80233F00 00230E40  48 00 41 C5 */	bl changeGroup__12dMsgObject_cFs
 /* 80233F04 00230E44  38 00 00 00 */	li r0, 0
 /* 80233F08 00230E48  B0 1E 01 72 */	sth r0, 0x172(r30)
 /* 80233F0C 00230E4C  A8 1E 01 72 */	lha r0, 0x172(r30)
@@ -1431,7 +1431,7 @@ lbl_80233EF4:
 /* 80233F1C 00230E5C  3B A3 00 20 */	addi r29, r3, 0x20
 /* 80233F20 00230E60  7F C3 F3 78 */	mr r3, r30
 /* 80233F24 00230E64  7F 84 E3 78 */	mr r4, r28
-/* 80233F28 00230E68  48 00 00 5D */	bl dMsgObject_c_NS_getMessageIndex
+/* 80233F28 00230E68  48 00 00 5D */	bl getMessageIndex__12dMsgObject_cFUl
 /* 80233F2C 00230E6C  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 80233F30 00230E70  7C 7D 02 14 */	add r3, r29, r0
 /* 80233F34 00230E74  88 03 00 1F */	lbz r0, 0x1f(r3)
@@ -1447,7 +1447,7 @@ lbl_80233EF4:
 /* 80233F5C 00230E9C  80 9E 01 54 */	lwz r4, 0x154(r30)
 /* 80233F60 00230EA0  38 A0 00 00 */	li r5, 0
 /* 80233F64 00230EA4  38 C0 00 00 */	li r6, 0
-/* 80233F68 00230EA8  48 07 39 8D */	bl JMessage_NS_TControl_NS_setMessageID
+/* 80233F68 00230EA8  48 07 39 8D */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 lbl_80233F6C:
 /* 80233F6C 00230EAC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80233F70 00230EB0  48 12 E2 B5 */	bl _restgpr_28
@@ -1456,8 +1456,8 @@ lbl_80233F6C:
 /* 80233F7C 00230EBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80233F80 00230EC0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMessageIndex
-dMsgObject_c_NS_getMessageIndex:
+.global getMessageIndex__12dMsgObject_cFUl
+getMessageIndex__12dMsgObject_cFUl:
 /* 80233F84 00230EC4  38 E0 00 00 */	li r7, 0
 /* 80233F88 00230EC8  38 A0 00 00 */	li r5, 0
 /* 80233F8C 00230ECC  80 C3 01 30 */	lwz r6, 0x130(r3)
@@ -1483,8 +1483,8 @@ lbl_80233FC8:
 /* 80233FD0 00230F10  38 60 02 64 */	li r3, 0x264
 /* 80233FD4 00230F14  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getRevoMessageIndex
-dMsgObject_c_NS_getRevoMessageIndex:
+.global getRevoMessageIndex__12dMsgObject_cFUl
+getRevoMessageIndex__12dMsgObject_cFUl:
 /* 80233FD8 00230F18  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80233FDC 00230F1C  7C 08 02 A6 */	mflr r0
 /* 80233FE0 00230F20  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1502,8 +1502,8 @@ dMsgObject_c_NS_getRevoMessageIndex:
 lbl_80234010:
 /* 80234010 00230F50  3B E0 00 00 */	li r31, 0
 /* 80234014 00230F54  3B A0 00 00 */	li r29, 0
-/* 80234018 00230F58  48 00 01 25 */	bl dMsgObject_c_NS_getMessageGroup
-/* 8023401C 00230F5C  48 00 40 A9 */	bl dMsgObject_c_NS_changeGroup
+/* 80234018 00230F58  48 00 01 25 */	bl getMessageGroup__12dMsgObject_cFUl
+/* 8023401C 00230F5C  48 00 40 A9 */	bl changeGroup__12dMsgObject_cFs
 /* 80234020 00230F60  80 7B 01 30 */	lwz r3, 0x130(r27)
 /* 80234024 00230F64  38 C3 00 20 */	addi r6, r3, 0x20
 /* 80234028 00230F68  A0 A3 00 28 */	lhz r5, 0x28(r3)
@@ -1556,8 +1556,8 @@ lbl_802340BC:
 /* 802340CC 0023100C  38 21 00 20 */	addi r1, r1, 0x20
 /* 802340D0 00231010  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMessageIndexAlways
-dMsgObject_c_NS_getMessageIndexAlways:
+.global getMessageIndexAlways__12dMsgObject_cFUl
+getMessageIndexAlways__12dMsgObject_cFUl:
 /* 802340D4 00231014  38 E0 00 00 */	li r7, 0
 /* 802340D8 00231018  38 A0 00 00 */	li r5, 0
 /* 802340DC 0023101C  80 C3 01 28 */	lwz r6, 0x128(r3)
@@ -1583,24 +1583,24 @@ lbl_80234118:
 /* 80234120 00231060  38 60 02 64 */	li r3, 0x264
 /* 80234124 00231064  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMessageIDAlways
-dMsgObject_c_NS_getMessageIDAlways:
+.global getMessageIDAlways__12dMsgObject_cFUl
+getMessageIDAlways__12dMsgObject_cFUl:
 /* 80234128 00231068  80 63 01 28 */	lwz r3, 0x128(r3)
 /* 8023412C 0023106C  1C 04 00 14 */	mulli r0, r4, 0x14
 /* 80234130 00231070  7C 63 02 14 */	add r3, r3, r0
 /* 80234134 00231074  A0 63 00 34 */	lhz r3, 0x34(r3)
 /* 80234138 00231078  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMessageGroup
-dMsgObject_c_NS_getMessageGroup:
+.global getMessageGroup__12dMsgObject_cFUl
+getMessageGroup__12dMsgObject_cFUl:
 /* 8023413C 0023107C  38 60 00 00 */	li r3, 0
 /* 80234140 00231080  28 04 13 88 */	cmplwi r4, 0x1388
 /* 80234144 00231084  4C 81 00 20 */	blelr 
 /* 80234148 00231088  A8 6D 8B 48 */	lha r3, lbl_804510C8-_SDA_BASE_(r13)
 /* 8023414C 0023108C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_waitProc
-dMsgObject_c_NS_waitProc:
+.global waitProc__12dMsgObject_cFv
+waitProc__12dMsgObject_cFv:
 /* 80234150 00231090  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80234154 00231094  7C 08 02 A6 */	mflr r0
 /* 80234158 00231098  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1614,7 +1614,7 @@ dMsgObject_c_NS_waitProc:
 /* 80234178 002310B8  41 82 01 08 */	beq lbl_80234280
 lbl_8023417C:
 /* 8023417C 002310BC  7F E3 FB 78 */	mr r3, r31
-/* 80234180 002310C0  48 00 2F B9 */	bl dMsgObject_c_NS_isMidonaNormalTalkWait
+/* 80234180 002310C0  48 00 2F B9 */	bl isMidonaNormalTalkWait__12dMsgObject_cFv
 /* 80234184 002310C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234188 002310C8  41 82 01 7C */	beq lbl_80234304
 /* 8023418C 002310CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1626,7 +1626,7 @@ lbl_8023417C:
 /* 802341A4 002310E4  80 03 5D 7C */	lwz r0, 0x5d7c(r3)
 /* 802341A8 002310E8  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 802341AC 002310EC  40 82 00 24 */	bne lbl_802341D0
-/* 802341B0 002310F0  48 00 37 85 */	bl dMsgObject_c_NS_isCameraCancelFlag
+/* 802341B0 002310F0  48 00 37 85 */	bl isCameraCancelFlag__12dMsgObject_cFv
 /* 802341B4 002310F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802341B8 002310F8  40 82 00 18 */	bne lbl_802341D0
 /* 802341BC 002310FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1646,9 +1646,9 @@ lbl_802341D0:
 /* 802341F0 00231130  98 1F 01 9F */	stb r0, 0x19f(r31)
 /* 802341F4 00231134  7F E3 FB 78 */	mr r3, r31
 /* 802341F8 00231138  38 80 00 02 */	li r4, 2
-/* 802341FC 0023113C  48 00 26 E9 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802341FC 0023113C  48 00 26 E9 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234200 00231140  7F E3 FB 78 */	mr r3, r31
-/* 80234204 00231144  48 00 30 39 */	bl dMsgObject_c_NS_isTalkMessage
+/* 80234204 00231144  48 00 30 39 */	bl isTalkMessage__12dMsgObject_cFv
 /* 80234208 00231148  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8023420C 0023114C  41 82 00 F8 */	beq lbl_80234304
 /* 80234210 00231150  38 00 00 61 */	li r0, 0x61
@@ -1673,13 +1673,13 @@ lbl_80234248:
 /* 80234258 00231198  41 81 00 14 */	bgt lbl_8023426C
 /* 8023425C 0023119C  7F E3 FB 78 */	mr r3, r31
 /* 80234260 002311A0  38 A0 00 01 */	li r5, 1
-/* 80234264 002311A4  4B FF FC 0D */	bl dMsgObject_c_NS_setMessageIndexDemo
+/* 80234264 002311A4  4B FF FC 0D */	bl setMessageIndexDemo__12dMsgObject_cFUlb
 /* 80234268 002311A8  48 00 00 9C */	b lbl_80234304
 lbl_8023426C:
 /* 8023426C 002311AC  7F E3 FB 78 */	mr r3, r31
 /* 80234270 002311B0  80 BF 01 5C */	lwz r5, 0x15c(r31)
 /* 80234274 002311B4  38 C0 00 01 */	li r6, 1
-/* 80234278 002311B8  4B FF FA 8D */	bl dMsgObject_c_NS_setMessageIndex
+/* 80234278 002311B8  4B FF FA 8D */	bl setMessageIndex__12dMsgObject_cFUlUlb
 /* 8023427C 002311BC  48 00 00 88 */	b lbl_80234304
 lbl_80234280:
 /* 80234280 002311C0  88 1F 04 CA */	lbz r0, 0x4ca(r31)
@@ -1689,7 +1689,7 @@ lbl_80234280:
 /* 80234290 002311D0  28 00 00 00 */	cmplwi r0, 0
 /* 80234294 002311D4  41 82 00 10 */	beq lbl_802342A4
 /* 80234298 002311D8  38 80 00 0B */	li r4, 0xb
-/* 8023429C 002311DC  48 00 26 49 */	bl dMsgObject_c_NS_setStatusLocal
+/* 8023429C 002311DC  48 00 26 49 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 802342A0 002311E0  48 00 00 64 */	b lbl_80234304
 lbl_802342A4:
 /* 802342A4 002311E4  38 00 00 00 */	li r0, 0
@@ -1698,9 +1698,9 @@ lbl_802342A4:
 /* 802342B0 002311F0  98 04 5E 86 */	stb r0, 0x5e86(r4)
 /* 802342B4 002311F4  98 1F 01 9F */	stb r0, 0x19f(r31)
 /* 802342B8 002311F8  38 80 00 02 */	li r4, 2
-/* 802342BC 002311FC  48 00 26 29 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802342BC 002311FC  48 00 26 29 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 802342C0 00231200  7F E3 FB 78 */	mr r3, r31
-/* 802342C4 00231204  48 00 2F 79 */	bl dMsgObject_c_NS_isTalkMessage
+/* 802342C4 00231204  48 00 2F 79 */	bl isTalkMessage__12dMsgObject_cFv
 /* 802342C8 00231208  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802342CC 0023120C  41 82 00 38 */	beq lbl_80234304
 /* 802342D0 00231210  38 00 00 61 */	li r0, 0x61
@@ -1723,8 +1723,8 @@ lbl_80234304:
 /* 80234310 00231250  38 21 00 20 */	addi r1, r1, 0x20
 /* 80234314 00231254  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_openProc
-dMsgObject_c_NS_openProc:
+.global openProc__12dMsgObject_cFv
+openProc__12dMsgObject_cFv:
 /* 80234318 00231258  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8023431C 0023125C  7C 08 02 A6 */	mflr r0
 /* 80234320 00231260  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1733,7 +1733,7 @@ dMsgObject_c_NS_openProc:
 /* 8023432C 0023126C  39 61 00 30 */	addi r11, r1, 0x30
 /* 80234330 00231270  48 12 DE AD */	bl _savegpr_29
 /* 80234334 00231274  7C 7E 1B 78 */	mr r30, r3
-/* 80234338 00231278  48 00 2D C5 */	bl dMsgObject_c_NS_isMidonaMessage
+/* 80234338 00231278  48 00 2D C5 */	bl isMidonaMessage__12dMsgObject_cFv
 /* 8023433C 0023127C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234340 00231280  41 82 01 B0 */	beq lbl_802344F0
 /* 80234344 00231284  3B E0 00 00 */	li r31, 0
@@ -1781,7 +1781,7 @@ lbl_802343D4:
 /* 802343E0 00231320  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 802343E4 00231324  41 82 00 2C */	beq lbl_80234410
 /* 802343E8 00231328  7F C3 F3 78 */	mr r3, r30
-/* 802343EC 0023132C  48 00 3A 6D */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802343EC 0023132C  48 00 3A 6D */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802343F0 00231330  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802343F4 00231334  28 00 00 FF */	cmplwi r0, 0xff
 /* 802343F8 00231338  41 82 00 50 */	beq lbl_80234448
@@ -1799,7 +1799,7 @@ lbl_80234410:
 /* 80234424 00231364  7F C3 F3 78 */	mr r3, r30
 /* 80234428 00231368  38 04 FF FF */	addi r0, r4, -1
 /* 8023442C 0023136C  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80234430 00231370  48 00 3A 39 */	bl dMsgObject_c_NS_setSelectCursorPosLocal
+/* 80234430 00231370  48 00 3A 39 */	bl setSelectCursorPosLocal__12dMsgObject_cFUc
 /* 80234434 00231374  3B E0 00 01 */	li r31, 1
 /* 80234438 00231378  38 00 00 02 */	li r0, 2
 /* 8023443C 0023137C  98 1E 01 A3 */	stb r0, 0x1a3(r30)
@@ -1811,7 +1811,7 @@ lbl_80234448:
 /* 80234450 00231390  28 00 07 FA */	cmplwi r0, 0x7fa
 /* 80234454 00231394  40 82 00 30 */	bne lbl_80234484
 /* 80234458 00231398  7F C3 F3 78 */	mr r3, r30
-/* 8023445C 0023139C  48 00 39 FD */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 8023445C 0023139C  48 00 39 FD */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80234460 002313A0  7C 65 1B 78 */	mr r5, r3
 /* 80234464 002313A4  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80234468 002313A8  38 80 00 02 */	li r4, 2
@@ -1823,12 +1823,12 @@ lbl_80234448:
 /* 80234480 002313C0  48 00 00 70 */	b lbl_802344F0
 lbl_80234484:
 /* 80234484 002313C4  7F C3 F3 78 */	mr r3, r30
-/* 80234488 002313C8  48 00 39 D1 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80234488 002313C8  48 00 39 D1 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 8023448C 002313CC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80234490 002313D0  28 00 00 FF */	cmplwi r0, 0xff
 /* 80234494 002313D4  41 82 00 34 */	beq lbl_802344C8
 /* 80234498 002313D8  7F C3 F3 78 */	mr r3, r30
-/* 8023449C 002313DC  48 00 39 BD */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 8023449C 002313DC  48 00 39 BD */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802344A0 002313E0  38 03 00 01 */	addi r0, r3, 1
 /* 802344A4 002313E4  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 802344A8 002313E8  80 7E 01 04 */	lwz r3, 0x104(r30)
@@ -1841,7 +1841,7 @@ lbl_80234484:
 /* 802344C4 00231404  48 00 00 2C */	b lbl_802344F0
 lbl_802344C8:
 /* 802344C8 00231408  7F C3 F3 78 */	mr r3, r30
-/* 802344CC 0023140C  48 00 39 8D */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802344CC 0023140C  48 00 39 8D */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802344D0 00231410  7C 65 1B 78 */	mr r5, r3
 /* 802344D4 00231414  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 802344D8 00231418  38 80 00 02 */	li r4, 2
@@ -1855,7 +1855,7 @@ lbl_802344F0:
 /* 802344F4 00231434  38 03 00 01 */	addi r0, r3, 1
 /* 802344F8 00231438  B0 1E 01 6A */	sth r0, 0x16a(r30)
 /* 802344FC 0023143C  7F C3 F3 78 */	mr r3, r30
-/* 80234500 00231440  48 00 2B BD */	bl dMsgObject_c_NS_isKanbanMessage
+/* 80234500 00231440  48 00 2B BD */	bl isKanbanMessage__12dMsgObject_cFv
 /* 80234504 00231444  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234508 00231448  41 82 00 98 */	beq lbl_802345A0
 /* 8023450C 0023144C  3C 60 80 43 */	lis r3, lbl_8043028C@ha
@@ -1897,11 +1897,11 @@ lbl_802344F0:
 /* 8023459C 002314DC  48 00 03 38 */	b lbl_802348D4
 lbl_802345A0:
 /* 802345A0 002314E0  7F C3 F3 78 */	mr r3, r30
-/* 802345A4 002314E4  48 00 2C 41 */	bl dMsgObject_c_NS_isPlaceMessage
+/* 802345A4 002314E4  48 00 2C 41 */	bl isPlaceMessage__12dMsgObject_cFv
 /* 802345A8 002314E8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802345AC 002314EC  40 82 00 14 */	bne lbl_802345C0
 /* 802345B0 002314F0  7F C3 F3 78 */	mr r3, r30
-/* 802345B4 002314F4  48 00 2C 61 */	bl dMsgObject_c_NS_isStaffMessage
+/* 802345B4 002314F4  48 00 2C 61 */	bl isStaffMessage__12dMsgObject_cFv
 /* 802345B8 002314F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802345BC 002314FC  41 82 00 98 */	beq lbl_80234654
 lbl_802345C0:
@@ -1944,7 +1944,7 @@ lbl_802345C0:
 /* 80234650 00231590  48 00 02 84 */	b lbl_802348D4
 lbl_80234654:
 /* 80234654 00231594  7F C3 F3 78 */	mr r3, r30
-/* 80234658 00231598  48 00 2B A1 */	bl dMsgObject_c_NS_isBossMessage
+/* 80234658 00231598  48 00 2B A1 */	bl isBossMessage__12dMsgObject_cFv
 /* 8023465C 0023159C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234660 002315A0  41 82 00 98 */	beq lbl_802346F8
 /* 80234664 002315A4  3C 60 80 43 */	lis r3, lbl_8043028C@ha
@@ -1986,7 +1986,7 @@ lbl_80234654:
 /* 802346F4 00231634  48 00 01 E0 */	b lbl_802348D4
 lbl_802346F8:
 /* 802346F8 00231638  7F C3 F3 78 */	mr r3, r30
-/* 802346FC 0023163C  48 00 2B 11 */	bl dMsgObject_c_NS_isBookMessage
+/* 802346FC 0023163C  48 00 2B 11 */	bl isBookMessage__12dMsgObject_cFv
 /* 80234700 00231640  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234704 00231644  41 82 01 44 */	beq lbl_80234848
 /* 80234708 00231648  3C 60 80 43 */	lis r3, lbl_8043028C@ha
@@ -2148,7 +2148,7 @@ lbl_8023493C:
 /* 80234964 002318A4  38 00 00 00 */	li r0, 0
 /* 80234968 002318A8  B0 1E 01 6A */	sth r0, 0x16a(r30)
 /* 8023496C 002318AC  7F C3 F3 78 */	mr r3, r30
-/* 80234970 002318B0  48 00 27 8D */	bl dMsgObject_c_NS_isMidonaMessage
+/* 80234970 002318B0  48 00 27 8D */	bl isMidonaMessage__12dMsgObject_cFv
 /* 80234974 002318B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234978 002318B8  41 82 00 34 */	beq lbl_802349AC
 /* 8023497C 002318BC  80 7E 01 18 */	lwz r3, 0x118(r30)
@@ -2157,17 +2157,17 @@ lbl_8023493C:
 /* 80234988 002318C8  40 82 00 14 */	bne lbl_8023499C
 /* 8023498C 002318CC  7F C3 F3 78 */	mr r3, r30
 /* 80234990 002318D0  38 80 00 09 */	li r4, 9
-/* 80234994 002318D4  48 00 1F 51 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234994 002318D4  48 00 1F 51 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234998 002318D8  48 00 00 20 */	b lbl_802349B8
 lbl_8023499C:
 /* 8023499C 002318DC  7F C3 F3 78 */	mr r3, r30
 /* 802349A0 002318E0  38 80 00 08 */	li r4, 8
-/* 802349A4 002318E4  48 00 1F 41 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802349A4 002318E4  48 00 1F 41 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 802349A8 002318E8  48 00 00 10 */	b lbl_802349B8
 lbl_802349AC:
 /* 802349AC 002318EC  7F C3 F3 78 */	mr r3, r30
 /* 802349B0 002318F0  38 80 00 06 */	li r4, 6
-/* 802349B4 002318F4  48 00 1F 31 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802349B4 002318F4  48 00 1F 31 */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_802349B8:
 /* 802349B8 002318F8  E3 E1 00 38 */	psq_l f31, 56(r1), 0, qr0
 /* 802349BC 002318FC  CB E1 00 30 */	lfd f31, 0x30(r1)
@@ -2178,8 +2178,8 @@ lbl_802349B8:
 /* 802349D0 00231910  38 21 00 40 */	addi r1, r1, 0x40
 /* 802349D4 00231914  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_outnowProc
-dMsgObject_c_NS_outnowProc:
+.global outnowProc__12dMsgObject_cFv
+outnowProc__12dMsgObject_cFv:
 /* 802349D8 00231918  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802349DC 0023191C  7C 08 02 A6 */	mflr r0
 /* 802349E0 00231920  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2189,9 +2189,9 @@ dMsgObject_c_NS_outnowProc:
 /* 802349F0 00231930  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 802349F4 00231934  7C 7E 1B 78 */	mr r30, r3
 /* 802349F8 00231938  80 63 01 18 */	lwz r3, 0x118(r3)
-/* 802349FC 0023193C  4B FF 4D E9 */	bl jmessage_tReference_NS_shiftCharCountBuffer
+/* 802349FC 0023193C  4B FF 4D E9 */	bl shiftCharCountBuffer__19jmessage_tReferenceFv
 /* 80234A00 00231940  7F C3 F3 78 */	mr r3, r30
-/* 80234A04 00231944  48 00 28 09 */	bl dMsgObject_c_NS_isBookMessage
+/* 80234A04 00231944  48 00 28 09 */	bl isBookMessage__12dMsgObject_cFv
 /* 80234A08 00231948  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234A0C 0023194C  41 82 00 80 */	beq lbl_80234A8C
 /* 80234A10 00231950  A8 7E 01 6A */	lha r3, 0x16a(r30)
@@ -2259,14 +2259,14 @@ lbl_80234ADC:
 /* 80234AFC 00231A3C  48 00 01 B0 */	b lbl_80234CAC
 lbl_80234B00:
 /* 80234B00 00231A40  80 7E 01 18 */	lwz r3, 0x118(r30)
-/* 80234B04 00231A44  4B FF 4E 49 */	bl jmessage_tReference_NS_isLightEnd
+/* 80234B04 00231A44  4B FF 4E 49 */	bl isLightEnd__19jmessage_tReferenceFv
 /* 80234B08 00231A48  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234B0C 00231A4C  41 82 01 A0 */	beq lbl_80234CAC
 /* 80234B10 00231A50  88 1F 12 4B */	lbz r0, 0x124b(r31)
 /* 80234B14 00231A54  28 00 00 00 */	cmplwi r0, 0
 /* 80234B18 00231A58  41 82 00 20 */	beq lbl_80234B38
 /* 80234B1C 00231A5C  7F C3 F3 78 */	mr r3, r30
-/* 80234B20 00231A60  48 00 30 DD */	bl dMsgObject_c_NS_setButtonStatusLocal
+/* 80234B20 00231A60  48 00 30 DD */	bl setButtonStatusLocal__12dMsgObject_cFv
 /* 80234B24 00231A64  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80234B28 00231A68  81 83 00 00 */	lwz r12, 0(r3)
 /* 80234B2C 00231A6C  81 8C 00 28 */	lwz r12, 0x28(r12)
@@ -2281,7 +2281,7 @@ lbl_80234B38:
 /* 80234B4C 00231A8C  98 1E 01 96 */	stb r0, 0x196(r30)
 /* 80234B50 00231A90  7F C3 F3 78 */	mr r3, r30
 /* 80234B54 00231A94  38 80 00 05 */	li r4, 5
-/* 80234B58 00231A98  48 00 1D 8D */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234B58 00231A98  48 00 1D 8D */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234B5C 00231A9C  38 00 00 00 */	li r0, 0
 /* 80234B60 00231AA0  98 1F 12 4D */	stb r0, 0x124d(r31)
 /* 80234B64 00231AA4  48 00 01 48 */	b lbl_80234CAC
@@ -2298,14 +2298,14 @@ lbl_80234B68:
 /* 80234B8C 00231ACC  40 82 00 14 */	bne lbl_80234BA0
 /* 80234B90 00231AD0  7F C3 F3 78 */	mr r3, r30
 /* 80234B94 00231AD4  38 80 00 0E */	li r4, 0xe
-/* 80234B98 00231AD8  48 00 1D 4D */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234B98 00231AD8  48 00 1D 4D */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234B9C 00231ADC  48 00 00 18 */	b lbl_80234BB4
 lbl_80234BA0:
 /* 80234BA0 00231AE0  38 00 00 00 */	li r0, 0
 /* 80234BA4 00231AE4  98 1E 01 99 */	stb r0, 0x199(r30)
 /* 80234BA8 00231AE8  7F C3 F3 78 */	mr r3, r30
 /* 80234BAC 00231AEC  38 80 00 10 */	li r4, 0x10
-/* 80234BB0 00231AF0  48 00 1D 35 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234BB0 00231AF0  48 00 1D 35 */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_80234BB4:
 /* 80234BB4 00231AF4  38 00 00 00 */	li r0, 0
 /* 80234BB8 00231AF8  98 1F 12 4D */	stb r0, 0x124d(r31)
@@ -2317,7 +2317,7 @@ lbl_80234BC0:
 /* 80234BCC 00231B0C  98 1E 01 A3 */	stb r0, 0x1a3(r30)
 /* 80234BD0 00231B10  7F C3 F3 78 */	mr r3, r30
 /* 80234BD4 00231B14  38 80 00 08 */	li r4, 8
-/* 80234BD8 00231B18  48 00 1D 0D */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234BD8 00231B18  48 00 1D 0D */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234BDC 00231B1C  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80234BE0 00231B20  38 80 00 02 */	li r4, 2
 /* 80234BE4 00231B24  88 BF 12 44 */	lbz r5, 0x1244(r31)
@@ -2339,7 +2339,7 @@ lbl_80234C14:
 /* 80234C20 00231B60  98 1E 01 A3 */	stb r0, 0x1a3(r30)
 /* 80234C24 00231B64  7F C3 F3 78 */	mr r3, r30
 /* 80234C28 00231B68  38 80 00 09 */	li r4, 9
-/* 80234C2C 00231B6C  48 00 1C B9 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234C2C 00231B6C  48 00 1C B9 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234C30 00231B70  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80234C34 00231B74  38 80 00 03 */	li r4, 3
 /* 80234C38 00231B78  88 BF 12 44 */	lbz r5, 0x1244(r31)
@@ -2362,7 +2362,7 @@ lbl_80234C70:
 /* 80234C74 00231BB4  98 1E 01 A3 */	stb r0, 0x1a3(r30)
 /* 80234C78 00231BB8  7F C3 F3 78 */	mr r3, r30
 /* 80234C7C 00231BBC  38 80 00 14 */	li r4, 0x14
-/* 80234C80 00231BC0  48 00 1C 65 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234C80 00231BC0  48 00 1C 65 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234C84 00231BC4  38 00 00 00 */	li r0, 0
 /* 80234C88 00231BC8  98 1F 12 4D */	stb r0, 0x124d(r31)
 /* 80234C8C 00231BCC  48 00 00 20 */	b lbl_80234CAC
@@ -2371,7 +2371,7 @@ lbl_80234C90:
 /* 80234C94 00231BD4  40 82 00 18 */	bne lbl_80234CAC
 /* 80234C98 00231BD8  7F C3 F3 78 */	mr r3, r30
 /* 80234C9C 00231BDC  38 80 00 15 */	li r4, 0x15
-/* 80234CA0 00231BE0  48 00 1C 45 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234CA0 00231BE0  48 00 1C 45 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234CA4 00231BE4  38 00 00 00 */	li r0, 0
 /* 80234CA8 00231BE8  98 1F 12 4D */	stb r0, 0x124d(r31)
 lbl_80234CAC:
@@ -2384,8 +2384,8 @@ lbl_80234CAC:
 /* 80234CC4 00231C04  38 21 00 30 */	addi r1, r1, 0x30
 /* 80234CC8 00231C08  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_outwaitProc
-dMsgObject_c_NS_outwaitProc:
+.global outwaitProc__12dMsgObject_cFv
+outwaitProc__12dMsgObject_cFv:
 /* 80234CCC 00231C0C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80234CD0 00231C10  7C 08 02 A6 */	mflr r0
 /* 80234CD4 00231C14  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2402,11 +2402,11 @@ dMsgObject_c_NS_outwaitProc:
 /* 80234D00 00231C40  7D 89 03 A6 */	mtctr r12
 /* 80234D04 00231C44  4E 80 04 21 */	bctrl 
 /* 80234D08 00231C48  7F C3 F3 78 */	mr r3, r30
-/* 80234D0C 00231C4C  48 00 25 01 */	bl dMsgObject_c_NS_isBookMessage
+/* 80234D0C 00231C4C  48 00 25 01 */	bl isBookMessage__12dMsgObject_cFv
 /* 80234D10 00231C50  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234D14 00231C54  41 82 01 78 */	beq lbl_80234E8C
 /* 80234D18 00231C58  7F C3 F3 78 */	mr r3, r30
-/* 80234D1C 00231C5C  48 00 1C BD */	bl dMsgObject_c_NS_isSend
+/* 80234D1C 00231C5C  48 00 1C BD */	bl isSend__12dMsgObject_cFv
 /* 80234D20 00231C60  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234D24 00231C64  40 82 00 10 */	bne lbl_80234D34
 /* 80234D28 00231C68  A8 1E 01 6A */	lha r0, 0x16a(r30)
@@ -2488,23 +2488,23 @@ lbl_80234E3C:
 /* 80234E4C 00231D8C  42 00 FF F0 */	bdnz lbl_80234E3C
 lbl_80234E50:
 /* 80234E50 00231D90  7F E3 FB 78 */	mr r3, r31
-/* 80234E54 00231D94  4B FF 41 E1 */	bl jmessage_tReference_NS_pageSend
+/* 80234E54 00231D94  4B FF 41 E1 */	bl pageSend__19jmessage_tReferenceFv
 /* 80234E58 00231D98  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 80234E5C 00231D9C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80234E60 00231DA0  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 80234E64 00231DA4  7D 89 03 A6 */	mtctr r12
 /* 80234E68 00231DA8  4E 80 04 21 */	bctrl 
 /* 80234E6C 00231DAC  80 7E 01 20 */	lwz r3, 0x120(r30)
-/* 80234E70 00231DB0  4B FF 92 BD */	bl jmessage_tRenderingProcessor_NS_resetRendering
+/* 80234E70 00231DB0  4B FF 92 BD */	bl resetRendering__28jmessage_tRenderingProcessorFv
 /* 80234E74 00231DB4  38 00 00 00 */	li r0, 0
 /* 80234E78 00231DB8  98 1E 01 99 */	stb r0, 0x199(r30)
 /* 80234E7C 00231DBC  7F C3 F3 78 */	mr r3, r30
 /* 80234E80 00231DC0  38 80 00 06 */	li r4, 6
-/* 80234E84 00231DC4  48 00 1A 61 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234E84 00231DC4  48 00 1A 61 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234E88 00231DC8  48 00 01 48 */	b lbl_80234FD0
 lbl_80234E8C:
 /* 80234E8C 00231DCC  7F C3 F3 78 */	mr r3, r30
-/* 80234E90 00231DD0  48 00 1B 49 */	bl dMsgObject_c_NS_isSend
+/* 80234E90 00231DD0  48 00 1B 49 */	bl isSend__12dMsgObject_cFv
 /* 80234E94 00231DD4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234E98 00231DD8  41 82 01 38 */	beq lbl_80234FD0
 /* 80234E9C 00231DDC  A8 7E 01 72 */	lha r3, 0x172(r30)
@@ -2551,7 +2551,7 @@ lbl_80234F28:
 /* 80234F38 00231E78  42 00 FF F0 */	bdnz lbl_80234F28
 lbl_80234F3C:
 /* 80234F3C 00231E7C  7F E3 FB 78 */	mr r3, r31
-/* 80234F40 00231E80  4B FF 40 F5 */	bl jmessage_tReference_NS_pageSend
+/* 80234F40 00231E80  4B FF 40 F5 */	bl pageSend__19jmessage_tReferenceFv
 /* 80234F44 00231E84  38 00 00 00 */	li r0, 0
 /* 80234F48 00231E88  98 1E 04 CF */	stb r0, 0x4cf(r30)
 /* 80234F4C 00231E8C  80 7E 01 04 */	lwz r3, 0x104(r30)
@@ -2560,14 +2560,14 @@ lbl_80234F3C:
 /* 80234F58 00231E98  7D 89 03 A6 */	mtctr r12
 /* 80234F5C 00231E9C  4E 80 04 21 */	bctrl 
 /* 80234F60 00231EA0  80 7E 01 20 */	lwz r3, 0x120(r30)
-/* 80234F64 00231EA4  4B FF 91 C9 */	bl jmessage_tRenderingProcessor_NS_resetRendering
+/* 80234F64 00231EA4  4B FF 91 C9 */	bl resetRendering__28jmessage_tRenderingProcessorFv
 /* 80234F68 00231EA8  38 00 00 00 */	li r0, 0
 /* 80234F6C 00231EAC  98 1E 01 99 */	stb r0, 0x199(r30)
 /* 80234F70 00231EB0  7F C3 F3 78 */	mr r3, r30
 /* 80234F74 00231EB4  38 80 00 06 */	li r4, 6
-/* 80234F78 00231EB8  48 00 19 6D */	bl dMsgObject_c_NS_setStatusLocal
+/* 80234F78 00231EB8  48 00 19 6D */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80234F7C 00231EBC  7F C3 F3 78 */	mr r3, r30
-/* 80234F80 00231EC0  48 00 22 BD */	bl dMsgObject_c_NS_isTalkMessage
+/* 80234F80 00231EC0  48 00 22 BD */	bl isTalkMessage__12dMsgObject_cFv
 /* 80234F84 00231EC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80234F88 00231EC8  41 82 00 48 */	beq lbl_80234FD0
 /* 80234F8C 00231ECC  80 7E 01 18 */	lwz r3, 0x118(r30)
@@ -2597,12 +2597,12 @@ lbl_80234FD0:
 /* 80234FE8 00231F28  38 21 00 30 */	addi r1, r1, 0x30
 /* 80234FEC 00231F2C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_stopProc
-dMsgObject_c_NS_stopProc:
+.global stopProc__12dMsgObject_cFv
+stopProc__12dMsgObject_cFv:
 /* 80234FF0 00231F30  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_continueProc
-dMsgObject_c_NS_continueProc:
+.global continueProc__12dMsgObject_cFv
+continueProc__12dMsgObject_cFv:
 /* 80234FF4 00231F34  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80234FF8 00231F38  7C 08 02 A6 */	mflr r0
 /* 80234FFC 00231F3C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2635,12 +2635,12 @@ lbl_8023504C:
 /* 80235064 00231FA4  41 82 00 14 */	beq lbl_80235078
 lbl_80235068:
 /* 80235068 00231FA8  7F C3 F3 78 */	mr r3, r30
-/* 8023506C 00231FAC  48 00 20 7D */	bl dMsgObject_c_NS_isHowlMessage
+/* 8023506C 00231FAC  48 00 20 7D */	bl isHowlMessage__12dMsgObject_cFv
 /* 80235070 00231FB0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235074 00231FB4  40 82 02 90 */	bne lbl_80235304
 lbl_80235078:
 /* 80235078 00231FB8  7F C3 F3 78 */	mr r3, r30
-/* 8023507C 00231FBC  48 00 19 5D */	bl dMsgObject_c_NS_isSend
+/* 8023507C 00231FBC  48 00 19 5D */	bl isSend__12dMsgObject_cFv
 /* 80235080 00231FC0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235084 00231FC4  41 82 02 80 */	beq lbl_80235304
 /* 80235088 00231FC8  80 9E 01 14 */	lwz r4, 0x114(r30)
@@ -2681,7 +2681,7 @@ lbl_802350FC:
 /* 8023510C 0023204C  42 00 FF F0 */	bdnz lbl_802350FC
 lbl_80235110:
 /* 80235110 00232050  80 7E 01 14 */	lwz r3, 0x114(r30)
-/* 80235114 00232054  48 07 24 C1 */	bl JMessage_NS_TControl_NS_reset
+/* 80235114 00232054  48 07 24 C1 */	bl reset__Q28JMessage8TControlFv
 /* 80235118 00232058  80 7E 01 14 */	lwz r3, 0x114(r30)
 /* 8023511C 0023205C  80 83 00 04 */	lwz r4, 4(r3)
 /* 80235120 00232060  28 04 00 00 */	cmplwi r4, 0
@@ -2698,12 +2698,12 @@ lbl_80235144:
 /* 80235144 00232084  38 00 00 00 */	li r0, 0
 /* 80235148 00232088  90 03 00 10 */	stw r0, 0x10(r3)
 /* 8023514C 0023208C  80 7E 01 18 */	lwz r3, 0x118(r30)
-/* 80235150 00232090  4B FF 46 C1 */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 80235150 00232090  4B FF 46 C1 */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 80235154 00232094  38 00 00 00 */	li r0, 0
 /* 80235158 00232098  B0 1E 01 7E */	sth r0, 0x17e(r30)
 /* 8023515C 0023209C  98 1E 01 99 */	stb r0, 0x199(r30)
 /* 80235160 002320A0  7F C3 F3 78 */	mr r3, r30
-/* 80235164 002320A4  48 00 25 E5 */	bl dMsgObject_c_NS_updateEquipBombInfoLocal
+/* 80235164 002320A4  48 00 25 E5 */	bl updateEquipBombInfoLocal__12dMsgObject_cFv
 /* 80235168 002320A8  38 00 00 00 */	li r0, 0
 /* 8023516C 002320AC  98 1E 04 CF */	stb r0, 0x4cf(r30)
 /* 80235170 002320B0  80 BE 01 00 */	lwz r5, 0x100(r30)
@@ -2711,7 +2711,7 @@ lbl_80235144:
 /* 80235178 002320B8  80 85 00 EC */	lwz r4, 0xec(r5)
 /* 8023517C 002320BC  80 A5 00 F0 */	lwz r5, 0xf0(r5)
 /* 80235180 002320C0  38 C0 00 01 */	li r6, 1
-/* 80235184 002320C4  4B FF EB 81 */	bl dMsgObject_c_NS_setMessageIndex
+/* 80235184 002320C4  4B FF EB 81 */	bl setMessageIndex__12dMsgObject_cFUlUlb
 /* 80235188 002320C8  80 7E 01 04 */	lwz r3, 0x104(r30)
 /* 8023518C 002320CC  88 9F 12 45 */	lbz r4, 0x1245(r31)
 /* 80235190 002320D0  81 83 00 00 */	lwz r12, 0(r3)
@@ -2784,12 +2784,12 @@ lbl_80235274:
 /* 80235294 002321D4  38 63 00 04 */	addi r3, r3, 4
 /* 80235298 002321D8  42 00 FF DC */	bdnz lbl_80235274
 /* 8023529C 002321DC  80 7E 01 20 */	lwz r3, 0x120(r30)
-/* 802352A0 002321E0  4B FF 8E 8D */	bl jmessage_tRenderingProcessor_NS_resetRendering
+/* 802352A0 002321E0  4B FF 8E 8D */	bl resetRendering__28jmessage_tRenderingProcessorFv
 /* 802352A4 002321E4  7F C3 F3 78 */	mr r3, r30
 /* 802352A8 002321E8  38 80 00 06 */	li r4, 6
-/* 802352AC 002321EC  48 00 16 39 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802352AC 002321EC  48 00 16 39 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 802352B0 002321F0  7F C3 F3 78 */	mr r3, r30
-/* 802352B4 002321F4  48 00 1F 89 */	bl dMsgObject_c_NS_isTalkMessage
+/* 802352B4 002321F4  48 00 1F 89 */	bl isTalkMessage__12dMsgObject_cFv
 /* 802352B8 002321F8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802352BC 002321FC  41 82 00 48 */	beq lbl_80235304
 /* 802352C0 00232200  80 7E 01 18 */	lwz r3, 0x118(r30)
@@ -2817,8 +2817,8 @@ lbl_80235304:
 /* 80235314 00232254  38 21 00 30 */	addi r1, r1, 0x30
 /* 80235318 00232258  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_selectProc
-dMsgObject_c_NS_selectProc:
+.global selectProc__12dMsgObject_cFv
+selectProc__12dMsgObject_cFv:
 /* 8023531C 0023225C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80235320 00232260  7C 08 02 A6 */	mflr r0
 /* 80235324 00232264  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2827,7 +2827,7 @@ dMsgObject_c_NS_selectProc:
 /* 80235330 00232270  7C 7F 1B 78 */	mr r31, r3
 /* 80235334 00232274  3B 80 00 00 */	li r28, 0
 /* 80235338 00232278  3B 60 00 00 */	li r27, 0
-/* 8023533C 0023227C  48 00 1D C1 */	bl dMsgObject_c_NS_isMidonaMessage
+/* 8023533C 0023227C  48 00 1D C1 */	bl isMidonaMessage__12dMsgObject_cFv
 /* 80235340 00232280  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235344 00232284  40 82 00 0C */	bne lbl_80235350
 /* 80235348 00232288  38 00 00 00 */	li r0, 0
@@ -2841,13 +2841,13 @@ lbl_80235350:
 /* 80235364 002322A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235368 002322A8  40 82 00 18 */	bne lbl_80235380
 /* 8023536C 002322AC  7F E3 FB 78 */	mr r3, r31
-/* 80235370 002322B0  48 00 15 89 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80235370 002322B0  48 00 15 89 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80235374 002322B4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80235378 002322B8  28 00 00 14 */	cmplwi r0, 0x14
 /* 8023537C 002322BC  40 82 00 38 */	bne lbl_802353B4
 lbl_80235380:
 /* 80235380 002322C0  80 7F 01 18 */	lwz r3, 0x118(r31)
-/* 80235384 002322C4  4B FF 3D E5 */	bl jmessage_tReference_NS_selectMessage
+/* 80235384 002322C4  4B FF 3D E5 */	bl selectMessage__19jmessage_tReferenceFv
 /* 80235388 002322C8  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 8023538C 002322CC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 80235390 002322D0  88 03 00 BD */	lbz r0, 0xbd(r3)
@@ -2866,7 +2866,7 @@ lbl_802353B4:
 /* 802353C0 00232300  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 802353C4 00232304  41 82 00 24 */	beq lbl_802353E8
 /* 802353C8 00232308  7F E3 FB 78 */	mr r3, r31
-/* 802353CC 0023230C  48 00 2A 8D */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802353CC 0023230C  48 00 2A 8D */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802353D0 00232310  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802353D4 00232314  28 00 00 FF */	cmplwi r0, 0xff
 /* 802353D8 00232318  41 82 01 48 */	beq lbl_80235520
@@ -2884,7 +2884,7 @@ lbl_802353E8:
 /* 80235404 00232344  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235408 00232348  40 82 00 18 */	bne lbl_80235420
 /* 8023540C 0023234C  7F E3 FB 78 */	mr r3, r31
-/* 80235410 00232350  48 00 14 E9 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80235410 00232350  48 00 14 E9 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80235414 00232354  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80235418 00232358  28 00 00 14 */	cmplwi r0, 0x14
 /* 8023541C 0023235C  40 82 01 04 */	bne lbl_80235520
@@ -2895,10 +2895,10 @@ lbl_80235420:
 /* 8023542C 0023236C  7F E3 FB 78 */	mr r3, r31
 /* 80235430 00232370  38 04 FF FF */	addi r0, r4, -1
 /* 80235434 00232374  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 80235438 00232378  48 00 2A 31 */	bl dMsgObject_c_NS_setSelectCursorPosLocal
+/* 80235438 00232378  48 00 2A 31 */	bl setSelectCursorPosLocal__12dMsgObject_cFUc
 /* 8023543C 0023237C  3B 80 00 01 */	li r28, 1
 /* 80235440 00232380  7F E3 FB 78 */	mr r3, r31
-/* 80235444 00232384  48 00 14 B5 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80235444 00232384  48 00 14 B5 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80235448 00232388  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8023544C 0023238C  28 00 00 08 */	cmplwi r0, 8
 /* 80235450 00232390  40 82 00 80 */	bne lbl_802354D0
@@ -2906,12 +2906,12 @@ lbl_80235420:
 /* 80235458 00232398  28 00 00 02 */	cmplwi r0, 2
 /* 8023545C 0023239C  41 81 00 BC */	bgt lbl_80235518
 /* 80235460 002323A0  7F E3 FB 78 */	mr r3, r31
-/* 80235464 002323A4  48 00 29 F5 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235464 002323A4  48 00 29 F5 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235468 002323A8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8023546C 002323AC  28 00 00 FF */	cmplwi r0, 0xff
 /* 80235470 002323B0  41 82 00 34 */	beq lbl_802354A4
 /* 80235474 002323B4  7F E3 FB 78 */	mr r3, r31
-/* 80235478 002323B8  48 00 29 E1 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235478 002323B8  48 00 29 E1 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 8023547C 002323BC  38 03 00 01 */	addi r0, r3, 1
 /* 80235480 002323C0  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 80235484 002323C4  80 7F 01 04 */	lwz r3, 0x104(r31)
@@ -2924,7 +2924,7 @@ lbl_80235420:
 /* 802354A0 002323E0  48 00 00 78 */	b lbl_80235518
 lbl_802354A4:
 /* 802354A4 002323E4  7F E3 FB 78 */	mr r3, r31
-/* 802354A8 002323E8  48 00 29 B1 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802354A8 002323E8  48 00 29 B1 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802354AC 002323EC  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 802354B0 002323F0  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802354B4 002323F4  38 80 00 02 */	li r4, 2
@@ -2936,7 +2936,7 @@ lbl_802354A4:
 /* 802354CC 0023240C  48 00 00 4C */	b lbl_80235518
 lbl_802354D0:
 /* 802354D0 00232410  7F E3 FB 78 */	mr r3, r31
-/* 802354D4 00232414  48 00 14 25 */	bl dMsgObject_c_NS_getStatusLocal
+/* 802354D4 00232414  48 00 14 25 */	bl getStatusLocal__12dMsgObject_cFv
 /* 802354D8 00232418  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 802354DC 0023241C  28 00 00 09 */	cmplwi r0, 9
 /* 802354E0 00232420  40 82 00 38 */	bne lbl_80235518
@@ -2944,7 +2944,7 @@ lbl_802354D0:
 /* 802354E8 00232428  28 00 00 03 */	cmplwi r0, 3
 /* 802354EC 0023242C  41 81 00 2C */	bgt lbl_80235518
 /* 802354F0 00232430  7F E3 FB 78 */	mr r3, r31
-/* 802354F4 00232434  48 00 29 65 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802354F4 00232434  48 00 29 65 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802354F8 00232438  7C 65 1B 78 */	mr r5, r3
 /* 802354FC 0023243C  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 80235500 00232440  38 80 00 03 */	li r4, 3
@@ -2960,12 +2960,12 @@ lbl_80235520:
 /* 80235520 00232460  80 7F 01 20 */	lwz r3, 0x120(r31)
 /* 80235524 00232464  83 A3 00 04 */	lwz r29, 4(r3)
 /* 80235528 00232468  7F E3 FB 78 */	mr r3, r31
-/* 8023552C 0023246C  48 00 13 CD */	bl dMsgObject_c_NS_getStatusLocal
+/* 8023552C 0023246C  48 00 13 CD */	bl getStatusLocal__12dMsgObject_cFv
 /* 80235530 00232470  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80235534 00232474  28 00 00 08 */	cmplwi r0, 8
 /* 80235538 00232478  40 82 01 60 */	bne lbl_80235698
 /* 8023553C 0023247C  7F E3 FB 78 */	mr r3, r31
-/* 80235540 00232480  48 00 1B BD */	bl dMsgObject_c_NS_isMidonaMessage
+/* 80235540 00232480  48 00 1B BD */	bl isMidonaMessage__12dMsgObject_cFv
 /* 80235544 00232484  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235548 00232488  41 82 00 B0 */	beq lbl_802355F8
 /* 8023554C 0023248C  88 1F 01 A3 */	lbz r0, 0x1a3(r31)
@@ -2981,12 +2981,12 @@ lbl_80235520:
 /* 80235574 002324B4  48 00 00 78 */	b lbl_802355EC
 lbl_80235578:
 /* 80235578 002324B8  7F E3 FB 78 */	mr r3, r31
-/* 8023557C 002324BC  48 00 28 DD */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 8023557C 002324BC  48 00 28 DD */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235580 002324C0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80235584 002324C4  28 00 00 FF */	cmplwi r0, 0xff
 /* 80235588 002324C8  41 82 00 38 */	beq lbl_802355C0
 /* 8023558C 002324CC  7F E3 FB 78 */	mr r3, r31
-/* 80235590 002324D0  48 00 28 C9 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235590 002324D0  48 00 28 C9 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235594 002324D4  38 03 00 01 */	addi r0, r3, 1
 /* 80235598 002324D8  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8023559C 002324DC  80 7F 01 04 */	lwz r3, 0x104(r31)
@@ -3000,7 +3000,7 @@ lbl_80235578:
 /* 802355BC 002324FC  48 00 00 30 */	b lbl_802355EC
 lbl_802355C0:
 /* 802355C0 00232500  7F E3 FB 78 */	mr r3, r31
-/* 802355C4 00232504  48 00 28 95 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802355C4 00232504  48 00 28 95 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802355C8 00232508  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 802355CC 0023250C  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802355D0 00232510  38 80 00 02 */	li r4, 2
@@ -3025,12 +3025,12 @@ lbl_802355F8:
 /* 80235614 00232554  48 00 00 78 */	b lbl_8023568C
 lbl_80235618:
 /* 80235618 00232558  7F E3 FB 78 */	mr r3, r31
-/* 8023561C 0023255C  48 00 28 3D */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 8023561C 0023255C  48 00 28 3D */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235620 00232560  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80235624 00232564  28 00 00 FF */	cmplwi r0, 0xff
 /* 80235628 00232568  41 82 00 38 */	beq lbl_80235660
 /* 8023562C 0023256C  7F E3 FB 78 */	mr r3, r31
-/* 80235630 00232570  48 00 28 29 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235630 00232570  48 00 28 29 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235634 00232574  38 03 00 01 */	addi r0, r3, 1
 /* 80235638 00232578  54 05 06 3E */	clrlwi r5, r0, 0x18
 /* 8023563C 0023257C  80 7F 01 04 */	lwz r3, 0x104(r31)
@@ -3044,7 +3044,7 @@ lbl_80235618:
 /* 8023565C 0023259C  48 00 00 30 */	b lbl_8023568C
 lbl_80235660:
 /* 80235660 002325A0  7F E3 FB 78 */	mr r3, r31
-/* 80235664 002325A4  48 00 27 F5 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235664 002325A4  48 00 27 F5 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235668 002325A8  54 65 06 3E */	clrlwi r5, r3, 0x18
 /* 8023566C 002325AC  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 80235670 002325B0  38 80 00 02 */	li r4, 2
@@ -3060,12 +3060,12 @@ lbl_8023568C:
 /* 80235694 002325D4  48 00 00 FC */	b lbl_80235790
 lbl_80235698:
 /* 80235698 002325D8  7F E3 FB 78 */	mr r3, r31
-/* 8023569C 002325DC  48 00 12 5D */	bl dMsgObject_c_NS_getStatusLocal
+/* 8023569C 002325DC  48 00 12 5D */	bl getStatusLocal__12dMsgObject_cFv
 /* 802356A0 002325E0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 802356A4 002325E4  28 00 00 09 */	cmplwi r0, 9
 /* 802356A8 002325E8  40 82 00 D0 */	bne lbl_80235778
 /* 802356AC 002325EC  7F E3 FB 78 */	mr r3, r31
-/* 802356B0 002325F0  48 00 1A 4D */	bl dMsgObject_c_NS_isMidonaMessage
+/* 802356B0 002325F0  48 00 1A 4D */	bl isMidonaMessage__12dMsgObject_cFv
 /* 802356B4 002325F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802356B8 002325F8  41 82 00 68 */	beq lbl_80235720
 /* 802356BC 002325FC  88 1F 01 A3 */	lbz r0, 0x1a3(r31)
@@ -3081,7 +3081,7 @@ lbl_80235698:
 /* 802356E4 00232624  48 00 00 30 */	b lbl_80235714
 lbl_802356E8:
 /* 802356E8 00232628  7F E3 FB 78 */	mr r3, r31
-/* 802356EC 0023262C  48 00 27 6D */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 802356EC 0023262C  48 00 27 6D */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 802356F0 00232630  7C 65 1B 78 */	mr r5, r3
 /* 802356F4 00232634  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802356F8 00232638  38 80 00 03 */	li r4, 3
@@ -3106,7 +3106,7 @@ lbl_80235720:
 /* 8023573C 0023267C  48 00 00 30 */	b lbl_8023576C
 lbl_80235740:
 /* 80235740 00232680  7F E3 FB 78 */	mr r3, r31
-/* 80235744 00232684  48 00 27 15 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80235744 00232684  48 00 27 15 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 80235748 00232688  7C 65 1B 78 */	mr r5, r3
 /* 8023574C 0023268C  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 80235750 00232690  38 80 00 03 */	li r4, 3
@@ -3122,7 +3122,7 @@ lbl_8023576C:
 /* 80235774 002326B4  48 00 00 1C */	b lbl_80235790
 lbl_80235778:
 /* 80235778 002326B8  7F E3 FB 78 */	mr r3, r31
-/* 8023577C 002326BC  48 00 11 7D */	bl dMsgObject_c_NS_getStatusLocal
+/* 8023577C 002326BC  48 00 11 7D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80235780 002326C0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80235784 002326C4  28 00 00 14 */	cmplwi r0, 0x14
 /* 80235788 002326C8  40 82 00 08 */	bne lbl_80235790
@@ -3132,7 +3132,7 @@ lbl_80235790:
 /* 80235794 002326D4  80 7F 01 00 */	lwz r3, 0x100(r31)
 /* 80235798 002326D8  98 03 00 FA */	stb r0, 0xfa(r3)
 /* 8023579C 002326DC  7F E3 FB 78 */	mr r3, r31
-/* 802357A0 002326E0  48 00 12 39 */	bl dMsgObject_c_NS_isSend
+/* 802357A0 002326E0  48 00 12 39 */	bl isSend__12dMsgObject_cFv
 /* 802357A4 002326E4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802357A8 002326E8  41 82 00 BC */	beq lbl_80235864
 /* 802357AC 002326EC  88 1F 01 A3 */	lbz r0, 0x1a3(r31)
@@ -3156,7 +3156,7 @@ lbl_802357E8:
 /* 802357EC 0023272C  98 1F 01 A1 */	stb r0, 0x1a1(r31)
 /* 802357F0 00232730  B0 1F 01 6A */	sth r0, 0x16a(r31)
 /* 802357F4 00232734  7F E3 FB 78 */	mr r3, r31
-/* 802357F8 00232738  48 00 11 01 */	bl dMsgObject_c_NS_getStatusLocal
+/* 802357F8 00232738  48 00 11 01 */	bl getStatusLocal__12dMsgObject_cFv
 /* 802357FC 0023273C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80235800 00232740  28 00 00 14 */	cmplwi r0, 0x14
 /* 80235804 00232744  40 82 00 1C */	bne lbl_80235820
@@ -3164,14 +3164,14 @@ lbl_802357E8:
 /* 8023580C 0023274C  98 1F 01 99 */	stb r0, 0x199(r31)
 /* 80235810 00232750  7F E3 FB 78 */	mr r3, r31
 /* 80235814 00232754  38 80 00 0E */	li r4, 0xe
-/* 80235818 00232758  48 00 10 CD */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235818 00232758  48 00 10 CD */	bl setStatusLocal__12dMsgObject_cFUs
 /* 8023581C 0023275C  48 00 00 10 */	b lbl_8023582C
 lbl_80235820:
 /* 80235820 00232760  7F E3 FB 78 */	mr r3, r31
 /* 80235824 00232764  38 80 00 18 */	li r4, 0x18
-/* 80235828 00232768  48 00 10 BD */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235828 00232768  48 00 10 BD */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_8023582C:
-/* 8023582C 0023276C  4B FE 91 A5 */	bl dMeter2Info_set2DVibration
+/* 8023582C 0023276C  4B FE 91 A5 */	bl dMeter2Info_set2DVibration__Fv
 /* 80235830 00232770  38 00 00 64 */	li r0, 0x64
 /* 80235834 00232774  90 01 00 08 */	stw r0, 8(r1)
 /* 80235838 00232778  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -3193,8 +3193,8 @@ lbl_80235864:
 /* 80235874 002327B4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80235878 002327B8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_selectEndProc
-dMsgObject_c_NS_selectEndProc:
+.global selectEndProc__12dMsgObject_cFv
+selectEndProc__12dMsgObject_cFv:
 /* 8023587C 002327BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80235880 002327C0  7C 08 02 A6 */	mflr r0
 /* 80235884 002327C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3211,7 +3211,7 @@ dMsgObject_c_NS_selectEndProc:
 /* 802358B0 002327F0  98 1F 01 99 */	stb r0, 0x199(r31)
 /* 802358B4 002327F4  7F E3 FB 78 */	mr r3, r31
 /* 802358B8 002327F8  38 80 00 0E */	li r4, 0xe
-/* 802358BC 002327FC  48 00 10 29 */	bl dMsgObject_c_NS_setStatusLocal
+/* 802358BC 002327FC  48 00 10 29 */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_802358C0:
 /* 802358C0 00232800  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802358C4 00232804  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3219,8 +3219,8 @@ lbl_802358C0:
 /* 802358CC 0023280C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802358D0 00232810  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_inputProc
-dMsgObject_c_NS_inputProc:
+.global inputProc__12dMsgObject_cFv
+inputProc__12dMsgObject_cFv:
 /* 802358D4 00232814  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802358D8 00232818  7C 08 02 A6 */	mflr r0
 /* 802358DC 0023281C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3232,9 +3232,9 @@ dMsgObject_c_NS_inputProc:
 /* 802358F4 00232834  3B C3 01 88 */	addi r30, r3, lbl_80430188@l
 /* 802358F8 00232838  98 1E 00 BD */	stb r0, 0xbd(r30)
 /* 802358FC 0023283C  80 7C 01 18 */	lwz r3, 0x118(r28)
-/* 80235900 00232840  4B FF 3B A9 */	bl jmessage_tReference_NS_inputNumber
+/* 80235900 00232840  4B FF 3B A9 */	bl inputNumber__19jmessage_tReferenceFv
 /* 80235904 00232844  7F 83 E3 78 */	mr r3, r28
-/* 80235908 00232848  48 00 10 D1 */	bl dMsgObject_c_NS_isSend
+/* 80235908 00232848  48 00 10 D1 */	bl isSend__12dMsgObject_cFv
 /* 8023590C 0023284C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235910 00232850  41 82 01 AC */	beq lbl_80235ABC
 /* 80235914 00232854  38 00 00 00 */	li r0, 0
@@ -3279,9 +3279,9 @@ lbl_8023598C:
 /* 802359AC 002328EC  41 82 00 AC */	beq lbl_80235A58
 /* 802359B0 002328F0  7C 60 07 35 */	extsh. r0, r3
 /* 802359B4 002328F4  40 81 00 94 */	ble lbl_80235A48
-/* 802359B8 002328F8  48 00 30 41 */	bl dMsgObject_addFundRaising
-/* 802359BC 002328FC  48 00 2F 6D */	bl dMsgObject_getFundRaising
-/* 802359C0 00232900  48 00 2F 69 */	bl dMsgObject_getFundRaising
+/* 802359B8 002328F8  48 00 30 41 */	bl dMsgObject_addFundRaising__Fs
+/* 802359BC 002328FC  48 00 2F 6D */	bl dMsgObject_getFundRaising__Fv
+/* 802359C0 00232900  48 00 2F 69 */	bl dMsgObject_getFundRaising__Fv
 /* 802359C4 00232904  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 802359C8 00232908  A8 1C 01 76 */	lha r0, 0x176(r28)
 /* 802359CC 0023290C  7C 03 00 00 */	cmpw r3, r0
@@ -3307,14 +3307,14 @@ lbl_8023598C:
 /* 80235A1C 0023295C  A0 9D 02 F0 */	lhz r4, 0x2f0(r29)
 /* 80235A20 00232960  4B DF EF 6D */	bl onEventBit__11dSv_event_cFUs
 /* 80235A24 00232964  38 60 00 00 */	li r3, 0
-/* 80235A28 00232968  48 00 2F 69 */	bl dMsgObject_setFundRaising
+/* 80235A28 00232968  48 00 2F 69 */	bl dMsgObject_setFundRaising__FUs
 /* 80235A2C 0023296C  48 00 00 40 */	b lbl_80235A6C
 lbl_80235A30:
 /* 80235A30 00232970  7F 63 DB 78 */	mr r3, r27
 /* 80235A34 00232974  A0 9F 00 F8 */	lhz r4, 0xf8(r31)
 /* 80235A38 00232978  4B DF EF 55 */	bl onEventBit__11dSv_event_cFUs
 /* 80235A3C 0023297C  38 60 00 00 */	li r3, 0
-/* 80235A40 00232980  48 00 2F 51 */	bl dMsgObject_setFundRaising
+/* 80235A40 00232980  48 00 2F 51 */	bl dMsgObject_setFundRaising__FUs
 /* 80235A44 00232984  48 00 00 28 */	b lbl_80235A6C
 lbl_80235A48:
 /* 80235A48 00232988  7F A3 EB 78 */	mr r3, r29
@@ -3322,19 +3322,19 @@ lbl_80235A48:
 /* 80235A50 00232990  4B DF EF 55 */	bl offEventBit__11dSv_event_cFUs
 /* 80235A54 00232994  48 00 00 18 */	b lbl_80235A6C
 lbl_80235A58:
-/* 80235A58 00232998  48 00 2E 3D */	bl dMsgObject_addTotalPayment
-.global dMsgObject_searchSSItem
-/* 80235A5C 0023299C  3C 60 80 23 */	lis r3, dMsgObject_searchSSItem@ha
-.global dMsgObject_searchSSItem
-/* 80235A60 002329A0  38 63 2A 44 */	addi r3, r3, dMsgObject_searchSSItem@l
+/* 80235A58 00232998  48 00 2E 3D */	bl dMsgObject_addTotalPayment__Fs
+.global dMsgObject_searchSSItem__FPvPv
+/* 80235A5C 0023299C  3C 60 80 23 */	lis r3, dMsgObject_searchSSItem__FPvPv@ha
+.global dMsgObject_searchSSItem__FPvPv
+/* 80235A60 002329A0  38 63 2A 44 */	addi r3, r3, dMsgObject_searchSSItem__FPvPv@l
 /* 80235A64 002329A4  7F 84 E3 78 */	mr r4, r28
-/* 80235A68 002329A8  4B DE B8 D1 */	bl fpcEx_Search
+/* 80235A68 002329A8  4B DE B8 D1 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_80235A6C:
 /* 80235A6C 002329AC  38 00 00 00 */	li r0, 0
 /* 80235A70 002329B0  98 1E 00 BD */	stb r0, 0xbd(r30)
 /* 80235A74 002329B4  7F 83 E3 78 */	mr r3, r28
 /* 80235A78 002329B8  38 80 00 0E */	li r4, 0xe
-/* 80235A7C 002329BC  48 00 0E 69 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235A7C 002329BC  48 00 0E 69 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80235A80 002329C0  48 00 00 3C */	b lbl_80235ABC
 lbl_80235A84:
 /* 80235A84 002329C4  54 60 05 AD */	rlwinm. r0, r3, 0, 0x16, 0x16
@@ -3350,7 +3350,7 @@ lbl_80235A84:
 /* 80235AAC 002329EC  98 1E 00 BD */	stb r0, 0xbd(r30)
 /* 80235AB0 002329F0  7F 83 E3 78 */	mr r3, r28
 /* 80235AB4 002329F4  38 80 00 0E */	li r4, 0xe
-/* 80235AB8 002329F8  48 00 0E 2D */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235AB8 002329F8  48 00 0E 2D */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_80235ABC:
 /* 80235ABC 002329FC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80235AC0 00232A00  48 12 C7 61 */	bl _restgpr_27
@@ -3359,8 +3359,8 @@ lbl_80235ABC:
 /* 80235ACC 00232A0C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80235AD0 00232A10  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_finishProc
-dMsgObject_c_NS_finishProc:
+.global finishProc__12dMsgObject_cFv
+finishProc__12dMsgObject_cFv:
 /* 80235AD4 00232A14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80235AD8 00232A18  7C 08 02 A6 */	mflr r0
 /* 80235ADC 00232A1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3373,7 +3373,7 @@ dMsgObject_c_NS_finishProc:
 /* 80235AF8 00232A38  88 1F 04 CB */	lbz r0, 0x4cb(r31)
 /* 80235AFC 00232A3C  28 00 00 00 */	cmplwi r0, 0
 /* 80235B00 00232A40  41 82 00 54 */	beq lbl_80235B54
-/* 80235B04 00232A44  48 00 17 39 */	bl dMsgObject_c_NS_isTalkMessage
+/* 80235B04 00232A44  48 00 17 39 */	bl isTalkMessage__12dMsgObject_cFv
 /* 80235B08 00232A48  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235B0C 00232A4C  41 82 00 48 */	beq lbl_80235B54
 /* 80235B10 00232A50  80 7F 01 18 */	lwz r3, 0x118(r31)
@@ -3395,7 +3395,7 @@ dMsgObject_c_NS_finishProc:
 /* 80235B50 00232A90  48 07 5E 35 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80235B54:
 /* 80235B54 00232A94  80 7F 01 18 */	lwz r3, 0x118(r31)
-/* 80235B58 00232A98  4B FF 36 11 */	bl jmessage_tReference_NS_selectMessage
+/* 80235B58 00232A98  4B FF 36 11 */	bl selectMessage__19jmessage_tReferenceFv
 /* 80235B5C 00232A9C  80 7F 01 20 */	lwz r3, 0x120(r31)
 /* 80235B60 00232AA0  80 63 00 04 */	lwz r3, 4(r3)
 /* 80235B64 00232AA4  88 03 12 4C */	lbz r0, 0x124c(r3)
@@ -3414,11 +3414,11 @@ lbl_80235B54:
 /* 80235B98 00232AD8  4E 80 04 21 */	bctrl 
 lbl_80235B9C:
 /* 80235B9C 00232ADC  7F E3 FB 78 */	mr r3, r31
-/* 80235BA0 00232AE0  48 00 15 49 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80235BA0 00232AE0  48 00 15 49 */	bl isHowlMessage__12dMsgObject_cFv
 /* 80235BA4 00232AE4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235BA8 00232AE8  41 82 00 2C */	beq lbl_80235BD4
 /* 80235BAC 00232AEC  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 80235BB0 00232AF0  48 00 C4 D1 */	bl dMsgScrnHowl_c_NS_isKeyCheck
+/* 80235BB0 00232AF0  48 00 C4 D1 */	bl isKeyCheck__14dMsgScrnHowl_cFv
 /* 80235BB4 00232AF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235BB8 00232AF8  41 82 00 1C */	beq lbl_80235BD4
 /* 80235BBC 00232AFC  3C 60 80 3E */	lis r3, m_cpadInfo@ha
@@ -3426,10 +3426,10 @@ lbl_80235B9C:
 /* 80235BC4 00232B04  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80235BC8 00232B08  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 80235BCC 00232B0C  41 82 00 08 */	beq lbl_80235BD4
-/* 80235BD0 00232B10  48 00 27 51 */	bl dMsgObject_c_NS_onMsgSend
+/* 80235BD0 00232B10  48 00 27 51 */	bl onMsgSend__12dMsgObject_cFv
 lbl_80235BD4:
 /* 80235BD4 00232B14  7F E3 FB 78 */	mr r3, r31
-/* 80235BD8 00232B18  48 00 0E 01 */	bl dMsgObject_c_NS_isSend
+/* 80235BD8 00232B18  48 00 0E 01 */	bl isSend__12dMsgObject_cFv
 /* 80235BDC 00232B1C  7C 7E 1B 78 */	mr r30, r3
 /* 80235BE0 00232B20  3C 60 80 3E */	lis r3, m_cpadInfo@ha
 /* 80235BE4 00232B24  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
@@ -3439,12 +3439,12 @@ lbl_80235BD4:
 /* 80235BF4 00232B34  54 60 05 AD */	rlwinm. r0, r3, 0, 0x16, 0x16
 /* 80235BF8 00232B38  41 82 00 24 */	beq lbl_80235C1C
 /* 80235BFC 00232B3C  80 7F 01 04 */	lwz r3, 0x104(r31)
-/* 80235C00 00232B40  48 00 C4 81 */	bl dMsgScrnHowl_c_NS_isKeyCheck
+/* 80235C00 00232B40  48 00 C4 81 */	bl isKeyCheck__14dMsgScrnHowl_cFv
 /* 80235C04 00232B44  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235C08 00232B48  40 82 00 14 */	bne lbl_80235C1C
 lbl_80235C0C:
 /* 80235C0C 00232B4C  7F E3 FB 78 */	mr r3, r31
-/* 80235C10 00232B50  48 00 14 D9 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80235C10 00232B50  48 00 14 D9 */	bl isHowlMessage__12dMsgObject_cFv
 /* 80235C14 00232B54  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235C18 00232B58  40 82 00 90 */	bne lbl_80235CA8
 lbl_80235C1C:
@@ -3463,9 +3463,9 @@ lbl_80235C44:
 /* 80235C48 00232B88  B0 1F 01 6A */	sth r0, 0x16a(r31)
 /* 80235C4C 00232B8C  7F E3 FB 78 */	mr r3, r31
 /* 80235C50 00232B90  38 80 00 11 */	li r4, 0x11
-/* 80235C54 00232B94  48 00 0C 91 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235C54 00232B94  48 00 0C 91 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80235C58 00232B98  7F E3 FB 78 */	mr r3, r31
-/* 80235C5C 00232B9C  48 00 15 E1 */	bl dMsgObject_c_NS_isTalkMessage
+/* 80235C5C 00232B9C  48 00 15 E1 */	bl isTalkMessage__12dMsgObject_cFv
 /* 80235C60 00232BA0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235C64 00232BA4  41 82 00 44 */	beq lbl_80235CA8
 /* 80235C68 00232BA8  57 C0 06 3E */	clrlwi r0, r30, 0x18
@@ -3492,8 +3492,8 @@ lbl_80235CA8:
 /* 80235CB8 00232BF8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80235CBC 00232BFC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_endProc
-dMsgObject_c_NS_endProc:
+.global endProc__12dMsgObject_cFv
+endProc__12dMsgObject_cFv:
 /* 80235CC0 00232C00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80235CC4 00232C04  7C 08 02 A6 */	mflr r0
 /* 80235CC8 00232C08  90 01 00 34 */	stw r0, 0x34(r1)
@@ -3506,11 +3506,11 @@ dMsgObject_c_NS_endProc:
 /* 80235CE4 00232C24  38 04 00 01 */	addi r0, r4, 1
 /* 80235CE8 00232C28  B0 03 01 6A */	sth r0, 0x16a(r3)
 /* 80235CEC 00232C2C  3B C0 00 05 */	li r30, 5
-/* 80235CF0 00232C30  48 00 13 CD */	bl dMsgObject_c_NS_isKanbanMessage
+/* 80235CF0 00232C30  48 00 13 CD */	bl isKanbanMessage__12dMsgObject_cFv
 /* 80235CF4 00232C34  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235CF8 00232C38  40 82 00 14 */	bne lbl_80235D0C
 /* 80235CFC 00232C3C  7F E3 FB 78 */	mr r3, r31
-/* 80235D00 00232C40  48 00 15 0D */	bl dMsgObject_c_NS_isBookMessage
+/* 80235D00 00232C40  48 00 15 0D */	bl isBookMessage__12dMsgObject_cFv
 /* 80235D04 00232C44  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235D08 00232C48  41 82 00 14 */	beq lbl_80235D1C
 lbl_80235D0C:
@@ -3520,11 +3520,11 @@ lbl_80235D0C:
 /* 80235D18 00232C58  48 00 00 50 */	b lbl_80235D68
 lbl_80235D1C:
 /* 80235D1C 00232C5C  7F E3 FB 78 */	mr r3, r31
-/* 80235D20 00232C60  48 00 14 C5 */	bl dMsgObject_c_NS_isPlaceMessage
+/* 80235D20 00232C60  48 00 14 C5 */	bl isPlaceMessage__12dMsgObject_cFv
 /* 80235D24 00232C64  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235D28 00232C68  40 82 00 14 */	bne lbl_80235D3C
 /* 80235D2C 00232C6C  7F E3 FB 78 */	mr r3, r31
-/* 80235D30 00232C70  48 00 14 E5 */	bl dMsgObject_c_NS_isStaffMessage
+/* 80235D30 00232C70  48 00 14 E5 */	bl isStaffMessage__12dMsgObject_cFv
 /* 80235D34 00232C74  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235D38 00232C78  41 82 00 14 */	beq lbl_80235D4C
 lbl_80235D3C:
@@ -3534,7 +3534,7 @@ lbl_80235D3C:
 /* 80235D48 00232C88  48 00 00 20 */	b lbl_80235D68
 lbl_80235D4C:
 /* 80235D4C 00232C8C  7F E3 FB 78 */	mr r3, r31
-/* 80235D50 00232C90  48 00 14 A9 */	bl dMsgObject_c_NS_isBossMessage
+/* 80235D50 00232C90  48 00 14 A9 */	bl isBossMessage__12dMsgObject_cFv
 /* 80235D54 00232C94  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235D58 00232C98  41 82 00 10 */	beq lbl_80235D68
 /* 80235D5C 00232C9C  3C 60 80 43 */	lis r3, lbl_8043028C@ha
@@ -3565,7 +3565,7 @@ lbl_80235D68:
 /* 80235DBC 00232CFC  7D 89 03 A6 */	mtctr r12
 /* 80235DC0 00232D00  4E 80 04 21 */	bctrl 
 /* 80235DC4 00232D04  7F E3 FB 78 */	mr r3, r31
-/* 80235DC8 00232D08  48 00 14 45 */	bl dMsgObject_c_NS_isBookMessage
+/* 80235DC8 00232D08  48 00 14 45 */	bl isBookMessage__12dMsgObject_cFv
 /* 80235DCC 00232D0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80235DD0 00232D10  41 82 00 1C */	beq lbl_80235DEC
 /* 80235DD4 00232D14  80 7F 01 04 */	lwz r3, 0x104(r31)
@@ -3603,12 +3603,12 @@ lbl_80235DEC:
 /* 80235E50 00232D90  40 82 00 14 */	bne lbl_80235E64
 /* 80235E54 00232D94  7F E3 FB 78 */	mr r3, r31
 /* 80235E58 00232D98  38 80 00 12 */	li r4, 0x12
-/* 80235E5C 00232D9C  48 00 0A 89 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235E5C 00232D9C  48 00 0A 89 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80235E60 00232DA0  48 00 00 10 */	b lbl_80235E70
 lbl_80235E64:
 /* 80235E64 00232DA4  7F E3 FB 78 */	mr r3, r31
 /* 80235E68 00232DA8  38 80 00 13 */	li r4, 0x13
-/* 80235E6C 00232DAC  48 00 0A 79 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80235E6C 00232DAC  48 00 0A 79 */	bl setStatusLocal__12dMsgObject_cFUs
 lbl_80235E70:
 /* 80235E70 00232DB0  38 60 00 00 */	li r3, 0
 /* 80235E74 00232DB4  90 7F 01 54 */	stw r3, 0x154(r31)
@@ -3631,8 +3631,8 @@ lbl_80235E9C:
 /* 80235EB4 00232DF4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80235EB8 00232DF8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_deleteProc
-dMsgObject_c_NS_deleteProc:
+.global deleteProc__12dMsgObject_cFv
+deleteProc__12dMsgObject_cFv:
 /* 80235EBC 00232DFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80235EC0 00232E00  7C 08 02 A6 */	mflr r0
 /* 80235EC4 00232E04  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3642,15 +3642,15 @@ dMsgObject_c_NS_deleteProc:
 /* 80235ED4 00232E14  80 63 01 48 */	lwz r3, 0x148(r3)
 /* 80235ED8 00232E18  28 03 00 00 */	cmplwi r3, 0
 /* 80235EDC 00232E1C  41 82 00 10 */	beq lbl_80235EEC
-/* 80235EE0 00232E20  4B DD 92 ED */	bl mDoExt_setCurrentHeap
+/* 80235EE0 00232E20  4B DD 92 ED */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80235EE4 00232E24  38 00 00 00 */	li r0, 0
 /* 80235EE8 00232E28  90 1F 01 48 */	stw r0, 0x148(r31)
 lbl_80235EEC:
 /* 80235EEC 00232E2C  7F E3 FB 78 */	mr r3, r31
 /* 80235EF0 00232E30  38 80 00 01 */	li r4, 1
-/* 80235EF4 00232E34  48 00 0A 19 */	bl dMsgObject_c_NS_delete_screen
+/* 80235EF4 00232E34  48 00 0A 19 */	bl delete_screen__12dMsgObject_cFb
 /* 80235EF8 00232E38  80 7F 01 14 */	lwz r3, 0x114(r31)
-/* 80235EFC 00232E3C  48 07 16 D9 */	bl JMessage_NS_TControl_NS_reset
+/* 80235EFC 00232E3C  48 07 16 D9 */	bl reset__Q28JMessage8TControlFv
 /* 80235F00 00232E40  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 80235F04 00232E44  80 83 00 04 */	lwz r4, 4(r3)
 /* 80235F08 00232E48  28 04 00 00 */	cmplwi r4, 0
@@ -3667,11 +3667,11 @@ lbl_80235F2C:
 /* 80235F2C 00232E6C  38 00 00 00 */	li r0, 0
 /* 80235F30 00232E70  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80235F34 00232E74  80 7F 01 18 */	lwz r3, 0x118(r31)
-/* 80235F38 00232E78  4B FF 38 D9 */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 80235F38 00232E78  4B FF 38 D9 */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 80235F3C 00232E7C  38 00 00 00 */	li r0, 0
 /* 80235F40 00232E80  B0 1F 01 7E */	sth r0, 0x17e(r31)
 /* 80235F44 00232E84  7F E3 FB 78 */	mr r3, r31
-/* 80235F48 00232E88  48 00 18 01 */	bl dMsgObject_c_NS_updateEquipBombInfoLocal
+/* 80235F48 00232E88  48 00 18 01 */	bl updateEquipBombInfoLocal__12dMsgObject_cFv
 /* 80235F4C 00232E8C  38 00 00 FF */	li r0, 0xff
 /* 80235F50 00232E90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80235F54 00232E94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -3682,9 +3682,9 @@ lbl_80235F2C:
 /* 80235F68 00232EA8  98 03 5E 7A */	stb r0, 0x5e7a(r3)
 /* 80235F6C 00232EAC  98 03 5E 7B */	stb r0, 0x5e7b(r3)
 /* 80235F70 00232EB0  90 03 5E EC */	stw r0, 0x5eec(r3)
-/* 80235F74 00232EB4  48 00 19 F5 */	bl dMsgObject_c_NS_offCameraCancelFlag
+/* 80235F74 00232EB4  48 00 19 F5 */	bl offCameraCancelFlag__12dMsgObject_cFv
 /* 80235F78 00232EB8  38 60 00 FF */	li r3, 0xff
-/* 80235F7C 00232EBC  48 00 25 71 */	bl dMsgObject_c_NS_setMsgOutputType
+/* 80235F7C 00232EBC  48 00 25 71 */	bl setMsgOutputType__12dMsgObject_cFUc
 /* 80235F80 00232EC0  38 80 00 00 */	li r4, 0
 /* 80235F84 00232EC4  98 9F 04 D2 */	stb r4, 0x4d2(r31)
 /* 80235F88 00232EC8  80 7F 01 20 */	lwz r3, 0x120(r31)
@@ -3693,8 +3693,8 @@ lbl_80235F2C:
 /* 80235F94 00232ED4  28 00 00 00 */	cmplwi r0, 0
 /* 80235F98 00232ED8  41 82 00 10 */	beq lbl_80235FA8
 /* 80235F9C 00232EDC  98 9E 12 4C */	stb r4, 0x124c(r30)
-/* 80235FA0 00232EE0  48 00 23 29 */	bl dMsgObject_c_NS_offMsgSendControl
-/* 80235FA4 00232EE4  48 00 23 A9 */	bl dMsgObject_c_NS_offMsgSend
+/* 80235FA0 00232EE0  48 00 23 29 */	bl offMsgSendControl__12dMsgObject_cFv
+/* 80235FA4 00232EE4  48 00 23 A9 */	bl offMsgSend__12dMsgObject_cFv
 lbl_80235FA8:
 /* 80235FA8 00232EE8  88 1E 12 4D */	lbz r0, 0x124d(r30)
 /* 80235FAC 00232EEC  28 00 00 00 */	cmplwi r0, 0
@@ -3738,7 +3738,7 @@ lbl_80236028:
 /* 80236030 00232F70  90 1F 01 40 */	stw r0, 0x140(r31)
 /* 80236034 00232F74  98 1F 04 D1 */	stb r0, 0x4d1(r31)
 /* 80236038 00232F78  7F E3 FB 78 */	mr r3, r31
-/* 8023603C 00232F7C  48 00 15 D5 */	bl dMsgObject_c_NS_resetSelectBomBag
+/* 8023603C 00232F7C  48 00 15 D5 */	bl resetSelectBomBag__12dMsgObject_cFv
 /* 80236040 00232F80  88 9F 01 A5 */	lbz r4, 0x1a5(r31)
 /* 80236044 00232F84  28 04 00 00 */	cmplwi r4, 0
 /* 80236048 00232F88  41 82 00 20 */	beq lbl_80236068
@@ -3753,10 +3753,10 @@ lbl_80236068:
 /* 80236068 00232FA8  38 00 00 FF */	li r0, 0xff
 /* 8023606C 00232FAC  98 1F 01 9A */	stb r0, 0x19a(r31)
 /* 80236070 00232FB0  38 60 00 00 */	li r3, 0
-/* 80236074 00232FB4  48 00 1A 15 */	bl dMsgObject_c_NS_setNowTalkFlowNo
+/* 80236074 00232FB4  48 00 1A 15 */	bl setNowTalkFlowNo__12dMsgObject_cFs
 /* 80236078 00232FB8  7F E3 FB 78 */	mr r3, r31
 /* 8023607C 00232FBC  38 80 00 01 */	li r4, 1
-/* 80236080 00232FC0  48 00 08 65 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80236080 00232FC0  48 00 08 65 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80236084 00232FC4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80236088 00232FC8  83 C1 00 08 */	lwz r30, 8(r1)
 /* 8023608C 00232FCC  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -3764,12 +3764,12 @@ lbl_80236068:
 /* 80236094 00232FD4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80236098 00232FD8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_textmodeProc
-dMsgObject_c_NS_textmodeProc:
+.global textmodeProc__12dMsgObject_cFv
+textmodeProc__12dMsgObject_cFv:
 /* 8023609C 00232FDC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_talkStartInit
-dMsgObject_c_NS_talkStartInit:
+.global talkStartInit__12dMsgObject_cFv
+talkStartInit__12dMsgObject_cFv:
 /* 802360A0 00232FE0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802360A4 00232FE4  7C 08 02 A6 */	mflr r0
 /* 802360A8 00232FE8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -3779,7 +3779,7 @@ dMsgObject_c_NS_talkStartInit:
 /* 802360B8 00232FF8  48 12 C1 21 */	bl _savegpr_28
 /* 802360BC 00232FFC  7C 7F 1B 78 */	mr r31, r3
 /* 802360C0 00233000  C3 E2 B0 BC */	lfs f31, lbl_80454ABC-_SDA2_BASE_(r2)
-/* 802360C4 00233004  4B DD E9 2D */	bl mDoExt_getMesgFont
+/* 802360C4 00233004  4B DD E9 2D */	bl mDoExt_getMesgFont__Fv
 /* 802360C8 00233008  7C 7D 1B 78 */	mr r29, r3
 /* 802360CC 0023300C  38 00 00 00 */	li r0, 0
 /* 802360D0 00233010  98 1F 01 9B */	stb r0, 0x19b(r31)
@@ -3794,7 +3794,7 @@ dMsgObject_c_NS_talkStartInit:
 /* 802360F4 00233034  41 82 00 18 */	beq lbl_8023610C
 /* 802360F8 00233038  7F E3 FB 78 */	mr r3, r31
 /* 802360FC 0023303C  38 80 00 00 */	li r4, 0
-/* 80236100 00233040  48 00 08 0D */	bl dMsgObject_c_NS_delete_screen
+/* 80236100 00233040  48 00 08 0D */	bl delete_screen__12dMsgObject_cFb
 /* 80236104 00233044  C3 E2 B0 C0 */	lfs f31, lbl_80454AC0-_SDA2_BASE_(r2)
 /* 80236108 00233048  3B C0 00 01 */	li r30, 1
 lbl_8023610C:
@@ -3811,7 +3811,7 @@ lbl_80236118:
 /* 80236130 00233070  40 82 00 34 */	bne lbl_80236164
 /* 80236134 00233074  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80236138 00233078  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 8023613C 0023307C  4B FE 60 A1 */	bl dMeter2Info_c_NS_isFloatingMessageVisible
+/* 8023613C 0023307C  4B FE 60 A1 */	bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 80236140 00233080  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236144 00233084  41 82 00 20 */	beq lbl_80236164
 /* 80236148 00233088  88 1F 04 CD */	lbz r0, 0x4cd(r31)
@@ -3821,7 +3821,7 @@ lbl_80236154:
 /* 80236154 00233094  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80236158 00233098  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 8023615C 0023309C  80 63 00 1C */	lwz r3, 0x1c(r3)
-/* 80236160 002330A0  4B FE 95 8D */	bl dMeter2_c_NS_emphasisButtonDelete
+/* 80236160 002330A0  4B FE 95 8D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_80236164:
 /* 80236164 002330A4  88 9C 5E 8F */	lbz r4, 0x5e8f(r28)
 /* 80236168 002330A8  28 04 00 00 */	cmplwi r4, 0
@@ -3862,13 +3862,13 @@ lbl_802361B4:
 /* 802361E8 00233128  40 82 00 0C */	bne lbl_802361F4
 lbl_802361EC:
 /* 802361EC 0023312C  38 60 00 07 */	li r3, 7
-/* 802361F0 00233130  4B DF 7E F1 */	bl dComIfGp_setHeapLockFlag
+/* 802361F0 00233130  4B DF 7E F1 */	bl dComIfGp_setHeapLockFlag__FUc
 lbl_802361F4:
 /* 802361F4 00233134  80 1F 01 44 */	lwz r0, 0x144(r31)
 /* 802361F8 00233138  28 00 00 00 */	cmplwi r0, 0
 /* 802361FC 0023313C  40 82 00 10 */	bne lbl_8023620C
 /* 80236200 00233140  38 60 00 07 */	li r3, 7
-/* 80236204 00233144  4B DF 81 CD */	bl dComIfGp_getSubHeap2D
+/* 80236204 00233144  4B DF 81 CD */	bl dComIfGp_getSubHeap2D__Fi
 /* 80236208 00233148  90 7F 01 44 */	stw r3, 0x144(r31)
 lbl_8023620C:
 /* 8023620C 0023314C  80 7F 01 44 */	lwz r3, 0x144(r31)
@@ -3882,7 +3882,7 @@ lbl_8023620C:
 /* 8023622C 0023316C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80236230 00233170  41 82 00 10 */	beq lbl_80236240
 /* 80236234 00233174  38 80 00 00 */	li r4, 0
-/* 80236238 00233178  4B FE FA 5D */	bl COutFont_c
+/* 80236238 00233178  4B FE FA 5D */	bl __ct__10COutFont_cFUc
 /* 8023623C 0023317C  7C 60 1B 78 */	mr r0, r3
 lbl_80236240:
 /* 80236240 00233180  90 1F 01 0C */	stw r0, 0x10c(r31)
@@ -3913,14 +3913,14 @@ lbl_80236264:
 /* 802362A0 002331E0  88 9C 12 45 */	lbz r4, 0x1245(r28)
 /* 802362A4 002331E4  88 BC 12 47 */	lbz r5, 0x1247(r28)
 /* 802362A8 002331E8  80 DF 01 44 */	lwz r6, 0x144(r31)
-/* 802362AC 002331EC  48 00 84 F1 */	bl dMsgScrnItem_c
+/* 802362AC 002331EC  48 00 84 F1 */	bl __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap
 /* 802362B0 002331F0  7C 60 1B 78 */	mr r0, r3
 lbl_802362B4:
 /* 802362B4 002331F4  90 1F 01 04 */	stw r0, 0x104(r31)
 /* 802362B8 002331F8  48 00 01 C4 */	b lbl_8023647C
 /* 802362BC 002331FC  28 04 00 0F */	cmplwi r4, 0xf
 /* 802362C0 00233200  40 82 00 0C */	bne lbl_802362CC
-/* 802362C4 00233204  4B DD E8 41 */	bl mDoExt_getRubyFont
+/* 802362C4 00233204  4B DD E8 41 */	bl mDoExt_getRubyFont__Fv
 /* 802362C8 00233208  7C 7D 1B 78 */	mr r29, r3
 lbl_802362CC:
 /* 802362CC 0023320C  38 60 00 E4 */	li r3, 0xe4
@@ -3929,7 +3929,7 @@ lbl_802362CC:
 /* 802362D8 00233218  41 82 00 14 */	beq lbl_802362EC
 /* 802362DC 0023321C  7F A4 EB 78 */	mr r4, r29
 /* 802362E0 00233220  80 BF 01 44 */	lwz r5, 0x144(r31)
-/* 802362E4 00233224  48 01 26 71 */	bl dMsgScrnTree_c
+/* 802362E4 00233224  48 01 26 71 */	bl __ct__14dMsgScrnTree_cFP7JUTFontP10JKRExpHeap
 /* 802362E8 00233228  7C 60 1B 78 */	mr r0, r3
 lbl_802362EC:
 /* 802362EC 0023322C  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3939,7 +3939,7 @@ lbl_802362EC:
 /* 802362FC 0023323C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80236300 00233240  41 82 00 10 */	beq lbl_80236310
 /* 80236304 00233244  80 9F 01 44 */	lwz r4, 0x144(r31)
-/* 80236308 00233248  48 00 EB 31 */	bl dMsgScrnKanban_c
+/* 80236308 00233248  48 00 EB 31 */	bl __ct__16dMsgScrnKanban_cFP10JKRExpHeap
 /* 8023630C 0023324C  7C 60 1B 78 */	mr r0, r3
 lbl_80236310:
 /* 80236310 00233250  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3951,7 +3951,7 @@ lbl_80236310:
 /* 80236328 00233268  80 9F 01 20 */	lwz r4, 0x120(r31)
 /* 8023632C 0023326C  80 84 00 04 */	lwz r4, 4(r4)
 /* 80236330 00233270  88 84 12 48 */	lbz r4, 0x1248(r4)
-/* 80236334 00233274  48 01 08 01 */	bl dMsgScrnStaff_c
+/* 80236334 00233274  48 01 08 01 */	bl __ct__15dMsgScrnStaff_cFUc
 /* 80236338 00233278  7C 60 1B 78 */	mr r0, r3
 lbl_8023633C:
 /* 8023633C 0023327C  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3960,7 +3960,7 @@ lbl_8023633C:
 /* 80236348 00233288  48 09 89 05 */	bl __nw__FUl
 /* 8023634C 0023328C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80236350 00233290  41 82 00 0C */	beq lbl_8023635C
-/* 80236354 00233294  48 01 00 79 */	bl dMsgScrnPlace_c
+/* 80236354 00233294  48 01 00 79 */	bl __ct__15dMsgScrnPlace_cFv
 /* 80236358 00233298  7C 60 1B 78 */	mr r0, r3
 lbl_8023635C:
 /* 8023635C 0023329C  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3969,7 +3969,7 @@ lbl_8023635C:
 /* 80236368 002332A8  48 09 88 E5 */	bl __nw__FUl
 /* 8023636C 002332AC  7C 60 1B 79 */	or. r0, r3, r3
 /* 80236370 002332B0  41 82 00 0C */	beq lbl_8023637C
-/* 80236374 002332B4  48 00 62 55 */	bl dMsgScrnBoss_c
+/* 80236374 002332B4  48 00 62 55 */	bl __ct__14dMsgScrnBoss_cFv
 /* 80236378 002332B8  7C 60 1B 78 */	mr r0, r3
 lbl_8023637C:
 /* 8023637C 002332BC  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3978,7 +3978,7 @@ lbl_8023637C:
 /* 80236388 002332C8  48 09 88 C5 */	bl __nw__FUl
 /* 8023638C 002332CC  7C 60 1B 79 */	or. r0, r3, r3
 /* 80236390 002332D0  41 82 00 0C */	beq lbl_8023639C
-/* 80236394 002332D4  48 00 A5 D9 */	bl dMsgScrnHowl_c
+/* 80236394 002332D4  48 00 A5 D9 */	bl __ct__14dMsgScrnHowl_cFv
 /* 80236398 002332D8  7C 60 1B 78 */	mr r0, r3
 lbl_8023639C:
 /* 8023639C 002332DC  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -3992,7 +3992,7 @@ lbl_8023639C:
 /* 802363BC 002332FC  41 82 00 14 */	beq lbl_802363D0
 /* 802363C0 00233300  88 9C 12 47 */	lbz r4, 0x1247(r28)
 /* 802363C4 00233304  80 BF 01 44 */	lwz r5, 0x144(r31)
-/* 802363C8 00233308  48 00 E1 91 */	bl dMsgScrnJimaku_c
+/* 802363C8 00233308  48 00 E1 91 */	bl __ct__16dMsgScrnJimaku_cFUcP10JKRExpHeap
 /* 802363CC 0023330C  7C 60 1B 78 */	mr r0, r3
 lbl_802363D0:
 /* 802363D0 00233310  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -4013,7 +4013,7 @@ lbl_802363E0:
 /* 80236408 00233348  38 80 00 00 */	li r4, 0
 /* 8023640C 0023334C  88 BC 12 47 */	lbz r5, 0x1247(r28)
 /* 80236410 00233350  80 DF 01 44 */	lwz r6, 0x144(r31)
-/* 80236414 00233354  48 00 83 89 */	bl dMsgScrnItem_c
+/* 80236414 00233354  48 00 83 89 */	bl __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap
 /* 80236418 00233358  7C 60 1B 78 */	mr r0, r3
 lbl_8023641C:
 /* 8023641C 0023335C  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -4026,7 +4026,7 @@ lbl_80236424:
 /* 80236434 00233374  88 9C 12 45 */	lbz r4, 0x1245(r28)
 /* 80236438 00233378  88 BC 12 47 */	lbz r5, 0x1247(r28)
 /* 8023643C 0023337C  80 DF 01 44 */	lwz r6, 0x144(r31)
-/* 80236440 00233380  48 01 0B B1 */	bl dMsgScrnTalk_c
+/* 80236440 00233380  48 01 0B B1 */	bl __ct__14dMsgScrnTalk_cFUcUcP10JKRExpHeap
 /* 80236444 00233384  7C 60 1B 78 */	mr r0, r3
 lbl_80236448:
 /* 80236448 00233388  90 1F 01 04 */	stw r0, 0x104(r31)
@@ -4080,7 +4080,7 @@ lbl_802364BC:
 /* 802364F8 00233438  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 802364FC 0023343C  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 80236500 00233440  38 81 00 08 */	addi r4, r1, 8
-/* 80236504 00233444  48 00 27 75 */	bl jmessage_tReference_NS_setActorPos
+/* 80236504 00233444  48 00 27 75 */	bl setActorPos__19jmessage_tReferenceF4cXyz
 /* 80236508 00233448  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 8023650C 0023344C  C0 03 00 58 */	lfs f0, 0x58(r3)
 /* 80236510 00233450  80 7F 01 18 */	lwz r3, 0x118(r31)
@@ -4160,7 +4160,7 @@ lbl_802364BC:
 /* 80236638 00233578  4E 80 04 21 */	bctrl 
 /* 8023663C 0023357C  7F E3 FB 78 */	mr r3, r31
 /* 80236640 00233580  7F C4 F3 78 */	mr r4, r30
-/* 80236644 00233584  48 00 00 C9 */	bl dMsgObject_c_NS_fukiPosCalc
+/* 80236644 00233584  48 00 00 C9 */	bl fukiPosCalc__12dMsgObject_cFb
 /* 80236648 00233588  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 8023664C 0023358C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80236650 00233590  81 8C 00 24 */	lwz r12, 0x24(r12)
@@ -4176,12 +4176,12 @@ lbl_802364BC:
 /* 80236678 002335B8  38 84 96 60 */	addi r4, r4, lbl_80399660@l
 /* 8023667C 002335BC  38 84 00 6E */	addi r4, r4, 0x6e
 /* 80236680 002335C0  7C 85 23 78 */	mr r5, r4
-/* 80236684 002335C4  48 00 5C DD */	bl dMsgScrnBase_c_NS_setString
+/* 80236684 002335C4  48 00 5C DD */	bl setString__14dMsgScrnBase_cFPcPc
 /* 80236688 002335C8  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 8023668C 002335CC  3C 80 80 3A */	lis r4, lbl_80399660@ha
 /* 80236690 002335D0  38 84 96 60 */	addi r4, r4, lbl_80399660@l
 /* 80236694 002335D4  38 84 00 6E */	addi r4, r4, 0x6e
-/* 80236698 002335D8  48 00 5D 55 */	bl dMsgScrnBase_c_NS_setRubyString
+/* 80236698 002335D8  48 00 5D 55 */	bl setRubyString__14dMsgScrnBase_cFPc
 /* 8023669C 002335DC  80 7F 01 04 */	lwz r3, 0x104(r31)
 /* 802366A0 002335E0  3C 80 80 3A */	lis r4, lbl_80399660@ha
 /* 802366A4 002335E4  38 84 96 60 */	addi r4, r4, lbl_80399660@l
@@ -4212,8 +4212,8 @@ lbl_802366EC:
 /* 80236704 00233644  38 21 00 40 */	addi r1, r1, 0x40
 /* 80236708 00233648  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_fukiPosCalc
-dMsgObject_c_NS_fukiPosCalc:
+.global fukiPosCalc__12dMsgObject_cFb
+fukiPosCalc__12dMsgObject_cFb:
 /* 8023670C 0023364C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80236710 00233650  7C 08 02 A6 */	mflr r0
 /* 80236714 00233654  90 01 00 44 */	stw r0, 0x44(r1)
@@ -4234,11 +4234,11 @@ lbl_8023674C:
 /* 8023674C 0023368C  80 9F 01 20 */	lwz r4, 0x120(r31)
 /* 80236750 00233690  80 84 00 04 */	lwz r4, 4(r4)
 /* 80236754 00233694  8B C4 12 45 */	lbz r30, 0x1245(r4)
-/* 80236758 00233698  48 00 09 65 */	bl dMsgObject_c_NS_isKanbanMessage
+/* 80236758 00233698  48 00 09 65 */	bl isKanbanMessage__12dMsgObject_cFv
 /* 8023675C 0023369C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236760 002336A0  40 82 00 14 */	bne lbl_80236774
 /* 80236764 002336A4  7F E3 FB 78 */	mr r3, r31
-/* 80236768 002336A8  48 00 0A A5 */	bl dMsgObject_c_NS_isBookMessage
+/* 80236768 002336A8  48 00 0A A5 */	bl isBookMessage__12dMsgObject_cFv
 /* 8023676C 002336AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236770 002336B0  41 82 00 0C */	beq lbl_8023677C
 lbl_80236774:
@@ -4252,7 +4252,7 @@ lbl_8023677C:
 /* 8023678C 002336CC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80236790 002336D0  38 63 05 38 */	addi r3, r3, 0x538
 /* 80236794 002336D4  38 81 00 14 */	addi r4, r1, 0x14
-/* 80236798 002336D8  4B DD EB 79 */	bl mDoLib_project
+/* 80236798 002336D8  4B DD EB 79 */	bl mDoLib_project__FP3VecP3Vec
 /* 8023679C 002336DC  C0 02 B0 BC */	lfs f0, lbl_80454ABC-_SDA2_BASE_(r2)
 /* 802367A0 002336E0  D0 01 00 08 */	stfs f0, 8(r1)
 /* 802367A4 002336E4  D0 01 00 0C */	stfs f0, 0xc(r1)
@@ -4269,7 +4269,7 @@ lbl_802367CC:
 /* 802367CC 0023370C  80 7F 01 00 */	lwz r3, 0x100(r31)
 /* 802367D0 00233710  38 63 00 E0 */	addi r3, r3, 0xe0
 /* 802367D4 00233714  38 81 00 20 */	addi r4, r1, 0x20
-/* 802367D8 00233718  4B DD EB 39 */	bl mDoLib_project
+/* 802367D8 00233718  4B DD EB 39 */	bl mDoLib_project__FP3VecP3Vec
 /* 802367DC 0023371C  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 802367E0 00233720  C0 22 B0 BC */	lfs f1, lbl_80454ABC-_SDA2_BASE_(r2)
 /* 802367E4 00233724  FC 02 08 40 */	fcmpo cr0, f2, f1
@@ -4346,24 +4346,24 @@ lbl_802368CC:
 /* 802368DC 0023381C  38 21 00 40 */	addi r1, r1, 0x40
 /* 802368E0 00233820  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setStatusLocal
-dMsgObject_c_NS_setStatusLocal:
+.global setStatusLocal__12dMsgObject_cFUs
+setStatusLocal__12dMsgObject_cFUs:
 /* 802368E4 00233824  80 63 01 20 */	lwz r3, 0x120(r3)
 /* 802368E8 00233828  80 63 00 04 */	lwz r3, 4(r3)
 /* 802368EC 0023382C  80 63 05 BC */	lwz r3, 0x5bc(r3)
 /* 802368F0 00233830  B0 83 00 00 */	sth r4, 0(r3)
 /* 802368F4 00233834  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getStatusLocal
-dMsgObject_c_NS_getStatusLocal:
+.global getStatusLocal__12dMsgObject_cFv
+getStatusLocal__12dMsgObject_cFv:
 /* 802368F8 00233838  80 63 01 20 */	lwz r3, 0x120(r3)
 /* 802368FC 0023383C  80 63 00 04 */	lwz r3, 4(r3)
 /* 80236900 00233840  80 63 05 BC */	lwz r3, 0x5bc(r3)
 /* 80236904 00233844  A0 63 00 00 */	lhz r3, 0(r3)
 /* 80236908 00233848  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_delete_screen
-dMsgObject_c_NS_delete_screen:
+.global delete_screen__12dMsgObject_cFb
+delete_screen__12dMsgObject_cFb:
 /* 8023690C 0023384C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80236910 00233850  7C 08 02 A6 */	mflr r0
 /* 80236914 00233854  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4404,7 +4404,7 @@ lbl_80236978:
 /* 80236994 002338D4  28 00 00 05 */	cmplwi r0, 5
 /* 80236998 002338D8  40 82 00 0C */	bne lbl_802369A4
 /* 8023699C 002338DC  38 60 00 07 */	li r3, 7
-/* 802369A0 002338E0  4B DF 77 E9 */	bl dComIfGp_offHeapLockFlag
+/* 802369A0 002338E0  4B DF 77 E9 */	bl dComIfGp_offHeapLockFlag__Fi
 lbl_802369A4:
 /* 802369A4 002338E4  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 802369A8 002338E8  41 82 00 18 */	beq lbl_802369C0
@@ -4421,8 +4421,8 @@ lbl_802369C0:
 /* 802369D0 00233910  38 21 00 10 */	addi r1, r1, 0x10
 /* 802369D4 00233914  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isSend
-dMsgObject_c_NS_isSend:
+.global isSend__12dMsgObject_cFv
+isSend__12dMsgObject_cFv:
 /* 802369D8 00233918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802369DC 0023391C  7C 08 02 A6 */	mflr r0
 /* 802369E0 00233920  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4452,15 +4452,15 @@ lbl_80236A28:
 /* 80236A38 00233978  41 82 01 1C */	beq lbl_80236B54
 /* 80236A3C 0023397C  28 00 00 03 */	cmplwi r0, 3
 /* 80236A40 00233980  40 82 00 2C */	bne lbl_80236A6C
-/* 80236A44 00233984  48 00 19 35 */	bl dMsgObject_c_NS_isMsgSend
+/* 80236A44 00233984  48 00 19 35 */	bl isMsgSend__12dMsgObject_cFv
 /* 80236A48 00233988  2C 03 00 00 */	cmpwi r3, 0
 /* 80236A4C 0023398C  41 82 00 14 */	beq lbl_80236A60
-/* 80236A50 00233990  48 00 18 79 */	bl dMsgObject_c_NS_offMsgSendControl
-/* 80236A54 00233994  48 00 18 F9 */	bl dMsgObject_c_NS_offMsgSend
+/* 80236A50 00233990  48 00 18 79 */	bl offMsgSendControl__12dMsgObject_cFv
+/* 80236A54 00233994  48 00 18 F9 */	bl offMsgSend__12dMsgObject_cFv
 /* 80236A58 00233998  38 60 00 01 */	li r3, 1
 /* 80236A5C 0023399C  48 00 01 84 */	b lbl_80236BE0
 lbl_80236A60:
-/* 80236A60 002339A0  48 00 18 3D */	bl dMsgObject_c_NS_onMsgSendControl
+/* 80236A60 002339A0  48 00 18 3D */	bl onMsgSendControl__12dMsgObject_cFv
 /* 80236A64 002339A4  38 60 00 00 */	li r3, 0
 /* 80236A68 002339A8  48 00 01 78 */	b lbl_80236BE0
 lbl_80236A6C:
@@ -4477,12 +4477,12 @@ lbl_80236A90:
 /* 80236A90 002339D0  28 00 00 05 */	cmplwi r0, 5
 /* 80236A94 002339D4  40 82 00 54 */	bne lbl_80236AE8
 /* 80236A98 002339D8  7F E3 FB 78 */	mr r3, r31
-/* 80236A9C 002339DC  4B FF FE 5D */	bl dMsgObject_c_NS_getStatusLocal
+/* 80236A9C 002339DC  4B FF FE 5D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80236AA0 002339E0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80236AA4 002339E4  28 00 00 15 */	cmplwi r0, 0x15
 /* 80236AA8 002339E8  40 82 00 38 */	bne lbl_80236AE0
 /* 80236AAC 002339EC  7F E3 FB 78 */	mr r3, r31
-/* 80236AB0 002339F0  48 00 11 4D */	bl dMsgObject_c_NS_setButtonStatusLocal
+/* 80236AB0 002339F0  48 00 11 4D */	bl setButtonStatusLocal__12dMsgObject_cFv
 /* 80236AB4 002339F4  3C 60 80 3E */	lis r3, m_cpadInfo@ha
 /* 80236AB8 002339F8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80236ABC 002339FC  80 63 00 34 */	lwz r3, 0x34(r3)
@@ -4520,7 +4520,7 @@ lbl_80236B1C:
 /* 80236B20 00233A60  28 00 00 02 */	cmplwi r0, 2
 /* 80236B24 00233A64  40 82 00 98 */	bne lbl_80236BBC
 /* 80236B28 00233A68  7F E3 FB 78 */	mr r3, r31
-/* 80236B2C 00233A6C  48 00 10 D1 */	bl dMsgObject_c_NS_setButtonStatusLocal
+/* 80236B2C 00233A6C  48 00 10 D1 */	bl setButtonStatusLocal__12dMsgObject_cFv
 /* 80236B30 00233A70  3C 60 80 3E */	lis r3, m_cpadInfo@ha
 /* 80236B34 00233A74  38 63 D2 E8 */	addi r3, r3, m_cpadInfo@l
 /* 80236B38 00233A78  80 63 00 34 */	lwz r3, 0x34(r3)
@@ -4533,16 +4533,16 @@ lbl_80236B4C:
 /* 80236B50 00233A90  48 00 00 90 */	b lbl_80236BE0
 lbl_80236B54:
 /* 80236B54 00233A94  7F E3 FB 78 */	mr r3, r31
-/* 80236B58 00233A98  48 00 10 A5 */	bl dMsgObject_c_NS_setButtonStatusLocal
+/* 80236B58 00233A98  48 00 10 A5 */	bl setButtonStatusLocal__12dMsgObject_cFv
 /* 80236B5C 00233A9C  7F E3 FB 78 */	mr r3, r31
-/* 80236B60 00233AA0  48 00 05 89 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80236B60 00233AA0  48 00 05 89 */	bl isHowlMessage__12dMsgObject_cFv
 /* 80236B64 00233AA4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80236B68 00233AA8  41 82 00 20 */	beq lbl_80236B88
-/* 80236B6C 00233AAC  48 00 18 0D */	bl dMsgObject_c_NS_isMsgSend
+/* 80236B6C 00233AAC  48 00 18 0D */	bl isMsgSend__12dMsgObject_cFv
 /* 80236B70 00233AB0  2C 03 00 00 */	cmpwi r3, 0
 /* 80236B74 00233AB4  41 82 00 48 */	beq lbl_80236BBC
-/* 80236B78 00233AB8  48 00 17 51 */	bl dMsgObject_c_NS_offMsgSendControl
-/* 80236B7C 00233ABC  48 00 17 D1 */	bl dMsgObject_c_NS_offMsgSend
+/* 80236B78 00233AB8  48 00 17 51 */	bl offMsgSendControl__12dMsgObject_cFv
+/* 80236B7C 00233ABC  48 00 17 D1 */	bl offMsgSend__12dMsgObject_cFv
 /* 80236B80 00233AC0  38 60 00 02 */	li r3, 2
 /* 80236B84 00233AC4  48 00 00 5C */	b lbl_80236BE0
 lbl_80236B88:
@@ -4581,8 +4581,8 @@ lbl_80236BE0:
 /* 80236BF0 00233B30  38 21 00 10 */	addi r1, r1, 0x10
 /* 80236BF4 00233B34  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_readMessageGroupLocal
-dMsgObject_c_NS_readMessageGroupLocal:
+.global readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c
+readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c:
 /* 80236BF8 00233B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80236BFC 00233B3C  7C 08 02 A6 */	mflr r0
 /* 80236C00 00233B40  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4603,13 +4603,13 @@ dMsgObject_c_NS_readMessageGroupLocal:
 /* 80236C3C 00233B7C  38 84 00 6F */	addi r4, r4, 0x6f
 /* 80236C40 00233B80  7F E5 FB 78 */	mr r5, r31
 /* 80236C44 00233B84  4C C6 31 82 */	crclr 6
-/* 80236C48 00233B88  48 12 F8 95 */	bl func_803664DC
+/* 80236C48 00233B88  48 12 F8 95 */	bl sprintf
 /* 80236C4C 00233B8C  3C 60 80 43 */	lis r3, lbl_8043069C@ha
 /* 80236C50 00233B90  38 63 06 9C */	addi r3, r3, lbl_8043069C@l
 /* 80236C54 00233B94  38 80 00 00 */	li r4, 0
 /* 80236C58 00233B98  38 A0 00 01 */	li r5, 1
 /* 80236C5C 00233B9C  38 C0 00 00 */	li r6, 0
-/* 80236C60 00233BA0  4B DD F5 81 */	bl mDoDvdThd_mountXArchive_c_NS_create
+/* 80236C60 00233BA0  4B DD F5 81 */	bl create__25mDoDvdThd_mountXArchive_cFPCcUcQ210JKRArchive10EMountModeP7JKRHeap
 /* 80236C64 00233BA4  90 7E 00 00 */	stw r3, 0(r30)
 /* 80236C68 00233BA8  2C 1F 00 63 */	cmpwi r31, 0x63
 /* 80236C6C 00233BAC  40 82 00 08 */	bne lbl_80236C74
@@ -4623,8 +4623,8 @@ lbl_80236C74:
 /* 80236C88 00233BC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80236C8C 00233BCC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_changeFlowGroupLocal
-dMsgObject_c_NS_changeFlowGroupLocal:
+.global changeFlowGroupLocal__12dMsgObject_cFl
+changeFlowGroupLocal__12dMsgObject_cFl:
 /* 80236C90 00233BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80236C94 00233BD4  7C 08 02 A6 */	mflr r0
 /* 80236C98 00233BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4637,34 +4637,34 @@ dMsgObject_c_NS_changeFlowGroupLocal:
 /* 80236CB4 00233BF4  7C 60 01 10 */	subfe r3, r0, r0
 /* 80236CB8 00233BF8  A8 0D 8B 48 */	lha r0, lbl_804510C8-_SDA_BASE_(r13)
 /* 80236CBC 00233BFC  7C 03 18 78 */	andc r3, r0, r3
-/* 80236CC0 00233C00  48 00 14 05 */	bl dMsgObject_c_NS_changeGroup
+/* 80236CC0 00233C00  48 00 14 05 */	bl changeGroup__12dMsgObject_cFs
 /* 80236CC4 00233C04  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80236CC8 00233C08  7C 08 03 A6 */	mtlr r0
 /* 80236CCC 00233C0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80236CD0 00233C10  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_demoMessageGroupLocal
-dMsgObject_c_NS_demoMessageGroupLocal:
+.global demoMessageGroupLocal__12dMsgObject_cFv
+demoMessageGroupLocal__12dMsgObject_cFv:
 /* 80236CD4 00233C14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80236CD8 00233C18  7C 08 02 A6 */	mflr r0
 /* 80236CDC 00233C1C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80236CE0 00233C20  38 00 00 00 */	li r0, 0
 /* 80236CE4 00233C24  98 03 01 9C */	stb r0, 0x19c(r3)
 /* 80236CE8 00233C28  38 60 00 00 */	li r3, 0
-/* 80236CEC 00233C2C  48 00 13 D9 */	bl dMsgObject_c_NS_changeGroup
+/* 80236CEC 00233C2C  48 00 13 D9 */	bl changeGroup__12dMsgObject_cFs
 /* 80236CF0 00233C30  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80236CF4 00233C34  7C 08 03 A6 */	mtlr r0
 /* 80236CF8 00233C38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80236CFC 00233C3C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_endFlowGroupLocal
-dMsgObject_c_NS_endFlowGroupLocal:
+.global endFlowGroupLocal__12dMsgObject_cFv
+endFlowGroupLocal__12dMsgObject_cFv:
 /* 80236D00 00233C40  38 00 00 00 */	li r0, 0
 /* 80236D04 00233C44  98 03 01 9C */	stb r0, 0x19c(r3)
 /* 80236D08 00233C48  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_changeGroupLocal
-dMsgObject_c_NS_changeGroupLocal:
+.global changeGroupLocal__12dMsgObject_cFs
+changeGroupLocal__12dMsgObject_cFs:
 /* 80236D0C 00233C4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80236D10 00233C50  7C 08 02 A6 */	mflr r0
 /* 80236D14 00233C54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -4675,7 +4675,7 @@ dMsgObject_c_NS_changeGroupLocal:
 /* 80236D28 00233C68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80236D2C 00233C6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80236D30 00233C70  80 63 5E C8 */	lwz r3, 0x5ec8(r3)
-/* 80236D34 00233C74  4B DD 84 99 */	bl mDoExt_setCurrentHeap
+/* 80236D34 00233C74  4B DD 84 99 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80236D38 00233C78  7C 7D 1B 78 */	mr r29, r3
 /* 80236D3C 00233C7C  A8 7E 01 6C */	lha r3, 0x16c(r30)
 /* 80236D40 00233C80  7F E0 07 34 */	extsh r0, r31
@@ -4718,7 +4718,7 @@ lbl_80236DC0:
 /* 80236DC0 00233D00  B3 FE 01 6C */	sth r31, 0x16c(r30)
 lbl_80236DC4:
 /* 80236DC4 00233D04  7F A3 EB 78 */	mr r3, r29
-/* 80236DC8 00233D08  4B DD 84 05 */	bl mDoExt_setCurrentHeap
+/* 80236DC8 00233D08  4B DD 84 05 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80236DCC 00233D0C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80236DD0 00233D10  48 12 B4 59 */	bl _restgpr_29
 /* 80236DD4 00233D14  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -4726,8 +4726,8 @@ lbl_80236DC4:
 /* 80236DDC 00233D1C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80236DE0 00233D20  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getStringLocal
-dMsgObject_c_NS_getStringLocal:
+.global getStringLocal__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs
+getStringLocal__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs:
 /* 80236DE4 00233D24  94 21 FB B0 */	stwu r1, -0x450(r1)
 /* 80236DE8 00233D28  7C 08 02 A6 */	mflr r0
 /* 80236DEC 00233D2C  90 01 04 54 */	stw r0, 0x454(r1)
@@ -4746,14 +4746,14 @@ dMsgObject_c_NS_getStringLocal:
 /* 80236E20 00233D60  88 03 04 CD */	lbz r0, 0x4cd(r3)
 /* 80236E24 00233D64  28 00 00 00 */	cmplwi r0, 0
 /* 80236E28 00233D68  40 82 01 28 */	bne lbl_80236F50
-/* 80236E2C 00233D6C  4B FF FA CD */	bl dMsgObject_c_NS_getStatusLocal
+/* 80236E2C 00233D6C  4B FF FA CD */	bl getStatusLocal__12dMsgObject_cFv
 /* 80236E30 00233D70  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80236E34 00233D74  28 00 00 01 */	cmplwi r0, 1
 /* 80236E38 00233D78  40 82 02 54 */	bne lbl_8023708C
 /* 80236E3C 00233D7C  7F 03 C3 78 */	mr r3, r24
 /* 80236E40 00233D80  7F 24 CB 78 */	mr r4, r25
-/* 80236E44 00233D84  4B FF D2 F9 */	bl dMsgObject_c_NS_getMessageGroup
-/* 80236E48 00233D88  48 00 12 7D */	bl dMsgObject_c_NS_changeGroup
+/* 80236E44 00233D84  4B FF D2 F9 */	bl getMessageGroup__12dMsgObject_cFUl
+/* 80236E48 00233D88  48 00 12 7D */	bl changeGroup__12dMsgObject_cFs
 /* 80236E4C 00233D8C  38 00 00 01 */	li r0, 1
 /* 80236E50 00233D90  80 78 01 1C */	lwz r3, 0x11c(r24)
 /* 80236E54 00233D94  98 03 00 AF */	stb r0, 0xaf(r3)
@@ -4767,7 +4767,7 @@ dMsgObject_c_NS_getStringLocal:
 /* 80236E74 00233DB4  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80236E78 00233DB8  80 78 01 18 */	lwz r3, 0x118(r24)
 /* 80236E7C 00233DBC  38 81 00 08 */	addi r4, r1, 8
-/* 80236E80 00233DC0  48 00 1D F9 */	bl jmessage_tReference_NS_setActorPos
+/* 80236E80 00233DC0  48 00 1D F9 */	bl setActorPos__19jmessage_tReferenceF4cXyz
 /* 80236E84 00233DC4  C0 1A 01 1C */	lfs f0, 0x11c(r26)
 /* 80236E88 00233DC8  C0 3A 01 20 */	lfs f1, 0x120(r26)
 /* 80236E8C 00233DCC  80 78 01 18 */	lwz r3, 0x118(r24)
@@ -4821,12 +4821,12 @@ lbl_80236F24:
 /* 80236F3C 00233E7C  7F 24 CB 78 */	mr r4, r25
 /* 80236F40 00233E80  38 A0 00 00 */	li r5, 0
 /* 80236F44 00233E84  38 C0 00 00 */	li r6, 0
-/* 80236F48 00233E88  48 07 09 AD */	bl JMessage_NS_TControl_NS_setMessageID
+/* 80236F48 00233E88  48 07 09 AD */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 /* 80236F4C 00233E8C  48 00 01 40 */	b lbl_8023708C
 lbl_80236F50:
 /* 80236F50 00233E90  80 98 01 20 */	lwz r4, 0x120(r24)
 /* 80236F54 00233E94  83 E4 00 04 */	lwz r31, 4(r4)
-/* 80236F58 00233E98  4B FF F9 A1 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80236F58 00233E98  4B FF F9 A1 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80236F5C 00233E9C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80236F60 00233EA0  28 00 00 0B */	cmplwi r0, 0xb
 /* 80236F64 00233EA4  40 82 01 28 */	bne lbl_8023708C
@@ -4837,7 +4837,7 @@ lbl_80236F50:
 /* 80236F78 00233EB8  40 82 01 14 */	bne lbl_8023708C
 lbl_80236F7C:
 /* 80236F7C 00233EBC  80 78 01 14 */	lwz r3, 0x114(r24)
-/* 80236F80 00233EC0  48 07 07 3D */	bl JMessage_NS_TControl_NS_render
+/* 80236F80 00233EC0  48 07 07 3D */	bl render__Q28JMessage8TControlFv
 /* 80236F84 00233EC4  28 1E 00 00 */	cmplwi r30, 0
 /* 80236F88 00233EC8  41 82 00 44 */	beq lbl_80236FCC
 /* 80236F8C 00233ECC  80 78 01 18 */	lwz r3, 0x118(r24)
@@ -4877,7 +4877,7 @@ lbl_80236FF4:
 /* 80237004 00233F44  48 13 1B 29 */	bl strcpy
 lbl_80237008:
 /* 80237008 00233F48  80 78 01 14 */	lwz r3, 0x114(r24)
-/* 8023700C 00233F4C  48 07 05 C9 */	bl JMessage_NS_TControl_NS_reset
+/* 8023700C 00233F4C  48 07 05 C9 */	bl reset__Q28JMessage8TControlFv
 /* 80237010 00233F50  80 78 01 14 */	lwz r3, 0x114(r24)
 /* 80237014 00233F54  80 83 00 04 */	lwz r4, 4(r3)
 /* 80237018 00233F58  28 04 00 00 */	cmplwi r4, 0
@@ -4894,7 +4894,7 @@ lbl_8023703C:
 /* 8023703C 00233F7C  38 00 00 00 */	li r0, 0
 /* 80237040 00233F80  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80237044 00233F84  80 78 01 18 */	lwz r3, 0x118(r24)
-/* 80237048 00233F88  4B FF 27 C9 */	bl jmessage_tReference_NS_resetCharCountBuffer
+/* 80237048 00233F88  4B FF 27 C9 */	bl resetCharCountBuffer__19jmessage_tReferenceFv
 /* 8023704C 00233F8C  80 8D 88 84 */	lwz r4, lbl_80450E04-_SDA_BASE_(r13)
 /* 80237050 00233F90  80 64 00 40 */	lwz r3, 0x40(r4)
 /* 80237054 00233F94  38 03 FF FF */	addi r0, r3, -1
@@ -4902,13 +4902,13 @@ lbl_8023703C:
 /* 8023705C 00233F9C  38 00 00 00 */	li r0, 0
 /* 80237060 00233FA0  B0 18 01 7E */	sth r0, 0x17e(r24)
 /* 80237064 00233FA4  7F 03 C3 78 */	mr r3, r24
-/* 80237068 00233FA8  48 00 06 E1 */	bl dMsgObject_c_NS_updateEquipBombInfoLocal
+/* 80237068 00233FA8  48 00 06 E1 */	bl updateEquipBombInfoLocal__12dMsgObject_cFv
 /* 8023706C 00233FAC  38 00 00 00 */	li r0, 0
 /* 80237070 00233FB0  98 18 04 CD */	stb r0, 0x4cd(r24)
 /* 80237074 00233FB4  98 1F 12 4D */	stb r0, 0x124d(r31)
 /* 80237078 00233FB8  7F 03 C3 78 */	mr r3, r24
 /* 8023707C 00233FBC  38 80 00 01 */	li r4, 1
-/* 80237080 00233FC0  4B FF F8 65 */	bl dMsgObject_c_NS_setStatusLocal
+/* 80237080 00233FC0  4B FF F8 65 */	bl setStatusLocal__12dMsgObject_cFUs
 /* 80237084 00233FC4  38 60 00 01 */	li r3, 1
 /* 80237088 00233FC8  48 00 00 08 */	b lbl_80237090
 lbl_8023708C:
@@ -4921,16 +4921,16 @@ lbl_80237090:
 /* 802370A0 00233FE0  38 21 04 50 */	addi r1, r1, 0x450
 /* 802370A4 00233FE4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isGetItemMessage
-dMsgObject_c_NS_isGetItemMessage:
+.global isGetItemMessage__12dMsgObject_cFv
+isGetItemMessage__12dMsgObject_cFv:
 /* 802370A8 00233FE8  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 802370AC 00233FEC  20 00 00 09 */	subfic r0, r0, 9
 /* 802370B0 00233FF0  7C 00 00 34 */	cntlzw r0, r0
 /* 802370B4 00233FF4  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 802370B8 00233FF8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isKanbanMessage
-dMsgObject_c_NS_isKanbanMessage:
+.global isKanbanMessage__12dMsgObject_cFv
+isKanbanMessage__12dMsgObject_cFv:
 /* 802370BC 00233FFC  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 802370C0 00234000  28 00 00 02 */	cmplwi r0, 2
 /* 802370C4 00234004  41 82 00 14 */	beq lbl_802370D8
@@ -4945,16 +4945,16 @@ lbl_802370E0:
 /* 802370E0 00234020  38 60 00 00 */	li r3, 0
 /* 802370E4 00234024  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isHowlMessage
-dMsgObject_c_NS_isHowlMessage:
+.global isHowlMessage__12dMsgObject_cFv
+isHowlMessage__12dMsgObject_cFv:
 /* 802370E8 00234028  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 802370EC 0023402C  20 00 00 11 */	subfic r0, r0, 0x11
 /* 802370F0 00234030  7C 00 00 34 */	cntlzw r0, r0
 /* 802370F4 00234034  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 802370F8 00234038  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMidonaMessage
-dMsgObject_c_NS_isMidonaMessage:
+.global isMidonaMessage__12dMsgObject_cFv
+isMidonaMessage__12dMsgObject_cFv:
 /* 802370FC 0023403C  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 80237100 00234040  28 00 00 0D */	cmplwi r0, 0xd
 /* 80237104 00234044  40 82 00 2C */	bne lbl_80237130
@@ -4973,15 +4973,15 @@ lbl_80237130:
 /* 80237130 00234070  38 60 00 00 */	li r3, 0
 /* 80237134 00234074  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMidonaNormalTalkWait
-dMsgObject_c_NS_isMidonaNormalTalkWait:
+.global isMidonaNormalTalkWait__12dMsgObject_cFv
+isMidonaNormalTalkWait__12dMsgObject_cFv:
 /* 80237138 00234078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023713C 0023407C  7C 08 02 A6 */	mflr r0
 /* 80237140 00234080  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80237144 00234084  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 80237148 00234088  28 00 00 0D */	cmplwi r0, 0xd
 /* 8023714C 0023408C  40 82 00 50 */	bne lbl_8023719C
-/* 80237150 00234090  4B FF FF AD */	bl dMsgObject_c_NS_isMidonaMessage
+/* 80237150 00234090  4B FF FF AD */	bl isMidonaMessage__12dMsgObject_cFv
 /* 80237154 00234094  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237158 00234098  40 82 00 44 */	bne lbl_8023719C
 /* 8023715C 0023409C  80 6D 8A 98 */	lwz r3, lbl_80451018-_SDA_BASE_(r13)
@@ -5011,8 +5011,8 @@ lbl_802371A0:
 /* 802371A8 002340E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802371AC 002340EC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMidonaTalkWait
-dMsgObject_c_NS_isMidonaTalkWait:
+.global isMidonaTalkWait__12dMsgObject_cFv
+isMidonaTalkWait__12dMsgObject_cFv:
 /* 802371B0 002340F0  80 8D 8A 98 */	lwz r4, lbl_80451018-_SDA_BASE_(r13)
 /* 802371B4 002340F4  28 04 00 00 */	cmplwi r4, 0
 /* 802371B8 002340F8  41 82 00 24 */	beq lbl_802371DC
@@ -5029,71 +5029,71 @@ lbl_802371DC:
 /* 802371DC 0023411C  38 60 00 00 */	li r3, 0
 /* 802371E0 00234120  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isPlaceMessage
-dMsgObject_c_NS_isPlaceMessage:
+.global isPlaceMessage__12dMsgObject_cFv
+isPlaceMessage__12dMsgObject_cFv:
 /* 802371E4 00234124  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 802371E8 00234128  20 00 00 0C */	subfic r0, r0, 0xc
 /* 802371EC 0023412C  7C 00 00 34 */	cntlzw r0, r0
 /* 802371F0 00234130  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 802371F4 00234134  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isBossMessage
-dMsgObject_c_NS_isBossMessage:
+.global isBossMessage__12dMsgObject_cFv
+isBossMessage__12dMsgObject_cFv:
 /* 802371F8 00234138  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 802371FC 0023413C  20 00 00 13 */	subfic r0, r0, 0x13
 /* 80237200 00234140  7C 00 00 34 */	cntlzw r0, r0
 /* 80237204 00234144  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80237208 00234148  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isBookMessage
-dMsgObject_c_NS_isBookMessage:
+.global isBookMessage__12dMsgObject_cFv
+isBookMessage__12dMsgObject_cFv:
 /* 8023720C 0023414C  38 60 00 00 */	li r3, 0
 /* 80237210 00234150  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isStaffMessage
-dMsgObject_c_NS_isStaffMessage:
+.global isStaffMessage__12dMsgObject_cFv
+isStaffMessage__12dMsgObject_cFv:
 /* 80237214 00234154  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 80237218 00234158  20 00 00 07 */	subfic r0, r0, 7
 /* 8023721C 0023415C  7C 00 00 34 */	cntlzw r0, r0
 /* 80237220 00234160  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80237224 00234164  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isSaveMessage
-dMsgObject_c_NS_isSaveMessage:
+.global isSaveMessage__12dMsgObject_cFv
+isSaveMessage__12dMsgObject_cFv:
 /* 80237228 00234168  88 03 01 9A */	lbz r0, 0x19a(r3)
 /* 8023722C 0023416C  20 00 00 10 */	subfic r0, r0, 0x10
 /* 80237230 00234170  7C 00 00 34 */	cntlzw r0, r0
 /* 80237234 00234174  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80237238 00234178  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isTalkMessage
-dMsgObject_c_NS_isTalkMessage:
+.global isTalkMessage__12dMsgObject_cFv
+isTalkMessage__12dMsgObject_cFv:
 /* 8023723C 0023417C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237240 00234180  7C 08 02 A6 */	mflr r0
 /* 80237244 00234184  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80237248 00234188  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8023724C 0023418C  7C 7F 1B 78 */	mr r31, r3
-/* 80237250 00234190  4B FF FE 6D */	bl dMsgObject_c_NS_isKanbanMessage
+/* 80237250 00234190  4B FF FE 6D */	bl isKanbanMessage__12dMsgObject_cFv
 /* 80237254 00234194  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237258 00234198  40 82 00 54 */	bne lbl_802372AC
 /* 8023725C 0023419C  7F E3 FB 78 */	mr r3, r31
-/* 80237260 002341A0  4B FF FF 85 */	bl dMsgObject_c_NS_isPlaceMessage
+/* 80237260 002341A0  4B FF FF 85 */	bl isPlaceMessage__12dMsgObject_cFv
 /* 80237264 002341A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237268 002341A8  40 82 00 44 */	bne lbl_802372AC
 /* 8023726C 002341AC  7F E3 FB 78 */	mr r3, r31
-/* 80237270 002341B0  4B FF FF 89 */	bl dMsgObject_c_NS_isBossMessage
+/* 80237270 002341B0  4B FF FF 89 */	bl isBossMessage__12dMsgObject_cFv
 /* 80237274 002341B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237278 002341B8  40 82 00 34 */	bne lbl_802372AC
 /* 8023727C 002341BC  7F E3 FB 78 */	mr r3, r31
-/* 80237280 002341C0  4B FF FF 8D */	bl dMsgObject_c_NS_isBookMessage
+/* 80237280 002341C0  4B FF FF 8D */	bl isBookMessage__12dMsgObject_cFv
 /* 80237284 002341C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237288 002341C8  40 82 00 24 */	bne lbl_802372AC
 /* 8023728C 002341CC  7F E3 FB 78 */	mr r3, r31
-/* 80237290 002341D0  4B FF FE 59 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80237290 002341D0  4B FF FE 59 */	bl isHowlMessage__12dMsgObject_cFv
 /* 80237294 002341D4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237298 002341D8  40 82 00 14 */	bne lbl_802372AC
 /* 8023729C 002341DC  7F E3 FB 78 */	mr r3, r31
-/* 802372A0 002341E0  4B FF FF 75 */	bl dMsgObject_c_NS_isStaffMessage
+/* 802372A0 002341E0  4B FF FF 75 */	bl isStaffMessage__12dMsgObject_cFv
 /* 802372A4 002341E4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802372A8 002341E8  41 82 00 0C */	beq lbl_802372B4
 lbl_802372AC:
@@ -5108,8 +5108,8 @@ lbl_802372B8:
 /* 802372C4 00234204  38 21 00 10 */	addi r1, r1, 0x10
 /* 802372C8 00234208  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSmellName
-dMsgObject_c_NS_getSmellName:
+.global getSmellName__12dMsgObject_cFv
+getSmellName__12dMsgObject_cFv:
 /* 802372CC 0023420C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802372D0 00234210  7C 08 02 A6 */	mflr r0
 /* 802372D4 00234214  90 01 00 24 */	stw r0, 0x24(r1)
@@ -5120,10 +5120,10 @@ dMsgObject_c_NS_getSmellName:
 /* 802372E8 00234228  3B E3 00 20 */	addi r31, r3, 0x20
 /* 802372EC 0023422C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 802372F0 00234230  7F DF 02 14 */	add r30, r31, r0
-/* 802372F4 00234234  48 00 10 F1 */	bl dMsgObject_c_NS_getSmellTypeMessageID
+/* 802372F4 00234234  48 00 10 F1 */	bl getSmellTypeMessageID__12dMsgObject_cFv
 /* 802372F8 00234238  54 64 04 3E */	clrlwi r4, r3, 0x10
 /* 802372FC 0023423C  7F A3 EB 78 */	mr r3, r29
-/* 80237300 00234240  4B FF CC 85 */	bl dMsgObject_c_NS_getMessageIndex
+/* 80237300 00234240  4B FF CC 85 */	bl getMessageIndex__12dMsgObject_cFUl
 /* 80237304 00234244  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237308 00234248  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 8023730C 0023424C  7C 7F 02 14 */	add r3, r31, r0
@@ -5137,8 +5137,8 @@ dMsgObject_c_NS_getSmellName:
 /* 8023732C 0023426C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80237330 00234270  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getPortalName
-dMsgObject_c_NS_getPortalName:
+.global getPortalName__12dMsgObject_cFv
+getPortalName__12dMsgObject_cFv:
 /* 80237334 00234274  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237338 00234278  7C 08 02 A6 */	mflr r0
 /* 8023733C 0023427C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5149,7 +5149,7 @@ dMsgObject_c_NS_getPortalName:
 /* 80237350 00234290  80 04 00 24 */	lwz r0, 0x24(r4)
 /* 80237354 00234294  7F DF 02 14 */	add r30, r31, r0
 /* 80237358 00234298  A0 83 01 80 */	lhz r4, 0x180(r3)
-/* 8023735C 0023429C  4B FF CC 29 */	bl dMsgObject_c_NS_getMessageIndex
+/* 8023735C 0023429C  4B FF CC 29 */	bl getMessageIndex__12dMsgObject_cFUl
 /* 80237360 002342A0  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 80237364 002342A4  7C 7F 02 14 */	add r3, r31, r0
 /* 80237368 002342A8  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -5162,15 +5162,15 @@ dMsgObject_c_NS_getPortalName:
 /* 80237384 002342C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237388 002342C8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getBombName
-dMsgObject_c_NS_getBombName:
+.global getBombName__12dMsgObject_cFv
+getBombName__12dMsgObject_cFv:
 /* 8023738C 002342CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80237390 002342D0  7C 08 02 A6 */	mflr r0
 /* 80237394 002342D4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80237398 002342D8  39 61 00 20 */	addi r11, r1, 0x20
 /* 8023739C 002342DC  48 12 AE 41 */	bl _savegpr_29
 /* 802373A0 002342E0  7C 7D 1B 78 */	mr r29, r3
-/* 802373A4 002342E4  48 00 10 9D */	bl dMsgObject_c_NS_getSelectCursorPos
+/* 802373A4 002342E4  48 00 10 9D */	bl getSelectCursorPos__12dMsgObject_cFv
 /* 802373A8 002342E8  88 1D 01 93 */	lbz r0, 0x193(r29)
 /* 802373AC 002342EC  28 00 00 00 */	cmplwi r0, 0
 /* 802373B0 002342F0  41 82 00 14 */	beq lbl_802373C4
@@ -5190,7 +5190,7 @@ lbl_802373C8:
 /* 802373E0 00234320  7C 9D 02 14 */	add r4, r29, r0
 /* 802373E4 00234324  A0 84 01 82 */	lhz r4, 0x182(r4)
 /* 802373E8 00234328  38 84 01 65 */	addi r4, r4, 0x165
-/* 802373EC 0023432C  4B FF CC E9 */	bl dMsgObject_c_NS_getMessageIndexAlways
+/* 802373EC 0023432C  4B FF CC E9 */	bl getMessageIndexAlways__12dMsgObject_cFUl
 /* 802373F0 00234330  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 802373F4 00234334  7C 7F 02 14 */	add r3, r31, r0
 /* 802373F8 00234338  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -5203,8 +5203,8 @@ lbl_802373C8:
 /* 80237414 00234354  38 21 00 20 */	addi r1, r1, 0x20
 /* 80237418 00234358  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getInsectName
-dMsgObject_c_NS_getInsectName:
+.global getInsectName__12dMsgObject_cFv
+getInsectName__12dMsgObject_cFv:
 /* 8023741C 0023435C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237420 00234360  7C 08 02 A6 */	mflr r0
 /* 80237424 00234364  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5216,7 +5216,7 @@ dMsgObject_c_NS_getInsectName:
 /* 8023743C 0023437C  7F DF 02 14 */	add r30, r31, r0
 /* 80237440 00234380  88 83 01 94 */	lbz r4, 0x194(r3)
 /* 80237444 00234384  38 84 01 65 */	addi r4, r4, 0x165
-/* 80237448 00234388  4B FF CC 8D */	bl dMsgObject_c_NS_getMessageIndexAlways
+/* 80237448 00234388  4B FF CC 8D */	bl getMessageIndexAlways__12dMsgObject_cFUl
 /* 8023744C 0023438C  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 80237450 00234390  7C 7F 02 14 */	add r3, r31, r0
 /* 80237454 00234394  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -5229,8 +5229,8 @@ dMsgObject_c_NS_getInsectName:
 /* 80237470 002343B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237474 002343B4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getLetterName
-dMsgObject_c_NS_getLetterName:
+.global getLetterName__12dMsgObject_cFv
+getLetterName__12dMsgObject_cFv:
 /* 80237478 002343B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023747C 002343BC  7C 08 02 A6 */	mflr r0
 /* 80237480 002343C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5241,7 +5241,7 @@ dMsgObject_c_NS_getLetterName:
 /* 80237494 002343D4  80 04 00 24 */	lwz r0, 0x24(r4)
 /* 80237498 002343D8  7F DF 02 14 */	add r30, r31, r0
 /* 8023749C 002343DC  A0 83 01 88 */	lhz r4, 0x188(r3)
-/* 802374A0 002343E0  4B FF CC 35 */	bl dMsgObject_c_NS_getMessageIndexAlways
+/* 802374A0 002343E0  4B FF CC 35 */	bl getMessageIndexAlways__12dMsgObject_cFUl
 /* 802374A4 002343E4  1C 03 00 14 */	mulli r0, r3, 0x14
 /* 802374A8 002343E8  7C 7F 02 14 */	add r3, r31, r0
 /* 802374AC 002343EC  80 63 00 10 */	lwz r3, 0x10(r3)
@@ -5254,14 +5254,14 @@ dMsgObject_c_NS_getLetterName:
 /* 802374C8 00234408  38 21 00 10 */	addi r1, r1, 0x10
 /* 802374CC 0023440C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectBombNum
-dMsgObject_c_NS_getSelectBombNum:
+.global getSelectBombNum__12dMsgObject_cFv
+getSelectBombNum__12dMsgObject_cFv:
 /* 802374D0 00234410  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802374D4 00234414  7C 08 02 A6 */	mflr r0
 /* 802374D8 00234418  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802374DC 0023441C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802374E0 00234420  7C 7F 1B 78 */	mr r31, r3
-/* 802374E4 00234424  48 00 0F 5D */	bl dMsgObject_c_NS_getSelectCursorPos
+/* 802374E4 00234424  48 00 0F 5D */	bl getSelectCursorPos__12dMsgObject_cFv
 /* 802374E8 00234428  88 1F 01 93 */	lbz r0, 0x193(r31)
 /* 802374EC 0023442C  28 00 00 00 */	cmplwi r0, 0
 /* 802374F0 00234430  41 82 00 10 */	beq lbl_80237500
@@ -5278,15 +5278,15 @@ lbl_80237500:
 /* 80237518 00234458  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023751C 0023445C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onMsgSendControlLocal
-dMsgObject_c_NS_onMsgSendControlLocal:
+.global onMsgSendControlLocal__12dMsgObject_cFv
+onMsgSendControlLocal__12dMsgObject_cFv:
 /* 80237520 00234460  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237524 00234464  60 00 00 01 */	ori r0, r0, 1
 /* 80237528 00234468  98 03 01 95 */	stb r0, 0x195(r3)
 /* 8023752C 0023446C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_offMsgSendControlLocal
-dMsgObject_c_NS_offMsgSendControlLocal:
+.global offMsgSendControlLocal__12dMsgObject_cFv
+offMsgSendControlLocal__12dMsgObject_cFv:
 /* 80237530 00234470  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237534 00234474  54 00 06 3C */	rlwinm r0, r0, 0, 0x18, 0x1e
 /* 80237538 00234478  98 03 01 95 */	stb r0, 0x195(r3)
@@ -5296,42 +5296,42 @@ dMsgObject_c_NS_offMsgSendControlLocal:
 /* 80237548 00234488  98 03 12 4C */	stb r0, 0x124c(r3)
 /* 8023754C 0023448C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMsgSendControlLocal
-dMsgObject_c_NS_isMsgSendControlLocal:
+.global isMsgSendControlLocal__12dMsgObject_cFv
+isMsgSendControlLocal__12dMsgObject_cFv:
 /* 80237550 00234490  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237554 00234494  54 03 07 FE */	clrlwi r3, r0, 0x1f
 /* 80237558 00234498  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onMsgSendLocal
-dMsgObject_c_NS_onMsgSendLocal:
+.global onMsgSendLocal__12dMsgObject_cFv
+onMsgSendLocal__12dMsgObject_cFv:
 /* 8023755C 0023449C  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237560 002344A0  60 00 00 02 */	ori r0, r0, 2
 /* 80237564 002344A4  98 03 01 95 */	stb r0, 0x195(r3)
 /* 80237568 002344A8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_offMsgSendLocal
-dMsgObject_c_NS_offMsgSendLocal:
+.global offMsgSendLocal__12dMsgObject_cFv
+offMsgSendLocal__12dMsgObject_cFv:
 /* 8023756C 002344AC  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237570 002344B0  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 80237574 002344B4  98 03 01 95 */	stb r0, 0x195(r3)
 /* 80237578 002344B8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMsgSendLocal
-dMsgObject_c_NS_isMsgSendLocal:
+.global isMsgSendLocal__12dMsgObject_cFv
+isMsgSendLocal__12dMsgObject_cFv:
 /* 8023757C 002344BC  88 03 01 95 */	lbz r0, 0x195(r3)
 /* 80237580 002344C0  54 03 FF FE */	rlwinm r3, r0, 0x1f, 0x1f, 0x1f
 /* 80237584 002344C4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMouthCheckLocal
-dMsgObject_c_NS_isMouthCheckLocal:
+.global isMouthCheckLocal__12dMsgObject_cFv
+isMouthCheckLocal__12dMsgObject_cFv:
 /* 80237588 002344C8  80 63 01 1C */	lwz r3, 0x11c(r3)
 /* 8023758C 002344CC  88 63 00 B0 */	lbz r3, 0xb0(r3)
 /* 80237590 002344D0  30 03 FF FF */	addic r0, r3, -1
 /* 80237594 002344D4  7C 60 19 10 */	subfe r3, r0, r3
 /* 80237598 002344D8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getBombBuyPriceLocal
-dMsgObject_c_NS_getBombBuyPriceLocal:
+.global getBombBuyPriceLocal__12dMsgObject_cFUc
+getBombBuyPriceLocal__12dMsgObject_cFUc:
 /* 8023759C 002344DC  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 802375A0 002344E0  2C 00 00 71 */	cmpwi r0, 0x71
 /* 802375A4 002344E4  41 82 00 28 */	beq lbl_802375CC
@@ -5356,8 +5356,8 @@ lbl_802375DC:
 /* 802375DC 0023451C  38 60 00 00 */	li r3, 0
 /* 802375E0 00234520  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_addSelectBomBag
-dMsgObject_c_NS_addSelectBomBag:
+.global addSelectBomBag__12dMsgObject_cFUc
+addSelectBomBag__12dMsgObject_cFUc:
 /* 802375E4 00234524  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 802375E8 00234528  28 00 00 FF */	cmplwi r0, 0xff
 /* 802375EC 0023452C  40 82 00 08 */	bne lbl_802375F4
@@ -5371,8 +5371,8 @@ lbl_802375F4:
 /* 80237608 00234548  98 03 01 93 */	stb r0, 0x193(r3)
 /* 8023760C 0023454C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_resetSelectBomBag
-dMsgObject_c_NS_resetSelectBomBag:
+.global resetSelectBomBag__12dMsgObject_cFv
+resetSelectBomBag__12dMsgObject_cFv:
 /* 80237610 00234550  38 A0 00 00 */	li r5, 0
 /* 80237614 00234554  38 80 00 00 */	li r4, 0
 /* 80237618 00234558  38 00 00 03 */	li r0, 3
@@ -5386,14 +5386,14 @@ lbl_80237620:
 /* 80237634 00234574  98 03 01 93 */	stb r0, 0x193(r3)
 /* 80237638 00234578  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectBombBagIDLocal
-dMsgObject_c_NS_getSelectBombBagIDLocal:
+.global getSelectBombBagIDLocal__12dMsgObject_cFv
+getSelectBombBagIDLocal__12dMsgObject_cFv:
 /* 8023763C 0023457C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237640 00234580  7C 08 02 A6 */	mflr r0
 /* 80237644 00234584  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80237648 00234588  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8023764C 0023458C  7C 7F 1B 78 */	mr r31, r3
-/* 80237650 00234590  48 00 0D F1 */	bl dMsgObject_c_NS_getSelectCursorPos
+/* 80237650 00234590  48 00 0D F1 */	bl getSelectCursorPos__12dMsgObject_cFv
 /* 80237654 00234594  88 1F 01 93 */	lbz r0, 0x193(r31)
 /* 80237658 00234598  28 00 00 00 */	cmplwi r0, 0
 /* 8023765C 0023459C  41 82 00 10 */	beq lbl_8023766C
@@ -5410,15 +5410,15 @@ lbl_8023766C:
 /* 80237684 002345C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237688 002345C8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectBombPriceLocal
-dMsgObject_c_NS_getSelectBombPriceLocal:
+.global getSelectBombPriceLocal__12dMsgObject_cFv
+getSelectBombPriceLocal__12dMsgObject_cFv:
 /* 8023768C 002345CC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80237690 002345D0  7C 08 02 A6 */	mflr r0
 /* 80237694 002345D4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80237698 002345D8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8023769C 002345DC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 802376A0 002345E0  7C 7E 1B 78 */	mr r30, r3
-/* 802376A4 002345E4  48 00 0D 9D */	bl dMsgObject_c_NS_getSelectCursorPos
+/* 802376A4 002345E4  48 00 0D 9D */	bl getSelectCursorPos__12dMsgObject_cFv
 /* 802376A8 002345E8  88 1E 01 93 */	lbz r0, 0x193(r30)
 /* 802376AC 002345EC  28 00 00 00 */	cmplwi r0, 0
 /* 802376B0 002345F0  41 82 00 14 */	beq lbl_802376C4
@@ -5434,10 +5434,10 @@ lbl_802376C8:
 /* 802376D0 00234610  7C 9E 02 14 */	add r4, r30, r0
 /* 802376D4 00234614  A0 04 01 82 */	lhz r0, 0x182(r4)
 /* 802376D8 00234618  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 802376DC 0023461C  4B FF FE C1 */	bl dMsgObject_c_NS_getBombBuyPriceLocal
+/* 802376DC 0023461C  4B FF FE C1 */	bl getBombBuyPriceLocal__12dMsgObject_cFUc
 /* 802376E0 00234620  54 7F 04 3E */	clrlwi r31, r3, 0x10
 /* 802376E4 00234624  7F C3 F3 78 */	mr r3, r30
-/* 802376E8 00234628  4B FF FD E9 */	bl dMsgObject_c_NS_getSelectBombNum
+/* 802376E8 00234628  4B FF FD E9 */	bl getSelectBombNum__12dMsgObject_cFv
 /* 802376EC 0023462C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 802376F0 00234630  7C 00 F9 D6 */	mullw r0, r0, r31
 /* 802376F4 00234634  C8 22 B1 20 */	lfd f1, lbl_80454B20-_SDA2_BASE_(r2)
@@ -5459,14 +5459,14 @@ lbl_802376C8:
 /* 80237734 00234674  38 21 00 20 */	addi r1, r1, 0x20
 /* 80237738 00234678  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setEquipBombInfoLocal
-dMsgObject_c_NS_setEquipBombInfoLocal:
+.global setEquipBombInfoLocal__12dMsgObject_cFv
+setEquipBombInfoLocal__12dMsgObject_cFv:
 /* 8023773C 0023467C  38 00 00 01 */	li r0, 1
 /* 80237740 00234680  98 03 04 D3 */	stb r0, 0x4d3(r3)
 /* 80237744 00234684  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_updateEquipBombInfoLocal
-dMsgObject_c_NS_updateEquipBombInfoLocal:
+.global updateEquipBombInfoLocal__12dMsgObject_cFv
+updateEquipBombInfoLocal__12dMsgObject_cFv:
 /* 80237748 00234688  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8023774C 0023468C  7C 08 02 A6 */	mflr r0
 /* 80237750 00234690  90 01 00 34 */	stw r0, 0x34(r1)
@@ -5570,21 +5570,21 @@ lbl_802378A0:
 /* 802378B0 002347F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 802378B4 002347F4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setShopWaitTimer
-dMsgObject_c_NS_setShopWaitTimer:
+.global setShopWaitTimer__12dMsgObject_cFUc
+setShopWaitTimer__12dMsgObject_cFUc:
 /* 802378B8 002347F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 802378BC 002347FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802378C0 00234800  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 802378C4 00234804  98 64 04 C9 */	stb r3, 0x4c9(r4)
 /* 802378C8 00234808  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSelectWordFlagLocal
-dMsgObject_c_NS_setSelectWordFlagLocal:
+.global setSelectWordFlagLocal__12dMsgObject_cFUc
+setSelectWordFlagLocal__12dMsgObject_cFUc:
 /* 802378CC 0023480C  98 83 04 C6 */	stb r4, 0x4c6(r3)
 /* 802378D0 00234810  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isHowlHearingModeLocal
-dMsgObject_c_NS_isHowlHearingModeLocal:
+.global isHowlHearingModeLocal__12dMsgObject_cFv
+isHowlHearingModeLocal__12dMsgObject_cFv:
 /* 802378D4 00234814  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802378D8 00234818  7C 08 02 A6 */	mflr r0
 /* 802378DC 0023481C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5592,7 +5592,7 @@ dMsgObject_c_NS_isHowlHearingModeLocal:
 /* 802378E4 00234824  93 C1 00 08 */	stw r30, 8(r1)
 /* 802378E8 00234828  7C 7E 1B 78 */	mr r30, r3
 /* 802378EC 0023482C  3B E0 00 00 */	li r31, 0
-/* 802378F0 00234830  4B FF F7 F9 */	bl dMsgObject_c_NS_isHowlMessage
+/* 802378F0 00234830  4B FF F7 F9 */	bl isHowlMessage__12dMsgObject_cFv
 /* 802378F4 00234834  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802378F8 00234838  41 82 00 20 */	beq lbl_80237918
 /* 802378FC 0023483C  80 7E 01 04 */	lwz r3, 0x104(r30)
@@ -5611,8 +5611,8 @@ lbl_80237918:
 /* 8023792C 0023486C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237930 00234870  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isCameraCancelFlag
-dMsgObject_c_NS_isCameraCancelFlag:
+.global isCameraCancelFlag__12dMsgObject_cFv
+isCameraCancelFlag__12dMsgObject_cFv:
 /* 80237934 00234874  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237938 00234878  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023793C 0023487C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -5621,8 +5621,8 @@ dMsgObject_c_NS_isCameraCancelFlag:
 /* 80237948 00234888  7C 60 19 10 */	subfe r3, r0, r3
 /* 8023794C 0023488C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onCameraCancelFlag
-dMsgObject_c_NS_onCameraCancelFlag:
+.global onCameraCancelFlag__12dMsgObject_cFv
+onCameraCancelFlag__12dMsgObject_cFv:
 /* 80237950 00234890  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237954 00234894  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237958 00234898  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -5630,8 +5630,8 @@ dMsgObject_c_NS_onCameraCancelFlag:
 /* 80237960 002348A0  98 03 01 9E */	stb r0, 0x19e(r3)
 /* 80237964 002348A4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_offCameraCancelFlag
-dMsgObject_c_NS_offCameraCancelFlag:
+.global offCameraCancelFlag__12dMsgObject_cFv
+offCameraCancelFlag__12dMsgObject_cFv:
 /* 80237968 002348A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023796C 002348AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237970 002348B0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -5639,16 +5639,16 @@ dMsgObject_c_NS_offCameraCancelFlag:
 /* 80237978 002348B8  98 03 01 9E */	stb r0, 0x19e(r3)
 /* 8023797C 002348BC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isKillMessageFlag
-dMsgObject_c_NS_isKillMessageFlag:
+.global isKillMessageFlag__12dMsgObject_cFv
+isKillMessageFlag__12dMsgObject_cFv:
 /* 80237980 002348C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237984 002348C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237988 002348C8  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 8023798C 002348CC  88 63 04 D2 */	lbz r3, 0x4d2(r3)
 /* 80237990 002348D0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onKillMessageFlag
-dMsgObject_c_NS_onKillMessageFlag:
+.global onKillMessageFlag__12dMsgObject_cFv
+onKillMessageFlag__12dMsgObject_cFv:
 /* 80237994 002348D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237998 002348D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023799C 002348DC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -5656,22 +5656,22 @@ dMsgObject_c_NS_onKillMessageFlag:
 /* 802379A4 002348E4  98 03 04 D2 */	stb r0, 0x4d2(r3)
 /* 802379A8 002348E8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setKillMessageFlag
-dMsgObject_c_NS_setKillMessageFlag:
+.global setKillMessageFlag__12dMsgObject_cFv
+setKillMessageFlag__12dMsgObject_cFv:
 /* 802379AC 002348EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802379B0 002348F0  7C 08 02 A6 */	mflr r0
 /* 802379B4 002348F4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802379B8 002348F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802379BC 002348FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802379C0 00234900  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802379C4 00234904  48 00 00 15 */	bl dMsgObject_c_NS_setKillMessageFlagLocal
+/* 802379C4 00234904  48 00 00 15 */	bl setKillMessageFlagLocal__12dMsgObject_cFv
 /* 802379C8 00234908  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802379CC 0023490C  7C 08 03 A6 */	mtlr r0
 /* 802379D0 00234910  38 21 00 10 */	addi r1, r1, 0x10
 /* 802379D4 00234914  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setKillMessageFlagLocal
-dMsgObject_c_NS_setKillMessageFlagLocal:
+.global setKillMessageFlagLocal__12dMsgObject_cFv
+setKillMessageFlagLocal__12dMsgObject_cFv:
 /* 802379D8 00234918  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802379DC 0023491C  7C 08 02 A6 */	mflr r0
 /* 802379E0 00234920  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5682,12 +5682,12 @@ dMsgObject_c_NS_setKillMessageFlagLocal:
 /* 802379F4 00234934  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 802379F8 00234938  28 00 00 00 */	cmplwi r0, 0
 /* 802379FC 0023493C  40 82 00 64 */	bne lbl_80237A60
-/* 80237A00 00234940  4B FF EE F9 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237A00 00234940  4B FF EE F9 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237A04 00234944  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237A08 00234948  28 00 00 01 */	cmplwi r0, 1
 /* 80237A0C 0023494C  41 82 00 48 */	beq lbl_80237A54
 /* 80237A10 00234950  7F E3 FB 78 */	mr r3, r31
-/* 80237A14 00234954  4B FF EE E5 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237A14 00234954  4B FF EE E5 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237A18 00234958  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237A1C 0023495C  28 00 00 0B */	cmplwi r0, 0xb
 /* 80237A20 00234960  40 82 00 18 */	bne lbl_80237A38
@@ -5695,10 +5695,10 @@ dMsgObject_c_NS_setKillMessageFlagLocal:
 /* 80237A28 00234968  98 1F 04 CD */	stb r0, 0x4cd(r31)
 /* 80237A2C 0023496C  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 80237A30 00234970  38 63 01 88 */	addi r3, r3, lbl_80430188@l
-/* 80237A34 00234974  4B FE 47 E5 */	bl dMeter2Info_c_NS_resetFloatingMessage
+/* 80237A34 00234974  4B FE 47 E5 */	bl resetFloatingMessage__13dMeter2Info_cFv
 lbl_80237A38:
 /* 80237A38 00234978  7F E3 FB 78 */	mr r3, r31
-/* 80237A3C 0023497C  4B FF E4 81 */	bl dMsgObject_c_NS_deleteProc
+/* 80237A3C 0023497C  4B FF E4 81 */	bl deleteProc__12dMsgObject_cFv
 /* 80237A40 00234980  80 7F 01 20 */	lwz r3, 0x120(r31)
 /* 80237A44 00234984  80 63 00 04 */	lwz r3, 4(r3)
 /* 80237A48 00234988  38 00 00 00 */	li r0, 0
@@ -5715,16 +5715,16 @@ lbl_80237A60:
 /* 80237A6C 002349AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237A70 002349B0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setTalkPartner
-dMsgObject_c_NS_setTalkPartner:
+.global setTalkPartner__12dMsgObject_cFP10fopAc_ac_c
+setTalkPartner__12dMsgObject_cFP10fopAc_ac_c:
 /* 80237A74 002349B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80237A78 002349B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80237A7C 002349BC  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 80237A80 002349C0  90 64 01 40 */	stw r3, 0x140(r4)
 /* 80237A84 002349C4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setNowTalkFlowNo
-dMsgObject_c_NS_setNowTalkFlowNo:
+.global setNowTalkFlowNo__12dMsgObject_cFs
+setNowTalkFlowNo__12dMsgObject_cFs:
 /* 80237A88 002349C8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80237A8C 002349CC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80237A90 002349D0  80 84 5D BC */	lwz r4, 0x5dbc(r4)
@@ -5736,8 +5736,8 @@ dMsgObject_c_NS_setNowTalkFlowNo:
 /* 80237AA8 002349E8  A8 63 01 70 */	lha r3, 0x170(r3)
 /* 80237AAC 002349EC  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setDemoMessage
-dMsgObject_c_NS_setDemoMessage:
+.global setDemoMessage__12dMsgObject_cFUl
+setDemoMessage__12dMsgObject_cFUl:
 /* 80237AB0 002349F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237AB4 002349F4  7C 08 02 A6 */	mflr r0
 /* 80237AB8 002349F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5745,14 +5745,14 @@ dMsgObject_c_NS_setDemoMessage:
 /* 80237AC0 00234A00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237AC4 00234A04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237AC8 00234A08  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80237ACC 00234A0C  48 00 02 BD */	bl dMsgObject_c_NS_setDemoMessageLocal
+/* 80237ACC 00234A0C  48 00 02 BD */	bl setDemoMessageLocal__12dMsgObject_cFUl
 /* 80237AD0 00234A10  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237AD4 00234A14  7C 08 03 A6 */	mtlr r0
 /* 80237AD8 00234A18  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237ADC 00234A1C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setTalkHeap
-dMsgObject_c_NS_setTalkHeap:
+.global setTalkHeap__12dMsgObject_cFPv
+setTalkHeap__12dMsgObject_cFPv:
 /* 80237AE0 00234A20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237AE4 00234A24  7C 08 02 A6 */	mflr r0
 /* 80237AE8 00234A28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5760,14 +5760,14 @@ dMsgObject_c_NS_setTalkHeap:
 /* 80237AF0 00234A30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237AF4 00234A34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237AF8 00234A38  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80237AFC 00234A3C  48 00 00 15 */	bl dMsgObject_c_NS_setTalkHeapLocal
+/* 80237AFC 00234A3C  48 00 00 15 */	bl setTalkHeapLocal__12dMsgObject_cFPv
 /* 80237B00 00234A40  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237B04 00234A44  7C 08 03 A6 */	mtlr r0
 /* 80237B08 00234A48  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237B0C 00234A4C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setTalkHeapLocal
-dMsgObject_c_NS_setTalkHeapLocal:
+.global setTalkHeapLocal__12dMsgObject_cFPv
+setTalkHeapLocal__12dMsgObject_cFPv:
 /* 80237B10 00234A50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237B14 00234A54  7C 08 02 A6 */	mflr r0
 /* 80237B18 00234A58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5777,7 +5777,7 @@ dMsgObject_c_NS_setTalkHeapLocal:
 /* 80237B28 00234A68  7C 9F 23 79 */	or. r31, r4, r4
 /* 80237B2C 00234A6C  40 82 00 0C */	bne lbl_80237B38
 /* 80237B30 00234A70  38 80 00 01 */	li r4, 1
-/* 80237B34 00234A74  4B FF ED D9 */	bl dMsgObject_c_NS_delete_screen
+/* 80237B34 00234A74  4B FF ED D9 */	bl delete_screen__12dMsgObject_cFb
 lbl_80237B38:
 /* 80237B38 00234A78  93 FE 01 44 */	stw r31, 0x144(r30)
 /* 80237B3C 00234A7C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -5787,26 +5787,26 @@ lbl_80237B38:
 /* 80237B4C 00234A8C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237B50 00234A90  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getTalkHeap
-dMsgObject_c_NS_getTalkHeap:
+.global getTalkHeap__12dMsgObject_cFv
+getTalkHeap__12dMsgObject_cFv:
 /* 80237B54 00234A94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237B58 00234A98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237B5C 00234A9C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80237B60 00234AA0  80 63 01 44 */	lwz r3, 0x144(r3)
 /* 80237B64 00234AA4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isDraw
-dMsgObject_c_NS_isDraw:
+.global isDraw__12dMsgObject_cFv
+isDraw__12dMsgObject_cFv:
 /* 80237B68 00234AA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237B6C 00234AAC  7C 08 02 A6 */	mflr r0
 /* 80237B70 00234AB0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80237B74 00234AB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80237B78 00234AB8  7C 7F 1B 78 */	mr r31, r3
-/* 80237B7C 00234ABC  4B FF ED 7D */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237B7C 00234ABC  4B FF ED 7D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237B80 00234AC0  54 60 04 3F */	clrlwi. r0, r3, 0x10
 /* 80237B84 00234AC4  41 82 00 60 */	beq lbl_80237BE4
 /* 80237B88 00234AC8  7F E3 FB 78 */	mr r3, r31
-/* 80237B8C 00234ACC  4B FF ED 6D */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237B8C 00234ACC  4B FF ED 6D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237B90 00234AD0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237B94 00234AD4  28 00 00 01 */	cmplwi r0, 1
 /* 80237B98 00234AD8  41 82 00 4C */	beq lbl_80237BE4
@@ -5814,12 +5814,12 @@ dMsgObject_c_NS_isDraw:
 /* 80237BA0 00234AE0  28 00 00 00 */	cmplwi r0, 0
 /* 80237BA4 00234AE4  40 82 00 40 */	bne lbl_80237BE4
 /* 80237BA8 00234AE8  7F E3 FB 78 */	mr r3, r31
-/* 80237BAC 00234AEC  4B FF ED 4D */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237BAC 00234AEC  4B FF ED 4D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237BB0 00234AF0  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237BB4 00234AF4  28 00 00 0B */	cmplwi r0, 0xb
 /* 80237BB8 00234AF8  41 82 00 2C */	beq lbl_80237BE4
 /* 80237BBC 00234AFC  7F E3 FB 78 */	mr r3, r31
-/* 80237BC0 00234B00  4B FF ED 39 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237BC0 00234B00  4B FF ED 39 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237BC4 00234B04  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237BC8 00234B08  28 00 00 06 */	cmplwi r0, 6
 /* 80237BCC 00234B0C  40 82 00 10 */	bne lbl_80237BDC
@@ -5838,8 +5838,8 @@ lbl_80237BE8:
 /* 80237BF4 00234B34  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237BF8 00234B38  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setButtonStatusLocal
-dMsgObject_c_NS_setButtonStatusLocal:
+.global setButtonStatusLocal__12dMsgObject_cFv
+setButtonStatusLocal__12dMsgObject_cFv:
 /* 80237BFC 00234B3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237C00 00234B40  7C 08 02 A6 */	mflr r0
 /* 80237C04 00234B44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5848,7 +5848,7 @@ dMsgObject_c_NS_setButtonStatusLocal:
 /* 80237C10 00234B50  7C 7E 1B 78 */	mr r30, r3
 /* 80237C14 00234B54  80 83 01 20 */	lwz r4, 0x120(r3)
 /* 80237C18 00234B58  83 E4 00 04 */	lwz r31, 4(r4)
-/* 80237C1C 00234B5C  4B FF EC DD */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237C1C 00234B5C  4B FF EC DD */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237C20 00234B60  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 80237C24 00234B64  A0 1E 01 68 */	lhz r0, 0x168(r30)
 /* 80237C28 00234B68  7C 00 18 40 */	cmplw r0, r3
@@ -5865,12 +5865,12 @@ dMsgObject_c_NS_setButtonStatusLocal:
 /* 80237C54 00234B94  28 00 00 02 */	cmplwi r0, 2
 /* 80237C58 00234B98  41 82 01 18 */	beq lbl_80237D70
 /* 80237C5C 00234B9C  7F C3 F3 78 */	mr r3, r30
-/* 80237C60 00234BA0  4B FF EC 99 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237C60 00234BA0  4B FF EC 99 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237C64 00234BA4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237C68 00234BA8  28 00 00 10 */	cmplwi r0, 0x10
 /* 80237C6C 00234BAC  40 82 00 58 */	bne lbl_80237CC4
 /* 80237C70 00234BB0  7F C3 F3 78 */	mr r3, r30
-/* 80237C74 00234BB4  4B FF F4 75 */	bl dMsgObject_c_NS_isHowlMessage
+/* 80237C74 00234BB4  4B FF F4 75 */	bl isHowlMessage__12dMsgObject_cFv
 /* 80237C78 00234BB8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80237C7C 00234BBC  41 82 00 2C */	beq lbl_80237CA8
 /* 80237C80 00234BC0  38 00 00 05 */	li r0, 5
@@ -5893,17 +5893,17 @@ lbl_80237CA8:
 /* 80237CC0 00234C00  48 00 00 B0 */	b lbl_80237D70
 lbl_80237CC4:
 /* 80237CC4 00234C04  7F C3 F3 78 */	mr r3, r30
-/* 80237CC8 00234C08  4B FF EC 31 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237CC8 00234C08  4B FF EC 31 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237CCC 00234C0C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237CD0 00234C10  28 00 00 08 */	cmplwi r0, 8
 /* 80237CD4 00234C14  41 82 00 2C */	beq lbl_80237D00
 /* 80237CD8 00234C18  7F C3 F3 78 */	mr r3, r30
-/* 80237CDC 00234C1C  4B FF EC 1D */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237CDC 00234C1C  4B FF EC 1D */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237CE0 00234C20  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237CE4 00234C24  28 00 00 09 */	cmplwi r0, 9
 /* 80237CE8 00234C28  41 82 00 18 */	beq lbl_80237D00
 /* 80237CEC 00234C2C  7F C3 F3 78 */	mr r3, r30
-/* 80237CF0 00234C30  4B FF EC 09 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237CF0 00234C30  4B FF EC 09 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237CF4 00234C34  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237CF8 00234C38  28 00 00 14 */	cmplwi r0, 0x14
 /* 80237CFC 00234C3C  40 82 00 20 */	bne lbl_80237D1C
@@ -5917,7 +5917,7 @@ lbl_80237D00:
 /* 80237D18 00234C58  48 00 00 58 */	b lbl_80237D70
 lbl_80237D1C:
 /* 80237D1C 00234C5C  7F C3 F3 78 */	mr r3, r30
-/* 80237D20 00234C60  4B FF EB D9 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80237D20 00234C60  4B FF EB D9 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80237D24 00234C64  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80237D28 00234C68  28 00 00 15 */	cmplwi r0, 0x15
 /* 80237D2C 00234C6C  40 82 00 2C */	bne lbl_80237D58
@@ -5946,8 +5946,8 @@ lbl_80237D70:
 /* 80237D80 00234CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237D84 00234CC4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setDemoMessageLocal
-dMsgObject_c_NS_setDemoMessageLocal:
+.global setDemoMessageLocal__12dMsgObject_cFUl
+setDemoMessageLocal__12dMsgObject_cFUl:
 /* 80237D88 00234CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237D8C 00234CCC  7C 08 02 A6 */	mflr r0
 /* 80237D90 00234CD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -5955,22 +5955,22 @@ dMsgObject_c_NS_setDemoMessageLocal:
 /* 80237D98 00234CD8  7C 9F 23 78 */	mr r31, r4
 /* 80237D9C 00234CDC  38 00 00 01 */	li r0, 1
 /* 80237DA0 00234CE0  98 03 04 CC */	stb r0, 0x4cc(r3)
-/* 80237DA4 00234CE4  4B FF FB AD */	bl dMsgObject_c_NS_onCameraCancelFlag
+/* 80237DA4 00234CE4  4B FF FB AD */	bl onCameraCancelFlag__12dMsgObject_cFv
 /* 80237DA8 00234CE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80237DAC 00234CEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237DB0 00234CF0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80237DB4 00234CF4  7F E4 FB 78 */	mr r4, r31
-/* 80237DB8 00234CF8  4B FF C3 71 */	bl dMsgObject_c_NS_getMessageIDAlways
+/* 80237DB8 00234CF8  4B FF C3 71 */	bl getMessageIDAlways__12dMsgObject_cFUl
 /* 80237DBC 00234CFC  38 80 03 E8 */	li r4, 0x3e8
-/* 80237DC0 00234D00  4B DE 80 C5 */	bl fopMsgM_messageSet_X1_
+/* 80237DC0 00234D00  4B DE 80 C5 */	bl fopMsgM_messageSet__FUlUl
 /* 80237DC4 00234D04  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80237DC8 00234D08  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237DCC 00234D0C  7C 08 03 A6 */	mtlr r0
 /* 80237DD0 00234D10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237DD4 00234D14  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSmellTypeMessageIDLocal
-dMsgObject_c_NS_getSmellTypeMessageIDLocal:
+.global getSmellTypeMessageIDLocal__12dMsgObject_cFv
+getSmellTypeMessageIDLocal__12dMsgObject_cFv:
 /* 80237DD8 00234D18  38 60 00 00 */	li r3, 0
 /* 80237DDC 00234D1C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80237DE0 00234D20  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
@@ -5983,8 +5983,8 @@ dMsgObject_c_NS_getSmellTypeMessageIDLocal:
 /* 80237DFC 00234D3C  54 03 04 3E */	clrlwi r3, r0, 0x10
 /* 80237E00 00234D40  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSmellTypeLocal
-dMsgObject_c_NS_setSmellTypeLocal:
+.global setSmellTypeLocal__12dMsgObject_cFUc
+setSmellTypeLocal__12dMsgObject_cFUc:
 /* 80237E04 00234D44  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237E08 00234D48  7C 08 02 A6 */	mflr r0
 /* 80237E0C 00234D4C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6000,22 +6000,22 @@ dMsgObject_c_NS_setSmellTypeLocal:
 /* 80237E34 00234D74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80237E38 00234D78  98 83 00 16 */	stb r4, 0x16(r3)
 /* 80237E3C 00234D7C  38 60 00 02 */	li r3, 2
-/* 80237E40 00234D80  4B DF 5E 85 */	bl dComIfGs_setSelectItemIndex
+/* 80237E40 00234D80  4B DF 5E 85 */	bl dComIfGs_setSelectItemIndex__FiUc
 /* 80237E44 00234D84  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80237E48 00234D88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237E4C 00234D8C  7C 08 03 A6 */	mtlr r0
 /* 80237E50 00234D90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80237E54 00234D94  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectCursorPosLocal
-dMsgObject_c_NS_getSelectCursorPosLocal:
+.global getSelectCursorPosLocal__12dMsgObject_cFv
+getSelectCursorPosLocal__12dMsgObject_cFv:
 /* 80237E58 00234D98  80 63 01 20 */	lwz r3, 0x120(r3)
 /* 80237E5C 00234D9C  80 63 00 04 */	lwz r3, 4(r3)
 /* 80237E60 00234DA0  88 63 12 44 */	lbz r3, 0x1244(r3)
 /* 80237E64 00234DA4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSelectCursorPosLocal
-dMsgObject_c_NS_setSelectCursorPosLocal:
+.global setSelectCursorPosLocal__12dMsgObject_cFUc
+setSelectCursorPosLocal__12dMsgObject_cFUc:
 /* 80237E68 00234DA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80237E6C 00234DAC  7C 08 02 A6 */	mflr r0
 /* 80237E70 00234DB0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6061,14 +6061,14 @@ lbl_80237EF8:
 /* 80237F08 00234E48  38 21 00 20 */	addi r1, r1, 0x20
 /* 80237F0C 00234E4C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setTalkActorLocal
-dMsgObject_c_NS_setTalkActorLocal:
+.global setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c
+setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c:
 /* 80237F10 00234E50  90 83 01 38 */	stw r4, 0x138(r3)
 /* 80237F14 00234E54  4E 80 00 20 */	blr 
 /* 80237F18 00234E58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237F1C 00234E5C  7C 08 02 A6 */	mflr r0
 /* 80237F20 00234E60  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80237F24 00234E64  4B FF BA 99 */	bl dMsgObject_c_NS__draw
+/* 80237F24 00234E64  4B FF BA 99 */	bl _draw__12dMsgObject_cFv
 /* 80237F28 00234E68  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237F2C 00234E6C  7C 08 03 A6 */	mtlr r0
 /* 80237F30 00234E70  38 21 00 10 */	addi r1, r1, 0x10
@@ -6076,7 +6076,7 @@ dMsgObject_c_NS_setTalkActorLocal:
 /* 80237F38 00234E78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237F3C 00234E7C  7C 08 02 A6 */	mflr r0
 /* 80237F40 00234E80  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80237F44 00234E84  4B FF B6 4D */	bl dMsgObject_c_NS__execute
+/* 80237F44 00234E84  4B FF B6 4D */	bl _execute__12dMsgObject_cFv
 /* 80237F48 00234E88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237F4C 00234E8C  7C 08 03 A6 */	mtlr r0
 /* 80237F50 00234E90  38 21 00 10 */	addi r1, r1, 0x10
@@ -6086,7 +6086,7 @@ dMsgObject_c_NS_setTalkActorLocal:
 /* 80237F60 00234EA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80237F64 00234EA4  7C 08 02 A6 */	mflr r0
 /* 80237F68 00234EA8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80237F6C 00234EAC  4B FF BB 7D */	bl dMsgObject_c_NS__delete
+/* 80237F6C 00234EAC  4B FF BB 7D */	bl _delete__12dMsgObject_cFv
 /* 80237F70 00234EB0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80237F74 00234EB4  7C 08 03 A6 */	mtlr r0
 /* 80237F78 00234EB8  38 21 00 10 */	addi r1, r1, 0x10
@@ -6101,24 +6101,24 @@ dMsgObject_c_NS_setTalkActorLocal:
 /* 80237F9C 00234EDC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 80237FA0 00234EE0  93 DF 5D BC */	stw r30, 0x5dbc(r31)
 /* 80237FA4 00234EE4  80 7F 5E C8 */	lwz r3, 0x5ec8(r31)
-/* 80237FA8 00234EE8  4B DD 72 25 */	bl mDoExt_setCurrentHeap
+/* 80237FA8 00234EE8  4B DD 72 25 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80237FAC 00234EEC  7C 7D 1B 78 */	mr r29, r3
 /* 80237FB0 00234EF0  80 7F 5E C8 */	lwz r3, 0x5ec8(r31)
 /* 80237FB4 00234EF4  48 09 67 D1 */	bl getTotalFreeSize__7JKRHeapCFv
 /* 80237FB8 00234EF8  7F C3 F3 78 */	mr r3, r30
-/* 80237FBC 00234EFC  4B DE 79 F9 */	bl fopMsgM_setStageLayer
+/* 80237FBC 00234EFC  4B DE 79 F9 */	bl fopMsgM_setStageLayer__FPv
 /* 80237FC0 00234F00  38 00 00 00 */	li r0, 0
 /* 80237FC4 00234F04  B0 1E 00 F8 */	sth r0, 0xf8(r30)
 /* 80237FC8 00234F08  7F C3 F3 78 */	mr r3, r30
 /* 80237FCC 00234F0C  7F C4 F3 78 */	mr r4, r30
-/* 80237FD0 00234F10  4B FF B2 B5 */	bl dMsgObject_c_NS__create
+/* 80237FD0 00234F10  4B FF B2 B5 */	bl _create__12dMsgObject_cFP9msg_class
 /* 80237FD4 00234F14  7C 7E 1B 78 */	mr r30, r3
 /* 80237FD8 00234F18  38 00 FF FF */	li r0, -1
 /* 80237FDC 00234F1C  3C 60 80 43 */	lis r3, lbl_8043028C@ha
 /* 80237FE0 00234F20  38 63 02 8C */	addi r3, r3, lbl_8043028C@l
 /* 80237FE4 00234F24  98 03 00 04 */	stb r0, 4(r3)
 /* 80237FE8 00234F28  7F A3 EB 78 */	mr r3, r29
-/* 80237FEC 00234F2C  4B DD 71 E1 */	bl mDoExt_setCurrentHeap
+/* 80237FEC 00234F2C  4B DD 71 E1 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80237FF0 00234F30  7F C3 F3 78 */	mr r3, r30
 /* 80237FF4 00234F34  39 61 00 20 */	addi r11, r1, 0x20
 /* 80237FF8 00234F38  48 12 A2 31 */	bl _restgpr_29
@@ -6127,8 +6127,8 @@ dMsgObject_c_NS_setTalkActorLocal:
 /* 80238004 00234F44  38 21 00 20 */	addi r1, r1, 0x20
 /* 80238008 00234F48  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_readMessageGroup
-dMsgObject_c_NS_readMessageGroup:
+.global readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c
+readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c:
 /* 8023800C 00234F4C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238010 00234F50  7C 08 02 A6 */	mflr r0
 /* 80238014 00234F54  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6136,14 +6136,14 @@ dMsgObject_c_NS_readMessageGroup:
 /* 8023801C 00234F5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238020 00234F60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238024 00234F64  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238028 00234F68  4B FF EB D1 */	bl dMsgObject_c_NS_readMessageGroupLocal
+/* 80238028 00234F68  4B FF EB D1 */	bl readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c
 /* 8023802C 00234F6C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238030 00234F70  7C 08 03 A6 */	mtlr r0
 /* 80238034 00234F74  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238038 00234F78  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_changeFlowGroup
-dMsgObject_c_NS_changeFlowGroup:
+.global changeFlowGroup__12dMsgObject_cFl
+changeFlowGroup__12dMsgObject_cFl:
 /* 8023803C 00234F7C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238040 00234F80  7C 08 02 A6 */	mflr r0
 /* 80238044 00234F84  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6151,42 +6151,42 @@ dMsgObject_c_NS_changeFlowGroup:
 /* 8023804C 00234F8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238050 00234F90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238054 00234F94  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238058 00234F98  4B FF EC 39 */	bl dMsgObject_c_NS_changeFlowGroupLocal
+/* 80238058 00234F98  4B FF EC 39 */	bl changeFlowGroupLocal__12dMsgObject_cFl
 /* 8023805C 00234F9C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238060 00234FA0  7C 08 03 A6 */	mtlr r0
 /* 80238064 00234FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238068 00234FA8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_demoMessageGroup
-dMsgObject_c_NS_demoMessageGroup:
+.global demoMessageGroup__12dMsgObject_cFv
+demoMessageGroup__12dMsgObject_cFv:
 /* 8023806C 00234FAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238070 00234FB0  7C 08 02 A6 */	mflr r0
 /* 80238074 00234FB4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238078 00234FB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023807C 00234FBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238080 00234FC0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238084 00234FC4  4B FF EC 51 */	bl dMsgObject_c_NS_demoMessageGroupLocal
+/* 80238084 00234FC4  4B FF EC 51 */	bl demoMessageGroupLocal__12dMsgObject_cFv
 /* 80238088 00234FC8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023808C 00234FCC  7C 08 03 A6 */	mtlr r0
 /* 80238090 00234FD0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238094 00234FD4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_endFlowGroup
-dMsgObject_c_NS_endFlowGroup:
+.global endFlowGroup__12dMsgObject_cFv
+endFlowGroup__12dMsgObject_cFv:
 /* 80238098 00234FD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023809C 00234FDC  7C 08 02 A6 */	mflr r0
 /* 802380A0 00234FE0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802380A4 00234FE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802380A8 00234FE8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802380AC 00234FEC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802380B0 00234FF0  4B FF EC 51 */	bl dMsgObject_c_NS_endFlowGroupLocal
+/* 802380B0 00234FF0  4B FF EC 51 */	bl endFlowGroupLocal__12dMsgObject_cFv
 /* 802380B4 00234FF4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802380B8 00234FF8  7C 08 03 A6 */	mtlr r0
 /* 802380BC 00234FFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802380C0 00235000  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_changeGroup
-dMsgObject_c_NS_changeGroup:
+.global changeGroup__12dMsgObject_cFs
+changeGroup__12dMsgObject_cFs:
 /* 802380C4 00235004  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802380C8 00235008  7C 08 02 A6 */	mflr r0
 /* 802380CC 0023500C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6194,14 +6194,14 @@ dMsgObject_c_NS_changeGroup:
 /* 802380D4 00235014  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802380D8 00235018  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802380DC 0023501C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802380E0 00235020  4B FF EC 2D */	bl dMsgObject_c_NS_changeGroupLocal
+/* 802380E0 00235020  4B FF EC 2D */	bl changeGroupLocal__12dMsgObject_cFs
 /* 802380E4 00235024  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802380E8 00235028  7C 08 03 A6 */	mtlr r0
 /* 802380EC 0023502C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802380F0 00235030  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getString
-dMsgObject_c_NS_getString:
+.global getString__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs
+getString__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs:
 /* 802380F4 00235034  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802380F8 00235038  7C 08 02 A6 */	mflr r0
 /* 802380FC 0023503C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -6227,7 +6227,7 @@ dMsgObject_c_NS_getString:
 /* 8023814C 0023508C  7F E8 FB 78 */	mr r8, r31
 /* 80238150 00235090  7D 89 63 78 */	mr r9, r12
 /* 80238154 00235094  7D 6A 5B 78 */	mr r10, r11
-/* 80238158 00235098  4B FF EC 8D */	bl dMsgObject_c_NS_getStringLocal
+/* 80238158 00235098  4B FF EC 8D */	bl getStringLocal__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs
 /* 8023815C 0023509C  39 61 00 30 */	addi r11, r1, 0x30
 /* 80238160 002350A0  48 12 A0 C1 */	bl _restgpr_27
 /* 80238164 002350A4  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -6235,8 +6235,8 @@ dMsgObject_c_NS_getString:
 /* 8023816C 002350AC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80238170 002350B0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMsgDtPtr
-dMsgObject_c_NS_getMsgDtPtr:
+.global getMsgDtPtr__12dMsgObject_cFv
+getMsgDtPtr__12dMsgObject_cFv:
 /* 80238174 002350B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238178 002350B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023817C 002350BC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -6248,8 +6248,8 @@ dMsgObject_c_NS_getMsgDtPtr:
 /* 80238194 002350D4  90 64 01 4C */	stw r3, 0x14c(r4)
 /* 80238198 002350D8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getActor
-dMsgObject_c_NS_getActor:
+.global getActor__12dMsgObject_cFv
+getActor__12dMsgObject_cFv:
 /* 8023819C 002350DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802381A0 002350E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802381A4 002350E4  80 63 5D BC */	lwz r3, 0x5dbc(r3)
@@ -6276,8 +6276,8 @@ lbl_802381B8:
 /* 802381F4 00235134  A0 63 01 64 */	lhz r3, 0x164(r3)
 /* 802381F8 00235138  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setStatus
-dMsgObject_c_NS_setStatus:
+.global setStatus__12dMsgObject_cFUs
+setStatus__12dMsgObject_cFUs:
 /* 802381FC 0023513C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238200 00235140  7C 08 02 A6 */	mflr r0
 /* 80238204 00235144  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6285,36 +6285,36 @@ dMsgObject_c_NS_setStatus:
 /* 8023820C 0023514C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238210 00235150  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238214 00235154  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238218 00235158  4B FF E6 CD */	bl dMsgObject_c_NS_setStatusLocal
+/* 80238218 00235158  4B FF E6 CD */	bl setStatusLocal__12dMsgObject_cFUs
 /* 8023821C 0023515C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238220 00235160  7C 08 03 A6 */	mtlr r0
 /* 80238224 00235164  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238228 00235168  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getStatus
-dMsgObject_c_NS_getStatus:
+.global getStatus__12dMsgObject_cFv
+getStatus__12dMsgObject_cFv:
 /* 8023822C 0023516C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238230 00235170  7C 08 02 A6 */	mflr r0
 /* 80238234 00235174  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238238 00235178  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023823C 0023517C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238240 00235180  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238244 00235184  4B FF E6 B5 */	bl dMsgObject_c_NS_getStatusLocal
+/* 80238244 00235184  4B FF E6 B5 */	bl getStatusLocal__12dMsgObject_cFv
 /* 80238248 00235188  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023824C 0023518C  7C 08 03 A6 */	mtlr r0
 /* 80238250 00235190  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238254 00235194  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getScrnDrawPtr
-dMsgObject_c_NS_getScrnDrawPtr:
+.global getScrnDrawPtr__12dMsgObject_cFv
+getScrnDrawPtr__12dMsgObject_cFv:
 /* 80238258 00235198  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023825C 0023519C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238260 002351A0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238264 002351A4  80 63 01 04 */	lwz r3, 0x104(r3)
 /* 80238268 002351A8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setTalkActor
-dMsgObject_c_NS_setTalkActor:
+.global setTalkActor__12dMsgObject_cFP10fopAc_ac_c
+setTalkActor__12dMsgObject_cFP10fopAc_ac_c:
 /* 8023826C 002351AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238270 002351B0  7C 08 02 A6 */	mflr r0
 /* 80238274 002351B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6322,134 +6322,134 @@ dMsgObject_c_NS_setTalkActor:
 /* 8023827C 002351BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238280 002351C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238284 002351C4  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238288 002351C8  4B FF FC 89 */	bl dMsgObject_c_NS_setTalkActorLocal
+/* 80238288 002351C8  4B FF FC 89 */	bl setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c
 /* 8023828C 002351CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238290 002351D0  7C 08 03 A6 */	mtlr r0
 /* 80238294 002351D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238298 002351D8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onMsgSendControl
-dMsgObject_c_NS_onMsgSendControl:
+.global onMsgSendControl__12dMsgObject_cFv
+onMsgSendControl__12dMsgObject_cFv:
 /* 8023829C 002351DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802382A0 002351E0  7C 08 02 A6 */	mflr r0
 /* 802382A4 002351E4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802382A8 002351E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802382AC 002351EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802382B0 002351F0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802382B4 002351F4  4B FF F2 6D */	bl dMsgObject_c_NS_onMsgSendControlLocal
+/* 802382B4 002351F4  4B FF F2 6D */	bl onMsgSendControlLocal__12dMsgObject_cFv
 /* 802382B8 002351F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802382BC 002351FC  7C 08 03 A6 */	mtlr r0
 /* 802382C0 00235200  38 21 00 10 */	addi r1, r1, 0x10
 /* 802382C4 00235204  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_offMsgSendControl
-dMsgObject_c_NS_offMsgSendControl:
+.global offMsgSendControl__12dMsgObject_cFv
+offMsgSendControl__12dMsgObject_cFv:
 /* 802382C8 00235208  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802382CC 0023520C  7C 08 02 A6 */	mflr r0
 /* 802382D0 00235210  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802382D4 00235214  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802382D8 00235218  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802382DC 0023521C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802382E0 00235220  4B FF F2 51 */	bl dMsgObject_c_NS_offMsgSendControlLocal
+/* 802382E0 00235220  4B FF F2 51 */	bl offMsgSendControlLocal__12dMsgObject_cFv
 /* 802382E4 00235224  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802382E8 00235228  7C 08 03 A6 */	mtlr r0
 /* 802382EC 0023522C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802382F0 00235230  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMsgSendControl
-dMsgObject_c_NS_isMsgSendControl:
+.global isMsgSendControl__12dMsgObject_cFv
+isMsgSendControl__12dMsgObject_cFv:
 /* 802382F4 00235234  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802382F8 00235238  7C 08 02 A6 */	mflr r0
 /* 802382FC 0023523C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238300 00235240  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238304 00235244  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238308 00235248  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8023830C 0023524C  4B FF F2 45 */	bl dMsgObject_c_NS_isMsgSendControlLocal
+/* 8023830C 0023524C  4B FF F2 45 */	bl isMsgSendControlLocal__12dMsgObject_cFv
 /* 80238310 00235250  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238314 00235254  7C 08 03 A6 */	mtlr r0
 /* 80238318 00235258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023831C 0023525C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_onMsgSend
-dMsgObject_c_NS_onMsgSend:
+.global onMsgSend__12dMsgObject_cFv
+onMsgSend__12dMsgObject_cFv:
 /* 80238320 00235260  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238324 00235264  7C 08 02 A6 */	mflr r0
 /* 80238328 00235268  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8023832C 0023526C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238330 00235270  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238334 00235274  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238338 00235278  4B FF F2 25 */	bl dMsgObject_c_NS_onMsgSendLocal
+/* 80238338 00235278  4B FF F2 25 */	bl onMsgSendLocal__12dMsgObject_cFv
 /* 8023833C 0023527C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238340 00235280  7C 08 03 A6 */	mtlr r0
 /* 80238344 00235284  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238348 00235288  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_offMsgSend
-dMsgObject_c_NS_offMsgSend:
+.global offMsgSend__12dMsgObject_cFv
+offMsgSend__12dMsgObject_cFv:
 /* 8023834C 0023528C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238350 00235290  7C 08 02 A6 */	mflr r0
 /* 80238354 00235294  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238358 00235298  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023835C 0023529C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238360 002352A0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238364 002352A4  4B FF F2 09 */	bl dMsgObject_c_NS_offMsgSendLocal
+/* 80238364 002352A4  4B FF F2 09 */	bl offMsgSendLocal__12dMsgObject_cFv
 /* 80238368 002352A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023836C 002352AC  7C 08 03 A6 */	mtlr r0
 /* 80238370 002352B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238374 002352B4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMsgSend
-dMsgObject_c_NS_isMsgSend:
+.global isMsgSend__12dMsgObject_cFv
+isMsgSend__12dMsgObject_cFv:
 /* 80238378 002352B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023837C 002352BC  7C 08 02 A6 */	mflr r0
 /* 80238380 002352C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238384 002352C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238388 002352C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023838C 002352CC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238390 002352D0  4B FF F1 ED */	bl dMsgObject_c_NS_isMsgSendLocal
+/* 80238390 002352D0  4B FF F1 ED */	bl isMsgSendLocal__12dMsgObject_cFv
 /* 80238394 002352D4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238398 002352D8  7C 08 03 A6 */	mtlr r0
 /* 8023839C 002352DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802383A0 002352E0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isMouthCheck
-dMsgObject_c_NS_isMouthCheck:
+.global isMouthCheck__12dMsgObject_cFv
+isMouthCheck__12dMsgObject_cFv:
 /* 802383A4 002352E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802383A8 002352E8  7C 08 02 A6 */	mflr r0
 /* 802383AC 002352EC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802383B0 002352F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802383B4 002352F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802383B8 002352F8  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802383BC 002352FC  4B FF F1 CD */	bl dMsgObject_c_NS_isMouthCheckLocal
+/* 802383BC 002352FC  4B FF F1 CD */	bl isMouthCheckLocal__12dMsgObject_cFv
 /* 802383C0 00235300  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802383C4 00235304  7C 08 03 A6 */	mtlr r0
 /* 802383C8 00235308  38 21 00 10 */	addi r1, r1, 0x10
 /* 802383CC 0023530C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMessageID
-dMsgObject_c_NS_getMessageID:
+.global getMessageID__12dMsgObject_cFv
+getMessageID__12dMsgObject_cFv:
 /* 802383D0 00235310  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802383D4 00235314  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802383D8 00235318  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 802383DC 0023531C  80 63 01 54 */	lwz r3, 0x154(r3)
 /* 802383E0 00235320  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSmellTypeMessageID
-dMsgObject_c_NS_getSmellTypeMessageID:
+.global getSmellTypeMessageID__12dMsgObject_cFv
+getSmellTypeMessageID__12dMsgObject_cFv:
 /* 802383E4 00235324  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802383E8 00235328  7C 08 02 A6 */	mflr r0
 /* 802383EC 0023532C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802383F0 00235330  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802383F4 00235334  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802383F8 00235338  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802383FC 0023533C  4B FF F9 DD */	bl dMsgObject_c_NS_getSmellTypeMessageIDLocal
+/* 802383FC 0023533C  4B FF F9 DD */	bl getSmellTypeMessageIDLocal__12dMsgObject_cFv
 /* 80238400 00235340  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238404 00235344  7C 08 03 A6 */	mtlr r0
 /* 80238408 00235348  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023840C 0023534C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSmellType
-dMsgObject_c_NS_setSmellType:
+.global setSmellType__12dMsgObject_cFUc
+setSmellType__12dMsgObject_cFUc:
 /* 80238410 00235350  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238414 00235354  7C 08 02 A6 */	mflr r0
 /* 80238418 00235358  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6457,28 +6457,28 @@ dMsgObject_c_NS_setSmellType:
 /* 80238420 00235360  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238424 00235364  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238428 00235368  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 8023842C 0023536C  4B FF F9 D9 */	bl dMsgObject_c_NS_setSmellTypeLocal
+/* 8023842C 0023536C  4B FF F9 D9 */	bl setSmellTypeLocal__12dMsgObject_cFUc
 /* 80238430 00235370  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238434 00235374  7C 08 03 A6 */	mtlr r0
 /* 80238438 00235378  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023843C 0023537C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectCursorPos
-dMsgObject_c_NS_getSelectCursorPos:
+.global getSelectCursorPos__12dMsgObject_cFv
+getSelectCursorPos__12dMsgObject_cFv:
 /* 80238440 00235380  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238444 00235384  7C 08 02 A6 */	mflr r0
 /* 80238448 00235388  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8023844C 0023538C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238450 00235390  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238454 00235394  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238458 00235398  4B FF FA 01 */	bl dMsgObject_c_NS_getSelectCursorPosLocal
+/* 80238458 00235398  4B FF FA 01 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 8023845C 0023539C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238460 002353A0  7C 08 03 A6 */	mtlr r0
 /* 80238464 002353A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238468 002353A8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSelectCursorPos
-dMsgObject_c_NS_setSelectCursorPos:
+.global setSelectCursorPos__12dMsgObject_cFUc
+setSelectCursorPos__12dMsgObject_cFUc:
 /* 8023846C 002353AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238470 002353B0  7C 08 02 A6 */	mflr r0
 /* 80238474 002353B4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6486,14 +6486,14 @@ dMsgObject_c_NS_setSelectCursorPos:
 /* 8023847C 002353BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238480 002353C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238484 002353C4  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238488 002353C8  4B FF F9 E1 */	bl dMsgObject_c_NS_setSelectCursorPosLocal
+/* 80238488 002353C8  4B FF F9 E1 */	bl setSelectCursorPosLocal__12dMsgObject_cFUc
 /* 8023848C 002353CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238490 002353D0  7C 08 03 A6 */	mtlr r0
 /* 80238494 002353D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238498 002353D8  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setPortalMessageID
-dMsgObject_c_NS_setPortalMessageID:
+.global setPortalMessageID__12dMsgObject_cFUs
+setPortalMessageID__12dMsgObject_cFUs:
 /* 8023849C 002353DC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 802384A0 002353E0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802384A4 002353E4  80 84 5D BC */	lwz r4, 0x5dbc(r4)
@@ -6505,48 +6505,48 @@ dMsgObject_c_NS_setPortalMessageID:
 /* 802384BC 002353FC  98 64 01 94 */	stb r3, 0x194(r4)
 /* 802384C0 00235400  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setLetterNameID
-dMsgObject_c_NS_setLetterNameID:
+.global setLetterNameID__12dMsgObject_cFUs
+setLetterNameID__12dMsgObject_cFUs:
 /* 802384C4 00235404  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 802384C8 00235408  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802384CC 0023540C  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 802384D0 00235410  B0 64 01 88 */	sth r3, 0x188(r4)
 /* 802384D4 00235414  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setArrowNum
-dMsgObject_c_NS_setArrowNum:
+.global setArrowNum__12dMsgObject_cFUc
+setArrowNum__12dMsgObject_cFUc:
 /* 802384D8 00235418  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 802384DC 0023541C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802384E0 00235420  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 802384E4 00235424  98 64 01 A5 */	stb r3, 0x1a5(r4)
 /* 802384E8 00235428  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setMsgOutputType
-dMsgObject_c_NS_setMsgOutputType:
+.global setMsgOutputType__12dMsgObject_cFUc
+setMsgOutputType__12dMsgObject_cFUc:
 /* 802384EC 0023542C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 802384F0 00235430  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 802384F4 00235434  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 802384F8 00235438  98 64 04 C8 */	stb r3, 0x4c8(r4)
 /* 802384FC 0023543C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getMsgOutputType
-dMsgObject_c_NS_getMsgOutputType:
+.global getMsgOutputType__12dMsgObject_cFv
+getMsgOutputType__12dMsgObject_cFv:
 /* 80238500 00235440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238504 00235444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238508 00235448  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 8023850C 0023544C  88 63 04 C8 */	lbz r3, 0x4c8(r3)
 /* 80238510 00235450  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getWord
-dMsgObject_c_NS_getWord:
+.global getWord__12dMsgObject_cFv
+getWord__12dMsgObject_cFv:
 /* 80238514 00235454  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238518 00235458  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023851C 0023545C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238520 00235460  38 63 01 A6 */	addi r3, r3, 0x1a6
 /* 80238524 00235464  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectWord
-dMsgObject_c_NS_getSelectWord:
+.global getSelectWord__12dMsgObject_cFi
+getSelectWord__12dMsgObject_cFi:
 /* 80238528 00235468  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 8023852C 0023546C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80238530 00235470  80 04 5D BC */	lwz r0, 0x5dbc(r4)
@@ -6555,8 +6555,8 @@ dMsgObject_c_NS_getSelectWord:
 /* 8023853C 0023547C  7C 60 1A 14 */	add r3, r0, r3
 /* 80238540 00235480  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSelectWordFlag
-dMsgObject_c_NS_setSelectWordFlag:
+.global setSelectWordFlag__12dMsgObject_cFUc
+setSelectWordFlag__12dMsgObject_cFUc:
 /* 80238544 00235484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238548 00235488  7C 08 02 A6 */	mflr r0
 /* 8023854C 0023548C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6564,94 +6564,94 @@ dMsgObject_c_NS_setSelectWordFlag:
 /* 80238554 00235494  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238558 00235498  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023855C 0023549C  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238560 002354A0  4B FF F3 6D */	bl dMsgObject_c_NS_setSelectWordFlagLocal
+/* 80238560 002354A0  4B FF F3 6D */	bl setSelectWordFlagLocal__12dMsgObject_cFUc
 /* 80238564 002354A4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238568 002354A8  7C 08 03 A6 */	mtlr r0
 /* 8023856C 002354AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238570 002354B0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectWordFlag
-dMsgObject_c_NS_getSelectWordFlag:
+.global getSelectWordFlag__12dMsgObject_cFv
+getSelectWordFlag__12dMsgObject_cFv:
 /* 80238574 002354B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238578 002354B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023857C 002354BC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238580 002354C0  88 63 04 C6 */	lbz r3, 0x4c6(r3)
 /* 80238584 002354C4  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_isHowlHearingMode
-dMsgObject_c_NS_isHowlHearingMode:
+.global isHowlHearingMode__12dMsgObject_cFv
+isHowlHearingMode__12dMsgObject_cFv:
 /* 80238588 002354C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023858C 002354CC  7C 08 02 A6 */	mflr r0
 /* 80238590 002354D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238594 002354D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80238598 002354D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8023859C 002354DC  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802385A0 002354E0  4B FF F3 35 */	bl dMsgObject_c_NS_isHowlHearingModeLocal
+/* 802385A0 002354E0  4B FF F3 35 */	bl isHowlHearingModeLocal__12dMsgObject_cFv
 /* 802385A4 002354E4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802385A8 002354E8  7C 08 03 A6 */	mtlr r0
 /* 802385AC 002354EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802385B0 002354F0  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectBombBagID
-dMsgObject_c_NS_getSelectBombBagID:
+.global getSelectBombBagID__12dMsgObject_cFv
+getSelectBombBagID__12dMsgObject_cFv:
 /* 802385B4 002354F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802385B8 002354F8  7C 08 02 A6 */	mflr r0
 /* 802385BC 002354FC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802385C0 00235500  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802385C4 00235504  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802385C8 00235508  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802385CC 0023550C  4B FF F0 71 */	bl dMsgObject_c_NS_getSelectBombBagIDLocal
+/* 802385CC 0023550C  4B FF F0 71 */	bl getSelectBombBagIDLocal__12dMsgObject_cFv
 /* 802385D0 00235510  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802385D4 00235514  7C 08 03 A6 */	mtlr r0
 /* 802385D8 00235518  38 21 00 10 */	addi r1, r1, 0x10
 /* 802385DC 0023551C  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getSelectBombPrice
-dMsgObject_c_NS_getSelectBombPrice:
+.global getSelectBombPrice__12dMsgObject_cFv
+getSelectBombPrice__12dMsgObject_cFv:
 /* 802385E0 00235520  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802385E4 00235524  7C 08 02 A6 */	mflr r0
 /* 802385E8 00235528  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802385EC 0023552C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 802385F0 00235530  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 802385F4 00235534  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 802385F8 00235538  4B FF F0 95 */	bl dMsgObject_c_NS_getSelectBombPriceLocal
+/* 802385F8 00235538  4B FF F0 95 */	bl getSelectBombPriceLocal__12dMsgObject_cFv
 /* 802385FC 0023553C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80238600 00235540  7C 08 03 A6 */	mtlr r0
 /* 80238604 00235544  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238608 00235548  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setEquipBombInfo
-dMsgObject_c_NS_setEquipBombInfo:
+.global setEquipBombInfo__12dMsgObject_cFv
+setEquipBombInfo__12dMsgObject_cFv:
 /* 8023860C 0023554C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238610 00235550  7C 08 02 A6 */	mflr r0
 /* 80238614 00235554  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238618 00235558  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023861C 0023555C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238620 00235560  80 63 5D BC */	lwz r3, 0x5dbc(r3)
-/* 80238624 00235564  4B FF F1 19 */	bl dMsgObject_c_NS_setEquipBombInfoLocal
+/* 80238624 00235564  4B FF F1 19 */	bl setEquipBombInfoLocal__12dMsgObject_cFv
 /* 80238628 00235568  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8023862C 0023556C  7C 08 03 A6 */	mtlr r0
 /* 80238630 00235570  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238634 00235574  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_getItemEquipButton
-dMsgObject_c_NS_getItemEquipButton:
+.global getItemEquipButton__12dMsgObject_cFv
+getItemEquipButton__12dMsgObject_cFv:
 /* 80238638 00235578  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8023863C 0023557C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80238640 00235580  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238644 00235584  88 63 01 A4 */	lbz r3, 0x1a4(r3)
 /* 80238648 00235588  4E 80 00 20 */	blr 
 
-.global dMsgObject_c_NS_setSelectCancelPos
-dMsgObject_c_NS_setSelectCancelPos:
+.global setSelectCancelPos__12dMsgObject_cFUc
+setSelectCancelPos__12dMsgObject_cFUc:
 /* 8023864C 0023558C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80238650 00235590  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80238654 00235594  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 80238658 00235598  98 64 01 A1 */	stb r3, 0x1a1(r4)
 /* 8023865C 0023559C  4E 80 00 20 */	blr 
 
-.global dMsgObject_getTotalPrice
-dMsgObject_getTotalPrice:
+.global dMsgObject_getTotalPrice__Fv
+dMsgObject_getTotalPrice__Fv:
 /* 80238660 002355A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238664 002355A4  7C 08 02 A6 */	mflr r0
 /* 80238668 002355A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6716,7 +6716,7 @@ dMsgObject_getTotalPrice:
 /* 80238754 00235694  A8 03 01 7A */	lha r0, 0x17a(r3)
 /* 80238758 00235698  7C 00 EA 14 */	add r0, r0, r29
 /* 8023875C 0023569C  B0 03 01 7A */	sth r0, 0x17a(r3)
-/* 80238760 002356A0  4B FF FF 01 */	bl dMsgObject_getTotalPrice
+/* 80238760 002356A0  4B FF FF 01 */	bl dMsgObject_getTotalPrice__Fv
 /* 80238764 002356A4  7C 1D 1A 14 */	add r0, r29, r3
 /* 80238768 002356A8  7C 1D 07 35 */	extsh. r29, r0
 /* 8023876C 002356AC  40 80 00 08 */	bge lbl_80238774
@@ -6743,8 +6743,8 @@ lbl_80238774:
 /* 802387BC 002356FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 802387C0 00235700  4E 80 00 20 */	blr 
 
-.global dMsgObject_getTotalPayment
-dMsgObject_getTotalPayment:
+.global dMsgObject_getTotalPayment__Fv
+dMsgObject_getTotalPayment__Fv:
 /* 802387C4 00235704  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802387C8 00235708  7C 08 02 A6 */	mflr r0
 /* 802387CC 0023570C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6798,8 +6798,8 @@ dMsgObject_getTotalPayment:
 /* 8023888C 002357CC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238890 002357D0  4E 80 00 20 */	blr 
 
-.global dMsgObject_addTotalPayment
-dMsgObject_addTotalPayment:
+.global dMsgObject_addTotalPayment__Fs
+dMsgObject_addTotalPayment__Fs:
 /* 80238894 002357D4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80238898 002357D8  7C 08 02 A6 */	mflr r0
 /* 8023889C 002357DC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6812,7 +6812,7 @@ dMsgObject_addTotalPayment:
 /* 802388B8 002357F8  A8 03 01 7C */	lha r0, 0x17c(r3)
 /* 802388BC 002357FC  7C 00 EA 14 */	add r0, r0, r29
 /* 802388C0 00235800  B0 03 01 7C */	sth r0, 0x17c(r3)
-/* 802388C4 00235804  4B FF FF 01 */	bl dMsgObject_getTotalPayment
+/* 802388C4 00235804  4B FF FF 01 */	bl dMsgObject_getTotalPayment__Fv
 /* 802388C8 00235808  7C 1D 1A 14 */	add r0, r29, r3
 /* 802388CC 0023580C  7C 1D 07 35 */	extsh. r29, r0
 /* 802388D0 00235810  40 80 00 08 */	bge lbl_802388D8
@@ -6839,8 +6839,8 @@ lbl_802388D8:
 /* 80238920 00235860  38 21 00 20 */	addi r1, r1, 0x20
 /* 80238924 00235864  4E 80 00 20 */	blr 
 
-.global dMsgObject_getFundRaising
-dMsgObject_getFundRaising:
+.global dMsgObject_getFundRaising__Fv
+dMsgObject_getFundRaising__Fv:
 /* 80238928 00235868  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023892C 0023586C  7C 08 02 A6 */	mflr r0
 /* 80238930 00235870  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6868,8 +6868,8 @@ dMsgObject_getFundRaising:
 /* 80238988 002358C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023898C 002358CC  4E 80 00 20 */	blr 
 
-.global dMsgObject_setFundRaising
-dMsgObject_setFundRaising:
+.global dMsgObject_setFundRaising__FUs
+dMsgObject_setFundRaising__FUs:
 /* 80238990 002358D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238994 002358D4  7C 08 02 A6 */	mflr r0
 /* 80238998 002358D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6897,15 +6897,15 @@ dMsgObject_setFundRaising:
 /* 802389F0 00235930  38 21 00 10 */	addi r1, r1, 0x10
 /* 802389F4 00235934  4E 80 00 20 */	blr 
 
-.global dMsgObject_addFundRaising
-dMsgObject_addFundRaising:
+.global dMsgObject_addFundRaising__Fs
+dMsgObject_addFundRaising__Fs:
 /* 802389F8 00235938  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802389FC 0023593C  7C 08 02 A6 */	mflr r0
 /* 80238A00 00235940  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80238A04 00235944  39 61 00 20 */	addi r11, r1, 0x20
 /* 80238A08 00235948  48 12 97 D5 */	bl _savegpr_29
 /* 80238A0C 0023594C  7C 7D 1B 78 */	mr r29, r3
-/* 80238A10 00235950  4B FF FF 19 */	bl dMsgObject_getFundRaising
+/* 80238A10 00235950  4B FF FF 19 */	bl dMsgObject_getFundRaising__Fv
 /* 80238A14 00235954  7C 1D 1A 14 */	add r0, r29, r3
 /* 80238A18 00235958  7C 1D 07 35 */	extsh. r29, r0
 /* 80238A1C 0023595C  40 80 00 08 */	bge lbl_80238A24
@@ -6932,8 +6932,8 @@ lbl_80238A24:
 /* 80238A6C 002359AC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80238A70 002359B0  4E 80 00 20 */	blr 
 
-.global dMsgObject_getOffering
-dMsgObject_getOffering:
+.global dMsgObject_getOffering__Fv
+dMsgObject_getOffering__Fv:
 /* 80238A74 002359B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238A78 002359B8  7C 08 02 A6 */	mflr r0
 /* 80238A7C 002359BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6961,15 +6961,15 @@ dMsgObject_getOffering:
 /* 80238AD4 00235A14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238AD8 00235A18  4E 80 00 20 */	blr 
 
-.global dMsgObject_addOffering
-dMsgObject_addOffering:
+.global dMsgObject_addOffering__Fs
+dMsgObject_addOffering__Fs:
 /* 80238ADC 00235A1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238AE0 00235A20  7C 08 02 A6 */	mflr r0
 /* 80238AE4 00235A24  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238AE8 00235A28  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80238AEC 00235A2C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80238AF0 00235A30  7C 7E 1B 78 */	mr r30, r3
-/* 80238AF4 00235A34  4B FF FF 81 */	bl dMsgObject_getOffering
+/* 80238AF4 00235A34  4B FF FF 81 */	bl dMsgObject_getOffering__Fv
 /* 80238AF8 00235A38  7C 1E 1A 14 */	add r0, r30, r3
 /* 80238AFC 00235A3C  7C 00 07 35 */	extsh. r0, r0
 /* 80238B00 00235A40  40 80 00 08 */	bge lbl_80238B08
@@ -7000,11 +7000,11 @@ lbl_80238B08:
 /* 80238B60 00235AA0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238B64 00235AA4  3C 60 80 43 */	lis r3, lbl_8043028C@ha
 /* 80238B68 00235AA8  38 63 02 8C */	addi r3, r3, lbl_8043028C@l
-/* 80238B6C 00235AAC  4B FF A2 01 */	bl dMsgObject_HIO_c
-.global dMsgObject_HIO_c_NS_dtor
-/* 80238B70 00235AB0  3C 80 80 24 */	lis r4, dMsgObject_HIO_c_NS_dtor@ha
-.global dMsgObject_HIO_c_NS_dtor
-/* 80238B74 00235AB4  38 84 8B DC */	addi r4, r4, dMsgObject_HIO_c_NS_dtor@l
+/* 80238B6C 00235AAC  4B FF A2 01 */	bl __ct__16dMsgObject_HIO_cFv
+.global __dt__16dMsgObject_HIO_cFv
+/* 80238B70 00235AB0  3C 80 80 24 */	lis r4, __dt__16dMsgObject_HIO_cFv@ha
+.global __dt__16dMsgObject_HIO_cFv
+/* 80238B74 00235AB4  38 84 8B DC */	addi r4, r4, __dt__16dMsgObject_HIO_cFv@l
 /* 80238B78 00235AB8  3C A0 80 43 */	lis r5, lbl_80430280@ha
 /* 80238B7C 00235ABC  38 A5 02 80 */	addi r5, r5, lbl_80430280@l
 /* 80238B80 00235AC0  48 12 90 A5 */	bl func_80361C24
@@ -7031,8 +7031,8 @@ lbl_80238BC4:
 /* 80238BD0 00235B10  7C 08 03 A6 */	mtlr r0
 /* 80238BD4 00235B14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80238BD8 00235B18  4E 80 00 20 */	blr 
-.global dMsgObject_HIO_c_NS_dtor
-dMsgObject_HIO_c_NS_dtor:
+.global __dt__16dMsgObject_HIO_cFv
+__dt__16dMsgObject_HIO_cFv:
 /* 80238BDC 00235B1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238BE0 00235B20  7C 08 02 A6 */	mflr r0
 /* 80238BE4 00235B24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -7075,8 +7075,8 @@ lbl_80238C24:
 /* 80238C70 00235BB0  4E 80 00 20 */	blr 
 /* 80238C74 00235BB4  4E 80 00 20 */	blr 
 
-.global jmessage_tReference_NS_setActorPos
-jmessage_tReference_NS_setActorPos:
+.global setActorPos__19jmessage_tReferenceF4cXyz
+setActorPos__19jmessage_tReferenceF4cXyz:
 /* 80238C78 00235BB8  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80238C7C 00235BBC  D0 03 04 14 */	stfs f0, 0x414(r3)
 /* 80238C80 00235BC0  C0 04 00 04 */	lfs f0, 4(r4)

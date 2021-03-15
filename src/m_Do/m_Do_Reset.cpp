@@ -12,12 +12,12 @@ struct JASTaskThread {
     u8 unk0[0x2c];
     OSThread* thread;
 };
-JASTaskThread* JASDvd_NS_getThreadPointer(void);
-s32 JASTaskThread_NS_pause(JASTaskThread*, bool);
+JASTaskThread* getThreadPointer__6JASDvdFv(void);
+s32 pause__13JASTaskThreadFb(JASTaskThread*, bool);
 void cAPICPad_recalibrate__Fv(void);
 void getResetData__6mDoRstFv(void);
-void JUTVideo_NS_destroyManager(void);
-void mDoDvdErr_ThdCleanup(void);
+void destroyManager__8JUTVideoFv(void);
+void mDoDvdErr_ThdCleanup__Fv(void);
 void VIFlush(void);
 void VISetBlack(s32);
 void VIWaitForRetrace(void);
@@ -35,7 +35,7 @@ void my_OSCancelAlarmAll(void) {
 }
 
 void destroyVideo() {
-    JUTVideo_NS_destroyManager();
+    destroyManager__8JUTVideoFv();
     GXSetDrawDoneCallback(NULL);
     VISetBlack(1);
     VIFlush();
@@ -51,7 +51,7 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     OSThread* thread;
     s32 enable;
     /* sManager */ lbl_80451550->clearIndex();
-    mDoDvdErr_ThdCleanup();
+    mDoDvdErr_ThdCleanup__Fv();
     cAPICPad_recalibrate__Fv();
     if (lbl_80450BB8 != false) {
         do {
@@ -62,9 +62,9 @@ void mDoRst_reset(int p1, u32 p2, int p3) {
     if ((s32)DVDGetDriveStatus() == (s32)DVD_STATE_BUSY) {
         OSAttention(lbl_80374198);
     }
-    JASTaskThread* task_thread = JASDvd_NS_getThreadPointer();
+    JASTaskThread* task_thread = getThreadPointer__6JASDvdFv();
     if (task_thread != NULL) {
-        JASTaskThread_NS_pause(task_thread, true);
+        pause__13JASTaskThreadFb(task_thread, true);
         thread = task_thread->thread;
         if (thread != NULL) {
             OSSuspendThread(thread);

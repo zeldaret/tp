@@ -15,10 +15,10 @@
 /* 8000E7F8 0000B738  90 1F 00 48 */ stw r0, 0x48(r31)
 /* 8000E7FC 0000B73C  90 1F 00 4C */ stw r0, 0x4c(r31)
 /* 8000E800 0000B740  80 7B 00 00 */ lwz r3, 0(r27)
-/* 8000E804 0000B744  4B FF F5 61 */ bl mDoExt_modelEntryDL
+/* 8000E804 0000B744  4B FF F5 61 */ bl mDoExt_modelEntryDL__FP8J3DModel
 /* 8000E808 0000B748  7F 63 DB 78 */ mr r3, r27
 /* 8000E80C 0000B74C  7F 84 E3 78 */ mr r4, r28
-/* 8000E810 0000B750  4B FF FE B9 */ bl mDoExt_invisibleModel_NS_entryJoint
+/* 8000E810 0000B750  4B FF FE B9 */ bl entryJoint__21mDoExt_invisibleModelFP4cXyz
 /* 8000E814 0000B754  93 DF 00 48 */ stw r30, 0x48(r31)
 /* 8000E818 0000B758  93 BF 00 4C */ stw r29, 0x4c(r31)
 /* 8000E81C 0000B75C  39 61 00 20 */ addi r11, r1, 0x20

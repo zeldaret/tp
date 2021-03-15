@@ -3,8 +3,8 @@
 .section .text, "ax" # 80191bac
 
 
-.global dFile_warning_c
-dFile_warning_c:
+.global __ct__15dFile_warning_cFP10JKRArchiveUc
+__ct__15dFile_warning_cFP10JKRArchiveUc:
 /* 80191BAC 0018EAEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80191BB0 0018EAF0  7C 08 02 A6 */	mflr r0
 /* 80191BB4 0018EAF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -21,7 +21,7 @@ dFile_warning_c:
 /* 80191BE0 0018EB20  90 03 00 08 */	stw r0, 8(r3)
 /* 80191BE4 0018EB24  90 83 00 04 */	stw r4, 4(r3)
 /* 80191BE8 0018EB28  98 A3 00 3E */	stb r5, 0x3e(r3)
-/* 80191BEC 0018EB2C  48 00 01 09 */	bl dFile_warning_c_NS_screenSet
+/* 80191BEC 0018EB2C  48 00 01 09 */	bl screenSet__15dFile_warning_cFv
 /* 80191BF0 0018EB30  38 00 00 00 */	li r0, 0
 /* 80191BF4 0018EB34  98 1F 00 18 */	stb r0, 0x18(r31)
 /* 80191BF8 0018EB38  C0 02 9F D8 */	lfs f0, lbl_804539D8-_SDA2_BASE_(r2)
@@ -45,7 +45,7 @@ dFile_warning_c:
 /* 80191C40 0018EB80  90 1E 00 00 */	stw r0, 0(r30)
 /* 80191C44 0018EB84  80 7E 00 14 */	lwz r3, 0x14(r30)
 /* 80191C48 0018EB88  38 80 00 01 */	li r4, 1
-/* 80191C4C 0018EB8C  48 0B 80 DD */	bl dMsgString_c_NS_dtor
+/* 80191C4C 0018EB8C  48 0B 80 DD */	bl __dt__12dMsgString_cFv
 /* 80191C50 0018EB90  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80191C54 0018EB94  28 03 00 00 */	cmplwi r3, 0
 /* 80191C58 0018EB98  41 82 00 18 */	beq lbl_80191C70
@@ -73,7 +73,7 @@ lbl_80191C90:
 /* 80191CA8 0018EBE8  7D 89 03 A6 */	mtctr r12
 /* 80191CAC 0018EBEC  4E 80 04 21 */	bctrl 
 lbl_80191CB0:
-/* 80191CB0 0018EBF0  4B E8 2D 7D */	bl mDoExt_removeMesgFont
+/* 80191CB0 0018EBF0  4B E8 2D 7D */	bl mDoExt_removeMesgFont__Fv
 /* 80191CB4 0018EBF4  34 1E 00 08 */	addic. r0, r30, 8
 /* 80191CB8 0018EBF8  41 82 00 10 */	beq lbl_80191CC8
 /* 80191CBC 0018EBFC  3C 60 80 3C */	lis r3, lbl_803BB44C@ha
@@ -93,8 +93,8 @@ lbl_80191CD8:
 /* 80191CEC 0018EC2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80191CF0 0018EC30  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_screenSet
-dFile_warning_c_NS_screenSet:
+.global screenSet__15dFile_warning_cFv
+screenSet__15dFile_warning_cFv:
 /* 80191CF4 0018EC34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80191CF8 0018EC38  7C 08 02 A6 */	mflr r0
 /* 80191CFC 0018EC3C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -120,7 +120,7 @@ lbl_80191D40:
 /* 80191D48 0018EC88  48 13 CF 05 */	bl __nw__FUl
 /* 80191D4C 0018EC8C  7C 60 1B 79 */	or. r0, r3, r3
 /* 80191D50 0018EC90  41 82 00 0C */	beq lbl_80191D5C
-/* 80191D54 0018EC94  48 0B 7E CD */	bl dMsgString_c
+/* 80191D54 0018EC94  48 0B 7E CD */	bl __ct__12dMsgString_cFv
 /* 80191D58 0018EC98  7C 60 1B 78 */	mr r0, r3
 lbl_80191D5C:
 /* 80191D5C 0018EC9C  90 1F 00 14 */	stw r0, 0x14(r31)
@@ -131,14 +131,14 @@ lbl_80191D5C:
 /* 80191D70 0018ECB0  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80191D74 0018ECB4  3C A0 00 10 */	lis r5, 0x10
 /* 80191D78 0018ECB8  80 DF 00 04 */	lwz r6, 4(r31)
-/* 80191D7C 0018ECBC  48 16 68 CD */	bl J2DScreen_NS_setPriority
+/* 80191D7C 0018ECBC  48 16 68 CD */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 80191D80 0018ECC0  88 1F 00 3E */	lbz r0, 0x3e(r31)
 /* 80191D84 0018ECC4  54 00 10 3A */	slwi r0, r0, 2
 /* 80191D88 0018ECC8  38 61 00 08 */	addi r3, r1, 8
 /* 80191D8C 0018ECCC  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80191D90 0018ECD0  80 9F 00 04 */	lwz r4, 4(r31)
 /* 80191D94 0018ECD4  48 14 24 DD */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-/* 80191D98 0018ECD8  48 17 6C D5 */	bl J2DAnmLoaderDataBase_NS_load
+/* 80191D98 0018ECD8  48 17 6C D5 */	bl load__20J2DAnmLoaderDataBaseFPCv
 /* 80191D9C 0018ECDC  90 7F 00 24 */	stw r3, 0x24(r31)
 /* 80191DA0 0018ECE0  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 80191DA4 0018ECE4  80 9F 00 24 */	lwz r4, 0x24(r31)
@@ -150,8 +150,8 @@ lbl_80191D5C:
 /* 80191DBC 0018ECFC  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 80191DC0 0018ED00  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80191DC4 0018ED04  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 80191DC8 0018ED08  48 16 78 C9 */	bl J2DScreen_NS_animation
-/* 80191DCC 0018ED0C  4B E8 2C 25 */	bl mDoExt_getMesgFont
+/* 80191DC8 0018ED08  48 16 78 C9 */	bl animation__9J2DScreenFv
+/* 80191DCC 0018ED0C  4B E8 2C 25 */	bl mDoExt_getMesgFont__Fv
 /* 80191DD0 0018ED10  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80191DD4 0018ED14  38 60 00 6C */	li r3, 0x6c
 /* 80191DD8 0018ED18  48 13 CE 75 */	bl __nw__FUl
@@ -163,7 +163,7 @@ lbl_80191D5C:
 /* 80191DF0 0018ED30  38 A0 00 4E */	li r5, 0x4e
 /* 80191DF4 0018ED34  38 E0 00 00 */	li r7, 0
 /* 80191DF8 0018ED38  39 00 00 00 */	li r8, 0
-/* 80191DFC 0018ED3C  48 0C 1B 89 */	bl CPaneMgr_X1_
+/* 80191DFC 0018ED3C  48 0C 1B 89 */	bl __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap
 /* 80191E00 0018ED40  7C 60 1B 78 */	mr r0, r3
 lbl_80191E04:
 /* 80191E04 0018ED44  90 1F 00 1C */	stw r0, 0x1c(r31)
@@ -218,7 +218,7 @@ lbl_80191E04:
 /* 80191EC8 0018EE08  38 A5 48 28 */	addi r5, r5, lbl_80394828@l
 /* 80191ECC 0018EE0C  38 A5 00 88 */	addi r5, r5, 0x88
 /* 80191ED0 0018EE10  4C C6 31 82 */	crclr 6
-/* 80191ED4 0018EE14  48 16 E8 79 */	bl J2DTextBox_NS_setString_X1_
+/* 80191ED4 0018EE14  48 16 E8 79 */	bl setString__10J2DTextBoxFsPCce
 /* 80191ED8 0018EE18  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 80191EDC 0018EE1C  38 80 00 53 */	li r4, 0x53
 /* 80191EE0 0018EE20  80 BF 00 20 */	lwz r5, 0x20(r31)
@@ -236,8 +236,8 @@ lbl_80191E04:
 /* 80191F10 0018EE50  38 21 00 20 */	addi r1, r1, 0x20
 /* 80191F14 0018EE54  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS__move
-dFile_warning_c_NS__move:
+.global _move__15dFile_warning_cFv
+_move__15dFile_warning_cFv:
 /* 80191F18 0018EE58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80191F1C 0018EE5C  7C 08 02 A6 */	mflr r0
 /* 80191F20 0018EE60  90 01 00 14 */	stw r0, 0x14(r1)
@@ -248,7 +248,7 @@ dFile_warning_c_NS__move:
 /* 80191F34 0018EE74  3C 80 80 3C */	lis r4, lbl_803BB434@ha
 /* 80191F38 0018EE78  38 04 B4 34 */	addi r0, r4, lbl_803BB434@l
 /* 80191F3C 0018EE7C  7D 80 2A 14 */	add r12, r0, r5
-/* 80191F40 0018EE80  48 1D 01 45 */	bl func_80362084
+/* 80191F40 0018EE80  48 1D 01 45 */	bl __ptmf_scall
 /* 80191F44 0018EE84  60 00 00 00 */	nop 
 /* 80191F48 0018EE88  C0 02 9F D8 */	lfs f0, lbl_804539D8-_SDA2_BASE_(r2)
 /* 80191F4C 0018EE8C  C0 3F 00 38 */	lfs f1, 0x38(r31)
@@ -275,7 +275,7 @@ lbl_80191F7C:
 /* 80191F9C 0018EEDC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80191FA0 0018EEE0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80191FA4 0018EEE4  7C 7F 1B 78 */	mr r31, r3
-/* 80191FA8 0018EEE8  48 00 00 2D */	bl dFile_warning_c_NS_baseMoveAnm
+/* 80191FA8 0018EEE8  48 00 00 2D */	bl baseMoveAnm__15dFile_warning_cFv
 /* 80191FAC 0018EEEC  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80191FB0 0018EEF0  28 00 00 01 */	cmplwi r0, 1
 /* 80191FB4 0018EEF4  40 82 00 0C */	bne lbl_80191FC0
@@ -288,8 +288,8 @@ lbl_80191FC0:
 /* 80191FCC 0018EF0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80191FD0 0018EF10  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_baseMoveAnm
-dFile_warning_c_NS_baseMoveAnm:
+.global baseMoveAnm__15dFile_warning_cFv
+baseMoveAnm__15dFile_warning_cFv:
 /* 80191FD4 0018EF14  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80191FD8 0018EF18  7C 08 02 A6 */	mflr r0
 /* 80191FDC 0018EF1C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -328,7 +328,7 @@ lbl_80192038:
 /* 80192058 0018EF98  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 8019205C 0018EF9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80192060 0018EFA0  80 7F 00 0C */	lwz r3, 0xc(r31)
-/* 80192064 0018EFA4  48 16 76 2D */	bl J2DScreen_NS_animation
+/* 80192064 0018EFA4  48 16 76 2D */	bl animation__9J2DScreenFv
 /* 80192068 0018EFA8  38 60 00 00 */	li r3, 0
 lbl_8019206C:
 /* 8019206C 0018EFAC  80 9F 00 28 */	lwz r4, 0x28(r31)
@@ -354,8 +354,8 @@ lbl_801920A4:
 /* 801920B0 0018EFF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 801920B4 0018EFF4  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_openInit
-dFile_warning_c_NS_openInit:
+.global openInit__15dFile_warning_cFv
+openInit__15dFile_warning_cFv:
 /* 801920B8 0018EFF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801920BC 0018EFFC  38 00 0B 21 */	li r0, 0xb21
 /* 801920C0 0018F000  90 03 00 28 */	stw r0, 0x28(r3)
@@ -378,8 +378,8 @@ dFile_warning_c_NS_openInit:
 /* 80192104 0018F044  38 21 00 10 */	addi r1, r1, 0x10
 /* 80192108 0018F048  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_closeInit
-dFile_warning_c_NS_closeInit:
+.global closeInit__15dFile_warning_cFv
+closeInit__15dFile_warning_cFv:
 /* 8019210C 0018F04C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192110 0018F050  38 00 0B 2B */	li r0, 0xb2b
 /* 80192114 0018F054  90 03 00 28 */	stw r0, 0x28(r3)
@@ -402,8 +402,8 @@ dFile_warning_c_NS_closeInit:
 /* 80192158 0018F098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019215C 0018F09C  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_init
-dFile_warning_c_NS_init:
+.global init__15dFile_warning_cFv
+init__15dFile_warning_cFv:
 /* 80192160 0018F0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192164 0018F0A4  7C 08 02 A6 */	mflr r0
 /* 80192168 0018F0A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -411,14 +411,14 @@ dFile_warning_c_NS_init:
 /* 80192170 0018F0B0  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 80192174 0018F0B4  D0 04 00 08 */	stfs f0, 8(r4)
 /* 80192178 0018F0B8  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 8019217C 0018F0BC  48 16 75 15 */	bl J2DScreen_NS_animation
+/* 8019217C 0018F0BC  48 16 75 15 */	bl animation__9J2DScreenFv
 /* 80192180 0018F0C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80192184 0018F0C4  7C 08 03 A6 */	mtlr r0
 /* 80192188 0018F0C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019218C 0018F0CC  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS__draw
-dFile_warning_c_NS__draw:
+.global _draw__15dFile_warning_cFv
+_draw__15dFile_warning_cFv:
 /* 80192190 0018F0D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80192194 0018F0D4  7C 08 02 A6 */	mflr r0
 /* 80192198 0018F0D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -429,14 +429,14 @@ dFile_warning_c_NS__draw:
 /* 801921AC 0018F0EC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 801921B0 0018F0F0  38 A3 01 B8 */	addi r5, r3, 0x1b8
 /* 801921B4 0018F0F4  38 C6 00 08 */	addi r6, r6, 8
-/* 801921B8 0018F0F8  4B EC 45 DD */	bl dDlst_list_c_NS_set
+/* 801921B8 0018F0F8  4B EC 45 DD */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 801921BC 0018F0FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 801921C0 0018F100  7C 08 03 A6 */	mtlr r0
 /* 801921C4 0018F104  38 21 00 10 */	addi r1, r1, 0x10
 /* 801921C8 0018F108  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_drawSelf
-dFile_warning_c_NS_drawSelf:
+.global drawSelf__15dFile_warning_cFv
+drawSelf__15dFile_warning_cFv:
 /* 801921CC 0018F10C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801921D0 0018F110  7C 08 02 A6 */	mflr r0
 /* 801921D4 0018F114  90 01 00 14 */	stw r0, 0x14(r1)
@@ -449,8 +449,8 @@ dFile_warning_c_NS_drawSelf:
 /* 801921F0 0018F130  38 21 00 10 */	addi r1, r1, 0x10
 /* 801921F4 0018F134  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_setText
-dFile_warning_c_NS_setText:
+.global setText__15dFile_warning_cFUl
+setText__15dFile_warning_cFUl:
 /* 801921F8 0018F138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801921FC 0018F13C  7C 08 02 A6 */	mflr r0
 /* 80192200 0018F140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -470,8 +470,8 @@ dFile_warning_c_NS_setText:
 /* 80192238 0018F178  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019223C 0018F17C  4E 80 00 20 */	blr 
 
-.global dFile_warning_c_NS_setFontColor
-dFile_warning_c_NS_setFontColor:
+.global setFontColor__15dFile_warning_cFQ28JUtility6TColorQ28JUtility6TColor
+setFontColor__15dFile_warning_cFQ28JUtility6TColorQ28JUtility6TColor:
 /* 80192240 0018F180  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80192244 0018F184  7C 08 02 A6 */	mflr r0
 /* 80192248 0018F188  90 01 00 34 */	stw r0, 0x34(r1)
@@ -550,7 +550,7 @@ dFile_warning_c_NS_setFontColor:
 /* 8019236C 0018F2AC  80 63 00 04 */	lwz r3, 4(r3)
 /* 80192370 0018F2B0  C0 22 9F D8 */	lfs f1, lbl_804539D8-_SDA2_BASE_(r2)
 /* 80192374 0018F2B4  FC 40 08 90 */	fmr f2, f1
-/* 80192378 0018F2B8  48 16 6B 5D */	bl J2DScreen_NS_draw
+/* 80192378 0018F2B8  48 16 6B 5D */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 8019237C 0018F2BC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80192380 0018F2C0  7C 08 03 A6 */	mtlr r0
 /* 80192384 0018F2C4  38 21 00 10 */	addi r1, r1, 0x10

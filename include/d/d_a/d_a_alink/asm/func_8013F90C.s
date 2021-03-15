@@ -14,7 +14,7 @@
 lbl_8013F940:
 /* 8013F940 0013C880  A8 1F 30 12 */ lha r0, 0x3012(r31)
 /* 8013F944 0013C884  54 03 06 3E */ clrlwi r3, r0, 0x18
-/* 8013F948 0013C888  48 0F 8A C9 */ bl dMsgObject_c_NS_setSmellType
+/* 8013F948 0013C888  48 0F 8A C9 */ bl setSmellType__12dMsgObject_cFUc
 /* 8013F94C 0013C88C  A8 1F 30 12 */ lha r0, 0x3012(r31)
 /* 8013F950 0013C890  2C 00 00 B5 */ cmpwi r0, 0xb5
 /* 8013F954 0013C894  40 82 00 1C */ bne lbl_8013F970
@@ -64,7 +64,7 @@ lbl_8013F9D8:
 lbl_8013F9F4:
 /* 8013F9F4 0013C934  7F E3 FB 78 */ mr r3, r31
 /* 8013F9F8 0013C938  A8 9F 30 12 */ lha r4, 0x3012(r31)
-/* 8013F9FC 0013C93C  4B FD AC 8D */ bl daAlink_c_NS_setGetSubBgm
+/* 8013F9FC 0013C93C  4B FD AC 8D */ bl setGetSubBgm__9daAlink_cFi
 /* 8013FA00 0013C940  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8013FA04 0013C944  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8013FA08 0013C948  7C 08 03 A6 */ mtlr r0

@@ -6,12 +6,12 @@
 /* 8001EBC0 0001BB00  7C 7F 1B 78 */ mr r31, r3
 /* 8001EBC4 0001BB04  80 63 01 AC */ lwz r3, 0x1ac(r3)
 /* 8001EBC8 0001BB08  7F E4 FB 78 */ mr r4, r31
-/* 8001EBCC 0001BB0C  48 00 38 DD */ bl fpcMtd_Delete
+/* 8001EBCC 0001BB0C  48 00 38 DD */ bl fpcMtd_Delete__FP20process_method_classPv
 /* 8001EBD0 0001BB10  7C 7E 1B 78 */ mr r30, r3
 /* 8001EBD4 0001BB14  2C 1E 00 01 */ cmpwi r30, 1
 /* 8001EBD8 0001BB18  40 82 00 0C */ bne lbl_8001EBE4
 /* 8001EBDC 0001BB1C  38 7F 01 B0 */ addi r3, r31, 0x1b0
-/* 8001EBE0 0001BB20  48 00 05 5D */ bl fopScnTg_QueueTo
+/* 8001EBE0 0001BB20  48 00 05 5D */ bl fopScnTg_QueueTo__FP15scene_tag_class
 lbl_8001EBE4:
 /* 8001EBE4 0001BB24  7F C3 F3 78 */ mr r3, r30
 /* 8001EBE8 0001BB28  83 E1 00 0C */ lwz r31, 0xc(r1)

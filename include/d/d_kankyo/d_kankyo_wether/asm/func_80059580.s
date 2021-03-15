@@ -34,16 +34,16 @@ lbl_800595B8:
 /* 80059600 00056540  90 1D 00 00 */ stw r0, 0(r29)
 /* 80059604 00056544  38 64 00 18 */ addi r3, r4, 0x18
 /*.global CLOUD_EFF*/
-/* 80059608 00056548  3C 80 80 05 */ lis r4, CLOUD_EFF@ha
+/* 80059608 00056548  3C 80 80 05 */ lis r4, __ct__9CLOUD_EFFFv@ha
 /*.global CLOUD_EFF*/
-/* 8005960C 0005654C  38 84 6E 74 */ addi r4, r4, CLOUD_EFF@l
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80059610 00056550  3C A0 80 05 */ lis r5, CLOUD_EFF_NS_dtor@ha
-/*.global CLOUD_EFF_NS_dtor*/
-/* 80059614 00056554  38 A5 6E 38 */ addi r5, r5, CLOUD_EFF_NS_dtor@l
+/* 8005960C 0005654C  38 84 6E 74 */ addi r4, r4, __ct__9CLOUD_EFFFv@l
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80059610 00056550  3C A0 80 05 */ lis r5, __dt__9CLOUD_EFFFv@ha
+/*.global __dt__9CLOUD_EFFFv*/
+/* 80059614 00056554  38 A5 6E 38 */ addi r5, r5, __dt__9CLOUD_EFFFv@l
 /* 80059618 00056558  38 C0 00 38 */ li r6, 0x38
 /* 8005961C 0005655C  38 E0 00 32 */ li r7, 0x32
-/* 80059620 00056560  48 30 87 41 */ bl func_80361D60
+/* 80059620 00056560  48 30 87 41 */ bl __construct_array
 lbl_80059624:
 /* 80059624 00056564  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 80059628 00056568  3B C3 CA 54 */ addi r30, r3, lbl_8042CA54@l
@@ -59,7 +59,7 @@ lbl_80059624:
 /* 80059650 00056590  3C A5 00 02 */ addis r5, r5, 2
 /* 80059654 00056594  38 C0 00 80 */ li r6, 0x80
 /* 80059658 00056598  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 8005965C 0005659C  4B FE 2C 91 */ bl dRes_control_c_NS_getRes
+/* 8005965C 0005659C  4B FE 2C 91 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80059660 000565A0  80 9E 0E C0 */ lwz r4, 0xec0(r30)
 /* 80059664 000565A4  90 64 00 10 */ stw r3, 0x10(r4)
 /* 80059668 000565A8  38 60 00 00 */ li r3, 0
@@ -75,7 +75,7 @@ lbl_80059678:
 /* 8005968C 000565CC  38 00 00 00 */ li r0, 0
 /* 80059690 000565D0  80 7E 0E C0 */ lwz r3, 0xec0(r30)
 /* 80059694 000565D4  90 03 00 14 */ stw r0, 0x14(r3)
-/* 80059698 000565D8  48 00 7D A1 */ bl cloud_shadow_move
+/* 80059698 000565D8  48 00 7D A1 */ bl cloud_shadow_move__Fv
 /* 8005969C 000565DC  88 7F 0E B4 */ lbz r3, 0xeb4(r31)
 /* 800596A0 000565E0  38 03 00 01 */ addi r0, r3, 1
 /* 800596A4 000565E4  98 1F 0E B4 */ stb r0, 0xeb4(r31)
@@ -84,9 +84,9 @@ lbl_800596AC:
 /* 800596AC 000565EC  88 1F 0E B5 */ lbz r0, 0xeb5(r31)
 /* 800596B0 000565F0  28 00 00 00 */ cmplwi r0, 0
 /* 800596B4 000565F4  40 82 00 08 */ bne lbl_800596BC
-/* 800596B8 000565F8  48 00 14 39 */ bl dKyw_get_wind_pow
+/* 800596B8 000565F8  48 00 14 39 */ bl dKyw_get_wind_pow__Fv
 lbl_800596BC:
-/* 800596BC 000565FC  48 00 7D 7D */ bl cloud_shadow_move
+/* 800596BC 000565FC  48 00 7D 7D */ bl cloud_shadow_move__Fv
 /* 800596C0 00056600  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 800596C4 00056604  3B C3 CA 54 */ addi r30, r3, lbl_8042CA54@l
 /* 800596C8 00056608  80 1E 0E B8 */ lwz r0, 0xeb8(r30)

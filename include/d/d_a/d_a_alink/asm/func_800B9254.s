@@ -10,15 +10,15 @@
 /* 800B9278 000B61B8  41 82 00 38 */ beq lbl_800B92B0
 /* 800B927C 000B61BC  28 00 02 3F */ cmplwi r0, 0x23f
 /* 800B9280 000B61C0  41 82 00 30 */ beq lbl_800B92B0
-/* 800B9284 000B61C4  48 00 01 15 */ bl daAlink_c_NS_checkWindDashAnime
+/* 800B9284 000B61C4  48 00 01 15 */ bl checkWindDashAnime__9daAlink_cCFv
 /* 800B9288 000B61C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B928C 000B61CC  40 82 00 24 */ bne lbl_800B92B0
 /* 800B9290 000B61D0  7F C3 F3 78 */ mr r3, r30
-/* 800B9294 000B61D4  48 00 01 39 */ bl daAlink_c_NS_checkSwordTwirlAnime
+/* 800B9294 000B61D4  48 00 01 39 */ bl checkSwordTwirlAnime__9daAlink_cCFv
 /* 800B9298 000B61D8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B929C 000B61DC  40 82 00 14 */ bne lbl_800B92B0
 /* 800B92A0 000B61E0  7F C3 F3 78 */ mr r3, r30
-/* 800B92A4 000B61E4  48 05 79 C9 */ bl daAlink_c_NS_checkKandelaarEquipAnime
+/* 800B92A4 000B61E4  48 05 79 C9 */ bl checkKandelaarEquipAnime__9daAlink_cCFv
 /* 800B92A8 000B61E8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B92AC 000B61EC  41 82 00 08 */ beq lbl_800B92B4
 lbl_800B92B0:

@@ -1,7 +1,7 @@
 /* 8010859C 001054DC  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 801085A0 001054E0  7C 08 02 A6 */ mflr r0
 /* 801085A4 001054E4  90 01 00 14 */ stw r0, 0x14(r1)
-/* 801085A8 001054E8  4B FF FE 21 */ bl daAlink_c_NS_hookshotAtHitCallBack
+/* 801085A8 001054E8  4B FF FE 21 */ bl hookshotAtHitCallBack__9daAlink_cFP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf
 /* 801085AC 001054EC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801085B0 001054F0  7C 08 03 A6 */ mtlr r0
 /* 801085B4 001054F4  38 21 00 10 */ addi r1, r1, 0x10

@@ -41,12 +41,12 @@ lbl_8010F4C4:
 /* 8010F4F0 0010C430  4B F0 A9 15 */ bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 8010F4F4 0010C434  7C 64 1B 78 */ mr r4, r3
 /* 8010F4F8 0010C438  38 7F 28 5C */ addi r3, r31, 0x285c
-/* 8010F4FC 0010C43C  48 04 F7 BD */ bl daPy_actorKeep_c_NS_setData
+/* 8010F4FC 0010C43C  48 04 F7 BD */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010F500 0010C440  80 1F 05 80 */ lwz r0, 0x580(r31)
 /* 8010F504 0010C444  60 00 04 00 */ ori r0, r0, 0x400
 /* 8010F508 0010C448  90 1F 05 80 */ stw r0, 0x580(r31)
 /* 8010F50C 0010C44C  7F E3 FB 78 */ mr r3, r31
-/* 8010F510 0010C450  48 00 67 11 */ bl daAlink_c_NS_checkEventRun
+/* 8010F510 0010C450  48 00 67 11 */ bl checkEventRun__9daAlink_cCFv
 /* 8010F514 0010C454  2C 03 00 00 */ cmpwi r3, 0
 /* 8010F518 0010C458  41 82 00 1C */ beq lbl_8010F534
 /* 8010F51C 0010C45C  80 7F 28 60 */ lwz r3, 0x2860(r31)

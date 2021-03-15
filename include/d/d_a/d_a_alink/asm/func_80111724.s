@@ -2,7 +2,7 @@
 /* 80111728 0010E668  7C 08 02 A6 */ mflr r0
 /* 8011172C 0010E66C  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80111730 0010E670  38 80 00 00 */ li r4, 0
-/* 80111734 0010E674  4B FF F9 85 */ bl daAlink_c_NS_commonKandelaarPour
+/* 80111734 0010E674  4B FF F9 85 */ bl commonKandelaarPour__9daAlink_cFi
 /* 80111738 0010E678  38 60 00 01 */ li r3, 1
 /* 8011173C 0010E67C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80111740 0010E680  7C 08 03 A6 */ mtlr r0

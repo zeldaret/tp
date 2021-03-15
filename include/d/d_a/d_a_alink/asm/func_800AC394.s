@@ -16,7 +16,7 @@
 /* 800AC3D0 000A9310  80 03 05 70 */ lwz r0, 0x570(r3)
 /* 800AC3D4 000A9314  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 800AC3D8 000A9318  41 82 00 34 */ beq lbl_800AC40C
-/* 800AC3DC 000A931C  48 01 39 D5 */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800AC3DC 000A931C  48 01 39 D5 */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800AC3E0 000A9320  2C 03 00 00 */ cmpwi r3, 0
 /* 800AC3E4 000A9324  41 82 00 18 */ beq lbl_800AC3FC
 /* 800AC3E8 000A9328  3C 60 80 39 */ lis r3, lbl_8038E7F4@ha
@@ -36,7 +36,7 @@ lbl_800AC40C:
 /* 800AC418 000A9358  7F E6 FB 78 */ mr r6, r31
 /* 800AC41C 000A935C  FC 20 F0 90 */ fmr f1, f30
 /* 800AC420 000A9360  FC 40 F8 90 */ fmr f2, f31
-/* 800AC424 000A9364  48 0B 21 21 */ bl daPy_frameCtrl_c_NS_setFrameCtrl
+/* 800AC424 000A9364  48 0B 21 21 */ bl setFrameCtrl__16daPy_frameCtrl_cFUcssff
 /* 800AC428 000A9368  E3 E1 00 38 */ psq_l f31, 56(r1), 0, 0
 /* 800AC42C 000A936C  CB E1 00 30 */ lfd f31, 0x30(r1)
 /* 800AC430 000A9370  E3 C1 00 28 */ psq_l f30, 40(r1), 0, 0

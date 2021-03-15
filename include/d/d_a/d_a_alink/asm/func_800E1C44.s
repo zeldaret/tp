@@ -29,17 +29,17 @@ lbl_800E1C98:
 /* 800E1CA8 000DEBE8  B0 1F 30 8E */ sth r0, 0x308e(r31)
 lbl_800E1CAC:
 /* 800E1CAC 000DEBEC  7F E3 FB 78 */ mr r3, r31
-/* 800E1CB0 000DEBF0  4B FF F8 81 */ bl daAlink_c_NS_checkCopyRodAnime
+/* 800E1CB0 000DEBF0  4B FF F8 81 */ bl checkCopyRodAnime__9daAlink_cCFv
 /* 800E1CB4 000DEBF4  2C 03 00 00 */ cmpwi r3, 0
 /* 800E1CB8 000DEBF8  40 82 00 4C */ bne lbl_800E1D04
 /* 800E1CBC 000DEBFC  7F E3 FB 78 */ mr r3, r31
-/* 800E1CC0 000DEC00  4B FF FB 81 */ bl daAlink_c_NS_setCopyRodReadyAnime
+/* 800E1CC0 000DEC00  4B FF FB 81 */ bl setCopyRodReadyAnime__9daAlink_cFv
 /* 800E1CC4 000DEC04  7F E3 FB 78 */ mr r3, r31
-/* 800E1CC8 000DEC08  4B FD 54 A1 */ bl daAlink_c_NS_setFastShotTimer
+/* 800E1CC8 000DEC08  4B FD 54 A1 */ bl setFastShotTimer__9daAlink_cFv
 /* 800E1CCC 000DEC0C  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800E1CD0 000DEC10  3B A0 00 01 */ li r29, 1
 /* 800E1CD4 000DEC14  7F C3 F3 78 */ mr r3, r30
-/* 800E1CD8 000DEC18  4B F9 1B 0D */ bl dAttention_c_NS_LockonTruth
+/* 800E1CD8 000DEC18  4B F9 1B 0D */ bl LockonTruth__12dAttention_cFv
 /* 800E1CDC 000DEC1C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1CE0 000DEC20  40 82 00 14 */ bne lbl_800E1CF4
 /* 800E1CE4 000DEC24  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -55,7 +55,7 @@ lbl_800E1D04:
 /* 800E1D04 000DEC44  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800E1D08 000DEC48  3B A0 00 01 */ li r29, 1
 /* 800E1D0C 000DEC4C  7F C3 F3 78 */ mr r3, r30
-/* 800E1D10 000DEC50  4B F9 1A D5 */ bl dAttention_c_NS_LockonTruth
+/* 800E1D10 000DEC50  4B F9 1A D5 */ bl LockonTruth__12dAttention_cFv
 /* 800E1D14 000DEC54  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E1D18 000DEC58  40 82 00 14 */ bne lbl_800E1D2C
 /* 800E1D1C 000DEC5C  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -69,11 +69,11 @@ lbl_800E1D2C:
 /* 800E1D38 000DEC78  2C 00 00 00 */ cmpwi r0, 0
 /* 800E1D3C 000DEC7C  40 82 00 10 */ bne lbl_800E1D4C
 /* 800E1D40 000DEC80  7F E3 FB 78 */ mr r3, r31
-/* 800E1D44 000DEC84  48 00 00 DD */ bl daAlink_c_NS_procCopyRodSubjectInit
+/* 800E1D44 000DEC84  48 00 00 DD */ bl procCopyRodSubjectInit__9daAlink_cFv
 /* 800E1D48 000DEC88  48 00 00 0C */ b lbl_800E1D54
 lbl_800E1D4C:
 /* 800E1D4C 000DEC8C  7F E3 FB 78 */ mr r3, r31
-/* 800E1D50 000DEC90  48 00 02 19 */ bl daAlink_c_NS_procCopyRodMoveInit
+/* 800E1D50 000DEC90  48 00 02 19 */ bl procCopyRodMoveInit__9daAlink_cFv
 lbl_800E1D54:
 /* 800E1D54 000DEC94  39 61 00 20 */ addi r11, r1, 0x20
 /* 800E1D58 000DEC98  48 28 04 D1 */ bl _restgpr_29

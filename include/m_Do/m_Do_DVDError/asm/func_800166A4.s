@@ -11,7 +11,7 @@
 /* 800166CC 0001360C  38 61 00 08 */ addi r3, r1, 8
 /* 800166D0 00013610  38 80 FF FF */ li r4, -1
 /* 800166D4 00013614  48 2B B0 85 */ bl __dt__9JKRThreadFv
-/* 800166D8 00013618  4B FF 86 0D */ bl mDoExt_getAssertHeap
+/* 800166D8 00013618  4B FF 86 0D */ bl mDoExt_getAssertHeap__Fv
 /* 800166DC 0001361C  48 2B 7D 5D */ bl becomeCurrentHeap__7JKRHeapFv
 /* 800166E0 00013620  3C 60 80 3E */ lis r3, lbl_803DECC0@ha
 /* 800166E4 00013624  3B E3 EC C0 */ addi r31, r3, lbl_803DECC0@l
@@ -19,7 +19,7 @@ lbl_800166E8:
 /* 800166E8 00013628  48 33 4A E1 */ bl DVDGetDriveStatus
 /* 800166EC 0001362C  2C 03 FF FF */ cmpwi r3, -1
 /* 800166F0 00013630  40 82 00 08 */ bne lbl_800166F8
-/* 800166F4 00013634  4B FF F1 C1 */ bl mDoDvdThd_NS_suspend
+/* 800166F4 00013634  4B FF F1 C1 */ bl suspend__9mDoDvdThdFv
 lbl_800166F8:
 /* 800166F8 00013638  7F E3 FB 78 */ mr r3, r31
 /* 800166FC 0001363C  48 32 B3 41 */ bl OSSuspendThread

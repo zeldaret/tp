@@ -29,17 +29,17 @@ lbl_800E0C38:
 /* 800E0C48 000DDB88  B0 1F 30 8E */ sth r0, 0x308e(r31)
 lbl_800E0C4C:
 /* 800E0C4C 000DDB8C  7F E3 FB 78 */ mr r3, r31
-/* 800E0C50 000DDB90  4B FF F7 F1 */ bl daAlink_c_NS_checkBoomerangAnime
+/* 800E0C50 000DDB90  4B FF F7 F1 */ bl checkBoomerangAnime__9daAlink_cCFv
 /* 800E0C54 000DDB94  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0C58 000DDB98  40 82 00 4C */ bne lbl_800E0CA4
 /* 800E0C5C 000DDB9C  7F E3 FB 78 */ mr r3, r31
-/* 800E0C60 000DDBA0  4B FF F8 FD */ bl daAlink_c_NS_setBoomerangReadyAnime
+/* 800E0C60 000DDBA0  4B FF F8 FD */ bl setBoomerangReadyAnime__9daAlink_cFv
 /* 800E0C64 000DDBA4  7F E3 FB 78 */ mr r3, r31
-/* 800E0C68 000DDBA8  4B FD 65 01 */ bl daAlink_c_NS_setFastShotTimer
+/* 800E0C68 000DDBA8  4B FD 65 01 */ bl setFastShotTimer__9daAlink_cFv
 /* 800E0C6C 000DDBAC  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800E0C70 000DDBB0  3B A0 00 01 */ li r29, 1
 /* 800E0C74 000DDBB4  7F C3 F3 78 */ mr r3, r30
-/* 800E0C78 000DDBB8  4B F9 2B 6D */ bl dAttention_c_NS_LockonTruth
+/* 800E0C78 000DDBB8  4B F9 2B 6D */ bl LockonTruth__12dAttention_cFv
 /* 800E0C7C 000DDBBC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0C80 000DDBC0  40 82 00 14 */ bne lbl_800E0C94
 /* 800E0C84 000DDBC4  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -55,7 +55,7 @@ lbl_800E0CA4:
 /* 800E0CA4 000DDBE4  83 DF 27 E0 */ lwz r30, 0x27e0(r31)
 /* 800E0CA8 000DDBE8  3B A0 00 01 */ li r29, 1
 /* 800E0CAC 000DDBEC  7F C3 F3 78 */ mr r3, r30
-/* 800E0CB0 000DDBF0  4B F9 2B 35 */ bl dAttention_c_NS_LockonTruth
+/* 800E0CB0 000DDBF0  4B F9 2B 35 */ bl LockonTruth__12dAttention_cFv
 /* 800E0CB4 000DDBF4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0CB8 000DDBF8  40 82 00 14 */ bne lbl_800E0CCC
 /* 800E0CBC 000DDBFC  80 1E 03 34 */ lwz r0, 0x334(r30)
@@ -79,15 +79,15 @@ lbl_800E0CCC:
 /* 800E0D00 000DDC40  28 03 00 00 */ cmplwi r3, 0
 /* 800E0D04 000DDC44  41 82 00 10 */ beq lbl_800E0D14
 /* 800E0D08 000DDC48  7F E3 FB 78 */ mr r3, r31
-/* 800E0D0C 000DDC4C  48 01 62 99 */ bl daAlink_c_NS_procCanoeBoomerangSubjectInit
+/* 800E0D0C 000DDC4C  48 01 62 99 */ bl procCanoeBoomerangSubjectInit__9daAlink_cFv
 /* 800E0D10 000DDC50  48 00 00 64 */ b lbl_800E0D74
 lbl_800E0D14:
 /* 800E0D14 000DDC54  7F E3 FB 78 */ mr r3, r31
-/* 800E0D18 000DDC58  48 01 17 3D */ bl daAlink_c_NS_procHorseBoomerangSubjectInit
+/* 800E0D18 000DDC58  48 01 17 3D */ bl procHorseBoomerangSubjectInit__9daAlink_cFv
 /* 800E0D1C 000DDC5C  48 00 00 58 */ b lbl_800E0D74
 lbl_800E0D20:
 /* 800E0D20 000DDC60  7F E3 FB 78 */ mr r3, r31
-/* 800E0D24 000DDC64  48 00 01 ED */ bl daAlink_c_NS_procBoomerangSubjectInit
+/* 800E0D24 000DDC64  48 00 01 ED */ bl procBoomerangSubjectInit__9daAlink_cFv
 /* 800E0D28 000DDC68  48 00 00 4C */ b lbl_800E0D74
 lbl_800E0D2C:
 /* 800E0D2C 000DDC6C  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -101,15 +101,15 @@ lbl_800E0D2C:
 /* 800E0D4C 000DDC8C  28 03 00 00 */ cmplwi r3, 0
 /* 800E0D50 000DDC90  41 82 00 10 */ beq lbl_800E0D60
 /* 800E0D54 000DDC94  7F E3 FB 78 */ mr r3, r31
-/* 800E0D58 000DDC98  48 01 63 99 */ bl daAlink_c_NS_procCanoeBoomerangMoveInit
+/* 800E0D58 000DDC98  48 01 63 99 */ bl procCanoeBoomerangMoveInit__9daAlink_cFv
 /* 800E0D5C 000DDC9C  48 00 00 18 */ b lbl_800E0D74
 lbl_800E0D60:
 /* 800E0D60 000DDCA0  7F E3 FB 78 */ mr r3, r31
-/* 800E0D64 000DDCA4  48 01 18 51 */ bl daAlink_c_NS_procHorseBoomerangMoveInit
+/* 800E0D64 000DDCA4  48 01 18 51 */ bl procHorseBoomerangMoveInit__9daAlink_cFv
 /* 800E0D68 000DDCA8  48 00 00 0C */ b lbl_800E0D74
 lbl_800E0D6C:
 /* 800E0D6C 000DDCAC  7F E3 FB 78 */ mr r3, r31
-/* 800E0D70 000DDCB0  48 00 02 F1 */ bl daAlink_c_NS_procBoomerangMoveInit
+/* 800E0D70 000DDCB0  48 00 02 F1 */ bl procBoomerangMoveInit__9daAlink_cFv
 lbl_800E0D74:
 /* 800E0D74 000DDCB4  39 61 00 20 */ addi r11, r1, 0x20
 /* 800E0D78 000DDCB8  48 28 14 B1 */ bl _restgpr_29

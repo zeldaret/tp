@@ -4,7 +4,7 @@
 /* 800D7484 000D43C4  38 A0 00 00 */ li r5, 0
 /* 800D7488 000D43C8  38 C0 00 01 */ li r6, 1
 /* 800D748C 000D43CC  38 E0 00 00 */ li r7, 0
-/* 800D7490 000D43D0  4B FF FE 2D */ bl daAlink_c_NS_setDamagePoint
+/* 800D7490 000D43D0  4B FF FE 2D */ bl setDamagePoint__9daAlink_cFiiii
 /* 800D7494 000D43D4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800D7498 000D43D8  7C 08 03 A6 */ mtlr r0
 /* 800D749C 000D43DC  38 21 00 10 */ addi r1, r1, 0x10

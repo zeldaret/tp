@@ -2,7 +2,7 @@
 /* 8000B66C 000085AC  7C 08 02 A6 */ mflr r0
 /* 8000B670 000085B0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8000B674 000085B4  80 6D 8D F8 */ lwz r3, sRootHeap__7JKRHeap-_SDA_BASE_(r13)
-/* 8000B678 000085B8  4B FF FF 51 */ bl myHeapCheckRecursive
+/* 8000B678 000085B8  4B FF FF 51 */ bl myHeapCheckRecursive__FP7JKRHeap
 /* 8000B67C 000085BC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000B680 000085C0  7C 08 03 A6 */ mtlr r0
 /* 8000B684 000085C4  38 21 00 10 */ addi r1, r1, 0x10

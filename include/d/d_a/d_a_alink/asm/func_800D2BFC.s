@@ -3,7 +3,7 @@
 /* 800D2C04 000CFB44  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800D2C08 000CFB48  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D2C0C 000CFB4C  7C 7F 1B 78 */ mr r31, r3
-/* 800D2C10 000CFB50  4B FE 0A 21 */ bl daAlink_c_NS_getShapeAngleYAtnActor
+/* 800D2C10 000CFB50  4B FE 0A 21 */ bl getShapeAngleYAtnActor__9daAlink_cFv
 /* 800D2C14 000CFB54  A8 9F 04 E6 */ lha r4, 0x4e6(r31)
 /* 800D2C18 000CFB58  48 19 E2 0D */ bl cLib_distanceAngleS__Fss
 /* 800D2C1C 000CFB5C  2C 03 08 00 */ cmpwi r3, 0x800

@@ -4,7 +4,7 @@
 /* 802BBA94 002B89D4  80 04 00 00 */ lwz r0, 0(r4)
 /* 802BBA98 002B89D8  90 01 00 08 */ stw r0, 8(r1)
 /* 802BBA9C 002B89DC  38 81 00 08 */ addi r4, r1, 8
-/* 802BBAA0 002B89E0  4B FF FF 71 */ bl Z2SoundInfo_NS_getStreamFilePath
+/* 802BBAA0 002B89E0  4B FF FF 71 */ bl getStreamFilePath__11Z2SoundInfoF10JAISoundID
 /* 802BBAA4 002B89E4  28 03 00 00 */ cmplwi r3, 0
 /* 802BBAA8 002B89E8  40 82 00 0C */ bne lbl_802BBAB4
 /* 802BBAAC 002B89EC  38 60 FF FF */ li r3, -1

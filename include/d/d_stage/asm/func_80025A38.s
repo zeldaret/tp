@@ -20,7 +20,7 @@ lbl_80025A68:
 /* 80025A80 000229C0  40 82 00 74 */ bne lbl_80025AF4
 /* 80025A84 000229C4  88 7B 00 04 */ lbz r3, 4(r27)
 /* 80025A88 000229C8  38 9E 00 0C */ addi r4, r30, 0xc
-/* 80025A8C 000229CC  48 00 B9 A9 */ bl daSus_c_NS_check
+/* 80025A8C 000229CC  48 00 B9 A9 */ bl check__7daSus_cFScRC4cXyz
 /* 80025A90 000229D0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80025A94 000229D4  40 82 00 60 */ bne lbl_80025AF4
 /* 80025A98 000229D8  4B FF 40 11 */ bl fopAcM_CreateAppend__Fv
@@ -45,7 +45,7 @@ lbl_80025A68:
 /* 80025AE4 00022A24  88 1B 00 04 */ lbz r0, 4(r27)
 /* 80025AE8 00022A28  98 04 00 21 */ stb r0, 0x21(r4)
 /* 80025AEC 00022A2C  7F C3 F3 78 */ mr r3, r30
-/* 80025AF0 00022A30  4B FF F4 0D */ bl dStage_actorCreate
+/* 80025AF0 00022A30  4B FF F4 0D */ bl dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
 lbl_80025AF4:
 /* 80025AF4 00022A34  3B DE 00 20 */ addi r30, r30, 0x20
 /* 80025AF8 00022A38  3B BD 00 01 */ addi r29, r29, 1

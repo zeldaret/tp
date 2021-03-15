@@ -6,12 +6,12 @@
 /* 800A7A70 000A49B0  7C 7E 1B 78 */ mr r30, r3
 /* 800A7A74 000A49B4  3B E0 00 00 */ li r31, 0
 /* 800A7A78 000A49B8  38 80 00 13 */ li r4, 0x13
-/* 800A7A7C 000A49BC  48 00 4A DD */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A7A7C 000A49BC  48 00 4A DD */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A7A80 000A49C0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A7A84 000A49C4  40 82 00 18 */ bne lbl_800A7A9C
 /* 800A7A88 000A49C8  7F C3 F3 78 */ mr r3, r30
 /* 800A7A8C 000A49CC  38 80 00 1C */ li r4, 0x1c
-/* 800A7A90 000A49D0  48 00 4A C9 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 800A7A90 000A49D0  48 00 4A C9 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800A7A94 000A49D4  2C 03 00 00 */ cmpwi r3, 0
 /* 800A7A98 000A49D8  41 82 00 08 */ beq lbl_800A7AA0
 lbl_800A7A9C:

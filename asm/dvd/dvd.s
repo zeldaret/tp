@@ -679,7 +679,7 @@ lbl_803499D0:
 /* 803499D0 00346910  80 8D 91 FC */	lwz r4, lbl_8045177C-_SDA_BASE_(r13)
 /* 803499D4 00346914  38 7F 00 20 */	addi r3, r31, 0x20
 /* 803499D8 00346918  38 A0 00 20 */	li r5, 0x20
-/* 803499DC 0034691C  48 01 C6 B1 */	bl func_8036608C
+/* 803499DC 0034691C  48 01 C6 B1 */	bl memcmp
 /* 803499E0 00346920  2C 03 00 00 */	cmpwi r3, 0
 /* 803499E4 00346924  41 82 00 14 */	beq lbl_803499F8
 .global cbForStateCheckID1
@@ -995,8 +995,7 @@ lbl_80349DD8:
 /* 80349DE0 00346D20  38 21 00 18 */	addi r1, r1, 0x18
 /* 80349DE4 00346D24  7C 08 03 A6 */	mtlr r0
 /* 80349DE8 00346D28  4E 80 00 20 */	blr 
-.global AlarmHandler_X3_
-AlarmHandler_X3_:
+AlarmHandler:
 /* 80349DEC 00346D2C  7C 08 02 A6 */	mflr r0
 /* 80349DF0 00346D30  90 01 00 04 */	stw r0, 4(r1)
 /* 80349DF4 00346D34  94 21 FF F8 */	stwu r1, -8(r1)
@@ -1059,15 +1058,13 @@ lbl_80349EA8:
 /* 80349EBC 00346DFC  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 80349EC0 00346E00  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 80349EC4 00346E04  3C 80 10 62 */	lis r4, 0x10624DD3@ha
-.global AlarmHandler_X3_
-/* 80349EC8 00346E08  3C 60 80 35 */	lis r3, AlarmHandler_X3_@ha
+/* 80349EC8 00346E08  3C 60 80 35 */	lis r3, AlarmHandler@ha
 /* 80349ECC 00346E0C  54 00 F0 BE */	srwi r0, r0, 2
 /* 80349ED0 00346E10  38 84 4D D3 */	addi r4, r4, 0x10624DD3@l
 /* 80349ED4 00346E14  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 80349ED8 00346E18  54 00 D1 BE */	srwi r0, r0, 6
 /* 80349EDC 00346E1C  1C C0 04 7E */	mulli r6, r0, 0x47e
-.global AlarmHandler_X3_
-/* 80349EE0 00346E20  38 E3 9D EC */	addi r7, r3, AlarmHandler_X3_@l
+/* 80349EE0 00346E20  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
 /* 80349EE4 00346E24  38 7F 00 70 */	addi r3, r31, 0x70
 /* 80349EE8 00346E28  38 A0 00 00 */	li r5, 0
 /* 80349EEC 00346E2C  4B FF 0C 6D */	bl OSSetAlarm
@@ -1191,15 +1188,13 @@ lbl_8034A050:
 /* 8034A064 00346FA4  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 8034A068 00346FA8  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 8034A06C 00346FAC  3C 80 10 62 */	lis r4, 0x10624DD3@ha
-.global AlarmHandler_X3_
-/* 8034A070 00346FB0  3C 60 80 35 */	lis r3, AlarmHandler_X3_@ha
+/* 8034A070 00346FB0  3C 60 80 35 */	lis r3, AlarmHandler@ha
 /* 8034A074 00346FB4  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034A078 00346FB8  38 84 4D D3 */	addi r4, r4, 0x10624DD3@l
 /* 8034A07C 00346FBC  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 8034A080 00346FC0  54 00 D1 BE */	srwi r0, r0, 6
 /* 8034A084 00346FC4  1C C0 04 7E */	mulli r6, r0, 0x47e
-.global AlarmHandler_X3_
-/* 8034A088 00346FC8  38 E3 9D EC */	addi r7, r3, AlarmHandler_X3_@l
+/* 8034A088 00346FC8  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
 /* 8034A08C 00346FCC  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A090 00346FD0  38 A0 00 00 */	li r5, 0
 /* 8034A094 00346FD4  4B FF 0A C5 */	bl OSSetAlarm
@@ -1343,15 +1338,13 @@ lbl_8034A24C:
 /* 8034A260 003471A0  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 8034A264 003471A4  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 8034A268 003471A8  3C 80 10 62 */	lis r4, 0x10624DD3@ha
-.global AlarmHandler_X3_
-/* 8034A26C 003471AC  3C 60 80 35 */	lis r3, AlarmHandler_X3_@ha
+/* 8034A26C 003471AC  3C 60 80 35 */	lis r3, AlarmHandler@ha
 /* 8034A270 003471B0  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034A274 003471B4  38 84 4D D3 */	addi r4, r4, 0x10624DD3@l
 /* 8034A278 003471B8  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 8034A27C 003471BC  54 00 D1 BE */	srwi r0, r0, 6
 /* 8034A280 003471C0  1C C0 04 7E */	mulli r6, r0, 0x47e
-.global AlarmHandler_X3_
-/* 8034A284 003471C4  38 E3 9D EC */	addi r7, r3, AlarmHandler_X3_@l
+/* 8034A284 003471C4  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
 /* 8034A288 003471C8  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A28C 003471CC  38 A0 00 00 */	li r5, 0
 /* 8034A290 003471D0  4B FF 08 C9 */	bl OSSetAlarm
@@ -1412,15 +1405,13 @@ lbl_8034A338:
 /* 8034A34C 0034728C  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 8034A350 00347290  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 8034A354 00347294  3C 80 10 62 */	lis r4, 0x10624DD3@ha
-.global AlarmHandler_X3_
-/* 8034A358 00347298  3C 60 80 35 */	lis r3, AlarmHandler_X3_@ha
+/* 8034A358 00347298  3C 60 80 35 */	lis r3, AlarmHandler@ha
 /* 8034A35C 0034729C  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034A360 003472A0  38 84 4D D3 */	addi r4, r4, 0x10624DD3@l
 /* 8034A364 003472A4  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 8034A368 003472A8  54 00 D1 BE */	srwi r0, r0, 6
 /* 8034A36C 003472AC  1C C0 04 7E */	mulli r6, r0, 0x47e
-.global AlarmHandler_X3_
-/* 8034A370 003472B0  38 E3 9D EC */	addi r7, r3, AlarmHandler_X3_@l
+/* 8034A370 003472B0  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
 /* 8034A374 003472B4  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A378 003472B8  38 A0 00 00 */	li r5, 0
 /* 8034A37C 003472BC  4B FF 07 DD */	bl OSSetAlarm

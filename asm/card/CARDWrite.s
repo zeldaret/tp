@@ -3,8 +3,7 @@
 .section .text, "ax" # 80358914
 
 
-.global WriteCallback_X2_
-WriteCallback_X2_:
+WriteCallback:
 /* 80358914 00355854  7C 08 02 A6 */	mflr r0
 /* 80358918 00355858  90 01 00 04 */	stw r0, 4(r1)
 /* 8035891C 0035585C  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -43,7 +42,7 @@ lbl_80358964:
 /* 8035899C 003558DC  4B FE 9D 61 */	bl OSGetTime
 /* 803589A0 003558E0  38 DD 00 00 */	addi r6, r29, 0
 /* 803589A4 003558E4  38 A0 00 00 */	li r5, 0
-/* 803589A8 003558E8  48 00 99 7D */	bl func_80362324
+/* 803589A8 003558E8  48 00 99 7D */	bl __div2i
 /* 803589AC 003558EC  90 9C 00 28 */	stw r4, 0x28(r28)
 /* 803589B0 003558F0  38 00 00 00 */	li r0, 0
 /* 803589B4 003558F4  38 7E 00 00 */	addi r3, r30, 0
@@ -74,10 +73,8 @@ lbl_80358A0C:
 /* 80358A10 00355950  48 00 00 28 */	b lbl_80358A38
 lbl_80358A14:
 /* 80358A14 00355954  80 1F 00 0C */	lwz r0, 0xc(r31)
-.global EraseCallback_X2_
-/* 80358A18 00355958  3C 60 80 36 */	lis r3, EraseCallback_X2_@ha
-.global EraseCallback_X2_
-/* 80358A1C 0035595C  38 A3 8A 84 */	addi r5, r3, EraseCallback_X2_@l
+/* 80358A18 00355958  3C 60 80 36 */	lis r3, EraseCallback@ha
+/* 80358A1C 0035595C  38 A3 8A 84 */	addi r5, r3, EraseCallback@l
 /* 80358A20 00355960  7C 80 21 D6 */	mullw r4, r0, r4
 /* 80358A24 00355964  38 7E 00 00 */	addi r3, r30, 0
 /* 80358A28 00355968  4B FF AF 91 */	bl __CARDEraseSector
@@ -106,8 +103,7 @@ lbl_80358A64:
 /* 80358A78 003559B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80358A7C 003559BC  7C 08 03 A6 */	mtlr r0
 /* 80358A80 003559C0  4E 80 00 20 */	blr 
-.global EraseCallback_X2_
-EraseCallback_X2_:
+EraseCallback:
 /* 80358A84 003559C4  7C 08 02 A6 */	mflr r0
 /* 80358A88 003559C8  90 01 00 04 */	stw r0, 4(r1)
 /* 80358A8C 003559CC  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -123,10 +119,8 @@ EraseCallback_X2_:
 /* 80358AB4 003559F4  7F E0 2A 14 */	add r31, r0, r5
 /* 80358AB8 003559F8  41 80 00 30 */	blt lbl_80358AE8
 /* 80358ABC 003559FC  80 9F 00 C0 */	lwz r4, 0xc0(r31)
-.global WriteCallback_X2_
-/* 80358AC0 00355A00  3C 60 80 36 */	lis r3, WriteCallback_X2_@ha
-.global WriteCallback_X2_
-/* 80358AC4 00355A04  38 E3 89 14 */	addi r7, r3, WriteCallback_X2_@l
+/* 80358AC0 00355A00  3C 60 80 36 */	lis r3, WriteCallback@ha
+/* 80358AC4 00355A04  38 E3 89 14 */	addi r7, r3, WriteCallback@l
 /* 80358AC8 00355A08  80 BF 00 0C */	lwz r5, 0xc(r31)
 /* 80358ACC 00355A0C  A0 04 00 10 */	lhz r0, 0x10(r4)
 /* 80358AD0 00355A10  80 DF 00 B4 */	lwz r6, 0xb4(r31)
@@ -214,10 +208,8 @@ lbl_80358BE4:
 /* 80358BE8 00355B28  38 03 2A 30 */	addi r0, r3, __CARDDefaultApiCallback@l
 lbl_80358BEC:
 /* 80358BEC 00355B2C  80 81 00 1C */	lwz r4, 0x1c(r1)
-.global EraseCallback_X2_
-/* 80358BF0 00355B30  3C 60 80 36 */	lis r3, EraseCallback_X2_@ha
-.global EraseCallback_X2_
-/* 80358BF4 00355B34  38 A3 8A 84 */	addi r5, r3, EraseCallback_X2_@l
+/* 80358BF0 00355B30  3C 60 80 36 */	lis r3, EraseCallback@ha
+/* 80358BF4 00355B34  38 A3 8A 84 */	addi r5, r3, EraseCallback@l
 /* 80358BF8 00355B38  90 04 00 D0 */	stw r0, 0xd0(r4)
 /* 80358BFC 00355B3C  80 61 00 1C */	lwz r3, 0x1c(r1)
 /* 80358C00 00355B40  93 E3 00 B4 */	stw r31, 0xb4(r3)

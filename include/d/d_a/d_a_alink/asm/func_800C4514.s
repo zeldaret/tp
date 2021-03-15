@@ -10,7 +10,7 @@
 /* 800C4538 000C1478  38 04 37 C0 */ addi r0, r4, lbl_803A37C0@l
 /* 800C453C 000C147C  90 01 00 18 */ stw r0, 0x18(r1)
 /* 800C4540 000C1480  38 81 00 08 */ addi r4, r1, 8
-/* 800C4544 000C1484  4B FE DA 95 */ bl daAlink_c_NS_getSlidePolygon
+/* 800C4544 000C1484  4B FE DA 95 */ bl getSlidePolygon__9daAlink_cFP8cM3dGPla
 /* 800C4548 000C1488  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C454C 000C148C  41 82 02 24 */ beq lbl_800C4770
 /* 800C4550 000C1490  38 61 00 08 */ addi r3, r1, 8
@@ -158,12 +158,12 @@ lbl_800C475C:
 /* 800C475C 000C169C  7F C3 F3 78 */ mr r3, r30
 /* 800C4760 000C16A0  3C 80 00 03 */ lis r4, 0x00030017@ha
 /* 800C4764 000C16A4  38 84 00 17 */ addi r4, r4, 0x00030017@l
-/* 800C4768 000C16A8  4B FF AA 65 */ bl daAlink_c_NS_seStartMapInfoLevel
+/* 800C4768 000C16A8  4B FF AA 65 */ bl seStartMapInfoLevel__9daAlink_cFUl
 /* 800C476C 000C16AC  48 00 00 10 */ b lbl_800C477C
 lbl_800C4770:
 /* 800C4770 000C16B0  7F C3 F3 78 */ mr r3, r30
 /* 800C4774 000C16B4  80 9E 31 98 */ lwz r4, 0x3198(r30)
-/* 800C4778 000C16B8  48 00 00 35 */ bl daAlink_c_NS_procSlideLandInit
+/* 800C4778 000C16B8  48 00 00 35 */ bl procSlideLandInit__9daAlink_cFi
 lbl_800C477C:
 /* 800C477C 000C16BC  3C 60 80 3A */ lis r3, lbl_803A37C0@ha
 /* 800C4780 000C16C0  38 03 37 C0 */ addi r0, r3, lbl_803A37C0@l

@@ -16,7 +16,7 @@
 /* 800C04F0 000BD430  2C 00 00 02 */ cmpwi r0, 2
 /* 800C04F4 000BD434  41 82 00 10 */ beq lbl_800C0504
 lbl_800C04F8:
-/* 800C04F8 000BD438  4B FF FF 55 */ bl daAlink_c_NS_checkLv2DungeonRoomSpecial
+/* 800C04F8 000BD438  4B FF FF 55 */ bl checkLv2DungeonRoomSpecial__9daAlink_cFv
 /* 800C04FC 000BD43C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0500 000BD440  41 82 00 08 */ beq lbl_800C0508
 lbl_800C0504:

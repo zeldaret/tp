@@ -8,7 +8,7 @@
 /* 801419D4 0013E914  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 801419D8 0013E918  7C E4 3B 78 */ mr r4, r7
 /* 801419DC 0013E91C  7C 05 03 78 */ mr r5, r0
-/* 801419E0 0013E920  48 0D A7 01 */ bl dMeter2Info_c_NS_setFloatingMessage
+/* 801419E0 0013E920  48 0D A7 01 */ bl setFloatingMessage__13dMeter2Info_cFUssb
 /* 801419E4 0013E924  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801419E8 0013E928  7C 08 03 A6 */ mtlr r0
 /* 801419EC 0013E92C  38 21 00 10 */ addi r1, r1, 0x10

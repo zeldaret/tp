@@ -8,7 +8,7 @@
 /* 8020463C 0020157C  7C BD 2B 78 */ mr r29, r5
 /* 80204640 00201580  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 80204644 00201584  40 82 00 7C */ bne lbl_802046C0
-/* 80204648 00201588  48 03 3B E5 */ bl dMsgObject_c_NS_getStatus
+/* 80204648 00201588  48 03 3B E5 */ bl getStatus__12dMsgObject_cFv
 /* 8020464C 0020158C  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 80204650 00201590  20 60 00 01 */ subfic r3, r0, 1
 /* 80204654 00201594  30 03 FF FF */ addic r0, r3, -1
@@ -43,11 +43,11 @@ lbl_802046A0:
 /* 802046BC 002015FC  41 82 00 10 */ beq lbl_802046CC
 lbl_802046C0:
 /* 802046C0 00201600  7F C3 F3 78 */ mr r3, r30
-/* 802046C4 00201604  48 00 48 59 */ bl dMeterButton_c_NS_setAlphaButtonNunCAnimeMin
+/* 802046C4 00201604  48 00 48 59 */ bl setAlphaButtonNunCAnimeMin__14dMeterButton_cFv
 /* 802046C8 00201608  48 00 00 14 */ b lbl_802046DC
 lbl_802046CC:
 /* 802046CC 0020160C  7F C3 F3 78 */ mr r3, r30
-/* 802046D0 00201610  48 00 48 E5 */ bl dMeterButton_c_NS_setAlphaButtonNunCAnimeMax
+/* 802046D0 00201610  48 00 48 E5 */ bl setAlphaButtonNunCAnimeMax__14dMeterButton_cFv
 /* 802046D4 00201614  38 60 00 01 */ li r3, 1
 /* 802046D8 00201618  48 00 00 08 */ b lbl_802046E0
 lbl_802046DC:

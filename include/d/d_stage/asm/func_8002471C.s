@@ -65,7 +65,7 @@ lbl_8002480C:
 /* 80024814 00021754  3B DE 04 04 */ addi r30, r30, 0x404
 /* 80024818 00021758  41 80 FF 38 */ blt lbl_80024750
 /* 8002481C 0002175C  7F 83 E3 78 */ mr r3, r28
-/* 80024820 00021760  4B FF FB C9 */ bl dStage_roomControl_c_NS_setStayNo
+/* 80024820 00021760  4B FF FB C9 */ bl setStayNo__20dStage_roomControl_cFi
 /* 80024824 00021764  39 61 00 20 */ addi r11, r1, 0x20
 /* 80024828 00021768  48 33 D9 FD */ bl _restgpr_28
 /* 8002482C 0002176C  80 01 00 24 */ lwz r0, 0x24(r1)

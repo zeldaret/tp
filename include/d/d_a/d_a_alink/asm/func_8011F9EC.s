@@ -20,7 +20,7 @@
 /* 8011FA38 0011C978  38 A0 00 00 */ li r5, 0
 /* 8011FA3C 0011C97C  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 8011FA40 0011C980  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 8011FA44 0011C984  4B F2 37 29 */ bl dEvt_control_c_NS_compulsory
+/* 8011FA44 0011C984  4B F2 37 29 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 8011FA48 0011C988  2C 03 00 00 */ cmpwi r3, 0
 /* 8011FA4C 0011C98C  41 82 01 50 */ beq lbl_8011FB9C
 lbl_8011FA50:
@@ -33,7 +33,7 @@ lbl_8011FA50:
 /* 8011FA68 0011C9A8  80 1E 05 70 */ lwz r0, 0x570(r30)
 /* 8011FA6C 0011C9AC  54 00 07 7B */ rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 8011FA70 0011C9B0  40 82 00 AC */ bne lbl_8011FB1C
-/* 8011FA74 0011C9B4  4B F1 00 4D */ bl dComIfGp_TargetWarpPt_get
+/* 8011FA74 0011C9B4  4B F1 00 4D */ bl dComIfGp_TargetWarpPt_get__Fv
 /* 8011FA78 0011C9B8  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011FA7C 0011C9BC  28 00 00 03 */ cmplwi r0, 3
 /* 8011FA80 0011C9C0  40 82 00 1C */ bne lbl_8011FA9C
@@ -44,7 +44,7 @@ lbl_8011FA50:
 /* 8011FA94 0011C9D4  38 9F 32 C0 */ addi r4, r31, 0x32c0
 /* 8011FA98 0011C9D8  48 00 00 90 */ b lbl_8011FB28
 lbl_8011FA9C:
-/* 8011FA9C 0011C9DC  4B F1 00 25 */ bl dComIfGp_TargetWarpPt_get
+/* 8011FA9C 0011C9DC  4B F1 00 25 */ bl dComIfGp_TargetWarpPt_get__Fv
 /* 8011FAA0 0011C9E0  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011FAA4 0011C9E4  28 00 00 06 */ cmplwi r0, 6
 /* 8011FAA8 0011C9E8  40 82 00 1C */ bne lbl_8011FAC4
@@ -55,7 +55,7 @@ lbl_8011FA9C:
 /* 8011FABC 0011C9FC  38 9F 32 D4 */ addi r4, r31, 0x32d4
 /* 8011FAC0 0011CA00  48 00 00 68 */ b lbl_8011FB28
 lbl_8011FAC4:
-/* 8011FAC4 0011CA04  4B F0 FF FD */ bl dComIfGp_TargetWarpPt_get
+/* 8011FAC4 0011CA04  4B F0 FF FD */ bl dComIfGp_TargetWarpPt_get__Fv
 /* 8011FAC8 0011CA08  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011FACC 0011CA0C  28 00 00 09 */ cmplwi r0, 9
 /* 8011FAD0 0011CA10  40 82 00 1C */ bne lbl_8011FAEC
@@ -66,7 +66,7 @@ lbl_8011FAC4:
 /* 8011FAE4 0011CA24  38 9F 32 E8 */ addi r4, r31, 0x32e8
 /* 8011FAE8 0011CA28  48 00 00 40 */ b lbl_8011FB28
 lbl_8011FAEC:
-/* 8011FAEC 0011CA2C  4B F0 FF D5 */ bl dComIfGp_TargetWarpPt_get
+/* 8011FAEC 0011CA2C  4B F0 FF D5 */ bl dComIfGp_TargetWarpPt_get__Fv
 /* 8011FAF0 0011CA30  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011FAF4 0011CA34  28 00 00 08 */ cmplwi r0, 8
 /* 8011FAF8 0011CA38  40 82 00 1C */ bne lbl_8011FB14
@@ -81,7 +81,7 @@ lbl_8011FB14:
 /* 8011FB18 0011CA58  48 00 00 10 */ b lbl_8011FB28
 lbl_8011FB1C:
 /* 8011FB1C 0011CA5C  38 60 00 FF */ li r3, 0xff
-/* 8011FB20 0011CA60  4B F0 FF 79 */ bl dComIfGp_TargetWarpPt_set
+/* 8011FB20 0011CA60  4B F0 FF 79 */ bl dComIfGp_TargetWarpPt_set__FUc
 /* 8011FB24 0011CA64  38 9F 32 B0 */ addi r4, r31, 0x32b0
 lbl_8011FB28:
 /* 8011FB28 0011CA68  7F C3 F3 78 */ mr r3, r30
@@ -110,15 +110,15 @@ lbl_8011FB44:
 /* 8011FB80 0011CAC0  38 A0 FF FF */ li r5, -1
 /* 8011FB84 0011CAC4  A8 DE 04 E6 */ lha r6, 0x4e6(r30)
 /* 8011FB88 0011CAC8  38 E0 FF FF */ li r7, -1
-/* 8011FB8C 0011CACC  4B F0 75 E5 */ bl dStage_changeScene
+/* 8011FB8C 0011CACC  4B F0 75 E5 */ bl dStage_changeScene__FifUlScsi
 /* 8011FB90 0011CAD0  48 00 00 0C */ b lbl_8011FB9C
 lbl_8011FB94:
 /* 8011FB94 0011CAD4  7F C3 F3 78 */ mr r3, r30
-/* 8011FB98 0011CAD8  4B FF FC 41 */ bl daAlink_c_NS_dungeonReturnWarp
+/* 8011FB98 0011CAD8  4B FF FC 41 */ bl dungeonReturnWarp__9daAlink_cFv
 lbl_8011FB9C:
 /* 8011FB9C 0011CADC  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8011FBA0 0011CAE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8011FBA4 0011CAE4  48 0F CE 39 */ bl dMeter2Info_c_NS_resetWarpStatus
+/* 8011FBA4 0011CAE4  48 0F CE 39 */ bl resetWarpStatus__13dMeter2Info_cFv
 lbl_8011FBA8:
 /* 8011FBA8 0011CAE8  39 61 00 20 */ addi r11, r1, 0x20
 /* 8011FBAC 0011CAEC  48 24 26 7D */ bl _restgpr_29

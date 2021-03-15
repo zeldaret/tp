@@ -18,7 +18,7 @@
 /* 8021F7F4 0021C734  28 00 00 00 */ cmplwi r0, 0
 /* 8021F7F8 0021C738  41 82 00 14 */ beq lbl_8021F80C
 /* 8021F7FC 0021C73C  80 64 5D BC */ lwz r3, 0x5dbc(r4)
-/* 8021F800 0021C740  48 01 79 E5 */ bl dMsgObject_c_NS_isPlaceMessage
+/* 8021F800 0021C740  48 01 79 E5 */ bl isPlaceMessage__12dMsgObject_cFv
 /* 8021F804 0021C744  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F808 0021C748  41 82 00 14 */ beq lbl_8021F81C
 lbl_8021F80C:
@@ -54,7 +54,7 @@ lbl_8021F84C:
 /* 8021F878 0021C7B8  88 03 5E 8F */ lbz r0, 0x5e8f(r3)
 /* 8021F87C 0021C7BC  28 00 00 06 */ cmplwi r0, 6
 /* 8021F880 0021C7C0  41 82 00 5C */ beq lbl_8021F8DC
-/* 8021F884 0021C7C4  48 01 89 A9 */ bl dMsgObject_c_NS_getStatus
+/* 8021F884 0021C7C4  48 01 89 A9 */ bl getStatus__12dMsgObject_cFv
 /* 8021F888 0021C7C8  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8021F88C 0021C7CC  20 60 00 01 */ subfic r3, r0, 1
 /* 8021F890 0021C7D0  30 03 FF FF */ addic r0, r3, -1
@@ -63,7 +63,7 @@ lbl_8021F84C:
 /* 8021F89C 0021C7DC  41 82 00 40 */ beq lbl_8021F8DC
 /* 8021F8A0 0021C7E0  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8021F8A4 0021C7E4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8021F8A8 0021C7E8  4B FF C9 35 */ bl dMeter2Info_c_NS_isFloatingMessageVisible
+/* 8021F8A8 0021C7E8  4B FF C9 35 */ bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 8021F8AC 0021C7EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F8B0 0021C7F0  40 82 00 2C */ bne lbl_8021F8DC
 /* 8021F8B4 0021C7F4  80 1F 01 24 */ lwz r0, 0x124(r31)
@@ -85,7 +85,7 @@ lbl_8021F8DC:
 /* 8021F8F0 0021C830  80 1F 01 24 */ lwz r0, 0x124(r31)
 /* 8021F8F4 0021C834  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8021F8F8 0021C838  40 82 00 5C */ bne lbl_8021F954
-/* 8021F8FC 0021C83C  48 01 89 31 */ bl dMsgObject_c_NS_getStatus
+/* 8021F8FC 0021C83C  48 01 89 31 */ bl getStatus__12dMsgObject_cFv
 /* 8021F900 0021C840  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 8021F904 0021C844  20 60 00 01 */ subfic r3, r0, 1
 /* 8021F908 0021C848  30 03 FF FF */ addic r0, r3, -1
@@ -94,7 +94,7 @@ lbl_8021F8DC:
 /* 8021F914 0021C854  41 82 00 40 */ beq lbl_8021F954
 /* 8021F918 0021C858  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8021F91C 0021C85C  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8021F920 0021C860  4B FF C8 BD */ bl dMeter2Info_c_NS_isFloatingMessageVisible
+/* 8021F920 0021C860  4B FF C8 BD */ bl isFloatingMessageVisible__13dMeter2Info_cFv
 /* 8021F924 0021C864  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F928 0021C868  40 82 00 2C */ bne lbl_8021F954
 /* 8021F92C 0021C86C  80 1F 01 24 */ lwz r0, 0x124(r31)
@@ -114,7 +114,7 @@ lbl_8021F954:
 /* 8021F960 0021C8A0  28 00 00 00 */ cmplwi r0, 0
 /* 8021F964 0021C8A4  40 82 02 1C */ bne lbl_8021FB80
 /* 8021F968 0021C8A8  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 8021F96C 0021C8AC  4B FF C2 B9 */ bl dMeter2Draw_c_NS_getCameraSubject
+/* 8021F96C 0021C8AC  4B FF C2 B9 */ bl getCameraSubject__13dMeter2Draw_cFv
 /* 8021F970 0021C8B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F974 0021C8B4  41 82 00 14 */ beq lbl_8021F988
 /* 8021F978 0021C8B8  80 1F 01 24 */ lwz r0, 0x124(r31)
@@ -123,7 +123,7 @@ lbl_8021F954:
 /* 8021F984 0021C8C4  48 00 00 20 */ b lbl_8021F9A4
 lbl_8021F988:
 /* 8021F988 0021C8C8  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 8021F98C 0021C8CC  4B FF C2 C9 */ bl dMeter2Draw_c_NS_getItemSubject
+/* 8021F98C 0021C8CC  4B FF C2 C9 */ bl getItemSubject__13dMeter2Draw_cFv
 /* 8021F990 0021C8D0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F994 0021C8D4  41 82 00 10 */ beq lbl_8021F9A4
 /* 8021F998 0021C8D8  80 1F 01 24 */ lwz r0, 0x124(r31)
@@ -131,7 +131,7 @@ lbl_8021F988:
 /* 8021F9A0 0021C8E0  90 1F 01 24 */ stw r0, 0x124(r31)
 lbl_8021F9A4:
 /* 8021F9A4 0021C8E4  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 8021F9A8 0021C8E8  4B FF C3 05 */ bl dMeter2Draw_c_NS_getPlayerSubject
+/* 8021F9A8 0021C8E8  4B FF C3 05 */ bl getPlayerSubject__13dMeter2Draw_cFv
 /* 8021F9AC 0021C8EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021F9B0 0021C8F0  41 82 00 10 */ beq lbl_8021F9C0
 /* 8021F9B4 0021C8F4  80 1F 01 24 */ lwz r0, 0x124(r31)
@@ -168,10 +168,10 @@ lbl_8021FA10:
 /* 8021FA24 0021C964  7C 04 00 2E */ lwzx r0, r4, r0
 /* 8021FA28 0021C968  54 00 06 F7 */ rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 8021FA2C 0021C96C  41 82 00 2C */ beq lbl_8021FA58
-/* 8021FA30 0021C970  4B F6 1C 11 */ bl dCam_getBody
+/* 8021FA30 0021C970  4B F6 1C 11 */ bl dCam_getBody__Fv
 /* 8021FA34 0021C974  38 81 00 0A */ addi r4, r1, 0xa
 /* 8021FA38 0021C978  38 A1 00 08 */ addi r5, r1, 8
-/* 8021FA3C 0021C97C  4B F5 54 69 */ bl dCamera_c_NS_CalcSubjectAngle
+/* 8021FA3C 0021C97C  4B F5 54 69 */ bl CalcSubjectAngle__9dCamera_cFPsPs
 /* 8021FA40 0021C980  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8021FA44 0021C984  41 82 00 14 */ beq lbl_8021FA58
 /* 8021FA48 0021C988  80 1F 01 24 */ lwz r0, 0x124(r31)

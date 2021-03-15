@@ -5,7 +5,7 @@
 /* 80015C84 00012BC4  48 34 C5 59 */ bl _savegpr_29
 /* 80015C88 00012BC8  7C 7D 1B 78 */ mr r29, r3
 /* 80015C8C 00012BCC  7C 9E 23 78 */ mr r30, r4
-/* 80015C90 00012BD0  4B FF 91 21 */ bl mDoExt_getCommandHeap
+/* 80015C90 00012BD0  4B FF 91 21 */ bl mDoExt_getCommandHeap__Fv
 /* 80015C94 00012BD4  7C 64 1B 78 */ mr r4, r3
 /* 80015C98 00012BD8  38 60 00 20 */ li r3, 0x20
 /* 80015C9C 00012BDC  38 A0 FF FC */ li r5, -4
@@ -14,7 +14,7 @@
 /* 80015CA8 00012BE8  41 82 00 14 */ beq lbl_80015CBC
 /* 80015CAC 00012BEC  7F A4 EB 78 */ mr r4, r29
 /* 80015CB0 00012BF0  7F C5 F3 78 */ mr r5, r30
-/* 80015CB4 00012BF4  4B FF FF 65 */ bl mDoDvdThd_callback_c
+/* 80015CB4 00012BF4  4B FF FF 65 */ bl __ct__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 80015CB8 00012BF8  7C 7F 1B 78 */ mr r31, r3
 lbl_80015CBC:
 /* 80015CBC 00012BFC  28 1F 00 00 */ cmplwi r31, 0
@@ -22,7 +22,7 @@ lbl_80015CBC:
 /* 80015CC4 00012C04  3C 60 80 3E */ lis r3, lbl_803DEC60@ha
 /* 80015CC8 00012C08  38 63 EC 60 */ addi r3, r3, lbl_803DEC60@l
 /* 80015CCC 00012C0C  7F E4 FB 78 */ mr r4, r31
-/* 80015CD0 00012C10  4B FF FD 15 */ bl mDoDvdThd_param_c_NS_addition
+/* 80015CD0 00012C10  4B FF FD 15 */ bl addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 lbl_80015CD4:
 /* 80015CD4 00012C14  7F E3 FB 78 */ mr r3, r31
 /* 80015CD8 00012C18  39 61 00 20 */ addi r11, r1, 0x20

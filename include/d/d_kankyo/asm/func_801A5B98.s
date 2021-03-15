@@ -3,9 +3,9 @@
 /* 801A5BA0 001A2AE0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801A5BA4 001A2AE4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A5BA8 001A2AE8  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 801A5BAC 001A2AEC  4B FF F6 DD */ bl dScnKy_env_light_c_NS_exeKankyo
-/* 801A5BB0 001A2AF0  4B EB 4A 11 */ bl dKyw_wind_set
-/* 801A5BB4 001A2AF4  48 00 51 9D */ bl dKy_twilight_camelight_set
+/* 801A5BAC 001A2AEC  4B FF F6 DD */ bl exeKankyo__18dScnKy_env_light_cFv
+/* 801A5BB0 001A2AF0  4B EB 4A 11 */ bl dKyw_wind_set__Fv
+/* 801A5BB4 001A2AF4  48 00 51 9D */ bl dKy_twilight_camelight_set__Fv
 /* 801A5BB8 001A2AF8  38 60 00 01 */ li r3, 1
 /* 801A5BBC 001A2AFC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 801A5BC0 001A2B00  7C 08 03 A6 */ mtlr r0

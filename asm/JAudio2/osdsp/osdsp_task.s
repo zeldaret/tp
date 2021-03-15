@@ -86,7 +86,7 @@ lbl_8029EC2C:
 /* 8029EC3C 0029BB7C  7C 03 00 40 */	cmplw r3, r0
 /* 8029EC40 0029BB80  40 82 00 0C */	bne lbl_8029EC4C
 /* 8029EC44 0029BB84  98 8D 8D 88 */	stb r4, lbl_80451308-_SDA_BASE_(r13)
-/* 8029EC48 0029BB88  48 00 02 B9 */	bl Dsp_Update_Request
+/* 8029EC48 0029BB88  48 00 02 B9 */	bl Dsp_Update_Request__Fv
 lbl_8029EC4C:
 /* 8029EC4C 0029BB8C  80 6D 93 94 */	lwz r3, lbl_80451914-_SDA_BASE_(r13)
 /* 8029EC50 0029BB90  81 83 00 2C */	lwz r12, 0x2c(r3)
@@ -193,7 +193,7 @@ lbl_8029EDA8:
 /* 8029EDB8 0029BCF8  38 60 00 00 */	li r3, 0
 /* 8029EDBC 0029BCFC  98 6D 8D 89 */	stb r3, lbl_80451309-_SDA_BASE_(r13)
 /* 8029EDC0 0029BD00  90 0D 93 94 */	stw r0, lbl_80451914-_SDA_BASE_(r13)
-/* 8029EDC4 0029BD04  48 00 01 3D */	bl Dsp_Update_Request
+/* 8029EDC4 0029BD04  48 00 01 3D */	bl Dsp_Update_Request__Fv
 /* 8029EDC8 0029BD08  48 00 00 38 */	b lbl_8029EE00
 lbl_8029EDCC:
 /* 8029EDCC 0029BD0C  38 00 00 03 */	li r0, 3
@@ -228,8 +228,8 @@ lbl_8029EE00:
 /* 8029EE38 0029BD78  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EE3C 0029BD7C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsyncFrame2
-DsyncFrame2:
+.global DsyncFrame2__FUlUlUl
+DsyncFrame2__FUlUlUl:
 /* 8029EE40 0029BD80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EE44 0029BD84  7C 08 02 A6 */	mflr r0
 /* 8029EE48 0029BD88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -244,7 +244,7 @@ DsyncFrame2:
 /* 8029EE6C 0029BDAC  90 A6 00 08 */	stw r5, 8(r6)
 /* 8029EE70 0029BDB0  48 00 00 10 */	b lbl_8029EE80
 lbl_8029EE74:
-/* 8029EE74 0029BDB4  4B FF F7 AD */	bl DsyncFrame2ch
+/* 8029EE74 0029BDB4  4B FF F7 AD */	bl DsyncFrame2ch__FUlUlUl
 /* 8029EE78 0029BDB8  38 00 00 00 */	li r0, 0
 /* 8029EE7C 0029BDBC  98 0D 8D 89 */	stb r0, lbl_80451309-_SDA_BASE_(r13)
 lbl_8029EE80:
@@ -257,8 +257,8 @@ lbl_8029EE80:
 /* 8029EE98 0029BDD8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EE9C 0029BDDC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DsyncFrame3
-DsyncFrame3:
+.global DsyncFrame3__FUlUlUlUlUl
+DsyncFrame3__FUlUlUlUlUl:
 /* 8029EEA0 0029BDE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EEA4 0029BDE4  7C 08 02 A6 */	mflr r0
 /* 8029EEA8 0029BDE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -275,7 +275,7 @@ DsyncFrame3:
 /* 8029EED4 0029BE14  90 E8 00 10 */	stw r7, 0x10(r8)
 /* 8029EED8 0029BE18  48 00 00 10 */	b lbl_8029EEE8
 lbl_8029EEDC:
-/* 8029EEDC 0029BE1C  4B FF F7 A5 */	bl DsyncFrame4ch
+/* 8029EEDC 0029BE1C  4B FF F7 A5 */	bl DsyncFrame4ch__FUlUlUlUlUl
 /* 8029EEE0 0029BE20  38 00 00 00 */	li r0, 0
 /* 8029EEE4 0029BE24  98 0D 8D 89 */	stb r0, lbl_80451309-_SDA_BASE_(r13)
 lbl_8029EEE8:
@@ -286,8 +286,8 @@ lbl_8029EEE8:
 /* 8029EEF8 0029BE38  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EEFC 0029BE3C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global Dsp_Update_Request
-Dsp_Update_Request:
+.global Dsp_Update_Request__Fv
+Dsp_Update_Request__Fv:
 /* 8029EF00 0029BE40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029EF04 0029BE44  7C 08 02 A6 */	mflr r0
 /* 8029EF08 0029BE48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -306,7 +306,7 @@ lbl_8029EF2C:
 /* 8029EF34 0029BE74  80 65 00 00 */	lwz r3, 0(r5)
 /* 8029EF38 0029BE78  80 85 00 04 */	lwz r4, 4(r5)
 /* 8029EF3C 0029BE7C  80 A5 00 08 */	lwz r5, 8(r5)
-/* 8029EF40 0029BE80  4B FF FF 01 */	bl DsyncFrame2
+/* 8029EF40 0029BE80  4B FF FF 01 */	bl DsyncFrame2__FUlUlUl
 /* 8029EF44 0029BE84  48 00 00 24 */	b lbl_8029EF68
 lbl_8029EF48:
 /* 8029EF48 0029BE88  3C 60 80 43 */	lis r3, lbl_80434060@ha
@@ -316,7 +316,7 @@ lbl_8029EF48:
 /* 8029EF58 0029BE98  80 A7 00 08 */	lwz r5, 8(r7)
 /* 8029EF5C 0029BE9C  80 C7 00 0C */	lwz r6, 0xc(r7)
 /* 8029EF60 0029BEA0  80 E7 00 10 */	lwz r7, 0x10(r7)
-/* 8029EF64 0029BEA4  4B FF FF 3D */	bl DsyncFrame3
+/* 8029EF64 0029BEA4  4B FF FF 3D */	bl DsyncFrame3__FUlUlUlUlUl
 lbl_8029EF68:
 /* 8029EF68 0029BEA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029EF6C 0029BEAC  7C 08 03 A6 */	mtlr r0
@@ -325,8 +325,8 @@ lbl_8029EF68:
 /* 8029EF78 0029BEB8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EF7C 0029BEBC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global Dsp_Running_Check
-Dsp_Running_Check:
+.global Dsp_Running_Check__Fv
+Dsp_Running_Check__Fv:
 /* 8029EF80 0029BEC0  88 0D 8D 88 */	lbz r0, lbl_80451308-_SDA_BASE_(r13)
 /* 8029EF84 0029BEC4  20 00 00 01 */	subfic r0, r0, 1
 /* 8029EF88 0029BEC8  7C 00 00 34 */	cntlzw r0, r0
@@ -336,8 +336,8 @@ Dsp_Running_Check:
 /* 8029EF98 0029BED8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029EF9C 0029BEDC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global Dsp_Running_Start
-Dsp_Running_Start:
+.global Dsp_Running_Start__Fv
+Dsp_Running_Start__Fv:
 /* 8029EFA0 0029BEE0  38 00 00 01 */	li r0, 1
 /* 8029EFA4 0029BEE4  98 0D 8D 88 */	stb r0, lbl_80451308-_SDA_BASE_(r13)
 /* 8029EFA8 0029BEE8  4E 80 00 20 */	blr 

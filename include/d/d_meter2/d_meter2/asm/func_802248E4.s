@@ -60,18 +60,18 @@ lbl_80224974:
 /* 802249C0 00221900  41 82 00 10 */ beq lbl_802249D0
 lbl_802249C4:
 /* 802249C4 00221904  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802249C8 00221908  4B FF 04 2D */ bl dMeter2Draw_c_NS_setAlphaLifeAnimeMin
+/* 802249C8 00221908  4B FF 04 2D */ bl setAlphaLifeAnimeMin__13dMeter2Draw_cFv
 /* 802249CC 0022190C  48 00 00 18 */ b lbl_802249E4
 lbl_802249D0:
 /* 802249D0 00221910  80 7F 01 0C */ lwz r3, 0x10c(r31)
-/* 802249D4 00221914  4B FF 04 81 */ bl dMeter2Draw_c_NS_setAlphaLifeAnimeMax
+/* 802249D4 00221914  4B FF 04 81 */ bl setAlphaLifeAnimeMax__13dMeter2Draw_cFv
 /* 802249D8 00221918  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 802249DC 0022191C  38 63 04 C4 */ addi r3, r3, 0x4c4
 /* 802249E0 00221920  48 09 15 91 */ bl heartGaugeOn__11Z2StatusMgrFv
 lbl_802249E4:
 /* 802249E4 00221924  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 802249E8 00221928  38 80 00 00 */ li r4, 0
-/* 802249EC 0022192C  4B FF 02 35 */ bl dMeter2Draw_c_NS_setAlphaLifeChange
+/* 802249EC 0022192C  4B FF 02 35 */ bl setAlphaLifeChange__13dMeter2Draw_cFb
 /* 802249F0 00221930  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 802249F4 00221934  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802249F8 00221938  7C 08 03 A6 */ mtlr r0

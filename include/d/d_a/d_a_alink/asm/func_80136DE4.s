@@ -9,12 +9,12 @@
 /* 80136E04 00133D44  2C 00 00 00 */ cmpwi r0, 0
 /* 80136E08 00133D48  41 82 00 4C */ beq lbl_80136E54
 /* 80136E0C 00133D4C  7F E3 FB 78 */ mr r3, r31
-/* 80136E10 00133D50  48 02 76 BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80136E10 00133D50  48 02 76 BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136E14 00133D54  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136E18 00133D58  41 82 00 14 */ beq lbl_80136E2C
 /* 80136E1C 00133D5C  7F C3 F3 78 */ mr r3, r30
 /* 80136E20 00133D60  38 80 00 00 */ li r4, 0
-/* 80136E24 00133D64  4B FF 2D 21 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80136E24 00133D64  4B FF 2D 21 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136E28 00133D68  48 00 00 80 */ b lbl_80136EA8
 lbl_80136E2C:
 /* 80136E2C 00133D6C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -25,11 +25,11 @@ lbl_80136E2C:
 /* 80136E40 00133D80  40 81 00 68 */ ble lbl_80136EA8
 /* 80136E44 00133D84  7F C3 F3 78 */ mr r3, r30
 /* 80136E48 00133D88  38 80 00 01 */ li r4, 1
-/* 80136E4C 00133D8C  4B FF 2C F9 */ bl daAlink_c_NS_checkNextActionWolf
+/* 80136E4C 00133D8C  4B FF 2C F9 */ bl checkNextActionWolf__9daAlink_cFi
 /* 80136E50 00133D90  48 00 00 58 */ b lbl_80136EA8
 lbl_80136E54:
 /* 80136E54 00133D94  7F E3 FB 78 */ mr r3, r31
-/* 80136E58 00133D98  48 02 76 75 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80136E58 00133D98  48 02 76 75 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 80136E5C 00133D9C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80136E60 00133DA0  41 82 00 48 */ beq lbl_80136EA8
 /* 80136E64 00133DA4  A8 7E 30 08 */ lha r3, 0x3008(r30)
@@ -44,10 +44,10 @@ lbl_80136E7C:
 /* 80136E84 00133DC4  3C A0 80 39 */ lis r5, lbl_8038F374@ha
 /* 80136E88 00133DC8  38 A5 F3 74 */ addi r5, r5, lbl_8038F374@l
 /* 80136E8C 00133DCC  38 A5 00 14 */ addi r5, r5, 0x14
-/* 80136E90 00133DD0  4B FF 29 B9 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 80136E90 00133DD0  4B FF 29 B9 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80136E94 00133DD4  7F C3 F3 78 */ mr r3, r30
 /* 80136E98 00133DD8  38 80 00 96 */ li r4, 0x96
-/* 80136E9C 00133DDC  4B F7 8A 05 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 80136E9C 00133DDC  4B F7 8A 05 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 80136EA0 00133DE0  38 00 00 01 */ li r0, 1
 /* 80136EA4 00133DE4  90 1E 31 98 */ stw r0, 0x3198(r30)
 lbl_80136EA8:

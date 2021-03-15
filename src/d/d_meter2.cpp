@@ -9,161 +9,161 @@ extern "C" {
 int getTimerMode__14dComIfG_play_cFv(void);
 int strcmp(const char*, const char*);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
-u8 dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_getMixItemIndex__Fi(int);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __nw__FUl(void);
 void cLib_addCalc2__FPffff(void);
-void dCam_getBody(void);
-void dCamera_c_NS_CalcSubjectAngle(void);
-void dComIfG_play_c_NS_clearItemBombNumCount(void);
-void dComIfG_play_c_NS_getItemBombNumCount(void);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
-void dComIfGp_getSelectItem(void);
-void dComIfGp_getSelectItemMaxNum(void);
-void dComIfGp_getSelectItemNum(void);
-void dComIfGp_getSubHeap2D(void);
-void dComIfGp_offHeapLockFlag(void);
-void dComIfGp_setHeapLockFlag(void);
-void dComIfGp_setSelectItem(int);
-void dComIfGs_getSelectMixItemNoArrowIndex(void);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_setSelectItemIndex(int, u8);
-void dDlst_list_c_NS_set(void);
-void dKy_darkworld_check(void);
-void dMeter2_c_NS_alphaAnimeButton(void);
-void dMeter2_c_NS_alphaAnimeButtonCross(void);
-void dMeter2_c_NS_alphaAnimeKantera(void);
-void dMeter2_c_NS_alphaAnimeKey(void);
-void dMeter2_c_NS_alphaAnimeLife(void);
-void dMeter2_c_NS_alphaAnimeLightDrop(void);
-void dMeter2_c_NS_alphaAnimeOxygen(void);
-void dMeter2_c_NS_alphaAnimeRupee(void);
-void dMeter2_c_NS_check2DContents(void);
-void dMeter2_c_NS_checkStatus(void);
-void dMeter2_c_NS_checkSubContents(void);
-void dMeter2_c_NS_emphasisButtonDelete(void);
-void dMeter2_c_NS_isArrowEquip(void);
-void dMeter2_c_NS_isKeyVisible(void);
-void dMeter2_c_NS_isPachinkoEquip(void);
-void dMeter2_c_NS_isShowLightDrop(void);
-void dMeter2_c_NS_killSubContents(void);
-void dMeter2_c_NS_move2DContents(void);
-void dMeter2_c_NS_moveArrowNum(void);
-void dMeter2_c_NS_moveBombNum(void);
-void dMeter2_c_NS_moveBottleNum(void);
-void dMeter2_c_NS_moveButton3D(void);
-void dMeter2_c_NS_moveButtonA(void);
-void dMeter2_c_NS_moveButtonB(void);
-void dMeter2_c_NS_moveButtonC(void);
-void dMeter2_c_NS_moveButtonCross(void);
-void dMeter2_c_NS_moveButtonR(void);
-void dMeter2_c_NS_moveButtonS(void);
-void dMeter2_c_NS_moveButtonXY(void);
-void dMeter2_c_NS_moveButtonZ(void);
-void dMeter2_c_NS_moveKantera(void);
-void dMeter2_c_NS_moveKey(void);
-void dMeter2_c_NS_moveLife(void);
-void dMeter2_c_NS_moveLightDrop(void);
-void dMeter2_c_NS_moveOxygen(void);
-void dMeter2_c_NS_movePachinkoNum(void);
-void dMeter2_c_NS_moveRupee(void);
-void dMeter2_c_NS_moveSubContents(void);
-void dMeter2_c_NS_moveTouchSubMenu(void);
-void dMeter2Draw_c_NS_drawButton3D(void);
-void dMeter2Draw_c_NS_drawButtonA(void);
-void dMeter2Draw_c_NS_drawButtonB(void);
-void dMeter2Draw_c_NS_drawButtonBin(void);
-void dMeter2Draw_c_NS_drawButtonC(void);
-void dMeter2Draw_c_NS_drawButtonCross(void);
-void dMeter2Draw_c_NS_drawButtonR(void);
-void dMeter2Draw_c_NS_drawButtonS(void);
-void dMeter2Draw_c_NS_drawButtonXY(void);
-void dMeter2Draw_c_NS_drawButtonZ(void);
-void dMeter2Draw_c_NS_drawItemNum(void);
-void dMeter2Draw_c_NS_drawKantera(void);
-void dMeter2Draw_c_NS_drawKanteraMeter(void);
-void dMeter2Draw_c_NS_drawKey(void);
-void dMeter2Draw_c_NS_drawLife(void);
-void dMeter2Draw_c_NS_drawLightDrop(void);
-void dMeter2Draw_c_NS_drawOxygen(void);
-void dMeter2Draw_c_NS_drawRupee(void);
-void dMeter2Draw_c_NS_exec(void);
-void dMeter2Draw_c_NS_getActionString(void);
-void dMeter2Draw_c_NS_getButtonCrossParentInitTransY(void);
-void dMeter2Draw_c_NS_getButtonTimer(void);
-void dMeter2Draw_c_NS_getCameraSubject(void);
-void dMeter2Draw_c_NS_getItemSubject(void);
-void dMeter2Draw_c_NS_getNowLightDropRateCalc(void);
-void dMeter2Draw_c_NS_getPlayerSubject(void);
-void dMeter2Draw_c_NS_isBButtonShow(void);
-void dMeter2Draw_c_NS_isButtonVisible(void);
-void dMeter2Draw_c_NS_setAlphaButtonAAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaButtonAAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaButtonAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaButtonAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaButtonBAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaButtonBAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaButtonChange(void);
-void dMeter2Draw_c_NS_setAlphaButtonCrossAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaButtonCrossAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaKanteraAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaKanteraAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaKanteraChange(void);
-void dMeter2Draw_c_NS_setAlphaKeyAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaKeyAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaKeyChange(void);
-void dMeter2Draw_c_NS_setAlphaLifeAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaLifeAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaLifeChange(void);
-void dMeter2Draw_c_NS_setAlphaLightDropAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaLightDropAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaLightDropChange(void);
-void dMeter2Draw_c_NS_setAlphaOxygenAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaOxygenAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaOxygenChange(void);
-void dMeter2Draw_c_NS_setAlphaRupeeAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaRupeeAnimeMin(void);
-void dMeter2Draw_c_NS_setAlphaRupeeChange(void);
-void dMeter2Draw_c_NS_setButtonIconAAlpha(void);
-void dMeter2Draw_c_NS_setButtonIconAlpha(void);
-void dMeter2Draw_c_NS_setButtonIconBAlpha(void);
-void dMeter2Draw_c_NS_setButtonIconMidonaAlpha(void);
-void dMeter2Draw_c_NS_setItemNum(void);
-void dMeter2Draw_c(void);
-void dMeter2Info_c_NS_decHotSpringTimer(void);
-void dMeter2Info_c_NS_isDirectUseItem(void);
-void dMeter2Info_c_NS_isFloatingMessageVisible(void);
-void dMeter2Info_is2DActiveTouchArea(void);
-void dMeterButton_c_NS__execute(void);
-void dMeterButton_c_NS_hideAll(void);
-void dMeterButton_c_NS_isClose(void);
-void dMeterButton_c_NS_setString(void);
-void dMeterButton_c(void);
-void dMeterHaihai_c(void);
-void dMeterHakusha_c(void);
-void dMeterMap_c_NS__draw(void);
-void dMeterMap_c_NS__move(void);
-void dMeterMap_c_NS_getMapDispEdgeTop(void);
-void dMeterMap_c_NS_isEnableDispMapAndMapDispSizeTypeNo(void);
-void dMeterMap_c_NS_meter_map_move(void);
-void dMeterMap_c_NS_setMapAlpha(void);
-void dMeterMap_c(void);  // from d_meter_map
-void dMeterString_c_NS_createString(void);
-void dMeterString_c(void);
-void dMsgObject_c_NS_getStatus(void);
-void dMsgObject_c_NS_isPlaceMessage(void);
-void dMw_HIO_c_NS_getArrowFlag(void);
-void dMw_HIO_c_NS_getBombFlag(void);
-void dMw_HIO_c_NS_getPachinkoFlag(void);
-void dScope_c(void);
-void dTimer_createStockTimer(void);
-void fopMsgM_Create(void);
-void fopMsgM_createExpHeap(void);
-void fopMsgM_destroyExpHeap(void);
-void fopMsgM_setMessageID(void);
-void fopMsgM_setStageLayer(void);
+void dCam_getBody__Fv(void);
+void CalcSubjectAngle__9dCamera_cFPsPs(void);
+void clearItemBombNumCount__14dComIfG_play_cFUc(void);
+void getItemBombNumCount__14dComIfG_play_cFUc(void);
+void getLayerNo__14dComIfG_play_cFi(int);
+void setItemBombNumCount__14dComIfG_play_cFUcs(u8, s16);
+void dComIfGp_getSelectItem__Fi(void);
+void dComIfGp_getSelectItemMaxNum__Fi(void);
+void dComIfGp_getSelectItemNum__Fi(void);
+void dComIfGp_getSubHeap2D__Fi(void);
+void dComIfGp_offHeapLockFlag__Fi(void);
+void dComIfGp_setHeapLockFlag__FUc(void);
+void dComIfGp_setSelectItem__Fi(int);
+void dComIfGs_getSelectMixItemNoArrowIndex__Fi(void);
+void dComIfGs_setMixItemIndex__FiUc(int, u8);
+void dComIfGs_setSelectItemIndex__FiUc(int, u8);
+void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c(void);
+void dKy_darkworld_check__Fv(void);
+void alphaAnimeButton__9dMeter2_cFv(void);
+void alphaAnimeButtonCross__9dMeter2_cFv(void);
+void alphaAnimeKantera__9dMeter2_cFv(void);
+void alphaAnimeKey__9dMeter2_cFv(void);
+void alphaAnimeLife__9dMeter2_cFv(void);
+void alphaAnimeLightDrop__9dMeter2_cFv(void);
+void alphaAnimeOxygen__9dMeter2_cFv(void);
+void alphaAnimeRupee__9dMeter2_cFv(void);
+void check2DContents__9dMeter2_cFv(void);
+void checkStatus__9dMeter2_cFv(void);
+void checkSubContents__9dMeter2_cFv(void);
+void emphasisButtonDelete__9dMeter2_cFv(void);
+void isArrowEquip__9dMeter2_cFv(void);
+void isKeyVisible__9dMeter2_cFv(void);
+void isPachinkoEquip__9dMeter2_cFv(void);
+void isShowLightDrop__9dMeter2_cFv(void);
+void killSubContents__9dMeter2_cFUc(void);
+void move2DContents__9dMeter2_cFv(void);
+void moveArrowNum__9dMeter2_cFv(void);
+void moveBombNum__9dMeter2_cFv(void);
+void moveBottleNum__9dMeter2_cFv(void);
+void moveButton3D__9dMeter2_cFv(void);
+void moveButtonA__9dMeter2_cFv(void);
+void moveButtonB__9dMeter2_cFv(void);
+void moveButtonC__9dMeter2_cFv(void);
+void moveButtonCross__9dMeter2_cFv(void);
+void moveButtonR__9dMeter2_cFv(void);
+void moveButtonS__9dMeter2_cFv(void);
+void moveButtonXY__9dMeter2_cFv(void);
+void moveButtonZ__9dMeter2_cFv(void);
+void moveKantera__9dMeter2_cFv(void);
+void moveKey__9dMeter2_cFv(void);
+void moveLife__9dMeter2_cFv(void);
+void moveLightDrop__9dMeter2_cFv(void);
+void moveOxygen__9dMeter2_cFv(void);
+void movePachinkoNum__9dMeter2_cFv(void);
+void moveRupee__9dMeter2_cFv(void);
+void moveSubContents__9dMeter2_cFv(void);
+void moveTouchSubMenu__9dMeter2_cFv(void);
+void drawButton3D__13dMeter2Draw_cFUc(void);
+void drawButtonA__13dMeter2Draw_cFUcfffffbb(void);
+void drawButtonB__13dMeter2Draw_cFUcbfffffb(void);
+void drawButtonBin__13dMeter2Draw_cFUc(void);
+void drawButtonC__13dMeter2Draw_cFUcb(void);
+void drawButtonCross__13dMeter2Draw_cFff(void);
+void drawButtonR__13dMeter2Draw_cFUcUcbb(void);
+void drawButtonS__13dMeter2Draw_cFUc(void);
+void drawButtonXY__13dMeter2Draw_cFiUcUcbb(void);
+void drawButtonZ__13dMeter2Draw_cFUc(void);
+void drawItemNum__13dMeter2Draw_cFUcf(void);
+void drawKantera__13dMeter2Draw_cFllff(void);
+void drawKanteraMeter__13dMeter2Draw_cFUcf(void);
+void drawKey__13dMeter2Draw_cFs(void);
+void drawLife__13dMeter2Draw_cFssff(void);
+void drawLightDrop__13dMeter2Draw_cFUcUcffffUc(void);
+void drawOxygen__13dMeter2Draw_cFllff(void);
+void drawRupee__13dMeter2Draw_cFs(void);
+void exec__13dMeter2Draw_cFUl(void);
+void getActionString__13dMeter2Draw_cFUcUcPUc(void);
+void getButtonCrossParentInitTransY__13dMeter2Draw_cFv(void);
+void getButtonTimer__13dMeter2Draw_cFv(void);
+void getCameraSubject__13dMeter2Draw_cFv(void);
+void getItemSubject__13dMeter2Draw_cFv(void);
+void getNowLightDropRateCalc__13dMeter2Draw_cFv(void);
+void getPlayerSubject__13dMeter2Draw_cFv(void);
+void isBButtonShow__13dMeter2Draw_cFb(void);
+void isButtonVisible__13dMeter2Draw_cFv(void);
+void setAlphaButtonAAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaButtonAAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaButtonAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaButtonAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaButtonBAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaButtonBAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaButtonChange__13dMeter2Draw_cFb(void);
+void setAlphaButtonCrossAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaButtonCrossAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaKanteraAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaKanteraAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaKanteraChange__13dMeter2Draw_cFb(void);
+void setAlphaKeyAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaKeyAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaKeyChange__13dMeter2Draw_cFb(void);
+void setAlphaLifeAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaLifeAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaLifeChange__13dMeter2Draw_cFb(void);
+void setAlphaLightDropAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaLightDropAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaLightDropChange__13dMeter2Draw_cFb(void);
+void setAlphaOxygenAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaOxygenAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaOxygenChange__13dMeter2Draw_cFb(void);
+void setAlphaRupeeAnimeMax__13dMeter2Draw_cFv(void);
+void setAlphaRupeeAnimeMin__13dMeter2Draw_cFv(void);
+void setAlphaRupeeChange__13dMeter2Draw_cFb(void);
+void setButtonIconAAlpha__13dMeter2Draw_cFUcUlb(void);
+void setButtonIconAlpha__13dMeter2Draw_cFiUcUlb(void);
+void setButtonIconBAlpha__13dMeter2Draw_cFUcUlb(void);
+void setButtonIconMidonaAlpha__13dMeter2Draw_cFUl(void);
+void setItemNum__13dMeter2Draw_cFUcUcUc(void);
+void __ct__13dMeter2Draw_cFP10JKRExpHeap(void);
+void decHotSpringTimer__13dMeter2Info_cFv(void);
+void isDirectUseItem__13dMeter2Info_cFi(void);
+void isFloatingMessageVisible__13dMeter2Info_cFv(void);
+void dMeter2Info_is2DActiveTouchArea__Fv(void);
+void _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb(void);
+void hideAll__14dMeterButton_cFv(void);
+void isClose__14dMeterButton_cFv(void);
+void setString__14dMeterButton_cFPcUcUcUc(void);
+void __ct__14dMeterButton_cFv(void);
+void __ct__14dMeterHaihai_cFUc(void);
+void __ct__15dMeterHakusha_cFPv(void);
+void _draw__11dMeterMap_cFv(void);
+void _move__11dMeterMap_cFUl(void);
+void getMapDispEdgeTop__11dMeterMap_cFv(void);
+void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv(void);
+void meter_map_move__11dMeterMap_cFUl(void);
+void setMapAlpha__11dMeterMap_cFUc(void);
+void __ct__11dMeterMap_cFP9J2DScreen(void);  // from d_meter_map
+void createString__14dMeterString_cFi(void);
+void __ct__14dMeterString_cFi(void);
+void getStatus__12dMsgObject_cFv(void);
+void isPlaceMessage__12dMsgObject_cFv(void);
+void getArrowFlag__9dMw_HIO_cFv(void);
+void getBombFlag__9dMw_HIO_cFv(void);
+void getPachinkoFlag__9dMw_HIO_cFv(void);
+void __ct__8dScope_cFUc(void);
+void dTimer_createStockTimer__Fv(void);
+void fopMsgM_Create__FsPFPv_iPv(void);
+void fopMsgM_createExpHeap__FUlP7JKRHeap(void);
+void fopMsgM_destroyExpHeap__FP10JKRExpHeap(void);
+void fopMsgM_setMessageID__FUi(void);
+void fopMsgM_setStageLayer__FPv(void);
 void freeAll__7JKRHeapFv(void);
 void getBottleNum__24dSv_player_item_record_cCFUc(void);
 void getItem__17dSv_player_item_cCFib(void);
@@ -210,343 +210,343 @@ extern u8 lbl_8042EBC8;
 extern "C" {
 // _create__9dMeter2_cFv
 // dMeter2_c::_create(void)
-asm void dMeter2_c_NS__create(void) {
+asm void _create__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021EA14.s"
 }
 
 // _execute__9dMeter2_cFv
 // dMeter2_c::_execute(void)
-asm void dMeter2_c_NS__execute(void) {
+asm void _execute__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F128.s"
 }
 
 // _draw__9dMeter2_cFv
 // dMeter2_c::_draw(void)
-asm void dMeter2_c_NS__draw(void) {
+asm void _draw__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F370.s"
 }
 
 // _delete__9dMeter2_cFv
 // dMeter2_c::_delete(void)
-asm void dMeter2_c_NS__delete(void) {
+asm void _delete__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F49C.s"
 }
 
 // emphasisButtonDelete__9dMeter2_cFv
 // dMeter2_c::emphasisButtonDelete(void)
-asm void dMeter2_c_NS_emphasisButtonDelete(void) {
+asm void emphasisButtonDelete__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F6EC.s"
 }
 
 // setLifeZero__9dMeter2_cFv
 // dMeter2_c::setLifeZero(void)
-asm void func_8021F780(void) {
+asm void setLifeZero__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F780.s"
 }
 
 // checkStatus__9dMeter2_cFv
 // dMeter2_c::checkStatus(void)
-asm void dMeter2_c_NS_checkStatus(void) {
+asm void checkStatus__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021F7B0.s"
 }
 
 // moveLife__9dMeter2_cFv
 // dMeter2_c::moveLife(void)
-asm void dMeter2_c_NS_moveLife(void) {
+asm void moveLife__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8021FD60.s"
 }
 
 // moveKantera__9dMeter2_cFv
 // dMeter2_c::moveKantera(void)
-asm void dMeter2_c_NS_moveKantera(void) {
+asm void moveKantera__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80220180.s"
 }
 
 // moveOxygen__9dMeter2_cFv
 // dMeter2_c::moveOxygen(void)
-asm void dMeter2_c_NS_moveOxygen(void) {
+asm void moveOxygen__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_8022051C.s"
 }
 
 // moveLightDrop__9dMeter2_cFv
 // dMeter2_c::moveLightDrop(void)
-asm void dMeter2_c_NS_moveLightDrop(void) {
+asm void moveLightDrop__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80220888.s"
 }
 
 // moveRupee__9dMeter2_cFv
 // dMeter2_c::moveRupee(void)
-asm void dMeter2_c_NS_moveRupee(void) {
+asm void moveRupee__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80220C30.s"
 }
 
 // moveKey__9dMeter2_cFv
 // dMeter2_c::moveKey(void)
-asm void dMeter2_c_NS_moveKey(void) {
+asm void moveKey__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802210AC.s"
 }
 
 // moveButtonA__9dMeter2_cFv
 // dMeter2_c::moveButtonA(void)
-asm void dMeter2_c_NS_moveButtonA(void) {
+asm void moveButtonA__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80221244.s"
 }
 
 // moveButtonB__9dMeter2_cFv
 // dMeter2_c::moveButtonB(void)
-asm void dMeter2_c_NS_moveButtonB(void) {
+asm void moveButtonB__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802217F4.s"
 }
 
 // moveButtonR__9dMeter2_cFv
 // dMeter2_c::moveButtonR(void)
-asm void dMeter2_c_NS_moveButtonR(void) {
+asm void moveButtonR__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80221EC8.s"
 }
 
 // moveButtonZ__9dMeter2_cFv
 // dMeter2_c::moveButtonZ(void)
-asm void dMeter2_c_NS_moveButtonZ(void) {
+asm void moveButtonZ__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222000.s"
 }
 
 // moveButton3D__9dMeter2_cFv
 // dMeter2_c::moveButton3D(void)
-asm void dMeter2_c_NS_moveButton3D(void) {
+asm void moveButton3D__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802222A0.s"
 }
 
 // moveButtonC__9dMeter2_cFv
 // dMeter2_c::moveButtonC(void)
-asm void dMeter2_c_NS_moveButtonC(void) {
+asm void moveButtonC__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222364.s"
 }
 
 // moveButtonS__9dMeter2_cFv
 // dMeter2_c::moveButtonS(void)
-asm void dMeter2_c_NS_moveButtonS(void) {
+asm void moveButtonS__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222494.s"
 }
 
 // moveButtonXY__9dMeter2_cFv
 // dMeter2_c::moveButtonXY(void)
-asm void dMeter2_c_NS_moveButtonXY(void) {
+asm void moveButtonXY__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222518.s"
 }
 
 // moveButtonCross__9dMeter2_cFv
 // dMeter2_c::moveButtonCross(void)
-asm void dMeter2_c_NS_moveButtonCross(void) {
+asm void moveButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80222E88.s"
 }
 
 // moveTouchSubMenu__9dMeter2_cFv
 // dMeter2_c::moveTouchSubMenu(void)
-asm void dMeter2_c_NS_moveTouchSubMenu(void) {
+asm void moveTouchSubMenu__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802230F8.s"
 }
 
 // moveSubContents__9dMeter2_cFv
 // dMeter2_c::moveSubContents(void)
-asm void dMeter2_c_NS_moveSubContents(void) {
+asm void moveSubContents__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802230FC.s"
 }
 
 // move2DContents__9dMeter2_cFv
 // dMeter2_c::move2DContents(void)
-asm void dMeter2_c_NS_move2DContents(void) {
+asm void move2DContents__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802231C8.s"
 }
 
 // checkSubContents__9dMeter2_cFv
 // dMeter2_c::checkSubContents(void)
-asm void dMeter2_c_NS_checkSubContents(void) {
+asm void checkSubContents__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802237D4.s"
 }
 
 // check2DContents__9dMeter2_cFv
 // dMeter2_c::check2DContents(void)
-asm void dMeter2_c_NS_check2DContents(void) {
+asm void check2DContents__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80223BC4.s"
 }
 
 // moveBombNum__9dMeter2_cFv
 // dMeter2_c::moveBombNum(void)
-asm void dMeter2_c_NS_moveBombNum(void) {
+asm void moveBombNum__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80223E00.s"
 }
 
 // moveBottleNum__9dMeter2_cFv
 // dMeter2_c::moveBottleNum(void)
-asm void dMeter2_c_NS_moveBottleNum(void) {
+asm void moveBottleNum__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224258.s"
 }
 
 // moveArrowNum__9dMeter2_cFv
 // dMeter2_c::moveArrowNum(void)
-asm void dMeter2_c_NS_moveArrowNum(void) {
+asm void moveArrowNum__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224354.s"
 }
 
 // movePachinkoNum__9dMeter2_cFv
 // dMeter2_c::movePachinkoNum(void)
-asm void dMeter2_c_NS_movePachinkoNum(void) {
+asm void movePachinkoNum__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224680.s"
 }
 
 // alphaAnimeLife__9dMeter2_cFv
 // dMeter2_c::alphaAnimeLife(void)
-asm void dMeter2_c_NS_alphaAnimeLife(void) {
+asm void alphaAnimeLife__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802248E4.s"
 }
 
 // alphaAnimeKantera__9dMeter2_cFv
 // dMeter2_c::alphaAnimeKantera(void)
-asm void dMeter2_c_NS_alphaAnimeKantera(void) {
+asm void alphaAnimeKantera__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224A04.s"
 }
 
 // alphaAnimeOxygen__9dMeter2_cFv
 // dMeter2_c::alphaAnimeOxygen(void)
-asm void dMeter2_c_NS_alphaAnimeOxygen(void) {
+asm void alphaAnimeOxygen__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224BAC.s"
 }
 
 // alphaAnimeLightDrop__9dMeter2_cFv
 // dMeter2_c::alphaAnimeLightDrop(void)
-asm void dMeter2_c_NS_alphaAnimeLightDrop(void) {
+asm void alphaAnimeLightDrop__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224D6C.s"
 }
 
 // alphaAnimeRupee__9dMeter2_cFv
 // dMeter2_c::alphaAnimeRupee(void)
-asm void dMeter2_c_NS_alphaAnimeRupee(void) {
+asm void alphaAnimeRupee__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224DC0.s"
 }
 
 // alphaAnimeKey__9dMeter2_cFv
 // dMeter2_c::alphaAnimeKey(void)
-asm void dMeter2_c_NS_alphaAnimeKey(void) {
+asm void alphaAnimeKey__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80224F70.s"
 }
 
 // alphaAnimeButton__9dMeter2_cFv
 // dMeter2_c::alphaAnimeButton(void)
-asm void dMeter2_c_NS_alphaAnimeButton(void) {
+asm void alphaAnimeButton__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802250F4.s"
 }
 
 // alphaAnimeButtonCross__9dMeter2_cFv
 // dMeter2_c::alphaAnimeButtonCross(void)
-asm void dMeter2_c_NS_alphaAnimeButtonCross(void) {
+asm void alphaAnimeButtonCross__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802254C0.s"
 }
 
 // isShowLightDrop__9dMeter2_cFv
 // dMeter2_c::isShowLightDrop(void)
-asm void dMeter2_c_NS_isShowLightDrop(void) {
+asm void isShowLightDrop__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802256DC.s"
 }
 
 // killSubContents__9dMeter2_cFUc
 // dMeter2_c::killSubContents(unsigned char)
-asm void dMeter2_c_NS_killSubContents(void) {
+asm void killSubContents__9dMeter2_cFUc(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802258A0.s"
 }
 
 // isKeyVisible__9dMeter2_cFv
 // dMeter2_c::isKeyVisible(void)
-asm void dMeter2_c_NS_isKeyVisible(void) {
+asm void isKeyVisible__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225960.s"
 }
 
 // isArrowEquip__9dMeter2_cFv
 // dMeter2_c::isArrowEquip(void)
-asm void dMeter2_c_NS_isArrowEquip(void) {
+asm void isArrowEquip__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_802259F8.s"
 }
 
 // isPachinkoEquip__9dMeter2_cFv
 // dMeter2_c::isPachinkoEquip(void)
-asm void dMeter2_c_NS_isPachinkoEquip(void) {
+asm void isPachinkoEquip__9dMeter2_cFv(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225A64.s"
 }
 
 // dMeter2_Draw__FP9dMeter2_c
 // dMeter2_Draw(dMeter2_c*)
-asm void func_80225AA0(void) {
+asm void dMeter2_Draw__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AA0.s"
 }
 
 // dMeter2_Execute__FP9dMeter2_c
 // dMeter2_Execute(dMeter2_c*)
-asm void func_80225AC0(void) {
+asm void dMeter2_Execute__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AC0.s"
 }
 
 // dMeter2_IsDelete__FP9dMeter2_c
 // dMeter2_IsDelete(dMeter2_c*)
-asm void func_80225AE0(void) {
+asm void dMeter2_IsDelete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE0.s"
 }
 
 // dMeter2_Delete__FP9dMeter2_c
 // dMeter2_Delete(dMeter2_c*)
-asm void func_80225AE8(void) {
+asm void dMeter2_Delete__FP9dMeter2_c(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225AE8.s"
 }
 
 // dMeter2_Create__FP9msg_class
 // dMeter2_Create(msg_class*)
-asm void func_80225B08(void) {
+asm void dMeter2_Create__FP9msg_class(void) {
     nofralloc
 #include "d/d_meter2/d_meter2/asm/func_80225B08.s"
 }

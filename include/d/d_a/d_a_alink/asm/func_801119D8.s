@@ -6,7 +6,7 @@
 /* 801119EC 0010E92C  7C 7E 1B 78 */ mr r30, r3
 /* 801119F0 0010E930  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 801119F4 0010E934  7F E3 FB 78 */ mr r3, r31
-/* 801119F8 0010E938  48 04 CA D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801119F8 0010E938  48 04 CA D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801119FC 0010E93C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80111A00 0010E940  41 82 00 24 */ beq lbl_80111A24
 /* 80111A04 0010E944  7F C3 F3 78 */ mr r3, r30
@@ -15,7 +15,7 @@
 /* 80111A10 0010E950  A8 DE 30 10 */ lha r6, 0x3010(r30)
 /* 80111A14 0010E954  A8 FE 30 12 */ lha r7, 0x3012(r30)
 /* 80111A18 0010E958  39 1E 37 C8 */ addi r8, r30, 0x37c8
-/* 80111A1C 0010E95C  48 00 00 81 */ bl daAlink_c_NS_procGrassWhistleWaitInit
+/* 80111A1C 0010E95C  48 00 00 81 */ bl procGrassWhistleWaitInit__9daAlink_cFiiisP4cXyz
 /* 80111A20 0010E960  48 00 00 60 */ b lbl_80111A80
 lbl_80111A24:
 /* 80111A24 0010E964  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
@@ -28,7 +28,7 @@ lbl_80111A24:
 /* 80111A40 0010E980  40 82 00 40 */ bne lbl_80111A80
 /* 80111A44 0010E984  7F C3 F3 78 */ mr r3, r30
 /* 80111A48 0010E988  A8 9E 30 0C */ lha r4, 0x300c(r30)
-/* 80111A4C 0010E98C  4B FF FD 39 */ bl daAlink_c_NS_setGrassWhistleModel
+/* 80111A4C 0010E98C  4B FF FD 39 */ bl setGrassWhistleModel__9daAlink_cFi
 /* 80111A50 0010E990  80 7E 28 10 */ lwz r3, 0x2810(r30)
 /* 80111A54 0010E994  28 03 00 00 */ cmplwi r3, 0
 /* 80111A58 0010E998  41 82 00 28 */ beq lbl_80111A80

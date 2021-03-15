@@ -14,7 +14,7 @@
 /* 80071458 0006E398  A8 03 00 08 */ lha r0, 8(r3)
 /* 8007145C 0006E39C  2C 00 00 FD */ cmpwi r0, 0xfd
 /* 80071460 0006E3A0  40 82 00 14 */ bne lbl_80071474
-/* 80071464 0006E3A4  48 0E DF 99 */ bl daPy_py_c_NS_getAttentionOffsetY
+/* 80071464 0006E3A4  48 0E DF 99 */ bl getAttentionOffsetY__9daPy_py_cFv
 /* 80071468 0006E3A8  C0 1F 03 20 */ lfs f0, 0x320(r31)
 /* 8007146C 0006E3AC  EC 00 08 28 */ fsubs f0, f0, f1
 /* 80071470 0006E3B0  D0 1F 03 20 */ stfs f0, 0x320(r31)

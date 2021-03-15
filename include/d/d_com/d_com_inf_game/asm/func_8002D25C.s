@@ -5,7 +5,7 @@
 /* 8002D26C 0002A1AC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8002D270 0002A1B0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002D274 0002A1B4  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 8002D278 0002A1B8  4B FF 71 0D */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 8002D278 0002A1B8  4B FF 71 0D */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8002D27C 0002A1BC  28 03 00 00 */ cmplwi r3, 0
 /* 8002D280 0002A1C0  40 82 00 0C */ bne lbl_8002D28C
 /* 8002D284 0002A1C4  38 60 00 00 */ li r3, 0

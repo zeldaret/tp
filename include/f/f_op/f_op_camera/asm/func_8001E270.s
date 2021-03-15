@@ -12,7 +12,7 @@
 /* 8001E29C 0001B1DC  90 1F 02 24 */ stw r0, 0x224(r31)
 /* 8001E2A0 0001B1E0  38 7F 02 10 */ addi r3, r31, 0x210
 /* 8001E2A4 0001B1E4  7F E4 FB 78 */ mr r4, r31
-/* 8001E2A8 0001B1E8  48 00 22 4D */ bl fopDwTg_Init
+/* 8001E2A8 0001B1E8  48 00 22 4D */ bl fopDwTg_Init__FP16create_tag_classPv
 /* 8001E2AC 0001B1EC  80 7F 00 AC */ lwz r3, 0xac(r31)
 /* 8001E2B0 0001B1F0  28 03 00 00 */ cmplwi r3, 0
 /* 8001E2B4 0001B1F4  41 82 00 0C */ beq lbl_8001E2C0
@@ -21,15 +21,15 @@
 lbl_8001E2C0:
 /* 8001E2C0 0001B200  80 7F 02 24 */ lwz r3, 0x224(r31)
 /* 8001E2C4 0001B204  7F E4 FB 78 */ mr r4, r31
-/* 8001E2C8 0001B208  48 00 42 05 */ bl fpcMtd_Create
+/* 8001E2C8 0001B208  48 00 42 05 */ bl fpcMtd_Create__FP20process_method_classPv
 /* 8001E2CC 0001B20C  7C 7E 1B 78 */ mr r30, r3
 /* 8001E2D0 0001B210  2C 1E 00 04 */ cmpwi r30, 4
 /* 8001E2D4 0001B214  40 82 00 18 */ bne lbl_8001E2EC
 /* 8001E2D8 0001B218  7F E3 FB 78 */ mr r3, r31
-/* 8001E2DC 0001B21C  48 00 37 25 */ bl fpcLf_GetPriority
+/* 8001E2DC 0001B21C  48 00 37 25 */ bl fpcLf_GetPriority__FPC14leafdraw_class
 /* 8001E2E0 0001B220  7C 64 07 34 */ extsh r4, r3
 /* 8001E2E4 0001B224  38 7F 02 10 */ addi r3, r31, 0x210
-/* 8001E2E8 0001B228  48 00 21 C5 */ bl fopDwTg_ToDrawQ
+/* 8001E2E8 0001B228  48 00 21 C5 */ bl fopDwTg_ToDrawQ__FP16create_tag_classi
 lbl_8001E2EC:
 /* 8001E2EC 0001B22C  7F C3 F3 78 */ mr r3, r30
 /* 8001E2F0 0001B230  83 E1 00 0C */ lwz r31, 0xc(r1)

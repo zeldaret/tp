@@ -26,7 +26,7 @@ lbl_80125650:
 /* 80125688 001225C8  39 20 00 00 */ li r9, 0
 /* 8012568C 001225CC  39 40 00 FF */ li r10, 0xff
 /* 80125690 001225D0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80125694 001225D4  4B F2 73 FD */ bl dPa_control_c_NS_set
+/* 80125694 001225D4  4B F2 73 FD */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80125698 001225D8  7C 65 1B 79 */ or. r5, r3, r3
 /* 8012569C 001225DC  41 82 00 18 */ beq lbl_801256B4
 /* 801256A0 001225E0  80 7C 06 78 */ lwz r3, 0x678(r28)
@@ -42,7 +42,7 @@ lbl_801256B4:
 /* 801256C4 00122604  38 00 00 01 */ li r0, 1
 /* 801256C8 00122608  98 1C 2F CB */ stb r0, 0x2fcb(r28)
 /* 801256CC 0012260C  7F 83 E3 78 */ mr r3, r28
-/* 801256D0 00122610  4B FF FE ED */ bl daAlink_c_NS_clearWoodShieldBurnEffect
+/* 801256D0 00122610  4B FF FE ED */ bl clearWoodShieldBurnEffect__9daAlink_cFv
 /* 801256D4 00122614  39 61 00 30 */ addi r11, r1, 0x30
 /* 801256D8 00122618  48 23 CB 4D */ bl _restgpr_28
 /* 801256DC 0012261C  80 01 00 34 */ lwz r0, 0x34(r1)

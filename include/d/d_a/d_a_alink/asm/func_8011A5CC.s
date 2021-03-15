@@ -7,21 +7,21 @@
 /* 8011A5E4 00117524  2C 00 00 00 */ cmpwi r0, 0
 /* 8011A5E8 00117528  41 82 00 50 */ beq lbl_8011A638
 /* 8011A5EC 0011752C  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011A5F0 00117530  48 04 3E DD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011A5F0 00117530  48 04 3E DD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011A5F4 00117534  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011A5F8 00117538  41 82 00 78 */ beq lbl_8011A670
 /* 8011A5FC 0011753C  7F E3 FB 78 */ mr r3, r31
 /* 8011A600 00117540  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011A604 00117544  4B F9 38 11 */ bl daAlink_c_NS_setBlendMoveAnime
+/* 8011A604 00117544  4B F9 38 11 */ bl setBlendMoveAnime__9daAlink_cFf
 /* 8011A608 00117548  7F E3 FB 78 */ mr r3, r31
 /* 8011A60C 0011754C  38 80 00 46 */ li r4, 0x46
-/* 8011A610 00117550  4B F9 F0 31 */ bl daAlink_c_NS_itemEquip
+/* 8011A610 00117550  4B F9 F0 31 */ bl itemEquip__9daAlink_cFUs
 /* 8011A614 00117554  C0 02 93 44 */ lfs f0, lbl_80452D44-_SDA2_BASE_(r2)
 /* 8011A618 00117558  D0 1F 20 58 */ stfs f0, 0x2058(r31)
 /* 8011A61C 0011755C  80 7F 1F 54 */ lwz r3, 0x1f54(r31)
 /* 8011A620 00117560  D0 03 00 08 */ stfs f0, 8(r3)
 /* 8011A624 00117564  7F E3 FB 78 */ mr r3, r31
-/* 8011A628 00117568  4B FA 00 79 */ bl daAlink_c_NS_commonChangeItem
+/* 8011A628 00117568  4B FA 00 79 */ bl commonChangeItem__9daAlink_cFv
 /* 8011A62C 0011756C  38 00 00 00 */ li r0, 0
 /* 8011A630 00117570  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011A634 00117574  48 00 00 3C */ b lbl_8011A670
@@ -30,17 +30,17 @@ lbl_8011A638:
 /* 8011A63C 0011757C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 8011A640 00117580  40 82 00 0C */ bne lbl_8011A64C
 /* 8011A644 00117584  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8011A648 00117588  4B F9 37 CD */ bl daAlink_c_NS_setBlendMoveAnime
+/* 8011A648 00117588  4B F9 37 CD */ bl setBlendMoveAnime__9daAlink_cFf
 lbl_8011A64C:
 /* 8011A64C 0011758C  7F E3 FB 78 */ mr r3, r31
-/* 8011A650 00117590  4B F9 EC 05 */ bl daAlink_c_NS_checkNoUpperAnime
+/* 8011A650 00117590  4B F9 EC 05 */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 8011A654 00117594  2C 03 00 00 */ cmpwi r3, 0
 /* 8011A658 00117598  41 82 00 18 */ beq lbl_8011A670
 /* 8011A65C 0011759C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011A660 001175A0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011A664 001175A4  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011A668 001175A8  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011A66C 001175AC  4B F2 DB 11 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011A66C 001175AC  4B F2 DB 11 */ bl cutEnd__16dEvent_manager_cFi
 lbl_8011A670:
 /* 8011A670 001175B0  38 60 00 01 */ li r3, 1
 /* 8011A674 001175B4  83 E1 00 0C */ lwz r31, 0xc(r1)

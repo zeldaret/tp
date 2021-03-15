@@ -4,16 +4,16 @@
 /* 8011222C 0010F16C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80112230 0010F170  7C 7F 1B 78 */ mr r31, r3
 /* 80112234 0010F174  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 80112238 0010F178  48 04 C2 95 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 80112238 0010F178  48 04 C2 95 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011223C 0010F17C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80112240 0010F180  41 82 00 20 */ beq lbl_80112260
 /* 80112244 0010F184  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80112248 0010F188  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011224C 0010F18C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 80112250 0010F190  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 80112254 0010F194  4B F3 5F 29 */ bl dEvent_manager_c_NS_cutEnd
+/* 80112254 0010F194  4B F3 5F 29 */ bl cutEnd__16dEvent_manager_cFi
 /* 80112258 0010F198  7F E3 FB 78 */ mr r3, r31
-/* 8011225C 0010F19C  48 00 00 1D */ bl daAlink_c_NS_procHawkSubjectInit
+/* 8011225C 0010F19C  48 00 00 1D */ bl procHawkSubjectInit__9daAlink_cFv
 lbl_80112260:
 /* 80112260 0010F1A0  38 60 00 01 */ li r3, 1
 /* 80112264 0010F1A4  83 E1 00 0C */ lwz r31, 0xc(r1)

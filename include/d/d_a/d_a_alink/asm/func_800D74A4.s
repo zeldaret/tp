@@ -9,7 +9,7 @@
 /* 800D74C4 000D4404  38 A0 00 00 */ li r5, 0
 /* 800D74C8 000D4408  38 C0 00 01 */ li r6, 1
 /* 800D74CC 000D440C  38 E0 00 00 */ li r7, 0
-/* 800D74D0 000D4410  4B FF FD ED */ bl daAlink_c_NS_setDamagePoint
+/* 800D74D0 000D4410  4B FF FD ED */ bl setDamagePoint__9daAlink_cFiiii
 /* 800D74D4 000D4414  80 1F 05 90 */ lwz r0, 0x590(r31)
 /* 800D74D8 000D4418  54 00 06 B0 */ rlwinm r0, r0, 0, 0x1a, 0x18
 /* 800D74DC 000D441C  90 1F 05 90 */ stw r0, 0x590(r31)

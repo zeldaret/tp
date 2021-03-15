@@ -9,7 +9,7 @@
 /* 800CB6B4 000C85F4  93 C1 00 48 */ stw r30, 0x48(r1)
 /* 800CB6B8 000C85F8  7C 7E 1B 78 */ mr r30, r3
 /* 800CB6BC 000C85FC  38 60 00 04 */ li r3, 4
-/* 800CB6C0 000C8600  48 0E 16 1D */ bl dKy_shadow_mode_set
+/* 800CB6C0 000C8600  48 0E 16 1D */ bl dKy_shadow_mode_set__FUc
 /* 800CB6C4 000C8604  C0 3E 04 4C */ lfs f1, 0x44c(r30)
 /* 800CB6C8 000C8608  C0 1E 38 3C */ lfs f0, 0x383c(r30)
 /* 800CB6CC 000C860C  EC 61 00 28 */ fsubs f3, f1, f0

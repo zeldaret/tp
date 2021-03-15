@@ -3,8 +3,8 @@
 .section .text, "ax" # 802de234
 
 
-.global JUTTexture_NS_dtor
-JUTTexture_NS_dtor:
+.global __dt__10JUTTextureFv
+__dt__10JUTTextureFv:
 /* 802DE234 002DB174  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE238 002DB178  7C 08 02 A6 */	mflr r0
 /* 802DE23C 002DB17C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -38,8 +38,8 @@ lbl_802DE28C:
 /* 802DE2A0 002DB1E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE2A4 002DB1E4  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_storeTIMG
-JUTTexture_NS_storeTIMG:
+.global storeTIMG__10JUTTextureFPC7ResTIMGUc
+storeTIMG__10JUTTextureFPC7ResTIMGUc:
 /* 802DE2A8 002DB1E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE2AC 002DB1EC  7C 08 02 A6 */	mflr r0
 /* 802DE2B0 002DB1F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -94,7 +94,7 @@ lbl_802DE300:
 /* 802DE370 002DB2B0  28 07 00 00 */	cmplwi r7, 0
 /* 802DE374 002DB2B4  40 82 00 10 */	bne lbl_802DE384
 /* 802DE378 002DB2B8  7F E3 FB 78 */	mr r3, r31
-/* 802DE37C 002DB2BC  48 00 02 DD */	bl JUTTexture_NS_initTexObj
+/* 802DE37C 002DB2BC  48 00 02 DD */	bl initTexObj__10JUTTextureFv
 /* 802DE380 002DB2C0  48 00 00 B4 */	b lbl_802DE434
 lbl_802DE384:
 /* 802DE384 002DB2C4  28 07 01 00 */	cmplwi r7, 0x100
@@ -128,7 +128,7 @@ lbl_802DE3C8:
 /* 802DE3E8 002DB328  A0 E8 00 0A */	lhz r7, 0xa(r8)
 /* 802DE3EC 002DB32C  80 08 00 0C */	lwz r0, 0xc(r8)
 /* 802DE3F0 002DB330  7D 08 02 14 */	add r8, r8, r0
-/* 802DE3F4 002DB334  48 00 05 29 */	bl JUTPalette_NS_storeTLUT_X1_
+/* 802DE3F4 002DB334  48 00 05 29 */	bl storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
 lbl_802DE3F8:
 /* 802DE3F8 002DB338  93 DF 00 28 */	stw r30, 0x28(r31)
 /* 802DE3FC 002DB33C  88 1F 00 3B */	lbz r0, 0x3b(r31)
@@ -142,11 +142,11 @@ lbl_802DE410:
 /* 802DE418 002DB358  88 C8 00 01 */	lbz r6, 1(r8)
 /* 802DE41C 002DB35C  80 08 00 0C */	lwz r0, 0xc(r8)
 /* 802DE420 002DB360  7D 08 02 14 */	add r8, r8, r0
-/* 802DE424 002DB364  48 00 04 F9 */	bl JUTPalette_NS_storeTLUT_X1_
+/* 802DE424 002DB364  48 00 04 F9 */	bl storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
 lbl_802DE428:
 /* 802DE428 002DB368  7F E3 FB 78 */	mr r3, r31
 /* 802DE42C 002DB36C  80 9F 00 28 */	lwz r4, 0x28(r31)
-/* 802DE430 002DB370  48 00 01 81 */	bl JUTTexture_NS_attachPalette
+/* 802DE430 002DB370  48 00 01 81 */	bl attachPalette__10JUTTextureFP10JUTPalette
 lbl_802DE434:
 /* 802DE434 002DB374  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE438 002DB378  48 08 3D F1 */	bl _restgpr_29
@@ -155,8 +155,8 @@ lbl_802DE434:
 /* 802DE444 002DB384  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE448 002DB388  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_storeTIMG_X1_
-JUTTexture_NS_storeTIMG_X1_:
+.global storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette
+storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette:
 /* 802DE44C 002DB38C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE450 002DB390  7C 08 02 A6 */	mflr r0
 /* 802DE454 002DB394  90 01 00 14 */	stw r0, 0x14(r1)
@@ -167,14 +167,14 @@ JUTTexture_NS_storeTIMG_X1_:
 lbl_802DE468:
 /* 802DE468 002DB3A8  38 C0 00 00 */	li r6, 0
 lbl_802DE46C:
-/* 802DE46C 002DB3AC  48 00 00 15 */	bl JUTTexture_NS_storeTIMG_X2_
+/* 802DE46C 002DB3AC  48 00 00 15 */	bl storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
 /* 802DE470 002DB3B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802DE474 002DB3B4  7C 08 03 A6 */	mtlr r0
 /* 802DE478 002DB3B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE47C 002DB3BC  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_storeTIMG_X2_
-JUTTexture_NS_storeTIMG_X2_:
+.global storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
+storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut:
 /* 802DE480 002DB3C0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DE484 002DB3C4  7C 08 02 A6 */	mflr r0
 /* 802DE488 002DB3C8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -221,7 +221,7 @@ lbl_802DE4E8:
 /* 802DE524 002DB464  81 1E 00 10 */	lwz r8, 0x10(r30)
 /* 802DE528 002DB468  7F C3 F3 78 */	mr r3, r30
 /* 802DE52C 002DB46C  7F E4 FB 78 */	mr r4, r31
-/* 802DE530 002DB470  48 00 03 ED */	bl JUTPalette_NS_storeTLUT_X1_
+/* 802DE530 002DB470  48 00 03 ED */	bl storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
 lbl_802DE534:
 /* 802DE534 002DB474  80 7D 00 20 */	lwz r3, 0x20(r29)
 /* 802DE538 002DB478  88 03 00 06 */	lbz r0, 6(r3)
@@ -247,7 +247,7 @@ lbl_802DE534:
 /* 802DE588 002DB4C8  A8 03 00 1A */	lha r0, 0x1a(r3)
 /* 802DE58C 002DB4CC  B0 1D 00 38 */	sth r0, 0x38(r29)
 /* 802DE590 002DB4D0  7F A3 EB 78 */	mr r3, r29
-/* 802DE594 002DB4D4  48 00 00 75 */	bl JUTTexture_NS_init
+/* 802DE594 002DB4D4  48 00 00 75 */	bl init__10JUTTextureFv
 lbl_802DE598:
 /* 802DE598 002DB4D8  39 61 00 20 */	addi r11, r1, 0x20
 /* 802DE59C 002DB4DC  48 08 3C 8D */	bl _restgpr_29
@@ -256,8 +256,8 @@ lbl_802DE598:
 /* 802DE5A8 002DB4E8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DE5AC 002DB4EC  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_attachPalette
-JUTTexture_NS_attachPalette:
+.global attachPalette__10JUTTextureFP10JUTPalette
+attachPalette__10JUTTextureFP10JUTPalette:
 /* 802DE5B0 002DB4F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE5B4 002DB4F4  7C 08 02 A6 */	mflr r0
 /* 802DE5B8 002DB4F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -277,15 +277,15 @@ lbl_802DE5E8:
 lbl_802DE5EC:
 /* 802DE5EC 002DB52C  80 83 00 2C */	lwz r4, 0x2c(r3)
 /* 802DE5F0 002DB530  88 84 00 0C */	lbz r4, 0xc(r4)
-/* 802DE5F4 002DB534  48 00 01 51 */	bl JUTTexture_NS_initTexObj_X1_
+/* 802DE5F4 002DB534  48 00 01 51 */	bl initTexObj__10JUTTextureF7_GXTlut
 lbl_802DE5F8:
 /* 802DE5F8 002DB538  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802DE5FC 002DB53C  7C 08 03 A6 */	mtlr r0
 /* 802DE600 002DB540  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE604 002DB544  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_init
-JUTTexture_NS_init:
+.global init__10JUTTextureFv
+init__10JUTTextureFv:
 /* 802DE608 002DB548  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE60C 002DB54C  7C 08 02 A6 */	mflr r0
 /* 802DE610 002DB550  90 01 00 14 */	stw r0, 0x14(r1)
@@ -293,7 +293,7 @@ JUTTexture_NS_init:
 /* 802DE618 002DB558  A0 04 00 0A */	lhz r0, 0xa(r4)
 /* 802DE61C 002DB55C  28 00 00 00 */	cmplwi r0, 0
 /* 802DE620 002DB560  40 82 00 0C */	bne lbl_802DE62C
-/* 802DE624 002DB564  48 00 00 35 */	bl JUTTexture_NS_initTexObj
+/* 802DE624 002DB564  48 00 00 35 */	bl initTexObj__10JUTTextureFv
 /* 802DE628 002DB568  48 00 00 20 */	b lbl_802DE648
 lbl_802DE62C:
 /* 802DE62C 002DB56C  80 03 00 28 */	lwz r0, 0x28(r3)
@@ -302,15 +302,15 @@ lbl_802DE62C:
 /* 802DE638 002DB578  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 802DE63C 002DB57C  80 83 00 2C */	lwz r4, 0x2c(r3)
 /* 802DE640 002DB580  88 84 00 0C */	lbz r4, 0xc(r4)
-/* 802DE644 002DB584  48 00 01 01 */	bl JUTTexture_NS_initTexObj_X1_
+/* 802DE644 002DB584  48 00 01 01 */	bl initTexObj__10JUTTextureF7_GXTlut
 lbl_802DE648:
 /* 802DE648 002DB588  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802DE64C 002DB58C  7C 08 03 A6 */	mtlr r0
 /* 802DE650 002DB590  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE654 002DB594  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_initTexObj
-JUTTexture_NS_initTexObj:
+.global initTexObj__10JUTTextureFv
+initTexObj__10JUTTextureFv:
 /* 802DE658 002DB598  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DE65C 002DB59C  7C 08 02 A6 */	mflr r0
 /* 802DE660 002DB5A0  90 01 00 34 */	stw r0, 0x34(r1)
@@ -372,8 +372,8 @@ lbl_802DE690:
 /* 802DE73C 002DB67C  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DE740 002DB680  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_initTexObj_X1_
-JUTTexture_NS_initTexObj_X1_:
+.global initTexObj__10JUTTextureF7_GXTlut
+initTexObj__10JUTTextureF7_GXTlut:
 /* 802DE744 002DB684  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DE748 002DB688  7C 08 02 A6 */	mflr r0
 /* 802DE74C 002DB68C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -439,8 +439,8 @@ lbl_802DE784:
 /* 802DE838 002DB778  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DE83C 002DB77C  4E 80 00 20 */	blr 
 
-.global JUTTexture_NS_load
-JUTTexture_NS_load:
+.global load__10JUTTextureF11_GXTexMapID
+load__10JUTTextureF11_GXTexMapID:
 /* 802DE840 002DB780  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE844 002DB784  7C 08 02 A6 */	mflr r0
 /* 802DE848 002DB788  90 01 00 14 */	stw r0, 0x14(r1)
@@ -451,7 +451,7 @@ JUTTexture_NS_load:
 /* 802DE85C 002DB79C  80 63 00 2C */	lwz r3, 0x2c(r3)
 /* 802DE860 002DB7A0  28 03 00 00 */	cmplwi r3, 0
 /* 802DE864 002DB7A4  41 82 00 08 */	beq lbl_802DE86C
-/* 802DE868 002DB7A8  48 00 00 F5 */	bl JUTPalette_NS_load
+/* 802DE868 002DB7A8  48 00 00 F5 */	bl load__10JUTPaletteFv
 lbl_802DE86C:
 /* 802DE86C 002DB7AC  7F C3 F3 78 */	mr r3, r30
 /* 802DE870 002DB7B0  7F E4 FB 78 */	mr r4, r31

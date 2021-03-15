@@ -14,9 +14,9 @@ lbl_800CF1E8:
 /* 800CF1E8 000CC128  38 00 00 00 */ li r0, 0
 /* 800CF1EC 000CC12C  90 01 00 08 */ stw r0, 8(r1)
 /*.global daAlink_searchPeepObj*/
-/* 800CF1F0 000CC130  3C 60 80 0D */ lis r3, daAlink_searchPeepObj@ha
+/* 800CF1F0 000CC130  3C 60 80 0D */ lis r3, daAlink_searchPeepObj__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchPeepObj*/
-/* 800CF1F4 000CC134  38 63 ED 48 */ addi r3, r3, daAlink_searchPeepObj@l
+/* 800CF1F4 000CC134  38 63 ED 48 */ addi r3, r3, daAlink_searchPeepObj__FP10fopAc_ac_cPv@l
 /* 800CF1F8 000CC138  38 81 00 08 */ addi r4, r1, 8
 /* 800CF1FC 000CC13C  4B F4 A5 C1 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 800CF200 000CC140  80 61 00 08 */ lwz r3, 8(r1)
@@ -32,11 +32,11 @@ lbl_800CF214:
 /* 800CF224 000CC164  38 A0 00 00 */ li r5, 0
 /* 800CF228 000CC168  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800CF22C 000CC16C  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800CF230 000CC170  4B F7 3F 3D */ bl dEvt_control_c_NS_compulsory
+/* 800CF230 000CC170  4B F7 3F 3D */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800CF234 000CC174  2C 03 00 00 */ cmpwi r3, 0
 /* 800CF238 000CC178  41 82 00 0C */ beq lbl_800CF244
 /* 800CF23C 000CC17C  7F E3 FB 78 */ mr r3, r31
-/* 800CF240 000CC180  4B FE EB 31 */ bl daAlink_c_NS_startPeepChange
+/* 800CF240 000CC180  4B FE EB 31 */ bl startPeepChange__9daAlink_cFv
 lbl_800CF244:
 /* 800CF244 000CC184  38 60 00 01 */ li r3, 1
 /* 800CF248 000CC188  83 E1 00 1C */ lwz r31, 0x1c(r1)

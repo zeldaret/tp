@@ -15,13 +15,13 @@
 /* 800AA620 000A7560  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
 /* 800AA624 000A7564  28 00 00 B0 */ cmplwi r0, 0xb0
 /* 800AA628 000A7568  41 82 00 68 */ beq lbl_800AA690
-/* 800AA62C 000A756C  48 06 B5 F5 */ bl daAlink_c_NS_checkEventRun
+/* 800AA62C 000A756C  48 06 B5 F5 */ bl checkEventRun__9daAlink_cCFv
 /* 800AA630 000A7570  2C 03 00 00 */ cmpwi r3, 0
 /* 800AA634 000A7574  41 82 00 50 */ beq lbl_800AA684
 /* 800AA638 000A7578  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800AA63C 000A757C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800AA640 000A7580  38 63 4F F8 */ addi r3, r3, 0x4ff8
-/* 800AA644 000A7584  4B F9 DD A5 */ bl dEvent_manager_c_NS_getRunEventName
+/* 800AA644 000A7584  4B F9 DD A5 */ bl getRunEventName__16dEvent_manager_cFv
 /* 800AA648 000A7588  3C 80 80 39 */ lis r4, lbl_80392094@ha
 /* 800AA64C 000A758C  38 84 20 94 */ addi r4, r4, lbl_80392094@l
 /* 800AA650 000A7590  38 84 04 65 */ addi r4, r4, 0x465

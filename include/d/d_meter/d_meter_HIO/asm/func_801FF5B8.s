@@ -54,43 +54,43 @@
 /* 801FF68C 001FC5CC  90 1F 04 EC */ stw r0, 0x4ec(r31)
 /* 801FF690 001FC5D0  90 1F 04 F0 */ stw r0, 0x4f0(r31)
 /* 801FF694 001FC5D4  38 7F 05 F0 */ addi r3, r31, 0x5f0
-/*.global JUtility_NS_TColor*/
-/* 801FF698 001FC5D8  3C 80 80 19 */ lis r4, JUtility_NS_TColor@ha
-/*.global JUtility_NS_TColor*/
-/* 801FF69C 001FC5DC  38 84 39 60 */ addi r4, r4, JUtility_NS_TColor@l
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 801FF698 001FC5D8  3C 80 80 19 */ lis r4, __ct__Q28JUtility6TColorFv@ha
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 801FF69C 001FC5DC  38 84 39 60 */ addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 801FF6A0 001FC5E0  38 A0 00 00 */ li r5, 0
 /* 801FF6A4 001FC5E4  38 C0 00 04 */ li r6, 4
 /* 801FF6A8 001FC5E8  38 E0 00 03 */ li r7, 3
-/* 801FF6AC 001FC5EC  48 16 26 B5 */ bl func_80361D60
+/* 801FF6AC 001FC5EC  48 16 26 B5 */ bl __construct_array
 /* 801FF6B0 001FC5F0  38 7F 05 FC */ addi r3, r31, 0x5fc
-/*.global JUtility_NS_TColor*/
-/* 801FF6B4 001FC5F4  3C 80 80 19 */ lis r4, JUtility_NS_TColor@ha
-/*.global JUtility_NS_TColor*/
-/* 801FF6B8 001FC5F8  38 84 39 60 */ addi r4, r4, JUtility_NS_TColor@l
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 801FF6B4 001FC5F4  3C 80 80 19 */ lis r4, __ct__Q28JUtility6TColorFv@ha
+/*.global __ct__Q28JUtility6TColorFv*/
+/* 801FF6B8 001FC5F8  38 84 39 60 */ addi r4, r4, __ct__Q28JUtility6TColorFv@l
 /* 801FF6BC 001FC5FC  38 A0 00 00 */ li r5, 0
 /* 801FF6C0 001FC600  38 C0 00 04 */ li r6, 4
 /* 801FF6C4 001FC604  38 E0 00 03 */ li r7, 3
-/* 801FF6C8 001FC608  48 16 26 99 */ bl func_80361D60
+/* 801FF6C8 001FC608  48 16 26 99 */ bl __construct_array
 /* 801FF6CC 001FC60C  38 7F 06 18 */ addi r3, r31, 0x618
-/* 801FF6D0 001FC610  4B FF EC 79 */ bl dMeter_drawCollectHIO_c
+/* 801FF6D0 001FC610  4B FF EC 79 */ bl __ct__23dMeter_drawCollectHIO_cFv
 /* 801FF6D4 001FC614  38 7F 06 B8 */ addi r3, r31, 0x6b8
-/* 801FF6D8 001FC618  4B FF EE 15 */ bl dMeter_drawOptionHIO_c
+/* 801FF6D8 001FC618  4B FF EE 15 */ bl __ct__22dMeter_drawOptionHIO_cFv
 /* 801FF6DC 001FC61C  38 7F 07 28 */ addi r3, r31, 0x728
-/* 801FF6E0 001FC620  4B FF EE ED */ bl dMeter_drawLetterHIO_c
+/* 801FF6E0 001FC620  4B FF EE ED */ bl __ct__22dMeter_drawLetterHIO_cFv
 /* 801FF6E4 001FC624  38 7F 07 88 */ addi r3, r31, 0x788
-/* 801FF6E8 001FC628  4B FF F0 49 */ bl dMeter_drawFishingHIO_c
+/* 801FF6E8 001FC628  4B FF F0 49 */ bl __ct__23dMeter_drawFishingHIO_cFv
 /* 801FF6EC 001FC62C  38 7F 09 DC */ addi r3, r31, 0x9dc
-/* 801FF6F0 001FC630  4B FF F1 ED */ bl dMeter_drawInsectHIO_c
+/* 801FF6F0 001FC630  4B FF F1 ED */ bl __ct__22dMeter_drawInsectHIO_cFv
 /* 801FF6F4 001FC634  38 7F 0A 1C */ addi r3, r31, 0xa1c
-/* 801FF6F8 001FC638  4B FF F2 5D */ bl dMeter_drawCalibrationHIO_c
+/* 801FF6F8 001FC638  4B FF F2 5D */ bl __ct__27dMeter_drawCalibrationHIO_cFv
 /* 801FF6FC 001FC63C  38 7F 0A 34 */ addi r3, r31, 0xa34
-/* 801FF700 001FC640  4B FF F2 91 */ bl dMeter_drawSkillHIO_c
+/* 801FF700 001FC640  4B FF F2 91 */ bl __ct__21dMeter_drawSkillHIO_cFv
 /* 801FF704 001FC644  38 7F 0A 90 */ addi r3, r31, 0xa90
-/* 801FF708 001FC648  4B FF F8 E9 */ bl dMeter_drawMiniGameHIO_c
+/* 801FF708 001FC648  4B FF F8 E9 */ bl __ct__24dMeter_drawMiniGameHIO_cFv
 /* 801FF70C 001FC64C  38 7F 0C 20 */ addi r3, r31, 0xc20
-/* 801FF710 001FC650  4B FF F3 E1 */ bl dMeter_drawEmpButtonHIO_c
+/* 801FF710 001FC650  4B FF F3 E1 */ bl __ct__25dMeter_drawEmpButtonHIO_cFv
 /* 801FF714 001FC654  38 7F 0E 7C */ addi r3, r31, 0xe7c
-/* 801FF718 001FC658  4B FF FC 05 */ bl dMeter_drawLightDropHIO_c
+/* 801FF718 001FC658  4B FF FC 05 */ bl __ct__25dMeter_drawLightDropHIO_cFv
 /* 801FF71C 001FC65C  C0 02 AC 24 */ lfs f0, lbl_80454624-_SDA2_BASE_(r2)
 /* 801FF720 001FC660  D0 1F 00 08 */ stfs f0, 8(r31)
 /* 801FF724 001FC664  C0 02 AC 28 */ lfs f0, lbl_80454628-_SDA2_BASE_(r2)

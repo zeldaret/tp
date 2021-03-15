@@ -151,7 +151,7 @@ lbl_802E0EB8:
 /* 802E0F18 002DDE58  7C A5 20 10 */	subfc r5, r5, r4
 /* 802E0F1C 002DDE5C  80 7F 00 00 */	lwz r3, 0(r31)
 /* 802E0F20 002DDE60  A8 9E 00 7C */	lha r4, 0x7c(r30)
-/* 802E0F24 002DDE64  48 00 0B D9 */	bl checkCallback__19JUTGamePadLongPressFlUl
+/* 802E0F24 002DDE64  48 00 0B D9 */	bl checkCallback__19JUTGamePadLongPressFiUl
 /* 802E0F28 002DDE68  48 00 00 3C */	b lbl_802E0F64
 lbl_802E0F2C:
 /* 802E0F2C 002DDE6C  38 00 00 01 */	li r0, 1

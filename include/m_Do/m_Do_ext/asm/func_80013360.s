@@ -15,13 +15,13 @@
 /* 80013398 000102D8  38 63 00 10 */ addi r3, r3, 0x10
 /* 8001339C 000102DC  48 2B B9 29 */ bl __nwa__FUl
 /*.global mDoExt_3Dline_c*/
-/* 800133A0 000102E0  3C 80 80 01 */ lis r4, mDoExt_3Dline_c@ha
+/* 800133A0 000102E0  3C 80 80 01 */ lis r4, __ct__15mDoExt_3Dline_cFv@ha
 /*.global mDoExt_3Dline_c*/
-/* 800133A4 000102E4  38 84 26 BC */ addi r4, r4, mDoExt_3Dline_c@l
+/* 800133A4 000102E4  38 84 26 BC */ addi r4, r4, __ct__15mDoExt_3Dline_cFv@l
 /* 800133A8 000102E8  38 A0 00 00 */ li r5, 0
 /* 800133AC 000102EC  38 C0 00 20 */ li r6, 0x20
 /* 800133B0 000102F0  7F A7 EB 78 */ mr r7, r29
-/* 800133B4 000102F4  48 34 EB 61 */ bl func_80361F14
+/* 800133B4 000102F4  48 34 EB 61 */ bl __construct_new_array
 /* 800133B8 000102F8  90 7E 00 38 */ stw r3, 0x38(r30)
 /* 800133BC 000102FC  80 1E 00 38 */ lwz r0, 0x38(r30)
 /* 800133C0 00010300  28 00 00 00 */ cmplwi r0, 0
@@ -39,7 +39,7 @@ lbl_800133E0:
 /* 800133E8 00010328  7F 24 CB 78 */ mr r4, r25
 /* 800133EC 0001032C  7F 45 D3 78 */ mr r5, r26
 /* 800133F0 00010330  38 C0 00 01 */ li r6, 1
-/* 800133F4 00010334  4B FF EF DD */ bl mDoExt_3Dline_c_NS_init
+/* 800133F4 00010334  4B FF EF DD */ bl init__15mDoExt_3Dline_cFUsii
 /* 800133F8 00010338  2C 03 00 00 */ cmpwi r3, 0
 /* 800133FC 0001033C  40 82 00 0C */ bne lbl_80013408
 /* 80013400 00010340  38 60 00 00 */ li r3, 0

@@ -61,7 +61,7 @@ lbl_8021CB48:
 /* 8021CB50 00219A90  7F E4 FB 78 */ mr r4, r31
 /* 8021CB54 00219A94  38 A1 00 1C */ addi r5, r1, 0x1c
 /* 8021CB58 00219A98  38 C1 00 08 */ addi r6, r1, 8
-/* 8021CB5C 00219A9C  4B F3 8C 19 */ bl daNpcF_getPlayerInfoFromPlayerList
+/* 8021CB5C 00219A9C  4B F3 8C 19 */ bl daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz
 /* 8021CB60 00219AA0  48 00 00 3C */ b lbl_8021CB9C
 lbl_8021CB64:
 /* 8021CB64 00219AA4  7F C3 F3 78 */ mr r3, r30
@@ -77,7 +77,7 @@ lbl_8021CB64:
 /* 8021CB8C 00219ACC  7F E4 FB 78 */ mr r4, r31
 /* 8021CB90 00219AD0  38 A1 00 1C */ addi r5, r1, 0x1c
 /* 8021CB94 00219AD4  38 C1 00 08 */ addi r6, r1, 8
-/* 8021CB98 00219AD8  4B F3 8B DD */ bl daNpcF_getPlayerInfoFromPlayerList
+/* 8021CB98 00219AD8  4B F3 8B DD */ bl daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz
 lbl_8021CB9C:
 /* 8021CB9C 00219ADC  C0 01 00 1C */ lfs f0, 0x1c(r1)
 /* 8021CBA0 00219AE0  D0 01 00 10 */ stfs f0, 0x10(r1)
@@ -91,7 +91,7 @@ lbl_8021CB9C:
 /* 8021CBC0 00219B00  7F E6 FB 78 */ mr r6, r31
 /* 8021CBC4 00219B04  38 E0 00 00 */ li r7, 0
 /* 8021CBC8 00219B08  39 00 00 01 */ li r8, 1
-/* 8021CBCC 00219B0C  4B E1 25 D1 */ bl dComIfGs_setWarpItemData_X1_
+/* 8021CBCC 00219B0C  4B E1 25 D1 */ bl dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc
 /* 8021CBD0 00219B10  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021CBD4 00219B14  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021CBD8 00219B18  38 63 00 9C */ addi r3, r3, 0x9c

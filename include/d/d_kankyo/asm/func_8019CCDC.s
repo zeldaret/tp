@@ -5,7 +5,7 @@
 /* 8019CCEC 00199C2C  93 C1 00 08 */ stw r30, 8(r1)
 /* 8019CCF0 00199C30  7C 7E 1B 78 */ mr r30, r3
 /* 8019CCF4 00199C34  7C 9F 23 78 */ mr r31, r4
-/* 8019CCF8 00199C38  4B FF F6 AD */ bl dKy_sense_pat_get
+/* 8019CCF8 00199C38  4B FF F6 AD */ bl dKy_sense_pat_get__Fv
 /* 8019CCFC 00199C3C  28 03 00 0F */ cmplwi r3, 0xf
 /* 8019CD00 00199C40  41 81 01 44 */ bgt lbl_8019CE44
 /* 8019CD04 00199C44  3C 80 80 3C */ lis r4, lbl_803BBEFC@ha

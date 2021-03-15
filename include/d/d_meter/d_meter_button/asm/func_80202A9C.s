@@ -6,8 +6,8 @@
 /* 80202AB0 001FF9F0  7C 7F 1B 78 */ mr r31, r3
 /* 80202AB4 001FF9F4  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 80202AB8 001FF9F8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 80202ABC 001FF9FC  48 01 97 5D */ bl dMeter2Info_c_NS_resetFloatingMessage
-/* 80202AC0 001FFA00  48 03 57 99 */ bl dMsgObject_c_NS_getScrnDrawPtr
+/* 80202ABC 001FF9FC  48 01 97 5D */ bl resetFloatingMessage__13dMeter2Info_cFv
+/* 80202AC0 001FFA00  48 03 57 99 */ bl getScrnDrawPtr__12dMsgObject_cFv
 /* 80202AC4 001FFA04  30 03 FF FF */ addic r0, r3, -1
 /* 80202AC8 001FFA08  7C 00 19 10 */ subfe r0, r0, r3
 /* 80202ACC 001FFA0C  54 00 06 3F */ clrlwi. r0, r0, 0x18
@@ -15,34 +15,34 @@
 /* 80202AD4 001FFA14  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80202AD8 001FFA18  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80202ADC 001FFA1C  80 63 5D BC */ lwz r3, 0x5dbc(r3)
-/* 80202AE0 001FFA20  48 03 46 D1 */ bl dMsgObject_c_NS_isMidonaTalkWait
+/* 80202AE0 001FFA20  48 03 46 D1 */ bl isMidonaTalkWait__12dMsgObject_cFv
 /* 80202AE4 001FFA24  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202AE8 001FFA28  41 82 00 7C */ beq lbl_80202B64
 lbl_80202AEC:
 /* 80202AEC 001FFA2C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80202AF0 001FFA30  3B A3 61 C0 */ addi r29, r3, g_dComIfG_gameInfo@l
 /* 80202AF4 001FFA34  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202AF8 001FFA38  48 03 46 ED */ bl dMsgObject_c_NS_isPlaceMessage
+/* 80202AF8 001FFA38  48 03 46 ED */ bl isPlaceMessage__12dMsgObject_cFv
 /* 80202AFC 001FFA3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B00 001FFA40  40 82 00 64 */ bne lbl_80202B64
 /* 80202B04 001FFA44  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202B08 001FFA48  48 03 45 E1 */ bl dMsgObject_c_NS_isHowlMessage
+/* 80202B08 001FFA48  48 03 45 E1 */ bl isHowlMessage__12dMsgObject_cFv
 /* 80202B0C 001FFA4C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B10 001FFA50  40 82 00 54 */ bne lbl_80202B64
 /* 80202B14 001FFA54  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202B18 001FFA58  48 03 46 E1 */ bl dMsgObject_c_NS_isBossMessage
+/* 80202B18 001FFA58  48 03 46 E1 */ bl isBossMessage__12dMsgObject_cFv
 /* 80202B1C 001FFA5C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B20 001FFA60  40 82 00 44 */ bne lbl_80202B64
 /* 80202B24 001FFA64  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202B28 001FFA68  48 03 46 E5 */ bl dMsgObject_c_NS_isBookMessage
+/* 80202B28 001FFA68  48 03 46 E5 */ bl isBookMessage__12dMsgObject_cFv
 /* 80202B2C 001FFA6C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B30 001FFA70  40 82 00 34 */ bne lbl_80202B64
 /* 80202B34 001FFA74  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202B38 001FFA78  48 03 46 DD */ bl dMsgObject_c_NS_isStaffMessage
+/* 80202B38 001FFA78  48 03 46 DD */ bl isStaffMessage__12dMsgObject_cFv
 /* 80202B3C 001FFA7C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B40 001FFA80  40 82 00 24 */ bne lbl_80202B64
 /* 80202B44 001FFA84  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
-/* 80202B48 001FFA88  48 03 45 75 */ bl dMsgObject_c_NS_isKanbanMessage
+/* 80202B48 001FFA88  48 03 45 75 */ bl isKanbanMessage__12dMsgObject_cFv
 /* 80202B4C 001FFA8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202B50 001FFA90  40 82 00 14 */ bne lbl_80202B64
 /* 80202B54 001FFA94  80 7D 5D BC */ lwz r3, 0x5dbc(r29)
@@ -66,7 +66,7 @@ lbl_80202B64:
 /* 80202B98 001FFAD8  4E 80 04 21 */ bctrl
 /* 80202B9C 001FFADC  48 00 00 2C */ b lbl_80202BC8
 lbl_80202BA0:
-/* 80202BA0 001FFAE0  48 03 45 09 */ bl dMsgObject_c_NS_isGetItemMessage
+/* 80202BA0 001FFAE0  48 03 45 09 */ bl isGetItemMessage__12dMsgObject_cFv
 /* 80202BA4 001FFAE4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80202BA8 001FFAE8  41 82 00 20 */ beq lbl_80202BC8
 /* 80202BAC 001FFAEC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -559,7 +559,7 @@ lbl_80203240:
 /* 8020324C 0020018C  41 80 FF 9C */ blt lbl_802031E8
 /* 80203250 00200190  80 7F 00 04 */ lwz r3, 4(r31)
 /* 80203254 00200194  38 80 00 01 */ li r4, 1
-/* 80203258 00200198  48 04 6A D1 */ bl dMsgString_c_NS_dtor
+/* 80203258 00200198  48 04 6A D1 */ bl __dt__12dMsgString_cFv
 /* 8020325C 0020019C  38 00 00 00 */ li r0, 0
 /* 80203260 002001A0  90 1F 00 04 */ stw r0, 4(r31)
 /* 80203264 002001A4  80 7F 00 D4 */ lwz r3, 0xd4(r31)

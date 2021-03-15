@@ -6,7 +6,7 @@
 /* 8010CF80 00109EC0  7C 7E 1B 78 */ mr r30, r3
 /* 8010CF84 00109EC4  7C 9F 23 78 */ mr r31, r4
 /* 8010CF88 00109EC8  38 80 00 C9 */ li r4, 0xc9
-/* 8010CF8C 00109ECC  4B FB 4F E1 */ bl daAlink_c_NS_commonProcInit
+/* 8010CF8C 00109ECC  4B FB 4F E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010CF90 00109ED0  7F C3 F3 78 */ mr r3, r30
 /* 8010CF94 00109ED4  A8 1E 30 20 */ lha r0, 0x3020(r30)
 /* 8010CF98 00109ED8  2C 00 00 00 */ cmpwi r0, 0
@@ -15,9 +15,9 @@
 /* 8010CFA4 00109EE4  38 80 01 35 */ li r4, 0x135
 lbl_8010CFA8:
 /* 8010CFA8 00109EE8  C0 22 93 14 */ lfs f1, lbl_80452D14-_SDA2_BASE_(r2)
-/* 8010CFAC 00109EEC  4B FA 00 05 */ bl daAlink_c_NS_setSingleAnimeBaseMorf
+/* 8010CFAC 00109EEC  4B FA 00 05 */ bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
 /* 8010CFB0 00109EF0  7F C3 F3 78 */ mr r3, r30
-/* 8010CFB4 00109EF4  4B FF B7 29 */ bl daAlink_c_NS_resetHookshotMode
+/* 8010CFB4 00109EF4  4B FF B7 29 */ bl resetHookshotMode__9daAlink_cFv
 /* 8010CFB8 00109EF8  38 00 00 01 */ li r0, 1
 /* 8010CFBC 00109EFC  B0 1E 30 24 */ sth r0, 0x3024(r30)
 /* 8010CFC0 00109F00  7F C3 F3 78 */ mr r3, r30
@@ -32,7 +32,7 @@ lbl_8010CFA8:
 /* 8010CFE4 00109F24  B0 1E 04 DE */ sth r0, 0x4de(r30)
 /* 8010CFE8 00109F28  7F C3 F3 78 */ mr r3, r30
 /* 8010CFEC 00109F2C  7F E4 FB 78 */ mr r4, r31
-/* 8010CFF0 00109F30  4B FF E6 55 */ bl daAlink_c_NS_initHookshotRoofWaitActor
+/* 8010CFF0 00109F30  4B FF E6 55 */ bl initHookshotRoofWaitActor__9daAlink_cFP10fopAc_ac_c
 /* 8010CFF4 00109F34  C0 02 96 00 */ lfs f0, lbl_80453000-_SDA2_BASE_(r2)
 /* 8010CFF8 00109F38  D0 1E 2B 98 */ stfs f0, 0x2b98(r30)
 /* 8010CFFC 00109F3C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha

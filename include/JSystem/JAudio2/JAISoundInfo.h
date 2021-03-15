@@ -2,8 +2,8 @@
 #define JAISOUNDINFO_H_
 
 extern "C" {
-void JAISoundInfo(void);
-void JAISoundInfo_NS_dtor(void);
+void __ct__12JAISoundInfoFb(void);
+void __dt__12JAISoundInfoFv(void);
 }
 
 #endif  // JAISOUNDINFO_H_

@@ -14,7 +14,7 @@ lbl_80027014:
 /* 80027018 00023F58  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8002701C 00023F5C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 80027020 00023F60  38 84 00 14 */ addi r4, r4, 0x14
-/* 80027024 00023F64  48 04 E0 DD */ bl dBgS_NS_GetRoomId
+/* 80027024 00023F64  48 04 E0 DD */ bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 80027028 00023F68  7C 64 1B 78 */ mr r4, r3
 lbl_8002702C:
 /* 8002702C 00023F6C  2C 04 00 00 */ cmpwi r4, 0
@@ -29,7 +29,7 @@ lbl_8002703C:
 /* 8002704C 00023F8C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80027050 00023F90  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80027054 00023F94  38 63 4E C4 */ addi r3, r3, 0x4ec4
-/* 80027058 00023F98  4B FF D6 C5 */ bl dStage_roomControl_c_NS_zoneCountCheck
+/* 80027058 00023F98  4B FF D6 C5 */ bl zoneCountCheck__20dStage_roomControl_cCFi
 lbl_8002705C:
 /* 8002705C 00023F9C  2C 1F 00 00 */ cmpwi r31, 0
 /* 80027060 00023FA0  40 80 00 0C */ bge lbl_8002706C
@@ -55,7 +55,7 @@ lbl_8002706C:
 /* 800270AC 00023FEC  7C 63 00 2E */ lwzx r3, r3, r0
 /* 800270B0 00023FF0  88 03 00 02 */ lbz r0, 2(r3)
 /* 800270B4 00023FF4  54 03 07 BE */ clrlwi r3, r0, 0x1e
-/* 800270B8 00023FF8  4B FF DC F9 */ bl dStage_roomControl_c_NS_SetTimePass
+/* 800270B8 00023FF8  4B FF DC F9 */ bl SetTimePass__20dStage_roomControl_cFi
 /* 800270BC 00023FFC  80 7E 00 04 */ lwz r3, 4(r30)
 /* 800270C0 00024000  57 E0 10 3A */ slwi r0, r31, 2
 /* 800270C4 00024004  7C A3 00 2E */ lwzx r5, r3, r0
@@ -63,7 +63,7 @@ lbl_8002706C:
 /* 800270CC 0002400C  88 85 00 00 */ lbz r4, 0(r5)
 /* 800270D0 00024010  80 A5 00 04 */ lwz r5, 4(r5)
 /* 800270D4 00024014  38 C0 00 00 */ li r6, 0
-/* 800270D8 00024018  4B FF D4 45 */ bl dStage_roomControl_c_NS_loadRoom
+/* 800270D8 00024018  4B FF D4 45 */ bl loadRoom__20dStage_roomControl_cFiPUcb
 /* 800270DC 0002401C  48 00 00 08 */ b lbl_800270E4
 lbl_800270E0:
 /* 800270E0 00024020  38 60 00 01 */ li r3, 1

@@ -3,8 +3,8 @@
 .section .text, "ax" # 800517b0
 
 
-.global dPath_GetPnt
-dPath_GetPnt:
+.global dPath_GetPnt__FPC5dPathi
+dPath_GetPnt__FPC5dPathi:
 /* 800517B0 0004E6F0  28 03 00 00 */	cmplwi r3, 0
 /* 800517B4 0004E6F4  41 82 00 24 */	beq lbl_800517D8
 /* 800517B8 0004E6F8  80 A3 00 08 */	lwz r5, 8(r3)
@@ -23,8 +23,8 @@ lbl_800517E0:
 /* 800517E4 0004E724  7C 65 02 14 */	add r3, r5, r0
 /* 800517E8 0004E728  4E 80 00 20 */	blr 
 
-.global dPath_GetRoomPath
-dPath_GetRoomPath:
+.global dPath_GetRoomPath__Fii
+dPath_GetRoomPath__Fii:
 /* 800517EC 0004E72C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800517F0 0004E730  7C 08 02 A6 */	mflr r0
 /* 800517F4 0004E734  90 01 00 14 */	stw r0, 0x14(r1)
@@ -43,7 +43,7 @@ lbl_80051824:
 /* 80051824 0004E764  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80051828 0004E768  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8005182C 0004E76C  38 63 4E C4 */	addi r3, r3, 0x4ec4
-/* 80051830 0004E770  4B FD 2B 55 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80051830 0004E770  4B FD 2B 55 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80051834 0004E774  28 03 00 00 */	cmplwi r3, 0
 /* 80051838 0004E778  40 82 00 0C */	bne lbl_80051844
 /* 8005183C 0004E77C  38 60 00 00 */	li r3, 0
@@ -75,8 +75,8 @@ lbl_80051884:
 /* 80051890 0004E7D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051894 0004E7D4  4E 80 00 20 */	blr 
 
-.global dPath_GetNextRoomPath
-dPath_GetNextRoomPath:
+.global dPath_GetNextRoomPath__FPC5dPathi
+dPath_GetNextRoomPath__FPC5dPathi:
 /* 80051898 0004E7D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005189C 0004E7DC  7C 08 02 A6 */	mflr r0
 /* 800518A0 0004E7E0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -95,7 +95,7 @@ lbl_800518D0:
 /* 800518D0 0004E810  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800518D4 0004E814  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800518D8 0004E818  38 63 4E C4 */	addi r3, r3, 0x4ec4
-/* 800518DC 0004E81C  4B FD 2A A9 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800518DC 0004E81C  4B FD 2A A9 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800518E0 0004E820  28 03 00 00 */	cmplwi r3, 0
 /* 800518E4 0004E824  40 82 00 0C */	bne lbl_800518F0
 /* 800518E8 0004E828  38 60 00 00 */	li r3, 0
@@ -135,8 +135,8 @@ lbl_80051948:
 /* 80051954 0004E894  38 21 00 10 */	addi r1, r1, 0x10
 /* 80051958 0004E898  4E 80 00 20 */	blr 
 
-.global dPath_GetPolyRoomPathVec
-dPath_GetPolyRoomPathVec:
+.global dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi
+dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi:
 /* 8005195C 0004E89C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80051960 0004E8A0  7C 08 02 A6 */	mflr r0
 /* 80051964 0004E8A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -150,11 +150,11 @@ dPath_GetPolyRoomPathVec:
 /* 80051984 0004E8C4  3B 83 0F 38 */	addi r28, r3, 0xf38
 /* 80051988 0004E8C8  7F 83 E3 78 */	mr r3, r28
 /* 8005198C 0004E8CC  7F 44 D3 78 */	mr r4, r26
-/* 80051990 0004E8D0  48 02 37 71 */	bl dBgS_NS_GetRoomId
+/* 80051990 0004E8D0  48 02 37 71 */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
 /* 80051994 0004E8D4  7C 7B 1B 78 */	mr r27, r3
 /* 80051998 0004E8D8  7F 83 E3 78 */	mr r3, r28
 /* 8005199C 0004E8DC  7F 44 D3 78 */	mr r4, r26
-/* 800519A0 0004E8E0  48 02 36 41 */	bl dBgS_NS_GetRoomPathId
+/* 800519A0 0004E8E0  48 02 36 41 */	bl GetRoomPathId__4dBgSFRC13cBgS_PolyInfo
 /* 800519A4 0004E8E4  C0 02 86 00 */	lfs f0, lbl_80452000-_SDA2_BASE_(r2)
 /* 800519A8 0004E8E8  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 800519AC 0004E8EC  D0 1E 00 04 */	stfs f0, 4(r30)
@@ -167,7 +167,7 @@ dPath_GetPolyRoomPathVec:
 /* 800519C8 0004E908  48 00 00 E0 */	b lbl_80051AA8
 lbl_800519CC:
 /* 800519CC 0004E90C  7F 64 DB 78 */	mr r4, r27
-/* 800519D0 0004E910  4B FF FE 1D */	bl dPath_GetRoomPath
+/* 800519D0 0004E910  4B FF FE 1D */	bl dPath_GetRoomPath__Fii
 /* 800519D4 0004E914  7C 7D 1B 79 */	or. r29, r3, r3
 /* 800519D8 0004E918  40 82 00 0C */	bne lbl_800519E4
 /* 800519DC 0004E91C  38 60 00 00 */	li r3, 0
@@ -187,7 +187,7 @@ lbl_800519E4:
 lbl_80051A10:
 /* 80051A10 0004E950  7F 83 E3 78 */	mr r3, r28
 /* 80051A14 0004E954  7F 44 D3 78 */	mr r4, r26
-/* 80051A18 0004E958  48 02 36 19 */	bl dBgS_NS_GetRoomPathPntNo
+/* 80051A18 0004E958  48 02 36 19 */	bl GetRoomPathPntNo__4dBgSFRC13cBgS_PolyInfo
 /* 80051A1C 0004E95C  2C 03 00 FF */	cmpwi r3, 0xff
 /* 80051A20 0004E960  41 82 00 18 */	beq lbl_80051A38
 /* 80051A24 0004E964  2C 03 00 00 */	cmpwi r3, 0

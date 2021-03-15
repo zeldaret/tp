@@ -2,10 +2,10 @@
 /* 80018150 00015090  7C 08 02 A6 */ mflr r0
 /* 80018154 00015094  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80018158 00015098  90 6D 87 10 */ stw r3, lbl_80450C90-_SDA_BASE_(r13)
-/* 8001815C 0001509C  4B FF FC D5 */ bl dispHeapInfo
-/* 80018160 000150A0  4B FF FE 71 */ bl dispDateInfo
-/* 80018164 000150A4  4B FF FF C1 */ bl dispConsoleToTerminal
-/* 80018168 000150A8  4B FF FE 25 */ bl dispGameInfo
+/* 8001815C 0001509C  4B FF FC D5 */ bl dispHeapInfo__Fv
+/* 80018160 000150A0  4B FF FE 71 */ bl dispDateInfo__Fv
+/* 80018164 000150A4  4B FF FF C1 */ bl dispConsoleToTerminal__Fv
+/* 80018168 000150A8  4B FF FE 25 */ bl dispGameInfo__Fv
 /* 8001816C 000150AC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80018170 000150B0  7C 08 03 A6 */ mtlr r0
 /* 80018174 000150B4  38 21 00 10 */ addi r1, r1, 0x10

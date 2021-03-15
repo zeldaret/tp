@@ -5,13 +5,13 @@
 /* 80026C9C 00023BDC  93 C1 00 08 */ stw r30, 8(r1)
 /* 80026CA0 00023BE0  7C 7E 1B 78 */ mr r30, r3
 /* 80026CA4 00023BE4  7C 9F 23 78 */ mr r31, r4
-/* 80026CA8 00023BE8  4B FF F6 B5 */ bl dStage_dt_c_offsetToPtr
+/* 80026CA8 00023BE8  4B FF F6 B5 */ bl dStage_dt_c_offsetToPtr__FPv
 /* 80026CAC 00023BEC  7F C3 F3 78 */ mr r3, r30
 /* 80026CB0 00023BF0  7F E4 FB 78 */ mr r4, r31
 /* 80026CB4 00023BF4  3C A0 80 3A */ lis r5, lbl_803A68FC@ha
 /* 80026CB8 00023BF8  38 A5 68 FC */ addi r5, r5, lbl_803A68FC@l
 /* 80026CBC 00023BFC  38 C0 00 03 */ li r6, 3
-/* 80026CC0 00023C00  4B FF F3 F5 */ bl dStage_dt_c_decode
+/* 80026CC0 00023C00  4B FF F3 F5 */ bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 80026CC4 00023C04  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80026CC8 00023C08  83 C1 00 08 */ lwz r30, 8(r1)
 /* 80026CCC 00023C0C  80 01 00 14 */ lwz r0, 0x14(r1)

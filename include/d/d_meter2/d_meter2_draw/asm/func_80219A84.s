@@ -27,9 +27,9 @@
 /* 80219AEC 00216A2C  38 84 EB C8 */ addi r4, r4, lbl_8042EBC8@l
 /* 80219AF0 00216A30  C0 24 01 2C */ lfs f1, 0x12c(r4)
 /* 80219AF4 00216A34  C0 44 01 30 */ lfs f2, 0x130(r4)
-/* 80219AF8 00216A38  48 03 AA B9 */ bl CPaneMgr_NS_paneTrans
+/* 80219AF8 00216A38  48 03 AA B9 */ bl paneTrans__8CPaneMgrFff
 /* 80219AFC 00216A3C  80 7D 03 08 */ lwz r3, 0x308(r29)
-/* 80219B00 00216A40  48 03 BB 4D */ bl CPaneMgrAlpha_NS_isVisible
+/* 80219B00 00216A40  48 03 BB 4D */ bl isVisible__13CPaneMgrAlphaFv
 /* 80219B04 00216A44  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80219B08 00216A48  41 82 02 44 */ beq lbl_80219D4C
 /* 80219B0C 00216A4C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -50,11 +50,11 @@
 /* 80219B48 00216A88  C0 02 AE CC */ lfs f0, lbl_804548CC-_SDA2_BASE_(r2)
 /* 80219B4C 00216A8C  EF A1 00 24 */ fdivs f29, f1, f0
 /* 80219B50 00216A90  80 7D 02 F8 */ lwz r3, 0x2f8(r29)
-/* 80219B54 00216A94  48 03 BC D5 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80219B54 00216A94  48 03 BC D5 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219B58 00216A98  FF E0 08 90 */ fmr f31, f1
 /* 80219B5C 00216A9C  3B E0 00 01 */ li r31, 1
 /* 80219B60 00216AA0  7F A3 EB 78 */ mr r3, r29
-/* 80219B64 00216AA4  48 00 20 51 */ bl dMeter2Draw_c_NS_getCanoeFishing
+/* 80219B64 00216AA4  48 00 20 51 */ bl getCanoeFishing__13dMeter2Draw_cFv
 /* 80219B68 00216AA8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80219B6C 00216AAC  40 82 00 60 */ bne lbl_80219BCC
 /* 80219B70 00216AB0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -142,7 +142,7 @@ lbl_80219C68:
 /* 80219CA0 00216BE0  FC 80 18 90 */ fmr f4, f3
 /* 80219CA4 00216BE4  39 00 00 00 */ li r8, 0
 /* 80219CA8 00216BE8  48 09 1C DD */ bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
-/* 80219CAC 00216BEC  48 00 4D 25 */ bl dMeter2Info_set2DVibration
+/* 80219CAC 00216BEC  48 00 4D 25 */ bl dMeter2Info_set2DVibration__Fv
 lbl_80219CB0:
 /* 80219CB0 00216BF0  D3 BD 07 20 */ stfs f29, 0x720(r29)
 /* 80219CB4 00216BF4  3B E0 00 00 */ li r31, 0
@@ -209,7 +209,7 @@ lbl_80219D54:
 /* 80219D94 00216CD4  C0 02 AE CC */ lfs f0, lbl_804548CC-_SDA2_BASE_(r2)
 /* 80219D98 00216CD8  EF A1 00 24 */ fdivs f29, f1, f0
 /* 80219D9C 00216CDC  80 7D 02 F8 */ lwz r3, 0x2f8(r29)
-/* 80219DA0 00216CE0  48 03 BA 89 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 80219DA0 00216CE0  48 03 BA 89 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219DA4 00216CE4  FF C0 08 90 */ fmr f30, f1
 /* 80219DA8 00216CE8  57 C0 01 CF */ rlwinm. r0, r30, 0, 7, 7
 /* 80219DAC 00216CEC  41 82 00 0C */ beq lbl_80219DB8

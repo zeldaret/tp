@@ -26,11 +26,11 @@ lbl_80164E80:
 /* 80164E80 00161DC0  28 1D 00 00 */ cmplwi r29, 0
 /* 80164E84 00161DC4  40 82 00 10 */ bne lbl_80164E94
 /* 80164E88 00161DC8  7F C6 F3 78 */ mr r6, r30
-/* 80164E8C 00161DCC  4B FF FE E1 */ bl dCamera_c_NS_relationalPos
+/* 80164E8C 00161DCC  4B FF FE E1 */ bl relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz
 /* 80164E90 00161DD0  48 00 02 4C */ b lbl_801650DC
 lbl_80164E94:
 /* 80164E94 00161DD4  38 61 00 B8 */ addi r3, r1, 0xb8
-/* 80164E98 00161DD8  4B F3 28 85 */ bl dCamera_c_NS_attentionPos
+/* 80164E98 00161DD8  4B F3 28 85 */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 80164E9C 00161DDC  C0 01 00 B8 */ lfs f0, 0xb8(r1)
 /* 80164EA0 00161DE0  D0 01 01 00 */ stfs f0, 0x100(r1)
 /* 80164EA4 00161DE4  C0 01 00 BC */ lfs f0, 0xbc(r1)
@@ -40,7 +40,7 @@ lbl_80164E94:
 /* 80164EB4 00161DF4  38 61 00 AC */ addi r3, r1, 0xac
 /* 80164EB8 00161DF8  7F 64 DB 78 */ mr r4, r27
 /* 80164EBC 00161DFC  7F A5 EB 78 */ mr r5, r29
-/* 80164EC0 00161E00  4B F3 28 5D */ bl dCamera_c_NS_attentionPos
+/* 80164EC0 00161E00  4B F3 28 5D */ bl attentionPos__9dCamera_cFP10fopAc_ac_c
 /* 80164EC4 00161E04  C0 01 00 AC */ lfs f0, 0xac(r1)
 /* 80164EC8 00161E08  D0 01 00 F4 */ stfs f0, 0xf4(r1)
 /* 80164ECC 00161E0C  C0 01 00 B0 */ lfs f0, 0xb0(r1)

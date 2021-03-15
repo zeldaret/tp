@@ -3,8 +3,8 @@
 .section .text, "ax" # 8032c320
 
 
-.global J3DMaterialAnm_NS_initialize
-J3DMaterialAnm_NS_initialize:
+.global initialize__14J3DMaterialAnmFv
+initialize__14J3DMaterialAnmFv:
 /* 8032C320 00329260  38 80 00 00 */	li r4, 0
 /* 8032C324 00329264  7C 85 23 78 */	mr r5, r4
 /* 8032C328 00329268  38 00 00 02 */	li r0, 2
@@ -52,8 +52,8 @@ lbl_8032C3B0:
 /* 8032C3BC 003292FC  42 00 FF F4 */	bdnz lbl_8032C3B0
 /* 8032C3C0 00329300  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_calc
-J3DMaterialAnm_NS_calc:
+.global calc__14J3DMaterialAnmCFP11J3DMaterial
+calc__14J3DMaterialAnmCFP11J3DMaterial:
 /* 8032C3C4 00329304  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8032C3C8 00329308  7C 08 02 A6 */	mflr r0
 /* 8032C3CC 0032930C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -126,7 +126,7 @@ lbl_8032C49C:
 /* 8032C4C4 00329404  7C 65 1B 78 */	mr r5, r3
 /* 8032C4C8 00329408  80 7C 00 B8 */	lwz r3, 0xb8(r28)
 /* 8032C4CC 0032940C  A0 9C 00 B4 */	lhz r4, 0xb4(r28)
-/* 8032C4D0 00329410  4B FF ED 29 */	bl J3DAnmTevRegKey_NS_getTevColorReg
+/* 8032C4D0 00329410  4B FF ED 29 */	bl getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10
 lbl_8032C4D4:
 /* 8032C4D4 00329414  3B 7B 00 01 */	addi r27, r27, 1
 /* 8032C4D8 00329418  28 1B 00 03 */	cmplwi r27, 3
@@ -148,7 +148,7 @@ lbl_8032C4EC:
 /* 8032C514 00329454  7C 65 1B 78 */	mr r5, r3
 /* 8032C518 00329458  80 7C 00 D8 */	lwz r3, 0xd8(r28)
 /* 8032C51C 0032945C  A0 9C 00 D4 */	lhz r4, 0xd4(r28)
-/* 8032C520 00329460  4B FF EF 9D */	bl J3DAnmTevRegKey_NS_getTevKonstReg
+/* 8032C520 00329460  4B FF EF 9D */	bl getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor
 lbl_8032C524:
 /* 8032C524 00329464  3B 7B 00 01 */	addi r27, r27, 1
 /* 8032C528 00329468  28 1B 00 04 */	cmplwi r27, 4
@@ -172,7 +172,7 @@ lbl_8032C53C:
 /* 8032C56C 003294AC  C0 23 00 08 */	lfs f1, 8(r3)
 /* 8032C570 003294B0  A0 9C 00 14 */	lhz r4, 0x14(r28)
 /* 8032C574 003294B4  38 A5 00 10 */	addi r5, r5, 0x10
-/* 8032C578 003294B8  4B FF D9 9D */	bl J3DAnmTextureSRTKey_NS_calcTransform
+/* 8032C578 003294B8  4B FF D9 9D */	bl calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo
 lbl_8032C57C:
 /* 8032C57C 003294BC  3B 7B 00 01 */	addi r27, r27, 1
 /* 8032C580 003294C0  28 1B 00 08 */	cmplwi r27, 8
@@ -185,8 +185,8 @@ lbl_8032C57C:
 /* 8032C59C 003294DC  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032C5A0 003294E0  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_setMatColorAnm
-J3DMaterialAnm_NS_setMatColorAnm:
+.global setMatColorAnm__14J3DMaterialAnmFiP14J3DMatColorAnm
+setMatColorAnm__14J3DMaterialAnmFiP14J3DMatColorAnm:
 /* 8032C5A4 003294E4  28 05 00 00 */	cmplwi r5, 0
 /* 8032C5A8 003294E8  40 82 00 18 */	bne lbl_8032C5C0
 /* 8032C5AC 003294EC  38 A0 00 00 */	li r5, 0
@@ -205,8 +205,8 @@ lbl_8032C5C0:
 /* 8032C5DC 0032951C  B0 03 00 06 */	sth r0, 6(r3)
 /* 8032C5E0 00329520  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_setTexMtxAnm
-J3DMaterialAnm_NS_setTexMtxAnm:
+.global setTexMtxAnm__14J3DMaterialAnmFiP12J3DTexMtxAnm
+setTexMtxAnm__14J3DMaterialAnmFiP12J3DTexMtxAnm:
 /* 8032C5E4 00329524  28 05 00 00 */	cmplwi r5, 0
 /* 8032C5E8 00329528  40 82 00 18 */	bne lbl_8032C600
 /* 8032C5EC 0032952C  38 A0 00 00 */	li r5, 0
@@ -225,8 +225,8 @@ lbl_8032C600:
 /* 8032C61C 0032955C  B0 03 00 16 */	sth r0, 0x16(r3)
 /* 8032C620 00329560  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_setTexNoAnm
-J3DMaterialAnm_NS_setTexNoAnm:
+.global setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm
+setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm:
 /* 8032C624 00329564  28 05 00 00 */	cmplwi r5, 0
 /* 8032C628 00329568  40 82 00 18 */	bne lbl_8032C640
 /* 8032C62C 0032956C  38 A0 00 00 */	li r5, 0
@@ -245,8 +245,8 @@ lbl_8032C640:
 /* 8032C65C 0032959C  B0 03 00 5A */	sth r0, 0x5a(r3)
 /* 8032C660 003295A0  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_setTevColorAnm
-J3DMaterialAnm_NS_setTevColorAnm:
+.global setTevColorAnm__14J3DMaterialAnmFiP14J3DTevColorAnm
+setTevColorAnm__14J3DMaterialAnmFiP14J3DTevColorAnm:
 /* 8032C664 003295A4  28 05 00 00 */	cmplwi r5, 0
 /* 8032C668 003295A8  40 82 00 18 */	bne lbl_8032C680
 /* 8032C66C 003295AC  38 A0 00 00 */	li r5, 0
@@ -265,8 +265,8 @@ lbl_8032C680:
 /* 8032C69C 003295DC  B0 03 00 B6 */	sth r0, 0xb6(r3)
 /* 8032C6A0 003295E0  4E 80 00 20 */	blr 
 
-.global J3DMaterialAnm_NS_setTevKColorAnm
-J3DMaterialAnm_NS_setTevKColorAnm:
+.global setTevKColorAnm__14J3DMaterialAnmFiP15J3DTevKColorAnm
+setTevKColorAnm__14J3DMaterialAnmFiP15J3DTevKColorAnm:
 /* 8032C6A4 003295E4  28 05 00 00 */	cmplwi r5, 0
 /* 8032C6A8 003295E8  40 82 00 18 */	bne lbl_8032C6C0
 /* 8032C6AC 003295EC  38 A0 00 00 */	li r5, 0

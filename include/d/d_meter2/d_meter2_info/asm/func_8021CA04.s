@@ -3,7 +3,7 @@
 /* 8021CA0C 0021994C  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8021CA10 00219950  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8021CA14 00219954  38 60 00 00 */ li r3, 0
-/* 8021CA18 00219958  4B E1 28 F9 */ bl dComIfGs_setWarpMarkFlag
+/* 8021CA18 00219958  4B E1 28 F9 */ bl dComIfGs_setWarpMarkFlag__FUc
 /* 8021CA1C 0021995C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021CA20 00219960  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021CA24 00219964  38 00 FF FF */ li r0, -1

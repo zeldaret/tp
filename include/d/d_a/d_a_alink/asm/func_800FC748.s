@@ -4,10 +4,10 @@
 /* 800FC754 000F9694  80 03 32 CC */ lwz r0, 0x32cc(r3)
 /* 800FC758 000F9698  28 00 00 00 */ cmplwi r0, 0
 /* 800FC75C 000F969C  41 82 00 0C */ beq lbl_800FC768
-/* 800FC760 000F96A0  4B FF FE 45 */ bl daAlink_c_NS_setDragonHangPos
+/* 800FC760 000F96A0  4B FF FE 45 */ bl setDragonHangPos__9daAlink_cFv
 /* 800FC764 000F96A4  48 00 00 08 */ b lbl_800FC76C
 lbl_800FC768:
-/* 800FC768 000F96A8  4B FF FF 4D */ bl daAlink_c_NS_setOctaIealHangPos
+/* 800FC768 000F96A8  4B FF FF 4D */ bl setOctaIealHangPos__9daAlink_cFv
 lbl_800FC76C:
 /* 800FC76C 000F96AC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800FC770 000F96B0  7C 08 03 A6 */ mtlr r0

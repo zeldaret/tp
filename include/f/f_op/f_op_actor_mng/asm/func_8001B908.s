@@ -46,7 +46,7 @@ lbl_8001B984:
 /* 8001B9A8 000188E8  7F A7 EB 78 */ mr r7, r29
 /* 8001B9AC 000188EC  7F 68 DB 78 */ mr r8, r27
 /* 8001B9B0 000188F0  39 40 FF FF */ li r10, -1
-/* 8001B9B4 000188F4  48 02 5C B5 */ bl dEvt_control_c_NS_order
+/* 8001B9B4 000188F4  48 02 5C B5 */ bl order__14dEvt_control_cFUsUsUsUsPvPvsUc
 lbl_8001B9B8:
 /* 8001B9B8 000188F8  39 61 00 30 */ addi r11, r1, 0x30
 /* 8001B9BC 000188FC  48 34 68 65 */ bl _restgpr_27

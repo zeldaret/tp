@@ -5,7 +5,7 @@
 /* 800E200C 000DEF4C  F3 E1 00 18 */ psq_st f31, 24(r1), 0, 0
 /* 800E2010 000DEF50  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800E2014 000DEF54  7C 7F 1B 78 */ mr r31, r3
-/* 800E2018 000DEF58  4B FD 52 CD */ bl daAlink_c_NS_checkItemActorPointer
+/* 800E2018 000DEF58  4B FD 52 CD */ bl checkItemActorPointer__9daAlink_cFv
 /* 800E201C 000DEF5C  2C 03 00 00 */ cmpwi r3, 0
 /* 800E2020 000DEF60  40 82 00 0C */ bne lbl_800E202C
 /* 800E2024 000DEF64  38 60 00 01 */ li r3, 1
@@ -13,12 +13,12 @@
 lbl_800E202C:
 /* 800E202C 000DEF6C  7F E3 FB 78 */ mr r3, r31
 /* 800E2030 000DEF70  38 80 00 00 */ li r4, 0
-/* 800E2034 000DEF74  4B FD 80 9D */ bl daAlink_c_NS_checkNextAction
+/* 800E2034 000DEF74  4B FD 80 9D */ bl checkNextAction__9daAlink_cFi
 /* 800E2038 000DEF78  2C 03 00 00 */ cmpwi r3, 0
 /* 800E203C 000DEF7C  40 82 00 6C */ bne lbl_800E20A8
 /* 800E2040 000DEF80  C3 E2 92 BC */ lfs f31, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 800E2044 000DEF84  7F E3 FB 78 */ mr r3, r31
-/* 800E2048 000DEF88  4B FD 18 BD */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800E2048 000DEF88  4B FD 18 BD */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800E204C 000DEF8C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E2050 000DEF90  41 82 00 34 */ beq lbl_800E2084
 /* 800E2054 000DEF94  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -40,10 +40,10 @@ lbl_800E2084:
 lbl_800E2090:
 /* 800E2090 000DEFD0  7F E3 FB 78 */ mr r3, r31
 /* 800E2094 000DEFD4  FC 20 F8 90 */ fmr f1, f31
-/* 800E2098 000DEFD8  4B FC C9 D9 */ bl daAlink_c_NS_setBlendAtnMoveAnime
+/* 800E2098 000DEFD8  4B FC C9 D9 */ bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800E209C 000DEFDC  7F E3 FB 78 */ mr r3, r31
 /* 800E20A0 000DEFE0  38 80 00 00 */ li r4, 0
-/* 800E20A4 000DEFE4  4B FD 92 0D */ bl daAlink_c_NS_setBodyAngleXReadyAnime
+/* 800E20A4 000DEFE4  4B FD 92 0D */ bl setBodyAngleXReadyAnime__9daAlink_cFi
 lbl_800E20A8:
 /* 800E20A8 000DEFE8  38 60 00 01 */ li r3, 1
 lbl_800E20AC:

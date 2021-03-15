@@ -2,8 +2,8 @@
 
 .section .text, "ax" # 802dca1c
 
-.global JGadget_NS_TNodeLinkList_NS_erase
-JGadget_NS_TNodeLinkList_NS_erase:
+.global erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator
+erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator:
 /* 802DCA58 002D9998  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DCA5C 002D999C  7C 08 02 A6 */	mflr r0
 /* 802DCA60 002D99A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -16,15 +16,15 @@ JGadget_NS_TNodeLinkList_NS_erase:
 /* 802DCA7C 002D99BC  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 802DCA80 002D99C0  38 A1 00 10 */	addi r5, r1, 0x10
 /* 802DCA84 002D99C4  38 C1 00 0C */	addi r6, r1, 0xc
-/* 802DCA88 002D99C8  48 00 00 19 */	bl JGadget_NS_TNodeLinkList_NS_erase_X1_
+/* 802DCA88 002D99C8  48 00 00 19 */	bl erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
 /* 802DCA8C 002D99CC  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 802DCA90 002D99D0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 802DCA94 002D99D4  7C 08 03 A6 */	mtlr r0
 /* 802DCA98 002D99D8  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DCA9C 002D99DC  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TNodeLinkList_NS_erase_X1_
-JGadget_NS_TNodeLinkList_NS_erase_X1_:
+.global erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
+erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator:
 /* 802DCAA0 002D99E0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802DCAA4 002D99E4  7C 08 02 A6 */	mflr r0
 /* 802DCAA8 002D99E8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -40,7 +40,7 @@ lbl_802DCACC:
 /* 802DCACC 002D9A0C  83 C5 00 00 */	lwz r30, 0(r5)
 /* 802DCAD0 002D9A10  38 61 00 08 */	addi r3, r1, 8
 /* 802DCAD4 002D9A14  7F 84 E3 78 */	mr r4, r28
-/* 802DCAD8 002D9A18  48 00 00 FD */	bl JGadget_NS_TNodeLinkList_NS_Erase
+/* 802DCAD8 002D9A18  48 00 00 FD */	bl Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 /* 802DCADC 002D9A1C  7F C5 F3 78 */	mr r5, r30
 lbl_802DCAE0:
 /* 802DCAE0 002D9A20  7C 05 F8 40 */	cmplw r5, r31
@@ -54,8 +54,8 @@ lbl_802DCAE0:
 /* 802DCB00 002D9A40  38 21 00 30 */	addi r1, r1, 0x30
 /* 802DCB04 002D9A44  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TNodeLinkList_NS_splice
-JGadget_NS_TNodeLinkList_NS_splice:
+.global splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
+splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator:
 /* 802DCB08 002D9A48  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802DCB0C 002D9A4C  7C 08 02 A6 */	mflr r0
 /* 802DCB10 002D9A50  90 01 00 44 */	stw r0, 0x44(r1)
@@ -83,7 +83,7 @@ lbl_802DCB60:
 /* 802DCB64 002D9AA4  38 61 00 18 */	addi r3, r1, 0x18
 /* 802DCB68 002D9AA8  7C A4 2B 78 */	mr r4, r5
 /* 802DCB6C 002D9AAC  7C C5 33 78 */	mr r5, r6
-/* 802DCB70 002D9AB0  48 00 00 65 */	bl JGadget_NS_TNodeLinkList_NS_Erase
+/* 802DCB70 002D9AB0  48 00 00 65 */	bl Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
 /* 802DCB74 002D9AB4  80 1E 00 00 */	lwz r0, 0(r30)
 /* 802DCB78 002D9AB8  90 01 00 10 */	stw r0, 0x10(r1)
 /* 802DCB7C 002D9ABC  38 61 00 14 */	addi r3, r1, 0x14
@@ -113,8 +113,8 @@ Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget1
 /* 802DCBCC 002D9B0C  90 C3 00 00 */	stw r6, 0(r3)
 /* 802DCBD0 002D9B10  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TNodeLinkList_NS_Erase
-JGadget_NS_TNodeLinkList_NS_Erase:
+.global Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
+Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
 /* 802DCBD4 002D9B14  80 C5 00 00 */	lwz r6, 0(r5)
 /* 802DCBD8 002D9B18  80 A5 00 04 */	lwz r5, 4(r5)
 /* 802DCBDC 002D9B1C  90 A6 00 04 */	stw r5, 4(r6)
@@ -125,8 +125,8 @@ JGadget_NS_TNodeLinkList_NS_Erase:
 /* 802DCBF0 002D9B30  90 C3 00 00 */	stw r6, 0(r3)
 /* 802DCBF4 002D9B34  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TNodeLinkList_NS_Remove
-JGadget_NS_TNodeLinkList_NS_Remove:
+.global Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode
+Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode:
 /* 802DCBF8 002D9B38  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 802DCBFC 002D9B3C  7C 08 02 A6 */	mflr r0
 /* 802DCC00 002D9B40  90 01 00 54 */	stw r0, 0x54(r1)
@@ -161,7 +161,7 @@ lbl_802DCC48:
 /* 802DCC70 002D9BB0  38 81 00 10 */	addi r4, r1, 0x10
 /* 802DCC74 002D9BB4  7F 85 E3 78 */	mr r5, r28
 /* 802DCC78 002D9BB8  38 C1 00 18 */	addi r6, r1, 0x18
-/* 802DCC7C 002D9BBC  4B FF FE 8D */	bl JGadget_NS_TNodeLinkList_NS_splice
+/* 802DCC7C 002D9BBC  4B FF FE 8D */	bl splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
 /* 802DCC80 002D9BC0  48 00 00 0C */	b lbl_802DCC8C
 lbl_802DCC84:
 /* 802DCC84 002D9BC4  80 03 00 00 */	lwz r0, 0(r3)

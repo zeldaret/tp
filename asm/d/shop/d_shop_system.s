@@ -3,8 +3,8 @@
 .section .text, "ax" # 80197098
 
 
-.global dShopSystem_searchItemActor
-dShopSystem_searchItemActor:
+.global dShopSystem_searchItemActor__FPvPv
+dShopSystem_searchItemActor__FPvPv:
 /* 80197098 00193FD8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019709C 00193FDC  7C 08 02 A6 */	mflr r0
 /* 801970A0 00193FE0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -12,7 +12,7 @@ dShopSystem_searchItemActor:
 /* 801970A8 00193FE8  48 1C B1 2D */	bl _savegpr_27
 /* 801970AC 00193FEC  7C 7D 1B 78 */	mr r29, r3
 /* 801970B0 00193FF0  7C 9B 23 78 */	mr r27, r4
-/* 801970B4 00193FF4  4B E8 1C 2D */	bl fopAc_IsActor
+/* 801970B4 00193FF4  4B E8 1C 2D */	bl fopAc_IsActor__FPv
 /* 801970B8 00193FF8  2C 03 00 00 */	cmpwi r3, 0
 /* 801970BC 00193FFC  41 82 01 98 */	beq lbl_80197254
 /* 801970C0 00194000  A8 1D 00 08 */	lha r0, 8(r29)
@@ -129,8 +129,8 @@ lbl_80197254:
 /* 80197264 001941A4  7C 08 03 A6 */	mtlr r0
 /* 80197268 001941A8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019726C 001941AC  4E 80 00 20 */	blr 
-.global dShopSystem_searchCameraActor
-dShopSystem_searchCameraActor:
+.global dShopSystem_searchCameraActor__FPvPv
+dShopSystem_searchCameraActor__FPvPv:
 /* 80197270 001941B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80197274 001941B4  7C 08 02 A6 */	mflr r0
 /* 80197278 001941B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -138,7 +138,7 @@ dShopSystem_searchCameraActor:
 /* 80197280 001941C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80197284 001941C4  7C 7E 1B 78 */	mr r30, r3
 /* 80197288 001941C8  7C 9F 23 78 */	mr r31, r4
-/* 8019728C 001941CC  4B E8 1A 55 */	bl fopAc_IsActor
+/* 8019728C 001941CC  4B E8 1A 55 */	bl fopAc_IsActor__FPv
 /* 80197290 001941D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80197294 001941D4  41 82 00 88 */	beq lbl_8019731C
 /* 80197298 001941D8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -253,7 +253,7 @@ lbl_80197414:
 /* 80197430 00194370  38 80 00 01 */	li r4, 1
 /* 80197434 00194374  C0 22 A1 08 */	lfs f1, lbl_80453B08-_SDA2_BASE_(r2)
 /* 80197438 00194378  38 A0 00 00 */	li r5, 0
-/* 8019743C 0019437C  4B FF CD E5 */	bl dSelect_cursor_c
+/* 8019743C 0019437C  4B FF CD E5 */	bl __ct__16dSelect_cursor_cFUcfP10JKRArchive
 /* 80197440 00194380  7C 60 1B 78 */	mr r0, r3
 lbl_80197444:
 /* 80197444 00194384  90 1F 0E 44 */	stw r0, 0xe44(r31)
@@ -263,7 +263,7 @@ lbl_80197444:
 /* 80197454 00194394  C0 62 A1 0C */	lfs f3, lbl_80453B0C-_SDA2_BASE_(r2)
 /* 80197458 00194398  C0 82 A1 10 */	lfs f4, lbl_80453B10-_SDA2_BASE_(r2)
 /* 8019745C 0019439C  FC A0 20 90 */	fmr f5, f4
-/* 80197460 001943A0  4B FF DD 51 */	bl dSelect_cursor_c_NS_setParam
+/* 80197460 001943A0  4B FF DD 51 */	bl setParam__16dSelect_cursor_cFfffff
 lbl_80197464:
 /* 80197464 001943A4  38 00 FF FF */	li r0, -1
 /* 80197468 001943A8  90 1F 0F 64 */	stw r0, 0xf64(r31)
@@ -308,7 +308,7 @@ lbl_80197464:
 /* 80197504 00194444  3C 80 80 3C */	lis r4, lbl_803BBA7C@ha
 /* 80197508 00194448  38 04 BA 7C */	addi r0, r4, lbl_803BBA7C@l
 /* 8019750C 0019444C  90 1E 0E 3C */	stw r0, 0xe3c(r30)
-/* 80197510 00194450  48 00 30 55 */	bl dShopSystem_c_NS_deleteObject
+/* 80197510 00194450  48 00 30 55 */	bl deleteObject__13dShopSystem_cFv
 /* 80197514 00194454  38 E0 00 00 */	li r7, 0
 /* 80197518 00194458  98 ED 8A D8 */	stb r7, lbl_80451058-_SDA_BASE_(r13)
 /* 8019751C 0019445C  98 ED 8A E0 */	stb r7, lbl_80451060-_SDA_BASE_(r13)
@@ -339,10 +339,10 @@ lbl_80197568:
 /* 80197578 001944B8  90 0D 8A E4 */	stw r0, lbl_80451064-_SDA_BASE_(r13)
 /* 8019757C 001944BC  38 7E 0E 48 */	addi r3, r30, 0xe48
 /* 80197580 001944C0  38 80 FF FF */	li r4, -1
-/* 80197584 001944C4  4B FF F3 D5 */	bl dShopItemCtrl_c_NS_dtor
+/* 80197584 001944C4  4B FF F3 D5 */	bl __dt__15dShopItemCtrl_cFv
 /* 80197588 001944C8  7F C3 F3 78 */	mr r3, r30
 /* 8019758C 001944CC  38 80 00 00 */	li r4, 0
-/* 80197590 001944D0  4B FB 57 91 */	bl daNpcT_c_NS_dtor
+/* 80197590 001944D0  4B FB 57 91 */	bl __dt__8daNpcT_cFv
 /* 80197594 001944D4  7F E0 07 35 */	extsh. r0, r31
 /* 80197598 001944D8  40 81 00 0C */	ble lbl_801975A4
 /* 8019759C 001944DC  7F C3 F3 78 */	mr r3, r30
@@ -356,8 +356,8 @@ lbl_801975A4:
 /* 801975B8 001944F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801975BC 001944FC  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_onFlag
-dShopSystem_c_NS_onFlag:
+.global onFlag__13dShopSystem_cFi
+onFlag__13dShopSystem_cFi:
 /* 801975C0 00194500  A0 A3 0F 6A */	lhz r5, 0xf6a(r3)
 /* 801975C4 00194504  38 00 00 01 */	li r0, 1
 /* 801975C8 00194508  7C 00 20 30 */	slw r0, r0, r4
@@ -366,8 +366,8 @@ dShopSystem_c_NS_onFlag:
 /* 801975D4 00194514  B0 03 0F 6A */	sth r0, 0xf6a(r3)
 /* 801975D8 00194518  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_offFlag
-dShopSystem_c_NS_offFlag:
+.global offFlag__13dShopSystem_cFi
+offFlag__13dShopSystem_cFi:
 /* 801975DC 0019451C  A0 A3 0F 6A */	lhz r5, 0xf6a(r3)
 /* 801975E0 00194520  38 00 00 01 */	li r0, 1
 /* 801975E4 00194524  7C 00 20 30 */	slw r0, r0, r4
@@ -376,8 +376,8 @@ dShopSystem_c_NS_offFlag:
 /* 801975F0 00194530  B0 03 0F 6A */	sth r0, 0xf6a(r3)
 /* 801975F4 00194534  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_isFlag
-dShopSystem_c_NS_isFlag:
+.global isFlag__13dShopSystem_cFi
+isFlag__13dShopSystem_cFi:
 /* 801975F8 00194538  A0 63 0F 6A */	lhz r3, 0xf6a(r3)
 /* 801975FC 0019453C  38 00 00 01 */	li r0, 1
 /* 80197600 00194540  7C 00 20 30 */	slw r0, r0, r4
@@ -387,8 +387,8 @@ dShopSystem_c_NS_isFlag:
 /* 80197610 00194550  7C 60 19 10 */	subfe r3, r0, r3
 /* 80197614 00194554  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_onSoldOutItemFlag
-dShopSystem_c_NS_onSoldOutItemFlag:
+.global onSoldOutItemFlag__13dShopSystem_cFi
+onSoldOutItemFlag__13dShopSystem_cFi:
 /* 80197618 00194558  88 A3 0F 74 */	lbz r5, 0xf74(r3)
 /* 8019761C 0019455C  38 00 00 01 */	li r0, 1
 /* 80197620 00194560  7C 00 20 30 */	slw r0, r0, r4
@@ -397,8 +397,8 @@ dShopSystem_c_NS_onSoldOutItemFlag:
 /* 8019762C 0019456C  98 03 0F 74 */	stb r0, 0xf74(r3)
 /* 80197630 00194570  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_offSoldOutItemFlag
-dShopSystem_c_NS_offSoldOutItemFlag:
+.global offSoldOutItemFlag__13dShopSystem_cFi
+offSoldOutItemFlag__13dShopSystem_cFi:
 /* 80197634 00194574  88 A3 0F 74 */	lbz r5, 0xf74(r3)
 /* 80197638 00194578  38 00 00 01 */	li r0, 1
 /* 8019763C 0019457C  7C 00 20 30 */	slw r0, r0, r4
@@ -407,8 +407,8 @@ dShopSystem_c_NS_offSoldOutItemFlag:
 /* 80197648 00194588  98 03 0F 74 */	stb r0, 0xf74(r3)
 /* 8019764C 0019458C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_isSoldOutItemFlag
-dShopSystem_c_NS_isSoldOutItemFlag:
+.global isSoldOutItemFlag__13dShopSystem_cFi
+isSoldOutItemFlag__13dShopSystem_cFi:
 /* 80197650 00194590  88 63 0F 74 */	lbz r3, 0xf74(r3)
 /* 80197654 00194594  38 00 00 01 */	li r0, 1
 /* 80197658 00194598  7C 00 20 30 */	slw r0, r0, r4
@@ -418,8 +418,8 @@ dShopSystem_c_NS_isSoldOutItemFlag:
 /* 80197668 001945A8  7C 60 19 10 */	subfe r3, r0, r3
 /* 8019766C 001945AC  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_checkController
-dShopSystem_c_NS_checkController:
+.global checkController__13dShopSystem_cFUcP10dMsgFlow_c
+checkController__13dShopSystem_cFUcP10dMsgFlow_c:
 /* 80197670 001945B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80197674 001945B4  7C 08 02 A6 */	mflr r0
 /* 80197678 001945B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -437,12 +437,12 @@ dShopSystem_c_NS_checkController:
 /* 801976A8 001945E8  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 801976AC 001945EC  41 82 00 0C */	beq lbl_801976B8
 /* 801976B0 001945F0  38 60 00 01 */	li r3, 1
-/* 801976B4 001945F4  48 0A 02 05 */	bl dMsgObject_c_NS_setShopWaitTimer
+/* 801976B4 001945F4  48 0A 02 05 */	bl setShopWaitTimer__12dMsgObject_cFUc
 lbl_801976B8:
 /* 801976B8 001945F8  38 60 00 00 */	li r3, 0
 /* 801976BC 001945FC  48 00 01 34 */	b lbl_801977F0
 lbl_801976C0:
-/* 801976C0 00194600  48 00 34 E9 */	bl dShopSystem_c_NS_dpdMove
+/* 801976C0 00194600  48 00 34 E9 */	bl dpdMove__13dShopSystem_cFv
 /* 801976C4 00194604  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801976C8 00194608  40 82 00 0C */	bne lbl_801976D4
 /* 801976CC 0019460C  80 7D 0E 40 */	lwz r3, 0xe40(r29)
@@ -453,19 +453,19 @@ lbl_801976D4:
 /* 801976DC 0019461C  40 82 00 14 */	bne lbl_801976F0
 /* 801976E0 00194620  7F A3 EB 78 */	mr r3, r29
 /* 801976E4 00194624  7F C4 F3 78 */	mr r4, r30
-/* 801976E8 00194628  48 00 0B 69 */	bl dShopSystem_c_NS_chooseItem4
+/* 801976E8 00194628  48 00 0B 69 */	bl chooseItem4__13dShopSystem_cFUc
 /* 801976EC 0019462C  48 00 00 28 */	b lbl_80197714
 lbl_801976F0:
 /* 801976F0 00194630  28 00 00 05 */	cmplwi r0, 5
 /* 801976F4 00194634  40 82 00 14 */	bne lbl_80197708
 /* 801976F8 00194638  7F A3 EB 78 */	mr r3, r29
 /* 801976FC 0019463C  7F C4 F3 78 */	mr r4, r30
-/* 80197700 00194640  48 00 06 D1 */	bl dShopSystem_c_NS_chooseItem5
+/* 80197700 00194640  48 00 06 D1 */	bl chooseItem5__13dShopSystem_cFUc
 /* 80197704 00194644  48 00 00 10 */	b lbl_80197714
 lbl_80197708:
 /* 80197708 00194648  7F A3 EB 78 */	mr r3, r29
 /* 8019770C 0019464C  7F C4 F3 78 */	mr r4, r30
-/* 80197710 00194650  48 00 00 F9 */	bl dShopSystem_c_NS_chooseItem3
+/* 80197710 00194650  48 00 00 F9 */	bl chooseItem3__13dShopSystem_cFUc
 lbl_80197714:
 /* 80197714 00194654  2C 03 00 00 */	cmpwi r3, 0
 /* 80197718 00194658  41 82 00 08 */	beq lbl_80197720
@@ -488,19 +488,19 @@ lbl_8019774C:
 /* 80197754 00194694  80 1C 00 34 */	lwz r0, 0x34(r28)
 /* 80197758 00194698  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 8019775C 0019469C  41 82 00 54 */	beq lbl_801977B0
-/* 80197760 001946A0  48 0A 0A CD */	bl dMsgObject_c_NS_getStatus
+/* 80197760 001946A0  48 0A 0A CD */	bl getStatus__12dMsgObject_cFv
 /* 80197764 001946A4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80197768 001946A8  28 00 00 06 */	cmplwi r0, 6
 /* 8019776C 001946AC  41 82 00 44 */	beq lbl_801977B0
-/* 80197770 001946B0  48 0A 0A BD */	bl dMsgObject_c_NS_getStatus
+/* 80197770 001946B0  48 0A 0A BD */	bl getStatus__12dMsgObject_cFv
 /* 80197774 001946B4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80197778 001946B8  28 00 00 08 */	cmplwi r0, 8
 /* 8019777C 001946BC  41 82 00 34 */	beq lbl_801977B0
-/* 80197780 001946C0  48 0A 0A AD */	bl dMsgObject_c_NS_getStatus
+/* 80197780 001946C0  48 0A 0A AD */	bl getStatus__12dMsgObject_cFv
 /* 80197784 001946C4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80197788 001946C8  28 00 00 09 */	cmplwi r0, 9
 /* 8019778C 001946CC  41 82 00 24 */	beq lbl_801977B0
-/* 80197790 001946D0  48 0A 0A 9D */	bl dMsgObject_c_NS_getStatus
+/* 80197790 001946D0  48 0A 0A 9D */	bl getStatus__12dMsgObject_cFv
 /* 80197794 001946D4  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80197798 001946D8  28 00 00 14 */	cmplwi r0, 0x14
 /* 8019779C 001946DC  41 82 00 14 */	beq lbl_801977B0
@@ -535,8 +535,8 @@ lbl_801977F0:
 /* 80197800 00194740  38 21 00 20 */	addi r1, r1, 0x20
 /* 80197804 00194744  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_chooseItem3
-dShopSystem_c_NS_chooseItem3:
+.global chooseItem3__13dShopSystem_cFUc
+chooseItem3__13dShopSystem_cFUc:
 /* 80197808 00194748  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8019780C 0019474C  7C 08 02 A6 */	mflr r0
 /* 80197810 00194750  90 01 00 44 */	stw r0, 0x44(r1)
@@ -546,7 +546,7 @@ dShopSystem_c_NS_chooseItem3:
 /* 80197820 00194760  7C 9E 23 78 */	mr r30, r4
 /* 80197824 00194764  8B E3 0F 6F */	lbz r31, 0xf6f(r3)
 /* 80197828 00194768  80 83 0E 40 */	lwz r4, 0xe40(r3)
-/* 8019782C 0019476C  48 00 33 35 */	bl dShopSystem_c_NS_checkLeftTrigger
+/* 8019782C 0019476C  48 00 33 35 */	bl checkLeftTrigger__13dShopSystem_cFP9STControl
 /* 80197830 00194770  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80197834 00194774  41 82 02 1C */	beq lbl_80197A50
 /* 80197838 00194778  57 C3 06 3E */	clrlwi r3, r30, 0x18
@@ -564,7 +564,7 @@ dShopSystem_c_NS_chooseItem3:
 /* 80197868 001947A8  41 82 00 28 */	beq lbl_80197890
 /* 8019786C 001947AC  7F A3 EB 78 */	mr r3, r29
 /* 80197870 001947B0  38 84 FF FF */	addi r4, r4, -1
-/* 80197874 001947B4  4B FF FD 85 */	bl dShopSystem_c_NS_isFlag
+/* 80197874 001947B4  4B FF FD 85 */	bl isFlag__13dShopSystem_cFi
 /* 80197878 001947B8  2C 03 00 00 */	cmpwi r3, 0
 /* 8019787C 001947BC  41 82 00 14 */	beq lbl_80197890
 /* 80197880 001947C0  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -653,7 +653,7 @@ lbl_80197990:
 /* 801979B0 001948F0  41 82 00 28 */	beq lbl_801979D8
 /* 801979B4 001948F4  7F A3 EB 78 */	mr r3, r29
 /* 801979B8 001948F8  38 84 FF FF */	addi r4, r4, -1
-/* 801979BC 001948FC  4B FF FC 3D */	bl dShopSystem_c_NS_isFlag
+/* 801979BC 001948FC  4B FF FC 3D */	bl isFlag__13dShopSystem_cFi
 /* 801979C0 00194900  2C 03 00 00 */	cmpwi r3, 0
 /* 801979C4 00194904  41 82 00 14 */	beq lbl_801979D8
 /* 801979C8 00194908  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -696,7 +696,7 @@ lbl_80197A48:
 lbl_80197A50:
 /* 80197A50 00194990  7F A3 EB 78 */	mr r3, r29
 /* 80197A54 00194994  80 9D 0E 40 */	lwz r4, 0xe40(r29)
-/* 80197A58 00194998  48 00 31 2D */	bl dShopSystem_c_NS_checkRightTrigger
+/* 80197A58 00194998  48 00 31 2D */	bl checkRightTrigger__13dShopSystem_cFP9STControl
 /* 80197A5C 0019499C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80197A60 001949A0  41 82 01 8C */	beq lbl_80197BEC
 /* 80197A64 001949A4  57 C0 06 3E */	clrlwi r0, r30, 0x18
@@ -718,7 +718,7 @@ lbl_80197A50:
 /* 80197AA4 001949E4  41 82 00 28 */	beq lbl_80197ACC
 /* 80197AA8 001949E8  7F A3 EB 78 */	mr r3, r29
 /* 80197AAC 001949EC  38 84 FF FF */	addi r4, r4, -1
-/* 80197AB0 001949F0  4B FF FB 49 */	bl dShopSystem_c_NS_isFlag
+/* 80197AB0 001949F0  4B FF FB 49 */	bl isFlag__13dShopSystem_cFi
 /* 80197AB4 001949F4  2C 03 00 00 */	cmpwi r3, 0
 /* 80197AB8 001949F8  41 82 00 14 */	beq lbl_80197ACC
 /* 80197ABC 001949FC  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -766,7 +766,7 @@ lbl_80197B38:
 /* 80197B58 00194A98  41 82 00 28 */	beq lbl_80197B80
 /* 80197B5C 00194A9C  7F A3 EB 78 */	mr r3, r29
 /* 80197B60 00194AA0  38 84 FF FF */	addi r4, r4, -1
-/* 80197B64 00194AA4  4B FF FA 95 */	bl dShopSystem_c_NS_isFlag
+/* 80197B64 00194AA4  4B FF FA 95 */	bl isFlag__13dShopSystem_cFi
 /* 80197B68 00194AA8  2C 03 00 00 */	cmpwi r3, 0
 /* 80197B6C 00194AAC  41 82 00 14 */	beq lbl_80197B80
 /* 80197B70 00194AB0  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -825,7 +825,7 @@ lbl_80197BEC:
 /* 80197C38 00194B78  41 82 00 28 */	beq lbl_80197C60
 /* 80197C3C 00194B7C  7F A3 EB 78 */	mr r3, r29
 /* 80197C40 00194B80  38 84 FF FF */	addi r4, r4, -1
-/* 80197C44 00194B84  4B FF F9 B5 */	bl dShopSystem_c_NS_isFlag
+/* 80197C44 00194B84  4B FF F9 B5 */	bl isFlag__13dShopSystem_cFi
 /* 80197C48 00194B88  2C 03 00 00 */	cmpwi r3, 0
 /* 80197C4C 00194B8C  41 82 00 14 */	beq lbl_80197C60
 /* 80197C50 00194B90  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -887,7 +887,7 @@ lbl_80197CD8:
 /* 80197D20 00194C60  41 82 00 28 */	beq lbl_80197D48
 /* 80197D24 00194C64  7F A3 EB 78 */	mr r3, r29
 /* 80197D28 00194C68  38 84 FF FF */	addi r4, r4, -1
-/* 80197D2C 00194C6C  4B FF F8 CD */	bl dShopSystem_c_NS_isFlag
+/* 80197D2C 00194C6C  4B FF F8 CD */	bl isFlag__13dShopSystem_cFi
 /* 80197D30 00194C70  2C 03 00 00 */	cmpwi r3, 0
 /* 80197D34 00194C74  41 82 00 14 */	beq lbl_80197D48
 /* 80197D38 00194C78  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -933,8 +933,8 @@ lbl_80197DB8:
 /* 80197DC8 00194D08  38 21 00 40 */	addi r1, r1, 0x40
 /* 80197DCC 00194D0C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_chooseItem5
-dShopSystem_c_NS_chooseItem5:
+.global chooseItem5__13dShopSystem_cFUc
+chooseItem5__13dShopSystem_cFUc:
 /* 80197DD0 00194D10  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80197DD4 00194D14  7C 08 02 A6 */	mflr r0
 /* 80197DD8 00194D18  90 01 00 34 */	stw r0, 0x34(r1)
@@ -944,7 +944,7 @@ dShopSystem_c_NS_chooseItem5:
 /* 80197DE8 00194D28  7C 9E 23 78 */	mr r30, r4
 /* 80197DEC 00194D2C  8B E3 0F 6F */	lbz r31, 0xf6f(r3)
 /* 80197DF0 00194D30  80 83 0E 40 */	lwz r4, 0xe40(r3)
-/* 80197DF4 00194D34  48 00 2D 6D */	bl dShopSystem_c_NS_checkLeftTrigger
+/* 80197DF4 00194D34  48 00 2D 6D */	bl checkLeftTrigger__13dShopSystem_cFP9STControl
 /* 80197DF8 00194D38  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80197DFC 00194D3C  41 82 01 5C */	beq lbl_80197F58
 /* 80197E00 00194D40  57 C3 06 3E */	clrlwi r3, r30, 0x18
@@ -999,7 +999,7 @@ lbl_80197E98:
 /* 80197EB8 00194DF8  41 82 00 28 */	beq lbl_80197EE0
 /* 80197EBC 00194DFC  7F A3 EB 78 */	mr r3, r29
 /* 80197EC0 00194E00  38 84 FF FF */	addi r4, r4, -1
-/* 80197EC4 00194E04  4B FF F7 35 */	bl dShopSystem_c_NS_isFlag
+/* 80197EC4 00194E04  4B FF F7 35 */	bl isFlag__13dShopSystem_cFi
 /* 80197EC8 00194E08  2C 03 00 00 */	cmpwi r3, 0
 /* 80197ECC 00194E0C  41 82 00 14 */	beq lbl_80197EE0
 /* 80197ED0 00194E10  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -1042,7 +1042,7 @@ lbl_80197F50:
 lbl_80197F58:
 /* 80197F58 00194E98  7F A3 EB 78 */	mr r3, r29
 /* 80197F5C 00194E9C  80 9D 0E 40 */	lwz r4, 0xe40(r29)
-/* 80197F60 00194EA0  48 00 2C 25 */	bl dShopSystem_c_NS_checkRightTrigger
+/* 80197F60 00194EA0  48 00 2C 25 */	bl checkRightTrigger__13dShopSystem_cFP9STControl
 /* 80197F64 00194EA4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80197F68 00194EA8  41 82 00 D0 */	beq lbl_80198038
 /* 80197F6C 00194EAC  57 C0 06 3E */	clrlwi r0, r30, 0x18
@@ -1062,7 +1062,7 @@ lbl_80197F58:
 /* 80197FA4 00194EE4  41 82 00 28 */	beq lbl_80197FCC
 /* 80197FA8 00194EE8  7F A3 EB 78 */	mr r3, r29
 /* 80197FAC 00194EEC  38 84 FF FF */	addi r4, r4, -1
-/* 80197FB0 00194EF0  4B FF F6 49 */	bl dShopSystem_c_NS_isFlag
+/* 80197FB0 00194EF0  4B FF F6 49 */	bl isFlag__13dShopSystem_cFi
 /* 80197FB4 00194EF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80197FB8 00194EF8  41 82 00 14 */	beq lbl_80197FCC
 /* 80197FBC 00194EFC  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -1130,7 +1130,7 @@ lbl_80198094:
 /* 8019809C 00194FDC  41 82 00 28 */	beq lbl_801980C4
 /* 801980A0 00194FE0  7F A3 EB 78 */	mr r3, r29
 /* 801980A4 00194FE4  38 84 FF FF */	addi r4, r4, -1
-/* 801980A8 00194FE8  4B FF F5 51 */	bl dShopSystem_c_NS_isFlag
+/* 801980A8 00194FE8  4B FF F5 51 */	bl isFlag__13dShopSystem_cFi
 /* 801980AC 00194FEC  2C 03 00 00 */	cmpwi r3, 0
 /* 801980B0 00194FF0  41 82 00 14 */	beq lbl_801980C4
 /* 801980B4 00194FF4  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -1202,7 +1202,7 @@ lbl_80198198:
 /* 801981A0 001950E0  41 82 00 28 */	beq lbl_801981C8
 /* 801981A4 001950E4  7F A3 EB 78 */	mr r3, r29
 /* 801981A8 001950E8  38 84 FF FF */	addi r4, r4, -1
-/* 801981AC 001950EC  4B FF F4 4D */	bl dShopSystem_c_NS_isFlag
+/* 801981AC 001950EC  4B FF F4 4D */	bl isFlag__13dShopSystem_cFi
 /* 801981B0 001950F0  2C 03 00 00 */	cmpwi r3, 0
 /* 801981B4 001950F4  41 82 00 14 */	beq lbl_801981C8
 /* 801981B8 001950F8  88 1D 0F 6F */	lbz r0, 0xf6f(r29)
@@ -1248,8 +1248,8 @@ lbl_80198238:
 /* 80198248 00195188  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019824C 0019518C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_chooseItem4
-dShopSystem_c_NS_chooseItem4:
+.global chooseItem4__13dShopSystem_cFUc
+chooseItem4__13dShopSystem_cFUc:
 /* 80198250 00195190  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80198254 00195194  7C 08 02 A6 */	mflr r0
 /* 80198258 00195198  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1259,7 +1259,7 @@ dShopSystem_c_NS_chooseItem4:
 /* 80198268 001951A8  7C 9D 23 78 */	mr r29, r4
 /* 8019826C 001951AC  8B C3 0F 6F */	lbz r30, 0xf6f(r3)
 /* 80198270 001951B0  80 83 0E 40 */	lwz r4, 0xe40(r3)
-/* 80198274 001951B4  48 00 28 ED */	bl dShopSystem_c_NS_checkLeftTrigger
+/* 80198274 001951B4  48 00 28 ED */	bl checkLeftTrigger__13dShopSystem_cFP9STControl
 /* 80198278 001951B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8019827C 001951BC  41 82 00 D4 */	beq lbl_80198350
 /* 80198280 001951C0  57 A0 06 3E */	clrlwi r0, r29, 0x18
@@ -1277,7 +1277,7 @@ dShopSystem_c_NS_chooseItem4:
 /* 801982B0 001951F0  41 82 00 28 */	beq lbl_801982D8
 /* 801982B4 001951F4  7F E3 FB 78 */	mr r3, r31
 /* 801982B8 001951F8  38 84 FF FF */	addi r4, r4, -1
-/* 801982BC 001951FC  4B FF F3 3D */	bl dShopSystem_c_NS_isFlag
+/* 801982BC 001951FC  4B FF F3 3D */	bl isFlag__13dShopSystem_cFi
 /* 801982C0 00195200  2C 03 00 00 */	cmpwi r3, 0
 /* 801982C4 00195204  41 82 00 14 */	beq lbl_801982D8
 /* 801982C8 00195208  88 1F 0F 6F */	lbz r0, 0xf6f(r31)
@@ -1320,7 +1320,7 @@ lbl_80198348:
 lbl_80198350:
 /* 80198350 00195290  7F E3 FB 78 */	mr r3, r31
 /* 80198354 00195294  80 9F 0E 40 */	lwz r4, 0xe40(r31)
-/* 80198358 00195298  48 00 28 2D */	bl dShopSystem_c_NS_checkRightTrigger
+/* 80198358 00195298  48 00 28 2D */	bl checkRightTrigger__13dShopSystem_cFP9STControl
 /* 8019835C 0019529C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80198360 001952A0  41 82 00 C8 */	beq lbl_80198428
 /* 80198364 001952A4  57 A0 06 3E */	clrlwi r0, r29, 0x18
@@ -1338,7 +1338,7 @@ lbl_80198350:
 /* 80198394 001952D4  41 82 00 28 */	beq lbl_801983BC
 /* 80198398 001952D8  7F E3 FB 78 */	mr r3, r31
 /* 8019839C 001952DC  38 84 FF FF */	addi r4, r4, -1
-/* 801983A0 001952E0  4B FF F2 59 */	bl dShopSystem_c_NS_isFlag
+/* 801983A0 001952E0  4B FF F2 59 */	bl isFlag__13dShopSystem_cFi
 /* 801983A4 001952E4  2C 03 00 00 */	cmpwi r3, 0
 /* 801983A8 001952E8  41 82 00 14 */	beq lbl_801983BC
 /* 801983AC 001952EC  88 1F 0F 6F */	lbz r0, 0xf6f(r31)
@@ -1384,8 +1384,8 @@ lbl_8019842C:
 /* 8019843C 0019537C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80198440 00195380  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_moveCursor
-dShopSystem_c_NS_moveCursor:
+.global moveCursor__13dShopSystem_cFiUc
+moveCursor__13dShopSystem_cFiUc:
 /* 80198444 00195384  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80198448 00195388  7C 08 02 A6 */	mflr r0
 /* 8019844C 0019538C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1394,10 +1394,10 @@ dShopSystem_c_NS_moveCursor:
 /* 80198458 00195398  80 03 0F 60 */	lwz r0, 0xf60(r3)
 /* 8019845C 0019539C  2C 00 00 00 */	cmpwi r0, 0
 /* 80198460 001953A0  41 80 00 0C */	blt lbl_8019846C
-/* 80198464 001953A4  48 00 00 25 */	bl dShopSystem_c_NS_moveCursor0
+/* 80198464 001953A4  48 00 00 25 */	bl moveCursor0__13dShopSystem_cFiUc
 /* 80198468 001953A8  48 00 00 08 */	b lbl_80198470
 lbl_8019846C:
-/* 8019846C 001953AC  48 00 02 9D */	bl dShopSystem_c_NS_moveCursor1
+/* 8019846C 001953AC  48 00 02 9D */	bl moveCursor1__13dShopSystem_cFiUc
 lbl_80198470:
 /* 80198470 001953B0  B0 7F 0F 6C */	sth r3, 0xf6c(r31)
 /* 80198474 001953B4  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1406,8 +1406,8 @@ lbl_80198470:
 /* 80198480 001953C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80198484 001953C4  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_moveCursor0
-dShopSystem_c_NS_moveCursor0:
+.global moveCursor0__13dShopSystem_cFiUc
+moveCursor0__13dShopSystem_cFiUc:
 /* 80198488 001953C8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019848C 001953CC  7C 08 02 A6 */	mflr r0
 /* 80198490 001953D0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1417,7 +1417,7 @@ dShopSystem_c_NS_moveCursor0:
 /* 801984A0 001953E0  7C 9E 23 78 */	mr r30, r4
 /* 801984A4 001953E4  7C BF 2B 78 */	mr r31, r5
 /* 801984A8 001953E8  38 80 00 07 */	li r4, 7
-/* 801984AC 001953EC  4B FF F1 31 */	bl dShopSystem_c_NS_offFlag
+/* 801984AC 001953EC  4B FF F1 31 */	bl offFlag__13dShopSystem_cFi
 /* 801984B0 001953F0  2C 1E 00 04 */	cmpwi r30, 4
 /* 801984B4 001953F4  41 82 00 78 */	beq lbl_8019852C
 /* 801984B8 001953F8  40 80 00 1C */	bge lbl_801984D4
@@ -1531,7 +1531,7 @@ lbl_8019861C:
 lbl_80198640:
 /* 80198640 00195580  7F A3 EB 78 */	mr r3, r29
 /* 80198644 00195584  38 80 00 07 */	li r4, 7
-/* 80198648 00195588  4B FF EF 79 */	bl dShopSystem_c_NS_onFlag
+/* 80198648 00195588  4B FF EF 79 */	bl onFlag__13dShopSystem_cFi
 /* 8019864C 0019558C  88 1D 0F 6E */	lbz r0, 0xf6e(r29)
 /* 80198650 00195590  B0 1D 0F 4C */	sth r0, 0xf4c(r29)
 /* 80198654 00195594  C0 22 A1 18 */	lfs f1, lbl_80453B18-_SDA2_BASE_(r2)
@@ -1584,8 +1584,8 @@ lbl_801986F0:
 /* 80198700 00195640  38 21 00 20 */	addi r1, r1, 0x20
 /* 80198704 00195644  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_moveCursor1
-dShopSystem_c_NS_moveCursor1:
+.global moveCursor1__13dShopSystem_cFiUc
+moveCursor1__13dShopSystem_cFiUc:
 /* 80198708 00195648  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019870C 0019564C  7C 08 02 A6 */	mflr r0
 /* 80198710 00195650  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1595,7 +1595,7 @@ dShopSystem_c_NS_moveCursor1:
 /* 80198720 00195660  7C 9D 23 78 */	mr r29, r4
 /* 80198724 00195664  7C BE 2B 78 */	mr r30, r5
 /* 80198728 00195668  38 80 00 07 */	li r4, 7
-/* 8019872C 0019566C  4B FF EE B1 */	bl dShopSystem_c_NS_offFlag
+/* 8019872C 0019566C  4B FF EE B1 */	bl offFlag__13dShopSystem_cFi
 /* 80198730 00195670  2C 1D 00 02 */	cmpwi r29, 2
 /* 80198734 00195674  41 82 00 A4 */	beq lbl_801987D8
 /* 80198738 00195678  40 80 00 10 */	bge lbl_80198748
@@ -1609,7 +1609,7 @@ lbl_80198748:
 /* 80198754 00195694  28 03 00 00 */	cmplwi r3, 0
 /* 80198758 00195698  40 82 00 14 */	bne lbl_8019876C
 /* 8019875C 0019569C  7F E3 FB 78 */	mr r3, r31
-/* 80198760 001956A0  48 00 23 A1 */	bl dShopSystem_c_NS_getFlowNodeNum
+/* 80198760 001956A0  48 00 23 A1 */	bl getFlowNodeNum__13dShopSystem_cFv
 /* 80198764 001956A4  38 63 00 01 */	addi r3, r3, 1
 /* 80198768 001956A8  48 00 00 F8 */	b lbl_80198860
 lbl_8019876C:
@@ -1624,7 +1624,7 @@ lbl_80198784:
 /* 80198788 001956C8  28 03 00 00 */	cmplwi r3, 0
 /* 8019878C 001956CC  40 82 00 14 */	bne lbl_801987A0
 /* 80198790 001956D0  7F E3 FB 78 */	mr r3, r31
-/* 80198794 001956D4  48 00 23 6D */	bl dShopSystem_c_NS_getFlowNodeNum
+/* 80198794 001956D4  48 00 23 6D */	bl getFlowNodeNum__13dShopSystem_cFv
 /* 80198798 001956D8  38 63 00 01 */	addi r3, r3, 1
 /* 8019879C 001956DC  48 00 00 C4 */	b lbl_80198860
 lbl_801987A0:
@@ -1646,7 +1646,7 @@ lbl_801987C0:
 lbl_801987D8:
 /* 801987D8 00195718  7F E3 FB 78 */	mr r3, r31
 /* 801987DC 0019571C  38 80 00 07 */	li r4, 7
-/* 801987E0 00195720  4B FF ED E1 */	bl dShopSystem_c_NS_onFlag
+/* 801987E0 00195720  4B FF ED E1 */	bl onFlag__13dShopSystem_cFi
 /* 801987E4 00195724  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
 /* 801987E8 00195728  B0 1F 0F 4C */	sth r0, 0xf4c(r31)
 /* 801987EC 0019572C  C0 22 A1 18 */	lfs f1, lbl_80453B18-_SDA2_BASE_(r2)
@@ -1660,7 +1660,7 @@ lbl_801987D8:
 /* 8019880C 0019574C  28 03 00 00 */	cmplwi r3, 0
 /* 80198810 00195750  40 82 00 14 */	bne lbl_80198824
 /* 80198814 00195754  7F E3 FB 78 */	mr r3, r31
-/* 80198818 00195758  48 00 22 E9 */	bl dShopSystem_c_NS_getFlowNodeNum
+/* 80198818 00195758  48 00 22 E9 */	bl getFlowNodeNum__13dShopSystem_cFv
 /* 8019881C 0019575C  38 63 00 01 */	addi r3, r3, 1
 /* 80198820 00195760  48 00 00 40 */	b lbl_80198860
 lbl_80198824:
@@ -1706,7 +1706,7 @@ lbl_801988B0:
 /* 801988B0 001957F0  7F E3 FB 78 */	mr r3, r31
 /* 801988B4 001957F4  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 801988B8 001957F8  38 84 FF FF */	addi r4, r4, -1
-/* 801988BC 001957FC  4B FF ED 3D */	bl dShopSystem_c_NS_isFlag
+/* 801988BC 001957FC  4B FF ED 3D */	bl isFlag__13dShopSystem_cFi
 /* 801988C0 00195800  2C 03 00 00 */	cmpwi r3, 0
 /* 801988C4 00195804  41 82 00 30 */	beq lbl_801988F4
 lbl_801988C8:
@@ -1715,21 +1715,21 @@ lbl_801988C8:
 /* 801988D0 00195810  41 82 00 24 */	beq lbl_801988F4
 /* 801988D4 00195814  38 7F 0E 48 */	addi r3, r31, 0xe48
 /* 801988D8 00195818  38 84 FF FF */	addi r4, r4, -1
-/* 801988DC 0019581C  4B FF E1 61 */	bl dShopItemCtrl_c_NS_isHomePos
+/* 801988DC 0019581C  4B FF E1 61 */	bl isHomePos__15dShopItemCtrl_cFi
 /* 801988E0 00195820  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801988E4 00195824  41 82 00 10 */	beq lbl_801988F4
 /* 801988E8 00195828  80 7F 0E 44 */	lwz r3, 0xe44(r31)
-/* 801988EC 0019582C  4B FF CA 45 */	bl dSelect_cursor_c_NS_addAlpha
+/* 801988EC 0019582C  4B FF CA 45 */	bl addAlpha__16dSelect_cursor_cFv
 /* 801988F0 00195830  48 00 00 0C */	b lbl_801988FC
 lbl_801988F4:
 /* 801988F4 00195834  80 7F 0E 44 */	lwz r3, 0xe44(r31)
-/* 801988F8 00195838  4B FF CA D5 */	bl dSelect_cursor_c_NS_decAlpha
+/* 801988F8 00195838  4B FF CA D5 */	bl decAlpha__16dSelect_cursor_cFv
 lbl_801988FC:
 /* 801988FC 0019583C  80 7F 0E 44 */	lwz r3, 0xe44(r31)
 /* 80198900 00195840  3C 80 80 43 */	lis r4, lbl_80430110@ha
 /* 80198904 00195844  38 84 01 10 */	addi r4, r4, lbl_80430110@l
 /* 80198908 00195848  C0 24 00 2C */	lfs f1, 0x2c(r4)
-/* 8019890C 0019584C  4B FF C8 BD */	bl dSelect_cursor_c_NS_setScale
+/* 8019890C 0019584C  4B FF C8 BD */	bl setScale__16dSelect_cursor_cFf
 /* 80198910 00195850  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
 /* 80198914 00195854  28 00 00 00 */	cmplwi r0, 0
 /* 80198918 00195858  41 82 00 20 */	beq lbl_80198938
@@ -1739,7 +1739,7 @@ lbl_801988FC:
 /* 80198928 00195868  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8019892C 0019586C  38 A3 01 B8 */	addi r5, r3, 0x1b8
 /* 80198930 00195870  80 DF 0E 44 */	lwz r6, 0xe44(r31)
-/* 80198934 00195874  4B EB DE 61 */	bl dDlst_list_c_NS_set
+/* 80198934 00195874  4B EB DE 61 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_80198938:
 /* 80198938 00195878  38 60 00 01 */	li r3, 1
 /* 8019893C 0019587C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1766,7 +1766,7 @@ lbl_80198938:
 /* 80198990 001958D0  28 00 00 30 */	cmplwi r0, 0x30
 /* 80198994 001958D4  40 82 00 28 */	bne lbl_801989BC
 /* 80198998 001958D8  38 80 00 08 */	li r4, 8
-/* 8019899C 001958DC  4B FF EC 5D */	bl dShopSystem_c_NS_isFlag
+/* 8019899C 001958DC  4B FF EC 5D */	bl isFlag__13dShopSystem_cFi
 /* 801989A0 001958E0  2C 03 00 00 */	cmpwi r3, 0
 /* 801989A4 001958E4  40 82 00 0C */	bne lbl_801989B0
 /* 801989A8 001958E8  38 00 00 00 */	li r0, 0
@@ -1779,13 +1779,13 @@ lbl_801989B4:
 lbl_801989BC:
 /* 801989BC 001958FC  3B E0 00 00 */	li r31, 0
 /* 801989C0 00195900  38 85 FF FF */	addi r4, r5, -1
-/* 801989C4 00195904  4B FF EC 35 */	bl dShopSystem_c_NS_isFlag
+/* 801989C4 00195904  4B FF EC 35 */	bl isFlag__13dShopSystem_cFi
 /* 801989C8 00195908  2C 03 00 00 */	cmpwi r3, 0
 /* 801989CC 0019590C  40 82 00 1C */	bne lbl_801989E8
 /* 801989D0 00195910  7F C3 F3 78 */	mr r3, r30
 /* 801989D4 00195914  88 9E 0F 6E */	lbz r4, 0xf6e(r30)
 /* 801989D8 00195918  38 84 FF FF */	addi r4, r4, -1
-/* 801989DC 0019591C  4B FF EC 75 */	bl dShopSystem_c_NS_isSoldOutItemFlag
+/* 801989DC 0019591C  4B FF EC 75 */	bl isSoldOutItemFlag__13dShopSystem_cFi
 /* 801989E0 00195920  2C 03 00 00 */	cmpwi r3, 0
 /* 801989E4 00195924  41 82 00 08 */	beq lbl_801989EC
 lbl_801989E8:
@@ -1802,7 +1802,7 @@ lbl_80198A00:
 lbl_80198A04:
 /* 80198A04 00195944  38 7E 0E 48 */	addi r3, r30, 0xe48
 /* 80198A08 00195948  54 84 06 3E */	clrlwi r4, r4, 0x18
-/* 80198A0C 0019594C  4B FF E0 E5 */	bl dShopItemCtrl_c_NS_setRotateAnime
+/* 80198A0C 0019594C  4B FF E0 E5 */	bl setRotateAnime__15dShopItemCtrl_cFi
 /* 80198A10 00195950  38 60 00 01 */	li r3, 1
 /* 80198A14 00195954  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80198A18 00195958  83 C1 00 08 */	lwz r30, 8(r1)
@@ -1833,7 +1833,7 @@ lbl_80198A04:
 /* 80198A7C 001959BC  28 00 00 66 */	cmplwi r0, 0x66
 /* 80198A80 001959C0  40 82 00 3C */	bne lbl_80198ABC
 /* 80198A84 001959C4  38 80 00 08 */	li r4, 8
-/* 80198A88 001959C8  4B FF EB 71 */	bl dShopSystem_c_NS_isFlag
+/* 80198A88 001959C8  4B FF EB 71 */	bl isFlag__13dShopSystem_cFi
 /* 80198A8C 001959CC  30 03 FF FF */	addic r0, r3, -1
 /* 80198A90 001959D0  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198A94 001959D4  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -1844,11 +1844,11 @@ lbl_80198A04:
 /* 80198AA8 001959E8  A8 C6 00 3C */	lha r6, 0x3c(r6)
 /* 80198AAC 001959EC  38 06 EC 78 */	addi r0, r6, -5000
 /* 80198AB0 001959F0  7C 06 07 34 */	extsh r6, r0
-/* 80198AB4 001959F4  4B FF E0 F1 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198AB4 001959F4  4B FF E0 F1 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198AB8 001959F8  48 00 05 DC */	b lbl_80199094
 lbl_80198ABC:
 /* 80198ABC 001959FC  38 80 00 08 */	li r4, 8
-/* 80198AC0 00195A00  4B FF EB 39 */	bl dShopSystem_c_NS_isFlag
+/* 80198AC0 00195A00  4B FF EB 39 */	bl isFlag__13dShopSystem_cFi
 /* 80198AC4 00195A04  30 03 FF FF */	addic r0, r3, -1
 /* 80198AC8 00195A08  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198ACC 00195A0C  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -1857,7 +1857,7 @@ lbl_80198ABC:
 /* 80198AD8 00195A18  3C C0 80 43 */	lis r6, lbl_80430110@ha
 /* 80198ADC 00195A1C  38 C6 01 10 */	addi r6, r6, lbl_80430110@l
 /* 80198AE0 00195A20  A8 C6 00 3C */	lha r6, 0x3c(r6)
-/* 80198AE4 00195A24  4B FF E0 C1 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198AE4 00195A24  4B FF E0 C1 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198AE8 00195A28  48 00 05 AC */	b lbl_80199094
 lbl_80198AEC:
 /* 80198AEC 00195A2C  3C 60 80 3C */	lis r3, lbl_803BB8A4@ha
@@ -2084,7 +2084,7 @@ lbl_80198E10:
 /* 80198E30 00195D70  40 82 00 40 */	bne lbl_80198E70
 /* 80198E34 00195D74  7F 83 E3 78 */	mr r3, r28
 /* 80198E38 00195D78  38 80 00 08 */	li r4, 8
-/* 80198E3C 00195D7C  4B FF E7 BD */	bl dShopSystem_c_NS_isFlag
+/* 80198E3C 00195D7C  4B FF E7 BD */	bl isFlag__13dShopSystem_cFi
 /* 80198E40 00195D80  30 03 FF FF */	addic r0, r3, -1
 /* 80198E44 00195D84  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198E48 00195D88  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2095,12 +2095,12 @@ lbl_80198E10:
 /* 80198E5C 00195D9C  A8 C6 00 3E */	lha r6, 0x3e(r6)
 /* 80198E60 00195DA0  38 06 E4 A8 */	addi r0, r6, -7000
 /* 80198E64 00195DA4  7C 06 07 34 */	extsh r6, r0
-/* 80198E68 00195DA8  4B FF DD 3D */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198E68 00195DA8  4B FF DD 3D */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198E6C 00195DAC  48 00 02 28 */	b lbl_80199094
 lbl_80198E70:
 /* 80198E70 00195DB0  7F 83 E3 78 */	mr r3, r28
 /* 80198E74 00195DB4  38 80 00 08 */	li r4, 8
-/* 80198E78 00195DB8  4B FF E7 81 */	bl dShopSystem_c_NS_isFlag
+/* 80198E78 00195DB8  4B FF E7 81 */	bl isFlag__13dShopSystem_cFi
 /* 80198E7C 00195DBC  30 03 FF FF */	addic r0, r3, -1
 /* 80198E80 00195DC0  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198E84 00195DC4  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2109,7 +2109,7 @@ lbl_80198E70:
 /* 80198E90 00195DD0  3C C0 80 43 */	lis r6, lbl_80430110@ha
 /* 80198E94 00195DD4  38 C6 01 10 */	addi r6, r6, lbl_80430110@l
 /* 80198E98 00195DD8  A8 C6 00 3E */	lha r6, 0x3e(r6)
-/* 80198E9C 00195DDC  4B FF DD 09 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198E9C 00195DDC  4B FF DD 09 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198EA0 00195DE0  48 00 01 F4 */	b lbl_80199094
 lbl_80198EA4:
 /* 80198EA4 00195DE4  28 00 00 02 */	cmplwi r0, 2
@@ -2122,7 +2122,7 @@ lbl_80198EA4:
 /* 80198EC0 00195E00  40 82 00 40 */	bne lbl_80198F00
 /* 80198EC4 00195E04  7F 83 E3 78 */	mr r3, r28
 /* 80198EC8 00195E08  38 80 00 08 */	li r4, 8
-/* 80198ECC 00195E0C  4B FF E7 2D */	bl dShopSystem_c_NS_isFlag
+/* 80198ECC 00195E0C  4B FF E7 2D */	bl isFlag__13dShopSystem_cFi
 /* 80198ED0 00195E10  30 03 FF FF */	addic r0, r3, -1
 /* 80198ED4 00195E14  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198ED8 00195E18  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2133,12 +2133,12 @@ lbl_80198EA4:
 /* 80198EEC 00195E2C  A8 C6 00 3E */	lha r6, 0x3e(r6)
 /* 80198EF0 00195E30  38 06 F4 48 */	addi r0, r6, -3000
 /* 80198EF4 00195E34  7C 06 07 34 */	extsh r6, r0
-/* 80198EF8 00195E38  4B FF DC AD */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198EF8 00195E38  4B FF DC AD */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198EFC 00195E3C  48 00 01 98 */	b lbl_80199094
 lbl_80198F00:
 /* 80198F00 00195E40  7F 83 E3 78 */	mr r3, r28
 /* 80198F04 00195E44  38 80 00 08 */	li r4, 8
-/* 80198F08 00195E48  4B FF E6 F1 */	bl dShopSystem_c_NS_isFlag
+/* 80198F08 00195E48  4B FF E6 F1 */	bl isFlag__13dShopSystem_cFi
 /* 80198F0C 00195E4C  30 03 FF FF */	addic r0, r3, -1
 /* 80198F10 00195E50  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198F14 00195E54  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2147,7 +2147,7 @@ lbl_80198F00:
 /* 80198F20 00195E60  3C C0 80 43 */	lis r6, lbl_80430110@ha
 /* 80198F24 00195E64  38 C6 01 10 */	addi r6, r6, lbl_80430110@l
 /* 80198F28 00195E68  A8 C6 00 3E */	lha r6, 0x3e(r6)
-/* 80198F2C 00195E6C  4B FF DC 79 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198F2C 00195E6C  4B FF DC 79 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198F30 00195E70  48 00 01 64 */	b lbl_80199094
 lbl_80198F34:
 /* 80198F34 00195E74  28 00 00 05 */	cmplwi r0, 5
@@ -2165,7 +2165,7 @@ lbl_80198F34:
 lbl_80198F64:
 /* 80198F64 00195EA4  7F 83 E3 78 */	mr r3, r28
 /* 80198F68 00195EA8  38 80 00 08 */	li r4, 8
-/* 80198F6C 00195EAC  4B FF E6 8D */	bl dShopSystem_c_NS_isFlag
+/* 80198F6C 00195EAC  4B FF E6 8D */	bl isFlag__13dShopSystem_cFi
 /* 80198F70 00195EB0  30 03 FF FF */	addic r0, r3, -1
 /* 80198F74 00195EB4  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198F78 00195EB8  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2176,12 +2176,12 @@ lbl_80198F64:
 /* 80198F8C 00195ECC  A8 C6 00 3E */	lha r6, 0x3e(r6)
 /* 80198F90 00195ED0  38 06 F0 60 */	addi r0, r6, -4000
 /* 80198F94 00195ED4  7C 06 07 34 */	extsh r6, r0
-/* 80198F98 00195ED8  4B FF DC 0D */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198F98 00195ED8  4B FF DC 0D */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198F9C 00195EDC  48 00 00 F8 */	b lbl_80199094
 lbl_80198FA0:
 /* 80198FA0 00195EE0  7F 83 E3 78 */	mr r3, r28
 /* 80198FA4 00195EE4  38 80 00 08 */	li r4, 8
-/* 80198FA8 00195EE8  4B FF E6 51 */	bl dShopSystem_c_NS_isFlag
+/* 80198FA8 00195EE8  4B FF E6 51 */	bl isFlag__13dShopSystem_cFi
 /* 80198FAC 00195EEC  30 03 FF FF */	addic r0, r3, -1
 /* 80198FB0 00195EF0  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198FB4 00195EF4  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2192,7 +2192,7 @@ lbl_80198FA0:
 /* 80198FC8 00195F08  A8 C6 00 3E */	lha r6, 0x3e(r6)
 /* 80198FCC 00195F0C  38 06 F8 30 */	addi r0, r6, -2000
 /* 80198FD0 00195F10  7C 06 07 34 */	extsh r6, r0
-/* 80198FD4 00195F14  4B FF DB D1 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80198FD4 00195F14  4B FF DB D1 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80198FD8 00195F18  48 00 00 BC */	b lbl_80199094
 lbl_80198FDC:
 /* 80198FDC 00195F1C  88 1C 0F 6E */	lbz r0, 0xf6e(r28)
@@ -2200,7 +2200,7 @@ lbl_80198FDC:
 /* 80198FE4 00195F24  40 82 00 38 */	bne lbl_8019901C
 /* 80198FE8 00195F28  7F 83 E3 78 */	mr r3, r28
 /* 80198FEC 00195F2C  38 80 00 08 */	li r4, 8
-/* 80198FF0 00195F30  4B FF E6 09 */	bl dShopSystem_c_NS_isFlag
+/* 80198FF0 00195F30  4B FF E6 09 */	bl isFlag__13dShopSystem_cFi
 /* 80198FF4 00195F34  30 03 FF FF */	addic r0, r3, -1
 /* 80198FF8 00195F38  7C E0 19 10 */	subfe r7, r0, r3
 /* 80198FFC 00195F3C  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2209,7 +2209,7 @@ lbl_80198FDC:
 /* 80199008 00195F48  3C C0 80 43 */	lis r6, lbl_80430110@ha
 /* 8019900C 00195F4C  38 C6 01 10 */	addi r6, r6, lbl_80430110@l
 /* 80199010 00195F50  A8 C6 00 40 */	lha r6, 0x40(r6)
-/* 80199014 00195F54  4B FF DB 91 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80199014 00195F54  4B FF DB 91 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80199018 00195F58  48 00 00 7C */	b lbl_80199094
 lbl_8019901C:
 /* 8019901C 00195F5C  88 0D 8A D8 */	lbz r0, lbl_80451058-_SDA_BASE_(r13)
@@ -2217,7 +2217,7 @@ lbl_8019901C:
 /* 80199024 00195F64  40 82 00 40 */	bne lbl_80199064
 /* 80199028 00195F68  7F 83 E3 78 */	mr r3, r28
 /* 8019902C 00195F6C  38 80 00 08 */	li r4, 8
-/* 80199030 00195F70  4B FF E5 C9 */	bl dShopSystem_c_NS_isFlag
+/* 80199030 00195F70  4B FF E5 C9 */	bl isFlag__13dShopSystem_cFi
 /* 80199034 00195F74  30 03 FF FF */	addic r0, r3, -1
 /* 80199038 00195F78  7C E0 19 10 */	subfe r7, r0, r3
 /* 8019903C 00195F7C  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2228,12 +2228,12 @@ lbl_8019901C:
 /* 80199050 00195F90  A8 C6 00 3E */	lha r6, 0x3e(r6)
 /* 80199054 00195F94  38 06 F4 48 */	addi r0, r6, -3000
 /* 80199058 00195F98  7C 06 07 34 */	extsh r6, r0
-/* 8019905C 00195F9C  4B FF DB 49 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 8019905C 00195F9C  4B FF DB 49 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 /* 80199060 00195FA0  48 00 00 34 */	b lbl_80199094
 lbl_80199064:
 /* 80199064 00195FA4  7F 83 E3 78 */	mr r3, r28
 /* 80199068 00195FA8  38 80 00 08 */	li r4, 8
-/* 8019906C 00195FAC  4B FF E5 8D */	bl dShopSystem_c_NS_isFlag
+/* 8019906C 00195FAC  4B FF E5 8D */	bl isFlag__13dShopSystem_cFi
 /* 80199070 00195FB0  30 03 FF FF */	addic r0, r3, -1
 /* 80199074 00195FB4  7C E0 19 10 */	subfe r7, r0, r3
 /* 80199078 00195FB8  38 7C 0E 48 */	addi r3, r28, 0xe48
@@ -2242,7 +2242,7 @@ lbl_80199064:
 /* 80199084 00195FC4  3C C0 80 43 */	lis r6, lbl_80430110@ha
 /* 80199088 00195FC8  38 C6 01 10 */	addi r6, r6, lbl_80430110@l
 /* 8019908C 00195FCC  A8 C6 00 3E */	lha r6, 0x3e(r6)
-/* 80199090 00195FD0  4B FF DB 15 */	bl dShopItemCtrl_c_NS_setZoomAnime
+/* 80199090 00195FD0  4B FF DB 15 */	bl setZoomAnime__15dShopItemCtrl_cFiP4cXyzsb
 lbl_80199094:
 /* 80199094 00195FD4  38 60 00 01 */	li r3, 1
 /* 80199098 00195FD8  39 61 00 60 */	addi r11, r1, 0x60
@@ -2276,7 +2276,7 @@ lbl_80199104:
 /* 80199104 00196044  38 61 00 0C */	addi r3, r1, 0xc
 /* 80199108 00196048  38 9D 0E 48 */	addi r4, r29, 0xe48
 /* 8019910C 0019604C  38 A0 00 00 */	li r5, 0
-/* 80199110 00196050  4B FF D8 91 */	bl dShopItemCtrl_c_NS_getCurrentPos
+/* 80199110 00196050  4B FF D8 91 */	bl getCurrentPos__15dShopItemCtrl_cFi
 /* 80199114 00196054  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80199118 00196058  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 8019911C 0019605C  C0 01 00 10 */	lfs f0, 0x10(r1)
@@ -2285,7 +2285,7 @@ lbl_80199104:
 /* 80199128 00196068  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 8019912C 0019606C  38 61 00 24 */	addi r3, r1, 0x24
 /* 80199130 00196070  38 81 00 18 */	addi r4, r1, 0x18
-/* 80199134 00196074  4B E7 C1 DD */	bl mDoLib_project
+/* 80199134 00196074  4B E7 C1 DD */	bl mDoLib_project__FP3VecP3Vec
 /* 80199138 00196078  C0 21 00 1C */	lfs f1, 0x1c(r1)
 /* 8019913C 0019607C  3C 60 80 43 */	lis r3, lbl_80430110@ha
 /* 80199140 00196080  38 63 01 10 */	addi r3, r3, lbl_80430110@l
@@ -2310,7 +2310,7 @@ lbl_80199104:
 /* 8019918C 001960CC  38 60 00 00 */	li r3, 0
 /* 80199190 001960D0  48 00 01 C4 */	b lbl_80199354
 lbl_80199194:
-/* 80199194 001960D4  48 09 F1 61 */	bl dMsgObject_c_NS_isMsgSendControl
+/* 80199194 001960D4  48 09 F1 61 */	bl isMsgSendControl__12dMsgObject_cFv
 /* 80199198 001960D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8019919C 001960DC  41 82 01 14 */	beq lbl_801992B0
 /* 801991A0 001960E0  38 80 00 00 */	li r4, 0
@@ -2324,14 +2324,14 @@ lbl_80199194:
 /* 801991C0 00196100  7F A3 EB 78 */	mr r3, r29
 /* 801991C4 00196104  38 80 00 00 */	li r4, 0
 /* 801991C8 00196108  7F E5 FB 78 */	mr r5, r31
-/* 801991CC 0019610C  4B FF E4 A5 */	bl dShopSystem_c_NS_checkController
+/* 801991CC 0019610C  4B FF E4 A5 */	bl checkController__13dShopSystem_cFUcP10dMsgFlow_c
 /* 801991D0 00196110  7C 7C 1B 79 */	or. r28, r3, r3
 /* 801991D4 00196114  41 82 01 7C */	beq lbl_80199350
-/* 801991D8 00196118  48 09 F1 49 */	bl dMsgObject_c_NS_onMsgSend
+/* 801991D8 00196118  48 09 F1 49 */	bl onMsgSend__12dMsgObject_cFv
 /* 801991DC 0019611C  7F A3 EB 78 */	mr r3, r29
 /* 801991E0 00196120  7F 84 E3 78 */	mr r4, r28
 /* 801991E4 00196124  38 A0 00 00 */	li r5, 0
-/* 801991E8 00196128  4B FF F2 5D */	bl dShopSystem_c_NS_moveCursor
+/* 801991E8 00196128  4B FF F2 5D */	bl moveCursor__13dShopSystem_cFiUc
 /* 801991EC 0019612C  7C 66 1B 78 */	mr r6, r3
 /* 801991F0 00196130  88 1D 0F 75 */	lbz r0, 0xf75(r29)
 /* 801991F4 00196134  28 00 00 01 */	cmplwi r0, 1
@@ -2347,13 +2347,13 @@ lbl_80199194:
 /* 8019921C 0019615C  D0 1D 0F 44 */	stfs f0, 0xf44(r29)
 /* 80199220 00196160  7F A3 EB 78 */	mr r3, r29
 /* 80199224 00196164  38 80 00 04 */	li r4, 4
-/* 80199228 00196168  48 00 11 1D */	bl dShopSystem_c_NS_setSeq
+/* 80199228 00196168  48 00 11 1D */	bl setSeq__13dShopSystem_cFUc
 /* 8019922C 0019616C  48 00 01 24 */	b lbl_80199350
 lbl_80199230:
 /* 80199230 00196170  7F E3 FB 78 */	mr r3, r31
 /* 80199234 00196174  7F C4 F3 78 */	mr r4, r30
 /* 80199238 00196178  38 A0 00 00 */	li r5, 0
-/* 8019923C 0019617C  48 0B 10 9D */	bl dMsgFlow_c_NS_doFlow
+/* 8019923C 0019617C  48 0B 10 9D */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199240 00196180  2C 03 00 00 */	cmpwi r3, 0
 /* 80199244 00196184  41 82 01 0C */	beq lbl_80199350
 /* 80199248 00196188  C0 02 A1 44 */	lfs f0, lbl_80453B44-_SDA2_BASE_(r2)
@@ -2363,13 +2363,13 @@ lbl_80199230:
 /* 80199258 00196198  D0 1D 0F 44 */	stfs f0, 0xf44(r29)
 /* 8019925C 0019619C  7F A3 EB 78 */	mr r3, r29
 /* 80199260 001961A0  38 80 00 0A */	li r4, 0xa
-/* 80199264 001961A4  48 00 10 E1 */	bl dShopSystem_c_NS_setSeq
+/* 80199264 001961A4  48 00 10 E1 */	bl setSeq__13dShopSystem_cFUc
 /* 80199268 001961A8  48 00 00 E8 */	b lbl_80199350
 lbl_8019926C:
 /* 8019926C 001961AC  7F E3 FB 78 */	mr r3, r31
 /* 80199270 001961B0  7F C4 F3 78 */	mr r4, r30
 /* 80199274 001961B4  38 A0 00 00 */	li r5, 0
-/* 80199278 001961B8  48 0B 10 61 */	bl dMsgFlow_c_NS_doFlow
+/* 80199278 001961B8  48 0B 10 61 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 8019927C 001961BC  2C 03 00 00 */	cmpwi r3, 0
 /* 80199280 001961C0  41 82 00 D0 */	beq lbl_80199350
 /* 80199284 001961C4  88 1D 0F 6E */	lbz r0, 0xf6e(r29)
@@ -2377,24 +2377,24 @@ lbl_8019926C:
 /* 8019928C 001961CC  40 82 00 14 */	bne lbl_801992A0
 /* 80199290 001961D0  7F A3 EB 78 */	mr r3, r29
 /* 80199294 001961D4  38 80 00 0A */	li r4, 0xa
-/* 80199298 001961D8  48 00 10 AD */	bl dShopSystem_c_NS_setSeq
+/* 80199298 001961D8  48 00 10 AD */	bl setSeq__13dShopSystem_cFUc
 /* 8019929C 001961DC  48 00 00 B4 */	b lbl_80199350
 lbl_801992A0:
 /* 801992A0 001961E0  7F A3 EB 78 */	mr r3, r29
 /* 801992A4 001961E4  38 80 00 04 */	li r4, 4
-/* 801992A8 001961E8  48 00 10 9D */	bl dShopSystem_c_NS_setSeq
+/* 801992A8 001961E8  48 00 10 9D */	bl setSeq__13dShopSystem_cFUc
 /* 801992AC 001961EC  48 00 00 A4 */	b lbl_80199350
 lbl_801992B0:
 /* 801992B0 001961F0  7F E3 FB 78 */	mr r3, r31
 /* 801992B4 001961F4  7F C4 F3 78 */	mr r4, r30
 /* 801992B8 001961F8  38 A0 00 00 */	li r5, 0
 /* 801992BC 001961FC  38 C0 00 00 */	li r6, 0
-/* 801992C0 00196200  48 0B 10 19 */	bl dMsgFlow_c_NS_doFlow
+/* 801992C0 00196200  48 0B 10 19 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 801992C4 00196204  2C 03 00 00 */	cmpwi r3, 0
 /* 801992C8 00196208  41 82 00 88 */	beq lbl_80199350
 /* 801992CC 0019620C  38 7D 09 74 */	addi r3, r29, 0x974
 /* 801992D0 00196210  38 81 00 08 */	addi r4, r1, 8
-/* 801992D4 00196214  48 0B 12 55 */	bl dMsgFlow_c_NS_getEventId
+/* 801992D4 00196214  48 0B 12 55 */	bl getEventId__10dMsgFlow_cFPi
 /* 801992D8 00196218  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 801992DC 0019621C  28 00 00 01 */	cmplwi r0, 1
 /* 801992E0 00196220  40 82 00 68 */	bne lbl_80199348
@@ -2413,13 +2413,13 @@ lbl_801992B0:
 /* 80199314 00196254  90 7D 0D 90 */	stw r3, 0xd90(r29)
 lbl_80199318:
 /* 80199318 00196258  80 7D 0D 90 */	lwz r3, 0xd90(r29)
-/* 8019931C 0019625C  4B E8 80 81 */	bl fpcEx_IsExist
+/* 8019931C 0019625C  4B E8 80 81 */	bl fpcEx_IsExist__FUi
 /* 80199320 00196260  2C 03 00 00 */	cmpwi r3, 0
 /* 80199324 00196264  41 82 00 1C */	beq lbl_80199340
 /* 80199328 00196268  38 00 00 01 */	li r0, 1
 /* 8019932C 0019626C  B0 1D 0E 30 */	sth r0, 0xe30(r29)
 /* 80199330 00196270  7F A3 EB 78 */	mr r3, r29
-/* 80199334 00196274  4B FB 0E F1 */	bl daNpcT_c_NS_evtChange
+/* 80199334 00196274  4B FB 0E F1 */	bl evtChange__8daNpcT_cFv
 /* 80199338 00196278  38 60 00 01 */	li r3, 1
 /* 8019933C 0019627C  48 00 00 18 */	b lbl_80199354
 lbl_80199340:
@@ -2445,14 +2445,14 @@ lbl_80199354:
 /* 80199380 001962C0  38 7F 0E 48 */	addi r3, r31, 0xe48
 /* 80199384 001962C4  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 80199388 001962C8  38 84 FF FF */	addi r4, r4, -1
-/* 8019938C 001962CC  4B FF D6 B1 */	bl dShopItemCtrl_c_NS_isHomePos
+/* 8019938C 001962CC  4B FF D6 B1 */	bl isHomePos__15dShopItemCtrl_cFi
 /* 80199390 001962D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80199394 001962D4  41 82 00 18 */	beq lbl_801993AC
 /* 80199398 001962D8  7F E3 FB 78 */	mr r3, r31
-/* 8019939C 001962DC  48 00 0F C9 */	bl dShopSystem_c_NS_setSoldOut
+/* 8019939C 001962DC  48 00 0F C9 */	bl setSoldOut__13dShopSystem_cFv
 /* 801993A0 001962E0  7F E3 FB 78 */	mr r3, r31
 /* 801993A4 001962E4  38 80 00 04 */	li r4, 4
-/* 801993A8 001962E8  48 00 0F 9D */	bl dShopSystem_c_NS_setSeq
+/* 801993A8 001962E8  48 00 0F 9D */	bl setSeq__13dShopSystem_cFUc
 lbl_801993AC:
 /* 801993AC 001962EC  38 60 00 00 */	li r3, 0
 /* 801993B0 001962F0  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2480,12 +2480,12 @@ lbl_801993AC:
 /* 80199408 00196348  38 60 00 00 */	li r3, 0
 /* 8019940C 0019634C  48 00 01 7C */	b lbl_80199588
 lbl_80199410:
-/* 80199410 00196350  48 00 11 C1 */	bl dShopSystem_c_NS_searchItemActor
+/* 80199410 00196350  48 00 11 C1 */	bl searchItemActor__13dShopSystem_cFv
 lbl_80199414:
 /* 80199414 00196354  7F E3 FB 78 */	mr r3, r31
 /* 80199418 00196358  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 8019941C 0019635C  38 84 FF FF */	addi r4, r4, -1
-/* 80199420 00196360  4B FF E1 D9 */	bl dShopSystem_c_NS_isFlag
+/* 80199420 00196360  4B FF E1 D9 */	bl isFlag__13dShopSystem_cFi
 /* 80199424 00196364  2C 03 00 00 */	cmpwi r3, 0
 /* 80199428 00196368  41 82 01 0C */	beq lbl_80199534
 /* 8019942C 0019636C  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
@@ -2505,7 +2505,7 @@ lbl_80199454:
 /* 8019945C 0019639C  7F E3 FB 78 */	mr r3, r31
 /* 80199460 001963A0  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 80199464 001963A4  38 84 FF FF */	addi r4, r4, -1
-/* 80199468 001963A8  4B FF E1 91 */	bl dShopSystem_c_NS_isFlag
+/* 80199468 001963A8  4B FF E1 91 */	bl isFlag__13dShopSystem_cFi
 /* 8019946C 001963AC  2C 03 00 00 */	cmpwi r3, 0
 /* 80199470 001963B0  41 82 00 C4 */	beq lbl_80199534
 /* 80199474 001963B4  38 00 00 03 */	li r0, 3
@@ -2513,7 +2513,7 @@ lbl_80199454:
 /* 8019947C 001963BC  7F E3 FB 78 */	mr r3, r31
 /* 80199480 001963C0  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 80199484 001963C4  38 84 FF FF */	addi r4, r4, -1
-/* 80199488 001963C8  4B FF E1 71 */	bl dShopSystem_c_NS_isFlag
+/* 80199488 001963C8  4B FF E1 71 */	bl isFlag__13dShopSystem_cFi
 /* 8019948C 001963CC  2C 03 00 00 */	cmpwi r3, 0
 /* 80199490 001963D0  41 82 00 A4 */	beq lbl_80199534
 /* 80199494 001963D4  38 00 00 00 */	li r0, 0
@@ -2525,7 +2525,7 @@ lbl_801994A0:
 /* 801994A8 001963E8  7F E3 FB 78 */	mr r3, r31
 /* 801994AC 001963EC  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 801994B0 001963F0  38 84 FF FF */	addi r4, r4, -1
-/* 801994B4 001963F4  4B FF E1 45 */	bl dShopSystem_c_NS_isFlag
+/* 801994B4 001963F4  4B FF E1 45 */	bl isFlag__13dShopSystem_cFi
 /* 801994B8 001963F8  2C 03 00 00 */	cmpwi r3, 0
 /* 801994BC 001963FC  41 82 00 78 */	beq lbl_80199534
 /* 801994C0 00196400  38 00 00 03 */	li r0, 3
@@ -2533,7 +2533,7 @@ lbl_801994A0:
 /* 801994C8 00196408  7F E3 FB 78 */	mr r3, r31
 /* 801994CC 0019640C  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 801994D0 00196410  38 84 FF FF */	addi r4, r4, -1
-/* 801994D4 00196414  4B FF E1 25 */	bl dShopSystem_c_NS_isFlag
+/* 801994D4 00196414  4B FF E1 25 */	bl isFlag__13dShopSystem_cFi
 /* 801994D8 00196418  2C 03 00 00 */	cmpwi r3, 0
 /* 801994DC 0019641C  41 82 00 58 */	beq lbl_80199534
 /* 801994E0 00196420  38 00 00 00 */	li r0, 0
@@ -2545,7 +2545,7 @@ lbl_801994EC:
 /* 801994F4 00196434  7F E3 FB 78 */	mr r3, r31
 /* 801994F8 00196438  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 801994FC 0019643C  38 84 FF FF */	addi r4, r4, -1
-/* 80199500 00196440  4B FF E0 F9 */	bl dShopSystem_c_NS_isFlag
+/* 80199500 00196440  4B FF E0 F9 */	bl isFlag__13dShopSystem_cFi
 /* 80199504 00196444  2C 03 00 00 */	cmpwi r3, 0
 /* 80199508 00196448  41 82 00 2C */	beq lbl_80199534
 /* 8019950C 0019644C  38 00 00 01 */	li r0, 1
@@ -2553,7 +2553,7 @@ lbl_801994EC:
 /* 80199514 00196454  7F E3 FB 78 */	mr r3, r31
 /* 80199518 00196458  88 9F 0F 6E */	lbz r4, 0xf6e(r31)
 /* 8019951C 0019645C  38 84 FF FF */	addi r4, r4, -1
-/* 80199520 00196460  4B FF E0 D9 */	bl dShopSystem_c_NS_isFlag
+/* 80199520 00196460  4B FF E0 D9 */	bl isFlag__13dShopSystem_cFi
 /* 80199524 00196464  2C 03 00 00 */	cmpwi r3, 0
 /* 80199528 00196468  41 82 00 0C */	beq lbl_80199534
 /* 8019952C 0019646C  38 00 00 00 */	li r0, 0
@@ -2571,14 +2571,14 @@ lbl_80199534:
 /* 80199558 00196498  7F E3 FB 78 */	mr r3, r31
 /* 8019955C 0019649C  38 80 00 04 */	li r4, 4
 /* 80199560 001964A0  38 A0 00 00 */	li r5, 0
-/* 80199564 001964A4  4B FF EE E1 */	bl dShopSystem_c_NS_moveCursor
+/* 80199564 001964A4  4B FF EE E1 */	bl moveCursor__13dShopSystem_cFiUc
 /* 80199568 001964A8  7C 64 1B 78 */	mr r4, r3
 /* 8019956C 001964AC  7F E3 FB 78 */	mr r3, r31
 /* 80199570 001964B0  38 A0 00 00 */	li r5, 0
-/* 80199574 001964B4  4B FB 26 7D */	bl daNpcT_c_NS_initTalk
+/* 80199574 001964B4  4B FB 26 7D */	bl initTalk__8daNpcT_cFiPP10fopAc_ac_c
 /* 80199578 001964B8  7F E3 FB 78 */	mr r3, r31
 /* 8019957C 001964BC  38 80 00 04 */	li r4, 4
-/* 80199580 001964C0  48 00 0D C5 */	bl dShopSystem_c_NS_setSeq
+/* 80199580 001964C0  48 00 0D C5 */	bl setSeq__13dShopSystem_cFUc
 /* 80199584 001964C4  38 60 00 00 */	li r3, 0
 lbl_80199588:
 /* 80199588 001964C8  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -2617,7 +2617,7 @@ lbl_80199604:
 /* 80199604 00196544  7F 83 E3 78 */	mr r3, r28
 /* 80199608 00196548  38 80 00 01 */	li r4, 1
 /* 8019960C 0019654C  7F C5 F3 78 */	mr r5, r30
-/* 80199610 00196550  4B FF E0 61 */	bl dShopSystem_c_NS_checkController
+/* 80199610 00196550  4B FF E0 61 */	bl checkController__13dShopSystem_cFUcP10dMsgFlow_c
 /* 80199614 00196554  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80199618 00196558  38 00 00 22 */	li r0, 0x22
 /* 8019961C 0019655C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -2632,7 +2632,7 @@ lbl_80199604:
 /* 80199640 00196580  7F 83 E3 78 */	mr r3, r28
 /* 80199644 00196584  7F E4 FB 78 */	mr r4, r31
 /* 80199648 00196588  38 A0 00 01 */	li r5, 1
-/* 8019964C 0019658C  4B FF ED F9 */	bl dShopSystem_c_NS_moveCursor
+/* 8019964C 0019658C  4B FF ED F9 */	bl moveCursor__13dShopSystem_cFiUc
 /* 80199650 00196590  7C 66 1B 78 */	mr r6, r3
 /* 80199654 00196594  88 1C 0F 75 */	lbz r0, 0xf75(r28)
 /* 80199658 00196598  20 00 00 01 */	subfic r0, r0, 1
@@ -2649,7 +2649,7 @@ lbl_80199604:
 /* 80199684 001965C4  D0 1C 0F 44 */	stfs f0, 0xf44(r28)
 /* 80199688 001965C8  7F 83 E3 78 */	mr r3, r28
 /* 8019968C 001965CC  38 80 00 0A */	li r4, 0xa
-/* 80199690 001965D0  48 00 0C B5 */	bl dShopSystem_c_NS_setSeq
+/* 80199690 001965D0  48 00 0C B5 */	bl setSeq__13dShopSystem_cFUc
 /* 80199694 001965D4  48 00 02 A0 */	b lbl_80199934
 lbl_80199698:
 /* 80199698 001965D8  2C 00 00 00 */	cmpwi r0, 0
@@ -2674,13 +2674,13 @@ lbl_80199698:
 /* 801996E4 00196624  D0 1C 0F 44 */	stfs f0, 0xf44(r28)
 /* 801996E8 00196628  7F 83 E3 78 */	mr r3, r28
 /* 801996EC 0019662C  38 80 00 01 */	li r4, 1
-/* 801996F0 00196630  48 00 0C 55 */	bl dShopSystem_c_NS_setSeq
+/* 801996F0 00196630  48 00 0C 55 */	bl setSeq__13dShopSystem_cFUc
 /* 801996F4 00196634  48 00 02 40 */	b lbl_80199934
 lbl_801996F8:
 /* 801996F8 00196638  7F C3 F3 78 */	mr r3, r30
 /* 801996FC 0019663C  7F A4 EB 78 */	mr r4, r29
 /* 80199700 00196640  38 A0 00 00 */	li r5, 0
-/* 80199704 00196644  48 0B 0B D5 */	bl dMsgFlow_c_NS_doFlow
+/* 80199704 00196644  48 0B 0B D5 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199708 00196648  2C 03 00 00 */	cmpwi r3, 0
 /* 8019970C 0019664C  41 82 01 A4 */	beq lbl_801998B0
 /* 80199710 00196650  2C 1F 00 03 */	cmpwi r31, 3
@@ -2751,30 +2751,30 @@ lbl_801997EC:
 /* 80199804 00196744  7F 83 E3 78 */	mr r3, r28
 /* 80199808 00196748  88 9C 0F 6E */	lbz r4, 0xf6e(r28)
 /* 8019980C 0019674C  38 84 FF FF */	addi r4, r4, -1
-/* 80199810 00196750  4B FF DD E9 */	bl dShopSystem_c_NS_isFlag
+/* 80199810 00196750  4B FF DD E9 */	bl isFlag__13dShopSystem_cFi
 /* 80199814 00196754  2C 03 00 00 */	cmpwi r3, 0
 /* 80199818 00196758  40 82 00 28 */	bne lbl_80199840
 /* 8019981C 0019675C  7F 83 E3 78 */	mr r3, r28
 /* 80199820 00196760  88 9C 0F 6E */	lbz r4, 0xf6e(r28)
 /* 80199824 00196764  38 84 FF FF */	addi r4, r4, -1
-/* 80199828 00196768  4B FF DE 29 */	bl dShopSystem_c_NS_isSoldOutItemFlag
+/* 80199828 00196768  4B FF DE 29 */	bl isSoldOutItemFlag__13dShopSystem_cFi
 /* 8019982C 0019676C  2C 03 00 00 */	cmpwi r3, 0
 /* 80199830 00196770  40 82 00 10 */	bne lbl_80199840
 /* 80199834 00196774  7F 83 E3 78 */	mr r3, r28
 /* 80199838 00196778  38 80 00 08 */	li r4, 8
-/* 8019983C 0019677C  4B FF DD 85 */	bl dShopSystem_c_NS_onFlag
+/* 8019983C 0019677C  4B FF DD 85 */	bl onFlag__13dShopSystem_cFi
 lbl_80199840:
-/* 80199840 00196780  48 08 51 95 */	bl dMeter2Info_set2DVibrationM
+/* 80199840 00196780  48 08 51 95 */	bl dMeter2Info_set2DVibrationM__Fv
 /* 80199844 00196784  7F 83 E3 78 */	mr r3, r28
 /* 80199848 00196788  38 80 00 06 */	li r4, 6
-/* 8019984C 0019678C  48 00 0A F9 */	bl dShopSystem_c_NS_setSeq
+/* 8019984C 0019678C  48 00 0A F9 */	bl setSeq__13dShopSystem_cFUc
 /* 80199850 00196790  48 00 00 E4 */	b lbl_80199934
 lbl_80199854:
 /* 80199854 00196794  2C 1F 00 02 */	cmpwi r31, 2
 /* 80199858 00196798  40 82 00 14 */	bne lbl_8019986C
 /* 8019985C 0019679C  7F 83 E3 78 */	mr r3, r28
 /* 80199860 001967A0  38 80 00 0A */	li r4, 0xa
-/* 80199864 001967A4  48 00 0A E1 */	bl dShopSystem_c_NS_setSeq
+/* 80199864 001967A4  48 00 0A E1 */	bl setSeq__13dShopSystem_cFUc
 /* 80199868 001967A8  48 00 00 CC */	b lbl_80199934
 lbl_8019986C:
 /* 8019986C 001967AC  88 1C 0F 6E */	lbz r0, 0xf6e(r28)
@@ -2782,14 +2782,14 @@ lbl_8019986C:
 /* 80199874 001967B4  40 82 00 14 */	bne lbl_80199888
 /* 80199878 001967B8  7F 83 E3 78 */	mr r3, r28
 /* 8019987C 001967BC  38 80 00 01 */	li r4, 1
-/* 80199880 001967C0  48 00 0A C5 */	bl dShopSystem_c_NS_setSeq
+/* 80199880 001967C0  48 00 0A C5 */	bl setSeq__13dShopSystem_cFUc
 /* 80199884 001967C4  48 00 00 B0 */	b lbl_80199934
 lbl_80199888:
 /* 80199888 001967C8  38 00 00 00 */	li r0, 0
 /* 8019988C 001967CC  B0 1C 0F 68 */	sth r0, 0xf68(r28)
 /* 80199890 001967D0  7F 83 E3 78 */	mr r3, r28
 /* 80199894 001967D4  38 80 00 05 */	li r4, 5
-/* 80199898 001967D8  48 00 0A AD */	bl dShopSystem_c_NS_setSeq
+/* 80199898 001967D8  48 00 0A AD */	bl setSeq__13dShopSystem_cFUc
 /* 8019989C 001967DC  88 1C 0F 6F */	lbz r0, 0xf6f(r28)
 /* 801998A0 001967E0  28 00 00 00 */	cmplwi r0, 0
 /* 801998A4 001967E4  41 82 00 90 */	beq lbl_80199934
@@ -2832,7 +2832,7 @@ lbl_80199920:
 /* 80199924 00196864  7F A4 EB 78 */	mr r4, r29
 /* 80199928 00196868  38 A0 00 00 */	li r5, 0
 /* 8019992C 0019686C  38 C0 00 00 */	li r6, 0
-/* 80199930 00196870  48 0B 09 A9 */	bl dMsgFlow_c_NS_doFlow
+/* 80199930 00196870  48 0B 09 A9 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 lbl_80199934:
 /* 80199934 00196874  3B A0 00 00 */	li r29, 0
 /* 80199938 00196878  88 1C 0F 6E */	lbz r0, 0xf6e(r28)
@@ -2851,7 +2851,7 @@ lbl_8019995C:
 /* 80199964 001968A4  38 61 00 10 */	addi r3, r1, 0x10
 /* 80199968 001968A8  38 9C 0E 48 */	addi r4, r28, 0xe48
 /* 8019996C 001968AC  38 A5 FF FF */	addi r5, r5, -1
-/* 80199970 001968B0  4B FF D0 31 */	bl dShopItemCtrl_c_NS_getCurrentPos
+/* 80199970 001968B0  4B FF D0 31 */	bl getCurrentPos__15dShopItemCtrl_cFi
 /* 80199974 001968B4  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80199978 001968B8  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8019997C 001968BC  C0 01 00 14 */	lfs f0, 0x14(r1)
@@ -2860,7 +2860,7 @@ lbl_8019995C:
 /* 80199988 001968C8  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 8019998C 001968CC  38 61 00 28 */	addi r3, r1, 0x28
 /* 80199990 001968D0  38 81 00 1C */	addi r4, r1, 0x1c
-/* 80199994 001968D4  4B E7 B9 7D */	bl mDoLib_project
+/* 80199994 001968D4  4B E7 B9 7D */	bl mDoLib_project__FP3VecP3Vec
 /* 80199998 001968D8  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 8019999C 001968DC  28 00 00 07 */	cmplwi r0, 7
 /* 801999A0 001968E0  40 82 00 30 */	bne lbl_801999D0
@@ -2909,7 +2909,7 @@ lbl_80199A00:
 /* 80199A3C 0019697C  38 9F 0E 48 */	addi r4, r31, 0xe48
 /* 80199A40 00196980  88 BF 0F 6E */	lbz r5, 0xf6e(r31)
 /* 80199A44 00196984  38 A5 FF FF */	addi r5, r5, -1
-/* 80199A48 00196988  4B FF CF 59 */	bl dShopItemCtrl_c_NS_getCurrentPos
+/* 80199A48 00196988  4B FF CF 59 */	bl getCurrentPos__15dShopItemCtrl_cFi
 /* 80199A4C 0019698C  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80199A50 00196990  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 80199A54 00196994  C0 01 00 18 */	lfs f0, 0x18(r1)
@@ -2918,7 +2918,7 @@ lbl_80199A00:
 /* 80199A60 001969A0  D0 01 00 40 */	stfs f0, 0x40(r1)
 /* 80199A64 001969A4  38 61 00 38 */	addi r3, r1, 0x38
 /* 80199A68 001969A8  38 81 00 20 */	addi r4, r1, 0x20
-/* 80199A6C 001969AC  4B E7 B8 A5 */	bl mDoLib_project
+/* 80199A6C 001969AC  4B E7 B8 A5 */	bl mDoLib_project__FP3VecP3Vec
 /* 80199A70 001969B0  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
 /* 80199A74 001969B4  28 00 00 07 */	cmplwi r0, 7
 /* 80199A78 001969B8  40 82 00 30 */	bne lbl_80199AA8
@@ -2947,7 +2947,7 @@ lbl_80199AC0:
 /* 80199ACC 00196A0C  38 61 00 08 */	addi r3, r1, 8
 /* 80199AD0 00196A10  38 9F 0E 48 */	addi r4, r31, 0xe48
 /* 80199AD4 00196A14  38 A5 FF FF */	addi r5, r5, -1
-/* 80199AD8 00196A18  4B FF CE C9 */	bl dShopItemCtrl_c_NS_getCurrentPos
+/* 80199AD8 00196A18  4B FF CE C9 */	bl getCurrentPos__15dShopItemCtrl_cFi
 /* 80199ADC 00196A1C  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80199AE0 00196A20  D0 01 00 44 */	stfs f0, 0x44(r1)
 /* 80199AE4 00196A24  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -2956,7 +2956,7 @@ lbl_80199AC0:
 /* 80199AF0 00196A30  D0 01 00 4C */	stfs f0, 0x4c(r1)
 /* 80199AF4 00196A34  38 61 00 44 */	addi r3, r1, 0x44
 /* 80199AF8 00196A38  38 81 00 2C */	addi r4, r1, 0x2c
-/* 80199AFC 00196A3C  4B E7 B8 15 */	bl mDoLib_project
+/* 80199AFC 00196A3C  4B E7 B8 15 */	bl mDoLib_project__FP3VecP3Vec
 /* 80199B00 00196A40  88 1F 0F 6F */	lbz r0, 0xf6f(r31)
 /* 80199B04 00196A44  28 00 00 07 */	cmplwi r0, 7
 /* 80199B08 00196A48  40 82 00 30 */	bne lbl_80199B38
@@ -3016,7 +3016,7 @@ lbl_80199BC8:
 /* 80199BD0 00196B10  41 80 00 10 */	blt lbl_80199BE0
 /* 80199BD4 00196B14  7F E3 FB 78 */	mr r3, r31
 /* 80199BD8 00196B18  38 80 00 04 */	li r4, 4
-/* 80199BDC 00196B1C  48 00 07 69 */	bl dShopSystem_c_NS_setSeq
+/* 80199BDC 00196B1C  48 00 07 69 */	bl setSeq__13dShopSystem_cFUc
 lbl_80199BE0:
 /* 80199BE0 00196B20  38 60 00 00 */	li r3, 0
 /* 80199BE4 00196B24  83 E1 00 5C */	lwz r31, 0x5c(r1)
@@ -3033,7 +3033,7 @@ lbl_80199BE0:
 /* 80199C10 00196B50  7C 9D 23 78 */	mr r29, r4
 /* 80199C14 00196B54  7C BE 2B 78 */	mr r30, r5
 /* 80199C18 00196B58  38 80 00 02 */	li r4, 2
-/* 80199C1C 00196B5C  4B FF DA 55 */	bl dShopSystem_c_NS_checkController
+/* 80199C1C 00196B5C  4B FF DA 55 */	bl checkController__13dShopSystem_cFUcP10dMsgFlow_c
 /* 80199C20 00196B60  7C 7F 1B 78 */	mr r31, r3
 /* 80199C24 00196B64  38 00 00 22 */	li r0, 0x22
 /* 80199C28 00196B68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -3062,20 +3062,20 @@ lbl_80199C74:
 /* 80199C7C 00196BBC  7F 83 E3 78 */	mr r3, r28
 /* 80199C80 00196BC0  7F E4 FB 78 */	mr r4, r31
 /* 80199C84 00196BC4  38 A0 00 02 */	li r5, 2
-/* 80199C88 00196BC8  4B FF E7 BD */	bl dShopSystem_c_NS_moveCursor
+/* 80199C88 00196BC8  4B FF E7 BD */	bl moveCursor__13dShopSystem_cFiUc
 /* 80199C8C 00196BCC  7C 66 1B 78 */	mr r6, r3
 /* 80199C90 00196BD0  7F C3 F3 78 */	mr r3, r30
 /* 80199C94 00196BD4  7F A4 EB 78 */	mr r4, r29
 /* 80199C98 00196BD8  38 A0 00 00 */	li r5, 0
-/* 80199C9C 00196BDC  48 0B 06 3D */	bl dMsgFlow_c_NS_doFlow
+/* 80199C9C 00196BDC  48 0B 06 3D */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199CA0 00196BE0  2C 03 00 00 */	cmpwi r3, 0
 /* 80199CA4 00196BE4  41 82 00 20 */	beq lbl_80199CC4
 /* 80199CA8 00196BE8  7F 83 E3 78 */	mr r3, r28
 /* 80199CAC 00196BEC  38 80 00 08 */	li r4, 8
-/* 80199CB0 00196BF0  4B FF D9 2D */	bl dShopSystem_c_NS_offFlag
+/* 80199CB0 00196BF0  4B FF D9 2D */	bl offFlag__13dShopSystem_cFi
 /* 80199CB4 00196BF4  7F 83 E3 78 */	mr r3, r28
 /* 80199CB8 00196BF8  38 80 00 02 */	li r4, 2
-/* 80199CBC 00196BFC  48 00 06 89 */	bl dShopSystem_c_NS_setSeq
+/* 80199CBC 00196BFC  48 00 06 89 */	bl setSeq__13dShopSystem_cFUc
 /* 80199CC0 00196C00  48 00 00 38 */	b lbl_80199CF8
 lbl_80199CC4:
 /* 80199CC4 00196C04  88 1E 00 24 */	lbz r0, 0x24(r30)
@@ -3084,14 +3084,14 @@ lbl_80199CC4:
 /* 80199CD0 00196C10  93 FC 0F 58 */	stw r31, 0xf58(r28)
 /* 80199CD4 00196C14  7F 83 E3 78 */	mr r3, r28
 /* 80199CD8 00196C18  38 80 00 07 */	li r4, 7
-/* 80199CDC 00196C1C  48 00 06 69 */	bl dShopSystem_c_NS_setSeq
+/* 80199CDC 00196C1C  48 00 06 69 */	bl setSeq__13dShopSystem_cFUc
 /* 80199CE0 00196C20  48 00 00 18 */	b lbl_80199CF8
 lbl_80199CE4:
 /* 80199CE4 00196C24  7F C3 F3 78 */	mr r3, r30
 /* 80199CE8 00196C28  7F A4 EB 78 */	mr r4, r29
 /* 80199CEC 00196C2C  38 A0 00 00 */	li r5, 0
 /* 80199CF0 00196C30  38 C0 00 00 */	li r6, 0
-/* 80199CF4 00196C34  48 0B 05 E5 */	bl dMsgFlow_c_NS_doFlow
+/* 80199CF4 00196C34  48 0B 05 E5 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 lbl_80199CF8:
 /* 80199CF8 00196C38  38 60 00 00 */	li r3, 0
 /* 80199CFC 00196C3C  39 61 00 20 */	addi r11, r1, 0x20
@@ -3132,26 +3132,26 @@ lbl_80199D80:
 /* 80199D80 00196CC0  7F E3 FB 78 */	mr r3, r31
 /* 80199D84 00196CC4  38 A0 00 00 */	li r5, 0
 /* 80199D88 00196CC8  38 C0 00 00 */	li r6, 0
-/* 80199D8C 00196CCC  48 0B 05 4D */	bl dMsgFlow_c_NS_doFlow
+/* 80199D8C 00196CCC  48 0B 05 4D */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199D90 00196CD0  7F E3 FB 78 */	mr r3, r31
 /* 80199D94 00196CD4  38 80 00 00 */	li r4, 0
 /* 80199D98 00196CD8  38 A0 00 00 */	li r5, 0
 /* 80199D9C 00196CDC  38 C0 00 00 */	li r6, 0
-/* 80199DA0 00196CE0  48 0B 15 21 */	bl dMsgFlow_c_NS_query005
+/* 80199DA0 00196CE0  48 0B 15 21 */	bl query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci
 /* 80199DA4 00196CE4  7C 7F 1B 78 */	mr r31, r3
-/* 80199DA8 00196CE8  48 09 E4 85 */	bl dMsgObject_c_NS_getStatus
+/* 80199DA8 00196CE8  48 09 E4 85 */	bl getStatus__12dMsgObject_cFv
 /* 80199DAC 00196CEC  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80199DB0 00196CF0  28 00 00 06 */	cmplwi r0, 6
 /* 80199DB4 00196CF4  41 82 00 58 */	beq lbl_80199E0C
-/* 80199DB8 00196CF8  48 09 E4 75 */	bl dMsgObject_c_NS_getStatus
+/* 80199DB8 00196CF8  48 09 E4 75 */	bl getStatus__12dMsgObject_cFv
 /* 80199DBC 00196CFC  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80199DC0 00196D00  28 00 00 08 */	cmplwi r0, 8
 /* 80199DC4 00196D04  41 82 00 48 */	beq lbl_80199E0C
-/* 80199DC8 00196D08  48 09 E4 65 */	bl dMsgObject_c_NS_getStatus
+/* 80199DC8 00196D08  48 09 E4 65 */	bl getStatus__12dMsgObject_cFv
 /* 80199DCC 00196D0C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80199DD0 00196D10  28 00 00 09 */	cmplwi r0, 9
 /* 80199DD4 00196D14  41 82 00 38 */	beq lbl_80199E0C
-/* 80199DD8 00196D18  48 09 E4 55 */	bl dMsgObject_c_NS_getStatus
+/* 80199DD8 00196D18  48 09 E4 55 */	bl getStatus__12dMsgObject_cFv
 /* 80199DDC 00196D1C  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80199DE0 00196D20  28 00 00 14 */	cmplwi r0, 0x14
 /* 80199DE4 00196D24  41 82 00 28 */	beq lbl_80199E0C
@@ -3159,12 +3159,12 @@ lbl_80199D80:
 /* 80199DEC 00196D2C  40 82 00 14 */	bne lbl_80199E00
 /* 80199DF0 00196D30  7F C3 F3 78 */	mr r3, r30
 /* 80199DF4 00196D34  38 80 00 08 */	li r4, 8
-/* 80199DF8 00196D38  48 00 05 4D */	bl dShopSystem_c_NS_setSeq
+/* 80199DF8 00196D38  48 00 05 4D */	bl setSeq__13dShopSystem_cFUc
 /* 80199DFC 00196D3C  48 00 00 10 */	b lbl_80199E0C
 lbl_80199E00:
 /* 80199E00 00196D40  7F C3 F3 78 */	mr r3, r30
 /* 80199E04 00196D44  38 80 00 09 */	li r4, 9
-/* 80199E08 00196D48  48 00 05 3D */	bl dShopSystem_c_NS_setSeq
+/* 80199E08 00196D48  48 00 05 3D */	bl setSeq__13dShopSystem_cFUc
 lbl_80199E0C:
 /* 80199E0C 00196D4C  38 60 00 00 */	li r3, 0
 /* 80199E10 00196D50  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -3181,7 +3181,7 @@ lbl_80199E0C:
 /* 80199E3C 00196D7C  7C 7D 1B 78 */	mr r29, r3
 /* 80199E40 00196D80  7C 9E 23 78 */	mr r30, r4
 /* 80199E44 00196D84  7C BF 2B 78 */	mr r31, r5
-/* 80199E48 00196D88  48 09 E5 89 */	bl dMsgObject_c_NS_getMessageID
+/* 80199E48 00196D88  48 09 E5 89 */	bl getMessageID__12dMsgObject_cFv
 /* 80199E4C 00196D8C  28 03 1B 82 */	cmplwi r3, 0x1b82
 /* 80199E50 00196D90  40 82 00 30 */	bne lbl_80199E80
 /* 80199E54 00196D94  38 00 00 00 */	li r0, 0
@@ -3198,7 +3198,7 @@ lbl_80199E0C:
 lbl_80199E80:
 /* 80199E80 00196DC0  38 7D 09 74 */	addi r3, r29, 0x974
 /* 80199E84 00196DC4  38 81 00 08 */	addi r4, r1, 8
-/* 80199E88 00196DC8  48 0B 06 A1 */	bl dMsgFlow_c_NS_getEventId
+/* 80199E88 00196DC8  48 0B 06 A1 */	bl getEventId__10dMsgFlow_cFPi
 /* 80199E8C 00196DCC  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 80199E90 00196DD0  28 00 00 01 */	cmplwi r0, 1
 /* 80199E94 00196DD4  40 82 00 98 */	bne lbl_80199F2C
@@ -3206,7 +3206,7 @@ lbl_80199E80:
 /* 80199E9C 00196DDC  7F C4 F3 78 */	mr r4, r30
 /* 80199EA0 00196DE0  38 A0 00 00 */	li r5, 0
 /* 80199EA4 00196DE4  38 C0 00 00 */	li r6, 0
-/* 80199EA8 00196DE8  48 0B 04 31 */	bl dMsgFlow_c_NS_doFlow
+/* 80199EA8 00196DE8  48 0B 04 31 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199EAC 00196DEC  2C 03 00 00 */	cmpwi r3, 0
 /* 80199EB0 00196DF0  41 82 00 D8 */	beq lbl_80199F88
 /* 80199EB4 00196DF4  80 7D 0D 90 */	lwz r3, 0xd90(r29)
@@ -3224,18 +3224,18 @@ lbl_80199E80:
 /* 80199EE4 00196E24  90 7D 0D 90 */	stw r3, 0xd90(r29)
 lbl_80199EE8:
 /* 80199EE8 00196E28  80 7D 0D 90 */	lwz r3, 0xd90(r29)
-/* 80199EEC 00196E2C  4B E8 74 B1 */	bl fpcEx_IsExist
+/* 80199EEC 00196E2C  4B E8 74 B1 */	bl fpcEx_IsExist__FUi
 /* 80199EF0 00196E30  2C 03 00 00 */	cmpwi r3, 0
 /* 80199EF4 00196E34  41 82 00 30 */	beq lbl_80199F24
 /* 80199EF8 00196E38  7F A3 EB 78 */	mr r3, r29
 /* 80199EFC 00196E3C  38 80 00 08 */	li r4, 8
-/* 80199F00 00196E40  4B FF D6 DD */	bl dShopSystem_c_NS_offFlag
+/* 80199F00 00196E40  4B FF D6 DD */	bl offFlag__13dShopSystem_cFi
 /* 80199F04 00196E44  7F A3 EB 78 */	mr r3, r29
-/* 80199F08 00196E48  48 00 05 ED */	bl dShopSystem_c_NS_setSoldOutItemHide
+/* 80199F08 00196E48  48 00 05 ED */	bl setSoldOutItemHide__13dShopSystem_cFv
 /* 80199F0C 00196E4C  38 00 00 01 */	li r0, 1
 /* 80199F10 00196E50  B0 1D 0E 30 */	sth r0, 0xe30(r29)
 /* 80199F14 00196E54  7F A3 EB 78 */	mr r3, r29
-/* 80199F18 00196E58  4B FB 03 0D */	bl daNpcT_c_NS_evtChange
+/* 80199F18 00196E58  4B FB 03 0D */	bl evtChange__8daNpcT_cFv
 /* 80199F1C 00196E5C  38 60 00 02 */	li r3, 2
 /* 80199F20 00196E60  48 00 00 6C */	b lbl_80199F8C
 lbl_80199F24:
@@ -3258,15 +3258,15 @@ lbl_80199F58:
 /* 80199F58 00196E98  7F E3 FB 78 */	mr r3, r31
 /* 80199F5C 00196E9C  7F C4 F3 78 */	mr r4, r30
 /* 80199F60 00196EA0  38 A0 00 00 */	li r5, 0
-/* 80199F64 00196EA4  48 0B 03 75 */	bl dMsgFlow_c_NS_doFlow
+/* 80199F64 00196EA4  48 0B 03 75 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199F68 00196EA8  2C 03 00 00 */	cmpwi r3, 0
 /* 80199F6C 00196EAC  41 82 00 1C */	beq lbl_80199F88
 /* 80199F70 00196EB0  7F A3 EB 78 */	mr r3, r29
 /* 80199F74 00196EB4  38 80 00 08 */	li r4, 8
-/* 80199F78 00196EB8  4B FF D6 65 */	bl dShopSystem_c_NS_offFlag
+/* 80199F78 00196EB8  4B FF D6 65 */	bl offFlag__13dShopSystem_cFi
 /* 80199F7C 00196EBC  7F A3 EB 78 */	mr r3, r29
 /* 80199F80 00196EC0  38 80 00 02 */	li r4, 2
-/* 80199F84 00196EC4  48 00 03 C1 */	bl dShopSystem_c_NS_setSeq
+/* 80199F84 00196EC4  48 00 03 C1 */	bl setSeq__13dShopSystem_cFUc
 lbl_80199F88:
 /* 80199F88 00196EC8  38 60 00 00 */	li r3, 0
 lbl_80199F8C:
@@ -3286,20 +3286,20 @@ lbl_80199F8C:
 /* 80199FC0 00196F00  7C BF 2B 78 */	mr r31, r5
 /* 80199FC4 00196F04  80 83 0F 58 */	lwz r4, 0xf58(r3)
 /* 80199FC8 00196F08  38 A0 00 02 */	li r5, 2
-/* 80199FCC 00196F0C  4B FF E4 79 */	bl dShopSystem_c_NS_moveCursor
+/* 80199FCC 00196F0C  4B FF E4 79 */	bl moveCursor__13dShopSystem_cFiUc
 /* 80199FD0 00196F10  7C 66 1B 78 */	mr r6, r3
 /* 80199FD4 00196F14  7F E3 FB 78 */	mr r3, r31
 /* 80199FD8 00196F18  7F C4 F3 78 */	mr r4, r30
 /* 80199FDC 00196F1C  38 A0 00 00 */	li r5, 0
-/* 80199FE0 00196F20  48 0B 02 F9 */	bl dMsgFlow_c_NS_doFlow
+/* 80199FE0 00196F20  48 0B 02 F9 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80199FE4 00196F24  2C 03 00 00 */	cmpwi r3, 0
 /* 80199FE8 00196F28  41 82 00 1C */	beq lbl_8019A004
 /* 80199FEC 00196F2C  7F A3 EB 78 */	mr r3, r29
 /* 80199FF0 00196F30  38 80 00 08 */	li r4, 8
-/* 80199FF4 00196F34  4B FF D5 E9 */	bl dShopSystem_c_NS_offFlag
+/* 80199FF4 00196F34  4B FF D5 E9 */	bl offFlag__13dShopSystem_cFi
 /* 80199FF8 00196F38  7F A3 EB 78 */	mr r3, r29
 /* 80199FFC 00196F3C  38 80 00 02 */	li r4, 2
-/* 8019A000 00196F40  48 00 03 45 */	bl dShopSystem_c_NS_setSeq
+/* 8019A000 00196F40  48 00 03 45 */	bl setSeq__13dShopSystem_cFUc
 lbl_8019A004:
 /* 8019A004 00196F44  38 60 00 00 */	li r3, 0
 /* 8019A008 00196F48  39 61 00 20 */	addi r11, r1, 0x20
@@ -3334,12 +3334,12 @@ lbl_8019A074:
 /* 8019A078 00196FB8  7F C4 F3 78 */	mr r4, r30
 /* 8019A07C 00196FBC  38 A0 00 00 */	li r5, 0
 /* 8019A080 00196FC0  38 C0 00 00 */	li r6, 0
-/* 8019A084 00196FC4  48 0B 02 55 */	bl dMsgFlow_c_NS_doFlow
+/* 8019A084 00196FC4  48 0B 02 55 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 8019A088 00196FC8  2C 03 00 00 */	cmpwi r3, 0
 /* 8019A08C 00196FCC  41 82 00 18 */	beq lbl_8019A0A4
 /* 8019A090 00196FD0  7F A3 EB 78 */	mr r3, r29
 /* 8019A094 00196FD4  38 80 00 00 */	li r4, 0
-/* 8019A098 00196FD8  48 00 02 AD */	bl dShopSystem_c_NS_setSeq
+/* 8019A098 00196FD8  48 00 02 AD */	bl setSeq__13dShopSystem_cFUc
 /* 8019A09C 00196FDC  38 60 00 01 */	li r3, 1
 /* 8019A0A0 00196FE0  48 00 00 08 */	b lbl_8019A0A8
 lbl_8019A0A4:
@@ -3363,13 +3363,13 @@ lbl_8019A0A8:
 /* 8019A0E4 00197024  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8019A0E8 00197028  41 82 00 2C */	beq lbl_8019A114
 /* 8019A0EC 0019702C  38 80 00 03 */	li r4, 3
-/* 8019A0F0 00197030  48 00 02 55 */	bl dShopSystem_c_NS_setSeq
+/* 8019A0F0 00197030  48 00 02 55 */	bl setSeq__13dShopSystem_cFUc
 /* 8019A0F4 00197034  38 00 00 01 */	li r0, 1
 /* 8019A0F8 00197038  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 8019A0FC 0019703C  38 63 01 88 */	addi r3, r3, lbl_80430188@l
 /* 8019A100 00197040  98 03 00 BD */	stb r0, 0xbd(r3)
 /* 8019A104 00197044  7F E3 FB 78 */	mr r3, r31
-/* 8019A108 00197048  48 00 02 5D */	bl dShopSystem_c_NS_setSoldOut
+/* 8019A108 00197048  48 00 02 5D */	bl setSoldOut__13dShopSystem_cFv
 /* 8019A10C 0019704C  38 60 00 01 */	li r3, 1
 /* 8019A110 00197050  48 00 00 34 */	b lbl_8019A144
 lbl_8019A114:
@@ -3377,7 +3377,7 @@ lbl_8019A114:
 /* 8019A118 00197058  28 00 00 00 */	cmplwi r0, 0
 /* 8019A11C 0019705C  40 82 00 24 */	bne lbl_8019A140
 /* 8019A120 00197060  38 80 00 01 */	li r4, 1
-/* 8019A124 00197064  48 00 02 21 */	bl dShopSystem_c_NS_setSeq
+/* 8019A124 00197064  48 00 02 21 */	bl setSeq__13dShopSystem_cFUc
 /* 8019A128 00197068  38 00 00 01 */	li r0, 1
 /* 8019A12C 0019706C  3C 60 80 43 */	lis r3, lbl_80430188@ha
 /* 8019A130 00197070  38 63 01 88 */	addi r3, r3, lbl_80430188@l
@@ -3403,7 +3403,7 @@ lbl_8019A144:
 /* 8019A178 001970B8  3C C0 80 3C */	lis r6, lbl_803BB974@ha
 /* 8019A17C 001970BC  38 06 B9 74 */	addi r0, r6, lbl_803BB974@l
 /* 8019A180 001970C0  7D 80 3A 14 */	add r12, r0, r7
-/* 8019A184 001970C4  48 1C 7F 01 */	bl func_80362084
+/* 8019A184 001970C4  48 1C 7F 01 */	bl __ptmf_scall
 /* 8019A188 001970C8  60 00 00 00 */	nop 
 /* 8019A18C 001970CC  7C 7E 1B 78 */	mr r30, r3
 /* 8019A190 001970D0  88 7F 0F 72 */	lbz r3, 0xf72(r31)
@@ -3415,7 +3415,7 @@ lbl_8019A1A4:
 /* 8019A1A4 001970E4  88 1F 0F 7A */	lbz r0, 0xf7a(r31)
 /* 8019A1A8 001970E8  28 00 00 00 */	cmplwi r0, 0
 /* 8019A1AC 001970EC  41 82 00 10 */	beq lbl_8019A1BC
-/* 8019A1B0 001970F0  48 08 48 21 */	bl dMeter2Info_set2DVibration
+/* 8019A1B0 001970F0  48 08 48 21 */	bl dMeter2Info_set2DVibration__Fv
 /* 8019A1B4 001970F4  38 00 00 00 */	li r0, 0
 /* 8019A1B8 001970F8  98 1F 0F 7A */	stb r0, 0xf7a(r31)
 lbl_8019A1BC:
@@ -3430,7 +3430,7 @@ lbl_8019A1BC:
 /* 8019A1DC 0019711C  41 82 00 10 */	beq lbl_8019A1EC
 /* 8019A1E0 00197120  7F E3 FB 78 */	mr r3, r31
 /* 8019A1E4 00197124  38 80 00 00 */	li r4, 0
-/* 8019A1E8 00197128  48 00 01 5D */	bl dShopSystem_c_NS_setSeq
+/* 8019A1E8 00197128  48 00 01 5D */	bl setSeq__13dShopSystem_cFUc
 lbl_8019A1EC:
 /* 8019A1EC 0019712C  2C 1E 00 02 */	cmpwi r30, 2
 /* 8019A1F0 00197130  41 82 00 10 */	beq lbl_8019A200
@@ -3501,7 +3501,7 @@ lbl_8019A27C:
 /* 8019A2E8 00197228  7C 7B 01 2E */	stwx r3, r27, r0
 /* 8019A2EC 0019722C  7F 63 DB 78 */	mr r3, r27
 /* 8019A2F0 00197230  7F 84 E3 78 */	mr r4, r28
-/* 8019A2F4 00197234  4B FF D2 E9 */	bl dShopSystem_c_NS_offFlag
+/* 8019A2F4 00197234  4B FF D2 E9 */	bl offFlag__13dShopSystem_cFi
 /* 8019A2F8 00197238  48 00 00 1C */	b lbl_8019A314
 lbl_8019A2FC:
 /* 8019A2FC 0019723C  38 60 FF FF */	li r3, -1
@@ -3509,7 +3509,7 @@ lbl_8019A2FC:
 /* 8019A304 00197244  7C 7B 01 2E */	stwx r3, r27, r0
 /* 8019A308 00197248  7F 63 DB 78 */	mr r3, r27
 /* 8019A30C 0019724C  7F 84 E3 78 */	mr r4, r28
-/* 8019A310 00197250  4B FF D2 B1 */	bl dShopSystem_c_NS_onFlag
+/* 8019A310 00197250  4B FF D2 B1 */	bl onFlag__13dShopSystem_cFi
 lbl_8019A314:
 /* 8019A314 00197254  3B 9C 00 01 */	addi r28, r28, 1
 /* 8019A318 00197258  2C 1C 00 03 */	cmpwi r28, 3
@@ -3525,22 +3525,22 @@ lbl_8019A32C:
 /* 8019A33C 0019727C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8019A340 00197280  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_setSeq
-dShopSystem_c_NS_setSeq:
+.global setSeq__13dShopSystem_cFUc
+setSeq__13dShopSystem_cFUc:
 /* 8019A344 00197284  98 83 0F 70 */	stb r4, 0xf70(r3)
 /* 8019A348 00197288  38 00 00 02 */	li r0, 2
 /* 8019A34C 0019728C  98 03 0F 72 */	stb r0, 0xf72(r3)
 /* 8019A350 00197290  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_setSoldOutFlag
-dShopSystem_c_NS_setSoldOutFlag:
+.global setSoldOutFlag__13dShopSystem_cFv
+setSoldOutFlag__13dShopSystem_cFv:
 /* 8019A354 00197294  88 83 0F 6E */	lbz r4, 0xf6e(r3)
 /* 8019A358 00197298  38 04 FF FF */	addi r0, r4, -1
 /* 8019A35C 0019729C  98 03 0F 73 */	stb r0, 0xf73(r3)
 /* 8019A360 001972A0  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_setSoldOut
-dShopSystem_c_NS_setSoldOut:
+.global setSoldOut__13dShopSystem_cFv
+setSoldOut__13dShopSystem_cFv:
 /* 8019A364 001972A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019A368 001972A8  7C 08 02 A6 */	mflr r0
 /* 8019A36C 001972AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3587,7 +3587,7 @@ lbl_8019A3E0:
 /* 8019A40C 0019734C  90 1D 0E 4C */	stw r0, 0xe4c(r29)
 /* 8019A410 00197350  7F C3 F3 78 */	mr r3, r30
 /* 8019A414 00197354  7F E4 FB 78 */	mr r4, r31
-/* 8019A418 00197358  4B FF D1 A9 */	bl dShopSystem_c_NS_onFlag
+/* 8019A418 00197358  4B FF D1 A9 */	bl onFlag__13dShopSystem_cFi
 /* 8019A41C 0019735C  48 00 00 C0 */	b lbl_8019A4DC
 lbl_8019A420:
 /* 8019A420 00197360  2C 1F 00 00 */	cmpwi r31, 0
@@ -3640,7 +3640,7 @@ lbl_8019A4C4:
 /* 8019A4CC 0019740C  41 82 00 10 */	beq lbl_8019A4DC
 /* 8019A4D0 00197410  7F C3 F3 78 */	mr r3, r30
 /* 8019A4D4 00197414  7F E4 FB 78 */	mr r4, r31
-/* 8019A4D8 00197418  4B FF D0 E9 */	bl dShopSystem_c_NS_onFlag
+/* 8019A4D8 00197418  4B FF D0 E9 */	bl onFlag__13dShopSystem_cFi
 lbl_8019A4DC:
 /* 8019A4DC 0019741C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8019A4E0 00197420  48 1C 7D 49 */	bl _restgpr_29
@@ -3649,8 +3649,8 @@ lbl_8019A4DC:
 /* 8019A4EC 0019742C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8019A4F0 00197430  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_setSoldOutItemHide
-dShopSystem_c_NS_setSoldOutItemHide:
+.global setSoldOutItemHide__13dShopSystem_cFv
+setSoldOutItemHide__13dShopSystem_cFv:
 /* 8019A4F4 00197434  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019A4F8 00197438  7C 08 02 A6 */	mflr r0
 /* 8019A4FC 0019743C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3669,23 +3669,23 @@ lbl_8019A524:
 /* 8019A52C 0019746C  7C 63 02 14 */	add r3, r3, r0
 /* 8019A530 00197470  80 03 0E 4C */	lwz r0, 0xe4c(r3)
 /* 8019A534 00197474  90 01 00 08 */	stw r0, 8(r1)
-.global fpcSch_JudgeByID
-/* 8019A538 00197478  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 8019A53C 0019747C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 8019A538 00197478  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 8019A53C 0019747C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 8019A540 00197480  38 81 00 08 */	addi r4, r1, 8
 /* 8019A544 00197484  4B E7 F2 B5 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8019A548 00197488  28 03 00 00 */	cmplwi r3, 0
 /* 8019A54C 0019748C  41 82 00 08 */	beq lbl_8019A554
-/* 8019A550 00197490  4B E9 D5 15 */	bl daItemBase_c_NS_hide
+/* 8019A550 00197490  4B E9 D5 15 */	bl hide__12daItemBase_cFv
 lbl_8019A554:
 /* 8019A554 00197494  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8019A558 00197498  7C 08 03 A6 */	mtlr r0
 /* 8019A55C 0019749C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019A560 001974A0  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_deleteObject
-dShopSystem_c_NS_deleteObject:
+.global deleteObject__13dShopSystem_cFv
+deleteObject__13dShopSystem_cFv:
 /* 8019A564 001974A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019A568 001974A8  7C 08 02 A6 */	mflr r0
 /* 8019A56C 001974AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3717,8 +3717,8 @@ lbl_8019A5BC:
 /* 8019A5C8 00197508  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019A5CC 0019750C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_searchItemActor
-dShopSystem_c_NS_searchItemActor:
+.global searchItemActor__13dShopSystem_cFv
+searchItemActor__13dShopSystem_cFv:
 /* 8019A5D0 00197510  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 8019A5D4 00197514  7C 08 02 A6 */	mflr r0
 /* 8019A5D8 00197518  90 01 00 C4 */	stw r0, 0xc4(r1)
@@ -3739,22 +3739,22 @@ dShopSystem_c_NS_searchItemActor:
 lbl_8019A614:
 /* 8019A614 00197554  7C 03 20 00 */	cmpw r3, r4
 /* 8019A618 00197558  40 80 00 14 */	bge lbl_8019A62C
-.global dShopSystem_searchItemActor
-/* 8019A61C 0019755C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor@ha
-.global dShopSystem_searchItemActor
-/* 8019A620 00197560  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor@l
+.global dShopSystem_searchItemActor__FPvPv
+/* 8019A61C 0019755C  3C 60 80 19 */	lis r3, dShopSystem_searchItemActor__FPvPv@ha
+.global dShopSystem_searchItemActor__FPvPv
+/* 8019A620 00197560  38 63 70 98 */	addi r3, r3, dShopSystem_searchItemActor__FPvPv@l
 /* 8019A624 00197564  7F C4 F3 78 */	mr r4, r30
-/* 8019A628 00197568  4B E8 6D 11 */	bl fpcEx_Search
+/* 8019A628 00197568  4B E8 6D 11 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A62C:
 /* 8019A62C 0019756C  80 0D 8A E4 */	lwz r0, lbl_80451064-_SDA_BASE_(r13)
 /* 8019A630 00197570  2C 00 00 02 */	cmpwi r0, 2
 /* 8019A634 00197574  40 80 00 14 */	bge lbl_8019A648
-.global dShopSystem_searchCameraActor
-/* 8019A638 00197578  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor@ha
-.global dShopSystem_searchCameraActor
-/* 8019A63C 0019757C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor@l
+.global dShopSystem_searchCameraActor__FPvPv
+/* 8019A638 00197578  3C 60 80 19 */	lis r3, dShopSystem_searchCameraActor__FPvPv@ha
+.global dShopSystem_searchCameraActor__FPvPv
+/* 8019A63C 0019757C  38 63 72 70 */	addi r3, r3, dShopSystem_searchCameraActor__FPvPv@l
 /* 8019A640 00197580  7F C4 F3 78 */	mr r4, r30
-/* 8019A644 00197584  4B E8 6C F5 */	bl fpcEx_Search
+/* 8019A644 00197584  4B E8 6C F5 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8019A648:
 /* 8019A648 00197588  38 60 00 00 */	li r3, 0
 /* 8019A64C 0019758C  48 00 04 94 */	b lbl_8019AAE0
@@ -3894,15 +3894,15 @@ lbl_8019A824:
 /* 8019A834 00197774  40 82 00 20 */	bne lbl_8019A854
 /* 8019A838 00197778  7F C3 F3 78 */	mr r3, r30
 /* 8019A83C 0019777C  7F E4 FB 78 */	mr r4, r31
-/* 8019A840 00197780  4B FF CD 81 */	bl dShopSystem_c_NS_onFlag
+/* 8019A840 00197780  4B FF CD 81 */	bl onFlag__13dShopSystem_cFi
 /* 8019A844 00197784  7F C3 F3 78 */	mr r3, r30
 /* 8019A848 00197788  7F E4 FB 78 */	mr r4, r31
-/* 8019A84C 0019778C  4B FF CD CD */	bl dShopSystem_c_NS_onSoldOutItemFlag
+/* 8019A84C 0019778C  4B FF CD CD */	bl onSoldOutItemFlag__13dShopSystem_cFi
 /* 8019A850 00197790  48 00 00 40 */	b lbl_8019A890
 lbl_8019A854:
 /* 8019A854 00197794  7F C3 F3 78 */	mr r3, r30
 /* 8019A858 00197798  7F E4 FB 78 */	mr r4, r31
-/* 8019A85C 0019779C  4B FF CD 81 */	bl dShopSystem_c_NS_offFlag
+/* 8019A85C 0019779C  4B FF CD 81 */	bl offFlag__13dShopSystem_cFi
 /* 8019A860 001977A0  7C 7B E0 2E */	lwzx r3, r27, r28
 /* 8019A864 001977A4  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 8019A868 001977A8  54 00 06 3E */	clrlwi r0, r0, 0x18
@@ -3910,12 +3910,12 @@ lbl_8019A854:
 /* 8019A870 001977B0  40 82 00 14 */	bne lbl_8019A884
 /* 8019A874 001977B4  7F C3 F3 78 */	mr r3, r30
 /* 8019A878 001977B8  7F E4 FB 78 */	mr r4, r31
-/* 8019A87C 001977BC  4B FF CD 9D */	bl dShopSystem_c_NS_onSoldOutItemFlag
+/* 8019A87C 001977BC  4B FF CD 9D */	bl onSoldOutItemFlag__13dShopSystem_cFi
 /* 8019A880 001977C0  48 00 00 10 */	b lbl_8019A890
 lbl_8019A884:
 /* 8019A884 001977C4  7F C3 F3 78 */	mr r3, r30
 /* 8019A888 001977C8  7F E4 FB 78 */	mr r4, r31
-/* 8019A88C 001977CC  4B FF CD A9 */	bl dShopSystem_c_NS_offSoldOutItemFlag
+/* 8019A88C 001977CC  4B FF CD A9 */	bl offSoldOutItemFlag__13dShopSystem_cFi
 lbl_8019A890:
 /* 8019A890 001977D0  3B FF 00 01 */	addi r31, r31, 1
 /* 8019A894 001977D4  3B BD 00 02 */	addi r29, r29, 2
@@ -3963,7 +3963,7 @@ lbl_8019A8F0:
 /* 8019A934 00197874  81 0A 00 0C */	lwz r8, 0xc(r10)
 /* 8019A938 00197878  81 2A 00 10 */	lwz r9, 0x10(r10)
 /* 8019A93C 0019787C  81 4A 00 14 */	lwz r10, 0x14(r10)
-/* 8019A940 00197880  4B FF BC C9 */	bl ShopCam_action_c_NS_setCamDataIdx2
+/* 8019A940 00197880  4B FF BC C9 */	bl setCamDataIdx2__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
 /* 8019A944 00197884  88 1E 0F 77 */	lbz r0, 0xf77(r30)
 /* 8019A948 00197888  28 00 00 08 */	cmplwi r0, 8
 /* 8019A94C 0019788C  40 82 00 28 */	bne lbl_8019A974
@@ -3975,7 +3975,7 @@ lbl_8019A8F0:
 /* 8019A964 001978A4  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8019A968 001978A8  38 7E 0E 78 */	addi r3, r30, 0xe78
 /* 8019A96C 001978AC  38 81 00 20 */	addi r4, r1, 0x20
-/* 8019A970 001978B0  4B FF BF 49 */	bl ShopCam_action_c_NS_setMasterCamCtrPos
+/* 8019A970 001978B0  4B FF BF 49 */	bl setMasterCamCtrPos__16ShopCam_action_cFP4cXyz
 lbl_8019A974:
 /* 8019A974 001978B4  3A A0 00 00 */	li r21, 0
 /* 8019A978 001978B8  3B E0 00 00 */	li r31, 0
@@ -4006,10 +4006,10 @@ lbl_8019A990:
 /* 8019A9D8 00197918  40 82 00 1C */	bne lbl_8019A9F4
 /* 8019A9DC 0019791C  7F C3 F3 78 */	mr r3, r30
 /* 8019A9E0 00197920  7E A4 AB 78 */	mr r4, r21
-/* 8019A9E4 00197924  4B FF CB DD */	bl dShopSystem_c_NS_onFlag
+/* 8019A9E4 00197924  4B FF CB DD */	bl onFlag__13dShopSystem_cFi
 /* 8019A9E8 00197928  7F C3 F3 78 */	mr r3, r30
 /* 8019A9EC 0019792C  7E A4 AB 78 */	mr r4, r21
-/* 8019A9F0 00197930  4B FF CC 29 */	bl dShopSystem_c_NS_onSoldOutItemFlag
+/* 8019A9F0 00197930  4B FF CC 29 */	bl onSoldOutItemFlag__13dShopSystem_cFi
 lbl_8019A9F4:
 /* 8019A9F4 00197934  3A B5 00 01 */	addi r21, r21, 1
 /* 8019A9F8 00197938  2C 15 00 07 */	cmpwi r21, 7
@@ -4031,7 +4031,7 @@ lbl_8019AA10:
 /* 8019AA34 00197974  39 2D 81 70 */	addi r9, r13, lbl_804506F0-_SDA_BASE_
 /* 8019AA38 00197978  81 29 00 04 */	lwz r9, 4(r9)
 /* 8019AA3C 0019797C  39 29 04 D0 */	addi r9, r9, 0x4d0
-/* 8019AA40 00197980  4B FF BB 05 */	bl ShopCam_action_c_NS_setCamDataIdx
+/* 8019AA40 00197980  4B FF BB 05 */	bl setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
 /* 8019AA44 00197984  3A A0 00 00 */	li r21, 0
 /* 8019AA48 00197988  3B E0 00 00 */	li r31, 0
 /* 8019AA4C 0019798C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -4061,10 +4061,10 @@ lbl_8019AA60:
 /* 8019AAA8 001979E8  40 82 00 1C */	bne lbl_8019AAC4
 /* 8019AAAC 001979EC  7F C3 F3 78 */	mr r3, r30
 /* 8019AAB0 001979F0  7E A4 AB 78 */	mr r4, r21
-/* 8019AAB4 001979F4  4B FF CB 0D */	bl dShopSystem_c_NS_onFlag
+/* 8019AAB4 001979F4  4B FF CB 0D */	bl onFlag__13dShopSystem_cFi
 /* 8019AAB8 001979F8  7F C3 F3 78 */	mr r3, r30
 /* 8019AABC 001979FC  7E A4 AB 78 */	mr r4, r21
-/* 8019AAC0 00197A00  4B FF CB 59 */	bl dShopSystem_c_NS_onSoldOutItemFlag
+/* 8019AAC0 00197A00  4B FF CB 59 */	bl onSoldOutItemFlag__13dShopSystem_cFi
 lbl_8019AAC4:
 /* 8019AAC4 00197A04  3A B5 00 01 */	addi r21, r21, 1
 /* 8019AAC8 00197A08  2C 15 00 07 */	cmpwi r21, 7
@@ -4084,8 +4084,8 @@ lbl_8019AAE0:
 /* 8019AAF8 00197A38  38 21 00 C0 */	addi r1, r1, 0xc0
 /* 8019AAFC 00197A3C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_getFlowNodeNum
-dShopSystem_c_NS_getFlowNodeNum:
+.global getFlowNodeNum__13dShopSystem_cFv
+getFlowNodeNum__13dShopSystem_cFv:
 /* 8019AB00 00197A40  A8 03 04 B4 */	lha r0, 0x4b4(r3)
 /* 8019AB04 00197A44  54 00 04 3E */	clrlwi r0, r0, 0x10
 /* 8019AB08 00197A48  28 00 FF FF */	cmplwi r0, 0xffff
@@ -4113,8 +4113,8 @@ lbl_8019AB48:
 /* 8019AB58 00197A98  7C 60 19 10 */	subfe r3, r0, r3
 /* 8019AB5C 00197A9C  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_checkLeftTrigger
-dShopSystem_c_NS_checkLeftTrigger:
+.global checkLeftTrigger__13dShopSystem_cFP9STControl
+checkLeftTrigger__13dShopSystem_cFP9STControl:
 /* 8019AB60 00197AA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019AB64 00197AA4  7C 08 02 A6 */	mflr r0
 /* 8019AB68 00197AA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4125,8 +4125,8 @@ dShopSystem_c_NS_checkLeftTrigger:
 /* 8019AB7C 00197ABC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019AB80 00197AC0  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_checkRightTrigger
-dShopSystem_c_NS_checkRightTrigger:
+.global checkRightTrigger__13dShopSystem_cFP9STControl
+checkRightTrigger__13dShopSystem_cFP9STControl:
 /* 8019AB84 00197AC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8019AB88 00197AC8  7C 08 02 A6 */	mflr r0
 /* 8019AB8C 00197ACC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -4137,8 +4137,8 @@ dShopSystem_c_NS_checkRightTrigger:
 /* 8019ABA0 00197AE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8019ABA4 00197AE4  4E 80 00 20 */	blr 
 
-.global dShopSystem_c_NS_dpdMove
-dShopSystem_c_NS_dpdMove:
+.global dpdMove__13dShopSystem_cFv
+dpdMove__13dShopSystem_cFv:
 /* 8019ABA8 00197AE8  38 60 00 00 */	li r3, 0
 /* 8019ABAC 00197AEC  4E 80 00 20 */	blr 
 /* 8019ABB0 00197AF0  3C 60 80 3C */	lis r3, lbl_803BB898@ha

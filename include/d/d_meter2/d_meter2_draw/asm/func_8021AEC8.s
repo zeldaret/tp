@@ -13,7 +13,7 @@
 /* 8021AEF8 00217E38  57 C0 15 BA */ rlwinm r0, r30, 2, 0x16, 0x1d
 /* 8021AEFC 00217E3C  7C 7C 02 14 */ add r3, r28, r0
 /* 8021AF00 00217E40  80 63 03 2C */ lwz r3, 0x32c(r3)
-/* 8021AF04 00217E44  48 03 A9 25 */ bl CPaneMgrAlpha_NS_getAlphaRate
+/* 8021AF04 00217E44  48 03 A9 25 */ bl getAlphaRate__13CPaneMgrAlphaFv
 lbl_8021AF08:
 /* 8021AF08 00217E48  3B A0 00 00 */ li r29, 0
 /* 8021AF0C 00217E4C  3B E0 00 00 */ li r31, 0

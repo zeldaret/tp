@@ -3,8 +3,8 @@
 .section .text, "ax" # 8015e4cc
 
 
-.global daPy_frameCtrl_c_NS_checkAnmEnd
-daPy_frameCtrl_c_NS_checkAnmEnd:
+.global checkAnmEnd__16daPy_frameCtrl_cFv
+checkAnmEnd__16daPy_frameCtrl_cFv:
 /* 8015E4CC 0015B40C  A0 03 00 14 */	lhz r0, 0x14(r3)
 /* 8015E4D0 0015B410  28 00 00 00 */	cmplwi r0, 0
 /* 8015E4D4 0015B414  41 82 00 18 */	beq lbl_8015E4EC
@@ -25,14 +25,14 @@ lbl_8015E508:
 /* 8015E508 0015B448  38 60 00 00 */	li r3, 0
 /* 8015E50C 0015B44C  4E 80 00 20 */	blr 
 
-.global daPy_frameCtrl_c_NS_updateFrame
-daPy_frameCtrl_c_NS_updateFrame:
+.global updateFrame__16daPy_frameCtrl_cFv
+updateFrame__16daPy_frameCtrl_cFv:
 /* 8015E510 0015B450  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015E514 0015B454  7C 08 02 A6 */	mflr r0
 /* 8015E518 0015B458  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8015E51C 0015B45C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015E520 0015B460  7C 7F 1B 78 */	mr r31, r3
-/* 8015E524 0015B464  48 1C A4 A9 */	bl J3DFrameCtrl_NS_update
+/* 8015E524 0015B464  48 1C A4 A9 */	bl update__12J3DFrameCtrlFv
 /* 8015E528 0015B468  38 00 00 00 */	li r0, 0
 /* 8015E52C 0015B46C  B0 1F 00 16 */	sth r0, 0x16(r31)
 /* 8015E530 0015B470  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -41,8 +41,8 @@ daPy_frameCtrl_c_NS_updateFrame:
 /* 8015E53C 0015B47C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015E540 0015B480  4E 80 00 20 */	blr 
 
-.global daPy_frameCtrl_c_NS_setFrameCtrl
-daPy_frameCtrl_c_NS_setFrameCtrl:
+.global setFrameCtrl__16daPy_frameCtrl_cFUcssff
+setFrameCtrl__16daPy_frameCtrl_cFUcssff:
 /* 8015E544 0015B484  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015E548 0015B488  98 83 00 04 */	stb r4, 4(r3)
 /* 8015E54C 0015B48C  B0 C3 00 08 */	sth r6, 8(r3)
@@ -73,8 +73,8 @@ lbl_8015E59C:
 /* 8015E5A8 0015B4E8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015E5AC 0015B4EC  4E 80 00 20 */	blr 
 
-.global daPy_boomerangMove_c_NS_initOffset
-daPy_boomerangMove_c_NS_initOffset:
+.global initOffset__20daPy_boomerangMove_cFPC4cXyz
+initOffset__20daPy_boomerangMove_cFPC4cXyz:
 /* 8015E5B0 0015B4F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015E5B4 0015B4F4  7C 08 02 A6 */	mflr r0
 /* 8015E5B8 0015B4F8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -82,12 +82,12 @@ daPy_boomerangMove_c_NS_initOffset:
 /* 8015E5C0 0015B500  48 20 3C 1D */	bl _savegpr_29
 /* 8015E5C4 0015B504  7C 7D 1B 78 */	mr r29, r3
 /* 8015E5C8 0015B508  7C 9E 23 78 */	mr r30, r4
-/* 8015E5CC 0015B50C  48 00 13 05 */	bl daPy_py_c_NS_getThrowBoomerangActor
+/* 8015E5CC 0015B50C  48 00 13 05 */	bl getThrowBoomerangActor__9daPy_py_cFv
 /* 8015E5D0 0015B510  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8015E5D4 0015B514  41 82 00 20 */	beq lbl_8015E5F4
 /* 8015E5D8 0015B518  7F A3 EB 78 */	mr r3, r29
 /* 8015E5DC 0015B51C  7F C4 F3 78 */	mr r4, r30
-/* 8015E5E0 0015B520  48 00 02 9D */	bl daPy_boomerangMove_c_NS_bgCheckAfterOffset
+/* 8015E5E0 0015B520  48 00 02 9D */	bl bgCheckAfterOffset__20daPy_boomerangMove_cFPC4cXyz
 /* 8015E5E4 0015B524  80 1F 09 64 */	lwz r0, 0x964(r31)
 /* 8015E5E8 0015B528  60 00 00 80 */	ori r0, r0, 0x80
 /* 8015E5EC 0015B52C  90 1F 09 64 */	stw r0, 0x964(r31)
@@ -119,8 +119,8 @@ lbl_8015E634:
 /* 8015E64C 0015B58C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015E650 0015B590  4E 80 00 20 */	blr 
 
-.global daPy_boomerangMove_c_NS_posMove
-daPy_boomerangMove_c_NS_posMove:
+.global posMove__20daPy_boomerangMove_cFP4cXyzPsP10fopAc_ac_cs
+posMove__20daPy_boomerangMove_cFP4cXyzPsP10fopAc_ac_cs:
 /* 8015E654 0015B594  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8015E658 0015B598  7C 08 02 A6 */	mflr r0
 /* 8015E65C 0015B59C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -131,7 +131,7 @@ daPy_boomerangMove_c_NS_posMove:
 /* 8015E670 0015B5B0  7C BB 2B 78 */	mr r27, r5
 /* 8015E674 0015B5B4  7C DC 33 78 */	mr r28, r6
 /* 8015E678 0015B5B8  7C FD 3B 78 */	mr r29, r7
-/* 8015E67C 0015B5BC  48 00 12 55 */	bl daPy_py_c_NS_getThrowBoomerangActor
+/* 8015E67C 0015B5BC  48 00 12 55 */	bl getThrowBoomerangActor__9daPy_py_cFv
 /* 8015E680 0015B5C0  A8 1E 00 02 */	lha r0, 2(r30)
 /* 8015E684 0015B5C4  7C 1D 00 50 */	subf r0, r29, r0
 /* 8015E688 0015B5C8  B0 1E 00 02 */	sth r0, 2(r30)
@@ -215,7 +215,7 @@ lbl_8015E794:
 /* 8015E7A4 0015B6E4  41 82 00 18 */	beq lbl_8015E7BC
 /* 8015E7A8 0015B6E8  7F A3 EB 78 */	mr r3, r29
 /* 8015E7AC 0015B6EC  7F 84 E3 78 */	mr r4, r28
-/* 8015E7B0 0015B6F0  4B F8 1B 09 */	bl daAlink_c_NS_checkBoomerangCarry
+/* 8015E7B0 0015B6F0  4B F8 1B 09 */	bl checkBoomerangCarry__9daAlink_cFP10fopAc_ac_c
 /* 8015E7B4 0015B6F4  2C 03 00 00 */	cmpwi r3, 0
 /* 8015E7B8 0015B6F8  40 82 00 A8 */	bne lbl_8015E860
 lbl_8015E7BC:
@@ -271,8 +271,8 @@ lbl_8015E864:
 /* 8015E874 0015B7B4  38 21 00 30 */	addi r1, r1, 0x30
 /* 8015E878 0015B7B8  4E 80 00 20 */	blr 
 
-.global daPy_boomerangMove_c_NS_bgCheckAfterOffset
-daPy_boomerangMove_c_NS_bgCheckAfterOffset:
+.global bgCheckAfterOffset__20daPy_boomerangMove_cFPC4cXyz
+bgCheckAfterOffset__20daPy_boomerangMove_cFPC4cXyz:
 /* 8015E87C 0015B7BC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8015E880 0015B7C0  7C 08 02 A6 */	mflr r0
 /* 8015E884 0015B7C4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -280,7 +280,7 @@ daPy_boomerangMove_c_NS_bgCheckAfterOffset:
 /* 8015E88C 0015B7CC  48 20 39 51 */	bl _savegpr_29
 /* 8015E890 0015B7D0  7C 7D 1B 78 */	mr r29, r3
 /* 8015E894 0015B7D4  7C 9E 23 78 */	mr r30, r4
-/* 8015E898 0015B7D8  48 00 10 39 */	bl daPy_py_c_NS_getThrowBoomerangActor
+/* 8015E898 0015B7D8  48 00 10 39 */	bl getThrowBoomerangActor__9daPy_py_cFv
 /* 8015E89C 0015B7DC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8015E8A0 0015B7E0  41 82 01 54 */	beq lbl_8015E9F4
 /* 8015E8A4 0015B7E4  C0 3E 00 04 */	lfs f1, 4(r30)
@@ -384,16 +384,16 @@ lbl_8015E9F4:
 /* 8015EA04 0015B944  38 21 00 40 */	addi r1, r1, 0x40
 /* 8015EA08 0015B948  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_setParamData
-daPy_py_c_NS_setParamData:
+.global setParamData__9daPy_py_cFiiii
+setParamData__9daPy_py_cFiiii:
 /* 8015EA0C 0015B94C  54 80 63 E6 */	rlwinm r0, r4, 0xc, 0xf, 0x13
 /* 8015EA10 0015B950  50 60 06 BE */	rlwimi r0, r3, 0, 0x1a, 0x1f
 /* 8015EA14 0015B954  50 A0 C0 0E */	rlwimi r0, r5, 0x18, 0, 7
 /* 8015EA18 0015B958  7C C3 03 78 */	or r3, r6, r0
 /* 8015EA1C 0015B95C  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkFishingRodItem
-daPy_py_c_NS_checkFishingRodItem:
+.global checkFishingRodItem__9daPy_py_cFi
+checkFishingRodItem__9daPy_py_cFi:
 /* 8015EA20 0015B960  38 00 00 00 */	li r0, 0
 /* 8015EA24 0015B964  2C 03 00 4A */	cmpwi r3, 0x4a
 /* 8015EA28 0015B968  41 82 00 14 */	beq lbl_8015EA3C
@@ -407,8 +407,8 @@ lbl_8015EA40:
 /* 8015EA40 0015B980  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EA44 0015B984  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkBombItem
-daPy_py_c_NS_checkBombItem:
+.global checkBombItem__9daPy_py_cFi
+checkBombItem__9daPy_py_cFi:
 /* 8015EA48 0015B988  38 A0 00 01 */	li r5, 1
 /* 8015EA4C 0015B98C  7C A6 2B 78 */	mr r6, r5
 /* 8015EA50 0015B990  38 03 FF 90 */	addi r0, r3, -112
@@ -428,8 +428,8 @@ lbl_8015EA80:
 /* 8015EA80 0015B9C0  54 A3 06 3E */	clrlwi r3, r5, 0x18
 /* 8015EA84 0015B9C4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkBottleItem
-daPy_py_c_NS_checkBottleItem:
+.global checkBottleItem__9daPy_py_cFi
+checkBottleItem__9daPy_py_cFi:
 /* 8015EA88 0015B9C8  38 00 00 00 */	li r0, 0
 /* 8015EA8C 0015B9CC  2C 03 00 60 */	cmpwi r3, 0x60
 /* 8015EA90 0015B9D0  41 80 00 0C */	blt lbl_8015EA9C
@@ -454,8 +454,8 @@ lbl_8015EAD0:
 /* 8015EAD0 0015BA10  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EAD4 0015BA14  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkDrinkBottleItem
-daPy_py_c_NS_checkDrinkBottleItem:
+.global checkDrinkBottleItem__9daPy_py_cFi
+checkDrinkBottleItem__9daPy_py_cFi:
 /* 8015EAD8 0015BA18  38 00 00 00 */	li r0, 0
 /* 8015EADC 0015BA1C  2C 03 00 61 */	cmpwi r3, 0x61
 /* 8015EAE0 0015BA20  41 80 00 0C */	blt lbl_8015EAEC
@@ -486,8 +486,8 @@ lbl_8015EB38:
 /* 8015EB38 0015BA78  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EB3C 0015BA7C  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkOilBottleItem
-daPy_py_c_NS_checkOilBottleItem:
+.global checkOilBottleItem__9daPy_py_cFi
+checkOilBottleItem__9daPy_py_cFi:
 /* 8015EB40 0015BA80  38 00 00 00 */	li r0, 0
 /* 8015EB44 0015BA84  2C 03 00 7B */	cmpwi r3, 0x7b
 /* 8015EB48 0015BA88  41 82 00 14 */	beq lbl_8015EB5C
@@ -501,8 +501,8 @@ lbl_8015EB60:
 /* 8015EB60 0015BAA0  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EB64 0015BAA4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkOpenBottleItem
-daPy_py_c_NS_checkOpenBottleItem:
+.global checkOpenBottleItem__9daPy_py_cFi
+checkOpenBottleItem__9daPy_py_cFi:
 /* 8015EB68 0015BAA8  38 00 00 00 */	li r0, 0
 /* 8015EB6C 0015BAAC  2C 03 00 67 */	cmpwi r3, 0x67
 /* 8015EB70 0015BAB0  41 82 00 14 */	beq lbl_8015EB84
@@ -516,8 +516,8 @@ lbl_8015EB88:
 /* 8015EB88 0015BAC8  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EB8C 0015BACC  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkBowItem
-daPy_py_c_NS_checkBowItem:
+.global checkBowItem__9daPy_py_cFi
+checkBowItem__9daPy_py_cFi:
 /* 8015EB90 0015BAD0  38 00 00 00 */	li r0, 0
 /* 8015EB94 0015BAD4  2C 03 00 43 */	cmpwi r3, 0x43
 /* 8015EB98 0015BAD8  41 82 00 14 */	beq lbl_8015EBAC
@@ -531,8 +531,8 @@ lbl_8015EBB0:
 /* 8015EBB0 0015BAF0  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EBB4 0015BAF4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkHookshotItem
-daPy_py_c_NS_checkHookshotItem:
+.global checkHookshotItem__9daPy_py_cFi
+checkHookshotItem__9daPy_py_cFi:
 /* 8015EBB8 0015BAF8  38 00 00 00 */	li r0, 0
 /* 8015EBBC 0015BAFC  2C 03 00 44 */	cmpwi r3, 0x44
 /* 8015EBC0 0015BB00  41 82 00 0C */	beq lbl_8015EBCC
@@ -544,8 +544,8 @@ lbl_8015EBD0:
 /* 8015EBD0 0015BB10  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EBD4 0015BB14  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkTradeItem
-daPy_py_c_NS_checkTradeItem:
+.global checkTradeItem__9daPy_py_cFi
+checkTradeItem__9daPy_py_cFi:
 /* 8015EBD8 0015BB18  38 00 00 00 */	li r0, 0
 /* 8015EBDC 0015BB1C  2C 03 00 80 */	cmpwi r3, 0x80
 /* 8015EBE0 0015BB20  41 80 00 0C */	blt lbl_8015EBEC
@@ -570,8 +570,8 @@ lbl_8015EC20:
 /* 8015EC20 0015BB60  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EC24 0015BB64  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkDungeonWarpItem
-daPy_py_c_NS_checkDungeonWarpItem:
+.global checkDungeonWarpItem__9daPy_py_cFi
+checkDungeonWarpItem__9daPy_py_cFi:
 /* 8015EC28 0015BB68  38 00 00 00 */	li r0, 0
 /* 8015EC2C 0015BB6C  2C 03 00 25 */	cmpwi r3, 0x25
 /* 8015EC30 0015BB70  41 82 00 0C */	beq lbl_8015EC3C
@@ -583,8 +583,8 @@ lbl_8015EC40:
 /* 8015EC40 0015BB80  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8015EC44 0015BB84  4E 80 00 20 */	blr 
 
-.global daPy_actorKeep_c_NS_setActor
-daPy_actorKeep_c_NS_setActor:
+.global setActor__16daPy_actorKeep_cFv
+setActor__16daPy_actorKeep_cFv:
 /* 8015EC48 0015BB88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015EC4C 0015BB8C  7C 08 02 A6 */	mflr r0
 /* 8015EC50 0015BB90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -595,10 +595,10 @@ daPy_actorKeep_c_NS_setActor:
 /* 8015EC64 0015BBA4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015EC68 0015BBA8  41 82 00 34 */	beq lbl_8015EC9C
 /* 8015EC6C 0015BBAC  90 61 00 08 */	stw r3, 8(r1)
-.global fpcSch_JudgeByID
-/* 8015EC70 0015BBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID@ha
-.global fpcSch_JudgeByID
-/* 8015EC74 0015BBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID@l
+.global fpcSch_JudgeByID__FPvPv
+/* 8015EC70 0015BBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
+.global fpcSch_JudgeByID__FPvPv
+/* 8015EC74 0015BBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
 /* 8015EC78 0015BBB8  38 81 00 08 */	addi r4, r1, 8
 /* 8015EC7C 0015BBBC  4B EB AB 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8015EC80 0015BBC0  90 7F 00 04 */	stw r3, 4(r31)
@@ -618,8 +618,8 @@ lbl_8015ECA4:
 /* 8015ECB0 0015BBF0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015ECB4 0015BBF4  4E 80 00 20 */	blr 
 
-.global daPy_actorKeep_c_NS_setData
-daPy_actorKeep_c_NS_setData:
+.global setData__16daPy_actorKeep_cFP10fopAc_ac_c
+setData__16daPy_actorKeep_cFP10fopAc_ac_c:
 /* 8015ECB8 0015BBF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015ECBC 0015BBFC  7C 08 02 A6 */	mflr r0
 /* 8015ECC0 0015BC00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -635,23 +635,23 @@ lbl_8015ECE0:
 /* 8015ECE0 0015BC20  90 03 00 00 */	stw r0, 0(r3)
 /* 8015ECE4 0015BC24  48 00 00 08 */	b lbl_8015ECEC
 lbl_8015ECE8:
-/* 8015ECE8 0015BC28  48 00 00 15 */	bl daPy_actorKeep_c_NS_clearData
+/* 8015ECE8 0015BC28  48 00 00 15 */	bl clearData__16daPy_actorKeep_cFv
 lbl_8015ECEC:
 /* 8015ECEC 0015BC2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015ECF0 0015BC30  7C 08 03 A6 */	mtlr r0
 /* 8015ECF4 0015BC34  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015ECF8 0015BC38  4E 80 00 20 */	blr 
 
-.global daPy_actorKeep_c_NS_clearData
-daPy_actorKeep_c_NS_clearData:
+.global clearData__16daPy_actorKeep_cFv
+clearData__16daPy_actorKeep_cFv:
 /* 8015ECFC 0015BC3C  38 00 FF FF */	li r0, -1
 /* 8015ED00 0015BC40  90 03 00 00 */	stw r0, 0(r3)
 /* 8015ED04 0015BC44  38 00 00 00 */	li r0, 0
 /* 8015ED08 0015BC48  90 03 00 04 */	stw r0, 4(r3)
 /* 8015ED0C 0015BC4C  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_ctor
-daPy_anmHeap_c_NS_ctor:
+.global __ct__14daPy_anmHeap_cFUl
+__ct__14daPy_anmHeap_cFUl:
 /* 8015ED10 0015BC50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015ED14 0015BC54  7C 08 02 A6 */	mflr r0
 /* 8015ED18 0015BC58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -659,7 +659,7 @@ daPy_anmHeap_c_NS_ctor:
 /* 8015ED20 0015BC60  93 C1 00 08 */	stw r30, 8(r1)
 /* 8015ED24 0015BC64  7C 7E 1B 78 */	mr r30, r3
 /* 8015ED28 0015BC68  7C 9F 23 78 */	mr r31, r4
-/* 8015ED2C 0015BC6C  48 00 00 81 */	bl daPy_anmHeap_c_NS_initData
+/* 8015ED2C 0015BC6C  48 00 00 81 */	bl initData__14daPy_anmHeap_cFv
 /* 8015ED30 0015BC70  93 FE 00 08 */	stw r31, 8(r30)
 /* 8015ED34 0015BC74  7F C3 F3 78 */	mr r3, r30
 /* 8015ED38 0015BC78  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -669,8 +669,8 @@ daPy_anmHeap_c_NS_ctor:
 /* 8015ED48 0015BC88  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015ED4C 0015BC8C  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_dtor
-daPy_anmHeap_c_NS_dtor:
+.global __dt__14daPy_anmHeap_cFv
+__dt__14daPy_anmHeap_cFv:
 /* 8015ED50 0015BC90  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015ED54 0015BC94  7C 08 02 A6 */	mflr r0
 /* 8015ED58 0015BC98  90 01 00 14 */	stw r0, 0x14(r1)
@@ -682,7 +682,7 @@ daPy_anmHeap_c_NS_dtor:
 /* 8015ED70 0015BCB0  80 7E 00 10 */	lwz r3, 0x10(r30)
 /* 8015ED74 0015BCB4  28 03 00 00 */	cmplwi r3, 0
 /* 8015ED78 0015BCB8  41 82 00 08 */	beq lbl_8015ED80
-/* 8015ED7C 0015BCBC  4B EB 04 11 */	bl mDoExt_destroySolidHeap
+/* 8015ED7C 0015BCBC  4B EB 04 11 */	bl mDoExt_destroySolidHeap__FP12JKRSolidHeap
 lbl_8015ED80:
 /* 8015ED80 0015BCC0  7F E0 07 35 */	extsh. r0, r31
 /* 8015ED84 0015BCC4  40 81 00 0C */	ble lbl_8015ED90
@@ -697,8 +697,8 @@ lbl_8015ED90:
 /* 8015EDA4 0015BCE4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015EDA8 0015BCE8  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_initData
-daPy_anmHeap_c_NS_initData:
+.global initData__14daPy_anmHeap_cFv
+initData__14daPy_anmHeap_cFv:
 /* 8015EDAC 0015BCEC  3C 80 00 01 */	lis r4, 0x0000FFFF@ha
 /* 8015EDB0 0015BCF0  38 04 FF FF */	addi r0, r4, 0x0000FFFF@l
 /* 8015EDB4 0015BCF4  B0 03 00 00 */	sth r0, 0(r3)
@@ -706,8 +706,8 @@ daPy_anmHeap_c_NS_initData:
 /* 8015EDBC 0015BCFC  B0 03 00 04 */	sth r0, 4(r3)
 /* 8015EDC0 0015BD00  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_mallocBuffer
-daPy_anmHeap_c_NS_mallocBuffer:
+.global mallocBuffer__14daPy_anmHeap_cFv
+mallocBuffer__14daPy_anmHeap_cFv:
 /* 8015EDC4 0015BD04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015EDC8 0015BD08  7C 08 02 A6 */	mflr r0
 /* 8015EDCC 0015BD0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -724,8 +724,8 @@ daPy_anmHeap_c_NS_mallocBuffer:
 /* 8015EDF8 0015BD38  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015EDFC 0015BD3C  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_createHeap
-daPy_anmHeap_c_NS_createHeap:
+.global createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE
+createHeap__14daPy_anmHeap_cFQ214daPy_anmHeap_c16daAlinkHEAP_TYPE:
 /* 8015EE00 0015BD40  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015EE04 0015BD44  7C 08 02 A6 */	mflr r0
 /* 8015EE08 0015BD48  90 01 00 24 */	stw r0, 0x24(r1)
@@ -758,7 +758,7 @@ lbl_8015EE60:
 /* 8015EE60 0015BDA0  38 61 00 08 */	addi r3, r1, 8
 /* 8015EE64 0015BDA4  7F E4 FB 78 */	mr r4, r31
 /* 8015EE68 0015BDA8  38 A0 00 20 */	li r5, 0x20
-/* 8015EE6C 0015BDAC  4B EB 01 89 */	bl mDoExt_createSolidHeapFromGameToCurrent
+/* 8015EE6C 0015BDAC  4B EB 01 89 */	bl mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl
 /* 8015EE70 0015BDB0  90 7D 00 10 */	stw r3, 0x10(r29)
 /* 8015EE74 0015BDB4  2C 1E 00 04 */	cmpwi r30, 4
 /* 8015EE78 0015BDB8  40 82 00 10 */	bne lbl_8015EE88
@@ -776,7 +776,7 @@ lbl_8015EE88:
 /* 8015EEA4 0015BDE4  38 A0 00 00 */	li r5, 0
 /* 8015EEA8 0015BDE8  38 C0 00 00 */	li r6, 0
 /* 8015EEAC 0015BDEC  38 E0 00 00 */	li r7, 0
-/* 8015EEB0 0015BDF0  48 1C 9F 91 */	bl J3DAnmTransform
+/* 8015EEB0 0015BDF0  48 1C 9F 91 */	bl __ct__15J3DAnmTransformFsPfPsPf
 /* 8015EEB4 0015BDF4  3C 60 80 3A */	lis r3, lbl_803A7C70@ha
 /* 8015EEB8 0015BDF8  38 03 7C 70 */	addi r0, r3, lbl_803A7C70@l
 /* 8015EEBC 0015BDFC  90 1F 00 00 */	stw r0, 0(r31)
@@ -799,7 +799,7 @@ lbl_8015EEE0:
 /* 8015EEFC 0015BE3C  38 A0 00 00 */	li r5, 0
 /* 8015EF00 0015BE40  38 C0 00 00 */	li r6, 0
 /* 8015EF04 0015BE44  38 E0 00 00 */	li r7, 0
-/* 8015EF08 0015BE48  48 1C 9F 39 */	bl J3DAnmTransform
+/* 8015EF08 0015BE48  48 1C 9F 39 */	bl __ct__15J3DAnmTransformFsPfPsPf
 /* 8015EF0C 0015BE4C  3C 60 80 3A */	lis r3, lbl_803A7C70@ha
 /* 8015EF10 0015BE50  38 03 7C 70 */	addi r0, r3, lbl_803A7C70@l
 /* 8015EF14 0015BE54  90 1F 00 00 */	stw r0, 0(r31)
@@ -814,19 +814,19 @@ lbl_8015EF28:
 /* 8015EF34 0015BE74  48 16 FD 19 */	bl __nw__FUl
 /* 8015EF38 0015BE78  28 03 00 00 */	cmplwi r3, 0
 /* 8015EF3C 0015BE7C  41 82 00 20 */	beq lbl_8015EF5C
-/* 8015EF40 0015BE80  48 1C BF 99 */	bl J3DAnmTexPattern
+/* 8015EF40 0015BE80  48 1C BF 99 */	bl __ct__16J3DAnmTexPatternFv
 /* 8015EF44 0015BE84  48 00 00 18 */	b lbl_8015EF5C
 lbl_8015EF48:
 /* 8015EF48 0015BE88  38 60 00 7C */	li r3, 0x7c
 /* 8015EF4C 0015BE8C  48 16 FD 01 */	bl __nw__FUl
 /* 8015EF50 0015BE90  28 03 00 00 */	cmplwi r3, 0
 /* 8015EF54 0015BE94  41 82 00 08 */	beq lbl_8015EF5C
-/* 8015EF58 0015BE98  48 1C AF 05 */	bl J3DAnmTextureSRTKey
+/* 8015EF58 0015BE98  48 1C AF 05 */	bl __ct__19J3DAnmTextureSRTKeyFv
 lbl_8015EF5C:
 /* 8015EF5C 0015BE9C  80 61 00 08 */	lwz r3, 8(r1)
-/* 8015EF60 0015BEA0  4B EB 02 6D */	bl mDoExt_setCurrentHeap
+/* 8015EF60 0015BEA0  4B EB 02 6D */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015EF64 0015BEA4  80 7D 00 10 */	lwz r3, 0x10(r29)
-/* 8015EF68 0015BEA8  4B EB 01 25 */	bl mDoExt_adjustSolidHeap
+/* 8015EF68 0015BEA8  4B EB 01 25 */	bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 /* 8015EF6C 0015BEAC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8015EF70 0015BEB0  48 20 32 B9 */	bl _restgpr_29
 /* 8015EF74 0015BEB4  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -834,8 +834,8 @@ lbl_8015EF5C:
 /* 8015EF7C 0015BEBC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015EF80 0015BEC0  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_loadData
-daPy_anmHeap_c_NS_loadData:
+.global loadData__14daPy_anmHeap_cFUs
+loadData__14daPy_anmHeap_cFUs:
 /* 8015EF84 0015BEC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015EF88 0015BEC8  7C 08 02 A6 */	mflr r0
 /* 8015EF8C 0015BECC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -854,14 +854,14 @@ daPy_anmHeap_c_NS_loadData:
 /* 8015EFC0 0015BF00  54 C6 04 3E */	clrlwi r6, r6, 0x10
 /* 8015EFC4 0015BF04  48 17 6F 09 */	bl readIdxResource__10JKRArchiveFPvUlUl
 /* 8015EFC8 0015BF08  7F C3 F3 78 */	mr r3, r30
-/* 8015EFCC 0015BF0C  48 00 01 9D */	bl daPy_anmHeap_c_NS_setAnimeHeap
+/* 8015EFCC 0015BF0C  48 00 01 9D */	bl setAnimeHeap__14daPy_anmHeap_cFv
 /* 8015EFD0 0015BF10  7C 7F 1B 78 */	mr r31, r3
 /* 8015EFD4 0015BF14  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 8015EFD8 0015BF18  38 80 00 00 */	li r4, 0
-/* 8015EFDC 0015BF1C  48 1D 8B 65 */	bl J3DAnmLoaderDataBase_NS_load
+/* 8015EFDC 0015BF1C  48 1D 8B 65 */	bl load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag
 /* 8015EFE0 0015BF20  7C 7E 1B 78 */	mr r30, r3
 /* 8015EFE4 0015BF24  7F E3 FB 78 */	mr r3, r31
-/* 8015EFE8 0015BF28  4B EB 01 E5 */	bl mDoExt_setCurrentHeap
+/* 8015EFE8 0015BF28  4B EB 01 E5 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015EFEC 0015BF2C  7F C3 F3 78 */	mr r3, r30
 /* 8015EFF0 0015BF30  48 00 00 60 */	b lbl_8015F050
 lbl_8015EFF4:
@@ -874,7 +874,7 @@ lbl_8015EFF4:
 /* 8015F00C 0015BF4C  3C A5 00 02 */	addis r5, r5, 2
 /* 8015F010 0015BF50  38 C0 00 80 */	li r6, 0x80
 /* 8015F014 0015BF54  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8015F018 0015BF58  4B ED D3 E9 */	bl dRes_control_c_NS_getIDRes
+/* 8015F018 0015BF58  4B ED D3 E9 */	bl getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci
 /* 8015F01C 0015BF5C  48 00 00 34 */	b lbl_8015F050
 lbl_8015F020:
 /* 8015F020 0015BF60  3C 60 80 3C */	lis r3, lbl_803BA0A0@ha
@@ -888,7 +888,7 @@ lbl_8015F020:
 /* 8015F040 0015BF80  3C A5 00 02 */	addis r5, r5, 2
 /* 8015F044 0015BF84  38 C0 00 80 */	li r6, 0x80
 /* 8015F048 0015BF88  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8015F04C 0015BF8C  4B ED D2 A1 */	bl dRes_control_c_NS_getRes
+/* 8015F04C 0015BF8C  4B ED D2 A1 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 lbl_8015F050:
 /* 8015F050 0015BF90  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015F054 0015BF94  83 C1 00 08 */	lwz r30, 8(r1)
@@ -897,8 +897,8 @@ lbl_8015F050:
 /* 8015F060 0015BFA0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F064 0015BFA4  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_loadDataIdx
-daPy_anmHeap_c_NS_loadDataIdx:
+.global loadDataIdx__14daPy_anmHeap_cFUs
+loadDataIdx__14daPy_anmHeap_cFUs:
 /* 8015F068 0015BFA8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F06C 0015BFAC  7C 08 02 A6 */	mflr r0
 /* 8015F070 0015BFB0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -919,7 +919,7 @@ lbl_8015F098:
 /* 8015F0A8 0015BFE8  A0 03 00 02 */	lhz r0, 2(r3)
 /* 8015F0AC 0015BFEC  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015F0B0 0015BFF0  40 82 00 0C */	bne lbl_8015F0BC
-/* 8015F0B4 0015BFF4  4B FF FE D1 */	bl daPy_anmHeap_c_NS_loadData
+/* 8015F0B4 0015BFF4  4B FF FE D1 */	bl loadData__14daPy_anmHeap_cFUs
 /* 8015F0B8 0015BFF8  48 00 00 08 */	b lbl_8015F0C0
 lbl_8015F0BC:
 /* 8015F0BC 0015BFFC  38 60 00 00 */	li r3, 0
@@ -929,8 +929,8 @@ lbl_8015F0C0:
 /* 8015F0C8 0015C008  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F0CC 0015C00C  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_loadDataPriIdx
-daPy_anmHeap_c_NS_loadDataPriIdx:
+.global loadDataPriIdx__14daPy_anmHeap_cFUs
+loadDataPriIdx__14daPy_anmHeap_cFUs:
 /* 8015F0D0 0015C010  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F0D4 0015C014  7C 08 02 A6 */	mflr r0
 /* 8015F0D8 0015C018  90 01 00 14 */	stw r0, 0x14(r1)
@@ -946,15 +946,15 @@ lbl_8015F0F8:
 /* 8015F0FC 0015C03C  48 00 00 0C */	b lbl_8015F108
 lbl_8015F100:
 /* 8015F100 0015C040  B0 83 00 02 */	sth r4, 2(r3)
-/* 8015F104 0015C044  4B FF FE 81 */	bl daPy_anmHeap_c_NS_loadData
+/* 8015F104 0015C044  4B FF FE 81 */	bl loadData__14daPy_anmHeap_cFUs
 lbl_8015F108:
 /* 8015F108 0015C048  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F10C 0015C04C  7C 08 03 A6 */	mtlr r0
 /* 8015F110 0015C050  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F114 0015C054  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_loadDataDemoRID
-daPy_anmHeap_c_NS_loadDataDemoRID:
+.global loadDataDemoRID__14daPy_anmHeap_cFUsUs
+loadDataDemoRID__14daPy_anmHeap_cFUsUs:
 /* 8015F118 0015C058  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F11C 0015C05C  7C 08 02 A6 */	mflr r0
 /* 8015F120 0015C060  90 01 00 14 */	stw r0, 0x14(r1)
@@ -971,15 +971,15 @@ daPy_anmHeap_c_NS_loadDataDemoRID:
 lbl_8015F14C:
 /* 8015F14C 0015C08C  B0 83 00 00 */	sth r4, 0(r3)
 /* 8015F150 0015C090  B0 A3 00 04 */	sth r5, 4(r3)
-/* 8015F154 0015C094  4B FF FE 31 */	bl daPy_anmHeap_c_NS_loadData
+/* 8015F154 0015C094  4B FF FE 31 */	bl loadData__14daPy_anmHeap_cFUs
 lbl_8015F158:
 /* 8015F158 0015C098  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F15C 0015C09C  7C 08 03 A6 */	mtlr r0
 /* 8015F160 0015C0A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F164 0015C0A4  4E 80 00 20 */	blr 
 
-.global daPy_anmHeap_c_NS_setAnimeHeap
-daPy_anmHeap_c_NS_setAnimeHeap:
+.global setAnimeHeap__14daPy_anmHeap_cFv
+setAnimeHeap__14daPy_anmHeap_cFv:
 /* 8015F168 0015C0A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F16C 0015C0AC  7C 08 02 A6 */	mflr r0
 /* 8015F170 0015C0B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -988,15 +988,15 @@ daPy_anmHeap_c_NS_setAnimeHeap:
 /* 8015F17C 0015C0BC  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 8015F180 0015C0C0  48 16 F4 4D */	bl freeAll__7JKRHeapFv
 /* 8015F184 0015C0C4  80 7F 00 10 */	lwz r3, 0x10(r31)
-/* 8015F188 0015C0C8  4B EB 00 45 */	bl mDoExt_setCurrentHeap
+/* 8015F188 0015C0C8  4B EB 00 45 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8015F18C 0015C0CC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8015F190 0015C0D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F194 0015C0D4  7C 08 03 A6 */	mtlr r0
 /* 8015F198 0015C0D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F19C 0015C0DC  4E 80 00 20 */	blr 
 
-.global daPy_sightPacket_c_NS_draw
-daPy_sightPacket_c_NS_draw:
+.global draw__18daPy_sightPacket_cFv
+draw__18daPy_sightPacket_cFv:
 /* 8015F1A0 0015C0E0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8015F1A4 0015C0E4  7C 08 02 A6 */	mflr r0
 /* 8015F1A8 0015C0E8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1004,7 +1004,7 @@ daPy_sightPacket_c_NS_draw:
 /* 8015F1B0 0015C0F0  7C 7F 1B 78 */	mr r31, r3
 /* 8015F1B4 0015C0F4  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8015F1B8 0015C0F8  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 8015F1BC 0015C0FC  48 1B 15 81 */	bl J3DSys_NS_reinitGX
+/* 8015F1BC 0015C0FC  48 1B 15 81 */	bl reinitGX__6J3DSysFv
 /* 8015F1C0 0015C100  38 60 00 00 */	li r3, 0
 /* 8015F1C4 0015C104  48 1F FF 11 */	bl GXSetNumIndStages
 /* 8015F1C8 0015C108  48 1F C3 C5 */	bl GXClearVtxDesc
@@ -1085,8 +1085,8 @@ daPy_sightPacket_c_NS_draw:
 /* 8015F2F4 0015C234  38 21 00 40 */	addi r1, r1, 0x40
 /* 8015F2F8 0015C238  4E 80 00 20 */	blr 
 
-.global daPy_sightPacket_c_NS_setSight
-daPy_sightPacket_c_NS_setSight:
+.global setSight__18daPy_sightPacket_cFv
+setSight__18daPy_sightPacket_cFv:
 /* 8015F2FC 0015C23C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015F300 0015C240  7C 08 02 A6 */	mflr r0
 /* 8015F304 0015C244  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1094,7 +1094,7 @@ daPy_sightPacket_c_NS_setSight:
 /* 8015F30C 0015C24C  7C 7F 1B 78 */	mr r31, r3
 /* 8015F310 0015C250  38 7F 00 08 */	addi r3, r31, 8
 /* 8015F314 0015C254  38 81 00 08 */	addi r4, r1, 8
-/* 8015F318 0015C258  4B EB 5F F9 */	bl mDoLib_project
+/* 8015F318 0015C258  4B EB 5F F9 */	bl mDoLib_project__FP3VecP3Vec
 /* 8015F31C 0015C25C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8015F320 0015C260  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8015F324 0015C264  C0 21 00 08 */	lfs f1, 8(r1)
@@ -1104,7 +1104,7 @@ daPy_sightPacket_c_NS_setSight:
 /* 8015F334 0015C274  C0 22 9C 80 */	lfs f1, lbl_80453680-_SDA2_BASE_(r2)
 /* 8015F338 0015C278  FC 40 08 90 */	fmr f2, f1
 /* 8015F33C 0015C27C  FC 60 08 90 */	fmr f3, f1
-/* 8015F340 0015C280  4B EA DA F9 */	bl mDoMtx_stack_c_NS_scaleM
+/* 8015F340 0015C280  4B EA DA F9 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 8015F344 0015C284  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8015F348 0015C288  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8015F34C 0015C28C  38 9F 00 14 */	addi r4, r31, 0x14
@@ -1115,23 +1115,23 @@ daPy_sightPacket_c_NS_setSight:
 /* 8015F360 0015C2A0  38 83 02 3C */	addi r4, r3, 0x23c
 /* 8015F364 0015C2A4  38 A3 02 40 */	addi r5, r3, 0x240
 /* 8015F368 0015C2A8  7F E6 FB 78 */	mr r6, r31
-/* 8015F36C 0015C2AC  4B EF 74 29 */	bl dDlst_list_c_NS_set
+/* 8015F36C 0015C2AC  4B EF 74 29 */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 8015F370 0015C2B0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8015F374 0015C2B4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8015F378 0015C2B8  7C 08 03 A6 */	mtlr r0
 /* 8015F37C 0015C2BC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8015F380 0015C2C0  4E 80 00 20 */	blr 
 
-.global daPy_sightPacket_c_NS_setSightImage
-daPy_sightPacket_c_NS_setSightImage:
+.global setSightImage__18daPy_sightPacket_cFP7ResTIMG
+setSightImage__18daPy_sightPacket_cFP7ResTIMG:
 /* 8015F384 0015C2C4  90 83 00 44 */	stw r4, 0x44(r3)
 /* 8015F388 0015C2C8  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 8015F38C 0015C2CC  7C 04 02 14 */	add r0, r4, r0
 /* 8015F390 0015C2D0  90 03 00 48 */	stw r0, 0x48(r3)
 /* 8015F394 0015C2D4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkMasterSwordEquip
-daPy_py_c_NS_checkMasterSwordEquip:
+.global checkMasterSwordEquip__9daPy_py_cFv
+checkMasterSwordEquip__9daPy_py_cFv:
 /* 8015F398 0015C2D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F39C 0015C2DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F3A0 0015C2E0  88 03 00 14 */	lbz r0, 0x14(r3)
@@ -1146,8 +1146,8 @@ lbl_8015F3BC:
 /* 8015F3BC 0015C2FC  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 8015F3C0 0015C300  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkWoodShieldEquip
-daPy_py_c_NS_checkWoodShieldEquip:
+.global checkWoodShieldEquip__9daPy_py_cFv
+checkWoodShieldEquip__9daPy_py_cFv:
 /* 8015F3C4 0015C304  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F3C8 0015C308  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F3CC 0015C30C  88 63 00 15 */	lbz r3, 0x15(r3)
@@ -1164,8 +1164,8 @@ lbl_8015F3F4:
 /* 8015F3F4 0015C334  54 83 06 3E */	clrlwi r3, r4, 0x18
 /* 8015F3F8 0015C338  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_getAttentionOffsetY
-daPy_py_c_NS_getAttentionOffsetY:
+.global getAttentionOffsetY__9daPy_py_cFv
+getAttentionOffsetY__9daPy_py_cFv:
 /* 8015F3FC 0015C33C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F400 0015C340  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F404 0015C344  80 63 5D B4 */	lwz r3, 0x5db4(r3)
@@ -1178,8 +1178,8 @@ lbl_8015F41C:
 /* 8015F41C 0015C35C  C0 22 9C 88 */	lfs f1, lbl_80453688-_SDA2_BASE_(r2)
 /* 8015F420 0015C360  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkNowWolfEyeUp
-daPy_py_c_NS_checkNowWolfEyeUp:
+.global checkNowWolfEyeUp__9daPy_py_cFv
+checkNowWolfEyeUp__9daPy_py_cFv:
 /* 8015F424 0015C364  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F428 0015C368  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F42C 0015C36C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
@@ -1196,7 +1196,7 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F458 0015C398  30 07 FF FF */	addic r0, r7, -1
 /* 8015F45C 0015C39C  7C 00 39 10 */	subfe r0, r0, r7
 /* 8015F460 0015C3A0  54 07 06 3E */	clrlwi r7, r0, 0x18
-/* 8015F464 0015C3A4  4B F5 EA FD */	bl daAlink_c_NS_startRestartRoom
+/* 8015F464 0015C3A4  4B F5 EA FD */	bl startRestartRoom__9daAlink_cFUliii
 /* 8015F468 0015C3A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F46C 0015C3AC  7C 08 03 A6 */	mtlr r0
 /* 8015F470 0015C3B0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1212,7 +1212,7 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F498 0015C3D8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8015F49C 0015C3DC  7C E4 3B 78 */	mr r4, r7
 /* 8015F4A0 0015C3E0  7C 05 03 78 */	mr r5, r0
-/* 8015F4A4 0015C3E4  4B F8 86 49 */	bl daAlink_c_NS_setFmChainPosFromOut
+/* 8015F4A4 0015C3E4  4B F8 86 49 */	bl setFmChainPosFromOut__9daAlink_cFP10fopAc_ac_cP4cXyzi
 /* 8015F4A8 0015C3E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F4AC 0015C3EC  7C 08 03 A6 */	mtlr r0
 /* 8015F4B0 0015C3F0  38 21 00 10 */	addi r1, r1, 0x10
@@ -1226,7 +1226,7 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F4D0 0015C410  38 00 00 00 */	li r0, 0
 /* 8015F4D4 0015C414  98 03 2F A3 */	stb r0, 0x2fa3(r3)
 /* 8015F4D8 0015C418  38 63 28 44 */	addi r3, r3, 0x2844
-/* 8015F4DC 0015C41C  4B FF F8 21 */	bl daPy_actorKeep_c_NS_clearData
+/* 8015F4DC 0015C41C  4B FF F8 21 */	bl clearData__16daPy_actorKeep_cFv
 /* 8015F4E0 0015C420  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F4E4 0015C424  7C 08 03 A6 */	mtlr r0
 /* 8015F4E8 0015C428  38 21 00 10 */	addi r1, r1, 0x10
@@ -1259,8 +1259,8 @@ daPy_py_c_NS_checkNowWolfEyeUp:
 /* 8015F554 0015C494  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F558 0015C498  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_linkGrabSubjectNoDraw
-daPy_py_c_NS_linkGrabSubjectNoDraw:
+.global linkGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c
+linkGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c:
 /* 8015F55C 0015C49C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8015F560 0015C4A0  7C 08 02 A6 */	mflr r0
 /* 8015F564 0015C4A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1320,7 +1320,7 @@ lbl_8015F5F0:
 /* 8015F62C 0015C56C  80 04 05 74 */	lwz r0, 0x574(r4)
 /* 8015F630 0015C570  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 8015F634 0015C574  41 82 00 14 */	beq lbl_8015F648
-/* 8015F638 0015C578  4B FF FF 25 */	bl daPy_py_c_NS_linkGrabSubjectNoDraw
+/* 8015F638 0015C578  4B FF FF 25 */	bl linkGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c
 /* 8015F63C 0015C57C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8015F640 0015C580  41 82 00 08 */	beq lbl_8015F648
 /* 8015F644 0015C584  3B E0 00 01 */	li r31, 1
@@ -1332,8 +1332,8 @@ lbl_8015F648:
 /* 8015F658 0015C598  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F65C 0015C59C  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkRoomRestartStart
-daPy_py_c_NS_checkRoomRestartStart:
+.global checkRoomRestartStart__9daPy_py_cFv
+checkRoomRestartStart__9daPy_py_cFv:
 /* 8015F660 0015C5A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F664 0015C5A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F668 0015C5A8  80 03 0D D0 */	lwz r0, 0xdd0(r3)
@@ -1351,13 +1351,13 @@ lbl_8015F690:
 /* 8015F690 0015C5D0  38 60 00 00 */	li r3, 0
 /* 8015F694 0015C5D4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkCarryStartLightBallA
-daPy_py_c_NS_checkCarryStartLightBallA:
+.global checkCarryStartLightBallA__9daPy_py_cFv
+checkCarryStartLightBallA__9daPy_py_cFv:
 /* 8015F698 0015C5D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F69C 0015C5DC  7C 08 02 A6 */	mflr r0
 /* 8015F6A0 0015C5E0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8015F6A4 0015C5E4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8015F6A8 0015C5E8  4B FF FF B9 */	bl daPy_py_c_NS_checkRoomRestartStart
+/* 8015F6A8 0015C5E8  4B FF FF B9 */	bl checkRoomRestartStart__9daPy_py_cFv
 /* 8015F6AC 0015C5EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8015F6B0 0015C5F0  40 82 00 54 */	bne lbl_8015F704
 /* 8015F6B4 0015C5F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1395,13 +1395,13 @@ lbl_8015F71C:
 /* 8015F728 0015C668  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F72C 0015C66C  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_checkCarryStartLightBallB
-daPy_py_c_NS_checkCarryStartLightBallB:
+.global checkCarryStartLightBallB__9daPy_py_cFv
+checkCarryStartLightBallB__9daPy_py_cFv:
 /* 8015F730 0015C670  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8015F734 0015C674  7C 08 02 A6 */	mflr r0
 /* 8015F738 0015C678  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8015F73C 0015C67C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8015F740 0015C680  4B FF FF 21 */	bl daPy_py_c_NS_checkRoomRestartStart
+/* 8015F740 0015C680  4B FF FF 21 */	bl checkRoomRestartStart__9daPy_py_cFv
 /* 8015F744 0015C684  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8015F748 0015C688  40 82 00 54 */	bne lbl_8015F79C
 /* 8015F74C 0015C68C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1503,7 +1503,7 @@ lbl_8015F88C:
 /* 8015F8A8 0015C7E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F8AC 0015C7EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F8B0 0015C7F0  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F8B4 0015C7F4  4B F8 09 91 */	bl daAlink_c_NS_checkBoomerangChargeEnd
+/* 8015F8B4 0015C7F4  4B F8 09 91 */	bl checkBoomerangChargeEnd__9daAlink_cFv
 /* 8015F8B8 0015C7F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F8BC 0015C7FC  7C 08 03 A6 */	mtlr r0
 /* 8015F8C0 0015C800  38 21 00 10 */	addi r1, r1, 0x10
@@ -1511,8 +1511,8 @@ lbl_8015F88C:
 /* 8015F8C8 0015C808  38 60 00 00 */	li r3, 0
 /* 8015F8CC 0015C80C  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_getThrowBoomerangActor
-daPy_py_c_NS_getThrowBoomerangActor:
+.global getThrowBoomerangActor__9daPy_py_cFv
+getThrowBoomerangActor__9daPy_py_cFv:
 /* 8015F8D0 0015C810  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F8D4 0015C814  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F8D8 0015C818  80 63 5D B4 */	lwz r3, 0x5db4(r3)
@@ -1525,7 +1525,7 @@ daPy_py_c_NS_getThrowBoomerangActor:
 /* 8015F8F4 0015C834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8015F8F8 0015C838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8015F8FC 0015C83C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
-/* 8015F900 0015C840  4B F8 08 CD */	bl daAlink_c_NS_cancelBoomerangLock
+/* 8015F900 0015C840  4B F8 08 CD */	bl cancelBoomerangLock__9daAlink_cFP10fopAc_ac_c
 /* 8015F904 0015C844  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F908 0015C848  7C 08 03 A6 */	mtlr r0
 /* 8015F90C 0015C84C  38 21 00 10 */	addi r1, r1, 0x10
@@ -1541,30 +1541,30 @@ daPy_py_c_NS_getThrowBoomerangActor:
 /* 8015F934 0015C874  7C 04 03 78 */	mr r4, r0
 /* 8015F938 0015C878  38 A0 00 00 */	li r5, 0
 /* 8015F93C 0015C87C  38 E0 00 00 */	li r7, 0
-/* 8015F940 0015C880  4B F7 79 7D */	bl daAlink_c_NS_setDamagePoint
+/* 8015F940 0015C880  4B F7 79 7D */	bl setDamagePoint__9daAlink_cFiiii
 /* 8015F944 0015C884  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8015F948 0015C888  7C 08 03 A6 */	mtlr r0
 /* 8015F94C 0015C88C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8015F950 0015C890  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_setMidnaMotionNum
-daPy_py_c_NS_setMidnaMotionNum:
+.global setMidnaMotionNum__9daPy_py_cFi
+setMidnaMotionNum__9daPy_py_cFi:
 /* 8015F954 0015C894  80 8D 8A 98 */	lwz r4, lbl_80451018-_SDA_BASE_(r13)
 /* 8015F958 0015C898  28 04 00 00 */	cmplwi r4, 0
 /* 8015F95C 0015C89C  4D 82 00 20 */	beqlr 
 /* 8015F960 0015C8A0  98 64 08 48 */	stb r3, 0x848(r4)
 /* 8015F964 0015C8A4  4E 80 00 20 */	blr 
 
-.global daPy_py_c_NS_setMidnaFaceNum
-daPy_py_c_NS_setMidnaFaceNum:
+.global setMidnaFaceNum__9daPy_py_cFi
+setMidnaFaceNum__9daPy_py_cFi:
 /* 8015F968 0015C8A8  80 8D 8A 98 */	lwz r4, lbl_80451018-_SDA_BASE_(r13)
 /* 8015F96C 0015C8AC  28 04 00 00 */	cmplwi r4, 0
 /* 8015F970 0015C8B0  4D 82 00 20 */	beqlr 
 /* 8015F974 0015C8B4  98 64 08 49 */	stb r3, 0x849(r4)
 /* 8015F978 0015C8B8  4E 80 00 20 */	blr 
 
-.global daPy_addCalcShort
-daPy_addCalcShort:
+.global daPy_addCalcShort__FPsssss
+daPy_addCalcShort__FPsssss:
 /* 8015F97C 0015C8BC  A9 03 00 00 */	lha r8, 0(r3)
 /* 8015F980 0015C8C0  7C 89 07 34 */	extsh r9, r4
 /* 8015F984 0015C8C4  7D 48 48 50 */	subf r10, r8, r9

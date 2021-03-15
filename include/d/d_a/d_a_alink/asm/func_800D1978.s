@@ -6,10 +6,10 @@
 /* 800D198C 000CE8CC  7C 7E 1B 78 */ mr r30, r3
 /* 800D1990 000CE8D0  7C 9F 23 78 */ mr r31, r4
 /* 800D1994 000CE8D4  38 7F 00 58 */ addi r3, r31, 0x58
-/* 800D1998 000CE8D8  4B FB 1C F1 */ bl dCcD_GAtTgCoCommonBase_NS_GetAc
+/* 800D1998 000CE8D8  4B FB 1C F1 */ bl GetAc__22dCcD_GAtTgCoCommonBaseFv
 /* 800D199C 000CE8DC  7F C3 F3 78 */ mr r3, r30
 /* 800D19A0 000CE8E0  7F E4 FB 78 */ mr r4, r31
-/* 800D19A4 000CE8E4  4B FF FF 7D */ bl daAlink_c_NS_checkAtShieldHit
+/* 800D19A4 000CE8E4  4B FF FF 7D */ bl checkAtShieldHit__9daAlink_cFR12dCcD_GObjInf
 /* 800D19A8 000CE8E8  30 03 FF FF */ addic r0, r3, -1
 /* 800D19AC 000CE8EC  7C 60 19 10 */ subfe r3, r0, r3
 /* 800D19B0 000CE8F0  83 E1 00 0C */ lwz r31, 0xc(r1)

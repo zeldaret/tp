@@ -27,16 +27,16 @@
 /* 8012072C 0011D66C  39 0B 01 0C */ addi r8, r11, 0x10c
 /* 80120730 0011D670  39 40 00 00 */ li r10, 0
 /* 80120734 0011D674  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80120738 0011D678  4B F2 CD 95 */ bl dPa_control_c_NS_set_X1_
+/* 80120738 0011D678  4B F2 CD 95 */ bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8012073C 0011D67C  90 7E 00 00 */ stw r3, 0(r30)
 /* 80120740 0011D680  80 7F 5D 3C */ lwz r3, 0x5d3c(r31)
 /* 80120744 0011D684  38 63 02 10 */ addi r3, r3, 0x210
 /* 80120748 0011D688  80 9E 00 00 */ lwz r4, 0(r30)
-/* 8012074C 0011D68C  4B F2 B1 69 */ bl dPa_control_c_NS_level_c_NS_forceOnEventMove
+/* 8012074C 0011D68C  4B F2 B1 69 */ bl forceOnEventMove__Q213dPa_control_c7level_cFUl
 /* 80120750 0011D690  80 7F 5D 3C */ lwz r3, 0x5d3c(r31)
 /* 80120754 0011D694  38 63 02 10 */ addi r3, r3, 0x210
 /* 80120758 0011D698  80 9E 00 00 */ lwz r4, 0(r30)
-/* 8012075C 0011D69C  4B F2 B1 BD */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 8012075C 0011D69C  4B F2 B1 BD */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80120760 0011D6A0  83 E1 00 2C */ lwz r31, 0x2c(r1)
 /* 80120764 0011D6A4  83 C1 00 28 */ lwz r30, 0x28(r1)
 /* 80120768 0011D6A8  80 01 00 34 */ lwz r0, 0x34(r1)

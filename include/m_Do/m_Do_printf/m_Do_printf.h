@@ -67,7 +67,7 @@ void _restgpr_29(void);
 void _savegpr_29(void);
 void cr1(void);
 void fputs(const char*, FILE*);
-void func_803658C0(void);
+void fflush(void);
 void vprintf(const char* fmt, __va_list_struct* list);
 void mDoPrintf_VReport(const char* format, __va_list_struct* list);
 void mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct(void);

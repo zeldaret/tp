@@ -61,7 +61,7 @@ lbl_801A3888:
 /* 801A38A4 001A07E4  88 0D 87 E4 */ lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 801A38A8 001A07E8  7C 04 07 74 */ extsb r4, r0
 /* 801A38AC 001A07EC  38 A0 00 FF */ li r5, 0xff
-/* 801A38B0 001A07F0  48 00 50 3D */ bl dKy_tevstr_init
+/* 801A38B0 001A07F0  48 00 50 3D */ bl dKy_tevstr_init__FP12dKy_tevstr_cScUc
 lbl_801A38B4:
 /* 801A38B4 001A07F4  38 00 00 7C */ li r0, 0x7c
 /* 801A38B8 001A07F8  98 1C 03 83 */ stb r0, 0x383(r28)
@@ -83,7 +83,7 @@ lbl_801A38B4:
 lbl_801A38F8:
 /* 801A38F8 001A0838  98 9C 03 7C */ stb r4, 0x37c(r28)
 lbl_801A38FC:
-/* 801A38FC 001A083C  48 00 8C 81 */ bl dKy_darkworld_check
+/* 801A38FC 001A083C  48 00 8C 81 */ bl dKy_darkworld_check__Fv
 /* 801A3900 001A0840  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A3904 001A0844  40 82 00 20 */ bne lbl_801A3924
 /* 801A3908 001A0848  38 00 00 18 */ li r0, 0x18
@@ -110,7 +110,7 @@ lbl_801A3938:
 /* 801A3954 001A0894  38 61 00 A4 */ addi r3, r1, 0xa4
 /* 801A3958 001A0898  38 9E 00 D8 */ addi r4, r30, 0xd8
 /* 801A395C 001A089C  38 A1 00 98 */ addi r5, r1, 0x98
-/* 801A3960 001A08A0  4B EB 7E 01 */ bl dKyr_get_vectle_calc
+/* 801A3960 001A08A0  4B EB 7E 01 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 801A3964 001A08A4  3B A0 00 00 */ li r29, 0
 /* 801A3968 001A08A8  3B 20 00 00 */ li r25, 0
 /* 801A396C 001A08AC  C3 E2 A2 0C */ lfs f31, lbl_80453C0C-_SDA2_BASE_(r2)
@@ -119,7 +119,7 @@ lbl_801A3970:
 /* 801A3974 001A08B4  7F 7C DA 14 */ add r27, r28, r27
 /* 801A3978 001A08B8  2C 1D 00 00 */ cmpwi r29, 0
 /* 801A397C 001A08BC  40 82 00 40 */ bne lbl_801A39BC
-/* 801A3980 001A08C0  48 00 8B FD */ bl dKy_darkworld_check
+/* 801A3980 001A08C0  48 00 8B FD */ bl dKy_darkworld_check__Fv
 /* 801A3984 001A08C4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A3988 001A08C8  40 82 00 20 */ bne lbl_801A39A8
 /* 801A398C 001A08CC  38 00 00 7E */ li r0, 0x7e
@@ -138,7 +138,7 @@ lbl_801A39A8:
 lbl_801A39BC:
 /* 801A39BC 001A08FC  2C 1D 00 01 */ cmpwi r29, 1
 /* 801A39C0 001A0900  40 82 00 40 */ bne lbl_801A3A00
-/* 801A39C4 001A0904  48 00 8B B9 */ bl dKy_darkworld_check
+/* 801A39C4 001A0904  48 00 8B B9 */ bl dKy_darkworld_check__Fv
 /* 801A39C8 001A0908  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801A39CC 001A090C  40 82 00 20 */ bne lbl_801A39EC
 /* 801A39D0 001A0910  38 00 00 18 */ li r0, 0x18
@@ -163,12 +163,12 @@ lbl_801A3A10:
 /* 801A3A10 001A0950  7F 63 DB 78 */ mr r3, r27
 /* 801A3A14 001A0954  C0 22 A2 2C */ lfs f1, lbl_80453C2C-_SDA2_BASE_(r2)
 /* 801A3A18 001A0958  38 80 00 00 */ li r4, 0
-/* 801A3A1C 001A095C  4B FF 98 A9 */ bl dKy_GXInitLightSpot
+/* 801A3A1C 001A095C  4B FF 98 A9 */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A3A20 001A0960  7F 63 DB 78 */ mr r3, r27
 /* 801A3A24 001A0964  C0 22 A2 E8 */ lfs f1, lbl_80453CE8-_SDA2_BASE_(r2)
 /* 801A3A28 001A0968  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A3A2C 001A096C  38 80 00 03 */ li r4, 3
-/* 801A3A30 001A0970  4B FF 9A 1D */ bl dKy_GXInitLightDistAttn
+/* 801A3A30 001A0970  4B FF 9A 1D */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 /* 801A3A34 001A0974  D3 FB 00 00 */ stfs f31, 0(r27)
 /* 801A3A38 001A0978  D3 FB 00 04 */ stfs f31, 4(r27)
 /* 801A3A3C 001A097C  D3 FB 00 08 */ stfs f31, 8(r27)
@@ -188,7 +188,7 @@ lbl_801A3A6C:
 /* 801A3A6C 001A09AC  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
 /* 801A3A70 001A09B0  FC 40 08 90 */ fmr f2, f1
 /* 801A3A74 001A09B4  38 7B 00 0C */ addi r3, r27, 0xc
-/* 801A3A78 001A09B8  4B FF 97 29 */ bl dKy_lightdir_set
+/* 801A3A78 001A09B8  4B FF 97 29 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A3A7C 001A09BC  C0 1B 00 0C */ lfs f0, 0xc(r27)
 /* 801A3A80 001A09C0  FC 00 00 50 */ fneg f0, f0
 /* 801A3A84 001A09C4  D0 1B 00 0C */ stfs f0, 0xc(r27)
@@ -380,16 +380,16 @@ lbl_801A3D3C:
 /* 801A3D3C 001A0C7C  7F E3 FB 78 */ mr r3, r31
 /* 801A3D40 001A0C80  C0 22 A2 2C */ lfs f1, lbl_80453C2C-_SDA2_BASE_(r2)
 /* 801A3D44 001A0C84  38 80 00 00 */ li r4, 0
-/* 801A3D48 001A0C88  4B FF 95 7D */ bl dKy_GXInitLightSpot
+/* 801A3D48 001A0C88  4B FF 95 7D */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A3D4C 001A0C8C  7F E3 FB 78 */ mr r3, r31
 /* 801A3D50 001A0C90  C0 22 A2 E8 */ lfs f1, lbl_80453CE8-_SDA2_BASE_(r2)
 /* 801A3D54 001A0C94  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A3D58 001A0C98  38 80 00 03 */ li r4, 3
-/* 801A3D5C 001A0C9C  4B FF 96 F1 */ bl dKy_GXInitLightDistAttn
+/* 801A3D5C 001A0C9C  4B FF 96 F1 */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 /* 801A3D60 001A0CA0  C0 22 A2 0C */ lfs f1, lbl_80453C0C-_SDA2_BASE_(r2)
 /* 801A3D64 001A0CA4  FC 40 08 90 */ fmr f2, f1
 /* 801A3D68 001A0CA8  38 7F 00 0C */ addi r3, r31, 0xc
-/* 801A3D6C 001A0CAC  4B FF 94 35 */ bl dKy_lightdir_set
+/* 801A3D6C 001A0CAC  4B FF 94 35 */ bl dKy_lightdir_set__FffP3Vec
 /* 801A3D70 001A0CB0  C0 1F 00 0C */ lfs f0, 0xc(r31)
 /* 801A3D74 001A0CB4  FC 00 00 50 */ fneg f0, f0
 /* 801A3D78 001A0CB8  D0 1F 00 0C */ stfs f0, 0xc(r31)
@@ -496,7 +496,7 @@ lbl_801A3EF0:
 /* 801A3F00 001A0E40  38 E1 00 28 */ addi r7, r1, 0x28
 /* 801A3F04 001A0E44  39 01 00 0C */ addi r8, r1, 0xc
 /* 801A3F08 001A0E48  39 21 00 08 */ addi r9, r1, 8
-/* 801A3F0C 001A0E4C  4B FF DE 59 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_actor
+/* 801A3F0C 001A0E4C  4B FF DE 59 */ bl settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 /* 801A3F10 001A0E50  48 00 00 C8 */ b lbl_801A3FD8
 lbl_801A3F14:
 /* 801A3F14 001A0E54  2C 1B 00 0A */ cmpwi r27, 0xa
@@ -520,7 +520,7 @@ lbl_801A3F24:
 /* 801A3F58 001A0E98  7F 24 CB 78 */ mr r4, r25
 /* 801A3F5C 001A0E9C  88 05 4E 0B */ lbz r0, 0x4e0b(r5)
 /* 801A3F60 001A0EA0  7C 05 07 74 */ extsb r5, r0
-/* 801A3F64 001A0EA4  4B E8 89 ED */ bl dComIfG_play_c_NS_getLayerNo_common
+/* 801A3F64 001A0EA4  4B E8 89 ED */ bl getLayerNo_common__14dComIfG_play_cFPCcii
 /* 801A3F68 001A0EA8  7C 65 1B 78 */ mr r5, r3
 /* 801A3F6C 001A0EAC  7F C3 F3 78 */ mr r3, r30
 /* 801A3F70 001A0EB0  7F 24 CB 78 */ mr r4, r25
@@ -534,14 +534,14 @@ lbl_801A3F24:
 /* 801A3F90 001A0ED0  40 82 00 10 */ bne lbl_801A3FA0
 /* 801A3F94 001A0ED4  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 801A3F98 001A0ED8  38 63 04 A4 */ addi r3, r3, 0x4a4
-/* 801A3F9C 001A0EDC  48 11 61 85 */ bl Z2SceneMgr_NS_load2ndDynamicWave
+/* 801A3F9C 001A0EDC  48 11 61 85 */ bl load2ndDynamicWave__10Z2SceneMgrFv
 lbl_801A3FA0:
 /* 801A3FA0 001A0EE0  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A3FA4 001A0EE4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A3FA8 001A0EE8  8B C3 12 D2 */ lbz r30, 0x12d2(r3)
 /* 801A3FAC 001A0EEC  7F 43 D3 78 */ mr r3, r26
 /* 801A3FB0 001A0EF0  7F 84 E3 78 */ mr r4, r28
-/* 801A3FB4 001A0EF4  4B FF DF A5 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_player
+/* 801A3FB4 001A0EF4  4B FF DF A5 */ bl settingTevStruct_colget_player__18dScnKy_env_light_cFP12dKy_tevstr_c
 /* 801A3FB8 001A0EF8  7F 43 D3 78 */ mr r3, r26
 /* 801A3FBC 001A0EFC  7F A4 EB 78 */ mr r4, r29
 /* 801A3FC0 001A0F00  7F 85 E3 78 */ mr r5, r28
@@ -549,7 +549,7 @@ lbl_801A3FA0:
 /* 801A3FC8 001A0F08  38 E1 00 28 */ addi r7, r1, 0x28
 /* 801A3FCC 001A0F0C  39 01 00 0C */ addi r8, r1, 0xc
 /* 801A3FD0 001A0F10  39 21 00 08 */ addi r9, r1, 8
-/* 801A3FD4 001A0F14  4B FF DD 91 */ bl dScnKy_env_light_c_NS_settingTevStruct_colget_actor
+/* 801A3FD4 001A0F14  4B FF DD 91 */ bl settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 lbl_801A3FD8:
 /* 801A3FD8 001A0F18  A8 01 00 30 */ lha r0, 0x30(r1)
 /* 801A3FDC 001A0F1C  B0 1A 10 F0 */ sth r0, 0x10f0(r26)
@@ -575,7 +575,7 @@ lbl_801A3FD8:
 /* 801A402C 001A0F6C  38 C1 00 20 */ addi r6, r1, 0x20
 /* 801A4030 001A0F70  38 E1 00 18 */ addi r7, r1, 0x18
 /* 801A4034 001A0F74  7F C8 F3 78 */ mr r8, r30
-/* 801A4038 001A0F78  4B FF E0 F1 */ bl dScnKy_env_light_c_NS_settingTevStruct_plightcol_plus
+/* 801A4038 001A0F78  4B FF E0 F1 */ bl settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
 lbl_801A403C:
 /* 801A403C 001A0F7C  2C 1B 00 0A */ cmpwi r27, 0xa
 /* 801A4040 001A0F80  41 82 00 0C */ beq lbl_801A404C
@@ -656,7 +656,7 @@ lbl_801A4144:
 /* 801A4150 001A1090  38 C1 00 28 */ addi r6, r1, 0x28
 /* 801A4154 001A1094  38 E1 00 0C */ addi r7, r1, 0xc
 /* 801A4158 001A1098  39 01 00 08 */ addi r8, r1, 8
-/* 801A415C 001A109C  4B FF D1 E1 */ bl dScnKy_env_light_c_NS_setLight_bg
+/* 801A415C 001A109C  4B FF D1 E1 */ bl setLight_bg__18dScnKy_env_light_cFP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
 /* 801A4160 001A10A0  57 64 1E F8 */ rlwinm r4, r27, 3, 0x1b, 0x1c
 /* 801A4164 001A10A4  38 61 00 B0 */ addi r3, r1, 0xb0
 /* 801A4168 001A10A8  7C 03 22 AE */ lhax r0, r3, r4
@@ -683,7 +683,7 @@ lbl_801A4144:
 /* 801A41BC 001A10FC  D0 01 00 40 */ stfs f0, 0x40(r1)
 /* 801A41C0 001A1100  38 61 00 38 */ addi r3, r1, 0x38
 /* 801A41C4 001A1104  38 80 00 00 */ li r4, 0
-/* 801A41C8 001A1108  4B FF 9B A5 */ bl dKy_light_influence_id
+/* 801A41C8 001A1108  4B FF 9B A5 */ bl dKy_light_influence_id__F4cXyzi
 /* 801A41CC 001A110C  2C 03 00 00 */ cmpwi r3, 0
 /* 801A41D0 001A1110  41 80 00 28 */ blt lbl_801A41F8
 /* 801A41D4 001A1114  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
@@ -749,7 +749,7 @@ lbl_801A41F8:
 /* 801A42C0 001A1200  7F 83 E3 78 */ mr r3, r28
 /* 801A42C4 001A1204  C0 22 A2 2C */ lfs f1, lbl_80453C2C-_SDA2_BASE_(r2)
 /* 801A42C8 001A1208  38 80 00 00 */ li r4, 0
-/* 801A42CC 001A120C  4B FF 8F F9 */ bl dKy_GXInitLightSpot
+/* 801A42CC 001A120C  4B FF 8F F9 */ bl dKy_GXInitLightSpot__FP12J3DLightInfofUc
 /* 801A42D0 001A1210  7F 83 E3 78 */ mr r3, r28
 /* 801A42D4 001A1214  C0 22 A2 9C */ lfs f1, lbl_80453C9C-_SDA2_BASE_(r2)
 /* 801A42D8 001A1218  80 99 00 00 */ lwz r4, 0(r25)
@@ -757,7 +757,7 @@ lbl_801A41F8:
 /* 801A42E0 001A1220  EC 21 00 32 */ fmuls f1, f1, f0
 /* 801A42E4 001A1224  C0 42 A3 50 */ lfs f2, lbl_80453D50-_SDA2_BASE_(r2)
 /* 801A42E8 001A1228  38 80 00 03 */ li r4, 3
-/* 801A42EC 001A122C  4B FF 91 61 */ bl dKy_GXInitLightDistAttn
+/* 801A42EC 001A122C  4B FF 91 61 */ bl dKy_GXInitLightDistAttn__FP12J3DLightInfoffUc
 /* 801A42F0 001A1230  48 00 00 9C */ b lbl_801A438C
 lbl_801A42F4:
 /* 801A42F4 001A1234  3C 60 80 43 */ lis r3, lbl_80434AC8@ha

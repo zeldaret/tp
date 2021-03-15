@@ -397,7 +397,7 @@ extern objectNameInfo lbl_803A3B18[911];  // d_stage::l_objectName
 extern u32* lbl_803F4E74;
 
 extern "C" {
-objectNameInfo* dStage_searchName(const char*);
+objectNameInfo* dStage_searchName__FPCc(const char*);
 void init__20dStage_roomControl_cFv(void);
 }
 

@@ -9,7 +9,7 @@
 /* 8020D9B0 0020A8F0  3C 80 80 3C */ lis r4, lbl_803BF2F8@ha
 /* 8020D9B4 0020A8F4  38 04 F2 F8 */ addi r0, r4, lbl_803BF2F8@l
 /* 8020D9B8 0020A8F8  90 1E 00 00 */ stw r0, 0(r30)
-/* 8020D9BC 0020A8FC  48 00 02 95 */ bl dMeterMap_c_NS__delete
+/* 8020D9BC 0020A8FC  48 00 02 95 */ bl _delete__11dMeterMap_cFv
 /* 8020D9C0 0020A900  7F E0 07 35 */ extsh. r0, r31
 /* 8020D9C4 0020A904  40 81 00 0C */ ble lbl_8020D9D0
 /* 8020D9C8 0020A908  7F C3 F3 78 */ mr r3, r30

@@ -21,16 +21,16 @@
 /* 80061374 0005E2B4  90 1E 00 00 */ stw r0, 0(r30)
 /* 80061378 0005E2B8  38 64 00 14 */ addi r3, r4, 0x14
 /*.global STAR_EFF*/
-/* 8006137C 0005E2BC  3C 80 80 05 */ lis r4, STAR_EFF@ha
+/* 8006137C 0005E2BC  3C 80 80 05 */ lis r4, __ct__8STAR_EFFFv@ha
 /*.global STAR_EFF*/
-/* 80061380 0005E2C0  38 84 6E 04 */ addi r4, r4, STAR_EFF@l
-/*.global STAR_EFF_NS_dtor*/
-/* 80061384 0005E2C4  3C A0 80 05 */ lis r5, STAR_EFF_NS_dtor@ha
-/*.global STAR_EFF_NS_dtor*/
-/* 80061388 0005E2C8  38 A5 6D C8 */ addi r5, r5, STAR_EFF_NS_dtor@l
+/* 80061380 0005E2C0  38 84 6E 04 */ addi r4, r4, __ct__8STAR_EFFFv@l
+/*.global __dt__8STAR_EFFFv*/
+/* 80061384 0005E2C4  3C A0 80 05 */ lis r5, __dt__8STAR_EFFFv@ha
+/*.global __dt__8STAR_EFFFv*/
+/* 80061388 0005E2C8  38 A5 6D C8 */ addi r5, r5, __dt__8STAR_EFFFv@l
 /* 8006138C 0005E2CC  38 C0 00 34 */ li r6, 0x34
 /* 80061390 0005E2D0  38 E0 00 01 */ li r7, 1
-/* 80061394 0005E2D4  48 30 09 CD */ bl func_80361D60
+/* 80061394 0005E2D4  48 30 09 CD */ bl __construct_array
 lbl_80061398:
 /* 80061398 0005E2D8  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 8006139C 0005E2DC  3B E3 CA 54 */ addi r31, r3, lbl_8042CA54@l
@@ -46,7 +46,7 @@ lbl_80061398:
 /* 800613C4 0005E304  3C A5 00 02 */ addis r5, r5, 2
 /* 800613C8 0005E308  38 C0 00 80 */ li r6, 0x80
 /* 800613CC 0005E30C  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 800613D0 0005E310  4B FD AF 1D */ bl dRes_control_c_NS_getRes
+/* 800613D0 0005E310  4B FD AF 1D */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 800613D4 0005E314  80 9F 0E A4 */ lwz r4, 0xea4(r31)
 /* 800613D8 0005E318  90 64 00 10 */ stw r3, 0x10(r4)
 /* 800613DC 0005E31C  C0 02 88 14 */ lfs f0, lbl_80452214-_SDA2_BASE_(r2)

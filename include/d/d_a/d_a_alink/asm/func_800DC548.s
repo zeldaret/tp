@@ -11,7 +11,7 @@
 /* 800DC570 000D94B0  A8 03 00 08 */ lha r0, 8(r3)
 /* 800DC574 000D94B4  2C 00 01 E2 */ cmpwi r0, 0x1e2
 /* 800DC578 000D94B8  41 82 00 10 */ beq lbl_800DC588
-/* 800DC57C 000D94BC  48 00 00 29 */ bl daAlink_c_NS_checkSpecialNpc
+/* 800DC57C 000D94BC  48 00 00 29 */ bl checkSpecialNpc__9daAlink_cFP10fopAc_ac_c
 /* 800DC580 000D94C0  2C 03 00 00 */ cmpwi r3, 0
 /* 800DC584 000D94C4  41 82 00 08 */ beq lbl_800DC58C
 lbl_800DC588:

@@ -6,7 +6,7 @@
 /* 800CFF60 000CCEA0  83 E3 27 E0 */ lwz r31, 0x27e0(r3)
 /* 800CFF64 000CCEA4  3B C0 00 01 */ li r30, 1
 /* 800CFF68 000CCEA8  7F E3 FB 78 */ mr r3, r31
-/* 800CFF6C 000CCEAC  4B FA 38 79 */ bl dAttention_c_NS_LockonTruth
+/* 800CFF6C 000CCEAC  4B FA 38 79 */ bl LockonTruth__12dAttention_cFv
 /* 800CFF70 000CCEB0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800CFF74 000CCEB4  40 82 00 14 */ bne lbl_800CFF88
 /* 800CFF78 000CCEB8  80 1F 03 34 */ lwz r0, 0x334(r31)

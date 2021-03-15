@@ -7,7 +7,7 @@
 /* 800AD140 000AA080  7C BF 2B 78 */ mr r31, r5
 /* 800AD144 000AA084  41 82 00 14 */ beq lbl_800AD158
 /* 800AD148 000AA088  7F E3 FB 78 */ mr r3, r31
-/* 800AD14C 000AA08C  48 0B 13 C5 */ bl daPy_frameCtrl_c_NS_updateFrame
+/* 800AD14C 000AA08C  48 0B 13 C5 */ bl updateFrame__16daPy_frameCtrl_cFv
 /* 800AD150 000AA090  C0 1F 00 10 */ lfs f0, 0x10(r31)
 /* 800AD154 000AA094  D0 1E 00 08 */ stfs f0, 8(r30)
 lbl_800AD158:

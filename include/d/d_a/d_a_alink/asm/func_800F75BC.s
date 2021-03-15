@@ -10,7 +10,7 @@
 /* 800F75E0 000F4520  38 A0 00 00 */ li r5, 0
 /* 800F75E4 000F4524  3C C0 00 01 */ lis r6, 0x0000FBFF@ha
 /* 800F75E8 000F4528  38 C6 FB FF */ addi r6, r6, 0x0000FBFF@l
-/* 800F75EC 000F452C  4B F4 BB 81 */ bl dEvt_control_c_NS_compulsory
+/* 800F75EC 000F452C  4B F4 BB 81 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800F75F0 000F4530  2C 03 00 00 */ cmpwi r3, 0
 /* 800F75F4 000F4534  40 82 00 0C */ bne lbl_800F7600
 /* 800F75F8 000F4538  38 60 00 00 */ li r3, 0
@@ -20,9 +20,9 @@ lbl_800F7600:
 /* 800F7604 000F4544  B0 1F 06 04 */ sth r0, 0x604(r31)
 /* 800F7608 000F4548  7F E3 FB 78 */ mr r3, r31
 /* 800F760C 000F454C  38 80 00 A1 */ li r4, 0xa1
-/* 800F7610 000F4550  4B FC A9 5D */ bl daAlink_c_NS_commonProcInit
+/* 800F7610 000F4550  4B FC A9 5D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F7614 000F4554  7F E3 FB 78 */ mr r3, r31
-/* 800F7618 000F4558  4B FF CF 85 */ bl daAlink_c_NS_setSyncCanoePos
+/* 800F7618 000F4558  4B FF CF 85 */ bl setSyncCanoePos__9daAlink_cFv
 /* 800F761C 000F455C  80 7F 28 18 */ lwz r3, 0x2818(r31)
 /* 800F7620 000F4560  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F7624 000F4564  D0 03 05 2C */ stfs f0, 0x52c(r3)
@@ -33,16 +33,16 @@ lbl_800F7600:
 /* 800F7638 000F4578  98 03 14 42 */ stb r0, 0x1442(r3)
 /* 800F763C 000F457C  7F E3 FB 78 */ mr r3, r31
 /* 800F7640 000F4580  38 80 01 0C */ li r4, 0x10c
-/* 800F7644 000F4584  4B FB 4E 0D */ bl daAlink_c_NS_getMainBckData
+/* 800F7644 000F4584  4B FB 4E 0D */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800F7648 000F4588  A0 83 00 02 */ lhz r4, 2(r3)
 /* 800F764C 000F458C  7F E3 FB 78 */ mr r3, r31
 /* 800F7650 000F4590  38 A0 00 02 */ li r5, 2
 /* 800F7654 000F4594  3C C0 80 39 */ lis r6, lbl_8038E77C@ha
 /* 800F7658 000F4598  38 C6 E7 7C */ addi r6, r6, lbl_8038E77C@l
 /* 800F765C 000F459C  38 C6 00 14 */ addi r6, r6, 0x14
-/* 800F7660 000F45A0  4B FB 60 91 */ bl daAlink_c_NS_setUpperAnimeParam
+/* 800F7660 000F45A0  4B FB 60 91 */ bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F7664 000F45A4  7F E3 FB 78 */ mr r3, r31
-/* 800F7668 000F45A8  48 01 99 79 */ bl daAlink_c_NS_commonKandelaarPourInit
+/* 800F7668 000F45A8  48 01 99 79 */ bl commonKandelaarPourInit__9daAlink_cFv
 /* 800F766C 000F45AC  38 60 00 01 */ li r3, 1
 lbl_800F7670:
 /* 800F7670 000F45B0  83 E1 00 0C */ lwz r31, 0xc(r1)

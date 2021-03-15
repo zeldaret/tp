@@ -14,7 +14,7 @@
 /* 8001FD68 0001CCA8  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8001FD6C 0001CCAC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8001FD70 0001CCB0  80 63 00 1C */ lwz r3, 0x1c(r3)
-/* 8001FD74 0001CCB4  48 1F F9 79 */ bl dMeter2_c_NS_emphasisButtonDelete
+/* 8001FD74 0001CCB4  48 1F F9 79 */ bl emphasisButtonDelete__9dMeter2_cFv
 lbl_8001FD78:
 /* 8001FD78 0001CCB8  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
 /* 8001FD7C 0001CCBC  28 00 00 00 */ cmplwi r0, 0
@@ -59,7 +59,7 @@ lbl_8001FDF8:
 /* 8001FE0C 0001CD4C  AB 83 02 F4 */ lha r28, 0x2f4(r3)
 lbl_8001FE10:
 /* 8001FE10 0001CD50  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
-/* 8001FE14 0001CD54  4B FF FC 11 */ bl fopMsgM_SearchByID
+/* 8001FE14 0001CD54  4B FF FC 11 */ bl fopMsgM_SearchByID__FUi
 /* 8001FE18 0001CD58  28 03 00 00 */ cmplwi r3, 0
 /* 8001FE1C 0001CD5C  41 82 00 4C */ beq lbl_8001FE68
 /* 8001FE20 0001CD60  A0 03 00 F8 */ lhz r0, 0xf8(r3)
@@ -77,7 +77,7 @@ lbl_8001FE10:
 /* 8001FE50 0001CD90  7F 84 E3 78 */ mr r4, r28
 /* 8001FE54 0001CD94  7F C5 F3 78 */ mr r5, r30
 /* 8001FE58 0001CD98  38 C0 00 00 */ li r6, 0
-/* 8001FE5C 0001CD9C  48 21 3E A9 */ bl dMsgObject_c_NS_setMessageIndex
+/* 8001FE5C 0001CD9C  48 21 3E A9 */ bl setMessageIndex__12dMsgObject_cFUlUlb
 /* 8001FE60 0001CDA0  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
 /* 8001FE64 0001CDA4  48 00 00 08 */ b lbl_8001FE6C
 lbl_8001FE68:

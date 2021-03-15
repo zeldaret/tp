@@ -6,7 +6,7 @@
 /* 8000D7BC 0000A6FC  D0 23 00 08 */ stfs f1, 8(r3)
 /* 8000D7C0 0000A700  7C 83 23 78 */ mr r3, r4
 /* 8000D7C4 0000A704  80 85 00 14 */ lwz r4, 0x14(r5)
-/* 8000D7C8 0000A708  48 32 26 A9 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 8000D7C8 0000A708  48 32 26 A9 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 8000D7CC 0000A70C  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8000D7D0 0000A710  7C 08 03 A6 */ mtlr r0
 /* 8000D7D4 0000A714  38 21 00 10 */ addi r1, r1, 0x10

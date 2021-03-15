@@ -16,10 +16,7 @@ typedef struct judge_filter {
     void* mpUserData;
 } judge_filter;
 
-extern "C" {
-
 int cTgIt_MethodCall(create_tag_class* pTag, method_filter* pMethodFilter);
 void* cTgIt_JudgeFilter(create_tag_class* pTag, judge_filter* pJudgeFilter);
-};
 
 #endif

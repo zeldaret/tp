@@ -37,10 +37,10 @@
 lbl_80160394:
 /* 80160394 0015D2D4  38 7E 0A EC */ addi r3, r30, 0xaec
 /* 80160398 0015D2D8  38 80 FF FF */ li r4, -1
-/* 8016039C 0015D2DC  4B F2 81 F1 */ bl dCamParam_c_NS_dtor
+/* 8016039C 0015D2DC  4B F2 81 F1 */ bl __dt__11dCamParam_cFv
 /* 801603A0 0015D2E0  38 7E 09 70 */ addi r3, r30, 0x970
 /* 801603A4 0015D2E4  38 80 FF FF */ li r4, -1
-/* 801603A8 0015D2E8  4B F2 85 11 */ bl dCamSetup_c_NS_dtor
+/* 801603A8 0015D2E8  4B F2 85 11 */ bl __dt__11dCamSetup_cFv
 /* 801603AC 0015D2EC  38 7E 06 14 */ addi r3, r30, 0x614
 /*.global dCamera_c_NS__class_3665d_camera_cpp_NS_dtor*/
 /* 801603B0 0015D2F0  3C 80 80 16 */ lis r4, dCamera_c_NS__class_3665d_camera_cpp_NS_dtor@ha
@@ -48,7 +48,7 @@ lbl_80160394:
 /* 801603B4 0015D2F4  38 84 02 C4 */ addi r4, r4, dCamera_c_NS__class_3665d_camera_cpp_NS_dtor@l
 /* 801603B8 0015D2F8  38 A0 00 14 */ li r5, 0x14
 /* 801603BC 0015D2FC  38 C0 00 04 */ li r6, 4
-/* 801603C0 0015D300  48 20 19 29 */ bl func_80361CE8
+/* 801603C0 0015D300  48 20 19 29 */ bl __destroy_arr
 /* 801603C4 0015D304  34 1E 04 E8 */ addic. r0, r30, 0x4e8
 /* 801603C8 0015D308  41 82 00 18 */ beq lbl_801603E0
 /* 801603CC 0015D30C  34 1E 05 D8 */ addic. r0, r30, 0x5d8
@@ -63,13 +63,13 @@ lbl_801603E0:
 /* 801603EC 0015D32C  41 82 00 10 */ beq lbl_801603FC
 /* 801603F0 0015D330  38 7E 03 2C */ addi r3, r30, 0x32c
 /* 801603F4 0015D334  38 80 FF FF */ li r4, -1
-/* 801603F8 0015D338  4B F1 75 91 */ bl dBgS_CamGndChk_NS_dtor
+/* 801603F8 0015D338  4B F1 75 91 */ bl __dt__14dBgS_CamGndChkFv
 lbl_801603FC:
 /* 801603FC 0015D33C  34 1E 02 CC */ addic. r0, r30, 0x2cc
 /* 80160400 0015D340  41 82 00 10 */ beq lbl_80160410
 /* 80160404 0015D344  38 7E 02 D0 */ addi r3, r30, 0x2d0
 /* 80160408 0015D348  38 80 FF FF */ li r4, -1
-/* 8016040C 0015D34C  4B F1 75 7D */ bl dBgS_CamGndChk_NS_dtor
+/* 8016040C 0015D34C  4B F1 75 7D */ bl __dt__14dBgS_CamGndChkFv
 lbl_80160410:
 /* 80160410 0015D350  34 1E 02 28 */ addic. r0, r30, 0x228
 /* 80160414 0015D354  41 82 00 18 */ beq lbl_8016042C
@@ -80,13 +80,13 @@ lbl_80160410:
 /* 80160428 0015D368  90 1E 02 28 */ stw r0, 0x228(r30)
 lbl_8016042C:
 /* 8016042C 0015D36C  38 7E 00 D0 */ addi r3, r30, 0xd0
-/*.global dCamera_c_NS_dCamInfo_c_NS_dtor*/
-/* 80160430 0015D370  3C 80 80 18 */ lis r4, dCamera_c_NS_dCamInfo_c_NS_dtor@ha
-/*.global dCamera_c_NS_dCamInfo_c_NS_dtor*/
-/* 80160434 0015D374  38 84 29 20 */ addi r4, r4, dCamera_c_NS_dCamInfo_c_NS_dtor@l
+/*.global __dt__Q29dCamera_c10dCamInfo_cFv*/
+/* 80160430 0015D370  3C 80 80 18 */ lis r4, __dt__Q29dCamera_c10dCamInfo_cFv@ha
+/*.global __dt__Q29dCamera_c10dCamInfo_cFv*/
+/* 80160434 0015D374  38 84 29 20 */ addi r4, r4, __dt__Q29dCamera_c10dCamInfo_cFv@l
 /* 80160438 0015D378  38 A0 00 20 */ li r5, 0x20
 /* 8016043C 0015D37C  38 C0 00 02 */ li r6, 2
-/* 80160440 0015D380  48 20 18 A9 */ bl func_80361CE8
+/* 80160440 0015D380  48 20 18 A9 */ bl __destroy_arr
 /* 80160444 0015D384  7F E0 07 35 */ extsh. r0, r31
 /* 80160448 0015D388  40 81 00 0C */ ble lbl_80160454
 /* 8016044C 0015D38C  7F C3 F3 78 */ mr r3, r30

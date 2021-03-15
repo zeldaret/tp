@@ -163,19 +163,19 @@ lbl_800A3658:
 /* 800A3698 000A05D8  48 1C 46 91 */ bl SetPos__11cBgS_GndChkFPC4cXyz
 /* 800A369C 000A05DC  7E E3 BB 78 */ mr r3, r23
 /* 800A36A0 000A05E0  38 99 1D 08 */ addi r4, r25, 0x1d08
-/* 800A36A4 000A05E4  4B FD 0D FD */ bl cBgS_NS_GroundCross
+/* 800A36A4 000A05E4  4B FD 0D FD */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 800A36A8 000A05E8  FF A0 08 90 */ fmr f29, f1
 /* 800A36AC 000A05EC  FC 1E E8 00 */ fcmpu cr0, f30, f29
 /* 800A36B0 000A05F0  41 82 00 14 */ beq lbl_800A36C4
 /* 800A36B4 000A05F4  7E E3 BB 78 */ mr r3, r23
 /* 800A36B8 000A05F8  38 99 1D 1C */ addi r4, r25, 0x1d1c
 /* 800A36BC 000A05FC  38 A1 00 9C */ addi r5, r1, 0x9c
-/* 800A36C0 000A0600  4B FD 10 85 */ bl cBgS_NS_GetTriPla
+/* 800A36C0 000A0600  4B FD 10 85 */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 lbl_800A36C4:
 /* 800A36C4 000A0604  FC 1E E8 00 */ fcmpu cr0, f30, f29
 /* 800A36C8 000A0608  41 82 00 58 */ beq lbl_800A3720
 /* 800A36CC 000A060C  C0 21 00 A0 */ lfs f1, 0xa0(r1)
-/* 800A36D0 000A0610  48 1C 4B 15 */ bl cBgW_CheckBGround
+/* 800A36D0 000A0610  48 1C 4B 15 */ bl cBgW_CheckBGround__Ff
 /* 800A36D4 000A0614  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800A36D8 000A0618  41 82 00 48 */ beq lbl_800A3720
 /* 800A36DC 000A061C  C0 01 00 4C */ lfs f0, 0x4c(r1)
@@ -191,7 +191,7 @@ lbl_800A36C4:
 /* 800A3704 000A0644  7F 23 CB 78 */ mr r3, r25
 /* 800A3708 000A0648  38 99 1D 1C */ addi r4, r25, 0x1d1c
 /* 800A370C 000A064C  A8 B9 04 E6 */ lha r5, 0x4e6(r25)
-/* 800A3710 000A0650  48 00 C9 89 */ bl daAlink_c_NS_getGroundAngle
+/* 800A3710 000A0650  48 00 C9 89 */ bl getGroundAngle__9daAlink_cFP13cBgS_PolyInfos
 /* 800A3714 000A0654  38 81 00 0C */ addi r4, r1, 0xc
 /* 800A3718 000A0658  7C 64 C3 2E */ sthx r3, r4, r24
 /* 800A371C 000A065C  48 00 00 14 */ b lbl_800A3730
@@ -227,13 +227,13 @@ lbl_800A3778:
 /* 800A3780 000A06C0  7F E3 04 2E */ lfsx f31, r3, r0
 lbl_800A3784:
 /* 800A3784 000A06C4  7F 23 CB 78 */ mr r3, r25
-/* 800A3788 000A06C8  48 00 E4 25 */ bl daAlink_c_NS_setSandShapeOffset
+/* 800A3788 000A06C8  48 00 E4 25 */ bl setSandShapeOffset__9daAlink_cFv
 /* 800A378C 000A06CC  7F 23 CB 78 */ mr r3, r25
 /* 800A3790 000A06D0  38 99 2B A8 */ addi r4, r25, 0x2ba8
 /* 800A3794 000A06D4  C0 39 2B A8 */ lfs f1, 0x2ba8(r25)
-/* 800A3798 000A06D8  4B FF F4 8D */ bl daAlink_c_NS_setMatrixOffset
+/* 800A3798 000A06D8  4B FF F4 8D */ bl setMatrixOffset__9daAlink_cFPff
 /* 800A379C 000A06DC  7F 23 CB 78 */ mr r3, r25
-/* 800A37A0 000A06E0  48 00 DF 8D */ bl daAlink_c_NS_setSandDownBgCheckWallH
+/* 800A37A0 000A06E0  48 00 DF 8D */ bl setSandDownBgCheckWallH__9daAlink_cFv
 /* 800A37A4 000A06E4  A0 19 2F E8 */ lhz r0, 0x2fe8(r25)
 /* 800A37A8 000A06E8  28 00 00 01 */ cmplwi r0, 1
 /* 800A37AC 000A06EC  40 82 00 0C */ bne lbl_800A37B8
@@ -264,7 +264,7 @@ lbl_800A3800:
 /* 800A3800 000A0740  7F 23 CB 78 */ mr r3, r25
 /* 800A3804 000A0744  38 99 2B 94 */ addi r4, r25, 0x2b94
 /* 800A3808 000A0748  FC 20 F8 90 */ fmr f1, f31
-/* 800A380C 000A074C  4B FF F4 19 */ bl daAlink_c_NS_setMatrixOffset
+/* 800A380C 000A074C  4B FF F4 19 */ bl setMatrixOffset__9daAlink_cFPff
 /* 800A3810 000A0750  3B F9 29 04 */ addi r31, r25, 0x2904
 /* 800A3814 000A0754  3B A0 00 00 */ li r29, 0
 /* 800A3818 000A0758  3B 60 00 00 */ li r27, 0
@@ -300,7 +300,7 @@ lbl_800A3878:
 /* 800A3880 000A07C0  38 A1 00 0A */ addi r5, r1, 0xa
 /* 800A3884 000A07C4  38 C1 00 08 */ addi r6, r1, 8
 /* 800A3888 000A07C8  38 E0 00 01 */ li r7, 1
-/* 800A388C 000A07CC  4B FF F4 55 */ bl daAlink_c_NS_setLegAngle
+/* 800A388C 000A07CC  4B FF F4 55 */ bl setLegAngle__9daAlink_cFfP18daAlink_footData_cPsPsi
 /* 800A3890 000A07D0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A3894 000A07D4  40 82 00 10 */ bne lbl_800A38A4
 lbl_800A3898:

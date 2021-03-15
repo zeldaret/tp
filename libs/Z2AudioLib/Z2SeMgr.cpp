@@ -13,7 +13,7 @@
 
 extern "C" {
 void __dl__FPv(void);
-void func_80361D60(void);
+void __construct_array(void);
 void __cvt_fp2unsigned(void);
 }
 

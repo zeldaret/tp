@@ -5,11 +5,11 @@
 /* 800B9350 000B6290  93 C1 00 08 */ stw r30, 8(r1)
 /* 800B9354 000B6294  7C 7E 1B 78 */ mr r30, r3
 /* 800B9358 000B6298  3B E0 00 00 */ li r31, 0
-/* 800B935C 000B629C  48 01 7B 3D */ bl daAlink_c_NS_checkSwordEquipAnime
+/* 800B935C 000B629C  48 01 7B 3D */ bl checkSwordEquipAnime__9daAlink_cCFv
 /* 800B9360 000B62A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9364 000B62A4  40 82 00 14 */ bne lbl_800B9378
 /* 800B9368 000B62A8  7F C3 F3 78 */ mr r3, r30
-/* 800B936C 000B62AC  4B FF FF 8D */ bl daAlink_c_NS_checkItemEquipAnime
+/* 800B936C 000B62AC  4B FF FF 8D */ bl checkItemEquipAnime__9daAlink_cCFv
 /* 800B9370 000B62B0  2C 03 00 00 */ cmpwi r3, 0
 /* 800B9374 000B62B4  41 82 00 08 */ beq lbl_800B937C
 lbl_800B9378:

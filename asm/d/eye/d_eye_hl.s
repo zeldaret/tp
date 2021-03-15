@@ -3,8 +3,8 @@
 .section .text, "ax" # 8009c964
 
 
-.global dEyeHL_c_NS_entry
-dEyeHL_c_NS_entry:
+.global entry__8dEyeHL_cFP12J3DModelDataPCc
+entry__8dEyeHL_cFP12J3DModelDataPCc:
 /* 8009C964 000998A4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009C968 000998A8  7C 08 02 A6 */	mflr r0
 /* 8009C96C 000998AC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -23,7 +23,7 @@ dEyeHL_c_NS_entry:
 lbl_8009C9A0:
 /* 8009C9A0 000998E0  7F C3 F3 78 */	mr r3, r30
 /* 8009C9A4 000998E4  7F A4 EB 78 */	mr r4, r29
-/* 8009C9A8 000998E8  48 24 21 51 */	bl JUTNameTab_NS_getName
+/* 8009C9A8 000998E8  48 24 21 51 */	bl getName__10JUTNameTabCFUs
 /* 8009C9AC 000998EC  28 03 00 00 */	cmplwi r3, 0
 /* 8009C9B0 000998F0  41 82 00 3C */	beq lbl_8009C9EC
 /* 8009C9B4 000998F4  7F 84 E3 78 */	mr r4, r28
@@ -38,7 +38,7 @@ lbl_8009C9A0:
 /* 8009C9D8 00099918  A8 03 00 1A */	lha r0, 0x1a(r3)
 /* 8009C9DC 0009991C  B0 1B 00 08 */	sth r0, 8(r27)
 /* 8009C9E0 00099920  7F 63 DB 78 */	mr r3, r27
-/* 8009C9E4 00099924  48 00 01 31 */	bl dEyeHL_mng_c_NS_entry
+/* 8009C9E4 00099924  48 00 01 31 */	bl entry__12dEyeHL_mng_cFP8dEyeHL_c
 /* 8009C9E8 00099928  48 00 00 28 */	b lbl_8009CA10
 lbl_8009C9EC:
 /* 8009C9EC 0009992C  3B BD 00 01 */	addi r29, r29, 1
@@ -60,19 +60,19 @@ lbl_8009CA10:
 /* 8009CA20 00099960  38 21 00 20 */	addi r1, r1, 0x20
 /* 8009CA24 00099964  4E 80 00 20 */	blr 
 
-.global dEyeHL_c_NS_remove
-dEyeHL_c_NS_remove:
+.global remove__8dEyeHL_cFv
+remove__8dEyeHL_cFv:
 /* 8009CA28 00099968  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CA2C 0009996C  7C 08 02 A6 */	mflr r0
 /* 8009CA30 00099970  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8009CA34 00099974  48 00 01 01 */	bl dEyeHL_mng_c_NS_remove
+/* 8009CA34 00099974  48 00 01 01 */	bl remove__12dEyeHL_mng_cFP8dEyeHL_c
 /* 8009CA38 00099978  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8009CA3C 0009997C  7C 08 03 A6 */	mtlr r0
 /* 8009CA40 00099980  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CA44 00099984  4E 80 00 20 */	blr 
 
-.global dEyeHL_mng_c_NS_update
-dEyeHL_mng_c_NS_update:
+.global update__12dEyeHL_mng_cFv
+update__12dEyeHL_mng_cFv:
 /* 8009CA48 00099988  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009CA4C 0009998C  80 AD 8A 28 */	lwz r5, lbl_80450FA8-_SDA_BASE_(r13)
 /* 8009CA50 00099990  3C 60 80 43 */	lis r3, lbl_8043079C@ha
@@ -133,8 +133,8 @@ lbl_8009CB0C:
 /* 8009CB0C 00099A4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009CB10 00099A50  4E 80 00 20 */	blr 
 
-.global dEyeHL_mng_c_NS_entry
-dEyeHL_mng_c_NS_entry:
+.global entry__12dEyeHL_mng_cFP8dEyeHL_c
+entry__12dEyeHL_mng_cFP8dEyeHL_c:
 /* 8009CB14 00099A54  80 8D 8A 28 */	lwz r4, lbl_80450FA8-_SDA_BASE_(r13)
 /* 8009CB18 00099A58  28 04 00 00 */	cmplwi r4, 0
 /* 8009CB1C 00099A5C  41 82 00 08 */	beq lbl_8009CB24
@@ -145,8 +145,8 @@ lbl_8009CB24:
 /* 8009CB2C 00099A6C  90 6D 8A 28 */	stw r3, lbl_80450FA8-_SDA_BASE_(r13)
 /* 8009CB30 00099A70  4E 80 00 20 */	blr 
 
-.global dEyeHL_mng_c_NS_remove
-dEyeHL_mng_c_NS_remove:
+.global remove__12dEyeHL_mng_cFP8dEyeHL_c
+remove__12dEyeHL_mng_cFP8dEyeHL_c:
 /* 8009CB34 00099A74  80 03 00 04 */	lwz r0, 4(r3)
 /* 8009CB38 00099A78  28 00 00 00 */	cmplwi r0, 0
 /* 8009CB3C 00099A7C  4D 82 00 20 */	beqlr 

@@ -17,7 +17,7 @@ lbl_800E046C:
 lbl_800E047C:
 /* 800E047C 000DD3BC  54 80 06 3F */ clrlwi. r0, r4, 0x18
 /* 800E0480 000DD3C0  40 82 00 10 */ bne lbl_800E0490
-/* 800E0484 000DD3C4  48 00 00 29 */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800E0484 000DD3C4  48 00 00 29 */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800E0488 000DD3C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800E048C 000DD3CC  41 82 00 08 */ beq lbl_800E0494
 lbl_800E0490:

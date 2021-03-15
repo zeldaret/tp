@@ -8,7 +8,7 @@
 /* 800DCE0C 000D9D4C  80 03 05 78 */ lwz r0, 0x578(r3)
 /* 800DCE10 000D9D50  54 00 01 09 */ rlwinm. r0, r0, 0, 4, 4
 /* 800DCE14 000D9D54  41 82 00 3C */ beq lbl_800DCE50
-/* 800DCE18 000D9D58  48 03 8E 09 */ bl daAlink_c_NS_checkEventRun
+/* 800DCE18 000D9D58  48 03 8E 09 */ bl checkEventRun__9daAlink_cCFv
 /* 800DCE1C 000D9D5C  2C 03 00 00 */ cmpwi r3, 0
 /* 800DCE20 000D9D60  40 82 00 30 */ bne lbl_800DCE50
 /* 800DCE24 000D9D64  80 1E 05 70 */ lwz r0, 0x570(r30)

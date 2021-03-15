@@ -11,7 +11,7 @@ lbl_80122F3C:
 /* 80122F3C 0011FE7C  7F 63 DB 78 */ mr r3, r27
 /* 80122F40 0011FE80  3B BF 32 04 */ addi r29, r31, 0x3204
 /* 80122F44 0011FE84  7C 9B E8 2E */ lwzx r4, r27, r29
-/* 80122F48 0011FE88  4B FF D8 31 */ bl daAlink_c_NS_stopDrawParticle
+/* 80122F48 0011FE88  4B FF D8 31 */ bl stopDrawParticle__9daAlink_cFUl
 /* 80122F4C 0011FE8C  7F DB E9 2E */ stwx r30, r27, r29
 /* 80122F50 0011FE90  3B 9C 00 01 */ addi r28, r28, 1
 /* 80122F54 0011FE94  2C 1C 00 06 */ cmpwi r28, 6

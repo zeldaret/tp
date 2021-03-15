@@ -3,15 +3,15 @@
 .section .text, "ax" # 80195a2c
 
 
-.global dSi_HIO_c
-dSi_HIO_c:
+.global __ct__9dSi_HIO_cFv
+__ct__9dSi_HIO_cFv:
 /* 80195A2C 0019296C  3C 80 80 3C */	lis r4, lbl_803BB7B8@ha
 /* 80195A30 00192970  38 04 B7 B8 */	addi r0, r4, lbl_803BB7B8@l
 /* 80195A34 00192974  90 03 00 00 */	stw r0, 0(r3)
 /* 80195A38 00192978  4E 80 00 20 */	blr 
 
-.global dSelect_icon_c_NS_animation
-dSelect_icon_c_NS_animation:
+.global animation__14dSelect_icon_cFv
+animation__14dSelect_icon_cFv:
 /* 80195A3C 0019297C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80195A40 00192980  7C 08 02 A6 */	mflr r0
 /* 80195A44 00192984  90 01 00 24 */	stw r0, 0x24(r1)
@@ -69,11 +69,11 @@ lbl_80195B08:
 /* 80195B0C 00192A4C  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 80195B10 00192A50  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80195B14 00192A54  80 7F 00 08 */	lwz r3, 8(r31)
-/* 80195B18 00192A58  48 16 3B 79 */	bl J2DScreen_NS_animation
+/* 80195B18 00192A58  48 16 3B 79 */	bl animation__9J2DScreenFv
 /* 80195B1C 00192A5C  C0 3F 00 14 */	lfs f1, 0x14(r31)
 /* 80195B20 00192A60  80 7F 00 10 */	lwz r3, 0x10(r31)
 /* 80195B24 00192A64  FC 40 08 90 */	fmr f2, f1
-/* 80195B28 00192A68  48 0B EB 11 */	bl CPaneMgr_NS_paneScale
+/* 80195B28 00192A68  48 0B EB 11 */	bl paneScale__8CPaneMgrFff
 lbl_80195B2C:
 /* 80195B2C 00192A6C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80195B30 00192A70  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -81,8 +81,8 @@ lbl_80195B2C:
 /* 80195B38 00192A78  38 21 00 20 */	addi r1, r1, 0x20
 /* 80195B3C 00192A7C  4E 80 00 20 */	blr 
 
-.global dSelect_icon_c_NS_setAlpha
-dSelect_icon_c_NS_setAlpha:
+.global setAlpha__14dSelect_icon_cFUc
+setAlpha__14dSelect_icon_cFUc:
 /* 80195B40 00192A80  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80195B44 00192A84  7C 08 02 A6 */	mflr r0
 /* 80195B48 00192A88  90 01 00 14 */	stw r0, 0x14(r1)
@@ -96,8 +96,8 @@ dSelect_icon_c_NS_setAlpha:
 /* 80195B68 00192AA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80195B6C 00192AAC  4E 80 00 20 */	blr 
 
-.global dSelect_icon_c_NS_setPos
-dSelect_icon_c_NS_setPos:
+.global setPos__14dSelect_icon_cFP7J2DPaneff
+setPos__14dSelect_icon_cFP7J2DPaneff:
 /* 80195B70 00192AB0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80195B74 00192AB4  7C 08 02 A6 */	mflr r0
 /* 80195B78 00192AB8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -123,7 +123,7 @@ dSelect_icon_c_NS_setPos:
 /* 80195BC8 00192B08  C0 23 00 14 */	lfs f1, 0x14(r3)
 /* 80195BCC 00192B0C  80 63 00 10 */	lwz r3, 0x10(r3)
 /* 80195BD0 00192B10  FC 40 08 90 */	fmr f2, f1
-/* 80195BD4 00192B14  48 0B EA 65 */	bl CPaneMgr_NS_paneScale
+/* 80195BD4 00192B14  48 0B EA 65 */	bl paneScale__8CPaneMgrFff
 /* 80195BD8 00192B18  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 80195BDC 00192B1C  80 63 00 04 */	lwz r3, 4(r3)
 /* 80195BE0 00192B20  D3 C3 00 D4 */	stfs f30, 0xd4(r3)
@@ -141,8 +141,8 @@ dSelect_icon_c_NS_setPos:
 /* 80195C10 00192B50  7C 08 03 A6 */	mtlr r0
 /* 80195C14 00192B54  38 21 00 30 */	addi r1, r1, 0x30
 /* 80195C18 00192B58  4E 80 00 20 */	blr 
-.global dSi_HIO_c_NS_dtor
-dSi_HIO_c_NS_dtor:
+.global __dt__9dSi_HIO_cFv
+__dt__9dSi_HIO_cFv:
 /* 80195C1C 00192B5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80195C20 00192B60  7C 08 02 A6 */	mflr r0
 /* 80195C24 00192B64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -166,11 +166,11 @@ lbl_80195C4C:
 /* 80195C68 00192BA8  7C 08 02 A6 */	mflr r0
 /* 80195C6C 00192BAC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80195C70 00192BB0  38 6D 8A D0 */	addi r3, r13, lbl_80451050-_SDA_BASE_
-/* 80195C74 00192BB4  4B FF FD B9 */	bl dSi_HIO_c
-.global dSi_HIO_c_NS_dtor
-/* 80195C78 00192BB8  3C 80 80 19 */	lis r4, dSi_HIO_c_NS_dtor@ha
-.global dSi_HIO_c_NS_dtor
-/* 80195C7C 00192BBC  38 84 5C 1C */	addi r4, r4, dSi_HIO_c_NS_dtor@l
+/* 80195C74 00192BB4  4B FF FD B9 */	bl __ct__9dSi_HIO_cFv
+.global __dt__9dSi_HIO_cFv
+/* 80195C78 00192BB8  3C 80 80 19 */	lis r4, __dt__9dSi_HIO_cFv@ha
+.global __dt__9dSi_HIO_cFv
+/* 80195C7C 00192BBC  38 84 5C 1C */	addi r4, r4, __dt__9dSi_HIO_cFv@l
 /* 80195C80 00192BC0  3C A0 80 43 */	lis r5, lbl_8042CA10@ha
 /* 80195C84 00192BC4  38 A5 CA 10 */	addi r5, r5, lbl_8042CA10@l
 /* 80195C88 00192BC8  48 1C BF 9D */	bl func_80361C24

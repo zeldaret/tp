@@ -7,13 +7,13 @@
 /* 80028430 00025370  7C 9F 23 78 */ mr r31, r4
 /* 80028434 00025374  41 82 00 2C */ beq lbl_80028460
 /* 80028438 00025378  38 7E 00 04 */ addi r3, r30, 4
-/*.global stage_tgsc_data_class_NS_dtor*/
-/* 8002843C 0002537C  3C 80 80 03 */ lis r4, stage_tgsc_data_class_NS_dtor@ha
-/*.global stage_tgsc_data_class_NS_dtor*/
-/* 80028440 00025380  38 84 84 7C */ addi r4, r4, stage_tgsc_data_class_NS_dtor@l
+/*.global __dt__21stage_tgsc_data_classFv*/
+/* 8002843C 0002537C  3C 80 80 03 */ lis r4, __dt__21stage_tgsc_data_classFv@ha
+/*.global __dt__21stage_tgsc_data_classFv*/
+/* 80028440 00025380  38 84 84 7C */ addi r4, r4, __dt__21stage_tgsc_data_classFv@l
 /* 80028444 00025384  38 A0 00 24 */ li r5, 0x24
 /* 80028448 00025388  38 C0 00 40 */ li r6, 0x40
-/* 8002844C 0002538C  48 33 98 9D */ bl func_80361CE8
+/* 8002844C 0002538C  48 33 98 9D */ bl __destroy_arr
 /* 80028450 00025390  7F E0 07 35 */ extsh. r0, r31
 /* 80028454 00025394  40 81 00 0C */ ble lbl_80028460
 /* 80028458 00025398  7F C3 F3 78 */ mr r3, r30

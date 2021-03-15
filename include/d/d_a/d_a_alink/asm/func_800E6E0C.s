@@ -10,10 +10,10 @@
 /* 800E6E30 000E3D70  40 82 00 20 */ bne lbl_800E6E50
 /* 800E6E34 000E3D74  38 80 00 02 */ li r4, 2
 /* 800E6E38 000E3D78  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800E6E3C 000E3D7C  4B FC 68 E9 */ bl daAlink_c_NS_resetUpperAnime
+/* 800E6E3C 000E3D7C  4B FC 68 E9 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800E6E40 000E3D80  7F C3 F3 78 */ mr r3, r30
 /* 800E6E44 000E3D84  38 80 00 00 */ li r4, 0
-/* 800E6E48 000E3D88  4B FD 32 89 */ bl daAlink_c_NS_checkNextAction
+/* 800E6E48 000E3D88  4B FD 32 89 */ bl checkNextAction__9daAlink_cFi
 /* 800E6E4C 000E3D8C  48 00 00 88 */ b lbl_800E6ED4
 lbl_800E6E50:
 /* 800E6E50 000E3D90  80 1E 31 98 */ lwz r0, 0x3198(r30)
@@ -28,13 +28,13 @@ lbl_800E6E50:
 /* 800E6E74 000E3DB4  3C A0 80 39 */ lis r5, lbl_8038EC48@ha
 /* 800E6E78 000E3DB8  38 A5 EC 48 */ addi r5, r5, lbl_8038EC48@l
 /* 800E6E7C 000E3DBC  C0 25 00 68 */ lfs f1, 0x68(r5)
-/* 800E6E80 000E3DC0  48 01 AE 75 */ bl daAlink_c_NS_setWaterInAnmRate
+/* 800E6E80 000E3DC0  48 01 AE 75 */ bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 /* 800E6E84 000E3DC4  38 00 00 00 */ li r0, 0
 /* 800E6E88 000E3DC8  90 1E 31 98 */ stw r0, 0x3198(r30)
 /* 800E6E8C 000E3DCC  48 00 00 44 */ b lbl_800E6ED0
 lbl_800E6E90:
 /* 800E6E90 000E3DD0  7F E3 FB 78 */ mr r3, r31
-/* 800E6E94 000E3DD4  48 07 76 39 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800E6E94 000E3DD4  48 07 76 39 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800E6E98 000E3DD8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E6E9C 000E3DDC  40 82 00 2C */ bne lbl_800E6EC8
 /* 800E6EA0 000E3DE0  C0 3E 33 AC */ lfs f1, 0x33ac(r30)
@@ -49,7 +49,7 @@ lbl_800E6E90:
 /* 800E6EC4 000E3E04  40 81 00 0C */ ble lbl_800E6ED0
 lbl_800E6EC8:
 /* 800E6EC8 000E3E08  7F C3 F3 78 */ mr r3, r30
-/* 800E6ECC 000E3E0C  4B FF E4 E1 */ bl daAlink_c_NS_initGrabNextMode
+/* 800E6ECC 000E3E0C  4B FF E4 E1 */ bl initGrabNextMode__9daAlink_cFv
 lbl_800E6ED0:
 /* 800E6ED0 000E3E10  38 60 00 01 */ li r3, 1
 lbl_800E6ED4:

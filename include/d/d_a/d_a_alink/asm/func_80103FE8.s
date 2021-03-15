@@ -7,7 +7,7 @@
 /* 80104000 00100F40  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80104004 00100F44  40 82 00 18 */ bne lbl_8010401C
 /* 80104008 00100F48  38 80 00 14 */ li r4, 0x14
-/* 8010400C 00100F4C  4B FA 85 4D */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 8010400C 00100F4C  4B FA 85 4D */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 80104010 00100F50  2C 03 00 00 */ cmpwi r3, 0
 /* 80104014 00100F54  41 82 00 08 */ beq lbl_8010401C
 /* 80104018 00100F58  3B E0 00 01 */ li r31, 1

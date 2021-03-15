@@ -3,8 +3,8 @@
 .section .text, "ax" # 8034bd2c
 
 
-.global cb_X1_
-cb_X1_:
+.global cb
+cb:
 /* 8034BD2C 00348C6C  7C 08 02 A6 */	mflr r0
 /* 8034BD30 00348C70  2C 03 00 00 */	cmpwi r3, 0
 /* 8034BD34 00348C74  90 01 00 04 */	stw r0, 4(r1)
@@ -22,11 +22,11 @@ cb_X1_:
 lbl_8034BD64:
 /* 8034BD64 00348CA4  38 00 00 01 */	li r0, 1
 /* 8034BD68 00348CA8  80 8D 92 54 */	lwz r4, lbl_804517D4-_SDA_BASE_(r13)
-.global cb_X1_
-/* 8034BD6C 00348CAC  3C 60 80 35 */	lis r3, cb_X1_@ha
+.global cb
+/* 8034BD6C 00348CAC  3C 60 80 35 */	lis r3, cb@ha
 /* 8034BD70 00348CB0  90 0D 92 50 */	stw r0, lbl_804517D0-_SDA_BASE_(r13)
-.global cb_X1_
-/* 8034BD74 00348CB4  38 E3 BD 2C */	addi r7, r3, cb_X1_@l
+.global cb
+/* 8034BD74 00348CB4  38 E3 BD 2C */	addi r7, r3, cb@l
 /* 8034BD78 00348CB8  38 7F 00 00 */	addi r3, r31, 0
 /* 8034BD7C 00348CBC  38 A0 00 20 */	li r5, 0x20
 /* 8034BD80 00348CC0  38 C0 04 20 */	li r6, 0x420
@@ -36,10 +36,10 @@ lbl_8034BD8C:
 /* 8034BD8C 00348CCC  38 00 00 02 */	li r0, 2
 /* 8034BD90 00348CD0  80 CD 92 54 */	lwz r6, lbl_804517D4-_SDA_BASE_(r13)
 /* 8034BD94 00348CD4  90 0D 92 50 */	stw r0, lbl_804517D0-_SDA_BASE_(r13)
-.global cb_X1_
-/* 8034BD98 00348CD8  3C 60 80 35 */	lis r3, cb_X1_@ha
-.global cb_X1_
-/* 8034BD9C 00348CDC  38 E3 BD 2C */	addi r7, r3, cb_X1_@l
+.global cb
+/* 8034BD98 00348CD8  3C 60 80 35 */	lis r3, cb@ha
+.global cb
+/* 8034BD9C 00348CDC  38 E3 BD 2C */	addi r7, r3, cb@l
 /* 8034BDA0 00348CE0  80 A6 00 08 */	lwz r5, 8(r6)
 /* 8034BDA4 00348CE4  7F E3 FB 78 */	mr r3, r31
 /* 8034BDA8 00348CE8  80 86 00 10 */	lwz r4, 0x10(r6)
@@ -56,11 +56,11 @@ lbl_8034BDC0:
 /* 8034BDD0 00348D10  38 00 00 00 */	li r0, 0
 /* 8034BDD4 00348D14  90 0D 92 50 */	stw r0, lbl_804517D0-_SDA_BASE_(r13)
 /* 8034BDD8 00348D18  4B FF F3 61 */	bl DVDReset
-.global cb_X1_
-/* 8034BDDC 00348D1C  3C 60 80 35 */	lis r3, cb_X1_@ha
+.global cb
+/* 8034BDDC 00348D1C  3C 60 80 35 */	lis r3, cb@ha
 /* 8034BDE0 00348D20  80 8D 92 58 */	lwz r4, lbl_804517D8-_SDA_BASE_(r13)
-.global cb_X1_
-/* 8034BDE4 00348D24  38 A3 BD 2C */	addi r5, r3, cb_X1_@l
+.global cb
+/* 8034BDE4 00348D24  38 A3 BD 2C */	addi r5, r3, cb@l
 /* 8034BDE8 00348D28  38 7F 00 00 */	addi r3, r31, 0
 /* 8034BDEC 00348D2C  4B FF F0 ED */	bl DVDReadDiskID
 lbl_8034BDF0:
@@ -92,11 +92,11 @@ __fstLoad:
 /* 8034BE48 00348D88  4B FF F2 F1 */	bl DVDReset
 /* 8034BE4C 00348D8C  3C 60 80 45 */	lis r3, lbl_8044C9F8@ha
 /* 8034BE50 00348D90  80 8D 92 58 */	lwz r4, lbl_804517D8-_SDA_BASE_(r13)
-.global cb_X1_
-/* 8034BE54 00348D94  3C A0 80 35 */	lis r5, cb_X1_@ha
+.global cb
+/* 8034BE54 00348D94  3C A0 80 35 */	lis r5, cb@ha
 /* 8034BE58 00348D98  38 63 C9 F8 */	addi r3, r3, lbl_8044C9F8@l
-.global cb_X1_
-/* 8034BE5C 00348D9C  38 A5 BD 2C */	addi r5, r5, cb_X1_@l
+.global cb
+/* 8034BE5C 00348D9C  38 A5 BD 2C */	addi r5, r5, cb@l
 /* 8034BE60 00348DA0  4B FF F0 79 */	bl DVDReadDiskID
 lbl_8034BE64:
 /* 8034BE64 00348DA4  4B FF F3 65 */	bl DVDGetDriveStatus

@@ -7,7 +7,7 @@
 /* 802179D8 00214918  7C 9F 23 78 */ mr r31, r4
 /* 802179DC 0021491C  38 A0 00 01 */ li r5, 1
 /* 802179E0 00214920  38 DE 07 67 */ addi r6, r30, 0x767
-/* 802179E4 00214924  48 00 29 11 */ bl dMeter2Draw_c_NS_getActionString
+/* 802179E4 00214924  48 00 29 11 */ bl getActionString__13dMeter2Draw_cFUcUcPUc
 /* 802179E8 00214928  57 E0 06 3F */ clrlwi. r0, r31, 0x18
 /* 802179EC 0021492C  41 82 00 0C */ beq lbl_802179F8
 /* 802179F0 00214930  38 00 00 07 */ li r0, 7

@@ -51,13 +51,13 @@ lbl_801380B8:
 lbl_801380BC:
 /* 801380BC 00134FFC  7F E3 FB 78 */ mr r3, r31
 /* 801380C0 00135000  38 80 00 39 */ li r4, 0x39
-/* 801380C4 00135004  4B FF 07 49 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 801380C4 00135004  4B FF 07 49 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 801380C8 00135008  2C 03 00 00 */ cmpwi r3, 0
 /* 801380CC 0013500C  41 82 00 08 */ beq lbl_801380D4
 /* 801380D0 00135010  C3 E2 92 C4 */ lfs f31, lbl_80452CC4-_SDA2_BASE_(r2)
 lbl_801380D4:
 /* 801380D4 00135014  7F E3 FB 78 */ mr r3, r31
-/* 801380D8 00135018  4B F7 B4 29 */ bl daAlink_c_NS_checkAttentionState
+/* 801380D8 00135018  4B F7 B4 29 */ bl checkAttentionState__9daAlink_cFv
 /* 801380DC 0013501C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801380E0 00135020  41 82 00 54 */ beq lbl_80138134
 /* 801380E4 00135024  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
@@ -68,7 +68,7 @@ lbl_801380D4:
 /* 801380F8 00135038  41 82 00 14 */ beq lbl_8013810C
 /* 801380FC 0013503C  7F E3 FB 78 */ mr r3, r31
 /* 80138100 00135040  38 80 00 00 */ li r4, 0
-/* 80138104 00135044  4B F7 B6 31 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 80138104 00135044  4B F7 B6 31 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 80138108 00135048  48 00 00 24 */ b lbl_8013812C
 lbl_8013810C:
 /* 8013810C 0013504C  38 7F 04 E6 */ addi r3, r31, 0x4e6
@@ -88,7 +88,7 @@ lbl_80138134:
 /* 8013813C 0013507C  3C 80 80 39 */ lis r4, lbl_8038F8B4@ha
 /* 80138140 00135080  38 84 F8 B4 */ addi r4, r4, lbl_8038F8B4@l
 /* 80138144 00135084  C0 44 00 54 */ lfs f2, 0x54(r4)
-/* 80138148 00135088  4B F7 B7 DD */ bl daAlink_c_NS_setNormalSpeedF
+/* 80138148 00135088  4B F7 B7 DD */ bl setNormalSpeedF__9daAlink_cFff
 /* 8013814C 0013508C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80138150 00135090  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80138154 00135094  80 03 5F 18 */ lwz r0, 0x5f18(r3)

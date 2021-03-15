@@ -12,7 +12,7 @@
 lbl_8010667C:
 /* 8010667C 001035BC  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 80106680 001035C0  54 1F 07 BC */ rlwinm r31, r0, 0, 0x1e, 0x1e
-/* 80106684 001035C4  4B FB B8 E9 */ bl daAlink_c_NS_commonProcInit
+/* 80106684 001035C4  4B FB B8 E9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80106688 001035C8  28 1F 00 00 */ cmplwi r31, 0
 /* 8010668C 001035CC  41 82 00 10 */ beq lbl_8010669C
 /* 80106690 001035D0  80 1E 31 A0 */ lwz r0, 0x31a0(r30)

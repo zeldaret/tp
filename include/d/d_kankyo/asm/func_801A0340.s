@@ -19,7 +19,7 @@
 /* 801A0388 0019D2C8  88 A5 00 00 */ lbz r5, 0(r5)
 /* 801A038C 0019D2CC  88 C7 00 00 */ lbz r6, 0(r7)
 /* 801A0390 0019D2D0  A8 E8 00 00 */ lha r7, 0(r8)
-/* 801A0394 0019D2D4  4B FF D2 F9 */ bl kankyo_color_ratio_set
+/* 801A0394 0019D2D4  4B FF D2 F9 */ bl kankyo_color_ratio_set__FUcUcfUcUcfsf
 /* 801A0398 0019D2D8  B0 7A 00 00 */ sth r3, 0(r26)
 /* 801A039C 0019D2DC  88 7B 00 01 */ lbz r3, 1(r27)
 /* 801A03A0 0019D2E0  88 9D 00 01 */ lbz r4, 1(r29)
@@ -29,7 +29,7 @@
 /* 801A03B0 0019D2F0  FC 40 F0 90 */ fmr f2, f30
 /* 801A03B4 0019D2F4  A8 FF 00 02 */ lha r7, 2(r31)
 /* 801A03B8 0019D2F8  FC 60 F8 90 */ fmr f3, f31
-/* 801A03BC 0019D2FC  4B FF D2 D1 */ bl kankyo_color_ratio_set
+/* 801A03BC 0019D2FC  4B FF D2 D1 */ bl kankyo_color_ratio_set__FUcUcfUcUcfsf
 /* 801A03C0 0019D300  B0 7A 00 02 */ sth r3, 2(r26)
 /* 801A03C4 0019D304  88 7B 00 02 */ lbz r3, 2(r27)
 /* 801A03C8 0019D308  88 9D 00 02 */ lbz r4, 2(r29)
@@ -39,7 +39,7 @@
 /* 801A03D8 0019D318  FC 40 F0 90 */ fmr f2, f30
 /* 801A03DC 0019D31C  A8 FF 00 04 */ lha r7, 4(r31)
 /* 801A03E0 0019D320  FC 60 F8 90 */ fmr f3, f31
-/* 801A03E4 0019D324  4B FF D2 A9 */ bl kankyo_color_ratio_set
+/* 801A03E4 0019D324  4B FF D2 A9 */ bl kankyo_color_ratio_set__FUcUcfUcUcfsf
 /* 801A03E8 0019D328  B0 7A 00 04 */ sth r3, 4(r26)
 /* 801A03EC 0019D32C  39 61 00 40 */ addi r11, r1, 0x40
 /* 801A03F0 0019D330  48 1C 1D A1 */ bl _restfpr_29

@@ -45,11 +45,11 @@ lbl_800B15CC:
 /* 800B15EC 000AE52C  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800B15F0 000AE530  3C 80 80 3F */ lis r4, lbl_803F1D80@ha
 /* 800B15F4 000AE534  38 84 1D 80 */ addi r4, r4, lbl_803F1D80@l
-/* 800B15F8 000AE538  4B FC 38 59 */ bl dBgS_NS_GetPolyAtt0
+/* 800B15F8 000AE538  4B FC 38 59 */ bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 800B15FC 000AE53C  98 7F 2F C5 */ stb r3, 0x2fc5(r31)
 /* 800B1600 000AE540  3C 60 80 3F */ lis r3, lbl_803F1D80@ha
 /* 800B1604 000AE544  38 63 1D 80 */ addi r3, r3, lbl_803F1D80@l
-/* 800B1608 000AE548  48 0F 9F 95 */ bl dKy_pol_argument_get
+/* 800B1608 000AE548  48 0F 9F 95 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800B160C 000AE54C  98 7F 2F C6 */ stb r3, 0x2fc6(r31)
 /* 800B1610 000AE550  88 1F 2F C5 */ lbz r0, 0x2fc5(r31)
 /* 800B1614 000AE554  28 00 00 06 */ cmplwi r0, 6
@@ -72,7 +72,7 @@ lbl_800B15CC:
 /* 800B1658 000AE598  40 82 00 14 */ bne lbl_800B166C
 /* 800B165C 000AE59C  7F E3 FB 78 */ mr r3, r31
 /* 800B1660 000AE5A0  7F C4 F3 78 */ mr r4, r30
-/* 800B1664 000AE5A4  48 00 DB 31 */ bl daAlink_c_NS_seStartMapInfo
+/* 800B1664 000AE5A4  48 00 DB 31 */ bl seStartMapInfo__9daAlink_cFUl
 /* 800B1668 000AE5A8  48 00 00 38 */ b lbl_800B16A0
 lbl_800B166C:
 /* 800B166C 000AE5AC  FC 02 08 40 */ fcmpo cr0, f2, f1
@@ -83,7 +83,7 @@ lbl_800B166C:
 /* 800B1680 000AE5C0  40 82 00 20 */ bne lbl_800B16A0
 /* 800B1684 000AE5C4  7F E3 FB 78 */ mr r3, r31
 /* 800B1688 000AE5C8  7F A4 EB 78 */ mr r4, r29
-/* 800B168C 000AE5CC  48 00 DB 09 */ bl daAlink_c_NS_seStartMapInfo
+/* 800B168C 000AE5CC  48 00 DB 09 */ bl seStartMapInfo__9daAlink_cFUl
 /* 800B1690 000AE5D0  38 61 00 08 */ addi r3, r1, 8
 /* 800B1694 000AE5D4  C0 3F 34 20 */ lfs f1, 0x3420(r31)
 /* 800B1698 000AE5D8  38 80 00 00 */ li r4, 0
@@ -105,11 +105,11 @@ lbl_800B16A0:
 /* 800B16D4 000AE614  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800B16D8 000AE618  38 FF 01 0C */ addi r7, r31, 0x10c
 /* 800B16DC 000AE61C  39 00 00 00 */ li r8, 0
-/* 800B16E0 000AE620  4B F9 B1 59 */ bl dPa_control_c_NS_setWaterRipple
+/* 800B16E0 000AE620  4B F9 B1 59 */ bl setWaterRipple__13dPa_control_cFPUlR13cBgS_PolyInfoPC4cXyzfPC12dKy_tevstr_cPC4cXyzSc
 lbl_800B16E4:
 /* 800B16E4 000AE624  7F E3 FB 78 */ mr r3, r31
 /* 800B16E8 000AE628  C0 3F 33 B8 */ lfs f1, 0x33b8(r31)
-/* 800B16EC 000AE62C  48 05 F0 D1 */ bl daAlink_c_NS_checkWaterInKandelaar
+/* 800B16EC 000AE62C  48 05 F0 D1 */ bl checkWaterInKandelaar__9daAlink_cFf
 /* 800B16F0 000AE630  48 00 00 1C */ b lbl_800B170C
 lbl_800B16F4:
 /* 800B16F4 000AE634  C0 02 93 A4 */ lfs f0, lbl_80452DA4-_SDA2_BASE_(r2)

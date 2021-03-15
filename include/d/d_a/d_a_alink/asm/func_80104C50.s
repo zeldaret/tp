@@ -4,7 +4,7 @@
 /* 80104C5C 00101B9C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80104C60 00101BA0  7C 7F 1B 78 */ mr r31, r3
 /* 80104C64 00101BA4  38 80 00 7D */ li r4, 0x7d
-/* 80104C68 00101BA8  4B FB E1 3D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 80104C68 00101BA8  4B FB E1 3D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80104C6C 00101BAC  2C 03 00 00 */ cmpwi r3, 0
 /* 80104C70 00101BB0  40 82 00 0C */ bne lbl_80104C7C
 /* 80104C74 00101BB4  38 60 00 00 */ li r3, 0
@@ -12,10 +12,10 @@
 lbl_80104C7C:
 /* 80104C7C 00101BBC  7F E3 FB 78 */ mr r3, r31
 /* 80104C80 00101BC0  38 80 00 01 */ li r4, 1
-/* 80104C84 00101BC4  48 00 44 69 */ bl daAlink_c_NS_initHookshotUpperAnimeSpeed
+/* 80104C84 00101BC4  48 00 44 69 */ bl initHookshotUpperAnimeSpeed__9daAlink_cFi
 /* 80104C88 00101BC8  7F E3 FB 78 */ mr r3, r31
 /* 80104C8C 00101BCC  38 80 00 14 */ li r4, 0x14
-/* 80104C90 00101BD0  4B FA 78 C9 */ bl daAlink_c_NS_checkUnderMove0BckNoArc
+/* 80104C90 00101BD0  4B FA 78 C9 */ bl checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 80104C94 00101BD4  2C 03 00 00 */ cmpwi r3, 0
 /* 80104C98 00101BD8  40 82 00 28 */ bne lbl_80104CC0
 /* 80104C9C 00101BDC  7F E3 FB 78 */ mr r3, r31
@@ -26,7 +26,7 @@ lbl_80104C7C:
 /* 80104CB0 00101BF0  3C A0 80 39 */ lis r5, lbl_8038E9C0@ha
 /* 80104CB4 00101BF4  38 A5 E9 C0 */ addi r5, r5, lbl_8038E9C0@l
 /* 80104CB8 00101BF8  C0 45 00 44 */ lfs f2, 0x44(r5)
-/* 80104CBC 00101BFC  4B FA 83 25 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80104CBC 00101BFC  4B FA 83 25 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_80104CC0:
 /* 80104CC0 00101C00  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80104CC4 00101C04  D0 1F 33 98 */ stfs f0, 0x3398(r31)
@@ -38,7 +38,7 @@ lbl_80104CC0:
 /* 80104CDC 00101C1C  7F E3 FB 78 */ mr r3, r31
 /* 80104CE0 00101C20  38 A0 00 00 */ li r5, 0
 /* 80104CE4 00101C24  38 C0 00 00 */ li r6, 0
-/* 80104CE8 00101C28  4B FA 8E 91 */ bl daAlink_c_NS_setOldRootQuaternion
+/* 80104CE8 00101C28  4B FA 8E 91 */ bl setOldRootQuaternion__9daAlink_cFsss
 /* 80104CEC 00101C2C  38 00 00 00 */ li r0, 0
 /* 80104CF0 00101C30  B0 1F 30 80 */ sth r0, 0x3080(r31)
 lbl_80104CF4:
@@ -54,7 +54,7 @@ lbl_80104D10:
 /* 80104D14 00101C54  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 80104D18 00101C58  B0 1F 30 08 */ sth r0, 0x3008(r31)
 /* 80104D1C 00101C5C  7F E3 FB 78 */ mr r3, r31
-/* 80104D20 00101C60  4B FF CC F9 */ bl daAlink_c_NS_getSwimFrontMaxSpeed
+/* 80104D20 00101C60  4B FF CC F9 */ bl getSwimFrontMaxSpeed__9daAlink_cCFv
 /* 80104D24 00101C64  D0 3F 05 94 */ stfs f1, 0x594(r31)
 /* 80104D28 00101C68  3C 60 80 39 */ lis r3, lbl_8038ED2C@ha
 /* 80104D2C 00101C6C  38 63 ED 2C */ addi r3, r3, lbl_8038ED2C@l
@@ -64,7 +64,7 @@ lbl_80104D10:
 /* 80104D3C 00101C7C  B0 1F 30 10 */ sth r0, 0x3010(r31)
 /* 80104D40 00101C80  B0 1F 30 D0 */ sth r0, 0x30d0(r31)
 /* 80104D44 00101C84  7F E3 FB 78 */ mr r3, r31
-/* 80104D48 00101C88  48 00 43 29 */ bl daAlink_c_NS_setHookshotReadyMaterial
+/* 80104D48 00101C88  48 00 43 29 */ bl setHookshotReadyMaterial__9daAlink_cFv
 /* 80104D4C 00101C8C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80104D50 00101C90  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80104D54 00101C94  80 03 5F 18 */ lwz r0, 0x5f18(r3)

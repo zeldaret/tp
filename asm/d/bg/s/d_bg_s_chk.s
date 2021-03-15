@@ -3,8 +3,8 @@
 .section .text, "ax" # 8007749c
 
 
-.global dBgS_Chk
-dBgS_Chk:
+.global __ct__8dBgS_ChkFv
+__ct__8dBgS_ChkFv:
 /* 8007749C 000743DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800774A0 000743E0  7C 08 02 A6 */	mflr r0
 /* 800774A4 000743E4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -12,7 +12,7 @@ dBgS_Chk:
 /* 800774AC 000743EC  7C 7F 1B 78 */	mr r31, r3
 /* 800774B0 000743F0  48 00 18 B5 */	bl __ct__16dBgS_PolyPassChkFv
 /* 800774B4 000743F4  38 7F 00 10 */	addi r3, r31, 0x10
-/* 800774B8 000743F8  48 00 06 E9 */	bl dBgS_GrpPassChk
+/* 800774B8 000743F8  48 00 06 E9 */	bl __ct__15dBgS_GrpPassChkFv
 /* 800774BC 000743FC  3C 60 80 3B */	lis r3, lbl_803AB670@ha
 /* 800774C0 00074400  38 63 B6 70 */	addi r3, r3, lbl_803AB670@l
 /* 800774C4 00074404  90 7F 00 00 */	stw r3, 0(r31)
@@ -25,8 +25,8 @@ dBgS_Chk:
 /* 800774E0 00074420  38 21 00 10 */	addi r1, r1, 0x10
 /* 800774E4 00074424  4E 80 00 20 */	blr 
 
-.global dBgS_Chk_NS_dtor
-dBgS_Chk_NS_dtor:
+.global __dt__8dBgS_ChkFv
+__dt__8dBgS_ChkFv:
 /* 800774E8 00074428  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800774EC 0007442C  7C 08 02 A6 */	mflr r0
 /* 800774F0 00074430  90 01 00 14 */	stw r0, 0x14(r1)
@@ -42,7 +42,7 @@ dBgS_Chk_NS_dtor:
 /* 80077518 00074458  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 8007751C 0007445C  38 7E 00 10 */	addi r3, r30, 0x10
 /* 80077520 00074460  38 80 00 00 */	li r4, 0
-/* 80077524 00074464  48 00 06 A1 */	bl dBgS_GrpPassChk_NS_dtor
+/* 80077524 00074464  48 00 06 A1 */	bl __dt__15dBgS_GrpPassChkFv
 /* 80077528 00074468  7F C3 F3 78 */	mr r3, r30
 /* 8007752C 0007446C  38 80 00 00 */	li r4, 0
 /* 80077530 00074470  48 00 18 81 */	bl __dt__16dBgS_PolyPassChkFv
@@ -59,16 +59,16 @@ lbl_80077544:
 /* 80077558 00074498  38 21 00 10 */	addi r1, r1, 0x10
 /* 8007755C 0007449C  4E 80 00 20 */	blr 
 
-.global dBgS_Chk_NS_GetPolyPassChkInfo
-dBgS_Chk_NS_GetPolyPassChkInfo:
+.global GetPolyPassChkInfo__8dBgS_ChkFv
+GetPolyPassChkInfo__8dBgS_ChkFv:
 /* 80077560 000744A0  4E 80 00 20 */	blr 
 
-.global dBgS_Chk_NS_GetGrpPassChkInfo
-dBgS_Chk_NS_GetGrpPassChkInfo:
+.global GetGrpPassChkInfo__8dBgS_ChkFv
+GetGrpPassChkInfo__8dBgS_ChkFv:
 /* 80077564 000744A4  28 03 00 00 */	cmplwi r3, 0
 /* 80077568 000744A8  4D 82 00 20 */	beqlr 
 /* 8007756C 000744AC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80077570 000744B0  4E 80 00 20 */	blr 
 /* 80077574 000744B4  38 63 FF F0 */	addi r3, r3, -16
-/* 80077578 000744B8  4B FF FF 70 */	b dBgS_Chk_NS_dtor
+/* 80077578 000744B8  4B FF FF 70 */	b __dt__8dBgS_ChkFv
 

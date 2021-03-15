@@ -28,32 +28,32 @@ void _restgpr_28(void);
 void _savegpr_27(void);
 void _savegpr_28(void);
 void becomeCurrentHeap__7JKRHeapFv(void);
-void func_80017470(void);
-void mDoExt_getAssertHeap(void);
-void mDoMemCdRWm_Restore(void);
-void mDoMemCdRWm_Store(void);
-void mDoMemCd_Ctrl_c(void);
-void mDoMemCd_Ctrl_c_NS_FormatSync(void);
-void mDoMemCd_Ctrl_c_NS_LoadSync(void);
-void mDoMemCd_Ctrl_c_NS_SaveSync(void);
-void mDoMemCd_Ctrl_c_NS_ThdInit(void);
-void mDoMemCd_Ctrl_c_NS_attach(void);
-void mDoMemCd_Ctrl_c_NS_checkspace(void);
-void mDoMemCd_Ctrl_c_NS_command_attach(void);
-void mDoMemCd_Ctrl_c_NS_command_format(void);
-void mDoMemCd_Ctrl_c_NS_detach(void);
-void mDoMemCd_Ctrl_c_NS_format(void);
-void mDoMemCd_Ctrl_c_NS_getStatus(void);
-void mDoMemCd_Ctrl_c_NS_load(void);
-void mDoMemCd_Ctrl_c_NS_loadfile(void);
-void mDoMemCd_Ctrl_c_NS_main(void);
-void mDoMemCd_Ctrl_c_NS_mount(void);
-void mDoMemCd_Ctrl_c_NS_restore(void);
-void mDoMemCd_Ctrl_c_NS_save(void);
-void mDoMemCd_Ctrl_c_NS_setCardState(void);
-void mDoMemCd_Ctrl_c_NS_store(void);
-void mDoMemCd_Ctrl_c_NS_update(void);
-void mDoMemCd_main(void);
+void __sinit_m_Do_MemCard_cpp(void);
+void mDoExt_getAssertHeap__Fv(void);
+void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl(void);
+void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl(void);
+void __ct__15mDoMemCd_Ctrl_cFv(void);
+void FormatSync__15mDoMemCd_Ctrl_cFv(void);
+void LoadSync__15mDoMemCd_Ctrl_cFPvUlUl(void);
+void SaveSync__15mDoMemCd_Ctrl_cFv(void);
+void ThdInit__15mDoMemCd_Ctrl_cFv(void);
+void attach__15mDoMemCd_Ctrl_cFv(void);
+void checkspace__15mDoMemCd_Ctrl_cFv(void);
+void command_attach__15mDoMemCd_Ctrl_cFv(void);
+void command_format__15mDoMemCd_Ctrl_cFv(void);
+void detach__15mDoMemCd_Ctrl_cFv(void);
+void format__15mDoMemCd_Ctrl_cFv(void);
+void getStatus__15mDoMemCd_Ctrl_cFUl(void);
+void load__15mDoMemCd_Ctrl_cFv(void);
+void loadfile__15mDoMemCd_Ctrl_cFv(void);
+void main__15mDoMemCd_Ctrl_cFv(void);
+void mount__15mDoMemCd_Ctrl_cFv(void);
+void restore__15mDoMemCd_Ctrl_cFv(void);
+void save__15mDoMemCd_Ctrl_cFPvUlUl(void);
+void setCardState__15mDoMemCd_Ctrl_cFl(void);
+void store__15mDoMemCd_Ctrl_cFv(void);
+void update__15mDoMemCd_Ctrl_cFv(void);
+void mDoMemCd_main__FPv(void);
 }
 
 // additional symbols needed for m_Do_MemCard.cpp
@@ -69,161 +69,161 @@ extern u8 lbl_803EAF40;
 extern "C" {
 // __ct__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::mDoMemCd_Ctrl_c(void)
-asm void mDoMemCd_Ctrl_c(void) {
+asm void __ct__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_8001672C.s"
 }
 
 // ThdInit__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::ThdInit(void)
-asm void mDoMemCd_Ctrl_c_NS_ThdInit(void) {
+asm void ThdInit__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016730.s"
 }
 
 // main__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::main(void)
-asm void mDoMemCd_Ctrl_c_NS_main(void) {
+asm void main__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_800167D0.s"
 }
 
 // update__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::update(void)
-asm void mDoMemCd_Ctrl_c_NS_update(void) {
+asm void update__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016894.s"
 }
 
 // load__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::load(void)
-asm void mDoMemCd_Ctrl_c_NS_load(void) {
+asm void load__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_800169B4.s"
 }
 
 // restore__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::restore(void)
-asm void mDoMemCd_Ctrl_c_NS_restore(void) {
+asm void restore__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016A0C.s"
 }
 
 // LoadSync__15mDoMemCd_Ctrl_cFPvUlUl
 // mDoMemCd_Ctrl_c::LoadSync(void*, u32, u32)
-asm void mDoMemCd_Ctrl_c_NS_LoadSync(void) {
+asm void LoadSync__15mDoMemCd_Ctrl_cFPvUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016AB0.s"
 }
 
 // save__15mDoMemCd_Ctrl_cFPvUlUl
 // mDoMemCd_Ctrl_c::save(void*, u32, u32)
-asm void mDoMemCd_Ctrl_c_NS_save(void) {
+asm void save__15mDoMemCd_Ctrl_cFPvUlUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016B58.s"
 }
 
 // store__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::store(void)
-asm void mDoMemCd_Ctrl_c_NS_store(void) {
+asm void store__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016BD4.s"
 }
 
 // SaveSync__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::SaveSync(void)
-asm void mDoMemCd_Ctrl_c_NS_SaveSync(void) {
+asm void SaveSync__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016CE0.s"
 }
 
 // getStatus__15mDoMemCd_Ctrl_cFUl
 // mDoMemCd_Ctrl_c::getStatus(u32)
-asm void mDoMemCd_Ctrl_c_NS_getStatus(void) {
+asm void getStatus__15mDoMemCd_Ctrl_cFUl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016D74.s"
 }
 
 // command_format__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::command_format(void)
-asm void mDoMemCd_Ctrl_c_NS_command_format(void) {
+asm void command_format__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016E58.s"
 }
 
 // format__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::format(void)
-asm void mDoMemCd_Ctrl_c_NS_format(void) {
+asm void format__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016EA8.s"
 }
 
 // FormatSync__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::FormatSync(void)
-asm void mDoMemCd_Ctrl_c_NS_FormatSync(void) {
+asm void FormatSync__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016F2C.s"
 }
 
 // attach__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::attach(void)
-asm void mDoMemCd_Ctrl_c_NS_attach(void) {
+asm void attach__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80016FB8.s"
 }
 
 // command_attach__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::command_attach(void)
-asm void mDoMemCd_Ctrl_c_NS_command_attach(void) {
+asm void command_attach__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_800170B8.s"
 }
 
 // detach__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::detach(void)
-asm void mDoMemCd_Ctrl_c_NS_detach(void) {
+asm void detach__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017110.s"
 }
 
 // mount__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::mount(void)
-asm void mDoMemCd_Ctrl_c_NS_mount(void) {
+asm void mount__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017148.s"
 }
 
 // loadfile__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::loadfile(void)
-asm void mDoMemCd_Ctrl_c_NS_loadfile(void) {
+asm void loadfile__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017274.s"
 }
 
 // checkspace__15mDoMemCd_Ctrl_cFv
 // mDoMemCd_Ctrl_c::checkspace(void)
-asm void mDoMemCd_Ctrl_c_NS_checkspace(void) {
+asm void checkspace__15mDoMemCd_Ctrl_cFv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_800172D4.s"
 }
 
 // setCardState__15mDoMemCd_Ctrl_cFl
 // mDoMemCd_Ctrl_c::setCardState(s32)
-asm void mDoMemCd_Ctrl_c_NS_setCardState(void) {
+asm void setCardState__15mDoMemCd_Ctrl_cFl(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017360.s"
 }
 
 // mDoMemCd_main__FPv
-// mDoMemCd_main(void*)
-asm void mDoMemCd_main(void) {
+// mDoMemCd_main__FPv(void*)
+asm void mDoMemCd_main__FPv(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_8001741C.s"
 }
 
 // __sinit_m_Do_MemCard_cpp
 //
-asm void func_80017470(void) {
+asm void __sinit_m_Do_MemCard_cpp(void) {
     nofralloc
 #include "m_Do/m_Do_MemCard/asm/func_80017470.s"
 }

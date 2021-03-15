@@ -16,7 +16,7 @@ lbl_800A3CC0:
 /* 800A3CC4 000A0C04  1C 60 00 14 */ mulli r3, r0, 0x14
 /* 800A3CC8 000A0C08  38 63 21 B0 */ addi r3, r3, 0x21b0
 /* 800A3CCC 000A0C0C  7C 64 1A 14 */ add r3, r4, r3
-/* 800A3CD0 000A0C10  48 0B B4 99 */ bl daPy_anmHeap_c_NS_setAnimeHeap
+/* 800A3CD0 000A0C10  48 0B B4 99 */ bl setAnimeHeap__14daPy_anmHeap_cFv
 /* 800A3CD4 000A0C14  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800A3CD8 000A0C18  7C 08 03 A6 */ mtlr r0
 /* 800A3CDC 000A0C1C  38 21 00 10 */ addi r1, r1, 0x10

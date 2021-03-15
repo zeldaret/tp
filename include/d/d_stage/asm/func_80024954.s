@@ -13,7 +13,7 @@
 /* 80024984 000218C4  48 00 00 8C */ b lbl_80024A10
 lbl_80024988:
 /* 80024988 000218C8  7F A3 EB 78 */ mr r3, r29
-/* 8002498C 000218CC  4B FF FF B5 */ bl dStage_roomControl_c_NS_getArcBank
+/* 8002498C 000218CC  4B FF FF B5 */ bl getArcBank__20dStage_roomControl_cFi
 /* 80024990 000218D0  7C 7C 1B 78 */ mr r28, r3
 /* 80024994 000218D4  38 9F 00 9F */ addi r4, r31, 0x9f
 /* 80024998 000218D8  48 34 3F FD */ bl strcmp
@@ -22,7 +22,7 @@ lbl_80024988:
 /* 800249A4 000218E4  7F 83 E3 78 */ mr r3, r28
 /* 800249A8 000218E8  7F C4 F3 78 */ mr r4, r30
 /* 800249AC 000218EC  38 A0 00 80 */ li r5, 0x80
-/* 800249B0 000218F0  48 01 77 B1 */ bl dRes_control_c_NS_syncRes
+/* 800249B0 000218F0  48 01 77 B1 */ bl syncRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 800249B4 000218F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800249B8 000218F8  40 80 00 24 */ bge lbl_800249DC
 /* 800249BC 000218FC  3C 60 80 38 */ lis r3, lbl_80378A50@ha
@@ -41,12 +41,12 @@ lbl_800249E8:
 /* 800249E8 00021928  7F 83 E3 78 */ mr r3, r28
 /* 800249EC 0002192C  7F C4 F3 78 */ mr r4, r30
 /* 800249F0 00021930  38 A0 00 80 */ li r5, 0x80
-/* 800249F4 00021934  48 01 77 A1 */ bl dRes_control_c_NS_deleteRes
+/* 800249F4 00021934  48 01 77 A1 */ bl deleteRes__14dRes_control_cFPCcP11dRes_info_ci
 /* 800249F8 00021938  7F A3 EB 78 */ mr r3, r29
 /* 800249FC 0002193C  3C 80 80 38 */ lis r4, lbl_80378A50@ha
 /* 80024A00 00021940  38 84 8A 50 */ addi r4, r4, lbl_80378A50@l
 /* 80024A04 00021944  38 84 00 9F */ addi r4, r4, 0x9f
-/* 80024A08 00021948  4B FF FF 05 */ bl dStage_roomControl_c_NS_setArcBank
+/* 80024A08 00021948  4B FF FF 05 */ bl setArcBank__20dStage_roomControl_cFiPCc
 lbl_80024A0C:
 /* 80024A0C 0002194C  3B BD 00 01 */ addi r29, r29, 1
 lbl_80024A10:

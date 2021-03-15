@@ -13,7 +13,7 @@
 /* 800C0418 000BD358  54 00 87 7E */ rlwinm r0, r0, 0x10, 0x1d, 0x1f
 /* 800C041C 000BD35C  28 00 00 02 */ cmplwi r0, 2
 /* 800C0420 000BD360  41 82 00 14 */ beq lbl_800C0434
-/* 800C0424 000BD364  48 05 EA 1D */ bl daAlink_c_NS_checkLv7DungeonShop
+/* 800C0424 000BD364  48 05 EA 1D */ bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C0428 000BD368  2C 03 00 00 */ cmpwi r3, 0
 /* 800C042C 000BD36C  40 82 00 08 */ bne lbl_800C0434
 /* 800C0430 000BD370  3B E0 00 00 */ li r31, 0

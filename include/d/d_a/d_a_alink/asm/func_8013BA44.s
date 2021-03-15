@@ -4,7 +4,7 @@
 /* 8013BA50 00138990  39 61 00 50 */ addi r11, r1, 0x50
 /* 8013BA54 00138994  48 22 67 89 */ bl _savegpr_29
 /* 8013BA58 00138998  7C 7F 1B 78 */ mr r31, r3
-/* 8013BA5C 0013899C  4B FE E0 25 */ bl daAlink_c_NS_checkWolfGroundSpecialMode
+/* 8013BA5C 0013899C  4B FE E0 25 */ bl checkWolfGroundSpecialMode__9daAlink_cFv
 /* 8013BA60 001389A0  2C 03 00 00 */ cmpwi r3, 0
 /* 8013BA64 001389A4  41 82 00 0C */ beq lbl_8013BA70
 /* 8013BA68 001389A8  38 60 00 01 */ li r3, 1
@@ -13,12 +13,12 @@ lbl_8013BA70:
 /* 8013BA70 001389B0  83 BF 28 10 */ lwz r29, 0x2810(r31)
 /* 8013BA74 001389B4  3B DF 1F D0 */ addi r30, r31, 0x1fd0
 /* 8013BA78 001389B8  7F C3 F3 78 */ mr r3, r30
-/* 8013BA7C 001389BC  48 02 2A 51 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013BA7C 001389BC  48 02 2A 51 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013BA80 001389C0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013BA84 001389C4  41 82 01 88 */ beq lbl_8013BC0C
 /* 8013BA88 001389C8  7F E3 FB 78 */ mr r3, r31
 /* 8013BA8C 001389CC  38 80 00 6D */ li r4, 0x6d
-/* 8013BA90 001389D0  4B FE CD 7D */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 8013BA90 001389D0  4B FE CD 7D */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013BA94 001389D4  2C 03 00 00 */ cmpwi r3, 0
 /* 8013BA98 001389D8  41 82 01 28 */ beq lbl_8013BBC0
 /* 8013BA9C 001389DC  7F E3 FB 78 */ mr r3, r31
@@ -28,7 +28,7 @@ lbl_8013BA70:
 /* 8013BAAC 001389EC  C0 42 93 78 */ lfs f2, lbl_80452D78-_SDA2_BASE_(r2)
 /* 8013BAB0 001389F0  38 C0 FF FF */ li r6, -1
 /* 8013BAB4 001389F4  C0 62 92 BC */ lfs f3, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 8013BAB8 001389F8  4B F7 19 21 */ bl daAlink_c_NS_setUpperAnime
+/* 8013BAB8 001389F8  4B F7 19 21 */ bl setUpperAnime__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERffsf
 /* 8013BABC 001389FC  28 1D 00 00 */ cmplwi r29, 0
 /* 8013BAC0 00138A00  41 82 00 F0 */ beq lbl_8013BBB0
 /* 8013BAC4 00138A04  A0 1D 05 8E */ lhz r0, 0x58e(r29)
@@ -53,7 +53,7 @@ lbl_8013BA70:
 /* 8013BB10 00138A50  39 20 00 00 */ li r9, 0
 /* 8013BB14 00138A54  39 40 00 FF */ li r10, 0xff
 /* 8013BB18 00138A58  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8013BB1C 00138A5C  4B F1 0F 75 */ bl dPa_control_c_NS_set
+/* 8013BB1C 00138A5C  4B F1 0F 75 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8013BB20 00138A60  38 DD 05 68 */ addi r6, r29, 0x568
 /* 8013BB24 00138A64  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 8013BB28 00138A68  38 80 00 00 */ li r4, 0
@@ -71,7 +71,7 @@ lbl_8013BA70:
 /* 8013BB58 00138A98  39 20 00 00 */ li r9, 0
 /* 8013BB5C 00138A9C  39 40 00 FF */ li r10, 0xff
 /* 8013BB60 00138AA0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8013BB64 00138AA4  4B F1 0F 2D */ bl dPa_control_c_NS_set
+/* 8013BB64 00138AA4  4B F1 0F 2D */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 8013BB68 00138AA8  38 DD 05 68 */ addi r6, r29, 0x568
 /* 8013BB6C 00138AAC  80 7E 5D 3C */ lwz r3, 0x5d3c(r30)
 /* 8013BB70 00138AB0  38 80 00 00 */ li r4, 0
@@ -89,11 +89,11 @@ lbl_8013BA70:
 /* 8013BBA0 00138AE0  39 20 00 00 */ li r9, 0
 /* 8013BBA4 00138AE4  39 40 00 FF */ li r10, 0xff
 /* 8013BBA8 00138AE8  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 8013BBAC 00138AEC  4B F1 0E E5 */ bl dPa_control_c_NS_set
+/* 8013BBAC 00138AEC  4B F1 0E E5 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 lbl_8013BBB0:
 /* 8013BBB0 00138AF0  7F E3 FB 78 */ mr r3, r31
 /* 8013BBB4 00138AF4  38 80 00 01 */ li r4, 1
-/* 8013BBB8 00138AF8  4B FF 27 E1 */ bl daAlink_c_NS_procWolfBackJumpInit
+/* 8013BBB8 00138AF8  4B FF 27 E1 */ bl procWolfBackJumpInit__9daAlink_cFi
 /* 8013BBBC 00138AFC  48 00 00 C0 */ b lbl_8013BC7C
 lbl_8013BBC0:
 /* 8013BBC0 00138B00  7F E3 FB 78 */ mr r3, r31
@@ -101,7 +101,7 @@ lbl_8013BBC0:
 /* 8013BBC8 00138B08  3C A0 80 39 */ lis r5, lbl_8038F658@ha
 /* 8013BBCC 00138B0C  38 A5 F6 58 */ addi r5, r5, lbl_8038F658@l
 /* 8013BBD0 00138B10  38 A5 00 78 */ addi r5, r5, 0x78
-/* 8013BBD4 00138B14  4B FE DC 75 */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013BBD4 00138B14  4B FE DC 75 */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013BBD8 00138B18  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8013BBDC 00138B1C  D0 21 00 2C */ stfs f1, 0x2c(r1)
 /* 8013BBE0 00138B20  C0 02 92 B8 */ lfs f0, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -113,22 +113,22 @@ lbl_8013BBC0:
 /* 8013BBF8 00138B38  38 80 00 02 */ li r4, 2
 /* 8013BBFC 00138B3C  38 A0 00 0F */ li r5, 0xf
 /* 8013BC00 00138B40  38 C1 00 2C */ addi r6, r1, 0x2c
-/* 8013BC04 00138B44  4B F3 3E 21 */ bl dVibration_c_NS_StartShock
+/* 8013BC04 00138B44  4B F3 3E 21 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8013BC08 00138B48  48 00 00 70 */ b lbl_8013BC78
 lbl_8013BC0C:
 /* 8013BC0C 00138B4C  7F E3 FB 78 */ mr r3, r31
 /* 8013BC10 00138B50  38 80 00 64 */ li r4, 0x64
-/* 8013BC14 00138B54  4B FE CB F9 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 8013BC14 00138B54  4B FE CB F9 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013BC18 00138B58  2C 03 00 00 */ cmpwi r3, 0
 /* 8013BC1C 00138B5C  41 82 00 5C */ beq lbl_8013BC78
 /* 8013BC20 00138B60  7F C3 F3 78 */ mr r3, r30
 /* 8013BC24 00138B64  C0 22 93 34 */ lfs f1, lbl_80452D34-_SDA2_BASE_(r2)
-/* 8013BC28 00138B68  48 1E C8 05 */ bl J3DFrameCtrl_NS_checkPass
+/* 8013BC28 00138B68  48 1E C8 05 */ bl checkPass__12J3DFrameCtrlFf
 /* 8013BC2C 00138B6C  2C 03 00 00 */ cmpwi r3, 0
 /* 8013BC30 00138B70  40 82 00 18 */ bne lbl_8013BC48
 /* 8013BC34 00138B74  7F C3 F3 78 */ mr r3, r30
 /* 8013BC38 00138B78  C0 22 94 04 */ lfs f1, lbl_80452E04-_SDA2_BASE_(r2)
-/* 8013BC3C 00138B7C  48 1E C7 F1 */ bl J3DFrameCtrl_NS_checkPass
+/* 8013BC3C 00138B7C  48 1E C7 F1 */ bl checkPass__12J3DFrameCtrlFf
 /* 8013BC40 00138B80  2C 03 00 00 */ cmpwi r3, 0
 /* 8013BC44 00138B84  41 82 00 34 */ beq lbl_8013BC78
 lbl_8013BC48:
@@ -143,7 +143,7 @@ lbl_8013BC48:
 /* 8013BC68 00138BA8  38 80 00 02 */ li r4, 2
 /* 8013BC6C 00138BAC  38 A0 00 0F */ li r5, 0xf
 /* 8013BC70 00138BB0  38 C1 00 20 */ addi r6, r1, 0x20
-/* 8013BC74 00138BB4  4B F3 3D B1 */ bl dVibration_c_NS_StartShock
+/* 8013BC74 00138BB4  4B F3 3D B1 */ bl StartShock__12dVibration_cFii4cXyz
 lbl_8013BC78:
 /* 8013BC78 00138BB8  38 60 00 01 */ li r3, 1
 lbl_8013BC7C:

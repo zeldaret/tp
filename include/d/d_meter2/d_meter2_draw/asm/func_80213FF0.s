@@ -20,7 +20,7 @@
 /* 8021403C 00210F7C  80 A4 00 04 */ lwz r5, 4(r4)
 /* 80214040 00210F80  38 C0 00 00 */ li r6, 0
 /* 80214044 00210F84  38 E0 00 00 */ li r7, 0
-/* 80214048 00210F88  48 04 0E 75 */ bl CPaneMgr_NS_getGlobalVtxCenter
+/* 80214048 00210F88  48 04 0E 75 */ bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 8021404C 00210F8C  80 61 00 18 */ lwz r3, 0x18(r1)
 /* 80214050 00210F90  80 01 00 1C */ lwz r0, 0x1c(r1)
 /* 80214054 00210F94  90 61 00 24 */ stw r3, 0x24(r1)
@@ -46,7 +46,7 @@
 /* 802140A4 00210FE4  39 01 00 08 */ addi r8, r1, 8
 /* 802140A8 00210FE8  FC 80 F8 90 */ fmr f4, f31
 /* 802140AC 00210FEC  7F E9 FB 78 */ mr r9, r31
-/* 802140B0 00210FF0  48 00 00 2D */ bl dMeter2Draw_c_NS_drawPikari_X1_
+/* 802140B0 00210FF0  48 00 00 2D */ bl drawPikari__13dMeter2Draw_cFffPffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorfUc
 /* 802140B4 00210FF4  E3 E1 00 68 */ psq_l f31, 104(r1), 0, 0
 /* 802140B8 00210FF8  CB E1 00 60 */ lfd f31, 0x60(r1)
 /* 802140BC 00210FFC  E3 C1 00 58 */ psq_l f30, 88(r1), 0, 0

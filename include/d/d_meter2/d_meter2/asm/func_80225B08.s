@@ -13,7 +13,7 @@
 /* 80225B38 00222A78  38 60 03 14 */ li r3, 0x314
 /* 80225B3C 00222A7C  38 80 00 00 */ li r4, 0
 /* 80225B40 00222A80  38 A0 00 00 */ li r5, 0
-/* 80225B44 00222A84  4B DF A5 C5 */ bl fopMsgM_Create
+/* 80225B44 00222A84  4B DF A5 C5 */ bl fopMsgM_Create__FsPFPv_iPv
 /* 80225B48 00222A88  38 00 FF FF */ li r0, -1
 /* 80225B4C 00222A8C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 80225B50 00222A90  38 63 EB C8 */ addi r3, r3, lbl_8042EBC8@l
@@ -30,13 +30,13 @@
 /* 80225B7C 00222ABC  38 60 03 13 */ li r3, 0x313
 /* 80225B80 00222AC0  38 80 00 00 */ li r4, 0
 /* 80225B84 00222AC4  38 A0 00 00 */ li r5, 0
-/* 80225B88 00222AC8  4B DF A5 81 */ bl fopMsgM_Create
-/* 80225B8C 00222ACC  4B DF A5 75 */ bl fopMsgM_setMessageID
-/* 80225B90 00222AD0  48 03 B4 A5 */ bl dTimer_createStockTimer
+/* 80225B88 00222AC8  4B DF A5 81 */ bl fopMsgM_Create__FsPFPv_iPv
+/* 80225B8C 00222ACC  4B DF A5 75 */ bl fopMsgM_setMessageID__FUi
+/* 80225B90 00222AD0  48 03 B4 A5 */ bl dTimer_createStockTimer__Fv
 /* 80225B94 00222AD4  7F E3 FB 78 */ mr r3, r31
-/* 80225B98 00222AD8  4B DF 9E 1D */ bl fopMsgM_setStageLayer
+/* 80225B98 00222AD8  4B DF 9E 1D */ bl fopMsgM_setStageLayer__FPv
 /* 80225B9C 00222ADC  7F E3 FB 78 */ mr r3, r31
-/* 80225BA0 00222AE0  4B FF 8E 75 */ bl dMeter2_c_NS__create
+/* 80225BA0 00222AE0  4B FF 8E 75 */ bl _create__9dMeter2_cFv
 /* 80225BA4 00222AE4  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80225BA8 00222AE8  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80225BAC 00222AEC  7C 08 03 A6 */ mtlr r0

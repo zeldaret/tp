@@ -10,13 +10,13 @@
 /* 80057EB8 00054DF8  38 03 9B 10 */ addi r0, r3, lbl_803A9B10@l
 /* 80057EBC 00054DFC  90 1E 00 00 */ stw r0, 0(r30)
 /* 80057EC0 00054E00  38 7E 00 20 */ addi r3, r30, 0x20
-/*.global HOUSI_EFF_NS_dtor*/
-/* 80057EC4 00054E04  3C 80 80 05 */ lis r4, HOUSI_EFF_NS_dtor@ha
-/*.global HOUSI_EFF_NS_dtor*/
-/* 80057EC8 00054E08  38 84 6E A8 */ addi r4, r4, HOUSI_EFF_NS_dtor@l
+/*.global __dt__9HOUSI_EFFFv*/
+/* 80057EC4 00054E04  3C 80 80 05 */ lis r4, __dt__9HOUSI_EFFFv@ha
+/*.global __dt__9HOUSI_EFFFv*/
+/* 80057EC8 00054E08  38 84 6E A8 */ addi r4, r4, __dt__9HOUSI_EFFFv@l
 /* 80057ECC 00054E0C  38 A0 00 50 */ li r5, 0x50
 /* 80057ED0 00054E10  38 C0 01 2C */ li r6, 0x12c
-/* 80057ED4 00054E14  48 30 9E 15 */ bl func_80361CE8
+/* 80057ED4 00054E14  48 30 9E 15 */ bl __destroy_arr
 /* 80057ED8 00054E18  28 1E 00 00 */ cmplwi r30, 0
 /* 80057EDC 00054E1C  41 82 00 10 */ beq lbl_80057EEC
 /* 80057EE0 00054E20  3C 60 80 3D */ lis r3, lbl_803CD97C@ha

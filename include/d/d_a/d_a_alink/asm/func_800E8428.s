@@ -10,11 +10,11 @@
 /* 800E844C 000E538C  41 82 00 14 */ beq lbl_800E8460
 /* 800E8450 000E5390  38 80 01 43 */ li r4, 0x143
 /* 800E8454 000E5394  38 A0 00 00 */ li r5, 0
-/* 800E8458 000E5398  4B FD A9 85 */ bl daAlink_c_NS_procPreActionUnequipInit
+/* 800E8458 000E5398  4B FD A9 85 */ bl procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c
 /* 800E845C 000E539C  48 00 01 08 */ b lbl_800E8564
 lbl_800E8460:
 /* 800E8460 000E53A0  38 80 01 43 */ li r4, 0x143
-/* 800E8464 000E53A4  4B FD 9B 09 */ bl daAlink_c_NS_commonProcInit
+/* 800E8464 000E53A4  4B FD 9B 09 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E8468 000E53A8  38 00 00 00 */ li r0, 0
 /* 800E846C 000E53AC  B0 1F 30 10 */ sth r0, 0x3010(r31)
 /* 800E8470 000E53B0  93 DF 31 98 */ stw r30, 0x3198(r31)
@@ -28,18 +28,18 @@ lbl_800E8460:
 /* 800E8490 000E53D0  3C A0 80 39 */ lis r5, lbl_8038F124@ha
 /* 800E8494 000E53D4  C4 25 F1 24 */ lfsu f1, lbl_8038F124@l(r5)
 /* 800E8498 000E53D8  C0 45 00 04 */ lfs f2, 4(r5)
-/* 800E849C 000E53DC  48 04 12 3D */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 800E849C 000E53DC  48 04 12 3D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 800E84A0 000E53E0  C0 42 93 00 */ lfs f2, lbl_80452D00-_SDA2_BASE_(r2)
 /* 800E84A4 000E53E4  48 00 00 44 */ b lbl_800E84E8
 lbl_800E84A8:
 /* 800E84A8 000E53E8  7F E3 FB 78 */ mr r3, r31
-/* 800E84AC 000E53EC  4B FD 0E 95 */ bl daAlink_c_NS_checkEquipAnime
+/* 800E84AC 000E53EC  4B FD 0E 95 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800E84B0 000E53F0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E84B4 000E53F4  41 82 00 14 */ beq lbl_800E84C8
 /* 800E84B8 000E53F8  7F E3 FB 78 */ mr r3, r31
 /* 800E84BC 000E53FC  38 80 00 02 */ li r4, 2
 /* 800E84C0 000E5400  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800E84C4 000E5404  4B FC 52 61 */ bl daAlink_c_NS_resetUpperAnime
+/* 800E84C4 000E5404  4B FC 52 61 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800E84C8:
 /* 800E84C8 000E5408  7F E3 FB 78 */ mr r3, r31
 /* 800E84CC 000E540C  38 80 00 36 */ li r4, 0x36
@@ -47,7 +47,7 @@ lbl_800E84C8:
 /* 800E84D4 000E5414  38 A5 E2 10 */ addi r5, r5, lbl_8038E210@l
 /* 800E84D8 000E5418  C0 25 00 10 */ lfs f1, 0x10(r5)
 /* 800E84DC 000E541C  C0 45 00 14 */ lfs f2, 0x14(r5)
-/* 800E84E0 000E5420  4B FC 4B 01 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 800E84E0 000E5420  4B FC 4B 01 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800E84E4 000E5424  C0 42 93 00 */ lfs f2, lbl_80452D00-_SDA2_BASE_(r2)
 lbl_800E84E8:
 /* 800E84E8 000E5428  2C 1E 00 00 */ cmpwi r30, 0

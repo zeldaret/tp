@@ -14,19 +14,17 @@ extern "C" {
 void* memalignB__3cMlFiUl(int pAlign, u32 pSize);
 }
 
-extern "C" {
-
-BOOL fpcCtRq_isCreatingByID(create_tag* pTag, s32* pId) {
-    create_request* pReq = (create_request*)(pTag->mBase.mpTagData);
+BOOL fpcCtRq_isCreatingByID(create_tag* pTag, unsigned int* pId) {
+    create_request* pReq = static_cast<create_request*>(pTag->mBase.mpTagData);
     return checkEqual(*pId, pReq->mBsPcId);
 }
 
-BOOL fpcCtRq_IsCreatingByID(u32 id) {
-    return fpcCtIt_Judge((cNdIt_JudgeFunc)fpcCtRq_isCreatingByID, &id) != NULL ? 1 : 0;
+BOOL fpcCtRq_IsCreatingByID(unsigned int id) {
+    return fpcCtIt_Judge((fpcLyIt_JudgeFunc)fpcCtRq_isCreatingByID, &id) != NULL ? 1 : 0;
 }
 
 void fpcCtRq_CreateQTo(create_request* pReq) {
-    fpcCtTg_CreateQTo(&pReq->mBase.mBase);
+    fpcCtTg_CreateQTo(&pReq->mBase);
     fpcLy_CreatedMesg(pReq->mpLayer);
     fpcLy_CancelQTo(&pReq->mMtdTg);
 }
@@ -34,7 +32,7 @@ void fpcCtRq_CreateQTo(create_request* pReq) {
 void fpcCtRq_ToCreateQ(create_request* pReq) {
     fpcLy_CreatingMesg(pReq->mpLayer);
     fpcLy_ToCancelQ(pReq->mpLayer, &pReq->mMtdTg);
-    fpcCtTg_ToCreateQ(&pReq->mBase.mBase);
+    fpcCtTg_ToCreateQ(&pReq->mBase);
 }
 
 BOOL fpcCtRq_Delete(create_request* pReq) {
@@ -104,7 +102,7 @@ BOOL fpcCtRq_Do(create_request* pReq) {
 }
 
 void fpcCtRq_Handler(void) {
-    fpcCtIt_Method((cNdIt_MethodFunc)fpcCtRq_Do, NULL);
+    fpcCtIt_Method((fpcCtIt_MethodFunc)fpcCtRq_Do, NULL);
 }
 
 create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_method_class* pMthd) {
@@ -122,5 +120,4 @@ create_request* fpcCtRq_Create(layer_class* pLayer, u32 size, create_request_met
     }
 
     return pReq;
-}
 }

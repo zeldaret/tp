@@ -16,8 +16,6 @@ typedef struct standard_create_request_class {
     /* 0x5C */ void* unk_0x5C;
 } standard_create_request_class;
 
-extern "C" {
-
 s32 fpcSCtRq_phase_CreateProcess(standard_create_request_class* pStdCreateReq);
 s32 fpcSCtRq_phase_SubCreateProcess(standard_create_request_class* pStdCreateReq);
 s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* pStdCreateReq);
@@ -28,6 +26,9 @@ s32 fpcSCtRq_Delete(standard_create_request_class*);
 s32 fpcSCtRq_Cancel(standard_create_request_class*);
 s32 fpcSCtRq_Request(layer_class* param_1, s16 param_2, stdCreateFunc param_3, void* param_4,
                      void* param_5);
-};
+
+extern "C" {
+void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv(void);
+}
 
 #endif

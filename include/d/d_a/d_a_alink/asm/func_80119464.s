@@ -13,7 +13,7 @@
 /* 80119494 001163D4  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80119498 001163D8  38 61 00 14 */ addi r3, r1, 0x14
 /* 8011949C 001163DC  38 81 00 30 */ addi r4, r1, 0x30
-/* 801194A0 001163E0  48 17 05 E1 */ bl JStudio_NS_stb_NS_data_NS_TParse_TParagraph_data_NS_getData
+/* 801194A0 001163E0  48 17 05 E1 */ bl getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
 /* 801194A4 001163E4  88 0D 8A 3C */ lbz r0, lbl_80450FBC-_SDA_BASE_(r13)
 /* 801194A8 001163E8  7C 00 07 75 */ extsb. r0, r0
 /* 801194AC 001163EC  40 82 00 24 */ bne lbl_801194D0
@@ -22,7 +22,7 @@
 /* 801194B8 001163F8  38 61 00 0C */ addi r3, r1, 0xc
 /* 801194BC 001163FC  3C 80 80 42 */ lis r4, lbl_804256B8@ha
 /* 801194C0 00116400  38 84 56 B8 */ addi r4, r4, lbl_804256B8@l
-/* 801194C4 00116404  48 17 05 BD */ bl JStudio_NS_stb_NS_data_NS_TParse_TParagraph_data_NS_getData
+/* 801194C4 00116404  48 17 05 BD */ bl getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
 /* 801194C8 00116408  38 00 00 01 */ li r0, 1
 /* 801194CC 0011640C  98 0D 8A 3C */ stb r0, lbl_80450FBC-_SDA_BASE_(r13)
 lbl_801194D0:

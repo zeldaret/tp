@@ -89,11 +89,11 @@ lbl_8006617C:
 /* 80066194 000630D4  38 81 00 2C */ addi r4, r1, 0x2c
 /* 80066198 000630D8  C0 22 8A C4 */ lfs f1, lbl_804524C4-_SDA2_BASE_(r2)
 /* 8006619C 000630DC  C0 42 87 D4 */ lfs f2, lbl_804521D4-_SDA2_BASE_(r2)
-/* 800661A0 000630E0  4B FF 55 E1 */ bl dKy_set_eyevect_calc
+/* 800661A0 000630E0  4B FF 55 E1 */ bl dKy_set_eyevect_calc__FP12camera_classP3Vecff
 /* 800661A4 000630E4  38 7E 00 D8 */ addi r3, r30, 0xd8
 /* 800661A8 000630E8  38 9E 00 E4 */ addi r4, r30, 0xe4
 /* 800661AC 000630EC  38 A1 00 20 */ addi r5, r1, 0x20
-/* 800661B0 000630F0  4B FF 55 B1 */ bl dKyr_get_vectle_calc
+/* 800661B0 000630F0  4B FF 55 B1 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 800661B4 000630F4  C0 41 00 24 */ lfs f2, 0x24(r1)
 /* 800661B8 000630F8  C0 22 87 B8 */ lfs f1, lbl_804521B8-_SDA2_BASE_(r2)
 /* 800661BC 000630FC  FC 02 08 40 */ fcmpo cr0, f2, f1
@@ -122,7 +122,7 @@ lbl_800661E8:
 /* 80066210 00063150  98 01 00 13 */ stb r0, 0x13(r1)
 /* 80066214 00063154  38 61 00 38 */ addi r3, r1, 0x38
 /* 80066218 00063158  80 9C 00 04 */ lwz r4, 4(r28)
-/* 8006621C 0006315C  4B FF 58 09 */ bl dKyr_set_btitex
+/* 8006621C 0006315C  4B FF 58 09 */ bl dKyr_set_btitex__FP9_GXTexObjP7ResTIMG
 /* 80066220 00063160  38 60 00 00 */ li r3, 0
 /* 80066224 00063164  48 2F 79 0D */ bl GXSetNumChans
 /* 80066228 00063168  80 01 00 10 */ lwz r0, 0x10(r1)
@@ -196,7 +196,7 @@ lbl_800661E8:
 /* 80066338 00063278  48 2F A2 99 */ bl GXSetClipMode
 /* 8006633C 0006327C  38 60 00 00 */ li r3, 0
 /* 80066340 00063280  48 2F 8D 95 */ bl GXSetNumIndStages
-/* 80066344 00063284  4B FF C7 99 */ bl dKr_cullVtx_Set
+/* 80066344 00063284  4B FF C7 99 */ bl dKr_cullVtx_Set__Fv
 /* 80066348 00063288  7F 63 DB 78 */ mr r3, r27
 /* 8006634C 0006328C  38 80 00 00 */ li r4, 0
 /* 80066350 00063290  48 2F 9E FD */ bl GXLoadPosMtxImm

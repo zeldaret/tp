@@ -18,11 +18,11 @@ lbl_800E0B94:
 /* 800E0B94 000DDAD4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0B98 000DDAD8  41 82 00 10 */ beq lbl_800E0BA8
 /* 800E0B9C 000DDADC  7F E3 FB 78 */ mr r3, r31
-/* 800E0BA0 000DDAE0  4B FF FE FD */ bl daAlink_c_NS_checkUpperItemActionBoomerang
+/* 800E0BA0 000DDAE0  4B FF FE FD */ bl checkUpperItemActionBoomerang__9daAlink_cFv
 /* 800E0BA4 000DDAE4  48 00 00 2C */ b lbl_800E0BD0
 lbl_800E0BA8:
 /* 800E0BA8 000DDAE8  7F E3 FB 78 */ mr r3, r31
-/* 800E0BAC 000DDAEC  4B FD 7D 85 */ bl daAlink_c_NS_checkReadyItem
+/* 800E0BAC 000DDAEC  4B FD 7D 85 */ bl checkReadyItem__9daAlink_cFv
 /* 800E0BB0 000DDAF0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E0BB4 000DDAF4  41 82 00 1C */ beq lbl_800E0BD0
 /* 800E0BB8 000DDAF8  7F E3 FB 78 */ mr r3, r31
@@ -30,7 +30,7 @@ lbl_800E0BA8:
 /* 800E0BC0 000DDB00  2C 03 00 00 */ cmpwi r3, 0
 /* 800E0BC4 000DDB04  41 82 00 0C */ beq lbl_800E0BD0
 /* 800E0BC8 000DDB08  7F E3 FB 78 */ mr r3, r31
-/* 800E0BCC 000DDB0C  4B FF F9 91 */ bl daAlink_c_NS_setBoomerangReadyAnime
+/* 800E0BCC 000DDB0C  4B FF F9 91 */ bl setBoomerangReadyAnime__9daAlink_cFv
 lbl_800E0BD0:
 /* 800E0BD0 000DDB10  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E0BD4 000DDB14  80 01 00 14 */ lwz r0, 0x14(r1)

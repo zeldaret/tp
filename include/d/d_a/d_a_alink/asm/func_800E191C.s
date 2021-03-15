@@ -24,7 +24,7 @@
 /* 800E1978 000DE8B8  64 00 00 04 */ oris r0, r0, 4
 /* 800E197C 000DE8BC  90 1F 05 7C */ stw r0, 0x57c(r31)
 /* 800E1980 000DE8C0  38 7F 28 24 */ addi r3, r31, 0x2824
-/* 800E1984 000DE8C4  48 07 D3 79 */ bl daPy_actorKeep_c_NS_clearData
+/* 800E1984 000DE8C4  48 07 D3 79 */ bl clearData__16daPy_actorKeep_cFv
 lbl_800E1988:
 /* 800E1988 000DE8C8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800E198C 000DE8CC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -42,28 +42,28 @@ lbl_800E1988:
 /* 800E19BC 000DE8FC  7F E3 FB 78 */ mr r3, r31
 /* 800E19C0 000DE900  3C 80 00 02 */ lis r4, 0x0002006A@ha
 /* 800E19C4 000DE904  38 84 00 6A */ addi r4, r4, 0x0002006A@l
-/* 800E19C8 000DE908  4B FD D7 25 */ bl daAlink_c_NS_seStartSwordCut
+/* 800E19C8 000DE908  4B FD D7 25 */ bl seStartSwordCut__9daAlink_cFUl
 /* 800E19CC 000DE90C  80 1F 19 9C */ lwz r0, 0x199c(r31)
 /* 800E19D0 000DE910  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 800E19D4 000DE914  41 82 00 44 */ beq lbl_800E1A18
 /* 800E19D8 000DE918  7F E3 FB 78 */ mr r3, r31
-/* 800E19DC 000DE91C  4B FD 1F 29 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800E19DC 000DE91C  4B FD 1F 29 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800E19E0 000DE920  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800E19E4 000DE924  41 82 00 18 */ beq lbl_800E19FC
 /* 800E19E8 000DE928  38 00 00 03 */ li r0, 3
 /* 800E19EC 000DE92C  98 1F 2F 98 */ stb r0, 0x2f98(r31)
 /* 800E19F0 000DE930  7F E3 FB 78 */ mr r3, r31
-/* 800E19F4 000DE934  4B FE 1E D9 */ bl daAlink_c_NS_procAtnActorWaitInit
+/* 800E19F4 000DE934  4B FE 1E D9 */ bl procAtnActorWaitInit__9daAlink_cFv
 /* 800E19F8 000DE938  48 00 00 0C */ b lbl_800E1A04
 lbl_800E19FC:
 /* 800E19FC 000DE93C  7F E3 FB 78 */ mr r3, r31
-/* 800E1A00 000DE940  4B FE 1F ED */ bl daAlink_c_NS_procAtnActorMoveInit
+/* 800E1A00 000DE940  4B FE 1F ED */ bl procAtnActorMoveInit__9daAlink_cFv
 lbl_800E1A04:
 /* 800E1A04 000DE944  80 7F 20 60 */ lwz r3, 0x2060(r31)
 /* 800E1A08 000DE948  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E1A0C 000DE94C  38 80 00 00 */ li r4, 0
 /* 800E1A10 000DE950  38 A0 00 23 */ li r5, 0x23
-/* 800E1A14 000DE954  4B F2 DE 35 */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 800E1A14 000DE954  4B F2 DE 35 */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_800E1A18:
 /* 800E1A18 000DE958  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800E1A1C 000DE95C  83 C1 00 08 */ lwz r30, 8(r1)

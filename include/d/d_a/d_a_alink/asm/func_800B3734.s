@@ -11,7 +11,7 @@
 /* 800B375C 000B069C  80 1D 28 38 */ lwz r0, 0x2838(r29)
 /* 800B3760 000B06A0  7C 04 00 40 */ cmplw r4, r0
 /* 800B3764 000B06A4  40 82 00 20 */ bne lbl_800B3784
-/* 800B3768 000B06A8  48 02 CD 45 */ bl daAlink_c_NS_checkBoomerangThrowAnime
+/* 800B3768 000B06A8  48 02 CD 45 */ bl checkBoomerangThrowAnime__9daAlink_cCFv
 /* 800B376C 000B06AC  2C 03 00 00 */ cmpwi r3, 0
 /* 800B3770 000B06B0  40 82 00 5C */ bne lbl_800B37CC
 /* 800B3774 000B06B4  C0 3D 33 AC */ lfs f1, 0x33ac(r29)
@@ -43,7 +43,7 @@ lbl_800B37CC:
 /* 800B37D0 000B0710  48 00 00 5C */ b lbl_800B382C
 lbl_800B37D4:
 /* 800B37D4 000B0714  7F A3 EB 78 */ mr r3, r29
-/* 800B37D8 000B0718  4B FF FE 59 */ bl daAlink_c_NS_getShapeAngleYAtnActor
+/* 800B37D8 000B0718  4B FF FE 59 */ bl getShapeAngleYAtnActor__9daAlink_cFv
 /* 800B37DC 000B071C  7C 7F 1B 78 */ mr r31, r3
 /* 800B37E0 000B0720  2C 1E 00 00 */ cmpwi r30, 0
 /* 800B37E4 000B0724  41 82 00 24 */ beq lbl_800B3808

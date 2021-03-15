@@ -7,7 +7,7 @@
 /* 8011C644 00119584  3C 80 80 42 */ lis r4, lbl_80425508@ha
 /* 8011C648 00119588  3B E4 55 08 */ addi r31, r4, lbl_80425508@l
 /* 8011C64C 0011958C  38 80 01 52 */ li r4, 0x152
-/* 8011C650 00119590  4B FA 67 55 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011C650 00119590  4B FA 67 55 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011C654 00119594  2C 03 00 00 */ cmpwi r3, 0
 /* 8011C658 00119598  40 82 00 0C */ bne lbl_8011C664
 /* 8011C65C 0011959C  38 60 00 00 */ li r3, 0
@@ -20,10 +20,10 @@ lbl_8011C664:
 /* 8011C674 001195B4  41 82 00 58 */ beq lbl_8011C6CC
 /* 8011C678 001195B8  7F C3 F3 78 */ mr r3, r30
 /* 8011C67C 001195BC  38 80 00 82 */ li r4, 0x82
-/* 8011C680 001195C0  48 00 CF F9 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8011C680 001195C0  48 00 CF F9 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8011C684 001195C4  7F C3 F3 78 */ mr r3, r30
 /* 8011C688 001195C8  38 80 00 A0 */ li r4, 0xa0
-/* 8011C68C 001195CC  4B F9 32 15 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8011C68C 001195CC  4B F9 32 15 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8011C690 001195D0  C0 1F 01 14 */ lfs f0, 0x114(r31)
 /* 8011C694 001195D4  D0 1E 35 88 */ stfs f0, 0x3588(r30)
 /* 8011C698 001195D8  38 7F 01 14 */ addi r3, r31, 0x114
@@ -45,7 +45,7 @@ lbl_8011C6CC:
 /* 8011C6D4 00119614  40 82 00 30 */ bne lbl_8011C704
 /* 8011C6D8 00119618  7F C3 F3 78 */ mr r3, r30
 /* 8011C6DC 0011961C  38 80 01 9C */ li r4, 0x19c
-/* 8011C6E0 00119620  4B F9 08 A1 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011C6E0 00119620  4B F9 08 A1 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011C6E4 00119624  C0 1F 00 3C */ lfs f0, 0x3c(r31)
 /* 8011C6E8 00119628  D0 1E 35 88 */ stfs f0, 0x3588(r30)
 /* 8011C6EC 0011962C  38 7F 00 3C */ addi r3, r31, 0x3c
@@ -57,7 +57,7 @@ lbl_8011C6CC:
 lbl_8011C704:
 /* 8011C704 00119644  7F C3 F3 78 */ mr r3, r30
 /* 8011C708 00119648  38 80 01 24 */ li r4, 0x124
-/* 8011C70C 0011964C  4B F9 08 75 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011C70C 0011964C  4B F9 08 75 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011C710 00119650  C0 1F 00 0C */ lfs f0, 0xc(r31)
 /* 8011C714 00119654  D0 1E 35 88 */ stfs f0, 0x3588(r30)
 /* 8011C718 00119658  38 7F 00 0C */ addi r3, r31, 0xc

@@ -3,8 +3,8 @@
 .section .text, "ax" # 802493b4
 
 
-.global dMsgStringBase_c
-dMsgStringBase_c:
+.global __ct__16dMsgStringBase_cFv
+__ct__16dMsgStringBase_cFv:
 /* 802493B4 002462F4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802493B8 002462F8  7C 08 02 A6 */	mflr r0
 /* 802493BC 002462FC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -15,12 +15,12 @@ dMsgStringBase_c:
 /* 802493D0 00246310  90 03 00 00 */	stw r0, 0(r3)
 /* 802493D4 00246314  38 00 00 00 */	li r0, 0
 /* 802493D8 00246318  B0 03 00 20 */	sth r0, 0x20(r3)
-/* 802493DC 0024631C  48 00 03 25 */	bl dMsgStringBase_c_NS_getResource
+/* 802493DC 0024631C  48 00 03 25 */	bl getResource__16dMsgStringBase_cFv
 /* 802493E0 00246320  38 60 00 20 */	li r3, 0x20
 /* 802493E4 00246324  48 08 58 69 */	bl __nw__FUl
 /* 802493E8 00246328  7C 60 1B 79 */	or. r0, r3, r3
 /* 802493EC 0024632C  41 82 00 0C */	beq lbl_802493F8
-/* 802493F0 00246330  48 05 FC 7D */	bl JMessage_NS_TResourceContainer
+/* 802493F0 00246330  48 05 FC 7D */	bl __ct__Q28JMessage18TResourceContainerFv
 /* 802493F4 00246334  7C 60 1B 78 */	mr r0, r3
 lbl_802493F8:
 /* 802493F8 00246338  90 1F 00 04 */	stw r0, 4(r31)
@@ -28,7 +28,7 @@ lbl_802493F8:
 /* 80249400 00246340  48 08 58 4D */	bl __nw__FUl
 /* 80249404 00246344  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249408 00246348  41 82 00 0C */	beq lbl_80249414
-/* 8024940C 0024634C  4B FE 67 51 */	bl jmessage_string_tControl
+/* 8024940C 0024634C  4B FE 67 51 */	bl __ct__24jmessage_string_tControlFv
 /* 80249410 00246350  7C 60 1B 78 */	mr r0, r3
 lbl_80249414:
 /* 80249414 00246354  90 1F 00 08 */	stw r0, 8(r31)
@@ -36,7 +36,7 @@ lbl_80249414:
 /* 8024941C 0024635C  48 08 58 31 */	bl __nw__FUl
 /* 80249420 00246360  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249424 00246364  41 82 00 0C */	beq lbl_80249430
-/* 80249428 00246368  4B FE 64 99 */	bl jmessage_string_tReference
+/* 80249428 00246368  4B FE 64 99 */	bl __ct__26jmessage_string_tReferenceFv
 /* 8024942C 0024636C  7C 60 1B 78 */	mr r0, r3
 lbl_80249430:
 /* 80249430 00246370  90 1F 00 0C */	stw r0, 0xc(r31)
@@ -46,7 +46,7 @@ lbl_80249430:
 /* 80249440 00246380  41 82 00 14 */	beq lbl_80249454
 /* 80249444 00246384  80 9F 00 0C */	lwz r4, 0xc(r31)
 /* 80249448 00246388  80 BF 00 08 */	lwz r5, 8(r31)
-/* 8024944C 0024638C  4B FE 75 BD */	bl jmessage_string_tSequenceProcessor
+/* 8024944C 0024638C  4B FE 75 BD */	bl __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
 /* 80249450 00246390  7C 60 1B 78 */	mr r0, r3
 lbl_80249454:
 /* 80249454 00246394  90 1F 00 10 */	stw r0, 0x10(r31)
@@ -55,7 +55,7 @@ lbl_80249454:
 /* 80249460 002463A0  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249464 002463A4  41 82 00 10 */	beq lbl_80249474
 /* 80249468 002463A8  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 8024946C 002463AC  4B FE 77 5D */	bl jmessage_string_tRenderingProcessor
+/* 8024946C 002463AC  4B FE 77 5D */	bl __ct__35jmessage_string_tRenderingProcessorFPC26jmessage_string_tReference
 /* 80249470 002463B0  7C 60 1B 78 */	mr r0, r3
 lbl_80249474:
 /* 80249474 002463B4  90 1F 00 14 */	stw r0, 0x14(r31)
@@ -64,7 +64,7 @@ lbl_80249474:
 /* 80249480 002463C0  7C 60 1B 79 */	or. r0, r3, r3
 /* 80249484 002463C4  41 82 00 10 */	beq lbl_80249494
 /* 80249488 002463C8  80 9F 00 04 */	lwz r4, 4(r31)
-/* 8024948C 002463CC  48 05 FC A5 */	bl JMessage_NS_TParse
+/* 8024948C 002463CC  48 05 FC A5 */	bl __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer
 /* 80249490 002463D0  7C 60 1B 78 */	mr r0, r3
 lbl_80249494:
 /* 80249494 002463D4  90 1F 00 18 */	stw r0, 0x18(r31)
@@ -84,7 +84,7 @@ lbl_80249494:
 /* 802494CC 0024640C  38 A0 00 00 */	li r5, 0
 /* 802494D0 00246410  48 09 34 41 */	bl parse_next__Q37JGadget6binary19TParse_header_blockFPPCvUl
 /* 802494D4 00246414  80 7F 00 08 */	lwz r3, 8(r31)
-/* 802494D8 00246418  48 05 E0 FD */	bl JMessage_NS_TControl_NS_reset
+/* 802494D8 00246418  48 05 E0 FD */	bl reset__Q28JMessage8TControlFv
 /* 802494DC 0024641C  80 7F 00 08 */	lwz r3, 8(r31)
 /* 802494E0 00246420  80 83 00 04 */	lwz r4, 4(r3)
 /* 802494E4 00246424  28 04 00 00 */	cmplwi r4, 0
@@ -107,8 +107,8 @@ lbl_80249508:
 /* 80249520 00246460  38 21 00 20 */	addi r1, r1, 0x20
 /* 80249524 00246464  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_dtor
-dMsgStringBase_c_NS_dtor:
+.global __dt__16dMsgStringBase_cFv
+__dt__16dMsgStringBase_cFv:
 /* 80249528 00246468  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8024952C 0024646C  7C 08 02 A6 */	mflr r0
 /* 80249530 00246470  90 01 00 34 */	stw r0, 0x34(r1)
@@ -132,7 +132,7 @@ lbl_8024955C:
 /* 80249574 002464B4  38 61 00 10 */	addi r3, r1, 0x10
 /* 80249578 002464B8  38 9D 00 08 */	addi r4, r29, 8
 /* 8024957C 002464BC  38 A1 00 14 */	addi r5, r1, 0x14
-/* 80249580 002464C0  48 09 34 D9 */	bl JGadget_NS_TNodeLinkList_NS_erase
+/* 80249580 002464C0  48 09 34 D9 */	bl erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator
 /* 80249584 002464C4  38 7D 00 08 */	addi r3, r29, 8
 /* 80249588 002464C8  7F 84 E3 78 */	mr r4, r28
 /* 8024958C 002464CC  81 9D 00 14 */	lwz r12, 0x14(r29)
@@ -151,7 +151,7 @@ lbl_8024959C:
 /* 802495BC 002464FC  41 82 00 18 */	beq lbl_802495D4
 /* 802495C0 00246500  38 7D 00 08 */	addi r3, r29, 8
 /* 802495C4 00246504  38 80 FF FF */	li r4, -1
-/* 802495C8 00246508  48 05 F9 31 */	bl JMessage_NS_TResourceContainer_NS_TCResource_NS_dtor
+/* 802495C8 00246508  48 05 F9 31 */	bl __dt__Q38JMessage18TResourceContainer10TCResourceFv
 /* 802495CC 0024650C  7F A3 EB 78 */	mr r3, r29
 /* 802495D0 00246510  48 08 57 6D */	bl __dl__FPv
 lbl_802495D4:
@@ -238,8 +238,8 @@ lbl_802496E4:
 /* 802496F8 00246638  38 21 00 30 */	addi r1, r1, 0x30
 /* 802496FC 0024663C  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_getResource
-dMsgStringBase_c_NS_getResource:
+.global getResource__16dMsgStringBase_cFv
+getResource__16dMsgStringBase_cFv:
 /* 80249700 00246640  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80249704 00246644  7C 08 02 A6 */	mflr r0
 /* 80249708 00246648  90 01 00 14 */	stw r0, 0x14(r1)
@@ -268,8 +268,8 @@ lbl_80249754:
 /* 80249760 002466A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80249764 002466A4  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_getStringLocal
-dMsgStringBase_c_NS_getStringLocal:
+.global getStringLocal__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
+getStringLocal__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc:
 /* 80249768 002466A8  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8024976C 002466AC  7C 08 02 A6 */	mflr r0
 /* 80249770 002466B0  90 01 00 44 */	stw r0, 0x44(r1)
@@ -320,7 +320,7 @@ lbl_80249810:
 /* 8024981C 0024675C  7F 66 DB 78 */	mr r6, r27
 /* 80249820 00246760  7F 87 E3 78 */	mr r7, r28
 /* 80249824 00246764  7F A8 EB 78 */	mr r8, r29
-/* 80249828 00246768  4B FE 61 85 */	bl jmessage_string_tReference_NS_init
+/* 80249828 00246768  4B FE 61 85 */	bl init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
 /* 8024982C 0024676C  80 79 01 08 */	lwz r3, 0x108(r25)
 /* 80249830 00246770  90 61 00 10 */	stw r3, 0x10(r1)
 /* 80249834 00246774  80 19 01 04 */	lwz r0, 0x104(r25)
@@ -332,17 +332,17 @@ lbl_80249810:
 /* 8024984C 0024678C  7F E4 FB 78 */	mr r4, r31
 /* 80249850 00246790  38 A0 00 00 */	li r5, 0
 /* 80249854 00246794  38 C0 00 00 */	li r6, 0
-/* 80249858 00246798  48 05 E0 9D */	bl JMessage_NS_TControl_NS_setMessageID
+/* 80249858 00246798  48 05 E0 9D */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 /* 8024985C 0024679C  80 7E 00 08 */	lwz r3, 8(r30)
-/* 80249860 002467A0  48 05 DD D5 */	bl JMessage_NS_TControl_NS_update
+/* 80249860 002467A0  48 05 DD D5 */	bl update__Q28JMessage8TControlFv
 /* 80249864 002467A4  80 7E 00 08 */	lwz r3, 8(r30)
-/* 80249868 002467A8  48 05 DE 55 */	bl JMessage_NS_TControl_NS_render
+/* 80249868 002467A8  48 05 DE 55 */	bl render__Q28JMessage8TControlFv
 /* 8024986C 002467AC  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80249870 002467B0  38 80 00 00 */	li r4, 0
-/* 80249874 002467B4  4B FE 61 C5 */	bl jmessage_string_tReference_NS_getLineLength
+/* 80249874 002467B4  4B FE 61 C5 */	bl getLineLength__26jmessage_string_tReferenceFi
 /* 80249878 002467B8  FF E0 08 90 */	fmr f31, f1
 /* 8024987C 002467BC  80 7E 00 08 */	lwz r3, 8(r30)
-/* 80249880 002467C0  48 05 DD 55 */	bl JMessage_NS_TControl_NS_reset
+/* 80249880 002467C0  48 05 DD 55 */	bl reset__Q28JMessage8TControlFv
 /* 80249884 002467C4  80 7E 00 08 */	lwz r3, 8(r30)
 /* 80249888 002467C8  80 83 00 04 */	lwz r4, 4(r3)
 /* 8024988C 002467CC  28 04 00 00 */	cmplwi r4, 0
@@ -367,8 +367,8 @@ lbl_802498B0:
 /* 802498D0 00246810  38 21 00 40 */	addi r1, r1, 0x40
 /* 802498D4 00246814  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_getStringPageLocal
-dMsgStringBase_c_NS_getStringPageLocal:
+.global getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
+getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc:
 /* 802498D8 00246818  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802498DC 0024681C  7C 08 02 A6 */	mflr r0
 /* 802498E0 00246820  90 01 00 44 */	stw r0, 0x44(r1)
@@ -420,7 +420,7 @@ lbl_80249984:
 /* 80249990 002468D0  7F C6 F3 78 */	mr r6, r30
 /* 80249994 002468D4  7F E7 FB 78 */	mr r7, r31
 /* 80249998 002468D8  7E E8 BB 78 */	mr r8, r23
-/* 8024999C 002468DC  4B FE 60 11 */	bl jmessage_string_tReference_NS_init
+/* 8024999C 002468DC  4B FE 60 11 */	bl init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
 /* 802499A0 002468E0  80 78 00 0C */	lwz r3, 0xc(r24)
 /* 802499A4 002468E4  9B 43 00 83 */	stb r26, 0x83(r3)
 /* 802499A8 002468E8  80 78 00 0C */	lwz r3, 0xc(r24)
@@ -436,13 +436,13 @@ lbl_80249984:
 /* 802499D0 00246910  7F 24 CB 78 */	mr r4, r25
 /* 802499D4 00246914  38 A0 00 00 */	li r5, 0
 /* 802499D8 00246918  38 C0 00 00 */	li r6, 0
-/* 802499DC 0024691C  48 05 DF 19 */	bl JMessage_NS_TControl_NS_setMessageID
+/* 802499DC 0024691C  48 05 DF 19 */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 /* 802499E0 00246920  80 78 00 08 */	lwz r3, 8(r24)
-/* 802499E4 00246924  48 05 DC 51 */	bl JMessage_NS_TControl_NS_update
+/* 802499E4 00246924  48 05 DC 51 */	bl update__Q28JMessage8TControlFv
 /* 802499E8 00246928  80 78 00 08 */	lwz r3, 8(r24)
-/* 802499EC 0024692C  48 05 DC D1 */	bl JMessage_NS_TControl_NS_render
+/* 802499EC 0024692C  48 05 DC D1 */	bl render__Q28JMessage8TControlFv
 /* 802499F0 00246930  80 78 00 08 */	lwz r3, 8(r24)
-/* 802499F4 00246934  48 05 DB E1 */	bl JMessage_NS_TControl_NS_reset
+/* 802499F4 00246934  48 05 DB E1 */	bl reset__Q28JMessage8TControlFv
 /* 802499F8 00246938  80 78 00 08 */	lwz r3, 8(r24)
 /* 802499FC 0024693C  80 83 00 04 */	lwz r4, 4(r3)
 /* 80249A00 00246940  28 04 00 00 */	cmplwi r4, 0
@@ -466,8 +466,8 @@ lbl_80249A24:
 /* 80249A40 00246980  38 21 00 40 */	addi r1, r1, 0x40
 /* 80249A44 00246984  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_getPageMax
-dMsgStringBase_c_NS_getPageMax:
+.global getPageMax__16dMsgStringBase_cFi
+getPageMax__16dMsgStringBase_cFi:
 /* 80249A48 00246988  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80249A4C 0024698C  A8 A3 00 80 */	lha r5, 0x80(r3)
 /* 80249A50 00246990  7C 05 23 D6 */	divw r0, r5, r4
@@ -479,8 +479,8 @@ dMsgStringBase_c_NS_getPageMax:
 /* 80249A68 002469A8  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 80249A6C 002469AC  4E 80 00 20 */	blr 
 
-.global dMsgStringBase_c_NS_getMessageLocal
-dMsgStringBase_c_NS_getMessageLocal:
+.global getMessageLocal__16dMsgStringBase_cFUlPc
+getMessageLocal__16dMsgStringBase_cFUlPc:
 /* 80249A70 002469B0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80249A74 002469B4  7C 08 02 A6 */	mflr r0
 /* 80249A78 002469B8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -526,18 +526,18 @@ lbl_80249B04:
 /* 80249B10 00246A50  38 C0 00 00 */	li r6, 0
 /* 80249B14 00246A54  38 E0 00 00 */	li r7, 0
 /* 80249B18 00246A58  39 00 00 00 */	li r8, 0
-/* 80249B1C 00246A5C  4B FE 5E 91 */	bl jmessage_string_tReference_NS_init
+/* 80249B1C 00246A5C  4B FE 5E 91 */	bl init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
 /* 80249B20 00246A60  80 7D 00 08 */	lwz r3, 8(r29)
 /* 80249B24 00246A64  7F C4 F3 78 */	mr r4, r30
 /* 80249B28 00246A68  38 A0 00 00 */	li r5, 0
 /* 80249B2C 00246A6C  38 C0 00 00 */	li r6, 0
-/* 80249B30 00246A70  48 05 DD C5 */	bl JMessage_NS_TControl_NS_setMessageID
+/* 80249B30 00246A70  48 05 DD C5 */	bl setMessageID__Q28JMessage8TControlFUlUlPb
 /* 80249B34 00246A74  80 7D 00 08 */	lwz r3, 8(r29)
-/* 80249B38 00246A78  48 05 DA FD */	bl JMessage_NS_TControl_NS_update
+/* 80249B38 00246A78  48 05 DA FD */	bl update__Q28JMessage8TControlFv
 /* 80249B3C 00246A7C  80 7D 00 08 */	lwz r3, 8(r29)
-/* 80249B40 00246A80  48 05 DB 7D */	bl JMessage_NS_TControl_NS_render
+/* 80249B40 00246A80  48 05 DB 7D */	bl render__Q28JMessage8TControlFv
 /* 80249B44 00246A84  80 7D 00 08 */	lwz r3, 8(r29)
-/* 80249B48 00246A88  48 05 DA 8D */	bl JMessage_NS_TControl_NS_reset
+/* 80249B48 00246A88  48 05 DA 8D */	bl reset__Q28JMessage8TControlFv
 /* 80249B4C 00246A8C  80 7D 00 08 */	lwz r3, 8(r29)
 /* 80249B50 00246A90  80 83 00 04 */	lwz r4, 4(r3)
 /* 80249B54 00246A94  28 04 00 00 */	cmplwi r4, 0
@@ -568,7 +568,7 @@ lbl_80249B78:
 /* 80249BB0 00246AF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80249BB4 00246AF4  7C 08 02 A6 */	mflr r0
 /* 80249BB8 00246AF8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80249BBC 00246AFC  4B FF FB AD */	bl dMsgStringBase_c_NS_getStringLocal
+/* 80249BBC 00246AFC  4B FF FB AD */	bl getStringLocal__16dMsgStringBase_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
 /* 80249BC0 00246B00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80249BC4 00246B04  7C 08 03 A6 */	mtlr r0
 /* 80249BC8 00246B08  38 21 00 10 */	addi r1, r1, 0x10
@@ -578,7 +578,7 @@ lbl_80249B78:
 /* 80249BD8 00246B18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80249BDC 00246B1C  88 01 00 1B */	lbz r0, 0x1b(r1)
 /* 80249BE0 00246B20  90 01 00 08 */	stw r0, 8(r1)
-/* 80249BE4 00246B24  4B FF FC F5 */	bl dMsgStringBase_c_NS_getStringPageLocal
+/* 80249BE4 00246B24  4B FF FC F5 */	bl getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc
 /* 80249BE8 00246B28  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80249BEC 00246B2C  7C 08 03 A6 */	mtlr r0
 /* 80249BF0 00246B30  38 21 00 10 */	addi r1, r1, 0x10
@@ -586,7 +586,7 @@ lbl_80249B78:
 /* 80249BF8 00246B38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80249BFC 00246B3C  7C 08 02 A6 */	mflr r0
 /* 80249C00 00246B40  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80249C04 00246B44  4B FF FE 6D */	bl dMsgStringBase_c_NS_getMessageLocal
+/* 80249C04 00246B44  4B FF FE 6D */	bl getMessageLocal__16dMsgStringBase_cFUlPc
 /* 80249C08 00246B48  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80249C0C 00246B4C  7C 08 03 A6 */	mtlr r0
 /* 80249C10 00246B50  38 21 00 10 */	addi r1, r1, 0x10

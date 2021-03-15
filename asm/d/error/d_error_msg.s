@@ -3,8 +3,8 @@
 .section .text, "ax" # 8009cb88
 
 
-.global messageSet
-messageSet:
+.global messageSet__FUlb
+messageSet__FUlb:
 /* 8009CB88 00099AC8  94 21 FA B0 */	stwu r1, -0x550(r1)
 /* 8009CB8C 00099ACC  7C 08 02 A6 */	mflr r0
 /* 8009CB90 00099AD0  90 01 05 54 */	stw r0, 0x554(r1)
@@ -373,7 +373,7 @@ lbl_8009D0A8:
 /* 8009D0F0 0009A030  38 80 00 00 */	li r4, 0
 /* 8009D0F4 0009A034  38 A0 00 00 */	li r5, 0
 /* 8009D0F8 0009A038  38 C0 00 00 */	li r6, 0
-/* 8009D0FC 0009A03C  48 26 0B 75 */	bl J2DPicture_NS_draw
+/* 8009D0FC 0009A03C  48 26 0B 75 */	bl draw__10J2DPictureFffffbbb
 lbl_8009D100:
 /* 8009D100 0009A040  38 61 02 98 */	addi r3, r1, 0x298
 /* 8009D104 0009A044  C0 42 92 38 */	lfs f2, lbl_80452C38-_SDA2_BASE_(r2)
@@ -383,25 +383,25 @@ lbl_8009D100:
 /* 8009D114 0009A054  EC 42 F8 2A */	fadds f2, f2, f31
 /* 8009D118 0009A058  C0 62 92 1C */	lfs f3, lbl_80452C1C-_SDA2_BASE_(r2)
 /* 8009D11C 0009A05C  38 80 00 02 */	li r4, 2
-/* 8009D120 0009A060  48 26 33 71 */	bl J2DTextBox_NS_draw_X1_
+/* 8009D120 0009A060  48 26 33 71 */	bl draw__10J2DTextBoxFfff18J2DTextBoxHBinding
 /* 8009D124 0009A064  38 61 03 D0 */	addi r3, r1, 0x3d0
 /* 8009D128 0009A068  FC 20 F0 90 */	fmr f1, f30
 /* 8009D12C 0009A06C  FC 40 F8 90 */	fmr f2, f31
 /* 8009D130 0009A070  C0 62 92 1C */	lfs f3, lbl_80452C1C-_SDA2_BASE_(r2)
 /* 8009D134 0009A074  38 80 00 02 */	li r4, 2
-/* 8009D138 0009A078  48 26 33 59 */	bl J2DTextBox_NS_draw_X1_
+/* 8009D138 0009A078  48 26 33 59 */	bl draw__10J2DTextBoxFfff18J2DTextBoxHBinding
 /* 8009D13C 0009A07C  38 61 00 D4 */	addi r3, r1, 0xd4
 /* 8009D140 0009A080  38 80 FF FF */	li r4, -1
 /* 8009D144 0009A084  48 24 1E BD */	bl __dt__10JUTResFontFv
 /* 8009D148 0009A088  38 61 01 48 */	addi r3, r1, 0x148
 /* 8009D14C 0009A08C  38 80 FF FF */	li r4, -1
-/* 8009D150 0009A090  48 25 FE A1 */	bl J2DPicture_NS_dtor
+/* 8009D150 0009A090  48 25 FE A1 */	bl __dt__10J2DPictureFv
 /* 8009D154 0009A094  38 61 02 98 */	addi r3, r1, 0x298
 /* 8009D158 0009A098  38 80 FF FF */	li r4, -1
-/* 8009D15C 0009A09C  48 26 30 85 */	bl J2DTextBox_NS_dtor
+/* 8009D15C 0009A09C  48 26 30 85 */	bl __dt__10J2DTextBoxFv
 /* 8009D160 0009A0A0  38 61 03 D0 */	addi r3, r1, 0x3d0
 /* 8009D164 0009A0A4  38 80 FF FF */	li r4, -1
-/* 8009D168 0009A0A8  48 26 30 79 */	bl J2DTextBox_NS_dtor
+/* 8009D168 0009A0A8  48 26 30 79 */	bl __dt__10J2DTextBoxFv
 /* 8009D16C 0009A0AC  E3 E1 05 48 */	psq_l f31, 1352(r1), 0, qr0
 /* 8009D170 0009A0B0  CB E1 05 40 */	lfd f31, 0x540(r1)
 /* 8009D174 0009A0B4  E3 C1 05 38 */	psq_l f30, 1336(r1), 0, qr0
@@ -413,8 +413,8 @@ lbl_8009D100:
 /* 8009D18C 0009A0CC  38 21 05 50 */	addi r1, r1, 0x550
 /* 8009D190 0009A0D0  4E 80 00 20 */	blr 
 
-.global dDvdErrorMsg_c_NS_draw
-dDvdErrorMsg_c_NS_draw:
+.global draw__14dDvdErrorMsg_cFl
+draw__14dDvdErrorMsg_cFl:
 /* 8009D194 0009A0D4  94 21 FF 00 */	stwu r1, -0x100(r1)
 /* 8009D198 0009A0D8  7C 08 02 A6 */	mflr r0
 /* 8009D19C 0009A0DC  90 01 01 04 */	stw r0, 0x104(r1)
@@ -446,7 +446,7 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D204 0009A144  48 2C 2A 6D */	bl GXSetAlphaUpdate
 /* 8009D208 0009A148  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8009D20C 0009A14C  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 8009D210 0009A150  48 27 2E AD */	bl J3DSys_NS_drawInit
+/* 8009D210 0009A150  48 27 2E AD */	bl drawInit__6J3DSysFv
 /* 8009D214 0009A154  38 61 00 24 */	addi r3, r1, 0x24
 /* 8009D218 0009A158  C0 22 92 18 */	lfs f1, lbl_80452C18-_SDA2_BASE_(r2)
 /* 8009D21C 0009A15C  FC 40 08 90 */	fmr f2, f1
@@ -454,7 +454,7 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D224 0009A164  C0 82 92 24 */	lfs f4, lbl_80452C24-_SDA2_BASE_(r2)
 /* 8009D228 0009A168  C0 A2 92 48 */	lfs f5, lbl_80452C48-_SDA2_BASE_(r2)
 /* 8009D22C 0009A16C  C0 C2 92 30 */	lfs f6, lbl_80452C30-_SDA2_BASE_(r2)
-/* 8009D230 0009A170  48 24 C4 A1 */	bl J2DOrthoGraph_X1_
+/* 8009D230 0009A170  48 24 C4 A1 */	bl __ct__13J2DOrthoGraphFffffff
 /* 8009D234 0009A174  C0 02 92 18 */	lfs f0, lbl_80452C18-_SDA2_BASE_(r2)
 /* 8009D238 0009A178  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8009D23C 0009A17C  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -468,7 +468,7 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D25C 0009A19C  C0 42 92 30 */	lfs f2, lbl_80452C30-_SDA2_BASE_(r2)
 /* 8009D260 0009A1A0  48 24 C5 AD */	bl J2DOrthoGraph_NS_setOrtho
 /* 8009D264 0009A1A4  38 61 00 24 */	addi r3, r1, 0x24
-/* 8009D268 0009A1A8  48 24 C5 4D */	bl J2DOrthoGraph_NS_setPort
+/* 8009D268 0009A1A8  48 24 C5 4D */	bl setPort__13J2DOrthoGraphFv
 /* 8009D26C 0009A1AC  38 01 00 24 */	addi r0, r1, 0x24
 /* 8009D270 0009A1B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8009D274 0009A1B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
@@ -477,42 +477,42 @@ dDvdErrorMsg_c_NS_draw:
 /* 8009D280 0009A1C0  40 82 00 14 */	bne lbl_8009D294
 /* 8009D284 0009A1C4  38 60 00 02 */	li r3, 2
 /* 8009D288 0009A1C8  38 80 00 01 */	li r4, 1
-/* 8009D28C 0009A1CC  4B FF F8 FD */	bl messageSet
+/* 8009D28C 0009A1CC  4B FF F8 FD */	bl messageSet__FUlb
 /* 8009D290 0009A1D0  48 00 00 78 */	b lbl_8009D308
 lbl_8009D294:
 /* 8009D294 0009A1D4  2C 1F 00 05 */	cmpwi r31, 5
 /* 8009D298 0009A1D8  40 82 00 14 */	bne lbl_8009D2AC
 /* 8009D29C 0009A1DC  38 60 00 01 */	li r3, 1
 /* 8009D2A0 0009A1E0  38 80 00 01 */	li r4, 1
-/* 8009D2A4 0009A1E4  4B FF F8 E5 */	bl messageSet
+/* 8009D2A4 0009A1E4  4B FF F8 E5 */	bl messageSet__FUlb
 /* 8009D2A8 0009A1E8  48 00 00 60 */	b lbl_8009D308
 lbl_8009D2AC:
 /* 8009D2AC 0009A1EC  2C 1F FF FF */	cmpwi r31, -1
 /* 8009D2B0 0009A1F0  40 82 00 14 */	bne lbl_8009D2C4
 /* 8009D2B4 0009A1F4  38 60 00 05 */	li r3, 5
 /* 8009D2B8 0009A1F8  38 80 00 01 */	li r4, 1
-/* 8009D2BC 0009A1FC  4B FF F8 CD */	bl messageSet
+/* 8009D2BC 0009A1FC  4B FF F8 CD */	bl messageSet__FUlb
 /* 8009D2C0 0009A200  48 00 00 48 */	b lbl_8009D308
 lbl_8009D2C4:
 /* 8009D2C4 0009A204  2C 1F 00 06 */	cmpwi r31, 6
 /* 8009D2C8 0009A208  40 82 00 14 */	bne lbl_8009D2DC
 /* 8009D2CC 0009A20C  38 60 00 03 */	li r3, 3
 /* 8009D2D0 0009A210  38 80 00 01 */	li r4, 1
-/* 8009D2D4 0009A214  4B FF F8 B5 */	bl messageSet
+/* 8009D2D4 0009A214  4B FF F8 B5 */	bl messageSet__FUlb
 /* 8009D2D8 0009A218  48 00 00 30 */	b lbl_8009D308
 lbl_8009D2DC:
 /* 8009D2DC 0009A21C  2C 1F 00 0B */	cmpwi r31, 0xb
 /* 8009D2E0 0009A220  40 82 00 14 */	bne lbl_8009D2F4
 /* 8009D2E4 0009A224  38 60 00 04 */	li r3, 4
 /* 8009D2E8 0009A228  38 80 00 01 */	li r4, 1
-/* 8009D2EC 0009A22C  4B FF F8 9D */	bl messageSet
+/* 8009D2EC 0009A22C  4B FF F8 9D */	bl messageSet__FUlb
 /* 8009D2F0 0009A230  48 00 00 18 */	b lbl_8009D308
 lbl_8009D2F4:
 /* 8009D2F4 0009A234  2C 1F 00 01 */	cmpwi r31, 1
 /* 8009D2F8 0009A238  40 82 00 10 */	bne lbl_8009D308
 /* 8009D2FC 0009A23C  38 60 00 00 */	li r3, 0
 /* 8009D300 0009A240  38 80 00 01 */	li r4, 1
-/* 8009D304 0009A244  4B FF F8 85 */	bl messageSet
+/* 8009D304 0009A244  4B FF F8 85 */	bl messageSet__FUlb
 lbl_8009D308:
 /* 8009D308 0009A248  80 6D 8C 40 */	lwz r3, lbl_804511C0-_SDA_BASE_(r13)
 /* 8009D30C 0009A24C  81 83 00 00 */	lwz r12, 0(r3)
@@ -534,8 +534,8 @@ lbl_8009D308:
 /* 8009D34C 0009A28C  38 21 01 00 */	addi r1, r1, 0x100
 /* 8009D350 0009A290  4E 80 00 20 */	blr 
 
-.global dDvdErrorMsg_c_NS_execute
-dDvdErrorMsg_c_NS_execute:
+.global execute__14dDvdErrorMsg_cFv
+execute__14dDvdErrorMsg_cFv:
 /* 8009D354 0009A294  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D358 0009A298  7C 08 02 A6 */	mflr r0
 /* 8009D35C 0009A29C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -580,7 +580,7 @@ lbl_8009D3E4:
 /* 8009D3EC 0009A32C  48 00 00 0C */	b lbl_8009D3F8
 lbl_8009D3F0:
 /* 8009D3F0 0009A330  7F E3 FB 78 */	mr r3, r31
-/* 8009D3F4 0009A334  4B FF FD A1 */	bl dDvdErrorMsg_c_NS_draw
+/* 8009D3F4 0009A334  4B FF FD A1 */	bl draw__14dDvdErrorMsg_cFl
 lbl_8009D3F8:
 /* 8009D3F8 0009A338  88 6D 8A 30 */	lbz r3, lbl_80450FB0-_SDA_BASE_(r13)
 /* 8009D3FC 0009A33C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -589,8 +589,8 @@ lbl_8009D3F8:
 /* 8009D408 0009A348  38 21 00 10 */	addi r1, r1, 0x10
 /* 8009D40C 0009A34C  4E 80 00 20 */	blr 
 
-.global drawCapture
-drawCapture:
+.global drawCapture__FUc
+drawCapture__FUc:
 /* 8009D410 0009A350  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8009D414 0009A354  7C 08 02 A6 */	mflr r0
 /* 8009D418 0009A358  90 01 00 74 */	stw r0, 0x74(r1)
@@ -650,7 +650,7 @@ lbl_8009D48C:
 /* 8009D4E8 0009A428  48 2C 27 89 */	bl GXSetAlphaUpdate
 /* 8009D4EC 0009A42C  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
 /* 8009D4F0 0009A430  38 63 4A C8 */	addi r3, r3, lbl_80434AC8@l
-/* 8009D4F4 0009A434  48 27 2B C9 */	bl J3DSys_NS_drawInit
+/* 8009D4F4 0009A434  48 27 2B C9 */	bl drawInit__6J3DSysFv
 /* 8009D4F8 0009A438  3C 60 80 3E */	lis r3, lbl_803DD3E8@ha
 /* 8009D4FC 0009A43C  38 63 D3 E8 */	addi r3, r3, lbl_803DD3E8@l
 /* 8009D500 0009A440  80 8D 86 50 */	lwz r4, lbl_80450BD0-_SDA_BASE_(r13)
@@ -818,8 +818,8 @@ lbl_8009D48C:
 /* 8009D788 0009A6C8  38 21 00 70 */	addi r1, r1, 0x70
 /* 8009D78C 0009A6CC  4E 80 00 20 */	blr 
 
-.global dShutdownErrorMsg_c_NS_execute
-dShutdownErrorMsg_c_NS_execute:
+.global execute__19dShutdownErrorMsg_cFv
+execute__19dShutdownErrorMsg_cFv:
 /* 8009D790 0009A6D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009D794 0009A6D4  7C 08 02 A6 */	mflr r0
 /* 8009D798 0009A6D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -844,7 +844,7 @@ lbl_8009D7C0:
 /* 8009D7E0 0009A720  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8009D7E4 0009A724  40 82 00 14 */	bne lbl_8009D7F8
 /* 8009D7E8 0009A728  88 6D 81 08 */	lbz r3, lbl_80450688-_SDA_BASE_(r13)
-/* 8009D7EC 0009A72C  4B FF FC 25 */	bl drawCapture
+/* 8009D7EC 0009A72C  4B FF FC 25 */	bl drawCapture__FUc
 /* 8009D7F0 0009A730  38 60 00 01 */	li r3, 1
 /* 8009D7F4 0009A734  48 00 00 78 */	b lbl_8009D86C
 lbl_8009D7F8:
@@ -857,7 +857,7 @@ lbl_8009D7F8:
 /* 8009D810 0009A750  48 23 01 65 */	bl resetProcess__10Z2AudioMgrFUlb
 lbl_8009D814:
 /* 8009D814 0009A754  88 6D 81 08 */	lbz r3, lbl_80450688-_SDA_BASE_(r13)
-/* 8009D818 0009A758  4B FF FB F9 */	bl drawCapture
+/* 8009D818 0009A758  4B FF FB F9 */	bl drawCapture__FUc
 /* 8009D81C 0009A75C  38 6D 81 08 */	addi r3, r13, lbl_80450688-_SDA_BASE_
 /* 8009D820 0009A760  38 80 00 00 */	li r4, 0
 /* 8009D824 0009A764  38 A0 00 0F */	li r5, 0xf

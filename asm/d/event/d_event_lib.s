@@ -12,7 +12,7 @@
 /* 80048884 000457C4  38 60 00 00 */	li r3, 0
 /* 80048888 000457C8  48 00 00 0C */	b lbl_80048894
 lbl_8004888C:
-/* 8004888C 000457CC  48 00 01 6D */	bl dEvLib_callback_c_NS_executeAction
+/* 8004888C 000457CC  48 00 01 6D */	bl executeAction__17dEvLib_callback_cFv
 /* 80048890 000457D0  38 60 00 01 */	li r3, 1
 lbl_80048894:
 /* 80048894 000457D4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -20,8 +20,8 @@ lbl_80048894:
 /* 8004889C 000457DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800488A0 000457E0  4E 80 00 20 */	blr 
 
-.global dEvLib_callback_c_NS_setEvent
-dEvLib_callback_c_NS_setEvent:
+.global setEvent__17dEvLib_callback_cFiii
+setEvent__17dEvLib_callback_cFiii:
 /* 800488A4 000457E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800488A8 000457E8  7C 08 02 A6 */	mflr r0
 /* 800488AC 000457EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -47,7 +47,7 @@ lbl_800488D4:
 /* 800488F8 00045838  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800488FC 0004583C  80 9E 00 04 */	lwz r4, 4(r30)
 /* 80048900 00045840  7C 05 03 78 */	mr r5, r0
-/* 80048904 00045844  4B FF ED 95 */	bl dEvent_manager_c_NS_getEventIdx_X1_
+/* 80048904 00045844  4B FF ED 95 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc
 /* 80048908 00045848  7C 65 07 34 */	extsh r5, r3
 lbl_8004890C:
 /* 8004890C 0004584C  80 7E 00 04 */	lwz r3, 4(r30)
@@ -72,7 +72,7 @@ lbl_80048928:
 /* 80048954 00045894  41 82 00 08 */	beq lbl_8004895C
 /* 80048958 00045898  38 C0 01 01 */	li r6, 0x101
 lbl_8004895C:
-/* 8004895C 0004589C  4B FF FF 49 */	bl dEvLib_callback_c_NS_setEvent
+/* 8004895C 0004589C  4B FF FF 49 */	bl setEvent__17dEvLib_callback_cFiii
 /* 80048960 000458A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80048964 000458A4  7C 08 03 A6 */	mtlr r0
 /* 80048968 000458A8  38 21 00 10 */	addi r1, r1, 0x10
@@ -90,22 +90,22 @@ dEvLib_callback_c_NS_setAction:
 /* 8004898C 000458CC  38 60 00 00 */	li r3, 0
 /* 80048990 000458D0  48 00 00 08 */	b lbl_80048998
 lbl_80048994:
-/* 80048994 000458D4  48 00 00 15 */	bl dEvLib_callback_c_NS_initAction
+/* 80048994 000458D4  48 00 00 15 */	bl initAction__17dEvLib_callback_cFv
 lbl_80048998:
 /* 80048998 000458D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8004899C 000458DC  7C 08 03 A6 */	mtlr r0
 /* 800489A0 000458E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800489A4 000458E4  4E 80 00 20 */	blr 
 
-.global dEvLib_callback_c_NS_initAction
-dEvLib_callback_c_NS_initAction:
+.global initAction__17dEvLib_callback_cFv
+initAction__17dEvLib_callback_cFv:
 /* 800489A8 000458E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800489AC 000458EC  7C 08 02 A6 */	mflr r0
 /* 800489B0 000458F0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800489B4 000458F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800489B8 000458F8  7C 7F 1B 78 */	mr r31, r3
 /* 800489BC 000458FC  80 63 00 08 */	lwz r3, 8(r3)
-/* 800489C0 00045900  48 31 96 59 */	bl func_80362018
+/* 800489C0 00045900  48 31 96 59 */	bl __ptmf_test
 /* 800489C4 00045904  2C 03 00 00 */	cmpwi r3, 0
 /* 800489C8 00045908  40 82 00 0C */	bne lbl_800489D4
 /* 800489CC 0004590C  38 60 00 01 */	li r3, 1
@@ -113,7 +113,7 @@ dEvLib_callback_c_NS_initAction:
 lbl_800489D4:
 /* 800489D4 00045914  81 9F 00 08 */	lwz r12, 8(r31)
 /* 800489D8 00045918  7F E3 FB 78 */	mr r3, r31
-/* 800489DC 0004591C  48 31 96 A9 */	bl func_80362084
+/* 800489DC 0004591C  48 31 96 A9 */	bl __ptmf_scall
 /* 800489E0 00045920  60 00 00 00 */	nop 
 lbl_800489E4:
 /* 800489E4 00045924  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -122,8 +122,8 @@ lbl_800489E4:
 /* 800489F0 00045930  38 21 00 10 */	addi r1, r1, 0x10
 /* 800489F4 00045934  4E 80 00 20 */	blr 
 
-.global dEvLib_callback_c_NS_executeAction
-dEvLib_callback_c_NS_executeAction:
+.global executeAction__17dEvLib_callback_cFv
+executeAction__17dEvLib_callback_cFv:
 /* 800489F8 00045938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800489FC 0004593C  7C 08 02 A6 */	mflr r0
 /* 80048A00 00045940  90 01 00 14 */	stw r0, 0x14(r1)
@@ -131,7 +131,7 @@ dEvLib_callback_c_NS_executeAction:
 /* 80048A08 00045948  7C 7F 1B 78 */	mr r31, r3
 /* 80048A0C 0004594C  80 63 00 08 */	lwz r3, 8(r3)
 /* 80048A10 00045950  38 63 00 0C */	addi r3, r3, 0xc
-/* 80048A14 00045954  48 31 96 05 */	bl func_80362018
+/* 80048A14 00045954  48 31 96 05 */	bl __ptmf_test
 /* 80048A18 00045958  2C 03 00 00 */	cmpwi r3, 0
 /* 80048A1C 0004595C  40 82 00 0C */	bne lbl_80048A28
 /* 80048A20 00045960  38 60 00 01 */	li r3, 1
@@ -140,7 +140,7 @@ lbl_80048A28:
 /* 80048A28 00045968  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80048A2C 0004596C  39 83 00 0C */	addi r12, r3, 0xc
 /* 80048A30 00045970  7F E3 FB 78 */	mr r3, r31
-/* 80048A34 00045974  48 31 96 51 */	bl func_80362084
+/* 80048A34 00045974  48 31 96 51 */	bl __ptmf_scall
 /* 80048A38 00045978  60 00 00 00 */	nop 
 lbl_80048A3C:
 /* 80048A3C 0004597C  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -151,14 +151,14 @@ lbl_80048A3C:
 /* 80048A50 00045990  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048A54 00045994  7C 08 02 A6 */	mflr r0
 /* 80048A58 00045998  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80048A5C 0004599C  48 00 00 15 */	bl dEvLib_callback_c_NS_executeStart
+/* 80048A5C 0004599C  48 00 00 15 */	bl executeStart__17dEvLib_callback_cFv
 /* 80048A60 000459A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80048A64 000459A4  7C 08 03 A6 */	mtlr r0
 /* 80048A68 000459A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048A6C 000459AC  4E 80 00 20 */	blr 
 
-.global dEvLib_callback_c_NS_executeStart
-dEvLib_callback_c_NS_executeStart:
+.global executeStart__17dEvLib_callback_cFv
+executeStart__17dEvLib_callback_cFv:
 /* 80048A70 000459B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048A74 000459B4  7C 08 02 A6 */	mflr r0
 /* 80048A78 000459B8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -228,7 +228,7 @@ lbl_80048B08:
 /* 80048B68 00045AA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80048B6C 00045AAC  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 80048B70 00045AB0  38 7F 4F F8 */	addi r3, r31, 0x4ff8
-/* 80048B74 00045AB4  4B FF EF 05 */	bl dEvent_manager_c_NS_endCheck
+/* 80048B74 00045AB4  4B FF EF 05 */	bl endCheck__16dEvent_manager_cFs
 /* 80048B78 00045AB8  2C 03 00 00 */	cmpwi r3, 0
 /* 80048B7C 00045ABC  40 82 00 1C */	bne lbl_80048B98
 /* 80048B80 00045AC0  7F C3 F3 78 */	mr r3, r30
@@ -239,7 +239,7 @@ lbl_80048B08:
 /* 80048B94 00045AD4  48 00 00 2C */	b lbl_80048BC0
 lbl_80048B98:
 /* 80048B98 00045AD8  38 7F 4E C8 */	addi r3, r31, 0x4ec8
-/* 80048B9C 00045ADC  4B FF 98 CD */	bl dEvt_control_c_NS_reset
+/* 80048B9C 00045ADC  4B FF 98 CD */	bl reset__14dEvt_control_cFv
 /* 80048BA0 00045AE0  7F C3 F3 78 */	mr r3, r30
 /* 80048BA4 00045AE4  38 80 00 00 */	li r4, 0
 /* 80048BA8 00045AE8  4B FF FD C9 */	bl dEvLib_callback_c_NS_setAction

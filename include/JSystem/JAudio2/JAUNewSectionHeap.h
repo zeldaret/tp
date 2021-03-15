@@ -2,7 +2,7 @@
 #define JAUNEWSECTIONHEAP_H_
 
 extern "C" {
-void JAUNewSectionHeap_X1_(void);
+void JAUNewSectionHeap__Fb(void);
 }
 
 #endif  // JAUNEWSECTIONHEAP_H_

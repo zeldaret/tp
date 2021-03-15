@@ -4,7 +4,7 @@
 /* 8011A4CC 0011740C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8011A4D0 00117410  7C 7F 1B 78 */ mr r31, r3
 /* 8011A4D4 00117414  38 80 01 47 */ li r4, 0x147
-/* 8011A4D8 00117418  4B FA 88 CD */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8011A4D8 00117418  4B FA 88 CD */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8011A4DC 0011741C  2C 03 00 00 */ cmpwi r3, 0
 /* 8011A4E0 00117420  40 82 00 0C */ bne lbl_8011A4EC
 /* 8011A4E4 00117424  38 60 00 00 */ li r3, 0
@@ -22,14 +22,14 @@ lbl_8011A4EC:
 /* 8011A510 00117450  3C 80 80 39 */ lis r4, lbl_8038EE28@ha
 /* 8011A514 00117454  38 84 EE 28 */ addi r4, r4, lbl_8038EE28@l
 /* 8011A518 00117458  C0 24 00 94 */ lfs f1, 0x94(r4)
-/* 8011A51C 0011745C  48 00 E3 29 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8011A51C 0011745C  48 00 E3 29 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8011A520 00117460  48 00 00 94 */ b lbl_8011A5B4
 lbl_8011A524:
 /* 8011A524 00117464  7F E3 FB 78 */ mr r3, r31
 /* 8011A528 00117468  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 8011A52C 0011746C  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 8011A530 00117470  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 8011A534 00117474  4B F9 38 E1 */ bl daAlink_c_NS_setBlendMoveAnime
+/* 8011A534 00117474  4B F9 38 E1 */ bl setBlendMoveAnime__9daAlink_cFf
 /* 8011A538 00117478  80 1F 06 10 */ lwz r0, 0x610(r31)
 /* 8011A53C 0011747C  2C 00 00 00 */ cmpwi r0, 0
 /* 8011A540 00117480  40 82 00 20 */ bne lbl_8011A560
@@ -38,7 +38,7 @@ lbl_8011A524:
 /* 8011A54C 0011748C  41 82 00 68 */ beq lbl_8011A5B4
 /* 8011A550 00117490  7F E3 FB 78 */ mr r3, r31
 /* 8011A554 00117494  38 80 00 00 */ li r4, 0
-/* 8011A558 00117498  4B F9 F2 E5 */ bl daAlink_c_NS_allUnequip
+/* 8011A558 00117498  4B F9 F2 E5 */ bl allUnequip__9daAlink_cFi
 /* 8011A55C 0011749C  48 00 00 58 */ b lbl_8011A5B4
 lbl_8011A560:
 /* 8011A560 001174A0  2C 00 00 01 */ cmpwi r0, 1
@@ -48,7 +48,7 @@ lbl_8011A560:
 /* 8011A570 001174B0  41 82 00 44 */ beq lbl_8011A5B4
 /* 8011A574 001174B4  7F E3 FB 78 */ mr r3, r31
 /* 8011A578 001174B8  38 80 00 00 */ li r4, 0
-/* 8011A57C 001174BC  4B F9 EE 79 */ bl daAlink_c_NS_swordEquip
+/* 8011A57C 001174BC  4B F9 EE 79 */ bl swordEquip__9daAlink_cFi
 /* 8011A580 001174C0  48 00 00 34 */ b lbl_8011A5B4
 lbl_8011A584:
 /* 8011A584 001174C4  2C 00 00 02 */ cmpwi r0, 2
@@ -62,7 +62,7 @@ lbl_8011A584:
 /* 8011A5A4 001174E4  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 8011A5A8 001174E8  38 A0 00 27 */ li r5, 0x27
 /* 8011A5AC 001174EC  C0 62 92 C4 */ lfs f3, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 8011A5B0 001174F0  4B F9 2A 5D */ bl daAlink_c_NS_setSingleAnime
+/* 8011A5B0 001174F0  4B F9 2A 5D */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 lbl_8011A5B4:
 /* 8011A5B4 001174F4  38 60 00 01 */ li r3, 1
 lbl_8011A5B8:

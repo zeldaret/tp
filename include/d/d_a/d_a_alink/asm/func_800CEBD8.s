@@ -8,11 +8,11 @@
 /* 800CEBF4 000CBB34  38 80 00 12 */ li r4, 0x12
 /* 800CEBF8 000CBB38  4B FE 46 59 */ bl setDoStatus__9daAlink_cFUc
 /* 800CEBFC 000CBB3C  7F C3 F3 78 */ mr r3, r30
-/* 800CEC00 000CBB40  48 04 70 21 */ bl daAlink_c_NS_checkEventRun
+/* 800CEC00 000CBB40  48 04 70 21 */ bl checkEventRun__9daAlink_cCFv
 /* 800CEC04 000CBB44  2C 03 00 00 */ cmpwi r3, 0
 /* 800CEC08 000CBB48  40 82 00 70 */ bne lbl_800CEC78
 /* 800CEC0C 000CBB4C  7F C3 F3 78 */ mr r3, r30
-/* 800CEC10 000CBB50  4B FE A7 31 */ bl daAlink_c_NS_checkEquipAnime
+/* 800CEC10 000CBB50  4B FE A7 31 */ bl checkEquipAnime__9daAlink_cCFv
 /* 800CEC14 000CBB54  2C 03 00 00 */ cmpwi r3, 0
 /* 800CEC18 000CBB58  40 82 00 60 */ bne lbl_800CEC78
 /* 800CEC1C 000CBB5C  88 1E 2F 8D */ lbz r0, 0x2f8d(r30)
@@ -20,11 +20,11 @@
 /* 800CEC24 000CBB64  40 82 00 54 */ bne lbl_800CEC78
 /* 800CEC28 000CBB68  7F C3 F3 78 */ mr r3, r30
 /* 800CEC2C 000CBB6C  38 80 00 3E */ li r4, 0x3e
-/* 800CEC30 000CBB70  4B FF 15 35 */ bl daAlink_c_NS_checkSetItemTrigger
+/* 800CEC30 000CBB70  4B FF 15 35 */ bl checkSetItemTrigger__9daAlink_cFi
 /* 800CEC34 000CBB74  2C 03 00 00 */ cmpwi r3, 0
 /* 800CEC38 000CBB78  40 82 00 40 */ bne lbl_800CEC78
 /* 800CEC3C 000CBB7C  7F C3 F3 78 */ mr r3, r30
-/* 800CEC40 000CBB80  4B FF FF 19 */ bl daAlink_c_NS_subjectCancelTrigger
+/* 800CEC40 000CBB80  4B FF FF 19 */ bl subjectCancelTrigger__9daAlink_cFv
 /* 800CEC44 000CBB84  2C 03 00 00 */ cmpwi r3, 0
 /* 800CEC48 000CBB88  40 82 00 30 */ bne lbl_800CEC78
 /* 800CEC4C 000CBB8C  80 1E 05 88 */ lwz r0, 0x588(r30)

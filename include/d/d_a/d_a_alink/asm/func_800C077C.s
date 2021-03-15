@@ -7,7 +7,7 @@
 /* 800C0794 000BD6D4  7C 9D 23 78 */ mr r29, r4
 /* 800C0798 000BD6D8  7C BE 2B 78 */ mr r30, r5
 /* 800C079C 000BD6DC  54 83 06 3E */ clrlwi r3, r4, 0x18
-/* 800C07A0 000BD6E0  4B F6 D7 7D */ bl dComIfGp_getSelectItem
+/* 800C07A0 000BD6E0  4B F6 D7 7D */ bl dComIfGp_getSelectItem__Fi
 /* 800C07A4 000BD6E4  54 7F 06 3E */ clrlwi r31, r3, 0x18
 /* 800C07A8 000BD6E8  9B BC 2F 9C */ stb r29, 0x2f9c(r28)
 /* 800C07AC 000BD6EC  2C 1E 00 0F */ cmpwi r30, 0xf
@@ -18,7 +18,7 @@
 /* 800C07C0 000BD700  38 C0 00 00 */ li r6, 0
 /* 800C07C4 000BD704  38 E0 00 00 */ li r7, 0
 /* 800C07C8 000BD708  39 00 00 00 */ li r8, 0
-/* 800C07CC 000BD70C  48 05 12 D1 */ bl daAlink_c_NS_procGrassWhistleWaitInit
+/* 800C07CC 000BD70C  48 05 12 D1 */ bl procGrassWhistleWaitInit__9daAlink_cFiiisP4cXyz
 /* 800C07D0 000BD710  48 00 02 B0 */ b lbl_800C0A80
 lbl_800C07D4:
 /* 800C07D4 000BD714  2C 1E 00 03 */ cmpwi r30, 3
@@ -36,7 +36,7 @@ lbl_800C07F8:
 /* 800C07FC 000BD73C  41 82 00 14 */ beq lbl_800C0810
 /* 800C0800 000BD740  7F 83 E3 78 */ mr r3, r28
 /* 800C0804 000BD744  7F E4 FB 78 */ mr r4, r31
-/* 800C0808 000BD748  48 03 21 2D */ bl daAlink_c_NS_procHorseBottleDrinkInit
+/* 800C0808 000BD748  48 03 21 2D */ bl procHorseBottleDrinkInit__9daAlink_cFUs
 /* 800C080C 000BD74C  48 00 02 74 */ b lbl_800C0A80
 lbl_800C0810:
 /* 800C0810 000BD750  7F 83 E3 78 */ mr r3, r28
@@ -48,12 +48,12 @@ lbl_800C0810:
 /* 800C0828 000BD768  41 82 00 14 */ beq lbl_800C083C
 /* 800C082C 000BD76C  7F 83 E3 78 */ mr r3, r28
 /* 800C0830 000BD770  7F E4 FB 78 */ mr r4, r31
-/* 800C0834 000BD774  48 03 6B D1 */ bl daAlink_c_NS_procCanoeBottleDrinkInit
+/* 800C0834 000BD774  48 03 6B D1 */ bl procCanoeBottleDrinkInit__9daAlink_cFUs
 /* 800C0838 000BD778  48 00 02 48 */ b lbl_800C0A80
 lbl_800C083C:
 /* 800C083C 000BD77C  7F 83 E3 78 */ mr r3, r28
 /* 800C0840 000BD780  7F E4 FB 78 */ mr r4, r31
-/* 800C0844 000BD784  48 04 ED 09 */ bl daAlink_c_NS_procBottleDrinkInit
+/* 800C0844 000BD784  48 04 ED 09 */ bl procBottleDrinkInit__9daAlink_cFUs
 /* 800C0848 000BD788  48 00 02 38 */ b lbl_800C0A80
 lbl_800C084C:
 /* 800C084C 000BD78C  2C 1E 00 08 */ cmpwi r30, 8
@@ -70,7 +70,7 @@ lbl_800C0870:
 /* 800C0870 000BD7B0  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 800C0874 000BD7B4  41 82 00 10 */ beq lbl_800C0884
 /* 800C0878 000BD7B8  7F 83 E3 78 */ mr r3, r28
-/* 800C087C 000BD7BC  48 03 22 D1 */ bl daAlink_c_NS_procHorseKandelaarPourInit
+/* 800C087C 000BD7BC  48 03 22 D1 */ bl procHorseKandelaarPourInit__9daAlink_cFv
 /* 800C0880 000BD7C0  48 00 02 00 */ b lbl_800C0A80
 lbl_800C0884:
 /* 800C0884 000BD7C4  7F 83 E3 78 */ mr r3, r28
@@ -81,49 +81,49 @@ lbl_800C0884:
 /* 800C0898 000BD7D8  28 03 00 00 */ cmplwi r3, 0
 /* 800C089C 000BD7DC  41 82 00 10 */ beq lbl_800C08AC
 /* 800C08A0 000BD7E0  7F 83 E3 78 */ mr r3, r28
-/* 800C08A4 000BD7E4  48 03 6D 19 */ bl daAlink_c_NS_procCanoeKandelaarPourInit
+/* 800C08A4 000BD7E4  48 03 6D 19 */ bl procCanoeKandelaarPourInit__9daAlink_cFv
 /* 800C08A8 000BD7E8  48 00 01 D8 */ b lbl_800C0A80
 lbl_800C08AC:
 /* 800C08AC 000BD7EC  7F 83 E3 78 */ mr r3, r28
-/* 800C08B0 000BD7F0  48 05 0D CD */ bl daAlink_c_NS_procKandelaarPourInit
+/* 800C08B0 000BD7F0  48 05 0D CD */ bl procKandelaarPourInit__9daAlink_cFv
 /* 800C08B4 000BD7F4  48 00 01 CC */ b lbl_800C0A80
 lbl_800C08B8:
 /* 800C08B8 000BD7F8  2C 1E 00 07 */ cmpwi r30, 7
 /* 800C08BC 000BD7FC  40 82 00 10 */ bne lbl_800C08CC
 /* 800C08C0 000BD800  7F 83 E3 78 */ mr r3, r28
-/* 800C08C4 000BD804  48 03 70 C5 */ bl daAlink_c_NS_procFishingFoodInit
+/* 800C08C4 000BD804  48 03 70 C5 */ bl procFishingFoodInit__9daAlink_cFv
 /* 800C08C8 000BD808  48 00 01 B8 */ b lbl_800C0A80
 lbl_800C08CC:
 /* 800C08CC 000BD80C  2C 1E 00 01 */ cmpwi r30, 1
 /* 800C08D0 000BD810  40 82 00 10 */ bne lbl_800C08E0
 /* 800C08D4 000BD814  7F 83 E3 78 */ mr r3, r28
-/* 800C08D8 000BD818  48 02 27 71 */ bl daAlink_c_NS_procBootsEquipInit
+/* 800C08D8 000BD818  48 02 27 71 */ bl procBootsEquipInit__9daAlink_cFv
 /* 800C08DC 000BD81C  48 00 01 A4 */ b lbl_800C0A80
 lbl_800C08E0:
 /* 800C08E0 000BD820  2C 1E 00 02 */ cmpwi r30, 2
 /* 800C08E4 000BD824  40 82 00 14 */ bne lbl_800C08F8
 /* 800C08E8 000BD828  7F 83 E3 78 */ mr r3, r28
 /* 800C08EC 000BD82C  38 80 00 01 */ li r4, 1
-/* 800C08F0 000BD830  48 02 1C 91 */ bl daAlink_c_NS_setHeavyBoots
+/* 800C08F0 000BD830  48 02 1C 91 */ bl setHeavyBoots__9daAlink_cFi
 /* 800C08F4 000BD834  48 00 01 8C */ b lbl_800C0A80
 lbl_800C08F8:
 /* 800C08F8 000BD838  2C 1E 00 04 */ cmpwi r30, 4
 /* 800C08FC 000BD83C  40 82 00 10 */ bne lbl_800C090C
 /* 800C0900 000BD840  7F 83 E3 78 */ mr r3, r28
-/* 800C0904 000BD844  48 04 D3 61 */ bl daAlink_c_NS_procSpinnerReadyInit
+/* 800C0904 000BD844  48 04 D3 61 */ bl procSpinnerReadyInit__9daAlink_cFv
 /* 800C0908 000BD848  48 00 01 78 */ b lbl_800C0A80
 lbl_800C090C:
 /* 800C090C 000BD84C  2C 1E 00 05 */ cmpwi r30, 5
 /* 800C0910 000BD850  40 82 00 10 */ bne lbl_800C0920
 /* 800C0914 000BD854  7F 83 E3 78 */ mr r3, r28
-/* 800C0918 000BD858  48 05 E5 7D */ bl daAlink_c_NS_procDungeonWarpReadyInit
+/* 800C0918 000BD858  48 05 E5 7D */ bl procDungeonWarpReadyInit__9daAlink_cFv
 /* 800C091C 000BD85C  48 00 01 64 */ b lbl_800C0A80
 lbl_800C0920:
 /* 800C0920 000BD860  2C 1E 00 06 */ cmpwi r30, 6
 /* 800C0924 000BD864  40 82 00 14 */ bne lbl_800C0938
 /* 800C0928 000BD868  7F 83 E3 78 */ mr r3, r28
 /* 800C092C 000BD86C  7F E4 FB 78 */ mr r4, r31
-/* 800C0930 000BD870  48 04 ED C5 */ bl daAlink_c_NS_procBottleOpenInit
+/* 800C0930 000BD870  48 04 ED C5 */ bl procBottleOpenInit__9daAlink_cFUs
 /* 800C0934 000BD874  48 00 01 4C */ b lbl_800C0A80
 lbl_800C0938:
 /* 800C0938 000BD878  2C 1E 00 0D */ cmpwi r30, 0xd
@@ -131,20 +131,20 @@ lbl_800C0938:
 /* 800C0940 000BD880  7F 83 E3 78 */ mr r3, r28
 /* 800C0944 000BD884  38 80 00 00 */ li r4, 0
 /* 800C0948 000BD888  38 A0 00 00 */ li r5, 0
-/* 800C094C 000BD88C  48 04 F2 ED */ bl daAlink_c_NS_procBottleSwingInit
+/* 800C094C 000BD88C  48 04 F2 ED */ bl procBottleSwingInit__9daAlink_cFP10fopAc_ac_ci
 /* 800C0950 000BD890  48 00 01 30 */ b lbl_800C0A80
 lbl_800C0954:
 /* 800C0954 000BD894  2C 1E 00 0E */ cmpwi r30, 0xe
 /* 800C0958 000BD898  40 82 00 14 */ bne lbl_800C096C
 /* 800C095C 000BD89C  7F 83 E3 78 */ mr r3, r28
 /* 800C0960 000BD8A0  7F E4 FB 78 */ mr r4, r31
-/* 800C0964 000BD8A4  48 05 DA E5 */ bl daAlink_c_NS_procNotUseItemInit
+/* 800C0964 000BD8A4  48 05 DA E5 */ bl procNotUseItemInit__9daAlink_cFi
 /* 800C0968 000BD8A8  48 00 01 18 */ b lbl_800C0A80
 lbl_800C096C:
 /* 800C096C 000BD8AC  2C 1E 00 09 */ cmpwi r30, 9
 /* 800C0970 000BD8B0  40 82 00 5C */ bne lbl_800C09CC
 /* 800C0974 000BD8B4  7F 83 E3 78 */ mr r3, r28
-/* 800C0978 000BD8B8  48 00 E4 0D */ bl daAlink_c_NS_procCoSubjectivityInit
+/* 800C0978 000BD8B8  48 00 E4 0D */ bl procCoSubjectivityInit__9daAlink_cFv
 /* 800C097C 000BD8BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800C0980 000BD8C0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C0984 000BD8C4  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -170,13 +170,13 @@ lbl_800C09CC:
 /* 800C09D0 000BD910  40 82 00 14 */ bne lbl_800C09E4
 /* 800C09D4 000BD914  7F 83 E3 78 */ mr r3, r28
 /* 800C09D8 000BD918  38 80 00 01 */ li r4, 1
-/* 800C09DC 000BD91C  48 02 6C 11 */ bl daAlink_c_NS_procPickPutInit
+/* 800C09DC 000BD91C  48 02 6C 11 */ bl procPickPutInit__9daAlink_cFi
 /* 800C09E0 000BD920  48 00 00 A0 */ b lbl_800C0A80
 lbl_800C09E4:
 /* 800C09E4 000BD924  2C 1E 00 0B */ cmpwi r30, 0xb
 /* 800C09E8 000BD928  40 82 00 10 */ bne lbl_800C09F8
 /* 800C09EC 000BD92C  7F 83 E3 78 */ mr r3, r28
-/* 800C09F0 000BD930  48 04 FE 51 */ bl daAlink_c_NS_offKandelaarModel
+/* 800C09F0 000BD930  48 04 FE 51 */ bl offKandelaarModel__9daAlink_cFv
 /* 800C09F4 000BD934  48 00 00 8C */ b lbl_800C0A80
 lbl_800C09F8:
 /* 800C09F8 000BD938  2C 1E 00 0C */ cmpwi r30, 0xc
@@ -185,7 +185,7 @@ lbl_800C09F8:
 /* 800C0A04 000BD944  B0 1C 2F DE */ sth r0, 0x2fde(r28)
 /* 800C0A08 000BD948  7F 83 E3 78 */ mr r3, r28
 /* 800C0A0C 000BD94C  7F E4 FB 78 */ mr r4, r31
-/* 800C0A10 000BD950  4B FF 8C 31 */ bl daAlink_c_NS_itemEquip
+/* 800C0A10 000BD950  4B FF 8C 31 */ bl itemEquip__9daAlink_cFUs
 /* 800C0A14 000BD954  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800C0A18 000BD958  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800C0A1C 000BD95C  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -193,11 +193,11 @@ lbl_800C09F8:
 /* 800C0A24 000BD964  41 82 00 5C */ beq lbl_800C0A80
 /* 800C0A28 000BD968  7F 83 E3 78 */ mr r3, r28
 /* 800C0A2C 000BD96C  A0 9C 2F DE */ lhz r4, 0x2fde(r28)
-/* 800C0A30 000BD970  48 01 DD 51 */ bl daAlink_c_NS_checkBowAndSlingItem
+/* 800C0A30 000BD970  48 01 DD 51 */ bl checkBowAndSlingItem__9daAlink_cFi
 /* 800C0A34 000BD974  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0A38 000BD978  40 82 00 28 */ bne lbl_800C0A60
 /* 800C0A3C 000BD97C  A0 7C 2F DE */ lhz r3, 0x2fde(r28)
-/* 800C0A40 000BD980  48 09 E1 79 */ bl daPy_py_c_NS_checkHookshotItem
+/* 800C0A40 000BD980  48 09 E1 79 */ bl checkHookshotItem__9daPy_py_cFi
 /* 800C0A44 000BD984  2C 03 00 00 */ cmpwi r3, 0
 /* 800C0A48 000BD988  40 82 00 18 */ bne lbl_800C0A60
 /* 800C0A4C 000BD98C  A0 1C 2F DE */ lhz r0, 0x2fde(r28)
@@ -207,13 +207,13 @@ lbl_800C09F8:
 /* 800C0A5C 000BD99C  40 82 00 24 */ bne lbl_800C0A80
 lbl_800C0A60:
 /* 800C0A60 000BD9A0  7F 83 E3 78 */ mr r3, r28
-/* 800C0A64 000BD9A4  4B FF 9C 3D */ bl daAlink_c_NS_commonChangeItem
+/* 800C0A64 000BD9A4  4B FF 9C 3D */ bl commonChangeItem__9daAlink_cFv
 /* 800C0A68 000BD9A8  7F 83 E3 78 */ mr r3, r28
 /* 800C0A6C 000BD9AC  38 80 00 02 */ li r4, 2
 /* 800C0A70 000BD9B0  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800C0A74 000BD9B4  4B FE CC B1 */ bl daAlink_c_NS_resetUpperAnime
+/* 800C0A74 000BD9B4  4B FE CC B1 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800C0A78 000BD9B8  7F 83 E3 78 */ mr r3, r28
-/* 800C0A7C 000BD9BC  4B FF 64 AD */ bl daAlink_c_NS_checkItemActionInitStart
+/* 800C0A7C 000BD9BC  4B FF 64 AD */ bl checkItemActionInitStart__9daAlink_cFv
 lbl_800C0A80:
 /* 800C0A80 000BD9C0  38 60 00 01 */ li r3, 1
 /* 800C0A84 000BD9C4  39 61 00 20 */ addi r11, r1, 0x20

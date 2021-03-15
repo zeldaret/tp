@@ -4,7 +4,7 @@
 /* 8001FFD0 0001CF10  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 8001FFD4 0001CF14  93 C1 00 18 */ stw r30, 0x18(r1)
 /* 8001FFD8 0001CF18  7C 7E 1B 78 */ mr r30, r3
-/* 8001FFDC 0001CF1C  48 21 80 BD */ bl dMsgObject_c_NS_endFlowGroup
+/* 8001FFDC 0001CF1C  48 21 80 BD */ bl endFlowGroup__12dMsgObject_cFv
 /* 8001FFE0 0001CF20  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8001FFE4 0001CF24  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 8001FFE8 0001CF28  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
@@ -13,7 +13,7 @@
 /* 8001FFF4 0001CF34  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8001FFF8 0001CF38  38 63 01 88 */ addi r3, r3, lbl_80430188@l
 /* 8001FFFC 0001CF3C  80 63 00 1C */ lwz r3, 0x1c(r3)
-/* 80020000 0001CF40  48 1F F6 ED */ bl dMeter2_c_NS_emphasisButtonDelete
+/* 80020000 0001CF40  48 1F F6 ED */ bl emphasisButtonDelete__9dMeter2_cFv
 lbl_80020004:
 /* 80020004 0001CF44  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
 /* 80020008 0001CF48  28 00 00 00 */ cmplwi r0, 0
@@ -34,7 +34,7 @@ lbl_80020038:
 /* 80020040 0001CF80  D0 01 00 0C */ stfs f0, 0xc(r1)
 /* 80020044 0001CF84  D0 01 00 08 */ stfs f0, 8(r1)
 /* 80020048 0001CF88  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
-/* 8002004C 0001CF8C  4B FF F9 D9 */ bl fopMsgM_SearchByID
+/* 8002004C 0001CF8C  4B FF F9 D9 */ bl fopMsgM_SearchByID__FUi
 /* 80020050 0001CF90  28 03 00 00 */ cmplwi r3, 0
 /* 80020054 0001CF94  41 82 00 50 */ beq lbl_800200A4
 /* 80020058 0001CF98  A0 03 00 F8 */ lhz r0, 0xf8(r3)
@@ -53,7 +53,7 @@ lbl_80020038:
 /* 8002008C 0001CFCC  90 03 00 DC */ stw r0, 0xdc(r3)
 /* 80020090 0001CFD0  7F C4 F3 78 */ mr r4, r30
 /* 80020094 0001CFD4  38 A0 00 00 */ li r5, 0
-/* 80020098 0001CFD8  48 21 3D D9 */ bl dMsgObject_c_NS_setMessageIndexDemo
+/* 80020098 0001CFD8  48 21 3D D9 */ bl setMessageIndexDemo__12dMsgObject_cFUlb
 /* 8002009C 0001CFDC  80 6D 80 48 */ lwz r3, lbl_804505C8-_SDA_BASE_(r13)
 /* 800200A0 0001CFE0  48 00 00 08 */ b lbl_800200A8
 lbl_800200A4:

@@ -1,19 +1,19 @@
 #include "JSystem/JStudio/stb.h"
 
 extern "C" {
-int func_8036608C(const void*, const void*, u32);
+int memcmp(const void*, const void*, u32);
 void process_sequence___Q37JStudio3stb7TObjectFv();
 void process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl();
-void JStudio_NS_stb_NS_data_NS_TParse_TParagraph_NS_getData();
+void getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData();
 void setFlag_operation__Q37JStudio3stb7TObjectFUci();
-void JStudio_NS_stb_NS_data_NS_TParse_TSequence_NS_getData();
-void JGadget_NS_TNodeLinkList_NS_Erase();
+void getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData();
+void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
 void Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
 void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject();
 void std_NS_find_if_X2_();
 void reset__Q37JStudio3stb7TObjectFPCv();
 void forward__Q37JStudio3stb7TObjectFUl();
-void JStudio_NS_object_NS_TIDData_NS_isEqual();
+void isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();
 }
 
 extern u8 lbl_804554D0;            // 0xFF

@@ -8,7 +8,7 @@
 /* 802033B8 002002F8  7C BD 2B 78 */ mr r29, r5
 /* 802033BC 002002FC  54 80 04 63 */ rlwinm. r0, r4, 0, 0x11, 0x11
 /* 802033C0 00200300  40 82 00 98 */ bne lbl_80203458
-/* 802033C4 00200304  48 03 4E 69 */ bl dMsgObject_c_NS_getStatus
+/* 802033C4 00200304  48 03 4E 69 */ bl getStatus__12dMsgObject_cFv
 /* 802033C8 00200308  54 60 04 3E */ clrlwi r0, r3, 0x10
 /* 802033CC 0020030C  20 60 00 01 */ subfic r3, r0, 1
 /* 802033D0 00200310  30 03 FF FF */ addic r0, r3, -1
@@ -50,14 +50,14 @@ lbl_80203440:
 /* 80203454 00200394  41 82 00 1C */ beq lbl_80203470
 lbl_80203458:
 /* 80203458 00200398  7F C3 F3 78 */ mr r3, r30
-/* 8020345C 0020039C  48 00 3C F1 */ bl dMeterButton_c_NS_setAlphaButtonBAnimeMin
+/* 8020345C 0020039C  48 00 3C F1 */ bl setAlphaButtonBAnimeMin__14dMeterButton_cFv
 /* 80203460 002003A0  A0 1E 04 B0 */ lhz r0, 0x4b0(r30)
 /* 80203464 002003A4  54 00 07 FA */ rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 80203468 002003A8  B0 1E 04 B0 */ sth r0, 0x4b0(r30)
 /* 8020346C 002003AC  48 00 00 20 */ b lbl_8020348C
 lbl_80203470:
 /* 80203470 002003B0  7F C3 F3 78 */ mr r3, r30
-/* 80203474 002003B4  48 00 3D 69 */ bl dMeterButton_c_NS_setAlphaButtonBAnimeMax
+/* 80203474 002003B4  48 00 3D 69 */ bl setAlphaButtonBAnimeMax__14dMeterButton_cFv
 /* 80203478 002003B8  A0 1E 04 B0 */ lhz r0, 0x4b0(r30)
 /* 8020347C 002003BC  60 00 00 02 */ ori r0, r0, 2
 /* 80203480 002003C0  B0 1E 04 B0 */ sth r0, 0x4b0(r30)

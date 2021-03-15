@@ -3,7 +3,7 @@
 /* 80100D40 000FDC80  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80100D44 000FDC84  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80100D48 000FDC88  7C 7F 1B 78 */ mr r31, r3
-/* 80100D4C 000FDC8C  4B FF FA 25 */ bl daAlink_c_NS_commonRoofHangProc
+/* 80100D4C 000FDC8C  4B FF FA 25 */ bl commonRoofHangProc__9daAlink_cFv
 /* 80100D50 000FDC90  2C 03 00 00 */ cmpwi r3, 0
 /* 80100D54 000FDC94  41 82 00 0C */ beq lbl_80100D60
 /* 80100D58 000FDC98  38 60 00 01 */ li r3, 1
@@ -20,7 +20,7 @@ lbl_80100D78:
 /* 80100D7C 000FDCBC  2C 00 00 00 */ cmpwi r0, 0
 /* 80100D80 000FDCC0  40 82 00 0C */ bne lbl_80100D8C
 /* 80100D84 000FDCC4  7F E3 FB 78 */ mr r3, r31
-/* 80100D88 000FDCC8  4B FF FB 65 */ bl daAlink_c_NS_checkNextActionRoofHang
+/* 80100D88 000FDCC8  4B FF FB 65 */ bl checkNextActionRoofHang__9daAlink_cFv
 lbl_80100D8C:
 /* 80100D8C 000FDCCC  38 60 00 01 */ li r3, 1
 lbl_80100D90:

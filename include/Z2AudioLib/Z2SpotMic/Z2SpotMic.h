@@ -2,13 +2,13 @@
 #define Z2SPOTMIC_H_
 
 extern "C" {
-void Z2SpotMic(void);
-void Z2SpotMic_NS_calcMicDist(void);
-void Z2SpotMic_NS_calcMicPriority(void);
-void Z2SpotMic_NS_calcMicVolume(void);
-void Z2SpotMic_NS_calcVolumeFactor(void);
-void Z2SpotMic_NS_clearMicState(void);
-void Z2SpotMic_NS_setMicState(void);
+void __ct__9Z2SpotMicFv(void);
+void calcMicDist__9Z2SpotMicFP9Z2Audible(void);
+void calcMicPriority__9Z2SpotMicFf(void);
+void calcMicVolume__9Z2SpotMicFfif(void);
+void calcVolumeFactor__9Z2SpotMicFi(void);
+void clearMicState__9Z2SpotMicFi(void);
+void setMicState__9Z2SpotMicFP13Z2AudioCamerai(void);
 }
 
 #endif  // Z2SPOTMIC_H_

@@ -8,7 +8,7 @@
 /* 8007862C 0007556C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80078630 00075570  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80078634 00075574  7C 7F 1B 78 */	mr r31, r3
-/* 80078638 00075578  4B FA 05 2D */	bl fopAc_ac_c_NS_ctor
+/* 80078638 00075578  4B FA 05 2D */	bl __ct__10fopAc_ac_cFv
 /* 8007863C 0007557C  3C 60 80 3B */	lis r3, lbl_803AB9A0@ha
 /* 80078640 00075580  38 03 B9 A0 */	addi r0, r3, lbl_803AB9A0@l
 /* 80078644 00075584  90 1F 05 9C */	stw r0, 0x59c(r31)
@@ -20,12 +20,11 @@
 /* 8007865C 0007559C  7C 08 03 A6 */	mtlr r0
 /* 80078660 000755A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80078664 000755A4  4E 80 00 20 */	blr 
-.global CheckCreateHeap
-CheckCreateHeap:
+CheckCreateHeap__FP10fopAc_ac_c:
 /* 80078668 000755A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8007866C 000755AC  7C 08 02 A6 */	mflr r0
 /* 80078670 000755B0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80078674 000755B4  48 00 00 55 */	bl dBgS_MoveBgActor_NS_MoveBGCreateHeap
+/* 80078674 000755B4  48 00 00 55 */	bl MoveBGCreateHeap__16dBgS_MoveBgActorFv
 /* 80078678 000755B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8007867C 000755BC  7C 08 03 A6 */	mtlr r0
 /* 80078680 000755C0  38 21 00 10 */	addi r1, r1, 0x10
@@ -47,8 +46,8 @@ CheckCreateHeap:
 /* 800786C0 00075600  38 60 00 01 */	li r3, 1
 /* 800786C4 00075604  4E 80 00 20 */	blr 
 
-.global dBgS_MoveBgActor_NS_MoveBGCreateHeap
-dBgS_MoveBgActor_NS_MoveBGCreateHeap:
+.global MoveBGCreateHeap__16dBgS_MoveBgActorFv
+MoveBGCreateHeap__16dBgS_MoveBgActorFv:
 /* 800786C8 00075608  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800786CC 0007560C  7C 08 02 A6 */	mflr r0
 /* 800786D0 00075610  90 01 00 14 */	stw r0, 0x14(r1)
@@ -75,7 +74,7 @@ lbl_80078718:
 /* 8007871C 0007565C  48 25 65 31 */	bl __nw__FUl
 /* 80078720 00075660  7C 60 1B 79 */	or. r0, r3, r3
 /* 80078724 00075664  41 82 00 0C */	beq lbl_80078730
-/* 80078728 00075668  48 00 32 49 */	bl dBgW
+/* 80078728 00075668  48 00 32 49 */	bl __ct__4dBgWFv
 /* 8007872C 0007566C  7C 60 1B 78 */	mr r0, r3
 lbl_80078730:
 /* 80078730 00075670  90 1F 05 68 */	stw r0, 0x568(r31)
@@ -89,12 +88,12 @@ lbl_80078730:
 /* 80078750 00075690  3C A5 00 02 */	addis r5, r5, 2
 /* 80078754 00075694  38 C0 00 80 */	li r6, 0x80
 /* 80078758 00075698  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8007875C 0007569C  4B FC 3B 91 */	bl dRes_control_c_NS_getRes
+/* 8007875C 0007569C  4B FC 3B 91 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80078760 000756A0  7C 64 1B 78 */	mr r4, r3
 /* 80078764 000756A4  80 7F 05 68 */	lwz r3, 0x568(r31)
 /* 80078768 000756A8  38 A0 00 01 */	li r5, 1
 /* 8007876C 000756AC  38 DF 05 6C */	addi r6, r31, 0x56c
-/* 80078770 000756B0  48 00 17 C9 */	bl cBgW_NS_Set
+/* 80078770 000756B0  48 00 17 C9 */	bl Set__4cBgWFP6cBgD_tUlPA3_A4_f
 /* 80078774 000756B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80078778 000756B8  40 82 00 1C */	bne lbl_80078794
 /* 8007877C 000756BC  80 0D 89 F8 */	lwz r0, lbl_80450F78-_SDA_BASE_(r13)
@@ -137,11 +136,11 @@ lbl_800787A8:
 /* 80078804 00075744  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80078808 00075748  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8007880C 0007574C  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
-/* 80078810 00075750  4B F9 3C 25 */	bl mDoMtx_YrotM
+/* 80078810 00075750  4B F9 3C 25 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80078814 00075754  C0 3F 04 EC */	lfs f1, 0x4ec(r31)
 /* 80078818 00075758  C0 5F 04 F0 */	lfs f2, 0x4f0(r31)
 /* 8007881C 0007575C  C0 7F 04 F4 */	lfs f3, 0x4f4(r31)
-/* 80078820 00075760  4B F9 46 19 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80078820 00075760  4B F9 46 19 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80078824 00075764  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80078828 00075768  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8007882C 0007576C  38 9F 05 6C */	addi r4, r31, 0x56c
@@ -156,10 +155,8 @@ lbl_80078844:
 /* 80078848 00075788  93 8D 89 F4 */	stw r28, lbl_80450F74-_SDA_BASE_(r13)
 /* 8007884C 0007578C  93 AD 89 F8 */	stw r29, lbl_80450F78-_SDA_BASE_(r13)
 /* 80078850 00075790  7F E3 FB 78 */	mr r3, r31
-.global CheckCreateHeap
-/* 80078854 00075794  3C 80 80 08 */	lis r4, CheckCreateHeap@ha
-.global CheckCreateHeap
-/* 80078858 00075798  38 84 86 68 */	addi r4, r4, CheckCreateHeap@l
+/* 80078854 00075794  3C 80 80 08 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha
+/* 80078858 00075798  38 84 86 68 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l
 /* 8007885C 0007579C  7F C5 F3 78 */	mr r5, r30
 /* 80078860 000757A0  4B FA 1C 51 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80078864 000757A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -174,7 +171,7 @@ lbl_80078874:
 /* 80078884 000757C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80078888 000757C8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8007888C 000757CC  7F E5 FB 78 */	mr r5, r31
-/* 80078890 000757D0  4B FF C1 79 */	bl dBgS_NS_Regist
+/* 80078890 000757D0  4B FF C1 79 */	bl Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
 /* 80078894 000757D4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80078898 000757D8  41 82 00 0C */	beq lbl_800788A4
 /* 8007889C 000757DC  38 60 00 05 */	li r3, 5
@@ -216,7 +213,7 @@ lbl_800788C4:
 /* 80078924 00075864  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80078928 00075868  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8007892C 0007586C  80 9E 05 68 */	lwz r4, 0x568(r30)
-/* 80078930 00075870  4B FF B9 21 */	bl cBgS_NS_Release
+/* 80078930 00075870  4B FF B9 21 */	bl Release__4cBgSFP9dBgW_Base
 lbl_80078934:
 /* 80078934 00075874  7F E3 FB 78 */	mr r3, r31
 /* 80078938 00075878  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -251,11 +248,11 @@ lbl_80078934:
 /* 800789AC 000758EC  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 800789B0 000758F0  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 800789B4 000758F4  A8 9E 04 E6 */	lha r4, 0x4e6(r30)
-/* 800789B8 000758F8  4B F9 3A 7D */	bl mDoMtx_YrotM
+/* 800789B8 000758F8  4B F9 3A 7D */	bl mDoMtx_YrotM__FPA4_fs
 /* 800789BC 000758FC  C0 3E 04 EC */	lfs f1, 0x4ec(r30)
 /* 800789C0 00075900  C0 5E 04 F0 */	lfs f2, 0x4f0(r30)
 /* 800789C4 00075904  C0 7E 04 F4 */	lfs f3, 0x4f4(r30)
-/* 800789C8 00075908  4B F9 44 71 */	bl mDoMtx_stack_c_NS_scaleM
+/* 800789C8 00075908  4B F9 44 71 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 800789CC 0007590C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 800789D0 00075910  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 800789D4 00075914  38 9E 05 6C */	addi r4, r30, 0x56c
@@ -268,7 +265,7 @@ lbl_800789E8:
 /* 800789E8 00075928  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 800789EC 0007592C  28 03 00 00 */	cmplwi r3, 0
 /* 800789F0 00075930  41 82 00 08 */	beq lbl_800789F8
-/* 800789F4 00075934  48 00 2F CD */	bl dBgW_NS_Move
+/* 800789F4 00075934  48 00 2F CD */	bl Move__4dBgWFv
 lbl_800789F8:
 /* 800789F8 00075938  7F E3 FB 78 */	mr r3, r31
 /* 800789FC 0007593C  83 E1 00 1C */	lwz r31, 0x1c(r1)

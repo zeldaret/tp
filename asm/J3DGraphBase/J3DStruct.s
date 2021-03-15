@@ -3,8 +3,8 @@
 .section .text, "ax" # 803256c4
 
 
-.global J3DLightInfo_NS___as
-J3DLightInfo_NS___as:
+.global __as__12J3DLightInfoFRC12J3DLightInfo
+__as__12J3DLightInfoFRC12J3DLightInfo:
 /* 803256C4 00322604  E0 44 00 00 */	psq_l f2, 0(r4), 0, qr0
 /* 803256C8 00322608  E0 24 00 08 */	psq_l f1, 8(r4), 0, qr0
 /* 803256CC 0032260C  E0 04 00 10 */	psq_l f0, 16(r4), 0, qr0
@@ -27,8 +27,8 @@ J3DLightInfo_NS___as:
 /* 80325710 00322650  F0 03 00 2C */	psq_st f0, 44(r3), 0, qr0
 /* 80325714 00322654  4E 80 00 20 */	blr 
 
-.global J3DTexMtxInfo_NS___as
-J3DTexMtxInfo_NS___as:
+.global __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo
+__as__13J3DTexMtxInfoFRC13J3DTexMtxInfo:
 /* 80325718 00322658  88 04 00 00 */	lbz r0, 0(r4)
 /* 8032571C 0032265C  98 03 00 00 */	stb r0, 0(r3)
 /* 80325720 00322660  88 04 00 01 */	lbz r0, 1(r4)
@@ -61,8 +61,8 @@ J3DTexMtxInfo_NS___as:
 /* 8032578C 003226CC  F0 03 00 5C */	psq_st f0, 92(r3), 0, qr0
 /* 80325790 003226D0  4E 80 00 20 */	blr 
 
-.global J3DTexMtxInfo_NS_setEffectMtx
-J3DTexMtxInfo_NS_setEffectMtx:
+.global setEffectMtx__13J3DTexMtxInfoFPA4_f
+setEffectMtx__13J3DTexMtxInfoFPA4_f:
 /* 80325794 003226D4  E0 A4 00 00 */	psq_l f5, 0(r4), 0, qr0
 /* 80325798 003226D8  E0 84 00 08 */	psq_l f4, 8(r4), 0, qr0
 /* 8032579C 003226DC  E0 64 00 10 */	psq_l f3, 16(r4), 0, qr0
@@ -82,8 +82,8 @@ J3DTexMtxInfo_NS_setEffectMtx:
 /* 803257D4 00322714  D0 03 00 60 */	stfs f0, 0x60(r3)
 /* 803257D8 00322718  4E 80 00 20 */	blr 
 
-.global J3DIndTexMtxInfo_NS___as
-J3DIndTexMtxInfo_NS___as:
+.global __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo
+__as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo:
 /* 803257DC 0032271C  E0 44 00 00 */	psq_l f2, 0(r4), 0, qr0
 /* 803257E0 00322720  E0 24 00 08 */	psq_l f1, 8(r4), 0, qr0
 /* 803257E4 00322724  E0 04 00 10 */	psq_l f0, 16(r4), 0, qr0
@@ -94,8 +94,8 @@ J3DIndTexMtxInfo_NS___as:
 /* 803257F8 00322738  98 03 00 18 */	stb r0, 0x18(r3)
 /* 803257FC 0032273C  4E 80 00 20 */	blr 
 
-.global J3DFogInfo_NS___as
-J3DFogInfo_NS___as:
+.global __as__10J3DFogInfoFRC10J3DFogInfo
+__as__10J3DFogInfoFRC10J3DFogInfo:
 /* 80325800 00322740  88 04 00 00 */	lbz r0, 0(r4)
 /* 80325804 00322744  98 03 00 00 */	stb r0, 0(r3)
 /* 80325808 00322748  88 04 00 01 */	lbz r0, 1(r4)
@@ -129,8 +129,8 @@ lbl_80325864:
 /* 80325874 003227B4  42 00 FF F0 */	bdnz lbl_80325864
 /* 80325878 003227B8  4E 80 00 20 */	blr 
 
-.global J3DNBTScaleInfo_NS___as
-J3DNBTScaleInfo_NS___as:
+.global __as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo
+__as__15J3DNBTScaleInfoFRC15J3DNBTScaleInfo:
 /* 8032587C 003227BC  88 04 00 00 */	lbz r0, 0(r4)
 /* 80325880 003227C0  98 03 00 00 */	stb r0, 0(r3)
 /* 80325884 003227C4  C0 04 00 04 */	lfs f0, 4(r4)

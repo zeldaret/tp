@@ -2,7 +2,7 @@
 #define JAISTREAMDATAMGR_H_
 
 extern "C" {
-void JAIStreamDataMgr_NS_dtor(void);
+void __dt__16JAIStreamDataMgrFv(void);
 }
 
 #endif  // JAISTREAMDATAMGR_H_

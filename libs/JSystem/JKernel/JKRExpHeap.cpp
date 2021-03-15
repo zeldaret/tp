@@ -28,7 +28,7 @@ void initArena__7JKRHeapFPPcPUli(void);
 void initiate__Q210JKRExpHeap9CMemBlockFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockUlUcUc(
     void);
 void joinTwoBlocks__10JKRExpHeapFPQ210JKRExpHeap9CMemBlock(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void JUTReportConsole_f(const char*, ...);
 void JUTReportConsole(const char*);
 void JUTWarningConsole_f(const char*, ...);

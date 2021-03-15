@@ -38,7 +38,7 @@ lbl_800C3FD0:
 /* 800C3FEC 000C0F2C  B0 1F 30 0C */ sth r0, 0x300c(r31)
 lbl_800C3FF0:
 /* 800C3FF0 000C0F30  7F E3 FB 78 */ mr r3, r31
-/* 800C3FF4 000C0F34  4B FF 34 C1 */ bl daAlink_c_NS_checkUpperItemActionFly
+/* 800C3FF4 000C0F34  4B FF 34 C1 */ bl checkUpperItemActionFly__9daAlink_cFv
 /* 800C3FF8 000C0F38  2C 03 00 00 */ cmpwi r3, 0
 /* 800C3FFC 000C0F3C  41 82 00 0C */ beq lbl_800C4008
 /* 800C4000 000C0F40  38 60 00 01 */ li r3, 1
@@ -55,28 +55,28 @@ lbl_800C4008:
 /* 800C4028 000C0F68  41 82 00 20 */ beq lbl_800C4048
 /* 800C402C 000C0F6C  7F E3 FB 78 */ mr r3, r31
 /* 800C4030 000C0F70  88 9F 2F 98 */ lbz r4, 0x2f98(r31)
-/* 800C4034 000C0F74  4B FF 51 15 */ bl daAlink_c_NS_checkSideRollAction
+/* 800C4034 000C0F74  4B FF 51 15 */ bl checkSideRollAction__9daAlink_cFi
 /* 800C4038 000C0F78  2C 03 00 00 */ cmpwi r3, 0
 /* 800C403C 000C0F7C  41 82 00 0C */ beq lbl_800C4048
 /* 800C4040 000C0F80  38 60 00 01 */ li r3, 1
 /* 800C4044 000C0F84  48 00 00 98 */ b lbl_800C40DC
 lbl_800C4048:
 /* 800C4048 000C0F88  7F E3 FB 78 */ mr r3, r31
-/* 800C404C 000C0F8C  48 00 00 A5 */ bl daAlink_c_NS_procSideStepLandInit
+/* 800C404C 000C0F8C  48 00 00 A5 */ bl procSideStepLandInit__9daAlink_cFv
 /* 800C4050 000C0F90  48 00 00 8C */ b lbl_800C40DC
 lbl_800C4054:
 /* 800C4054 000C0F94  7F E3 FB 78 */ mr r3, r31
-/* 800C4058 000C0F98  4B FF 51 FD */ bl daAlink_c_NS_checkNoUpperAnime
+/* 800C4058 000C0F98  4B FF 51 FD */ bl checkNoUpperAnime__9daAlink_cCFv
 /* 800C405C 000C0F9C  2C 03 00 00 */ cmpwi r3, 0
 /* 800C4060 000C0FA0  41 82 00 28 */ beq lbl_800C4088
 /* 800C4064 000C0FA4  7F E3 FB 78 */ mr r3, r31
-/* 800C4068 000C0FA8  48 00 E0 4D */ bl daAlink_c_NS_checkForceSwordSwing
+/* 800C4068 000C0FA8  48 00 E0 4D */ bl checkForceSwordSwing__9daAlink_cFv
 /* 800C406C 000C0FAC  2C 03 00 00 */ cmpwi r3, 0
 /* 800C4070 000C0FB0  41 82 00 18 */ beq lbl_800C4088
 /* 800C4074 000C0FB4  7F E3 FB 78 */ mr r3, r31
 /* 800C4078 000C0FB8  38 80 00 01 */ li r4, 1
 /* 800C407C 000C0FBC  38 A0 00 00 */ li r5, 0
-/* 800C4080 000C0FC0  48 00 DD 9D */ bl daAlink_c_NS_setCutDash
+/* 800C4080 000C0FC0  48 00 DD 9D */ bl setCutDash__9daAlink_cFii
 /* 800C4084 000C0FC4  48 00 00 44 */ b lbl_800C40C8
 lbl_800C4088:
 /* 800C4088 000C0FC8  80 1F 06 14 */ lwz r0, 0x614(r31)
@@ -93,13 +93,13 @@ lbl_800C4088:
 /* 800C40B4 000C0FF4  7F E3 FB 78 */ mr r3, r31
 /* 800C40B8 000C0FF8  38 80 00 02 */ li r4, 2
 /* 800C40BC 000C0FFC  C0 25 00 64 */ lfs f1, 0x64(r5)
-/* 800C40C0 000C1000  48 00 29 89 */ bl daAlink_c_NS_procFallInit
+/* 800C40C0 000C1000  48 00 29 89 */ bl procFallInit__9daAlink_cFif
 /* 800C40C4 000C1004  48 00 00 18 */ b lbl_800C40DC
 lbl_800C40C8:
 /* 800C40C8 000C1008  38 00 00 01 */ li r0, 1
 /* 800C40CC 000C100C  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800C40D0 000C1010  7F E3 FB 78 */ mr r3, r31
-/* 800C40D4 000C1014  4B FF 58 79 */ bl daAlink_c_NS_checkItemChangeFromButton
+/* 800C40D4 000C1014  4B FF 58 79 */ bl checkItemChangeFromButton__9daAlink_cFv
 /* 800C40D8 000C1018  38 60 00 01 */ li r3, 1
 lbl_800C40DC:
 /* 800C40DC 000C101C  83 E1 00 0C */ lwz r31, 0xc(r1)

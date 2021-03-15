@@ -12,15 +12,15 @@
 /* 8012E6B0 0012B5F0  98 1E 2F CC */ stb r0, 0x2fcc(r30)
 lbl_8012E6B4:
 /* 8012E6B4 0012B5F4  7F C3 F3 78 */ mr r3, r30
-/* 8012E6B8 0012B5F8  4B FF A8 A5 */ bl daAlink_c_NS_setWolfAtnMoveDirection
+/* 8012E6B8 0012B5F8  4B FF A8 A5 */ bl setWolfAtnMoveDirection__9daAlink_cFv
 /* 8012E6BC 0012B5FC  A8 1E 30 10 */ lha r0, 0x3010(r30)
 /* 8012E6C0 0012B600  2C 00 00 00 */ cmpwi r0, 0
 /* 8012E6C4 0012B604  41 82 00 0C */ beq lbl_8012E6D0
 /* 8012E6C8 0012B608  7F C3 F3 78 */ mr r3, r30
-/* 8012E6CC 0012B60C  4B FF DC 3D */ bl daAlink_c_NS_checkWolfAtnDoCharge
+/* 8012E6CC 0012B60C  4B FF DC 3D */ bl checkWolfAtnDoCharge__9daAlink_cFv
 lbl_8012E6D0:
 /* 8012E6D0 0012B610  7F E3 FB 78 */ mr r3, r31
-/* 8012E6D4 0012B614  48 02 FD F9 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8012E6D4 0012B614  48 02 FD F9 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8012E6D8 0012B618  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8012E6DC 0012B61C  41 82 00 38 */ beq lbl_8012E714
 /* 8012E6E0 0012B620  80 1E 06 14 */ lwz r0, 0x614(r30)
@@ -30,12 +30,12 @@ lbl_8012E6D0:
 /* 8012E6F0 0012B630  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012E6F4 0012B634  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012E6F8 0012B638  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8012E6FC 0012B63C  4B F1 9A 81 */ bl dEvent_manager_c_NS_cutEnd
+/* 8012E6FC 0012B63C  4B F1 9A 81 */ bl cutEnd__16dEvent_manager_cFi
 /* 8012E700 0012B640  48 00 00 38 */ b lbl_8012E738
 lbl_8012E704:
 /* 8012E704 0012B644  7F C3 F3 78 */ mr r3, r30
 /* 8012E708 0012B648  38 80 00 00 */ li r4, 0
-/* 8012E70C 0012B64C  4B FF B4 39 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012E70C 0012B64C  4B FF B4 39 */ bl checkNextActionWolf__9daAlink_cFi
 /* 8012E710 0012B650  48 00 00 28 */ b lbl_8012E738
 lbl_8012E714:
 /* 8012E714 0012B654  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -46,7 +46,7 @@ lbl_8012E714:
 /* 8012E728 0012B668  40 81 00 10 */ ble lbl_8012E738
 /* 8012E72C 0012B66C  7F C3 F3 78 */ mr r3, r30
 /* 8012E730 0012B670  38 80 00 01 */ li r4, 1
-/* 8012E734 0012B674  4B FF B4 11 */ bl daAlink_c_NS_checkNextActionWolf
+/* 8012E734 0012B674  4B FF B4 11 */ bl checkNextActionWolf__9daAlink_cFi
 lbl_8012E738:
 /* 8012E738 0012B678  38 60 00 01 */ li r3, 1
 /* 8012E73C 0012B67C  83 E1 00 0C */ lwz r31, 0xc(r1)

@@ -8,7 +8,7 @@
 /* 80192D7C 0018FCBC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 80192D80 0018FCC0  38 A3 01 B8 */	addi r5, r3, 0x1b8
 /* 80192D84 0018FCC4  38 C6 00 08 */	addi r6, r6, 8
-/* 80192D88 0018FCC8  4B EC 3A 0D */	bl dDlst_list_c_NS_set
+/* 80192D88 0018FCC8  4B EC 3A 0D */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 80192D8C 0018FCCC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80192D90 0018FCD0  7C 08 03 A6 */	mtlr r0
 /* 80192D94 0018FCD4  38 21 00 10 */	addi r1, r1, 0x10

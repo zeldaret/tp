@@ -3,8 +3,8 @@
 .section .text, "ax" # 80339878
 
 
-.global JMAEulerToQuat
-JMAEulerToQuat:
+.global JMAEulerToQuat__FsssP10Quaternion
+JMAEulerToQuat__FsssP10Quaternion:
 /* 80339878 003367B8  3C E0 80 44 */	lis r7, lbl_80439A20@ha
 /* 8033987C 003367BC  38 E7 9A 20 */	addi r7, r7, lbl_80439A20@l
 /* 80339880 003367C0  39 07 00 04 */	addi r8, r7, 4
@@ -54,8 +54,8 @@ JMAEulerToQuat:
 /* 80339930 00336870  D0 06 00 08 */	stfs f0, 8(r6)
 /* 80339934 00336874  4E 80 00 20 */	blr 
 
-.global JMAQuatLerp
-JMAQuatLerp:
+.global JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion
+JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion:
 /* 80339938 00336878  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 8033993C 0033687C  E0 44 00 00 */	psq_l f2, 0(r4), 0, qr0
 /* 80339940 00336880  10 60 00 B2 */	ps_mul f3, f0, f2
@@ -120,8 +120,8 @@ lbl_803399C8:
 /* 80339A28 00336968  D0 05 00 0C */	stfs f0, 0xc(r5)
 /* 80339A2C 0033696C  4E 80 00 20 */	blr 
 
-.global JMAFastVECNormalize
-JMAFastVECNormalize:
+.global JMAFastVECNormalize__FPC3VecP3Vec
+JMAFastVECNormalize__FPC3VecP3Vec:
 /* 80339A30 00336970  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 80339A34 00336974  10 20 00 32 */	ps_mul f1, f0, f0
 /* 80339A38 00336978  C0 43 00 08 */	lfs f2, 8(r3)
@@ -134,8 +134,8 @@ JMAFastVECNormalize:
 /* 80339A54 00336994  D0 44 00 08 */	stfs f2, 8(r4)
 /* 80339A58 00336998  4E 80 00 20 */	blr 
 
-.global JMAVECScaleAdd
-JMAVECScaleAdd:
+.global JMAVECScaleAdd__FPC3VecPC3VecP3Vecf
+JMAVECScaleAdd__FPC3VecPC3VecP3Vecf:
 /* 80339A5C 0033699C  FC 40 08 90 */	fmr f2, f1
 /* 80339A60 003369A0  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 80339A64 003369A4  E0 24 00 00 */	psq_l f1, 0(r4), 0, qr0
@@ -147,8 +147,8 @@ JMAVECScaleAdd:
 /* 80339A7C 003369BC  F0 05 80 08 */	psq_st f0, 8(r5), 1, qr0
 /* 80339A80 003369C0  4E 80 00 20 */	blr 
 
-.global JMAMTXApplyScale
-JMAMTXApplyScale:
+.global JMAMTXApplyScale__FPA4_CfPA4_ffff
+JMAMTXApplyScale__FPA4_CfPA4_ffff:
 /* 80339A84 003369C4  FC 00 10 90 */	fmr f0, f2
 /* 80339A88 003369C8  FC A0 18 90 */	fmr f5, f3
 /* 80339A8C 003369CC  C0 82 CA D0 */	lfs f4, lbl_804564D0-_SDA2_BASE_(r2)

@@ -9,7 +9,7 @@
 /* 800F6D84 000F3CC4  AB FD 04 E6 */ lha r31, 0x4e6(r29)
 /* 800F6D88 000F3CC8  AB DD 04 DE */ lha r30, 0x4de(r29)
 /* 800F6D8C 000F3CCC  7F A3 EB 78 */ mr r3, r29
-/* 800F6D90 000F3CD0  4B FF DA 49 */ bl daAlink_c_NS_canoeCommon
+/* 800F6D90 000F3CD0  4B FF DA 49 */ bl canoeCommon__9daAlink_cFv
 /* 800F6D94 000F3CD4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6D98 000F3CD8  41 82 00 0C */ beq lbl_800F6DA4
 /* 800F6D9C 000F3CDC  38 60 00 01 */ li r3, 1
@@ -17,16 +17,16 @@
 lbl_800F6DA4:
 /* 800F6DA4 000F3CE4  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 800F6DA8 000F3CE8  7F A3 EB 78 */ mr r3, r29
-/* 800F6DAC 000F3CEC  4B FF DB 79 */ bl daAlink_c_NS_checkNextActionCanoe
+/* 800F6DAC 000F3CEC  4B FF DB 79 */ bl checkNextActionCanoe__9daAlink_cFv
 /* 800F6DB0 000F3CF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6DB4 000F3CF4  40 82 00 20 */ bne lbl_800F6DD4
 /* 800F6DB8 000F3CF8  7F A3 EB 78 */ mr r3, r29
 /* 800F6DBC 000F3CFC  7F C4 F3 78 */ mr r4, r30
-/* 800F6DC0 000F3D00  4B FF 81 71 */ bl daAlink_c_NS_setRideSubjectAngle
+/* 800F6DC0 000F3D00  4B FF 81 71 */ bl setRideSubjectAngle__9daAlink_cFs
 /* 800F6DC4 000F3D04  2C 03 00 00 */ cmpwi r3, 0
 /* 800F6DC8 000F3D08  41 82 00 0C */ beq lbl_800F6DD4
 /* 800F6DCC 000F3D0C  7F A3 EB 78 */ mr r3, r29
-/* 800F6DD0 000F3D10  4B FE 8F 09 */ bl daAlink_c_NS_setBowSight
+/* 800F6DD0 000F3D10  4B FE 8F 09 */ bl setBowSight__9daAlink_cFv
 lbl_800F6DD4:
 /* 800F6DD4 000F3D14  38 60 00 01 */ li r3, 1
 lbl_800F6DD8:

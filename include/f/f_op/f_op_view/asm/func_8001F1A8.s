@@ -3,7 +3,7 @@
 /* 8001F1B0 0001C0F0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 8001F1B4 0001C0F4  7C 64 1B 78 */ mr r4, r3
 /* 8001F1B8 0001C0F8  80 63 00 C0 */ lwz r3, 0xc0(r3)
-/* 8001F1BC 0001C0FC  48 00 28 69 */ bl fpcLf_DrawMethod
+/* 8001F1BC 0001C0FC  48 00 28 69 */ bl fpcLf_DrawMethod__FP21leafdraw_method_classPv
 /* 8001F1C0 0001C100  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001F1C4 0001C104  7C 08 03 A6 */ mtlr r0
 /* 8001F1C8 0001C108  38 21 00 10 */ addi r1, r1, 0x10

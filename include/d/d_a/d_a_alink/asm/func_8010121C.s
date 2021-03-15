@@ -5,7 +5,7 @@
 /* 8010122C 000FE16C  93 C1 00 08 */ stw r30, 8(r1)
 /* 80101230 000FE170  7C 7E 1B 78 */ mr r30, r3
 /* 80101234 000FE174  38 80 00 89 */ li r4, 0x89
-/* 80101238 000FE178  4B FC 0D 35 */ bl daAlink_c_NS_commonProcInit
+/* 80101238 000FE178  4B FC 0D 35 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8010123C 000FE17C  88 1E 2F 98 */ lbz r0, 0x2f98(r30)
 /* 80101240 000FE180  28 00 00 02 */ cmplwi r0, 2
 /* 80101244 000FE184  40 82 00 18 */ bne lbl_8010125C
@@ -21,13 +21,13 @@ lbl_8010125C:
 /* 80101268 000FE1A8  B0 1E 04 DE */ sth r0, 0x4de(r30)
 lbl_8010126C:
 /* 8010126C 000FE1AC  7F C3 F3 78 */ mr r3, r30
-/* 80101270 000FE1B0  4B FF F3 81 */ bl daAlink_c_NS_getRoofHangSMoveAnmSpeed
+/* 80101270 000FE1B0  4B FF F3 81 */ bl getRoofHangSMoveAnmSpeed__9daAlink_cCFv
 /* 80101274 000FE1B4  7F C3 F3 78 */ mr r3, r30
 /* 80101278 000FE1B8  7F E4 FB 78 */ mr r4, r31
 /* 8010127C 000FE1BC  3C A0 80 39 */ lis r5, lbl_8038EBFC@ha
 /* 80101280 000FE1C0  38 A5 EB FC */ addi r5, r5, lbl_8038EBFC@l
 /* 80101284 000FE1C4  C0 45 00 40 */ lfs f2, 0x40(r5)
-/* 80101288 000FE1C8  4B FA BD 59 */ bl daAlink_c_NS_setSingleAnimeBaseSpeed
+/* 80101288 000FE1C8  4B FA BD 59 */ bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 8010128C 000FE1CC  7F C3 F3 78 */ mr r3, r30
 /* 80101290 000FE1D0  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80101294 000FE1D4  C0 5E 05 34 */ lfs f2, 0x534(r30)

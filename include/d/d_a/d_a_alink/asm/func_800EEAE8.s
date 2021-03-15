@@ -15,7 +15,7 @@
 /* 800EEB20 000EBA60  40 82 00 E0 */ bne lbl_800EEC00
 /* 800EEB24 000EBA64  A3 9D 1F 58 */ lhz r28, 0x1f58(r29)
 /* 800EEB28 000EBA68  38 80 00 48 */ li r4, 0x48
-/* 800EEB2C 000EBA6C  4B FB D9 25 */ bl daAlink_c_NS_getMainBckData
+/* 800EEB2C 000EBA6C  4B FB D9 25 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEB30 000EBA70  A0 63 00 00 */ lhz r3, 0(r3)
 /* 800EEB34 000EBA74  57 80 04 3E */ clrlwi r0, r28, 0x10
 /* 800EEB38 000EBA78  7C 00 18 40 */ cmplw r0, r3
@@ -25,7 +25,7 @@
 lbl_800EEB48:
 /* 800EEB48 000EBA88  7F A3 EB 78 */ mr r3, r29
 /* 800EEB4C 000EBA8C  38 80 00 54 */ li r4, 0x54
-/* 800EEB50 000EBA90  4B FB D9 01 */ bl daAlink_c_NS_getMainBckData
+/* 800EEB50 000EBA90  4B FB D9 01 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEB54 000EBA94  A0 63 00 00 */ lhz r3, 0(r3)
 /* 800EEB58 000EBA98  57 80 04 3E */ clrlwi r0, r28, 0x10
 /* 800EEB5C 000EBA9C  7C 00 18 40 */ cmplw r0, r3
@@ -36,14 +36,14 @@ lbl_800EEB48:
 lbl_800EEB70:
 /* 800EEB70 000EBAB0  7F A3 EB 78 */ mr r3, r29
 /* 800EEB74 000EBAB4  38 80 00 5A */ li r4, 0x5a
-/* 800EEB78 000EBAB8  4B FB D8 D9 */ bl daAlink_c_NS_getMainBckData
+/* 800EEB78 000EBAB8  4B FB D8 D9 */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEB7C 000EBABC  A0 63 00 00 */ lhz r3, 0(r3)
 /* 800EEB80 000EBAC0  57 80 04 3E */ clrlwi r0, r28, 0x10
 /* 800EEB84 000EBAC4  7C 00 18 40 */ cmplw r0, r3
 /* 800EEB88 000EBAC8  41 82 00 20 */ beq lbl_800EEBA8
 /* 800EEB8C 000EBACC  7F A3 EB 78 */ mr r3, r29
 /* 800EEB90 000EBAD0  38 80 00 5B */ li r4, 0x5b
-/* 800EEB94 000EBAD4  4B FB D8 BD */ bl daAlink_c_NS_getMainBckData
+/* 800EEB94 000EBAD4  4B FB D8 BD */ bl getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM
 /* 800EEB98 000EBAD8  A0 63 00 00 */ lhz r3, 0(r3)
 /* 800EEB9C 000EBADC  57 80 04 3E */ clrlwi r0, r28, 0x10
 /* 800EEBA0 000EBAE0  7C 00 18 40 */ cmplw r0, r3
@@ -85,7 +85,7 @@ lbl_800EEC04:
 /* 800EEC1C 000EBB5C  C0 1D 34 60 */ lfs f0, 0x3460(r29)
 /* 800EEC20 000EBB60  D0 03 00 08 */ stfs f0, 8(r3)
 /* 800EEC24 000EBB64  80 7D 1F 34 */ lwz r3, 0x1f34(r29)
-/* 800EEC28 000EBB68  4B FB A6 21 */ bl daAlink_c_NS_simpleAnmPlay
+/* 800EEC28 000EBB68  4B FB A6 21 */ bl simpleAnmPlay__9daAlink_cFP10J3DAnmBase
 /* 800EEC2C 000EBB6C  80 7D 1F 34 */ lwz r3, 0x1f34(r29)
 /* 800EEC30 000EBB70  C0 03 00 08 */ lfs f0, 8(r3)
 /* 800EEC34 000EBB74  D0 1D 34 60 */ stfs f0, 0x3460(r29)

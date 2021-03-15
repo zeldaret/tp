@@ -3,8 +3,8 @@
 .section .text, "ax" # 802859dc
 
 
-.global JStudio_NS_math_NS_getRotation_xyz
-JStudio_NS_math_NS_getRotation_xyz:
+.global getRotation_xyz__Q27JStudio4mathFPA4_ffff
+getRotation_xyz__Q27JStudio4mathFPA4_ffff:
 /* 802859DC 0028291C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 802859E0 00282920  7C 08 02 A6 */	mflr r0
 /* 802859E4 00282924  90 01 00 74 */	stw r0, 0x74(r1)
@@ -96,8 +96,8 @@ JStudio_NS_math_NS_getRotation_xyz:
 /* 80285B3C 00282A7C  38 21 00 70 */	addi r1, r1, 0x70
 /* 80285B40 00282A80  4E 80 00 20 */	blr 
 
-.global JStudio_NS_math_NS_getTransformation_SRxyzT
-JStudio_NS_math_NS_getTransformation_SRxyzT:
+.global getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec
+getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec:
 /* 80285B44 00282A84  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 80285B48 00282A88  7C 08 02 A6 */	mflr r0
 /* 80285B4C 00282A8C  90 01 00 B4 */	stw r0, 0xb4(r1)
@@ -115,7 +115,7 @@ JStudio_NS_math_NS_getTransformation_SRxyzT:
 /* 80285B7C 00282ABC  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 80285B80 00282AC0  C0 5E 00 04 */	lfs f2, 4(r30)
 /* 80285B84 00282AC4  C0 7E 00 08 */	lfs f3, 8(r30)
-/* 80285B88 00282AC8  4B FF FE 55 */	bl JStudio_NS_math_NS_getRotation_xyz
+/* 80285B88 00282AC8  4B FF FE 55 */	bl getRotation_xyz__Q27JStudio4mathFPA4_ffff
 /* 80285B8C 00282ACC  38 61 00 08 */	addi r3, r1, 8
 /* 80285B90 00282AD0  38 81 00 68 */	addi r4, r1, 0x68
 /* 80285B94 00282AD4  38 A1 00 38 */	addi r5, r1, 0x38
@@ -133,8 +133,8 @@ JStudio_NS_math_NS_getTransformation_SRxyzT:
 /* 80285BC4 00282B04  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 80285BC8 00282B08  4E 80 00 20 */	blr 
 
-.global JStudio_NS_math_NS_getFromTransformation_SRxyzT
-JStudio_NS_math_NS_getFromTransformation_SRxyzT:
+.global getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
+getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf:
 /* 80285BCC 00282B0C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80285BD0 00282B10  7C 08 02 A6 */	mflr r0
 /* 80285BD4 00282B14  90 01 00 84 */	stw r0, 0x84(r1)

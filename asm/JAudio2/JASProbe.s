@@ -3,8 +3,8 @@
 .section .text, "ax" # 80290d74
 
 
-.global JASProbe_NS_start
-JASProbe_NS_start:
+.global start__8JASProbeFPCc
+start__8JASProbeFPCc:
 /* 80290D74 0028DCB4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80290D78 0028DCB8  7C 08 02 A6 */	mflr r0
 /* 80290D7C 0028DCBC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -26,8 +26,8 @@ JASProbe_NS_start:
 /* 80290DBC 0028DCFC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80290DC0 0028DD00  4E 80 00 20 */	blr 
 
-.global JASProbe_NS_stop
-JASProbe_NS_stop:
+.global stop__8JASProbeFv
+stop__8JASProbeFv:
 /* 80290DC4 0028DD04  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80290DC8 0028DD08  7C 08 02 A6 */	mflr r0
 /* 80290DCC 0028DD0C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -102,8 +102,8 @@ lbl_80290E58:
 /* 80290EDC 0028DE1C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80290EE0 0028DE20  4E 80 00 20 */	blr 
 
-.global JASProbe_NS_start_X1_
-JASProbe_NS_start_X1_:
+.global start__8JASProbeFlPCc
+start__8JASProbeFlPCc:
 /* 80290EE4 0028DE24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290EE8 0028DE28  7C 08 02 A6 */	mflr r0
 /* 80290EEC 0028DE2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -115,15 +115,15 @@ JASProbe_NS_start_X1_:
 /* 80290F04 0028DE44  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80290F08 0028DE48  28 03 00 00 */	cmplwi r3, 0
 /* 80290F0C 0028DE4C  41 82 00 08 */	beq lbl_80290F14
-/* 80290F10 0028DE50  4B FF FE 65 */	bl JASProbe_NS_start
+/* 80290F10 0028DE50  4B FF FE 65 */	bl start__8JASProbeFPCc
 lbl_80290F14:
 /* 80290F14 0028DE54  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80290F18 0028DE58  7C 08 03 A6 */	mtlr r0
 /* 80290F1C 0028DE5C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80290F20 0028DE60  4E 80 00 20 */	blr 
 
-.global JASProbe_NS_stop_X1_
-JASProbe_NS_stop_X1_:
+.global stop__8JASProbeFl
+stop__8JASProbeFl:
 /* 80290F24 0028DE64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290F28 0028DE68  7C 08 02 A6 */	mflr r0
 /* 80290F2C 0028DE6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -135,7 +135,7 @@ JASProbe_NS_stop_X1_:
 /* 80290F44 0028DE84  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80290F48 0028DE88  28 03 00 00 */	cmplwi r3, 0
 /* 80290F4C 0028DE8C  41 82 00 08 */	beq lbl_80290F54
-/* 80290F50 0028DE90  4B FF FE 75 */	bl JASProbe_NS_stop
+/* 80290F50 0028DE90  4B FF FE 75 */	bl stop__8JASProbeFv
 lbl_80290F54:
 /* 80290F54 0028DE94  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80290F58 0028DE98  7C 08 03 A6 */	mtlr r0

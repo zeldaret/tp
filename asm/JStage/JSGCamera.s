@@ -3,8 +3,8 @@
 .section .text, "ax" # 80280ba0
 
 
-.global JStage_NS_TCamera_NS_dtor
-JStage_NS_TCamera_NS_dtor:
+.global __dt__Q26JStage7TCameraFv
+__dt__Q26JStage7TCameraFv:
 /* 80280BA0 0027DAE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80280BA4 0027DAE4  7C 08 02 A6 */	mflr r0
 /* 80280BA8 0027DAE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -17,7 +17,7 @@ JStage_NS_TCamera_NS_dtor:
 /* 80280BC4 0027DB04  38 04 46 80 */	addi r0, r4, lbl_803C4680@l
 /* 80280BC8 0027DB08  90 1E 00 00 */	stw r0, 0(r30)
 /* 80280BCC 0027DB0C  38 80 00 00 */	li r4, 0
-/* 80280BD0 0027DB10  48 00 02 05 */	bl JStage_NS_TObject_NS_dtor
+/* 80280BD0 0027DB10  48 00 02 05 */	bl __dt__Q26JStage7TObjectFv
 /* 80280BD4 0027DB14  7F E0 07 35 */	extsh. r0, r31
 /* 80280BD8 0027DB18  40 81 00 0C */	ble lbl_80280BE4
 /* 80280BDC 0027DB1C  7F C3 F3 78 */	mr r3, r30

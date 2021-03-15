@@ -44,7 +44,7 @@ lbl_800A9388:
 /* 800A9394 000A62D4  38 BE 34 A4 */ addi r5, r30, 0x34a4
 /* 800A9398 000A62D8  48 29 DA B5 */ bl PSMTXMultVecSR
 lbl_800A939C:
-/* 800A939C 000A62DC  48 0B 5F FD */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800A939C 000A62DC  48 0B 5F FD */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800A93A0 000A62E0  2C 03 00 00 */ cmpwi r3, 0
 /* 800A93A4 000A62E4  41 82 00 1C */ beq lbl_800A93C0
 /* 800A93A8 000A62E8  80 7E 06 B8 */ lwz r3, 0x6b8(r30)
@@ -63,10 +63,10 @@ lbl_800A93D4:
 /* 800A93D4 000A6314  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
 /* 800A93D8 000A6318  28 00 01 0B */ cmplwi r0, 0x10b
 /* 800A93DC 000A631C  40 82 00 24 */ bne lbl_800A9400
-/* 800A93E0 000A6320  48 04 A8 ED */ bl daAlink_c_NS_getCanoeLocalPaddleTop
+/* 800A93E0 000A6320  48 04 A8 ED */ bl getCanoeLocalPaddleTop__9daAlink_cFv
 /* 800A93E4 000A6324  7C 7F 1B 78 */ mr r31, r3
 /* 800A93E8 000A6328  7F C3 F3 78 */ mr r3, r30
-/* 800A93EC 000A632C  48 04 AA 11 */ bl daAlink_c_NS_getCanoePaddleMatrix
+/* 800A93EC 000A632C  48 04 AA 11 */ bl getCanoePaddleMatrix__9daAlink_cFv
 /* 800A93F0 000A6330  7F E4 FB 78 */ mr r4, r31
 /* 800A93F4 000A6334  38 BE 37 20 */ addi r5, r30, 0x3720
 /* 800A93F8 000A6338  48 29 D9 75 */ bl PSMTXMultVec

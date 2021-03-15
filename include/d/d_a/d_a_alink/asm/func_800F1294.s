@@ -4,20 +4,20 @@
 /* 800F12A0 000EE1E0  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F12A4 000EE1E4  7C 7F 1B 78 */ mr r31, r3
 /* 800F12A8 000EE1E8  38 80 00 40 */ li r4, 0x40
-/* 800F12AC 000EE1EC  4B FD 0C C1 */ bl daAlink_c_NS_commonProcInit
+/* 800F12AC 000EE1EC  4B FD 0C C1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F12B0 000EE1F0  A0 1F 1F 80 */ lhz r0, 0x1f80(r31)
 /* 800F12B4 000EE1F4  28 00 00 19 */ cmplwi r0, 0x19
 /* 800F12B8 000EE1F8  40 82 00 14 */ bne lbl_800F12CC
 /* 800F12BC 000EE1FC  7F E3 FB 78 */ mr r3, r31
 /* 800F12C0 000EE200  38 80 00 02 */ li r4, 2
 /* 800F12C4 000EE204  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800F12C8 000EE208  4B FB C8 25 */ bl daAlink_c_NS_resetUnderAnime
+/* 800F12C8 000EE208  4B FB C8 25 */ bl resetUnderAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDERf
 lbl_800F12CC:
 /* 800F12CC 000EE20C  7F E3 FB 78 */ mr r3, r31
 /* 800F12D0 000EE210  38 80 00 00 */ li r4, 0
-/* 800F12D4 000EE214  4B FF D6 45 */ bl daAlink_c_NS_setSyncRide
+/* 800F12D4 000EE214  4B FF D6 45 */ bl setSyncRide__9daAlink_cFi
 /* 800F12D8 000EE218  7F E3 FB 78 */ mr r3, r31
-/* 800F12DC 000EE21C  4B FD D8 19 */ bl daAlink_c_NS_setSubjectMode
+/* 800F12DC 000EE21C  4B FD D8 19 */ bl setSubjectMode__9daAlink_cFv
 /* 800F12E0 000EE220  38 60 00 01 */ li r3, 1
 /* 800F12E4 000EE224  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F12E8 000EE228  80 01 00 14 */ lwz r0, 0x14(r1)

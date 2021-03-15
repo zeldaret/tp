@@ -9,11 +9,8 @@ typedef struct create_tag {
     create_tag_class mBase;
 } create_tag;
 
-extern "C" {
-
-void fpcCtTg_ToCreateQ(create_tag_class* pTag);
-void fpcCtTg_CreateQTo(create_tag_class* pTag);
+void fpcCtTg_ToCreateQ(create_tag* pTag);
+void fpcCtTg_CreateQTo(create_tag* pTag);
 s32 fpcCtTg_Init(create_tag* pTag, void* pUserData);
-};
 
 #endif

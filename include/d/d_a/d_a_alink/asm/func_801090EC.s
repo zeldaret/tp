@@ -5,7 +5,7 @@
 /* 801090FC 0010603C  93 C1 00 08 */ stw r30, 8(r1)
 /* 80109100 00106040  7C 7E 1B 78 */ mr r30, r3
 /* 80109104 00106044  7C 9F 23 78 */ mr r31, r4
-/* 80109108 00106048  4B FF F9 11 */ bl daAlink_c_NS_checkHookshotWait
+/* 80109108 00106048  4B FF F9 11 */ bl checkHookshotWait__9daAlink_cCFv
 /* 8010910C 0010604C  2C 03 00 00 */ cmpwi r3, 0
 /* 80109110 00106050  41 82 00 44 */ beq lbl_80109154
 /* 80109114 00106054  2C 1F 00 00 */ cmpwi r31, 0
@@ -22,7 +22,7 @@ lbl_80109134:
 /* 8010913C 0010607C  3C A0 80 39 */ lis r5, lbl_8038E9C0@ha
 /* 80109140 00106080  38 A5 E9 C0 */ addi r5, r5, lbl_8038E9C0@l
 /* 80109144 00106084  C0 25 00 40 */ lfs f1, 0x40(r5)
-/* 80109148 00106088  4B FF 8B AD */ bl daAlink_c_NS_setWaterInAnmRate
+/* 80109148 00106088  4B FF 8B AD */ bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 lbl_8010914C:
 /* 8010914C 0010608C  38 60 00 01 */ li r3, 1
 /* 80109150 00106090  48 00 00 08 */ b lbl_80109158

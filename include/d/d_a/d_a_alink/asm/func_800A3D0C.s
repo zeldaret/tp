@@ -10,18 +10,18 @@
 /* 800A3D30 000A0C70  B0 01 00 0A */ sth r0, 0xa(r1)
 /* 800A3D34 000A0C74  38 81 00 0A */ addi r4, r1, 0xa
 /* 800A3D38 000A0C78  38 A1 00 08 */ addi r5, r1, 8
-/* 800A3D3C 000A0C7C  4B FF FF A9 */ bl daAlink_c_NS_setIdxMask
+/* 800A3D3C 000A0C7C  4B FF FF A9 */ bl setIdxMask__9daAlink_cFPUsPUs
 /* 800A3D40 000A0C80  A0 A1 00 0A */ lhz r5, 0xa(r1)
 /* 800A3D44 000A0C84  28 05 FF FF */ cmplwi r5, 0xffff
 /* 800A3D48 000A0C88  40 82 00 14 */ bne lbl_800A3D5C
 /* 800A3D4C 000A0C8C  7F E3 FB 78 */ mr r3, r31
 /* 800A3D50 000A0C90  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800A3D54 000A0C94  48 0B B3 15 */ bl daPy_anmHeap_c_NS_loadDataIdx
+/* 800A3D54 000A0C94  48 0B B3 15 */ bl loadDataIdx__14daPy_anmHeap_cFUs
 /* 800A3D58 000A0C98  48 00 00 10 */ b lbl_800A3D68
 lbl_800A3D5C:
 /* 800A3D5C 000A0C9C  7F E3 FB 78 */ mr r3, r31
 /* 800A3D60 000A0CA0  A0 81 00 08 */ lhz r4, 8(r1)
-/* 800A3D64 000A0CA4  48 0B B3 B5 */ bl daPy_anmHeap_c_NS_loadDataDemoRID
+/* 800A3D64 000A0CA4  48 0B B3 B5 */ bl loadDataDemoRID__14daPy_anmHeap_cFUsUs
 lbl_800A3D68:
 /* 800A3D68 000A0CA8  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 800A3D6C 000A0CAC  80 01 00 24 */ lwz r0, 0x24(r1)

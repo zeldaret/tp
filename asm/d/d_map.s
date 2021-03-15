@@ -255,15 +255,15 @@
 /* 800288A0 000257E0  7D 89 03 A6 */	mtctr r12
 /* 800288A4 000257E4  4E 80 04 21 */	bctrl 
 /* 800288A8 000257E8  7F E3 FB 78 */	mr r3, r31
-/* 800288AC 000257EC  48 01 75 6D */	bl renderingDAmap_c_NS_draw
+/* 800288AC 000257EC  48 01 75 6D */	bl draw__16renderingDAmap_cFv
 /* 800288B0 000257F0  83 E1 01 3C */	lwz r31, 0x13c(r1)
 /* 800288B4 000257F4  80 01 01 44 */	lwz r0, 0x144(r1)
 /* 800288B8 000257F8  7C 08 03 A6 */	mtlr r0
 /* 800288BC 000257FC  38 21 01 40 */	addi r1, r1, 0x140
 /* 800288C0 00025800  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_getDispType
-renderingAmap_c_NS_getDispType:
+.global getDispType__15renderingAmap_cCFv
+getDispType__15renderingAmap_cCFv:
 /* 800288C4 00025804  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800288C8 00025808  7C 08 02 A6 */	mflr r0
 /* 800288CC 0002580C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -309,13 +309,13 @@ lbl_80028948:
 /* 80028968 000258A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8002896C 000258AC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80028970 000258B0  7C 7F 1B 78 */	mr r31, r3
-/* 80028974 000258B4  48 00 02 41 */	bl renderingAmap_c_NS_isDrawOutSideTrim
+/* 80028974 000258B4  48 00 02 41 */	bl isDrawOutSideTrim__15renderingAmap_cFv
 /* 80028978 000258B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8002897C 000258BC  41 82 00 40 */	beq lbl_800289BC
 /* 80028980 000258C0  38 00 00 00 */	li r0, 0
 /* 80028984 000258C4  90 1F 00 38 */	stw r0, 0x38(r31)
 /* 80028988 000258C8  7F E3 FB 78 */	mr r3, r31
-/* 8002898C 000258CC  48 00 02 C1 */	bl renderingAmap_c_NS_getOutSideBlackLineNumber
+/* 8002898C 000258CC  48 00 02 C1 */	bl getOutSideBlackLineNumber__15renderingAmap_cFv
 lbl_80028990:
 /* 80028990 000258D0  7F E3 FB 78 */	mr r3, r31
 /* 80028994 000258D4  81 9F 00 00 */	lwz r12, 0(r31)
@@ -323,7 +323,7 @@ lbl_80028990:
 /* 8002899C 000258DC  7D 89 03 A6 */	mtctr r12
 /* 800289A0 000258E0  4E 80 04 21 */	bctrl 
 /* 800289A4 000258E4  7F E3 FB 78 */	mr r3, r31
-/* 800289A8 000258E8  48 00 02 B9 */	bl renderingAmap_c_NS_isOutSideBlackLine
+/* 800289A8 000258E8  48 00 02 B9 */	bl isOutSideBlackLine__15renderingAmap_cFv
 /* 800289AC 000258EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800289B0 000258F0  40 82 FF E0 */	bne lbl_80028990
 /* 800289B4 000258F4  38 00 00 02 */	li r0, 2
@@ -337,7 +337,7 @@ lbl_800289BC:
 /* 800289D0 00025910  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800289D4 00025914  7C 08 02 A6 */	mflr r0
 /* 800289D8 00025918  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800289DC 0002591C  48 01 79 21 */	bl renderingPlusDoorAndCursor_c_NS_afterDrawPath
+/* 800289DC 0002591C  48 01 79 21 */	bl afterDrawPath__28renderingPlusDoorAndCursor_cFv
 /* 800289E0 00025920  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800289E4 00025924  7C 08 03 A6 */	mtlr r0
 /* 800289E8 00025928  38 21 00 10 */	addi r1, r1, 0x10
@@ -345,7 +345,7 @@ lbl_800289BC:
 /* 800289F0 00025930  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800289F4 00025934  7C 08 02 A6 */	mflr r0
 /* 800289F8 00025938  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800289FC 0002593C  48 01 42 29 */	bl dDrawPath_c_NS_rendering_X4_
+/* 800289FC 0002593C  48 01 42 29 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class
 /* 80028A00 00025940  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80028A04 00025944  7C 08 03 A6 */	mtlr r0
 /* 80028A08 00025948  38 21 00 10 */	addi r1, r1, 0x10
@@ -353,7 +353,7 @@ lbl_800289BC:
 /* 80028A10 00025950  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028A14 00025954  7C 08 02 A6 */	mflr r0
 /* 80028A18 00025958  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80028A1C 0002595C  48 01 42 A9 */	bl dDrawPath_c_NS_drawPath
+/* 80028A1C 0002595C  48 01 42 A9 */	bl drawPath__11dDrawPath_cFv
 /* 80028A20 00025960  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80028A24 00025964  7C 08 03 A6 */	mtlr r0
 /* 80028A28 00025968  38 21 00 10 */	addi r1, r1, 0x10
@@ -373,7 +373,7 @@ lbl_800289BC:
 /* 80028A60 000259A0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028A64 000259A4  41 82 00 88 */	beq lbl_80028AEC
 /* 80028A68 000259A8  7F C3 F3 78 */	mr r3, r30
-/* 80028A6C 000259AC  48 00 01 49 */	bl renderingAmap_c_NS_isDrawOutSideTrim
+/* 80028A6C 000259AC  48 00 01 49 */	bl isDrawOutSideTrim__15renderingAmap_cFv
 /* 80028A70 000259B0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028A74 000259B4  41 82 00 2C */	beq lbl_80028AA0
 /* 80028A78 000259B8  80 1E 00 38 */	lwz r0, 0x38(r30)
@@ -384,7 +384,7 @@ lbl_800289BC:
 /* 80028A8C 000259CC  40 82 00 60 */	bne lbl_80028AEC
 /* 80028A90 000259D0  7F C3 F3 78 */	mr r3, r30
 /* 80028A94 000259D4  7F E4 FB 78 */	mr r4, r31
-/* 80028A98 000259D8  48 01 49 29 */	bl dRenderingFDAmap_c_NS_renderingDecoration
+/* 80028A98 000259D8  48 01 49 29 */	bl renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class
 /* 80028A9C 000259DC  48 00 00 50 */	b lbl_80028AEC
 lbl_80028AA0:
 /* 80028AA0 000259E0  88 1F 00 01 */	lbz r0, 1(r31)
@@ -396,7 +396,7 @@ lbl_80028AA0:
 lbl_80028AB8:
 /* 80028AB8 000259F8  7F C3 F3 78 */	mr r3, r30
 /* 80028ABC 000259FC  7F E4 FB 78 */	mr r4, r31
-/* 80028AC0 00025A00  48 01 49 01 */	bl dRenderingFDAmap_c_NS_renderingDecoration
+/* 80028AC0 00025A00  48 01 49 01 */	bl renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class
 /* 80028AC4 00025A04  80 7E 00 3C */	lwz r3, 0x3c(r30)
 /* 80028AC8 00025A08  38 03 00 01 */	addi r0, r3, 1
 /* 80028ACC 00025A0C  90 1E 00 3C */	stw r0, 0x3c(r30)
@@ -408,7 +408,7 @@ lbl_80028AD0:
 lbl_80028AE0:
 /* 80028AE0 00025A20  7F C3 F3 78 */	mr r3, r30
 /* 80028AE4 00025A24  7F E4 FB 78 */	mr r4, r31
-/* 80028AE8 00025A28  48 01 3E 65 */	bl dDrawPath_c_NS_rendering
+/* 80028AE8 00025A28  48 01 3E 65 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class
 lbl_80028AEC:
 /* 80028AEC 00025A2C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80028AF0 00025A30  83 C1 00 08 */	lwz r30, 8(r1)
@@ -445,7 +445,7 @@ lbl_80028AEC:
 /* 80028B6C 00025AAC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028B70 00025AB0  41 82 00 2C */	beq lbl_80028B9C
 /* 80028B74 00025AB4  7F C3 F3 78 */	mr r3, r30
-/* 80028B78 00025AB8  48 00 00 3D */	bl renderingAmap_c_NS_isDrawOutSideTrim
+/* 80028B78 00025AB8  48 00 00 3D */	bl isDrawOutSideTrim__15renderingAmap_cFv
 /* 80028B7C 00025ABC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028B80 00025AC0  41 82 00 10 */	beq lbl_80028B90
 /* 80028B84 00025AC4  80 1E 00 38 */	lwz r0, 0x38(r30)
@@ -454,7 +454,7 @@ lbl_80028AEC:
 lbl_80028B90:
 /* 80028B90 00025AD0  7F C3 F3 78 */	mr r3, r30
 /* 80028B94 00025AD4  7F E4 FB 78 */	mr r4, r31
-/* 80028B98 00025AD8  48 01 3E A9 */	bl dDrawPath_c_NS_rendering_X1_
+/* 80028B98 00025AD8  48 01 3E A9 */	bl rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class
 lbl_80028B9C:
 /* 80028B9C 00025ADC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80028BA0 00025AE0  83 C1 00 08 */	lwz r30, 8(r1)
@@ -463,8 +463,8 @@ lbl_80028B9C:
 /* 80028BAC 00025AEC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80028BB0 00025AF0  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_isDrawOutSideTrim
-renderingAmap_c_NS_isDrawOutSideTrim:
+.global isDrawOutSideTrim__15renderingAmap_cFv
+isDrawOutSideTrim__15renderingAmap_cFv:
 /* 80028BB4 00025AF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028BB8 00025AF8  7C 08 02 A6 */	mflr r0
 /* 80028BBC 00025AFC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -472,23 +472,23 @@ renderingAmap_c_NS_isDrawOutSideTrim:
 /* 80028BC4 00025B04  93 C1 00 08 */	stw r30, 8(r1)
 /* 80028BC8 00025B08  7C 7E 1B 78 */	mr r30, r3
 /* 80028BCC 00025B0C  3B E0 00 00 */	li r31, 0
-/* 80028BD0 00025B10  4B FF FC F5 */	bl renderingAmap_c_NS_getDispType
+/* 80028BD0 00025B10  4B FF FC F5 */	bl getDispType__15renderingAmap_cCFv
 /* 80028BD4 00025B14  2C 03 00 00 */	cmpwi r3, 0
 /* 80028BD8 00025B18  41 82 00 44 */	beq lbl_80028C1C
 /* 80028BDC 00025B1C  7F C3 F3 78 */	mr r3, r30
-/* 80028BE0 00025B20  4B FF FC E5 */	bl renderingAmap_c_NS_getDispType
+/* 80028BE0 00025B20  4B FF FC E5 */	bl getDispType__15renderingAmap_cCFv
 /* 80028BE4 00025B24  2C 03 00 04 */	cmpwi r3, 4
 /* 80028BE8 00025B28  41 82 00 34 */	beq lbl_80028C1C
 /* 80028BEC 00025B2C  7F C3 F3 78 */	mr r3, r30
-/* 80028BF0 00025B30  4B FF FC D5 */	bl renderingAmap_c_NS_getDispType
+/* 80028BF0 00025B30  4B FF FC D5 */	bl getDispType__15renderingAmap_cCFv
 /* 80028BF4 00025B34  2C 03 00 03 */	cmpwi r3, 3
 /* 80028BF8 00025B38  41 82 00 24 */	beq lbl_80028C1C
 /* 80028BFC 00025B3C  7F C3 F3 78 */	mr r3, r30
-/* 80028C00 00025B40  4B FF FC C5 */	bl renderingAmap_c_NS_getDispType
+/* 80028C00 00025B40  4B FF FC C5 */	bl getDispType__15renderingAmap_cCFv
 /* 80028C04 00025B44  2C 03 00 02 */	cmpwi r3, 2
 /* 80028C08 00025B48  41 82 00 14 */	beq lbl_80028C1C
 /* 80028C0C 00025B4C  7F C3 F3 78 */	mr r3, r30
-/* 80028C10 00025B50  4B FF FC B5 */	bl renderingAmap_c_NS_getDispType
+/* 80028C10 00025B50  4B FF FC B5 */	bl getDispType__15renderingAmap_cCFv
 /* 80028C14 00025B54  2C 03 00 05 */	cmpwi r3, 5
 /* 80028C18 00025B58  40 82 00 18 */	bne lbl_80028C30
 lbl_80028C1C:
@@ -506,16 +506,16 @@ lbl_80028C30:
 /* 80028C44 00025B84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80028C48 00025B88  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_getOutSideBlackLineNumber
-renderingAmap_c_NS_getOutSideBlackLineNumber:
+.global getOutSideBlackLineNumber__15renderingAmap_cFv
+getOutSideBlackLineNumber__15renderingAmap_cFv:
 /* 80028C4C 00025B8C  38 00 00 00 */	li r0, 0
 /* 80028C50 00025B90  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80028C54 00025B94  80 6D 88 00 */	lwz r3, lbl_80450D80-_SDA_BASE_(r13)
 /* 80028C58 00025B98  A8 63 01 AE */	lha r3, 0x1ae(r3)
 /* 80028C5C 00025B9C  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_isOutSideBlackLine
-renderingAmap_c_NS_isOutSideBlackLine:
+.global isOutSideBlackLine__15renderingAmap_cFv
+isOutSideBlackLine__15renderingAmap_cFv:
 /* 80028C60 00025BA0  38 A0 00 00 */	li r5, 0
 /* 80028C64 00025BA4  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 80028C68 00025BA8  38 04 00 01 */	addi r0, r4, 1
@@ -530,8 +530,8 @@ lbl_80028C88:
 /* 80028C88 00025BC8  7C A3 2B 78 */	mr r3, r5
 /* 80028C8C 00025BCC  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_getLineWidthSub
-renderingAmap_c_NS_getLineWidthSub:
+.global getLineWidthSub__15renderingAmap_cFi
+getLineWidthSub__15renderingAmap_cFi:
 /* 80028C90 00025BD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028C94 00025BD4  7C 08 02 A6 */	mflr r0
 /* 80028C98 00025BD8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -547,7 +547,7 @@ renderingAmap_c_NS_getLineWidthSub:
 /* 80028CC0 00025C00  48 00 00 18 */	b lbl_80028CD8
 lbl_80028CC4:
 /* 80028CC4 00025C04  7C 83 23 78 */	mr r3, r4
-/* 80028CC8 00025C08  48 01 60 49 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 80028CC8 00025C08  48 01 60 49 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 80028CCC 00025C0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028CD0 00025C10  41 82 00 08 */	beq lbl_80028CD8
 /* 80028CD4 00025C14  3B E2 82 C8 */	addi r31, r2, lbl_80451CC8-_SDA2_BASE_
@@ -614,7 +614,7 @@ lbl_80028D98:
 lbl_80028DA0:
 /* 80028DA0 00025CE0  2C 1F 00 00 */	cmpwi r31, 0
 /* 80028DA4 00025CE4  40 81 00 18 */	ble lbl_80028DBC
-/* 80028DA8 00025CE8  4B FF FE E9 */	bl renderingAmap_c_NS_getLineWidthSub
+/* 80028DA8 00025CE8  4B FF FE E9 */	bl getLineWidthSub__15renderingAmap_cFi
 /* 80028DAC 00025CEC  7F FF 1A 14 */	add r31, r31, r3
 /* 80028DB0 00025CF0  2C 1F 00 FF */	cmpwi r31, 0xff
 /* 80028DB4 00025CF4  40 81 00 08 */	ble lbl_80028DBC
@@ -630,7 +630,7 @@ lbl_80028DC0:
 /* 80028DD4 00025D14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80028DD8 00025D18  7C 08 02 A6 */	mflr r0
 /* 80028DDC 00025D1C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80028DE0 00025D20  4B FF FE B1 */	bl renderingAmap_c_NS_getLineWidthSub
+/* 80028DE0 00025D20  4B FF FE B1 */	bl getLineWidthSub__15renderingAmap_cFi
 /* 80028DE4 00025D24  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80028DE8 00025D28  7C 08 03 A6 */	mtlr r0
 /* 80028DEC 00025D2C  38 21 00 10 */	addi r1, r1, 0x10
@@ -688,7 +688,7 @@ lbl_80028E98:
 /* 80028EAC 00025DEC  48 00 00 18 */	b lbl_80028EC4
 lbl_80028EB0:
 /* 80028EB0 00025DF0  7C 83 23 78 */	mr r3, r4
-/* 80028EB4 00025DF4  48 01 5E 5D */	bl dMapInfo_n_NS_isVisitedRoom
+/* 80028EB4 00025DF4  48 01 5E 5D */	bl isVisitedRoom__10dMapInfo_nFi
 /* 80028EB8 00025DF8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028EBC 00025DFC  41 82 00 08 */	beq lbl_80028EC4
 /* 80028EC0 00025E00  3B DF 00 68 */	addi r30, r31, 0x68
@@ -765,7 +765,7 @@ lbl_80028F9C:
 /* 80028FC8 00025F08  7C 7D 1B 78 */	mr r29, r3
 /* 80028FCC 00025F0C  7C 9E 23 78 */	mr r30, r4
 /* 80028FD0 00025F10  7C BF 2B 78 */	mr r31, r5
-/* 80028FD4 00025F14  4B FF FB E1 */	bl renderingAmap_c_NS_isDrawOutSideTrim
+/* 80028FD4 00025F14  4B FF FB E1 */	bl isDrawOutSideTrim__15renderingAmap_cFv
 /* 80028FD8 00025F18  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80028FDC 00025F1C  41 82 00 28 */	beq lbl_80029004
 /* 80028FE0 00025F20  80 1D 00 38 */	lwz r0, 0x38(r29)
@@ -795,7 +795,7 @@ lbl_80029020:
 /* 80029038 00025F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002903C 00025F7C  7C 08 02 A6 */	mflr r0
 /* 80029040 00025F80  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80029044 00025F84  48 01 7A 99 */	bl renderingPlusDoorAndCursor_c_NS_getIconPosition
+/* 80029044 00025F84  48 01 7A 99 */	bl getIconPosition__28renderingPlusDoorAndCursor_cCFPQ27dTres_c15typeGroupData_c
 /* 80029048 00025F88  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002904C 00025F8C  7C 08 03 A6 */	mtlr r0
 /* 80029050 00025F90  38 21 00 10 */	addi r1, r1, 0x10
@@ -803,7 +803,7 @@ lbl_80029020:
 /* 80029058 00025F98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002905C 00025F9C  7C 08 02 A6 */	mflr r0
 /* 80029060 00025FA0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80029064 00025FA4  48 01 7A 81 */	bl renderingDAmap_c_NS_getIconGroupNumber
+/* 80029064 00025FA4  48 01 7A 81 */	bl getIconGroupNumber__16renderingDAmap_cCFUc
 /* 80029068 00025FA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002906C 00025FAC  7C 08 03 A6 */	mtlr r0
 /* 80029070 00025FB0  38 21 00 10 */	addi r1, r1, 0x10
@@ -812,11 +812,11 @@ lbl_80029020:
 /* 8002907C 00025FBC  7C 08 02 A6 */	mflr r0
 /* 80029080 00025FC0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80029084 00025FC4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80029088 00025FC8  48 00 00 D9 */	bl renderingAmap_c_NS_getStayType
+/* 80029088 00025FC8  48 00 00 D9 */	bl getStayType__15renderingAmap_cCFv
 /* 8002908C 00025FCC  3B E0 00 00 */	li r31, 0
 /* 80029090 00025FD0  2C 03 00 01 */	cmpwi r3, 1
 /* 80029094 00025FD4  40 82 00 14 */	bne lbl_800290A8
-/* 80029098 00025FD8  48 01 5C 41 */	bl dMapInfo_n_NS_chkGetMap
+/* 80029098 00025FD8  48 01 5C 41 */	bl chkGetMap__10dMapInfo_nFv
 /* 8002909C 00025FDC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800290A0 00025FE0  41 82 00 08 */	beq lbl_800290A8
 /* 800290A4 00025FE4  3B E0 00 01 */	li r31, 1
@@ -830,7 +830,7 @@ lbl_800290A8:
 /* 800290C0 00026000  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800290C4 00026004  7C 08 02 A6 */	mflr r0
 /* 800290C8 00026008  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800290CC 0002600C  4B FF F7 F9 */	bl renderingAmap_c_NS_getDispType
+/* 800290CC 0002600C  4B FF F7 F9 */	bl getDispType__15renderingAmap_cCFv
 /* 800290D0 00026010  38 80 00 01 */	li r4, 1
 /* 800290D4 00026014  38 03 FF FF */	addi r0, r3, -1
 /* 800290D8 00026018  38 60 FF FF */	li r3, -1
@@ -852,12 +852,12 @@ lbl_800290F0:
 /* 80029114 00026054  38 60 00 01 */	li r3, 1
 /* 80029118 00026058  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_isRendAllRoom
-renderingAmap_c_NS_isRendAllRoom:
+.global isRendAllRoom__15renderingAmap_cCFv
+isRendAllRoom__15renderingAmap_cCFv:
 /* 8002911C 0002605C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029120 00026060  7C 08 02 A6 */	mflr r0
 /* 80029124 00026064  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80029128 00026068  4B FF F7 9D */	bl renderingAmap_c_NS_getDispType
+/* 80029128 00026068  4B FF F7 9D */	bl getDispType__15renderingAmap_cCFv
 /* 8002912C 0002606C  38 00 00 00 */	li r0, 0
 /* 80029130 00026070  2C 03 00 02 */	cmpwi r3, 2
 /* 80029134 00026074  41 82 00 18 */	beq lbl_8002914C
@@ -873,12 +873,12 @@ lbl_8002914C:
 /* 80029158 00026098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002915C 0002609C  4E 80 00 20 */	blr 
 
-.global renderingAmap_c_NS_getStayType
-renderingAmap_c_NS_getStayType:
+.global getStayType__15renderingAmap_cCFv
+getStayType__15renderingAmap_cCFv:
 /* 80029160 000260A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029164 000260A4  7C 08 02 A6 */	mflr r0
 /* 80029168 000260A8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002916C 000260AC  4B FF F7 59 */	bl renderingAmap_c_NS_getDispType
+/* 8002916C 000260AC  4B FF F7 59 */	bl getDispType__15renderingAmap_cCFv
 /* 80029170 000260B0  54 60 10 3A */	slwi r0, r3, 2
 /* 80029174 000260B4  3C 60 80 38 */	lis r3, lbl_80378F08@ha
 /* 80029178 000260B8  38 63 8F 08 */	addi r3, r3, lbl_80378F08@l
@@ -898,13 +898,13 @@ renderingAmap_c_NS_getStayType:
 /* 800291B0 000260F0  7C D6 33 78 */	mr r22, r6
 /* 800291B4 000260F4  7C FC 3B 78 */	mr r28, r7
 /* 800291B8 000260F8  3B E0 00 00 */	li r31, 0
-/* 800291BC 000260FC  4B FF F7 09 */	bl renderingAmap_c_NS_getDispType
+/* 800291BC 000260FC  4B FF F7 09 */	bl getDispType__15renderingAmap_cCFv
 /* 800291C0 00026100  7C 7D 1B 78 */	mr r29, r3
 /* 800291C4 00026104  7E E3 BB 78 */	mr r3, r23
-/* 800291C8 00026108  4B FF FF 99 */	bl renderingAmap_c_NS_getStayType
+/* 800291C8 00026108  4B FF FF 99 */	bl getStayType__15renderingAmap_cCFv
 /* 800291CC 0002610C  7C 79 1B 78 */	mr r25, r3
 /* 800291D0 00026110  88 7B 00 11 */	lbz r3, 0x11(r27)
-/* 800291D4 00026114  48 07 32 DD */	bl dTres_c_NS_getTypeToTypeGroupNo
+/* 800291D4 00026114  48 07 32 DD */	bl getTypeToTypeGroupNo__7dTres_cFUc
 /* 800291D8 00026118  54 78 06 3E */	clrlwi r24, r3, 0x18
 /* 800291DC 0002611C  7E E3 BB 78 */	mr r3, r23
 /* 800291E0 00026120  81 97 00 00 */	lwz r12, 0(r23)
@@ -915,7 +915,7 @@ renderingAmap_c_NS_getStayType:
 /* 800291F4 00026134  3A E0 00 00 */	li r23, 0
 /* 800291F8 00026138  2C 19 00 01 */	cmpwi r25, 1
 /* 800291FC 0002613C  40 82 00 14 */	bne lbl_80029210
-/* 80029200 00026140  48 01 5A A1 */	bl dMapInfo_n_NS_chkGetCompass
+/* 80029200 00026140  48 01 5A A1 */	bl chkGetCompass__10dMapInfo_nFv
 /* 80029204 00026144  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80029208 00026148  41 82 00 08 */	beq lbl_80029210
 /* 8002920C 0002614C  3A E0 00 01 */	li r23, 1
@@ -993,7 +993,7 @@ lbl_800292D0:
 /* 8002931C 0002625C  2C 19 00 00 */	cmpwi r25, 0
 /* 80029320 00026260  40 82 03 B0 */	bne lbl_800296D0
 /* 80029324 00026264  3A E0 00 00 */	li r23, 0
-/* 80029328 00026268  48 00 5A B9 */	bl dComIfGp_isLightDropMapVisible
+/* 80029328 00026268  48 00 5A B9 */	bl dComIfGp_isLightDropMapVisible__Fv
 /* 8002932C 0002626C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80029330 00026270  41 82 00 68 */	beq lbl_80029398
 /* 80029334 00026274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -1258,7 +1258,7 @@ lbl_800296D0:
 /* 80029700 00026640  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80029704 00026644  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80029708 00026648  7C 7F 1B 78 */	mr r31, r3
-/* 8002970C 0002664C  4B FF FA 11 */	bl renderingAmap_c_NS_isRendAllRoom
+/* 8002970C 0002664C  4B FF FA 11 */	bl isRendAllRoom__15renderingAmap_cCFv
 /* 80029710 00026650  88 1F 00 8E */	lbz r0, 0x8e(r31)
 /* 80029714 00026654  28 00 00 02 */	cmplwi r0, 2
 /* 80029718 00026658  40 82 00 18 */	bne lbl_80029730
@@ -1276,8 +1276,8 @@ lbl_80029730:
 /* 80029744 00026684  38 60 00 00 */	li r3, 0
 /* 80029748 00026688  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_copyPalette
-dMap_c_NS_copyPalette:
+.global copyPalette__6dMap_cFv
+copyPalette__6dMap_cFv:
 /* 8002974C 0002668C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029750 00026690  7C 08 02 A6 */	mflr r0
 /* 80029754 00026694  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1288,14 +1288,14 @@ dMap_c_NS_copyPalette:
 /* 80029768 000266A8  38 A0 01 98 */	li r5, 0x198
 /* 8002976C 000266AC  48 24 61 D1 */	bl cLib_memCpy__FPvPCvUl
 /* 80029770 000266B0  7F E3 FB 78 */	mr r3, r31
-/* 80029774 000266B4  4B FF F9 ED */	bl renderingAmap_c_NS_getStayType
+/* 80029774 000266B4  4B FF F9 ED */	bl getStayType__15renderingAmap_cCFv
 /* 80029778 000266B8  2C 03 00 00 */	cmpwi r3, 0
 /* 8002977C 000266BC  40 82 00 18 */	bne lbl_80029794
 /* 80029780 000266C0  7F E3 FB 78 */	mr r3, r31
 /* 80029784 000266C4  38 80 00 01 */	li r4, 1
 /* 80029788 000266C8  38 A0 00 2C */	li r5, 0x2c
 /* 8002978C 000266CC  C0 22 82 E0 */	lfs f1, lbl_80451CE0-_SDA2_BASE_(r2)
-/* 80029790 000266D0  48 00 08 D5 */	bl dMap_c_NS_copyPalette_X1_
+/* 80029790 000266D0  48 00 08 D5 */	bl copyPalette__6dMap_cFiif
 lbl_80029794:
 /* 80029794 000266D4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80029798 000266D8  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1303,8 +1303,8 @@ lbl_80029794:
 /* 800297A0 000266E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800297A4 000266E4  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_setMapPaletteColorAlphaPer
-dMap_c_NS_setMapPaletteColorAlphaPer:
+.global setMapPaletteColorAlphaPer__6dMap_cFiif
+setMapPaletteColorAlphaPer__6dMap_cFiif:
 /* 800297A8 000266E8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800297AC 000266EC  7C 08 02 A6 */	mflr r0
 /* 800297B0 000266F0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1322,7 +1322,7 @@ lbl_800297DC:
 /* 800297DC 0002671C  7F 83 E3 78 */	mr r3, r28
 /* 800297E0 00026720  7F C4 F3 78 */	mr r4, r30
 /* 800297E4 00026724  FC 20 F8 90 */	fmr f1, f31
-/* 800297E8 00026728  48 00 07 9D */	bl dMap_c_NS_setMapPaletteColorAlphaPer_X1_
+/* 800297E8 00026728  48 00 07 9D */	bl setMapPaletteColorAlphaPer__6dMap_cFif
 /* 800297EC 0002672C  3B DE 00 01 */	addi r30, r30, 1
 /* 800297F0 00026730  3B BD 00 01 */	addi r29, r29, 1
 lbl_800297F4:
@@ -1336,8 +1336,8 @@ lbl_800297F4:
 /* 80029810 00026750  38 21 00 20 */	addi r1, r1, 0x20
 /* 80029814 00026754  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_resCopy
-dMap_c_NS_resCopy:
+.global resCopy__6dMap_cFv
+resCopy__6dMap_cFv:
 /* 80029818 00026758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002981C 0002675C  7C 08 02 A6 */	mflr r0
 /* 80029820 00026760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1348,14 +1348,14 @@ dMap_c_NS_resCopy:
 /* 80029834 00026774  38 A0 01 BC */	li r5, 0x1bc
 /* 80029838 00026778  48 24 61 05 */	bl cLib_memCpy__FPvPCvUl
 /* 8002983C 0002677C  7F E3 FB 78 */	mr r3, r31
-/* 80029840 00026780  4B FF F9 21 */	bl renderingAmap_c_NS_getStayType
+/* 80029840 00026780  4B FF F9 21 */	bl getStayType__15renderingAmap_cCFv
 /* 80029844 00026784  2C 03 00 00 */	cmpwi r3, 0
 /* 80029848 00026788  40 82 00 18 */	bne lbl_80029860
 /* 8002984C 0002678C  7F E3 FB 78 */	mr r3, r31
 /* 80029850 00026790  38 80 00 01 */	li r4, 1
 /* 80029854 00026794  38 A0 00 2C */	li r5, 0x2c
 /* 80029858 00026798  C0 22 82 E0 */	lfs f1, lbl_80451CE0-_SDA2_BASE_(r2)
-/* 8002985C 0002679C  48 00 08 09 */	bl dMap_c_NS_copyPalette_X1_
+/* 8002985C 0002679C  48 00 08 09 */	bl copyPalette__6dMap_cFiif
 lbl_80029860:
 /* 80029860 000267A0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80029864 000267A4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1363,8 +1363,8 @@ lbl_80029860:
 /* 8002986C 000267AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80029870 000267B0  4E 80 00 20 */	blr 
 
-.global dMap_c
-dMap_c:
+.global __ct__6dMap_cFiiii
+__ct__6dMap_cFiiii:
 /* 80029874 000267B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029878 000267B8  7C 08 02 A6 */	mflr r0
 /* 8002987C 000267BC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1375,7 +1375,7 @@ dMap_c:
 /* 80029890 000267D0  7C BC 2B 78 */	mr r28, r5
 /* 80029894 000267D4  7C DD 33 78 */	mr r29, r6
 /* 80029898 000267D8  7C FE 3B 78 */	mr r30, r7
-/* 8002989C 000267DC  48 00 15 D1 */	bl renderingAmap_c
+/* 8002989C 000267DC  48 00 15 D1 */	bl __ct__15renderingAmap_cFv
 /* 800298A0 000267E0  3C 60 80 3A */	lis r3, lbl_803A7030@ha
 /* 800298A4 000267E4  38 03 70 30 */	addi r0, r3, lbl_803A7030@l
 /* 800298A8 000267E8  90 1F 00 00 */	stw r0, 0(r31)
@@ -1422,10 +1422,10 @@ dMap_c:
 /* 8002994C 0002688C  3C A5 00 02 */	addis r5, r5, 2
 /* 80029950 00026890  38 C0 00 80 */	li r6, 0x80
 /* 80029954 00026894  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80029958 00026898  48 01 29 95 */	bl dRes_control_c_NS_getRes
+/* 80029958 00026898  48 01 29 95 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8002995C 0002689C  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 80029960 000268A0  7F E3 FB 78 */	mr r3, r31
-/* 80029964 000268A4  4B FF FE B5 */	bl dMap_c_NS_resCopy
+/* 80029964 000268A4  4B FF FE B5 */	bl resCopy__6dMap_cFv
 /* 80029968 000268A8  B3 7F 00 78 */	sth r27, 0x78(r31)
 /* 8002996C 000268AC  B3 9F 00 7A */	sth r28, 0x7a(r31)
 /* 80029970 000268B0  80 6D 88 00 */	lwz r3, lbl_80450D80-_SDA_BASE_(r13)
@@ -1452,7 +1452,7 @@ lbl_80029990:
 /* 800299C0 00026900  80 9F 00 4C */	lwz r4, 0x4c(r31)
 /* 800299C4 00026904  7C A7 2B 78 */	mr r7, r5
 /* 800299C8 00026908  7C C8 33 78 */	mr r8, r6
-/* 800299CC 0002690C  48 01 62 FD */	bl renderingDAmap_c_NS_init
+/* 800299CC 0002690C  48 01 62 FD */	bl init__16renderingDAmap_cFPUcUsUsUsUs
 /* 800299D0 00026910  38 60 00 20 */	li r3, 0x20
 /* 800299D4 00026914  38 80 00 20 */	li r4, 0x20
 /* 800299D8 00026918  48 2A 52 9D */	bl __nw__FUli
@@ -1464,7 +1464,7 @@ lbl_80029990:
 /* 800299F0 00026930  80 FF 00 4C */	lwz r7, 0x4c(r31)
 /* 800299F4 00026934  81 1F 00 44 */	lwz r8, 0x44(r31)
 /* 800299F8 00026938  39 20 00 33 */	li r9, 0x33
-/* 800299FC 0002693C  48 01 33 3D */	bl dRenderingMap_c_NS_makeResTIMG
+/* 800299FC 0002693C  48 01 33 3D */	bl makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs
 /* 80029A00 00026940  7F E3 FB 78 */	mr r3, r31
 /* 80029A04 00026944  39 61 00 20 */	addi r11, r1, 0x20
 /* 80029A08 00026948  48 33 88 19 */	bl _restgpr_27
@@ -1473,8 +1473,8 @@ lbl_80029990:
 /* 80029A14 00026954  38 21 00 20 */	addi r1, r1, 0x20
 /* 80029A18 00026958  4E 80 00 20 */	blr 
 
-.global dMap_c_NS__remove
-dMap_c_NS__remove:
+.global _remove__6dMap_cFv
+_remove__6dMap_cFv:
 /* 80029A1C 0002695C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80029A20 00026960  7C 08 02 A6 */	mflr r0
 /* 80029A24 00026964  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1507,8 +1507,8 @@ lbl_80029A78:
 /* 80029A84 000269C4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80029A88 000269C8  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_getMapMinMaxXZ
-dMap_c_NS_getMapMinMaxXZ:
+.global getMapMinMaxXZ__6dMap_cFiPfPfPfPf
+getMapMinMaxXZ__6dMap_cFiPfPfPfPf:
 /* 80029A8C 000269CC  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80029A90 000269D0  7C 08 02 A6 */	mflr r0
 /* 80029A94 000269D4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1553,10 +1553,10 @@ dMap_c_NS_getMapMinMaxXZ:
 /* 80029B30 00026A70  38 A1 00 10 */	addi r5, r1, 0x10
 /* 80029B34 00026A74  38 C1 00 0C */	addi r6, r1, 0xc
 /* 80029B38 00026A78  38 E1 00 08 */	addi r7, r1, 8
-/* 80029B3C 00026A7C  48 01 56 B9 */	bl dMapInfo_n_NS_getRoomMinMaxXZ
+/* 80029B3C 00026A7C  48 01 56 B9 */	bl getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf
 lbl_80029B40:
 /* 80029B40 00026A80  7F 63 DB 78 */	mr r3, r27
-/* 80029B44 00026A84  48 00 06 79 */	bl dMap_c_NS_getDispType
+/* 80029B44 00026A84  48 00 06 79 */	bl getDispType__6dMap_cCFv
 /* 80029B48 00026A88  2C 03 00 04 */	cmpwi r3, 4
 /* 80029B4C 00026A8C  41 82 00 24 */	beq lbl_80029B70
 /* 80029B50 00026A90  40 80 00 14 */	bge lbl_80029B64
@@ -1617,8 +1617,8 @@ lbl_80029BD8:
 /* 80029C08 00026B48  38 21 00 70 */	addi r1, r1, 0x70
 /* 80029C0C 00026B4C  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_getPack
-dMap_c_NS_getPack:
+.global getPack__6dMap_cFiPfPf
+getPack__6dMap_cFiPfPf:
 /* 80029C10 00026B50  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80029C14 00026B54  7C 08 02 A6 */	mflr r0
 /* 80029C18 00026B58  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1634,7 +1634,7 @@ dMap_c_NS_getPack:
 /* 80029C40 00026B80  7C DF 33 78 */	mr r31, r6
 /* 80029C44 00026B84  C3 E2 82 E4 */	lfs f31, lbl_80451CE4-_SDA2_BASE_(r2)
 /* 80029C48 00026B88  FF C0 F8 90 */	fmr f30, f31
-/* 80029C4C 00026B8C  4B FF F5 15 */	bl renderingAmap_c_NS_getStayType
+/* 80029C4C 00026B8C  4B FF F5 15 */	bl getStayType__15renderingAmap_cCFv
 /* 80029C50 00026B90  2C 03 00 00 */	cmpwi r3, 0
 /* 80029C54 00026B94  40 82 00 E4 */	bne lbl_80029D38
 /* 80029C58 00026B98  C0 02 82 E4 */	lfs f0, lbl_80451CE4-_SDA2_BASE_(r2)
@@ -1648,7 +1648,7 @@ dMap_c_NS_getPack:
 /* 80029C78 00026BB8  38 C1 00 10 */	addi r6, r1, 0x10
 /* 80029C7C 00026BBC  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80029C80 00026BC0  39 01 00 08 */	addi r8, r1, 8
-/* 80029C84 00026BC4  4B FF FE 09 */	bl dMap_c_NS_getMapMinMaxXZ
+/* 80029C84 00026BC4  4B FF FE 09 */	bl getMapMinMaxXZ__6dMap_cFiPfPfPfPf
 /* 80029C88 00026BC8  C0 A2 82 A0 */	lfs f5, lbl_80451CA0-_SDA2_BASE_(r2)
 /* 80029C8C 00026BCC  C0 5C 00 58 */	lfs f2, 0x58(r28)
 /* 80029C90 00026BD0  80 7C 00 74 */	lwz r3, 0x74(r28)
@@ -1714,8 +1714,8 @@ lbl_80029D50:
 /* 80029D70 00026CB0  38 21 00 50 */	addi r1, r1, 0x50
 /* 80029D74 00026CB4  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_calcMapCenterXZ
-dMap_c_NS_calcMapCenterXZ:
+.global calcMapCenterXZ__6dMap_cFiPfPf
+calcMapCenterXZ__6dMap_cFiPfPf:
 /* 80029D78 00026CB8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029D7C 00026CBC  7C 08 02 A6 */	mflr r0
 /* 80029D80 00026CC0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1735,7 +1735,7 @@ dMap_c_NS_calcMapCenterXZ:
 /* 80029DB8 00026CF8  38 C1 00 10 */	addi r6, r1, 0x10
 /* 80029DBC 00026CFC  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80029DC0 00026D00  39 01 00 08 */	addi r8, r1, 8
-/* 80029DC4 00026D04  4B FF FC C9 */	bl dMap_c_NS_getMapMinMaxXZ
+/* 80029DC4 00026D04  4B FF FC C9 */	bl getMapMinMaxXZ__6dMap_cFiPfPfPfPf
 /* 80029DC8 00026D08  C0 42 82 A0 */	lfs f2, lbl_80451CA0-_SDA2_BASE_(r2)
 /* 80029DCC 00026D0C  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 80029DD0 00026D10  C0 01 00 14 */	lfs f0, 0x14(r1)
@@ -1761,8 +1761,8 @@ lbl_80029E04:
 /* 80029E14 00026D54  38 21 00 20 */	addi r1, r1, 0x20
 /* 80029E18 00026D58  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_calcMapCmPerTexel
-dMap_c_NS_calcMapCmPerTexel:
+.global calcMapCmPerTexel__6dMap_cFiPf
+calcMapCmPerTexel__6dMap_cFiPf:
 /* 80029E1C 00026D5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80029E20 00026D60  7C 08 02 A6 */	mflr r0
 /* 80029E24 00026D64  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1775,7 +1775,7 @@ dMap_c_NS_calcMapCmPerTexel:
 /* 80029E40 00026D80  7C BF 2B 78 */	mr r31, r5
 /* 80029E44 00026D84  C0 02 82 E4 */	lfs f0, lbl_80451CE4-_SDA2_BASE_(r2)
 /* 80029E48 00026D88  41 80 01 10 */	blt lbl_80029F58
-/* 80029E4C 00026D8C  4B FF F3 15 */	bl renderingAmap_c_NS_getStayType
+/* 80029E4C 00026D8C  4B FF F3 15 */	bl getStayType__15renderingAmap_cCFv
 /* 80029E50 00026D90  2C 03 00 00 */	cmpwi r3, 0
 /* 80029E54 00026D94  40 82 00 AC */	bne lbl_80029F00
 /* 80029E58 00026D98  C0 02 82 E4 */	lfs f0, lbl_80451CE4-_SDA2_BASE_(r2)
@@ -1789,7 +1789,7 @@ dMap_c_NS_calcMapCmPerTexel:
 /* 80029E78 00026DB8  38 C1 00 10 */	addi r6, r1, 0x10
 /* 80029E7C 00026DBC  38 E1 00 0C */	addi r7, r1, 0xc
 /* 80029E80 00026DC0  39 01 00 08 */	addi r8, r1, 8
-/* 80029E84 00026DC4  4B FF FC 09 */	bl dMap_c_NS_getMapMinMaxXZ
+/* 80029E84 00026DC4  4B FF FC 09 */	bl getMapMinMaxXZ__6dMap_cFiPfPfPfPf
 /* 80029E88 00026DC8  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 80029E8C 00026DCC  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80029E90 00026DD0  EC 41 00 28 */	fsubs f2, f1, f0
@@ -1861,8 +1861,8 @@ lbl_80029F64:
 /* 80029F7C 00026EBC  38 21 00 50 */	addi r1, r1, 0x50
 /* 80029F80 00026EC0  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_setMapPaletteColorAlphaPer_X1_
-dMap_c_NS_setMapPaletteColorAlphaPer_X1_:
+.global setMapPaletteColorAlphaPer__6dMap_cFif
+setMapPaletteColorAlphaPer__6dMap_cFif:
 /* 80029F84 00026EC4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80029F88 00026EC8  7C 08 02 A6 */	mflr r0
 /* 80029F8C 00026ECC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1923,8 +1923,8 @@ lbl_8002A034:
 /* 8002A05C 00026F9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002A060 00026FA0  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_copyPalette_X1_
-dMap_c_NS_copyPalette_X1_:
+.global copyPalette__6dMap_cFiif
+copyPalette__6dMap_cFiif:
 /* 8002A064 00026FA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8002A068 00026FA8  7C 08 02 A6 */	mflr r0
 /* 8002A06C 00026FAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2016,12 +2016,12 @@ lbl_8002A180:
 /* 8002A1B4 000270F4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002A1B8 000270F8  4E 80 00 20 */	blr 
 
-.global dMap_c_NS_getDispType
-dMap_c_NS_getDispType:
+.global getDispType__6dMap_cCFv
+getDispType__6dMap_cCFv:
 /* 8002A1BC 000270FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002A1C0 00027100  7C 08 02 A6 */	mflr r0
 /* 8002A1C4 00027104  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002A1C8 00027108  4B FF E6 FD */	bl renderingAmap_c_NS_getDispType
+/* 8002A1C8 00027108  4B FF E6 FD */	bl getDispType__15renderingAmap_cCFv
 /* 8002A1CC 0002710C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002A1D0 00027110  7C 08 03 A6 */	mtlr r0
 /* 8002A1D4 00027114  38 21 00 10 */	addi r1, r1, 0x10
@@ -2055,7 +2055,7 @@ lbl_8002A22C:
 /* 8002A238 00027178  54 03 D9 7E */	srwi r3, r0, 5
 /* 8002A23C 0002717C  48 00 00 08 */	b lbl_8002A244
 lbl_8002A240:
-/* 8002A240 00027180  48 01 5C 31 */	bl renderingDAmap_c_NS_isDrawRoom
+/* 8002A240 00027180  48 01 5C 31 */	bl isDrawRoom__16renderingDAmap_cCFii
 lbl_8002A244:
 /* 8002A244 00027184  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002A248 00027188  7C 08 03 A6 */	mtlr r0
@@ -2073,7 +2073,7 @@ lbl_8002A244:
 /* 8002A278 000271B8  80 63 00 80 */	lwz r3, 0x80(r3)
 /* 8002A27C 000271BC  48 00 00 08 */	b lbl_8002A284
 lbl_8002A280:
-/* 8002A280 000271C0  48 01 5D 6D */	bl renderingDAmap_c_NS_getRoomNoSingle
+/* 8002A280 000271C0  48 01 5D 6D */	bl getRoomNoSingle__16renderingDAmap_cFv
 lbl_8002A284:
 /* 8002A284 000271C4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002A288 000271C8  7C 08 03 A6 */	mtlr r0
@@ -2100,14 +2100,14 @@ lbl_8002A2D8:
 /* 8002A2D8 00027218  3B C0 00 01 */	li r30, 1
 lbl_8002A2DC:
 /* 8002A2DC 0002721C  7F 83 E3 78 */	mr r3, r28
-/* 8002A2E0 00027220  4B FF EE 3D */	bl renderingAmap_c_NS_isRendAllRoom
+/* 8002A2E0 00027220  4B FF EE 3D */	bl isRendAllRoom__15renderingAmap_cCFv
 /* 8002A2E4 00027224  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8002A2E8 00027228  41 82 00 28 */	beq lbl_8002A310
 /* 8002A2EC 0002722C  3B E0 00 00 */	li r31, 0
 /* 8002A2F0 00027230  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 8002A2F4 00027234  40 82 00 14 */	bne lbl_8002A308
 /* 8002A2F8 00027238  7F A3 EB 78 */	mr r3, r29
-/* 8002A2FC 0002723C  48 01 4A 15 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 8002A2FC 0002723C  48 01 4A 15 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 8002A300 00027240  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8002A304 00027244  41 82 00 08 */	beq lbl_8002A30C
 lbl_8002A308:
@@ -2123,8 +2123,8 @@ lbl_8002A310:
 /* 8002A324 00027264  38 21 00 20 */	addi r1, r1, 0x20
 /* 8002A328 00027268  4E 80 00 20 */	blr 
 
-.global dMap_c_NS__move
-dMap_c_NS__move:
+.global _move__6dMap_cFffif
+_move__6dMap_cFffif:
 /* 8002A32C 0002726C  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8002A330 00027270  7C 08 02 A6 */	mflr r0
 /* 8002A334 00027274  90 01 00 64 */	stw r0, 0x64(r1)
@@ -2154,16 +2154,16 @@ dMap_c_NS__move:
 /* 8002A394 000272D4  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A398 000272D8  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A39C 000272DC  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A3A0 000272E0  4B FF F9 D9 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A3A0 000272E0  4B FF F9 D9 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A3A4 000272E4  7F C3 F3 78 */	mr r3, r30
 /* 8002A3A8 000272E8  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A3AC 000272EC  38 BE 00 58 */	addi r5, r30, 0x58
-/* 8002A3B0 000272F0  4B FF FA 6D */	bl dMap_c_NS_calcMapCmPerTexel
+/* 8002A3B0 000272F0  4B FF FA 6D */	bl calcMapCmPerTexel__6dMap_cFiPf
 /* 8002A3B4 000272F4  7F C3 F3 78 */	mr r3, r30
 /* 8002A3B8 000272F8  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A3BC 000272FC  38 BE 00 5C */	addi r5, r30, 0x5c
 /* 8002A3C0 00027300  38 DE 00 60 */	addi r6, r30, 0x60
-/* 8002A3C4 00027304  4B FF F8 4D */	bl dMap_c_NS_getPack
+/* 8002A3C4 00027304  4B FF F8 4D */	bl getPack__6dMap_cFiPfPf
 /* 8002A3C8 00027308  C0 3E 00 50 */	lfs f1, 0x50(r30)
 /* 8002A3CC 0002730C  C0 1E 00 5C */	lfs f0, 0x5c(r30)
 /* 8002A3D0 00027310  EC 01 00 2A */	fadds f0, f1, f0
@@ -2182,7 +2182,7 @@ dMap_c_NS__move:
 /* 8002A404 00027344  D0 1E 00 54 */	stfs f0, 0x54(r30)
 lbl_8002A408:
 /* 8002A408 00027348  7F C3 F3 78 */	mr r3, r30
-/* 8002A40C 0002734C  4B FF ED 55 */	bl renderingAmap_c_NS_getStayType
+/* 8002A40C 0002734C  4B FF ED 55 */	bl getStayType__15renderingAmap_cCFv
 /* 8002A410 00027350  2C 03 00 00 */	cmpwi r3, 0
 /* 8002A414 00027354  40 82 00 AC */	bne lbl_8002A4C0
 /* 8002A418 00027358  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -2236,11 +2236,11 @@ lbl_8002A4CC:
 /* 8002A4D0 00027410  93 FE 00 7C */	stw r31, 0x7c(r30)
 /* 8002A4D4 00027414  80 7E 00 7C */	lwz r3, 0x7c(r30)
 /* 8002A4D8 00027418  FC 20 F8 90 */	fmr f1, f31
-/* 8002A4DC 0002741C  48 01 51 ED */	bl dMapInfo_c_NS_move
+/* 8002A4DC 0002741C  48 01 51 ED */	bl move__10dMapInfo_cFif
 /* 8002A4E0 00027420  38 00 00 00 */	li r0, 0
 /* 8002A4E4 00027424  98 1E 00 8E */	stb r0, 0x8e(r30)
 /* 8002A4E8 00027428  7F C3 F3 78 */	mr r3, r30
-/* 8002A4EC 0002742C  4B FF FC D1 */	bl dMap_c_NS_getDispType
+/* 8002A4EC 0002742C  4B FF FC D1 */	bl getDispType__6dMap_cCFv
 /* 8002A4F0 00027430  2C 03 00 01 */	cmpwi r3, 1
 /* 8002A4F4 00027434  41 82 00 24 */	beq lbl_8002A518
 /* 8002A4F8 00027438  40 80 00 08 */	bge lbl_8002A500
@@ -2281,16 +2281,16 @@ lbl_8002A548:
 /* 8002A56C 000274AC  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A570 000274B0  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A574 000274B4  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A578 000274B8  4B FF F8 01 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A578 000274B8  4B FF F8 01 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A57C 000274BC  7F C3 F3 78 */	mr r3, r30
 /* 8002A580 000274C0  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A584 000274C4  38 BE 00 58 */	addi r5, r30, 0x58
-/* 8002A588 000274C8  4B FF F8 95 */	bl dMap_c_NS_calcMapCmPerTexel
+/* 8002A588 000274C8  4B FF F8 95 */	bl calcMapCmPerTexel__6dMap_cFiPf
 /* 8002A58C 000274CC  7F C3 F3 78 */	mr r3, r30
 /* 8002A590 000274D0  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A594 000274D4  38 BE 00 5C */	addi r5, r30, 0x5c
 /* 8002A598 000274D8  38 DE 00 60 */	addi r6, r30, 0x60
-/* 8002A59C 000274DC  4B FF F6 75 */	bl dMap_c_NS_getPack
+/* 8002A59C 000274DC  4B FF F6 75 */	bl getPack__6dMap_cFiPfPf
 /* 8002A5A0 000274E0  C0 3E 00 50 */	lfs f1, 0x50(r30)
 /* 8002A5A4 000274E4  C0 1E 00 5C */	lfs f0, 0x5c(r30)
 /* 8002A5A8 000274E8  EC 01 00 2A */	fadds f0, f1, f0
@@ -2338,7 +2338,7 @@ lbl_8002A618:
 /* 8002A644 00027584  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A648 00027588  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A64C 0002758C  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A650 00027590  4B FF F7 29 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A650 00027590  4B FF F7 29 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A654 00027594  48 00 01 A4 */	b lbl_8002A7F8
 lbl_8002A658:
 /* 8002A658 00027598  88 1E 00 8F */	lbz r0, 0x8f(r30)
@@ -2405,16 +2405,16 @@ lbl_8002A6C8:
 /* 8002A748 00027688  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A74C 0002768C  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A750 00027690  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A754 00027694  4B FF F6 25 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A754 00027694  4B FF F6 25 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A758 00027698  7F C3 F3 78 */	mr r3, r30
 /* 8002A75C 0002769C  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A760 000276A0  38 BE 00 58 */	addi r5, r30, 0x58
-/* 8002A764 000276A4  4B FF F6 B9 */	bl dMap_c_NS_calcMapCmPerTexel
+/* 8002A764 000276A4  4B FF F6 B9 */	bl calcMapCmPerTexel__6dMap_cFiPf
 /* 8002A768 000276A8  7F C3 F3 78 */	mr r3, r30
 /* 8002A76C 000276AC  80 9E 00 80 */	lwz r4, 0x80(r30)
 /* 8002A770 000276B0  38 BE 00 5C */	addi r5, r30, 0x5c
 /* 8002A774 000276B4  38 DE 00 60 */	addi r6, r30, 0x60
-/* 8002A778 000276B8  4B FF F4 99 */	bl dMap_c_NS_getPack
+/* 8002A778 000276B8  4B FF F4 99 */	bl getPack__6dMap_cFiPfPf
 /* 8002A77C 000276BC  C0 3E 00 50 */	lfs f1, 0x50(r30)
 /* 8002A780 000276C0  C0 1E 00 5C */	lfs f0, 0x5c(r30)
 /* 8002A784 000276C4  EC 01 00 2A */	fadds f0, f1, f0
@@ -2467,12 +2467,12 @@ lbl_8002A82C:
 /* 8002A830 00027770  80 9E 00 88 */	lwz r4, 0x88(r30)
 /* 8002A834 00027774  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A838 00027778  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A83C 0002777C  4B FF F5 3D */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A83C 0002777C  4B FF F5 3D */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A840 00027780  7F C3 F3 78 */	mr r3, r30
 /* 8002A844 00027784  80 9E 00 84 */	lwz r4, 0x84(r30)
 /* 8002A848 00027788  38 A1 00 2C */	addi r5, r1, 0x2c
 /* 8002A84C 0002778C  38 C1 00 28 */	addi r6, r1, 0x28
-/* 8002A850 00027790  4B FF F5 29 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A850 00027790  4B FF F5 29 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A854 00027794  C0 42 82 E0 */	lfs f2, lbl_80451CE0-_SDA2_BASE_(r2)
 /* 8002A858 00027798  88 1E 00 90 */	lbz r0, 0x90(r30)
 /* 8002A85C 0002779C  C8 22 82 B0 */	lfd f1, lbl_80451CB0-_SDA2_BASE_(r2)
@@ -2524,24 +2524,24 @@ lbl_8002A8E0:
 /* 8002A908 00027848  38 80 00 2F */	li r4, 0x2f
 /* 8002A90C 0002784C  38 A0 00 32 */	li r5, 0x32
 /* 8002A910 00027850  FC 20 F8 90 */	fmr f1, f31
-/* 8002A914 00027854  4B FF EE 95 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002A914 00027854  4B FF EE 95 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002A918 00027858  7F C3 F3 78 */	mr r3, r30
 /* 8002A91C 0002785C  38 80 00 21 */	li r4, 0x21
 /* 8002A920 00027860  38 A0 00 2B */	li r5, 0x2b
 /* 8002A924 00027864  FC 20 F8 90 */	fmr f1, f31
-/* 8002A928 00027868  4B FF EE 81 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002A928 00027868  4B FF EE 81 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002A92C 0002786C  48 00 02 00 */	b lbl_8002AB2C
 lbl_8002A930:
 /* 8002A930 00027870  7F C3 F3 78 */	mr r3, r30
 /* 8002A934 00027874  80 9E 00 88 */	lwz r4, 0x88(r30)
 /* 8002A938 00027878  38 BE 00 50 */	addi r5, r30, 0x50
 /* 8002A93C 0002787C  38 DE 00 54 */	addi r6, r30, 0x54
-/* 8002A940 00027880  4B FF F4 39 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A940 00027880  4B FF F4 39 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A944 00027884  7F C3 F3 78 */	mr r3, r30
 /* 8002A948 00027888  80 9E 00 84 */	lwz r4, 0x84(r30)
 /* 8002A94C 0002788C  38 A1 00 24 */	addi r5, r1, 0x24
 /* 8002A950 00027890  38 C1 00 20 */	addi r6, r1, 0x20
-/* 8002A954 00027894  4B FF F4 25 */	bl dMap_c_NS_calcMapCenterXZ
+/* 8002A954 00027894  4B FF F4 25 */	bl calcMapCenterXZ__6dMap_cFiPfPf
 /* 8002A958 00027898  C0 42 82 E0 */	lfs f2, lbl_80451CE0-_SDA2_BASE_(r2)
 /* 8002A95C 0002789C  88 1E 00 90 */	lbz r0, 0x90(r30)
 /* 8002A960 000278A0  C8 22 82 B0 */	lfd f1, lbl_80451CB0-_SDA2_BASE_(r2)
@@ -2573,34 +2573,34 @@ lbl_8002A930:
 /* 8002A9C8 00027908  38 80 00 0A */	li r4, 0xa
 /* 8002A9CC 0002790C  38 A0 00 11 */	li r5, 0x11
 /* 8002A9D0 00027910  FC 20 F8 90 */	fmr f1, f31
-/* 8002A9D4 00027914  4B FF ED D5 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002A9D4 00027914  4B FF ED D5 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002A9D8 00027918  7F C3 F3 78 */	mr r3, r30
 /* 8002A9DC 0002791C  38 80 00 12 */	li r4, 0x12
 /* 8002A9E0 00027920  38 A0 00 19 */	li r5, 0x19
 /* 8002A9E4 00027924  C0 02 82 E0 */	lfs f0, lbl_80451CE0-_SDA2_BASE_(r2)
 /* 8002A9E8 00027928  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 8002A9EC 0002792C  4B FF ED BD */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002A9EC 0002792C  4B FF ED BD */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002A9F0 00027930  48 00 00 2C */	b lbl_8002AA1C
 lbl_8002A9F4:
 /* 8002A9F4 00027934  7F C3 F3 78 */	mr r3, r30
 /* 8002A9F8 00027938  38 80 00 0A */	li r4, 0xa
 /* 8002A9FC 0002793C  38 A0 00 11 */	li r5, 0x11
 /* 8002AA00 00027940  EC 22 F8 28 */	fsubs f1, f2, f31
-/* 8002AA04 00027944  4B FF ED A5 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002AA04 00027944  4B FF ED A5 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002AA08 00027948  7F C3 F3 78 */	mr r3, r30
 /* 8002AA0C 0002794C  38 80 00 12 */	li r4, 0x12
 /* 8002AA10 00027950  38 A0 00 19 */	li r5, 0x19
 /* 8002AA14 00027954  FC 20 F8 90 */	fmr f1, f31
-/* 8002AA18 00027958  4B FF ED 91 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002AA18 00027958  4B FF ED 91 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 lbl_8002AA1C:
 /* 8002AA1C 0002795C  7F C3 F3 78 */	mr r3, r30
 /* 8002AA20 00027960  80 9E 00 88 */	lwz r4, 0x88(r30)
 /* 8002AA24 00027964  38 A1 00 1C */	addi r5, r1, 0x1c
-/* 8002AA28 00027968  4B FF F3 F5 */	bl dMap_c_NS_calcMapCmPerTexel
+/* 8002AA28 00027968  4B FF F3 F5 */	bl calcMapCmPerTexel__6dMap_cFiPf
 /* 8002AA2C 0002796C  7F C3 F3 78 */	mr r3, r30
 /* 8002AA30 00027970  80 9E 00 84 */	lwz r4, 0x84(r30)
 /* 8002AA34 00027974  38 A1 00 18 */	addi r5, r1, 0x18
-/* 8002AA38 00027978  4B FF F3 E5 */	bl dMap_c_NS_calcMapCmPerTexel
+/* 8002AA38 00027978  4B FF F3 E5 */	bl calcMapCmPerTexel__6dMap_cFiPf
 /* 8002AA3C 0002797C  C0 21 00 1C */	lfs f1, 0x1c(r1)
 /* 8002AA40 00027980  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 8002AA44 00027984  EC 00 08 28 */	fsubs f0, f0, f1
@@ -2611,12 +2611,12 @@ lbl_8002AA1C:
 /* 8002AA58 00027998  80 9E 00 88 */	lwz r4, 0x88(r30)
 /* 8002AA5C 0002799C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8002AA60 000279A0  38 C1 00 10 */	addi r6, r1, 0x10
-/* 8002AA64 000279A4  4B FF F1 AD */	bl dMap_c_NS_getPack
+/* 8002AA64 000279A4  4B FF F1 AD */	bl getPack__6dMap_cFiPfPf
 /* 8002AA68 000279A8  7F C3 F3 78 */	mr r3, r30
 /* 8002AA6C 000279AC  80 9E 00 84 */	lwz r4, 0x84(r30)
 /* 8002AA70 000279B0  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8002AA74 000279B4  38 C1 00 08 */	addi r6, r1, 8
-/* 8002AA78 000279B8  4B FF F1 99 */	bl dMap_c_NS_getPack
+/* 8002AA78 000279B8  4B FF F1 99 */	bl getPack__6dMap_cFiPfPf
 /* 8002AA7C 000279BC  C0 21 00 14 */	lfs f1, 0x14(r1)
 /* 8002AA80 000279C0  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8002AA84 000279C4  EC 00 08 28 */	fsubs f0, f0, f1
@@ -2653,16 +2653,16 @@ lbl_8002AACC:
 /* 8002AAFC 00027A3C  38 80 00 2F */	li r4, 0x2f
 /* 8002AB00 00027A40  38 A0 00 32 */	li r5, 0x32
 /* 8002AB04 00027A44  FC 20 F8 90 */	fmr f1, f31
-/* 8002AB08 00027A48  4B FF EC A1 */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002AB08 00027A48  4B FF EC A1 */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002AB0C 00027A4C  7F C3 F3 78 */	mr r3, r30
 /* 8002AB10 00027A50  38 80 00 21 */	li r4, 0x21
 /* 8002AB14 00027A54  38 A0 00 2B */	li r5, 0x2b
 /* 8002AB18 00027A58  FC 20 F8 90 */	fmr f1, f31
-/* 8002AB1C 00027A5C  4B FF EC 8D */	bl dMap_c_NS_setMapPaletteColorAlphaPer
+/* 8002AB1C 00027A5C  4B FF EC 8D */	bl setMapPaletteColorAlphaPer__6dMap_cFiif
 /* 8002AB20 00027A60  48 00 00 0C */	b lbl_8002AB2C
 lbl_8002AB24:
 /* 8002AB24 00027A64  7F C3 F3 78 */	mr r3, r30
-/* 8002AB28 00027A68  4B FF EC 25 */	bl dMap_c_NS_copyPalette
+/* 8002AB28 00027A68  4B FF EC 25 */	bl copyPalette__6dMap_cFv
 lbl_8002AB2C:
 /* 8002AB2C 00027A6C  38 00 00 01 */	li r0, 1
 /* 8002AB30 00027A70  98 1E 00 8D */	stb r0, 0x8d(r30)
@@ -2675,8 +2675,8 @@ lbl_8002AB2C:
 /* 8002AB4C 00027A8C  38 21 00 60 */	addi r1, r1, 0x60
 /* 8002AB50 00027A90  4E 80 00 20 */	blr 
 
-.global dMap_c_NS__draw
-dMap_c_NS__draw:
+.global _draw__6dMap_cFv
+_draw__6dMap_cFv:
 /* 8002AB54 00027A94  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002AB58 00027A98  7C 08 02 A6 */	mflr r0
 /* 8002AB5C 00027A9C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2695,7 +2695,7 @@ lbl_8002AB8C:
 /* 8002AB8C 00027ACC  C0 23 00 50 */	lfs f1, 0x50(r3)
 /* 8002AB90 00027AD0  C0 43 00 54 */	lfs f2, 0x54(r3)
 /* 8002AB94 00027AD4  C0 63 00 58 */	lfs f3, 0x58(r3)
-/* 8002AB98 00027AD8  48 01 51 71 */	bl renderingDAmap_c_NS_entry
+/* 8002AB98 00027AD8  48 01 51 71 */	bl entry__16renderingDAmap_cFfffiSc
 lbl_8002AB9C:
 /* 8002AB9C 00027ADC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002ABA0 00027AE0  7C 08 03 A6 */	mtlr r0
@@ -2704,7 +2704,7 @@ lbl_8002AB9C:
 /* 8002ABAC 00027AEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002ABB0 00027AF0  7C 08 02 A6 */	mflr r0
 /* 8002ABB4 00027AF4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002ABB8 00027AF8  48 01 5E DD */	bl renderingPlusDoorAndCursor_c_NS_getFirstData
+/* 8002ABB8 00027AF8  48 01 5E DD */	bl getFirstData__28renderingPlusDoorAndCursor_cFUc
 /* 8002ABBC 00027AFC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002ABC0 00027B00  7C 08 03 A6 */	mtlr r0
 /* 8002ABC4 00027B04  38 21 00 10 */	addi r1, r1, 0x10
@@ -2712,7 +2712,7 @@ lbl_8002AB9C:
 /* 8002ABCC 00027B0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002ABD0 00027B10  7C 08 02 A6 */	mflr r0
 /* 8002ABD4 00027B14  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002ABD8 00027B18  48 01 5E E1 */	bl renderingPlusDoorAndCursor_c_NS_getNextData
+/* 8002ABD8 00027B18  48 01 5E E1 */	bl getNextData__28renderingPlusDoorAndCursor_cFPQ27dTres_c15typeGroupData_c
 /* 8002ABDC 00027B1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8002ABE0 00027B20  7C 08 03 A6 */	mtlr r0
 /* 8002ABE4 00027B24  38 21 00 10 */	addi r1, r1, 0x10
@@ -2887,8 +2887,8 @@ lbl_8002AE54:
 /* 8002AE64 00027DA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002AE68 00027DA8  4E 80 00 20 */	blr 
 
-.global renderingAmap_c
-renderingAmap_c:
+.global __ct__15renderingAmap_cFv
+__ct__15renderingAmap_cFv:
 /* 8002AE6C 00027DAC  3C 80 80 3A */	lis r4, lbl_803A6F88@ha
 /* 8002AE70 00027DB0  38 04 6F 88 */	addi r0, r4, lbl_803A6F88@l
 /* 8002AE74 00027DB4  90 03 00 00 */	stw r0, 0(r3)
@@ -2945,7 +2945,7 @@ renderingAmap_c:
 /* 8002AF40 00027E80  3C 80 80 3A */	lis r4, lbl_803A7030@ha
 /* 8002AF44 00027E84  38 04 70 30 */	addi r0, r4, lbl_803A7030@l
 /* 8002AF48 00027E88  90 1E 00 00 */	stw r0, 0(r30)
-/* 8002AF4C 00027E8C  4B FF EA D1 */	bl dMap_c_NS__remove
+/* 8002AF4C 00027E8C  4B FF EA D1 */	bl _remove__6dMap_cFv
 /* 8002AF50 00027E90  28 1E 00 00 */	cmplwi r30, 0
 /* 8002AF54 00027E94  41 82 00 80 */	beq lbl_8002AFD4
 /* 8002AF58 00027E98  3C 60 80 3A */	lis r3, lbl_803A70F4@ha

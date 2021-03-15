@@ -21,7 +21,7 @@
 /* 80104084 00100FC4  7F E3 FB 78 */ mr r3, r31
 /* 80104088 00100FC8  38 80 00 01 */ li r4, 1
 /* 8010408C 00100FCC  38 A0 00 01 */ li r5, 1
-/* 80104090 00100FD0  4B FB 74 29 */ bl daAlink_c_NS_checkHeavyStateOn
+/* 80104090 00100FD0  4B FB 74 29 */ bl checkHeavyStateOn__9daAlink_cFii
 /* 80104094 00100FD4  2C 03 00 00 */ cmpwi r3, 0
 /* 80104098 00100FD8  41 82 00 14 */ beq lbl_801040AC
 /* 8010409C 00100FDC  3C 60 80 39 */ lis r3, lbl_8038F8B4@ha

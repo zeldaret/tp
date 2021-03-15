@@ -9,7 +9,7 @@
 lbl_80139068:
 /* 80139068 00135FA8  38 7F 07 C4 */ addi r3, r31, 0x7c4
 /* 8013906C 00135FAC  7C 7C 1A 14 */ add r3, r28, r3
-/* 80139070 00135FB0  48 02 5B D9 */ bl daPy_actorKeep_c_NS_setActor
+/* 80139070 00135FB0  48 02 5B D9 */ bl setActor__16daPy_actorKeep_cFv
 /* 80139074 00135FB4  3B DE 00 01 */ addi r30, r30, 1
 /* 80139078 00135FB8  2C 1E 00 0A */ cmpwi r30, 0xa
 /* 8013907C 00135FBC  3B FF 00 08 */ addi r31, r31, 8
@@ -29,7 +29,7 @@ lbl_801390AC:
 /* 801390AC 00135FEC  7C 9C FA 14 */ add r4, r28, r31
 /* 801390B0 00135FF0  38 64 07 C4 */ addi r3, r4, 0x7c4
 /* 801390B4 00135FF4  80 84 07 D0 */ lwz r4, 0x7d0(r4)
-/* 801390B8 00135FF8  48 02 5C 01 */ bl daPy_actorKeep_c_NS_setData
+/* 801390B8 00135FF8  48 02 5C 01 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 801390BC 00135FFC  3B BD 00 01 */ addi r29, r29, 1
 /* 801390C0 00136000  3B FF 00 08 */ addi r31, r31, 8
 lbl_801390C4:
@@ -40,7 +40,7 @@ lbl_801390C4:
 /* 801390D4 00136014  57 A3 18 38 */ slwi r3, r29, 3
 /* 801390D8 00136018  38 63 07 C4 */ addi r3, r3, 0x7c4
 /* 801390DC 0013601C  7C 7C 1A 14 */ add r3, r28, r3
-/* 801390E0 00136020  48 02 5C 1D */ bl daPy_actorKeep_c_NS_clearData
+/* 801390E0 00136020  48 02 5C 1D */ bl clearData__16daPy_actorKeep_cFv
 /* 801390E4 00136024  88 7C 2F B1 */ lbz r3, 0x2fb1(r28)
 /* 801390E8 00136028  38 03 FF FF */ addi r0, r3, -1
 /* 801390EC 0013602C  98 1C 2F B1 */ stb r0, 0x2fb1(r28)

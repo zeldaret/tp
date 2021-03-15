@@ -13,11 +13,11 @@
 /* 8019EAD0 0019BA10  3B 9C C2 F8 */ addi r28, r28, -15624
 /* 8019EAD4 0019BA14  7F 85 E3 78 */ mr r5, r28
 /* 8019EAD8 0019BA18  38 C0 00 80 */ li r6, 0x80
-/* 8019EADC 0019BA1C  4B E9 D8 11 */ bl dRes_control_c_NS_getRes
+/* 8019EADC 0019BA1C  4B E9 D8 11 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8019EAE0 0019BA20  7C 7B 1B 78 */ mr r27, r3
 /* 8019EAE4 0019BA24  38 60 06 00 */ li r3, 0x600
 /* 8019EAE8 0019BA28  38 80 00 20 */ li r4, 0x20
-/* 8019EAEC 0019BA2C  4B E7 05 59 */ bl mDoExt_createSolidHeapFromGameToCurrent_X1_
+/* 8019EAEC 0019BA2C  4B E7 05 59 */ bl mDoExt_createSolidHeapFromGameToCurrent__FUlUl
 /* 8019EAF0 0019BA30  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019EAF4 0019BA34  3B A4 CA 54 */ addi r29, r4, lbl_8042CA54@l
 /* 8019EAF8 0019BA38  90 7D 0F 38 */ stw r3, 0xf38(r29)
@@ -27,7 +27,7 @@
 /* 8019EB08 0019BA48  3C 80 00 08 */ lis r4, 8
 /* 8019EB0C 0019BA4C  3C A0 11 02 */ lis r5, 0x11020202@ha
 /* 8019EB10 0019BA50  38 A5 02 02 */ addi r5, r5, 0x11020202@l
-/* 8019EB14 0019BA54  4B E7 61 41 */ bl mDoExt_J3DModel__create
+/* 8019EB14 0019BA54  4B E7 61 41 */ bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 8019EB18 0019BA58  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8019EB1C 0019BA5C  38 84 CA 54 */ addi r4, r4, lbl_8042CA54@l
 /* 8019EB20 0019BA60  90 64 0F 30 */ stw r3, 0xf30(r4)
@@ -41,7 +41,7 @@
 /* 8019EB40 0019BA80  38 04 33 54 */ addi r0, r4, lbl_803A3354@l
 /* 8019EB44 0019BA84  90 1E 00 00 */ stw r0, 0(r30)
 /* 8019EB48 0019BA88  38 80 00 00 */ li r4, 0
-/* 8019EB4C 0019BA8C  48 18 98 B1 */ bl J3DFrameCtrl_NS_init
+/* 8019EB4C 0019BA8C  48 18 98 B1 */ bl init__12J3DFrameCtrlFs
 /* 8019EB50 0019BA90  38 00 00 00 */ li r0, 0
 /* 8019EB54 0019BA94  90 1E 00 14 */ stw r0, 0x14(r30)
 lbl_8019EB58:
@@ -56,7 +56,7 @@ lbl_8019EB58:
 /* 8019EB78 0019BAB8  38 80 00 3C */ li r4, 0x3c
 /* 8019EB7C 0019BABC  7F 85 E3 78 */ mr r5, r28
 /* 8019EB80 0019BAC0  38 C0 00 80 */ li r6, 0x80
-/* 8019EB84 0019BAC4  4B E9 D7 69 */ bl dRes_control_c_NS_getRes
+/* 8019EB84 0019BAC4  4B E9 D7 69 */ bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8019EB88 0019BAC8  7C 65 1B 78 */ mr r5, r3
 /* 8019EB8C 0019BACC  80 7F 10 5C */ lwz r3, 0x105c(r31)
 /* 8019EB90 0019BAD0  38 9B 00 58 */ addi r4, r27, 0x58
@@ -65,11 +65,11 @@ lbl_8019EB58:
 /* 8019EB9C 0019BADC  C0 22 A2 48 */ lfs f1, lbl_80453C48-_SDA2_BASE_(r2)
 /* 8019EBA0 0019BAE0  39 00 00 00 */ li r8, 0
 /* 8019EBA4 0019BAE4  39 20 FF FF */ li r9, -1
-/* 8019EBA8 0019BAE8  4B E6 EA 95 */ bl mDoExt_btkAnm_NS_init
+/* 8019EBA8 0019BAE8  4B E6 EA 95 */ bl init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss
 lbl_8019EBAC:
-/* 8019EBAC 0019BAEC  4B E7 06 49 */ bl mDoExt_restoreCurrentHeap
+/* 8019EBAC 0019BAEC  4B E7 06 49 */ bl mDoExt_restoreCurrentHeap__Fv
 /* 8019EBB0 0019BAF0  80 7D 0F 38 */ lwz r3, 0xf38(r29)
-/* 8019EBB4 0019BAF4  4B E7 04 D9 */ bl mDoExt_adjustSolidHeap
+/* 8019EBB4 0019BAF4  4B E7 04 D9 */ bl mDoExt_adjustSolidHeap__FP12JKRSolidHeap
 lbl_8019EBB8:
 /* 8019EBB8 0019BAF8  39 61 00 20 */ addi r11, r1, 0x20
 /* 8019EBBC 0019BAFC  48 1C 36 65 */ bl _restgpr_27

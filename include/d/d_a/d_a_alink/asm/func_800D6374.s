@@ -17,13 +17,13 @@ lbl_800D63A8:
 lbl_800D63B0:
 /* 800D63B0 000D32F0  7F E3 FB 78 */ mr r3, r31
 /* 800D63B4 000D32F4  38 80 00 30 */ li r4, 0x30
-/* 800D63B8 000D32F8  4B FE BB B5 */ bl daAlink_c_NS_commonProcInit
+/* 800D63B8 000D32F8  4B FE BB B5 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D63BC 000D32FC  7F E3 FB 78 */ mr r3, r31
 /* 800D63C0 000D3300  38 80 01 8C */ li r4, 0x18c
 /* 800D63C4 000D3304  3C A0 80 39 */ lis r5, lbl_8038DE18@ha
 /* 800D63C8 000D3308  38 A5 DE 18 */ addi r5, r5, lbl_8038DE18@l
 /* 800D63CC 000D330C  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800D63D0 000D3310  4B FD 6D 25 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D63D0 000D3310  4B FD 6D 25 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D63D4 000D3314  3C 60 80 42 */ lis r3, lbl_80425544@ha
 /* 800D63D8 000D3318  C4 03 55 44 */ lfsu f0, lbl_80425544@l(r3)
 /* 800D63DC 000D331C  D0 1F 35 88 */ stfs f0, 0x3588(r31)
@@ -46,16 +46,16 @@ lbl_800D63B0:
 /* 800D6420 000D3360  39 08 DE 8C */ addi r8, r8, lbl_8038DE8C@l
 /* 800D6424 000D3364  C0 28 00 74 */ lfs f1, 0x74(r8)
 /* 800D6428 000D3368  C0 48 00 78 */ lfs f2, 0x78(r8)
-/* 800D642C 000D336C  4B FF B2 5D */ bl daAlink_c_NS_setSwordAtParam
+/* 800D642C 000D336C  4B FF B2 5D */ bl setSwordAtParam__9daAlink_cF11dCcG_At_SplUcUciff
 /* 800D6430 000D3370  7F E3 FB 78 */ mr r3, r31
 /* 800D6434 000D3374  38 80 00 12 */ li r4, 0x12
-/* 800D6438 000D3378  4B FF B0 F5 */ bl daAlink_c_NS_setCutType
+/* 800D6438 000D3378  4B FF B0 F5 */ bl setCutType__9daAlink_cFUc
 /* 800D643C 000D337C  7F E3 FB 78 */ mr r3, r31
 /* 800D6440 000D3380  3C 80 00 01 */ lis r4, 0x0001009B@ha
 /* 800D6444 000D3384  38 84 00 9B */ addi r4, r4, 0x0001009B@l
-/* 800D6448 000D3388  4B FF BE 3D */ bl daAlink_c_NS_setSwordVoiceSe
+/* 800D6448 000D3388  4B FF BE 3D */ bl setSwordVoiceSe__9daAlink_cFUl
 /* 800D644C 000D338C  7F E3 FB 78 */ mr r3, r31
-/* 800D6450 000D3390  48 04 DC F5 */ bl daAlink_c_NS_setCutWaterDropEffect
+/* 800D6450 000D3390  48 04 DC F5 */ bl setCutWaterDropEffect__9daAlink_cFv
 /* 800D6454 000D3394  38 00 00 04 */ li r0, 4
 /* 800D6458 000D3398  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800D645C 000D339C  38 00 00 00 */ li r0, 0

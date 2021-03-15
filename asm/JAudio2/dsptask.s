@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029e6e0
 
 
-.global DspHandShake
-DspHandShake:
+.global DspHandShake__FPv
+DspHandShake__FPv:
 /* 8029E6E0 0029B620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E6E4 0029B624  7C 08 02 A6 */	mflr r0
 /* 8029E6E8 0029B628  90 01 00 14 */	stw r0, 0x14(r1)
@@ -15,7 +15,7 @@ lbl_8029E6F0:
 /* 8029E6F8 0029B638  41 82 FF F8 */	beq lbl_8029E6F0
 /* 8029E6FC 0029B63C  48 0B 3D 55 */	bl DSPReadMailFromDSP
 /* 8029E700 0029B640  48 0B 3D 41 */	bl DSPCheckMailFromDSP
-/* 8029E704 0029B644  48 00 08 9D */	bl Dsp_Running_Start
+/* 8029E704 0029B644  48 00 08 9D */	bl Dsp_Running_Start__Fv
 /* 8029E708 0029B648  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E70C 0029B64C  7C 08 03 A6 */	mtlr r0
 /* 8029E710 0029B650  38 21 00 10 */	addi r1, r1, 0x10
@@ -23,27 +23,27 @@ lbl_8029E6F0:
 /* 8029E718 0029B658  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E71C 0029B65C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DspBoot
-DspBoot:
+.global DspBoot__FPFPv_v
+DspBoot__FPFPv_v:
 /* 8029E720 0029B660  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E724 0029B664  7C 08 02 A6 */	mflr r0
 /* 8029E728 0029B668  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029E72C 0029B66C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029E730 0029B670  7C 7F 1B 78 */	mr r31, r3
-/* 8029E734 0029B674  48 00 01 AD */	bl DspInitWork
+/* 8029E734 0029B674  48 00 01 AD */	bl DspInitWork__Fv
 /* 8029E738 0029B678  3C 80 80 3C */	lis r4, lbl_803C7920@ha
 /* 8029E73C 0029B67C  3C 60 80 43 */	lis r3, lbl_80431FE0@ha
 /* 8029E740 0029B680  38 A4 79 20 */	addi r5, r4, lbl_803C7920@l
 /* 8029E744 0029B684  3C C0 80 43 */	lis r6, lbl_80431F80@ha
 /* 8029E748 0029B688  38 83 1F E0 */	addi r4, r3, lbl_80431FE0@l
-.global DspHandShake
-/* 8029E74C 0029B68C  3C 60 80 2A */	lis r3, DspHandShake@ha
+.global DspHandShake__FPv
+/* 8029E74C 0029B68C  3C 60 80 2A */	lis r3, DspHandShake__FPv@ha
 /* 8029E750 0029B690  39 26 1F 80 */	addi r9, r6, lbl_80431F80@l
 /* 8029E754 0029B694  38 C0 00 00 */	li r6, 0
 /* 8029E758 0029B698  3D 05 80 00 */	addis r8, r5, 0x8000
 /* 8029E75C 0029B69C  3C A4 80 00 */	addis r5, r4, 0x8000
-.global DspHandShake
-/* 8029E760 0029B6A0  38 03 E6 E0 */	addi r0, r3, DspHandShake@l
+.global DspHandShake__FPv
+/* 8029E760 0029B6A0  38 03 E6 E0 */	addi r0, r3, DspHandShake__FPv@l
 /* 8029E764 0029B6A4  39 40 00 F0 */	li r10, 0xf0
 /* 8029E768 0029B6A8  38 E0 1F 00 */	li r7, 0x1f00
 /* 8029E76C 0029B6AC  38 80 20 00 */	li r4, 0x2000
@@ -64,7 +64,7 @@ DspBoot:
 /* 8029E7A8 0029B6E8  48 0B 3D 15 */	bl DSPInit
 /* 8029E7AC 0029B6EC  3C 60 80 43 */	lis r3, lbl_80431F80@ha
 /* 8029E7B0 0029B6F0  38 63 1F 80 */	addi r3, r3, lbl_80431F80@l
-/* 8029E7B4 0029B6F4  48 00 02 ED */	bl DSPAddPriorTask
+/* 8029E7B4 0029B6F4  48 00 02 ED */	bl DSPAddPriorTask__FP15STRUCT_DSP_TASK
 /* 8029E7B8 0029B6F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029E7BC 0029B6FC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8029E7C0 0029B700  7C 08 03 A6 */	mtlr r0
@@ -76,8 +76,8 @@ DspBoot:
 /* 8029E7D8 0029B718  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E7DC 0029B71C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DSPSendCommands2
-DSPSendCommands2:
+.global DSPSendCommands2__FPUlUlPFUs_v
+DSPSendCommands2__FPUlUlPFUs_v:
 /* 8029E7E0 0029B720  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029E7E4 0029B724  7C 08 02 A6 */	mflr r0
 /* 8029E7E8 0029B728  90 01 00 24 */	stw r0, 0x24(r1)
@@ -87,7 +87,7 @@ DSPSendCommands2:
 /* 8029E7F8 0029B738  7C 9B 23 78 */	mr r27, r4
 /* 8029E7FC 0029B73C  7C BE 2B 78 */	mr r30, r5
 lbl_8029E800:
-/* 8029E800 0029B740  48 00 07 81 */	bl Dsp_Running_Check
+/* 8029E800 0029B740  48 00 07 81 */	bl Dsp_Running_Check__Fv
 /* 8029E804 0029B744  2C 03 00 00 */	cmpwi r3, 0
 /* 8029E808 0029B748  41 82 FF F8 */	beq lbl_8029E800
 /* 8029E80C 0029B74C  48 09 EE E9 */	bl __RAS_OSDisableInterrupts_begin 
@@ -116,7 +116,7 @@ lbl_8029E858:
 /* 8029E85C 0029B79C  41 82 00 14 */	beq lbl_8029E870
 /* 8029E860 0029B7A0  80 7A 00 00 */	lwz r3, 0(r26)
 /* 8029E864 0029B7A4  7F C4 F3 78 */	mr r4, r30
-/* 8029E868 0029B7A8  48 00 00 B9 */	bl DspStartWork
+/* 8029E868 0029B7A8  48 00 00 B9 */	bl DspStartWork__FUlPFUs_v
 /* 8029E86C 0029B7AC  7C 7C 1B 78 */	mr r28, r3
 lbl_8029E870:
 /* 8029E870 0029B7B0  3B C0 00 00 */	li r30, 0
@@ -152,8 +152,8 @@ lbl_8029E8B0:
 /* 8029E8D8 0029B818  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E8DC 0029B81C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DspInitWork
-DspInitWork:
+.global DspInitWork__Fv
+DspInitWork__Fv:
 /* 8029E8E0 0029B820  38 60 00 00 */	li r3, 0
 /* 8029E8E4 0029B824  3C 80 80 43 */	lis r4, lbl_80433FE0@ha
 /* 8029E8E8 0029B828  38 00 00 10 */	li r0, 0x10
@@ -172,8 +172,8 @@ lbl_8029E8F8:
 /* 8029E918 0029B858  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E91C 0029B85C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DspStartWork
-DspStartWork:
+.global DspStartWork__FUlPFUs_v
+DspStartWork__FUlPFUs_v:
 /* 8029E920 0029B860  80 ED 8D 84 */	lwz r7, lbl_80451304-_SDA_BASE_(r13)
 /* 8029E924 0029B864  80 0D 8D 80 */	lwz r0, lbl_80451300-_SDA_BASE_(r13)
 /* 8029E928 0029B868  38 C7 00 01 */	addi r6, r7, 1
@@ -200,8 +200,8 @@ lbl_8029E940:
 /* 8029E978 0029B8B8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8029E97C 0029B8BC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
-.global DspFinishWork
-DspFinishWork:
+.global DspFinishWork__FUs
+DspFinishWork__FUs:
 /* 8029E980 0029B8C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8029E984 0029B8C4  7C 08 02 A6 */	mflr r0
 /* 8029E988 0029B8C8  3C 80 80 43 */	lis r4, lbl_80433FE0@ha

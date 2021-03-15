@@ -11,9 +11,9 @@
 /* 801188D8 00115818  41 82 00 18 */ beq lbl_801188F0
 /* 801188DC 0011581C  38 80 00 00 */ li r4, 0
 /* 801188E0 00115820  38 A0 00 01 */ li r5, 1
-/* 801188E4 00115824  4B FA 89 F9 */ bl daAlink_c_NS_deleteEquipItem
+/* 801188E4 00115824  4B FA 89 F9 */ bl deleteEquipItem__9daAlink_cFii
 /* 801188E8 00115828  7F E3 FB 78 */ mr r3, r31
-/* 801188EC 0011582C  4B FB 89 7D */ bl daAlink_c_NS_setSwordModel
+/* 801188EC 0011582C  4B FB 89 7D */ bl setSwordModel__9daAlink_cFv
 lbl_801188F0:
 /* 801188F0 00115830  38 60 00 00 */ li r3, 0
 /* 801188F4 00115834  48 00 00 44 */ b lbl_80118938

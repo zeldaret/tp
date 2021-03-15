@@ -3,8 +3,8 @@
 .section .text, "ax" # 802de9a0
 
 
-.global JUTNameTab
-JUTNameTab:
+.global __ct__10JUTNameTabFv
+__ct__10JUTNameTabFv:
 /* 802DE9A0 002DB8E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE9A4 002DB8E4  7C 08 02 A6 */	mflr r0
 /* 802DE9A8 002DB8E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -14,7 +14,7 @@ JUTNameTab:
 /* 802DE9B8 002DB8F8  38 04 B3 DC */	addi r0, r4, lbl_803BB3DC@l
 /* 802DE9BC 002DB8FC  90 03 00 00 */	stw r0, 0(r3)
 /* 802DE9C0 002DB900  38 80 00 00 */	li r4, 0
-/* 802DE9C4 002DB904  48 00 00 59 */	bl JUTNameTab_NS_setResource
+/* 802DE9C4 002DB904  48 00 00 59 */	bl setResource__10JUTNameTabFPC7ResNTAB
 /* 802DE9C8 002DB908  7F E3 FB 78 */	mr r3, r31
 /* 802DE9CC 002DB90C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802DE9D0 002DB910  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -22,8 +22,8 @@ JUTNameTab:
 /* 802DE9D8 002DB918  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DE9DC 002DB91C  4E 80 00 20 */	blr 
 
-.global JUTNameTab_X1_
-JUTNameTab_X1_:
+.global __ct__10JUTNameTabFPC7ResNTAB
+__ct__10JUTNameTabFPC7ResNTAB:
 /* 802DE9E0 002DB920  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DE9E4 002DB924  7C 08 02 A6 */	mflr r0
 /* 802DE9E8 002DB928  90 01 00 14 */	stw r0, 0x14(r1)
@@ -32,7 +32,7 @@ JUTNameTab_X1_:
 /* 802DE9F4 002DB934  3C A0 80 3C */	lis r5, lbl_803BB3DC@ha
 /* 802DE9F8 002DB938  38 05 B3 DC */	addi r0, r5, lbl_803BB3DC@l
 /* 802DE9FC 002DB93C  90 03 00 00 */	stw r0, 0(r3)
-/* 802DEA00 002DB940  48 00 00 1D */	bl JUTNameTab_NS_setResource
+/* 802DEA00 002DB940  48 00 00 1D */	bl setResource__10JUTNameTabFPC7ResNTAB
 /* 802DEA04 002DB944  7F E3 FB 78 */	mr r3, r31
 /* 802DEA08 002DB948  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802DEA0C 002DB94C  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -40,8 +40,8 @@ JUTNameTab_X1_:
 /* 802DEA14 002DB954  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DEA18 002DB958  4E 80 00 20 */	blr 
 
-.global JUTNameTab_NS_setResource
-JUTNameTab_NS_setResource:
+.global setResource__10JUTNameTabFPC7ResNTAB
+setResource__10JUTNameTabFPC7ResNTAB:
 /* 802DEA1C 002DB95C  90 83 00 04 */	stw r4, 4(r3)
 /* 802DEA20 002DB960  28 04 00 00 */	cmplwi r4, 0
 /* 802DEA24 002DB964  41 82 00 24 */	beq lbl_802DEA48
@@ -59,8 +59,8 @@ lbl_802DEA48:
 /* 802DEA50 002DB990  90 03 00 08 */	stw r0, 8(r3)
 /* 802DEA54 002DB994  4E 80 00 20 */	blr 
 
-.global JUTNameTab_NS_getIndex
-JUTNameTab_NS_getIndex:
+.global getIndex__10JUTNameTabCFPCc
+getIndex__10JUTNameTabCFPCc:
 /* 802DEA58 002DB998  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802DEA5C 002DB99C  7C 08 02 A6 */	mflr r0
 /* 802DEA60 002DB9A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -70,7 +70,7 @@ JUTNameTab_NS_getIndex:
 /* 802DEA70 002DB9B0  7C 9A 23 78 */	mr r26, r4
 /* 802DEA74 002DB9B4  80 A3 00 04 */	lwz r5, 4(r3)
 /* 802DEA78 002DB9B8  3B 85 00 04 */	addi r28, r5, 4
-/* 802DEA7C 002DB9BC  48 00 00 AD */	bl JUTNameTab_NS_calcKeyCode
+/* 802DEA7C 002DB9BC  48 00 00 AD */	bl calcKeyCode__10JUTNameTabCFPCc
 /* 802DEA80 002DB9C0  3B 60 00 00 */	li r27, 0
 /* 802DEA84 002DB9C4  83 BF 00 04 */	lwz r29, 4(r31)
 /* 802DEA88 002DB9C8  54 7E 04 3E */	clrlwi r30, r3, 0x10
@@ -106,8 +106,8 @@ lbl_802DEAE0:
 /* 802DEAF0 002DBA30  38 21 00 20 */	addi r1, r1, 0x20
 /* 802DEAF4 002DBA34  4E 80 00 20 */	blr 
 
-.global JUTNameTab_NS_getName
-JUTNameTab_NS_getName:
+.global getName__10JUTNameTabCFUs
+getName__10JUTNameTabCFUs:
 /* 802DEAF8 002DBA38  54 85 04 3E */	clrlwi r5, r4, 0x10
 /* 802DEAFC 002DBA3C  A0 03 00 0C */	lhz r0, 0xc(r3)
 /* 802DEB00 002DBA40  7C 05 00 40 */	cmplw r5, r0
@@ -122,8 +122,8 @@ lbl_802DEB20:
 /* 802DEB20 002DBA60  38 60 00 00 */	li r3, 0
 /* 802DEB24 002DBA64  4E 80 00 20 */	blr 
 
-.global JUTNameTab_NS_calcKeyCode
-JUTNameTab_NS_calcKeyCode:
+.global calcKeyCode__10JUTNameTabCFPCc
+calcKeyCode__10JUTNameTabCFPCc:
 /* 802DEB28 002DBA68  38 A0 00 00 */	li r5, 0
 /* 802DEB2C 002DBA6C  48 00 00 18 */	b lbl_802DEB44
 lbl_802DEB30:

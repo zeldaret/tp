@@ -27,16 +27,13 @@ typedef struct node_process_profile_definition {
     s32 unk24;
 } node_process_profile_definition;
 
-extern "C" {
-
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData);
 s32 fpcNd_Draw(process_node_class* pProcNode);
 s32 fpcNd_Execute(process_node_class* pProcNode);
-void* fpcNd_IsCreatingFromUnder(process_node_class* pProcNode);
+void* fpcNd_IsCreatingFromUnder(void* pProcNode);
 s32 fpcNd_IsDeleteTiming(process_node_class* pProcNode);
 s32 fpcNd_IsDelete(process_node_class* pProcNode);
 s32 fpcNd_Delete(process_node_class* pProcNode);
 s32 fpcNd_Create(process_node_class* pProcNode);
-};
 
 #endif

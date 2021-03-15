@@ -4,7 +4,7 @@
 /* 8011E06C 0011AFAC  93 E1 00 3C */ stw r31, 0x3c(r1)
 /* 8011E070 0011AFB0  93 C1 00 38 */ stw r30, 0x38(r1)
 /* 8011E074 0011AFB4  7C 7F 1B 78 */ mr r31, r3
-/* 8011E078 0011AFB8  4B FF A4 F5 */ bl daAlink_c_NS_setShapeAngleToTalkActor
+/* 8011E078 0011AFB8  4B FF A4 F5 */ bl setShapeAngleToTalkActor__9daAlink_cFv
 /* 8011E07C 0011AFBC  80 1F 31 98 */ lwz r0, 0x3198(r31)
 /* 8011E080 0011AFC0  2C 00 00 00 */ cmpwi r0, 0
 /* 8011E084 0011AFC4  41 82 02 10 */ beq lbl_8011E294
@@ -131,7 +131,7 @@ lbl_8011E224:
 /* 8011E234 0011B174  38 00 00 00 */ li r0, 0
 /* 8011E238 0011B178  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 8011E23C 0011B17C  7F E3 FB 78 */ mr r3, r31
-/* 8011E240 0011B180  4B FF A4 95 */ bl daAlink_c_NS_setTradeItemAnime
+/* 8011E240 0011B180  4B FF A4 95 */ bl setTradeItemAnime__9daAlink_cFv
 /* 8011E244 0011B184  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011E248 0011B188  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011E24C 0011B18C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -148,7 +148,7 @@ lbl_8011E270:
 /* 8011E270 0011B1B0  38 00 00 00 */ li r0, 0
 /* 8011E274 0011B1B4  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 8011E278 0011B1B8  7F E3 FB 78 */ mr r3, r31
-/* 8011E27C 0011B1BC  4B FF A4 59 */ bl daAlink_c_NS_setTradeItemAnime
+/* 8011E27C 0011B1BC  4B FF A4 59 */ bl setTradeItemAnime__9daAlink_cFv
 /* 8011E280 0011B1C0  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 8011E284 0011B1C4  B0 1F 30 0C */ sth r0, 0x300c(r31)
 /* 8011E288 0011B1C8  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -167,7 +167,7 @@ lbl_8011E294:
 /* 8011E2B8 0011B1F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E2BC 0011B1FC  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011E2C0 0011B200  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011E2C4 0011B204  4B F2 9E B9 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011E2C4 0011B204  4B F2 9E B9 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011E2C8 0011B208  48 00 00 F4 */ b lbl_8011E3BC
 lbl_8011E2CC:
 /* 8011E2CC 0011B20C  7F E3 FB 78 */ mr r3, r31
@@ -191,9 +191,9 @@ lbl_8011E2EC:
 lbl_8011E30C:
 /* 8011E30C 0011B24C  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 8011E310 0011B250  7F C4 F3 78 */ mr r4, r30
-/* 8011E314 0011B254  48 04 09 A5 */ bl daPy_actorKeep_c_NS_setData
+/* 8011E314 0011B254  48 04 09 A5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8011E318 0011B258  7F C3 F3 78 */ mr r3, r30
-/* 8011E31C 0011B25C  4B F1 97 59 */ bl daItemBase_c_NS_show
+/* 8011E31C 0011B25C  4B F1 97 59 */ bl show__12daItemBase_cFv
 /* 8011E320 0011B260  A8 1F 30 10 */ lha r0, 0x3010(r31)
 /* 8011E324 0011B264  2C 00 00 00 */ cmpwi r0, 0
 /* 8011E328 0011B268  40 82 00 28 */ bne lbl_8011E350
@@ -218,16 +218,16 @@ lbl_8011E368:
 /* 8011E36C 0011B2AC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011E370 0011B2B0  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011E374 0011B2B4  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011E378 0011B2B8  4B F2 9E 05 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011E378 0011B2B8  4B F2 9E 05 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011E37C 0011B2BC  48 00 00 40 */ b lbl_8011E3BC
 lbl_8011E380:
 /* 8011E380 0011B2C0  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011E384 0011B2C4  48 04 01 49 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011E384 0011B2C4  48 04 01 49 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011E388 0011B2C8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011E38C 0011B2CC  41 82 00 28 */ beq lbl_8011E3B4
 /* 8011E390 0011B2D0  7F E3 FB 78 */ mr r3, r31
 /* 8011E394 0011B2D4  38 80 01 89 */ li r4, 0x189
-/* 8011E398 0011B2D8  4B F8 EB E9 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011E398 0011B2D8  4B F8 EB E9 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011E39C 0011B2DC  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
 /* 8011E3A0 0011B2E0  60 00 01 00 */ ori r0, r0, 0x100
 /* 8011E3A4 0011B2E4  90 1F 31 A0 */ stw r0, 0x31a0(r31)
@@ -236,7 +236,7 @@ lbl_8011E380:
 /* 8011E3B0 0011B2F0  48 00 00 0C */ b lbl_8011E3BC
 lbl_8011E3B4:
 /* 8011E3B4 0011B2F4  7F E3 FB 78 */ mr r3, r31
-/* 8011E3B8 0011B2F8  4B FF A3 C1 */ bl daAlink_c_NS_setTradeItemOutHand
+/* 8011E3B8 0011B2F8  4B FF A3 C1 */ bl setTradeItemOutHand__9daAlink_cFv
 lbl_8011E3BC:
 /* 8011E3BC 0011B2FC  38 60 00 01 */ li r3, 1
 /* 8011E3C0 0011B300  83 E1 00 3C */ lwz r31, 0x3c(r1)

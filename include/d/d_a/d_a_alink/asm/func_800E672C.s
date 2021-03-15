@@ -11,7 +11,7 @@
 /* 800E6754 000E3694  48 00 01 A8 */ b lbl_800E68FC
 lbl_800E6758:
 /* 800E6758 000E3698  38 80 00 70 */ li r4, 0x70
-/* 800E675C 000E369C  4B FD C6 49 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800E675C 000E369C  4B FD C6 49 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E6760 000E36A0  2C 03 00 00 */ cmpwi r3, 0
 /* 800E6764 000E36A4  40 82 00 0C */ bne lbl_800E6770
 /* 800E6768 000E36A8  38 60 00 00 */ li r3, 0
@@ -23,7 +23,7 @@ lbl_800E6770:
 /* 800E677C 000E36BC  C0 02 94 74 */ lfs f0, lbl_80452E74-_SDA2_BASE_(r2)
 /* 800E6780 000E36C0  D0 1F 34 78 */ stfs f0, 0x3478(r31)
 /* 800E6784 000E36C4  7F E3 FB 78 */ mr r3, r31
-/* 800E6788 000E36C8  4B FF D5 6D */ bl daAlink_c_NS_checkGrabCarryActor
+/* 800E6788 000E36C8  4B FF D5 6D */ bl checkGrabCarryActor__9daAlink_cFv
 /* 800E678C 000E36CC  2C 03 00 00 */ cmpwi r3, 0
 /* 800E6790 000E36D0  41 82 00 90 */ beq lbl_800E6820
 /* 800E6794 000E36D4  38 00 00 00 */ li r0, 0
@@ -36,7 +36,7 @@ lbl_800E6770:
 /* 800E67B0 000E36F0  C0 42 93 34 */ lfs f2, lbl_80452D34-_SDA2_BASE_(r2)
 /* 800E67B4 000E36F4  A8 BE 00 A0 */ lha r5, 0xa0(r30)
 /* 800E67B8 000E36F8  C0 7E 00 AC */ lfs f3, 0xac(r30)
-/* 800E67BC 000E36FC  4B FC 68 51 */ bl daAlink_c_NS_setSingleAnime
+/* 800E67BC 000E36FC  4B FC 68 51 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800E67C0 000E3700  38 00 00 01 */ li r0, 1
 /* 800E67C4 000E3704  B0 1F 30 0E */ sth r0, 0x300e(r31)
 /* 800E67C8 000E3708  C0 62 92 B8 */ lfs f3, lbl_80452CB8-_SDA2_BASE_(r2)
@@ -71,7 +71,7 @@ lbl_800E6820:
 /* 800E6838 000E3778  38 A5 EC 48 */ addi r5, r5, lbl_8038EC48@l
 /* 800E683C 000E377C  3B C5 00 50 */ addi r30, r5, 0x50
 /* 800E6840 000E3780  7F C5 F3 78 */ mr r5, r30
-/* 800E6844 000E3784  4B FC 68 B1 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E6844 000E3784  4B FC 68 B1 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E6848 000E3788  C0 42 92 B8 */ lfs f2, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E684C 000E378C  A8 1E 00 00 */ lha r0, 0(r30)
 /* 800E6850 000E3790  C8 22 92 B0 */ lfd f1, lbl_80452CB0-_SDA2_BASE_(r2)

@@ -3,11 +3,9 @@
 #include "f/f_pc/f_pc_layer_iter.h"
 
 // g_fpcNd_type
-extern s32 lbl_80450D40;
+extern int lbl_80450D40;
 // f_pc_node::g_fpcNd_IsCheckOfDeleteTiming
 extern s32 lbl_804505E0;
-
-extern "C" {
 
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData) {
     return fpcMtd_Method(pNodeMethod->mNodedrawFunc, pData);
@@ -33,14 +31,15 @@ s32 fpcNd_Execute(process_node_class* pProcNode) {
     return ret;
 }
 
-void* fpcNd_IsCreatingFromUnder(process_node_class* pProcNode) {
+void* fpcNd_IsCreatingFromUnder(void* pProcNodeV) {
     layer_class* layer;
+    process_node_class* pProcNode = static_cast<process_node_class*>(pProcNodeV);
     if (pProcNode != NULL &&
         fpcBs_Is_JustOfType(lbl_80450D40, pProcNode->mBase.mSubType) != FALSE) {
         layer = &pProcNode->mLayer;
         if (fpcLy_IsCreatingMesg(layer) == 0x0) {
             return (process_node_class*)fpcLyIt_Judge(
-                layer, (cNdIt_MethodFunc)fpcNd_IsCreatingFromUnder, NULL);
+                layer, (fpcLyIt_JudgeFunc)fpcNd_IsCreatingFromUnder, NULL);
         } else {
             return pProcNode;
         }
@@ -90,5 +89,4 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
     uVar3 = fpcMtd_Create(&pProcNode->mpNodeMtd->mBase, pProcNode);
     fpcLy_SetCurrentLayer(uVar2);
     return uVar3;
-}
 }

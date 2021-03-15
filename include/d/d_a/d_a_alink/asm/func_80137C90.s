@@ -11,7 +11,7 @@
 /* 80137CB8 00134BF8  80 1F 5F 18 */ lwz r0, 0x5f18(r31)
 /* 80137CBC 00134BFC  54 1E 9F FE */ rlwinm r30, r0, 0x13, 0x1f, 0x1f
 /* 80137CC0 00134C00  38 80 01 02 */ li r4, 0x102
-/* 80137CC4 00134C04  4B F8 A2 A9 */ bl daAlink_c_NS_commonProcInit
+/* 80137CC4 00134C04  4B F8 A2 A9 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80137CC8 00134C08  C0 1D 00 00 */ lfs f0, 0(r29)
 /* 80137CCC 00134C0C  D0 1B 37 C8 */ stfs f0, 0x37c8(r27)
 /* 80137CD0 00134C10  C0 1D 00 04 */ lfs f0, 4(r29)
@@ -24,7 +24,7 @@
 /* 80137CEC 00134C2C  38 00 01 2C */ li r0, 0x12c
 /* 80137CF0 00134C30  B0 1B 30 0A */ sth r0, 0x300a(r27)
 /* 80137CF4 00134C34  7F 63 DB 78 */ mr r3, r27
-/* 80137CF8 00134C38  4B FB FF F1 */ bl daAlink_c_NS_setCrawlMoveDirectionArrow
+/* 80137CF8 00134C38  4B FB FF F1 */ bl setCrawlMoveDirectionArrow__9daAlink_cFv
 /* 80137CFC 00134C3C  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 80137D00 00134C40  D0 1B 33 98 */ stfs f0, 0x3398(r27)
 /* 80137D04 00134C44  38 00 00 0D */ li r0, 0xd

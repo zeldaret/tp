@@ -3,8 +3,8 @@
 .section .text, "ax" # 801f9afc
 
 
-.global dMw_HIO_c
-dMw_HIO_c:
+.global __ct__9dMw_HIO_cFv
+__ct__9dMw_HIO_cFv:
 /* 801F9AFC 001F6A3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9B00 001F6A40  7C 08 02 A6 */	mflr r0
 /* 801F9B04 001F6A44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -13,7 +13,7 @@ dMw_HIO_c:
 /* 801F9B10 001F6A50  3C 80 80 3C */	lis r4, lbl_803BE8EC@ha
 /* 801F9B14 001F6A54  38 04 E8 EC */	addi r0, r4, lbl_803BE8EC@l
 /* 801F9B18 001F6A58  90 03 00 00 */	stw r0, 0(r3)
-/* 801F9B1C 001F6A5C  48 00 00 1D */	bl dMw_HIO_c_NS_init
+/* 801F9B1C 001F6A5C  48 00 00 1D */	bl init__9dMw_HIO_cFv
 /* 801F9B20 001F6A60  7F E3 FB 78 */	mr r3, r31
 /* 801F9B24 001F6A64  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801F9B28 001F6A68  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -21,8 +21,8 @@ dMw_HIO_c:
 /* 801F9B30 001F6A70  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F9B34 001F6A74  4E 80 00 20 */	blr 
 
-.global dMw_HIO_c_NS_init
-dMw_HIO_c_NS_init:
+.global init__9dMw_HIO_cFv
+init__9dMw_HIO_cFv:
 /* 801F9B38 001F6A78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 801F9B3C 001F6A7C  7C 08 02 A6 */	mflr r0
 /* 801F9B40 001F6A80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -218,23 +218,23 @@ lbl_801F9DE8:
 /* 801F9E0C 001F6D4C  38 21 00 20 */	addi r1, r1, 0x20
 /* 801F9E10 001F6D50  4E 80 00 20 */	blr 
 
-.global dMw_HIO_c_NS_getBombFlag
-dMw_HIO_c_NS_getBombFlag:
+.global getBombFlag__9dMw_HIO_cFv
+getBombFlag__9dMw_HIO_cFv:
 /* 801F9E14 001F6D54  38 60 00 00 */	li r3, 0
 /* 801F9E18 001F6D58  4E 80 00 20 */	blr 
 
-.global dMw_HIO_c_NS_getArrowFlag
-dMw_HIO_c_NS_getArrowFlag:
+.global getArrowFlag__9dMw_HIO_cFv
+getArrowFlag__9dMw_HIO_cFv:
 /* 801F9E1C 001F6D5C  38 60 00 00 */	li r3, 0
 /* 801F9E20 001F6D60  4E 80 00 20 */	blr 
 
-.global dMw_HIO_c_NS_getPachinkoFlag
-dMw_HIO_c_NS_getPachinkoFlag:
+.global getPachinkoFlag__9dMw_HIO_cFv
+getPachinkoFlag__9dMw_HIO_cFv:
 /* 801F9E24 001F6D64  38 60 00 00 */	li r3, 0
 /* 801F9E28 001F6D68  4E 80 00 20 */	blr 
 
-.global dMw_DHIO_c
-dMw_DHIO_c:
+.global __ct__10dMw_DHIO_cFv
+__ct__10dMw_DHIO_cFv:
 /* 801F9E2C 001F6D6C  3C 80 80 3C */	lis r4, lbl_803BE8E0@ha
 /* 801F9E30 001F6D70  38 04 E8 E0 */	addi r0, r4, lbl_803BE8E0@l
 /* 801F9E34 001F6D74  90 03 00 00 */	stw r0, 0(r3)
@@ -263,8 +263,8 @@ lbl_801F9E44:
 /* 801F9E8C 001F6DCC  38 A5 00 01 */	addi r5, r5, 1
 /* 801F9E90 001F6DD0  42 00 FF B4 */	bdnz lbl_801F9E44
 /* 801F9E94 001F6DD4  4E 80 00 20 */	blr 
-.global dMw_DHIO_c_NS_dtor
-dMw_DHIO_c_NS_dtor:
+.global __dt__10dMw_DHIO_cFv
+__dt__10dMw_DHIO_cFv:
 /* 801F9E98 001F6DD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9E9C 001F6DDC  7C 08 02 A6 */	mflr r0
 /* 801F9EA0 001F6DE0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -284,8 +284,8 @@ lbl_801F9EC8:
 /* 801F9ED4 001F6E14  7C 08 03 A6 */	mtlr r0
 /* 801F9ED8 001F6E18  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F9EDC 001F6E1C  4E 80 00 20 */	blr 
-.global dMw_HIO_c_NS_dtor
-dMw_HIO_c_NS_dtor:
+.global __dt__9dMw_HIO_cFv
+__dt__9dMw_HIO_cFv:
 /* 801F9EE0 001F6E20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9EE4 001F6E24  7C 08 02 A6 */	mflr r0
 /* 801F9EE8 001F6E28  90 01 00 14 */	stw r0, 0x14(r1)
@@ -312,19 +312,19 @@ lbl_801F9F10:
 /* 801F9F38 001F6E78  3C 60 80 43 */	lis r3, lbl_8042E860@ha
 /* 801F9F3C 001F6E7C  3B E3 E8 60 */	addi r31, r3, lbl_8042E860@l
 /* 801F9F40 001F6E80  38 7F 00 0C */	addi r3, r31, 0xc
-/* 801F9F44 001F6E84  4B FF FB B9 */	bl dMw_HIO_c
-.global dMw_HIO_c_NS_dtor
-/* 801F9F48 001F6E88  3C 80 80 20 */	lis r4, dMw_HIO_c_NS_dtor@ha
-.global dMw_HIO_c_NS_dtor
-/* 801F9F4C 001F6E8C  38 84 9E E0 */	addi r4, r4, dMw_HIO_c_NS_dtor@l
+/* 801F9F44 001F6E84  4B FF FB B9 */	bl __ct__9dMw_HIO_cFv
+.global __dt__9dMw_HIO_cFv
+/* 801F9F48 001F6E88  3C 80 80 20 */	lis r4, __dt__9dMw_HIO_cFv@ha
+.global __dt__9dMw_HIO_cFv
+/* 801F9F4C 001F6E8C  38 84 9E E0 */	addi r4, r4, __dt__9dMw_HIO_cFv@l
 /* 801F9F50 001F6E90  38 BF 00 00 */	addi r5, r31, 0
 /* 801F9F54 001F6E94  48 16 7C D1 */	bl func_80361C24
 /* 801F9F58 001F6E98  38 7F 01 48 */	addi r3, r31, 0x148
-/* 801F9F5C 001F6E9C  4B FF FE D1 */	bl dMw_DHIO_c
-.global dMw_DHIO_c_NS_dtor
-/* 801F9F60 001F6EA0  3C 80 80 20 */	lis r4, dMw_DHIO_c_NS_dtor@ha
-.global dMw_DHIO_c_NS_dtor
-/* 801F9F64 001F6EA4  38 84 9E 98 */	addi r4, r4, dMw_DHIO_c_NS_dtor@l
+/* 801F9F5C 001F6E9C  4B FF FE D1 */	bl __ct__10dMw_DHIO_cFv
+.global __dt__10dMw_DHIO_cFv
+/* 801F9F60 001F6EA0  3C 80 80 20 */	lis r4, __dt__10dMw_DHIO_cFv@ha
+.global __dt__10dMw_DHIO_cFv
+/* 801F9F64 001F6EA4  38 84 9E 98 */	addi r4, r4, __dt__10dMw_DHIO_cFv@l
 /* 801F9F68 001F6EA8  38 BF 01 3C */	addi r5, r31, 0x13c
 /* 801F9F6C 001F6EAC  48 16 7C B9 */	bl func_80361C24
 /* 801F9F70 001F6EB0  83 E1 00 0C */	lwz r31, 0xc(r1)

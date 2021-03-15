@@ -21,7 +21,7 @@ lbl_800BB5A8:
 lbl_800BB5AC:
 /* 800BB5AC 000B84EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BB5B0 000B84F0  41 82 00 28 */ beq lbl_800BB5D8
-/* 800BB5B4 000B84F4  48 00 4D 15 */ bl daAlink_c_NS_checkBossRoom
+/* 800BB5B4 000B84F4  48 00 4D 15 */ bl checkBossRoom__9daAlink_cFv
 /* 800BB5B8 000B84F8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800BB5BC 000B84FC  41 82 00 1C */ beq lbl_800BB5D8
 /* 800BB5C0 000B8500  88 1D 04 E2 */ lbz r0, 0x4e2(r29)

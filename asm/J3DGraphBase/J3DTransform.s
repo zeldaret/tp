@@ -3,13 +3,13 @@
 .section .text, "ax" # 80311630
 
 
-.global __MTGQR7
-__MTGQR7:
+.global __MTGQR7__FUl
+__MTGQR7__FUl:
 /* 80311630 0030E570  7C 77 E3 A6 */	mtspr 0x397, r3
 /* 80311634 0030E574  4E 80 00 20 */	blr 
 
-.global J3DGQRSetup7
-J3DGQRSetup7:
+.global J3DGQRSetup7__FUlUlUlUl
+J3DGQRSetup7__FUlUlUlUl:
 /* 80311638 0030E578  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8031163C 0030E57C  7C 08 02 A6 */	mflr r0
 /* 80311640 0030E580  90 01 00 14 */	stw r0, 0x14(r1)
@@ -19,14 +19,14 @@ J3DGQRSetup7:
 /* 80311650 0030E590  54 A0 40 2E */	slwi r0, r5, 8
 /* 80311654 0030E594  7C 00 32 14 */	add r0, r0, r6
 /* 80311658 0030E598  7C 63 03 78 */	or r3, r3, r0
-/* 8031165C 0030E59C  4B FF FF D5 */	bl __MTGQR7
+/* 8031165C 0030E59C  4B FF FF D5 */	bl __MTGQR7__FUl
 /* 80311660 0030E5A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80311664 0030E5A4  7C 08 03 A6 */	mtlr r0
 /* 80311668 0030E5A8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8031166C 0030E5AC  4E 80 00 20 */	blr 
 
-.global J3DCalcBBoardMtx
-J3DCalcBBoardMtx:
+.global J3DCalcBBoardMtx__FPA4_f
+J3DCalcBBoardMtx__FPA4_f:
 /* 80311670 0030E5B0  C0 23 00 20 */	lfs f1, 0x20(r3)
 /* 80311674 0030E5B4  EC 61 00 72 */	fmuls f3, f1, f1
 /* 80311678 0030E5B8  C0 23 00 00 */	lfs f1, 0(r3)
@@ -97,8 +97,8 @@ lbl_8031173C:
 /* 80311758 0030E698  D0 43 00 28 */	stfs f2, 0x28(r3)
 /* 8031175C 0030E69C  4E 80 00 20 */	blr 
 
-.global J3DCalcYBBoardMtx
-J3DCalcYBBoardMtx:
+.global J3DCalcYBBoardMtx__FPA4_f
+J3DCalcYBBoardMtx__FPA4_f:
 /* 80311760 0030E6A0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80311764 0030E6A4  7C 08 02 A6 */	mflr r0
 /* 80311768 0030E6A8  90 01 00 44 */	stw r0, 0x44(r1)
@@ -185,8 +185,8 @@ lbl_8031180C:
 /* 80311894 0030E7D4  38 21 00 40 */	addi r1, r1, 0x40
 /* 80311898 0030E7D8  4E 80 00 20 */	blr 
 
-.global J3DPSCalcInverseTranspose
-J3DPSCalcInverseTranspose:
+.global J3DPSCalcInverseTranspose__FPA4_fPA3_f
+J3DPSCalcInverseTranspose__FPA4_fPA3_f:
 /* 8031189C 0030E7DC  E0 03 80 00 */	psq_l f0, 0(r3), 1, qr0
 /* 803118A0 0030E7E0  E0 23 00 04 */	psq_l f1, 4(r3), 0, qr0
 /* 803118A4 0030E7E4  E0 43 80 10 */	psq_l f2, 16(r3), 1, qr0
@@ -239,8 +239,8 @@ lbl_80311910:
 /* 8031195C 0030E89C  F1 04 80 20 */	psq_st f8, 32(r4), 1, qr0
 /* 80311960 0030E8A0  4E 80 00 20 */	blr 
 
-.global J3DGetTranslateRotateMtx
-J3DGetTranslateRotateMtx:
+.global J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f
+J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f:
 /* 80311964 0030E8A4  A8 03 00 0C */	lha r0, 0xc(r3)
 /* 80311968 0030E8A8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8031196C 0030E8AC  3C A0 80 44 */	lis r5, lbl_80439A20@ha
@@ -290,8 +290,8 @@ J3DGetTranslateRotateMtx:
 /* 80311A1C 0030E95C  D0 04 00 2C */	stfs f0, 0x2c(r4)
 /* 80311A20 0030E960  4E 80 00 20 */	blr 
 
-.global J3DGetTranslateRotateMtx_X1_
-J3DGetTranslateRotateMtx_X1_:
+.global J3DGetTranslateRotateMtx__FsssfffPA4_f
+J3DGetTranslateRotateMtx__FsssfffPA4_f:
 /* 80311A24 0030E964  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 80311A28 0030E968  3C 60 80 44 */	lis r3, lbl_80439A20@ha
 /* 80311A2C 0030E96C  38 63 9A 20 */	addi r3, r3, lbl_80439A20@l
@@ -335,8 +335,8 @@ J3DGetTranslateRotateMtx_X1_:
 /* 80311AC4 0030EA04  D0 66 00 2C */	stfs f3, 0x2c(r6)
 /* 80311AC8 0030EA08  4E 80 00 20 */	blr 
 
-.global J3DGetTextureMtx
-J3DGetTextureMtx:
+.global J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
+J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f:
 /* 80311ACC 0030EA0C  A8 03 00 08 */	lha r0, 8(r3)
 /* 80311AD0 0030EA10  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80311AD4 0030EA14  3C C0 80 44 */	lis r6, lbl_80439A20@ha
@@ -383,8 +383,8 @@ J3DGetTextureMtx:
 /* 80311B78 0030EAB8  D0 05 00 28 */	stfs f0, 0x28(r5)
 /* 80311B7C 0030EABC  4E 80 00 20 */	blr 
 
-.global J3DGetTextureMtxOld
-J3DGetTextureMtxOld:
+.global J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
+J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f:
 /* 80311B80 0030EAC0  A8 03 00 08 */	lha r0, 8(r3)
 /* 80311B84 0030EAC4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80311B88 0030EAC8  3C C0 80 44 */	lis r6, lbl_80439A20@ha
@@ -431,8 +431,8 @@ J3DGetTextureMtxOld:
 /* 80311C2C 0030EB6C  D0 05 00 28 */	stfs f0, 0x28(r5)
 /* 80311C30 0030EB70  4E 80 00 20 */	blr 
 
-.global J3DGetTextureMtxMaya
-J3DGetTextureMtxMaya:
+.global J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
+J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f:
 /* 80311C34 0030EB74  A8 03 00 08 */	lha r0, 8(r3)
 /* 80311C38 0030EB78  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80311C3C 0030EB7C  3C A0 80 44 */	lis r5, lbl_80439A20@ha
@@ -478,8 +478,8 @@ J3DGetTextureMtxMaya:
 /* 80311CDC 0030EC1C  D0 04 00 28 */	stfs f0, 0x28(r4)
 /* 80311CE0 0030EC20  4E 80 00 20 */	blr 
 
-.global J3DGetTextureMtxMayaOld
-J3DGetTextureMtxMayaOld:
+.global J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
+J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f:
 /* 80311CE4 0030EC24  A8 03 00 08 */	lha r0, 8(r3)
 /* 80311CE8 0030EC28  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80311CEC 0030EC2C  3C A0 80 44 */	lis r5, lbl_80439A20@ha
@@ -525,8 +525,8 @@ J3DGetTextureMtxMayaOld:
 /* 80311D8C 0030ECCC  D0 04 00 28 */	stfs f0, 0x28(r4)
 /* 80311D90 0030ECD0  4E 80 00 20 */	blr 
 
-.global J3DScaleNrmMtx
-J3DScaleNrmMtx:
+.global J3DScaleNrmMtx__FPA4_fRC3Vec
+J3DScaleNrmMtx__FPA4_fRC3Vec:
 /* 80311D94 0030ECD4  E0 44 00 00 */	psq_l f2, 0(r4), 0, qr0
 /* 80311D98 0030ECD8  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 80311D9C 0030ECDC  C0 64 00 08 */	lfs f3, 8(r4)
@@ -553,8 +553,8 @@ J3DScaleNrmMtx:
 /* 80311DF0 0030ED30  D0 83 00 28 */	stfs f4, 0x28(r3)
 /* 80311DF4 0030ED34  4E 80 00 20 */	blr 
 
-.global J3DScaleNrmMtx33
-J3DScaleNrmMtx33:
+.global J3DScaleNrmMtx33__FPA3_fRC3Vec
+J3DScaleNrmMtx33__FPA3_fRC3Vec:
 /* 80311DF8 0030ED38  E0 03 00 00 */	psq_l f0, 0(r3), 0, qr0
 /* 80311DFC 0030ED3C  E0 C4 00 00 */	psq_l f6, 0(r4), 0, qr0
 /* 80311E00 0030ED40  C0 23 00 08 */	lfs f1, 8(r3)
@@ -577,8 +577,8 @@ J3DScaleNrmMtx33:
 /* 80311E44 0030ED84  D0 A3 00 20 */	stfs f5, 0x20(r3)
 /* 80311E48 0030ED88  4E 80 00 20 */	blr 
 
-.global J3DMtxProjConcat
-J3DMtxProjConcat:
+.global J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+J3DMtxProjConcat__FPA4_fPA4_fPA4_f:
 /* 80311E4C 0030ED8C  E0 43 00 00 */	psq_l f2, 0(r3), 0, qr0
 /* 80311E50 0030ED90  E0 63 00 08 */	psq_l f3, 8(r3), 0, qr0
 /* 80311E54 0030ED94  10 C2 14 20 */	ps_merge00 f6, f2, f2
@@ -653,8 +653,8 @@ J3DMtxProjConcat:
 /* 80311F68 0030EEA8  F0 05 00 28 */	psq_st f0, 40(r5), 0, qr0
 /* 80311F6C 0030EEAC  4E 80 00 20 */	blr 
 
-.global J3DPSMtxArrayConcat
-J3DPSMtxArrayConcat:
+.global J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl
+J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl:
 /* 80311F70 0030EEB0  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80311F74 0030EEB4  D9 C1 00 08 */	stfd f14, 8(r1)
 /* 80311F78 0030EEB8  3C E0 80 45 */	lis r7, lbl_80450958@ha

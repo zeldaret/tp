@@ -11,7 +11,7 @@
 /* 800F9A24 000F6964  80 1F 5F 18 */ lwz r0, 0x5f18(r31)
 /* 800F9A28 000F6968  54 1E 9F FE */ rlwinm r30, r0, 0x13, 0x1f, 0x1f
 /* 800F9A2C 000F696C  38 80 00 37 */ li r4, 0x37
-/* 800F9A30 000F6970  4B FC 85 3D */ bl daAlink_c_NS_commonProcInit
+/* 800F9A30 000F6970  4B FC 85 3D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F9A34 000F6974  C0 1D 00 00 */ lfs f0, 0(r29)
 /* 800F9A38 000F6978  D0 1B 37 C8 */ stfs f0, 0x37c8(r27)
 /* 800F9A3C 000F697C  C0 1D 00 04 */ lfs f0, 4(r29)
@@ -29,7 +29,7 @@
 /* 800F9A6C 000F69AC  64 00 08 00 */ oris r0, r0, 0x800
 /* 800F9A70 000F69B0  90 1F 5F 18 */ stw r0, 0x5f18(r31)
 /* 800F9A74 000F69B4  7F 63 DB 78 */ mr r3, r27
-/* 800F9A78 000F69B8  4B FF E2 71 */ bl daAlink_c_NS_setCrawlMoveDirectionArrow
+/* 800F9A78 000F69B8  4B FF E2 71 */ bl setCrawlMoveDirectionArrow__9daAlink_cFv
 /* 800F9A7C 000F69BC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F9A80 000F69C0  D0 1B 33 98 */ stfs f0, 0x3398(r27)
 /* 800F9A84 000F69C4  38 00 00 0C */ li r0, 0xc

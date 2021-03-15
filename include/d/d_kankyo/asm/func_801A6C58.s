@@ -13,12 +13,12 @@
 /* 801A6C88 001A3BC8  7F C3 F3 78 */ mr r3, r30
 /* 801A6C8C 001A3BCC  7F BF 07 74 */ extsb r31, r29
 /* 801A6C90 001A3BD0  7F E4 FB 78 */ mr r4, r31
-/* 801A6C94 001A3BD4  4B E7 D6 F1 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6C94 001A3BD4  4B E7 D6 F1 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A6C98 001A3BD8  28 03 00 00 */ cmplwi r3, 0
 /* 801A6C9C 001A3BDC  41 82 00 90 */ beq lbl_801A6D2C
 /* 801A6CA0 001A3BE0  7F C3 F3 78 */ mr r3, r30
 /* 801A6CA4 001A3BE4  7F E4 FB 78 */ mr r4, r31
-/* 801A6CA8 001A3BE8  4B E7 D6 DD */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 801A6CA8 001A3BE8  4B E7 D6 DD */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 801A6CAC 001A3BEC  81 83 00 00 */ lwz r12, 0(r3)
 /* 801A6CB0 001A3BF0  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 801A6CB4 001A3BF4  7D 89 03 A6 */ mtctr r12
@@ -49,12 +49,12 @@ lbl_801A6D08:
 /* 801A6D0C 001A3C4C  FC 00 F8 00 */ fcmpu cr0, f0, f31
 /* 801A6D10 001A3C50  40 82 00 10 */ bne lbl_801A6D20
 /* 801A6D14 001A3C54  7F A3 EB 78 */ mr r3, r29
-/* 801A6D18 001A3C58  4B FF F5 61 */ bl dKy_setLight_nowroom_common
+/* 801A6D18 001A3C58  4B FF F5 61 */ bl dKy_setLight_nowroom_common__Fcf
 /* 801A6D1C 001A3C5C  48 00 00 10 */ b lbl_801A6D2C
 lbl_801A6D20:
 /* 801A6D20 001A3C60  7F A3 EB 78 */ mr r3, r29
 /* 801A6D24 001A3C64  FC 20 F8 90 */ fmr f1, f31
-/* 801A6D28 001A3C68  4B FF F5 51 */ bl dKy_setLight_nowroom_common
+/* 801A6D28 001A3C68  4B FF F5 51 */ bl dKy_setLight_nowroom_common__Fcf
 lbl_801A6D2C:
 /* 801A6D2C 001A3C6C  E3 E1 00 28 */ psq_l f31, 40(r1), 0, 0
 /* 801A6D30 001A3C70  CB E1 00 20 */ lfd f31, 0x20(r1)

@@ -7,7 +7,7 @@
 /* 800F4D9C 000F1CDC  28 04 00 00 */ cmplwi r4, 0
 /* 800F4DA0 000F1CE0  40 82 00 10 */ bne lbl_800F4DB0
 /* 800F4DA4 000F1CE4  38 80 00 00 */ li r4, 0
-/* 800F4DA8 000F1CE8  4B FC 53 29 */ bl daAlink_c_NS_checkNextAction
+/* 800F4DA8 000F1CE8  4B FC 53 29 */ bl checkNextAction__9daAlink_cFi
 /* 800F4DAC 000F1CEC  48 00 00 38 */ b lbl_800F4DE4
 lbl_800F4DB0:
 /* 800F4DB0 000F1CF0  80 64 05 70 */ lwz r3, 0x570(r4)
@@ -16,12 +16,12 @@ lbl_800F4DB0:
 /* 800F4DBC 000F1CFC  38 BF 04 D0 */ addi r5, r31, 0x4d0
 /* 800F4DC0 000F1D00  48 25 1F AD */ bl PSMTXMultVec
 /* 800F4DC4 000F1D04  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 800F4DC8 000F1D08  48 06 97 05 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F4DC8 000F1D08  48 06 97 05 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F4DCC 000F1D0C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F4DD0 000F1D10  41 82 00 10 */ beq lbl_800F4DE0
 /* 800F4DD4 000F1D14  7F E3 FB 78 */ mr r3, r31
 /* 800F4DD8 000F1D18  38 80 00 01 */ li r4, 1
-/* 800F4DDC 000F1D1C  48 00 04 09 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F4DDC 000F1D1C  48 00 04 09 */ bl procCanoeWaitInit__9daAlink_cFi
 lbl_800F4DE0:
 /* 800F4DE0 000F1D20  38 60 00 01 */ li r3, 1
 lbl_800F4DE4:

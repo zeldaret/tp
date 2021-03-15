@@ -31,16 +31,16 @@
 /* 800614B0 0005E3F0  82 E3 5D 74 */ lwz r23, 0x5d74(r3)
 /* 800614B4 0005E3F4  83 43 5D AC */ lwz r26, 0x5dac(r3)
 /* 800614B8 0005E3F8  38 61 00 18 */ addi r3, r1, 0x18
-/* 800614BC 0005E3FC  4B FF 96 45 */ bl dKyw_get_wind_vecpow
+/* 800614BC 0005E3FC  4B FF 96 45 */ bl dKyw_get_wind_vecpow__Fv
 /* 800614C0 0005E400  C0 01 00 18 */ lfs f0, 0x18(r1)
 /* 800614C4 0005E404  D0 01 00 48 */ stfs f0, 0x48(r1)
 /* 800614C8 0005E408  C0 01 00 1C */ lfs f0, 0x1c(r1)
 /* 800614CC 0005E40C  D0 01 00 4C */ stfs f0, 0x4c(r1)
 /* 800614D0 0005E410  C0 01 00 20 */ lfs f0, 0x20(r1)
 /* 800614D4 0005E414  D0 01 00 50 */ stfs f0, 0x50(r1)
-/* 800614D8 0005E418  4B FF 96 09 */ bl dKyw_get_wind_vec
+/* 800614D8 0005E418  4B FF 96 09 */ bl dKyw_get_wind_vec__Fv
 /* 800614DC 0005E41C  7C 7C 1B 78 */ mr r28, r3
-/* 800614E0 0005E420  4B FF 96 11 */ bl dKyw_get_wind_pow
+/* 800614E0 0005E420  4B FF 96 11 */ bl dKyw_get_wind_pow__Fv
 /* 800614E4 0005E424  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800614E8 0005E428  3B E3 61 C0 */ addi r31, r3, g_dComIfG_gameInfo@l
 /* 800614EC 0005E42C  80 7F 61 B0 */ lwz r3, 0x61b0(r31)
@@ -116,7 +116,7 @@ lbl_800615E0:
 /* 800615EC 0005E52C  28 00 00 0B */ cmplwi r0, 0xb
 /* 800615F0 0005E530  40 82 00 64 */ bne lbl_80061654
 lbl_800615F4:
-/* 800615F4 0005E534  4B FF 94 FD */ bl dKyw_get_wind_pow
+/* 800615F4 0005E534  4B FF 94 FD */ bl dKyw_get_wind_pow__Fv
 /* 800615F8 0005E538  C0 02 89 30 */ lfs f0, lbl_80452330-_SDA2_BASE_(r2)
 /* 800615FC 0005E53C  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80061600 0005E540  C0 02 89 54 */ lfs f0, lbl_80452354-_SDA2_BASE_(r2)
@@ -124,7 +124,7 @@ lbl_800615F4:
 /* 80061608 0005E548  C0 1C 00 00 */ lfs f0, 0(r28)
 /* 8006160C 0005E54C  EC 00 00 72 */ fmuls f0, f0, f1
 /* 80061610 0005E550  D0 01 00 48 */ stfs f0, 0x48(r1)
-/* 80061614 0005E554  4B FF 94 DD */ bl dKyw_get_wind_pow
+/* 80061614 0005E554  4B FF 94 DD */ bl dKyw_get_wind_pow__Fv
 /* 80061618 0005E558  C0 02 89 30 */ lfs f0, lbl_80452330-_SDA2_BASE_(r2)
 /* 8006161C 0005E55C  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80061620 0005E560  C0 02 89 54 */ lfs f0, lbl_80452354-_SDA2_BASE_(r2)
@@ -132,7 +132,7 @@ lbl_800615F4:
 /* 80061628 0005E568  C0 1C 00 04 */ lfs f0, 4(r28)
 /* 8006162C 0005E56C  EC 00 00 72 */ fmuls f0, f0, f1
 /* 80061630 0005E570  D0 01 00 4C */ stfs f0, 0x4c(r1)
-/* 80061634 0005E574  4B FF 94 BD */ bl dKyw_get_wind_pow
+/* 80061634 0005E574  4B FF 94 BD */ bl dKyw_get_wind_pow__Fv
 /* 80061638 0005E578  C0 02 89 30 */ lfs f0, lbl_80452330-_SDA2_BASE_(r2)
 /* 8006163C 0005E57C  EC 20 00 72 */ fmuls f1, f0, f1
 /* 80061640 0005E580  C0 02 89 54 */ lfs f0, lbl_80452354-_SDA2_BASE_(r2)
@@ -160,7 +160,7 @@ lbl_80061688:
 /* 8006168C 0005E5CC  38 81 00 3C */ addi r4, r1, 0x3c
 /* 80061690 0005E5D0  C0 22 88 9C */ lfs f1, lbl_8045229C-_SDA2_BASE_(r2)
 /* 80061694 0005E5D4  FC 40 08 90 */ fmr f2, f1
-/* 80061698 0005E5D8  4B FF A1 99 */ bl dKy_set_eyevect_calc2
+/* 80061698 0005E5D8  4B FF A1 99 */ bl dKy_set_eyevect_calc2__FP12camera_classP3Vecff
 /* 8006169C 0005E5DC  3A C0 00 00 */ li r22, 0
 /* 800616A0 0005E5E0  3A A0 00 00 */ li r21, 0
 /* 800616A4 0005E5E4  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
@@ -275,7 +275,7 @@ lbl_800617A8:
 /* 80061848 0005E788  EC 17 00 32 */ fmuls f0, f23, f0
 /* 8006184C 0005E78C  EC 02 00 2A */ fadds f0, f2, f0
 /* 80061850 0005E790  D0 19 00 1C */ stfs f0, 0x1c(r25)
-/* 80061854 0005E794  4B FF 92 9D */ bl dKyw_get_wind_pow
+/* 80061854 0005E794  4B FF 92 9D */ bl dKyw_get_wind_pow__Fv
 /* 80061858 0005E798  EC 38 00 72 */ fmuls f1, f24, f1
 /* 8006185C 0005E79C  C0 02 88 AC */ lfs f0, lbl_804522AC-_SDA2_BASE_(r2)
 /* 80061860 0005E7A0  EC 00 05 B2 */ fmuls f0, f0, f22
@@ -345,7 +345,7 @@ lbl_80061928:
 lbl_80061954:
 /* 80061954 0005E894  28 00 00 0A */ cmplwi r0, 0xa
 /* 80061958 0005E898  40 82 00 28 */ bne lbl_80061980
-/* 8006195C 0005E89C  4B FF 91 95 */ bl dKyw_get_wind_pow
+/* 8006195C 0005E89C  4B FF 91 95 */ bl dKyw_get_wind_pow__Fv
 /* 80061960 0005E8A0  C0 42 88 8C */ lfs f2, lbl_8045228C-_SDA2_BASE_(r2)
 /* 80061964 0005E8A4  C0 19 00 40 */ lfs f0, 0x40(r25)
 /* 80061968 0005E8A8  EC 02 00 32 */ fmuls f0, f2, f0
@@ -357,7 +357,7 @@ lbl_80061954:
 lbl_80061980:
 /* 80061980 0005E8C0  28 00 00 0B */ cmplwi r0, 0xb
 /* 80061984 0005E8C4  40 82 00 24 */ bne lbl_800619A8
-/* 80061988 0005E8C8  4B FF 91 69 */ bl dKyw_get_wind_pow
+/* 80061988 0005E8C8  4B FF 91 69 */ bl dKyw_get_wind_pow__Fv
 /* 8006198C 0005E8CC  C0 42 89 FC */ lfs f2, lbl_804523FC-_SDA2_BASE_(r2)
 /* 80061990 0005E8D0  C0 19 00 40 */ lfs f0, 0x40(r25)
 /* 80061994 0005E8D4  EC 02 00 32 */ fmuls f0, f2, f0
@@ -558,7 +558,7 @@ lbl_80061C24:
 /* 80061C4C 0005EB8C  38 61 00 30 */ addi r3, r1, 0x30
 /* 80061C50 0005EB90  38 81 00 3C */ addi r4, r1, 0x3c
 /* 80061C54 0005EB94  38 A1 00 24 */ addi r5, r1, 0x24
-/* 80061C58 0005EB98  4B FF 9A B1 */ bl get_vectle_calc_X1_
+/* 80061C58 0005EB98  4B FF 9A B1 */ bl get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 80061C5C 0005EB9C  C0 22 88 3C */ lfs f1, lbl_8045223C-_SDA2_BASE_(r2)
 /* 80061C60 0005EBA0  48 20 5C F5 */ bl cM_rndF
 /* 80061C64 0005EBA4  C0 01 00 24 */ lfs f0, 0x24(r1)
@@ -738,16 +738,16 @@ lbl_80061EC0:
 lbl_80061EC8:
 /* 80061EC8 0005EE08  28 00 00 0A */ cmplwi r0, 0xa
 /* 80061ECC 0005EE0C  40 82 00 14 */ bne lbl_80061EE0
-/* 80061ED0 0005EE10  4B FF 8C 21 */ bl dKyw_get_wind_pow
+/* 80061ED0 0005EE10  4B FF 8C 21 */ bl dKyw_get_wind_pow__Fv
 /* 80061ED4 0005EE14  C0 02 88 40 */ lfs f0, lbl_80452240-_SDA2_BASE_(r2)
 /* 80061ED8 0005EE18  EE C0 00 72 */ fmuls f22, f0, f1
 /* 80061EDC 0005EE1C  48 00 00 8C */ b lbl_80061F68
 lbl_80061EE0:
 /* 80061EE0 0005EE20  28 00 00 0B */ cmplwi r0, 0xb
 /* 80061EE4 0005EE24  40 82 00 18 */ bne lbl_80061EFC
-/* 80061EE8 0005EE28  4B FF 8C 09 */ bl dKyw_get_wind_pow
+/* 80061EE8 0005EE28  4B FF 8C 09 */ bl dKyw_get_wind_pow__Fv
 /* 80061EEC 0005EE2C  FE C0 08 90 */ fmr f22, f1
-/* 80061EF0 0005EE30  4B FF 8C 01 */ bl dKyw_get_wind_pow
+/* 80061EF0 0005EE30  4B FF 8C 01 */ bl dKyw_get_wind_pow__Fv
 /* 80061EF4 0005EE34  EE C1 05 B2 */ fmuls f22, f1, f22
 /* 80061EF8 0005EE38  48 00 00 70 */ b lbl_80061F68
 lbl_80061EFC:
@@ -758,7 +758,7 @@ lbl_80061EFC:
 lbl_80061F0C:
 /* 80061F0C 0005EE4C  28 00 00 04 */ cmplwi r0, 4
 /* 80061F10 0005EE50  40 82 00 14 */ bne lbl_80061F24
-/* 80061F14 0005EE54  4B FF 8B DD */ bl dKyw_get_wind_pow
+/* 80061F14 0005EE54  4B FF 8B DD */ bl dKyw_get_wind_pow__Fv
 /* 80061F18 0005EE58  C0 02 89 E0 */ lfs f0, lbl_804523E0-_SDA2_BASE_(r2)
 /* 80061F1C 0005EE5C  EE C0 00 72 */ fmuls f22, f0, f1
 /* 80061F20 0005EE60  48 00 00 48 */ b lbl_80061F68
@@ -791,7 +791,7 @@ lbl_80061F78:
 /* 80061F78 0005EEB8  88 1E 0E B5 */ lbz r0, 0xeb5(r30)
 /* 80061F7C 0005EEBC  28 00 00 09 */ cmplwi r0, 9
 /* 80061F80 0005EEC0  40 82 00 20 */ bne lbl_80061FA0
-/* 80061F84 0005EEC4  4B FF 8B 6D */ bl dKyw_get_wind_pow
+/* 80061F84 0005EEC4  4B FF 8B 6D */ bl dKyw_get_wind_pow__Fv
 /* 80061F88 0005EEC8  C0 02 8A 24 */ lfs f0, lbl_80452424-_SDA2_BASE_(r2)
 /* 80061F8C 0005EECC  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 80061F90 0005EED0  40 81 00 0C */ ble lbl_80061F9C
@@ -802,7 +802,7 @@ lbl_80061F9C:
 lbl_80061FA0:
 /* 80061FA0 0005EEE0  38 7A 01 0C */ addi r3, r26, 0x10c
 /* 80061FA4 0005EEE4  38 81 00 08 */ addi r4, r1, 8
-/* 80061FA8 0005EEE8  48 14 4D A5 */ bl dKy_move_room_ratio
+/* 80061FA8 0005EEE8  48 14 4D A5 */ bl dKy_move_room_ratio__FP12dKy_tevstr_cPSc
 /* 80061FAC 0005EEEC  C0 19 00 48 */ lfs f0, 0x48(r25)
 /* 80061FB0 0005EEF0  EC 00 00 72 */ fmuls f0, f0, f1
 /* 80061FB4 0005EEF4  D0 19 00 48 */ stfs f0, 0x48(r25)

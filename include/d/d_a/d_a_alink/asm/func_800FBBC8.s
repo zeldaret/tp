@@ -22,7 +22,7 @@ lbl_800FBC0C:
 /* 800FBC14 000F8B54  7C 00 00 34 */ cntlzw r0, r0
 /* 800FBC18 000F8B58  54 1F DE 3E */ rlwinm r31, r0, 0x1b, 0x18, 0x1f
 /* 800FBC1C 000F8B5C  38 80 00 5A */ li r4, 0x5a
-/* 800FBC20 000F8B60  4B FC 63 4D */ bl daAlink_c_NS_commonProcInit
+/* 800FBC20 000F8B60  4B FC 63 4D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800FBC24 000F8B64  7F C3 F3 78 */ mr r3, r30
 /* 800FBC28 000F8B68  38 80 00 94 */ li r4, 0x94
 /* 800FBC2C 000F8B6C  3C A0 80 39 */ lis r5, lbl_8038E164@ha
@@ -31,9 +31,9 @@ lbl_800FBC0C:
 /* 800FBC38 000F8B78  FC 40 F8 90 */ fmr f2, f31
 /* 800FBC3C 000F8B7C  A8 A6 00 28 */ lha r5, 0x28(r6)
 /* 800FBC40 000F8B80  C0 66 00 34 */ lfs f3, 0x34(r6)
-/* 800FBC44 000F8B84  4B FB 13 C9 */ bl daAlink_c_NS_setSingleAnime
+/* 800FBC44 000F8B84  4B FB 13 C9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800FBC48 000F8B88  A0 7E 2F DC */ lhz r3, 0x2fdc(r30)
-/* 800FBC4C 000F8B8C  48 06 2F 45 */ bl daPy_py_c_NS_checkBowItem
+/* 800FBC4C 000F8B8C  48 06 2F 45 */ bl checkBowItem__9daPy_py_cFi
 /* 800FBC50 000F8B90  2C 03 00 00 */ cmpwi r3, 0
 /* 800FBC54 000F8B94  41 82 00 0C */ beq lbl_800FBC60
 /* 800FBC58 000F8B98  C0 1E 1F E0 */ lfs f0, 0x1fe0(r30)
@@ -59,7 +59,7 @@ lbl_800FBC60:
 /* 800FBCA4 000F8BE4  4E 80 04 21 */ bctrl
 lbl_800FBCA8:
 /* 800FBCA8 000F8BE8  7F C3 F3 78 */ mr r3, r30
-/* 800FBCAC 000F8BEC  4B FF EA 39 */ bl daAlink_c_NS_setHangGroundY
+/* 800FBCAC 000F8BEC  4B FF EA 39 */ bl setHangGroundY__9daAlink_cFv
 /* 800FBCB0 000F8BF0  38 60 00 01 */ li r3, 1
 lbl_800FBCB4:
 /* 800FBCB4 000F8BF4  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0

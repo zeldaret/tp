@@ -3,7 +3,7 @@
 /* 800F492C 000F186C  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F4930 000F1870  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F4934 000F1874  7C 7F 1B 78 */ mr r31, r3
-/* 800F4938 000F1878  4B FF F4 21 */ bl daAlink_c_NS_checkFishingRodAndLureItem
+/* 800F4938 000F1878  4B FF F4 21 */ bl checkFishingRodAndLureItem__9daAlink_cCFv
 /* 800F493C 000F187C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F4940 000F1880  41 82 00 1C */ beq lbl_800F495C
 /* 800F4944 000F1884  80 7F 28 28 */ lwz r3, 0x2828(r31)
@@ -14,26 +14,26 @@
 /* 800F4958 000F1898  40 82 00 1C */ bne lbl_800F4974
 lbl_800F495C:
 /* 800F495C 000F189C  7F E3 FB 78 */ mr r3, r31
-/* 800F4960 000F18A0  4B FC 53 CD */ bl daAlink_c_NS_checkNextActionFromButton
+/* 800F4960 000F18A0  4B FC 53 CD */ bl checkNextActionFromButton__9daAlink_cFv
 /* 800F4964 000F18A4  2C 03 00 00 */ cmpwi r3, 0
 /* 800F4968 000F18A8  41 82 00 0C */ beq lbl_800F4974
 /* 800F496C 000F18AC  38 60 00 01 */ li r3, 1
 /* 800F4970 000F18B0  48 00 00 CC */ b lbl_800F4A3C
 lbl_800F4974:
 /* 800F4974 000F18B4  7F E3 FB 78 */ mr r3, r31
-/* 800F4978 000F18B8  4B FE A0 71 */ bl daAlink_c_NS_checkBowAnime
+/* 800F4978 000F18B8  4B FE A0 71 */ bl checkBowAnime__9daAlink_cCFv
 /* 800F497C 000F18BC  2C 03 00 00 */ cmpwi r3, 0
 /* 800F4980 000F18C0  41 82 00 10 */ beq lbl_800F4990
 /* 800F4984 000F18C4  7F E3 FB 78 */ mr r3, r31
-/* 800F4988 000F18C8  4B FE AE 8D */ bl daAlink_c_NS_checkNextActionBow
+/* 800F4988 000F18C8  4B FE AE 8D */ bl checkNextActionBow__9daAlink_cFv
 /* 800F498C 000F18CC  48 00 00 B0 */ b lbl_800F4A3C
 lbl_800F4990:
 /* 800F4990 000F18D0  7F E3 FB 78 */ mr r3, r31
-/* 800F4994 000F18D4  4B FE BA AD */ bl daAlink_c_NS_checkBoomerangAnime
+/* 800F4994 000F18D4  4B FE BA AD */ bl checkBoomerangAnime__9daAlink_cCFv
 /* 800F4998 000F18D8  2C 03 00 00 */ cmpwi r3, 0
 /* 800F499C 000F18DC  41 82 00 10 */ beq lbl_800F49AC
 /* 800F49A0 000F18E0  7F E3 FB 78 */ mr r3, r31
-/* 800F49A4 000F18E4  4B FE C2 41 */ bl daAlink_c_NS_checkNextActionBoomerang
+/* 800F49A4 000F18E4  4B FE C2 41 */ bl checkNextActionBoomerang__9daAlink_cFv
 /* 800F49A8 000F18E8  48 00 00 94 */ b lbl_800F4A3C
 lbl_800F49AC:
 /* 800F49AC 000F18EC  38 60 00 00 */ li r3, 0
@@ -49,15 +49,15 @@ lbl_800F49CC:
 /* 800F49CC 000F190C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F49D0 000F1910  41 82 00 10 */ beq lbl_800F49E0
 /* 800F49D4 000F1914  7F E3 FB 78 */ mr r3, r31
-/* 800F49D8 000F1918  48 01 4B F1 */ bl daAlink_c_NS_checkNextActionHookshot
+/* 800F49D8 000F1918  48 01 4B F1 */ bl checkNextActionHookshot__9daAlink_cFv
 /* 800F49DC 000F191C  48 00 00 60 */ b lbl_800F4A3C
 lbl_800F49E0:
 /* 800F49E0 000F1920  7F E3 FB 78 */ mr r3, r31
-/* 800F49E4 000F1924  4B FE F2 B9 */ bl daAlink_c_NS_checkGrabAnimeAndThrow
+/* 800F49E4 000F1924  4B FE F2 B9 */ bl checkGrabAnimeAndThrow__9daAlink_cCFv
 /* 800F49E8 000F1928  2C 03 00 00 */ cmpwi r3, 0
 /* 800F49EC 000F192C  41 82 00 10 */ beq lbl_800F49FC
 /* 800F49F0 000F1930  7F E3 FB 78 */ mr r3, r31
-/* 800F49F4 000F1934  48 00 24 BD */ bl daAlink_c_NS_procCanoeGrabMoveInit
+/* 800F49F4 000F1934  48 00 24 BD */ bl procCanoeGrabMoveInit__9daAlink_cFv
 /* 800F49F8 000F1938  48 00 00 44 */ b lbl_800F4A3C
 lbl_800F49FC:
 /* 800F49FC 000F193C  38 60 00 00 */ li r3, 0
@@ -73,12 +73,12 @@ lbl_800F4A1C:
 /* 800F4A1C 000F195C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F4A20 000F1960  41 82 00 10 */ beq lbl_800F4A30
 /* 800F4A24 000F1964  7F E3 FB 78 */ mr r3, r31
-/* 800F4A28 000F1968  48 00 1A 3D */ bl daAlink_c_NS_procCanoeFishingWaitInit
+/* 800F4A28 000F1968  48 00 1A 3D */ bl procCanoeFishingWaitInit__9daAlink_cFv
 /* 800F4A2C 000F196C  48 00 00 10 */ b lbl_800F4A3C
 lbl_800F4A30:
 /* 800F4A30 000F1970  7F E3 FB 78 */ mr r3, r31
 /* 800F4A34 000F1974  38 80 00 00 */ li r4, 0
-/* 800F4A38 000F1978  48 00 07 AD */ bl daAlink_c_NS_procCanoeWaitInit
+/* 800F4A38 000F1978  48 00 07 AD */ bl procCanoeWaitInit__9daAlink_cFi
 lbl_800F4A3C:
 /* 800F4A3C 000F197C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800F4A40 000F1980  80 01 00 14 */ lwz r0, 0x14(r1)

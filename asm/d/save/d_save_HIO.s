@@ -2,8 +2,8 @@
 
 .section .text, "ax" # 8025bb78
 
-.global dSvBit_childSwDungeonHIO_c
-dSvBit_childSwDungeonHIO_c:
+.global __ct__26dSvBit_childSwDungeonHIO_cFv
+__ct__26dSvBit_childSwDungeonHIO_cFv:
 /* 8025BC14 00258B54  3C 80 80 3C */	lis r4, lbl_803C3378@ha
 /* 8025BC18 00258B58  38 04 33 78 */	addi r0, r4, lbl_803C3378@l
 /* 8025BC1C 00258B5C  90 03 00 00 */	stw r0, 0(r3)
@@ -19,8 +19,8 @@ lbl_8025BC30:
 /* 8025BC40 00258B80  42 00 FF F0 */	bdnz lbl_8025BC30
 /* 8025BC44 00258B84  4E 80 00 20 */	blr 
 
-.global dSvBit_childSwDungeonHIO_c_NS_init
-dSvBit_childSwDungeonHIO_c_NS_init:
+.global init__26dSvBit_childSwDungeonHIO_cFv
+init__26dSvBit_childSwDungeonHIO_cFv:
 /* 8025BC48 00258B88  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025BC4C 00258B8C  7C 08 02 A6 */	mflr r0
 /* 8025BC50 00258B90  90 01 00 24 */	stw r0, 0x24(r1)
@@ -49,8 +49,8 @@ lbl_8025BC70:
 /* 8025BCA8 00258BE8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025BCAC 00258BEC  4E 80 00 20 */	blr 
 
-.global dSvBit_childSwZoneHIO_c
-dSvBit_childSwZoneHIO_c:
+.global __ct__23dSvBit_childSwZoneHIO_cFv
+__ct__23dSvBit_childSwZoneHIO_cFv:
 /* 8025BCB0 00258BF0  3C 80 80 3C */	lis r4, lbl_803C336C@ha
 /* 8025BCB4 00258BF4  38 04 33 6C */	addi r0, r4, lbl_803C336C@l
 /* 8025BCB8 00258BF8  90 03 00 00 */	stw r0, 0(r3)
@@ -66,8 +66,8 @@ lbl_8025BCCC:
 /* 8025BCDC 00258C1C  42 00 FF F0 */	bdnz lbl_8025BCCC
 /* 8025BCE0 00258C20  4E 80 00 20 */	blr 
 
-.global dSvBit_childSwZoneHIO_c_NS_init
-dSvBit_childSwZoneHIO_c_NS_init:
+.global init__23dSvBit_childSwZoneHIO_cFv
+init__23dSvBit_childSwZoneHIO_cFv:
 /* 8025BCE4 00258C24  38 C0 00 00 */	li r6, 0
 /* 8025BCE8 00258C28  38 80 00 00 */	li r4, 0
 /* 8025BCEC 00258C2C  38 00 00 20 */	li r0, 0x20
@@ -81,8 +81,8 @@ lbl_8025BCF4:
 /* 8025BD08 00258C48  42 00 FF EC */	bdnz lbl_8025BCF4
 /* 8025BD0C 00258C4C  4E 80 00 20 */	blr 
 
-.global dSvBit_childSwOneZoneHIO_c
-dSvBit_childSwOneZoneHIO_c:
+.global __ct__26dSvBit_childSwOneZoneHIO_cFv
+__ct__26dSvBit_childSwOneZoneHIO_cFv:
 /* 8025BD10 00258C50  3C 80 80 3C */	lis r4, lbl_803C3360@ha
 /* 8025BD14 00258C54  38 04 33 60 */	addi r0, r4, lbl_803C3360@l
 /* 8025BD18 00258C58  90 03 00 00 */	stw r0, 0(r3)
@@ -98,8 +98,8 @@ lbl_8025BD2C:
 /* 8025BD3C 00258C7C  42 00 FF F0 */	bdnz lbl_8025BD2C
 /* 8025BD40 00258C80  4E 80 00 20 */	blr 
 
-.global dSvBit_childSwOneZoneHIO_c_NS_init
-dSvBit_childSwOneZoneHIO_c_NS_init:
+.global init__26dSvBit_childSwOneZoneHIO_cFv
+init__26dSvBit_childSwOneZoneHIO_cFv:
 /* 8025BD44 00258C84  38 C0 00 00 */	li r6, 0
 /* 8025BD48 00258C88  38 80 00 00 */	li r4, 0
 /* 8025BD4C 00258C8C  38 00 00 10 */	li r0, 0x10
@@ -113,8 +113,8 @@ lbl_8025BD54:
 /* 8025BD68 00258CA8  42 00 FF EC */	bdnz lbl_8025BD54
 /* 8025BD6C 00258CAC  4E 80 00 20 */	blr 
 
-.global dSvBit_childItPerfectionHIO_c
-dSvBit_childItPerfectionHIO_c:
+.global __ct__29dSvBit_childItPerfectionHIO_cFv
+__ct__29dSvBit_childItPerfectionHIO_cFv:
 /* 8025BD70 00258CB0  3C 80 80 3C */	lis r4, lbl_803C3354@ha
 /* 8025BD74 00258CB4  38 04 33 54 */	addi r0, r4, lbl_803C3354@l
 /* 8025BD78 00258CB8  90 03 00 00 */	stw r0, 0(r3)
@@ -130,8 +130,8 @@ lbl_8025BD8C:
 /* 8025BD9C 00258CDC  42 00 FF F0 */	bdnz lbl_8025BD8C
 /* 8025BDA0 00258CE0  4E 80 00 20 */	blr 
 
-.global dSvBit_childItPerfectionHIO_c_NS_init
-dSvBit_childItPerfectionHIO_c_NS_init:
+.global init__29dSvBit_childItPerfectionHIO_cFv
+init__29dSvBit_childItPerfectionHIO_cFv:
 /* 8025BDA4 00258CE4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025BDA8 00258CE8  7C 08 02 A6 */	mflr r0
 /* 8025BDAC 00258CEC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -160,8 +160,8 @@ lbl_8025BDCC:
 /* 8025BE04 00258D44  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025BE08 00258D48  4E 80 00 20 */	blr 
 
-.global dSvBit_childItDungeonHIO_c
-dSvBit_childItDungeonHIO_c:
+.global __ct__26dSvBit_childItDungeonHIO_cFv
+__ct__26dSvBit_childItDungeonHIO_cFv:
 /* 8025BE0C 00258D4C  3C 80 80 3C */	lis r4, lbl_803C3348@ha
 /* 8025BE10 00258D50  38 04 33 48 */	addi r0, r4, lbl_803C3348@l
 /* 8025BE14 00258D54  90 03 00 00 */	stw r0, 0(r3)
@@ -177,8 +177,8 @@ lbl_8025BE28:
 /* 8025BE38 00258D78  42 00 FF F0 */	bdnz lbl_8025BE28
 /* 8025BE3C 00258D7C  4E 80 00 20 */	blr 
 
-.global dSvBit_childItDungeonHIO_c_NS_init
-dSvBit_childItDungeonHIO_c_NS_init:
+.global init__26dSvBit_childItDungeonHIO_cFv
+init__26dSvBit_childItDungeonHIO_cFv:
 /* 8025BE40 00258D80  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025BE44 00258D84  7C 08 02 A6 */	mflr r0
 /* 8025BE48 00258D88  90 01 00 24 */	stw r0, 0x24(r1)
@@ -207,8 +207,8 @@ lbl_8025BE68:
 /* 8025BEA0 00258DE0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025BEA4 00258DE4  4E 80 00 20 */	blr 
 
-.global dSvBit_childItZoneHIO_c
-dSvBit_childItZoneHIO_c:
+.global __ct__23dSvBit_childItZoneHIO_cFv
+__ct__23dSvBit_childItZoneHIO_cFv:
 /* 8025BEA8 00258DE8  3C 80 80 3C */	lis r4, lbl_803C333C@ha
 /* 8025BEAC 00258DEC  38 04 33 3C */	addi r0, r4, lbl_803C333C@l
 /* 8025BEB0 00258DF0  90 03 00 00 */	stw r0, 0(r3)
@@ -224,8 +224,8 @@ lbl_8025BEC4:
 /* 8025BED4 00258E14  42 00 FF F0 */	bdnz lbl_8025BEC4
 /* 8025BED8 00258E18  4E 80 00 20 */	blr 
 
-.global dSvBit_childItZoneHIO_c_NS_init
-dSvBit_childItZoneHIO_c_NS_init:
+.global init__23dSvBit_childItZoneHIO_cFv
+init__23dSvBit_childItZoneHIO_cFv:
 /* 8025BEDC 00258E1C  38 C0 00 00 */	li r6, 0
 /* 8025BEE0 00258E20  38 80 00 00 */	li r4, 0
 /* 8025BEE4 00258E24  38 00 00 20 */	li r0, 0x20
@@ -239,8 +239,8 @@ lbl_8025BEEC:
 /* 8025BF00 00258E40  42 00 FF EC */	bdnz lbl_8025BEEC
 /* 8025BF04 00258E44  4E 80 00 20 */	blr 
 
-.global dSvBit_childItOneZoneHIO_c
-dSvBit_childItOneZoneHIO_c:
+.global __ct__26dSvBit_childItOneZoneHIO_cFv
+__ct__26dSvBit_childItOneZoneHIO_cFv:
 /* 8025BF08 00258E48  3C 80 80 3C */	lis r4, lbl_803C3330@ha
 /* 8025BF0C 00258E4C  38 04 33 30 */	addi r0, r4, lbl_803C3330@l
 /* 8025BF10 00258E50  90 03 00 00 */	stw r0, 0(r3)
@@ -256,8 +256,8 @@ lbl_8025BF24:
 /* 8025BF34 00258E74  42 00 FF F0 */	bdnz lbl_8025BF24
 /* 8025BF38 00258E78  4E 80 00 20 */	blr 
 
-.global dSvBit_childItOneZoneHIO_c_NS_init
-dSvBit_childItOneZoneHIO_c_NS_init:
+.global init__26dSvBit_childItOneZoneHIO_cFv
+init__26dSvBit_childItOneZoneHIO_cFv:
 /* 8025BF3C 00258E7C  38 C0 00 00 */	li r6, 0
 /* 8025BF40 00258E80  38 80 00 00 */	li r4, 0
 /* 8025BF44 00258E84  38 00 00 10 */	li r0, 0x10
@@ -271,8 +271,8 @@ lbl_8025BF4C:
 /* 8025BF60 00258EA0  42 00 FF EC */	bdnz lbl_8025BF4C
 /* 8025BF64 00258EA4  4E 80 00 20 */	blr 
 
-.global dSvBit_childTbPerfectionHIO_c
-dSvBit_childTbPerfectionHIO_c:
+.global __ct__29dSvBit_childTbPerfectionHIO_cFv
+__ct__29dSvBit_childTbPerfectionHIO_cFv:
 /* 8025BF68 00258EA8  3C 80 80 3C */	lis r4, lbl_803C3324@ha
 /* 8025BF6C 00258EAC  38 04 33 24 */	addi r0, r4, lbl_803C3324@l
 /* 8025BF70 00258EB0  90 03 00 00 */	stw r0, 0(r3)
@@ -288,8 +288,8 @@ lbl_8025BF84:
 /* 8025BF94 00258ED4  42 00 FF F0 */	bdnz lbl_8025BF84
 /* 8025BF98 00258ED8  4E 80 00 20 */	blr 
 
-.global dSvBit_childTbPerfectionHIO_c_NS_init
-dSvBit_childTbPerfectionHIO_c_NS_init:
+.global init__29dSvBit_childTbPerfectionHIO_cFv
+init__29dSvBit_childTbPerfectionHIO_cFv:
 /* 8025BF9C 00258EDC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025BFA0 00258EE0  7C 08 02 A6 */	mflr r0
 /* 8025BFA4 00258EE4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -318,8 +318,8 @@ lbl_8025BFC4:
 /* 8025BFFC 00258F3C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025C000 00258F40  4E 80 00 20 */	blr 
 
-.global dSvBit_childDarknessHIO_c
-dSvBit_childDarknessHIO_c:
+.global __ct__25dSvBit_childDarknessHIO_cFv
+__ct__25dSvBit_childDarknessHIO_cFv:
 /* 8025C004 00258F44  3C 80 80 3C */	lis r4, lbl_803C3318@ha
 /* 8025C008 00258F48  38 04 33 18 */	addi r0, r4, lbl_803C3318@l
 /* 8025C00C 00258F4C  90 03 00 00 */	stw r0, 0(r3)
@@ -335,8 +335,8 @@ lbl_8025C020:
 /* 8025C030 00258F70  42 00 FF F0 */	bdnz lbl_8025C020
 /* 8025C034 00258F74  4E 80 00 20 */	blr 
 
-.global dSvBit_childDarknessHIO_c_NS_init
-dSvBit_childDarknessHIO_c_NS_init:
+.global init__25dSvBit_childDarknessHIO_cFv
+init__25dSvBit_childDarknessHIO_cFv:
 /* 8025C038 00258F78  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025C03C 00258F7C  7C 08 02 A6 */	mflr r0
 /* 8025C040 00258F80  90 01 00 24 */	stw r0, 0x24(r1)
@@ -365,8 +365,8 @@ lbl_8025C060:
 /* 8025C098 00258FD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025C09C 00258FDC  4E 80 00 20 */	blr 
 
-.global dSvBit_childTransformHIO_c
-dSvBit_childTransformHIO_c:
+.global __ct__26dSvBit_childTransformHIO_cFv
+__ct__26dSvBit_childTransformHIO_cFv:
 /* 8025C0A0 00258FE0  3C 80 80 3C */	lis r4, lbl_803C330C@ha
 /* 8025C0A4 00258FE4  38 04 33 0C */	addi r0, r4, lbl_803C330C@l
 /* 8025C0A8 00258FE8  90 03 00 00 */	stw r0, 0(r3)
@@ -382,8 +382,8 @@ lbl_8025C0BC:
 /* 8025C0CC 0025900C  42 00 FF F0 */	bdnz lbl_8025C0BC
 /* 8025C0D0 00259010  4E 80 00 20 */	blr 
 
-.global dSvBit_childTransformHIO_c_NS_init
-dSvBit_childTransformHIO_c_NS_init:
+.global init__26dSvBit_childTransformHIO_cFv
+init__26dSvBit_childTransformHIO_cFv:
 /* 8025C0D4 00259014  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025C0D8 00259018  7C 08 02 A6 */	mflr r0
 /* 8025C0DC 0025901C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -412,8 +412,8 @@ lbl_8025C0FC:
 /* 8025C134 00259074  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025C138 00259078  4E 80 00 20 */	blr 
 
-.global dSvBit_childOtherHIO_c
-dSvBit_childOtherHIO_c:
+.global __ct__22dSvBit_childOtherHIO_cFv
+__ct__22dSvBit_childOtherHIO_cFv:
 /* 8025C13C 0025907C  3C 80 80 3C */	lis r4, lbl_803C3300@ha
 /* 8025C140 00259080  38 04 33 00 */	addi r0, r4, lbl_803C3300@l
 /* 8025C144 00259084  90 03 00 00 */	stw r0, 0(r3)
@@ -431,8 +431,8 @@ lbl_8025C160:
 /* 8025C170 002590B0  42 00 FF F0 */	bdnz lbl_8025C160
 /* 8025C174 002590B4  4E 80 00 20 */	blr 
 
-.global dSvBit_childOtherHIO_c_NS_init
-dSvBit_childOtherHIO_c_NS_init:
+.global init__22dSvBit_childOtherHIO_cFv
+init__22dSvBit_childOtherHIO_cFv:
 /* 8025C178 002590B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8025C17C 002590BC  7C 08 02 A6 */	mflr r0
 /* 8025C180 002590C0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -467,8 +467,8 @@ lbl_8025C1B8:
 /* 8025C1F0 00259130  38 21 00 20 */	addi r1, r1, 0x20
 /* 8025C1F4 00259134  4E 80 00 20 */	blr 
 
-.global dSvBit_HIO_c_NS_init
-dSvBit_HIO_c_NS_init:
+.global init__12dSvBit_HIO_cFv
+init__12dSvBit_HIO_cFv:
 /* 8025C1F8 00259138  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025C1FC 0025913C  7C 08 02 A6 */	mflr r0
 /* 8025C200 00259140  90 01 00 14 */	stw r0, 0x14(r1)
@@ -477,27 +477,27 @@ dSvBit_HIO_c_NS_init:
 /* 8025C20C 0025914C  38 7F 00 10 */	addi r3, r31, 0x10
 /* 8025C210 00259150  4B FF F9 9D */	bl init__29dSvBit_childSwPerfectionHIO_cFv
 /* 8025C214 00259154  38 7F 01 18 */	addi r3, r31, 0x118
-/* 8025C218 00259158  4B FF FA 31 */	bl dSvBit_childSwDungeonHIO_c_NS_init
+/* 8025C218 00259158  4B FF FA 31 */	bl init__26dSvBit_childSwDungeonHIO_cFv
 /* 8025C21C 0025915C  38 7F 01 A0 */	addi r3, r31, 0x1a0
-/* 8025C220 00259160  4B FF FA C5 */	bl dSvBit_childSwZoneHIO_c_NS_init
+/* 8025C220 00259160  4B FF FA C5 */	bl init__23dSvBit_childSwZoneHIO_cFv
 /* 8025C224 00259164  38 7F 01 E8 */	addi r3, r31, 0x1e8
-/* 8025C228 00259168  4B FF FB 1D */	bl dSvBit_childSwOneZoneHIO_c_NS_init
+/* 8025C228 00259168  4B FF FB 1D */	bl init__26dSvBit_childSwOneZoneHIO_cFv
 /* 8025C22C 0025916C  38 7F 02 18 */	addi r3, r31, 0x218
-/* 8025C230 00259170  4B FF FB 75 */	bl dSvBit_childItPerfectionHIO_c_NS_init
+/* 8025C230 00259170  4B FF FB 75 */	bl init__29dSvBit_childItPerfectionHIO_cFv
 /* 8025C234 00259174  38 7F 02 60 */	addi r3, r31, 0x260
-/* 8025C238 00259178  4B FF FC 09 */	bl dSvBit_childItDungeonHIO_c_NS_init
+/* 8025C238 00259178  4B FF FC 09 */	bl init__26dSvBit_childItDungeonHIO_cFv
 /* 8025C23C 0025917C  38 7F 03 68 */	addi r3, r31, 0x368
-/* 8025C240 00259180  4B FF FC 9D */	bl dSvBit_childItZoneHIO_c_NS_init
+/* 8025C240 00259180  4B FF FC 9D */	bl init__23dSvBit_childItZoneHIO_cFv
 /* 8025C244 00259184  38 7F 03 B0 */	addi r3, r31, 0x3b0
-/* 8025C248 00259188  4B FF FC F5 */	bl dSvBit_childItOneZoneHIO_c_NS_init
+/* 8025C248 00259188  4B FF FC F5 */	bl init__26dSvBit_childItOneZoneHIO_cFv
 /* 8025C24C 0025918C  38 7F 03 E0 */	addi r3, r31, 0x3e0
-/* 8025C250 00259190  4B FF FD 4D */	bl dSvBit_childTbPerfectionHIO_c_NS_init
+/* 8025C250 00259190  4B FF FD 4D */	bl init__29dSvBit_childTbPerfectionHIO_cFv
 /* 8025C254 00259194  38 7F 04 68 */	addi r3, r31, 0x468
-/* 8025C258 00259198  4B FF FD E1 */	bl dSvBit_childDarknessHIO_c_NS_init
+/* 8025C258 00259198  4B FF FD E1 */	bl init__25dSvBit_childDarknessHIO_cFv
 /* 8025C25C 0025919C  38 7F 04 7C */	addi r3, r31, 0x47c
-/* 8025C260 002591A0  4B FF FE 75 */	bl dSvBit_childTransformHIO_c_NS_init
+/* 8025C260 002591A0  4B FF FE 75 */	bl init__26dSvBit_childTransformHIO_cFv
 /* 8025C264 002591A4  38 7F 04 8C */	addi r3, r31, 0x48c
-/* 8025C268 002591A8  4B FF FF 11 */	bl dSvBit_childOtherHIO_c_NS_init
+/* 8025C268 002591A8  4B FF FF 11 */	bl init__22dSvBit_childOtherHIO_cFv
 /* 8025C26C 002591AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8025C270 002591B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8025C274 002591B4  38 63 07 F0 */	addi r3, r3, 0x7f0
@@ -753,49 +753,49 @@ lbl_8025C5E4:
 /* 8025C62C 0025956C  38 7F 00 10 */	addi r3, r31, 0x10
 /* 8025C630 00259570  4B FF F5 49 */	bl __ct__29dSvBit_childSwPerfectionHIO_cFv
 /* 8025C634 00259574  38 7F 01 18 */	addi r3, r31, 0x118
-/* 8025C638 00259578  4B FF F5 DD */	bl dSvBit_childSwDungeonHIO_c
+/* 8025C638 00259578  4B FF F5 DD */	bl __ct__26dSvBit_childSwDungeonHIO_cFv
 /* 8025C63C 0025957C  38 7F 01 A0 */	addi r3, r31, 0x1a0
-/* 8025C640 00259580  4B FF F6 71 */	bl dSvBit_childSwZoneHIO_c
+/* 8025C640 00259580  4B FF F6 71 */	bl __ct__23dSvBit_childSwZoneHIO_cFv
 /* 8025C644 00259584  38 7F 01 E8 */	addi r3, r31, 0x1e8
-/* 8025C648 00259588  4B FF F6 C9 */	bl dSvBit_childSwOneZoneHIO_c
+/* 8025C648 00259588  4B FF F6 C9 */	bl __ct__26dSvBit_childSwOneZoneHIO_cFv
 /* 8025C64C 0025958C  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C650 00259590  3B E3 07 EC */	addi r31, r3, lbl_804307EC@l
 /* 8025C654 00259594  3C 60 80 3C */	lis r3, lbl_803C339C@ha
 /* 8025C658 00259598  38 03 33 9C */	addi r0, r3, lbl_803C339C@l
 /* 8025C65C 0025959C  90 1F 02 10 */	stw r0, 0x210(r31)
 /* 8025C660 002595A0  38 7F 02 18 */	addi r3, r31, 0x218
-/* 8025C664 002595A4  4B FF F7 0D */	bl dSvBit_childItPerfectionHIO_c
+/* 8025C664 002595A4  4B FF F7 0D */	bl __ct__29dSvBit_childItPerfectionHIO_cFv
 /* 8025C668 002595A8  38 7F 02 60 */	addi r3, r31, 0x260
-/* 8025C66C 002595AC  4B FF F7 A1 */	bl dSvBit_childItDungeonHIO_c
+/* 8025C66C 002595AC  4B FF F7 A1 */	bl __ct__26dSvBit_childItDungeonHIO_cFv
 /* 8025C670 002595B0  38 7F 03 68 */	addi r3, r31, 0x368
-/* 8025C674 002595B4  4B FF F8 35 */	bl dSvBit_childItZoneHIO_c
+/* 8025C674 002595B4  4B FF F8 35 */	bl __ct__23dSvBit_childItZoneHIO_cFv
 /* 8025C678 002595B8  38 7F 03 B0 */	addi r3, r31, 0x3b0
-/* 8025C67C 002595BC  4B FF F8 8D */	bl dSvBit_childItOneZoneHIO_c
+/* 8025C67C 002595BC  4B FF F8 8D */	bl __ct__26dSvBit_childItOneZoneHIO_cFv
 /* 8025C680 002595C0  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C684 002595C4  38 83 07 EC */	addi r4, r3, lbl_804307EC@l
 /* 8025C688 002595C8  3C 60 80 3C */	lis r3, lbl_803C3390@ha
 /* 8025C68C 002595CC  38 03 33 90 */	addi r0, r3, lbl_803C3390@l
 /* 8025C690 002595D0  90 04 03 D8 */	stw r0, 0x3d8(r4)
 /* 8025C694 002595D4  38 64 03 E0 */	addi r3, r4, 0x3e0
-/* 8025C698 002595D8  4B FF F8 D1 */	bl dSvBit_childTbPerfectionHIO_c
+/* 8025C698 002595D8  4B FF F8 D1 */	bl __ct__29dSvBit_childTbPerfectionHIO_cFv
 /* 8025C69C 002595DC  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C6A0 002595E0  38 63 07 EC */	addi r3, r3, lbl_804307EC@l
 /* 8025C6A4 002595E4  38 63 04 68 */	addi r3, r3, 0x468
-/* 8025C6A8 002595E8  4B FF F9 5D */	bl dSvBit_childDarknessHIO_c
+/* 8025C6A8 002595E8  4B FF F9 5D */	bl __ct__25dSvBit_childDarknessHIO_cFv
 /* 8025C6AC 002595EC  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C6B0 002595F0  38 63 07 EC */	addi r3, r3, lbl_804307EC@l
 /* 8025C6B4 002595F4  38 63 04 7C */	addi r3, r3, 0x47c
-/* 8025C6B8 002595F8  4B FF F9 E9 */	bl dSvBit_childTransformHIO_c
+/* 8025C6B8 002595F8  4B FF F9 E9 */	bl __ct__26dSvBit_childTransformHIO_cFv
 /* 8025C6BC 002595FC  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C6C0 00259600  38 63 07 EC */	addi r3, r3, lbl_804307EC@l
 /* 8025C6C4 00259604  38 63 04 8C */	addi r3, r3, 0x48c
-/* 8025C6C8 00259608  4B FF FA 75 */	bl dSvBit_childOtherHIO_c
+/* 8025C6C8 00259608  4B FF FA 75 */	bl __ct__22dSvBit_childOtherHIO_cFv
 /* 8025C6CC 0025960C  3C 60 80 43 */	lis r3, lbl_804307EC@ha
 /* 8025C6D0 00259610  38 63 07 EC */	addi r3, r3, lbl_804307EC@l
-.global dSvBit_HIO_c_NS_dtor
-/* 8025C6D4 00259614  3C 80 80 26 */	lis r4, dSvBit_HIO_c_NS_dtor@ha
-.global dSvBit_HIO_c_NS_dtor
-/* 8025C6D8 00259618  38 84 C6 FC */	addi r4, r4, dSvBit_HIO_c_NS_dtor@l
+.global __dt__12dSvBit_HIO_cFv
+/* 8025C6D4 00259614  3C 80 80 26 */	lis r4, __dt__12dSvBit_HIO_cFv@ha
+.global __dt__12dSvBit_HIO_cFv
+/* 8025C6D8 00259618  38 84 C6 FC */	addi r4, r4, __dt__12dSvBit_HIO_cFv@l
 /* 8025C6DC 0025961C  3C A0 80 43 */	lis r5, lbl_804307E0@ha
 /* 8025C6E0 00259620  38 A5 07 E0 */	addi r5, r5, lbl_804307E0@l
 /* 8025C6E4 00259624  48 10 55 41 */	bl func_80361C24
@@ -804,8 +804,8 @@ lbl_8025C5E4:
 /* 8025C6F0 00259630  7C 08 03 A6 */	mtlr r0
 /* 8025C6F4 00259634  38 21 00 10 */	addi r1, r1, 0x10
 /* 8025C6F8 00259638  4E 80 00 20 */	blr 
-.global dSvBit_HIO_c_NS_dtor
-dSvBit_HIO_c_NS_dtor:
+.global __dt__12dSvBit_HIO_cFv
+__dt__12dSvBit_HIO_cFv:
 /* 8025C6FC 0025963C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025C700 00259640  7C 08 02 A6 */	mflr r0
 /* 8025C704 00259644  90 01 00 14 */	stw r0, 0x14(r1)

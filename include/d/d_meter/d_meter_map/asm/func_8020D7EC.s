@@ -22,7 +22,7 @@
 /* 8020D840 0020A780  EC 42 00 2A */ fadds f2, f2, f0
 lbl_8020D844:
 /* 8020D844 0020A784  EF FF 10 2A */ fadds f31, f31, f2
-/* 8020D848 0020A788  4B FF FE E5 */ bl dMeterMap_c_NS_getMapDispEdgeLeftX_Layout
+/* 8020D848 0020A788  4B FF FE E5 */ bl getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
 /* 8020D84C 0020A78C  EC 1F 08 28 */ fsubs f0, f31, f1
 /* 8020D850 0020A790  FC 00 00 1E */ fctiwz f0, f0
 /* 8020D854 0020A794  D8 01 00 08 */ stfd f0, 8(r1)

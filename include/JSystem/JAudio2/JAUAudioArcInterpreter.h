@@ -2,7 +2,7 @@
 #define JAUAUDIOARCINTERPRETER_H_
 
 extern "C" {
-void JAUAudioArcInterpreter_NS_dtor(void);
+void __dt__22JAUAudioArcInterpreterFv(void);
 }
 
 #endif  // JAUAUDIOARCINTERPRETER_H_

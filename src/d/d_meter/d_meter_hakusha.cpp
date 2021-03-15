@@ -8,27 +8,28 @@ int strcmp(const char*, const char*);
 void __ct__9J2DScreenFv(void);
 void __dl__FPv(void);
 void __nw__FUl(void);
-void CPaneMgr_NS_getGlobalVtxCenter(void);
-void CPaneMgr_NS_paneTrans(void);
-void CPaneMgr_X1_(void);
-void CPaneMgrAlpha_NS_getAlphaRate(void);
-void CPaneMgrAlpha_NS_hide(void);
-void CPaneMgrAlpha_NS_setAlphaRate(void);
-void CPaneMgrAlpha_NS_show(void);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dMeter2Draw_c_NS_drawPikariHakusha(void);
-void dMeter2Draw_c_NS_setAlphaAnimeMax(void);
-void dMeter2Draw_c_NS_setAlphaAnimeMin(void);
-void dMeterHakusha_c_NS_alphaAnimeHakusha(void);
-void dMeterHakusha_c_NS_getHakushaNum(void);
-void dMeterHakusha_c_NS_setAlphaButtonAnimeMax(void);
-void dMeterHakusha_c_NS_setAlphaButtonAnimeMin(void);
-void dMeterHakusha_c_NS_setAlphaHakushaAnimeMax(void);
-void dMeterHakusha_c_NS_setAlphaHakushaAnimeMin(void);
-void dMeterHakusha_c_NS_updateHakusha(void);
-void dPaneClass_showNullPane(void);
-void J2DScreen_NS_draw(void);
-void J2DScreen_NS_setPriority(void);
+void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs(void);
+void paneTrans__8CPaneMgrFff(void);
+void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap(void);
+void getAlphaRate__13CPaneMgrAlphaFv(void);
+void hide__13CPaneMgrAlphaFv(void);
+void setAlphaRate__13CPaneMgrAlphaFf(void);
+void show__13CPaneMgrAlphaFv(void);
+void getLayerNo__14dComIfG_play_cFi(int);
+void drawPikariHakusha__13dMeter2Draw_cFffffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor(
+    void);
+void setAlphaAnimeMax__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
+void setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas(void);
+void alphaAnimeHakusha__15dMeterHakusha_cFUl(void);
+void getHakushaNum__15dMeterHakusha_cFv(void);
+void setAlphaButtonAnimeMax__15dMeterHakusha_cFv(void);
+void setAlphaButtonAnimeMin__15dMeterHakusha_cFv(void);
+void setAlphaHakushaAnimeMax__15dMeterHakusha_cFv(void);
+void setAlphaHakushaAnimeMin__15dMeterHakusha_cFv(void);
+void updateHakusha__15dMeterHakusha_cFv(void);
+void dPaneClass_showNullPane__FP9J2DScreen(void);
+void draw__9J2DScreenFffPC14J2DGrafContext(void);
+void setPriority__9J2DScreenFPCcUlP10JKRArchive(void);
 }
 
 // additional symbols needed for d_meter_hakusha.cpp
@@ -51,91 +52,91 @@ extern u8 lbl_8042EBC8;
 extern "C" {
 // __ct__15dMeterHakusha_cFPv
 // dMeterHakusha_c::dMeterHakusha_c(void*)
-asm void dMeterHakusha_c(void) {
+asm void __ct__15dMeterHakusha_cFPv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C320.s"
 }
 
 // __dt__15dMeterHakusha_cFv
 // dMeterHakusha_c::~dMeterHakusha_c(void)
-asm void func_8020C384(void) {
+asm void __dt__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C384.s"
 }
 
 // _create__15dMeterHakusha_cFv
 // dMeterHakusha_c::_create(void)
-asm void func_8020C400(void) {
+asm void _create__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C400.s"
 }
 
 // _execute__15dMeterHakusha_cFUl
 // dMeterHakusha_c::_execute(unsigned long)
-asm void func_8020C808(void) {
+asm void _execute__15dMeterHakusha_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C808.s"
 }
 
 // draw__15dMeterHakusha_cFv
 // dMeterHakusha_c::draw(void)
-asm void func_8020C850(void) {
+asm void draw__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020C850.s"
 }
 
 // _delete__15dMeterHakusha_cFv
 // dMeterHakusha_c::_delete(void)
-asm void func_8020CABC(void) {
+asm void _delete__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020CABC.s"
 }
 
 // alphaAnimeHakusha__15dMeterHakusha_cFUl
 // dMeterHakusha_c::alphaAnimeHakusha(unsigned long)
-asm void dMeterHakusha_c_NS_alphaAnimeHakusha(void) {
+asm void alphaAnimeHakusha__15dMeterHakusha_cFUl(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020CC58.s"
 }
 
 // updateHakusha__15dMeterHakusha_cFv
 // dMeterHakusha_c::updateHakusha(void)
-asm void dMeterHakusha_c_NS_updateHakusha(void) {
+asm void updateHakusha__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020CD6C.s"
 }
 
 // setAlphaHakushaAnimeMin__15dMeterHakusha_cFv
 // dMeterHakusha_c::setAlphaHakushaAnimeMin(void)
-asm void dMeterHakusha_c_NS_setAlphaHakushaAnimeMin(void) {
+asm void setAlphaHakushaAnimeMin__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020D258.s"
 }
 
 // setAlphaHakushaAnimeMax__15dMeterHakusha_cFv
 // dMeterHakusha_c::setAlphaHakushaAnimeMax(void)
-asm void dMeterHakusha_c_NS_setAlphaHakushaAnimeMax(void) {
+asm void setAlphaHakushaAnimeMax__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020D308.s"
 }
 
 // setAlphaButtonAnimeMin__15dMeterHakusha_cFv
 // dMeterHakusha_c::setAlphaButtonAnimeMin(void)
-asm void dMeterHakusha_c_NS_setAlphaButtonAnimeMin(void) {
+asm void setAlphaButtonAnimeMin__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020D3B8.s"
 }
 
 // setAlphaButtonAnimeMax__15dMeterHakusha_cFv
 // dMeterHakusha_c::setAlphaButtonAnimeMax(void)
-asm void dMeterHakusha_c_NS_setAlphaButtonAnimeMax(void) {
+asm void setAlphaButtonAnimeMax__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020D41C.s"
 }
 
 // getHakushaNum__15dMeterHakusha_cFv
 // dMeterHakusha_c::getHakushaNum(void)
-asm void dMeterHakusha_c_NS_getHakushaNum(void) {
+asm void getHakushaNum__15dMeterHakusha_cFv(void) {
     nofralloc
 #include "d/d_meter/d_meter_hakusha/asm/func_8020D480.s"
 }

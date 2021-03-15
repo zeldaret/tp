@@ -11,7 +11,7 @@ void __dt__10JSUPtrLinkFv(void);
 void __dt__11JKRDisposerFv(void);
 void append__10JSUPtrListFP10JSUPtrLink(void);
 void assign__10JUTGamePadFv(void);
-void checkCallback__19JUTGamePadLongPressFlUl(void);
+void checkCallback__19JUTGamePadLongPressFiUl(void);
 void checkResetCallback__10JUTGamePadFx(void);
 void checkResetSwitch__10JUTGamePadFv(void);
 void clear__10JUTGamePadFv(void);
@@ -24,7 +24,8 @@ void remove__10JSUPtrListFP10JSUPtrLink(void);
 void startMotor__Q210JUTGamePad7CRumbleFi(void);
 void stopMotor__Q210JUTGamePad7CRumbleFib(void);
 void update__10JUTGamePadFv(void);
-void update__Q210JUTGamePad6CStickFScScUlUlUl(void);
+void update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl(
+    void);
 void update__Q210JUTGamePad7CButtonFPC9PADStatusUl(void);
 void update__Q210JUTGamePad7CRumbleFs(void);
 }
@@ -184,7 +185,8 @@ void JUTGamePad::CStick::clear() {
     this->mAngle = 0;
 }
 
-asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, EStickMode mode, EWhichStick stick, u32 unk2) {
+asm u32 JUTGamePad::CStick::update(s8 unk0, s8 unk1, JUTGamePad::EStickMode mode,
+                                   JUTGamePad::EWhichStick stick, u32 unk2) {
     nofralloc
 #include "JSystem/JUtility/JUTGamePad/asm/func_802E1238.s"
 }
@@ -229,7 +231,7 @@ void JUTGamePad::CRumble::stopMotor(int channel, bool stop) {
 }
 
 extern "C" {
-bool getNumBit(u8* buf, u32 n_bits) {
+bool getNumBit__FPUci(u8* buf, u32 n_bits) {
     return (u8)((0x80 >> (n_bits & 0b111)) & (u32) * (buf + ((s32)n_bits >> 3))) != 0;
 }
 }
@@ -260,7 +262,7 @@ void JUTGamePad::CRumble::update(s16 chn) {
             return;
         }
 
-        u32 uVar3 = getNumBit(this->field_0x8, this->field_0x0 % this->field_0xc);
+        u32 uVar3 = getNumBit__FPUci(this->field_0x8, this->field_0x0 % this->field_0xc);
         bool bVar1 = /* mStatus */ lbl_804514E4[chn];
         if (((uVar3 & 0xff) != 0) && !bVar1) {
             startMotor(chn);
@@ -269,7 +271,7 @@ void JUTGamePad::CRumble::update(s16 chn) {
         //     if (uVar3 & 0xff == 0) {
         //         uVar3 = 0;
         //         if (this->field_0x10 != 0) {
-        //             uVar3 = getNumBit(this->field_0x10, this->field_0x0 -
+        //             uVar3 = getNumBit__FPUci(this->field_0x10, this->field_0x0 -
         //             (this->field_0x0/this->field_0xc) * this->field_0xc);
         //         }
         //         if (bVar1 == false) {
@@ -308,13 +310,13 @@ void JUTGamePad::CRumble::startPatternedRumble(void* unk0, JUTGamePad::CRumble::
     this->field_0x8 = (u8*)unk0 + 2;
 
     switch (rumble) {
-    case 0:
+    case VAL_0:
         this->triggerPatternedRumble(this->field_0xc);
         break;
-    case 1:
+    case VAL_1:
         this->triggerPatternedRumble(-1);
         break;
-    case 2:
+    case VAL_2:
         this->triggerPatternedRumble(unk1);
         break;
     }
@@ -398,7 +400,7 @@ bool JUTGamePad::recalibrate(PADMask pad_mask) {
     return sVar1;
 }
 
-void JUTGamePadLongPress::checkCallback(s32 unk0, u32 unk1) {
+void JUTGamePadLongPress::checkCallback(int unk0, u32 unk1) {
     if ((0 <= unk0) && (unk1 >= this->field_0x1c)) {
         this->field_0x11 = true;
         this->field_0x48[unk0] = true;

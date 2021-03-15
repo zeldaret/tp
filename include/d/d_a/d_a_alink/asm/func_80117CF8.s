@@ -4,10 +4,10 @@
 /* 80117D04 00114C44  39 61 00 20 */ addi r11, r1, 0x20
 /* 80117D08 00114C48  48 24 A4 CD */ bl _savegpr_27
 /* 80117D0C 00114C4C  7C 7C 1B 78 */ mr r28, r3
-/* 80117D10 00114C50  48 00 04 61 */ bl daAlink_c_NS_checkFlyAtnWait
+/* 80117D10 00114C50  48 00 04 61 */ bl checkFlyAtnWait__9daAlink_cFv
 /* 80117D14 00114C54  7C 7E 1B 78 */ mr r30, r3
 /* 80117D18 00114C58  7F 83 E3 78 */ mr r3, r28
-/* 80117D1C 00114C5C  4B FF FF 19 */ bl daAlink_c_NS_endHighModel
+/* 80117D1C 00114C5C  4B FF FF 19 */ bl endHighModel__9daAlink_cFv
 /* 80117D20 00114C60  80 9C 05 70 */ lwz r4, 0x570(r28)
 /* 80117D24 00114C64  3C 60 FF FF */ lis r3, 0xFFFEFBFF@ha
 /* 80117D28 00114C68  38 03 FB FF */ addi r0, r3, 0xFFFEFBFF@l
@@ -23,7 +23,7 @@
 /* 80117D50 00114C90  41 82 00 10 */ beq lbl_80117D60
 /* 80117D54 00114C94  80 63 00 04 */ lwz r3, 4(r3)
 /* 80117D58 00114C98  38 63 00 58 */ addi r3, r3, 0x58
-/* 80117D5C 00114C9C  48 21 7B 25 */ bl J3DMaterialTable_NS_removeTevRegAnimator
+/* 80117D5C 00114C9C  48 21 7B 25 */ bl removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 lbl_80117D60:
 /* 80117D60 00114CA0  38 00 00 00 */ li r0, 0
 /* 80117D64 00114CA4  90 1C 06 F8 */ stw r0, 0x6f8(r28)
@@ -77,7 +77,7 @@ lbl_80117DEC:
 /* 80117E14 00114D54  54 00 05 EA */ rlwinm r0, r0, 0, 0x17, 0x15
 /* 80117E18 00114D58  90 1C 05 74 */ stw r0, 0x574(r28)
 /* 80117E1C 00114D5C  7F 83 E3 78 */ mr r3, r28
-/* 80117E20 00114D60  4B F9 7E 9D */ bl daAlink_c_NS_resetFacePriAnime
+/* 80117E20 00114D60  4B F9 7E 9D */ bl resetFacePriAnime__9daAlink_cFv
 lbl_80117E24:
 /* 80117E24 00114D64  38 60 00 00 */ li r3, 0
 /* 80117E28 00114D68  B0 7C 06 0A */ sth r3, 0x60a(r28)
@@ -102,7 +102,7 @@ lbl_80117E54:
 /* 80117E6C 00114DAC  28 00 00 4D */ cmplwi r0, 0x4d
 /* 80117E70 00114DB0  41 82 02 64 */ beq lbl_801180D4
 /* 80117E74 00114DB4  7F 83 E3 78 */ mr r3, r28
-/* 80117E78 00114DB8  4B FD 8B 09 */ bl daAlink_c_NS_procHorseWaitInit
+/* 80117E78 00114DB8  4B FD 8B 09 */ bl procHorseWaitInit__9daAlink_cFv
 /* 80117E7C 00114DBC  48 00 02 58 */ b lbl_801180D4
 lbl_80117E80:
 /* 80117E80 00114DC0  7F 83 E3 78 */ mr r3, r28
@@ -119,29 +119,29 @@ lbl_80117E80:
 /* 80117EAC 00114DEC  41 82 00 48 */ beq lbl_80117EF4
 /* 80117EB0 00114DF0  7F 83 E3 78 */ mr r3, r28
 /* 80117EB4 00114DF4  38 80 00 01 */ li r4, 1
-/* 80117EB8 00114DF8  4B FE AC 65 */ bl daAlink_c_NS_checkSwimAction
+/* 80117EB8 00114DF8  4B FE AC 65 */ bl checkSwimAction__9daAlink_cFi
 /* 80117EBC 00114DFC  2C 03 00 00 */ cmpwi r3, 0
 /* 80117EC0 00114E00  41 82 00 28 */ beq lbl_80117EE8
 /* 80117EC4 00114E04  80 1C 05 74 */ lwz r0, 0x574(r28)
 /* 80117EC8 00114E08  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
 /* 80117ECC 00114E0C  41 82 00 10 */ beq lbl_80117EDC
 /* 80117ED0 00114E10  7F 83 E3 78 */ mr r3, r28
-/* 80117ED4 00114E14  48 02 08 49 */ bl daAlink_c_NS_procWolfSwimMoveInit
+/* 80117ED4 00114E14  48 02 08 49 */ bl procWolfSwimMoveInit__9daAlink_cFv
 /* 80117ED8 00114E18  48 00 01 FC */ b lbl_801180D4
 lbl_80117EDC:
 /* 80117EDC 00114E1C  7F 83 E3 78 */ mr r3, r28
-/* 80117EE0 00114E20  4B FE C7 91 */ bl daAlink_c_NS_procSwimMoveInit
+/* 80117EE0 00114E20  4B FE C7 91 */ bl procSwimMoveInit__9daAlink_cFv
 /* 80117EE4 00114E24  48 00 01 F0 */ b lbl_801180D4
 lbl_80117EE8:
 /* 80117EE8 00114E28  7F 83 E3 78 */ mr r3, r28
-/* 80117EEC 00114E2C  4B F9 DA 01 */ bl daAlink_c_NS_checkWaitAction
+/* 80117EEC 00114E2C  4B F9 DA 01 */ bl checkWaitAction__9daAlink_cFv
 /* 80117EF0 00114E30  48 00 01 E4 */ b lbl_801180D4
 lbl_80117EF4:
 /* 80117EF4 00114E34  80 1C 19 9C */ lwz r0, 0x199c(r28)
 /* 80117EF8 00114E38  54 00 06 B5 */ rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80117EFC 00114E3C  41 82 00 44 */ beq lbl_80117F40
 /* 80117F00 00114E40  7F 83 E3 78 */ mr r3, r28
-/* 80117F04 00114E44  4B FA 30 7D */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 80117F04 00114E44  4B FA 30 7D */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 80117F08 00114E48  2C 03 00 00 */ cmpwi r3, 0
 /* 80117F0C 00114E4C  41 82 00 0C */ beq lbl_80117F18
 /* 80117F10 00114E50  2C 1B 00 00 */ cmpwi r27, 0
@@ -184,7 +184,7 @@ lbl_80117F68:
 /* 80117F94 00114ED4  1C 00 00 38 */ mulli r0, r0, 0x38
 /* 80117F98 00114ED8  7C 63 02 14 */ add r3, r3, r0
 /* 80117F9C 00114EDC  80 63 5D 74 */ lwz r3, 0x5d74(r3)
-/* 80117FA0 00114EE0  48 06 96 75 */ bl dCam_getControledAngleY
+/* 80117FA0 00114EE0  48 06 96 75 */ bl dCam_getControledAngleY__FP12camera_class
 /* 80117FA4 00114EE4  A8 1C 2F E0 */ lha r0, 0x2fe0(r28)
 /* 80117FA8 00114EE8  7C 00 1A 14 */ add r0, r0, r3
 /* 80117FAC 00114EEC  B0 1C 2F E2 */ sth r0, 0x2fe2(r28)
@@ -192,7 +192,7 @@ lbl_80117F68:
 /* 80117FB4 00114EF4  D0 1C 33 98 */ stfs f0, 0x3398(r28)
 /* 80117FB8 00114EF8  7F 83 E3 78 */ mr r3, r28
 /* 80117FBC 00114EFC  38 80 00 00 */ li r4, 0
-/* 80117FC0 00114F00  4B FA 20 DD */ bl daAlink_c_NS_commonCheckNextAction
+/* 80117FC0 00114F00  4B FA 20 DD */ bl commonCheckNextAction__9daAlink_cFi
 /* 80117FC4 00114F04  48 00 01 10 */ b lbl_801180D4
 lbl_80117FC8:
 /* 80117FC8 00114F08  A0 7C 2F E8 */ lhz r3, 0x2fe8(r28)
@@ -202,7 +202,7 @@ lbl_80117FC8:
 /* 80117FD8 00114F18  40 82 00 10 */ bne lbl_80117FE8
 lbl_80117FDC:
 /* 80117FDC 00114F1C  7F 83 E3 78 */ mr r3, r28
-/* 80117FE0 00114F20  4B FF A2 99 */ bl daAlink_c_NS_procHawkSubjectInit
+/* 80117FE0 00114F20  4B FF A2 99 */ bl procHawkSubjectInit__9daAlink_cFv
 /* 80117FE4 00114F24  48 00 00 F0 */ b lbl_801180D4
 lbl_80117FE8:
 /* 80117FE8 00114F28  28 03 00 BA */ cmplwi r3, 0xba
@@ -221,11 +221,11 @@ lbl_80118008:
 /* 80118018 00114F58  41 82 00 14 */ beq lbl_8011802C
 /* 8011801C 00114F5C  7F 83 E3 78 */ mr r3, r28
 /* 80118020 00114F60  38 80 00 00 */ li r4, 0
-/* 80118024 00114F64  48 01 F6 11 */ bl daAlink_c_NS_procWolfLieMoveInit
+/* 80118024 00114F64  48 01 F6 11 */ bl procWolfLieMoveInit__9daAlink_cFi
 /* 80118028 00114F68  48 00 00 AC */ b lbl_801180D4
 lbl_8011802C:
 /* 8011802C 00114F6C  7F 83 E3 78 */ mr r3, r28
-/* 80118030 00114F70  4B F9 D8 BD */ bl daAlink_c_NS_checkWaitAction
+/* 80118030 00114F70  4B F9 D8 BD */ bl checkWaitAction__9daAlink_cFv
 /* 80118034 00114F74  48 00 00 A0 */ b lbl_801180D4
 lbl_80118038:
 /* 80118038 00114F78  A0 1C 2F E8 */ lhz r0, 0x2fe8(r28)
@@ -239,16 +239,16 @@ lbl_80118038:
 /* 80118058 00114F98  41 82 00 14 */ beq lbl_8011806C
 /* 8011805C 00114F9C  7F 83 E3 78 */ mr r3, r28
 /* 80118060 00114FA0  38 80 00 00 */ li r4, 0
-/* 80118064 00114FA4  48 02 04 C9 */ bl daAlink_c_NS_procWolfSwimWaitInit
+/* 80118064 00114FA4  48 02 04 C9 */ bl procWolfSwimWaitInit__9daAlink_cFi
 /* 80118068 00114FA8  48 00 00 6C */ b lbl_801180D4
 lbl_8011806C:
 /* 8011806C 00114FAC  7F 83 E3 78 */ mr r3, r28
 /* 80118070 00114FB0  38 80 00 00 */ li r4, 0
-/* 80118074 00114FB4  4B FE C2 85 */ bl daAlink_c_NS_procSwimWaitInit
+/* 80118074 00114FB4  4B FE C2 85 */ bl procSwimWaitInit__9daAlink_cFi
 /* 80118078 00114FB8  48 00 00 5C */ b lbl_801180D4
 lbl_8011807C:
 /* 8011807C 00114FBC  7F 83 E3 78 */ mr r3, r28
-/* 80118080 00114FC0  4B F9 D8 6D */ bl daAlink_c_NS_checkWaitAction
+/* 80118080 00114FC0  4B F9 D8 6D */ bl checkWaitAction__9daAlink_cFv
 /* 80118084 00114FC4  48 00 00 50 */ b lbl_801180D4
 lbl_80118088:
 /* 80118088 00114FC8  28 00 00 B1 */ cmplwi r0, 0xb1
@@ -258,7 +258,7 @@ lbl_80118088:
 /* 80118098 00114FD8  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 8011809C 00114FDC  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 801180A0 00114FE0  C0 25 00 70 */ lfs f1, 0x70(r5)
-/* 801180A4 00114FE4  4B FA E9 A5 */ bl daAlink_c_NS_procFallInit
+/* 801180A4 00114FE4  4B FA E9 A5 */ bl procFallInit__9daAlink_cFif
 /* 801180A8 00114FE8  48 00 00 2C */ b lbl_801180D4
 lbl_801180AC:
 /* 801180AC 00114FEC  7F 83 E3 78 */ mr r3, r28
@@ -270,7 +270,7 @@ lbl_801180AC:
 /* 801180C4 00115004  41 82 00 10 */ beq lbl_801180D4
 /* 801180C8 00115008  7F 83 E3 78 */ mr r3, r28
 /* 801180CC 0011500C  38 80 00 00 */ li r4, 0
-/* 801180D0 00115010  4B FD D1 15 */ bl daAlink_c_NS_procCanoeWaitInit
+/* 801180D0 00115010  4B FD D1 15 */ bl procCanoeWaitInit__9daAlink_cFi
 lbl_801180D4:
 /* 801180D4 00115014  39 61 00 20 */ addi r11, r1, 0x20
 /* 801180D8 00115018  48 24 A1 49 */ bl _restgpr_27

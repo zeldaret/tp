@@ -3,7 +3,7 @@
 /* 800F2C80 000EFBC0  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800F2C84 000EFBC4  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2C88 000EFBC8  7C 7F 1B 78 */ mr r31, r3
-/* 800F2C8C 000EFBCC  4B FF AD 99 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F2C8C 000EFBCC  4B FF AD 99 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F2C90 000EFBD0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2C94 000EFBD4  40 82 00 78 */ bne lbl_800F2D0C
 /* 800F2C98 000EFBD8  C0 1F 34 78 */ lfs f0, 0x3478(r31)
@@ -29,19 +29,19 @@ lbl_800F2CE4:
 /* 800F2CE4 000EFC24  7F E3 FB 78 */ mr r3, r31
 /* 800F2CE8 000EFC28  38 80 00 02 */ li r4, 2
 /* 800F2CEC 000EFC2C  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800F2CF0 000EFC30  4B FB AA 35 */ bl daAlink_c_NS_resetUpperAnime
+/* 800F2CF0 000EFC30  4B FB AA 35 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800F2CF4 000EFC34  7F E3 FB 78 */ mr r3, r31
-/* 800F2CF8 000EFC38  48 01 E2 91 */ bl daAlink_c_NS_resetOilBottleModel
+/* 800F2CF8 000EFC38  48 01 E2 91 */ bl resetOilBottleModel__9daAlink_cFv
 /* 800F2CFC 000EFC3C  7F E3 FB 78 */ mr r3, r31
-/* 800F2D00 000EFC40  48 02 4F 91 */ bl daAlink_c_NS_resetSpecialEvent
+/* 800F2D00 000EFC40  48 02 4F 91 */ bl resetSpecialEvent__9daAlink_cFv
 /* 800F2D04 000EFC44  38 60 00 01 */ li r3, 1
 /* 800F2D08 000EFC48  48 00 00 68 */ b lbl_800F2D70
 lbl_800F2D0C:
 /* 800F2D0C 000EFC4C  7F E3 FB 78 */ mr r3, r31
-/* 800F2D10 000EFC50  4B FF C0 89 */ bl daAlink_c_NS_setBaseRideAnime
+/* 800F2D10 000EFC50  4B FF C0 89 */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2D14 000EFC54  7F E3 FB 78 */ mr r3, r31
 /* 800F2D18 000EFC58  38 80 00 01 */ li r4, 1
-/* 800F2D1C 000EFC5C  48 01 E3 9D */ bl daAlink_c_NS_commonKandelaarPour
+/* 800F2D1C 000EFC5C  48 01 E3 9D */ bl commonKandelaarPour__9daAlink_cFi
 /* 800F2D20 000EFC60  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2D24 000EFC64  41 82 00 48 */ beq lbl_800F2D6C
 /* 800F2D28 000EFC68  7F E3 FB 78 */ mr r3, r31

@@ -19,7 +19,7 @@
 /* 8011EFF8 0011BF38  41 82 00 70 */ beq lbl_8011F068
 /* 8011EFFC 0011BF3C  38 7E 28 0C */ addi r3, r30, 0x280c
 /* 8011F000 0011BF40  7F E4 FB 78 */ mr r4, r31
-/* 8011F004 0011BF44  48 03 FC B5 */ bl daPy_actorKeep_c_NS_setData
+/* 8011F004 0011BF44  48 03 FC B5 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8011F008 0011BF48  A8 1F 00 08 */ lha r0, 8(r31)
 /* 8011F00C 0011BF4C  2C 00 02 77 */ cmpwi r0, 0x277
 /* 8011F010 0011BF50  40 82 00 10 */ bne lbl_8011F020
@@ -32,12 +32,12 @@ lbl_8011F020:
 /* 8011F028 0011BF68  48 00 00 40 */ b lbl_8011F068
 lbl_8011F02C:
 /* 8011F02C 0011BF6C  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 8011F030 0011BF70  48 03 F4 9D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011F030 0011BF70  48 03 F4 9D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011F034 0011BF74  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011F038 0011BF78  41 82 00 28 */ beq lbl_8011F060
 /* 8011F03C 0011BF7C  7F C3 F3 78 */ mr r3, r30
 /* 8011F040 0011BF80  38 80 01 89 */ li r4, 0x189
-/* 8011F044 0011BF84  4B F8 DF 3D */ bl daAlink_c_NS_setSingleAnimeBase
+/* 8011F044 0011BF84  4B F8 DF 3D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 8011F048 0011BF88  80 1E 31 A0 */ lwz r0, 0x31a0(r30)
 /* 8011F04C 0011BF8C  60 00 01 00 */ ori r0, r0, 0x100
 /* 8011F050 0011BF90  90 1E 31 A0 */ stw r0, 0x31a0(r30)
@@ -46,7 +46,7 @@ lbl_8011F02C:
 /* 8011F05C 0011BF9C  48 00 00 0C */ b lbl_8011F068
 lbl_8011F060:
 /* 8011F060 0011BFA0  7F C3 F3 78 */ mr r3, r30
-/* 8011F064 0011BFA4  4B FF 97 15 */ bl daAlink_c_NS_setTradeItemOutHand
+/* 8011F064 0011BFA4  4B FF 97 15 */ bl setTradeItemOutHand__9daAlink_cFv
 lbl_8011F068:
 /* 8011F068 0011BFA8  38 60 00 01 */ li r3, 1
 /* 8011F06C 0011BFAC  83 E1 00 1C */ lwz r31, 0x1c(r1)

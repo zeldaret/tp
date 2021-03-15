@@ -4,27 +4,27 @@
 /* 800B74C0 000B4400  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800B74C4 000B4404  7C 7F 1B 78 */ mr r31, r3
 /* 800B74C8 000B4408  A0 83 2F DC */ lhz r4, 0x2fdc(r3)
-/* 800B74CC 000B440C  48 02 72 B5 */ bl daAlink_c_NS_checkBowAndSlingItem
+/* 800B74CC 000B440C  48 02 72 B5 */ bl checkBowAndSlingItem__9daAlink_cFi
 /* 800B74D0 000B4410  2C 03 00 00 */ cmpwi r3, 0
 /* 800B74D4 000B4414  41 82 00 10 */ beq lbl_800B74E4
 /* 800B74D8 000B4418  7F E3 FB 78 */ mr r3, r31
-/* 800B74DC 000B441C  48 02 82 BD */ bl daAlink_c_NS_checkUpperItemActionBowFly
+/* 800B74DC 000B441C  48 02 82 BD */ bl checkUpperItemActionBowFly__9daAlink_cFv
 /* 800B74E0 000B4420  48 00 00 2C */ b lbl_800B750C
 lbl_800B74E4:
 /* 800B74E4 000B4424  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800B74E8 000B4428  28 00 00 40 */ cmplwi r0, 0x40
 /* 800B74EC 000B442C  40 82 00 10 */ bne lbl_800B74FC
 /* 800B74F0 000B4430  7F E3 FB 78 */ mr r3, r31
-/* 800B74F4 000B4434  48 02 96 65 */ bl daAlink_c_NS_checkUpperItemActionBoomerangFly
+/* 800B74F4 000B4434  48 02 96 65 */ bl checkUpperItemActionBoomerangFly__9daAlink_cFv
 /* 800B74F8 000B4438  48 00 00 14 */ b lbl_800B750C
 lbl_800B74FC:
 /* 800B74FC 000B443C  28 00 00 46 */ cmplwi r0, 0x46
 /* 800B7500 000B4440  40 82 00 0C */ bne lbl_800B750C
 /* 800B7504 000B4444  7F E3 FB 78 */ mr r3, r31
-/* 800B7508 000B4448  48 02 A6 AD */ bl daAlink_c_NS_checkUpperItemActionCopyRodFly
+/* 800B7508 000B4448  48 02 A6 AD */ bl checkUpperItemActionCopyRodFly__9daAlink_cFv
 lbl_800B750C:
 /* 800B750C 000B444C  7F E3 FB 78 */ mr r3, r31
-/* 800B7510 000B4450  48 03 CA F9 */ bl daAlink_c_NS_checkCanoeJumpRide
+/* 800B7510 000B4450  48 03 CA F9 */ bl checkCanoeJumpRide__9daAlink_cFv
 /* 800B7514 000B4454  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800B7518 000B4458  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800B751C 000B445C  7C 08 03 A6 */ mtlr r0

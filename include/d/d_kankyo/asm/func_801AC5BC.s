@@ -7,7 +7,7 @@
 /* 801AC5D4 001A9514  7C 9B 23 78 */ mr r27, r4
 /* 801AC5D8 001A9518  7C BC 2B 78 */ mr r28, r5
 /* 801AC5DC 001A951C  7C DD 33 78 */ mr r29, r6
-/* 801AC5E0 001A9520  4B EA A4 91 */ bl dKyd_darkworld_tbl_getp
+/* 801AC5E0 001A9520  4B EA A4 91 */ bl dKyd_darkworld_tbl_getp__Fv
 /* 801AC5E4 001A9524  7C 7F 1B 78 */ mr r31, r3
 /* 801AC5E8 001A9528  3B C0 00 00 */ li r30, 0
 /* 801AC5EC 001A952C  28 1C 00 00 */ cmplwi r28, 0

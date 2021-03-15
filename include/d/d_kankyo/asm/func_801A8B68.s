@@ -5,7 +5,7 @@
 /* 801A8B78 001A5AB8  FF E0 08 90 */ fmr f31, f1
 /* 801A8B7C 001A5ABC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A8B80 001A5AC0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
-/* 801A8B84 001A5AC4  4B FF 6E 85 */ bl dScnKy_env_light_c_NS_getDaytime
+/* 801A8B84 001A5AC4  4B FF 6E 85 */ bl getDaytime__18dScnKy_env_light_cFv
 /* 801A8B88 001A5AC8  FC 1F 08 40 */ fcmpo cr0, f31, f1
 /* 801A8B8C 001A5ACC  40 80 00 1C */ bge lbl_801A8BA8
 /* 801A8B90 001A5AD0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -13,7 +13,7 @@
 /* 801A8B98 001A5AD8  A0 64 00 38 */ lhz r3, 0x38(r4)
 /* 801A8B9C 001A5ADC  38 03 00 01 */ addi r0, r3, 1
 /* 801A8BA0 001A5AE0  B0 04 00 38 */ sth r0, 0x38(r4)
-/* 801A8BA4 001A5AE4  48 00 51 5D */ bl dKankyo_DayProc
+/* 801A8BA4 001A5AE4  48 00 51 5D */ bl dKankyo_DayProc__Fv
 lbl_801A8BA8:
 /* 801A8BA8 001A5AE8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 801A8BAC 001A5AEC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l

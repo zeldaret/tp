@@ -15,13 +15,13 @@
 /* 802BBDCC 002B8D0C  90 1C 00 00 */ stw r0, 0(r28)
 /* 802BBDD0 002B8D10  38 7C 00 2C */ addi r3, r28, 0x2c
 /*.global Z2AudibleChannel*/
-/* 802BBDD4 002B8D14  3C 80 80 2C */ lis r4, Z2AudibleChannel@ha
+/* 802BBDD4 002B8D14  3C 80 80 2C */ lis r4, __ct__16Z2AudibleChannelFv@ha
 /*.global Z2AudibleChannel*/
-/* 802BBDD8 002B8D18  38 84 BE 74 */ addi r4, r4, Z2AudibleChannel@l
+/* 802BBDD8 002B8D18  38 84 BE 74 */ addi r4, r4, __ct__16Z2AudibleChannelFv@l
 /* 802BBDDC 002B8D1C  38 A0 00 00 */ li r5, 0
 /* 802BBDE0 002B8D20  38 C0 00 38 */ li r6, 0x38
 /* 802BBDE4 002B8D24  38 E0 00 01 */ li r7, 1
-/* 802BBDE8 002B8D28  48 0A 5F 79 */ bl func_80361D60
+/* 802BBDE8 002B8D28  48 0A 5F 79 */ bl __construct_array
 /* 802BBDEC 002B8D2C  38 00 FF FF */ li r0, -1
 /* 802BBDF0 002B8D30  90 1C 00 10 */ stw r0, 0x10(r28)
 /* 802BBDF4 002B8D34  38 7C 00 14 */ addi r3, r28, 0x14

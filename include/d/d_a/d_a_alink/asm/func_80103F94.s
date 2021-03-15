@@ -5,7 +5,7 @@
 /* 80103FA4 00100EE4  93 C1 00 08 */ stw r30, 8(r1)
 /* 80103FA8 00100EE8  7C 7E 1B 78 */ mr r30, r3
 /* 80103FAC 00100EEC  3B E0 00 00 */ li r31, 0
-/* 80103FB0 00100EF0  4B FF FF 75 */ bl daAlink_c_NS_checkSwimButtonMove
+/* 80103FB0 00100EF0  4B FF FF 75 */ bl checkSwimButtonMove__9daAlink_cFv
 /* 80103FB4 00100EF4  2C 03 00 00 */ cmpwi r3, 0
 /* 80103FB8 00100EF8  40 82 00 10 */ bne lbl_80103FC8
 /* 80103FBC 00100EFC  A8 1E 30 00 */ lha r0, 0x3000(r30)

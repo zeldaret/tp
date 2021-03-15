@@ -3,10 +3,10 @@
 /* 80138200 00135140  90 01 00 24 */ stw r0, 0x24(r1)
 /* 80138204 00135144  93 E1 00 1C */ stw r31, 0x1c(r1)
 /* 80138208 00135148  7C 7F 1B 78 */ mr r31, r3
-/* 8013820C 0013514C  4B F7 C7 FD */ bl daAlink_c_NS_setTalkStatus
+/* 8013820C 0013514C  4B F7 C7 FD */ bl setTalkStatus__9daAlink_cFv
 /* 80138210 00135150  7F E3 FB 78 */ mr r3, r31
 /* 80138214 00135154  38 80 00 01 */ li r4, 1
-/* 80138218 00135158  4B F7 F9 E1 */ bl daAlink_c_NS_orderTalk
+/* 80138218 00135158  4B F7 F9 E1 */ bl orderTalk__9daAlink_cFi
 /* 8013821C 0013515C  2C 03 00 00 */ cmpwi r3, 0
 /* 80138220 00135160  41 82 00 0C */ beq lbl_8013822C
 /* 80138224 00135164  38 60 00 01 */ li r3, 1
@@ -40,7 +40,7 @@ lbl_80138278:
 /* 8013828C 001351CC  40 82 00 B4 */ bne lbl_80138340
 /* 80138290 001351D0  7F E3 FB 78 */ mr r3, r31
 /* 80138294 001351D4  38 80 00 39 */ li r4, 0x39
-/* 80138298 001351D8  4B FF 05 75 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 80138298 001351D8  4B FF 05 75 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013829C 001351DC  2C 03 00 00 */ cmpwi r3, 0
 /* 801382A0 001351E0  40 82 00 A0 */ bne lbl_80138340
 /* 801382A4 001351E4  A0 1F 2F E8 */ lhz r0, 0x2fe8(r31)
@@ -85,16 +85,16 @@ lbl_80138328:
 /* 80138330 00135270  3C A0 80 39 */ lis r5, lbl_8038F8B4@ha
 /* 80138334 00135274  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
 /* 80138338 00135278  38 A5 00 28 */ addi r5, r5, 0x28
-/* 8013833C 0013527C  4B FF 15 0D */ bl daAlink_c_NS_setSingleAnimeWolfParam
+/* 8013833C 0013527C  4B FF 15 0D */ bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 lbl_80138340:
 /* 80138340 00135280  7F E3 FB 78 */ mr r3, r31
 /* 80138344 00135284  38 80 00 39 */ li r4, 0x39
-/* 80138348 00135288  4B FF 04 C5 */ bl daAlink_c_NS_checkUnderMove0BckNoArcWolf
+/* 80138348 00135288  4B FF 04 C5 */ bl checkUnderMove0BckNoArcWolf__9daAlink_cCFQ29daAlink_c12daAlink_WANM
 /* 8013834C 0013528C  2C 03 00 00 */ cmpwi r3, 0
 /* 80138350 00135290  41 82 00 70 */ beq lbl_801383C0
 /* 80138354 00135294  38 7F 1F D0 */ addi r3, r31, 0x1fd0
 /* 80138358 00135298  C0 22 93 74 */ lfs f1, lbl_80452D74-_SDA2_BASE_(r2)
-/* 8013835C 0013529C  48 1F 00 D1 */ bl J3DFrameCtrl_NS_checkPass
+/* 8013835C 0013529C  48 1F 00 D1 */ bl checkPass__12J3DFrameCtrlFf
 /* 80138360 001352A0  2C 03 00 00 */ cmpwi r3, 0
 /* 80138364 001352A4  41 82 00 5C */ beq lbl_801383C0
 /* 80138368 001352A8  3C 60 80 44 */ lis r3, lbl_80439A20@ha

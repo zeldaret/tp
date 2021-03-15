@@ -3,10 +3,10 @@
 /* 800C0638 000BD578  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800C063C 000BD57C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C0640 000BD580  3B E0 00 00 */ li r31, 0
-/* 800C0644 000BD584  4B FF FD A5 */ bl daAlink_c_NS_checkRoomOnly
+/* 800C0644 000BD584  4B FF FD A5 */ bl checkRoomOnly__9daAlink_cFv
 /* 800C0648 000BD588  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C064C 000BD58C  40 82 00 10 */ bne lbl_800C065C
-/* 800C0650 000BD590  4B FF FD 09 */ bl daAlink_c_NS_checkCastleTown
+/* 800C0650 000BD590  4B FF FD 09 */ bl checkCastleTown__9daAlink_cFv
 /* 800C0654 000BD594  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800C0658 000BD598  41 82 00 08 */ beq lbl_800C0660
 lbl_800C065C:

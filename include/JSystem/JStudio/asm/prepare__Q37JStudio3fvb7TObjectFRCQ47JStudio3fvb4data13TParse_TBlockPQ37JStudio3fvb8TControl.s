@@ -28,7 +28,7 @@ lbl_80284030:
 /* 80284030 00280F70  90 61 00 10 */	stw r3, 0x10(r1)
 /* 80284034 00280F74  38 61 00 10 */	addi r3, r1, 0x10
 /* 80284038 00280F78  38 81 00 20 */	addi r4, r1, 0x20
-/* 8028403C 00280F7C  48 00 10 71 */	bl JStudio_NS_fvb_NS_data_NS_TParse_TParagraph_NS_getData
+/* 8028403C 00280F7C  48 00 10 71 */	bl getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData
 /* 80284040 00280F80  80 81 00 28 */	lwz r4, 0x28(r1)
 /* 80284044 00280F84  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80284048 00280F88  28 00 00 16 */	cmplwi r0, 0x16
@@ -65,7 +65,7 @@ lbl_8028409C:
 /* 802840C0 00281000  7F E3 FB 78 */	mr r3, r31
 /* 802840C4 00281004  80 9F 00 08 */	lwz r4, 8(r31)
 /* 802840C8 00281008  38 A1 00 0C */	addi r5, r1, 0xc
-/* 802840CC 0028100C  48 05 8C D9 */	bl JGadget_NS_TVector_pointer_void_NS_insert
+/* 802840CC 0028100C  48 05 8C D9 */	bl insert__Q27JGadget20TVector_pointer_voidFPPvRCPv
 lbl_802840D0:
 /* 802840D0 00281010  38 17 00 03 */	addi r0, r23, 3
 /* 802840D4 00281014  54 00 00 3A */	rlwinm r0, r0, 0, 0, 0x1d
@@ -92,7 +92,7 @@ lbl_80284104:
 /* 80284120 00281060  7F E3 FB 78 */	mr r3, r31
 /* 80284124 00281064  80 9F 00 08 */	lwz r4, 8(r31)
 /* 80284128 00281068  38 A1 00 08 */	addi r5, r1, 8
-/* 8028412C 0028106C  48 05 8C 79 */	bl JGadget_NS_TVector_pointer_void_NS_insert
+/* 8028412C 0028106C  48 05 8C 79 */	bl insert__Q27JGadget20TVector_pointer_voidFPPvRCPv
 lbl_80284130:
 /* 80284130 00281070  3B 18 FF FF */	addi r24, r24, -1
 lbl_80284134:

@@ -4,21 +4,21 @@
 /* 800F2700 000EF640  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800F2704 000EF644  7C 7F 1B 78 */ mr r31, r3
 /* 800F2708 000EF648  38 80 00 4A */ li r4, 0x4a
-/* 800F270C 000EF64C  4B FD 06 99 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800F270C 000EF64C  4B FD 06 99 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800F2710 000EF650  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2714 000EF654  40 82 00 0C */ bne lbl_800F2720
 /* 800F2718 000EF658  38 60 00 00 */ li r3, 0
 /* 800F271C 000EF65C  48 00 00 40 */ b lbl_800F275C
 lbl_800F2720:
 /* 800F2720 000EF660  7F E3 FB 78 */ mr r3, r31
-/* 800F2724 000EF664  4B FF B3 01 */ bl daAlink_c_NS_setSyncRidePos
+/* 800F2724 000EF664  4B FF B3 01 */ bl setSyncRidePos__9daAlink_cFv
 /* 800F2728 000EF668  7F E3 FB 78 */ mr r3, r31
-/* 800F272C 000EF66C  4B FF C6 6D */ bl daAlink_c_NS_setBaseRideAnime
+/* 800F272C 000EF66C  4B FF C6 6D */ bl setBaseRideAnime__9daAlink_cFv
 /* 800F2730 000EF670  7F E3 FB 78 */ mr r3, r31
 /* 800F2734 000EF674  38 80 00 01 */ li r4, 1
-/* 800F2738 000EF678  48 01 69 B5 */ bl daAlink_c_NS_initHookshotUpperAnimeSpeed
+/* 800F2738 000EF678  48 01 69 B5 */ bl initHookshotUpperAnimeSpeed__9daAlink_cFi
 /* 800F273C 000EF67C  7F E3 FB 78 */ mr r3, r31
-/* 800F2740 000EF680  48 01 69 31 */ bl daAlink_c_NS_setHookshotReadyMaterial
+/* 800F2740 000EF680  48 01 69 31 */ bl setHookshotReadyMaterial__9daAlink_cFv
 /* 800F2744 000EF684  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800F2748 000EF688  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800F274C 000EF68C  80 03 5F 18 */ lwz r0, 0x5f18(r3)

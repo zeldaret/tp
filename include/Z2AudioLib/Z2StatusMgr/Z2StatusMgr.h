@@ -55,7 +55,7 @@ void setCameraPolygonPos__11Z2StatusMgrFP3Vec(Vec*);
 void setDemoName__11Z2StatusMgrFPc(char*);
 void setEventBit__11Z2StatusMgrFPv(void*);
 
-void Z2SceneMgr_NS_sceneBgmStart(void);
+void sceneBgmStart__10Z2SceneMgrFv(void);
 }
 
 extern Z2StatusMgr* lbl_80450B7C;  // Z2StatusMgr sInstance

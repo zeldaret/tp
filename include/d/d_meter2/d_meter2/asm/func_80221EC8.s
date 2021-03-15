@@ -78,7 +78,7 @@ lbl_80221FCC:
 /* 80221FE0 0021EF20  80 06 01 28 */ lwz r0, 0x128(r6)
 /* 80221FE4 0021EF24  7C 00 00 34 */ cntlzw r0, r0
 /* 80221FE8 0021EF28  54 06 D9 7E */ srwi r6, r0, 5
-/* 80221FEC 0021EF2C  4B FF 56 61 */ bl dMeter2Draw_c_NS_drawButtonR
+/* 80221FEC 0021EF2C  4B FF 56 61 */ bl drawButtonR__13dMeter2Draw_cFUcUcbb
 lbl_80221FF0:
 /* 80221FF0 0021EF30  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80221FF4 0021EF34  7C 08 03 A6 */ mtlr r0

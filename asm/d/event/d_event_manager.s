@@ -3,16 +3,16 @@
 .section .text, "ax" # 800463dc
 
 
-.global dEvent_exception_c_NS_init
-dEvent_exception_c_NS_init:
+.global init__18dEvent_exception_cFv
+init__18dEvent_exception_cFv:
 /* 800463DC 0004331C  38 00 FF FF */	li r0, -1
 /* 800463E0 00043320  90 03 00 00 */	stw r0, 0(r3)
 /* 800463E4 00043324  38 00 00 00 */	li r0, 0
 /* 800463E8 00043328  90 03 00 08 */	stw r0, 8(r3)
 /* 800463EC 0004332C  4E 80 00 20 */	blr 
 
-.global dEvent_exception_c_NS_setStartDemo
-dEvent_exception_c_NS_setStartDemo:
+.global setStartDemo__18dEvent_exception_cFi
+setStartDemo__18dEvent_exception_cFi:
 /* 800463F0 00043330  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800463F4 00043334  7C 08 02 A6 */	mflr r0
 /* 800463F8 00043338  90 01 00 24 */	stw r0, 0x24(r1)
@@ -24,7 +24,7 @@ dEvent_exception_c_NS_setStartDemo:
 /* 80046410 00043350  7F FF 07 74 */	extsb r31, r31
 /* 80046414 00043354  54 83 06 3E */	clrlwi r3, r4, 0x18
 /* 80046418 00043358  7F E4 FB 78 */	mr r4, r31
-/* 8004641C 0004335C  4B FF D0 E5 */	bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 8004641C 0004335C  4B FF D0 E5 */	bl searchMapEventData__14dEvt_control_cFUcl
 /* 80046420 00043360  28 03 00 00 */	cmplwi r3, 0
 /* 80046424 00043364  41 82 00 30 */	beq lbl_80046454
 /* 80046428 00043368  88 83 00 1B */	lbz r4, 0x1b(r3)
@@ -53,8 +53,8 @@ lbl_80046468:
 /* 80046478 000433B8  38 21 00 20 */	addi r1, r1, 0x20
 /* 8004647C 000433BC  4E 80 00 20 */	blr 
 
-.global dEvent_exception_c_NS_getEventName
-dEvent_exception_c_NS_getEventName:
+.global getEventName__18dEvent_exception_cFv
+getEventName__18dEvent_exception_cFv:
 /* 80046480 000433C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80046484 000433C4  7C 08 02 A6 */	mflr r0
 /* 80046488 000433C8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -66,7 +66,7 @@ dEvent_exception_c_NS_getEventName:
 /* 800464A0 000433E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800464A4 000433E4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
 /* 800464A8 000433E8  38 7F 4E C4 */	addi r3, r31, 0x4ec4
-/* 800464AC 000433EC  4B FD DE D9 */	bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 800464AC 000433EC  4B FD DE D9 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800464B0 000433F0  81 83 00 00 */	lwz r12, 0(r3)
 /* 800464B4 000433F4  81 8C 00 FC */	lwz r12, 0xfc(r12)
 /* 800464B8 000433F8  7D 89 03 A6 */	mtctr r12
@@ -94,7 +94,7 @@ lbl_800464DC:
 lbl_8004650C:
 /* 8004650C 0004344C  2C 04 00 D5 */	cmpwi r4, 0xd5
 /* 80046510 00043450  40 82 00 20 */	bne lbl_80046530
-/* 80046514 00043454  4B FE 95 C1 */	bl dComIfGp_SelectWarpPt_get
+/* 80046514 00043454  4B FE 95 C1 */	bl dComIfGp_SelectWarpPt_get__Fv
 /* 80046518 00043458  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8004651C 0004345C  2C 00 00 03 */	cmpwi r0, 3
 /* 80046520 00043460  41 82 00 08 */	beq lbl_80046528
@@ -157,8 +157,8 @@ lbl_800465D0:
 /* 800465E0 00043520  38 21 00 10 */	addi r1, r1, 0x10
 /* 800465E4 00043524  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getSubstance
-dEvent_manager_c_NS_getSubstance:
+.global getSubstance__16dEvent_manager_cFP11dEvDtData_ci
+getSubstance__16dEvent_manager_cFP11dEvDtData_ci:
 /* 800465E8 00043528  80 A4 00 28 */	lwz r5, 0x28(r4)
 /* 800465EC 0004352C  2C 05 00 00 */	cmpwi r5, 0
 /* 800465F0 00043530  41 80 00 10 */	blt lbl_80046600
@@ -214,17 +214,17 @@ __ct__16dEvent_manager_cFv:
 /* 80046690 000435D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80046694 000435D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80046698 000435D8  7C 7F 1B 78 */	mr r31, r3
-.global dEvDtBase_c
-/* 8004669C 000435DC  3C 80 80 04 */	lis r4, dEvDtBase_c@ha
-.global dEvDtBase_c
-/* 800466A0 000435E0  38 84 66 E0 */	addi r4, r4, dEvDtBase_c@l
-.global dEvDtBase_c_NS_dtor
-/* 800466A4 000435E4  3C A0 80 03 */	lis r5, dEvDtBase_c_NS_dtor@ha
-.global dEvDtBase_c_NS_dtor
-/* 800466A8 000435E8  38 A5 01 90 */	addi r5, r5, dEvDtBase_c_NS_dtor@l
+.global __ct__11dEvDtBase_cFv
+/* 8004669C 000435DC  3C 80 80 04 */	lis r4, __ct__11dEvDtBase_cFv@ha
+.global __ct__11dEvDtBase_cFv
+/* 800466A0 000435E0  38 84 66 E0 */	addi r4, r4, __ct__11dEvDtBase_cFv@l
+.global __dt__11dEvDtBase_cFv
+/* 800466A4 000435E4  3C A0 80 03 */	lis r5, __dt__11dEvDtBase_cFv@ha
+.global __dt__11dEvDtBase_cFv
+/* 800466A8 000435E8  38 A5 01 90 */	addi r5, r5, __dt__11dEvDtBase_cFv@l
 /* 800466AC 000435EC  38 C0 00 24 */	li r6, 0x24
 /* 800466B0 000435F0  38 E0 00 0B */	li r7, 0xb
-/* 800466B4 000435F4  48 31 B6 AD */	bl func_80361D60
+/* 800466B4 000435F4  48 31 B6 AD */	bl __construct_array
 /* 800466B8 000435F8  38 00 FF FF */	li r0, -1
 /* 800466BC 000435FC  90 1F 01 90 */	stw r0, 0x190(r31)
 /* 800466C0 00043600  38 00 00 00 */	li r0, 0
@@ -235,14 +235,14 @@ __ct__16dEvent_manager_cFv:
 /* 800466D4 00043614  7C 08 03 A6 */	mtlr r0
 /* 800466D8 00043618  38 21 00 10 */	addi r1, r1, 0x10
 /* 800466DC 0004361C  4E 80 00 20 */	blr 
-.global dEvDtBase_c
-dEvDtBase_c:
+.global __ct__11dEvDtBase_cFv
+__ct__11dEvDtBase_cFv:
 /* 800466E0 00043620  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800466E4 00043624  7C 08 02 A6 */	mflr r0
 /* 800466E8 00043628  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800466EC 0004362C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800466F0 00043630  7C 7F 1B 78 */	mr r31, r3
-/* 800466F4 00043634  4B FF FA 45 */	bl dEvDtBase_c_NS_init
+/* 800466F4 00043634  4B FF FA 45 */	bl init__11dEvDtBase_cFv
 /* 800466F8 00043638  7F E3 FB 78 */	mr r3, r31
 /* 800466FC 0004363C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80046700 00043640  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -250,8 +250,8 @@ dEvDtBase_c:
 /* 80046708 00043648  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004670C 0004364C  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_create
-dEvent_manager_c_NS_create:
+.global create__16dEvent_manager_cFv
+create__16dEvent_manager_cFv:
 /* 80046710 00043650  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046714 00043654  7C 08 02 A6 */	mflr r0
 /* 80046718 00043658  90 01 00 24 */	stw r0, 0x24(r1)
@@ -261,9 +261,9 @@ dEvent_manager_c_NS_create:
 /* 80046728 00043668  38 00 00 00 */	li r0, 0
 /* 8004672C 0004366C  90 03 01 8C */	stw r0, 0x18c(r3)
 /* 80046730 00043670  38 7D 01 90 */	addi r3, r29, 0x190
-/* 80046734 00043674  4B FF FC A9 */	bl dEvent_exception_c_NS_init
+/* 80046734 00043674  4B FF FC A9 */	bl init__18dEvent_exception_cFv
 /* 80046738 00043678  38 7D 01 BC */	addi r3, r29, 0x1bc
-/* 8004673C 0004367C  4B FF D7 1D */	bl dEvDtFlag_c_NS_init
+/* 8004673C 0004367C  4B FF D7 1D */	bl init__11dEvDtFlag_cFv
 /* 80046740 00043680  38 60 00 00 */	li r3, 0
 /* 80046744 00043684  90 7D 01 B4 */	stw r3, 0x1b4(r29)
 /* 80046748 00043688  38 00 FF FF */	li r0, -1
@@ -275,20 +275,20 @@ dEvent_manager_c_NS_create:
 /* 80046760 000436A0  3B E0 00 90 */	li r31, 0x90
 lbl_80046764:
 /* 80046764 000436A4  7C 7D FA 14 */	add r3, r29, r31
-/* 80046768 000436A8  4B FF F9 D1 */	bl dEvDtBase_c_NS_init
+/* 80046768 000436A8  4B FF F9 D1 */	bl init__11dEvDtBase_cFv
 /* 8004676C 000436AC  3B DE 00 01 */	addi r30, r30, 1
 /* 80046770 000436B0  2C 1E 00 09 */	cmpwi r30, 9
 /* 80046774 000436B4  3B FF 00 24 */	addi r31, r31, 0x24
 /* 80046778 000436B8  40 81 FF EC */	ble lbl_80046764
 /* 8004677C 000436BC  3C 60 80 38 */	lis r3, lbl_80379F50@ha
 /* 80046780 000436C0  38 63 9F 50 */	addi r3, r3, lbl_80379F50@l
-/* 80046784 000436C4  4B FE 8C B1 */	bl dComIfG_getStageRes
+/* 80046784 000436C4  4B FE 8C B1 */	bl dComIfG_getStageRes__FPCc
 /* 80046788 000436C8  7C 64 1B 78 */	mr r4, r3
 /* 8004678C 000436CC  38 7D 00 6C */	addi r3, r29, 0x6c
 /* 80046790 000436D0  38 A0 FF FF */	li r5, -1
-/* 80046794 000436D4  4B FF F9 D9 */	bl dEvDtBase_c_NS_init_X1_
+/* 80046794 000436D4  4B FF F9 D9 */	bl init__11dEvDtBase_cFPci
 /* 80046798 000436D8  38 7D 01 68 */	addi r3, r29, 0x168
-/* 8004679C 000436DC  4B FF F9 9D */	bl dEvDtBase_c_NS_init
+/* 8004679C 000436DC  4B FF F9 9D */	bl init__11dEvDtBase_cFv
 /* 800467A0 000436E0  3C 60 80 38 */	lis r3, lbl_80379F60@ha
 /* 800467A4 000436E4  38 63 9F 60 */	addi r3, r3, lbl_80379F60@l
 /* 800467A8 000436E8  38 63 01 1E */	addi r3, r3, 0x11e
@@ -299,13 +299,13 @@ lbl_80046764:
 /* 800467BC 000436FC  3C A5 00 02 */	addis r5, r5, 2
 /* 800467C0 00043700  38 C0 00 80 */	li r6, 0x80
 /* 800467C4 00043704  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 800467C8 00043708  4B FF 5B B5 */	bl dRes_control_c_NS_getRes_X1_
+/* 800467C8 00043708  4B FF 5B B5 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 800467CC 0004370C  7C 64 1B 78 */	mr r4, r3
 /* 800467D0 00043710  38 7D 00 24 */	addi r3, r29, 0x24
 /* 800467D4 00043714  38 A0 FF FF */	li r5, -1
-/* 800467D8 00043718  4B FF F9 95 */	bl dEvDtBase_c_NS_init_X1_
+/* 800467D8 00043718  4B FF F9 95 */	bl init__11dEvDtBase_cFPci
 /* 800467DC 0004371C  38 7D 00 48 */	addi r3, r29, 0x48
-/* 800467E0 00043720  4B FF F9 59 */	bl dEvDtBase_c_NS_init
+/* 800467E0 00043720  4B FF F9 59 */	bl init__11dEvDtBase_cFv
 /* 800467E4 00043724  38 60 00 01 */	li r3, 1
 /* 800467E8 00043728  39 61 00 20 */	addi r11, r1, 0x20
 /* 800467EC 0004372C  48 31 BA 3D */	bl _restgpr_29
@@ -314,8 +314,8 @@ lbl_80046764:
 /* 800467F8 00043738  38 21 00 20 */	addi r1, r1, 0x20
 /* 800467FC 0004373C  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_setObjectArchive
-dEvent_manager_c_NS_setObjectArchive:
+.global setObjectArchive__16dEvent_manager_cFPc
+setObjectArchive__16dEvent_manager_cFPc:
 /* 80046800 00043740  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80046804 00043744  7C 08 02 A6 */	mflr r0
 /* 80046808 00043748  90 01 00 14 */	stw r0, 0x14(r1)
@@ -333,16 +333,16 @@ dEvent_manager_c_NS_setObjectArchive:
 /* 80046838 00043778  3C A5 00 02 */	addis r5, r5, 2
 /* 8004683C 0004377C  38 C0 00 80 */	li r6, 0x80
 /* 80046840 00043780  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80046844 00043784  4B FF 5B 39 */	bl dRes_control_c_NS_getRes_X1_
+/* 80046844 00043784  4B FF 5B 39 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80046848 00043788  7C 64 1B 78 */	mr r4, r3
 /* 8004684C 0004378C  7C 9F 23 78 */	mr r31, r4
 /* 80046850 00043790  38 7E 00 48 */	addi r3, r30, 0x48
 /* 80046854 00043794  38 A0 FF FF */	li r5, -1
-/* 80046858 00043798  4B FF F9 15 */	bl dEvDtBase_c_NS_init_X1_
+/* 80046858 00043798  4B FF F9 15 */	bl init__11dEvDtBase_cFPci
 /* 8004685C 0004379C  48 00 00 0C */	b lbl_80046868
 lbl_80046860:
 /* 80046860 000437A0  38 7E 00 48 */	addi r3, r30, 0x48
-/* 80046864 000437A4  4B FF F8 D5 */	bl dEvDtBase_c_NS_init
+/* 80046864 000437A4  4B FF F8 D5 */	bl init__11dEvDtBase_cFv
 lbl_80046868:
 /* 80046868 000437A8  30 1F FF FF */	addic r0, r31, -1
 /* 8004686C 000437AC  7C 60 F9 10 */	subfe r3, r0, r31
@@ -353,8 +353,8 @@ lbl_80046868:
 /* 80046880 000437C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80046884 000437C4  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_demoInit
-dEvent_manager_c_NS_demoInit:
+.global demoInit__16dEvent_manager_cFv
+demoInit__16dEvent_manager_cFv:
 /* 80046888 000437C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004688C 000437CC  7C 08 02 A6 */	mflr r0
 /* 80046890 000437D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -374,11 +374,11 @@ dEvent_manager_c_NS_demoInit:
 /* 800468C8 00043808  3C A5 00 02 */	addis r5, r5, 2
 /* 800468CC 0004380C  38 C0 00 80 */	li r6, 0x80
 /* 800468D0 00043810  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 800468D4 00043814  4B FF 5A A9 */	bl dRes_control_c_NS_getRes_X1_
+/* 800468D4 00043814  4B FF 5A A9 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 800468D8 00043818  7C 64 1B 78 */	mr r4, r3
 /* 800468DC 0004381C  38 7F 01 68 */	addi r3, r31, 0x168
 /* 800468E0 00043820  38 A0 FF FF */	li r5, -1
-/* 800468E4 00043824  4B FF F8 89 */	bl dEvDtBase_c_NS_init_X1_
+/* 800468E4 00043824  4B FF F8 89 */	bl init__11dEvDtBase_cFPci
 lbl_800468E8:
 /* 800468E8 00043828  38 00 00 01 */	li r0, 1
 /* 800468EC 0004382C  98 1F 06 BC */	stb r0, 0x6bc(r31)
@@ -389,8 +389,8 @@ lbl_800468F0:
 /* 800468FC 0004383C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80046900 00043840  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_roomInit
-dEvent_manager_c_NS_roomInit:
+.global roomInit__16dEvent_manager_cFi
+roomInit__16dEvent_manager_cFi:
 /* 80046904 00043844  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046908 00043848  7C 08 02 A6 */	mflr r0
 /* 8004690C 0004384C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -404,7 +404,7 @@ dEvent_manager_c_NS_roomInit:
 /* 8004692C 0004386C  7F FF 07 74 */	extsb r31, r31
 lbl_80046930:
 /* 80046930 00043870  7F E3 FB 78 */	mr r3, r31
-/* 80046934 00043874  4B FE 8B 89 */	bl dComIfG_getRoomArcName
+/* 80046934 00043874  4B FE 8B 89 */	bl dComIfG_getRoomArcName__Fi
 /* 80046938 00043878  7C 64 1B 78 */	mr r4, r3
 /* 8004693C 0004387C  38 61 00 08 */	addi r3, r1, 8
 /* 80046940 00043880  48 32 21 ED */	bl strcpy
@@ -416,7 +416,7 @@ lbl_80046930:
 /* 80046958 00043898  3C A5 00 02 */	addis r5, r5, 2
 /* 8004695C 0004389C  38 A5 D4 F8 */	addi r5, r5, -11016
 /* 80046960 000438A0  38 C0 00 40 */	li r6, 0x40
-/* 80046964 000438A4  4B FF 5A 19 */	bl dRes_control_c_NS_getRes_X1_
+/* 80046964 000438A4  4B FF 5A 19 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80046968 000438A8  7C 64 1B 78 */	mr r4, r3
 /* 8004696C 000438AC  38 E0 FF FF */	li r7, -1
 /* 80046970 000438B0  38 C0 00 04 */	li r6, 4
@@ -446,7 +446,7 @@ lbl_800469B8:
 /* 800469C0 00043900  1C 07 00 24 */	mulli r0, r7, 0x24
 /* 800469C4 00043904  7C 7E 02 14 */	add r3, r30, r0
 /* 800469C8 00043908  7F E5 FB 78 */	mr r5, r31
-/* 800469CC 0004390C  4B FF F7 A1 */	bl dEvDtBase_c_NS_init_X1_
+/* 800469CC 0004390C  4B FF F7 A1 */	bl init__11dEvDtBase_cFPci
 lbl_800469D0:
 /* 800469D0 00043910  93 FE 01 B0 */	stw r31, 0x1b0(r30)
 /* 800469D4 00043914  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -456,8 +456,8 @@ lbl_800469D0:
 /* 800469E4 00043924  38 21 00 20 */	addi r1, r1, 0x20
 /* 800469E8 00043928  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_roomFinish
-dEvent_manager_c_NS_roomFinish:
+.global roomFinish__16dEvent_manager_cFi
+roomFinish__16dEvent_manager_cFi:
 /* 800469EC 0004392C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800469F0 00043930  7C 08 02 A6 */	mflr r0
 /* 800469F4 00043934  90 01 00 24 */	stw r0, 0x24(r1)
@@ -475,7 +475,7 @@ lbl_80046A10:
 /* 80046A20 00043960  80 03 00 20 */	lwz r0, 0x20(r3)
 /* 80046A24 00043964  7C 1D 00 00 */	cmpw r29, r0
 /* 80046A28 00043968  40 82 00 08 */	bne lbl_80046A30
-/* 80046A2C 0004396C  4B FF F7 0D */	bl dEvDtBase_c_NS_init
+/* 80046A2C 0004396C  4B FF F7 0D */	bl init__11dEvDtBase_cFv
 lbl_80046A30:
 /* 80046A30 00043970  3B DE 00 01 */	addi r30, r30, 1
 /* 80046A34 00043974  2C 1E 00 09 */	cmpwi r30, 9
@@ -488,8 +488,8 @@ lbl_80046A30:
 /* 80046A50 00043990  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046A54 00043994  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_orderStartDemo
-dEvent_manager_c_NS_orderStartDemo:
+.global orderStartDemo__16dEvent_manager_cFv
+orderStartDemo__16dEvent_manager_cFv:
 /* 80046A58 00043998  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046A5C 0004399C  7C 08 02 A6 */	mflr r0
 /* 80046A60 000439A0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -508,12 +508,12 @@ lbl_80046A88:
 /* 80046A90 000439D0  2C 00 00 D7 */	cmpwi r0, 0xd7
 /* 80046A94 000439D4  40 80 00 48 */	bge lbl_80046ADC
 /* 80046A98 000439D8  38 7F 01 90 */	addi r3, r31, 0x190
-/* 80046A9C 000439DC  4B FF F9 E5 */	bl dEvent_exception_c_NS_getEventName
+/* 80046A9C 000439DC  4B FF F9 E5 */	bl getEventName__18dEvent_exception_cFv
 /* 80046AA0 000439E0  7C 64 1B 78 */	mr r4, r3
 /* 80046AA4 000439E4  7F E3 FB 78 */	mr r3, r31
 /* 80046AA8 000439E8  38 A0 00 FF */	li r5, 0xff
 /* 80046AAC 000439EC  38 C0 FF FF */	li r6, -1
-/* 80046AB0 000439F0  48 00 0A 65 */	bl dEvent_manager_c_NS_getEventIdx
+/* 80046AB0 000439F0  48 00 0A 65 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80046AB4 000439F4  7C 7E 1B 78 */	mr r30, r3
 /* 80046AB8 000439F8  38 60 00 00 */	li r3, 0
 /* 80046ABC 000439FC  7F C4 F3 78 */	mr r4, r30
@@ -534,7 +534,7 @@ lbl_80046ADC:
 /* 80046AF4 00043A34  38 80 00 00 */	li r4, 0
 /* 80046AF8 00043A38  7F A5 EB 78 */	mr r5, r29
 /* 80046AFC 00043A3C  38 C0 FF FF */	li r6, -1
-/* 80046B00 00043A40  48 00 0A 15 */	bl dEvent_manager_c_NS_getEventIdx
+/* 80046B00 00043A40  48 00 0A 15 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80046B04 00043A44  7C 7E 1B 78 */	mr r30, r3
 /* 80046B08 00043A48  38 60 00 00 */	li r3, 0
 /* 80046B0C 00043A4C  7F A4 EB 78 */	mr r4, r29
@@ -569,7 +569,7 @@ lbl_80046B4C:
 lbl_80046B78:
 /* 80046B78 00043AB8  38 A0 00 FF */	li r5, 0xff
 /* 80046B7C 00043ABC  38 C0 FF FF */	li r6, -1
-/* 80046B80 00043AC0  48 00 09 95 */	bl dEvent_manager_c_NS_getEventIdx
+/* 80046B80 00043AC0  48 00 09 95 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80046B84 00043AC4  7C 7E 1B 78 */	mr r30, r3
 /* 80046B88 00043AC8  38 60 00 00 */	li r3, 0
 /* 80046B8C 00043ACC  7F C4 F3 78 */	mr r4, r30
@@ -588,7 +588,7 @@ lbl_80046BA8:
 /* 80046BBC 00043AFC  38 84 00 10 */	addi r4, r4, 0x10
 /* 80046BC0 00043B00  38 A0 00 FF */	li r5, 0xff
 /* 80046BC4 00043B04  38 C0 FF FF */	li r6, -1
-/* 80046BC8 00043B08  48 00 09 4D */	bl dEvent_manager_c_NS_getEventIdx
+/* 80046BC8 00043B08  48 00 09 4D */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80046BCC 00043B0C  7C 7E 1B 78 */	mr r30, r3
 /* 80046BD0 00043B10  38 60 00 00 */	li r3, 0
 /* 80046BD4 00043B14  7F C4 F3 78 */	mr r4, r30
@@ -608,8 +608,8 @@ lbl_80046BF4:
 /* 80046C04 00043B44  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046C08 00043B48  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_remove
-dEvent_manager_c_NS_remove:
+.global remove__16dEvent_manager_cFv
+remove__16dEvent_manager_cFv:
 /* 80046C0C 00043B4C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046C10 00043B50  7C 08 02 A6 */	mflr r0
 /* 80046C14 00043B54  90 01 00 24 */	stw r0, 0x24(r1)
@@ -620,7 +620,7 @@ dEvent_manager_c_NS_remove:
 /* 80046C28 00043B68  3B E0 00 00 */	li r31, 0
 lbl_80046C2C:
 /* 80046C2C 00043B6C  7C 7D FA 14 */	add r3, r29, r31
-/* 80046C30 00043B70  4B FF F5 09 */	bl dEvDtBase_c_NS_init
+/* 80046C30 00043B70  4B FF F5 09 */	bl init__11dEvDtBase_cFv
 /* 80046C34 00043B74  3B DE 00 01 */	addi r30, r30, 1
 /* 80046C38 00043B78  2C 1E 00 0B */	cmpwi r30, 0xb
 /* 80046C3C 00043B7C  3B FF 00 24 */	addi r31, r31, 0x24
@@ -628,31 +628,31 @@ lbl_80046C2C:
 /* 80046C44 00043B84  38 00 00 00 */	li r0, 0
 /* 80046C48 00043B88  90 1D 01 8C */	stw r0, 0x18c(r29)
 /* 80046C4C 00043B8C  38 7D 01 90 */	addi r3, r29, 0x190
-/* 80046C50 00043B90  4B FF F7 8D */	bl dEvent_exception_c_NS_init
+/* 80046C50 00043B90  4B FF F7 8D */	bl init__18dEvent_exception_cFv
 /* 80046C54 00043B94  38 7D 01 BC */	addi r3, r29, 0x1bc
-/* 80046C58 00043B98  4B FF D2 01 */	bl dEvDtFlag_c_NS_init
+/* 80046C58 00043B98  4B FF D2 01 */	bl init__11dEvDtFlag_cFv
 /* 80046C5C 00043B9C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80046C60 00043BA0  48 31 B5 C9 */	bl _restgpr_29
 /* 80046C64 00043BA4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80046C68 00043BA8  7C 08 03 A6 */	mtlr r0
 /* 80046C6C 00043BAC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046C70 00043BB0  4E 80 00 20 */	blr 
-.global extraOnObjectCallBack
-extraOnObjectCallBack:
+.global extraOnObjectCallBack__FP10fopAc_ac_cPv
+extraOnObjectCallBack__FP10fopAc_ac_cPv:
 /* 80046C74 00043BB4  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 80046C78 00043BB8  60 00 08 00 */	ori r0, r0, 0x800
 /* 80046C7C 00043BBC  90 03 04 9C */	stw r0, 0x49c(r3)
 /* 80046C80 00043BC0  38 60 00 00 */	li r3, 0
 /* 80046C84 00043BC4  4E 80 00 20 */	blr 
-.global extraOffObjectCallBack
-extraOffObjectCallBack:
+.global extraOffObjectCallBack__FP10fopAc_ac_cPv
+extraOffObjectCallBack__FP10fopAc_ac_cPv:
 /* 80046C88 00043BC8  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 80046C8C 00043BCC  54 00 05 66 */	rlwinm r0, r0, 0, 0x15, 0x13
 /* 80046C90 00043BD0  90 03 04 9C */	stw r0, 0x49c(r3)
 /* 80046C94 00043BD4  38 60 00 00 */	li r3, 0
 /* 80046C98 00043BD8  4E 80 00 20 */	blr 
-.global allOffObjectCallBack
-allOffObjectCallBack:
+.global allOffObjectCallBack__FP10fopAc_ac_cPv
+allOffObjectCallBack__FP10fopAc_ac_cPv:
 /* 80046C9C 00043BDC  80 A3 04 9C */	lwz r5, 0x49c(r3)
 /* 80046CA0 00043BE0  3C 80 FF FF */	lis r4, 0xFFFF6FFF@ha
 /* 80046CA4 00043BE4  38 04 6F FF */	addi r0, r4, 0xFFFF6FFF@l
@@ -661,8 +661,8 @@ allOffObjectCallBack:
 /* 80046CB0 00043BF0  38 60 00 00 */	li r3, 0
 /* 80046CB4 00043BF4  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_startProc
-dEvent_manager_c_NS_startProc:
+.global startProc__16dEvent_manager_cFP12dEvDtEvent_c
+startProc__16dEvent_manager_cFP12dEvDtEvent_c:
 /* 80046CB8 00043BF8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046CBC 00043BFC  7C 08 02 A6 */	mflr r0
 /* 80046CC0 00043C00  90 01 00 24 */	stw r0, 0x24(r1)
@@ -688,7 +688,7 @@ lbl_80046CE0:
 /* 80046D0C 00043C4C  7F A3 EB 78 */	mr r3, r29
 /* 80046D10 00043C50  7F 64 DB 78 */	mr r4, r27
 /* 80046D14 00043C54  38 A0 00 01 */	li r5, 1
-/* 80046D18 00043C58  48 00 19 01 */	bl dEvent_manager_c_NS_specialCast
+/* 80046D18 00043C58  48 00 19 01 */	bl specialCast__16dEvent_manager_cFPCci
 /* 80046D1C 00043C5C  28 03 00 00 */	cmplwi r3, 0
 /* 80046D20 00043C60  40 82 00 10 */	bne lbl_80046D30
 /* 80046D24 00043C64  7F 63 DB 78 */	mr r3, r27
@@ -706,10 +706,10 @@ lbl_80046D44:
 /* 80046D4C 00043C8C  40 82 00 10 */	bne lbl_80046D5C
 /* 80046D50 00043C90  7F A3 EB 78 */	mr r3, r29
 /* 80046D54 00043C94  7F 64 DB 78 */	mr r4, r27
-/* 80046D58 00043C98  48 00 15 75 */	bl dEvent_manager_c_NS_issueStaff
+/* 80046D58 00043C98  48 00 15 75 */	bl issueStaff__16dEvent_manager_cFPCc
 lbl_80046D5C:
 /* 80046D5C 00043C9C  7F 63 DB 78 */	mr r3, r27
-/* 80046D60 00043CA0  4B FF D3 D5 */	bl dEvDtStaff_c_NS_init
+/* 80046D60 00043CA0  4B FF D3 D5 */	bl init__12dEvDtStaff_cFv
 /* 80046D64 00043CA4  3B FF 00 01 */	addi r31, r31, 1
 /* 80046D68 00043CA8  3B 9C 00 04 */	addi r28, r28, 4
 lbl_80046D6C:
@@ -719,7 +719,7 @@ lbl_80046D6C:
 /* 80046D78 00043CB8  38 00 00 01 */	li r0, 1
 /* 80046D7C 00043CBC  90 1E 00 A4 */	stw r0, 0xa4(r30)
 /* 80046D80 00043CC0  38 7D 01 BC */	addi r3, r29, 0x1bc
-/* 80046D84 00043CC4  4B FF D0 D5 */	bl dEvDtFlag_c_NS_init
+/* 80046D84 00043CC4  4B FF D0 D5 */	bl init__11dEvDtFlag_cFv
 /* 80046D88 00043CC8  39 61 00 20 */	addi r11, r1, 0x20
 /* 80046D8C 00043CCC  48 31 B4 95 */	bl _restgpr_27
 /* 80046D90 00043CD0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -727,14 +727,14 @@ lbl_80046D6C:
 /* 80046D98 00043CD8  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046D9C 00043CDC  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_closeProc
-dEvent_manager_c_NS_closeProc:
+.global closeProc__16dEvent_manager_cFP12dEvDtEvent_c
+closeProc__16dEvent_manager_cFP12dEvDtEvent_c:
 /* 80046DA0 00043CE0  38 00 00 02 */	li r0, 2
 /* 80046DA4 00043CE4  90 04 00 A4 */	stw r0, 0xa4(r4)
 /* 80046DA8 00043CE8  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_endProc
-dEvent_manager_c_NS_endProc:
+.global endProc__16dEvent_manager_cFsi
+endProc__16dEvent_manager_cFsi:
 /* 80046DAC 00043CEC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80046DB0 00043CF0  7C 08 02 A6 */	mflr r0
 /* 80046DB4 00043CF4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -742,14 +742,14 @@ dEvent_manager_c_NS_endProc:
 /* 80046DBC 00043CFC  48 31 B4 21 */	bl _savegpr_29
 /* 80046DC0 00043D00  7C 7D 1B 78 */	mr r29, r3
 /* 80046DC4 00043D04  7C BE 2B 78 */	mr r30, r5
-/* 80046DC8 00043D08  48 00 06 F5 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80046DC8 00043D08  48 00 06 F5 */	bl getEventData__16dEvent_manager_cFs
 /* 80046DCC 00043D0C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80046DD0 00043D10  41 82 00 7C */	beq lbl_80046E4C
 /* 80046DD4 00043D14  2C 1E 00 00 */	cmpwi r30, 0
 /* 80046DD8 00043D18  41 82 00 10 */	beq lbl_80046DE8
 /* 80046DDC 00043D1C  7F A3 EB 78 */	mr r3, r29
 /* 80046DE0 00043D20  7F E4 FB 78 */	mr r4, r31
-/* 80046DE4 00043D24  4B FF FF BD */	bl dEvent_manager_c_NS_closeProc
+/* 80046DE4 00043D24  4B FF FF BD */	bl closeProc__16dEvent_manager_cFP12dEvDtEvent_c
 lbl_80046DE8:
 /* 80046DE8 00043D28  80 1F 00 A4 */	lwz r0, 0xa4(r31)
 /* 80046DEC 00043D2C  2C 00 00 02 */	cmpwi r0, 2
@@ -757,10 +757,10 @@ lbl_80046DE8:
 /* 80046DF4 00043D34  3C 60 80 38 */	lis r3, lbl_80379F60@ha
 /* 80046DF8 00043D38  38 63 9F 60 */	addi r3, r3, lbl_80379F60@l
 /* 80046DFC 00043D3C  38 83 01 4B */	addi r4, r3, 0x14b
-.global allOffObjectCallBack
-/* 80046E00 00043D40  3C 60 80 04 */	lis r3, allOffObjectCallBack@ha
-.global allOffObjectCallBack
-/* 80046E04 00043D44  38 63 6C 9C */	addi r3, r3, allOffObjectCallBack@l
+.global allOffObjectCallBack__FP10fopAc_ac_cPv
+/* 80046E00 00043D40  3C 60 80 04 */	lis r3, allOffObjectCallBack__FP10fopAc_ac_cPv@ha
+.global allOffObjectCallBack__FP10fopAc_ac_cPv
+/* 80046E04 00043D44  38 63 6C 9C */	addi r3, r3, allOffObjectCallBack__FP10fopAc_ac_cPv@l
 /* 80046E08 00043D48  4B FD 29 F1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80046E0C 00043D4C  38 00 00 02 */	li r0, 2
 /* 80046E10 00043D50  90 1D 01 8C */	stw r0, 0x18c(r29)
@@ -774,10 +774,10 @@ lbl_80046DE8:
 /* 80046E30 00043D70  3B E3 4E C8 */	addi r31, r3, 0x4ec8
 /* 80046E34 00043D74  7F E3 FB 78 */	mr r3, r31
 /* 80046E38 00043D78  38 80 00 00 */	li r4, 0
-/* 80046E3C 00043D7C  4B FF C8 B9 */	bl dEvt_control_c_NS_setPtD
+/* 80046E3C 00043D7C  4B FF C8 B9 */	bl setPtD__14dEvt_control_cFPv
 /* 80046E40 00043D80  7F E3 FB 78 */	mr r3, r31
 /* 80046E44 00043D84  38 80 00 00 */	li r4, 0
-/* 80046E48 00043D88  4B FF C8 75 */	bl dEvt_control_c_NS_setPtI
+/* 80046E48 00043D88  4B FF C8 75 */	bl setPtI__14dEvt_control_cFPv
 lbl_80046E4C:
 /* 80046E4C 00043D8C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80046E50 00043D90  48 31 B3 D9 */	bl _restgpr_29
@@ -786,8 +786,8 @@ lbl_80046E4C:
 /* 80046E5C 00043D9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80046E60 00043DA0  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_Sequencer
-dEvent_manager_c_NS_Sequencer:
+.global Sequencer__16dEvent_manager_cFv
+Sequencer__16dEvent_manager_cFv:
 /* 80046E64 00043DA4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80046E68 00043DA8  7C 08 02 A6 */	mflr r0
 /* 80046E6C 00043DAC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -798,10 +798,10 @@ dEvent_manager_c_NS_Sequencer:
 /* 80046E80 00043DC0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80046E84 00043DC4  3B E4 4E C8 */	addi r31, r4, 0x4ec8
 /* 80046E88 00043DC8  A8 83 01 AA */	lha r4, 0x1aa(r3)
-/* 80046E8C 00043DCC  48 00 06 31 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80046E8C 00043DCC  48 00 06 31 */	bl getEventData__16dEvent_manager_cFs
 /* 80046E90 00043DD0  7C 7D 1B 78 */	mr r29, r3
 /* 80046E94 00043DD4  7F E3 FB 78 */	mr r3, r31
-/* 80046E98 00043DD8  4B FF C3 E1 */	bl dEvt_control_c_NS_getStageEventDt
+/* 80046E98 00043DD8  4B FF C3 E1 */	bl getStageEventDt__14dEvt_control_cFv
 /* 80046E9C 00043DDC  7C 7C 1B 78 */	mr r28, r3
 /* 80046EA0 00043DE0  28 1D 00 00 */	cmplwi r29, 0
 /* 80046EA4 00043DE4  41 82 05 24 */	beq lbl_800473C8
@@ -829,17 +829,17 @@ lbl_80046EDC:
 /* 80046EF8 00043E38  2C 00 00 02 */	cmpwi r0, 2
 /* 80046EFC 00043E3C  40 82 00 0C */	bne lbl_80046F08
 /* 80046F00 00043E40  7F E3 FB 78 */	mr r3, r31
-/* 80046F04 00043E44  4B FF BA A5 */	bl dEvt_control_c_NS_onSkipFade
+/* 80046F04 00043E44  4B FF BA A5 */	bl onSkipFade__14dEvt_control_cFv
 lbl_80046F08:
 /* 80046F08 00043E48  7F E3 FB 78 */	mr r3, r31
 /* 80046F0C 00043E4C  80 9F 00 C4 */	lwz r4, 0xc4(r31)
-/* 80046F10 00043E50  4B FF C3 DD */	bl dEvt_control_c_NS_convPId
+/* 80046F10 00043E50  4B FF C3 DD */	bl convPId__14dEvt_control_cFUi
 /* 80046F14 00043E54  7C 64 1B 78 */	mr r4, r3
 /* 80046F18 00043E58  28 03 00 00 */	cmplwi r3, 0
 /* 80046F1C 00043E5C  40 82 00 14 */	bne lbl_80046F30
 /* 80046F20 00043E60  7F E3 FB 78 */	mr r3, r31
 /* 80046F24 00043E64  80 9F 00 C8 */	lwz r4, 0xc8(r31)
-/* 80046F28 00043E68  4B FF C3 C5 */	bl dEvt_control_c_NS_convPId
+/* 80046F28 00043E68  4B FF C3 C5 */	bl convPId__14dEvt_control_cFUi
 /* 80046F2C 00043E6C  7C 64 1B 78 */	mr r4, r3
 lbl_80046F30:
 /* 80046F30 00043E70  28 04 00 00 */	cmplwi r4, 0
@@ -861,30 +861,30 @@ lbl_80046F68:
 /* 80046F68 00043EA8  2C 00 00 03 */	cmpwi r0, 3
 /* 80046F6C 00043EAC  40 80 00 48 */	bge lbl_80046FB4
 /* 80046F70 00043EB0  7F E3 FB 78 */	mr r3, r31
-.global dEv_defaultSkipStb
-/* 80046F74 00043EB4  3C A0 80 04 */	lis r5, dEv_defaultSkipStb@ha
-.global dEv_defaultSkipStb
-/* 80046F78 00043EB8  38 A5 27 78 */	addi r5, r5, dEv_defaultSkipStb@l
+.global dEv_defaultSkipStb__FPvi
+/* 80046F74 00043EB4  3C A0 80 04 */	lis r5, dEv_defaultSkipStb__FPvi@ha
+.global dEv_defaultSkipStb__FPvi
+/* 80046F78 00043EB8  38 A5 27 78 */	addi r5, r5, dEv_defaultSkipStb__FPvi@l
 /* 80046F7C 00043EBC  38 C0 00 00 */	li r6, 0
-/* 80046F80 00043EC0  4B FF B9 95 */	bl dEvt_control_c_NS_setSkipProc
+/* 80046F80 00043EC0  4B FF B9 95 */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 /* 80046F84 00043EC4  48 00 00 30 */	b lbl_80046FB4
 lbl_80046F88:
 /* 80046F88 00043EC8  7F E3 FB 78 */	mr r3, r31
-.global dEv_defaultSkipZev
-/* 80046F8C 00043ECC  3C A0 80 04 */	lis r5, dEv_defaultSkipZev@ha
-.global dEv_defaultSkipZev
-/* 80046F90 00043ED0  38 A5 26 1C */	addi r5, r5, dEv_defaultSkipZev@l
+.global dEv_defaultSkipZev__FPvi
+/* 80046F8C 00043ECC  3C A0 80 04 */	lis r5, dEv_defaultSkipZev__FPvi@ha
+.global dEv_defaultSkipZev__FPvi
+/* 80046F90 00043ED0  38 A5 26 1C */	addi r5, r5, dEv_defaultSkipZev__FPvi@l
 /* 80046F94 00043ED4  38 C0 00 00 */	li r6, 0
-/* 80046F98 00043ED8  4B FF B9 7D */	bl dEvt_control_c_NS_setSkipProc
+/* 80046F98 00043ED8  4B FF B9 7D */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 /* 80046F9C 00043EDC  48 00 00 18 */	b lbl_80046FB4
 lbl_80046FA0:
 /* 80046FA0 00043EE0  7F E3 FB 78 */	mr r3, r31
-.global dEv_defaultSkipProc
-/* 80046FA4 00043EE4  3C A0 80 04 */	lis r5, dEv_defaultSkipProc@ha
-.global dEv_defaultSkipProc
-/* 80046FA8 00043EE8  38 A5 25 E8 */	addi r5, r5, dEv_defaultSkipProc@l
+.global dEv_defaultSkipProc__FPvi
+/* 80046FA4 00043EE4  3C A0 80 04 */	lis r5, dEv_defaultSkipProc__FPvi@ha
+.global dEv_defaultSkipProc__FPvi
+/* 80046FA8 00043EE8  38 A5 25 E8 */	addi r5, r5, dEv_defaultSkipProc__FPvi@l
 /* 80046FAC 00043EEC  38 C0 00 00 */	li r6, 0
-/* 80046FB0 00043EF0  4B FF B9 65 */	bl dEvt_control_c_NS_setSkipProc
+/* 80046FB0 00043EF0  4B FF B9 65 */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 lbl_80046FB4:
 /* 80046FB4 00043EF4  80 6D 8D E8 */	lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 80046FB8 00043EF8  38 63 04 C4 */	addi r3, r3, 0x4c4
@@ -892,7 +892,7 @@ lbl_80046FB4:
 /* 80046FC0 00043F00  48 26 F2 29 */	bl setDemoName__11Z2StatusMgrFPc
 lbl_80046FC4:
 /* 80046FC4 00043F04  7F A3 EB 78 */	mr r3, r29
-/* 80046FC8 00043F08  4B FF CE B1 */	bl dEvDtEvent_c_NS_finishCheck
+/* 80046FC8 00043F08  4B FF CE B1 */	bl finishCheck__12dEvDtEvent_cFv
 /* 80046FCC 00043F0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80046FD0 00043F10  41 82 03 C0 */	beq lbl_80047390
 /* 80046FD4 00043F14  3B 40 00 00 */	li r26, 0
@@ -923,10 +923,10 @@ lbl_80046FE8:
 /* 80047034 00043F74  D0 01 00 48 */	stfs f0, 0x48(r1)
 /* 80047038 00043F78  C0 03 05 58 */	lfs f0, 0x558(r3)
 /* 8004703C 00043F7C  D0 01 00 4C */	stfs f0, 0x4c(r1)
-/* 80047040 00043F80  48 13 A6 01 */	bl dCam_getBody
+/* 80047040 00043F80  48 13 A6 01 */	bl dCam_getBody__Fv
 /* 80047044 00043F84  7C 64 1B 78 */	mr r4, r3
 /* 80047048 00043F88  38 61 00 2C */	addi r3, r1, 0x2c
-/* 8004704C 00043F8C  48 13 AE 4D */	bl dCamera_c_NS_Center
+/* 8004704C 00043F8C  48 13 AE 4D */	bl Center__9dCamera_cFv
 /* 80047050 00043F90  C0 01 00 2C */	lfs f0, 0x2c(r1)
 /* 80047054 00043F94  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 80047058 00043F98  C0 01 00 30 */	lfs f0, 0x30(r1)
@@ -1016,8 +1016,8 @@ lbl_8004717C:
 /* 80047184 000440C4  C0 02 85 20 */	lfs f0, lbl_80451F20-_SDA2_BASE_(r2)
 /* 80047188 000440C8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8004718C 000440CC  40 81 00 4C */	ble lbl_800471D8
-/* 80047190 000440D0  48 13 A4 B1 */	bl dCam_getBody
-/* 80047194 000440D4  48 13 98 AD */	bl dCamera_c_NS_EventRecoverNotime
+/* 80047190 000440D0  48 13 A4 B1 */	bl dCam_getBody__Fv
+/* 80047194 000440D4  48 13 98 AD */	bl EventRecoverNotime__9dCamera_cFv
 /* 80047198 000440D8  48 00 00 40 */	b lbl_800471D8
 lbl_8004719C:
 /* 8004719C 000440DC  88 1C 00 03 */	lbz r0, 3(r28)
@@ -1031,12 +1031,12 @@ lbl_800471B8:
 /* 800471B8 000440F8  C0 02 85 20 */	lfs f0, lbl_80451F20-_SDA2_BASE_(r2)
 /* 800471BC 000440FC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800471C0 00044100  40 81 00 18 */	ble lbl_800471D8
-/* 800471C4 00044104  48 13 A4 7D */	bl dCam_getBody
-/* 800471C8 00044108  48 13 98 79 */	bl dCamera_c_NS_EventRecoverNotime
+/* 800471C4 00044104  48 13 A4 7D */	bl dCam_getBody__Fv
+/* 800471C8 00044108  48 13 98 79 */	bl EventRecoverNotime__9dCamera_cFv
 /* 800471CC 0004410C  48 00 00 0C */	b lbl_800471D8
 lbl_800471D0:
-/* 800471D0 00044110  48 13 A4 71 */	bl dCam_getBody
-/* 800471D4 00044114  48 13 98 6D */	bl dCamera_c_NS_EventRecoverNotime
+/* 800471D0 00044110  48 13 A4 71 */	bl dCam_getBody__Fv
+/* 800471D4 00044114  48 13 98 6D */	bl EventRecoverNotime__9dCamera_cFv
 lbl_800471D8:
 /* 800471D8 00044118  88 1C 00 00 */	lbz r0, 0(r28)
 /* 800471DC 0004411C  2C 00 00 01 */	cmpwi r0, 1
@@ -1096,7 +1096,7 @@ lbl_80047288:
 /* 800472A0 000441E0  41 82 00 14 */	beq lbl_800472B4
 /* 800472A4 000441E4  7C 99 23 78 */	mr r25, r4
 /* 800472A8 000441E8  7F E3 FB 78 */	mr r3, r31
-/* 800472AC 000441EC  4B FF BF D5 */	bl dEvt_control_c_NS_sceneChange
+/* 800472AC 000441EC  4B FF BF D5 */	bl sceneChange__14dEvt_control_cFi
 /* 800472B0 000441F0  48 00 00 AC */	b lbl_8004735C
 lbl_800472B4:
 /* 800472B4 000441F4  88 9C 00 17 */	lbz r4, 0x17(r28)
@@ -1104,7 +1104,7 @@ lbl_800472B4:
 /* 800472BC 000441FC  41 82 00 A0 */	beq lbl_8004735C
 /* 800472C0 00044200  7C 99 23 78 */	mr r25, r4
 /* 800472C4 00044204  7F E3 FB 78 */	mr r3, r31
-/* 800472C8 00044208  4B FF BF B9 */	bl dEvt_control_c_NS_sceneChange
+/* 800472C8 00044208  4B FF BF B9 */	bl sceneChange__14dEvt_control_cFi
 /* 800472CC 0004420C  48 00 00 90 */	b lbl_8004735C
 lbl_800472D0:
 /* 800472D0 00044210  57 40 06 3F */	clrlwi. r0, r26, 0x18
@@ -1116,7 +1116,7 @@ lbl_800472D0:
 /* 800472E8 00044228  41 82 00 14 */	beq lbl_800472FC
 /* 800472EC 0004422C  7C 99 23 78 */	mr r25, r4
 /* 800472F0 00044230  7F E3 FB 78 */	mr r3, r31
-/* 800472F4 00044234  4B FF BF 8D */	bl dEvt_control_c_NS_sceneChange
+/* 800472F4 00044234  4B FF BF 8D */	bl sceneChange__14dEvt_control_cFi
 /* 800472F8 00044238  48 00 00 64 */	b lbl_8004735C
 lbl_800472FC:
 /* 800472FC 0004423C  88 9C 00 07 */	lbz r4, 7(r28)
@@ -1124,7 +1124,7 @@ lbl_800472FC:
 /* 80047304 00044244  41 82 00 58 */	beq lbl_8004735C
 /* 80047308 00044248  7C 99 23 78 */	mr r25, r4
 /* 8004730C 0004424C  7F E3 FB 78 */	mr r3, r31
-/* 80047310 00044250  4B FF BF 71 */	bl dEvt_control_c_NS_sceneChange
+/* 80047310 00044250  4B FF BF 71 */	bl sceneChange__14dEvt_control_cFi
 /* 80047314 00044254  48 00 00 48 */	b lbl_8004735C
 lbl_80047318:
 /* 80047318 00044258  57 40 06 3F */	clrlwi. r0, r26, 0x18
@@ -1136,7 +1136,7 @@ lbl_80047318:
 /* 80047330 00044270  41 82 00 14 */	beq lbl_80047344
 /* 80047334 00044274  7C 99 23 78 */	mr r25, r4
 /* 80047338 00044278  7F E3 FB 78 */	mr r3, r31
-/* 8004733C 0004427C  4B FF BF 45 */	bl dEvt_control_c_NS_sceneChange
+/* 8004733C 0004427C  4B FF BF 45 */	bl sceneChange__14dEvt_control_cFi
 /* 80047340 00044280  48 00 00 1C */	b lbl_8004735C
 lbl_80047344:
 /* 80047344 00044284  88 9C 00 07 */	lbz r4, 7(r28)
@@ -1144,7 +1144,7 @@ lbl_80047344:
 /* 8004734C 0004428C  41 82 00 10 */	beq lbl_8004735C
 /* 80047350 00044290  7C 99 23 78 */	mr r25, r4
 /* 80047354 00044294  7F E3 FB 78 */	mr r3, r31
-/* 80047358 00044298  4B FF BF 29 */	bl dEvt_control_c_NS_sceneChange
+/* 80047358 00044298  4B FF BF 29 */	bl sceneChange__14dEvt_control_cFi
 lbl_8004735C:
 /* 8004735C 0004429C  2C 19 FF FF */	cmpwi r25, -1
 /* 80047360 000442A0  40 82 00 50 */	bne lbl_800473B0
@@ -1152,12 +1152,12 @@ lbl_8004735C:
 /* 80047368 000442A8  1C 00 00 24 */	mulli r0, r0, 0x24
 /* 8004736C 000442AC  7C 7E 02 14 */	add r3, r30, r0
 /* 80047370 000442B0  7F A4 EB 78 */	mr r4, r29
-/* 80047374 000442B4  4B FF EF 19 */	bl dEvDtBase_c_NS_advanceCut
+/* 80047374 000442B4  4B FF EF 19 */	bl advanceCut__11dEvDtBase_cFP12dEvDtEvent_c
 /* 80047378 000442B8  7F C3 F3 78 */	mr r3, r30
 /* 8004737C 000442BC  7F A4 EB 78 */	mr r4, r29
-/* 80047380 000442C0  4B FF FA 21 */	bl dEvent_manager_c_NS_closeProc
+/* 80047380 000442C0  4B FF FA 21 */	bl closeProc__16dEvent_manager_cFP12dEvDtEvent_c
 /* 80047384 000442C4  7F E3 FB 78 */	mr r3, r31
-/* 80047388 000442C8  4B FF B0 E1 */	bl dEvt_control_c_NS_reset
+/* 80047388 000442C8  4B FF B0 E1 */	bl reset__14dEvt_control_cFv
 /* 8004738C 000442CC  48 00 00 24 */	b lbl_800473B0
 lbl_80047390:
 /* 80047390 000442D0  80 1D 00 A4 */	lwz r0, 0xa4(r29)
@@ -1167,7 +1167,7 @@ lbl_80047390:
 /* 800473A0 000442E0  1C 00 00 24 */	mulli r0, r0, 0x24
 /* 800473A4 000442E4  7C 7E 02 14 */	add r3, r30, r0
 /* 800473A8 000442E8  7F A4 EB 78 */	mr r4, r29
-/* 800473AC 000442EC  4B FF EE E1 */	bl dEvDtBase_c_NS_advanceCut
+/* 800473AC 000442EC  4B FF EE E1 */	bl advanceCut__11dEvDtBase_cFP12dEvDtEvent_c
 lbl_800473B0:
 /* 800473B0 000442F0  80 7E 01 B8 */	lwz r3, 0x1b8(r30)
 /* 800473B4 000442F4  2C 03 00 00 */	cmpwi r3, 0
@@ -1191,15 +1191,15 @@ lbl_800473E4:
 /* 800473F4 00044334  38 21 00 70 */	addi r1, r1, 0x70
 /* 800473F8 00044338  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_Experts
-dEvent_manager_c_NS_Experts:
+.global Experts__16dEvent_manager_cFv
+Experts__16dEvent_manager_cFv:
 /* 800473FC 0004433C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047400 00044340  7C 08 02 A6 */	mflr r0
 /* 80047404 00044344  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80047408 00044348  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004740C 0004434C  7C 7F 1B 78 */	mr r31, r3
 /* 80047410 00044350  A8 83 01 AA */	lha r4, 0x1aa(r3)
-/* 80047414 00044354  48 00 00 A9 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80047414 00044354  48 00 00 A9 */	bl getEventData__16dEvent_manager_cFs
 /* 80047418 00044358  28 03 00 00 */	cmplwi r3, 0
 /* 8004741C 0004435C  41 82 00 24 */	beq lbl_80047440
 /* 80047420 00044360  80 03 00 A4 */	lwz r0, 0xa4(r3)
@@ -1209,7 +1209,7 @@ dEvent_manager_c_NS_Experts:
 /* 80047430 00044370  1C 00 00 24 */	mulli r0, r0, 0x24
 /* 80047434 00044374  7C 9F 02 14 */	add r4, r31, r0
 /* 80047438 00044378  80 84 00 08 */	lwz r4, 8(r4)
-/* 8004743C 0004437C  4B FF CB 35 */	bl dEvDtEvent_c_NS_specialStaffProc
+/* 8004743C 0004437C  4B FF CB 35 */	bl specialStaffProc__12dEvDtEvent_cFP12dEvDtStaff_c
 lbl_80047440:
 /* 80047440 00044380  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80047444 00044384  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1217,8 +1217,8 @@ lbl_80047440:
 /* 8004744C 0004438C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047450 00044390  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventData
-dEvent_manager_c_NS_getEventData:
+.global getEventData__16dEvent_manager_cFsi
+getEventData__16dEvent_manager_cFsi:
 /* 80047454 00044394  2C 05 00 00 */	cmpwi r5, 0
 /* 80047458 00044398  40 81 00 0C */	ble lbl_80047464
 /* 8004745C 0004439C  2C 05 00 0B */	cmpwi r5, 0xb
@@ -1252,8 +1252,8 @@ lbl_800474AC:
 /* 800474B4 000443F4  7C 63 02 14 */	add r3, r3, r0
 /* 800474B8 000443F8  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventData_X1_
-dEvent_manager_c_NS_getEventData_X1_:
+.global getEventData__16dEvent_manager_cFs
+getEventData__16dEvent_manager_cFs:
 /* 800474BC 000443FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800474C0 00044400  7C 08 02 A6 */	mflr r0
 /* 800474C4 00044404  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1273,15 +1273,15 @@ lbl_800474DC:
 /* 800474F8 00044438  54 80 06 3E */	clrlwi r0, r4, 0x18
 lbl_800474FC:
 /* 800474FC 0004443C  7C 04 03 78 */	mr r4, r0
-/* 80047500 00044440  4B FF FF 55 */	bl dEvent_manager_c_NS_getEventData
+/* 80047500 00044440  4B FF FF 55 */	bl getEventData__16dEvent_manager_cFsi
 lbl_80047504:
 /* 80047504 00044444  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80047508 00044448  7C 08 03 A6 */	mtlr r0
 /* 8004750C 0004444C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047510 00044450  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventIdx
-dEvent_manager_c_NS_getEventIdx:
+.global getEventIdx__16dEvent_manager_cFPCcUcl
+getEventIdx__16dEvent_manager_cFPCcUcl:
 /* 80047514 00044454  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80047518 00044458  7C 08 02 A6 */	mflr r0
 /* 8004751C 0004445C  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1301,7 +1301,7 @@ lbl_80047548:
 /* 80047550 00044490  41 82 00 84 */	beq lbl_800475D4
 /* 80047554 00044494  7F 03 C3 78 */	mr r3, r24
 /* 80047558 00044498  7F E4 FB 78 */	mr r4, r31
-/* 8004755C 0004449C  4B FF BF A5 */	bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 8004755C 0004449C  4B FF BF A5 */	bl searchMapEventData__14dEvt_control_cFUcl
 /* 80047560 000444A0  7C 64 1B 79 */	or. r4, r3, r3
 /* 80047564 000444A4  41 82 00 70 */	beq lbl_800475D4
 /* 80047568 000444A8  88 04 00 00 */	lbz r0, 0(r4)
@@ -1314,7 +1314,7 @@ lbl_80047548:
 /* 80047584 000444C4  38 84 00 0D */	addi r4, r4, 0xd
 /* 80047588 000444C8  38 A0 00 FF */	li r5, 0xff
 /* 8004758C 000444CC  7F E6 FB 78 */	mr r6, r31
-/* 80047590 000444D0  4B FF FF 85 */	bl dEvent_manager_c_NS_getEventIdx
+/* 80047590 000444D0  4B FF FF 85 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80047594 000444D4  48 00 00 EC */	b lbl_80047680
 lbl_80047598:
 /* 80047598 000444D8  3C 60 80 42 */	lis r3, lbl_804246A0@ha
@@ -1324,13 +1324,13 @@ lbl_80047598:
 /* 800475A8 000444E8  38 84 01 4F */	addi r4, r4, 0x14f
 /* 800475AC 000444EC  57 05 06 3E */	clrlwi r5, r24, 0x18
 /* 800475B0 000444F0  4C C6 31 82 */	crclr 6
-/* 800475B4 000444F4  48 31 EF 29 */	bl func_803664DC
+/* 800475B4 000444F4  48 31 EF 29 */	bl sprintf
 /* 800475B8 000444F8  7F A3 EB 78 */	mr r3, r29
 /* 800475BC 000444FC  3C 80 80 42 */	lis r4, lbl_804246A0@ha
 /* 800475C0 00044500  38 84 46 A0 */	addi r4, r4, lbl_804246A0@l
 /* 800475C4 00044504  38 A0 00 FF */	li r5, 0xff
 /* 800475C8 00044508  7F E6 FB 78 */	mr r6, r31
-/* 800475CC 0004450C  4B FF FF 49 */	bl dEvent_manager_c_NS_getEventIdx
+/* 800475CC 0004450C  4B FF FF 49 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 800475D0 00044510  48 00 00 B0 */	b lbl_80047680
 lbl_800475D4:
 /* 800475D4 00044514  28 1E 00 00 */	cmplwi r30, 0
@@ -1391,8 +1391,8 @@ lbl_80047680:
 /* 80047690 000445D0  38 21 00 30 */	addi r1, r1, 0x30
 /* 80047694 000445D4  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventIdx_X1_
-dEvent_manager_c_NS_getEventIdx_X1_:
+.global getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc
+getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc:
 /* 80047698 000445D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004769C 000445DC  7C 08 02 A6 */	mflr r0
 /* 800476A0 000445E0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1404,7 +1404,7 @@ dEvent_manager_c_NS_getEventIdx_X1_:
 /* 800476B8 000445F8  7F E3 FB 78 */	mr r3, r31
 /* 800476BC 000445FC  88 04 04 E2 */	lbz r0, 0x4e2(r4)
 /* 800476C0 00044600  7C 04 07 74 */	extsb r4, r0
-/* 800476C4 00044604  4B FF BE 3D */	bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 800476C4 00044604  4B FF BE 3D */	bl searchMapEventData__14dEvt_control_cFUcl
 /* 800476C8 00044608  7C 65 1B 79 */	or. r5, r3, r3
 /* 800476CC 0004460C  41 82 00 70 */	beq lbl_8004773C
 /* 800476D0 00044610  88 05 00 00 */	lbz r0, 0(r5)
@@ -1417,7 +1417,7 @@ dEvent_manager_c_NS_getEventIdx_X1_:
 /* 800476EC 0004462C  7F C4 F3 78 */	mr r4, r30
 /* 800476F0 00044630  38 A5 00 0D */	addi r5, r5, 0xd
 /* 800476F4 00044634  38 C0 00 FF */	li r6, 0xff
-/* 800476F8 00044638  48 00 00 61 */	bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 800476F8 00044638  48 00 00 61 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800476FC 0004463C  48 00 00 44 */	b lbl_80047740
 lbl_80047700:
 /* 80047700 00044640  3C 60 80 42 */	lis r3, lbl_804246B4@ha
@@ -1427,13 +1427,13 @@ lbl_80047700:
 /* 80047710 00044650  38 84 01 4F */	addi r4, r4, 0x14f
 /* 80047714 00044654  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 80047718 00044658  4C C6 31 82 */	crclr 6
-/* 8004771C 0004465C  48 31 ED C1 */	bl func_803664DC
+/* 8004771C 0004465C  48 31 ED C1 */	bl sprintf
 /* 80047720 00044660  7F A3 EB 78 */	mr r3, r29
 /* 80047724 00044664  7F C4 F3 78 */	mr r4, r30
 /* 80047728 00044668  3C A0 80 42 */	lis r5, lbl_804246B4@ha
 /* 8004772C 0004466C  38 A5 46 B4 */	addi r5, r5, lbl_804246B4@l
 /* 80047730 00044670  38 C0 00 FF */	li r6, 0xff
-/* 80047734 00044674  48 00 00 25 */	bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 80047734 00044674  48 00 00 25 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 80047738 00044678  48 00 00 08 */	b lbl_80047740
 lbl_8004773C:
 /* 8004773C 0004467C  38 60 FF FF */	li r3, -1
@@ -1445,8 +1445,8 @@ lbl_80047740:
 /* 80047750 00044690  38 21 00 20 */	addi r1, r1, 0x20
 /* 80047754 00044694  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventIdx_X2_
-dEvent_manager_c_NS_getEventIdx_X2_:
+.global getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
+getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc:
 /* 80047758 00044698  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8004775C 0004469C  7C 08 02 A6 */	mflr r0
 /* 80047760 000446A0  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1463,7 +1463,7 @@ dEvent_manager_c_NS_getEventIdx_X2_:
 /* 8004778C 000446CC  41 82 00 84 */	beq lbl_80047810
 /* 80047790 000446D0  7E C3 B3 78 */	mr r3, r22
 /* 80047794 000446D4  7F E4 FB 78 */	mr r4, r31
-/* 80047798 000446D8  4B FF BD 69 */	bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 80047798 000446D8  4B FF BD 69 */	bl searchMapEventData__14dEvt_control_cFUcl
 /* 8004779C 000446DC  7C 65 1B 79 */	or. r5, r3, r3
 /* 800477A0 000446E0  41 82 00 70 */	beq lbl_80047810
 /* 800477A4 000446E4  88 05 00 00 */	lbz r0, 0(r5)
@@ -1476,7 +1476,7 @@ dEvent_manager_c_NS_getEventIdx_X2_:
 /* 800477C0 00044700  7F 64 DB 78 */	mr r4, r27
 /* 800477C4 00044704  38 A5 00 0D */	addi r5, r5, 0xd
 /* 800477C8 00044708  38 C0 00 FF */	li r6, 0xff
-/* 800477CC 0004470C  4B FF FF 8D */	bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 800477CC 0004470C  4B FF FF 8D */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800477D0 00044710  48 00 01 48 */	b lbl_80047918
 lbl_800477D4:
 /* 800477D4 00044714  3C 60 80 42 */	lis r3, lbl_804246C8@ha
@@ -1486,13 +1486,13 @@ lbl_800477D4:
 /* 800477E4 00044724  38 84 01 4F */	addi r4, r4, 0x14f
 /* 800477E8 00044728  56 C5 06 3E */	clrlwi r5, r22, 0x18
 /* 800477EC 0004472C  4C C6 31 82 */	crclr 6
-/* 800477F0 00044730  48 31 EC ED */	bl func_803664DC
+/* 800477F0 00044730  48 31 EC ED */	bl sprintf
 /* 800477F4 00044734  7F 43 D3 78 */	mr r3, r26
 /* 800477F8 00044738  7F 64 DB 78 */	mr r4, r27
 /* 800477FC 0004473C  3C A0 80 42 */	lis r5, lbl_804246C8@ha
 /* 80047800 00044740  38 A5 46 C8 */	addi r5, r5, lbl_804246C8@l
 /* 80047804 00044744  38 C0 00 FF */	li r6, 0xff
-/* 80047808 00044748  4B FF FF 51 */	bl dEvent_manager_c_NS_getEventIdx_X2_
+/* 80047808 00044748  4B FF FF 51 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 8004780C 0004474C  48 00 01 0C */	b lbl_80047918
 lbl_80047810:
 /* 80047810 00044750  28 1C 00 00 */	cmplwi r28, 0
@@ -1510,7 +1510,7 @@ lbl_80047838:
 /* 80047838 00044778  7F 1A CA 14 */	add r24, r26, r25
 /* 8004783C 0004477C  7F 16 C3 78 */	mr r22, r24
 /* 80047840 00044780  38 61 00 08 */	addi r3, r1, 8
-/* 80047844 00044784  4B FF E8 F5 */	bl dEvDtBase_c_NS_init
+/* 80047844 00044784  4B FF E8 F5 */	bl init__11dEvDtBase_cFv
 /* 80047848 00044788  2C 1D 00 04 */	cmpwi r29, 4
 /* 8004784C 0004478C  41 80 00 18 */	blt lbl_80047864
 /* 80047850 00044790  2C 1D 00 09 */	cmpwi r29, 9
@@ -1530,11 +1530,11 @@ lbl_80047864:
 /* 80047884 000447C4  38 84 9F 50 */	addi r4, r4, lbl_80379F50@l
 /* 80047888 000447C8  7F C5 F3 78 */	mr r5, r30
 /* 8004788C 000447CC  38 C0 00 80 */	li r6, 0x80
-/* 80047890 000447D0  4B FF 4A ED */	bl dRes_control_c_NS_getRes_X1_
+/* 80047890 000447D0  4B FF 4A ED */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80047894 000447D4  7C 64 1B 78 */	mr r4, r3
 /* 80047898 000447D8  38 61 00 08 */	addi r3, r1, 8
 /* 8004789C 000447DC  38 A0 FF FF */	li r5, -1
-/* 800478A0 000447E0  4B FF E8 CD */	bl dEvDtBase_c_NS_init_X1_
+/* 800478A0 000447E0  4B FF E8 CD */	bl init__11dEvDtBase_cFPci
 /* 800478A4 000447E4  3A C1 00 08 */	addi r22, r1, 8
 lbl_800478A8:
 /* 800478A8 000447E8  80 16 00 00 */	lwz r0, 0(r22)
@@ -1586,7 +1586,7 @@ lbl_80047918:
 lbl_8004794C:
 /* 8004794C 0004488C  7C 83 23 78 */	mr r3, r4
 /* 80047950 00044890  7C A4 2B 78 */	mr r4, r5
-/* 80047954 00044894  4B FF BB AD */	bl dEvt_control_c_NS_searchMapEventData_X1_
+/* 80047954 00044894  4B FF BB AD */	bl searchMapEventData__14dEvt_control_cFUcl
 /* 80047958 00044898  28 03 00 00 */	cmplwi r3, 0
 /* 8004795C 0004489C  41 82 00 14 */	beq lbl_80047970
 /* 80047960 000448A0  88 03 00 00 */	lbz r0, 0(r3)
@@ -1601,8 +1601,8 @@ lbl_80047974:
 /* 8004797C 000448BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047980 000448C0  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_order
-dEvent_manager_c_NS_order:
+.global order__16dEvent_manager_cFs
+order__16dEvent_manager_cFs:
 /* 80047984 000448C4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047988 000448C8  7C 08 02 A6 */	mflr r0
 /* 8004798C 000448CC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1610,7 +1610,7 @@ dEvent_manager_c_NS_order:
 /* 80047994 000448D4  93 C1 00 08 */	stw r30, 8(r1)
 /* 80047998 000448D8  7C 7E 1B 78 */	mr r30, r3
 /* 8004799C 000448DC  7C 9F 23 78 */	mr r31, r4
-/* 800479A0 000448E0  4B FF FB 1D */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 800479A0 000448E0  4B FF FB 1D */	bl getEventData__16dEvent_manager_cFs
 /* 800479A4 000448E4  7C 64 1B 79 */	or. r4, r3, r3
 /* 800479A8 000448E8  40 82 00 0C */	bne lbl_800479B4
 /* 800479AC 000448EC  38 60 00 00 */	li r3, 0
@@ -1625,7 +1625,7 @@ lbl_800479B4:
 /* 800479CC 0004490C  90 1E 01 B4 */	stw r0, 0x1b4(r30)
 /* 800479D0 00044910  B3 FE 01 AA */	sth r31, 0x1aa(r30)
 /* 800479D4 00044914  7F C3 F3 78 */	mr r3, r30
-/* 800479D8 00044918  4B FF F2 E1 */	bl dEvent_manager_c_NS_startProc
+/* 800479D8 00044918  4B FF F2 E1 */	bl startProc__16dEvent_manager_cFP12dEvDtEvent_c
 /* 800479DC 0004491C  38 60 00 01 */	li r3, 1
 lbl_800479E0:
 /* 800479E0 00044920  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1635,12 +1635,12 @@ lbl_800479E0:
 /* 800479F0 00044930  38 21 00 10 */	addi r1, r1, 0x10
 /* 800479F4 00044934  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_startCheck
-dEvent_manager_c_NS_startCheck:
+.global startCheck__16dEvent_manager_cFs
+startCheck__16dEvent_manager_cFs:
 /* 800479F8 00044938  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800479FC 0004493C  7C 08 02 A6 */	mflr r0
 /* 80047A00 00044940  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80047A04 00044944  4B FF FA B9 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80047A04 00044944  4B FF FA B9 */	bl getEventData__16dEvent_manager_cFs
 /* 80047A08 00044948  28 03 00 00 */	cmplwi r3, 0
 /* 80047A0C 0004494C  40 82 00 0C */	bne lbl_80047A18
 /* 80047A10 00044950  38 60 00 00 */	li r3, 0
@@ -1656,8 +1656,8 @@ lbl_80047A28:
 /* 80047A30 00044970  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047A34 00044974  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_startCheckOld
-dEvent_manager_c_NS_startCheckOld:
+.global startCheckOld__16dEvent_manager_cFPCc
+startCheckOld__16dEvent_manager_cFPCc:
 /* 80047A38 00044978  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047A3C 0004497C  7C 08 02 A6 */	mflr r0
 /* 80047A40 00044980  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1665,18 +1665,18 @@ dEvent_manager_c_NS_startCheckOld:
 /* 80047A48 00044988  7C 7F 1B 78 */	mr r31, r3
 /* 80047A4C 0004498C  38 A0 00 FF */	li r5, 0xff
 /* 80047A50 00044990  38 C0 FF FF */	li r6, -1
-/* 80047A54 00044994  4B FF FA C1 */	bl dEvent_manager_c_NS_getEventIdx
+/* 80047A54 00044994  4B FF FA C1 */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80047A58 00044998  7C 64 1B 78 */	mr r4, r3
 /* 80047A5C 0004499C  7F E3 FB 78 */	mr r3, r31
-/* 80047A60 000449A0  4B FF FF 99 */	bl dEvent_manager_c_NS_startCheck
+/* 80047A60 000449A0  4B FF FF 99 */	bl startCheck__16dEvent_manager_cFs
 /* 80047A64 000449A4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80047A68 000449A8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80047A6C 000449AC  7C 08 03 A6 */	mtlr r0
 /* 80047A70 000449B0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047A74 000449B4  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_endCheck
-dEvent_manager_c_NS_endCheck:
+.global endCheck__16dEvent_manager_cFs
+endCheck__16dEvent_manager_cFs:
 /* 80047A78 000449B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047A7C 000449BC  7C 08 02 A6 */	mflr r0
 /* 80047A80 000449C0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1685,10 +1685,10 @@ dEvent_manager_c_NS_endCheck:
 /* 80047A8C 000449CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80047A90 000449D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80047A94 000449D4  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80047A98 000449D8  4B FF BB 75 */	bl dEvt_control_c_NS_runningEventID
+/* 80047A98 000449D8  4B FF BB 75 */	bl runningEventID__14dEvt_control_cFs
 /* 80047A9C 000449DC  7C 64 1B 78 */	mr r4, r3
 /* 80047AA0 000449E0  7F E3 FB 78 */	mr r3, r31
-/* 80047AA4 000449E4  4B FF FA 19 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80047AA4 000449E4  4B FF FA 19 */	bl getEventData__16dEvent_manager_cFs
 /* 80047AA8 000449E8  28 03 00 00 */	cmplwi r3, 0
 /* 80047AAC 000449EC  40 82 00 0C */	bne lbl_80047AB8
 /* 80047AB0 000449F0  38 60 00 00 */	li r3, 0
@@ -1705,8 +1705,8 @@ lbl_80047AC8:
 /* 80047AD4 00044A14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047AD8 00044A18  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_endCheckOld
-dEvent_manager_c_NS_endCheckOld:
+.global endCheckOld__16dEvent_manager_cFPCc
+endCheckOld__16dEvent_manager_cFPCc:
 /* 80047ADC 00044A1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80047AE0 00044A20  7C 08 02 A6 */	mflr r0
 /* 80047AE4 00044A24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1714,18 +1714,18 @@ dEvent_manager_c_NS_endCheckOld:
 /* 80047AEC 00044A2C  7C 7F 1B 78 */	mr r31, r3
 /* 80047AF0 00044A30  38 A0 00 FF */	li r5, 0xff
 /* 80047AF4 00044A34  38 C0 FF FF */	li r6, -1
-/* 80047AF8 00044A38  4B FF FA 1D */	bl dEvent_manager_c_NS_getEventIdx
+/* 80047AF8 00044A38  4B FF FA 1D */	bl getEventIdx__16dEvent_manager_cFPCcUcl
 /* 80047AFC 00044A3C  7C 64 1B 78 */	mr r4, r3
 /* 80047B00 00044A40  7F E3 FB 78 */	mr r3, r31
-/* 80047B04 00044A44  4B FF FF 75 */	bl dEvent_manager_c_NS_endCheck
+/* 80047B04 00044A44  4B FF FF 75 */	bl endCheck__16dEvent_manager_cFs
 /* 80047B08 00044A48  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80047B0C 00044A4C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80047B10 00044A50  7C 08 03 A6 */	mtlr r0
 /* 80047B14 00044A54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80047B18 00044A58  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMyStaffId
-dEvent_manager_c_NS_getMyStaffId:
+.global getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci:
 /* 80047B1C 00044A5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80047B20 00044A60  7C 08 02 A6 */	mflr r0
 /* 80047B24 00044A64  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1756,7 +1756,7 @@ lbl_80047B70:
 /* 80047B80 00044AC0  48 00 01 B4 */	b lbl_80047D34
 lbl_80047B84:
 /* 80047B84 00044AC4  7E A3 AB 78 */	mr r3, r21
-/* 80047B88 00044AC8  4B FF F9 35 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80047B88 00044AC8  4B FF F9 35 */	bl getEventData__16dEvent_manager_cFs
 /* 80047B8C 00044ACC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80047B90 00044AD0  41 82 01 A0 */	beq lbl_80047D30
 /* 80047B94 00044AD4  80 1F 00 A4 */	lwz r0, 0xa4(r31)
@@ -1887,8 +1887,8 @@ lbl_80047D34:
 /* 80047D44 00044C84  38 21 00 50 */	addi r1, r1, 0x50
 /* 80047D48 00044C88  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getIsAddvance
-dEvent_manager_c_NS_getIsAddvance:
+.global getIsAddvance__16dEvent_manager_cFi
+getIsAddvance__16dEvent_manager_cFi:
 /* 80047D4C 00044C8C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
 /* 80047D50 00044C90  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
 /* 80047D54 00044C94  88 05 4F AC */	lbz r0, 0x4fac(r5)
@@ -1917,8 +1917,8 @@ lbl_80047D8C:
 /* 80047DA4 00044CE4  88 63 00 40 */	lbz r3, 0x40(r3)
 /* 80047DA8 00044CE8  4E 80 00 20 */	blr 
 
-.global dEvmng_strcmp
-dEvmng_strcmp:
+.global dEvmng_strcmp__FPCcPc
+dEvmng_strcmp__FPCcPc:
 /* 80047DAC 00044CEC  38 E0 00 00 */	li r7, 0
 /* 80047DB0 00044CF0  48 00 00 4C */	b lbl_80047DFC
 lbl_80047DB4:
@@ -1950,8 +1950,8 @@ lbl_80047DFC:
 /* 80047E08 00044D48  38 60 00 00 */	li r3, 0
 /* 80047E0C 00044D4C  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMyActIdx
-dEvent_manager_c_NS_getMyActIdx:
+.global getMyActIdx__16dEvent_manager_cFiPCPCciii
+getMyActIdx__16dEvent_manager_cFiPCPCciii:
 /* 80047E10 00044D50  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80047E14 00044D54  7C 08 02 A6 */	mflr r0
 /* 80047E18 00044D58  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1997,7 +1997,7 @@ lbl_80047EA8:
 /* 80047EA8 00044DE8  38 60 FF FF */	li r3, -1
 /* 80047EAC 00044DEC  48 00 00 98 */	b lbl_80047F44
 lbl_80047EB0:
-/* 80047EB0 00044DF0  48 00 00 AD */	bl dEvent_manager_c_NS_getMyNowCutName
+/* 80047EB0 00044DF0  48 00 00 AD */	bl getMyNowCutName__16dEvent_manager_cFi
 /* 80047EB4 00044DF4  7C 79 1B 79 */	or. r25, r3, r3
 /* 80047EB8 00044DF8  40 82 00 14 */	bne lbl_80047ECC
 /* 80047EBC 00044DFC  38 00 FF FF */	li r0, -1
@@ -2015,7 +2015,7 @@ lbl_80047EE0:
 /* 80047EE4 00044E24  41 82 00 24 */	beq lbl_80047F08
 /* 80047EE8 00044E28  7C 7D E0 2E */	lwzx r3, r29, r28
 /* 80047EEC 00044E2C  7F 24 CB 78 */	mr r4, r25
-/* 80047EF0 00044E30  4B FF FE BD */	bl dEvmng_strcmp
+/* 80047EF0 00044E30  4B FF FE BD */	bl dEvmng_strcmp__FPCcPc
 /* 80047EF4 00044E34  2C 03 00 00 */	cmpwi r3, 0
 /* 80047EF8 00044E38  40 82 00 30 */	bne lbl_80047F28
 /* 80047EFC 00044E3C  93 5B 00 3C */	stw r26, 0x3c(r27)
@@ -2047,8 +2047,8 @@ lbl_80047F44:
 /* 80047F54 00044E94  38 21 00 30 */	addi r1, r1, 0x30
 /* 80047F58 00044E98  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMyNowCutName
-dEvent_manager_c_NS_getMyNowCutName:
+.global getMyNowCutName__16dEvent_manager_cFi
+getMyNowCutName__16dEvent_manager_cFi:
 /* 80047F5C 00044E9C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
 /* 80047F60 00044EA0  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
 /* 80047F64 00044EA4  88 05 4F AC */	lbz r0, 0x4fac(r5)
@@ -2080,8 +2080,8 @@ lbl_80047F9C:
 /* 80047FC0 00044F00  7C 63 02 14 */	add r3, r3, r0
 /* 80047FC4 00044F04  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMyDataP
-dEvent_manager_c_NS_getMyDataP:
+.global getMyDataP__16dEvent_manager_cFiPCci
+getMyDataP__16dEvent_manager_cFiPCci:
 /* 80047FC8 00044F08  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80047FCC 00044F0C  7C 08 02 A6 */	mflr r0
 /* 80047FD0 00044F10  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2165,8 +2165,8 @@ lbl_800480D4:
 /* 800480E4 00045024  38 21 00 20 */	addi r1, r1, 0x20
 /* 800480E8 00045028  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMySubstanceP
-dEvent_manager_c_NS_getMySubstanceP:
+.global getMySubstanceP__16dEvent_manager_cFiPCci
+getMySubstanceP__16dEvent_manager_cFiPCci:
 /* 800480EC 0004502C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800480F0 00045030  7C 08 02 A6 */	mflr r0
 /* 800480F4 00045034  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2175,7 +2175,7 @@ dEvent_manager_c_NS_getMySubstanceP:
 /* 80048100 00045040  7C 7E 1B 78 */	mr r30, r3
 /* 80048104 00045044  7C DF 33 78 */	mr r31, r6
 /* 80048108 00045048  38 C0 00 00 */	li r6, 0
-/* 8004810C 0004504C  4B FF FE BD */	bl dEvent_manager_c_NS_getMyDataP
+/* 8004810C 0004504C  4B FF FE BD */	bl getMyDataP__16dEvent_manager_cFiPCci
 /* 80048110 00045050  7C 64 1B 79 */	or. r4, r3, r3
 /* 80048114 00045054  40 82 00 0C */	bne lbl_80048120
 /* 80048118 00045058  38 60 00 00 */	li r3, 0
@@ -2183,7 +2183,7 @@ dEvent_manager_c_NS_getMySubstanceP:
 lbl_80048120:
 /* 80048120 00045060  7F C3 F3 78 */	mr r3, r30
 /* 80048124 00045064  7F E5 FB 78 */	mr r5, r31
-/* 80048128 00045068  4B FF E4 C1 */	bl dEvent_manager_c_NS_getSubstance
+/* 80048128 00045068  4B FF E4 C1 */	bl getSubstance__16dEvent_manager_cFP11dEvDtData_ci
 lbl_8004812C:
 /* 8004812C 0004506C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80048130 00045070  83 C1 00 08 */	lwz r30, 8(r1)
@@ -2192,13 +2192,13 @@ lbl_8004812C:
 /* 8004813C 0004507C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048140 00045080  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getMySubstanceNum
-dEvent_manager_c_NS_getMySubstanceNum:
+.global getMySubstanceNum__16dEvent_manager_cFiPCc
+getMySubstanceNum__16dEvent_manager_cFiPCc:
 /* 80048144 00045084  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048148 00045088  7C 08 02 A6 */	mflr r0
 /* 8004814C 0004508C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80048150 00045090  38 C0 00 00 */	li r6, 0
-/* 80048154 00045094  4B FF FE 75 */	bl dEvent_manager_c_NS_getMyDataP
+/* 80048154 00045094  4B FF FE 75 */	bl getMyDataP__16dEvent_manager_cFiPCci
 /* 80048158 00045098  28 03 00 00 */	cmplwi r3, 0
 /* 8004815C 0004509C  40 82 00 0C */	bne lbl_80048168
 /* 80048160 000450A0  38 60 00 00 */	li r3, 0
@@ -2211,8 +2211,8 @@ lbl_8004816C:
 /* 80048174 000450B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048178 000450B8  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_cutEnd
-dEvent_manager_c_NS_cutEnd:
+.global cutEnd__16dEvent_manager_cFi
+cutEnd__16dEvent_manager_cFi:
 /* 8004817C 000450BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80048180 000450C0  7C 08 02 A6 */	mflr r0
 /* 80048184 000450C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2238,15 +2238,15 @@ dEvent_manager_c_NS_cutEnd:
 /* 800481D4 00045114  7C 84 02 14 */	add r4, r4, r0
 /* 800481D8 00045118  38 63 01 BC */	addi r3, r3, 0x1bc
 /* 800481DC 0004511C  80 84 00 34 */	lwz r4, 0x34(r4)
-/* 800481E0 00045120  4B FF BB E9 */	bl dEvDtFlag_c_NS_flagSet
+/* 800481E0 00045120  4B FF BB E9 */	bl flagSet__11dEvDtFlag_cFi
 lbl_800481E4:
 /* 800481E4 00045124  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800481E8 00045128  7C 08 03 A6 */	mtlr r0
 /* 800481EC 0004512C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800481F0 00045130  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getEventPrio
-dEvent_manager_c_NS_getEventPrio:
+.global getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs
+getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs:
 /* 800481F4 00045134  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 800481F8 00045138  7C 08 02 A6 */	mflr r0
 /* 800481FC 0004513C  90 01 00 44 */	stw r0, 0x44(r1)
@@ -2257,7 +2257,7 @@ dEvent_manager_c_NS_getEventPrio:
 /* 80048210 00045150  7C BE 2B 78 */	mr r30, r5
 /* 80048214 00045154  3B E0 00 00 */	li r31, 0
 /* 80048218 00045158  38 61 00 08 */	addi r3, r1, 8
-/* 8004821C 0004515C  4B FF DF 1D */	bl dEvDtBase_c_NS_init
+/* 8004821C 0004515C  4B FF DF 1D */	bl init__11dEvDtBase_cFv
 /* 80048220 00045160  7F C4 07 34 */	extsh r4, r30
 /* 80048224 00045164  38 04 00 01 */	addi r0, r4, 1
 /* 80048228 00045168  30 00 FF FF */	addic r0, r0, -1
@@ -2278,18 +2278,18 @@ dEvent_manager_c_NS_getEventPrio:
 /* 80048264 000451A4  3C A5 00 02 */	addis r5, r5, 2
 /* 80048268 000451A8  38 C0 00 80 */	li r6, 0x80
 /* 8004826C 000451AC  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80048270 000451B0  4B FF 41 0D */	bl dRes_control_c_NS_getRes_X1_
+/* 80048270 000451B0  4B FF 41 0D */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80048274 000451B4  7C 64 1B 78 */	mr r4, r3
 /* 80048278 000451B8  38 61 00 08 */	addi r3, r1, 8
 /* 8004827C 000451BC  38 A0 FF FF */	li r5, -1
-/* 80048280 000451C0  4B FF DE ED */	bl dEvDtBase_c_NS_init_X1_
+/* 80048280 000451C0  4B FF DE ED */	bl init__11dEvDtBase_cFPci
 /* 80048284 000451C4  83 E1 00 0C */	lwz r31, 0xc(r1)
 lbl_80048288:
 /* 80048288 000451C8  28 1F 00 00 */	cmplwi r31, 0
 /* 8004828C 000451CC  40 82 00 14 */	bne lbl_800482A0
 /* 80048290 000451D0  7F 83 E3 78 */	mr r3, r28
 /* 80048294 000451D4  7F C4 F3 78 */	mr r4, r30
-/* 80048298 000451D8  4B FF F2 25 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80048298 000451D8  4B FF F2 25 */	bl getEventData__16dEvent_manager_cFs
 /* 8004829C 000451DC  7C 7F 1B 78 */	mr r31, r3
 lbl_800482A0:
 /* 800482A0 000451E0  28 1F 00 00 */	cmplwi r31, 0
@@ -2306,8 +2306,8 @@ lbl_800482B4:
 /* 800482C4 00045204  38 21 00 40 */	addi r1, r1, 0x40
 /* 800482C8 00045208  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_issueStaff
-dEvent_manager_c_NS_issueStaff:
+.global issueStaff__16dEvent_manager_cFPCc
+issueStaff__16dEvent_manager_cFPCc:
 /* 800482CC 0004520C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 800482D0 00045210  7C 08 02 A6 */	mflr r0
 /* 800482D4 00045214  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2320,10 +2320,10 @@ dEvent_manager_c_NS_issueStaff:
 /* 800482F0 00045230  48 32 06 A5 */	bl strcmp
 /* 800482F4 00045234  2C 03 00 00 */	cmpwi r3, 0
 /* 800482F8 00045238  40 82 00 18 */	bne lbl_80048310
-.global extraOnObjectCallBack
-/* 800482FC 0004523C  3C 60 80 04 */	lis r3, extraOnObjectCallBack@ha
-.global extraOnObjectCallBack
-/* 80048300 00045240  38 63 6C 74 */	addi r3, r3, extraOnObjectCallBack@l
+.global extraOnObjectCallBack__FP10fopAc_ac_cPv
+/* 800482FC 0004523C  3C 60 80 04 */	lis r3, extraOnObjectCallBack__FP10fopAc_ac_cPv@ha
+.global extraOnObjectCallBack__FP10fopAc_ac_cPv
+/* 80048300 00045240  38 63 6C 74 */	addi r3, r3, extraOnObjectCallBack__FP10fopAc_ac_cPv@l
 /* 80048304 00045244  38 80 00 00 */	li r4, 0
 /* 80048308 00045248  4B FD 14 F1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8004830C 0004524C  48 00 00 28 */	b lbl_80048334
@@ -2344,8 +2344,8 @@ lbl_80048334:
 /* 80048340 00045280  38 21 00 30 */	addi r1, r1, 0x30
 /* 80048344 00045284  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_cancelStaff
-dEvent_manager_c_NS_cancelStaff:
+.global cancelStaff__16dEvent_manager_cFPCc
+cancelStaff__16dEvent_manager_cFPCc:
 /* 80048348 00045288  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004834C 0004528C  7C 08 02 A6 */	mflr r0
 /* 80048350 00045290  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2358,10 +2358,10 @@ dEvent_manager_c_NS_cancelStaff:
 /* 8004836C 000452AC  48 32 06 29 */	bl strcmp
 /* 80048370 000452B0  2C 03 00 00 */	cmpwi r3, 0
 /* 80048374 000452B4  40 82 00 18 */	bne lbl_8004838C
-.global extraOffObjectCallBack
-/* 80048378 000452B8  3C 60 80 04 */	lis r3, extraOffObjectCallBack@ha
-.global extraOffObjectCallBack
-/* 8004837C 000452BC  38 63 6C 88 */	addi r3, r3, extraOffObjectCallBack@l
+.global extraOffObjectCallBack__FP10fopAc_ac_cPv
+/* 80048378 000452B8  3C 60 80 04 */	lis r3, extraOffObjectCallBack__FP10fopAc_ac_cPv@ha
+.global extraOffObjectCallBack__FP10fopAc_ac_cPv
+/* 8004837C 000452BC  38 63 6C 88 */	addi r3, r3, extraOffObjectCallBack__FP10fopAc_ac_cPv@l
 /* 80048380 000452C0  38 80 00 00 */	li r4, 0
 /* 80048384 000452C4  4B FD 14 75 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80048388 000452C8  48 00 00 28 */	b lbl_800483B0
@@ -2382,8 +2382,8 @@ lbl_800483B0:
 /* 800483BC 000452FC  38 21 00 30 */	addi r1, r1, 0x30
 /* 800483C0 00045300  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_setGoal
-dEvent_manager_c_NS_setGoal:
+.global setGoal__16dEvent_manager_cFP4cXyz
+setGoal__16dEvent_manager_cFP4cXyz:
 /* 800483C4 00045304  C0 04 00 00 */	lfs f0, 0(r4)
 /* 800483C8 00045308  D0 03 01 9C */	stfs f0, 0x19c(r3)
 /* 800483CC 0004530C  C0 04 00 04 */	lfs f0, 4(r4)
@@ -2392,13 +2392,13 @@ dEvent_manager_c_NS_setGoal:
 /* 800483D8 00045318  D0 03 01 A4 */	stfs f0, 0x1a4(r3)
 /* 800483DC 0004531C  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getGoal
-dEvent_manager_c_NS_getGoal:
+.global getGoal__16dEvent_manager_cFv
+getGoal__16dEvent_manager_cFv:
 /* 800483E0 00045320  38 63 01 9C */	addi r3, r3, 0x19c
 /* 800483E4 00045324  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_getRunEventName
-dEvent_manager_c_NS_getRunEventName:
+.global getRunEventName__16dEvent_manager_cFv
+getRunEventName__16dEvent_manager_cFv:
 /* 800483E8 00045328  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800483EC 0004532C  7C 08 02 A6 */	mflr r0
 /* 800483F0 00045330  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2420,7 +2420,7 @@ lbl_80048410:
 /* 8004842C 0004536C  38 63 01 6A */	addi r3, r3, 0x16a
 /* 80048430 00045370  48 00 00 2C */	b lbl_8004845C
 lbl_80048434:
-/* 80048434 00045374  4B FF F0 89 */	bl dEvent_manager_c_NS_getEventData_X1_
+/* 80048434 00045374  4B FF F0 89 */	bl getEventData__16dEvent_manager_cFs
 /* 80048438 00045378  28 03 00 00 */	cmplwi r3, 0
 /* 8004843C 0004537C  41 82 00 14 */	beq lbl_80048450
 /* 80048440 00045380  80 03 00 A4 */	lwz r0, 0xa4(r3)
@@ -2436,8 +2436,8 @@ lbl_8004845C:
 /* 80048460 000453A0  7C 08 03 A6 */	mtlr r0
 /* 80048464 000453A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048468 000453A8  4E 80 00 20 */	blr 
-.global findShutterCallBack
-findShutterCallBack:
+.global findShutterCallBack__FP10fopAc_ac_cPv
+findShutterCallBack__FP10fopAc_ac_cPv:
 /* 8004846C 000453AC  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80048470 000453B0  7C 08 02 A6 */	mflr r0
 /* 80048474 000453B4  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2487,8 +2487,8 @@ lbl_8004850C:
 /* 80048518 00045458  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004851C 0004545C  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_specialCast_Shutter
-dEvent_manager_c_NS_specialCast_Shutter:
+.global specialCast_Shutter__16dEvent_manager_cFsi
+specialCast_Shutter__16dEvent_manager_cFsi:
 /* 80048520 00045460  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80048524 00045464  7C 08 02 A6 */	mflr r0
 /* 80048528 00045468  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2501,10 +2501,10 @@ dEvent_manager_c_NS_specialCast_Shutter:
 /* 80048544 00045484  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80048548 00045488  80 03 5D AC */	lwz r0, 0x5dac(r3)
 /* 8004854C 0004548C  90 01 00 0C */	stw r0, 0xc(r1)
-.global findShutterCallBack
-/* 80048550 00045490  3C 60 80 05 */	lis r3, findShutterCallBack@ha
-.global findShutterCallBack
-/* 80048554 00045494  38 63 84 6C */	addi r3, r3, findShutterCallBack@l
+.global findShutterCallBack__FP10fopAc_ac_cPv
+/* 80048550 00045490  3C 60 80 05 */	lis r3, findShutterCallBack__FP10fopAc_ac_cPv@ha
+.global findShutterCallBack__FP10fopAc_ac_cPv
+/* 80048554 00045494  38 63 84 6C */	addi r3, r3, findShutterCallBack__FP10fopAc_ac_cPv@l
 /* 80048558 00045498  38 81 00 08 */	addi r4, r1, 8
 /* 8004855C 0004549C  4B FD 12 9D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80048560 000454A0  7C 7E 1B 79 */	or. r30, r3, r3
@@ -2536,16 +2536,16 @@ dEvent_manager_c_NS_specialCast_Shutter:
 /* 800485C8 00045508  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 800485CC 0004550C  7F E3 FB 78 */	mr r3, r31
 /* 800485D0 00045510  38 81 00 10 */	addi r4, r1, 0x10
-/* 800485D4 00045514  4B FF FD F1 */	bl dEvent_manager_c_NS_setGoal
+/* 800485D4 00045514  4B FF FD F1 */	bl setGoal__16dEvent_manager_cFP4cXyz
 /* 800485D8 00045518  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 800485DC 0004551C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 800485E0 00045520  3B E3 4E C8 */	addi r31, r3, 0x4ec8
 /* 800485E4 00045524  7F E3 FB 78 */	mr r3, r31
 /* 800485E8 00045528  7F C4 F3 78 */	mr r4, r30
-/* 800485EC 0004552C  4B FF B0 71 */	bl dEvt_control_c_NS_setPt2
+/* 800485EC 0004552C  4B FF B0 71 */	bl setPt2__14dEvt_control_cFPv
 /* 800485F0 00045530  7F E3 FB 78 */	mr r3, r31
 /* 800485F4 00045534  7F C4 F3 78 */	mr r4, r30
-/* 800485F8 00045538  4B FF B0 FD */	bl dEvt_control_c_NS_setPtD
+/* 800485F8 00045538  4B FF B0 FD */	bl setPtD__14dEvt_control_cFPv
 lbl_800485FC:
 /* 800485FC 0004553C  7F C3 F3 78 */	mr r3, r30
 /* 80048600 00045540  39 61 00 30 */	addi r11, r1, 0x30
@@ -2555,8 +2555,8 @@ lbl_800485FC:
 /* 80048610 00045550  38 21 00 30 */	addi r1, r1, 0x30
 /* 80048614 00045554  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_specialCast
-dEvent_manager_c_NS_specialCast:
+.global specialCast__16dEvent_manager_cFPCci
+specialCast__16dEvent_manager_cFPCci:
 /* 80048618 00045558  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004861C 0004555C  7C 08 02 A6 */	mflr r0
 /* 80048620 00045560  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2580,13 +2580,13 @@ lbl_80048648:
 /* 80048664 000455A4  7F A3 EB 78 */	mr r3, r29
 /* 80048668 000455A8  38 80 02 26 */	li r4, 0x226
 /* 8004866C 000455AC  7F C5 F3 78 */	mr r5, r30
-/* 80048670 000455B0  4B FF FE B1 */	bl dEvent_manager_c_NS_specialCast_Shutter
+/* 80048670 000455B0  4B FF FE B1 */	bl specialCast_Shutter__16dEvent_manager_cFsi
 /* 80048674 000455B4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80048678 000455B8  40 82 00 18 */	bne lbl_80048690
 /* 8004867C 000455BC  7F A3 EB 78 */	mr r3, r29
 /* 80048680 000455C0  38 80 02 28 */	li r4, 0x228
 /* 80048684 000455C4  7F C5 F3 78 */	mr r5, r30
-/* 80048688 000455C8  4B FF FE 99 */	bl dEvent_manager_c_NS_specialCast_Shutter
+/* 80048688 000455C8  4B FF FE 99 */	bl specialCast_Shutter__16dEvent_manager_cFsi
 /* 8004868C 000455CC  7C 7F 1B 78 */	mr r31, r3
 lbl_80048690:
 /* 80048690 000455D0  28 1F 00 00 */	cmplwi r31, 0
@@ -2594,7 +2594,7 @@ lbl_80048690:
 /* 80048698 000455D8  7F A3 EB 78 */	mr r3, r29
 /* 8004869C 000455DC  38 80 02 29 */	li r4, 0x229
 /* 800486A0 000455E0  7F C5 F3 78 */	mr r5, r30
-/* 800486A4 000455E4  4B FF FE 7D */	bl dEvent_manager_c_NS_specialCast_Shutter
+/* 800486A4 000455E4  4B FF FE 7D */	bl specialCast_Shutter__16dEvent_manager_cFsi
 /* 800486A8 000455E8  7C 7F 1B 78 */	mr r31, r3
 lbl_800486AC:
 /* 800486AC 000455EC  28 1F 00 00 */	cmplwi r31, 0
@@ -2602,7 +2602,7 @@ lbl_800486AC:
 /* 800486B4 000455F4  7F A3 EB 78 */	mr r3, r29
 /* 800486B8 000455F8  38 80 02 2A */	li r4, 0x22a
 /* 800486BC 000455FC  7F C5 F3 78 */	mr r5, r30
-/* 800486C0 00045600  4B FF FE 61 */	bl dEvent_manager_c_NS_specialCast_Shutter
+/* 800486C0 00045600  4B FF FE 61 */	bl specialCast_Shutter__16dEvent_manager_cFsi
 /* 800486C4 00045604  7C 7F 1B 78 */	mr r31, r3
 lbl_800486C8:
 /* 800486C8 00045608  28 1F 00 00 */	cmplwi r31, 0
@@ -2610,7 +2610,7 @@ lbl_800486C8:
 /* 800486D0 00045610  7F A3 EB 78 */	mr r3, r29
 /* 800486D4 00045614  38 80 02 2B */	li r4, 0x22b
 /* 800486D8 00045618  7F C5 F3 78 */	mr r5, r30
-/* 800486DC 0004561C  4B FF FE 45 */	bl dEvent_manager_c_NS_specialCast_Shutter
+/* 800486DC 0004561C  4B FF FE 45 */	bl specialCast_Shutter__16dEvent_manager_cFsi
 /* 800486E0 00045620  7C 7F 1B 78 */	mr r31, r3
 lbl_800486E4:
 /* 800486E4 00045624  28 1F 00 00 */	cmplwi r31, 0
@@ -2643,8 +2643,8 @@ lbl_80048730:
 /* 80048740 00045680  38 21 00 20 */	addi r1, r1, 0x20
 /* 80048744 00045684  4E 80 00 20 */	blr 
 
-.global dEv_talkman_get_action
-dEv_talkman_get_action:
+.global dEv_talkman_get_action__Fi
+dEv_talkman_get_action__Fi:
 /* 80048748 00045688  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8004874C 0004568C  7C 08 02 A6 */	mflr r0
 /* 80048750 00045690  90 01 00 24 */	stw r0, 0x24(r1)
@@ -2660,7 +2660,7 @@ dEv_talkman_get_action:
 /* 80048778 000456B8  38 84 01 9C */	addi r4, r4, 0x19c
 /* 8004877C 000456BC  38 A0 00 00 */	li r5, 0
 /* 80048780 000456C0  38 C0 FF FF */	li r6, -1
-/* 80048784 000456C4  4B FF F3 99 */	bl dEvent_manager_c_NS_getMyStaffId
+/* 80048784 000456C4  4B FF F3 99 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 80048788 000456C8  7C 7E 1B 78 */	mr r30, r3
 /* 8004878C 000456CC  2C 1E FF FF */	cmpwi r30, -1
 /* 80048790 000456D0  40 82 00 0C */	bne lbl_8004879C
@@ -2674,13 +2674,13 @@ lbl_8004879C:
 /* 800487AC 000456EC  38 C0 00 03 */	li r6, 3
 /* 800487B0 000456F0  38 E0 00 00 */	li r7, 0
 /* 800487B4 000456F4  39 00 00 00 */	li r8, 0
-/* 800487B8 000456F8  4B FF F6 59 */	bl dEvent_manager_c_NS_getMyActIdx
+/* 800487B8 000456F8  4B FF F6 59 */	bl getMyActIdx__16dEvent_manager_cFiPCPCciii
 /* 800487BC 000456FC  7C 7D 1B 78 */	mr r29, r3
 /* 800487C0 00045700  7C 1D E0 00 */	cmpw r29, r28
 /* 800487C4 00045704  40 82 00 10 */	bne lbl_800487D4
 /* 800487C8 00045708  7F E3 FB 78 */	mr r3, r31
 /* 800487CC 0004570C  7F C4 F3 78 */	mr r4, r30
-/* 800487D0 00045710  4B FF F9 AD */	bl dEvent_manager_c_NS_cutEnd
+/* 800487D0 00045710  4B FF F9 AD */	bl cutEnd__16dEvent_manager_cFi
 lbl_800487D4:
 /* 800487D4 00045714  7F A3 EB 78 */	mr r3, r29
 lbl_800487D8:
@@ -2694,7 +2694,7 @@ lbl_800487D8:
 /* 800487F4 00045734  7C 08 02 A6 */	mflr r0
 /* 800487F8 00045738  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800487FC 0004573C  38 60 00 00 */	li r3, 0
-/* 80048800 00045740  4B FF FF 49 */	bl dEv_talkman_get_action
+/* 80048800 00045740  4B FF FF 49 */	bl dEv_talkman_get_action__Fi
 /* 80048804 00045744  38 00 00 01 */	li r0, 1
 /* 80048808 00045748  7C 65 FE 70 */	srawi r5, r3, 0x1f
 /* 8004880C 0004574C  54 04 0F FE */	srwi r4, r0, 0x1f
@@ -2706,8 +2706,8 @@ lbl_800487D8:
 /* 80048824 00045764  38 21 00 10 */	addi r1, r1, 0x10
 /* 80048828 00045768  4E 80 00 20 */	blr 
 
-.global dEvent_manager_c_NS_checkStartDemo
-dEvent_manager_c_NS_checkStartDemo:
+.global checkStartDemo__16dEvent_manager_cFv
+checkStartDemo__16dEvent_manager_cFv:
 /* 8004882C 0004576C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
 /* 80048830 00045770  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
 /* 80048834 00045774  88 04 4F AD */	lbz r0, 0x4fad(r4)

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80327100
 
 
-.global J3DModel_NS_initialize
-J3DModel_NS_initialize:
+.global initialize__8J3DModelFv
+initialize__8J3DModelFv:
 /* 80327100 00324040  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80327104 00324044  7C 08 02 A6 */	mflr r0
 /* 80327108 00324048  90 01 00 14 */	stw r0, 0x14(r1)
@@ -39,8 +39,8 @@ J3DModel_NS_initialize:
 /* 8032717C 003240BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80327180 003240C0  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_entryModelData
-J3DModel_NS_entryModelData:
+.global entryModelData__8J3DModelFP12J3DModelDataUlUl
+entryModelData__8J3DModelFP12J3DModelDataUlUl:
 /* 80327184 003240C4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80327188 003240C8  7C 08 02 A6 */	mflr r0
 /* 8032718C 003240CC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -58,7 +58,7 @@ J3DModel_NS_entryModelData:
 /* 803271BC 003240FC  3C 80 80 3D */	lis r4, lbl_803CED44@ha
 /* 803271C0 00324100  38 04 ED 44 */	addi r0, r4, lbl_803CED44@l
 /* 803271C4 00324104  90 1D 00 38 */	stw r0, 0x38(r29)
-/* 803271C8 00324108  4B FF F0 4D */	bl J3DMtxBuffer_NS_initialize
+/* 803271C8 00324108  4B FF F0 4D */	bl initialize__12J3DMtxBufferFv
 lbl_803271CC:
 /* 803271CC 0032410C  93 BE 00 84 */	stw r29, 0x84(r30)
 /* 803271D0 00324110  80 7E 00 84 */	lwz r3, 0x84(r30)
@@ -69,14 +69,14 @@ lbl_803271CC:
 lbl_803271E4:
 /* 803271E4 00324124  7F 64 DB 78 */	mr r4, r27
 /* 803271E8 00324128  7F 85 E3 78 */	mr r5, r28
-/* 803271EC 0032412C  4B FF F0 6D */	bl J3DMtxBuffer_NS_create
+/* 803271EC 0032412C  4B FF F0 6D */	bl create__12J3DMtxBufferFP12J3DModelDataUl
 /* 803271F0 00324130  2C 03 00 00 */	cmpwi r3, 0
 /* 803271F4 00324134  41 82 00 08 */	beq lbl_803271FC
 /* 803271F8 00324138  48 00 00 F0 */	b lbl_803272E8
 lbl_803271FC:
 /* 803271FC 0032413C  7F C3 F3 78 */	mr r3, r30
 /* 80327200 00324140  7F 64 DB 78 */	mr r4, r27
-/* 80327204 00324144  48 00 00 FD */	bl J3DModel_NS_createShapePacket
+/* 80327204 00324144  48 00 00 FD */	bl createShapePacket__8J3DModelFP12J3DModelData
 /* 80327208 00324148  2C 03 00 00 */	cmpwi r3, 0
 /* 8032720C 0032414C  41 82 00 08 */	beq lbl_80327214
 /* 80327210 00324150  48 00 00 D8 */	b lbl_803272E8
@@ -84,16 +84,16 @@ lbl_80327214:
 /* 80327214 00324154  7F C3 F3 78 */	mr r3, r30
 /* 80327218 00324158  7F 64 DB 78 */	mr r4, r27
 /* 8032721C 0032415C  7F E5 FB 78 */	mr r5, r31
-/* 80327220 00324160  48 00 01 AD */	bl J3DModel_NS_createMatPacket
+/* 80327220 00324160  48 00 01 AD */	bl createMatPacket__8J3DModelFP12J3DModelDataUl
 /* 80327224 00324164  2C 03 00 00 */	cmpwi r3, 0
 /* 80327228 00324168  41 82 00 08 */	beq lbl_80327230
 /* 8032722C 0032416C  48 00 00 BC */	b lbl_803272E8
 lbl_80327230:
 /* 80327230 00324170  38 7E 00 88 */	addi r3, r30, 0x88
 /* 80327234 00324174  38 9B 00 88 */	addi r4, r27, 0x88
-/* 80327238 00324178  4B FE 9D 41 */	bl J3DVertexBuffer_NS_setVertexData
+/* 80327238 00324178  4B FE 9D 41 */	bl setVertexData__15J3DVertexBufferFP13J3DVertexData
 /* 8032723C 0032417C  7F C3 F3 78 */	mr r3, r30
-/* 80327240 00324180  48 00 10 AD */	bl J3DModel_NS_prepareShapePackets
+/* 80327240 00324180  48 00 10 AD */	bl prepareShapePackets__8J3DModelFv
 /* 80327244 00324184  57 E0 07 FF */	clrlwi. r0, r31, 0x1f
 /* 80327248 00324188  41 82 00 10 */	beq lbl_80327258
 /* 8032724C 0032418C  80 1E 00 08 */	lwz r0, 8(r30)
@@ -151,8 +151,8 @@ lbl_803272E8:
 /* 803272F8 00324238  38 21 00 20 */	addi r1, r1, 0x20
 /* 803272FC 0032423C  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_createShapePacket
-J3DModel_NS_createShapePacket:
+.global createShapePacket__8J3DModelFP12J3DModelData
+createShapePacket__8J3DModelFP12J3DModelData:
 /* 80327300 00324240  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80327304 00324244  7C 08 02 A6 */	mflr r0
 /* 80327308 00324248  90 01 00 24 */	stw r0, 0x24(r1)
@@ -167,17 +167,17 @@ J3DModel_NS_createShapePacket:
 /* 8032732C 0032426C  1C 7D 00 3C */	mulli r3, r29, 0x3c
 /* 80327330 00324270  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327334 00324274  4B FA 79 91 */	bl __nwa__FUl
-.global J3DShapePacket
-/* 80327338 00324278  3C 80 80 31 */	lis r4, J3DShapePacket@ha
-.global J3DShapePacket
-/* 8032733C 0032427C  38 84 2B 20 */	addi r4, r4, J3DShapePacket@l
-.global J3DShapePacket_NS_dtor
-/* 80327340 00324280  3C A0 80 31 */	lis r5, J3DShapePacket_NS_dtor@ha
-.global J3DShapePacket_NS_dtor
-/* 80327344 00324284  38 A5 2B 74 */	addi r5, r5, J3DShapePacket_NS_dtor@l
+.global __ct__14J3DShapePacketFv
+/* 80327338 00324278  3C 80 80 31 */	lis r4, __ct__14J3DShapePacketFv@ha
+.global __ct__14J3DShapePacketFv
+/* 8032733C 0032427C  38 84 2B 20 */	addi r4, r4, __ct__14J3DShapePacketFv@l
+.global __dt__14J3DShapePacketFv
+/* 80327340 00324280  3C A0 80 31 */	lis r5, __dt__14J3DShapePacketFv@ha
+.global __dt__14J3DShapePacketFv
+/* 80327344 00324284  38 A5 2B 74 */	addi r5, r5, __dt__14J3DShapePacketFv@l
 /* 80327348 00324288  38 C0 00 3C */	li r6, 0x3c
 /* 8032734C 0032428C  7F A7 EB 78 */	mr r7, r29
-/* 80327350 00324290  48 03 AB C5 */	bl func_80361F14
+/* 80327350 00324290  48 03 AB C5 */	bl __construct_new_array
 /* 80327354 00324294  90 7E 00 C4 */	stw r3, 0xc4(r30)
 /* 80327358 00324298  80 1E 00 C4 */	lwz r0, 0xc4(r30)
 /* 8032735C 0032429C  28 00 00 00 */	cmplwi r0, 0
@@ -214,8 +214,8 @@ lbl_803273B4:
 /* 803273C4 00324304  38 21 00 20 */	addi r1, r1, 0x20
 /* 803273C8 00324308  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_createMatPacket
-J3DModel_NS_createMatPacket:
+.global createMatPacket__8J3DModelFP12J3DModelDataUl
+createMatPacket__8J3DModelFP12J3DModelDataUl:
 /* 803273CC 0032430C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803273D0 00324310  7C 08 02 A6 */	mflr r0
 /* 803273D4 00324314  90 01 00 34 */	stw r0, 0x34(r1)
@@ -231,17 +231,17 @@ J3DModel_NS_createMatPacket:
 /* 803273FC 0032433C  54 03 32 B2 */	rlwinm r3, r0, 6, 0xa, 0x19
 /* 80327400 00324340  38 63 00 10 */	addi r3, r3, 0x10
 /* 80327404 00324344  4B FA 78 C1 */	bl __nwa__FUl
-.global J3DMatPacket
-/* 80327408 00324348  3C 80 80 31 */	lis r4, J3DMatPacket@ha
-.global J3DMatPacket
-/* 8032740C 0032434C  38 84 29 48 */	addi r4, r4, J3DMatPacket@l
-.global J3DMatPacket_NS_dtor
-/* 80327410 00324350  3C A0 80 31 */	lis r5, J3DMatPacket_NS_dtor@ha
-.global J3DMatPacket_NS_dtor
-/* 80327414 00324354  38 A5 29 A4 */	addi r5, r5, J3DMatPacket_NS_dtor@l
+.global __ct__12J3DMatPacketFv
+/* 80327408 00324348  3C 80 80 31 */	lis r4, __ct__12J3DMatPacketFv@ha
+.global __ct__12J3DMatPacketFv
+/* 8032740C 0032434C  38 84 29 48 */	addi r4, r4, __ct__12J3DMatPacketFv@l
+.global __dt__12J3DMatPacketFv
+/* 80327410 00324350  3C A0 80 31 */	lis r5, __dt__12J3DMatPacketFv@ha
+.global __dt__12J3DMatPacketFv
+/* 80327414 00324354  38 A5 29 A4 */	addi r5, r5, __dt__12J3DMatPacketFv@l
 /* 80327418 00324358  38 C0 00 40 */	li r6, 0x40
 /* 8032741C 0032435C  7E E7 BB 78 */	mr r7, r23
-/* 80327420 00324360  48 03 AA F5 */	bl func_80361F14
+/* 80327420 00324360  48 03 AA F5 */	bl __construct_new_array
 /* 80327424 00324364  90 78 00 C0 */	stw r3, 0xc0(r24)
 /* 80327428 00324368  80 18 00 C0 */	lwz r0, 0xc0(r24)
 /* 8032742C 0032436C  28 00 00 00 */	cmplwi r0, 0
@@ -270,7 +270,7 @@ lbl_80327454:
 /* 80327480 003243C0  93 FA 00 30 */	stw r31, 0x30(r26)
 /* 80327484 003243C4  90 9A 00 28 */	stw r4, 0x28(r26)
 /* 80327488 003243C8  7F 43 D3 78 */	mr r3, r26
-/* 8032748C 003243CC  4B FE B5 79 */	bl J3DMatPacket_NS_addShapePacket
+/* 8032748C 003243CC  4B FE B5 79 */	bl addShapePacket__12J3DMatPacketFP14J3DShapePacket
 /* 80327490 003243D0  80 19 00 6C */	lwz r0, 0x6c(r25)
 /* 80327494 003243D4  90 1A 00 38 */	stw r0, 0x38(r26)
 /* 80327498 003243D8  80 1F 00 20 */	lwz r0, 0x20(r31)
@@ -299,7 +299,7 @@ lbl_803274CC:
 lbl_803274EC:
 /* 803274EC 0032442C  83 FF 00 48 */	lwz r31, 0x48(r31)
 /* 803274F0 00324430  7F E3 FB 78 */	mr r3, r31
-/* 803274F4 00324434  4B FE B0 79 */	bl J3DDisplayListObj_NS_single_To_Double
+/* 803274F4 00324434  4B FE B0 79 */	bl single_To_Double__17J3DDisplayListObjFv
 /* 803274F8 00324438  2C 03 00 00 */	cmpwi r3, 0
 /* 803274FC 0032443C  41 82 00 08 */	beq lbl_80327504
 /* 80327500 00324440  48 00 00 E4 */	b lbl_803275E4
@@ -312,10 +312,10 @@ lbl_8032750C:
 /* 80327514 00324454  28 1D 00 00 */	cmplwi r29, 0
 /* 80327518 00324458  41 82 00 30 */	beq lbl_80327548
 /* 8032751C 0032445C  7F E3 FB 78 */	mr r3, r31
-/* 80327520 00324460  4B FE ED 71 */	bl J3DMaterial_NS_countDLSize
+/* 80327520 00324460  4B FE ED 71 */	bl countDLSize__11J3DMaterialFv
 /* 80327524 00324464  7C 64 1B 78 */	mr r4, r3
 /* 80327528 00324468  7F E3 FB 78 */	mr r3, r31
-/* 8032752C 0032446C  4B FE F9 F9 */	bl J3DMaterial_NS_newSingleSharedDisplayList
+/* 8032752C 0032446C  4B FE F9 F9 */	bl newSingleSharedDisplayList__11J3DMaterialFUl
 /* 80327530 00324470  2C 03 00 00 */	cmpwi r3, 0
 /* 80327534 00324474  41 82 00 08 */	beq lbl_8032753C
 /* 80327538 00324478  48 00 00 AC */	b lbl_803275E4
@@ -325,17 +325,17 @@ lbl_8032753C:
 /* 80327544 00324484  48 00 00 8C */	b lbl_803275D0
 lbl_80327548:
 /* 80327548 00324488  7F E3 FB 78 */	mr r3, r31
-/* 8032754C 0032448C  4B FE ED 45 */	bl J3DMaterial_NS_countDLSize
+/* 8032754C 0032448C  4B FE ED 45 */	bl countDLSize__11J3DMaterialFv
 /* 80327550 00324490  7C 64 1B 78 */	mr r4, r3
 /* 80327554 00324494  7F E3 FB 78 */	mr r3, r31
-/* 80327558 00324498  4B FE F9 39 */	bl J3DMaterial_NS_newSharedDisplayList
+/* 80327558 00324498  4B FE F9 39 */	bl newSharedDisplayList__11J3DMaterialFUl
 /* 8032755C 0032449C  2C 03 00 00 */	cmpwi r3, 0
 /* 80327560 003244A0  41 82 00 08 */	beq lbl_80327568
 /* 80327564 003244A4  48 00 00 80 */	b lbl_803275E4
 lbl_80327568:
 /* 80327568 003244A8  83 FF 00 48 */	lwz r31, 0x48(r31)
 /* 8032756C 003244AC  7F E3 FB 78 */	mr r3, r31
-/* 80327570 003244B0  4B FE AF FD */	bl J3DDisplayListObj_NS_single_To_Double
+/* 80327570 003244B0  4B FE AF FD */	bl single_To_Double__17J3DDisplayListObjFv
 /* 80327574 003244B4  2C 03 00 00 */	cmpwi r3, 0
 /* 80327578 003244B8  41 82 00 08 */	beq lbl_80327580
 /* 8032757C 003244BC  48 00 00 68 */	b lbl_803275E4
@@ -346,19 +346,19 @@ lbl_80327588:
 /* 80327588 003244C8  28 1D 00 00 */	cmplwi r29, 0
 /* 8032758C 003244CC  41 82 00 24 */	beq lbl_803275B0
 /* 80327590 003244D0  7F E3 FB 78 */	mr r3, r31
-/* 80327594 003244D4  4B FE EC FD */	bl J3DMaterial_NS_countDLSize
+/* 80327594 003244D4  4B FE EC FD */	bl countDLSize__11J3DMaterialFv
 /* 80327598 003244D8  7C 64 1B 78 */	mr r4, r3
 /* 8032759C 003244DC  7F 43 D3 78 */	mr r3, r26
-/* 803275A0 003244E0  4B FE B2 F9 */	bl J3DDrawPacket_NS_newSingleDisplayList
+/* 803275A0 003244E0  4B FE B2 F9 */	bl newSingleDisplayList__13J3DDrawPacketFUl
 /* 803275A4 003244E4  2C 03 00 00 */	cmpwi r3, 0
 /* 803275A8 003244E8  41 82 00 28 */	beq lbl_803275D0
 /* 803275AC 003244EC  48 00 00 38 */	b lbl_803275E4
 lbl_803275B0:
 /* 803275B0 003244F0  7F E3 FB 78 */	mr r3, r31
-/* 803275B4 003244F4  4B FE EC DD */	bl J3DMaterial_NS_countDLSize
+/* 803275B4 003244F4  4B FE EC DD */	bl countDLSize__11J3DMaterialFv
 /* 803275B8 003244F8  7C 64 1B 78 */	mr r4, r3
 /* 803275BC 003244FC  7F 43 D3 78 */	mr r3, r26
-/* 803275C0 00324500  4B FE B2 4D */	bl J3DDrawPacket_NS_newDisplayList
+/* 803275C0 00324500  4B FE B2 4D */	bl newDisplayList__13J3DDrawPacketFUl
 /* 803275C4 00324504  2C 03 00 00 */	cmpwi r3, 0
 /* 803275C8 00324508  41 82 00 08 */	beq lbl_803275D0
 /* 803275CC 0032450C  48 00 00 18 */	b lbl_803275E4
@@ -377,8 +377,8 @@ lbl_803275E4:
 /* 803275F4 00324534  38 21 00 30 */	addi r1, r1, 0x30
 /* 803275F8 00324538  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_newDifferedDisplayList
-J3DModel_NS_newDifferedDisplayList:
+.global newDifferedDisplayList__8J3DModelFUl
+newDifferedDisplayList__8J3DModelFUl:
 /* 803275FC 0032453C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80327600 00324540  7C 08 02 A6 */	mflr r0
 /* 80327604 00324544  90 01 00 24 */	stw r0, 0x24(r1)
@@ -397,7 +397,7 @@ lbl_8032762C:
 /* 80327634 00324574  1C 00 00 3C */	mulli r0, r0, 0x3c
 /* 80327638 00324578  7C 63 02 14 */	add r3, r3, r0
 /* 8032763C 0032457C  7F A4 EB 78 */	mr r4, r29
-/* 80327640 00324580  4B FE B7 7D */	bl J3DShapePacket_NS_newDifferedDisplayList
+/* 80327640 00324580  4B FE B7 7D */	bl newDifferedDisplayList__14J3DShapePacketFUl
 /* 80327644 00324584  2C 03 00 00 */	cmpwi r3, 0
 /* 80327648 00324588  41 82 00 08 */	beq lbl_80327650
 /* 8032764C 0032458C  48 00 00 18 */	b lbl_80327664
@@ -416,8 +416,8 @@ lbl_80327664:
 /* 80327674 003245B4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80327678 003245B8  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_lock
-J3DModel_NS_lock:
+.global lock__8J3DModelFv
+lock__8J3DModelFv:
 /* 8032767C 003245BC  80 83 00 04 */	lwz r4, 4(r3)
 /* 80327680 003245C0  A0 04 00 5C */	lhz r0, 0x5c(r4)
 /* 80327684 003245C4  38 80 00 00 */	li r4, 0
@@ -434,8 +434,8 @@ lbl_80327694:
 /* 803276AC 003245EC  42 00 FF E8 */	bdnz lbl_80327694
 /* 803276B0 003245F0  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_unlock
-J3DModel_NS_unlock:
+.global unlock__8J3DModelFv
+unlock__8J3DModelFv:
 /* 803276B4 003245F4  80 83 00 04 */	lwz r4, 4(r3)
 /* 803276B8 003245F8  A0 04 00 5C */	lhz r0, 0x5c(r4)
 /* 803276BC 003245FC  38 80 00 00 */	li r4, 0
@@ -489,7 +489,7 @@ lbl_8032775C:
 /* 8032776C 003246AC  90 03 00 34 */	stw r0, 0x34(r3)
 lbl_80327770:
 /* 80327770 003246B0  80 7D 00 04 */	lwz r3, 4(r29)
-/* 80327774 003246B4  4B FF E9 85 */	bl J3DModelData_NS_syncJ3DSysFlags
+/* 80327774 003246B4  4B FF E9 85 */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 80327778 003246B8  80 9D 00 04 */	lwz r4, 4(r29)
 /* 8032777C 003246BC  80 04 00 6C */	lwz r0, 0x6c(r4)
 /* 80327780 003246C0  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
@@ -643,8 +643,8 @@ lbl_8032797C:
 /* 80327998 003248D8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8032799C 003248DC  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_diff
-J3DModel_NS_diff:
+.global diff__8J3DModelFv
+diff__8J3DModelFv:
 /* 803279A0 003248E0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 803279A4 003248E4  7C 08 02 A6 */	mflr r0
 /* 803279A8 003248E8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -683,8 +683,8 @@ lbl_80327A08:
 /* 80327A24 00324964  38 21 00 20 */	addi r1, r1, 0x20
 /* 80327A28 00324968  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_setDeformData
-J3DModel_NS_setDeformData:
+.global setDeformData__8J3DModelFP13J3DDeformDataUl
+setDeformData__8J3DModelFP13J3DDeformDataUl:
 /* 80327A2C 0032496C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80327A30 00324970  7C 08 02 A6 */	mflr r0
 /* 80327A34 00324974  90 01 00 14 */	stw r0, 0x14(r1)
@@ -699,7 +699,7 @@ J3DModel_NS_setDeformData:
 lbl_80327A58:
 /* 80327A58 00324998  38 63 00 88 */	addi r3, r3, 0x88
 /* 80327A5C 0032499C  7F E4 FB 78 */	mr r4, r31
-/* 80327A60 003249A0  4B FE 98 71 */	bl J3DVertexBuffer_NS_copyLocalVtxArray
+/* 80327A60 003249A0  4B FE 98 71 */	bl copyLocalVtxArray__15J3DVertexBufferFUl
 /* 80327A64 003249A4  2C 03 00 00 */	cmpwi r3, 0
 /* 80327A68 003249A8  41 82 00 08 */	beq lbl_80327A70
 /* 80327A6C 003249AC  48 00 00 1C */	b lbl_80327A88
@@ -708,7 +708,7 @@ lbl_80327A70:
 /* 80327A74 003249B4  41 82 00 10 */	beq lbl_80327A84
 /* 80327A78 003249B8  7F C3 F3 78 */	mr r3, r30
 /* 80327A7C 003249BC  38 80 00 01 */	li r4, 1
-/* 80327A80 003249C0  48 00 67 B1 */	bl J3DDeformData_NS_offAllFlag
+/* 80327A80 003249C0  48 00 67 B1 */	bl offAllFlag__13J3DDeformDataFUl
 lbl_80327A84:
 /* 80327A84 003249C4  38 60 00 00 */	li r3, 0
 lbl_80327A88:
@@ -739,27 +739,27 @@ lbl_80327A88:
 lbl_80327AE8:
 /* 80327AE8 00324A28  80 7F 00 CC */	lwz r3, 0xcc(r31)
 /* 80327AEC 00324A2C  80 9F 00 04 */	lwz r4, 4(r31)
-/* 80327AF0 00324A30  48 00 54 55 */	bl J3DSkinDeform_NS_initMtxIndexArray
+/* 80327AF0 00324A30  48 00 54 55 */	bl initMtxIndexArray__13J3DSkinDeformFP12J3DModelData
 /* 80327AF4 00324A34  80 9F 00 04 */	lwz r4, 4(r31)
 /* 80327AF8 00324A38  80 04 00 08 */	lwz r0, 8(r4)
 /* 80327AFC 00324A3C  54 00 C7 FF */	rlwinm. r0, r0, 0x18, 0x1f, 0x1f
 /* 80327B00 00324A40  41 82 00 28 */	beq lbl_80327B28
 /* 80327B04 00324A44  80 7F 00 CC */	lwz r3, 0xcc(r31)
-/* 80327B08 00324A48  48 00 58 71 */	bl J3DSkinDeform_NS_changeFastSkinDL
+/* 80327B08 00324A48  48 00 58 71 */	bl changeFastSkinDL__13J3DSkinDeformFP12J3DModelData
 /* 80327B0C 00324A4C  57 DE 07 F8 */	rlwinm r30, r30, 0, 0x1f, 0x1c
 /* 80327B10 00324A50  80 7F 00 CC */	lwz r3, 0xcc(r31)
 /* 80327B14 00324A54  80 9F 00 04 */	lwz r4, 4(r31)
-/* 80327B18 00324A58  48 00 5C 21 */	bl J3DSkinDeform_NS_transformVtxPosNrm
+/* 80327B18 00324A58  48 00 5C 21 */	bl transformVtxPosNrm__13J3DSkinDeformFP12J3DModelData
 /* 80327B1C 00324A5C  80 7F 00 CC */	lwz r3, 0xcc(r31)
 /* 80327B20 00324A60  80 9F 00 04 */	lwz r4, 4(r31)
-/* 80327B24 00324A64  48 00 4E 8D */	bl J3DSkinDeform_NS_initSkinInfo
+/* 80327B24 00324A64  48 00 4E 8D */	bl initSkinInfo__13J3DSkinDeformFP12J3DModelData
 lbl_80327B28:
 /* 80327B28 00324A68  38 80 00 00 */	li r4, 0
 /* 80327B2C 00324A6C  7F DE F0 F8 */	nor r30, r30, r30
 /* 80327B30 00324A70  57 C0 07 BD */	rlwinm. r0, r30, 0, 0x1e, 0x1e
 /* 80327B34 00324A74  41 82 00 34 */	beq lbl_80327B68
 /* 80327B38 00324A78  38 7F 00 88 */	addi r3, r31, 0x88
-/* 80327B3C 00324A7C  4B FE 99 3D */	bl J3DVertexBuffer_NS_allocTransformedVtxPosArray
+/* 80327B3C 00324A7C  4B FE 99 3D */	bl allocTransformedVtxPosArray__15J3DVertexBufferFv
 /* 80327B40 00324A80  7C 64 1B 79 */	or. r4, r3, r3
 /* 80327B44 00324A84  41 82 00 14 */	beq lbl_80327B58
 /* 80327B48 00324A88  80 1F 00 08 */	lwz r0, 8(r31)
@@ -779,7 +779,7 @@ lbl_80327B74:
 /* 80327B74 00324AB4  57 C0 07 7B */	rlwinm. r0, r30, 0, 0x1d, 0x1d
 /* 80327B78 00324AB8  41 82 00 34 */	beq lbl_80327BAC
 /* 80327B7C 00324ABC  38 7F 00 88 */	addi r3, r31, 0x88
-/* 80327B80 00324AC0  4B FE 99 AD */	bl J3DVertexBuffer_NS_allocTransformedVtxNrmArray
+/* 80327B80 00324AC0  4B FE 99 AD */	bl allocTransformedVtxNrmArray__15J3DVertexBufferFv
 /* 80327B84 00324AC4  7C 64 1B 79 */	or. r4, r3, r3
 /* 80327B88 00324AC8  41 82 00 14 */	beq lbl_80327B9C
 /* 80327B8C 00324ACC  80 1F 00 08 */	lwz r0, 8(r31)
@@ -805,8 +805,8 @@ lbl_80327BBC:
 /* 80327BCC 00324B0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80327BD0 00324B10  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_calcAnmMtx
-J3DModel_NS_calcAnmMtx:
+.global calcAnmMtx__8J3DModelFv
+calcAnmMtx__8J3DModelFv:
 /* 80327BD4 00324B14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80327BD8 00324B18  7C 08 02 A6 */	mflr r0
 /* 80327BDC 00324B1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -843,8 +843,8 @@ lbl_80327C48:
 /* 80327C50 00324B90  38 21 00 10 */	addi r1, r1, 0x10
 /* 80327C54 00324B94  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_calcWeightEnvelopeMtx
-J3DModel_NS_calcWeightEnvelopeMtx:
+.global calcWeightEnvelopeMtx__8J3DModelFv
+calcWeightEnvelopeMtx__8J3DModelFv:
 /* 80327C58 00324B98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80327C5C 00324B9C  7C 08 02 A6 */	mflr r0
 /* 80327C60 00324BA0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -859,7 +859,7 @@ J3DModel_NS_calcWeightEnvelopeMtx:
 /* 80327C84 00324BC4  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80327C88 00324BC8  40 82 00 0C */	bne lbl_80327C94
 /* 80327C8C 00324BCC  80 63 00 84 */	lwz r3, 0x84(r3)
-/* 80327C90 00324BD0  4B FF EC 45 */	bl J3DMtxBuffer_NS_calcWeightEnvelopeMtx
+/* 80327C90 00324BD0  4B FF EC 45 */	bl calcWeightEnvelopeMtx__12J3DMtxBufferFv
 lbl_80327C94:
 /* 80327C94 00324BD4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80327C98 00324BD8  7C 08 03 A6 */	mtlr r0
@@ -921,7 +921,7 @@ lbl_80327D5C:
 /* 80327D6C 00324CAC  90 03 00 34 */	stw r0, 0x34(r3)
 lbl_80327D70:
 /* 80327D70 00324CB0  80 7F 00 04 */	lwz r3, 4(r31)
-/* 80327D74 00324CB4  4B FF E3 85 */	bl J3DModelData_NS_syncJ3DSysFlags
+/* 80327D74 00324CB4  4B FF E3 85 */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 80327D78 00324CB8  80 1F 00 8C */	lwz r0, 0x8c(r31)
 /* 80327D7C 00324CBC  90 1F 00 B4 */	stw r0, 0xb4(r31)
 /* 80327D80 00324CC0  80 1F 00 94 */	lwz r0, 0x94(r31)
@@ -941,13 +941,13 @@ lbl_80327DB0:
 /* 80327DB4 00324CF4  28 03 00 00 */	cmplwi r3, 0
 /* 80327DB8 00324CF8  41 82 00 0C */	beq lbl_80327DC4
 /* 80327DBC 00324CFC  7F E4 FB 78 */	mr r4, r31
-/* 80327DC0 00324D00  48 00 64 B5 */	bl J3DDeformData_NS_deform
+/* 80327DC0 00324D00  48 00 64 B5 */	bl deform__13J3DDeformDataFP8J3DModel
 lbl_80327DC4:
 /* 80327DC4 00324D04  80 7F 00 D0 */	lwz r3, 0xd0(r31)
 /* 80327DC8 00324D08  28 03 00 00 */	cmplwi r3, 0
 /* 80327DCC 00324D0C  41 82 00 0C */	beq lbl_80327DD8
 /* 80327DD0 00324D10  7F E4 FB 78 */	mr r4, r31
-/* 80327DD4 00324D14  48 00 63 AD */	bl J3DVtxColorCalc_NS_calc
+/* 80327DD4 00324D14  48 00 63 AD */	bl calc__15J3DVtxColorCalcFP8J3DModel
 lbl_80327DD8:
 /* 80327DD8 00324D18  80 7F 00 D4 */	lwz r3, 0xd4(r31)
 /* 80327DDC 00324D1C  28 03 00 00 */	cmplwi r3, 0
@@ -959,14 +959,14 @@ lbl_80327DD8:
 /* 80327DF4 00324D34  4E 80 04 21 */	bctrl 
 lbl_80327DF8:
 /* 80327DF8 00324D38  7F E3 FB 78 */	mr r3, r31
-/* 80327DFC 00324D3C  4B FF FD D9 */	bl J3DModel_NS_calcAnmMtx
+/* 80327DFC 00324D3C  4B FF FD D9 */	bl calcAnmMtx__8J3DModelFv
 /* 80327E00 00324D40  7F E3 FB 78 */	mr r3, r31
-/* 80327E04 00324D44  4B FF FE 55 */	bl J3DModel_NS_calcWeightEnvelopeMtx
+/* 80327E04 00324D44  4B FF FE 55 */	bl calcWeightEnvelopeMtx__8J3DModelFv
 /* 80327E08 00324D48  80 7F 00 CC */	lwz r3, 0xcc(r31)
 /* 80327E0C 00324D4C  28 03 00 00 */	cmplwi r3, 0
 /* 80327E10 00324D50  41 82 00 0C */	beq lbl_80327E1C
 /* 80327E14 00324D54  7F E4 FB 78 */	mr r4, r31
-/* 80327E18 00324D58  48 00 61 C5 */	bl J3DSkinDeform_NS_deform
+/* 80327E18 00324D58  48 00 61 C5 */	bl deform__13J3DSkinDeformFP8J3DModel
 lbl_80327E1C:
 /* 80327E1C 00324D5C  81 9F 00 10 */	lwz r12, 0x10(r31)
 /* 80327E20 00324D60  28 0C 00 00 */	cmplwi r12, 0
@@ -1019,7 +1019,7 @@ lbl_80327EBC:
 /* 80327ECC 00324E0C  90 03 00 34 */	stw r0, 0x34(r3)
 lbl_80327ED0:
 /* 80327ED0 00324E10  80 7F 00 04 */	lwz r3, 4(r31)
-/* 80327ED4 00324E14  4B FF E2 25 */	bl J3DModelData_NS_syncJ3DSysFlags
+/* 80327ED4 00324E14  4B FF E2 25 */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 80327ED8 00324E18  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80327EDC 00324E1C  80 03 00 6C */	lwz r0, 0x6c(r3)
 /* 80327EE0 00324E20  3C 60 80 43 */	lis r3, lbl_80434AC8@ha
@@ -1034,7 +1034,7 @@ lbl_80327EF4:
 /* 80327F00 00324E40  80 03 00 58 */	lwz r0, 0x58(r3)
 /* 80327F04 00324E44  28 00 00 00 */	cmplwi r0, 0
 /* 80327F08 00324E48  41 82 00 08 */	beq lbl_80327F10
-/* 80327F0C 00324E4C  48 00 73 49 */	bl J3DJoint_NS_entryIn
+/* 80327F0C 00324E4C  48 00 73 49 */	bl entryIn__8J3DJointFv
 lbl_80327F10:
 /* 80327F10 00324E50  3B DE 00 01 */	addi r30, r30, 1
 lbl_80327F14:
@@ -1091,7 +1091,7 @@ lbl_80327F14:
 /* 80327FDC 00324F1C  38 9F 00 18 */	addi r4, r31, 0x18
 /* 80327FE0 00324F20  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80327FE4 00324F24  38 DF 00 54 */	addi r6, r31, 0x54
-/* 80327FE8 00324F28  4B FF F0 61 */	bl J3DCalcViewBaseMtx
+/* 80327FE8 00324F28  4B FF F0 61 */	bl J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f
 /* 80327FEC 00324F2C  48 00 01 88 */	b lbl_80328174
 lbl_80327FF0:
 /* 80327FF0 00324F30  38 60 00 00 */	li r3, 0
@@ -1112,7 +1112,7 @@ lbl_8032800C:
 /* 80328028 00324F68  38 9F 00 18 */	addi r4, r31, 0x18
 /* 8032802C 00324F6C  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80328030 00324F70  38 DF 00 54 */	addi r6, r31, 0x54
-/* 80328034 00324F74  4B FF F0 15 */	bl J3DCalcViewBaseMtx
+/* 80328034 00324F74  4B FF F0 15 */	bl J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f
 /* 80328038 00324F78  48 00 01 3C */	b lbl_80328174
 lbl_8032803C:
 /* 8032803C 00324F7C  28 05 00 00 */	cmplwi r5, 0
@@ -1121,11 +1121,11 @@ lbl_8032803C:
 /* 80328048 00324F88  54 84 07 BE */	clrlwi r4, r4, 0x1e
 /* 8032804C 00324F8C  38 BF 00 18 */	addi r5, r31, 0x18
 /* 80328050 00324F90  38 DF 00 24 */	addi r6, r31, 0x24
-/* 80328054 00324F94  4B FF EA 79 */	bl J3DMtxBuffer_NS_calcDrawMtx
+/* 80328054 00324F94  4B FF EA 79 */	bl calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
 /* 80328058 00324F98  7F E3 FB 78 */	mr r3, r31
-/* 8032805C 00324F9C  48 00 01 35 */	bl J3DModel_NS_calcNrmMtx
+/* 8032805C 00324F9C  48 00 01 35 */	bl calcNrmMtx__8J3DModelFv
 /* 80328060 00324FA0  7F E3 FB 78 */	mr r3, r31
-/* 80328064 00324FA4  48 00 01 51 */	bl J3DModel_NS_calcBumpMtx
+/* 80328064 00324FA4  48 00 01 51 */	bl calcBumpMtx__8J3DModelFv
 /* 80328068 00324FA8  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8032806C 00324FAC  A0 83 00 44 */	lhz r4, 0x44(r3)
 /* 80328070 00324FB0  80 BF 00 84 */	lwz r5, 0x84(r31)
@@ -1152,9 +1152,9 @@ lbl_803280B4:
 /* 803280C0 00325000  54 84 07 BE */	clrlwi r4, r4, 0x1e
 /* 803280C4 00325004  38 BF 00 18 */	addi r5, r31, 0x18
 /* 803280C8 00325008  38 DF 00 24 */	addi r6, r31, 0x24
-/* 803280CC 0032500C  4B FF EA 01 */	bl J3DMtxBuffer_NS_calcDrawMtx
+/* 803280CC 0032500C  4B FF EA 01 */	bl calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
 /* 803280D0 00325010  7F E3 FB 78 */	mr r3, r31
-/* 803280D4 00325014  48 00 01 E5 */	bl J3DModel_NS_calcBBoardMtx
+/* 803280D4 00325014  48 00 01 E5 */	bl calcBBoardMtx__8J3DModelFv
 /* 803280D8 00325018  80 7F 00 04 */	lwz r3, 4(r31)
 /* 803280DC 0032501C  A0 83 00 44 */	lhz r4, 0x44(r3)
 /* 803280E0 00325020  80 BF 00 84 */	lwz r5, 0x84(r31)
@@ -1170,13 +1170,13 @@ lbl_80328100:
 /* 80328104 00325044  54 84 07 BE */	clrlwi r4, r4, 0x1e
 /* 80328108 00325048  38 BF 00 18 */	addi r5, r31, 0x18
 /* 8032810C 0032504C  38 DF 00 24 */	addi r6, r31, 0x24
-/* 80328110 00325050  4B FF E9 BD */	bl J3DMtxBuffer_NS_calcDrawMtx
+/* 80328110 00325050  4B FF E9 BD */	bl calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf
 /* 80328114 00325054  7F E3 FB 78 */	mr r3, r31
-/* 80328118 00325058  48 00 00 79 */	bl J3DModel_NS_calcNrmMtx
+/* 80328118 00325058  48 00 00 79 */	bl calcNrmMtx__8J3DModelFv
 /* 8032811C 0032505C  7F E3 FB 78 */	mr r3, r31
-/* 80328120 00325060  48 00 01 99 */	bl J3DModel_NS_calcBBoardMtx
+/* 80328120 00325060  48 00 01 99 */	bl calcBBoardMtx__8J3DModelFv
 /* 80328124 00325064  7F E3 FB 78 */	mr r3, r31
-/* 80328128 00325068  48 00 00 8D */	bl J3DModel_NS_calcBumpMtx
+/* 80328128 00325068  48 00 00 8D */	bl calcBumpMtx__8J3DModelFv
 /* 8032812C 0032506C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80328130 00325070  A0 83 00 44 */	lhz r4, 0x44(r3)
 /* 80328134 00325074  80 BF 00 84 */	lwz r5, 0x84(r31)
@@ -1197,27 +1197,27 @@ lbl_80328100:
 /* 80328170 003250B0  48 01 34 6D */	bl DCStoreRange
 lbl_80328174:
 /* 80328174 003250B4  7F E3 FB 78 */	mr r3, r31
-/* 80328178 003250B8  48 00 01 75 */	bl J3DModel_NS_prepareShapePackets
+/* 80328178 003250B8  48 00 01 75 */	bl prepareShapePackets__8J3DModelFv
 /* 8032817C 003250BC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80328180 003250C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80328184 003250C4  7C 08 03 A6 */	mtlr r0
 /* 80328188 003250C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8032818C 003250CC  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_calcNrmMtx
-J3DModel_NS_calcNrmMtx:
+.global calcNrmMtx__8J3DModelFv
+calcNrmMtx__8J3DModelFv:
 /* 80328190 003250D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80328194 003250D4  7C 08 02 A6 */	mflr r0
 /* 80328198 003250D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8032819C 003250DC  80 63 00 84 */	lwz r3, 0x84(r3)
-/* 803281A0 003250E0  4B FF EB 9D */	bl J3DMtxBuffer_NS_calcNrmMtx
+/* 803281A0 003250E0  4B FF EB 9D */	bl calcNrmMtx__12J3DMtxBufferFv
 /* 803281A4 003250E4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803281A8 003250E8  7C 08 03 A6 */	mtlr r0
 /* 803281AC 003250EC  38 21 00 10 */	addi r1, r1, 0x10
 /* 803281B0 003250F0  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_calcBumpMtx
-J3DModel_NS_calcBumpMtx:
+.global calcBumpMtx__8J3DModelFv
+calcBumpMtx__8J3DModelFv:
 /* 803281B4 003250F4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 803281B8 003250F8  7C 08 02 A6 */	mflr r0
 /* 803281BC 003250FC  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1262,7 +1262,7 @@ lbl_803281EC:
 /* 80328254 00325194  80 7B 00 08 */	lwz r3, 8(r27)
 /* 80328258 00325198  7F 25 CB 78 */	mr r5, r25
 /* 8032825C 0032519C  7F 46 D3 78 */	mr r6, r26
-/* 80328260 003251A0  4B FE CB 49 */	bl J3DShape_NS_calcNBTScale
+/* 80328260 003251A0  4B FE CB 49 */	bl calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f
 /* 80328264 003251A4  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80328268 003251A8  A0 83 00 44 */	lhz r4, 0x44(r3)
 /* 8032826C 003251AC  80 BE 00 84 */	lwz r5, 0x84(r30)
@@ -1288,8 +1288,8 @@ lbl_803282A0:
 /* 803282B0 003251F0  38 21 00 30 */	addi r1, r1, 0x30
 /* 803282B4 003251F4  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_calcBBoardMtx
-J3DModel_NS_calcBBoardMtx:
+.global calcBBoardMtx__8J3DModelFv
+calcBBoardMtx__8J3DModelFv:
 /* 803282B8 003251F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803282BC 003251FC  7C 08 02 A6 */	mflr r0
 /* 803282C0 00325200  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1298,15 +1298,15 @@ J3DModel_NS_calcBBoardMtx:
 /* 803282CC 0032520C  28 00 00 01 */	cmplwi r0, 1
 /* 803282D0 00325210  40 82 00 0C */	bne lbl_803282DC
 /* 803282D4 00325214  80 63 00 84 */	lwz r3, 0x84(r3)
-/* 803282D8 00325218  4B FF EC 19 */	bl J3DMtxBuffer_NS_calcBBoardMtx
+/* 803282D8 00325218  4B FF EC 19 */	bl calcBBoardMtx__12J3DMtxBufferFv
 lbl_803282DC:
 /* 803282DC 0032521C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803282E0 00325220  7C 08 03 A6 */	mtlr r0
 /* 803282E4 00325224  38 21 00 10 */	addi r1, r1, 0x10
 /* 803282E8 00325228  4E 80 00 20 */	blr 
 
-.global J3DModel_NS_prepareShapePackets
-J3DModel_NS_prepareShapePackets:
+.global prepareShapePackets__8J3DModelFv
+prepareShapePackets__8J3DModelFv:
 /* 803282EC 0032522C  80 83 00 04 */	lwz r4, 4(r3)
 /* 803282F0 00325230  A0 04 00 7C */	lhz r0, 0x7c(r4)
 /* 803282F4 00325234  39 00 00 00 */	li r8, 0
@@ -1349,7 +1349,7 @@ lbl_80328340:
 /* 80328378 003252B8  90 1E 00 00 */	stw r0, 0(r30)
 /* 8032837C 003252BC  38 7E 00 88 */	addi r3, r30, 0x88
 /* 80328380 003252C0  38 80 FF FF */	li r4, -1
-/* 80328384 003252C4  4B FE 8C AD */	bl J3DVertexBuffer_NS_dtor
+/* 80328384 003252C4  4B FE 8C AD */	bl __dt__15J3DVertexBufferFv
 /* 80328388 003252C8  7F E0 07 35 */	extsh. r0, r31
 /* 8032838C 003252CC  40 81 00 0C */	ble lbl_80328398
 /* 80328390 003252D0  7F C3 F3 78 */	mr r3, r30

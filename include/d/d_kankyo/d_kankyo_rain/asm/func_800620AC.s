@@ -28,7 +28,7 @@
 /* 80062118 0005F058  39 61 00 80 */ addi r11, r1, 0x80
 /* 8006211C 0005F05C  48 30 00 A9 */ bl _savegpr_23
 /* 80062120 0005F060  38 61 00 14 */ addi r3, r1, 0x14
-/* 80062124 0005F064  4B FF 89 DD */ bl dKyw_get_wind_vecpow
+/* 80062124 0005F064  4B FF 89 DD */ bl dKyw_get_wind_vecpow__Fv
 /* 80062128 0005F068  C0 01 00 14 */ lfs f0, 0x14(r1)
 /* 8006212C 0005F06C  D0 01 00 38 */ stfs f0, 0x38(r1)
 /* 80062130 0005F070  C0 01 00 18 */ lfs f0, 0x18(r1)
@@ -41,9 +41,9 @@
 /* 8006214C 0005F08C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80062150 0005F090  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80062154 0005F094  82 E3 5D 74 */ lwz r23, 0x5d74(r3)
-/* 80062158 0005F098  4B FF 89 89 */ bl dKyw_get_wind_vec
+/* 80062158 0005F098  4B FF 89 89 */ bl dKyw_get_wind_vec__Fv
 /* 8006215C 0005F09C  7C 7E 1B 78 */ mr r30, r3
-/* 80062160 0005F0A0  48 14 A4 1D */ bl dKy_darkworld_check
+/* 80062160 0005F0A0  48 14 A4 1D */ bl dKy_darkworld_check__Fv
 /* 80062164 0005F0A4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80062168 0005F0A8  41 82 00 20 */ beq lbl_80062188
 /* 8006216C 0005F0AC  C3 C2 88 DC */ lfs f30, lbl_804522DC-_SDA2_BASE_(r2)
@@ -102,7 +102,7 @@ lbl_800621D0:
 /* 80062234 0005F174  7C 84 07 75 */ extsb. r4, r4
 /* 80062238 0005F178  41 80 00 1C */ blt lbl_80062254
 /* 8006223C 0005F17C  38 78 4E C4 */ addi r3, r24, 0x4ec4
-/* 80062240 0005F180  4B FC 21 45 */ bl dStage_roomControl_c_NS_getStatusRoomDt
+/* 80062240 0005F180  4B FC 21 45 */ bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80062244 0005F184  81 83 00 00 */ lwz r12, 0(r3)
 /* 80062248 0005F188  81 8C 01 0C */ lwz r12, 0x10c(r12)
 /* 8006224C 0005F18C  7D 89 03 A6 */ mtctr r12

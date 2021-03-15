@@ -4,12 +4,12 @@
 /* 80104104 00101044  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 80104108 00101048  7C 7F 1B 78 */ mr r31, r3
 /* 8010410C 0010104C  38 80 00 79 */ li r4, 0x79
-/* 80104110 00101050  4B FB DE 5D */ bl daAlink_c_NS_commonProcInit
+/* 80104110 00101050  4B FB DE 5D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80104114 00101054  A8 1F 30 00 */ lha r0, 0x3000(r31)
 /* 80104118 00101058  2C 00 00 00 */ cmpwi r0, 0
 /* 8010411C 0010105C  41 82 00 1C */ beq lbl_80104138
 /* 80104120 00101060  7F E3 FB 78 */ mr r3, r31
-/* 80104124 00101064  4B FB BC 8D */ bl daAlink_c_NS_checkZoraWearAbility
+/* 80104124 00101064  4B FB BC 8D */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 80104128 00101068  2C 03 00 00 */ cmpwi r3, 0
 /* 8010412C 0010106C  40 82 00 0C */ bne lbl_80104138
 /* 80104130 00101070  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
@@ -31,7 +31,7 @@ lbl_80104138:
 /* 8010416C 001010AC  38 80 00 C2 */ li r4, 0xc2
 /* 80104170 001010B0  3C A0 80 39 */ lis r5, lbl_8038ED2C@ha
 /* 80104174 001010B4  38 A5 ED 2C */ addi r5, r5, lbl_8038ED2C@l
-/* 80104178 001010B8  4B FA 8F 7D */ bl daAlink_c_NS_setSingleAnimeParam
+/* 80104178 001010B8  4B FA 8F 7D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010417C 001010BC  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80104180 001010C0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80104184 001010C4  80 03 5F 18 */ lwz r0, 0x5f18(r3)
@@ -48,9 +48,9 @@ lbl_80104138:
 /* 801041B0 001010F0  7F E3 FB 78 */ mr r3, r31
 /* 801041B4 001010F4  3C 80 00 03 */ lis r4, 0x0003001D@ha
 /* 801041B8 001010F8  38 84 00 1D */ addi r4, r4, 0x0003001D@l
-/* 801041BC 001010FC  4B FB AF D9 */ bl daAlink_c_NS_seStartMapInfo
+/* 801041BC 001010FC  4B FB AF D9 */ bl seStartMapInfo__9daAlink_cFUl
 /* 801041C0 00101100  7F E3 FB 78 */ mr r3, r31
-/* 801041C4 00101104  4B FF D7 71 */ bl daAlink_c_NS_swimDeleteItem
+/* 801041C4 00101104  4B FF D7 71 */ bl swimDeleteItem__9daAlink_cFv
 /* 801041C8 00101108  38 00 00 0F */ li r0, 0xf
 /* 801041CC 0010110C  98 1F 2F CD */ stb r0, 0x2fcd(r31)
 /* 801041D0 00101110  38 60 00 01 */ li r3, 1

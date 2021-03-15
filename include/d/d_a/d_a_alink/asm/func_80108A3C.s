@@ -14,7 +14,7 @@
 /* 80108A70 001059B0  38 80 00 04 */ li r4, 4
 /* 80108A74 001059B4  38 A0 00 01 */ li r5, 1
 /* 80108A78 001059B8  38 C1 00 08 */ addi r6, r1, 8
-/* 80108A7C 001059BC  4B F6 6F A9 */ bl dVibration_c_NS_StartShock
+/* 80108A7C 001059BC  4B F6 6F A9 */ bl StartShock__12dVibration_cFii4cXyz
 /* 80108A80 001059C0  80 01 00 24 */ lwz r0, 0x24(r1)
 /* 80108A84 001059C4  7C 08 03 A6 */ mtlr r0
 /* 80108A88 001059C8  38 21 00 20 */ addi r1, r1, 0x20

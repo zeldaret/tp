@@ -21,9 +21,9 @@
 /* 80016780 000136C0  3C 60 80 3E */ lis r3, lbl_803E0C20@ha
 /* 80016784 000136C4  38 63 0C 20 */ addi r3, r3, lbl_803E0C20@l
 /*.global mDoMemCd_main*/
-/* 80016788 000136C8  3C 80 80 01 */ lis r4, mDoMemCd_main@ha
+/* 80016788 000136C8  3C 80 80 01 */ lis r4, mDoMemCd_main__FPv@ha
 /*.global mDoMemCd_main*/
-/* 8001678C 000136CC  38 84 74 1C */ addi r4, r4, mDoMemCd_main@l
+/* 8001678C 000136CC  38 84 74 1C */ addi r4, r4, mDoMemCd_main__FPv@l
 /* 80016790 000136D0  38 A0 00 00 */ li r5, 0
 /* 80016794 000136D4  3C C0 80 3E */ lis r6, lbl_803DFC20@ha
 /* 80016798 000136D8  38 C6 FC 20 */ addi r6, r6, lbl_803DFC20@l

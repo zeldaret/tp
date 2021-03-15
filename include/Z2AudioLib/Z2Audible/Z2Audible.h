@@ -3,9 +3,9 @@
 
 extern "C" {
 void Z2Audible(void);
-void Z2Audible_NS_getChannel(void);
-void Z2Audible_NS_getDistVolBit(void);
-void Z2Audible_NS_setOuterParams(void);
+void getChannel__9Z2AudibleFi(void);
+void getDistVolBit__9Z2AudibleFv(void);
+void setOuterParams__9Z2AudibleFRC14JASSoundParamsRC14JASSoundParamsi(void);
 }
 
 #endif  // Z2AUDIBLE_H_

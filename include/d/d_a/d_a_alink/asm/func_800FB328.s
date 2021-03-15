@@ -5,7 +5,7 @@
 /* 800FB338 000F8278  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FB33C 000F827C  7C 7E 1B 78 */ mr r30, r3
 /* 800FB340 000F8280  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800FB344 000F8284  4B FF F4 49 */ bl daAlink_c_NS_changeHangEndProc
+/* 800FB344 000F8284  4B FF F4 49 */ bl changeHangEndProc__9daAlink_cFv
 /* 800FB348 000F8288  2C 03 00 00 */ cmpwi r3, 0
 /* 800FB34C 000F828C  41 82 00 60 */ beq lbl_800FB3AC
 /* 800FB350 000F8290  A0 1E 2F E8 */ lhz r0, 0x2fe8(r30)
@@ -34,7 +34,7 @@ lbl_800FB3A4:
 /* 800FB3A8 000F82E8  48 00 00 7C */ b lbl_800FB424
 lbl_800FB3AC:
 /* 800FB3AC 000F82EC  7F E3 FB 78 */ mr r3, r31
-/* 800FB3B0 000F82F0  48 06 31 1D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FB3B0 000F82F0  48 06 31 1D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FB3B4 000F82F4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FB3B8 000F82F8  40 82 00 1C */ bne lbl_800FB3D4
 /* 800FB3BC 000F82FC  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -51,20 +51,20 @@ lbl_800FB3D4:
 /* 800FB3E4 000F8324  3C 80 80 39 */ lis r4, lbl_8038E164@ha
 /* 800FB3E8 000F8328  38 84 E1 64 */ addi r4, r4, lbl_8038E164@l
 /* 800FB3EC 000F832C  C0 24 00 30 */ lfs f1, 0x30(r4)
-/* 800FB3F0 000F8330  48 00 07 D9 */ bl daAlink_c_NS_procHangClimbInit
+/* 800FB3F0 000F8330  48 00 07 D9 */ bl procHangClimbInit__9daAlink_cFf
 /* 800FB3F4 000F8334  48 00 00 2C */ b lbl_800FB420
 lbl_800FB3F8:
 /* 800FB3F8 000F8338  7F C3 F3 78 */ mr r3, r30
-/* 800FB3FC 000F833C  4B FF EF 3D */ bl daAlink_c_NS_changeHangMoveProc
+/* 800FB3FC 000F833C  4B FF EF 3D */ bl changeHangMoveProc__9daAlink_cFi
 /* 800FB400 000F8340  2C 03 00 00 */ cmpwi r3, 0
 /* 800FB404 000F8344  41 82 00 14 */ beq lbl_800FB418
 /* 800FB408 000F8348  7F C3 F3 78 */ mr r3, r30
 /* 800FB40C 000F834C  80 9E 31 98 */ lwz r4, 0x3198(r30)
-/* 800FB410 000F8350  48 00 02 41 */ bl daAlink_c_NS_procHangMoveInit
+/* 800FB410 000F8350  48 00 02 41 */ bl procHangMoveInit__9daAlink_cFi
 /* 800FB414 000F8354  48 00 00 0C */ b lbl_800FB420
 lbl_800FB418:
 /* 800FB418 000F8358  7F C3 F3 78 */ mr r3, r30
-/* 800FB41C 000F835C  48 00 00 21 */ bl daAlink_c_NS_procHangWaitInit
+/* 800FB41C 000F835C  48 00 00 21 */ bl procHangWaitInit__9daAlink_cFv
 lbl_800FB420:
 /* 800FB420 000F8360  38 60 00 01 */ li r3, 1
 lbl_800FB424:

@@ -1,7 +1,7 @@
 /* 800D0F5C 000CDE9C  94 21 FF F0 */ stwu r1, -0x10(r1)
 /* 800D0F60 000CDEA0  7C 08 02 A6 */ mflr r0
 /* 800D0F64 000CDEA4  90 01 00 14 */ stw r0, 0x14(r1)
-/* 800D0F68 000CDEA8  48 08 E4 31 */ bl daPy_py_c_NS_checkMasterSwordEquip
+/* 800D0F68 000CDEA8  48 08 E4 31 */ bl checkMasterSwordEquip__9daPy_py_cFv
 /* 800D0F6C 000CDEAC  2C 03 00 00 */ cmpwi r3, 0
 /* 800D0F70 000CDEB0  38 60 00 02 */ li r3, 2
 /* 800D0F74 000CDEB4  41 82 00 0C */ beq lbl_800D0F80

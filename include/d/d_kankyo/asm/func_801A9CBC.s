@@ -14,7 +14,7 @@
 /* 801A9CF0 001A6C30  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A9CF4 001A6C34  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A9CF8 001A6C38  38 63 11 08 */ addi r3, r3, 0x1108
-/* 801A9CFC 001A6C3C  4B FF EF 09 */ bl NewAmbColGet
+/* 801A9CFC 001A6C3C  4B FF EF 09 */ bl NewAmbColGet__FP11_GXColorS10
 /* 801A9D00 001A6C40  90 61 00 08 */ stw r3, 8(r1)
 /* 801A9D04 001A6C44  88 01 00 08 */ lbz r0, 8(r1)
 /* 801A9D08 001A6C48  98 1C 00 00 */ stb r0, 0(r28)
@@ -31,7 +31,7 @@
 /* 801A9D34 001A6C74  7F C7 F3 78 */ mr r7, r30
 /* 801A9D38 001A6C78  7F E8 FB 78 */ mr r8, r31
 /* 801A9D3C 001A6C7C  FC 20 F8 90 */ fmr f1, f31
-/* 801A9D40 001A6C80  4B FF F0 E1 */ bl dKy_ParticleColor_get_base
+/* 801A9D40 001A6C80  4B FF F0 E1 */ bl dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
 /* 801A9D44 001A6C84  CB E1 00 28 */ lfd f31, 0x28(r1)
 /* 801A9D48 001A6C88  39 61 00 28 */ addi r11, r1, 0x28
 /* 801A9D4C 001A6C8C  48 1B 84 D1 */ bl _restgpr_26

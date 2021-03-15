@@ -21,7 +21,7 @@ lbl_80123C28:
 /* 80123C38 00120B78  7C A5 FA 2E */ lhzx r5, r5, r31
 /* 80123C3C 00120B7C  38 DB 37 C8 */ addi r6, r27, 0x37c8
 /* 80123C40 00120B80  38 FB 04 E4 */ addi r7, r27, 0x4e4
-/* 80123C44 00120B84  4B FF CA 81 */ bl daAlink_c_NS_setEmitterColor
+/* 80123C44 00120B84  4B FF CA 81 */ bl setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123C48 00120B88  90 7C 00 00 */ stw r3, 0(r28)
 /* 80123C4C 00120B8C  2C 1E 00 00 */ cmpwi r30, 0
 /* 80123C50 00120B90  41 82 00 24 */ beq lbl_80123C74
@@ -31,7 +31,7 @@ lbl_80123C28:
 /* 80123C60 00120BA0  7C A5 FA 2E */ lhzx r5, r5, r31
 /* 80123C64 00120BA4  38 DB 37 C8 */ addi r6, r27, 0x37c8
 /* 80123C68 00120BA8  38 FB 04 E4 */ addi r7, r27, 0x4e4
-/* 80123C6C 00120BAC  4B FF CA 59 */ bl daAlink_c_NS_setEmitterColor
+/* 80123C6C 00120BAC  4B FF CA 59 */ bl setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123C70 00120BB0  90 7D 00 00 */ stw r3, 0(r29)
 lbl_80123C74:
 /* 80123C74 00120BB4  39 61 00 20 */ addi r11, r1, 0x20

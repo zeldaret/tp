@@ -10,7 +10,7 @@
 /* 800D1104 000CE044  38 60 00 01 */ li r3, 1
 /* 800D1108 000CE048  48 00 01 48 */ b lbl_800D1250
 lbl_800D110C:
-/* 800D110C 000CE04C  4B FE F4 89 */ bl daAlink_c_NS_checkNotBattleStage
+/* 800D110C 000CE04C  4B FE F4 89 */ bl checkNotBattleStage__9daAlink_cFv
 /* 800D1110 000CE050  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D1114 000CE054  41 82 00 0C */ beq lbl_800D1120
 /* 800D1118 000CE058  38 60 00 00 */ li r3, 0
@@ -18,7 +18,7 @@ lbl_800D110C:
 lbl_800D1120:
 /* 800D1120 000CE060  80 7F 27 E0 */ lwz r3, 0x27e0(r31)
 /* 800D1124 000CE064  38 80 00 00 */ li r4, 0
-/* 800D1128 000CE068  4B FA 24 15 */ bl dAttention_c_NS_LockonTarget
+/* 800D1128 000CE068  4B FA 24 15 */ bl LockonTarget__12dAttention_cFl
 /* 800D112C 000CE06C  7C 7E 1B 78 */ mr r30, r3
 /* 800D1130 000CE070  A0 1F 2F DC */ lhz r0, 0x2fdc(r31)
 /* 800D1134 000CE074  28 00 00 FF */ cmplwi r0, 0xff
@@ -53,7 +53,7 @@ lbl_800D1164:
 /* 800D11A4 000CE0E4  28 00 00 00 */ cmplwi r0, 0
 /* 800D11A8 000CE0E8  40 82 00 A4 */ bne lbl_800D124C
 /* 800D11AC 000CE0EC  7F C3 F3 78 */ mr r3, r30
-/* 800D11B0 000CE0F0  48 00 B3 99 */ bl daAlink_c_NS_checkEnemyGroup
+/* 800D11B0 000CE0F0  48 00 B3 99 */ bl checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
 /* 800D11B4 000CE0F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800D11B8 000CE0F8  41 82 00 94 */ beq lbl_800D124C
 /* 800D11BC 000CE0FC  C0 5E 05 40 */ lfs f2, 0x540(r30)

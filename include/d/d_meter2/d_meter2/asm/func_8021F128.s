@@ -5,7 +5,7 @@
 /* 8021F138 0021C078  48 14 30 A5 */ bl _savegpr_29
 /* 8021F13C 0021C07C  7C 7D 1B 78 */ mr r29, r3
 /* 8021F140 0021C080  80 63 01 00 */ lwz r3, 0x100(r3)
-/* 8021F144 0021C084  4B DF 00 89 */ bl mDoExt_setCurrentHeap
+/* 8021F144 0021C084  4B DF 00 89 */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F148 0021C088  7C 7F 1B 78 */ mr r31, r3
 /* 8021F14C 0021C08C  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021F150 0021C090  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -43,64 +43,64 @@ lbl_8021F194:
 /* 8021F1CC 0021C10C  4B E1 50 61 */ bl onCollectCrystal__20dSv_player_collect_cFUc
 lbl_8021F1D0:
 /* 8021F1D0 0021C110  7F A3 EB 78 */ mr r3, r29
-/* 8021F1D4 0021C114  48 00 05 DD */ bl dMeter2_c_NS_checkStatus
+/* 8021F1D4 0021C114  48 00 05 DD */ bl checkStatus__9dMeter2_cFv
 /* 8021F1D8 0021C118  80 7D 01 0C */ lwz r3, 0x10c(r29)
 /* 8021F1DC 0021C11C  80 9D 01 24 */ lwz r4, 0x124(r29)
-/* 8021F1E0 0021C120  4B FF 21 7D */ bl dMeter2Draw_c_NS_exec
+/* 8021F1E0 0021C120  4B FF 21 7D */ bl exec__13dMeter2Draw_cFUl
 /* 8021F1E4 0021C124  7F A3 EB 78 */ mr r3, r29
-/* 8021F1E8 0021C128  48 00 0B 79 */ bl dMeter2_c_NS_moveLife
+/* 8021F1E8 0021C128  48 00 0B 79 */ bl moveLife__9dMeter2_cFv
 /* 8021F1EC 0021C12C  7F A3 EB 78 */ mr r3, r29
-/* 8021F1F0 0021C130  48 00 0F 91 */ bl dMeter2_c_NS_moveKantera
+/* 8021F1F0 0021C130  48 00 0F 91 */ bl moveKantera__9dMeter2_cFv
 /* 8021F1F4 0021C134  7F A3 EB 78 */ mr r3, r29
-/* 8021F1F8 0021C138  48 00 13 25 */ bl dMeter2_c_NS_moveOxygen
+/* 8021F1F8 0021C138  48 00 13 25 */ bl moveOxygen__9dMeter2_cFv
 /* 8021F1FC 0021C13C  7F A3 EB 78 */ mr r3, r29
-/* 8021F200 0021C140  48 00 16 89 */ bl dMeter2_c_NS_moveLightDrop
+/* 8021F200 0021C140  48 00 16 89 */ bl moveLightDrop__9dMeter2_cFv
 /* 8021F204 0021C144  7F A3 EB 78 */ mr r3, r29
-/* 8021F208 0021C148  48 00 1A 29 */ bl dMeter2_c_NS_moveRupee
+/* 8021F208 0021C148  48 00 1A 29 */ bl moveRupee__9dMeter2_cFv
 /* 8021F20C 0021C14C  7F A3 EB 78 */ mr r3, r29
-/* 8021F210 0021C150  48 00 1E 9D */ bl dMeter2_c_NS_moveKey
+/* 8021F210 0021C150  48 00 1E 9D */ bl moveKey__9dMeter2_cFv
 /* 8021F214 0021C154  7F A3 EB 78 */ mr r3, r29
-/* 8021F218 0021C158  48 00 33 01 */ bl dMeter2_c_NS_moveButtonXY
+/* 8021F218 0021C158  48 00 33 01 */ bl moveButtonXY__9dMeter2_cFv
 /* 8021F21C 0021C15C  7F A3 EB 78 */ mr r3, r29
-/* 8021F220 0021C160  48 00 20 25 */ bl dMeter2_c_NS_moveButtonA
+/* 8021F220 0021C160  48 00 20 25 */ bl moveButtonA__9dMeter2_cFv
 /* 8021F224 0021C164  7F A3 EB 78 */ mr r3, r29
-/* 8021F228 0021C168  48 00 25 CD */ bl dMeter2_c_NS_moveButtonB
+/* 8021F228 0021C168  48 00 25 CD */ bl moveButtonB__9dMeter2_cFv
 /* 8021F22C 0021C16C  7F A3 EB 78 */ mr r3, r29
-/* 8021F230 0021C170  48 00 2C 99 */ bl dMeter2_c_NS_moveButtonR
+/* 8021F230 0021C170  48 00 2C 99 */ bl moveButtonR__9dMeter2_cFv
 /* 8021F234 0021C174  7F A3 EB 78 */ mr r3, r29
-/* 8021F238 0021C178  48 00 2D C9 */ bl dMeter2_c_NS_moveButtonZ
+/* 8021F238 0021C178  48 00 2D C9 */ bl moveButtonZ__9dMeter2_cFv
 /* 8021F23C 0021C17C  7F A3 EB 78 */ mr r3, r29
-/* 8021F240 0021C180  48 00 30 61 */ bl dMeter2_c_NS_moveButton3D
+/* 8021F240 0021C180  48 00 30 61 */ bl moveButton3D__9dMeter2_cFv
 /* 8021F244 0021C184  7F A3 EB 78 */ mr r3, r29
-/* 8021F248 0021C188  48 00 31 1D */ bl dMeter2_c_NS_moveButtonC
+/* 8021F248 0021C188  48 00 31 1D */ bl moveButtonC__9dMeter2_cFv
 /* 8021F24C 0021C18C  7F A3 EB 78 */ mr r3, r29
-/* 8021F250 0021C190  48 00 32 45 */ bl dMeter2_c_NS_moveButtonS
+/* 8021F250 0021C190  48 00 32 45 */ bl moveButtonS__9dMeter2_cFv
 /* 8021F254 0021C194  7F A3 EB 78 */ mr r3, r29
-/* 8021F258 0021C198  48 00 3C 31 */ bl dMeter2_c_NS_moveButtonCross
+/* 8021F258 0021C198  48 00 3C 31 */ bl moveButtonCross__9dMeter2_cFv
 /* 8021F25C 0021C19C  7F A3 EB 78 */ mr r3, r29
-/* 8021F260 0021C1A0  48 00 3E 99 */ bl dMeter2_c_NS_moveTouchSubMenu
+/* 8021F260 0021C1A0  48 00 3E 99 */ bl moveTouchSubMenu__9dMeter2_cFv
 /* 8021F264 0021C1A4  7F A3 EB 78 */ mr r3, r29
-/* 8021F268 0021C1A8  48 00 4B 99 */ bl dMeter2_c_NS_moveBombNum
+/* 8021F268 0021C1A8  48 00 4B 99 */ bl moveBombNum__9dMeter2_cFv
 /* 8021F26C 0021C1AC  7F A3 EB 78 */ mr r3, r29
-/* 8021F270 0021C1B0  48 00 50 E5 */ bl dMeter2_c_NS_moveArrowNum
+/* 8021F270 0021C1B0  48 00 50 E5 */ bl moveArrowNum__9dMeter2_cFv
 /* 8021F274 0021C1B4  7F A3 EB 78 */ mr r3, r29
-/* 8021F278 0021C1B8  48 00 54 09 */ bl dMeter2_c_NS_movePachinkoNum
+/* 8021F278 0021C1B8  48 00 54 09 */ bl movePachinkoNum__9dMeter2_cFv
 /* 8021F27C 0021C1BC  7F A3 EB 78 */ mr r3, r29
-/* 8021F280 0021C1C0  48 00 4F D9 */ bl dMeter2_c_NS_moveBottleNum
+/* 8021F280 0021C1C0  48 00 4F D9 */ bl moveBottleNum__9dMeter2_cFv
 /* 8021F284 0021C1C4  80 7D 01 20 */ lwz r3, 0x120(r29)
 /* 8021F288 0021C1C8  28 03 00 00 */ cmplwi r3, 0
 /* 8021F28C 0021C1CC  41 82 00 10 */ beq lbl_8021F29C
 /* 8021F290 0021C1D0  80 9D 01 24 */ lwz r4, 0x124(r29)
-/* 8021F294 0021C1D4  4B FE EA 51 */ bl dMeterMap_c_NS__move
+/* 8021F294 0021C1D4  4B FE EA 51 */ bl _move__11dMeterMap_cFUl
 /* 8021F298 0021C1D8  48 00 00 0C */ b lbl_8021F2A4
 lbl_8021F29C:
 /* 8021F29C 0021C1DC  80 7D 01 24 */ lwz r3, 0x124(r29)
-/* 8021F2A0 0021C1E0  4B FE F4 B5 */ bl dMeterMap_c_NS_meter_map_move
+/* 8021F2A0 0021C1E0  4B FE F4 B5 */ bl meter_map_move__11dMeterMap_cFUl
 lbl_8021F2A4:
 /* 8021F2A4 0021C1E4  7F A3 EB 78 */ mr r3, r29
-/* 8021F2A8 0021C1E8  48 00 3E 55 */ bl dMeter2_c_NS_moveSubContents
+/* 8021F2A8 0021C1E8  48 00 3E 55 */ bl moveSubContents__9dMeter2_cFv
 /* 8021F2AC 0021C1EC  7F A3 EB 78 */ mr r3, r29
-/* 8021F2B0 0021C1F0  48 00 3F 19 */ bl dMeter2_c_NS_move2DContents
+/* 8021F2B0 0021C1F0  48 00 3F 19 */ bl move2DContents__9dMeter2_cFv
 /* 8021F2B4 0021C1F4  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8021F2B8 0021C1F8  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8021F2BC 0021C1FC  88 03 5E B5 */ lbz r0, 0x5eb5(r3)
@@ -111,7 +111,7 @@ lbl_8021F2A4:
 /* 8021F2D0 0021C210  40 82 00 10 */ bne lbl_8021F2E0
 /* 8021F2D4 0021C214  3C 60 80 43 */ lis r3, lbl_80430188@ha
 /* 8021F2D8 0021C218  38 63 01 88 */ addi r3, r3, lbl_80430188@l
-/* 8021F2DC 0021C21C  4B FF EA 05 */ bl dMeter2Info_c_NS_decHotSpringTimer
+/* 8021F2DC 0021C21C  4B FF EA 05 */ bl decHotSpringTimer__13dMeter2Info_cFv
 lbl_8021F2E0:
 /* 8021F2E0 0021C220  3C 60 00 01 */ lis r3, 0x0000FFFF@ha
 /* 8021F2E4 0021C224  38 03 FF FF */ addi r0, r3, 0x0000FFFF@l
@@ -141,7 +141,7 @@ lbl_8021F2E0:
 /* 8021F344 0021C284  98 03 5E 30 */ stb r0, 0x5e30(r3)
 /* 8021F348 0021C288  98 03 5E 4C */ stb r0, 0x5e4c(r3)
 /* 8021F34C 0021C28C  7F E3 FB 78 */ mr r3, r31
-/* 8021F350 0021C290  4B DE FE 7D */ bl mDoExt_setCurrentHeap
+/* 8021F350 0021C290  4B DE FE 7D */ bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 8021F354 0021C294  38 60 00 01 */ li r3, 1
 /* 8021F358 0021C298  39 61 00 20 */ addi r11, r1, 0x20
 /* 8021F35C 0021C29C  48 14 2E CD */ bl _restgpr_29

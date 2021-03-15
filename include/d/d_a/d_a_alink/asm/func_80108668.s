@@ -6,7 +6,7 @@
 /* 8010867C 001055BC  7C 7E 1B 78 */ mr r30, r3
 /* 80108680 001055C0  3B E0 00 00 */ li r31, 0
 /* 80108684 001055C4  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
-/* 80108688 001055C8  48 05 65 31 */ bl daPy_py_c_NS_checkHookshotItem
+/* 80108688 001055C8  48 05 65 31 */ bl checkHookshotItem__9daPy_py_cFi
 /* 8010868C 001055CC  2C 03 00 00 */ cmpwi r3, 0
 /* 80108690 001055D0  41 82 00 10 */ beq lbl_801086A0
 /* 80108694 001055D4  A8 1E 30 1A */ lha r0, 0x301a(r30)

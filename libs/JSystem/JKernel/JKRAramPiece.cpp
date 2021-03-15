@@ -7,7 +7,7 @@
 extern "C" {
 void DCInvalidateRange(void*, u32);
 void DCStoreRange(void*, u32);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 }
 
 extern JSUList<JKRAMCommand> lbl_80434324;  // JKRAramPiece::sAramPieceCommandList
@@ -37,7 +37,7 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source, u32 destinatio
         OSReport("source = %x\n", source);
         OSReport("destination = %x\n", destination);
         OSReport("length = %x\n", length);
-        JUTException_NS_panic_f("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
+        panic_f__12JUTExceptionFPCciPCce("JKRAramPiece.cpp", 0x6c, "%s", "illegal address. abort.");
     }
 
     Message* message = new (JKRHeap::getSystemHeap(), -4) Message();

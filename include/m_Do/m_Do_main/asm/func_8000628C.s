@@ -4,7 +4,7 @@
 /* 80006298 000031D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000629C 000031DC  3C 60 80 3D */	lis r3, lbl_803D32E0@ha
 /* 800062A0 000031E0  3B E3 32 E0 */	addi r31, r3, lbl_803D32E0@l
-/* 800062A4 000031E4  48 00 5A A1 */	bl mDoMch_Create
+/* 800062A4 000031E4  48 00 5A A1 */	bl mDoMch_Create__Fv
 /* 800062A8 000031E8  48 00 4E CD */	bl mDoGph_Create__Fv
 /* 800062AC 000031EC  48 00 16 A9 */	bl create__8mDoCPd_cFv
 /* 800062B0 000031F0  80 8D 8D F8 */	lwz r4, sRootHeap__7JKRHeap-_SDA_BASE_(r13)
@@ -23,7 +23,7 @@ lbl_800062CC:
 /* 800062E0 00003220  80 04 00 38 */	lwz r0, 0x38(r4)
 /* 800062E4 00003224  90 03 00 1C */	stw r0, 0x1c(r3)
 lbl_800062E8:
-/* 800062E8 00003228  48 00 8A 99 */	bl mDoExt_getZeldaHeap
+/* 800062E8 00003228  48 00 8A 99 */	bl mDoExt_getZeldaHeap__Fv
 /* 800062EC 0000322C  38 9F 00 50 */	addi r4, r31, 0x50
 /* 800062F0 00003230  90 64 00 08 */	stw r3, 8(r4)
 /* 800062F4 00003234  28 03 00 00 */	cmplwi r3, 0
@@ -31,7 +31,7 @@ lbl_800062E8:
 /* 800062FC 0000323C  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 80006300 00003240  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_80006304:
-/* 80006304 00003244  48 00 8A 4D */	bl mDoExt_getGameHeap
+/* 80006304 00003244  48 00 8A 4D */	bl mDoExt_getGameHeap__Fv
 /* 80006308 00003248  38 9F 00 78 */	addi r4, r31, 0x78
 /* 8000630C 0000324C  90 64 00 08 */	stw r3, 8(r4)
 /* 80006310 00003250  28 03 00 00 */	cmplwi r3, 0
@@ -39,7 +39,7 @@ lbl_80006304:
 /* 80006318 00003258  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 8000631C 0000325C  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_80006320:
-/* 80006320 00003260  48 00 8A CD */	bl mDoExt_getArchiveHeap
+/* 80006320 00003260  48 00 8A CD */	bl mDoExt_getArchiveHeap__Fv
 /* 80006324 00003264  38 9F 00 A0 */	addi r4, r31, 0xa0
 /* 80006328 00003268  90 64 00 08 */	stw r3, 8(r4)
 /* 8000632C 0000326C  28 03 00 00 */	cmplwi r3, 0
@@ -47,7 +47,7 @@ lbl_80006320:
 /* 80006334 00003274  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 80006338 00003278  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_8000633C:
-/* 8000633C 0000327C  48 00 8A F5 */	bl mDoExt_getJ2dHeap
+/* 8000633C 0000327C  48 00 8A F5 */	bl mDoExt_getJ2dHeap__Fv
 /* 80006340 00003280  38 9F 00 C8 */	addi r4, r31, 0xc8
 /* 80006344 00003284  90 64 00 08 */	stw r3, 8(r4)
 /* 80006348 00003288  28 03 00 00 */	cmplwi r3, 0
@@ -55,7 +55,7 @@ lbl_8000633C:
 /* 80006350 00003290  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 80006354 00003294  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_80006358:
-/* 80006358 00003298  48 00 8A E1 */	bl mDoExt_getHostIOHeap
+/* 80006358 00003298  48 00 8A E1 */	bl mDoExt_getHostIOHeap__Fv
 /* 8000635C 0000329C  38 9F 00 F0 */	addi r4, r31, 0xf0
 /* 80006360 000032A0  90 64 00 08 */	stw r3, 8(r4)
 /* 80006364 000032A4  28 03 00 00 */	cmplwi r3, 0
@@ -63,7 +63,7 @@ lbl_80006358:
 /* 8000636C 000032AC  80 03 00 38 */	lwz r0, 0x38(r3)
 /* 80006370 000032B0  90 04 00 1C */	stw r0, 0x1c(r4)
 lbl_80006374:
-/* 80006374 000032B4  48 00 8A 3D */	bl mDoExt_getCommandHeap
+/* 80006374 000032B4  48 00 8A 3D */	bl mDoExt_getCommandHeap__Fv
 /* 80006378 000032B8  38 9F 01 18 */	addi r4, r31, 0x118
 /* 8000637C 000032BC  90 64 00 08 */	stw r3, 8(r4)
 /* 80006380 000032C0  28 03 00 00 */	cmplwi r3, 0
@@ -86,12 +86,12 @@ lbl_800063A8:
 /* 800063BC 000032FC  3C 60 80 00 */	lis r3, LOAD_COPYDATE__FPv@ha
 /* 800063C0 00003300  38 63 61 4C */	addi r3, r3, LOAD_COPYDATE__FPv@l
 /* 800063C4 00003304  38 80 00 00 */	li r4, 0
-/* 800063C8 00003308  48 00 F8 AD */	bl mDoDvdThd_callback_c_NS_create
+/* 800063C8 00003308  48 00 F8 AD */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 800063CC 0000330C  48 01 26 D5 */	bl fapGm_Create
 /* 800063D0 00003310  48 01 7A 41 */	bl fopAcM_initManager__Fv
 /* 800063D4 00003314  38 00 00 00 */	li r0, 0
 /* 800063D8 00003318  98 0D 85 98 */	stb r0, lbl_80450B18-_SDA_BASE_(r13)
-/* 800063DC 0000331C  48 01 23 89 */	bl cDyl_InitAsync
+/* 800063DC 0000331C  48 01 23 89 */	bl cDyl_InitAsync__Fv
 /* 800063E0 00003320  3C 60 00 15 */	lis r3, 0x0014D800@ha
 /* 800063E4 00003324  38 63 D8 00 */	addi r3, r3, 0x0014D800@l
 /* 800063E8 00003328  80 8D 8D F4 */	lwz r4, sCurrentHeap__7JKRHeap-_SDA_BASE_(r13)
@@ -111,13 +111,13 @@ lbl_80006400:
 /* 8000641C 0000335C  7C 00 21 D6 */	mullw r0, r0, r4
 /* 80006420 00003360  7C 00 18 51 */	subf. r0, r0, r3
 /* 80006424 00003364  40 82 00 08 */	bne lbl_8000642C
-/* 80006428 00003368  48 00 52 41 */	bl mDoMch_HeapCheckAll
+/* 80006428 00003368  48 00 52 41 */	bl mDoMch_HeapCheckAll__Fv
 lbl_8000642C:
 /* 8000642C 0000336C  88 0D 87 00 */	lbz r0, lbl_80450C80-_SDA_BASE_(r13)
 /* 80006430 00003370  28 00 00 00 */	cmplwi r0, 0
 /* 80006434 00003374  41 82 00 0C */	beq lbl_80006440
 /* 80006438 00003378  7F E3 FB 78 */	mr r3, r31
-/* 8000643C 0000337C  48 01 04 59 */	bl mDoMemCd_Ctrl_c_NS_update
+/* 8000643C 0000337C  48 01 04 59 */	bl update__15mDoMemCd_Ctrl_cFv
 lbl_80006440:
 /* 80006440 00003380  48 00 16 55 */	bl read__8mDoCPd_cFv
 /* 80006444 00003384  48 01 26 29 */	bl fapGm_Execute

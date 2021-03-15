@@ -10,7 +10,7 @@
 /* 800E82D4 000E5214  2C 1E 00 21 */ cmpwi r30, 0x21
 /* 800E82D8 000E5218  40 82 00 14 */ bne lbl_800E82EC
 /* 800E82DC 000E521C  7C 83 23 78 */ mr r3, r4
-/* 800E82E0 000E5220  4B FF 42 C5 */ bl daAlink_c_NS_checkSpecialNpc
+/* 800E82E0 000E5220  4B FF 42 C5 */ bl checkSpecialNpc__9daAlink_cFP10fopAc_ac_c
 /* 800E82E4 000E5224  2C 03 00 00 */ cmpwi r3, 0
 /* 800E82E8 000E5228  40 82 00 0C */ bne lbl_800E82F4
 lbl_800E82EC:

@@ -8,10 +8,10 @@
 /* 8005714C 0005408C  88 03 00 9E */ lbz r0, 0x9e(r3)
 /* 80057150 00054090  28 00 00 00 */ cmplwi r0, 0
 /* 80057154 00054094  40 82 00 0C */ bne lbl_80057160
-/* 80057158 00054098  4B FF F9 A1 */ bl dKyw_setDrawPacketListIndScreen
+/* 80057158 00054098  4B FF F9 A1 */ bl dKyw_setDrawPacketListIndScreen__FP9J3DPacketi
 /* 8005715C 0005409C  48 00 00 08 */ b lbl_80057164
 lbl_80057160:
-/* 80057160 000540A0  4B FF F9 E9 */ bl dKyw_setDrawPacketListSky
+/* 80057160 000540A0  4B FF F9 E9 */ bl dKyw_setDrawPacketListSky__FP9J3DPacketi
 lbl_80057164:
 /* 80057164 000540A4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 80057168 000540A8  7C 08 03 A6 */ mtlr r0

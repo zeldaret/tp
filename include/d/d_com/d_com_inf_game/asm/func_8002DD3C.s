@@ -10,7 +10,7 @@
 /* 8002DD60 0002ACA0  48 00 4C FD */ bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 8002DD64 0002ACA4  7C 7F 1B 78 */ mr r31, r3
 /* 8002DD68 0002ACA8  7F C3 F3 78 */ mr r3, r30
-/* 8002DD6C 0002ACAC  48 00 00 5D */ bl dComIfGs_getMixItemIndex
+/* 8002DD6C 0002ACAC  48 00 00 5D */ bl dComIfGs_getMixItemIndex__Fi
 /* 8002DD70 0002ACB0  57 E0 06 3E */ clrlwi r0, r31, 0x18
 /* 8002DD74 0002ACB4  28 00 00 0F */ cmplwi r0, 0xf
 /* 8002DD78 0002ACB8  41 80 00 14 */ blt lbl_8002DD8C

@@ -5,7 +5,7 @@
 /* 800EECA8 000EBBE8  48 27 35 35 */ bl _savegpr_29
 /* 800EECAC 000EBBEC  7C 7D 1B 78 */ mr r29, r3
 /* 800EECB0 000EBBF0  83 C3 28 18 */ lwz r30, 0x2818(r3)
-/* 800EECB4 000EBBF4  48 02 6F 6D */ bl daAlink_c_NS_checkEventRun
+/* 800EECB4 000EBBF4  48 02 6F 6D */ bl checkEventRun__9daAlink_cCFv
 /* 800EECB8 000EBBF8  2C 03 00 00 */ cmpwi r3, 0
 /* 800EECBC 000EBBFC  41 82 00 20 */ beq lbl_800EECDC
 /* 800EECC0 000EBC00  83 ED 8A 98 */ lwz r31, lbl_80451018-_SDA_BASE_(r13)
@@ -30,7 +30,7 @@ lbl_800EECE8:
 /* 800EED04 000EBC44  38 A0 00 49 */ li r5, 0x49
 /* 800EED08 000EBC48  38 C0 00 0A */ li r6, 0xa
 /* 800EED0C 000EBC4C  C0 82 92 BC */ lfs f4, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800EED10 000EBC50  4B FB DD 05 */ bl daAlink_c_NS_setDoubleAnime
+/* 800EED10 000EBC50  4B FB DD 05 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 /* 800EED14 000EBC54  48 00 00 6C */ b lbl_800EED80
 lbl_800EED18:
 /* 800EED18 000EBC58  C0 02 92 98 */ lfs f0, lbl_80452C98-_SDA2_BASE_(r2)
@@ -46,7 +46,7 @@ lbl_800EED18:
 /* 800EED40 000EBC80  38 A0 00 4A */ li r5, 0x4a
 /* 800EED44 000EBC84  38 C0 00 0A */ li r6, 0xa
 /* 800EED48 000EBC88  C0 82 92 BC */ lfs f4, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800EED4C 000EBC8C  4B FB DC C9 */ bl daAlink_c_NS_setDoubleAnime
+/* 800EED4C 000EBC8C  4B FB DC C9 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 /* 800EED50 000EBC90  48 00 00 30 */ b lbl_800EED80
 lbl_800EED54:
 /* 800EED54 000EBC94  7F A3 EB 78 */ mr r3, r29
@@ -59,7 +59,7 @@ lbl_800EED54:
 /* 800EED70 000EBCB0  38 A0 00 4B */ li r5, 0x4b
 /* 800EED74 000EBCB4  38 C0 00 0A */ li r6, 0xa
 /* 800EED78 000EBCB8  C0 82 92 BC */ lfs f4, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800EED7C 000EBCBC  4B FB DC 99 */ bl daAlink_c_NS_setDoubleAnime
+/* 800EED7C 000EBCBC  4B FB DC 99 */ bl setDoubleAnime__9daAlink_cFfffQ29daAlink_c11daAlink_ANMQ29daAlink_c11daAlink_ANMif
 lbl_800EED80:
 /* 800EED80 000EBCC0  39 61 00 20 */ addi r11, r1, 0x20
 /* 800EED84 000EBCC4  48 27 34 A5 */ bl _restgpr_29

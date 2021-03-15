@@ -50,14 +50,14 @@ lbl_8022240C:
 /* 80222420 0021F360  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80222424 0021F364  40 82 00 18 */ bne lbl_8022243C
 lbl_80222428:
-/* 80222428 0021F368  4B FF 99 A9 */ bl dMeter2Draw_c_NS_getButtonTimer
+/* 80222428 0021F368  4B FF 99 A9 */ bl getButtonTimer__13dMeter2Draw_cFv
 /* 8022242C 0021F36C  7C 63 07 34 */ extsh r3, r3
 /* 80222430 0021F370  A8 1E 01 9A */ lha r0, 0x19a(r30)
 /* 80222434 0021F374  7C 00 18 00 */ cmpw r0, r3
 /* 80222438 0021F378  41 82 00 44 */ beq lbl_8022247C
 lbl_8022243C:
 /* 8022243C 0021F37C  80 7E 01 0C */ lwz r3, 0x10c(r30)
-/* 80222440 0021F380  4B FF 99 91 */ bl dMeter2Draw_c_NS_getButtonTimer
+/* 80222440 0021F380  4B FF 99 91 */ bl getButtonTimer__13dMeter2Draw_cFv
 /* 80222444 0021F384  B0 7E 01 9A */ sth r3, 0x19a(r30)
 /* 80222448 0021F388  88 1F 5E 2F */ lbz r0, 0x5e2f(r31)
 /* 8022244C 0021F38C  98 1E 01 CB */ stb r0, 0x1cb(r30)
@@ -71,7 +71,7 @@ lbl_8022243C:
 /* 8022246C 0021F3AC  80 1E 01 28 */ lwz r0, 0x128(r30)
 /* 80222470 0021F3B0  7C 00 00 34 */ cntlzw r0, r0
 /* 80222474 0021F3B4  54 05 D9 7E */ srwi r5, r0, 5
-/* 80222478 0021F3B8  4B FF 54 DD */ bl dMeter2Draw_c_NS_drawButtonC
+/* 80222478 0021F3B8  4B FF 54 DD */ bl drawButtonC__13dMeter2Draw_cFUcb
 lbl_8022247C:
 /* 8022247C 0021F3BC  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 80222480 0021F3C0  83 C1 00 08 */ lwz r30, 8(r1)

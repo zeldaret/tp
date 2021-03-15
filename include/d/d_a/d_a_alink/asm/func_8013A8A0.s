@@ -4,12 +4,12 @@
 /* 8013A8AC 001377EC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013A8B0 001377F0  7C 7F 1B 78 */ mr r31, r3
 /* 8013A8B4 001377F4  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8013A8B8 001377F8  48 02 3C 15 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8013A8B8 001377F8  48 02 3C 15 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8013A8BC 001377FC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8013A8C0 00137800  41 82 00 24 */ beq lbl_8013A8E4
 /* 8013A8C4 00137804  7F E3 FB 78 */ mr r3, r31
 /* 8013A8C8 00137808  38 80 00 02 */ li r4, 2
-/* 8013A8CC 0013780C  4B FF 3A CD */ bl daAlink_c_NS_procWolfBackJumpInit
+/* 8013A8CC 0013780C  4B FF 3A CD */ bl procWolfBackJumpInit__9daAlink_cFi
 /* 8013A8D0 00137810  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8013A8D4 00137814  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8013A8D8 00137818  80 03 5F 1C */ lwz r0, 0x5f1c(r3)

@@ -15,7 +15,7 @@ lbl_80123CC0:
 /* 80123CC0 00120C00  80 63 5D 3C */ lwz r3, 0x5d3c(r3)
 /* 80123CC4 00120C04  38 63 02 10 */ addi r3, r3, 0x210
 /* 80123CC8 00120C08  80 9A 31 B0 */ lwz r4, 0x31b0(r26)
-/* 80123CCC 00120C0C  4B F2 7C 4D */ bl dPa_control_c_NS_level_c_NS_getEmitter
+/* 80123CCC 00120C0C  4B F2 7C 4D */ bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 80123CD0 00120C10  28 03 00 00 */ cmplwi r3, 0
 /* 80123CD4 00120C14  41 82 00 20 */ beq lbl_80123CF4
 /* 80123CD8 00120C18  88 63 00 BB */ lbz r3, 0xbb(r3)
@@ -51,7 +51,7 @@ lbl_80123D34:
 /* 80123D40 00120C80  7C BD FA 2E */ lhzx r5, r29, r31
 /* 80123D44 00120C84  38 C1 00 08 */ addi r6, r1, 8
 /* 80123D48 00120C88  38 FA 04 E4 */ addi r7, r26, 0x4e4
-/* 80123D4C 00120C8C  4B FF C8 35 */ bl daAlink_c_NS_setEmitter
+/* 80123D4C 00120C8C  4B FF C8 35 */ bl setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz
 /* 80123D50 00120C90  28 03 00 00 */ cmplwi r3, 0
 /* 80123D54 00120C94  41 82 00 08 */ beq lbl_80123D5C
 /* 80123D58 00120C98  9B 83 00 BB */ stb r28, 0xbb(r3)

@@ -17,7 +17,7 @@
 /* 801A4ED0 001A1E10  D0 01 00 1C */ stfs f0, 0x1c(r1)
 /* 801A4ED4 001A1E14  38 61 00 14 */ addi r3, r1, 0x14
 /* 801A4ED8 001A1E18  38 80 00 00 */ li r4, 0
-/* 801A4EDC 001A1E1C  4B FF 92 61 */ bl dKy_eflight_influence_id
+/* 801A4EDC 001A1E1C  4B FF 92 61 */ bl dKy_eflight_influence_id__F4cXyzi
 /* 801A4EE0 001A1E20  90 7E 12 A8 */ stw r3, 0x12a8(r30)
 /* 801A4EE4 001A1E24  C0 1F 04 D0 */ lfs f0, 0x4d0(r31)
 /* 801A4EE8 001A1E28  D0 01 00 08 */ stfs f0, 8(r1)
@@ -27,7 +27,7 @@
 /* 801A4EF8 001A1E38  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 801A4EFC 001A1E3C  38 61 00 08 */ addi r3, r1, 8
 /* 801A4F00 001A1E40  38 80 00 00 */ li r4, 0
-/* 801A4F04 001A1E44  4B FF 8E 69 */ bl dKy_light_influence_id
+/* 801A4F04 001A1E44  4B FF 8E 69 */ bl dKy_light_influence_id__F4cXyzi
 /* 801A4F08 001A1E48  90 7E 12 A4 */ stw r3, 0x12a4(r30)
 lbl_801A4F0C:
 /* 801A4F0C 001A1E4C  83 E1 00 2C */ lwz r31, 0x2c(r1)

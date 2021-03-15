@@ -4,7 +4,7 @@
 /* 8012D38C 0012A2CC  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8012D390 0012A2D0  7C 7F 1B 78 */ mr r31, r3
 /* 8012D394 0012A2D4  38 80 00 F2 */ li r4, 0xf2
-/* 8012D398 0012A2D8  4B F9 5A 0D */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8012D398 0012A2D8  4B F9 5A 0D */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012D39C 0012A2DC  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D3A0 0012A2E0  40 82 00 0C */ bne lbl_8012D3AC
 /* 8012D3A4 0012A2E4  38 60 00 00 */ li r3, 0
@@ -14,10 +14,10 @@ lbl_8012D3AC:
 /* 8012D3B0 0012A2F0  3C 80 80 39 */ lis r4, lbl_8038EE28@ha
 /* 8012D3B4 0012A2F4  38 84 EE 28 */ addi r4, r4, lbl_8038EE28@l
 /* 8012D3B8 0012A2F8  C0 24 00 94 */ lfs f1, 0x94(r4)
-/* 8012D3BC 0012A2FC  4B FF B4 89 */ bl daAlink_c_NS_setBlendWolfMoveAnime
+/* 8012D3BC 0012A2FC  4B FF B4 89 */ bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 8012D3C0 0012A300  7F E3 FB 78 */ mr r3, r31
 /* 8012D3C4 0012A304  38 80 00 03 */ li r4, 3
-/* 8012D3C8 0012A308  4B FF 3D F9 */ bl daAlink_c_NS_setFootEffectProcType
+/* 8012D3C8 0012A308  4B FF 3D F9 */ bl setFootEffectProcType__9daAlink_cFi
 /* 8012D3CC 0012A30C  38 60 00 01 */ li r3, 1
 lbl_8012D3D0:
 /* 8012D3D0 0012A310  83 E1 00 0C */ lwz r31, 0xc(r1)

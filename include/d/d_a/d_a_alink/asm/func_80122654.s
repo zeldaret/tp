@@ -36,7 +36,7 @@ lbl_801226D8:
 /* 801226D8 0011F618  7F E3 FB 78 */ mr r3, r31
 /* 801226DC 0011F61C  38 81 00 08 */ addi r4, r1, 8
 /* 801226E0 0011F620  38 BF 31 C8 */ addi r5, r31, 0x31c8
-/* 801226E4 0011F624  4B FF FF 05 */ bl daAlink_c_NS_setWaterfallEffect
+/* 801226E4 0011F624  4B FF FF 05 */ bl setWaterfallEffect__9daAlink_cFPC4cXyzPUl
 lbl_801226E8:
 /* 801226E8 0011F628  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 801226EC 0011F62C  54 00 01 8D */ rlwinm. r0, r0, 0, 6, 6
@@ -59,7 +59,7 @@ lbl_801226E8:
 /* 80122730 0011F670  7F E3 FB 78 */ mr r3, r31
 /* 80122734 0011F674  38 81 00 08 */ addi r4, r1, 8
 /* 80122738 0011F678  38 BF 31 D0 */ addi r5, r31, 0x31d0
-/* 8012273C 0011F67C  4B FF FE AD */ bl daAlink_c_NS_setWaterfallEffect
+/* 8012273C 0011F67C  4B FF FE AD */ bl setWaterfallEffect__9daAlink_cFPC4cXyzPUl
 lbl_80122740:
 /* 80122740 0011F680  80 1F 05 8C */ lwz r0, 0x58c(r31)
 /* 80122744 0011F684  54 00 04 E9 */ rlwinm. r0, r0, 0, 0x13, 0x14

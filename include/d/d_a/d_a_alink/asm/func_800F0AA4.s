@@ -4,11 +4,11 @@
 /* 800F0AB0 000ED9F0  39 61 00 30 */ addi r11, r1, 0x30
 /* 800F0AB4 000ED9F4  48 27 17 29 */ bl _savegpr_29
 /* 800F0AB8 000ED9F8  7C 7F 1B 78 */ mr r31, r3
-/* 800F0ABC 000ED9FC  4B FF EB F5 */ bl daAlink_c_NS_checkHorseGetOffAndSetDoStatus
+/* 800F0ABC 000ED9FC  4B FF EB F5 */ bl checkHorseGetOffAndSetDoStatus__9daAlink_cFv
 /* 800F0AC0 000EDA00  7C 7D 1B 78 */ mr r29, r3
 /* 800F0AC4 000EDA04  7F E3 FB 78 */ mr r3, r31
 /* 800F0AC8 000EDA08  38 80 00 01 */ li r4, 1
-/* 800F0ACC 000EDA0C  4B FF DE 4D */ bl daAlink_c_NS_setSyncRide
+/* 800F0ACC 000EDA0C  4B FF DE 4D */ bl setSyncRide__9daAlink_cFi
 /* 800F0AD0 000EDA10  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0AD4 000EDA14  40 82 00 0C */ bne lbl_800F0AE0
 /* 800F0AD8 000EDA18  38 60 00 01 */ li r3, 1
@@ -26,28 +26,28 @@ lbl_800F0AE0:
 /* 800F0B04 000EDA44  54 00 00 01 */ rlwinm. r0, r0, 0, 0, 0
 /* 800F0B08 000EDA48  41 82 00 20 */ beq lbl_800F0B28
 /* 800F0B0C 000EDA4C  7F E3 FB 78 */ mr r3, r31
-/* 800F0B10 000EDA50  48 02 51 11 */ bl daAlink_c_NS_checkEventRun
+/* 800F0B10 000EDA50  48 02 51 11 */ bl checkEventRun__9daAlink_cCFv
 /* 800F0B14 000EDA54  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0B18 000EDA58  40 82 00 10 */ bne lbl_800F0B28
 /* 800F0B1C 000EDA5C  7F E3 FB 78 */ mr r3, r31
-/* 800F0B20 000EDA60  48 00 23 C1 */ bl daAlink_c_NS_procHorseRunInit
+/* 800F0B20 000EDA60  48 00 23 C1 */ bl procHorseRunInit__9daAlink_cFv
 /* 800F0B24 000EDA64  48 00 01 30 */ b lbl_800F0C54
 lbl_800F0B28:
 /* 800F0B28 000EDA68  7F E3 FB 78 */ mr r3, r31
 /* 800F0B2C 000EDA6C  38 80 00 01 */ li r4, 1
-/* 800F0B30 000EDA70  4B FC 70 C9 */ bl daAlink_c_NS_orderTalk
+/* 800F0B30 000EDA70  4B FC 70 C9 */ bl orderTalk__9daAlink_cFi
 /* 800F0B34 000EDA74  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0B38 000EDA78  41 82 00 0C */ beq lbl_800F0B44
 /* 800F0B3C 000EDA7C  38 60 00 01 */ li r3, 1
 /* 800F0B40 000EDA80  48 00 01 14 */ b lbl_800F0C54
 lbl_800F0B44:
 /* 800F0B44 000EDA84  7F E3 FB 78 */ mr r3, r31
-/* 800F0B48 000EDA88  4B FF E9 09 */ bl daAlink_c_NS_checkNextActionHorse
+/* 800F0B48 000EDA88  4B FF E9 09 */ bl checkNextActionHorse__9daAlink_cFv
 /* 800F0B4C 000EDA8C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0B50 000EDA90  40 82 01 00 */ bne lbl_800F0C50
 /* 800F0B54 000EDA94  7F E3 FB 78 */ mr r3, r31
 /* 800F0B58 000EDA98  7F A4 EB 78 */ mr r4, r29
-/* 800F0B5C 000EDA9C  4B FF ED 29 */ bl daAlink_c_NS_setHorseGetOff
+/* 800F0B5C 000EDA9C  4B FF ED 29 */ bl setHorseGetOff__9daAlink_cFi
 /* 800F0B60 000EDAA0  2C 03 00 00 */ cmpwi r3, 0
 /* 800F0B64 000EDAA4  41 82 00 0C */ beq lbl_800F0B70
 /* 800F0B68 000EDAA8  38 60 00 01 */ li r3, 1
@@ -57,9 +57,9 @@ lbl_800F0B70:
 /* 800F0B74 000EDAB4  54 00 02 11 */ rlwinm. r0, r0, 0, 8, 8
 /* 800F0B78 000EDAB8  41 82 00 D8 */ beq lbl_800F0C50
 /*.global daAlink_searchBoar*/
-/* 800F0B7C 000EDABC  3C 60 80 0F */ lis r3, daAlink_searchBoar@ha
+/* 800F0B7C 000EDABC  3C 60 80 0F */ lis r3, daAlink_searchBoar__FP10fopAc_ac_cPv@ha
 /*.global daAlink_searchBoar*/
-/* 800F0B80 000EDAC0  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar@l
+/* 800F0B80 000EDAC0  38 63 C7 24 */ addi r3, r3, daAlink_searchBoar__FP10fopAc_ac_cPv@l
 /* 800F0B84 000EDAC4  38 80 00 00 */ li r4, 0
 /* 800F0B88 000EDAC8  4B F2 8C 71 */ bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800F0B8C 000EDACC  7C 7D 1B 79 */ or. r29, r3, r3

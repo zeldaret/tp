@@ -3,7 +3,7 @@
 /* 800E80AC 000E4FEC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 800E80B0 000E4FF0  38 80 00 01 */ li r4, 1
 /* 800E80B4 000E4FF4  38 63 1E 1C */ addi r3, r3, 0x1e1c
-/* 800E80B8 000E4FF8  4B FB A1 29 */ bl daAlink_c_NS_getMoveBGActorName
+/* 800E80B8 000E4FF8  4B FB A1 29 */ bl getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi
 /* 800E80BC 000E4FFC  38 A0 00 01 */ li r5, 1
 /* 800E80C0 000E5000  7C A6 2B 78 */ mr r6, r5
 /* 800E80C4 000E5004  7C A7 2B 78 */ mr r7, r5

@@ -4,7 +4,7 @@
 /* 8002CAD0 00029A10  80 63 4E 08 */ lwz r3, 0x4e08(r3)
 /* 8002CAD4 00029A14  28 03 00 00 */ cmplwi r3, 0
 /* 8002CAD8 00029A18  41 82 00 08 */ beq lbl_8002CAE0
-/* 8002CADC 00029A1C  48 01 C3 31 */ bl dSmplMdl_draw_c_NS_draw
+/* 8002CADC 00029A1C  48 01 C3 31 */ bl draw__15dSmplMdl_draw_cFv
 lbl_8002CAE0:
 /* 8002CAE0 00029A20  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8002CAE4 00029A24  7C 08 03 A6 */ mtlr r0

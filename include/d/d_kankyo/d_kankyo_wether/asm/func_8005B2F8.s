@@ -7,7 +7,7 @@
 /* 8005B310 00058250  7C BD 2B 78 */ mr r29, r5
 /* 8005B314 00058254  3C C0 80 43 */ lis r6, lbl_8042CA54@ha
 /* 8005B318 00058258  3B C6 CA 54 */ addi r30, r6, lbl_8042CA54@l
-/* 8005B31C 0005825C  4B FF FF 21 */ bl dKyw_pntwind_get_info
+/* 8005B31C 0005825C  4B FF FF 21 */ bl dKyw_pntwind_get_info__FP4cXyzP4cXyzPf
 /* 8005B320 00058260  38 61 00 30 */ addi r3, r1, 0x30
 /* 8005B324 00058264  3C 80 80 43 */ lis r4, lbl_8042CA54@ha
 /* 8005B328 00058268  38 A4 CA 54 */ addi r5, r4, lbl_8042CA54@l

@@ -3,8 +3,8 @@
 .section .text, "ax" # 80077ba0
 
 
-.global dBgS_GrpPassChk
-dBgS_GrpPassChk:
+.global __ct__15dBgS_GrpPassChkFv
+__ct__15dBgS_GrpPassChkFv:
 /* 80077BA0 00074AE0  3C 80 80 3B */	lis r4, lbl_803AB7B4@ha
 /* 80077BA4 00074AE4  38 04 B7 B4 */	addi r0, r4, lbl_803AB7B4@l
 /* 80077BA8 00074AE8  90 03 00 00 */	stw r0, 0(r3)
@@ -15,8 +15,8 @@ dBgS_GrpPassChk:
 /* 80077BBC 00074AFC  90 03 00 04 */	stw r0, 4(r3)
 /* 80077BC0 00074B00  4E 80 00 20 */	blr 
 
-.global dBgS_GrpPassChk_NS_dtor
-dBgS_GrpPassChk_NS_dtor:
+.global __dt__15dBgS_GrpPassChkFv
+__dt__15dBgS_GrpPassChkFv:
 /* 80077BC4 00074B04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80077BC8 00074B08  7C 08 02 A6 */	mflr r0
 /* 80077BCC 00074B0C  90 01 00 14 */	stw r0, 0x14(r1)

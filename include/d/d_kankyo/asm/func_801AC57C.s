@@ -3,7 +3,7 @@
 /* 801AC584 001A94C4  90 01 00 14 */ stw r0, 0x14(r1)
 /* 801AC588 001A94C8  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801AC58C 001A94CC  3B E0 00 00 */ li r31, 0
-/* 801AC590 001A94D0  4B E8 2F 89 */ bl dComIfGp_world_dark_get
+/* 801AC590 001A94D0  4B E8 2F 89 */ bl dComIfGp_world_dark_get__Fv
 /* 801AC594 001A94D4  54 60 06 3E */ clrlwi r0, r3, 0x18
 /* 801AC598 001A94D8  28 00 00 01 */ cmplwi r0, 1
 /* 801AC59C 001A94DC  40 82 00 08 */ bne lbl_801AC5A4

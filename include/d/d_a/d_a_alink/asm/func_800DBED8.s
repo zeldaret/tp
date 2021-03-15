@@ -12,7 +12,7 @@
 /* 800DBF04 000D8E44  38 A0 00 00 */ li r5, 0
 /* 800DBF08 000D8E48  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800DBF0C 000D8E4C  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800DBF10 000D8E50  4B F6 72 5D */ bl dEvt_control_c_NS_compulsory
+/* 800DBF10 000D8E50  4B F6 72 5D */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800DBF14 000D8E54  2C 03 00 00 */ cmpwi r3, 0
 /* 800DBF18 000D8E58  40 82 00 0C */ bne lbl_800DBF24
 /* 800DBF1C 000D8E5C  38 60 00 00 */ li r3, 0
@@ -24,7 +24,7 @@ lbl_800DBF24:
 /* 800DBF30 000D8E70  54 1D 06 72 */ rlwinm r29, r0, 0, 0x19, 0x19
 /* 800DBF34 000D8E74  7F C3 F3 78 */ mr r3, r30
 /* 800DBF38 000D8E78  38 80 01 55 */ li r4, 0x155
-/* 800DBF3C 000D8E7C  4B FE 6E 69 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 800DBF3C 000D8E7C  4B FE 6E 69 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DBF40 000D8E80  2C 03 00 00 */ cmpwi r3, 0
 /* 800DBF44 000D8E84  40 82 00 0C */ bne lbl_800DBF50
 /* 800DBF48 000D8E88  38 60 00 01 */ li r3, 1
@@ -45,10 +45,10 @@ lbl_800DBF68:
 /* 800DBF7C 000D8EBC  41 82 00 64 */ beq lbl_800DBFE0
 /* 800DBF80 000D8EC0  7F C3 F3 78 */ mr r3, r30
 /* 800DBF84 000D8EC4  38 80 00 7D */ li r4, 0x7d
-/* 800DBF88 000D8EC8  48 04 D6 F1 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 800DBF88 000D8EC8  48 04 D6 F1 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 800DBF8C 000D8ECC  7F C3 F3 78 */ mr r3, r30
 /* 800DBF90 000D8ED0  38 80 00 9E */ li r4, 0x9e
-/* 800DBF94 000D8ED4  4B FD 39 0D */ bl daAlink_c_NS_setFaceBasicTexture
+/* 800DBF94 000D8ED4  4B FD 39 0D */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 800DBF98 000D8ED8  2C 1F 00 00 */ cmpwi r31, 0
 /* 800DBF9C 000D8EDC  41 82 00 24 */ beq lbl_800DBFC0
 /* 800DBFA0 000D8EE0  7F C3 F3 78 */ mr r3, r30
@@ -71,7 +71,7 @@ lbl_800DBFC0:
 lbl_800DBFE0:
 /* 800DBFE0 000D8F20  7F C3 F3 78 */ mr r3, r30
 /* 800DBFE4 000D8F24  38 80 01 19 */ li r4, 0x119
-/* 800DBFE8 000D8F28  4B FD 0F 99 */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800DBFE8 000D8F28  4B FD 0F 99 */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800DBFEC 000D8F2C  A0 1E 2F DC */ lhz r0, 0x2fdc(r30)
 /* 800DBFF0 000D8F30  28 00 01 03 */ cmplwi r0, 0x103
 /* 800DBFF4 000D8F34  40 82 00 0C */ bne lbl_800DC000
@@ -161,7 +161,7 @@ lbl_800DC0C0:
 /* 800DC134 000D9074  39 20 00 00 */ li r9, 0
 /* 800DC138 000D9078  39 40 00 FF */ li r10, 0xff
 /* 800DC13C 000D907C  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800DC140 000D9080  4B F7 09 51 */ bl dPa_control_c_NS_set
+/* 800DC140 000D9080  4B F7 09 51 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 800DC144 000D9084  80 7F 5D 3C */ lwz r3, 0x5d3c(r31)
 /* 800DC148 000D9088  38 80 00 00 */ li r4, 0
 /* 800DC14C 000D908C  90 81 00 08 */ stw r4, 8(r1)
@@ -179,7 +179,7 @@ lbl_800DC0C0:
 /* 800DC17C 000D90BC  39 20 00 00 */ li r9, 0
 /* 800DC180 000D90C0  39 40 00 FF */ li r10, 0xff
 /* 800DC184 000D90C4  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800DC188 000D90C8  4B F7 09 09 */ bl dPa_control_c_NS_set
+/* 800DC188 000D90C8  4B F7 09 09 */ bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 800DC18C 000D90CC  38 00 00 04 */ li r0, 4
 /* 800DC190 000D90D0  90 1E 32 CC */ stw r0, 0x32cc(r30)
 /* 800DC194 000D90D4  38 00 00 08 */ li r0, 8
@@ -199,7 +199,7 @@ lbl_800DC19C:
 lbl_800DC1C8:
 /* 800DC1C8 000D9108  3B A0 FF FF */ li r29, -1
 lbl_800DC1CC:
-/* 800DC1CC 000D910C  48 0A 54 75 */ bl dCam_getBody
+/* 800DC1CC 000D910C  48 0A 54 75 */ bl dCam_getBody__Fv
 /* 800DC1D0 000D9110  38 80 00 09 */ li r4, 9
 /* 800DC1D4 000D9114  7F A5 EB 78 */ mr r5, r29
 /* 800DC1D8 000D9118  3C C0 80 39 */ lis r6, lbl_80392094@ha
@@ -209,7 +209,7 @@ lbl_800DC1CC:
 /* 800DC1E8 000D9128  39 1E 31 94 */ addi r8, r30, 0x3194
 /* 800DC1EC 000D912C  39 20 00 00 */ li r9, 0
 /* 800DC1F0 000D9130  4C C6 31 82 */ crclr 6
-/* 800DC1F4 000D9134  4B FA C8 89 */ bl dCamera_c_NS_StartEventCamera
+/* 800DC1F4 000D9134  4B FA C8 89 */ bl StartEventCamera__9dCamera_cFiie
 /* 800DC1F8 000D9138  38 60 00 01 */ li r3, 1
 lbl_800DC1FC:
 /* 800DC1FC 000D913C  39 61 00 40 */ addi r11, r1, 0x40

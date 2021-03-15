@@ -7,16 +7,16 @@
 /* 8011BE08 00118D48  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011BE0C 00118D4C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011BE10 00118D50  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8011BE14 00118D54  4B F2 C3 69 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011BE14 00118D54  4B F2 C3 69 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011BE18 00118D58  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 8011BE1C 00118D5C  48 04 26 B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011BE1C 00118D5C  48 04 26 B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011BE20 00118D60  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011BE24 00118D64  41 82 00 18 */ beq lbl_8011BE3C
 /* 8011BE28 00118D68  7F E3 FB 78 */ mr r3, r31
 /* 8011BE2C 00118D6C  3C 80 80 39 */ lis r4, lbl_8038D664@ha
 /* 8011BE30 00118D70  38 84 D6 64 */ addi r4, r4, lbl_8038D664@l
 /* 8011BE34 00118D74  C0 24 00 18 */ lfs f1, 0x18(r4)
-/* 8011BE38 00118D78  4B F9 1F DD */ bl daAlink_c_NS_setBlendMoveAnime
+/* 8011BE38 00118D78  4B F9 1F DD */ bl setBlendMoveAnime__9daAlink_cFf
 lbl_8011BE3C:
 /* 8011BE3C 00118D7C  38 60 00 01 */ li r3, 1
 /* 8011BE40 00118D80  83 E1 00 0C */ lwz r31, 0xc(r1)

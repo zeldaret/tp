@@ -16,8 +16,8 @@ JGadget_NS_TVector_pointer_void:
 /* 802DCCF4 002D9C34  90 03 00 10 */	stw r0, 0x10(r3)
 /* 802DCCF8 002D9C38  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TVector_pointer_void_NS_dtor
-JGadget_NS_TVector_pointer_void_NS_dtor:
+.global __dt__Q27JGadget20TVector_pointer_voidFv
+__dt__Q27JGadget20TVector_pointer_voidFv:
 /* 802DCCFC 002D9C3C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DCD00 002D9C40  7C 08 02 A6 */	mflr r0
 /* 802DCD04 002D9C44  90 01 00 14 */	stw r0, 0x14(r1)
@@ -67,8 +67,8 @@ lbl_802DCD88:
 /* 802DCD9C 002D9CDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 802DCDA0 002D9CE0  4E 80 00 20 */	blr 
 
-.global JGadget_NS_TVector_pointer_void_NS_insert
-JGadget_NS_TVector_pointer_void_NS_insert:
+.global insert__Q27JGadget20TVector_pointer_voidFPPvRCPv
+insert__Q27JGadget20TVector_pointer_voidFPPvRCPv:
 /* 802DCDA4 002D9CE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802DCDA8 002D9CE8  7C 08 02 A6 */	mflr r0
 /* 802DCDAC 002D9CEC  90 01 00 14 */	stw r0, 0x14(r1)

@@ -6,11 +6,11 @@
 extern "C" {
 void CalcCenter__8cM3dGAabCFP4cXyz(void);
 void CalcDivideInfo__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAabUl(void);
-void cCcD_Stts_NS_PlusDmg(void);
+void PlusDmg__9cCcD_SttsFi(void);
 void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo(void);
 void ClearForMinMax__8cM3dGAabFv(void);
 void ClrCcMove__9cCcD_SttsFv(void);
-void cXyz_NS_dtor(void);
+void __dt__4cXyzFv(void);
 void func_80361C24(void);
 void GetAc__8cCcD_ObjFv(void);
 void GetWeightF__9cCcD_SttsCFv(void);

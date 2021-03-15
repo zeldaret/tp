@@ -3,8 +3,8 @@
 .section .text, "ax" # 8003eca0
 
 
-.global dMapInfo_n_NS_chkGetCompass
-dMapInfo_n_NS_chkGetCompass:
+.global chkGetCompass__10dMapInfo_nFv
+chkGetCompass__10dMapInfo_nFv:
 /* 8003ECA0 0003BBE0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003ECA4 0003BBE4  7C 08 02 A6 */	mflr r0
 /* 8003ECA8 0003BBE8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -20,8 +20,8 @@ dMapInfo_n_NS_chkGetCompass:
 /* 8003ECD0 0003BC10  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003ECD4 0003BC14  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_chkGetMap
-dMapInfo_n_NS_chkGetMap:
+.global chkGetMap__10dMapInfo_nFv
+chkGetMap__10dMapInfo_nFv:
 /* 8003ECD8 0003BC18  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003ECDC 0003BC1C  7C 08 02 A6 */	mflr r0
 /* 8003ECE0 0003BC20  90 01 00 14 */	stw r0, 0x14(r1)
@@ -37,8 +37,8 @@ dMapInfo_n_NS_chkGetMap:
 /* 8003ED08 0003BC48  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003ED0C 0003BC4C  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_isVisitedRoom
-dMapInfo_n_NS_isVisitedRoom:
+.global isVisitedRoom__10dMapInfo_nFi
+isVisitedRoom__10dMapInfo_nFi:
 /* 8003ED10 0003BC50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003ED14 0003BC54  7C 08 02 A6 */	mflr r0
 /* 8003ED18 0003BC58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -49,7 +49,7 @@ dMapInfo_n_NS_isVisitedRoom:
 /* 8003ED2C 0003BC6C  88 04 02 FC */	lbz r0, 0x2fc(r4)
 /* 8003ED30 0003BC70  28 00 00 00 */	cmplwi r0, 0
 /* 8003ED34 0003BC74  40 82 00 10 */	bne lbl_8003ED44
-/* 8003ED38 0003BC78  4B FF 0F 61 */	bl dComIfGs_isVisitedRoom
+/* 8003ED38 0003BC78  4B FF 0F 61 */	bl dComIfGs_isVisitedRoom__Fi
 /* 8003ED3C 0003BC7C  2C 03 00 00 */	cmpwi r3, 0
 /* 8003ED40 0003BC80  41 82 00 08 */	beq lbl_8003ED48
 lbl_8003ED44:
@@ -62,8 +62,8 @@ lbl_8003ED48:
 /* 8003ED58 0003BC98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003ED5C 0003BC9C  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_correctionOriginPos
-dMapInfo_n_NS_correctionOriginPos:
+.global correctionOriginPos__10dMapInfo_nFScP3Vec
+correctionOriginPos__10dMapInfo_nFScP3Vec:
 /* 8003ED60 0003BCA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003ED64 0003BCA4  7C 08 02 A6 */	mflr r0
 /* 8003ED68 0003BCA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -78,10 +78,10 @@ dMapInfo_n_NS_correctionOriginPos:
 /* 8003ED8C 0003BCCC  83 E3 00 20 */	lwz r31, 0x20(r3)
 /* 8003ED90 0003BCD0  41 82 00 18 */	beq lbl_8003EDA8
 /* 8003ED94 0003BCD4  7F E3 FB 78 */	mr r3, r31
-/* 8003ED98 0003BCD8  48 00 00 55 */	bl dMapInfo_n_NS_rotAngle
+/* 8003ED98 0003BCD8  48 00 00 55 */	bl rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 /* 8003ED9C 0003BCDC  7F E3 FB 78 */	mr r3, r31
 /* 8003EDA0 0003BCE0  7F C4 F3 78 */	mr r4, r30
-/* 8003EDA4 0003BCE4  48 00 00 1D */	bl dMapInfo_n_NS_offsetPlus
+/* 8003EDA4 0003BCE4  48 00 00 1D */	bl offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 lbl_8003EDA8:
 /* 8003EDA8 0003BCE8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8003EDAC 0003BCEC  83 C1 00 08 */	lwz r30, 8(r1)
@@ -90,8 +90,8 @@ lbl_8003EDA8:
 /* 8003EDB8 0003BCF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003EDBC 0003BCFC  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_offsetPlus
-dMapInfo_n_NS_offsetPlus:
+.global offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
+offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec:
 /* 8003EDC0 0003BD00  28 03 00 00 */	cmplwi r3, 0
 /* 8003EDC4 0003BD04  4D 82 00 20 */	beqlr 
 /* 8003EDC8 0003BD08  C0 24 00 00 */	lfs f1, 0(r4)
@@ -104,8 +104,8 @@ dMapInfo_n_NS_offsetPlus:
 /* 8003EDE4 0003BD24  D0 04 00 08 */	stfs f0, 8(r4)
 /* 8003EDE8 0003BD28  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_rotAngle
-dMapInfo_n_NS_rotAngle:
+.global rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
+rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec:
 /* 8003EDEC 0003BD2C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003EDF0 0003BD30  7C 08 02 A6 */	mflr r0
 /* 8003EDF4 0003BD34  90 01 00 24 */	stw r0, 0x24(r1)
@@ -118,7 +118,7 @@ dMapInfo_n_NS_rotAngle:
 lbl_8003EE10:
 /* 8003EE10 0003BD50  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8003EE14 0003BD54  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
-/* 8003EE18 0003BD58  4B FC D5 C5 */	bl mDoMtx_YrotS
+/* 8003EE18 0003BD58  4B FC D5 C5 */	bl mDoMtx_YrotS__FPA4_fs
 /* 8003EE1C 0003BD5C  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8003EE20 0003BD60  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8003EE24 0003BD64  7F E4 FB 78 */	mr r4, r31
@@ -136,8 +136,8 @@ lbl_8003EE10:
 /* 8003EE54 0003BD94  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EE58 0003BD98  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getMapPlayerPos
-dMapInfo_n_NS_getMapPlayerPos:
+.global getMapPlayerPos__10dMapInfo_nFv
+getMapPlayerPos__10dMapInfo_nFv:
 /* 8003EE5C 0003BD9C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003EE60 0003BDA0  7C 08 02 A6 */	mflr r0
 /* 8003EE64 0003BDA4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -173,10 +173,10 @@ lbl_8003EEB4:
 /* 8003EED4 0003BE14  41 82 00 1C */	beq lbl_8003EEF0
 /* 8003EED8 0003BE18  7F E3 FB 78 */	mr r3, r31
 /* 8003EEDC 0003BE1C  38 81 00 08 */	addi r4, r1, 8
-/* 8003EEE0 0003BE20  4B FF FF 0D */	bl dMapInfo_n_NS_rotAngle
+/* 8003EEE0 0003BE20  4B FF FF 0D */	bl rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 /* 8003EEE4 0003BE24  7F E3 FB 78 */	mr r3, r31
 /* 8003EEE8 0003BE28  38 81 00 08 */	addi r4, r1, 8
-/* 8003EEEC 0003BE2C  4B FF FE D5 */	bl dMapInfo_n_NS_offsetPlus
+/* 8003EEEC 0003BE2C  4B FF FE D5 */	bl offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 lbl_8003EEF0:
 /* 8003EEF0 0003BE30  80 61 00 08 */	lwz r3, 8(r1)
 /* 8003EEF4 0003BE34  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -191,8 +191,8 @@ lbl_8003EEF0:
 /* 8003EF18 0003BE58  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EF1C 0003BE5C  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getMapPlayerAngleY
-dMapInfo_n_NS_getMapPlayerAngleY:
+.global getMapPlayerAngleY__10dMapInfo_nFv
+getMapPlayerAngleY__10dMapInfo_nFv:
 /* 8003EF20 0003BE60  88 0D 87 E4 */	lbz r0, lbl_80450D64-_SDA_BASE_(r13)
 /* 8003EF24 0003BE64  7C 00 07 74 */	extsb r0, r0
 /* 8003EF28 0003BE68  38 60 00 00 */	li r3, 0
@@ -215,8 +215,8 @@ lbl_8003EF44:
 /* 8003EF68 0003BEA8  7C 03 07 34 */	extsh r3, r0
 /* 8003EF6C 0003BEAC  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getConstRestartIconPointer
-dMapInfo_n_NS_getConstRestartIconPointer:
+.global getConstRestartIconPointer__10dMapInfo_nFv
+getConstRestartIconPointer__10dMapInfo_nFv:
 /* 8003EF70 0003BEB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003EF74 0003BEB4  7C 08 02 A6 */	mflr r0
 /* 8003EF78 0003BEB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -226,7 +226,7 @@ dMapInfo_n_NS_getConstRestartIconPointer:
 /* 8003EF88 0003BEC8  38 63 54 38 */	addi r3, r3, lbl_80425438@l
 /* 8003EF8C 0003BECC  8B C3 00 5C */	lbz r30, 0x5c(r3)
 /* 8003EF90 0003BED0  38 60 00 07 */	li r3, 7
-/* 8003EF94 0003BED4  48 05 D3 CD */	bl dTres_c_NS_getFirstData
+/* 8003EF94 0003BED4  48 05 D3 CD */	bl getFirstData__7dTres_cFUc
 /* 8003EF98 0003BED8  7C 7D 1B 78 */	mr r29, r3
 /* 8003EF9C 0003BEDC  3B 80 00 00 */	li r28, 0
 /* 8003EFA0 0003BEE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
@@ -252,7 +252,7 @@ lbl_8003EFAC:
 /* 8003EFEC 0003BF2C  40 82 00 24 */	bne lbl_8003F010
 lbl_8003EFF0:
 /* 8003EFF0 0003BF30  7F A3 EB 78 */	mr r3, r29
-/* 8003EFF4 0003BF34  48 05 D3 C1 */	bl dTres_c_NS_getNextData_X1_
+/* 8003EFF4 0003BF34  48 05 D3 C1 */	bl getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c
 /* 8003EFF8 0003BF38  7C 7D 1B 78 */	mr r29, r3
 /* 8003EFFC 0003BF3C  3B 9C 00 01 */	addi r28, r28, 1
 lbl_8003F000:
@@ -269,15 +269,15 @@ lbl_8003F010:
 /* 8003F024 0003BF64  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003F028 0003BF68  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getMapRestartPos
-dMapInfo_n_NS_getMapRestartPos:
+.global getMapRestartPos__10dMapInfo_nFv
+getMapRestartPos__10dMapInfo_nFv:
 /* 8003F02C 0003BF6C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003F030 0003BF70  7C 08 02 A6 */	mflr r0
 /* 8003F034 0003BF74  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8003F038 0003BF78  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8003F03C 0003BF7C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8003F040 0003BF80  7C 7E 1B 78 */	mr r30, r3
-/* 8003F044 0003BF84  4B FF FF 2D */	bl dMapInfo_n_NS_getConstRestartIconPointer
+/* 8003F044 0003BF84  4B FF FF 2D */	bl getConstRestartIconPointer__10dMapInfo_nFv
 /* 8003F048 0003BF88  28 03 00 00 */	cmplwi r3, 0
 /* 8003F04C 0003BF8C  41 82 00 20 */	beq lbl_8003F06C
 /* 8003F050 0003BF90  C0 03 00 04 */	lfs f0, 4(r3)
@@ -308,10 +308,10 @@ lbl_8003F08C:
 /* 8003F0AC 0003BFEC  83 E3 00 20 */	lwz r31, 0x20(r3)
 /* 8003F0B0 0003BFF0  7F E3 FB 78 */	mr r3, r31
 /* 8003F0B4 0003BFF4  38 81 00 08 */	addi r4, r1, 8
-/* 8003F0B8 0003BFF8  4B FF FD 35 */	bl dMapInfo_n_NS_rotAngle
+/* 8003F0B8 0003BFF8  4B FF FD 35 */	bl rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 /* 8003F0BC 0003BFFC  7F E3 FB 78 */	mr r3, r31
 /* 8003F0C0 0003C000  38 81 00 08 */	addi r4, r1, 8
-/* 8003F0C4 0003C004  4B FF FC FD */	bl dMapInfo_n_NS_offsetPlus
+/* 8003F0C4 0003C004  4B FF FC FD */	bl offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec
 /* 8003F0C8 0003C008  80 61 00 08 */	lwz r3, 8(r1)
 /* 8003F0CC 0003C00C  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8003F0D0 0003C010  90 7E 00 00 */	stw r3, 0(r30)
@@ -325,8 +325,8 @@ lbl_8003F08C:
 /* 8003F0F0 0003C030  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003F0F4 0003C034  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getMapRestartAngleY
-dMapInfo_n_NS_getMapRestartAngleY:
+.global getMapRestartAngleY__10dMapInfo_nFv
+getMapRestartAngleY__10dMapInfo_nFv:
 /* 8003F0F8 0003C038  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F0FC 0003C03C  7C 08 02 A6 */	mflr r0
 /* 8003F100 0003C040  90 01 00 14 */	stw r0, 0x14(r1)
@@ -334,7 +334,7 @@ dMapInfo_n_NS_getMapRestartAngleY:
 /* 8003F108 0003C048  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 8003F10C 0003C04C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 8003F110 0003C050  AB E3 0D BA */	lha r31, 0xdba(r3)
-/* 8003F114 0003C054  4B FF FE 5D */	bl dMapInfo_n_NS_getConstRestartIconPointer
+/* 8003F114 0003C054  4B FF FE 5D */	bl getConstRestartIconPointer__10dMapInfo_nFv
 /* 8003F118 0003C058  28 03 00 00 */	cmplwi r3, 0
 /* 8003F11C 0003C05C  41 82 00 34 */	beq lbl_8003F150
 /* 8003F120 0003C060  88 03 00 13 */	lbz r0, 0x13(r3)
@@ -372,8 +372,8 @@ lbl_8003F184:
 /* 8003F194 0003C0D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F198 0003C0D8  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getRoomCenter
-dMapInfo_n_NS_getRoomCenter:
+.global getRoomCenter__10dMapInfo_nFiPfPf
+getRoomCenter__10dMapInfo_nFiPfPf:
 /* 8003F19C 0003C0DC  3C C0 80 3F */	lis r6, lbl_803F6094@ha
 /* 8003F1A0 0003C0E0  38 C6 60 94 */	addi r6, r6, lbl_803F6094@l
 /* 8003F1A4 0003C0E4  1C 03 04 04 */	mulli r0, r3, 0x404
@@ -398,8 +398,8 @@ lbl_8003F1D0:
 /* 8003F1EC 0003C12C  D0 05 00 00 */	stfs f0, 0(r5)
 /* 8003F1F0 0003C130  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getRoomMinMaxXZ
-dMapInfo_n_NS_getRoomMinMaxXZ:
+.global getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf
+getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf:
 /* 8003F1F4 0003C134  3D 00 80 3F */	lis r8, lbl_803F6094@ha
 /* 8003F1F8 0003C138  39 08 60 94 */	addi r8, r8, lbl_803F6094@l
 /* 8003F1FC 0003C13C  1C 03 04 04 */	mulli r0, r3, 0x404
@@ -426,8 +426,8 @@ lbl_8003F238:
 /* 8003F244 0003C184  D0 07 00 00 */	stfs f0, 0(r7)
 /* 8003F248 0003C188  4E 80 00 20 */	blr 
 
-.global dMapInfo_n_NS_getFloorParameter
-dMapInfo_n_NS_getFloorParameter:
+.global getFloorParameter__10dMapInfo_nFfPScPfPfPfPf
+getFloorParameter__10dMapInfo_nFfPScPfPfPfPf:
 /* 8003F24C 0003C18C  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8003F250 0003C190  7C 08 02 A6 */	mflr r0
 /* 8003F254 0003C194  90 01 00 84 */	stw r0, 0x84(r1)
@@ -546,8 +546,8 @@ lbl_8003F3D4:
 /* 8003F404 0003C344  38 21 00 80 */	addi r1, r1, 0x80
 /* 8003F408 0003C348  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_calcFloorNo
-dMapInfo_c_NS_calcFloorNo:
+.global calcFloorNo__10dMapInfo_cFfbi
+calcFloorNo__10dMapInfo_cFfbi:
 /* 8003F40C 0003C34C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003F410 0003C350  7C 08 02 A6 */	mflr r0
 /* 8003F414 0003C354  90 01 00 34 */	stw r0, 0x34(r1)
@@ -563,7 +563,7 @@ dMapInfo_c_NS_calcFloorNo:
 /* 8003F43C 0003C37C  38 A1 00 10 */	addi r5, r1, 0x10
 /* 8003F440 0003C380  38 C1 00 0C */	addi r6, r1, 0xc
 /* 8003F444 0003C384  38 E0 00 00 */	li r7, 0
-/* 8003F448 0003C388  4B FF FE 05 */	bl dMapInfo_n_NS_getFloorParameter
+/* 8003F448 0003C388  4B FF FE 05 */	bl getFloorParameter__10dMapInfo_nFfPScPfPfPfPf
 /* 8003F44C 0003C38C  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 8003F450 0003C390  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8003F454 0003C394  40 80 00 80 */	bge lbl_8003F4D4
@@ -644,8 +644,8 @@ lbl_8003F54C:
 /* 8003F568 0003C4A8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003F56C 0003C4AC  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_calcNowStayFloorNo
-dMapInfo_c_NS_calcNowStayFloorNo:
+.global calcNowStayFloorNo__10dMapInfo_cFfb
+calcNowStayFloorNo__10dMapInfo_cFfb:
 /* 8003F570 0003C4B0  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003F574 0003C4B4  7C 08 02 A6 */	mflr r0
 /* 8003F578 0003C4B8  90 01 00 34 */	stw r0, 0x34(r1)
@@ -659,7 +659,7 @@ dMapInfo_c_NS_calcNowStayFloorNo:
 /* 8003F598 0003C4D8  38 A1 00 10 */	addi r5, r1, 0x10
 /* 8003F59C 0003C4DC  38 C1 00 0C */	addi r6, r1, 0xc
 /* 8003F5A0 0003C4E0  38 E0 00 00 */	li r7, 0
-/* 8003F5A4 0003C4E4  4B FF FC A9 */	bl dMapInfo_n_NS_getFloorParameter
+/* 8003F5A4 0003C4E4  4B FF FC A9 */	bl getFloorParameter__10dMapInfo_nFfPScPfPfPfPf
 /* 8003F5A8 0003C4E8  88 0D 88 E0 */	lbz r0, lbl_80450E60-_SDA_BASE_(r13)
 /* 8003F5AC 0003C4EC  28 00 00 00 */	cmplwi r0, 0
 /* 8003F5B0 0003C4F0  41 82 00 5C */	beq lbl_8003F60C
@@ -739,14 +739,14 @@ lbl_8003F6A8:
 /* 8003F6C0 0003C600  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003F6C4 0003C604  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_move
-dMapInfo_c_NS_move:
+.global move__10dMapInfo_cFif
+move__10dMapInfo_cFif:
 /* 8003F6C8 0003C608  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F6CC 0003C60C  7C 08 02 A6 */	mflr r0
 /* 8003F6D0 0003C610  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003F6D4 0003C614  90 6D 88 DC */	stw r3, lbl_80450E5C-_SDA_BASE_(r13)
 /* 8003F6D8 0003C618  38 60 00 01 */	li r3, 1
-/* 8003F6DC 0003C61C  4B FF FE 95 */	bl dMapInfo_c_NS_calcNowStayFloorNo
+/* 8003F6DC 0003C61C  4B FF FE 95 */	bl calcNowStayFloorNo__10dMapInfo_cFfb
 /* 8003F6E0 0003C620  98 6D 88 D8 */	stb r3, lbl_80450E58-_SDA_BASE_(r13)
 /* 8003F6E4 0003C624  38 00 00 01 */	li r0, 1
 /* 8003F6E8 0003C628  98 0D 88 E0 */	stb r0, lbl_80450E60-_SDA_BASE_(r13)
@@ -755,8 +755,8 @@ dMapInfo_c_NS_move:
 /* 8003F6F4 0003C634  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F6F8 0003C638  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_init
-dMapInfo_c_NS_init:
+.global init__10dMapInfo_cFv
+init__10dMapInfo_cFv:
 /* 8003F6FC 0003C63C  38 00 00 00 */	li r0, 0
 /* 8003F700 0003C640  98 0D 88 D8 */	stb r0, lbl_80450E58-_SDA_BASE_(r13)
 /* 8003F704 0003C644  98 0D 88 E0 */	stb r0, lbl_80450E60-_SDA_BASE_(r13)
@@ -764,39 +764,39 @@ dMapInfo_c_NS_init:
 /* 8003F70C 0003C64C  90 0D 88 DC */	stw r0, lbl_80450E5C-_SDA_BASE_(r13)
 /* 8003F710 0003C650  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_reset
-dMapInfo_c_NS_reset:
+.global reset__10dMapInfo_cFv
+reset__10dMapInfo_cFv:
 /* 8003F714 0003C654  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F718 0003C658  7C 08 02 A6 */	mflr r0
 /* 8003F71C 0003C65C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8003F720 0003C660  4B FF FF DD */	bl dMapInfo_c_NS_init
+/* 8003F720 0003C660  4B FF FF DD */	bl init__10dMapInfo_cFv
 /* 8003F724 0003C664  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003F728 0003C668  7C 08 03 A6 */	mtlr r0
 /* 8003F72C 0003C66C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F730 0003C670  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_create
-dMapInfo_c_NS_create:
+.global create__10dMapInfo_cFv
+create__10dMapInfo_cFv:
 /* 8003F734 0003C674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F738 0003C678  7C 08 02 A6 */	mflr r0
 /* 8003F73C 0003C67C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8003F740 0003C680  4B FF FF BD */	bl dMapInfo_c_NS_init
+/* 8003F740 0003C680  4B FF FF BD */	bl init__10dMapInfo_cFv
 /* 8003F744 0003C684  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003F748 0003C688  7C 08 03 A6 */	mtlr r0
 /* 8003F74C 0003C68C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F750 0003C690  4E 80 00 20 */	blr 
 
-.global dMapInfo_c_NS_remove
-dMapInfo_c_NS_remove:
+.global remove__10dMapInfo_cFv
+remove__10dMapInfo_cFv:
 /* 8003F754 0003C694  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_isExistMapPathData
-dMpath_c_NS_isExistMapPathData:
+.global isExistMapPathData__8dMpath_cFv
+isExistMapPathData__8dMpath_cFv:
 /* 8003F758 0003C698  88 6D 89 08 */	lbz r3, lbl_80450E88-_SDA_BASE_(r13)
 /* 8003F75C 0003C69C  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_getTopBottomFloorNo
-dMpath_c_NS_getTopBottomFloorNo:
+.global getTopBottomFloorNo__8dMpath_cFPScPSc
+getTopBottomFloorNo__8dMpath_cFPScPSc:
 /* 8003F760 0003C6A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F764 0003C6A4  7C 08 02 A6 */	mflr r0
 /* 8003F768 0003C6A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -804,7 +804,7 @@ dMpath_c_NS_getTopBottomFloorNo:
 /* 8003F770 0003C6B0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8003F774 0003C6B4  7C 7E 1B 78 */	mr r30, r3
 /* 8003F778 0003C6B8  7C 9F 23 78 */	mr r31, r4
-/* 8003F77C 0003C6BC  4B FF FF DD */	bl dMpath_c_NS_isExistMapPathData
+/* 8003F77C 0003C6BC  4B FF FF DD */	bl isExistMapPathData__8dMpath_cFv
 /* 8003F780 0003C6C0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003F784 0003C6C4  41 82 00 28 */	beq lbl_8003F7AC
 /* 8003F788 0003C6C8  28 1E 00 00 */	cmplwi r30, 0
@@ -836,8 +836,8 @@ lbl_8003F7CC:
 /* 8003F7E0 0003C720  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F7E4 0003C724  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_createWork
-dMpath_c_NS_createWork:
+.global createWork__8dMpath_cFv
+createWork__8dMpath_cFv:
 /* 8003F7E8 0003C728  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F7EC 0003C72C  7C 08 02 A6 */	mflr r0
 /* 8003F7F0 0003C730  90 01 00 14 */	stw r0, 0x14(r1)
@@ -849,8 +849,8 @@ dMpath_c_NS_createWork:
 /* 8003F808 0003C748  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003F80C 0003C74C  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_setPointer
-dMpath_c_NS_setPointer:
+.global setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc
+setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc:
 /* 8003F810 0003C750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003F814 0003C754  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8003F818 0003C758  38 C0 00 00 */	li r6, 0
@@ -1009,8 +1009,8 @@ lbl_8003FA34:
 /* 8003FA38 0003C978  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FA3C 0003C97C  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_setPointer_X1_
-dMpath_c_NS_setPointer_X1_:
+.global setPointer__8dMpath_cFScPvi
+setPointer__8dMpath_cFScPvi:
 /* 8003FA40 0003C980  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8003FA44 0003C984  7C 08 02 A6 */	mflr r0
 /* 8003FA48 0003C988  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1022,13 +1022,13 @@ dMpath_c_NS_setPointer_X1_:
 /* 8003FA60 0003C9A0  28 1E 00 00 */	cmplwi r30, 0
 /* 8003FA64 0003C9A4  41 82 00 F4 */	beq lbl_8003FB58
 /* 8003FA68 0003C9A8  7F 9F 07 74 */	extsb r31, r28
-/* 8003FA6C 0003C9AC  48 00 01 65 */	bl dMpath_c_NS_reset
+/* 8003FA6C 0003C9AC  48 00 01 65 */	bl reset__8dMpath_cFv
 /* 8003FA70 0003C9B0  38 00 00 01 */	li r0, 1
 /* 8003FA74 0003C9B4  98 0D 89 08 */	stb r0, lbl_80450E88-_SDA_BASE_(r13)
 /* 8003FA78 0003C9B8  7F C3 F3 78 */	mr r3, r30
 /* 8003FA7C 0003C9BC  38 8D 80 B4 */	addi r4, r13, lbl_80450634-_SDA_BASE_
 /* 8003FA80 0003C9C0  38 AD 80 B5 */	addi r5, r13, lbl_80450635-_SDA_BASE_
-/* 8003FA84 0003C9C4  4B FF FD 8D */	bl dMpath_c_NS_setPointer
+/* 8003FA84 0003C9C4  4B FF FD 8D */	bl setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc
 /* 8003FA88 0003C9C8  C0 02 84 28 */	lfs f0, lbl_80451E28-_SDA2_BASE_(r2)
 /* 8003FA8C 0003C9CC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8003FA90 0003C9D0  D0 01 00 10 */	stfs f0, 0x10(r1)
@@ -1039,7 +1039,7 @@ dMpath_c_NS_setPointer_X1_:
 /* 8003FAA4 0003C9E4  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8003FAA8 0003C9E8  38 C1 00 10 */	addi r6, r1, 0x10
 /* 8003FAAC 0003C9EC  38 E1 00 08 */	addi r7, r1, 8
-/* 8003FAB0 0003C9F0  4B FF F7 45 */	bl dMapInfo_n_NS_getRoomMinMaxXZ
+/* 8003FAB0 0003C9F0  4B FF F7 45 */	bl getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf
 /* 8003FAB4 0003C9F4  C0 21 00 14 */	lfs f1, 0x14(r1)
 /* 8003FAB8 0003C9F8  C0 0D 88 E8 */	lfs f0, lbl_80450E68-_SDA_BASE_(r13)
 /* 8003FABC 0003C9FC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -1093,8 +1093,8 @@ lbl_8003FB58:
 /* 8003FB68 0003CAA8  38 21 00 30 */	addi r1, r1, 0x30
 /* 8003FB6C 0003CAAC  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_create
-dMpath_c_NS_create:
+.global create__8dMpath_cFv
+create__8dMpath_cFv:
 /* 8003FB70 0003CAB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FB74 0003CAB4  7C 08 02 A6 */	mflr r0
 /* 8003FB78 0003CAB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1108,21 +1108,21 @@ dMpath_c_NS_create:
 /* 8003FB98 0003CAD8  54 00 87 7E */	rlwinm r0, r0, 0x10, 0x1d, 0x1f
 /* 8003FB9C 0003CADC  28 00 00 03 */	cmplwi r0, 3
 /* 8003FBA0 0003CAE0  41 82 00 10 */	beq lbl_8003FBB0
-/* 8003FBA4 0003CAE4  48 00 00 2D */	bl dMpath_c_NS_reset
+/* 8003FBA4 0003CAE4  48 00 00 2D */	bl reset__8dMpath_cFv
 /* 8003FBA8 0003CAE8  38 00 00 00 */	li r0, 0
 /* 8003FBAC 0003CAEC  98 0D 89 08 */	stb r0, lbl_80450E88-_SDA_BASE_(r13)
 lbl_8003FBB0:
 /* 8003FBB0 0003CAF0  3C 60 80 42 */	lis r3, lbl_80424684@ha
 /* 8003FBB4 0003CAF4  38 63 46 84 */	addi r3, r3, lbl_80424684@l
-/* 8003FBB8 0003CAF8  4B FF CC A5 */	bl dMpath_n_NS_dTexObjAggregate_c_NS_create
-/* 8003FBBC 0003CAFC  4B FF FB 79 */	bl dMapInfo_c_NS_create
+/* 8003FBB8 0003CAF8  4B FF CC A5 */	bl create__Q28dMpath_n18dTexObjAggregate_cFv
+/* 8003FBBC 0003CAFC  4B FF FB 79 */	bl create__10dMapInfo_cFv
 /* 8003FBC0 0003CB00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003FBC4 0003CB04  7C 08 03 A6 */	mtlr r0
 /* 8003FBC8 0003CB08  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FBCC 0003CB0C  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_reset
-dMpath_c_NS_reset:
+.global reset__8dMpath_cFv
+reset__8dMpath_cFv:
 /* 8003FBD0 0003CB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FBD4 0003CB14  7C 08 02 A6 */	mflr r0
 /* 8003FBD8 0003CB18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1160,15 +1160,15 @@ lbl_8003FC00:
 /* 8003FC50 0003CB90  38 00 00 00 */	li r0, 0
 /* 8003FC54 0003CB94  98 0D 80 B6 */	stb r0, lbl_80450636-_SDA_BASE_(r13)
 /* 8003FC58 0003CB98  98 0D 89 08 */	stb r0, lbl_80450E88-_SDA_BASE_(r13)
-/* 8003FC5C 0003CB9C  4B FF FA B9 */	bl dMapInfo_c_NS_reset
+/* 8003FC5C 0003CB9C  4B FF FA B9 */	bl reset__10dMapInfo_cFv
 lbl_8003FC60:
 /* 8003FC60 0003CBA0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003FC64 0003CBA4  7C 08 03 A6 */	mtlr r0
 /* 8003FC68 0003CBA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FC6C 0003CBAC  4E 80 00 20 */	blr 
 
-.global dMpath_c_NS_remove
-dMpath_c_NS_remove:
+.global remove__8dMpath_cFv
+remove__8dMpath_cFv:
 /* 8003FC70 0003CBB0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FC74 0003CBB4  7C 08 02 A6 */	mflr r0
 /* 8003FC78 0003CBB8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1176,27 +1176,27 @@ dMpath_c_NS_remove:
 /* 8003FC80 0003CBC0  98 0D 80 B6 */	stb r0, lbl_80450636-_SDA_BASE_(r13)
 /* 8003FC84 0003CBC4  3C 60 80 42 */	lis r3, lbl_80424684@ha
 /* 8003FC88 0003CBC8  38 63 46 84 */	addi r3, r3, lbl_80424684@l
-/* 8003FC8C 0003CBCC  4B FF CC 69 */	bl dMpath_n_NS_dTexObjAggregate_c_NS_remove
-/* 8003FC90 0003CBD0  4B FF FA C5 */	bl dMapInfo_c_NS_remove
+/* 8003FC8C 0003CBCC  4B FF CC 69 */	bl remove__Q28dMpath_n18dTexObjAggregate_cFv
+/* 8003FC90 0003CBD0  4B FF FA C5 */	bl remove__10dMapInfo_cFv
 /* 8003FC94 0003CBD4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003FC98 0003CBD8  7C 08 03 A6 */	mtlr r0
 /* 8003FC9C 0003CBDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FCA0 0003CBE0  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_calcFloorNoForObjectByMapPathRend
-renderingDAmap_c_NS_calcFloorNoForObjectByMapPathRend:
+.global calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi
+calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi:
 /* 8003FCA4 0003CBE4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FCA8 0003CBE8  7C 08 02 A6 */	mflr r0
 /* 8003FCAC 0003CBEC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003FCB0 0003CBF0  38 60 00 01 */	li r3, 1
-/* 8003FCB4 0003CBF4  4B FF F7 59 */	bl dMapInfo_c_NS_calcFloorNo
+/* 8003FCB4 0003CBF4  4B FF F7 59 */	bl calcFloorNo__10dMapInfo_cFfbi
 /* 8003FCB8 0003CBF8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8003FCBC 0003CBFC  7C 08 03 A6 */	mtlr r0
 /* 8003FCC0 0003CC00  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FCC4 0003CC04  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_init
-renderingDAmap_c_NS_init:
+.global init__16renderingDAmap_cFPUcUsUsUsUs
+init__16renderingDAmap_cFPUcUsUsUsUs:
 /* 8003FCC8 0003CC08  38 00 00 00 */	li r0, 0
 /* 8003FCCC 0003CC0C  98 03 00 31 */	stb r0, 0x31(r3)
 /* 8003FCD0 0003CC10  90 83 00 04 */	stw r4, 4(r3)
@@ -1214,8 +1214,8 @@ renderingDAmap_c_NS_init:
 /* 8003FD00 0003CC40  98 03 00 30 */	stb r0, 0x30(r3)
 /* 8003FD04 0003CC44  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_entry
-renderingDAmap_c_NS_entry:
+.global entry__16renderingDAmap_cFfffiSc
+entry__16renderingDAmap_cFfffiSc:
 /* 8003FD08 0003CC48  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003FD0C 0003CC4C  7C 08 02 A6 */	mflr r0
 /* 8003FD10 0003CC50  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1248,7 +1248,7 @@ renderingDAmap_c_NS_entry:
 /* 8003FD7C 0003CCBC  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 8003FD80 0003CCC0  38 83 00 64 */	addi r4, r3, 0x64
 /* 8003FD84 0003CCC4  38 A3 00 68 */	addi r5, r3, 0x68
-/* 8003FD88 0003CCC8  48 01 6A 0D */	bl dDlst_list_c_NS_set
+/* 8003FD88 0003CCC8  48 01 6A 0D */	bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 /* 8003FD8C 0003CCCC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8003FD90 0003CCD0  7C 08 03 A6 */	mtlr r0
 /* 8003FD94 0003CCD4  38 21 00 20 */	addi r1, r1, 0x20
@@ -1288,14 +1288,14 @@ lbl_8003FE08:
 /* 8003FE10 0003CD50  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FE14 0003CD54  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_draw
-renderingDAmap_c_NS_draw:
+.global draw__16renderingDAmap_cFv
+draw__16renderingDAmap_cFv:
 /* 8003FE18 0003CD58  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FE1C 0003CD5C  7C 08 02 A6 */	mflr r0
 /* 8003FE20 0003CD60  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8003FE24 0003CD64  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8003FE28 0003CD68  7C 7F 1B 78 */	mr r31, r3
-/* 8003FE2C 0003CD6C  4B FF CF 81 */	bl dRenderingMap_c_NS_renderingMap
+/* 8003FE2C 0003CD6C  4B FF CF 81 */	bl renderingMap__15dRenderingMap_cFv
 /* 8003FE30 0003CD70  38 00 00 01 */	li r0, 1
 /* 8003FE34 0003CD74  98 1F 00 31 */	stb r0, 0x31(r31)
 /* 8003FE38 0003CD78  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1312,12 +1312,12 @@ renderingDAmap_c_NS_draw:
 /* 8003FE64 0003CDA4  54 03 D9 7E */	srwi r3, r0, 5
 /* 8003FE68 0003CDA8  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_setSingleRoomSetting
-renderingDAmap_c_NS_setSingleRoomSetting:
+.global setSingleRoomSetting__16renderingDAmap_cFv
+setSingleRoomSetting__16renderingDAmap_cFv:
 /* 8003FE6C 0003CDAC  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_isDrawRoom
-renderingDAmap_c_NS_isDrawRoom:
+.global isDrawRoom__16renderingDAmap_cCFii
+isDrawRoom__16renderingDAmap_cCFii:
 /* 8003FE70 0003CDB0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8003FE74 0003CDB4  7C 08 02 A6 */	mflr r0
 /* 8003FE78 0003CDB8  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1349,7 +1349,7 @@ lbl_8003FEB8:
 /* 8003FED8 0003CE18  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 8003FEDC 0003CE1C  40 82 00 14 */	bne lbl_8003FEF0
 /* 8003FEE0 0003CE20  7F A3 EB 78 */	mr r3, r29
-/* 8003FEE4 0003CE24  4B FF EE 2D */	bl dMapInfo_n_NS_isVisitedRoom
+/* 8003FEE4 0003CE24  4B FF EE 2D */	bl isVisitedRoom__10dMapInfo_nFi
 /* 8003FEE8 0003CE28  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8003FEEC 0003CE2C  41 82 00 08 */	beq lbl_8003FEF4
 lbl_8003FEF0:
@@ -1387,7 +1387,7 @@ lbl_8003FEF8:
 /* 8003FF64 0003CEA4  38 A1 00 14 */	addi r5, r1, 0x14
 /* 8003FF68 0003CEA8  38 C1 00 08 */	addi r6, r1, 8
 /* 8003FF6C 0003CEAC  38 E0 00 00 */	li r7, 0
-/* 8003FF70 0003CEB0  4B FC C7 A1 */	bl mDoMtx_lookAt_X1_
+/* 8003FF70 0003CEB0  4B FC C7 A1 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
 /* 8003FF74 0003CEB4  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8003FF78 0003CEB8  38 80 00 00 */	li r4, 0
 /* 8003FF7C 0003CEBC  48 32 02 D1 */	bl GXLoadPosMtxImm
@@ -1419,13 +1419,13 @@ lbl_8003FEF8:
 /* 8003FFE4 0003CF24  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003FFE8 0003CF28  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_getRoomNoSingle
-renderingDAmap_c_NS_getRoomNoSingle:
+.global getRoomNoSingle__16renderingDAmap_cFv
+getRoomNoSingle__16renderingDAmap_cFv:
 /* 8003FFEC 0003CF2C  80 63 00 2C */	lwz r3, 0x2c(r3)
 /* 8003FFF0 0003CF30  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_getFirstDrawRoomNo
-renderingDAmap_c_NS_getFirstDrawRoomNo:
+.global getFirstDrawRoomNo__16renderingDAmap_cFv
+getFirstDrawRoomNo__16renderingDAmap_cFv:
 /* 8003FFF4 0003CF34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FFF8 0003CF38  7C 08 02 A6 */	mflr r0
 /* 8003FFFC 0003CF3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1450,7 +1450,7 @@ renderingDAmap_c_NS_getFirstDrawRoomNo:
 /* 80040048 0003CF88  40 82 00 30 */	bne lbl_80040078
 /* 8004004C 0003CF8C  7F C3 F3 78 */	mr r3, r30
 /* 80040050 0003CF90  38 80 00 00 */	li r4, 0
-/* 80040054 0003CF94  48 00 00 41 */	bl renderingDAmap_c_NS_getNextDrawRoomNo
+/* 80040054 0003CF94  48 00 00 41 */	bl getNextDrawRoomNo__16renderingDAmap_cFi
 /* 80040058 0003CF98  7C 7F 1B 78 */	mr r31, r3
 /* 8004005C 0003CF9C  48 00 00 1C */	b lbl_80040078
 lbl_80040060:
@@ -1469,8 +1469,8 @@ lbl_80040078:
 /* 8004008C 0003CFCC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040090 0003CFD0  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_getNextDrawRoomNo
-renderingDAmap_c_NS_getNextDrawRoomNo:
+.global getNextDrawRoomNo__16renderingDAmap_cFi
+getNextDrawRoomNo__16renderingDAmap_cFi:
 /* 80040094 0003CFD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040098 0003CFD8  7C 08 02 A6 */	mflr r0
 /* 8004009C 0003CFDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1522,7 +1522,7 @@ lbl_80040118:
 /* 80040144 0003D084  93 C1 00 08 */	stw r30, 8(r1)
 /* 80040148 0003D088  7C 7E 1B 78 */	mr r30, r3
 /* 8004014C 0003D08C  3B E0 00 00 */	li r31, 0
-/* 80040150 0003D090  4B FF FE A5 */	bl renderingDAmap_c_NS_getFirstDrawRoomNo
+/* 80040150 0003D090  4B FF FE A5 */	bl getFirstDrawRoomNo__16renderingDAmap_cFv
 /* 80040154 0003D094  90 7E 00 24 */	stw r3, 0x24(r30)
 /* 80040158 0003D098  80 1E 00 24 */	lwz r0, 0x24(r30)
 /* 8004015C 0003D09C  2C 00 00 00 */	cmpwi r0, 0
@@ -1553,7 +1553,7 @@ lbl_800401BC:
 /* 800401BC 0003D0FC  28 1F 00 00 */	cmplwi r31, 0
 /* 800401C0 0003D100  41 82 00 0C */	beq lbl_800401CC
 /* 800401C4 0003D104  7F C3 F3 78 */	mr r3, r30
-/* 800401C8 0003D108  4B FF FC A5 */	bl renderingDAmap_c_NS_setSingleRoomSetting
+/* 800401C8 0003D108  4B FF FC A5 */	bl setSingleRoomSetting__16renderingDAmap_cFv
 lbl_800401CC:
 /* 800401CC 0003D10C  7F E3 FB 78 */	mr r3, r31
 /* 800401D0 0003D110  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -1573,7 +1573,7 @@ lbl_800401CC:
 lbl_80040208:
 /* 80040208 0003D148  7F A3 EB 78 */	mr r3, r29
 /* 8004020C 0003D14C  80 9D 00 24 */	lwz r4, 0x24(r29)
-/* 80040210 0003D150  4B FF FE 85 */	bl renderingDAmap_c_NS_getNextDrawRoomNo
+/* 80040210 0003D150  4B FF FE 85 */	bl getNextDrawRoomNo__16renderingDAmap_cFi
 /* 80040214 0003D154  90 7D 00 24 */	stw r3, 0x24(r29)
 /* 80040218 0003D158  80 1D 00 24 */	lwz r0, 0x24(r29)
 /* 8004021C 0003D15C  2C 00 00 00 */	cmpwi r0, 0
@@ -1592,7 +1592,7 @@ lbl_80040208:
 /* 80040250 0003D190  48 00 00 10 */	b lbl_80040260
 lbl_80040254:
 /* 80040254 0003D194  7F A3 EB 78 */	mr r3, r29
-/* 80040258 0003D198  4B FF FD 9D */	bl renderingDAmap_c_NS_getFirstDrawRoomNo
+/* 80040258 0003D198  4B FF FD 9D */	bl getFirstDrawRoomNo__16renderingDAmap_cFv
 /* 8004025C 0003D19C  90 7D 00 24 */	stw r3, 0x24(r29)
 lbl_80040260:
 /* 80040260 0003D1A0  57 C0 06 3F */	clrlwi. r0, r30, 0x18
@@ -1613,7 +1613,7 @@ lbl_80040294:
 /* 80040294 0003D1D4  28 1F 00 00 */	cmplwi r31, 0
 /* 80040298 0003D1D8  41 82 00 0C */	beq lbl_800402A4
 /* 8004029C 0003D1DC  7F A3 EB 78 */	mr r3, r29
-/* 800402A0 0003D1E0  4B FF FB CD */	bl renderingDAmap_c_NS_setSingleRoomSetting
+/* 800402A0 0003D1E0  4B FF FB CD */	bl setSingleRoomSetting__16renderingDAmap_cFv
 lbl_800402A4:
 /* 800402A4 0003D1E4  7F E3 FB 78 */	mr r3, r31
 /* 800402A8 0003D1E8  39 61 00 20 */	addi r11, r1, 0x20
@@ -1625,7 +1625,7 @@ lbl_800402A4:
 /* 800402C0 0003D200  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800402C4 0003D204  7C 08 02 A6 */	mflr r0
 /* 800402C8 0003D208  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800402CC 0003D20C  4B FF F4 8D */	bl dMpath_c_NS_isExistMapPathData
+/* 800402CC 0003D20C  4B FF F4 8D */	bl isExistMapPathData__8dMpath_cFv
 /* 800402D0 0003D210  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800402D4 0003D214  7C 08 03 A6 */	mtlr r0
 /* 800402D8 0003D218  38 21 00 10 */	addi r1, r1, 0x10
@@ -1638,8 +1638,8 @@ lbl_800402A4:
 /* 800402F4 0003D234  38 60 FF FF */	li r3, -1
 /* 800402F8 0003D238  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_afterDrawPath
-renderingPlusDoorAndCursor_c_NS_afterDrawPath:
+.global afterDrawPath__28renderingPlusDoorAndCursor_cFv
+afterDrawPath__28renderingPlusDoorAndCursor_cFv:
 /* 800402FC 0003D23C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80040300 0003D240  7C 08 02 A6 */	mflr r0
 /* 80040304 0003D244  90 01 00 54 */	stw r0, 0x54(r1)
@@ -1648,7 +1648,7 @@ renderingPlusDoorAndCursor_c_NS_afterDrawPath:
 /* 80040310 0003D250  39 61 00 40 */	addi r11, r1, 0x40
 /* 80040314 0003D254  48 32 1E C9 */	bl _savegpr_29
 /* 80040318 0003D258  7C 7F 1B 78 */	mr r31, r3
-/* 8004031C 0003D25C  48 00 01 FD */	bl renderingPlusDoor_c_NS_afterDrawPath
+/* 8004031C 0003D25C  48 00 01 FD */	bl afterDrawPath__19renderingPlusDoor_cFv
 /* 80040320 0003D260  7F E3 FB 78 */	mr r3, r31
 /* 80040324 0003D264  81 9F 00 00 */	lwz r12, 0(r31)
 /* 80040328 0003D268  81 8C 00 84 */	lwz r12, 0x84(r12)
@@ -1677,11 +1677,11 @@ renderingPlusDoorAndCursor_c_NS_afterDrawPath:
 /* 80040384 0003D2C4  88 03 0D B4 */	lbz r0, 0xdb4(r3)
 /* 80040388 0003D2C8  7C 1E 07 74 */	extsb r30, r0
 /* 8004038C 0003D2CC  38 61 00 20 */	addi r3, r1, 0x20
-/* 80040390 0003D2D0  4B FF EC 9D */	bl dMapInfo_n_NS_getMapRestartPos
+/* 80040390 0003D2D0  4B FF EC 9D */	bl getMapRestartPos__10dMapInfo_nFv
 /* 80040394 0003D2D4  C0 21 00 24 */	lfs f1, 0x24(r1)
 /* 80040398 0003D2D8  38 60 00 01 */	li r3, 1
 /* 8004039C 0003D2DC  7F C4 F3 78 */	mr r4, r30
-/* 800403A0 0003D2E0  4B FF F0 6D */	bl dMapInfo_c_NS_calcFloorNo
+/* 800403A0 0003D2E0  4B FF F0 6D */	bl calcFloorNo__10dMapInfo_cFfbi
 /* 800403A4 0003D2E4  7C 63 07 74 */	extsb r3, r3
 /* 800403A8 0003D2E8  88 1F 00 30 */	lbz r0, 0x30(r31)
 /* 800403AC 0003D2EC  7C 00 07 74 */	extsb r0, r0
@@ -1707,16 +1707,16 @@ lbl_800403E8:
 /* 800403F4 0003D334  7D 89 03 A6 */	mtctr r12
 /* 800403F8 0003D338  4E 80 04 21 */	bctrl 
 /* 800403FC 0003D33C  FF E0 08 90 */	fmr f31, f1
-/* 80040400 0003D340  4B FF EC F9 */	bl dMapInfo_n_NS_getMapRestartAngleY
+/* 80040400 0003D340  4B FF EC F9 */	bl getMapRestartAngleY__10dMapInfo_nFv
 /* 80040404 0003D344  7C 7E 1B 78 */	mr r30, r3
 /* 80040408 0003D348  38 61 00 14 */	addi r3, r1, 0x14
-/* 8004040C 0003D34C  4B FF EC 21 */	bl dMapInfo_n_NS_getMapRestartPos
+/* 8004040C 0003D34C  4B FF EC 21 */	bl getMapRestartPos__10dMapInfo_nFv
 /* 80040410 0003D350  7F E3 FB 78 */	mr r3, r31
 /* 80040414 0003D354  38 81 00 14 */	addi r4, r1, 0x14
 /* 80040418 0003D358  7F C5 F3 78 */	mr r5, r30
 /* 8004041C 0003D35C  7F A6 EB 78 */	mr r6, r29
 /* 80040420 0003D360  FC 20 F8 90 */	fmr f1, f31
-/* 80040424 0003D364  48 00 0E 9D */	bl renderingPlusDoorAndCursor_c_NS_drawCursor
+/* 80040424 0003D364  48 00 0E 9D */	bl drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif
 lbl_80040428:
 /* 80040428 0003D368  80 1F 00 2C */	lwz r0, 0x2c(r31)
 /* 8004042C 0003D36C  2C 00 00 00 */	cmpwi r0, 0
@@ -1729,7 +1729,7 @@ lbl_80040428:
 /* 80040448 0003D388  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004044C 0003D38C  41 82 00 0C */	beq lbl_80040458
 /* 80040450 0003D390  7F E3 FB 78 */	mr r3, r31
-/* 80040454 0003D394  48 00 06 AD */	bl renderingPlusDoorAndCursor_c_NS_drawTreasure
+/* 80040454 0003D394  48 00 06 AD */	bl drawTreasure__28renderingPlusDoorAndCursor_cFv
 lbl_80040458:
 /* 80040458 0003D398  7F E3 FB 78 */	mr r3, r31
 /* 8004045C 0003D39C  81 9F 00 00 */	lwz r12, 0(r31)
@@ -1749,16 +1749,16 @@ lbl_80040458:
 /* 80040494 0003D3D4  7D 89 03 A6 */	mtctr r12
 /* 80040498 0003D3D8  4E 80 04 21 */	bctrl 
 /* 8004049C 0003D3DC  FF E0 08 90 */	fmr f31, f1
-/* 800404A0 0003D3E0  4B FF EA 81 */	bl dMapInfo_n_NS_getMapPlayerAngleY
+/* 800404A0 0003D3E0  4B FF EA 81 */	bl getMapPlayerAngleY__10dMapInfo_nFv
 /* 800404A4 0003D3E4  7C 7E 1B 78 */	mr r30, r3
 /* 800404A8 0003D3E8  38 61 00 08 */	addi r3, r1, 8
-/* 800404AC 0003D3EC  4B FF E9 B1 */	bl dMapInfo_n_NS_getMapPlayerPos
+/* 800404AC 0003D3EC  4B FF E9 B1 */	bl getMapPlayerPos__10dMapInfo_nFv
 /* 800404B0 0003D3F0  7F E3 FB 78 */	mr r3, r31
 /* 800404B4 0003D3F4  38 81 00 08 */	addi r4, r1, 8
 /* 800404B8 0003D3F8  7F C5 F3 78 */	mr r5, r30
 /* 800404BC 0003D3FC  38 C0 00 1E */	li r6, 0x1e
 /* 800404C0 0003D400  FC 20 F8 90 */	fmr f1, f31
-/* 800404C4 0003D404  48 00 0D FD */	bl renderingPlusDoorAndCursor_c_NS_drawCursor
+/* 800404C4 0003D404  48 00 0D FD */	bl drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif
 lbl_800404C8:
 /* 800404C8 0003D408  80 1F 00 2C */	lwz r0, 0x2c(r31)
 /* 800404CC 0003D40C  2C 00 00 00 */	cmpwi r0, 0
@@ -1771,7 +1771,7 @@ lbl_800404C8:
 /* 800404E8 0003D428  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800404EC 0003D42C  41 82 00 0C */	beq lbl_800404F8
 /* 800404F0 0003D430  7F E3 FB 78 */	mr r3, r31
-/* 800404F4 0003D434  48 00 09 91 */	bl renderingPlusDoorAndCursor_c_NS_drawTreasureAfterPlayer
+/* 800404F4 0003D434  48 00 09 91 */	bl drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv
 lbl_800404F8:
 /* 800404F8 0003D438  E3 E1 00 48 */	psq_l f31, 72(r1), 0, qr0
 /* 800404FC 0003D43C  CB E1 00 40 */	lfd f31, 0x40(r1)
@@ -1782,8 +1782,8 @@ lbl_800404F8:
 /* 80040510 0003D450  38 21 00 50 */	addi r1, r1, 0x50
 /* 80040514 0003D454  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_afterDrawPath
-renderingPlusDoor_c_NS_afterDrawPath:
+.global afterDrawPath__19renderingPlusDoor_cFv
+afterDrawPath__19renderingPlusDoor_cFv:
 /* 80040518 0003D458  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8004051C 0003D45C  7C 08 02 A6 */	mflr r0
 /* 80040520 0003D460  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1799,9 +1799,9 @@ renderingPlusDoor_c_NS_afterDrawPath:
 /* 80040548 0003D488  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8004054C 0003D48C  41 82 00 14 */	beq lbl_80040560
 /* 80040550 0003D490  7F E3 FB 78 */	mr r3, r31
-/* 80040554 0003D494  48 00 00 21 */	bl renderingPlusDoor_c_NS_drawDoor1
+/* 80040554 0003D494  48 00 00 21 */	bl drawDoor1__19renderingPlusDoor_cFv
 /* 80040558 0003D498  7F E3 FB 78 */	mr r3, r31
-/* 8004055C 0003D49C  48 00 00 5D */	bl renderingPlusDoor_c_NS_drawDoor2
+/* 8004055C 0003D49C  48 00 00 5D */	bl drawDoor2__19renderingPlusDoor_cFv
 lbl_80040560:
 /* 80040560 0003D4A0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80040564 0003D4A4  80 01 00 14 */	lwz r0, 0x14(r1)
@@ -1809,48 +1809,48 @@ lbl_80040560:
 /* 8004056C 0003D4AC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040570 0003D4B0  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_drawDoor1
-renderingPlusDoor_c_NS_drawDoor1:
+.global drawDoor1__19renderingPlusDoor_cFv
+drawDoor1__19renderingPlusDoor_cFv:
 /* 80040574 0003D4B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040578 0003D4B8  7C 08 02 A6 */	mflr r0
 /* 8004057C 0003D4BC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80040580 0003D4C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80040584 0003D4C4  7C 7F 1B 78 */	mr r31, r3
-/* 80040588 0003D4C8  4B FE 39 6D */	bl dStage_GetKeepDoorInfo
+/* 80040588 0003D4C8  4B FE 39 6D */	bl dStage_GetKeepDoorInfo__Fv
 /* 8004058C 0003D4CC  7C 65 1B 78 */	mr r5, r3
 /* 80040590 0003D4D0  7F E3 FB 78 */	mr r3, r31
 /* 80040594 0003D4D4  38 85 00 04 */	addi r4, r5, 4
 /* 80040598 0003D4D8  80 A5 00 00 */	lwz r5, 0(r5)
 /* 8004059C 0003D4DC  38 C0 00 01 */	li r6, 1
-/* 800405A0 0003D4E0  48 00 00 5D */	bl renderingPlusDoor_c_NS_drawDoorCommon
+/* 800405A0 0003D4E0  48 00 00 5D */	bl drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib
 /* 800405A4 0003D4E4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800405A8 0003D4E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800405AC 0003D4EC  7C 08 03 A6 */	mtlr r0
 /* 800405B0 0003D4F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800405B4 0003D4F4  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_drawDoor2
-renderingPlusDoor_c_NS_drawDoor2:
+.global drawDoor2__19renderingPlusDoor_cFv
+drawDoor2__19renderingPlusDoor_cFv:
 /* 800405B8 0003D4F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800405BC 0003D4FC  7C 08 02 A6 */	mflr r0
 /* 800405C0 0003D500  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800405C4 0003D504  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800405C8 0003D508  7C 7F 1B 78 */	mr r31, r3
-/* 800405CC 0003D50C  4B FE 3A 91 */	bl dStage_GetRoomKeepDoorInfo
+/* 800405CC 0003D50C  4B FE 3A 91 */	bl dStage_GetRoomKeepDoorInfo__Fv
 /* 800405D0 0003D510  7C 65 1B 78 */	mr r5, r3
 /* 800405D4 0003D514  7F E3 FB 78 */	mr r3, r31
 /* 800405D8 0003D518  38 85 00 04 */	addi r4, r5, 4
 /* 800405DC 0003D51C  80 A5 00 00 */	lwz r5, 0(r5)
 /* 800405E0 0003D520  38 C0 00 00 */	li r6, 0
-/* 800405E4 0003D524  48 00 00 19 */	bl renderingPlusDoor_c_NS_drawDoorCommon
+/* 800405E4 0003D524  48 00 00 19 */	bl drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib
 /* 800405E8 0003D528  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800405EC 0003D52C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800405F0 0003D530  7C 08 03 A6 */	mtlr r0
 /* 800405F4 0003D534  38 21 00 10 */	addi r1, r1, 0x10
 /* 800405F8 0003D538  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_drawDoorCommon
-renderingPlusDoor_c_NS_drawDoorCommon:
+.global drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib
+drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib:
 /* 800405FC 0003D53C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80040600 0003D540  7C 08 02 A6 */	mflr r0
 /* 80040604 0003D544  90 01 00 34 */	stw r0, 0x34(r1)
@@ -1884,7 +1884,7 @@ renderingPlusDoor_c_NS_drawDoorCommon:
 /* 80040674 0003D5B4  38 A0 00 02 */	li r5, 2
 /* 80040678 0003D5B8  48 31 B4 B1 */	bl GXSetArray
 /* 8004067C 0003D5BC  7F 23 CB 78 */	mr r3, r25
-/* 80040680 0003D5C0  4B FF C8 C1 */	bl dRenderingFDAmap_c_NS_setTevSettingIntensityTextureToCI
+/* 80040680 0003D5C0  4B FF C8 C1 */	bl setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv
 /* 80040684 0003D5C4  3B A0 00 00 */	li r29, 0
 /* 80040688 0003D5C8  48 00 00 60 */	b lbl_800406E8
 lbl_8004068C:
@@ -1895,7 +1895,7 @@ lbl_8004068C:
 /* 8004069C 0003D5DC  7F E4 FB 78 */	mr r4, r31
 /* 800406A0 0003D5E0  7F C5 F3 78 */	mr r5, r30
 /* 800406A4 0003D5E4  C0 3A 00 10 */	lfs f1, 0x10(r26)
-/* 800406A8 0003D5E8  48 00 00 69 */	bl renderingPlusDoor_c_NS_checkDispDoorS
+/* 800406A8 0003D5E8  48 00 00 69 */	bl checkDispDoorS__19renderingPlusDoor_cFiif
 /* 800406AC 0003D5EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800406B0 0003D5F0  41 82 00 30 */	beq lbl_800406E0
 /* 800406B4 0003D5F4  3C 60 80 42 */	lis r3, lbl_80424684@ha
@@ -1908,7 +1908,7 @@ lbl_8004068C:
 /* 800406D0 0003D610  7F E5 FB 78 */	mr r5, r31
 /* 800406D4 0003D614  7F C6 F3 78 */	mr r6, r30
 /* 800406D8 0003D618  7F 87 E3 78 */	mr r7, r28
-/* 800406DC 0003D61C  48 00 01 5D */	bl renderingPlusDoor_c_NS_drawNormalDoorS
+/* 800406DC 0003D61C  48 00 01 5D */	bl drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib
 lbl_800406E0:
 /* 800406E0 0003D620  3B BD 00 01 */	addi r29, r29, 1
 /* 800406E4 0003D624  3B 5A 00 24 */	addi r26, r26, 0x24
@@ -1916,7 +1916,7 @@ lbl_800406E8:
 /* 800406E8 0003D628  7C 1D D8 00 */	cmpw r29, r27
 /* 800406EC 0003D62C  41 80 FF A0 */	blt lbl_8004068C
 /* 800406F0 0003D630  7F 23 CB 78 */	mr r3, r25
-/* 800406F4 0003D634  4B FF C7 85 */	bl dRenderingFDAmap_c_NS_setTevSettingNonTextureDirectColor
+/* 800406F4 0003D634  4B FF C7 85 */	bl setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv
 /* 800406F8 0003D638  39 61 00 30 */	addi r11, r1, 0x30
 /* 800406FC 0003D63C  48 32 1B 1D */	bl _restgpr_25
 /* 80040700 0003D640  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -1924,8 +1924,8 @@ lbl_800406E8:
 /* 80040708 0003D648  38 21 00 30 */	addi r1, r1, 0x30
 /* 8004070C 0003D64C  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_checkDispDoorS
-renderingPlusDoor_c_NS_checkDispDoorS:
+.global checkDispDoorS__19renderingPlusDoor_cFiif
+checkDispDoorS__19renderingPlusDoor_cFiif:
 /* 80040710 0003D650  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80040714 0003D654  7C 08 02 A6 */	mflr r0
 /* 80040718 0003D658  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1950,14 +1950,14 @@ renderingPlusDoor_c_NS_checkDispDoorS:
 /* 80040764 0003D6A4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80040768 0003D6A8  40 82 00 60 */	bne lbl_800407C8
 /* 8004076C 0003D6AC  7F C3 F3 78 */	mr r3, r30
-/* 80040770 0003D6B0  4B FF E5 A1 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 80040770 0003D6B0  4B FF E5 A1 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 80040774 0003D6B4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80040778 0003D6B8  40 82 00 50 */	bne lbl_800407C8
 /* 8004077C 0003D6BC  80 1D 00 2C */	lwz r0, 0x2c(r29)
 /* 80040780 0003D6C0  7C 1E 00 00 */	cmpw r30, r0
 /* 80040784 0003D6C4  41 82 00 44 */	beq lbl_800407C8
 /* 80040788 0003D6C8  7F E3 FB 78 */	mr r3, r31
-/* 8004078C 0003D6CC  4B FF E5 85 */	bl dMapInfo_n_NS_isVisitedRoom
+/* 8004078C 0003D6CC  4B FF E5 85 */	bl isVisitedRoom__10dMapInfo_nFi
 /* 80040790 0003D6D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80040794 0003D6D4  40 82 00 34 */	bne lbl_800407C8
 /* 80040798 0003D6D8  80 1D 00 2C */	lwz r0, 0x2c(r29)
@@ -1977,7 +1977,7 @@ lbl_800407C8:
 /* 800407C8 0003D708  7F A3 EB 78 */	mr r3, r29
 /* 800407CC 0003D70C  FC 20 F8 90 */	fmr f1, f31
 /* 800407D0 0003D710  7F C4 F3 78 */	mr r4, r30
-/* 800407D4 0003D714  4B FF F4 D1 */	bl renderingDAmap_c_NS_calcFloorNoForObjectByMapPathRend
+/* 800407D4 0003D714  4B FF F4 D1 */	bl calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi
 /* 800407D8 0003D718  7C 63 07 74 */	extsb r3, r3
 /* 800407DC 0003D71C  88 1D 00 30 */	lbz r0, 0x30(r29)
 /* 800407E0 0003D720  7C 00 07 74 */	extsb r0, r0
@@ -1986,7 +1986,7 @@ lbl_800407C8:
 /* 800407EC 0003D72C  7F A3 EB 78 */	mr r3, r29
 /* 800407F0 0003D730  FC 20 F8 90 */	fmr f1, f31
 /* 800407F4 0003D734  7F E4 FB 78 */	mr r4, r31
-/* 800407F8 0003D738  4B FF F4 AD */	bl renderingDAmap_c_NS_calcFloorNoForObjectByMapPathRend
+/* 800407F8 0003D738  4B FF F4 AD */	bl calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi
 /* 800407FC 0003D73C  7C 63 07 74 */	extsb r3, r3
 /* 80040800 0003D740  88 1D 00 30 */	lbz r0, 0x30(r29)
 /* 80040804 0003D744  7C 00 07 74 */	extsb r0, r0
@@ -2006,8 +2006,8 @@ lbl_8004081C:
 /* 80040830 0003D770  38 21 00 20 */	addi r1, r1, 0x20
 /* 80040834 0003D774  4E 80 00 20 */	blr 
 
-.global renderingPlusDoor_c_NS_drawNormalDoorS
-renderingPlusDoor_c_NS_drawNormalDoorS:
+.global drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib
+drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib:
 /* 80040838 0003D778  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8004083C 0003D77C  7C 08 02 A6 */	mflr r0
 /* 80040840 0003D780  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2056,7 +2056,7 @@ lbl_800408C4:
 /* 800408E0 0003D820  41 82 00 10 */	beq lbl_800408F0
 /* 800408E4 0003D824  7F C3 07 74 */	extsb r3, r30
 /* 800408E8 0003D828  38 81 00 18 */	addi r4, r1, 0x18
-/* 800408EC 0003D82C  4B FF E4 75 */	bl dMapInfo_n_NS_correctionOriginPos
+/* 800408EC 0003D82C  4B FF E4 75 */	bl correctionOriginPos__10dMapInfo_nFScP3Vec
 lbl_800408F0:
 /* 800408F0 0003D830  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 800408F4 0003D834  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
@@ -2067,11 +2067,11 @@ lbl_800408F0:
 /* 80040908 0003D848  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8004090C 0003D84C  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80040910 0003D850  A8 9D 00 1A */	lha r4, 0x1a(r29)
-/* 80040914 0003D854  4B FC BB B9 */	bl mDoMtx_ZrotM
+/* 80040914 0003D854  4B FC BB B9 */	bl mDoMtx_ZrotM__FPA4_fs
 /* 80040918 0003D858  C0 22 84 70 */	lfs f1, lbl_80451E70-_SDA2_BASE_(r2)
 /* 8004091C 0003D85C  FC 40 08 90 */	fmr f2, f1
 /* 80040920 0003D860  C0 62 84 38 */	lfs f3, lbl_80451E38-_SDA2_BASE_(r2)
-/* 80040924 0003D864  4B FC C5 15 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80040924 0003D864  4B FC C5 15 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80040928 0003D868  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 8004092C 0003D86C  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 80040930 0003D870  3C 80 80 38 */	lis r4, lbl_80379C58@ha
@@ -2145,7 +2145,7 @@ lbl_80040990:
 /* 80040A38 0003D978  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 80040A3C 0003D97C  88 99 00 01 */	lbz r4, 1(r25)
 /* 80040A40 0003D980  7C 84 07 74 */	extsb r4, r4
-/* 80040A44 0003D984  4B FF F2 61 */	bl renderingDAmap_c_NS_calcFloorNoForObjectByMapPathRend
+/* 80040A44 0003D984  4B FF F2 61 */	bl calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi
 /* 80040A48 0003D988  7C 60 07 74 */	extsb r0, r3
 /* 80040A4C 0003D98C  7C 00 D8 00 */	cmpw r0, r27
 /* 80040A50 0003D990  40 82 00 08 */	bne lbl_80040A58
@@ -2167,37 +2167,37 @@ lbl_80040A58:
 /* 80040A8C 0003D9CC  38 21 00 30 */	addi r1, r1, 0x30
 /* 80040A90 0003D9D0  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_getFirstData
-renderingPlusDoorAndCursor_c_NS_getFirstData:
+.global getFirstData__28renderingPlusDoorAndCursor_cFUc
+getFirstData__28renderingPlusDoorAndCursor_cFUc:
 /* 80040A94 0003D9D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040A98 0003D9D8  7C 08 02 A6 */	mflr r0
 /* 80040A9C 0003D9DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80040AA0 0003D9E0  54 83 06 3E */	clrlwi r3, r4, 0x18
-/* 80040AA4 0003D9E4  48 05 B8 BD */	bl dTres_c_NS_getFirstData
+/* 80040AA4 0003D9E4  48 05 B8 BD */	bl getFirstData__7dTres_cFUc
 /* 80040AA8 0003D9E8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80040AAC 0003D9EC  7C 08 03 A6 */	mtlr r0
 /* 80040AB0 0003D9F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040AB4 0003D9F4  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_getNextData
-renderingPlusDoorAndCursor_c_NS_getNextData:
+.global getNextData__28renderingPlusDoorAndCursor_cFPQ27dTres_c15typeGroupData_c
+getNextData__28renderingPlusDoorAndCursor_cFPQ27dTres_c15typeGroupData_c:
 /* 80040AB8 0003D9F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80040ABC 0003D9FC  7C 08 02 A6 */	mflr r0
 /* 80040AC0 0003DA00  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80040AC4 0003DA04  7C 83 23 78 */	mr r3, r4
-/* 80040AC8 0003DA08  48 05 B8 D5 */	bl dTres_c_NS_getNextData
+/* 80040AC8 0003DA08  48 05 B8 D5 */	bl getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c
 /* 80040ACC 0003DA0C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80040AD0 0003DA10  7C 08 03 A6 */	mtlr r0
 /* 80040AD4 0003DA14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80040AD8 0003DA18  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_getIconPosition
-renderingPlusDoorAndCursor_c_NS_getIconPosition:
+.global getIconPosition__28renderingPlusDoorAndCursor_cCFPQ27dTres_c15typeGroupData_c
+getIconPosition__28renderingPlusDoorAndCursor_cCFPQ27dTres_c15typeGroupData_c:
 /* 80040ADC 0003DA1C  38 64 00 04 */	addi r3, r4, 4
 /* 80040AE0 0003DA20  4E 80 00 20 */	blr 
 
-.global renderingDAmap_c_NS_getIconGroupNumber
-renderingDAmap_c_NS_getIconGroupNumber:
+.global getIconGroupNumber__16renderingDAmap_cCFUc
+getIconGroupNumber__16renderingDAmap_cCFUc:
 /* 80040AE4 0003DA24  3C 60 80 42 */	lis r3, lbl_80425438@ha
 /* 80040AE8 0003DA28  38 63 54 38 */	addi r3, r3, lbl_80425438@l
 /* 80040AEC 0003DA2C  54 80 06 3E */	clrlwi r0, r4, 0x18
@@ -2206,8 +2206,8 @@ renderingDAmap_c_NS_getIconGroupNumber:
 /* 80040AF8 0003DA38  88 63 00 08 */	lbz r3, 8(r3)
 /* 80040AFC 0003DA3C  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_drawTreasure
-renderingPlusDoorAndCursor_c_NS_drawTreasure:
+.global drawTreasure__28renderingPlusDoorAndCursor_cFv
+drawTreasure__28renderingPlusDoorAndCursor_cFv:
 /* 80040B00 0003DA40  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80040B04 0003DA44  7C 08 02 A6 */	mflr r0
 /* 80040B08 0003DA48  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2247,7 +2247,7 @@ renderingPlusDoorAndCursor_c_NS_drawTreasure:
 /* 80040B90 0003DAD0  38 A0 00 02 */	li r5, 2
 /* 80040B94 0003DAD4  48 31 AF 95 */	bl GXSetArray
 /* 80040B98 0003DAD8  7F E3 FB 78 */	mr r3, r31
-/* 80040B9C 0003DADC  4B FF C3 A5 */	bl dRenderingFDAmap_c_NS_setTevSettingIntensityTextureToCI
+/* 80040B9C 0003DADC  4B FF C3 A5 */	bl setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv
 /* 80040BA0 0003DAE0  3A E0 00 00 */	li r23, 0
 /* 80040BA4 0003DAE4  3B C0 00 00 */	li r30, 0
 /* 80040BA8 0003DAE8  3B 42 84 A4 */	addi r26, r2, lbl_80451EA4-_SDA2_BASE_
@@ -2410,7 +2410,7 @@ lbl_80040DC0:
 /* 80040E04 0003DD44  7E A4 AB 78 */	mr r4, r21
 /* 80040E08 0003DD48  FC 20 F0 90 */	fmr f1, f30
 /* 80040E0C 0003DD4C  FC 40 F0 90 */	fmr f2, f30
-/* 80040E10 0003DD50  48 00 03 F9 */	bl renderingPlusDoorAndCursor_c_NS_drawIconSingle
+/* 80040E10 0003DD50  48 00 03 F9 */	bl drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff
 lbl_80040E14:
 /* 80040E14 0003DD54  7F E3 FB 78 */	mr r3, r31
 /* 80040E18 0003DD58  7E C4 B3 78 */	mr r4, r22
@@ -2431,7 +2431,7 @@ lbl_80040E44:
 /* 80040E4C 0003DD8C  3B DE 00 0C */	addi r30, r30, 0xc
 /* 80040E50 0003DD90  41 80 FD 6C */	blt lbl_80040BBC
 /* 80040E54 0003DD94  7F E3 FB 78 */	mr r3, r31
-/* 80040E58 0003DD98  4B FF C0 21 */	bl dRenderingFDAmap_c_NS_setTevSettingNonTextureDirectColor
+/* 80040E58 0003DD98  4B FF C0 21 */	bl setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv
 /* 80040E5C 0003DD9C  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 80040E60 0003DDA0  CB E1 00 60 */	lfd f31, 0x60(r1)
 /* 80040E64 0003DDA4  E3 C1 00 58 */	psq_l f30, 88(r1), 0, qr0
@@ -2443,8 +2443,8 @@ lbl_80040E44:
 /* 80040E7C 0003DDBC  38 21 00 70 */	addi r1, r1, 0x70
 /* 80040E80 0003DDC0  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_drawTreasureAfterPlayer
-renderingPlusDoorAndCursor_c_NS_drawTreasureAfterPlayer:
+.global drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv
+drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv:
 /* 80040E84 0003DDC4  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 80040E88 0003DDC8  7C 08 02 A6 */	mflr r0
 /* 80040E8C 0003DDCC  90 01 00 74 */	stw r0, 0x74(r1)
@@ -2484,7 +2484,7 @@ renderingPlusDoorAndCursor_c_NS_drawTreasureAfterPlayer:
 /* 80040F14 0003DE54  38 A0 00 02 */	li r5, 2
 /* 80040F18 0003DE58  48 31 AC 11 */	bl GXSetArray
 /* 80040F1C 0003DE5C  7F E3 FB 78 */	mr r3, r31
-/* 80040F20 0003DE60  4B FF C0 21 */	bl dRenderingFDAmap_c_NS_setTevSettingIntensityTextureToCI
+/* 80040F20 0003DE60  4B FF C0 21 */	bl setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv
 /* 80040F24 0003DE64  3A E0 00 00 */	li r23, 0
 /* 80040F28 0003DE68  3B C0 00 00 */	li r30, 0
 /* 80040F2C 0003DE6C  3B 42 84 B4 */	addi r26, r2, lbl_80451EB4-_SDA2_BASE_
@@ -2647,7 +2647,7 @@ lbl_80041144:
 /* 80041188 0003E0C8  7E A4 AB 78 */	mr r4, r21
 /* 8004118C 0003E0CC  FC 20 F0 90 */	fmr f1, f30
 /* 80041190 0003E0D0  FC 40 F0 90 */	fmr f2, f30
-/* 80041194 0003E0D4  48 00 00 75 */	bl renderingPlusDoorAndCursor_c_NS_drawIconSingle
+/* 80041194 0003E0D4  48 00 00 75 */	bl drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff
 lbl_80041198:
 /* 80041198 0003E0D8  7F E3 FB 78 */	mr r3, r31
 /* 8004119C 0003E0DC  7E C4 B3 78 */	mr r4, r22
@@ -2668,7 +2668,7 @@ lbl_800411C8:
 /* 800411D0 0003E110  3B DE 00 0C */	addi r30, r30, 0xc
 /* 800411D4 0003E114  41 80 FD 6C */	blt lbl_80040F40
 /* 800411D8 0003E118  7F E3 FB 78 */	mr r3, r31
-/* 800411DC 0003E11C  4B FF BC 9D */	bl dRenderingFDAmap_c_NS_setTevSettingNonTextureDirectColor
+/* 800411DC 0003E11C  4B FF BC 9D */	bl setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv
 /* 800411E0 0003E120  E3 E1 00 68 */	psq_l f31, 104(r1), 0, qr0
 /* 800411E4 0003E124  CB E1 00 60 */	lfd f31, 0x60(r1)
 /* 800411E8 0003E128  E3 C1 00 58 */	psq_l f30, 88(r1), 0, qr0
@@ -2680,8 +2680,8 @@ lbl_800411C8:
 /* 80041200 0003E140  38 21 00 70 */	addi r1, r1, 0x70
 /* 80041204 0003E144  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_drawIconSingle
-renderingPlusDoorAndCursor_c_NS_drawIconSingle:
+.global drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff
+drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff:
 /* 80041208 0003E148  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8004120C 0003E14C  7C 08 02 A6 */	mflr r0
 /* 80041210 0003E150  90 01 00 34 */	stw r0, 0x34(r1)
@@ -2731,8 +2731,8 @@ lbl_80041290:
 /* 800412B8 0003E1F8  38 21 00 30 */	addi r1, r1, 0x30
 /* 800412BC 0003E1FC  4E 80 00 20 */	blr 
 
-.global renderingPlusDoorAndCursor_c_NS_drawCursor
-renderingPlusDoorAndCursor_c_NS_drawCursor:
+.global drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif
+drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif:
 /* 800412C0 0003E200  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 800412C4 0003E204  7C 08 02 A6 */	mflr r0
 /* 800412C8 0003E208  90 01 00 84 */	stw r0, 0x84(r1)
@@ -2773,11 +2773,11 @@ renderingPlusDoorAndCursor_c_NS_drawCursor:
 /* 80041354 0003E294  FC 20 F8 90 */	fmr f1, f31
 /* 80041358 0003E298  C0 42 84 38 */	lfs f2, lbl_80451E38-_SDA2_BASE_(r2)
 /* 8004135C 0003E29C  FC 60 F0 90 */	fmr f3, f30
-/* 80041360 0003E2A0  4B FC BA D9 */	bl mDoMtx_stack_c_NS_scaleM
+/* 80041360 0003E2A0  4B FC BA D9 */	bl scaleM__14mDoMtx_stack_cFfff
 /* 80041364 0003E2A4  3C 60 80 3E */	lis r3, lbl_803DD470@ha
 /* 80041368 0003E2A8  38 63 D4 70 */	addi r3, r3, lbl_803DD470@l
 /* 8004136C 0003E2AC  7F 84 E3 78 */	mr r4, r28
-/* 80041370 0003E2B0  4B FC B0 C5 */	bl mDoMtx_YrotM
+/* 80041370 0003E2B0  4B FC B0 C5 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80041374 0003E2B4  3B 80 00 00 */	li r28, 0
 /* 80041378 0003E2B8  3B E0 00 00 */	li r31, 0
 /* 8004137C 0003E2BC  3C 60 80 3E */	lis r3, lbl_803DD470@ha

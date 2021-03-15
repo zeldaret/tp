@@ -8,17 +8,17 @@
 /* 800EA2C4 000E7204  41 82 00 14 */ beq lbl_800EA2D8
 /* 800EA2C8 000E7208  38 80 00 C1 */ li r4, 0xc1
 /* 800EA2CC 000E720C  80 BF 27 F4 */ lwz r5, 0x27f4(r31)
-/* 800EA2D0 000E7210  4B FD 8B 0D */ bl daAlink_c_NS_procPreActionUnequipInit
+/* 800EA2D0 000E7210  4B FD 8B 0D */ bl procPreActionUnequipInit__9daAlink_cFiP10fopAc_ac_c
 /* 800EA2D4 000E7214  48 00 00 C4 */ b lbl_800EA398
 lbl_800EA2D8:
 /* 800EA2D8 000E7218  38 80 00 C1 */ li r4, 0xc1
-/* 800EA2DC 000E721C  4B FD 7C 91 */ bl daAlink_c_NS_commonProcInit
+/* 800EA2DC 000E721C  4B FD 7C 91 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800EA2E0 000E7220  38 7F 28 0C */ addi r3, r31, 0x280c
 /* 800EA2E4 000E7224  80 9F 27 F4 */ lwz r4, 0x27f4(r31)
-/* 800EA2E8 000E7228  48 07 49 D1 */ bl daPy_actorKeep_c_NS_setData
+/* 800EA2E8 000E7228  48 07 49 D1 */ bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 800EA2EC 000E722C  7F E3 FB 78 */ mr r3, r31
 /* 800EA2F0 000E7230  38 80 01 23 */ li r4, 0x123
-/* 800EA2F4 000E7234  4B FC 2C 8D */ bl daAlink_c_NS_setSingleAnimeBase
+/* 800EA2F4 000E7234  4B FC 2C 8D */ bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800EA2F8 000E7238  80 7F 28 10 */ lwz r3, 0x2810(r31)
 /* 800EA2FC 000E723C  A0 03 05 68 */ lhz r0, 0x568(r3)
 /* 800EA300 000E7240  60 00 00 80 */ ori r0, r0, 0x80

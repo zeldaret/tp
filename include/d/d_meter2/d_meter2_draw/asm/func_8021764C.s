@@ -17,12 +17,12 @@
 /* 8021768C 002145CC  38 00 00 00 */ li r0, 0
 /* 80217690 002145D0  98 03 00 B0 */ stb r0, 0xb0(r3)
 /* 80217694 002145D4  80 7E 03 5C */ lwz r3, 0x35c(r30)
-/* 80217698 002145D8  48 03 DF 31 */ bl CPaneMgrAlpha_NS_show
+/* 80217698 002145D8  48 03 DF 31 */ bl show__13CPaneMgrAlphaFv
 /* 8021769C 002145DC  7F C3 F3 78 */ mr r3, r30
 /* 802176A0 002145E0  7F E4 FB 78 */ mr r4, r31
 /* 802176A4 002145E4  38 A0 00 01 */ li r5, 1
 /* 802176A8 002145E8  38 DE 07 6A */ addi r6, r30, 0x76a
-/* 802176AC 002145EC  48 00 2C 49 */ bl dMeter2Draw_c_NS_getActionString
+/* 802176AC 002145EC  48 00 2C 49 */ bl getActionString__13dMeter2Draw_cFUcUcPUc
 /* 802176B0 002145F0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 802176B4 002145F4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 802176B8 002145F8  88 63 5E 42 */ lbz r3, 0x5e42(r3)

@@ -4,20 +4,20 @@
 /* 800C66E8 000C3628  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800C66EC 000C362C  7C 7F 1B 78 */ mr r31, r3
 /* 800C66F0 000C3630  38 80 00 16 */ li r4, 0x16
-/* 800C66F4 000C3634  4B FF B8 79 */ bl daAlink_c_NS_commonProcInit
+/* 800C66F4 000C3634  4B FF B8 79 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C66F8 000C3638  7F E3 FB 78 */ mr r3, r31
 /* 800C66FC 000C363C  38 80 01 9A */ li r4, 0x19a
 /* 800C6700 000C3640  3C A0 80 39 */ lis r5, lbl_8038E068@ha
 /* 800C6704 000C3644  38 A5 E0 68 */ addi r5, r5, lbl_8038E068@l
 /* 800C6708 000C3648  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800C670C 000C364C  4B FE 69 E9 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800C670C 000C364C  4B FE 69 E9 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C6710 000C3650  7F E3 FB 78 */ mr r3, r31
 /* 800C6714 000C3654  38 80 00 01 */ li r4, 1
 /* 800C6718 000C3658  38 A0 00 01 */ li r5, 1
-/* 800C671C 000C365C  4B FF AB C1 */ bl daAlink_c_NS_deleteEquipItem
+/* 800C671C 000C365C  4B FF AB C1 */ bl deleteEquipItem__9daAlink_cFii
 /* 800C6720 000C3660  7F E3 FB 78 */ mr r3, r31
 /* 800C6724 000C3664  38 80 00 00 */ li r4, 0
-/* 800C6728 000C3668  48 01 BE 59 */ bl daAlink_c_NS_setHeavyBoots
+/* 800C6728 000C3668  48 01 BE 59 */ bl setHeavyBoots__9daAlink_cFi
 /* 800C672C 000C366C  3C 60 80 39 */ lis r3, lbl_8038E068@ha
 /* 800C6730 000C3670  38 63 E0 68 */ addi r3, r3, lbl_8038E068@l
 /* 800C6734 000C3674  C0 03 00 9C */ lfs f0, 0x9c(r3)

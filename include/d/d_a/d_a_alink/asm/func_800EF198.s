@@ -75,7 +75,7 @@ lbl_800EF2A0:
 /* 800EF2B0 000EC1F0  38 81 00 20 */ addi r4, r1, 0x20
 /* 800EF2B4 000EC1F4  38 A1 00 14 */ addi r5, r1, 0x14
 /* 800EF2B8 000EC1F8  7F 86 E3 78 */ mr r6, r28
-/* 800EF2BC 000EC1FC  4B FF FE 2D */ bl daAlink_c_NS_checkHorseGetOffWallCheck
+/* 800EF2BC 000EC1FC  4B FF FE 2D */ bl checkHorseGetOffWallCheck__9daAlink_cFP4cXyzP4cXyzs
 /* 800EF2C0 000EC200  2C 03 00 00 */ cmpwi r3, 0
 /* 800EF2C4 000EC204  40 82 00 14 */ bne lbl_800EF2D8
 /* 800EF2C8 000EC208  3B 7B 00 01 */ addi r27, r27, 1

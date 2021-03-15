@@ -10,7 +10,7 @@
 /* 8010743C 0010437C  AB E3 04 E6 */ lha r31, 0x4e6(r3)
 /* 80107440 00104380  AB C3 04 DE */ lha r30, 0x4de(r3)
 /* 80107444 00104384  38 80 00 00 */ li r4, 0
-/* 80107448 00104388  4B FF E7 11 */ bl daAlink_c_NS_boardCommon
+/* 80107448 00104388  4B FF E7 11 */ bl boardCommon__9daAlink_cFi
 /* 8010744C 0010438C  2C 03 00 00 */ cmpwi r3, 0
 /* 80107450 00104390  41 82 00 0C */ beq lbl_8010745C
 /* 80107454 00104394  38 60 00 01 */ li r3, 1
@@ -19,17 +19,17 @@ lbl_8010745C:
 /* 8010745C 0010439C  B3 FD 04 E6 */ sth r31, 0x4e6(r29)
 /* 80107460 001043A0  7F A3 EB 78 */ mr r3, r29
 /* 80107464 001043A4  38 80 00 01 */ li r4, 1
-/* 80107468 001043A8  4B FC 77 71 */ bl daAlink_c_NS_checkSubjectEnd
+/* 80107468 001043A8  4B FC 77 71 */ bl checkSubjectEnd__9daAlink_cFi
 /* 8010746C 001043AC  2C 03 00 00 */ cmpwi r3, 0
 /* 80107470 001043B0  41 82 00 14 */ beq lbl_80107484
 /* 80107474 001043B4  7F A3 EB 78 */ mr r3, r29
 /* 80107478 001043B8  38 80 00 00 */ li r4, 0
-/* 8010747C 001043BC  4B FF F5 BD */ bl daAlink_c_NS_procBoardWaitInit
+/* 8010747C 001043BC  4B FF F5 BD */ bl procBoardWaitInit__9daAlink_cFP10fopAc_ac_c
 /* 80107480 001043C0  48 00 00 10 */ b lbl_80107490
 lbl_80107484:
 /* 80107484 001043C4  7F A3 EB 78 */ mr r3, r29
 /* 80107488 001043C8  7F C4 F3 78 */ mr r4, r30
-/* 8010748C 001043CC  4B FE 7A A5 */ bl daAlink_c_NS_setRideSubjectAngle
+/* 8010748C 001043CC  4B FE 7A A5 */ bl setRideSubjectAngle__9daAlink_cFs
 lbl_80107490:
 /* 80107490 001043D0  38 60 00 01 */ li r3, 1
 lbl_80107494:

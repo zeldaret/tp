@@ -10,12 +10,12 @@ void __nw__FUlP7JKRHeapi(void);
 void becomeCurrentHeap__7JKRHeapFv(void);
 void callback__15JKRThreadSwitchFP8OSThreadP8OSThread(void);
 void __cvt_fp2unsigned(void);
-void func_803626BC(void);
-void func_803664DC(void);
+void __cvt_sll_flt(void);
+void sprintf(void);
 void isSubHeap__7JKRHeapCFP7JKRHeap(void);
 void clear__10JUTConsoleFv(void);
-void JUTConsole_NS_print_f(void);
-void JUTConsole_NS_print(void);
+void print_f__10JUTConsoleFPCce(void);
+void print__10JUTConsoleFPCc(void);
 void JUTWarningConsole(void);
 void searchThread__9JKRThreadFP8OSThread(void);
 }

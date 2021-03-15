@@ -3,8 +3,8 @@
 .section .text, "ax" # 80293644
 
 
-.global JASRegisterParam
-JASRegisterParam:
+.global __ct__16JASRegisterParamFv
+__ct__16JASRegisterParamFv:
 /* 80293644 00290584  38 80 00 00 */	li r4, 0
 /* 80293648 00290588  7C 85 23 78 */	mr r5, r4
 /* 8029364C 0029058C  38 00 00 0E */	li r0, 0xe
@@ -15,8 +15,8 @@ lbl_80293654:
 /* 8029365C 0029059C  42 00 FF F8 */	bdnz lbl_80293654
 /* 80293660 002905A0  4E 80 00 20 */	blr 
 
-.global JASRegisterParam_NS_init
-JASRegisterParam_NS_init:
+.global init__16JASRegisterParamFv
+init__16JASRegisterParamFv:
 /* 80293664 002905A4  38 80 00 00 */	li r4, 0
 /* 80293668 002905A8  7C 85 23 78 */	mr r5, r4
 /* 8029366C 002905AC  38 00 00 0E */	li r0, 0xe
@@ -27,8 +27,8 @@ lbl_80293674:
 /* 8029367C 002905BC  42 00 FF F8 */	bdnz lbl_80293674
 /* 80293680 002905C0  4E 80 00 20 */	blr 
 
-.global JASRegisterParam_NS_write
-JASRegisterParam_NS_write:
+.global write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl
+write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl:
 /* 80293684 002905C4  2C 04 00 0E */	cmpwi r4, 0xe
 /* 80293688 002905C8  40 80 00 28 */	bge lbl_802936B0
 /* 8029368C 002905CC  2C 04 00 02 */	cmpwi r4, 2
@@ -109,8 +109,8 @@ lbl_802936B0:
 /* 802937B0 002906F0  B0 A3 00 1A */	sth r5, 0x1a(r3)
 /* 802937B4 002906F4  4E 80 00 20 */	blr 
 
-.global JASRegisterParam_NS_read
-JASRegisterParam_NS_read:
+.global read__16JASRegisterParamFQ216JASRegisterParam5RegID
+read__16JASRegisterParamFQ216JASRegisterParam5RegID:
 /* 802937B8 002906F8  2C 04 00 0E */	cmpwi r4, 0xe
 /* 802937BC 002906FC  40 80 00 10 */	bge lbl_802937CC
 /* 802937C0 00290700  54 80 08 3C */	slwi r0, r4, 1

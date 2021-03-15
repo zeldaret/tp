@@ -15,10 +15,10 @@
 /* 800FE14C 000FB08C  C0 02 95 50 */ lfs f0, lbl_80452F50-_SDA2_BASE_(r2)
 /* 800FE150 000FB090  EC 01 00 28 */ fsubs f0, f1, f0
 /* 800FE154 000FB094  D0 03 04 D4 */ stfs f0, 0x4d4(r3)
-/* 800FE158 000FB098  48 00 11 35 */ bl daAlink_c_NS_setClimbStartNotGround
+/* 800FE158 000FB098  48 00 11 35 */ bl setClimbStartNotGround__9daAlink_cFv
 /* 800FE15C 000FB09C  48 00 00 08 */ b lbl_800FE164
 lbl_800FE160:
-/* 800FE160 000FB0A0  4B FF E0 19 */ bl daAlink_c_NS_procHangReadyInit
+/* 800FE160 000FB0A0  4B FF E0 19 */ bl procHangReadyInit__9daAlink_cFv
 lbl_800FE164:
 /* 800FE164 000FB0A4  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800FE168 000FB0A8  7C 08 03 A6 */ mtlr r0

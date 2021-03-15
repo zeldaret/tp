@@ -5,7 +5,7 @@
 /* 800F7AB8 000F49F8  93 C1 00 08 */ stw r30, 8(r1)
 /* 800F7ABC 000F49FC  7C 7E 1B 78 */ mr r30, r3
 /* 800F7AC0 000F4A00  38 7E 1F D0 */ addi r3, r30, 0x1fd0
-/* 800F7AC4 000F4A04  48 06 6A 09 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F7AC4 000F4A04  48 06 6A 09 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F7AC8 000F4A08  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F7ACC 000F4A0C  41 82 01 68 */ beq lbl_800F7C34
 /* 800F7AD0 000F4A10  A8 1E 30 0C */ lha r0, 0x300c(r30)
@@ -15,10 +15,10 @@
 /* 800F7AE0 000F4A20  2C 00 00 00 */ cmpwi r0, 0
 /* 800F7AE4 000F4A24  41 82 00 0C */ beq lbl_800F7AF0
 /* 800F7AE8 000F4A28  7F C3 F3 78 */ mr r3, r30
-/* 800F7AEC 000F4A2C  4B FC 7D 99 */ bl daAlink_c_NS_returnKeepItemData
+/* 800F7AEC 000F4A2C  4B FC 7D 99 */ bl returnKeepItemData__9daAlink_cFv
 lbl_800F7AF0:
 /* 800F7AF0 000F4A30  7F C3 F3 78 */ mr r3, r30
-/* 800F7AF4 000F4A34  48 02 01 9D */ bl daAlink_c_NS_resetSpecialEvent
+/* 800F7AF4 000F4A34  48 02 01 9D */ bl resetSpecialEvent__9daAlink_cFv
 /* 800F7AF8 000F4A38  48 00 01 3C */ b lbl_800F7C34
 lbl_800F7AFC:
 /* 800F7AFC 000F4A3C  7F C3 F3 78 */ mr r3, r30
@@ -27,16 +27,16 @@ lbl_800F7AFC:
 /* 800F7B08 000F4A48  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800F7B0C 000F4A4C  A8 BE 1F D8 */ lha r5, 0x1fd8(r30)
 /* 800F7B10 000F4A50  FC 60 08 90 */ fmr f3, f1
-/* 800F7B14 000F4A54  4B FB 54 F9 */ bl daAlink_c_NS_setSingleAnime
+/* 800F7B14 000F4A54  4B FB 54 F9 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800F7B18 000F4A58  38 00 00 01 */ li r0, 1
 /* 800F7B1C 000F4A5C  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 800F7B20 000F4A60  A8 7E 30 0E */ lha r3, 0x300e(r30)
-/* 800F7B24 000F4A64  4B F3 63 F9 */ bl dComIfGp_getSelectItem
+/* 800F7B24 000F4A64  4B F3 63 F9 */ bl dComIfGp_getSelectItem__Fi
 /* 800F7B28 000F4A68  54 7F 06 3E */ clrlwi r31, r3, 0x18
 /* 800F7B2C 000F4A6C  28 1F 00 74 */ cmplwi r31, 0x74
 /* 800F7B30 000F4A70  41 82 00 18 */ beq lbl_800F7B48
 /* 800F7B34 000F4A74  A8 7E 30 0E */ lha r3, 0x300e(r30)
-/* 800F7B38 000F4A78  4B F3 6A 89 */ bl dComIfGp_getSelectItemNum
+/* 800F7B38 000F4A78  4B F3 6A 89 */ bl dComIfGp_getSelectItemNum__Fi
 /* 800F7B3C 000F4A7C  7C 60 07 34 */ extsh r0, r3
 /* 800F7B40 000F4A80  2C 00 00 01 */ cmpwi r0, 1
 /* 800F7B44 000F4A84  40 82 00 20 */ bne lbl_800F7B64
@@ -51,7 +51,7 @@ lbl_800F7B48:
 lbl_800F7B64:
 /* 800F7B64 000F4AA4  A8 7E 30 0E */ lha r3, 0x300e(r30)
 /* 800F7B68 000F4AA8  38 80 FF FF */ li r4, -1
-/* 800F7B6C 000F4AAC  4B F3 6C D1 */ bl dComIfGp_addSelectItemNum
+/* 800F7B6C 000F4AAC  4B F3 6C D1 */ bl dComIfGp_addSelectItemNum__Fis
 lbl_800F7B70:
 /* 800F7B70 000F4AB0  A8 BE 30 1A */ lha r5, 0x301a(r30)
 /* 800F7B74 000F4AB4  2C 05 00 FF */ cmpwi r5, 0xff
@@ -68,7 +68,7 @@ lbl_800F7B70:
 /* 800F7BA0 000F4AE0  40 82 00 10 */ bne lbl_800F7BB0
 /* 800F7BA4 000F4AE4  A8 7E 30 0E */ lha r3, 0x300e(r30)
 /* 800F7BA8 000F4AE8  38 80 00 01 */ li r4, 1
-/* 800F7BAC 000F4AEC  4B F3 6B 69 */ bl dComIfGp_setSelectItemNum
+/* 800F7BAC 000F4AEC  4B F3 6B 69 */ bl dComIfGp_setSelectItemNum__Fis
 lbl_800F7BB0:
 /* 800F7BB0 000F4AF0  B3 FE 30 1A */ sth r31, 0x301a(r30)
 /* 800F7BB4 000F4AF4  38 00 00 00 */ li r0, 0

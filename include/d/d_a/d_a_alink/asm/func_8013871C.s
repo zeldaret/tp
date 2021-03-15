@@ -4,15 +4,15 @@
 /* 80138728 00135668  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 8013872C 0013566C  7C 7F 1B 78 */ mr r31, r3
 /* 80138730 00135670  38 80 01 29 */ li r4, 0x129
-/* 80138734 00135674  4B F8 98 39 */ bl daAlink_c_NS_commonProcInit
+/* 80138734 00135674  4B F8 98 39 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80138738 00135678  7F E3 FB 78 */ mr r3, r31
-/* 8013873C 0013567C  4B FF FA 4D */ bl daAlink_c_NS_getWolfSwimMoveAnmSpeed
+/* 8013873C 0013567C  4B FF FA 4D */ bl getWolfSwimMoveAnmSpeed__9daAlink_cFv
 /* 80138740 00135680  7F E3 FB 78 */ mr r3, r31
 /* 80138744 00135684  38 80 00 38 */ li r4, 0x38
 /* 80138748 00135688  3C A0 80 39 */ lis r5, lbl_8038F8B4@ha
 /* 8013874C 0013568C  38 A5 F8 B4 */ addi r5, r5, lbl_8038F8B4@l
 /* 80138750 00135690  C0 45 00 78 */ lfs f2, 0x78(r5)
-/* 80138754 00135694  4B FF 0F 85 */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 80138754 00135694  4B FF 0F 85 */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80138758 00135698  80 1F 05 70 */ lwz r0, 0x570(r31)
 /* 8013875C 0013569C  54 00 05 EF */ rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80138760 001356A0  41 82 00 14 */ beq lbl_80138774

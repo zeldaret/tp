@@ -11,9 +11,9 @@
 /* 80071E14 0006ED54  54 00 00 01 */ rlwinm. r0, r0, 0, 0, 0
 /* 80071E18 0006ED58  40 82 00 58 */ bne lbl_80071E70
 /*.global sound_attention*/
-/* 80071E1C 0006ED5C  3C 60 80 07 */ lis r3, sound_attention@ha
+/* 80071E1C 0006ED5C  3C 60 80 07 */ lis r3, sound_attention__FP10fopAc_ac_cPv@ha
 /*.global sound_attention*/
-/* 80071E20 0006ED60  38 63 1D 6C */ addi r3, r3, sound_attention@l
+/* 80071E20 0006ED60  38 63 1D 6C */ addi r3, r3, sound_attention__FP10fopAc_ac_cPv@l
 /* 80071E24 0006ED64  7F E4 FB 78 */ mr r4, r31
 /* 80071E28 0006ED68  4B FA 79 95 */ bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80071E2C 0006ED6C  80 1F 05 14 */ lwz r0, 0x514(r31)
@@ -31,7 +31,7 @@
 /* 80071E54 0006ED94  C0 22 8C 9C */ lfs f1, lbl_8045269C-_SDA2_BASE_(r2)
 /* 80071E58 0006ED98  C0 1F 05 18 */ lfs f0, 0x518(r31)
 /* 80071E5C 0006ED9C  EC 21 00 32 */ fmuls f1, f1, f0
-/* 80071E60 0006EDA0  48 24 40 29 */ bl Z2SeqMgr_NS_bgmNowBattle
+/* 80071E60 0006EDA0  48 24 40 29 */ bl bgmNowBattle__8Z2SeqMgrFf
 /* 80071E64 0006EDA4  80 1F 03 34 */ lwz r0, 0x334(r31)
 /* 80071E68 0006EDA8  60 00 01 00 */ ori r0, r0, 0x100
 /* 80071E6C 0006EDAC  90 1F 03 34 */ stw r0, 0x334(r31)

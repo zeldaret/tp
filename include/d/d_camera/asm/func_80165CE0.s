@@ -11,7 +11,7 @@
 /* 80165D08 00162C48  FF E0 08 90 */ fmr f31, f1
 /* 80165D0C 00162C4C  3B C1 00 34 */ addi r30, r1, 0x34
 /* 80165D10 00162C50  7F C3 F3 78 */ mr r3, r30
-/* 80165D14 00162C54  4B F1 2D 01 */ bl dBgS_SphChk
+/* 80165D14 00162C54  4B F1 2D 01 */ bl __ct__11dBgS_SphChkFv
 /* 80165D18 00162C58  3C 60 80 3C */ lis r3, lbl_803BA798@ha
 /* 80165D1C 00162C5C  38 63 A7 98 */ addi r3, r3, lbl_803BA798@l
 /* 80165D20 00162C60  90 61 00 44 */ stw r3, 0x44(r1)
@@ -38,9 +38,9 @@
 /* 80165D74 00162CB4  98 01 00 30 */ stb r0, 0x30(r1)
 /* 80165D78 00162CB8  D3 E1 00 2C */ stfs f31, 0x2c(r1)
 /*.global sph_chk_callback*/
-/* 80165D7C 00162CBC  3C 60 80 16 */ lis r3, sph_chk_callback@ha
+/* 80165D7C 00162CBC  3C 60 80 16 */ lis r3, sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv@ha
 /*.global sph_chk_callback*/
-/* 80165D80 00162CC0  38 03 5C 08 */ addi r0, r3, sph_chk_callback@l
+/* 80165D80 00162CC0  38 03 5C 08 */ addi r0, r3, sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv@l
 /* 80165D84 00162CC4  90 01 00 84 */ stw r0, 0x84(r1)
 /* 80165D88 00162CC8  7F C3 F3 78 */ mr r3, r30
 /* 80165D8C 00162CCC  7F A4 EB 78 */ mr r4, r29
@@ -72,7 +72,7 @@ lbl_80165DB0:
 /* 80165DF0 00162D30  7F A3 EB 78 */ mr r3, r29
 /* 80165DF4 00162D34  38 81 00 34 */ addi r4, r1, 0x34
 /* 80165DF8 00162D38  38 A1 00 14 */ addi r5, r1, 0x14
-/* 80165DFC 00162D3C  4B F0 F8 8D */ bl dBgS_NS_SphChk
+/* 80165DFC 00162D3C  4B F0 F8 8D */ bl SphChk__4dBgSFP11dBgS_SphChkPv
 /* 80165E00 00162D40  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 80165E04 00162D44  41 82 00 10 */ beq lbl_80165E14
 /* 80165E08 00162D48  3B 18 00 01 */ addi r24, r24, 1
@@ -94,7 +94,7 @@ lbl_80165E14:
 /* 80165E44 00162D84  93 21 00 7C */ stw r25, 0x7c(r1)
 /* 80165E48 00162D88  38 61 00 34 */ addi r3, r1, 0x34
 /* 80165E4C 00162D8C  38 80 00 00 */ li r4, 0
-/* 80165E50 00162D90  4B F1 2C 71 */ bl dBgS_SphChk_NS_dtor
+/* 80165E50 00162D90  4B F1 2C 71 */ bl __dt__11dBgS_SphChkFv
 /* 80165E54 00162D94  E3 E1 00 B8 */ psq_l f31, 184(r1), 0, 0
 /* 80165E58 00162D98  CB E1 00 B0 */ lfd f31, 0xb0(r1)
 /* 80165E5C 00162D9C  39 61 00 B0 */ addi r11, r1, 0xb0

@@ -10,7 +10,7 @@ void __mi__4cXyzCFRC3Vec(void);
 void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl(void);
 void findFsResource__10JKRArchiveCFPCcUl(void);
 void getAramAddress__14JKRAramArchiveFPCc(void);
-void mDoMtx_YrotS(void);
+void mDoMtx_YrotS__FPA4_fs(void);
 void searchMapEventData__14dEvt_control_cFUc(void);
 void Xinit__9STControlFv(void);
 void Yinit__9STControlFv(void);

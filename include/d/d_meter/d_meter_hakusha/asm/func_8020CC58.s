@@ -36,7 +36,7 @@
 /* 8020CCE4 00209C24  2C 03 00 00 */ cmpwi r3, 0
 /* 8020CCE8 00209C28  40 82 00 14 */ bne lbl_8020CCFC
 /* 8020CCEC 00209C2C  38 60 00 00 */ li r3, 0
-/* 8020CCF0 00209C30  4B E1 FC 8D */ bl dComIfG_play_c_NS_getLayerNo
+/* 8020CCF0 00209C30  4B E1 FC 8D */ bl getLayerNo__14dComIfG_play_cFi
 /* 8020CCF4 00209C34  2C 03 00 04 */ cmpwi r3, 4
 /* 8020CCF8 00209C38  41 82 00 20 */ beq lbl_8020CD18
 lbl_8020CCFC:
@@ -49,22 +49,22 @@ lbl_8020CCFC:
 /* 8020CD14 00209C54  41 82 00 18 */ beq lbl_8020CD2C
 lbl_8020CD18:
 /* 8020CD18 00209C58  7F E3 FB 78 */ mr r3, r31
-/* 8020CD1C 00209C5C  48 00 05 3D */ bl dMeterHakusha_c_NS_setAlphaHakushaAnimeMin
+/* 8020CD1C 00209C5C  48 00 05 3D */ bl setAlphaHakushaAnimeMin__15dMeterHakusha_cFv
 /* 8020CD20 00209C60  7F E3 FB 78 */ mr r3, r31
-/* 8020CD24 00209C64  48 00 06 95 */ bl dMeterHakusha_c_NS_setAlphaButtonAnimeMin
+/* 8020CD24 00209C64  48 00 06 95 */ bl setAlphaButtonAnimeMin__15dMeterHakusha_cFv
 /* 8020CD28 00209C68  48 00 00 2C */ b lbl_8020CD54
 lbl_8020CD2C:
 /* 8020CD2C 00209C6C  7F E3 FB 78 */ mr r3, r31
-/* 8020CD30 00209C70  48 00 05 D9 */ bl dMeterHakusha_c_NS_setAlphaHakushaAnimeMax
+/* 8020CD30 00209C70  48 00 05 D9 */ bl setAlphaHakushaAnimeMax__15dMeterHakusha_cFv
 /* 8020CD34 00209C74  88 1E 5E 24 */ lbz r0, 0x5e24(r30)
 /* 8020CD38 00209C78  28 00 00 09 */ cmplwi r0, 9
 /* 8020CD3C 00209C7C  40 82 00 10 */ bne lbl_8020CD4C
 /* 8020CD40 00209C80  7F E3 FB 78 */ mr r3, r31
-/* 8020CD44 00209C84  48 00 06 D9 */ bl dMeterHakusha_c_NS_setAlphaButtonAnimeMax
+/* 8020CD44 00209C84  48 00 06 D9 */ bl setAlphaButtonAnimeMax__15dMeterHakusha_cFv
 /* 8020CD48 00209C88  48 00 00 0C */ b lbl_8020CD54
 lbl_8020CD4C:
 /* 8020CD4C 00209C8C  7F E3 FB 78 */ mr r3, r31
-/* 8020CD50 00209C90  48 00 06 69 */ bl dMeterHakusha_c_NS_setAlphaButtonAnimeMin
+/* 8020CD50 00209C90  48 00 06 69 */ bl setAlphaButtonAnimeMin__15dMeterHakusha_cFv
 lbl_8020CD54:
 /* 8020CD54 00209C94  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8020CD58 00209C98  83 C1 00 08 */ lwz r30, 8(r1)

@@ -2,7 +2,7 @@
 #define Z2AUDIBLECHANNEL_H_
 
 extern "C" {
-void Z2AudibleChannel(void);
+void __ct__16Z2AudibleChannelFv(void);
 }
 
 #endif  // Z2AUDIBLECHANNEL_H_

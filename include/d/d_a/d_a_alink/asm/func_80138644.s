@@ -10,14 +10,14 @@
 /* 80138668 001355A8  40 82 00 14 */ bne lbl_8013867C
 lbl_8013866C:
 /* 8013866C 001355AC  7F E3 FB 78 */ mr r3, r31
-/* 80138670 001355B0  4B FD FE FD */ bl daAlink_c_NS_setShapeAngleToTalkActor
+/* 80138670 001355B0  4B FD FE FD */ bl setShapeAngleToTalkActor__9daAlink_cFv
 /* 80138674 001355B4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80138678 001355B8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 lbl_8013867C:
 /* 8013867C 001355BC  7F E3 FB 78 */ mr r3, r31
-/* 80138680 001355C0  4B FF F9 81 */ bl daAlink_c_NS_setSpeedAndAngleSwimWolf
+/* 80138680 001355C0  4B FF F9 81 */ bl setSpeedAndAngleSwimWolf__9daAlink_cFv
 /* 80138684 001355C4  7F E3 FB 78 */ mr r3, r31
-/* 80138688 001355C8  4B FC B9 AD */ bl daAlink_c_NS_setSwimUpDownOffset
+/* 80138688 001355C8  4B FC B9 AD */ bl setSwimUpDownOffset__9daAlink_cFv
 /* 8013868C 001355CC  80 1F 05 74 */ lwz r0, 0x574(r31)
 /* 80138690 001355D0  54 00 02 53 */ rlwinm. r0, r0, 0, 9, 9
 /* 80138694 001355D4  41 82 00 18 */ beq lbl_801386AC
@@ -33,14 +33,14 @@ lbl_801386AC:
 /* 801386B8 001355F8  D0 1F 1F DC */ stfs f0, 0x1fdc(r31)
 lbl_801386BC:
 /* 801386BC 001355FC  7F E3 FB 78 */ mr r3, r31
-/* 801386C0 00135600  4B FC A9 99 */ bl daAlink_c_NS_checkSwimUpAction
+/* 801386C0 00135600  4B FC A9 99 */ bl checkSwimUpAction__9daAlink_cFv
 /* 801386C4 00135604  2C 03 00 00 */ cmpwi r3, 0
 /* 801386C8 00135608  41 82 00 0C */ beq lbl_801386D4
 /* 801386CC 0013560C  38 60 00 01 */ li r3, 1
 /* 801386D0 00135610  48 00 00 38 */ b lbl_80138708
 lbl_801386D4:
 /* 801386D4 00135614  7F E3 FB 78 */ mr r3, r31
-/* 801386D8 00135618  4B FF FB 21 */ bl daAlink_c_NS_decideDoStatusSwimWolf
+/* 801386D8 00135618  4B FF FB 21 */ bl decideDoStatusSwimWolf__9daAlink_cFv
 /* 801386DC 0013561C  2C 03 00 00 */ cmpwi r3, 0
 /* 801386E0 00135620  41 82 00 0C */ beq lbl_801386EC
 /* 801386E4 00135624  38 60 00 01 */ li r3, 1
@@ -51,7 +51,7 @@ lbl_801386EC:
 /* 801386F4 00135634  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 801386F8 00135638  40 81 00 0C */ ble lbl_80138704
 /* 801386FC 0013563C  7F E3 FB 78 */ mr r3, r31
-/* 80138700 00135640  48 00 00 1D */ bl daAlink_c_NS_procWolfSwimMoveInit
+/* 80138700 00135640  48 00 00 1D */ bl procWolfSwimMoveInit__9daAlink_cFv
 lbl_80138704:
 /* 80138704 00135644  38 60 00 01 */ li r3, 1
 lbl_80138708:

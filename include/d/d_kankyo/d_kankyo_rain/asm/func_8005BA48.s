@@ -18,11 +18,11 @@
 /* 8005BA8C 000589CC  38 81 00 4C */ addi r4, r1, 0x4c
 /* 8005BA90 000589D0  C0 22 87 D4 */ lfs f1, lbl_804521D4-_SDA2_BASE_(r2)
 /* 8005BA94 000589D4  FC 40 08 90 */ fmr f2, f1
-/* 8005BA98 000589D8  4B FF FC E9 */ bl dKy_set_eyevect_calc
+/* 8005BA98 000589D8  4B FF FC E9 */ bl dKy_set_eyevect_calc__FP12camera_classP3Vecff
 /* 8005BA9C 000589DC  38 61 00 4C */ addi r3, r1, 0x4c
 /* 8005BAA0 000589E0  38 9F 00 10 */ addi r4, r31, 0x10
 /* 8005BAA4 000589E4  38 A1 00 40 */ addi r5, r1, 0x40
-/* 8005BAA8 000589E8  4B FF FC B9 */ bl dKyr_get_vectle_calc
+/* 8005BAA8 000589E8  4B FF FC B9 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005BAAC 000589EC  C0 1F 00 10 */ lfs f0, 0x10(r31)
 /* 8005BAB0 000589F0  D0 1E 00 24 */ stfs f0, 0x24(r30)
 /* 8005BAB4 000589F4  C0 1F 00 14 */ lfs f0, 0x14(r31)
@@ -37,7 +37,7 @@
 /* 8005BAD8 00058A18  D0 1E 00 38 */ stfs f0, 0x38(r30)
 /* 8005BADC 00058A1C  38 7E 00 24 */ addi r3, r30, 0x24
 /* 8005BAE0 00058A20  38 81 00 1C */ addi r4, r1, 0x1c
-/* 8005BAE4 00058A24  4B FB 98 2D */ bl mDoLib_project
+/* 8005BAE4 00058A24  4B FB 98 2D */ bl mDoLib_project__FP3VecP3Vec
 /* 8005BAE8 00058A28  C0 02 87 D8 */ lfs f0, lbl_804521D8-_SDA2_BASE_(r2)
 /* 8005BAEC 00058A2C  D0 01 00 10 */ stfs f0, 0x10(r1)
 /* 8005BAF0 00058A30  C0 02 87 DC */ lfs f0, lbl_804521DC-_SDA2_BASE_(r2)
@@ -47,7 +47,7 @@
 /* 8005BB00 00058A40  38 61 00 10 */ addi r3, r1, 0x10
 /* 8005BB04 00058A44  38 81 00 1C */ addi r4, r1, 0x1c
 /* 8005BB08 00058A48  38 A1 00 28 */ addi r5, r1, 0x28
-/* 8005BB0C 00058A4C  4B FF FC 55 */ bl dKyr_get_vectle_calc
+/* 8005BB0C 00058A4C  4B FF FC 55 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005BB10 00058A50  C0 21 00 28 */ lfs f1, 0x28(r1)
 /* 8005BB14 00058A54  C0 41 00 2C */ lfs f2, 0x2c(r1)
 /* 8005BB18 00058A58  48 20 BB 5D */ bl cM_atan2s
@@ -71,7 +71,7 @@
 /* 8005BB60 00058AA0  38 7C 00 D8 */ addi r3, r28, 0xd8
 /* 8005BB64 00058AA4  38 9C 00 E4 */ addi r4, r28, 0xe4
 /* 8005BB68 00058AA8  38 A1 00 34 */ addi r5, r1, 0x34
-/* 8005BB6C 00058AAC  4B FF FB F5 */ bl dKyr_get_vectle_calc
+/* 8005BB6C 00058AAC  4B FF FB F5 */ bl dKyr_get_vectle_calc__FP4cXyzP4cXyzP4cXyz
 /* 8005BB70 00058AB0  3B A0 00 02 */ li r29, 2
 /* 8005BB74 00058AB4  3B 80 00 18 */ li r28, 0x18
 lbl_8005BB78:

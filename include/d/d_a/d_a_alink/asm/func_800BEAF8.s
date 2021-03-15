@@ -98,7 +98,7 @@ lbl_800BEC34:
 /* 800BEC54 000BBB94  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BEC58 000BBB98  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BEC5C 000BBB9C  38 9C 1A 60 */ addi r4, r28, 0x1a60
-/* 800BEC60 000BBBA0  4B FB 60 0D */ bl dBgS_NS_GetHorseNoEntry
+/* 800BEC60 000BBBA0  4B FB 60 0D */ bl GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo
 /* 800BEC64 000BBBA4  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEC68 000BBBA8  41 82 00 0C */ beq lbl_800BEC74
 /* 800BEC6C 000BBBAC  38 60 00 00 */ li r3, 0
@@ -264,7 +264,7 @@ lbl_800BEE5C:
 /* 800BEEA0 000BBDE0  38 A0 00 00 */ li r5, 0
 /* 800BEEA4 000BBDE4  3C C0 00 01 */ lis r6, 0x0000FFFF@ha
 /* 800BEEA8 000BBDE8  38 C6 FF FF */ addi r6, r6, 0x0000FFFF@l
-/* 800BEEAC 000BBDEC  4B F8 42 C1 */ bl dEvt_control_c_NS_compulsory
+/* 800BEEAC 000BBDEC  4B F8 42 C1 */ bl compulsory__14dEvt_control_cFPvPCcUs
 /* 800BEEB0 000BBDF0  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEEB4 000BBDF4  41 82 01 A4 */ beq lbl_800BF058
 lbl_800BEEB8:
@@ -287,7 +287,7 @@ lbl_800BEED8:
 /* 800BEEF4 000BBE34  7C 05 07 74 */ extsb r5, r0
 /* 800BEEF8 000BBE38  A8 DC 04 E6 */ lha r6, 0x4e6(r28)
 /* 800BEEFC 000BBE3C  38 E0 FF FF */ li r7, -1
-/* 800BEF00 000BBE40  4B F6 82 71 */ bl dStage_changeScene
+/* 800BEF00 000BBE40  4B F6 82 71 */ bl dStage_changeScene__FifUlScsi
 /* 800BEF04 000BBE44  7C 7D 1B 79 */ or. r29, r3, r3
 /* 800BEF08 000BBE48  41 82 00 30 */ beq lbl_800BEF38
 /* 800BEF0C 000BBE4C  80 1C 05 78 */ lwz r0, 0x578(r28)
@@ -307,7 +307,7 @@ lbl_800BEF38:
 /* 800BEF40 000BBE80  41 82 00 5C */ beq lbl_800BEF9C
 /* 800BEF44 000BBE84  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF48 000BBE88  7C 04 07 74 */ extsb r4, r0
-/* 800BEF4C 000BBE8C  4B F9 28 A1 */ bl dPath_GetRoomPath
+/* 800BEF4C 000BBE8C  4B F9 28 A1 */ bl dPath_GetRoomPath__Fii
 /* 800BEF50 000BBE90  90 7C 2F 58 */ stw r3, 0x2f58(r28)
 /* 800BEF54 000BBE94  48 00 00 48 */ b lbl_800BEF9C
 lbl_800BEF58:
@@ -317,16 +317,16 @@ lbl_800BEF58:
 /* 800BEF64 000BBEA4  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF68 000BBEA8  7C 05 07 74 */ extsb r5, r0
 /* 800BEF6C 000BBEAC  A8 DC 04 E6 */ lha r6, 0x4e6(r28)
-/* 800BEF70 000BBEB0  4B F6 81 8D */ bl dStage_changeSceneExitId
+/* 800BEF70 000BBEB0  4B F6 81 8D */ bl dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs
 /* 800BEF74 000BBEB4  7C 7D 1B 78 */ mr r29, r3
 /* 800BEF78 000BBEB8  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800BEF7C 000BBEBC  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800BEF80 000BBEC0  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800BEF84 000BBEC4  38 9C 1A 60 */ addi r4, r28, 0x1a60
-/* 800BEF88 000BBEC8  4B FB 60 59 */ bl dBgS_NS_GetRoomPathId
+/* 800BEF88 000BBEC8  4B FB 60 59 */ bl GetRoomPathId__4dBgSFRC13cBgS_PolyInfo
 /* 800BEF8C 000BBECC  88 1C 04 E2 */ lbz r0, 0x4e2(r28)
 /* 800BEF90 000BBED0  7C 04 07 74 */ extsb r4, r0
-/* 800BEF94 000BBED4  4B F9 28 59 */ bl dPath_GetRoomPath
+/* 800BEF94 000BBED4  4B F9 28 59 */ bl dPath_GetRoomPath__Fii
 /* 800BEF98 000BBED8  90 7C 2F 58 */ stw r3, 0x2f58(r28)
 lbl_800BEF9C:
 /* 800BEF9C 000BBEDC  2C 1D 00 00 */ cmpwi r29, 0
@@ -340,13 +340,13 @@ lbl_800BEF9C:
 /* 800BEFBC 000BBEFC  38 00 00 03 */ li r0, 3
 /* 800BEFC0 000BBF00  B0 1C 06 04 */ sth r0, 0x604(r28)
 /* 800BEFC4 000BBF04  7F 83 E3 78 */ mr r3, r28
-/* 800BEFC8 000BBF08  4B FF BF B9 */ bl daAlink_c_NS_checkUpperReadyThrowAnime
+/* 800BEFC8 000BBF08  4B FF BF B9 */ bl checkUpperReadyThrowAnime__9daAlink_cCFv
 /* 800BEFCC 000BBF0C  2C 03 00 00 */ cmpwi r3, 0
 /* 800BEFD0 000BBF10  41 82 00 14 */ beq lbl_800BEFE4
 /* 800BEFD4 000BBF14  7F 83 E3 78 */ mr r3, r28
 /* 800BEFD8 000BBF18  38 80 00 02 */ li r4, 2
 /* 800BEFDC 000BBF1C  C0 22 92 C4 */ lfs f1, lbl_80452CC4-_SDA2_BASE_(r2)
-/* 800BEFE0 000BBF20  4B FE E7 45 */ bl daAlink_c_NS_resetUpperAnime
+/* 800BEFE0 000BBF20  4B FE E7 45 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800BEFE4:
 /* 800BEFE4 000BBF24  80 1C 31 74 */ lwz r0, 0x3174(r28)
 /* 800BEFE8 000BBF28  2C 00 00 05 */ cmpwi r0, 5
@@ -360,7 +360,7 @@ lbl_800BEFFC:
 /* 800BF004 000BBF44  D3 DC 06 18 */ stfs f30, 0x618(r28)
 lbl_800BF008:
 /* 800BF008 000BBF48  7F 83 E3 78 */ mr r3, r28
-/* 800BF00C 000BBF4C  4B FF F9 C9 */ bl daAlink_c_NS_getSceneExitMoveAngle
+/* 800BF00C 000BBF4C  4B FF F9 C9 */ bl getSceneExitMoveAngle__9daAlink_cFv
 /* 800BF010 000BBF50  B0 7C 06 06 */ sth r3, 0x606(r28)
 /* 800BF014 000BBF54  2C 1E 00 00 */ cmpwi r30, 0
 /* 800BF018 000BBF58  41 82 00 38 */ beq lbl_800BF050

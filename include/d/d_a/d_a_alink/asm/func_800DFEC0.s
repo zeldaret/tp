@@ -5,7 +5,7 @@
 /* 800DFED0 000DCE10  F3 E1 00 18 */ psq_st f31, 24(r1), 0, 0
 /* 800DFED4 000DCE14  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DFED8 000DCE18  7C 7F 1B 78 */ mr r31, r3
-/* 800DFEDC 000DCE1C  4B FF EF 41 */ bl daAlink_c_NS_cancelBowMove
+/* 800DFEDC 000DCE1C  4B FF EF 41 */ bl cancelBowMove__9daAlink_cFv
 /* 800DFEE0 000DCE20  A8 1F 30 8E */ lha r0, 0x308e(r31)
 /* 800DFEE4 000DCE24  2C 00 00 00 */ cmpwi r0, 0
 /* 800DFEE8 000DCE28  40 82 00 3C */ bne lbl_800DFF24
@@ -22,7 +22,7 @@
 /* 800DFF14 000DCE54  7F E3 FB 78 */ mr r3, r31
 /* 800DFF18 000DCE58  38 80 00 02 */ li r4, 2
 /* 800DFF1C 000DCE5C  C0 22 92 BC */ lfs f1, lbl_80452CBC-_SDA2_BASE_(r2)
-/* 800DFF20 000DCE60  4B FC D8 05 */ bl daAlink_c_NS_resetUpperAnime
+/* 800DFF20 000DCE60  4B FC D8 05 */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 lbl_800DFF24:
 /* 800DFF24 000DCE64  38 00 00 01 */ li r0, 1
 /* 800DFF28 000DCE68  B0 1F 30 0C */ sth r0, 0x300c(r31)
@@ -31,12 +31,12 @@ lbl_800DFF24:
 /* 800DFF34 000DCE74  90 1F 05 88 */ stw r0, 0x588(r31)
 /* 800DFF38 000DCE78  7F E3 FB 78 */ mr r3, r31
 /* 800DFF3C 000DCE7C  38 80 00 00 */ li r4, 0
-/* 800DFF40 000DCE80  4B FD A1 91 */ bl daAlink_c_NS_checkNextAction
+/* 800DFF40 000DCE80  4B FD A1 91 */ bl checkNextAction__9daAlink_cFi
 /* 800DFF44 000DCE84  2C 03 00 00 */ cmpwi r3, 0
 /* 800DFF48 000DCE88  40 82 00 78 */ bne lbl_800DFFC0
 /* 800DFF4C 000DCE8C  C3 E2 92 BC */ lfs f31, lbl_80452CBC-_SDA2_BASE_(r2)
 /* 800DFF50 000DCE90  7F E3 FB 78 */ mr r3, r31
-/* 800DFF54 000DCE94  4B FD 39 B1 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 800DFF54 000DCE94  4B FD 39 B1 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 800DFF58 000DCE98  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800DFF5C 000DCE9C  41 82 00 40 */ beq lbl_800DFF9C
 /* 800DFF60 000DCEA0  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -62,10 +62,10 @@ lbl_800DFF9C:
 lbl_800DFFA8:
 /* 800DFFA8 000DCEE8  7F E3 FB 78 */ mr r3, r31
 /* 800DFFAC 000DCEEC  FC 20 F8 90 */ fmr f1, f31
-/* 800DFFB0 000DCEF0  4B FC EA C1 */ bl daAlink_c_NS_setBlendAtnMoveAnime
+/* 800DFFB0 000DCEF0  4B FC EA C1 */ bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800DFFB4 000DCEF4  7F E3 FB 78 */ mr r3, r31
 /* 800DFFB8 000DCEF8  38 80 00 00 */ li r4, 0
-/* 800DFFBC 000DCEFC  4B FD B2 F5 */ bl daAlink_c_NS_setBodyAngleXReadyAnime
+/* 800DFFBC 000DCEFC  4B FD B2 F5 */ bl setBodyAngleXReadyAnime__9daAlink_cFi
 lbl_800DFFC0:
 /* 800DFFC0 000DCF00  38 60 00 01 */ li r3, 1
 /* 800DFFC4 000DCF04  E3 E1 00 18 */ psq_l f31, 24(r1), 0, 0

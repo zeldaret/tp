@@ -3,8 +3,8 @@
 .section .text, "ax" # 8029bd14
 
 
-.global JASLfo
-JASLfo:
+.global __ct__6JASLfoFv
+__ct__6JASLfoFv:
 /* 8029BD14 00298C54  38 80 00 00 */	li r4, 0
 /* 8029BD18 00298C58  90 83 00 00 */	stw r4, 0(r3)
 /* 8029BD1C 00298C5C  38 00 00 01 */	li r0, 1
@@ -18,8 +18,8 @@ JASLfo:
 /* 8029BD3C 00298C7C  B0 83 00 16 */	sth r4, 0x16(r3)
 /* 8029BD40 00298C80  4E 80 00 20 */	blr 
 
-.global JASLfo_NS_getValue
-JASLfo_NS_getValue:
+.global getValue__6JASLfoCFv
+getValue__6JASLfoCFv:
 /* 8029BD44 00298C84  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8029BD48 00298C88  A0 03 00 16 */	lhz r0, 0x16(r3)
 /* 8029BD4C 00298C8C  28 00 00 00 */	cmplwi r0, 0
@@ -63,8 +63,8 @@ lbl_8029BDD0:
 /* 8029BDD0 00298D10  38 21 00 20 */	addi r1, r1, 0x20
 /* 8029BDD4 00298D14  4E 80 00 20 */	blr 
 
-.global JASLfo_NS_incCounter
-JASLfo_NS_incCounter:
+.global incCounter__6JASLfoFf
+incCounter__6JASLfoFf:
 /* 8029BDD8 00298D18  A0 83 00 16 */	lhz r4, 0x16(r3)
 /* 8029BDDC 00298D1C  28 04 00 00 */	cmplwi r4, 0
 /* 8029BDE0 00298D20  41 82 00 10 */	beq lbl_8029BDF0
@@ -88,8 +88,8 @@ lbl_8029BDF0:
 /* 8029BE24 00298D64  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8029BE28 00298D68  4E 80 00 20 */	blr 
 
-.global JASLfo_NS_resetCounter
-JASLfo_NS_resetCounter:
+.global resetCounter__6JASLfoFv
+resetCounter__6JASLfoFv:
 /* 8029BE2C 00298D6C  A0 03 00 14 */	lhz r0, 0x14(r3)
 /* 8029BE30 00298D70  B0 03 00 16 */	sth r0, 0x16(r3)
 /* 8029BE34 00298D74  80 03 00 04 */	lwz r0, 4(r3)
@@ -112,7 +112,7 @@ lbl_8029BE60:
 /* 8029BE74 00298DB4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8029BE78 00298DB8  3C 60 80 43 */	lis r3, lbl_80431C40@ha
 /* 8029BE7C 00298DBC  38 63 1C 40 */	addi r3, r3, lbl_80431C40@l
-/* 8029BE80 00298DC0  4B FF FE 95 */	bl JASLfo
+/* 8029BE80 00298DC0  4B FF FE 95 */	bl __ct__6JASLfoFv
 /* 8029BE84 00298DC4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029BE88 00298DC8  7C 08 03 A6 */	mtlr r0
 /* 8029BE8C 00298DCC  38 21 00 10 */	addi r1, r1, 0x10

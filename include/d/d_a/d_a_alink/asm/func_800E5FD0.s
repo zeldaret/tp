@@ -6,9 +6,9 @@
 /* 800E5FE4 000E2F24  7C 7E 1B 78 */ mr r30, r3
 /* 800E5FE8 000E2F28  83 E3 28 30 */ lwz r31, 0x2830(r3)
 /* 800E5FEC 000E2F2C  38 80 00 6D */ li r4, 0x6d
-/* 800E5FF0 000E2F30  4B FD BF 7D */ bl daAlink_c_NS_commonProcInit
+/* 800E5FF0 000E2F30  4B FD BF 7D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E5FF4 000E2F34  7F C3 F3 78 */ mr r3, r30
-/* 800E5FF8 000E2F38  4B FF DC FD */ bl daAlink_c_NS_checkGrabCarryActor
+/* 800E5FF8 000E2F38  4B FF DC FD */ bl checkGrabCarryActor__9daAlink_cFv
 /* 800E5FFC 000E2F3C  2C 03 00 00 */ cmpwi r3, 0
 /* 800E6000 000E2F40  41 82 00 48 */ beq lbl_800E6048
 /* 800E6004 000E2F44  3C 60 80 39 */ lis r3, lbl_8038EC48@ha
@@ -20,13 +20,13 @@
 /* 800E601C 000E2F5C  EC 40 08 2A */ fadds f2, f0, f1
 /* 800E6020 000E2F60  A8 A5 00 8C */ lha r5, 0x8c(r5)
 /* 800E6024 000E2F64  C0 62 92 C0 */ lfs f3, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800E6028 000E2F68  4B FC 6F E5 */ bl daAlink_c_NS_setSingleAnime
+/* 800E6028 000E2F68  4B FC 6F E5 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800E602C 000E2F6C  38 00 00 01 */ li r0, 1
 /* 800E6030 000E2F70  B0 1E 30 0E */ sth r0, 0x300e(r30)
 /* 800E6034 000E2F74  7F C3 F3 78 */ mr r3, r30
 /* 800E6038 000E2F78  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 800E603C 000E2F7C  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800E6040 000E2F80  4B FF EF 69 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E6040 000E2F80  4B FF EF 69 */ bl setCarryArmAngle__9daAlink_cFff
 /* 800E6044 000E2F84  48 00 00 34 */ b lbl_800E6078
 lbl_800E6048:
 /* 800E6048 000E2F88  7F C3 F3 78 */ mr r3, r30
@@ -34,13 +34,13 @@ lbl_800E6048:
 /* 800E6050 000E2F90  3C A0 80 39 */ lis r5, lbl_8038EC48@ha
 /* 800E6054 000E2F94  38 A5 EC 48 */ addi r5, r5, lbl_8038EC48@l
 /* 800E6058 000E2F98  38 A5 00 14 */ addi r5, r5, 0x14
-/* 800E605C 000E2F9C  4B FC 70 99 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800E605C 000E2F9C  4B FC 70 99 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E6060 000E2FA0  38 00 00 00 */ li r0, 0
 /* 800E6064 000E2FA4  B0 1E 30 0E */ sth r0, 0x300e(r30)
 /* 800E6068 000E2FA8  7F C3 F3 78 */ mr r3, r30
 /* 800E606C 000E2FAC  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800E6070 000E2FB0  C0 42 92 B8 */ lfs f2, lbl_80452CB8-_SDA2_BASE_(r2)
-/* 800E6074 000E2FB4  4B FF EF 35 */ bl daAlink_c_NS_setCarryArmAngle
+/* 800E6074 000E2FB4  4B FF EF 35 */ bl setCarryArmAngle__9daAlink_cFff
 lbl_800E6078:
 /* 800E6078 000E2FB8  38 61 00 18 */ addi r3, r1, 0x18
 /* 800E607C 000E2FBC  38 9F 04 D0 */ addi r4, r31, 0x4d0

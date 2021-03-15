@@ -3,8 +3,8 @@
 .section .text, "ax" # 80097878
 
 
-.global d2DBSplinePath_NS_Init
-d2DBSplinePath_NS_Init:
+.global Init__14d2DBSplinePathFll
+Init__14d2DBSplinePathFll:
 /* 80097878 000947B8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8009787C 000947BC  38 00 00 00 */	li r0, 0
 /* 80097880 000947C0  90 03 00 00 */	stw r0, 0(r3)
@@ -44,8 +44,8 @@ lbl_800978BC:
 /* 800978FC 0009483C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097900 00094840  4E 80 00 20 */	blr 
 
-.global d2DBSplinePath_NS_Step
-d2DBSplinePath_NS_Step:
+.global Step__14d2DBSplinePathFv
+Step__14d2DBSplinePathFv:
 /* 80097904 00094844  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097908 00094848  80 83 00 00 */	lwz r4, 0(r3)
 /* 8009790C 0009484C  80 03 00 0C */	lwz r0, 0xc(r3)
@@ -147,8 +147,8 @@ lbl_80097A60:
 /* 80097A64 000949A4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097A68 000949A8  4E 80 00 20 */	blr 
 
-.global d2DBSplinePath_NS_Calc
-d2DBSplinePath_NS_Calc:
+.global Calc__14d2DBSplinePathFP4cXyz
+Calc__14d2DBSplinePathFP4cXyz:
 /* 80097A6C 000949AC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097A70 000949B0  C0 E4 00 1C */	lfs f7, 0x1c(r4)
 /* 80097A74 000949B4  80 04 00 28 */	lwz r0, 0x28(r4)
@@ -195,8 +195,8 @@ d2DBSplinePath_NS_Calc:
 /* 80097B18 00094A58  38 21 00 20 */	addi r1, r1, 0x20
 /* 80097B1C 00094A5C  4E 80 00 20 */	blr 
 
-.global d2DBSplinePath_NS_Calc_X1_
-d2DBSplinePath_NS_Calc_X1_:
+.global Calc__14d2DBSplinePathFPf
+Calc__14d2DBSplinePathFPf:
 /* 80097B20 00094A60  C0 23 00 1C */	lfs f1, 0x1c(r3)
 /* 80097B24 00094A64  80 03 00 28 */	lwz r0, 0x28(r3)
 /* 80097B28 00094A68  54 00 10 3A */	slwi r0, r0, 2
@@ -216,8 +216,8 @@ d2DBSplinePath_NS_Calc_X1_:
 /* 80097B60 00094AA0  EC 23 00 2A */	fadds f1, f3, f0
 /* 80097B64 00094AA4  4E 80 00 20 */	blr 
 
-.global d2DBSplinePath_NS_Spot
-d2DBSplinePath_NS_Spot:
+.global Spot__14d2DBSplinePathFPff
+Spot__14d2DBSplinePathFPff:
 /* 80097B68 00094AA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80097B6C 00094AAC  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80097B70 00094AB0  2C 05 00 02 */	cmpwi r5, 2

@@ -4,8 +4,6 @@
 // g_fpcLn_Queue
 extern node_lists_tree_class lbl_804505D8;
 
-extern "C" {
-
 s32 fpcLnTg_Move(line_tag* pLineTag, s32 newLineListID) {
     if (pLineTag->mLineListID != newLineListID) {
         fpcLnTg_QueueTo(pLineTag);
@@ -34,5 +32,4 @@ s32 fpcLnTg_ToQueue(line_tag* pLineTag, s32 lineListID) {
 void fpcLnTg_Init(line_tag* pLineTag, void* pData) {
     cTg_Create(&pLineTag->mBase, pData);
     pLineTag->mLineListID = -1;
-}
 }

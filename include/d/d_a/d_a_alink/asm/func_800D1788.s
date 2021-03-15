@@ -8,7 +8,7 @@
 /* 800D17A4 000CE6E4  28 00 00 04 */ cmplwi r0, 4
 /* 800D17A8 000CE6E8  40 82 00 2C */ bne lbl_800D17D4
 /* 800D17AC 000CE6EC  AB E3 00 08 */ lha r31, 8(r3)
-/* 800D17B0 000CE6F0  48 00 AD F5 */ bl daAlink_c_NS_checkSpecialNpc
+/* 800D17B0 000CE6F0  48 00 AD F5 */ bl checkSpecialNpc__9daAlink_cFP10fopAc_ac_c
 /* 800D17B4 000CE6F4  2C 03 00 00 */ cmpwi r3, 0
 /* 800D17B8 000CE6F8  40 82 00 1C */ bne lbl_800D17D4
 /* 800D17BC 000CE6FC  2C 1F 01 08 */ cmpwi r31, 0x108

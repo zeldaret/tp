@@ -16,8 +16,6 @@ extern node_list_class lbl_803A39DC;
 // f_pc_layer::l_fpcLy_Crear
 extern layer_class lbl_803A39B0;
 
-extern "C" {
-
 void fpcLy_CancelQTo(process_method_tag_class* pMthd) {
     fpcMtdTg_MethodQTo(pMthd);
 }
@@ -30,11 +28,11 @@ BOOL fpcLy_CancelMethod(process_method_tag_class* pLayer) {
     return checkEqual(1, fpcMtdTg_Do(pLayer));
 }
 
-s32 fpcLy_IntoQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag, s32 idx) {
+s32 fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx) {
     return cTg_InsertToTree(&pLayer->mNodeListTree, treeListIdx, pTag, idx);
 }
 
-s32 fpcLy_ToQueue(layer_class* pLayer, s32 treeListIdx, create_tag_class* pTag) {
+s32 fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag) {
     return cTg_AdditionToTree(&pLayer->mNodeListTree, treeListIdx, pTag);
 }
 
@@ -148,5 +146,4 @@ void fpcLy_Create(layer_class* pLayer, process_node_class* pPcNode, node_list_cl
     cTr_Create(&pLayer->mNodeListTree, (pLayer->mNodeListTree).mpLists,
                (pLayer->mNodeListTree).mNumLists);
     fpcLy_Regist(pLayer);
-}
 }

@@ -12,7 +12,7 @@
 /* 80135694 001325D4  A8 1F 04 E6 */ lha r0, 0x4e6(r31)
 /* 80135698 001325D8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 8013569C 001325DC  38 7F 1F D0 */ addi r3, r31, 0x1fd0
-/* 801356A0 001325E0  48 02 8E 2D */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 801356A0 001325E0  48 02 8E 2D */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 801356A4 001325E4  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801356A8 001325E8  41 82 00 30 */ beq lbl_801356D8
 /* 801356AC 001325EC  A8 1F 30 0C */ lha r0, 0x300c(r31)
@@ -21,11 +21,11 @@
 /* 801356B8 001325F8  B0 1F 04 DE */ sth r0, 0x4de(r31)
 /* 801356BC 001325FC  7F E3 FB 78 */ mr r3, r31
 /* 801356C0 00132600  80 9F 31 98 */ lwz r4, 0x3198(r31)
-/* 801356C4 00132604  48 00 00 2D */ bl daAlink_c_NS_procWolfHangWallCatchInit
+/* 801356C4 00132604  48 00 00 2D */ bl procWolfHangWallCatchInit__9daAlink_cFi
 /* 801356C8 00132608  2C 03 00 00 */ cmpwi r3, 0
 /* 801356CC 0013260C  40 82 00 0C */ bne lbl_801356D8
 /* 801356D0 00132610  7F E3 FB 78 */ mr r3, r31
-/* 801356D4 00132614  4B F8 02 19 */ bl daAlink_c_NS_checkWaitAction
+/* 801356D4 00132614  4B F8 02 19 */ bl checkWaitAction__9daAlink_cFv
 lbl_801356D8:
 /* 801356D8 00132618  38 60 00 01 */ li r3, 1
 /* 801356DC 0013261C  83 E1 00 0C */ lwz r31, 0xc(r1)

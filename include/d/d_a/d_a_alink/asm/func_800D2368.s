@@ -9,7 +9,7 @@
 /* 800D2388 000CF2C8  2C 03 00 00 */ cmpwi r3, 0
 /* 800D238C 000CF2CC  41 82 00 18 */ beq lbl_800D23A4
 /* 800D2390 000CF2D0  7F C3 F3 78 */ mr r3, r30
-/* 800D2394 000CF2D4  4B FF F0 51 */ bl daAlink_c_NS_checkCutTurnInput
+/* 800D2394 000CF2D4  4B FF F0 51 */ bl checkCutTurnInput__9daAlink_cCFv
 /* 800D2398 000CF2D8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D239C 000CF2DC  41 82 00 08 */ beq lbl_800D23A4
 /* 800D23A0 000CF2E0  3B E0 00 01 */ li r31, 1

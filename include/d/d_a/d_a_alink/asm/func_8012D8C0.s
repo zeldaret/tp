@@ -6,7 +6,7 @@
 /* 8012D8D4 0012A814  7C 7F 1B 78 */ mr r31, r3
 /* 8012D8D8 0012A818  7C 9E 23 78 */ mr r30, r4
 /* 8012D8DC 0012A81C  38 80 00 F4 */ li r4, 0xf4
-/* 8012D8E0 0012A820  4B F9 46 8D */ bl daAlink_c_NS_commonProcInit
+/* 8012D8E0 0012A820  4B F9 46 8D */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012D8E4 0012A824  7F E3 FB 78 */ mr r3, r31
 /* 8012D8E8 0012A828  38 80 00 7A */ li r4, 0x7a
 /* 8012D8EC 0012A82C  3C A0 80 39 */ lis r5, lbl_8038EE28@ha
@@ -15,7 +15,7 @@
 /* 8012D8F8 0012A838  C0 46 00 44 */ lfs f2, 0x44(r6)
 /* 8012D8FC 0012A83C  38 A0 00 05 */ li r5, 5
 /* 8012D900 0012A840  C0 66 00 48 */ lfs f3, 0x48(r6)
-/* 8012D904 0012A844  4B FF BE 01 */ bl daAlink_c_NS_setSingleAnimeWolf
+/* 8012D904 0012A844  4B FF BE 01 */ bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8012D908 0012A848  2C 1E 00 00 */ cmpwi r30, 0
 /* 8012D90C 0012A84C  41 82 00 54 */ beq lbl_8012D960
 /* 8012D910 0012A850  A8 7F 31 02 */ lha r3, 0x3102(r31)
@@ -65,7 +65,7 @@ lbl_8012D990:
 /* 8012D9B0 0012A8F0  38 80 00 05 */ li r4, 5
 /* 8012D9B4 0012A8F4  38 A0 00 0F */ li r5, 0xf
 /* 8012D9B8 0012A8F8  38 C1 00 14 */ addi r6, r1, 0x14
-/* 8012D9BC 0012A8FC  4B F4 20 69 */ bl dVibration_c_NS_StartShock
+/* 8012D9BC 0012A8FC  4B F4 20 69 */ bl StartShock__12dVibration_cFii4cXyz
 /* 8012D9C0 0012A900  C0 1F 04 D0 */ lfs f0, 0x4d0(r31)
 /* 8012D9C4 0012A904  D0 01 00 08 */ stfs f0, 8(r1)
 /* 8012D9C8 0012A908  C0 1F 04 D4 */ lfs f0, 0x4d4(r31)
@@ -82,7 +82,7 @@ lbl_8012D9F0:
 /* 8012D9F0 0012A930  38 A0 FF FF */ li r5, -1
 lbl_8012D9F4:
 /* 8012D9F4 0012A934  38 C0 00 05 */ li r6, 5
-/* 8012D9F8 0012A938  48 07 A7 C9 */ bl dKy_Sound_set
+/* 8012D9F8 0012A938  48 07 A7 C9 */ bl dKy_Sound_set__F4cXyziUii
 /* 8012D9FC 0012A93C  7F E3 FB 78 */ mr r3, r31
 /* 8012DA00 0012A940  3C 80 00 02 */ lis r4, 0x00020054@ha
 /* 8012DA04 0012A944  38 84 00 54 */ addi r4, r4, 0x00020054@l

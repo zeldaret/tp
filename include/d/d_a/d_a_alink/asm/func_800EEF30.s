@@ -9,7 +9,7 @@
 /* 800EEF50 000EBE90  A8 03 05 9E */ lha r0, 0x59e(r3)
 /* 800EEF54 000EBE94  7C 04 02 14 */ add r0, r4, r0
 /* 800EEF58 000EBE98  B0 03 04 E6 */ sth r0, 0x4e6(r3)
-/* 800EEF5C 000EBE9C  4B FD F9 45 */ bl daAlink_c_NS_setBodyAngleToCamera
+/* 800EEF5C 000EBE9C  4B FD F9 45 */ bl setBodyAngleToCamera__9daAlink_cFv
 /* 800EEF60 000EBEA0  80 1E 27 EC */ lwz r0, 0x27ec(r30)
 /* 800EEF64 000EBEA4  28 00 00 00 */ cmplwi r0, 0
 /* 800EEF68 000EBEA8  41 82 00 0C */ beq lbl_800EEF74

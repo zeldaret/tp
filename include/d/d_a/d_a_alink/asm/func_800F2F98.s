@@ -11,7 +11,7 @@
 /* 800F2FC0 000EFF00  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 800F2FC4 000EFF04  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
 /* 800F2FC8 000EFF08  83 E4 5D B8 */ lwz r31, 0x5db8(r4)
-/* 800F2FCC 000EFF0C  4B FF A5 11 */ bl daAlink_c_NS_setSyncHorsePos
+/* 800F2FCC 000EFF0C  4B FF A5 11 */ bl setSyncHorsePos__9daAlink_cFv
 /* 800F2FD0 000EFF10  2C 03 00 00 */ cmpwi r3, 0
 /* 800F2FD4 000EFF14  40 82 00 1C */ bne lbl_800F2FF0
 /* 800F2FD8 000EFF18  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
@@ -102,7 +102,7 @@ lbl_800F3100:
 /* 800F3108 000F0048  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 800F310C 000F004C  40 81 00 DC */ ble lbl_800F31E8
 /* 800F3110 000F0050  A8 7E 2F E0 */ lha r3, 0x2fe0(r30)
-/* 800F3114 000F0054  4B FC 03 81 */ bl daAlink_c_NS_getDirectionFromAngle
+/* 800F3114 000F0054  4B FC 03 81 */ bl getDirectionFromAngle__9daAlink_cFs
 /* 800F3118 000F0058  A8 9E 30 12 */ lha r4, 0x3012(r30)
 /* 800F311C 000F005C  2C 03 00 02 */ cmpwi r3, 2
 /* 800F3120 000F0060  40 82 00 58 */ bne lbl_800F3178
@@ -218,7 +218,7 @@ lbl_800F31E8:
 /* 800F32CC 000F020C  B0 1E 30 88 */ sth r0, 0x3088(r30)
 /* 800F32D0 000F0210  7F E3 FB 78 */ mr r3, r31
 /* 800F32D4 000F0214  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800F32D8 000F0218  48 23 51 55 */ bl J3DFrameCtrl_NS_checkPass
+/* 800F32D8 000F0218  48 23 51 55 */ bl checkPass__12J3DFrameCtrlFf
 /* 800F32DC 000F021C  2C 03 00 00 */ cmpwi r3, 0
 /* 800F32E0 000F0220  41 82 00 18 */ beq lbl_800F32F8
 /* 800F32E4 000F0224  C0 22 93 18 */ lfs f1, lbl_80452D18-_SDA2_BASE_(r2)
@@ -256,7 +256,7 @@ lbl_800F334C:
 /* 800F3354 000F0294  7C 03 02 14 */ add r0, r3, r0
 /* 800F3358 000F0298  B0 1E 04 E6 */ sth r0, 0x4e6(r30)
 /* 800F335C 000F029C  7F C3 F3 78 */ mr r3, r30
-/* 800F3360 000F02A0  4B FF BF FD */ bl daAlink_c_NS_boarForceGetOff
+/* 800F3360 000F02A0  4B FF BF FD */ bl boarForceGetOff__9daAlink_cFv
 /* 800F3364 000F02A4  80 6D 8D E8 */ lwz r3, lbl_80451368-_SDA_BASE_(r13)
 /* 800F3368 000F02A8  38 63 03 D0 */ addi r3, r3, 0x3d0
 /* 800F336C 000F02AC  38 80 00 01 */ li r4, 1

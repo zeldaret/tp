@@ -4,15 +4,15 @@
 /* 800D613C 000D307C  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D6140 000D3080  7C 7F 1B 78 */ mr r31, r3
 /* 800D6144 000D3084  38 80 00 2E */ li r4, 0x2e
-/* 800D6148 000D3088  4B FE BE 25 */ bl daAlink_c_NS_commonProcInit
+/* 800D6148 000D3088  4B FE BE 25 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D614C 000D308C  7F E3 FB 78 */ mr r3, r31
-/* 800D6150 000D3090  48 00 0E 91 */ bl daAlink_c_NS_checkCutLandDamage
+/* 800D6150 000D3090  48 00 0E 91 */ bl checkCutLandDamage__9daAlink_cFv
 /* 800D6154 000D3094  7F E3 FB 78 */ mr r3, r31
 /* 800D6158 000D3098  38 80 00 7E */ li r4, 0x7e
 /* 800D615C 000D309C  3C A0 80 39 */ lis r5, lbl_8038DDB8@ha
 /* 800D6160 000D30A0  38 A5 DD B8 */ addi r5, r5, lbl_8038DDB8@l
 /* 800D6164 000D30A4  38 A5 00 28 */ addi r5, r5, 0x28
-/* 800D6168 000D30A8  4B FD 6F 8D */ bl daAlink_c_NS_setSingleAnimeParam
+/* 800D6168 000D30A8  4B FD 6F 8D */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D616C 000D30AC  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D6170 000D30B0  D0 1F 33 98 */ stfs f0, 0x3398(r31)
 /* 800D6174 000D30B4  38 60 00 01 */ li r3, 1

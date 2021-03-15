@@ -4,7 +4,7 @@
 /* 80005798 000026D8  39 61 00 20 */	addi r11, r1, 0x20
 /* 8000579C 000026DC  48 35 CA 39 */	bl _savegpr_27
 /* 800057A0 000026E0  7C 7B 1B 78 */	mr r27, r3
-/* 800057A4 000026E4  48 00 5E C5 */	bl mDoMch_HeapCheckAll
+/* 800057A4 000026E4  48 00 5E C5 */	bl mDoMch_HeapCheckAll__Fv
 /* 800057A8 000026E8  48 33 C7 59 */	bl OSCheckActiveThreads
 /* 800057AC 000026EC  38 A0 00 00 */	li r5, 0
 /* 800057B0 000026F0  57 64 30 32 */	slwi r4, r27, 6

@@ -19,7 +19,7 @@
 /* 801354A0 001323E0  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 801354A4 001323E4  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 801354A8 001323E8  38 9F 1D 08 */ addi r4, r31, 0x1d08
-/* 801354AC 001323EC  4B F3 EF F5 */ bl cBgS_NS_GroundCross
+/* 801354AC 001323EC  4B F3 EF F5 */ bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 801354B0 001323F0  D0 3F 33 D8 */ stfs f1, 0x33d8(r31)
 /* 801354B4 001323F4  83 E1 00 1C */ lwz r31, 0x1c(r1)
 /* 801354B8 001323F8  80 01 00 24 */ lwz r0, 0x24(r1)

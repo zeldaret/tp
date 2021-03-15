@@ -4,7 +4,7 @@
 /* 800D782C 000D476C  39 61 00 30 */ addi r11, r1, 0x30
 /* 800D7830 000D4770  48 28 A9 A9 */ bl _savegpr_28
 /* 800D7834 000D4774  7C 7F 1B 78 */ mr r31, r3
-/* 800D7838 000D4778  4B F5 81 CD */ bl dComIfGs_PolyDamageOff_Check
+/* 800D7838 000D4778  4B F5 81 CD */ bl dComIfGs_PolyDamageOff_Check__Fv
 /* 800D783C 000D477C  7C 60 07 75 */ extsb. r0, r3
 /* 800D7840 000D4780  41 82 00 0C */ beq lbl_800D784C
 /* 800D7844 000D4784  38 60 00 00 */ li r3, 0
@@ -31,16 +31,16 @@ lbl_800D7860:
 /* 800D7890 000D47D0  3B C3 0F 38 */ addi r30, r3, 0xf38
 /* 800D7894 000D47D4  7F C3 F3 78 */ mr r3, r30
 /* 800D7898 000D47D8  38 9F 1A 60 */ addi r4, r31, 0x1a60
-/* 800D789C 000D47DC  4B F9 CD C5 */ bl cBgS_NS_ChkPolySafe
+/* 800D789C 000D47DC  4B F9 CD C5 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 800D78A0 000D47E0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D78A4 000D47E4  41 82 00 68 */ beq lbl_800D790C
 /* 800D78A8 000D47E8  38 7F 1A 60 */ addi r3, r31, 0x1a60
-/* 800D78AC 000D47EC  48 0D 3C F1 */ bl dKy_pol_argument_get
+/* 800D78AC 000D47EC  48 0D 3C F1 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D78B0 000D47F0  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D78B4 000D47F4  41 82 00 58 */ beq lbl_800D790C
 /* 800D78B8 000D47F8  3B A0 00 01 */ li r29, 1
 /* 800D78BC 000D47FC  38 7F 1A 60 */ addi r3, r31, 0x1a60
-/* 800D78C0 000D4800  4B FF FE A9 */ bl daAlink_c_NS_checkIcePolygonDamage
+/* 800D78C0 000D4800  4B FF FE A9 */ bl checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo
 /* 800D78C4 000D4804  2C 03 00 00 */ cmpwi r3, 0
 /* 800D78C8 000D4808  41 82 00 08 */ beq lbl_800D78D0
 /* 800D78CC 000D480C  63 BD 00 80 */ ori r29, r29, 0x80
@@ -51,7 +51,7 @@ lbl_800D78D0:
 /* 800D78DC 000D481C  7F C3 F3 78 */ mr r3, r30
 /* 800D78E0 000D4820  38 9F 1A 60 */ addi r4, r31, 0x1a60
 /* 800D78E4 000D4824  38 A1 00 08 */ addi r5, r1, 8
-/* 800D78E8 000D4828  4B F9 CE 5D */ bl cBgS_NS_GetTriPla
+/* 800D78E8 000D4828  4B F9 CE 5D */ bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 800D78EC 000D482C  38 61 00 08 */ addi r3, r1, 8
 /* 800D78F0 000D4830  48 18 F8 39 */ bl atan2sX_Z__4cXyzCFv
 /* 800D78F4 000D4834  B0 7F 31 1E */ sth r3, 0x311e(r31)
@@ -69,18 +69,18 @@ lbl_800D790C:
 /* 800D7920 000D4860  28 03 00 00 */ cmplwi r3, 0
 /* 800D7924 000D4864  40 82 00 BC */ bne lbl_800D79E0
 /* 800D7928 000D4868  7F E3 FB 78 */ mr r3, r31
-/* 800D792C 000D486C  4B FD 9B 5D */ bl daAlink_c_NS_checkWaterPolygonUnder
+/* 800D792C 000D486C  4B FD 9B 5D */ bl checkWaterPolygonUnder__9daAlink_cFv
 /* 800D7930 000D4870  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7934 000D4874  41 82 00 3C */ beq lbl_800D7970
 /* 800D7938 000D4878  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 800D793C 000D487C  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D7940 000D4880  38 63 0F 38 */ addi r3, r3, 0xf38
 /* 800D7944 000D4884  38 9F 1A F0 */ addi r4, r31, 0x1af0
-/* 800D7948 000D4888  4B F9 CD 19 */ bl cBgS_NS_ChkPolySafe
+/* 800D7948 000D4888  4B F9 CD 19 */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 800D794C 000D488C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D7950 000D4890  41 82 00 20 */ beq lbl_800D7970
 /* 800D7954 000D4894  38 7F 1A F0 */ addi r3, r31, 0x1af0
-/* 800D7958 000D4898  48 0D 3C 45 */ bl dKy_pol_argument_get
+/* 800D7958 000D4898  48 0D 3C 45 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D795C 000D489C  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D7960 000D48A0  40 82 00 78 */ bne lbl_800D79D8
 /* 800D7964 000D48A4  88 1F 2F BC */ lbz r0, 0x2fbc(r31)
@@ -132,24 +132,24 @@ lbl_800D7A00:
 /* 800D7A08 000D4948  41 82 00 64 */ beq lbl_800D7A6C
 /* 800D7A0C 000D494C  7F C3 F3 78 */ mr r3, r30
 /* 800D7A10 000D4950  7F A4 EB 78 */ mr r4, r29
-/* 800D7A14 000D4954  4B F9 CC 4D */ bl cBgS_NS_ChkPolySafe
+/* 800D7A14 000D4954  4B F9 CC 4D */ bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo
 /* 800D7A18 000D4958  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D7A1C 000D495C  41 82 00 50 */ beq lbl_800D7A6C
 /* 800D7A20 000D4960  7F A3 EB 78 */ mr r3, r29
-/* 800D7A24 000D4964  48 0D 3B 79 */ bl dKy_pol_argument_get
+/* 800D7A24 000D4964  48 0D 3B 79 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D7A28 000D4968  54 60 06 75 */ rlwinm. r0, r3, 0, 0x19, 0x1a
 /* 800D7A2C 000D496C  41 82 00 40 */ beq lbl_800D7A6C
 /* 800D7A30 000D4970  3B C0 00 03 */ li r30, 3
 /* 800D7A34 000D4974  A8 1D 00 3C */ lha r0, 0x3c(r29)
 /* 800D7A38 000D4978  B0 1F 31 1E */ sth r0, 0x311e(r31)
 /* 800D7A3C 000D497C  7F A3 EB 78 */ mr r3, r29
-/* 800D7A40 000D4980  4B FF FD 29 */ bl daAlink_c_NS_checkIcePolygonDamage
+/* 800D7A40 000D4980  4B FF FD 29 */ bl checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo
 /* 800D7A44 000D4984  2C 03 00 00 */ cmpwi r3, 0
 /* 800D7A48 000D4988  41 82 00 08 */ beq lbl_800D7A50
 /* 800D7A4C 000D498C  63 DE 00 80 */ ori r30, r30, 0x80
 lbl_800D7A50:
 /* 800D7A50 000D4990  7F A3 EB 78 */ mr r3, r29
-/* 800D7A54 000D4994  48 0D 3B 49 */ bl dKy_pol_argument_get
+/* 800D7A54 000D4994  48 0D 3B 49 */ bl dKy_pol_argument_get__FPC13cBgS_PolyInfo
 /* 800D7A58 000D4998  54 60 06 B5 */ rlwinm. r0, r3, 0, 0x1a, 0x1a
 /* 800D7A5C 000D499C  41 82 00 08 */ beq lbl_800D7A64
 /* 800D7A60 000D49A0  63 DE 00 40 */ ori r30, r30, 0x40

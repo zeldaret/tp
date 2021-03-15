@@ -5,7 +5,7 @@
 /* 800F2038 000EEF78  93 C1 00 38 */ stw r30, 0x38(r1)
 /* 800F203C 000EEF7C  7C 7F 1B 78 */ mr r31, r3
 /* 800F2040 000EEF80  38 80 00 00 */ li r4, 0
-/* 800F2044 000EEF84  4B FF C8 D5 */ bl daAlink_c_NS_setSyncRide
+/* 800F2044 000EEF84  4B FF C8 D5 */ bl setSyncRide__9daAlink_cFi
 /* 800F2048 000EEF88  2C 03 00 00 */ cmpwi r3, 0
 /* 800F204C 000EEF8C  40 82 00 0C */ bne lbl_800F2058
 /* 800F2050 000EEF90  38 60 00 01 */ li r3, 1
@@ -57,15 +57,15 @@ lbl_800F2058:
 /* 800F2104 000EF044  38 00 00 00 */ li r0, 0
 /* 800F2108 000EF048  B0 1F 05 9E */ sth r0, 0x59e(r31)
 /* 800F210C 000EF04C  7F C3 F3 78 */ mr r3, r30
-/* 800F2110 000EF050  48 06 C3 BD */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800F2110 000EF050  48 06 C3 BD */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F2114 000EF054  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800F2118 000EF058  41 82 00 1C */ beq lbl_800F2134
 /* 800F211C 000EF05C  7F E3 FB 78 */ mr r3, r31
 /* 800F2120 000EF060  38 80 00 02 */ li r4, 2
 /* 800F2124 000EF064  C0 22 93 24 */ lfs f1, lbl_80452D24-_SDA2_BASE_(r2)
-/* 800F2128 000EF068  4B FB B5 FD */ bl daAlink_c_NS_resetUpperAnime
+/* 800F2128 000EF068  4B FB B5 FD */ bl resetUpperAnime__9daAlink_cFQ29daAlink_c13daAlink_UPPERf
 /* 800F212C 000EF06C  7F E3 FB 78 */ mr r3, r31
-/* 800F2130 000EF070  4B FF E8 51 */ bl daAlink_c_NS_procHorseWaitInit
+/* 800F2130 000EF070  4B FF E8 51 */ bl procHorseWaitInit__9daAlink_cFv
 lbl_800F2134:
 /* 800F2134 000EF074  38 60 00 01 */ li r3, 1
 lbl_800F2138:

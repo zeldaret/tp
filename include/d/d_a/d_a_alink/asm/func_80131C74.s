@@ -8,9 +8,9 @@
 /* 80131C90 0012EBD0  7C BE 2B 78 */ mr r30, r5
 /* 80131C94 0012EBD4  83 E3 28 10 */ lwz r31, 0x2810(r3)
 /* 80131C98 0012EBD8  38 80 01 13 */ li r4, 0x113
-/* 80131C9C 0012EBDC  4B F9 02 D1 */ bl daAlink_c_NS_commonProcInit
+/* 80131C9C 0012EBDC  4B F9 02 D1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80131CA0 0012EBE0  7F 83 E3 78 */ mr r3, r28
-/* 80131CA4 0012EBE4  4B FF FD 4D */ bl daAlink_c_NS_initWolfRopeShapeAngle
+/* 80131CA4 0012EBE4  4B FF FD 4D */ bl initWolfRopeShapeAngle__9daAlink_cFv
 /* 80131CA8 0012EBE8  B0 7C 30 0C */ sth r3, 0x300c(r28)
 /* 80131CAC 0012EBEC  A8 1C 04 E6 */ lha r0, 0x4e6(r28)
 /* 80131CB0 0012EBF0  B0 1C 04 DE */ sth r0, 0x4de(r28)
@@ -20,7 +20,7 @@
 /* 80131CC0 0012EC00  3C A0 80 39 */ lis r5, lbl_8038F46C@ha
 /* 80131CC4 0012EC04  38 A5 F4 6C */ addi r5, r5, lbl_8038F46C@l
 /* 80131CC8 0012EC08  C0 45 00 20 */ lfs f2, 0x20(r5)
-/* 80131CCC 0012EC0C  4B FF 7A 0D */ bl daAlink_c_NS_setSingleAnimeWolfBaseSpeed
+/* 80131CCC 0012EC0C  4B FF 7A 0D */ bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80131CD0 0012EC10  2C 1D 00 00 */ cmpwi r29, 0
 /* 80131CD4 0012EC14  41 82 00 14 */ beq lbl_80131CE8
 /* 80131CD8 0012EC18  C0 02 97 70 */ lfs f0, lbl_80453170-_SDA2_BASE_(r2)
@@ -48,10 +48,10 @@ lbl_80131CE8:
 /* 80131D2C 0012EC6C  B0 1C 30 08 */ sth r0, 0x3008(r28)
 lbl_80131D30:
 /* 80131D30 0012EC70  7F 83 E3 78 */ mr r3, r28
-/* 80131D34 0012EC74  4B FF F9 E5 */ bl daAlink_c_NS_setWolfRopePosY
+/* 80131D34 0012EC74  4B FF F9 E5 */ bl setWolfRopePosY__9daAlink_cFv
 /* 80131D38 0012EC78  7C 64 1B 78 */ mr r4, r3
 /* 80131D3C 0012EC7C  7F 83 E3 78 */ mr r3, r28
-/* 80131D40 0012EC80  4B FF FD BD */ bl daAlink_c_NS_setWolfRopeOffsetY
+/* 80131D40 0012EC80  4B FF FD BD */ bl setWolfRopeOffsetY__9daAlink_cFi
 /* 80131D44 0012EC84  38 60 00 00 */ li r3, 0
 /* 80131D48 0012EC88  A0 1C 1F BC */ lhz r0, 0x1fbc(r28)
 /* 80131D4C 0012EC8C  28 00 02 DA */ cmplwi r0, 0x2da
@@ -70,7 +70,7 @@ lbl_80131D74:
 /* 80131D74 0012ECB4  38 00 00 00 */ li r0, 0
 /* 80131D78 0012ECB8  B0 1C 30 0E */ sth r0, 0x300e(r28)
 /* 80131D7C 0012ECBC  7F 83 E3 78 */ mr r3, r28
-/* 80131D80 0012ECC0  4B F8 1A C5 */ bl daAlink_c_NS_initServiceWaitTime
+/* 80131D80 0012ECC0  4B F8 1A C5 */ bl initServiceWaitTime__9daAlink_cFv
 /* 80131D84 0012ECC4  38 60 00 01 */ li r3, 1
 /* 80131D88 0012ECC8  39 61 00 20 */ addi r11, r1, 0x20
 /* 80131D8C 0012ECCC  48 23 04 99 */ bl _restgpr_28

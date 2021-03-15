@@ -11,10 +11,10 @@
 /* 800D2F80 000CFEC0  3B DF 41 B0 */ addi r30, r31, 0x41b0
 /* 800D2F84 000CFEC4  7F DE 02 14 */ add r30, r30, r0
 /* 800D2F88 000CFEC8  38 80 00 21 */ li r4, 0x21
-/* 800D2F8C 000CFECC  4B FE EF E1 */ bl daAlink_c_NS_commonProcInit
+/* 800D2F8C 000CFECC  4B FE EF E1 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800D2F90 000CFED0  7F A3 EB 78 */ mr r3, r29
 /* 800D2F94 000CFED4  88 9E 00 08 */ lbz r4, 8(r30)
-/* 800D2F98 000CFED8  4B FF E5 95 */ bl daAlink_c_NS_setCutType
+/* 800D2F98 000CFED8  4B FF E5 95 */ bl setCutType__9daAlink_cFUc
 /* 800D2F9C 000CFEDC  80 1E 00 04 */ lwz r0, 4(r30)
 /* 800D2FA0 000CFEE0  90 1D 31 98 */ stw r0, 0x3198(r29)
 /* 800D2FA4 000CFEE4  2C 1B 00 01 */ cmpwi r27, 1
@@ -48,7 +48,7 @@ lbl_800D2FE8:
 /* 800D3000 000CFF40  7F A3 EB 78 */ mr r3, r29
 /* 800D3004 000CFF44  38 80 00 01 */ li r4, 1
 /* 800D3008 000CFF48  38 A0 00 01 */ li r5, 1
-/* 800D300C 000CFF4C  4B FE 84 AD */ bl daAlink_c_NS_checkHeavyStateOn
+/* 800D300C 000CFF4C  4B FE 84 AD */ bl checkHeavyStateOn__9daAlink_cFii
 /* 800D3010 000CFF50  2C 03 00 00 */ cmpwi r3, 0
 /* 800D3014 000CFF54  41 82 00 14 */ beq lbl_800D3028
 /* 800D3018 000CFF58  C0 3D 34 80 */ lfs f1, 0x3480(r29)
@@ -59,7 +59,7 @@ lbl_800D3028:
 /* 800D3028 000CFF68  C0 1B 00 10 */ lfs f0, 0x10(r27)
 /* 800D302C 000CFF6C  D0 1D 34 84 */ stfs f0, 0x3484(r29)
 /* 800D3030 000CFF70  7F A3 EB 78 */ mr r3, r29
-/* 800D3034 000CFF74  4B FE CD 7D */ bl daAlink_c_NS_checkZoraWearAbility
+/* 800D3034 000CFF74  4B FE CD 7D */ bl checkZoraWearAbility__9daAlink_cCFv
 /* 800D3038 000CFF78  2C 03 00 00 */ cmpwi r3, 0
 /* 800D303C 000CFF7C  40 82 00 18 */ bne lbl_800D3054
 /* 800D3040 000CFF80  80 1D 05 70 */ lwz r0, 0x570(r29)
@@ -75,13 +75,13 @@ lbl_800D3058:
 /* 800D3060 000CFFA0  C0 3B 00 04 */ lfs f1, 4(r27)
 /* 800D3064 000CFFA4  C0 5B 00 08 */ lfs f2, 8(r27)
 /* 800D3068 000CFFA8  A8 BB 00 00 */ lha r5, 0(r27)
-/* 800D306C 000CFFAC  4B FD 9F A1 */ bl daAlink_c_NS_setSingleAnime
+/* 800D306C 000CFFAC  4B FD 9F A1 */ bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf
 /* 800D3070 000CFFB0  A8 1D 04 E6 */ lha r0, 0x4e6(r29)
 /* 800D3074 000CFFB4  B0 1D 04 DE */ sth r0, 0x4de(r29)
 /* 800D3078 000CFFB8  83 9D 27 E0 */ lwz r28, 0x27e0(r29)
 /* 800D307C 000CFFBC  3B 60 00 01 */ li r27, 1
 /* 800D3080 000CFFC0  7F 83 E3 78 */ mr r3, r28
-/* 800D3084 000CFFC4  4B FA 07 61 */ bl dAttention_c_NS_LockonTruth
+/* 800D3084 000CFFC4  4B FA 07 61 */ bl LockonTruth__12dAttention_cFv
 /* 800D3088 000CFFC8  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D308C 000CFFCC  40 82 00 14 */ bne lbl_800D30A0
 /* 800D3090 000CFFD0  80 1C 03 34 */ lwz r0, 0x334(r28)
@@ -125,9 +125,9 @@ lbl_800D30E0:
 /* 800D3118 000D0058  38 E0 00 02 */ li r7, 2
 /* 800D311C 000D005C  C0 28 00 74 */ lfs f1, 0x74(r8)
 /* 800D3120 000D0060  C0 48 00 78 */ lfs f2, 0x78(r8)
-/* 800D3124 000D0064  4B FF E5 65 */ bl daAlink_c_NS_setSwordAtParam
+/* 800D3124 000D0064  4B FF E5 65 */ bl setSwordAtParam__9daAlink_cF11dCcG_At_SplUcUciff
 /* 800D3128 000D0068  7F A3 EB 78 */ mr r3, r29
-/* 800D312C 000D006C  4B FF F1 D9 */ bl daAlink_c_NS_setSwordComboVoice
+/* 800D312C 000D006C  4B FF F1 D9 */ bl setSwordComboVoice__9daAlink_cFv
 /* 800D3130 000D0070  38 00 00 00 */ li r0, 0
 /* 800D3134 000D0074  B0 1D 30 12 */ sth r0, 0x3012(r29)
 /* 800D3138 000D0078  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -136,9 +136,9 @@ lbl_800D30E0:
 /* 800D3144 000D0084  60 00 80 00 */ ori r0, r0, 0x8000
 /* 800D3148 000D0088  90 03 5F 18 */ stw r0, 0x5f18(r3)
 /* 800D314C 000D008C  7F A3 EB 78 */ mr r3, r29
-/* 800D3150 000D0090  48 05 0F F5 */ bl daAlink_c_NS_setCutWaterDropEffect
+/* 800D3150 000D0090  48 05 0F F5 */ bl setCutWaterDropEffect__9daAlink_cFv
 /* 800D3154 000D0094  7F A3 EB 78 */ mr r3, r29
-/* 800D3158 000D0098  4B FF F5 95 */ bl daAlink_c_NS_getCutDirection
+/* 800D3158 000D0098  4B FF F5 95 */ bl getCutDirection__9daAlink_cFv
 /* 800D315C 000D009C  88 1D 05 69 */ lbz r0, 0x569(r29)
 /* 800D3160 000D00A0  28 00 00 01 */ cmplwi r0, 1
 /* 800D3164 000D00A4  40 82 00 20 */ bne lbl_800D3184
@@ -157,7 +157,7 @@ lbl_800D318C:
 /* 800D318C 000D00CC  38 00 00 04 */ li r0, 4
 /* 800D3190 000D00D0  B0 1D 30 0A */ sth r0, 0x300a(r29)
 /* 800D3194 000D00D4  7F A3 EB 78 */ mr r3, r29
-/* 800D3198 000D00D8  4B FF FA 65 */ bl daAlink_c_NS_initCutAtnActorSearch
+/* 800D3198 000D00D8  4B FF FA 65 */ bl initCutAtnActorSearch__9daAlink_cFv
 /* 800D319C 000D00DC  38 60 00 01 */ li r3, 1
 /* 800D31A0 000D00E0  39 61 00 20 */ addi r11, r1, 0x20
 /* 800D31A4 000D00E4  48 28 F0 7D */ bl _restgpr_27

@@ -20,7 +20,7 @@ lbl_8013E2E8:
 /* 8013E2F0 0013B230  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 8013E2F4 0013B234  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 8013E2F8 0013B238  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 8013E2FC 0013B23C  4B FF 0A D5 */ bl daAlink_c_NS_procWolfFallInit
+/* 8013E2FC 0013B23C  4B FF 0A D5 */ bl procWolfFallInit__9daAlink_cFif
 /* 8013E300 0013B240  48 00 03 98 */ b lbl_8013E698
 lbl_8013E304:
 /* 8013E304 0013B244  C0 3F 1F E0 */ lfs f1, 0x1fe0(r31)
@@ -262,7 +262,7 @@ lbl_8013E640:
 /* 8013E65C 0013B59C  FC 01 00 40 */ fcmpo cr0, f1, f0
 /* 8013E660 0013B5A0  40 80 00 10 */ bge lbl_8013E670
 /* 8013E664 0013B5A4  7F E3 FB 78 */ mr r3, r31
-/* 8013E668 0013B5A8  48 00 00 59 */ bl daAlink_c_NS_procWolfChainWaitInit
+/* 8013E668 0013B5A8  48 00 00 59 */ bl procWolfChainWaitInit__9daAlink_cFv
 /* 8013E66C 0013B5AC  48 00 00 28 */ b lbl_8013E694
 lbl_8013E670:
 /* 8013E670 0013B5B0  A8 1F 30 08 */ lha r0, 0x3008(r31)
@@ -273,7 +273,7 @@ lbl_8013E670:
 /* 8013E684 0013B5C4  3C A0 80 39 */ lis r5, lbl_8038F0A8@ha
 /* 8013E688 0013B5C8  38 A5 F0 A8 */ addi r5, r5, lbl_8038F0A8@l
 /* 8013E68C 0013B5CC  C0 25 00 54 */ lfs f1, 0x54(r5)
-/* 8013E690 0013B5D0  4B FF 07 41 */ bl daAlink_c_NS_procWolfFallInit
+/* 8013E690 0013B5D0  4B FF 07 41 */ bl procWolfFallInit__9daAlink_cFif
 lbl_8013E694:
 /* 8013E694 0013B5D4  38 60 00 01 */ li r3, 1
 lbl_8013E698:

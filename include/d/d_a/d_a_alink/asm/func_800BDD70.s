@@ -34,7 +34,7 @@ lbl_800BDDDC:
 /* 800BDDEC 000BAD2C  7C 05 07 74 */ extsb r5, r0
 /* 800BDDF0 000BAD30  A8 DE 04 E6 */ lha r6, 0x4e6(r30)
 /* 800BDDF4 000BAD34  38 E0 FF FF */ li r7, -1
-/* 800BDDF8 000BAD38  4B F6 93 79 */ bl dStage_changeScene
+/* 800BDDF8 000BAD38  4B F6 93 79 */ bl dStage_changeScene__FifUlScsi
 /* 800BDDFC 000BAD3C  38 60 00 01 */ li r3, 1
 /* 800BDE00 000BAD40  48 00 00 08 */ b lbl_800BDE08
 lbl_800BDE04:

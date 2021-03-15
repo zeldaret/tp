@@ -15,7 +15,7 @@
 /* 8020F188 0020C0C8  41 82 00 10 */ beq lbl_8020F198
 /* 8020F18C 0020C0CC  7F E3 FB 78 */ mr r3, r31
 /* 8020F190 0020C0D0  80 9F 00 24 */ lwz r4, 0x24(r31)
-/* 8020F194 0020C0D4  48 00 04 11 */ bl dMeterString_c_NS_createString
+/* 8020F194 0020C0D4  48 00 04 11 */ bl createString__14dMeterString_cFi
 lbl_8020F198:
 /* 8020F198 0020C0D8  38 60 00 01 */ li r3, 1
 /* 8020F19C 0020C0DC  83 E1 00 0C */ lwz r31, 0xc(r1)

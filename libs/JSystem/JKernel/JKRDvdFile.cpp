@@ -2,7 +2,7 @@
 #include "global.h"
 
 extern "C" {
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 }
 
 extern char lbl_8039D260[12];  // "JKRDvdFile.cpp"
@@ -80,7 +80,7 @@ void JKRDvdFile::close() {
             const char* filename = lbl_8039D260;       // "JKRDvdFile.cpp"
             const char* format = lbl_8039D260 + 0x0F;  // "%s"
             const char* arg1 = lbl_8039D260 + 0x12;    // "cannot close DVD file\n"
-            JUTException_NS_panic_f(filename, 0xd5, format, arg1);
+            panic_f__12JUTExceptionFPCciPCce(filename, 0xd5, format, arg1);
         }
     }
 }

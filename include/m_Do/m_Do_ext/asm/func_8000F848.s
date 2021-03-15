@@ -16,7 +16,7 @@
 /* 8000F884 0000C7C4  D0 5D 00 0C */ stfs f2, 0xc(r29)
 /* 8000F888 0000C7C8  D0 5D 00 10 */ stfs f2, 0x10(r29)
 /* 8000F88C 0000C7CC  D0 5D 00 14 */ stfs f2, 0x14(r29)
-/* 8000F890 0000C7D0  48 00 00 3D */ bl mDoExt_MtxCalcOldFrame_NS_decOldFrameMorfCounter
+/* 8000F890 0000C7D0  48 00 00 3D */ bl decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv
 /* 8000F894 0000C7D4  48 00 00 18 */ b lbl_8000F8AC
 lbl_8000F898:
 /* 8000F898 0000C7D8  D0 1D 00 04 */ stfs f0, 4(r29)

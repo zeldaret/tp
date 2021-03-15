@@ -5,7 +5,7 @@
 /* 800B7C08 000B4B48  48 2A A5 D1 */ bl _savegpr_28
 /* 800B7C0C 000B4B4C  7C 7C 1B 78 */ mr r28, r3
 /* 800B7C10 000B4B50  7C 9D 23 78 */ mr r29, r4
-/* 800B7C14 000B4B54  4B FF CD 3D */ bl daAlink_c_NS_notTalk
+/* 800B7C14 000B4B54  4B FF CD 3D */ bl notTalk__9daAlink_cFv
 /* 800B7C18 000B4B58  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7C1C 000B4B5C  41 82 00 0C */ beq lbl_800B7C28
 /* 800B7C20 000B4B60  38 60 00 00 */ li r3, 0
@@ -44,16 +44,16 @@ lbl_800B7C8C:
 /* 800B7C98 000B4BD8  7F 83 E3 78 */ mr r3, r28
 /* 800B7C9C 000B4BDC  80 9C 27 E8 */ lwz r4, 0x27e8(r28)
 /* 800B7CA0 000B4BE0  80 BC 27 F8 */ lwz r5, 0x27f8(r28)
-/* 800B7CA4 000B4BE4  4B FF CA D9 */ bl daAlink_c_NS_checkRequestTalkActor
+/* 800B7CA4 000B4BE4  4B FF CA D9 */ bl checkRequestTalkActor__9daAlink_cFP10dAttList_cP10fopAc_ac_c
 /* 800B7CA8 000B4BE8  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7CAC 000B4BEC  41 82 00 70 */ beq lbl_800B7D1C
 /* 800B7CB0 000B4BF0  3B C0 00 00 */ li r30, 0
 /* 800B7CB4 000B4BF4  3B E0 00 01 */ li r31, 1
 lbl_800B7CB8:
 /* 800B7CB8 000B4BF8  7F C3 F3 78 */ mr r3, r30
-/* 800B7CBC 000B4BFC  4B F7 62 61 */ bl dComIfGp_getSelectItem
+/* 800B7CBC 000B4BFC  4B F7 62 61 */ bl dComIfGp_getSelectItem__Fi
 /* 800B7CC0 000B4C00  54 63 06 3E */ clrlwi r3, r3, 0x18
-/* 800B7CC4 000B4C04  48 0A 6F 15 */ bl daPy_py_c_NS_checkTradeItem
+/* 800B7CC4 000B4C04  48 0A 6F 15 */ bl checkTradeItem__9daPy_py_cFi
 /* 800B7CC8 000B4C08  2C 03 00 00 */ cmpwi r3, 0
 /* 800B7CCC 000B4C0C  41 82 00 44 */ beq lbl_800B7D10
 /* 800B7CD0 000B4C10  7F 83 E3 78 */ mr r3, r28
@@ -80,7 +80,7 @@ lbl_800B7D1C:
 /* 800B7D1C 000B4C5C  2C 1D 00 00 */ cmpwi r29, 0
 /* 800B7D20 000B4C60  41 82 00 10 */ beq lbl_800B7D30
 /* 800B7D24 000B4C64  7F 83 E3 78 */ mr r3, r28
-/* 800B7D28 000B4C68  48 00 03 9D */ bl daAlink_c_NS_orderZTalk
+/* 800B7D28 000B4C68  48 00 03 9D */ bl orderZTalk__9daAlink_cFv
 /* 800B7D2C 000B4C6C  48 00 00 08 */ b lbl_800B7D34
 lbl_800B7D30:
 /* 800B7D30 000B4C70  38 60 00 00 */ li r3, 0

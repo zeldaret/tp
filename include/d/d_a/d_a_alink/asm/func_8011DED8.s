@@ -6,19 +6,19 @@
 /* 8011DEEC 0011AE2C  7C 7E 1B 78 */ mr r30, r3
 /* 8011DEF0 0011AE30  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 8011DEF4 0011AE34  7F E3 FB 78 */ mr r3, r31
-/* 8011DEF8 0011AE38  48 04 05 D5 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 8011DEF8 0011AE38  48 04 05 D5 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011DEFC 0011AE3C  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 8011DF00 0011AE40  41 82 00 1C */ beq lbl_8011DF1C
 /* 8011DF04 0011AE44  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011DF08 0011AE48  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8011DF0C 0011AE4C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8011DF10 0011AE50  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 8011DF14 0011AE54  4B F2 A2 69 */ bl dEvent_manager_c_NS_cutEnd
+/* 8011DF14 0011AE54  4B F2 A2 69 */ bl cutEnd__16dEvent_manager_cFi
 /* 8011DF18 0011AE58  48 00 00 34 */ b lbl_8011DF4C
 lbl_8011DF1C:
 /* 8011DF1C 0011AE5C  7F E3 FB 78 */ mr r3, r31
 /* 8011DF20 0011AE60  C0 22 93 54 */ lfs f1, lbl_80452D54-_SDA2_BASE_(r2)
-/* 8011DF24 0011AE64  48 20 A5 09 */ bl J3DFrameCtrl_NS_checkPass
+/* 8011DF24 0011AE64  48 20 A5 09 */ bl checkPass__12J3DFrameCtrlFf
 /* 8011DF28 0011AE68  2C 03 00 00 */ cmpwi r3, 0
 /* 8011DF2C 0011AE6C  41 82 00 20 */ beq lbl_8011DF4C
 /* 8011DF30 0011AE70  7F C3 F3 78 */ mr r3, r30

@@ -10,13 +10,13 @@
 /* 8012D074 00129FB4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 8012D078 00129FB8  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 8012D07C 00129FBC  80 9F 31 84 */ lwz r4, 0x3184(r31)
-/* 8012D080 00129FC0  4B F1 B0 FD */ bl dEvent_manager_c_NS_cutEnd
+/* 8012D080 00129FC0  4B F1 B0 FD */ bl cutEnd__16dEvent_manager_cFi
 /* 8012D084 00129FC4  7F E3 FB 78 */ mr r3, r31
-/* 8012D088 00129FC8  4B F9 63 31 */ bl daAlink_c_NS_procWaitInit
+/* 8012D088 00129FC8  4B F9 63 31 */ bl procWaitInit__9daAlink_cFv
 /* 8012D08C 00129FCC  48 00 00 64 */ b lbl_8012D0F0
 lbl_8012D090:
 /* 8012D090 00129FD0  38 80 00 F0 */ li r4, 0xf0
-/* 8012D094 00129FD4  4B F9 5D 11 */ bl daAlink_c_NS_commonProcInitNotSameProc
+/* 8012D094 00129FD4  4B F9 5D 11 */ bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8012D098 00129FD8  2C 03 00 00 */ cmpwi r3, 0
 /* 8012D09C 00129FDC  40 82 00 0C */ bne lbl_8012D0A8
 /* 8012D0A0 00129FE0  38 60 00 00 */ li r3, 0
@@ -24,10 +24,10 @@ lbl_8012D090:
 lbl_8012D0A8:
 /* 8012D0A8 00129FE8  7F E3 FB 78 */ mr r3, r31
 /* 8012D0AC 00129FEC  38 80 00 81 */ li r4, 0x81
-/* 8012D0B0 00129FF0  4B FF C5 C9 */ bl daAlink_c_NS_setSingleAnimeWolfBase
+/* 8012D0B0 00129FF0  4B FF C5 C9 */ bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
 /* 8012D0B4 00129FF4  7F E3 FB 78 */ mr r3, r31
 /* 8012D0B8 00129FF8  38 80 00 9F */ li r4, 0x9f
-/* 8012D0BC 00129FFC  4B F8 27 E5 */ bl daAlink_c_NS_setFaceBasicTexture
+/* 8012D0BC 00129FFC  4B F8 27 E5 */ bl setFaceBasicTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM
 /* 8012D0C0 0012A000  7F E3 FB 78 */ mr r3, r31
 /* 8012D0C4 0012A004  3C 80 00 01 */ lis r4, 0x000100BC@ha
 /* 8012D0C8 0012A008  38 84 00 BC */ addi r4, r4, 0x000100BC@l

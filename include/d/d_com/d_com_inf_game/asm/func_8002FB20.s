@@ -16,7 +16,7 @@ lbl_8002FB58:
 /* 8002FB58 0002CA98  7F A3 EB 78 */ mr r3, r29
 /* 8002FB5C 0002CA9C  7F C4 F3 78 */ mr r4, r30
 /* 8002FB60 0002CAA0  7F E5 FB 78 */ mr r5, r31
-/* 8002FB64 0002CAA4  4B FF FF BD */ bl dComLbG_PhaseHandler
+/* 8002FB64 0002CAA4  4B FF FF BD */ bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 lbl_8002FB68:
 /* 8002FB68 0002CAA8  39 61 00 20 */ addi r11, r1, 0x20
 /* 8002FB6C 0002CAAC  48 33 26 BD */ bl _restgpr_29

@@ -7,7 +7,7 @@
 /* 800D02F8 000CD238  28 00 00 00 */ cmplwi r0, 0
 /* 800D02FC 000CD23C  41 82 00 20 */ beq lbl_800D031C
 /* 800D0300 000CD240  A0 7F 2F DC */ lhz r3, 0x2fdc(r31)
-/* 800D0304 000CD244  48 08 E7 85 */ bl daPy_py_c_NS_checkBottleItem
+/* 800D0304 000CD244  48 08 E7 85 */ bl checkBottleItem__9daPy_py_cFi
 /* 800D0308 000CD248  2C 03 00 00 */ cmpwi r3, 0
 /* 800D030C 000CD24C  41 82 00 10 */ beq lbl_800D031C
 /* 800D0310 000CD250  80 7F 07 08 */ lwz r3, 0x708(r31)

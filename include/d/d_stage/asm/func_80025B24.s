@@ -40,7 +40,7 @@ lbl_80025B54:
 /* 80025BBC 00022AFC  88 1B 00 04 */ lbz r0, 4(r27)
 /* 80025BC0 00022B00  98 04 00 21 */ stb r0, 0x21(r4)
 /* 80025BC4 00022B04  7F C3 F3 78 */ mr r3, r30
-/* 80025BC8 00022B08  4B FF F3 35 */ bl dStage_actorCreate
+/* 80025BC8 00022B08  4B FF F3 35 */ bl dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
 lbl_80025BCC:
 /* 80025BCC 00022B0C  3B DE 00 20 */ addi r30, r30, 0x20
 /* 80025BD0 00022B10  3B BD 00 01 */ addi r29, r29, 1

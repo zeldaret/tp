@@ -149,11 +149,11 @@ lbl_80222200:
 lbl_80222214:
 /* 80222214 0021F154  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80222218 0021F158  88 9F 01 C9 */ lbz r4, 0x1c9(r31)
-/* 8022221C 0021F15C  4B FF 54 D1 */ bl dMeter2Draw_c_NS_drawButtonZ
+/* 8022221C 0021F15C  4B FF 54 D1 */ bl drawButtonZ__13dMeter2Draw_cFUc
 lbl_80222220:
 /* 80222220 0021F160  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80222224 0021F164  80 9F 01 24 */ lwz r4, 0x124(r31)
-/* 80222228 0021F168  4B FF 78 5D */ bl dMeter2Draw_c_NS_setButtonIconMidonaAlpha
+/* 80222228 0021F168  4B FF 78 5D */ bl setButtonIconMidonaAlpha__13dMeter2Draw_cFUl
 /* 8022222C 0021F16C  38 00 00 00 */ li r0, 0
 /* 80222230 0021F170  98 1E 5E 33 */ stb r0, 0x5e33(r30)
 /* 80222234 0021F174  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
@@ -177,7 +177,7 @@ lbl_80222260:
 /* 80222278 0021F1B8  98 7F 01 D1 */ stb r3, 0x1d1(r31)
 /* 8022227C 0021F1BC  80 7F 01 0C */ lwz r3, 0x10c(r31)
 /* 80222280 0021F1C0  88 9F 01 D1 */ lbz r4, 0x1d1(r31)
-/* 80222284 0021F1C4  4B FF 57 8D */ bl dMeter2Draw_c_NS_drawButtonBin
+/* 80222284 0021F1C4  4B FF 57 8D */ bl drawButtonBin__13dMeter2Draw_cFUc
 lbl_80222288:
 /* 80222288 0021F1C8  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 8022228C 0021F1CC  83 C1 00 08 */ lwz r30, 8(r1)

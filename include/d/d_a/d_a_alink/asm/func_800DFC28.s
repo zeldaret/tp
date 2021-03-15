@@ -4,13 +4,13 @@
 /* 800DFC34 000DCB74  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800DFC38 000DCB78  7C 7F 1B 78 */ mr r31, r3
 /* 800DFC3C 000DCB7C  A0 63 2F DC */ lhz r3, 0x2fdc(r3)
-/* 800DFC40 000DCB80  48 07 EF 51 */ bl daPy_py_c_NS_checkBowItem
+/* 800DFC40 000DCB80  48 07 EF 51 */ bl checkBowItem__9daPy_py_cFi
 /* 800DFC44 000DCB84  2C 03 00 00 */ cmpwi r3, 0
 /* 800DFC48 000DCB88  41 82 00 14 */ beq lbl_800DFC5C
 /* 800DFC4C 000DCB8C  7F E3 FB 78 */ mr r3, r31
 /* 800DFC50 000DCB90  38 80 00 58 */ li r4, 0x58
 /* 800DFC54 000DCB94  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 800DFC58 000DCB98  4B FE 04 2D */ bl daAlink_c_NS_changeItemBck
+/* 800DFC58 000DCB98  4B FE 04 2D */ bl changeItemBck__9daAlink_cFUsf
 lbl_800DFC5C:
 /* 800DFC5C 000DCB9C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800DFC60 000DCBA0  80 01 00 14 */ lwz r0, 0x14(r1)

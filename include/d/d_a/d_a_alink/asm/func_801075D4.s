@@ -4,13 +4,13 @@
 /* 801075E0 00104520  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801075E4 00104524  7C 7F 1B 78 */ mr r31, r3
 /* 801075E8 00104528  38 80 00 AD */ li r4, 0xad
-/* 801075EC 0010452C  4B FF F0 65 */ bl daAlink_c_NS_commonProcBoardInit
+/* 801075EC 0010452C  4B FF F0 65 */ bl commonProcBoardInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801075F0 00104530  7F E3 FB 78 */ mr r3, r31
 /* 801075F4 00104534  38 80 00 FB */ li r4, 0xfb
 /* 801075F8 00104538  3C A0 80 39 */ lis r5, lbl_8038E870@ha
 /* 801075FC 0010453C  38 A5 E8 70 */ addi r5, r5, lbl_8038E870@l
 /* 80107600 00104540  38 A5 00 3C */ addi r5, r5, 0x3c
-/* 80107604 00104544  4B FA 5A F1 */ bl daAlink_c_NS_setSingleAnimeParam
+/* 80107604 00104544  4B FA 5A F1 */ bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 80107608 00104548  3C 60 80 39 */ lis r3, lbl_8038E870@ha
 /* 8010760C 0010454C  38 63 E8 70 */ addi r3, r3, lbl_8038E870@l
 /* 80107610 00104550  C0 23 00 44 */ lfs f1, 0x44(r3)
@@ -52,7 +52,7 @@ lbl_8010766C:
 /* 80107694 001045D4  4E 80 04 21 */ bctrl
 lbl_80107698:
 /* 80107698 001045D8  7F E3 FB 78 */ mr r3, r31
-/* 8010769C 001045DC  4B FA D2 35 */ bl daAlink_c_NS_setJumpMode
+/* 8010769C 001045DC  4B FA D2 35 */ bl setJumpMode__9daAlink_cFv
 /* 801076A0 001045E0  38 00 00 01 */ li r0, 1
 /* 801076A4 001045E4  90 1F 31 98 */ stw r0, 0x3198(r31)
 /* 801076A8 001045E8  48 00 00 14 */ b lbl_801076BC
@@ -66,7 +66,7 @@ lbl_801076BC:
 /* 801076C0 00104600  B0 1F 30 12 */ sth r0, 0x3012(r31)
 /* 801076C4 00104604  7F E3 FB 78 */ mr r3, r31
 /* 801076C8 00104608  38 80 00 01 */ li r4, 1
-/* 801076CC 0010460C  4B FC 9D 65 */ bl daAlink_c_NS_resetCombo
+/* 801076CC 0010460C  4B FC 9D 65 */ bl resetCombo__9daAlink_cFi
 /* 801076D0 00104610  3C 60 80 39 */ lis r3, lbl_8038DB84@ha
 /* 801076D4 00104614  38 63 DB 84 */ addi r3, r3, lbl_8038DB84@l
 /* 801076D8 00104618  C0 03 00 70 */ lfs f0, 0x70(r3)
@@ -78,7 +78,7 @@ lbl_801076BC:
 /* 801076F0 00104630  7F E3 FB 78 */ mr r3, r31
 /* 801076F4 00104634  C0 3F 34 7C */ lfs f1, 0x347c(r31)
 /* 801076F8 00104638  38 80 00 03 */ li r4, 3
-/* 801076FC 0010463C  4B FC 98 95 */ bl daAlink_c_NS_initCutTurnAt
+/* 801076FC 0010463C  4B FC 98 95 */ bl initCutTurnAt__9daAlink_cFfi
 /* 80107700 00104640  38 00 00 04 */ li r0, 4
 /* 80107704 00104644  B0 1F 30 0A */ sth r0, 0x300a(r31)
 /* 80107708 00104648  38 00 00 01 */ li r0, 1

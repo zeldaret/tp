@@ -4,7 +4,7 @@
 /* 8002CB3C 00029A7C  80 63 4E 08 */ lwz r3, 0x4e08(r3)
 /* 8002CB40 00029A80  28 03 00 00 */ cmplwi r3, 0
 /* 8002CB44 00029A84  41 82 00 10 */ beq lbl_8002CB54
-/* 8002CB48 00029A88  48 01 C5 11 */ bl dSmplMdl_draw_c_NS_removeModel
+/* 8002CB48 00029A88  48 01 C5 11 */ bl removeModel__15dSmplMdl_draw_cFP12J3DModelDatai
 /* 8002CB4C 00029A8C  38 60 00 01 */ li r3, 1
 /* 8002CB50 00029A90  48 00 00 08 */ b lbl_8002CB58
 lbl_8002CB54:

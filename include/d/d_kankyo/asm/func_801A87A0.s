@@ -4,7 +4,7 @@
 /* 801A87AC 001A56EC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A87B0 001A56F0  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 801A87B4 001A56F4  88 63 12 D0 */ lbz r3, 0x12d0(r3)
-/* 801A87B8 001A56F8  4B EA E2 6D */ bl dKyd_xfog_table_set
+/* 801A87B8 001A56F8  4B EA E2 6D */ bl dKyd_xfog_table_set__FUc
 /* 801A87BC 001A56FC  3C 60 80 43 */ lis r3, lbl_8042CA54@ha
 /* 801A87C0 001A5700  38 A3 CA 54 */ addi r5, r3, lbl_8042CA54@l
 /* 801A87C4 001A5704  88 65 12 CF */ lbz r3, 0x12cf(r5)

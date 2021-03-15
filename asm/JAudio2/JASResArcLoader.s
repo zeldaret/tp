@@ -3,8 +3,8 @@
 .section .text, "ax" # 80290bd0
 
 
-.global JASResArcLoader_NS_getResSize
-JASResArcLoader_NS_getResSize:
+.global getResSize__15JASResArcLoaderFPC10JKRArchiveUs
+getResSize__15JASResArcLoaderFPC10JKRArchiveUs:
 /* 80290BD0 0028DB10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290BD4 0028DB14  7C 08 02 A6 */	mflr r0
 /* 80290BD8 0028DB18  90 01 00 14 */	stw r0, 0x14(r1)
@@ -21,8 +21,8 @@ lbl_80290BF4:
 /* 80290BFC 0028DB3C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80290C00 0028DB40  4E 80 00 20 */	blr 
 
-.global JASResArcLoader_NS_getResMaxSize
-JASResArcLoader_NS_getResMaxSize:
+.global getResMaxSize__15JASResArcLoaderFPC10JKRArchive
+getResMaxSize__15JASResArcLoaderFPC10JKRArchive:
 /* 80290C04 0028DB44  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80290C08 0028DB48  7C 08 02 A6 */	mflr r0
 /* 80290C0C 0028DB4C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -56,8 +56,8 @@ lbl_80290C58:
 /* 80290C70 0028DBB0  7C 08 03 A6 */	mtlr r0
 /* 80290C74 0028DBB4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80290C78 0028DBB8  4E 80 00 20 */	blr 
-.global JASResArcLoader_NS_loadResourceCallback
-JASResArcLoader_NS_loadResourceCallback:
+.global loadResourceCallback__15JASResArcLoaderFPv
+loadResourceCallback__15JASResArcLoaderFPv:
 /* 80290C7C 0028DBBC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80290C80 0028DBC0  7C 08 02 A6 */	mflr r0
 /* 80290C84 0028DBC4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -101,8 +101,8 @@ lbl_80290D00:
 /* 80290D10 0028DC50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80290D14 0028DC54  4E 80 00 20 */	blr 
 
-.global JASResArcLoader_NS_loadResourceAsync
-JASResArcLoader_NS_loadResourceAsync:
+.global loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
+loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl:
 /* 80290D18 0028DC58  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80290D1C 0028DC5C  7C 08 02 A6 */	mflr r0
 /* 80290D20 0028DC60  90 01 00 34 */	stw r0, 0x34(r1)
@@ -116,14 +116,14 @@ JASResArcLoader_NS_loadResourceAsync:
 /* 80290D40 0028DC80  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80290D44 0028DC84  90 E1 00 18 */	stw r7, 0x18(r1)
 /* 80290D48 0028DC88  91 01 00 1C */	stw r8, 0x1c(r1)
-/* 80290D4C 0028DC8C  4B FF F1 B1 */	bl JASDvd_NS_getThreadPointer
-.global JASResArcLoader_NS_loadResourceCallback
-/* 80290D50 0028DC90  3C 80 80 29 */	lis r4, JASResArcLoader_NS_loadResourceCallback@ha
-.global JASResArcLoader_NS_loadResourceCallback
-/* 80290D54 0028DC94  38 84 0C 7C */	addi r4, r4, JASResArcLoader_NS_loadResourceCallback@l
+/* 80290D4C 0028DC8C  4B FF F1 B1 */	bl getThreadPointer__6JASDvdFv
+.global loadResourceCallback__15JASResArcLoaderFPv
+/* 80290D50 0028DC90  3C 80 80 29 */	lis r4, loadResourceCallback__15JASResArcLoaderFPv@ha
+.global loadResourceCallback__15JASResArcLoaderFPv
+/* 80290D54 0028DC94  38 84 0C 7C */	addi r4, r4, loadResourceCallback__15JASResArcLoaderFPv@l
 /* 80290D58 0028DC98  38 A1 00 08 */	addi r5, r1, 8
 /* 80290D5C 0028DC9C  38 C0 00 1C */	li r6, 0x1c
-/* 80290D60 0028DCA0  4B FF ED FD */	bl JASTaskThread_NS_sendCmdMsg
+/* 80290D60 0028DCA0  4B FF ED FD */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
 /* 80290D64 0028DCA4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80290D68 0028DCA8  7C 08 03 A6 */	mtlr r0
 /* 80290D6C 0028DCAC  38 21 00 30 */	addi r1, r1, 0x30

@@ -4,9 +4,9 @@
 /* 801399D0 00136910  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 801399D4 00136914  7C 7F 1B 78 */ mr r31, r3
 /* 801399D8 00136918  38 80 01 1B */ li r4, 0x11b
-/* 801399DC 0013691C  4B F8 85 91 */ bl daAlink_c_NS_commonProcInit
+/* 801399DC 0013691C  4B F8 85 91 */ bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801399E0 00136920  7F E3 FB 78 */ mr r3, r31
-/* 801399E4 00136924  4B F7 9F 21 */ bl daAlink_c_NS_checkZeroSpeedF
+/* 801399E4 00136924  4B F7 9F 21 */ bl checkZeroSpeedF__9daAlink_cCFv
 /* 801399E8 00136928  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 801399EC 0013692C  41 82 00 10 */ beq lbl_801399FC
 /* 801399F0 00136930  80 1F 31 A0 */ lwz r0, 0x31a0(r31)
@@ -30,7 +30,7 @@ lbl_801399FC:
 /* 80139A34 00136974  7F E3 FB 78 */ mr r3, r31
 /* 80139A38 00136978  3C 80 00 01 */ lis r4, 0x00010037@ha
 /* 80139A3C 0013697C  38 84 00 37 */ addi r4, r4, 0x00010037@l
-/* 80139A40 00136980  4B F8 56 79 */ bl daAlink_c_NS_voiceStartLevel
+/* 80139A40 00136980  4B F8 56 79 */ bl voiceStartLevel__9daAlink_cFUl
 /* 80139A44 00136984  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 80139A48 00136988  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 80139A4C 0013698C  80 03 5F 18 */ lwz r0, 0x5f18(r3)

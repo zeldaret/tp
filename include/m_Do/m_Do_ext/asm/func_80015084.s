@@ -3,7 +3,7 @@
 /* 8001508C 00011FCC  90 01 00 14 */ stw r0, 0x14(r1)
 /* 80015090 00011FD0  80 6D 90 74 */ lwz r3, lbl_804515F4-_SDA_BASE_(r13)
 /* 80015094 00011FD4  38 63 00 18 */ addi r3, r3, 0x18
-/* 80015098 00011FD8  48 31 9F 25 */ bl J3DMtxCalcCalcTransformMaya_NS_calcTransform
+/* 80015098 00011FD8  48 31 9F 25 */ bl calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
 /* 8001509C 00011FDC  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800150A0 00011FE0  7C 08 03 A6 */ mtlr r0
 /* 800150A4 00011FE4  38 21 00 10 */ addi r1, r1, 0x10

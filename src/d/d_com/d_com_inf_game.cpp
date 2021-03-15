@@ -13,21 +13,21 @@
 #include "msl_c/string.h"
 
 extern "C" {
-bool dComIfGp_checkMapShow(void);
-BOOL dComIfGp_isLightDropMapVisible(void);
+bool dComIfGp_checkMapShow__Fv(void);
+BOOL dComIfGp_isLightDropMapVisible__Fv(void);
 BOOL isTransformLV__21dSv_player_status_b_cCFi(int);
-const char* dComIfGs_getWarpStageName(void);
-int dComIfGs_getWarpRoomNo(void);
-int dKy_daynight_check(void);
-int dStage_roomControl_c_NS_getZoneNo(int);
+const char* dComIfGs_getWarpStageName__Fv(void);
+int dComIfGs_getWarpRoomNo__Fv(void);
+int dKy_daynight_check__Fv(void);
+int getZoneNo__20dStage_roomControl_cFi(int);
 int getTimerMode__14dComIfG_play_cFv(void);
-s16 dComIfGs_getWarpPlayerAngleY(void);
-u16 dComIfGs_getMaxLifeGauge(void);
+s16 dComIfGs_getWarpPlayerAngleY__Fv(void);
+u16 dComIfGs_getMaxLifeGauge__Fv(void);
 u32 getBombNum__21dSv_player_item_max_cCFUc(u8);
 u32 getTimerPtr__14dComIfG_play_cFv(void);
-u8 dComIfGs_checkGetItem(u8);
-u8 dComIfGs_getBottleMax(void);
-u8 dComIfGs_getMixItemIndex(int);
+u8 dComIfGs_checkGetItem__FUc(u8);
+u8 dComIfGs_getBottleMax__Fv(void);
+u8 dComIfGs_getMixItemIndex__Fi(int);
 u8 getBombNum__24dSv_player_item_record_cCFUc(u8);
 unsigned int getSelectItemIndex__21dSv_player_status_a_cCFi(int);
 void __ct__10dSv_zone_cFv(void);
@@ -51,189 +51,190 @@ void __dl__FPv(void);
 void __dt__8cM3dGCpsFv(void);
 void __nw__FUl(void);
 void addBottleNum__24dSv_player_item_record_cFUcs(void);
-void cBgS_ChkElm_NS_dtor(void);
-void cBgS_ChkElm_NS_Init(void);
-void cBgS_NS_GetTriPla(void);
+void __dt__11cBgS_ChkElmFv(void);
+void Init__11cBgS_ChkElmFv(void);
+void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla(void);
 void ChkSetInfo__13cBgS_PolyInfoCFv(void);
-void cM3dGCyl_NS_dtor(void);
+void __dt__8cM3dGCylFv(void);
 void create__10JKRExpHeapFUlP7JKRHeapb(void);
-void cSAngle_NS_dtor(void);
+void __dt__7cSAngleFv(void);
 void ct__14dComIfG_play_cFv(void);
-void daAlink_c_NS_setLastSceneMode(void);
-void dAttDraw_c_NS_ctor(void);
-void dAttDraw_c_NS_dtor(void);
-void dAttention_c_NS_dtor(void);
-void dAttList_c_NS_ctor(void);
-void dAttList_c_NS_dtor(void);
-void dCcMassS_Obj_NS_dtor(void);
-void dCcS_NS_dtor(void);
-void dComIfG_camera_info_class_NS_dtor(void);
-void dComIfG_changeOpeningScene(void);
+void setLastSceneMode__9daAlink_cFPUl(void);
+void __ct__10dAttDraw_cFv(void);
+void __dt__10dAttDraw_cFv(void);
+void __dt__12dAttention_cFv(void);
+void __ct__10dAttList_cFv(void);
+void __dt__10dAttList_cFv(void);
+void __dt__12dCcMassS_ObjFv(void);
+void __dt__4dCcSFv(void);
+void __dt__25dComIfG_camera_info_classFv(void);
+void dComIfG_changeOpeningScene__FP11scene_classs(void);
 void dComIfG_get_timelayer__FPi(int*);
-void dComIfG_getOldStageRes(void);
-void dComIfG_getRoomArcName(void);
-void dComIfG_getStageRes(void);
+void dComIfG_getOldStageRes__FPCc(void);
+void dComIfG_getRoomArcName__Fi(void);
+void dComIfG_getStageRes__FPCc(void);
 void dComIfG_inf_c_NS_ct(void);
-void dComIfG_inf_c_NS_dtor(void);
-void dComIfG_play_c_NS_clearItemBombNumCount(void);
-void dComIfG_play_c_NS_createParticle(void);
-void dComIfG_play_c_NS_createSimpleModel(void);
-void dComIfG_play_c_NS_deleteSimpleModel(void);
-void dComIfG_play_c_NS_dtor(void);
-void dComIfG_play_c_NS_getItemBombNumCount(void);
-void dComIfG_play_c_NS_getLayerNo_common_common(void);
-void dComIfG_play_c_NS_getLayerNo_common(void);
-void dComIfG_play_c_NS_getLayerNo(int);
-void dComIfG_play_c_NS_itemInit(void);
-void dComIfG_play_c_NS_setItemBombNumCount(u8, s16);
-void dComIfG_play_c_NS_setStartStage(void);
-void dComIfG_play_c_NS_setTimerPtr(void);
-void dComIfG_resDelete(void);
-void dComIfG_resetToOpening(void);
-void dComIfG_resLoad_X1_(void);
-void dComIfG_resLoad(void);
-void dComIfG_TimerDeleteRequest(void);
-void dComIfGd_setShadow(void);
-void dComIfGd_setSimpleShadow(void);
-void dComIfGp_addSelectItemNum(void);
-void dComIfGp_calcNowRegion(void);
-void dComIfGp_checkEmptySubHeap2D(void);
-void dComIfGp_createSubExpHeap2D(void);
-void dComIfGp_destroySubExpHeap2D(void);
-void dComIfGp_getNowLevel(void);
-void dComIfGp_getReverb(void);
-void dComIfGp_getRoomArrow(void);
-void dComIfGp_getRoomCamera(void);
-void dComIfGp_getSelectItem(void);
-void dComIfGp_getSelectItemMaxNum(void);
-void dComIfGp_getSelectItemNum(void);
-void dComIfGp_getSubHeap2D(void);
-void dComIfGp_mapHide(void);
-void dComIfGp_mapShow(void);
-void dComIfGp_offHeapLockFlag(void);
-void dComIfGp_ret_wp_set(void);
-void dComIfGp_searchUseSubHeap2D(void);
-void dComIfGp_SelectWarpPt_get(void);
-void dComIfGp_SelectWarpPt_set(void);
-void dComIfGp_setHeapLockFlag(void);
-void dComIfGp_setNextStage_X1_(void);
-void dComIfGp_setNextStage(void);
-void dComIfGp_setSelectItem(int);
-void dComIfGp_setSelectItemNum(void);
-void dComIfGp_TargetWarpPt_get(void);
-void dComIfGp_TargetWarpPt_set(void);
-void dComIfGp_TransportWarp_check(void);
-void dComIfGp_world_dark_get(void);
-void dComIfGp_world_dark_set(u8);
-void dComIfGs_BossLife_public_Set(void);
-void dComIfGs_checkGetInsectNum(void);
-void dComIfGs_gameStart(void);
-void dComIfGs_getSelectMixItemNoArrowIndex(void);
-void dComIfGs_getWarpMarkFlag(void);
-void dComIfGs_getWarpPlayerPos(void);
-void dComIfGs_isDungeonItemWarp(void);
-void dComIfGs_isOneZoneItem(void);
-void dComIfGs_isOneZoneSwitch(void);
-void dComIfGs_isStageSwitch(void);
-void dComIfGs_isStageTbox(void);
-void dComIfGs_isVisitedRoom(void);
-void dComIfGs_isZoneItem(void);
-void dComIfGs_isZoneSwitch(void);
-void dComIfGs_offOneZoneSwitch(void);
-void dComIfGs_offStageSwitch(void);
-void dComIfGs_offZoneSwitch(void);
-void dComIfGs_onOneZoneSwitch(void);
-void dComIfGs_onStageSwitch(void);
-void dComIfGs_onVisitedRoom(void);
-void dComIfGs_onZoneSwitch(void);
-void dComIfGs_PolyDamageOff_Check(void);
-void dComIfGs_PolyDamageOff_Set(void);
-void dComIfGs_sense_type_change_Get(void);
-void dComIfGs_setKeyNum(int, u8);
+void __dt__13dComIfG_inf_cFv(void);
+void clearItemBombNumCount__14dComIfG_play_cFUc(void);
+void createParticle__14dComIfG_play_cFv(void);
+void createSimpleModel__14dComIfG_play_cFv(void);
+void deleteSimpleModel__14dComIfG_play_cFv(void);
+void __dt__14dComIfG_play_cFv(void);
+void getItemBombNumCount__14dComIfG_play_cFUc(void);
+void getLayerNo_common_common__14dComIfG_play_cFPCcii(void);
+void getLayerNo_common__14dComIfG_play_cFPCcii(void);
+void getLayerNo__14dComIfG_play_cFi(int);
+void itemInit__14dComIfG_play_cFv(void);
+void setItemBombNumCount__14dComIfG_play_cFUcs(u8, s16);
+void setStartStage__14dComIfG_play_cFP19dStage_startStage_c(void);
+void setTimerPtr__14dComIfG_play_cFP8dTimer_c(void);
+void dComIfG_resDelete__FP30request_of_phase_process_classPCc(void);
+void dComIfG_resetToOpening__FP11scene_class(void);
+void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void);
+void dComIfG_resLoad__FP30request_of_phase_process_classPCc(void);
+void dComIfG_TimerDeleteRequest__Fi(void);
+void dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(
+    void);
+void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(void);
+void dComIfGp_addSelectItemNum__Fis(void);
+void dComIfGp_calcNowRegion__Fv(void);
+void dComIfGp_checkEmptySubHeap2D__Fv(void);
+void dComIfGp_createSubExpHeap2D__Fv(void);
+void dComIfGp_destroySubExpHeap2D__Fv(void);
+void dComIfGp_getNowLevel__Fv(void);
+void dComIfGp_getReverb__Fi(void);
+void dComIfGp_getRoomArrow__Fi(void);
+void dComIfGp_getRoomCamera__Fi(void);
+void dComIfGp_getSelectItem__Fi(void);
+void dComIfGp_getSelectItemMaxNum__Fi(void);
+void dComIfGp_getSelectItemNum__Fi(void);
+void dComIfGp_getSubHeap2D__Fi(void);
+void dComIfGp_mapHide__Fv(void);
+void dComIfGp_mapShow__Fv(void);
+void dComIfGp_offHeapLockFlag__Fi(void);
+void dComIfGp_ret_wp_set__FSc(void);
+void dComIfGp_searchUseSubHeap2D__Fi(void);
+void dComIfGp_SelectWarpPt_get__Fv(void);
+void dComIfGp_SelectWarpPt_set__FUc(void);
+void dComIfGp_setHeapLockFlag__FUc(void);
+void dComIfGp_setNextStage__FPCcsScSc(void);
+void dComIfGp_setNextStage__FPCcsScScfUliScsii(void);
+void dComIfGp_setSelectItem__Fi(int);
+void dComIfGp_setSelectItemNum__Fis(void);
+void dComIfGp_TargetWarpPt_get__Fv(void);
+void dComIfGp_TargetWarpPt_set__FUc(void);
+void dComIfGp_TransportWarp_check__Fv(void);
+void dComIfGp_world_dark_get__Fv(void);
+void dComIfGp_world_dark_set__FUc(u8);
+void dComIfGs_BossLife_public_Set__FSc(void);
+void dComIfGs_checkGetInsectNum__Fv(void);
+void dComIfGs_gameStart__Fv(void);
+void dComIfGs_getSelectMixItemNoArrowIndex__Fi(void);
+void dComIfGs_getWarpMarkFlag__Fv(void);
+void dComIfGs_getWarpPlayerPos__Fv(void);
+void dComIfGs_isDungeonItemWarp__Fi(void);
+void dComIfGs_isOneZoneItem__Fii(void);
+void dComIfGs_isOneZoneSwitch__Fii(void);
+void dComIfGs_isStageSwitch__Fii(void);
+void dComIfGs_isStageTbox__Fii(void);
+void dComIfGs_isVisitedRoom__Fi(void);
+void dComIfGs_isZoneItem__Fii(void);
+void dComIfGs_isZoneSwitch__Fii(void);
+void dComIfGs_offOneZoneSwitch__Fii(void);
+void dComIfGs_offStageSwitch__Fii(void);
+void dComIfGs_offZoneSwitch__Fii(void);
+void dComIfGs_onOneZoneSwitch__Fii(void);
+void dComIfGs_onStageSwitch__Fii(void);
+void dComIfGs_onVisitedRoom__Fi(void);
+void dComIfGs_onZoneSwitch__Fii(void);
+void dComIfGs_PolyDamageOff_Check__Fv(void);
+void dComIfGs_PolyDamageOff_Set__FSc(void);
+void dComIfGs_sense_type_change_Get__Fv(void);
+void dComIfGs_setKeyNum__FiUc(int, u8);
 void dComIfGs_setLastWarpMarkItemData__FPCc4cXyzsScUcUc(void);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_setSelectEquipClothes(u8);
-void dComIfGs_setSelectEquipShield(u8);
-void dComIfGs_setSelectEquipSword(u8);
-void dComIfGs_setSelectItemIndex(int, u8);
-void dComIfGs_setWarpItemData_X1_(void);
-void dComIfGs_setWarpMarkFlag(void);
-void dComIfGs_staffroll_next_go_check(void);
-void dComIfGs_Wolf_Change_Check(void);
-void dComIfGs_wolfeye_effect_check(void);
-void dComLbG_PhaseHandler(void);
-void dDlst_list_c_NS_dtor(void);
-void dDlst_shadowControl_c_NS_setReal(void);
-void dDlst_shadowControl_c_NS_setSimple(void);
-void dDlst_window_c_NS_dtor(void);
-void dEvDtBase_c_NS_dtor(void);
-void dEvt_order_c_NS_dtor(void);
-void dKy_darkworld_stage_check(void);
-void dMapInfo_n_NS_getMapPlayerPos(void);
-void dMenuFmap_getStartStageName(void);
-void dMeter2Info_c_NS_init(void);
-void dMeter2Info_c_NS_setSaveStageName(void);
-void dPa_control_c(void);
-void dRes_control_c_NS_deleteRes(void);
-void dRes_control_c_NS_dtor(void);
-void dRes_control_c_NS_getRes_X1_(void);
-void dRes_control_c_NS_setRes(void);
-void dRes_control_c_NS_syncRes(void);
-void dRes_info_c_NS_dtor(void);
-void dSmplMdl_draw_c_NS_addModel(void);
-void dSmplMdl_draw_c_NS_draw(void);
-void dSmplMdl_draw_c_NS_entry(void);
-void dSmplMdl_draw_c_NS_removeModel(void);
-void dSmplMdl_draw_c(void);
-void dStage_roomControl_c_NS_getStatusRoomDt(void);
-void dStage_roomRead_dt_c_GetReverbStage(void);
-void dTimer_c_NS_deleteCheck(void);
-void dTimer_c_NS_deleteRequest(void);
-void dTimer_c_NS_end(void);
-void dTimer_c_NS_restart(void);
-void dTimer_c_NS_start_X1_(void);
-void dTimer_c_NS_start(void);
-void dTimer_c_NS_stop(void);
+void dComIfGs_setMixItemIndex__FiUc(int, u8);
+void dComIfGs_setSelectEquipClothes__FUc(u8);
+void dComIfGs_setSelectEquipShield__FUc(u8);
+void dComIfGs_setSelectEquipSword__FUc(u8);
+void dComIfGs_setSelectItemIndex__FiUc(int, u8);
+void dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc(void);
+void dComIfGs_setWarpMarkFlag__FUc(void);
+void dComIfGs_staffroll_next_go_check__Fv(void);
+void dComIfGs_Wolf_Change_Check__Fv(void);
+void dComIfGs_wolfeye_effect_check__Fv(void);
+void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(void);
+void __dt__12dDlst_list_cFv(void);
+void setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c(void);
+void setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj(void);
+void __dt__14dDlst_window_cFv(void);
+void __dt__11dEvDtBase_cFv(void);
+void __dt__12dEvt_order_cFv(void);
+void dKy_darkworld_stage_check__FPCci(void);
+void getMapPlayerPos__10dMapInfo_nFv(void);
+void dMenuFmap_getStartStageName__FPv(void);
+void init__13dMeter2Info_cFv(void);
+void setSaveStageName__13dMeter2Info_cFPCc(void);
+void __ct__13dPa_control_cFv(void);
+void deleteRes__14dRes_control_cFPCcP11dRes_info_ci(void);
+void __dt__14dRes_control_cFv(void);
+void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci(void);
+void setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap(void);
+void syncRes__14dRes_control_cFPCcP11dRes_info_ci(void);
+void __dt__11dRes_info_cFv(void);
+void addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc(void);
+void draw__15dSmplMdl_draw_cFv(void);
+void entry__15dSmplMdl_draw_cFP8J3DModeli(void);
+void removeModel__15dSmplMdl_draw_cFP12J3DModelDatai(void);
+void __ct__15dSmplMdl_draw_cFv(void);
+void getStatusRoomDt__20dStage_roomControl_cFi(void);
+void dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi(void);
+void deleteCheck__8dTimer_cFv(void);
+void deleteRequest__8dTimer_cFv(void);
+void end__8dTimer_cFi(void);
+void restart__8dTimer_cFUc(void);
+void start__8dTimer_cFis(void);
+void start__8dTimer_cFi(void);
+void stop__8dTimer_cFUc(void);
 void fopScnM_ChangeReq(void);
 void fopScnM_ReRequest(void);
-void func_8002CAF0(void);
-void func_8002CB30(void);
-void func_8002CB68(void);
-void func_8002CDB8(void);
-void func_8002CE38(void);
-void func_8002CEB4(void);
-void func_8002CEFC(void);
-void func_8002CF5C(void);
-void func_8002CFB8(void);
-void func_8002D1AC(void);
-void func_8002D7D0(void);
-void func_8002D910(void);
-void func_8002D924(void);
-void func_8002E9D4(void);
-void func_8002F314(void);
-void func_8002F328(void);
-void func_8002F3B4(void);
-void func_8002F52C(void);
-void func_8002F5C0(void);
-void func_8002F638(void);
-void func_8002F6B0(void);
-void func_8002F72C(void);
-void func_8002FA18(void);
-void func_8002FA30(void);
-void func_8002FA84(void);
-void func_8002FC3C(void);
-void func_8002FD18(void);
-void func_80030A74(void);
-void func_80030BDC(void);
-void func_80030C50(void);
-void func_80030CCC(void);
-void func_80030DE0(void);
-void func_80030E84(void);
-void func_80030ECC(void);
+void addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc(void);
+void removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai(void);
+void entrySimpleModel__14dComIfG_play_cFP8J3DModeli(void);
+void phase_1__FPc(void);
+void phase_2__FPc(void);
+void phase_3__FPc(void);
+void phase_01__FP12phaseParam_c(void);
+void phase_02__FP12phaseParam_c(void);
+void phase_03__FP12phaseParam_c(void);
+void dComIfGp_getMapTrans__FiPfPfPs(void);
+void dComIfGs_onStageBossEnemy__Fi(void);
+void dComIfGs_BossLife_public_Get__Fv(void);
+void dComIfGs_sense_type_change_Set__FSc(void);
+void dComIfG_getTrigA__FUl(void);
+void __ct__19dComIfG_resLoader_cFv(void);
+void __dt__19dComIfG_resLoader_cFv(void);
+void load__19dComIfG_resLoader_cFPPCcP7JKRHeap(void);
+void dComIfG_TimerStart__Fis(void);
+void dComIfG_TimerStop__Fi(void);
+void dComIfG_TimerReStart__Fi(void);
+void dComIfG_TimerEnd__Fii(void);
+void dComIfG_TimerDeleteCheck__Fi(void);
+void dComIfGs_shake_kandelaar__Fv(void);
+void dComIfGs_shake_kandelaar_check__Fv(void);
+void dComIfGs_Grass_hide_Set__FSc(void);
+void dComIfGs_offVisitedRoom__Fi(void);
+void __sinit_d_com_inf_game_cpp(void);
+void __dt__12dCcMassS_MngFv(void);
+void __dt__4cCcSFv(void);
+void __dt__4dBgSFv(void);
+void __dt__4cBgSFv(void);
+void __dt__15cCcD_DivideAreaFv(void);
+void __dt__8cM3dGAabFv(void);
+void __dt__15cCcD_DivideInfoFv(void);
 void func_80361C24(void);
-void func_80361D60(void);
+void __construct_array(void);
 void __cvt_fp2unsigned(void);
-void func_803664DC(void);
+void sprintf(void);
 void getBottleNum__24dSv_player_item_record_cCFUc(void);
 void getItem__17dSv_player_item_cCFib(void);
 void getSave2__10dSv_save_cFi(void);
@@ -242,7 +243,7 @@ void getVibration__19dSv_player_config_cFv(void);
 void init__12dSv_memory_cFv(void);
 void init__13dSv_memory2_cFv(void);
 void init__14dComIfG_play_cFv(void);
-void init__20dStage_roomControl_cFvZone(void);
+void initZone__20dStage_roomControl_cFv(void);
 void isDarkClearLV__21dSv_player_status_b_cCFi(void);
 void isDungeonItem__12dSv_memBit_cCFi(void);
 void isEventBit__11dSv_event_cCFUs(void);
@@ -256,12 +257,12 @@ void isSwitch__12dSv_memBit_cCFi(void);
 void isSwitch__13dSv_zoneBit_cCFi(void);
 void isTbox__12dSv_memBit_cCFi(void);
 void isVisitedRoom__13dSv_memory2_cFi(void);
-void J3DFrameCtrl_NS_init(void);
-void mDoExt_bckAnm_NS_dtor(void);
-void mDoExt_bpkAnm_NS_dtor(void);
-void mDoExt_brkAnm_NS_dtor(void);
-void mDoExt_btkAnm_NS_dtor(void);
-void mDoExt_destroyExpHeap(void);
+void init__12J3DFrameCtrlFs(void);
+void __dt__13mDoExt_bckAnmFv(void);
+void __dt__13mDoExt_bpkAnmFv(void);
+void __dt__13mDoExt_brkAnmFv(void);
+void __dt__13mDoExt_btkAnmFv(void);
+void mDoExt_destroyExpHeap__FP10JKRExpHeap(void);
 void offOneSwitch__13dSv_zoneBit_cFi(void);
 void offSwitch__10dSv_info_cFii(void);
 void offSwitch__12dSv_memBit_cFi(void);
@@ -357,28 +358,28 @@ void dComIfGp_checkItemGet(u8 param_1, int param_2) {
 
 // itemInit__14dComIfG_play_cFv
 // dComIfG_play_c::itemInit(void)
-asm void dComIfG_play_c_NS_itemInit(void) {
+asm void itemInit__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B2C8.s"
 }
 
 // setItemBombNumCount__14dComIfG_play_cFUcs
 // dComIfG_play_c::setItemBombNumCount(unsigned char, short)
-asm void dComIfG_play_c_NS_setItemBombNumCount(u8, short) {
+asm void setItemBombNumCount__14dComIfG_play_cFUcs(u8, short) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B36C.s"
 }
 
 // getItemBombNumCount__14dComIfG_play_cFUc
 // dComIfG_play_c::getItemBombNumCount(unsigned char)
-asm void dComIfG_play_c_NS_getItemBombNumCount(void) {
+asm void getItemBombNumCount__14dComIfG_play_cFUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B384.s"
 }
 
 // clearItemBombNumCount__14dComIfG_play_cFUc
 // dComIfG_play_c::clearItemBombNumCount(unsigned char)
-asm void dComIfG_play_c_NS_clearItemBombNumCount(void) {
+asm void clearItemBombNumCount__14dComIfG_play_cFUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B394.s"
 }
@@ -393,55 +394,55 @@ u32 dComIfG_play_c::getNowVibration(void) {
 
 // setStartStage__14dComIfG_play_cFP19dStage_startStage_c
 // dComIfG_play_c::setStartStage(dStage_startStage_c*)
-asm void dComIfG_play_c_NS_setStartStage(void) {
+asm void setStartStage__14dComIfG_play_cFP19dStage_startStage_c(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B3B8.s"
 }
 
 void dComIfG_get_timelayer(int* param1) {
-    if (dKy_daynight_check() != FALSE) {
+    if (dKy_daynight_check__Fv() != FALSE) {
         *param1 += 1;
     }
 }
 
 // getLayerNo_common_common__14dComIfG_play_cFPCcii
 // dComIfG_play_c::getLayerNo_common_common(const char*, int, int)
-asm void dComIfG_play_c_NS_getLayerNo_common_common(void) {
+asm void getLayerNo_common_common__14dComIfG_play_cFPCcii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002B434.s"
 }
 
 // getLayerNo_common__14dComIfG_play_cFPCcii
 // dComIfG_play_c::getLayerNo_common(const char*, int, int)
-asm void dComIfG_play_c_NS_getLayerNo_common(void) {
+asm void getLayerNo_common__14dComIfG_play_cFPCcii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C950.s"
 }
 
 // getLayerNo__14dComIfG_play_cFi
 // dComIfG_play_c::getLayerNo(int)
-asm void dComIfG_play_c_NS_getLayerNo(int) {
+asm void getLayerNo__14dComIfG_play_cFi(int) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C97C.s"
 }
 
 // createParticle__14dComIfG_play_cFv
 // dComIfG_play_c::createParticle(void)
-asm void dComIfG_play_c_NS_createParticle(void) {
+asm void createParticle__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002C9D8.s"
 }
 
 // createSimpleModel__14dComIfG_play_cFv
 // dComIfG_play_c::createSimpleModel(void)
-asm void dComIfG_play_c_NS_createSimpleModel(void) {
+asm void createSimpleModel__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CA1C.s"
 }
 
 // deleteSimpleModel__14dComIfG_play_cFv
 // dComIfG_play_c::deleteSimpleModel(void)
-asm void dComIfG_play_c_NS_deleteSimpleModel(void) {
+asm void deleteSimpleModel__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CA70.s"
 }
@@ -455,21 +456,21 @@ asm void dComIfG_play_c::drawSimpleModel(void) {
 
 // addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc
 // dComIfG_play_c::addSimpleModel(J3DModelData*, int, unsigned char)
-asm void func_8002CAF0(void) {
+asm void addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CAF0.s"
 }
 
 // removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai
 // dComIfG_play_c::removeSimpleModel(J3DModelData*, int)
-asm void func_8002CB30(void) {
+asm void removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CB30.s"
 }
 
 // entrySimpleModel__14dComIfG_play_cFP8J3DModeli
 // dComIfG_play_c::entrySimpleModel(J3DModel*, int)
-asm void func_8002CB68(void) {
+asm void entrySimpleModel__14dComIfG_play_cFP8J3DModeli(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CB68.s"
 }
@@ -508,7 +509,7 @@ u8 dComIfG_play_c::getTimerType(void) {
 
 // setTimerPtr__14dComIfG_play_cFP8dTimer_c
 // dComIfG_play_c::setTimerPtr(dTimer_c*)
-asm void dComIfG_play_c_NS_setTimerPtr(void){nofralloc
+asm void setTimerPtr__14dComIfG_play_cFP8dTimer_c(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CBD4.s"
 }
 
@@ -524,285 +525,289 @@ asm void dComIfG_inf_c::ct(void) {
 }
 
 // dComIfG_changeOpeningScene__FP11scene_classs
-// dComIfG_changeOpeningScene(scene_class*, short)
-asm void dComIfG_changeOpeningScene(void) {
+// dComIfG_changeOpeningScene__FP11scene_classs(scene_class*, short)
+asm void dComIfG_changeOpeningScene__FP11scene_classs(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CC54.s"
 }
 
 // dComIfG_resetToOpening__FP11scene_class
-// dComIfG_resetToOpening(scene_class*)
-asm void dComIfG_resetToOpening(void) {
+// dComIfG_resetToOpening__FP11scene_class(scene_class*)
+asm void dComIfG_resetToOpening__FP11scene_class(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CD44.s"
 }
 
 // phase_1__FPc
 // phase_1(char*)
-asm void func_8002CDB8(void) {
+asm void phase_1__FPc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CDB8.s"
 }
 
 // phase_2__FPc
 // phase_2(char*)
-asm void func_8002CE38(void) {
+asm void phase_2__FPc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CE38.s"
 }
 
 // phase_3__FPc
 // phase_3(char*)
-asm void func_8002CEB4(void) {
+asm void phase_3__FPc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CEB4.s"
 }
 
 // dComIfG_resLoad__FP30request_of_phase_process_classPCc
-// dComIfG_resLoad(request_of_phase_process_class*, const char*)
-asm void dComIfG_resLoad(void) {
+// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*)
+asm void dComIfG_resLoad__FP30request_of_phase_process_classPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CEBC.s"
 }  //
 
 // phase_01__FP12phaseParam_c
 // phase_01(phaseParam_c*)
-asm void func_8002CEFC(void) {
+asm void phase_01__FP12phaseParam_c(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CEFC.s"
 }
 
 // phase_02__FP12phaseParam_c
 // phase_02(phaseParam_c*)
-asm void func_8002CF5C(void) {
+asm void phase_02__FP12phaseParam_c(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CF5C.s"
 }
 
 // phase_03__FP12phaseParam_c
 // phase_03(phaseParam_c*)
-asm void func_8002CFB8(void) {
+asm void phase_03__FP12phaseParam_c(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CFB8.s"
 }
 
 // dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap
-// dComIfG_resLoad(request_of_phase_process_class*, const char*, JKRHeap*)
-asm void dComIfG_resLoad_X1_(void) {
+// dComIfG_resLoad__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*, JKRHeap*)
+asm void dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002CFC0.s"
 }
 
 // dComIfG_resDelete__FP30request_of_phase_process_classPCc
-// dComIfG_resDelete(request_of_phase_process_class*, const char*)
-asm void dComIfG_resDelete(void) {
+// dComIfG_resDelete__FP30request_of_phase_process_classPCc(request_of_phase_process_class*, const
+// char*)
+asm void dComIfG_resDelete__FP30request_of_phase_process_classPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D008.s"
 }
 
 // dComIfGp_getReverb__Fi
-// dComIfGp_getReverb(int)
-asm void dComIfGp_getReverb(void) {
+// dComIfGp_getReverb__Fi(int)
+asm void dComIfGp_getReverb__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D06C.s"
 }
 
 // dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj
-// dComIfGd_setSimpleShadow(cXyz*, float, float, cBgS_PolyInfo&, short, float, _GXTexObj*)
-asm void dComIfGd_setSimpleShadow(void) {
+// dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(cXyz*, float, float,
+// cBgS_PolyInfo&, short, float, _GXTexObj*)
+asm void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D0B4.s"
 }
 
 // dComIfGp_getMapTrans__FiPfPfPs
 // dComIfGp_getMapTrans(int, float*, float*, short*)
-asm void func_8002D1AC(void) {
+asm void dComIfGp_getMapTrans__FiPfPfPs(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D1AC.s"
 }
 
 // dComIfGp_getRoomCamera__Fi
-// dComIfGp_getRoomCamera(int)
-asm void dComIfGp_getRoomCamera(void) {
+// dComIfGp_getRoomCamera__Fi(int)
+asm void dComIfGp_getRoomCamera__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D25C.s"
 }
 
 // dComIfGp_getRoomArrow__Fi
-// dComIfGp_getRoomArrow(int)
-asm void dComIfGp_getRoomArrow(void) {
+// dComIfGp_getRoomArrow__Fi(int)
+asm void dComIfGp_getRoomArrow__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D2AC.s"
 }
 
 // dComIfGp_setNextStage__FPCcsScScfUliScsii
-// dComIfGp_setNextStage(const char*, short, char, char, float, unsigned long, int, char, short,
-// int, int)
-asm void dComIfGp_setNextStage(void) {
+// dComIfGp_setNextStage__FPCcsScScfUliScsii(const char*, short, char, char, float, unsigned long,
+// int, char, short, int, int)
+asm void dComIfGp_setNextStage__FPCcsScScfUliScsii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D2FC.s"
 }
 
 // dComIfGp_setNextStage__FPCcsScSc
-// dComIfGp_setNextStage(const char*, short, char, char)
-asm void dComIfGp_setNextStage_X1_(void) {
+// dComIfGp_setNextStage__FPCcsScScfUliScsii(const char*, short, char, char)
+asm void dComIfGp_setNextStage__FPCcsScSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D554.s"
 }
 
 // dComIfGs_isStageTbox__Fii
-// dComIfGs_isStageTbox(int, int)
-asm void dComIfGs_isStageTbox(void) {
+// dComIfGs_isStageTbox__Fii(int, int)
+asm void dComIfGs_isStageTbox__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D598.s"
 }
 
 // dComIfGs_onStageSwitch__Fii
-// dComIfGs_onStageSwitch(int, int)
-asm void dComIfGs_onStageSwitch(void) {
+// dComIfGs_onStageSwitch__Fii(int, int)
+asm void dComIfGs_onStageSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D628.s"
 }
 
 // dComIfGs_offStageSwitch__Fii
-// dComIfGs_offStageSwitch(int, int)
-asm void dComIfGs_offStageSwitch(void) {
+// dComIfGs_offStageSwitch__Fii(int, int)
+asm void dComIfGs_offStageSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D6B4.s"
 }
 
 // dComIfGs_isStageSwitch__Fii
-// dComIfGs_isStageSwitch(int, int)
-asm void dComIfGs_isStageSwitch(void) {
+// dComIfGs_isStageSwitch__Fii(int, int)
+asm void dComIfGs_isStageSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D740.s"
 }
 
 // dComIfGs_onStageBossEnemy__Fi
 // dComIfGs_onStageBossEnemy(int)
-asm void func_8002D7D0(void) {
+asm void dComIfGs_onStageBossEnemy__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D7D0.s"
 }
 
 // dComIfGs_isDungeonItemWarp__Fi
-// dComIfGs_isDungeonItemWarp(int)
-asm void dComIfGs_isDungeonItemWarp(void) {
+// dComIfGs_isDungeonItemWarp__Fi(int)
+asm void dComIfGs_isDungeonItemWarp__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D878.s"
 }
 
 // dComIfGs_BossLife_public_Set__FSc
-// dComIfGs_BossLife_public_Set(char)
-asm void dComIfGs_BossLife_public_Set(void) {
+// dComIfGs_BossLife_public_Set__FSc(char)
+asm void dComIfGs_BossLife_public_Set__FSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D8FC.s"
 }
 
 // dComIfGs_BossLife_public_Get__Fv
 // dComIfGs_BossLife_public_Get(void)
-asm void func_8002D910(void) {
+asm void dComIfGs_BossLife_public_Get__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D910.s"
 }
 
 // dComIfGs_sense_type_change_Set__FSc
 // dComIfGs_sense_type_change_Set(char)
-asm void func_8002D924(void) {
+asm void dComIfGs_sense_type_change_Set__FSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D924.s"
 }
 
 // dComIfGs_sense_type_change_Get__Fv
-// dComIfGs_sense_type_change_Get(void)
-asm void dComIfGs_sense_type_change_Get(void) {
+// dComIfGs_sense_type_change_Get__Fv(void)
+asm void dComIfGs_sense_type_change_Get__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D938.s"
 }
 
 // dComIfGs_onZoneSwitch__Fii
-// dComIfGs_onZoneSwitch(int, int)
-asm void dComIfGs_onZoneSwitch(void) {
+// dComIfGs_onZoneSwitch__Fii(int, int)
+asm void dComIfGs_onZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D94C.s"
 }
 
 // getZoneNo__20dStage_roomControl_cFi
 // dStage_roomControl_c::getZoneNo(int)
-asm int dStage_roomControl_c_NS_getZoneNo(int) {
+asm int getZoneNo__20dStage_roomControl_cFi(int) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D9B0.s"
 }
 
 // dComIfGs_offZoneSwitch__Fii
-// dComIfGs_offZoneSwitch(int, int)
-asm void dComIfGs_offZoneSwitch(void) {
+// dComIfGs_offZoneSwitch__Fii(int, int)
+asm void dComIfGs_offZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002D9CC.s"
 }
 
 // dComIfGs_isZoneSwitch__Fii
-// dComIfGs_isZoneSwitch(int, int)
-asm void dComIfGs_isZoneSwitch(void) {
+// dComIfGs_isZoneSwitch__Fii(int, int)
+asm void dComIfGs_isZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DA30.s"
 }
 
 // dComIfGs_onOneZoneSwitch__Fii
-// dComIfGs_onOneZoneSwitch(int, int)
-asm void dComIfGs_onOneZoneSwitch(void) {
+// dComIfGs_onOneZoneSwitch__Fii(int, int)
+asm void dComIfGs_onOneZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DA9C.s"
 }
 
 // dComIfGs_offOneZoneSwitch__Fii
-// dComIfGs_offOneZoneSwitch(int, int)
-asm void dComIfGs_offOneZoneSwitch(void) {
+// dComIfGs_offOneZoneSwitch__Fii(int, int)
+asm void dComIfGs_offOneZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DB00.s"
 }
 
 // dComIfGs_isOneZoneSwitch__Fii
-// dComIfGs_isOneZoneSwitch(int, int)
-asm void dComIfGs_isOneZoneSwitch(void) {
+// dComIfGs_isOneZoneSwitch__Fii(int, int)
+asm void dComIfGs_isOneZoneSwitch__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DB64.s"
 }
 
 // dComIfGs_isZoneItem__Fii
-// dComIfGs_isZoneItem(int, int)
-asm void dComIfGs_isZoneItem(void) {
+// dComIfGs_isZoneItem__Fii(int, int)
+asm void dComIfGs_isZoneItem__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DBD0.s"
 }
 
 // dComIfGs_isOneZoneItem__Fii
-// dComIfGs_isOneZoneItem(int, int)
-asm void dComIfGs_isOneZoneItem(void){nofralloc
+// dComIfGs_isOneZoneItem__Fii(int, int)
+asm void dComIfGs_isOneZoneItem__Fii(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DC3C.s"
 }
 
-u16 dComIfGs_getMaxLifeGauge(void) {
+u16 dComIfGs_getMaxLifeGauge__Fv(void) {
     return (dComIfGs_getMaxLife() / 5) * 4;
 }
 
-void dComIfGs_setSelectItemIndex(int i_no, u8 item_index) {
+void dComIfGs_setSelectItemIndex__FiUc(int i_no, u8 item_index) {
     g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setSelectItemIndex(i_no, item_index);
-    dComIfGp_setSelectItem(i_no);
+    dComIfGp_setSelectItem__Fi(i_no);
 }
 
-void dComIfGs_setMixItemIndex(int i_no, u8 item_index) {
+void dComIfGs_setMixItemIndex__FiUc(int i_no, u8 item_index) {
     g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setMixItemIndex(i_no, item_index);
 }
 
 // dComIfGs_getSelectMixItemNoArrowIndex__Fi
-// dComIfGs_getSelectMixItemNoArrowIndex(int)
+// dComIfGs_getSelectMixItemNoArrowIndex__Fi(int)
 
 // close
 #ifdef NONMATCHING
-u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
+u8 dComIfGs_getSelectMixItemNoArrowIndex__Fi(int p1) {
     u8 item_index = dComIfGs_getSelectItemIndex(p1);
-    u8 mix_index = dComIfGs_getMixItemIndex(p1);
+    u8 mix_index = dComIfGs_getMixItemIndex__Fi(p1);
 
     if (item_index < 0xf || item_index < 0x12) {
         return item_index;
@@ -813,100 +818,100 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int p1) {
     }
 }
 #else
-asm void dComIfGs_getSelectMixItemNoArrowIndex(void) {
+asm void dComIfGs_getSelectMixItemNoArrowIndex__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DD3C.s"
 }
 #endif
 
-u8 dComIfGs_getMixItemIndex(int i_no) {
+u8 dComIfGs_getMixItemIndex__Fi(int i_no) {
     return g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().getMixItemIndex(i_no);
 }
 
 // dComIfGp_setSelectItem__Fi
-// dComIfGp_setSelectItem(int)
-asm void dComIfGp_setSelectItem(int) {
+// dComIfGp_setSelectItem__Fi(int)
+asm void dComIfGp_setSelectItem__Fi(int) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DDF4.s"
 }
 
 // dComIfGp_getSelectItem__Fi
-// dComIfGp_getSelectItem(int)
-asm void dComIfGp_getSelectItem(void) {
+// dComIfGp_getSelectItem__Fi(int)
+asm void dComIfGp_getSelectItem__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002DF1C.s"
 }
 
-void dComIfGp_mapShow(void) {
+void dComIfGp_mapShow__Fv(void) {
     dComIfGs_offEventBit(0x1D01);
 }
 
-void dComIfGp_mapHide(void) {
+void dComIfGp_mapHide__Fv(void) {
     dComIfGs_onEventBit(0x1D01);
 }
 
-asm bool dComIfGp_checkMapShow(void) {
+asm bool dComIfGp_checkMapShow__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E0A8.s"
     // return !dComIfGs_isEventBit(0x1D01);
 }
 
 // dComIfGp_setHeapLockFlag__FUc
-// dComIfGp_setHeapLockFlag(unsigned char)
-asm void dComIfGp_setHeapLockFlag(void) {
+// dComIfGp_setHeapLockFlag__FUc(unsigned char)
+asm void dComIfGp_setHeapLockFlag__FUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E0E0.s"
 }
 
 // dComIfGp_offHeapLockFlag__Fi
-// dComIfGp_offHeapLockFlag(int)
-asm void dComIfGp_offHeapLockFlag(void) {
+// dComIfGp_offHeapLockFlag__Fi(int)
+asm void dComIfGp_offHeapLockFlag__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E188.s"
 }
 
 // dComIfGp_createSubExpHeap2D__Fv
-// dComIfGp_createSubExpHeap2D(void)
-asm void dComIfGp_createSubExpHeap2D(void) {
+// dComIfGp_createSubExpHeap2D__Fv(void)
+asm void dComIfGp_createSubExpHeap2D__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E22C.s"
 }
 
 // dComIfGp_destroySubExpHeap2D__Fv
-// dComIfGp_destroySubExpHeap2D(void)
-asm void dComIfGp_destroySubExpHeap2D(void) {
+// dComIfGp_destroySubExpHeap2D__Fv(void)
+asm void dComIfGp_destroySubExpHeap2D__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E2DC.s"
 }
 
 // dComIfGp_checkEmptySubHeap2D__Fv
-// dComIfGp_checkEmptySubHeap2D(void)
-asm void dComIfGp_checkEmptySubHeap2D(void) {
+// dComIfGp_checkEmptySubHeap2D__Fv(void)
+asm void dComIfGp_checkEmptySubHeap2D__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E348.s"
 }
 
 // dComIfGp_searchUseSubHeap2D__Fi
-// dComIfGp_searchUseSubHeap2D(int)
-asm void dComIfGp_searchUseSubHeap2D(void) {
+// dComIfGp_searchUseSubHeap2D__Fi(int)
+asm void dComIfGp_searchUseSubHeap2D__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E388.s"
 }
 
 // dComIfGp_getSubHeap2D__Fi
-// dComIfGp_getSubHeap2D(int)
-asm void dComIfGp_getSubHeap2D(void) {
+// dComIfGp_getSubHeap2D__Fi(int)
+asm void dComIfGp_getSubHeap2D__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E3D0.s"
 }
 
 // dComIfGs_checkGetInsectNum__Fv
-// dComIfGs_checkGetInsectNum(void)
-asm void dComIfGs_checkGetInsectNum(void){nofralloc
+// dComIfGs_checkGetInsectNum__Fv(void)
+asm void dComIfGs_checkGetInsectNum__Fv(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E428.s"
 }
 
-u8 dComIfGs_checkGetItem(u8 i_no) {
+u8 dComIfGs_checkGetItem__FUc(u8 i_no) {
     u8 count = 0;
 
     for (int i = 0; i < 60; i++) {
@@ -927,63 +932,65 @@ u8 dComIfGs_checkGetItem(u8 i_no) {
     return count;
 }
 
-u8 dComIfGs_getBottleMax(void) {
+u8 dComIfGs_getBottleMax__Fv(void) {
     return 10;
 }
 
 // dComIfGp_getSelectItemNum__Fi
-// dComIfGp_getSelectItemNum(int)
-asm void dComIfGp_getSelectItemNum(void) {
+// dComIfGp_getSelectItemNum__Fi(int)
+asm void dComIfGp_getSelectItemNum__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E5C0.s"
 }
 
 // dComIfGp_getSelectItemMaxNum__Fi
-// dComIfGp_getSelectItemMaxNum(int)
-asm void dComIfGp_getSelectItemMaxNum(void) {
+// dComIfGp_getSelectItemMaxNum__Fi(int)
+asm void dComIfGp_getSelectItemMaxNum__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E688.s"
 }
 
 // dComIfGp_setSelectItemNum__Fis
-// dComIfGp_setSelectItemNum(int, short)
-asm void dComIfGp_setSelectItemNum(void) {
+// dComIfGp_setSelectItemNum__Fis(int, short)
+asm void dComIfGp_setSelectItemNum__Fis(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E714.s"
 }
 
 // dComIfGp_addSelectItemNum__Fis
-// dComIfGp_addSelectItemNum(int, short)
-asm void dComIfGp_addSelectItemNum(void) {
+// dComIfGp_addSelectItemNum__Fis(int, short)
+asm void dComIfGp_addSelectItemNum__Fis(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E83C.s"
 }
 
 // dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
-// dComIfGd_setShadow(unsigned long, char, J3DModel*, cXyz*, float, float, float, float,
-// cBgS_PolyInfo&, dKy_tevstr_c*, short, float, _GXTexObj*)
-asm void dComIfGd_setShadow(void) {
+// dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(unsigned
+// long, char, J3DModel*, cXyz*, float, float, float, float, cBgS_PolyInfo&, dKy_tevstr_c*, short,
+// float, _GXTexObj*)
+asm void
+dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E910.s"
 }
 
 // dComIfGs_gameStart__Fv
-// dComIfGs_gameStart(void)
-asm void dComIfGs_gameStart(void) {
+// dComIfGs_gameStart__Fv(void)
+asm void dComIfGs_gameStart__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E974.s"
 }
 
 // dComIfG_getTrigA__FUl
 // dComIfG_getTrigA(unsigned long)
-asm void func_8002E9D4(void) {
+asm void dComIfG_getTrigA__FUl(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E9D4.s"
 }
 
 // dComIfGp_calcNowRegion__Fv
-// dComIfGp_calcNowRegion(void)
-asm void dComIfGp_calcNowRegion(void) {
+// dComIfGp_calcNowRegion__Fv(void)
+asm void dComIfGp_calcNowRegion__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002E9F0.s"
 }
@@ -994,7 +1001,7 @@ asm void dComIfG_getNowCalcRegion(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002EC54.s"
 }
 
-BOOL dComIfGp_isLightDropMapVisible(void) {
+BOOL dComIfGp_isLightDropMapVisible__Fv(void) {
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_isLightDropGetFlag(i) != FALSE && dComIfGs_getLightDropNum(i) < 16) {
             return TRUE;
@@ -1004,33 +1011,33 @@ BOOL dComIfGp_isLightDropMapVisible(void) {
 }
 
 // dComIfGp_getNowLevel__Fv
-// dComIfGp_getNowLevel(void)
-asm void dComIfGp_getNowLevel(void) {
+// dComIfGp_getNowLevel__Fv(void)
+asm void dComIfGp_getNowLevel__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002EE60.s"
 }
 
-void dComIfGs_setSelectEquipClothes(u8 item) {
+void dComIfGs_setSelectEquipClothes__FUc(u8 item) {
     g_dComIfG_gameInfo.getSaveFile().getPlayerStatusA().setSelectEquip(CLOTHING_BITFIELD, item);
 }
 
 // dComIfGs_setSelectEquipSword__FUc
-// dComIfGs_setSelectEquipSword(unsigned char)
-asm void dComIfGs_setSelectEquipSword(u8) {
+// dComIfGs_setSelectEquipSword__FUc(unsigned char)
+asm void dComIfGs_setSelectEquipSword__FUc(u8) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002EEC0.s"
 }
 
 // dComIfGs_setSelectEquipShield__FUc
-// dComIfGs_setSelectEquipShield(unsigned char)
-asm void dComIfGs_setSelectEquipShield(u8) {
+// dComIfGs_setSelectEquipShield__FUc(unsigned char)
+asm void dComIfGs_setSelectEquipShield__FUc(u8) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002EF94.s"
 }
 
 // dComIfGs_setKeyNum__FiUc
-// dComIfGs_setKeyNum(int, unsigned char)
-asm void dComIfGs_setKeyNum(int, u8) {
+// dComIfGs_setKeyNum__FiUc(int, unsigned char)
+asm void dComIfGs_setKeyNum__FiUc(int, u8) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F040.s"
 }
@@ -1057,7 +1064,7 @@ asm void dComIfG_play_c::setWarpItemData(const char*, cXyz, s16, s8, u8, u8) {
 
 // dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc
 // dComIfGs_setWarpItemData(const char*, cXyz, short, char, unsigned char, unsigned char)
-asm void dComIfGs_setWarpItemData_X1_(void) {
+asm void dComIfGs_setWarpItemData__FPCc4cXyzsScUcUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F19C.s"
 }
@@ -1068,109 +1075,109 @@ void dComIfGs_setLastWarpMarkItemData(const char* stage, cXyz pos, s16 angle, s8
                                                                              room, unk1, unk2);
 }
 
-const char* dComIfGs_getWarpStageName(void) {
+const char* dComIfGs_getWarpStageName__Fv(void) {
     return dComIfGs_getLastWarpMarkStageName();
 }
 
 // dComIfGs_getWarpPlayerPos__Fv
-// dComIfGs_getWarpPlayerPos(void)
-asm void dComIfGs_getWarpPlayerPos(void){nofralloc
+// dComIfGs_getWarpPlayerPos__Fv(void)
+asm void dComIfGs_getWarpPlayerPos__Fv(void){nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F2BC.s"
 }
 
-s16 dComIfGs_getWarpPlayerAngleY(void) {
+s16 dComIfGs_getWarpPlayerAngleY__Fv(void) {
     return dComIfGs_getLastWarpMarkPlayerAngleY();
 }
 
-int dComIfGs_getWarpRoomNo(void) {
+int dComIfGs_getWarpRoomNo__Fv(void) {
     return dComIfGs_getLastWarpMarkRoomNo();
 }
 
 // dComIfGs_getWarpMarkFlag__Fv
-// dComIfGs_getWarpMarkFlag(void)
-asm void dComIfGs_getWarpMarkFlag(void) {
+// dComIfGs_getWarpMarkFlag__Fv(void)
+asm void dComIfGs_getWarpMarkFlag__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F2F0.s"
 }
 
-void dComIfGs_setWarpMarkFlag(void) {
+void dComIfGs_setWarpMarkFlag__FUc(void) {
     return;
 }
 
 // __ct__19dComIfG_resLoader_cFv
 // dComIfG_resLoader_c::dComIfG_resLoader_c(void)
-asm void func_8002F314(void) {
+asm void __ct__19dComIfG_resLoader_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F314.s"
 }
 
 // __dt__19dComIfG_resLoader_cFv
 // dComIfG_resLoader_c::~dComIfG_resLoader_c(void)
-asm void func_8002F328(void) {
+asm void __dt__19dComIfG_resLoader_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F328.s"
 }
 
 // load__19dComIfG_resLoader_cFPPCcP7JKRHeap
 // dComIfG_resLoader_c::load(const char**, JKRHeap*)
-asm void func_8002F3B4(void) {
+asm void load__19dComIfG_resLoader_cFPPCcP7JKRHeap(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F3B4.s"
 }
 
 // dComIfG_getStageRes__FPCc
-// dComIfG_getStageRes(const char*)
-asm void dComIfG_getStageRes(void) {
+// dComIfG_getStageRes__FPCc(const char*)
+asm void dComIfG_getStageRes__FPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F434.s"
 }
 
 // dComIfG_getOldStageRes__FPCc
-// dComIfG_getOldStageRes(const char*)
-asm void dComIfG_getOldStageRes(void) {
+// dComIfG_getOldStageRes__FPCc(const char*)
+asm void dComIfG_getOldStageRes__FPCc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F478.s"
 }
 
 // dComIfG_getRoomArcName__Fi
-// dComIfG_getRoomArcName(int)
-asm void dComIfG_getRoomArcName(void) {
+// dComIfG_getRoomArcName__Fi(int)
+asm void dComIfG_getRoomArcName__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F4BC.s"
 }
 
 // dComIfGp_ret_wp_set__FSc
-// dComIfGp_ret_wp_set(char)
-asm void dComIfGp_ret_wp_set(void) {
+// dComIfGp_ret_wp_set__FSc(char)
+asm void dComIfGp_ret_wp_set__FSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F500.s"
 }
 
 // dComIfGp_world_dark_set__FUc
-// dComIfGp_world_dark_set(unsigned char)
+// dComIfGp_world_dark_set__FUc(unsigned char)
 
 // matches but dComIfG_inf_c structure is wrong
 #ifdef NONMATCHING
-void dComIfGp_world_dark_set(u8 state) {
+void dComIfGp_world_dark_set__FUc(u8 state) {
     g_dComIfG_gameInfo.setWorldDark(state);
 }
 #else
-asm void dComIfGp_world_dark_set(u8) {
+asm void dComIfGp_world_dark_set__FUc(u8) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F504.s"
 }
 #endif
 
 // dComIfGp_world_dark_get__Fv
-// dComIfGp_world_dark_get(void)
+// dComIfGp_world_dark_get__Fv(void)
 
 // same issue as above
 #ifdef NONMATCHING
-u8 dComIfGp_world_dark_get(void) {
+u8 dComIfGp_world_dark_get__Fv(void) {
     return g_dComIfG_gameInfo.getWorldDark();
 }
 #else
-asm void dComIfGp_world_dark_get(void) {
+asm void dComIfGp_world_dark_get__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F518.s"
 }
@@ -1178,238 +1185,239 @@ asm void dComIfGp_world_dark_get(void) {
 
 // dComIfG_TimerStart__Fis
 // dComIfG_TimerStart(int, short)
-asm void func_8002F52C(void) {
+asm void dComIfG_TimerStart__Fis(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F52C.s"
 }
 
 // dComIfG_TimerStop__Fi
 // dComIfG_TimerStop(int)
-asm void func_8002F5C0(void) {
+asm void dComIfG_TimerStop__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F5C0.s"
 }
 
 // dComIfG_TimerReStart__Fi
 // dComIfG_TimerReStart(int)
-asm void func_8002F638(void) {
+asm void dComIfG_TimerReStart__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F638.s"
 }
 
 // dComIfG_TimerEnd__Fii
 // dComIfG_TimerEnd(int, int)
-asm void func_8002F6B0(void) {
+asm void dComIfG_TimerEnd__Fii(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F6B0.s"
 }
 
 // dComIfG_TimerDeleteCheck__Fi
 // dComIfG_TimerDeleteCheck(int)
-asm void func_8002F72C(void) {
+asm void dComIfG_TimerDeleteCheck__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F72C.s"
 }
 
 // dComIfG_TimerDeleteRequest__Fi
-// dComIfG_TimerDeleteRequest(int)
-asm void dComIfG_TimerDeleteRequest(void) {
+// dComIfG_TimerDeleteRequest__Fi(int)
+asm void dComIfG_TimerDeleteRequest__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F79C.s"
 }
 
 // dComIfGs_Wolf_Change_Check__Fv
-// dComIfGs_Wolf_Change_Check(void)
-asm void dComIfGs_Wolf_Change_Check(void) {
+// dComIfGs_Wolf_Change_Check__Fv(void)
+asm void dComIfGs_Wolf_Change_Check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F810.s"
 }
 
 // dComIfGs_PolyDamageOff_Set__FSc
-// dComIfGs_PolyDamageOff_Set(char)
-asm void dComIfGs_PolyDamageOff_Set(void) {
+// dComIfGs_PolyDamageOff_Set__FSc(char)
+asm void dComIfGs_PolyDamageOff_Set__FSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002F9F0.s"
 }
 
 // dComIfGs_PolyDamageOff_Check__Fv
-// dComIfGs_PolyDamageOff_Check(void)
-asm void dComIfGs_PolyDamageOff_Check(void) {
+// dComIfGs_PolyDamageOff_Check__Fv(void)
+asm void dComIfGs_PolyDamageOff_Check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA04.s"
 }
 
 // dComIfGs_shake_kandelaar__Fv
 // dComIfGs_shake_kandelaar(void)
-asm void func_8002FA18(void) {
+asm void dComIfGs_shake_kandelaar__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA18.s"
 }
 
 // dComIfGs_shake_kandelaar_check__Fv
 // dComIfGs_shake_kandelaar_check(void)
-asm void func_8002FA30(void) {
+asm void dComIfGs_shake_kandelaar_check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA30.s"
 }
 
 // dComIfGs_wolfeye_effect_check__Fv
-// dComIfGs_wolfeye_effect_check(void)
-asm void dComIfGs_wolfeye_effect_check(void) {
+// dComIfGs_wolfeye_effect_check__Fv(void)
+asm void dComIfGs_wolfeye_effect_check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA54.s"
 }
 
 // dComIfGs_Grass_hide_Set__FSc
 // dComIfGs_Grass_hide_Set(char)
-asm void func_8002FA84(void) {
+asm void dComIfGs_Grass_hide_Set__FSc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA84.s"
 }
 
 // dComIfGp_TargetWarpPt_set__FUc
-// dComIfGp_TargetWarpPt_set(unsigned char)
-asm void dComIfGp_TargetWarpPt_set(void) {
+// dComIfGp_TargetWarpPt_set__FUc(unsigned char)
+asm void dComIfGp_TargetWarpPt_set__FUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FA98.s"
 }
 
 // dComIfGp_SelectWarpPt_set__FUc
-// dComIfGp_SelectWarpPt_set(unsigned char)
-asm void dComIfGp_SelectWarpPt_set(void) {
+// dComIfGp_SelectWarpPt_set__FUc(unsigned char)
+asm void dComIfGp_SelectWarpPt_set__FUc(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FAAC.s"
 }
 
 // dComIfGp_TargetWarpPt_get__Fv
-// dComIfGp_TargetWarpPt_get(void)
-asm void dComIfGp_TargetWarpPt_get(void) {
+// dComIfGp_TargetWarpPt_get__Fv(void)
+asm void dComIfGp_TargetWarpPt_get__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FAC0.s"
 }
 
 // dComIfGp_SelectWarpPt_get__Fv
-// dComIfGp_SelectWarpPt_get(void)
-asm void dComIfGp_SelectWarpPt_get(void) {
+// dComIfGp_SelectWarpPt_get__Fv(void)
+asm void dComIfGp_SelectWarpPt_get__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FAD4.s"
 }
 
 // dComIfGp_TransportWarp_check__Fv
-// dComIfGp_TransportWarp_check(void)
-asm void dComIfGp_TransportWarp_check(void) {
+// dComIfGp_TransportWarp_check__Fv(void)
+asm void dComIfGp_TransportWarp_check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FAE8.s"
 }
 
 // dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
-// dComLbG_PhaseHandler(request_of_phase_process_class*, int (*)(void*), void*)
-asm void dComLbG_PhaseHandler(void) {
+// dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(request_of_phase_process_class*,
+// int (*)(void*), void*)
+asm void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FB20.s"
 }
 
 // dComIfGs_onVisitedRoom__Fi
-// dComIfGs_onVisitedRoom(int)
-asm void dComIfGs_onVisitedRoom(void) {
+// dComIfGs_onVisitedRoom__Fi(int)
+asm void dComIfGs_onVisitedRoom__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FB80.s"
 }
 
 // dComIfGs_offVisitedRoom__Fi
 // dComIfGs_offVisitedRoom(int)
-asm void func_8002FC3C(void) {
+asm void dComIfGs_offVisitedRoom__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FC3C.s"
 }
 
 // dComIfGs_isVisitedRoom__Fi
-// dComIfGs_isVisitedRoom(int)
-asm void dComIfGs_isVisitedRoom(void) {
+// dComIfGs_isVisitedRoom__Fi(int)
+asm void dComIfGs_isVisitedRoom__Fi(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FC98.s"
 }
 
 // dComIfGs_staffroll_next_go__Fv
-// dComIfGs_staffroll_next_go(void)
-asm void dComIfGs_staffroll_next_go(void) {
+// dComIfGs_staffroll_next_go__Fv(void)
+asm void dComIfGs_staffroll_next_go__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FCF4.s"
 }
 
 // dComIfGs_staffroll_next_go_check__Fv
-// dComIfGs_staffroll_next_go_check(void)
-asm void dComIfGs_staffroll_next_go_check(void) {
+// dComIfGs_staffroll_next_go_check__Fv(void)
+asm void dComIfGs_staffroll_next_go_check__Fv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FD08.s"
 }
 
 // __sinit_d_com_inf_game_cpp
 //
-asm void func_8002FD18(void) {
+asm void __sinit_d_com_inf_game_cpp(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FD18.s"
 }
 
 // __dt__13dComIfG_inf_cFv
 // dComIfG_inf_c::~dComIfG_inf_c(void)
-asm void dComIfG_inf_c_NS_dtor(void) {
+asm void __dt__13dComIfG_inf_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FD74.s"
 }
 
 // __dt__14dComIfG_play_cFv
 // dComIfG_play_c::~dComIfG_play_c(void)
-asm void dComIfG_play_c_NS_dtor(void) {
+asm void __dt__14dComIfG_play_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FDE8.s"
 }
 
 // __dt__11cBgS_ChkElmFv
 // cBgS_ChkElm::~cBgS_ChkElm(void)
-asm void cBgS_ChkElm_NS_dtor(void) {
+asm void __dt__11cBgS_ChkElmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FEF8.s"
 }
 
 // __dt__4dCcSFv
 // dCcS::~dCcS(void)
-asm void dCcS_NS_dtor(void) {
+asm void __dt__4dCcSFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8002FF40.s"
 }
 
 // __dt__12dCcMassS_ObjFv
 // dCcMassS_Obj::~dCcMassS_Obj(void)
-asm void dCcMassS_Obj_NS_dtor(void) {
+asm void __dt__12dCcMassS_ObjFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800300F4.s"
 }
 
 // __dt__12dEvt_order_cFv
 // dEvt_order_c::~dEvt_order_c(void)
-asm void dEvt_order_c_NS_dtor(void) {
+asm void __dt__12dEvt_order_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030154.s"
 }
 
 // __dt__11dEvDtBase_cFv
 // dEvDtBase_c::~dEvDtBase_c(void)
-asm void dEvDtBase_c_NS_dtor(void) {
+asm void __dt__11dEvDtBase_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030190.s"
 }
 
 // __dt__14dDlst_window_cFv
 // dDlst_window_c::~dDlst_window_c(void)
-asm void dDlst_window_c_NS_dtor(void) {
+asm void __dt__14dDlst_window_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800301CC.s"
 }
 
 // __dt__25dComIfG_camera_info_classFv
 // dComIfG_camera_info_class::~dComIfG_camera_info_class(void)
-asm void dComIfG_camera_info_class_NS_dtor(void) {
+asm void __dt__25dComIfG_camera_info_classFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030208.s"
 }
@@ -1437,63 +1445,63 @@ asm dDlst_window_c::dDlst_window_c(void) {
 
 // __dt__10dAttList_cFv
 // dAttList_c::~dAttList_c(void)
-asm void dAttList_c_NS_dtor(void) {
+asm void __dt__10dAttList_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800304D0.s"
 }
 
 // __ct__10dAttList_cFv
 // dAttList_c::dAttList_c(void)
-asm void dAttList_c_NS_ctor(void) {
+asm void __ct__10dAttList_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003050C.s"
 }
 
 // __dt__7cSAngleFv
 // cSAngle::~cSAngle(void)
-asm void cSAngle_NS_dtor(void) {
+asm void __dt__7cSAngleFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030510.s"
 }
 
 // __dt__10dAttDraw_cFv
 // dAttDraw_c::~dAttDraw_c(void)
-asm void dAttDraw_c_NS_dtor(void) {
+asm void __dt__10dAttDraw_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003054C.s"
 }
 
 // __dt__13mDoExt_bckAnmFv
 // mDoExt_bckAnm::~mDoExt_bckAnm(void)
-asm void mDoExt_bckAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_bckAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800306A0.s"
 }
 
 // __dt__13mDoExt_bpkAnmFv
 // mDoExt_bpkAnm::~mDoExt_bpkAnm(void)
-asm void mDoExt_bpkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_bpkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800306F4.s"
 }
 
 // __dt__13mDoExt_brkAnmFv
 // mDoExt_brkAnm::~mDoExt_brkAnm(void)
-asm void mDoExt_brkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_brkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030748.s"
 }
 
 // __dt__13mDoExt_btkAnmFv
 // mDoExt_btkAnm::~mDoExt_btkAnm(void)
-asm void mDoExt_btkAnm_NS_dtor(void) {
+asm void __dt__13mDoExt_btkAnmFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_8003079C.s"
 }
 
 // __ct__10dAttDraw_cFv
 // dAttDraw_c::dAttDraw_c(void)
-asm void dAttDraw_c_NS_ctor(void) {
+asm void __ct__10dAttDraw_cFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_800307F0.s"
 }
@@ -1528,28 +1536,28 @@ asm mDoExt_bckAnm::mDoExt_bckAnm(void) {
 
 // __dt__12dCcMassS_MngFv
 // dCcMassS_Mng::~dCcMassS_Mng(void)
-asm void func_80030A74(void) {
+asm void __dt__12dCcMassS_MngFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030A74.s"
 }
 
 // __dt__4cCcSFv
 // cCcS::~cCcS(void)
-asm void func_80030BDC(void) {
+asm void __dt__4cCcSFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030BDC.s"
 }
 
 // __dt__4dBgSFv
 // dBgS::~dBgS(void)
-asm void func_80030C50(void) {
+asm void __dt__4dBgSFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030C50.s"
 }
 
 // __dt__4cBgSFv
 // cBgS::~cBgS(void)
-asm void func_80030CCC(void) {
+asm void __dt__4cBgSFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030CCC.s"
 }
@@ -1584,28 +1592,28 @@ asm void __ct__12dSv_memory_cFv(void) {
 
 // __dt__15cCcD_DivideAreaFv
 // cCcD_DivideArea::~cCcD_DivideArea(void)
-asm void func_80030DE0(void) {
+asm void __dt__15cCcD_DivideAreaFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030DE0.s"
 }  //
 
 // __dt__8cM3dGCylFv
 // cM3dGCyl::~cM3dGCyl(void)
-asm void cM3dGCyl_NS_dtor(void) {
+asm void __dt__8cM3dGCylFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030E3C.s"
 }
 
 // __dt__8cM3dGAabFv
 // cM3dGAab::~cM3dGAab(void)
-asm void func_80030E84(void) {
+asm void __dt__8cM3dGAabFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030E84.s"
 }
 
 // __dt__15cCcD_DivideInfoFv
 // cCcD_DivideInfo::~cCcD_DivideInfo(void)
-asm void func_80030ECC(void) {
+asm void __dt__15cCcD_DivideInfoFv(void) {
     nofralloc
 #include "d/d_com/d_com_inf_game/asm/func_80030ECC.s"
 }

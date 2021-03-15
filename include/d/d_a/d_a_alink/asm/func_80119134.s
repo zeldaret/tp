@@ -13,18 +13,18 @@
 /* 80119164 001160A4  3C A5 00 02 */ addis r5, r5, 2
 /* 80119168 001160A8  38 C0 00 80 */ li r6, 0x80
 /* 8011916C 001160AC  38 A5 C2 F8 */ addi r5, r5, -15624
-/* 80119170 001160B0  4B F2 32 91 */ bl dRes_control_c_NS_getIDRes
+/* 80119170 001160B0  4B F2 32 91 */ bl getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci
 /* 80119174 001160B4  7C 7F 1B 79 */ or. r31, r3, r3
 /* 80119178 001160B8  41 82 00 34 */ beq lbl_801191AC
 /* 8011917C 001160BC  80 1D 00 00 */ lwz r0, 0(r29)
 /* 80119180 001160C0  7C 00 F8 40 */ cmplw r0, r31
 /* 80119184 001160C4  41 82 00 28 */ beq lbl_801191AC
 /* 80119188 001160C8  80 9E 00 04 */ lwz r4, 4(r30)
-/* 8011918C 001160CC  48 21 26 F1 */ bl J3DAnmTevRegKey_NS_searchUpdateMaterialID_X1_
+/* 8011918C 001160CC  48 21 26 F1 */ bl searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
 /* 80119190 001160D0  80 7E 00 04 */ lwz r3, 4(r30)
 /* 80119194 001160D4  38 63 00 58 */ addi r3, r3, 0x58
 /* 80119198 001160D8  7F E4 FB 78 */ mr r4, r31
-/* 8011919C 001160DC  48 21 6C D5 */ bl J3DMaterialTable_NS_entryTevRegAnimator
+/* 8011919C 001160DC  48 21 6C D5 */ bl entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
 /* 801191A0 001160E0  C0 02 92 C0 */ lfs f0, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 801191A4 001160E4  D0 1F 00 08 */ stfs f0, 8(r31)
 /* 801191A8 001160E8  93 FD 00 00 */ stw r31, 0(r29)

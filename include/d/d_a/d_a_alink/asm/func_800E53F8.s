@@ -47,7 +47,7 @@ lbl_800E547C:
 /* 800E54A4 000E23E4  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800E54A8 000E23E8  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800E54AC 000E23EC  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
-/* 800E54B0 000E23F0  4B F2 6F 85 */ bl mDoMtx_YrotM
+/* 800E54B0 000E23F0  4B F2 6F 85 */ bl mDoMtx_YrotM__FPA4_fs
 /* 800E54B4 000E23F4  3C 60 80 3E */ lis r3, lbl_803DD470@ha
 /* 800E54B8 000E23F8  38 63 D4 70 */ addi r3, r3, lbl_803DD470@l
 /* 800E54BC 000E23FC  38 81 00 24 */ addi r4, r1, 0x24
@@ -154,7 +154,7 @@ lbl_800E5624:
 /* 800E5628 000E2568  D0 5F 04 FC */ stfs f2, 0x4fc(r31)
 /* 800E562C 000E256C  7F C3 F3 78 */ mr r3, r30
 /* 800E5630 000E2570  38 80 00 00 */ li r4, 0
-/* 800E5634 000E2574  4B FD 5A 51 */ bl daAlink_c_NS_getBodyAngleXAtnActor
+/* 800E5634 000E2574  4B FD 5A 51 */ bl getBodyAngleXAtnActor__9daAlink_cFi
 /* 800E5638 000E2578  B0 7F 04 DC */ sth r3, 0x4dc(r31)
 /* 800E563C 000E257C  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 800E5640 000E2580  54 00 04 38 */ rlwinm r0, r0, 0, 0x10, 0x1c
@@ -206,7 +206,7 @@ lbl_800E56C0:
 /* 800E56EC 000E262C  D0 01 00 2C */ stfs f0, 0x2c(r1)
 /* 800E56F0 000E2630  7F C3 F3 78 */ mr r3, r30
 /* 800E56F4 000E2634  38 81 00 24 */ addi r4, r1, 0x24
-/* 800E56F8 000E2638  4B FF CD 85 */ bl daAlink_c_NS_multVecMagneBootInvMtx
+/* 800E56F8 000E2638  4B FF CD 85 */ bl multVecMagneBootInvMtx__9daAlink_cFP4cXyz
 /* 800E56FC 000E263C  38 61 00 24 */ addi r3, r1, 0x24
 /* 800E5700 000E2640  48 18 1A 29 */ bl atan2sX_Z__4cXyzCFv
 /* 800E5704 000E2644  B0 7F 04 DE */ sth r3, 0x4de(r31)
@@ -248,7 +248,7 @@ lbl_800E5780:
 /* 800E5784 000E26C4  60 00 00 04 */ ori r0, r0, 4
 /* 800E5788 000E26C8  90 1E 05 80 */ stw r0, 0x580(r30)
 /* 800E578C 000E26CC  7F C3 F3 78 */ mr r3, r30
-/* 800E5790 000E26D0  4B FF F4 45 */ bl daAlink_c_NS_freeGrabItem
+/* 800E5790 000E26D0  4B FF F4 45 */ bl freeGrabItem__9daAlink_cFv
 lbl_800E5794:
 /* 800E5794 000E26D4  83 E1 00 3C */ lwz r31, 0x3c(r1)
 /* 800E5798 000E26D8  83 C1 00 38 */ lwz r30, 0x38(r1)

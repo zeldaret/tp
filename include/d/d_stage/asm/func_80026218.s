@@ -18,7 +18,7 @@ lbl_80026258:
 /* 80026258 00023198  7F A3 EB 78 */ mr r3, r29
 /* 8002625C 0002319C  80 9E 00 00 */ lwz r4, 0(r30)
 /* 80026260 000231A0  38 84 03 80 */ addi r4, r4, 0x380
-/* 80026264 000231A4  4B FF E5 E1 */ bl dStage_roomControl_c_NS_createMemoryBlock
+/* 80026264 000231A4  4B FF E5 E1 */ bl createMemoryBlock__20dStage_roomControl_cFiUl
 /* 80026268 000231A8  3B DE 00 04 */ addi r30, r30, 4
 /* 8002626C 000231AC  3B BD 00 01 */ addi r29, r29, 1
 lbl_80026270:

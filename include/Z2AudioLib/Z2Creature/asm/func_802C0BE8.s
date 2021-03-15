@@ -3,7 +3,7 @@
 /* 802C0BF0 002BDB30  90 01 00 14 */ stw r0, 0x14(r1)
 /* 802C0BF4 002BDB34  38 C0 00 00 */ li r6, 0
 /* 802C0BF8 002BDB38  38 63 00 08 */ addi r3, r3, 8
-/* 802C0BFC 002BDB3C  4B FF D8 A9 */ bl Z2SoundObjBase_NS_startCollisionSE
+/* 802C0BFC 002BDB3C  4B FF D8 A9 */ bl startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
 /* 802C0C00 002BDB40  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 802C0C04 002BDB44  7C 08 03 A6 */ mtlr r0
 /* 802C0C08 002BDB48  38 21 00 10 */ addi r1, r1, 0x10

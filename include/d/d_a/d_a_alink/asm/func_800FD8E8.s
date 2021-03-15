@@ -5,19 +5,19 @@
 /* 800FD8F8 000FA838  93 C1 00 08 */ stw r30, 8(r1)
 /* 800FD8FC 000FA83C  7C 7E 1B 78 */ mr r30, r3
 /* 800FD900 000FA840  3B FE 1F D0 */ addi r31, r30, 0x1fd0
-/* 800FD904 000FA844  4B FF FB A5 */ bl daAlink_c_NS_setMoveBGLadderCorrect
+/* 800FD904 000FA844  4B FF FB A5 */ bl setMoveBGLadderCorrect__9daAlink_cFv
 /* 800FD908 000FA848  2C 03 00 00 */ cmpwi r3, 0
 /* 800FD90C 000FA84C  41 82 00 0C */ beq lbl_800FD918
 /* 800FD910 000FA850  38 60 00 01 */ li r3, 1
 /* 800FD914 000FA854  48 00 00 A0 */ b lbl_800FD9B4
 lbl_800FD918:
 /* 800FD918 000FA858  7F E3 FB 78 */ mr r3, r31
-/* 800FD91C 000FA85C  48 06 0B B1 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800FD91C 000FA85C  48 06 0B B1 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800FD920 000FA860  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800FD924 000FA864  41 82 00 14 */ beq lbl_800FD938
 /* 800FD928 000FA868  7F C3 F3 78 */ mr r3, r30
 /* 800FD92C 000FA86C  38 80 00 00 */ li r4, 0
-/* 800FD930 000FA870  4B FB C7 A1 */ bl daAlink_c_NS_checkNextAction
+/* 800FD930 000FA870  4B FB C7 A1 */ bl checkNextAction__9daAlink_cFi
 /* 800FD934 000FA874  48 00 00 7C */ b lbl_800FD9B0
 lbl_800FD938:
 /* 800FD938 000FA878  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -28,7 +28,7 @@ lbl_800FD938:
 /* 800FD94C 000FA88C  40 81 00 18 */ ble lbl_800FD964
 /* 800FD950 000FA890  7F C3 F3 78 */ mr r3, r30
 /* 800FD954 000FA894  38 80 00 01 */ li r4, 1
-/* 800FD958 000FA898  4B FB C7 79 */ bl daAlink_c_NS_checkNextAction
+/* 800FD958 000FA898  4B FB C7 79 */ bl checkNextAction__9daAlink_cFi
 /* 800FD95C 000FA89C  2C 03 00 00 */ cmpwi r3, 0
 /* 800FD960 000FA8A0  40 82 00 50 */ bne lbl_800FD9B0
 lbl_800FD964:

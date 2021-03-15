@@ -4,7 +4,7 @@
 /* 800D31C4 000D0104  93 E1 00 0C */ stw r31, 0xc(r1)
 /* 800D31C8 000D0108  93 C1 00 08 */ stw r30, 8(r1)
 /* 800D31CC 000D010C  7C 7E 1B 78 */ mr r30, r3
-/* 800D31D0 000D0110  4B FE 6D 81 */ bl daAlink_c_NS_checkGroundSpecialMode
+/* 800D31D0 000D0110  4B FE 6D 81 */ bl checkGroundSpecialMode__9daAlink_cFv
 /* 800D31D4 000D0114  2C 03 00 00 */ cmpwi r3, 0
 /* 800D31D8 000D0118  41 82 00 0C */ beq lbl_800D31E4
 /* 800D31DC 000D011C  38 60 00 01 */ li r3, 1
@@ -12,14 +12,14 @@
 lbl_800D31E4:
 /* 800D31E4 000D0124  7F C3 F3 78 */ mr r3, r30
 /* 800D31E8 000D0128  38 80 00 01 */ li r4, 1
-/* 800D31EC 000D012C  4B FE 80 C5 */ bl daAlink_c_NS_setBodyAngleXReadyAnime
+/* 800D31EC 000D012C  4B FE 80 C5 */ bl setBodyAngleXReadyAnime__9daAlink_cFi
 /* 800D31F0 000D0130  3B FE 1F D0 */ addi r31, r30, 0x1fd0
 /* 800D31F4 000D0134  7F C3 F3 78 */ mr r3, r30
-/* 800D31F8 000D0138  4B FF EF 05 */ bl daAlink_c_NS_setComboReserb
+/* 800D31F8 000D0138  4B FF EF 05 */ bl setComboReserb__9daAlink_cFv
 /* 800D31FC 000D013C  7F C3 F3 78 */ mr r3, r30
-/* 800D3200 000D0140  4B FF F4 85 */ bl daAlink_c_NS_checkCutTurnCharge_X1_
+/* 800D3200 000D0140  4B FF F4 85 */ bl checkCutTurnCharge__9daAlink_cFv
 /* 800D3204 000D0144  7F C3 F3 78 */ mr r3, r30
-/* 800D3208 000D0148  4B FF FA 4D */ bl daAlink_c_NS_checkCutAtnActorChange
+/* 800D3208 000D0148  4B FF FA 4D */ bl checkCutAtnActorChange__9daAlink_cFv
 /* 800D320C 000D014C  38 7E 33 98 */ addi r3, r30, 0x3398
 /* 800D3210 000D0150  C0 22 92 C0 */ lfs f1, lbl_80452CC0-_SDA2_BASE_(r2)
 /* 800D3214 000D0154  3C 80 80 39 */ lis r4, lbl_8038D6BC@ha
@@ -38,7 +38,7 @@ lbl_800D31E4:
 /* 800D3248 000D0188  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800D324C 000D018C  41 82 00 58 */ beq lbl_800D32A4
 /* 800D3250 000D0190  7F C3 F3 78 */ mr r3, r30
-/* 800D3254 000D0194  4B FF F4 99 */ bl daAlink_c_NS_getCutDirection
+/* 800D3254 000D0194  4B FF F4 99 */ bl getCutDirection__9daAlink_cFv
 /* 800D3258 000D0198  2C 03 00 03 */ cmpwi r3, 3
 /* 800D325C 000D019C  40 82 00 20 */ bne lbl_800D327C
 /* 800D3260 000D01A0  88 1E 05 68 */ lbz r0, 0x568(r30)
@@ -62,12 +62,12 @@ lbl_800D32A0:
 /* 800D32A0 000D01E0  B0 7E 30 0A */ sth r3, 0x300a(r30)
 lbl_800D32A4:
 /* 800D32A4 000D01E4  7F E3 FB 78 */ mr r3, r31
-/* 800D32A8 000D01E8  48 08 B2 25 */ bl daPy_frameCtrl_c_NS_checkAnmEnd
+/* 800D32A8 000D01E8  48 08 B2 25 */ bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800D32AC 000D01EC  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D32B0 000D01F0  41 82 00 4C */ beq lbl_800D32FC
 /* 800D32B4 000D01F4  7F C3 F3 78 */ mr r3, r30
 /* 800D32B8 000D01F8  38 80 00 01 */ li r4, 1
-/* 800D32BC 000D01FC  4B FF E1 75 */ bl daAlink_c_NS_resetCombo
+/* 800D32BC 000D01FC  4B FF E1 75 */ bl resetCombo__9daAlink_cFi
 /* 800D32C0 000D0200  80 1E 06 14 */ lwz r0, 0x614(r30)
 /* 800D32C4 000D0204  28 00 00 24 */ cmplwi r0, 0x24
 /* 800D32C8 000D0208  41 82 00 0C */ beq lbl_800D32D4
@@ -78,12 +78,12 @@ lbl_800D32D4:
 /* 800D32D8 000D0218  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
 /* 800D32DC 000D021C  38 63 4F F8 */ addi r3, r3, 0x4ff8
 /* 800D32E0 000D0220  80 9E 31 84 */ lwz r4, 0x3184(r30)
-/* 800D32E4 000D0224  4B F7 4E 99 */ bl dEvent_manager_c_NS_cutEnd
+/* 800D32E4 000D0224  4B F7 4E 99 */ bl cutEnd__16dEvent_manager_cFi
 /* 800D32E8 000D0228  48 00 01 D4 */ b lbl_800D34BC
 lbl_800D32EC:
 /* 800D32EC 000D022C  7F C3 F3 78 */ mr r3, r30
 /* 800D32F0 000D0230  38 80 00 00 */ li r4, 0
-/* 800D32F4 000D0234  4B FE 6D DD */ bl daAlink_c_NS_checkNextAction
+/* 800D32F4 000D0234  4B FE 6D DD */ bl checkNextAction__9daAlink_cFi
 /* 800D32F8 000D0238  48 00 01 C4 */ b lbl_800D34BC
 lbl_800D32FC:
 /* 800D32FC 000D023C  C0 3F 00 10 */ lfs f1, 0x10(r31)
@@ -96,7 +96,7 @@ lbl_800D32FC:
 lbl_800D3318:
 /* 800D3318 000D0258  7F C3 F3 78 */ mr r3, r30
 /* 800D331C 000D025C  38 80 00 03 */ li r4, 3
-/* 800D3320 000D0260  4B FF F4 41 */ bl daAlink_c_NS_checkCutCancelNextMode
+/* 800D3320 000D0260  4B FF F4 41 */ bl checkCutCancelNextMode__9daAlink_cFi
 /* 800D3324 000D0264  2C 03 00 00 */ cmpwi r3, 0
 /* 800D3328 000D0268  40 82 01 94 */ bne lbl_800D34BC
 lbl_800D332C:
@@ -106,11 +106,11 @@ lbl_800D332C:
 /* 800D3338 000D0278  40 81 00 10 */ ble lbl_800D3348
 /* 800D333C 000D027C  7F C3 F3 78 */ mr r3, r30
 /* 800D3340 000D0280  38 80 00 01 */ li r4, 1
-/* 800D3344 000D0284  4B FF E0 ED */ bl daAlink_c_NS_resetCombo
+/* 800D3344 000D0284  4B FF E0 ED */ bl resetCombo__9daAlink_cFi
 lbl_800D3348:
 /* 800D3348 000D0288  7F C3 F3 78 */ mr r3, r30
 /* 800D334C 000D028C  80 9E 31 98 */ lwz r4, 0x3198(r30)
-/* 800D3350 000D0290  4B FF E6 79 */ bl daAlink_c_NS_changeCutReverseProc
+/* 800D3350 000D0290  4B FF E6 79 */ bl changeCutReverseProc__9daAlink_cFQ29daAlink_c11daAlink_ANM
 /* 800D3354 000D0294  2C 03 00 00 */ cmpwi r3, 0
 /* 800D3358 000D0298  41 82 00 0C */ beq lbl_800D3364
 /* 800D335C 000D029C  38 60 00 01 */ li r3, 1
@@ -118,13 +118,13 @@ lbl_800D3348:
 lbl_800D3364:
 /* 800D3364 000D02A4  7F C3 F3 78 */ mr r3, r30
 /* 800D3368 000D02A8  A8 9E 30 10 */ lha r4, 0x3010(r30)
-/* 800D336C 000D02AC  4B FE 03 C9 */ bl daAlink_c_NS_setShapeAngleToAtnActor
+/* 800D336C 000D02AC  4B FE 03 C9 */ bl setShapeAngleToAtnActor__9daAlink_cFi
 /* 800D3370 000D02B0  54 60 06 3F */ clrlwi. r0, r3, 0x18
 /* 800D3374 000D02B4  41 82 00 30 */ beq lbl_800D33A4
 /* 800D3378 000D02B8  A8 1E 04 E6 */ lha r0, 0x4e6(r30)
 /* 800D337C 000D02BC  B0 1E 30 0C */ sth r0, 0x300c(r30)
 /* 800D3380 000D02C0  7F C3 F3 78 */ mr r3, r30
-/* 800D3384 000D02C4  4B FE 02 AD */ bl daAlink_c_NS_getShapeAngleYAtnActor
+/* 800D3384 000D02C4  4B FE 02 AD */ bl getShapeAngleYAtnActor__9daAlink_cFv
 /* 800D3388 000D02C8  A8 9E 04 E6 */ lha r4, 0x4e6(r30)
 /* 800D338C 000D02CC  48 19 DA 99 */ bl cLib_distanceAngleS__Fss
 /* 800D3390 000D02D0  2C 03 08 00 */ cmpwi r3, 0x800
@@ -156,7 +156,7 @@ lbl_800D33BC:
 /* 800D33F0 000D0330  7F C3 F3 78 */ mr r3, r30
 /* 800D33F4 000D0334  3C 80 00 02 */ lis r4, 0x00020002@ha
 /* 800D33F8 000D0338  38 84 00 02 */ addi r4, r4, 0x00020002@l
-/* 800D33FC 000D033C  4B FE BC F1 */ bl daAlink_c_NS_seStartSwordCut
+/* 800D33FC 000D033C  4B FE BC F1 */ bl seStartSwordCut__9daAlink_cFUl
 /* 800D3400 000D0340  C0 1E 34 80 */ lfs f0, 0x3480(r30)
 /* 800D3404 000D0344  D0 1E 33 98 */ stfs f0, 0x3398(r30)
 lbl_800D3408:

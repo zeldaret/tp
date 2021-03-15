@@ -8,7 +8,7 @@
 /* 80118A14 00115954  38 7D 1F 58 */ addi r3, r29, 0x1f58
 /* 80118A18 00115958  7C A4 2B 78 */ mr r4, r5
 /* 80118A1C 0011595C  38 A0 00 00 */ li r5, 0
-/* 80118A20 00115960  48 04 66 F9 */ bl daPy_anmHeap_c_NS_loadDataDemoRID
+/* 80118A20 00115960  48 04 66 F9 */ bl loadDataDemoRID__14daPy_anmHeap_cFUsUs
 /* 80118A24 00115964  7C 7F 1B 79 */ or. r31, r3, r3
 /* 80118A28 00115968  41 82 00 90 */ beq lbl_80118AB8
 /* 80118A2C 0011596C  7F A3 EB 78 */ mr r3, r29
@@ -18,20 +18,20 @@
 /* 80118A3C 0011597C  A8 FF 00 06 */ lha r7, 6(r31)
 /* 80118A40 00115980  C0 22 92 B8 */ lfs f1, lbl_80452CB8-_SDA2_BASE_(r2)
 /* 80118A44 00115984  C0 42 92 C0 */ lfs f2, lbl_80452CC0-_SDA2_BASE_(r2)
-/* 80118A48 00115988  4B F9 39 4D */ bl daAlink_c_NS_setFrameCtrl
+/* 80118A48 00115988  4B F9 39 4D */ bl setFrameCtrl__9daAlink_cFP16daPy_frameCtrl_cUcssff
 /* 80118A4C 0011598C  93 FD 1F 2C */ stw r31, 0x1f2c(r29)
 /* 80118A50 00115990  93 FD 1F 44 */ stw r31, 0x1f44(r29)
 /* 80118A54 00115994  80 6D 88 A0 */ lwz r3, lbl_80450E20-_SDA_BASE_(r13)
 /* 80118A58 00115998  88 9D 04 98 */ lbz r4, 0x498(r29)
-/* 80118A5C 0011599C  4B F2 06 2D */ bl dDemo_object_c_NS_getActor
+/* 80118A5C 0011599C  4B F2 06 2D */ bl getActor__14dDemo_object_cFUc
 /* 80118A60 001159A0  A0 03 00 04 */ lhz r0, 4(r3)
 /* 80118A64 001159A4  54 00 06 31 */ rlwinm. r0, r0, 0, 0x18, 0x18
 /* 80118A68 001159A8  41 82 00 18 */ beq lbl_80118A80
-/* 80118A6C 001159AC  4B F1 F7 31 */ bl dDemo_actor_c_NS_getPrm_Morf
+/* 80118A6C 001159AC  4B F1 F7 31 */ bl getPrm_Morf__13dDemo_actor_cFv
 /* 80118A70 001159B0  80 7D 20 60 */ lwz r3, 0x2060(r29)
 /* 80118A74 001159B4  38 80 00 00 */ li r4, 0
 /* 80118A78 001159B8  A0 BD 30 C6 */ lhz r5, 0x30c6(r29)
-/* 80118A7C 001159BC  4B EF 6D CD */ bl mDoExt_MtxCalcOldFrame_NS_initOldFrameMorf
+/* 80118A7C 001159BC  4B EF 6D CD */ bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_80118A80:
 /* 80118A80 001159C0  38 00 00 00 */ li r0, 0
 /* 80118A84 001159C4  98 1D 2F 8C */ stb r0, 0x2f8c(r29)
@@ -46,7 +46,7 @@ lbl_80118A80:
 /* 80118AA8 001159E8  D0 1E 00 38 */ stfs f0, 0x38(r30)
 /* 80118AAC 001159EC  7F A3 EB 78 */ mr r3, r29
 /* 80118AB0 001159F0  38 80 00 00 */ li r4, 0
-/* 80118AB4 001159F4  4B FA 67 51 */ bl daAlink_c_NS_setBasAnime
+/* 80118AB4 001159F4  4B FA 67 51 */ bl setBasAnime__9daAlink_cFQ29daAlink_c13daAlink_UNDER
 lbl_80118AB8:
 /* 80118AB8 001159F8  39 61 00 20 */ addi r11, r1, 0x20
 /* 80118ABC 001159FC  48 24 97 6D */ bl _restgpr_29

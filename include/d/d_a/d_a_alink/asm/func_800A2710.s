@@ -90,7 +90,7 @@ lbl_800A282C:
 /* 800A2858 0009F798  39 20 00 00 */ li r9, 0
 /* 800A285C 0009F79C  4B FF B4 11 */ bl setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz
 /* 800A2860 0009F7A0  7F A3 EB 78 */ mr r3, r29
-/* 800A2864 0009F7A4  4B F6 A6 E1 */ bl mDoMtx_stack_c_NS_ZXYrotM
+/* 800A2864 0009F7A4  4B F6 A6 E1 */ bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 800A2868 0009F7A8  80 79 06 50 */ lwz r3, 0x650(r25)
 /* 800A286C 0009F7AC  80 63 00 84 */ lwz r3, 0x84(r3)
 /* 800A2870 0009F7B0  80 03 00 0C */ lwz r0, 0xc(r3)
@@ -117,7 +117,7 @@ lbl_800A282C:
 /* 800A28C4 0009F804  39 21 00 14 */ addi r9, r1, 0x14
 /* 800A28C8 0009F808  4B FF B3 A5 */ bl setMatrixWorldAxisRot__9daAlink_cFPA4_fsssiPC4cXyz
 /* 800A28CC 0009F80C  7F 83 E3 78 */ mr r3, r28
-/* 800A28D0 0009F810  4B F6 A6 75 */ bl mDoMtx_stack_c_NS_ZXYrotM
+/* 800A28D0 0009F810  4B F6 A6 75 */ bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 800A28D4 0009F814  80 79 06 50 */ lwz r3, 0x650(r25)
 /* 800A28D8 0009F818  80 63 00 84 */ lwz r3, 0x84(r3)
 /* 800A28DC 0009F81C  80 03 00 0C */ lwz r0, 0xc(r3)

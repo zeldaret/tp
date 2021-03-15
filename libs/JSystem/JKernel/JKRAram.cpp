@@ -19,7 +19,7 @@ void decompSZS_subroutine__FPUcPUc(void);
 void firstSrcData__Fv(void);
 void free__7JKRHeapFPvP7JKRHeap(void);
 void JKRDecompressFromAramToMainRam__FUlPvUlUlUlPUl(void);
-void JUTException_NS_panic_f(const char* filename, int line, const char* format, ...);
+void panic_f__12JUTExceptionFPCciPCce(const char* filename, int line, const char* format, ...);
 void nextSrcData__FPUc(void);
 void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock(void);
 void orderSync__9JKRDecompFPUcPUcUlUl(void);
@@ -135,11 +135,13 @@ asm void* JKRAram::run(void) {
 
 void JKRAram::checkOkAddress(u8* addr, u32 size, JKRAramBlock* block, u32 param_4) {
     if (!IS_ALIGNED((u32)addr, 0x20) && !IS_ALIGNED(size, 0x20)) {
-        JUTException_NS_panic_f("JKRAram.cpp", 0xdb, "%s", ":::address not 32Byte aligned.");
+        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xdb, "%s",
+                                         ":::address not 32Byte aligned.");
     }
 
     if (block && !IS_ALIGNED((u32)block->getAddress() + param_4, 0x20)) {
-        JUTException_NS_panic_f("JKRAram.cpp", 0xe3, "%s", ":::address not 32Byte aligned.");
+        panic_f__12JUTExceptionFPCciPCce("JKRAram.cpp", 0xe3, "%s",
+                                         ":::address not 32Byte aligned.");
     }
 }
 

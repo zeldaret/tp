@@ -8,9 +8,9 @@
 /* 800CC2B4 000C91F4  38 63 CA 54 */ addi r3, r3, lbl_8042CA54@l
 /* 800CC2B8 000C91F8  80 84 00 04 */ lwz r4, 4(r4)
 /* 800CC2BC 000C91FC  38 A5 01 0C */ addi r5, r5, 0x10c
-/* 800CC2C0 000C9200  48 0D 8A E1 */ bl dScnKy_env_light_c_NS_setLightTevColorType_MAJI
+/* 800CC2C0 000C9200  48 0D 8A E1 */ bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 800CC2C4 000C9204  7F E3 FB 78 */ mr r3, r31
-/* 800CC2C8 000C9208  4B F4 1A 9D */ bl mDoExt_modelEntryDL
+/* 800CC2C8 000C9208  4B F4 1A 9D */ bl mDoExt_modelEntryDL__FP8J3DModel
 /* 800CC2CC 000C920C  83 E1 00 0C */ lwz r31, 0xc(r1)
 /* 800CC2D0 000C9210  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 800CC2D4 000C9214  7C 08 03 A6 */ mtlr r0

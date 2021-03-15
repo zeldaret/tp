@@ -6,7 +6,7 @@
 /* 800982C8 00095208  A8 64 5D CA */	lha r3, 0x5dca(r4)
 /* 800982CC 0009520C  38 03 00 05 */	addi r0, r3, 5
 /* 800982D0 00095210  B0 04 5D CA */	sth r0, 0x5dca(r4)
-/* 800982D4 00095214  4B F9 59 D5 */	bl dComIfGs_getMaxLifeGauge
+/* 800982D4 00095214  4B F9 59 D5 */	bl dComIfGs_getMaxLifeGauge__Fv
 /* 800982D8 00095218  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 800982DC 0009521C  C8 22 91 E0 */	lfd f1, lbl_80452BE0-_SDA2_BASE_(r2)
 /* 800982E0 00095220  90 01 00 0C */	stw r0, 0xc(r1)
