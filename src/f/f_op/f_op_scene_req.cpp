@@ -99,14 +99,12 @@ void fopScnRq_Execute(scene_request_class* pScnRq) {
     }
 }
 
-// asm void fopScnRq_Execute(scene_request_class*) {
-//     nofralloc
-// #include "f/f_op/f_op_scene_req/asm/func_8001EF24.s"
-// }
-
-asm void fopScnRq_PostMethod(void*, scene_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001EF6C.s"
+int fopScnRq_PostMethod(void* param_1, scene_request_class* pScnRq) {
+    if (pScnRq->mFadeRequest) {
+        fopScnPause_Enable((scene_class*)param_1);
+        fopOvlpM_ToldAboutID(((scene_class*)param_1)->field_0x04);
+    }
+    return 1;
 }
 
 asm void fopScnRq_Cancel(scene_request_class*) {

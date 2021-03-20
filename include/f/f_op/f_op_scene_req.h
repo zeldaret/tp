@@ -14,7 +14,7 @@ void fopScnRq_ReRequest(void);
 class scene_request_class {
     public:
     node_create_request mCrtReq;
-    int mFadeRequest;
+    u32 mFadeRequest;
     request_of_phase_process_class mReqPhsProcCls;
     u8 field_0x70[4];
 };
