@@ -90,10 +90,19 @@ int fopScnRq_phase_Done(scene_request_class* pScnRq) {
     return 2;
 }
 
-asm void fopScnRq_Execute(scene_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001EF24.s"
+void fopScnRq_Execute(scene_request_class* pScnRq) {
+    int tmp = cPhs_Do(&pScnRq->mReqPhsProcCls,pScnRq);
+    switch (tmp) {
+        case 2: {
+            fopScnRq_Execute(pScnRq);
+        }
+    }
 }
+
+// asm void fopScnRq_Execute(scene_request_class*) {
+//     nofralloc
+// #include "f/f_op/f_op_scene_req/asm/func_8001EF24.s"
+// }
 
 asm void fopScnRq_PostMethod(void*, scene_request_class*) {
     nofralloc
