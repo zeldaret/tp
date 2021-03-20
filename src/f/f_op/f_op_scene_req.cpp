@@ -71,10 +71,21 @@ scene_request_class* fopScnRq_phase_IsDoingOverlap(scene_request_class* pScnRq) 
     return pScnRq;
 }
 
-asm void fopScnRq_phase_IsDoneOverlap(scene_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001EEB4.s"
+scene_request_class* fopScnRq_phase_IsDoneOverlap(scene_request_class* pScnRq) {
+    pScnRq = 0;
+
+    if (fopOvlpM_IsDone() == 1) {
+        pScnRq = (scene_request_class*)2;
+        return pScnRq;
+    }
+
+    return pScnRq;
 }
+
+// asm void fopScnRq_phase_IsDoneOverlap(scene_request_class*) {
+//     nofralloc
+// #include "f/f_op/f_op_scene_req/asm/func_8001EEB4.s"
+// }
 
 asm void fopScnRq_phase_Done(scene_request_class*) {
     nofralloc
