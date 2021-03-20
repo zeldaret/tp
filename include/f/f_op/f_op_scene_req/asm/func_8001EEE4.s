@@ -9,7 +9,7 @@
 /* 8001EF04 0001BE44  48 00 16 91 */ bl fopScnPause_Disable__FP11scene_class
 lbl_8001EF08:
 /* 8001EF08 0001BE48  38 00 00 00 */ li r0, 0
-/* 8001EF0C 0001BE4C  90 0D 87 60 */ stw r0, lbl_80450CE0-_SDA_BASE_(r13)
+/* 8001EF0C 0001BE4C  90 0D 87 60 */ stw r0, l_fopScnRq_IsUsingOfOverlap-_SDA_BASE_(r13)
 /* 8001EF10 0001BE50  38 60 00 02 */ li r3, 2
 /* 8001EF14 0001BE54  80 01 00 14 */ lwz r0, 0x14(r1)
 /* 8001EF18 0001BE58  7C 08 03 A6 */ mtlr r0

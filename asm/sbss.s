@@ -359,8 +359,8 @@ lbl_80450CD4:
 .global lbl_80450CD8
 lbl_80450CD8:
 	.skip 0x8
-.global lbl_80450CE0
-lbl_80450CE0:
+.global l_fopScnRq_IsUsingOfOverlap
+l_fopScnRq_IsUsingOfOverlap:
 	.skip 0x8
 .global lbl_80450CE8
 lbl_80450CE8:
