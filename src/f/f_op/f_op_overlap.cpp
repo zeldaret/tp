@@ -32,7 +32,22 @@ void fopOvlp_Delete(void* param_1) {
     fpcMtd_Delete((process_method_class*)((int*)param_1)[0x30], param_1);
 }
 
+// register scheduling
+#ifdef NON_MATCHING
+void fopOvlp_Create(void* param_1) {
+    request_base_class* pReqBase = (request_base_class*)param_1;
+    if (!pReqBase->field_0xc) {
+        int* tmp = pReqBase->field_0x10;
+        request_base_class* tmp2 = (request_base_class*)&pReqBase->field_0xc4;
+        cReq_Create(tmp2, 1);
+        pReqBase->field_0xc0 = tmp[9];
+        pReqBase->field_0xc8 = (u32*)-1;
+    }
+    fpcMtd_Create((process_method_class*)pReqBase->field_0xc0, param_1);
+}
+#else
 asm void fopOvlp_Create(void* param_1) {
     nofralloc
 #include "f/f_op/f_op_overlap/asm/func_8001E41C.s"
 }
+#endif
