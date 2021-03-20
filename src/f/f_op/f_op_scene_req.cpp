@@ -2,6 +2,7 @@
 
 #include "f/f_op/f_op_scene_req.h"
 #include "f/f_op/f_op_overlap_mng.h"
+#include "f/f_pc/f_pc_node_req.h"
 #include "global.h"
 
 // additional symbols needed for f_op_scene_req.cpp
@@ -44,20 +45,19 @@ void func_8001EFB0(void);
 extern u8 lbl_803A38C8;
 extern u8 lbl_80450CE0;
 
-scene_request_class* fopScnRq_phase_ClearOverlap(scene_request_class* param_1) {
-    param_1 = 0;
+scene_request_class* fopScnRq_phase_ClearOverlap(scene_request_class* pScnRq) {
+    pScnRq = 0;
 
     if (fopOvlpM_ClearOfReq() == 1) {
-        param_1 = (scene_request_class*)2;
-        return param_1;
+        pScnRq = (scene_request_class*)2;
+        return pScnRq;
     }
 
-    return param_1;
+    return pScnRq;
 }
 
-asm void fopScnRq_phase_Execute(scene_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001EE64.s"
+void fopScnRq_phase_Execute(scene_request_class* pScnRq) {
+    fpcNdRq_Execute((node_create_request*)pScnRq);
 }
 
 asm void fopScnRq_phase_IsDoingOverlap(scene_request_class*) {
