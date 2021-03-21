@@ -2,6 +2,7 @@
 
 #include "f/f_op/f_op_draw_iter.h"
 #include "SComponent/c_tree.h"
+#include "SComponent/c_tag.h"
 #include "global.h"
 
 // additional symbols needed for f_op_draw_iter.cpp
@@ -15,6 +16,7 @@ void fopDwIt_GetTag__Fv(void);
 extern node_lists_tree_class g_fopDwTg_Queue;
 extern u32 l_fopDwTg_id;
 
+#ifdef NON_MATCHING
 // void fopDwIt_GetTag(void) {
 //     u32 tmp = l_fopDwTg_id;
 //     while (!g_fopDwTg_Queue.mpLists[tmp].mpHead) {
@@ -24,15 +26,21 @@ extern u32 l_fopDwTg_id;
 //         l_fopDwTg_id++;
 //     }
 // }
-
-asm void fopDwIt_GetTag(void) {
+#else
+asm create_tag_class* fopDwIt_GetTag(void) {
     nofralloc
 #include "f/f_op/f_op_draw_iter/asm/func_80020400.s"
 }
+#endif
 
-asm void fopDwIt_Begin(void) {
-    nofralloc
-#include "f/f_op/f_op_draw_iter/asm/func_80020444.s"
+create_tag_class* fopDwIt_Begin(void) {
+    create_tag_class* createTagClass = (create_tag_class*)g_fopDwTg_Queue.mpLists->mpHead;
+    l_fopDwTg_id = 0;
+    if (createTagClass) {
+        return createTagClass;
+    }
+    createTagClass = fopDwIt_GetTag();
+    return createTagClass;
 }
 
 asm void fopDwIt_Next(create_tag_class* pCreateTag) {

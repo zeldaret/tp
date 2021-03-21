@@ -3,8 +3,8 @@
 
 #include "SComponent/c_tag.h"
 
-void fopDwIt_GetTag(void);
-void fopDwIt_Begin(void);
+create_tag_class* fopDwIt_GetTag(void);
+create_tag_class* fopDwIt_Begin(void);
 void fopDwIt_Next(create_tag_class* pCreateTag);
 
 #endif
