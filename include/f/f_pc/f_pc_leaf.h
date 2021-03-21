@@ -28,6 +28,8 @@ typedef struct leaf_process_profile_definition {
     s32 unk24;
 } leaf_process_profile_definition;
 
+int i = sizeof(process_profile_definition);
+
 s32 fpcLf_GetPriority(const leafdraw_class* pLeaf);
 s32 fpcLf_DrawMethod(leafdraw_method_class* pMthd, void* pUserData);
 s32 fpcLf_Draw(leafdraw_class* pMthd);

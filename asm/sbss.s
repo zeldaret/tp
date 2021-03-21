@@ -362,8 +362,8 @@ lbl_80450CD8:
 .global l_fopScnRq_IsUsingOfOverlap
 l_fopScnRq_IsUsingOfOverlap:
 	.skip 0x8
-.global lbl_80450CE8
-lbl_80450CE8:
+.global fopKy_KANKYO_TYPE
+fopKy_KANKYO_TYPE:
 	.skip 0x8
 .global lbl_80450CF0
 lbl_80450CF0:

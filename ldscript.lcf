@@ -3293,6 +3293,11 @@ fopDwTg_ToDrawQ__FP16create_tag_classi
 fopDwTg_DrawQTo__FP16create_tag_class
 fopDwTg_Init__FP16create_tag_classPv
 fopDwTg_CreateQueue__Fv
+fopKy_Draw__FPv
+fopKy_Execute__FPv
+fopKy_IsDelete__FPv
+fopKy_Delete__FPv
+fopKy_Create__FPv
 }
 /*
 .init 80003100 - 80005600
