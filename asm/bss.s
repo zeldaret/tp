@@ -110,8 +110,8 @@ l_fopCamM_id:
 .global l_fopOvlpM_Request
 l_fopOvlpM_Request:
 	.skip 0x28
-.global lbl_803F1E10
-lbl_803F1E10:
+.global lists
+lists:
 	.skip 0x2EE0
 .global lbl_803F4CF0
 lbl_803F4CF0:
