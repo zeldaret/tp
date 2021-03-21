@@ -107,9 +107,13 @@ int fopScnRq_PostMethod(void* param_1, scene_request_class* pScnRq) {
     return 1;
 }
 
-asm void fopScnRq_Cancel(scene_request_class*) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001EFB0.s"
+int fopScnRq_Cancel(scene_request_class* pScnRq) {
+
+    if (pScnRq->mFadeRequest && !fopOvlpM_Cancel()) {
+        return 0;
+    }
+
+    return 1;
 }
 
 asm void fopScnRq_FadeRequest(s16, u16) {
