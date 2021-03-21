@@ -3289,6 +3289,10 @@ func_8001EEE4
 func_8001EEB4
 func_8001EE84
 func_8001EE64
+fopDwTg_ToDrawQ__FP16create_tag_classi
+fopDwTg_DrawQTo__FP16create_tag_class
+fopDwTg_Init__FP16create_tag_classPv
+fopDwTg_CreateQueue__Fv
 }
 /*
 .init 80003100 - 80005600

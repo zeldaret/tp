@@ -21,9 +21,8 @@ void fopDwTg_ToDrawQ(create_tag_class* pCreateTagClass, int priority) {
     cTg_AdditionToTree(&g_fopDwTg_Queue,priority,pCreateTagClass);
 }
 
-asm void fopDwTg_DrawQTo(create_tag_class*) {
-    nofralloc
-#include "f/f_op/f_op_draw_tag/asm/func_800204D4.s"
+void fopDwTg_DrawQTo(create_tag_class* pCreateTagClass) {
+    cTg_SingleCutFromTree(pCreateTagClass);
 }
 
 asm void fopDwTg_Init(create_tag_class*, void*) {
