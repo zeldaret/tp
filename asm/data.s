@@ -143,9 +143,15 @@ lbl_803A382C:
 .global phaseMethod
 phaseMethod:
 	.incbin "baserom.dol", 0x3A0890, 0x38
-.global lbl_803A38C8
-lbl_803A38C8:
-	.incbin "baserom.dol", 0x3A08C8, 0x50
+.global submethod
+submethod:
+	.incbin "baserom.dol", 0x3A08C8, 0x10
+.global noFadeFase
+noFadeFase:
+	.incbin "baserom.dol", 0x3A08D8, 0x20
+.global fadeFase
+fadeFase:
+	.incbin "baserom.dol", 0x3A08F8, 0x20
 .global lbl_803A3918
 lbl_803A3918:
 	.incbin "baserom.dol", 0x3A0918, 0x58
