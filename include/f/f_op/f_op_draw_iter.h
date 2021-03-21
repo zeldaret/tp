@@ -5,6 +5,6 @@
 
 create_tag_class* fopDwIt_GetTag(void);
 create_tag_class* fopDwIt_Begin(void);
-void fopDwIt_Next(create_tag_class* pCreateTag);
+create_tag_class* fopDwIt_Next(create_tag_class* pCreateTag);
 
 #endif

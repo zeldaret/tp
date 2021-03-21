@@ -39,11 +39,13 @@ create_tag_class* fopDwIt_Begin(void) {
     if (createTagClass) {
         return createTagClass;
     }
-    createTagClass = fopDwIt_GetTag();
-    return createTagClass;
+    return createTagClass = fopDwIt_GetTag();
 }
 
-asm void fopDwIt_Next(create_tag_class* pCreateTag) {
-    nofralloc
-#include "f/f_op/f_op_draw_iter/asm/func_80020480.s"
+create_tag_class* fopDwIt_Next(create_tag_class* pCreateTag) {
+    create_tag_class* createTagClass = (create_tag_class*)pCreateTag->mpNode.mpNextNode;
+    if (!createTagClass) {
+        createTagClass = fopDwIt_GetTag();
+    }
+    return createTagClass;
 }
