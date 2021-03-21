@@ -135,12 +135,6 @@ u32 fopScnRq_ReRequest(unsigned int param_1, s16 param_2, void* param_3) {
     fpcNdRq_ReRequest(param_1,param_2,param_3);
 }
 
-// asm u32 fopScnRq_ReRequest(unsigned int, s16, void*) {
-//     nofralloc
-// #include "f/f_op/f_op_scene_req/asm/func_8001F0FC.s"
-// }
-
-asm void fopScnRq_Handler(void) {
-    nofralloc
-#include "f/f_op/f_op_scene_req/asm/func_8001F11C.s"
+void fopScnRq_Handler(void) {
+    fpcNdRq_Handler();
 }
