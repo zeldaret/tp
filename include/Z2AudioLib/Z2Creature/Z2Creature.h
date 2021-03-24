@@ -1,6 +1,8 @@
 #ifndef Z2CREATURE_H_
 #define Z2CREATURE_H_
 
+#include "dolphin/types.h"
+
 class Z2Creature {
 public:
     Z2Creature();
@@ -18,6 +20,18 @@ public:
 };
 
 class Z2CreatureEnemy : public Z2Creature {};
+
+class Z2CreatureRide {
+public:
+    void setLinkRiding(bool);
+
+private:
+    /* 0x00 */ void* vtable;
+    /* 0x04 */ u8 Z2Creature_members[140];
+    /* 0x90 */ u8 Z2RideSoundStarter[8];
+    /* 0x98 */ bool is_link_riding;
+    /* 0x99 */ u8 padding[3];
+};
 
 extern "C" {
 void __ct__10Z2CreatureFv(void);
