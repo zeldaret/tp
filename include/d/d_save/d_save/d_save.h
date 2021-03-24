@@ -934,4 +934,18 @@ private:
 //     return g_meter2_info.getDirectUseItem();
 // }
 
+struct saveBitLabels {
+    u16 unk0[0x11A];
+    u8 unk565;
+    u16 unk566;
+    u8 unk567[0x439];
+};
+
+class dSv_event_flag_c {
+public:
+    saveBitLabels flags;
+};
+
+extern dSv_event_flag_c lbl_803A7288;
+
 #endif

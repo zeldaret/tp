@@ -288,7 +288,6 @@ void fopScnM_ChangeReq__FP11scene_classssUs(void);
 
 extern u8 lbl_80430188;
 extern u8 lbl_80378F38;
-extern u8 lbl_803A7288;
 extern u8 lbl_80450D64;
 extern u8 lbl_80450BC8;
 extern u8 lbl_80450604;

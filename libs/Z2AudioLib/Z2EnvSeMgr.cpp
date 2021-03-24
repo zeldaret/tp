@@ -108,7 +108,6 @@ extern u8 lbl_803CBA28;
 extern u8 lbl_80450B60;
 extern u8 lbl_80450B44;
 extern u8 lbl_80450B80;
-extern u8 lbl_803A7288;
 extern u8 lbl_80451360;
 
 extern "C" {

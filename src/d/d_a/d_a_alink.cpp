@@ -1999,7 +1999,6 @@ extern u8 lbl_803A78F8;
 extern u8 lbl_803DD470;
 extern u8 lbl_80450AE0;
 extern u8 lbl_80451180;
-extern u8 lbl_803A7288;
 extern u8 lbl_80450D64;
 extern u8 lbl_80451360;
 extern u8 lbl_80430188;
