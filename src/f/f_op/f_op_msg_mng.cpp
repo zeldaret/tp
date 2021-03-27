@@ -173,9 +173,8 @@ asm void fopMsgM_Create(s16, int (*)(void*), void*) {
 
 // setAlpha__7J2DPaneFUc
 // J2DPane::setAlpha(u8)
-asm void J2DPane::setAlpha(u8) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_80020158.s"
+void J2DPane::setAlpha(u8 i_alpha) {
+    this->mAlpha = i_alpha;
 }
 
 // fopMsgM_valueIncrease__FiiUc
