@@ -193,11 +193,8 @@ void J2DPicture::append(const char* param_1, f32 param_2) {
     insert(param_1,field_0x08,param_2);
 }
 
-// insert__10J2DPictureFPCcUcf
-// J2DPicture::insert(const s8*, u8, f32)
-asm void J2DPicture::insert(const char*, u8, f32) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_80020368.s"
+void J2DPicture::insert(const char* param_1, u8 param_2, f32 param_3) {
+    insert(param_1,0,param_2,param_3);
 }
 
 // fopMsgM_createExpHeap__FUlP7JKRHeap
