@@ -43,7 +43,7 @@ struct unk {
 void fopKy_Draw(void* i_pUserData) {
     unk* pMtd = (unk*)i_pUserData;
     if (!g_dComIfG_gameInfo.getPlay().getField0x4f7d()) {
-        fpcLf_DrawMethod(pMtd->mpDrawMtd,i_pUserData);
+        fpcLf_DrawMethod(pMtd->mpDrawMtd, i_pUserData);
     }
 }
 #else
