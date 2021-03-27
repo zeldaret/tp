@@ -60,7 +60,7 @@ void memalignB__3cMlFiUl(void);
 extern u8 lbl_803A3970;
 extern u8 lbl_8043028C;
 extern u8 lbl_80439A20;
-extern u8 lbl_804505C8;
+extern unsigned int i_msgID;
 extern u8 lbl_80450D40;
 extern u8 lbl_80450D60;
 extern u8 lbl_80451C70;
@@ -101,11 +101,6 @@ u32 fopMsgM_GetAppend(void* pProc) {
 void fopMsgM_Delete(void* pProc) { 
     fpcM_Delete(pProc);
 }
-
-// asm void fopMsgM_Delete(void*) {
-//     nofralloc
-// #include "f/f_op/f_op_msg_mng/asm/func_8001FA4C.s"
-// }
 
 // createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
 // createAppend(fopAc_ac_c*, cXyz*, u32*, u32*, unsigned int)
@@ -165,9 +160,8 @@ asm void fopMsgM_messageGet(char*, u32) {
 
 // fopMsgM_setMessageID__FUi
 // fopMsgM_setMessageID__FUi(unsigned int)
-asm void fopMsgM_setMessageID(unsigned int) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_80020100.s"
+void fopMsgM_setMessageID(unsigned int messageId) {
+    i_msgID = messageId;
 }
 
 // fopMsgM_Create__FsPFPv_iPv
