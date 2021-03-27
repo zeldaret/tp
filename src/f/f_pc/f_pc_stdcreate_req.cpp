@@ -5,7 +5,7 @@
 #include "f/f_pc/f_pc_node.h"
 
 // f_pc_node::g_fpcNd_type
-extern s32 lbl_80450D40;
+extern s32 g_fpcNd_type;
 // f_pc_stdcreate_req::submethod$2261
 extern create_request_method_class lbl_803A3AF0;
 // f_pc_stdcreate_req::method$2262
@@ -46,7 +46,7 @@ s32 fpcSCtRq_phase_SubCreateProcess(standard_create_request_class* pStdCreateReq
 
 s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* pStdCreateReq) {
     process_node_class* procNode = (process_node_class*)pStdCreateReq->mBase.mpRes;
-    if (fpcBs_Is_JustOfType(lbl_80450D40, procNode->mBase.mSubType) == 1) {
+    if (fpcBs_Is_JustOfType(g_fpcNd_type, procNode->mBase.mSubType) == 1) {
         if (fpcLy_IsCreatingMesg(&procNode->mLayer) == 1) {
             return cPhs_ZERO_e;
         }

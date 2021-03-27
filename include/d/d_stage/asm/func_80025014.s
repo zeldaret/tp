@@ -156,7 +156,7 @@ lbl_80025208:
 /* 80025250 00022190  7F C3 F3 78 */ mr r3, r30
 /* 80025254 00022194  7F A4 EB 78 */ mr r4, r29
 /* 80025258 00022198  4B FF FC A5 */ bl dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class
-/* 8002525C 0002219C  80 6D 87 E0 */ lwz r3, lbl_80450D60-_SDA_BASE_(r13)
+/* 8002525C 0002219C  80 6D 87 E0 */ lwz r3, _mProcID-_SDA_BASE_(r13)
 /* 80025260 000221A0  4B FF 9A 51 */ bl fopScnM_SearchByID__FUi
 /* 80025264 000221A4  A8 03 00 08 */ lha r0, 8(r3)
 /* 80025268 000221A8  2C 00 00 0B */ cmpwi r0, 0xb
