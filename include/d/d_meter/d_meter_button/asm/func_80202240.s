@@ -31,8 +31,8 @@
 /* 802022B8 001FF1F8  7E A4 AB 78 */ mr r4, r21
 /* 802022BC 001FF1FC  48 0F 6C 19 */ bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_802022C0:
-/* 802022C0 001FF200  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802022C4 001FF204  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802022C0 001FF200  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802022C4 001FF204  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802022C8 001FF208  88 03 00 F1 */ lbz r0, 0xf1(r3)
 /* 802022CC 001FF20C  28 00 00 00 */ cmplwi r0, 0
 /* 802022D0 001FF210  41 82 00 18 */ beq lbl_802022E8
@@ -89,8 +89,8 @@ lbl_80202384:
 /* 80202394 001FF2D4  3B 23 61 C0 */ addi r25, r3, g_dComIfG_gameInfo@l
 /* 80202398 001FF2D8  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 8020239C 001FF2DC  3B E3 EB C8 */ addi r31, r3, lbl_8042EBC8@l
-/* 802023A0 001FF2E0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802023A4 001FF2E4  3B A3 01 88 */ addi r29, r3, lbl_80430188@l
+/* 802023A0 001FF2E0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802023A4 001FF2E4  3B A3 01 88 */ addi r29, r3, g_meter2_info@l
 /* 802023A8 001FF2E8  C3 A2 AD 48 */ lfs f29, lbl_80454748-_SDA2_BASE_(r2)
 lbl_802023AC:
 /* 802023AC 001FF2EC  3A C0 00 00 */ li r22, 0

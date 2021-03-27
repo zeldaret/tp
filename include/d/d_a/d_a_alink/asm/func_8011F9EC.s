@@ -6,8 +6,8 @@
 /* 8011FA00 0011C940  7C 7E 1B 78 */ mr r30, r3
 /* 8011FA04 0011C944  3C 60 80 3B */ lis r3, lbl_803AF990@ha
 /* 8011FA08 0011C948  3B E3 F9 90 */ addi r31, r3, lbl_803AF990@l
-/* 8011FA0C 0011C94C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8011FA10 0011C950  3B A3 01 88 */ addi r29, r3, lbl_80430188@l
+/* 8011FA0C 0011C94C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8011FA10 0011C950  3B A3 01 88 */ addi r29, r3, g_meter2_info@l
 /* 8011FA14 0011C954  88 1D 00 C0 */ lbz r0, 0xc0(r29)
 /* 8011FA18 0011C958  28 00 00 00 */ cmplwi r0, 0
 /* 8011FA1C 0011C95C  41 82 01 8C */ beq lbl_8011FBA8
@@ -116,8 +116,8 @@ lbl_8011FB94:
 /* 8011FB94 0011CAD4  7F C3 F3 78 */ mr r3, r30
 /* 8011FB98 0011CAD8  4B FF FC 41 */ bl dungeonReturnWarp__9daAlink_cFv
 lbl_8011FB9C:
-/* 8011FB9C 0011CADC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8011FBA0 0011CAE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8011FB9C 0011CADC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8011FBA0 0011CAE0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8011FBA4 0011CAE4  48 0F CE 39 */ bl resetWarpStatus__13dMeter2Info_cFv
 lbl_8011FBA8:
 /* 8011FBA8 0011CAE8  39 61 00 20 */ addi r11, r1, 0x20

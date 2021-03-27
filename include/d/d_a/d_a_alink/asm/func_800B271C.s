@@ -99,8 +99,8 @@ lbl_800B287C:
 /* 800B2880 000AF7C0  48 06 64 19 */ bl checkDeadHP__9daAlink_cFv
 /* 800B2884 000AF7C4  2C 03 00 00 */ cmpwi r3, 0
 /* 800B2888 000AF7C8  40 82 00 18 */ bne lbl_800B28A0
-/* 800B288C 000AF7CC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 800B2890 000AF7D0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 800B288C 000AF7CC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 800B2890 000AF7D0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 800B2894 000AF7D4  88 03 00 C1 */ lbz r0, 0xc1(r3)
 /* 800B2898 000AF7D8  28 00 00 01 */ cmplwi r0, 1
 /* 800B289C 000AF7DC  40 82 00 20 */ bne lbl_800B28BC

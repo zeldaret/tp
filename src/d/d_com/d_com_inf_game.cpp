@@ -4,6 +4,7 @@
 #include "d/d_bg/d_bg_s/d_bg_s.h"
 #include "d/d_item/d_item/d_item.h"
 #include "d/d_kankyo/d_kankyo.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "f/f_op/f_op_scene_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset/m_Do_Reset.h"
@@ -286,7 +287,6 @@ void fopScnM_ReRequest__FsUl(void);
 void fopScnM_ChangeReq__FP11scene_classssUs(void);
 }
 
-extern u8 lbl_80430188;
 extern u8 lbl_80378F38;
 extern u8 lbl_803A7288;
 extern u8 lbl_80450D64;

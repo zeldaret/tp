@@ -2,10 +2,12 @@
 
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "f/f_op/f_op_overlap_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad/m_Do_controller_pad.h"
+
 extern "C" {
 void fopOvlpM_IsDoingReq__Fv(void);
 bool dComIfGp_checkMapShow__Fv(void);
@@ -55,7 +57,7 @@ extern u8 lbl_80454840;
 extern u8 lbl_80454834;
 extern u8 lbl_80450D64;
 extern u8 lbl_803A6F88;
-extern u8 lbl_80430188;
+// extern u8 g_meter2_info;
 extern u8 lbl_803A7288;
 
 extern "C" {

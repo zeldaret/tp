@@ -28,16 +28,16 @@ lbl_8021A33C:
 /* 8021A35C 0021729C  57 80 06 3E */ clrlwi r0, r28, 0x18
 /* 8021A360 002172A0  28 00 00 01 */ cmplwi r0, 1
 /* 8021A364 002172A4  40 82 00 20 */ bne lbl_8021A384
-/* 8021A368 002172A8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021A36C 002172AC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021A368 002172A8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021A36C 002172AC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021A370 002172B0  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A374 002172B4  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A378 002172B8  38 C1 00 1C */ addi r6, r1, 0x1c
 /* 8021A37C 002172BC  48 00 1F F5 */ bl getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 8021A380 002172C0  48 00 00 1C */ b lbl_8021A39C
 lbl_8021A384:
-/* 8021A384 002172C4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021A388 002172C8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021A384 002172C4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021A388 002172C8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021A38C 002172CC  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A390 002172D0  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A394 002172D4  38 C1 00 1C */ addi r6, r1, 0x1c
@@ -65,16 +65,16 @@ lbl_8021A3C4:
 /* 8021A3E4 00217324  57 80 06 3E */ clrlwi r0, r28, 0x18
 /* 8021A3E8 00217328  28 00 00 01 */ cmplwi r0, 1
 /* 8021A3EC 0021732C  40 82 00 20 */ bne lbl_8021A40C
-/* 8021A3F0 00217330  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021A3F4 00217334  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021A3F0 00217330  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021A3F4 00217334  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021A3F8 00217338  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A3FC 0021733C  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A400 00217340  38 C1 00 08 */ addi r6, r1, 8
 /* 8021A404 00217344  48 00 1F 6D */ bl getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 8021A408 00217348  48 00 00 1C */ b lbl_8021A424
 lbl_8021A40C:
-/* 8021A40C 0021734C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021A410 00217350  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021A40C 0021734C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021A410 00217350  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021A414 00217354  3C A0 80 43 */ lis r5, lbl_80430158@ha
 /* 8021A418 00217358  38 A5 01 58 */ addi r5, r5, lbl_80430158@l
 /* 8021A41C 0021735C  38 C1 00 08 */ addi r6, r1, 8

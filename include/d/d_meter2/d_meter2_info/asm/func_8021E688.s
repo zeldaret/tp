@@ -13,8 +13,8 @@
 lbl_8021E6B8:
 /* 8021E6B8 0021B5F8  54 00 06 3F */ clrlwi. r0, r0, 0x18
 /* 8021E6BC 0021B5FC  40 82 00 18 */ bne lbl_8021E6D4
-/* 8021E6C0 0021B600  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021E6C4 0021B604  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021E6C0 0021B600  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021E6C4 0021B604  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021E6C8 0021B608  A0 03 00 A2 */ lhz r0, 0xa2(r3)
 /* 8021E6CC 0021B60C  54 00 07 BD */ rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8021E6D0 0021B610  41 82 00 0C */ beq lbl_8021E6DC

@@ -52,8 +52,8 @@
 /* 8020CE38 00209D78  EC 01 00 28 */ fsubs f0, f1, f0
 /* 8020CE3C 00209D7C  EF 80 10 24 */ fdivs f28, f0, f2
 /* 8020CE40 00209D80  A8 DC 01 08 */ lha r6, 0x108(r28)
-/* 8020CE44 00209D84  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020CE48 00209D88  3B C3 01 88 */ addi r30, r3, lbl_80430188@l
+/* 8020CE44 00209D84  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020CE48 00209D88  3B C3 01 88 */ addi r30, r3, g_meter2_info@l
 /* 8020CE4C 00209D8C  A8 1E 00 96 */ lha r0, 0x96(r30)
 /* 8020CE50 00209D90  7C 06 00 00 */ cmpw r6, r0
 /* 8020CE54 00209D94  41 82 00 8C */ beq lbl_8020CEE0

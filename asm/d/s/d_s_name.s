@@ -409,8 +409,8 @@ lbl_80258D28:
 /* 80258D4C 00255C8C  80 7F 01 CC */	lwz r3, 0x1cc(r31)
 /* 80258D50 00255C90  48 07 56 F9 */	bl destroy__7JKRHeapFv
 /* 80258D54 00255C94  3B A0 00 00 */	li r29, 0
-/* 80258D58 00255C98  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 80258D5C 00255C9C  3B C3 01 88 */	addi r30, r3, lbl_80430188@l
+/* 80258D58 00255C98  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 80258D5C 00255C9C  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
 lbl_80258D60:
 /* 80258D60 00255CA0  7F C3 F3 78 */	mr r3, r30
 /* 80258D64 00255CA4  38 1D 00 0B */	addi r0, r29, 0xb

@@ -1,5 +1,6 @@
 #include "d/d_file/d_file_sel_info/d_file_sel_info.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "global.h"
 
 extern "C" {
@@ -31,7 +32,6 @@ extern u8 lbl_803BB588;
 extern u8 lbl_803948B8;
 extern u8 lbl_803BB548;
 extern u8 lbl_803BB4A8;
-extern u8 lbl_80430188;
 extern u8 lbl_804539F8;
 extern u8 lbl_804539FC;
 extern u8 lbl_803BB498;

@@ -482,8 +482,8 @@ lbl_80430158:
 .global lbl_80430178
 lbl_80430178:
 	.skip 0x10
-.global lbl_80430188
-lbl_80430188:
+.global g_meter2_info
+g_meter2_info:
 	.skip 0xF8
 .global lbl_80430280
 lbl_80430280:

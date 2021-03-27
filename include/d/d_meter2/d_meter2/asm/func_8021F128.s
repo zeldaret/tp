@@ -109,14 +109,14 @@ lbl_8021F2A4:
 /* 8021F2C8 0021C208  88 03 4F AD */ lbz r0, 0x4fad(r3)
 /* 8021F2CC 0021C20C  28 00 00 00 */ cmplwi r0, 0
 /* 8021F2D0 0021C210  40 82 00 10 */ bne lbl_8021F2E0
-/* 8021F2D4 0021C214  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021F2D8 0021C218  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021F2D4 0021C214  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021F2D8 0021C218  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021F2DC 0021C21C  4B FF EA 05 */ bl decHotSpringTimer__13dMeter2Info_cFv
 lbl_8021F2E0:
 /* 8021F2E0 0021C220  3C 60 00 01 */ lis r3, 0x0000FFFF@ha
 /* 8021F2E4 0021C224  38 03 FF FF */ addi r0, r3, 0x0000FFFF@l
-/* 8021F2E8 0021C228  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021F2EC 0021C22C  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021F2E8 0021C228  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021F2EC 0021C22C  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021F2F0 0021C230  B0 03 00 AE */ sth r0, 0xae(r3)
 /* 8021F2F4 0021C234  54 00 04 3E */ clrlwi r0, r0, 0x10
 /* 8021F2F8 0021C238  54 00 05 66 */ rlwinm r0, r0, 0, 0x15, 0x13

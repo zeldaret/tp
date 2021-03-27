@@ -9,6 +9,7 @@
 #include "Z2AudioLib/Z2SoundObject/Z2SoundObject.h"
 #include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "d/d_kankyo/d_kankyo.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "f/f_op/f_op_actor_iter.h"
 #include "f/f_op/f_op_actor_mng.h"
 #include "f/f_op/f_op_overlap_mng.h"
@@ -2002,7 +2003,6 @@ extern u8 lbl_80451180;
 extern u8 lbl_803A7288;
 extern u8 lbl_80450D64;
 extern u8 lbl_80451360;
-extern u8 lbl_80430188;
 extern u8 lbl_803A6F88;
 
 u32 daAlink_c::getE3Zhint(void) {

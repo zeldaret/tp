@@ -103,8 +103,8 @@ lbl_80035B60:
 /* 80035B84 00032AC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
 /* 80035B88 00032AC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
 /* 80035B8C 00032ACC  38 83 00 58 */	addi r4, r3, 0x58
-/* 80035B90 00032AD0  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 80035B94 00032AD4  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 80035B90 00032AD0  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 80035B94 00032AD4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 80035B98 00032AD8  48 1E 86 F9 */	bl setSaveStageName__13dMeter2Info_cFPCc
 /* 80035B9C 00032ADC  3C 60 80 38 */	lis r3, lbl_80379234@ha
 /* 80035BA0 00032AE0  38 63 92 34 */	addi r3, r3, lbl_80379234@l

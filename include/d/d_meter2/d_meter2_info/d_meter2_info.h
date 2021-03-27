@@ -6,6 +6,7 @@
 #include "JSystem/J2DGraph/J2DTextBox/J2DTextBox.h"
 #include "JSystem/JMessage/control/control.h"
 #include "JSystem/JUtility/JUTFont/JUTFont.h"
+#include "SComponent/c_xyz.h"
 #include "dolphin/types.h"
 
 struct dMeter2Info_c_vtable {

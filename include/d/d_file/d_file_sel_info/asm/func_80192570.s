@@ -137,16 +137,16 @@ lbl_80192740:
 /* 80192780 0018F6C0  80 61 00 08 */	lwz r3, 8(r1)
 /* 80192784 0018F6C4  48 16 DE D5 */	bl getStringPtr__10J2DTextBoxCFv
 /* 80192788 0018F6C8  7C 65 1B 78 */	mr r5, r3
-/* 8019278C 0018F6CC  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 80192790 0018F6D0  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 8019278C 0018F6CC  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 80192790 0018F6D0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 80192794 0018F6D4  38 80 03 D0 */	li r4, 0x3d0
 /* 80192798 0018F6D8  38 C0 00 00 */	li r6, 0
 /* 8019279C 0018F6DC  48 08 9A B5 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801927A0 0018F6E0  80 61 00 0C */	lwz r3, 0xc(r1)
 /* 801927A4 0018F6E4  48 16 DE B5 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801927A8 0018F6E8  7C 65 1B 78 */	mr r5, r3
-/* 801927AC 0018F6EC  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 801927B0 0018F6F0  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 801927AC 0018F6EC  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 801927B0 0018F6F0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 801927B4 0018F6F4  38 80 03 D1 */	li r4, 0x3d1
 /* 801927B8 0018F6F8  38 C0 00 00 */	li r6, 0
 /* 801927BC 0018F6FC  48 08 9A 95 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

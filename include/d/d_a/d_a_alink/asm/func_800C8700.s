@@ -907,8 +907,8 @@ lbl_800C93FC:
 /* 800C9404 000C6344  48 01 91 7D */ bl setHeavyBoots__9daAlink_cFi
 /* 800C9408 000C6348  48 00 00 14 */ b lbl_800C941C
 lbl_800C940C:
-/* 800C940C 000C634C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 800C9410 000C6350  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 800C940C 000C634C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 800C9410 000C6350  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 800C9414 000C6354  7F 64 DB 78 */ mr r4, r27
 /* 800C9418 000C6358  48 15 35 1D */ bl onDirectUseItem__13dMeter2Info_cFi
 lbl_800C941C:

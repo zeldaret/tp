@@ -31,16 +31,16 @@ lbl_8011F8E8:
 /* 8011F92C 0011C86C  4B F0 78 45 */ bl dStage_changeScene__FifUlScsi
 /* 8011F930 0011C870  48 00 00 90 */ b lbl_8011F9C0
 lbl_8011F934:
-/* 8011F934 0011C874  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8011F938 0011C878  3B C3 01 88 */ addi r30, r3, lbl_80430188@l
+/* 8011F934 0011C874  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8011F938 0011C878  3B C3 01 88 */ addi r30, r3, g_meter2_info@l
 /* 8011F93C 0011C87C  88 7E 00 4E */ lbz r3, 0x4e(r30)
 /* 8011F940 0011C880  38 80 00 00 */ li r4, 0
 /* 8011F944 0011C884  38 A0 00 CA */ li r5, 0xca
 /* 8011F948 0011C888  38 C0 00 00 */ li r6, 0
 /* 8011F94C 0011C88C  48 03 F0 C1 */ bl setParamData__9daPy_py_cFiiii
 /* 8011F950 0011C890  7C 67 1B 78 */ mr r7, r3
-/* 8011F954 0011C894  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8011F958 0011C898  38 A3 01 88 */ addi r5, r3, lbl_80430188@l
+/* 8011F954 0011C894  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8011F958 0011C898  38 A3 01 88 */ addi r5, r3, g_meter2_info@l
 /* 8011F95C 0011C89C  38 85 00 40 */ addi r4, r5, 0x40
 /* 8011F960 0011C8A0  3C 60 80 40 */ lis r3, g_dComIfG_gameInfo@ha
 /* 8011F964 0011C8A4  38 63 61 C0 */ addi r3, r3, g_dComIfG_gameInfo@l
@@ -53,8 +53,8 @@ lbl_8011F934:
 /* 8011F980 0011C8C0  90 01 00 08 */ stw r0, 8(r1)
 /* 8011F984 0011C8C4  38 00 00 00 */ li r0, 0
 /* 8011F988 0011C8C8  90 01 00 0C */ stw r0, 0xc(r1)
-/* 8011F98C 0011C8CC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8011F990 0011C8D0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8011F98C 0011C8CC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8011F990 0011C8D0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8011F994 0011C8D4  38 63 00 38 */ addi r3, r3, 0x38
 /* 8011F998 0011C8D8  38 80 FF FC */ li r4, -4
 /* 8011F99C 0011C8DC  88 1E 00 4E */ lbz r0, 0x4e(r30)

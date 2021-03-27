@@ -42,8 +42,8 @@ lbl_8021F3F8:
 /* 8021F408 0021C348  38 A3 00 B0 */ addi r5, r3, 0xb0
 /* 8021F40C 0021C34C  4B E3 73 89 */ bl set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c
 lbl_8021F410:
-/* 8021F410 0021C350  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021F414 0021C354  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021F410 0021C350  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021F414 0021C354  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021F418 0021C358  88 03 00 B9 */ lbz r0, 0xb9(r3)
 /* 8021F41C 0021C35C  28 00 00 02 */ cmplwi r0, 2
 /* 8021F420 0021C360  40 82 00 24 */ bne lbl_8021F444

@@ -155,8 +155,8 @@ lbl_80238E8C:
 /* 80238EB0 00235DF0  4C C6 31 82 */	crclr 6
 /* 80238EB4 00235DF4  48 12 D6 29 */	bl sprintf
 lbl_80238EB8:
-/* 80238EB8 00235DF8  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 80238EBC 00235DFC  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 80238EB8 00235DF8  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 80238EBC 00235DFC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 80238EC0 00235E00  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 80238EC4 00235E04  38 C0 00 00 */	li r6, 0
 /* 80238EC8 00235E08  38 E0 00 00 */	li r7, 0

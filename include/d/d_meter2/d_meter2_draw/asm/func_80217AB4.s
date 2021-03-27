@@ -280,20 +280,20 @@ lbl_80217E38:
 /* 80217EC0 00214E00  C0 44 01 50 */ lfs f2, 0x150(r4)
 /* 80217EC4 00214E04  48 03 C6 ED */ bl paneTrans__8CPaneMgrFff
 /* 80217EC8 00214E08  C3 FF 00 0C */ lfs f31, 0xc(r31)
-/* 80217ECC 00214E0C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80217ED0 00214E10  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80217ECC 00214E0C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80217ED0 00214E10  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80217ED4 00214E14  38 80 00 00 */ li r4, 0
 /* 80217ED8 00214E18  48 00 4A 79 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80217EDC 00214E1C  88 1F 07 73 */ lbz r0, 0x773(r31)
 /* 80217EE0 00214E20  7C 00 18 00 */ cmpw r0, r3
 /* 80217EE4 00214E24  41 82 00 58 */ beq lbl_80217F3C
-/* 80217EE8 00214E28  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80217EEC 00214E2C  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80217EE8 00214E28  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80217EEC 00214E2C  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80217EF0 00214E30  38 80 00 00 */ li r4, 0
 /* 80217EF4 00214E34  48 00 4A 5D */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80217EF8 00214E38  98 7F 07 73 */ stb r3, 0x773(r31)
-/* 80217EFC 00214E3C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80217F00 00214E40  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80217EFC 00214E3C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80217F00 00214E40  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80217F04 00214E44  38 80 00 00 */ li r4, 0
 /* 80217F08 00214E48  48 00 4A 49 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80217F0C 00214E4C  2C 03 00 00 */ cmpwi r3, 0
@@ -309,8 +309,8 @@ lbl_80217E38:
 /* 80217F34 00214E74  EC 01 00 28 */ fsubs f0, f1, f0
 /* 80217F38 00214E78  D0 1F 06 10 */ stfs f0, 0x610(r31)
 lbl_80217F3C:
-/* 80217F3C 00214E7C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80217F40 00214E80  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80217F3C 00214E7C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80217F40 00214E80  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80217F44 00214E84  38 80 00 00 */ li r4, 0
 /* 80217F48 00214E88  48 00 4A 09 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80217F4C 00214E8C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
@@ -398,20 +398,20 @@ lbl_8021804C:
 /* 80218090 00214FD0  C0 44 01 60 */ lfs f2, 0x160(r4)
 /* 80218094 00214FD4  48 03 C5 1D */ bl paneTrans__8CPaneMgrFff
 /* 80218098 00214FD8  C3 FF 00 28 */ lfs f31, 0x28(r31)
-/* 8021809C 00214FDC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802180A0 00214FE0  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021809C 00214FDC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802180A0 00214FE0  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802180A4 00214FE4  38 80 00 01 */ li r4, 1
 /* 802180A8 00214FE8  48 00 48 A9 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 802180AC 00214FEC  88 1F 07 74 */ lbz r0, 0x774(r31)
 /* 802180B0 00214FF0  7C 00 18 00 */ cmpw r0, r3
 /* 802180B4 00214FF4  41 82 00 58 */ beq lbl_8021810C
-/* 802180B8 00214FF8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802180BC 00214FFC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802180B8 00214FF8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802180BC 00214FFC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802180C0 00215000  38 80 00 01 */ li r4, 1
 /* 802180C4 00215004  48 00 48 8D */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 802180C8 00215008  98 7F 07 74 */ stb r3, 0x774(r31)
-/* 802180CC 0021500C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802180D0 00215010  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802180CC 0021500C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802180D0 00215010  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802180D4 00215014  38 80 00 01 */ li r4, 1
 /* 802180D8 00215018  48 00 48 79 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 802180DC 0021501C  2C 03 00 00 */ cmpwi r3, 0
@@ -427,8 +427,8 @@ lbl_8021804C:
 /* 80218104 00215044  EC 01 00 28 */ fsubs f0, f1, f0
 /* 80218108 00215048  D0 1F 06 14 */ stfs f0, 0x614(r31)
 lbl_8021810C:
-/* 8021810C 0021504C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80218110 00215050  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8021810C 0021504C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80218110 00215050  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80218114 00215054  38 80 00 01 */ li r4, 1
 /* 80218118 00215058  48 00 48 39 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 8021811C 0021505C  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha

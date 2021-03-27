@@ -26,8 +26,8 @@ lbl_800333B4:
 /* 800333D0 00030310  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 800333D4 00030314  28 00 00 6B */	cmplwi r0, 0x6b
 /* 800333D8 00030318  40 82 00 18 */	bne lbl_800333F0
-/* 800333DC 0003031C  3C 60 80 43 */	lis r3, lbl_80430188@ha
-/* 800333E0 00030320  38 63 01 88 */	addi r3, r3, lbl_80430188@l
+/* 800333DC 0003031C  3C 60 80 43 */	lis r3, g_meter2_info@ha
+/* 800333E0 00030320  38 63 01 88 */	addi r3, r3, g_meter2_info@l
 /* 800333E4 00030324  38 1F 00 0B */	addi r0, r31, 0xb
 /* 800333E8 00030328  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 800333EC 0003032C  48 1E A8 D9 */	bl setHotSpringTimer__13dMeter2Info_cFUc

@@ -178,8 +178,8 @@ lbl_8020F458:
 /* 8020F45C 0020C39C  FC 00 F8 40 */ fcmpo cr0, f0, f31
 /* 8020F460 0020C3A0  4C 41 13 82 */ cror 2, 1, 2
 /* 8020F464 0020C3A4  40 82 00 10 */ bne lbl_8020F474
-/* 8020F468 0020C3A8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8020F46C 0020C3AC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8020F468 0020C3A8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8020F46C 0020C3AC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8020F470 0020C3B0  48 00 D7 91 */ bl resetMeterString__13dMeter2Info_cFv
 lbl_8020F474:
 /* 8020F474 0020C3B4  E3 E1 00 58 */ psq_l f31, 88(r1), 0, 0

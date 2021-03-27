@@ -43,8 +43,8 @@ lbl_8021274C:
 /* 80212780 0020F6C0  41 80 FF C0 */ blt lbl_80212740
 /* 80212784 0020F6C4  3B 00 00 00 */ li r24, 0
 /* 80212788 0020F6C8  3B 60 00 00 */ li r27, 0
-/* 8021278C 0020F6CC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80212790 0020F6D0  3B 43 01 88 */ addi r26, r3, lbl_80430188@l
+/* 8021278C 0020F6CC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80212790 0020F6D0  3B 43 01 88 */ addi r26, r3, g_meter2_info@l
 lbl_80212794:
 /* 80212794 0020F6D4  7F 43 D3 78 */ mr r3, r26
 /* 80212798 0020F6D8  7F 04 C3 78 */ mr r4, r24
@@ -171,8 +171,8 @@ lbl_8021295C:
 /* 80212968 0020F8A8  38 80 00 04 */ li r4, 4
 /* 8021296C 0020F8AC  48 0E 4D 8D */ bl setBasePosition__7J2DPaneF15J2DBasePosition
 /* 80212970 0020F8B0  80 1F 03 2C */ lwz r0, 0x32c(r31)
-/* 80212974 0020F8B4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80212978 0020F8B8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80212974 0020F8B4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80212978 0020F8B8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8021297C 0020F8BC  90 03 00 28 */ stw r0, 0x28(r3)
 /* 80212980 0020F8C0  38 60 00 6C */ li r3, 0x6c
 /* 80212984 0020F8C4  48 0B C2 C9 */ bl __nw__FUl
@@ -194,8 +194,8 @@ lbl_802129B4:
 /* 802129C0 0020F900  38 80 00 04 */ li r4, 4
 /* 802129C4 0020F904  48 0E 4D 35 */ bl setBasePosition__7J2DPaneF15J2DBasePosition
 /* 802129C8 0020F908  80 1F 03 30 */ lwz r0, 0x330(r31)
-/* 802129CC 0020F90C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 802129D0 0020F910  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 802129CC 0020F90C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 802129D0 0020F910  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 802129D4 0020F914  90 03 00 2C */ stw r0, 0x2c(r3)
 /* 802129D8 0020F918  38 00 00 00 */ li r0, 0
 /* 802129DC 0020F91C  90 1F 03 34 */ stw r0, 0x334(r31)
@@ -296,8 +296,8 @@ lbl_80212B40:
 /* 80212B4C 0020FA8C  38 80 00 04 */ li r4, 4
 /* 80212B50 0020FA90  48 0E 4B A9 */ bl setBasePosition__7J2DPaneF15J2DBasePosition
 /* 80212B54 0020FA94  80 1F 03 34 */ lwz r0, 0x334(r31)
-/* 80212B58 0020FA98  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80212B5C 0020FA9C  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80212B58 0020FA98  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80212B5C 0020FA9C  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80212B60 0020FAA0  90 03 00 30 */ stw r0, 0x30(r3)
 /* 80212B64 0020FAA4  38 60 01 50 */ li r3, 0x150
 /* 80212B68 0020FAA8  48 0B C0 E5 */ bl __nw__FUl

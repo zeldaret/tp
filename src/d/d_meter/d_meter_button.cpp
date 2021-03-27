@@ -2,6 +2,7 @@
 
 #include "Z2AudioLib/Z2SeMgr/Z2SeMgr.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "global.h"
 #include "m_Do/m_Do_audio/m_Do_audio.h"
 
@@ -179,9 +180,9 @@ extern u8 lbl_804547A8;
 extern u8 lbl_804547AC;
 extern u8 lbl_803A6F88;
 extern u8 lbl_803790C0;
-extern u8 lbl_80430188;
+// extern u8 g_meter2_info;
 extern u8 lbl_8042EBC8;
-extern u8 lbl_80430188;
+// extern u8 g_meter2_info;
 extern u8 lbl_8043028C;
 
 extern "C" {

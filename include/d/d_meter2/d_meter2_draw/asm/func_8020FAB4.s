@@ -29,8 +29,8 @@
 /* 8020FB24 0020CA64  3C 80 80 3A */ lis r4, lbl_803988D0@ha
 /* 8020FB28 0020CA68  38 84 88 D0 */ addi r4, r4, lbl_803988D0@l
 /* 8020FB2C 0020CA6C  48 0C 60 0D */ bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
-/* 8020FB30 0020CA70  3C 80 80 43 */ lis r4, lbl_80430188@ha
-/* 8020FB34 0020CA74  38 84 01 88 */ addi r4, r4, lbl_80430188@l
+/* 8020FB30 0020CA70  3C 80 80 43 */ lis r4, g_meter2_info@ha
+/* 8020FB34 0020CA74  38 84 01 88 */ addi r4, r4, g_meter2_info@l
 /* 8020FB38 0020CA78  90 64 00 10 */ stw r3, 0x10(r4)
 /* 8020FB3C 0020CA7C  3C 80 80 40 */ lis r4, g_dComIfG_gameInfo@ha
 /* 8020FB40 0020CA80  38 84 61 C0 */ addi r4, r4, g_dComIfG_gameInfo@l
@@ -45,8 +45,8 @@
 /* 8020FB64 0020CAA4  38 65 4F 54 */ addi r3, r5, 0x524F4F54@l
 /* 8020FB68 0020CAA8  7F 45 D3 78 */ mr r5, r26
 /* 8020FB6C 0020CAAC  48 0C 5F CD */ bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
-/* 8020FB70 0020CAB0  3C 80 80 43 */ lis r4, lbl_80430188@ha
-/* 8020FB74 0020CAB4  38 84 01 88 */ addi r4, r4, lbl_80430188@l
+/* 8020FB70 0020CAB0  3C 80 80 43 */ lis r4, g_meter2_info@ha
+/* 8020FB74 0020CAB4  38 84 01 88 */ addi r4, r4, g_meter2_info@l
 /* 8020FB78 0020CAB8  90 64 00 14 */ stw r3, 0x14(r4)
 /* 8020FB7C 0020CABC  80 B7 5C F4 */ lwz r5, 0x5cf4(r23)
 /* 8020FB80 0020CAC0  3C 80 52 4F */ lis r4, 0x524F4F54@ha
@@ -55,8 +55,8 @@
 /* 8020FB8C 0020CACC  38 84 88 D0 */ addi r4, r4, lbl_803988D0@l
 /* 8020FB90 0020CAD0  38 84 00 6E */ addi r4, r4, 0x6e
 /* 8020FB94 0020CAD4  48 0C 5F A5 */ bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
-/* 8020FB98 0020CAD8  3C 80 80 43 */ lis r4, lbl_80430188@ha
-/* 8020FB9C 0020CADC  38 84 01 88 */ addi r4, r4, lbl_80430188@l
+/* 8020FB98 0020CAD8  3C 80 80 43 */ lis r4, g_meter2_info@ha
+/* 8020FB9C 0020CADC  38 84 01 88 */ addi r4, r4, g_meter2_info@l
 /* 8020FBA0 0020CAE0  90 64 00 18 */ stw r3, 0x18(r4)
 /* 8020FBA4 0020CAE4  7F 23 CB 78 */ mr r3, r25
 /* 8020FBA8 0020CAE8  4B DF F6 25 */ bl mDoExt_setCurrentHeap__FP7JKRHeap

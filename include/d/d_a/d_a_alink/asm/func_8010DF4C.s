@@ -141,8 +141,8 @@ lbl_8010E130:
 /* 8010E158 0010B098  48 00 03 1C */ b lbl_8010E474
 lbl_8010E15C:
 /* 8010E15C 0010B09C  3B 9E 1F D0 */ addi r28, r30, 0x1fd0
-/* 8010E160 0010B0A0  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8010E164 0010B0A4  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8010E160 0010B0A0  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8010E164 0010B0A4  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8010E168 0010B0A8  7F A4 EB 78 */ mr r4, r29
 /* 8010E16C 0010B0AC  48 10 E7 C9 */ bl onDirectUseItem__13dMeter2Info_cFi
 /* 8010E170 0010B0B0  80 1F 0A 64 */ lwz r0, 0xa64(r31)

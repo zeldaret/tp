@@ -439,16 +439,16 @@ lbl_80222B24:
 /* 80222B3C 0021FA7C  38 61 00 0C */ addi r3, r1, 0xc
 /* 80222B40 0021FA80  7C 03 E9 AE */ stbx r0, r3, r29
 lbl_80222B44:
-/* 80222B44 0021FA84  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80222B48 0021FA88  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80222B44 0021FA84  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80222B48 0021FA88  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80222B4C 0021FA8C  7F A4 EB 78 */ mr r4, r29
 /* 80222B50 0021FA90  4B FF 9E 01 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80222B54 0021FA94  7F 3C EA 14 */ add r25, r28, r29
 /* 80222B58 0021FA98  88 19 01 D6 */ lbz r0, 0x1d6(r25)
 /* 80222B5C 0021FA9C  7C 00 18 00 */ cmpw r0, r3
 /* 80222B60 0021FAA0  41 82 00 2C */ beq lbl_80222B8C
-/* 80222B64 0021FAA4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80222B68 0021FAA8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80222B64 0021FAA4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80222B68 0021FAA8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80222B6C 0021FAAC  7F A4 EB 78 */ mr r4, r29
 /* 80222B70 0021FAB0  4B FF 9D E1 */ bl isDirectUseItem__13dMeter2Info_cFi
 /* 80222B74 0021FAB4  98 79 01 D6 */ stb r3, 0x1d6(r25)
@@ -655,8 +655,8 @@ lbl_80222E44:
 /* 80222E58 0021FD98  7F 83 E3 78 */ mr r3, r28
 /* 80222E5C 0021FD9C  48 00 22 99 */ bl alphaAnimeButton__9dMeter2_cFv
 /* 80222E60 0021FDA0  38 00 00 00 */ li r0, 0
-/* 80222E64 0021FDA4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80222E68 0021FDA8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80222E64 0021FDA4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80222E68 0021FDA8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80222E6C 0021FDAC  98 03 00 B8 */ stb r0, 0xb8(r3)
 /* 80222E70 0021FDB0  39 61 00 30 */ addi r11, r1, 0x30
 /* 80222E74 0021FDB4  48 13 F3 A5 */ bl _restgpr_25

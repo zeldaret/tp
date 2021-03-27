@@ -498,8 +498,8 @@ lbl_80204F20:
 /* 80204F5C 00201E9C  38 A0 00 00 */ li r5, 0
 /* 80204F60 00201EA0  4B E2 E0 D1 */ bl getItem__17dSv_player_item_cCFib
 /* 80204F64 00201EA4  7C 79 1B 78 */ mr r25, r3
-/* 80204F68 00201EA8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80204F6C 00201EAC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80204F68 00201EA8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80204F6C 00201EAC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80204F70 00201EB0  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 80204F74 00201EB4  80 63 01 0C */ lwz r3, 0x10c(r3)
 /* 80204F78 00201EB8  48 01 6C 3D */ bl getCanoeFishing__13dMeter2Draw_cFv
@@ -519,8 +519,8 @@ lbl_80204F98:
 /* 80204FA8 00201EE8  90 01 00 0C */ stw r0, 0xc(r1)
 /* 80204FAC 00201EEC  38 00 FF FF */ li r0, -1
 /* 80204FB0 00201EF0  90 01 00 10 */ stw r0, 0x10(r1)
-/* 80204FB4 00201EF4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80204FB8 00201EF8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 80204FB4 00201EF4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80204FB8 00201EF8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 80204FBC 00201EFC  7F 24 CB 78 */ mr r4, r25
 /* 80204FC0 00201F00  80 BF 01 10 */ lwz r5, 0x110(r31)
 /* 80204FC4 00201F04  38 E0 00 00 */ li r7, 0

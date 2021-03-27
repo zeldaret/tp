@@ -2,6 +2,7 @@
 
 #include "f/f_op/f_op_msg_mng.h"
 #include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_meter2/d_meter2_info/d_meter2_info.h"
 #include "d/d_msg_object/d_msg_object.h"
 #include "f/f_op/f_op_scene_iter.h"
 #include "f/f_op/f_op_scene_mng.h"
@@ -50,7 +51,6 @@ void fopMsgM_messageSet__FUlUl(void);
 void fopMsgM_setMessageID__FUi(void);
 void fopMsgM_setStageLayer__FPv(void);
 void fopMsgM_valueIncrease__FiiUc(void);
-// void fopScnM_SearchByID(void);
 void fop_Timer_create__FsUcUlUcUcffffPFPv_i(void);
 void fpcEx_SearchByID__FUi(void);
 void fpcM_Delete__FPv(void);
@@ -76,7 +76,6 @@ extern u8 lbl_80451C7C;
 extern u8 lbl_80451C80;
 extern u8 lbl_80451C84;
 extern u8 lbl_80451C88;
-extern u8 lbl_80430188;
 
 #ifdef NON_MATCHING
 // 1 instruction off, needs alot of cleanup
@@ -121,8 +120,6 @@ u32 fopMsgM_GetAppend(void* pProc) {
     return ((unk*)pProc)->field_0xac;
 }
 
-// fopMsgM_Delete__FPv
-// fopMsgM_Delete__FPv(void*)
 void fopMsgM_Delete(void* pProc) {
     fpcM_Delete(pProc);
 }
@@ -192,15 +189,11 @@ asm void fopMsgM_messageSetDemo(u32) {
 #include "f/f_op/f_op_msg_mng/asm/func_8001FFC4.s"
 }
 
-// fopMsgM_messageGet__FPcUl
-// fopMsgM_messageGet__FPcUl(s8*, u32)
-asm void fopMsgM_messageGet(char*, u32) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_800200C0.s"
+char* fopMsgM_messageGet(char* pMsg, u32 param_2) {
+    g_meter2_info.getString(param_2, pMsg, 0);
+    return pMsg;
 }
 
-// fopMsgM_setMessageID__FUi
-// fopMsgM_setMessageID__FUi(unsigned int)
 void fopMsgM_setMessageID(unsigned int messageId) {
     i_msgID = messageId;
 }
@@ -212,8 +205,6 @@ asm void fopMsgM_Create(s16, int (*)(void*), void*) {
 #include "f/f_op/f_op_msg_mng/asm/func_80020108.s"
 }
 
-// setAlpha__7J2DPaneFUc
-// J2DPane::setAlpha(u8)
 void J2DPane::setAlpha(u8 i_alpha) {
     this->mAlpha = i_alpha;
 }

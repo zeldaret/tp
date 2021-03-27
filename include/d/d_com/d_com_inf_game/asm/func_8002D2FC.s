@@ -88,8 +88,8 @@ lbl_8002D430:
 /* 8002D444 0002A384  38 81 00 08 */ addi r4, r1, 8
 /* 8002D448 0002A388  48 09 0A 01 */ bl setLastSceneMode__9daAlink_cFPUl
 lbl_8002D44C:
-/* 8002D44C 0002A38C  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8002D450 0002A390  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8002D44C 0002A38C  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8002D450 0002A390  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8002D454 0002A394  3A A3 00 E9 */ addi r21, r3, 0xe9
 /* 8002D458 0002A398  7E A3 AB 78 */ mr r3, r21
 /* 8002D45C 0002A39C  3C 80 80 38 */ lis r4, lbl_80378F38@ha
@@ -103,8 +103,8 @@ lbl_8002D44C:
 /* 8002D47C 0002A3BC  48 33 B5 19 */ bl strcmp
 /* 8002D480 0002A3C0  2C 03 00 00 */ cmpwi r3, 0
 /* 8002D484 0002A3C4  41 82 00 1C */ beq lbl_8002D4A0
-/* 8002D488 0002A3C8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8002D48C 0002A3CC  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8002D488 0002A3C8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8002D48C 0002A3CC  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8002D490 0002A3D0  3C 80 80 38 */ lis r4, lbl_80378F38@ha
 /* 8002D494 0002A3D4  38 84 8F 38 */ addi r4, r4, lbl_80378F38@l
 /* 8002D498 0002A3D8  38 84 01 51 */ addi r4, r4, 0x151

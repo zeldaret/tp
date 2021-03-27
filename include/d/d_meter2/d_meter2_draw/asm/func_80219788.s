@@ -66,8 +66,8 @@ lbl_8021981C:
 /* 80219880 002167C0  80 7D 02 F8 */ lwz r3, 0x2f8(r29)
 /* 80219884 002167C4  48 03 BF A5 */ bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219888 002167C8  FF E0 08 90 */ fmr f31, f1
-/* 8021988C 002167CC  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 80219890 002167D0  3B E3 01 88 */ addi r31, r3, lbl_80430188@l
+/* 8021988C 002167CC  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 80219890 002167D0  3B E3 01 88 */ addi r31, r3, g_meter2_info@l
 /* 80219894 002167D4  A0 1F 00 AE */ lhz r0, 0xae(r31)
 /* 80219898 002167D8  54 00 FF FF */ rlwinm. r0, r0, 0x1f, 0x1f, 0x1f
 /* 8021989C 002167DC  40 82 00 28 */ bne lbl_802198C4
@@ -135,8 +135,8 @@ lbl_802198D0:
 /* 8021998C 002168CC  4E 80 04 21 */ bctrl
 /* 80219990 002168D0  3B C0 00 00 */ li r30, 0
 /* 80219994 002168D4  3B 80 00 00 */ li r28, 0
-/* 80219998 002168D8  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8021999C 002168DC  3B 23 01 88 */ addi r25, r3, lbl_80430188@l
+/* 80219998 002168D8  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8021999C 002168DC  3B 23 01 88 */ addi r25, r3, g_meter2_info@l
 /* 802199A0 002168E0  3C 60 80 43 */ lis r3, lbl_8042EBC8@ha
 /* 802199A4 002168E4  3B 43 EB C8 */ addi r26, r3, lbl_8042EBC8@l
 /* 802199A8 002168E8  CB C2 AE C0 */ lfd f30, lbl_804548C0-_SDA2_BASE_(r2)

@@ -10,8 +10,8 @@
 /* 8001FEA8 0001CDE8  88 1F 5E 8F */ lbz r0, 0x5e8f(r31)
 /* 8001FEAC 0001CDEC  28 00 00 08 */ cmplwi r0, 8
 /* 8001FEB0 0001CDF0  40 82 00 14 */ bne lbl_8001FEC4
-/* 8001FEB4 0001CDF4  3C 60 80 43 */ lis r3, lbl_80430188@ha
-/* 8001FEB8 0001CDF8  38 63 01 88 */ addi r3, r3, lbl_80430188@l
+/* 8001FEB4 0001CDF4  3C 60 80 43 */ lis r3, g_meter2_info@ha
+/* 8001FEB8 0001CDF8  38 63 01 88 */ addi r3, r3, g_meter2_info@l
 /* 8001FEBC 0001CDFC  80 63 00 1C */ lwz r3, 0x1c(r3)
 /* 8001FEC0 0001CE00  48 1F F8 2D */ bl emphasisButtonDelete__9dMeter2_cFv
 lbl_8001FEC4:
