@@ -42,6 +42,10 @@ public:
     virtual void setBlendRatio(f32, f32);
     virtual void setBlendColorRatio(f32, f32);
     virtual void setBlendAlphaRatio(f32, f32);
+
+public:
+    /* 0x00 */ u8 field_0x00[0x08];
+    /* 0x08 */ u8 field_0x08;
 };
 
 #endif

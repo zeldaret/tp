@@ -189,11 +189,8 @@ void J2DPicture::setBlendRatio(f32 param_1, f32 param_2) {
     setBlendAlphaRatio(param_1,param_2);
 }
 
-// append__10J2DPictureFPCcf
-// J2DPicture::append(const s8*, f32)
-asm void J2DPicture::append(const char*, f32) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_80020338.s"
+void J2DPicture::append(const char* param_1, f32 param_2) {
+    insert(param_1,field_0x08,param_2);
 }
 
 // insert__10J2DPictureFPCcUcf
