@@ -4,6 +4,7 @@
 #include "f/f_op/f_op_scene_iter.h"
 #include "f/f_pc/f_pc_stdcreate_req.h"
 #include "f/f_op/f_op_msg_mng.h"
+#include "f/f_pc/f_pc_manager.h"
 #include "global.h"
 
 // additional symbols needed for f_op_msg_mng.cpp
@@ -86,21 +87,25 @@ asm void fopMsgM_SearchByID(unsigned int) {
 }
 
 // matches but can be improved
-u32 fopMsgM_GetAppend(void* param_1) {
+u32 fopMsgM_GetAppend(void* pProc) {
     struct unk {
         u8 field_0x00[0xAC];
         u32 field_0xac;
     };
 
-    return ((unk*)param_1)->field_0xac;
+    return ((unk*)pProc)->field_0xac;
 }
 
 // fopMsgM_Delete__FPv
 // fopMsgM_Delete__FPv(void*)
-asm void fopMsgM_Delete(void*) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_8001FA4C.s"
+void fopMsgM_Delete(void* pProc) { 
+    fpcM_Delete(pProc);
 }
+
+// asm void fopMsgM_Delete(void*) {
+//     nofralloc
+// #include "f/f_op/f_op_msg_mng/asm/func_8001FA4C.s"
+// }
 
 // createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
 // createAppend(fopAc_ac_c*, cXyz*, u32*, u32*, unsigned int)
