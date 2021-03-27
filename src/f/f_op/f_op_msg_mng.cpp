@@ -206,9 +206,6 @@ void fopMsgM_createExpHeap(u32 param_1, JKRHeap* pJKRHeap) {
     JKRExpHeap::create(param_1,pJKRHeap, false);
 }
 
-// fopMsgM_destroyExpHeap__FP10JKRExpHeap
-// fopMsgM_destroyExpHeap__FP10JKRExpHeap(JKRExpHeap*)
-asm void fopMsgM_destroyExpHeap(JKRExpHeap*) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_800203E0.s"
+void fopMsgM_destroyExpHeap(JKRExpHeap* pJKRExpHeap) {
+    pJKRExpHeap->destroy();
 }
