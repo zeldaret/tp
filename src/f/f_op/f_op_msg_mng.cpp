@@ -184,11 +184,9 @@ asm void fopMsgM_valueIncrease(int, int, u8) {
 #include "f/f_op/f_op_msg_mng/asm/func_80020160.s"
 }
 
-// setBlendRatio__10J2DPictureFff
-// J2DPicture::setBlendRatio(f32, f32)
-asm void J2DPicture::setBlendRatio(f32, f32) {
-    nofralloc
-#include "f/f_op/f_op_msg_mng/asm/func_800202CC.s"
+void J2DPicture::setBlendRatio(f32 param_1, f32 param_2) {
+    setBlendColorRatio(param_1,param_2);
+    setBlendAlphaRatio(param_1,param_2);
 }
 
 // append__10J2DPictureFPCcf
